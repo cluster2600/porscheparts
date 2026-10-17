@@ -75,10 +75,16 @@ has 871,731 vertices and 1,743,878 faces, all meeting q≥2/29,
 zero global self-intersection pairs and preserved local exterior/boundary
 continuity. The eight retained opening-point screens and 16,218 affected
 neighbor checks pass within their stated scopes. The original-to-assembled
-distance upper bound is 0.03197034 mm; the reverse query hits its native
-allocation cap and returns no interval. Two-sided distance acceptance, volume
-meshing and head physics remain open; the 414 stronger shape failures stay
-separate and unchanged.
+distance upper bound is 0.03197034 mm; the original reverse CUB attempt hits its
+native allocation cap and returns no interval. That checkpoint preserves the
+incomplete result; the 414 stronger shape failures stay separate and unchanged.
+The [subsequent CGAL distance assessment](derived/engineering/atomic-cavity-plane-clip-cap-assembly-distance-cgal/README.md)
+completes both reverse source partitions against the full original analysis
+mesh. Combined with the retained forward result, the two-way interval is
+**[0.03283858206618785, 0.03288858206618786] mm**, passing the unchanged
+0.0625 mm representation budget. The reference is an analysis mesh, not an OEM
+measurement; no floating-point roundoff certificate is claimed. Volume quality
+and head physics remain open.
 The [current BIN/PLY and seven-map download](derived/engineering/atomic-cavity-plane-clip-cap-assembly-raw-review-delivery/README.md)
 is uploaded to the existing draft release. All 151 archive members pass complete
 independent byte checks; all 42 preceding assets remain unchanged (45 total).

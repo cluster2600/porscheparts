@@ -1,0 +1,39 @@
+{
+  "schema": "962-CGAL-positive-sub-error-fixture-source-successor/v1",
+  "original_path": "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-distance-cgal-prep-001/prepare_literals.py",
+  "original_sha256": "9b5fd5bf23664f7787c0f2f491deaa3161cb415e0d4900a009d16c4e5245d184",
+  "selected_path": "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-distance-cgal-fixtures-prep-001/prepare_literals.py",
+  "selected_sha256": "d8cad45244b0e91a78e490146d3597b07c6ed0f9da48a8c4fdc24f2139c2def3",
+  "literal_changes": [
+    {
+      "old": "'plane': square(0, 1/2)",
+      "new": "'plane': square(2**-17, 1/2)"
+    },
+    {
+      "old": "'two-open-components', 3/64)",
+      "new": "'two-open-components', 3/64-2**-17)"
+    },
+    {
+      "old": "'asymmetric-union', 'plane', 0)",
+      "new": "'asymmetric-union', 'plane', 2**-17)"
+    },
+    {
+      "old": "'plane', 'asymmetric-union', 1/32)",
+      "new": "'plane', 'asymmetric-union', 1/32-2**-17)"
+    },
+    {
+      "old": "'Separated parallel open squares have exact maximum plane distance3/64.'",
+      "new": "'Target plane z=2**-17 gives exact union distance3/64-2**-17.'"
+    },
+    {
+      "old": "'Union includes the plane, so plane-to-union0 and union-to-plane1/32.'",
+      "new": "'Plane z=2**-17 to union z0,z1/32 is2**-17, strictly belowepsilon; reverse1/32-2**-17.'"
+    }
+  ],
+  "reason": "Retain six analytic and two refusal cases in two four-job phases while adding a positive dyadic distance strictly belowepsilon. Coincidentzero, unionmax, asymmetry, open-to-closed and interior-max cases remain.",
+  "source_wrapper_unchanged": "26297ed13e6c95588d94abf8a320e7aaea2c8e4d12cec125b189cfd58ae7d408",
+  "case_count": 8,
+  "positive_sub_error_distance_mm": 7.62939453125e-06,
+  "epsilon_mm": 2.5e-05,
+  "source_or_native_execution": false
+}

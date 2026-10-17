@@ -74,11 +74,17 @@ The [subsequent assembled-surface checkpoint](derived/engineering/atomic-cavity-
 passes complete necessary triangle quality, global topology/self-intersection,
 16,218 affected-neighbor checks, eight opening-point screens and scoped
 exterior/boundary continuity on 871,731 vertices and 1,743,878 faces. Its forward
-distance upper bound is 0.03197034 mm. The reverse CUB query reaches a native
+distance upper bound is 0.03197034 mm. The original reverse CUB query reaches a native
 face/vertex allocation cap without an interval; the independent assessor
-refuses the incomplete two-way set. This is not a geometric-budget rejection
-or two-sided acceptance. The 0.0625 mm budget, stronger Mesh_2 failure and volume
-quality requirements remain unchanged; no head field follows yet.
+refuses that incomplete two-way set. This historical failure remains preserved.
+The [subsequent CGAL distance assessment](derived/engineering/atomic-cavity-plane-clip-cap-assembly-distance-cgal/README.md)
+completes the cap and noncap reverse queries against the full original analysis
+mesh. Their saved-result join with the retained CUB forward interval gives
+**[0.03283858206618785, 0.03288858206618786] mm** for two-way polygon distance,
+within the unchanged 0.0625 mm budget and 0.0001 mm interval-gap requirement.
+This passes the numerical representation check without an inner roundoff or
+OEM deviation certificate. The 414 stronger Mesh_2 failures and volume-quality
+requirements remain unchanged; no accepted head field follows yet.
 The [exact assembled-model download](derived/engineering/atomic-cavity-plane-clip-cap-assembly-raw-review-delivery/README.md)
 includes BIN, lossless PLY, all seven maps and the complete sealed evidence.
 All 151 members pass independent full-byte checks. GitHub verifies the three

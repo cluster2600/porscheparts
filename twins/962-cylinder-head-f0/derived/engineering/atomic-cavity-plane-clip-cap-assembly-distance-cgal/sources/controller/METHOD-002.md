@@ -1,0 +1,9 @@
+# HELD controller002 — wrapper refusal return code
+
+Preserve001 unchanged. Selected run_cgal_phase.py differs from60308073 by exactly one production literal: allowed expected return codes (0,3) become(0,2), matching the frozen wrapper's0complete/2refusal convention. Coref46c09 and metadatabb1d00 are byte-exact copies of001, including the reviewed setup-started absolute budget, before-Popen/post-wait/final elapsed checks and owned-ID cleanup. No other entrypoint, numerical, resource, mount, timing or phase logic changes.
+
+Compile and head actual jobs must declare [0]. Negative fixtures declare [2], with independent saved-data assessment distinguishing an expected procedural refusal from numerical acceptance. Four fixture jobs per child remain fixed. Root will use two separate four-case fixture children for the six analytic and two negative cases, without count/limit extensions or phase chaining.
+
+The existing runner TEST locator remains the frozen001 eight-mock source to keep the production delta to exactly one literal. This new adjacent nine-method test imports selected002, retains all eight prior methods verbatim and adds one otherwise-valid literal fixture child check acceptingRC2 and refusingRC3. Both old required test and new selected test are hash-bound in this held map and must be included in actual children. No test or prepared module was imported/run here; root owns the nine-method execution and exact result receipt.
+
+Root/independent source review, a frozen selected wrapper/fixture preparation, current runtime/resource preflight and fresh separately authorized compile/fixture/head children remain mandatory as in001. This held file is not an execution child. No native/build/Docker operation or numerical admission follows. Caller/input/output scope and all original limits are inherited from001 METHOD and are not duplicated or widened.
