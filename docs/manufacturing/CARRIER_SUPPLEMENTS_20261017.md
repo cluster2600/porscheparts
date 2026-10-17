@@ -1,5 +1,7 @@
 # Suppléments du calcul et de sa reproduction
 
+[English results supplement](CARRIER_SUPPLEMENTS_20261017_EN.md) · [English workflow guide](PART_WORKFLOW_EN.md)
+
 Le [guide 7](../../scripts/build_carrier_workshop_guide_v7.py) ajoute au guide 6
 le cycle mécanique à **32 états**. Il vérifie d’abord le rattachement historique
 à 16 états et conserve les six admissions de supports du guide 6. Il rattache

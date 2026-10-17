@@ -1,5 +1,7 @@
 # De la référence au dossier d'impression
 
+[English guide](PART_WORKFLOW_EN.md) · [English results supplement](CARRIER_SUPPLEMENTS_20261017_EN.md)
+
 Cette chaîne transforme une référence de pièce en un dossier numérique que
 l'imprimeur et le mécanicien peuvent suivre. Le support moteur 993 Turbo est
 le pilote. Chaque étape conserve son entrée, ses réglages, ses logiciels, ses
