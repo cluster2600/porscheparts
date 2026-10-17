@@ -177,6 +177,11 @@ The [exact shared-apex ball screen](derived/engineering/atomic-cavity-plane-clip
 checks all 55 pairs in 48 originally-poor shared-node groups using rational
 necessary outer bounds. Zero disjoint pairs were certified; every result is
 inconclusive. This establishes no shared-node feasibility or accepted mesh.
+The [exact shared-node obstruction](derived/engineering/atomic-cavity-plane-clip-cap-assembly-netgen-shared-fixed-triples-exact-pair/README.md)
+proves that two retained cells cannot both reach SICN 0.1 by moving their
+shared node while their fixed coordinates and connectivity remain unchanged.
+The result is for the exact geometric model; a local remesh is a separate
+next study, with no accepted head mesh or physical qualification yet.
 The [expanded interior-node census](derived/engineering/atomic-cavity-plane-clip-cap-assembly-netgen-expanded-stars/README.md)
 contains 1,098 movable nodes and 29,473 coupled cells, including all 210 poor
 cells and 29,263 initially good cells. Its complete geometric JSON is retained

@@ -1,0 +1,67 @@
+{
+  "schema": "962-independent-exact-shifted-single-pair-source-peer/v1",
+  "decision": "CLEAR_SOURCE_ONLY",
+  "blockers": [],
+  "scope": "Independent complete selected001 source/test-body, symbolic enclosure/orientation and small metadata/AST review. No source mathematical function, guard, saved geometry, scientific import, native/solver query, runtime binary, Git or publication execution.",
+  "selected": {
+    "preparation": "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-netgen-shared-fixed-triples-exact-pair-prep-001",
+    "source_sha256": "af4762323b2c839a7987b1d0b3bd56e01f61368d21c6957770e68eed14ff9ccd",
+    "guard_source_sha256": "c51330dd99a6b17d9ece1bb86f16db96e6210e27b0ef7a1442d7663a89874257",
+    "held_sha256": "ce58f18cd9a10a007258f53be38d62d0eba712eaba2312ecfd9e7e104b8a8573",
+    "apex_tag": 1435493,
+    "tetrahedron_tags": [
+      28946957,
+      31225364
+    ]
+  },
+  "math_review": {
+    "sqrt_interval": "For nonnegative Fraction x, integer=isqrt(floor(x*2^212)); lo=integer/2^106; hi=lo for an exact square, otherwise(integer+1)/2^106. Exact nonnegative ordered endpoints and squared enclosure are asserted.",
+    "normal_roots": "For S,T>0, S^2<=841T,A=899T-S^2>0,Delta=A^2-4S^2T>=0: upper sqrt(Delta) gives wminus_lower=max(0,(A-dhi)/(2S)) and wplus_upper=(A+dhi)/(2S), enclosing the true positive-root interval.",
+    "height_and_center": "Lower sqrt(2*wminus_lower/3) and upper sqrt(2*wplus_upper/3) bound necessary physical heights. Orient exact rawcross to the positive native-apex side; with crossnorm[nl,nu] and k=(hl+hu)/(2nu), the exact rational center height H lies in[k*nl,k*nu].",
+    "inflation": "h-H lies in[hl-k*nu,hu-k*nl]; m=max(abs(hl-k*nu),abs(hu-k*nl)) bounds its absolute value. U=2*(841*T/S-S)/3+m^2 encloses the necessary cylinder.",
+    "implicit_order_and_positive_k_proved": "0<=wminus_lower<=wplus_upper and wplus_upper>0 follow from S,A>0 and dhi>=0. Certified square-root endpoints give0<=hl<=hu and hu>0. The positive crossnorm upper endpoint therefore implies k>0. Separate redundant hl/k checks are unnecessary.",
+    "center_not_required_to_be_optimal": true,
+    "strict_pair_criterion": "For exact rational squared center distance D and nonnegative U,V: D-U-V>0 AND(D-U-V)^2>4UV; equality/nonseparation remains inconclusive.",
+    "precision_scope": "106-bit fractional enclosure precision affects tightness, not geometry or validity; no floating certificate endpoints or geometry grid are used."
+  },
+  "orientation_and_source_joins": [
+    "All four points are exact Fractions from saved binary64 coordinates. Exact native-order determinant must be strictly positive.",
+    "Fixed-face cross dot original apex is checked equal to(-1)^(3-free_corner)*native_det, then its sign orients the rawcross. This handles all free-corner positions and native permutation parity.",
+    "The frozen195 fixed-triple rows join the frozen5355 census by common source worker/four tagged arrays, selected cell and apex tags, original corner order/index, native quality hex, boundary classification and coordinate hex/values. This is source logic review; actual row associations await execution/result review.",
+    "The prior FLOAT refinement selects exactly this pair but contributes no value to its rational certificate. No wider pair scan or implicit initially-good-cell expansion occurs."
+  ],
+  "reuse_and_guard_review": {
+    "old_disjoint_function_AST_identical": true,
+    "old_source_sha256": "4e6d677e11ccaa6b8a9a66b3e59b764e7e4575bb6b467bdc3dd8e5a689d22007",
+    "four_guard_bodies_read_unexecuted": [
+      "perfect/nonperfect sqrt and invalid input",
+      "known positive right tetra target point enclosed",
+      "all12 even native permutations and odd refusal",
+      "strict separation versus touching"
+    ],
+    "guard_source_hash_links_exact_selected_checker": true,
+    "no_prior_three_guard_rerun_claim": true
+  },
+  "binding_and_authority": {
+    "exact_three_file_preparation": true,
+    "held_input_pins": 10,
+    "current_small_source_metadata_pins_hashed": 7,
+    "three_saved_fixed_firststar_refinement_report_bodies_deferred_to_root_fresh_guard": true,
+    "imports_stdlib_only": [
+      "fractions",
+      "math",
+      "hashlib",
+      "json",
+      "pathlib"
+    ],
+    "no_scientific_native_runtime_dependency_attestation": true,
+    "held_execution_authorized": false,
+    "observed_pair_result": null,
+    "output_observed_absent_at_review": true,
+    "required_next": "Root exact input/interpreter guard and four tiny stdlib checks, followed only by separately authorized one-pair saved-row evaluation and stopped-result review."
+  },
+  "conclusion_limits": "A future strict separation can obstruct only real-arithmetic signed SICN>=0.1 for these two cells sharing this apex while the three fixed coordinates per cell and connectivity remain fixed. This source review computes no obstruction. It provides no native floating-rounding, exterior-face membership, repair, whole-head or physical qualification.",
+  "engineering_accepted": false,
+  "physics_qualified": false,
+  "manufacturing_authorized": false
+}
