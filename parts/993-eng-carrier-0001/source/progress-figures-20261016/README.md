@@ -57,3 +57,9 @@ Les cinq images ont été relues visuellement ; les empreintes des copies et
 le test ciblé de coloration du graphe passent. Les cadrages intermédiaires
 sont conservés dans `work/part-workflow/progress-images-001` à `003` avec
 leur motif de refus éditorial.
+
+La [planche de la grande zone 000](region000-material-20261017/README.md)
+montre ses 171 694 triangles originaux : 322 grilles et 15 peaux, avec un graphe
+matériel connecté. Elle conserve le refus du découpeur strict et indique la
+correction de triangulation en cours. Les sources, tableaux, index des groupes
+et exports PNG/SVG/PDF sont inclus ; le rendu a été exécuté depuis une copie séparée.

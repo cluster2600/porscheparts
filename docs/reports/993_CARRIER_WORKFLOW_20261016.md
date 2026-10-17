@@ -612,3 +612,18 @@ appliquées et zéro ligne GRID modifiée par ce rejeu. Le contrôle des preuves
 sur les vrais NPZ passe ; les 19 tests synthétiques de l’adaptateur passent
 depuis cette copie documentaire. Les contacts/expositions des trois régions
 sur toutes les couches et l’assemblage des sept régions restent distincts.
+
+### Zone 000 et nouvelle planche des surfaces originales
+
+La génération de la zone 000 a produit 148 340 sommets, 171 694 faces et
+337 groupes dans une composante matérielle vérifiée. Le découpeur strict
+original a refusé une coupe de la grille `grid-0-9-0` dès Z = 0,030 mm ;
+le recensement complet des coupes est en cours. Un index exact de cinq champs
+par groupe a été extrait en parcourant les 2 589 891 988 octets du rapport
+original, avec SHA, partition et attributs contrôlés.
+
+La [nouvelle planche](../../parts/993-eng-carrier-0001/source/progress-figures-20261016/region000-material-20261017/README.md)
+montre toutes les faces originales en deux vues, sans simplification.
+Les huit entrées, les trois exports et le rendu exécuté depuis une copie
+séparée sont liés. Ce dossier conserve la correction de triangulation encore
+en cours ; il ne change pas les admissions des trois régions déjà corrigées.
