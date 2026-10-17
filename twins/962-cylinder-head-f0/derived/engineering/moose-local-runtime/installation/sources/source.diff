@@ -1,0 +1,35 @@
+--- source001
++++ source002
+@@ -17,12 +17,12 @@
+ ROOT = ENGINEERING.parent.parent
+ INSTALL = ENGINEERING / "moose-local-miniforge-001"
+ SOURCE = ENGINEERING / "moose-local-extracted-001"
+-STATE = ENGINEERING / "moose-local-install-state-001"
++STATE = ENGINEERING / "moose-local-install-state-002"
+ CACHE = STATE / "pkgs"
+-PREFIX = ENGINEERING / "moose-local-installed-001"
++PREFIX = ENGINEERING / "moose-local-installed-002"
+ CONFIG = PREP / "installer.yaml"
+ HELD = PREP / "held-preparation.json"
+-ACTUAL = ENGINEERING / "moose-local-prefix-install-execution-prep-001/actual-contract-001.json"
++ACTUAL = ENGINEERING / "moose-local-prefix-install-execution-prep-002/actual-contract-001.json"
+ PLAN = ENGINEERING / "moose-local-resolver-root-execution-004/stdout.json"
+ EXTRACTION = SOURCE / "extraction-receipt.json"
+ EXTRACTION_PEER = ENGINEERING / "moose-local-extraction-result-peer-002/review.json"
+@@ -308,13 +308,15 @@
+         from conda.models.records import PackageRecord, PackageCacheRecord
+         from conda.core.package_cache_data import PackageCacheData
+         from conda.core.link import PrefixSetup, UnlinkLinkTransaction
+-        from conda.gateways.disk.create import write_as_json_to_file
++        from conda.gateways.disk.create import write_as_json_to_file, create_package_cache_directory
+         import conda.core.link as link_module
++        need(create_package_cache_directory(str(CACHE)) is True, "Standard package-cache initialization failed")
+         # Seed complete records before a cache scan can synthesize incomplete directory records.
+         records = [PackageRecord.from_objects(fetch) for _, fetch in ordered]
+         for (name, _), record in zip(ordered, records):
+             write_as_json_to_file(str(CACHE / name / "info/repodata_record.json"), record)
+         cache = PackageCacheData(str(CACHE))
++        need(cache.is_writable is True, "Initialized task cache must be writable")
+         cache.load()
+         for (name, fetch), record in zip(ordered, records):
+             cache.insert(PackageCacheRecord.from_objects(record, extracted_package_dir=str(CACHE / name),

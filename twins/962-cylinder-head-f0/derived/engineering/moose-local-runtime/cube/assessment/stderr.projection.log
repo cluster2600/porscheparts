@@ -1,0 +1,12 @@
+Traceback (most recent call last):
+  File "{PROJECT_ROOT}/work/962-engineering/imported-elastic-cube-flat-inputs-001/assess_cube.py", line 289, in <module>
+    assess(args.contract,args.contract_sha256,args.output)
+  File "{PROJECT_ROOT}/work/962-engineering/imported-elastic-cube-flat-inputs-001/assess_cube.py", line 278, in assess
+    result.update(algebra=algebra(matrix(c['operator']),matrix(c['preconditioner']),vector(c['rhs']),vector(c['correction']),card['acceptance']['relative_saved_algebraic_residual']),actual_solver=actual_settings(Path(c['ksp']).read_text()))
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "{PROJECT_ROOT}/work/962-engineering/imported-elastic-cube-flat-inputs-001/assess_cube.py", line 212, in algebra
+    need(residual<=tolerance and ap<=tolerance,'J*y=F and A=P criteria')
+  File "{PROJECT_ROOT}/work/962-engineering/imported-elastic-cube-flat-inputs-001/assess_cube.py", line 14, in need
+    if not ok: raise ValueError(message)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: J*y=F and A=P criteria

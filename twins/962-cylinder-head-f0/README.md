@@ -11,6 +11,9 @@ with explicit assumptions for unavailable dimensions.
 
 The [engineering execution programme](ENGINEERING_PROGRAM.md) continues through
 material/strength assessment, LPBF simulation, an Omniverse twin and PhysicsNeMo.
+The [local mechanics runtime checkpoint](derived/engineering/moose-local-runtime/README.md)
+records a completed native cube solve followed by a rejected independent residual
+assessment. Benchmark acceptance and head physics remain open.
 The [completed partial head replacement](derived/engineering/head-star-replacement/README.md)
 passes its local 39-cell and full save/reopen procedure. It reduces poor cells
 from 210 to **208**, while the whole head still fails SICN 0.1. No head strength
@@ -239,10 +242,14 @@ adds named CP1 process identities and expansion intervals, while retaining the
 missing E, Poisson ratio and temperature-law inputs. Source/date limits remain
 explicit; no retained material card or material selection is changed.
 The [prepared vector elastic cube](derived/engineering/imported-elastic-cube-preparation/README.md)
-includes a completed, independently checked 15-node/40-tetrahedron ASCII adapter.
-Its fictitious affine material/load case is materialized but held: no MOOSE import,
-vector solve or field assessment has run. The six source guards and nine assessor
-guards pass; they do not establish head strength or a qualified material.
+includes an independently checked 15-node/40-tetrahedron ASCII adapter, with six
+source guards and nine assessor guards. The later
+[local MOOSE runtime checkpoint](derived/engineering/moose-local-runtime/README.md)
+completes installation, three metadata commands and one native affine cube solve.
+Its separate unchanged assessor rejects the saved relative residual:
+4.4458188673751004e-10 exceeds the 1e-10 limit, while A=P passes. The failed
+assessment and original outputs remain preserved; this is no accepted benchmark,
+head strength result or qualified material.
 The [separate AlSi10Mg conductivity follow-up](MATERIAL_CONDUCTIVITY_FOLLOWUP.md)
 adds measured directional points over 23–250 °C, with the treatment, missing
 conditions and proposed interpolation kept explicit.
