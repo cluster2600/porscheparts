@@ -55,6 +55,13 @@ failed its first time step: 33 internal cutbacks, zero converged steps and no
 energy assessment. The full failure and initial fields are retained. Its
 rho = 2700 kg/m³, cp = 900 J/(kg K) and k = 187 W/(m K) are research assumptions;
 no accepted thermal, material or LPBF result follows.
+The separate [LINEAR thermal coupon](derived/engineering/cp1-assumed-thermal-birth-linear/README.md)
+completes 160 steps to 0.4 s. The unchanged independent assessor passes all
+93,189 field, source, history and energy checks: maximum step energy defect
+2.1964e-8 J against 1e-7 J, and continuous relative energy error 0.37577%
+against 1%. All original fields and the failed Newton history remain retained.
+This single time level establishes neither time convergence nor the original
+Newton residual criterion. Material, head and LPBF qualification remain open.
 The [latest bore95 USD checkpoint](USD_NORMALS_ENGINEERING.md) verifies face
 normals and passes the minimum and CPU asset checks; its formal robotics profile
 retains six failed feature rows. No head physics or manufacturing qualification

@@ -73,6 +73,15 @@ assumed bionic geometry; a missing original dimension stays unknown.
    This synthetic 256-HEX8, metre-scale coupon supplies no head, material or
    LPBF validation. A different solver mode requires a separate reviewed trial
    and the unchanged independent energy and field checks.
+   The subsequent [separate LINEAR coupon](derived/engineering/cp1-assumed-thermal-birth-linear/README.md)
+   completes all 160 steps to 0.4 s and passes the unchanged 93,189 assessment
+   checks. Maximum step energy defect is 2.1964e-8 J against 1e-7 J; maximum
+   continuous relative error is 0.37577% against 1%. Birth and existing nodal
+   histories, material samples and the moving Gaussian source pass their frozen
+   gates. The original failed Newton run remains immutable. One time level does
+   not establish temporal convergence, and LINEAR does not check the original
+   Newton nonlinear criterion. This remains a synthetic assumed-material
+   software result, without head strength or calibrated LPBF acceptance.
    The earlier [replacement prerequisites](derived/engineering/local-replacement-prerequisites/README.md)
    now establish sparse-tag editing capability, exact relative local-domain
    equality and the original head's nine exterior/nineteen connected interfaces.
