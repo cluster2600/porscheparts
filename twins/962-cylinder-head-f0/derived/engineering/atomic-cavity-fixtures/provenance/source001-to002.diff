@@ -1,0 +1,20 @@
+--- preserved/atomic_cavity.cpp
++++ pending/atomic_cavity_002.cpp
+@@ -128,7 +128,7 @@
+       auto g=groups.find(k.first);if(g==groups.end()||g->second.front()!=k.first||!std::binary_search(g->second.begin(),g->second.end(),k.second))throw std::runtime_error("Keeper must name exact component minimum and member");
+       for(auto v:g->second) {if(fixed[origins[v]])throw Rejected("Mapped component touches original fixed vertex");map[v]=k.second;member[v]=true;}
+     }
+-    r.old_topology=topology(current);if(!r.old_topology.valid)throw std::runtime_error("Current full links/topology invalid");r.inputs=true;r.stage="simultaneous_quotient";
++    r.old_topology=topology(current);if(!r.old_topology.valid||r.old_topology.components!=1||r.old_topology.euler!=(head?-208:2))throw std::runtime_error("Current must have fixed connected topology and Euler");r.inputs=true;r.stage="simultaneous_quotient";
+     Quality before=quality(current);std::vector<Row> rows,unordered;std::vector<bool> affected,referenced(current.num_vertices(),false);Chain before_boundary,after_boundary;
+     for(auto f:current.faces()) {
+       auto vs=vertices(current,f);Row old{vs[0].idx(),vs[1].idx(),vs[2].idx()},t{map[old[0]],map[old[1]],map[old[2]]};bool a=member[old[0]]||member[old[1]]||member[old[2]];
+@@ -149,7 +149,7 @@
+     auto ap=candidate.add_property_map<Face,bool>("f:atomic-affected",false).first;
+     for(std::size_t i=0;i<rows.size();++i) {auto t=rows[i];auto f=candidate.add_face(ids[t[0]],ids[t[1]],ids[t[2]]);if(f==Mesh::null_face())throw Rejected("Quotient faces not valid oriented mesh");ap[f]=affected[i];}
+     r.candidate_built=true;r.candidate_vertices=candidate.num_vertices();r.candidate_faces=candidate.num_faces();r.stage="full_quality_and_topology";
+-    auto q=quality(candidate);r.quality_checked=true;r.bad=q.bad;r.minimum=q.minimum;r.quality=q.bad==0&&q.minimum>=before.minimum;if(!r.quality)throw Rejected("Global necessary quality or minimum failed");
++    auto q=quality(candidate);r.quality_checked=true;r.bad=q.bad;r.minimum=q.minimum;r.quality=before.bad>0&&q.bad==0&&q.minimum>=before.minimum;if(!r.quality)throw Rejected("Global necessary quality or minimum failed");
+     r.new_topology=topology(candidate);r.topology=r.new_topology.valid&&r.new_topology.components==r.old_topology.components&&r.new_topology.euler==r.old_topology.euler;if(!r.topology)throw Rejected("Full topology/links/components/Euler changed");
+     std::vector<bool> output_seen(original.num_vertices(),false);
+     for(auto v:candidate.vertices()) {auto id=output_origins[v.idx()];if(output_seen[id]||!same_point_bits(candidate.point(v),original.point(Vertex(id))))throw Rejected("Output origin or coordinate bytes changed");output_seen[id]=true;}

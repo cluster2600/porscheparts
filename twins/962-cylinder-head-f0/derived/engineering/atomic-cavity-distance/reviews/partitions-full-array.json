@@ -1,0 +1,84 @@
+{
+  "schema": "962-atomic-unequal-partition-full-array-independent-review/v1",
+  "status": "CLEAR_complete_unequal_source_partitions_and_exact_shared_exterior_only",
+  "assessor_sha256": "bc5d51619648a197693980c05bbefdd6eb2774d0a83112d6b1d2b88c2b7441a5",
+  "reviewed_input_sha256": {
+    "work/962-engineering/analysis-envelope-025-003/exact-input.bin": "894ece6e63d99684fd7c8710caf73132cd73731ac8bc667548c21c85962d4c95",
+    "work/962-engineering/atomic-cavity-head-001/head-atomic002/candidate.bin": "1f9dbd4cda61c7b58084479ebb165fb01280fa831752dc0da18517e548131b1a",
+    "work/962-engineering/atomic-cavity-head-001/head-atomic002/vertex-coordinate-origins.u64": "22d9303503c98a7c4b0f08bfe20df3dddce51b7a86a96f4fcbc503f0cb163e47",
+    "work/962-engineering/finest-endpoint-003-head-001/head-endpoint003/patch-reference-face-ids.u64": "c93dcc98059fed493f2d50d64cbdd4a6ca4b3d79199af390442cea4506175763",
+    "twins/962-cylinder-head-f0/source/audit_quality_head.py": "a298270aa00b1536314a07629b935500c68883ca0d3bd1a179d71b49a8e73991",
+    "twins/962-cylinder-head-f0/source/run_quality_distance_002.py": "6aeb8be558054b6cb4e8d1b7904adfe17d57b0c11d17a134cbe574a8cafa085c",
+    "work/962-engineering/atomic-cavity-head-root-result-001/review.json": "4c6699f8f63b18e3e819f10bcaf09693f43381bc0e01f45f85cb4bf43116c081",
+    "work/962-engineering/atomic-cavity-head-peer-readback-001/review.json": "61e0802328ddbf8e38658b980fbc43c617cab00248304717dde4492f7b2ff047",
+    "work/962-engineering/atomic-cavity-distance-prep-001/prepare.py": "cec8b8ea9ca67852e31d491cfe8d04e1b8fb5c308abf8d427ac2162fe302653a",
+    "twins/962-cylinder-head-f0/source/audit_quality_patch.py": "3532a172b2bce3a8ead7c8b11b712a2b55891377726fa1b6d847e84f0eed3912",
+    "work/962-engineering/atomic-cavity-distance-source-peer-review-001/review.json": "af36d69548c58a4e34eff856acc5a9ceba37f2403bded1c13cc77603a619a993",
+    "work/962-engineering/atomic-cavity-distance-prep-001/original-partition.npz": "ab2f8c4e61e807a0f9fed767da7ec929df912dc70a8f651a44d1124dff456166",
+    "work/962-engineering/atomic-cavity-distance-prep-001/candidate-partition.npz": "45e911c9d4457dab014e15a13d104f95dc151e78518ef69c4ec3b96d4c6a9113",
+    "work/962-engineering/atomic-cavity-distance-prep-001/reduction-proof.json": "30634c07700e40ba3c0f753d27576de974b28306e6b765b71092add0f94bc42a",
+    "work/962-engineering/atomic-cavity-distance-prep-001/root-launch-binding.json": "cec577bf570eecc6972385973016dfe7c858231b93ed22dc85f01fc6fd6061de",
+    "work/962-engineering/atomic-cavity-distance-partition-peer-readback-001/readback.py": "bc5d51619648a197693980c05bbefdd6eb2774d0a83112d6b1d2b88c2b7441a5",
+    "twins/962-cylinder-head-f0/source/audit_quality_distance.py": "58a23c788cd0d9053b64c0bab3acff68a5ea33427e79a19f56516d05cb090f0d"
+  },
+  "all_reviewed_inputs_before_after_current_exact": true,
+  "complete_source_counts": {
+    "original_vertices": 902145,
+    "original_faces": 1804706,
+    "candidate_vertices": 901727,
+    "candidate_faces": 1803870
+  },
+  "complete_ordered_candidate_coordinates_byte_exact_to_original_origins": true,
+  "origin_ids_unique_in_range": true,
+  "immutable_original_patch_ids_unique_sorted_in_range": 4704,
+  "exact_shared_oriented_exterior_multiset_count": 1800002,
+  "each_shared_face_occurs_exactly_once_in_each_surface": true,
+  "shared_sorted_canonical_original_ID_faces_sha256": "522de563922ecbbe00502a36861119e8c3d6ff20c8c7a86ea1f4efe3633170bc",
+  "winding_and_multiplicity_preserved_without_coordinate_tolerance": true,
+  "partitions": {
+    "original": {
+      "source_faces": 1804706,
+      "shared_faces": 1800002,
+      "changed_faces": 4704,
+      "mask_and_all_changed_indices_exact": true,
+      "source_coverage_complete_disjoint": true,
+      "mask_sha256": "dae7b2e784d0c3d73ea8d4f26135aa153b15bba2e2ceed6b19e11c4a4406bed0",
+      "changed_indices_sha256": "c93dcc98059fed493f2d50d64cbdd4a6ca4b3d79199af390442cea4506175763",
+      "npz_sha256": "ab2f8c4e61e807a0f9fed767da7ec929df912dc70a8f651a44d1124dff456166"
+    },
+    "candidate": {
+      "source_faces": 1803870,
+      "shared_faces": 1800002,
+      "changed_faces": 3868,
+      "mask_and_all_changed_indices_exact": true,
+      "source_coverage_complete_disjoint": true,
+      "mask_sha256": "cf1bd55029462f551db9e83debb2fcf7ba121becb35cb1386fedfd882d62d13e",
+      "changed_indices_sha256": "2ecc270438c61a78a3c776ebd9d57a2956f405b57d5dabb6fdfc340559572e98",
+      "npz_sha256": "45e911c9d4457dab014e15a13d104f95dc151e78518ef69c4ec3b96d4c6a9113"
+    }
+  },
+  "each_partition_uses_its_own_source_length": true,
+  "exact_union_reduction": "Original=S union original_patch; candidate=S union candidate_patch. Identical S is covered in each complete opposite target. Hence each directed supremum equals the maximum of zero and its own patch-to-COMPLETE-opposite-target supremum.",
+  "source_only_worker_review": {
+    "worker_sha256": "58a23c788cd0d9053b64c0bab3acff68a5ea33427e79a19f56516d05cb090f0d",
+    "each_mask_validated_against_own_complete_source": true,
+    "only_source_faces_are_restricted": true,
+    "target_points_and_faces_remain_complete": true,
+    "existing_equal_count_partition_helper_not_used": true,
+    "future_query_configs_not_present_or_reviewed": true
+  },
+  "recorded_preparation_transitive_import_binding_present_and_current": true,
+  "reviewer_parser": "Direct struct header plus read-only NumPy memmaps; preparation and worker never imported or executed.",
+  "runtime": {
+    "python": "3.10.11",
+    "numpy": "2.2.6",
+    "optimize": 0
+  },
+  "wall_seconds": 10.77168408385478,
+  "geometry_or_partition_files_written": false,
+  "native_CUB_CGAL_Docker_SSH_Git_or_solver_calls": 0,
+  "distance_gate_passed": false,
+  "global_topology_or_intersection_admission": false,
+  "head_or_solver_admitted": false,
+  "manufacturing_authorized": false
+}

@@ -37,3 +37,15 @@ The [endpoint-collapse software references](derived/engineering/finest-endpoint-
 The current surface's directed-distance lower bound, 0.0718566970 mm, exceeds the unchanged finest representation budget of 0.0625 mm. A closer surface is required for the full refinement study even if a later volume mesh passes quality. The [version003 software references](derived/engineering/finest-endpoint-003-fixtures/README.md) verify a smaller immutable-original patch envelope under the same budget. Its [separate head pass](derived/engineering/finest-endpoint-003-head/README.md) completes 284 collapses and exports an independently inspected proposal, retaining every fixed coordinate and exterior oriented face. It reduces deficient facets from 744 to 266 and remains rejected by the necessary quality screen. No distance, intersection or volume call follows that rejection. The previous surface and failed attempts remain intact; no replacement surface is admitted. Unfinished Relocate3D source remains outside this delivery.
 
 The [separate native final-profile capsule](derived/engineering/remaining266-native-profiles/README.md) now diagnoses that rejected endpoint003 snapshot without modifying it. All 135 remaining short-edge profiles pass native topology and custom placement, then fail the unchanged ordinary squared-area ratio guard: 133 in new-fan pairs and two against exterior neighbors. Three actual literal references verify the query path; root and peer checks cover all 182 reported fixture/head pair classifications. This is a final-state diagnosis, with no historical queue-veto, repaired surface, distance, intersection, volume or head-physics claim.
+
+The [later atomic cavity result](ATOMIC_CAVITY_ENGINEERING.md) creates a separate
+candidate from endpoint003, removing all 266 remaining poor facets with the
+unchanged local guards and 0.0625 mm immutable-patch envelope. Full root and peer
+array readback pass. Its global surface and volume admission remain separate;
+none of the older candidate's checks is inherited.
+The subsequent new global topology/intersection and two directed distance
+queries pass for this exact candidate. Its symmetric polygon-deviation upper
+bound is 0.0328639663163803 mm, within the unchanged 0.0625 mm limit. All 228
+patch disks retain exact fixed boundaries. The separate full-surface opening
+query also verifies all eight designated points strictly outside metal on
+both surfaces. Volume quality and head physics remain open.

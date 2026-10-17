@@ -20,13 +20,23 @@ now identifies the obstruction in the rejected endpoint003 snapshot: all 135
 queried edges pass topology and custom placement, then fail the unchanged
 adjacent-area ratio guard. Three native literal references and independent
 arithmetic checks support this diagnosis; no geometry was changed.
+The [later atomic cavity repair](ATOMIC_CAVITY_ENGINEERING.md) exports a separate
+candidate with all 266 remaining poor facets removed. Complete independent
+array readback, global topology/intersection and two-sided distance checks pass.
+Its maximum deviation bound is 0.032864 mm against the unchanged 0.0625 mm
+budget. The 228-patch and eight-opening-point screens pass; volume-mesh
+admission and head physics remain open.
+The [repaired-surface BIN/PLY review](derived/engineering/atomic-cavity-review-delivery/README.md)
+is uploaded with its checksum and complete 143-member manifest; all 33 earlier
+draft-release assets remain unchanged.
 The [sourced material comparison](ENGINEERING_MATERIALS.md) now separates seven
 published recipes, discrete hot-strength points and conditional body masses.
 These results do not select or qualify a material for the head.
-The [current analysis-surface evidence](ANALYSIS_QUALITY_ENGINEERING.md) passes
-its necessary quality, topology, intersection and bounded-distance checks;
-volume-mesh quality and solved head fields remain separate gates.
-The [new candidate review download](derived/engineering/analysis-quality-review-delivery/README.md)
+The [earlier analysis-surface evidence](ANALYSIS_QUALITY_ENGINEERING.md) passes
+its quality, topology, intersection and 0.25 mm distance screens, while
+exceeding the finest 0.0625 mm representation budget. Its checks remain
+separate from the new atomic candidate and solved head fields.
+The [earlier quality-candidate review download](derived/engineering/analysis-quality-review-delivery/README.md)
 contains exact BIN and standard PLY files, with English unit/import guidance.
 The [later raw volume-mesh review](derived/engineering/rejected-volume-seed-review-delivery/README.md)
 includes its exact MSH and explicit quality rejection; it supplies no head

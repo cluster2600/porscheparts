@@ -1,0 +1,65 @@
+{
+  "schema": "962-atomic-actual-source-and-upstream-bindings/v1",
+  "sources": [
+    {
+      "repository_source_path": "twins/962-cylinder-head-f0/source/analysis-cgal/atomic_cavity_002.cpp",
+      "sha256": "e2dfe8417b77aaf8fb2e44bf98aa26232170c80c0bb2c69af0b551d695c8b11a",
+      "scope": "actual compiled source002",
+      "duplicated_in_this_capsule": false
+    },
+    {
+      "repository_source_path": "twins/962-cylinder-head-f0/source/analysis-cgal/atomic_cavity.cpp",
+      "sha256": "04190b797a65825801befcbbeab9f342a84b080e2787fb7ec4ce2821f04f3ee1",
+      "scope": "preserved source001; not the compiled source",
+      "duplicated_in_this_capsule": false
+    },
+    {
+      "repository_source_path": "twins/962-cylinder-head-f0/source/analysis-cgal/quality_patch.cpp",
+      "sha256": "6a56acf7a1d7a4882251044f9331ff0e4590042a4d1d15f0b4599e0ab241d9ee",
+      "scope": "actual shared include",
+      "duplicated_in_this_capsule": false
+    },
+    {
+      "repository_source_path": "twins/962-cylinder-head-f0/source/run_finest_endpoint_preflight.py",
+      "sha256": "b214e1cece8dbf66be6071199cbdf1a8e22a2a59328888011de17492f923c86b",
+      "scope": "owned-only lifecycle helper, both phases",
+      "duplicated_in_this_capsule": false
+    },
+    {
+      "repository_source_path": "twins/962-cylinder-head-f0/source/run_finest_endpoint_metadata.py",
+      "sha256": "a88477c47d406cea3761c324e1f6eb82dcb1c2b962698d7f328261c6cef2929b",
+      "scope": "optional metadata companion, both phases",
+      "duplicated_in_this_capsule": false
+    },
+    {
+      "repository_source_path": "twins/962-cylinder-head-f0/source/run_finest_patch_phase.py",
+      "sha256": "c2191896dba65d38cf41222f51dcab29c7896624481d1beb4b1b097c0546a440",
+      "scope": "actual compile-phase snapshot; reference path alone does not identify this older variant",
+      "duplicated_in_this_capsule": false
+    },
+    {
+      "repository_source_path": "twins/962-cylinder-head-f0/source/run_finest_patch_phase.py",
+      "sha256": "05390ea80e96728186ae5652356ccb5d762d4e013bc5f1a86c03faf6934154e4",
+      "scope": "actual fixture-phase snapshot",
+      "duplicated_in_this_capsule": false
+    }
+  ],
+  "compiled_binary": {
+    "bytes": 911232,
+    "sha256": "096a6bba7c7103afb4af0b99417a715f66960c7bf972d47136a706b97f020dff",
+    "architecture": "ELF64 little-endian AArch64",
+    "included": false
+  },
+  "upstream_scalar_predicate": {
+    "version": "CGAL 5.6",
+    "url": "https://github.com/CGAL/cgal/blob/v5.6/Surface_mesh_simplification/include/CGAL/Surface_mesh_simplification/internal/Edge_collapse.h",
+    "retained_installed_header_sha256": "e86265a275a2ac03609bb4272fcede472a4dc577304d8ec1b3b8dc3b8fd630b8",
+    "source_lines": {
+      "one_degree_cosine_squared": "433",
+      "shared_triangle_scalar_predicate": "911-964"
+    },
+    "policy": "Strict larger squared normal norm < 1e8 * smaller; positive normal dot or dot squared <= cos(1 degree)^2 times the two squared normal norms.",
+    "licence": "GPL-3.0-or-later OR LicenseRef-Commercial",
+    "full_header_included": false
+  }
+}
