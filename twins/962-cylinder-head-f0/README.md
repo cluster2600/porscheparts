@@ -116,6 +116,10 @@ passes its separate SICN 0.1 gate: 191 to 40 tetrahedra, 42 to 15 nodes and
 minimum SICN 0.4780600202533193 after exact saved-file readback. Both generated
 cube meshes and complete arrays are included. This toy software result supplies
 no head mesh acceptance or physical qualification.
+The [direct-SICN tiny attempt](derived/engineering/direct-sicn-cube-import-failure/README.md)
+stops during SciPy import before any optimizer call, Gmsh calibration or mesh
+export. Source/math and mocked lifecycle guards pass separately; the preserved
+import failure establishes no optimizer result or head-repair feasibility.
 The [completed head Netgen trial](derived/engineering/atomic-cavity-plane-clip-cap-assembly-delaunay-netgen-postexport/README.md)
 reduces SICN < 0.1 cells from 3,438 to 210, with minimum 0.039074265058645995.
 Exact boundary, full incidence and saved-file identity checks pass; all Jacobians
@@ -134,6 +138,11 @@ The [completed fixed-triple diagnosis](derived/engineering/atomic-cavity-plane-c
 checks all 195 three-boundary-node poor cells: no isolated apex ceiling is at or
 below SICN 0.1. The 144 distinct interior apices still require complete shared-star
 constraints; no repair, exterior-face membership or head acceptance is established.
+The [complete seed-star census](derived/engineering/atomic-cavity-plane-clip-cap-assembly-netgen-full-stars/README.md)
+identifies 156 candidate interior nodes and 5,355 incident tetrahedra: 210 poor
+and 5,145 initially good. It retains 468 possible coordinate variables and the
+complete geometric census data. No joint feasibility, optimization or new
+candidate mesh is established; the saved head remains rejected.
 The [current BIN/PLY and seven-map download](derived/engineering/atomic-cavity-plane-clip-cap-assembly-raw-review-delivery/README.md)
 is uploaded to the existing draft release. All 151 archive members pass complete
 independent byte checks; all 42 preceding assets remain unchanged (45 total).
