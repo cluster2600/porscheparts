@@ -158,6 +158,11 @@ passes all 12 analytic cell-quality checks with minimum 0.758855 while retaining
 all eight boundary coordinate bit records. Its sparse solver and saved-row checks
 are a software result; no Gmsh final-quality query, head application or head
 feasibility is established by this small test.
+The [expanded sparse solver attempt](derived/engineering/direct-sicn-sparse-head-proposer-memory-stop/README.md)
+matched all 29,473 initial native cell qualities before a sampled 1 GiB memory
+stop after 7.2 seconds. No returned point, final quality array or coordinate
+proposal was produced. The preserved resource stop establishes no head
+feasibility or new mesh; the strict 0.1 quality rule remains unchanged.
 The [expanded interior-node census](derived/engineering/atomic-cavity-plane-clip-cap-assembly-netgen-expanded-stars/README.md)
 contains 1,098 movable nodes and 29,473 coupled cells, including all 210 poor
 cells and 29,263 initially good cells. Its complete geometric JSON is retained
