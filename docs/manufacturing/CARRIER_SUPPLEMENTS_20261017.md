@@ -69,3 +69,26 @@ La [capsule du cas natif complet](../../parts/993-eng-carrier-0001/source/design
 conserve les entrées, les quatre états, les sources exactes et les vrais reçus.
 Ses commandes restaurent les fichiers comprimés et rejouent leur analyse avec
 Python et NumPy, sans relancer le solveur.
+
+La [planche du raffinement local](../../parts/993-eng-carrier-0001/source/progress-figures-20261016/local-refinement-20261017/README.md)
+compare les arêtes réelles avant et après dans deux zones fixes. Le maillage
+résultant contient **160 964 nœuds et 86 544 éléments T10** ; les 3 218 facettes
+protégées et les ensembles d'appuis sont conservés. La
+[capsule des deux calculs élastiques](../../parts/993-eng-carrier-0001/source/design-20261016/local-refinement-20261017/README.md)
+fournit le maillage, les entrées du solveur, les champs complets et les commandes
+de restauration et de réanalyse. Les deux bilans énergétiques passent leur
+seuil inchangé de 10⁻⁴ ; la réanalyse depuis un autre répertoire reproduit
+les quatre rapports complets à l'octet.
+
+Les pics calculés atteignent **1 108 MPa sur appuis rigides et 3 337 MPa sous
+K1000**, soit des hausses de 79,4 % et 99,1 % par rapport au maillage EF7.
+Ils migrent vers la jonction capot–nervure. Ce résultat oriente la correction
+de la forme ; il ne constitue pas une convergence des contraintes. Les dessins
+du maillage et les résultats mécaniques restent rattachés au même STEP de
+référence, distinct de toute nouvelle géométrie de congé.
+
+La [coupe comparative du congé R1](../../parts/993-eng-carrier-0001/source/progress-figures-20261016/native-fillet-20261017/README.md)
+montre le raccord construit dans le BREP natif, aux mêmes coordonnées avant et
+après. Ses points CAO extraits et les trois exports sont conservés ; le rejeu
+autonome reproduit leur dessin. Le prototype conserve son contrôle d'échange
+STEP refusé et n'hérite pas des calculs mécaniques de la géométrie précédente.

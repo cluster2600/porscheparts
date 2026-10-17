@@ -132,3 +132,6 @@ Le maillage est géométriquement contrôlé ; la convergence des contraintes
 reste à étudier. Les résultats mécaniques sont documentés séparément.
 Les [trois formats rejoués à l’octet et la QA PNG/PDF de root](local-refinement-root-publication-20261017.json)
 sont liés aux données, sources et reçus complets de la capsule.
+
+
+La [planche22 du congé R1 natif](native-fillet-20261017/README.md) montre la forme réellement construite, avant/après dans une coupe CAO commune. Le R1 appartient au congé3D du BREP candidat ; il ne s’agit pas d’un arc redessiné. Le statut reste prototype CAO, échange STEP en contrôle. Les [trois formats rejoués depuis la copie finale](native-fillet-root-publication-20261017.json) sont identiques à l’octet ; ce rejeu dessine seulement les points déjà extraits. Les CAO parentes, non incluses, restent liées par leurs empreintes.
