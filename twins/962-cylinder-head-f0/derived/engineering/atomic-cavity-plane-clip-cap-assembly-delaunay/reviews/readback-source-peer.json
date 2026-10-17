@@ -1,0 +1,56 @@
+{
+  "schema": "962-saved-Delaunay-audit-independent-source-peer/v1",
+  "decision": "CLEAR_FOR_SEPARATELY_REVIEWED_SINGLE_READ_ONLY_AUDIT_CHILD",
+  "blockers": [],
+  "review_method": "Source, AST, JSON and small-file hashes only; no prepared module import, test, scientific/native execution, geometry parsing or large geometry hashing.",
+  "selected_sha256": {
+    "held-contract.json": "0292c854a9178c84d1487bf2e03120ce801daa7b2326d8d9f844c501b0368637",
+    "reader.py": "ec5a45297a8d6ad73fb2fac5b087589e42a9553bc3d434a9d1dc7fb53122db30",
+    "run_readback.py": "4fb37080e1f3847b8b1d14d5df467799d8e9f7bf81b0a09170e5850857de3943",
+    "test_runner_guards.py": "42c8ce9e51e34998d1d8a6f8a66b4f590ecff08429d328b1123f0a5d926bfb2f",
+    "source-delta.json": "7c45cae5a50eff388776e4530487ab299019b1cdb83b29bcc422b6f828cd7013",
+    "METHOD.md": "7736bf1f39503d234a6023875c89afb5091d3154bd369a7bcabe9d44b9c990a3",
+    "preparation-checks.json": "2849e69cb02450d8d5987b2f5a8bd53bf67a917d00109ae0f7813a63c2d2172e",
+    "guard-tests.json": "36650ff13c95dee72fb63a6fd17b4240ef260b3a9ab8577f9047c9088fb7f3e7",
+    "guard-tests.log": "8fdbb09a11c9a46180e212d1863b5acf67641bc48f175965d599bb433b320368"
+  },
+  "inventory": {
+    "held_input_hash_entries": 90,
+    "existing_small_input_hashes_independently_verified": 88,
+    "existing_large_geometry_bindings_not_rehashed_by_peer": {
+      "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-001/candidate.bin": "9d62eac6e2cd7b6a9ecb4a7ea5b632685820369b5c4ede379acc34238f50d7b4",
+      "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-volume-delaunay-001/head-volume.msh": "3dd7939f34c8246a813334b2f570b2408b590965734bdf3761866569290e3593"
+    },
+    "separately_declared_future_materialized_source_copies": {
+      "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-delaunay-readback-001/reader.py": "ec5a45297a8d6ad73fb2fac5b087589e42a9553bc3d434a9d1dc7fb53122db30",
+      "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-delaunay-readback-001/run_readback.py": "4fb37080e1f3847b8b1d14d5df467799d8e9f7bf81b0a09170e5850857de3943"
+    },
+    "future_source_copies_absent_at_review": true,
+    "future_source_copies_are_outside_held_input_hashes": true,
+    "external_runtime_byte_hashes_deferred_to_root_fresh_preflight": 3,
+    "count_precision": "The actual held input_hashes map contains 90 current bindings: 88 small files and 2 geometries. Two future copies are an additional, separate materialization map. This differs from the root source review count wording."
+  },
+  "source_findings": [
+    "Exact a3268687 core is hash-gated before isolated loading; core controller/worker main paths are not invoked. Exact five source/snapshot associations, stopped deadline receipt, MSH identity and unchanged surface admission are required.",
+    "Only classifications, array_identity and audit_after are AST-selected from exact 28746e14 helper. All three source-segment SHA256 values match source-delta. Optimizer setup, optimizer worker and cache-refresh functions are not selected.",
+    "Selected existing helpers recompute every actual node/cell and four full metric distributions, unique referenced tags/no orphans, classifications/periodicity, independent signed volumes, exact oriented source surface, complete tetra boundary and opposite internal-face incidence. No missing worker metric, array, count or rejected-HXT result is inherited.",
+    "Source boundary coordinates must retain exact bits. A second read of the same MSH must reproduce every sorted tagged coordinate/node/tetra/connectivity hash and exact source surface.",
+    "Neutral completed-audit status is distinct from SICN >= 0.1, positive finite metrics and 1e-6 relative volume bookkeeping. Interrupted checkpoints are not completion; engineering/manufacturing/convergence/thermal claims remain false.",
+    "Runner six literal substitutions reverse byte-exact to 5a93c61e. Owned-group kill/final wait, nonraising SIGTERM assignment-gap handling and restoration, remaining 120 s timer and synchronous postwait elapsed refusal remain intact.",
+    "New sampled 8 GiB RSS and sampled/postwait 1 GiB top-level output refusals preserve failure cleanup. They are observations, not hard OS RAM/CPU/disk quotas or guaranteed peaks.",
+    "All ten prior guard method ASTs remain identical; three additional static test bodies cover active/exited output overruns and 8 GiB RSS. The retained 13-pass receipt is author-run evidence, not a peer test rerun."
+  ],
+  "required_before_launch": [
+    "Root materializes exact reader/runner and a fresh separately frozen actual child with all actually opened input/runtime/source/admission bindings and explicit read-only authorization.",
+    "Root performs current large-MSH/BIN and runtime byte verification, resource/disk and sole-worker preflight, then obtains an external exact-child review; the child need not contain its own review hash.",
+    "One 120 s, two-thread read-only trial only. No generation, optimization, mesh write, solve, automatic retry or relaxed incomplete-incidence acceptance."
+  ],
+  "qualification": {
+    "native_or_scientific_test_performed_by_peer": false,
+    "saved_mesh_audit_completed_by_this_review": false,
+    "volume_quality_known_from_this_review": false,
+    "optimizer_selected_or_authorized": false,
+    "engineering_accepted": false,
+    "manufacturing_authorized": false
+  }
+}

@@ -97,6 +97,13 @@ with at least one interior vertex. With connectivity and boundary coordinates
 fixed, interior-node movement cannot repair the first group. Connectivity
 changes remain a separate option; no repair or boundary-change necessity is
 established by this diagnosis.
+The [separate rejected-HXT review archive](derived/engineering/atomic-cavity-plane-clip-cap-assembly-volume-review-delivery/README.md)
+is complete locally, with all 84 members independently byte-verified. Release
+asset upload remains pending; the archived volume is still rejected.
+The [separate Delaunay trial and saved-file first pass](derived/engineering/atomic-cavity-plane-clip-cap-assembly-delaunay/README.md)
+records 3,961,773 tetrahedra and 73,924 below SICN 0.1, including one
+nonpositive SICN value. Full first-pass boundary checks are saved; both deadline
+stops and the unfinished final reopen remain explicit. This volume is rejected.
 The [current BIN/PLY and seven-map download](derived/engineering/atomic-cavity-plane-clip-cap-assembly-raw-review-delivery/README.md)
 is uploaded to the existing draft release. All 151 archive members pass complete
 independent byte checks; all 42 preceding assets remain unchanged (45 total).

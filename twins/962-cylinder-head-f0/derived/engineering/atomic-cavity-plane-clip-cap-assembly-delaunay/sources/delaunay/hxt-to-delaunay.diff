@@ -1,0 +1,31 @@
+--- work/962-engineering/atomic-cavity-plane-clip-cap-assembly-hxt-prep-002/mesh_assembled_hxt.py
++++ work/962-engineering/atomic-cavity-plane-clip-cap-assembly-delaunay-prep-001/mesh_assembled_delaunay.py
+@@ -1,4 +1,4 @@
+-"""One held raw-HXT volume/quality trial of the exact atomic surface; no optimizer."""
++"""One held raw-Delaunay volume/quality trial of the exact atomic surface; no optimizer."""
+ import argparse
+ import json
+ import math
+@@ -41,11 +41,11 @@
+ CANDIDATE = ROOT / "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-001/candidate.bin"
+ CANDIDATE_SHA = "9d62eac6e2cd7b6a9ecb4a7ea5b632685820369b5c4ede379acc34238f50d7b4"
+ CANDIDATE_VOLUME = 915453.1236217883
+-OUTPUT = ROOT / "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-volume-hxt-001"
++OUTPUT = ROOT / "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-volume-delaunay-001"
+ GATES = {"distance", "features", "topology", "global_intersections", "fixed_face_necessary_quality"}
+ DEADLINE = 300
+ RSS_STOP = 8 * 1024**3
+-OPTIONS = {**mesh_head.OPTIONS, "Mesh.Algorithm3D": 10, "Mesh.Optimize": 0,
++OPTIONS = {**mesh_head.OPTIONS, "Mesh.Algorithm3D": 1, "Mesh.Optimize": 0,
+            "Mesh.MeshSizeMax": 1.75, "Mesh.MeshSizeMin": 0, "Mesh.MeshSizeFactor": 1,
+            "General.NumThreads": 2, "Mesh.MaxNumThreads3D": 2}
+ RUNTIME_HASHES = dict(gmsh_module="f4b0935cebde899750293d87a643090e5ea33c9b18d249267f507db68a0e01c3",
+@@ -183,7 +183,7 @@
+         report["surface_import"] = surface_roundtrip(gmsh, points, faces)
+         gmsh.model.geo.addSurfaceLoop([1], 1); gmsh.model.geo.addVolume([1], 1)
+         gmsh.model.geo.synchronize()
+-        report.update(stage="generating_HXT_without_standard_optimization"); checkpoint()
++        report.update(stage="generating_Delaunay_without_standard_optimization"); checkpoint()
+         gmsh.model.mesh.generate(3)
+         gmsh.write(str(mesh_path))
+         report.update(mesh_sha256=sha(mesh_path), mesh_bytes=mesh_path.stat().st_size,
