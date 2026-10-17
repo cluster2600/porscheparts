@@ -208,8 +208,13 @@ retains all 126 pair comparisons without a disjointness certificate; the result
 is inconclusive. The [single coupled proposal](derived/engineering/fixed-shell-coupled-sicn/README.md)
 then passes the exact positive-orientation and SICN 0.1 predicates for all 39
 stored cells, with minimum approximately 0.1013770 and all 16 shell nodes fixed.
-Independent saved-coordinate arithmetic confirms this local quality result;
-native application, embedding, head adoption and strength remain unverified.
+Independent saved-coordinate arithmetic confirms this local quality result.
+The [exact local intersection check](derived/engineering/fixed-shell-coupled-embedding/README.md)
+passes all 741 tetrahedron pairs. The [native application and saved readback](derived/engineering/fixed-shell-coupled-sicn-apply/README.md)
+then preserve all candidate coordinates, connectivity and boundary data, with
+all 39 native quality gates passing. The tiny MSH and complete independent
+117-row check are included. Whole-head containment, replacement and strength
+remain open.
 The [expanded interior-node census](derived/engineering/atomic-cavity-plane-clip-cap-assembly-netgen-expanded-stars/README.md)
 contains 1,098 movable nodes and 29,473 coupled cells, including all 210 poor
 cells and 29,263 initially good cells. Its complete geometric JSON is retained
