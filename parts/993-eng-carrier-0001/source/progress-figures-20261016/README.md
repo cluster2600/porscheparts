@@ -70,3 +70,12 @@ et les reçus exacts conservés. Les contacts du composant restent non validés 
 aucune admission régionale ou globale n’est déduite de cette image. La
 [revue de publication](chart008-local-20261017/publication-validation.json)
 lie les copies exactes à l’inspection du PNG et du PDF par root.
+
+La [planche des points encodés déjà couverts](encoded-point-coverage-20261017/README.md)
+explique le diagnostic complet de la peau 13 de la zone 000 : 703 événements
+contrôlés sur les 1 034 hauteurs, avec les coupes rationnelles conservées et
+un témoin non nul du même groupe pour chaque point encodé. Les données, les
+preuves et les exports PNG/SVG/PDF sont inclus. Les autres groupes et les
+graphes d'exposition restent à contrôler avec cette nouvelle règle.
+Le [rejeu depuis une copie séparée](encoded-point-coverage-20261017/replay-validation.json),
+lancé depuis `/tmp`, reproduit les trois exports à l'octet.
