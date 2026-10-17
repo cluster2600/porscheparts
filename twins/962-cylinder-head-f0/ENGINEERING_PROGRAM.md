@@ -6,6 +6,44 @@ scenarios through 4.0 L and four actual head geometries. This programme tracks
 the complete requested outcome; preparation or software tests do not complete
 a physical engineering stage.
 
+## Current execution order
+
+All new deliverables remain in English. Preserve the water-cooled 962 C 3.0 L
+reference and its documented architecture while studying the displacement
+family through 4.0 L. Original interface measurements remain distinct from
+assumed bionic geometry; a missing original dimension stays unknown.
+
+1. **Material and strength:** finish mesh admission, verify the local mechanics
+   solver against the prepared elastic reference cube, then calculate thermal
+   and structural responses with explicit loads and process-specific material
+   data. A hypothetical card supports a conditional study only. Check mesh
+   convergence, equilibrium and the declared operating envelope before accepting
+   head results. The [completed partial head replacement](derived/engineering/head-star-replacement/README.md)
+   passes its local 39-cell and full save/reopen procedure, reducing the retained
+   Netgen baseline's **210 cells below SICN 0.1 to 208**. The full head remains
+   rejected, with minimum SICN 0.039074265058645995. The new 208-cell
+   classifications are unknown; the original bins are not transferred.
+   The completed [replacement prerequisites](derived/engineering/local-replacement-prerequisites/README.md)
+   now establish sparse-tag editing capability, exact relative local-domain
+   equality and the original head's nine exterior/nineteen connected interfaces.
+   They do not record an actual head edit.
+2. **LPBF:** use the selected alloy, machine, orientation, supports, heat
+   treatment and machining route. Verify deposition, cooling and support release;
+   calibrate the process model before accepting head distortion or residual
+   stress. Existing software witnesses do not provide that calibration.
+3. **Omniverse digital twin:** assemble the exact geometry family and map the
+   accepted computed fields with units, frames, time and provenance. Complete
+   the outstanding conformance and assembly checks; retain the distinction
+   between a visual twin and a physically correlated twin.
+4. **PhysicsNeMo:** build the dataset from accepted reference solutions, define
+   independent evaluation cases and operating limits, train and compare the
+   surrogate, then connect checked inference to the twin. Current geometry
+   exports are not solved-field labels.
+
+Publish each completed checkpoint and its remaining limits in the existing
+draft GitHub review. The detailed five-stage evidence table below retains the
+English baseline as stage 1 and material/strength as stage 2.
+
 The [bore95 atomic-cavity surface checkpoint](ATOMIC_CAVITY_ENGINEERING.md)
 repairs the remaining 266 poor facets and passes independent full-array,
 global topology/intersection and two-sided continuous-distance checks. Its

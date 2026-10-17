@@ -11,6 +11,10 @@ with explicit assumptions for unavailable dimensions.
 
 The [engineering execution programme](ENGINEERING_PROGRAM.md) continues through
 material/strength assessment, LPBF simulation, an Omniverse twin and PhysicsNeMo.
+The [completed partial head replacement](derived/engineering/head-star-replacement/README.md)
+passes its local 39-cell and full save/reopen procedure. It reduces poor cells
+from 210 to **208**, while the whole head still fails SICN 0.1. No head strength
+result follows; the remaining cells need fresh classification and repair.
 The [latest bore95 USD checkpoint](USD_NORMALS_ENGINEERING.md) verifies face
 normals and passes the minimum and CPU asset checks; its formal robotics profile
 retains six failed feature rows. No head physics or manufacturing qualification
