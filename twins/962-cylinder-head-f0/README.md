@@ -91,6 +91,12 @@ reading confirms 78,301 referenced interior nodes, positive volumes and exact
 tagged arrays, but **285,573 cells fail SICN 0.1**; the minimum is
 3.784626658982107e-9. The volume remains rejected, with no head thermal or
 strength result. No mesh generation or optimization occurs in that readback.
+The [later complete poor-cell classification](derived/engineering/atomic-cavity-plane-clip-cap-assembly-volume-poorcell-diagnosis/README.md)
+finds 247,088 poor tetrahedra with four retained boundary vertices and 38,485
+with at least one interior vertex. With connectivity and boundary coordinates
+fixed, interior-node movement cannot repair the first group. Connectivity
+changes remain a separate option; no repair or boundary-change necessity is
+established by this diagnosis.
 The [current BIN/PLY and seven-map download](derived/engineering/atomic-cavity-plane-clip-cap-assembly-raw-review-delivery/README.md)
 is uploaded to the existing draft release. All 151 archive members pass complete
 independent byte checks; all 42 preceding assets remain unchanged (45 total).

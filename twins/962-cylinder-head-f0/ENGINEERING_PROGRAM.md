@@ -91,6 +91,12 @@ source boundary, saved tagged arrays, positive volumes and numerical volume
 bookkeeping pass their recorded checks. Independent saved-file reading counts
 **285,573 cells below SICN 0.1**, with minimum 3.784626658982107e-9. This rejects
 the volume for head analysis; it supplies no thermal, strength or LPBF result.
+The [later complete positive-poor-cell diagnosis](derived/engineering/atomic-cavity-plane-clip-cap-assembly-volume-poorcell-diagnosis/README.md)
+classifies 247,088 of those cells as having four retained surface vertices;
+38,485 involve at least one interior vertex. Fixed connectivity and boundary
+coordinates therefore prevent interior movement alone from repairing the
+first group. The result does not prove that boundary coordinates must change;
+separate connectivity experiments remain possible.
 The [exact assembled-model download](derived/engineering/atomic-cavity-plane-clip-cap-assembly-raw-review-delivery/README.md)
 includes BIN, lossless PLY, all seven maps and the complete sealed evidence.
 All 151 members pass independent full-byte checks. GitHub verifies the three
