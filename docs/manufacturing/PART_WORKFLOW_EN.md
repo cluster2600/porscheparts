@@ -307,3 +307,10 @@ normal ray and Z. Its short chord is a local junction observation; the later H2
 peak is not plotted. The [sampled-point replay and complete evidence](../../parts/993-eng-carrier-0001/source/progress-figures-20261016/C1-junction-section-20261017/README.md)
 retain the distinct native producer and presentation sources, the refused STEP
 exchange, and three byte-identical exports without another CAD or FEA run.
+
+The separate [terminal-taper progress note](CARRIER_SUPPLEMENTS_20261017_EN.md#terminal-taper-diagnostic-revision)
+records the new 1.262364740 kg diagnostic solid and its own 637,836-triangle
+surface. Its original radius-law refusal remains recorded. The
+[first exact CGAL coverage comparison](CARRIER_SUPPLEMENTS_20261017_EN.md#exact-native-coverage-first-comparison-completed)
+also has a closed six-case result; whole-band and regional support admission
+remain subsequent stages.

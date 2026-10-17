@@ -198,3 +198,47 @@ normal ray and Z. Its short chord is a local junction observation; the later H2
 peak is not plotted. The [sampled-point replay and complete evidence](../../parts/993-eng-carrier-0001/source/progress-figures-20261016/C1-junction-section-20261017/README.md)
 retain the distinct native producer and presentation sources, the refused STEP
 exchange, and three byte-identical exports without another CAD or FEA run.
+
+## Terminal-taper diagnostic revision
+
+The new native BREP `dde710a2…` is a separate diagnostic revision. Its measured
+mass is **1.262364740 kg**, leaving **37.635 g** below the 1.30 kg ceiling at
+4,420 kg/m³. The strict baseline-minus-candidate Boolean is empty. A separate
+candidate-minus-baseline Boolean and the adaptive CAD volumes retain their own
+results: the added solid integrates to 34.420893 mm³, while the difference of
+the two whole-solid integrals is 34.414293 mm³. These values are not forced to
+match. The [mass and material closeout](../../work/carrier-process-20261017/bounded-webs-C1-terminal-taper-addition-preparation-001/root-terminal-review-001.json)
+retains the actual measurements.
+
+Gmsh generated a new surface from this BREP, with **637,836 triangles** and STL
+identity `7ef349d6…`. The independent native import measures one valid solid,
+one shell, 247 faces, 748 edges, 494 vertices and **zero degenerated edges**.
+Those counts concern the whole candidate; the added-material residue has its
+own topology. The [forward screen closeout](../../work/carrier-process-20261017/bounded-webs-C1-terminal-taper-native-screen-preparation-001/root-terminal-review-001.json)
+retains 3,072 STL-to-BREP samples, a maximum distance of **0.018234 mm** under
+the unchanged 0.06 mm criterion, and 8,638 native CAD points for the separate
+inverse check. A finite sample does not establish a continuous distance bound.
+
+The kernel completed the native build, but its resulting variable-radius law
+differs from the requested transition law. The original post-build refusal
+remains RC1. This revision is therefore not substituted for the current C1
+master. Its inverse-distance/topology, protected-interface, STEP-exchange and
+mechanical results must be obtained for its own identities; the older C1/H2
+results above are not results for this taper.
+
+## Exact native coverage: first comparison completed
+
+The CGAL 6.1.3/GMP rational polygon-set implementation has completed five
+analytical comparisons and the first actual fallback triangle from a captured
+support band. All six native return codes are zero and their exact remaining
+areas and coverage decisions match the original Python Fraction calculation.
+The analytical cases include a shared edge, an uncovered hole, a positive
+2⁻⁸⁰-scale slit and a point contact. The real case retains its original triangle
+index 3 and all 708 selected primitives in their original order.
+
+The [native comparison closeout](../../work/carrier-process-20261017/native-band-union-benchmark-preparation-002/root-native-terminal-review-001.json)
+binds the compiled binary, input transports, complete outputs, original
+reference certificates, libraries and runtime identities. Both owned scopes
+were checked inactive/absent after execution. This establishes the first
+bounded native comparison; a complete band, the historical step/cell
+certificates and the final regional support gates remain separate checks.
