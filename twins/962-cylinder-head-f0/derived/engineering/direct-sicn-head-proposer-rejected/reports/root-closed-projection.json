@@ -1,0 +1,89 @@
+{
+  "original_record": {
+    "relative_path": "work/962-engineering/direct-sicn-head-proposer-root-execution-001/closed-result.json",
+    "sha256": "cdd438a4c5b3145c9c0829097181d7e273df543f424a93ad7f741f5037fcfd9c",
+    "bytes": 2139
+  },
+  "projection": {
+    "schema": "962-stopped-head-proposer-root-closure/v1",
+    "status": "closed_rejected_no_proposal",
+    "actual_child_sha256": "eaa89d3ca0aa7d360cd44b9daa8e62dc4299a5ab9ab5c046a167f5a2b72b898e",
+    "source_sha256": "e7d61ca130623389f2b5e3a7807477ef45090bedcfcd87f3941c35ca6d2d7b02",
+    "returncode": 2,
+    "stop_reason": null,
+    "current_known_selected_full_argv_matches": [],
+    "all22_input_and32_runtime_hashes_unchanged": true,
+    "output_inventory": {
+      "frozen-contract.json": {
+        "sha256": "eaa89d3ca0aa7d360cd44b9daa8e62dc4299a5ab9ab5c046a167f5a2b72b898e",
+        "bytes": 20418
+      },
+      "execution-receipt.json": {
+        "sha256": "684f0ed31e165f566744ee34231271edfd7c463c000947dc9b81cc957e919952",
+        "bytes": 3524
+      },
+      "reader.py": {
+        "sha256": "e7d61ca130623389f2b5e3a7807477ef45090bedcfcd87f3941c35ca6d2d7b02",
+        "bytes": 16560
+      },
+      "native.log": {
+        "sha256": "edebb8e4c89d464bf2f33a36c4b9800e14b0486468b69de0916c45fc054aa299",
+        "bytes": 119
+      },
+      "solver-start-checkpoint.json": {
+        "sha256": "d962656d7a3cd7a73bb5c958544c5ca988ca9ffc77dbf472e2960b912f714704",
+        "bytes": 593
+      },
+      "fixture-report.json": {
+        "sha256": "9e629b28fa3ab043c08bb04621530f086977aecac9736d1b22634f8d259526d5",
+        "bytes": 1208
+      },
+      "run_readback.py": {
+        "sha256": "aefd13ddd8344cb4e46eeb17126383ba2afbf8763ae40a99eb55a9bcb2779407",
+        "bytes": 4801
+      }
+    },
+    "native_head_applied": false,
+    "coordinate_proposal_exported": false,
+    "solver_reported_success": true,
+    "reported_analytic_minimum": 0.07200216465522945,
+    "reported_below_point1_count": 215,
+    "quality_rule": 0.1,
+    "limits_scope": "sampled RSS/output, owned deadline; not hard OS CPU/address-space quotas",
+    "root_outer_wall_seconds": 14.404976666904986,
+    "independent_final_coordinate_math_replay_possible": false,
+    "reason": "Rejected final coordinate vector was not exported; final quality numbers are worker/source observations, not independent saved-coordinate verification.",
+    "manufacturing_authorized": false
+  },
+  "omitted_field_paths": [
+    [
+      "observed_owned_controller_and_worker_PIDs_absent"
+    ]
+  ],
+  "path_role_rules": [
+    {
+      "role": "runtime:scipy",
+      "operation": "exact prefix substitution in keys and string values; all digest values unchanged"
+    },
+    {
+      "role": "runtime:numpy",
+      "operation": "exact prefix substitution in keys and string values; all digest values unchanged"
+    },
+    {
+      "role": "runtime:check-environment",
+      "operation": "exact prefix substitution in keys and string values; all digest values unchanged"
+    },
+    {
+      "role": "runtime:python-executable",
+      "operation": "exact prefix substitution in keys and string values; all digest values unchanged"
+    },
+    {
+      "role": "project-relative path",
+      "operation": "exact prefix substitution in keys and string values; all digest values unchanged"
+    }
+  ],
+  "derived_observations": {
+    "post_close_owned_PID_absence_checks_recorded": 2,
+    "PID_values_omitted": true
+  }
+}

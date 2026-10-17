@@ -148,6 +148,11 @@ identifies 156 candidate interior nodes and 5,355 incident tetrahedra: 210 poor
 and 5,145 initially good. It retains 468 possible coordinate variables and the
 complete geometric census data. No joint feasibility, optimization or new
 candidate mesh is established; the saved head remains rejected.
+The [bounded coordinate trial](derived/engineering/direct-sicn-head-proposer-rejected/README.md)
+records solver-reported success but fails the unchanged all-cell 0.1 gate:
+reported analytic minimum 0.0720022, with 215 of 5,355 cells below 0.1.
+No final coordinate proposal or head mesh was exported; final-coordinate replay
+is unavailable. This establishes no global infeasibility or head acceptance.
 The [exact assembled-model download](derived/engineering/atomic-cavity-plane-clip-cap-assembly-raw-review-delivery/README.md)
 includes BIN, lossless PLY, all seven maps and the complete sealed evidence.
 All 151 members pass independent full-byte checks. GitHub verifies the three
