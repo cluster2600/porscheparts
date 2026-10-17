@@ -552,3 +552,34 @@ La durée est de 444,36 s ; les entrées, sources et runtime restent inchangés.
 Le rendu utilise son checkpoint vérifié et montre aussi les triangles d'une
 grille dans leur plan réel. Cette réussite du graphe d'une région reste
 distincte des six admissions et du contrôle de toutes les couches.
+
+## Compléments calculés le 17 octobre 2026
+
+Le [dossier du cycle à 32 états](../../parts/993-eng-carrier-0001/source/design-20261016/constitutive-refinement-20261017/README.md)
+conserve le recalcul charge-décharge sur le même maillage, avec les mêmes
+charges, ressorts et loi publiée Grade 23 ELI Flat1. Les 32 états passent les
+deux bilans indépendants avec leurs seuils inchangés : maximum ENER
+**0,000731617 < 0,001** et maximum Piola **0,0000877425 < 0,0001**.
+Le maximum ENER diminue de 53,85 % ; le maximum Piola augmente et reste sous
+son seuil. Le déplacement résiduel calculé à charge nulle est de **0,09909 mm**,
+sans seuil d'acceptation défini. Ce seul raffinement temporel ne constitue pas
+une convergence du maillage. Les résultats et refus à 16 états décrits plus
+haut restent conservés comme historique.
+
+La [comparaison illustrée des 16 et 32 états](../../parts/993-eng-carrier-0001/source/progress-figures-20261016/energy-increments-20261017/README.md)
+contient les données, l'attribution de la loi matériau et les trois formats
+PNG/SVG/PDF reproduits à l'octet depuis une copie séparée.
+
+La [planche de retriangulation CGAL](../../parts/993-eng-carrier-0001/source/progress-figures-20261016/cgal-diagonal-repair-20261017/README.md)
+explique deux exemples réels parmi les 146 quadrilatères traités nativement.
+La nouvelle copie de la région **010 des supports d'impression** conserve ses
+sommets et attributs ; 290 lignes de triangles changent et le compteur de
+coupes non représentables passe de 1 185 à zéro. Son nouveau graphe matériel
+passe, ainsi que **les 1 034 couches du découpeur strict original**. Le rejeu
+des deux peaux reproduit d'abord leurs géométries et reçus historiques, puis
+applique les 276 lignes SKIN certifiées, sans changer les GRID. Ces contrôles
+restent locaux à 010 ; l'assemblage et l'audit de tous les supports restent
+à terminer.
+
+La [galerie](../../parts/993-eng-carrier-0001/source/progress-figures-20261016/index.html)
+regroupe désormais **13 images**, leurs données et les fichiers PDF disponibles.
