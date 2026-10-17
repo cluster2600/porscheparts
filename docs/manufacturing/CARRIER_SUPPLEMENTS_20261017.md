@@ -113,5 +113,21 @@ listes diffèrent de l'ancien EF7. Le contrôle d'import compare désormais les
 volumes calculés par la même intégration, au seuil inchangé de 10⁻⁸ ; le
 volume adaptatif reste la référence pour la masse et le volume EF.
 La masse CAO reste proche de **1,26237 kg**, sous le plafond de **1,30 kg**.
-Les nouveaux cas rigide et K1000 du congé sont préparés séparément ; les
-contraintes et le raffinement local de l'ancienne CAO ne sont pas transférés.
+Les [deux calculs C1 réellement clos](../../parts/993-eng-carrier-0001/source/design-20261016/native-C1-20261017/README.md)
+conservent les charges Fz = −4 000 N et My = +850 000 N·mm. Le cas rigide
+donne **2,794104 mm / 907,278068 MPa**, le cas K1000 **18,171491 mm /
+2 663,075178 MPa**. K1000 désigne 1 000 N/mm au total par œil et par axe,
+répartis sur les nœuds de chaque œil. Les deux audits énergétiques passent
+le seuil inchangé de 10⁻⁴, avec des erreurs relatives de **3,59 × 10⁻⁹** et
+**3,15 × 10⁻⁹**. Tous les pics sont conservés ; le maximum commun est
+l'élément 84037, IP1, près de [82,136315 ; −14,388848 ; 12,860258] mm.
+
+La capsule conserve le BREP éditable, les surfaces, les maillages et les
+sorties brutes dans trois archives de moins de 100 Mo chacune. Son rejeu
+depuis `/` restaure **186 fichiers originaux** et reproduit les quatre
+rapports complets d'énergie et de pics à l'octet. Le
+[reçu de publication](../../parts/993-eng-carrier-0001/source/design-20261016/native-C1-root-publication-20261017.json)
+lie les vrais retours de calcul, les fichiers conservés et ce rejeu.
+Les contraintes et le raffinement de l'ancienne CAO ne sont pas transférés ;
+le prochain test C1 affine la boîte exacte du pic de h = 0,933791 mm vers
+h/2 = 0,466895 mm, à maître, charges et appuis constants.
