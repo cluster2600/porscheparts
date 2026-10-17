@@ -111,10 +111,19 @@ optimizer's after-proof. Of the poor cells, 1,435 use only retained boundary
 vertices and 2,003 involve an interior vertex. With connectivity and boundary
 coordinates fixed, interior movement alone cannot repair the first group.
 The unchanged quality gate still rejects this volume; no head field is accepted.
+The [saved Netgen cube fixture](derived/engineering/atomic-cavity-plane-clip-cap-assembly-netgen-cube/README.md)
+passes its separate SICN 0.1 gate: 191 to 40 tetrahedra, 42 to 15 nodes and
+minimum SICN 0.4780600202533193 after exact saved-file readback. Both generated
+cube meshes and complete arrays are included. This toy software result supplies
+no head mesh acceptance or physical qualification.
 The [exact assembled-model download](derived/engineering/atomic-cavity-plane-clip-cap-assembly-raw-review-delivery/README.md)
 includes BIN, lossless PLY, all seven maps and the complete sealed evidence.
 All 151 members pass independent full-byte checks. GitHub verifies the three
 new assets while preserving all 42 earlier records in the same draft release.
+The [mechanical material-state review](derived/engineering/material-mechanical-state/README.md)
+finds no complete recipe-matched E, Poisson ratio, expansion and yield card among
+the seven retained states. Missing properties and head load-path inputs remain
+explicit; no generic constants or material selection are introduced.
 The [separate material follow-up](MATERIAL_CONDUCTIVITY_FOLLOWUP.md) supplies
 measured AlSi10Mg conductivity points. The [two native bar witnesses](MATERIAL_CONDUCTIVITY_WITNESS.md)
 now verify the separate assumed piecewise-linear Z/XY laws with 109 final-field

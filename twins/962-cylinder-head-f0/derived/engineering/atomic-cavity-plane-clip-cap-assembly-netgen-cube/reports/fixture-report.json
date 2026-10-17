@@ -1,0 +1,1364 @@
+{
+  "schema": "962-saved-cube-Netgen-fixture/v1",
+  "status": "completed_cube_only",
+  "stage": "completed_all_local_checks",
+  "fixture_procedural_checks_passed": true,
+  "actual_SICN_gate_passed": true,
+  "options": {
+    "General.NumThreads": 2,
+    "Mesh.MaxNumThreads3D": 2,
+    "Mesh.Renumber": 0,
+    "Mesh.Optimize": 0,
+    "Mesh.OptimizeNetgen": 0,
+    "Mesh.OptimizeThreshold": 0.3,
+    "Mesh.Binary": 1,
+    "Mesh.SaveAll": 1,
+    "Mesh.MshFileVersion": 4.1
+  },
+  "optimization": {
+    "method": "Netgen",
+    "force": true
+  },
+  "call_counts_are_attempts": true,
+  "native_operation_counts": {
+    "generate": 0,
+    "createGeometry_dim3": 1,
+    "optimize_Netgen": 1,
+    "rebuildElementCache": 1,
+    "write_mesh": 1,
+    "solve": 0
+  },
+  "runtime": {
+    "python": "3.10.11",
+    "numpy": "2.0.2",
+    "gmsh": "4.15.2",
+    "machine": "arm64"
+  },
+  "runtime_sha256s": {
+    "python": "72956ad35cff7691dfed9e04c9593de825ffd5b2fa7e8bc9ae96ce9a1af65621",
+    "gmsh_module": "f4b0935cebde899750293d87a643090e5ea33c9b18d249267f507db68a0e01c3",
+    "gmsh_library": "def0f5c10988a986e5e879b3db9669d8fe016a81e2d994bbaf2b8497c6b8a58a"
+  },
+  "frozen_contract_sha256": "fa329ed86bfb1e431987485f13307759001b09ac66fc8602a93fba9e4d0885b8",
+  "head_geometry_read": false,
+  "head_execution_authorized": false,
+  "physical_or_manufacturing_accepted": false,
+  "internal_tag_changes_do_not_establish_ancestry_or_physical_topology_change": true,
+  "geometry_flag_full_arrays_classifications_and_quality_unchanged": true,
+  "Netgen_returned_and_cache_refresh_completed": true,
+  "before": {
+    "nodes": 42,
+    "tetrahedra": 191,
+    "referenced_nodes": 42,
+    "referenced_interior_nodes": 34,
+    "unreferenced_nodes": 0,
+    "all_counted_interior_nodes_strictly_inside_cube": true,
+    "boundary_triangles": 12,
+    "internal_opposite_face_pairs": 376,
+    "exact_explicit_and_tetra_exterior_boundary": true,
+    "node_classifications": [
+      [
+        1,
+        2
+      ],
+      [
+        2,
+        2
+      ],
+      [
+        3,
+        2
+      ],
+      [
+        4,
+        2
+      ],
+      [
+        5,
+        2
+      ],
+      [
+        6,
+        2
+      ],
+      [
+        7,
+        2
+      ],
+      [
+        8,
+        2
+      ],
+      [
+        9,
+        3
+      ],
+      [
+        10,
+        3
+      ],
+      [
+        11,
+        3
+      ],
+      [
+        12,
+        3
+      ],
+      [
+        13,
+        3
+      ],
+      [
+        14,
+        3
+      ],
+      [
+        15,
+        3
+      ],
+      [
+        16,
+        3
+      ],
+      [
+        17,
+        3
+      ],
+      [
+        18,
+        3
+      ],
+      [
+        19,
+        3
+      ],
+      [
+        20,
+        3
+      ],
+      [
+        21,
+        3
+      ],
+      [
+        22,
+        3
+      ],
+      [
+        23,
+        3
+      ],
+      [
+        24,
+        3
+      ],
+      [
+        25,
+        3
+      ],
+      [
+        26,
+        3
+      ],
+      [
+        27,
+        3
+      ],
+      [
+        28,
+        3
+      ],
+      [
+        29,
+        3
+      ],
+      [
+        30,
+        3
+      ],
+      [
+        31,
+        3
+      ],
+      [
+        32,
+        3
+      ],
+      [
+        33,
+        3
+      ],
+      [
+        34,
+        3
+      ],
+      [
+        35,
+        3
+      ],
+      [
+        36,
+        3
+      ],
+      [
+        37,
+        3
+      ],
+      [
+        38,
+        3
+      ],
+      [
+        39,
+        3
+      ],
+      [
+        40,
+        3
+      ],
+      [
+        41,
+        3
+      ],
+      [
+        42,
+        3
+      ]
+    ],
+    "node_entity_classifications": [
+      [
+        1,
+        2,
+        1
+      ],
+      [
+        2,
+        2,
+        1
+      ],
+      [
+        3,
+        2,
+        1
+      ],
+      [
+        4,
+        2,
+        1
+      ],
+      [
+        5,
+        2,
+        1
+      ],
+      [
+        6,
+        2,
+        1
+      ],
+      [
+        7,
+        2,
+        1
+      ],
+      [
+        8,
+        2,
+        1
+      ],
+      [
+        9,
+        3,
+        1
+      ],
+      [
+        10,
+        3,
+        1
+      ],
+      [
+        11,
+        3,
+        1
+      ],
+      [
+        12,
+        3,
+        1
+      ],
+      [
+        13,
+        3,
+        1
+      ],
+      [
+        14,
+        3,
+        1
+      ],
+      [
+        15,
+        3,
+        1
+      ],
+      [
+        16,
+        3,
+        1
+      ],
+      [
+        17,
+        3,
+        1
+      ],
+      [
+        18,
+        3,
+        1
+      ],
+      [
+        19,
+        3,
+        1
+      ],
+      [
+        20,
+        3,
+        1
+      ],
+      [
+        21,
+        3,
+        1
+      ],
+      [
+        22,
+        3,
+        1
+      ],
+      [
+        23,
+        3,
+        1
+      ],
+      [
+        24,
+        3,
+        1
+      ],
+      [
+        25,
+        3,
+        1
+      ],
+      [
+        26,
+        3,
+        1
+      ],
+      [
+        27,
+        3,
+        1
+      ],
+      [
+        28,
+        3,
+        1
+      ],
+      [
+        29,
+        3,
+        1
+      ],
+      [
+        30,
+        3,
+        1
+      ],
+      [
+        31,
+        3,
+        1
+      ],
+      [
+        32,
+        3,
+        1
+      ],
+      [
+        33,
+        3,
+        1
+      ],
+      [
+        34,
+        3,
+        1
+      ],
+      [
+        35,
+        3,
+        1
+      ],
+      [
+        36,
+        3,
+        1
+      ],
+      [
+        37,
+        3,
+        1
+      ],
+      [
+        38,
+        3,
+        1
+      ],
+      [
+        39,
+        3,
+        1
+      ],
+      [
+        40,
+        3,
+        1
+      ],
+      [
+        41,
+        3,
+        1
+      ],
+      [
+        42,
+        3,
+        1
+      ]
+    ],
+    "node_counts_by_classification_dimension": {
+      "0": 0,
+      "1": 0,
+      "2": 8,
+      "3": 34
+    },
+    "no_curve_or_surface_periodic_mapping": true,
+    "periodic_entities_checked": [
+      [
+        2,
+        1
+      ]
+    ],
+    "quality": {
+      "SICN": {
+        "count": 191,
+        "minimum": 0.027175498119979526,
+        "maximum": 0.9759933949671935,
+        "nonpositive_count": 0,
+        "below_point1_count": 8,
+        "array_sha256": "0bb3fb971da5e9db914be5b62b01748d035e560b90f989acaf87baf511a3095f"
+      },
+      "Jacobian": {
+        "count": 191,
+        "minimum": 0.8467503611132843,
+        "maximum": 36.933012756710255,
+        "nonpositive_count": 0,
+        "below_point1_count": 0,
+        "array_sha256": "e7add019c919532a1040e36a64a64ac47a693fb8067b28b56c1e6d5a42225247"
+      },
+      "native_volume_mm3": {
+        "count": 191,
+        "minimum": 0.14112506018554738,
+        "maximum": 6.1555021261183755,
+        "nonpositive_count": 0,
+        "below_point1_count": 0,
+        "array_sha256": "60d537f058a8c64f5478643dd4a25bdbe6677ce424dc6d4949060610211efc3d"
+      }
+    },
+    "independent_signed_volume_mm3": {
+      "sum": 343.0,
+      "relative_error": 0.0,
+      "count": 191,
+      "minimum": 0.14112506018554735,
+      "maximum": 6.155502126118375,
+      "nonpositive_count": 0,
+      "below_point1_count": 0,
+      "array_sha256": "6665bf291c1e66f7b20e2867c5ddb713f9909a3ecdcb796c36a73d608176eb14"
+    },
+    "sorted_node_tags_sha256": "3249675baa7c1c8615dfb57f1cac3b97973a8dbbf47a34d8813840ea0d2eda5f",
+    "sorted_coordinates_sha256": "0064fe2af414ab8a05f3e3e29e7031fde1ae045ad4eda90396e4134539ad35bb",
+    "tetra_tags_sha256": "50b932f91352190af4984f235c8d2866c0ebbd84459353e6dbff80df93681a81",
+    "tagged_tetra_connectivity_sha256": "2a9a79dc422b3ffaf0d9251ad97b15d2d2d9f3d6212be832b01dce8be337f5fb",
+    "canonical_cells_sha256": "769a26726443d89c5dc90597d3b78c4d655635645ec58f7154f07a1cb57af9dc",
+    "software_geometric_invariants_passed": true
+  },
+  "after_geometry_flag": {
+    "nodes": 42,
+    "tetrahedra": 191,
+    "referenced_nodes": 42,
+    "referenced_interior_nodes": 34,
+    "unreferenced_nodes": 0,
+    "all_counted_interior_nodes_strictly_inside_cube": true,
+    "boundary_triangles": 12,
+    "internal_opposite_face_pairs": 376,
+    "exact_explicit_and_tetra_exterior_boundary": true,
+    "node_classifications": [
+      [
+        1,
+        2
+      ],
+      [
+        2,
+        2
+      ],
+      [
+        3,
+        2
+      ],
+      [
+        4,
+        2
+      ],
+      [
+        5,
+        2
+      ],
+      [
+        6,
+        2
+      ],
+      [
+        7,
+        2
+      ],
+      [
+        8,
+        2
+      ],
+      [
+        9,
+        3
+      ],
+      [
+        10,
+        3
+      ],
+      [
+        11,
+        3
+      ],
+      [
+        12,
+        3
+      ],
+      [
+        13,
+        3
+      ],
+      [
+        14,
+        3
+      ],
+      [
+        15,
+        3
+      ],
+      [
+        16,
+        3
+      ],
+      [
+        17,
+        3
+      ],
+      [
+        18,
+        3
+      ],
+      [
+        19,
+        3
+      ],
+      [
+        20,
+        3
+      ],
+      [
+        21,
+        3
+      ],
+      [
+        22,
+        3
+      ],
+      [
+        23,
+        3
+      ],
+      [
+        24,
+        3
+      ],
+      [
+        25,
+        3
+      ],
+      [
+        26,
+        3
+      ],
+      [
+        27,
+        3
+      ],
+      [
+        28,
+        3
+      ],
+      [
+        29,
+        3
+      ],
+      [
+        30,
+        3
+      ],
+      [
+        31,
+        3
+      ],
+      [
+        32,
+        3
+      ],
+      [
+        33,
+        3
+      ],
+      [
+        34,
+        3
+      ],
+      [
+        35,
+        3
+      ],
+      [
+        36,
+        3
+      ],
+      [
+        37,
+        3
+      ],
+      [
+        38,
+        3
+      ],
+      [
+        39,
+        3
+      ],
+      [
+        40,
+        3
+      ],
+      [
+        41,
+        3
+      ],
+      [
+        42,
+        3
+      ]
+    ],
+    "node_entity_classifications": [
+      [
+        1,
+        2,
+        1
+      ],
+      [
+        2,
+        2,
+        1
+      ],
+      [
+        3,
+        2,
+        1
+      ],
+      [
+        4,
+        2,
+        1
+      ],
+      [
+        5,
+        2,
+        1
+      ],
+      [
+        6,
+        2,
+        1
+      ],
+      [
+        7,
+        2,
+        1
+      ],
+      [
+        8,
+        2,
+        1
+      ],
+      [
+        9,
+        3,
+        1
+      ],
+      [
+        10,
+        3,
+        1
+      ],
+      [
+        11,
+        3,
+        1
+      ],
+      [
+        12,
+        3,
+        1
+      ],
+      [
+        13,
+        3,
+        1
+      ],
+      [
+        14,
+        3,
+        1
+      ],
+      [
+        15,
+        3,
+        1
+      ],
+      [
+        16,
+        3,
+        1
+      ],
+      [
+        17,
+        3,
+        1
+      ],
+      [
+        18,
+        3,
+        1
+      ],
+      [
+        19,
+        3,
+        1
+      ],
+      [
+        20,
+        3,
+        1
+      ],
+      [
+        21,
+        3,
+        1
+      ],
+      [
+        22,
+        3,
+        1
+      ],
+      [
+        23,
+        3,
+        1
+      ],
+      [
+        24,
+        3,
+        1
+      ],
+      [
+        25,
+        3,
+        1
+      ],
+      [
+        26,
+        3,
+        1
+      ],
+      [
+        27,
+        3,
+        1
+      ],
+      [
+        28,
+        3,
+        1
+      ],
+      [
+        29,
+        3,
+        1
+      ],
+      [
+        30,
+        3,
+        1
+      ],
+      [
+        31,
+        3,
+        1
+      ],
+      [
+        32,
+        3,
+        1
+      ],
+      [
+        33,
+        3,
+        1
+      ],
+      [
+        34,
+        3,
+        1
+      ],
+      [
+        35,
+        3,
+        1
+      ],
+      [
+        36,
+        3,
+        1
+      ],
+      [
+        37,
+        3,
+        1
+      ],
+      [
+        38,
+        3,
+        1
+      ],
+      [
+        39,
+        3,
+        1
+      ],
+      [
+        40,
+        3,
+        1
+      ],
+      [
+        41,
+        3,
+        1
+      ],
+      [
+        42,
+        3,
+        1
+      ]
+    ],
+    "node_counts_by_classification_dimension": {
+      "0": 0,
+      "1": 0,
+      "2": 8,
+      "3": 34
+    },
+    "no_curve_or_surface_periodic_mapping": true,
+    "periodic_entities_checked": [
+      [
+        2,
+        1
+      ]
+    ],
+    "quality": {
+      "SICN": {
+        "count": 191,
+        "minimum": 0.027175498119979526,
+        "maximum": 0.9759933949671935,
+        "nonpositive_count": 0,
+        "below_point1_count": 8,
+        "array_sha256": "0bb3fb971da5e9db914be5b62b01748d035e560b90f989acaf87baf511a3095f"
+      },
+      "Jacobian": {
+        "count": 191,
+        "minimum": 0.8467503611132843,
+        "maximum": 36.933012756710255,
+        "nonpositive_count": 0,
+        "below_point1_count": 0,
+        "array_sha256": "e7add019c919532a1040e36a64a64ac47a693fb8067b28b56c1e6d5a42225247"
+      },
+      "native_volume_mm3": {
+        "count": 191,
+        "minimum": 0.14112506018554738,
+        "maximum": 6.1555021261183755,
+        "nonpositive_count": 0,
+        "below_point1_count": 0,
+        "array_sha256": "60d537f058a8c64f5478643dd4a25bdbe6677ce424dc6d4949060610211efc3d"
+      }
+    },
+    "independent_signed_volume_mm3": {
+      "sum": 343.0,
+      "relative_error": 0.0,
+      "count": 191,
+      "minimum": 0.14112506018554735,
+      "maximum": 6.155502126118375,
+      "nonpositive_count": 0,
+      "below_point1_count": 0,
+      "array_sha256": "6665bf291c1e66f7b20e2867c5ddb713f9909a3ecdcb796c36a73d608176eb14"
+    },
+    "sorted_node_tags_sha256": "3249675baa7c1c8615dfb57f1cac3b97973a8dbbf47a34d8813840ea0d2eda5f",
+    "sorted_coordinates_sha256": "0064fe2af414ab8a05f3e3e29e7031fde1ae045ad4eda90396e4134539ad35bb",
+    "tetra_tags_sha256": "50b932f91352190af4984f235c8d2866c0ebbd84459353e6dbff80df93681a81",
+    "tagged_tetra_connectivity_sha256": "2a9a79dc422b3ffaf0d9251ad97b15d2d2d9f3d6212be832b01dce8be337f5fb",
+    "canonical_cells_sha256": "769a26726443d89c5dc90597d3b78c4d655635645ec58f7154f07a1cb57af9dc",
+    "software_geometric_invariants_passed": true
+  },
+  "after": {
+    "nodes": 15,
+    "tetrahedra": 40,
+    "referenced_nodes": 15,
+    "referenced_interior_nodes": 7,
+    "unreferenced_nodes": 0,
+    "all_counted_interior_nodes_strictly_inside_cube": true,
+    "boundary_triangles": 12,
+    "internal_opposite_face_pairs": 74,
+    "exact_explicit_and_tetra_exterior_boundary": true,
+    "node_classifications": [
+      [
+        1,
+        2
+      ],
+      [
+        2,
+        2
+      ],
+      [
+        3,
+        2
+      ],
+      [
+        4,
+        2
+      ],
+      [
+        5,
+        2
+      ],
+      [
+        6,
+        2
+      ],
+      [
+        7,
+        2
+      ],
+      [
+        8,
+        2
+      ],
+      [
+        43,
+        3
+      ],
+      [
+        44,
+        3
+      ],
+      [
+        45,
+        3
+      ],
+      [
+        46,
+        3
+      ],
+      [
+        47,
+        3
+      ],
+      [
+        48,
+        3
+      ],
+      [
+        49,
+        3
+      ]
+    ],
+    "node_entity_classifications": [
+      [
+        1,
+        2,
+        1
+      ],
+      [
+        2,
+        2,
+        1
+      ],
+      [
+        3,
+        2,
+        1
+      ],
+      [
+        4,
+        2,
+        1
+      ],
+      [
+        5,
+        2,
+        1
+      ],
+      [
+        6,
+        2,
+        1
+      ],
+      [
+        7,
+        2,
+        1
+      ],
+      [
+        8,
+        2,
+        1
+      ],
+      [
+        43,
+        3,
+        1
+      ],
+      [
+        44,
+        3,
+        1
+      ],
+      [
+        45,
+        3,
+        1
+      ],
+      [
+        46,
+        3,
+        1
+      ],
+      [
+        47,
+        3,
+        1
+      ],
+      [
+        48,
+        3,
+        1
+      ],
+      [
+        49,
+        3,
+        1
+      ]
+    ],
+    "node_counts_by_classification_dimension": {
+      "0": 0,
+      "1": 0,
+      "2": 8,
+      "3": 7
+    },
+    "no_curve_or_surface_periodic_mapping": true,
+    "periodic_entities_checked": [
+      [
+        2,
+        1
+      ]
+    ],
+    "quality": {
+      "SICN": {
+        "count": 40,
+        "minimum": 0.4780600202533193,
+        "maximum": 0.8220195209702271,
+        "nonpositive_count": 0,
+        "below_point1_count": 0,
+        "array_sha256": "62e4bf917561a770b253292ab3a264865178b545ad52e0c90b931a072e3216d6"
+      },
+      "Jacobian": {
+        "count": 40,
+        "minimum": 4.973896525620358,
+        "maximum": 87.86191157411209,
+        "nonpositive_count": 0,
+        "below_point1_count": 0,
+        "array_sha256": "ab51956b7d4c261ae399271b98488c8b29de16f481f28c04af09452740952086"
+      },
+      "native_volume_mm3": {
+        "count": 40,
+        "minimum": 0.8289827542700596,
+        "maximum": 14.64365192901868,
+        "nonpositive_count": 0,
+        "below_point1_count": 0,
+        "array_sha256": "8901be31c4b71468ac68573648478e4bdde9f4ad20a79d107f411231b6969c2f"
+      }
+    },
+    "independent_signed_volume_mm3": {
+      "sum": 343.0,
+      "relative_error": 0.0,
+      "count": 40,
+      "minimum": 0.8289827542700596,
+      "maximum": 14.643651929018679,
+      "nonpositive_count": 0,
+      "below_point1_count": 0,
+      "array_sha256": "c2467f71a6e475192830cb8197bc0a2f6b6d0323b8093078f456b08680e5f77d"
+    },
+    "sorted_node_tags_sha256": "ea1aa06e5cc7c14232e05e870b0bc1e48336e893fe5496fb9693089c3b4041fa",
+    "sorted_coordinates_sha256": "28b05e666d2b681d2878f4f38340466c70565fffeaab4e067c2916fa2d74f039",
+    "tetra_tags_sha256": "570f79cad9aba23ceef5f7830e1c36bee56af88897a8755455554a9770f56850",
+    "tagged_tetra_connectivity_sha256": "a9ffc2169e06eafb894508786ca54b4af62588b5cd227d361f0942cad3361807",
+    "canonical_cells_sha256": "1a1b875603e8616d1834b4d6c902aa952872a5691e39b357f6b4b72d987d9d32",
+    "software_geometric_invariants_passed": true
+  },
+  "saved_reopen": {
+    "nodes": 15,
+    "tetrahedra": 40,
+    "referenced_nodes": 15,
+    "referenced_interior_nodes": 7,
+    "unreferenced_nodes": 0,
+    "all_counted_interior_nodes_strictly_inside_cube": true,
+    "boundary_triangles": 12,
+    "internal_opposite_face_pairs": 74,
+    "exact_explicit_and_tetra_exterior_boundary": true,
+    "node_classifications": [
+      [
+        1,
+        2
+      ],
+      [
+        2,
+        2
+      ],
+      [
+        3,
+        2
+      ],
+      [
+        4,
+        2
+      ],
+      [
+        5,
+        2
+      ],
+      [
+        6,
+        2
+      ],
+      [
+        7,
+        2
+      ],
+      [
+        8,
+        2
+      ],
+      [
+        43,
+        3
+      ],
+      [
+        44,
+        3
+      ],
+      [
+        45,
+        3
+      ],
+      [
+        46,
+        3
+      ],
+      [
+        47,
+        3
+      ],
+      [
+        48,
+        3
+      ],
+      [
+        49,
+        3
+      ]
+    ],
+    "node_entity_classifications": [
+      [
+        1,
+        2,
+        1
+      ],
+      [
+        2,
+        2,
+        1
+      ],
+      [
+        3,
+        2,
+        1
+      ],
+      [
+        4,
+        2,
+        1
+      ],
+      [
+        5,
+        2,
+        1
+      ],
+      [
+        6,
+        2,
+        1
+      ],
+      [
+        7,
+        2,
+        1
+      ],
+      [
+        8,
+        2,
+        1
+      ],
+      [
+        43,
+        3,
+        1
+      ],
+      [
+        44,
+        3,
+        1
+      ],
+      [
+        45,
+        3,
+        1
+      ],
+      [
+        46,
+        3,
+        1
+      ],
+      [
+        47,
+        3,
+        1
+      ],
+      [
+        48,
+        3,
+        1
+      ],
+      [
+        49,
+        3,
+        1
+      ]
+    ],
+    "node_counts_by_classification_dimension": {
+      "0": 0,
+      "1": 0,
+      "2": 8,
+      "3": 7
+    },
+    "no_curve_or_surface_periodic_mapping": true,
+    "periodic_entities_checked": [
+      [
+        2,
+        1
+      ]
+    ],
+    "quality": {
+      "SICN": {
+        "count": 40,
+        "minimum": 0.4780600202533193,
+        "maximum": 0.8220195209702271,
+        "nonpositive_count": 0,
+        "below_point1_count": 0,
+        "array_sha256": "62e4bf917561a770b253292ab3a264865178b545ad52e0c90b931a072e3216d6"
+      },
+      "Jacobian": {
+        "count": 40,
+        "minimum": 4.973896525620358,
+        "maximum": 87.86191157411209,
+        "nonpositive_count": 0,
+        "below_point1_count": 0,
+        "array_sha256": "ab51956b7d4c261ae399271b98488c8b29de16f481f28c04af09452740952086"
+      },
+      "native_volume_mm3": {
+        "count": 40,
+        "minimum": 0.8289827542700596,
+        "maximum": 14.64365192901868,
+        "nonpositive_count": 0,
+        "below_point1_count": 0,
+        "array_sha256": "8901be31c4b71468ac68573648478e4bdde9f4ad20a79d107f411231b6969c2f"
+      }
+    },
+    "independent_signed_volume_mm3": {
+      "sum": 343.0,
+      "relative_error": 0.0,
+      "count": 40,
+      "minimum": 0.8289827542700596,
+      "maximum": 14.643651929018679,
+      "nonpositive_count": 0,
+      "below_point1_count": 0,
+      "array_sha256": "c2467f71a6e475192830cb8197bc0a2f6b6d0323b8093078f456b08680e5f77d"
+    },
+    "sorted_node_tags_sha256": "ea1aa06e5cc7c14232e05e870b0bc1e48336e893fe5496fb9693089c3b4041fa",
+    "sorted_coordinates_sha256": "28b05e666d2b681d2878f4f38340466c70565fffeaab4e067c2916fa2d74f039",
+    "tetra_tags_sha256": "570f79cad9aba23ceef5f7830e1c36bee56af88897a8755455554a9770f56850",
+    "tagged_tetra_connectivity_sha256": "a9ffc2169e06eafb894508786ca54b4af62588b5cd227d361f0942cad3361807",
+    "canonical_cells_sha256": "1a1b875603e8616d1834b4d6c902aa952872a5691e39b357f6b4b72d987d9d32",
+    "software_geometric_invariants_passed": true
+  },
+  "mesh_sha256": "0db89b0cf7b4e57af1c6a091d999a7f521cd365f052f699a1798f05ba75eb92d",
+  "mesh_bytes": 2886,
+  "saved_mesh_identity_exact": true,
+  "actual_SICN_threshold": 0.1,
+  "minimum_SICN_strictly_improved": true,
+  "full_tiny_arrays_sha256": "ea9e6ccdc8d735c3fde2401dfba56f3c29ceece8c6945438bebb611b2f0287f6",
+  "gmsh_warnings_errors": [],
+  "bound_inputs_unchanged": true,
+  "wall_seconds": 0.14512712508440018
+}
