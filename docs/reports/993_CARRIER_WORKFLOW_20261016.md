@@ -484,7 +484,7 @@ et leurs contacts exposés. Les seize tests des deux modules passent ensemble ;
 une admission de géométrie seule ne remplace pas cet audit d'exposition.
 
 La [galerie illustrée du travail en cours](../../parts/993-eng-carrier-0001/source/progress-figures-20261016/index.html)
-rassemble cinq planches : pièce complète à 1,262 kg, cotes, maillage avant/après,
+rassemble cinq planches initiales : pièce complète à 1,262 kg, cotes, maillage avant/après,
 couche réelle d'indice 518 et diagnostic des supports perforés de la région droite.
 Ce dernier reste explicitement refusé : 26 composantes ne possèdent pas les deux
 ancrages requis. Le détail rouge provient du graphe exact et des triangles réels,

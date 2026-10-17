@@ -3,6 +3,11 @@
 Ouvrir `index.html` pour parcourir les planches de ce dossier hors ligne. Les fichiers
 PNG restent disponibles individuellement à leur définition complète.
 
+La navigation donne aussi accès aux cartes mécaniques déjà calculées :
+[appuis rigides](mechanics.html), [appuis souples](mechanics-springs.html),
+et aux [surfaces corrigées de la région droite](right-supports.html).
+Chaque planche conserve son propre reçu et son périmètre de calcul.
+
 La [planche locale de la peau gauche](chart002-local-20261016/README.md)
 complète ces cinq vues. Elle conserve ses trois JSON réels, son script de
 rendu et son reçu propres ; elle ne modifie pas les preuves historiques des
