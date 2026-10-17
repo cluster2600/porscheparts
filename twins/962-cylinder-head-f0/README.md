@@ -203,6 +203,13 @@ The [single two-apex construction](derived/engineering/fixed-shell-apex-optimum/
 improves the two target cells but inverts three neighbours and leaves four
 other cells below SICN 0.1. All 39 exact signed-quality rows are retained;
 this analytic proposal is rejected and was never applied to a native mesh.
+The [current fixed-triple screen](derived/engineering/fixed-shell-current-triples/README.md)
+retains all 126 pair comparisons without a disjointness certificate; the result
+is inconclusive. The [single coupled proposal](derived/engineering/fixed-shell-coupled-sicn/README.md)
+then passes the exact positive-orientation and SICN 0.1 predicates for all 39
+stored cells, with minimum approximately 0.1013770 and all 16 shell nodes fixed.
+Independent saved-coordinate arithmetic confirms this local quality result;
+native application, embedding, head adoption and strength remain unverified.
 The [expanded interior-node census](derived/engineering/atomic-cavity-plane-clip-cap-assembly-netgen-expanded-stars/README.md)
 contains 1,098 movable nodes and 29,473 coupled cells, including all 210 poor
 cells and 29,263 initially good cells. Its complete geometric JSON is retained
