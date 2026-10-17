@@ -120,8 +120,11 @@ The [completed head Netgen trial](derived/engineering/atomic-cavity-plane-clip-c
 reduces SICN < 0.1 cells from 3,438 to 210, with minimum 0.039074265058645995.
 Exact boundary, full incidence and saved-file identity checks pass; all Jacobians
 and volumes are positive. The unchanged SICN 0.1 gate rejects this 3,620,809-cell
-volume. The new poor-cell boundary classification remains unknown; no head
-field is accepted.
+volume. The [independent saved-file diagnosis](derived/engineering/atomic-cavity-plane-clip-cap-assembly-delaunay-netgen-optimized-diagnosis/README.md)
+matches every complete tagged array and native metric. All 210 poor cells
+involve interior nodes: 15 have two source-boundary nodes and 195 have three.
+This leaves interior adjustment open as a separate hypothesis; it establishes
+neither repairability nor head acceptance.
 The [exact assembled-model download](derived/engineering/atomic-cavity-plane-clip-cap-assembly-raw-review-delivery/README.md)
 includes BIN, lossless PLY, all seven maps and the complete sealed evidence.
 All 151 members pass independent full-byte checks. GitHub verifies the three
