@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- Linux build of the filleted coupon against the host LEAP 71 stack in ~/picogk
+       (PicoGK, ShapeKernel and LatticeLibrary sources plus the native runtime).
+       The Mac project in ../picogk stays unchanged; its receipts are not replaced. -->
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net9.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <NoWarn>$(NoWarn);CS8981;CS0168;CS0219;CS0162;CS8632;CS8600;CS8601;CS8602;CS8603;CS8604;CS8618;CS8625</NoWarn>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <PicoRoot Condition="'$(PicoRoot)' == ''">$(HOME)/picogk</PicoRoot>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="Program.cs" />
+    <Compile Include="$(PicoRoot)/LEAP71_ShapeKernel/ShapeKernel/**/*.cs" />
+    <Compile Include="$(PicoRoot)/LEAP71_LatticeLibrary/LatticeLibrary/**/*.cs" />
+    <ProjectReference Include="$(PicoRoot)/PicoGK/PicoGK.csproj" />
+    <None Include="$(PicoRoot)/native/*.so*" CopyToOutputDirectory="PreserveNewest" Link="%(Filename)%(Extension)" />
+  </ItemGroup>
+</Project>
