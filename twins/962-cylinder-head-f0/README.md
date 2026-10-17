@@ -163,6 +163,11 @@ matched all 29,473 initial native cell qualities before a sampled 1 GiB memory
 stop after 7.2 seconds. No returned point, final quality array or coordinate
 proposal was produced. The preserved resource stop establishes no head
 feasibility or new mesh; the strict 0.1 quality rule remains unchanged.
+The [returned sparse-head diagnostic](derived/engineering/direct-sicn-sparse-head-proposer-returned-rejection/README.md)
+retains 1,098 selected node positions and all 29,473 analytic qualities.
+Its 315 cells below 0.1 and minimum 0.030665 fail the unchanged quality gate.
+The full numeric diagnostic is retained losslessly alongside the failed report.
+No accepted coordinate proposal or native head application was produced.
 The [expanded interior-node census](derived/engineering/atomic-cavity-plane-clip-cap-assembly-netgen-expanded-stars/README.md)
 contains 1,098 movable nodes and 29,473 coupled cells, including all 210 poor
 cells and 29,263 initially good cells. Its complete geometric JSON is retained
