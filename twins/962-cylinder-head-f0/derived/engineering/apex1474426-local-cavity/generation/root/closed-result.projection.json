@@ -1,0 +1,81 @@
+{
+  "RSS_samples": [
+    {
+      "owned_RSS_bytes": 311296,
+      "wall_seconds": 0.13076766696758568
+    },
+    {
+      "owned_RSS_bytes": 126173184,
+      "wall_seconds": 0.37655679206363857
+    },
+    {
+      "owned_RSS_bytes": 155287552,
+      "wall_seconds": 0.6193663750309497
+    }
+  ],
+  "actual_child_sha256": "71cd1ae6d4cf1caded54030602e63c2283234a47040069ab5991401bfc29615c",
+  "all32_input_pins_native3_numpy_and_actual_stable": true,
+  "controller_returncode": 2,
+  "external_child_peer_sha256": "0589e8fb8ae64bbb26707eb93b63e3597f15f9cdc92d4e3ca18a2d0e26659f8c",
+  "manufacturing_authorized": false,
+  "max_observed_owned_RSS_bytes": 155287552,
+  "no_universal_process_absence_or_true_peak_claim": true,
+  "observed_owned_PIDs_individually_absent": true,
+  "observed_owned_processes": [
+    {
+      "PGID": "process-role://generation/observed-01",
+      "PID": "process-role://generation/observed-01",
+      "PPID": "process-role://generation/observed-02",
+      "RSS_bytes": 21643264,
+      "argv": "runtime-role://controller/python -I -B work/962-engineering/fixed-shell-generation-apex1474426-001/run_readback.py --contract-sha256 71cd1ae6d4cf1caded54030602e63c2283234a47040069ab5991401bfc29615c",
+      "comm": "process-role://observed-truncated-comm"
+    },
+    {
+      "PGID": "process-role://generation/observed-03",
+      "PID": "process-role://generation/observed-03",
+      "PPID": "process-role://generation/observed-01",
+      "RSS_bytes": 133644288,
+      "argv": "/Library/Frameworks/Python.framework/Versions/3.10/Resources/Python.app/Contents/MacOS/Python -B work/962-engineering/fixed-shell-generation-apex1474426-001/reader.py",
+      "comm": "/Library/Framewo"
+    }
+  ],
+  "output_inventory": {
+    "arrays.json": {
+      "bytes": 28579,
+      "sha256": "78487e63fac0e207efd1422d1964837664c07f6789051ddeba9e1bcf7f895cf7"
+    },
+    "cavity.msh": {
+      "bytes": 5646,
+      "sha256": "0db979263849d4189f56ec34f319b4fd24cb85fb00d1bc167b5c4f2ba9ea5a9f"
+    },
+    "execution-receipt.json": {
+      "bytes": 1353,
+      "sha256": "95a0f9c811ff26bf4796c6ac0fdaf232652337229f7d1e181034627b84f0f5a2"
+    },
+    "fixture-report.json": {
+      "bytes": 14820,
+      "sha256": "d85681c2c65b93c3b29930c4a1956bfd1e1ce75eab6c1ae72fc08f57df099a04"
+    },
+    "frozen-contract.json": {
+      "bytes": 13188,
+      "sha256": "71cd1ae6d4cf1caded54030602e63c2283234a47040069ab5991401bfc29615c"
+    },
+    "native.log": {
+      "bytes": 1839,
+      "sha256": "ef95dd10cb41e1fdeb3756510eb88b8e5f8cb60d4dcf141e1575c37c851db831"
+    },
+    "reader.py": {
+      "bytes": 19683,
+      "sha256": "2d3529956d03dd256be5a5786812ebe3a3ec3d2bd5b2d923a458a9b8b08f82ff"
+    },
+    "run_readback.py": {
+      "bytes": 4805,
+      "sha256": "4963f5c66fa9e73797e76a8643f24bfb6b4ea8f1b9962063618504fc10e338ed"
+    }
+  },
+  "reaped": true,
+  "root_error": null,
+  "root_stop_reason": null,
+  "root_wall_seconds": 0.7014939591754228,
+  "schema": "962-apex1474426-local-generation-root-closure/v1"
+}

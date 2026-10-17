@@ -32,10 +32,15 @@ assumed bionic geometry; a missing original dimension stays unknown.
    0.07200216465522885 with 213 poor cells. The strict gate refuses the point;
    all 155 coordinates and 5,327 qualities remain diagnostic only. No proposal,
    application or new MSH exists, and the current head stays at 208 poor cells.
-   Next, investigate a local replacement around the limiting star, preserving
-   interfaces, outside coordinates and the unchanged quality/domain checks.
-   Feasibility remains unproved; the original 210-cell bins are not transferred.
-   The completed [replacement prerequisites](derived/engineering/local-replacement-prerequisites/README.md)
+   The subsequent [local cavity study](derived/engineering/apex1474426-local-cavity/README.md)
+   extracts the limiting star's exact 32-node/60-face shell. The initial
+   57-cell generation is rejected; the saved Netgen result has 40 nodes,
+   101 cells and eight interior nodes, with no SICN below 0.1 and minimum
+   0.13807503254019585. A separate current-head query records 38 exterior
+   and 22 connected interfaces, including all 20 outside owner cells.
+   No head edit follows. Next, verify local embedding and domain equality
+   before application; the original 210-cell bins are not transferred.
+   The earlier [replacement prerequisites](derived/engineering/local-replacement-prerequisites/README.md)
    now establish sparse-tag editing capability, exact relative local-domain
    equality and the original head's nine exterior/nineteen connected interfaces.
    They do not record an actual head edit.

@@ -26,7 +26,13 @@ The [current coordinate trial](derived/engineering/head-star-remaining-sicn-prop
 returned solver success but failed the unchanged quality gate: 213 analytic poor
 cells, minimum SICN 0.07200216465522885. Its full 155-coordinate/5,327-quality
 diagnostic is retained; no proposal or new head mesh was produced. The saved
-head remains at 208 poor cells. A local replacement study is the next step.
+head remains at 208 poor cells. The subsequent
+[local cavity study](derived/engineering/apex1474426-local-cavity/README.md)
+preserves the rejected 57-cell generation and a saved Netgen result with
+101 cells, all above SICN 0.1 (minimum 0.13807503254019585). All 32 shell
+coordinates and 60 boundary faces remain fixed. A separate read-only parent
+query records 38 exterior and 22 connected interfaces. Local embedding,
+domain equality and application to the head remain open; no head mesh changed.
 The [latest bore95 USD checkpoint](USD_NORMALS_ENGINEERING.md) verifies face
 normals and passes the minimum and CPU asset checks; its formal robotics profile
 retains six failed feature rows. No head physics or manufacturing qualification
