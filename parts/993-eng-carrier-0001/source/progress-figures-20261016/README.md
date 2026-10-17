@@ -20,6 +20,13 @@ les sources du rendu et les contrôles des barres d’échelle. Le rejeu depuis
 une copie séparée reproduit les deux PNG à l’octet. Ces volumes précèdent les
 grilles et les couches des supports, encore en cours de calcul.
 
+Les [deux planches des surfaces de supports calculées](calculated-surfaces-20261017/README.md)
+montrent les régions 003/009/010 dans la pose conservée, puis leurs grilles,
+peaux et dents en détail. Les trois checkpoints sont revérifiés localement ;
+le contrôle des sept régions et des couches reste en cours. Un rejeu depuis
+une copie séparée et un autre répertoire courant reproduit les deux PNG
+à l’octet. Les PDF, SVG, sources et reçus accompagnent ces images.
+
 Les deux nouvelles vues utilisent le STL retenu et les triangles des supports
 de l'essai `real-support-source-008-015`. Les cotes, le comparatif du maillage
 et la couche 518 sont des copies identiques des figures calculées auparavant.

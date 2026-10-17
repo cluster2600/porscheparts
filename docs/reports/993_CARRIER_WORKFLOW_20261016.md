@@ -511,6 +511,15 @@ représentées par ces volumes.
 
 ![Sept enveloppes natives et pièce posée : surfaces de support encore en cours](../../parts/993-eng-carrier-0001/source/progress-figures-20261016/sealed-envelopes-20261016/reference/sealed-envelopes-overview.png)
 
+Les [deux planches des surfaces déjà calculées](../../parts/993-eng-carrier-0001/source/progress-figures-20261016/calculated-surfaces-20261017/README.md)
+montrent les régions 003/009/010 dans la pose de la pièce, puis leurs grilles,
+peaux et dents. Le contrôle local des trois checkpoints, des graphes et de
+leurs tableaux passe ; 010 contient 16 916 faces et deux composantes ancrées.
+Les cinq échelles sont vérifiées par projection et les deux pages PDF ont
+été relues. Un rejeu depuis `/` en 7,429 s reproduit les deux PNG à l’octet.
+Le code retour du processus 010 attend sa collecte ; les admissions des sept
+régions et l’audit de toutes les couches ne sont pas déduits de ces images.
+
 La [planche mécanique complémentaire](../../parts/993-eng-carrier-0001/source/progress-figures-20261016/mechanics.html)
 montre les champs réels du cas combiné à appuis rigides, maillage 7 mm :
 617,716 MPa au point d'intégration maximal et 2,796598 mm de déplacement.
