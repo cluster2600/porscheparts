@@ -103,3 +103,12 @@ distincte du calcul thermique du procédé d'impression.
 La [capsule du cas natif complet](../design-20261016/wholepart-native64-20261017/README.md)
 fournit également les entrées comprimées, les quatre états et les commandes
 de restauration et de réanalyse, sans nouvelle exécution du solveur.
+
+La [planche des contacts de la région 000](region000-contacts-20261017/README.md)
+montre la première coupe réelle des 337 groupes de supports, puis un détail
+aux mêmes coordonnées. Elle conserve tous les intervalles de contact avant
+et après encodage des segments. Trois contacts devenus points ne créent aucune
+ancre supplémentaire. Les 129 023 certificats ont été revérifiés séparément
+avec des fractions exactes ; la portée reste une couche et une région.
+Les [trois formats rejoués depuis la copie publiée](region000-contacts-20261017/publication-validation.json)
+accompagnent les données compactes et le script de rendu autonome.
