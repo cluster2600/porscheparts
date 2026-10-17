@@ -194,6 +194,11 @@ The [specific cavity generation](derived/engineering/fixed-shell-generation-apex
 preserves all 16 shell coordinate bytes and 28 oriented faces. Ten of 34
 positive tetrahedra fail SICN 0.1 (minimum 0.019921779104111692); the local
 result is rejected and was never adopted into the head.
+The [saved-cavity Netgen trial](derived/engineering/fixed-shell-netgen-apex1435493/README.md)
+reduces ten poor cells to two among 39 positive tetrahedra, with minimum SICN
+0.08909847620076504. Boundary and saved-reopen identity pass; the unchanged
+0.1 quality gate still rejects this separate local result. Complete four-stage
+arrays and independent exact checks are retained; no head adoption follows.
 The [expanded interior-node census](derived/engineering/atomic-cavity-plane-clip-cap-assembly-netgen-expanded-stars/README.md)
 contains 1,098 movable nodes and 29,473 coupled cells, including all 210 poor
 cells and 29,263 initially good cells. Its complete geometric JSON is retained
@@ -209,6 +214,10 @@ The [mechanical material-state review](derived/engineering/material-mechanical-s
 finds no complete recipe-matched E, Poisson ratio, expansion and yield card among
 the seven retained states. Missing properties and head load-path inputs remain
 explicit; no generic constants or material selection are introduced.
+The [producer-source refresh](derived/engineering/material-mechanical-source-refresh/README.md)
+adds named CP1 process identities and expansion intervals, while retaining the
+missing E, Poisson ratio and temperature-law inputs. Source/date limits remain
+explicit; no retained material card or material selection is changed.
 The [prepared vector elastic cube](derived/engineering/imported-elastic-cube-preparation/README.md)
 includes a completed, independently checked 15-node/40-tetrahedron ASCII adapter.
 Its fictitious affine material/load case is materialized but held: no MOOSE import,

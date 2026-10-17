@@ -1,0 +1,68 @@
+{
+  "schema": "962-selected-public-record-projection/v1",
+  "original_record": {
+    "relative_path": "work/962-engineering/fixed-shell-netgen-apex1435493-001/execution-receipt.json",
+    "sha256": "6fab675b29f995fac3a240b22ca9adf2f71ca52659ba7e5ef8feda52b565aaf2",
+    "bytes": 1353
+  },
+  "projection": {
+    "scope": "one_specific_saved_apex1435493_cavity_Netgen_witness",
+    "returncode": 2,
+    "stop_reason": null,
+    "wall_seconds": 0.72082683397457,
+    "hard_wall_seconds": 30,
+    "sampled_RSS_stop_bytes": 1073741824,
+    "threads": 2,
+    "sampled_output_stop_bytes": 16777216,
+    "final_output_bytes_before_receipt": 96206,
+    "hard_OS_CPU_quota_applied": false,
+    "hard_address_space_limit_applied": false,
+    "max_observed_RSS_bytes": 132235264,
+    "reader_sha256": "3cd669f484a2c8ecfd8388a5fde7b4911faf1c84dcda77230a414cbb87983bdd",
+    "runner_sha256": "ee558f1520b9a8d4ba1d458c1055ad0d6addc68d97d25ad6aae6e7305fb610c0",
+    "contract_sha256": "60740ab10fdb3193c5e1c51abf777ab1ddd8fecff7db619d7c6da44726cdcff2",
+    "native_log_sha256": "3c0bba8e4b5247c32ad63259c26e09320fb420c6baf8df43f23bad3a00b78a1f",
+    "fixture_report_sha256": "8529a8f8421dd989ae243b2a06b132b8a2952e9847aa31d34adb74289a16e6c7",
+    "declared_operation_counts": {
+      "generate": 0,
+      "createGeometry_dim3": 1,
+      "optimize_Netgen": 1,
+      "rebuildElementCache": 1,
+      "write_mesh": 1,
+      "solve": 0
+    },
+    "operation_counts_are_declarations_not_observed": true,
+    "manufacturing_authorized": false
+  },
+  "omitted_field_paths": [
+    [
+      "RSS_samples"
+    ]
+  ],
+  "path_role_rules": [
+    {
+      "role": "runtime:python",
+      "meaning": "selected Python executable locator"
+    },
+    {
+      "role": "runtime:gmsh-module",
+      "meaning": "selected Gmsh Python wrapper locator"
+    },
+    {
+      "role": "runtime:gmsh-library",
+      "meaning": "selected native Gmsh library locator"
+    },
+    {
+      "role": "runtime:numpy-init",
+      "meaning": "selected NumPy __init__.py locator"
+    },
+    {
+      "role": "project-relative",
+      "meaning": "exact private project-root prefix removed; relative paths and all digest values remain"
+    }
+  ],
+  "derived_observations": {
+    "RSS_sample_count": 2,
+    "sampled_maximum_is_not_an_unsampled_peak": true
+  }
+}
