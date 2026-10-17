@@ -1,0 +1,35 @@
+--- prep-002/sparse_head.py
++++ prep-003/sparse_head.py
+@@ -2,10 +2,10 @@
+ from collections import Counter
+ import hashlib,importlib,importlib.util,json,math,re,struct,sys,warnings
+ from pathlib import Path
+-OUTPUT_NAME='direct-sicn-sparse-head-proposal-002'
++OUTPUT_NAME='direct-sicn-sparse-head-proposal-003'
+ LIMITS=dict(wall_seconds=300,sampled_RSS_bytes=8*1024**3,sampled_output_bytes=16*1024**2,threads=2)
+ SOLVER=dict(method='trust-constr',maxiter=100,gtol=1e-8,xtol=1e-10,barrier_tol=1e-10,
+-            finite_diff_rel_step=2.0**-26,sparse_jacobian=True,factorization_method='AugmentedSystem')
++            finite_diff_rel_step=2.0**-26,sparse_jacobian=True,factorization_method='AugmentedSystem',initial_barrier_parameter=.1/29475)
+ GATE=.1
+ COUNTS=dict(movable_nodes=1098,coordinate_variables=3294,variables_with_epigraph=3295,
+             constraints=29473,context_nodes=12067,fixed_context_nodes=10969,structural_nnz=152827)
+@@ -315,7 +315,7 @@
+             result=optimize.minimize(objective,x0,method='trust-constr',jac=objective_gradient,
+                 hess=lambda x:zero_objective_hessian(sparse,x),callback=callback,
+                 bounds=[(None,None)]*3294+[(float(np.min(before)),1.)],constraints=[constraint],
+-                options={k:SOLVER[k] for k in ('maxiter','gtol','xtol','barrier_tol','sparse_jacobian','factorization_method')})
++                options={k:SOLVER[k] for k in ('maxiter','gtol','xtol','barrier_tol','sparse_jacobian','factorization_method','initial_barrier_parameter')})
+         report['stage']='returned_point';report['solver']=solver_metadata(result,stop_state['quality_target_stop'])
+         final=assemble_points(np,original,positions,result.x)  # Refuses malformed/nonfinite returned points.
+         returned_rows=coordinate_rows(tags,positions,final)
+--- prep-002/test_guards.py
++++ prep-003/test_guards.py
+@@ -9,7 +9,7 @@
+ import warnings
+ 
+ HERE=Path(__file__).resolve().parent
+-SOURCE_SHA256='20b76607821b83caf342e9741c80e2e02fa41568fa2d5ca413b1d1ab6caa3325'
++SOURCE_SHA256='4558a2d6c66284c7436f5b4f6684fa6a6455a60e9fd0e4c76aec7bb3962dc0d0'
+ 
+ 
+ class Guards(unittest.TestCase):

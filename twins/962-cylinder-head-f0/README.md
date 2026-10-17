@@ -168,6 +168,11 @@ retains 1,098 selected node positions and all 29,473 analytic qualities.
 Its 315 cells below 0.1 and minimum 0.030665 fail the unchanged quality gate.
 The full numeric diagnostic is retained losslessly alongside the failed report.
 No accepted coordinate proposal or native head application was produced.
+The [normalized initial-barrier trial](derived/engineering/direct-sicn-sparse-head-proposer-normalized-rejection/README.md)
+retains a second complete returned diagnostic: minimum 0.067817, with 244 of
+29,473 cells below the unchanged 0.1 gate. The epigraph inequalities also fail.
+Every returned quality is independently reconstructed from the saved rows.
+No coordinate proposal, native head application or feasibility result follows.
 The [expanded interior-node census](derived/engineering/atomic-cavity-plane-clip-cap-assembly-netgen-expanded-stars/README.md)
 contains 1,098 movable nodes and 29,473 coupled cells, including all 210 poor
 cells and 29,263 initially good cells. Its complete geometric JSON is retained
