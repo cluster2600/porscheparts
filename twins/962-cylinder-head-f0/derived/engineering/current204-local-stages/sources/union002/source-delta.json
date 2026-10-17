@@ -1,0 +1,117 @@
+{
+  "schema": "962-current204-union-context-node-augmentation-successor/v1",
+  "preserved_001_held_sha256": "089daa70b250a266312852461f2daa904e0894936aa2e1d01b151609f74b6469",
+  "blocked_001_source_peer": {
+    "path": "work/962-engineering/head-star-current204-union-context-source-peer-001/review.json",
+    "sha256": "e6dfc2f0ad32780e55b709523de2bcb5bb12b6e4ecbceec118bfc9ab8a5c5812"
+  },
+  "pairs": {
+    "reader": {
+      "previous_source": "work/962-engineering/head-star-current204-union-context-prep-001/reader.py",
+      "previous_sha256": "b07b02e7e4a00506d814a1937db97eb001f21c978b26a66436c2e2aeb5dd6264",
+      "successor_source": "work/962-engineering/head-star-current204-union-context-prep-002/reader.py",
+      "successor_sha256": "c852a8a536a0ef2c58a37132fb51e42e525403d1f519375cc04a9860bfe53b29",
+      "whole_byte_reverse_verified": true,
+      "reverse_chunks": [
+        {
+          "old_start": 148,
+          "old_stop": 148,
+          "new_start": 148,
+          "new_stop": 155,
+          "old": "",
+          "new": "def observation_node_matches(census,observed):\n extra='binary64_little_endian_bytes_hex'\n if set(observed)!=set(census)|{extra}:return False\n return (encoded({k:observed[k] for k in census})==encoded(census)\n  and observed[extra]==struct.pack('<3d',*census['coordinates_mm']).hex()\n  and observed[extra]==struct.pack('<3d',*observed['coordinates_mm']).hex())\n\n"
+        },
+        {
+          "old_start": 162,
+          "old_stop": 163,
+          "new_start": 169,
+          "new_stop": 170,
+          "old": "      or any(census_nodes[r['node_tag']]!=r for r in observation['selected_node_rows'])):\n",
+          "new": "      or any(not observation_node_matches(census_nodes[r['node_tag']],r) for r in observation['selected_node_rows'])):\n"
+        }
+      ],
+      "unchanged_top_level_function_AST_sha256s": {
+        "sha": "9b16db917487395350fbf76ef5bad61d5ad0ffe15258bbf93bbdecbb8428116d",
+        "canonical": "b287070551029f2042ccad48fde9248452ef2f33c1f1e7c5f45a5ff2c4f5055a",
+        "json_sha": "e642b7346608f255d4a1581279dac8140ebbdb23c70bb2cc5d95d597b8d12643",
+        "validate_interface": "ae2178d29de17c4d63e3cb13b147b66d39d585676737203bea9c523f69fade93",
+        "face_hits": "b9bf71e52486da838d755f89f91fb601153bd0b42c41bc221bf8c5c3254c9d2e",
+        "require_inputs": "7603ce6b953d5fded344379f2d41adaf1b09f83371eea3dae1ea517e8fdf161f",
+        "selected_functions": "0c1a9f0bce0a70ad560f595ca173b08a4955268e46cf9ce744cb430a94c3ec8e",
+        "current_after_proof": "8ec98dce42a9ee2db3edb23d3dcc2b1113d13554db69f63461f9d6a7f23889d1",
+        "one_case_records": "8c6c6150b609d2d51bce714667b1bc679ce6531658fa8ecd01ace2d405e63553",
+        "encoded": "8a5db3be8af13b4e6c1d864f3e313e3a7281faade93b34ce07a2b585653b878d",
+        "selection_records": "01ae56bdc77108226761d19a8c626b0c982cfd887c468d93c4da43d4f19d06b3",
+        "mask_exclusions": "2ba98353ac33c5075340ac6b08c03b7a7dafe6d6b70911f97fc7d90972defa7f",
+        "parameter_projection": "c21e9981125c2d48fe352d6462fac3bdff78e184551c3e32082649520772699d",
+        "validate_maxima": "7af03be4adcfb4a849221859e91fac378ce8abacb20cbc14b76e32404210746e",
+        "main": "c2b1ba22fe5ce1750ae16d599200e48fd61b2e378b0c3eec1a773f443946c5d6"
+      }
+    },
+    "guard": {
+      "previous_source": "work/962-engineering/head-star-current204-union-context-prep-001/selfcheck.py",
+      "previous_sha256": "64df99b1d6f946e9f905de9fed91b67e2128f1808572b6f3930731843289fd19",
+      "successor_source": "work/962-engineering/head-star-current204-union-context-prep-002/selfcheck.py",
+      "successor_sha256": "fe8adf8e2fa1a2a3debd9ab3ba5769b9b2f47de58cfdf97fb822dc474c00142b",
+      "whole_byte_reverse_verified": true,
+      "reverse_chunks": [
+        {
+          "old_start": 5,
+          "old_stop": 6,
+          "new_start": 5,
+          "new_stop": 6,
+          "old": "SOURCE_SHA='b07b02e7e4a00506d814a1937db97eb001f21c978b26a66436c2e2aeb5dd6264'\n",
+          "new": "SOURCE_SHA='c852a8a536a0ef2c58a37132fb51e42e525403d1f519375cc04a9860bfe53b29'\n"
+        },
+        {
+          "old_start": 24,
+          "old_stop": 24,
+          "new_start": 24,
+          "new_stop": 26,
+          "old": "",
+          "new": " for row in points:row.update(in_movable_seed_set=row['node_tag']==apex,source_boundary_tag=row['node_tag']<=871731,freshly_proved_classification_scope='below_dim3' if row['node_tag']<=871731 else 'dim3')\n observed_points=[dict(row,binary64_little_endian_bytes_hex=struct.pack('<3d',*row['coordinates_mm']).hex()) for row in points]\n"
+        },
+        {
+          "old_start": 29,
+          "old_stop": 30,
+          "new_start": 31,
+          "new_stop": 32,
+          "old": " obs=dict(apex=apex,native_ordered_cell_rows=cells,selected_node_rows=points)\n",
+          "new": " obs=dict(apex=apex,native_ordered_cell_rows=cells,selected_node_rows=observed_points)\n"
+        },
+        {
+          "old_start": 40,
+          "old_stop": 41,
+          "new_start": 42,
+          "new_stop": 43,
+          "old": "  a,r,ac,an=fixture(0);b,s,bc,bn=fixture(100);ns=select(['encoded','one_case_records','merge_case_records'],dict(json=json,hashlib=hashlib,math=math,struct=struct,FACES=FACES,BOUNDARY=871731))\n",
+          "new": "  a,r,ac,an=fixture(0);b,s,bc,bn=fixture(100);ns=select(['encoded','observation_node_matches','one_case_records','merge_case_records'],dict(json=json,hashlib=hashlib,math=math,struct=struct,FACES=FACES,BOUNDARY=871731))\n"
+        },
+        {
+          "old_start": 48,
+          "old_stop": 49,
+          "new_start": 50,
+          "new_stop": 51,
+          "old": "  a,r,ac,an=fixture(0);b,s,bc,bn=fixture(100);ns=select(['encoded','one_case_records','merge_case_records'],dict(json=json,hashlib=hashlib,math=math,struct=struct,FACES=FACES,BOUNDARY=871731))\n",
+          "new": "  a,r,ac,an=fixture(0);b,s,bc,bn=fixture(100);ns=select(['encoded','observation_node_matches','one_case_records','merge_case_records'],dict(json=json,hashlib=hashlib,math=math,struct=struct,FACES=FACES,BOUNDARY=871731))\n"
+        },
+        {
+          "old_start": 57,
+          "old_stop": 57,
+          "new_start": 59,
+          "new_stop": 70,
+          "old": "",
+          "new": "  original=an[r['observation']['selected_node_rows'][0]['node_tag']];observed=r['observation']['selected_node_rows'][0]\n  self.assertEqual(len(original),6);self.assertEqual(len(observed),7);check=ns['observation_node_matches'];self.assertTrue(check(original,observed))\n  replacements={'node_tag':original['node_tag']+1,'coordinates_mm':[0.,0.,0.],\n   'binary64_hex':[float(0.).hex(),float(0.).hex(),float(0.).hex()],\n   'in_movable_seed_set':True,'source_boundary_tag':False,'freshly_proved_classification_scope':'dim3',\n   'binary64_little_endian_bytes_hex':'00'*24,'unexpected_field':7}\n  for key,value in replacements.items():\n   changed=copy.deepcopy(observed);changed[key]=value\n   self.assertFalse(check(original,changed),key)\n  changed=copy.deepcopy(observed);changed.pop('binary64_little_endian_bytes_hex');self.assertFalse(check(original,changed))\n\n"
+        }
+      ],
+      "unchanged_top_level_function_AST_sha256s": {
+        "select": "128921bc0bb7808d60f03c0db0c20112f3c1e64d55f185bbf6b04c00592f77ef",
+        "refresh": "532bb43895fc839713bd7c1f7bfd6ac3a5f47d7fec0b9eb7ea3ffaa509e303c4"
+      }
+    }
+  },
+  "controller_byte_exact_to_001": true,
+  "controller_sha256": "694687cec480bd8c119081fe4d04ec3834d3b095de81c5c5f95c3239285903c9",
+  "source_functions_guards_queries_or_native_executed": false,
+  "no_policy_science_algorithm_bound_or_tolerance_change": true
+}

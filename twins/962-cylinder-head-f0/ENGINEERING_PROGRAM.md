@@ -59,6 +59,12 @@ assumed bionic geometry; a missing original dimension stays unknown.
    every rejected and conflict record remains complete. No new mesh is produced.
    Finite local generation, quality and exact domain gates precede any combined
    application; coverage does not establish repairability.
+   The [completed local stages](derived/engineering/current204-local-stages/README.md)
+   preserve all 115 generation quality rejections and separate Netgen attempts:
+   47 local quality/storage passes and 68 quality rejections. The first held
+   attempt remains unretried. Complete saved arrays, tiny meshes, contracts,
+   root/peer records and the 116-region parent context are retained. No exact
+   domain or new head application is admitted; the head remains at 204 poor cells.
    The first conditional isothermal screen has an
    [explicit assumed card](engineering/cp1-isothermal-assumed-card.json):
    E = 71 GPa, ν = 0.33, uniform 25 °C and constant isotropic elasticity.

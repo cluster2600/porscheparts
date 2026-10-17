@@ -50,6 +50,12 @@ A separate saved-data pass selects 116 vertex-disjoint regions containing
 4,164 original cells, including 172 poor and 3,992 currently good cells.
 Two candidate shells fail a necessary face screen; all negative and conflict
 records remain complete. This is a finite repair target; the mesh is unchanged.
+The [completed local stages](derived/engineering/current204-local-stages/README.md)
+retain 115 rejected generation cases and their separate Netgen attempts:
+47 pass local quality/storage checks and 68 fail quality. The held first attempt
+remains unretried. Complete arrays, tiny meshes, contracts, execution records and
+the 116-region parent context are included. Exact local-domain checks and head
+application remain pending; the head still has 204 poor cells.
 The [assumed-material thermal coupon](derived/engineering/cp1-assumed-thermal-birth-failed/README.md)
 failed its first time step: 33 internal cutbacks, zero converged steps and no
 energy assessment. The full failure and initial fields are retained. Its

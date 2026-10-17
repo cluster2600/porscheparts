@@ -1,0 +1,25 @@
+--- work/962-engineering/head-star-current204-union-context-prep-001/reader.py
++++ work/962-engineering/head-star-current204-union-context-prep-002/reader.py
+@@ -146,6 +146,13 @@
+ def encoded(value):
+  return (json.dumps(value,indent=2,allow_nan=False)+'\n').encode()
+ 
++def observation_node_matches(census,observed):
++ extra='binary64_little_endian_bytes_hex'
++ if set(observed)!=set(census)|{extra}:return False
++ return (encoded({k:observed[k] for k in census})==encoded(census)
++  and observed[extra]==struct.pack('<3d',*census['coordinates_mm']).hex()
++  and observed[extra]==struct.pack('<3d',*observed['coordinates_mm']).hex())
++
+ def merge_case_records(cases,records,census_cells,census_nodes):
+  old={};old_points={};faces={};boundary=set();shell_tags=set();by_apex={};summaries=[];used=set()
+  for case in cases:
+@@ -160,7 +167,7 @@
+   if (complete!=observation['native_ordered_cell_rows'] or len(complete)!=case['old_tetrahedra']
+       or [r['tetrahedron_tag'] for r in complete]!=case['old_tetrahedron_tags']
+       or sorted({t for r in complete for t in r['node_tags']})!=case['old_vertex_tags']
+-      or any(census_nodes[r['node_tag']]!=r for r in observation['selected_node_rows'])):
++      or any(not observation_node_matches(census_nodes[r['node_tag']],r) for r in observation['selected_node_rows'])):
+    raise ValueError('Every current complete incident cell including good/shared context must match')
+   a,b,mapping,expected,original_boundary=one_case_records(observation,shell,case)
+   if set(old)&set(a) or set(old_points)&set(b) or set(faces)&set(expected):raise ValueError('Selected cell, vertex or face collision refused')
