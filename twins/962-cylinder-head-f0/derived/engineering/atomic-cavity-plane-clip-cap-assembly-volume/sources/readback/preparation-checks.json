@@ -1,0 +1,45 @@
+{
+  "schema": "962-assembled-saved-MSH-reader-static-preparation-checks/v1",
+  "source_and_test_AST_parse": true,
+  "reader_one_literal_reverse_exact": true,
+  "runner_two_literals_reverse_exact": true,
+  "prepared_mock_methods": [
+    "test_SIGTERM_during_Popen_return_keeps_assigned_child_owned",
+    "test_SIGTERM_during_monitor_kills_reaps_and_restores",
+    "test_Popen_refusal_restores_and_does_not_kill_unowned_process",
+    "test_timer_start_refusal_still_kills_reaps_and_restores",
+    "test_monitor_refusal_stops_child_without_success",
+    "test_wait_refusal_still_restores_handler",
+    "test_late_SIGTERM_marks_interruption_without_signaling_reaped_PID",
+    "test_normal_reader_completion_reaps_restores_and_does_not_kill",
+    "test_Popen_creation_time_is_subtracted_from_timer_budget",
+    "test_late_valid_RC0_without_timer_callback_cannot_pass"
+  ],
+  "method_count": 10,
+  "preserved_old_preparation_hashes": {
+    "work/962-engineering/atomic-cavity-volume-readback-prep-002/frozen-contract.json": "bda41dc782dbaed4df9110dac90e7424606bead42f3ef18d73b8777fd7f4aa80",
+    "work/962-engineering/atomic-cavity-volume-readback-prep-002/METHOD.md": "4db9ead0ca765e0578a0f8d3ee85c7a07be81ad74b409606ceafe4fa88131cc1",
+    "work/962-engineering/atomic-cavity-volume-readback-prep-002/source-delta.json": "6350ea877d37a89972081d035e45225fd4db88c856c61e0c2e08ee0af61df48c",
+    "work/962-engineering/atomic-cavity-volume-readback-prep-002/preparation-checks.json": "3339dc8911d3440762afc95196771fb09a1d6038a3422e698b0e58bc5a4974ea",
+    "work/962-engineering/atomic-cavity-volume-readback-prep-002/reader.py": "40f1d220453c114f49e5eea3d6ea5ad55ace50fa51819e9f3c291887596d6f56",
+    "work/962-engineering/atomic-cavity-volume-readback-prep-002/reader.py.diff": "094aa0e590cb6914a59732466dd68f7102bf2f747253e14d4cf1e3e2088ec811",
+    "work/962-engineering/atomic-cavity-volume-readback-prep-002/test_runner_guards.py": "e6e90a66810109557eb436cf32c703c6517e0147a071307271d18b01bef5c408",
+    "work/962-engineering/atomic-cavity-volume-readback-prep-002/run_readback.py.diff": "546587f0fc82d543a88e7511571130e3a062b10714535f5792c531942484f630",
+    "work/962-engineering/atomic-cavity-volume-readback-prep-002/run_readback.py": "e0e63b01708584d0296757df8aaea89c5238bc352109a716a7abed49defa3d97"
+  },
+  "old_preparation_unchanged": true,
+  "current_stopped_metadata_hashes_verified": {
+    "worker": "9a648b8082e84361759b38be30fcbf641417dbc5ccb0bf77b4d22254a7818bd7",
+    "receipt": "90fa2fc6e5a9a393a5a65464b2b2ac3ecc7c6ccf6e44000873d2dcb5a7ea3d6a",
+    "root_execution": "c9908dfcf1b21b281136d643267d541955bf454e3bccae2ae19fa62077689718",
+    "actual_HXT_child": "d50938bf996ff107ae08c22b6a5c670e74cb4d3eaf59a6db6baba64a3dd1068e"
+  },
+  "current_native_nonpositive_SICN_count": 0,
+  "diagnostic_cap_from_current_worker": true,
+  "positive_below_point1_count_not_yet_independently_queried": true,
+  "all_current_native_metric_counts_actual": true,
+  "no_MSH_or_BIN_bytes_opened_or_hashed": true,
+  "native_or_scientific_imports": false,
+  "source_or_mocks_executed": false,
+  "fresh_output_absent": true
+}

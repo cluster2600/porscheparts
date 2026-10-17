@@ -85,6 +85,12 @@ mesh. Combined with the retained forward result, the two-way interval is
 0.0625 mm representation budget. The reference is an analysis mesh, not an OEM
 measurement; no floating-point roundoff certificate is claimed. Volume quality
 and head physics remain open.
+The [subsequent assembled-head volume trial](derived/engineering/atomic-cavity-plane-clip-cap-assembly-volume/README.md)
+saves 2,989,608 tetrahedra with the exact surface boundary. Independent saved-file
+reading confirms 78,301 referenced interior nodes, positive volumes and exact
+tagged arrays, but **285,573 cells fail SICN 0.1**; the minimum is
+3.784626658982107e-9. The volume remains rejected, with no head thermal or
+strength result. No mesh generation or optimization occurs in that readback.
 The [current BIN/PLY and seven-map download](derived/engineering/atomic-cavity-plane-clip-cap-assembly-raw-review-delivery/README.md)
 is uploaded to the existing draft release. All 151 archive members pass complete
 independent byte checks; all 42 preceding assets remain unchanged (45 total).

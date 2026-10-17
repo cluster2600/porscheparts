@@ -1,0 +1,47 @@
+--- preserved-61542-mesh_atomic_volume.py
++++ mesh_assembled_hxt.py
+@@ -38,10 +38,10 @@
+ from mesh_head import (ROOT, FAMILY, array_sha, distribution, new_output, save, sha,
+                        surface_roundtrip, tetra_boundary, tetra_volumes, volume_arrays)
+ 
+-CANDIDATE = ROOT / "work/962-engineering/atomic-cavity-head-001/head-atomic002/candidate.bin"
+-CANDIDATE_SHA = "1f9dbd4cda61c7b58084479ebb165fb01280fa831752dc0da18517e548131b1a"
+-CANDIDATE_VOLUME = 915458.1131756522
+-OUTPUT = ROOT / "work/962-engineering/atomic-cavity-volume-hxt-001"
++CANDIDATE = ROOT / "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-001/candidate.bin"
++CANDIDATE_SHA = "9d62eac6e2cd7b6a9ecb4a7ea5b632685820369b5c4ede379acc34238f50d7b4"
++CANDIDATE_VOLUME = 915453.1236217883
++OUTPUT = ROOT / "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-volume-hxt-001"
+ GATES = {"distance", "features", "topology", "global_intersections", "fixed_face_necessary_quality"}
+ DEADLINE = 300
+ RSS_STOP = 8 * 1024**3
+@@ -162,7 +162,7 @@
+             raise ValueError("Observed native ARM64 Gmsh4.15.2 runtime required")
+         points, faces = audit_quality_head.read(CANDIDATE)
+         points, faces = np.array(points, dtype=np.float64), np.array(faces, dtype=np.int64)
+-        if (len(points), len(faces)) != (901727, 1803870):
++        if (len(points), len(faces)) != (871731, 1743878):
+             raise ValueError("Admitted candidate counts changed")
+         surface = prepare_head_analysis.validate_surface(points, faces)
+         report.update(surface=surface, candidate_sha256=CANDIDATE_SHA,
+@@ -290,7 +290,7 @@
+         try:
+             signal.signal(signal.SIGTERM, request_sigterm)
+             process = subprocess.Popen(command, stdout=log, stderr=subprocess.STDOUT, env=env, start_new_session=True)
+-            watchdog = threading.Timer(DEADLINE, lambda: stop("native_deadline"))
++            watchdog = threading.Timer(max(0., DEADLINE-(time.monotonic()-started)), lambda: stop("native_deadline"))
+             watchdog.daemon = True; watchdog.start()
+             while process.poll() is None and not sigterm_requested:
+                 try:
+@@ -317,7 +317,10 @@
+                 if sigterm_requested and stopped["reason"] is None:
+                     stopped["reason"] = "controller_SIGTERM"
+                 signal.signal(signal.SIGTERM, previous_sigterm)
+-    report.update(returncode=process.returncode, native_process_window_s=time.monotonic()-started,
++    elapsed = time.monotonic()-started
++    if elapsed >= DEADLINE:
++        stopped["reason"] = stopped["reason"] or "native_deadline"
++    report.update(returncode=process.returncode, native_process_window_s=elapsed,
+         stop_reason=stopped["reason"], RSS_samples=samples,
+         max_observed_RSS_bytes=max((s["RSS_bytes"] for s in samples), default=None),
+         native_log_sha256=sha(args.output / "native.log"))

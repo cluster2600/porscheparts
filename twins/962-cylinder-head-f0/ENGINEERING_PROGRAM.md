@@ -85,6 +85,12 @@ within the unchanged 0.0625 mm budget and 0.0001 mm interval-gap requirement.
 This passes the numerical representation check without an inner roundoff or
 OEM deviation certificate. The 414 stronger Mesh_2 failures and volume-quality
 requirements remain unchanged; no accepted head field follows yet.
+The [subsequent assembled-head HXT trial and independent readback](derived/engineering/atomic-cavity-plane-clip-cap-assembly-volume/README.md)
+preserve 2,989,608 saved tetrahedra and 78,301 referenced interior nodes. The
+source boundary, saved tagged arrays, positive volumes and numerical volume
+bookkeeping pass their recorded checks. Independent saved-file reading counts
+**285,573 cells below SICN 0.1**, with minimum 3.784626658982107e-9. This rejects
+the volume for head analysis; it supplies no thermal, strength or LPBF result.
 The [exact assembled-model download](derived/engineering/atomic-cavity-plane-clip-cap-assembly-raw-review-delivery/README.md)
 includes BIN, lossless PLY, all seven maps and the complete sealed evidence.
 All 151 members pass independent full-byte checks. GitHub verifies the three
