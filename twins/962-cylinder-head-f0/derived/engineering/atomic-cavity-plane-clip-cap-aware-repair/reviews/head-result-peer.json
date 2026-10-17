@@ -1,0 +1,95 @@
+{
+  "schema": "962-cap-aware-boundary-head003-stopped-result-peer/v1",
+  "decision": "clear_preserved_native_quality_rejection_no_candidate",
+  "method": "Read-only stdlib hashes, JSON IDs, keeper-map membership and mapped-cycle reconstruction; no BIN read, geometry/quality/CDT computation or native replay.",
+  "bindings": {
+    "child_sha256": "55931ee4fe8401776e5f7d98180ec5b722e15fb99daf67a351f57fd2b13098fc",
+    "phase_sha256": "16dec92617b03d96df76616c3cb9b59452c071a208cd8742a004dcc978aa70b1",
+    "execution_sha256": "60ef90dbb762ad919dbb0e256bb3c62cbe5833682afd2ac58e97519bde106ed4",
+    "native_report_sha256": "19e0e6b26b23e3e657bcaaa4e00c4ab3289fbce54c6b442f5e763cf3c39f1b81",
+    "native_log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "source003_sha256": "1eb5bd303901cf7e4bc5c9aae1716fe301a3529eb727cc4117c8e3b3332cb290",
+    "binary_sha256": "a9241c80985fdae26bd3333e7eb82be6619ed5a30d5c18228c952f46f328799f",
+    "reference_sha256": "ebf9dd540d32ff6dd2d47267a94d8500b498b30e783288a91eba5c556d21b108",
+    "target_preparation_report_sha256": "2c9d636eca55a6aabc9418bfb0f5b4b9ff9a410ca6a7aa7a09ee71817b6b71eb",
+    "external_fixture_peer_sha256": "dba1ee1e4ae20150ec9b30c919fb237c81b9c019ee0a48d8107718063d3d845d"
+  },
+  "all150_pins_current_and_before_after_exact": true,
+  "complete_artifact_closure_files": 8,
+  "native_payloads": [
+    "head-boundary/report.json"
+  ],
+  "native_returncode": 3,
+  "controller_procedural_success_is_not_geometry_acceptance": true,
+  "execution": {
+    "wall_seconds": 2.81646112492308,
+    "error": null,
+    "cleanup_errors": [],
+    "owned_identity_image_and_mounts_exact": true,
+    "controls": {
+      "NanoCpus": 2000000000,
+      "Memory": 4294967296,
+      "MemorySwap": 4294967296,
+      "NetworkMode": "none",
+      "ReadonlyRootfs": true,
+      "Tmpfs": null
+    },
+    "attach_started_and_reaped": true,
+    "owned_container_stopped_removed": true,
+    "final_state_running": false,
+    "final_state_PID_zero": true,
+    "OOMKilled": false,
+    "five_successful_owned_control_calls": true,
+    "peak_RSS_or_actual_CPU_measured": false
+  },
+  "complete_saved_report_associations": {
+    "poor_IDs3112_exact_frozen": true,
+    "reference_IDs9872_exact_frozen": true,
+    "fixed_cap_IDs38_exact_frozen": true,
+    "all510_group_members_and_existing_keeper_membership_exact": true,
+    "target_member_vertices": 2722,
+    "all_stars_unique_sorted_noncap_reference_face_IDs": true,
+    "union_star_faces": 4410,
+    "coupled_IDs286_exact_star_membership_intersections": true,
+    "complete_star_incidence_or_score_maximality_independently_recomputed": false,
+    "both_original_oriented_cycles_exact_reference_up_to_cyclic_start": true,
+    "both_mapped_cycles_exact_application_of_complete_simultaneous_keeper_map": true,
+    "mapped_cycle_lengths": [
+      746,
+      550
+    ],
+    "distinct_mapped_cycle_vertices": 1296
+  },
+  "native_observations_not_independent_geometry_checks": {
+    "status": "rejected_no_candidate",
+    "stage": "combined_full_quality_and_topology",
+    "reason": "Combined global quality objective failed",
+    "before_poor_faces": 3112,
+    "after_poor_faces": 1122,
+    "before_minimum_quality": 3.582992623129178e-05,
+    "after_minimum_quality": 4.1765036666304356e-05,
+    "input_vertices": 869355,
+    "input_faces": 1739126,
+    "output_vertices": 867143,
+    "output_faces": 1734702,
+    "side_dropped_faces": 2212,
+    "cap_faces": 1296,
+    "cap_vertices": 1296,
+    "original_cap_exact_area": "44004833481137139549120441362697093/5070602400912917605986812821504",
+    "mapped_cap_exact_area": "1408216381690377038904280879885237471/162259276829213363391578010288128",
+    "global_Euler_before": -208,
+    "patch_Euler_before": -4
+  },
+  "unreached_after_quality_failure": [
+    "combined global topology/links/exterior and patch continuity",
+    "final affected-neighbor area ratio and dihedral",
+    "immutable full-triangle local envelope",
+    "candidate or origin/face-source export",
+    "independent global intersections, cap/feature continuity, two-sided distance, volume and PDE"
+  ],
+  "zero_default_late_counts_are_not_observed_passes": true,
+  "global_Euler_after": null,
+  "patch_Euler_after": null,
+  "head_surface_or_physics_or_manufacturing_admitted": false,
+  "findings": []
+}

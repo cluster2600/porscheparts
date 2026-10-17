@@ -1,0 +1,109 @@
+{
+  "schema": "962-cap-aware-held-head-peer-review/v1",
+  "decision": "do_not_launch_fixed_all2700_proposal_necessary_cycle_rejection",
+  "scope": "Independent source and saved-JSON review only; no head array/library/native execution. A deterministic obstruction to this proposal is not a general repair impossibility or a native veto observation.",
+  "bindings": {
+    "held": "20d675b3e29be3ad14f4b1fded16fa7aae08c64b9a49d4a6fe519f8af7e94ccb",
+    "preparation": "78bade29c5834b9bac67865c64970c4217e19a25437297921e4ee18488bff8de",
+    "targets": "bfa804a820e3a98fc82f0fa19d547a4963a275be36ec60ff768fdd1712b9db4a",
+    "reference": "ebf9dd540d32ff6dd2d47267a94d8500b498b30e783288a91eba5c556d21b108",
+    "source": "ac5a70abb560b1868188ca78d69e26cfabeedafe47ae5302b6bb2fa4654dfc3f",
+    "policy": "7ffb32ad2923f2e7ddbe2e78f56655aa0b80e40e01e237e331ffccf6395af825",
+    "head_binding": "c7c26e411ba1aab85cc360133926fed766b170d88c54455a5a3e71ea822d2c57",
+    "binary": "1cd441fa6f071a79c7cd6736dfb86e40759819d63a91a6b33b341f18661e54fc",
+    "compile_summary": "11919ae8f8a2ba594947ceb0eda59f544218904fe24f46a2c1473bdbb5efa84a",
+    "fixture_summary": "5e91e1125fdae1f6007e9465d057c332233311948a2c8b9410d5b6bb6ef86400",
+    "fixture_assessment": "8c485c01372edd2e00a484abc27f54e1a0b6fe069c864b9917fca7d0b62e3d5c",
+    "controller": "c2191896dba65d38cf41222f51dcab29c7896624481d1beb4b1b097c0546a440",
+    "metadata": "a88477c47d406cea3761c324e1f6eb82dcb1c2b962698d7f328261c6cef2929b",
+    "cleanup": "b214e1cece8dbf66be6071199cbdf1a8e22a2a59328888011de17492f923c86b"
+  },
+  "saved_check": {
+    "source_sha256": "3f2902b250886df075c03b5bf26a0e92ff7a520d5bca2b9c3bfa1516ed06e127",
+    "report_sha256": "fc274470d11d79c09f9b8024f4e750eb0c150f8888563713547f00562b9fb25e",
+    "all_bound_inputs_unchanged": true,
+    "all2700_rows_and476_UF_memberships_exact": true,
+    "all476_groups_single_cap_loop": true,
+    "contiguous_groups": 428,
+    "noncontiguous_groups": 48,
+    "cyclic_run_histogram": {
+      "1": 428,
+      "2": 24,
+      "3": 12,
+      "5": 4,
+      "7": 4,
+      "43": 2,
+      "46": 2
+    },
+    "first_counterexample": {
+      "component_minimum": 865847,
+      "member_count": 22,
+      "cap_loop": 0,
+      "cyclic_runs": 7,
+      "run_start_positions": [
+        0,
+        4,
+        8,
+        13,
+        17,
+        21,
+        1478
+      ],
+      "run_start_vertex_ids": [
+        865847,
+        867255,
+        867267,
+        867198,
+        866759,
+        867649,
+        868951
+      ]
+    }
+  },
+  "source_failure": {
+    "stage": "mapped_cap_domain",
+    "condition": "mapped_cap_ids.insert(v).second must be true after consecutive-only and wrap-end duplicate removal",
+    "proof": "For any single keeper per disjoint UF group, each maximal cyclic membership run maps to that same keeper ID. Other groups use disjoint member IDs, so a nonempty intervening run cannot map to that keeper. Consecutive and wrap-end duplicate removal cannot erase separated occurrences; source rejects the second occurrence before CDT. Other earlier refusals remain possible.",
+    "any_keeper_or_geometry_chosen": false
+  },
+  "unchanged_local_gates_reviewed": {
+    "fixed_vertices": 865429,
+    "original_poor_vertex_incident_region_faces": 9872,
+    "fixed_exterior_cap_faces": 38,
+    "cap_boundary_cycles": 2,
+    "surface_quality_minimum": "2/29",
+    "local_full_triangle_envelope_mm": 0.0625,
+    "neighbor_squared_area_ratio_strict": 100000000,
+    "neighbor_angle_degrees": 1,
+    "no_new_coordinates": true,
+    "global_and_patch_topology_checks": true,
+    "provenance_is_local_d2af_IDs_not_old_clip_origin_layer": true
+  },
+  "controls": {
+    "held_only_not_an_executable_launch_child": true,
+    "cpus": 2,
+    "memory_bytes": 4294967296,
+    "swap_bytes": 0,
+    "hard_wall_seconds": 300,
+    "tmpfs_bytes": 0,
+    "network": "none",
+    "automatic_retry": false,
+    "frozen_owned_lifecycle_controller_read": true,
+    "actual_final_child_mounts_and_output_path_not_yet_materialized_or_reviewed": true
+  },
+  "saved_compile_fixture_provenance": {
+    "compile": {
+      "input_count": 47,
+      "all_current": true
+    },
+    "fixtures": {
+      "input_count": 83,
+      "all_current": true
+    }
+  },
+  "fixture_assessment_scope": "Root saved four-case assessment passes; this held review does not independently replay or re-assess the native fixture arrays. Terminal fixture peer remains a separate record.",
+  "head_surface_or_physics_or_manufacturing_admitted": false,
+  "blocking_findings": [
+    "48 groups identify separated cap-cycle runs, so the all2700 fixed graph cannot pass the existing repeated mapped-cycle-ID guard for any keeper selection."
+  ]
+}

@@ -60,6 +60,11 @@ The [read-only repair reference](derived/engineering/atomic-cavity-plane-clip-re
 checks equal fixed masks and maps the planar cap as an abstract annulus with
 two boundary cycles. Exact shortest-edge groups and an exploratory mixed-face
 subset are recorded; no keeper or repair constraint is selected.
+The [separate cap-aware repair trial](derived/engineering/atomic-cavity-plane-clip-cap-aware-repair/README.md)
+adds a cap inspection plot, exact rim screening and four verified native fixtures.
+Its boundary-only head proposal is rejected: native in-memory quality reports
+1,122 poor faces, down from 3,112, and exports no candidate. Later topology,
+neighbor and envelope checks were not reached; head physics remains open.
 The [sourced material comparison](ENGINEERING_MATERIALS.md) now separates seven
 published recipes, discrete hot-strength points and conditional body masses.
 These results do not select or qualify a material for the head.

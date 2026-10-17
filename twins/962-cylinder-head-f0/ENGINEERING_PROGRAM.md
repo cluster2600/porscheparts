@@ -56,6 +56,15 @@ verifies that the exterior-only and legacy fixed masks coincide and that the
 complete planar cap is an abstract annulus with two boundary cycles. Both exact
 shortest-edge scenarios have 476 groups; the separate mixed-face subset has
 506. These observations select no repair target, keeper or acceptance policy.
+The [subsequent cap-aware repair trial](derived/engineering/atomic-cavity-plane-clip-cap-aware-repair/README.md)
+records an exact rim obstruction, a direct cap plot and two source revisions
+whose four native fixtures pass independent saved-array checks. The original
+2,700-edge head graph is refused before launch because 48 groups occupy
+separated boundary runs. The separately compiled boundary-only successor uses
+2,212 edges and 510 contiguous groups. Its single native head trial reports
+1,122 remaining poor faces and rejects the proposal without exports. Mapped-cap
+coverage is a native observation; later global/patch topology, neighbor and
+envelope gates were not reached. No accepted volume or head field follows.
 The [separate material follow-up](MATERIAL_CONDUCTIVITY_FOLLOWUP.md) supplies
 measured AlSi10Mg conductivity points. The [two native bar witnesses](MATERIAL_CONDUCTIVITY_WITNESS.md)
 now verify the separate assumed piecewise-linear Z/XY laws with 109 final-field

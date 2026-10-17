@@ -1,0 +1,52 @@
+{
+  "schema": "962-cap-aware-fixture-oracle-minimal-successor/v1",
+  "assessor": {
+    "original_sha256": "3b4532538726aa2fa9f4cf4d09c4c92a3681046b54e8884563d348e72bad78b9",
+    "new_sha256": "b429e5ec09f9705b07b57df1c3dbb63fdb334ec594368971cb933b26bf0b6ea2",
+    "replacements": [
+      {
+        "old": "'one_deterministic_independent_keeper_map','reference_and_exact_target_association'}",
+        "new": "'one_deterministic_independent_keeper_map','reference_and_exact_target_association',\n 'exact_frozen_head_poor_IDs_or_nonhead_fixture'}"
+      },
+      {
+        "old": "def assess(name,directory):",
+        "new": "def canonical_cycles(cycles):\n    if not isinstance(cycles,list) or len(cycles)!=2:\n        raise ValueError('Exactly two observed cap cycles required')\n    seen=set();result=[]\n    for cycle in cycles:\n        if (not isinstance(cycle,list) or len(cycle)<3 or any(type(v) is not int or v<0 for v in cycle)\n                or len(set(cycle))!=len(cycle) or seen&set(cycle)):\n            raise ValueError('Complete disjoint integer cap-cycle IDs required')\n        seen.update(cycle);t=tuple(cycle);start=t.index(min(t));result.append(t[start:]+t[:start])\n    return sorted(result)\n\n\ndef cap_cycles(faces):\n    boundary=chain(faces)\n    if any(abs(n)!=1 for n in boundary.values()):raise ValueError('Oriented cap rim required')\n    remaining={e if n>0 else e[::-1] for e,n in boundary.items()};following=dict(remaining)\n    if len(following)!=len(remaining) or Counter(b for a,b in remaining)!=Counter(following):\n        raise ValueError('Disjoint directed cap rims required')\n    loops=[]\n    while remaining:\n        a,b=min(remaining);start=a;loop=[a];remaining.remove((a,b))\n        while b!=start:\n            loop.append(b);a=b;b=following[a];remaining.remove((a,b))\n        loops.append(loop)\n    return canonical_cycles(loops)\n\n\ndef assess(name,directory):"
+      },
+      {
+        "old": "    if case['expected_returncode']==3:\n",
+        "new": "    for key,expected in [('native_poor_face_ids',case['input_observations']['poor_face_ids']),\n                         ('native_reference_face_ids',case['input_observations']['incident_face_ids'])]:\n        need(isinstance(report[key],list) and all(type(i) is int for i in report[key]) and report[key]==expected,'Complete exact native input-ID partition')\n    need(report['input_vertices']==len(p) and report['input_faces']==len(faces) and report['target_edges']==len(case['targets']),'Native literal counts/targets associated')\n    old_cycles=cap_cycles([t for t in faces if all(p[v][2]==0 for v in t)])\n    need(canonical_cycles(report['original_cap_cycles'])==old_cycles,'Complete original oriented cap cycles')\n    if case['expected_returncode']==3:\n        need(report['mapped_cap_cycles']==[],'Rejected eligibility does not credit a mapped cap')\n"
+      },
+      {
+        "old": "    need(got_noncap==set(noncap) and got_fixed==fixed_cap,'Every noncap and fixed-cap face accounted for')\n",
+        "new": "    need(got_noncap==set(noncap) and got_fixed==fixed_cap,'Every noncap and fixed-cap face accounted for')\n    mapped_cycles=[]\n    for cycle in old_cycles:\n        row=[]\n        for vertex in cycle:\n            value=keeper if vertex in members else vertex\n            if not row or row[-1]!=value:row.append(value)\n        if len(row)>1 and row[0]==row[-1]:row.pop()\n        mapped_cycles.append(row)\n    expected_cycles=canonical_cycles(mapped_cycles)\n    need(canonical_cycles(report['mapped_cap_cycles'])==expected_cycles,'Complete mapped source cap cycles')\n    output_cap=[tuple(origins[v] for v in t) for t in outfaces if all(q[v][2]==0 for v in t)]\n    need(cap_cycles(output_cap)==expected_cycles,'Actual output cap cycles equal mapped source cycles')\n"
+      }
+    ],
+    "complete_reverse_to_original": true
+  },
+  "tests": {
+    "original_sha256": "f4e2cdd4d2e264fa5d1030f3eb74a59be064500135c38840cd362762c7a7cc0e",
+    "new_sha256": "4848c8392b53f3dde08cdbcb0d6749944c31bfdd4edfa43d7dec44ef15e36036",
+    "replacements": [
+      {
+        "old": "A=load('assess');P=load('prepare')",
+        "new": "A=load('assess_002');P=load('prepare')"
+      },
+      {
+        "old": "    (directory/'report.json').write_text(json.dumps(report))\n\n\nclass FixtureOracleTests",
+        "new": "    report.update(input_vertices=len(points),input_faces=len(faces),target_edges=len(case['targets']),\n        native_poor_face_ids=case['input_observations']['poor_face_ids'],native_reference_face_ids=case['input_observations']['incident_face_ids'],\n        original_cap_cycles=[list(x) for x in A.cap_cycles([tuple(t) for t in faces if all(points[v][2]==0. for v in t)])],\n        mapped_cap_cycles=[list(x) for x in A.cap_cycles([tuple(origins[v] for v in t) for t in output if all(points[origins[v]][2]==0. for v in t)])])\n    (directory/'report.json').write_text(json.dumps(report))\n\n\nclass FixtureOracleTests"
+      },
+      {
+        "old": "                    manufacturing_authorized=False,head_surface_or_solver_admitted=False,before_poor_faces=2)\n",
+        "new": "                    manufacturing_authorized=False,head_surface_or_solver_admitted=False,before_poor_faces=2)\n                case=REF['cases'][name];points=case['input_points'];faces=case['input_oriented_faces']\n                report.update(input_vertices=len(points),input_faces=len(faces),target_edges=len(case['targets']),\n                    native_poor_face_ids=case['input_observations']['poor_face_ids'],native_reference_face_ids=case['input_observations']['incident_face_ids'],\n                    original_cap_cycles=[list(x) for x in A.cap_cycles([tuple(t) for t in faces if all(points[v][2]==0. for v in t)])],mapped_cap_cycles=[])\n"
+      },
+      {
+        "old": "\n\nif __name__=='__main__':unittest.main()",
+        "new": "\n    def test_native_ID_partitions_cannot_be_omitted_or_fractional(self):\n        for key in ('native_poor_face_ids','native_reference_face_ids'):\n            with self.subTest(key=key),tempfile.TemporaryDirectory() as d:\n                directory=Path(d);success('pair',directory);path=directory/'report.json';r=json.loads(path.read_text())\n                r[key][0]=float(r[key][0]);path.write_text(json.dumps(r))\n                with self.assertRaises(ValueError):A.assess('pair',directory)\n\n    def test_mapped_cap_cycle_must_match_actual_source_map(self):\n        with tempfile.TemporaryDirectory() as d:\n            directory=Path(d);success('pair',directory);path=directory/'report.json';r=json.loads(path.read_text())\n            r['mapped_cap_cycles'][0].reverse();path.write_text(json.dumps(r))\n            with self.assertRaises(ValueError):A.assess('pair',directory)\n\n\nif __name__=='__main__':unittest.main()"
+      }
+    ],
+    "complete_reverse_to_original": true
+  },
+  "expectations_sha256": "edd3f258e3374371b3467b68e254d70033545ba35a920cd2e0c16694f23c5365",
+  "prepared_tests_unrun": 7,
+  "native_or_scientific_calls": 0
+}
