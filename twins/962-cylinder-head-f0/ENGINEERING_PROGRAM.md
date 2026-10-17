@@ -182,6 +182,14 @@ proves that two retained cells cannot both reach SICN 0.1 by moving their
 shared node while their fixed coordinates and connectivity remain unchanged.
 The result is for the exact geometric model; a local remesh is a separate
 next study, with no accepted head mesh or physical qualification yet.
+The [data-only cavity study](derived/engineering/direct-sicn-apex1435493-cavity-study/README.md)
+retains the 28-cell star, its closed 16-node/28-face shell and exact local tag map.
+All 28 faces pass the necessary fixed-face screen; no cavity remesh, stitch
+or feasibility result follows from that screen.
+The [fixed-shell cube generation witness](derived/engineering/fixed-shell-generation-cube/README.md)
+produces 11 positive tetrahedra with minimum native SICN 0.37759006531653144.
+All fixed boundary bits and saved arrays match, with independently checked
+exact volume 343 mm³; this is synthetic software evidence only.
 The [expanded interior-node census](derived/engineering/atomic-cavity-plane-clip-cap-assembly-netgen-expanded-stars/README.md)
 contains 1,098 movable nodes and 29,473 coupled cells, including all 210 poor
 cells and 29,263 initially good cells. Its complete geometric JSON is retained
