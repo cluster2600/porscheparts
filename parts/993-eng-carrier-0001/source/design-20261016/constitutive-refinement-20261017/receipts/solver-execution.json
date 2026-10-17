@@ -1,0 +1,318 @@
+{
+  "status": "solver_executed_no_numeric_admission",
+  "global_admission": false,
+  "container_id": "b64bb3fa99d9fe6c76636c74eeb11dcc02b981e55526ea0ef211744190ae2dbc",
+  "actual_container_exit_code": 0,
+  "attach_cli_returncode": 0,
+  "container_removed": true,
+  "creation_attempted": true,
+  "operations": [
+    {
+      "arguments": [
+        "image",
+        "inspect",
+        "sha256:c9772ae9223a4f800a3ceda77d2494e67e34c8526eb0f204b3c8e052266641b4",
+        "--format",
+        "{\"Id\":{{json .Id}},\"Architecture\":{{json .Architecture}},\"Os\":{{json .Os}}}"
+      ],
+      "timeout_seconds": 20,
+      "cleanup": false,
+      "returncode": 0,
+      "timed_out": false,
+      "cancelled": false,
+      "stdout": "{\"Id\":\"sha256:c9772ae9223a4f800a3ceda77d2494e67e34c8526eb0f204b3c8e052266641b4\",\"Architecture\":\"arm64\",\"Os\":\"linux\"}\n",
+      "stderr": ""
+    },
+    {
+      "arguments": [
+        "container",
+        "ls",
+        "-a",
+        "--no-trunc",
+        "--filter",
+        "name=^/carrier-ener-refinement-31b8e8a986844962$",
+        "--format",
+        "{{.ID}}"
+      ],
+      "timeout_seconds": 20,
+      "cleanup": false,
+      "returncode": 0,
+      "timed_out": false,
+      "cancelled": false,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "arguments": [
+        "create",
+        "--pull=never",
+        "--name",
+        "carrier-ener-refinement-31b8e8a986844962",
+        "--label",
+        "org.porscheparts.carrier.ener-supervision=31b8e8a986844962abf02ec2cbb8e63b",
+        "--network",
+        "none",
+        "--cpus",
+        "1",
+        "--memory",
+        "6g",
+        "--memory-swap",
+        "6g",
+        "--pids-limit",
+        "128",
+        "--read-only",
+        "--tmpfs",
+        "/tmp:rw,size=512m",
+        "--mount",
+        "type=bind,src=/Users/maxime/.codex/worktrees/993-carrier-revalidation/3dprinting993/work/carrier-process-20261017/ener-increment-convergence-001/case,dst=/work",
+        "--workdir",
+        "/work",
+        "--env",
+        "OMP_NUM_THREADS=1",
+        "--env",
+        "CCX_NPROC_RESULTS=1",
+        "--env",
+        "OPENBLAS_NUM_THREADS=1",
+        "--entrypoint",
+        "/usr/bin/timeout",
+        "sha256:c9772ae9223a4f800a3ceda77d2494e67e34c8526eb0f204b3c8e052266641b4",
+        "--signal=TERM",
+        "--kill-after=10s",
+        "3300",
+        "/usr/bin/ccx",
+        "-i",
+        "combined-spring-1000-luo-flat1-NLGEOM"
+      ],
+      "timeout_seconds": 30,
+      "cleanup": false,
+      "returncode": 0,
+      "timed_out": false,
+      "cancelled": false,
+      "stdout": "b64bb3fa99d9fe6c76636c74eeb11dcc02b981e55526ea0ef211744190ae2dbc\n",
+      "stderr": ""
+    },
+    {
+      "arguments": [
+        "container",
+        "inspect",
+        "b64bb3fa99d9fe6c76636c74eeb11dcc02b981e55526ea0ef211744190ae2dbc",
+        "--format",
+        "{\"Id\":{{json .Id}},\"Name\":{{json .Name}},\"Image\":{{json .Image}},\"Owner\":{{json (index .Config.Labels \"org.porscheparts.carrier.ener-supervision\")}},\"NanoCpus\":{{json .HostConfig.NanoCpus}},\"Memory\":{{json .HostConfig.Memory}},\"MemorySwap\":{{json .HostConfig.MemorySwap}},\"PidsLimit\":{{json .HostConfig.PidsLimit}},\"NetworkMode\":{{json .HostConfig.NetworkMode}},\"ReadonlyRootfs\":{{json .HostConfig.ReadonlyRootfs}},\"Tmpfs\":{{json .HostConfig.Tmpfs}},\"Mounts\":{{json .Mounts}},\"Entrypoint\":{{json .Config.Entrypoint}},\"Cmd\":{{json .Config.Cmd}},\"WorkingDir\":{{json .Config.WorkingDir}},\"Running\":{{json .State.Running}},\"ExitCode\":{{json .State.ExitCode}},\"OOMKilled\":{{json .State.OOMKilled}},\"StateError\":{{json .State.Error}}}"
+      ],
+      "timeout_seconds": 15,
+      "cleanup": false,
+      "returncode": 0,
+      "timed_out": false,
+      "cancelled": false,
+      "stdout": "{\"Id\":\"b64bb3fa99d9fe6c76636c74eeb11dcc02b981e55526ea0ef211744190ae2dbc\",\"Name\":\"/carrier-ener-refinement-31b8e8a986844962\",\"Image\":\"sha256:c9772ae9223a4f800a3ceda77d2494e67e34c8526eb0f204b3c8e052266641b4\",\"Owner\":\"31b8e8a986844962abf02ec2cbb8e63b\",\"NanoCpus\":1000000000,\"Memory\":6442450944,\"MemorySwap\":6442450944,\"PidsLimit\":128,\"NetworkMode\":\"none\",\"ReadonlyRootfs\":true,\"Tmpfs\":{\"/tmp\":\"rw,size=512m\"},\"Mounts\":[{\"Destination\":\"/work\",\"Mode\":\"\",\"Propagation\":\"rprivate\",\"RW\":true,\"Source\":\"/Users/maxime/.codex/worktrees/993-carrier-revalidation/3dprinting993/work/carrier-process-20261017/ener-increment-convergence-001/case\",\"Type\":\"bind\"}],\"Entrypoint\":[\"/usr/bin/timeout\"],\"Cmd\":[\"--signal=TERM\",\"--kill-after=10s\",\"3300\",\"/usr/bin/ccx\",\"-i\",\"combined-spring-1000-luo-flat1-NLGEOM\"],\"WorkingDir\":\"/work\",\"Running\":false,\"ExitCode\":0,\"OOMKilled\":false,\"StateError\":\"\"}\n",
+      "stderr": ""
+    },
+    {
+      "arguments": [
+        "cp",
+        "b64bb3fa99d9fe6c76636c74eeb11dcc02b981e55526ea0ef211744190ae2dbc:/usr/bin/ccx",
+        "/Users/maxime/.codex/worktrees/993-carrier-revalidation/3dprinting993/work/carrier-process-20261017/ener-increment-convergence-001/supervision-001/ccx.prestart"
+      ],
+      "timeout_seconds": 25,
+      "cleanup": false,
+      "returncode": 0,
+      "timed_out": false,
+      "cancelled": false,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "arguments": [
+        "start",
+        "--attach",
+        "b64bb3fa99d9fe6c76636c74eeb11dcc02b981e55526ea0ef211744190ae2dbc"
+      ],
+      "timeout_seconds": 3315,
+      "cleanup": false,
+      "returncode": 0,
+      "timed_out": false,
+      "cancelled": false,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "arguments": [
+        "container",
+        "inspect",
+        "b64bb3fa99d9fe6c76636c74eeb11dcc02b981e55526ea0ef211744190ae2dbc",
+        "--format",
+        "{\"Id\":{{json .Id}},\"Name\":{{json .Name}},\"Image\":{{json .Image}},\"Owner\":{{json (index .Config.Labels \"org.porscheparts.carrier.ener-supervision\")}},\"NanoCpus\":{{json .HostConfig.NanoCpus}},\"Memory\":{{json .HostConfig.Memory}},\"MemorySwap\":{{json .HostConfig.MemorySwap}},\"PidsLimit\":{{json .HostConfig.PidsLimit}},\"NetworkMode\":{{json .HostConfig.NetworkMode}},\"ReadonlyRootfs\":{{json .HostConfig.ReadonlyRootfs}},\"Tmpfs\":{{json .HostConfig.Tmpfs}},\"Mounts\":{{json .Mounts}},\"Entrypoint\":{{json .Config.Entrypoint}},\"Cmd\":{{json .Config.Cmd}},\"WorkingDir\":{{json .Config.WorkingDir}},\"Running\":{{json .State.Running}},\"ExitCode\":{{json .State.ExitCode}},\"OOMKilled\":{{json .State.OOMKilled}},\"StateError\":{{json .State.Error}}}"
+      ],
+      "timeout_seconds": 15,
+      "cleanup": false,
+      "returncode": 0,
+      "timed_out": false,
+      "cancelled": false,
+      "stdout": "{\"Id\":\"b64bb3fa99d9fe6c76636c74eeb11dcc02b981e55526ea0ef211744190ae2dbc\",\"Name\":\"/carrier-ener-refinement-31b8e8a986844962\",\"Image\":\"sha256:c9772ae9223a4f800a3ceda77d2494e67e34c8526eb0f204b3c8e052266641b4\",\"Owner\":\"31b8e8a986844962abf02ec2cbb8e63b\",\"NanoCpus\":1000000000,\"Memory\":6442450944,\"MemorySwap\":6442450944,\"PidsLimit\":128,\"NetworkMode\":\"none\",\"ReadonlyRootfs\":true,\"Tmpfs\":{\"/tmp\":\"rw,size=512m\"},\"Mounts\":[{\"Destination\":\"/work\",\"Mode\":\"\",\"Propagation\":\"rprivate\",\"RW\":true,\"Source\":\"/Users/maxime/.codex/worktrees/993-carrier-revalidation/3dprinting993/work/carrier-process-20261017/ener-increment-convergence-001/case\",\"Type\":\"bind\"}],\"Entrypoint\":[\"/usr/bin/timeout\"],\"Cmd\":[\"--signal=TERM\",\"--kill-after=10s\",\"3300\",\"/usr/bin/ccx\",\"-i\",\"combined-spring-1000-luo-flat1-NLGEOM\"],\"WorkingDir\":\"/work\",\"Running\":false,\"ExitCode\":0,\"OOMKilled\":false,\"StateError\":\"\"}\n",
+      "stderr": ""
+    },
+    {
+      "arguments": [
+        "container",
+        "inspect",
+        "b64bb3fa99d9fe6c76636c74eeb11dcc02b981e55526ea0ef211744190ae2dbc",
+        "--format",
+        "{\"Id\":{{json .Id}},\"Name\":{{json .Name}},\"Image\":{{json .Image}},\"Owner\":{{json (index .Config.Labels \"org.porscheparts.carrier.ener-supervision\")}},\"NanoCpus\":{{json .HostConfig.NanoCpus}},\"Memory\":{{json .HostConfig.Memory}},\"MemorySwap\":{{json .HostConfig.MemorySwap}},\"PidsLimit\":{{json .HostConfig.PidsLimit}},\"NetworkMode\":{{json .HostConfig.NetworkMode}},\"ReadonlyRootfs\":{{json .HostConfig.ReadonlyRootfs}},\"Tmpfs\":{{json .HostConfig.Tmpfs}},\"Mounts\":{{json .Mounts}},\"Entrypoint\":{{json .Config.Entrypoint}},\"Cmd\":{{json .Config.Cmd}},\"WorkingDir\":{{json .Config.WorkingDir}},\"Running\":{{json .State.Running}},\"ExitCode\":{{json .State.ExitCode}},\"OOMKilled\":{{json .State.OOMKilled}},\"StateError\":{{json .State.Error}}}"
+      ],
+      "timeout_seconds": 15,
+      "cleanup": true,
+      "returncode": 0,
+      "timed_out": false,
+      "cancelled": false,
+      "stdout": "{\"Id\":\"b64bb3fa99d9fe6c76636c74eeb11dcc02b981e55526ea0ef211744190ae2dbc\",\"Name\":\"/carrier-ener-refinement-31b8e8a986844962\",\"Image\":\"sha256:c9772ae9223a4f800a3ceda77d2494e67e34c8526eb0f204b3c8e052266641b4\",\"Owner\":\"31b8e8a986844962abf02ec2cbb8e63b\",\"NanoCpus\":1000000000,\"Memory\":6442450944,\"MemorySwap\":6442450944,\"PidsLimit\":128,\"NetworkMode\":\"none\",\"ReadonlyRootfs\":true,\"Tmpfs\":{\"/tmp\":\"rw,size=512m\"},\"Mounts\":[{\"Destination\":\"/work\",\"Mode\":\"\",\"Propagation\":\"rprivate\",\"RW\":true,\"Source\":\"/Users/maxime/.codex/worktrees/993-carrier-revalidation/3dprinting993/work/carrier-process-20261017/ener-increment-convergence-001/case\",\"Type\":\"bind\"}],\"Entrypoint\":[\"/usr/bin/timeout\"],\"Cmd\":[\"--signal=TERM\",\"--kill-after=10s\",\"3300\",\"/usr/bin/ccx\",\"-i\",\"combined-spring-1000-luo-flat1-NLGEOM\"],\"WorkingDir\":\"/work\",\"Running\":false,\"ExitCode\":0,\"OOMKilled\":false,\"StateError\":\"\"}\n",
+      "stderr": ""
+    },
+    {
+      "arguments": [
+        "rm",
+        "--force",
+        "b64bb3fa99d9fe6c76636c74eeb11dcc02b981e55526ea0ef211744190ae2dbc"
+      ],
+      "timeout_seconds": 25,
+      "cleanup": true,
+      "returncode": 0,
+      "timed_out": false,
+      "cancelled": false,
+      "stdout": "b64bb3fa99d9fe6c76636c74eeb11dcc02b981e55526ea0ef211744190ae2dbc\n",
+      "stderr": ""
+    },
+    {
+      "arguments": [
+        "container",
+        "ls",
+        "-a",
+        "--no-trunc",
+        "--filter",
+        "id=b64bb3fa99d9fe6c76636c74eeb11dcc02b981e55526ea0ef211744190ae2dbc",
+        "--format",
+        "{{.ID}}"
+      ],
+      "timeout_seconds": 15,
+      "cleanup": true,
+      "returncode": 0,
+      "timed_out": false,
+      "cancelled": false,
+      "stdout": "",
+      "stderr": ""
+    }
+  ],
+  "input_hashes_unchanged": true,
+  "actual_container_before_start": {
+    "Id": "b64bb3fa99d9fe6c76636c74eeb11dcc02b981e55526ea0ef211744190ae2dbc",
+    "Name": "/carrier-ener-refinement-31b8e8a986844962",
+    "Image": "sha256:c9772ae9223a4f800a3ceda77d2494e67e34c8526eb0f204b3c8e052266641b4",
+    "Owner": "31b8e8a986844962abf02ec2cbb8e63b",
+    "NanoCpus": 1000000000,
+    "Memory": 6442450944,
+    "MemorySwap": 6442450944,
+    "PidsLimit": 128,
+    "NetworkMode": "none",
+    "ReadonlyRootfs": true,
+    "Tmpfs": {
+      "/tmp": "rw,size=512m"
+    },
+    "Mounts": [
+      {
+        "Destination": "/work",
+        "Mode": "",
+        "Propagation": "rprivate",
+        "RW": true,
+        "Source": "/Users/maxime/.codex/worktrees/993-carrier-revalidation/3dprinting993/work/carrier-process-20261017/ener-increment-convergence-001/case",
+        "Type": "bind"
+      }
+    ],
+    "Entrypoint": [
+      "/usr/bin/timeout"
+    ],
+    "Cmd": [
+      "--signal=TERM",
+      "--kill-after=10s",
+      "3300",
+      "/usr/bin/ccx",
+      "-i",
+      "combined-spring-1000-luo-flat1-NLGEOM"
+    ],
+    "WorkingDir": "/work",
+    "Running": false,
+    "ExitCode": 0,
+    "OOMKilled": false,
+    "StateError": ""
+  },
+  "prestart_binary_sha256": "271f8411371b978d7a8d31a7a13d0765e6e1f872e8a8b1d6aac6d0856c71ec6c",
+  "actual_container_after_start": {
+    "Id": "b64bb3fa99d9fe6c76636c74eeb11dcc02b981e55526ea0ef211744190ae2dbc",
+    "Name": "/carrier-ener-refinement-31b8e8a986844962",
+    "Image": "sha256:c9772ae9223a4f800a3ceda77d2494e67e34c8526eb0f204b3c8e052266641b4",
+    "Owner": "31b8e8a986844962abf02ec2cbb8e63b",
+    "NanoCpus": 1000000000,
+    "Memory": 6442450944,
+    "MemorySwap": 6442450944,
+    "PidsLimit": 128,
+    "NetworkMode": "none",
+    "ReadonlyRootfs": true,
+    "Tmpfs": {
+      "/tmp": "rw,size=512m"
+    },
+    "Mounts": [
+      {
+        "Destination": "/work",
+        "Mode": "",
+        "Propagation": "rprivate",
+        "RW": true,
+        "Source": "/Users/maxime/.codex/worktrees/993-carrier-revalidation/3dprinting993/work/carrier-process-20261017/ener-increment-convergence-001/case",
+        "Type": "bind"
+      }
+    ],
+    "Entrypoint": [
+      "/usr/bin/timeout"
+    ],
+    "Cmd": [
+      "--signal=TERM",
+      "--kill-after=10s",
+      "3300",
+      "/usr/bin/ccx",
+      "-i",
+      "combined-spring-1000-luo-flat1-NLGEOM"
+    ],
+    "WorkingDir": "/work",
+    "Running": false,
+    "ExitCode": 0,
+    "OOMKilled": false,
+    "StateError": ""
+  },
+  "outputs": {
+    "combined-spring-1000-luo-flat1-NLGEOM.dat": {
+      "sha256": "d5352296ffca20471fe17d1d9f4eff19a008091424fa5f9c19cde3cafac5e357",
+      "bytes": 1268568948
+    },
+    "combined-spring-1000-luo-flat1-NLGEOM.frd": {
+      "sha256": "57213a3fcf02c953fb39813ff126534c7d38e45996e0908b72e54006dfe9201f",
+      "bytes": 721423155
+    },
+    "combined-spring-1000-luo-flat1-NLGEOM.sta": {
+      "sha256": "18ca54d120e75254b233ae197e5660bdaac650996c2447111c09fc75c6559ecc",
+      "bytes": 2402
+    },
+    "combined-spring-1000-luo-flat1-NLGEOM.cvg": {
+      "sha256": "0f0feb7079013fbcc82a424e75558bc0911440bd8b7a34ca72b14004e69dc4a6",
+      "bytes": 5522
+    },
+    "combined-spring-1000-luo-flat1-NLGEOM.log": {
+      "sha256": "42a97e7000d1a6561b658343ac825e4b1a0ecda5a05ac26ce4b5117287eb5e29",
+      "bytes": 45556
+    }
+  },
+  "wall_seconds": 2473.7308993341867,
+  "global_budget_seconds": 3600,
+  "cleanup_reserve_seconds": 90,
+  "within_global_budget": true,
+  "plan_sha256": "4d526e5a221e73bd81a40536c11b241e4ccc2f67adf34cf3dd7a3cd3ad3a77a9",
+  "caller_sha256": "cbba58f0f6dd6333dc1063386eb61fe6f85652a4709e82032294c4c2c7726b0c",
+  "plan_unchanged": true,
+  "runtime_json_sha256": "179e584ee315868042332446bcc71a7201cd052674ef376fcc748d15bcf9cbce"
+}
