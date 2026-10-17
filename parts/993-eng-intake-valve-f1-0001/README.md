@@ -93,7 +93,7 @@ flowchart LR
 | folder | what it holds | files |
 |---|---|---|
 | `derived/` | CAD exports generated from the source (STEP for CAD tools, STL for meshing) | [`derived/993-intake-49-f1-picogk.json`](derived/993-intake-49-f1-picogk.json), [`derived/993-intake-49-f1-picogk.stl`](derived/993-intake-49-f1-picogk.stl), [`derived/993-intake-49-f1.step`](derived/993-intake-49-f1.step) |
-| `media/` | concept-model views rendered from the CAD by `scripts/render_part_previews.py` — not pictures of the original | [`media/preview.json`](media/preview.json), [`media/preview.png`](media/preview.png), [`media/views.png`](media/views.png) |
+| `media/` | concept-model views rendered from the CAD by `scripts/render_part_previews.py` — not pictures of the original; labelled AI studio illustration and provenance, not a photograph | [`media/photo-concept.png`](media/photo-concept.png), [`media/photo.json`](media/photo.json), [`media/preview.json`](media/preview.json), [`media/preview.png`](media/preview.png), [`media/views.png`](media/views.png) |
 | `source/` | parametric source — the editable master that generates the geometry | [`source/picogk.json`](source/picogk.json) |
 
 ## Read more

@@ -72,13 +72,24 @@ def fichiers(page: Path, chemins, titre: str) -> list[str]:
 def images(part_id: str, page: Path) -> list[str]:
     dossier = ROOT / "parts" / part_id.lower()
     trouvees = sorted(dossier.rglob("*.png")) if dossier.is_dir() else []
+    manifest = dossier / "media" / "preview.json"
+    info = json.loads(manifest.read_text(encoding="utf-8")) if manifest.exists() else {}
     if not trouvees:
         return []
     out = ["## Images", ""]
-    for img in trouvees[:8]:
+    # The labelled AI illustration is shown in addition to, never instead of,
+    # the first eight technical images.
+    concept = dossier / "media" / "photo-concept.png"
+    montrees = sorted([i for i in trouvees if i != concept][:8] + [i for i in trouvees if i == concept])
+    for img in montrees:
         rel = img.relative_to(ROOT).as_posix()
         parts = img.relative_to(ROOT).parts
-        if "print-simulation" in parts:
+        if img == dossier / "media" / "photo-concept.png":
+            photo = json.loads((dossier / "media" / "photo.json").read_text(encoding="utf-8"))
+            legende = " — " + photo["note"].rstrip(".")
+        elif img == dossier / "media" / "preview.png" and info.get("kind") == "status_card":
+            legende = " — " + info["note"] + " Not a print file or evidence of fit."
+        elif "print-simulation" in parts:
             legende = " — metal LPBF geometry preview with hypothetical supports; no process physics or qualified support design; not a build file or print release"
         elif "media" in parts:
             legende = " — concept CAD block, **not** the original part, not a print file"
@@ -294,8 +305,8 @@ def presentation_impeller(fiche: dict, chemin_fiche: Path) -> str:
     study block that read as a Turbo part. The page now presents the current
     M64/60 Turbo fan programme with its editable sources, its real PicoGK
     visuals, the fan-drive metrology, and the provenance limits — and keeps
-    the archived concept visibly archived. Regenerate the removed views with
-    `make part-previews` if ever needed again.
+    the archived concept visibly archived. The public preview is a status card;
+    the withdrawn geometry views are not regenerated for publication.
     """
     part_id = fiche["part_id"]
     page = PARTS / part_id.lower() / "README.md"
@@ -383,7 +394,9 @@ These are preliminary estimates, not exact dimensions. The single-pass harmonic 
 
 This folder retains the [build123d source]({L('parts/993-eng-cooling-impeller-alsi10mg-f0-0001/source/cooling_impeller.py')}), [STEP]({L('parts/993-eng-cooling-impeller-alsi10mg-f0-0001/derived/cooling_impeller_alsi10mg_f0.step')}), [STL]({L('parts/993-eng-cooling-impeller-alsi10mg-f0-0001/derived/cooling_impeller_alsi10mg_f0.stl')}) and [engineering screen]({L('parts/993-eng-cooling-impeller-alsi10mg-f0-0001/evidence/engineering-screen.json')}). Evidence is SHA-256 pinned. The concept failed integration with its F0 housing: −14 mm radial clearance. Its 280 mm diameter, hub and twelve blades are synthetic study geometry, not a Turbo part.
 
-The generic wheel and schematic orthographic images were removed from this presentation on 29 September 2026 because they could be mistaken for the Turbo design. They remain reproducible from the archived STEP with `make part-previews`.
+The generic wheel and schematic orthographic images were removed from this presentation on 29 September 2026 because they could be mistaken for the Turbo design. Public exports use a status card identifying that withdrawal.
+
+<a href="media/preview.png">Public status card: archived geometry; no part rendering</a>. This is not a print file.
 
 ## Related records
 
@@ -468,7 +481,9 @@ def presentation(fiche: dict, chemin_fiche: Path) -> str:
     apercu = dossier / "media" / "preview.png"
     vues = dossier / "media" / "views.png"
     infos = dossier / "media" / "preview.json"
-    boite = json.loads(infos.read_text(encoding="utf-8")).get("bounding_box_mm") if infos.exists() else None
+    media_info = json.loads(infos.read_text(encoding="utf-8")) if infos.exists() else {}
+    boite = media_info.get("bounding_box_mm")
+    status_card = media_info.get("kind") == "status_card"
 
     kit_json = dossier / "print" / "kit.json"
     kit = json.loads(kit_json.read_text(encoding="utf-8")) if kit_json.exists() else None
@@ -569,6 +584,11 @@ def presentation(fiche: dict, chemin_fiche: Path) -> str:
     if (kit and plaque.exists()) or (impression and apercu.exists()) or \
             (maquette and (dossier / "print" / "mockup.png").exists()):
         pass
+    elif apercu.exists() and status_card:
+        droite = ["<b>Catalogue study status</b><br><br>",
+                  '<img src="media/preview.png" alt="Status card: geometry not created" width="340"><br>',
+                  "<sub>No CAD geometry to show. This is a status card, "
+                  "<b>not</b> a part rendering or a print file.</sub>"]
     elif apercu.exists():
         taille = f"{boite[0]} × {boite[1]} × {boite[2]} mm" if boite else ""
         droite += [f'<img src="media/preview.png" alt="Concept CAD block for {nom(fiche)}" width="340"><br>',
@@ -632,6 +652,8 @@ def presentation(fiche: dict, chemin_fiche: Path) -> str:
             groupes.setdefault(rel.parts[0] if len(rel.parts) > 1 else ".", []).append(f)
         for sous in sorted(groupes, key=lambda n: (n == ".", n)):
             role = DOSSIERS_ROLE.get(sous, "files of this part")
+            if sous == "media" and (dossier / "media" / "photo.json").exists():
+                role += "; labelled AI studio illustration and provenance, not a photograph"
             liens = ", ".join(f"[`{f.relative_to(dossier).as_posix()}`]({f.relative_to(dossier).as_posix()})"
                               for f in groupes[sous][:8])
             if len(groupes[sous]) > 8:
