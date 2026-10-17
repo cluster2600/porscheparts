@@ -190,6 +190,10 @@ The [fixed-shell cube generation witness](derived/engineering/fixed-shell-genera
 produces 11 positive tetrahedra with minimum native SICN 0.37759006531653144.
 All fixed boundary bits and saved arrays match, with independently checked
 exact volume 343 mm³; this is synthetic software evidence only.
+The [specific cavity generation](derived/engineering/fixed-shell-generation-apex1435493/README.md)
+preserves all 16 shell coordinate bytes and 28 oriented faces. Ten of 34
+positive tetrahedra fail SICN 0.1 (minimum 0.019921779104111692); the local
+result is rejected and was never adopted into the head.
 The [expanded interior-node census](derived/engineering/atomic-cavity-plane-clip-cap-assembly-netgen-expanded-stars/README.md)
 contains 1,098 movable nodes and 29,473 coupled cells, including all 210 poor
 cells and 29,263 initially good cells. Its complete geometric JSON is retained
