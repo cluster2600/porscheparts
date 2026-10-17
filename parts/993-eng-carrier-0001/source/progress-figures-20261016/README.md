@@ -90,3 +90,13 @@ projette les 587 404 triangles réels en XY et XZ. Elle montre la plaque de
 hauteur des machines documentées. Les sources constructeur sont liées dans
 le dossier. Un [rejeu depuis la copie publiée](machine-envelope-20261017/publication-validation.json),
 lancé depuis `/tmp`, reproduit les PNG/SVG/PDF à l'octet.
+
+La [planche du retrait imposé et du débridage](wholepart-release-20261017/README.md)
+montre les quatre champs natifs en double précision sur la pièce entière.
+Le cas uniforme passe le seuil initial de déformation de 10⁻⁷. Sous le champ
+quadratique imposé et le bridage provisoire, le déplacement maximal après
+libération vaut 58,090 µm ; l'amplification visuelle de 500 est indiquée.
+Les 103 534 nœuds et les quatre champs sont conservés dans les données locales.
+Le [rejeu par root depuis une copie séparée](wholepart-release-20261017/publication-validation.json)
+reproduit les trois formats à l'octet. Cette sensibilité mécanique reste
+distincte du calcul thermique du procédé d'impression.

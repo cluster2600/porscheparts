@@ -57,3 +57,11 @@ vérificateur relit les preuves compressées et recalcule cellules d'arrondi et
 inclusions rationnelles. La géométrie originale reste intacte. L'intégration
 au découpeur et le recalcul des contacts et des graphes restent séparés de
 ce contrôle ; aucune admission globale n'est donnée par cette capsule.
+
+La [planche du calcul de retrait imposé sur la pièce entière](../../parts/993-eng-carrier-0001/source/progress-figures-20261016/wholepart-release-20261017/README.md)
+conserve les quatre champs de déplacement natifs, leur lecture en double
+précision et les contrôles analytiques. L'ancien seuil de gradient de 10⁻⁷
+reste inchangé. Le cas uniforme donne une erreur de 1,24×10⁻¹⁴ ; le champ
+quadratique et le bridage provisoire donnent 58,090 µm après libération.
+Cette étude de sensibilité mécanique ne remplace pas la simulation du procédé.
+Le PNG a été relu ; les trois formats ont été reproduits depuis une copie séparée.
