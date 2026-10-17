@@ -1,0 +1,81 @@
+{
+  "actual_native_qp_counts_coordinates_still_required": true,
+  "declared_deck_reuse": [
+    {
+      "reuse": "FileMesh/GMRES+Hypre BoomerAMG/SMP/complete solver matrix exports; scalar kernels/fields replaced by 3DOF small-strain mechanics. line_search=none and exact FIRST tetra quadrature added.",
+      "sha256": "bc5ba390e2c68205ea44ca78a305665f6ea2f669a9d98c4fac91be1f8d890376",
+      "source": "work/962-engineering/head-imported-cube-witness-prep-002/imported-cube.i"
+    },
+    {
+      "reuse": "Native-backed save_in reactions; exact RankTwoTensorMaterialADConverter/RankTwoCartesianComponent/ElementMaterialSampler API structure, without birth/plasticity/thermal properties.",
+      "sha256": "df2a23db9281f8c12b3afc6b002aeaf352040592a440f2bae31f1cfb6e89f99f",
+      "source": "twins/962-cylinder-head-f0/source/physics_witness/mechanical_birth/mechanical-birth.i"
+    },
+    {
+      "reuse": "Fictitious E=210000MPa nu=.26 reference at300K only; no physical-alloy or unused-thermal input transfer.",
+      "sha256": "59c331446812a0b45f03dc7f7e3aeec0f80807fc3a03f54c5100c2b1a63aa584",
+      "source": "twins/962-cylinder-head-f0/source/physics_witness/hypothetical-material.json"
+    }
+  ],
+  "equivalent_existing_imported_vector_witness_found": false,
+  "exact_copies": {
+    "old-runtime-contract.json": {
+      "historical_status_retained": true,
+      "sha256": "1783ad8397a0d0cbc892ad129487db7d3b983483903682d5375f94036a4c8978",
+      "source": "work/962-engineering/head-imported-cube-witness-prep-002/old-runtime-contract.json"
+    },
+    "run_cube.py": {
+      "sha256": "65bdce7e329f584c69e3eff1b18205b143811b6cc3d5c354df1d7dd2bb877b31",
+      "source": "work/962-engineering/head-imported-cube-witness-prep-002/run_cube.py",
+      "source_body_unchanged": true
+    }
+  },
+  "format_adapter": {
+    "algorithm_scope": "Fixed15-node/40-TET4 full typed after/saved-reopen JSON to ASCII2.2; whole exact source row/bit/topology validation and independent parse-after-write; no native/scientific import; no original triangle-element-ID claim.",
+    "new_ASCII_mesh_not_yet_created": true,
+    "previous_binary41_import_failure_retained": true,
+    "previous_integer_tag_route_reference": "work/962-engineering/head-imported-cube-ascii22-tags-prep-001/restore_tags.py",
+    "previous_route_sha256": "f23b8a3c55d874332fe87e2fb468426adedc1791330a0623a5a7bcb0a1089f7a",
+    "sha256": "d039e18b7194305e25d5b046a3b95128ad6513228fb80dec4853039203f662d3",
+    "source": "work/962-engineering/imported-elastic-cube-prep-001/prepare_mesh.py"
+  },
+  "geometry_arrays_MSH_or_runtime_bytes_read_by_preparation": false,
+  "new_assessor_source_pending_separate_author_freeze": false,
+  "no_controller_architecture_added": true,
+  "primary_source_capture": "primary/sources.json",
+  "schema": "962-imported-vector-elastic-cube-source-reuse/v1",
+  "scientific_native_or_test_execution": false,
+  "scope_of_prior_witnesses": {
+    "FileMeshGenerator": "scalar diffusion only",
+    "Netgen_cube": "closed geometry/format proof, not PDE",
+    "small_strain_mechanics": "generated HEX8 bar witnesses"
+  },
+  "selected_assessor": {
+    "all_geometry_field_algebra_card_gates_unchanged": true,
+    "exact_flat_copy": "assess_cube.py",
+    "held_source_sha256": "df5fef105d8821f3b84bbe54b92872f18adf0066b4229e1d250b92d9d3ae68bf",
+    "historical001_retained": true,
+    "root_guard_review_sha256": "4c5b242dc2a4138fe2e571c3fab038aa084d4746ce72d810a677ea356555b59c",
+    "sha256": "e3828c7d99b4afb16115096b95081337ee26429e40cfd7adfa8e34cebd6bce44",
+    "source": "work/962-engineering/imported-elastic-cube-assessor-prep-002/assess_cube.py",
+    "source_peer_sha256": "8a51b3e8a6a7350e8c5885ee2edc9d021615e1f1ee8d8cd4a573f318bdd2b17c",
+    "test_methods": 9,
+    "tests_sha256": "dbb4a596046af8b8c1d879f876a999552b12706f93dbda1ce5d470c1da706f9c",
+    "tests_source": "work/962-engineering/imported-elastic-cube-assessor-prep-002/test_assess.py"
+  },
+  "selected_deck": {
+    "actual_flat_execution_name": "imported-cube.i",
+    "minimal_pretrial_delta": "pretrial-tolerance-delta.json",
+    "original_unrun_deck_sha256": "ff4867beb11a290680525a2ec3aff9de6a3620881aa175617165786cbc5f77ee",
+    "sha256": "93f09e35790d3a90d98bbf2579c5baae56e5fc6ffddfaa660ea3664d98e8c049",
+    "source": "imported-cube_002.i"
+  },
+  "source_build_equivalence_attested": false,
+  "tests": {
+    "executed": false,
+    "main_source": "test_preparation_002.py",
+    "methods": 6,
+    "original_main_guard_preserved_sha256": "cfea5be7111f96de4ac629eed2be12b676591d4e4e718fe1ed34a45305afbd63",
+    "sha256": "d31e4483f31c6eb032f996ea8f3831ca97eeb7fe80821c0736a8db84f599b7f1"
+  }
+}

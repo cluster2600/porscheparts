@@ -1,0 +1,135 @@
+{
+  "PETSc_row_to_node_map_assumed": false,
+  "acceptance": {
+    "all_inputs_sources_runtime_artifacts_closed": true,
+    "maximum_Exodus_CSV_displacement_difference_mm": 1e-12,
+    "maximum_displacement_error_mm": 1e-10,
+    "maximum_force_balance_N": 1e-05,
+    "maximum_moment_balance_N_mm": 0.0001,
+    "maximum_qp_coordinate_error_mm": 1e-12,
+    "maximum_reaction_error_N": 1e-05,
+    "maximum_strain_error": 1e-10,
+    "maximum_stress_error_MPa": 1e-05,
+    "relative_energy_and_work_error": 1e-08,
+    "relative_saved_algebraic_residual": 1e-10
+  },
+  "affine_gradient_A": [
+    [
+      "1/1000",
+      "1/5000",
+      "0"
+    ],
+    [
+      "1/5000",
+      "-1/2000",
+      "3/10000"
+    ],
+    [
+      "0",
+      "3/10000",
+      "1/1250"
+    ]
+  ],
+  "classification": "HYPOTHETICAL_SOFTWARE_VERIFICATION_ONLY",
+  "exact_Lame_MPa": {
+    "lambda": "812500/9",
+    "mu": "250000/3"
+  },
+  "exact_boundary_work_N_mm": "2523451/14400",
+  "exact_constant_strain": [
+    [
+      "1/1000",
+      "1/5000",
+      "0"
+    ],
+    [
+      "1/5000",
+      "-1/2000",
+      "3/10000"
+    ],
+    [
+      "0",
+      "3/10000",
+      "1/1250"
+    ]
+  ],
+  "exact_constant_stress_MPa": [
+    [
+      "10225/36",
+      "100/3",
+      "0"
+    ],
+    [
+      "100/3",
+      "1225/36",
+      "50"
+    ],
+    [
+      "0",
+      "50",
+      "9025/36"
+    ]
+  ],
+  "exact_total_elastic_energy_N_mm": "2523451/28800",
+  "expected_geometry": {
+    "boundary_nodes": 8,
+    "boundary_triangles": 12,
+    "displacement_DOFs": 45,
+    "genuine_free_displacement_DOFs": 21,
+    "interior_nodes": 7,
+    "nodes": 15,
+    "tetrahedra": 40
+  },
+  "head_or_service_case": false,
+  "material": {
+    "basis": "deliberate fictitious software-card reuse, not measured alloy data",
+    "poisson_ratio": 0.26,
+    "provenance": "twins/962-cylinder-head-f0/source/physics_witness/hypothetical-material.json",
+    "reference_temperature_K": 300,
+    "reference_temperature_is_only_coefficient_provenance_no_thermal_field": true,
+    "source_sha256": "59c331446812a0b45f03dc7f7e3aeec0f80807fc3a03f54c5100c2b1a63aa584",
+    "thermal_constants_required_or_added": false,
+    "young_modulus_MPa": 210000
+  },
+  "quadrature": {
+    "element_order": "FIRST",
+    "order": "FIRST",
+    "physical_point": "arithmetic centroid of all four exact imported cell coordinates",
+    "qp_ids": [
+      0
+    ],
+    "reference_tet_point": [
+      "1/4",
+      "1/4",
+      "1/4"
+    ],
+    "reference_tet_weight": "1/6",
+    "side_order": "FIRST",
+    "syntax": "Executioner/Quadrature",
+    "tetra_rule_points": 1,
+    "type": "GAUSS"
+  },
+  "qualification": {
+    "F1_case": false,
+    "head_PDE": false,
+    "manufacturing_authorized": false,
+    "material_qualified": false,
+    "strength_validated": false
+  },
+  "reaction_reference": "Every-node uneliminated P1 internal force sum_e V_e*sigma*grad(N_a); free interior forces zero; total force and moment zero. Native save_in compared without inferring PETSc row order.",
+  "schema": "962-fictitious-imported-elastic-cube-affine-card/v1",
+  "source_build_equivalence_attested": false,
+  "symmetry": "A is symmetric: normal strain and xy/yz shear exercise all three components",
+  "translations": [
+    0,
+    0,
+    0
+  ],
+  "units": {
+    "energy": "N*mm",
+    "force": "N",
+    "length": "mm",
+    "stress": "MPa"
+  },
+  "volume_mm3": 343
+}

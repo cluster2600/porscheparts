@@ -1,0 +1,203 @@
+{
+  "schema": "962-imported-elastic-cube-mainpreparation-independent-source-review/v1",
+  "decision": "CLEAR_HELD_MAIN_SOURCE_PENDING_ROOT_SIX_GUARDS_AND_SEPARATE_ACTUAL_CHILDREN",
+  "blockers": [],
+  "review_scope": "Independent source, small metadata/hash, exact copy/delta, source API and prepared-guard review only. No test execution or prepared/scientific module import, native/geometry/runtime byte reads, Git/network/public edits. Assessor algorithm is excluded from this independence claim because this reviewer authored it.",
+  "held": {
+    "path": "work/962-engineering/imported-elastic-cube-prep-001/held-preparation.json",
+    "sha256": "85de02a025a35d366dd0db8a6bb9a8dcb11469c183ba6a6532defd4136059841",
+    "input_pins": 55,
+    "current_small_pins_checked": 53,
+    "raw_toy_geometry_deferred_metadata_only": {
+      "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-netgen-cube-fixture-001/arrays.json": "ea9e6ccdc8d735c3fde2401dfba56f3c29ceece8c6945438bebb611b2f0287f6",
+      "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-netgen-cube-fixture-001/cube.msh": "0db89b0cf7b4e57af1c6a091d999a7f521cd365f052f699a1798f05ba75eb92d"
+    }
+  },
+  "selected_sources": {
+    "assessor_002": "e3828c7d99b4afb16115096b95081337ee26429e40cfd7adfa8e34cebd6bce44",
+    "assessor_guards_002": "dbb4a596046af8b8c1d879f876a999552b12706f93dbda1ce5d470c1da706f9c",
+    "card": "63783fe610ad80b8b430e44b4b47a5c5636130202b65d592beb2920399217a4a",
+    "format_adapter": "d039e18b7194305e25d5b046a3b95128ad6513228fb80dec4853039203f662d3",
+    "main_guards_002": "d31e4483f31c6eb032f996ea8f3831ca97eeb7fe80821c0736a8db84f599b7f1",
+    "native_controller": "65bdce7e329f584c69e3eff1b18205b143811b6cc3d5c354df1d7dd2bb877b31",
+    "selected_deck_002": "93f09e35790d3a90d98bbf2579c5baae56e5fc6ffddfaa660ea3664d98e8c049"
+  },
+  "format_adapter": {
+    "complete_typed_after_saved_reopen_binary64_identity_required": true,
+    "fixed_source_hash_report_joins_and_positive_SICN_source_required": true,
+    "exact_Fraction_positive40_determinants_and_sum_volume343": true,
+    "full_source_node_and_ordered_tetra_tags_coordinates_preserved": true,
+    "full_internal_opposition_and12_oriented_source_exterior_required": true,
+    "all52_ASCII22_element_rows_and15_coordinate_bits_independently_parsed_after_write": true,
+    "physical_tags_are_software_metadata": {
+      "all_boundary": 11,
+      "solid": 21
+    },
+    "triangle_labels_are_explicit_new_noncolliding_metadata_not_original_surface_ancestry": true,
+    "fresh_output_and_before_after_input_child_hashes_and5s_synchronous_latch": true,
+    "binary41_source_not_claimed_directly_MOOSE_importable": true,
+    "actual_data_not_read_or_executed_by_this_review": true
+  },
+  "deck_and_card": {
+    "three_coupled_small_strain_displacements_45DOFs_21_free": true,
+    "all8_boundary_nodes_affine_nonpreset_three_component_BCs": true,
+    "nonzero_xy_and_yz_shear": true,
+    "all40_cells_one_centroid_6stress_6total_strain_and_allnodal_save_in_fields_declared": true,
+    "rational_oracle_by_independent_formula_inspection": {
+      "trace_strain": "13/10000",
+      "lambda_trace": "4225/36",
+      "sigma_xx": "10225/36",
+      "sigma_yy": "1225/36",
+      "sigma_zz": "9025/36",
+      "sigma_xy": "100/3",
+      "sigma_yz": "50",
+      "sigma_colon_epsilon": "7357/14400",
+      "energy_N_mm": "2523451/28800",
+      "boundary_work_N_mm": "2523451/14400"
+    },
+    "fictitious_E210000_nu026_reference300K_only_no_thermal_or_yield_model": true,
+    "selected_deck002_exactly_four_pretrial_solver_stop_changes_reverse_to_original": true,
+    "card_field_algebra_energy_acceptance_gates_unchanged": true,
+    "flat_execution_name_mapping_explicit": {
+      "original_unrun_deck_preserved": true,
+      "sha256": "93f09e35790d3a90d98bbf2579c5baae56e5fc6ffddfaa660ea3664d98e8c049",
+      "source": "work/962-engineering/imported-elastic-cube-prep-001/imported-cube_002.i"
+    }
+  },
+  "primary_API": {
+    "captured_source_identity_and_bytes_checked": {
+      "SetupQuadratureAction.C": {
+        "bytes": 3827,
+        "sha256": "da223b672300c51ad4fc1ec4ac6d67fa20fc8134401b2a0b6ce6a13f770727a6",
+        "url": "https://raw.githubusercontent.com/idaholab/moose/167ee97da204df5e8643695e18b9b28910f0014b/framework/src/actions/SetupQuadratureAction.C"
+      },
+      "SetupQuadratureAction.h": {
+        "bytes": 2289,
+        "sha256": "86ac1e2e06f401226148754719bdc96dca7db87718fe04cbad260dcbb49cdaef",
+        "url": "https://raw.githubusercontent.com/idaholab/moose/167ee97da204df5e8643695e18b9b28910f0014b/framework/include/actions/SetupQuadratureAction.h"
+      },
+      "quadrature_gauss_3D.C": {
+        "bytes": 22508,
+        "sha256": "23e192877fb6cfad19d11354d9b6a79cbbc9736cb31e95d097c14e3f3962c108",
+        "url": "https://raw.githubusercontent.com/libMesh/libmesh/ab36c007ae608290e097bdfbc2766a46d8192b70/src/quadrature/quadrature_gauss_3D.C"
+      }
+    },
+    "source_semantics": "MOOSE167 accepts type/order/element_order/side_order and forwards createQRules. libMeshab36 TET4 FIRST uses one reference point(1/4,1/4,1/4),weight1/6. AD tensor bridge/material sampler is inherited from native-backed mechanics source.",
+    "source_build_equivalence_attested": false,
+    "actual_unique40_qp0_centroid_and_values_still_required": true
+  },
+  "controller_and_runtime": {
+    "controller_and_runtime_contract_byte_exact_to_selected_existing65bd_and1783": true,
+    "resources": {
+      "soft_seconds": 30,
+      "kill_grace_seconds": 5,
+      "controller_wait_seconds": 40,
+      "RuntimeMaxSec": 45,
+      "MemoryMax_GiB": 2,
+      "MemorySwapMax": 0,
+      "CPUQuota_percent": 200,
+      "TasksMax": 128,
+      "MPI_ranks": 1,
+      "software_threads": 1
+    },
+    "runtime_file_hashes_retained_as_metadata_only": {
+      "opt/moose/bin/moose-opt": "c49e2c368799d80edf9ff858dd8960bd22f5430f48229ab49dcc0afd27afcc5b",
+      "opt/petsc/lib/libpetsc.so.3.25.2": "08fe5281281c9097411de4dba0f7409b3ea4254fef4d824e124647ddadef475a",
+      "opt/petsc/lib/libHYPRE-3.1.0.so": "9430a3931cc62ae387099576eee8f7719d83923aade3af4d12cfabed7e920079",
+      "opt/petsc/include/petscconf.h": "d97381968ccfea9eb893c0f1316cd51ade2be2d5adf3caa0790a0c00c22c9a5c",
+      "environment": "2ff5e3480067369fff550ebba7a5d3c565a393ec2a3f1a9f100c3c5f8aeb416b",
+      "opt/moose/lib/combined/libmoose-opt.so.0": "f8eb6b0dc6eba723f9e788b1e842b825635cc6ba4475b091a229ff12a9412aae",
+      "opt/moose/lib/combined/libcombined-opt.so.0": "24a1ef7eb74245725aac38b10493b7f9308235a872f3027bd36b7a16d10d44f7",
+      "opt/libmesh/lib/libmesh_opt.so.0": "7b4971177983443edc96070877cac4aa6d684e33a926e01183b6a67ee855ad37"
+    },
+    "fresh_runtime_resources_and_outer_transport_preflight_required": true,
+    "wait40_starts_after_Popen_not_new_absolute_setup_deadline": true,
+    "owned_PG_kill_wait_signal_flag_handler_restore_and_before_after_source_runtime_checks_preserved": true
+  },
+  "tests_and_assessor_independence": {
+    "main_prepared_methods": [
+      "test_exact_fictitious_elastic_reference_and_shear_energy",
+      "test_format_roundtrip_checks_all52_elements_and_coordinate_signed_zero",
+      "test_complete_typed_arrays_reject_shapes_duplicate_tags_nonfinite_and_badindices",
+      "test_saved_reopen_difference_is_not_accepted_as_exact_source",
+      "test_held_adapter_refuses_before_source_or_geometry_reads",
+      "test_deck_reuses_threeDOF_material_sampler_and_exact_owned_runner"
+    ],
+    "six_main_tests_unrun_at_this_review": true,
+    "selected_assessor_source_and_tests_only_byte_association_checked": true,
+    "separate_assessor002_independent_source_peer": "8a51b3e8a6a7350e8c5885ee2edc9d021615e1f1ee8d8cd4a573f318bdd2b17c",
+    "root_assessor_nine_guard_pass_sha256": "4c5b242dc2a4138fe2e571c3fab038aa084d4746ce72d810a677ea356555b59c",
+    "no_source_self_review_claimed": true
+  },
+  "held_authorities_false_and_future_hashes_null_verified": true,
+  "separate_actual_adapter_then_native_then_assessment_children_required": [
+    "Exact adapter child after root six main guards+independent main-source review; selected interpreter/source/all raw toy input hashes, fresh path and external actual-child review.",
+    "Only after completed adapter full output/readback/peer: root flat materialization, complete actual source pins, fresh remote runtime/resources, single bounded native cube child and external child review.",
+    "Only after stopped native full inventory/lifecycle/known snapshot/source/runtime/control review: exact consumed-artifact/reference/primary/interpreter assessment child and external child review."
+  ],
+  "qualification": {
+    "F0_head": false,
+    "F1_case": false,
+    "head_PDE": false,
+    "manufacturing_authorized": false,
+    "physical_material_card": false,
+    "software_cube_only": true,
+    "strength_validated": false
+  },
+  "current_small_pin_sha256": {
+    "twins/962-cylinder-head-f0/source/physics_witness/hypothetical-material.json": "59c331446812a0b45f03dc7f7e3aeec0f80807fc3a03f54c5100c2b1a63aa584",
+    "twins/962-cylinder-head-f0/source/physics_witness/mechanical_birth/mechanical-birth.i": "df2a23db9281f8c12b3afc6b002aeaf352040592a440f2bae31f1cfb6e89f99f",
+    "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-netgen-cube-fixture-001/fixture-report.json": "7d6f638b20388348810ea564e6fa7ffcdd2c5555fcbdc6d0d2c792e3d42defb7",
+    "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-netgen-cube-result-peer-001/review.json": "cc1e1c3b830d0a735161045b755fc0eaa01036a20b09731f9cad8a28e3c83b0c",
+    "work/962-engineering/head-imported-cube-ascii22-tags-prep-001/restore_tags.py": "f23b8a3c55d874332fe87e2fb468426adedc1791330a0623a5a7bcb0a1089f7a",
+    "work/962-engineering/head-imported-cube-exodus-primary-source-001/ex_get_side_set_node_list.c": "9cedc3c636874dddd4c750ce2a4acd0250eb9b981c5c471630944803a5549047",
+    "work/962-engineering/head-imported-cube-exodus-readback-prep-001/compare_cube.py": "bf19080b964305c9488bce4309bf7235656fbaf03715b07f684c3d89962c80d4",
+    "work/962-engineering/head-imported-cube-newton-source-001/sources.json": "0adfb84d67cf2de82b999ccaf8d37ce9841cb7e4e54f968413e1a412a796c54f",
+    "work/962-engineering/head-imported-cube-witness-prep-002/assess_cube_002.py": "6e7733363f0564b777762ac2906f4ac6b8fb43e7bb1fb4d7dd723ac3a95d0898",
+    "work/962-engineering/head-imported-cube-witness-prep-002/imported-cube.i": "bc5ba390e2c68205ea44ca78a305665f6ea2f669a9d98c4fac91be1f8d890376",
+    "work/962-engineering/head-imported-cube-witness-prep-002/old-runtime-contract.json": "1783ad8397a0d0cbc892ad129487db7d3b983483903682d5375f94036a4c8978",
+    "work/962-engineering/head-imported-cube-witness-prep-002/run_cube.py": "65bdce7e329f584c69e3eff1b18205b143811b6cc3d5c354df1d7dd2bb877b31",
+    "work/962-engineering/imported-elastic-cube-assessor-prep-001/METHOD.md": "12472125a8101802b6c4d986d615e4e9242a07f9a366140b52569c6dc1f2b9ef",
+    "work/962-engineering/imported-elastic-cube-assessor-prep-001/assess_cube.py": "13c20c051786dc2d72541cec49a1b88bb7380a00c1725aa5c9d8a561b24d9fb8",
+    "work/962-engineering/imported-elastic-cube-assessor-prep-001/held-preparation.json": "58764427cb4ce0fac6cf5616101fd2347668165b95f4b2daa361028edc613476",
+    "work/962-engineering/imported-elastic-cube-assessor-prep-001/source-reuse.json": "884ee1af4ca3c8e49acd1ba60f34e8925501ef57f3c89db3c13e6b1bc2dc498a",
+    "work/962-engineering/imported-elastic-cube-assessor-prep-001/test_assess.py": "53efe98ac32cffa272efb6d10fb9c74410e3ded3cde169cc8e8f0f9f8de9a1f9",
+    "work/962-engineering/imported-elastic-cube-assessor-prep-002/001-to002.diff": "617006b6b64730b651663f45cce94f134c90607c4dab13cb1cee70db9e44e632",
+    "work/962-engineering/imported-elastic-cube-assessor-prep-002/METHOD.md": "b310824adf0c5e6f086a842c275208995de59b2424bbfce962c7ac986c44bc6e",
+    "work/962-engineering/imported-elastic-cube-assessor-prep-002/assess_cube.py": "e3828c7d99b4afb16115096b95081337ee26429e40cfd7adfa8e34cebd6bce44",
+    "work/962-engineering/imported-elastic-cube-assessor-prep-002/held-preparation.json": "df5fef105d8821f3b84bbe54b92872f18adf0066b4229e1d250b92d9d3ae68bf",
+    "work/962-engineering/imported-elastic-cube-assessor-prep-002/source-delta.json": "f34942def825061a1a0fc8bcc3509347413f9dc40a562ad8f73a700faf60c0ee",
+    "work/962-engineering/imported-elastic-cube-assessor-prep-002/test001-to002.diff": "4502a48b1dd1001f123c3a0d616c7ea131c33b7fe689a83a10bc991c52abcc1e",
+    "work/962-engineering/imported-elastic-cube-assessor-prep-002/test_assess.py": "dbb4a596046af8b8c1d879f876a999552b12706f93dbda1ce5d470c1da706f9c",
+    "work/962-engineering/imported-elastic-cube-assessor-root-source-002/guards.log": "71eaaa2857c7a1b7d17aa2fd238a643453194ea6f7770fb96831b28b10ec05e8",
+    "work/962-engineering/imported-elastic-cube-assessor-root-source-002/review.json": "4c5b242dc2a4138fe2e571c3fab038aa084d4746ce72d810a677ea356555b59c",
+    "work/962-engineering/imported-elastic-cube-assessor-source-peer-001/review.json": "8e17cddbe6a3b2147077df6e69ab6e215412bdcb9021e028f1c1a45ac61e0a28",
+    "work/962-engineering/imported-elastic-cube-assessor-source-peer-002/review.json": "8a51b3e8a6a7350e8c5885ee2edc9d021615e1f1ee8d8cd4a573f318bdd2b17c",
+    "work/962-engineering/imported-elastic-cube-prep-001/METHOD.md": "347848d41c3c916cddaba4850833268a62a26fefd1e0d164aeacc3026fa76842",
+    "work/962-engineering/imported-elastic-cube-prep-001/adapter-held-contract.json": "3edde7851f79ce73d4673be09c10007af949335b29c22290f099f3619a6bfcae",
+    "work/962-engineering/imported-elastic-cube-prep-001/affine-card.json": "63783fe610ad80b8b430e44b4b47a5c5636130202b65d592beb2920399217a4a",
+    "work/962-engineering/imported-elastic-cube-prep-001/assess_cube.py": "e3828c7d99b4afb16115096b95081337ee26429e40cfd7adfa8e34cebd6bce44",
+    "work/962-engineering/imported-elastic-cube-prep-001/deck001-to002.diff": "4a57e67418d92365cef3c81bf9ba7659088f2d4d025d823ab759d160504cd221",
+    "work/962-engineering/imported-elastic-cube-prep-001/imported-cube.i": "ff4867beb11a290680525a2ec3aff9de6a3620881aa175617165786cbc5f77ee",
+    "work/962-engineering/imported-elastic-cube-prep-001/imported-cube_002.i": "93f09e35790d3a90d98bbf2579c5baae56e5fc6ffddfaa660ea3664d98e8c049",
+    "work/962-engineering/imported-elastic-cube-prep-001/old-runtime-contract.json": "1783ad8397a0d0cbc892ad129487db7d3b983483903682d5375f94036a4c8978",
+    "work/962-engineering/imported-elastic-cube-prep-001/preparation-checks.json": "dd63f2604e604fd9c466ea6fba60e87addabe897288f49f6ff4f9b228db5e464",
+    "work/962-engineering/imported-elastic-cube-prep-001/prepare_mesh.py": "d039e18b7194305e25d5b046a3b95128ad6513228fb80dec4853039203f662d3",
+    "work/962-engineering/imported-elastic-cube-prep-001/pretrial-tolerance-delta.json": "1bae9b0e26381e68574e8526e419108f0d272fe18db976637c479533118dd219",
+    "work/962-engineering/imported-elastic-cube-prep-001/primary/SetupQuadratureAction.C": "da223b672300c51ad4fc1ec4ac6d67fa20fc8134401b2a0b6ce6a13f770727a6",
+    "work/962-engineering/imported-elastic-cube-prep-001/primary/SetupQuadratureAction.h": "86ac1e2e06f401226148754719bdc96dca7db87718fe04cbad260dcbb49cdaef",
+    "work/962-engineering/imported-elastic-cube-prep-001/primary/quadrature_gauss_3D.C": "23e192877fb6cfad19d11354d9b6a79cbbc9736cb31e95d097c14e3f3962c108",
+    "work/962-engineering/imported-elastic-cube-prep-001/primary/sources.json": "a76b90d6c6ae38376b1c80a7af31d1f08ba6c66c609eba0b297137652d5e27aa",
+    "work/962-engineering/imported-elastic-cube-prep-001/run_cube.py": "65bdce7e329f584c69e3eff1b18205b143811b6cc3d5c354df1d7dd2bb877b31",
+    "work/962-engineering/imported-elastic-cube-prep-001/scalar-to-vector-deck.diff": "f4dda52afd62e6f9d0b1abfdae0f64925295cd5c44708ac43e2995a71f8409a0",
+    "work/962-engineering/imported-elastic-cube-prep-001/source-reuse.json": "f1c46ba4d18e8b99541c91747dfd80a3fff3f49324af6753bbb6e380b30ff1fe",
+    "work/962-engineering/imported-elastic-cube-prep-001/test001-to002.diff": "0531565cb3e6eb5a1fb3a65bf2f1476d8880a8a368b99d39290701460280ac94",
+    "work/962-engineering/imported-elastic-cube-prep-001/test_assess.py": "dbb4a596046af8b8c1d879f876a999552b12706f93dbda1ce5d470c1da706f9c",
+    "work/962-engineering/imported-elastic-cube-prep-001/test_preparation.py": "cfea5be7111f96de4ac629eed2be12b676591d4e4e718fe1ed34a45305afbd63",
+    "work/962-engineering/imported-elastic-cube-prep-001/test_preparation_002.py": "d31e4483f31c6eb032f996ea8f3831ca97eeb7fe80821c0736a8db84f599b7f1",
+    "work/962-engineering/moose-mechanical-birth-001/attempt-002/mechanical-birth.i": "df2a23db9281f8c12b3afc6b002aeaf352040592a440f2bae31f1cfb6e89f99f",
+    "work/962-engineering/moose-mechanical-birth-001/primary-source/ElementMaterialSampler.C": "3c58a62a3fb20428a66d737f7608658c4aa3a209643da6b5268df4e6133fe1d9",
+    "work/962-engineering/moose-thermal-birth-001/quadrature-syntax-discovery.json": "33cd0c7f00536a9523cf9e5e3d95b4ea02ad3b47031144b32b0d8800a213b8d9"
+  },
+  "held_and_current_small_pins_unchanged_after_review": true
+}

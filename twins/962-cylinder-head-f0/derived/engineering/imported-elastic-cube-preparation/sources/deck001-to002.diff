@@ -1,0 +1,19 @@
+--- imported-cube.i
++++ imported-cube_002.i
+@@ -186,12 +186,12 @@
+ [Executioner]
+   type = Steady
+   solve_type = NEWTON
+-  nl_rel_tol = 1e-12
+-  nl_abs_tol = 1e-12
++  nl_rel_tol = 1e-11
++  nl_abs_tol = 1e-10
+   nl_max_its = 1
+   line_search = none
+-  l_tol = 1e-12
+-  l_abs_tol = 1e-13
++  l_tol = 1e-11
++  l_abs_tol = 1e-12
+   l_max_its = 100
+   petsc_options = '-ksp_converged_reason -snes_converged_reason -ksp_monitor_true_residual -ksp_error_if_not_converged'
+   petsc_options_iname = '-ksp_type -pc_type -pc_hypre_type -pc_hypre_boomeramg_cycle_type -pc_hypre_boomeramg_max_iter -pc_hypre_boomeramg_tol -ksp_gmres_restart -ksp_view -ksp_view_mat -ksp_view_pmat -ksp_view_rhs -ksp_view_solution -ksp_view_final_residual'

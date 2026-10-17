@@ -130,6 +130,10 @@ increases the poor-cell count to 226 and lowers minimum SICN to
 0.038263551144442014. Exact boundary, tag/connectivity and saved-file identity
 checks pass, but the unchanged quality gate rejects the mesh. The prior Netgen
 result remains the better rejected baseline; no new poor-cell partition is inferred.
+The [completed fixed-triple diagnosis](derived/engineering/atomic-cavity-plane-clip-cap-assembly-netgen-fixed-triples/README.md)
+checks all 195 three-boundary-node poor cells: no isolated apex ceiling is at or
+below SICN 0.1. The 144 distinct interior apices still require complete shared-star
+constraints; no repair, exterior-face membership or head acceptance is established.
 The [exact assembled-model download](derived/engineering/atomic-cavity-plane-clip-cap-assembly-raw-review-delivery/README.md)
 includes BIN, lossless PLY, all seven maps and the complete sealed evidence.
 All 151 members pass independent full-byte checks. GitHub verifies the three
@@ -138,6 +142,11 @@ The [mechanical material-state review](derived/engineering/material-mechanical-s
 finds no complete recipe-matched E, Poisson ratio, expansion and yield card among
 the seven retained states. Missing properties and head load-path inputs remain
 explicit; no generic constants or material selection are introduced.
+The [prepared vector elastic cube](derived/engineering/imported-elastic-cube-preparation/README.md)
+includes a completed, independently checked 15-node/40-tetrahedron ASCII adapter.
+Its fictitious affine material/load case is materialized but held: no MOOSE import,
+vector solve or field assessment has run. The six source guards and nine assessor
+guards pass; they do not establish head strength or a qualified material.
 The [separate material follow-up](MATERIAL_CONDUCTIVITY_FOLLOWUP.md) supplies
 measured AlSi10Mg conductivity points. The [two native bar witnesses](MATERIAL_CONDUCTIVITY_WITNESS.md)
 now verify the separate assumed piecewise-linear Z/XY laws with 109 final-field
