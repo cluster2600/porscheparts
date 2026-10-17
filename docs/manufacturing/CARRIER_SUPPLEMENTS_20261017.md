@@ -42,3 +42,9 @@ budget de 57 600 secondes et les captures de chaque section terminée. Ses
 47 empreintes et son identité de runtime ont été vérifiées avant lancement.
 Elle reste distincte de la recette complète : son exécution est en cours,
 et aucun résultat des sept régions n’est déduit du seul rejeu local illustré.
+
+La [capsule des restaurations logicielles](../../parts/993-eng-carrier-0001/source/software-archive-restoration-20261017/README.md)
+conserve les trois expériences réelles CalculiX, PyMesh et CGAL b4e8, les
+appelants exécutés, les petits résultats natifs et un vérificateur sans
+runtime natif. Elle précise les dépendances déjà installées et distingue
+l’archive expérimentale de la procédure CGAL stable 6.1.3.

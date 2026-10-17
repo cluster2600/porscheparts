@@ -1,0 +1,89 @@
+{
+  "status": "three_existing_binary_witnesses_passed",
+  "CGAL_commit": "b4e8c1887ce6a0abeb618634125e5cfcd301ce16",
+  "experimental": true,
+  "cases": [
+    {
+      "name": "union-prisms",
+      "mode": "union",
+      "actual_worker_returncode": 0,
+      "actual_native_returncode": 0,
+      "expected_exact_volume_mm3": "4000",
+      "actual_exact_volume_mm3": "4000",
+      "passed": true,
+      "audit_sha256": "6b23e7ba5621c064032b540e91053682a591030ef7836e9a9753ea010f7f0b8d",
+      "native_sha256": "50a72284f19eb48662d2272e57ae1c26479010b8aced77c1b60e234909a838af",
+      "result_sha256": "c95c43823c554c5da41faa7e71607941e7e5140aed94291e4c5b8ed8d65a4a21",
+      "exact_result_sha256": "7f855a8134dacd1082a016307360b9bfddeaca7ec428b3d1e9fdb62b489fa28c",
+      "output_topology": {
+        "boundary_edges": 0,
+        "nonmanifold_edges": 0,
+        "nonmanifold_vertices": 0,
+        "inconsistent_orientation_edges": 0,
+        "unused_vertices": 0,
+        "signed_volume_mm3": 4000.0,
+        "pass": true
+      },
+      "native_exact_gate_pass": true,
+      "rounded_exact_contact_gate_pass": true,
+      "source_face_lineage_complete": true
+    },
+    {
+      "name": "intersection-prisms",
+      "mode": "intersection",
+      "actual_worker_returncode": 0,
+      "actual_native_returncode": 0,
+      "expected_exact_volume_mm3": "2000",
+      "actual_exact_volume_mm3": "2000",
+      "passed": true,
+      "audit_sha256": "aa01ecb20304b555979361c9e3d190b03c29e56338c4a394bda0f01c2d69893e",
+      "native_sha256": "0ee4de19f595f02f80577a100d29a0fc0d434fc58dfe459b17ca1543f035a8ec",
+      "result_sha256": "896f4c43af02124c3d4a4b783857736fe019d3a2ed92c021feeb0f1cdf5cf8a5",
+      "exact_result_sha256": "b4822a5a84ea739a28d324c415a70bad6707833d5ccda319aeed70a2b5e227a1",
+      "output_topology": {
+        "boundary_edges": 0,
+        "nonmanifold_edges": 0,
+        "nonmanifold_vertices": 0,
+        "inconsistent_orientation_edges": 0,
+        "unused_vertices": 0,
+        "signed_volume_mm3": 2000.0,
+        "pass": true
+      },
+      "native_exact_gate_pass": true,
+      "rounded_exact_contact_gate_pass": true,
+      "source_face_lineage_complete": true
+    },
+    {
+      "name": "difference-prism-gap",
+      "mode": "difference",
+      "actual_worker_returncode": 0,
+      "actual_native_returncode": 0,
+      "expected_exact_volume_mm3": "3200",
+      "actual_exact_volume_mm3": "3200",
+      "passed": true,
+      "audit_sha256": "de54806107fe39cfff457cd2fc4526b01f0db7a7106557f8d7f953c085f9e5f6",
+      "native_sha256": "a4d37cbf85fb9a8cdbf7ffa4da011aa9f716337d19f4ea5ab0fee878d644cb36",
+      "result_sha256": "4bf5e479688a5151b579738b458007e5e3d7a7b35e8417857be7a4b218cf17e2",
+      "exact_result_sha256": "18212c19c83c0ff75e5fad2d138f3ad10dd09f2f9fd77f1385efedd704b480ed",
+      "output_topology": {
+        "boundary_edges": 0,
+        "nonmanifold_edges": 0,
+        "nonmanifold_vertices": 0,
+        "inconsistent_orientation_edges": 0,
+        "unused_vertices": 0,
+        "signed_volume_mm3": 3200.0,
+        "pass": true
+      },
+      "native_exact_gate_pass": true,
+      "rounded_exact_contact_gate_pass": true,
+      "source_face_lineage_complete": true
+    }
+  ],
+  "error": null,
+  "seconds": 0.5511528309434652,
+  "worker_source_sha256": "7db19546583c141ab9eaf08bf50128c3890807b5529b9fc157d08ff8ab7c615c",
+  "witness_source_sha256": "8eaec0bf0d785c1573b125f37f4e6d1fc94646b954144bc15ce00c1842108a5a",
+  "binary_sha256": "48a0f21b8bfd585166f16ba5fce2fa84e50cc2cae5b972083c02ef0e538760b3",
+  "global_admission": false,
+  "scope": "Only restored experimental archive and three finite binary software witnesses. No self_union or carrier computation."
+}
