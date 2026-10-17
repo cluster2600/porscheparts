@@ -83,3 +83,10 @@ Le [contrôle suivant des 17 384 événements](../process-point-encoding-2026101
 termine également les 1 034 hauteurs avec tous les témoins requis ; cette
 capsule conserve le helper, les tests et les preuves complètes. La planche
 reste liée à son diagnostic historique de la seule peau 13.
+
+La [planche d'encombrement de la pose actuelle](machine-envelope-20261017/README.md)
+projette les 587 404 triangles réels en XY et XZ. Elle montre la plaque de
+500 mm, une chambre nominale de 650 mm, les marges et les deux conventions de
+hauteur des machines documentées. Les sources constructeur sont liées dans
+le dossier. Un [rejeu depuis la copie publiée](machine-envelope-20261017/publication-validation.json),
+lancé depuis `/tmp`, reproduit les PNG/SVG/PDF à l'octet.
