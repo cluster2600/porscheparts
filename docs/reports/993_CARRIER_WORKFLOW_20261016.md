@@ -583,3 +583,12 @@ restent locaux à 010 ; l'assemblage et l'audit de tous les supports restent
 
 La [galerie](../../parts/993-eng-carrier-0001/source/progress-figures-20261016/index.html)
 regroupe désormais **13 images**, leurs données et les fichiers PDF disponibles.
+
+La [capsule de référence CAD fine](../../parts/993-eng-carrier-0001/source/cad-fine-reference-20261017/README.md)
+conserve l’extraction réellement exécutée des 240 faces du STEP :
+68 744 sommets, 137 572 triangles, une composante fermée et orientée, aucun
+triangle d’aire exacte nulle. La déflexion OCP demandée est absolue, à 0,01 mm.
+Les sept sources et reçus sont conservés à l’octet et leur vérificateur
+documentaire fonctionne hors environnement CAD. Cette déflexion demandée
+ne constitue pas une borne globale démontrée de l’écart au BREP ;
+la mesure de distance CGAL entre maillages reste une étape séparée.
