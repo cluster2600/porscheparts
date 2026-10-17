@@ -147,3 +147,6 @@ La [planche22 du congé R1 natif](native-fillet-20261017/README.md) montre la fo
 
 
 [Figure 29 — complete seven-edge radius law](C1-seven-edge-radius-law-20261017/README.md) compares the rebuilt-stock Build refusal with the patched toolkit's closed exact law result. The scalar graph and seven physical intervals retain smoothstep on edge 431 and R1 on the other six; full native coefficients and Fraction proof are separate from sampled visuals. No stock post-Build curve is fabricated. Geometry status is the historical law-observation snapshot; this figure grants no geometry or mechanical qualification.
+
+
+[Figure 30 — actual complete functional-law candidate](C1-functional-law-candidate-20261017/README.md) shows the retained 637,850-triangle STL and a conservative source-datum junction crop in the original coordinates. The separate native mass is 1.262364410 kg. Actual PNG and rasterized PDF page were reviewed; image and source markers are display evidence only, with no mechanical or manufacturing qualification. Original runtime refusals remain separate from the later accepted render.

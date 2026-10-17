@@ -23,6 +23,8 @@ below and the older C1/H2 revision remain distinct.
 
 A separate [complete seven-edge law observation](../../parts/993-eng-carrier-0001/source/progress-figures-20261016/C1-seven-edge-radius-law-20261017/README.md) now has an actual rebuilt-stock RC1 and patched-toolkit RC0. [Figure 29](../../parts/993-eng-carrier-0001/source/progress-figures-20261016/C1-seven-edge-radius-law-20261017/carrier-seven-edge-radius-law.png) shows the requested and retained radius function over every physical source edge, with the full native coefficients and exact Fraction proof retained separately. Its pending geometry labels describe the historical law-observation snapshot; no geometry or FEA gate is transferred into that law proof, and earlier Figures 27 and 28 refusals remain unchanged.
 
+[Figure 30](../../parts/993-eng-carrier-0001/source/progress-figures-20261016/C1-functional-law-candidate-20261017/README.md) now shows the actual complete 07b354 functional-law candidate STL and a source-datum junction crop, with a separate native mass of 1.262364410 kg. Its actual PNG and rasterized PDF page were reviewed. The original coordinates and source markers are display evidence, with no old C1 stress result or engineering qualification transferred. The [latest English checkpoint](CARRIER_SUPPLEMENTS_20261017_EN.md) separates the newest revision from retained histories.
+
 The latest **preserved terminal-taper diagnostic variant** has separate,
 closed coarse-mesh linear-static results: about **697.3 MPa with rigid mounts
 and 1,977.8 MPa with distributed K1000 springs**. Its original post-Build law

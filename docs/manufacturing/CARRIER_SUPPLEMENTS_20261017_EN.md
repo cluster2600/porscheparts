@@ -1,5 +1,68 @@
 # Carrier results and reproduction notes — 17 October 2026
 
+## Latest revision checkpoint — complete seven-edge law (07b354)
+
+The newest candidate master is native BREP **`07b354e3716b…`**, with CAD mass
+**1.262364410 kg** at 4,420 kg/m³, below the 1.30 kg design target. The complete
+seven-edge radius function passed its retained exact native-law check, and the
+[strict baseline-retention check](../../work/carrier-process-20261017/bounded-webs-C1-functional-law-geometry-gates-preparation-001/root-terminal-review-001.json)
+returned an empty difference in every topological dimension. The separate
+[addition and mass closeout](../../work/carrier-process-20261017/bounded-webs-C1-functional-law-addition-preparation-001/root-terminal-review-001.json)
+records positive added material. This closes the revision's native geometry
+retention and added-material checks.
+
+The fresh surface is STL **`8d0b09b705e1…`**, with **637,850 triangles**. Its
+[joint surface closeout](../../work/carrier-process-20261017/bounded-webs-C1-functional-law-libigl-preparation-001/root-terminal-review-001.json)
+records one connected component and zero boundary/non-manifold edges,
+inconsistent orientation edges, degenerate triangles, needles and
+self-intersection pairs. The **3,072 STL→BREP probes** have maximum distance
+**0.01900753 mm**; the **8,716 CAD→STL samples** give **0.04738813 mm**. Both are
+below the unchanged 0.06 mm sampled-distance limit. Sampling does not establish
+a continuous global distance bound.
+
+The [actual geometry view](../../parts/993-eng-carrier-0001/source/progress-figures-20261016/C1-functional-law-candidate-20261017/README.md)
+shows the complete retained STL and a source-datum junction crop. Its actual
+PNG and rasterized PDF page were reviewed for legible English labels and no
+observed clipping. The close-up is a display projection, not a wall-thickness
+or stress measurement.
+
+The [actual seven-edge law figure](../../parts/993-eng-carrier-0001/source/progress-figures-20261016/C1-seven-edge-radius-law-20261017/README.md)
+shows the retained radius coefficients and exact proof references. It is a
+scalar law plot, not a rendering of the surface or a mechanical result.
+
+The [complete protected-interface and tool-access comparison](../../work/carrier-process-20261017/bounded-webs-C1-functional-law-protected-chunks-preparation-002/root-terminal-review-001.json)
+now passes for this master under retained study-interface dimensions. The
+complete ordered probe results and native CAD/assembly checks were retained.
+
+The [fresh T10 mesh closeout](../../work/carrier-process-20261017/bounded-webs-C1-functional-law-BREP-mesh-preparation-001/root-terminal-review-001.json)
+records **166,263 nodes and 89,485 C3D10 elements**, straight midsides and zero
+nonpositive sampled Jacobians; the minimum sampled Jacobian is
+**0.0003884557712**. The six current node groups were measured anew: 528 nodes
+in each of the four bolt groups, and 2,274 in each end group. Their node tags
+and exact coordinate rosters are not assumed identical to an older mesh.
+The imported OCC volume is 285,603.0822514583 mm3, matching the like-for-like
+nonadaptive native reference at the unchanged relative 1e-8 guard. Separately,
+the mesh volume is 285,525.5303865585 mm3, with relative error
+-0.0002705762106 against the adaptive native material-volume reference. These
+operators remain separate; the import check does not prove absolute CAD identity.
+
+The [two closed linear-static cases](../../work/carrier-process-20261017/bounded-webs-C1-functional-law-static-preparation-001/root-solver-terminal-review-001.json)
+use this same 07b354 master and coarse T10 mesh: Fz = −4,000 N,
+My = +850,000 N·mm, E = 107,000 MPa and ν = 0.31.
+
+| Current coarse case | Global IP von Mises maximum | All-node displacement maximum | Relative energy-closure error |
+| --- | ---: | ---: | ---: |
+| Rigid ends | 690.251 MPa | 2.794908 mm | 8.2870e-9 |
+| K1000 ends | 1,898.691 MPa | 18.181958 mm | 1.2120e-8 |
+
+Both independent energy closures pass the unchanged 1e-4 tolerance; all global
+integration-point peak ties are retained. K1000 means 1,000 N/mm **total per eye
+and axis**, distributed over 2,274 nodes at each end (13,644 SPRING1 elements).
+These are coarse-mesh results; stress convergence has not been established.
+Earlier a42 C1 and terminal-taper stresses and H2 studies are separate histories
+and are not transferred to this master. The “Current C1” section below remains
+the **a42 C1 checkpoint**, followed by its historical evidence.
+
 [English workflow guide](PART_WORKFLOW_EN.md) · [French supplement](CARRIER_SUPPLEMENTS_20261017.md) · [Figure gallery](../../parts/993-eng-carrier-0001/source/progress-figures-20261016/index.html)
 
 This page separates the current C1 results, retained historical studies and
