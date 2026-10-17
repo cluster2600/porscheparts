@@ -144,3 +144,6 @@ La [planche22 du congé R1 natif](native-fillet-20261017/README.md) montre la fo
 
 
 [Figure 28 — coarse and raw-refined terminal-taper fields](C1-terminal-taper-four-case-fields-20261017/README.md) compares four closed cases at true displacement ×1 with common axes/scales and every boundary triangle. Rigid global VM rises from 697.3 to 1,218.1 MPa and K1000 from 1,977.8 to 3,716.0 MPa, while displacement remains near 2.794 and 18.17 mm. Original volume, law and STEP refusals remain intact: no H2 qualification, stress convergence or strength admission follows. Full fields belong to the dependent numerical capsule.
+
+
+[Figure 29 — complete seven-edge radius law](C1-seven-edge-radius-law-20261017/README.md) compares the rebuilt-stock Build refusal with the patched toolkit's closed exact law result. The scalar graph and seven physical intervals retain smoothstep on edge 431 and R1 on the other six; full native coefficients and Fraction proof are separate from sampled visuals. No stock post-Build curve is fabricated. Geometry status is the historical law-observation snapshot; this figure grants no geometry or mechanical qualification.

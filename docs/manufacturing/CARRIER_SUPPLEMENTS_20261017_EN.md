@@ -362,3 +362,32 @@ preserves both raw BREP residues and all dimensional summaries. These Boolean
 outputs are not interpreted as material erosion. The native BREP and its
 separately checked STL remain the geometry references; the STEP does not
 replace that master.
+
+## Complete seven-edge functional-law revision
+
+The new native candidate `07b354e3716b…` retains the requested radius function
+over all seven source edges. The isolated rebuilt-stock control reproduced
+`NCollection_Sequence::First`; the patched control completed and saved one valid
+Solid. The [complete native observation](../../work/carrier-process-20261017/bounded-webs-C1-full-contour-native-observer-preparation-001/root-terminal-review-001.json)
+retains both outcomes and the exact rational restrictions of every native knot
+span. The [English law figure](../../work/carrier-seven-edge-law-figure-preparation-002/render-001/carrier-seven-edge-radius-law.png)
+shows the progressive first edge and the constant 1 mm radius on the remaining
+six edges. Its sampled curves illustrate the separate full-function proof.
+
+The new candidate has its own [strict baseline-retention check](../../work/carrier-process-20261017/bounded-webs-C1-functional-law-geometry-gates-preparation-001/root-terminal-review-001.json)
+and [positive-addition, mass and bounds check](../../work/carrier-process-20261017/bounded-webs-C1-functional-law-addition-preparation-001/root-terminal-review-001.json):
+
+| Actual CAD result | Value |
+| --- | --- |
+| Calculated mass at 4,420 kg/m³ | **1.262364410 kg** |
+| Margin below the 1.30 kg limit | **37.636 g** |
+| Candidate volume, adaptive operator | 285,602.8077120175 mm³ |
+| Added-material Cut integral | 34.34037865930564 mm³ |
+| Adaptive candidate-minus-baseline volume difference | 34.33973232074641 mm³ |
+
+The two volume differences use distinct operators and retain their distinct
+values. The original bounds gate passes with its unchanged 10⁻⁶ mm guard.
+The [fresh surface export](../../work/carrier-process-20261017/bounded-webs-C1-functional-law-surface-preparation-001/root-terminal-review-001.json)
+contains **637,850 triangles**, STL `8d0b09b705e1…`. At this export checkpoint,
+its two-way surface, protected-interface and mechanical checks are pending.
+Earlier terminal-taper fields remain results of their own geometry revision.
