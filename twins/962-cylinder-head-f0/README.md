@@ -47,6 +47,12 @@ The [complete clipped-head array readback](derived/engineering/atomic-cavity-pla
 verifies every retained coordinate byte and classifies all poor faces: 2,396
 on the cap, 716 touching its rim and none away from the plane. This scopes the
 next local repair; it does not admit the clipped surface or volume.
+The [rejected clipped BIN/PLY download](derived/engineering/atomic-cavity-plane-clip-raw-review-delivery/README.md)
+is uploaded with its manifest and checksum. All 129 members pass independent
+complete byte checks; the three new GitHub assets preserve all 39 predecessors.
+The [later connected-patch census](derived/engineering/atomic-cavity-plane-clip-patch-census/README.md)
+finds one 9,872-face incident region with six abstract boundary cycles. Its
+local manifold checks pass; it is not a disk or an approved repair region.
 The [sourced material comparison](ENGINEERING_MATERIALS.md) now separates seven
 published recipes, discrete hot-strength points and conditional body masses.
 These results do not select or qualify a material for the head.

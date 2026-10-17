@@ -1,0 +1,40 @@
+{
+  "schema": "962-rejected-clipped-raw-review-independent-source-review/v1",
+  "reviewer": "clip_source_review",
+  "conclusion": "No source-review blocker found for separately root-authorized format export and independent full PLY readback. Archive construction remains held until actual format identities and a final complete recipe exist; no export/archive/upload result is credited.",
+  "held_archive_recipe_sha256": "fafaaf8081b5f70ce2912a22cd3c5779097a0fddd6f2a65e8348aeb400de07a7",
+  "source_reuse_sha256": "88c526fc30557a85cd660fa28c17c555446628aa8074e667f165b9d9666ca79a",
+  "exporter_sha256": "a65fc090e4abb818892d51b0b3ebcba66e72833fe0758a9d96f1c6c8ce2cc6dd",
+  "verifier_sha256": "4b2e402a4c0d0cfbb24f74644777ece87451b91b6ae04c4d84c1a2ec929616eb",
+  "readme_sha256": "c87cde868c8149ff673b6ace611a7111cba988e3dec76d2b6438c7504c68727b",
+  "source_reuse_checks": {
+    "both_forward_and_reverse_literal_substitutions_match_actual_old_new_bytes": true,
+    "both_unified_diffs_exactly_reconstructed": true,
+    "old_helper_hashes_unchanged": true,
+    "new_sources_AST_parse_only": true
+  },
+  "checks": [
+    "Exporter requires the exact d2af BIN/counts and fresh exclusive PLY. It copies the complete binary64 point byte stream directly; finite/index and uint32 bounds make its fixed13-byte uchar3/u32 face records lossless and order preserving. No scaling/rotation/remeshing or coordinate rounding occurs in source.",
+    "Independent verifier uses stdlib header/struct parsing, compares every xyz byte and every ordered triangle index, enforces count3, finite coordinates, complete counts/bounds and no trailing bytes, then rechecks source/PLY hashes. It shares no structured-face writer implementation.",
+    "Neither helper reads a vertex-origin map. The original clip-ID file is an independently hash-bound unchanged member with UINT64_MAX/new-plane semantics and selected1f9 input row IDs, without original894/OEM reinterpretation.",
+    "Held recipe has128 planned nonmanifest members:125 current complete size/hash identities and3 null pending format artifacts. All125 current members were hash/size checked. Member names are distinct safe relative ASCII paths; internal manifest excludes itself from its member map.",
+    "All three exact capsule closures are present now and match the held seals: plane-clip57files, later readback17files, material witness42files. Every capsule file occurs exactly under its declared evidence subtree. The readback public-copy=false flag is a preserved preparation-time observation; its public copy now matches dbf01270.",
+    "All three existing archive-workflow reference files/hashes match. Their stream/member-map/full-readback/checksum operations may be reused with the new final map; the old case-specific packager must not be run unchanged.",
+    "README explicitly retains3112-poor-face rejection, assumed plane0/no OEM datum, selected-input identity,2396cap/716mixed/zero off-plane census, independent global gate gaps and unchanged0.0625mm/SICN0.1 requirements. Material bars are not represented as fields on this head.",
+    "Known planned text members disclose no private user/home absolute paths, IP or UUID values. No runtime binaries, raw transport commands, upstream CGAL headers, raw scans or supplier/OEM data are planned. Capsule-specific attribution and existing licence remain intact."
+  ],
+  "required_before_archive": [
+    "Run the actual exporter and full independent verifier; populate all3 pending identities from their completed outputs.",
+    "Freeze a separate complete root-reviewed final recipe with current capsule closure and truthful completed-operation wording.",
+    "Use fresh streamed-deflate archive and unchanged before/after input bindings; independently read every ZIP member/hash/CRC and generate checksum/member metadata only from completed bytes."
+  ],
+  "blockers_for_source_preparation": [],
+  "limits": [
+    "No prepared source was imported/run and no surface/ID arrays were interpreted, exported or archived; file bytes were hash-read only.",
+    "No archive, checksum, release asset, upload or publication was created/verified by this review.",
+    "Successful future format equality does not establish new global geometry admission, fitment, strength, head physics, LPBF calibration or manufacturing authorization."
+  ],
+  "native_import_export_archive_network_or_Git_calls": false,
+  "surface_volume_or_physics_admitted": false,
+  "manufacturing_authorized": false
+}

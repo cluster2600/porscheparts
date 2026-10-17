@@ -38,6 +38,14 @@ The [later full-array readback](derived/engineering/atomic-cavity-plane-clip-rea
 verifies retained coordinate bytes and confines all 3,112 poor faces to the
 cap (2,396) and its rim (716). Connected repair patches and fresh global
 geometry checks remain to be established before another volume trial.
+The [rejected clipped-surface download](derived/engineering/atomic-cavity-plane-clip-raw-review-delivery/README.md)
+contains exact BIN/coordinate IDs, lossless PLY and the three review capsules.
+All 129 archive members pass independent byte checks; GitHub verifies the three
+new asset identities while preserving all 39 prior records.
+The [new local-complex census](derived/engineering/atomic-cavity-plane-clip-patch-census/README.md)
+finds 758 poor-face edge groups sharing 760 contact vertices. Their complete
+incident union is one manifold region with Euler −4 and six boundary cycles,
+requiring fresh repair constraints; the earlier disk-only assessor cannot apply.
 The [separate material follow-up](MATERIAL_CONDUCTIVITY_FOLLOWUP.md) supplies
 measured AlSi10Mg conductivity points. The [two native bar witnesses](MATERIAL_CONDUCTIVITY_WITNESS.md)
 now verify the separate assumed piecewise-linear Z/XY laws with 109 final-field
