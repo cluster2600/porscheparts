@@ -353,3 +353,5 @@ calcule les empreintes. Les entrées privées restent dans le dossier de travail
 Les guides affichent les résultats réellement obtenus par la révision retenue.
 Une image de supports vient du maillage de supports ; une image de contrainte
 vient du jeu de calcul correspondant. Aucun rendu ne remplace un résultat.
+
+La [planche 24 des champs C1](../../parts/993-eng-carrier-0001/source/progress-figures-20261016/C1-fields-20261017/README.md) représente les deux calculs clos sur appuis rigides et K1000, avec leurs pics globaux et une déformée à ×1. Son rejeu du dessin dépend de la capsule native C1 et reproduit les trois formats à l’octet ; il ne relance pas de solveur et ne démontre pas une convergence des contraintes.
