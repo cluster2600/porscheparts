@@ -1,0 +1,90 @@
+"""Select 48 unchanged PMP rows plus one separately attested Euler row.
+
+The original49-row receipt remains byte-identical, including its kept-source
+diagnostic. This bundle declares a selection; it is not a rewritten PMP result.
+"""
+from copy import deepcopy
+import hashlib
+import importlib.util
+import json
+from pathlib import Path
+
+CASE='source003-SKIN-1579-1580-step-0'
+REQUIRED={
+    'quad_records':'a11c525399acceee2d860cc8f2b9caaec7e7a5f33b7b5e792f07d4be43e28558',
+    'PMP_receipt':'7f2ccd7564d36cb679100b376c0a7ba14a51005c7474d2be7e20fda9b265150f',
+    'PMP_rows':'c65f10516f06576cecaefa2069332ae1d7d5d68754f973e91f862f61152a00fe',
+    'PMP_validator':'da2d2d3a2949b1a103b06e141513aea4c16091e44b00cb92c366447a231282f6',
+    'Euler_receipt':'6c7b3ed08f4cf666f5ff270e04db0dbd73f2cd5b245b8c7c963fe56d60036588',
+    'Euler_rows':'5a55dc3739c0f2fb5f758a182a97a3323f85b155e2df348c3be4bc7a95f30a8b',
+    'Euler_validator':'c2409d646541c6786b9b4bdf000bc1f2c23f666e8db90ae0b336218fee7b3ac9'}
+
+
+def sha(path):return hashlib.sha256(Path(path).read_bytes()).hexdigest()
+
+
+def private(path,name):
+    spec=importlib.util.spec_from_file_location(name,path)
+    module=importlib.util.module_from_spec(spec);spec.loader.exec_module(module)
+    return module
+
+
+def completed(receipt,rows,lines_sha):
+    if (receipt.get('status')!='complete_native_quad_batch_verified_no_carrier_admission' or
+            receipt.get('actual_foreground_native_test_exit_code')!=0 or receipt.get('test_transport_exit_code')!=0 or
+            receipt.get('owned_scopes_inactive')is not True or receipt.get('local_frozen_files_unchanged')is not True or
+            receipt.get('execution_files_sha256',{}).get('test.stdout.log')!=lines_sha or receipt.get('cases')!=rows):
+        raise ValueError('An actual component native receipt is incomplete or unbound')
+
+
+def select(records,pmp,euler,euler_record,pmp_receipt,euler_receipt,pmp_sha,euler_sha,pmp_validate,euler_validate):
+    """Pure fixed-case selection; never mutate or relabel either source result."""
+    completed(pmp_receipt,pmp,pmp_sha);completed(euler_receipt,euler,euler_sha)
+    if len(records)!=49 or len(pmp)!=49 or len(euler)!=1:raise ValueError('Exactly49 PMP and one Euler record are required')
+    pmp_validate(pmp,records);euler_validate(euler,[euler_record])
+    kept=[row['case']for row in pmp if row['kept_source_diagonal']]
+    if kept!=[CASE]or euler[0]['case']!=CASE:raise ValueError('Only the one actually kept PMP case may use Euler')
+    expected=next(row for row in records if row['name']==CASE)
+    extras={'constrained_diagonal_ids':[1795,1799],
+        'constraint_authority':'v3 current-state strict collapsed-cut counter operation, then exact convex coplanar Q proof'}
+    if euler_record!={**expected,**extras}:
+        raise ValueError('The single Euler input differs from its exact original quad and plan constraint')
+    if euler_receipt.get('method')!='constrained_Euler_split_face'or euler_receipt.get('PMP_selected_diagonal')is not False:
+        raise ValueError('The Euler authority must remain explicitly distinct from PMP')
+    selected=deepcopy(pmp);index=next(i for i,row in enumerate(pmp)if row['case']==CASE);selected[index]=deepcopy(euler[0])
+    if any(row['kept_source_diagonal']for row in selected)or [row['case']for row in selected]!=[row['name']for row in records]:
+        raise ValueError('The complete selected topology does not match the finite plan')
+    provenance=[]
+    for row in selected:
+        authority='Euler'if row['case']==CASE else'PMP'
+        provenance.append(dict(case=row['case'],method='constrained_Euler_split_face'if authority=='Euler'else'PMP_triangulate_face',
+            receipt_sha256=REQUIRED[authority+'_receipt'],result_sha256=REQUIRED[authority+'_rows']))
+    return selected,provenance
+
+
+def assemble(root,inputs):
+    root=Path(root).resolve()
+    def file(name):
+        value=Path(name)
+        if value.is_absolute()or '..'in value.parts:raise ValueError('Only local workspace-relative native inputs are allowed')
+        return root/value
+    before={name:sha(file(name))for name in inputs['files_sha256']}
+    if before!=inputs['files_sha256']:raise ValueError('A native selection source or input changed')
+    for role,digest in REQUIRED.items():
+        if before.get(inputs[role])!=digest:raise ValueError('A retained real native identity differs: '+role)
+    records=json.loads(file(inputs['quad_records']).read_text())['records']
+    pmp=[json.loads(line)for line in file(inputs['PMP_rows']).read_text().splitlines()]
+    euler=[json.loads(line)for line in file(inputs['Euler_rows']).read_text().splitlines()]
+    er=json.loads(file(inputs['Euler_input']).read_text())['records']
+    if len(er)!=1:raise ValueError('The actual Euler input must contain one exact quad')
+    pr=json.loads(file(inputs['PMP_receipt']).read_text());rr=json.loads(file(inputs['Euler_receipt']).read_text())
+    pv=private(file(inputs['PMP_validator']),'_actual_PMP_native_row_validator')
+    ev=private(file(inputs['Euler_validator']),'_actual_Euler_native_row_validator')
+    selected,provenance=select(records,pmp,euler,er[0],pr,rr,REQUIRED['PMP_rows'],REQUIRED['Euler_rows'],pv.validate_records,ev.validate_records)
+    after={name:sha(file(name))for name in before}
+    if after!=before:raise ValueError('A native selection source or input changed during verification')
+    return dict(schema='source003009-native-topology-selection-1',status='48_PMP_plus_1_constrained_Euler_selected_no_mesh',
+        fixed_Euler_case=CASE,selected_rows=selected,case_provenance=provenance,selected_PMP_cases=48,selected_Euler_cases=1,
+        original_PMP_cases_retained=49,original_PMP_kept_source_case=CASE,original_PMP_receipt_unchanged=True,
+        inputs_sha256_before=before,inputs_sha256_after=after,source_sha256=sha(__file__),AM_imported=False,
+        native_execution_repeated=False,carrier_mesh_written=False,global_admission=False)

@@ -592,3 +592,23 @@ Les sept sources et reçus sont conservés à l’octet et leur vérificateur
 documentaire fonctionne hors environnement CAD. Cette déflexion demandée
 ne constitue pas une borne globale démontrée de l’écart au BREP ;
 la mesure de distance CGAL entre maillages reste une étape séparée.
+
+Les deux copies supplémentaires des supports **003 et 009** ont ensuite été
+créées à partir de 48 résultats PMP et d’une diagonale contrainte calculée
+séparément par `CGAL::Euler::split_face`. Le lot PMP original de 49 cas,
+y compris son choix d’ancienne diagonale sur un cas, reste conservé.
+Les sommets et attributs restent identiques ; 39 et 49 lignes de triangles
+changent. Les compteurs certifiés passent de **205 et 2 879 à zéro**.
+Les nouveaux graphes matériels passent pour leurs 147 et 22 groupes, et
+**les 1 034 couches strictes de chaque copie passent**, avec les hooks et
+critères d’origine. Ces contrôles complètent ceux de 010 ; le rejeu portable
+des peaux et l’assemblage des sept régions restent en cours.
+
+Le [dossier des trois topologies corrigées](../../parts/993-eng-carrier-0001/source/certified-support-topology-20261017/README.md)
+conserve maintenant les tableaux et certificats, le helper portable et
+l’adaptateur privé. Le rejeu réel de leurs **14 surfaces SKIN passe** :
+triangles XYZ exactement égaux aux copies candidates, 320 lignes SKIN
+appliquées et zéro ligne GRID modifiée par ce rejeu. Le contrôle des preuves
+sur les vrais NPZ passe ; les 19 tests synthétiques de l’adaptateur passent
+depuis cette copie documentaire. Les contacts/expositions des trois régions
+sur toutes les couches et l’assemblage des sept régions restent distincts.
