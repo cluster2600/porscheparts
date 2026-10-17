@@ -84,10 +84,14 @@ assumed bionic geometry; a missing original dimension stays unknown.
    checks. Maximum step energy defect is 2.1964e-8 J against 1e-7 J; maximum
    continuous relative error is 0.37577% against 1%. Birth and existing nodal
    histories, material samples and the moving Gaussian source pass their frozen
-   gates. The original failed Newton run remains immutable. One time level does
-   not establish temporal convergence, and LINEAR does not check the original
-   Newton nonlinear criterion. This remains a synthetic assumed-material
-   software result, without head strength or calibrated LPBF acceptance.
+   gates. The original failed Newton run remains immutable. The subsequent
+   [fixed three-level energy-error check](derived/engineering/cp1-assumed-thermal-birth-linear-refinement/README.md)
+   adds separately assessed 40- and 80-step runs. Complete-trace maximum absolute
+   relative errors are 1.49219%, 0.751924% and 0.375766%; ratios 1.98449 and
+   2.00104 pass the unchanged 1.4 requirement, with the finest below 1%.
+   This is the synthetic coupon's energy-error refinement criterion only.
+   Full-field/spatial convergence and the original Newton nonlinear criterion
+   remain unverified, as do head strength and calibrated LPBF acceptance.
    The earlier [replacement prerequisites](derived/engineering/local-replacement-prerequisites/README.md)
    now establish sparse-tag editing capability, exact relative local-domain
    equality and the original head's nine exterior/nineteen connected interfaces.

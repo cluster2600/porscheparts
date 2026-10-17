@@ -1,0 +1,14 @@
+--- work/962-engineering/cp1-assumed-thermal-birth-linear-refinement-prep-002/selfcheck.py
++++ work/962-engineering/cp1-assumed-thermal-birth-linear-refinement-prep-003/selfcheck.py
+@@ -117,7 +117,10 @@
+   with self.assertRaises(ValueError):self.call()
+  def test_original_ratio_and_finest_boundaries_without_softening(self):
+   self.fixture((.007,.005,.0025));self.assertTrue(self.call()['passed'])
+-  self.fixture((math.nextafter(.007,-math.inf),.005,.0025));self.assertFalse(self.call()['passed'])
++  # One downward ULP still divides to1.4; two ULPs make this a strict-below fixture.
++  below=math.nextafter(math.nextafter(.007,-math.inf),-math.inf)
++  self.assertLess(below/.005,1.4)
++  self.fixture((below,.005,.0025));self.assertFalse(self.call()['passed'])
+   self.fixture((.04,.02,.01));self.assertTrue(self.call()['passed'])
+   self.fixture((.04,.02,math.nextafter(.01,math.inf)));self.assertFalse(self.call()['passed'])
+   self.fixture((0.,.008,.004));self.assertFalse(self.call()['passed'])
