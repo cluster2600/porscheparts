@@ -70,8 +70,15 @@ assumed bionic geometry; a missing original dimension stays unknown.
    review and root acceptance join every complete report; pair geometry remains
    reviewed-source/root-execution evidence. The 2,078 original cells include
    75 poor cells; all 2,972 local replacement cells pass the frozen quality gate.
-   Combined head application and its subset-specific preservation checks remain
-   pending. The unchanged whole head remains rejected with 204 poor cells.
+   The subsequent [combined head application](derived/engineering/current204-combined-application/README.md)
+   completes all 47 replacements and full save/reopen audits, reducing the count
+   **204 to 129**. Its subset-specific proofs preserve outside tagged arrays,
+   original classifications/entity parameters and source boundary. Independent
+   saved review reconstructs every mapping and ordered cell and compares all
+   8,916 replacement metric words; global native audits remain worker/root
+   evidence. The saved head has 1,097,219 nodes and 3,621,755 tetrahedra, with
+   unchanged minimum SICN 0.039074265058645995. The 129 remaining poor cells
+   still reject the whole head; the separate 414 Mesh_2 failures remain open.
    The first conditional isothermal screen has an
    [explicit assumed card](engineering/cp1-isothermal-assumed-card.json):
    E = 71 GPa, ν = 0.33, uniform 25 °C and constant isotropic elasticity.

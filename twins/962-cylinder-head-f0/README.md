@@ -59,8 +59,16 @@ the 116-region parent context are included. The subsequent
 complete all 147,917 old/candidate cell pairs and 8,283,352 plane-triple
 attempts. All local-domain queries pass; independent saved-association review
 and root acceptance are retained with complete lossless reports. The regions
-cover 75 original poor cells. Their combined head application remains pending;
-the unchanged head still has 204 poor cells.
+cover 75 original poor cells. The subsequent
+[combined head application](derived/engineering/current204-combined-application/README.md)
+completes the 47-region replacement and full save/reopen audits, reducing the
+observed count **204 to 129**. All 2,972 replacement cells pass SICN 0.1; outside
+tagged arrays, original classifications and source boundary remain preserved.
+Independent review checks every replacement mapping and all 8,916 native metric
+words without replaying global geometry. The saved head has 1,097,219 nodes and
+3,621,755 tetrahedra. Its unchanged minimum SICN 0.039074265058645995 and 129
+remaining poor cells still reject the whole head; the stronger 414 Mesh_2
+failures remain open.
 The [assumed-material thermal coupon](derived/engineering/cp1-assumed-thermal-birth-failed/README.md)
 failed its first time step: 33 internal cutbacks, zero converged steps and no
 energy assessment. The full failure and initial fields are retained. Its
