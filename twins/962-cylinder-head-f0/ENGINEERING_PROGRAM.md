@@ -104,6 +104,13 @@ The [separate Delaunay trial and saved-file first pass](derived/engineering/atom
 records 3,961,773 tetrahedra and 73,924 below SICN 0.1, including one
 nonpositive SICN value. Full first-pass boundary checks are saved; both deadline
 stops and the unfinished final reopen remain explicit. This volume is rejected.
+The [completed default optimizer and independent diagnosis](derived/engineering/atomic-cavity-plane-clip-cap-assembly-delaunay-default-postexport/README.md)
+record 3,802,217 tetrahedra, 3,438 positive cells below SICN 0.1 and no
+nonpositive metrics. Independent saved-file arrays and metrics match the
+optimizer's after-proof. Of the poor cells, 1,435 use only retained boundary
+vertices and 2,003 involve an interior vertex. With connectivity and boundary
+coordinates fixed, interior movement alone cannot repair the first group.
+The unchanged quality gate still rejects this volume; no head field is accepted.
 The [exact assembled-model download](derived/engineering/atomic-cavity-plane-clip-cap-assembly-raw-review-delivery/README.md)
 includes BIN, lossless PLY, all seven maps and the complete sealed evidence.
 All 151 members pass independent full-byte checks. GitHub verifies the three

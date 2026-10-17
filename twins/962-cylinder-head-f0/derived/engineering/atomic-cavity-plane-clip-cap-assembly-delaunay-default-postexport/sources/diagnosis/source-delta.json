@@ -1,0 +1,69 @@
+{
+  "schema": "962-optimized-Delaunay-single-after-proof-diagnosis-source-delta/v1",
+  "reader": {
+    "base_path": "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-volume-poorcell-diagnosis-prep-001/reader.py",
+    "base_sha256": "0674131e299bb0143855656cbb543a911ebead3fc69b8d1b99869dd2072c0dff",
+    "selected_sha256": "c44eed3f69c83d6f774300634e27f3df90c4a4f699d5787519639e4c3b1fe891",
+    "replacements": [
+      {
+        "old": "contract=json.loads((OUT/'frozen-contract.json').read_text())",
+        "new": "def optimizer_after_proof(worker,receipt,contract):\n \"\"\"Select the one actual optimized worker's after proof, never a reader alias.\"\"\"\n if (receipt.get('returncode')!=2 or receipt.get('stop_reason') is not None\n     or receipt.get('bound_inputs_unchanged') is not True or receipt.get('worker_report')!=worker\n     or worker.get('optimizer_returned') is not True or worker.get('element_cache_refresh_completed') is not True\n     or worker.get('saved_mesh_identity_exact') is not True\n     or receipt.get('mesh_sha256')!=contract['MSH_sha256'] or worker.get('mesh_sha256')!=contract['MSH_sha256']\n     or receipt.get('mesh_bytes')!=contract['MSH_bytes'] or worker.get('mesh_bytes')!=contract['MSH_bytes']\n     or worker.get('candidate_sha256')!=contract['candidate_sha256']):\n  raise ValueError('Exact completed optimized-worker after proof required')\n proof=worker['after'];n=proof['tetrahedra'];quality=proof['quality'];keys={'sorted_node_tags_sha256','sorted_coordinates_sha256','sorted_tetra_tags_sha256','tagged_tetra_connectivity_sha256'}\n if (type(n) is not int or n<=0 or set(proof['array_sha256s'])!=keys\n     or set(quality)!={'minimum_jacobian','native_volume_mm3','minimum_SICN','independent_signed_volume_mm3'}\n     or any(type(row.get('count')) is not int or row['count']!=n or type(row.get('nonpositive_count')) is not int for row in quality.values())\n     or quality['minimum_SICN']['below_point1_count']-quality['minimum_SICN']['nonpositive_count']!=contract['expected_positive_poor_total']\n     or quality['minimum_SICN']['nonpositive_count']!=contract['diagnostic_maximum_nonpositive_cells']):\n  raise ValueError('Complete actual worker-after arrays, metric counts and poor-cell baseline required')\n return proof\n\n\ndef require_after_match(report,proof,expected_positive_poor_total):\n \"\"\"Require direct full saved-file observations to match the single worker proof.\"\"\"\n for observed,expected in [('actual_mesh_nodes','total_mesh_nodes'),('actual_tetrahedra','tetrahedra'),('actual_tetra_referenced_nodes','tetra_referenced_nodes'),('actual_unreferenced_mesh_nodes','unreferenced_mesh_nodes'),('actual_referenced_interior_nodes','tetra_referenced_interior_nodes')]:\n  if type(report[observed]) is not int or report[observed]!=proof[expected]:raise ValueError('Saved node/tetrahedron/reference counts differ from worker.after')\n fields=['count','minimum','maximum','p01','p05','p50','p95','p99','nonpositive_count']\n for name,key in [('SICN','minimum_SICN'),('Jacobian','minimum_jacobian'),('native_volume_mm3','native_volume_mm3')]:\n  observed=report['direct_native_quality_extrema'][name];expected=proof['quality'][key]\n  if any(observed[k]!=expected[k] for k in [*fields,'array_sha256']):raise ValueError('Full saved native metric differs from worker.after: '+name)\n  if name=='SICN' and observed['below_point1_count']!=expected['below_point1_count']:raise ValueError('SICN below-point1 count differs from worker.after')\n observed=report['independent_signed_volume_mm3'];expected=proof['quality']['independent_signed_volume_mm3']\n if (any(observed[k]!=expected[k] for k in fields) or observed['sum']!=proof['summed_tetra_volume_mm3'] or observed['relative_error_to_candidate']!=proof['volume_relative_error']):\n  raise ValueError('Independent saved signed-volume distribution/sum differs from worker.after')\n if report['positive_poor_SICN_cells']['total']!=expected_positive_poor_total:raise ValueError('Exact current positive-poor partition required')\n\n\ncontract=json.loads((OUT/'frozen-contract.json').read_text())"
+      },
+      {
+        "old": "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-volume-hxt-001",
+        "new": "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-volume-delaunay-default-postexport-001"
+      },
+      {
+        "old": "admission=json.loads((w/'surface-admission.json').read_text())",
+        "new": "admission=json.loads((w/'surface-admission.json').read_text())\nproof=optimizer_after_proof(worker,receipt,contract)"
+      },
+      {
+        "old": "if gmsh.__version__!='4.15.2'",
+        "new": "if np.__version__!=worker['runtime']['numpy'] or gmsh.__version__!='4.15.2'"
+      },
+      {
+        "old": "  if report[key]!=worker[key]:",
+        "new": "  if report[key]!=proof['array_sha256s'][key]:"
+      },
+      {
+        "old": " nv,nf=struct.unpack_from('<QQ',header,8)",
+        "new": " nv,nf=struct.unpack_from('<QQ',header,8)\n if (nv,nf)!=(contract['candidate_vertices'],contract['candidate_oriented_triangles']):raise ValueError('Exact current source boundary counts required')"
+      },
+      {
+        "old": "  row=dict(count=0,minimum=None,maximum=None,nonpositive_count=0,below_point1_count=0 if name=='SICN' else None)",
+        "new": "  row=dict(count=0,minimum=None,maximum=None,nonpositive_count=0,below_point1_count=0 if name=='SICN' else None)\n  metric_values=np.empty(len(tet_tags),dtype=np.float64)"
+      },
+      {
+        "old": "   if len(q)!=len(tet_tags[offset:offset+100000]) or not np.isfinite(q).all():raise ValueError('Incomplete/nonfinite native metric')",
+        "new": "   if len(q)!=len(tet_tags[offset:offset+100000]) or not np.isfinite(q).all():raise ValueError('Incomplete/nonfinite native metric')\n   metric_values[offset:offset+len(q)]=q"
+      },
+      {
+        "old": "  native[name]=row",
+        "new": "  row.update(dict(zip(('p01','p05','p50','p95','p99'),map(float,np.percentile(metric_values,[1,5,50,95,99])))))\n  row['array_sha256']=array_sha(metric_values[tetorder])\n  native[name]=row"
+      },
+      {
+        "old": " for bad in [*bad_tetrahedra,*positive_poor_representatives.values()]:bad['independent_signed_volume_mm3']=float(volumes[bad['native_array_index']])",
+        "new": " report['independent_signed_volume_mm3'].update(dict(zip(('p01','p05','p50','p95','p99'),map(float,np.percentile(volumes,[1,5,50,95,99])))))\n for bad in [*bad_tetrahedra,*positive_poor_representatives.values()]:bad['independent_signed_volume_mm3']=float(volumes[bad['native_array_index']])"
+      },
+      {
+        "old": " report.update(retained_only_not_repeated=dict(tetra_exterior_incidence=worker['actual_tetra_boundary'],internal_face_orientation=worker['internal_tetra_face_orientation'])",
+        "new": " require_after_match(report,proof,contract['expected_positive_poor_total'])\n report['direct_counts_metrics_and_positive_poor_total_match_single_worker_after']=True\n report['single_optimized_worker_proof']=dict(worker_report_sha256=sha(w/'worker-report.json'),field='after',independent_prior_reader_alias_used=False)\n report.update(retained_only_not_repeated=dict(tetra_exterior_incidence=proof['actual_tetra_boundary'],internal_face_orientation=proof['internal_tetra_face_orientation'],classifications=proof['classifications'])"
+      }
+    ],
+    "reverse_bytes_exact": true,
+    "classifier_AST_unchanged": true
+  },
+  "runner": {
+    "base_path": "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-delaunay-readback-prep-001/run_readback.py",
+    "base_sha256": "4fb37080e1f3847b8b1d14d5df467799d8e9f7bf81b0a09170e5850857de3943",
+    "selected_sha256": "4fb37080e1f3847b8b1d14d5df467799d8e9f7bf81b0a09170e5850857de3943",
+    "bytes_exact": true
+  },
+  "new_guard_functions": [
+    "optimizer_after_proof",
+    "require_after_match"
+  ],
+  "fresh_native_metrics_hash_in_sorted_tetra_tag_order": true,
+  "fresh_all_distribution_fields_match_worker_after": true,
+  "prior_classifier7_and_runner13_reused_not_rerun": true
+}
