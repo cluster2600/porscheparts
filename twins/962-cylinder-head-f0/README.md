@@ -35,9 +35,16 @@ boundary mesh, but independent readback confirms 283,853 tetrahedra below SICN
 The [exact rejected MSH and evidence ZIP](derived/engineering/atomic-cavity-volume-raw-review-delivery/README.md)
 is uploaded with its member manifest and checksum. All 34 archive members pass
 independent full-byte checks; all 36 preceding release assets remain intact.
+The [later optimizer and diagnosis](derived/engineering/atomic-cavity-volume-followup/README.md)
+record a 20-minute stop without export, followed by a completed read-only query:
+245,420 poor cells contain four boundary nodes. Moving only interior nodes with
+unchanged connectivity cannot repair those cells; volume quality remains rejected.
 The [sourced material comparison](ENGINEERING_MATERIALS.md) now separates seven
 published recipes, discrete hot-strength points and conditional body masses.
 These results do not select or qualify a material for the head.
+The [separate AlSi10Mg conductivity follow-up](MATERIAL_CONDUCTIVITY_FOLLOWUP.md)
+adds measured directional points over 23–250 °C, with the treatment, missing
+conditions and proposed interpolation kept explicit.
 The [earlier analysis-surface evidence](ANALYSIS_QUALITY_ENGINEERING.md) passes
 its quality, topology, intersection and 0.25 mm distance screens, while
 exceeding the finest 0.0625 mm representation budget. Its checks remain

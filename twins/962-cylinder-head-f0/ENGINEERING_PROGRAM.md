@@ -25,6 +25,14 @@ Its [exact MSH review download](derived/engineering/atomic-cavity-volume-raw-rev
 preserves the rejection and completed readback. All 34 archive members pass
 independent full-byte checks; the three uploaded assets match GitHub digests
 and sizes while preserving all 36 preceding assets.
+The [subsequent optimizer and diagnosis](derived/engineering/atomic-cavity-volume-followup/README.md)
+record the separate 1,200-second stop with no saved result, followed by complete
+poor-cell classification. With boundary coordinates and connectivity fixed,
+interior movement cannot alter 245,420 of the 283,853 poor tetrahedra. The next
+trial must address connectivity or a separately declared boundary variant.
+The [separate material follow-up](MATERIAL_CONDUCTIVITY_FOLLOWUP.md) supplies
+measured AlSi10Mg conductivity points; a continuous solver law, head material
+selection and thermoelastic inputs remain open.
 
 The geometry baseline is commit `79180221fa79f2f669cbf3c0b9104cbb662c39d6`.
 Its [delivery receipt](derived/family/delivery-report.json), original outputs
