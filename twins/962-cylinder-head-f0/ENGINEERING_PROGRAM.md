@@ -6,7 +6,7 @@ scenarios through 4.0 L and four actual head geometries. This programme tracks
 the complete requested outcome; preparation or software tests do not complete
 a physical engineering stage.
 
-The [latest bore95 analysis-surface checkpoint](ATOMIC_CAVITY_ENGINEERING.md)
+The [bore95 atomic-cavity surface checkpoint](ATOMIC_CAVITY_ENGINEERING.md)
 repairs the remaining 266 poor facets and passes independent full-array,
 global topology/intersection and two-sided continuous-distance checks. Its
 deviation upper bound is 0.0328639663163803 mm against the unchanged 0.0625 mm
@@ -30,9 +30,18 @@ record the separate 1,200-second stop with no saved result, followed by complete
 poor-cell classification. With boundary coordinates and connectivity fixed,
 interior movement cannot alter 245,420 of the 283,853 poor tetrahedra. The next
 trial must address connectivity or a separately declared boundary variant.
+The [separate z=0 finishing study](derived/engineering/atomic-cavity-plane-clip/README.md)
+passes four unchanged clipping literals with exact-construction arithmetic.
+The head proposal still has 3,112 faces below the unchanged surface-quality
+threshold; surface admission, volume meshing and head fields remain open.
+The [later full-array readback](derived/engineering/atomic-cavity-plane-clip-readback/README.md)
+verifies retained coordinate bytes and confines all 3,112 poor faces to the
+cap (2,396) and its rim (716). Connected repair patches and fresh global
+geometry checks remain to be established before another volume trial.
 The [separate material follow-up](MATERIAL_CONDUCTIVITY_FOLLOWUP.md) supplies
-measured AlSi10Mg conductivity points; a continuous solver law, head material
-selection and thermoelastic inputs remain open.
+measured AlSi10Mg conductivity points. The [two native bar witnesses](MATERIAL_CONDUCTIVITY_WITNESS.md)
+now verify the separate assumed piecewise-linear Z/XY laws with 109 final-field
+checks each. Head material selection and thermoelastic inputs remain open.
 
 The geometry baseline is commit `79180221fa79f2f669cbf3c0b9104cbb662c39d6`.
 Its [delivery receipt](derived/family/delivery-report.json), original outputs

@@ -39,12 +39,24 @@ The [later optimizer and diagnosis](derived/engineering/atomic-cavity-volume-fol
 record a 20-minute stop without export, followed by a completed read-only query:
 245,420 poor cells contain four boundary nodes. Moving only interior nodes with
 unchanged connectivity cannot repair those cells; volume quality remains rejected.
+The [assumed z=0 finishing trial](derived/engineering/atomic-cavity-plane-clip/README.md)
+passes four exact-construction clipping fixtures. Its separate head proposal
+retains 3,112 poor surface faces; local repair and fresh geometry checks are
+required before volume meshing.
+The [complete clipped-head array readback](derived/engineering/atomic-cavity-plane-clip-readback/README.md)
+verifies every retained coordinate byte and classifies all poor faces: 2,396
+on the cap, 716 touching its rim and none away from the plane. This scopes the
+next local repair; it does not admit the clipped surface or volume.
 The [sourced material comparison](ENGINEERING_MATERIALS.md) now separates seven
 published recipes, discrete hot-strength points and conditional body masses.
 These results do not select or qualify a material for the head.
 The [separate AlSi10Mg conductivity follow-up](MATERIAL_CONDUCTIVITY_FOLLOWUP.md)
 adds measured directional points over 23–250 °C, with the treatment, missing
 conditions and proposed interpolation kept explicit.
+The [two native conductivity witnesses](MATERIAL_CONDUCTIVITY_WITNESS.md)
+now pass 109 final-field checks each against an independent Kirchhoff reference.
+They verify the separate scalar software laws on an assumed bar; head strength
+and material/process qualification remain open.
 The [earlier analysis-surface evidence](ANALYSIS_QUALITY_ENGINEERING.md) passes
 its quality, topology, intersection and 0.25 mm distance screens, while
 exceeding the finest 0.0625 mm representation budget. Its checks remain

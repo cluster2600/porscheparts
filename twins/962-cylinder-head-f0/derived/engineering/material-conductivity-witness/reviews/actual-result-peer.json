@@ -1,0 +1,113 @@
+{
+  "schema": "962-material-conductivity-witness-independent-actual-result-review/v1",
+  "reviewer": "clip_source_review",
+  "conclusion": "Closed evidence supports passing separate Z and XY final-field software interpolation witnesses on the declared single generated mesh. No discrepancy found in the reviewed records; no rerun was performed.",
+  "authorized_contract_sha256": "c8ae6cd95b3d566b18a08cf2763d4a51a5900a63cb733a11cd51446f36c1ef7d",
+  "readback_before_sha256": "fb7dea8baef9e77e2d9a872bd993877e1f6c930a8cd9a5c18102a73dc1219d6c",
+  "readback_after_sha256": "fb7dea8baef9e77e2d9a872bd993877e1f6c930a8cd9a5c18102a73dc1219d6c",
+  "execution_summary_sha256": "2f3bb209f36c26fe05f8ae40b4491e09be9bc0ec9ebf4d98e3ff093750c61f98",
+  "assessment_summary_sha256": "e914891e63f2ecefe514ccaede48f484c4c00671488ab2c837fc16baf641f08b",
+  "reviewed_closure": {
+    "files": 77,
+    "bytes": 307461,
+    "all_remote_before_local_remote_after_size_hash_maps_equal": true,
+    "authorized_source_pins": 29,
+    "all_source_pins_and_both_source_snapshot_maps_match": true,
+    "both_stopped_artifact_and_input_maps_match": true,
+    "all_assessment_consumed_export_hashes_match": true,
+    "both_complete_68_node_16_centroid_coordinate_and_ID_sets_read": true,
+    "both_final_power_CSVs_single_row_match_assessments": true,
+    "both_logs_one_convergence_marker": true,
+    "all_218_stored_numerical_checks_finite_and_within_frozen_limits": true
+  },
+  "cases": {
+    "Z": {
+      "native_receipt_sha256": "f527582a461a024a489ae5cf4bc45e10c46cad71418c8b4d1f45b2a09caaa20f",
+      "assessment_sha256": "0871f7855593846b508fc7257bf127ccd52820c375c9eb8eef3f58579d5c6bea",
+      "native_returncode": 0,
+      "recorded_process_reaped": true,
+      "wall_seconds": 0.8200030070729554,
+      "checks_passed": 109,
+      "failed_checks": [],
+      "final_nodes": 68,
+      "final_cells": 16,
+      "free_temperature_DOFs": 60,
+      "final_nodal_range_C": [
+        23.0,
+        250.0
+      ],
+      "final_Gauss_range_C": [
+        26.007698198048576,
+        246.9599434559205
+      ],
+      "maximum_node_error_over_227K": 1.0103444429336626e-05,
+      "maximum_k_average_error_W_per_mmK": 5.551115123125783e-17,
+      "raw_native_outward_powers_W": [
+        7.419159660518961,
+        -7.388496559765945
+      ],
+      "direct_Q1_outward_powers_W": [
+        7.419159660518962,
+        -7.388496559765942
+      ],
+      "continuum_outward_powers_W": [
+        7.42105,
+        -7.42105
+      ],
+      "raw_end_power_relative_imbalance": 0.004131908658884694,
+      "consistent_axial_mean_heat_rate_W": -7.4209460724510405,
+      "consistent_cell_flux_relative_deviation": 7.30080545967545e-15
+    },
+    "XY": {
+      "native_receipt_sha256": "117076c944e6874738fa052c5074bd4ebeefedbe949f72bb7f51853409e0018f",
+      "assessment_sha256": "1b03c160661176abdd923eb06de21c5d161a7aa810221115e9e5bf7168630986",
+      "native_returncode": 0,
+      "recorded_process_reaped": true,
+      "wall_seconds": 0.7160605688113719,
+      "checks_passed": 109,
+      "failed_checks": [],
+      "final_nodes": 68,
+      "final_cells": 16,
+      "free_temperature_DOFs": 60,
+      "final_nodal_range_C": [
+        23.0,
+        250.0
+      ],
+      "final_Gauss_range_C": [
+        25.99300955481874,
+        246.96773231588656
+      ],
+      "maximum_node_error_over_227K": 5.267014870218799e-06,
+      "maximum_k_average_error_W_per_mmK": 5.551115123125783e-17,
+      "raw_native_outward_powers_W": [
+        7.006755613547341,
+        -6.9884613438127685
+      ],
+      "direct_Q1_outward_powers_W": [
+        7.006755613547339,
+        -6.988461343812774
+      ],
+      "continuum_outward_powers_W": [
+        7.0063,
+        -7.0063
+      ],
+      "raw_end_power_relative_imbalance": 0.0026111170995493324,
+      "consistent_axial_mean_heat_rate_W": -7.00625018326133,
+      "consistent_cell_flux_relative_deviation": 2.7889277034505125e-15
+    }
+  },
+  "interpretation": [
+    "Raw native boundary powers agree with independently reconstructed Q1 boundary powers. Their finite-mesh imbalance is below the declared1% criterion and is distinct from the nearly constant weak cell powers.",
+    "Console postprocessor tables precede FINAL exports and show zeros; assessed nonzero values are the hash-bound single-row FINAL CSVs.",
+    "Input/runtime unchanged and process reaping are recorded by the closed launcher receipts; this review checks their consistency and hashes without live OS inspection.",
+    "The standalone steady AD material, measured PiecewiseLinear columns, scalar property conversion and final exports were exercised here; this does not establish a separate formal AD-derivative proof."
+  ],
+  "limits": [
+    "The assessor/oracle were not imported or rerun; stored checks, CSV spatial coverage and scalar consistency were reviewed using stdlib reads.",
+    "Outside-knot function behavior and all intermediate nonlinear/material evaluations remain unobserved; universal fatal range refusal is not established.",
+    "One16-cell software witness establishes no mesh convergence, head field, build-axis tensor orientation, material/process selection, LPBF calibration, service extension, physical correlation or manufacturing authorization."
+  ],
+  "native_or_network_execution_by_this_reviewer": false,
+  "head_or_process_qualified": false,
+  "manufacturing_authorized": false
+}

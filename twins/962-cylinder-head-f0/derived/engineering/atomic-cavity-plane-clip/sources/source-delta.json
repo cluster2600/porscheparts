@@ -1,0 +1,56 @@
+{
+  "schema": "962-exact-plane-source002-delta/v1",
+  "preserved_source001_sha256": "38b2e1e57ee913f1bea8853d44849ea209674c018dcda3bf4625c4cab850773c",
+  "source002_sha256": "190432d46e38a7b70d33e564b827b5ae8a55ca28bd22b51f94ad679c188deb91",
+  "unchanged_IO_sha256": "6bdfff05371a92eff38879704c32e60acee3b84f39ca507adb8843963abc6a62",
+  "changes": [
+    {
+      "before": "#include <CGAL/Polygon_mesh_processing/self_intersections.h>",
+      "after": "#include <CGAL/Polygon_mesh_processing/self_intersections.h>\n#include <CGAL/Exact_predicates_exact_constructions_kernel.h>\n#include <CGAL/Cartesian_converter.h>\n#include <CGAL/number_utils.h>"
+    },
+    {
+      "before": "using Bits=std::array<std::uint64_t,3>;",
+      "after": "using Bits=std::array<std::uint64_t,3>;\nusing ExactKernel=CGAL::Exact_predicates_exact_constructions_kernel;\nusing ExactPoint=ExactKernel::Point_3;\nusing ExactMesh=CGAL::Surface_mesh<ExactPoint>;\nusing ExactCoordinates=std::array<ExactKernel::FT,3>;\nExactCoordinates exact_coordinates(const ExactPoint& p) { return {p.x(),p.y(),p.z()}; }"
+    },
+    {
+      "before": "       ||(clipped&&p.z()<0))throw std::runtime_error(\"Nonfinite or below-plane coordinate\");",
+      "after": "       ||(clipped&&p.z()<0)) {\n      std::cerr<<std::hexfloat<<\"invalid_embedding_coordinate=\"<<p.x()<<\",\"<<p.y()<<\",\"<<p.z()\n               <<std::defaultfloat<<std::endl;\n      throw std::runtime_error(\"Nonfinite or below-plane coordinate\");\n    }"
+    },
+    {
+      "before": "    std::cout<<\"stage=fixed_plane_volume_clip input_vertices=\"<<before.nv<<\" input_faces=\"<<before.nf<<std::endl;",
+      "after": "    // Equality lookup preserves unchanged original binary64 coordinates, including signed zero.\n    std::map<ExactCoordinates,Point> exact_inputs;\n    CGAL::Cartesian_converter<Kernel,ExactKernel> to_exact;\n    ExactMesh exact_mesh;exact_mesh.reserve(before.nv,3*before.nf/2,before.nf);\n    std::vector<ExactMesh::Vertex_index> exact_ids(mesh.num_vertices(),ExactMesh::null_vertex());\n    for(auto v:mesh.vertices()) {\n      const auto ep=to_exact(mesh.point(v));\n      if(!exact_inputs.emplace(exact_coordinates(ep),mesh.point(v)).second)\n        throw std::runtime_error(\"Ambiguous duplicate exact input coordinate\");\n      exact_ids[v.idx()]=exact_mesh.add_vertex(ep);\n    }\n    for(auto f:mesh.faces()) {\n      const auto row=vertices(mesh,f);\n      if(exact_mesh.add_face(exact_ids[row[0].idx()],exact_ids[row[1].idx()],exact_ids[row[2].idx()])==ExactMesh::null_face())\n        throw std::runtime_error(\"Exact input face copy failed\");\n    }\n    mesh=Mesh();\n    std::cout<<\"stage=fixed_plane_exact_volume_clip input_vertices=\"<<before.nv<<\" input_faces=\"<<before.nf<<std::endl;"
+    },
+    {
+      "before": "const bool ok=PMP::clip(mesh,Kernel::Plane_3(0,0,-1,0),",
+      "after": "const bool ok=PMP::clip(exact_mesh,ExactKernel::Plane_3(0,0,-1,0),"
+    },
+    {
+      "before": "if(mesh.number_of_faces()==0||mesh.number_of_vertices()==0) {",
+      "after": "if(exact_mesh.number_of_faces()==0||exact_mesh.number_of_vertices()==0) {"
+    },
+    {
+      "before": "    auto after=audit(mesh,true);",
+      "after": "    if(!CGAL::is_closed(exact_mesh)||!CGAL::is_triangle_mesh(exact_mesh)\n       ||!CGAL::is_valid_polygon_mesh(exact_mesh))throw std::runtime_error(\"Invalid exact clipped mesh\");\n    std::vector<Vertex> rounded_ids(exact_mesh.num_vertices(),Mesh::null_vertex());\n    for(auto v:exact_mesh.vertices()) {\n      const auto ep=exact_mesh.point(v);\n      if(ep.z()<0) {\n        std::cerr<<\"negative_exact_z=\"<<CGAL::exact(ep.z())<<std::endl;\n        throw std::runtime_error(\"Exact clipped coordinate below plane\");\n      }\n      const auto original=exact_inputs.find(exact_coordinates(ep));Point p;\n      if(original!=exact_inputs.end())p=original->second;\n      else {\n        if(ep.z()!=0)throw std::runtime_error(\"Unexpected exact off-plane constructed point\");\n        // Materialize lazy coordinates before approximate binary64 conversion; no nearest-rounding claim.\n        p=Point(CGAL::to_double(CGAL::exact(ep.x())),CGAL::to_double(CGAL::exact(ep.y())),\n                CGAL::to_double(CGAL::exact(ep.z())));\n      }\n      if(!std::isfinite(p.x())||!std::isfinite(p.y())||!std::isfinite(p.z()))\n        throw std::runtime_error(\"Nonfinite binary64 coordinate conversion\");\n      rounded_ids[v.idx()]=mesh.add_vertex(p);\n    }\n    for(auto f:exact_mesh.faces()) {\n      const auto h=exact_mesh.halfedge(f);\n      const auto a=exact_mesh.source(h),b=exact_mesh.target(h),c=exact_mesh.target(exact_mesh.next(h));\n      if(mesh.add_face(rounded_ids[a.idx()],rounded_ids[b.idx()],rounded_ids[c.idx()])==Mesh::null_face())\n        throw std::runtime_error(\"Binary64 face copy failed\");\n    }\n    if(mesh.number_of_vertices()!=exact_mesh.number_of_vertices()||mesh.number_of_faces()!=exact_mesh.number_of_faces())\n      throw std::runtime_error(\"Exact/binary64 copy count changed\");\n    exact_mesh=ExactMesh();exact_inputs.clear();\n    auto after=audit(mesh,true);"
+    },
+    {
+      "before": "EPICK_inexact_constructions",
+      "after": "EPECK_exact_clip_then_EPICK_binary64_embedding"
+    },
+    {
+      "before": "<<\"\\\"kernel\\\":\\\"EPECK_exact_clip_then_EPICK_binary64_embedding\\\",\\\"plane\\\":[0,0,-1,0],\\\"clip_volume\\\":true,\"",
+      "after": "<<\"\\\"kernel\\\":\\\"EPECK_exact_clip_then_EPICK_binary64_embedding\\\",\\\"exact_construction_clip\\\":true,\\\"final_binary64_embedding_exact\\\":false,\"\n       <<\"\\\"unchanged_input_points_restored_by_exact_equality\\\":true,\\\"new_coordinate_conversion\\\":\\\"to_double_of_materialized_exact_not_certified_nearest\\\",\\\"plane\\\":[0,0,-1,0],\\\"clip_volume\\\":true,\""
+    },
+    {
+      "before": "// Separate fixed finishing-datum proposal; EPICK is not exact constructions.",
+      "after": "// Separate fixed finishing datum: EPECK clip, then audited binary64 EPICK embedding."
+    },
+    {
+      "before": "    std::set<std::uint64_t> retained;std::size_t constructed=0;\n    for(auto v:mesh.vertices()) {\n      auto p=mesh.point(v);auto it=input_ids.find(point_bits(p));",
+      "after": "    std::set<std::uint64_t> retained;std::set<Bits> output_bits;std::size_t constructed=0;\n    for(auto v:mesh.vertices()) {\n      auto p=mesh.point(v);const auto bits=point_bits(p);\n      if(!output_bits.insert(bits).second)throw std::runtime_error(\"Duplicate binary64 output coordinate\");\n      auto it=input_ids.find(bits);"
+    }
+  ],
+  "reverse_restores_complete_source001_bytes": true,
+  "numerical_plane_tolerance_or_threshold_changed": false,
+  "fixture_literal_or_expectation_changed": false,
+  "native_compilation_or_geometry_executed_by_this_preparation": false
+}
