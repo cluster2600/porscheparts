@@ -270,8 +270,8 @@ differs from the adaptive native reference by **−0.023078%**. Six mounting
 rosters were measured afresh, with **528 / 528 / 528 / 528 / 2,274 / 2,278 nodes**;
 old roster identities are not assumed. The [T10 closeout](../../work/carrier-process-20261017/bounded-webs-C1-terminal-taper-BREP-mesh-preparation-001/root-terminal-review-001.json)
 also joins the unchanged 10⁻⁸ import-volume criterion to the same nonadaptive
-native operator. Rigid and elastic mounting cases must now use these new
-identities. No old C1/H2 stress result is transferred.
+native operator. The rigid and elastic cases below use these new identities.
+No old C1/H2 stress result is transferred.
 
 [Figure 26 and its complete evidence capsule](../../parts/993-eng-carrier-0001/source/progress-figures-20261016/C1-terminal-taper-profile-20261017/README.md)
 provide English PNG, SVG and PDF comparisons of the actual profiles. This
@@ -298,3 +298,67 @@ The separate original Fraction-based one-SKIN trial reached its internal
 that incomplete result remains recorded. No speed ratio or regional support
 admission is inferred from these different completed scopes. Integration must
 retain reconstruction, contacts, components and all original regional gates.
+
+The explicit new policy has also completed a full captured planar unit:
+genuine reconstructed material, reconstruction record, two complete contacts
+and whole-unit admission all pass. Its [unit closeout](../../work/carrier-process-20261017/cgal-captured-unit-policy-diagnostic-preparation-001/root-terminal-review-001.json)
+retains the original captured native input and the new outputs. This extends
+the band result to that captured unit; fresh native generation, 3D remapping
+and regional assembly remain separate stages.
+
+## Terminal-taper: two new mechanical cases
+
+Both linear static cases now use the new **89,536-element T10 mesh** and its
+actual mounting rosters. Material stiffness remains E = 107,000 MPa, ν = 0.31;
+the combined nominal load remains Fz = −4,000 N and My = +850,000 Nmm. The
+elastic model assigns **1,000 N/mm total per eye and per axis**, divided among
+that eye's 2,274 or 2,278 nodes.
+
+| Result | Rigid eyes | Elastic eyes, K1000 |
+| --- | ---: | ---: |
+| Maximum displacement, mm | 2.794015 | 18.170201 |
+| Maximum integration-point von Mises stress, MPa | 697.312504 | 1,977.809951 |
+| Independent relative energy closure error | 4.35144 × 10⁻⁹ | 1.98886 × 10⁻⁹ |
+| Unchanged energy criterion | 10⁻⁴ | 10⁻⁴ |
+| Global peak element / integration point | 84327 / 1 | 54403 / 3 |
+
+The [complete two-case closeout](../../work/carrier-process-20261017/bounded-webs-C1-terminal-taper-static-preparation-001/root-solver-terminal-review-001.json)
+retains both full results, independent energy audits and every global maximum.
+The rigid peak lies at approximately **(−82.1363, −14.3888, 12.8603) mm**; the
+elastic peak lies at **(82.0534, −14.6036, 12.5321) mm**. Neither was excluded
+because of its location. Both owned solver runs exited zero and their containers
+were removed and independently checked absent.
+
+The original coarse C1 cases gave 907.278068 / 2,663.075178 MPa. The new values
+are lower on regenerated meshes under the retained loads and support models.
+These comparisons do not establish stress convergence or a material allowable.
+The common refinement targets both new peak locations using half of each peak
+element's measured maximum corner-edge length: **0.466895399 mm** for the rigid
+peak and **0.758431424 mm** for the elastic peak. Four completed refinement
+passes retained every original node, coordinate lexeme, mounting roster and
+protected boundary facet. The resulting mesh contains **168,675 nodes and
+91,040 T10 elements**, with positive sampled Jacobians.
+
+The unchanged volume non-regression test refused this run: the refined mesh
+volume is **285,536.9707756387 mm³**, versus **285,536.9707756392 mm³** in the
+parent's metadata. The [refinement closeout](../../work/carrier-process-20261017/bounded-webs-terminal-taper-discrete-refinement-preparation-001/root-terminal-review-001.json)
+preserves the refusal and all four complete pass records. Independent edge
+measurement was not reached, and no refined mechanical case has run. Comparing
+both serialized meshes with the same volume operator is the next diagnostic.
+The original radius-law refusal also remains recorded.
+
+## Terminal-taper: default STEP exchange result
+
+One default STEP export and readback completed with all ten captured reader /
+writer settings unchanged; the two writer settings were restored in `finally`.
+The adaptive relative volume difference was **1.31549 × 10⁻⁹**, passing the
+unchanged 10⁻⁸ criterion. The nonadaptive and adaptive volume operators remain
+separate records.
+
+Both fresh, serial, non-destructive differences at fuzzy zero completed, but
+neither was topologically empty. The strict STEP roundtrip therefore remains
+**refused**. Its [complete exchange closeout](../../work/carrier-process-20261017/bounded-webs-C1-terminal-taper-STEP-preparation-001/root-terminal-review-001.json)
+preserves both raw BREP residues and all dimensional summaries. These Boolean
+outputs are not interpreted as material erosion. The native BREP and its
+separately checked STL remain the geometry references; the STEP does not
+replace that master.
