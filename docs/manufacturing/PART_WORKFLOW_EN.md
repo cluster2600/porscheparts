@@ -8,6 +8,16 @@ package. The Porsche 993 Turbo engine carrier is the working example. Each
 stage retains its inputs, settings, software identities, outputs and reports.
 A geometry change creates a new revision; results follow that revision.
 
+The latest **preserved terminal-taper diagnostic variant** has separate,
+closed coarse-mesh linear-static results: about **697.3 MPa with rigid mounts
+and 1,977.8 MPa with distributed K1000 springs**. Its original post-Build law
+refusal remains preserved and the candidate is unqualified. Its attempted local
+H2 refinement retained a **strict volume refusal**; it provides no stress
+convergence result. [Figure 27](../../parts/993-eng-carrier-0001/source/progress-figures-20261016/index.html#C1-terminal-taper-fields)
+shows the actual coarse fields. The full new-mesh records and their closed stored-byte verification and
+four-report analysis replay belong to the [native terminal-taper delivery
+capsule](../../parts/993-eng-carrier-0001/source/design-20261016/native-C1-terminal-taper-20261017/ACTUAL_REPRODUCTION.md). The original C1/H2 reference follows and remains distinct.
+
 For the current **C1 native BREP** revision, the calculated CAD mass is
 **1.262369675 kg, below the 1.30 kg limit**. Both linear C1 cases and their
 local H2 refinement have completed. The refined integration-point stress peaks

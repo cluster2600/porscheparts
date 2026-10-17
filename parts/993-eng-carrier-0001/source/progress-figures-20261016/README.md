@@ -138,3 +138,6 @@ La [planche22 du congé R1 natif](native-fillet-20261017/README.md) montre la fo
 
 
 [Figure 26 — original C1 and the preserved terminal taper](C1-terminal-taper-profile-20261017/README.md) compares complete actual native profiles on common oblique U/Z axes. Only the taper profile was newly extracted; figure 25 supplies the closed original profiles. The original-C1 ray is not transferred to the taper. Its saved Build result retains the original law refusal and remains unqualified. The [actual English draw and ROOT PNG review](C1-terminal-taper-profile-20261017/rendering/root-terminal-review-001.json) are closed; this picture does not grant meshing, protected-interface, FEA or global thickness qualification.
+
+
+[Figure 27 — actual terminal-taper stress and displacement](C1-terminal-taper-fields-20261017/README.md) shows both closed new-mesh linear-static cases, every boundary triangle and all global stress/displacement maxima on common scales at true displacement ×1. Full field/deck results belong to the separately bound native delivery capsule. The original law refusal is preserved; these numerical results do not establish stress convergence, a strength allowable or physical qualification. ROOT inspected the actual PNG; the PDF has metadata checks only.
