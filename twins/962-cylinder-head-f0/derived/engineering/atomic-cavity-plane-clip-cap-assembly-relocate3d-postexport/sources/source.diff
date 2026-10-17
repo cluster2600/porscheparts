@@ -1,0 +1,216 @@
+--- preserved-Netgen002-0d1.py
++++ held-Relocate3D001.py
+@@ -1,4 +1,4 @@
+-"""One bounded Netgen optimizer on the saved default-optimized Delaunay head; no generation.
++"""One bounded Relocate3D niter1 call on the saved Netgen-optimized head; no generation.
+ 
+ The frozen controller supplies admission, claims, source capture and kill/reap.
+ The cube is software evidence only. Native head execution needs separate authority.
+@@ -19,13 +19,13 @@
+ CORE_SHA256 = "a3268687edc90b0149775cf5d80a89df82175cc982bbf5d7184b6ea8935be8a4"
+ PYTHON_SHA256 = "72956ad35cff7691dfed9e04c9593de825ffd5b2fa7e8bc9ae96ce9a1af65621"
+ DEADLINE = 1200
+-INPUT = ROOT / "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-volume-delaunay-default-postexport-001/head-volume.msh"
+-INPUT_WORKER = "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-volume-delaunay-default-postexport-001/worker-report.json"
+-INPUT_RECEIPT = "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-volume-delaunay-default-postexport-001/receipt.json"
+-INPUT_READBACK = "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-delaunay-optimized-diagnosis-001/readback-report.json"
++INPUT = ROOT / "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-volume-delaunay-netgen-postexport-001/head-volume.msh"
++INPUT_WORKER = "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-volume-delaunay-netgen-postexport-001/worker-report.json"
++INPUT_RECEIPT = "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-volume-delaunay-netgen-postexport-001/receipt.json"
++INPUT_READBACK = "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-delaunay-netgen-optimized-diagnosis-001/readback-report.json"
+ ADMISSION = ROOT / "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-surface-admission-001/surface-admission.json"
+ ADMISSION_SHA256 = "035c45d02357c9b7375a8e7795f7c1915d7e015ee2b63b576cf181965c96d962"
+-OUTPUT = ROOT / "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-volume-delaunay-netgen-postexport-001"
++OUTPUT = ROOT / "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-volume-delaunay-netgen-relocate3d-postexport-001"
+ OPTIONS = {"General.NumThreads":2, "Mesh.MaxNumThreads3D":2, "Mesh.Renumber":0,
+     "Mesh.Optimize":0, "Mesh.OptimizeNetgen":0, "Mesh.OptimizeThreshold":.3,
+     "Mesh.Binary":1, "Mesh.SaveAll":1, "Mesh.MshFileVersion":4.1}
+@@ -39,6 +39,24 @@
+     "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-delaunay-default-postexport-prep-001/held-preparation.json": "d69426982c70aa5cc752ef7b789083e5ef9746bd7c118ca32fcb8b1a44bace4b",
+     "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-delaunay-default-postexport-prep-001/mesh_delaunay_postexport.py": "ebb1f1ba8e7c0b032a4eb0178bbf8c332c68070816e6626f4a3f4788ed638527",
+     "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-delaunay-default-postexport-prep-001/source-delta.json": "dae70175aee97477a7d05d0ce1af764cecd9a5935299cb8f6b3b398dc491f76b",
++    "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-delaunay-netgen-optimized-diagnosis-001/execution-receipt.json": "22a9031eb13aea8e22387d98556f630458eae25b5e5aa9df663d0188bd568571",
++    "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-delaunay-netgen-optimized-diagnosis-001/frozen-contract.json": "7cdf04dea1196d21178ab1452a414227a55243aef6bd92005936e2f4cc179c5d",
++    "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-delaunay-netgen-optimized-diagnosis-001/readback-report.json": "94ff85bf941205cb67024d42b47b66256b2af19eb34904762efb4bcd1cdb0235",
++    "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-delaunay-netgen-optimized-diagnosis-001/reader.py": "65fe8215e9d96100bde76a1ec659d253102e5c3db2ec8ab12cca3f98e8629560",
++    "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-delaunay-netgen-optimized-diagnosis-001/run_readback.py": "4fb37080e1f3847b8b1d14d5df467799d8e9f7bf81b0a09170e5850857de3943",
++    "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-delaunay-netgen-optimized-diagnosis-result-peer-001/review.json": "79e5d059230cf16c74d68a96bb4a38031626599d4cc7a8af6add70055b54bd95",
++    "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-delaunay-netgen-optimized-diagnosis-root-execution-001/execution.json": "ab56c2db45222692a8fc568d691bbc9b1582443f6515a20ebbd7a18fc181e67f",
++    "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-delaunay-netgen-optimized-diagnosis-source-peer-001/review.json": "f7a3468e0d2d4c81a53c0c3fecae709b0832fcd207646dd3b1826e8fce158a65",
++    "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-delaunay-netgen-postexport-prep-002/held-preparation.json": "c5477562812b08ad2b2a534d5125913224241653c929de70c0b26a420cc0aa62",
++    "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-delaunay-netgen-postexport-prep-002/mesh_delaunay_netgen_postexport.py": "0d1dd1f0625275343f16b713dae2d41143dda8da974bef42e59f6bfa3b0e388a",
++    "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-delaunay-netgen-postexport-prep-002/test-delta.json": "19c4580b4e3ce30ae3a8d4479beb88cf1e1524cf8eee0b57fc92f1416b991414",
++    "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-delaunay-netgen-postexport-prep-002/test_source_guards.py": "7a6a5273d3f7f9b51663ff0b10bc7556c6ec0d76ff385c1a3c61f753897b772e",
++    "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-delaunay-netgen-postexport-result-peer-001/review.json": "ccda5bedaba2cb743fda933b31ed88f2a3fa6881bbc3b50841c8d5f2eea77d6f",
++    "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-delaunay-netgen-postexport-root-execution-001/closed-result.json": "abb7db891abc8a4efd096b63c95fb198f4397cb9264259de72326eda04ddd9c8",
++    "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-delaunay-netgen-postexport-root-execution-001/execution.json": "48c3c1b6936c75d3e0f6f7ec27c5a6c4b5eb4e4f29710d05104934a20d5a7fa0",
++    "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-delaunay-netgen-postexport-root-source-002/guard-tests.log": "f47501d9a28d62db279af92847cfb5a1b94ba69f0ca17a9246736721b346a3cb",
++    "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-delaunay-netgen-postexport-root-source-002/review.json": "7747a83232473c8da636f1130df522974007796df4e9a2b97332cdee11bcde43",
++    "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-delaunay-netgen-postexport-source-peer-002/review.json": "81a7c1b638b652b1388bdaa9574e7b614bb27126308ed052dc8bd27b27b47b5b",
+     "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-delaunay-optimized-diagnosis-001/execution-receipt.json": "34f889f05dba39c4e77156da2c5a79503849c8c5d8b79bfd24e6492634935c59",
+     "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-delaunay-optimized-diagnosis-001/readback-report.json": "7025fa9460b566d01dfa197e887e133c24cd494fd2bc2ad789ddd0a372041822",
+     "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-delaunay-optimized-diagnosis-result-peer-001/review.json": "62e7a92f94ed18dc4be493273f19ed0b360b994f920561b14aff2f8314dec317",
+@@ -111,7 +129,6 @@
+     "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-surface-admission-001/surface-admission.json": "035c45d02357c9b7375a8e7795f7c1915d7e015ee2b63b576cf181965c96d962",
+     "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-topology-001/worker-report.json": "c94abc0968927a622d88dfe4a3f957533159f8a9dd67b7326b1f6400a9b781e6",
+     "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-topology-result-peer-001/review.json": "46555605376ad11923f716e84d11ac74ddc8c7c36a567a5acf9c26d28b7e5e18",
+-    "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-volume-delaunay-default-postexport-001/head-volume.msh": "e32ef35be1171ec55477e921dd75def0066f9f1e21bd2821dfbe363270354522",
+     "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-volume-delaunay-default-postexport-001/receipt.json": "4f74e8688434df5032c1c5a050593e0f6d6e965010921a9f881a66b300e6f64d",
+     "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-volume-delaunay-default-postexport-001/source-snapshots/audit_quality_head.py": "a298270aa00b1536314a07629b935500c68883ca0d3bd1a179d71b49a8e73991",
+     "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-volume-delaunay-default-postexport-001/source-snapshots/audit_quality_patch.py": "3532a172b2bce3a8ead7c8b11b712a2b55891377726fa1b6d847e84f0eed3912",
+@@ -121,6 +138,10 @@
+     "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-volume-delaunay-default-postexport-001/source-snapshots/prepare_head_analysis.py": "cda8f7155a8c22ab66898f07d1ad452ba5384ad7f75a1f012606685cd8a12dc3",
+     "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-volume-delaunay-default-postexport-001/surface-admission.json": "035c45d02357c9b7375a8e7795f7c1915d7e015ee2b63b576cf181965c96d962",
+     "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-volume-delaunay-default-postexport-001/worker-report.json": "655156e62ab6b7a13dca690a8c7523b09dbe81c591ebdef0e608e43bd769e7d9",
++    "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-volume-delaunay-netgen-postexport-001/head-volume.msh": "4b983f4ab0134d01573059aecb8f4ba512dabbdfe54fbce6abaa0a06af29fe1d",
++    "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-volume-delaunay-netgen-postexport-001/receipt.json": "426e76e578b4ae0093e85515703f216c64cf1b2aaaf7474d6d8fb8a4641a32de",
++    "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-volume-delaunay-netgen-postexport-001/surface-admission.json": "035c45d02357c9b7375a8e7795f7c1915d7e015ee2b63b576cf181965c96d962",
++    "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-volume-delaunay-netgen-postexport-001/worker-report.json": "16f6ecc580d766c3c541517f0f89bd80d5cd0f660f40b157a04c5362c2245e6a",
+     "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-volume-hxt-001/receipt.json": "90fa2fc6e5a9a393a5a65464b2b2ac3ecc7c6ccf6e44000873d2dcb5a7ea3d6a",
+     "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-volume-hxt-001/worker-report.json": "9a648b8082e84361759b38be30fcbf641417dbc5ccb0bf77b4d22254a7818bd7",
+     "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-volume-poorcell-diagnosis-001/readback-report.json": "43152e18bc2b8de81b88f0677425f6254ec2d47496da5aad0e024a23fbeac3db",
+@@ -137,7 +158,6 @@
+     "work/962-engineering/indexed-volume-001/source-executed.py": "80a6b8527ba407afe4879ace2f4bed3e2f60595c3670cc934178ec6927b8182b",
+     "work/962-engineering/indexed-volume-001/worker-report.json": "56946223af63e4eb8b09992e3d3417f968c9384e5d7a6b654e4e0ac5de12d363"
+ }
+-
+ 
+ def require_inputs():
+     if not INPUT_HASHES:
+@@ -164,12 +184,13 @@
+     def save_postexport(path,report):
+         report["postexport_companion"]=dict(frozen_core_sha256=CORE_SHA256,
+             wrapper_source_sha256=hashlib.sha256(WRAPPER_PATH.read_bytes()).hexdigest(),
+-            input_sha256s=INPUT_HASHES,optimization=dict(method="Netgen",force=True),
+-            geometry_creation_dim_tags=[[3,1]],volume_only_geometry_flag=True,
+-            interior_recreation_and_retagging_permitted=True,
++            input_sha256s=INPUT_HASHES,optimization=dict(method="Relocate3D",niter=1),
++            geometry_creation_dim_tags=[],volume_only_geometry_flag=False,
++            interior_recreation_and_retagging_permitted=False,
+             interior_ancestry_or_physical_topology_change_inferred=False,
+             stronger_Mesh2_admitted=False,
+-            mesh_generation_called=False,API_niter_limits_backend=False,
++            mesh_generation_called=False,API_niter_limits_backend=True,backend_vertex_star_sweeps=3,
++            relocation_objective="minimum incident signed Gamma, not SICN",
+             cache_refresh="rebuildElementCache(False): lookup repair, no geometry change",
+             Gamma_threshold_is_not_SICN=True,actual_minimum_SICN_gate_unchanged=.1,
+             cube_success_is_not_head_acceptance=True)
+@@ -223,7 +244,7 @@
+             or worker.get("saved_mesh_identity_exact") is not True or worker.get("bound_inputs_unchanged") is not True
+             or receipt.get("mesh_sha256")!=INPUT_HASHES[str(INPUT.relative_to(ROOT))]
+             or worker.get("mesh_sha256")!=receipt.get("mesh_sha256")
+-            or receipt.get("mesh_bytes")!=243246094 or worker.get("mesh_bytes")!=243246094
++            or receipt.get("mesh_bytes")!=235742414 or worker.get("mesh_bytes")!=235742414
+             or worker.get("candidate_sha256")!=candidate_sha
+             or diagnosis.get("status")!="direct_saved_file_readback_completed"
+             or diagnosis.get("bound_inputs_unchanged") is not True
+@@ -231,8 +252,8 @@
+             or diagnosis.get("direct_counts_metrics_and_positive_poor_total_match_single_worker_after") is not True):
+         raise ValueError("Single current optimized worker.after and completed diagnosis required")
+     proof=worker["after"]
+-    if (proof["tetrahedra"],proof["total_mesh_nodes"],proof["tetra_referenced_interior_nodes"],proof["unreferenced_mesh_nodes"])!=(3802217,1104778,233047,0):
+-        raise ValueError("Exact current 3802217/1104778/233047 baseline required")
++    if (proof["tetrahedra"],proof["total_mesh_nodes"],proof["tetra_referenced_interior_nodes"],proof["unreferenced_mesh_nodes"])!=(3620809,1097048,225317,0):
++        raise ValueError("Exact current 3620809/1097048/225317 baseline required")
+     for observed,expected in [("actual_mesh_nodes","total_mesh_nodes"),("actual_tetrahedra","tetrahedra"),
+             ("actual_tetra_referenced_nodes","tetra_referenced_nodes"),("actual_unreferenced_mesh_nodes","unreferenced_mesh_nodes"),
+             ("actual_referenced_interior_nodes","tetra_referenced_interior_nodes")]:
+@@ -246,15 +267,15 @@
+     if (any(signed[k]!=v for k,v in proof["quality"]["independent_signed_volume_mm3"].items())
+             or signed["sum"]!=proof["summed_tetra_volume_mm3"]
+             or signed["relative_error_to_candidate"]!=proof["volume_relative_error"]
+-            or diagnosis["positive_poor_SICN_cells"]["total"]!=3438
+-            or proof["quality"]["minimum_SICN"]["below_point1_count"]!=3438
++            or diagnosis["positive_poor_SICN_cells"]["total"]!=210
++            or proof["quality"]["minimum_SICN"]["below_point1_count"]!=210
+             or any(row["nonpositive_count"] for row in proof["quality"].values())):
+-        raise ValueError("Current signed-volume and 3438-positive-poor baseline required")
++        raise ValueError("Current signed-volume and 210-positive-poor baseline required")
+     return proof
+ 
+ 
+ def boundary_identity(core,state,points,classification):
+-    """Exact source-tag/binary64 boundary identity; interior tags are unrestricted."""
++    """Exact source-tag/binary64 boundary identity; whole-tag continuity is checked separately."""
+     np=core.np;q,nt,_,_=state;expected=np.arange(1,len(points)+1,dtype=nt.dtype)
+     ix=np.searchsorted(nt,expected)
+     if (np.any(ix>=len(nt)) or not np.array_equal(nt[ix],expected)
+@@ -274,10 +295,13 @@
+ 
+ 
+ def load_before(core,gmsh,points,faces):
++    if gmsh.model.getEntities(3)!=[(3,1)] or not gmsh.model.getBoundary([(3,1)],oriented=True,recursive=False):
++        raise ValueError("Exactly one volume(3,1) with a nonempty bounding shell required")
+     worker=json.loads((ROOT/INPUT_WORKER).read_text());receipt=json.loads((ROOT/INPUT_RECEIPT).read_text())
+     diagnosis=json.loads((ROOT/INPUT_READBACK).read_text())
+     proof=current_after_proof(worker,receipt,diagnosis,core.CANDIDATE_SHA)
+     state,fresh=audit_after(core,gmsh,points,faces)
++    fresh["source_boundary_identity"]=boundary_identity(core,state,points,fresh["classifications"])
+     for key,value in proof.items():
+         if key=="classifications":
+             if any(fresh[key].get(k)!=v for k,v in value.items()):
+@@ -294,23 +318,20 @@
+     return state,report
+ 
+ 
+-def geometry_flag_only(core,gmsh,points,faces,before,report,checkpoint):
+-    if gmsh.model.getEntities(3)!=[(3,1)] or not gmsh.model.getBoundary([(3,1)],oriented=True,recursive=False):
+-        raise ValueError("Exactly one volume(3,1) with a nonempty bounding shell required")
+-    report.update(stage="volume_only_geometry_flag",geometry_creation_call_count=1);checkpoint()
+-    gmsh.model.mesh.createGeometry([(3,1)])
+-    state,fresh=audit_after(core,gmsh,points,faces)
+-    identity=boundary_identity(core,state,points,fresh["classifications"])
+-    if fresh!=before["audit"] or identity!=before["source_boundary_identity"]:
+-        raise ValueError("Volume-only geometry flag changed full arrays, classifications or metrics")
+-    report.update(after_geometry_flag=dict(audit=fresh,source_boundary_identity=identity),
+-        geometry_flag_full_tagged_arrays_classifications_and_quality_identity_exact=True)
++def require_relocation_continuity(before,after):
++    for key in ("sorted_node_tags_sha256","sorted_tetra_tags_sha256","tagged_tetra_connectivity_sha256"):
++        if before["array_sha256s"][key]!=after["array_sha256s"][key]:
++            raise ValueError("Relocation changed node tags, tetra tags or oriented connectivity")
++    for key in ("classifications","tetrahedra","total_mesh_nodes","retained_boundary_nodes",
++            "tetra_referenced_nodes","tetra_referenced_interior_nodes","unreferenced_mesh_nodes"):
++        if before[key]!=after[key]:
++            raise ValueError("Relocation changed full classifications or counts")
++    require_boundary_continuity(before["source_boundary_identity"],after["source_boundary_identity"])
++
++def optimize_and_refresh(gmsh,report,checkpoint):
++    report.update(stage="calling_Relocate3D_niter1_postexport_optimizer",optimizer_call_count=1)
+     checkpoint()
+-
+-def optimize_and_refresh(gmsh,report,checkpoint):
+-    report.update(stage="calling_Netgen_postexport_optimizer",optimizer_call_count=1)
+-    checkpoint()
+-    gmsh.model.mesh.optimize(method="Netgen",force=True)
++    gmsh.model.mesh.optimize(method="Relocate3D",niter=1)
+     report.update(optimizer_returned=True,stage="refreshing_element_lookup_cache")
+     checkpoint()
+     # False forces rebuilding even if the pre-optimization cache is populated.
+@@ -381,23 +402,21 @@
+         gmsh.initialize([],readConfigFiles=False,run=False);initialized=True
+         gmsh.option.setNumber("General.Terminal",1);gmsh.logger.start()
+         for key,value in OPTIONS.items():gmsh.option.setNumber(key,value)
+-        if "Netgen" not in gmsh.option.getString("General.BuildOptions").split():
+-            raise ValueError("Compiled Netgen capability token required")
+-        report.update(stage="loading_exact_saved_default_optimized_Delaunay_mesh");checkpoint()
++        report.update(stage="loading_exact_saved_Netgen_optimized_Delaunay_mesh");checkpoint()
+         gmsh.open(str(INPUT));before,report["before"]=load_before(core,gmsh,points,faces)
+         if any(gmsh.option.getNumber(k)!=v for k,v in OPTIONS.items()):raise ValueError("Fixed optimizer options changed")
+-        geometry_flag_only(core,gmsh,points,faces,report["before"],report,checkpoint)
+         optimize_and_refresh(gmsh,report,checkpoint)
+         gmsh.write(str(path));report.update(mesh_sha256=core.sha(path),mesh_bytes=path.stat().st_size,
+                                            stage="auditing_all_optimized_tetrahedra");checkpoint()
+         after,report["after"]=audit_after(core,gmsh,points,faces)
+         report["after"]["source_boundary_identity"]=boundary_identity(core,after,points,report["after"]["classifications"])
+-        require_boundary_continuity(report["before"]["source_boundary_identity"],report["after"]["source_boundary_identity"])
++        require_relocation_continuity(report["before"]["audit"],report["after"])
+         report["comparison"]=dict(total_nodes_before=len(before[1]),total_nodes_after=len(after[1]),
+             referenced_interior_nodes_before=report["before"]["audit"]["tetra_referenced_interior_nodes"],
+             referenced_interior_nodes_after=report["after"]["tetra_referenced_interior_nodes"],
+             tetrahedra_before=len(before[2]),tetrahedra_after=len(after[2]),
+-            source_boundary_identity_unchanged=True,interior_recreation_retagging_and_count_changes_permitted=True,
++            source_boundary_identity_unchanged=True,interior_recreation_retagging_and_count_changes_permitted=False,
++            sorted_node_tags_tetra_tags_and_oriented_connectivity_unchanged=True,full_classifications_and_counts_unchanged=True,
+             interior_ancestry_or_physical_topology_change_inferred=False,
+             minimum_SICN_before_fresh=report["before"]["audit"]["quality"]["minimum_SICN"]["minimum"],
+             minimum_SICN_after_actual=report["after"]["quality"]["minimum_SICN"]["minimum"])

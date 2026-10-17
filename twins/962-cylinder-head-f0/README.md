@@ -125,6 +125,11 @@ matches every complete tagged array and native metric. All 210 poor cells
 involve interior nodes: 15 have two source-boundary nodes and 195 have three.
 This leaves interior adjustment open as a separate hypothesis; it establishes
 neither repairability nor head acceptance.
+The [completed Relocate3D trial](derived/engineering/atomic-cavity-plane-clip-cap-assembly-relocate3d-postexport/README.md)
+increases the poor-cell count to 226 and lowers minimum SICN to
+0.038263551144442014. Exact boundary, tag/connectivity and saved-file identity
+checks pass, but the unchanged quality gate rejects the mesh. The prior Netgen
+result remains the better rejected baseline; no new poor-cell partition is inferred.
 The [current BIN/PLY and seven-map download](derived/engineering/atomic-cavity-plane-clip-cap-assembly-raw-review-delivery/README.md)
 is uploaded to the existing draft release. All 151 archive members pass complete
 independent byte checks; all 42 preceding assets remain unchanged (45 total).
