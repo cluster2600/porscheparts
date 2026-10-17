@@ -1,0 +1,10 @@
+--- reader.py
++++ reader_002.py
+@@ -119,5 +119,5 @@
+     with output.open('x') as stream:json.dump(result,stream,indent=2,allow_nan=False);stream.write('\n')
+ 
+ if __name__=='__main__':
+-    need(len(sys.argv)==3,'reader.py frozen-contract.json fresh-report.json')
+-    main(sys.argv[1],sys.argv[2])
++    folder=Path(__file__).resolve().parent
++    main(folder/'frozen-contract.json',folder/'readback-report.json')

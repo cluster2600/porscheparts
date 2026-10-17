@@ -65,6 +65,12 @@ separated boundary runs. The separately compiled boundary-only successor uses
 1,122 remaining poor faces and rejects the proposal without exports. Mapped-cap
 coverage is a native observation; later global/patch topology, neighbor and
 envelope gates were not reached. No accepted volume or head field follows.
+The [later mixed-side and cap refinement](derived/engineering/atomic-cavity-plane-clip-cap-refinement/README.md)
+records a separate mixed-side census with zero poor survivors and a cap-only
+necessary q≥2/29 pass on all 8,976 saved triangles. It preserves 38 fixed cells
+and adds 3,092 interior points. The stronger Mesh_2 shape criterion retains
+414 active failures. Assembly, complete surface checks and volume admission
+remain pending; the cap result does not admit the full head.
 The [separate material follow-up](MATERIAL_CONDUCTIVITY_FOLLOWUP.md) supplies
 measured AlSi10Mg conductivity points. The [two native bar witnesses](MATERIAL_CONDUCTIVITY_WITNESS.md)
 now verify the separate assumed piecewise-linear Z/XY laws with 109 final-field
@@ -104,6 +110,14 @@ correction, all 64 spatial nodes and six individual face fluxes. Independent
 NumPy and Decimal calculations agree within the frozen criteria. This supplies
 an iterative-solver verification anchor; head import, resolution and convergence
 remain separate requirements.
+
+The [imported-cube witness](derived/engineering/head-imported-cube-witness/README.md)
+now checks the separate nine-node ASCII2.2 import, discrete P1 solution and
+complete Exodus geometry, sideset and nodal-field readback. The original
+binary-format refusal and incorrect-sign assessor failure remain preserved;
+the corrected saved-output assessment uses the unchanged native data. This
+normalized w field is in mm². Its 25% continuum flux deficit remains unresolved,
+so the discrete software pass does not establish head or mesh convergence.
 
 The [endpoint-collapse reference cases](derived/engineering/finest-endpoint-fixtures/README.md)
 now pass complete saved-array checks: the corrected helper removes the known

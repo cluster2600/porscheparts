@@ -1,0 +1,743 @@
+{
+  "schema": "962-cap-refinement-literal-fixtures/v1",
+  "cases": {
+    "ordinary": {
+      "input": {
+        "vertices": 8,
+        "faces": 8,
+        "Euler": 0,
+        "cap_area_mm2": "12",
+        "oriented_boundary_edges": [
+          [
+            0,
+            1,
+            -1
+          ],
+          [
+            0,
+            3,
+            1
+          ],
+          [
+            1,
+            2,
+            -1
+          ],
+          [
+            2,
+            3,
+            -1
+          ],
+          [
+            4,
+            5,
+            1
+          ],
+          [
+            4,
+            7,
+            -1
+          ],
+          [
+            5,
+            6,
+            1
+          ],
+          [
+            6,
+            7,
+            1
+          ]
+        ],
+        "strict_exact_poor_face_ids": []
+      },
+      "map_rows": [
+        [
+          0,
+          0
+        ]
+      ],
+      "fixed_face_ids": [
+        5
+      ],
+      "expected": {
+        "intended_returncode": 0,
+        "Steiner_insertion_required": false
+      },
+      "files": {
+        "ordinary.bin": {
+          "bytes": 408,
+          "sha256": "06d4873b6f58cf2d164431f2509093210bee45a1c90ee59407613f1c8952eeb4"
+        },
+        "ordinary.map.u64": {
+          "bytes": 16,
+          "sha256": "374708fff7719dd5979ec875d56cd2286f6d3cf7ec317a3b25632aab28ec37bb"
+        },
+        "ordinary.fixed.u64": {
+          "bytes": 8,
+          "sha256": "f13ee6ed54ea2aae9fc49a9faeb5da6e8ddef0e12ed5d30d35a624ae813e0485"
+        }
+      },
+      "literal_points_mm": [
+        [
+          -2,
+          -2,
+          0
+        ],
+        [
+          2,
+          -2,
+          0
+        ],
+        [
+          2,
+          2,
+          0
+        ],
+        [
+          -2,
+          2,
+          0
+        ],
+        [
+          -1,
+          -1,
+          0
+        ],
+        [
+          1,
+          -1,
+          0
+        ],
+        [
+          1,
+          1,
+          0
+        ],
+        [
+          -1,
+          1,
+          0
+        ]
+      ],
+      "literal_oriented_faces": [
+        [
+          0,
+          5,
+          1
+        ],
+        [
+          0,
+          4,
+          5
+        ],
+        [
+          1,
+          6,
+          2
+        ],
+        [
+          1,
+          5,
+          6
+        ],
+        [
+          2,
+          7,
+          3
+        ],
+        [
+          2,
+          6,
+          7
+        ],
+        [
+          3,
+          4,
+          0
+        ],
+        [
+          3,
+          7,
+          4
+        ]
+      ],
+      "positive_output_checks": "All original boundary coordinates and segments exact; exact fixed cell; new points interior with sentinel; complete negative-Z annular domain and quality. No guessed CDT diagonal or new-point count.",
+      "map_identity_rows": 1,
+      "map_nonidentity_rows": 0
+    },
+    "interior-attempt": {
+      "input": {
+        "vertices": 12,
+        "faces": 12,
+        "Euler": 0,
+        "cap_area_mm2": "252",
+        "oriented_boundary_edges": [
+          [
+            0,
+            1,
+            -1
+          ],
+          [
+            0,
+            7,
+            1
+          ],
+          [
+            1,
+            2,
+            -1
+          ],
+          [
+            2,
+            3,
+            -1
+          ],
+          [
+            3,
+            4,
+            -1
+          ],
+          [
+            4,
+            5,
+            -1
+          ],
+          [
+            5,
+            6,
+            -1
+          ],
+          [
+            6,
+            7,
+            -1
+          ],
+          [
+            8,
+            9,
+            1
+          ],
+          [
+            8,
+            11,
+            -1
+          ],
+          [
+            9,
+            10,
+            1
+          ],
+          [
+            10,
+            11,
+            1
+          ]
+        ],
+        "strict_exact_poor_face_ids": []
+      },
+      "map_rows": [
+        [
+          0,
+          0
+        ]
+      ],
+      "fixed_face_ids": [
+        6
+      ],
+      "expected": {
+        "intended_returncode": null,
+        "allowed_declared_geometric_outcomes": [
+          0,
+          3
+        ],
+        "actual_Steiner_insertion_count": null,
+        "expectation": "A refinement request is intended; no actual insertion or quality success is assumed. Preserve zero-insertion and refusal outcomes."
+      },
+      "files": {
+        "interior-attempt.bin": {
+          "bytes": 600,
+          "sha256": "1de0be211cbf3f2200274d5fc633e77748a1f81feb94d140a44a7eb76eedd3e5"
+        },
+        "interior-attempt.map.u64": {
+          "bytes": 16,
+          "sha256": "374708fff7719dd5979ec875d56cd2286f6d3cf7ec317a3b25632aab28ec37bb"
+        },
+        "interior-attempt.fixed.u64": {
+          "bytes": 8,
+          "sha256": "23d7f42b1cdc1f0d492ebd756ed0fe8003995dda554d99418d47a81813650207"
+        }
+      },
+      "literal_points_mm": [
+        [
+          -8,
+          -8,
+          0
+        ],
+        [
+          0,
+          -8,
+          0
+        ],
+        [
+          8,
+          -8,
+          0
+        ],
+        [
+          8,
+          0,
+          0
+        ],
+        [
+          8,
+          8,
+          0
+        ],
+        [
+          0,
+          8,
+          0
+        ],
+        [
+          -8,
+          8,
+          0
+        ],
+        [
+          -8,
+          0,
+          0
+        ],
+        [
+          -1,
+          -1,
+          0
+        ],
+        [
+          1,
+          -1,
+          0
+        ],
+        [
+          1,
+          1,
+          0
+        ],
+        [
+          -1,
+          1,
+          0
+        ]
+      ],
+      "literal_oriented_faces": [
+        [
+          0,
+          8,
+          1
+        ],
+        [
+          1,
+          8,
+          9
+        ],
+        [
+          1,
+          9,
+          2
+        ],
+        [
+          2,
+          9,
+          3
+        ],
+        [
+          3,
+          9,
+          10
+        ],
+        [
+          3,
+          10,
+          4
+        ],
+        [
+          4,
+          10,
+          5
+        ],
+        [
+          5,
+          10,
+          11
+        ],
+        [
+          5,
+          11,
+          6
+        ],
+        [
+          6,
+          11,
+          7
+        ],
+        [
+          7,
+          11,
+          8
+        ],
+        [
+          7,
+          8,
+          0
+        ]
+      ],
+      "positive_output_checks": "All original boundary coordinates and segments exact; exact fixed cell; new points interior with sentinel; complete negative-Z annular domain and quality. No guessed CDT diagonal or new-point count.",
+      "map_identity_rows": 1,
+      "map_nonidentity_rows": 0
+    },
+    "invalid-fixed-association": {
+      "input": {
+        "vertices": 8,
+        "faces": 8,
+        "Euler": 0,
+        "cap_area_mm2": "12",
+        "oriented_boundary_edges": [
+          [
+            0,
+            1,
+            -1
+          ],
+          [
+            0,
+            3,
+            1
+          ],
+          [
+            1,
+            2,
+            -1
+          ],
+          [
+            2,
+            3,
+            -1
+          ],
+          [
+            4,
+            5,
+            1
+          ],
+          [
+            4,
+            7,
+            -1
+          ],
+          [
+            5,
+            6,
+            1
+          ],
+          [
+            6,
+            7,
+            1
+          ]
+        ],
+        "strict_exact_poor_face_ids": []
+      },
+      "map_rows": [
+        [
+          0,
+          0
+        ]
+      ],
+      "fixed_face_ids": [
+        8
+      ],
+      "expected": {
+        "intended_returncode": 3,
+        "expected_stage": "original_annular_cap",
+        "no_exports": true
+      },
+      "files": {
+        "invalid-fixed-association.bin": {
+          "bytes": 408,
+          "sha256": "06d4873b6f58cf2d164431f2509093210bee45a1c90ee59407613f1c8952eeb4"
+        },
+        "invalid-fixed-association.map.u64": {
+          "bytes": 16,
+          "sha256": "374708fff7719dd5979ec875d56cd2286f6d3cf7ec317a3b25632aab28ec37bb"
+        },
+        "invalid-fixed-association.fixed.u64": {
+          "bytes": 8,
+          "sha256": "6cc16abd70eefb90dc0ba0d14fb088630873b2c6ad943f7442356735984c35a3"
+        }
+      },
+      "literal_points_mm": [
+        [
+          -2,
+          -2,
+          0
+        ],
+        [
+          2,
+          -2,
+          0
+        ],
+        [
+          2,
+          2,
+          0
+        ],
+        [
+          -2,
+          2,
+          0
+        ],
+        [
+          -1,
+          -1,
+          0
+        ],
+        [
+          1,
+          -1,
+          0
+        ],
+        [
+          1,
+          1,
+          0
+        ],
+        [
+          -1,
+          1,
+          0
+        ]
+      ],
+      "literal_oriented_faces": [
+        [
+          0,
+          5,
+          1
+        ],
+        [
+          0,
+          4,
+          5
+        ],
+        [
+          1,
+          6,
+          2
+        ],
+        [
+          1,
+          5,
+          6
+        ],
+        [
+          2,
+          7,
+          3
+        ],
+        [
+          2,
+          6,
+          7
+        ],
+        [
+          3,
+          4,
+          0
+        ],
+        [
+          3,
+          7,
+          4
+        ]
+      ],
+      "positive_output_checks": "All original boundary coordinates and segments exact; exact fixed cell; new points interior with sentinel; complete negative-Z annular domain and quality. No guessed CDT diagonal or new-point count.",
+      "map_identity_rows": 1,
+      "map_nonidentity_rows": 0
+    },
+    "mapped-loop-refusal": {
+      "input": {
+        "vertices": 8,
+        "faces": 8,
+        "Euler": 0,
+        "cap_area_mm2": "12",
+        "oriented_boundary_edges": [
+          [
+            0,
+            1,
+            -1
+          ],
+          [
+            0,
+            3,
+            1
+          ],
+          [
+            1,
+            2,
+            -1
+          ],
+          [
+            2,
+            3,
+            -1
+          ],
+          [
+            4,
+            5,
+            1
+          ],
+          [
+            4,
+            7,
+            -1
+          ],
+          [
+            5,
+            6,
+            1
+          ],
+          [
+            6,
+            7,
+            1
+          ]
+        ],
+        "strict_exact_poor_face_ids": []
+      },
+      "map_rows": [
+        [
+          0,
+          0
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          3,
+          0
+        ]
+      ],
+      "fixed_face_ids": [
+        5
+      ],
+      "expected": {
+        "intended_returncode": 3,
+        "expected_stage": "mapped_annulus",
+        "no_exports": true
+      },
+      "files": {
+        "mapped-loop-refusal.bin": {
+          "bytes": 408,
+          "sha256": "06d4873b6f58cf2d164431f2509093210bee45a1c90ee59407613f1c8952eeb4"
+        },
+        "mapped-loop-refusal.map.u64": {
+          "bytes": 48,
+          "sha256": "00e1569e9dd797fe34c6e25e16f07fc2a4185350626fd711718332b850467d1c"
+        },
+        "mapped-loop-refusal.fixed.u64": {
+          "bytes": 8,
+          "sha256": "f13ee6ed54ea2aae9fc49a9faeb5da6e8ddef0e12ed5d30d35a624ae813e0485"
+        }
+      },
+      "literal_points_mm": [
+        [
+          -2,
+          -2,
+          0
+        ],
+        [
+          2,
+          -2,
+          0
+        ],
+        [
+          2,
+          2,
+          0
+        ],
+        [
+          -2,
+          2,
+          0
+        ],
+        [
+          -1,
+          -1,
+          0
+        ],
+        [
+          1,
+          -1,
+          0
+        ],
+        [
+          1,
+          1,
+          0
+        ],
+        [
+          -1,
+          1,
+          0
+        ]
+      ],
+      "literal_oriented_faces": [
+        [
+          0,
+          5,
+          1
+        ],
+        [
+          0,
+          4,
+          5
+        ],
+        [
+          1,
+          6,
+          2
+        ],
+        [
+          1,
+          5,
+          6
+        ],
+        [
+          2,
+          7,
+          3
+        ],
+        [
+          2,
+          6,
+          7
+        ],
+        [
+          3,
+          4,
+          0
+        ],
+        [
+          3,
+          7,
+          4
+        ]
+      ],
+      "positive_output_checks": "All original boundary coordinates and segments exact; exact fixed cell; new points interior with sentinel; complete negative-Z annular domain and quality. No guessed CDT diagonal or new-point count.",
+      "map_identity_rows": 1,
+      "map_nonidentity_rows": 2
+    }
+  },
+  "native_execution_performed": false,
+  "claimed_Steiner_success": false,
+  "ordinary_source_fixture_not_head_metrology": true
+}

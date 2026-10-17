@@ -65,6 +65,11 @@ adds a cap inspection plot, exact rim screening and four verified native fixture
 Its boundary-only head proposal is rejected: native in-memory quality reports
 1,122 poor faces, down from 3,112, and exports no candidate. Later topology,
 neighbor and envelope checks were not reached; head physics remains open.
+The [later mixed-side and cap refinement](derived/engineering/atomic-cavity-plane-clip-cap-refinement/README.md)
+passes the necessary q≥2/29 gate on all 8,976 saved cap triangles, with
+3,092 new interior points and all 38 fixed cells retained. The stronger Mesh_2
+shape criterion still fails on 414 active faces. Full-head assembly and fresh
+combined geometry checks remain pending.
 The [sourced material comparison](ENGINEERING_MATERIALS.md) now separates seven
 published recipes, discrete hot-strength points and conditional body masses.
 These results do not select or qualify a material for the head.
@@ -75,6 +80,11 @@ The [two native conductivity witnesses](MATERIAL_CONDUCTIVITY_WITNESS.md)
 now pass 109 final-field checks each against an independent Kirchhoff reference.
 They verify the separate scalar software laws on an assumed bar; head strength
 and material/process qualification remain open.
+The [imported-cube software witness](derived/engineering/head-imported-cube-witness/README.md)
+passes a separate nine-node ASCII2.2 import, discrete P1 solve and complete
+Exodus mesh/field readback. Its normalized field w has units mm²; the retained
+25% continuum flux deficit prevents a convergence claim. It supplies software
+evidence for the next head import, without head strength or LPBF qualification.
 The [earlier analysis-surface evidence](ANALYSIS_QUALITY_ENGINEERING.md) passes
 its quality, topology, intersection and 0.25 mm distance screens, while
 exceeding the finest 0.0625 mm representation budget. Its checks remain

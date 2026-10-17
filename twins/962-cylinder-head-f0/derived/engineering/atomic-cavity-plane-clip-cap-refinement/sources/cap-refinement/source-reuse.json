@@ -1,0 +1,80 @@
+{
+  "schema": "962-cap-refinement-source-reuse/v1",
+  "successor": {
+    "path": "work/962-engineering/atomic-cavity-plane-clip-cap-refinement-prep-001/cap_common.hpp",
+    "bytes": 9598,
+    "sha256": "0583a28d01a7b3cf0d1f4e4c95af03d5bc5338748366ffb66c292644f8fbce89"
+  },
+  "ancestors": {
+    "quality_patch.cpp": {
+      "path": "work/962-engineering/atomic-cavity-plane-clip-cap-aware-repair-prep-002/quality_patch.cpp",
+      "bytes": 10360,
+      "sha256": "6a56acf7a1d7a4882251044f9331ff0e4590042a4d1d15f0b4599e0ab241d9ee"
+    },
+    "atomic_policy.hpp": {
+      "path": "work/962-engineering/atomic-cavity-plane-clip-cap-aware-repair-prep-002/atomic_policy.hpp",
+      "bytes": 3716,
+      "sha256": "7ffb32ad2923f2e7ddbe2e78f56655aa0b80e40e01e237e331ffccf6395af825"
+    },
+    "cap_aware_002.cpp": {
+      "path": "work/962-engineering/atomic-cavity-plane-clip-cap-aware-repair-prep-002/cap_aware_002.cpp",
+      "bytes": 25126,
+      "sha256": "ac5a70abb560b1868188ca78d69e26cfabeedafe47ae5302b6bb2fa4654dfc3f"
+    }
+  },
+  "source003": {
+    "path": "work/962-engineering/atomic-cavity-plane-clip-cap-aware-repair-prep-003/cap_aware_003.cpp",
+    "bytes": 25126,
+    "sha256": "1eb5bd303901cf7e4bc5c9aae1716fe301a3529eb727cc4117c8e3b3332cb290"
+  },
+  "codec_and_quality_prefix": {
+    "ancestor": "work/962-engineering/atomic-cavity-plane-clip-cap-aware-repair-prep-002/quality_patch.cpp",
+    "prefix_bytes": 4990,
+    "prefix_sha256": "1a782e430d00b0a61a6fd0d564838f5b739893568d1642fa5257115241b5d190",
+    "adapted_sha256": "39512899dc2e8d2c9753d63629ec1878bd9e093423c148cf7ab4bd61bd870f98",
+    "substitutions": [
+      {
+        "old": "!CGAL::is_closed(mesh)||",
+        "new": ""
+      },
+      {
+        "old": "Closed valid oriented triangular source required",
+        "new": "Valid oriented triangular cap source required"
+      }
+    ],
+    "exact_reverse_to_original_prefix": true
+  },
+  "exact_reused_blocks": [
+    {
+      "role": "row_edge_rejection_UF_and_point_bits",
+      "ancestor": "work/962-engineering/atomic-cavity-plane-clip-cap-aware-repair-prep-002/atomic_policy.hpp",
+      "exact_bytes": 727,
+      "block_sha256": "01c915888c110c6b5c97a63a8e6312c2b991b25bcc63704696731813e60cbf80",
+      "exact_block_found_once": true
+    },
+    {
+      "role": "oriented_boundary_chain",
+      "ancestor": "work/962-engineering/atomic-cavity-plane-clip-cap-aware-repair-prep-002/atomic_policy.hpp",
+      "exact_bytes": 190,
+      "block_sha256": "ed643f2eac451eb79873cc82e3dafe193d3592f59a84ac9be79c4b6da6d7df5d",
+      "exact_block_found_once": true
+    },
+    {
+      "role": "complete_cap_complex",
+      "ancestor": "work/962-engineering/atomic-cavity-plane-clip-cap-aware-repair-prep-003/cap_aware_003.cpp",
+      "exact_bytes": 2564,
+      "block_sha256": "11da940a29e0e58e14a6559429c7a4526f63e454533d5be9b0f76afa5fba1902",
+      "exact_block_found_once": true
+    },
+    {
+      "role": "exact_planar_and_JSON_helpers",
+      "ancestor": "work/962-engineering/atomic-cavity-plane-clip-cap-aware-repair-prep-003/cap_aware_003.cpp",
+      "exact_bytes": 678,
+      "block_sha256": "d5f388acdc9b07f8842aec69eaaec3e29add436c25b818afb5bdca1eeb49ec06",
+      "exact_block_found_once": true
+    }
+  ],
+  "compiled_old_main": false,
+  "upstream_header_bodies_copied": false,
+  "no_execution_performed": true
+}

@@ -1,0 +1,95 @@
+{
+  "binary41_writer": {
+    "original_record_sha256": "18c43aae7d0d2c9509f0a02095e5700ebe910bc4fb62b7dc2ed552a958ba78ce",
+    "returncode": 0,
+    "elapsed_seconds": 0.4827723749913275,
+    "log_sha256": "eab5bde4c304b8fa78e0caf915cb182d06a41fa54c59000d750f2c7bf10539fe"
+  },
+  "binary41_MOOSE_refusal": {
+    "original_record_sha256": "bf394e9da76b5d148e44d2ca52a241369782b34b73fc489d69a4269b84f11df2",
+    "status": "native_stopped_outputs_preserved",
+    "passed": false,
+    "returncode": 1,
+    "process_reaped": true,
+    "controller_error": null,
+    "controller_SIGTERM_requested": false,
+    "wall_seconds": 0.6673143599182367,
+    "inputs_unchanged": true,
+    "binary_and_runtime_unchanged": true,
+    "native_execution_completed": false,
+    "automatic_retry": false,
+    "safe_error_excerpt": "GmshIO read_mesh, gmsh_io.C:230: Unknown data format for mesh in Gmsh reader."
+  },
+  "ascii22_writer_strict_tag_failure": {
+    "original_record_sha256": "db1ad281873a5ce611087d44bc2f6c48049659184d31072e25e5b2560971df98",
+    "schema": "962-cube-ASCII-format-writer-execution/v1",
+    "returncode": 1,
+    "elapsed_seconds": 0.4107687911018729,
+    "child_sha256": "520dcfa4e4fa98ce2c6858d1b048a26a893422c22d3778a8a74fb5745cfb5c14",
+    "log_sha256": "8b8390d65f7826fe5f3dca663f358a2f84d8a98f031502b8b661f00501eb3d6e",
+    "ordinary_timeout_seconds": 30,
+    "hard_cpu_memory_quota": false,
+    "all_sources_and_preserved_inputs_unchanged": true,
+    "safe_failure_scope": "Native writer saved the cube, then failed strict original-tag equality because ASCII2.2 output renumbered tags. This stage remains failed."
+  },
+  "pure_tag_adapter": {
+    "original_record_sha256": "894631a98736bffe52f01ebd1b9d3a5d9eecf77d72081ab82dc7684c5b709f92",
+    "schema": "962-cube-integer-tag-adapter-execution/v1",
+    "returncode": 0,
+    "elapsed_seconds": 0.08110462501645088,
+    "child_sha256": "23feed0985d2fef90c0c8049494e39520178cf49f3c70d6c14c366c279733593",
+    "ordinary_timeout_seconds": 30,
+    "hard_cpu_memory_quota": false,
+    "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "all19_input_pins_unchanged": true,
+    "manifest_sha256": "572bc8dd072d682f59b59e0b471cd22fc5e3f446c09306a39441cae99471fb14"
+  },
+  "ascii22_MOOSE_observations": {
+    "original_record_sha256": "f6ed18b0ecd9eb898275f5d6d24d2c03a5d0d84010131bd250419aee9d6c9d23",
+    "status": "native_stopped_outputs_preserved",
+    "passed": false,
+    "returncode": 0,
+    "process_reaped": true,
+    "controller_error": null,
+    "controller_SIGTERM_requested": false,
+    "wall_seconds": 0.7136556881014258,
+    "inputs_unchanged": true,
+    "binary_and_runtime_unchanged": true,
+    "native_execution_completed": true,
+    "automatic_retry": false
+  },
+  "failed_original_assessor": {
+    "original_record_sha256": "0e30e106e6a56ba5cb2e1c04c53ad04df6064d23f9d2ecef09f33fb289a32e8a",
+    "schema": "962-scoped-ASCII22-cube-saved-output-assessment-execution/v1",
+    "returncode": 1,
+    "elapsed_seconds": 0.10748575022444129,
+    "source_sha256": "92d22c9bbde6b2e081c4b006c29b18e31219fe0e5d39dcc7aae94191bb1097bb",
+    "contract_sha256": "e9a0b1da0e0292feeab2ec178f1d1e781ad6275555e90dad33c7ab3e7fa8cd99",
+    "log_sha256": "00f59c6c23cd91935ff6c4d7ed6a86b873d8228f0abf5e9a82d88ef4ef86bc5d",
+    "all22_native_artifacts_unchanged": true,
+    "native_rerun": false
+  },
+  "corrected_postrun_assessor": {
+    "original_record_sha256": "44ac8fd255bfc6cbbe731183caee4d67d81221aedb6735959017dc641a310446",
+    "schema": "962-postrun-sign-corrected-assessment-execution/v1",
+    "returncode": 0,
+    "elapsed_seconds": 0.09981887484900653,
+    "child_sha256": "41885517a1abee865a665c52cc0a47ea9c5b97e956b15761a8ade493def41ae8",
+    "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "all22_native_artifacts_unchanged": true,
+    "source_sha256": "6e7733363f0564b777762ac2906f4ac6b8fb43e7bb1fb4d7dd723ac3a95d0898",
+    "native_solver_rerun": false
+  },
+  "actual_cube_Exodus_readback": {
+    "original_record_sha256": "64863a792a232c894c8bff65642860c6e04a9a7e2f39c16d63518cf9f75ab54d",
+    "schema": "962-actual-cube-stopped-Exodus-readback-execution/v1",
+    "returncode": 0,
+    "elapsed_seconds": 0.5360753750428557,
+    "contract_sha256": "8f8cc33d31787c4ed2f5bc3ee5fcfa1ba21fbc4f26107ec85dd20e4eb842fa68",
+    "source_sha256": "bf19080b964305c9488bce4309bf7235656fbaf03715b07f684c3d89962c80d4",
+    "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "all_input_pins_unchanged": true,
+    "input_pins": 31,
+    "native_solver_rerun": false
+  }
+}
