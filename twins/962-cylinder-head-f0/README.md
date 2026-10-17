@@ -56,6 +56,10 @@ local manifold checks pass; it is not a disk or an approved repair region.
 The [fresh whole-surface reference](derived/engineering/atomic-cavity-plane-clip-topology/README.md)
 measures one component and Euler −208, with no manifold defects or global
 self-intersections. The 3,112-face quality rejection remains unchanged.
+The [read-only repair reference](derived/engineering/atomic-cavity-plane-clip-repair-reference/README.md)
+checks equal fixed masks and maps the planar cap as an abstract annulus with
+two boundary cycles. Exact shortest-edge groups and an exploratory mixed-face
+subset are recorded; no keeper or repair constraint is selected.
 The [sourced material comparison](ENGINEERING_MATERIALS.md) now separates seven
 published recipes, discrete hot-strength points and conditional body masses.
 These results do not select or qualify a material for the head.

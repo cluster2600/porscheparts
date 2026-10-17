@@ -36,8 +36,9 @@ The head proposal still has 3,112 faces below the unchanged surface-quality
 threshold; surface admission, volume meshing and head fields remain open.
 The [later full-array readback](derived/engineering/atomic-cavity-plane-clip-readback/README.md)
 verifies retained coordinate bytes and confines all 3,112 poor faces to the
-cap (2,396) and its rim (716). Connected repair patches and fresh global
-geometry checks remain to be established before another volume trial.
+cap (2,396) and its rim (716). The later census and global reference below
+establish their recorded local-complex and topology/intersection observations;
+repair, cap/feature continuity and distance acceptance remain open.
 The [rejected clipped-surface download](derived/engineering/atomic-cavity-plane-clip-raw-review-delivery/README.md)
 contains exact BIN/coordinate IDs, lossless PLY and the three review capsules.
 All 129 archive members pass independent byte checks; GitHub verifies the three
@@ -50,6 +51,11 @@ The [new global topology/intersection reference](derived/engineering/atomic-cavi
 measures one connected component and Euler −208 with zero manifold defects and
 zero global intersection pairs. This establishes a pre-repair baseline while
 the 3,112 poor triangles still prevent surface admission.
+The [completed read-only repair reference](derived/engineering/atomic-cavity-plane-clip-repair-reference/README.md)
+verifies that the exterior-only and legacy fixed masks coincide and that the
+complete planar cap is an abstract annulus with two boundary cycles. Both exact
+shortest-edge scenarios have 476 groups; the separate mixed-face subset has
+506. These observations select no repair target, keeper or acceptance policy.
 The [separate material follow-up](MATERIAL_CONDUCTIVITY_FOLLOWUP.md) supplies
 measured AlSi10Mg conductivity points. The [two native bar witnesses](MATERIAL_CONDUCTIVITY_WITNESS.md)
 now verify the separate assumed piecewise-linear Z/XY laws with 109 final-field
