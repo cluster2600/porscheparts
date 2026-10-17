@@ -123,3 +123,12 @@ Les trois exports du rendu réel ont été copiés à l’octet. Un
 [rejeu réel depuis une copie séparée et le cwd `/`](peak-IP-location-root-publication-20261017.json)
 reproduit PNG, SVG et PDF à l’octet ; root a inspecté le PNG et la première
 page du PDF. Le reçu historique de la capsule reste conservé à sa date.
+
+
+La [planche 21 du raffinement local](local-refinement-20261017/README.md) compare
+le vrai maillage EF7 avant/après, avec toutes les arêtes du périmètre de mesure
+dans deux boîtes fixes et les cibles vérifiées aux valeurs non arrondies.
+Le maillage est géométriquement contrôlé ; la convergence des contraintes
+reste à étudier. Les résultats mécaniques sont documentés séparément.
+Les [trois formats rejoués à l’octet et la QA PNG/PDF de root](local-refinement-root-publication-20261017.json)
+sont liés aux données, sources et reçus complets de la capsule.
