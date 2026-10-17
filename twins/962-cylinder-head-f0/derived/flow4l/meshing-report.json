@@ -1,0 +1,82 @@
+{
+  "status": "all_current_volume_meshes_rejected",
+  "runtime_image": "sha256:a1db60cbf61bbcca52c171e50cab01ed0b6ec860b227e7c5fc50f7b809659b4f",
+  "solver": "OpenFOAM Foundation 13",
+  "check_command": "checkMesh -allGeometry -allTopology",
+  "thresholds_relaxed": false,
+  "cases": [
+    {
+      "case": "work/962-flow4l/cfd-1mm",
+      "status": "rejected_mesh_quality_no_flow_result",
+      "failed_mesh_checks": 1,
+      "cells": 149980,
+      "solver_iterations_observed": 0,
+      "source_hashes": {
+        "work/962-flow4l/cfd-1mm/case-report.json": "ed7fba93e9ecb2ffc43cc2f7b95160b70f053dcae418c992f9af518865ece6b6",
+        "work/962-flow4l/cfd-1mm/log.checkMesh": "0e7d5b05c8dd57c0f6a652c554e0982a31502db6dcb33a0f95d24405a6af7eb9"
+      }
+    },
+    {
+      "case": "work/962-flow4l/cfd-tet-002",
+      "status": "rejected_mesh_quality_no_flow_result",
+      "failed_mesh_checks": 6,
+      "cells": 135389,
+      "solver_iterations_observed": 0,
+      "source_hashes": {
+        "work/962-flow4l/cfd-tet-002/case-report.json": "d618ad7051c6189b8bc8decfaafc3c548ae19f31b300f7e074e30a469f3cd83a",
+        "work/962-flow4l/cfd-tet-002/log.checkMesh": "6f60f3e02414ed4a9f7c0fcc98c502033578043c48bbd753e4604e5e4ffa1d82"
+      }
+    },
+    {
+      "case": "work/962-flow4l/cfd-snappy-001",
+      "status": "rejected_mesh_quality_no_flow_result",
+      "failed_mesh_checks": 2,
+      "cells": 138400,
+      "solver_iterations_observed": 0,
+      "source_hashes": {
+        "work/962-flow4l/cfd-snappy-001/case-report.json": "df99425a106551b39d2cab2703791c2c05aeda831a66e1b02630827880e1a8c4",
+        "work/962-flow4l/cfd-snappy-001/log.checkMesh": "39fe7a2f2c3f1b99b0e899adb7669f9681f55eb330de1f811e4cf5ec4af30836",
+        "work/962-flow4l/cfd-snappy-001/log.accept_mesh": "fa7a91b238ab70a1577d45a61516b4a953c75c3c65febd5fc6c900a74567e327"
+      }
+    },
+    {
+      "case": "work/962-flow4l/cfd-native-tet-001",
+      "status": "rejected_mesh_quality_no_flow_result",
+      "failed_mesh_checks": 5,
+      "cells": 1612960,
+      "solver_iterations_observed": 0,
+      "source_hashes": {
+        "work/962-flow4l/cfd-native-tet-001/case-report.json": "8e626b54d626ef36e1cd468b3aca495763fc1bfcadf45bc954903d898e9b8c23",
+        "work/962-flow4l/cfd-native-tet-001/log.checkMesh": "bfb2269f31228b5b18e6ccde4eec26fa52c090349bf68e198e6b573c23a3e135",
+        "work/962-flow4l/cfd-native-tet-001/log.accept_mesh": "185402b00e2bdd899bde9814817fa5c048257d0fb8aeb9973ee205337d0eedd7"
+      }
+    }
+  ],
+  "positive_native_tet_export": {
+    "cells": 1612960,
+    "minimum_tetrahedron_volume_m3": 3.52449838876e-15,
+    "relative_volume_change_from_parent": 0.000207127567469,
+    "source_hashes": {
+      "prepare_native_tet_case.py": "f097c46fc3620f5ffae3c8f3a901680627be8d50d51d116a30b33aae5dedf8be",
+      "headTetExport.C": "9c020b3db7476040da2bb07a5687b19c573ba78c12798f13f85907accbabe324",
+      "native-tet-export-002.log": "d7e74581ef7b80b24cada2153759e4ff61d03c1a8825a3ca0fd89a6532be2d4c"
+    }
+  },
+  "native_tet_rejection": {
+    "high_aspect_ratio_cells": 19,
+    "high_skewness_faces": 7,
+    "small_determinant_cells": 9055,
+    "small_face_interpolation_weights": 6327,
+    "small_face_volume_ratios": 2168
+  },
+  "retained_logs": {
+    "native-tet-001-checkMesh.log": "bfb2269f31228b5b18e6ccde4eec26fa52c090349bf68e198e6b573c23a3e135",
+    "native-tet-export-002.log": "d7e74581ef7b80b24cada2153759e4ff61d03c1a8825a3ca0fd89a6532be2d4c",
+    "snappy-001-checkMesh.log": "39fe7a2f2c3f1b99b0e899adb7669f9681f55eb330de1f811e4cf5ec4af30836"
+  },
+  "qualification": {
+    "hydraulic_performance_validated": false,
+    "thermal_performance_validated": false,
+    "manufacturing_authorized": false
+  }
+}
