@@ -1,0 +1,167 @@
+{
+  "actual_clipped_Euler_characteristic": null,
+  "actual_component_count": null,
+  "adapted_generic_guard": {
+    "component1_is_prospective_generic_criterion_not_observation": true,
+    "delta_operations": [
+      {
+        "new": "def require_reference_topology(surface, components):",
+        "old": "def require_topology(surface, components):"
+      },
+      {
+        "new": "Prospective generic closed-manifold guard; report the measured Euler value.",
+        "old": "Keep component, orientation, Euler and volume checks independent."
+      },
+      {
+        "new": "type(surface.get(\"euler_characteristic\")) is not int",
+        "old": "type(surface.get(\"euler_characteristic\")) is not int or surface[\"euler_characteristic\"] != -208"
+      },
+      {
+        "new": "Integer measured Euler characteristic required",
+        "old": "Original Euler characteristic -208 required"
+      }
+    ],
+    "new_definition": "require_reference_topology",
+    "new_function_text_sha256": "2695d62cac0db6dd02e7fc2c09a60d1256479c01a2155d0d7b9d81a91a0a1ed5",
+    "only_numerical_equality_removed": "old Euler -208 equality; integer observation remains required",
+    "original_definition": "require_topology",
+    "original_function_text_sha256": "97b915d482140ab3d824c103bebe7780f73345ebc1bbce99f99f58b3f57e670e",
+    "relative_original": "work/962-engineering/atomic-cavity-topology-prep-001/worker-sources/audit_quality_topology_002.py"
+  },
+  "all_fixtures_runtime_helpers_controls_preserved": true,
+  "changed_sources": {
+    "audit_atomic_topology.py": {
+      "all_replacements_exactly_once": true,
+      "forward_operations": [
+        {
+          "new": "One source-bound clipped pre-repair topology/intersection reference; no repair.",
+          "old": "One source-bound atomic candidate topology/intersection worker; no repair."
+        },
+        {
+          "new": "d2af68ee8ab242e992b15b6e2a93ac7e487972277af7f31a8496a7036ec32240",
+          "old": "1f9dbd4cda61c7b58084479ebb165fb01280fa831752dc0da18517e548131b1a"
+        },
+        {
+          "new": "COUNTS = dict(vertices=869355, triangles=1739126)",
+          "old": "COUNTS = dict(vertices=901727, triangles=1803870)"
+        },
+        {
+          "new": "import json\nimport math\n",
+          "old": "import json\n"
+        },
+        {
+          "new": "def require_reference_topology(surface, components):\n    \"\"\"Prospective generic closed-manifold guard; report the measured Euler value.\"\"\"\n    if type(components) is not int or components != 1:\n        raise ValueError(\"One connected surface component required\")\n    for key in (\"boundary_edges\", \"nonmanifold_edges\", \"orientation_imbalanced_edges\"):\n        if type(surface.get(key)) is not int or surface[key] != 0:\n            raise ValueError(\"Closed oriented edge-manifold surface required\")\n    if type(surface.get(\"euler_characteristic\")) is not int:\n        raise ValueError(\"Integer measured Euler characteristic required\")\n    volume = surface.get(\"signed_volume_mm3\")\n    if type(volume) not in (int, float) or not math.isfinite(volume) or volume <= 0:\n        raise ValueError(\"Finite positive signed enclosed volume required\")\n\ndef worker(expected):",
+          "old": "def worker(expected):"
+        },
+        {
+          "new": "qualification=contract['qualification'], runtime={}, pre_repair_reference_only=True,\n        known_retained_faces_below_2_over_29=3112, surface_quality_admitted=False,",
+          "old": "qualification=contract['qualification'], runtime={},"
+        },
+        {
+          "new": "Unmodified 002 components and envelope audit_intersections; local generic guard adapted from preserved require_topology with its old Euler equality removed. No retained legacy entrypoint called.",
+          "old": "Unmodified 002 components/require_topology and envelope audit_intersections helpers; no retained legacy run/worker entrypoint called."
+        },
+        {
+          "new": "from audit_quality_topology_002 import components",
+          "old": "from audit_quality_topology_002 import components, require_topology"
+        },
+        {
+          "new": "require_reference_topology(surface, count); report['topology_gate_passed'] = True",
+          "old": "require_topology(surface, count); report['topology_gate_passed'] = True"
+        }
+      ],
+      "new_sha256": "9025dfaacb8e3b51f2ef80ccf7570b8e5e9cea1081902cad60c5c758844b0092",
+      "original_sha256": "f7cca6b093f4e5220882df5d1c3cf7fabca12167e2da21218033750832fdc7fb",
+      "relative_original": "work/962-engineering/atomic-cavity-topology-prep-001/audit_atomic_topology.py",
+      "reverse_all_changes_recovers_complete_original_bytes": true
+    },
+    "run_atomic_topology.py": {
+      "all_replacements_exactly_once": true,
+      "forward_operations": [
+        {
+          "new": "OUTPUT = ROOT/'work/962-engineering/atomic-cavity-plane-clip-topology-001'",
+          "old": "OUTPUT = ROOT/'work/962-engineering/atomic-cavity-topology-001'"
+        },
+        {
+          "new": "CANDIDATE = ROOT/'work/962-engineering/atomic-cavity-plane-clip-exact-head-001/head-plane0/candidate.bin'",
+          "old": "CANDIDATE = ROOT/'work/962-engineering/atomic-cavity-head-001/head-atomic002/candidate.bin'"
+        },
+        {
+          "new": "GATES = dict(connected_components=1,",
+          "old": "GATES = dict(connected_components=1, euler_characteristic=-208,"
+        },
+        {
+          "new": "dict(vertices=869355, triangles=1739126)",
+          "old": "dict(vertices=901727, triangles=1803870)"
+        },
+        {
+          "new": "d2af68ee8ab242e992b15b6e2a93ac7e487972277af7f31a8496a7036ec32240",
+          "old": "1f9dbd4cda61c7b58084479ebb165fb01280fa831752dc0da18517e548131b1a"
+        }
+      ],
+      "new_sha256": "414d1ee3200c9db21c5b8b045feb225e8c6f6596e567a0d7260c25ef4e1496e2",
+      "original_sha256": "7e62b96a2e6dd4ad218a62c2564f2b0871f3fb068a8b11ee5c007050bcc57402",
+      "relative_original": "work/962-engineering/atomic-cavity-topology-prep-001/run_atomic_topology.py",
+      "reverse_all_changes_recovers_complete_original_bytes": true
+    }
+  },
+  "exact_unchanged_source_copies": {
+    "run_finest_endpoint_metadata.py": {
+      "relative_original": "work/962-engineering/atomic-cavity-topology-prep-001/run_finest_endpoint_metadata.py",
+      "sha256": "a88477c47d406cea3761c324e1f6eb82dcb1c2b962698d7f328261c6cef2929b"
+    },
+    "run_finest_endpoint_preflight.py": {
+      "relative_original": "work/962-engineering/atomic-cavity-topology-prep-001/run_finest_endpoint_preflight.py",
+      "sha256": "b214e1cece8dbf66be6071199cbdf1a8e22a2a59328888011de17492f923c86b"
+    },
+    "test_atomic_topology.py": {
+      "relative_original": "work/962-engineering/atomic-cavity-topology-prep-001/test_atomic_topology.py",
+      "sha256": "370c114f14440cfb0c7cf5c48e00df1e3a958c9ae56a788fac34a971b387c9ab"
+    },
+    "worker-sources/audit_envelope_surface.py": {
+      "relative_original": "work/962-engineering/atomic-cavity-topology-prep-001/worker-sources/audit_envelope_surface.py",
+      "sha256": "5a4a6559702e48fc4d97bb3b71a050aa600645485443a4c1caf389456d77c0c0"
+    },
+    "worker-sources/audit_quality_head.py": {
+      "relative_original": "work/962-engineering/atomic-cavity-topology-prep-001/worker-sources/audit_quality_head.py",
+      "sha256": "a298270aa00b1536314a07629b935500c68883ca0d3bd1a179d71b49a8e73991"
+    },
+    "worker-sources/audit_quality_patch.py": {
+      "relative_original": "work/962-engineering/atomic-cavity-topology-prep-001/worker-sources/audit_quality_patch.py",
+      "sha256": "3532a172b2bce3a8ead7c8b11b712a2b55891377726fa1b6d847e84f0eed3912"
+    },
+    "worker-sources/audit_quality_topology_002.py": {
+      "relative_original": "work/962-engineering/atomic-cavity-topology-prep-001/worker-sources/audit_quality_topology_002.py",
+      "sha256": "d08c68348bd3cf511844c488f0165afc8814ab0851e434b4b79de48fdcf4f27f"
+    },
+    "worker-sources/mesh_head.py": {
+      "relative_original": "work/962-engineering/atomic-cavity-topology-prep-001/worker-sources/mesh_head.py",
+      "sha256": "69c8012e99057e384d44d6971d41f0e2cc7197a978120a7c566b0ad5a6477da5"
+    },
+    "worker-sources/prepare_head_analysis.py": {
+      "relative_original": "work/962-engineering/atomic-cavity-topology-prep-001/worker-sources/prepare_head_analysis.py",
+      "sha256": "cda8f7155a8c22ab66898f07d1ad452ba5384ad7f75a1f012606685cd8a12dc3"
+    }
+  },
+  "generic_reference_criteria": {
+    "closed_oriented_edge_manifold": true,
+    "connected_components": 1,
+    "finite_positive_signed_volume": true,
+    "vertex_manifold": true
+  },
+  "global_SI_options": {
+    "detect_only": true,
+    "first_only": false,
+    "pair_cap": 100001,
+    "stitch_all": false
+  },
+  "native_Docker_NumPy_API_Git_calls": 0,
+  "native_launch_authorized": false,
+  "new_framework_created": false,
+  "prepared_sources_imported_or_executed": false,
+  "retained_quality_rejection": {
+    "faces_below_2_over_29": 3112,
+    "surface_quality_admitted": false
+  },
+  "schema": "962-clipped-pre-repair-topology-minimal-source-reuse/v1"
+}

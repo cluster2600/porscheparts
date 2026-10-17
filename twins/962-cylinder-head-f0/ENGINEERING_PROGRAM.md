@@ -46,6 +46,10 @@ The [new local-complex census](derived/engineering/atomic-cavity-plane-clip-patc
 finds 758 poor-face edge groups sharing 760 contact vertices. Their complete
 incident union is one manifold region with Euler −4 and six boundary cycles,
 requiring fresh repair constraints; the earlier disk-only assessor cannot apply.
+The [new global topology/intersection reference](derived/engineering/atomic-cavity-plane-clip-topology/README.md)
+measures one connected component and Euler −208 with zero manifold defects and
+zero global intersection pairs. This establishes a pre-repair baseline while
+the 3,112 poor triangles still prevent surface admission.
 The [separate material follow-up](MATERIAL_CONDUCTIVITY_FOLLOWUP.md) supplies
 measured AlSi10Mg conductivity points. The [two native bar witnesses](MATERIAL_CONDUCTIVITY_WITNESS.md)
 now verify the separate assumed piecewise-linear Z/XY laws with 109 final-field
