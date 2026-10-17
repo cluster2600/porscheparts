@@ -48,3 +48,12 @@ conserve les trois expériences réelles CalculiX, PyMesh et CGAL b4e8, les
 appelants exécutés, les petits résultats natifs et un vérificateur sans
 runtime natif. Elle précise les dépendances déjà installées et distingue
 l’archive expérimentale de la procédure CGAL stable 6.1.3.
+
+La [capsule d'encodage des points couverts](../../parts/993-eng-carrier-0001/source/process-point-encoding-20261017/README.md)
+conserve le contrôle réel des **17 384 événements** de la grande zone 000 sur
+les 1 034 hauteurs : tous possèdent un témoin encodé non nul du même groupe.
+Le helper et ses treize tests sont utilisables sans runtime AM ; un
+vérificateur relit les preuves compressées et recalcule cellules d'arrondi et
+inclusions rationnelles. La géométrie originale reste intacte. L'intégration
+au découpeur et le recalcul des contacts et des graphes restent séparés de
+ce contrôle ; aucune admission globale n'est donnée par cette capsule.

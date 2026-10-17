@@ -79,3 +79,7 @@ preuves et les exports PNG/SVG/PDF sont inclus. Les autres groupes et les
 graphes d'exposition restent à contrôler avec cette nouvelle règle.
 Le [rejeu depuis une copie séparée](encoded-point-coverage-20261017/replay-validation.json),
 lancé depuis `/tmp`, reproduit les trois exports à l'octet.
+Le [contrôle suivant des 17 384 événements](../process-point-encoding-20261017/README.md)
+termine également les 1 034 hauteurs avec tous les témoins requis ; cette
+capsule conserve le helper, les tests et les preuves complètes. La planche
+reste liée à son diagnostic historique de la seule peau 13.
