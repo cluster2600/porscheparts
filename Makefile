@@ -319,6 +319,7 @@ validate:
 	python3 scripts/validate_scans.py
 	python3 scripts/validate_measurements.py
 	python3 scripts/validate_reference.py
+	python3 scripts/validate_registers.py
 	python3 scripts/validate_manual_measurements.py
 	python3 scripts/validate_twin.py
 	python3 scripts/validate_specifications.py
@@ -1378,8 +1379,9 @@ part-previews:
 	    python3 scripts/render_part_previews.py --write --only $$id || exit 1; \
 	done
 
-#> catalogue | Check that every part's product views match its current CAD
+#> catalogue | Require public images and provenance for every catalogue record
 part-previews-check:
+	python3 tests/test_render_part_previews.py
 	python3 scripts/render_part_previews.py --check
 
 #> catalogue | Rewrite the README parts table

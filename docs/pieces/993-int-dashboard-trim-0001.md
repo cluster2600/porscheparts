@@ -75,6 +75,10 @@ Catalogue record: [`catalog/parts/993-int-dashboard-trim-0001.json`](../../catal
 
 ## Images
 
+![photo-concept](../../parts/993-int-dashboard-trim-0001/media/photo-concept.png)
+
+*`parts/993-int-dashboard-trim-0001/media/photo-concept.png` — AI-generated studio illustration based on the concept CAD preview. Material and finish are illustrative; generated details may differ. Not a photograph or evidence of fit, function or manufacturing.*
+
 ![preview](../../parts/993-int-dashboard-trim-0001/media/preview.png)
 
 *`parts/993-int-dashboard-trim-0001/media/preview.png` — concept CAD block, **not** the original part, not a print file.*
@@ -101,7 +105,7 @@ Catalogue record: [`catalog/parts/993-int-dashboard-trim-0001.json`](../../catal
 | status | concept |
 | vehicle tested | not recorded |
 | reviewed by |  |
-| limitations | not recorded |
+| limitations | SCOPE, AND THIS IS AN EXCLUSION, NOT A PRECAUTION. This part applies only to an M564 vehicle, or a Carrera RS whose catalogue illustration reads "for cars without Airbag, Passenger's side". On an M561 or M562 vehicle the trim carries the passenger airbag deployment flap, whose tear line is an occupant restraint part: fitting this part there would be a replacement of a safety component, and that is prohibited here. The option code is read from the vehicle label, before any measurement.<br>Ruling out the airbag does not make the part harmless. An original dashboard is a soft surface in the occupant impact zone; a carbon laminate is rigid there and breaks into sharp shards where a foam crushes. That is why the selected class is functional and not non_critical. The interior fittings regulations, ECE R21 in Europe and FMVSS 201 in the United States, deal precisely with projections and energy absorption in this zone: their applicability to a modified classic vehicle has not been studied and must be before any fitting.<br>The knee protection strip is a SEPARATE PART — 964 552 053 00 /LL and 993 552 054 00 /RL in series production, 964 552 077 70 and 964 552 078 70 on RS M003 — and it stays original. The composite trim must keep its attachment points identical. A reproduction that removed or moved these points would remove a protection.<br>This is not a mass project. The stated gain is 1.15 kg, versus 9.9 kg for a front lid. The reason to make this part is that it does not exist in tuners' catalogues.<br>No geometry. A dashboard is a freeform surface with multiple interfaces: air vents, instrument hood, steering column, glovebox, console junction, pillars and windshield base. It cannot be measured with calipers; it needs a scan or scaled photogrammetry. The two CAD leads already qualified by the repository are ruled out: SRC-CGTRADER-993-DASHBOARD-SCALE-MODEL is a 1/8 scale model, SRC-FSH-993-DASHBOARD-TRIM-DIMENSIONS describes an aftermarket trim.<br>The aging of the original distorts the mold, and so does its removal. A thirty-year-old dashboard is cracked and warped by heat; it is also constrained by its fasteners, so it can relax when it comes out of the vehicle. The shape must be captured fitted AND removed, and the difference between the two states recorded.<br>Temperature and UV resistance not evaluated: this is the interior surface most exposed to the sun.<br>Reflection. A clear-coated carbon surface under the windshield sends light back into the driver's field of view, which a grained leatherette does not. To be treated as a requirement, not as a finish. |
 
 **Evidence**
 

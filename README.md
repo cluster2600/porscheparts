@@ -32,13 +32,13 @@ The repository has withdrawn several, listed
 [further down this page](#what-the-repository-withdrew-from-its-own-results).
 
 > [!IMPORTANT]
-> **No part is validated.** All 41 part records are at status `concept`, and 23
+> **No part is validated.** All 43 part records are at status `concept`, and 25
 > of them are `prohibited_pending_engineering`. Read [SAFETY.md](SAFETY.md).
 
 <table>
 <tr>
-<td align="center"><h3>527</h3>qualified source records</td>
-<td align="center"><h3>41</h3>part records<br><sub>23 prohibited as they stand</sub></td>
+<td align="center"><h3>545</h3>qualified source records</td>
+<td align="center"><h3>43</h3>part records<br><sub>25 prohibited as they stand</sub></td>
 <td align="center"><h3>34</h3>993 design dossiers<br><sub>for additive manufacturing</sub></td>
 </tr>
 <tr>
@@ -216,7 +216,7 @@ tolerance, not data: the points carry ±2 to 9 mm where a tool needs ±1 mm.
 
 ## 2. 993 parts for additive manufacturing
 
-**34 design dossiers** in [`docs/993/`](docs/993/) and **41 part records**,
+**34 design dossiers** in [`docs/993/`](docs/993/) and **43 part records**,
 from the headlamp spring hook to the K16 turbine wheel in Inconel 718, by way
 of the Ti-6Al-4V connecting rod, the AlSi10Mg compressor wheel, the IN625
 exhaust manifold and the WE43 cooling impeller. Each dossier starts from
@@ -260,13 +260,21 @@ engineering** stays so until an engineering review lifts it.
 <tr>
 <td align="center" width="16%"><a href="parts/993-body-front-impact-support-alsi10mg-f0-0001/"><img src="parts/993-body-front-impact-support-alsi10mg-f0-0001/media/preview.png" alt="993 front impact support" width="130"><br><sub>993 front impact support</sub></a></td>
 <td align="center" width="16%"><a href="parts/993-body-front-lid-0001/"><img src="parts/993-body-front-lid-0001/media/preview.png" alt="Front lid" width="130"><br><sub>Front lid</sub></a></td>
+<td align="center" width="16%"><a href="parts/993-ca-charge-pipe-set-pet-0001/"><img src="parts/993-ca-charge-pipe-set-pet-0001/media/preview.png" alt="993 Turbo charge-air tract transc…" width="130"><br><sub>993 Turbo charge-air tract transc…</sub></a></td>
+<td align="center" width="16%"><a href="parts/993-ca-turbo-intake-manifold-pet-0001/"><img src="parts/993-ca-turbo-intake-manifold-pet-0001/media/preview.png" alt="993 Turbo turbocharging intake tr…" width="130"><br><sub>993 Turbo turbocharging intake tr…</sub></a></td>
 <td align="center" width="16%"><a href="parts/993-elec-headlamp-spring-hook-f0-0001/"><img src="parts/993-elec-headlamp-spring-hook-f0-0001/media/preview.png" alt="Headlamp spring hook repair" width="130"><br><sub>Headlamp spring hook repair</sub></a></td>
-<td align="center" width="16%"><a href="parts/993-eng-carrier-0001/"><img src="parts/993-eng-carrier-0001/media/preview.png" alt="Turbo engine carrier (Motortraege…" width="130"><br><sub>Turbo engine carrier (Motortraege…</sub></a></td>
-<td align="center" width="16%"><a href="parts/993-eng-chain-case-0001/"><img src="parts/993-eng-chain-case-0001/media/preview.png" alt="993 timing chain case and its lids" width="130"><br><sub>993 timing chain case and its lids</sub></a></td>
-<td align="center" width="16%"><a href="parts/993-eng-connecting-rod-ti64-f0-0001/"><img src="parts/993-eng-connecting-rod-ti64-f0-0001/media/preview.png" alt="🧩 993/993 Turbo connecting rod" width="130"><br><sub>🧩 993/993 Turbo connecting rod</sub></a></td>
+<td align="center" width="16%"><a href="parts/993-eng-bracket-0001/"><img src="parts/993-eng-bracket-0001/media/preview.png" alt="Console centrale moteur Turbo bio…" width="130"><br><sub>Console centrale moteur Turbo bio…</sub></a></td>
 </tr>
 <tr>
+<td align="center" width="16%"><a href="parts/993-eng-carrier-0001/"><img src="parts/993-eng-carrier-0001/media/preview.png" alt="Turbo engine carrier (Motortraege…" width="130"><br><sub>Turbo engine carrier (Motortraege…</sub></a></td>
+<td align="center" width="16%"><a href="parts/993-eng-chain-case-0001/"><img src="parts/993-eng-chain-case-0001/media/preview.png" alt="993 timing chain case and its lids" width="130"><br><sub>993 timing chain case and its lids</sub></a></td>
+<td align="center" width="16%"><a href="parts/993-eng-chain-case-lid-ti-f0-0001/"><img src="parts/993-eng-chain-case-lid-ti-f0-0001/media/preview.png" alt="Left chain case lid 964 105 107 01" width="130"><br><sub>Left chain case lid 964 105 107 01</sub></a></td>
+<td align="center" width="16%"><a href="parts/993-eng-connecting-rod-ti64-f0-0001/"><img src="parts/993-eng-connecting-rod-ti64-f0-0001/media/preview.png" alt="🧩 993/993 Turbo connecting rod" width="130"><br><sub>🧩 993/993 Turbo connecting rod</sub></a></td>
+<td align="center" width="16%"><a href="parts/993-eng-cooling-impeller-alsi10mg-f0-0001/"><img src="parts/993-eng-cooling-impeller-alsi10mg-f0-0001/media/preview.png" alt="993 engine cooling fan — archived…" width="130"><br><sub>993 engine cooling fan — archived…</sub></a></td>
 <td align="center" width="16%"><a href="parts/993-eng-cooling-impeller-we43-f1-0001/"><img src="parts/993-eng-cooling-impeller-we43-f1-0001/media/preview.png" alt="Engine cooling fan impeller" width="130"><br><sub>Engine cooling fan impeller</sub></a></td>
+</tr>
+<tr>
+<td align="center" width="16%"><a href="parts/993-eng-cylinder-head-4v-f0-0001/"><img src="parts/993-eng-cylinder-head-4v-f0-0001/media/preview.png" alt="M64 four-valve water-cooled cylin…" width="130"><br><sub>M64 four-valve water-cooled cylin…</sub></a></td>
 <td align="center" width="16%"><a href="parts/993-eng-exhaust-manifold-in625-f0-0001/"><img src="parts/993-eng-exhaust-manifold-in625-f0-0001/media/preview.png" alt="993 Turbo three-into-one exhaust…" width="130"><br><sub>993 Turbo three-into-one exhaust…</sub></a></td>
 <td align="center" width="16%"><a href="parts/993-eng-exhaust-valve-f1-0001/"><img src="parts/993-eng-exhaust-valve-f1-0001/media/preview.png" alt="993 exhaust valves - F1 proxies" width="130"><br><sub>993 exhaust valves - F1 proxies</sub></a></td>
 <td align="center" width="16%"><a href="parts/993-eng-fan-housing-alsi10mg-f0-0001/"><img src="parts/993-eng-fan-housing-alsi10mg-f0-0001/media/preview.png" alt="Stationary engine fan housing" width="130"><br><sub>Stationary engine fan housing</sub></a></td>
@@ -282,25 +290,30 @@ engineering** stays so until an engineering review lifts it.
 <td align="center" width="16%"><a href="parts/993-eng-k16-turbine-wheel-in718-f0-0001/"><img src="parts/993-eng-k16-turbine-wheel-in718-f0-0001/media/preview.png" alt="🧩 K16 turbine wheel" width="130"><br><sub>🧩 K16 turbine wheel</sub></a></td>
 </tr>
 <tr>
+<td align="center" width="16%"><a href="parts/993-eng-mounting-0001/"><img src="parts/993-eng-mounting-0001/media/preview.png" alt="Support moteur Turbo bionique — c…" width="130"><br><sub>Support moteur Turbo bionique — c…</sub></a></td>
 <td align="center" width="16%"><a href="parts/993-eng-oil-filter-console-alsi10mg-f0-0001/"><img src="parts/993-eng-oil-filter-console-alsi10mg-f0-0001/media/preview.png" alt="Engine oil filter console with in…" width="130"><br><sub>Engine oil filter console with in…</sub></a></td>
 <td align="center" width="16%"><a href="parts/993-eng-piston-cp1-gallery-f0-0001/"><img src="parts/993-eng-piston-cp1-gallery-f0-0001/media/preview.png" alt="M64/60 piston with cooling gallery" width="130"><br><sub>M64/60 piston with cooling gallery</sub></a></td>
 <td align="center" width="16%"><a href="parts/993-eng-three-runner-intake-alsi10mg-f0-0001/"><img src="parts/993-eng-three-runner-intake-alsi10mg-f0-0001/media/preview.png" alt="993 three-runner intake manifold" width="130"><br><sub>993 three-runner intake manifold</sub></a></td>
 <td align="center" width="16%"><a href="parts/993-eng-turbo-heat-shield-in625-f0-0001/"><img src="parts/993-eng-turbo-heat-shield-in625-f0-0001/media/preview.png" alt="993 left turbo heat shield cover" width="130"><br><sub>993 left turbo heat shield cover</sub></a></td>
 <td align="center" width="16%"><a href="parts/993-eng-turbo-oil-return-line-in625-f0-0001/"><img src="parts/993-eng-turbo-oil-return-line-in625-f0-0001/media/preview.png" alt="Turbo oil return line" width="130"><br><sub>Turbo oil return line</sub></a></td>
-<td align="center" width="16%"><a href="parts/993-eng-upper-valve-cover-alsi10mg-f0-0001/"><img src="parts/993-eng-upper-valve-cover-alsi10mg-f0-0001/media/preview.png" alt="Upper valve cover with COP towers" width="130"><br><sub>Upper valve cover with COP towers</sub></a></td>
 </tr>
 <tr>
+<td align="center" width="16%"><a href="parts/993-eng-upper-valve-cover-alsi10mg-f0-0001/"><img src="parts/993-eng-upper-valve-cover-alsi10mg-f0-0001/media/preview.png" alt="Upper valve cover with COP towers" width="130"><br><sub>Upper valve cover with COP towers</sub></a></td>
+<td align="center" width="16%"><a href="parts/993-exh-cat-converter-pair-pet-0001/"><img src="parts/993-exh-cat-converter-pair-pet-0001/media/preview.png" alt="993 Turbo catalytic converters (f…" width="130"><br><sub>993 Turbo catalytic converters (f…</sub></a></td>
+<td align="center" width="16%"><a href="parts/993-exh-heat-exchanger-pair-pet-0001/"><img src="parts/993-exh-heat-exchanger-pair-pet-0001/media/preview.png" alt="993 Turbo exhaust heat exchangers…" width="130"><br><sub>993 Turbo exhaust heat exchangers…</sub></a></td>
 <td align="center" width="16%"><a href="parts/993-exh-oval-tip-in625-f0-0001/"><img src="parts/993-exh-oval-tip-in625-f0-0001/media/preview.png" alt="993 oval exhaust tip" width="130"><br><sub>993 oval exhaust tip</sub></a></td>
 <td align="center" width="16%"><a href="parts/993-exh-oval-tip-ti-f1-0001/"><img src="parts/993-exh-oval-tip-ti-f1-0001/media/preview.png" alt="Oval exhaust tip" width="130"><br><sub>Oval exhaust tip</sub></a></td>
 <td align="center" width="16%"><a href="parts/993-int-dashboard-trim-0001/"><img src="parts/993-int-dashboard-trim-0001/media/preview.png" alt="Dashboard trim" width="130"><br><sub>Dashboard trim</sub></a></td>
+</tr>
+<tr>
 <td align="center" width="16%"><a href="parts/993-int-door-opener-lever-f0-0001/"><img src="parts/993-int-door-opener-lever-f0-0001/media/preview.png" alt="993 interior door opener lever" width="130"><br><sub>993 interior door opener lever</sub></a></td>
 <td align="center" width="16%"><a href="parts/993-int-door-pull-0001/"><img src="parts/993-int-door-pull-0001/media/preview.png" alt="Interior door pull handle" width="130"><br><sub>Interior door pull handle</sub></a></td>
 <td align="center" width="16%"><a href="parts/993-int-seat-rail-cover-0001/"><img src="parts/993-int-seat-rail-cover-0001/media/preview.png" alt="Seat rail cover" width="130"><br><sub>Seat rail cover</sub></a></td>
-</tr>
-<tr>
 <td align="center" width="16%"><a href="parts/993-int-switch-blank-0001/"><img src="parts/993-int-switch-blank-0001/media/preview.png" alt="Switch blank" width="130"><br><sub>Switch blank</sub></a></td>
 <td align="center" width="16%"><a href="parts/993-int-switch-trim-ring-f1-0001/"><img src="parts/993-int-switch-trim-ring-f1-0001/media/preview.png" alt="🖨️ Aluminum switch trim ring" width="130"><br><sub>🖨️ Aluminum switch trim ring</sub></a></td>
 <td align="center" width="16%"><a href="parts/993-turbocharger-k16-pair-0001/"><img src="parts/993-turbocharger-k16-pair-0001/media/preview.png" alt="Pair of K16 turbochargers of the…" width="130"><br><sub>Pair of K16 turbochargers of the…</sub></a></td>
+</tr>
+<tr>
 <td align="center" width="16%"><a href="parts/993-whl-center-cap-alsi10mg-f0-0001/"><img src="parts/993-whl-center-cap-alsi10mg-f0-0001/media/preview.png" alt="993 center cap" width="130"><br><sub>993 center cap</sub></a></td>
 </tr>
 </table>
@@ -347,7 +360,7 @@ flowchart LR
 | [993/993 Turbo connecting rod](docs/pieces/993-eng-connecting-rod-ti64-f0-0001.md) | Ti-6Al-4V Grade 5 LPBF for screening | LPBF | **prohibited pending engineering** |
 | [993 engine cooling fan — archived Carrera F0…](docs/pieces/993-eng-cooling-impeller-alsi10mg-f0-0001.md) | EOS Aluminium AlSi10Mg T6 for comparison | undecided | **prohibited pending engineering** |
 | [Engine cooling fan impeller](docs/pieces/993-eng-cooling-impeller-we43-f1-0001.md) | WE43 LPBF, solutionized and aged, for c… | LPBF | **prohibited pending engineering** |
-| [M64 four-valve cylinder head — creation prepa…](docs/pieces/993-eng-cylinder-head-4v-f0-0001.md) | not selected | undecided | **prohibited pending engineering** |
+| [M64 four-valve water-cooled cylinder head — c…](docs/pieces/993-eng-cylinder-head-4v-f0-0001.md) | not selected | undecided | **prohibited pending engineering** |
 | [993 Turbo three-into-one exhaust manifold](docs/pieces/993-eng-exhaust-manifold-in625-f0-0001.md) | EOS NickelAlloy IN625 / UNS N06625 for… | undecided | **prohibited pending engineering** |
 | [993 exhaust valves - F1 proxies](docs/pieces/993-eng-exhaust-valve-f1-0001.md) | INCONEL 751 / UNS N07751 candidate | CNC | **prohibited pending engineering** |
 | [Stationary engine fan housing](docs/pieces/993-eng-fan-housing-alsi10mg-f0-0001.md) | EOS Aluminium AlSi10Mg T6 for comparison | undecided | **prohibited pending engineering** |
@@ -470,9 +483,9 @@ opens with an entry gate that can stop the project.
 
 ## 6. The catalogue and its data contract
 
-**527 source records** qualified by provenance, rights and level of evidence;
-41 part records, 10 twin records, 4 components, 2 assemblies and 3 workshop-manual
-transcriptions. Everything is validated by a JSON schema and by the test suite.
+**545 source records** qualified by provenance, rights and level of evidence;
+43 part records, 10 twin records, 5 components, 3 assemblies, 3 workshop-manual
+transcriptions and 2 records of declared community values. Everything is validated by a JSON schema and by the test suite.
 
 A record keeps technical access, reading method and reuse rights separate. An
 accessible page is not redistributable; a page read in a browser is neither an
@@ -482,10 +495,10 @@ authorized download nor a validation of accuracy.
 flowchart TB
     subgraph catalog["catalog/ — source of truth, JSON-schema validated"]
       direction LR
-      src["sources/<br/>527 records"] --- prt["parts/<br/>41 records"]
+      src["sources/<br/>545 records"] --- prt["parts/<br/>43 records"]
       prt --- tw["twins/<br/>10 records"]
       prt --- cmp["components/ · assemblies/"]
-      prt --- mea["measurements/<br/>3 manual transcriptions"]
+      prt --- mea["measurements/<br/>5 documentary records"]
     end
     prt -- "render_part_pages.py" --> pages["docs/pieces/<br/>one page per part"]
     prt -- "render_parts_table.py" --> table["README parts table"]
@@ -534,11 +547,12 @@ calculation's data.
 - **No absolute stiffness value is a 964 stiffness.** The model's sections are
   `ASSUMED` and the mesh is not converged; only ratios and rankings are usable.
 - **No part is validated.** The printable files above have not been checked on
-  a car. All 41 records are at status `concept`, 23 of them
+  a car. All 43 records are at status `concept`, 25 of them
   `prohibited_pending_engineering`. No twin reaches the `F2_interface` level.
-- **No physical measurement is recorded yet.** The three records in
-  `catalog/measurements/` are transcriptions from the workshop manual, not
-  instrumented measurements.
+- **No physical measurement is recorded yet.** The five records in
+  `catalog/measurements/` are documentary: three transcriptions from the
+  workshop manuals and two of values declared in forum posts, not instrumented
+  measurements.
 - **No fan gain over the Porsche part.** Its performance is not published.
 - **A rendering or a simulation is not evidence of physical behavior**:
   neither Omniverse, nor an image, nor a print simulation.

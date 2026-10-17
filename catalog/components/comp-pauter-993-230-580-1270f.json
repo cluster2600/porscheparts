@@ -1,0 +1,91 @@
+{
+  "schema_version": "1.0.0",
+  "component_id": "COMP-PAUTER-993-230-580-1270F",
+  "name": "Pauter 993-230-580-1270F 4340 steel connecting rod (aftermarket, inventory only)",
+  "kind": "aftermarket",
+  "vehicle": {
+    "generation": "993",
+    "variants": ["993", "993 Turbo"],
+    "model_years": { "from": 1994, "to": 1998 },
+    "positions": ["position_1", "position_2", "position_3", "position_4", "position_5", "position_6"]
+  },
+  "identifiers": [
+    { "system": "Pauter Machine Company", "value": "993-230-580-1270F" }
+  ],
+  "physical": {
+    "size_parameters": [
+      { "parameter_id": "CENTER_TO_CENTER_LENGTH", "name": "center-to-center length (C-C)", "value": 127.0, "unit": "mm", "source_id": "SRC-PAUTER-993-TURBO-ROD-PRIMARY" },
+      { "parameter_id": "BIG_END_BORE", "name": "big-end bore diameter (BE DIA)", "value": 58.01, "unit": "mm", "source_id": "SRC-PAUTER-993-TURBO-ROD-PRIMARY" },
+      { "parameter_id": "BIG_END_WIDTH", "name": "big-end width (BE W)", "value": 18.75, "unit": "mm", "source_id": "SRC-PAUTER-993-TURBO-ROD-PRIMARY" },
+      { "parameter_id": "SMALL_END_BORE", "name": "small-end bore diameter (SE DIA)", "value": 23.01, "unit": "mm", "source_id": "SRC-PAUTER-993-TURBO-ROD-PRIMARY" },
+      { "parameter_id": "SMALL_END_WIDTH", "name": "small-end width (SE W)", "value": 19.58, "unit": "mm", "source_id": "SRC-PAUTER-993-TURBO-ROD-PRIMARY" }
+    ],
+    "mass": {
+      "value_g": 535,
+      "tolerance_g": null,
+      "basis": "manufacturer",
+      "source_id": "SRC-PAUTER-993-TURBO-ROD-PRIMARY"
+    },
+    "material": {
+      "family": "steel",
+      "grade": "4340 chrome-moly",
+      "process": "shot-peened; forming route (forging or billet) not declared for this product",
+      "source_id": "SRC-TZR-PAUTER-993-CONNECTING-ROD-DIMENSIONS"
+    }
+  },
+  "geometry": {
+    "representation": "interface_proxy",
+    "master_format": "none",
+    "master_file": "",
+    "derived_files": [],
+    "interface_accuracy_mm": null,
+    "limitations": [
+      "Inventory record only. No geometry, drawing, printing or manufacturing file is produced: a connecting rod is a highly loaded internal engine component, presumed critical in SAFETY.md, and its reproduction or modification requires documented professional engineering review and an approved validation plan.",
+      "The five size parameters are the manufacturer's nominal values. Pauter publishes them as abbreviations (C-C, BE DIA, BE W, SE DIA, SE W); the TZR listing of the same part number gives their German definitions. No tolerance is published except a big-end bore accuracy of +/- 0.003 mm declared on the TZR listing.",
+      "Process: neither the Pauter product page nor the TZR listing states whether this rod is forged or machined from billet. The Pauter product-family statement that most rods use 4340 steel forgings, with 4340 billet for special applications (MEZGER-P010), does not authenticate the route of this part. Shot peening and material crack testing are declared on the TZR listing only. No heat treatment, hardness or material certificate is published.",
+      "Mass: 535 g is the declared overall mass. TZR declares a maximum spread of 1 g within a set, which is not a tolerance on the nominal value, so tolerance_g stays null. Pauter also declares a 373 g big-end mass (MEZGER-P008), for which this schema has no field.",
+      "Aftermarket product with a manufacturer-listed 993 and 993 Turbo application. It does not identify the original Porsche rod, its metallurgy or its operating envelope; no rpm or power limit is published.",
+      "Rod bolts are ARP 2000 per the TZR listing; their size and tightening torque are not sourced (MEZGER-P014), so no fastening relation is recorded."
+    ]
+  },
+  "sources": [
+    {
+      "source_id": "SRC-PAUTER-993-TURBO-ROD-PRIMARY",
+      "title": "Pauter 993-230-580-1270F connecting rods for Porsche 993 and 993 Turbo",
+      "url": "https://pauter.com/shop/rods/porsche/porsche-993-993-turbo-rods/",
+      "accessed_on": "2026-10-03",
+      "license": "manufacturer-copyright-reference-only",
+      "supports": ["manufacturer part number 993-230-580-1270F", "Porsche 993 and 993 Turbo application", "set of 6 rods, 6 cylinders", "4340 chrome-moly material", "C-C 127.00 mm, BE DIA 58.01 mm, BE W 18.75 mm, SE DIA 23.01 mm, SE W 19.58 mm", "WT OA 535 g, WT BE 373 g"]
+    },
+    {
+      "source_id": "SRC-TZR-PAUTER-993-CONNECTING-ROD-DIMENSIONS",
+      "title": "TZR Motorsport - PAUTER 993/993 Turbo connecting rod, manufacturer dimensions",
+      "url": "https://www.tzr-motorsport.de/993-230-580-1270F",
+      "accessed_on": "2026-08-29",
+      "license": "commercial-product-page-site-terms",
+      "supports": ["German definitions of the five dimensions", "4340 Chrome Moly material", "shot peening and material crack testing", "ARP 2000 rod bolts", "535 g with a maximum spread of 1 g per set", "big-end bore accuracy +/- 0.003 mm", "993 3.6 L Turbo M64.60 category"]
+    },
+    {
+      "source_id": "SRC-PAUTER-ROD-MATERIALS-PRIMARY",
+      "title": "Pauter connecting rods: 4340 steel and 6AL4V titanium product families",
+      "url": "https://pauter.com/parts/rods/",
+      "accessed_on": "2026-10-03",
+      "license": "manufacturer-copyright-reference-only",
+      "supports": ["product-family statement only: most steel rods use 4340 forgings, special applications 4340 billet (MEZGER-P010)"]
+    },
+    {
+      "source_id": "SRC-PET-993-KAT17-PDF",
+      "title": "Porsche PET - 911 1994-1998 Type 993, parts catalogue revision KAT 17",
+      "url": "https://rsworkshop.ch/downloaded/pet-porsche/993_1994-98_KATALOG.pdf",
+      "accessed_on": "2026-08-28",
+      "license": "porsche-ag-copyright-reference-only",
+      "supports": ["993 model range 1994-1998, from the catalogue title"]
+    }
+  ],
+  "eligibility": {
+    "complete_physical_record": true,
+    "logical_assembly": true,
+    "spatial_check": false,
+    "reason": "Size, mass, material grade and application are declared by the manufacturer; the forming route, tolerances and geometry are unknown. Inventory only: no reproduction or manufacture."
+  }
+}

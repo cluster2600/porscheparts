@@ -78,6 +78,10 @@ Catalogue record: [`catalog/parts/993-eng-fan-housing-alsi10mg-f0-0001.json`](..
 
 ## Images
 
+![photo-concept](../../parts/993-eng-fan-housing-alsi10mg-f0-0001/media/photo-concept.png)
+
+*`parts/993-eng-fan-housing-alsi10mg-f0-0001/media/photo-concept.png` — AI-generated studio illustration based on the concept CAD preview. Material and finish are illustrative; generated details may differ. Not a photograph or evidence of fit, function or manufacturing.*
+
 ![preview](../../parts/993-eng-fan-housing-alsi10mg-f0-0001/media/preview.png)
 
 *`parts/993-eng-fan-housing-alsi10mg-f0-0001/media/preview.png` — concept CAD block, **not** the original part, not a print file.*
@@ -107,7 +111,7 @@ Catalogue record: [`catalog/parts/993-eng-fan-housing-alsi10mg-f0-0001.json`](..
 | status | concept |
 | vehicle tested | not recorded |
 | reviewed by |  |
-| limitations | not recorded |
+| limitations | The 300 x 300 x 170 mm figures are a commercial envelope, not a definition drawing.<br>The 1.86/1.9 kg masses are commercial claims with no protocol and no weighing boundary.<br>The aluminum material comes with no grade, no process and no certificate; AlSi10Mg remains a candidate.<br>The 252 mm diameter, 3 mm shell, 4 mm flange, hub, six spokes and mountings are synthetic.<br>The flow, loss, load, speed, blade count and temperature cases are regressions with no 993 authority.<br>The constrained thermal screen fails; fatigue, containment and cooling remain non-computable.<br>No CFD/CHT, converged FEA, correlated modal, overspeed, vibration or endurance is demonstrated.<br>The STEP proves only a re-readable BREP; no manufacturing, rotation or start-up is authorized. |
 
 **Evidence**
 

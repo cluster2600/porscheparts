@@ -72,7 +72,9 @@ These are preliminary estimates, not exact dimensions. The single-pass harmonic 
 
 This folder retains the [build123d source](../../parts/993-eng-cooling-impeller-alsi10mg-f0-0001/source/cooling_impeller.py), [STEP](../../parts/993-eng-cooling-impeller-alsi10mg-f0-0001/derived/cooling_impeller_alsi10mg_f0.step), [STL](../../parts/993-eng-cooling-impeller-alsi10mg-f0-0001/derived/cooling_impeller_alsi10mg_f0.stl) and [engineering screen](../../parts/993-eng-cooling-impeller-alsi10mg-f0-0001/evidence/engineering-screen.json). Evidence is SHA-256 pinned. The concept failed integration with its F0 housing: −14 mm radial clearance. Its 280 mm diameter, hub and twelve blades are synthetic study geometry, not a Turbo part.
 
-The generic wheel and schematic orthographic images were removed from this presentation on 29 September 2026 because they could be mistaken for the Turbo design. They remain reproducible from the archived STEP with `make part-previews`.
+The generic wheel and schematic orthographic images were removed from this presentation on 29 September 2026 because they could be mistaken for the Turbo design. Public exports use a status card identifying that withdrawal.
+
+<a href="media/preview.png">Public status card: archived geometry; no part rendering</a>. This is not a print file.
 
 ## Related records
 

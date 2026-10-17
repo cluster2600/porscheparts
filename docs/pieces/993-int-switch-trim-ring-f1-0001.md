@@ -76,6 +76,10 @@ Catalogue record: [`catalog/parts/993-int-switch-trim-ring-f1-0001.json`](../../
 
 ## Images
 
+![photo-concept](../../parts/993-int-switch-trim-ring-f1-0001/media/photo-concept.png)
+
+*`parts/993-int-switch-trim-ring-f1-0001/media/photo-concept.png` — AI-generated studio illustration based on the concept CAD preview. Material and finish are illustrative; generated details may differ. Not a photograph or evidence of fit, function or manufacturing.*
+
 ![preview](../../parts/993-int-switch-trim-ring-f1-0001/media/preview.png)
 
 *`parts/993-int-switch-trim-ring-f1-0001/media/preview.png` — concept CAD block, **not** the original part, not a print file.*
@@ -102,7 +106,7 @@ Catalogue record: [`catalog/parts/993-int-switch-trim-ring-f1-0001.json`](../../
 | status | concept |
 | vehicle tested | not recorded |
 | reviewed by |  |
-| limitations | not recorded |
+| limitations | The continuous conical inner profile is an F1 hypothesis to be replaced by a measurement.<br>The master carries sharp edges and no tolerance; both remain to be decided.<br>The OEM opening and the clearance or interference condition are not measured: the outer diameter is taken from a sales page.<br>The aluminum grade of the original product is unknown; 6063 T6 is a choice of the repository, not an identification.<br>The STEP model is neither dimensionally reviewed, nor fitted, nor tested on a vehicle.<br>LPBF remains a screened and documented candidate, but it is no longer the preferred process: see docs/decisions/0005-alsi10mg-nest-pas-un-choix.md. |
 
 **Evidence**
 

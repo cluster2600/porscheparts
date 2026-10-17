@@ -1,0 +1,551 @@
+{
+  "schema": "m64-bionic-fin-integration-summary/v1",
+  "status": "native_geometry_screen_passed_step_export_unqualified",
+  "source_sha256": {
+    "Integration.csproj": "f4a4e0b0e7fda9980fc5c8c3035808c3acbaa0ccfd6ca8d5d00d0c4cafaaba2e",
+    "Program.cs": "b550fff836076d05be792372bf907978143ed58d093f757a193205eec5ee1fa8",
+    "audit.py": "47f302515b3dc5c5e20a716ee2a75740fa3af4a01b9fae221de4448a50e6f111",
+    "build_native.py": "9675b08a5f74f690ecd03cb7e244e3fe7f19da6e0f3cb89e40f8bc37bf540735",
+    "contract.json": "f7f92fe9bc3ea5cc52a95657a9ea401c1f74bab9b1f2751cbd668b47f402b2df",
+    "render.py": "6c2f6bf6cfdcad8ca0b3d28ebd258318254085fa86ccc18a7fd87509351326e4"
+  },
+  "profile_sha256": "668b5eb9ccc90baa0b7d128d88804dc0a54fbfd77499d0e508f08db55e01536d",
+  "source_head_brep_sha256": "9c40df1642d5eb47a3c1a1aae68c761b23b77e3f7e02e0818294e88ee0322598",
+  "preferred_artifact": "native-004/head-bionic.brep",
+  "preferred_artifact_sha256": "2fc9232b39e735deb02ef86aed2ecfcee836dbf1250237136351b96c804c54cf",
+  "native": {
+    "schema": "m64-bionic-head-integration/v1",
+    "representation": "native_cad_with_analytic_picogk_profile_counterpart",
+    "status": "native_geometry_candidate_not_qualified",
+    "voxel_scan_units": null,
+    "units": "uncalibrated_scan_unit_assumed_mm",
+    "contract_sha256": "f7f92fe9bc3ea5cc52a95657a9ea401c1f74bab9b1f2751cbd668b47f402b2df",
+    "profile_sha256": "668b5eb9ccc90baa0b7d128d88804dc0a54fbfd77499d0e508f08db55e01536d",
+    "head_stl_sha256": "60941a626c18e5bb9928c1482c93548f82d859d7f4fc89fab33fb3d26355a22a",
+    "input_manifest_sha256": "c651b6a51dc7c192eb9d3bd73f6cd1546b588bf12ee3528d24b646325e44a26d",
+    "source_brep_sha256": "9c40df1642d5eb47a3c1a1aae68c761b23b77e3f7e02e0818294e88ee0322598",
+    "builder_sha256": "9675b08a5f74f690ecd03cb7e244e3fe7f19da6e0f3cb89e40f8bc37bf540735",
+    "picogk_producer_sha256": "1548afe550f3f081dc75762555eed2e23dfba2aa8da460244a9c1aca2a045fc6",
+    "OCP_version": "7.9.3.1",
+    "files": [
+      {
+        "filename": "baseline.stl",
+        "sha256": "60941a626c18e5bb9928c1482c93548f82d859d7f4fc89fab33fb3d26355a22a",
+        "native_volume_scan_units_cubed": 1112060.921312762
+      },
+      {
+        "filename": "head-bionic.stl",
+        "sha256": "159e8ce1bb1bfc08bf33567cee898c91f7ce37ad85bf3ec07351b8fa522c0b67",
+        "native_volume_scan_units_cubed": 1082983.034245927
+      },
+      {
+        "filename": "fins.stl",
+        "sha256": "5c4f0b674cc5c1e4986c1c19630e23a5aaa5d5ecbf504e88d6a79805b059c82b",
+        "native_volume_scan_units_cubed": 13937.343018893747
+      },
+      {
+        "filename": "added.stl",
+        "sha256": "cd888b176c950364aaa2b8ee1cbcc528f8cffae76e602201f01a0810395320fb",
+        "native_volume_scan_units_cubed": 4111.658303590154
+      },
+      {
+        "filename": "removed.stl",
+        "sha256": "26f733af34d7e63ba92d3aa4dd3974496727616cd048560f1641963768d34d4d",
+        "native_volume_scan_units_cubed": 33189.545374199275
+      }
+    ],
+    "attachments": [
+      {
+        "side": -1,
+        "root_z": 16,
+        "native_root_overlap_before_mask_clip": 225.98083043704315,
+        "physical_contact_or_load_capacity_verified": false
+      },
+      {
+        "side": -1,
+        "root_z": 30,
+        "native_root_overlap_before_mask_clip": 225.98083043704315,
+        "physical_contact_or_load_capacity_verified": false
+      },
+      {
+        "side": -1,
+        "root_z": 44,
+        "native_root_overlap_before_mask_clip": 198.2965634888858,
+        "physical_contact_or_load_capacity_verified": false
+      },
+      {
+        "side": 1,
+        "root_z": 16,
+        "native_root_overlap_before_mask_clip": 225.9808304370431,
+        "physical_contact_or_load_capacity_verified": false
+      },
+      {
+        "side": 1,
+        "root_z": 30,
+        "native_root_overlap_before_mask_clip": 225.98083043704304,
+        "physical_contact_or_load_capacity_verified": false
+      },
+      {
+        "side": 1,
+        "root_z": 44,
+        "native_root_overlap_before_mask_clip": 200.4827612757263,
+        "physical_contact_or_load_capacity_verified": false
+      }
+    ],
+    "reference_parts": [
+      {
+        "name": "head",
+        "role": "head",
+        "filename": "head.stl",
+        "sha256": "60941a626c18e5bb9928c1482c93548f82d859d7f4fc89fab33fb3d26355a22a"
+      },
+      {
+        "name": "intake_1_valve",
+        "role": "valve",
+        "filename": "intake_1_valve.stl",
+        "sha256": "c7d56a86b278c790b9595508aa6c9f8d97a9b2eacdea21ffd85ac6379ad5b4a1"
+      },
+      {
+        "name": "intake_1_seat",
+        "role": "seat",
+        "filename": "intake_1_seat.stl",
+        "sha256": "9b848a435e279115426ea8d4953f8076148745dd16d8c0e59e35a53f43eac790"
+      },
+      {
+        "name": "intake_1_guide",
+        "role": "guide",
+        "filename": "intake_1_guide.stl",
+        "sha256": "cb7c2fd44cf49232a1007fe90498e3d2f1d68e09c5bd57df16e00817271f9ee2"
+      },
+      {
+        "name": "intake_2_valve",
+        "role": "valve",
+        "filename": "intake_2_valve.stl",
+        "sha256": "fcf5bb2a92bcd6965bf3c5ad8458cab04f03c447662e55ce80a503d1722b999f"
+      },
+      {
+        "name": "intake_2_seat",
+        "role": "seat",
+        "filename": "intake_2_seat.stl",
+        "sha256": "0b9436f42e26abdaba6e4dd16dda18a27ec7a8b460932a5401a39a00389b3f78"
+      },
+      {
+        "name": "intake_2_guide",
+        "role": "guide",
+        "filename": "intake_2_guide.stl",
+        "sha256": "f8ef8e3984037fc2f1efc8502c054364fe7784ecfedf7085a8fbc6177971cd3f"
+      },
+      {
+        "name": "exhaust_1_valve",
+        "role": "valve",
+        "filename": "exhaust_1_valve.stl",
+        "sha256": "829115b66d3e8abbd6da87dc815d13648aaa9cff34b16e1bd00b4d3c194117ee"
+      },
+      {
+        "name": "exhaust_1_seat",
+        "role": "seat",
+        "filename": "exhaust_1_seat.stl",
+        "sha256": "5bc4d30679c72668fc0f752f31c6fe998ccb8c63044618642f6fa5490eeaa2df"
+      },
+      {
+        "name": "exhaust_1_guide",
+        "role": "guide",
+        "filename": "exhaust_1_guide.stl",
+        "sha256": "27b18a189cf3fa0f3e53bb35f9fa98225b60ef861b4cb760441dd26dc7e8e572"
+      },
+      {
+        "name": "exhaust_2_valve",
+        "role": "valve",
+        "filename": "exhaust_2_valve.stl",
+        "sha256": "e0985cbafd3ca9e1f9cb00e9f6668fa46b40c67d1bfc38de47c1f0ac67e0e7b3"
+      },
+      {
+        "name": "exhaust_2_seat",
+        "role": "seat",
+        "filename": "exhaust_2_seat.stl",
+        "sha256": "4493d9d66641547eab1e935638906c78c5db3468c7351878cb462c70544b0c41"
+      },
+      {
+        "name": "exhaust_2_guide",
+        "role": "guide",
+        "filename": "exhaust_2_guide.stl",
+        "sha256": "a10efc1e0e6c237e8611219d4195899ae5ac42918b0801a2c516e1696a1112c8"
+      }
+    ],
+    "fin_count": 6,
+    "native_solid_count": 1,
+    "native_shell_count": 1,
+    "native_validity_and_readback_passed": true,
+    "native_outside_mask_solid_counts": [
+      0,
+      0
+    ],
+    "native_material_balance_scan_units_cubed": -3.7740492189186625e-06,
+    "native_material_balance_relative": 1.6906208268480705e-12,
+    "native_volume_quadrature_relative_accuracy": 1e-10,
+    "analytic_to_picogk_fin_relative_volume_error": 0.0009878213795126989,
+    "brep_sha256": "2fc9232b39e735deb02ef86aed2ecfcee836dbf1250237136351b96c804c54cf",
+    "step_sha256": "b0b452e0c1c9b61c1fd56defa3fcd175f41ca436a3df5de5e88c5f71ccd4bfde",
+    "tessellation": {
+      "linear_deflection": 0.18,
+      "angular_deflection_radians": 0.25
+    },
+    "core_preservation_is_at_voxel_resolution_only": false,
+    "source_master_modified": false,
+    "full_functional_assembly": false,
+    "physical_root_attachment_verified": false,
+    "measured_interfaces_verified": false,
+    "thermal_gain_transferred_from_coupon": false,
+    "thermal_simulation": false,
+    "structural_simulation": false,
+    "manufacturing_authorized": false
+  },
+  "inspection": {
+    "schema": "m64-bionic-head-inspection/v1",
+    "status": "native_geometry_screen_passed_step_export_unqualified",
+    "contract_sha256": "f7f92fe9bc3ea5cc52a95657a9ea401c1f74bab9b1f2751cbd668b47f402b2df",
+    "producer_sha256": "7de3ba7e2e29f57eb894d2ff9fededcceac9dc39335277d46e1b721236898651",
+    "inspector_sha256": "47f302515b3dc5c5e20a716ee2a75740fa3af4a01b9fae221de4448a50e6f111",
+    "helper_sha256": "34bb2dcd591e92b1ae6f0e8a75f2f858448319b4db4dada6eb364f3c0a1242be",
+    "meshes": {
+      "baseline.stl": {
+        "triangles": 95530,
+        "connected_vertex_components": 1,
+        "boundary_edges": 0,
+        "nonmanifold_edges": 0,
+        "edge_manifold_closed": true,
+        "winding_consistent_on_two_face_edges": true,
+        "zero_area_triangles": 0,
+        "duplicate_triangles_ignoring_winding": 0,
+        "signed_volume_scan_units_cubed": 1113415.8918381198,
+        "area_scan_units_squared": 153739.65497645485,
+        "bounds_scan_units_private": [
+          [
+            -60.37284851074219,
+            -88.87532806396484,
+            -1.3877787807814457e-16
+          ],
+          [
+            59.14485549926758,
+            116.625,
+            82.0
+          ]
+        ],
+        "coordinate_welding": "identical_float_values_only_no_tolerance_repair",
+        "self_intersections_tested": false,
+        "nonfinite_stl_normals": 0,
+        "sha256": "60941a626c18e5bb9928c1482c93548f82d859d7f4fc89fab33fb3d26355a22a"
+      },
+      "head-bionic.stl": {
+        "triangles": 94236,
+        "connected_vertex_components": 1,
+        "boundary_edges": 0,
+        "nonmanifold_edges": 0,
+        "edge_manifold_closed": true,
+        "winding_consistent_on_two_face_edges": true,
+        "zero_area_triangles": 0,
+        "duplicate_triangles_ignoring_winding": 0,
+        "signed_volume_scan_units_cubed": 1084344.7803353255,
+        "area_scan_units_squared": 166189.60330904042,
+        "bounds_scan_units_private": [
+          [
+            -60.37284851074219,
+            -88.87532806396484,
+            -1.3877787807814457e-16
+          ],
+          [
+            59.347530364990234,
+            116.625,
+            82.0
+          ]
+        ],
+        "coordinate_welding": "identical_float_values_only_no_tolerance_repair",
+        "self_intersections_tested": false,
+        "nonfinite_stl_normals": 0,
+        "sha256": "159e8ce1bb1bfc08bf33567cee898c91f7ce37ad85bf3ec07351b8fa522c0b67"
+      },
+      "fins.stl": {
+        "triangles": 360,
+        "connected_vertex_components": 6,
+        "boundary_edges": 0,
+        "nonmanifold_edges": 0,
+        "edge_manifold_closed": true,
+        "winding_consistent_on_two_face_edges": true,
+        "zero_area_triangles": 0,
+        "duplicate_triangles_ignoring_winding": 0,
+        "signed_volume_scan_units_cubed": 13937.34480439325,
+        "area_scan_units_squared": 14709.70993854378,
+        "bounds_scan_units_private": [
+          [
+            -59.347530364990234,
+            -35.0,
+            13.38487434387207
+          ],
+          [
+            59.347530364990234,
+            35.0,
+            46.6151237487793
+          ]
+        ],
+        "coordinate_welding": "identical_float_values_only_no_tolerance_repair",
+        "self_intersections_tested": false,
+        "nonfinite_stl_normals": 0,
+        "sha256": "5c4f0b674cc5c1e4986c1c19630e23a5aaa5d5ecbf504e88d6a79805b059c82b",
+        "vertices_outside_independent_zone_halo": 0
+      },
+      "added.stl": {
+        "triangles": 1450,
+        "connected_vertex_components": 6,
+        "boundary_edges": 0,
+        "nonmanifold_edges": 0,
+        "edge_manifold_closed": true,
+        "winding_consistent_on_two_face_edges": true,
+        "zero_area_triangles": 0,
+        "duplicate_triangles_ignoring_winding": 0,
+        "signed_volume_scan_units_cubed": 4109.011453143368,
+        "area_scan_units_squared": 7589.369791146954,
+        "bounds_scan_units_private": [
+          [
+            -59.347530364990234,
+            -35.0,
+            13.38487434387207
+          ],
+          [
+            59.347530364990234,
+            35.0,
+            46.6151237487793
+          ]
+        ],
+        "coordinate_welding": "identical_float_values_only_no_tolerance_repair",
+        "self_intersections_tested": false,
+        "nonfinite_stl_normals": 0,
+        "sha256": "cd888b176c950364aaa2b8ee1cbcc528f8cffae76e602201f01a0810395320fb",
+        "vertices_outside_independent_zone_halo": 0
+      },
+      "removed.stl": {
+        "triangles": 2522,
+        "connected_vertex_components": 14,
+        "boundary_edges": 0,
+        "nonmanifold_edges": 0,
+        "edge_manifold_closed": true,
+        "winding_consistent_on_two_face_edges": true,
+        "zero_area_triangles": 0,
+        "duplicate_triangles_ignoring_winding": 0,
+        "signed_volume_scan_units_cubed": 33193.986350974206,
+        "area_scan_units_squared": 17898.827225691683,
+        "bounds_scan_units_private": [
+          [
+            -58.875,
+            -35.0,
+            12.0
+          ],
+          [
+            58.875,
+            35.0,
+            48.0
+          ]
+        ],
+        "coordinate_welding": "identical_float_values_only_no_tolerance_repair",
+        "self_intersections_tested": false,
+        "nonfinite_stl_normals": 0,
+        "sha256": "26f733af34d7e63ba92d3aa4dd3974496727616cd048560f1641963768d34d4d",
+        "vertices_outside_independent_zone_halo": 0
+      }
+    },
+    "references": [
+      {
+        "name": "intake_1_valve",
+        "sha256": "c7d56a86b278c790b9595508aa6c9f8d97a9b2eacdea21ffd85ac6379ad5b4a1",
+        "bounding_box_separation_from_change_halo": 4.90948715209961,
+        "real_clearance_not_verified": true
+      },
+      {
+        "name": "intake_1_seat",
+        "sha256": "9b848a435e279115426ea8d4953f8076148745dd16d8c0e59e35a53f43eac790",
+        "bounding_box_separation_from_change_halo": 3.4101966857910155,
+        "real_clearance_not_verified": true
+      },
+      {
+        "name": "intake_1_guide",
+        "sha256": "cb7c2fd44cf49232a1007fe90498e3d2f1d68e09c5bd57df16e00817271f9ee2",
+        "bounding_box_separation_from_change_halo": 19.402609252929686,
+        "real_clearance_not_verified": true
+      },
+      {
+        "name": "intake_2_valve",
+        "sha256": "fcf5bb2a92bcd6965bf3c5ad8458cab04f03c447662e55ce80a503d1722b999f",
+        "bounding_box_separation_from_change_halo": 4.909487152099608,
+        "real_clearance_not_verified": true
+      },
+      {
+        "name": "intake_2_seat",
+        "sha256": "0b9436f42e26abdaba6e4dd16dda18a27ec7a8b460932a5401a39a00389b3f78",
+        "bounding_box_separation_from_change_halo": 3.410196685791014,
+        "real_clearance_not_verified": true
+      },
+      {
+        "name": "intake_2_guide",
+        "sha256": "f8ef8e3984037fc2f1efc8502c054364fe7784ecfedf7085a8fbc6177971cd3f",
+        "bounding_box_separation_from_change_halo": 19.402609252929686,
+        "real_clearance_not_verified": true
+      },
+      {
+        "name": "exhaust_1_valve",
+        "sha256": "829115b66d3e8abbd6da87dc815d13648aaa9cff34b16e1bd00b4d3c194117ee",
+        "bounding_box_separation_from_change_halo": 8.407823944091797,
+        "real_clearance_not_verified": true
+      },
+      {
+        "name": "exhaust_1_seat",
+        "sha256": "5bc4d30679c72668fc0f752f31c6fe998ccb8c63044618642f6fa5490eeaa2df",
+        "bounding_box_separation_from_change_halo": 6.908537292480469,
+        "real_clearance_not_verified": true
+      },
+      {
+        "name": "exhaust_1_guide",
+        "sha256": "27b18a189cf3fa0f3e53bb35f9fa98225b60ef861b4cb760441dd26dc7e8e572",
+        "bounding_box_separation_from_change_halo": 19.402609252929686,
+        "real_clearance_not_verified": true
+      },
+      {
+        "name": "exhaust_2_valve",
+        "sha256": "e0985cbafd3ca9e1f9cb00e9f6668fa46b40c67d1bfc38de47c1f0ac67e0e7b3",
+        "bounding_box_separation_from_change_halo": 8.407823944091795,
+        "real_clearance_not_verified": true
+      },
+      {
+        "name": "exhaust_2_seat",
+        "sha256": "4493d9d66641547eab1e935638906c78c5db3468c7351878cb462c70544b0c41",
+        "bounding_box_separation_from_change_halo": 6.908537292480467,
+        "real_clearance_not_verified": true
+      },
+      {
+        "name": "exhaust_2_guide",
+        "sha256": "a10efc1e0e6c237e8611219d4195899ae5ac42918b0801a2c516e1696a1112c8",
+        "bounding_box_separation_from_change_halo": 19.402609252929686,
+        "real_clearance_not_verified": true
+      }
+    ],
+    "manufacturing_authorized": false,
+    "real_engine_fit_verified": false,
+    "geometric_self_intersections_checked": false,
+    "vertex_link_manifoldness_checked": false,
+    "physical_wall_thickness_verified": false,
+    "source_files_unchanged": true,
+    "thermal_gain_for_integrated_head": null,
+    "native_brep": {
+      "sha256": "2fc9232b39e735deb02ef86aed2ecfcee836dbf1250237136351b96c804c54cf",
+      "exact_readback_valid": true,
+      "preferred_editable_artifact": true
+    },
+    "step_export": {
+      "sha256": "b0b452e0c1c9b61c1fd56defa3fcd175f41ca436a3df5de5e88c5f71ccd4bfde",
+      "standard_readback_valid": true,
+      "exact_readback_valid": false,
+      "qualified_for_further_exact_cad": false
+    }
+  },
+  "render": {
+    "renderer_sha256": "6c2f6bf6cfdcad8ca0b3d28ebd258318254085fa86ccc18a7fd87509351326e4",
+    "geometry_sha256": {
+      "head": "159e8ce1bb1bfc08bf33567cee898c91f7ce37ad85bf3ec07351b8fa522c0b67",
+      "intake_1_valve": "c7d56a86b278c790b9595508aa6c9f8d97a9b2eacdea21ffd85ac6379ad5b4a1",
+      "intake_1_seat": "9b848a435e279115426ea8d4953f8076148745dd16d8c0e59e35a53f43eac790",
+      "intake_1_guide": "cb7c2fd44cf49232a1007fe90498e3d2f1d68e09c5bd57df16e00817271f9ee2",
+      "intake_2_valve": "fcf5bb2a92bcd6965bf3c5ad8458cab04f03c447662e55ce80a503d1722b999f",
+      "intake_2_seat": "0b9436f42e26abdaba6e4dd16dda18a27ec7a8b460932a5401a39a00389b3f78",
+      "intake_2_guide": "f8ef8e3984037fc2f1efc8502c054364fe7784ecfedf7085a8fbc6177971cd3f",
+      "exhaust_1_valve": "829115b66d3e8abbd6da87dc815d13648aaa9cff34b16e1bd00b4d3c194117ee",
+      "exhaust_1_seat": "5bc4d30679c72668fc0f752f31c6fe998ccb8c63044618642f6fa5490eeaa2df",
+      "exhaust_1_guide": "27b18a189cf3fa0f3e53bb35f9fa98225b60ef861b4cb760441dd26dc7e8e572",
+      "exhaust_2_valve": "e0985cbafd3ca9e1f9cb00e9f6668fa46b40c67d1bfc38de47c1f0ac67e0e7b3",
+      "exhaust_2_seat": "4493d9d66641547eab1e935638906c78c5db3468c7351878cb462c70544b0c41",
+      "exhaust_2_guide": "a10efc1e0e6c237e8611219d4195899ae5ac42918b0801a2c516e1696a1112c8"
+    },
+    "images_sha256": {
+      "assembled": "8d424a6160b155bc9cb36e5814e19b3a19c9094711bbd173e8df8b99960969ee",
+      "opposite": "464e00091e8570d17042612fa4bd43a94631f3f843007cddc1fdbf07c0a11af7",
+      "section": "3638e789074914a65570e73b3d7adb587dee71babfe37747873c256c1a9b44e5"
+    },
+    "vtk_version": "9.6.2",
+    "actual_triangles": true,
+    "decimation": false,
+    "source_master_modified": false,
+    "manufacturing_authorized": false
+  },
+  "rejected_voxel_roundtrips": [
+    {
+      "voxel": 0.3,
+      "baseline_components": 2,
+      "candidate_components": 2
+    },
+    {
+      "voxel": 0.15,
+      "baseline_components": 4,
+      "candidate_components": 4
+    }
+  ],
+  "rejected_step_details": {
+    "readback_exact_valid": false,
+    "standard_valid": true,
+    "counts": {
+      "solids": 1,
+      "shells": 1,
+      "faces": 4590,
+      "invalid_faces": 57,
+      "edges": 9712,
+      "invalid_edges": 0
+    },
+    "volume": 1082983.0323705496
+  },
+  "tests": {
+    "focused_passed": 12,
+    "cli_checks": [
+      {
+        "case": "nan",
+        "returncode": 2,
+        "existing_receipt_unchanged": true,
+        "unexpected_output_not_created": true
+      },
+      {
+        "case": "overwrite",
+        "returncode": 1,
+        "existing_receipt_unchanged": true,
+        "unexpected_output_not_created": true
+      },
+      {
+        "case": "changed_profile",
+        "returncode": 1,
+        "existing_receipt_unchanged": true,
+        "unexpected_output_not_created": true
+      }
+    ],
+    "build_errors": 0,
+    "upstream_build_warnings": 37,
+    "make_check_passed": false,
+    "make_check_tests": 3638,
+    "make_check_failures": 2,
+    "make_check_errors": 23,
+    "make_check_skipped": 205,
+    "make_check_issues": [
+      "existing_system_scipy_native_import_failures",
+      "python_3_10_hashlib_file_digest_unavailable",
+      "two_existing_exact_float_fan_screen_comparisons"
+    ],
+    "strict_markdown_files": 832,
+    "broken_markdown_links": 0
+  },
+  "source_head_master_unchanged": true,
+  "new_fin_count": 6,
+  "reference_components_unchanged": 12,
+  "native_material_balance_relative": 1.6906208268480705e-12,
+  "analytic_to_picogk_fin_volume_relative_error": 0.0009878213795126989,
+  "outward_max_x_delta_scan_units": 0.20267486572265625,
+  "thermal_gain_transferred_from_coupon": false,
+  "thermal_validated": false,
+  "structural_validated": false,
+  "engine_fit_verified": false,
+  "manufacturing_authorized": false,
+  "paid_compute_this_round_usd": 0,
+  "test_sha256": "4a6cca034922e1d9889f73482737bae6d503bd1d89d1d79f39704ea54f6a2925"
+}
