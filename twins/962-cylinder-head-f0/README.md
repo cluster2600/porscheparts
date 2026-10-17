@@ -29,6 +29,12 @@ admission and head physics remain open.
 The [repaired-surface BIN/PLY review](derived/engineering/atomic-cavity-review-delivery/README.md)
 is uploaded with its checksum and complete 143-member manifest; all 33 earlier
 draft-release assets remain unchanged.
+The [subsequent raw-volume trial](ATOMIC_VOLUME_ENGINEERING.md) saves an exact
+boundary mesh, but independent readback confirms 283,853 tetrahedra below SICN
+0.1. Its positive volumes do not grant volume-quality or head-physics acceptance.
+The [exact rejected MSH and evidence ZIP](derived/engineering/atomic-cavity-volume-raw-review-delivery/README.md)
+is uploaded with its member manifest and checksum. All 34 archive members pass
+independent full-byte checks; all 36 preceding release assets remain intact.
 The [sourced material comparison](ENGINEERING_MATERIALS.md) now separates seven
 published recipes, discrete hot-strength points and conditional body masses.
 These results do not select or qualify a material for the head.

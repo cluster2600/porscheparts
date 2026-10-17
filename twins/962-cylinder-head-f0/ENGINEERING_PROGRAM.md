@@ -17,6 +17,14 @@ The [exact repaired BIN/PLY review](derived/engineering/atomic-cavity-review-del
 is uploaded in the existing draft release. Complete independent checks cover all
 143 archive members; GitHub digests and sizes match its three new assets, and
 all 33 preceding asset records remain unchanged.
+The [later raw-volume trial](ATOMIC_VOLUME_ENGINEERING.md) exports 3,058,267
+tetrahedra. Independent saved-file reading verifies positive volumes and exact
+boundary/tagged arrays, while confirming 283,853 cells below the unchanged SICN
+0.1 gate. The volume remains rejected; the next repair needs separate evidence.
+Its [exact MSH review download](derived/engineering/atomic-cavity-volume-raw-review-delivery/README.md)
+preserves the rejection and completed readback. All 34 archive members pass
+independent full-byte checks; the three uploaded assets match GitHub digests
+and sizes while preserving all 36 preceding assets.
 
 The geometry baseline is commit `79180221fa79f2f669cbf3c0b9104cbb662c39d6`.
 Its [delivery receipt](derived/family/delivery-report.json), original outputs

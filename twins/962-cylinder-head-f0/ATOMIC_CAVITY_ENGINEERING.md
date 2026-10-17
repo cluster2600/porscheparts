@@ -83,3 +83,7 @@ thermal/strength solution, process-specific
 material selection and whole-head LPBF simulation remain open. The subsequent
 Omniverse field integration and PhysicsNeMo phases require those accepted
 solver outputs. OEM interfaces and physical qualification remain separate.
+
+The [subsequent raw tetrahedral trial](ATOMIC_VOLUME_ENGINEERING.md) retains the
+exact surface and saves a mesh, but independent readback confirms its volume
+quality rejection. Its 283,853 cells below SICN 0.1 require a separate repair.
