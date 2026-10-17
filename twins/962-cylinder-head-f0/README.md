@@ -44,6 +44,17 @@ outside tagged arrays, original classifications and source boundary remain
 preserved. The saved head contains 1,097,057 nodes and 3,620,861 tetrahedra,
 with minimum SICN 0.039074265058645995. Its whole-head quality gate still fails;
 no head strength, material or manufacturing qualification follows.
+The [current census and shell selection](derived/engineering/current204-batch-shells/README.md)
+bind the 204-cell head to 154 complete seed stars and 5,267 incident cells.
+A separate saved-data pass selects 116 vertex-disjoint regions containing
+4,164 original cells, including 172 poor and 3,992 currently good cells.
+Two candidate shells fail a necessary face screen; all negative and conflict
+records remain complete. This is a finite repair target; the mesh is unchanged.
+The [assumed-material thermal coupon](derived/engineering/cp1-assumed-thermal-birth-failed/README.md)
+failed its first time step: 33 internal cutbacks, zero converged steps and no
+energy assessment. The full failure and initial fields are retained. Its
+rho = 2700 kg/m³, cp = 900 J/(kg K) and k = 187 W/(m K) are research assumptions;
+no accepted thermal, material or LPBF result follows.
 The [latest bore95 USD checkpoint](USD_NORMALS_ENGINEERING.md) verifies face
 normals and passes the minimum and CPU asset checks; its formal robotics profile
 retains six failed feature rows. No head physics or manufacturing qualification

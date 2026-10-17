@@ -1,0 +1,9 @@
+Traceback (most recent call last):
+  File "work/962-engineering/cp1-assumed-thermal-birth-macos-prep-001/run_mac.py", line 303, in <module>
+    print(json.dumps(run(args.stage, args.contract, args.contract_sha256)))
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "work/962-engineering/cp1-assumed-thermal-birth-macos-prep-001/run_mac.py", line 238, in run
+    need(process is not None and process.returncode == 0 and not stopped["reason"] and not term_requested,
+  File "work/962-engineering/cp1-assumed-thermal-birth-macos-prep-001/run_mac.py", line 37, in need
+    raise ValueError(message)
+ValueError: Native command incomplete; preserve outputs without retry

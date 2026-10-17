@@ -51,12 +51,28 @@ assumed bionic geometry; a missing original dimension stays unknown.
    with 1,097,057 nodes, 3,620,861 tetrahedra and unchanged minimum SICN
    0.039074265058645995. Procedural completion does not admit the whole head:
    its 204 poor cells and the stronger 414 Mesh_2 failures remain open.
+   The [current census and finite shell selection](derived/engineering/current204-batch-shells/README.md)
+   now bind that saved head to all 154 complete seed stars and 5,267 incident
+   cells. The separate saved-data selection retains 116 vertex-disjoint regions
+   with 4,164 cells: 172 poor and 3,992 initially good. Thirty-two poor cells
+   remain outside the selected coverage. Two shells fail necessary face quality;
+   every rejected and conflict record remains complete. No new mesh is produced.
+   Finite local generation, quality and exact domain gates precede any combined
+   application; coverage does not establish repairability.
    The first conditional isothermal screen has an
    [explicit assumed card](engineering/cp1-isothermal-assumed-card.json):
    E = 71 GPa, ν = 0.33, uniform 25 °C and constant isotropic elasticity.
    These are research hypotheses; the modulus transfer, Poisson ratio,
    temperature and symmetry are not matched measured M291 properties.
    Measured fields and load/contact inputs remain null; no head solve has run.
+   A separate [assumed-material thermal coupon](derived/engineering/cp1-assumed-thermal-birth-failed/README.md)
+   uses rho = 2700 kg/m³, cp = 900 J/(kg K), k = 187 W/(m K) and constant
+   isotropy as explicit unmatched hypotheses. Its one native run fails at the
+   first time step after 33 internal cutbacks and zero converged steps. All 22
+   stopped files and initial fields are retained; no energy assessor ran.
+   This synthetic 256-HEX8, metre-scale coupon supplies no head, material or
+   LPBF validation. A different solver mode requires a separate reviewed trial
+   and the unchanged independent energy and field checks.
    The earlier [replacement prerequisites](derived/engineering/local-replacement-prerequisites/README.md)
    now establish sparse-tag editing capability, exact relative local-domain
    equality and the original head's nine exterior/nineteen connected interfaces.

@@ -1,0 +1,379 @@
+{
+  "status": "native_stopped_outputs_preserved",
+  "passed": false,
+  "command": [
+    "work/962-engineering/moose-local-installed-002/bin/combined-opt",
+    "-skip_petscrc",
+    "--n-threads=1",
+    "-i",
+    "thermal-birth.i",
+    "time-level.i"
+  ],
+  "stage": "coupon",
+  "contract_sha256": "4eabadfa6e825b2d4d0fcfe89fc1d54cfe479edcd4236b44e251ae352287c8a8",
+  "actual_contract_sha256": "4eabadfa6e825b2d4d0fcfe89fc1d54cfe479edcd4236b44e251ae352287c8a8",
+  "physics_contract_sha256": "c5b7e58249cacfa6c31f61d6ed688bd36eb9d8ccd77a76b63ffb63fb9d4c64e2",
+  "level": 2,
+  "level_is_declared": true,
+  "input_sha256": {
+    "frozen-contract.json": "c5b7e58249cacfa6c31f61d6ed688bd36eb9d8ccd77a76b63ffb63fb9d4c64e2",
+    "time-level.i": "460a3332eac1ec0eddd1884657d2b8b0cdd96bd49443180d00651e44fb76a09a",
+    "assess.py": "0548fcbf6eba737aaaf816abbfbfd0511b5b8fb266aa10c34a1f5817eef0e338",
+    "card.json": "4e07cbb997c831bac2c0abd43092148c5518b6c7aa04d7b3d287779f9e700986",
+    "actual-contract.json": "4eabadfa6e825b2d4d0fcfe89fc1d54cfe479edcd4236b44e251ae352287c8a8",
+    "thermal-birth.i": "62527f4e88d9cc55e506cc11c97c48de5ea56e2fd7218231143fc3aa88e92b20",
+    "source-snapshots/work/962-engineering/imported-elastic-cube-macos-prep-004/primary-api.json": "9dd74993e1a4790d378bff999aff31ffe4f94a5317aa349014780d7cc3847221",
+    "source-snapshots/work/962-engineering/cp1-assumed-thermal-birth-macos-prep-001/METHOD.md": "48445151b6be38ab437bebe0266220b7f63bcb7dc79dfbc3863de5c715acd0a7",
+    "source-snapshots/work/962-engineering/cp1-assumed-thermal-birth-macos-prep-001/held-preparation.json": "8ff1d4bc6b7f7d3fafd18a3a236772cdeffc9bcd3b8ce55c5bb6eee6e9498f78",
+    "source-snapshots/work/962-engineering/cp1-assumed-thermal-birth-macos-prep-001/run_mac.py": "d2e7c528e67705f9a61c41aeff96fd088606d0169d071b9ec9a1f5b60e4a1ff5",
+    "source-snapshots/work/962-engineering/cp1-assumed-thermal-birth-prep-001/case-contract.json": "c5b7e58249cacfa6c31f61d6ed688bd36eb9d8ccd77a76b63ffb63fb9d4c64e2",
+    "source-snapshots/work/962-engineering/cp1-assumed-thermal-birth-prep-001/time-level.i": "460a3332eac1ec0eddd1884657d2b8b0cdd96bd49443180d00651e44fb76a09a",
+    "source-snapshots/work/962-engineering/cp1-assumed-thermal-birth-prep-001/assess.py": "0548fcbf6eba737aaaf816abbfbfd0511b5b8fb266aa10c34a1f5817eef0e338",
+    "source-snapshots/work/962-engineering/cp1-assumed-thermal-birth-prep-001/card.json": "4e07cbb997c831bac2c0abd43092148c5518b6c7aa04d7b3d287779f9e700986",
+    "source-snapshots/work/962-engineering/cp1-assumed-thermal-birth-prep-001/thermal-birth.i": "62527f4e88d9cc55e506cc11c97c48de5ea56e2fd7218231143fc3aa88e92b20"
+  },
+  "runtime_sha256s": {
+    "bin/combined-opt": "b11b7c481e502e0ae5dc61eba18e3e096c9ebf0dfee3f29b005353c9a1455547",
+    "include/petscconf.h": "d94fb68c8c27ac0c5190039866fe34fd019ce4f7e77ba4ed51fc65c2328512bd",
+    "lib/combined/libcombined-opt.0.dylib": "ecb40362280d7df6e4f911fd482f55453ce54ff1c69b7645067d60c1b9547480",
+    "lib/combined/libheat_transfer-opt.0.dylib": "be9fb1d753d6e83ca249776ee5fd490c7b76cb24152edcefb3d0f3f1c5dcaf1a",
+    "lib/combined/libhit-opt.0.dylib": "7f40295ad8adb649af81c4216277d366f7f75f2e9acfc70231d03aab56097ca1",
+    "lib/combined/libmoose-opt.0.dylib": "99ebae63dc8b164a49925bcf92396eeedd2b53496abf19416236f73e61847250",
+    "lib/combined/libsolid_mechanics-opt.0.dylib": "343a0a614aaa5d16182cc094ddd7ca49979fb7545e525c4a8859a7568522ae35",
+    "lib/libHYPRE-3.1.0.dylib": "cf96a51af62f0aeb731addff178ea7236cd34c06cd2575922998b94bf7f8a965",
+    "lib/libfabric.1.dylib": "2046a60ccbcf5dfc906251f0e08ca964c27b3499b7800d4de1edbbf238115aa3",
+    "lib/libhdf5.310.dylib": "8d20ef4d58920a7b41c66a022079356a55a7dd9ae9f12868a759d54d59c1aa49",
+    "lib/libhdf5_hl.310.dylib": "54a0829656cf9524b1848246e26f16a6d60080afee221a8d18808800c8359f6d",
+    "lib/libmesh_opt.0.dylib": "e24765601db10ae4c077a366452f47bcf606ade218ca606c6d60464275be5680",
+    "lib/libmetaphysicl.11.dylib": "cb3ac115ab4f30e7da316fec63847c2107467e1ce29a473e3280397cfdba92a0",
+    "lib/libmpi.12.dylib": "a61e0531bbd5e7ba81b2326004245b84b99fda8756a3f57580c03374f8353eb1",
+    "lib/libnetcdf.13.dylib": "87d655dd3c31eabfaec8dd3554b13ddd8afd71777045de6c7056773aa28133f0",
+    "lib/libopenblasp-r0.3.32.dylib": "fe9ba17cf56f1108d0e8b7f1aa059e75818cd56b3b000be3a5a6ad9305ff1d9a",
+    "lib/libpetsc.3.25.4.dylib": "5893a96e09b00eeb2cc724d4d2f9278756082dbfb101d3e892b90bc89f373e74",
+    "lib/libpmpi.12.dylib": "7626555b9c94e8870f702baf983cf4faedacfa80873c5878275bbebb09468d87",
+    "lib/libtimpi_opt.11.dylib": "efe1739323d62e0d6102d149dbc1716ceb4be940afc829380dd5b45b6bf90c94"
+  },
+  "runtime_symlinks": {
+    "bin/moose-opt": "combined-opt",
+    "lib/libHYPRE.dylib": "libHYPRE-3.1.0.dylib",
+    "lib/libhdf5.dylib": "libhdf5.310.dylib",
+    "lib/libhdf5_hl.dylib": "libhdf5_hl.310.dylib",
+    "lib/libmesh_opt.dylib": "libmesh_opt.0.dylib",
+    "lib/libmetaphysicl.dylib": "libmetaphysicl.11.dylib",
+    "lib/libmpi.dylib": "libmpi.12.dylib",
+    "lib/libmpich.dylib": "libmpi.dylib",
+    "lib/libnetcdf.dylib": "libnetcdf.13.dylib",
+    "lib/libopenblas.dylib": "libopenblasp-r0.3.32.dylib",
+    "lib/libpetsc.dylib": "libpetsc.3.25.4.dylib",
+    "lib/libpmpi.dylib": "libpmpi.12.dylib",
+    "lib/libtimpi_opt.dylib": "libtimpi_opt.11.dylib"
+  },
+  "network": "not_requested_not_OS_sandboxed",
+  "rootfs": "installed_prefix_not_sandboxed",
+  "automatic_retry": false,
+  "head_input_read": false,
+  "independent_assessment_performed": false,
+  "hard_OS_CPU_or_memory_quota": false,
+  "RSS_scope": "sampled_owned_leader_only",
+  "process_reaped": true,
+  "jobs": [
+    {
+      "name": "native",
+      "returncode": 1,
+      "process_reaped": true
+    }
+  ],
+  "RSS_samples": [
+    {
+      "job": "native",
+      "wall_seconds": 0.09927283297292888,
+      "RSS_bytes": 32768
+    },
+    {
+      "job": "native",
+      "wall_seconds": 0.21320620807819068,
+      "RSS_bytes": 671744
+    },
+    {
+      "job": "native",
+      "wall_seconds": 0.32530570798553526,
+      "RSS_bytes": 999424
+    },
+    {
+      "job": "native",
+      "wall_seconds": 0.43194595794193447,
+      "RSS_bytes": 1327104
+    },
+    {
+      "job": "native",
+      "wall_seconds": 0.5428255000151694,
+      "RSS_bytes": 1605632
+    },
+    {
+      "job": "native",
+      "wall_seconds": 0.6506882910616696,
+      "RSS_bytes": 2932736
+    },
+    {
+      "job": "native",
+      "wall_seconds": 0.7626040000468493,
+      "RSS_bytes": 1933312
+    },
+    {
+      "job": "native",
+      "wall_seconds": 0.8822386250831187,
+      "RSS_bytes": 2080768
+    },
+    {
+      "job": "native",
+      "wall_seconds": 0.9957790409680456,
+      "RSS_bytes": 2228224
+    },
+    {
+      "job": "native",
+      "wall_seconds": 1.1019728749524802,
+      "RSS_bytes": 2359296
+    },
+    {
+      "job": "native",
+      "wall_seconds": 1.2158287910278887,
+      "RSS_bytes": 2572288
+    },
+    {
+      "job": "native",
+      "wall_seconds": 1.3263075829017907,
+      "RSS_bytes": 2719744
+    },
+    {
+      "job": "native",
+      "wall_seconds": 1.4359321659430861,
+      "RSS_bytes": 2818048
+    },
+    {
+      "job": "native",
+      "wall_seconds": 1.5443876660428941,
+      "RSS_bytes": 2998272
+    },
+    {
+      "job": "native",
+      "wall_seconds": 1.6546829999424517,
+      "RSS_bytes": 3145728
+    },
+    {
+      "job": "native",
+      "wall_seconds": 1.761595832882449,
+      "RSS_bytes": 3342336
+    },
+    {
+      "job": "native",
+      "wall_seconds": 1.8683340828865767,
+      "RSS_bytes": 3424256
+    },
+    {
+      "job": "native",
+      "wall_seconds": 1.9814555409830064,
+      "RSS_bytes": 10289152
+    },
+    {
+      "job": "native",
+      "wall_seconds": 2.086332625010982,
+      "RSS_bytes": 17022976
+    },
+    {
+      "job": "native",
+      "wall_seconds": 2.1965813329443336,
+      "RSS_bytes": 22577152
+    },
+    {
+      "job": "native",
+      "wall_seconds": 2.3081245000939816,
+      "RSS_bytes": 24690688
+    },
+    {
+      "job": "native",
+      "wall_seconds": 2.413769874954596,
+      "RSS_bytes": 26525696
+    },
+    {
+      "job": "native",
+      "wall_seconds": 2.518815499963239,
+      "RSS_bytes": 28229632
+    },
+    {
+      "job": "native",
+      "wall_seconds": 2.6316706659272313,
+      "RSS_bytes": 28884992
+    },
+    {
+      "job": "native",
+      "wall_seconds": 2.743510666070506,
+      "RSS_bytes": 31817728
+    },
+    {
+      "job": "native",
+      "wall_seconds": 2.8546064998954535,
+      "RSS_bytes": 69877760
+    },
+    {
+      "job": "native",
+      "wall_seconds": 2.9645444580819458,
+      "RSS_bytes": 103628800
+    },
+    {
+      "job": "native",
+      "wall_seconds": 3.0751894160639495,
+      "RSS_bytes": 148897792
+    },
+    {
+      "job": "native",
+      "wall_seconds": 3.184322166023776,
+      "RSS_bytes": 149733376
+    },
+    {
+      "job": "native",
+      "wall_seconds": 3.2962202499620616,
+      "RSS_bytes": 150192128
+    },
+    {
+      "job": "native",
+      "wall_seconds": 3.4063439581077546,
+      "RSS_bytes": 150208512
+    },
+    {
+      "job": "native",
+      "wall_seconds": 3.518204415915534,
+      "RSS_bytes": 150208512
+    },
+    {
+      "job": "native",
+      "wall_seconds": 3.6270906659774482,
+      "RSS_bytes": 150208512
+    },
+    {
+      "job": "native",
+      "wall_seconds": 3.739205541089177,
+      "RSS_bytes": 150208512
+    },
+    {
+      "job": "native",
+      "wall_seconds": 3.8518226658925414,
+      "RSS_bytes": 150208512
+    },
+    {
+      "job": "native",
+      "wall_seconds": 3.963719290914014,
+      "RSS_bytes": 150208512
+    },
+    {
+      "job": "native",
+      "wall_seconds": 4.069676165934652,
+      "RSS_bytes": 150208512
+    },
+    {
+      "job": "native",
+      "wall_seconds": 4.177495375042781,
+      "RSS_bytes": 150208512
+    },
+    {
+      "job": "native",
+      "wall_seconds": 4.2869520001113415,
+      "RSS_bytes": 150208512
+    },
+    {
+      "job": "native",
+      "wall_seconds": 4.401036916067824,
+      "RSS_bytes": 150208512
+    },
+    {
+      "job": "native",
+      "wall_seconds": 4.511493207886815,
+      "RSS_bytes": 150208512
+    },
+    {
+      "job": "native",
+      "wall_seconds": 4.625505999894813,
+      "RSS_bytes": 150208512
+    },
+    {
+      "job": "native",
+      "wall_seconds": 4.739326833048835,
+      "RSS_bytes": 150339584
+    },
+    {
+      "job": "native",
+      "wall_seconds": 4.852809583069757,
+      "RSS_bytes": 150339584
+    },
+    {
+      "job": "native",
+      "wall_seconds": 4.96437241602689,
+      "RSS_bytes": 150339584
+    },
+    {
+      "job": "native",
+      "wall_seconds": 5.069476291071624,
+      "RSS_bytes": 150339584
+    },
+    {
+      "job": "native",
+      "wall_seconds": 5.175769290886819,
+      "RSS_bytes": 150339584
+    }
+  ],
+  "native_execution_completed": false,
+  "readiness_completed": false,
+  "required_object_presence": null,
+  "returncode": 1,
+  "controller_error": "ValueError: Native command incomplete; preserve outputs without retry",
+  "controller_SIGTERM_requested": false,
+  "wall_seconds": 5.343528791097924,
+  "stop_reason": null,
+  "max_observed_RSS_bytes": 150339584,
+  "resources": {
+    "sampled_RSS_stop_bytes": 2147483648,
+    "sampled_output_stop_bytes": 33554432,
+    "wall_seconds": 100
+  },
+  "final_output_bytes_before_receipt": 150631,
+  "inputs_unchanged": true,
+  "binary_and_runtime_unchanged": true,
+  "binary_sha256": "b11b7c481e502e0ae5dc61eba18e3e096c9ebf0dfee3f29b005353c9a1455547",
+  "binary_unchanged": true,
+  "complete_artifact_sha256": {
+    "actual-contract.json": "4eabadfa6e825b2d4d0fcfe89fc1d54cfe479edcd4236b44e251ae352287c8a8",
+    "assess.py": "0548fcbf6eba737aaaf816abbfbfd0511b5b8fb266aa10c34a1f5817eef0e338",
+    "card.json": "4e07cbb997c831bac2c0abd43092148c5518b6c7aa04d7b3d287779f9e700986",
+    "frozen-contract.json": "c5b7e58249cacfa6c31f61d6ed688bd36eb9d8ccd77a76b63ffb63fb9d4c64e2",
+    "launch.json": "4efdf7ee3052daa47a3bf2e33ddf185e6469b2f6c8a242ed3777db47410365fa",
+    "native.log": "fb398030a91cc8570a2dfebd84486a8cfb92e9eb9f6f536b29a0683229b7daae",
+    "source-snapshots/work/962-engineering/cp1-assumed-thermal-birth-macos-prep-001/METHOD.md": "48445151b6be38ab437bebe0266220b7f63bcb7dc79dfbc3863de5c715acd0a7",
+    "source-snapshots/work/962-engineering/cp1-assumed-thermal-birth-macos-prep-001/held-preparation.json": "8ff1d4bc6b7f7d3fafd18a3a236772cdeffc9bcd3b8ce55c5bb6eee6e9498f78",
+    "source-snapshots/work/962-engineering/cp1-assumed-thermal-birth-macos-prep-001/run_mac.py": "d2e7c528e67705f9a61c41aeff96fd088606d0169d071b9ec9a1f5b60e4a1ff5",
+    "source-snapshots/work/962-engineering/cp1-assumed-thermal-birth-prep-001/assess.py": "0548fcbf6eba737aaaf816abbfbfd0511b5b8fb266aa10c34a1f5817eef0e338",
+    "source-snapshots/work/962-engineering/cp1-assumed-thermal-birth-prep-001/card.json": "4e07cbb997c831bac2c0abd43092148c5518b6c7aa04d7b3d287779f9e700986",
+    "source-snapshots/work/962-engineering/cp1-assumed-thermal-birth-prep-001/case-contract.json": "c5b7e58249cacfa6c31f61d6ed688bd36eb9d8ccd77a76b63ffb63fb9d4c64e2",
+    "source-snapshots/work/962-engineering/cp1-assumed-thermal-birth-prep-001/thermal-birth.i": "62527f4e88d9cc55e506cc11c97c48de5ea56e2fd7218231143fc3aa88e92b20",
+    "source-snapshots/work/962-engineering/cp1-assumed-thermal-birth-prep-001/time-level.i": "460a3332eac1ec0eddd1884657d2b8b0cdd96bd49443180d00651e44fb76a09a",
+    "source-snapshots/work/962-engineering/imported-elastic-cube-macos-prep-004/primary-api.json": "9dd74993e1a4790d378bff999aff31ffe4f94a5317aa349014780d7cc3847221",
+    "thermal-birth.i": "62527f4e88d9cc55e506cc11c97c48de5ea56e2fd7218231143fc3aa88e92b20",
+    "thermal.csv": "d7adabd2b59478aa73db97219a12353b3847517f7b2f1f03a7ec7832a3453a08",
+    "thermal_begin_0000.csv": "f211d4df6194c02605badca79d99560455de4a93a3c3750e12a0ad65d2096aed",
+    "thermal_end_0000.csv": "f211d4df6194c02605badca79d99560455de4a93a3c3750e12a0ad65d2096aed",
+    "thermal_properties_0000.csv": "999d40a81242533ec2f75af45dfee80b887347a878588eaf738a80adfdec59ca",
+    "time-level.i": "460a3332eac1ec0eddd1884657d2b8b0cdd96bd49443180d00651e44fb76a09a"
+  },
+  "artifact_sha256": {
+    "actual-contract.json": "4eabadfa6e825b2d4d0fcfe89fc1d54cfe479edcd4236b44e251ae352287c8a8",
+    "assess.py": "0548fcbf6eba737aaaf816abbfbfd0511b5b8fb266aa10c34a1f5817eef0e338",
+    "card.json": "4e07cbb997c831bac2c0abd43092148c5518b6c7aa04d7b3d287779f9e700986",
+    "frozen-contract.json": "c5b7e58249cacfa6c31f61d6ed688bd36eb9d8ccd77a76b63ffb63fb9d4c64e2",
+    "launch.json": "4efdf7ee3052daa47a3bf2e33ddf185e6469b2f6c8a242ed3777db47410365fa",
+    "native.log": "fb398030a91cc8570a2dfebd84486a8cfb92e9eb9f6f536b29a0683229b7daae",
+    "thermal-birth.i": "62527f4e88d9cc55e506cc11c97c48de5ea56e2fd7218231143fc3aa88e92b20",
+    "thermal.csv": "d7adabd2b59478aa73db97219a12353b3847517f7b2f1f03a7ec7832a3453a08",
+    "thermal_begin_0000.csv": "f211d4df6194c02605badca79d99560455de4a93a3c3750e12a0ad65d2096aed",
+    "thermal_end_0000.csv": "f211d4df6194c02605badca79d99560455de4a93a3c3750e12a0ad65d2096aed",
+    "thermal_properties_0000.csv": "999d40a81242533ec2f75af45dfee80b887347a878588eaf738a80adfdec59ca",
+    "time-level.i": "460a3332eac1ec0eddd1884657d2b8b0cdd96bd49443180d00651e44fb76a09a"
+  }
+}
