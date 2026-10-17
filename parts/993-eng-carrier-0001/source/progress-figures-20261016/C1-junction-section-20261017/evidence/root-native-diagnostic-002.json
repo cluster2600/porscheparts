@@ -1,0 +1,122 @@
+{
+  "schema": "root-C1-common-IP-native-diagnostic-close-1",
+  "status": "root_closed_actual_native_C1_local_geometry_diagnostic_RC0_no_design_change",
+  "actual_tool": {
+    "session_id": 25984,
+    "terminal_chunk": "a01d67",
+    "RC": 0
+  },
+  "terminal_sha256": "d8f75da868db222efb71d5fc27463561b762210dec40d3eee4d4d8e0d7a6ed6d",
+  "assessment_sha256": "616d69d5e60627cf3c877d6094818482ed92c2604ca86fba07301b6a57b295ff",
+  "supervision_sha256": "e5ecbec3d81b3627c68c627ffc342a99252310689dcdfacf64f498356f90b06a",
+  "fresh_unique_launch_pins": 543,
+  "entire_5probe_face_edge_distance_lists_checked": true,
+  "each_face_distance_count": 247,
+  "each_edge_distance_count": 750,
+  "raw_normal_line_hits": 57,
+  "nearest_face_rows": 41,
+  "native_D2_rows": 12,
+  "local_chords_qualified": 10,
+  "local_chords_unresolved": 2,
+  "all_local_chord_qualifications_recomputed_stdlib": true,
+  "native_section_curves": 41,
+  "section_Approximation": false,
+  "common_peak": {
+    "element_id": 84037,
+    "IP_one_based": 1,
+    "reference_undeformed_IP_xyz_mm": [
+      82.1363150782041,
+      -14.38884836795918,
+      12.860258089066248
+    ]
+  },
+  "face60": {
+    "type": "GeomAbs_SurfaceType.GeomAbs_BSplineSurface",
+    "distance_mm": 0.007179406001393551,
+    "point_mm": [
+      82.13095205539072,
+      -14.391865895364598,
+      12.863956248769874
+    ],
+    "outward_normal": [
+      -0.7470009095927183,
+      -0.4203032123880582,
+      0.5151066401473878
+    ],
+    "local_chord": {
+      "status": "unambiguous_first_native_in_out_normal_chord",
+      "thickness_mm": 0.08651954398105025,
+      "target_face_index_zero_based": 62,
+      "scope": "one_local_native_normal_chord_not_global_minimum_thickness"
+    },
+    "raw_intersections": [
+      {
+        "W_mm": 2.4666684656884755e-14,
+        "point_mm": [
+          82.13095205539074,
+          -14.391865895364587,
+          12.863956248769862
+        ],
+        "face_index_zero_based": 60,
+        "state": "TopAbs_State.TopAbs_IN",
+        "transition": "IntCurveSurface_TransitionOnCurve.IntCurveSurface_In",
+        "coincident_with_start_native_tolerance": true
+      },
+      {
+        "W_mm": 0.08651954398105025,
+        "point_mm": [
+          82.19558223344211,
+          -14.355501453095012,
+          12.81938945716271
+        ],
+        "face_index_zero_based": 62,
+        "state": "TopAbs_State.TopAbs_IN",
+        "transition": "IntCurveSurface_TransitionOnCurve.IntCurveSurface_Out",
+        "coincident_with_start_native_tolerance": false
+      },
+      {
+        "W_mm": 0.2650828520317755,
+        "point_mm": [
+          82.3289691869759,
+          -14.280450721106654,
+          12.7274103114991
+        ],
+        "face_index_zero_based": 68,
+        "state": "TopAbs_State.TopAbs_IN",
+        "transition": "IntCurveSurface_TransitionOnCurve.IntCurveSurface_In",
+        "coincident_with_start_native_tolerance": false
+      },
+      {
+        "W_mm": 3.032608399049477,
+        "point_mm": [
+          84.3963132879192,
+          -13.117250843329096,
+          11.301839525452749
+        ],
+        "face_index_zero_based": 150,
+        "state": "TopAbs_State.TopAbs_IN",
+        "transition": "IntCurveSurface_TransitionOnCurve.IntCurveSurface_Out",
+        "coincident_with_start_native_tolerance": false
+      }
+    ]
+  },
+  "face62": {
+    "type": "GeomAbs_SurfaceType.GeomAbs_Plane",
+    "local_chord": {
+      "status": "unambiguous_first_native_in_out_normal_chord",
+      "thickness_mm": 0.06770307556850923,
+      "target_face_index_zero_based": 60,
+      "scope": "one_local_native_normal_chord_not_global_minimum_thickness"
+    }
+  },
+  "role_assignment": null,
+  "global_minimum_thickness_claim": false,
+  "CAD_changed": false,
+  "FEA_executed": false,
+  "interpretation": "Short local material chords and native C0 edges near current IP; geometric attribution still separate, no global thickness/causal stress claim.",
+  "initial_root_verification_refusal": {
+    "actual_chunk": "b8e994",
+    "RC": 1,
+    "reason": "Root checker used repository root for terminal files stored relative to diagnostic folder. Corrected path join only; no native execution or source/input changed."
+  }
+}

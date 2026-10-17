@@ -297,3 +297,13 @@ figure-binding receipt in `delivery-assets/source-workflow.json`, even if the
 runner later updates its own `workflow.json`. CAD, fields, support vectors and
 reports must belong to the selected revision; machine-specific job preparation
 remains a separate handover item.
+
+
+## The local C1 junction in an oblique section
+
+[Figure 25](../../parts/993-eng-carrier-0001/source/progress-figures-20261016/index.html#C1-junction-section)
+shows the actual before/after CAD profiles in the plane of the coarse 84037/IP1
+normal ray and Z. Its short chord is a local junction observation; the later H2
+peak is not plotted. The [sampled-point replay and complete evidence](../../parts/993-eng-carrier-0001/source/progress-figures-20261016/C1-junction-section-20261017/README.md)
+retain the distinct native producer and presentation sources, the refused STEP
+exchange, and three byte-identical exports without another CAD or FEA run.
