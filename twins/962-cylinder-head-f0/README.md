@@ -199,6 +199,10 @@ reduces ten poor cells to two among 39 positive tetrahedra, with minimum SICN
 0.08909847620076504. Boundary and saved-reopen identity pass; the unchanged
 0.1 quality gate still rejects this separate local result. Complete four-stage
 arrays and independent exact checks are retained; no head adoption follows.
+The [single two-apex construction](derived/engineering/fixed-shell-apex-optimum/README.md)
+improves the two target cells but inverts three neighbours and leaves four
+other cells below SICN 0.1. All 39 exact signed-quality rows are retained;
+this analytic proposal is rejected and was never applied to a native mesh.
 The [expanded interior-node census](derived/engineering/atomic-cavity-plane-clip-cap-assembly-netgen-expanded-stars/README.md)
 contains 1,098 movable nodes and 29,473 coupled cells, including all 210 poor
 cells and 29,263 initially good cells. Its complete geometric JSON is retained
