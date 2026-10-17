@@ -5,6 +5,10 @@ l'imprimeur et le mécanicien peuvent suivre. Le support moteur 993 Turbo est
 le pilote. Chaque étape conserve son entrée, ses réglages, ses logiciels, ses
 sorties et ses résultats ; un changement de géométrie crée une nouvelle révision.
 
+Les [suppléments du 17 octobre](CARRIER_SUPPLEMENTS_20261017.md) décrivent le
+guide 7 avec le cycle mécanique à 32 états et le lanceur 3 avec ses budgets
+par étape. Les commandes v6 ci-dessous conservent leur recette enregistrée.
+
 Le guide conserve une copie exacte du reçu utilisé pour relier ses figures,
 dans `delivery-assets/source-workflow.json`. Le lanceur peut ensuite terminer
 et mettre à jour son propre `workflow.json` ; l'état employé pour les images
