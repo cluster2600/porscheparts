@@ -1,0 +1,708 @@
+{
+  "schema": "m64-bionic-fin-verification/v1",
+  "status": "research_fin_cell_candidate_not_a_head_release",
+  "source_sha256": {
+    "BionicFins.csproj": "f4a4e0b0e7fda9980fc5c8c3035808c3acbaa0ccfd6ca8d5d00d0c4cafaaba2e",
+    "Program.cs": "3352731a8d090c0e08ce9dcb8dd2e5dc5404d8fc2aec60c7634e3de00c92c810",
+    "baseline.json": "3d3cf77234f795093477ca151cd307fbd13fddfde317dae74f3e7c16574c608b",
+    "candidate.json": "668b5eb9ccc90baa0b7d128d88804dc0a54fbfd77499d0e508f08db55e01536d",
+    "countercheck.py": "6e059d88cfdf238e4b6cfa56ec6f19b924916753dcf04733bdab46c98a822a2c",
+    "render.py": "0147bc729b597c64d6e462676c3180fc1022a00dc633dd991e1b34835cc348c6",
+    "study.py": "09879a4badd2e1ba40ab7e3582e2bbdc4bee5629ad5e75868ec0e9677394d3df"
+  },
+  "geometry": [
+    {
+      "directory": "final-baseline-0.3",
+      "generation_sha256": "df75e9b0d7af5cd87bc48df6405c1b91f664a3cddc997dd7bbccb1e758e24921",
+      "report": {
+        "schema": "m64-bionic-fin-geometry/v1",
+        "design_id": "straight",
+        "voxel_mm": 0.3,
+        "input_sha256": "3d3cf77234f795093477ca151cd307fbd13fddfde317dae74f3e7c16574c608b",
+        "program_sha256": "a5f7518ca8583546c5a32c0e1752ac6cea502f32181fbf6db1b280ca79c28651",
+        "picogk_sha256": "710c4e0428efbe9c1cd1db1663247b45604f96d167a6726782ab8ddca350565a",
+        "native_version": "26.2.0",
+        "shape_kernel_revision": "7b9097842446a28bb5d49203724622e594ce7510",
+        "nominal_nonoverlap_volume_mm3": 5040,
+        "single": {
+          "filename": "fin.stl",
+          "sha256": "19591fe35ad24598f0f25053ccb3daf580874c20a7fc28b71e91117e19c86dd6",
+          "triangles": 86120,
+          "native_volume_mm3": 5033.876,
+          "oriented_mesh_volume_mm3": 5029.161687291677,
+          "surface_area_mm2": 3834.992230463773
+        },
+        "coupon": {
+          "filename": "coupon.stl",
+          "sha256": "25387446cd0a56f62875cad38b53eed95e70483d56f2b1da84e66d69d4a101eb",
+          "triangles": 366188,
+          "native_volume_mm3": 25183.611,
+          "oriented_mesh_volume_mm3": 25160.811279272988,
+          "surface_area_mm2": 16208.65212161839
+        },
+        "source_master_modified": false,
+        "real_head_integrated": false,
+        "thermal_validated": false,
+        "manufacturing_authorized": false,
+        "status": "extruded_fin_coupon_not_a_cylinder_head",
+        "airflow_direction_hypothesis": "Y"
+      }
+    },
+    {
+      "directory": "final-baseline-0.15",
+      "generation_sha256": "88a6f99bdaa511bee1d535322e8095eb5b0060aaf8e1e7c124673ee57cce56f6",
+      "report": {
+        "schema": "m64-bionic-fin-geometry/v1",
+        "design_id": "straight",
+        "voxel_mm": 0.15,
+        "input_sha256": "3d3cf77234f795093477ca151cd307fbd13fddfde317dae74f3e7c16574c608b",
+        "program_sha256": "a5f7518ca8583546c5a32c0e1752ac6cea502f32181fbf6db1b280ca79c28651",
+        "picogk_sha256": "710c4e0428efbe9c1cd1db1663247b45604f96d167a6726782ab8ddca350565a",
+        "native_version": "26.2.0",
+        "shape_kernel_revision": "7b9097842446a28bb5d49203724622e594ce7510",
+        "nominal_nonoverlap_volume_mm3": 5040,
+        "single": {
+          "filename": "fin.stl",
+          "sha256": "5be2b02e9f7af13265934753879c64d808535b89461d771b220f307a840744b9",
+          "triangles": 346160,
+          "native_volume_mm3": 5032.673,
+          "oriented_mesh_volume_mm3": 5037.475119172694,
+          "surface_area_mm2": 3864.5944087200332
+        },
+        "coupon": {
+          "filename": "coupon.stl",
+          "sha256": "eb7dea6bd3d2468c876332fb270d250243af50b466bec51d8664c61182156a2a",
+          "triangles": 1465504,
+          "native_volume_mm3": 25171.705,
+          "oriented_mesh_volume_mm3": 25189.218529906255,
+          "surface_area_mm2": 16336.971968849772
+        },
+        "source_master_modified": false,
+        "real_head_integrated": false,
+        "thermal_validated": false,
+        "manufacturing_authorized": false,
+        "status": "extruded_fin_coupon_not_a_cylinder_head",
+        "airflow_direction_hypothesis": "Y"
+      }
+    },
+    {
+      "directory": "final-candidate-0.3",
+      "generation_sha256": "b43f8f5f45975260b29b3ae4e6f8dcea2836284741b8d7ef2733df415f1b5c21",
+      "report": {
+        "schema": "m64-bionic-fin-geometry/v1",
+        "design_id": "leaf-0.7-2.0-2.2-0.75",
+        "voxel_mm": 0.3,
+        "input_sha256": "668b5eb9ccc90baa0b7d128d88804dc0a54fbfd77499d0e508f08db55e01536d",
+        "program_sha256": "a5f7518ca8583546c5a32c0e1752ac6cea502f32181fbf6db1b280ca79c28651",
+        "picogk_sha256": "710c4e0428efbe9c1cd1db1663247b45604f96d167a6726782ab8ddca350565a",
+        "native_version": "26.2.0",
+        "shape_kernel_revision": "7b9097842446a28bb5d49203724622e594ce7510",
+        "nominal_nonoverlap_volume_mm3": 5253.14306640625,
+        "single": {
+          "filename": "fin.stl",
+          "sha256": "238fad57bedf640947241c507a4b57263c00c6cde489850d2c6934c95c86d6c1",
+          "triangles": 111720,
+          "native_volume_mm3": 5042.4727,
+          "oriented_mesh_volume_mm3": 5034.067107086367,
+          "surface_area_mm2": 4449.156895243796
+        },
+        "coupon": {
+          "filename": "coupon.stl",
+          "sha256": "a29404cc49aefb38e1f2a9478e6b40fc5878b09efd1acb419fd97397c4ed15d6",
+          "triangles": 424656,
+          "native_volume_mm3": 25246.195,
+          "oriented_mesh_volume_mm3": 25216.671423702563,
+          "surface_area_mm2": 17450.3953145423
+        },
+        "source_master_modified": false,
+        "real_head_integrated": false,
+        "thermal_validated": false,
+        "manufacturing_authorized": false,
+        "status": "extruded_fin_coupon_not_a_cylinder_head",
+        "airflow_direction_hypothesis": "Y"
+      }
+    },
+    {
+      "directory": "final-candidate-0.15",
+      "generation_sha256": "ab530cc04733ae7a6c7b87a54735cb30401a3a879672127ecaa9ac0063ce0009",
+      "report": {
+        "schema": "m64-bionic-fin-geometry/v1",
+        "design_id": "leaf-0.7-2.0-2.2-0.75",
+        "voxel_mm": 0.15,
+        "input_sha256": "668b5eb9ccc90baa0b7d128d88804dc0a54fbfd77499d0e508f08db55e01536d",
+        "program_sha256": "a5f7518ca8583546c5a32c0e1752ac6cea502f32181fbf6db1b280ca79c28651",
+        "picogk_sha256": "710c4e0428efbe9c1cd1db1663247b45604f96d167a6726782ab8ddca350565a",
+        "native_version": "26.2.0",
+        "shape_kernel_revision": "7b9097842446a28bb5d49203724622e594ce7510",
+        "nominal_nonoverlap_volume_mm3": 5253.14306640625,
+        "single": {
+          "filename": "fin.stl",
+          "sha256": "bd63b876a0799de3ae0151ff6c4b36f8708c223f4b51126cb8caa6dd403781d4",
+          "triangles": 446924,
+          "native_volume_mm3": 5027.729,
+          "oriented_mesh_volume_mm3": 5037.822062795764,
+          "surface_area_mm2": 4516.316484932264
+        },
+        "coupon": {
+          "filename": "coupon.stl",
+          "sha256": "1d843b648585eb48e229dc1f31bd4a2ec26e9bbbd5157aa8ec89501dfc28164f",
+          "triangles": 1721480,
+          "native_volume_mm3": 25195.557,
+          "oriented_mesh_volume_mm3": 25201.8079767396,
+          "surface_area_mm2": 17765.314974636538
+        },
+        "source_master_modified": false,
+        "real_head_integrated": false,
+        "thermal_validated": false,
+        "manufacturing_authorized": false,
+        "status": "extruded_fin_coupon_not_a_cylinder_head",
+        "airflow_direction_hypothesis": "Y"
+      }
+    }
+  ],
+  "raw_mesh_audit": {
+    "inspector_sha256": "be007d7c9037f86a547deda7bc6771b03878223dfce64e93d0e4055453b1166f",
+    "records": [
+      {
+        "directory": "final-baseline-0.15",
+        "filename": "coupon.stl",
+        "mesh": {
+          "input_vertices": 4396512,
+          "exact_unique_vertices": 732754,
+          "faces_original_and_retained": 1465504,
+          "faces_removed": 0,
+          "unused_exact_unique_vertices_retained": 0,
+          "exact_zero_area_faces": 0,
+          "zero_area_predicate": "integer_cross_product_after_exact_dyadic_scaling",
+          "component_connectivity": "shared_edge_all_incidences_including_nonmanifold_no_repair",
+          "edge_connected_face_components": 1,
+          "vertex_connected_face_components": 1,
+          "component_face_sum_matches_original": true,
+          "vertex_link_classification": {
+            "circle": 732754
+          },
+          "components": [
+            {
+              "component_id": 1,
+              "faces": 1465504,
+              "vertices_referenced": 732754,
+              "edges_including_self_loops": 2198256,
+              "exact_zero_area_faces": 0,
+              "duplicate_unoriented_face_excess": 0,
+              "edge_incidence_histogram": {
+                "2": 2198256
+              },
+              "self_loop_edges": 0,
+              "two_incidence_nonloop_orientation_conflicts": 0,
+              "winding_checked_on_two_incidence_nonloop_edges_only": true,
+              "vertex_links_in_whole_mesh": {
+                "circle": 732754
+              },
+              "euler_V_minus_E_plus_F": 2,
+              "euler_is_not_genus_or_cavity_count": true,
+              "signed_triangle_volume_scan_units_cubed": 25189.218529784193,
+              "volume_sign": "positive",
+              "closed_oriented_combinatorial_surface_screen_pass": true
+            }
+          ],
+          "signed_triangle_volume_scan_units_cubed": 25189.218529784193,
+          "component_signed_volume_sum_scan_units_cubed": 25189.218529784193,
+          "component_sum_minus_whole_integration": 0.0,
+          "closed_oriented_combinatorial_surface_screen_pass": true,
+          "geometric_self_or_inter_component_intersections": "untested",
+          "shell_nesting_and_cavity_classification": "untested",
+          "orientation_of_each_shell_relative_to_material": "untested",
+          "continuous_ROI_and_section_preservation": "untested",
+          "repair_or_orientation_fix_or_small_component_removal": false,
+          "sha256": "eb7dea6bd3d2468c876332fb270d250243af50b466bec51d8664c61182156a2a",
+          "nonfinite_normals": 0
+        }
+      },
+      {
+        "directory": "final-baseline-0.15",
+        "filename": "fin.stl",
+        "mesh": {
+          "input_vertices": 1038480,
+          "exact_unique_vertices": 173082,
+          "faces_original_and_retained": 346160,
+          "faces_removed": 0,
+          "unused_exact_unique_vertices_retained": 0,
+          "exact_zero_area_faces": 0,
+          "zero_area_predicate": "integer_cross_product_after_exact_dyadic_scaling",
+          "component_connectivity": "shared_edge_all_incidences_including_nonmanifold_no_repair",
+          "edge_connected_face_components": 1,
+          "vertex_connected_face_components": 1,
+          "component_face_sum_matches_original": true,
+          "vertex_link_classification": {
+            "circle": 173082
+          },
+          "components": [
+            {
+              "component_id": 1,
+              "faces": 346160,
+              "vertices_referenced": 173082,
+              "edges_including_self_loops": 519240,
+              "exact_zero_area_faces": 0,
+              "duplicate_unoriented_face_excess": 0,
+              "edge_incidence_histogram": {
+                "2": 519240
+              },
+              "self_loop_edges": 0,
+              "two_incidence_nonloop_orientation_conflicts": 0,
+              "winding_checked_on_two_incidence_nonloop_edges_only": true,
+              "vertex_links_in_whole_mesh": {
+                "circle": 173082
+              },
+              "euler_V_minus_E_plus_F": 2,
+              "euler_is_not_genus_or_cavity_count": true,
+              "signed_triangle_volume_scan_units_cubed": 5037.475119161913,
+              "volume_sign": "positive",
+              "closed_oriented_combinatorial_surface_screen_pass": true
+            }
+          ],
+          "signed_triangle_volume_scan_units_cubed": 5037.475119161913,
+          "component_signed_volume_sum_scan_units_cubed": 5037.475119161913,
+          "component_sum_minus_whole_integration": 0.0,
+          "closed_oriented_combinatorial_surface_screen_pass": true,
+          "geometric_self_or_inter_component_intersections": "untested",
+          "shell_nesting_and_cavity_classification": "untested",
+          "orientation_of_each_shell_relative_to_material": "untested",
+          "continuous_ROI_and_section_preservation": "untested",
+          "repair_or_orientation_fix_or_small_component_removal": false,
+          "sha256": "5be2b02e9f7af13265934753879c64d808535b89461d771b220f307a840744b9",
+          "nonfinite_normals": 0
+        }
+      },
+      {
+        "directory": "final-baseline-0.3",
+        "filename": "coupon.stl",
+        "mesh": {
+          "input_vertices": 1098564,
+          "exact_unique_vertices": 183096,
+          "faces_original_and_retained": 366188,
+          "faces_removed": 0,
+          "unused_exact_unique_vertices_retained": 0,
+          "exact_zero_area_faces": 0,
+          "zero_area_predicate": "integer_cross_product_after_exact_dyadic_scaling",
+          "component_connectivity": "shared_edge_all_incidences_including_nonmanifold_no_repair",
+          "edge_connected_face_components": 1,
+          "vertex_connected_face_components": 1,
+          "component_face_sum_matches_original": true,
+          "vertex_link_classification": {
+            "circle": 183096
+          },
+          "components": [
+            {
+              "component_id": 1,
+              "faces": 366188,
+              "vertices_referenced": 183096,
+              "edges_including_self_loops": 549282,
+              "exact_zero_area_faces": 0,
+              "duplicate_unoriented_face_excess": 0,
+              "edge_incidence_histogram": {
+                "2": 549282
+              },
+              "self_loop_edges": 0,
+              "two_incidence_nonloop_orientation_conflicts": 0,
+              "winding_checked_on_two_incidence_nonloop_edges_only": true,
+              "vertex_links_in_whole_mesh": {
+                "circle": 183096
+              },
+              "euler_V_minus_E_plus_F": 2,
+              "euler_is_not_genus_or_cavity_count": true,
+              "signed_triangle_volume_scan_units_cubed": 25160.811279301623,
+              "volume_sign": "positive",
+              "closed_oriented_combinatorial_surface_screen_pass": true
+            }
+          ],
+          "signed_triangle_volume_scan_units_cubed": 25160.811279301623,
+          "component_signed_volume_sum_scan_units_cubed": 25160.811279301623,
+          "component_sum_minus_whole_integration": 0.0,
+          "closed_oriented_combinatorial_surface_screen_pass": true,
+          "geometric_self_or_inter_component_intersections": "untested",
+          "shell_nesting_and_cavity_classification": "untested",
+          "orientation_of_each_shell_relative_to_material": "untested",
+          "continuous_ROI_and_section_preservation": "untested",
+          "repair_or_orientation_fix_or_small_component_removal": false,
+          "sha256": "25387446cd0a56f62875cad38b53eed95e70483d56f2b1da84e66d69d4a101eb",
+          "nonfinite_normals": 0
+        }
+      },
+      {
+        "directory": "final-baseline-0.3",
+        "filename": "fin.stl",
+        "mesh": {
+          "input_vertices": 258360,
+          "exact_unique_vertices": 43062,
+          "faces_original_and_retained": 86120,
+          "faces_removed": 0,
+          "unused_exact_unique_vertices_retained": 0,
+          "exact_zero_area_faces": 0,
+          "zero_area_predicate": "integer_cross_product_after_exact_dyadic_scaling",
+          "component_connectivity": "shared_edge_all_incidences_including_nonmanifold_no_repair",
+          "edge_connected_face_components": 1,
+          "vertex_connected_face_components": 1,
+          "component_face_sum_matches_original": true,
+          "vertex_link_classification": {
+            "circle": 43062
+          },
+          "components": [
+            {
+              "component_id": 1,
+              "faces": 86120,
+              "vertices_referenced": 43062,
+              "edges_including_self_loops": 129180,
+              "exact_zero_area_faces": 0,
+              "duplicate_unoriented_face_excess": 0,
+              "edge_incidence_histogram": {
+                "2": 129180
+              },
+              "self_loop_edges": 0,
+              "two_incidence_nonloop_orientation_conflicts": 0,
+              "winding_checked_on_two_incidence_nonloop_edges_only": true,
+              "vertex_links_in_whole_mesh": {
+                "circle": 43062
+              },
+              "euler_V_minus_E_plus_F": 2,
+              "euler_is_not_genus_or_cavity_count": true,
+              "signed_triangle_volume_scan_units_cubed": 5029.161687292631,
+              "volume_sign": "positive",
+              "closed_oriented_combinatorial_surface_screen_pass": true
+            }
+          ],
+          "signed_triangle_volume_scan_units_cubed": 5029.161687292631,
+          "component_signed_volume_sum_scan_units_cubed": 5029.161687292631,
+          "component_sum_minus_whole_integration": 0.0,
+          "closed_oriented_combinatorial_surface_screen_pass": true,
+          "geometric_self_or_inter_component_intersections": "untested",
+          "shell_nesting_and_cavity_classification": "untested",
+          "orientation_of_each_shell_relative_to_material": "untested",
+          "continuous_ROI_and_section_preservation": "untested",
+          "repair_or_orientation_fix_or_small_component_removal": false,
+          "sha256": "19591fe35ad24598f0f25053ccb3daf580874c20a7fc28b71e91117e19c86dd6",
+          "nonfinite_normals": 0
+        }
+      },
+      {
+        "directory": "final-candidate-0.15",
+        "filename": "coupon.stl",
+        "mesh": {
+          "input_vertices": 5164440,
+          "exact_unique_vertices": 860742,
+          "faces_original_and_retained": 1721480,
+          "faces_removed": 0,
+          "unused_exact_unique_vertices_retained": 0,
+          "exact_zero_area_faces": 0,
+          "zero_area_predicate": "integer_cross_product_after_exact_dyadic_scaling",
+          "component_connectivity": "shared_edge_all_incidences_including_nonmanifold_no_repair",
+          "edge_connected_face_components": 1,
+          "vertex_connected_face_components": 1,
+          "component_face_sum_matches_original": true,
+          "vertex_link_classification": {
+            "circle": 860742
+          },
+          "components": [
+            {
+              "component_id": 1,
+              "faces": 1721480,
+              "vertices_referenced": 860742,
+              "edges_including_self_loops": 2582220,
+              "exact_zero_area_faces": 0,
+              "duplicate_unoriented_face_excess": 0,
+              "edge_incidence_histogram": {
+                "2": 2582220
+              },
+              "self_loop_edges": 0,
+              "two_incidence_nonloop_orientation_conflicts": 0,
+              "winding_checked_on_two_incidence_nonloop_edges_only": true,
+              "vertex_links_in_whole_mesh": {
+                "circle": 860742
+              },
+              "euler_V_minus_E_plus_F": 2,
+              "euler_is_not_genus_or_cavity_count": true,
+              "signed_triangle_volume_scan_units_cubed": 25201.80797667734,
+              "volume_sign": "positive",
+              "closed_oriented_combinatorial_surface_screen_pass": true
+            }
+          ],
+          "signed_triangle_volume_scan_units_cubed": 25201.80797667734,
+          "component_signed_volume_sum_scan_units_cubed": 25201.80797667734,
+          "component_sum_minus_whole_integration": 0.0,
+          "closed_oriented_combinatorial_surface_screen_pass": true,
+          "geometric_self_or_inter_component_intersections": "untested",
+          "shell_nesting_and_cavity_classification": "untested",
+          "orientation_of_each_shell_relative_to_material": "untested",
+          "continuous_ROI_and_section_preservation": "untested",
+          "repair_or_orientation_fix_or_small_component_removal": false,
+          "sha256": "1d843b648585eb48e229dc1f31bd4a2ec26e9bbbd5157aa8ec89501dfc28164f",
+          "nonfinite_normals": 0
+        }
+      },
+      {
+        "directory": "final-candidate-0.15",
+        "filename": "fin.stl",
+        "mesh": {
+          "input_vertices": 1340772,
+          "exact_unique_vertices": 223464,
+          "faces_original_and_retained": 446924,
+          "faces_removed": 0,
+          "unused_exact_unique_vertices_retained": 0,
+          "exact_zero_area_faces": 0,
+          "zero_area_predicate": "integer_cross_product_after_exact_dyadic_scaling",
+          "component_connectivity": "shared_edge_all_incidences_including_nonmanifold_no_repair",
+          "edge_connected_face_components": 1,
+          "vertex_connected_face_components": 1,
+          "component_face_sum_matches_original": true,
+          "vertex_link_classification": {
+            "circle": 223464
+          },
+          "components": [
+            {
+              "component_id": 1,
+              "faces": 446924,
+              "vertices_referenced": 223464,
+              "edges_including_self_loops": 670386,
+              "exact_zero_area_faces": 0,
+              "duplicate_unoriented_face_excess": 0,
+              "edge_incidence_histogram": {
+                "2": 670386
+              },
+              "self_loop_edges": 0,
+              "two_incidence_nonloop_orientation_conflicts": 0,
+              "winding_checked_on_two_incidence_nonloop_edges_only": true,
+              "vertex_links_in_whole_mesh": {
+                "circle": 223464
+              },
+              "euler_V_minus_E_plus_F": 2,
+              "euler_is_not_genus_or_cavity_count": true,
+              "signed_triangle_volume_scan_units_cubed": 5037.822062797604,
+              "volume_sign": "positive",
+              "closed_oriented_combinatorial_surface_screen_pass": true
+            }
+          ],
+          "signed_triangle_volume_scan_units_cubed": 5037.822062797604,
+          "component_signed_volume_sum_scan_units_cubed": 5037.822062797604,
+          "component_sum_minus_whole_integration": 0.0,
+          "closed_oriented_combinatorial_surface_screen_pass": true,
+          "geometric_self_or_inter_component_intersections": "untested",
+          "shell_nesting_and_cavity_classification": "untested",
+          "orientation_of_each_shell_relative_to_material": "untested",
+          "continuous_ROI_and_section_preservation": "untested",
+          "repair_or_orientation_fix_or_small_component_removal": false,
+          "sha256": "bd63b876a0799de3ae0151ff6c4b36f8708c223f4b51126cb8caa6dd403781d4",
+          "nonfinite_normals": 0
+        }
+      },
+      {
+        "directory": "final-candidate-0.3",
+        "filename": "coupon.stl",
+        "mesh": {
+          "input_vertices": 1273968,
+          "exact_unique_vertices": 212330,
+          "faces_original_and_retained": 424656,
+          "faces_removed": 0,
+          "unused_exact_unique_vertices_retained": 0,
+          "exact_zero_area_faces": 0,
+          "zero_area_predicate": "integer_cross_product_after_exact_dyadic_scaling",
+          "component_connectivity": "shared_edge_all_incidences_including_nonmanifold_no_repair",
+          "edge_connected_face_components": 1,
+          "vertex_connected_face_components": 1,
+          "component_face_sum_matches_original": true,
+          "vertex_link_classification": {
+            "circle": 212330
+          },
+          "components": [
+            {
+              "component_id": 1,
+              "faces": 424656,
+              "vertices_referenced": 212330,
+              "edges_including_self_loops": 636984,
+              "exact_zero_area_faces": 0,
+              "duplicate_unoriented_face_excess": 0,
+              "edge_incidence_histogram": {
+                "2": 636984
+              },
+              "self_loop_edges": 0,
+              "two_incidence_nonloop_orientation_conflicts": 0,
+              "winding_checked_on_two_incidence_nonloop_edges_only": true,
+              "vertex_links_in_whole_mesh": {
+                "circle": 212330
+              },
+              "euler_V_minus_E_plus_F": 2,
+              "euler_is_not_genus_or_cavity_count": true,
+              "signed_triangle_volume_scan_units_cubed": 25216.67142372289,
+              "volume_sign": "positive",
+              "closed_oriented_combinatorial_surface_screen_pass": true
+            }
+          ],
+          "signed_triangle_volume_scan_units_cubed": 25216.67142372289,
+          "component_signed_volume_sum_scan_units_cubed": 25216.67142372289,
+          "component_sum_minus_whole_integration": 0.0,
+          "closed_oriented_combinatorial_surface_screen_pass": true,
+          "geometric_self_or_inter_component_intersections": "untested",
+          "shell_nesting_and_cavity_classification": "untested",
+          "orientation_of_each_shell_relative_to_material": "untested",
+          "continuous_ROI_and_section_preservation": "untested",
+          "repair_or_orientation_fix_or_small_component_removal": false,
+          "sha256": "a29404cc49aefb38e1f2a9478e6b40fc5878b09efd1acb419fd97397c4ed15d6",
+          "nonfinite_normals": 0
+        }
+      },
+      {
+        "directory": "final-candidate-0.3",
+        "filename": "fin.stl",
+        "mesh": {
+          "input_vertices": 335160,
+          "exact_unique_vertices": 55862,
+          "faces_original_and_retained": 111720,
+          "faces_removed": 0,
+          "unused_exact_unique_vertices_retained": 0,
+          "exact_zero_area_faces": 0,
+          "zero_area_predicate": "integer_cross_product_after_exact_dyadic_scaling",
+          "component_connectivity": "shared_edge_all_incidences_including_nonmanifold_no_repair",
+          "edge_connected_face_components": 1,
+          "vertex_connected_face_components": 1,
+          "component_face_sum_matches_original": true,
+          "vertex_link_classification": {
+            "circle": 55862
+          },
+          "components": [
+            {
+              "component_id": 1,
+              "faces": 111720,
+              "vertices_referenced": 55862,
+              "edges_including_self_loops": 167580,
+              "exact_zero_area_faces": 0,
+              "duplicate_unoriented_face_excess": 0,
+              "edge_incidence_histogram": {
+                "2": 167580
+              },
+              "self_loop_edges": 0,
+              "two_incidence_nonloop_orientation_conflicts": 0,
+              "winding_checked_on_two_incidence_nonloop_edges_only": true,
+              "vertex_links_in_whole_mesh": {
+                "circle": 55862
+              },
+              "euler_V_minus_E_plus_F": 2,
+              "euler_is_not_genus_or_cavity_count": true,
+              "signed_triangle_volume_scan_units_cubed": 5034.067107086281,
+              "volume_sign": "positive",
+              "closed_oriented_combinatorial_surface_screen_pass": true
+            }
+          ],
+          "signed_triangle_volume_scan_units_cubed": 5034.067107086281,
+          "component_signed_volume_sum_scan_units_cubed": 5034.067107086281,
+          "component_sum_minus_whole_integration": 0.0,
+          "closed_oriented_combinatorial_surface_screen_pass": true,
+          "geometric_self_or_inter_component_intersections": "untested",
+          "shell_nesting_and_cavity_classification": "untested",
+          "orientation_of_each_shell_relative_to_material": "untested",
+          "continuous_ROI_and_section_preservation": "untested",
+          "repair_or_orientation_fix_or_small_component_removal": false,
+          "sha256": "238fad57bedf640947241c507a4b57263c00c6cde489850d2c6934c95c86d6c1",
+          "nonfinite_normals": 0
+        }
+      }
+    ]
+  },
+  "cli_checks": [
+    {
+      "case": "nan",
+      "returncode": 2,
+      "output_preserved_or_absent": true
+    },
+    {
+      "case": "overwrite",
+      "returncode": 1,
+      "output_preserved_or_absent": true
+    },
+    {
+      "case": "unknown_json_field",
+      "returncode": 1,
+      "output_preserved_or_absent": true
+    }
+  ],
+  "thermal_fine_gains": [
+    {
+      "k_W_mK": 12.0,
+      "h_W_m2K": 40.0,
+      "gain_percent": 8.253116092348844
+    },
+    {
+      "k_W_mK": 12.0,
+      "h_W_m2K": 100.0,
+      "gain_percent": 7.898763440526135
+    },
+    {
+      "k_W_mK": 12.0,
+      "h_W_m2K": 200.0,
+      "gain_percent": 9.523850509379606
+    },
+    {
+      "k_W_mK": 80.0,
+      "h_W_m2K": 40.0,
+      "gain_percent": 13.426743452621448
+    },
+    {
+      "k_W_mK": 80.0,
+      "h_W_m2K": 100.0,
+      "gain_percent": 11.004538969170419
+    },
+    {
+      "k_W_mK": 80.0,
+      "h_W_m2K": 200.0,
+      "gain_percent": 8.928865673837594
+    },
+    {
+      "k_W_mK": 160.0,
+      "h_W_m2K": 40.0,
+      "gain_percent": 14.576572612714877
+    },
+    {
+      "k_W_mK": 160.0,
+      "h_W_m2K": 100.0,
+      "gain_percent": 12.927581906687745
+    },
+    {
+      "k_W_mK": 160.0,
+      "h_W_m2K": 200.0,
+      "gain_percent": 11.004538969170419
+    }
+  ],
+  "max_candidate_thermal_0p1_vs_0p05": 0.0037859272530142984,
+  "image_sha256": "0847fb63eade23909ec1f31f675269f8b0b96e9d4b353e3976a337b8e806dbb1",
+  "tests": {
+    "focused_passed": 7,
+    "system_focused_skipped": 3,
+    "cli_self_check_passed": true,
+    "build_errors": 0,
+    "upstream_build_warnings": 37,
+    "make_check_passed": false,
+    "make_check_total_tests": 3635,
+    "make_check_failures": 2,
+    "make_check_errors": 23,
+    "make_check_skipped": 205,
+    "make_check_issues": [
+      "system_scipy_native_import_errors",
+      "python_3_10_hashlib_file_digest_unavailable",
+      "two_existing_exact_float_fan_screen_comparisons"
+    ],
+    "strict_markdown_links_broken": 0,
+    "strict_markdown_files": 831
+  },
+  "rejected_stages": [
+    "ideal_1d_ranking_without_junction_overlap_correction",
+    "fv_001_without_euclidean_boundary_surface_correction",
+    "fv_002_and_fv_003_with_reference_grid_alignment_ambiguity"
+  ],
+  "retained_local_run": "work/m64-bionic-fins-20261011",
+  "actual_alloy": null,
+  "manufacturing_process": null,
+  "engine_fan_curve": null,
+  "engine_heat_flux_map": null,
+  "head_optimization_complete": false,
+  "pressure_loss_validated": false,
+  "thermomechanical_validated": false,
+  "manufacturing_authorized": false,
+  "source_head_master_modified": false
+}

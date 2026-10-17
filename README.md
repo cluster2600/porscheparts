@@ -347,7 +347,7 @@ flowchart LR
 | [993/993 Turbo connecting rod](docs/pieces/993-eng-connecting-rod-ti64-f0-0001.md) | Ti-6Al-4V Grade 5 LPBF for screening | LPBF | **prohibited pending engineering** |
 | [993 engine cooling fan — archived Carrera F0…](docs/pieces/993-eng-cooling-impeller-alsi10mg-f0-0001.md) | EOS Aluminium AlSi10Mg T6 for comparison | undecided | **prohibited pending engineering** |
 | [Engine cooling fan impeller](docs/pieces/993-eng-cooling-impeller-we43-f1-0001.md) | WE43 LPBF, solutionized and aged, for c… | LPBF | **prohibited pending engineering** |
-| [M64 four-valve cylinder head — creation prepa…](docs/pieces/993-eng-cylinder-head-4v-f0-0001.md) | not selected | undecided | **prohibited pending engineering** |
+| [M64 four-valve water-cooled cylinder head — c…](docs/pieces/993-eng-cylinder-head-4v-f0-0001.md) | not selected | undecided | **prohibited pending engineering** |
 | [993 Turbo three-into-one exhaust manifold](docs/pieces/993-eng-exhaust-manifold-in625-f0-0001.md) | EOS NickelAlloy IN625 / UNS N06625 for… | undecided | **prohibited pending engineering** |
 | [993 exhaust valves - F1 proxies](docs/pieces/993-eng-exhaust-valve-f1-0001.md) | INCONEL 751 / UNS N07751 candidate | CNC | **prohibited pending engineering** |
 | [Stationary engine fan housing](docs/pieces/993-eng-fan-housing-alsi10mg-f0-0001.md) | EOS Aluminium AlSi10Mg T6 for comparison | undecided | **prohibited pending engineering** |
