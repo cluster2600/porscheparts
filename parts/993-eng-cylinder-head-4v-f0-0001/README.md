@@ -2,7 +2,7 @@
 
 <div align="center">
 
-# M64 four-valve cylinder head — creation preparation
+# M64 four-valve water-cooled cylinder head — creation preparation
 
 **`993-ENG-CYLINDER-HEAD-4V-F0-0001`** · Porsche 993 · 1995–1998
 
@@ -25,6 +25,7 @@ The original part is documented — pictures, catalogue entries or published dat
 ↗ <a href="https://porschefanatics.com/engine/993/">PorscheFanatics — 993 engine specification</a><br>
 ↗ <a href="https://porschefanatics.com/parts/swindon-24v-head-kit-m64/">PorscheFanatics — Swindon M64 24-valve head kit</a><br>
 ↗ <a href="https://swindonpowertrain.com/products/24-valve-porsche-911-m64-cylinder-head-kit/">Swindon Powertrain — M64 24-valve cylinder head kit</a><br>
+↗ <a href="https://newsroom.porsche.com/dam/jcr:a6f33b52-c47d-47b4-98c1-7e963661f587/40%20Years%20Group%20C.pdf">Porsche — 40 Years Group C, pages 18–19</a><br>
 </td>
 <td width="50%" valign="top" align="center">
 <b>Catalogue study status</b><br><br>
@@ -38,7 +39,7 @@ The original part is documented — pictures, catalogue entries or published dat
 
 ## What it is
 
-First part in the catalogue-led engine creation sequence. Continues the existing finned four-valve M64 cylinder-head research and its private scan-derived geometry. This record establishes scope, interfaces and verification work; it supplies no released replacement CAD or print file.
+Direction decided on October 12, 2026: a new four-valve water-cooled cylinder head, inspired by the 956/962 C Group C engines. The bionic fins remain an earlier, retained study. The private geometry derived from the 935 proxy is intact; the first proposed passages do not constitute a qualified sealed water jacket.
 
 ## What it does on the car
 
