@@ -38,8 +38,20 @@ assumed bionic geometry; a missing original dimension stays unknown.
    101 cells and eight interior nodes, with no SICN below 0.1 and minimum
    0.13807503254019585. A separate current-head query records 38 exterior
    and 22 connected interfaces, including all 20 outside owner cells.
-   No head edit follows. Next, verify local embedding and domain equality
-   before application; the original 210-cell bins are not transferred.
+   The subsequent [exact local-domain check](derived/engineering/apex1474426-domain/README.md)
+   passes all 1,770 old and 5,050 replacement cell pairs. Both local complexes
+   are embedded and occupy the same closed region with the exact common
+   32-node/60-face shell. Independent checks reconstruct all 161 determinants,
+   qualities, volumes and face incidence and verify all saved pair associations;
+   the pair geometry is not independently rerun. No head edit follows. Next,
+   verify the actual application, outside preservation and saved head identity;
+   the current 208 poor cells and stronger 414 Mesh_2 failures remain open.
+   The first conditional isothermal screen has an
+   [explicit assumed card](engineering/cp1-isothermal-assumed-card.json):
+   E = 71 GPa, ν = 0.33, uniform 25 °C and constant isotropic elasticity.
+   These are research hypotheses; the modulus transfer, Poisson ratio,
+   temperature and symmetry are not matched measured M291 properties.
+   Measured fields and load/contact inputs remain null; no head solve has run.
    The earlier [replacement prerequisites](derived/engineering/local-replacement-prerequisites/README.md)
    now establish sparse-tag editing capability, exact relative local-domain
    equality and the original head's nine exterior/nineteen connected interfaces.

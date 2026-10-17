@@ -31,8 +31,12 @@ head remains at 208 poor cells. The subsequent
 preserves the rejected 57-cell generation and a saved Netgen result with
 101 cells, all above SICN 0.1 (minimum 0.13807503254019585). All 32 shell
 coordinates and 60 boundary faces remain fixed. A separate read-only parent
-query records 38 exterior and 22 connected interfaces. Local embedding,
-domain equality and application to the head remain open; no head mesh changed.
+query records 38 exterior and 22 connected interfaces. The subsequent
+[exact local-domain check](derived/engineering/apex1474426-domain/README.md)
+passes all 1,770 old and 5,050 replacement cell pairs, preserving the same
+32 node coordinates bit for bit, 60 oriented shell faces and exact occupied local region.
+Independent saved-data checks confirm the complete associations; they do not
+repeat the pair geometry. Application to the head remains open; no head mesh changed.
 The [latest bore95 USD checkpoint](USD_NORMALS_ENGINEERING.md) verifies face
 normals and passes the minimum and CPU asset checks; its formal robotics profile
 retains six failed feature rows. No head physics or manufacturing qualification
