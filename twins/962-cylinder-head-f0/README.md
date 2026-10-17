@@ -120,6 +120,11 @@ The [direct-SICN tiny attempt](derived/engineering/direct-sicn-cube-import-failu
 stops during SciPy import before any optimizer call, Gmsh calibration or mesh
 export. Source/math and mocked lifecycle guards pass separately; the preserved
 import failure establishes no optimizer result or head-repair feasibility.
+The [completed tiny direct-SICN witness](derived/engineering/direct-sicn-cube-software-witness/README.md)
+uses a separately reviewed existing runtime and passes the unchanged SICN 0.1
+rule on all 12 cube tetrahedra, improving the native minimum from 0.0148139 to
+0.7589466. Exact boundary, complete incidence and saved identity checks pass.
+This coupled software result establishes no full-head feasibility or strength.
 The [completed head Netgen trial](derived/engineering/atomic-cavity-plane-clip-cap-assembly-delaunay-netgen-postexport/README.md)
 reduces SICN < 0.1 cells from 3,438 to 210, with minimum 0.039074265058645995.
 Exact boundary, full incidence and saved-file identity checks pass; all Jacobians
