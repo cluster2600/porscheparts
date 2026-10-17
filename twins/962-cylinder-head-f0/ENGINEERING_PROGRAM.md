@@ -31,7 +31,7 @@ assumed bionic geometry; a missing original dimension stays unknown.
    returns SLSQP success after 11 iterations, but its minimum analytic SICN is
    0.07200216465522885 with 213 poor cells. The strict gate refuses the point;
    all 155 coordinates and 5,327 qualities remain diagnostic only. No proposal,
-   application or new MSH exists, and the current head stays at 208 poor cells.
+   application or new MSH follows from that trial; its parent stays at 208 poor cells.
    The subsequent [local cavity study](derived/engineering/apex1474426-local-cavity/README.md)
    extracts the limiting star's exact 32-node/60-face shell. The initial
    57-cell generation is rejected; the saved Netgen result has 40 nodes,
@@ -43,9 +43,14 @@ assumed bionic geometry; a missing original dimension stays unknown.
    are embedded and occupy the same closed region with the exact common
    32-node/60-face shell. Independent checks reconstruct all 161 determinants,
    qualities, volumes and face incidence and verify all saved pair associations;
-   the pair geometry is not independently rerun. No head edit follows. Next,
-   verify the actual application, outside preservation and saved head identity;
-   the current 208 poor cells and stronger 414 Mesh_2 failures remain open.
+   the pair geometry is not independently rerun. The subsequent
+   [native head application](derived/engineering/apex1474426-head-application/README.md)
+   completes the partial edit and full save/reopen audits. All 101 replacement
+   cells pass SICN 0.1; outside tagged arrays, original classifications and the
+   source boundary remain preserved. The observed count falls **208 to 204**,
+   with 1,097,057 nodes, 3,620,861 tetrahedra and unchanged minimum SICN
+   0.039074265058645995. Procedural completion does not admit the whole head:
+   its 204 poor cells and the stronger 414 Mesh_2 failures remain open.
    The first conditional isothermal screen has an
    [explicit assumed card](engineering/cp1-isothermal-assumed-card.json):
    E = 71 GPa, ν = 0.33, uniform 25 °C and constant isotropic elasticity.

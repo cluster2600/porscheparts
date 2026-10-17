@@ -25,8 +25,8 @@ the fresh boundary-node bins are [0, 0, 15, 193, 0]. Repair feasibility remains 
 The [current coordinate trial](derived/engineering/head-star-remaining-sicn-proposer-rejected/README.md)
 returned solver success but failed the unchanged quality gate: 213 analytic poor
 cells, minimum SICN 0.07200216465522885. Its full 155-coordinate/5,327-quality
-diagnostic is retained; no proposal or new head mesh was produced. The saved
-head remains at 208 poor cells. The subsequent
+diagnostic is retained; no proposal or new head mesh was produced. At that
+checkpoint the saved head remained at 208 poor cells. The subsequent
 [local cavity study](derived/engineering/apex1474426-local-cavity/README.md)
 preserves the rejected 57-cell generation and a saved Netgen result with
 101 cells, all above SICN 0.1 (minimum 0.13807503254019585). All 32 shell
@@ -36,7 +36,14 @@ query records 38 exterior and 22 connected interfaces. The subsequent
 passes all 1,770 old and 5,050 replacement cell pairs, preserving the same
 32 node coordinates bit for bit, 60 oriented shell faces and exact occupied local region.
 Independent saved-data checks confirm the complete associations; they do not
-repeat the pair geometry. Application to the head remains open; no head mesh changed.
+repeat the pair geometry. The subsequent
+[native head application](derived/engineering/apex1474426-head-application/README.md)
+completes the partial edit and full save/reopen procedure, reducing the observed
+poor-cell count from **208 to 204**. All 101 replacement cells pass SICN 0.1;
+outside tagged arrays, original classifications and source boundary remain
+preserved. The saved head contains 1,097,057 nodes and 3,620,861 tetrahedra,
+with minimum SICN 0.039074265058645995. Its whole-head quality gate still fails;
+no head strength, material or manufacturing qualification follows.
 The [latest bore95 USD checkpoint](USD_NORMALS_ENGINEERING.md) verifies face
 normals and passes the minimum and CPU asset checks; its formal robotics profile
 retains six failed feature rows. No head physics or manufacturing qualification
