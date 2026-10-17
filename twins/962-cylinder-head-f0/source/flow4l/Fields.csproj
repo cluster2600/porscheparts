@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType><TargetFramework>net9.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings><Nullable>enable</Nullable>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <StartupObject>PicoGKCatalog.FlowFieldsRunner</StartupObject>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="FlowFieldsRunner.cs" />
+    <Reference Include="PicoGK"><HintPath>$(PicoGKBinaryRoot)/PicoGK.dll</HintPath></Reference>
+    <Reference Include="SkiaSharp"><HintPath>$(PicoGKBinaryRoot)/SkiaSharp.dll</HintPath></Reference>
+  </ItemGroup>
+</Project>

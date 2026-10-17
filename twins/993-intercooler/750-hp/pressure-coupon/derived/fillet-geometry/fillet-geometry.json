@@ -1,0 +1,1115 @@
+{
+  "status": "conditional_filleted_native_geometry_research",
+  "fillet_radii_are_assumptions": true,
+  "runs": [
+    {
+      "name": "r0-v0.05",
+      "voxel_mm": 0.05,
+      "fillet_radius_mm": 0,
+      "native_receipt": {
+        "status": "filleted_ribbed_coupon_geometry_and_initial_field_exchange_only",
+        "variant": "bcc_hot_ribbed_assumed_root_fillet",
+        "fillet_radius_mm": 0,
+        "fillet_radius_is_assumption": true,
+        "hot_channel_edges_y_mm": [
+          [
+            -11.2,
+            -9.4
+          ],
+          [
+            -8.6,
+            -3.4
+          ],
+          [
+            -2.6,
+            2.6
+          ],
+          [
+            3.4,
+            8.6
+          ],
+          [
+            9.4,
+            11.2
+          ]
+        ],
+        "hot_rib_centres_y_mm": [
+          -9,
+          -3,
+          3,
+          9
+        ],
+        "hot_rib_thickness_mm": 0.8,
+        "voxel_mm": 0.05,
+        "dimensions_mm": [
+          24,
+          24,
+          11.4
+        ],
+        "wall_mm": 0.8,
+        "cell_pitch_mm": 6,
+        "strut_diameter_mm": 0.8,
+        "hot_initial_K": 506.46954,
+        "cold_initial_K": 318.15,
+        "initial_velocity_m_s": 1,
+        "field_count": 7,
+        "geometry_roundtrip_exact": true,
+        "hot_cold_overlap_empty": true,
+        "active_values_checked": {
+          "hot_temperature_initial_K": 13256756,
+          "cold_temperature_initial_K": 26519811,
+          "hot_velocity_initial_m_s": 10823963,
+          "cold_velocity_initial_m_s": 23901165
+        },
+        "scalar_vector_extra_active_values_checked": false,
+        "picogk_library": "PicoGK Core Library",
+        "picogk_version": "26.2.0",
+        "picogk_build": "2026-06-05 21:31:47 picogk",
+        "study_sha256": "505cfbb812b42fbfe2c6431454c343b549e35eda9eabb1751169c5897d8877f1",
+        "vdb_sha256": "5b0ef5bee3aeba20f1cdc0751e21aa1906a7f4f8b852d804196e7afee81ba508",
+        "source_assembly_sha256": "6dd1571dd0adbffcea6a6e27a34311ba1a6238a7830455296699efc9c6b9cbe0",
+        "thermal_solver_executed": false,
+        "hydraulic_solver_executed": false,
+        "pressure_qualified": false,
+        "manufacturing_authorized": false
+      },
+      "runtime": {
+        "host": "WSL2 Linux, user-space LEAP 71 stack in ~/picogk",
+        "picogk_commit": "0e6cf6b6f4993ec16dbcd72d8f27f26b999980f3",
+        "picogk_runtime_commit": "0f26321c18ed878a7820ef769c38fd5d49d39242",
+        "shapekernel_commit": "554bce4791d2676ed00bd6704f6eb010111a7fd3",
+        "shapekernel_locked_commit_note": "containers/m64-leap71/sources.lock pins ShapeKernel 7b90978; this host checkout is newer",
+        "latticelibrary_commit": "81c3c7b2064c19e573c38d76ac09bf1cd2f562d5",
+        "latticelibrary_locked": false,
+        "dotnet_sdk": "9.0.318",
+        "native_runtime_sha256": "e1b04eb1fa13f3adeb75db93c20bb1e4b02c6b450656013d84d874c1b7b141de",
+        "application_sha256": "6dd1571dd0adbffcea6a6e27a34311ba1a6238a7830455296699efc9c6b9cbe0",
+        "program_sha256": "3afaf3b2b678a5e91097c64415c513b36d7640f830637e99d875d1bf10907eef",
+        "project_sha256": "b73c1ddc44fb25a1130a8dd52f3eb82e570e63b77b2740354afb8fc3d6e68591",
+        "memory_cap": "6G"
+      },
+      "parts": {
+        "solid_mm": {
+          "native_sha256": "1c2d58a9767667158e5f00e2f88bb0dcac96237f56c1fd3fcdb735448b0b0c87",
+          "raw_closed": false,
+          "removed_faces": 3240,
+          "cleanup_volume_error": 0.0,
+          "closed_after_cleanup": true,
+          "components": 1,
+          "volume_mm3": 2234.216106151658,
+          "area_mm2": 6090.006770532684,
+          "bounds_mm": [
+            [
+              -12.0,
+              -12.0,
+              -1.0058283805847168e-07
+            ],
+            [
+              12.0,
+              12.0,
+              11.399999618530273
+            ]
+          ]
+        },
+        "hot_fluid_mm": {
+          "native_sha256": "c21e9a13f30a541447322068a9794ef9b4f1ba3e55bb45323eb54f7afbf17f53",
+          "raw_closed": true,
+          "removed_faces": 0,
+          "cleanup_volume_error": 0.0,
+          "closed_after_cleanup": true,
+          "components": 5,
+          "volume_mm3": 1381.5850920430937,
+          "area_mm2": 1738.284629955016,
+          "bounds_mm": [
+            [
+              -12.0,
+              -11.199999809265137,
+              0.800000011920929
+            ],
+            [
+              12.0,
+              11.199999809265137,
+              3.799999952316284
+            ]
+          ],
+          "channels": [
+            {
+              "width_y_mm": 1.8000011444091797,
+              "height_z_mm": 2.9999999403953552,
+              "length_x_mm": 24.0,
+              "volume_mm3": 129.46915816164463,
+              "mean_section_mm2": 5.394548256735193,
+              "analytic_section_mm2": 5.4
+            },
+            {
+              "width_y_mm": 5.199999570846558,
+              "height_z_mm": 2.9999999403953552,
+              "length_x_mm": 24.0,
+              "volume_mm3": 374.24354381827783,
+              "mean_section_mm2": 15.593480992428242,
+              "analytic_section_mm2": 15.600000000000001
+            },
+            {
+              "width_y_mm": 5.199999809265137,
+              "height_z_mm": 2.9999999403953552,
+              "length_x_mm": 24.0,
+              "volume_mm3": 374.15968808324874,
+              "mean_section_mm2": 15.589987003468698,
+              "analytic_section_mm2": 15.600000000000001
+            },
+            {
+              "width_y_mm": 5.199999570846558,
+              "height_z_mm": 2.9999999403953552,
+              "length_x_mm": 24.0,
+              "volume_mm3": 374.2435438182779,
+              "mean_section_mm2": 15.593480992428246,
+              "analytic_section_mm2": 15.600000000000001
+            },
+            {
+              "width_y_mm": 1.8000011444091797,
+              "height_z_mm": 2.9999999403953552,
+              "length_x_mm": 24.0,
+              "volume_mm3": 129.46915816164463,
+              "mean_section_mm2": 5.394548256735193,
+              "analytic_section_mm2": 5.4
+            }
+          ]
+        },
+        "cold_fluid_mm": {
+          "native_sha256": "ac632c254f2019882df7b5f298da4a9066eb3cd69349afd4111c6315f58ea80c",
+          "raw_closed": false,
+          "removed_faces": 4200,
+          "cleanup_volume_error": 0.0,
+          "closed_after_cleanup": true,
+          "components": 1,
+          "volume_mm3": 2950.0155702644383,
+          "area_mm2": 2856.074259849709,
+          "bounds_mm": [
+            [
+              -11.199999809265137,
+              -12.0,
+              4.599999904632568
+            ],
+            [
+              11.199999809265137,
+              12.0,
+              10.600000381469727
+            ]
+          ]
+        }
+      },
+      "vdb_sha256": "5b0ef5bee3aeba20f1cdc0751e21aa1906a7f4f8b852d804196e7afee81ba508",
+      "vdb_gzip_bytes": 20923015,
+      "volume_partition_error": 8.882059283787935e-05
+    },
+    {
+      "name": "r0-v0.1",
+      "voxel_mm": 0.1,
+      "fillet_radius_mm": 0,
+      "native_receipt": {
+        "status": "filleted_ribbed_coupon_geometry_and_initial_field_exchange_only",
+        "variant": "bcc_hot_ribbed_assumed_root_fillet",
+        "fillet_radius_mm": 0,
+        "fillet_radius_is_assumption": true,
+        "hot_channel_edges_y_mm": [
+          [
+            -11.2,
+            -9.4
+          ],
+          [
+            -8.6,
+            -3.4
+          ],
+          [
+            -2.6,
+            2.6
+          ],
+          [
+            3.4,
+            8.6
+          ],
+          [
+            9.4,
+            11.2
+          ]
+        ],
+        "hot_rib_centres_y_mm": [
+          -9,
+          -3,
+          3,
+          9
+        ],
+        "hot_rib_thickness_mm": 0.8,
+        "voxel_mm": 0.1,
+        "dimensions_mm": [
+          24,
+          24,
+          11.4
+        ],
+        "wall_mm": 0.8,
+        "cell_pitch_mm": 6,
+        "strut_diameter_mm": 0.8,
+        "hot_initial_K": 506.46954,
+        "cold_initial_K": 318.15,
+        "initial_velocity_m_s": 1,
+        "field_count": 7,
+        "geometry_roundtrip_exact": true,
+        "hot_cold_overlap_empty": true,
+        "active_values_checked": {
+          "hot_temperature_initial_K": 1985529,
+          "cold_temperature_initial_K": 3620183,
+          "hot_velocity_initial_m_s": 1323821,
+          "cold_velocity_initial_m_s": 3034359
+        },
+        "scalar_vector_extra_active_values_checked": false,
+        "picogk_library": "PicoGK Core Library",
+        "picogk_version": "26.2.0",
+        "picogk_build": "2026-06-05 21:31:47 picogk",
+        "study_sha256": "505cfbb812b42fbfe2c6431454c343b549e35eda9eabb1751169c5897d8877f1",
+        "vdb_sha256": "ed00e1c9ceec2f0693a49adf9cbe0250c39f11a309c95ea3db5d9a0e381e9402",
+        "source_assembly_sha256": "6dd1571dd0adbffcea6a6e27a34311ba1a6238a7830455296699efc9c6b9cbe0",
+        "thermal_solver_executed": false,
+        "hydraulic_solver_executed": false,
+        "pressure_qualified": false,
+        "manufacturing_authorized": false
+      },
+      "runtime": {
+        "host": "WSL2 Linux, user-space LEAP 71 stack in ~/picogk",
+        "picogk_commit": "0e6cf6b6f4993ec16dbcd72d8f27f26b999980f3",
+        "picogk_runtime_commit": "0f26321c18ed878a7820ef769c38fd5d49d39242",
+        "shapekernel_commit": "554bce4791d2676ed00bd6704f6eb010111a7fd3",
+        "shapekernel_locked_commit_note": "containers/m64-leap71/sources.lock pins ShapeKernel 7b90978; this host checkout is newer",
+        "latticelibrary_commit": "81c3c7b2064c19e573c38d76ac09bf1cd2f562d5",
+        "latticelibrary_locked": false,
+        "dotnet_sdk": "9.0.318",
+        "native_runtime_sha256": "e1b04eb1fa13f3adeb75db93c20bb1e4b02c6b450656013d84d874c1b7b141de",
+        "application_sha256": "6dd1571dd0adbffcea6a6e27a34311ba1a6238a7830455296699efc9c6b9cbe0",
+        "program_sha256": "3afaf3b2b678a5e91097c64415c513b36d7640f830637e99d875d1bf10907eef",
+        "project_sha256": "b73c1ddc44fb25a1130a8dd52f3eb82e570e63b77b2740354afb8fc3d6e68591",
+        "memory_cap": "6G"
+      },
+      "parts": {
+        "solid_mm": {
+          "native_sha256": "585f695b6a06718273c81c621032c2c3ae9c52d8ce28c08b0ce97038dee0d292",
+          "raw_closed": false,
+          "removed_faces": 1680,
+          "cleanup_volume_error": 0.0,
+          "closed_after_cleanup": true,
+          "components": 1,
+          "volume_mm3": 2230.5732627060556,
+          "area_mm2": 6063.690352472215,
+          "bounds_mm": [
+            [
+              -12.0,
+              -12.0,
+              -9.685754776000977e-08
+            ],
+            [
+              12.0,
+              12.0,
+              11.399999618530273
+            ]
+          ]
+        },
+        "hot_fluid_mm": {
+          "native_sha256": "04f2e359a309bba0d66d2403d957575db26f847898f3eff548b335c2aefef8c7",
+          "raw_closed": true,
+          "removed_faces": 0,
+          "cleanup_volume_error": 0.0,
+          "closed_after_cleanup": true,
+          "components": 5,
+          "volume_mm3": 1379.1562809171812,
+          "area_mm2": 1719.6832945323422,
+          "bounds_mm": [
+            [
+              -12.0,
+              -11.199999809265137,
+              0.800000011920929
+            ],
+            [
+              12.0,
+              11.199999809265137,
+              3.799999952316284
+            ]
+          ],
+          "channels": [
+            {
+              "width_y_mm": 1.8000011444091797,
+              "height_z_mm": 2.9999999403953552,
+              "length_x_mm": 24.0,
+              "volume_mm3": 129.07921321678177,
+              "mean_section_mm2": 5.37830055069924,
+              "analytic_section_mm2": 5.4
+            },
+            {
+              "width_y_mm": 5.199999570846558,
+              "height_z_mm": 2.9999999403953552,
+              "length_x_mm": 24.0,
+              "volume_mm3": 373.7771039816903,
+              "mean_section_mm2": 15.574045999237095,
+              "analytic_section_mm2": 15.600000000000001
+            },
+            {
+              "width_y_mm": 5.199999809265137,
+              "height_z_mm": 2.9999999403953552,
+              "length_x_mm": 24.0,
+              "volume_mm3": 373.4436465202372,
+              "mean_section_mm2": 15.560151938343218,
+              "analytic_section_mm2": 15.600000000000001
+            },
+            {
+              "width_y_mm": 5.199999570846558,
+              "height_z_mm": 2.9999999403953552,
+              "length_x_mm": 24.0,
+              "volume_mm3": 373.77710398169023,
+              "mean_section_mm2": 15.574045999237093,
+              "analytic_section_mm2": 15.600000000000001
+            },
+            {
+              "width_y_mm": 1.8000011444091797,
+              "height_z_mm": 2.9999999403953552,
+              "length_x_mm": 24.0,
+              "volume_mm3": 129.07921321678174,
+              "mean_section_mm2": 5.378300550699239,
+              "analytic_section_mm2": 5.4
+            }
+          ]
+        },
+        "cold_fluid_mm": {
+          "native_sha256": "0805cdf478648348c8512ff2a0acbf3b3b92a5cee59279dfbd69c27445c83400",
+          "raw_closed": false,
+          "removed_faces": 2160,
+          "cleanup_volume_error": 0.0,
+          "closed_after_cleanup": true,
+          "components": 1,
+          "volume_mm3": 2954.351407739597,
+          "area_mm2": 2845.363280462608,
+          "bounds_mm": [
+            [
+              -11.199999809265137,
+              -12.0,
+              4.599999904632568
+            ],
+            [
+              11.199999809265137,
+              12.0,
+              10.600000381469727
+            ]
+          ]
+        }
+      },
+      "vdb_sha256": "ed00e1c9ceec2f0693a49adf9cbe0250c39f11a309c95ea3db5d9a0e381e9402",
+      "vdb_gzip_bytes": 4935548,
+      "volume_partition_error": 0.0003531689566835805
+    },
+    {
+      "name": "r0.2-v0.05",
+      "voxel_mm": 0.05,
+      "fillet_radius_mm": 0.2,
+      "native_receipt": {
+        "status": "filleted_ribbed_coupon_geometry_and_initial_field_exchange_only",
+        "variant": "bcc_hot_ribbed_assumed_root_fillet",
+        "fillet_radius_mm": 0.2,
+        "fillet_radius_is_assumption": true,
+        "hot_channel_edges_y_mm": [
+          [
+            -11.2,
+            -9.4
+          ],
+          [
+            -8.6,
+            -3.4
+          ],
+          [
+            -2.6,
+            2.6
+          ],
+          [
+            3.4,
+            8.6
+          ],
+          [
+            9.4,
+            11.2
+          ]
+        ],
+        "hot_rib_centres_y_mm": [
+          -9,
+          -3,
+          3,
+          9
+        ],
+        "hot_rib_thickness_mm": 0.8,
+        "voxel_mm": 0.05,
+        "dimensions_mm": [
+          24,
+          24,
+          11.4
+        ],
+        "wall_mm": 0.8,
+        "cell_pitch_mm": 6,
+        "strut_diameter_mm": 0.8,
+        "hot_initial_K": 506.46954,
+        "cold_initial_K": 318.15,
+        "initial_velocity_m_s": 1,
+        "field_count": 7,
+        "geometry_roundtrip_exact": true,
+        "hot_cold_overlap_empty": true,
+        "active_values_checked": {
+          "hot_temperature_initial_K": 13156112,
+          "cold_temperature_initial_K": 26519811,
+          "hot_velocity_initial_m_s": 10802887,
+          "cold_velocity_initial_m_s": 23901165
+        },
+        "scalar_vector_extra_active_values_checked": false,
+        "picogk_library": "PicoGK Core Library",
+        "picogk_version": "26.2.0",
+        "picogk_build": "2026-06-05 21:31:47 picogk",
+        "study_sha256": "505cfbb812b42fbfe2c6431454c343b549e35eda9eabb1751169c5897d8877f1",
+        "vdb_sha256": "5a2cb12c441f8a7df2951bb9ef4b64a40cbf6c2e7dd3e6f4e2698316427b34a8",
+        "source_assembly_sha256": "6dd1571dd0adbffcea6a6e27a34311ba1a6238a7830455296699efc9c6b9cbe0",
+        "thermal_solver_executed": false,
+        "hydraulic_solver_executed": false,
+        "pressure_qualified": false,
+        "manufacturing_authorized": false
+      },
+      "runtime": {
+        "host": "WSL2 Linux, user-space LEAP 71 stack in ~/picogk",
+        "picogk_commit": "0e6cf6b6f4993ec16dbcd72d8f27f26b999980f3",
+        "picogk_runtime_commit": "0f26321c18ed878a7820ef769c38fd5d49d39242",
+        "shapekernel_commit": "554bce4791d2676ed00bd6704f6eb010111a7fd3",
+        "shapekernel_locked_commit_note": "containers/m64-leap71/sources.lock pins ShapeKernel 7b90978; this host checkout is newer",
+        "latticelibrary_commit": "81c3c7b2064c19e573c38d76ac09bf1cd2f562d5",
+        "latticelibrary_locked": false,
+        "dotnet_sdk": "9.0.318",
+        "native_runtime_sha256": "e1b04eb1fa13f3adeb75db93c20bb1e4b02c6b450656013d84d874c1b7b141de",
+        "application_sha256": "6dd1571dd0adbffcea6a6e27a34311ba1a6238a7830455296699efc9c6b9cbe0",
+        "program_sha256": "3afaf3b2b678a5e91097c64415c513b36d7640f830637e99d875d1bf10907eef",
+        "project_sha256": "b73c1ddc44fb25a1130a8dd52f3eb82e570e63b77b2740354afb8fc3d6e68591",
+        "memory_cap": "6G"
+      },
+      "parts": {
+        "solid_mm": {
+          "native_sha256": "b2fb8fc9b7ce9a256d4f040a652f26bb3403e067c3a3f89bcefb58702fdc38fa",
+          "raw_closed": false,
+          "removed_faces": 3240,
+          "cleanup_volume_error": 0.0,
+          "closed_after_cleanup": true,
+          "components": 1,
+          "volume_mm3": 2238.3852266756144,
+          "area_mm2": 6060.636006837691,
+          "bounds_mm": [
+            [
+              -12.0,
+              -12.0,
+              -1.0058283805847168e-07
+            ],
+            [
+              12.0,
+              12.0,
+              11.399999618530273
+            ]
+          ]
+        },
+        "hot_fluid_mm": {
+          "native_sha256": "4e48ac178d7647c0dd159af2e0c74fab07c2d65073c17719e8f7ef2c34d44c64",
+          "raw_closed": true,
+          "removed_faces": 0,
+          "cleanup_volume_error": 0.0,
+          "closed_after_cleanup": true,
+          "components": 5,
+          "volume_mm3": 1377.6847786671424,
+          "area_mm2": 1709.1612679529899,
+          "bounds_mm": [
+            [
+              -12.0,
+              -11.199999809265137,
+              0.8000000715255737
+            ],
+            [
+              12.0,
+              11.199999809265137,
+              3.799999952316284
+            ]
+          ],
+          "channels": [
+            {
+              "width_y_mm": 1.8000011444091797,
+              "height_z_mm": 2.9999998807907104,
+              "length_x_mm": 24.0,
+              "volume_mm3": 128.6743473272068,
+              "mean_section_mm2": 5.361431138633616,
+              "analytic_section_mm2": 5.365663706143592
+            },
+            {
+              "width_y_mm": 5.199999570846558,
+              "height_z_mm": 2.9999998807907104,
+              "length_x_mm": 24.0,
+              "volume_mm3": 373.44873996906045,
+              "mean_section_mm2": 15.56036416537752,
+              "analytic_section_mm2": 15.565663706143592
+            },
+            {
+              "width_y_mm": 5.1999993324279785,
+              "height_z_mm": 2.9999998807907104,
+              "length_x_mm": 24.0,
+              "volume_mm3": 373.4386040746076,
+              "mean_section_mm2": 15.559941836441984,
+              "analytic_section_mm2": 15.565663706143592
+            },
+            {
+              "width_y_mm": 5.199999570846558,
+              "height_z_mm": 2.9999998807907104,
+              "length_x_mm": 24.0,
+              "volume_mm3": 373.44873996906057,
+              "mean_section_mm2": 15.560364165377523,
+              "analytic_section_mm2": 15.565663706143592
+            },
+            {
+              "width_y_mm": 1.8000011444091797,
+              "height_z_mm": 2.9999998807907104,
+              "length_x_mm": 24.0,
+              "volume_mm3": 128.6743473272068,
+              "mean_section_mm2": 5.361431138633616,
+              "analytic_section_mm2": 5.365663706143592
+            }
+          ]
+        },
+        "cold_fluid_mm": {
+          "native_sha256": "ac632c254f2019882df7b5f298da4a9066eb3cd69349afd4111c6315f58ea80c",
+          "raw_closed": false,
+          "removed_faces": 4200,
+          "cleanup_volume_error": 0.0,
+          "closed_after_cleanup": true,
+          "components": 1,
+          "volume_mm3": 2950.0155702644383,
+          "area_mm2": 2856.074259849709,
+          "bounds_mm": [
+            [
+              -11.199999809265137,
+              -12.0,
+              4.599999904632568
+            ],
+            [
+              11.199999809265137,
+              12.0,
+              10.600000381469727
+            ]
+          ]
+        }
+      },
+      "vdb_sha256": "5a2cb12c441f8a7df2951bb9ef4b64a40cbf6c2e7dd3e6f4e2698316427b34a8",
+      "vdb_gzip_bytes": 20999429,
+      "volume_partition_error": 4.7883831750361594e-05
+    },
+    {
+      "name": "r0.4-v0.05",
+      "voxel_mm": 0.05,
+      "fillet_radius_mm": 0.4,
+      "native_receipt": {
+        "status": "filleted_ribbed_coupon_geometry_and_initial_field_exchange_only",
+        "variant": "bcc_hot_ribbed_assumed_root_fillet",
+        "fillet_radius_mm": 0.4,
+        "fillet_radius_is_assumption": true,
+        "hot_channel_edges_y_mm": [
+          [
+            -11.2,
+            -9.4
+          ],
+          [
+            -8.6,
+            -3.4
+          ],
+          [
+            -2.6,
+            2.6
+          ],
+          [
+            3.4,
+            8.6
+          ],
+          [
+            9.4,
+            11.2
+          ]
+        ],
+        "hot_rib_centres_y_mm": [
+          -9,
+          -3,
+          3,
+          9
+        ],
+        "hot_rib_thickness_mm": 0.8,
+        "voxel_mm": 0.05,
+        "dimensions_mm": [
+          24,
+          24,
+          11.4
+        ],
+        "wall_mm": 0.8,
+        "cell_pitch_mm": 6,
+        "strut_diameter_mm": 0.8,
+        "hot_initial_K": 506.46954,
+        "cold_initial_K": 318.15,
+        "initial_velocity_m_s": 1,
+        "field_count": 7,
+        "geometry_roundtrip_exact": true,
+        "hot_cold_overlap_empty": true,
+        "active_values_checked": {
+          "hot_temperature_initial_K": 13006924,
+          "cold_temperature_initial_K": 26519811,
+          "hot_velocity_initial_m_s": 11016521,
+          "cold_velocity_initial_m_s": 23901165
+        },
+        "scalar_vector_extra_active_values_checked": false,
+        "picogk_library": "PicoGK Core Library",
+        "picogk_version": "26.2.0",
+        "picogk_build": "2026-06-05 21:31:47 picogk",
+        "study_sha256": "505cfbb812b42fbfe2c6431454c343b549e35eda9eabb1751169c5897d8877f1",
+        "vdb_sha256": "5b4cbc81802a1a0116abb3bb1b9156df5fca5340313c7d65e44cba611e9ac371",
+        "source_assembly_sha256": "6dd1571dd0adbffcea6a6e27a34311ba1a6238a7830455296699efc9c6b9cbe0",
+        "thermal_solver_executed": false,
+        "hydraulic_solver_executed": false,
+        "pressure_qualified": false,
+        "manufacturing_authorized": false
+      },
+      "runtime": {
+        "host": "WSL2 Linux, user-space LEAP 71 stack in ~/picogk",
+        "picogk_commit": "0e6cf6b6f4993ec16dbcd72d8f27f26b999980f3",
+        "picogk_runtime_commit": "0f26321c18ed878a7820ef769c38fd5d49d39242",
+        "shapekernel_commit": "554bce4791d2676ed00bd6704f6eb010111a7fd3",
+        "shapekernel_locked_commit_note": "containers/m64-leap71/sources.lock pins ShapeKernel 7b90978; this host checkout is newer",
+        "latticelibrary_commit": "81c3c7b2064c19e573c38d76ac09bf1cd2f562d5",
+        "latticelibrary_locked": false,
+        "dotnet_sdk": "9.0.318",
+        "native_runtime_sha256": "e1b04eb1fa13f3adeb75db93c20bb1e4b02c6b450656013d84d874c1b7b141de",
+        "application_sha256": "6dd1571dd0adbffcea6a6e27a34311ba1a6238a7830455296699efc9c6b9cbe0",
+        "program_sha256": "3afaf3b2b678a5e91097c64415c513b36d7640f830637e99d875d1bf10907eef",
+        "project_sha256": "b73c1ddc44fb25a1130a8dd52f3eb82e570e63b77b2740354afb8fc3d6e68591",
+        "memory_cap": "6G"
+      },
+      "parts": {
+        "solid_mm": {
+          "native_sha256": "f9d5f0ff0cd98931b35f584a82a7d108382d2953049604b157e6d388decaa274",
+          "raw_closed": false,
+          "removed_faces": 3240,
+          "cleanup_volume_error": 4.440892098500626e-16,
+          "closed_after_cleanup": true,
+          "components": 1,
+          "volume_mm3": 2250.6110843245365,
+          "area_mm2": 6018.284040607695,
+          "bounds_mm": [
+            [
+              -12.0,
+              -12.0,
+              -1.0058283805847168e-07
+            ],
+            [
+              12.0,
+              12.0,
+              11.399999618530273
+            ]
+          ]
+        },
+        "hot_fluid_mm": {
+          "native_sha256": "4e128b0811b1bb57fc59790f9d2a5602248cde9afaca8486445dba113ef8a49e",
+          "raw_closed": true,
+          "removed_faces": 0,
+          "cleanup_volume_error": 0.0,
+          "closed_after_cleanup": true,
+          "components": 5,
+          "volume_mm3": 1365.458113768009,
+          "area_mm2": 1669.376778266182,
+          "bounds_mm": [
+            [
+              -12.0,
+              -11.199999809265137,
+              0.7999999523162842
+            ],
+            [
+              12.0,
+              11.199999809265137,
+              3.8000001907348633
+            ]
+          ],
+          "channels": [
+            {
+              "width_y_mm": 1.8000011444091797,
+              "height_z_mm": 3.000000238418579,
+              "length_x_mm": 24.0,
+              "volume_mm3": 126.21579779224136,
+              "mean_section_mm2": 5.258991574676723,
+              "analytic_section_mm2": 5.262654824574367
+            },
+            {
+              "width_y_mm": 5.199999570846558,
+              "height_z_mm": 3.000000238418579,
+              "length_x_mm": 24.0,
+              "volume_mm3": 371.0114765899735,
+              "mean_section_mm2": 15.458811524582229,
+              "analytic_section_mm2": 15.462654824574368
+            },
+            {
+              "width_y_mm": 5.1999993324279785,
+              "height_z_mm": 3.000000238418579,
+              "length_x_mm": 24.0,
+              "volume_mm3": 371.0035650035793,
+              "mean_section_mm2": 15.458481875149138,
+              "analytic_section_mm2": 15.462654824574368
+            },
+            {
+              "width_y_mm": 5.199999570846558,
+              "height_z_mm": 3.000000238418579,
+              "length_x_mm": 24.0,
+              "volume_mm3": 371.0114765899736,
+              "mean_section_mm2": 15.458811524582233,
+              "analytic_section_mm2": 15.462654824574368
+            },
+            {
+              "width_y_mm": 1.8000011444091797,
+              "height_z_mm": 3.000000238418579,
+              "length_x_mm": 24.0,
+              "volume_mm3": 126.21579779224136,
+              "mean_section_mm2": 5.258991574676723,
+              "analytic_section_mm2": 5.262654824574367
+            }
+          ]
+        },
+        "cold_fluid_mm": {
+          "native_sha256": "ac632c254f2019882df7b5f298da4a9066eb3cd69349afd4111c6315f58ea80c",
+          "raw_closed": false,
+          "removed_faces": 4200,
+          "cleanup_volume_error": 0.0,
+          "closed_after_cleanup": true,
+          "components": 1,
+          "volume_mm3": 2950.0155702644383,
+          "area_mm2": 2856.074259849709,
+          "bounds_mm": [
+            [
+              -11.199999809265137,
+              -12.0,
+              4.599999904632568
+            ],
+            [
+              11.199999809265137,
+              12.0,
+              10.600000381469727
+            ]
+          ]
+        }
+      },
+      "vdb_sha256": "5b4cbc81802a1a0116abb3bb1b9156df5fca5340313c7d65e44cba611e9ac371",
+      "vdb_gzip_bytes": 21226777,
+      "volume_partition_error": 4.800676824701089e-05
+    },
+    {
+      "name": "r0.4-v0.1",
+      "voxel_mm": 0.1,
+      "fillet_radius_mm": 0.4,
+      "native_receipt": {
+        "status": "filleted_ribbed_coupon_geometry_and_initial_field_exchange_only",
+        "variant": "bcc_hot_ribbed_assumed_root_fillet",
+        "fillet_radius_mm": 0.4,
+        "fillet_radius_is_assumption": true,
+        "hot_channel_edges_y_mm": [
+          [
+            -11.2,
+            -9.4
+          ],
+          [
+            -8.6,
+            -3.4
+          ],
+          [
+            -2.6,
+            2.6
+          ],
+          [
+            3.4,
+            8.6
+          ],
+          [
+            9.4,
+            11.2
+          ]
+        ],
+        "hot_rib_centres_y_mm": [
+          -9,
+          -3,
+          3,
+          9
+        ],
+        "hot_rib_thickness_mm": 0.8,
+        "voxel_mm": 0.1,
+        "dimensions_mm": [
+          24,
+          24,
+          11.4
+        ],
+        "wall_mm": 0.8,
+        "cell_pitch_mm": 6,
+        "strut_diameter_mm": 0.8,
+        "hot_initial_K": 506.46954,
+        "cold_initial_K": 318.15,
+        "initial_velocity_m_s": 1,
+        "field_count": 7,
+        "geometry_roundtrip_exact": true,
+        "hot_cold_overlap_empty": true,
+        "active_values_checked": {
+          "hot_temperature_initial_K": 1928981,
+          "cold_temperature_initial_K": 3620183,
+          "hot_velocity_initial_m_s": 1388351,
+          "cold_velocity_initial_m_s": 3034359
+        },
+        "scalar_vector_extra_active_values_checked": false,
+        "picogk_library": "PicoGK Core Library",
+        "picogk_version": "26.2.0",
+        "picogk_build": "2026-06-05 21:31:47 picogk",
+        "study_sha256": "505cfbb812b42fbfe2c6431454c343b549e35eda9eabb1751169c5897d8877f1",
+        "vdb_sha256": "b2f96e46525fd509956f90a05cab0176ee1eb2caa2881e844a439d08b1832eb9",
+        "source_assembly_sha256": "6dd1571dd0adbffcea6a6e27a34311ba1a6238a7830455296699efc9c6b9cbe0",
+        "thermal_solver_executed": false,
+        "hydraulic_solver_executed": false,
+        "pressure_qualified": false,
+        "manufacturing_authorized": false
+      },
+      "runtime": {
+        "host": "WSL2 Linux, user-space LEAP 71 stack in ~/picogk",
+        "picogk_commit": "0e6cf6b6f4993ec16dbcd72d8f27f26b999980f3",
+        "picogk_runtime_commit": "0f26321c18ed878a7820ef769c38fd5d49d39242",
+        "shapekernel_commit": "554bce4791d2676ed00bd6704f6eb010111a7fd3",
+        "shapekernel_locked_commit_note": "containers/m64-leap71/sources.lock pins ShapeKernel 7b90978; this host checkout is newer",
+        "latticelibrary_commit": "81c3c7b2064c19e573c38d76ac09bf1cd2f562d5",
+        "latticelibrary_locked": false,
+        "dotnet_sdk": "9.0.318",
+        "native_runtime_sha256": "e1b04eb1fa13f3adeb75db93c20bb1e4b02c6b450656013d84d874c1b7b141de",
+        "application_sha256": "6dd1571dd0adbffcea6a6e27a34311ba1a6238a7830455296699efc9c6b9cbe0",
+        "program_sha256": "3afaf3b2b678a5e91097c64415c513b36d7640f830637e99d875d1bf10907eef",
+        "project_sha256": "b73c1ddc44fb25a1130a8dd52f3eb82e570e63b77b2740354afb8fc3d6e68591",
+        "memory_cap": "6G"
+      },
+      "parts": {
+        "solid_mm": {
+          "native_sha256": "399aa2bdbcb355a87058ac75411e3e2bb667e9c99df062e56f89f1aaff07c3ff",
+          "raw_closed": false,
+          "removed_faces": 1680,
+          "cleanup_volume_error": 0.0,
+          "closed_after_cleanup": true,
+          "components": 1,
+          "volume_mm3": 2246.7532071450546,
+          "area_mm2": 5999.638075329959,
+          "bounds_mm": [
+            [
+              -12.0,
+              -12.0,
+              -9.685754776000977e-08
+            ],
+            [
+              12.0,
+              12.0,
+              11.399999618530273
+            ]
+          ]
+        },
+        "hot_fluid_mm": {
+          "native_sha256": "a0d2230d19e9803281b15ab951016e35025e7a92d33f0a684cdd7ba00826e6e0",
+          "raw_closed": true,
+          "removed_faces": 0,
+          "cleanup_volume_error": 0.0,
+          "closed_after_cleanup": true,
+          "components": 5,
+          "volume_mm3": 1364.038128754538,
+          "area_mm2": 1664.060756224089,
+          "bounds_mm": [
+            [
+              -12.0,
+              -11.199999809265137,
+              0.7999999523162842
+            ],
+            [
+              12.0,
+              11.199999809265137,
+              3.8000001907348633
+            ]
+          ],
+          "channels": [
+            {
+              "width_y_mm": 1.8000011444091797,
+              "height_z_mm": 3.000000238418579,
+              "length_x_mm": 24.0,
+              "volume_mm3": 125.94502244057968,
+              "mean_section_mm2": 5.247709268357487,
+              "analytic_section_mm2": 5.262654824574367
+            },
+            {
+              "width_y_mm": 5.199999570846558,
+              "height_z_mm": 3.000000238418579,
+              "length_x_mm": 24.0,
+              "volume_mm3": 370.72794696798155,
+              "mean_section_mm2": 15.446997790332565,
+              "analytic_section_mm2": 15.462654824574368
+            },
+            {
+              "width_y_mm": 5.1999993324279785,
+              "height_z_mm": 3.000000238418579,
+              "length_x_mm": 24.0,
+              "volume_mm3": 370.6921899374156,
+              "mean_section_mm2": 15.445507914058984,
+              "analytic_section_mm2": 15.462654824574368
+            },
+            {
+              "width_y_mm": 5.199999570846558,
+              "height_z_mm": 3.000000238418579,
+              "length_x_mm": 24.0,
+              "volume_mm3": 370.72794696798155,
+              "mean_section_mm2": 15.446997790332565,
+              "analytic_section_mm2": 15.462654824574368
+            },
+            {
+              "width_y_mm": 1.8000011444091797,
+              "height_z_mm": 3.000000238418579,
+              "length_x_mm": 24.0,
+              "volume_mm3": 125.94502244057968,
+              "mean_section_mm2": 5.247709268357487,
+              "analytic_section_mm2": 5.262654824574367
+            }
+          ]
+        },
+        "cold_fluid_mm": {
+          "native_sha256": "0805cdf478648348c8512ff2a0acbf3b3b92a5cee59279dfbd69c27445c83400",
+          "raw_closed": false,
+          "removed_faces": 2160,
+          "cleanup_volume_error": 0.0,
+          "closed_after_cleanup": true,
+          "components": 1,
+          "volume_mm3": 2954.351407739597,
+          "area_mm2": 2845.363280462608,
+          "bounds_mm": [
+            [
+              -11.199999809265137,
+              -12.0,
+              4.599999904632568
+            ],
+            [
+              11.199999809265137,
+              12.0,
+              10.600000381469727
+            ]
+          ]
+        }
+      },
+      "vdb_sha256": "b2f96e46525fd509956f90a05cab0176ee1eb2caa2881e844a439d08b1832eb9",
+      "vdb_gzip_bytes": 5045105,
+      "volume_partition_error": 0.00019146813487014303
+    }
+  ],
+  "fillet_area_checks": [
+    {
+      "name": "r0.2-v0.05",
+      "fillet_radius_mm": 0.2,
+      "voxel_mm": 0.05,
+      "radius_over_voxel": 4.0,
+      "analytic_corner_area_mm2": 0.00858407346410207,
+      "measured_corner_area_mm2": [
+        0.00827927952539409,
+        0.00827920676268068,
+        0.007511291756678418,
+        0.00827920676268068,
+        0.00827927952539409
+      ],
+      "relative_errors": [
+        -0.035506911722343104,
+        -0.035515388200755726,
+        -0.12497350027465892,
+        -0.035515388200755726,
+        -0.035506911722343104
+      ],
+      "solid_volume_gain_mm3": 4.1691205239562805,
+      "analytic_solid_volume_gain_mm3": 4.120355262768994,
+      "within_tolerance": true
+    },
+    {
+      "name": "r0.4-v0.05",
+      "fillet_radius_mm": 0.4,
+      "voxel_mm": 0.05,
+      "radius_over_voxel": 8.0,
+      "analytic_corner_area_mm2": 0.03433629385640828,
+      "measured_corner_area_mm2": [
+        0.03388917051461737,
+        0.0336673669615033,
+        0.03287628207989002,
+        0.0336673669615033,
+        0.03388917051461737
+      ],
+      "relative_errors": [
+        -0.013021887093020101,
+        -0.0194816277406753,
+        -0.042520948318531926,
+        -0.0194816277406753,
+        -0.013021887093020101
+      ],
+      "solid_volume_gain_mm3": 16.394978172878382,
+      "analytic_solid_volume_gain_mm3": 16.481421051075976,
+      "within_tolerance": true
+    },
+    {
+      "name": "r0.4-v0.1",
+      "fillet_radius_mm": 0.4,
+      "voxel_mm": 0.1,
+      "radius_over_voxel": 4.0,
+      "analytic_corner_area_mm2": 0.03433629385640828,
+      "measured_corner_area_mm2": [
+        0.03264782058543836,
+        0.031762052226132376,
+        0.02866100607105837,
+        0.03176205222613193,
+        0.032647820585438136
+      ],
+      "relative_errors": [
+        -0.049174592867564204,
+        -0.07497144686148083,
+        -0.1652853918679612,
+        -0.07497144686149382,
+        -0.04917459286757064
+      ],
+      "solid_volume_gain_mm3": 16.179944438998973,
+      "analytic_solid_volume_gain_mm3": 16.481421051075976,
+      "within_tolerance": false
+    }
+  ],
+  "fillet_area_tolerance": 0.15,
+  "fillet_area_checks_failed": [
+    "r0.4-v0.1"
+  ],
+  "width_tolerance_mm": 0.02,
+  "linux_sharp_vs_mac_0_1mm": {
+    "solid_mm": {
+      "mac_volume_mm3": 2229.639519988006,
+      "linux_volume_mm3": 2230.5732627060556,
+      "relative_difference": 0.00041878640456394223
+    },
+    "hot_fluid_mm": {
+      "mac_volume_mm3": 1381.0558307315084,
+      "linux_volume_mm3": 1379.1562809171812,
+      "relative_difference": -0.0013754330361294143
+    },
+    "cold_fluid_mm": {
+      "mac_volume_mm3": 2954.3514265911667,
+      "linux_volume_mm3": 2954.351407739597,
+      "relative_difference": -6.380950323681134e-09
+    }
+  },
+  "runtime_differs_from_mac_receipts": "Linux host stack in ~/picogk (see each runtime record); the Mac receipts in review.json and runtime.json are unchanged and remain the record of the Mac runs.",
+  "stl_and_vdb_committed": false,
+  "pressure_qualified": false,
+  "manufacturing_authorized": false,
+  "thermal_or_hydraulic_solver_executed": false,
+  "source_hashes": {
+    "source/picogk-fillet/Program.cs": "3afaf3b2b678a5e91097c64415c513b36d7640f830637e99d875d1bf10907eef",
+    "source/picogk-fillet/CouponFillet.csproj": "b73c1ddc44fb25a1130a8dd52f3eb82e570e63b77b2740354afb8fc3d6e68591",
+    "source/fillet_geometry_review.py": "28f13b6dda4f600de36a9d8334173be059ff7f0090bc1eff242022f30cdea613"
+  },
+  "output_hashes": {
+    "fillet-geometry-sections.png": "b658bb3f0e23ea9af60226d58985740fdc86847ac998bf897b2445fb274fc516"
+  }
+}

@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType><TargetFramework>net9.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings><Nullable>enable</Nullable>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <StartupObject>PicoGKCatalog.HeadFlowRunner</StartupObject>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="../../../../parts/picogk-catalog/common/*.cs" />
+    <Compile Include="HeadFlow4LStudy.cs" />
+    <Compile Include="HeadFlowRunner.cs" />
+    <Compile Include="$(LatticeLibraryRoot)/LatticeLibrary/**/*.cs" />
+    <Compile Include="$(ShapeKernelRoot)/ShapeKernel/**/*.cs" />
+    <Reference Include="PicoGK"><HintPath>$(PicoGKBinaryRoot)/PicoGK.dll</HintPath></Reference>
+    <Reference Include="SkiaSharp"><HintPath>$(PicoGKBinaryRoot)/SkiaSharp.dll</HintPath></Reference>
+  </ItemGroup>
+  <Target Name="RequireLibraries" BeforeTargets="ResolveReferences">
+    <Error Condition="!Exists('$(PicoGKBinaryRoot)/PicoGK.dll')" Text="Set PicoGKBinaryRoot to the verified retained runtime." />
+    <Error Condition="!Exists('$(ShapeKernelRoot)/ShapeKernel/BaseShapes/BaseBox.cs')" Text="Set ShapeKernelRoot to the verified LEAP71 source tree." />
+    <Error Condition="!Exists('$(LatticeLibraryRoot)/LatticeLibrary/LatticeTypes/BodyCentreLattice.cs')" Text="Set LatticeLibraryRoot to the verified LEAP71 source tree." />
+  </Target>
+</Project>

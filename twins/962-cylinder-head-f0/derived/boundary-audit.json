@@ -1,0 +1,78 @@
+{
+  "status": "sampled_interface_diagnostic_not_cfd_ready",
+  "manufacturing_authorized": false,
+  "is_fitment_validated": false,
+  "hydraulic_performance_validated": false,
+  "wall_thickness_qualified": false,
+  "interface_conformity_validated": false,
+  "ports": {
+    "inlet": {
+      "plane_x_mm": -80.0,
+      "closed_loops": 1,
+      "area_mm2": 52.50454546344554,
+      "perimeter_mm": 26.283263051481743,
+      "hydraulic_diameter_mm": 7.990567283918051
+    },
+    "outlet": {
+      "plane_x_mm": 80.0,
+      "closed_loops": 1,
+      "area_mm2": 52.487184786150465,
+      "perimeter_mm": 26.21947828411995,
+      "hydraulic_diameter_mm": 8.007357616713492
+    }
+  },
+  "probes": [
+    {
+      "offset_mm": 0.25,
+      "samples": 130076,
+      "metal_only": 130048,
+      "water_only": 0,
+      "overlap": 0,
+      "unassigned": 28
+    },
+    {
+      "offset_mm": 0.5,
+      "samples": 130076,
+      "metal_only": 130062,
+      "water_only": 6,
+      "overlap": 0,
+      "unassigned": 8
+    },
+    {
+      "offset_mm": 0.75,
+      "samples": 130076,
+      "metal_only": 130062,
+      "water_only": 10,
+      "overlap": 0,
+      "unassigned": 4
+    },
+    {
+      "offset_mm": 1.5,
+      "samples": 130076,
+      "metal_only": 130040,
+      "water_only": 36,
+      "overlap": 0,
+      "unassigned": 0
+    }
+  ],
+  "excluded_terminal_face_samples": 1480,
+  "terminal_guard_mm": 1.5,
+  "original_mesh_hashes": {
+    "solid": "6ca2fdcb753169b98481f3141fd939ed3fedcf58c94fe1d0e3b0db6361263c4d",
+    "coolant": "af38755dee9fe5b970ed901d14bf818189b92d2425305b9c6f534562d9bc7022"
+  },
+  "source_hashes": {
+    "source/audit_coolant_boundaries.py": "eb0efd293e783386ff6b9f94b3d2b334853edfe251216c2201825c035634da84",
+    "derived/study-report.json": "159c7dd288dc19bf56e7880ed506d23b9e027d8a16f9edfab68470557a0df3f3"
+  },
+  "output_hashes": {
+    "inlet.vtp": "21e6cb020ebc81bd0425688bf64cc4927b02b972acd6e007fadd5e38d4d544f4",
+    "outlet.vtp": "47d5620bb704c9e5f6079a81092e9e550b952586eb9dd0918311a639c4efbb76",
+    "boundary-probes.png": "c0c4a9fe8a34734467eb03112436cf04d106f72745e98ca6750900fd46ef9257"
+  },
+  "runtime": {
+    "vtk": "9.7.1",
+    "trimesh": "5.1.1",
+    "numpy": "2.2.6"
+  }
+}

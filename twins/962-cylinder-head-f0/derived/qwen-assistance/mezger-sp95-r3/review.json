@@ -1,0 +1,13 @@
+{
+  "status": "rejected",
+  "accepted_equations": [],
+  "generated_code_executed": false,
+  "engineering_approval": false,
+  "reasons": [
+    "Ignored the no-code instruction",
+    "Invalid Python syntax including reserved keyword lambda",
+    "Torque equation changes rpm conversion divisor from 60 to 6",
+    "Response truncated at 768 generated tokens"
+  ],
+  "reproduction": "Copy source/architecture/ask_qwen.py and source/mezger-sp95-qwen-prompt.txt as ask_qwen.py and qwen-prompt.txt into a new work directory. Run that unchanged runner with the pinned base model, retained r3 adapter and a new output directory; see qwen-report.json for all digests."
+}

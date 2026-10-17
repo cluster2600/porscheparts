@@ -76,6 +76,12 @@ class KitProgrammeTests(unittest.TestCase):
         self.assertEqual(data["power_target"]["measurement_site"], "crankshaft")
         self.assertEqual(data["power_target"]["definition_status"], "owner_confirmed")
         self.assertEqual(data["intended_use"], "bench_then_track")
+        self.assertEqual(data["confirmed_requirements"], dict(
+            fuel="SP95", fuel_ron=95, displacement_l=4, turbo_count=2))
+        self.assertEqual(data["donor"]["requested_engine_family"], "Mezger")
+        self.assertEqual(data["architecture"]["forced_induction"], "twin_turbo")
+        for key in ("document", "report"):
+            self.assertTrue((ROOT / data["active_sizing"][key]).is_file())
         self.assertTrue(all(value is False for value in data["acceptance"].values()))
         self.assertTrue(all(v["compatibility"] == "unverified" for v in data["variants"]))
         self.assertTrue(all(g["status"] == "open" and g["evidence"] is None for g in data["evidence_gates"]))
