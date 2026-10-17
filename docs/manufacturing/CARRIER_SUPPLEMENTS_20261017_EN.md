@@ -56,8 +56,8 @@ stress convergence** or an allowable-stress decision.
 The [actual H2 root closeout](../../work/carrier-process-20261017/bounded-webs-C1-qualified-h2-static-preparation-001/root-terminal-review-001.json)
 (SHA-256 `a988350ed8ac84008b35c893ad24dba377756bfa211d400aee7be9ea85e5afe1`)
 joins the two solver returns, full outputs, independent audits, all peaks and
-owned-container cleanup. It is a local working receipt, not an archived result
-silently substituted into the coarse-C1 capsule.
+owned-container cleanup. Its [durable copy](../../parts/993-eng-carrier-0001/source/design-20261016/native-C1-h2-20261017/evidence/root-review/native-FEA-root-review.json)
+is now retained in the separate H2 capsule; the coarse-C1 capsule is unchanged.
 
 The existing H2 mesh had first been refused by its original float-volume
 non-regression guard. That refusal remains unchanged. A separate closed
@@ -78,6 +78,16 @@ analysis replay reproduced all four complete coarse energy/peak reports without
 running CAD, Gmsh or CCX. Its [publication receipt](../../parts/993-eng-carrier-0001/source/design-20261016/native-C1-root-publication-20261017.json)
 links the actual returns and byte-identical replay. The newer H2 cases are
 separate evidence; they are not claimed to be members of those coarse archives.
+
+The [durable C1 H2 capsule and actual reproduction](../../parts/993-eng-carrier-0001/source/design-20261016/native-C1-h2-20261017/ACTUAL_REPRODUCTION.md)
+add three new ZIPs, each below 100 MB, and depend on the 186 existing C1 members.
+The combined restoration contains 420 original files. Actual owned verification
+and analysis replay both closed RC0; all four complete energy/peak reports were
+reproduced byte-identically, with every original and all 500 runtime files
+unchanged. The [root replay closeout](../../parts/993-eng-carrier-0001/source/design-20261016/native-C1-h2-20261017/evidence/root-review/root-replay-terminal-review-001.json)
+and complete inventory preserve the result without a new CCX, CAD or mesher run.
+The original H2 volume refusal and subsequent distinct qualification remain
+separate records; no stress-convergence or manufacturing claim is added.
 
 [Figure 24](../../parts/993-eng-carrier-0001/source/progress-figures-20261016/C1-fields-20261017/README.md)
 shows the **coarse C1** stress/displacement fields. It uses every boundary facet,

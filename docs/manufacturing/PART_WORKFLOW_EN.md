@@ -269,6 +269,14 @@ three byte-identical formats. Both require their documented installed runtimes.
 The newer H2 results have their own [root closeout](../../work/carrier-process-20261017/bounded-webs-C1-qualified-h2-static-preparation-001/root-terminal-review-001.json);
 they are not silently inserted into that coarse-C1 archive or figure.
 
+The separate [durable C1 H2 capsule](../../parts/993-eng-carrier-0001/source/design-20261016/native-C1-h2-20261017/ACTUAL_REPRODUCTION.md)
+now preserves the qualified refinement and both complete H2 cases. Its three
+new ZIPs depend on the existing C1 capsule without duplicating coarse fields.
+One closed analysis replay restored all 420 members and regenerated the four
+complete energy/peak reports byte-identically, without rerunning a solver,
+mesher or CAD kernel. The [root replay closeout](../../parts/993-eng-carrier-0001/source/design-20261016/native-C1-h2-20261017/evidence/root-review/root-replay-terminal-review-001.json)
+retains that result; stress convergence remains open.
+
 The mechanic's handover starts with revision, dimensions, mass, mounting
 interfaces and the useful results. Detailed software evidence follows in a
 second layer. A fit-feedback sheet records the interface, intended/observed

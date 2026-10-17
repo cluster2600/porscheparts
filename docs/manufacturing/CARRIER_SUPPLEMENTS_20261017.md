@@ -130,8 +130,11 @@ depuis `/` restaure **186 fichiers originaux** et reproduit les quatre
 rapports complets d'énergie et de pics à l'octet. Le
 [reçu de publication](../../parts/993-eng-carrier-0001/source/design-20261016/native-C1-root-publication-20261017.json)
 lie les vrais retours de calcul, les fichiers conservés et ce rejeu.
-Les contraintes et le raffinement de l'ancienne CAO ne sont pas transférés ;
-le prochain test C1 affine la boîte exacte du pic de h = 0,933791 mm vers
-h/2 = 0,466895 mm, à maître, charges et appuis constants.
+Les contraintes et le raffinement de l'ancienne CAO ne sont pas transférés.
+Current update (English): the same-master C1 h/2 test is now closed, with
+VM = 996.758 / 2996.496 MPa, U = 2.794566 / 18.174421 mm and passing unchanged
+1e-4 energy audits; stress convergence remains open. The
+[durable H2 capsule and actual four-report byte-identical replay](../../parts/993-eng-carrier-0001/source/design-20261016/native-C1-h2-20261017/ACTUAL_REPRODUCTION.md)
+preserve the complete cases and the earlier refusal separately.
 
 La [planche 24 des contraintes et déplacements C1](../../parts/993-eng-carrier-0001/source/progress-figures-20261016/C1-fields-20261017/README.md) représente ces deux cas clos avec toutes les facettes de frontière, les maxima globaux séparés, une échelle de contrainte commune et une déformée à ×1. Les PNG, SVG et PDF ont été reproduits à l’octet depuis les archives C1 et un petit miroir de sources et de preuves ; les dépendances et les vrais reçus de fermeture sont conservés. Aucune nouvelle analyse mécanique ni convergence des contraintes n’est revendiquée par ce dessin.
