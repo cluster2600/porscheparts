@@ -8,6 +8,19 @@ package. The Porsche 993 Turbo engine carrier is the working example. Each
 stage retains its inputs, settings, software identities, outputs and reports.
 A geometry change creates a new revision; results follow that revision.
 
+A separate **raw-refined terminal-taper diagnostic** compares the same loads
+and mounts with the coarse cases: rigid global VM rises from **697.3 to
+1,218.1 MPa**, and K1000 from **1,977.8 to 3,716.0 MPa**. Maximum displacement
+changes from 2.794015 to 2.794388 mm and from 18.170201 to 18.172701 mm.
+All four original energy audits pass at the unchanged tolerance.
+[Figure 28](../../parts/993-eng-carrier-0001/source/progress-figures-20261016/index.html#C1-terminal-taper-four-case-fields)
+shows all eight panels and global peaks. The refined mesh retains its **strict
+volume refusal**; the original taper law and STEP refusals also remain intact.
+These are raw diagnostic results, without H2 qualification, stress convergence
+or strength admission. The [dependent numerical capsule](../../parts/993-eng-carrier-0001/source/design-20261016/native-C1-terminal-taper-raw-refined-20261017/ACTUAL_REPRODUCTION.md)
+retains full refined fields and its separate replay contract. The coarse record
+below and the older C1/H2 revision remain distinct.
+
 The latest **preserved terminal-taper diagnostic variant** has separate,
 closed coarse-mesh linear-static results: about **697.3 MPa with rigid mounts
 and 1,977.8 MPa with distributed K1000 springs**. Its original post-Build law

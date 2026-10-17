@@ -141,3 +141,6 @@ La [planche22 du congé R1 natif](native-fillet-20261017/README.md) montre la fo
 
 
 [Figure 27 — actual terminal-taper stress and displacement](C1-terminal-taper-fields-20261017/README.md) shows both closed new-mesh linear-static cases, every boundary triangle and all global stress/displacement maxima on common scales at true displacement ×1. Full field/deck results belong to the separately bound native delivery capsule. The original law refusal is preserved; these numerical results do not establish stress convergence, a strength allowable or physical qualification. ROOT inspected the actual PNG; the PDF has metadata checks only.
+
+
+[Figure 28 — coarse and raw-refined terminal-taper fields](C1-terminal-taper-four-case-fields-20261017/README.md) compares four closed cases at true displacement ×1 with common axes/scales and every boundary triangle. Rigid global VM rises from 697.3 to 1,218.1 MPa and K1000 from 1,977.8 to 3,716.0 MPa, while displacement remains near 2.794 and 18.17 mm. Original volume, law and STEP refusals remain intact: no H2 qualification, stress convergence or strength admission follows. Full fields belong to the dependent numerical capsule.
