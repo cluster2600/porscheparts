@@ -1,0 +1,44 @@
+--- /Users/maxime/.codex/worktrees/993-carrier-revalidation/3dprinting993/work/carrier-process-20261017/bounded-webs-first-window-parameter-trial-preparation-002/trial.py
++++ /Users/maxime/.codex/worktrees/993-carrier-revalidation/3dprinting993/work/carrier-process-20261017/bounded-webs-first-window-parameter-trial-preparation-003/trial.py
+@@ -128,8 +128,7 @@
+         event('all12_window_branches_verified_only_two_targeted')
+         stock = import_brep(out / 'regenerated-stock/native-body.brep')
+         old = import_brep(R / p['current_BREP'])
+-        baseline = import_step(R / p['baseline_STEP'])
+-        require(all(body.is_valid and len(body.solids()) == 1 for body in (stock, old, baseline)), 'Each operand must be one valid Solid')
++        require(all(body.is_valid and len(body.solids()) == 1 for body in (stock, old)), 'Each operand must be one valid Solid')
+         event('before_one_union_with_current07b')
+         candidate = old + stock
+         event('after_one_union_with_current07b')
+@@ -141,7 +140,18 @@
+         report['candidate_native_solid_count'] = len(candidate.solids())
+         summary = GATE.retain_cut_helpers(R / p['strict_cut_source'], dict(TopTools_IndexedMapOfShape=TopTools_IndexedMapOfShape, TopExp=TopExp, Bnd_Box=Bnd_Box, BRepBndLib=BRepBndLib, TopAbs_SOLID=TopAbs_SOLID, TopAbs_FACE=TopAbs_FACE, TopAbs_EDGE=TopAbs_EDGE, TopAbs_VERTEX=TopAbs_VERTEX, BRepCheck_Analyzer=BRepCheck_Analyzer, volume=volume, SimpleNamespace=SimpleNamespace, TopoDS=TopoDS, BRep_Tool=BRep_Tool, GProp_GProps=GProp_GProps, BRepGProp=BRepGProp, BRepAdaptor_Surface=BRepAdaptor_Surface))
+         summaries = {}
+-        for name, argument, tool in (('baseline-minus-candidate', baseline, candidate), ('current07b-minus-candidate', old, candidate), ('candidate-minus-current07b', candidate, old)):
++        for name, argument, tool in (('baseline-minus-candidate', None, candidate), ('current07b-minus-candidate', None, candidate), ('candidate-minus-current07b', candidate, None)):
++            if name == 'baseline-minus-candidate':
++                original = import_step(R / p['baseline_STEP'])
++                argument = original
++            elif name == 'current07b-minus-candidate':
++                original = import_brep(R / p['current_BREP'])
++                argument = original
++            else:
++                original = import_brep(R / p['current_BREP'])
++                tool = original
++            require(original.is_valid and len(original.solids()) == 1, 'Each fresh original reference must be one valid Solid')
++            event('fresh_original_import_for_' + name, source=p['baseline_STEP'] if name == 'baseline-minus-candidate' else p['current_BREP'], independent_of_construction_union_operand=True)
+             cut = BRepAlgoAPI_Cut()
+             args, tools = TopTools_ListOfShape(), TopTools_ListOfShape()
+             args.Append(argument.wrapped); tools.Append(tool.wrapped)
+@@ -163,7 +173,10 @@
+             write(out / (name + '.json'), summaries[name])
+             report['native_Cut_summaries'] = summaries
+         native_volume, error = volume.precise_volume(candidate)
+-        old_volume, old_error = volume.precise_volume(old)
++        current_volume_reference = import_brep(R / p['current_BREP'])
++        require(current_volume_reference.is_valid and len(current_volume_reference.solids()) == 1, 'Fresh current07b volume reference must be one valid Solid')
++        old_volume, old_error = volume.precise_volume(current_volume_reference)
++        report['original_reference_scope'] = 'Fresh baseline/current source imports for each strict Cut and a separate fresh current volume import; construction union operands are not original authority.'
+         study = json.loads((R / p['baseline_study']).read_text())
+         mass = native_volume * study['material']['density_tonne_mm3'] * 1000
+         box = candidate.bounding_box(); bounds = [list(box.min), list(box.max)]

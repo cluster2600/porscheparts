@@ -8,47 +8,20 @@ package. The Porsche 993 Turbo engine carrier is the working example. Each
 stage retains its inputs, settings, software identities, outputs and reports.
 A geometry change creates a new revision; results follow that revision.
 
-A separate **raw-refined terminal-taper diagnostic** compares the same loads
-and mounts with the coarse cases: rigid global VM rises from **697.3 to
-1,218.1 MPa**, and K1000 from **1,977.8 to 3,716.0 MPa**. Maximum displacement
-changes from 2.794015 to 2.794388 mm and from 18.170201 to 18.172701 mm.
-All four original energy audits pass at the unchanged tolerance.
-[Figure 28](../../parts/993-eng-carrier-0001/source/progress-figures-20261016/index.html#C1-terminal-taper-four-case-fields)
-shows all eight panels and global peaks. The refined mesh retains its **strict
-volume refusal**; the original taper law and STEP refusals also remain intact.
-These are raw diagnostic results, without H2 qualification, stress convergence
-or strength admission. The [dependent numerical capsule](../../parts/993-eng-carrier-0001/source/design-20261016/native-C1-terminal-taper-raw-refined-20261017/ACTUAL_REPRODUCTION.md)
-retains full refined fields and its separate replay contract. The coarse record
-below and the older C1/H2 revision remain distinct.
+## Current carrier revision — first-window stock design
 
-A separate [complete seven-edge law observation](../../parts/993-eng-carrier-0001/source/progress-figures-20261016/C1-seven-edge-radius-law-20261017/README.md) now has an actual rebuilt-stock RC1 and patched-toolkit RC0. [Figure 29](../../parts/993-eng-carrier-0001/source/progress-figures-20261016/C1-seven-edge-radius-law-20261017/carrier-seven-edge-radius-law.png) shows the requested and retained radius function over every physical source edge, with the full native coefficients and exact Fraction proof retained separately. Its pending geometry labels describe the historical law-observation snapshot; no geometry or FEA gate is transferred into that law proof, and earlier Figures 27 and 28 refusals remain unchanged.
+The latest design is **stock-only BREP 42da92cc**, with the first main-window cut-profile inset increased from **1.5 mm to 2.8 mm** on both mirrored arms. This is an inset parameter, not a measured wall thickness. The design also omits the old 07b blend. [Figure 32](../../parts/993-eng-carrier-0001/source/progress-figures-20261016/index.html#first-window-stock-comparison) shows both actual surfaces at the same camera and scale.
 
-[Figure 30](../../parts/993-eng-carrier-0001/source/progress-figures-20261016/C1-functional-law-candidate-20261017/README.md) now shows the actual complete 07b354 functional-law candidate STL and a source-datum junction crop, with a separate native mass of 1.262364410 kg. Its actual PNG and rasterized PDF page were reviewed. The original coordinates and source markers are display evidence, with no old C1 stress result or engineering qualification transferred. The [latest English checkpoint](CARRIER_SUPPLEMENTS_20261017_EN.md) separates the newest revision from retained histories.
+| Stage for this stock revision | Actual result retained |
+| --- | --- |
+| Native geometry | Valid single solid; strict original-baseline retention; positive added material; native mass **1.267835378 kg** under **1.30 kg**. The rejected union remains a separate failed version. |
+| Surface | Fresh **433c85bf** STL with **582,946 triangles**. Whole topology/intersection checks pass; sampled CAD distances are **0.038562 mm forward / 0.047388 mm inverse**, within the original **0.06 mm** screen. These are sampled bounds. |
+| Protected interfaces | All eight complete original probe rosters and the original assembly predicate pass for this stock BREP and its fresh STL. The [closed stock check](../../parts/993-eng-carrier-0001/source/progress-figures-20261016/first-window-stock-comparison-20261018/proofs/stock-protected/root-terminal-review-001.json) retains the full results. |
+| T10 and mechanics | Fresh stock-specific meshing and FEA remain pending in this checkpoint. No 07b, C1 or raw-refined stress result is transferred. |
+| Process preparation | Fresh stock pose, supports, whole-layer vectors and machine job remain pending; no full LPBF admission is claimed. |
+| Reusable delivery | [139 exact geometry/source files](../../parts/993-eng-carrier-0001/source/design-20261016/first-window-stock-20261018/archive.json) are copied and ROOT-closed. The delivery README is a frozen proposal snapshot; [the present explanation and actual copy review](../../parts/993-eng-carrier-0001/source/progress-figures-20261016/first-window-stock-comparison-20261018/README.md) identify the completed copy and external reproduction dependencies. |
 
-[Figure 31](../../parts/993-eng-carrier-0001/source/progress-figures-20261016/C1-functional-law-fields-20261018/README.md) compares the actual current 07b354 rigid and K1000 coarse stress/displacement fields. The same mesh, common scales and true displacement x1 retain all global peaks; K1000 is 1,000 N/mm total per eye and axis. Global VM is 690.250571 / 1898.691353 MPa and all-node displacement is 2.794908 / 18.181958 mm. Both independent energy checks passed; stress convergence is not established. Original field dependencies and the actual PNG/PDF review are linked in the compact image capsule.
-
-The latest **preserved terminal-taper diagnostic variant** has separate,
-closed coarse-mesh linear-static results: about **697.3 MPa with rigid mounts
-and 1,977.8 MPa with distributed K1000 springs**. Its original post-Build law
-refusal remains preserved and the candidate is unqualified. Its attempted local
-H2 refinement retained a **strict volume refusal**; it provides no stress
-convergence result. [Figure 27](../../parts/993-eng-carrier-0001/source/progress-figures-20261016/index.html#C1-terminal-taper-fields)
-shows the actual coarse fields. The full new-mesh records and their closed stored-byte verification and
-four-report analysis replay belong to the [native terminal-taper delivery
-capsule](../../parts/993-eng-carrier-0001/source/design-20261016/native-C1-terminal-taper-20261017/ACTUAL_REPRODUCTION.md). The original C1/H2 reference follows and remains distinct.
-
-For the current **C1 native BREP** revision, the calculated CAD mass is
-**1.262369675 kg, below the 1.30 kg limit**. Both linear C1 cases and their
-local H2 refinement have completed. The refined integration-point stress peaks
-are about **997 MPa on rigid mounts and 2,996 MPa with K1000**. Their energy
-audits pass, while stress convergence remains open. The complete seven-region
-support and 1,034-layer trajectory package is not admitted by the evidence
-linked here. A machine-specific build job has not been produced.
-
-The [current-results supplement](CARRIER_SUPPLEMENTS_20261017_EN.md) separates
-these results from historical runs. The [figure gallery](../../parts/993-eng-carrier-0001/source/progress-figures-20261016/index.html)
-provides the drawings and their source records. [Figure 24](../../parts/993-eng-carrier-0001/source/progress-figures-20261016/index.html#C1-fields)
-shows the **coarse C1** cases, not the later H2 results.
+The [results supplement](CARRIER_SUPPLEMENTS_20261017_EN.md) and [Figures 27–31](../../parts/993-eng-carrier-0001/source/progress-figures-20261016/index.html#C1-terminal-taper-fields) preserve the earlier terminal-taper, seven-edge-law, 07b coarse mechanics and original C1/H2 histories with their own refusals and scopes. They do not establish current stock strength or stress convergence. The [LPBF material reference note](CARRIER_LPBF_REFERENCES_20261018_EN.md) records process-specific supplier data without assigning a qualified design allowable or fatigue curve.
 
 ## One workflow, three possible starting points
 
