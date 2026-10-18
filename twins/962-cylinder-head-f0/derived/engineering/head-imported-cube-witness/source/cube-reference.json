@@ -1,0 +1,266 @@
+{
+  "schema": "962-imported-cube-exact-literal-reference/v1",
+  "length_unit": "mm",
+  "field_name": "w",
+  "field_unit": "mm^2",
+  "node_tags": [
+    101,
+    102,
+    103,
+    104,
+    105,
+    106,
+    107,
+    108,
+    201
+  ],
+  "coordinates_mm": [
+    [
+      -1,
+      -1,
+      -1
+    ],
+    [
+      1,
+      -1,
+      -1
+    ],
+    [
+      1,
+      1,
+      -1
+    ],
+    [
+      -1,
+      1,
+      -1
+    ],
+    [
+      -1,
+      -1,
+      1
+    ],
+    [
+      1,
+      -1,
+      1
+    ],
+    [
+      1,
+      1,
+      1
+    ],
+    [
+      -1,
+      1,
+      1
+    ],
+    [
+      0,
+      0,
+      0
+    ]
+  ],
+  "triangle_tags": [
+    1001,
+    1002,
+    1003,
+    1004,
+    1005,
+    1006,
+    1007,
+    1008,
+    1009,
+    1010,
+    1011,
+    1012
+  ],
+  "outward_triangles_node_tags": [
+    [
+      101,
+      103,
+      102
+    ],
+    [
+      101,
+      104,
+      103
+    ],
+    [
+      105,
+      106,
+      107
+    ],
+    [
+      105,
+      107,
+      108
+    ],
+    [
+      101,
+      102,
+      106
+    ],
+    [
+      101,
+      106,
+      105
+    ],
+    [
+      104,
+      108,
+      107
+    ],
+    [
+      104,
+      107,
+      103
+    ],
+    [
+      101,
+      105,
+      108
+    ],
+    [
+      101,
+      108,
+      104
+    ],
+    [
+      102,
+      103,
+      107
+    ],
+    [
+      102,
+      107,
+      106
+    ]
+  ],
+  "tetrahedron_tags": [
+    2001,
+    2002,
+    2003,
+    2004,
+    2005,
+    2006,
+    2007,
+    2008,
+    2009,
+    2010,
+    2011,
+    2012
+  ],
+  "positive_tetrahedra_node_tags": [
+    [
+      201,
+      101,
+      103,
+      102
+    ],
+    [
+      201,
+      101,
+      104,
+      103
+    ],
+    [
+      201,
+      105,
+      106,
+      107
+    ],
+    [
+      201,
+      105,
+      107,
+      108
+    ],
+    [
+      201,
+      101,
+      102,
+      106
+    ],
+    [
+      201,
+      101,
+      106,
+      105
+    ],
+    [
+      201,
+      104,
+      108,
+      107
+    ],
+    [
+      201,
+      104,
+      107,
+      103
+    ],
+    [
+      201,
+      101,
+      105,
+      108
+    ],
+    [
+      201,
+      101,
+      108,
+      104
+    ],
+    [
+      201,
+      102,
+      103,
+      107
+    ],
+    [
+      201,
+      102,
+      107,
+      106
+    ]
+  ],
+  "boundary_physical_group": {
+    "dimension": 2,
+    "tag": 11,
+    "name": "all_boundary",
+    "complete_faces": 12
+  },
+  "volume_physical_group": {
+    "dimension": 3,
+    "tag": 21,
+    "name": "solid"
+  },
+  "exact_discrete_oracle": {
+    "nodes": 9,
+    "cells": 12,
+    "boundary_nodes": 8,
+    "interior_nodes": 1,
+    "determinant_per_tet_mm3": "4",
+    "volume_per_tet_mm3": "2/3",
+    "total_volume_mm3": "8",
+    "free_stiffness_mm": "8",
+    "free_source_mm3": "2",
+    "center_w_mm2": "1/4",
+    "boundary_w_mm2": "0",
+    "integrated_w_mm5": "1/2",
+    "gradient_energy_mm5": "1/2",
+    "uneliminated_boundary_reaction_sum_mm3": "-8",
+    "raw_outward_gradient_flux_mm3": "6",
+    "raw_flux_continuum_deficit_fraction": "1/4",
+    "continuum_or_convergence_solution_claimed": false
+  },
+  "writer_runtime": {
+    "python_sha256": "72956ad35cff7691dfed9e04c9593de825ffd5b2fa7e8bc9ae96ce9a1af65621",
+    "gmsh_module_sha256": "f4b0935cebde899750293d87a643090e5ea33c9b18d249267f507db68a0e01c3",
+    "libgmsh_sha256": "def0f5c10988a986e5e879b3db9669d8fe016a81e2d994bbaf2b8497c6b8a58a",
+    "gmsh_version": "4.15.2"
+  },
+  "input_writer_or_solver_executed": false,
+  "head_or_material_or_physical_qualification": false
+}

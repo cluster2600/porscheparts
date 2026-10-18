@@ -1,0 +1,77 @@
+{
+  "schema": "962-cap-source-extraction-independent-peer/v1",
+  "verdict": "clear",
+  "scope": "Complete stopped-byte/integer association review only; no quality, geometry algorithm or native replay",
+  "bindings": {
+    "manifest_sha256": "339a8322b9649c9f1ab0d29c6d62a0987e6abd4ce58f6db424d9e240bdc83035",
+    "execution_receipt_sha256": "d98979629d8e9328915c289e6c82f1f09f239dad2f632f8a7c82e567146b54f5",
+    "authorized_child_sha256": "dc4f8e2f2de7a59a631960ad4f6b9b1ea0a81906d0d05b9238e2fdb5711a3e52",
+    "independent_review_source_sha256": "6894fd1701279db76d23b5bcde0bb27cf28c5e289d0b9b5c6e4ea2acf6f030a5"
+  },
+  "actual_execution": {
+    "returncode": 0,
+    "elapsed_seconds": 0.3549807909876108,
+    "timeout_seconds": 60,
+    "CPU_or_RAM_quota": false,
+    "resource_sampling": false,
+    "owned_controller_or_PID_probe_claimed": false
+  },
+  "complete_checks": {
+    "input_pins": 20,
+    "regular_output_file_closure": 8,
+    "original_artifact_inventory": 7,
+    "all_output_binary_hashes_and_sizes": 5,
+    "all_coordinate_rows_exact_original_bits": 3508,
+    "all_ordered_oriented_face_rows_exact_original_rows": 3508,
+    "local_to_global_vertex_and_face_maps_complete": true,
+    "all_saved_keeper_groups_associated": 506,
+    "map_rows": 1222,
+    "identity_map_rows": 506,
+    "nonidentity_map_rows": 716,
+    "map_rows_sorted_unique_source_and_idempotent": true,
+    "all_fixed_source_face_IDs_associated": 38,
+    "all_fixed_cell_vertex_maps_identity": true,
+    "source_cycle_lengths": [
+      1482,
+      2026
+    ],
+    "mapped_cycle_lengths": [
+      766,
+      2026
+    ],
+    "all_global_and_local_cycle_ID_sequences_associated": true,
+    "outer_cycle_IDs_unchanged": true,
+    "all_before_after_inputs_and_outputs_unchanged": true,
+    "retained_two_test_log_bound_not_rerun": true
+  },
+  "output_binary_inventory": {
+    "cap.bin": {
+      "sha256": "ed34581f0a42a96532354c6cba56d0d63426972ec2e758fbfc60a9ce3e77b802",
+      "bytes": 168408
+    },
+    "local-to-global-vertices.u64": {
+      "sha256": "5395f5025fa5fe4d1b810b251b34a140d702305069d4bacaab3bc494daed5f0e",
+      "bytes": 28064
+    },
+    "local-to-global-faces.u64": {
+      "sha256": "69fecd18fe01af3d8d39d0fa53a597a61de1bce19b76f0133e027fa95c41c921",
+      "bytes": 28064
+    },
+    "old-to-keeper.u64": {
+      "sha256": "f9faea2e49a06e4642ab12d77155b8cb9e26dfdeca78abf8555e8710a2b211d2",
+      "bytes": 19552
+    },
+    "fixed-face-ids.u64": {
+      "sha256": "6f15b3322d9bdd143c31e342b094516814d9a491e544a24dc9e0670c92be4ea3",
+      "bytes": 304
+    }
+  },
+  "unverified_limits": [
+    "No quality or winding determinant recalculation. Ordered oriented face bytes are identical to the retained source rows.",
+    "No polygon simplicity, domain, triangulation, cap refinement, global surface or full-head audit performed.",
+    "No new runtime/native/controller execution or ownership/PID probe performed.",
+    "The source cap subset is original, and the keeper map is separate and unapplied. No cap/head/solver/physical/manufacturing admission."
+  ],
+  "native_or_scientific_imports": false,
+  "replayed_native_calls": 0
+}

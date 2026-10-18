@@ -1,0 +1,18 @@
+{
+  "schema": "962-exact-plane-clip-root-source-review/v1",
+  "held_preparation_sha256": "b011f9a49b11c8b8b26489d025adc5226a848448246ad24e166d721b2784e0fa",
+  "source_sha256": "190432d46e38a7b70d33e564b827b5ae8a55ca28bd22b51f94ad679c188deb91",
+  "all_32_pins_current": true,
+  "complete_sequential_delta_reconstructs_frozen_source": true,
+  "source_and_delta_read_complete": true,
+  "review": [
+    "Only plane construction changes to EPECK exact kernel; final EPICK binary64 embedding remains separately audited.",
+    "Exact input coordinate equality restores original bit patterns; newly constructed points must have exact z0 before materialized conversion.",
+    "Final finite/halfspace/cap/manifold/selfintersection/positive-volume and all-output bit duplicate guards retained.",
+    "No tolerance, projection, numerical gate, literal or expected output changed.",
+    "Combined old failure cause remains unrecorded; original failed source and all results preserved."
+  ],
+  "native_execution_authorized_by_this_review": false,
+  "allows_separately_bound_compile_after_peer_review": true,
+  "head_or_physics_or_manufacturing_admission": false
+}

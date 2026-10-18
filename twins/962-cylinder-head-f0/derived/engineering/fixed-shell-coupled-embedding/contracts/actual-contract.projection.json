@@ -1,0 +1,92 @@
+{
+  "schema": "962-fixed-shell-coupled-embedding/v1",
+  "status": "ACTUAL_SINGLE_EXACT_PAIR_QUERY",
+  "method": "all741_exact_tetra_pair_intersections",
+  "diagnostic_execution_authorized": true,
+  "root_and_peer_review_complete": true,
+  "native_execution_authorized": false,
+  "qualification": {
+    "native_application_authorized": false,
+    "head_execution_authorized": false,
+    "stitching_authorized": false,
+    "engineering_accepted": false,
+    "physics_qualified": false,
+    "manufacturing_authorized": false
+  },
+  "source_sha256": "1b489cc8149f4b5db8f90c594e32fe4c09b5db00151df6b1cfc88362d1018134",
+  "input_hashes": {
+    "work/962-engineering/fixed-shell-coupled-embedding-prep-001/check_embedding.py": "1b489cc8149f4b5db8f90c594e32fe4c09b5db00151df6b1cfc88362d1018134",
+    "work/962-engineering/fixed-shell-coupled-embedding-prep-001/selfcheck.py": "633661c4151c9b715af0ea1292139e9b46caea0256709803a7a938433cc41268",
+    "work/962-engineering/fixed-shell-coupled-embedding-prep-001/METHOD.md": "5dfeb876ea2f4f3b91c25fde0c18854a475abcd6ed1ddb8b934a477d2a219feb",
+    "work/962-engineering/fixed-shell-coupled-sicn-prep-001/coupled.py": "b63adff506061ac9212d17501ae4062e970b1edd943145a1e911d1914e18b1a6",
+    "work/962-engineering/fixed-shell-coupled-sicn-001/diagnostic.json": "e9184514108a194e9f483c5bfb20ffef9d8334cddd01f60806d97b96f84f532a",
+    "work/962-engineering/fixed-shell-coupled-sicn-001/fixture-report.json": "9674ceffd280153acdb97d40aa6b609e12fa4616735b55da74b8566f5052e3fc",
+    "work/962-engineering/fixed-shell-coupled-sicn-001/frozen-contract.json": "d20b25823faf641b3fc1c97fed29b22fa7b4c66d70972befcf8275ad33408138",
+    "work/962-engineering/fixed-shell-coupled-sicn-001/execution-receipt.json": "dff99c12b08f47bcf40f70dfba68bf6aa89cbad5d49fb9d4ff9b52cb74200a95",
+    "work/962-engineering/fixed-shell-coupled-sicn-root-execution-001/closed-result.json": "e2f7794571574da45083f8ffeda700aa169d8862fe5c0bd1c6da9a4e39f62198",
+    "work/962-engineering/fixed-shell-coupled-sicn-result-peer-001/review.json": "0adbeea0bef35c5a1f30f610c87bb27ef4333530ff2039e9e4c91a512287732b",
+    "work/962-engineering/fixed-shell-netgen-apex1435493-001/arrays.json": "ace411a27a13332129f515ac456ab453cbede0920fe115bdb82057092e665e5f",
+    "work/962-engineering/fixed-shell-netgen-apex1435493-001/fixture-report.json": "8529a8f8421dd989ae243b2a06b132b8a2952e9847aa31d34adb74289a16e6c7",
+    "work/962-engineering/direct-sicn-apex1435493-cavity-study-001/local-shell-input-001.json": "a6f15db60967807b057e357b8f159fa510c4a8cf6e3cb44c4327323c070398c8",
+    "work/962-engineering/fixed-shell-coupled-embedding-prep-001/held-contract.json": "455be5bd801f1810c1ef1e375a907c7a3f11a2555ca61b873a1c043206b74409",
+    "work/962-engineering/fixed-shell-coupled-embedding-root-source-001/review.json": "6dbad946d52c16368e0b2bcda8edca4420356fc7d58e82dff1f513d6a1790545"
+  },
+  "python_executable": "runtime-role:selected_stdlib_geometry_python",
+  "python_sha256": "72956ad35cff7691dfed9e04c9593de825ffd5b2fa7e8bc9ae96ce9a1af65621",
+  "runtime_scope": "Inherited selected interpreter identity only; root must freshly check it. No complete standard-library/OS closure or new dependency. Runtime body not read by author.",
+  "output_directory": "work/962-engineering/fixed-shell-coupled-embedding-001",
+  "planned_output_directory": "work/962-engineering/fixed-shell-coupled-embedding-001",
+  "actual_child_sha256": null,
+  "expected_inputs": {
+    "candidate_diagnostic_sha256": "e9184514108a194e9f483c5bfb20ffef9d8334cddd01f60806d97b96f84f532a",
+    "candidate_result_peer_sha256": "0adbeea0bef35c5a1f30f610c87bb27ef4333530ff2039e9e4c91a512287732b",
+    "nodes": 19,
+    "tetrahedra": 39,
+    "fixed_shell_nodes": 16,
+    "all39_exact_positive_quality_gate_prerequisite": true,
+    "unordered_pairs": 741,
+    "plane_triples_per_pair": 56
+  },
+  "source_reuse": {
+    "path": "work/962-engineering/fixed-shell-coupled-sicn-prep-001/coupled.py",
+    "sha256": "b63adff506061ac9212d17501ae4062e970b1edd943145a1e911d1914e18b1a6",
+    "unchanged_function_AST_sha256s": {
+      "rational": "e8d260a3097116e4bc5b957e357009ba38052d127e7faee4ea2cc582c1c218d1",
+      "subtract": "d4b0b100f5489132addba1a08feb014e192f6bc908c985ad77a12541c8bd5d25",
+      "dot": "aabddd46d96d402e5538a8ced2142ee9a1fef6bafbbff76443c369dd55c8d698",
+      "cross": "b807cea7d2b2cad4de09fae0dc1ff10ce95d5067d293c984aa6fda5c22f662a4",
+      "exact_quality": "0ce39e1ddda13fbaf97a6220d64e3d43eb3e12343b91f50e0727015de637cbf8"
+    },
+    "new_geometry_functions": [
+      "halfspaces",
+      "plane_vertex",
+      "in_shared_hull",
+      "pair_check"
+    ],
+    "no_creator_module_import_or_execution": true
+  },
+  "ordinary_query_controls": {
+    "proposed_wall_timeout_seconds": 60,
+    "automatic_retry": false,
+    "hard_OS_CPU_or_RSS_quota": false,
+    "new_controller_supplied": false,
+    "scope": "Proposed ordinary bounded subprocess; root review, actual child and external current-input/output guard required."
+  },
+  "automatic_retry": false,
+  "future_observations": {
+    "pair_failures": null,
+    "complete_pair_verdicts": null,
+    "query_returncode": null,
+    "report_sha256": null
+  },
+  "selfcheck_executed": true,
+  "query_executed": false,
+  "source_functions_or_tests_executed_by_author": false,
+  "scientific_or_native_imports": false,
+  "required_before_execution": [
+    "Root and independent full geometry/source/contract review, including bounded-polyhedron and shared-simplex proof.",
+    "Root executes the small stdlib selfcheck against exact source; no saved candidate query in that check.",
+    "Fresh root all13input and selected-interpreter hashes, fresh raw canonical output, reviewed ordinary timeout and a separately reviewed exact actual child.",
+    "One complete query with all741 verdicts and all illegal rational witnesses; stopped saved-result independent arithmetic review before any later native application discussion."
+  ]
+}

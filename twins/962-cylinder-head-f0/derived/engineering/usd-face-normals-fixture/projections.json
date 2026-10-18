@@ -1,0 +1,477 @@
+{
+  "schema_version": "1.0.0",
+  "attribution": "Explicit assembled allowlist projections from retained native records. Not complete original records or standalone native execution reproduction. Private target paths are replaced by stable logical aliases; original receipt hashes are retained.",
+  "runtime": {
+    "original_metadata_probe_sha256": "9ed1c767d7ccb66eb08880f1a4099d3a3e52e5b3fdd2d785bccd292b69a34b86",
+    "not_reprobed_to_build_capsule": true,
+    "python_version": "3.12.13",
+    "OpenUSD": [
+      0,
+      25,
+      5
+    ],
+    "packages": {
+      "usd-exchange": "2.3.0",
+      "omniverse-asset-validator": "1.18.0",
+      "omniverse-usd-profiles": "1.10.22",
+      "simready-validate": "2026.4.8",
+      "numpy": "1.26.4",
+      "PyYAML": "6.0.3"
+    },
+    "platform": {
+      "machine": "x86_64",
+      "python": "3.12.13",
+      "system": "linux"
+    },
+    "interpreter_binding": {
+      "alias": "validation-runtime/venvs/simready-validate/bin/python",
+      "sha256": "1e4461092175d186c4bcdb19ee2849a45d6e4d8d1f6a871e45f63418d52a4e35"
+    },
+    "selected_module_bindings": {
+      "pxr.Usd": {
+        "alias": "validation-runtime/venvs/simready-validate/lib/python3.12/site-packages/pxr/Usd/__init__.py",
+        "sha256": "296d06c2e8bcadecfd1e622b19a3354b5af5b951fa2881e89974fcc0d9a02747"
+      },
+      "pxr.Usd._usd": {
+        "alias": "validation-runtime/venvs/simready-validate/lib/python3.12/site-packages/pxr/Usd/_usd.so",
+        "sha256": "804d404e83f4a4e7d995e6fc27eea2317f4bb746b487d1eb52e89b1786b6b899"
+      },
+      "pxr.UsdGeom._usdGeom": {
+        "alias": "validation-runtime/venvs/simready-validate/lib/python3.12/site-packages/pxr/UsdGeom/_usdGeom.so",
+        "sha256": "8ae31ed1148be2b4af9f180c9797c3d05d462150ce208b2700989f91902a309a"
+      },
+      "pxr.Sdf._sdf": {
+        "alias": "validation-runtime/venvs/simready-validate/lib/python3.12/site-packages/pxr/Sdf/_sdf.so",
+        "sha256": "8b16568b8a69b3af3bcc044a20c0dd058b15af206e2e8f61937a5e91591452a1"
+      },
+      "pxr.Gf._gf": {
+        "alias": "validation-runtime/venvs/simready-validate/lib/python3.12/site-packages/pxr/Gf/_gf.so",
+        "sha256": "ffdedf245e4ae931e1b3e72d88a55759797b187e35ee21616d07834d7d178226"
+      },
+      "pxr.Vt._vt": {
+        "alias": "validation-runtime/venvs/simready-validate/lib/python3.12/site-packages/pxr/Vt/_vt.so",
+        "sha256": "7cfe3ae231c454ead22b65273ff592ca055784420bdf97c9f6d1a4b8a82047d1"
+      },
+      "omni.asset_validator": {
+        "alias": "validation-runtime/venvs/simready-validate/lib/python3.12/site-packages/omni/asset_validator/__init__.py",
+        "sha256": "493b479533ad7a29c973dc10fbf6659dd784879e36fd689b50601378c3d05e1d"
+      },
+      "omni.usd_profiles": {
+        "alias": "validation-runtime/venvs/simready-validate/lib/python3.12/site-packages/omni/usd_profiles/__init__.py",
+        "sha256": "248e17c3626206cef25ad2f915fe0e309b0bd3a456a2811e71a50d413737ab18"
+      },
+      "numpy.core._multiarray_umath": {
+        "alias": "validation-runtime/venvs/simready-validate/lib/python3.12/site-packages/numpy/core/_multiarray_umath.cpython-312-x86_64-linux-gnu.so",
+        "sha256": "6a650810a8735cbdb988f74729973740a337645dd1585fef696e73e2dbc65beb"
+      }
+    },
+    "runtime_binaries_included": false
+  },
+  "official_preflight": {
+    "original_report_sha256": "6ccf8b817134f409ec27eb03c21e371317991c0c42460907fa71cefd6c7cdd14",
+    "status": "ready",
+    "generated_at": "2026-10-16T21:42:38.818306+00:00",
+    "targets": [
+      "validation"
+    ],
+    "source_format": "usd",
+    "source_asset_alias": "prep/source.usda",
+    "source_asset_sha256": "146cf436b5f42f2d53faae169e0aaedfbd8872b45af08501fb29b8785c73c55e",
+    "dependency_policy": "selected-target-dependencies",
+    "blocker_count": 0,
+    "runtime_statuses": {
+      "asset_validator": "ready",
+      "content_agents": "skipped",
+      "git_lfs": "ready",
+      "openusd_python": "ready",
+      "repo_python": "skipped",
+      "request": "ready",
+      "simready_validate": "ready"
+    },
+    "simready_foundation": {
+      "url": "https://github.com/NVIDIA/simready-foundation",
+      "ref": "v2026.04.1",
+      "commit": "a1e9dd68ee2d107f74dc6cd6da875b54ad3f8fd3",
+      "expected_commit": "a1e9dd68ee2d107f74dc6cd6da875b54ad3f8fd3",
+      "status": "ready"
+    },
+    "actual_validator_executed": false,
+    "services_started": false
+  },
+  "executions": [
+    {
+      "stage": "preflight",
+      "original_execution_sha256": "649ef3050edf23c0a82a050b3ed2c9044489bc2cb289887c0d33cd35cc010980",
+      "original_child_sha256": "95552043895f64e40b5c8275d2fdb8c8f6218db637c44368be58aad9d0fb0ae7",
+      "original_capture_tar_sha256": "6637f3dcaf1ee1204098e9d5f51bfbea1d696cf75759f4eddf4ce91fca968abf",
+      "controller_or_launcher_sha256": "178cb068556daa39c5e997cf9a5ea0ec32855bf0f4ff89ba1da1db5c79d2454c",
+      "frozen_cleanup_core_sha256": "178cb068556daa39c5e997cf9a5ea0ec32855bf0f4ff89ba1da1db5c79d2454c",
+      "native_returncode": 0,
+      "error": null,
+      "reported_wall_seconds": 0.6295464059803635,
+      "declared_wall_limit_seconds": 120,
+      "declared_RLIMIT_AS_bytes": 4294967296,
+      "cpu_affinity": [
+        0,
+        1
+      ],
+      "cleanup": {
+        "group_SIGKILL_sent": false,
+        "worker_reaped": true,
+        "cleanup_errors": []
+      },
+      "input_count": 42,
+      "pin_aliases_before_and_after": [
+        "prep/author_usd_face_normals.py",
+        "prep/expected-arrays.json",
+        "prep/held-author-preparation.json",
+        "prep/held-step-preparation.json",
+        "prep/run_usd_normal_step.py",
+        "prep/runtime.json",
+        "prep/source.usda",
+        "prep/test_962_usd_face_normals.py",
+        "prep/test_962_usd_normal_step.py",
+        "validation-runtime/skill/SKILL.md",
+        "validation-runtime/skill/references/omni-asset-validate-geometry/scripts/check_dependencies.py",
+        "validation-runtime/skill/references/omni-asset-validate-geometry/scripts/report_schema.json",
+        "validation-runtime/skill/references/omni-asset-validate-geometry/scripts/run.py",
+        "validation-runtime/skill/references/omni-asset-validate-physics/scripts/check_dependencies.py",
+        "validation-runtime/skill/references/omni-asset-validate-physics/scripts/report_schema.json",
+        "validation-runtime/skill/references/omni-asset-validate-physics/scripts/run.py",
+        "validation-runtime/skill/references/omni-asset-validate/scripts/check_dependencies.py",
+        "validation-runtime/skill/references/omni-asset-validate/scripts/report_schema.json",
+        "validation-runtime/skill/references/omni-asset-validate/scripts/run.py",
+        "validation-runtime/skill/references/preflight/scripts/preflight.py",
+        "validation-runtime/skill/references/preflight/scripts/preflight.sh",
+        "validation-runtime/skill/references/simready-validate/scripts/check_dependencies.py",
+        "validation-runtime/skill/references/simready-validate/scripts/report_schema.json",
+        "validation-runtime/skill/references/simready-validate/scripts/run.py",
+        "validation-runtime/skill/shared/preflight_manifest.py",
+        "validation-runtime/skill/shared/script_utils.py",
+        "validation-runtime/skill/shared/simready_package.py",
+        "validation-runtime/skill/shared/simready_package_check_dependencies.py",
+        "validation-runtime/skill/shared/simready_package_report_schema.json",
+        "validation-runtime/skill/shared/upstream_versions.py",
+        "validation-runtime/skill/upstream-versions.lock.json",
+        "validation-runtime/validate2.py",
+        "validation-runtime/venvs/simready-validate/bin/python",
+        "validation-runtime/venvs/simready-validate/lib/python3.12/site-packages/numpy/core/_multiarray_umath.cpython-312-x86_64-linux-gnu.so",
+        "validation-runtime/venvs/simready-validate/lib/python3.12/site-packages/omni/asset_validator/__init__.py",
+        "validation-runtime/venvs/simready-validate/lib/python3.12/site-packages/omni/usd_profiles/__init__.py",
+        "validation-runtime/venvs/simready-validate/lib/python3.12/site-packages/pxr/Gf/_gf.so",
+        "validation-runtime/venvs/simready-validate/lib/python3.12/site-packages/pxr/Sdf/_sdf.so",
+        "validation-runtime/venvs/simready-validate/lib/python3.12/site-packages/pxr/Usd/__init__.py",
+        "validation-runtime/venvs/simready-validate/lib/python3.12/site-packages/pxr/Usd/_usd.so",
+        "validation-runtime/venvs/simready-validate/lib/python3.12/site-packages/pxr/UsdGeom/_usdGeom.so",
+        "validation-runtime/venvs/simready-validate/lib/python3.12/site-packages/pxr/Vt/_vt.so"
+      ],
+      "all_pins_unchanged": true,
+      "original_procedural_result_assessed_flag": false,
+      "original_file_count": 38,
+      "original_inventory_reference": "independent-review.json:original_capture_artifact_sha256.preflight",
+      "actual_peak_RSS_or_CPU_sampled": false
+    },
+    {
+      "stage": "author",
+      "original_execution_sha256": "9d6459fdc6c927804131faf24a99daaf50a40cb2e0cd84e8b6fc5a31bf40f852",
+      "original_child_sha256": "d93a8e06d2fd6b4cc261e2d85753cc4d2985278c1560a1f0b40df368977ca292",
+      "original_capture_tar_sha256": "5c8539cda70a805b36e5f873a47aa250b2533337db1b9e2aabb7489434e95eca",
+      "controller_or_launcher_sha256": "178cb068556daa39c5e997cf9a5ea0ec32855bf0f4ff89ba1da1db5c79d2454c",
+      "frozen_cleanup_core_sha256": "178cb068556daa39c5e997cf9a5ea0ec32855bf0f4ff89ba1da1db5c79d2454c",
+      "native_returncode": 0,
+      "error": null,
+      "reported_wall_seconds": 0.3248918019235134,
+      "declared_wall_limit_seconds": 90,
+      "declared_RLIMIT_AS_bytes": 6442450944,
+      "cpu_affinity": [
+        0,
+        1
+      ],
+      "cleanup": {
+        "group_SIGKILL_sent": false,
+        "worker_reaped": true,
+        "cleanup_errors": []
+      },
+      "input_count": 45,
+      "pin_aliases_before_and_after": [
+        "prep/author_usd_face_normals.py",
+        "prep/expected-arrays.json",
+        "prep/held-author-preparation.json",
+        "prep/held-step-preparation.json",
+        "prep/run_usd_normal_step.py",
+        "prep/runtime.json",
+        "prep/source.usda",
+        "prep/test_962_usd_face_normals.py",
+        "prep/test_962_usd_normal_step.py",
+        "steps/tiny-preflight001/execution.json",
+        "steps/tiny-preflight001/frozen-child.json",
+        "steps/tiny-preflight001/preflight.json",
+        "validation-runtime/skill/SKILL.md",
+        "validation-runtime/skill/references/omni-asset-validate-geometry/scripts/check_dependencies.py",
+        "validation-runtime/skill/references/omni-asset-validate-geometry/scripts/report_schema.json",
+        "validation-runtime/skill/references/omni-asset-validate-geometry/scripts/run.py",
+        "validation-runtime/skill/references/omni-asset-validate-physics/scripts/check_dependencies.py",
+        "validation-runtime/skill/references/omni-asset-validate-physics/scripts/report_schema.json",
+        "validation-runtime/skill/references/omni-asset-validate-physics/scripts/run.py",
+        "validation-runtime/skill/references/omni-asset-validate/scripts/check_dependencies.py",
+        "validation-runtime/skill/references/omni-asset-validate/scripts/report_schema.json",
+        "validation-runtime/skill/references/omni-asset-validate/scripts/run.py",
+        "validation-runtime/skill/references/preflight/scripts/preflight.py",
+        "validation-runtime/skill/references/preflight/scripts/preflight.sh",
+        "validation-runtime/skill/references/simready-validate/scripts/check_dependencies.py",
+        "validation-runtime/skill/references/simready-validate/scripts/report_schema.json",
+        "validation-runtime/skill/references/simready-validate/scripts/run.py",
+        "validation-runtime/skill/shared/preflight_manifest.py",
+        "validation-runtime/skill/shared/script_utils.py",
+        "validation-runtime/skill/shared/simready_package.py",
+        "validation-runtime/skill/shared/simready_package_check_dependencies.py",
+        "validation-runtime/skill/shared/simready_package_report_schema.json",
+        "validation-runtime/skill/shared/upstream_versions.py",
+        "validation-runtime/skill/upstream-versions.lock.json",
+        "validation-runtime/validate2.py",
+        "validation-runtime/venvs/simready-validate/bin/python",
+        "validation-runtime/venvs/simready-validate/lib/python3.12/site-packages/numpy/core/_multiarray_umath.cpython-312-x86_64-linux-gnu.so",
+        "validation-runtime/venvs/simready-validate/lib/python3.12/site-packages/omni/asset_validator/__init__.py",
+        "validation-runtime/venvs/simready-validate/lib/python3.12/site-packages/omni/usd_profiles/__init__.py",
+        "validation-runtime/venvs/simready-validate/lib/python3.12/site-packages/pxr/Gf/_gf.so",
+        "validation-runtime/venvs/simready-validate/lib/python3.12/site-packages/pxr/Sdf/_sdf.so",
+        "validation-runtime/venvs/simready-validate/lib/python3.12/site-packages/pxr/Usd/__init__.py",
+        "validation-runtime/venvs/simready-validate/lib/python3.12/site-packages/pxr/Usd/_usd.so",
+        "validation-runtime/venvs/simready-validate/lib/python3.12/site-packages/pxr/UsdGeom/_usdGeom.so",
+        "validation-runtime/venvs/simready-validate/lib/python3.12/site-packages/pxr/Vt/_vt.so"
+      ],
+      "all_pins_unchanged": true,
+      "original_procedural_result_assessed_flag": false,
+      "original_file_count": 40,
+      "original_inventory_reference": "independent-review.json:original_capture_artifact_sha256.author",
+      "actual_peak_RSS_or_CPU_sampled": false
+    },
+    {
+      "stage": "check",
+      "original_execution_sha256": "14ba8860162a083306e287a30104264e158f2e67b13dc8c8abb1f9b43fc002a2",
+      "original_child_sha256": "9df58db34a3cbc118886a4e116312be6f37e286efb03bb29abe67587dfce3a7a",
+      "original_capture_tar_sha256": "6928d918215fa7009dc27f327fc5df6523578d493962364e7d3e1c2e45a52337",
+      "controller_or_launcher_sha256": "178cb068556daa39c5e997cf9a5ea0ec32855bf0f4ff89ba1da1db5c79d2454c",
+      "frozen_cleanup_core_sha256": "178cb068556daa39c5e997cf9a5ea0ec32855bf0f4ff89ba1da1db5c79d2454c",
+      "native_returncode": 0,
+      "error": null,
+      "reported_wall_seconds": 0.329707995057106,
+      "declared_wall_limit_seconds": 90,
+      "declared_RLIMIT_AS_bytes": 6442450944,
+      "cpu_affinity": [
+        0,
+        1
+      ],
+      "cleanup": {
+        "group_SIGKILL_sent": false,
+        "worker_reaped": true,
+        "cleanup_errors": []
+      },
+      "input_count": 49,
+      "pin_aliases_before_and_after": [
+        "prep/author_usd_face_normals.py",
+        "prep/expected-arrays.json",
+        "prep/held-author-preparation.json",
+        "prep/held-step-preparation.json",
+        "prep/run_usd_normal_step.py",
+        "prep/runtime.json",
+        "prep/source.usda",
+        "prep/test_962_usd_face_normals.py",
+        "prep/test_962_usd_normal_step.py",
+        "steps/tiny-author001/author-report.json",
+        "steps/tiny-author001/execution.json",
+        "steps/tiny-author001/fixture-face-normals.usdc",
+        "steps/tiny-author001/frozen-child.json",
+        "steps/tiny-preflight001/execution.json",
+        "steps/tiny-preflight001/frozen-child.json",
+        "steps/tiny-preflight001/preflight.json",
+        "validation-runtime/skill/SKILL.md",
+        "validation-runtime/skill/references/omni-asset-validate-geometry/scripts/check_dependencies.py",
+        "validation-runtime/skill/references/omni-asset-validate-geometry/scripts/report_schema.json",
+        "validation-runtime/skill/references/omni-asset-validate-geometry/scripts/run.py",
+        "validation-runtime/skill/references/omni-asset-validate-physics/scripts/check_dependencies.py",
+        "validation-runtime/skill/references/omni-asset-validate-physics/scripts/report_schema.json",
+        "validation-runtime/skill/references/omni-asset-validate-physics/scripts/run.py",
+        "validation-runtime/skill/references/omni-asset-validate/scripts/check_dependencies.py",
+        "validation-runtime/skill/references/omni-asset-validate/scripts/report_schema.json",
+        "validation-runtime/skill/references/omni-asset-validate/scripts/run.py",
+        "validation-runtime/skill/references/preflight/scripts/preflight.py",
+        "validation-runtime/skill/references/preflight/scripts/preflight.sh",
+        "validation-runtime/skill/references/simready-validate/scripts/check_dependencies.py",
+        "validation-runtime/skill/references/simready-validate/scripts/report_schema.json",
+        "validation-runtime/skill/references/simready-validate/scripts/run.py",
+        "validation-runtime/skill/shared/preflight_manifest.py",
+        "validation-runtime/skill/shared/script_utils.py",
+        "validation-runtime/skill/shared/simready_package.py",
+        "validation-runtime/skill/shared/simready_package_check_dependencies.py",
+        "validation-runtime/skill/shared/simready_package_report_schema.json",
+        "validation-runtime/skill/shared/upstream_versions.py",
+        "validation-runtime/skill/upstream-versions.lock.json",
+        "validation-runtime/validate2.py",
+        "validation-runtime/venvs/simready-validate/bin/python",
+        "validation-runtime/venvs/simready-validate/lib/python3.12/site-packages/numpy/core/_multiarray_umath.cpython-312-x86_64-linux-gnu.so",
+        "validation-runtime/venvs/simready-validate/lib/python3.12/site-packages/omni/asset_validator/__init__.py",
+        "validation-runtime/venvs/simready-validate/lib/python3.12/site-packages/omni/usd_profiles/__init__.py",
+        "validation-runtime/venvs/simready-validate/lib/python3.12/site-packages/pxr/Gf/_gf.so",
+        "validation-runtime/venvs/simready-validate/lib/python3.12/site-packages/pxr/Sdf/_sdf.so",
+        "validation-runtime/venvs/simready-validate/lib/python3.12/site-packages/pxr/Usd/__init__.py",
+        "validation-runtime/venvs/simready-validate/lib/python3.12/site-packages/pxr/Usd/_usd.so",
+        "validation-runtime/venvs/simready-validate/lib/python3.12/site-packages/pxr/UsdGeom/_usdGeom.so",
+        "validation-runtime/venvs/simready-validate/lib/python3.12/site-packages/pxr/Vt/_vt.so"
+      ],
+      "all_pins_unchanged": true,
+      "original_procedural_result_assessed_flag": false,
+      "original_file_count": 42,
+      "original_inventory_reference": "independent-review.json:original_capture_artifact_sha256.check",
+      "actual_peak_RSS_or_CPU_sampled": false
+    },
+    {
+      "stage": "known",
+      "original_execution_sha256": "c83e0dbbb5df231dadbbfe9e0035bfe7dd0b0b7b21097617d03f27c76eb2543c",
+      "original_child_sha256": "70c03b13ef682103d5e0eae5da2a85365040836fefb81087dfac9d82aa7a295f",
+      "original_capture_tar_sha256": "42368898db1b70e616ae213c942c4e38df4bbf7c1df9c5f4a504b3b6399412f7",
+      "controller_or_launcher_sha256": "1d178c274ccb042967789d003d8f18107ce0955183cc8aeca323500439554ea6",
+      "frozen_cleanup_core_sha256": "178cb068556daa39c5e997cf9a5ea0ec32855bf0f4ff89ba1da1db5c79d2454c",
+      "native_returncode": 0,
+      "error": null,
+      "reported_wall_seconds": 0.3274786318652332,
+      "declared_wall_limit_seconds": 35,
+      "declared_RLIMIT_AS_bytes": 4294967296,
+      "cpu_affinity": [
+        0,
+        1
+      ],
+      "cleanup": {
+        "group_SIGKILL_sent": false,
+        "worker_reaped": true,
+        "cleanup_errors": []
+      },
+      "input_count": 53,
+      "pin_aliases_before_and_after": [
+        "prep/author_usd_face_normals.py",
+        "prep/expected-arrays.json",
+        "prep/held-author-preparation.json",
+        "prep/held-step-preparation.json",
+        "prep/known-reader-launcher-preparation.json",
+        "prep/read_known_fixture.py",
+        "prep/run_known_reader_once.py",
+        "prep/run_usd_normal_step.py",
+        "prep/runtime.json",
+        "prep/source.usda",
+        "prep/test_962_usd_face_normals.py",
+        "prep/test_962_usd_normal_step.py",
+        "prep/test_known_reader_once.py",
+        "steps/tiny-author001/author-report.json",
+        "steps/tiny-author001/execution.json",
+        "steps/tiny-author001/fixture-face-normals.usdc",
+        "steps/tiny-author001/frozen-child.json",
+        "steps/tiny-preflight001/execution.json",
+        "steps/tiny-preflight001/frozen-child.json",
+        "steps/tiny-preflight001/preflight.json",
+        "validation-runtime/skill/SKILL.md",
+        "validation-runtime/skill/references/omni-asset-validate-geometry/scripts/check_dependencies.py",
+        "validation-runtime/skill/references/omni-asset-validate-geometry/scripts/report_schema.json",
+        "validation-runtime/skill/references/omni-asset-validate-geometry/scripts/run.py",
+        "validation-runtime/skill/references/omni-asset-validate-physics/scripts/check_dependencies.py",
+        "validation-runtime/skill/references/omni-asset-validate-physics/scripts/report_schema.json",
+        "validation-runtime/skill/references/omni-asset-validate-physics/scripts/run.py",
+        "validation-runtime/skill/references/omni-asset-validate/scripts/check_dependencies.py",
+        "validation-runtime/skill/references/omni-asset-validate/scripts/report_schema.json",
+        "validation-runtime/skill/references/omni-asset-validate/scripts/run.py",
+        "validation-runtime/skill/references/preflight/scripts/preflight.py",
+        "validation-runtime/skill/references/preflight/scripts/preflight.sh",
+        "validation-runtime/skill/references/simready-validate/scripts/check_dependencies.py",
+        "validation-runtime/skill/references/simready-validate/scripts/report_schema.json",
+        "validation-runtime/skill/references/simready-validate/scripts/run.py",
+        "validation-runtime/skill/shared/preflight_manifest.py",
+        "validation-runtime/skill/shared/script_utils.py",
+        "validation-runtime/skill/shared/simready_package.py",
+        "validation-runtime/skill/shared/simready_package_check_dependencies.py",
+        "validation-runtime/skill/shared/simready_package_report_schema.json",
+        "validation-runtime/skill/shared/upstream_versions.py",
+        "validation-runtime/skill/upstream-versions.lock.json",
+        "validation-runtime/validate2.py",
+        "validation-runtime/venvs/simready-validate/bin/python",
+        "validation-runtime/venvs/simready-validate/lib/python3.12/site-packages/numpy/core/_multiarray_umath.cpython-312-x86_64-linux-gnu.so",
+        "validation-runtime/venvs/simready-validate/lib/python3.12/site-packages/omni/asset_validator/__init__.py",
+        "validation-runtime/venvs/simready-validate/lib/python3.12/site-packages/omni/usd_profiles/__init__.py",
+        "validation-runtime/venvs/simready-validate/lib/python3.12/site-packages/pxr/Gf/_gf.so",
+        "validation-runtime/venvs/simready-validate/lib/python3.12/site-packages/pxr/Sdf/_sdf.so",
+        "validation-runtime/venvs/simready-validate/lib/python3.12/site-packages/pxr/Usd/__init__.py",
+        "validation-runtime/venvs/simready-validate/lib/python3.12/site-packages/pxr/Usd/_usd.so",
+        "validation-runtime/venvs/simready-validate/lib/python3.12/site-packages/pxr/UsdGeom/_usdGeom.so",
+        "validation-runtime/venvs/simready-validate/lib/python3.12/site-packages/pxr/Vt/_vt.so"
+      ],
+      "all_pins_unchanged": true,
+      "original_procedural_result_assessed_flag": false,
+      "original_file_count": 10,
+      "original_inventory_reference": "independent-review.json:original_capture_artifact_sha256.known",
+      "actual_peak_RSS_or_CPU_sampled": false
+    }
+  ],
+  "shared_pin_map_reference": "independent-review.json:final53_pin_projection.sha256",
+  "source_snapshots": [
+    {
+      "public_snapshot": "source-snapshots/author_usd_face_normals.py",
+      "original_sha256": "c4e725d161b3f4aa7571481d3404e3a472e422259bd56449ea398356284b684f",
+      "shared_pin_alias": "prep/author_usd_face_normals.py",
+      "copied_from_actual_retained_capture": true
+    },
+    {
+      "public_snapshot": "source-snapshots/test_962_usd_face_normals.py",
+      "original_sha256": "399415e34a54fd82071edbed97f182ce900aae0a1a8d419a45a692d6939c57be",
+      "shared_pin_alias": "prep/test_962_usd_face_normals.py",
+      "copied_from_actual_retained_capture": true
+    },
+    {
+      "public_snapshot": "source-snapshots/run_usd_normal_step.py",
+      "original_sha256": "178cb068556daa39c5e997cf9a5ea0ec32855bf0f4ff89ba1da1db5c79d2454c",
+      "shared_pin_alias": "prep/run_usd_normal_step.py",
+      "copied_from_actual_retained_capture": true
+    },
+    {
+      "public_snapshot": "source-snapshots/test_962_usd_normal_step.py",
+      "original_sha256": "78ebc64fcaec10e95e8a641539a4d6e29be05693ac4b0dd0f17376a886531f4c",
+      "shared_pin_alias": "prep/test_962_usd_normal_step.py",
+      "copied_from_actual_retained_capture": true
+    },
+    {
+      "public_snapshot": "source-snapshots/read_known_fixture.py",
+      "original_sha256": "c99226ea0323965691f80595c39d8411dfd19b0cac69c57ccd03cdd25d604114",
+      "shared_pin_alias": "prep/read_known_fixture.py",
+      "copied_from_actual_retained_capture": true
+    },
+    {
+      "public_snapshot": "source-snapshots/run_known_reader_once.py",
+      "original_sha256": "1d178c274ccb042967789d003d8f18107ce0955183cc8aeca323500439554ea6",
+      "shared_pin_alias": "prep/run_known_reader_once.py",
+      "copied_from_actual_retained_capture": true
+    },
+    {
+      "public_snapshot": "source-snapshots/test_known_reader_once.py",
+      "original_sha256": "bd52f5d69f6138d44205b66648dde579d0d84be6fb4083d7053504d35aff7a86",
+      "shared_pin_alias": "prep/test_known_reader_once.py",
+      "copied_from_actual_retained_capture": true
+    }
+  ],
+  "known_reader_controls": {
+    "inner_SIGALRM_seconds": 30,
+    "outer_deadline_seconds": 35,
+    "declared_RLIMIT_AS_bytes": 4294967296,
+    "cpu_affinity": [
+      0,
+      1
+    ]
+  },
+  "scope": {
+    "software_fixture_only": true,
+    "head_asset_processed": false,
+    "official_minimum_or_full_validation_executed": false,
+    "computed_fields_imported": false,
+    "material_or_physics_assignment": false,
+    "head_thermal_or_strength_result": false,
+    "LPBF_result": false,
+    "full_Omniverse_readiness": false,
+    "manufacturing_authorized": false
+  }
+}

@@ -1,0 +1,69 @@
+{
+  "schema": "962-fixed-shell-generation-source-reuse/v1",
+  "reader_sha256": "28b892c1d4ce000e48b10c42b679aed66a72f9edccb6ab6c614790e05f252c63",
+  "draft3506_only_preseal_change": "Removed unused struct import at root request; no algorithm change.",
+  "audit_helper_source": "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-netgen-cube-prep-002/reader.py",
+  "audit_helper_sha256": "97b7e9fc7d17defa84594c50dac1d4e09cd39bb47ef2059e00b6ac07fe8c029b",
+  "unchanged_bound_helper_function_AST_sha256s": {
+    "inspect_live": "22f2c1b4586d23f055d40a966f16b04e3f53e6c603f108303812b220c1d2bd60",
+    "snapshot": "bf2c7303f2805fceebf564f741aa77df67311fad00064a5f6b20eb5e2b358dfa",
+    "require_same": "501eca77f7d0ae09143ed5cf45afd06f96bcfc1af03f256ac775daa339d455ce",
+    "quality_gate": "fa864701cad046fdfe5b022d45c177473bc8df9a20a1e567acee9dc6f4b35a5e"
+  },
+  "helper_module_gmsh_global_injection": true,
+  "helper_main_require_contract_and_INPUT_MSH_not_used": true,
+  "discrete_shell_construction_reference": {
+    "path": "twins/962-cylinder-head-f0/source/mesh_head.py",
+    "sha256": "69c8012e99057e384d44d6971d41f0e2cc7197a978120a7c566b0ad5a6477da5",
+    "lines": [
+      268,
+      279
+    ],
+    "adapted_literal_caller_not_whole_function_copy": true
+  },
+  "fixed_options_exactly_equal_mesh_head_OPTIONS": true,
+  "full_audit_reference": {
+    "path": "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-delaunay-prep-001/mesh_assembled_delaunay.py",
+    "sha256": "a3268687edc90b0149775cf5d80a89df82175cc982bbf5d7184b6ea8935be8a4"
+  },
+  "controller": {
+    "base_sha256": "f7165620ac95b9095969b21ae912e87d491019e295a62155abbf33c2eb3b2944",
+    "selected_sha256": "9733e94c44fc12bf8f1a3382006511981cd78abdb72f709c4630be437404121c",
+    "literal_substitution_kinds": [
+      {
+        "old": "One fresh, source-bound Netgen cube optimizer fixture; reviewed pins required.",
+        "new": "One fresh, source-bound fixed-shell generation cube witness; reviewed pins required."
+      },
+      {
+        "old": "One fresh Netgen cube fixture only; preserve previous outputs",
+        "new": "One fresh fixed-shell generation cube only; preserve previous outputs"
+      },
+      {
+        "old": "netgen_fixture_deadline",
+        "new": "fixed_shell_generation_deadline"
+      },
+      {
+        "old": "scope='one_saved_cube_Netgen_optimizer_fixture'",
+        "new": "scope='one_fixed_shell_cube_generation_witness'"
+      },
+      {
+        "old": "{'generate':0,'createGeometry_dim3':1,'optimize_Netgen':1,'rebuildElementCache':1,'write_mesh':1,'solve':0}",
+        "new": "{'generate':1,'createGeometry_dim3':0,'optimize_Netgen':0,'rebuildElementCache':0,'write_mesh':1,'solve':0}"
+      },
+      {
+        "old": "'OPENBLAS_NUM_THREADS':'2','PYTHONDONTWRITEBYTECODE':'1'",
+        "new": "'OPENBLAS_NUM_THREADS':'2','VECLIB_MAXIMUM_THREADS':'2','PYTHONDONTWRITEBYTECODE':'1'"
+      }
+    ],
+    "whole_byte_reverse_exact": true,
+    "cleanup_ownership_timer_SIGTERM_wait_and_limit_flow_unchanged": true
+  },
+  "tests": {
+    "prepared_shell_methods": 5,
+    "prepared_runner_methods": 14,
+    "old_runner_methods_preserved_except_declared_deadline_label": 13,
+    "added_runner_declaration_environment_method": 1,
+    "executed": false
+  },
+  "scientific_native_runtime_or_geometry_execution": false
+}

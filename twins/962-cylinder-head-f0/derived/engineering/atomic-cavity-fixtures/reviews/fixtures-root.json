@@ -1,0 +1,98 @@
+{
+  "schema": "962-atomic-cavity-three-native-fixture-root-result/v1",
+  "status": "all_three_actual_literal_references_pass_reserved_full_checks",
+  "phase_summary_sha256": "9b7355b7ac3320f8b642d7507c9615788c23992acbd6a520e43ce664e0a210e2",
+  "child_sha256": "a417ce0a14d8d8f405d53f6ab1215c83a98114aa465204cfbded56739cb952d5",
+  "all42_before_after_current_inputs_exact": true,
+  "complete_artifact_closure_verified": 18,
+  "assessor_sha256": "397eb7b46cd097f19026d66d6e8fe7100909cb07dc7b8e1158c49f89dd2f4581",
+  "assessments": [
+    {
+      "case": "known-collapse",
+      "expected_native_returncode": 0,
+      "report_sha256": "aa3e5886d2f8fa3fdd31fb758b509288dfd0e29c3219288ea7230caec5a301c2",
+      "candidate_sha256": "f7e883868f142a53dbc7f9da43d0f19469348e6dfcf12c1149eaef9f37c0625e",
+      "origins_sha256": "419ce84f0e9d892643ed1279ee8cdaa70ddc452e676dfe448cbeaaa830c06567",
+      "all_coordinate_bytes_and_ordered_oriented_faces_match": true,
+      "all_origin_bytes_match": true,
+      "full_quality_exact_reference_match": true,
+      "minimum_triangle_SICN": 0.8660254037844386,
+      "exact_signed_volume_mm3": "3511808",
+      "topology": {
+        "vertices": 9,
+        "edges": 21,
+        "faces": 14,
+        "Euler": 2,
+        "oriented_boundary_edges": [],
+        "edge_and_vertex_manifold": true,
+        "no_duplicate_or_orphan_faces": true
+      },
+      "fixed_exterior_affected_boundary_exact": true,
+      "native_final_affected_neighbor_pairs": 8,
+      "candidate_local_scope_only": true,
+      "head_or_solver_admission": false
+    },
+    {
+      "case": "all-fixed",
+      "expected_native_returncode": 3,
+      "report_sha256": "7ab4d9b64314c4ee2716e98f8125de422ec0bb07e2f23acb51ce57272acdd780",
+      "report_only_refusal": true,
+      "candidate_credited": false
+    },
+    {
+      "case": "four-vertex-disk",
+      "expected_native_returncode": 0,
+      "report_sha256": "369c169d9abec8acd303396b13af8f2edf85d0ce62b4c27d7c27e3b04863860b",
+      "candidate_sha256": "3b56094d17e80ba1960e507daec3930886068772452d4a505166dd3c2e4f99a1",
+      "origins_sha256": "419ce84f0e9d892643ed1279ee8cdaa70ddc452e676dfe448cbeaaa830c06567",
+      "all_coordinate_bytes_and_ordered_oriented_faces_match": true,
+      "all_origin_bytes_match": true,
+      "full_quality_exact_reference_match": true,
+      "minimum_triangle_SICN": 0.8660252299093737,
+      "exact_signed_volume_mm3": "3511808",
+      "topology": {
+        "vertices": 9,
+        "edges": 21,
+        "faces": 14,
+        "Euler": 2,
+        "oriented_boundary_edges": [],
+        "edge_and_vertex_manifold": true,
+        "no_duplicate_or_orphan_faces": true
+      },
+      "fixed_exterior_affected_boundary_exact": true,
+      "native_final_affected_neighbor_pairs": 8,
+      "candidate_local_scope_only": true,
+      "head_or_solver_admission": false
+    }
+  ],
+  "executions": [
+    {
+      "case": "known-collapse",
+      "returncode": 0,
+      "wall_seconds": 0.9845275417901576,
+      "execution_sha256": "9d60153ca7860cbb4570f2ee3532163dd508fd0035b696a2074da623d36e8553",
+      "empty_log": true,
+      "reaped_removed_noOOM": true
+    },
+    {
+      "case": "all-fixed",
+      "returncode": 3,
+      "wall_seconds": 0.9307507909834385,
+      "execution_sha256": "2ff44535031b789aa1016d035683636516ce239e2ebe4d211f6f60e4522fdabd",
+      "empty_log": true,
+      "reaped_removed_noOOM": true
+    },
+    {
+      "case": "four-vertex-disk",
+      "returncode": 0,
+      "wall_seconds": 0.99404316698201,
+      "execution_sha256": "1cd78a93d11e757b654f1143e57e9a8a72262a5e7c6ee922f13ae075b38f225f",
+      "empty_log": true,
+      "reaped_removed_noOOM": true
+    }
+  ],
+  "native_guard_names_and_extra_input_patch_counts_match_predeclared": true,
+  "procedural_false_admission_flags_preserved": true,
+  "head_or_solver_admitted": false,
+  "manufacturing_authorized": false
+}

@@ -1,0 +1,77 @@
+{
+  "schema": "962-cap-refinement-installed-API/v1",
+  "image_id": "sha256:57c6b17ed0bd093a61a3d3cecb7563e912caeb3832fd59e8cec2d4d9d4d1e2f8",
+  "capture_receipt": {
+    "path": "work/962-engineering/cap-refinement-mesh2-header-capture-001/receipt.json",
+    "bytes": 6603,
+    "sha256": "e02a76b5b5f650ad28791267ee0ff4903e95e2490878c44cfdd147f5246acd33"
+  },
+  "installed_header_readback": {
+    "Delaunay_mesh_criteria_2.h": {
+      "path": "work/962-engineering/cap-refinement-mesh2-header-capture-001/headers/Delaunay_mesh_criteria_2.h",
+      "bytes": 2956,
+      "sha256": "2774e0b470b73f0778c11cb59aa37342ec11966e4d11918894ce659559055d1e"
+    },
+    "Delaunay_mesh_face_base_2.h": {
+      "path": "work/962-engineering/cap-refinement-mesh2-header-capture-001/headers/Delaunay_mesh_face_base_2.h",
+      "bytes": 2231,
+      "sha256": "31e25a45088157a35edf0724567a45e8b62621cb0a90bd37fae562565e39c00d"
+    },
+    "Delaunay_mesh_size_criteria_2.h": {
+      "path": "work/962-engineering/cap-refinement-mesh2-header-capture-001/headers/Delaunay_mesh_size_criteria_2.h",
+      "bytes": 5309,
+      "sha256": "c5ea422d9e10e985374cea235b9d4ba50120657f1a4fa04e11c205032d0870de"
+    },
+    "Delaunay_mesh_vertex_base_2.h": {
+      "path": "work/962-engineering/cap-refinement-mesh2-header-capture-001/headers/Delaunay_mesh_vertex_base_2.h",
+      "bytes": 1797,
+      "sha256": "4ce665905442399266bd1605a67e52fd3dd93623d182eab1d3f0baddbc072410"
+    },
+    "Delaunay_mesher_no_edge_refinement_2.h": {
+      "path": "work/962-engineering/cap-refinement-mesh2-header-capture-001/headers/Delaunay_mesher_no_edge_refinement_2.h",
+      "bytes": 9148,
+      "sha256": "b72ccb3560bf40cc14a0a6c71f8fe8c636b266abb6ffa614368f673fdf1a5cb7"
+    },
+    "Mesh_2/Do_not_refine_edges.h": {
+      "path": "work/962-engineering/cap-refinement-mesh2-header-capture-001/headers/Mesh_2/Do_not_refine_edges.h",
+      "bytes": 2670,
+      "sha256": "b95bb8fe917167c299bfe8f17e3050d182728020c6d6ecac3e6218764385fecc"
+    },
+    "Mesh_2/Refine_edges.h": {
+      "path": "work/962-engineering/cap-refinement-mesh2-header-capture-001/headers/Mesh_2/Refine_edges.h",
+      "bytes": 22054,
+      "sha256": "dd594786507a1a48482d7dafcd0c853a2b040f00767e8269b5e0d705d998a493"
+    },
+    "Mesh_2/Refine_faces.h": {
+      "path": "work/962-engineering/cap-refinement-mesh2-header-capture-001/headers/Mesh_2/Refine_faces.h",
+      "bytes": 14010,
+      "sha256": "d33adbea785adea162146de2df3efd8d92e7729d0fb1b61e1b66271da949edaf"
+    },
+    "Mesher_level.h": {
+      "path": "work/962-engineering/cap-refinement-mesh2-header-capture-001/headers/Mesher_level.h",
+      "bytes": 10966,
+      "sha256": "58a1ea0bfa60e8283691397bc627e2a45d6b3df1c0d8d95f600589c6c5dd7beb"
+    }
+  },
+  "version_evidence": {
+    "path": "work/962-engineering/atomic-cavity-plane-clip-header-probe-002/stdout.txt",
+    "bytes": 14915,
+    "sha256": "2d218ef7a14e823fd16a31a0159c482b7187646a705f2bae57549dcb9336a599"
+  },
+  "expected_installed_CGAL_version": "5.6",
+  "selected_API": {
+    "mesher": "CGAL::Delaunay_mesher_no_edge_refinement_2<CDT,Criteria>",
+    "criterion": "CGAL::Delaunay_mesh_size_criteria_2<CDT>(0.125,0)",
+    "domain_initialization": "mesher.init(true), after explicit mutable-cell marks",
+    "step": "try_one_step_refine_mesh",
+    "no_edge_drop": "outside marked FACE or constrained-edge Gabriel conflict is dropped; no claimed reason-specific counters"
+  },
+  "header_redistribution_in_this_prep": false,
+  "licence": "GPL-3.0-or-later OR LicenseRef-Commercial, as retained installed Mesh_2 notices",
+  "primary_source_links": [
+    "https://github.com/CGAL/cgal/blob/v5.6/Mesh_2/include/CGAL/Delaunay_mesher_no_edge_refinement_2.h",
+    "https://github.com/CGAL/cgal/blob/v5.6/Mesh_2/include/CGAL/Mesh_2/Do_not_refine_edges.h",
+    "https://doc.cgal.org/5.6/Mesh_2/classDelaunayMeshFaceBase__2.html"
+  ],
+  "header_verification_only_not_compiled_binary_attestation": true
+}

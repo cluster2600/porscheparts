@@ -1,0 +1,29 @@
+{
+  "executed_tests_by_preparer": false,
+  "known_diagnosis_sha256": "7025fa9460b566d01dfa197e887e133c24cd494fd2bc2ad789ddd0a372041822",
+  "native_or_scientific_execution": false,
+  "new": "INPUT_HASHES={'input.msh':worker['mesh_sha256'],'worker.json':hashlib.sha256((prior/'worker-report.json').read_bytes()).hexdigest(),'diagnosis.json':hashlib.sha256(diagnosis.read_bytes()).hexdigest()},json=json,",
+  "new_test_sha256": "7a6a5273d3f7f9b51663ff0b10bc7556c6ec0d76ff385c1a3c61f753897b772e",
+  "old": "INPUT_HASHES={'input.msh':worker['mesh_sha256'],'worker.json':hashlib.sha256((prior/'worker-report.json').read_bytes()).hexdigest()},json=json,",
+  "old_test": "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-delaunay-netgen-postexport-prep-001/test_source_guards.py",
+  "old_test_sha256": "cfa8b50c14d40c448d7b8b3b1dfb2f4a6c2f8844fdcad11852bd6604c8d4a34c",
+  "prepared_test_methods_unchanged": 6,
+  "preserved_root_failure": {
+    "error": "KeyError: 'diagnosis.json' in incomplete synthetic map; no production failure established",
+    "errors": 2,
+    "log": "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-delaunay-netgen-postexport-root-source-001/guard-tests.log",
+    "log_sha256": "074e6cabc98ce19a6a1459e59a48ed0c2feb834fe384feb7ec26e2f9ea14355c",
+    "methods": 6,
+    "passed": 4,
+    "review": "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-delaunay-netgen-postexport-root-source-001/review.json",
+    "sha256": "3372f938b3c89c18089bd23b9ecd5b9a2999ac624c5cc13cf5bc4e93170ef559"
+  },
+  "production_source_copy_from": "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-delaunay-netgen-postexport-prep-001/mesh_delaunay_netgen_postexport.py",
+  "production_source_delta_exact_copy": true,
+  "production_source_delta_sha256": "a0e3b5cf5bbd4d38e9ddfed76943c2d42d8565ad438d2518d5231d885b1899ec",
+  "production_source_sha256": "0d1dd1f0625275343f16b713dae2d41143dda8da974bef42e59f6bfa3b0e388a",
+  "production_source_unchanged": true,
+  "reverse_test_byte_exact": true,
+  "schema": "962-Netgen-postexport-test-only-successor/v1",
+  "sole_test_change": "Add diagnosis.json to the synthetic INPUT_HASHES map using exact completed diagnosis bytes, matching the proof-record lookup performed by production load_before."
+}

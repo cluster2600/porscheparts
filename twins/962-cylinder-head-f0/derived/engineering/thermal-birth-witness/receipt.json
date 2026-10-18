@@ -1,0 +1,302 @@
+{
+  "schema_version": "1.0.0",
+  "published_on": "2026-10-16",
+  "status": "passed_hypothetical_numerical_witness_pending_independent_review",
+  "classification": "HYPOTHETICAL_SOFTWARE_VERIFICATION_ONLY",
+  "qualification": {
+    "whole_head_lpbf_complete": false,
+    "whole_head_simulation": false,
+    "physical_material_calibrated": false,
+    "physical_process_calibrated": false,
+    "manufacturing_authorized": false
+  },
+  "scope": "Moving volumetric Gaussian, active-domain thermal storage, nonlinear k/cp evaluation, conforming-node material birth and declared time refinement. Not a whole-head LPBF or calibrated process result.",
+  "runtime": {
+    "name": "MOOSE",
+    "architecture": "native_linux_amd64",
+    "source_revision": "167ee97da204df5e8643695e18b9b28910f0014b",
+    "official_distribution": "idaholab/moose@sha256:47fc6c5bff5e86869e7c467f999e9585ece13af9ffd1f580fef5369728a93452",
+    "binary_sha256": "c49e2c368799d80edf9ff858dd8960bd22f5430f48229ab49dcc0afd27afcc5b",
+    "new_install_or_download": false,
+    "paid_compute": false,
+    "per_run_time_limit_seconds": 100,
+    "runtime_mounted_read_only": true,
+    "network_access_during_native_runs": false
+  },
+  "accepted_frozen_contract": {
+    "path": "frozen-contract.json",
+    "sha256": "099ca030b523d43ca8a666c3e7f3a23cdc139077fe6d2e3531c051372d5a0ee2",
+    "copied_byte_for_byte": true,
+    "frozen_before_passing_native_runs": true
+  },
+  "source_snapshots": [
+    {
+      "repository_source": "twins/962-cylinder-head-f0/source/physics_witness/thermal_birth/card.json",
+      "snapshot": "source-snapshots/card.json",
+      "sha256": "20e541f44359e4fe85c94fa2add15f5cc79285d849bfcb0c604e54b294f576ad",
+      "phase": "declared_hypothetical_input"
+    },
+    {
+      "repository_source": "twins/962-cylinder-head-f0/source/physics_witness/thermal_birth/thermal-birth.i",
+      "snapshot": "source-snapshots/accepted-thermal-birth.i",
+      "sha256": "ec8b79d2f67a5e7bf49401685ff0f809ff4ae31b4a819ab9d728193fc0fbd73b",
+      "phase": "passing_native_input"
+    },
+    {
+      "repository_source": "twins/962-cylinder-head-f0/source/physics_witness/thermal_birth/assess.py",
+      "snapshot": "source-snapshots/frozen-assess.py",
+      "sha256": "41cf5f8f027b8ce44dab9808b52ef6b6432ccaaa9b50e3136da54cbef0d55c88",
+      "phase": "pre_native_frozen_independent_checker"
+    },
+    {
+      "repository_source": "twins/962-cylinder-head-f0/source/physics_witness/thermal_birth/assess_refinement.py",
+      "snapshot": "source-snapshots/postrun-assess-refinement.py",
+      "sha256": "caf5a71ae59e0b71b89676333f6afd76584fc9539e631ed070712c80a462171d",
+      "phase": "later_checker_applying_predeclared_refinement_gate"
+    },
+    {
+      "snapshot": "source-snapshots/level-0-001-thermal-birth.i",
+      "sha256": "abccf049f7133e9b963ff9e296baf09e928f35a61bdcd40924edd1d2c6f15a15",
+      "phase": "retained_refused_native_input",
+      "run_id": "level-0-001"
+    },
+    {
+      "snapshot": "source-snapshots/level-0-002-thermal-birth.i",
+      "sha256": "60ec97a940466a057f7a87741ec3e7d19490cc377d3c8b31ffaa30827ede8fdf",
+      "phase": "retained_refused_native_input",
+      "run_id": "level-0-002"
+    }
+  ],
+  "setup_refusals": [
+    {
+      "run_id": "level-0-001",
+      "returncode": 1,
+      "elapsed_seconds": 0.4665703109931201,
+      "native_steps": 0,
+      "reason": "Input section Problem/Quadrature has no registered action; no thermal step executed.",
+      "input_contract_sha256": "f810ffbc80cc59886c3af53dbfae6fcd4bfdf52e755c1e721d318d1179eeff84",
+      "native_log_sha256": "621457ef89d927422f7c9df230f1c528122cd4735d4c0212d56e073001d3f694",
+      "all_original_inputs_logs_captures_retained": true
+    },
+    {
+      "run_id": "level-0-002",
+      "returncode": 1,
+      "elapsed_seconds": 0.5170190259814262,
+      "native_steps": 0,
+      "reason": "Inactive block had no kernel; no thermal step executed. Kernel coverage remained enabled in the corrected input.",
+      "input_contract_sha256": "1262d62db342e29e168f974116461fafe44fe06849263e4112fde60b694e170e",
+      "native_log_sha256": "4dcc0726ee32d63ba4223547271bf1eb70ba064cbf2720eb8a6e44d9c5eb966a",
+      "all_original_inputs_logs_captures_retained": true
+    }
+  ],
+  "numerical_runs": [
+    {
+      "run_id": "level-0-003",
+      "level": 0,
+      "dt_s": 0.01,
+      "native_steps": 40,
+      "elapsed_seconds": 2.228729896945879,
+      "passed": true,
+      "checks_count": 23588,
+      "maximum_error_by_check": {
+        "new_node_birth_temperature": 0.0,
+        "nonuniform_final_temperature": 0,
+        "nonlinear_BE_enthalpy_identity": 5.398889668661866e-12,
+        "k_T_element_average": 7.605027718682322e-15,
+        "existing_nodal_history": 0.0,
+        "moving_source_element_average": 7.465882452914264e-14,
+        "initial_temperature": 0.0,
+        "new_node_count": 0,
+        "cp_T_element_average": 7.593925488436071e-14,
+        "active_node_count": 0,
+        "finite_box_gaussian_power": 6.532903892021083e-05
+      },
+      "maximum_continuous_relative_energy_error": 0.013048384615634198,
+      "final_state": {
+        "step": 40,
+        "time_s": 0.4,
+        "active_volume_m3": 2,
+        "enthalpy_J": 382.63350167520093,
+        "birth_enthalpy_J": 121.24566800423202,
+        "continuous_source_energy_J": 11.359829620012388,
+        "continuous_energy_error_J": 0.028004050956557336,
+        "relative_continuous_energy_error": 0.00021118318213254325,
+        "finite_box_power_W": 29.805060416734328,
+        "quadrature_power_W": 29.8039618871622,
+        "BE_capacity_correction_J": 0.0004024540696321685,
+        "temperature_min_K": 350.0843902021,
+        "temperature_max_K": 402.4396621574
+      },
+      "independent_assessment_sha256": "cb29447adacf406e062fc9ec1956eb7db5d3b87d9bd13ad104fa8141f7ec7c48",
+      "native_receipt_sha256": "da11713a4f8fa3cff033ccd6873be9ed9d350f051fb5865036a15c7d9e56af2c",
+      "binary_unchanged": true,
+      "inputs_unchanged": true
+    },
+    {
+      "run_id": "level-1-001",
+      "level": 1,
+      "dt_s": 0.005,
+      "native_steps": 80,
+      "elapsed_seconds": 3.8398495968431234,
+      "passed": true,
+      "checks_count": 46788,
+      "maximum_error_by_check": {
+        "existing_nodal_history": 0.0,
+        "new_node_birth_temperature": 0.0,
+        "initial_temperature": 0.0,
+        "nonuniform_final_temperature": 0,
+        "finite_box_gaussian_power": 6.534337581087981e-05,
+        "active_node_count": 0,
+        "k_T_element_average": 7.605027718682322e-15,
+        "nonlinear_BE_enthalpy_identity": 9.229717521947595e-12,
+        "moving_source_element_average": 7.465882452914264e-14,
+        "new_node_count": 0,
+        "cp_T_element_average": 7.593925488436071e-14
+      },
+      "maximum_continuous_relative_energy_error": 0.006794435318660102,
+      "final_state": {
+        "step": 80,
+        "time_s": 0.4,
+        "active_volume_m3": 2,
+        "enthalpy_J": 382.630604026923,
+        "birth_enthalpy_J": 121.25796424565357,
+        "continuous_source_energy_J": 11.359829620012388,
+        "continuous_energy_error_J": 0.01281016125705392,
+        "relative_continuous_energy_error": 9.659458873241295e-05,
+        "finite_box_power_W": 29.805060416734328,
+        "quadrature_power_W": 29.8039618871622,
+        "BE_capacity_correction_J": 0.0001015832956663571,
+        "temperature_min_K": 350.07186774609,
+        "temperature_max_K": 402.54478454707
+      },
+      "independent_assessment_sha256": "156647a120d8fce032aac5acc3150a6b0910d0701dcc6b65f3f60d3aa396c9b6",
+      "native_receipt_sha256": "c8701ccc7f473814c75a5ac55a77139327eadc61f22ce14012aab7d0e03757eb",
+      "binary_unchanged": true,
+      "inputs_unchanged": true
+    },
+    {
+      "run_id": "level-2-001",
+      "level": 2,
+      "dt_s": 0.0025,
+      "native_steps": 160,
+      "elapsed_seconds": 6.403118639020249,
+      "passed": true,
+      "checks_count": 93189,
+      "maximum_error_by_check": {
+        "new_node_birth_temperature": 0.0,
+        "active_node_count": 0,
+        "existing_nodal_history": 0.0,
+        "moving_source_element_average": 7.465882452914264e-14,
+        "k_T_element_average": 7.605027718682322e-15,
+        "new_node_count": 0,
+        "nonlinear_BE_enthalpy_identity": 6.444138449311458e-12,
+        "nonuniform_final_temperature": 0,
+        "finest_continuous_energy_error": 0.003481213258640961,
+        "finite_box_gaussian_power": 6.540681370439643e-05,
+        "initial_temperature": 0.0,
+        "cp_T_element_average": 7.593925488436071e-14
+      },
+      "maximum_continuous_relative_energy_error": 0.003481213258640961,
+      "final_state": {
+        "step": 160,
+        "time_s": 0.4,
+        "active_volume_m3": 2,
+        "enthalpy_J": 382.6298454726994,
+        "birth_enthalpy_J": 121.2641465530709,
+        "continuous_source_energy_J": 11.359829620012388,
+        "continuous_energy_error_J": 0.0058692996161404665,
+        "relative_continuous_energy_error": 4.425519265446115e-05,
+        "finite_box_power_W": 29.805060416734328,
+        "quadrature_power_W": 29.8039618871622,
+        "BE_capacity_correction_J": 2.5519577791336115e-05,
+        "temperature_min_K": 350.0661785403,
+        "temperature_max_K": 402.59804946924
+      },
+      "independent_assessment_sha256": "2882d2827b9eb0e1876da7f5b30bf508a5eef3bff1462a7edc271e12249f6f9d",
+      "native_receipt_sha256": "72df40ce808b27f8b746dd0815911411714364755766fce8f6edfc961484cf4b",
+      "binary_unchanged": true,
+      "inputs_unchanged": true
+    }
+  ],
+  "refinement": {
+    "passed": true,
+    "maximum_continuous_relative_energy_errors": [
+      0.013048384615634198,
+      0.006794435318660102,
+      0.003481213258640961
+    ],
+    "successive_error_ratios": [
+      1.9204516642903897,
+      1.951743491093274
+    ],
+    "predeclared_minimum_error_ratio": 1.4,
+    "predeclared_finest_energy_limit": 0.01,
+    "original_refinement_assessment_sha256": "a5de35cd7e9c3ee08352d80b8470bff1db4734d7df1974b25bd33a1fbff86cd3"
+  },
+  "unit_verification": {
+    "passed": true,
+    "tests": 11,
+    "original_test_receipt_sha256": "7152a112516a2c6e628a8874452841d18c43e10abc27421216ac2e3e27d4dd42",
+    "original_test_log_sha256": "f36946cab57572a47e8e5d21f8ff1d809320896a0793b8b4b75d7259d7f1a3a1",
+    "test_source_repository_path": "tests/test_962_thermal_birth.py",
+    "test_source_sha256": "c5257425f89f2dcc30e3fca4703bca48d2318402eb0521573ff15bbf6cb47f3e"
+  },
+  "provenance_sequence": [
+    {
+      "phase": "initial_freeze",
+      "contract_path": "superseded-contracts/initial-contract-001.json",
+      "sha256": "f810ffbc80cc59886c3af53dbfae6fcd4bfdf52e755c1e721d318d1179eeff84",
+      "outcome": "Retained native setup refusal; no numerical result."
+    },
+    {
+      "phase": "input_wiring_correction",
+      "contract_path": "superseded-contracts/superseded-contract-002.json",
+      "sha256": "1262d62db342e29e168f974116461fafe44fe06849263e4112fde60b694e170e",
+      "outcome": "Quadrature section corrected and temperature parameter renamed; second setup refusal retained."
+    },
+    {
+      "phase": "accepted_input_wiring",
+      "contract_path": "frozen-contract.json",
+      "sha256": "099ca030b523d43ca8a666c3e7f3a23cdc139077fe6d2e3531c051372d5a0ee2",
+      "outcome": "Separate uncoupled inactive placeholder preserves kernel coverage. Material laws, geometry, time levels, reference rules and tolerances unchanged."
+    },
+    {
+      "phase": "native_numerical_runs",
+      "outcome": "Three native levels with full nodal/element fields, output manifests and original transport captures."
+    },
+    {
+      "phase": "frozen_field_energy_checker",
+      "checker_sha256": "41cf5f8f027b8ce44dab9808b52ef6b6432ccaaa9b50e3136da54cbef0d55c88",
+      "outcome": "Same frozen checker used on every native numerical level; snapshot retained."
+    },
+    {
+      "phase": "later_refinement_checker",
+      "checker_sha256": "caf5a71ae59e0b71b89676333f6afd76584fc9539e631ed070712c80a462171d",
+      "outcome": "Written after the native levels; applies ratio/finest-error gates already fixed in the contract. No native rerun or law/reference change."
+    },
+    {
+      "phase": "later_portable_runner",
+      "repository_path": "twins/962-cylinder-head-f0/source/physics_witness/thermal_birth/run_local.py",
+      "sha256": "b89900043e2b1b7ef871edbf054656fde4b17d94e9e37d069216b40350c5ca62",
+      "outcome": "Prepared from the successful bounded command after the numerical runs; help checked, not used to produce the original native results."
+    },
+    {
+      "phase": "documentation_hash_correction",
+      "repository_path": "twins/962-cylinder-head-f0/source/physics_witness/thermal_birth/README.md",
+      "previous_sha256": "4d1ea7b4598d5574abca0cfbead08cf2e2926f57d6215cbd0aa5852418892b84",
+      "current_sha256": "8d335e39def1480ceb307309fa9c2f94ca84a2ebf6d917e79ceff1e04c956692",
+      "outcome": "Corrected attribution of final contract SHA. The formerly quoted digest belongs to superseded contract002. All immutable contracts/native artifacts/assessments are unchanged."
+    }
+  ],
+  "native_output_hashes": {
+    "path": "native-output-hashes.json",
+    "sha256": "70b22736a10efc45fa74bf58c5da11f9a75189304543e036c67109d1fec162e0"
+  },
+  "independent_review": "In progress at preparation of this projection; root integrates only after the separate review.",
+  "remaining_limits": [
+    "Only a synthetic thermal fixture; no head geometry or process calibration.",
+    "The thermal witness has no mechanical solve or support/plate release.",
+    "No temperature-by-plastic-strain hardening, latent heat, powder transport or manufacturing qualification is established.",
+    "Existing mechanical witnesses and subsequent whole-head execution have separate evidence."
+  ]
+}

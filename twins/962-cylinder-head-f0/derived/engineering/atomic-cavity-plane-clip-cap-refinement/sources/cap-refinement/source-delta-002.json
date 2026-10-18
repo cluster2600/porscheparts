@@ -1,0 +1,109 @@
+{
+  "schema": "962-cap-refinement-EPICK-successor-source-proof/v1",
+  "preserved_source_sha256": "bac6102f804025b8f9133fe94094e4a3ee3533fe962a83ecee2a76f0ae9e4a63",
+  "successor_source_sha256": "933b792742e378351885453fd1a7128ca75f4ba9183ed7f264a3b11a58e2d4ee",
+  "unchanged_helper_sha256": "0583a28d01a7b3cf0d1f4e4c95af03d5bc5338748366ffb66c292644f8fbce89",
+  "diff_sha256": "cd941800058a89bbac7d7b0b800907b4f48c8c0c83a600f066c22a5af35d5183",
+  "explicit_substitutions": [
+    {
+      "role": "EPICK working vertex bases",
+      "old": "using Vb=CGAL::Delaunay_mesh_vertex_base_2<Exact,CGAL::Triangulation_vertex_base_with_info_2<std::size_t,Exact>>;",
+      "new": "using Vb=CGAL::Delaunay_mesh_vertex_base_2<Kernel,CGAL::Triangulation_vertex_base_with_info_2<std::size_t,Kernel>>;"
+    },
+    {
+      "role": "EPICK working face base",
+      "old": "using Fb=CGAL::Delaunay_mesh_face_base_2<Exact>;",
+      "new": "using Fb=CGAL::Delaunay_mesh_face_base_2<Kernel>;"
+    },
+    {
+      "role": "EPICK working CDT",
+      "old": "using CDT=CGAL::Constrained_Delaunay_triangulation_2<Exact,Tds,CGAL::No_constraint_intersection_requiring_constructions_tag>;",
+      "new": "using CDT=CGAL::Constrained_Delaunay_triangulation_2<Kernel,Tds,CGAL::No_constraint_intersection_requiring_constructions_tag>;"
+    },
+    {
+      "role": "exact dyadic proof point and terse stage stderr",
+      "old": "using Criteria=CGAL::Delaunay_mesh_size_criteria_2<CDT>;",
+      "new": "using Criteria=CGAL::Delaunay_mesh_size_criteria_2<CDT>;\nP2 exact_working_point(const Kernel::Point_2& point) {if(!std::isfinite(point.x())||!std::isfinite(point.y()))throw Rejected(\"Nonfinite working-CDT point\");return P2(point.x(),point.y());}\nvoid trace(const std::string& stage,const char* event) {std::cerr<<\"stage=\"<<stage<<\" event=\"<<event<<'\\n'<<std::flush;}"
+    },
+    {
+      "role": "honest new coordinate construction metadata",
+      "old": "materialized exact XY converted to approximate binary64, then rechecked; no nearest-rounding claim",
+      "new": "native working-CDT binary64 XY copied, then exact-dyadic rechecked; no exact circumcentre or nearest-rounding claim"
+    },
+    {
+      "role": "explicit working/proof kernel report fields",
+      "old": "<<\",\\\"new_point_and_nonfixed_face_provenance_sentinel\\\":18446744073709551615",
+      "new": "<<\",\\\"working_CDT_kernel\\\":\\\"EPICK exact predicates and inexact constructions\\\",\\\"proof_kernel\\\":\\\"EPECK exact arithmetic on working binary64 coordinates\\\"\"\n   <<\",\\\"new_point_and_nonfixed_face_provenance_sentinel\\\":18446744073709551615"
+    },
+    {
+      "role": "original binary64 feed to working CDT",
+      "old": "handles[v]=cdt.insert(q);",
+      "new": "auto point=original.point(Vertex(v));handles[v]=cdt.insert(Kernel::Point_2(point.x(),point.y()));"
+    },
+    {
+      "role": "exact of working source-row lookup",
+      "old": "retained.find(f->vertex(j)->point())",
+      "new": "retained.find(exact_working_point(f->vertex(j)->point()))"
+    },
+    {
+      "role": "exact centroid of working binary64 triangle",
+      "old": "auto centroid=[](CDT::Face_handle f){return P2((f->vertex(0)->point().x()+f->vertex(1)->point().x()+f->vertex(2)->point().x())/3,(f->vertex(0)->point().y()+f->vertex(1)->point().y()+f->vertex(2)->point().y())/3);};",
+      "new": "auto centroid=[](CDT::Face_handle f){auto a=exact_working_point(f->vertex(0)->point()),b=exact_working_point(f->vertex(1)->point()),c=exact_working_point(f->vertex(2)->point());return P2((a.x()+b.x()+c.x())/3,(a.y()+b.y()+c.y())/3);};"
+    },
+    {
+      "role": "exact of working constrained endpoint lookup",
+      "old": "retained.find(f->vertex(CDT::cw(j))->point()),b=retained.find(f->vertex(CDT::ccw(j))->point())",
+      "new": "retained.find(exact_working_point(f->vertex(CDT::cw(j))->point())),b=retained.find(exact_working_point(f->vertex(CDT::ccw(j))->point()))"
+    },
+    {
+      "role": "deterministic exact dyadic working-point ordering",
+      "old": "ordered.emplace(v->point(),v);",
+      "new": "ordered.emplace(exact_working_point(v->point()),v);"
+    },
+    {
+      "role": "copy native binary64 new point without exact construction claim",
+      "old": "q=Point(CGAL::to_double(CGAL::exact(item.first.x())),CGAL::to_double(CGAL::exact(item.first.y())),0);",
+      "new": "q=Point(item.second->point().x(),item.second->point().y(),0);"
+    },
+    {
+      "role": "original-cap stage begin",
+      "old": "r.stage=\"original_annular_cap\";const Mesh",
+      "new": "r.stage=\"original_annular_cap\";trace(r.stage,\"begin\");const Mesh"
+    },
+    {
+      "role": "stage transition into mapped_annulus",
+      "old": "r.guards[\"original_cap_and_fixed_map_association\"]=true;r.stage=\"mapped_annulus\";",
+      "new": "r.guards[\"original_cap_and_fixed_map_association\"]=true;trace(r.stage,\"end\");r.stage=\"mapped_annulus\";trace(r.stage,\"begin\");"
+    },
+    {
+      "role": "stage transition into fixed_cell_CDT",
+      "old": "r.guards[\"mapped_simple_two_loop_annulus\"]=true;r.stage=\"fixed_cell_CDT\";",
+      "new": "r.guards[\"mapped_simple_two_loop_annulus\"]=true;trace(r.stage,\"end\");r.stage=\"fixed_cell_CDT\";trace(r.stage,\"begin\");"
+    },
+    {
+      "role": "stage transition into interior_no_edge_refinement",
+      "old": "r.guards[\"explicit_annulus_minus_fixed_marks_and_exact_constraints\"]=true;r.stage=\"interior_no_edge_refinement\";",
+      "new": "r.guards[\"explicit_annulus_minus_fixed_marks_and_exact_constraints\"]=true;trace(r.stage,\"end\");r.stage=\"interior_no_edge_refinement\";trace(r.stage,\"begin\");"
+    },
+    {
+      "role": "stage transition into rounded_embedding",
+      "old": "r.guards[\"no_constrained_edge_split_or_fixed_cell_drift\"]=true;r.stage=\"rounded_embedding\";",
+      "new": "r.guards[\"no_constrained_edge_split_or_fixed_cell_drift\"]=true;trace(r.stage,\"end\");r.stage=\"rounded_embedding\";trace(r.stage,\"begin\");"
+    },
+    {
+      "role": "stage transition into export_after_cap_only_guards",
+      "old": "r.guards[\"rounded_embedding_domain_topology_and_quality\"]=true;r.stage=\"export_after_cap_only_guards\";",
+      "new": "r.guards[\"rounded_embedding_domain_topology_and_quality\"]=true;trace(r.stage,\"end\");r.stage=\"export_after_cap_only_guards\";trace(r.stage,\"begin\");"
+    },
+    {
+      "role": "export stage end",
+      "old": "r.exported=true;r.stage=\"complete\";emit",
+      "new": "r.exported=true;trace(r.stage,\"end\");r.stage=\"complete\";emit"
+    }
+  ],
+  "exact_reverse_to_every_preserved_source_byte": true,
+  "thresholds_options_loop_and_counter_logic_changed": false,
+  "new_representation_hypothesis": "EPICK working CDT and Mesh_2 inexact circumcentre constructions; exact proof of native binary64 embedding retained",
+  "native_or_compiler_or_unit_test_calls": 0,
+  "new_finite_check": "Exact-of-working conversion rejects nonfinite EPICK points before constructing EPECK proof values."
+}

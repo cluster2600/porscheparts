@@ -1,0 +1,28 @@
+{
+  "schema": "962-oneway-concrete-source-primary-supplement/v1",
+  "revision": "7c06bdcefd02f9f31f4508839f21f410561309a4",
+  "scope": "Official pinned primary source text inspected, no upstream source body copied; hashes and installed-build equivalence not claimed",
+  "sources": [
+    {
+      "path": "modules/solid_mechanics/src/physics/QuasiStaticSolidMechanicsPhysics.C",
+      "url": "https://raw.githubusercontent.com/idaholab/moose/7c06bdcefd02f9f31f4508839f21f410561309a4/modules/solid_mechanics/src/physics/QuasiStaticSolidMechanicsPhysics.C",
+      "lines": "155-194,409-432",
+      "body_sha256": null,
+      "finding": "SMALL incremental selected; undisplaced mesh follows SMALL. Fallback automatic variable path is global, but the normal Common action path below unions block restrictions."
+    },
+    {
+      "path": "modules/solid_mechanics/src/actions/CommonSolidMechanicsAction.C",
+      "url": "https://raw.githubusercontent.com/idaholab/moose/7c06bdcefd02f9f31f4508839f21f410561309a4/modules/solid_mechanics/src/actions/CommonSolidMechanicsAction.C",
+      "lines": "38-113",
+      "body_sha256": null,
+      "finding": "Normal Physics common action collects nested add_variables block restrictions and applies their2/3 union to displacement variables."
+    },
+    {
+      "path": "framework/src/outputs/Exodus.C",
+      "url": "https://raw.githubusercontent.com/idaholab/moose/7c06bdcefd02f9f31f4508839f21f410561309a4/framework/src/outputs/Exodus.C",
+      "lines": "68-74,159-165,217-229,261-265,300-321,476-487",
+      "body_sha256": null,
+      "finding": "Standard Exodus defaults write_hdf5=false and disables HDF5 writer. Mesh changes create another family member. Actual CDFmagic/fullfamily IDs/block metadata still require saved decode; no source/runtime equivalence inferred."
+    }
+  ]
+}

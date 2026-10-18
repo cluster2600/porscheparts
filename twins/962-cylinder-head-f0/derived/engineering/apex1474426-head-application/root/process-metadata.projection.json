@@ -1,0 +1,64 @@
+{
+  "schema": "962-head-application-selected-process-metadata/v1",
+  "preflight_sha256": "fc4a0ff7a2c39155dece93ca8a3986f79dcbe23d3e4e85a0852a35ef0bc00c22",
+  "processes": [
+    {
+      "PID": "process-role://observed/01",
+      "PPID": "process-role://observed/02",
+      "PGID": "process-role://observed/01",
+      "elapsed": "01-05:19:11",
+      "cumulative_CPU": "0:09.78",
+      "sampled_CPU_percent": 0.0,
+      "RSS_KiB": 5488,
+      "state": "Ss",
+      "comm": "/Library/Frameworks/Python.framework/Versions/3.10/Resources/Python.app/Contents/MacOS/Python"
+    },
+    {
+      "PID": "process-role://observed/03",
+      "PPID": "process-role://observed/02",
+      "PGID": "process-role://observed/03",
+      "elapsed": "01-04:32:43",
+      "cumulative_CPU": "0:09.31",
+      "sampled_CPU_percent": 0.0,
+      "RSS_KiB": 5488,
+      "state": "Ss",
+      "comm": "/Library/Frameworks/Python.framework/Versions/3.10/Resources/Python.app/Contents/MacOS/Python"
+    },
+    {
+      "PID": "process-role://observed/02",
+      "PPID": "process-role://observed/06",
+      "PGID": "process-role://observed/06",
+      "elapsed": "01-23:37:22",
+      "cumulative_CPU": "158:06.70",
+      "sampled_CPU_percent": 16.7,
+      "RSS_KiB": 975824,
+      "state": "S",
+      "comm": "/Applications/ChatGPT.app/Contents/Resources/codex-cli/CodexCLI.app/Contents/MacOS/codex"
+    },
+    {
+      "PID": "process-role://observed/04",
+      "PPID": "process-role://observed/02",
+      "PGID": "process-role://observed/04",
+      "elapsed": "01-07:50:04",
+      "cumulative_CPU": "0:10.68",
+      "sampled_CPU_percent": 0.0,
+      "RSS_KiB": 5504,
+      "state": "Ss",
+      "comm": "/Library/Frameworks/Python.framework/Versions/3.10/Resources/Python.app/Contents/MacOS/Python"
+    },
+    {
+      "PID": "process-role://observed/05",
+      "PPID": "process-role://observed/02",
+      "PGID": "process-role://observed/05",
+      "elapsed": "23:42:03",
+      "cumulative_CPU": "0:07.62",
+      "sampled_CPU_percent": 0.0,
+      "RSS_KiB": 5520,
+      "state": "Ss",
+      "comm": "/Library/Frameworks/Python.framework/Versions/3.10/Resources/Python.app/Contents/MacOS/Python"
+    }
+  ],
+  "scope": "Metadata only for four previously observed selectedPython3.10 comm candidates and their common Codex parent. No argv/environment, ownership inference or process action. Observed long-lived sleeping candidates with small RSS do not establish universal absence or future resource availability.",
+  "no_unrelated_processes_modified": true,
+  "no_hard_OS_CPU_or_RSS_quota": true
+}

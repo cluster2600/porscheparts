@@ -1,0 +1,150 @@
+--- work/962-engineering/fixed-shell-netgen-apex1474426-prep-001/reader.py
++++ work/962-engineering/head-star-current204-local-stages-prep-001/netgen_case.py
+@@ -1,22 +1,23 @@
+-"""HELD one saved-cavity Netgen operation; no generation, stitching or head apply."""
++"""HELD one selected current204 saved-case Netgen operation; no generation, stitching or head apply."""
+ from pathlib import Path
+ import ast,hashlib,importlib.util,json,sys,time
+ 
+ ROOT=Path(__file__).resolve().parents[3];OUT=Path(__file__).resolve().parent
+-CAVITY='work/962-engineering/fixed-shell-generation-apex1474426-prep-001/reader.py'
+-CAVITY_SHA='2d3529956d03dd256be5a5786812ebe3a3ec3d2bd5b2d923a458a9b8b08f82ff'
++CAVITY='work/962-engineering/head-star-current204-local-stages-prep-001/generate_case.py'
++CAVITY_SHA='fc1aba0a0ae93995f8fc4eea86d3fe693ce0360ac3f98d158ba5f01ae8983e3d'
+ CUBE='work/962-engineering/atomic-cavity-plane-clip-cap-assembly-netgen-cube-prep-002/reader.py'
+ CUBE_SHA='97b7e9fc7d17defa84594c50dac1d4e09cd39bb47ef2059e00b6ac07fe8c029b'
+-INPUT='work/962-engineering/fixed-shell-generation-apex1474426-001/cavity.msh'
+-INPUT_SHA='0db979263849d4189f56ec34f319b4fd24cb85fb00d1bc167b5c4f2ba9ea5a9f'
+-WORKER='work/962-engineering/fixed-shell-generation-apex1474426-001/fixture-report.json'
+-WORKER_SHA='d85681c2c65b93c3b29930c4a1956bfd1e1ce75eab6c1ae72fc08f57df099a04'
+-ARRAYS='work/962-engineering/fixed-shell-generation-apex1474426-001/arrays.json'
+-ARRAYS_SHA='78487e63fac0e207efd1422d1964837664c07f6789051ddeba9e1bcf7f895cf7'
+-AUDIT_INPUTS={
+- 'twins/962-cylinder-head-f0/source/mesh_head.py':'69c8012e99057e384d44d6971d41f0e2cc7197a978120a7c566b0ad5a6477da5',
+- 'work/962-engineering/atomic-cavity-plane-clip-cap-assembly-delaunay-prep-001/mesh_assembled_delaunay.py':'a3268687edc90b0149775cf5d80a89df82175cc982bbf5d7184b6ea8935be8a4',
+- 'work/962-engineering/direct-sicn-apex1474426-cavity-study-001/local-shell-input-001.json':'6ad00be791b8b752106b5324b9f80df314f7458d8d0475b1ffc1a053bc04d12a'}
++MANIFEST='work/962-engineering/head-star-current204-local-stages-prep-001/case-manifest.json'
++MANIFEST_SHA='3a558ede04cbc52c59e401befb36b8983ebd9b7f57d4266de0bea38fb1a963c5'
++BATCH='work/962-engineering/head-star-current204-batch-shells-001/report.json'
++BATCH_SHA='4f9fc0354918a907083006484d534c34c3b2621dfcc83b00cc4a4b731f009e86'
++INPUT=INPUT_SHA=WORKER=WORKER_SHA=ARRAYS=ARRAYS_SHA=None
++AUDIT_INPUTS={'twins/962-cylinder-head-f0/source/mesh_head.py':'69c8012e99057e384d44d6971d41f0e2cc7197a978120a7c566b0ad5a6477da5','work/962-engineering/atomic-cavity-plane-clip-cap-assembly-delaunay-prep-001/mesh_assembled_delaunay.py':'a3268687edc90b0149775cf5d80a89df82175cc982bbf5d7184b6ea8935be8a4',MANIFEST:MANIFEST_SHA,BATCH:BATCH_SHA}
++BATCH_EVIDENCE={'work/962-engineering/head-star-current204-batch-shells-001/receipt.json': '78e215c5c85f01ca614e44e4e443fd4181086f63e2edc5d5aee81fbef77dbedb', 'work/962-engineering/head-star-current204-batch-shells-root-execution-001/closed-result.json': '67d9b2763fcd5ac887eddca79010d8a21dc6365b19f56224512acbaf7a3150e2', 'work/962-engineering/head-star-current204-batch-shells-root-execution-001/result-review.json': '5a80128a5e4dd3ea685449c1124fd1fad4c07a3bb1c586f9f80a2e26caacf913', 'work/962-engineering/head-star-current204-batch-shells-result-peer-001/review.json': '3fd325b3e4e18b942bda26d9292127d1dc1c2b8ecc5841d11257dc61884030da', 'work/962-engineering/head-star-current204-batch-shells-root-execution-001/result-peer-acceptance.json': '47a98aad883748178b7b25a1a5957ca01c0780eb0274f778567e6c5fb22fe538'}
++GENERATION_RUNNER='work/962-engineering/head-star-current204-local-stages-prep-001/run_generation.py'
++GENERATION_RUNNER_SHA='05b4f8996f1f642120b70be755e6609f7b641041cad1a867ea8da9e56ecb423b'
++AUDIT_INPUTS.update(BATCH_EVIDENCE)
++AUDIT_INPUTS[GENERATION_RUNNER]=GENERATION_RUNNER_SHA
+ OPTIONS={'General.NumThreads':2,'Mesh.MaxNumThreads3D':2,'Mesh.Renumber':0,
+  'Mesh.Optimize':0,'Mesh.OptimizeNetgen':0,'Mesh.OptimizeThreshold':.3,
+  'Mesh.Binary':1,'Mesh.SaveAll':1,'Mesh.MshFileVersion':4.1}
+@@ -33,12 +34,12 @@
+  if (not isinstance(c.get('output_directory'),str) or OUT.parent!=ROOT/'work/962-engineering'
+      or (ROOT/c['output_directory']).resolve()!=OUT):raise ValueError('Exact fresh actual output binding required')
+  if (c.get('options')!=OPTIONS or c.get('declared_operation_counts')!=COUNTS or c.get('automatic_retry') is not False
+-     or c.get('input_mesh')!=INPUT or c.get('input_mesh_sha256')!=INPUT_SHA
+      or c.get('optimization')!={'method':'Netgen','force':True} or c.get('geometry_creation_dim_tags')!=[[3,1]]):
+   raise ValueError('Fixed saved input, options and one-operation policy required')
+ 
+ def require_contract(c):
+  require_authority(c)
++ configure_baseline(c)
+  for name,digest in [(CAVITY,CAVITY_SHA),(CUBE,CUBE_SHA),(INPUT,INPUT_SHA),(WORKER,WORKER_SHA),(ARRAYS,ARRAYS_SHA)]:
+   if c['input_hashes'].get(name)!=digest:raise ValueError('Exact input/helper must be a direct pin')
+  for name,digest in AUDIT_INPUTS.items():
+@@ -53,20 +54,42 @@
+      or sha(Path(sys.executable).resolve())!=c['runtime']['python_executable_sha256']):
+   raise ValueError('Materialized source or selected Python changed')
+ 
++def configure_baseline(c):
++ global INPUT,INPUT_SHA,WORKER,WORKER_SHA,ARRAYS,ARRAYS_SHA
++ b=c['generation_baseline'];directory='work/962-engineering/head-star-current204-apex-'+str(c['case_apex'])+'-generation-001'
++ expected={'mesh':directory+'/cavity.msh','worker':directory+'/fixture-report.json','arrays':directory+'/arrays.json','receipt':directory+'/execution-receipt.json','actual':directory+'/frozen-contract.json'}
++ if set(b)!=set(expected)|{'root_closed','result_peer'} or any(b[k]['path']!=v for k,v in expected.items()):raise ValueError('Same-case generation plus root closure and stopped peer direct pins required')
++ for row in b.values():
++  if not isinstance(row,dict) or c['input_hashes'].get(row['path'])!=row['sha256']:raise ValueError('All stopped generation/proof records must be direct pins')
++ INPUT,INPUT_SHA=b['mesh']['path'],b['mesh']['sha256'];WORKER,WORKER_SHA=b['worker']['path'],b['worker']['sha256'];ARRAYS,ARRAYS_SHA=b['arrays']['path'],b['arrays']['sha256']
++
+ def load_cavity_module():
+  spec=importlib.util.spec_from_file_location('frozen_specific_cavity_audit',ROOT/CAVITY)
+  cavity=importlib.util.module_from_spec(spec);spec.loader.exec_module(cavity)
+  return cavity
+ 
+-def require_saved_baseline(worker):
+- r=worker.get('saved_reopen',{});q=r.get('quality',{}).get('SICN',{})
+- if (worker.get('status')!='completed_specific_cavity_generation_only' or worker.get('fixture_procedural_checks_passed') is not True
+-     or worker.get('actual_SICN_gate_passed') is not False or worker.get('saved_mesh_identity_exact') is not True
+-     or worker.get('bound_inputs_unchanged') is not True or worker.get('mesh_sha256')!=INPUT_SHA
+-     or worker.get('mesh_bytes')!=5646 or worker.get('full_tiny_arrays_sha256')!=ARRAYS_SHA
+-     or (r.get('nodes'),r.get('tetrahedra'),r.get('referenced_interior_nodes'),r.get('unreferenced_nodes'))!=(32,57,0,0)
+-     or (q.get('count'),q.get('below_point1_count'),q.get('nonpositive_count'),q.get('minimum'))!=(57,11,0,.009188807754622056)):
+-  raise ValueError('Exact single stopped saved-cavity baseline required; its quality rejection is preserved')
++def require_saved_baseline(worker,c,case):
++ r=worker.get('saved_reopen',{});q=r.get('quality',{}).get('SICN',{});b=c['generation_baseline']
++ if (worker.get('status')!='completed_finite_selected_cavity_generation_only' or worker.get('fixture_procedural_checks_passed') is not True
++     or worker.get('actual_SICN_gate_passed') is not False or worker.get('next_stage')!='one_Netgen'
++     or worker.get('saved_mesh_identity_exact') is not True or worker.get('bound_inputs_unchanged') is not True
++     or worker.get('case_apex')!=case['apex'] or worker.get('case_key')!=case['case_key']
++     or worker.get('case_record_sha256')!=case['source_record_sha256'] or worker.get('case_manifest_sha256')!=MANIFEST_SHA
++     or worker.get('local_shell_serialized_sha256')!=case['shell_serialized_sha256']
++     or worker.get('source_batch_sha256')!=BATCH_SHA or worker.get('mesh_sha256')!=INPUT_SHA
++     or worker.get('mesh_bytes')!=b['mesh']['bytes'] or worker.get('full_tiny_arrays_sha256')!=ARRAYS_SHA
++     or worker.get('after_generation')!=r or r.get('unreferenced_nodes')!=0
++     or type(r.get('tetrahedra')) is not int or r['tetrahedra']<=0 or q.get('count')!=r['tetrahedra']
++     or type(q.get('nonpositive_count')) is not int or not 0<=q['nonpositive_count']<=r['tetrahedra'] or type(q.get('minimum')) not in (int,float)
++     or q['minimum']>=.1 or q.get('below_point1_count',0)<=0):
++  raise ValueError('Same-case stopped procedural generation with actual strict-quality rejection required')
++ receipt=json.loads((ROOT/b['receipt']['path']).read_text())
++ if (receipt.get('returncode')!=2 or receipt.get('stop_reason') is not None
++     or receipt.get('fixture_report_sha256')!=WORKER_SHA or receipt.get('contract_sha256')!=b['actual']['sha256']
++     or receipt.get('reader_sha256')!=CAVITY_SHA or receipt.get('runner_sha256')!=GENERATION_RUNNER_SHA
++     or c.get('generation_runner_sha256')!=GENERATION_RUNNER_SHA):
++  raise ValueError('Natural procedural generation quality rejection receipt required; stopped/error runs are never retried')
++
+ 
+ def expected_live(helper,worker,arrays):
+  np=helper.np;a=arrays['saved_reopen']
+@@ -85,7 +108,7 @@
+  if {p.name for p in OUT.iterdir()}!={'reader.py','run_readback.py','frozen-contract.json','native.log'}:
+   raise ValueError('Only fresh materialized inputs and owned native.log are permitted')
+  started=time.monotonic();gmsh=None;initialized=False;live={}
+- report=dict(schema='962-specific-saved-cavity-Netgen/v1',status='running',stage='imports',
++ report=dict(next_stage='hold_case',later_head_storage_compatible=False,schema='962-finite-selected-current204-Netgen/v1',status='running',stage='imports',
+   fixture_procedural_checks_passed=False,actual_SICN_gate_passed=False,actual_SICN_threshold=.1,
+   native_operation_counts={k:0 for k in COUNTS},call_counts_are_attempts=True,options=OPTIONS,
+   frozen_contract_sha256=sha(OUT/'frozen-contract.json'),input_mesh_sha256=INPUT_SHA,input_worker_sha256=WORKER_SHA,input_arrays_sha256=ARRAYS_SHA,
+@@ -94,11 +117,12 @@
+   global_self_intersection_checked=False,geometric_tetrahedron_overlap_checked=False,new_interior_node_point_in_cavity_containment_checked=False,
+   dynamic_interior_count_and_retagging_allowed=True,interior_ancestry_inferred=False)
+  try:
+-  worker=json.loads((ROOT/WORKER).read_text());require_saved_baseline(worker)
+-  arrays=json.loads((ROOT/ARRAYS).read_text());cavity=load_cavity_module()
++  cavity=load_cavity_module();case,data=cavity.configure_case(c,stage='netgen')
++  worker=json.loads((ROOT/WORKER).read_text());require_saved_baseline(worker,c,case)
++  arrays=json.loads((ROOT/ARRAYS).read_text())
+   helper,gmsh,observed,actual=cavity.load_audit_helper(c);report.update(runtime=observed,runtime_sha256s=actual)
+   if c['expected_runtime']!=cavity.RUNTIME:raise ValueError('Fixed expected runtime changed')
+-  data=json.loads((ROOT/cavity.SHELL).read_text());points,faces,shell=cavity.shell_rows(data)
++  points,faces,shell=cavity.shell_rows(data)
+   helper.P=helper.np.asarray(points,dtype='<f8');helper.F=helper.np.asarray(faces,dtype=helper.np.int64)
+   tree=ast.parse((ROOT/CUBE).read_text());names=['geometry_flag_only','optimize_once']
+   selected=[n for n in tree.body if isinstance(n,ast.FunctionDef) and n.name in names]
+@@ -113,7 +137,7 @@
+   require_before(helper,live['before'],expected);before=cavity.boundary_snapshot(gmsh,helper)
+   if any(gmsh.option.getNumber(k)!=v for k,v in OPTIONS.items()):raise ValueError('Fixed options changed before geometry/optimizer operations')
+   report.update(single_saved_before_state_exact=True,shell=shell,original_source_classifications=data['original_source_classifications'],
+-   local_to_global_shell_node_tags=data['local_to_global_node_tags'],all32_shell_nodes_fixed_only_for_this_cavity_operation=True)
++   local_to_global_shell_node_tags=data['local_to_global_node_tags'],all_shell_nodes_fixed_only_for_this_cavity_operation=True)
+   report['stage']='volume_only_geometry_flag'
+   inspect=lambda:cavity.inspect_cavity(gmsh,helper)
+   live['after_geometry_flag']=helper.geometry_flag_only(gmsh,live['before'],inspect,report['native_operation_counts'])
+@@ -134,7 +158,9 @@
+   if sha(path)!=digest:raise ValueError('Saved mesh changed during reopen')
+   report.update(mesh_sha256=digest,mesh_bytes=path.stat().st_size,saved_mesh_identity_exact=True,
+    exact_boundary_bits_faces_classifications=True,fixture_procedural_checks_passed=True,
+-   actual_SICN_gate_passed=helper.quality_gate(live['after'][0]),stage='completed_all_local_checks',status='completed_specific_cavity_Netgen_only')
++   actual_SICN_gate_passed=helper.quality_gate(live['after'][0]),stage='completed_all_local_checks',status='completed_finite_selected_cavity_Netgen_only')
++  storage=cavity.candidate_storage_admission(live['after'][0],case)
++  report.update(case_key=case['case_key'],case_apex=case['apex'],case_record_sha256=case['source_record_sha256'],case_manifest_sha256=MANIFEST_SHA,source_batch_sha256=BATCH_SHA,later_head_storage_compatible=storage,next_stage='domain' if report['actual_SICN_gate_passed'] and storage else 'hold_case')
+  except Exception as exc:report.update(status='failed_outputs_preserved',error=type(exc).__name__+': '+str(exc))
+  finally:
+   if initialized:

@@ -1,0 +1,47 @@
+{
+  "version": "4.15.2",
+  "primary_archive": "https://gmsh.info/src/gmsh-4.15.2-source.tgz",
+  "archive_sha256": "be3f66f225d27ba9fa014f07e83169285da8a051b0e8ab7103d88066b39bdd3e",
+  "primary_manual": "https://gmsh.info/doc/texinfo/",
+  "files": {
+    "src/common/gmsh.cpp": {
+      "sha256": "375f8ba655c0c2c5c7e0f52a5460e17e0bcf49a363449f2df1b287f6b38a2cb8",
+      "bytes": 297790,
+      "locators": [
+        "2423-2424: minSICN dispatch"
+      ]
+    },
+    "src/geo/MElement.h": {
+      "sha256": "4a6ec0d98f397c540cc9ef2f29a455f088471422a9074c94fea10357da4512df",
+      "bytes": 22390,
+      "locators": [
+        "259-264: minSICNShapeMeasure uses signedInvCondNumRange"
+      ]
+    },
+    "src/geo/MElement.cpp": {
+      "sha256": "969b99203046f3a6f8bc74c8228f1bc62cb2388946c7ab463c2b90297b0d16b6",
+      "bytes": 82045,
+      "locators": [
+        "387-433: signedInvCondNumRange calls CondNumBasis"
+      ]
+    },
+    "src/numeric/CondNumBasis.h": {
+      "sha256": "2f395457fe8751d9cce8e216781389f45ecfbd69c45d7f4c8330a23a12692691",
+      "bytes": 5117,
+      "locators": [
+        "46-54: signed inverse condition uses ideal-reference gradients"
+      ]
+    },
+    "src/numeric/CondNumBasis.cpp": {
+      "sha256": "786fb978baa73313a93f30dcad139972b987415f896f81c6fa6b22f74a8b1f8c",
+      "bytes": 26256,
+      "locators": [
+        "28-66: 2D normalized inverse Frobenius condition number",
+        "74-96: signed 3D inverse Frobenius condition number",
+        "400-413: linear triangle/tetrahedron condition-number order zero"
+      ]
+    }
+  },
+  "scope": "minSICN API follows CondNumBasis. The separately named qualityMeasuresJacobian.cpp minICNMeasure uses a different 3D mean-ratio-style formula and is not substituted for minSICN.",
+  "third_party_source_copied_into_public_delivery": false
+}

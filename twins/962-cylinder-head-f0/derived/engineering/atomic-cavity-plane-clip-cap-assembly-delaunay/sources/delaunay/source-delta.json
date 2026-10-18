@@ -1,0 +1,37 @@
+{
+  "schema": "962-assembled-raw-Delaunay-source-delta/v1",
+  "status": "HELD_source_only",
+  "base_path": "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-hxt-prep-002/mesh_assembled_hxt.py",
+  "base_sha256": "b7d3de89c6ed166bb5d0df5c5d41ddd77b8deee9c36775b4e40b205722a2587e",
+  "selected_path": "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-delaunay-prep-001/mesh_assembled_delaunay.py",
+  "selected_sha256": "a3268687edc90b0149775cf5d80a89df82175cc982bbf5d7184b6ea8935be8a4",
+  "literal_replacements": [
+    {
+      "old": "\"\"\"One held raw-HXT volume/quality trial of the exact atomic surface; no optimizer.\"\"\"",
+      "new": "\"\"\"One held raw-Delaunay volume/quality trial of the exact atomic surface; no optimizer.\"\"\""
+    },
+    {
+      "old": "OUTPUT = ROOT / \"work/962-engineering/atomic-cavity-plane-clip-cap-assembly-volume-hxt-001\"",
+      "new": "OUTPUT = ROOT / \"work/962-engineering/atomic-cavity-plane-clip-cap-assembly-volume-delaunay-001\""
+    },
+    {
+      "old": "OPTIONS = {**mesh_head.OPTIONS, \"Mesh.Algorithm3D\": 10, \"Mesh.Optimize\": 0,",
+      "new": "OPTIONS = {**mesh_head.OPTIONS, \"Mesh.Algorithm3D\": 1, \"Mesh.Optimize\": 0,"
+    },
+    {
+      "old": "stage=\"generating_HXT_without_standard_optimization\"",
+      "new": "stage=\"generating_Delaunay_without_standard_optimization\""
+    }
+  ],
+  "diff_sha256": "4e67682e699884dc824683bfb9d754f5c79fe8404b87802ed597c221e1ac00d5",
+  "entire_reverse_recovers_b7d3_byte_exact": true,
+  "run_AST_unchanged": true,
+  "all_other_function_AST_unchanged_except_worker_stage_string": true,
+  "meshing_or_quality_logic_changes": "Only Algorithm3D10 to1; input/quality/boundary/saved-array/lifecycle algorithms unchanged. Worker stage label is a telemetry change.",
+  "existing_12_PASS_lifecycle_result_reused_not_rerun": {
+    "path": "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-hxt-root-source-002/review.json",
+    "sha256": "d382320f903b4735d0f0a4b1baf1a2fee49c1c888550d0a3c756f15d11982f86",
+    "source_sha256": "b7d3de89c6ed166bb5d0df5c5d41ddd77b8deee9c36775b4e40b205722a2587e"
+  },
+  "no_new_logic_abstraction_mock_or_execution": true
+}

@@ -1,0 +1,90 @@
+{
+  "schema": "962-CGAL-directed-distance-source-held-preparation/v1",
+  "status": "HELD_SOURCE_ONLY",
+  "input_sha256": {
+    "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-distance-cgal-prep-001/directed_distance.cpp": "26297ed13e6c95588d94abf8a320e7aaea2c8e4d12cec125b189cfd58ae7d408",
+    "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-distance-cgal-prep-001/prepare_literals.py": "9b5fd5bf23664f7787c0f2f491deaa3161cb415e0d4900a009d16c4e5245d184",
+    "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-distance-cgal-prep-001/METHOD.md": "74dff3c5345f93f42cf7ed9ca1c18162e9f0822d8bcc717f6d9319b717ac16d1",
+    "work/962-engineering/atomic-cavity-plane-clip-prep-002/surface_io.hpp": "6bdfff05371a92eff38879704c32e60acee3b84f39ca507adb8843963abc6a62",
+    "work/962-engineering/cgal-bounded-distance-source-research-001/NOTE.md": "3b4afac461a3f017535234c9be20f3a2a3107ccccaf7ef1258771f10d6befbc6",
+    "work/962-engineering/cgal-bounded-distance-source-research-001/sources.json": "bdb177616590a9d3ab999ea40602afe5d8573ab67558c31e97ccb2d2b81a7e30",
+    "work/962-engineering/cgal-bounded-distance-source-research-001/SCALAR_ENCLOSURE_ADDENDUM.md": "36aed5b4a00960e19414763c283b2f4ba97dbb712a594f946536aea7c39f222a",
+    "work/962-engineering/cgal-bounded-distance-source-research-001/addendum-bindings.json": "09c4921aabea41b797fb28e1859289e07e643ab31aa101c688f72420b846f052",
+    "work/962-engineering/cgal-bounded-distance-source-research-001/installed-header-supplement.json": "13c4642529dada4bd7d5dcfc1d430a84b3de6ecc543a67f0629444368d89e1e2",
+    "work/962-engineering/cgal-bounded-distance-source-research-001/INSTALLED_HEADER_SUPPLEMENT.md": "036472ff8ee38a780a3739aa9a1b886817dc927e5d27fa0d1b1dcafe6851bfaf",
+    "work/962-engineering/cgal-bounded-distance-header-capture-001/receipt.json": "a13f7959233020bb542655e6193b2f2fa2d911088cc03c5176b229257c6f10f8",
+    "work/962-engineering/cgal-bounded-distance-header-capture-001/distance.h": "0d972235b4fe076b366a530182de1ad686aa80631d2ca32991b67b739df19689",
+    "work/962-engineering/cgal-bounded-distance-header-capture-001/AABB_traversal_traits_with_Hausdorff_distance.h": "ca64d4d14e74e769fd30849fb37ed6bce9e7b0fe64afb15f9e2a96ce755abbc7",
+    "work/962-engineering/cgal-bounded-distance-header-capture-001/version.h": "758c7caed0cc2aa7e1e48ea2f5e1baa3387ee3e99be1f9d97c25333bcf6d0cf3",
+    "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-distance-cgal-input-prep-001/selection-proof.json": "64d6ae69813fcbb310f29ce5c062cc1f913126ffcba29fc101edc2c8c5883576",
+    "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-distance-cgal-input-prep-001/cap-source-face-ids.u64": "86c1a3ea6d3bb7af010bcc46cd89c72087c45d6e3b3f6d90d34fd5c1821c00d8",
+    "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-distance-cgal-input-prep-001/noncap-source-face-ids.u64": "ce4ac6dbf443d5b3c74c2078e2e3f9471355e5e21d1299d6e855cc6a907b7829",
+    "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-distance-cgal-input-peer-001/review.json": "3991020a0be40a5d0cf8a8da137cebfc38f940489b7099a7817c96229d7f868b",
+    "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-001/candidate.bin": "9d62eac6e2cd7b6a9ecb4a7ea5b632685820369b5c4ede379acc34238f50d7b4",
+    "work/962-engineering/analysis-envelope-025-003/exact-input.bin": "894ece6e63d99684fd7c8710caf73132cd73731ac8bc667548c21c85962d4c95"
+  },
+  "compile_authorized": false,
+  "fixtures_authorized": false,
+  "head_query_authorized": false,
+  "source_cpp": "directed_distance.cpp",
+  "source_lines": 159,
+  "compile_source_mapping": {
+    "directed_distance.cpp": "26297ed13e6c95588d94abf8a320e7aaea2c8e4d12cec125b189cfd58ae7d408"
+  },
+  "selected_image": "sha256:57c6b17ed0bd093a61a3d3cecb7563e912caeb3832fd59e8cec2d4d9d4d1e2f8",
+  "CGAL": "5.6",
+  "kernel": "Exact_predicates_inexact_constructions_kernel",
+  "concurrency": "Sequential_tag",
+  "source_representation": "Each sorted selected face retains its exact three coordinate bits and winding, with three distinct graph vertices; exact triangle union equivalence only.",
+  "complete_target_representation": "All original input vertex and face rows with shared indices; no match filtering.",
+  "CLI": [
+    "source.bin",
+    "complete-target.bin",
+    "sorted-source-face-ids.u64",
+    "fresh-output-directory"
+  ],
+  "output_files": [
+    "report.json"
+  ],
+  "geometry_outputs": [],
+  "epsilon_mm": 2.5e-05,
+  "interval_gap_mm": 0.0001,
+  "head_polygon_budget_mm": 0.0625,
+  "interval_policy": "max(0,nextafter(s-e,-infinity)), nextafter(s+e,+infinity); finite ordered stored width<=gap",
+  "query_completion_separate_from_budget": true,
+  "floating_point_inner_roundoff_certificate_claimed": false,
+  "native_input_validation": [
+    "little endian IEEE binary64",
+    "962SURF1 exact size/count guard",
+    "all coordinates finite",
+    "every raw face bounded/distinct/noncollinear",
+    "sorted unique nonempty selected face IDs",
+    "shared full target valid triangle graph",
+    "disjoint source valid triangle graph"
+  ],
+  "snapshot_scope": "Exact serialized vertex IDs/coordinate bits and face IDs/oriented corner IDs, before/after including caught query exception; memcmp, not hash.",
+  "literal_preparer": "prepare_literals.py",
+  "literal_preparer_executed": false,
+  "prepared_known_queries": 6,
+  "prepared_refusals": 2,
+  "known_distances_mm": [
+    0.03125,
+    0,
+    0.046875,
+    0,
+    0.03125,
+    1
+  ],
+  "fixture_outputs_pending": true,
+  "binary_hash": null,
+  "controller_and_exact_compile_child_pending": true,
+  "compile_or_native_calls": 0,
+  "existing_frozen_sources_modified": false,
+  "geometry_arrays_decoded_during_preparation": false,
+  "limitations": [
+    "Installed algorithmic scalar guarantee only; no inner floating roundoff certificate.",
+    "No API runtime or adaptive size completion guarantee.",
+    "One-way reports require a separately reviewed saved-result union assessment before any two-way distance claim.",
+    "No topology, feature, stronger Mesh_2, volume-mesh, solver or physical admission."
+  ]
+}

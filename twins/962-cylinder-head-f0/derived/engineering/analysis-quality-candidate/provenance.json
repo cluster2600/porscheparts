@@ -1,0 +1,423 @@
+{
+  "schema": "962-quality-candidate-provenance/v1",
+  "projection_policy": "Exact bytes where marked; otherwise explicit whitelist projection. Full native commands, mounts, interpreter host paths, geometry arrays and runtime binaries remain local. Original SHA-256 identifies each retained private input record independently of its public representation.",
+  "origins": {
+    "reports/original-indexed-identity.json": {
+      "original_sha256": "c0b6744764da5b3a451029ecbb28eb9f58ad600cd2ca42174b280266589a733a",
+      "representation": "exact_bytes",
+      "scope": "Exact retained record; not a projection."
+    },
+    "reports/native-quality-report.json": {
+      "original_sha256": "b1c12926116faf92ea4e1f49b304c3ac1847752ddf221d4aa4ad312a97d498e9",
+      "representation": "exact_bytes",
+      "scope": "Exact retained record; not a projection."
+    },
+    "reports/full-array-quality-assessment.json": {
+      "original_sha256": "74541db59f9e321569b244dda68d22d539201693e7a4233e402e29294d6e235a",
+      "representation": "exact_bytes",
+      "scope": "Exact retained record; not a projection."
+    },
+    "reports/root-independent-review-001.json": {
+      "original_sha256": "edcabf3f2b0cd494a255a383c8734df40df8fa1e0d884d4fa3f0fbd044dfbc38",
+      "representation": "exact_bytes",
+      "scope": "Exact retained record; not a projection."
+    },
+    "reports/fixture-assessment.json": {
+      "original_sha256": "3adbcf66b2bfe8029b2fc16abe02131c15a9f42167b50f71f72e495e665422d8",
+      "representation": "exact_bytes",
+      "scope": "Exact retained record; not a projection."
+    },
+    "reports/feature-continuity-001.json": {
+      "original_sha256": "bb99c186083869fa792228ad2095066abcca60c652112118999edb3c9265e72d",
+      "representation": "exact_bytes",
+      "scope": "Exact retained record; not a projection."
+    },
+    "feature-location-review.md": {
+      "original_sha256": "008866e64c0a3fd41fe7aef863e2f25badf5caca29d9e8b5c44fc68735da93e4",
+      "representation": "exact_bytes",
+      "scope": "Exact separately authored postrun source-location review; not a native output or complete semantic map."
+    },
+    "reports/header-inspection-refusal.json": {
+      "original_sha256": "c93d5ff4149addd44e7e28bb233d441cf3f6df19a5cf1576b95d01fe14af1a05",
+      "representation": "exact_bytes",
+      "scope": "Exact retained record; not a projection."
+    },
+    "reports/topology-api-refusal-001.json": {
+      "original_sha256": "73b55edf3fd379300333762a2f32226088c37c25a7da3e7c229e45333b26b3e4",
+      "representation": "whitelist_projection",
+      "retained_top_level_keys": [
+        "status",
+        "gate_passed",
+        "topology_gate_passed",
+        "solver_admission_established",
+        "engineering_accepted",
+        "independent_distance_completed",
+        "feature_channel_BCC_review_completed",
+        "thermal_performance_validated",
+        "strength_validated",
+        "manufacturing_authorized",
+        "error",
+        "bound_inputs_unchanged",
+        "candidate_arrays_unchanged",
+        "wall_seconds"
+      ],
+      "scope": "Only the runtime executable path is omitted; all result/error/array/fixture fields are retained."
+    },
+    "reports/topology-and-intersection-002.json": {
+      "original_sha256": "c54d8b50f84286fb276f01b6fa6bae79d93b84e7330b08eedd71cab93613c3dd",
+      "representation": "whitelist_projection",
+      "retained_top_level_keys": [
+        "status",
+        "gate_passed",
+        "topology_gate_passed",
+        "solver_admission_established",
+        "engineering_accepted",
+        "independent_distance_completed",
+        "feature_channel_BCC_review_completed",
+        "thermal_performance_validated",
+        "strength_validated",
+        "manufacturing_authorized",
+        "surface",
+        "connected_components",
+        "component_fixture_results",
+        "known_result_fixtures",
+        "nonmanifold_vertex_count",
+        "intersections",
+        "bound_inputs_unchanged",
+        "candidate_arrays_unchanged",
+        "wall_seconds"
+      ],
+      "scope": "Only the runtime executable path is omitted; all result/error/array/fixture fields are retained."
+    },
+    "execution-projections/native-compile.json": {
+      "original_sha256": "7596eecbc245af90aa769f18d6f65c63ff125420ea816e9c3f1011497bb53995",
+      "representation": "whitelist_projection",
+      "retained_top_level_keys": [
+        "returncode",
+        "deadline_seconds",
+        "deadline_exceeded",
+        "wall_seconds",
+        "source_sha256",
+        "executed_source_snapshot_sha256",
+        "log_sha256",
+        "binary_sha256"
+      ],
+      "scope": "Native/private commands, arguments, mounts, host/interpreter paths and process IDs are excluded. Original receipt remains local and hash-bound."
+    },
+    "execution-projections/single-head-quality.json": {
+      "original_sha256": "b2481fc3d6ceb29ba4b601fdfd7c40be453365b3d84f469edb42d65ca423870e",
+      "representation": "whitelist_projection",
+      "retained_top_level_keys": [
+        "status",
+        "contract_sha256",
+        "input_sha256",
+        "binary_sha256",
+        "head_solver_executed",
+        "engineering_accepted",
+        "manufacturing_authorized",
+        "native_returncode",
+        "deadline_exceeded",
+        "wall_seconds",
+        "all_bound_inputs_unchanged",
+        "output_sha256",
+        "native_log_sha256"
+      ],
+      "scope": "Native/private commands, arguments, mounts, host/interpreter paths and process IDs are excluded. Original receipt remains local and hash-bound."
+    },
+    "execution-projections/topology-api-refusal-001.json": {
+      "original_sha256": "83f3666e434cfdaf5acaf3955f5bd5e6406db3d6201421301d1c94fb861f5ea4",
+      "representation": "whitelist_projection",
+      "retained_top_level_keys": [
+        "status",
+        "source_sha256",
+        "contract_sha256",
+        "resources",
+        "returncode",
+        "deadline_exceeded",
+        "wall_seconds",
+        "native_log_sha256",
+        "worker_report_sha256",
+        "solver_admission_established",
+        "engineering_accepted",
+        "manufacturing_authorized"
+      ],
+      "scope": "Native/private commands, arguments, mounts, host/interpreter paths and process IDs are excluded. Original receipt remains local and hash-bound."
+    },
+    "execution-projections/topology-success-002.json": {
+      "original_sha256": "ff19c18ca37407d21eb841d28bed61f2504ea968b75999ef92ba4946aed7c7ca",
+      "representation": "whitelist_projection",
+      "retained_top_level_keys": [
+        "status",
+        "source_sha256",
+        "contract_sha256",
+        "resources",
+        "returncode",
+        "deadline_exceeded",
+        "wall_seconds",
+        "native_log_sha256",
+        "worker_report_sha256",
+        "solver_admission_established",
+        "engineering_accepted",
+        "manufacturing_authorized"
+      ],
+      "scope": "Native/private commands, arguments, mounts, host/interpreter paths and process IDs are excluded. Original receipt remains local and hash-bound."
+    },
+    "execution-projections/feature-screen-001.json": {
+      "original_sha256": "adbc4ea45bb7328fcce50a94e4255fcbe07afabff101f599a663bc0bf4466859",
+      "representation": "whitelist_projection",
+      "retained_top_level_keys": [
+        "status",
+        "contract_sha256",
+        "source_sha256",
+        "hard_wall_seconds",
+        "thread_caps",
+        "solver_admission_established",
+        "manufacturing_authorized",
+        "returncode",
+        "deadline_exceeded",
+        "wall_seconds",
+        "native_log_sha256",
+        "worker_report_sha256"
+      ],
+      "scope": "Native/private commands, arguments, mounts, host/interpreter paths and process IDs are excluded. Original receipt remains local and hash-bound."
+    },
+    "contract-projections/fixture.json": {
+      "original_sha256": "0b22eb77560f4e48f75aede82b21a4b423de969b727dbe6b2b13b2cb9ddec50d",
+      "representation": "whitelist_projection",
+      "retained_top_level_keys": [
+        "schema",
+        "status",
+        "scope",
+        "original_source_STL_sha256",
+        "original_indexed_source_sha256",
+        "collapsed_surface_permitted_as_input",
+        "source_sha256",
+        "patch",
+        "controls",
+        "quality_objective",
+        "independent_gates",
+        "volume_mesh_gates",
+        "runtime",
+        "fixtures",
+        "existing_output_refusal_required",
+        "qualification"
+      ],
+      "scope": "Interpreter host path, internal review prose and local freeze timestamp are omitted where present. Resources, controls, input hashes and false qualification flags remain. This is not the original contract byte stream."
+    },
+    "contract-projections/head.json": {
+      "original_sha256": "07c3c8705ea7d5051fdf0317cd0a93ce08a951b347236ae55256360b7115778a",
+      "representation": "whitelist_projection",
+      "retained_top_level_keys": [
+        "schema",
+        "status",
+        "parent_fixture_contract_sha256",
+        "root_authorised_single_head_pass",
+        "input_hashes",
+        "original_indexed_input",
+        "original_indexed_identity_receipt",
+        "native_binary",
+        "toolchain_image_id",
+        "starting_representation",
+        "controls",
+        "patch",
+        "quality_objective",
+        "resources",
+        "execution_limits",
+        "independent_full_array_audit",
+        "surface_gates",
+        "volume_mesh_gates",
+        "qualification"
+      ],
+      "scope": "Interpreter host path, internal review prose and local freeze timestamp are omitted where present. Resources, controls, input hashes and false qualification flags remain. This is not the original contract byte stream."
+    },
+    "contract-projections/topology001.json": {
+      "original_sha256": "ee26b1aeb0de24782c34ab10933c164e44f1bc0fe5cdaef78106d893efb5c5b3",
+      "representation": "whitelist_projection",
+      "retained_top_level_keys": [
+        "schema",
+        "status",
+        "scope",
+        "candidate",
+        "image_id",
+        "resources",
+        "expected_counts",
+        "input_hashes",
+        "pinned_intersection_runtime",
+        "gates",
+        "qualification"
+      ],
+      "scope": "Interpreter host path, internal review prose and local freeze timestamp are omitted where present. Resources, controls, input hashes and false qualification flags remain. This is not the original contract byte stream."
+    },
+    "contract-projections/topology002.json": {
+      "original_sha256": "dab708fb279d802b3493a6e665f284895973144485a2701d8eb51c5aad7d8c77",
+      "representation": "whitelist_projection",
+      "retained_top_level_keys": [
+        "schema",
+        "status",
+        "scope",
+        "candidate",
+        "image_id",
+        "resources",
+        "expected_counts",
+        "input_hashes",
+        "pinned_intersection_runtime",
+        "gates",
+        "qualification",
+        "previous_attempt"
+      ],
+      "scope": "Interpreter host path, internal review prose and local freeze timestamp are omitted where present. Resources, controls, input hashes and false qualification flags remain. This is not the original contract byte stream."
+    },
+    "contract-projections/feature.json": {
+      "original_sha256": "692daf068bf96c8236cab96c8959b33858f6cbf8319f31083daac713164dae29",
+      "representation": "whitelist_projection",
+      "retained_top_level_keys": [
+        "schema",
+        "status",
+        "scope",
+        "original",
+        "candidate",
+        "retained_inspection",
+        "fluid_meshes",
+        "opening_points_mm",
+        "input_hashes",
+        "interpreter_sha256",
+        "runtime",
+        "controls",
+        "qualification"
+      ],
+      "scope": "Interpreter host path, internal review prose and local freeze timestamp are omitted where present. Resources, controls, input hashes and false qualification flags remain. This is not the original contract byte stream."
+    },
+    "reports/api-signature-probe.json": {
+      "original_sha256": "faf02b39b77501c336ec55456ad18deca573f73e3e96e0a8a400427ba5ab0ae2",
+      "representation": "whitelist_projection",
+      "retained_top_level_keys": [
+        "returncode",
+        "stdout",
+        "stderr",
+        "wall_seconds",
+        "scope"
+      ],
+      "scope": "Installed API docstring probe only; command and host paths omitted; no head input was mounted."
+    },
+    "source-snapshots/quality_patch.cpp": {
+      "original_sha256": "6a56acf7a1d7a4882251044f9331ff0e4590042a4d1d15f0b4599e0ab241d9ee",
+      "representation": "exact_bytes",
+      "scope": "Exact preserved executed/referenced source or focused-test snapshot; no runtime binary or geometry is bundled."
+    },
+    "source-snapshots/audit_quality_patch.py": {
+      "original_sha256": "3532a172b2bce3a8ead7c8b11b712a2b55891377726fa1b6d847e84f0eed3912",
+      "representation": "exact_bytes",
+      "scope": "Exact preserved executed/referenced source or focused-test snapshot; no runtime binary or geometry is bundled."
+    },
+    "source-snapshots/audit_quality_head.py": {
+      "original_sha256": "a298270aa00b1536314a07629b935500c68883ca0d3bd1a179d71b49a8e73991",
+      "representation": "exact_bytes",
+      "scope": "Exact preserved executed/referenced source or focused-test snapshot; no runtime binary or geometry is bundled."
+    },
+    "source-snapshots/run_head_quality_patch.py": {
+      "original_sha256": "762b1260ef77e0c7833fb360410c89462d4aa319ef15d0070ff066f9e8c44689",
+      "representation": "exact_bytes",
+      "scope": "Exact preserved executed/referenced source or focused-test snapshot; no runtime binary or geometry is bundled."
+    },
+    "source-snapshots/verify_original_indexed_input.py": {
+      "original_sha256": "74f86054d266874466dd7683118a4302cc5ce7e271cff37883521919116566c4",
+      "representation": "exact_bytes",
+      "scope": "Exact preserved executed/referenced source or focused-test snapshot; no runtime binary or geometry is bundled."
+    },
+    "source-snapshots/run_fixtures.py": {
+      "original_sha256": "424302ba63f2acfc69db57af5a49def81a5e65a0c4dac6b21bce0af4711ccc09",
+      "representation": "exact_bytes",
+      "scope": "Exact preserved executed/referenced source or focused-test snapshot; no runtime binary or geometry is bundled."
+    },
+    "source-snapshots/audit_quality_topology.py": {
+      "original_sha256": "d77682c5eb8b43598e9f5e175dae3cceb58a3b48eebb6021849e9b1e91bbd52a",
+      "representation": "exact_bytes",
+      "scope": "Exact preserved executed/referenced source or focused-test snapshot; no runtime binary or geometry is bundled."
+    },
+    "source-snapshots/audit_quality_topology_002.py": {
+      "original_sha256": "d08c68348bd3cf511844c488f0165afc8814ab0851e434b4b79de48fdcf4f27f",
+      "representation": "exact_bytes",
+      "scope": "Exact preserved executed/referenced source or focused-test snapshot; no runtime binary or geometry is bundled."
+    },
+    "source-snapshots/audit_quality_features.py": {
+      "original_sha256": "4e6eb1358c1687fabe78ca95958fb9e4c1724537abe2718414bfe46834f4ceb4",
+      "representation": "exact_bytes",
+      "scope": "Exact preserved executed/referenced source or focused-test snapshot; no runtime binary or geometry is bundled."
+    },
+    "source-snapshots/mesh_head.py": {
+      "original_sha256": "69c8012e99057e384d44d6971d41f0e2cc7197a978120a7c566b0ad5a6477da5",
+      "representation": "exact_bytes",
+      "scope": "Exact preserved executed/referenced source or focused-test snapshot; no runtime binary or geometry is bundled."
+    },
+    "source-snapshots/prepare_head_analysis.py": {
+      "original_sha256": "cda8f7155a8c22ab66898f07d1ad452ba5384ad7f75a1f012606685cd8a12dc3",
+      "representation": "exact_bytes",
+      "scope": "Exact preserved executed/referenced source or focused-test snapshot; no runtime binary or geometry is bundled."
+    },
+    "source-snapshots/test_962_quality_patch.py": {
+      "original_sha256": "e4087266a9f22247fd8e608d968b138e8878f431606c9dbd8c0121a40e8fcc12",
+      "representation": "exact_bytes",
+      "scope": "Exact preserved executed/referenced source or focused-test snapshot; no runtime binary or geometry is bundled."
+    },
+    "source-snapshots/test_962_quality_topology.py": {
+      "original_sha256": "2c9faf4e8037570f0011939686cd16fb16dd38dd32ad76315f762ebfd802e6cf",
+      "representation": "exact_bytes",
+      "scope": "Exact preserved executed/referenced source or focused-test snapshot; no runtime binary or geometry is bundled."
+    },
+    "source-snapshots/test_962_quality_topology_002.py": {
+      "original_sha256": "f375002bfcdd11590d17eb1e355a7bf333e2375f38041855ef9791334ca023cd",
+      "representation": "exact_bytes",
+      "scope": "Exact preserved executed/referenced source or focused-test snapshot; no runtime binary or geometry is bundled."
+    },
+    "source-snapshots/test_962_quality_features.py": {
+      "original_sha256": "bb0ce9edc8e5d00e46e7dc1806e8d36452f07f01133417a41121bfbc652805d2",
+      "representation": "exact_bytes",
+      "scope": "Exact preserved executed/referenced source or focused-test snapshot; no runtime binary or geometry is bundled."
+    },
+    "referenced-source/HeadFamilyStudy.cs": {
+      "original_sha256": "21212bbe60d78c495d705441fe5ed1599aa9a5b244dfadad4d2e4727f71d23fe",
+      "representation": "exact_bytes",
+      "scope": "Exact geometry-source bytes referenced by the frozen feature contract, copied after the audit; not a new native geometry run."
+    },
+    "referenced-source/HeadFamilyRunner.cs": {
+      "original_sha256": "9abc2a2ae0ad3e6c476c033d5c68d11c712db81590af8d9ed40cca73a5964c50",
+      "representation": "exact_bytes",
+      "scope": "Exact geometry-source bytes referenced by the frozen feature contract, copied after the audit; not a new native geometry run."
+    },
+    "reference-input/bore-95.json": {
+      "original_sha256": "2d1b4eafb6e331436cd6b29ce47092090a449c7f3991ec7e6208a980ca589efa",
+      "representation": "exact_bytes",
+      "scope": "Original frozen assumed bionic geometry configuration; not a measured OEM interface card."
+    },
+    "source-excerpts/intersection-functions.py": {
+      "original_sha256": "5a4a6559702e48fc4d97bb3b71a050aa600645485443a4c1caf389456d77c0c0",
+      "representation": "verbatim_source_excerpt",
+      "original_line_range_inclusive": [
+        26,
+        67
+      ],
+      "scope": "Verbatim known-result fixture and audit_intersections definitions only. This excerpt was NOT executed as a separate module. The complete executed module remains local because it includes a private unrelated distance-runtime path."
+    },
+    "LICENSE": {
+      "original_sha256": "518ff42b02bb3263adbc938cd0863c565e389589876fe8b93db2ef624d316b53",
+      "representation": "exact_bytes",
+      "scope": "Repository source licence; no CGAL/libigl runtime binaries or upstream implementation sources are distributed."
+    }
+  },
+  "original_local_final_receipt_sha256": {
+    "head": "2d6bef1a212bd85d9eebd1d266bff1aa1878c9800efc432eb8c219fa6df29295",
+    "topology001": "83f3666e434cfdaf5acaf3955f5bd5e6406db3d6201421301d1c94fb861f5ea4",
+    "topology002": "ff19c18ca37407d21eb841d28bed61f2504ea968b75999ef92ba4946aed7c7ca",
+    "feature001": "adbc4ea45bb7328fcce50a94e4255fcbe07afabff101f599a663bc0bf4466859"
+  },
+  "source_snapshot_scope": "Snapshots preserve original and corrected API adapters separately; earlier failed attempts remain failures. Native helper compile source and Python snapshots are exact; referenced C# sources and the labelled intersection excerpt have distinct provenance.",
+  "numerical_reproduction_requires_local_native_arrays": true,
+  "public_inventory_verification_is_not_numerical_reproduction": true,
+  "qualification": {
+    "complete_semantic_feature_map": false,
+    "conformal_metal_fluid_interface_validated": false,
+    "solver_admission_established": false,
+    "engineering_accepted": false,
+    "manufacturing_authorized": false
+  }
+}

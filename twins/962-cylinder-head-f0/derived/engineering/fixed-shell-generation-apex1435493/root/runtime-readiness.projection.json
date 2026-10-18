@@ -1,0 +1,61 @@
+{
+  "schema": "962-selected-public-record-projection/v1",
+  "original_record": {
+    "relative_path": "work/962-engineering/fixed-shell-generation-apex1435493-root-source-001/runtime-current.json",
+    "sha256": "d8b1dfd6edfc016b0243d8f165689d2f593102e5595f5a34d9622b039b3cd269",
+    "bytes": 2316
+  },
+  "projection": {
+    "schema": "962-specific-cavity-selected-runtime-current/v1",
+    "held_sha256": "a41928a1ca07d0a25efff4161fd32cb55e50cd0acc2a5d70f99b94d9d3f7a1b4",
+    "selected3_sha256s_before": {
+      "runtime:python": "72956ad35cff7691dfed9e04c9593de825ffd5b2fa7e8bc9ae96ce9a1af65621",
+      "runtime:gmsh-library": "def0f5c10988a986e5e879b3db9669d8fe016a81e2d994bbaf2b8497c6b8a58a",
+      "runtime:gmsh-module": "f4b0935cebde899750293d87a643090e5ea33c9b18d249267f507db68a0e01c3"
+    },
+    "selected3_sha256s_after": {
+      "runtime:python": "72956ad35cff7691dfed9e04c9593de825ffd5b2fa7e8bc9ae96ce9a1af65621",
+      "runtime:gmsh-library": "def0f5c10988a986e5e879b3db9669d8fe016a81e2d994bbaf2b8497c6b8a58a",
+      "runtime:gmsh-module": "f4b0935cebde899750293d87a643090e5ea33c9b18d249267f507db68a0e01c3"
+    },
+    "numpy_init_sha256_before": "c09e25b58f6b2f8e2cb3c158168f902d447f8171e5ea6513c0aca41ecbda7c2b",
+    "numpy_init_sha256_after": "c09e25b58f6b2f8e2cb3c158168f902d447f8171e5ea6513c0aca41ecbda7c2b",
+    "numpy_only_probe": {
+      "python": "3.10.11",
+      "numpy": "2.0.2",
+      "origin": "runtime:numpy-init",
+      "machine": "arm64",
+      "gmsh_loaded": false
+    },
+    "probe_returncode": 0,
+    "probe_stderr_empty": true,
+    "probe_wall_seconds": 0.26222829101607203,
+    "prior_successful_generation_report_sha256": "99b49441caed85bc4180526482bfdbedd7a0a0540126832a9e30207e246e98ea",
+    "scope": "Three selected native identities and exact NumPy origin/module bytes only; no fresh Gmsh import, meshing call, install or complete package/import/OS/ABI/build closure",
+    "manufacturing_authorized": false
+  },
+  "omitted_field_paths": [],
+  "path_role_rules": [
+    {
+      "role": "runtime:python",
+      "meaning": "selected Python executable locator"
+    },
+    {
+      "role": "runtime:gmsh-module",
+      "meaning": "selected Gmsh Python wrapper locator"
+    },
+    {
+      "role": "runtime:gmsh-library",
+      "meaning": "selected native Gmsh library locator"
+    },
+    {
+      "role": "runtime:numpy-init",
+      "meaning": "selected NumPy __init__.py locator"
+    },
+    {
+      "role": "project-relative",
+      "meaning": "the exact private project-root prefix is removed; relative paths and digest values remain"
+    }
+  ],
+  "derived_observations": null
+}

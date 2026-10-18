@@ -1,0 +1,44 @@
+--- work/962-engineering/head-star-current204-full-stars-prep-001/reader.py
++++ work/962-engineering/head-star-current129-full-stars-prep-001/reader.py
+@@ -33,13 +33,14 @@
+ 
+ def partial_after_proof(worker,receipt,closed,contract):
+  """Bind the actual partial-replacement after/saved proof without optimizer aliases."""
+- if (worker.get('schema')!='962-apex1474426-head-application-result/v1'
++ if (worker.get('schema')!='962-current204-fixed47-combined-head-application-result/v1'
+      or worker.get('status')!='completed_partial_head_replacement_whole_head_quality_gate_applied'
+      or worker.get('stage')!='completed_partial_repair_audits'
+      or any(worker.get(k) is not True for k in ['procedural_checks_passed','partial_replacement_completed','saved_mesh_identity_exact','bound_inputs_unchanged'])
+      or worker.get('after')!=worker.get('saved_reopen')
+      or worker.get('mesh_sha256')!=contract['MSH_sha256'] or worker.get('mesh_bytes')!=contract['MSH_bytes']
+-     or any(worker.get(key)!=contract[key] for key in ['local_candidate_report_sha256','local_candidate_arrays_sha256','current_local_domain_report_sha256','current_local_domain_peer_sha256'])
++     or any(worker.get(key)!=contract[key] for key in ['admitted_manifest_sha256','current_local_domain_peer_sha256','current_local_domain_root_acceptance_sha256','context_sha256'])
++     or worker.get('native_operation_counts')!=contract['expected_partial_operation_counts'] or worker.get('call_counts_are_attempts') is not True
+      or worker.get('original_parent_MSH_sha256')!=contract['original_parent_MSH_sha256']
+      or receipt.get('returncode')!=2 or receipt.get('stop_reason') is not None
+      or receipt.get('readback_report_sha256')!=contract['partial_report_sha256']
+@@ -47,10 +48,12 @@
+      or receipt.get('reader_sha256')!=contract['partial_reader_sha256']
+      or receipt.get('runner_sha256')!=contract['partial_runner_sha256']
+      or receipt.get('native_log_sha256')!=contract['partial_native_log_sha256']
+-     or closed.get('returncode')!=2 or closed.get('stop_reason') is not None or closed.get('wait_reaped') is not True
+-     or any(closed.get(k) is not True for k in ['all56_inputs_unchanged','all3_selected_native_runtime_unchanged','selected_NumPy_unchanged','actual_unchanged'])
++     or receipt.get('native_generate_optimize_solve_calls_declared')!=0 or receipt.get('mesh_write_calls_declared')!=1 or receipt.get('counters_are_declarations') is not True
++     or closed.get('controller_returncode')!=2 or closed.get('root_stop_reason') is not None or closed.get('root_error') is not None or closed.get('pin_error') is not None
++     or any(closed.get(k) is not True for k in ['controller_wait_reaped','observed_owned_controller_leader_absent','all420_input_actual_selected_runtime_python_unchanged','partial_procedural_checks_passed'])
++     or closed.get('root_fallback_SIGKILL') is not False or closed.get('actual_whole_head_quality_gate_passed') is not False
+      or closed.get('actual_sha256')!=contract['partial_contract_sha256']
+-     or closed.get('outputs')!=contract['partial_output_inventory']):
++     or closed.get('output_files')!=contract['partial_output_inventory']):
+   raise ValueError('Exact stopped partial-replacement after/saved proof required')
+  proof=worker['after'];n=proof['tetrahedra'];quality=proof['quality'];keys={'sorted_node_tags_sha256','sorted_coordinates_sha256','sorted_tetra_tags_sha256','tagged_tetra_connectivity_sha256'}
+  counts={k:proof[k] for k in contract['expected_saved_counts']}
+@@ -142,7 +145,7 @@
+ contract=json.loads((OUT/'frozen-contract.json').read_text())
+ for name,h in contract['input_hashes'].items():
+  if sha(ROOT/name)!=h:raise ValueError('Bound saved-readback input drift: '+name)
+-w=ROOT/'work/962-engineering/apex1474426-head-application-001';worker=json.loads((w/'readback-report.json').read_text());receipt=json.loads((w/'execution-receipt.json').read_text());closed=json.loads((ROOT/contract['partial_root_closed_result']).read_text());admission=json.loads((ROOT/contract['surface_admission']).read_text())
++w=ROOT/'work/962-engineering/head-star-current204-combined-application-001';worker=json.loads((w/'readback-report.json').read_text());receipt=json.loads((w/'execution-receipt.json').read_text());closed=json.loads((ROOT/contract['partial_root_closed_result']).read_text());admission=json.loads((ROOT/contract['surface_admission']).read_text())
+ proof=partial_after_proof(worker,receipt,closed,contract)
+ for name,h in admission['input_hashes'].items():
+  if sha(ROOT/name)!=h:raise ValueError('Surface-admission evidence changed: '+name)

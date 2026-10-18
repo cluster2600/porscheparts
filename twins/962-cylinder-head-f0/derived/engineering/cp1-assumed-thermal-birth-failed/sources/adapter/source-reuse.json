@@ -1,0 +1,465 @@
+{
+  "actual_changed_functions_only": [
+    "commands",
+    "checked_contract",
+    "run"
+  ],
+  "author_executed_functions_tests_native_scientific_or_runtime_bodies": false,
+  "donor_delta": {
+    "run_mac.py": {
+      "complete_reverse_exact": true,
+      "donor_path": "work/962-engineering/imported-elastic-cube-macos-prep-004/run_mac.py",
+      "donor_sha256": "7c942d9190ba85d90ca35d740a77a1e91e20e0a8387f93ca5a38cf73d2feb2c4",
+      "successor_sha256": "d2e7c528e67705f9a61c41aeff96fd088606d0169d071b9ec9a1f5b60e4a1ff5",
+      "whole_line_reverse_chunks": [
+        {
+          "new_lines": [
+            "\"\"\"Held Mac-local MOOSE metadata readiness, then a separately authorized fixed assumed thermal-birth coupon.\"\"\"\n"
+          ],
+          "new_start_line0": 0,
+          "old_lines": [
+            "\"\"\"Held Mac-local MOOSE metadata readiness, then a separately authorized fixed affine cube.\"\"\"\n"
+          ],
+          "old_start_line0": 0
+        },
+        {
+          "new_lines": [
+            "CASE = ENGINEERING / \"cp1-assumed-thermal-birth-prep-001\"\n",
+            "CARD = CASE / \"card.json\"\n",
+            "PHYSICS = CASE / \"case-contract.json\"\n",
+            "PRIMARY_API = ENGINEERING / \"imported-elastic-cube-macos-prep-004/primary-api.json\"\n"
+          ],
+          "new_start_line0": 19,
+          "old_lines": [
+            "CASE = ENGINEERING / \"imported-elastic-cube-flat-inputs-002\"\n",
+            "CARD = ENGINEERING / \"imported-elastic-cube-prep-001/affine-card.json\"\n"
+          ],
+          "old_start_line0": 19
+        },
+        {
+          "new_lines": [
+            "CASE_FILES = (\"thermal-birth.i\", \"time-level.i\", \"assess.py\")\n",
+            "FEATURES = (\"GeneratedMeshGenerator\", \"SubdomainBoundingBoxGenerator\", \"FunctionIC\",\n",
+            "            \"ADTimeDerivative\", \"ADHeatConductionTimeDerivative\", \"ADHeatConduction\", \"ADMatHeatSource\",\n",
+            "            \"ADHeatConductionMaterial\", \"ADGenericConstantMaterial\", \"FunctionPathEllipsoidHeatSource\",\n",
+            "            \"TimedSubdomainModifier\", \"ADMaterialRealAux\", \"NodalValueSampler\", \"ElementValueSampler\",\n",
+            "            \"ADElementIntegralMaterialProperty\", \"SMP\", \"Transient\", \"CSV\", \"Console\", \"ParsedFunction\")\n"
+          ],
+          "new_start_line0": 26,
+          "old_lines": [
+            "CASE_FILES = (\"imported-cube.i\", \"imported-cube.msh\", \"cube-reference.json\", \"assess_cube.py\")\n",
+            "FEATURES = (\"FileMeshGenerator\", \"ParsedFunction\", \"FunctionDirichletBC\",\n",
+            "            \"ADComputeIsotropicElasticityTensor\", \"ADComputeLinearElasticStress\",\n",
+            "            \"RankTwoTensorMaterialADConverter\", \"RankTwoCartesianComponent\", \"NodalValueSampler\",\n",
+            "            \"ElementMaterialSampler\", \"SMP\", \"Steady\", \"CSV\", \"Console\")\n"
+          ],
+          "old_start_line0": 24
+        },
+        {
+          "new_lines": [
+            "    need(stage == \"coupon\", \"Only the two declared stages exist\")\n",
+            "    return [(\"native\", common + [\"-i\", \"thermal-birth.i\", \"time-level.i\"])]\n"
+          ],
+          "new_start_line0": 81,
+          "old_lines": [
+            "    need(stage == \"cube\", \"Only the two declared stages exist\")\n",
+            "    return [(\"native\", common + [\"-i\", \"imported-cube.i\"])]\n"
+          ],
+          "old_start_line0": 78
+        },
+        {
+          "new_lines": [
+            "    need(c.get(\"schema\") == \"962-macos-cp1-thermal-birth-stage-actual/v1\" and c.get(\"stage\") == stage\n"
+          ],
+          "new_start_line0": 98,
+          "old_lines": [
+            "    need(c.get(\"schema\") == \"962-macos-imported-elastic-stage-actual/v1\" and c.get(\"stage\") == stage\n"
+          ],
+          "old_start_line0": 95
+        },
+        {
+          "new_lines": [
+            "    need(c.get(\"coupon_solve_authorized\") is (stage == \"coupon\"), \"Readiness cannot authorize the coupon\")\n"
+          ],
+          "new_start_line0": 102,
+          "old_lines": [
+            "    need(c.get(\"cube_solve_authorized\") is (stage == \"cube\"), \"Readiness cannot authorize the cube\")\n"
+          ],
+          "old_start_line0": 99
+        },
+        {
+          "new_lines": [
+            "    need(c[\"runtime_sha256s\"] == held[\"runtime_sha256s\"] and len(c[\"runtime_sha256s\"]) == 19\n",
+            "         and c[\"runtime_symlinks\"] == held[\"runtime_symlinks\"] and len(c[\"runtime_symlinks\"]) == 13\n",
+            "         and \"lib/combined/libheat_transfer-opt.0.dylib\" in c[\"runtime_sha256s\"],\n",
+            "         \"Exact reviewed19 selected files/13 links including heat-transfer library required\")\n",
+            "    need(all(c.get(k) is False for k in [\"engineering_accepted\", \"physics_qualified\", \"material_qualified\", \"process_calibrated\"])\n",
+            "         and c.get(\"automatic_retry\") is False, \"No qualification or retry authority\")\n"
+          ],
+          "new_start_line0": 108,
+          "old_lines": [],
+          "old_start_line0": 105
+        },
+        {
+          "new_lines": [
+            "    if stage == \"coupon\":\n",
+            "        need(limits == held[\"coupon_resources\"], \"Exact reviewed per-level coupon bounds required\")\n",
+            "        need(all(c[k] in pins for k in [\"readiness_receipt\", \"readiness_result_peer\", \"readiness_registry\"]),\n",
+            "             \"Stopped readiness, peer and exact cached registry required\")\n"
+          ],
+          "new_start_line0": 122,
+          "old_lines": [
+            "    if stage == \"cube\":\n",
+            "        need(c[\"readiness_receipt\"] in pins and c[\"readiness_result_peer\"] in pins,\n",
+            "             \"Separately stopped readiness and peer required\")\n"
+          ],
+          "old_start_line0": 113
+        },
+        {
+          "new_lines": [
+            "        prior18 = {k: v for k, v in c[\"runtime_sha256s\"].items() if k != \"lib/combined/libheat_transfer-opt.0.dylib\"}\n",
+            "        need(ready.get(\"readiness_completed\") is True and len(prior18) == 18\n",
+            "             and ready[\"runtime_sha256s\"] == prior18 and ready[\"runtime_symlinks\"] == c[\"runtime_symlinks\"]\n",
+            "             and all(v is True for v in ready[\"required_object_presence\"].values())\n",
+            "             and pins[c[\"readiness_registry\"]] == ready[\"artifact_sha256\"][\"registry.log\"],\n",
+            "             \"Exact old18 subset plus root-bound new heat library and cached registry required\")\n",
+            "        registry_features((ROOT / c[\"readiness_registry\"]).read_text())\n"
+          ],
+          "new_start_line0": 127,
+          "old_lines": [
+            "        need(ready.get(\"readiness_completed\") is True and ready.get(\"required_object_presence\") == {k: True for k in FEATURES}\n",
+            "             and ready[\"runtime_sha256s\"] == c[\"runtime_sha256s\"]\n",
+            "             and ready[\"runtime_symlinks\"] == c[\"runtime_symlinks\"], \"Same runtime must have completed readiness\")\n"
+          ],
+          "old_start_line0": 117
+        },
+        {
+          "new_lines": [
+            "    shutil.copyfile(contract, output / \"actual-contract.json\")\n",
+            "    shutil.copyfile(PHYSICS if stage == \"coupon\" else contract, output / \"frozen-contract.json\")\n"
+          ],
+          "new_start_line0": 146,
+          "old_lines": [
+            "    shutil.copyfile(contract, output / \"frozen-contract.json\")\n"
+          ],
+          "old_start_line0": 132
+        },
+        {
+          "new_lines": [
+            "    selected = [Path(__file__), HELD, PREP / \"METHOD.md\", PRIMARY_API]\n",
+            "    if stage == \"coupon\":\n"
+          ],
+          "new_start_line0": 150,
+          "old_lines": [
+            "    selected = [Path(__file__), HELD, PREP / \"METHOD.md\", PREP / \"primary-api.json\"]\n",
+            "    if stage == \"cube\":\n"
+          ],
+          "old_start_line0": 135
+        },
+        {
+          "new_lines": [
+            "        shutil.copyfile(CARD, output / \"card.json\")\n",
+            "        selected += [CASE / name for name in CASE_FILES] + [CARD, PHYSICS]\n"
+          ],
+          "new_start_line0": 154,
+          "old_lines": [
+            "        shutil.copyfile(CARD, output / \"affine-card.json\")\n",
+            "        selected += [CASE / name for name in CASE_FILES] + [CARD]\n"
+          ],
+          "old_start_line0": 139
+        },
+        {
+          "new_lines": [
+            "                   command=commands(stage)[0][1] if stage == \"coupon\" else [argv for _, argv in commands(stage)],\n",
+            "                   stage=stage, contract_sha256=expected, actual_contract_sha256=expected,\n",
+            "                   physics_contract_sha256=sha(PHYSICS) if stage == \"coupon\" else None,\n",
+            "                   level=2 if stage == \"coupon\" else None, level_is_declared=True, input_sha256=inputs,\n"
+          ],
+          "new_start_line0": 162,
+          "old_lines": [
+            "                   command=commands(stage)[0][1] if stage == \"cube\" else [argv for _, argv in commands(stage)],\n",
+            "                   stage=stage, contract_sha256=expected, input_sha256=inputs,\n"
+          ],
+          "old_start_line0": 147
+        },
+        {
+          "new_lines": [
+            "                       binary_sha256=c[\"runtime_sha256s\"][\"bin/combined-opt\"], binary_unchanged=stable,\n",
+            "                       native_execution_completed=completed and stage == \"coupon\",\n"
+          ],
+          "new_start_line0": 279,
+          "old_lines": [
+            "                       native_execution_completed=completed and stage == \"cube\",\n"
+          ],
+          "old_start_line0": 262
+        },
+        {
+          "new_lines": [
+            "        receipt[\"complete_artifact_sha256\"] = {str(p.relative_to(output)): sha(p) for p in sorted(output.rglob(\"*\"))\n"
+          ],
+          "new_start_line0": 282,
+          "old_lines": [
+            "        receipt[\"artifact_sha256\"] = {str(p.relative_to(output)): sha(p) for p in sorted(output.rglob(\"*\"))\n"
+          ],
+          "old_start_line0": 264
+        },
+        {
+          "new_lines": [
+            "        receipt[\"artifact_sha256\"] = {k: v for k, v in receipt[\"complete_artifact_sha256\"].items() if Path(k).name == k}\n"
+          ],
+          "new_start_line0": 284,
+          "old_lines": [],
+          "old_start_line0": 266
+        },
+        {
+          "new_lines": [
+            "    parser.add_argument(\"--stage\", choices=(\"readiness\", \"coupon\"), required=True)\n"
+          ],
+          "new_start_line0": 295,
+          "old_lines": [
+            "    parser.add_argument(\"--stage\", choices=(\"readiness\", \"cube\"), required=True)\n"
+          ],
+          "old_start_line0": 276
+        }
+      ]
+    },
+    "selfcheck.py": {
+      "complete_reverse_exact": true,
+      "donor_path": "work/962-engineering/imported-elastic-cube-macos-prep-004/selfcheck.py",
+      "donor_sha256": "95da22b9f6b718b621ccb8624d3b22da929ef8ca3ad596222e940d73b77f3017",
+      "successor_sha256": "721b5ae5c03b2859ea4df5e9eea21c012acce9880f2b522ae4ae986c3e3bdb9c",
+      "whole_line_reverse_chunks": [
+        {
+          "new_lines": [
+            "SOURCE_SHA256 = \"d2e7c528e67705f9a61c41aeff96fd088606d0169d071b9ec9a1f5b60e4a1ff5\"\n"
+          ],
+          "new_start_line0": 12,
+          "old_lines": [
+            "SOURCE_SHA256 = \"7c942d9190ba85d90ca35d740a77a1e91e20e0a8387f93ca5a38cf73d2feb2c4\"\n"
+          ],
+          "old_start_line0": 12
+        },
+        {
+          "new_lines": [
+            "spec = importlib.util.spec_from_file_location(\"mac_thermal_candidate\", SOURCE)\n"
+          ],
+          "new_start_line0": 14,
+          "old_lines": [
+            "spec = importlib.util.spec_from_file_location(\"mac_cube_candidate\", SOURCE)\n"
+          ],
+          "old_start_line0": 14
+        },
+        {
+          "new_lines": [
+            "        self.assertEqual(len(module.commands(\"coupon\")), 1)\n",
+            "        self.assertEqual(module.commands(\"coupon\")[0][1][-3:], [\"-i\", \"thermal-birth.i\", \"time-level.i\"])\n"
+          ],
+          "new_start_line0": 41,
+          "old_lines": [
+            "        self.assertEqual(len(module.commands(\"cube\")), 1)\n",
+            "        self.assertEqual(module.commands(\"cube\")[0][1][-2:], [\"-i\", \"imported-cube.i\"])\n"
+          ],
+          "old_start_line0": 41
+        },
+        {
+          "new_lines": [
+            "            for update in ({\"native_launch_authorized\": False}, {\"coupon_solve_authorized\": True}):\n",
+            "                c = dict(schema=\"962-macos-cp1-thermal-birth-stage-actual/v1\", stage=\"readiness\",\n"
+          ],
+          "new_start_line0": 52,
+          "old_lines": [
+            "            for update in ({\"native_launch_authorized\": False}, {\"cube_solve_authorized\": True}):\n",
+            "                c = dict(schema=\"962-macos-imported-elastic-stage-actual/v1\", stage=\"readiness\",\n"
+          ],
+          "old_start_line0": 52
+        },
+        {
+          "new_lines": [
+            "                         coupon_solve_authorized=False, head_authorized=False, manufacturing_authorized=False)\n"
+          ],
+          "new_start_line0": 55,
+          "old_lines": [
+            "                         cube_solve_authorized=False, head_authorized=False, manufacturing_authorized=False)\n"
+          ],
+          "old_start_line0": 55
+        },
+        {
+          "new_lines": [
+            "    def fake_coupon(self, stop):\n"
+          ],
+          "new_start_line0": 61,
+          "old_lines": [
+            "    def fake_cube(self, stop):\n"
+          ],
+          "old_start_line0": 61
+        },
+        {
+          "new_lines": [
+            "        physics = case / \"case-contract.json\"\n",
+            "        physics.write_text('{\"synthetic_physics_reference\":true}\\n')\n",
+            "        c = dict(input_sha256={}, runtime_sha256s={\"bin/combined-opt\": \"0\"*64}, runtime_symlinks={},\n"
+          ],
+          "new_start_line0": 73,
+          "old_lines": [
+            "        c = dict(input_sha256={}, runtime_sha256s={}, runtime_symlinks={},\n"
+          ],
+          "old_start_line0": 73
+        },
+        {
+          "new_lines": [
+            "             mock.patch.object(module, \"PHYSICS\", physics), \\\n"
+          ],
+          "new_start_line0": 84,
+          "old_lines": [],
+          "old_start_line0": 82
+        },
+        {
+          "new_lines": [
+            "                with self.assertRaises(ValueError): module.run(\"coupon\", contract, module.sha(contract))\n"
+          ],
+          "new_start_line0": 93,
+          "old_lines": [
+            "                with self.assertRaises(ValueError): module.run(\"cube\", contract, module.sha(contract))\n"
+          ],
+          "old_start_line0": 90
+        },
+        {
+          "new_lines": [
+            "                module.run(\"coupon\", contract, module.sha(contract))\n"
+          ],
+          "new_start_line0": 95,
+          "old_lines": [
+            "                module.run(\"cube\", contract, module.sha(contract))\n"
+          ],
+          "old_start_line0": 92
+        },
+        {
+          "new_lines": [
+            "        r = self.fake_coupon(False)\n"
+          ],
+          "new_start_line0": 106,
+          "old_lines": [
+            "        r = self.fake_cube(False)\n"
+          ],
+          "old_start_line0": 103
+        },
+        {
+          "new_lines": [
+            "        self.assertEqual(r[\"level\"], 2)\n",
+            "        self.assertEqual(r[\"binary_sha256\"], \"0\"*64)\n",
+            "        self.assertTrue(r[\"binary_unchanged\"])\n",
+            "        self.assertNotEqual(r[\"physics_contract_sha256\"], r[\"actual_contract_sha256\"])\n",
+            "        self.assertEqual(r[\"actual_contract_sha256\"], r[\"contract_sha256\"])\n",
+            "        self.assertTrue(all(Path(k).name == k for k in r[\"artifact_sha256\"]))\n",
+            "        self.assertTrue(any(k.startswith(\"source-snapshots/\") for k in r[\"complete_artifact_sha256\"]))\n",
+            "        self.assertEqual(r[\"artifact_sha256\"], {k:v for k,v in r[\"complete_artifact_sha256\"].items() if Path(k).name==k})\n"
+          ],
+          "new_start_line0": 111,
+          "old_lines": [],
+          "old_start_line0": 108
+        },
+        {
+          "new_lines": [
+            "        r = self.fake_coupon(True)\n"
+          ],
+          "new_start_line0": 122,
+          "old_lines": [
+            "        r = self.fake_cube(True)\n"
+          ],
+          "old_start_line0": 111
+        },
+        {
+          "new_lines": [
+            "    def test_current19_old18_registry_join_and_wrong_runtime_refusal(self):\n",
+            "        bindings = json.loads((module.ENGINEERING / \"cp1-assumed-thermal-birth-runtime-bindings-001/bindings.json\").read_text())\n",
+            "        ready_path = module.ENGINEERING / \"moose-local-macos-readiness-003/readiness.json\"\n",
+            "        registry_path = module.ENGINEERING / \"moose-local-macos-readiness-003/registry.log\"\n",
+            "        with tempfile.TemporaryDirectory(dir=module.ENGINEERING) as tmp:\n",
+            "            base = Path(tmp).resolve()\n",
+            "            held = base / \"held.json\"\n",
+            "            resources = dict(wall_seconds=100, sampled_RSS_stop_bytes=2*1024**3, sampled_output_stop_bytes=32*1024**2)\n",
+            "            held.write_text(json.dumps(dict(input_sha256={}, runtime_sha256s=bindings['runtime_sha256s'], runtime_symlinks=bindings['runtime_symlinks'], coupon_resources=resources)))\n",
+            "            installation = base / 'installation.json'\n",
+            "            installation.write_text('{}\\n')\n",
+            "            pins = {str(p.relative_to(module.ROOT)):module.sha(p) for p in [held,installation,ready_path,registry_path]}\n",
+            "            c = dict(schema='962-macos-cp1-thermal-birth-stage-actual/v1', stage='coupon', root_and_peer_review_complete=True,\n",
+            "                     native_launch_authorized=True, coupon_solve_authorized=True, head_authorized=False, manufacturing_authorized=False,\n",
+            "                     engineering_accepted=False, physics_qualified=False, material_qualified=False, process_calibrated=False,\n",
+            "                     automatic_retry=False, input_sha256=pins, runtime_sha256s=bindings['runtime_sha256s'], runtime_symlinks=bindings['runtime_symlinks'],\n",
+            "                     installation_result_peer=str(installation.relative_to(module.ROOT)), installation_receipt=str(installation.relative_to(module.ROOT)),\n",
+            "                     resources=resources, readiness_receipt=str(ready_path.relative_to(module.ROOT)), readiness_result_peer=str(installation.relative_to(module.ROOT)),\n",
+            "                     readiness_registry=str(registry_path.relative_to(module.ROOT)), output=str(base/'output'))\n",
+            "            path=base/'actual.json'\n",
+            "            with mock.patch.object(module,'HELD',held), mock.patch.object(module,'ENGINEERING',base), \\\n",
+            "                 mock.patch.object(module,'runtime_unchanged',return_value=True), mock.patch.object(module.os,'access',return_value=True):\n",
+            "                path.write_text(json.dumps(c))\n",
+            "                observed,output=module.checked_contract('coupon',path,module.sha(path))\n",
+            "                self.assertEqual(output,base/'output')\n",
+            "                self.assertFalse(output.exists())\n",
+            "                for mode in ['missing_heat','changed_heat','missing_link','resource_change']:\n",
+            "                    bad=json.loads(json.dumps(c))\n",
+            "                    if mode=='missing_heat':bad['runtime_sha256s'].pop('lib/combined/libheat_transfer-opt.0.dylib')\n",
+            "                    if mode=='changed_heat':bad['runtime_sha256s']['lib/combined/libheat_transfer-opt.0.dylib']='f'*64\n",
+            "                    if mode=='missing_link':bad['runtime_symlinks'].pop('bin/moose-opt')\n",
+            "                    if mode=='resource_change':bad['resources']['wall_seconds']=101\n",
+            "                    path.write_text(json.dumps(bad))\n",
+            "                    with self.assertRaises(ValueError):module.checked_contract('coupon',path,module.sha(path))\n",
+            "\n",
+            "\n"
+          ],
+          "new_start_line0": 146,
+          "old_lines": [],
+          "old_start_line0": 135
+        }
+      ]
+    }
+  },
+  "mock_guards_prepared_UNRUN": [
+    "test_fixed_commands_and_registry_authority",
+    "test_held_or_cross_stage_refusal_before_runtime",
+    "test_owned_success_receipt_preserves_assessor_keys",
+    "test_sampled_stop_kills_waits_and_retains_refusal",
+    "test_exact_seven_variable_tcp_environment_and_no_inheritance",
+    "test_current19_old18_registry_join_and_wrong_runtime_refusal"
+  ],
+  "schema": "962-cp1-thermal-birth-Mac-adapter-source-reuse/v1",
+  "seven_ENV_exact_donor": true,
+  "single_Popen_site_same_AST_and_no_environment_inheritance": true,
+  "source_build_or_API_equivalence_or_full_runtime_closure_claimed": false,
+  "twenty_required_thermal_object_names": [
+    "GeneratedMeshGenerator",
+    "SubdomainBoundingBoxGenerator",
+    "FunctionIC",
+    "ADTimeDerivative",
+    "ADHeatConductionTimeDerivative",
+    "ADHeatConduction",
+    "ADMatHeatSource",
+    "ADHeatConductionMaterial",
+    "ADGenericConstantMaterial",
+    "FunctionPathEllipsoidHeatSource",
+    "TimedSubdomainModifier",
+    "ADMaterialRealAux",
+    "NodalValueSampler",
+    "ElementValueSampler",
+    "ADElementIntegralMaterialProperty",
+    "SMP",
+    "Transient",
+    "CSV",
+    "Console",
+    "ParsedFunction"
+  ],
+  "unchanged_owned_control_ASTs": {
+    "SIGTERM_handler": "f20c606456dc2353646e5dbfc8a03430a8a045b5e318374528c9e1d47234220f",
+    "native_Popen_RSS_loop_wait_finally": "12c34aae98db5f83eb95cc08c142595ad542054898163c1d35309ad62104554b",
+    "outer_timer_cancel_wait_handler_restore": "2c84d9b4c809fedc23a8e0086eb274b226417d6e8a0c3f623f321f6ae7a2973e",
+    "owned_group_stop": "fbb6aeb770b03050c0473ac214eeb2fff4bf507d991a375e907c6b9cf705d955"
+  },
+  "unchanged_top_level_function_ASTs": {
+    "check_pins": "80f9d7d15f16eff6fab74592f87c21de4afb73db2c4ad0e59643a0545cc797d4",
+    "need": "acd835d407017ae4ddfcb4f79fa2adbd3bd71ca44738278a4cf2c5e31a8c754a",
+    "registry_features": "97ad9ffd14baeb187000b31b2738afcbca3279fc3a298eda4154890aacbebe14",
+    "runtime_unchanged": "44d7dbe133e0ac81c9c1263aeafd9223ed0e02a0dc6149af25280672b4e3c21b",
+    "same": "50e214cf861c1d2178b652e717a350fd1e1770daf477296e6531f5ae0825bdad",
+    "sha": "3d0034a1af01926dbf0f3546367c6d9dc5c7a138254008cb8a4b9dc5e5a4bc84"
+  }
+}

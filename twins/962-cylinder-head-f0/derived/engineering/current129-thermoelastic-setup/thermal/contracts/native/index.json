@@ -1,0 +1,134 @@
+{
+  "schema": "962-fixed-oneway-native-actual-index/v1",
+  "status": "FROZEN_FOR_EXTERNAL_EXACT_CHILD_REVIEW_NO_EXECUTION",
+  "actual": {
+    "path": "work/962-engineering/cp1-oneway-thermoelastic-transfer-execution-prep-001/actual-contract.json",
+    "sha256": "7ab4ee5b5fdbb85997c64e091644697105641cc887b434bb7af1cbfff2246395",
+    "bytes": 72616
+  },
+  "input_count": 402,
+  "source": {
+    "path": "work/962-engineering/cp1-oneway-thermoelastic-transfer-prep-001/run_mac.py",
+    "sha256": "5b4ee33be98e0004d55f532d03146bc35759133dd9bfe0a478a17f39fe78c082"
+  },
+  "physics_contract": {
+    "path": "work/962-engineering/cp1-oneway-thermoelastic-transfer-prep-001/case-contract.json",
+    "sha256": "ff0dfe2e0a99f8e4d208e8db66ac580fbbdb89f43ae1563cc7c015c9b0bcc666"
+  },
+  "held": {
+    "path": "work/962-engineering/cp1-oneway-thermoelastic-transfer-prep-001/held-preparation.json",
+    "sha256": "a462807090078a3a2c19b15531deafd4e7fa089d885a8e0fdfcdd88ecb8764c9"
+  },
+  "readiness_registry": {
+    "root_closed": {
+      "path": "work/962-engineering/cp1-oneway-thermoelastic-transfer-registry-001/closed-result.json",
+      "sha256": "61dd59b49d4c3e80a2f02956dbc648ce72c2ceb97c45011e8c0cccd69ea89c03"
+    },
+    "presence_record": {
+      "path": "work/962-engineering/cp1-oneway-thermoelastic-transfer-registry-001/required-object-presence.json",
+      "sha256": "805c85688d39178e0c940b96c614a190963d36126b092cde7b318dc4e2ea8890"
+    },
+    "stdout": {
+      "path": "work/962-engineering/cp1-oneway-thermoelastic-transfer-registry-001/registry.log",
+      "sha256": "73d6ad23bb5a0564c52aa1262526668c1fb1ef0ca64f5fac01e1b3d085f60255"
+    },
+    "runtime_bindings": {
+      "path": "work/962-engineering/cp1-assumed-thermal-birth-runtime-bindings-001/bindings.json",
+      "sha256": "81f93ad31802df5cd8ecfb3c8e46d594f74e636fe54a0cf6637306ffc211b756"
+    }
+  },
+  "data_acceptance": {
+    "path": "work/962-engineering/cp1-oneway-thermoelastic-transfer-data-root-execution-001/result-peer-acceptance.json",
+    "sha256": "e6c93682c2affd8c44253b98c29e2aa84e51d861f1bd29b77b503221202a055d"
+  },
+  "assessor_gate": {
+    "source_sha256": "7f2d5fbb873ed82df80d133314edc98cf57aa353057d8b9db08ea92358657af1",
+    "held_sha256": "28f13d8bb4a22985b22651cccb82633f17738af75c7fd880b14a1873e413888c",
+    "peer_sha256": "f193dca5a4e3246a232a74c42065b63bf65f18e436144473c22fad1eeb7fd4ed",
+    "root7guard_review_sha256": "b53eb25ca8e9f758d2665e6b1a44e487c1a2e6f78b65a7f1849f9228178bb1b7"
+  },
+  "source_gate": {
+    "peer_sha256": "84bcd90a2bda31ea7fa9da7dc1e116795d14397b5acb3832e418d77eb00db785",
+    "root14guard_review_sha256": "154b4a215816fcc8749da422ed3af916aee3ab223d2f4c459baedd095d9f3405"
+  },
+  "explicit_source_consumed_literal_and_comprehension_keys": [
+    "coupon_solve_authorized",
+    "data_preparation_result_peer",
+    "data_preparation_root_closed",
+    "independent_assessment_source",
+    "independent_assessment_source_peer",
+    "independent_assessment_source_root_review",
+    "input_sha256",
+    "installation_receipt",
+    "installation_result_peer",
+    "native_launch_authorized",
+    "output",
+    "resources",
+    "root_and_peer_review_complete",
+    "runtime_sha256s",
+    "runtime_symlinks",
+    "schema",
+    "stage",
+    "transfer_manifest",
+    "transfer_manifest_sha256"
+  ],
+  "seven_comprehension_consumed_evidence_paths": {
+    "installation_result_peer": "work/962-engineering/moose-local-prefix-install-result-peer-002/review.json",
+    "installation_receipt": "work/962-engineering/moose-local-install-state-002/installation-receipt.json",
+    "data_preparation_root_closed": "work/962-engineering/cp1-oneway-thermoelastic-transfer-data-root-execution-001/closed-result.json",
+    "data_preparation_result_peer": "work/962-engineering/cp1-oneway-thermoelastic-transfer-data-result-peer-001/review.json",
+    "independent_assessment_source": "work/962-engineering/cp1-oneway-thermoelastic-assessor-prep-001/assess.py",
+    "independent_assessment_source_peer": "work/962-engineering/cp1-oneway-thermoelastic-assessor-source-peer-001/review.json",
+    "independent_assessment_source_root_review": "work/962-engineering/cp1-oneway-thermoelastic-assessor-root-source-001/review.json"
+  },
+  "input_closure": "All362 native held and342 assessor held pins are included, plus completed data execution/peer/acceptance, four transfer files, source/assessor root streams and source review spines. Native19/13 runtime maps are separate root-prelaunch body checks; decoder258 selection is metadata-only for this native stage.",
+  "fresh_output": {
+    "path": "work/962-engineering/cp1-oneway-thermoelastic-transfer-001",
+    "raw_path_absent": true,
+    "raw_path_not_symlink": true,
+    "canonical_equal": true
+  },
+  "planned_adapter_argv": [
+    "runtime-role://controller/python",
+    "-I",
+    "-B",
+    "work/962-engineering/cp1-oneway-thermoelastic-transfer-prep-001/run_mac.py",
+    "--stage",
+    "coupon",
+    "--contract",
+    "work/962-engineering/cp1-oneway-thermoelastic-transfer-execution-prep-001/actual-contract.json",
+    "--contract-sha256",
+    "7ab4ee5b5fdbb85997c64e091644697105641cc887b434bb7af1cbfff2246395",
+    "--execute"
+  ],
+  "resources": {
+    "wall_seconds": 100,
+    "sampled_RSS_stop_bytes": 2147483648,
+    "sampled_output_stop_bytes": 536870912
+  },
+  "root_outer_controls": {
+    "new_owned_adapter_session": true,
+    "SIGTERM_to_adapter_at_outer_deadline": true,
+    "grace_seconds": 10,
+    "fallback_SIGKILL_only_verified_owned_process_group": true,
+    "always_wait_reap": true,
+    "native_owned_leader_scope": "Inner unchanged adapter creates and cleans its native process group; root may retain verified owned native PID metadata for explicit cleanup/absence observations.",
+    "universal_descendant_absence_or_OS_sandbox_claimed": false
+  },
+  "outer_wall_seconds": 115,
+  "materialized_source_or_native_output": false,
+  "source_functions_tests_or_native_executed_by_preparer": false,
+  "runtime_bodies_read_or_hashed_by_preparer": false,
+  "author_role": "Author prepared the fixed deck/preparer/adapter and assessor independent source peer. This exact actual requires replica independent binding review plus root fresh launch acceptance; no independent source/math claim by author.",
+  "required_before_launch": [
+    "Independent exact-child peer of this frozen actual/index.",
+    "Root fresh all direct pins+actual+source/peer hashes, selected controllerPython and native19/13runtime, resource/disk/owned-selected-job/output checks.",
+    "Root retains new-session own/watchdog/cleanup/wait/afterclosure records; inner adapter owns exact materialization."
+  ],
+  "head_execution_authorized": false,
+  "engineering_accepted": false,
+  "physics_qualified": false,
+  "material_qualified": false,
+  "process_calibrated": false,
+  "manufacturing_authorized": false
+}

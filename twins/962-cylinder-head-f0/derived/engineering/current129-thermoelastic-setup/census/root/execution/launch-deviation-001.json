@@ -1,0 +1,47 @@
+{
+  "schema": "962-current129-census-root-observed-launch-deviation/v1",
+  "status": "PRESERVED_DECLARED_CONTROLLER_COMMAND_NOT_FOLLOWED_ACCEPT_SAVED_OBSERVATIONS_WITH_DISCLOSURE_PENDING_PEER",
+  "actual_sha256": "ec888011591b8eda74ae83a4a3e796d1ab6d2cf555d99fba1fbbc2c003fb215f",
+  "root_launch_sha256": "acf9d4b6183f0c68768e88a682263df38239440bea4749a127abe56df5cef895",
+  "root_closed_sha256": "c08f9cfd9615095bbbbdc0547ee28ae797a75861000f87676db175e1804d1619",
+  "declared_root_controller_selection": {
+    "selected_interpreter_sha256": "1699bf8aa705a8bb71613bef5cdd7d7c8c9d9a188a841f41679aa9b5830b8f60",
+    "flags": [
+      "-I",
+      "-B"
+    ],
+    "body_fresh_check_required_before_launch": true
+  },
+  "observed_controller_argv": [
+    "runtime-role://registered-native/geometry/bin/python",
+    "-B",
+    "work/962-engineering/head-star-current129-full-stars-001/run_readback.py",
+    "--contract-sha256",
+    "ec888011591b8eda74ae83a4a3e796d1ab6d2cf555d99fba1fbbc2c003fb215f"
+  ],
+  "observed_controller_python_sha256": "72956ad35cff7691dfed9e04c9593de825ffd5b2fa7e8bc9ae96ce9a1af65621",
+  "root_owner_wrapper_used_declared1699_with_I_B": true,
+  "mistake": "Root launched unchanged4fb controller with the selected geometry Python72956/-B instead of the declared controller1699/-I/-B. The root owner wrapper used1699/-I/-B; that does not make the controller argv conformant.",
+  "all_selected_interpreters_fresh_hashed_before_and_after": true,
+  "controller_source_byte_exact4fb": true,
+  "worker_native_interpreter_and_read_only_source_command_unchanged": true,
+  "natural_RC0_no_stop_no_fallback": true,
+  "observed_controller_waited_reaped_absent": true,
+  "source_declared120s8GiB1GiB2thread_controls_unchanged": true,
+  "complete_saved_result_root_review_sha256": "9439a8fcfdd01381a2b2804ede246a31ec08bc45afb21e8a64e6bd361cd13b1d",
+  "basis_for_limited_acceptance": [
+    "Both executed interpreters were already selected, freshly hashed and unchanged; no unbound binary was introduced.",
+    "Controller source is byte-exact4fb and stdlib-only. It launches the intended source-bound native worker under its unchanged controls. No cross-version semantic or complete ABI equivalence is claimed.",
+    "Natural completed receipt, immutable full output/source closures and every saved poor/star/coordinate/typed-array association are independently inspectable. Native distribution/geometry remains query-attributed."
+  ],
+  "acceptance_scope": "Completed observed read-only query and saved associations only; declared controller-command conformance remains false. Independent stopped peer and final root acceptance required.",
+  "declared_controller_command_conformant": false,
+  "rerun_retry_or_source_mutation_performed": false,
+  "native_or_producer_execution_for_this_note": false,
+  "head_execution_authorized": false,
+  "engineering_accepted": false,
+  "physics_qualified": false,
+  "material_qualified": false,
+  "process_calibrated": false,
+  "manufacturing_authorized": false
+}

@@ -1,0 +1,156 @@
+{
+  "label": "assembled-noncap-to-complete-original",
+  "error": null,
+  "cleanup_errors": [],
+  "attach_returncode": 0,
+  "attach_process_started": true,
+  "attach_reaped": true,
+  "owned_container_removed": true,
+  "wall_seconds": 6.353123832959682,
+  "native_log_sha256": "6ec9ed3aab2c38353a3eca55b99923dcb5f4657f0fdf5f9733808258e3ed11b4",
+  "control_calls": [
+    {
+      "operation": "create",
+      "returncode": 0
+    },
+    {
+      "operation": "inspect",
+      "returncode": 0
+    },
+    {
+      "operation": "inspect",
+      "returncode": 0
+    },
+    {
+      "operation": "inspect",
+      "returncode": 0
+    },
+    {
+      "operation": "remove_stopped_owned",
+      "returncode": 0
+    }
+  ],
+  "initial_metadata": {
+    "Image": "sha256:57c6b17ed0bd093a61a3d3cecb7563e912caeb3832fd59e8cec2d4d9d4d1e2f8",
+    "State": {
+      "Dead": false,
+      "Error": "",
+      "ExitCode": 0,
+      "FinishedAt": "0001-01-01T00:00:00Z",
+      "OOMKilled": false,
+      "Paused": false,
+      "Pid": 0,
+      "Restarting": false,
+      "Running": false,
+      "StartedAt": "0001-01-01T00:00:00Z",
+      "Status": "created"
+    },
+    "Controls": {
+      "NanoCpus": 2000000000,
+      "Memory": 4294967296,
+      "MemorySwap": 4294967296,
+      "NetworkMode": "none",
+      "ReadonlyRootfs": true,
+      "Tmpfs": null
+    },
+    "Mounts": [
+      {
+        "Source_role": "readonly_bound_input:/bounded-distance",
+        "Type": "bind",
+        "Destination": "/bounded-distance",
+        "RW": false
+      },
+      {
+        "Source_role": "owned_noncap_output",
+        "Type": "bind",
+        "Destination": "/out",
+        "RW": true
+      },
+      {
+        "Source_role": "readonly_bound_input:/source-ids.u64",
+        "Type": "bind",
+        "Destination": "/source-ids.u64",
+        "RW": false
+      },
+      {
+        "Source_role": "readonly_bound_input:/source.bin",
+        "Type": "bind",
+        "Destination": "/source.bin",
+        "RW": false
+      },
+      {
+        "Source_role": "readonly_bound_input:/target.bin",
+        "Type": "bind",
+        "Destination": "/target.bin",
+        "RW": false
+      }
+    ]
+  },
+  "final_metadata": {
+    "Image": "sha256:57c6b17ed0bd093a61a3d3cecb7563e912caeb3832fd59e8cec2d4d9d4d1e2f8",
+    "State": {
+      "Dead": false,
+      "Error": "",
+      "ExitCode": 0,
+      "FinishedAt": "2026-10-17T06:39:21.596875253Z",
+      "OOMKilled": false,
+      "Paused": false,
+      "Pid": 0,
+      "Restarting": false,
+      "Running": false,
+      "StartedAt": "2026-10-17T06:39:15.87951525Z",
+      "Status": "exited"
+    },
+    "Controls": {
+      "NanoCpus": 2000000000,
+      "Memory": 4294967296,
+      "MemorySwap": 4294967296,
+      "NetworkMode": "none",
+      "ReadonlyRootfs": true,
+      "Tmpfs": null
+    },
+    "Mounts": [
+      {
+        "Source_role": "readonly_bound_input:/bounded-distance",
+        "Type": "bind",
+        "Destination": "/bounded-distance",
+        "RW": false
+      },
+      {
+        "Source_role": "owned_noncap_output",
+        "Type": "bind",
+        "Destination": "/out",
+        "RW": true
+      },
+      {
+        "Source_role": "readonly_bound_input:/source-ids.u64",
+        "Type": "bind",
+        "Destination": "/source-ids.u64",
+        "RW": false
+      },
+      {
+        "Source_role": "readonly_bound_input:/source.bin",
+        "Type": "bind",
+        "Destination": "/source.bin",
+        "RW": false
+      },
+      {
+        "Source_role": "readonly_bound_input:/target.bin",
+        "Type": "bind",
+        "Destination": "/target.bin",
+        "RW": false
+      }
+    ]
+  },
+  "schema": "962-CGAL-stopped-noncap-execution-public-projection/v1",
+  "original_execution_sha256": "b1034ebaf94f9e5e0f939eec8d8eaa2f0a7fa14d2b30bcdbefa02496ddbb5d69",
+  "omitted_private_fields": [
+    "command",
+    "initial_metadata.Id",
+    "initial_metadata.Owner",
+    "final_metadata.Id",
+    "final_metadata.Owner",
+    "control_calls.stdout",
+    "control_calls.stderr"
+  ]
+}

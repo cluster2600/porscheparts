@@ -1,0 +1,136 @@
+{
+  "original_record_sha256": "4d4bdba83f15ca26ab80a48d7967beca63978c928dcbe51003214c85261dae81",
+  "representation": "whitelist_projection",
+  "projection_scope": "Whitelisted original specification, option/runtime identities, scopes and test result. Proposed command, private runtime/identity paths and raw snapshot path maps omitted; hashes retained by role.",
+  "preflight": {
+    "schema": "962-saved-cube-default-optimizer-fixture/v1",
+    "frozen_UTC": "2026-10-16T20:03:48.150115+00:00",
+    "status": "prepared_native_execution_on_hold",
+    "case": "default-force",
+    "optimization": {
+      "force": true,
+      "method": ""
+    },
+    "API_niter_limits_backend": false,
+    "options": {
+      "General.NumThreads": 2,
+      "Mesh.Binary": 1,
+      "Mesh.MaxNumThreads3D": 2,
+      "Mesh.MshFileVersion": 4.1,
+      "Mesh.Optimize": 0,
+      "Mesh.OptimizeNetgen": 0,
+      "Mesh.OptimizeThreshold": 0.3,
+      "Mesh.Renumber": 0,
+      "Mesh.SaveAll": 1
+    },
+    "input_geometry": {
+      "analytic_volume_mm3": 343,
+      "boundary_nodes": 8,
+      "interior_nodes": 34,
+      "outward_triangles": 12,
+      "tetrahedra": 191
+    },
+    "input_scope": {
+      "capped_cube_minimum_SICN": 0.027175498119979526,
+      "passes_head_SICN_threshold": false,
+      "software_fixture_only": true
+    },
+    "input_sha256": "e773cc4a2f68187c623e984eb9f58441f3fa5eed2733295e7eb26bd7b3910ac1",
+    "length_unit": "mm",
+    "required_invariants": {
+      "boundary_classification_below_dim3": true,
+      "exact_boundary_coordinates_and_oriented_faces": true,
+      "exact_opposite_internal_faces": true,
+      "interior_classification_dim3": true,
+      "no_curve_or_surface_periodic_mapping": true,
+      "positive_finite_jacobians_and_volumes": true,
+      "relative_volume_bound": 1e-06,
+      "saved_readback_identity": true,
+      "volume_connectivity_change_allowed": true
+    },
+    "quality_scope": {
+      "actual_SICN_threshold": 0.1,
+      "assess_threshold_separately": true,
+      "head_accepted": false,
+      "head_not_read_or_accepted": true,
+      "require_strict_improvement_and_actual_change_for_quality_success": true
+    },
+    "resources": {
+      "automatic_retry": false,
+      "hard_OS_CPU_quota_applied": false,
+      "hard_address_space_limit_applied": false,
+      "native_deadline_s": 30,
+      "sampled_RSS_stop_bytes": 1073741824,
+      "sampled_output_stop_bytes": 16777216,
+      "threads": 2
+    },
+    "resource_scope": "30 s watchdog and sampled RSS/output stops; no hard OS address-space/CPU quota. Output sampling excludes .tmp atomic-report files.",
+    "runtime": {
+      "gmsh": "4.15.2",
+      "machine": "arm64",
+      "numpy": "2.0.2",
+      "python": "3.10.11"
+    },
+    "source_sha256s": {
+      "twins/962-cylinder-head-f0/source/audit_quality_head.py": "a298270aa00b1536314a07629b935500c68883ca0d3bd1a179d71b49a8e73991",
+      "twins/962-cylinder-head-f0/source/audit_quality_patch.py": "3532a172b2bce3a8ead7c8b11b712a2b55891377726fa1b6d847e84f0eed3912",
+      "twins/962-cylinder-head-f0/source/check_hxt_size_cap_002.py": "0cac0c2662bab1efb47df427fa9d34b13a08f74655a43673fcd9fbdc4aaa504d",
+      "twins/962-cylinder-head-f0/source/check_saved_cube_default.py": "c8a87cc7bc312fae4bdb414c2a6c6e77b920382f5bd00ca7ae2d04e4d3de20a6",
+      "twins/962-cylinder-head-f0/source/mesh_head.py": "69c8012e99057e384d44d6971d41f0e2cc7197a978120a7c566b0ad5a6477da5",
+      "twins/962-cylinder-head-f0/source/mesh_quality_head.py": "6ba68df17ae41a55e98470c103c804c830b890256b936d3785ea8cc40cb55302",
+      "twins/962-cylinder-head-f0/source/prepare_head_analysis.py": "cda8f7155a8c22ab66898f07d1ad452ba5384ad7f75a1f012606685cd8a12dc3"
+    },
+    "test_sha256": "c1f41f709123bbfc93e02cae313ae837d52e35fc2146c4bf2c9e2d4d533a142e",
+    "test_result": {
+      "assert_based_tests": 5,
+      "default_python_passed": true,
+      "native_optimizer_called": false,
+      "selected_native_python_passed": true
+    },
+    "primary_source": {
+      "archive_sha256": "be3f66f225d27ba9fa014f07e83169285da8a051b0e8ab7103d88066b39bdd3e",
+      "backend_loop_and_gamma_threshold": "src/mesh/meshGRegionDelaunayInsertion.cpp:883-1035",
+      "closed_edge_cavity": "src/mesh/meshGRegionLocalMeshMod.cpp:61-105,237-345",
+      "discrete_force_guard": "src/mesh/meshGRegion.cpp:278-291",
+      "dispatch": "src/mesh/Generator.cpp:896-903",
+      "interior_only_smoothing": "src/mesh/meshGRegionLocalMeshMod.cpp:624-630",
+      "periodic_queries": "src/common/gmsh.cpp:5454-5504",
+      "release_source_matches_installed_binary_build_attested": false,
+      "renumber_and_periodic_fix": "src/geo/GModel.cpp:1531-1540",
+      "url": "https://gmsh.info/src/gmsh-4.15.2-source.tgz"
+    },
+    "primary_source_licence": "GPL-2.0-or-later with the Gmsh linking exception; original headers and LICENSE.txt retained",
+    "native_execution_authorized_by_contract": false,
+    "native_mesh_generation_calls_executed_during_preparation": 0,
+    "native_optimizer_calls_executed_during_preparation": 0
+  },
+  "runtime_file_sha256s_by_role": {
+    "python": "72956ad35cff7691dfed9e04c9593de825ffd5b2fa7e8bc9ae96ce9a1af65621",
+    "gmsh_module": "f4b0935cebde899750293d87a643090e5ea33c9b18d249267f507db68a0e01c3",
+    "gmsh_library": "def0f5c10988a986e5e879b3db9669d8fe016a81e2d994bbaf2b8497c6b8a58a"
+  },
+  "primary_archive": {
+    "bytes": 18496049,
+    "sha256": "be3f66f225d27ba9fa014f07e83169285da8a051b0e8ab7103d88066b39bdd3e"
+  },
+  "primary_source_hashes_by_filename": {
+    "GModel.cpp": "96df731cf16e58be3f1fbc502ecffc2037a160935c48a16a731c590d328fd691",
+    "Generator.cpp": "e134b862c66275fc24b900636ad0d24435644d9f1782d00ac8fcccf3489faafa",
+    "LICENSE.txt": "32085d8c954e2e22dc667c089f360049e8f1af955f946fb0a18f29d70390276a",
+    "gmsh.cpp": "375f8ba655c0c2c5c7e0f52a5460e17e0bcf49a363449f2df1b287f6b38a2cb8",
+    "meshGRegion.cpp": "2dcb43d57a7a92dc576add8af37974e019a4eafb06f535f9faaa509ce77eebc6",
+    "meshGRegionDelaunayInsertion.cpp": "cc13350607411931d712d5a792e5e6b6ec01c9d76458bb154ca737b49826478c",
+    "meshGRegionLocalMeshMod.cpp": "abfb4c8cbda1356aeaf8cf017eea2ebf103acbbd2a22664a49664c0157bec658"
+  },
+  "snapshot_hashes_by_filename": {
+    "audit_quality_head.py": "a298270aa00b1536314a07629b935500c68883ca0d3bd1a179d71b49a8e73991",
+    "audit_quality_patch.py": "3532a172b2bce3a8ead7c8b11b712a2b55891377726fa1b6d847e84f0eed3912",
+    "check_hxt_size_cap_002.py": "0cac0c2662bab1efb47df427fa9d34b13a08f74655a43673fcd9fbdc4aaa504d",
+    "check_saved_cube_default.py": "c8a87cc7bc312fae4bdb414c2a6c6e77b920382f5bd00ca7ae2d04e4d3de20a6",
+    "cube.msh": "e773cc4a2f68187c623e984eb9f58441f3fa5eed2733295e7eb26bd7b3910ac1",
+    "mesh_head.py": "69c8012e99057e384d44d6971d41f0e2cc7197a978120a7c566b0ad5a6477da5",
+    "mesh_quality_head.py": "6ba68df17ae41a55e98470c103c804c830b890256b936d3785ea8cc40cb55302",
+    "prepare_head_analysis.py": "cda8f7155a8c22ab66898f07d1ad452ba5384ad7f75a1f012606685cd8a12dc3",
+    "test_962_saved_cube_default.py": "c1f41f709123bbfc93e02cae313ae837d52e35fc2146c4bf2c9e2d4d533a142e"
+  }
+}

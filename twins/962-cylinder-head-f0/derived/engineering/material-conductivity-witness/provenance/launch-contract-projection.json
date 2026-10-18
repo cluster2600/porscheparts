@@ -1,0 +1,78 @@
+{
+  "assessment_automatic": false,
+  "case_inputs": {
+    "XY": [
+      "conductivity-z.i",
+      "conductivity-xy.i"
+    ],
+    "Z": [
+      "conductivity-z.i"
+    ]
+  },
+  "head_input_or_head_solve": false,
+  "held_contract_sha256": "8f87f07d46d21d4fee20f8be5b94899fbca8123bd0aeab738ceffcdd848e137a",
+  "manufacturing_authorized": false,
+  "material_qualified": false,
+  "native_launch_authorized": true,
+  "nonlinear_iterate_material_range_coverage_unverified": true,
+  "outside_knots_probe_permitted": false,
+  "remote_output_location": "fresh fixed two-case output directory; actual user path omitted",
+  "remote_preparation_location": "fresh fixed preparation directory; actual user path omitted",
+  "resources": {
+    "CPUQuota_percent": 200,
+    "MPI_ranks": 1,
+    "MemoryMax_GiB": 2,
+    "MemorySwapMax": 0,
+    "RuntimeMaxSec": 45,
+    "TasksMax": 128,
+    "controller_wait_seconds": 40,
+    "kill_grace_seconds": 5,
+    "soft_seconds": 30,
+    "software_threads": 1
+  },
+  "root_and_peer_source_review_complete": true,
+  "runtime_root_location": "existing read-only runtime root; actual user path omitted",
+  "runtime_sha256s": {
+    "environment": "2ff5e3480067369fff550ebba7a5d3c565a393ec2a3f1a9f100c3c5f8aeb416b",
+    "opt/libmesh/lib/libmesh_opt.so.0": "7b4971177983443edc96070877cac4aa6d684e33a926e01183b6a67ee855ad37",
+    "opt/moose/bin/moose-opt": "c49e2c368799d80edf9ff858dd8960bd22f5430f48229ab49dcc0afd27afcc5b",
+    "opt/moose/lib/combined/libcombined-opt.so.0": "24a1ef7eb74245725aac38b10493b7f9308235a872f3027bd36b7a16d10d44f7",
+    "opt/moose/lib/combined/libmoose-opt.so.0": "f8eb6b0dc6eba723f9e788b1e842b825635cc6ba4475b091a229ff12a9412aae",
+    "opt/petsc/include/petscconf.h": "d97381968ccfea9eb893c0f1316cd51ade2be2d5adf3caa0790a0c00c22c9a5c",
+    "opt/petsc/lib/libHYPRE-3.1.0.so": "9430a3931cc62ae387099576eee8f7719d83923aade3af4d12cfabed7e920079",
+    "opt/petsc/lib/libpetsc.so.3.25.2": "08fe5281281c9097411de4dba0f7409b3ea4254fef4d824e124647ddadef475a"
+  },
+  "schema": "962-fixed-Z-XY-measured-k-native-launch-held/v1",
+  "source_sha256s": {
+    "PROTOCOL.md": "96a8e19f3c766edb201cbe1d8c3fb0e97d1b089e3d1f2e81997b2de13ab4aa68",
+    "RANGE_AND_LAUNCH_ADDENDUM.md": "e272cedd0e81851a4d874e5e01104b9426ec5feccd7bd8ab70ac0e6734bbe021",
+    "assess_material_bar.py": "ee6e7bbcde46260f599fde55187595cfae70562db43598e4a0bc411375b4538c",
+    "assessor-preparation.json": "0557c3a5b4dc98b4e1ffa863a375de3540dd9893f14ed04c4c6ada2d4231e926",
+    "assessor-source-review.json": "26c53aa7751cd99923f11dc0255bc5fe408b339e58c4aa20881ad14e6821baa3",
+    "assessor-tests.json": "e261945e4b1707dc7987e0cd62066b7f1f82b63564892f372528a0d89f1ea9d7",
+    "conductivity-xy.i": "0b6b4faa13e08a50ef914b047033072fae6ee81c3389b61a454f0d9b88494ecd",
+    "conductivity-z.i": "bd0c9e2d41b5887a312f9867b1d0b23a8204791c6bae807f20cfc6c3a8d53e00",
+    "expected.json": "61a29b01cab06101d9604013f2f14687b37b459e9f3e3146ce301e77139f1f2b",
+    "frozen-preparation-002.json": "fbfba6aba393540e37792c14c9f99661b5e4914d20bf7d050229918659aac5cf",
+    "held-contract.json": "8f87f07d46d21d4fee20f8be5b94899fbca8123bd0aeab738ceffcdd848e137a",
+    "kirchhoff_reference.py": "390f3263f47aaf6458c73df4ccb6448a9a461a64fcbe530905848761fa9e60ff",
+    "launch-preparation.json": "6b6428b21065692aadeaddb260b77e4dfd7c53e542cbe5f2d3fb2cccb55bbce5",
+    "launcher-source-review.json": "1941fe96cdf0471f40af37ba685bf421869828934fb9829b5c6f69e7c2d1dd63",
+    "launcher-tests-corrected.json": "13e4f885b4fd9c77581e8887dcd391b3e57bcf43fa10ae0214823804d0782a7e",
+    "launcher-tests-original-failed.json": "512eae9ebfb0a62cb536a8439b625e454b0f7533f27f73f968ad6ca5abb0c4f8",
+    "old-runtime-contract.json": "1783ad8397a0d0cbc892ad129487db7d3b983483903682d5375f94036a4c8978",
+    "oracle-coverage.json": "d710cd4dfe8f1b50d792cda68340a2da6ed37daf6847ccbcc07a7c966eea4c54",
+    "oracle-tests.json": "72d14a8d355d4e6ae792c43973d36578281f01ded73c09c01dc9491775ffb831",
+    "preparation.json": "1ba1fda2bb7b9f2f4e2f093551a98f636717f18252170742f6ef6628766eecc1",
+    "prior-run_local.py": "61064f4a2421d5d492060a795252b29791f1e999e8753fe221459b3c9578fd76",
+    "root-review.json": "36eef6b18c43fc64e5b8cf46474ffecb53a7a9aa4f3bee72347f503c1e86aa46",
+    "run_bar.py": "6a13a21660a9f3ce230920a18e4d6a5333dc8aacfb2e85acbe8d4bd8d931e2cd",
+    "runtime-preflight.json": "3cb60a77c7fd424de98039fc764c89546b81f024ee5d13f4651b89dfd7b61a98",
+    "source-review.json": "3e9763776b8ee84abf5a08861f4af33613b20f28dea948d525a1201c188088a7",
+    "test_assess_material_bar.py": "6ef31440b274e95b7c3c469f81f55037bbb8525001204cf376b28397a3d4fa0b",
+    "test_kirchhoff_reference.py": "c85beadeb97387fcb48c80ad5b93f478b5906c0fd98a8b874abd21d20b4eeeb3",
+    "test_run_bar.py": "c7b28941017cb10c5e9ccaa3f1d7593a04fbdb490bc2f464c1b572870ccdff2a",
+    "test_run_bar_corrected.py": "edf8a1068cff200f5cdee9c9231c607495f684d4f78c173b48521daddd240040"
+  },
+  "status": "root_authorized_fixed_two_case_in_range_software_witness"
+}

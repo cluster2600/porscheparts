@@ -1,0 +1,58 @@
+{
+  "schema": "962-assembled-saved-MSH-reader-minimal-successor-delta/v1",
+  "status": "HELD_sources_and_mocks_unrun",
+  "reader": {
+    "base_path": "work/962-engineering/atomic-cavity-volume-readback-prep-002/reader.py",
+    "base_sha256": "40f1d220453c114f49e5eea3d6ea5ad55ace50fa51819e9f3c291887596d6f56",
+    "selected_path": "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-volume-readback-prep-001/reader.py",
+    "selected_sha256": "8c7d73af930a75c3a0fb9cad70b130d4a1db326fdd3d8be34409f8231aa2ec9a",
+    "literal_replacements": [
+      {
+        "old": "work/962-engineering/atomic-cavity-volume-hxt-001",
+        "new": "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-volume-hxt-001"
+      }
+    ],
+    "exact_reverse_restores_whole_base": true,
+    "diff_sha256": "9a63cf42d7c221742d2c80c86b40e447690fc791ac151427dc539659c0483784"
+  },
+  "runner": {
+    "base_path": "work/962-engineering/atomic-cavity-volume-readback-prep-002/run_readback.py",
+    "base_sha256": "e0e63b01708584d0296757df8aaea89c5238bc352109a716a7abed49defa3d97",
+    "selected_path": "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-volume-readback-prep-001/run_readback.py",
+    "selected_sha256": "5a93c61e5f8a476ce1c0d6bd562d27b7da4c79e428ab5502e7d9c89ba5ac0efd",
+    "literal_replacements": [
+      {
+        "old": "timer=threading.Timer(120,lambda:stop('readback_deadline'))",
+        "new": "timer=threading.Timer(max(0.,120-(time.monotonic()-started)),lambda:stop('readback_deadline'))"
+      },
+      {
+        "old": " finally:\n  report=dict(scope='one_stopped_atomic_mesh_read_only',returncode=process.returncode if process is not None else None,stop_reason=stopped['reason'],wall_seconds=time.monotonic()-started,",
+        "new": " finally:\n  elapsed=time.monotonic()-started\n  if elapsed>=120:stopped['reason']=stopped['reason'] or 'readback_deadline'\n  report=dict(scope='one_stopped_assembled_mesh_read_only',returncode=process.returncode if process is not None else None,stop_reason=stopped['reason'],wall_seconds=elapsed,"
+      }
+    ],
+    "exact_reverse_restores_whole_base": true,
+    "diff_sha256": "4d3643502bb9daff7b5fe69a5d7aa8e855b8692229a0ba50093e613a683f7e55"
+  },
+  "mocks": {
+    "base_test_sha256": "e6e90a66810109557eb436cf32c703c6517e0147a071307271d18b01bef5c408",
+    "selected_test_sha256": "40657832b39ad4c3f953120e8cbcf17611b5b42cae8c992e0ef42cc11b3a7771",
+    "prepared_methods": [
+      "test_SIGTERM_during_Popen_return_keeps_assigned_child_owned",
+      "test_SIGTERM_during_monitor_kills_reaps_and_restores",
+      "test_Popen_refusal_restores_and_does_not_kill_unowned_process",
+      "test_timer_start_refusal_still_kills_reaps_and_restores",
+      "test_monitor_refusal_stops_child_without_success",
+      "test_wait_refusal_still_restores_handler",
+      "test_late_SIGTERM_marks_interruption_without_signaling_reaped_PID",
+      "test_normal_reader_completion_reaps_restores_and_does_not_kill",
+      "test_Popen_creation_time_is_subtracted_from_timer_budget",
+      "test_late_valid_RC0_without_timer_callback_cannot_pass"
+    ],
+    "existing_eight_cases_preserved": true,
+    "new_cases": "17s Popen leaves103s; already exited valid RC0 after121s with Timer callback suppressed must refuse",
+    "fixture_root_resolved_and_exact_runner_hash_guard_before_AST": true,
+    "executed": false
+  },
+  "native_or_scientific_imports": false,
+  "MSH_or_BIN_bytes_read_or_hashed": false
+}

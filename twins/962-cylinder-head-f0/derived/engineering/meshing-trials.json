@@ -1,0 +1,244 @@
+{
+  "schema_version": "1.0.0",
+  "status": "head_meshing_trials_and_independent_geometric_audit_not_engineering_acceptance",
+  "bore_mm": 95,
+  "length_unit": "mm",
+  "input_hashes": {
+    "twins/962-cylinder-head-f0/derived/family/delivery-report.json": "90e5b91d4682b0a2a99a6c2966e2916c0302952d8ef42712dfa95d6cd771c904",
+    "twins/962-cylinder-head-f0/derived/family/bore-95-report.json": "5dc2c44ec6978cee9ea9bbd80c392227b68c3e13c0915e7f20e562cb489c7efb",
+    "twins/962-cylinder-head-f0/source/family/configs/bore-95.json": "2d1b4eafb6e331436cd6b29ce47092090a449c7f3991ec7e6208a980ca589efa",
+    "work/962-family/bore-95-run-001/inspected-bound-002/solid.stl": "ba7a0e28dade659550705e9737177c64c7f6fecd8d86d01e31732d7e739cd906"
+  },
+  "runtime": {
+    "machine": "arm64",
+    "python_version": "3.10.11",
+    "gmsh_version": "4.15.2",
+    "numpy_version": "2.0.2",
+    "python_executable_sha256": "72956ad35cff7691dfed9e04c9593de825ffd5b2fa7e8bc9ae96ce9a1af65621",
+    "gmsh_module_sha256": "f4b0935cebde899750293d87a643090e5ea33c9b18d249267f507db68a0e01c3",
+    "libgmsh_sha256": "def0f5c10988a986e5e879b3db9669d8fe016a81e2d994bbaf2b8497c6b8a58a"
+  },
+  "predeclared_geometric_gates": {
+    "exact_original_coordinates": true,
+    "exact_oriented_surface_triangle_set": true,
+    "no_tolerance_welding": true,
+    "positive_finite_native_jacobian_volume_and_SICN": true,
+    "positive_finite_independent_signed_tetra_volume": true,
+    "actual_tetra_boundary_equals_oriented_source_surface": true,
+    "relative_volume_bookkeeping_bound": 1e-06,
+    "bookkeeping_bound_is_not_manufacturing_tolerance": true
+  },
+  "executed_source_snapshots": {
+    "delaunay-executed.py": {
+      "path": "twins/962-cylinder-head-f0/derived/engineering/meshing-sources/delaunay-executed.py",
+      "sha256": "80a6b8527ba407afe4879ace2f4bed3e2f60595c3670cc934178ec6927b8182b",
+      "bytes": 17979
+    },
+    "hxt-executed.py": {
+      "path": "twins/962-cylinder-head-f0/derived/engineering/meshing-sources/hxt-executed.py",
+      "sha256": "391766b7e22a5196aa81ff41e4e8baea3dd655cbf74937c2dbc33f3904de33e8",
+      "bytes": 19910
+    },
+    "post-failure-audit.py": {
+      "path": "twins/962-cylinder-head-f0/derived/engineering/meshing-sources/post-failure-audit.py",
+      "sha256": "d194b882a0e7464ac79c5ef11b56eff16fc2ed6c9f0bd36db560c8663447d382",
+      "bytes": 3663
+    },
+    "canonical-audit.py": {
+      "path": "twins/962-cylinder-head-f0/derived/engineering/meshing-sources/canonical-audit.py",
+      "sha256": "a9067c657402b0f23d330c268ae7574a79180bcd79584117021176e45b2e0639",
+      "bytes": 3268
+    },
+    "canonical-checker.py": {
+      "path": "twins/962-cylinder-head-f0/derived/engineering/meshing-sources/canonical-checker.py",
+      "sha256": "69c8012e99057e384d44d6971d41f0e2cc7197a978120a7c566b0ad5a6477da5",
+      "bytes": 20584
+    }
+  },
+  "trials": [
+    {
+      "id": "delaunay-001",
+      "algorithm_3d": 1,
+      "threads": 2,
+      "status": "timed_out_native_process_killed_outputs_preserved",
+      "returncode": -9,
+      "native_deadline_s": 300,
+      "controller_wall_s": 300.0844303329941,
+      "last_worker_stage": "generating_linear_tetrahedra",
+      "exact_import": {
+        "exact_source_coordinates": true,
+        "exact_source_oriented_connectivity": true,
+        "original_surface_nodes": 902145,
+        "original_surface_triangles": 1804706
+      },
+      "source_snapshot": "delaunay-executed.py",
+      "raw_controller_receipt": {
+        "path": "work/962-engineering/indexed-volume-001/receipt.json",
+        "sha256": "f0d66023544ae7bfed42b9e913d188b5f018ad8f7b6221a65c7b5bc64ade3d33",
+        "bytes": 4047
+      },
+      "raw_worker_report": {
+        "path": "work/962-engineering/indexed-volume-001/worker-report.json",
+        "sha256": "56946223af63e4eb8b09992e3d3417f968c9384e5d7a6b654e4e0ac5de12d363",
+        "bytes": 2926
+      },
+      "native_log": {
+        "path": "work/962-engineering/indexed-volume-001/native.log",
+        "sha256": "97d3449e730851fa782346bbc63d74832fca109faab9f83a0e795a0677ff79c8",
+        "bytes": 14808
+      },
+      "saved_surface_checkpoint": {
+        "path": "work/962-engineering/indexed-volume-001/before-volume.msh",
+        "sha256": "013b31f4e365c2d4e4954ce5a5a15b79c68c9e70e00d5716757d6bb4891ad95b",
+        "bytes": 86619634
+      },
+      "completed_volume_mesh": null,
+      "qualification": {
+        "geometric_volume_gate_passed": false,
+        "engineering_accepted": false
+      }
+    },
+    {
+      "id": "hxt-001",
+      "algorithm_3d": 10,
+      "threads": 4,
+      "status": "failed_outputs_preserved",
+      "returncode": 2,
+      "native_deadline_s": 300,
+      "controller_wall_s": 31.00672341720201,
+      "native_generation_wall_s": 18.3277,
+      "original_failure": "ValueError: Original oriented surface connectivity or triangle count changed",
+      "original_failure_interpretation": "Surface element tags changed; every original coordinate and raw oriented triangle row was preserved. The initial assertion conflated element-tag identity with geometric surface identity.",
+      "source_snapshot": "hxt-executed.py",
+      "raw_controller_receipt": {
+        "path": "work/962-engineering/indexed-volume-hxt-001/receipt.json",
+        "sha256": "e30669efe0190c0ca6182474732f5744d430fc297bce3a35944e08492dea5ae4",
+        "bytes": 4455
+      },
+      "raw_worker_report": {
+        "path": "work/962-engineering/indexed-volume-hxt-001/worker-report.json",
+        "sha256": "2175a81ce01e103737304816737da171acd7e2b8dff9017b74fa389968ea0262",
+        "bytes": 3132
+      },
+      "native_log": {
+        "path": "work/962-engineering/indexed-volume-hxt-001/native.log",
+        "sha256": "cae8576ae2601b6878de19be8e44165b28f692ee5f19e992135b6520438b5195",
+        "bytes": 1821
+      },
+      "saved_mesh": {
+        "path": "work/962-engineering/indexed-volume-hxt-001/failed-current-mesh.msh",
+        "sha256": "4f902544f34ab6d083ca2719bd6e7d731392a8514299d4d9b3afb21520a4fdf4",
+        "bytes": 210471830
+      },
+      "qualification_at_original_failure": {
+        "geometric_volume_gate_passed": false,
+        "engineering_accepted": false
+      }
+    }
+  ],
+  "independent_saved_mesh_audit": {
+    "status": "exact_surface_positive_volume_geometric_gate_passed_not_engineering_accepted",
+    "mesh_sha256": "4f902544f34ab6d083ca2719bd6e7d731392a8514299d4d9b3afb21520a4fdf4",
+    "canonical_surface": {
+      "exact_source_coordinates": true,
+      "exact_source_oriented_connectivity": true,
+      "original_surface_nodes": 902145,
+      "original_surface_triangles": 1804706,
+      "source_element_tags_preserved": false,
+      "source_tagged_vertex_order_preserved": true,
+      "comparison": "exact_oriented_triangle_set"
+    },
+    "original_triangles_missing": 0,
+    "new_triangles": 0,
+    "added_interior_nodes": 3,
+    "tagged_rows_with_identical_raw_vertex_order": 1804706,
+    "tetrahedra": 3096302,
+    "quality": {
+      "minimum_jacobian": {
+        "minimum": 1.6154612370034016e-16,
+        "p01": 1.621246337890625e-05,
+        "p05": 0.0008762894346137688,
+        "p50": 0.7686805802398768,
+        "p95": 4.482757806777954,
+        "p99": 10.836668218154092,
+        "maximum": 16121.683301283454,
+        "count": 3096302,
+        "nonpositive_count": 0
+      },
+      "native_volume_mm3": {
+        "minimum": 2.692435395005669e-17,
+        "p01": 2.702077229817708e-06,
+        "p05": 0.00014604823910229482,
+        "p50": 0.12811343003997946,
+        "p95": 0.7471263011296589,
+        "p99": 1.8061113696923485,
+        "maximum": 2686.9472168805755,
+        "count": 3096302,
+        "nonpositive_count": 0
+      },
+      "minimum_SICN": {
+        "minimum": 1.464221598799212e-16,
+        "p01": 0.00019214482637916843,
+        "p05": 0.009780422527618751,
+        "p50": 0.10520939236960845,
+        "p95": 0.28731542417167494,
+        "p99": 0.45055024707933494,
+        "maximum": 0.9180700982615463,
+        "count": 3096302,
+        "nonpositive_count": 0
+      },
+      "independent_signed_volume_mm3": {
+        "minimum": 2.6924353950056694e-17,
+        "p01": 2.7020772298177085e-06,
+        "p05": 0.00014604823910229482,
+        "p50": 0.1281134300399795,
+        "p95": 0.747126301129659,
+        "p99": 1.8061113696923483,
+        "maximum": 2686.9472168805755,
+        "count": 3096302,
+        "nonpositive_count": 0
+      }
+    },
+    "summed_tetra_volume_mm3": 915458.1053358029,
+    "retained_source_volume_mm3": 915458.1053358027,
+    "relative_volume_error": 2.220446049250313e-16,
+    "actual_tetra_boundary": {
+      "boundary_triangles": 1804706,
+      "exact_oriented_tetra_boundary": true,
+      "nonmanifold_volume_faces": 0
+    },
+    "mesh_unchanged": true,
+    "post_failure_diagnostic": {
+      "path": "work/962-engineering/indexed-volume-hxt-001/post-failure-audit.json",
+      "sha256": "95af927ae9e1a45aa84c20026378118275f1c1ca0856f972df8ee23a32a7073c",
+      "bytes": 3660
+    },
+    "canonical_audit": {
+      "path": "work/962-engineering/indexed-volume-hxt-001/canonical-audit.json",
+      "sha256": "58ea98db3a5cbcae9c03ce5378815600ce982b21ac405b65c47941c4e1071aba",
+      "bytes": 3961
+    },
+    "canonical_audit_wall_s": 8.517900249920785,
+    "qualification": {
+      "geometric_volume_gate_passed": true,
+      "engineering_accepted": false,
+      "mesh_convergence_established": false,
+      "strength_validated": false,
+      "manufacturing_authorized": false
+    }
+  },
+  "limits": [
+    "The Delaunay timeout is preserved and is not evidence that every exact-surface algorithm must fail.",
+    "The failed HXT receipt is preserved; a separate saved-mesh audit corrected a tag-identity false rejection without remeshing or relaxing geometric or quality gates.",
+    "Minimum SICN near 1.46e-16 and 3,096,302 tetrahedra prevent treating this result as an accepted engineering analysis mesh.",
+    "No force, temperature, pressure, material, thermal/structural solver, mesh-convergence or physical-qualification result is produced.",
+    "Large MSH files remain local; the public record contains hashes, numerical audits and exact small executed-source snapshots."
+  ],
+  "qualification": {
+    "geometric_volume_gate_passed": true,
+    "engineering_accepted": false,
+    "mesh_convergence_established": false,
+    "strength_validated": false,
+    "manufacturing_authorized": false
+  }
+}

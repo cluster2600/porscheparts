@@ -1,0 +1,47 @@
+{
+  "schema": "962-oneway-thermoelastic-explicit-IC002-independent-source-peer/v1",
+  "decision": "CLEAR_HELD_IC_CORRECTION_SOURCE_ONLY",
+  "held": {
+    "path": "work/962-engineering/cp1-oneway-thermoelastic-transfer-prep-002/held-preparation.json",
+    "sha256": "0d5fda5ba02d990420f6585e7fb4380a24efc236446a85d860f48b5064465955"
+  },
+  "bindings": {
+    "path": "work/962-engineering/cp1-oneway-thermoelastic-transfer-concrete-source-peer-002/bindings.json",
+    "sha256": "22834117991e20c580560aa8dd8ceddb8ed749eab43b10501714dd936c7e0227"
+  },
+  "static_attempt_history_sha256": "f3b6c271cdfba3c79bf9ec5939c24574ef6267927fb8d2cf415a3996de593976",
+  "direct_source": {
+    "thermoelastic-birth.i": "cbead6d0ec032a0cc1bb82dd2abc032aa3f94321340ddc06058f42c8a1ce6fdb",
+    "case-contract.json": "cf56e131b449595ba78b0889725a3536fdda82cff67330bad8e062c93e2d18d2",
+    "run_mac.py": "dcc8f5a26f3834dd195778536ba527a6179558a57b956a021ee3feae94f5d992",
+    "selfcheck.py": "bbc8aa783c0713f9947f4e04212b793c86a80dc05a2d2f6c71ad7948a26d0a12",
+    "test_controls.py": "555755bb1c738db1db8b8ff4c7c1dc250d8b75eff9cd39c4b3786e728dea3f17",
+    "source-reuse.json": "eddf8bbf9ec40adbb87430e782352f0919fd789b7dc8ea39a4c7107e5891acab",
+    "source.diff": "1db8c235c1a1b76fbc7232c12fc488e0394ad9eaeecf98ed372ab03b73e0bea2",
+    "ic-source-note.json": "be2c121b2b22449ae72fb142945e1d1d8dae15d229ae823b7d409b3c182a0cc0"
+  },
+  "review_scope": "Full frozen deck, new source/guard deltas, all15 prepared guard test bodies, held/METHOD/primary-IC note and exact donor reversals read; no source module/function/test/native invocation. Prior full adapter run/control source read is supplemented by exact whole-source/AST reverse.",
+  "role_disclosure": "Reviewer authored the separate saved-field assessor and reviewed failed capture001, not this deck/adapter. Reused donor controls/math and primary-source context do not establish installed-build equivalence or independent physical validation.",
+  "finding": "The variable-wide temperature initial_condition400 is removed. Explicit FunctionIC temperature scopes are old400/block2 and born_begin80/block3. Remaining inline IC is inactive_placeholder0/block1 with no explicit duplicate; displacement/born-reference definitions are unchanged. This resolves the observed source IC overlap only, without a runtime-success claim.",
+  "preserved_physics": "Card/preparer/thermal index/primary supplement exact; contract changes only deck digest. Born BEGIN80 full225/shared25 reference and restore flags,425/256 geometry,30tensor fields,six supports,NEWTON and all time/solver tolerances remain exact.",
+  "controls": "One fresh native002 output literal only; entire run AST exact,19files13links metadata unchanged,100s/2GiB sampled leaderRSS/512MiB sampled output/1thread/TCPENV7. No retry, assessor or new conversion.",
+  "guards": "Eight original source tests exact; new fixed current-state variable/IC block-overlap scan covers valid old2/born3 and reintroduced inline/duplicate-born refusals. Five control tests exact, sixth output-path expectation only. Static namespaces coherent;9+6 guards remain UNRUN by reviewer.",
+  "binding_scope": {
+    "current_small_pins_hashed": 78,
+    "inherited_declared_CSV_identities": 322,
+    "held_pins": 400,
+    "CSV_bodies_rehashed_for_this_source_review": false,
+    "runtime_bodies_read": false,
+    "future_native_output_absent": true,
+    "assessment002_source_peer_root_gate_pending": true
+  },
+  "failure_history": "Original001 failure/receipt/root/peer50ec direct-bound; late root acceptance577bcc separately bound after source held freeze. Reviewer metadata-count assertion failure and correction preserved separately; no source/test/native run or artifact mutation.",
+  "required_before_native": "Binding-only assessor002 with independent peer/root source gates, root fresh complete data/runtime/Python/resource checks, new exact actual/child and root-owned bounded launch.",
+  "native_execution_authorized": false,
+  "assessment_execution_authorized": false,
+  "engineering_accepted": false,
+  "physics_qualified": false,
+  "material_qualified": false,
+  "process_calibrated": false,
+  "manufacturing_authorized": false
+}

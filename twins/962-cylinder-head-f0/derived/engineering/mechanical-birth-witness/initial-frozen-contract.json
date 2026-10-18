@@ -1,0 +1,1550 @@
+{
+  "schema_version": "1.0.0",
+  "classification": "HYPOTHETICAL_SOFTWARE_VERIFICATION_ONLY",
+  "created_unix": 1792171932.546301,
+  "frozen_before_native_run": true,
+  "card": {
+    "schema_version": "1.0.0",
+    "classification": "HYPOTHETICAL_SOFTWARE_VERIFICATION_ONLY",
+    "units": {
+      "length": "mm",
+      "stress": "MPa",
+      "force": "N",
+      "temperature": "K"
+    },
+    "bounds_mm": [
+      [
+        0,
+        0,
+        0
+      ],
+      [
+        1,
+        1,
+        20
+      ]
+    ],
+    "mesh_intervals": [
+      1,
+      1,
+      4
+    ],
+    "segment_boundary_z_mm": 10,
+    "E_MPa": 1000.0,
+    "nu": 0.0,
+    "yield_MPa": 1.0,
+    "hardening_MPa": 0.0,
+    "alpha_per_K": 1e-05,
+    "initial_T_K": 300.0,
+    "cold_T_K": 260.0,
+    "birth_time_s": 3.0,
+    "release_time_s": 5.0,
+    "times_s": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "preload_strain": 0.003,
+    "birth_strain": 0.0025,
+    "native_binary_sha256": "c49e2c368799d80edf9ff858dd8960bd22f5430f48229ab49dcc0afd27afcc5b",
+    "native_source_revision": "167ee97da204df5e8643695e18b9b28910f0014b",
+    "tolerances": {
+      "displacement_mm": 1e-09,
+      "strain": 1e-10,
+      "stress_MPa": 1e-07,
+      "force_N": 1e-07,
+      "temperature_K": 1e-10
+    },
+    "birth_rule": "A retains all displacement and plastic/material history. B receives affine displacement ux=-.001x,uy=-.001y,uz=.0025z with shared values restored; new incremental material strain/stress/plastic history is zero. No reference reset on A.",
+    "event_order": "Each ending-time-labelled step: controls toggle internal/top axial BCs; TIMESTEP_BEGIN birth modifier group-100 reinitializes only changed B; temperature update; begin nodal sampling group100; equilibrium; end full nodal/cell fields. Birth at3, cooldown4, release5.",
+    "assumptions": [
+      "Prescribed uniform temperature, no heat equation, latent heat, annealing or physical process.",
+      "Small strain, isotropic elasticity, nu=0, perfect J2. No physical alloy.",
+      "Two equal serial segments share nodes and traction at z10; same active physics block2, logical segment identity determined by immutable z coordinate.",
+      "Support release is quasi-static boundary removal; elastic energy decrease is not a dynamic energy-conservation claim."
+    ],
+    "qualification": {
+      "whole_head_lpbf_complete": false,
+      "material_calibrated": false,
+      "process_calibrated": false,
+      "manufacturing_authorized": false
+    },
+    "tensor_sampling": "All6 symmetric components of4 tensors at every2x2x2Gauss point, via a value-only AD-to-real conversion and scalar component materials; no cell averages."
+  },
+  "card_sha256": "214c08f4667fd93dc608faf7cf7755468086002307f5b5b829f3801eee17f94e",
+  "input_sha256": "72c683fb6ccb98fc1a93747d171a234354281c1fc189189a4b3e00048e2e8e7e",
+  "assessor_sha256": "59afc35fe74089146067dcc6ec6510329bcfe01682f4101e29e6ffb6c3c8692b",
+  "references": [
+    {
+      "time_s": 0,
+      "born": false,
+      "temperature_K": 300.0,
+      "sigma_MPa": 0.0,
+      "plastic_A": 0.0,
+      "plastic_B": 0.0,
+      "physical_axial_strain_A": 0.0,
+      "physical_axial_strain_B": null,
+      "physical_transverse_strain": 0.0,
+      "thermal_strain": 0.0,
+      "end_displacement_mm": 0.0,
+      "active_elements": 2,
+      "active_nodes": 12
+    },
+    {
+      "time_s": 1,
+      "born": false,
+      "temperature_K": 300.0,
+      "sigma_MPa": 1.0,
+      "plastic_A": 0.002,
+      "plastic_B": 0.0,
+      "physical_axial_strain_A": 0.003,
+      "physical_axial_strain_B": null,
+      "physical_transverse_strain": -0.001,
+      "thermal_strain": 0.0,
+      "end_displacement_mm": 0.03,
+      "active_elements": 2,
+      "active_nodes": 12
+    },
+    {
+      "time_s": 2,
+      "born": false,
+      "temperature_K": 300.0,
+      "sigma_MPa": 0.5,
+      "plastic_A": 0.002,
+      "plastic_B": 0.0,
+      "physical_axial_strain_A": 0.0025,
+      "physical_axial_strain_B": null,
+      "physical_transverse_strain": -0.001,
+      "thermal_strain": 0.0,
+      "end_displacement_mm": 0.025,
+      "active_elements": 2,
+      "active_nodes": 12
+    },
+    {
+      "time_s": 3,
+      "born": true,
+      "temperature_K": 300.0,
+      "sigma_MPa": 0.25,
+      "plastic_A": 0.002,
+      "plastic_B": 0.0,
+      "physical_axial_strain_A": 0.0022500000000000003,
+      "physical_axial_strain_B": 0.00275,
+      "physical_transverse_strain": -0.001,
+      "thermal_strain": 0.0,
+      "end_displacement_mm": 0.05,
+      "active_elements": 4,
+      "active_nodes": 20
+    },
+    {
+      "time_s": 4,
+      "born": true,
+      "temperature_K": 260.0,
+      "sigma_MPa": 0.65,
+      "plastic_A": 0.002,
+      "plastic_B": 0.0,
+      "physical_axial_strain_A": 0.00225,
+      "physical_axial_strain_B": 0.00275,
+      "physical_transverse_strain": -0.0014,
+      "thermal_strain": -0.0004,
+      "end_displacement_mm": 0.04999999999999999,
+      "active_elements": 4,
+      "active_nodes": 20
+    },
+    {
+      "time_s": 5,
+      "born": true,
+      "temperature_K": 260.0,
+      "sigma_MPa": 0.0,
+      "plastic_A": 0.002,
+      "plastic_B": 0.0,
+      "physical_axial_strain_A": 0.0016,
+      "physical_axial_strain_B": 0.0021,
+      "physical_transverse_strain": -0.0014,
+      "thermal_strain": -0.0004,
+      "end_displacement_mm": 0.037000000000000005,
+      "active_elements": 4,
+      "active_nodes": 20
+    },
+    {
+      "time_s": 6,
+      "born": true,
+      "temperature_K": 260.0,
+      "sigma_MPa": 0.0,
+      "plastic_A": 0.002,
+      "plastic_B": 0.0,
+      "physical_axial_strain_A": 0.0016,
+      "physical_axial_strain_B": 0.0021,
+      "physical_transverse_strain": -0.0014,
+      "thermal_strain": -0.0004,
+      "end_displacement_mm": 0.037000000000000005,
+      "active_elements": 4,
+      "active_nodes": 20
+    }
+  ],
+  "full_tensor_references": [
+    {
+      "A": {
+        "stress_xx": 0.0,
+        "stress_yy": 0.0,
+        "stress_zz": 0.0,
+        "stress_xy": 0.0,
+        "stress_xz": 0.0,
+        "stress_yz": 0.0,
+        "plastic_strain_xx": -0.0,
+        "plastic_strain_yy": -0.0,
+        "plastic_strain_zz": 0.0,
+        "plastic_strain_xy": 0.0,
+        "plastic_strain_xz": 0.0,
+        "plastic_strain_yz": 0.0,
+        "mechanical_strain_xx": -0.0,
+        "mechanical_strain_yy": -0.0,
+        "mechanical_strain_zz": 0.0,
+        "mechanical_strain_xy": 0.0,
+        "mechanical_strain_xz": 0.0,
+        "mechanical_strain_yz": 0.0,
+        "total_strain_xx": 0.0,
+        "total_strain_yy": 0.0,
+        "total_strain_zz": 0.0,
+        "total_strain_xy": 0.0,
+        "total_strain_xz": 0.0,
+        "total_strain_yz": 0.0
+      }
+    },
+    {
+      "A": {
+        "stress_xx": 0.0,
+        "stress_yy": 0.0,
+        "stress_zz": 1.0,
+        "stress_xy": 0.0,
+        "stress_xz": 0.0,
+        "stress_yz": 0.0,
+        "plastic_strain_xx": -0.001,
+        "plastic_strain_yy": -0.001,
+        "plastic_strain_zz": 0.002,
+        "plastic_strain_xy": 0.0,
+        "plastic_strain_xz": 0.0,
+        "plastic_strain_yz": 0.0,
+        "mechanical_strain_xx": -0.001,
+        "mechanical_strain_yy": -0.001,
+        "mechanical_strain_zz": 0.003,
+        "mechanical_strain_xy": 0.0,
+        "mechanical_strain_xz": 0.0,
+        "mechanical_strain_yz": 0.0,
+        "total_strain_xx": -0.001,
+        "total_strain_yy": -0.001,
+        "total_strain_zz": 0.003,
+        "total_strain_xy": 0.0,
+        "total_strain_xz": 0.0,
+        "total_strain_yz": 0.0
+      }
+    },
+    {
+      "A": {
+        "stress_xx": 0.0,
+        "stress_yy": 0.0,
+        "stress_zz": 0.5,
+        "stress_xy": 0.0,
+        "stress_xz": 0.0,
+        "stress_yz": 0.0,
+        "plastic_strain_xx": -0.001,
+        "plastic_strain_yy": -0.001,
+        "plastic_strain_zz": 0.002,
+        "plastic_strain_xy": 0.0,
+        "plastic_strain_xz": 0.0,
+        "plastic_strain_yz": 0.0,
+        "mechanical_strain_xx": -0.001,
+        "mechanical_strain_yy": -0.001,
+        "mechanical_strain_zz": 0.0025,
+        "mechanical_strain_xy": 0.0,
+        "mechanical_strain_xz": 0.0,
+        "mechanical_strain_yz": 0.0,
+        "total_strain_xx": -0.001,
+        "total_strain_yy": -0.001,
+        "total_strain_zz": 0.0025,
+        "total_strain_xy": 0.0,
+        "total_strain_xz": 0.0,
+        "total_strain_yz": 0.0
+      }
+    },
+    {
+      "A": {
+        "stress_xx": 0.0,
+        "stress_yy": 0.0,
+        "stress_zz": 0.25,
+        "stress_xy": 0.0,
+        "stress_xz": 0.0,
+        "stress_yz": 0.0,
+        "plastic_strain_xx": -0.001,
+        "plastic_strain_yy": -0.001,
+        "plastic_strain_zz": 0.002,
+        "plastic_strain_xy": 0.0,
+        "plastic_strain_xz": 0.0,
+        "plastic_strain_yz": 0.0,
+        "mechanical_strain_xx": -0.001,
+        "mechanical_strain_yy": -0.001,
+        "mechanical_strain_zz": 0.0022500000000000003,
+        "mechanical_strain_xy": 0.0,
+        "mechanical_strain_xz": 0.0,
+        "mechanical_strain_yz": 0.0,
+        "total_strain_xx": -0.001,
+        "total_strain_yy": -0.001,
+        "total_strain_zz": 0.0022500000000000003,
+        "total_strain_xy": 0.0,
+        "total_strain_xz": 0.0,
+        "total_strain_yz": 0.0
+      },
+      "B": {
+        "stress_xx": 0.0,
+        "stress_yy": 0.0,
+        "stress_zz": 0.25,
+        "stress_xy": 0.0,
+        "stress_xz": 0.0,
+        "stress_yz": 0.0,
+        "plastic_strain_xx": -0.0,
+        "plastic_strain_yy": -0.0,
+        "plastic_strain_zz": 0.0,
+        "plastic_strain_xy": 0.0,
+        "plastic_strain_xz": 0.0,
+        "plastic_strain_yz": 0.0,
+        "mechanical_strain_xx": -0.0,
+        "mechanical_strain_yy": -0.0,
+        "mechanical_strain_zz": 0.00025,
+        "mechanical_strain_xy": 0.0,
+        "mechanical_strain_xz": 0.0,
+        "mechanical_strain_yz": 0.0,
+        "total_strain_xx": 0.0,
+        "total_strain_yy": 0.0,
+        "total_strain_zz": 0.00025,
+        "total_strain_xy": 0.0,
+        "total_strain_xz": 0.0,
+        "total_strain_yz": 0.0
+      }
+    },
+    {
+      "A": {
+        "stress_xx": 0.0,
+        "stress_yy": 0.0,
+        "stress_zz": 0.65,
+        "stress_xy": 0.0,
+        "stress_xz": 0.0,
+        "stress_yz": 0.0,
+        "plastic_strain_xx": -0.001,
+        "plastic_strain_yy": -0.001,
+        "plastic_strain_zz": 0.002,
+        "plastic_strain_xy": 0.0,
+        "plastic_strain_xz": 0.0,
+        "plastic_strain_yz": 0.0,
+        "mechanical_strain_xx": -0.001,
+        "mechanical_strain_yy": -0.001,
+        "mechanical_strain_zz": 0.00265,
+        "mechanical_strain_xy": 0.0,
+        "mechanical_strain_xz": 0.0,
+        "mechanical_strain_yz": 0.0,
+        "total_strain_xx": -0.0014,
+        "total_strain_yy": -0.0014,
+        "total_strain_zz": 0.00225,
+        "total_strain_xy": 0.0,
+        "total_strain_xz": 0.0,
+        "total_strain_yz": 0.0
+      },
+      "B": {
+        "stress_xx": 0.0,
+        "stress_yy": 0.0,
+        "stress_zz": 0.65,
+        "stress_xy": 0.0,
+        "stress_xz": 0.0,
+        "stress_yz": 0.0,
+        "plastic_strain_xx": -0.0,
+        "plastic_strain_yy": -0.0,
+        "plastic_strain_zz": 0.0,
+        "plastic_strain_xy": 0.0,
+        "plastic_strain_xz": 0.0,
+        "plastic_strain_yz": 0.0,
+        "mechanical_strain_xx": -0.0,
+        "mechanical_strain_yy": -0.0,
+        "mechanical_strain_zz": 0.00065,
+        "mechanical_strain_xy": 0.0,
+        "mechanical_strain_xz": 0.0,
+        "mechanical_strain_yz": 0.0,
+        "total_strain_xx": -0.0004,
+        "total_strain_yy": -0.0004,
+        "total_strain_zz": 0.00024999999999999995,
+        "total_strain_xy": 0.0,
+        "total_strain_xz": 0.0,
+        "total_strain_yz": 0.0
+      }
+    },
+    {
+      "A": {
+        "stress_xx": 0.0,
+        "stress_yy": 0.0,
+        "stress_zz": 0.0,
+        "stress_xy": 0.0,
+        "stress_xz": 0.0,
+        "stress_yz": 0.0,
+        "plastic_strain_xx": -0.001,
+        "plastic_strain_yy": -0.001,
+        "plastic_strain_zz": 0.002,
+        "plastic_strain_xy": 0.0,
+        "plastic_strain_xz": 0.0,
+        "plastic_strain_yz": 0.0,
+        "mechanical_strain_xx": -0.001,
+        "mechanical_strain_yy": -0.001,
+        "mechanical_strain_zz": 0.002,
+        "mechanical_strain_xy": 0.0,
+        "mechanical_strain_xz": 0.0,
+        "mechanical_strain_yz": 0.0,
+        "total_strain_xx": -0.0014,
+        "total_strain_yy": -0.0014,
+        "total_strain_zz": 0.0016,
+        "total_strain_xy": 0.0,
+        "total_strain_xz": 0.0,
+        "total_strain_yz": 0.0
+      },
+      "B": {
+        "stress_xx": 0.0,
+        "stress_yy": 0.0,
+        "stress_zz": 0.0,
+        "stress_xy": 0.0,
+        "stress_xz": 0.0,
+        "stress_yz": 0.0,
+        "plastic_strain_xx": -0.0,
+        "plastic_strain_yy": -0.0,
+        "plastic_strain_zz": 0.0,
+        "plastic_strain_xy": 0.0,
+        "plastic_strain_xz": 0.0,
+        "plastic_strain_yz": 0.0,
+        "mechanical_strain_xx": -0.0,
+        "mechanical_strain_yy": -0.0,
+        "mechanical_strain_zz": 0.0,
+        "mechanical_strain_xy": 0.0,
+        "mechanical_strain_xz": 0.0,
+        "mechanical_strain_yz": 0.0,
+        "total_strain_xx": -0.0004,
+        "total_strain_yy": -0.0004,
+        "total_strain_zz": -0.0004,
+        "total_strain_xy": 0.0,
+        "total_strain_xz": 0.0,
+        "total_strain_yz": 0.0
+      }
+    },
+    {
+      "A": {
+        "stress_xx": 0.0,
+        "stress_yy": 0.0,
+        "stress_zz": 0.0,
+        "stress_xy": 0.0,
+        "stress_xz": 0.0,
+        "stress_yz": 0.0,
+        "plastic_strain_xx": -0.001,
+        "plastic_strain_yy": -0.001,
+        "plastic_strain_zz": 0.002,
+        "plastic_strain_xy": 0.0,
+        "plastic_strain_xz": 0.0,
+        "plastic_strain_yz": 0.0,
+        "mechanical_strain_xx": -0.001,
+        "mechanical_strain_yy": -0.001,
+        "mechanical_strain_zz": 0.002,
+        "mechanical_strain_xy": 0.0,
+        "mechanical_strain_xz": 0.0,
+        "mechanical_strain_yz": 0.0,
+        "total_strain_xx": -0.0014,
+        "total_strain_yy": -0.0014,
+        "total_strain_zz": 0.0016,
+        "total_strain_xy": 0.0,
+        "total_strain_xz": 0.0,
+        "total_strain_yz": 0.0
+      },
+      "B": {
+        "stress_xx": 0.0,
+        "stress_yy": 0.0,
+        "stress_zz": 0.0,
+        "stress_xy": 0.0,
+        "stress_xz": 0.0,
+        "stress_yz": 0.0,
+        "plastic_strain_xx": -0.0,
+        "plastic_strain_yy": -0.0,
+        "plastic_strain_zz": 0.0,
+        "plastic_strain_xy": 0.0,
+        "plastic_strain_xz": 0.0,
+        "plastic_strain_yz": 0.0,
+        "mechanical_strain_xx": -0.0,
+        "mechanical_strain_yy": -0.0,
+        "mechanical_strain_zz": 0.0,
+        "mechanical_strain_xy": 0.0,
+        "mechanical_strain_xz": 0.0,
+        "mechanical_strain_yz": 0.0,
+        "total_strain_xx": -0.0004,
+        "total_strain_yy": -0.0004,
+        "total_strain_zz": -0.0004,
+        "total_strain_xy": 0.0,
+        "total_strain_xz": 0.0,
+        "total_strain_yz": 0.0
+      }
+    }
+  ],
+  "full_nodal_end_references": [
+    [
+      {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "disp_x": 0.0,
+        "disp_y": 0.0,
+        "disp_z": 0.0,
+        "temperature": 300.0
+      },
+      {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 5.0,
+        "disp_x": 0.0,
+        "disp_y": 0.0,
+        "disp_z": 0.0,
+        "temperature": 300.0
+      },
+      {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 10.0,
+        "disp_x": 0.0,
+        "disp_y": 0.0,
+        "disp_z": 0.0,
+        "temperature": 300.0
+      },
+      {
+        "x": 0.0,
+        "y": 1.0,
+        "z": 0.0,
+        "disp_x": 0.0,
+        "disp_y": 0.0,
+        "disp_z": 0.0,
+        "temperature": 300.0
+      },
+      {
+        "x": 0.0,
+        "y": 1.0,
+        "z": 5.0,
+        "disp_x": 0.0,
+        "disp_y": 0.0,
+        "disp_z": 0.0,
+        "temperature": 300.0
+      },
+      {
+        "x": 0.0,
+        "y": 1.0,
+        "z": 10.0,
+        "disp_x": 0.0,
+        "disp_y": 0.0,
+        "disp_z": 0.0,
+        "temperature": 300.0
+      },
+      {
+        "x": 1.0,
+        "y": 0.0,
+        "z": 0.0,
+        "disp_x": 0.0,
+        "disp_y": 0.0,
+        "disp_z": 0.0,
+        "temperature": 300.0
+      },
+      {
+        "x": 1.0,
+        "y": 0.0,
+        "z": 5.0,
+        "disp_x": 0.0,
+        "disp_y": 0.0,
+        "disp_z": 0.0,
+        "temperature": 300.0
+      },
+      {
+        "x": 1.0,
+        "y": 0.0,
+        "z": 10.0,
+        "disp_x": 0.0,
+        "disp_y": 0.0,
+        "disp_z": 0.0,
+        "temperature": 300.0
+      },
+      {
+        "x": 1.0,
+        "y": 1.0,
+        "z": 0.0,
+        "disp_x": 0.0,
+        "disp_y": 0.0,
+        "disp_z": 0.0,
+        "temperature": 300.0
+      },
+      {
+        "x": 1.0,
+        "y": 1.0,
+        "z": 5.0,
+        "disp_x": 0.0,
+        "disp_y": 0.0,
+        "disp_z": 0.0,
+        "temperature": 300.0
+      },
+      {
+        "x": 1.0,
+        "y": 1.0,
+        "z": 10.0,
+        "disp_x": 0.0,
+        "disp_y": 0.0,
+        "disp_z": 0.0,
+        "temperature": 300.0
+      }
+    ],
+    [
+      {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "disp_x": -0.0,
+        "disp_y": -0.0,
+        "disp_z": 0.0,
+        "temperature": 300.0
+      },
+      {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 5.0,
+        "disp_x": -0.0,
+        "disp_y": -0.0,
+        "disp_z": 0.015,
+        "temperature": 300.0
+      },
+      {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 10.0,
+        "disp_x": -0.0,
+        "disp_y": -0.0,
+        "disp_z": 0.03,
+        "temperature": 300.0
+      },
+      {
+        "x": 0.0,
+        "y": 1.0,
+        "z": 0.0,
+        "disp_x": -0.0,
+        "disp_y": -0.001,
+        "disp_z": 0.0,
+        "temperature": 300.0
+      },
+      {
+        "x": 0.0,
+        "y": 1.0,
+        "z": 5.0,
+        "disp_x": -0.0,
+        "disp_y": -0.001,
+        "disp_z": 0.015,
+        "temperature": 300.0
+      },
+      {
+        "x": 0.0,
+        "y": 1.0,
+        "z": 10.0,
+        "disp_x": -0.0,
+        "disp_y": -0.001,
+        "disp_z": 0.03,
+        "temperature": 300.0
+      },
+      {
+        "x": 1.0,
+        "y": 0.0,
+        "z": 0.0,
+        "disp_x": -0.001,
+        "disp_y": -0.0,
+        "disp_z": 0.0,
+        "temperature": 300.0
+      },
+      {
+        "x": 1.0,
+        "y": 0.0,
+        "z": 5.0,
+        "disp_x": -0.001,
+        "disp_y": -0.0,
+        "disp_z": 0.015,
+        "temperature": 300.0
+      },
+      {
+        "x": 1.0,
+        "y": 0.0,
+        "z": 10.0,
+        "disp_x": -0.001,
+        "disp_y": -0.0,
+        "disp_z": 0.03,
+        "temperature": 300.0
+      },
+      {
+        "x": 1.0,
+        "y": 1.0,
+        "z": 0.0,
+        "disp_x": -0.001,
+        "disp_y": -0.001,
+        "disp_z": 0.0,
+        "temperature": 300.0
+      },
+      {
+        "x": 1.0,
+        "y": 1.0,
+        "z": 5.0,
+        "disp_x": -0.001,
+        "disp_y": -0.001,
+        "disp_z": 0.015,
+        "temperature": 300.0
+      },
+      {
+        "x": 1.0,
+        "y": 1.0,
+        "z": 10.0,
+        "disp_x": -0.001,
+        "disp_y": -0.001,
+        "disp_z": 0.03,
+        "temperature": 300.0
+      }
+    ],
+    [
+      {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "disp_x": -0.0,
+        "disp_y": -0.0,
+        "disp_z": 0.0,
+        "temperature": 300.0
+      },
+      {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 5.0,
+        "disp_x": -0.0,
+        "disp_y": -0.0,
+        "disp_z": 0.0125,
+        "temperature": 300.0
+      },
+      {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 10.0,
+        "disp_x": -0.0,
+        "disp_y": -0.0,
+        "disp_z": 0.025,
+        "temperature": 300.0
+      },
+      {
+        "x": 0.0,
+        "y": 1.0,
+        "z": 0.0,
+        "disp_x": -0.0,
+        "disp_y": -0.001,
+        "disp_z": 0.0,
+        "temperature": 300.0
+      },
+      {
+        "x": 0.0,
+        "y": 1.0,
+        "z": 5.0,
+        "disp_x": -0.0,
+        "disp_y": -0.001,
+        "disp_z": 0.0125,
+        "temperature": 300.0
+      },
+      {
+        "x": 0.0,
+        "y": 1.0,
+        "z": 10.0,
+        "disp_x": -0.0,
+        "disp_y": -0.001,
+        "disp_z": 0.025,
+        "temperature": 300.0
+      },
+      {
+        "x": 1.0,
+        "y": 0.0,
+        "z": 0.0,
+        "disp_x": -0.001,
+        "disp_y": -0.0,
+        "disp_z": 0.0,
+        "temperature": 300.0
+      },
+      {
+        "x": 1.0,
+        "y": 0.0,
+        "z": 5.0,
+        "disp_x": -0.001,
+        "disp_y": -0.0,
+        "disp_z": 0.0125,
+        "temperature": 300.0
+      },
+      {
+        "x": 1.0,
+        "y": 0.0,
+        "z": 10.0,
+        "disp_x": -0.001,
+        "disp_y": -0.0,
+        "disp_z": 0.025,
+        "temperature": 300.0
+      },
+      {
+        "x": 1.0,
+        "y": 1.0,
+        "z": 0.0,
+        "disp_x": -0.001,
+        "disp_y": -0.001,
+        "disp_z": 0.0,
+        "temperature": 300.0
+      },
+      {
+        "x": 1.0,
+        "y": 1.0,
+        "z": 5.0,
+        "disp_x": -0.001,
+        "disp_y": -0.001,
+        "disp_z": 0.0125,
+        "temperature": 300.0
+      },
+      {
+        "x": 1.0,
+        "y": 1.0,
+        "z": 10.0,
+        "disp_x": -0.001,
+        "disp_y": -0.001,
+        "disp_z": 0.025,
+        "temperature": 300.0
+      }
+    ],
+    [
+      {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "disp_x": -0.0,
+        "disp_y": -0.0,
+        "disp_z": 0.0,
+        "temperature": 300.0
+      },
+      {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 5.0,
+        "disp_x": -0.0,
+        "disp_y": -0.0,
+        "disp_z": 0.011250000000000001,
+        "temperature": 300.0
+      },
+      {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 10.0,
+        "disp_x": -0.0,
+        "disp_y": -0.0,
+        "disp_z": 0.022500000000000003,
+        "temperature": 300.0
+      },
+      {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 15.0,
+        "disp_x": -0.0,
+        "disp_y": -0.0,
+        "disp_z": 0.036250000000000004,
+        "temperature": 300.0
+      },
+      {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 20.0,
+        "disp_x": -0.0,
+        "disp_y": -0.0,
+        "disp_z": 0.05,
+        "temperature": 300.0
+      },
+      {
+        "x": 0.0,
+        "y": 1.0,
+        "z": 0.0,
+        "disp_x": -0.0,
+        "disp_y": -0.001,
+        "disp_z": 0.0,
+        "temperature": 300.0
+      },
+      {
+        "x": 0.0,
+        "y": 1.0,
+        "z": 5.0,
+        "disp_x": -0.0,
+        "disp_y": -0.001,
+        "disp_z": 0.011250000000000001,
+        "temperature": 300.0
+      },
+      {
+        "x": 0.0,
+        "y": 1.0,
+        "z": 10.0,
+        "disp_x": -0.0,
+        "disp_y": -0.001,
+        "disp_z": 0.022500000000000003,
+        "temperature": 300.0
+      },
+      {
+        "x": 0.0,
+        "y": 1.0,
+        "z": 15.0,
+        "disp_x": -0.0,
+        "disp_y": -0.001,
+        "disp_z": 0.036250000000000004,
+        "temperature": 300.0
+      },
+      {
+        "x": 0.0,
+        "y": 1.0,
+        "z": 20.0,
+        "disp_x": -0.0,
+        "disp_y": -0.001,
+        "disp_z": 0.05,
+        "temperature": 300.0
+      },
+      {
+        "x": 1.0,
+        "y": 0.0,
+        "z": 0.0,
+        "disp_x": -0.001,
+        "disp_y": -0.0,
+        "disp_z": 0.0,
+        "temperature": 300.0
+      },
+      {
+        "x": 1.0,
+        "y": 0.0,
+        "z": 5.0,
+        "disp_x": -0.001,
+        "disp_y": -0.0,
+        "disp_z": 0.011250000000000001,
+        "temperature": 300.0
+      },
+      {
+        "x": 1.0,
+        "y": 0.0,
+        "z": 10.0,
+        "disp_x": -0.001,
+        "disp_y": -0.0,
+        "disp_z": 0.022500000000000003,
+        "temperature": 300.0
+      },
+      {
+        "x": 1.0,
+        "y": 0.0,
+        "z": 15.0,
+        "disp_x": -0.001,
+        "disp_y": -0.0,
+        "disp_z": 0.036250000000000004,
+        "temperature": 300.0
+      },
+      {
+        "x": 1.0,
+        "y": 0.0,
+        "z": 20.0,
+        "disp_x": -0.001,
+        "disp_y": -0.0,
+        "disp_z": 0.05,
+        "temperature": 300.0
+      },
+      {
+        "x": 1.0,
+        "y": 1.0,
+        "z": 0.0,
+        "disp_x": -0.001,
+        "disp_y": -0.001,
+        "disp_z": 0.0,
+        "temperature": 300.0
+      },
+      {
+        "x": 1.0,
+        "y": 1.0,
+        "z": 5.0,
+        "disp_x": -0.001,
+        "disp_y": -0.001,
+        "disp_z": 0.011250000000000001,
+        "temperature": 300.0
+      },
+      {
+        "x": 1.0,
+        "y": 1.0,
+        "z": 10.0,
+        "disp_x": -0.001,
+        "disp_y": -0.001,
+        "disp_z": 0.022500000000000003,
+        "temperature": 300.0
+      },
+      {
+        "x": 1.0,
+        "y": 1.0,
+        "z": 15.0,
+        "disp_x": -0.001,
+        "disp_y": -0.001,
+        "disp_z": 0.036250000000000004,
+        "temperature": 300.0
+      },
+      {
+        "x": 1.0,
+        "y": 1.0,
+        "z": 20.0,
+        "disp_x": -0.001,
+        "disp_y": -0.001,
+        "disp_z": 0.05,
+        "temperature": 300.0
+      }
+    ],
+    [
+      {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "disp_x": -0.0,
+        "disp_y": -0.0,
+        "disp_z": 0.0,
+        "temperature": 260.0
+      },
+      {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 5.0,
+        "disp_x": -0.0,
+        "disp_y": -0.0,
+        "disp_z": 0.01125,
+        "temperature": 260.0
+      },
+      {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 10.0,
+        "disp_x": -0.0,
+        "disp_y": -0.0,
+        "disp_z": 0.0225,
+        "temperature": 260.0
+      },
+      {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 15.0,
+        "disp_x": -0.0,
+        "disp_y": -0.0,
+        "disp_z": 0.03625,
+        "temperature": 260.0
+      },
+      {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 20.0,
+        "disp_x": -0.0,
+        "disp_y": -0.0,
+        "disp_z": 0.049999999999999996,
+        "temperature": 260.0
+      },
+      {
+        "x": 0.0,
+        "y": 1.0,
+        "z": 0.0,
+        "disp_x": -0.0,
+        "disp_y": -0.0014,
+        "disp_z": 0.0,
+        "temperature": 260.0
+      },
+      {
+        "x": 0.0,
+        "y": 1.0,
+        "z": 5.0,
+        "disp_x": -0.0,
+        "disp_y": -0.0014,
+        "disp_z": 0.01125,
+        "temperature": 260.0
+      },
+      {
+        "x": 0.0,
+        "y": 1.0,
+        "z": 10.0,
+        "disp_x": -0.0,
+        "disp_y": -0.0014,
+        "disp_z": 0.0225,
+        "temperature": 260.0
+      },
+      {
+        "x": 0.0,
+        "y": 1.0,
+        "z": 15.0,
+        "disp_x": -0.0,
+        "disp_y": -0.0014,
+        "disp_z": 0.03625,
+        "temperature": 260.0
+      },
+      {
+        "x": 0.0,
+        "y": 1.0,
+        "z": 20.0,
+        "disp_x": -0.0,
+        "disp_y": -0.0014,
+        "disp_z": 0.049999999999999996,
+        "temperature": 260.0
+      },
+      {
+        "x": 1.0,
+        "y": 0.0,
+        "z": 0.0,
+        "disp_x": -0.0014,
+        "disp_y": -0.0,
+        "disp_z": 0.0,
+        "temperature": 260.0
+      },
+      {
+        "x": 1.0,
+        "y": 0.0,
+        "z": 5.0,
+        "disp_x": -0.0014,
+        "disp_y": -0.0,
+        "disp_z": 0.01125,
+        "temperature": 260.0
+      },
+      {
+        "x": 1.0,
+        "y": 0.0,
+        "z": 10.0,
+        "disp_x": -0.0014,
+        "disp_y": -0.0,
+        "disp_z": 0.0225,
+        "temperature": 260.0
+      },
+      {
+        "x": 1.0,
+        "y": 0.0,
+        "z": 15.0,
+        "disp_x": -0.0014,
+        "disp_y": -0.0,
+        "disp_z": 0.03625,
+        "temperature": 260.0
+      },
+      {
+        "x": 1.0,
+        "y": 0.0,
+        "z": 20.0,
+        "disp_x": -0.0014,
+        "disp_y": -0.0,
+        "disp_z": 0.049999999999999996,
+        "temperature": 260.0
+      },
+      {
+        "x": 1.0,
+        "y": 1.0,
+        "z": 0.0,
+        "disp_x": -0.0014,
+        "disp_y": -0.0014,
+        "disp_z": 0.0,
+        "temperature": 260.0
+      },
+      {
+        "x": 1.0,
+        "y": 1.0,
+        "z": 5.0,
+        "disp_x": -0.0014,
+        "disp_y": -0.0014,
+        "disp_z": 0.01125,
+        "temperature": 260.0
+      },
+      {
+        "x": 1.0,
+        "y": 1.0,
+        "z": 10.0,
+        "disp_x": -0.0014,
+        "disp_y": -0.0014,
+        "disp_z": 0.0225,
+        "temperature": 260.0
+      },
+      {
+        "x": 1.0,
+        "y": 1.0,
+        "z": 15.0,
+        "disp_x": -0.0014,
+        "disp_y": -0.0014,
+        "disp_z": 0.03625,
+        "temperature": 260.0
+      },
+      {
+        "x": 1.0,
+        "y": 1.0,
+        "z": 20.0,
+        "disp_x": -0.0014,
+        "disp_y": -0.0014,
+        "disp_z": 0.049999999999999996,
+        "temperature": 260.0
+      }
+    ],
+    [
+      {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "disp_x": -0.0,
+        "disp_y": -0.0,
+        "disp_z": 0.0,
+        "temperature": 260.0
+      },
+      {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 5.0,
+        "disp_x": -0.0,
+        "disp_y": -0.0,
+        "disp_z": 0.008,
+        "temperature": 260.0
+      },
+      {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 10.0,
+        "disp_x": -0.0,
+        "disp_y": -0.0,
+        "disp_z": 0.016,
+        "temperature": 260.0
+      },
+      {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 15.0,
+        "disp_x": -0.0,
+        "disp_y": -0.0,
+        "disp_z": 0.0265,
+        "temperature": 260.0
+      },
+      {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 20.0,
+        "disp_x": -0.0,
+        "disp_y": -0.0,
+        "disp_z": 0.037,
+        "temperature": 260.0
+      },
+      {
+        "x": 0.0,
+        "y": 1.0,
+        "z": 0.0,
+        "disp_x": -0.0,
+        "disp_y": -0.0014,
+        "disp_z": 0.0,
+        "temperature": 260.0
+      },
+      {
+        "x": 0.0,
+        "y": 1.0,
+        "z": 5.0,
+        "disp_x": -0.0,
+        "disp_y": -0.0014,
+        "disp_z": 0.008,
+        "temperature": 260.0
+      },
+      {
+        "x": 0.0,
+        "y": 1.0,
+        "z": 10.0,
+        "disp_x": -0.0,
+        "disp_y": -0.0014,
+        "disp_z": 0.016,
+        "temperature": 260.0
+      },
+      {
+        "x": 0.0,
+        "y": 1.0,
+        "z": 15.0,
+        "disp_x": -0.0,
+        "disp_y": -0.0014,
+        "disp_z": 0.0265,
+        "temperature": 260.0
+      },
+      {
+        "x": 0.0,
+        "y": 1.0,
+        "z": 20.0,
+        "disp_x": -0.0,
+        "disp_y": -0.0014,
+        "disp_z": 0.037,
+        "temperature": 260.0
+      },
+      {
+        "x": 1.0,
+        "y": 0.0,
+        "z": 0.0,
+        "disp_x": -0.0014,
+        "disp_y": -0.0,
+        "disp_z": 0.0,
+        "temperature": 260.0
+      },
+      {
+        "x": 1.0,
+        "y": 0.0,
+        "z": 5.0,
+        "disp_x": -0.0014,
+        "disp_y": -0.0,
+        "disp_z": 0.008,
+        "temperature": 260.0
+      },
+      {
+        "x": 1.0,
+        "y": 0.0,
+        "z": 10.0,
+        "disp_x": -0.0014,
+        "disp_y": -0.0,
+        "disp_z": 0.016,
+        "temperature": 260.0
+      },
+      {
+        "x": 1.0,
+        "y": 0.0,
+        "z": 15.0,
+        "disp_x": -0.0014,
+        "disp_y": -0.0,
+        "disp_z": 0.0265,
+        "temperature": 260.0
+      },
+      {
+        "x": 1.0,
+        "y": 0.0,
+        "z": 20.0,
+        "disp_x": -0.0014,
+        "disp_y": -0.0,
+        "disp_z": 0.037,
+        "temperature": 260.0
+      },
+      {
+        "x": 1.0,
+        "y": 1.0,
+        "z": 0.0,
+        "disp_x": -0.0014,
+        "disp_y": -0.0014,
+        "disp_z": 0.0,
+        "temperature": 260.0
+      },
+      {
+        "x": 1.0,
+        "y": 1.0,
+        "z": 5.0,
+        "disp_x": -0.0014,
+        "disp_y": -0.0014,
+        "disp_z": 0.008,
+        "temperature": 260.0
+      },
+      {
+        "x": 1.0,
+        "y": 1.0,
+        "z": 10.0,
+        "disp_x": -0.0014,
+        "disp_y": -0.0014,
+        "disp_z": 0.016,
+        "temperature": 260.0
+      },
+      {
+        "x": 1.0,
+        "y": 1.0,
+        "z": 15.0,
+        "disp_x": -0.0014,
+        "disp_y": -0.0014,
+        "disp_z": 0.0265,
+        "temperature": 260.0
+      },
+      {
+        "x": 1.0,
+        "y": 1.0,
+        "z": 20.0,
+        "disp_x": -0.0014,
+        "disp_y": -0.0014,
+        "disp_z": 0.037,
+        "temperature": 260.0
+      }
+    ],
+    [
+      {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "disp_x": -0.0,
+        "disp_y": -0.0,
+        "disp_z": 0.0,
+        "temperature": 260.0
+      },
+      {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 5.0,
+        "disp_x": -0.0,
+        "disp_y": -0.0,
+        "disp_z": 0.008,
+        "temperature": 260.0
+      },
+      {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 10.0,
+        "disp_x": -0.0,
+        "disp_y": -0.0,
+        "disp_z": 0.016,
+        "temperature": 260.0
+      },
+      {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 15.0,
+        "disp_x": -0.0,
+        "disp_y": -0.0,
+        "disp_z": 0.0265,
+        "temperature": 260.0
+      },
+      {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 20.0,
+        "disp_x": -0.0,
+        "disp_y": -0.0,
+        "disp_z": 0.037,
+        "temperature": 260.0
+      },
+      {
+        "x": 0.0,
+        "y": 1.0,
+        "z": 0.0,
+        "disp_x": -0.0,
+        "disp_y": -0.0014,
+        "disp_z": 0.0,
+        "temperature": 260.0
+      },
+      {
+        "x": 0.0,
+        "y": 1.0,
+        "z": 5.0,
+        "disp_x": -0.0,
+        "disp_y": -0.0014,
+        "disp_z": 0.008,
+        "temperature": 260.0
+      },
+      {
+        "x": 0.0,
+        "y": 1.0,
+        "z": 10.0,
+        "disp_x": -0.0,
+        "disp_y": -0.0014,
+        "disp_z": 0.016,
+        "temperature": 260.0
+      },
+      {
+        "x": 0.0,
+        "y": 1.0,
+        "z": 15.0,
+        "disp_x": -0.0,
+        "disp_y": -0.0014,
+        "disp_z": 0.0265,
+        "temperature": 260.0
+      },
+      {
+        "x": 0.0,
+        "y": 1.0,
+        "z": 20.0,
+        "disp_x": -0.0,
+        "disp_y": -0.0014,
+        "disp_z": 0.037,
+        "temperature": 260.0
+      },
+      {
+        "x": 1.0,
+        "y": 0.0,
+        "z": 0.0,
+        "disp_x": -0.0014,
+        "disp_y": -0.0,
+        "disp_z": 0.0,
+        "temperature": 260.0
+      },
+      {
+        "x": 1.0,
+        "y": 0.0,
+        "z": 5.0,
+        "disp_x": -0.0014,
+        "disp_y": -0.0,
+        "disp_z": 0.008,
+        "temperature": 260.0
+      },
+      {
+        "x": 1.0,
+        "y": 0.0,
+        "z": 10.0,
+        "disp_x": -0.0014,
+        "disp_y": -0.0,
+        "disp_z": 0.016,
+        "temperature": 260.0
+      },
+      {
+        "x": 1.0,
+        "y": 0.0,
+        "z": 15.0,
+        "disp_x": -0.0014,
+        "disp_y": -0.0,
+        "disp_z": 0.0265,
+        "temperature": 260.0
+      },
+      {
+        "x": 1.0,
+        "y": 0.0,
+        "z": 20.0,
+        "disp_x": -0.0014,
+        "disp_y": -0.0,
+        "disp_z": 0.037,
+        "temperature": 260.0
+      },
+      {
+        "x": 1.0,
+        "y": 1.0,
+        "z": 0.0,
+        "disp_x": -0.0014,
+        "disp_y": -0.0014,
+        "disp_z": 0.0,
+        "temperature": 260.0
+      },
+      {
+        "x": 1.0,
+        "y": 1.0,
+        "z": 5.0,
+        "disp_x": -0.0014,
+        "disp_y": -0.0014,
+        "disp_z": 0.008,
+        "temperature": 260.0
+      },
+      {
+        "x": 1.0,
+        "y": 1.0,
+        "z": 10.0,
+        "disp_x": -0.0014,
+        "disp_y": -0.0014,
+        "disp_z": 0.016,
+        "temperature": 260.0
+      },
+      {
+        "x": 1.0,
+        "y": 1.0,
+        "z": 15.0,
+        "disp_x": -0.0014,
+        "disp_y": -0.0014,
+        "disp_z": 0.0265,
+        "temperature": 260.0
+      },
+      {
+        "x": 1.0,
+        "y": 1.0,
+        "z": 20.0,
+        "disp_x": -0.0014,
+        "disp_y": -0.0014,
+        "disp_z": 0.037,
+        "temperature": 260.0
+      }
+    ]
+  ]
+}

@@ -1,0 +1,10 @@
+--- netgen-cube-prep-001/reader.py
++++ netgen-cube-prep-002/reader.py
+@@ -98,6 +98,7 @@
+ 
+ 
+ def main():
++ global gmsh
+  c=load(OUT/'frozen-contract.json');require_contract(c)
+  if {p.name for p in OUT.iterdir()}!={'reader.py','run_readback.py','frozen-contract.json','native.log'}:raise ValueError('Only fresh materialized fixture inputs and owned native.log are permitted')
+  import gmsh

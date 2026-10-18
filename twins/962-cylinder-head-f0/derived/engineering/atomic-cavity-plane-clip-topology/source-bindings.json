@@ -1,0 +1,63 @@
+{
+  "executed_controller": {
+    "included": "sources/run_atomic_topology.py",
+    "sha256": "414d1ee3200c9db21c5b8b045feb225e8c6f6596e567a0d7260c25ef4e1496e2"
+  },
+  "generic_guard_test": {
+    "included": "sources/test_generic_guard.py",
+    "result": "tests/generic-guard-result.json",
+    "result_sha256": "71ae7dd97e7858f119fd7c0d785d693d762d8f52880a487db088a6fabeabf152",
+    "role": "Five integer-Euler accepts and 23 typed/finite/component/orientation refusals, by AST-extracted local guard only; no measured geometry.",
+    "sha256": "de35311ab4899e43b12ecb00c2de5046975bdd041c11122b03bc934403e04a06"
+  },
+  "legacy_require_topology": {
+    "called": false,
+    "note": "The preserved helper retains its old Euler -208 equality; the actual worker calls its new local integer-Euler generic guard. The measured clipped Euler -208 is an observation.",
+    "unchanged_helper_sha256": "d08c68348bd3cf511844c488f0165afc8814ab0851e434b4b79de48fdcf4f27f"
+  },
+  "note": "Selected exact sources and hash bindings only. No complete helper copies, native runtime, shared libraries, image, upstream header or large candidate is redistributed. Original source snapshots remain fully identified in the original inventory.",
+  "pure_guard_tests": {
+    "included": "sources/test_atomic_topology.py",
+    "role": "Original three controller-refusal tests; inspection copy depends on the separately retained child and preparation.",
+    "sha256": "370c114f14440cfb0c7cf5c48e00df1e3a958c9ae56a788fac34a971b387c9ab"
+  },
+  "runtime": {
+    "cgal_wrapper_sha256": "677e9b1ec585722d78685ad5e00e091ceb5ecef2ba2eecb877c5c8eb153fa1b5",
+    "igl_binary_modules": {
+      "copyleft/cgal/pyigl_copyleft_cgal.cpython-311-aarch64-linux-gnu.so": "8bcb60e12cec4e072a14b7d8c3e74f3b90db87db419091419804673918aa5c68",
+      "copyleft/pyigl_copyleft_core.cpython-311-aarch64-linux-gnu.so": "a1d855c3c782254997fc6c20177111848541c1ff67b2828701ead40d6a8463e3",
+      "copyleft/tetgen/pyigl_copyleft_tetgen.cpython-311-aarch64-linux-gnu.so": "e687d45575d4deeb6ab1dc507905534b5ff01a4fcbc649ec961229401866352d",
+      "cycodebase/pyigl_cycodebase.cpython-311-aarch64-linux-gnu.so": "ae8027b6b9461937a0f4a06775710091093d870336c1d48bff75f54c2661e009",
+      "embree/pyigl_embree.cpython-311-aarch64-linux-gnu.so": "646ab93f02fa8b531f4ed09af43cd72e64053d4c3a674750a27994a8da79d4b6",
+      "predicates/pyigl_predicates.cpython-311-aarch64-linux-gnu.so": "5164d261d6c91d43116c4037062aa2b9af49af54ef44f8ef774d07dbce45658d",
+      "pyigl_core.cpython-311-aarch64-linux-gnu.so": "a5d6530964954bee7cf162e8f2ff3f8e9e63fed5697e1ed937bca055216330de",
+      "spectra/pyigl_spectra.cpython-311-aarch64-linux-gnu.so": "5aca1cd0a437cfbf8a747e9f5f11323d358f1568a4a01111ffc873d6dd92e55a",
+      "triangle/pyigl_restricted_triangle.cpython-311-aarch64-linux-gnu.so": "c1fd30bd0fe56a60a26424637a0a89bf75b132b3d825c9fbd4c6215cd25cc0ad"
+    },
+    "image_id": "sha256:3ccaf5701c7c9add59eda6e8db918106fc8d51f4c2ef5b148d8079262861c7e1",
+    "libigl_version": "2.6.3",
+    "python_executable_sha256": "3e83cdfa4cdb93afd114c2b5742d48d653621fbbd7468ecd6e482e5143d1d4c4"
+  },
+  "schema": "962-clipped-topology-selected-source-bindings/v1",
+  "source_reuse": {
+    "included": "preparation/source-reuse.json",
+    "sha256": "9bc141465c39f72ab13f9e1dd3c9112d6f5467c9a9e35986784bbac202fc7b05",
+    "two_changed_sources_reverse_exact": true
+  },
+  "unchanged_owned_cleanup_sources": {
+    "run_finest_endpoint_metadata.py": "a88477c47d406cea3761c324e1f6eb82dcb1c2b962698d7f328261c6cef2929b",
+    "run_finest_endpoint_preflight.py": "b214e1cece8dbf66be6071199cbdf1a8e22a2a59328888011de17492f923c86b"
+  },
+  "unmodified_helpers": {
+    "audit_envelope_surface.py": "5a4a6559702e48fc4d97bb3b71a050aa600645485443a4c1caf389456d77c0c0",
+    "audit_quality_head.py": "a298270aa00b1536314a07629b935500c68883ca0d3bd1a179d71b49a8e73991",
+    "audit_quality_patch.py": "3532a172b2bce3a8ead7c8b11b712a2b55891377726fa1b6d847e84f0eed3912",
+    "audit_quality_topology_002.py": "d08c68348bd3cf511844c488f0165afc8814ab0851e434b4b79de48fdcf4f27f",
+    "mesh_head.py": "69c8012e99057e384d44d6971d41f0e2cc7197a978120a7c566b0ad5a6477da5",
+    "prepare_head_analysis.py": "cda8f7155a8c22ab66898f07d1ad452ba5384ad7f75a1f012606685cd8a12dc3"
+  },
+  "worker": {
+    "included": "sources/audit_atomic_topology.py",
+    "sha256": "9025dfaacb8e3b51f2ef80ccf7570b8e5e9cea1081902cad60c5c758844b0092"
+  }
+}

@@ -1,0 +1,21 @@
+--- preserved001/run_quality_distance_002.py
++++ successor002/run_quality_distance_002.py
+@@ -162,6 +162,9 @@
+                         signal.signal(signal.SIGTERM, previous_sigterm)
+         except BaseException as exc:
+             error = type(exc).__name__+': '+str(exc)
++        elapsed = time.monotonic()-started
++        if elapsed >= resources['process_group_deadline_seconds']:
++            stopped['reason'] = stopped['reason'] or 'process_group_wall_deadline'
+         observation = dict(maximum_observed_worker_RSS_bytes=max(samples, default=0),
+             RSS_samples=len(samples), stopped_by_watchdog=stopped['reason'], monitor_error=error,
+             cleanup_error=cleanup_error, worker_reaped=reaped,
+@@ -169,7 +172,7 @@
+             SIGTERM_requested=sigterm_requested,
+             SIGTERM_handler_restored=signal.getsignal(signal.SIGTERM) == previous_sigterm)
+         receipt.update(status="finished", returncode=process.returncode if process is not None else None,
+-            wall_seconds=time.monotonic()-started, **observation,
++            wall_seconds=elapsed, **observation,
+             all_bound_inputs_unchanged=verify(),
+             artifact_sha256={p.name: digest(p) for p in directory.iterdir() if p.is_file()})
+         save(directory/"execution-receipt.json", receipt); rows.append(receipt)

@@ -1,0 +1,28 @@
+{
+  "schema_version": "1.0.0",
+  "classification": "HYPOTHETICAL_SOFTWARE_VERIFICATION_ONLY",
+  "not_a_physical_material_or_head_simulation": true,
+  "units": {"length": "mm", "stress": "MPa", "temperature": "K", "time": "synthetic_step"},
+  "geometry_mm": [1.0, 2.0, 10.0],
+  "stress_free_temperature_K": 300.0,
+  "mean_cte_reference_temperature_K": 250.0,
+  "youngs_modulus_at_300K_MPa": 210000.0,
+  "youngs_modulus_slope_MPa_per_K": -200.0,
+  "poissons_ratio_at_300K": 0.26,
+  "poissons_ratio_slope_per_K": 0.0001,
+  "mean_cte_at_300K_per_K": 0.00001,
+  "mean_cte_slope_per_K2": 0.00000002,
+  "yield_at_300K_MPa": 300.0,
+  "yield_slope_MPa_per_K": -0.25,
+  "temperature_history_K": [300.0, 400.0, 500.0, 600.0, 500.0, 400.0, 300.0],
+  "predeclared_absolute_tolerances": {
+    "stress_MPa": 0.00001,
+    "displacement_mm": 0.000000001,
+    "temperature_K": 0.000000001,
+    "plastic_strain": 0.0000000001
+  },
+  "native_binary_sha256": "c49e2c368799d80edf9ff858dd8960bd22f5430f48229ab49dcc0afd27afcc5b",
+  "native_source_revision": "167ee97da204df5e8643695e18b9b28910f0014b",
+  "max_runtime_seconds_per_witness": 120,
+  "reference": "Axially blocked, laterally traction-free small-strain bar. Mean-CTE engineering length ratio relative to 250 K, then normalized to stress-free length at 300 K. Optional perfect J2 uniaxial return mapping; no hardening."
+}

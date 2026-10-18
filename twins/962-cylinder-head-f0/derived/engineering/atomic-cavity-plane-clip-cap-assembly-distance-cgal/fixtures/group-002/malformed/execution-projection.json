@@ -1,0 +1,156 @@
+{
+  "label": "malformed",
+  "error": null,
+  "cleanup_errors": [],
+  "attach_returncode": 2,
+  "attach_process_started": true,
+  "attach_reaped": true,
+  "owned_container_removed": true,
+  "wall_seconds": 0.9024500411469489,
+  "native_log_sha256": "9f56535a8ae0e91bc45d7227e23c99538feda71ede13b10aa9f7e0290c09690e",
+  "control_calls": [
+    {
+      "operation": "create",
+      "returncode": 0
+    },
+    {
+      "operation": "inspect",
+      "returncode": 0
+    },
+    {
+      "operation": "inspect",
+      "returncode": 0
+    },
+    {
+      "operation": "inspect",
+      "returncode": 0
+    },
+    {
+      "operation": "remove_stopped_owned",
+      "returncode": 0
+    }
+  ],
+  "initial_metadata": {
+    "Image": "sha256:57c6b17ed0bd093a61a3d3cecb7563e912caeb3832fd59e8cec2d4d9d4d1e2f8",
+    "State": {
+      "Dead": false,
+      "Error": "",
+      "ExitCode": 0,
+      "FinishedAt": "0001-01-01T00:00:00Z",
+      "OOMKilled": false,
+      "Paused": false,
+      "Pid": 0,
+      "Restarting": false,
+      "Running": false,
+      "StartedAt": "0001-01-01T00:00:00Z",
+      "Status": "created"
+    },
+    "Controls": {
+      "NanoCpus": 2000000000,
+      "Memory": 536870912,
+      "MemorySwap": 536870912,
+      "NetworkMode": "none",
+      "ReadonlyRootfs": true,
+      "Tmpfs": null
+    },
+    "Mounts": [
+      {
+        "Source_role": "readonly_bound_input:/bounded-distance",
+        "Destination": "/bounded-distance",
+        "RW": false,
+        "Type": "bind"
+      },
+      {
+        "Source_role": "owned_fixture_output",
+        "Destination": "/out",
+        "RW": true,
+        "Type": "bind"
+      },
+      {
+        "Source_role": "readonly_bound_input:/source-ids.u64",
+        "Destination": "/source-ids.u64",
+        "RW": false,
+        "Type": "bind"
+      },
+      {
+        "Source_role": "readonly_bound_input:/source.bin",
+        "Destination": "/source.bin",
+        "RW": false,
+        "Type": "bind"
+      },
+      {
+        "Source_role": "readonly_bound_input:/target.bin",
+        "Destination": "/target.bin",
+        "RW": false,
+        "Type": "bind"
+      }
+    ]
+  },
+  "final_metadata": {
+    "Image": "sha256:57c6b17ed0bd093a61a3d3cecb7563e912caeb3832fd59e8cec2d4d9d4d1e2f8",
+    "State": {
+      "Dead": false,
+      "Error": "",
+      "ExitCode": 2,
+      "FinishedAt": "2026-10-17T06:30:36.988573677Z",
+      "OOMKilled": false,
+      "Paused": false,
+      "Pid": 0,
+      "Restarting": false,
+      "Running": false,
+      "StartedAt": "2026-10-17T06:30:36.832049552Z",
+      "Status": "exited"
+    },
+    "Controls": {
+      "NanoCpus": 2000000000,
+      "Memory": 536870912,
+      "MemorySwap": 536870912,
+      "NetworkMode": "none",
+      "ReadonlyRootfs": true,
+      "Tmpfs": null
+    },
+    "Mounts": [
+      {
+        "Source_role": "readonly_bound_input:/bounded-distance",
+        "Destination": "/bounded-distance",
+        "RW": false,
+        "Type": "bind"
+      },
+      {
+        "Source_role": "owned_fixture_output",
+        "Destination": "/out",
+        "RW": true,
+        "Type": "bind"
+      },
+      {
+        "Source_role": "readonly_bound_input:/source-ids.u64",
+        "Destination": "/source-ids.u64",
+        "RW": false,
+        "Type": "bind"
+      },
+      {
+        "Source_role": "readonly_bound_input:/source.bin",
+        "Destination": "/source.bin",
+        "RW": false,
+        "Type": "bind"
+      },
+      {
+        "Source_role": "readonly_bound_input:/target.bin",
+        "Destination": "/target.bin",
+        "RW": false,
+        "Type": "bind"
+      }
+    ]
+  },
+  "schema": "962-CGAL-stopped-literal-execution-public-projection/v1",
+  "original_execution_sha256": "183f1281530f7c5eeb0abcf455bde49c6af28dde780a292ecb701da622ed77b7",
+  "omitted_private_fields": [
+    "command",
+    "initial_metadata.Id",
+    "initial_metadata.Owner",
+    "final_metadata.Id",
+    "final_metadata.Owner",
+    "control_calls.stdout",
+    "control_calls.stderr"
+  ]
+}

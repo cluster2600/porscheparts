@@ -1,0 +1,11 @@
+--- work/962-engineering/atomic-cavity-plane-clip-cap-assembly-delaunay-netgen-postexport-prep-001/test_source_guards.py
++++ work/962-engineering/atomic-cavity-plane-clip-cap-assembly-delaunay-netgen-postexport-prep-002/test_source_guards.py
+@@ -44,7 +44,7 @@
+   fresh=copy.deepcopy(worker['after']);fresh['classifications'].update(boundary_node_classification_dimensions_sha256='1'*64,boundary_node_classification_entity_tags_sha256='2'*64)
+   identity={'source_tags':'frozen','source_bits':'frozen','class':'frozen'};state=('q','nt','et','en')
+   ns=dict(ROOT=root,INPUT=root/'input.msh',INPUT_WORKER='worker.json',INPUT_RECEIPT='receipt.json',INPUT_READBACK='diagnosis.json',
+-   INPUT_HASHES={'input.msh':worker['mesh_sha256'],'worker.json':hashlib.sha256((prior/'worker-report.json').read_bytes()).hexdigest()},json=json,
++   INPUT_HASHES={'input.msh':worker['mesh_sha256'],'worker.json':hashlib.sha256((prior/'worker-report.json').read_bytes()).hexdigest(),'diagnosis.json':hashlib.sha256(diagnosis.read_bytes()).hexdigest()},json=json,
+    audit_after=lambda *a:(state,copy.deepcopy(fresh)),boundary_identity=lambda *a:copy.deepcopy(identity))
+   functions(['current_after_proof','load_before','require_boundary_continuity','geometry_flag_only','optimize_and_refresh'],ns)
+   return SimpleNamespace(root=root,worker=worker,receipt=receipt,diag=diag,fresh=fresh,identity=identity,state=state,ns=ns,core=SimpleNamespace(CANDIDATE_SHA=worker['candidate_sha256']))

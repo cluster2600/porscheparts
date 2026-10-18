@@ -1,0 +1,63 @@
+{
+  "schema": "962-quality-volume-seed-public-provenance/v1",
+  "permanent_scope": "One raw HXT checkpoint numerical quality trial and one independent saved-file read. No head thermal/stress/LPBF or manufacturing result.",
+  "original_records_sha256": {
+    "surface_admission": "f4c41e44afc15da373905e0d43e8b5607b5df1f80fae182eb51c331d4beefee2",
+    "preflight": "f227a0c3111e7919bea7fabcf5b43c4f99019415a2c28df7b8be2ad1ee8c9b0f",
+    "launch": "f1fd556378ac33d659699855a0629abee446e84c1e38dba4b98c24d987fb547b",
+    "native_execution": "16da0eb9497618346ccc15f25052149d7e774d9c631f1e5135fb846b67c865c8",
+    "native_worker": "3034329101ea75e995e33cda59c248805f2a7d2e6e4ee4d7ee416093ae117a48",
+    "native_log": "d4bfc148d1b7f957e177c1839984b39135f13ecb467106349e9728145b4d2800",
+    "saved_mesh": "7bfb96b55af3fadd81ea1409f633882f6a0249f961ef4f2a7f549a0fd2da2e67",
+    "readback_frozen_contract": "cbd853f007da703c1167be7c16bee65cfa5c6bdec44326851b63cbc40a0ce9b8",
+    "readback_execution": "a6dc65524c1ae21e0c2b1dcb860f83f24d1f3cf98dc71e4235463ab67cdbf49b",
+    "readback_result": "c44ac8e9c37b5e31f853a6f7585d39a8869439e9aa5606bacb039fa69cf02bdb",
+    "readback_log": "8a255757189f1d61fb9312793e668faacf1f8b416844c22f82a4ddb06ee2d4bd",
+    "root_review": "a78ccfefedffd443321ef4ce33894b8d39b8fa9f6308a78a254fbcccb39b54a1"
+  },
+  "exact_public_copies": [
+    "independent-readback.json",
+    "All six executed mesher source snapshots.",
+    "Independent postrun reader snapshot.",
+    "Two prelaunch focused test source snapshots.",
+    "LICENSE",
+    "root-independent-review.json"
+  ],
+  "whitelist_projections": [
+    "Preflight, launch, native execution and worker.",
+    "Readback execution and frozen contract.",
+    "Complete original native/readback RSS sample field values.",
+    "Scoped numerical surface admission copied from prior sealed capsule."
+  ],
+  "new_publication_summaries": [
+    "Source review, source-copy bindings, resource summary, outcome and this provenance."
+  ],
+  "private_omissions": [
+    "Native commands, absolute interpreter/host paths and process identifiers.",
+    "Interpreter/Gmsh runtime binaries and complete native logs.",
+    "Full original admission evidence path map and saved MSH arrays."
+  ],
+  "saved_mesh_review_asset": {
+    "name": "head-volume.msh",
+    "sha256": "7bfb96b55af3fadd81ea1409f633882f6a0249f961ef4f2a7f549a0fd2da2e67",
+    "bytes": 210476070,
+    "capsule_contains_mesh": false,
+    "quality_rejected": true
+  },
+  "prior_sealed_trial": {
+    "capsule": "../analysis-quality-volume/receipt.json",
+    "sha256": "3b5f441af68beb52f784f65b407e4ea572ba3c441bb419bead1b3867b96fc13f",
+    "status": "Optimize1 deadline stop without saved mesh; not replaced or upgraded by this separate Optimize0 case"
+  },
+  "source_semantics_limit": "Options/source snapshots identify the software inputs and read-only query implementation. No source-build attestation for the installed Gmsh binary is inferred.",
+  "public_reproduction_scope": "Standard-library hash/sample checks reproduce capsule integrity and scalar aggregation only. Independent numerical readback requires the separately retained exact MSH and pinned native runtime; no meshing rerun is needed or authorized by this capsule.",
+  "qualification": {
+    "geometric_volume_gate_passed": false,
+    "mesh_convergence_established": false,
+    "thermal_resolution_established": false,
+    "engineering_accepted": false,
+    "thermal_performance_validated": false,
+    "strength_validated": false,
+    "manufacturing_authorized": false
+  }
+}

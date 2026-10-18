@@ -1,0 +1,66 @@
+{
+  "schema": "962-selected-public-record-projection/v1",
+  "original_record": {
+    "relative_path": "work/962-engineering/fixed-shell-generation-cube-root-source-001/runtime-current.json",
+    "sha256": "5a9631297a9c2e394272be85ee4ceedb8ea82d4741b1300034f0835d310257ee",
+    "bytes": 2546
+  },
+  "projection": {
+    "schema": "962-fixed-shell-cube-selected-runtime-readiness/v1",
+    "all_sixteen_source_pins_fresh": true,
+    "selected_runtime_before": {
+      "runtime:python": "72956ad35cff7691dfed9e04c9593de825ffd5b2fa7e8bc9ae96ce9a1af65621",
+      "runtime:gmsh-library": "def0f5c10988a986e5e879b3db9669d8fe016a81e2d994bbaf2b8497c6b8a58a",
+      "runtime:gmsh-module": "f4b0935cebde899750293d87a643090e5ea33c9b18d249267f507db68a0e01c3"
+    },
+    "selected_runtime_after": {
+      "runtime:python": "72956ad35cff7691dfed9e04c9593de825ffd5b2fa7e8bc9ae96ce9a1af65621",
+      "runtime:gmsh-library": "def0f5c10988a986e5e879b3db9669d8fe016a81e2d994bbaf2b8497c6b8a58a",
+      "runtime:gmsh-module": "f4b0935cebde899750293d87a643090e5ea33c9b18d249267f507db68a0e01c3"
+    },
+    "numpy_init_sha256": "c09e25b58f6b2f8e2cb3c158168f902d447f8171e5ea6513c0aca41ecbda7c2b",
+    "NumPy_only_import_probe": {
+      "version": "2.0.2",
+      "origin": "runtime:numpy-init",
+      "origin_sha256": "c09e25b58f6b2f8e2cb3c158168f902d447f8171e5ea6513c0aca41ecbda7c2b",
+      "python": "3.10.11",
+      "machine": "arm64",
+      "gmsh_loaded": false
+    },
+    "probe_wall_seconds": 1.3778284159488976,
+    "probe_stderr": "",
+    "known_selected_casefolded_full_argv_jobs": [],
+    "process_scope": "Only Python command names with exact engineering .py argument prefixes; not universal absence.",
+    "physical_memory_bytes": 68719476736,
+    "memory_pressure_summary": "The system has 68719476736 (4194304 pages with a page size of 16384).\nSystem-wide memory free percentage: 45%",
+    "free_disk_bytes": 23592652800,
+    "root_source_review_sha256": "f08b91ab83bb8551d509136ee968e129a807099a5cd94703c473e72cd94b90ee",
+    "native_geometry_functions_called": false,
+    "complete_package_OS_import_ABI_closure": false,
+    "mesher_launch_held_pending_source_peer_and_actual_child": true
+  },
+  "omitted_field_paths": [],
+  "path_role_rules": [
+    {
+      "role": "runtime:python",
+      "meaning": "selected Python executable locator"
+    },
+    {
+      "role": "runtime:gmsh-module",
+      "meaning": "selected Gmsh Python wrapper locator"
+    },
+    {
+      "role": "runtime:gmsh-library",
+      "meaning": "selected native Gmsh library locator"
+    },
+    {
+      "role": "runtime:numpy-init",
+      "meaning": "selected NumPy __init__.py locator"
+    },
+    {
+      "role": "project-relative",
+      "meaning": "the exact private project-root prefix is removed; relative paths and all digest values remain"
+    }
+  ],
+  "derived_observations": null
+}

@@ -1,0 +1,51 @@
+{
+  "schema": "962-postexport-stop-public-provenance/v1",
+  "permanent_scope": "One bounded postexport head optimizer attempt stopped at deadline. No exported mesh, cache refresh, final quality or independent saved-file read.",
+  "original_records_sha256": {
+    "native_receipt": "028ab39390bbd09cd754fea20613432156ee12e23f319fd8fc97216cf65d6169",
+    "worker_checkpoint": "73e54814985c9769a65639c2b262a1d7644fe3ef8a94721bc316e3da4dfc89e7",
+    "native_log": "6815a56bee19e945c9adf98791f59036bf04cec0ffef1edcbbd44e1c8d3be03c",
+    "preflight": "b1652f724257527d9013249ba0ac1b89c37c6255ffc0118edba885d20cbd57bc",
+    "root_authorization": "d60e05d7dc9bf84435a7536aca1dafa65190b39fd5b949a456a9dd4dd682b762",
+    "root_review": "f3d34b5fcbf8eabcf0e7c894e587232ef195d7e3f8885e11814eb52037effc84",
+    "controller_cli_return": "0189651faecc852d20ca7f119b9130c7a1495f850a4ebfa2f26a23561c4f1e01"
+  },
+  "exact_public_copies": [
+    "last-worker-checkpoint.json",
+    "root-authorization.json",
+    "root-review.json",
+    "controller-cli-return.json",
+    "source-snapshots/mesh_quality_head_postexport.py",
+    "source-snapshots/test_962_quality_volume_postexport.py",
+    "LICENSE"
+  ],
+  "whitelist_projections": [
+    "Controller execution minus actual command, duplicate worker and samples.",
+    "Complete original RSS_samples field values.",
+    "Preflight specification/scopes plus role-labelled evidence, snapshot and runtime digests."
+  ],
+  "new_postrun_summaries": [
+    "Outcome, resource summary, source bindings, reader-not-run status, this provenance and README."
+  ],
+  "private_omissions": [
+    "Actual executed command and native process identifiers.",
+    "Absolute runtime/interpreter/host paths, runtime binaries and complete native log.",
+    "Large candidate/input mesh arrays and prepared, unexecuted reader sources."
+  ],
+  "root_verified": {
+    "preflight_source_input_snapshot_runtime_bindings": 72,
+    "admission_pins": 258,
+    "executed_sources": 6,
+    "resource_samples": 583,
+    "worker_reaped_and_absent": true,
+    "mesh_exported": false
+  },
+  "original_worker_running_is_not_active_process": true,
+  "worker_checkpoint_is_not_authoritative_after_deadline": true,
+  "public_reproduction_scope": "Hashes, source bindings and complete scalar/resource aggregation can be checked without native execution. No final geometry is available to reproduce or qualify.",
+  "source_build_attested": false,
+  "automatic_retry": false,
+  "goal_scope_reduced_by_this_capsule": false,
+  "later_trials_or_physics_require_separate_evidence": true,
+  "manufacturing_authorized": false
+}

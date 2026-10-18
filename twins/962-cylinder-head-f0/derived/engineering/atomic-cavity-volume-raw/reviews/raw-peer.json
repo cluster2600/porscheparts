@@ -1,0 +1,144 @@
+{
+  "schema": "962-atomic-volume-execution-peer-review/v1",
+  "reviewed_on": "2026-10-17T00:58:12.404903+00:00",
+  "verdict": "clear_for_retained_execution_closure_and_reported_quality_rejection_only",
+  "method": "Standard-library file/JSON/source review and exact PID-absence metadata check. No Gmsh, NumPy, MSH parser, native reader, solver, Docker, SSH, network or Git invocation.",
+  "original_bindings": {
+    "authorization_sha256": "8e83119eb114dc61c0a6108209b91a60a407dcbafaede8314c7123cc96df1d38",
+    "preexec_sha256": "30118b5de965a24e38779c689dee62df4b75fff45f67b21bb02a2be770f12a51",
+    "receipt_sha256": "cc319bc713a47f6863292ebdc3ac8534388baf65d324f81be060f5cedb86ac7f",
+    "worker_sha256": "23ce6d425a89a2cdf62505c4f77d655ff5fcc420ae8ff4239f5b89056555d3fd",
+    "source_contract_sha256": "319f1ef9575d55990fd893523c7a14f75eea77626ba004aa4ba9d87c22b8113c",
+    "surface_admission_sha256": "4480611f2e293fcb3127ade025d64a31962939446890b9e79978ed4b0dcb3b6d"
+  },
+  "closure": {
+    "direct_input_pins": 19,
+    "transitive_surface_admission_pins": 129,
+    "complete_scientific_capsule_files": 128,
+    "source_snapshots": 5,
+    "all_current_pins_and_snapshots_match": true,
+    "original_reports_claim_before_after_unchanged": true,
+    "all_original_output_files": {
+      "head-volume.msh": {
+        "bytes": 211385374,
+        "sha256": "5092c22174f7dd085058cf414478a9600e5022653e609a6bf385df09e12c3fa7"
+      },
+      "native.log": {
+        "bytes": 3630,
+        "sha256": "644e6ddb89af336b2c8050fe4aee1d07c74c368b8a2f557fdca60dcddad5a9b5"
+      },
+      "receipt.json": {
+        "bytes": 36021,
+        "sha256": "cc319bc713a47f6863292ebdc3ac8534388baf65d324f81be060f5cedb86ac7f"
+      },
+      "source-snapshots/audit_quality_head.py": {
+        "bytes": 6127,
+        "sha256": "a298270aa00b1536314a07629b935500c68883ca0d3bd1a179d71b49a8e73991"
+      },
+      "source-snapshots/audit_quality_patch.py": {
+        "bytes": 2551,
+        "sha256": "3532a172b2bce3a8ead7c8b11b712a2b55891377726fa1b6d847e84f0eed3912"
+      },
+      "source-snapshots/mesh_atomic_volume.py": {
+        "bytes": 21227,
+        "sha256": "61542a339b03cfab600ac869d12a0ae4d72768bcc5db5838efa3bb72a0ccfada"
+      },
+      "source-snapshots/mesh_head.py": {
+        "bytes": 20584,
+        "sha256": "69c8012e99057e384d44d6971d41f0e2cc7197a978120a7c566b0ad5a6477da5"
+      },
+      "source-snapshots/prepare_head_analysis.py": {
+        "bytes": 13728,
+        "sha256": "cda8f7155a8c22ab66898f07d1ad452ba5384ad7f75a1f012606685cd8a12dc3"
+      },
+      "surface-admission.json": {
+        "bytes": 23662,
+        "sha256": "4480611f2e293fcb3127ade025d64a31962939446890b9e79978ed4b0dcb3b6d"
+      },
+      "worker-claimed.json": {
+        "bytes": 14,
+        "sha256": "ec877fc3d2e0adaac29e2688cb9849e2921c15ee4bb32843ca92b376bd834687"
+      },
+      "worker-report.json": {
+        "bytes": 5993,
+        "sha256": "23ce6d425a89a2cdf62505c4f77d655ff5fcc420ae8ff4239f5b89056555d3fd"
+      }
+    },
+    "output_file_count": 11,
+    "all_files_rehashed_after_review": true,
+    "capsules": {
+      "atomic-cavity-fixtures": {
+        "receipt_sha256": "764291b14467fd184957a5d883de90c94a2819d405d7b66fcb4eba8945c8f5d9",
+        "files": 44
+      },
+      "atomic-cavity-head-local": {
+        "receipt_sha256": "0920a411ba24d00e8bdcea6aff52a2f110a117690f3e6fdc6b18604bdd361f1a",
+        "files": 18
+      },
+      "atomic-cavity-topology": {
+        "receipt_sha256": "8df66d9b503b11b95b488440e8a31e0edd8e35f22de6b6305324ecf2b0a5804f",
+        "files": 14
+      },
+      "atomic-cavity-distance": {
+        "receipt_sha256": "2d1f704d52ec6df3d80b110a8916d8851b95e4a36ee980773aaaaf6a9f678002",
+        "files": 26
+      },
+      "atomic-cavity-features": {
+        "receipt_sha256": "1ce0d2d055ff6ea0a45e8dfb7d7ff7fa18eff7d9e725c575dcee4a1ee0519647",
+        "files": 26
+      }
+    }
+  },
+  "execution": {
+    "returncode": 2,
+    "process_window_s": 124.76270249998197,
+    "stop_reason": null,
+    "resource_samples": 243,
+    "max_sampled_RSS_bytes": 5766807552,
+    "max_sampled_output_bytes": 211484369,
+    "deadline_s": 300,
+    "sampled_RSS_stop_bytes": 8589934592,
+    "sampled_output_stop_bytes": 1073741824,
+    "sampled_controls_are_not_hard_OS_quotas": true,
+    "software_thread_limits": 2,
+    "root_preexec_resource_age_s": 71.159755,
+    "exact_claimed_worker_PID_absent": true,
+    "reaping_attribution": "Pinned controller finally waits for its owned child; root reports closed terminal session. This review independently observes the exact claimed PID absent, without replay.",
+    "command_association": "Exact controller argv and six-field authorized clean environment; exact source-generated worker argv. No actual OS environment dump or independent launch attestation is claimed.",
+    "automatic_retry": false
+  },
+  "worker_reported_result": {
+    "tetrahedra": 3058267,
+    "total_and_referenced_nodes": 979076,
+    "interior_nodes": 77349,
+    "unreferenced_nodes": 0,
+    "metric_distribution_count_each": 3058267,
+    "all_four_nonpositive_counts": 0,
+    "minimum_SICN": 1.234770950435885e-10,
+    "unchanged_required_minimum_SICN": 0.1,
+    "quality_gate_passed": false,
+    "volume_sum_mm3": 915458.1131756522,
+    "relative_volume_error": 0.0,
+    "runtime_versions": {
+      "python": "3.10.11",
+      "numpy": "2.0.2",
+      "gmsh": "4.15.2",
+      "machine": "arm64"
+    },
+    "mesh_bytes": 211385374,
+    "mesh_sha256": "5092c22174f7dd085058cf414478a9600e5022653e609a6bf385df09e12c3fa7"
+  },
+  "scope_and_remaining_gaps": [
+    "Actual byte hash and file closure are independently verified here; coordinate/connectivity arrays and numerical metrics have not been independently reread from the MSH.",
+    "Complete tetra boundary, internal orientation balance, saved-array identity, positive Jacobians/volumes and bookkeeping equality remain attributed to the pinned worker pending the separate independent reader.",
+    "The generic error mentions positivity and SICN jointly; the retained scalar report specifically fails positive minimum SICN below 0.1, with zero reported nonpositive values.",
+    "No count of cells below 0.1 is present in the worker report; it is not inferred from quantiles.",
+    "Interior node count and the 1.75 mm cap do not establish wall resolution or convergence.",
+    "Surface admission remains scoped to one numerical volume trial and does not confer accepted volume quality, thermal/strength/material/LPBF/Omniverse-field/PhysicsNeMo or manufacturing qualification."
+  ],
+  "new_execution_closure_blockers": [],
+  "independent_MSH_readback_pending": true,
+  "volume_mesh_accepted": false,
+  "head_physics_executed": false,
+  "manufacturing_authorized": false
+}

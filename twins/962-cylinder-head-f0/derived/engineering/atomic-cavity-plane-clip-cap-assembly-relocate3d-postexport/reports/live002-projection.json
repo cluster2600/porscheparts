@@ -1,0 +1,46 @@
+{
+  "original_record": {
+    "relative_path": "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-relocate3d-postexport-root-execution-001/live-process-observation-002.json",
+    "sha256": "b3ff4f3ca8f8b5a664c83bb66f335734e9795a4d8b41d572f70b6dce8849ed28",
+    "bytes": 2561
+  },
+  "projection": {
+    "UTC": "2026-10-17T09:46:20.811633+00:00",
+    "corrected_filter": "Use untruncated args first executable token instead of macOS truncated comm column.",
+    "current_observation_not_retroactive_prelaunch_exclusion": true,
+    "prior_001_live_filter_false_negative_preserved": true,
+    "prior_preflight_and_launch_comm_filter_limitation": "The comm column truncated executable paths to <truncated-framework-executable>; its Python/Gmsh filter can miss native Python processes. Earlier empty matches are not proof of absence even for known tokens.",
+    "schema": "962-owned-Relocate3D-corrected-full-argv-process-observation/v1",
+    "universal_native_exclusion_claimed": false
+  },
+  "omitted_field_paths": [
+    [
+      "owned_controller_pid"
+    ],
+    [
+      "owned_worker_pid"
+    ],
+    [
+      "processes"
+    ],
+    [
+      "other_known_token_processes"
+    ]
+  ],
+  "runtime_key_roles": [
+    "runtime:gmsh-module",
+    "runtime:libgmsh",
+    "runtime:python"
+  ],
+  "derived_observations": {
+    "owned_controller_observed": true,
+    "owned_worker_observed": true,
+    "worker_parent_is_owned_controller": true,
+    "owned_process_count": 2,
+    "other_selected_known_token_process_count": 0,
+    "derivation": "Membership and parent comparisons in the original private PID/PPID records; no raw values or argv retained."
+  },
+  "text_substitutions": {
+    "/Library/Framewo": "<truncated-framework-executable>"
+  }
+}

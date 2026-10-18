@@ -1,0 +1,11 @@
+--- c44eed.completed-default-diagnosis.reader.py
++++ Netgen-after-only.reader.py
+@@ -69,7 +69,7 @@
+ contract=json.loads((OUT/'frozen-contract.json').read_text())
+ for name,h in contract['input_hashes'].items():
+  if sha(ROOT/name)!=h:raise ValueError('Bound saved-readback input drift: '+name)
+-w=ROOT/'work/962-engineering/atomic-cavity-plane-clip-cap-assembly-volume-delaunay-default-postexport-001';worker=json.loads((w/'worker-report.json').read_text());receipt=json.loads((w/'receipt.json').read_text());admission=json.loads((w/'surface-admission.json').read_text())
++w=ROOT/'work/962-engineering/atomic-cavity-plane-clip-cap-assembly-volume-delaunay-netgen-postexport-001';worker=json.loads((w/'worker-report.json').read_text());receipt=json.loads((w/'receipt.json').read_text());admission=json.loads((w/'surface-admission.json').read_text())
+ proof=optimizer_after_proof(worker,receipt,contract)
+ for name,h in admission['input_hashes'].items():
+  if sha(ROOT/name)!=h:raise ValueError('Surface-admission evidence changed: '+name)

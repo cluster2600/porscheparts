@@ -1,0 +1,54 @@
+{
+  "schema": "962-oneway-thermoelastic-transfer-independent-source-proposal-review/v1",
+  "decision": "SOURCE_SUPPORTED_COMPOSITION_REQUIRES_PLAN_CLARIFICATIONS_BEFORE_DECK",
+  "proposal_note_sha256": "28d1589f2bee9693be0954d3200cdc722f5a3fd597435a7db427103a8644f5b6",
+  "proposal_addendum_sha256": "2543896774c3d1235114062d61609ccd9d5b13a5d835b86671cb38fd0c03293d",
+  "local_bindings_sha256": "a40ea756c583047e0cd78f69ba91945d0aa3e0843fab7fb3e4a26cc815e8d998",
+  "primary_source_index_sha256": "6b877013fe3a4860c4de6cd34e5e49629cd5673643ee192a024a20daea41a2eb",
+  "reviewer_role": "Independent review of this proposal/addendum, not their author. Prior coarse thermal saved-data/source-child reviews and unrelated vector-cube assessor authorship are disclosed; no new independent native/physics result is implied.",
+  "required_before_implementation": [
+    {
+      "id": "born_reference_variable_scope_and_restore",
+      "severity": "blocker_before_concrete_deck_freeze",
+      "finding": "Old material not coupling the reference does not itself restrict the variable. A global reference may possess old/shared DOFs and be restored incorrectly; a scalar true restoration flag covers every listed variable.",
+      "minimum_safe_clarification": "Declare a separate born-reference nodal variable AND its BEGIN80 FunctionIC restricted to the born block. Initialize all its born-block DOFs, including reference DOFs on the25 shared geometric nodes, not only the200 globally new nodes. Freeze ordered reinitialize_variables and aligned restore flags: displacement components/temperature true; born reference false. Keep old400K reference separate; no later Aux update of born reference.",
+      "primary": "ElementSubdomainModifierBase.C86-92,178-247,700-777; BlockRestrictable.C327-349."
+    },
+    {
+      "id": "empty_born_block",
+      "severity": "blocker_for_literal_2_1_to_3_example_without_predeclaration",
+      "finding": "The initially empty born block must exist in mesh metadata before block-restricted objects are constructed.",
+      "minimum_safe_clarification": "Use the pinned standard Mesh add_subdomain_ids (and explicit name if used) to predeclare born3; freeze original thermal-block/mechanical-block mapping and reinitialize only that born block. This requires no added geometry.",
+      "primary": "MooseMesh.C145-159,390-432; BlockRestrictable.C129-164; TimedSubdomainModifier.C244-251."
+    },
+    {
+      "id": "history_wording",
+      "severity": "required_scope_clarification",
+      "finding": "Restoration preserves selected current shared values. The modifier subsequently sets old/older values on reinitialized-element DOFs; full shared historical solution vectors are not preserved unchanged.",
+      "minimum_safe_clarification": "Distinguish current u/T preservation and untouched old-element material properties from deliberate old/older solution rebase. The proposed SMALL one-step increment may use that reference, but do not claim unchanged older shared states.",
+      "primary": "ElementSubdomainModifierBase.C720-731,886-931."
+    }
+  ],
+  "source_supported": [
+    "SI is dimensionally consistent with metre coordinates,71e9Pa/.33 elasticity, displacement metres/stressPa/reactionN. This is a proposed constant-property extension, not a qualified CP1 temperature law. Donor mm/MPa limits require explicit unit conversion; no donor assessor reuse is approved.",
+    "Separate old END4D,born END4D and born BEGIN80 3D tables can express the two phases without duplicate time coordinates. Strict axes/product layout and first-axis-fastest ordering are supported; external manifest must refuse out-of-range calls because interpolation clamps. CSV-to-table ID/connectivity association is still absent.",
+    "force_preaux at TIMESTEP_BEGIN places birth before Aux. IC/restoration and new-element stateful initialization occur before END transfer; negative execution groups alone do not cross those categories. Begin80 reference capture and End80 equilibrium remain different fields.",
+    "Thermal eigenstrain can use a coupled reference; its initializer clears eigenstrain rather than capturing temperature. Explicit BEGIN80 reference plus restored displacement initialization is therefore necessary, with new zero strain/stress states still to be observed.",
+    "ADComputeLinearElasticStress rejects strain_increment. ADComputeFiniteStrainElasticStress supports that incremental property; ADComputeIncrementalStrain SMALL supplies identity rotation. Freeze compatible AD properties/base names and reference-configuration settings; object naming is not native proof."
+  ],
+  "still_untested": [
+    "No converted tables, native node/cell/block bijection, actual source-runtime match or object-registry assurance is established. Preserve321 source phase hashes and full row/coordinate values; stored-time transfer needs all-node1e-10K comparisons and phase/ID negative controls.",
+    "Birth-time reference, pre-equilibrium new stress/strain, old-material state retention, all-DOF equilibrium/reactions/tensors and SI thresholds require a separately reviewed case and future bounded evidence. No test or new witness ran here.",
+    "The synthetic thermal history ends while the source remains on. Cooling/support release, field/spatial/mechanical convergence and calibrated build/residual-stress interpretation remain outside scope."
+  ],
+  "material_limit": "E,nu and alpha are explicit hypotheses; the old single25C assumed card supplies no matched E(T),nu(T),alpha(T),strength or LPBF process qualification. No numeric null was filled.",
+  "actions": "Read/hash17 exact local small evidence records and inspect official pinned source only. No deck/code implementation, field conversion, prepared functions/imports, guards/tests, native/solver/runtime body/large mesh read, Git or running-domain output access.",
+  "proposal_files_preserved": true,
+  "implementation_begun": false,
+  "execution_authorized": false,
+  "engineering_accepted": false,
+  "physics_qualified": false,
+  "material_qualified": false,
+  "process_calibrated": false,
+  "manufacturing_authorized": false
+}

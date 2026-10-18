@@ -1,0 +1,146 @@
+{
+  "schema": "962-oneway-thermoelastic-assessor-reader-only-successor/v1",
+  "status": "HELD_SOURCE_AND_TEN_GUARDS_UNRUN",
+  "selected_source": {
+    "path": "work/962-engineering/cp1-oneway-thermoelastic-assessor-prep-003/assess.py",
+    "sha256": "55f5f9ca281f9752a6dcac28afca8d18f2c12b4759cf06f8c639a1bb3b8a81bd",
+    "bytes": 35907
+  },
+  "donor": {
+    "path": "work/962-engineering/cp1-oneway-thermoelastic-assessor-prep-002/assess.py",
+    "sha256": "6dfb8aaa2be8575eaf99c5e49a5f28e345cd12a185e22d5aab5467b632509d03",
+    "bytes": 32964
+  },
+  "reversals": [
+    {
+      "path": "assess.py",
+      "donor": {
+        "path": "work/962-engineering/cp1-oneway-thermoelastic-assessor-prep-002/assess.py",
+        "sha256": "6dfb8aaa2be8575eaf99c5e49a5f28e345cd12a185e22d5aab5467b632509d03",
+        "bytes": 32964
+      },
+      "selected": {
+        "path": "work/962-engineering/cp1-oneway-thermoelastic-assessor-prep-003/assess.py",
+        "sha256": "55f5f9ca281f9752a6dcac28afca8d18f2c12b4759cf06f8c639a1bb3b8a81bd",
+        "bytes": 35907
+      },
+      "reversible_line_chunks": [
+        {
+          "old": "def node_sample(path, geometry, active, columns):\n    data = {}\n    for row in rows(path, ('id', 'x', 'y', 'z', *columns)):\n",
+          "selected": "def node_sample(path, geometry, active, columns, shared_doublets=()):\n    # Only the native postbirth caller supplies the exact frozen shared25 IDs.\n    expected = set(shared_doublets)\n    need(len(expected) == len(shared_doublets) and expected <= set(active)\n         and (not expected or len(expected) == 25)\n         and all(type(tag) is int and geometry[tag][0] == 1. for tag in expected),\n         'Only the explicit shared25 native doublet set is supported')\n    fields = ('id', 'x', 'y', 'z', *columns)\n    saved = rows(path, fields)\n    data = {}; tokens = {}; positions = {}\n    for line, row in enumerate(saved, 2):\n"
+        },
+        {
+          "old": "        need(tag in active and tag not in data and bits(xyz) == bits(geometry[tag]), 'Observed source ID/coordinate words must join native Exodus map')\n        data[tag] = {name: number(row[name]) for name in columns}\n",
+          "selected": "        need(tag in active and bits(xyz) == bits(geometry[tag]), 'Observed source ID/coordinate words must join native Exodus map')\n        original = tuple(row[name] for name in fields)\n        values = {name: number(row[name]) for name in columns}\n        if tag in data:\n            need(tag in expected and len(positions[tag]) == 1 and original == tokens[tag],\n                 'Only two complete lexically identical rows per expected shared source ID are supported')\n        else:\n            data[tag] = values; tokens[tag] = original; positions[tag] = []\n        positions[tag].append(line)\n"
+        },
+        {
+          "old": "    return data\n",
+          "selected": "    need(len(saved) == len(active) + len(expected)\n         and all(len(positions[tag]) == (2 if tag in expected else 1) for tag in active),\n         'Exact expected shared doublets and all other singletons required')\n    storage = dict(filename=Path(path).name, raw_csv_sha256=sha(path), comparison_field_order=list(fields),\n                   raw_row_count=len(saved), unique_source_ID_count=len(data), expected_shared_doublet_IDs=sorted(expected),\n                   verified_doublets=[dict(source_node_id=tag, csv_line_numbers_1_based=positions[tag],\n                       complete_field_token_sha256=hashlib.sha256(json.dumps(tokens[tag], separators=(',', ':')).encode('utf-8')).hexdigest())\n                       for tag in sorted(expected)],\n                   token_hash_encoding='UTF8 compact JSON array of original CSV string tokens in comparison_field_order',\n                   all_duplicate_complete_field_tokens_identical=True, all_other_multiplicities_one=True,\n                   raw_rows_rewritten_or_averaged=False)\n    return data, storage\n"
+        },
+        {
+          "old": "",
+          "selected": "    shared_nodes = old_nodes & born_nodes\n    need(len(shared_nodes) == 25 and shared_nodes == {r['source_node_id'] for r in transfer['node_rows'] if r['shared'] is True},\n         'Exact frozen source shared25 IDs must join the native old/born partition')\n"
+        },
+        {
+          "old": "        return node_sample(path, geometry, active, ('temperature',))\n",
+          "selected": "        return node_sample(path, geometry, active, ('temperature',))[0]  # Original thermal rows remain strictly unique.\n"
+        },
+        {
+          "old": "            nodal = node_sample(directory / f'thermoelastic_{phase}_{step:04d}.csv', geometry, active_nodes, cols)\n",
+          "selected": "            nodal, nodal_storage = node_sample(directory / f'thermoelastic_{phase}_{step:04d}.csv', geometry, active_nodes, cols,\n                                               shared_nodes if step >= 80 else ())\n"
+        },
+        {
+          "old": "",
+          "selected": "            reference_storage = None\n"
+        },
+        {
+          "old": "                ref = node_sample(reference_path, geometry, born_nodes, ('born_reference_temperature',))\n",
+          "selected": "                ref, reference_storage = node_sample(reference_path, geometry, born_nodes, ('born_reference_temperature',))\n"
+        },
+        {
+          "old": "",
+          "selected": "                reference_storage = dict(filename=reference_path.name, raw_csv_sha256=sha(reference_path),\n                                         comparison_field_order=['id', 'x', 'y', 'z', 'born_reference_temperature'],\n                                         raw_row_count=0, unique_source_ID_count=0, expected_shared_doublet_IDs=[], verified_doublets=[],\n                                         raw_rows_rewritten_or_averaged=False)\n"
+        },
+        {
+          "old": "            summaries.append(dict(step=step, phase=phase, active_nodes=len(nodal), active_cells=len(active_cells), quadrature_rows=len(qp), elastic_strain_energy_J_diagnostic=energy))\n",
+          "selected": "            summaries.append(dict(step=step, phase=phase, active_nodes=len(nodal), active_cells=len(active_cells), quadrature_rows=len(qp), elastic_strain_energy_J_diagnostic=energy,\n                                  native_nodal_storage=nodal_storage, born_reference_storage=reference_storage))\n"
+        }
+      ],
+      "chunk_count": 10,
+      "reconstructed_donor_byte_exact": true
+    },
+    {
+      "path": "selfcheck.py",
+      "donor": {
+        "path": "work/962-engineering/cp1-oneway-thermoelastic-assessor-prep-002/selfcheck.py",
+        "sha256": "d505bbd092e4c7a876284666f556a777a80105b4f6367031b9f2a284247c7f0f",
+        "bytes": 9238
+      },
+      "selected": {
+        "path": "work/962-engineering/cp1-oneway-thermoelastic-assessor-prep-003/selfcheck.py",
+        "sha256": "faedfbd030dc03fb6bcb9220a9a9b3c0b070296fa64974fc84df6c2094321341",
+        "bytes": 14633
+      },
+      "reversible_line_chunks": [
+        {
+          "old": "SOURCE_SHA = '6dfb8aaa2be8575eaf99c5e49a5f28e345cd12a185e22d5aab5467b632509d03'\n",
+          "selected": "SOURCE_SHA = '55f5f9ca281f9752a6dcac28afca8d18f2c12b4759cf06f8c639a1bb3b8a81bd'\n"
+        },
+        {
+          "old": "",
+          "selected": "def native_storage_fixture(end=False):\n    geometry, _, _ = fake_family()\n    shared = {tag for tag, p in geometry.items() if p[0] == 1.}\n    columns = (*a.DISP, 'temperature', *a.FORCE) if end else (*a.DISP, 'temperature')\n    fields = ('id', 'x', 'y', 'z', *columns)\n    saved = []\n    for tag, p in geometry.items():\n        row = [str(tag), *(format(x, '.17g') for x in p), *('0.0' if k != 'temperature' else '400.0' for k in columns)]\n        saved.append(row)\n        if tag in shared: saved.append(list(row))\n    return geometry, shared, columns, fields, saved\n\n\nclass NativeDoubletStorageGuards(unittest.TestCase):\n    def test_complete_native425_IDs_shared25_doublets_and_prebirth_singletons(self):\n        geometry, shared, columns, fields, saved = native_storage_fixture()\n        self.assertEqual(len(shared), 25); self.assertEqual(len(saved), 450)\n        with TemporaryDirectory() as name:\n            path = Path(name) / 'thermoelastic_begin_0080.csv'\n            path.write_text('\\n'.join([','.join(fields), *(','.join(row) for row in saved)]) + '\\n')\n            values, storage = a.node_sample(path, geometry, set(geometry), columns, shared)\n            self.assertEqual(set(values), set(geometry)); self.assertEqual(storage['raw_row_count'], 450)\n            self.assertEqual(storage['unique_source_ID_count'], 425); self.assertEqual(storage['expected_shared_doublet_IDs'], sorted(shared))\n            self.assertEqual(len(storage['verified_doublets']), 25); self.assertEqual(storage['raw_csv_sha256'], a.sha(path))\n            for item in storage['verified_doublets']:\n                self.assertEqual(len(item['csv_line_numbers_1_based']), 2)\n                self.assertEqual(len(item['complete_field_token_sha256']), 64)\n            with self.assertRaises(ValueError): a.node_sample(path, geometry, set(geometry), columns)\n            old = {tag for tag, p in geometry.items() if p[0] <= 1.}\n            unique = [next(row for row in saved if a.integer(row[0]) == tag) for tag in sorted(old)]\n            path.write_text('\\n'.join([','.join(fields), *(','.join(row) for row in unique)]) + '\\n')\n            values, storage = a.node_sample(path, geometry, old, columns)\n            self.assertEqual(len(values), 225); self.assertEqual(storage['raw_row_count'], 225); self.assertEqual(storage['verified_doublets'], [])\n\n    def test_missing_extra_triple_nonshared_and_unequal_complete_tokens_refused(self):\n        geometry, shared, columns, fields, saved = native_storage_fixture(end=True)\n        first = min(shared); pair = [i for i, row in enumerate(saved) if a.integer(row[0]) == first]\n        outsider = next(row for row in saved if a.integer(row[0]) not in shared)\n        cases = []\n        cases.append([row for i, row in enumerate(saved) if i != pair[1]])  # Missing one required second row.\n        cases.append([*saved, list(outsider)])  # A nonshared extra row is never permitted.\n        cases.append([*saved, list(saved[pair[0]])])  # A third identical row is never permitted.\n        for field, value in [('disp_x', '-0.0'), ('rx', '-0.0'), ('id', str(first) + '.0')]:\n            bad = [list(row) for row in saved]; bad[pair[1]][fields.index(field)] = value; cases.append(bad)\n        bad = [list(row) for row in saved]; bad[pair[1]][fields.index('y')] = '-0.0'; cases.append(bad)\n        with TemporaryDirectory() as name:\n            path = Path(name) / 'thermoelastic_end_0080.csv'\n            # All eleven END fields, including reaction tokens, must match exactly.\n            self.assertEqual(len(fields), 11)\n            path.write_text('\\n'.join([','.join(fields), *(','.join(row) for row in saved)]) + '\\n')\n            values, storage = a.node_sample(path, geometry, set(geometry), columns, shared)\n            self.assertEqual(len(values), 425); self.assertEqual(len(storage['verified_doublets']), 25)\n            for bad in cases:\n                path.write_text('\\n'.join([','.join(fields), *(','.join(row) for row in bad)]) + '\\n')\n                with self.assertRaises(ValueError): a.node_sample(path, geometry, set(geometry), columns, shared)\n            path.write_text('\\n'.join([','.join(fields), *(','.join(row) for row in saved)]) + '\\n')\n            with self.assertRaises(ValueError): a.node_sample(path, geometry, set(geometry), columns, set(sorted(shared)[:-1]))\n\n    def test_original_thermal_and_reference_callers_retain_strict_uniqueness(self):\n        geometry, shared, _, _, _ = native_storage_fixture()\n        for column, active in [('temperature', set(geometry)), ('born_reference_temperature', {tag for tag, p in geometry.items() if p[0] >= 1.})]:\n            fields = ('id', 'x', 'y', 'z', column)\n            saved = [[str(tag), *(format(x, '.17g') for x in geometry[tag]), '400.0'] for tag in sorted(active)]\n            with TemporaryDirectory() as name:\n                path = Path(name) / 'strict.csv'\n                path.write_text('\\n'.join([','.join(fields), *(','.join(row) for row in saved)]) + '\\n')\n                values, storage = a.node_sample(path, geometry, active, (column,))\n                self.assertEqual(set(values), active); self.assertEqual(storage['verified_doublets'], [])\n                path.write_text('\\n'.join([','.join(fields), *(','.join(row) for row in [*saved, saved[0]])]) + '\\n')\n                with self.assertRaises(ValueError): a.node_sample(path, geometry, active, (column,))\n\n\n"
+        }
+      ],
+      "chunk_count": 2,
+      "reconstructed_donor_byte_exact": true
+    }
+  ],
+  "exact_top_level_function_ASTs": [
+    "need",
+    "sha",
+    "bits",
+    "number",
+    "integer",
+    "rows",
+    "tensor",
+    "symgrad",
+    "hooke",
+    "hex_rule",
+    "ordered_hex",
+    "mechanical_state",
+    "accumulate",
+    "cdf_magic",
+    "read_exodus",
+    "geometry_family",
+    "quadrature_sample",
+    "field_phase",
+    "assess"
+  ],
+  "changed_functions": [
+    "node_sample",
+    "assess_data"
+  ],
+  "unchanged_Audit_class_AST": true,
+  "whole_original_seven_guard_class_AST_exact": true,
+  "affine_and_fake_family_ASTs_exact": true,
+  "added_guard_methods": 3,
+  "prepared_methods": [
+    "test_Q1_affine_all_eight_points_and_rigid_rotation",
+    "test_isotropic_three_dimensional_shear_and_thermal_reference",
+    "test_born_nonzero_displacement_and_nonuniform_T_reference",
+    "test_consistent_Q1_force_and_moment_constant_symmetric_stress",
+    "test_manufactured_free_expansion_full_tensor_and_free_residual",
+    "test_observed_external_IDs_full_mesh_family_and_transition",
+    "test_format_missing_node_duplicate_QP_and_nonfinite_refusals",
+    "test_complete_native425_IDs_shared25_doublets_and_prebirth_singletons",
+    "test_missing_extra_triple_nonshared_and_unequal_complete_tokens_refused",
+    "test_original_thermal_and_reference_callers_retain_strict_uniqueness"
+  ],
+  "exact_body_copies": [
+    "POLICY.json",
+    "primary-sources.json"
+  ],
+  "CASE_native_OUTPUT_literals_unchanged": true,
+  "mathematical_gate_or_tolerance_changes": false,
+  "prepared_functions_modules_or_guards_executed": false
+}

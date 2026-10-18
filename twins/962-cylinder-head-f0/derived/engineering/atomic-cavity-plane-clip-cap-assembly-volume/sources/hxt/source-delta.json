@@ -1,0 +1,45 @@
+{
+  "schema": "962-assembled-raw-HXT-surgical-source-delta/v1",
+  "base_path": "work/962-engineering/atomic-cavity-volume-prep-002/mesh_atomic_volume.py",
+  "base_sha256": "61542a339b03cfab600ac869d12a0ae4d72768bcc5db5838efa3bb72a0ccfada",
+  "selected_source": "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-hxt-prep-001/mesh_assembled_hxt.py",
+  "selected_sha256": "b7d3de89c6ed166bb5d0df5c5d41ddd77b8deee9c36775b4e40b205722a2587e",
+  "literal_replacements": [
+    {
+      "old": "CANDIDATE = ROOT / \"work/962-engineering/atomic-cavity-head-001/head-atomic002/candidate.bin\"",
+      "new": "CANDIDATE = ROOT / \"work/962-engineering/atomic-cavity-plane-clip-cap-assembly-001/candidate.bin\""
+    },
+    {
+      "old": "CANDIDATE_SHA = \"1f9dbd4cda61c7b58084479ebb165fb01280fa831752dc0da18517e548131b1a\"",
+      "new": "CANDIDATE_SHA = \"9d62eac6e2cd7b6a9ecb4a7ea5b632685820369b5c4ede379acc34238f50d7b4\""
+    },
+    {
+      "old": "CANDIDATE_VOLUME = 915458.1131756522",
+      "new": "CANDIDATE_VOLUME = 915453.1236217883"
+    },
+    {
+      "old": "OUTPUT = ROOT / \"work/962-engineering/atomic-cavity-volume-hxt-001\"",
+      "new": "OUTPUT = ROOT / \"work/962-engineering/atomic-cavity-plane-clip-cap-assembly-volume-hxt-001\""
+    },
+    {
+      "old": "if (len(points), len(faces)) != (901727, 1803870):",
+      "new": "if (len(points), len(faces)) != (871731, 1743878):"
+    },
+    {
+      "old": "watchdog = threading.Timer(DEADLINE, lambda: stop(\"native_deadline\"))",
+      "new": "watchdog = threading.Timer(max(0., DEADLINE-(time.monotonic()-started)), lambda: stop(\"native_deadline\"))"
+    },
+    {
+      "old": "    report.update(returncode=process.returncode, native_process_window_s=time.monotonic()-started,",
+      "new": "    elapsed = time.monotonic()-started\n    if elapsed >= DEADLINE:\n        stopped[\"reason\"] = stopped[\"reason\"] or \"native_deadline\"\n    report.update(returncode=process.returncode, native_process_window_s=elapsed,"
+    }
+  ],
+  "five_candidate_bindings_only": true,
+  "controller_changes_only": [
+    "remaining native-process-window budget after Popen",
+    "synchronous elapsed>=300 refusal after finally cleanup before pass evaluation"
+  ],
+  "reverse_restores_entire_base": true,
+  "source_imported_or_executed": false,
+  "native_calls": 0
+}

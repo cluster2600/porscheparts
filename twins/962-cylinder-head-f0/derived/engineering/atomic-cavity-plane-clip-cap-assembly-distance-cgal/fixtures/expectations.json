@@ -1,0 +1,92 @@
+{
+  "schema": "962-CGAL-directed-distance-literals/v1",
+  "cases": [
+    {
+      "id": "open-to-closed",
+      "source": "near-top-open.bin",
+      "target": "cube.bin",
+      "source_ids": "near-top-open.u64",
+      "returncode": 0,
+      "exact_directed_distance_mm": 0.03125,
+      "required": "completed closed interval contains exact h; unchanged mesh snapshots; all target faces",
+      "polygon_budget_passed_expected": true
+    },
+    {
+      "id": "coincident-zero",
+      "source": "plane.bin",
+      "target": "plane.bin",
+      "source_ids": "plane.u64",
+      "returncode": 0,
+      "exact_directed_distance_mm": 0,
+      "required": "completed closed interval contains exact h; unchanged mesh snapshots; all target faces",
+      "polygon_budget_passed_expected": true
+    },
+    {
+      "id": "component-union-max",
+      "source": "two-open-components.bin",
+      "target": "plane.bin",
+      "source_ids": "two-open-components.u64",
+      "returncode": 0,
+      "exact_directed_distance_mm": 0.04686737060546875,
+      "required": "completed closed interval contains exact h; unchanged mesh snapshots; all target faces",
+      "polygon_budget_passed_expected": true
+    },
+    {
+      "id": "asymmetric-forward",
+      "source": "plane.bin",
+      "target": "asymmetric-union.bin",
+      "source_ids": "plane.u64",
+      "returncode": 0,
+      "exact_directed_distance_mm": 7.62939453125e-06,
+      "required": "completed closed interval contains exact h; unchanged mesh snapshots; all target faces",
+      "polygon_budget_passed_expected": true
+    },
+    {
+      "id": "asymmetric-reverse",
+      "source": "asymmetric-union.bin",
+      "target": "plane.bin",
+      "source_ids": "asymmetric-union.u64",
+      "returncode": 0,
+      "exact_directed_distance_mm": 0.03124237060546875,
+      "required": "completed closed interval contains exact h; unchanged mesh snapshots; all target faces",
+      "polygon_budget_passed_expected": true
+    },
+    {
+      "id": "continuous-interior-max",
+      "source": "interior-square.bin",
+      "target": "walls.bin",
+      "source_ids": "interior-square.u64",
+      "returncode": 0,
+      "exact_directed_distance_mm": 1,
+      "required": "completed closed interval contains exact h; unchanged mesh snapshots; all target faces",
+      "polygon_budget_passed_expected": false
+    }
+  ],
+  "refusals": [
+    {
+      "id": "malformed",
+      "source": "malformed.bin",
+      "target": "cube.bin",
+      "source_ids": "one.u64",
+      "returncode": 2,
+      "query_completed": false,
+      "scalar_mm": null
+    },
+    {
+      "id": "empty",
+      "source": "empty.bin",
+      "target": "cube.bin",
+      "source_ids": "one.u64",
+      "returncode": 2,
+      "query_completed": false,
+      "scalar_mm": null
+    }
+  ],
+  "analytic_notes": [
+    "Near-top square lies inside the cube; top distance exactly1/32 is uniformly smallest.",
+    "Target plane z=2**-17 gives exact union distance3/64-2**-17.",
+    "Plane z=2**-17 to union z0,z1/32 is2**-17, strictly belowepsilon; reverse1/32-2**-17.",
+    "Square boundary/vertices lie on four walls; center distance1 and every square point distance<=1.",
+    "Fixtures prove software continuous-facet and directed behavior only; no head admission."
+  ]
+}

@@ -1,0 +1,1257 @@
+--- adapter-donor
++++ run_mac.py
+@@ -1,4 +1,4 @@
+-"""Held Mac-local MOOSE metadata readiness, then a separately authorized fixed assumed thermal-birth coupon."""
++"""Held fixed SI one-way thermoelastic case; inherited Mac lifecycle, no automatic assessment."""
+ 
+ import argparse
+ import hashlib
+@@ -17,19 +17,22 @@
+ ROOT = ENGINEERING.parent.parent
+ PREFIX = ENGINEERING / "moose-local-installed-002"
+ EXECUTABLE = PREFIX / "bin/combined-opt"
+-CASE = ENGINEERING / "cp1-assumed-thermal-birth-linear-prep-001"
++CASE = PREP
++TRANSFER = ENGINEERING / "cp1-oneway-thermoelastic-transfer-inputs-001"
+ CARD = CASE / "card.json"
+ PHYSICS = CASE / "case-contract.json"
+-PRIMARY_API = ENGINEERING / "imported-elastic-cube-macos-prep-004/primary-api.json"
++PRIMARY_API = ENGINEERING / "cp1-oneway-thermoelastic-transfer-source-peer-001/primary-sources.json"
+ HELD = PREP / "held-preparation.json"
+ ENVIRONMENT = {"PATH": "/usr/bin:/bin", "LANG": "C", "LC_ALL": "C", "OMP_NUM_THREADS": "1",
+                "OPENBLAS_NUM_THREADS": "1", "VECLIB_MAXIMUM_THREADS": "1", "FI_PROVIDER": "tcp"}
+-CASE_FILES = ("thermal-birth.i", "time-level.i", "assess.py")
+-FEATURES = ("GeneratedMeshGenerator", "SubdomainBoundingBoxGenerator", "FunctionIC",
+-            "ADTimeDerivative", "ADHeatConductionTimeDerivative", "ADHeatConduction", "ADMatHeatSource",
+-            "ADHeatConductionMaterial", "ADGenericConstantMaterial", "FunctionPathEllipsoidHeatSource",
+-            "TimedSubdomainModifier", "ADMaterialRealAux", "NodalValueSampler", "ElementValueSampler",
+-            "ADElementIntegralMaterialProperty", "SMP", "Transient", "CSV", "Console", "ParsedFunction")
++CASE_FILES = ("thermoelastic-birth.i",)
++TRANSFER_FILES = ("old-end.grid", "born-end.grid", "born-begin80.grid", "transfer-manifest.json")
++FEATURES = ("GeneratedMeshGenerator", "SubdomainBoundingBoxGenerator", "BoundingBoxNodeSetGenerator",
++            "ADTimeDerivative", "FunctionIC", "PiecewiseMultilinear", "FunctionAux", "TimedSubdomainModifier",
++            "ADDirichletBC", "ADStressDivergenceTensors", "ADComputeIncrementalStrain",
++            "ADComputeIsotropicElasticityTensor", "ADComputeThermalExpansionEigenstrain",
++            "ADComputeFiniteStrainElasticStress", "RankTwoTensorMaterialADConverter", "RankTwoCartesianComponent",
++            "NodalValueSampler", "ElementMaterialSampler", "SMP", "Transient", "CSV", "Console", "Exodus")
+ 
+ 
+ def need(condition, message):
+@@ -75,13 +78,9 @@
+ 
+ 
+ def commands(stage):
++    need(stage == "coupon", "Only the fixed thermoelastic case is available")
+     common = [str(EXECUTABLE), "-skip_petscrc", "--n-threads=1"]
+-    if stage == "readiness":
+-        return [("help", common + ["--help"]), ("version", common + ["--version"]),
+-                ("registry", common + ["--registry"])]
+-    need(stage == "coupon", "Only the two declared stages exist")
+-    return [("native", common + ["-i", "thermal-birth.i", "time-level.i"])]
+-
++    return [("native", common + ["-i", "thermoelastic-birth.i"])]
+ 
+ def registry_features(text):
+     rows = [line.split("\t") for line in text.splitlines()]
+@@ -96,11 +95,12 @@
+     need(path.is_file() and not path.is_symlink() and path.resolve() == path
+          and re.fullmatch("[0-9a-f]{64}", expected) and same(path, expected), "Exact external actual child required")
+     c = json.loads(path.read_text())
+-    need(c.get("schema") == "962-macos-cp1-thermal-birth-stage-actual/v1" and c.get("stage") == stage
+-         and c.get("root_and_peer_review_complete") is True and c.get("native_launch_authorized") is True
+-         and c.get("head_authorized") is False and c.get("manufacturing_authorized") is False,
+-         "Separate reviewed stage authority required")
+-    need(c.get("coupon_solve_authorized") is (stage == "coupon"), "Readiness cannot authorize the coupon")
++    need(stage == "coupon" and c.get("schema") == "962-macos-oneway-thermoelastic-case-actual/v1"
++         and c.get("stage") == stage and c.get("root_and_peer_review_complete") is True
++         and c.get("native_launch_authorized") is True and c.get("coupon_solve_authorized") is True
++         and all(c.get(k) is False for k in ("head_authorized", "engineering_accepted", "physics_qualified",
++                                           "material_qualified", "process_calibrated", "manufacturing_authorized",
++                                           "automatic_retry")), "Separate reviewed fixed-case authority required")
+     pins = c["input_sha256"]
+     need(pins.get(str(HELD.relative_to(ROOT))) == sha(HELD), "Held preparation is not directly bound")
+     held = json.loads(HELD.read_text())
+@@ -108,35 +108,49 @@
+     check_pins(pins)
+     need(c["runtime_sha256s"] == held["runtime_sha256s"] and len(c["runtime_sha256s"]) == 19
+          and c["runtime_symlinks"] == held["runtime_symlinks"] and len(c["runtime_symlinks"]) == 13
+-         and "lib/combined/libheat_transfer-opt.0.dylib" in c["runtime_sha256s"],
+-         "Exact reviewed19 selected files/13 links including heat-transfer library required")
+-    need(all(c.get(k) is False for k in ["engineering_accepted", "physics_qualified", "material_qualified", "process_calibrated"])
+-         and c.get("automatic_retry") is False, "No qualification or retry authority")
+-    need("bin/combined-opt" in c["runtime_sha256s"] and c["runtime_symlinks"].get("bin/moose-opt") == "combined-opt"
+-         and runtime_unchanged(c) and os.access(EXECUTABLE, os.X_OK), "Actual installed runtime bindings required")
+-    need(c["installation_result_peer"] in pins and c["installation_receipt"] in pins,
+-         "Stopped installation review and receipt must be pinned")
+-    limits = c["resources"]
+-    need(set(limits) == {"wall_seconds", "sampled_RSS_stop_bytes", "sampled_output_stop_bytes"}
+-         and all(type(v) in (int, float) and not isinstance(v, bool) and v > 0
+-                 and v < float("inf") for v in limits.values()), "Explicit finite positive Mac sampled limits required")
+-    if stage == "coupon":
+-        need(limits == held["coupon_resources"], "Exact reviewed per-level coupon bounds required")
+-        need(all(c[k] in pins for k in ["readiness_receipt", "readiness_result_peer", "readiness_registry"]),
+-             "Stopped readiness, peer and exact cached registry required")
+-        ready = json.loads((ROOT / c["readiness_receipt"]).read_text())
+-        prior18 = {k: v for k, v in c["runtime_sha256s"].items() if k != "lib/combined/libheat_transfer-opt.0.dylib"}
+-        need(ready.get("readiness_completed") is True and len(prior18) == 18
+-             and ready["runtime_sha256s"] == prior18 and ready["runtime_symlinks"] == c["runtime_symlinks"]
+-             and all(v is True for v in ready["required_object_presence"].values())
+-             and pins[c["readiness_registry"]] == ready["artifact_sha256"]["registry.log"],
+-             "Exact old18 subset plus root-bound new heat library and cached registry required")
+-        registry_features((ROOT / c["readiness_registry"]).read_text())
++         and runtime_unchanged(c) and os.access(EXECUTABLE, os.X_OK), "Exact selected19/13 current runtime required")
++    need(c["resources"] == held["coupon_resources"], "Exact100s/2GiB/512MiB fixed-case limits required")
++    for key in ("installation_result_peer", "installation_receipt", "data_preparation_root_closed",
++                "data_preparation_result_peer", "independent_assessment_source",
++                "independent_assessment_source_peer", "independent_assessment_source_root_review"):
++        need(isinstance(c.get(key), str) and c[key] in pins, "Independent installation/3D assessment source gates required")
++    registry = held["registry"]
++    presence = json.loads((ROOT / registry["presence_record"]).read_text())
++    closed = json.loads((ROOT / registry["root_closed"]).read_text())
++    need(closed.get("returncode") == 0 and closed.get("stop_reason") is None
++         and closed.get("selected19_files13_links_before_after_unchanged") is True
++         and closed["runtime_bindings_sha256"] == pins[registry["runtime_bindings"]]
++         and closed["registry_sha256"] == pins[registry["stdout"]]
++         and presence["registry_sha256"] == closed["registry_sha256"]
++         and presence["root_closed_sha256"] == pins[registry["root_closed"]]
++         and presence.get("all_present_once") is True and set(presence["exact_rows"]) == set(FEATURES),
++         "Cached exact selected-runtime registry presence joins required; not a semantic/ABI proof")
++    registry_features((ROOT / registry["stdout"]).read_text())
++    manifest_path = TRANSFER / "transfer-manifest.json"
++    need(c.get("transfer_manifest") == str(manifest_path.relative_to(ROOT))
++         and pins.get(c["transfer_manifest"]) == c.get("transfer_manifest_sha256"), "Exact completed transfer manifest required")
++    manifest = json.loads(manifest_path.read_text())
++    source_index = json.loads((PREP / "thermal-input-index.json").read_text())
++    need(manifest.get("schema") == "962-oneway-thermoelastic-prepared-transfer/v1"
++         and manifest["source_receipt_sha256"] == source_index["receipt_sha256"]
++         and manifest["selected321"] == source_index["selected"]
++         and (manifest["old_node_count"], manifest["born_reference_DOF_count"], manifest["shared_node_count"],
++              manifest["genuinely_new_node_count"]) == (225, 225, 25, 200)
++         and manifest.get("native_connectivity_or_ID_bijection_proven") is False
++         and manifest.get("native_execution_authorized") is False, "Complete same-case data preparation required")
++    need(set(manifest["table_sha256"]) == set(TRANSFER_FILES) - {"transfer-manifest.json"}, "Exactly three tables required")
++    for name in TRANSFER_FILES:
++        need(str((TRANSFER / name).relative_to(ROOT)) in pins, "Every converted input must be directly pinned")
++        if name != "transfer-manifest.json":
++            need(pins[str((TRANSFER / name).relative_to(ROOT))] == manifest["table_sha256"][name], "Converted table drift")
++    frozen = json.loads(PHYSICS.read_text())
++    need(frozen["card"] == json.loads(CARD.read_text()) and frozen["card_sha256"] == sha(CARD)
++         and frozen["source_input_sha256"]["thermoelastic-birth.i"] == sha(CASE / "thermoelastic-birth.i"),
++         "Exact separate source physics contract required")
+     output = Path(c["output"])
+-    need(output.is_absolute() and output.parent == ENGINEERING and output.resolve() == output
+-         and not output.exists() and not output.is_symlink(), "Fresh direct task output required")
++    need(output == ENGINEERING / "cp1-oneway-thermoelastic-transfer-001" and output.resolve() == output
++         and not output.exists() and not output.is_symlink(), "Fresh fixed direct case output required")
+     return c, output
+-
+ 
+ def run(stage, contract, expected):
+     started = time.monotonic()
+@@ -152,8 +166,10 @@
+     if stage == "coupon":
+         for name in CASE_FILES:
+             shutil.copyfile(CASE / name, output / name)
++        for name in TRANSFER_FILES:
++            shutil.copyfile(TRANSFER / name, output / name)
+         shutil.copyfile(CARD, output / "card.json")
+-        selected += [CASE / name for name in CASE_FILES] + [CARD, PHYSICS]
++        selected += [CASE / name for name in CASE_FILES] + [TRANSFER / name for name in TRANSFER_FILES] + [CARD, PHYSICS]
+     for path in selected:
+         destination = snapshots / path.relative_to(ROOT)
+         destination.parent.mkdir(parents=True, exist_ok=True)
+@@ -163,7 +179,9 @@
+                    command=commands(stage)[0][1] if stage == "coupon" else [argv for _, argv in commands(stage)],
+                    stage=stage, contract_sha256=expected, actual_contract_sha256=expected,
+                    physics_contract_sha256=sha(PHYSICS) if stage == "coupon" else None,
+-                   level=2 if stage == "coupon" else None, level_is_declared=True, input_sha256=inputs,
++                   level=None, level_is_declared=False, thermal_input_level=2,
++                   transfer_manifest_sha256=c["transfer_manifest_sha256"],
++                   prescribed_temperature_and_born_reference=True, source_off_cooling_history_present=False, input_sha256=inputs,
+                    runtime_sha256s=c["runtime_sha256s"], runtime_symlinks=c["runtime_symlinks"],
+                    network="not_requested_not_OS_sandboxed", rootfs="installed_prefix_not_sandboxed",
+                    automatic_retry=False, head_input_read=False, independent_assessment_performed=False,
+@@ -293,7 +311,7 @@
+ 
+ if __name__ == "__main__":
+     parser = argparse.ArgumentParser(description=__doc__)
+-    parser.add_argument("--stage", choices=("readiness", "coupon"), required=True)
++    parser.add_argument("--stage", choices=("coupon",), required=True)
+     parser.add_argument("--contract", type=Path, required=True)
+     parser.add_argument("--contract-sha256", required=True)
+     parser.add_argument("--execute", action="store_true")
+--- deck-donor
++++ thermoelastic-birth.i
+@@ -1,4 +1,4 @@
+-# Hypothetical mechanical birth/history/support release; mm, MPa, N, K.
++# Unqualified one-way prescribed-temperature research case; SI m,Pa,N,K,s.
+ [Problem]
+   material_coverage_check = false
+ []
+@@ -6,14 +6,15 @@
+   displacements = 'disp_x disp_y disp_z'
+ []
+ [Mesh]
++  add_subdomain_ids = '3'
+   [base]
+     type = GeneratedMeshGenerator
+     dim = 3
+-    xmax = 1
++    xmax = 2
+     ymax = 1
+-    zmax = 20
+-    nx = 1
+-    ny = 1
++    zmax = 1
++    nx = 16
++    ny = 4
+     nz = 4
+     subdomain_ids = 1
+   []
+@@ -22,44 +23,31 @@
+     input = base
+     block_id = 2
+     bottom_left = '0 0 0'
+-    top_right = '1 1 10'
++    top_right = '1 1 1'
+   []
+   [origin]
+     type = BoundingBoxNodeSetGenerator
+     input = old
+     new_boundary = origin
+-    bottom_left = '-1e-8 -1e-8 -1e-8'
+-    top_right = '1e-8 1e-8 1e-8'
+-  []
+-  [rotation]
++    bottom_left = '-1e-12 -1e-12 -1e-12'
++    top_right = '1e-12 1e-12 1e-12'
++  []
++  [axis_x]
+     type = BoundingBoxNodeSetGenerator
+     input = origin
+-    new_boundary = rotation
+-    bottom_left = '.99999999 -1e-8 -1e-8'
+-    top_right = '1.00000001 1e-8 1e-8'
+-  []
+-  [axial_start]
++    new_boundary = axis_x
++    bottom_left = '.999999999999 -1e-12 -1e-12'
++    top_right = '1.000000000001 1e-12 1e-12'
++  []
++  [axis_y]
+     type = BoundingBoxNodeSetGenerator
+-    input = rotation
+-    new_boundary = axial_start
+-    bottom_left = '-1e-8 -1e-8 -1e-8'
+-    top_right = '1.00000001 1.00000001 1e-8'
+-  []
+-  [internal]
+-    type = BoundingBoxNodeSetGenerator
+-    input = axial_start
+-    new_boundary = internal
+-    bottom_left = '-1e-8 -1e-8 9.99999999'
+-    top_right = '1.00000001 1.00000001 10.00000001'
+-  []
+-  [axial_end]
+-    type = BoundingBoxNodeSetGenerator
+-    input = internal
+-    new_boundary = axial_end
+-    bottom_left = '-1e-8 -1e-8 19.99999999'
+-    top_right = '1.00000001 1.00000001 20.00000001'
+-  []
+-[]
++    input = axis_x
++    new_boundary = axis_y
++    bottom_left = '-1e-12 .999999999999 -1e-12'
++    top_right = '1e-12 1.000000000001 1e-12'
++  []
++[]
++# This donor placeholder holds inactive block1 at zero, not physical inertia.
+ [Variables/inactive_placeholder]
+   block = 1
+   initial_condition = 0
+@@ -70,8 +58,8 @@
+   variable = inactive_placeholder
+   block = 1
+ []
+-[Physics/SolidMechanics/QuasiStatic/bar]
+-  block = 2
++[Physics/SolidMechanics/QuasiStatic/coupon]
++  block = '2 3'
+   strain = SMALL
+   incremental = true
+   use_automatic_differentiation = true
+@@ -79,36 +67,102 @@
+   eigenstrain_names = thermal_eigenstrain
+   save_in = 'rx ry rz'
+ []
++[AuxVariables]
++  [temperature]
++    family = LAGRANGE
++    order = FIRST
++    block = '2 3'
++    initial_condition = 400
++  []
++  [born_reference_temperature]
++    family = LAGRANGE
++    order = FIRST
++    block = 3
++  []
++  [rx]
++    block = '2 3'
++  []
++  [ry]
++    block = '2 3'
++  []
++  [rz]
++    block = '2 3'
++  []
++[]
++[Functions]
++  [old_end]
++    type = PiecewiseMultilinear
++    data_file = old-end.grid
++  []
++  [born_end]
++    type = PiecewiseMultilinear
++    data_file = born-end.grid
++  []
++  [born_begin80]
++    type = PiecewiseMultilinear
++    data_file = born-begin80.grid
++  []
++[]
+ [ICs]
+   [disp_x]
+     type = FunctionIC
+     variable = disp_x
+-    function = 'if(t<2.5,0,-.001*x)'
+-    block = 2
++    function = 0
++    block = '2 3'
+   []
+   [disp_y]
+     type = FunctionIC
+     variable = disp_y
+-    function = 'if(t<2.5,0,-.001*y)'
+-    block = 2
++    function = 0
++    block = '2 3'
+   []
+   [disp_z]
+     type = FunctionIC
+     variable = disp_z
+-    function = 'if(t<2.5,0,.0025*z)'
++    function = 0
++    block = '2 3'
++  []
++  [born_temperature]
++    type = FunctionIC
++    variable = temperature
++    function = born_begin80
++    block = 3
++  []
++  [born_reference]
++    type = FunctionIC
++    variable = born_reference_temperature
++    function = born_begin80
++    block = 3
++  []
++[]
++[AuxKernels]
++  [old_temperature]
++    type = FunctionAux
++    variable = temperature
++    function = old_end
+     block = 2
+-  []
+-[]
+-[Functions]
+-  [axial_history]
+-    type = PiecewiseLinear
+-    x = '0 1 2 6'
+-    y = '0 .03 .025 .025'
+-  []
+-  [temperature]
+-    type = ParsedFunction
+-    expression = 'if(t<4,300,260)'
+-  []
++    execute_on = 'INITIAL TIMESTEP_BEGIN'
++  []
++  [born_temperature]
++    type = FunctionAux
++    variable = temperature
++    function = born_end
++    block = 3
++    execute_on = 'INITIAL TIMESTEP_BEGIN'
++  []
++[]
++[MeshModifiers/birth]
++  type = TimedSubdomainModifier
++  times = 0.2
++  blocks_from = 1
++  blocks_to = 3
++  reinitialize_subdomains = 3
++  reinitialize_variables = 'disp_x disp_y disp_z temperature born_reference_temperature'
++  reinitialization_strategy = IC
++  restore_overridden_dofs = 'true true true true false'
++  force_preaux = true
++  execution_order_group = -100
++  execute_on = TIMESTEP_BEGIN
+ []
+ [BCs]
+   [origin_x]
+@@ -123,142 +177,352 @@
+     boundary = origin
+     value = 0
+   []
+-  [rotation_y]
++  [origin_z]
++    type = ADDirichletBC
++    variable = disp_z
++    boundary = origin
++    value = 0
++  []
++  [axis_x_y]
+     type = ADDirichletBC
+     variable = disp_y
+-    boundary = rotation
++    boundary = axis_x
+     value = 0
+   []
+-  [axial_base]
++  [axis_x_z]
+     type = ADDirichletBC
+     variable = disp_z
+-    boundary = axial_start
++    boundary = axis_x
+     value = 0
+   []
+-  [internal]
+-    type = ADFunctionDirichletBC
+-    variable = disp_z
+-    boundary = internal
+-    function = axial_history
+-  []
+-  [top]
++  [axis_y_z]
+     type = ADDirichletBC
+     variable = disp_z
+-    boundary = axial_end
+-    value = .05
+-    enable = false
+-  []
+-[]
+-[Controls]
+-  [internal]
+-    type = TimePeriod
+-    enable_objects = 'BCs/internal'
+-    start_time = 0
+-    end_time = 3
+-    execute_on = 'INITIAL TIMESTEP_BEGIN'
+-  []
+-  [top]
+-    type = TimePeriod
+-    enable_objects = 'BCs/top'
+-    start_time = 3
+-    end_time = 5
+-    execute_on = 'INITIAL TIMESTEP_BEGIN'
+-  []
+-[]
+-[MeshModifiers/birth]
+-  type = TimedSubdomainModifier
+-  times = 3
+-  blocks_from = 1
+-  blocks_to = 2
+-  reinitialize_subdomains = 2
+-  reinitialize_variables = 'disp_x disp_y disp_z'
+-  reinitialization_strategy = IC
+-  restore_overridden_dofs = true
+-  execution_order_group = -100
+-  execute_on = TIMESTEP_BEGIN
++    boundary = axis_y
++    value = 0
++  []
+ []
+ [Materials]
+   [elasticity]
+     type = ADComputeIsotropicElasticityTensor
+-    youngs_modulus = 1000
+-    poissons_ratio = 0
+-    block = 2
+-  []
+-  [thermal]
++    youngs_modulus = 71e9
++    poissons_ratio = 0.33
++    block = '2 3'
++  []
++  [old_thermal]
+     type = ADComputeThermalExpansionEigenstrain
+     thermal_expansion_coeff = 1e-5
+-    stress_free_temperature = 300
++    stress_free_temperature = 400
+     temperature = temperature
+     eigenstrain_name = thermal_eigenstrain
+     block = 2
+   []
++  [born_thermal]
++    type = ADComputeThermalExpansionEigenstrain
++    thermal_expansion_coeff = 1e-5
++    stress_free_temperature = born_reference_temperature
++    temperature = temperature
++    eigenstrain_name = thermal_eigenstrain
++    block = 3
++  []
+   [stress]
+-    type = ADComputeMultipleInelasticStress
+-    inelastic_models = plasticity
+-    perform_finite_strain_rotations = false
+-    block = 2
+-  []
+-  [plasticity]
+-    type = ADIsotropicPlasticityStressUpdate
+-    yield_stress = 1
+-    hardening_constant = 0
+-    relative_tolerance = 1e-11
+-    absolute_tolerance = 1e-11
+-    block = 2
+-  []
+-[]
+-[AuxVariables]
+-  [temperature]
+-    initial_condition = 300
+-    block = 2
+-  []
+-  [rx]
+-    block = 2
+-  []
+-  [ry]
+-    block = 2
+-  []
+-  [rz]
+-    block = 2
+-  []
+-[]
+-[AuxKernels]
+-  [temperature]
+-    type = FunctionAux
+-    variable = temperature
+-    function = temperature
+-    execute_on = 'INITIAL TIMESTEP_BEGIN'
+-  []
++    type = ADComputeFiniteStrainElasticStress
++    block = '2 3'
++  []
++[]
++[Materials/audit_tensors]
++  type = RankTwoTensorMaterialADConverter
++  ad_props_in = 'stress elastic_strain mechanical_strain total_strain thermal_eigenstrain'
++  reg_props_out = 'audit_stress audit_elastic_strain audit_mechanical_strain audit_total_strain audit_thermal_eigenstrain'
++  block = '2 3'
++[]
++[Materials/audit_stress_xx]
++  type = RankTwoCartesianComponent
++  rank_two_tensor = audit_stress
++  property_name = stress_xx
++  index_i = 0
++  index_j = 0
++  block = '2 3'
++[]
++[Materials/audit_stress_yy]
++  type = RankTwoCartesianComponent
++  rank_two_tensor = audit_stress
++  property_name = stress_yy
++  index_i = 1
++  index_j = 1
++  block = '2 3'
++[]
++[Materials/audit_stress_zz]
++  type = RankTwoCartesianComponent
++  rank_two_tensor = audit_stress
++  property_name = stress_zz
++  index_i = 2
++  index_j = 2
++  block = '2 3'
++[]
++[Materials/audit_stress_xy]
++  type = RankTwoCartesianComponent
++  rank_two_tensor = audit_stress
++  property_name = stress_xy
++  index_i = 0
++  index_j = 1
++  block = '2 3'
++[]
++[Materials/audit_stress_xz]
++  type = RankTwoCartesianComponent
++  rank_two_tensor = audit_stress
++  property_name = stress_xz
++  index_i = 0
++  index_j = 2
++  block = '2 3'
++[]
++[Materials/audit_stress_yz]
++  type = RankTwoCartesianComponent
++  rank_two_tensor = audit_stress
++  property_name = stress_yz
++  index_i = 1
++  index_j = 2
++  block = '2 3'
++[]
++[Materials/audit_elastic_strain_xx]
++  type = RankTwoCartesianComponent
++  rank_two_tensor = audit_elastic_strain
++  property_name = elastic_strain_xx
++  index_i = 0
++  index_j = 0
++  block = '2 3'
++[]
++[Materials/audit_elastic_strain_yy]
++  type = RankTwoCartesianComponent
++  rank_two_tensor = audit_elastic_strain
++  property_name = elastic_strain_yy
++  index_i = 1
++  index_j = 1
++  block = '2 3'
++[]
++[Materials/audit_elastic_strain_zz]
++  type = RankTwoCartesianComponent
++  rank_two_tensor = audit_elastic_strain
++  property_name = elastic_strain_zz
++  index_i = 2
++  index_j = 2
++  block = '2 3'
++[]
++[Materials/audit_elastic_strain_xy]
++  type = RankTwoCartesianComponent
++  rank_two_tensor = audit_elastic_strain
++  property_name = elastic_strain_xy
++  index_i = 0
++  index_j = 1
++  block = '2 3'
++[]
++[Materials/audit_elastic_strain_xz]
++  type = RankTwoCartesianComponent
++  rank_two_tensor = audit_elastic_strain
++  property_name = elastic_strain_xz
++  index_i = 0
++  index_j = 2
++  block = '2 3'
++[]
++[Materials/audit_elastic_strain_yz]
++  type = RankTwoCartesianComponent
++  rank_two_tensor = audit_elastic_strain
++  property_name = elastic_strain_yz
++  index_i = 1
++  index_j = 2
++  block = '2 3'
++[]
++[Materials/audit_mechanical_strain_xx]
++  type = RankTwoCartesianComponent
++  rank_two_tensor = audit_mechanical_strain
++  property_name = mechanical_strain_xx
++  index_i = 0
++  index_j = 0
++  block = '2 3'
++[]
++[Materials/audit_mechanical_strain_yy]
++  type = RankTwoCartesianComponent
++  rank_two_tensor = audit_mechanical_strain
++  property_name = mechanical_strain_yy
++  index_i = 1
++  index_j = 1
++  block = '2 3'
++[]
++[Materials/audit_mechanical_strain_zz]
++  type = RankTwoCartesianComponent
++  rank_two_tensor = audit_mechanical_strain
++  property_name = mechanical_strain_zz
++  index_i = 2
++  index_j = 2
++  block = '2 3'
++[]
++[Materials/audit_mechanical_strain_xy]
++  type = RankTwoCartesianComponent
++  rank_two_tensor = audit_mechanical_strain
++  property_name = mechanical_strain_xy
++  index_i = 0
++  index_j = 1
++  block = '2 3'
++[]
++[Materials/audit_mechanical_strain_xz]
++  type = RankTwoCartesianComponent
++  rank_two_tensor = audit_mechanical_strain
++  property_name = mechanical_strain_xz
++  index_i = 0
++  index_j = 2
++  block = '2 3'
++[]
++[Materials/audit_mechanical_strain_yz]
++  type = RankTwoCartesianComponent
++  rank_two_tensor = audit_mechanical_strain
++  property_name = mechanical_strain_yz
++  index_i = 1
++  index_j = 2
++  block = '2 3'
++[]
++[Materials/audit_total_strain_xx]
++  type = RankTwoCartesianComponent
++  rank_two_tensor = audit_total_strain
++  property_name = total_strain_xx
++  index_i = 0
++  index_j = 0
++  block = '2 3'
++[]
++[Materials/audit_total_strain_yy]
++  type = RankTwoCartesianComponent
++  rank_two_tensor = audit_total_strain
++  property_name = total_strain_yy
++  index_i = 1
++  index_j = 1
++  block = '2 3'
++[]
++[Materials/audit_total_strain_zz]
++  type = RankTwoCartesianComponent
++  rank_two_tensor = audit_total_strain
++  property_name = total_strain_zz
++  index_i = 2
++  index_j = 2
++  block = '2 3'
++[]
++[Materials/audit_total_strain_xy]
++  type = RankTwoCartesianComponent
++  rank_two_tensor = audit_total_strain
++  property_name = total_strain_xy
++  index_i = 0
++  index_j = 1
++  block = '2 3'
++[]
++[Materials/audit_total_strain_xz]
++  type = RankTwoCartesianComponent
++  rank_two_tensor = audit_total_strain
++  property_name = total_strain_xz
++  index_i = 0
++  index_j = 2
++  block = '2 3'
++[]
++[Materials/audit_total_strain_yz]
++  type = RankTwoCartesianComponent
++  rank_two_tensor = audit_total_strain
++  property_name = total_strain_yz
++  index_i = 1
++  index_j = 2
++  block = '2 3'
++[]
++[Materials/audit_thermal_eigenstrain_xx]
++  type = RankTwoCartesianComponent
++  rank_two_tensor = audit_thermal_eigenstrain
++  property_name = thermal_eigenstrain_xx
++  index_i = 0
++  index_j = 0
++  block = '2 3'
++[]
++[Materials/audit_thermal_eigenstrain_yy]
++  type = RankTwoCartesianComponent
++  rank_two_tensor = audit_thermal_eigenstrain
++  property_name = thermal_eigenstrain_yy
++  index_i = 1
++  index_j = 1
++  block = '2 3'
++[]
++[Materials/audit_thermal_eigenstrain_zz]
++  type = RankTwoCartesianComponent
++  rank_two_tensor = audit_thermal_eigenstrain
++  property_name = thermal_eigenstrain_zz
++  index_i = 2
++  index_j = 2
++  block = '2 3'
++[]
++[Materials/audit_thermal_eigenstrain_xy]
++  type = RankTwoCartesianComponent
++  rank_two_tensor = audit_thermal_eigenstrain
++  property_name = thermal_eigenstrain_xy
++  index_i = 0
++  index_j = 1
++  block = '2 3'
++[]
++[Materials/audit_thermal_eigenstrain_xz]
++  type = RankTwoCartesianComponent
++  rank_two_tensor = audit_thermal_eigenstrain
++  property_name = thermal_eigenstrain_xz
++  index_i = 0
++  index_j = 2
++  block = '2 3'
++[]
++[Materials/audit_thermal_eigenstrain_yz]
++  type = RankTwoCartesianComponent
++  rank_two_tensor = audit_thermal_eigenstrain
++  property_name = thermal_eigenstrain_yz
++  index_i = 1
++  index_j = 2
++  block = '2 3'
+ []
+ [VectorPostprocessors]
+   [begin]
+     type = NodalValueSampler
+     variable = 'disp_x disp_y disp_z temperature'
+-    block = 2
++    block = '2 3'
+     sort_by = id
+-    execution_order_group = 100
++    force_preaux = true
++    execution_order_group = -50
+     execute_on = 'INITIAL TIMESTEP_BEGIN'
+   []
+   [end]
+     type = NodalValueSampler
+     variable = 'disp_x disp_y disp_z temperature rx ry rz'
+-    block = 2
++    block = '2 3'
+     sort_by = id
+     execute_on = 'INITIAL TIMESTEP_END'
+   []
+-  [fields]
++  [reference_begin]
++    type = NodalValueSampler
++    variable = born_reference_temperature
++    block = 3
++    sort_by = id
++    force_preaux = true
++    execution_order_group = -50
++    execute_on = 'INITIAL TIMESTEP_BEGIN'
++  []
++  [reference_end]
++    type = NodalValueSampler
++    variable = born_reference_temperature
++    block = 3
++    sort_by = id
++    execute_on = 'INITIAL TIMESTEP_END'
++  []
++  [begin_fields]
+     type = ElementMaterialSampler
+-    property = 'stress_xx stress_yy stress_zz stress_xy stress_xz stress_yz plastic_strain_xx plastic_strain_yy plastic_strain_zz plastic_strain_xy plastic_strain_xz plastic_strain_yz mechanical_strain_xx mechanical_strain_yy mechanical_strain_zz mechanical_strain_xy mechanical_strain_xz mechanical_strain_yz total_strain_xx total_strain_yy total_strain_zz total_strain_xy total_strain_xz total_strain_yz'
+-    block = 2
++    property = 'stress_xx stress_yy stress_zz stress_xy stress_xz stress_yz elastic_strain_xx elastic_strain_yy elastic_strain_zz elastic_strain_xy elastic_strain_xz elastic_strain_yz mechanical_strain_xx mechanical_strain_yy mechanical_strain_zz mechanical_strain_xy mechanical_strain_xz mechanical_strain_yz total_strain_xx total_strain_yy total_strain_zz total_strain_xy total_strain_xz total_strain_yz thermal_eigenstrain_xx thermal_eigenstrain_yy thermal_eigenstrain_zz thermal_eigenstrain_xy thermal_eigenstrain_xz thermal_eigenstrain_yz'
++    block = '2 3'
++    force_preaux = true
++    execution_order_group = -50
++    execute_on = 'INITIAL TIMESTEP_BEGIN'
++  []
++  [end_fields]
++    type = ElementMaterialSampler
++    property = 'stress_xx stress_yy stress_zz stress_xy stress_xz stress_yz elastic_strain_xx elastic_strain_yy elastic_strain_zz elastic_strain_xy elastic_strain_xz elastic_strain_yz mechanical_strain_xx mechanical_strain_yy mechanical_strain_zz mechanical_strain_xy mechanical_strain_xz mechanical_strain_yz total_strain_xx total_strain_yy total_strain_zz total_strain_xy total_strain_xz total_strain_yz thermal_eigenstrain_xx thermal_eigenstrain_yy thermal_eigenstrain_zz thermal_eigenstrain_xy thermal_eigenstrain_xz thermal_eigenstrain_yz'
++    block = '2 3'
+     execute_on = 'INITIAL TIMESTEP_END'
+   []
+-[]
+-[Postprocessors/temperature_max]
+-  type = NodalExtremeValue
+-  variable = temperature
+-  block = 2
+-  value_type = max
+-  execute_on = 'INITIAL TIMESTEP_END'
+ []
+ [Preconditioning/full]
+   type = SMP
+@@ -274,216 +538,21 @@
+   petsc_options_iname = '-ksp_type -pc_type'
+   petsc_options_value = 'preonly lu'
+   line_search = none
+-  dt = 1
+-  end_time = 6
++  dt = 0.0025
++  end_time = 0.4
+   nl_rel_tol = 1e-11
+   nl_abs_tol = 1e-10
+   nl_max_its = 30
+ []
+ [Outputs]
+-  file_base = mechanical
+-  csv = true
++  file_base = thermoelastic
+   exodus = true
++  [csv]
++    type = CSV
++    precision = 17
++  []
+   [console]
+     type = Console
+     output_postprocessors = false
+   []
+ []
+-[Materials/audit_tensors]
+-  type = RankTwoTensorMaterialADConverter
+-  ad_props_in = 'stress plastic_strain mechanical_strain total_strain'
+-  reg_props_out = 'audit_stress audit_plastic_strain audit_mechanical_strain audit_total_strain'
+-  block = 2
+-[]
+-[Materials/audit_stress_xx]
+-  type = RankTwoCartesianComponent
+-  rank_two_tensor = audit_stress
+-  property_name = stress_xx
+-  index_i = 0
+-  index_j = 0
+-  block = 2
+-[]
+-[Materials/audit_stress_yy]
+-  type = RankTwoCartesianComponent
+-  rank_two_tensor = audit_stress
+-  property_name = stress_yy
+-  index_i = 1
+-  index_j = 1
+-  block = 2
+-[]
+-[Materials/audit_stress_zz]
+-  type = RankTwoCartesianComponent
+-  rank_two_tensor = audit_stress
+-  property_name = stress_zz
+-  index_i = 2
+-  index_j = 2
+-  block = 2
+-[]
+-[Materials/audit_stress_xy]
+-  type = RankTwoCartesianComponent
+-  rank_two_tensor = audit_stress
+-  property_name = stress_xy
+-  index_i = 0
+-  index_j = 1
+-  block = 2
+-[]
+-[Materials/audit_stress_xz]
+-  type = RankTwoCartesianComponent
+-  rank_two_tensor = audit_stress
+-  property_name = stress_xz
+-  index_i = 0
+-  index_j = 2
+-  block = 2
+-[]
+-[Materials/audit_stress_yz]
+-  type = RankTwoCartesianComponent
+-  rank_two_tensor = audit_stress
+-  property_name = stress_yz
+-  index_i = 1
+-  index_j = 2
+-  block = 2
+-[]
+-[Materials/audit_plastic_strain_xx]
+-  type = RankTwoCartesianComponent
+-  rank_two_tensor = audit_plastic_strain
+-  property_name = plastic_strain_xx
+-  index_i = 0
+-  index_j = 0
+-  block = 2
+-[]
+-[Materials/audit_plastic_strain_yy]
+-  type = RankTwoCartesianComponent
+-  rank_two_tensor = audit_plastic_strain
+-  property_name = plastic_strain_yy
+-  index_i = 1
+-  index_j = 1
+-  block = 2
+-[]
+-[Materials/audit_plastic_strain_zz]
+-  type = RankTwoCartesianComponent
+-  rank_two_tensor = audit_plastic_strain
+-  property_name = plastic_strain_zz
+-  index_i = 2
+-  index_j = 2
+-  block = 2
+-[]
+-[Materials/audit_plastic_strain_xy]
+-  type = RankTwoCartesianComponent
+-  rank_two_tensor = audit_plastic_strain
+-  property_name = plastic_strain_xy
+-  index_i = 0
+-  index_j = 1
+-  block = 2
+-[]
+-[Materials/audit_plastic_strain_xz]
+-  type = RankTwoCartesianComponent
+-  rank_two_tensor = audit_plastic_strain
+-  property_name = plastic_strain_xz
+-  index_i = 0
+-  index_j = 2
+-  block = 2
+-[]
+-[Materials/audit_plastic_strain_yz]
+-  type = RankTwoCartesianComponent
+-  rank_two_tensor = audit_plastic_strain
+-  property_name = plastic_strain_yz
+-  index_i = 1
+-  index_j = 2
+-  block = 2
+-[]
+-[Materials/audit_mechanical_strain_xx]
+-  type = RankTwoCartesianComponent
+-  rank_two_tensor = audit_mechanical_strain
+-  property_name = mechanical_strain_xx
+-  index_i = 0
+-  index_j = 0
+-  block = 2
+-[]
+-[Materials/audit_mechanical_strain_yy]
+-  type = RankTwoCartesianComponent
+-  rank_two_tensor = audit_mechanical_strain
+-  property_name = mechanical_strain_yy
+-  index_i = 1
+-  index_j = 1
+-  block = 2
+-[]
+-[Materials/audit_mechanical_strain_zz]
+-  type = RankTwoCartesianComponent
+-  rank_two_tensor = audit_mechanical_strain
+-  property_name = mechanical_strain_zz
+-  index_i = 2
+-  index_j = 2
+-  block = 2
+-[]
+-[Materials/audit_mechanical_strain_xy]
+-  type = RankTwoCartesianComponent
+-  rank_two_tensor = audit_mechanical_strain
+-  property_name = mechanical_strain_xy
+-  index_i = 0
+-  index_j = 1
+-  block = 2
+-[]
+-[Materials/audit_mechanical_strain_xz]
+-  type = RankTwoCartesianComponent
+-  rank_two_tensor = audit_mechanical_strain
+-  property_name = mechanical_strain_xz
+-  index_i = 0
+-  index_j = 2
+-  block = 2
+-[]
+-[Materials/audit_mechanical_strain_yz]
+-  type = RankTwoCartesianComponent
+-  rank_two_tensor = audit_mechanical_strain
+-  property_name = mechanical_strain_yz
+-  index_i = 1
+-  index_j = 2
+-  block = 2
+-[]
+-[Materials/audit_total_strain_xx]
+-  type = RankTwoCartesianComponent
+-  rank_two_tensor = audit_total_strain
+-  property_name = total_strain_xx
+-  index_i = 0
+-  index_j = 0
+-  block = 2
+-[]
+-[Materials/audit_total_strain_yy]
+-  type = RankTwoCartesianComponent
+-  rank_two_tensor = audit_total_strain
+-  property_name = total_strain_yy
+-  index_i = 1
+-  index_j = 1
+-  block = 2
+-[]
+-[Materials/audit_total_strain_zz]
+-  type = RankTwoCartesianComponent
+-  rank_two_tensor = audit_total_strain
+-  property_name = total_strain_zz
+-  index_i = 2
+-  index_j = 2
+-  block = 2
+-[]
+-[Materials/audit_total_strain_xy]
+-  type = RankTwoCartesianComponent
+-  rank_two_tensor = audit_total_strain
+-  property_name = total_strain_xy
+-  index_i = 0
+-  index_j = 1
+-  block = 2
+-[]
+-[Materials/audit_total_strain_xz]
+-  type = RankTwoCartesianComponent
+-  rank_two_tensor = audit_total_strain
+-  property_name = total_strain_xz
+-  index_i = 0
+-  index_j = 2
+-  block = 2
+-[]
+-[Materials/audit_total_strain_yz]
+-  type = RankTwoCartesianComponent
+-  rank_two_tensor = audit_total_strain
+-  property_name = total_strain_yz
+-  index_i = 1
+-  index_j = 2
+-  block = 2
+-[]
+--- mock_guards-donor
++++ test_controls.py
+@@ -10,7 +10,7 @@
+ from unittest import TestCase, main, mock
+ 
+ SOURCE = Path(__file__).with_name("run_mac.py")
+-SOURCE_SHA256 = "fde48211a11066c8406076621b5cd1c2898e0353956a4e6ec879754e7452c9d3"
++SOURCE_SHA256 = "5b4ee33be98e0004d55f532d03146bc35759133dd9bfe0a478a17f39fe78c082"
+ assert hashlib.sha256(SOURCE.read_bytes()).hexdigest() == SOURCE_SHA256
+ spec = importlib.util.spec_from_file_location("mac_thermal_candidate", SOURCE)
+ module = importlib.util.module_from_spec(spec)
+@@ -35,29 +35,27 @@
+ 
+ class Guards(TestCase):
+     def test_fixed_commands_and_registry_authority(self):
+-        jobs = module.commands("readiness")
+-        self.assertEqual([argv[-1] for _, argv in jobs], ["--help", "--version", "--registry"])
+-        self.assertTrue(all("-i" not in argv and "-skip_petscrc" in argv and "--n-threads=1" in argv
+-                            for _, argv in jobs))
+         self.assertEqual(len(module.commands("coupon")), 1)
+-        self.assertEqual(module.commands("coupon")[0][1][-3:], ["-i", "thermal-birth.i", "time-level.i"])
++        self.assertEqual(module.commands("coupon")[0][1][-2:], ["-i", "thermoelastic-birth.i"])
++        self.assertIn("--n-threads=1", module.commands("coupon")[0][1])
+         text = "Label\tType\tName\tClass\tFile\n" + "".join(
+             f"test\tobject\t{name}\t{name}\tpublic_source.C\n" for name in module.FEATURES)
+         self.assertEqual(module.registry_features(text), {name: True for name in module.FEATURES})
+         with self.assertRaises(ValueError): module.registry_features(" ".join(module.FEATURES))
+-        with self.assertRaises(ValueError): module.commands("anything_else")
++        with self.assertRaises(ValueError): module.commands("readiness")
+ 
+     def test_held_or_cross_stage_refusal_before_runtime(self):
+         with tempfile.TemporaryDirectory() as tmp:
+             path = Path(tmp).resolve() / "actual.json"
+-            for update in ({"native_launch_authorized": False}, {"coupon_solve_authorized": True}):
+-                c = dict(schema="962-macos-cp1-thermal-birth-stage-actual/v1", stage="readiness",
+-                         root_and_peer_review_complete=True, native_launch_authorized=True,
+-                         coupon_solve_authorized=False, head_authorized=False, manufacturing_authorized=False)
+-                c.update(update)
++            for stage, authority in (("readiness", True), ("coupon", False)):
++                c = dict(schema="962-macos-oneway-thermoelastic-case-actual/v1", stage=stage,
++                         root_and_peer_review_complete=True, native_launch_authorized=authority,
++                         coupon_solve_authorized=True, head_authorized=False, manufacturing_authorized=False,
++                         engineering_accepted=False, physics_qualified=False, material_qualified=False,
++                         process_calibrated=False, automatic_retry=False)
+                 path.write_text(json.dumps(c))
+                 with mock.patch.object(module, "runtime_unchanged", side_effect=AssertionError("Runtime reached")):
+-                    with self.assertRaises(ValueError): module.checked_contract("readiness", path, module.sha(path))
++                    with self.assertRaises(ValueError): module.checked_contract(stage, path, module.sha(path))
+ 
+     def fake_coupon(self, stop):
+         root = tempfile.TemporaryDirectory(dir=module.ENGINEERING)
+@@ -73,7 +71,10 @@
+         card.write_text("{}\n")
+         physics = case / "case-contract.json"
+         physics.write_text('{"synthetic_physics_reference":true}\n')
+-        c = dict(input_sha256={}, runtime_sha256s={"bin/combined-opt": "0"*64}, runtime_symlinks={},
++        transfer = base / "transfer"
++        transfer.mkdir()
++        for name in module.TRANSFER_FILES: (transfer / name).write_text("synthetic only\n")
++        c = dict(transfer_manifest_sha256="0"*64, input_sha256={}, runtime_sha256s={"bin/combined-opt": "0"*64}, runtime_symlinks={},
+                  resources=dict(wall_seconds=10, sampled_RSS_stop_bytes=1024 if stop else 1024**3,
+                                 sampled_output_stop_bytes=16 * 1024**2))
+         process = FakeProcess()
+@@ -82,7 +83,7 @@
+             self.assertEqual((pid, how), (process.pid, signal.SIGKILL))
+             process.returncode = -9
+         with mock.patch.object(module, "CASE", case), mock.patch.object(module, "CARD", card), \
+-             mock.patch.object(module, "PHYSICS", physics), \
++             mock.patch.object(module, "PHYSICS", physics), mock.patch.object(module, "TRANSFER", transfer), \
+              mock.patch.object(module, "checked_contract", return_value=(c, output)), \
+              mock.patch.object(module, "check_pins"), mock.patch.object(module, "runtime_unchanged", return_value=True), \
+              mock.patch.object(module.threading, "Timer", return_value=timer), \
+@@ -109,7 +110,8 @@
+                     "controller_error", "inputs_unchanged", "binary_and_runtime_unchanged"):
+             self.assertIn(key, r)
+         self.assertTrue(r["native_execution_completed"] and r["process_reaped"])
+-        self.assertEqual(r["level"], 2)
++        self.assertIsNone(r["level"])
++        self.assertEqual(r["thermal_input_level"], 2)
+         self.assertEqual(r["binary_sha256"], "0"*64)
+         self.assertTrue(r["binary_unchanged"])
+         self.assertNotEqual(r["physics_contract_sha256"], r["actual_contract_sha256"])
+@@ -144,40 +146,68 @@
+                              and n.value.id == "os" and n.attr == "environ" for n in ast.walk(tree)))
+ 
+ 
+-    def test_current19_old18_registry_join_and_wrong_runtime_refusal(self):
+-        bindings = json.loads((module.ENGINEERING / "cp1-assumed-thermal-birth-runtime-bindings-001/bindings.json").read_text())
+-        ready_path = module.ENGINEERING / "moose-local-macos-readiness-003/readiness.json"
+-        registry_path = module.ENGINEERING / "moose-local-macos-readiness-003/registry.log"
++    def test_current19_registry_transfer_and_assessment_gates(self):
++        real_held = json.loads(module.HELD.read_text())
+         with tempfile.TemporaryDirectory(dir=module.ENGINEERING) as tmp:
+             base = Path(tmp).resolve()
++            case, transfer = base / "case", base / "transfer"
++            case.mkdir(); transfer.mkdir()
++            (case / "card.json").write_text("{}\n")
++            (case / "thermoelastic-birth.i").write_text("synthetic only\n")
++            source_index = json.loads((module.PREP / "thermal-input-index.json").read_text())
++            (case / "thermal-input-index.json").write_text(json.dumps(source_index))
++            physics = dict(card={}, card_sha256=module.sha(case / "card.json"),
++                           source_input_sha256={"thermoelastic-birth.i": module.sha(case / "thermoelastic-birth.i")})
++            (case / "case-contract.json").write_text(json.dumps(physics))
++            for name in module.TRANSFER_FILES[:-1]: (transfer / name).write_text("synthetic only\n")
++            manifest = dict(schema="962-oneway-thermoelastic-prepared-transfer/v1",
++                            source_receipt_sha256=source_index["receipt_sha256"], selected321=source_index["selected"],
++                            old_node_count=225, born_reference_DOF_count=225, shared_node_count=25,
++                            genuinely_new_node_count=200, native_connectivity_or_ID_bijection_proven=False,
++                            native_execution_authorized=False,
++                            table_sha256={n:module.sha(transfer / n) for n in module.TRANSFER_FILES[:-1]})
++            (transfer / "transfer-manifest.json").write_text(json.dumps(manifest))
++            fake = base / "synthetic-source-peer-root-installation.json"
++            fake.write_text("{}\n")  # Declared source-contract stub only; not a physics approval.
+             held = base / "held.json"
+-            resources = dict(wall_seconds=100, sampled_RSS_stop_bytes=2*1024**3, sampled_output_stop_bytes=32*1024**2)
+-            held.write_text(json.dumps(dict(input_sha256={}, runtime_sha256s=bindings['runtime_sha256s'], runtime_symlinks=bindings['runtime_symlinks'], coupon_resources=resources)))
+-            installation = base / 'installation.json'
+-            installation.write_text('{}\n')
+-            pins = {str(p.relative_to(module.ROOT)):module.sha(p) for p in [held,installation,ready_path,registry_path]}
+-            c = dict(schema='962-macos-cp1-thermal-birth-stage-actual/v1', stage='coupon', root_and_peer_review_complete=True,
+-                     native_launch_authorized=True, coupon_solve_authorized=True, head_authorized=False, manufacturing_authorized=False,
+-                     engineering_accepted=False, physics_qualified=False, material_qualified=False, process_calibrated=False,
+-                     automatic_retry=False, input_sha256=pins, runtime_sha256s=bindings['runtime_sha256s'], runtime_symlinks=bindings['runtime_symlinks'],
+-                     installation_result_peer=str(installation.relative_to(module.ROOT)), installation_receipt=str(installation.relative_to(module.ROOT)),
+-                     resources=resources, readiness_receipt=str(ready_path.relative_to(module.ROOT)), readiness_result_peer=str(installation.relative_to(module.ROOT)),
+-                     readiness_registry=str(registry_path.relative_to(module.ROOT)), output=str(base/'output'))
+-            path=base/'actual.json'
+-            with mock.patch.object(module,'HELD',held), mock.patch.object(module,'ENGINEERING',base), \
+-                 mock.patch.object(module,'runtime_unchanged',return_value=True), mock.patch.object(module.os,'access',return_value=True):
++            selected = dict(input_sha256={}, runtime_sha256s=real_held["runtime_sha256s"],
++                            runtime_symlinks=real_held["runtime_symlinks"], coupon_resources=real_held["coupon_resources"],
++                            registry=real_held["registry"])
++            held.write_text(json.dumps(selected))
++            files = [held, fake] + list(case.iterdir()) + list(transfer.iterdir())
++            files += [module.ROOT / n for n in real_held["registry"].values()]
++            pins = {str(p.relative_to(module.ROOT)):module.sha(p) for p in files}
++            relfake = str(fake.relative_to(module.ROOT))
++            c = dict(schema="962-macos-oneway-thermoelastic-case-actual/v1", stage="coupon",
++                     root_and_peer_review_complete=True, native_launch_authorized=True, coupon_solve_authorized=True,
++                     head_authorized=False, engineering_accepted=False, physics_qualified=False, material_qualified=False,
++                     process_calibrated=False, manufacturing_authorized=False, automatic_retry=False,
++                     input_sha256=pins, runtime_sha256s=selected["runtime_sha256s"], runtime_symlinks=selected["runtime_symlinks"],
++                     resources=selected["coupon_resources"], installation_result_peer=relfake, installation_receipt=relfake,
++                     data_preparation_root_closed=relfake, data_preparation_result_peer=relfake,
++                     independent_assessment_source=relfake, independent_assessment_source_peer=relfake,
++                     independent_assessment_source_root_review=relfake,
++                     transfer_manifest=str((transfer / "transfer-manifest.json").relative_to(module.ROOT)),
++                     transfer_manifest_sha256=module.sha(transfer / "transfer-manifest.json"),
++                     output=str(base / "cp1-oneway-thermoelastic-transfer-001"))
++            path = base / "actual.json"
++            with mock.patch.object(module, "HELD", held), mock.patch.object(module, "PREP", case), \
++                 mock.patch.object(module, "CASE", case), mock.patch.object(module, "CARD", case / "card.json"), \
++                 mock.patch.object(module, "PHYSICS", case / "case-contract.json"), mock.patch.object(module, "TRANSFER", transfer), \
++                 mock.patch.object(module, "ENGINEERING", base), mock.patch.object(module, "runtime_unchanged", return_value=True), \
++                 mock.patch.object(module.os, "access", return_value=True):
+                 path.write_text(json.dumps(c))
+-                observed,output=module.checked_contract('coupon',path,module.sha(path))
+-                self.assertEqual(output,base/'output')
++                _, output = module.checked_contract("coupon", path, module.sha(path))
+                 self.assertFalse(output.exists())
+-                for mode in ['missing_heat','changed_heat','missing_link','resource_change']:
+-                    bad=json.loads(json.dumps(c))
+-                    if mode=='missing_heat':bad['runtime_sha256s'].pop('lib/combined/libheat_transfer-opt.0.dylib')
+-                    if mode=='changed_heat':bad['runtime_sha256s']['lib/combined/libheat_transfer-opt.0.dylib']='f'*64
+-                    if mode=='missing_link':bad['runtime_symlinks'].pop('bin/moose-opt')
+-                    if mode=='resource_change':bad['resources']['wall_seconds']=101
++                for mode in ["missing_heat", "resource", "missing_assessor", "manifest_binding", "head"]:
++                    bad = json.loads(json.dumps(c))
++                    if mode == "missing_heat": bad["runtime_sha256s"].pop("lib/combined/libheat_transfer-opt.0.dylib")
++                    if mode == "resource": bad["resources"]["wall_seconds"] = 101
++                    if mode == "missing_assessor": bad["independent_assessment_source_peer"] = None
++                    if mode == "manifest_binding": bad["transfer_manifest_sha256"] = "f"*64
++                    if mode == "head": bad["head_authorized"] = True
+                     path.write_text(json.dumps(bad))
+-                    with self.assertRaises(ValueError):module.checked_contract('coupon',path,module.sha(path))
++                    with self.assertRaises(ValueError): module.checked_contract("coupon", path, module.sha(path))
+ 
+ 
+ if __name__ == "__main__":

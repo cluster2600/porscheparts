@@ -1,0 +1,100 @@
+{
+  "schema": "962-cp1-isothermal-assumed-research-card/v1",
+  "id": "cp1-isothermal-assumed-25c",
+  "status": "EXPLICIT_RESEARCH_HYPOTHESIS_NOT_QUALIFIED_MATERIAL",
+  "date": "2026-10-17",
+  "purpose": "First conditional isothermal small-strain linear-elastic study only; no strength, thermal-strain or service-life prediction.",
+  "intended_later_public_path": "twins/962-cylinder-head-f0/engineering/cp1-isothermal-assumed-card.json",
+  "assumed_model": {
+    "young_modulus": {
+      "value": 71000,
+      "unit": "MPa",
+      "assumed": true,
+      "basis": "Anchored to approximate71GPa related CP1/EOSM290/60um value in Constellium Formnext2021 PDFp9; transfer to exact M291 process/state is unverified."
+    },
+    "poisson_ratio": {
+      "value": 0.33,
+      "unit": "1",
+      "assumed": true,
+      "basis": "Declared research hypothesis; no matched CP1 measurement found."
+    },
+    "uniform_isothermal_temperature": {
+      "value": 25,
+      "unit": "degC",
+      "assumed": true,
+      "basis": "Chosen research case temperature; not the numeric test temperature of the reported elastic data."
+    },
+    "elastic_symmetry": {
+      "value": "isotropic",
+      "assumed": true,
+      "basis": "Declared model hypothesis; no measured tensor/isotropy qualification for the exact process."
+    },
+    "coefficient_temperature_dependence": {
+      "value": "constant_at_this_single_isothermal_case",
+      "assumed": true,
+      "basis": "No E(T),nu(T) or thermoelastic law supplied."
+    }
+  },
+  "nominal_process_reference": {
+    "basis": "Manufacturer process identity only; neither physical alloy/process selection nor qualified recipe.",
+    "machine": "EOS M290",
+    "parameter_set": "AlCP1_060_M291",
+    "layer_um": 60,
+    "gas": "argon",
+    "build_plate_C": 125,
+    "post_treatment": {
+      "temperature_C": 400,
+      "hold_h": 4
+    },
+    "qualified_selection": false
+  },
+  "measured_matched_properties": {
+    "young_modulus_MPa": null,
+    "poisson_ratio": null,
+    "numeric_elastic_test_temperature_C": null,
+    "E_loading_build_direction": null,
+    "nu_loading_and_transverse_directions": null,
+    "elastic_tensor_or_symmetry": null
+  },
+  "not_supplied": {
+    "strength_allowable_MPa": null,
+    "thermal_expansion_or_strain_law": null,
+    "thermal_stress_free_reference": null,
+    "load_facets_and_magnitudes": null,
+    "constraints": null,
+    "contact": null,
+    "reaction_load_path": null
+  },
+  "provenance": {
+    "primary_urls": {
+      "exact_nominal_process": "https://www.eos.info/metal-solutions/data-sheets/aluminium/pds-eos-aluminium-constellium-cp1-eos-m-290-60um",
+      "related_approximate_E_pdf_page9": "https://assets.foleon.com/eu-central-1/de-uploads-7e3kk3/41170/2021-11-8_constellium_aheadd_formnext_final.a0a8c4307e76.pdf"
+    },
+    "accessed_on": "2026-10-17",
+    "followup_note": {
+      "path": "work/962-engineering/cp1-elastic-primary-source-followup-001/NOTE.md",
+      "sha256": "ec99a8de718e1f0d75baad3ba68c30e6034bc01762d6a9ca0275c4a861d121bf"
+    },
+    "followup_sources": {
+      "path": "work/962-engineering/cp1-elastic-primary-source-followup-001/sources.json",
+      "sha256": "27eadcbc58a25ad3e0e65fdecc86824b92358759946ee230d6f9482da2b78875"
+    },
+    "source_limit": "Related modulus box does not bind exact M291/argon125C, numeric elastic-test temperature, direction or heat state; nu absent. Publicly reachable deck carries confidentiality footer; no deck copied or redistributed."
+  },
+  "requirements_before_use": [
+    "Accepted mesh for the declared study scope.",
+    "Explicit assumed load facets/magnitudes, constraints, contact and reaction path; no invented OEM interfaces.",
+    "Balance and convergence checks; record assumptions separately from measured facts."
+  ],
+  "production_input_contract_changed": false,
+  "physical_alloy_or_process_selected": false,
+  "solver_not_run": true,
+  "solver_execution_authorized": false,
+  "qualification": {
+    "material_qualified": false,
+    "engineering_accepted": false,
+    "physics_qualified": false,
+    "strength_validated": false,
+    "manufacturing_authorized": false
+  }
+}

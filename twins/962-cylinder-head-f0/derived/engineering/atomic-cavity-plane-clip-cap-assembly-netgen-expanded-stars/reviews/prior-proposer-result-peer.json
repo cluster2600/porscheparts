@@ -1,0 +1,87 @@
+{
+  "schema": "962-stopped-analytic-head-proposer-independent-peer/v1",
+  "decision": "CLEAR_AS_CLOSED_STRICT_QUALITY_REJECTION_NO_PROPOSAL",
+  "created_utc": "2026-10-17T11:38:38.389601+00:00",
+  "output": "work/962-engineering/direct-sicn-head-proposal-001",
+  "exact_seven_file_inventory": {
+    "frozen-contract.json": {
+      "bytes": 20418,
+      "sha256": "eaa89d3ca0aa7d360cd44b9daa8e62dc4299a5ab9ab5c046a167f5a2b72b898e"
+    },
+    "execution-receipt.json": {
+      "bytes": 3524,
+      "sha256": "684f0ed31e165f566744ee34231271edfd7c463c000947dc9b81cc957e919952"
+    },
+    "reader.py": {
+      "bytes": 16560,
+      "sha256": "e7d61ca130623389f2b5e3a7807477ef45090bedcfcd87f3941c35ca6d2d7b02"
+    },
+    "native.log": {
+      "bytes": 119,
+      "sha256": "edebb8e4c89d464bf2f33a36c4b9800e14b0486468b69de0916c45fc054aa299"
+    },
+    "solver-start-checkpoint.json": {
+      "bytes": 593,
+      "sha256": "d962656d7a3cd7a73bb5c958544c5ca988ca9ffc77dbf472e2960b912f714704"
+    },
+    "fixture-report.json": {
+      "bytes": 1208,
+      "sha256": "9e629b28fa3ab043c08bb04621530f086977aecac9736d1b22634f8d259526d5"
+    },
+    "run_readback.py": {
+      "bytes": 4801,
+      "sha256": "aefd13ddd8344cb4e46eeb17126383ba2afbf8763ae40a99eb55a9bcb2779407"
+    }
+  },
+  "total_output_bytes": 47223,
+  "root_records_sha256": {
+    "launch-guard.json": "23e23498cfe675477b7276f56efe61d27597e49618f9bd86ddebca675bd30e15",
+    "live-001.json": "64ec97c0fcfa5b4660d1af80b04468857fad4567c34bc1bfafc838725f1c4bf3",
+    "closed-result.json": "cdd438a4c5b3145c9c0829097181d7e273df543f424a93ad7f741f5037fcfd9c",
+    "controller.stdout.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "controller.json": "90bfe2f7584c18bbcfa2db2dd3f4f632116a646de063fde30d0cd7916eb978cf",
+    "execution.json": "f47782c2676e06e4cc5a7b6bb4fbd90889f061dc153e5b0fc43dd3baaf858827"
+  },
+  "exact_child_sha256": "eaa89d3ca0aa7d360cd44b9daa8e62dc4299a5ab9ab5c046a167f5a2b72b898e",
+  "source_peer_sha256": "82166ababa5af50b9af0ec30d0a491aad6ec325ede24bc56a4679bafdf199242",
+  "external_child_peer_sha256": "2f900716e05be9308010a06fd77a88991197d91a53f8bfc785886dae4cf68d86",
+  "closure": {
+    "all7_regular_files_no_extras_exact_root_and_execution_inventory": true,
+    "source_runner_contract_receipt_report_checkpoint_root_and_external_child_associations_exact": true,
+    "all22_input_and32_runtime_before_child_after_maps_identical": true,
+    "independently_current_hashed_small_input_records": 21,
+    "census_current_body_hash_and_runtime_binary_hashes_deferred_to_root": true,
+    "no_coordinate_proposal_mesh_or_native_apply": true
+  },
+  "recorded_outcome": {
+    "worker_controller_returncode": 2,
+    "stop_reason": null,
+    "controller_wall_seconds": 14.277676832862198,
+    "root_outer_wall_seconds": 14.404976666904986,
+    "RSS_samples": 28,
+    "max_sampled_RSS_bytes": 277921792,
+    "limits": "300s owned deadline; sampled1GiB RSS/16MiB output; two requested software threads; no hard OS CPU/address-space or peak guarantee.",
+    "initial_calibration_count": 5355,
+    "initial_calibration_relative_tolerance": 1e-11,
+    "initial_calibration_absolute_tolerance": 1e-14,
+    "recorded_calibration_max_absolute_error": 1.6639467581569534e-13,
+    "initial_analytic_minimum": 0.03907426505863984,
+    "one_SLSQP_reported_success": true,
+    "solver_status": 0,
+    "iterations": 11,
+    "objective_evaluations": 5170,
+    "Jacobian_evaluations": 11,
+    "reported_final_analytic_minimum": 0.07200216465522945,
+    "reported_below_point1_count": 215,
+    "reported_nonpositive_count": 0,
+    "quality_gate_unchanged": 0.1,
+    "epigraph_t": 0.07200216466254031,
+    "minimum_constraint_residual": -7.31086025052008e-12
+  },
+  "source_and_interpretation": "Exact reviewed worker checks final all-cell analytic0.1 separately from solver success/ftol/t. It saved the returned solver/quality summary then refused before proposal emission. Calibration and final quality/counts are controlled worker/source observations; the rejected final x and per-cell final array were not exported, so this peer cannot independently recompute final-coordinate Q or its array digest. The summary does not prove head feasibility, infeasibility, a global optimum or a native quality result.",
+  "checkpoint_scope": "Pre-call calibration/attempt marker only; no solver result in checkpoint and no acceptance. Declared receipt operation counts remain recipe declarations.",
+  "lifecycle": "Root controller wait, live full-argv controller/worker parent and separate process-group associations, then both observed PID-absence records join exactly. No observer/deadline/resource stop is recorded; known-token absence is not universal process exclusion. Exact controller finalizer provides worker kill/wait/handler-restoration control flow; root did not replay the optimizer.",
+  "authority": "No native apply, new candidate, accepted head volume, stronger414Mesh2 pass, material/strength/PDE/LPBF/manufacturing qualification or automatic retry follows.",
+  "review_methods": "Source/current-small-record/hash/lifecycle closure only. No scientific/native/optimizer replay, prepared helper/test execution, raw head/runtime binary reads, final-coordinate reconstruction, Git or public mutation.",
+  "blockers_to_preserved_rejection_review": []
+}

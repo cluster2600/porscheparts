@@ -1,0 +1,59 @@
+{
+  "schema": "962-shared-apex-necessary-ball-independent-math-peer/v1",
+  "decision": "CLEAR_DERIVATION_ONLY",
+  "blockers": [],
+  "scope": "Source and symbolic reasoning only. No geometry, pair census, numeric solver/native execution, scientific imports, prepared tests/functions or obstruction result.",
+  "source_bindings": {
+    "work/962-engineering/direct-sicn-sparse-head-proposer-prep-003/sparse_head.py": "4558a2d6c66284c7436f5b4f6684fa6a6455a60e9fd0e4c76aec7bb3962dc0d0",
+    "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-netgen-fixed-triples-prep-001/reader.py": "aa62597659177cd40fa7f8e5aca840d9fed46856f09bd93c957200c98cbfbc82"
+  },
+  "metric": {
+    "source_function": "signed_sicn_vector",
+    "helper_functions": [
+      "certificate",
+      "tight_fixed_face_ceiling",
+      "fixed_triple_record"
+    ],
+    "ideal_columns": "a=e1; b=(2e2-e1)/sqrt(3); c=sqrt(3/2)*(apex-fixed_triple_centroid)",
+    "definitions": "S=|a|^2+|b|^2>0; T=|a cross b|^2>0; n=(a cross b)/sqrt(T); c=z*n+t with t normal-orthogonal; w=z^2; r=|t|^2.",
+    "identities": [
+      "norm(J)^2=S+w+r",
+      "det(J)^2=T*w",
+      "norm(cof(J))^2=T+S*w+|a cross t|^2+|b cross t|^2"
+    ],
+    "necessary_upper_bound": "Q^2 <= 9*T*w/[(S+w+r)*(T+S*w)]",
+    "normal_constraint_at_Q_at_least_point1": "S*w^2+(S^2-899*T)*w+S*T <= 0",
+    "tangential_necessary_bound": "r <= 841*T/S-S",
+    "tangential_bound_reason": "Maximize 900*T*w/(T+S*w)-S-w over w>=0; derivative zero at w=29*T/S, giving841*T/S-S.",
+    "physical_scaling": "height=sqrt(2*w/3); tangential distance squared=2*r/3",
+    "shifted_ball_valid": "For certified nonnegative normal roots, center centroid+mid(height_low,height_high)*oriented_n and squared radius (2/3)*(841*T/S-S)+(height_high-height_low)^2/4 contains the necessary cylinder.",
+    "constants_checked": "900=9/0.01;899=900-1;841=(sqrt(900)-1)^2"
+  },
+  "simpler_centroid_ball": {
+    "set_u": "u=w+r",
+    "proof": "w/(T+S*w) increases for w>=0, while w<=u. Thus Q^2 <= 9*T*u/[(S+u)*(T+S*u)], yielding the same quadratic with u.",
+    "necessary_ball": "center=exact fixed-triple centroid; physical radius squared=2*u_plus/3",
+    "source_rational_invariants": "S=(2/3)*sum of three fixed-edge squared lengths; T=(4/3)*squared raw fixed-edge cross product.",
+    "isolated_feasibility_condition": "T/S^2>=1/841, equivalent to fixed-triangle normalized Q^2>=4/841. Otherwise the existing isolated-apex ceiling already obstructs target0.1.",
+    "positive_roots": "Under that condition,899*T-S^2>0 and discriminant>=0, giving two positive roots.",
+    "no_sqrt_upper_bound": "u_plus < (899*T-S^2)/S, since the other root is positive. Multiplying by2/3 gives a rational squared outer radius without square roots.",
+    "certified_refinement": "Any tighter upper bound must enclose the upper root using exact rational/algebraic or outward-certified square-root arithmetic; informative float approximations alone do not certify disjointness."
+  },
+  "sign_and_corner_order": [
+    "The positive target requires z>0 relative to the parity-correct normal. Moving the free corner last while retaining native orientation requires an even tetrahedral permutation, or reversing two base corners when parity is odd.",
+    "Magnitude squared is invariant under tetrahedron corner permutations for this regular ideal reference. The centroid-ball invariants depend only on the fixed triangle; discarding signed-side information enlarges the necessary set safely.",
+    "Three boundary-coordinate nodes are not automatically a recorded exterior surface face. The existing helper preserves this distinction."
+  ],
+  "exact_pair_disjointness": {
+    "premises": "Two balls constrain the same source-tagged apex, with identical frozen fixed-coordinate policy and nonnegative rational squared upper radii U1,U2. D is exact squared distance between their exact centroids.",
+    "criterion": "A=D-U1-U2>0 and A^2>4*U1*U2.",
+    "reason": "These strict inequalities are equivalent to D>(sqrt(U1)+sqrt(U2))^2, so the closed outer balls are disjoint. Squaring requires the A>0 guard.",
+    "conclusion": "No shared point can satisfy both necessary conditions, hence those fixed-triple cells cannot jointly reach real-arithmetic signed SICN>=0.1 under that fixed-connectivity/fixed-coordinate policy.",
+    "inconclusive": "Equality, touching or overlap is inconclusive. Pairwise overlap does not prove all balls intersect; any intersection still need not satisfy true individual quality regions or other cell constraints."
+  },
+  "limits": [
+    "No actual pair or joint obstruction was computed here.",
+    "This is a necessary real-arithmetic condition for stored binary64 coordinates, not a floating-point native rounding certificate, feasibility solver or global geometric/physical qualification.",
+    "Changing the fixed coordinate or connectivity policy invalidates the specific obstruction conclusion; no repair policy is authorized."
+  ]
+}

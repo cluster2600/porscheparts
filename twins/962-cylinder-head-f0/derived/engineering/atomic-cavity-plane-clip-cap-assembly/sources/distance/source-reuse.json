@@ -1,0 +1,39 @@
+{
+  "blocking_source_peer": {
+    "path": "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-distance-source-peer-001/review.json",
+    "sha256": "e474d5df82cde9cd67864fd9ff9b2079c96e8b379f405084e1940e3f40248c88"
+  },
+  "complete_reverse_byte_exact": true,
+  "diff": {
+    "path": "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-distance-prep-002/run_quality_distance_002.py.diff",
+    "sha256": "0a3319400425e2823710f9b00ecb6884d6c0b6c303f8347c6efc06b9d027e34b"
+  },
+  "literal_substitutions": [
+    {
+      "new": "        elapsed = time.monotonic()-started\n        if elapsed >= resources['process_group_deadline_seconds']:\n            stopped['reason'] = stopped['reason'] or 'process_group_wall_deadline'\n        observation = dict(maximum_observed_worker_RSS_bytes=max(samples, default=0),",
+      "occurrences": 1,
+      "old": "        observation = dict(maximum_observed_worker_RSS_bytes=max(samples, default=0),"
+    },
+    {
+      "new": "wall_seconds=elapsed, **observation,",
+      "occurrences": 1,
+      "old": "wall_seconds=time.monotonic()-started, **observation,"
+    }
+  ],
+  "new_import_test_or_native_execution": false,
+  "old001_preserved": true,
+  "predecessor": {
+    "path": "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-distance-prep-001/run_quality_distance_002.py",
+    "sha256": "7b7cc6da9c5322be5e6ebc74730b9838379bd67b6f5c7aaf2a03fdec71d6238d"
+  },
+  "schema": "962-assembled-cub-synchronous-deadline-source-successor/v1",
+  "scope": "Only final synchronous elapsed>=budget refusal after cleanup, with same elapsed receipt value. No worker/assessor/numerical/query/budget/runtime change.",
+  "successor": {
+    "path": "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-distance-prep-002/run_quality_distance_002.py",
+    "sha256": "637678b134c30af34ad56118945b820985e046c4682d8ea00c10b48477030ac5"
+  },
+  "worker_and_assessor_byte_exact": {
+    "assess_quality_distance.py": "015eec745e964c1d13c096a39afe706bbda4c29ac804efdf69deafdd841d8be5",
+    "audit_quality_distance.py": "58a23c788cd0d9053b64c0bab3acff68a5ea33427e79a19f56516d05cb090f0d"
+  }
+}

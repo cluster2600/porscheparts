@@ -1,0 +1,111 @@
+{
+  "schema": "962-assembled-raw-HXT-stopped-result-independent-peer/v1",
+  "decision": "CLEAR_STOPPED_REJECTED_VOLUME_EVIDENCE_ONLY",
+  "actual_child_sha256": "d50938bf996ff107ae08c22b6a5c670e74cb4d3eaf59a6db6baba64a3dd1068e",
+  "receipt_sha256": "90fa2fc6e5a9a393a5a65464b2b2ac3ecc7c6ccf6e44000873d2dcb5a7ea3d6a",
+  "worker_report_sha256": "9a648b8082e84361759b38be30fcbf641417dbc5ccb0bf77b4d22254a7818bd7",
+  "root_execution_sha256": "c9908dfcf1b21b281136d643267d541955bf454e3bccae2ae19fa62077689718",
+  "root_preexec_sha256": "01a015feacd2bc255569ce43260eb135a5a7ea1a7feb9152d21475079e60eba6",
+  "all49_current_inputs_match": true,
+  "root_recorded_all49_before_after_unchanged": true,
+  "full11_file_inventory": {
+    "head-volume.msh": {
+      "bytes": 205789862,
+      "sha256": "4a17567e6394bcda8571b0ff07f74471338bc7f3be60b0153a20020f654c6b41"
+    },
+    "native.log": {
+      "bytes": 3725,
+      "sha256": "be0a3a73e0581fce4168a3f25bea78f185ebdde7e209527e33b717cf81807f69"
+    },
+    "receipt.json": {
+      "bytes": 37337,
+      "sha256": "90fa2fc6e5a9a393a5a65464b2b2ac3ecc7c6ccf6e44000873d2dcb5a7ea3d6a"
+    },
+    "source-snapshots/audit_quality_head.py": {
+      "bytes": 6127,
+      "sha256": "a298270aa00b1536314a07629b935500c68883ca0d3bd1a179d71b49a8e73991"
+    },
+    "source-snapshots/audit_quality_patch.py": {
+      "bytes": 2551,
+      "sha256": "3532a172b2bce3a8ead7c8b11b712a2b55891377726fa1b6d847e84f0eed3912"
+    },
+    "source-snapshots/mesh_assembled_hxt.py": {
+      "bytes": 21408,
+      "sha256": "b7d3de89c6ed166bb5d0df5c5d41ddd77b8deee9c36775b4e40b205722a2587e"
+    },
+    "source-snapshots/mesh_head.py": {
+      "bytes": 20584,
+      "sha256": "69c8012e99057e384d44d6971d41f0e2cc7197a978120a7c566b0ad5a6477da5"
+    },
+    "source-snapshots/prepare_head_analysis.py": {
+      "bytes": 13728,
+      "sha256": "cda8f7155a8c22ab66898f07d1ad452ba5384ad7f75a1f012606685cd8a12dc3"
+    },
+    "surface-admission.json": {
+      "bytes": 5982,
+      "sha256": "035c45d02357c9b7375a8e7795f7c1915d7e015ee2b63b576cf181965c96d962"
+    },
+    "worker-claimed.json": {
+      "bytes": 13,
+      "sha256": "a23befdab47e02c03884d3caf1406ab5de825fb32a716e6c1afc3469c77ca06e"
+    },
+    "worker-report.json": {
+      "bytes": 6017,
+      "sha256": "9a648b8082e84361759b38be30fcbf641417dbc5ccb0bf77b4d22254a7818bd7"
+    }
+  },
+  "checks": {
+    "exact_source5_snapshots_current_bytes_and_selected_worker_command": true,
+    "runtime3_hashes_and_actual_arm64_Gmsh4_15_2_NumPy2_0_2_match": true,
+    "exact_admission035c_copy_and_options_unchanged": true,
+    "standalone_worker_report_equals_receipt_embedded_worker_report": true,
+    "one_saved_regular_MSH_full_stream_hash_and_byte_count_match_worker_and_receipt": true,
+    "all254_resource_sample_rows_nonnegative_finite_within_stops": true,
+    "natural_RC2_no_watchdog_reason_below300s": true,
+    "source_finally_wait_path_completed_and_successful_outer_exit": true,
+    "all4_worker_metric_counts_equal_reported_actual_tet_count_and_positive_finite": true,
+    "reported_minSICN_rejects_unchanged_point1_gate": true,
+    "all_qualification_fields_false": true
+  },
+  "actual_observations_attributed_to_worker": {
+    "tetrahedra": 2989608,
+    "total_nodes": 950032,
+    "boundary_nodes": 871731,
+    "referenced_interior_nodes": 78301,
+    "unreferenced_nodes": 0,
+    "minimum_SICN": 3.784626658982107e-09,
+    "nonpositive_count_all4_metric_distributions": 0,
+    "SICN_below_point1_count": null,
+    "SICN_below_point1_count_reason": "Not computed by this worker; independent reader pending.",
+    "exact_oriented_tetra_boundary": true,
+    "opposite_internal_face_orientation": true,
+    "saved_tagged_arrays_identity": true,
+    "summed_volume_mm3": 915453.1236217882,
+    "relative_volume_error": 1.1102230246251565e-16,
+    "quality_accepted": false
+  },
+  "lifecycle": {
+    "controller_returncode": 2,
+    "native_process_window_s": 130.73795687500387,
+    "outer_wall_s": 131.9985842499882,
+    "stop_reason": null,
+    "resource_samples": 254,
+    "maximum_sampled_RSS_bytes": 5914312704,
+    "no_optimizer_or_retry_authorized": true,
+    "reaping_scope": "Successful normal controller completion passes through reviewed finally process.wait(); no independent OS PID-absence probe or explicit receipt reaped field.",
+    "peak_or_hard_RSS_claim": false
+  },
+  "method": "Independent standard-library stopped JSON, scalar ledger, exact source-byte and full streaming hash review only; MSH hashed but not parsed, no scientific/project imports, tests, native query, Git or network. No meshing or optimization replay.",
+  "findings": [],
+  "limits": [
+    "Full tetrahedral boundary/incidence/internal orientation and tagged saved-array identities remain worker observations until the separate reader; no array/MSH scientific replay here.",
+    "Root before/after49 is a saved boolean ledger; current49 independently rehashed here.",
+    "Positive metrics and successful saved mesh do not pass minSICN>=0.1; volume remains rejected.",
+    "No failure-count classification, convergence, accepted volume/PDE, strength/material/LPBF/OEM/manufacturing claim."
+  ],
+  "reviewer_preparation_note": "First inline verification attempt stopped on a local expected-argv list-index typo before any review output; corrected direct named arguments above, no evidence changed.",
+  "native_calls": 0,
+  "MSH_parsed": false,
+  "optimizer_or_retry_run_by_reviewer": false,
+  "frozen_inputs_modified": false
+}

@@ -1,0 +1,21 @@
+{
+  "schema": "962-sparse-tiny-exact-source-reuse/v1",
+  "source": "work/962-engineering/direct-sicn-sparse-cube-prep-001/sparse_cube.py",
+  "source_sha256": "2ef99ee727f74ca7cc672f8e106f804d89cb5c41eb86b643b423913841ea4ed7",
+  "kernel_loader_base": "work/962-engineering/direct-sicn-head-proposer-prep-001/propose_coordinates.py",
+  "kernel_loader_base_sha256": "e7d61ca130623389f2b5e3a7807477ef45090bedcfcd87f3941c35ca6d2d7b02",
+  "byte_exact_function_bodies": [
+    "sha",
+    "save",
+    "signed_sicn_vector",
+    "tagged_indices",
+    "assemble_points",
+    "same_numpy",
+    "loaded_files",
+    "scientific_modules"
+  ],
+  "literal_base": "work/962-engineering/direct-sicn-cube-prep-002/direct_sicn_cube.py",
+  "literal_base_sha256": "8351733aa0cd3dff2c86bcedd6c5cf931fde7306d0870738f9794448fbe8d12e",
+  "literal_excerpt": "NODE_TAGS = tuple(range(101, 109)) + (201,)\nTET_TAGS = tuple(range(2001, 2013))\nTRI_TAGS = tuple(range(1001, 1013))\nBOUNDARY = ((-1.,-1.,-1.),(1.,-1.,-1.),(1.,1.,-1.),(-1.,1.,-1.),\n            (-1.,-1.,1.),(1.,-1.,1.),(1.,1.,1.),(-1.,1.,1.))\nTRIANGLES = ((101,103,102),(101,104,103),(105,106,107),(105,107,108),\n             (101,102,106),(101,106,105),(104,108,107),(104,107,103),\n             (101,105,108),(101,108,104),(102,103,107),(102,107,106))\nTETS = tuple((201,)+f for f in TRIANGLES)\nINITIAL = (63./64., 1./4., -1./8.)\nCENTRE = (0., 0., 0.)\n",
+  "source_or_scientific_execution": false
+}

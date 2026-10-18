@@ -1,0 +1,122 @@
+{
+  "status": "completed_software_mesh_only",
+  "case": "uncapped",
+  "options": {
+    "General.NumThreads": 2,
+    "Mesh.MaxNumThreads3D": 2,
+    "Mesh.Algorithm3D": 10,
+    "Mesh.MeshOnlyEmpty": 1,
+    "Mesh.Renumber": 0,
+    "Mesh.ElementOrder": 1,
+    "Mesh.Optimize": 0,
+    "Mesh.OptimizeNetgen": 0,
+    "Mesh.MeshSizeExtendFromBoundary": 0,
+    "Mesh.RandomSeed": 1,
+    "Mesh.Binary": 1,
+    "Mesh.SaveAll": 1,
+    "Mesh.MshFileVersion": 4.1,
+    "Mesh.MeshSizeMax": 1e+22,
+    "Mesh.MeshSizeMin": 0,
+    "Mesh.MeshSizeFactor": 1
+  },
+  "software_mesh_passed": true,
+  "head_accepted": false,
+  "SICN_qualified_for_head": false,
+  "runtime": {
+    "python": "3.10.11",
+    "numpy": "2.0.2",
+    "gmsh": "4.15.2",
+    "machine": "arm64"
+  },
+  "actual_runtime_sha256s": {
+    "python": "72956ad35cff7691dfed9e04c9593de825ffd5b2fa7e8bc9ae96ce9a1af65621",
+    "gmsh_module": "f4b0935cebde899750293d87a643090e5ea33c9b18d249267f507db68a0e01c3",
+    "gmsh_library": "def0f5c10988a986e5e879b3db9669d8fe016a81e2d994bbaf2b8497c6b8a58a"
+  },
+  "surface_import": {
+    "exact_source_coordinates": true,
+    "exact_source_oriented_connectivity": true,
+    "original_surface_nodes": 8,
+    "original_surface_triangles": 12,
+    "source_element_tags_preserved": true,
+    "source_tagged_vertex_order_preserved": true,
+    "comparison": "exact_tagged_index_order"
+  },
+  "mesh_sha256": "1d7e2a5139c2ed0b2c85233f4a1d45fe9daebb4ed0f2782c561cb582a3e185e6",
+  "mesh_bytes": 1574,
+  "tetrahedra": 12,
+  "total_nodes": 9,
+  "referenced_nodes": 9,
+  "referenced_interior_nodes": 1,
+  "unreferenced_nodes": 0,
+  "quality": {
+    "jacobian": {
+      "minimum": 114.33333307722043,
+      "p01": 114.33333307722043,
+      "p05": 114.33333307722043,
+      "p50": 171.5,
+      "p95": 228.6666669227796,
+      "p99": 228.6666669227796,
+      "maximum": 228.6666669227796,
+      "count": 12,
+      "nonpositive_count": 0
+    },
+    "volume_mm3": {
+      "minimum": 19.05555551287007,
+      "p01": 19.05555551287007,
+      "p05": 19.05555551287007,
+      "p50": 28.583333333333332,
+      "p95": 38.1111111537966,
+      "p99": 38.1111111537966,
+      "maximum": 38.1111111537966,
+      "count": 12,
+      "nonpositive_count": 0
+    },
+    "SICN": {
+      "minimum": 0.5485850609397153,
+      "p01": 0.549084474882851,
+      "p05": 0.5510821306553935,
+      "p50": 0.7314615017345901,
+      "p95": 0.8649680634856682,
+      "p99": 0.8664112077588273,
+      "maximum": 0.866771993827117,
+      "count": 12,
+      "nonpositive_count": 0
+    }
+  },
+  "independent_volume_mm3": {
+    "minimum": 19.055555512870068,
+    "p01": 19.055555512870068,
+    "p05": 19.055555512870068,
+    "p50": 28.583333333333336,
+    "p95": 38.1111111537966,
+    "p99": 38.1111111537966,
+    "maximum": 38.1111111537966,
+    "count": 12,
+    "nonpositive_count": 0
+  },
+  "summed_volume_mm3": 343.0,
+  "volume_relative_error": 0.0,
+  "actual_tetra_boundary": {
+    "boundary_triangles": 12,
+    "exact_oriented_tetra_boundary": true,
+    "nonmanifold_volume_faces": 0
+  },
+  "internal_face_orientation": {
+    "internal_faces": 18,
+    "same_oriented_internal_faces": 0,
+    "exact_internal_orientation_balance": true
+  },
+  "saved_surface": {
+    "exact_source_coordinates": true,
+    "exact_source_oriented_connectivity": true,
+    "original_surface_nodes": 8,
+    "original_surface_triangles": 12,
+    "source_element_tags_preserved": false,
+    "source_tagged_vertex_order_preserved": true,
+    "comparison": "exact_oriented_triangle_set"
+  },
+  "saved_mesh_identity_exact": true,
+  "gmsh_warnings_errors": [],
+  "bound_inputs_unchanged": true
+}

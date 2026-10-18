@@ -1,0 +1,66 @@
+{
+  "schema": "962-finest-original-head-independent-control-review/v1",
+  "status": "bounded_OOM_stop_no_proposal_confirmed",
+  "reviewed_UTC": "2026-10-16T21:10:43.642945+00:00",
+  "review_passed_for_recorded_stop_and_binding_only": true,
+  "evidence_sha256": {
+    "head-execution-summary.json": "86ac1f91ca26bf322227e4db79ba17dd8573594b2d26049ca55f5457c33f2403",
+    "original-head.execution.json": "28f367f0944552f0f1b8472489b737addbd2f6882fbc31006ba5a372686e84cb",
+    "frozen-execution-contract.json": "666c017601a979e054659f6c97bee1ceedbb4ca1be3321081afa5f3541faa41d"
+  },
+  "checks": {
+    "all74current_input_hashes_equal_frozen_before_and_after": true,
+    "authorized_child_map_equals_held_preparation": true,
+    "all3executed_source_snapshots_byte_identical": true,
+    "all6artifact_hashes_and7file_closure_match": true,
+    "original894_and_binary002e577_unchanged": true,
+    "one_recorded_create_and_attach_only": true,
+    "immutable_image_and_exact_controls_match": true,
+    "only_original_and_binary_read_only_plus_owned_output_writable": true,
+    "initial_and_final_owner_match": true,
+    "corrected_metadata_formatter_attribution_preserved": true,
+    "native_state_exited_OOMKilled_exit137": true,
+    "final_Pid_zero_and_not_running": true,
+    "attach_reaped_and_stopped_owned_removal_recorded": true,
+    "empty_native_log_and_output_directory": true,
+    "no_report_BIN_U64_or_quality_candidate": true
+  },
+  "resources": {
+    "cpus": 2,
+    "memory_bytes": 4294967296,
+    "memory_swap_bytes": 4294967296,
+    "swap_bytes": 0,
+    "network": "none",
+    "read_only_rootfs": true,
+    "declared_deadline_seconds": 300,
+    "controller_window_seconds": 19.158029792131856,
+    "recorded_Docker_StartedAt": "2026-10-16T21:07:40.306050544Z",
+    "recorded_Docker_FinishedAt": "2026-10-16T21:07:52.931532175Z",
+    "exact_peak_RSS_known": false
+  },
+  "outcome": {
+    "native_returncode": 137,
+    "OOMKilled": true,
+    "controller_native_pass_finished": false,
+    "proposal_geometry_exists": false,
+    "origin_map_exists": false,
+    "actual_triangle_quality": null,
+    "allocation_stage": null,
+    "CUB_or_volume_calls": 0,
+    "geometry_auditor_calls": 0,
+    "head_physics_executed": false
+  },
+  "limitations": [
+    "Retained selected Docker state/control-call readback was checked; no independent Docker or daemon query was made.",
+    "OOMKilled at the declared4GiB cap establishes this bounded resource failure. Empty logs do not locate the allocating stage or establish endpoint-method impossibility.",
+    "No proposal exists, so no geometry/quality/distance/volume result is credited."
+  ],
+  "reviewer_native_or_Docker_calls": 0,
+  "reviewer_geometry_calls": 0,
+  "source_or_original_evidence_edits": 0,
+  "retry_authorized": false,
+  "resource_escalation_authorized": false,
+  "candidate_surface_admitted": false,
+  "solver_admission_established": false,
+  "manufacturing_authorized": false
+}

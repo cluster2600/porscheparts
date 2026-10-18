@@ -1,0 +1,215 @@
+{
+  "status": "running",
+  "stage": "calling_default_postexport_optimizer",
+  "optimizer_call_count": 1,
+  "optimizer_returned": false,
+  "element_cache_refresh_count": 0,
+  "element_cache_refresh_completed": false,
+  "API_call_counters_record_attempts": true,
+  "options": {
+    "General.NumThreads": 2,
+    "Mesh.MaxNumThreads3D": 2,
+    "Mesh.Renumber": 0,
+    "Mesh.Optimize": 0,
+    "Mesh.OptimizeNetgen": 0,
+    "Mesh.OptimizeThreshold": 0.3,
+    "Mesh.Binary": 1,
+    "Mesh.SaveAll": 1,
+    "Mesh.MshFileVersion": 4.1
+  },
+  "mesh_generation_called": false,
+  "candidate_sha256": "7f0d96988684f7d36dab8f65c5b63b1919c2c2121768cf9caec466867a5c2b43",
+  "candidate_volume_reference_mm3": 915458.4757034747,
+  "volume_relative_bookkeeping_bound": 1e-06,
+  "bookkeeping_bound_is_manufacturing_tolerance": false,
+  "qualification": {
+    "geometric_volume_gate_passed": false,
+    "mesh_convergence_established": false,
+    "thermal_resolution_established": false,
+    "engineering_accepted": false,
+    "thermal_performance_validated": false,
+    "strength_validated": false,
+    "manufacturing_authorized": false
+  },
+  "runtime": {
+    "python": "3.10.11",
+    "numpy": "2.0.2",
+    "gmsh": "4.15.2",
+    "machine": "arm64",
+    "executable_sha256": "72956ad35cff7691dfed9e04c9593de825ffd5b2fa7e8bc9ae96ce9a1af65621",
+    "gmsh_module_sha256": "f4b0935cebde899750293d87a643090e5ea33c9b18d249267f507db68a0e01c3",
+    "libgmsh_sha256": "def0f5c10988a986e5e879b3db9669d8fe016a81e2d994bbaf2b8497c6b8a58a"
+  },
+  "postexport_companion": {
+    "frozen_core_sha256": "6ba68df17ae41a55e98470c103c804c830b890256b936d3785ea8cc40cb55302",
+    "wrapper_source_sha256": "3e76e32426177ecf68300fce826ef6beccbbfc76ea4dded9e0aae4ae7eb1df86",
+    "input_sha256s": {
+      "work/962-engineering/quality-volume-hxt-sized-001/head-volume.msh": "b142e05973f288f7fbee4f56b7fa7a4ed79adb2f4345aa6657764a2bf1a693f4",
+      "work/962-engineering/quality-volume-hxt-sized-001/receipt.json": "52f1b6e083c2c1ebc47cb9cf376cae715470f16d86a171130e72f69a15650d5d",
+      "work/962-engineering/quality-volume-hxt-sized-001/worker-report.json": "b9f55a40d9274a9c4a02fbbb5d0b0eb0c403ff8625a4c1d09027815af96228d6",
+      "work/962-engineering/quality-patch-head-001/native/quality-candidate.bin": "7f0d96988684f7d36dab8f65c5b63b1919c2c2121768cf9caec466867a5c2b43",
+      "work/962-engineering/quality-surface-admission-002/surface-admission.json": "f4c41e44afc15da373905e0d43e8b5607b5df1f80fae182eb51c331d4beefee2",
+      "work/962-engineering/quality-volume-hxt-sized-readback-001/readback-report.json": "b1658ea3e226e35d70c4cb0131cca8fcf2da786908495d19b231a77d269fd951",
+      "work/962-engineering/quality-volume-hxt-sized-readback-001/reader.py": "2ccda48d6cd0fa5be9b033f33f5ac0b6b62bf81efebeb51b197ad634efd51045",
+      "work/962-engineering/quality-volume-hxt-sized-readback-001/frozen-contract.json": "e5990b5cc353b4fbb4cb421b3ce4e97cf32800edb76b3c785f1d61cf70a970a0",
+      "work/962-engineering/quality-volume-hxt-sized-readback-001/execution-receipt.json": "f8ce62de2354bd5fbfc57cd1d7cf8f7a46b4f65e7a7feb6bb81db0b7eb76c0a5",
+      "work/962-engineering/quality-volume-hxt-sized-root-review-001/review.json": "00012c8c427ff19492c2f29f3855a0ae19b5f2d19b2fa174e11a447ae2623a54",
+      "work/962-engineering/quality-volume-hxt-sized-root-review-001/binding-review.json": "51c91d869f05c049a5b5ba670f00040b0a486730839d2a948239f3c1c88a036f",
+      "twins/962-cylinder-head-f0/source/check_saved_cube_default.py": "c8a87cc7bc312fae4bdb414c2a6c6e77b920382f5bd00ca7ae2d04e4d3de20a6",
+      "tests/test_962_saved_cube_default.py": "c1f41f709123bbfc93e02cae313ae837d52e35fc2146c4bf2c9e2d4d533a142e",
+      "work/962-engineering/saved-cube-default-preflight-001/frozen-contract.json": "4d4bdba83f15ca26ab80a48d7967beca63978c928dcbe51003214c85261dae81",
+      "work/962-engineering/hxt-size-cap-fixture-001/capped-1p75/cube.msh": "e773cc4a2f68187c623e984eb9f58441f3fa5eed2733295e7eb26bd7b3910ac1",
+      "work/962-engineering/saved-cube-default-fixture-001/default-force/cube.msh": "3676ea044e2e10ea91435271687cac7f2181704014dc4e0daf8ae5c9ede26613",
+      "work/962-engineering/saved-cube-default-fixture-001/receipt.json": "6021074390614545957fb2ab72c0ed4c6ca89efe2925fbd8f4f9a51ecc970c05",
+      "work/962-engineering/saved-cube-default-fixture-001/default-force/worker-report.json": "e5adecf95d6c47675781fc23cf3c38395e90c973800e5757dd6ed1a97d69ff9b",
+      "work/962-engineering/saved-cube-default-readback-001/review.json": "7a1628d3475cff36c14c44e5af1dbd71cf5660b28ab314a73d0efddeb19def12",
+      "work/962-engineering/saved-cube-default-readback-001/arrays.json": "2f5b93350c33d53c52f3a317a08b6d8af99d25ff67e5b58554ab8b608d00248d",
+      "work/962-engineering/saved-cube-default-readback-001/reader.py": "c493da25ff2e675db533f9261a4040358b46ae98c822d04e4ec68e59d1f4116e",
+      "work/962-engineering/saved-cube-default-readback-001/frozen-contract.json": "7485cd3d1a64b0f047439d26baf3efea6a02c652e3e72e1c5e236675321a841b",
+      "work/962-engineering/saved-cube-default-readback-001/execution-receipt.json": "6f3754722cb644a2b62fe17b5dc9493770455e7f233af4914c7fd112b1a909e7",
+      "work/962-engineering/saved-cube-default-root-review-001/review.json": "88b9426578d99b36089a34beb7447ae3efc9cdfbc662ccdce28d1e9bfd62ce5e"
+    },
+    "optimization": {
+      "method": "",
+      "force": true
+    },
+    "mesh_generation_called": false,
+    "API_niter_limits_backend": false,
+    "cache_refresh": "rebuildElementCache(False): lookup repair, no geometry change",
+    "Gamma_threshold_is_not_SICN": true,
+    "actual_minimum_SICN_gate_unchanged": 0.1,
+    "cube_success_is_not_head_acceptance": true
+  },
+  "before": {
+    "loaded_array_sha256s": {
+      "sorted_coordinates_sha256": "a9a599bcf272303da08d30c7b2df8178502e1036f9048f2c9468d07bf77fc715",
+      "sorted_node_tags_sha256": "5aaab9110b26bf1812dd289364cc74211ea592e63e31f9724be37d7cece2493b",
+      "sorted_tetra_tags_sha256": "051021f0b48ec4ec8852073ecc828277474811d687dc607fc68aa3ee7f52225a",
+      "tagged_tetra_connectivity_sha256": "54313e0613f0fa8d9f2ebb471ff2540c08716d181ad3be74ff321799a7726b37"
+    },
+    "current_surface": {
+      "exact_source_coordinates": true,
+      "exact_source_oriented_connectivity": true,
+      "original_surface_nodes": 902145,
+      "original_surface_triangles": 1804706,
+      "source_element_tags_preserved": false,
+      "source_tagged_vertex_order_preserved": true,
+      "comparison": "exact_oriented_triangle_set"
+    },
+    "classifications": {
+      "node_classification_dimensions_sha256": "3054a72da89967201bcd3eb186b6d3a8cf0f0b91c13a3e4bd33a56592f23bb1e",
+      "node_classification_entity_tags_sha256": "d4665bfbe22e43c41df9bb4eb14350511bcfdd2cbd0f5d49f1631b0c11a683ef",
+      "node_counts_by_classification_dimension": {
+        "0": 0,
+        "1": 0,
+        "2": 902145,
+        "3": 77307
+      },
+      "no_curve_or_surface_periodic_mapping": true,
+      "periodic_query_dimensions": [
+        1,
+        2
+      ],
+      "periodic_entities_checked": [
+        [
+          2,
+          1
+        ]
+      ]
+    },
+    "retained_proof_path": "work/962-engineering/quality-volume-hxt-sized-001/worker-report.json",
+    "retained_proof_sha256": "b9f55a40d9274a9c4a02fbbb5d0b0eb0c403ff8625a4c1d09027815af96228d6",
+    "retained_independent_quality_path": "work/962-engineering/quality-volume-hxt-sized-readback-001/readback-report.json",
+    "retained_independent_quality_sha256": "b1658ea3e226e35d70c4cb0131cca8fcf2da786908495d19b231a77d269fd951",
+    "retained_independent_quality_not_recomputed": {
+      "SICN": {
+        "count": 3059463,
+        "minimum": -1.2793193015693403e-14,
+        "maximum": 0.9992577464996597,
+        "nonpositive_count": 2,
+        "below_point1_count": 284806
+      },
+      "Jacobian": {
+        "count": 3059463,
+        "minimum": 1.7835125737386548e-17,
+        "maximum": 60.58824234349713,
+        "nonpositive_count": 0,
+        "below_point1_count": null
+      },
+      "native_volume_mm3": {
+        "count": 3059463,
+        "minimum": 2.972520956231091e-18,
+        "maximum": 10.098040390582854,
+        "nonpositive_count": 0,
+        "below_point1_count": null
+      }
+    },
+    "retained_not_recomputed": {
+      "quality": {
+        "minimum_jacobian": {
+          "minimum": 1.7835125737386548e-17,
+          "p01": 1.71661376953125e-05,
+          "p05": 0.0010234620602948444,
+          "p50": 0.46537149540655887,
+          "p95": 9.509963622919932,
+          "p99": 13.550278947396512,
+          "maximum": 60.58824234349713,
+          "count": 3059463,
+          "nonpositive_count": 0
+        },
+        "native_volume_mm3": {
+          "minimum": 2.972520956231091e-18,
+          "p01": 2.86102294921875e-06,
+          "p05": 0.0001705770100491407,
+          "p50": 0.07756191590109314,
+          "p95": 1.5849939371533217,
+          "p99": 2.2583798245660853,
+          "maximum": 10.098040390582854,
+          "count": 3059463,
+          "nonpositive_count": 0
+        },
+        "minimum_SICN": {
+          "minimum": -1.2793193015693403e-14,
+          "p01": 0.00022066202301680019,
+          "p05": 0.014767302288986232,
+          "p50": 0.28744974427906167,
+          "p95": 0.8790328137040052,
+          "p99": 0.9478367269105763,
+          "maximum": 0.9992577464996597,
+          "count": 3059463,
+          "nonpositive_count": 2
+        },
+        "independent_signed_volume_mm3": {
+          "minimum": 2.9725209562310915e-18,
+          "p01": 2.86102294921875e-06,
+          "p05": 0.00017057701004914074,
+          "p50": 0.07756191590109315,
+          "p95": 1.5849939371533215,
+          "p99": 2.2583798245660853,
+          "maximum": 10.098040390582856,
+          "count": 3059463,
+          "nonpositive_count": 0
+        }
+      },
+      "tetrahedra": 3059463,
+      "total_mesh_nodes": 979452,
+      "tetra_referenced_nodes": 979452,
+      "tetra_referenced_interior_nodes": 77307,
+      "unreferenced_mesh_nodes": 0,
+      "summed_tetra_volume_mm3": 915458.4757034747,
+      "volume_relative_error": 0.0,
+      "actual_tetra_boundary": {
+        "boundary_triangles": 1804706,
+        "exact_oriented_tetra_boundary": true,
+        "nonmanifold_volume_faces": 0
+      },
+      "internal_tetra_face_orientation": {
+        "internal_faces": 5216573,
+        "same_oriented_internal_faces": 0,
+        "exact_internal_orientation_balance": true
+      }
+    },
+    "fresh_native_quality_queries": false,
+    "fresh_tetra_face_incidence_audit": false
+  }
+}

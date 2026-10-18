@@ -1,0 +1,56 @@
+{
+  "schema": "962-cp1-thermal-primary-version-associated-source-context/v1",
+  "retrieved_UTC_date": "2026-10-17",
+  "MOOSE_requested_abbreviated_revision": "7c06bdcefd",
+  "MOOSE_resolved_public_revision": "7c06bdcefd02f9f31f4508839f21f410561309a4",
+  "source_files": [
+    {
+      "filename": "PetscSupport.C",
+      "url": "https://raw.githubusercontent.com/idaholab/moose/7c06bdcefd02f9f31f4508839f21f410561309a4/framework/src/utils/PetscSupport.C",
+      "sha256": "6971295c95080db5f4a583ff1485e9b26a9385ebe11fe83d1b2e568ba9af78f0",
+      "bytes": 47924,
+      "license": "LGPL-2.1",
+      "body_publication_authorized_by_this_record": false
+    },
+    {
+      "filename": "ImplicitEuler.h",
+      "url": "https://raw.githubusercontent.com/idaholab/moose/7c06bdcefd02f9f31f4508839f21f410561309a4/framework/include/timeintegrators/ImplicitEuler.h",
+      "sha256": "5bf72cf2e0b26bcc4cd66d024595fe5385535b212472296a929c9973357e44f3",
+      "bytes": 1613,
+      "license": "LGPL-2.1",
+      "body_publication_authorized_by_this_record": false
+    },
+    {
+      "filename": "ADHeatConductionTimeDerivative.C",
+      "url": "https://raw.githubusercontent.com/idaholab/moose/7c06bdcefd02f9f31f4508839f21f410561309a4/modules/heat_transfer/src/kernels/ADHeatConductionTimeDerivative.C",
+      "sha256": "2bf936282cdf6d82a1191182a4ab559bba0a4802cf745a760ef9209554c4bad4",
+      "bytes": 1511,
+      "license": "LGPL-2.1",
+      "body_publication_authorized_by_this_record": false
+    },
+    {
+      "filename": "ksponly.c",
+      "url": "https://raw.githubusercontent.com/petsc/petsc/v3.25.4/src/snes/impls/ksponly/ksponly.c",
+      "sha256": "3690304f4fbf0b2d373c2c118de75c11bc864b7af9278b6389b0703143106740",
+      "bytes": 4897,
+      "license": "BSD-2-Clause",
+      "body_publication_authorized_by_this_record": false
+    }
+  ],
+  "observations": [
+    "At the resolved public MOOSE revision, ST_LINEAR requests PETSc SNES type ksponly and cancels nonlinear monitoring.",
+    "At PETSc tagv3.25.4, KSPONLY computes the function/Jacobian, performs one linear correction, checks KSP failure and labels iteration completion; it does not apply the original nonlinear convergence tolerance test. Optional monitors can compute norms without changing this conclusion.",
+    "At the resolved MOOSE revision, ImplicitEuler subtracts the old state and divides by dt; the AD thermal mass kernel multiplies by rho and specific heat."
+  ],
+  "inference": "The frozen constant-property active-step operator supports a separately reviewed LINEAR numerical variant. Its convergence semantics differ from Newton; exact unchanged independent field/history/energy checks remain necessary and can still fail.",
+  "scope_limits": [
+    "Public version-associated source bodies are not proof of source-to-installed-binary equivalence, complete ABI closure, assembled residual or failure cause.",
+    "The33-cutback failed run and original sources remain unchanged. No solver, field assessor or new formulation executed.",
+    "Source captures remain private; publish URLs, hash/size/license metadata and this original analysis only, not unreviewed vendor/source copies under the project licence."
+  ],
+  "engineering_accepted": false,
+  "physics_qualified": false,
+  "material_qualified": false,
+  "process_calibrated": false,
+  "manufacturing_authorized": false
+}

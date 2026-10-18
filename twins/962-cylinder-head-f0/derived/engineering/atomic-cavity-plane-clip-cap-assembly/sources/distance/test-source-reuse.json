@@ -1,0 +1,61 @@
+{
+  "all_temporary_roots_resolved": true,
+  "executed": false,
+  "new_regression_reverse_recovers_old_regression": true,
+  "new_vs_old_regression_only_path_and_runner_SHA_substitutions": true,
+  "no_real_worker_ps_kill_timer_signal_or_CUB_calls": true,
+  "old_six_harness_regression_additions": [
+    {
+      "new": "clock=100., popen_elapsed=301. if scenario == 'late_completed_no_callback' else\n                (17. if scenario == 'deadline' else 7.))",
+      "occurrences": 1,
+      "old": "clock=100., popen_elapsed=17. if scenario == 'deadline' else 7.)"
+    },
+    {
+      "new": "self.assertIn(scenario, ['normal', 'late_completed_no_callback'])",
+      "occurrences": 1,
+      "old": "self.assertEqual(scenario, 'normal')"
+    },
+    {
+      "new": "            state.clock += state.popen_elapsed\n            if scenario == 'late_completed_no_callback':\n                process.returncode = 0\n",
+      "occurrences": 1,
+      "old": "            state.clock += state.popen_elapsed\n"
+    },
+    {
+      "new": "self.seconds = seconds; self.callback = callback; self.cancelled = False\n                self.callback_invoked = False",
+      "occurrences": 1,
+      "old": "self.seconds = seconds; self.callback = callback; self.cancelled = False"
+    },
+    {
+      "new": "                if scenario == 'deadline':\n                    self.callback_invoked = True\n                    self.callback()",
+      "occurrences": 1,
+      "old": "                if scenario == 'deadline':\n                    self.callback()"
+    },
+    {
+      "new": "self.assertEqual(h.state.timers[index].seconds, max(0., 300.-h.state.popen_elapsed))",
+      "occurrences": 1,
+      "old": "self.assertEqual(h.state.timers[index].seconds, 300.-h.state.popen_elapsed)"
+    },
+    {
+      "new": "    def test_already_completed_after_budget_refuses_without_timer_callback(self):\n        h, rc, summary, receipts = self.run_case('late_completed_no_callback')\n        self.assertEqual(h.state.timers[0].seconds, 0.)\n        self.assertFalse(h.state.timers[0].callback_invoked)\n        self.assertTrue(h.state.timers[0].cancelled)\n        self.assertEqual(receipts[0]['returncode'], 0)\n        self.assertEqual(receipts[0]['wall_seconds'], 301.)\n        self.assertEqual(receipts[0]['stopped_by_watchdog'], 'process_group_wall_deadline')\n        self.assertEqual(h.state.kills, []); self.assertEqual(h.state.ps_calls, 0)\n        self.assertEqual(rc, 2); self.assertFalse(summary['native_queries_completed'])\n\n    def test_changed_pin_refuses_before_output_or_any_fake_Popen(self):",
+      "occurrences": 1,
+      "old": "    def test_changed_pin_refuses_before_output_or_any_fake_Popen(self):"
+    }
+  ],
+  "original_six": {
+    "path": "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-distance-runner-tests-prep-001/test_runner.py",
+    "sha256": "1a4d81b1f703c87cc20fc62c9e5a5052b18b96e92d4d401adf3d5f316302a6dd"
+  },
+  "regression_001": {
+    "expected_focused_method_outcome": "failure_required_refusal_but_preserved_runner_can_start_second_direction",
+    "path": "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-distance-runner-regression-prep-001/test_runner_regression_001.py",
+    "production_runner_sha256": "7b7cc6da9c5322be5e6ebc74730b9838379bd67b6f5c7aaf2a03fdec71d6238d",
+    "sha256": "ea1a04312cdd16801d91310c78d99528990006a6e2ab3c1c5835d028787c4e70"
+  },
+  "regression_002": {
+    "expected_focused_and_full_seven_outcome": "pass_not_executed",
+    "path": "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-distance-runner-regression-prep-001/test_runner_regression_002.py",
+    "production_runner_sha256": "637678b134c30af34ad56118945b820985e046c4682d8ea00c10b48477030ac5",
+    "sha256": "cd85b6226dddad7ad2b5a1dfaa1f759b48a0ca95d327aa1ca51fed753f161402"
+  },
+  "schema": "962-CUB-deadline-race-mock-regression-reuse/v1"
+}

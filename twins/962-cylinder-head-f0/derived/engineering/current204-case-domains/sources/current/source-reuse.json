@@ -1,0 +1,129 @@
+{
+  "schema": "962-current204-fixed47-domain-minimal-schema-successor/v1",
+  "status": "HELD_SOURCE_ONLY_UNRUN",
+  "donor": {
+    "path": "work/962-engineering/head-star-current204-case-domains-prep-001/certify_domain.py",
+    "sha256": "c906452bacef2ac6e95444903b9c3d6e62dc8a3589d05cc63a776e353874b822"
+  },
+  "selected": {
+    "path": "work/962-engineering/head-star-current204-case-domains-prep-002/certify_domain.py",
+    "sha256": "7060580b7aa2743dec511bb9fc5e8cfb40ef86ea3332b068c5de9c845422efc8"
+  },
+  "source_diff": {
+    "path": "work/962-engineering/head-star-current204-case-domains-prep-002/source.diff",
+    "sha256": "29648210ac88c9a1c3f8f576a61473d30d88a5f3f2eaa0c21f49cfddeee1333d"
+  },
+  "source_whole_byte_reverse_exact": true,
+  "source_reverse_line_chunks": [
+    {
+      "old_start_line_zero_based": 11,
+      "new_start_line_zero_based": 11,
+      "old_lines": [
+        "MANIFEST='work/962-engineering/head-star-current204-case-domains-prep-001/case-manifest.json'\n"
+      ],
+      "new_lines": [
+        "MANIFEST='work/962-engineering/head-star-current204-case-domains-prep-002/case-manifest.json'\n"
+      ]
+    },
+    {
+      "old_start_line_zero_based": 106,
+      "new_start_line_zero_based": 106,
+      "old_lines": [
+        " if len(boundary)!=CASE['NB'] or shell['original_source_classifications']!=observation['original_source_classifications']:raise ValueError('True source classification labels required')\n"
+      ],
+      "new_lines": [
+        " classes=shell['original_source_classifications'];observed=observation['original_source_classifications']\n",
+        " global_keys=('boundary_global_node_tags','other_interior_global_node_tags')\n",
+        " local_keys=('boundary_local_node_tags','other_interior_local_node_tags')\n",
+        " if (len(boundary)!=CASE['NB'] or set(observed)!=set(global_keys) or set(classes)!=set(global_keys+local_keys)\n",
+        "     or any(classes[key]!=observed[key] for key in global_keys)):raise ValueError('True source global classification labels required')\n",
+        " inverse={str(t):i+1 for i,t in enumerate(shell['local_to_global_node_tags'])}\n",
+        " if (shell['global_to_local_node_tags']!=inverse\n",
+        "     or any(classes[local]!=[inverse[str(t)] for t in classes[global_]] for global_,local in zip(global_keys,local_keys))):\n",
+        "  raise ValueError('Shell local class labels must match the exact global inverse')\n"
+      ]
+    }
+  ],
+  "guard_whole_byte_reverse_exact": true,
+  "guard_reverse_line_chunks": [
+    {
+      "old_start_line_zero_based": 5,
+      "new_start_line_zero_based": 5,
+      "old_lines": [
+        "SOURCE_SHA='c906452bacef2ac6e95444903b9c3d6e62dc8a3589d05cc63a776e353874b822'\n"
+      ],
+      "new_lines": [
+        "SOURCE_SHA='7060580b7aa2743dec511bb9fc5e8cfb40ef86ea3332b068c5de9c845422efc8'\n"
+      ]
+    },
+    {
+      "old_start_line_zero_based": 43,
+      "new_start_line_zero_based": 43,
+      "old_lines": [
+        "   oriented_triangle_rows=[dict(local_node_tags=f) for f in faces],original_source_classifications=classes)\n"
+      ],
+      "new_lines": [
+        "   oriented_triangle_rows=[dict(local_node_tags=f) for f in faces],original_source_classifications=dict(classes,boundary_local_node_tags=[1,2],other_interior_local_node_tags=[3,4]))\n"
+      ]
+    },
+    {
+      "old_start_line_zero_based": 53,
+      "new_start_line_zero_based": 53,
+      "old_lines": [],
+      "new_lines": [
+        "  # Real saved schema: observation has two global lists; shell also has two local lists.\n",
+        "  self.assertEqual(set(obs['original_source_classifications']),{'boundary_global_node_tags','other_interior_global_node_tags'})\n",
+        "  self.assertEqual(set(shell['original_source_classifications']),set(obs['original_source_classifications'])|{'boundary_local_node_tags','other_interior_local_node_tags'})\n",
+        "  self.assertNotEqual(obs['original_source_classifications'],shell['original_source_classifications'])\n"
+      ]
+    },
+    {
+      "old_start_line_zero_based": 56,
+      "new_start_line_zero_based": 60,
+      "old_lines": [
+        "  for mode in ['missing_owner','missing_incident','changed_class','signed_zero','wrong_oldtag']:\n"
+      ],
+      "new_lines": [
+        "  for mode in ['missing_owner','missing_incident','changed_class','signed_zero','wrong_oldtag','changed_global_class','changed_local_class','changed_inverse','extra_class_field']:\n"
+      ]
+    },
+    {
+      "old_start_line_zero_based": 64,
+      "new_start_line_zero_based": 68,
+      "old_lines": [],
+      "new_lines": [
+        "    if mode=='changed_global_class':s['original_source_classifications']['boundary_global_node_tags']=[101,103]\n",
+        "    if mode=='changed_local_class':s['original_source_classifications']['boundary_local_node_tags']=[1,3]\n",
+        "    if mode=='changed_inverse':s['global_to_local_node_tags']['101']=2\n",
+        "    if mode=='extra_class_field':s['original_source_classifications']['unexpected']=[1]\n"
+      ]
+    }
+  ],
+  "unchanged_top_level_function_AST_names": [
+    "cycle",
+    "complex_rows",
+    "select_case",
+    "configure",
+    "case_record",
+    "accepted_native_records",
+    "original",
+    "saved_candidate",
+    "main"
+  ],
+  "only_changed_function_AST": "context_join",
+  "manifest_byte_exact_001": true,
+  "all47_saved_asymmetric_classification_rows_independently_projected_during_preparation": true,
+  "geometry_math_thresholds_pair_budgets_controls_unchanged": true,
+  "old_geometry_and_helper_AST_proof_inherited_from_hash_bound001_reuse_and_blocked_peer": true,
+  "blocked_source_peer": {
+    "path": "work/962-engineering/head-star-current204-case-domains-source-peer-001/review.json",
+    "sha256": "ed390dc5e7dfc03e790964641bbc0d64831be180015bd884f3f091049d12885d"
+  },
+  "blocked_binding_check": {
+    "path": "work/962-engineering/head-star-current204-case-domains-source-peer-001/binding-check.json",
+    "sha256": "8c00750c366c721a5841655c49b489a027b3137fcf069aee6c54821d962ad572"
+  },
+  "prepared_guard_count": 5,
+  "source_functions_modules_guards_or_domain_query_executed": false,
+  "source_author_role": "Same finite47 adapter author; own preparation/data shape assertions are not an independent peer or new geometry proof."
+}
