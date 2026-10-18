@@ -41,6 +41,13 @@ cells, including 2,997 initially good cells and 99 shared cells. Its complete
 read-only report and separate reviews are available. This census changes no mesh
 and establishes no repair feasibility or head-analysis admission.
 
+The [completed alternative local campaign](derived/engineering/current126-alternative-local-campaign/README.md)
+retains the full 31-star screen, 29 generation runs and 28 conditional Netgen
+runs. Fifteen candidates pass local quality and storage for later domain
+preparation; thirteen Netgen cases and one separate storage-incompatible case
+remain held. No replacement is applied to the current 126-poor-cell head.
+All case inputs, native output roles and separate reviews remain inspectable.
+
 The [preceding 127-cell census](derived/engineering/current127-full-stars/README.md)
 freshly maps all remaining poor cells to 101 interior seeds and 3,137 incident
 cells, including 3,010 initially good cells and 99 shared cells. The read-only

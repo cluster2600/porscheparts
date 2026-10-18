@@ -1,0 +1,89 @@
+--- work/962-engineering/head-star-current204-batch-shells-prep-001/selfcheck.py
++++ work/962-engineering/head-star-current126-alternative-batch-shells-prep-001/selfcheck.py
+@@ -10,12 +10,12 @@
+ import unittest
+ 
+ SOURCE=Path(__file__).with_name('select_batch.py')
+-SOURCE_SHA='af388dd1a3ba5027c5c0b7a62295a2d8950b4789e0568e68f5451ab52a708350'
++SOURCE_SHA='e3857d365f605b52b6a5253ad2d010fe87699f24d7b8eebf8952eb82339a1687'
+ 
+ 
+ def module():
+  assert hashlib.sha256(SOURCE.read_bytes()).hexdigest()==SOURCE_SHA
+- spec=importlib.util.spec_from_file_location('held_current204_batch',SOURCE)
++ spec=importlib.util.spec_from_file_location('held_current126_alternative_batch',SOURCE)
+  m=importlib.util.module_from_spec(spec);spec.loader.exec_module(m)  # stdlib top level only
+  return m
+ 
+@@ -56,7 +56,7 @@
+ 
+ class Guards(unittest.TestCase):
+  def test_sparse_inverse_volume_words_and_classifications(self):
+-  m=module();delta=json.loads(SOURCE.with_name('source-delta.json').read_text())
++  m=module();delta=json.loads(SOURCE.with_name('source-reuse.json').read_text())
+   lines=SOURCE.read_text().splitlines(True)
+   for row in reversed(delta['line_edits']):
+    self.assertEqual(''.join(lines[row['new_start']:row['new_stop']]),row['new'])
+@@ -127,30 +127,48 @@
+ 
+  def test_current_proof_schema_scope_and_root_peer_joins(self):
+   m=module();proof=dict(array_sha256s={'a':'A'},classifications={'class':'identity'})
+-  census=dict(status='direct_saved_file_readback_completed',bound_inputs_unchanged=True,a='A',direct_fresh_classifications={'class':'identity'},
+-   complete_seed_star_census=dict(schema='962-complete-current-poor-seed-stars/v1',movable_count=154,complete_incident_tetrahedron_count=5267,unique_incident_node_count=2905),
+-   positive_poor_SICN_cells={'total':204})
+-  prior={'MSH_sha256':m.CURRENT_MSH_SHA256}
+-  receipt=dict(returncode=0,stop_reason=None,readback_report_sha256=m.PINS[m.CENSUS],contract_sha256=m.PINS[m.PRIOR])
+-  closed=dict(returncode=0,stop_reason=None,wait_reaped=True,all72_inputs_unchanged=True,all4_selected_runtime_unchanged=True,actual_unchanged=True,materialized_actual_copy_unchanged=True,
+-   actual_sha256=m.PINS[m.PRIOR],outputs={'readback-report.json':{'sha256':m.PINS[m.CENSUS]},'execution-receipt.json':{'sha256':m.PINS[m.CENSUS_RECEIPT]}})
+-  root=dict(decision='CLEAR_COMPLETED_READ_ONLY_CENSUS_KEEP_STRICT_HEAD_REJECTION',report_sha256=m.PINS[m.CENSUS],closed_sha256=m.PINS[m.CENSUS_CLOSED])
+-  peer=dict(decision=m.PEER_DECISION,records={'worker_report':{'sha256':m.PINS[m.CENSUS]},'actual':{'sha256':m.PINS[m.PRIOR]},'root_closed':{'sha256':m.PINS[m.CENSUS_CLOSED]}})
+-  data=dict(zip([m.CENSUS,m.PRIOR,m.PARTIAL,m.RECEIPT,m.CLOSED,m.CENSUS_RECEIPT,m.CENSUS_CLOSED,m.CENSUS_ROOT,m.PEER],[census,prior,{}, {}, {},receipt,closed,root,peer]))
+-  helper=SimpleNamespace(partial_after_proof=lambda *args:proof,require_after_match=lambda r,p,n:self.assertEqual(n,204))
++  census=dict(status='direct_saved_file_readback_completed',bound_inputs_unchanged=True,a='A',direct_fresh_classifications={'class':'identity'},declared_controller_command_conformant=False,SICN_point1_gate_passed=False,
++   complete_seed_star_census=dict(schema='962-complete-current-poor-seed-stars/v1',movable_count=100,complete_incident_tetrahedron_count=3123,unique_incident_node_count=1781),positive_poor_SICN_cells={'total':126})
++  prior={'MSH_sha256':m.CURRENT_MSH_SHA256};receipt=dict(returncode=0,stop_reason=None,readback_report_sha256=m.PINS[m.CENSUS],contract_sha256=m.PINS[m.PRIOR])
++  closed=dict(schema='962-current126-head-census-root-closed/v1',returncode=0,error=None,signals=[],outer_fallback_used=False,whole_actual_mirror_sha256=m.PINS[m.PRIOR],upstream_d60_command_conformant=False,
++   output_files={'readback-report.json':{'sha256':m.PINS[m.CENSUS]},'execution-receipt.json':{'sha256':m.PINS[m.CENSUS_RECEIPT]}},**{k:True for k in ['controller_waited_reaped','controller_owned_group_observed_absent','all108_inputs_unchanged','runtime5_unchanged','static9_unchanged','valid_closed_controller_receipt','complete6_output_names']})
++  root=dict(schema='962-current126-census-root-saved-association-review/v1',decision='ACCEPT_COMPLETE_SAVED_CENSUS_ASSOCIATIONS_ONLY_PENDING_SEPARATE_PEER')
++  peer=dict(schema='962-current126-census-independent-stopped-saved-review/v1',decision=m.PEER_DECISION,blockers=[],bindings={'sha256':m.PINS[m.PEER_BINDINGS]})
++  bindings=dict(schema='962-current126-census-saved-result-bindings/v1',root_closed={'sha256':m.PINS[m.CENSUS_CLOSED]},source_proof={'sha256':m.PINS[m.PARTIAL]},outputs={name:{'sha256':m.PINS[path]} for name,path in [('readback-report.json',m.CENSUS),('frozen-contract.json',m.PRIOR),('execution-receipt.json',m.CENSUS_RECEIPT)]})
++  accepted=dict(schema='962-current126-census-root-result-acceptance/v1',decision='ACCEPT_COMPLETE_CURRENT126_READ_ONLY_CENSUS_ASSOCIATIONS_ONLY',current_mesh={'sha256':m.CURRENT_MSH_SHA256},whole_head_quality_accepted=False,prior_d60_command_conformant=False,
++   **{key:{'sha256':m.PINS[path]} for key,path in [('current_report',m.CENSUS),('current_contract',m.PRIOR),('current_receipt',m.CENSUS_RECEIPT),('root_closed',m.CENSUS_CLOSED),('root_own_review',m.CENSUS_ROOT),('peer_review',m.PEER),('peer_bindings',m.PEER_BINDINGS)]})
++  data=dict(zip([m.CENSUS,m.PRIOR,m.PARTIAL,m.RECEIPT,m.CLOSED,m.CENSUS_RECEIPT,m.CENSUS_CLOSED,m.CENSUS_ROOT,m.PEER,m.PEER_BINDINGS,m.ACCEPTANCE],[census,prior,{}, {}, {},receipt,closed,root,peer,bindings,accepted]))
++  helper=SimpleNamespace(partial_after_proof=lambda *args:proof,require_after_match=lambda r,p,n:self.assertEqual(n,126))
+   self.assertEqual(m.current_proof(helper,data),census)
+-  for path,field,value in [(m.PRIOR,'MSH_sha256','old'),(m.CENSUS_CLOSED,'all72_inputs_unchanged',False),(m.PEER,'decision','pending'),(m.CENSUS_RECEIPT,'stop_reason','deadline')]:
++  for path,field,value in [(m.PRIOR,'MSH_sha256','old'),(m.CENSUS_CLOSED,'all108_inputs_unchanged',False),(m.PEER,'decision','pending'),(m.CENSUS_RECEIPT,'stop_reason','deadline'),(m.ACCEPTANCE,'prior_d60_command_conformant',True)]:
+    bad=deepcopy(data);bad[path][field]=value
+    with self.assertRaises(ValueError):m.current_proof(helper,bad)
++  bad=deepcopy(data);bad[m.PEER_BINDINGS]['outputs']['readback-report.json']['sha256']='old'
++  with self.assertRaises(ValueError):m.current_proof(helper,bad)
+ 
+  def test_held_cannot_authorize_native_or_saved_query(self):
+   m=module()
+-  c=dict(schema='962-current204-batch-shell-selection-actual/v1',diagnostic_execution_authorized=True,root_and_peer_review_complete=True,
+-   automatic_retry=False,method='all_current_seed_stars_exact_shells_then_vertex_disjoint_greedy',output_directory=m.OUTPUT,**{k:False for k in m.FORBIDDEN})
++  c=dict(schema='962-current126-alternative-batch-shell-selection-actual/v1',diagnostic_execution_authorized=True,root_and_peer_review_complete=True,
++   automatic_retry=False,method='all_exact31_alternative_stars_after_full_current100_validation_then_vertex_disjoint_greedy',output_directory=m.OUTPUT,alternative_apex_tags=m.ALTERNATIVE_APICES,excluded_prior_quality_rejected_apices=m.REJECTED_APICES,held_prior_apex=m.HELD_APEX,**{k:False for k in m.FORBIDDEN})
+   m.require_authority(c)
+   for field,value in [('diagnostic_execution_authorized',False),('native_execution_authorized',True),('generation_authorized',True),('automatic_retry',True),('output_directory','old')]:
+    bad=dict(c);bad[field]=value
+    with self.assertRaises(ValueError):m.require_authority(bad)
+ 
+ 
++ def test_exact31_cohort_excludes_rejections_held_and_stale_indices(self):
++  m=module();seeds=sorted(m.ALTERNATIVE_APICES+m.REJECTED_APICES+[m.HELD_APEX])
++  history=dict(prospective_alternative_pool={'apex_tags':list(m.ALTERNATIVE_APICES)},prior_history={'current_apices_with_prior_local_quality_rejection':list(m.REJECTED_APICES),'held_apex1393275_no_retry':True})
++  prior=sorted(m.REJECTED_APICES+[m.HELD_APEX]+list(range(3000000,3000047)))
++  manifest={'cases_in_increasing_apex_order':[{'apex':t} for t in prior]}
++  self.assertEqual(m.alternative_cohort(seeds,history,manifest),m.ALTERNATIVE_APICES)
++  for badseeds in [seeds[:-1],sorted(seeds+[1613031]),seeds[::-1]]:
++   with self.assertRaises(ValueError):m.alternative_cohort(badseeds,history,manifest)
++  bad=deepcopy(history);bad['prior_history']['held_apex1393275_no_retry']=False
++  with self.assertRaises(ValueError):m.alternative_cohort(seeds,bad,manifest)
++  bad=deepcopy(manifest);bad['cases_in_increasing_apex_order'][0]['apex']=m.ALTERNATIVE_APICES[0]
++  with self.assertRaises(ValueError):m.alternative_cohort(seeds,history,bad)
++  c=tiny_census();c['complete_seed_star_census']['complete_incident_tetrahedra'][0]['native_array_index']=2
++  with self.assertRaises(ValueError):m.census_rows(c,3,3)
++
+ if __name__=='__main__':unittest.main()

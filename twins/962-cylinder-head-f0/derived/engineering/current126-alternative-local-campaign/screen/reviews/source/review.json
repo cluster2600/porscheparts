@@ -1,0 +1,390 @@
+{
+  "schema": "962-current126-alternative-star-selector-independent-source-peer/v1",
+  "decision": "CLEAR_HELD_SOURCE_ONLY_WITH_PRESERVED_PLAN_CLARIFICATION",
+  "findings": [],
+  "author": "clip_source_review",
+  "subject_author": "replica_metrology",
+  "source": {
+    "path": "work/962-engineering/head-star-current126-alternative-batch-shells-prep-001/select_batch.py",
+    "sha256": "e3857d365f605b52b6a5253ad2d010fe87699f24d7b8eebf8952eb82339a1687",
+    "bytes": 32960,
+    "observed_mode": "0o444"
+  },
+  "held": {
+    "path": "work/962-engineering/head-star-current126-alternative-batch-shells-prep-001/held-contract.json",
+    "sha256": "c99a5efbc07c5ae36aaf424cd85d05c941279d13e0fb281b88c317bca096d200",
+    "bytes": 13976,
+    "observed_mode": "0o444"
+  },
+  "guards": {
+    "path": "work/962-engineering/head-star-current126-alternative-batch-shells-prep-001/selfcheck.py",
+    "sha256": "df55b36f43c9b52af24e93174cbf76ebe4ef90c16ff25e0e2fd73b0e913b4f8a",
+    "bytes": 14130,
+    "observed_mode": "0o444"
+  },
+  "fresh_bindings": {
+    "work/962-engineering/head-star-current126-alternative-batch-shells-prep-001/select_batch.py": {
+      "path": "work/962-engineering/head-star-current126-alternative-batch-shells-prep-001/select_batch.py",
+      "sha256": "e3857d365f605b52b6a5253ad2d010fe87699f24d7b8eebf8952eb82339a1687",
+      "bytes": 32960,
+      "observed_mode": "0o444"
+    },
+    "work/962-engineering/head-star-current126-alternative-batch-shells-prep-001/held-contract.json": {
+      "path": "work/962-engineering/head-star-current126-alternative-batch-shells-prep-001/held-contract.json",
+      "sha256": "c99a5efbc07c5ae36aaf424cd85d05c941279d13e0fb281b88c317bca096d200",
+      "bytes": 13976,
+      "observed_mode": "0o444"
+    },
+    "work/962-engineering/head-star-current126-alternative-batch-shells-prep-001/selfcheck.py": {
+      "path": "work/962-engineering/head-star-current126-alternative-batch-shells-prep-001/selfcheck.py",
+      "sha256": "df55b36f43c9b52af24e93174cbf76ebe4ef90c16ff25e0e2fd73b0e913b4f8a",
+      "bytes": 14130,
+      "observed_mode": "0o444"
+    },
+    "work/962-engineering/head-star-current126-alternative-batch-shells-prep-001/source-reuse.json": {
+      "path": "work/962-engineering/head-star-current126-alternative-batch-shells-prep-001/source-reuse.json",
+      "sha256": "59d01a660e7ee1204eeebd2cd6a90d5dc9fa1e77344e54a5cd9d2eca256c83e0",
+      "bytes": 43201,
+      "observed_mode": "0o444"
+    },
+    "work/962-engineering/head-star-current126-alternative-batch-shells-prep-001/source.diff": {
+      "path": "work/962-engineering/head-star-current126-alternative-batch-shells-prep-001/source.diff",
+      "sha256": "7ae8252e886a371df833031a5b2ffcefaba547203631441222d44b0289221ea2",
+      "bytes": 24678,
+      "observed_mode": "0o444"
+    },
+    "work/962-engineering/head-star-current126-alternative-batch-shells-prep-001/selfcheck.diff": {
+      "path": "work/962-engineering/head-star-current126-alternative-batch-shells-prep-001/selfcheck.diff",
+      "sha256": "c9f53b07cf1a5d6f986ec4acfc747f32c6b12131d6986a01696f10b0f934276c",
+      "bytes": 8820,
+      "observed_mode": "0o444"
+    },
+    "work/962-engineering/head-star-current126-alternative-batch-shells-prep-001/METHOD.md": {
+      "path": "work/962-engineering/head-star-current126-alternative-batch-shells-prep-001/METHOD.md",
+      "sha256": "da435ff370b8a8f5fcd658d7b49b440e023b712125a8066b983fe855c24d3527",
+      "bytes": 4047,
+      "observed_mode": "0o444"
+    },
+    "twins/962-cylinder-head-f0/source/certify_fixed_face.py": {
+      "path": "twins/962-cylinder-head-f0/source/certify_fixed_face.py",
+      "sha256": "9b13f4dc7f2eca7da04e1587eb1f59a379a0d0c2101026f9b1d999ae09aaebb8",
+      "bytes": 4944,
+      "observed_mode": "0o644"
+    },
+    "work/962-engineering/apex1613031-head-application-001/execution-receipt.json": {
+      "path": "work/962-engineering/apex1613031-head-application-001/execution-receipt.json",
+      "sha256": "496b0e01950b777acd1c1759177fe26fac5659e5ec6512bb19ff9cb56b5fd46d",
+      "bytes": 30540,
+      "observed_mode": "0o444"
+    },
+    "work/962-engineering/apex1613031-head-application-001/readback-report.json": {
+      "path": "work/962-engineering/apex1613031-head-application-001/readback-report.json",
+      "sha256": "64caf59811e229628ea1be138ebcc48cdf940c4ca2724be0b9080e255951c9f5",
+      "bytes": 25890,
+      "observed_mode": "0o444"
+    },
+    "work/962-engineering/apex1613031-head-application-root-execution-001/closed-result.json": {
+      "path": "work/962-engineering/apex1613031-head-application-root-execution-001/closed-result.json",
+      "sha256": "9324c5ef88293efa33f9e14cfeff3e092795eec337fceeaffd7481ac2ee41471",
+      "bytes": 106022,
+      "observed_mode": "0o444"
+    },
+    "work/962-engineering/apex1613031-head-application-root-execution-001/result-peer-acceptance.json": {
+      "path": "work/962-engineering/apex1613031-head-application-root-execution-001/result-peer-acceptance.json",
+      "sha256": "19ef174a208868bf174909a1add690971fdf018b8cf438c5c26e3a2bca9bfada",
+      "bytes": 5753,
+      "observed_mode": "0o444"
+    },
+    "work/962-engineering/current126-alternative-star-batch-plan-001/plan.json": {
+      "path": "work/962-engineering/current126-alternative-star-batch-plan-001/plan.json",
+      "sha256": "d9b820a6cf25a06cfa33128e4a17555046d545735a0f8299300b613892f183f5",
+      "bytes": 58205,
+      "observed_mode": "0o444"
+    },
+    "work/962-engineering/current127-alternative-star-batch-plan-001/plan.json": {
+      "path": "work/962-engineering/current127-alternative-star-batch-plan-001/plan.json",
+      "sha256": "5d4b3c06769ceac2777a2ae3f243c45f951979cc7ab8a79a8efe953acfbd72ac",
+      "bytes": 19550,
+      "observed_mode": "0o444"
+    },
+    "work/962-engineering/domain-equivalence-prep-001/certify_domain.py": {
+      "path": "work/962-engineering/domain-equivalence-prep-001/certify_domain.py",
+      "sha256": "0fe593d385e5a0ab4944528fa1b869ddf2c41c28d050576afe9be18213462296",
+      "bytes": 11876,
+      "observed_mode": "0o644"
+    },
+    "work/962-engineering/fixed-shell-coupled-embedding-prep-001/check_embedding.py": {
+      "path": "work/962-engineering/fixed-shell-coupled-embedding-prep-001/check_embedding.py",
+      "sha256": "1b489cc8149f4b5db8f90c594e32fe4c09b5db00151df6b1cfc88362d1018134",
+      "bytes": 10914,
+      "observed_mode": "0o644"
+    },
+    "work/962-engineering/head-star-current126-full-stars-001/execution-receipt.json": {
+      "path": "work/962-engineering/head-star-current126-full-stars-001/execution-receipt.json",
+      "sha256": "883604b10d223d364010b845b5aff4e198561842b3c22dc9a67f92606f5bd444",
+      "bytes": 3449,
+      "observed_mode": "0o444"
+    },
+    "work/962-engineering/head-star-current126-full-stars-001/frozen-contract.json": {
+      "path": "work/962-engineering/head-star-current126-full-stars-001/frozen-contract.json",
+      "sha256": "d579a794f18bc9f7c4e153cb2042f32cb32b2c6b2f2235cec2edbef8aba91317",
+      "bytes": 36806,
+      "observed_mode": "0o444"
+    },
+    "work/962-engineering/head-star-current126-full-stars-001/readback-report.json": {
+      "path": "work/962-engineering/head-star-current126-full-stars-001/readback-report.json",
+      "sha256": "ac40521a4add15f1bb414d7d1a1c2cd231a0107278b6fe43ec38dad27c269e1a",
+      "bytes": 2092550,
+      "observed_mode": "0o444"
+    },
+    "work/962-engineering/head-star-current126-full-stars-prep-001/reader.py": {
+      "path": "work/962-engineering/head-star-current126-full-stars-prep-001/reader.py",
+      "sha256": "2348c032ecbbb694563978cb333aff1a7e4d37a5052c3ed841a7128bf797409c",
+      "bytes": 28091,
+      "observed_mode": "0o444"
+    },
+    "work/962-engineering/head-star-current126-full-stars-result-peer-001/bindings.json": {
+      "path": "work/962-engineering/head-star-current126-full-stars-result-peer-001/bindings.json",
+      "sha256": "c2c33a39a1cb3f393288ee4a7f344f17d45bfa44c8c81347fe07cca6421b66d5",
+      "bytes": 112560,
+      "observed_mode": "0o444"
+    },
+    "work/962-engineering/head-star-current126-full-stars-result-peer-001/review.json": {
+      "path": "work/962-engineering/head-star-current126-full-stars-result-peer-001/review.json",
+      "sha256": "f22ee8bfc026caec2b6182bddfdfa250795ea3ee698c73c41a823a6dd1f5a4c4",
+      "bytes": 6090,
+      "observed_mode": "0o444"
+    },
+    "work/962-engineering/head-star-current126-full-stars-root-execution-001/closed-result.json": {
+      "path": "work/962-engineering/head-star-current126-full-stars-root-execution-001/closed-result.json",
+      "sha256": "4ec76692bd1fb7bb592bf24c82b199830eb6a4828cf9726fc879fa387022fb99",
+      "bytes": 104325,
+      "observed_mode": "0o444"
+    },
+    "work/962-engineering/head-star-current126-full-stars-root-execution-001/own-review.json": {
+      "path": "work/962-engineering/head-star-current126-full-stars-root-execution-001/own-review.json",
+      "sha256": "7d656e69d070e40d45de44c0bd61fedce03720201f44339ec7839c0dafc28931",
+      "bytes": 38266,
+      "observed_mode": "0o444"
+    },
+    "work/962-engineering/head-star-current126-full-stars-root-execution-001/result-peer-acceptance.json": {
+      "path": "work/962-engineering/head-star-current126-full-stars-root-execution-001/result-peer-acceptance.json",
+      "sha256": "f66d5857a0fa75352c3880ab2cd7bbc0bcae73833254f39423fd48971ebd52d9",
+      "bytes": 42852,
+      "observed_mode": "0o444"
+    },
+    "work/962-engineering/head-star-current129-full-stars-root-execution-001/launch-deviation-001.json": {
+      "path": "work/962-engineering/head-star-current129-full-stars-root-execution-001/launch-deviation-001.json",
+      "sha256": "d60fff297c6c45dc92e117262e36ffde36e2169d53fcd32ce2b79fabde5eebc3",
+      "bytes": 3140,
+      "observed_mode": "0o444"
+    },
+    "work/962-engineering/head-star-current204-batch-shells-prep-001/METHOD.md": {
+      "path": "work/962-engineering/head-star-current204-batch-shells-prep-001/METHOD.md",
+      "sha256": "20df61af74b23631ee3fe22d0eeef00c5457951473402932f62f40d4d6f76bc5",
+      "bytes": 5705,
+      "observed_mode": "0o444"
+    },
+    "work/962-engineering/head-star-current204-batch-shells-prep-001/select_batch.py": {
+      "path": "work/962-engineering/head-star-current204-batch-shells-prep-001/select_batch.py",
+      "sha256": "af388dd1a3ba5027c5c0b7a62295a2d8950b4789e0568e68f5451ab52a708350",
+      "bytes": 27996,
+      "observed_mode": "0o444"
+    },
+    "work/962-engineering/head-star-current204-batch-shells-prep-001/selfcheck.py": {
+      "path": "work/962-engineering/head-star-current204-batch-shells-prep-001/selfcheck.py",
+      "sha256": "d63f8783c6c5b813cfd3c1fb123ee938e0a68917cf3b5c1629b8c1c2d2106a28",
+      "bytes": 11307,
+      "observed_mode": "0o444"
+    },
+    "work/962-engineering/head-star-current204-local-stages-prep-001/case-manifest.json": {
+      "path": "work/962-engineering/head-star-current204-local-stages-prep-001/case-manifest.json",
+      "sha256": "3a558ede04cbc52c59e401befb36b8983ebd9b7f57d4266de0bea38fb1a963c5",
+      "bytes": 270626,
+      "observed_mode": "0o444"
+    },
+    "work/962-engineering/current126-alternative-star-batch-plan-001/LINEAGE-CLARIFICATION-001.json": {
+      "path": "work/962-engineering/current126-alternative-star-batch-plan-001/LINEAGE-CLARIFICATION-001.json",
+      "sha256": "3caea288c4d62b6c9f90cded9009f00b0c6dfd2d4da0546b31122e308780bb22",
+      "bytes": 4226,
+      "observed_mode": "0o444"
+    }
+  },
+  "source_checks": {
+    "full_source_guard_METHOD_reuse_diffs_read": true,
+    "held_current_inputs": 29,
+    "fixed_PINS": 23,
+    "effective_consumers": 24,
+    "literal_consumers": 12,
+    "dynamic_false_keys": 12,
+    "source_reverse_groups": 20,
+    "guard_reverse_groups": 8,
+    "both_complete_diffs_exact": true,
+    "exact_copied_caller_functions": 7,
+    "selected_source_fragments": 10,
+    "build_records_only_one_observation_schema_literal": true,
+    "guard_methods_UNRUN": 8,
+    "exact_old_guard_ASTs": 4,
+    "COHORT_COMPARISON_AST_Load_references": 0
+  },
+  "copied_function_proofs": {
+    "sha": {
+      "source_fragment_sha256": "eb0003af0c775c75d42350661e1dea02300f631cf31581ab9d8a17927f84cbf4",
+      "bytes": 74,
+      "AST_equal_same_parser": true
+    },
+    "load_helpers": {
+      "source_fragment_sha256": "c703a7768114d340d3d8c37d0704da56864e78baef292438330468d4e20d4a62",
+      "bytes": 667,
+      "AST_equal_same_parser": true
+    },
+    "verify_pins": {
+      "source_fragment_sha256": "14fee93071f08da4fa087f5dbb437565c0d1314fab2e40b891b785d6fce7d4cf",
+      "bytes": 342,
+      "AST_equal_same_parser": true
+    },
+    "census_rows": {
+      "source_fragment_sha256": "1e9da6ac64412f983de19fa8608b2c7fe3e8cd058aabc8dce431972453c5a88d",
+      "bytes": 5429,
+      "AST_equal_same_parser": true
+    },
+    "shell_faces": {
+      "source_fragment_sha256": "f70adb5be2357fbd1fa66db7c3e9cef03c9516c8ce9b26d9f578979fa254c0d2",
+      "bytes": 920,
+      "AST_equal_same_parser": true
+    },
+    "shell_topology": {
+      "source_fragment_sha256": "859f6b42e13d4caaae8252cf81753c58f09fe9430ca325fd6ab5bc082e69ace6",
+      "bytes": 1133,
+      "AST_equal_same_parser": true
+    },
+    "greedy_disjoint": {
+      "source_fragment_sha256": "c5444d96651282c67e6c2e0780dbef10e3e39cd2192704c1c7b7b2a6f4adb75d",
+      "bytes": 1344,
+      "AST_equal_same_parser": true
+    }
+  },
+  "selected_helper_fragment_proofs": {
+    "rational": {
+      "source": "work/962-engineering/fixed-shell-coupled-embedding-prep-001/check_embedding.py",
+      "source_fragment_sha256": "9587598210276a7e1f9290bb17a6e1c0510436e67a0edb777c5b918137afcee4",
+      "bytes": 103
+    },
+    "subtract": {
+      "source": "work/962-engineering/fixed-shell-coupled-embedding-prep-001/check_embedding.py",
+      "source_fragment_sha256": "fe216b81a307d66721685f8c3796d96028c9fdb0091bb86c1feb8029d77c637b",
+      "bytes": 55
+    },
+    "dot": {
+      "source": "work/962-engineering/fixed-shell-coupled-embedding-prep-001/check_embedding.py",
+      "source_fragment_sha256": "9bb7a542d82619e698beb6dc9a44af0823ef93909753d74795c327b5b91bfa2b",
+      "bytes": 53
+    },
+    "cross": {
+      "source": "work/962-engineering/fixed-shell-coupled-embedding-prep-001/check_embedding.py",
+      "source_fragment_sha256": "a120af7f30ffa4e30052fb16a10f7ae5224b3fb815a3ed73166a208246ac7b70",
+      "bytes": 88
+    },
+    "exact_quality": {
+      "source": "work/962-engineering/fixed-shell-coupled-embedding-prep-001/check_embedding.py",
+      "source_fragment_sha256": "16a88de1a44f4cf84daee6736e8308c7e218e0f3f22a2d8b1a8a526848a1fa72",
+      "bytes": 710
+    },
+    "cycle": {
+      "source": "work/962-engineering/domain-equivalence-prep-001/certify_domain.py",
+      "source_fragment_sha256": "2631d3a7e7335aecc02fd63bb3c98f2ba2b582fe46b1d7190ef4131f96e5a321",
+      "bytes": 72
+    },
+    "complex_rows": {
+      "source": "work/962-engineering/domain-equivalence-prep-001/certify_domain.py",
+      "source_fragment_sha256": "c02f36ed4244f64e3c50015ae1e335c5754de5dfccb7054278e16fcf4ed04b15",
+      "bytes": 1626
+    },
+    "certificate": {
+      "source": "twins/962-cylinder-head-f0/source/certify_fixed_face.py",
+      "source_fragment_sha256": "df32e5b96ec4f64edb3517d34da907f0d01f685abd37591fd6c5b71b9d90bc03",
+      "bytes": 1574
+    },
+    "partial_after_proof": {
+      "source": "work/962-engineering/head-star-current126-full-stars-prep-001/reader.py",
+      "source_fragment_sha256": "e99aeca0f70ec3634bdee3b8fb13a86cd6b0596b9929a5e90a9e88fa6c4f160f",
+      "bytes": 4077
+    },
+    "require_after_match": {
+      "source": "work/962-engineering/head-star-current126-full-stars-prep-001/reader.py",
+      "source_fragment_sha256": "8a0c7a50fb3b9d001a32fb61ea0655497297fb5e2093408e8fdad4aa288966ba",
+      "bytes": 1737
+    }
+  },
+  "checks": [
+    "All20/8 reversible caller/guard groups reconstruct exact af388/d63 donors; complete unified diffs match. Seven copied functions are byte/AST exact, build_records changes only one observation-schema literal, and all10 selected math/current-proof fragments match exact donor source hashes. No kernel or objective/threshold change.",
+    "New current_proof uses actual current126 receipt/root4ec/own7d656/peerf22/bindingsc2c/acceptancef66d schemas and descriptors, including108 inputs/runtime5/static9/complete6 boolean/whole actual mirror and exact current partial64caf proof. The selected2348 proof namespace requires builtins already available; no NumPy/Gmsh top level is loaded.",
+    "Source validates complete fresh100 census rows, all coordinate/hex/classification/poor/native-index memberships and six typed arrays before exact31 cohort screening. The cohort equals current seeds minus68 prior rejections and held1393275; completed1613031 absent. Fresh native indices come directly from ac405; comparison-plan body is integrity-pinned documentary metadata and never logically parsed by this caller.",
+    "Only31 alternatives enter unchanged exact topology/positive-volume/tight4over841 necessary face screens and unchanged full-vertex greedy, preserving full refusals/negative faces/current rows and all conflict decisions. No arbitrary batch cap, geometry-feasibility, outside-owner, candidate/domain/head or physical admission.",
+    "Eight meaningful synthetic guards are prepared but unrun: sparse mappings/negative signs/classes, bad-star refusal, tight-negative rows, greedy ties/conflicts, full saved rows/typed hashes, actual current proof joins/refusals, false authorities and exact31/history/stale-index refusal. Held guards/source allfalse; no actual/output exists. Ordinary root-owned120s/sample1GiB/1GiB/T8 controls remain proposed external controls, not quotas."
+  ],
+  "plan_metadata_review": {
+    "plan": {
+      "path": "work/962-engineering/current126-alternative-star-batch-plan-001/plan.json",
+      "sha256": "d9b820a6cf25a06cfa33128e4a17555046d545735a0f8299300b613892f183f5",
+      "bytes": 58205,
+      "observed_mode": "0o444"
+    },
+    "clarification": {
+      "path": "work/962-engineering/current126-alternative-star-batch-plan-001/LINEAGE-CLARIFICATION-001.json",
+      "sha256": "3caea288c4d62b6c9f90cded9009f00b0c6dfd2d4da0546b31122e308780bb22",
+      "bytes": 4226,
+      "observed_mode": "0o444"
+    },
+    "accepted_census_report_sha256": "ac40521a4add15f1bb414d7d1a1c2cd231a0107278b6fe43ec38dad27c269e1a",
+    "accepted_root_sha256": "f66d5857a0fa75352c3880ab2cd7bbc0bcae73833254f39423fd48971ebd52d9",
+    "accepted_peer_sha256": "f22ee8bfc026caec2b6182bddfdfa250795ea3ee698c73c41a823a6dd1f5a4c4",
+    "all100_retained_star_semantics_and1781_node_word_class_rows_match_prior127": true,
+    "all31_tag_corner_SICN_node_hashes_and_tagged_index_pair_digests_verified": true,
+    "conflict_witness_SHA256": "3dff4c900a834797e9582a74e1ac57d429a3f99c06cf41e72d3c441e8a675ea2",
+    "exact_scopes": {
+      "distinct_pool_cells": 1120,
+      "distinct_changed_indices": 1097,
+      "per_apex_cell_incidences": 1136,
+      "per_apex_changed_index_incidences": 1113,
+      "duplicate_shared_cell_incidences": 16
+    },
+    "resolved_finding": "Original field /prospective_pool/current_native_indices_changed_in_pool means1113 per-apex incidences, not1097 distinct TETs. Immutable companion3cae resolves label/encoding/first-observed-example scope; no plan/source/held bytes changed. The aggregate is not consumed as a source gate.",
+    "history": "Original plan pending-peer/null fields remain creation-stage metadata; this review binds later accepted f22/f66 records separately.",
+    "prior68_rejections_and_held1393275_preserved": true,
+    "pool_conflict_edges": 2,
+    "structural29_not_selected_or_feasible": true
+  },
+  "future_actual_direct_pin_required": {
+    "path": "work/962-engineering/current126-alternative-star-batch-plan-001/LINEAGE-CLARIFICATION-001.json",
+    "sha256": "3caea288c4d62b6c9f90cded9009f00b0c6dfd2d4da0546b31122e308780bb22",
+    "bytes": 4226,
+    "observed_mode": "0o444"
+  },
+  "own_prewrite_metadata_history": [
+    "Initial own metadata comparison assumed first_observed_index_change meant first sorted global tag; verified it is an exact inspection example, with no ordering claim. No peer files written.",
+    "Initial own raw-u64/bare-vector digest expectation was not the declared author encoding. Exact UTF8 compact JSON tagged[TET,index] pairs confirmed by author/companion and all31 old/current hashes independently reproduced. No source/helper/native execution.",
+    "Own distinct-cell tally exposed1097 versus labelled1113; author/root accepted immutable incidence clarification. All original evidence and source remained unchanged."
+  ],
+  "AST_context": {
+    "parser": "3.10.11 (v3.10.11:7d4cc5aa85, Apr  4 2023, 19:05:19) [Clang 13.0.0 (clang-1300.0.29.30)]",
+    "comparison": "Source fragments and ast.dump(include_attributes=False) compared under this one parser; no cross-version digest equivalence or prepared source compilation/import/execution."
+  },
+  "lineage": "I authored current126 census2348 and earlier selector/helper/census/application preparation and related peers. Reused engineering/math lineage is disclosed and not independently rederived. Replica_metrology authored this plan/clarification/new adapter; this peer independently reviews finite saved-metadata associations and new static glue only.",
+  "limits": [
+    "No source/helper/guard/query/native/scientific or mathematical-kernel execution, actual/output materialization, raw MSH/BIN/runtime/old archive body read/hash, Git/network/publisher action or author-file changes.",
+    "Full global census enumeration, geometry predicates and current quality/classification remain selected source/native/root attributed. Necessary-face pass and abstract tag disjointness do not establish replacement feasibility or global geometric nonoverlap. Root source/guard/exact actual/fresh-input/resource gates remain separate."
+  ],
+  "source_or_guard_executed": false,
+  "saved_query_execution_authorized": false,
+  "native_execution_authorized": false,
+  "generation_authorized": false,
+  "optimization_authorized": false,
+  "head_edit_authorized": false,
+  "whole_head_quality_admitted": false,
+  "engineering_accepted": false,
+  "physics_qualified": false,
+  "material_qualified": false,
+  "process_calibrated": false,
+  "manufacturing_authorized": false
+}
