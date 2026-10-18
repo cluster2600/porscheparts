@@ -24,6 +24,10 @@ The [current 127-cell census](derived/engineering/current127-full-stars/README.m
 finds 101 interior seed nodes and their complete 3,137-cell incident union,
 including 3,010 initially good cells and 99 cells shared by several seeds.
 All 127 poor cells are covered; repair feasibility remains unproven.
+The [next local study](derived/engineering/apex1613031-local-repair/README.md)
+retains the complete nine-node shell extraction and its rejected first generation:
+nine cells, one below SICN 0.1, minimum 0.05102133753836959. Its source, full
+results and separate reviews are available; this checkpoint changes no head mesh.
 The [coarse thermoelastic follow-up](derived/engineering/cp1-oneway-thermoelastic-level1/README.md)
 completes 80 steps and passes **15,734,237 scalar comparisons** under the same
 absolute SI limits, using its own BEGIN40 birth reference. Complete fields and

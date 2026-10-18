@@ -39,6 +39,13 @@ cells, including 3,010 initially good cells and 99 shared cells. The read-only
 query and saved associations pass their reviews; this does not establish repair
 feasibility or admit the whole head for analysis.
 
+The [next local repair study](derived/engineering/apex1613031-local-repair/README.md)
+completes the nine-node/fourteen-face shell extraction and retains the full
+quality-rejected first generation: nine cells, one poor, minimum SICN
+0.05102133753836959. Sources, exact/projection identities and separate saved-result
+reviews remain inspectable. This two-stage checkpoint does not apply a replacement
+to the head; domain, outside-owner and head admission remain separate gates.
+
 The [coarse one-way coupon](derived/engineering/cp1-oneway-thermoelastic-level1/README.md)
 passes 15,734,237 scalar comparisons after 80 steps at 0.005 s, with the same
 seven absolute SI limits and its own BEGIN40 birth reference. Root accepts

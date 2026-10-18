@@ -1,0 +1,74 @@
+{
+  "schema": "962-apex1613031-root-selected-runtime-fresh-byte-review/v1",
+  "UTC": "2026-10-18T04:04:00.095159+00:00",
+  "held_sha256": "e26d71cc4615a4f84de81c271bdfc420b469aa3a90eed555fdfcfb146fb69e3a",
+  "selected_native3": {
+    "runtime-role://registered-native/geometry/bin/python": {
+      "sha256": "72956ad35cff7691dfed9e04c9593de825ffd5b2fa7e8bc9ae96ce9a1af65621",
+      "bytes": 152624,
+      "resolved_path": "runtime-role://registered-native/resolved-python3.10",
+      "leaf_is_symlink": true
+    },
+    "runtime-role://registered-native/geometry/lib/libgmsh.4.15.dylib": {
+      "sha256": "def0f5c10988a986e5e879b3db9669d8fe016a81e2d994bbaf2b8497c6b8a58a",
+      "bytes": 82659384,
+      "resolved_path": "runtime-role://registered-native/geometry/lib/libgmsh.4.15.dylib",
+      "leaf_is_symlink": false
+    },
+    "runtime-role://registered-native/geometry/lib/python3.10/site-packages/gmsh.py": {
+      "sha256": "f4b0935cebde899750293d87a643090e5ea33c9b18d249267f507db68a0e01c3",
+      "bytes": 427222,
+      "resolved_path": "runtime-role://registered-native/geometry/lib/python3.10/site-packages/gmsh.py",
+      "leaf_is_symlink": false
+    }
+  },
+  "numpy_init": {
+    "sha256": "c09e25b58f6b2f8e2cb3c158168f902d447f8171e5ea6513c0aca41ecbda7c2b",
+    "bytes": 21817,
+    "resolved_path": "runtime-role://registered-native/numpy-environment/lib/python3.10/site-packages/numpy/__init__.py",
+    "leaf_is_symlink": false
+  },
+  "selected_outer_python": {
+    "sha256": "1699bf8aa705a8bb71613bef5cdd7d7c8c9d9a188a841f41679aa9b5830b8f60",
+    "bytes": 49968,
+    "resolved_path": "runtime-role://controller/resolved-python3.12",
+    "leaf_is_symlink": true
+  },
+  "free_disk_bytes": 14818521088,
+  "os_page_size": 16384,
+  "physical_pages": 4194304,
+  "vm_stat_at_review": "Mach Virtual Memory Statistics: (page size of 16384 bytes)\nPages free:                                    66008.\nPages active:                                1032156.\nPages inactive:                              1031378.\nPages speculative:                               161.\nPages throttled:                                   0.\nPages wired down:                            1669020.\nPages purgeable:                               13199.\n\"Translation faults\":                    20244916506.\nPages copy-on-write:                       583102852.\nPages zero filled:                       34341064004.\nPages reactivated:                         260684367.\nPages purged:                               71455312.\nFile-backed pages:                            631624.\nAnonymous pages:                             1432071.\nPages stored in compressor:                   731382.\nPages occupied by compressor:                 340891.\nDecompressions:                            399883248.\nCompressions:                              538382567.\nPageins:                                   421099692.\nPageouts:                                     172969.\nSwapins:                                    13234196.\nSwapouts:                                   19523528.\n",
+  "planned_controls": {
+    "wall_seconds": 30,
+    "sampled_RSS_stop_bytes": 1073741824,
+    "sampled_output_stop_bytes": 16777216,
+    "threads": 2,
+    "hard_OS_CPU_quota_applied": false,
+    "hard_address_space_limit_applied": false,
+    "environment": {
+      "PATH": "/usr/bin:/bin",
+      "LANG": "C",
+      "PYTHONUTF8": "1",
+      "OMP_NUM_THREADS": "2",
+      "OPENBLAS_NUM_THREADS": "2",
+      "VECLIB_MAXIMUM_THREADS": "2",
+      "PYTHONDONTWRITEBYTECODE": "1"
+    }
+  },
+  "planned_root_outer_controls": {
+    "wall_seconds": 40,
+    "TERM_grace_seconds": 8,
+    "verified_owned_process_group_KILL_if_needed": true,
+    "wait_and_reap": true,
+    "root_observes_owned_controller_only": true,
+    "valid_closed_controller_receipt_required": true,
+    "no_automatic_continuation_after_fallback_or_missing_receipt": true,
+    "authority": false
+  },
+  "scope": "Fresh bytes of three selected native files, one NumPy init and outer executable only; no scientific imports, version calls, geometry run or full transitive ABI/library/stdlib/OS closure. Free disk/VM are observations, not reservation or hard quota.",
+  "runtime_byte_pins_match": true,
+  "native_execution_authorized": false,
+  "engineering_accepted": false,
+  "physics_qualified": false,
+  "manufacturing_authorized": false
+}
