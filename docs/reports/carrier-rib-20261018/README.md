@@ -93,7 +93,20 @@ The independent [fresh native-BREP mesh](R1-mesh-root-review.json) completes wit
 
 The [two actual R1 geometry observations](R1-reference-geometry-root-review.json) query this new body at the two closed d64 reference peaks and their four corner probes. Every probe retains all **243 face / 738 edge distances**, native D2 properties, normal-line hits and unresolved qualifiers. The [complete local summary](R1-reference-geometry-observations.md) and [machine-readable observations](R1-reference-geometry-summary.json) include every retained nearest support and qualified chord. At the refined d64 reference point, a qualified R1 local normal chord measures **0.230562407 mm** between fresh R1 faces 62 and 60; corner 0 measures **0.018991912 mm** between those supports. A locally thin region therefore remains at these probes. These are separate local geometric measurements, with no global minimum-thickness or R1 stress conclusion. The summary's pending-ROOT sentence records its creation time; the linked ROOT review subsequently closes both actual jobs.
 
-Fresh R1 mechanical cases follow this mesh. The d64 mechanical results and existing section/stress images remain attached to d64; they do not establish the new trial's stress response.
+### Actual R1 coarse mechanical cases
+
+The [two completed R1 cases](R1-mechanics-root-review.json) use this fresh **166,361-node / 89,689-T10** mesh and the original **Fz = −4,000 N**, **My = 850 N·m**, **E = 107,000 MPa**, **ν = 0.31** and K1000 total-per-eye-and-axis contract. Whole serialized coordinates, load resultants and support cards were checked before solving. Both actual solvers returned RC0; their containers were removed and fresh absence checks passed.
+
+| Case | Global integration-point peak | Maximum displacement | Relative energy error |
+| --- | ---: | ---: | ---: |
+| Rigid eyes | 735.976996 MPa | 2.707886 mm | 1.74 × 10⁻⁹ |
+| K1000 eyes | 2,095.883175 MPa | 16.423858 mm | 1.32 × 10⁻⁸ |
+
+The complete [rigid](R1-rigid-energy-audit.json) and [spring](R1-spring-energy-audit.json) energy audits pass the unchanged **10⁻⁴** criterion. The ROOT review verifies all **62 output files**, actual native plans, solver identity, every global maximum and all current input identities.
+
+Both sole maxima occur at **element 83,728 / integration point 1**, undeformed coordinates **(83.397174, −15.380329, 13.889129) mm**. Its measured maximum corner edge is **0.939982012 mm**, giving the proposed original H/2 target **0.469991006 mm**. Both roles identify the same measured site. This point is distinct from the older d64 reference locations used for the preceding R1 geometric observations; its local geometry is the next observation target.
+
+R1 and d64 use different CAD and independently generated coarse meshes, so changes in their maxima include geometry and discretisation effects. R1 stress convergence and adequate strength remain open. The d64 field images retain their original identities; a local R1 refinement is being prepared from these new actual peak objects.
 
 ## Evidence scope
 
