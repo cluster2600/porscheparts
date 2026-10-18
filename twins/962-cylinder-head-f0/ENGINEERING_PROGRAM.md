@@ -6,6 +6,33 @@ scenarios through 4.0 L and four actual head geometries. This programme tracks
 the complete requested outcome; preparation or software tests do not complete
 a physical engineering stage.
 
+## Five-stage delivery plan
+
+| Stage | Next deliverable | Evidence needed to complete the stage |
+|---|---|---|
+| 1. English baseline | Keep documentation, figures, reports and new source comments in English; preserve immutable originals. | Linked dimensional basis, assumptions and source provenance for the 3.0–4.0 L family. Missing OEM interface measurements remain explicit. |
+| 2. Material and strength | Admit each head mesh, select a documented material/process state and calculate thermal and structural responses. | Convergence, equilibrium, operating loads, temperature-dependent properties and applicable allowables; physical correlation and engineering review for qualification. |
+| 3. LPBF | Simulate deposition, cooling, supports, heat treatment and support release for the chosen machine and build route. | Calibrated process inputs and coupon measurements, distortion/residual-stress comparison, inspection and machining allowances. |
+| 4. Omniverse | Assemble the geometry family and attach accepted fields with units, coordinate frames, time and provenance. | Assembly/conformance checks and a traceable connection to the accepted engineering results. |
+| 5. PhysicsNeMo | Train and evaluate a surrogate from accepted reference solutions, then connect checked inference to the twin. | Split complete geometry/build/load cases before normalization; evaluate independent cases, errors and operating limits. |
+
+Execution follows this order. The existing synthetic coupons, USD checks and
+runtime preparations remain evidence for their stated software scope. They do
+not complete head strength, calibrated LPBF or a physically correlated twin.
+Each completed checkpoint is published in the existing GitHub draft review.
+
+The [current head checkpoint](derived/engineering/apex1613790-head-application/README.md)
+completes one further local replacement and full save/reopen procedure:
+**129 to 127** cells below SICN 0.1. Its exact generated mesh is downloadable
+for review. All 44 local replacement cells pass the gate, while the whole-head
+minimum remains 0.039074265058645995 and head analysis admission remains open.
+
+The [coarse one-way coupon](derived/engineering/cp1-oneway-thermoelastic-level1/README.md)
+passes 15,734,237 scalar comparisons after 80 steps at 0.005 s, with the same
+seven absolute SI limits and its own BEGIN40 birth reference. Root accepts
+fixed synthetic single-level software verification only. Both coarse and fine
+results remain available; their existence does not establish mechanical convergence.
+
 ## Current execution order
 
 All new deliverables remain in English. Preserve the water-cooled 962 C 3.0 L

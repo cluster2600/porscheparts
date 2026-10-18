@@ -11,6 +11,16 @@ with explicit assumptions for unavailable dimensions.
 
 The [engineering execution programme](ENGINEERING_PROGRAM.md) continues through
 material/strength assessment, LPBF simulation, an Omniverse twin and PhysicsNeMo.
+The [latest head checkpoint](derived/engineering/apex1613790-head-application/README.md)
+reduces the observed poor-cell count from **129 to 127** and supplies the exact
+generated mesh as a lossless review download. All 44 replacement cells pass the
+local SICN 0.1 gate; the whole head remains rejected, with unchanged minimum
+SICN 0.039074265058645995. Head strength and manufacturing qualification remain open.
+The [coarse thermoelastic follow-up](derived/engineering/cp1-oneway-thermoelastic-level1/README.md)
+completes 80 steps and passes **15,734,237 scalar comparisons** under the same
+absolute SI limits, using its own BEGIN40 birth reference. Complete fields and
+saved-result reviews are retained. Mechanical convergence and physical qualification
+remain open.
 The [corrected one-way thermoelastic coupon](derived/engineering/cp1-oneway-thermoelastic-transfer/README.md)
 passes 31,241,797 scalar comparisons under the unchanged SI limits. Its complete
 fields, source, earlier setup failure and separate saved-result reviews are retained.
