@@ -1,0 +1,32 @@
+{
+  "schema": "root-certified-flip-candidate-execution-1",
+  "command": [
+    "/usr/bin/env",
+    "OMP_NUM_THREADS=1",
+    "OPENBLAS_NUM_THREADS=1",
+    "MKL_NUM_THREADS=1",
+    "/usr/bin/nice",
+    "-n",
+    "10",
+    "/Users/maxime/.codex/worktrees/993-carrier-revalidation/3dprinting993/work/part-workflow/runtimes/pyslm-coverage-011/env/bin/python",
+    "-I",
+    "-B",
+    "/Users/maxime/.codex/worktrees/993-carrier-revalidation/3dprinting993/work/carrier-process-20261017/source010-certified-flip-candidate-003/create.py",
+    "create",
+    "--preflight-sha256",
+    "2cc331e67a5a9a365162a85ff30858b4424afe8dccd1682e1c3303f6562b7a12"
+  ],
+  "owned_child_PID_and_PGID": 101,
+  "actual_returncode": 0,
+  "timeout": false,
+  "owned_group_signals": [],
+  "wall_seconds": 14.494361291173846,
+  "plan_sha256": "f449241191907194dde176ee1204f8f6b44bd61017e3bab30d9694e1e0bbbe9b",
+  "caller_sha256": "6bef0b55638e377d62f1e9adbc8c3a3806eeda4e1d98e17040d58058ad39ce8c",
+  "source_files_unchanged": true,
+  "logs_sha256": {
+    "stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stdout.log": "63633c7243a3a285c845e4f017204a807a62cbf22dda64da5ebd190a10ca02ba"
+  },
+  "global_admission": false
+}

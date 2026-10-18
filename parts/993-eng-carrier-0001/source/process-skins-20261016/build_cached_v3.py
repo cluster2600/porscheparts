@@ -1,0 +1,139 @@
+"""Reuse frozen cached slicing with the exact combinatorial support admission."""
+import argparse
+import importlib.util
+import json
+from pathlib import Path
+
+from admitted_regions import sha
+from compact_json import dumps
+
+BASE = Path(__file__).with_name('build_cached.py')
+BASE_SHA256 = 'fe8c06ecd2b30d4c05383ca65bb90c1523e86278bd6cd4447b92c9d6f5120fc2'
+SCHEMA = 'support-geometry-v3-combinatorial-intervals'
+STRATEGY = 'continuous_domain_with_nonoverlapping_attested_edge_strips'
+KEYS = ('envelopes', 'regions', 'skins', 'grids', 'contacts', 'collisions')
+POLICY_FILES = (Path(__file__).resolve(), Path(__file__).with_name('admissions_v3.py'),
+                Path(__file__).with_name('indexed_combinatorial_interfaces.py'))
+POLICY_SHA256 = {path: sha(path) for path in POLICY_FILES}
+ADMISSION_SHA256 = 'da60b5fd390cb9213638981c85bd7b95a4500d775ec41263d92c859785f8ba9d'
+INDEX_SHA256 = '0302ac46796b2dab08484873370ab1f4d5eff6319c752f966641825a34aba2bd'
+if POLICY_SHA256[POLICY_FILES[1]] != ADMISSION_SHA256 or POLICY_SHA256[POLICY_FILES[2]] != INDEX_SHA256:
+    raise ValueError('The reviewed exact admission or interface index changed')
+RUNTIME_HOOKS = dict(combinatorial_constructor=dict(source=POLICY_FILES[2].name,
+    sha256=INDEX_SHA256, operation='exact_source_line_index_with_unchanged_constructor_receipt'))
+if sha(BASE) != BASE_SHA256:
+    raise ValueError('The frozen cached support builder changed')
+_spec = importlib.util.spec_from_file_location('_carrier_cached_builder_v3_base', BASE)
+_base = importlib.util.module_from_spec(_spec)
+_spec.loader.exec_module(_base)
+_prepared_regions = _base.PreparedRegions
+_admission_spec = importlib.util.spec_from_file_location('_carrier_cached_v3_admissions', POLICY_FILES[1])
+admissions_v3 = importlib.util.module_from_spec(_admission_spec)
+_admission_spec.loader.exec_module(admissions_v3)
+_index_spec = importlib.util.spec_from_file_location('_carrier_cached_v3_index', POLICY_FILES[2])
+_index = importlib.util.module_from_spec(_index_spec)
+_index_spec.loader.exec_module(_index)
+admissions_v3._construction = _index
+
+
+def prepared_regions(*args, **kwargs):
+    prepared = _prepared_regions(*args, **kwargs)
+    prepared.files.update(POLICY_SHA256)
+    prepared.verify()
+    return prepared
+
+
+def verify_sources():
+    if sha(BASE) != BASE_SHA256 or any(sha(path) != digest for path, digest in POLICY_SHA256.items()):
+        raise ValueError('Cached support builder or admission policy changed')
+
+
+def seal(output, checkpoint, store):
+    verify_sources()
+    admission, admitted = admissions_v3.seal(output, checkpoint, store)
+    for item in admission.values():
+        path = Path(output)/item['receipt']
+        receipt = json.loads(path.read_text())
+        receipt['admission_runtime_hooks'] = RUNTIME_HOOKS
+        path.write_text(dumps(receipt, indent=2, allow_nan=False)+'\n')
+        item['receipt_sha256'] = sha(path)
+    checkpoint['admission_runtime_hooks'] = RUNTIME_HOOKS
+    (Path(output)/'support-stage.json').write_text(dumps(checkpoint, indent=2, allow_nan=False)+'\n')
+    verify_sources()
+    return admission, admitted
+
+
+# Mutations are confined to these two private module instances.
+_base.PreparedRegions = prepared_regions
+_base.seal = seal
+
+
+def verify_v3_stage(directory):
+    directory = Path(directory).resolve()
+    checkpoint = json.loads((directory/'support-stage.json').read_text())
+    admission = checkpoint.get('admission', {})
+    if checkpoint.get('manufacturing_preparation_admitted') is not True or set(admission) != set(KEYS):
+        raise ValueError('A v3 stage requires six admitted receipts')
+    if checkpoint.get('admission_runtime_hooks') != RUNTIME_HOOKS:
+        raise ValueError('The v3 admission runtime hook differs')
+    for key in KEYS:
+        item = admission[key]
+        name = f'admission-{key}.json'
+        path = directory/name
+        if (item.get('receipt') != name or item.get('status') != 'passed' or path.is_symlink()
+                or not path.is_file() or sha(path) != item.get('receipt_sha256')):
+            raise ValueError('The exact v3 admission receipt identity differs: '+key)
+        receipt = json.loads(path.read_text())
+        if (receipt.get('passed') is not True or receipt.get('status') != 'passed'
+                or receipt.get('input_sha256') != checkpoint['input_sha256']
+                or receipt.get('admission_schema') != SCHEMA
+                or receipt.get('admission_source_sha256') != POLICY_SHA256[POLICY_FILES[1]]
+                or receipt.get('admission_runtime_hooks') != RUNTIME_HOOKS):
+            raise ValueError('The reusable stage does not use this exact v3 policy: '+key)
+    return checkpoint
+
+
+def build(input_path, output, envelopes, part_cache, expected_sha256=None, identity_receipt=None,
+          solid_sheets=False, continuous_interfaces=False, region_checkpoints=None,
+          supports_only=False, reuse_support_stage=None):
+    verify_sources()
+    if reuse_support_stage is not None:
+        verify_v3_stage(reuse_support_stage)
+    result = _base.build(input_path, output, envelopes, part_cache, expected_sha256, identity_receipt,
+        solid_sheets, continuous_interfaces, region_checkpoints, supports_only, reuse_support_stage)
+    if not supports_only:
+        checkpoint_path = Path(output)/'support-stage.json'
+        checkpoint = json.loads(checkpoint_path.read_text())
+        checkpoint['admission_runtime_hooks'] = RUNTIME_HOOKS
+        checkpoint_path.write_text(dumps(checkpoint, indent=2, allow_nan=False)+'\n')
+        result['outputs_sha256']['support-stage.json'] = sha(checkpoint_path)
+    verify_v3_stage(output)
+    result.update(support_strategy=STRATEGY, runner_adapter_source_sha256=POLICY_SHA256[POLICY_FILES[0]],
+                  cached_builder_base_sha256=BASE_SHA256,
+                  admission_source_sha256=POLICY_SHA256[POLICY_FILES[1]],
+                  admission_runtime_hooks=RUNTIME_HOOKS)
+    path = Path(output)/('support-stage.json' if supports_only else 'report.json')
+    path.write_text(dumps(result, indent=2, allow_nan=False)+'\n')
+    verify_sources()
+    return result
+
+
+if __name__ == '__main__':
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('input', type=Path)
+    parser.add_argument('output', type=Path)
+    identity = parser.add_mutually_exclusive_group(required=True)
+    identity.add_argument('--sha256')
+    identity.add_argument('--identity-receipt', type=Path)
+    parser.add_argument('--envelopes', type=Path, required=True)
+    parser.add_argument('--part-cache', type=Path, required=True)
+    parser.add_argument('--region-checkpoints', type=Path, required=True)
+    parser.add_argument('--supports-only', action='store_true')
+    parser.add_argument('--reuse-support-stage', type=Path)
+    parser.add_argument('--solid-sheets', action='store_true')
+    parser.add_argument('--continuous-interfaces', action='store_true')
+    args = parser.parse_args()
+    report = build(args.input, args.output, args.envelopes, args.part_cache, args.sha256,
+        args.identity_receipt, args.solid_sheets, args.continuous_interfaces,
+        args.region_checkpoints, args.supports_only, args.reuse_support_stage)
+    print(json.dumps({key:report[key] for key in ('status', 'manufacturing_preparation_admitted', 'n_layers') if key in report}))

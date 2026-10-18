@@ -1,0 +1,76 @@
+{
+  "passed": true,
+  "scope": "predeclared one-element Q1 thermoelastic comparison against exact discrete FE reference and native CCX",
+  "history": [
+    {
+      "time_s": 0.0,
+      "temperature_error_K": 0.0,
+      "maximum_displacement_component_error_m": 4.662052132453519e-21,
+      "maximum_coordinate_error_m": 1.899898051382909e-10,
+      "maximum_displacement_m": 6.0608658007966506e-21,
+      "cell_mean_von_mises_Pa": 2.38141932840108e-08,
+      "reference_cell_mean_von_mises_Pa": 0.0,
+      "maximum_stored_stress_scalar_error_Pa": 2.38141932840108e-08,
+      "native_field_dtypes": {
+        "temperature": "float32",
+        "displacement": "float32",
+        "stress": "float32"
+      }
+    },
+    {
+      "time_s": 0.005,
+      "temperature_error_K": 0.0,
+      "maximum_displacement_component_error_m": 1.7023652027351371e-15,
+      "maximum_coordinate_error_m": 1.899898051382909e-10,
+      "maximum_displacement_m": 1.2024438660873158e-07,
+      "cell_mean_von_mises_Pa": 599983.1875,
+      "reference_cell_mean_von_mises_Pa": 599983.1702876367,
+      "maximum_stored_stress_scalar_error_Pa": 0.01721236330922693,
+      "native_field_dtypes": {
+        "temperature": "float32",
+        "displacement": "float32",
+        "stress": "float32"
+      },
+      "ccx_cell_mean_von_mises_Pa": 599983.2325589353,
+      "intersolver_cell_mean_von_mises_difference_Pa": 0.0450589352985844
+    },
+    {
+      "time_s": 0.01,
+      "temperature_error_K": 0.0,
+      "maximum_displacement_component_error_m": 3.4047304054702742e-15,
+      "maximum_coordinate_error_m": 1.899898051382909e-10,
+      "maximum_displacement_m": 2.4048877321746316e-07,
+      "cell_mean_von_mises_Pa": 1199966.375,
+      "reference_cell_mean_von_mises_Pa": 1199966.3405752734,
+      "maximum_stored_stress_scalar_error_Pa": 0.03442472661845386,
+      "native_field_dtypes": {
+        "temperature": "float32",
+        "displacement": "float32",
+        "stress": "float32"
+      },
+      "ccx_cell_mean_von_mises_Pa": 1199966.3248104907,
+      "intersolver_cell_mean_von_mises_difference_Pa": 0.050189509289339185
+    }
+  ],
+  "protocol_sha256": "5a9b6f26298c111843507065728e8e52004cd5223b1d9f5d6ae80016cc1f0dfd",
+  "assessor_sha256": "43818051fb2c16731d56b50fe4f19440bafe64b639dfb732025ffa48ec014363",
+  "contract_sha256": "544067c4823a0c727410e30d161430bada00cda9763aeb681f82654656339676",
+  "ccx_assessment_sha256": "af9fddc52f1a97c86610cd1a0deecc0e3fb44613f64c9a2ec7e7532312700ac2",
+  "native_binary_sha256": "e7637a1a3729f82c0b11a9a1864fd96b7fbdee9408ede0aad5b59e573699b959",
+  "profile_manifest_sha256": "642a7f8c7928a2bf8171162f4928a02c093fc0677956c3c7023d37a12a1b128f",
+  "native_execution_sha256": "5e644d9164f0535c64646d28dff4fd399240f414d69a20f946324c60e13425df",
+  "native_log_sha256": "8c8a6db0da0b2d27f1f2142117a9efce50d559c658c54ccbcae181ae1bdccd79",
+  "native_output_sha256": {
+    "common.pvd": "cf0ca5f4305b1c3c13b0d0ac7d16e2cc8ea3d1cf3cc75637da3acd77775f98a4",
+    "common.0.pvtu": "10a9337d56f0ba2318af82d63d8fd40149b39545ecd161f589786230a988eeab",
+    "common.0.0.vtu": "0ab5a165b4c929effe7cd3bd6211c4c1422ad0c388e67e4b63b17c3b15270e0f",
+    "common.1.pvtu": "319feffe93ca5c000ffc66fac0f12a132bded644a993ffa8d9c3b000f0906c87",
+    "common.1.0.vtu": "66bca61d64302fea8af7935bdd77823dd2ea5633c8cdfd8bcbcf34a10facea10",
+    "common.2.pvtu": "feedc1adebdd775220c07898ff7650432676c266af9e3e627ae772f55c0face7",
+    "common.2.0.vtu": "652839f5f596d543add5e7734a0eb619b691df41a344939e86aff4c74fddaa4c"
+  },
+  "full_stress_tensor_exported": false,
+  "physical_validation": false,
+  "manufacturing_authorized": false,
+  "model_difference": "CCX uses uncoupled transient displacement; agreement with exact static FE reference is checked at every output; Adamantine mechanical solve is quasistatic"
+}

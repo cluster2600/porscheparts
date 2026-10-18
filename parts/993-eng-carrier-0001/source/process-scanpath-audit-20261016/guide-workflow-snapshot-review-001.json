@@ -1,0 +1,18 @@
+{
+  "status": "software_provenance_snapshot_checks_passed",
+  "snapshot": "delivery-assets/source-workflow.json",
+  "meaning": "Exact workflow bytes used to bind visuals are retained before the runner finalizes its live receipt. No new workflow result is invented.",
+  "sources_sha256": {
+    "scripts/build_carrier_workshop_guide_v2.py": "044763c9c80b6c4bd50686248768f7edda3080bfd6622c30488365e88ce69552",
+    "tests/test_carrier_workshop_guide_v2.py": "cf284b682b6cc78fcc3d73a3a834bb9ee6ee7d6d082cc9c4118b93b8c717783f",
+    "tests/test_carrier_workflow_assembly.py": "cfac23d67f8bb0131b561a313bbc560816d0c380472102b0669bc50c7286e9a9"
+  },
+  "guide_tests_passed": 19,
+  "assembly_tests_passed": 8,
+  "negative_checks": [
+    "Changed source rejected under previous hash",
+    "Existing snapshot cannot be overwritten"
+  ],
+  "positive_check": "Snapshot retains its hash after live workflow is finalized",
+  "full_cold_recipe_executed": false
+}

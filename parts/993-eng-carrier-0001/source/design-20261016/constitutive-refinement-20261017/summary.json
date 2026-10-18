@@ -1,0 +1,75 @@
+{
+  "status": "comparison_completed_all_refined_numeric_checks_pass",
+  "baseline_states": 16,
+  "refined_states": 32,
+  "baseline_checks": {
+    "ENER_all_states_pass": false,
+    "Piola_all_states_pass": true,
+    "positive_detF_all_states": true,
+    "within_measured_domain": true,
+    "ENER_failing_times": [
+      "1/8"
+    ],
+    "Piola_failing_times": []
+  },
+  "refined_checks": {
+    "ENER_all_states_pass": true,
+    "Piola_all_states_pass": true,
+    "positive_detF_all_states": true,
+    "within_measured_domain": true,
+    "ENER_failing_times": [],
+    "Piola_failing_times": []
+  },
+  "thresholds": {
+    "ENER": 0.001,
+    "Piola": 0.0001
+  },
+  "worst_ENER_relative_to_gross": {
+    "baseline": 0.0015851409714693634,
+    "refined": 0.0007316170818578317,
+    "difference": -0.0008535238896115317,
+    "relative_difference": -0.5384529861847862
+  },
+  "worst_Piola_relative_to_gross": {
+    "baseline": 5.637878071167981e-06,
+    "refined": 8.774248902538287e-05,
+    "difference": 8.210461095421488e-05,
+    "relative_difference": 14.563034162462039
+  },
+  "unloaded_residual": {
+    "displacement_max_mm": {
+      "baseline": 0.09925853846232784,
+      "refined": 0.09908998769055886,
+      "difference": -0.0001685507717689716,
+      "relative_difference": -0.0016980984646770981
+    },
+    "VM_max_MPa": {
+      "baseline": 845.7416518671683,
+      "refined": 846.5301362725279,
+      "difference": 0.7884844053595543,
+      "relative_difference": 0.0009322993654371811
+    },
+    "PEEQ_max": {
+      "baseline": 0.01154945,
+      "refined": 0.011562,
+      "difference": 1.2550000000000061e-05,
+      "relative_difference": 0.0010866318309529944
+    },
+    "plastic_quadrature_volume_mm3": {
+      "baseline": 338.45665066079306,
+      "refined": 338.12446162737746,
+      "difference": -0.33218903341560235,
+      "relative_difference": -0.0009814817725314188
+    },
+    "baseline_peak_node": 3943,
+    "refined_peak_node": 3943,
+    "acceptance_threshold": null,
+    "interpretation": "Measured difference only; no residual-displacement acceptance or convergence tolerance was invented."
+  },
+  "numerical_interpretation": "One step halving supplies a sensitivity comparison, not a mesh-convergence proof, asymptotic order or material qualification.",
+  "schema": "constitutive-increment-refinement-summary-1",
+  "comparison_sha256": "31a9b7a7c78cb54ebc6b74ff36f2965f9e09bf30048105a089559e6ca6849561",
+  "binding_sha256": "b5b3ac192e4b88c828d1cc17daad37dd1183139da8cf5cd2f5d070fd5b7bd3a9",
+  "historical_16_checks_preserved": true,
+  "global_admission": false
+}

@@ -1,0 +1,5310 @@
+{
+  "schema": "retained-actual-R1-own-peak-geometry-summary-1",
+  "status": "complete_retained_local_observation_index_no_new_science",
+  "owner_terminal_sha256": "5c861950a26159421f65d32fab4a7d8a6da3ad966d0ad1bb4347435d7eda8ca8",
+  "assessment_path": "work/carrier-process-20261017/bounded-webs-stock-rib-R1-peak-native-preparation-001/output-001/assessment.json",
+  "assessment_sha256": "daeb25aca9bf2ccf67a8e7afad7515ad5733539e446d7ac53fa50f38ec7232d7",
+  "query_R1_CAD_source": {
+    "format": "BREP",
+    "filename": "work/carrier-process-20261017/bounded-webs-stock-rib-seven-edge-rounding-preparation-001/output-001/candidate-native.brep",
+    "sha256": "240109caadf961b2c5b70e580dcd50e6fef61dfd3aaa861cdb932c80a9df31a2",
+    "candidate_version": "stock-rib-seven-edge-R1-v1",
+    "authority_ROOTs_sha256": {
+      "local_ROOT": "2c2c2a3a010e6c90166b8ecc945fec96c322079e6c620f9a32fbc049aca2b70e",
+      "body_ROOT": "cd103209613ec6c3f79138e7088e758c3506a4500a8e5ae6ddebbe34f163ceb5",
+      "protected_ROOT": "77214ec65b46d1edcc04ed61bb9e267c689068c4a08932198ac31de23a0f86d8"
+    },
+    "scope": "R1 CAD queried at its own closed common global IP; no new stress calculation"
+  },
+  "actual_FE_CAD_source": {
+    "format": "BREP",
+    "filename": "carrier.brep",
+    "sha256": "240109caadf961b2c5b70e580dcd50e6fef61dfd3aaa861cdb932c80a9df31a2",
+    "master_description_sha256": "398c5bdff7c109e53a9d496e58bc428174dbf27c9818e064a4f656dcd3664546",
+    "native_containment_receipt_sha256": "c7c47b9f5a1a392cbbad2ca288756674373b8f75264b8ec000424ee06d273b2f",
+    "native_volume_receipt_sha256": "2d72c0ead6c7d8323d7cd4696b3aff2ed28e5c29cb9a268170263f2b8dd111e7",
+    "nonadaptive_volume_receipt_sha256": "2d72c0ead6c7d8323d7cd4696b3aff2ed28e5c29cb9a268170263f2b8dd111e7",
+    "adaptive_volume_mm3": 288451.89219496236,
+    "adaptive_operator": {
+      "api": "BRepGProp.VolumeProperties_s",
+      "arguments": [
+        1e-10,
+        true,
+        false
+      ],
+      "scope": "Separate adaptive native reference for material mass and mesh volume error"
+    },
+    "nonadaptive_import_reference_mm3": 288451.89106919506,
+    "nonadaptive_import_operator": {
+      "api": "BRepGProp.VolumeProperties_s",
+      "arguments": [
+        false,
+        false,
+        false
+      ],
+      "scope": "Same nonadaptive overload used by Gmsh getMass; only the future import comparison reference"
+    },
+    "imported_CAD_absolute_identity_proved": false,
+    "STEP_exchange_qualified": false
+  },
+  "actual_case_peak": {
+    "element_id": 83728,
+    "IP_one_based": 1,
+    "reference_undeformed_IP_xyz_mm": [
+      83.39717404347466,
+      -15.380328571289892,
+      13.889129384939432
+    ]
+  },
+  "element_node_ids": [
+    3498,
+    199,
+    70,
+    32741,
+    32869,
+    32868,
+    3499,
+    32759,
+    137369,
+    32757
+  ],
+  "element_nodes_mm": [
+    [
+      83.455138389319,
+      -15.372895205696,
+      14.000030473284
+    ],
+    [
+      83.463260350657,
+      -15.1739071529,
+      13.787064625185
+    ],
+    [
+      83.432610574987,
+      -15.924826463576,
+      13.762085261273
+    ],
+    [
+      83.050110295512,
+      -15.073740339351,
+      13.648453719354
+    ],
+    [
+      83.459199369988,
+      -15.273401179298,
+      13.893547549235
+    ],
+    [
+      83.447935462822,
+      -15.549366808238,
+      13.774574943229
+    ],
+    [
+      83.443874482153,
+      -15.648860834636,
+      13.881057867279
+    ],
+    [
+      83.252624342416,
+      -15.223317772524,
+      13.824242096319
+    ],
+    [
+      83.256685323084,
+      -15.123823746125,
+      13.71775917227
+    ],
+    [
+      83.24136043525,
+      -15.499283401463,
+      13.705269490314
+    ]
+  ],
+  "native_tolerance_mm": 4.46679483124578e-05,
+  "probes": [
+    {
+      "label": "case_IP",
+      "probe_xyz_mm": [
+        83.39717404347466,
+        -15.380328571289892,
+        13.889129384939432
+      ],
+      "all_face_distance_rows": 243,
+      "all_edge_distance_rows": 738,
+      "all_retained_nearest_face_properties": [
+        {
+          "rank": 0,
+          "face_index_zero_based": 60,
+          "surface_type": "GeomAbs_SurfaceType.GeomAbs_BSplineSurface",
+          "distance_mm": 0.007203021362475468,
+          "local_status": "native_D2_at_reported_UV",
+          "support_type": "BRepExtrema_SupportType.BRepExtrema_IsInFace",
+          "UV": [
+            18.874876098937747,
+            -0.12841503483595812
+          ],
+          "point_mm": [
+            83.39177504288995,
+            -15.383323809106406,
+            13.892839217800496
+          ],
+          "normal_outward": [
+            -0.7495466573017205,
+            -0.4158307557044002,
+            0.51503843656384
+          ],
+          "minimum_curvature_per_mm": 0.0004867684706458743,
+          "maximum_curvature_per_mm": 0.999993644918873,
+          "kernel_resolution_mm": 4.46679483124578e-05,
+          "local_chord": {
+            "status": "unambiguous_first_native_in_out_normal_chord",
+            "thickness_mm": 0.08591308377440818,
+            "target_face_index_zero_based": 62,
+            "scope": "one_local_native_normal_chord_not_global_minimum_thickness"
+          },
+          "complete_raw_hit_count": 4,
+          "raw_properties_pointer": "output-001/assessment.json#/probes/0/nearest_faces/0/local_properties"
+        },
+        {
+          "rank": 1,
+          "face_index_zero_based": 62,
+          "surface_type": "GeomAbs_SurfaceType.GeomAbs_Plane",
+          "distance_mm": 0.057612972324422876,
+          "local_status": "native_D2_at_reported_UV",
+          "support_type": "BRepExtrema_SupportType.BRepExtrema_IsInFace",
+          "UV": [
+            26.58520397330411,
+            -57.88912938493943
+          ],
+          "point_mm": [
+            83.4547390848654,
+            -15.382678164816042,
+            13.889129384939432
+          ],
+          "normal_outward": [
+            0.999168053100579,
+            -0.04078236951427282,
+            0.0
+          ],
+          "minimum_curvature_per_mm": 0.0,
+          "maximum_curvature_per_mm": 0.0,
+          "kernel_resolution_mm": 4.46679483124578e-05,
+          "local_chord": {
+            "status": "unambiguous_first_native_in_out_normal_chord",
+            "thickness_mm": 0.06745367212333821,
+            "target_face_index_zero_based": 60,
+            "scope": "one_local_native_normal_chord_not_global_minimum_thickness"
+          },
+          "complete_raw_hit_count": 14,
+          "raw_properties_pointer": "output-001/assessment.json#/probes/0/nearest_faces/1/local_properties"
+        },
+        {
+          "rank": 2,
+          "face_index_zero_based": 68,
+          "surface_type": "GeomAbs_SurfaceType.GeomAbs_SurfaceOfExtrusion",
+          "distance_mm": 0.2027630529613214,
+          "local_status": "native_D2_at_reported_UV",
+          "support_type": "BRepExtrema_SupportType.BRepExtrema_IsInFace",
+          "UV": [
+            0.4606366086066897,
+            -9.899129384939432
+          ],
+          "point_mm": [
+            83.52326289621935,
+            -15.221537964326746,
+            13.889129384939432
+          ],
+          "normal_outward": [
+            -0.6218531971341841,
+            -0.7831338335265523,
+            0.0
+          ],
+          "minimum_curvature_per_mm": -0.0038575928871410394,
+          "maximum_curvature_per_mm": 0.0,
+          "kernel_resolution_mm": 4.46679483124578e-05,
+          "local_chord": {
+            "status": "unambiguous_first_native_in_out_normal_chord",
+            "thickness_mm": 2.1887321277361664,
+            "target_face_index_zero_based": 149,
+            "scope": "one_local_native_normal_chord_not_global_minimum_thickness"
+          },
+          "complete_raw_hit_count": 4,
+          "raw_properties_pointer": "output-001/assessment.json#/probes/0/nearest_faces/2/local_properties"
+        },
+        {
+          "rank": 3,
+          "face_index_zero_based": 11,
+          "surface_type": "GeomAbs_SurfaceType.GeomAbs_SurfaceOfExtrusion",
+          "distance_mm": 0.5059743193379768,
+          "local_status": "closest_support_not_face_interior",
+          "support_type": "BRepExtrema_SupportType.BRepExtrema_IsOnEdge",
+          "UV": null,
+          "point_mm": null,
+          "normal_outward": null,
+          "minimum_curvature_per_mm": null,
+          "maximum_curvature_per_mm": null,
+          "kernel_resolution_mm": null,
+          "local_chord": null,
+          "complete_raw_hit_count": 0,
+          "raw_properties_pointer": "output-001/assessment.json#/probes/0/nearest_faces/3/local_properties"
+        },
+        {
+          "rank": 4,
+          "face_index_zero_based": 64,
+          "surface_type": "GeomAbs_SurfaceType.GeomAbs_Cylinder",
+          "distance_mm": 1.8920724452025248,
+          "local_status": "closest_support_not_face_interior",
+          "support_type": "BRepExtrema_SupportType.BRepExtrema_IsVertex",
+          "UV": null,
+          "point_mm": null,
+          "normal_outward": null,
+          "minimum_curvature_per_mm": null,
+          "maximum_curvature_per_mm": null,
+          "kernel_resolution_mm": null,
+          "local_chord": null,
+          "complete_raw_hit_count": 0,
+          "raw_properties_pointer": "output-001/assessment.json#/probes/0/nearest_faces/4/local_properties"
+        },
+        {
+          "rank": 5,
+          "face_index_zero_based": 149,
+          "surface_type": "GeomAbs_SurfaceType.GeomAbs_SurfaceOfExtrusion",
+          "distance_mm": 2.3914795711171783,
+          "local_status": "native_D2_at_reported_UV",
+          "support_type": "BRepExtrema_SupportType.BRepExtrema_IsInFace",
+          "UV": [
+            0.4970955425658488,
+            -9.899129384939432
+          ],
+          "point_mm": [
+            84.891082601203,
+            -13.512867257040824,
+            13.889129384939432
+          ],
+          "normal_outward": [
+            0.6246796233473353,
+            0.7808811485588772,
+            -0.0
+          ],
+          "minimum_curvature_per_mm": -0.0002832311340940525,
+          "maximum_curvature_per_mm": 0.0,
+          "kernel_resolution_mm": 4.46679483124578e-05,
+          "local_chord": {
+            "status": "unambiguous_first_native_in_out_normal_chord",
+            "thickness_mm": 2.1887151948082537,
+            "target_face_index_zero_based": 68,
+            "scope": "one_local_native_normal_chord_not_global_minimum_thickness"
+          },
+          "complete_raw_hit_count": 4,
+          "raw_properties_pointer": "output-001/assessment.json#/probes/0/nearest_faces/5/local_properties"
+        },
+        {
+          "rank": 6,
+          "face_index_zero_based": 131,
+          "surface_type": "GeomAbs_SurfaceType.GeomAbs_SurfaceOfExtrusion",
+          "distance_mm": 2.749294249895106,
+          "local_status": "closest_support_not_face_interior",
+          "support_type": "BRepExtrema_SupportType.BRepExtrema_IsOnEdge",
+          "UV": null,
+          "point_mm": null,
+          "normal_outward": null,
+          "minimum_curvature_per_mm": null,
+          "maximum_curvature_per_mm": null,
+          "kernel_resolution_mm": null,
+          "local_chord": null,
+          "complete_raw_hit_count": 0,
+          "raw_properties_pointer": "output-001/assessment.json#/probes/0/nearest_faces/6/local_properties"
+        },
+        {
+          "rank": 7,
+          "face_index_zero_based": 144,
+          "surface_type": "GeomAbs_SurfaceType.GeomAbs_SurfaceOfExtrusion",
+          "distance_mm": 2.9238987319995906,
+          "local_status": "closest_support_not_face_interior",
+          "support_type": "BRepExtrema_SupportType.BRepExtrema_IsVertex",
+          "UV": null,
+          "point_mm": null,
+          "normal_outward": null,
+          "minimum_curvature_per_mm": null,
+          "maximum_curvature_per_mm": null,
+          "kernel_resolution_mm": null,
+          "local_chord": null,
+          "complete_raw_hit_count": 0,
+          "raw_properties_pointer": "output-001/assessment.json#/probes/0/nearest_faces/7/local_properties"
+        },
+        {
+          "rank": 8,
+          "face_index_zero_based": 205,
+          "surface_type": "GeomAbs_SurfaceType.GeomAbs_Plane",
+          "distance_mm": 2.9238987319995906,
+          "local_status": "closest_support_not_face_interior",
+          "support_type": "BRepExtrema_SupportType.BRepExtrema_IsVertex",
+          "UV": null,
+          "point_mm": null,
+          "normal_outward": null,
+          "minimum_curvature_per_mm": null,
+          "maximum_curvature_per_mm": null,
+          "kernel_resolution_mm": null,
+          "local_chord": null,
+          "complete_raw_hit_count": 0,
+          "raw_properties_pointer": "output-001/assessment.json#/probes/0/nearest_faces/8/local_properties"
+        }
+      ],
+      "all_retained_nearest_edges": [
+        {
+          "edge_index_zero_based": 263,
+          "topological_type": "TopAbs_ShapeEnum.TopAbs_EDGE",
+          "curve_type": "GeomAbs_CurveType.GeomAbs_BSplineCurve",
+          "bounds_mm": [
+            [
+              83.43261053155675,
+              -15.924825370878391,
+              13.76208368969394
+            ],
+            [
+              83.46326048942664,
+              -15.173906103065104,
+              14.570490470171633
+            ]
+          ],
+          "length_mm": 1.2365114219505124,
+          "tolerance_mm": 3.54249686100042e-05,
+          "adjacent_faces_zero_based": [
+            60,
+            62
+          ],
+          "adjacent_surface_types": [
+            "GeomAbs_SurfaceType.GeomAbs_BSplineSurface",
+            "GeomAbs_SurfaceType.GeomAbs_Plane"
+          ],
+          "native_continuity": "GeomAbs_Shape.GeomAbs_C0",
+          "parameter_origin": "native_ParOnEdgeS2",
+          "boundary_normal_probe": {
+            "edge_parameter": 0.43993138566231665,
+            "edge_point_mm": [
+              83.4527981981265,
+              -15.430229889918781,
+              13.943783402135885
+            ],
+            "outward_normals": [
+              [
+                -0.7496537315156203,
+                -0.41717436568042654,
+                0.5137945420533776
+              ],
+              [
+                0.999168053100579,
+                -0.04078236951427282,
+                0.0
+              ]
+            ],
+            "normal_angle_degrees": 137.05572865696482,
+            "supports": [
+              {
+                "uv": [
+                  18.945811368687217,
+                  -0.22762939210964794
+                ],
+                "support_point_mm": [
+                  83.4527981758635,
+                  -15.430229891481545,
+                  13.943783427366478
+                ],
+                "support_uv_bounds": [
+                  0.0,
+                  43.06466194769763,
+                  -0.451854664923225,
+                  23.33728979606525
+                ]
+              },
+              {
+                "uv": [
+                  26.632795291856752,
+                  -57.943783402135885
+                ],
+                "support_point_mm": [
+                  83.4527981981265,
+                  -15.430229889918776,
+                  13.943783402135885
+                ],
+                "support_uv_bounds": [
+                  26.37625782906451,
+                  28.46859563673287,
+                  -58.57049037017163,
+                  -55.067159149301
+                ]
+              }
+            ]
+          },
+          "distance_mm": 0.09258104437380085,
+          "closest_points_mm": [
+            [
+              83.4527981981265,
+              -15.430229889918781,
+              13.943783402135885
+            ]
+          ]
+        },
+        {
+          "edge_index_zero_based": 268,
+          "topological_type": "TopAbs_ShapeEnum.TopAbs_EDGE",
+          "curve_type": "GeomAbs_CurveType.GeomAbs_BSplineCurve",
+          "bounds_mm": [
+            [
+              83.46326018714325,
+              -15.173907353353261,
+              13.787064525185
+            ],
+            [
+              83.46326046245707,
+              -15.17390651219883,
+              14.570490470171643
+            ]
+          ],
+          "length_mm": 0.7834257449887969,
+          "tolerance_mm": 1.26517614319178e-06,
+          "adjacent_faces_zero_based": [
+            62,
+            68
+          ],
+          "adjacent_surface_types": [
+            "GeomAbs_SurfaceType.GeomAbs_Plane",
+            "GeomAbs_SurfaceType.GeomAbs_SurfaceOfExtrusion"
+          ],
+          "native_continuity": "GeomAbs_Shape.GeomAbs_C0",
+          "parameter_origin": "native_ParOnEdgeS2",
+          "boundary_normal_probe": {
+            "edge_parameter": 0.16143718403874904,
+            "edge_point_mm": [
+              83.4632603506582,
+              -15.17390715290463,
+              13.88912938494397
+            ],
+            "outward_normals": [
+              [
+                0.999168053100579,
+                -0.04078236951427282,
+                0.0
+              ],
+              [
+                -0.6216169848591424,
+                -0.7833213415544279,
+                0.0
+              ]
+            ],
+            "normal_angle_degrees": 126.09700580331526,
+            "supports": [
+              {
+                "uv": [
+                  26.376259130378248,
+                  -57.88912938494397
+                ],
+                "support_point_mm": [
+                  83.46326035065769,
+                  -15.173907152904404,
+                  13.88912938494397
+                ],
+                "support_uv_bounds": [
+                  26.37625782906451,
+                  28.46859563673287,
+                  -58.57049037017163,
+                  -55.067159149301
+                ]
+              },
+              {
+                "uv": [
+                  0.4590386030863317,
+                  -9.89912938494397
+                ],
+                "support_point_mm": [
+                  83.46326035065871,
+                  -15.173907152904851,
+                  13.88912938494397
+                ],
+                "support_uv_bounds": [
+                  0.0,
+                  1.0,
+                  -26.01,
+                  1.4726332354449876e-14
+                ]
+              }
+            ]
+          },
+          "distance_mm": 0.21674224776296142,
+          "closest_points_mm": [
+            [
+              83.4632603506582,
+              -15.17390715290463,
+              13.88912938494397
+            ]
+          ]
+        },
+        {
+          "edge_index_zero_based": 270,
+          "topological_type": "TopAbs_ShapeEnum.TopAbs_EDGE",
+          "curve_type": "GeomAbs_CurveType.GeomAbs_BSplineCurve",
+          "bounds_mm": [
+            [
+              83.463260250657,
+              -15.1739072529,
+              11.146379056553002
+            ],
+            [
+              83.46326045065699,
+              -15.1739070529,
+              13.787064725185
+            ]
+          ],
+          "length_mm": 2.6406854686320003,
+          "tolerance_mm": 1e-07,
+          "adjacent_faces_zero_based": [
+            62,
+            68
+          ],
+          "adjacent_surface_types": [
+            "GeomAbs_SurfaceType.GeomAbs_Plane",
+            "GeomAbs_SurfaceType.GeomAbs_SurfaceOfExtrusion"
+          ],
+          "native_continuity": "GeomAbs_Shape.GeomAbs_C0",
+          "parameter_origin": "native_endpoint_parameter_verified_at_closest_vertex",
+          "boundary_normal_probe": {
+            "edge_parameter": 0.242590317519373,
+            "edge_point_mm": [
+              83.463260350657,
+              -15.1739071529,
+              13.787064625185
+            ],
+            "outward_normals": [
+              [
+                0.999168053100579,
+                -0.04078236951427282,
+                0.0
+              ],
+              [
+                -0.6216169848590926,
+                -0.7833213415544676,
+                0.0
+              ]
+            ],
+            "normal_angle_degrees": 126.0970058033116,
+            "supports": [
+              {
+                "uv": [
+                  26.376259130373878,
+                  -57.787064625184996
+                ],
+                "support_point_mm": [
+                  83.46326035065788,
+                  -15.173907152900037,
+                  13.787064625184996
+                ],
+                "support_uv_bounds": [
+                  26.37625782906451,
+                  28.46859563673287,
+                  -58.57049037017163,
+                  -55.067159149301
+                ]
+              },
+              {
+                "uv": [
+                  0.459038603086,
+                  -9.797064625185001
+                ],
+                "support_point_mm": [
+                  83.46326035064625,
+                  -15.173907152894968,
+                  13.787064625185002
+                ],
+                "support_uv_bounds": [
+                  0.0,
+                  1.0,
+                  -26.01,
+                  1.4726332354449876e-14
+                ]
+              }
+            ]
+          },
+          "distance_mm": 0.23957131954977912,
+          "closest_points_mm": [
+            [
+              83.463260350657,
+              -15.1739071529,
+              13.787064625185
+            ]
+          ]
+        },
+        {
+          "edge_index_zero_based": 80,
+          "topological_type": "TopAbs_ShapeEnum.TopAbs_EDGE",
+          "curve_type": "GeomAbs_CurveType.GeomAbs_BSplineCurve",
+          "bounds_mm": [
+            [
+              64.99999990002118,
+              -15.924825944210752,
+              3.999999899999911
+            ],
+            [
+              83.4326114521291,
+              -7.399999899999914,
+              13.7620844770302
+            ]
+          ],
+          "length_mm": 23.213965062152337,
+          "tolerance_mm": 3.54249686100042e-05,
+          "adjacent_faces_zero_based": [
+            11,
+            60
+          ],
+          "adjacent_surface_types": [
+            "GeomAbs_SurfaceType.GeomAbs_SurfaceOfExtrusion",
+            "GeomAbs_SurfaceType.GeomAbs_BSplineSurface"
+          ],
+          "native_continuity": "GeomAbs_Shape.GeomAbs_G1",
+          "parameter_origin": "native_ParOnEdgeS2",
+          "boundary_normal_probe": {
+            "edge_parameter": -0.12885973536105613,
+            "edge_point_mm": [
+              83.2741113337306,
+              -15.79885885139118,
+              13.632813201411519
+            ],
+            "outward_normals": [
+              [
+                -0.6322501931624716,
+                -0.0,
+                0.7747642823762704
+              ],
+              [
+                -0.632252158569683,
+                -3.6491145118867937e-06,
+                0.7747626784833278
+              ]
+            ],
+            "normal_angle_degrees": 0.000254636618141624,
+            "supports": [
+              {
+                "uv": [
+                  0.5234547852372146,
+                  -84.20114100981209
+                ],
+                "support_point_mm": [
+                  83.2741111377039,
+                  -15.79885899018791,
+                  13.632814689463595
+                ],
+                "support_uv_bounds": [
+                  0.0,
+                  1.0,
+                  -92.6,
+                  -64.0
+                ]
+              },
+              {
+                "uv": [
+                  0.0,
+                  -0.12885973536105613
+                ],
+                "support_point_mm": [
+                  83.2741113337306,
+                  -15.798858851391177,
+                  13.632813201411514
+                ],
+                "support_uv_bounds": [
+                  0.0,
+                  43.06466194769763,
+                  -0.451854664923225,
+                  23.33728979606525
+                ]
+              }
+            ]
+          },
+          "distance_mm": 0.5059743193379768,
+          "closest_points_mm": [
+            [
+              83.2741113337306,
+              -15.79885885139118,
+              13.632813201411519
+            ]
+          ]
+        },
+        {
+          "edge_index_zero_based": 82,
+          "topological_type": "TopAbs_ShapeEnum.TopAbs_EDGE",
+          "curve_type": "GeomAbs_CurveType.GeomAbs_BSplineCurve",
+          "bounds_mm": [
+            [
+              83.377929810107,
+              -17.26450304639,
+              13.717505494509
+            ],
+            [
+              83.43261070815498,
+              -15.924825744210697,
+              13.762085389772933
+            ]
+          ],
+          "length_mm": 1.3415334755804722,
+          "tolerance_mm": 1e-07,
+          "adjacent_faces_zero_based": [
+            11,
+            62
+          ],
+          "adjacent_surface_types": [
+            "GeomAbs_SurfaceType.GeomAbs_SurfaceOfExtrusion",
+            "GeomAbs_SurfaceType.GeomAbs_Plane"
+          ],
+          "native_continuity": "GeomAbs_Shape.GeomAbs_C0",
+          "boundary_normal_probe_error": "",
+          "distance_mm": 0.5602445107516982,
+          "closest_points_mm": [
+            [
+              83.4326105749874,
+              -15.9248264635757,
+              13.7620852612734
+            ]
+          ]
+        },
+        {
+          "edge_index_zero_based": 264,
+          "topological_type": "TopAbs_ShapeEnum.TopAbs_EDGE",
+          "curve_type": "GeomAbs_CurveType.GeomAbs_BSplineCurve",
+          "bounds_mm": [
+            [
+              64.99999989997896,
+              -15.173906303065106,
+              4.9999998999997874
+            ],
+            [
+              83.46326048942666,
+              -6.399999899999894,
+              14.570490470171634
+            ]
+          ],
+          "length_mm": 23.246010005787237,
+          "tolerance_mm": 3.54249686100042e-05,
+          "adjacent_faces_zero_based": [
+            60,
+            68
+          ],
+          "adjacent_surface_types": [
+            "GeomAbs_SurfaceType.GeomAbs_BSplineSurface",
+            "GeomAbs_SurfaceType.GeomAbs_SurfaceOfExtrusion"
+          ],
+          "native_continuity": "GeomAbs_Shape.GeomAbs_G1",
+          "parameter_origin": "native_ParOnEdgeS2",
+          "boundary_normal_probe": {
+            "edge_parameter": -0.12852999369777124,
+            "edge_point_mm": [
+              83.26383305260408,
+              -15.015820626731262,
+              14.40856189329586
+            ],
+            "outward_normals": [
+              [
+                -0.6207661288564665,
+                -0.7839957992503842,
+                4.723159437367345e-06
+              ],
+              [
+                -0.620763571061059,
+                -0.7839978245145338,
+                0.0
+              ]
+            ],
+            "normal_angle_degrees": 0.00032890096786492896,
+            "supports": [
+              {
+                "uv": [
+                  43.06466194769763,
+                  -0.12852999369777124
+                ],
+                "support_point_mm": [
+                  83.26383305260407,
+                  -15.015820626731264,
+                  14.408561893295857
+                ],
+                "support_uv_bounds": [
+                  0.0,
+                  43.06466194769763,
+                  -0.451854664923225,
+                  23.33728979606525
+                ]
+              },
+              {
+                "uv": [
+                  0.45372863161337573,
+                  -10.418562146920813
+                ],
+                "support_point_mm": [
+                  83.26383299721226,
+                  -15.015821701558579,
+                  14.408562146920813
+                ],
+                "support_uv_bounds": [
+                  0.0,
+                  1.0,
+                  -26.01,
+                  1.4726332354449876e-14
+                ]
+              }
+            ]
+          },
+          "distance_mm": 0.6484257800474585,
+          "closest_points_mm": [
+            [
+              83.26383305260408,
+              -15.015820626731262,
+              14.40856189329586
+            ]
+          ]
+        },
+        {
+          "edge_index_zero_based": 84,
+          "topological_type": "TopAbs_ShapeEnum.TopAbs_EDGE",
+          "curve_type": "GeomAbs_CurveType.GeomAbs_BSplineCurve",
+          "bounds_mm": [
+            [
+              83.37576677638987,
+              -19.970537196371097,
+              13.71574163943502
+            ],
+            [
+              86.166428700062,
+              -17.26450284639,
+              15.941972945847999
+            ]
+          ],
+          "length_mm": 5.018442833239813,
+          "tolerance_mm": 1.01591801528788e-07,
+          "adjacent_faces_zero_based": [
+            11,
+            64
+          ],
+          "adjacent_surface_types": [
+            "GeomAbs_SurfaceType.GeomAbs_SurfaceOfExtrusion",
+            "GeomAbs_SurfaceType.GeomAbs_Cylinder"
+          ],
+          "native_continuity": "GeomAbs_Shape.GeomAbs_C0",
+          "parameter_origin": "native_endpoint_parameter_verified_at_closest_vertex",
+          "boundary_normal_probe": {
+            "edge_parameter": 0.0,
+            "edge_point_mm": [
+              83.377929910107,
+              -17.26450294639,
+              13.717505594509
+            ],
+            "outward_normals": [
+              [
+                -0.6319672036866256,
+                -0.0,
+                0.7749951312521306
+              ],
+              [
+                0.9991680531005636,
+                -0.0407823695146502,
+                -0.0
+              ]
+            ],
+            "normal_angle_degrees": 129.15654964963483,
+            "supports": [
+              {
+                "uv": [
+                  0.526599374302,
+                  -82.7354970536
+                ],
+                "support_point_mm": [
+                  83.377929910109,
+                  -17.2645029464,
+                  13.717505594510515
+                ],
+                "support_uv_bounds": [
+                  0.0,
+                  1.0,
+                  -92.6,
+                  -64.0
+                ]
+              },
+              {
+                "uv": [
+                  3.182386336458,
+                  -57.7175055945
+                ],
+                "support_point_mm": [
+                  83.37792991010654,
+                  -17.26450294639191,
+                  13.717505594499997
+                ],
+                "support_uv_bounds": [
+                  1.497399000894,
+                  3.182386336458,
+                  -59.941972845991,
+                  -55.06447205126
+                ]
+              }
+            ]
+          },
+          "distance_mm": 1.8920724452025248,
+          "closest_points_mm": [
+            [
+              83.377929910107,
+              -17.26450294639,
+              13.717505594509
+            ]
+          ]
+        },
+        {
+          "edge_index_zero_based": 267,
+          "topological_type": "TopAbs_ShapeEnum.TopAbs_EDGE",
+          "curve_type": "GeomAbs_CurveType.GeomAbs_Line",
+          "bounds_mm": [
+            [
+              83.377929910107,
+              -17.26450294639,
+              11.067159149300998
+            ],
+            [
+              83.377929910107,
+              -17.26450294639,
+              13.717505594509
+            ]
+          ],
+          "length_mm": 2.650346445208001,
+          "tolerance_mm": 1e-07,
+          "adjacent_faces_zero_based": [
+            62,
+            64
+          ],
+          "adjacent_surface_types": [
+            "GeomAbs_SurfaceType.GeomAbs_Plane",
+            "GeomAbs_SurfaceType.GeomAbs_Cylinder"
+          ],
+          "native_continuity": "GeomAbs_Shape.GeomAbs_G1",
+          "parameter_origin": "native_endpoint_parameter_verified_at_closest_vertex",
+          "boundary_normal_probe": {
+            "edge_parameter": 57.717505594509,
+            "edge_point_mm": [
+              83.377929910107,
+              -17.26450294639,
+              13.717505594509
+            ],
+            "outward_normals": [
+              [
+                0.999168053100579,
+                -0.04078236951427282,
+                0.0
+              ],
+              [
+                0.9991680531005636,
+                -0.0407823695146502,
+                -0.0
+              ]
+            ],
+            "normal_angle_degrees": 2.164089162201295e-11,
+            "supports": [
+              {
+                "uv": [
+                  28.46859563673287,
+                  -57.717505594509
+                ],
+                "support_point_mm": [
+                  83.37792991010734,
+                  -17.264502946390024,
+                  13.717505594509
+                ],
+                "support_uv_bounds": [
+                  26.37625782906451,
+                  28.46859563673287,
+                  -58.57049037017163,
+                  -55.067159149301
+                ]
+              },
+              {
+                "uv": [
+                  3.182386336458,
+                  -57.717505594509
+                ],
+                "support_point_mm": [
+                  83.37792991010654,
+                  -17.26450294639191,
+                  13.717505594509
+                ],
+                "support_uv_bounds": [
+                  1.497399000894,
+                  3.182386336458,
+                  -59.941972845991,
+                  -55.06447205126
+                ]
+              }
+            ]
+          },
+          "distance_mm": 1.8920724452025248,
+          "closest_points_mm": [
+            [
+              83.377929910107,
+              -17.26450294639,
+              13.717505594509
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "label": "corner_0",
+      "probe_xyz_mm": [
+        83.455138389319,
+        -15.372895205696,
+        14.000030473284
+      ],
+      "all_face_distance_rows": 243,
+      "all_edge_distance_rows": 738,
+      "all_retained_nearest_face_properties": [
+        {
+          "rank": 0,
+          "face_index_zero_based": 60,
+          "surface_type": "GeomAbs_SurfaceType.GeomAbs_BSplineSurface",
+          "distance_mm": 7.211396205109368e-13,
+          "local_status": "closest_support_not_face_interior",
+          "support_type": "BRepExtrema_SupportType.BRepExtrema_IsOnEdge",
+          "UV": null,
+          "point_mm": null,
+          "normal_outward": null,
+          "minimum_curvature_per_mm": null,
+          "maximum_curvature_per_mm": null,
+          "kernel_resolution_mm": null,
+          "local_chord": null,
+          "complete_raw_hit_count": 0,
+          "raw_properties_pointer": "output-001/assessment.json#/probes/1/nearest_faces/0/local_properties"
+        },
+        {
+          "rank": 1,
+          "face_index_zero_based": 62,
+          "surface_type": "GeomAbs_SurfaceType.GeomAbs_Plane",
+          "distance_mm": 7.211396205109368e-13,
+          "local_status": "closest_support_not_face_interior",
+          "support_type": "BRepExtrema_SupportType.BRepExtrema_IsOnEdge",
+          "UV": null,
+          "point_mm": null,
+          "normal_outward": null,
+          "minimum_curvature_per_mm": null,
+          "maximum_curvature_per_mm": null,
+          "kernel_resolution_mm": null,
+          "local_chord": null,
+          "complete_raw_hit_count": 0,
+          "raw_properties_pointer": "output-001/assessment.json#/probes/1/nearest_faces/1/local_properties"
+        },
+        {
+          "rank": 2,
+          "face_index_zero_based": 68,
+          "surface_type": "GeomAbs_SurfaceType.GeomAbs_SurfaceOfExtrusion",
+          "distance_mm": 0.1608932342019759,
+          "local_status": "native_D2_at_reported_UV",
+          "support_type": "BRepExtrema_SupportType.BRepExtrema_IsInFace",
+          "UV": [
+            0.4614874985507015,
+            -10.010030473283999
+          ],
+          "point_mm": [
+            83.55520997331259,
+            -15.246909845875951,
+            14.000030473284
+          ],
+          "normal_outward": [
+            -0.6219750910591476,
+            -0.7830370272866828,
+            0.0
+          ],
+          "minimum_curvature_per_mm": -0.0037734059552762223,
+          "maximum_curvature_per_mm": 0.0,
+          "kernel_resolution_mm": 4.46679483124578e-05,
+          "local_chord": {
+            "status": "unambiguous_first_native_in_out_normal_chord",
+            "thickness_mm": 2.1885865308108974,
+            "target_face_index_zero_based": 149,
+            "scope": "one_local_native_normal_chord_not_global_minimum_thickness"
+          },
+          "complete_raw_hit_count": 4,
+          "raw_properties_pointer": "output-001/assessment.json#/probes/1/nearest_faces/2/local_properties"
+        },
+        {
+          "rank": 3,
+          "face_index_zero_based": 11,
+          "surface_type": "GeomAbs_SurfaceType.GeomAbs_SurfaceOfExtrusion",
+          "distance_mm": 0.5833019678573468,
+          "local_status": "closest_support_not_face_interior",
+          "support_type": "BRepExtrema_SupportType.BRepExtrema_IsOnEdge",
+          "UV": null,
+          "point_mm": null,
+          "normal_outward": null,
+          "minimum_curvature_per_mm": null,
+          "maximum_curvature_per_mm": null,
+          "kernel_resolution_mm": null,
+          "local_chord": null,
+          "complete_raw_hit_count": 0,
+          "raw_properties_pointer": "output-001/assessment.json#/probes/1/nearest_faces/3/local_properties"
+        },
+        {
+          "rank": 4,
+          "face_index_zero_based": 64,
+          "surface_type": "GeomAbs_SurfaceType.GeomAbs_Cylinder",
+          "distance_mm": 1.914147669601934,
+          "local_status": "closest_support_not_face_interior",
+          "support_type": "BRepExtrema_SupportType.BRepExtrema_IsVertex",
+          "UV": null,
+          "point_mm": null,
+          "normal_outward": null,
+          "minimum_curvature_per_mm": null,
+          "maximum_curvature_per_mm": null,
+          "kernel_resolution_mm": null,
+          "local_chord": null,
+          "complete_raw_hit_count": 0,
+          "raw_properties_pointer": "output-001/assessment.json#/probes/1/nearest_faces/4/local_properties"
+        },
+        {
+          "rank": 5,
+          "face_index_zero_based": 149,
+          "surface_type": "GeomAbs_SurfaceType.GeomAbs_SurfaceOfExtrusion",
+          "distance_mm": 2.349465639233617,
+          "local_status": "native_D2_at_reported_UV",
+          "support_type": "BRepExtrema_SupportType.BRepExtrema_IsInFace",
+          "UV": [
+            0.4979418621135289,
+            -10.010030473283999
+          ],
+          "point_mm": [
+            84.92281974207602,
+            -13.538256212131115,
+            14.000030473284
+          ],
+          "normal_outward": [
+            0.6246873026139526,
+            0.7808750053324182,
+            -0.0
+          ],
+          "minimum_curvature_per_mm": -0.0002006987049918419,
+          "maximum_curvature_per_mm": 0.0,
+          "kernel_resolution_mm": 4.46679483124578e-05,
+          "local_chord": {
+            "status": "unambiguous_first_native_in_out_normal_chord",
+            "thickness_mm": 2.188571437805919,
+            "target_face_index_zero_based": 68,
+            "scope": "one_local_native_normal_chord_not_global_minimum_thickness"
+          },
+          "complete_raw_hit_count": 4,
+          "raw_properties_pointer": "output-001/assessment.json#/probes/1/nearest_faces/5/local_properties"
+        },
+        {
+          "rank": 6,
+          "face_index_zero_based": 131,
+          "surface_type": "GeomAbs_SurfaceType.GeomAbs_SurfaceOfExtrusion",
+          "distance_mm": 2.859141932012872,
+          "local_status": "closest_support_not_face_interior",
+          "support_type": "BRepExtrema_SupportType.BRepExtrema_IsOnEdge",
+          "UV": null,
+          "point_mm": null,
+          "normal_outward": null,
+          "minimum_curvature_per_mm": null,
+          "maximum_curvature_per_mm": null,
+          "kernel_resolution_mm": null,
+          "local_chord": null,
+          "complete_raw_hit_count": 0,
+          "raw_properties_pointer": "output-001/assessment.json#/probes/1/nearest_faces/6/local_properties"
+        },
+        {
+          "rank": 7,
+          "face_index_zero_based": 144,
+          "surface_type": "GeomAbs_SurfaceType.GeomAbs_SurfaceOfExtrusion",
+          "distance_mm": 2.916102606742066,
+          "local_status": "closest_support_not_face_interior",
+          "support_type": "BRepExtrema_SupportType.BRepExtrema_IsVertex",
+          "UV": null,
+          "point_mm": null,
+          "normal_outward": null,
+          "minimum_curvature_per_mm": null,
+          "maximum_curvature_per_mm": null,
+          "kernel_resolution_mm": null,
+          "local_chord": null,
+          "complete_raw_hit_count": 0,
+          "raw_properties_pointer": "output-001/assessment.json#/probes/1/nearest_faces/7/local_properties"
+        },
+        {
+          "rank": 8,
+          "face_index_zero_based": 205,
+          "surface_type": "GeomAbs_SurfaceType.GeomAbs_Plane",
+          "distance_mm": 2.916102606742066,
+          "local_status": "closest_support_not_face_interior",
+          "support_type": "BRepExtrema_SupportType.BRepExtrema_IsVertex",
+          "UV": null,
+          "point_mm": null,
+          "normal_outward": null,
+          "minimum_curvature_per_mm": null,
+          "maximum_curvature_per_mm": null,
+          "kernel_resolution_mm": null,
+          "local_chord": null,
+          "complete_raw_hit_count": 0,
+          "raw_properties_pointer": "output-001/assessment.json#/probes/1/nearest_faces/8/local_properties"
+        }
+      ],
+      "all_retained_nearest_edges": [
+        {
+          "edge_index_zero_based": 263,
+          "topological_type": "TopAbs_ShapeEnum.TopAbs_EDGE",
+          "curve_type": "GeomAbs_CurveType.GeomAbs_BSplineCurve",
+          "bounds_mm": [
+            [
+              83.43261053155675,
+              -15.924825370878391,
+              13.76208368969394
+            ],
+            [
+              83.46326048942664,
+              -15.173906103065104,
+              14.570490470171633
+            ]
+          ],
+          "length_mm": 1.2365114219505124,
+          "tolerance_mm": 3.54249686100042e-05,
+          "adjacent_faces_zero_based": [
+            60,
+            62
+          ],
+          "adjacent_surface_types": [
+            "GeomAbs_SurfaceType.GeomAbs_BSplineSurface",
+            "GeomAbs_SurfaceType.GeomAbs_Plane"
+          ],
+          "native_continuity": "GeomAbs_Shape.GeomAbs_C0",
+          "parameter_origin": "native_ParOnEdgeS2",
+          "boundary_normal_probe": {
+            "edge_parameter": 0.5068204195946665,
+            "edge_point_mm": [
+              83.45513838931925,
+              -15.372895205696508,
+              14.00003047328445
+            ],
+            "outward_normals": [
+              [
+                -0.750777243234369,
+                -0.47547271710861044,
+                0.45854032137507444
+              ],
+              [
+                0.999168053100579,
+                -0.04078236951427282,
+                0.0
+              ]
+            ],
+            "normal_angle_degrees": 136.95029083060524,
+            "supports": [
+              {
+                "uv": [
+                  21.82657922106931,
+                  -0.22944206781506438
+                ],
+                "support_point_mm": [
+                  83.45513838726832,
+                  -15.372895208055981,
+                  14.000030473589531
+                ],
+                "support_uv_bounds": [
+                  0.0,
+                  43.06466194769763,
+                  -0.451854664923225,
+                  23.33728979606525
+                ]
+              },
+              {
+                "uv": [
+                  26.575412868505296,
+                  -58.000030473284454
+                ],
+                "support_point_mm": [
+                  83.45513838931925,
+                  -15.37289520569651,
+                  14.000030473284454
+                ],
+                "support_uv_bounds": [
+                  26.37625782906451,
+                  28.46859563673287,
+                  -58.57049037017163,
+                  -55.067159149301
+                ]
+              }
+            ]
+          },
+          "distance_mm": 7.211396205109368e-13,
+          "closest_points_mm": [
+            [
+              83.45513838931925,
+              -15.372895205696508,
+              14.00003047328445
+            ]
+          ]
+        },
+        {
+          "edge_index_zero_based": 268,
+          "topological_type": "TopAbs_ShapeEnum.TopAbs_EDGE",
+          "curve_type": "GeomAbs_CurveType.GeomAbs_BSplineCurve",
+          "bounds_mm": [
+            [
+              83.46326018714325,
+              -15.173907353353261,
+              13.787064525185
+            ],
+            [
+              83.46326046245707,
+              -15.17390651219883,
+              14.570490470171643
+            ]
+          ],
+          "length_mm": 0.7834257449887969,
+          "tolerance_mm": 1.26517614319178e-06,
+          "adjacent_faces_zero_based": [
+            62,
+            68
+          ],
+          "adjacent_surface_types": [
+            "GeomAbs_SurfaceType.GeomAbs_Plane",
+            "GeomAbs_SurfaceType.GeomAbs_SurfaceOfExtrusion"
+          ],
+          "native_continuity": "GeomAbs_Shape.GeomAbs_C0",
+          "parameter_origin": "native_ParOnEdgeS2",
+          "boundary_normal_probe": {
+            "edge_parameter": 0.28608603444832836,
+            "edge_point_mm": [
+              83.46326035065793,
+              -15.173907152904313,
+              14.000030473279468
+            ],
+            "outward_normals": [
+              [
+                0.999168053100579,
+                -0.04078236951427282,
+                0.0
+              ],
+              [
+                -0.6216169848591402,
+                -0.7833213415544298,
+                0.0
+              ]
+            ],
+            "normal_angle_degrees": 126.0970058033151,
+            "supports": [
+              {
+                "uv": [
+                  26.376259130378052,
+                  -58.000030473279466
+                ],
+                "support_point_mm": [
+                  83.4632603506577,
+                  -15.173907152904208,
+                  14.000030473279466
+                ],
+                "support_uv_bounds": [
+                  26.37625782906451,
+                  28.46859563673287,
+                  -58.57049037017163,
+                  -55.067159149301
+                ]
+              },
+              {
+                "uv": [
+                  0.459038603086317,
+                  -10.010030473279468
+                ],
+                "support_point_mm": [
+                  83.46326035065816,
+                  -15.173907152904412,
+                  14.000030473279468
+                ],
+                "support_uv_bounds": [
+                  0.0,
+                  1.0,
+                  -26.01,
+                  1.4726332354449876e-14
+                ]
+              }
+            ]
+          },
+          "distance_mm": 0.19915373812665038,
+          "closest_points_mm": [
+            [
+              83.46326035065793,
+              -15.173907152904313,
+              14.000030473279468
+            ]
+          ]
+        },
+        {
+          "edge_index_zero_based": 270,
+          "topological_type": "TopAbs_ShapeEnum.TopAbs_EDGE",
+          "curve_type": "GeomAbs_CurveType.GeomAbs_BSplineCurve",
+          "bounds_mm": [
+            [
+              83.463260250657,
+              -15.1739072529,
+              11.146379056553002
+            ],
+            [
+              83.46326045065699,
+              -15.1739070529,
+              13.787064725185
+            ]
+          ],
+          "length_mm": 2.6406854686320003,
+          "tolerance_mm": 1e-07,
+          "adjacent_faces_zero_based": [
+            62,
+            68
+          ],
+          "adjacent_surface_types": [
+            "GeomAbs_SurfaceType.GeomAbs_Plane",
+            "GeomAbs_SurfaceType.GeomAbs_SurfaceOfExtrusion"
+          ],
+          "native_continuity": "GeomAbs_Shape.GeomAbs_C0",
+          "parameter_origin": "native_endpoint_parameter_verified_at_closest_vertex",
+          "boundary_normal_probe": {
+            "edge_parameter": 0.242590317519373,
+            "edge_point_mm": [
+              83.463260350657,
+              -15.1739071529,
+              13.787064625185
+            ],
+            "outward_normals": [
+              [
+                0.999168053100579,
+                -0.04078236951427282,
+                0.0
+              ],
+              [
+                -0.6216169848590926,
+                -0.7833213415544676,
+                0.0
+              ]
+            ],
+            "normal_angle_degrees": 126.0970058033116,
+            "supports": [
+              {
+                "uv": [
+                  26.376259130373878,
+                  -57.787064625184996
+                ],
+                "support_point_mm": [
+                  83.46326035065788,
+                  -15.173907152900037,
+                  13.787064625184996
+                ],
+                "support_uv_bounds": [
+                  26.37625782906451,
+                  28.46859563673287,
+                  -58.57049037017163,
+                  -55.067159149301
+                ]
+              },
+              {
+                "uv": [
+                  0.459038603086,
+                  -9.797064625185001
+                ],
+                "support_point_mm": [
+                  83.46326035064625,
+                  -15.173907152894968,
+                  13.787064625185002
+                ],
+                "support_uv_bounds": [
+                  0.0,
+                  1.0,
+                  -26.01,
+                  1.4726332354449876e-14
+                ]
+              }
+            ]
+          },
+          "distance_mm": 0.2915761716396692,
+          "closest_points_mm": [
+            [
+              83.463260350657,
+              -15.1739071529,
+              13.787064625185
+            ]
+          ]
+        },
+        {
+          "edge_index_zero_based": 264,
+          "topological_type": "TopAbs_ShapeEnum.TopAbs_EDGE",
+          "curve_type": "GeomAbs_CurveType.GeomAbs_BSplineCurve",
+          "bounds_mm": [
+            [
+              64.99999989997896,
+              -15.173906303065106,
+              4.9999998999997874
+            ],
+            [
+              83.46326048942666,
+              -6.399999899999894,
+              14.570490470171634
+            ]
+          ],
+          "length_mm": 23.246010005787237,
+          "tolerance_mm": 3.54249686100042e-05,
+          "adjacent_faces_zero_based": [
+            60,
+            68
+          ],
+          "adjacent_surface_types": [
+            "GeomAbs_SurfaceType.GeomAbs_BSplineSurface",
+            "GeomAbs_SurfaceType.GeomAbs_SurfaceOfExtrusion"
+          ],
+          "native_continuity": "GeomAbs_Shape.GeomAbs_G1",
+          "parameter_origin": "native_ParOnEdgeS2",
+          "boundary_normal_probe": {
+            "edge_parameter": -0.22950798059461996,
+            "edge_point_mm": [
+              83.32611854363549,
+              -15.065155912120684,
+              14.459152259456834
+            ],
+            "outward_normals": [
+              [
+                -0.6210439656385912,
+                -0.7837757285876771,
+                4.555005702478042e-06
+              ],
+              [
+                -0.6210414060421615,
+                -0.7837777567532617,
+                0.0
+              ]
+            ],
+            "normal_angle_degrees": 0.0003211277223848012,
+            "supports": [
+              {
+                "uv": [
+                  43.06466194769763,
+                  -0.22950798059461996
+                ],
+                "support_point_mm": [
+                  83.3261185436355,
+                  -15.065155912120687,
+                  14.459152259456834
+                ],
+                "support_uv_bounds": [
+                  0.0,
+                  43.06466194769763,
+                  -0.451854664923225,
+                  23.33728979606525
+                ]
+              },
+              {
+                "uv": [
+                  0.45538683661598933,
+                  -10.469152410356326
+                ],
+                "support_point_mm": [
+                  83.32611842198543,
+                  -15.06515690293637,
+                  14.459152410356326
+                ],
+                "support_uv_bounds": [
+                  0.0,
+                  1.0,
+                  -26.01,
+                  1.4726332354449876e-14
+                ]
+              }
+            ]
+          },
+          "distance_mm": 0.5675759049933036,
+          "closest_points_mm": [
+            [
+              83.32611854363549,
+              -15.065155912120684,
+              14.459152259456834
+            ]
+          ]
+        },
+        {
+          "edge_index_zero_based": 80,
+          "topological_type": "TopAbs_ShapeEnum.TopAbs_EDGE",
+          "curve_type": "GeomAbs_CurveType.GeomAbs_BSplineCurve",
+          "bounds_mm": [
+            [
+              64.99999990002118,
+              -15.924825944210752,
+              3.999999899999911
+            ],
+            [
+              83.4326114521291,
+              -7.399999899999914,
+              13.7620844770302
+            ]
+          ],
+          "length_mm": 23.213965062152337,
+          "tolerance_mm": 3.54249686100042e-05,
+          "adjacent_faces_zero_based": [
+            11,
+            60
+          ],
+          "adjacent_surface_types": [
+            "GeomAbs_SurfaceType.GeomAbs_SurfaceOfExtrusion",
+            "GeomAbs_SurfaceType.GeomAbs_BSplineSurface"
+          ],
+          "native_continuity": "GeomAbs_Shape.GeomAbs_G1",
+          "parameter_origin": "native_ParOnEdgeS2",
+          "boundary_normal_probe": {
+            "edge_parameter": -0.2299168586572062,
+            "edge_point_mm": [
+              83.33599591961486,
+              -15.848006125979515,
+              13.683303665062146
+            ],
+            "outward_normals": [
+              [
+                -0.6320858075829754,
+                -0.0,
+                0.7748984009869796
+              ],
+              [
+                -0.6320878146973623,
+                -3.4719285820417234e-06,
+                0.7748967637686061
+              ]
+            ],
+            "normal_angle_degrees": 0.00024818584877315706,
+            "supports": [
+              {
+                "uv": [
+                  0.5253292625079279,
+                  -84.15199381182478
+                ],
+                "support_point_mm": [
+                  83.33599566703309,
+                  -15.84800618817522,
+                  13.683305068492432
+                ],
+                "support_uv_bounds": [
+                  0.0,
+                  1.0,
+                  -92.6,
+                  -64.0
+                ]
+              },
+              {
+                "uv": [
+                  0.0,
+                  -0.2299168586572062
+                ],
+                "support_point_mm": [
+                  83.33599591961487,
+                  -15.848006125979513,
+                  13.683303665062146
+                ],
+                "support_uv_bounds": [
+                  0.0,
+                  43.06466194769763,
+                  -0.451854664923225,
+                  23.33728979606525
+                ]
+              }
+            ]
+          },
+          "distance_mm": 0.5833019678573468,
+          "closest_points_mm": [
+            [
+              83.33599591961486,
+              -15.848006125979515,
+              13.683303665062146
+            ]
+          ]
+        },
+        {
+          "edge_index_zero_based": 82,
+          "topological_type": "TopAbs_ShapeEnum.TopAbs_EDGE",
+          "curve_type": "GeomAbs_CurveType.GeomAbs_BSplineCurve",
+          "bounds_mm": [
+            [
+              83.377929810107,
+              -17.26450304639,
+              13.717505494509
+            ],
+            [
+              83.43261070815498,
+              -15.924825744210697,
+              13.762085389772933
+            ]
+          ],
+          "length_mm": 1.3415334755804722,
+          "tolerance_mm": 1e-07,
+          "adjacent_faces_zero_based": [
+            11,
+            62
+          ],
+          "adjacent_surface_types": [
+            "GeomAbs_SurfaceType.GeomAbs_SurfaceOfExtrusion",
+            "GeomAbs_SurfaceType.GeomAbs_Plane"
+          ],
+          "native_continuity": "GeomAbs_Shape.GeomAbs_C0",
+          "boundary_normal_probe_error": "",
+          "distance_mm": 0.6014595079986648,
+          "closest_points_mm": [
+            [
+              83.4326105749874,
+              -15.9248264635757,
+              13.7620852612734
+            ]
+          ]
+        },
+        {
+          "edge_index_zero_based": 84,
+          "topological_type": "TopAbs_ShapeEnum.TopAbs_EDGE",
+          "curve_type": "GeomAbs_CurveType.GeomAbs_BSplineCurve",
+          "bounds_mm": [
+            [
+              83.37576677638987,
+              -19.970537196371097,
+              13.71574163943502
+            ],
+            [
+              86.166428700062,
+              -17.26450284639,
+              15.941972945847999
+            ]
+          ],
+          "length_mm": 5.018442833239813,
+          "tolerance_mm": 1.01591801528788e-07,
+          "adjacent_faces_zero_based": [
+            11,
+            64
+          ],
+          "adjacent_surface_types": [
+            "GeomAbs_SurfaceType.GeomAbs_SurfaceOfExtrusion",
+            "GeomAbs_SurfaceType.GeomAbs_Cylinder"
+          ],
+          "native_continuity": "GeomAbs_Shape.GeomAbs_C0",
+          "parameter_origin": "native_endpoint_parameter_verified_at_closest_vertex",
+          "boundary_normal_probe": {
+            "edge_parameter": 0.0,
+            "edge_point_mm": [
+              83.377929910107,
+              -17.26450294639,
+              13.717505594509
+            ],
+            "outward_normals": [
+              [
+                -0.6319672036866256,
+                -0.0,
+                0.7749951312521306
+              ],
+              [
+                0.9991680531005636,
+                -0.0407823695146502,
+                -0.0
+              ]
+            ],
+            "normal_angle_degrees": 129.15654964963483,
+            "supports": [
+              {
+                "uv": [
+                  0.526599374302,
+                  -82.7354970536
+                ],
+                "support_point_mm": [
+                  83.377929910109,
+                  -17.2645029464,
+                  13.717505594510515
+                ],
+                "support_uv_bounds": [
+                  0.0,
+                  1.0,
+                  -92.6,
+                  -64.0
+                ]
+              },
+              {
+                "uv": [
+                  3.182386336458,
+                  -57.7175055945
+                ],
+                "support_point_mm": [
+                  83.37792991010654,
+                  -17.26450294639191,
+                  13.717505594499997
+                ],
+                "support_uv_bounds": [
+                  1.497399000894,
+                  3.182386336458,
+                  -59.941972845991,
+                  -55.06447205126
+                ]
+              }
+            ]
+          },
+          "distance_mm": 1.914147669601934,
+          "closest_points_mm": [
+            [
+              83.377929910107,
+              -17.26450294639,
+              13.717505594509
+            ]
+          ]
+        },
+        {
+          "edge_index_zero_based": 267,
+          "topological_type": "TopAbs_ShapeEnum.TopAbs_EDGE",
+          "curve_type": "GeomAbs_CurveType.GeomAbs_Line",
+          "bounds_mm": [
+            [
+              83.377929910107,
+              -17.26450294639,
+              11.067159149300998
+            ],
+            [
+              83.377929910107,
+              -17.26450294639,
+              13.717505594509
+            ]
+          ],
+          "length_mm": 2.650346445208001,
+          "tolerance_mm": 1e-07,
+          "adjacent_faces_zero_based": [
+            62,
+            64
+          ],
+          "adjacent_surface_types": [
+            "GeomAbs_SurfaceType.GeomAbs_Plane",
+            "GeomAbs_SurfaceType.GeomAbs_Cylinder"
+          ],
+          "native_continuity": "GeomAbs_Shape.GeomAbs_G1",
+          "parameter_origin": "native_endpoint_parameter_verified_at_closest_vertex",
+          "boundary_normal_probe": {
+            "edge_parameter": 57.717505594509,
+            "edge_point_mm": [
+              83.377929910107,
+              -17.26450294639,
+              13.717505594509
+            ],
+            "outward_normals": [
+              [
+                0.999168053100579,
+                -0.04078236951427282,
+                0.0
+              ],
+              [
+                0.9991680531005636,
+                -0.0407823695146502,
+                -0.0
+              ]
+            ],
+            "normal_angle_degrees": 2.164089162201295e-11,
+            "supports": [
+              {
+                "uv": [
+                  28.46859563673287,
+                  -57.717505594509
+                ],
+                "support_point_mm": [
+                  83.37792991010734,
+                  -17.264502946390024,
+                  13.717505594509
+                ],
+                "support_uv_bounds": [
+                  26.37625782906451,
+                  28.46859563673287,
+                  -58.57049037017163,
+                  -55.067159149301
+                ]
+              },
+              {
+                "uv": [
+                  3.182386336458,
+                  -57.717505594509
+                ],
+                "support_point_mm": [
+                  83.37792991010654,
+                  -17.26450294639191,
+                  13.717505594509
+                ],
+                "support_uv_bounds": [
+                  1.497399000894,
+                  3.182386336458,
+                  -59.941972845991,
+                  -55.06447205126
+                ]
+              }
+            ]
+          },
+          "distance_mm": 1.914147669601934,
+          "closest_points_mm": [
+            [
+              83.377929910107,
+              -17.26450294639,
+              13.717505594509
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "label": "corner_1",
+      "probe_xyz_mm": [
+        83.463260350657,
+        -15.1739071529,
+        13.787064625185
+      ],
+      "all_face_distance_rows": 243,
+      "all_edge_distance_rows": 738,
+      "all_retained_nearest_face_properties": [
+        {
+          "rank": 0,
+          "face_index_zero_based": 62,
+          "surface_type": "GeomAbs_SurfaceType.GeomAbs_Plane",
+          "distance_mm": 0.0,
+          "local_status": "closest_support_not_face_interior",
+          "support_type": "BRepExtrema_SupportType.BRepExtrema_IsVertex",
+          "UV": null,
+          "point_mm": null,
+          "normal_outward": null,
+          "minimum_curvature_per_mm": null,
+          "maximum_curvature_per_mm": null,
+          "kernel_resolution_mm": null,
+          "local_chord": null,
+          "complete_raw_hit_count": 0,
+          "raw_properties_pointer": "output-001/assessment.json#/probes/2/nearest_faces/0/local_properties"
+        },
+        {
+          "rank": 1,
+          "face_index_zero_based": 68,
+          "surface_type": "GeomAbs_SurfaceType.GeomAbs_SurfaceOfExtrusion",
+          "distance_mm": 0.0,
+          "local_status": "closest_support_not_face_interior",
+          "support_type": "BRepExtrema_SupportType.BRepExtrema_IsVertex",
+          "UV": null,
+          "point_mm": null,
+          "normal_outward": null,
+          "minimum_curvature_per_mm": null,
+          "maximum_curvature_per_mm": null,
+          "kernel_resolution_mm": null,
+          "local_chord": null,
+          "complete_raw_hit_count": 0,
+          "raw_properties_pointer": "output-001/assessment.json#/probes/2/nearest_faces/1/local_properties"
+        },
+        {
+          "rank": 2,
+          "face_index_zero_based": 60,
+          "surface_type": "GeomAbs_SurfaceType.GeomAbs_BSplineSurface",
+          "distance_mm": 0.19842380354173456,
+          "local_status": "native_D2_at_reported_UV",
+          "support_type": "BRepExtrema_SupportType.BRepExtrema_IsInFace",
+          "UV": [
+            21.52041573488599,
+            -5.7848551513948245e-05
+          ],
+          "point_mm": [
+            83.31429074315517,
+            -15.267117051186982,
+            13.87921654710772
+          ],
+          "normal_outward": [
+            -0.750764801615561,
+            -0.46975159543993683,
+            0.4644196929898444
+          ],
+          "minimum_curvature_per_mm": 0.0010295746345680757,
+          "maximum_curvature_per_mm": 0.9999923932165461,
+          "kernel_resolution_mm": 4.46679483124578e-05,
+          "local_chord": {
+            "status": "unresolved_normal_chord",
+            "thickness_mm": null
+          },
+          "complete_raw_hit_count": 6,
+          "raw_properties_pointer": "output-001/assessment.json#/probes/2/nearest_faces/2/local_properties"
+        },
+        {
+          "rank": 3,
+          "face_index_zero_based": 11,
+          "surface_type": "GeomAbs_SurfaceType.GeomAbs_SurfaceOfExtrusion",
+          "distance_mm": 0.6602328334644066,
+          "local_status": "closest_support_not_face_interior",
+          "support_type": "BRepExtrema_SupportType.BRepExtrema_IsOnEdge",
+          "UV": null,
+          "point_mm": null,
+          "normal_outward": null,
+          "minimum_curvature_per_mm": null,
+          "maximum_curvature_per_mm": null,
+          "kernel_resolution_mm": null,
+          "local_chord": null,
+          "complete_raw_hit_count": 0,
+          "raw_properties_pointer": "output-001/assessment.json#/probes/2/nearest_faces/3/local_properties"
+        },
+        {
+          "rank": 4,
+          "face_index_zero_based": 64,
+          "surface_type": "GeomAbs_SurfaceType.GeomAbs_Cylinder",
+          "distance_mm": 2.093492420476158,
+          "local_status": "closest_support_not_face_interior",
+          "support_type": "BRepExtrema_SupportType.BRepExtrema_IsVertex",
+          "UV": null,
+          "point_mm": null,
+          "normal_outward": null,
+          "minimum_curvature_per_mm": null,
+          "maximum_curvature_per_mm": null,
+          "kernel_resolution_mm": null,
+          "local_chord": null,
+          "complete_raw_hit_count": 0,
+          "raw_properties_pointer": "output-001/assessment.json#/probes/2/nearest_faces/4/local_properties"
+        },
+        {
+          "rank": 5,
+          "face_index_zero_based": 149,
+          "surface_type": "GeomAbs_SurfaceType.GeomAbs_SurfaceOfExtrusion",
+          "distance_mm": 2.1890052028078544,
+          "local_status": "native_D2_at_reported_UV",
+          "support_type": "BRepExtrema_SupportType.BRepExtrema_IsInFace",
+          "UV": [
+            0.49548374250689425,
+            -9.797064625185
+          ],
+          "point_mm": [
+            84.83063942284639,
+            -13.464515959855433,
+            13.787064625185
+          ],
+          "normal_outward": [
+            0.624657753410291,
+            0.7808986432978406,
+            -0.0
+          ],
+          "minimum_curvature_per_mm": -0.00044042442196924874,
+          "maximum_curvature_per_mm": 0.0,
+          "kernel_resolution_mm": 4.46679483124578e-05,
+          "local_chord": {
+            "status": "unresolved_normal_chord",
+            "thickness_mm": null
+          },
+          "complete_raw_hit_count": 4,
+          "raw_properties_pointer": "output-001/assessment.json#/probes/2/nearest_faces/5/local_properties"
+        },
+        {
+          "rank": 6,
+          "face_index_zero_based": 131,
+          "surface_type": "GeomAbs_SurfaceType.GeomAbs_SurfaceOfExtrusion",
+          "distance_mm": 2.6406854686320003,
+          "local_status": "closest_support_not_face_interior",
+          "support_type": "BRepExtrema_SupportType.BRepExtrema_IsVertex",
+          "UV": null,
+          "point_mm": null,
+          "normal_outward": null,
+          "minimum_curvature_per_mm": null,
+          "maximum_curvature_per_mm": null,
+          "kernel_resolution_mm": null,
+          "local_chord": null,
+          "complete_raw_hit_count": 0,
+          "raw_properties_pointer": "output-001/assessment.json#/probes/2/nearest_faces/6/local_properties"
+        },
+        {
+          "rank": 7,
+          "face_index_zero_based": 205,
+          "surface_type": "GeomAbs_SurfaceType.GeomAbs_Plane",
+          "distance_mm": 2.714361999739595,
+          "local_status": "closest_support_not_face_interior",
+          "support_type": "BRepExtrema_SupportType.BRepExtrema_IsOnEdge",
+          "UV": null,
+          "point_mm": null,
+          "normal_outward": null,
+          "minimum_curvature_per_mm": null,
+          "maximum_curvature_per_mm": null,
+          "kernel_resolution_mm": null,
+          "local_chord": null,
+          "complete_raw_hit_count": 0,
+          "raw_properties_pointer": "output-001/assessment.json#/probes/2/nearest_faces/7/local_properties"
+        }
+      ],
+      "all_retained_nearest_edges": [
+        {
+          "edge_index_zero_based": 268,
+          "topological_type": "TopAbs_ShapeEnum.TopAbs_EDGE",
+          "curve_type": "GeomAbs_CurveType.GeomAbs_BSplineCurve",
+          "bounds_mm": [
+            [
+              83.46326018714325,
+              -15.173907353353261,
+              13.787064525185
+            ],
+            [
+              83.46326046245707,
+              -15.17390651219883,
+              14.570490470171643
+            ]
+          ],
+          "length_mm": 0.7834257449887969,
+          "tolerance_mm": 1.26517614319178e-06,
+          "adjacent_faces_zero_based": [
+            62,
+            68
+          ],
+          "adjacent_surface_types": [
+            "GeomAbs_SurfaceType.GeomAbs_Plane",
+            "GeomAbs_SurfaceType.GeomAbs_SurfaceOfExtrusion"
+          ],
+          "native_continuity": "GeomAbs_Shape.GeomAbs_C0",
+          "parameter_origin": "native_endpoint_parameter_verified_at_closest_vertex",
+          "boundary_normal_probe": {
+            "edge_parameter": 0.0,
+            "edge_point_mm": [
+              83.46326035065206,
+              -15.173907152897502,
+              13.787064625185
+            ],
+            "outward_normals": [
+              [
+                0.999168053100579,
+                -0.04078236951427282,
+                0.0
+              ],
+              [
+                -0.6216169848590926,
+                -0.7833213415544676,
+                0.0
+              ]
+            ],
+            "normal_angle_degrees": 126.0970058033116,
+            "supports": [
+              {
+                "uv": [
+                  26.376259130373878,
+                  -57.787064625184996
+                ],
+                "support_point_mm": [
+                  83.46326035065788,
+                  -15.173907152900037,
+                  13.787064625184996
+                ],
+                "support_uv_bounds": [
+                  26.37625782906451,
+                  28.46859563673287,
+                  -58.57049037017163,
+                  -55.067159149301
+                ]
+              },
+              {
+                "uv": [
+                  0.459038603086,
+                  -9.797064625185001
+                ],
+                "support_point_mm": [
+                  83.46326035064625,
+                  -15.173907152894968,
+                  13.787064625185002
+                ],
+                "support_uv_bounds": [
+                  0.0,
+                  1.0,
+                  -26.01,
+                  1.4726332354449876e-14
+                ]
+              }
+            ]
+          },
+          "distance_mm": 0.0,
+          "closest_points_mm": [
+            [
+              83.463260350657,
+              -15.1739071529,
+              13.787064625185
+            ]
+          ]
+        },
+        {
+          "edge_index_zero_based": 270,
+          "topological_type": "TopAbs_ShapeEnum.TopAbs_EDGE",
+          "curve_type": "GeomAbs_CurveType.GeomAbs_BSplineCurve",
+          "bounds_mm": [
+            [
+              83.463260250657,
+              -15.1739072529,
+              11.146379056553002
+            ],
+            [
+              83.46326045065699,
+              -15.1739070529,
+              13.787064725185
+            ]
+          ],
+          "length_mm": 2.6406854686320003,
+          "tolerance_mm": 1e-07,
+          "adjacent_faces_zero_based": [
+            62,
+            68
+          ],
+          "adjacent_surface_types": [
+            "GeomAbs_SurfaceType.GeomAbs_Plane",
+            "GeomAbs_SurfaceType.GeomAbs_SurfaceOfExtrusion"
+          ],
+          "native_continuity": "GeomAbs_Shape.GeomAbs_C0",
+          "parameter_origin": "native_endpoint_parameter_verified_at_closest_vertex",
+          "boundary_normal_probe": {
+            "edge_parameter": 0.242590317519373,
+            "edge_point_mm": [
+              83.463260350657,
+              -15.1739071529,
+              13.787064625185
+            ],
+            "outward_normals": [
+              [
+                0.999168053100579,
+                -0.04078236951427282,
+                0.0
+              ],
+              [
+                -0.6216169848590926,
+                -0.7833213415544676,
+                0.0
+              ]
+            ],
+            "normal_angle_degrees": 126.0970058033116,
+            "supports": [
+              {
+                "uv": [
+                  26.376259130373878,
+                  -57.787064625184996
+                ],
+                "support_point_mm": [
+                  83.46326035065788,
+                  -15.173907152900037,
+                  13.787064625184996
+                ],
+                "support_uv_bounds": [
+                  26.37625782906451,
+                  28.46859563673287,
+                  -58.57049037017163,
+                  -55.067159149301
+                ]
+              },
+              {
+                "uv": [
+                  0.459038603086,
+                  -9.797064625185001
+                ],
+                "support_point_mm": [
+                  83.46326035064625,
+                  -15.173907152894968,
+                  13.787064625185002
+                ],
+                "support_uv_bounds": [
+                  0.0,
+                  1.0,
+                  -26.01,
+                  1.4726332354449876e-14
+                ]
+              }
+            ]
+          },
+          "distance_mm": 0.0,
+          "closest_points_mm": [
+            [
+              83.463260350657,
+              -15.1739071529,
+              13.787064625185
+            ]
+          ]
+        },
+        {
+          "edge_index_zero_based": 263,
+          "topological_type": "TopAbs_ShapeEnum.TopAbs_EDGE",
+          "curve_type": "GeomAbs_CurveType.GeomAbs_BSplineCurve",
+          "bounds_mm": [
+            [
+              83.43261053155675,
+              -15.924825370878391,
+              13.76208368969394
+            ],
+            [
+              83.46326048942664,
+              -15.173906103065104,
+              14.570490470171633
+            ]
+          ],
+          "length_mm": 1.2365114219505124,
+          "tolerance_mm": 3.54249686100042e-05,
+          "adjacent_faces_zero_based": [
+            60,
+            62
+          ],
+          "adjacent_surface_types": [
+            "GeomAbs_SurfaceType.GeomAbs_BSplineSurface",
+            "GeomAbs_SurfaceType.GeomAbs_Plane"
+          ],
+          "native_continuity": "GeomAbs_Shape.GeomAbs_C0",
+          "parameter_origin": "native_ParOnEdgeS2",
+          "boundary_normal_probe": {
+            "edge_parameter": 0.49283204339992276,
+            "edge_point_mm": [
+              83.45467094075241,
+              -15.38434769558412,
+              13.98769781488542
+            ],
+            "outward_normals": [
+              [
+                -0.7509428593573098,
+                -0.46351869739941404,
+                0.4703565021783139
+              ],
+              [
+                0.999168053100579,
+                -0.04078236951427282,
+                0.0
+              ]
+            ],
+            "normal_angle_degrees": 137.00512683267033,
+            "supports": [
+              {
+                "uv": [
+                  21.224130984077714,
+                  -0.22844624835871977
+                ],
+                "support_point_mm": [
+                  83.45467093837976,
+                  -15.384347695897342,
+                  13.9876978174401
+                ],
+                "support_uv_bounds": [
+                  0.0,
+                  43.06466194769763,
+                  -0.451854664923225,
+                  23.33728979606525
+                ]
+              },
+              {
+                "uv": [
+                  26.586874894189634,
+                  -57.98769781488542
+                ],
+                "support_point_mm": [
+                  83.45467094075241,
+                  -15.38434769558412,
+                  13.987697814885422
+                ],
+                "support_uv_bounds": [
+                  26.37625782906451,
+                  28.46859563673287,
+                  -58.57049037017163,
+                  -55.067159149301
+                ]
+              }
+            ]
+          },
+          "distance_mm": 0.2908825824573567,
+          "closest_points_mm": [
+            [
+              83.45467094075241,
+              -15.38434769558412,
+              13.98769781488542
+            ]
+          ]
+        },
+        {
+          "edge_index_zero_based": 80,
+          "topological_type": "TopAbs_ShapeEnum.TopAbs_EDGE",
+          "curve_type": "GeomAbs_CurveType.GeomAbs_BSplineCurve",
+          "bounds_mm": [
+            [
+              64.99999990002118,
+              -15.924825944210752,
+              3.999999899999911
+            ],
+            [
+              83.4326114521291,
+              -7.399999899999914,
+              13.7620844770302
+            ]
+          ],
+          "length_mm": 23.213965062152337,
+          "tolerance_mm": 3.54249686100042e-05,
+          "adjacent_faces_zero_based": [
+            11,
+            60
+          ],
+          "adjacent_surface_types": [
+            "GeomAbs_SurfaceType.GeomAbs_SurfaceOfExtrusion",
+            "GeomAbs_SurfaceType.GeomAbs_BSplineSurface"
+          ],
+          "native_continuity": "GeomAbs_Shape.GeomAbs_G1",
+          "parameter_origin": "native_ParOnEdgeS2",
+          "boundary_normal_probe": {
+            "edge_parameter": -0.0005412752214350861,
+            "edge_point_mm": [
+              83.19552356583222,
+              -15.736513543074015,
+              13.568664858308992
+            ],
+            "outward_normals": [
+              [
+                -0.6324406740152656,
+                -0.0,
+                0.7746088005252177
+              ],
+              [
+                -0.6324425521166064,
+                -3.821694332788088e-06,
+                0.7746072671087124
+              ]
+            ],
+            "normal_angle_degrees": 0.0002593162824804404,
+            "supports": [
+              {
+                "uv": [
+                  0.5210741985468239,
+                  -84.26348623656801
+                ],
+                "support_point_mm": [
+                  83.19552342814062,
+                  -15.736513763431986,
+                  13.56866641833485
+                ],
+                "support_uv_bounds": [
+                  0.0,
+                  1.0,
+                  -92.6,
+                  -64.0
+                ]
+              },
+              {
+                "uv": [
+                  0.0,
+                  -0.0005412752214350861
+                ],
+                "support_point_mm": [
+                  83.19552356583222,
+                  -15.73651354307401,
+                  13.568664858308985
+                ],
+                "support_uv_bounds": [
+                  0.0,
+                  43.06466194769763,
+                  -0.451854664923225,
+                  23.33728979606525
+                ]
+              }
+            ]
+          },
+          "distance_mm": 0.6602328334644066,
+          "closest_points_mm": [
+            [
+              83.19552356583222,
+              -15.736513543074015,
+              13.568664858308992
+            ]
+          ]
+        },
+        {
+          "edge_index_zero_based": 264,
+          "topological_type": "TopAbs_ShapeEnum.TopAbs_EDGE",
+          "curve_type": "GeomAbs_CurveType.GeomAbs_BSplineCurve",
+          "bounds_mm": [
+            [
+              64.99999989997896,
+              -15.173906303065106,
+              4.9999998999997874
+            ],
+            [
+              83.46326048942666,
+              -6.399999899999894,
+              14.570490470171634
+            ]
+          ],
+          "length_mm": 23.246010005787237,
+          "tolerance_mm": 3.54249686100042e-05,
+          "adjacent_faces_zero_based": [
+            60,
+            68
+          ],
+          "adjacent_surface_types": [
+            "GeomAbs_SurfaceType.GeomAbs_BSplineSurface",
+            "GeomAbs_SurfaceType.GeomAbs_SurfaceOfExtrusion"
+          ],
+          "native_continuity": "GeomAbs_Shape.GeomAbs_G1",
+          "parameter_origin": "native_ParOnEdgeS2",
+          "boundary_normal_probe": {
+            "edge_parameter": -0.0005172363006802589,
+            "edge_point_mm": [
+              83.18486637949968,
+              -14.95332522199987,
+              14.344404486140109
+            ],
+            "outward_normals": [
+              [
+                -0.6203990628897311,
+                -0.7842863015135672,
+                4.869660553846513e-06
+              ],
+              [
+                -0.6203965483471238,
+                -0.7842882906170249,
+                0.0
+              ]
+            ],
+            "normal_angle_degrees": 0.00033405479143099845,
+            "supports": [
+              {
+                "uv": [
+                  43.06466194769763,
+                  -0.0005172363006802589
+                ],
+                "support_point_mm": [
+                  83.18486637949968,
+                  -14.95332522199987,
+                  14.344404486140105
+                ],
+                "support_uv_bounds": [
+                  0.0,
+                  43.06466194769763,
+                  -0.451854664923225,
+                  23.33728979606525
+                ]
+              },
+              {
+                "uv": [
+                  0.4516266216942806,
+                  -10.354404836110431
+                ],
+                "support_point_mm": [
+                  83.18486638435414,
+                  -14.953326367553938,
+                  14.344404836110431
+                ],
+                "support_uv_bounds": [
+                  0.0,
+                  1.0,
+                  -26.01,
+                  1.4726332354449876e-14
+                ]
+              }
+            ]
+          },
+          "distance_mm": 0.6608988667154975,
+          "closest_points_mm": [
+            [
+              83.18486637949968,
+              -14.95332522199987,
+              14.344404486140109
+            ]
+          ]
+        },
+        {
+          "edge_index_zero_based": 82,
+          "topological_type": "TopAbs_ShapeEnum.TopAbs_EDGE",
+          "curve_type": "GeomAbs_CurveType.GeomAbs_BSplineCurve",
+          "bounds_mm": [
+            [
+              83.377929810107,
+              -17.26450304639,
+              13.717505494509
+            ],
+            [
+              83.43261070815498,
+              -15.924825744210697,
+              13.762085389772933
+            ]
+          ],
+          "length_mm": 1.3415334755804722,
+          "tolerance_mm": 1e-07,
+          "adjacent_faces_zero_based": [
+            11,
+            62
+          ],
+          "adjacent_surface_types": [
+            "GeomAbs_SurfaceType.GeomAbs_SurfaceOfExtrusion",
+            "GeomAbs_SurfaceType.GeomAbs_Plane"
+          ],
+          "native_continuity": "GeomAbs_Shape.GeomAbs_C0",
+          "boundary_normal_probe_error": "",
+          "distance_mm": 0.7519595657451892,
+          "closest_points_mm": [
+            [
+              83.4326105749874,
+              -15.9248264635757,
+              13.7620852612734
+            ]
+          ]
+        },
+        {
+          "edge_index_zero_based": 84,
+          "topological_type": "TopAbs_ShapeEnum.TopAbs_EDGE",
+          "curve_type": "GeomAbs_CurveType.GeomAbs_BSplineCurve",
+          "bounds_mm": [
+            [
+              83.37576677638987,
+              -19.970537196371097,
+              13.71574163943502
+            ],
+            [
+              86.166428700062,
+              -17.26450284639,
+              15.941972945847999
+            ]
+          ],
+          "length_mm": 5.018442833239813,
+          "tolerance_mm": 1.01591801528788e-07,
+          "adjacent_faces_zero_based": [
+            11,
+            64
+          ],
+          "adjacent_surface_types": [
+            "GeomAbs_SurfaceType.GeomAbs_SurfaceOfExtrusion",
+            "GeomAbs_SurfaceType.GeomAbs_Cylinder"
+          ],
+          "native_continuity": "GeomAbs_Shape.GeomAbs_C0",
+          "parameter_origin": "native_endpoint_parameter_verified_at_closest_vertex",
+          "boundary_normal_probe": {
+            "edge_parameter": 0.0,
+            "edge_point_mm": [
+              83.377929910107,
+              -17.26450294639,
+              13.717505594509
+            ],
+            "outward_normals": [
+              [
+                -0.6319672036866256,
+                -0.0,
+                0.7749951312521306
+              ],
+              [
+                0.9991680531005636,
+                -0.0407823695146502,
+                -0.0
+              ]
+            ],
+            "normal_angle_degrees": 129.15654964963483,
+            "supports": [
+              {
+                "uv": [
+                  0.526599374302,
+                  -82.7354970536
+                ],
+                "support_point_mm": [
+                  83.377929910109,
+                  -17.2645029464,
+                  13.717505594510515
+                ],
+                "support_uv_bounds": [
+                  0.0,
+                  1.0,
+                  -92.6,
+                  -64.0
+                ]
+              },
+              {
+                "uv": [
+                  3.182386336458,
+                  -57.7175055945
+                ],
+                "support_point_mm": [
+                  83.37792991010654,
+                  -17.26450294639191,
+                  13.717505594499997
+                ],
+                "support_uv_bounds": [
+                  1.497399000894,
+                  3.182386336458,
+                  -59.941972845991,
+                  -55.06447205126
+                ]
+              }
+            ]
+          },
+          "distance_mm": 2.093492420476158,
+          "closest_points_mm": [
+            [
+              83.377929910107,
+              -17.26450294639,
+              13.717505594509
+            ]
+          ]
+        },
+        {
+          "edge_index_zero_based": 267,
+          "topological_type": "TopAbs_ShapeEnum.TopAbs_EDGE",
+          "curve_type": "GeomAbs_CurveType.GeomAbs_Line",
+          "bounds_mm": [
+            [
+              83.377929910107,
+              -17.26450294639,
+              11.067159149300998
+            ],
+            [
+              83.377929910107,
+              -17.26450294639,
+              13.717505594509
+            ]
+          ],
+          "length_mm": 2.650346445208001,
+          "tolerance_mm": 1e-07,
+          "adjacent_faces_zero_based": [
+            62,
+            64
+          ],
+          "adjacent_surface_types": [
+            "GeomAbs_SurfaceType.GeomAbs_Plane",
+            "GeomAbs_SurfaceType.GeomAbs_Cylinder"
+          ],
+          "native_continuity": "GeomAbs_Shape.GeomAbs_G1",
+          "parameter_origin": "native_endpoint_parameter_verified_at_closest_vertex",
+          "boundary_normal_probe": {
+            "edge_parameter": 57.717505594509,
+            "edge_point_mm": [
+              83.377929910107,
+              -17.26450294639,
+              13.717505594509
+            ],
+            "outward_normals": [
+              [
+                0.999168053100579,
+                -0.04078236951427282,
+                0.0
+              ],
+              [
+                0.9991680531005636,
+                -0.0407823695146502,
+                -0.0
+              ]
+            ],
+            "normal_angle_degrees": 2.164089162201295e-11,
+            "supports": [
+              {
+                "uv": [
+                  28.46859563673287,
+                  -57.717505594509
+                ],
+                "support_point_mm": [
+                  83.37792991010734,
+                  -17.264502946390024,
+                  13.717505594509
+                ],
+                "support_uv_bounds": [
+                  26.37625782906451,
+                  28.46859563673287,
+                  -58.57049037017163,
+                  -55.067159149301
+                ]
+              },
+              {
+                "uv": [
+                  3.182386336458,
+                  -57.717505594509
+                ],
+                "support_point_mm": [
+                  83.37792991010654,
+                  -17.26450294639191,
+                  13.717505594509
+                ],
+                "support_uv_bounds": [
+                  1.497399000894,
+                  3.182386336458,
+                  -59.941972845991,
+                  -55.06447205126
+                ]
+              }
+            ]
+          },
+          "distance_mm": 2.093492420476158,
+          "closest_points_mm": [
+            [
+              83.377929910107,
+              -17.26450294639,
+              13.717505594509
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "label": "corner_2",
+      "probe_xyz_mm": [
+        83.432610574987,
+        -15.924826463576,
+        13.762085261273
+      ],
+      "all_face_distance_rows": 243,
+      "all_edge_distance_rows": 738,
+      "all_retained_nearest_face_properties": [
+        {
+          "rank": 0,
+          "face_index_zero_based": 11,
+          "surface_type": "GeomAbs_SurfaceType.GeomAbs_SurfaceOfExtrusion",
+          "distance_mm": 6.389010077350028e-13,
+          "local_status": "unresolved_native_multiple_closest_supports",
+          "support_type": null,
+          "UV": null,
+          "point_mm": null,
+          "normal_outward": null,
+          "minimum_curvature_per_mm": null,
+          "maximum_curvature_per_mm": null,
+          "kernel_resolution_mm": null,
+          "local_chord": null,
+          "complete_raw_hit_count": 0,
+          "raw_properties_pointer": "output-001/assessment.json#/probes/3/nearest_faces/0/local_properties"
+        },
+        {
+          "rank": 1,
+          "face_index_zero_based": 60,
+          "surface_type": "GeomAbs_SurfaceType.GeomAbs_BSplineSurface",
+          "distance_mm": 6.389010077350028e-13,
+          "local_status": "closest_support_not_face_interior",
+          "support_type": "BRepExtrema_SupportType.BRepExtrema_IsVertex",
+          "UV": null,
+          "point_mm": null,
+          "normal_outward": null,
+          "minimum_curvature_per_mm": null,
+          "maximum_curvature_per_mm": null,
+          "kernel_resolution_mm": null,
+          "local_chord": null,
+          "complete_raw_hit_count": 0,
+          "raw_properties_pointer": "output-001/assessment.json#/probes/3/nearest_faces/1/local_properties"
+        },
+        {
+          "rank": 2,
+          "face_index_zero_based": 62,
+          "surface_type": "GeomAbs_SurfaceType.GeomAbs_Plane",
+          "distance_mm": 6.389010077350028e-13,
+          "local_status": "unresolved_native_multiple_closest_supports",
+          "support_type": null,
+          "UV": null,
+          "point_mm": null,
+          "normal_outward": null,
+          "minimum_curvature_per_mm": null,
+          "maximum_curvature_per_mm": null,
+          "kernel_resolution_mm": null,
+          "local_chord": null,
+          "complete_raw_hit_count": 0,
+          "raw_properties_pointer": "output-001/assessment.json#/probes/3/nearest_faces/2/local_properties"
+        },
+        {
+          "rank": 3,
+          "face_index_zero_based": 68,
+          "surface_type": "GeomAbs_SurfaceType.GeomAbs_SurfaceOfExtrusion",
+          "distance_mm": 0.6068989833634552,
+          "local_status": "native_D2_at_reported_UV",
+          "support_type": "BRepExtrema_SupportType.BRepExtrema_IsInFace",
+          "UV": [
+            0.4682916869290742,
+            -9.772085261273
+          ],
+          "point_mm": [
+            83.81061945903289,
+            -15.450025811101753,
+            13.762085261273
+          ],
+          "normal_outward": [
+            -0.6228530520037483,
+            -0.7823388496103311,
+            0.0
+          ],
+          "minimum_curvature_per_mm": -0.003101988970681826,
+          "maximum_curvature_per_mm": 0.0,
+          "kernel_resolution_mm": 4.46679483124578e-05,
+          "local_chord": {
+            "status": "unambiguous_first_native_in_out_normal_chord",
+            "thickness_mm": 2.1876373537839573,
+            "target_face_index_zero_based": 149,
+            "scope": "one_local_native_normal_chord_not_global_minimum_thickness"
+          },
+          "complete_raw_hit_count": 4,
+          "raw_properties_pointer": "output-001/assessment.json#/probes/3/nearest_faces/3/local_properties"
+        },
+        {
+          "rank": 4,
+          "face_index_zero_based": 64,
+          "surface_type": "GeomAbs_SurfaceType.GeomAbs_Cylinder",
+          "distance_mm": 1.341532854761819,
+          "local_status": "closest_support_not_face_interior",
+          "support_type": "BRepExtrema_SupportType.BRepExtrema_IsVertex",
+          "UV": null,
+          "point_mm": null,
+          "normal_outward": null,
+          "minimum_curvature_per_mm": null,
+          "maximum_curvature_per_mm": null,
+          "kernel_resolution_mm": null,
+          "local_chord": null,
+          "complete_raw_hit_count": 0,
+          "raw_properties_pointer": "output-001/assessment.json#/probes/3/nearest_faces/4/local_properties"
+        },
+        {
+          "rank": 5,
+          "face_index_zero_based": 131,
+          "surface_type": "GeomAbs_SurfaceType.GeomAbs_SurfaceOfExtrusion",
+          "distance_mm": 2.6422620326724133,
+          "local_status": "closest_support_not_face_interior",
+          "support_type": "BRepExtrema_SupportType.BRepExtrema_IsOnEdge",
+          "UV": null,
+          "point_mm": null,
+          "normal_outward": null,
+          "minimum_curvature_per_mm": null,
+          "maximum_curvature_per_mm": null,
+          "kernel_resolution_mm": null,
+          "local_chord": null,
+          "complete_raw_hit_count": 0,
+          "raw_properties_pointer": "output-001/assessment.json#/probes/3/nearest_faces/5/local_properties"
+        },
+        {
+          "rank": 6,
+          "face_index_zero_based": 149,
+          "surface_type": "GeomAbs_SurfaceType.GeomAbs_SurfaceOfExtrusion",
+          "distance_mm": 2.7945289116589915,
+          "local_status": "native_D2_at_reported_UV",
+          "support_type": "BRepExtrema_SupportType.BRepExtrema_IsInFace",
+          "UV": [
+            0.5047525989201098,
+            -9.772085261273
+          ],
+          "point_mm": [
+            85.17822353298297,
+            -13.742573673687868,
+            13.762085261273
+          ],
+          "normal_outward": [
+            0.6246537477973994,
+            0.7809018474575811,
+            -0.0
+          ],
+          "minimum_curvature_per_mm": 0.0,
+          "maximum_curvature_per_mm": 0.0004634756536058411,
+          "kernel_resolution_mm": 4.46679483124578e-05,
+          "local_chord": {
+            "status": "unambiguous_first_native_in_out_normal_chord",
+            "thickness_mm": 2.187628320770091,
+            "target_face_index_zero_based": 68,
+            "scope": "one_local_native_normal_chord_not_global_minimum_thickness"
+          },
+          "complete_raw_hit_count": 5,
+          "raw_properties_pointer": "output-001/assessment.json#/probes/3/nearest_faces/6/local_properties"
+        },
+        {
+          "rank": 7,
+          "face_index_zero_based": 205,
+          "surface_type": "GeomAbs_SurfaceType.GeomAbs_Plane",
+          "distance_mm": 3.465906555900266,
+          "local_status": "closest_support_not_face_interior",
+          "support_type": "BRepExtrema_SupportType.BRepExtrema_IsOnEdge",
+          "UV": null,
+          "point_mm": null,
+          "normal_outward": null,
+          "minimum_curvature_per_mm": null,
+          "maximum_curvature_per_mm": null,
+          "kernel_resolution_mm": null,
+          "local_chord": null,
+          "complete_raw_hit_count": 0,
+          "raw_properties_pointer": "output-001/assessment.json#/probes/3/nearest_faces/7/local_properties"
+        }
+      ],
+      "all_retained_nearest_edges": [
+        {
+          "edge_index_zero_based": 80,
+          "topological_type": "TopAbs_ShapeEnum.TopAbs_EDGE",
+          "curve_type": "GeomAbs_CurveType.GeomAbs_BSplineCurve",
+          "bounds_mm": [
+            [
+              64.99999990002118,
+              -15.924825944210752,
+              3.999999899999911
+            ],
+            [
+              83.4326114521291,
+              -7.399999899999914,
+              13.7620844770302
+            ]
+          ],
+          "length_mm": 23.213965062152337,
+          "tolerance_mm": 3.54249686100042e-05,
+          "adjacent_faces_zero_based": [
+            11,
+            60
+          ],
+          "adjacent_surface_types": [
+            "GeomAbs_SurfaceType.GeomAbs_SurfaceOfExtrusion",
+            "GeomAbs_SurfaceType.GeomAbs_BSplineSurface"
+          ],
+          "native_continuity": "GeomAbs_Shape.GeomAbs_G1",
+          "parameter_origin": "native_endpoint_parameter_verified_at_closest_vertex",
+          "boundary_normal_probe": {
+            "edge_parameter": -0.38770437975882,
+            "edge_point_mm": [
+              83.4326113521291,
+              -15.924825844210753,
+              13.7620843770302
+            ],
+            "outward_normals": [
+              [
+                -0.6318037875150719,
+                -0.0,
+                0.77512835974541
+              ],
+              [
+                -0.6318058128727905,
+                -3.13079630113696e-06,
+                0.7751267088743301
+              ]
+            ],
+            "normal_angle_degrees": 0.00023364692490012307,
+            "supports": [
+              {
+                "uv": [
+                  0.5282554727157356,
+                  -84.07517415578918
+                ],
+                "support_point_mm": [
+                  83.43261106658625,
+                  -15.924825844210815,
+                  13.762085661973504
+                ],
+                "support_uv_bounds": [
+                  0.0,
+                  1.0,
+                  -92.6,
+                  -64.0
+                ]
+              },
+              {
+                "uv": [
+                  0.0,
+                  -0.38770437975882
+                ],
+                "support_point_mm": [
+                  83.4326113521291,
+                  -15.924825844210758,
+                  13.762084377030197
+                ],
+                "support_uv_bounds": [
+                  0.0,
+                  43.06466194769763,
+                  -0.451854664923225,
+                  23.33728979606525
+                ]
+              }
+            ]
+          },
+          "distance_mm": 6.389010077350028e-13,
+          "closest_points_mm": [
+            [
+              83.4326105749874,
+              -15.9248264635757,
+              13.7620852612734
+            ]
+          ]
+        },
+        {
+          "edge_index_zero_based": 82,
+          "topological_type": "TopAbs_ShapeEnum.TopAbs_EDGE",
+          "curve_type": "GeomAbs_CurveType.GeomAbs_BSplineCurve",
+          "bounds_mm": [
+            [
+              83.377929810107,
+              -17.26450304639,
+              13.717505494509
+            ],
+            [
+              83.43261070815498,
+              -15.924825744210697,
+              13.762085389772933
+            ]
+          ],
+          "length_mm": 1.3415334755804722,
+          "tolerance_mm": 1e-07,
+          "adjacent_faces_zero_based": [
+            11,
+            62
+          ],
+          "adjacent_surface_types": [
+            "GeomAbs_SurfaceType.GeomAbs_SurfaceOfExtrusion",
+            "GeomAbs_SurfaceType.GeomAbs_Plane"
+          ],
+          "native_continuity": "GeomAbs_Shape.GeomAbs_C0",
+          "boundary_normal_probe_error": "",
+          "distance_mm": 6.389010077350028e-13,
+          "closest_points_mm": [
+            [
+              83.4326105749874,
+              -15.9248264635757,
+              13.7620852612734
+            ],
+            [
+              83.43261058285097,
+              -15.924826464158967,
+              13.762085269147743
+            ]
+          ]
+        },
+        {
+          "edge_index_zero_based": 263,
+          "topological_type": "TopAbs_ShapeEnum.TopAbs_EDGE",
+          "curve_type": "GeomAbs_CurveType.GeomAbs_BSplineCurve",
+          "bounds_mm": [
+            [
+              83.43261053155675,
+              -15.924825370878391,
+              13.76208368969394
+            ],
+            [
+              83.46326048942664,
+              -15.173906103065104,
+              14.570490470171633
+            ]
+          ],
+          "length_mm": 1.2365114219505124,
+          "tolerance_mm": 3.54249686100042e-05,
+          "adjacent_faces_zero_based": [
+            60,
+            62
+          ],
+          "adjacent_surface_types": [
+            "GeomAbs_SurfaceType.GeomAbs_BSplineSurface",
+            "GeomAbs_SurfaceType.GeomAbs_Plane"
+          ],
+          "native_continuity": "GeomAbs_Shape.GeomAbs_C0",
+          "parameter_origin": "native_endpoint_parameter_verified_at_closest_vertex",
+          "boundary_normal_probe": {
+            "edge_parameter": 0.0,
+            "edge_point_mm": [
+              83.43261063155674,
+              -15.924825270878392,
+              13.76208378969394
+            ],
+            "outward_normals": [
+              [
+                -0.6318058150916774,
+                -3.1307991099595488e-06,
+                0.7751267070657152
+              ],
+              [
+                0.999168053100579,
+                -0.04078236951427282,
+                0.0
+              ]
+            ],
+            "normal_angle_degrees": 129.14462619888266,
+            "supports": [
+              {
+                "uv": [
+                  0.0,
+                  -0.387703202903521
+                ],
+                "support_point_mm": [
+                  83.43261063155676,
+                  -15.924825270878383,
+                  13.76208378969394
+                ],
+                "support_uv_bounds": [
+                  0.0,
+                  43.06466194769763,
+                  -0.451854664923225,
+                  23.33728979606525
+                ]
+              },
+              {
+                "uv": [
+                  27.12780249252215,
+                  -57.76208378969394
+                ],
+                "support_point_mm": [
+                  83.43261063155674,
+                  -15.924825270878392,
+                  13.76208378969394
+                ],
+                "support_uv_bounds": [
+                  26.37625782906451,
+                  28.46859563673287,
+                  -58.57049037017163,
+                  -55.067159149301
+                ]
+              }
+            ]
+          },
+          "distance_mm": 6.389010077350028e-13,
+          "closest_points_mm": [
+            [
+              83.4326105749874,
+              -15.9248264635757,
+              13.7620852612734
+            ]
+          ]
+        },
+        {
+          "edge_index_zero_based": 270,
+          "topological_type": "TopAbs_ShapeEnum.TopAbs_EDGE",
+          "curve_type": "GeomAbs_CurveType.GeomAbs_BSplineCurve",
+          "bounds_mm": [
+            [
+              83.463260250657,
+              -15.1739072529,
+              11.146379056553002
+            ],
+            [
+              83.46326045065699,
+              -15.1739070529,
+              13.787064725185
+            ]
+          ],
+          "length_mm": 2.6406854686320003,
+          "tolerance_mm": 1e-07,
+          "adjacent_faces_zero_based": [
+            62,
+            68
+          ],
+          "adjacent_surface_types": [
+            "GeomAbs_SurfaceType.GeomAbs_Plane",
+            "GeomAbs_SurfaceType.GeomAbs_SurfaceOfExtrusion"
+          ],
+          "native_continuity": "GeomAbs_Shape.GeomAbs_C0",
+          "parameter_origin": "native_ParOnEdgeS2",
+          "boundary_normal_probe": {
+            "edge_parameter": 0.24954629898891395,
+            "edge_point_mm": [
+              83.463260350657,
+              -15.1739071529,
+              13.762085261273
+            ],
+            "outward_normals": [
+              [
+                0.999168053100579,
+                -0.04078236951427282,
+                0.0
+              ],
+              [
+                -0.6216169848590926,
+                -0.7833213415544676,
+                0.0
+              ]
+            ],
+            "normal_angle_degrees": 126.0970058033116,
+            "supports": [
+              {
+                "uv": [
+                  26.376259130373878,
+                  -57.762085261273
+                ],
+                "support_point_mm": [
+                  83.46326035065788,
+                  -15.173907152900037,
+                  13.762085261273
+                ],
+                "support_uv_bounds": [
+                  26.37625782906451,
+                  28.46859563673287,
+                  -58.57049037017163,
+                  -55.067159149301
+                ]
+              },
+              {
+                "uv": [
+                  0.459038603086,
+                  -9.772085261273
+                ],
+                "support_point_mm": [
+                  83.46326035064625,
+                  -15.173907152894968,
+                  13.762085261273
+                ],
+                "support_uv_bounds": [
+                  0.0,
+                  1.0,
+                  -26.01,
+                  1.4726332354449876e-14
+                ]
+              }
+            ]
+          },
+          "distance_mm": 0.7515445561606714,
+          "closest_points_mm": [
+            [
+              83.463260350657,
+              -15.1739071529,
+              13.762085261273
+            ]
+          ]
+        },
+        {
+          "edge_index_zero_based": 268,
+          "topological_type": "TopAbs_ShapeEnum.TopAbs_EDGE",
+          "curve_type": "GeomAbs_CurveType.GeomAbs_BSplineCurve",
+          "bounds_mm": [
+            [
+              83.46326018714325,
+              -15.173907353353261,
+              13.787064525185
+            ],
+            [
+              83.46326046245707,
+              -15.17390651219883,
+              14.570490470171643
+            ]
+          ],
+          "length_mm": 0.7834257449887969,
+          "tolerance_mm": 1.26517614319178e-06,
+          "adjacent_faces_zero_based": [
+            62,
+            68
+          ],
+          "adjacent_surface_types": [
+            "GeomAbs_SurfaceType.GeomAbs_Plane",
+            "GeomAbs_SurfaceType.GeomAbs_SurfaceOfExtrusion"
+          ],
+          "native_continuity": "GeomAbs_Shape.GeomAbs_C0",
+          "parameter_origin": "native_endpoint_parameter_verified_at_closest_vertex",
+          "boundary_normal_probe": {
+            "edge_parameter": 0.0,
+            "edge_point_mm": [
+              83.46326035065206,
+              -15.173907152897502,
+              13.787064625185
+            ],
+            "outward_normals": [
+              [
+                0.999168053100579,
+                -0.04078236951427282,
+                0.0
+              ],
+              [
+                -0.6216169848590926,
+                -0.7833213415544676,
+                0.0
+              ]
+            ],
+            "normal_angle_degrees": 126.0970058033116,
+            "supports": [
+              {
+                "uv": [
+                  26.376259130373878,
+                  -57.787064625184996
+                ],
+                "support_point_mm": [
+                  83.46326035065788,
+                  -15.173907152900037,
+                  13.787064625184996
+                ],
+                "support_uv_bounds": [
+                  26.37625782906451,
+                  28.46859563673287,
+                  -58.57049037017163,
+                  -55.067159149301
+                ]
+              },
+              {
+                "uv": [
+                  0.459038603086,
+                  -9.797064625185001
+                ],
+                "support_point_mm": [
+                  83.46326035064625,
+                  -15.173907152894968,
+                  13.787064625185002
+                ],
+                "support_uv_bounds": [
+                  0.0,
+                  1.0,
+                  -26.01,
+                  1.4726332354449876e-14
+                ]
+              }
+            ]
+          },
+          "distance_mm": 0.7519595657455184,
+          "closest_points_mm": [
+            [
+              83.463260350657,
+              -15.1739071529,
+              13.787064625185
+            ]
+          ]
+        },
+        {
+          "edge_index_zero_based": 264,
+          "topological_type": "TopAbs_ShapeEnum.TopAbs_EDGE",
+          "curve_type": "GeomAbs_CurveType.GeomAbs_BSplineCurve",
+          "bounds_mm": [
+            [
+              64.99999989997896,
+              -15.173906303065106,
+              4.9999998999997874
+            ],
+            [
+              83.46326048942666,
+              -6.399999899999894,
+              14.570490470171634
+            ]
+          ],
+          "length_mm": 23.246010005787237,
+          "tolerance_mm": 3.54249686100042e-05,
+          "adjacent_faces_zero_based": [
+            60,
+            68
+          ],
+          "adjacent_surface_types": [
+            "GeomAbs_SurfaceType.GeomAbs_BSplineSurface",
+            "GeomAbs_SurfaceType.GeomAbs_SurfaceOfExtrusion"
+          ],
+          "native_continuity": "GeomAbs_Shape.GeomAbs_G1",
+          "parameter_origin": "native_ParOnEdgeS2",
+          "boundary_normal_probe": {
+            "edge_parameter": -0.3872317762125833,
+            "edge_point_mm": [
+              83.42340182038122,
+              -15.142282465910577,
+              14.538139586536964
+            ],
+            "outward_normals": [
+              [
+                -0.6214573291613457,
+                -0.7834480123236871,
+                4.208380045782425e-06
+              ],
+              [
+                -0.6214548215929316,
+                -0.7834500014161068,
+                0.0
+              ]
+            ],
+            "normal_angle_degrees": 0.0003029362327467417,
+            "supports": [
+              {
+                "uv": [
+                  43.06466194769763,
+                  -0.3872317762125833
+                ],
+                "support_point_mm": [
+                  83.42340182038122,
+                  -15.142282465910574,
+                  14.538139586536962
+                ],
+                "support_uv_bounds": [
+                  0.0,
+                  43.06466194769763,
+                  -0.451854664923225,
+                  23.33728979606525
+                ]
+              },
+              {
+                "uv": [
+                  0.4579771654846565,
+                  -10.548139601068325
+                ],
+                "support_point_mm": [
+                  83.42340161661497,
+                  -15.142283320778311,
+                  14.538139601068325
+                ],
+                "support_uv_bounds": [
+                  0.0,
+                  1.0,
+                  -26.01,
+                  1.4726332354449876e-14
+                ]
+              }
+            ]
+          },
+          "distance_mm": 1.1021434685214426,
+          "closest_points_mm": [
+            [
+              83.42340182038122,
+              -15.142282465910577,
+              14.538139586536964
+            ]
+          ]
+        },
+        {
+          "edge_index_zero_based": 84,
+          "topological_type": "TopAbs_ShapeEnum.TopAbs_EDGE",
+          "curve_type": "GeomAbs_CurveType.GeomAbs_BSplineCurve",
+          "bounds_mm": [
+            [
+              83.37576677638987,
+              -19.970537196371097,
+              13.71574163943502
+            ],
+            [
+              86.166428700062,
+              -17.26450284639,
+              15.941972945847999
+            ]
+          ],
+          "length_mm": 5.018442833239813,
+          "tolerance_mm": 1.01591801528788e-07,
+          "adjacent_faces_zero_based": [
+            11,
+            64
+          ],
+          "adjacent_surface_types": [
+            "GeomAbs_SurfaceType.GeomAbs_SurfaceOfExtrusion",
+            "GeomAbs_SurfaceType.GeomAbs_Cylinder"
+          ],
+          "native_continuity": "GeomAbs_Shape.GeomAbs_C0",
+          "parameter_origin": "native_endpoint_parameter_verified_at_closest_vertex",
+          "boundary_normal_probe": {
+            "edge_parameter": 0.0,
+            "edge_point_mm": [
+              83.377929910107,
+              -17.26450294639,
+              13.717505594509
+            ],
+            "outward_normals": [
+              [
+                -0.6319672036866256,
+                -0.0,
+                0.7749951312521306
+              ],
+              [
+                0.9991680531005636,
+                -0.0407823695146502,
+                -0.0
+              ]
+            ],
+            "normal_angle_degrees": 129.15654964963483,
+            "supports": [
+              {
+                "uv": [
+                  0.526599374302,
+                  -82.7354970536
+                ],
+                "support_point_mm": [
+                  83.377929910109,
+                  -17.2645029464,
+                  13.717505594510515
+                ],
+                "support_uv_bounds": [
+                  0.0,
+                  1.0,
+                  -92.6,
+                  -64.0
+                ]
+              },
+              {
+                "uv": [
+                  3.182386336458,
+                  -57.7175055945
+                ],
+                "support_point_mm": [
+                  83.37792991010654,
+                  -17.26450294639191,
+                  13.717505594499997
+                ],
+                "support_uv_bounds": [
+                  1.497399000894,
+                  3.182386336458,
+                  -59.941972845991,
+                  -55.06447205126
+                ]
+              }
+            ]
+          },
+          "distance_mm": 1.341532854761819,
+          "closest_points_mm": [
+            [
+              83.377929910107,
+              -17.26450294639,
+              13.717505594509
+            ]
+          ]
+        },
+        {
+          "edge_index_zero_based": 267,
+          "topological_type": "TopAbs_ShapeEnum.TopAbs_EDGE",
+          "curve_type": "GeomAbs_CurveType.GeomAbs_Line",
+          "bounds_mm": [
+            [
+              83.377929910107,
+              -17.26450294639,
+              11.067159149300998
+            ],
+            [
+              83.377929910107,
+              -17.26450294639,
+              13.717505594509
+            ]
+          ],
+          "length_mm": 2.650346445208001,
+          "tolerance_mm": 1e-07,
+          "adjacent_faces_zero_based": [
+            62,
+            64
+          ],
+          "adjacent_surface_types": [
+            "GeomAbs_SurfaceType.GeomAbs_Plane",
+            "GeomAbs_SurfaceType.GeomAbs_Cylinder"
+          ],
+          "native_continuity": "GeomAbs_Shape.GeomAbs_G1",
+          "parameter_origin": "native_endpoint_parameter_verified_at_closest_vertex",
+          "boundary_normal_probe": {
+            "edge_parameter": 57.717505594509,
+            "edge_point_mm": [
+              83.377929910107,
+              -17.26450294639,
+              13.717505594509
+            ],
+            "outward_normals": [
+              [
+                0.999168053100579,
+                -0.04078236951427282,
+                0.0
+              ],
+              [
+                0.9991680531005636,
+                -0.0407823695146502,
+                -0.0
+              ]
+            ],
+            "normal_angle_degrees": 2.164089162201295e-11,
+            "supports": [
+              {
+                "uv": [
+                  28.46859563673287,
+                  -57.717505594509
+                ],
+                "support_point_mm": [
+                  83.37792991010734,
+                  -17.264502946390024,
+                  13.717505594509
+                ],
+                "support_uv_bounds": [
+                  26.37625782906451,
+                  28.46859563673287,
+                  -58.57049037017163,
+                  -55.067159149301
+                ]
+              },
+              {
+                "uv": [
+                  3.182386336458,
+                  -57.717505594509
+                ],
+                "support_point_mm": [
+                  83.37792991010654,
+                  -17.26450294639191,
+                  13.717505594509
+                ],
+                "support_uv_bounds": [
+                  1.497399000894,
+                  3.182386336458,
+                  -59.941972845991,
+                  -55.06447205126
+                ]
+              }
+            ]
+          },
+          "distance_mm": 1.341532854761819,
+          "closest_points_mm": [
+            [
+              83.377929910107,
+              -17.26450294639,
+              13.717505594509
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "label": "corner_3",
+      "probe_xyz_mm": [
+        83.050110295512,
+        -15.073740339351,
+        13.648453719354
+      ],
+      "all_face_distance_rows": 243,
+      "all_edge_distance_rows": 738,
+      "all_retained_nearest_face_properties": [
+        {
+          "rank": 0,
+          "face_index_zero_based": 60,
+          "surface_type": "GeomAbs_SurfaceType.GeomAbs_BSplineSurface",
+          "distance_mm": 4.3800795900274466e-14,
+          "local_status": "native_D2_at_reported_UV",
+          "support_type": "BRepExtrema_SupportType.BRepExtrema_IsInFace",
+          "UV": [
+            20.734228480831693,
+            0.42984910877649735
+          ],
+          "point_mm": [
+            83.05011029551196,
+            -15.073740339351007,
+            13.648453719354007
+          ],
+          "normal_outward": [
+            -0.7504866240367396,
+            -0.4547374458851985,
+            0.47956613980945695
+          ],
+          "minimum_curvature_per_mm": 0.0016058383290000078,
+          "maximum_curvature_per_mm": 0.9999932078019108,
+          "kernel_resolution_mm": 4.46679483124578e-05,
+          "local_chord": {
+            "status": "unambiguous_first_native_in_out_normal_chord",
+            "thickness_mm": 2.8751619591984032,
+            "target_face_index_zero_based": 149,
+            "scope": "one_local_native_normal_chord_not_global_minimum_thickness"
+          },
+          "complete_raw_hit_count": 2,
+          "raw_properties_pointer": "output-001/assessment.json#/probes/4/nearest_faces/0/local_properties"
+        },
+        {
+          "rank": 1,
+          "face_index_zero_based": 62,
+          "surface_type": "GeomAbs_SurfaceType.GeomAbs_Plane",
+          "distance_mm": 0.42511922869105023,
+          "local_status": "closest_support_not_face_interior",
+          "support_type": "BRepExtrema_SupportType.BRepExtrema_IsOnEdge",
+          "UV": null,
+          "point_mm": null,
+          "normal_outward": null,
+          "minimum_curvature_per_mm": null,
+          "maximum_curvature_per_mm": null,
+          "kernel_resolution_mm": null,
+          "local_chord": null,
+          "complete_raw_hit_count": 0,
+          "raw_properties_pointer": "output-001/assessment.json#/probes/4/nearest_faces/1/local_properties"
+        },
+        {
+          "rank": 2,
+          "face_index_zero_based": 68,
+          "surface_type": "GeomAbs_SurfaceType.GeomAbs_SurfaceOfExtrusion",
+          "distance_mm": 0.42511922869105023,
+          "local_status": "closest_support_not_face_interior",
+          "support_type": "BRepExtrema_SupportType.BRepExtrema_IsOnEdge",
+          "UV": null,
+          "point_mm": null,
+          "normal_outward": null,
+          "minimum_curvature_per_mm": null,
+          "maximum_curvature_per_mm": null,
+          "kernel_resolution_mm": null,
+          "local_chord": null,
+          "complete_raw_hit_count": 0,
+          "raw_properties_pointer": "output-001/assessment.json#/probes/4/nearest_faces/2/local_properties"
+        },
+        {
+          "rank": 3,
+          "face_index_zero_based": 11,
+          "surface_type": "GeomAbs_SurfaceType.GeomAbs_SurfaceOfExtrusion",
+          "distance_mm": 0.5544514544448093,
+          "local_status": "closest_support_not_face_interior",
+          "support_type": "BRepExtrema_SupportType.BRepExtrema_IsOnEdge",
+          "UV": null,
+          "point_mm": null,
+          "normal_outward": null,
+          "minimum_curvature_per_mm": null,
+          "maximum_curvature_per_mm": null,
+          "kernel_resolution_mm": null,
+          "local_chord": null,
+          "complete_raw_hit_count": 0,
+          "raw_properties_pointer": "output-001/assessment.json#/probes/4/nearest_faces/3/local_properties"
+        },
+        {
+          "rank": 4,
+          "face_index_zero_based": 64,
+          "surface_type": "GeomAbs_SurfaceType.GeomAbs_Cylinder",
+          "distance_mm": 2.215153832155575,
+          "local_status": "closest_support_not_face_interior",
+          "support_type": "BRepExtrema_SupportType.BRepExtrema_IsOnEdge",
+          "UV": null,
+          "point_mm": null,
+          "normal_outward": null,
+          "minimum_curvature_per_mm": null,
+          "maximum_curvature_per_mm": null,
+          "kernel_resolution_mm": null,
+          "local_chord": null,
+          "complete_raw_hit_count": 0,
+          "raw_properties_pointer": "output-001/assessment.json#/probes/4/nearest_faces/4/local_properties"
+        },
+        {
+          "rank": 5,
+          "face_index_zero_based": 149,
+          "surface_type": "GeomAbs_SurfaceType.GeomAbs_SurfaceOfExtrusion",
+          "distance_mm": 2.3688103109181333,
+          "local_status": "native_D2_at_reported_UV",
+          "support_type": "BRepExtrema_SupportType.BRepExtrema_IsInFace",
+          "UV": [
+            0.48744616965742305,
+            -9.658453719354
+          ],
+          "point_mm": [
+            84.52921157748543,
+            -13.223464228394414,
+            13.648453719354
+          ],
+          "normal_outward": [
+            0.6244068067232218,
+            0.781099314887492,
+            -0.0
+          ],
+          "minimum_curvature_per_mm": -0.0012247874348953764,
+          "maximum_curvature_per_mm": 0.0,
+          "kernel_resolution_mm": 4.46679483124578e-05,
+          "local_chord": {
+            "status": "unambiguous_first_native_in_out_normal_chord",
+            "thickness_mm": 2.3688103109181706,
+            "target_face_index_zero_based": 60,
+            "scope": "one_local_native_normal_chord_not_global_minimum_thickness"
+          },
+          "complete_raw_hit_count": 2,
+          "raw_properties_pointer": "output-001/assessment.json#/probes/4/nearest_faces/5/local_properties"
+        },
+        {
+          "rank": 6,
+          "face_index_zero_based": 131,
+          "surface_type": "GeomAbs_SurfaceType.GeomAbs_SurfaceOfExtrusion",
+          "distance_mm": 2.537932914089475,
+          "local_status": "closest_support_not_face_interior",
+          "support_type": "BRepExtrema_SupportType.BRepExtrema_IsVertex",
+          "UV": null,
+          "point_mm": null,
+          "normal_outward": null,
+          "minimum_curvature_per_mm": null,
+          "maximum_curvature_per_mm": null,
+          "kernel_resolution_mm": null,
+          "local_chord": null,
+          "complete_raw_hit_count": 0,
+          "raw_properties_pointer": "output-001/assessment.json#/probes/4/nearest_faces/6/local_properties"
+        },
+        {
+          "rank": 7,
+          "face_index_zero_based": 205,
+          "surface_type": "GeomAbs_SurfaceType.GeomAbs_Plane",
+          "distance_mm": 2.6639503932770263,
+          "local_status": "closest_support_not_face_interior",
+          "support_type": "BRepExtrema_SupportType.BRepExtrema_IsOnEdge",
+          "UV": null,
+          "point_mm": null,
+          "normal_outward": null,
+          "minimum_curvature_per_mm": null,
+          "maximum_curvature_per_mm": null,
+          "kernel_resolution_mm": null,
+          "local_chord": null,
+          "complete_raw_hit_count": 0,
+          "raw_properties_pointer": "output-001/assessment.json#/probes/4/nearest_faces/7/local_properties"
+        }
+      ],
+      "all_retained_nearest_edges": [
+        {
+          "edge_index_zero_based": 270,
+          "topological_type": "TopAbs_ShapeEnum.TopAbs_EDGE",
+          "curve_type": "GeomAbs_CurveType.GeomAbs_BSplineCurve",
+          "bounds_mm": [
+            [
+              83.463260250657,
+              -15.1739072529,
+              11.146379056553002
+            ],
+            [
+              83.46326045065699,
+              -15.1739070529,
+              13.787064725185
+            ]
+          ],
+          "length_mm": 2.6406854686320003,
+          "tolerance_mm": 1e-07,
+          "adjacent_faces_zero_based": [
+            62,
+            68
+          ],
+          "adjacent_surface_types": [
+            "GeomAbs_SurfaceType.GeomAbs_Plane",
+            "GeomAbs_SurfaceType.GeomAbs_SurfaceOfExtrusion"
+          ],
+          "native_continuity": "GeomAbs_Shape.GeomAbs_C0",
+          "parameter_origin": "native_ParOnEdgeS2",
+          "boundary_normal_probe": {
+            "edge_parameter": 0.2811891743931286,
+            "edge_point_mm": [
+              83.463260350657,
+              -15.1739071529,
+              13.648453719354
+            ],
+            "outward_normals": [
+              [
+                0.999168053100579,
+                -0.04078236951427282,
+                0.0
+              ],
+              [
+                -0.6216169848590926,
+                -0.7833213415544676,
+                0.0
+              ]
+            ],
+            "normal_angle_degrees": 126.0970058033116,
+            "supports": [
+              {
+                "uv": [
+                  26.376259130373878,
+                  -57.648453719354
+                ],
+                "support_point_mm": [
+                  83.46326035065788,
+                  -15.173907152900037,
+                  13.648453719354002
+                ],
+                "support_uv_bounds": [
+                  26.37625782906451,
+                  28.46859563673287,
+                  -58.57049037017163,
+                  -55.067159149301
+                ]
+              },
+              {
+                "uv": [
+                  0.459038603086,
+                  -9.658453719354
+                ],
+                "support_point_mm": [
+                  83.46326035064625,
+                  -15.173907152894968,
+                  13.648453719354
+                ],
+                "support_uv_bounds": [
+                  0.0,
+                  1.0,
+                  -26.01,
+                  1.4726332354449876e-14
+                ]
+              }
+            ]
+          },
+          "distance_mm": 0.42511922869105023,
+          "closest_points_mm": [
+            [
+              83.463260350657,
+              -15.1739071529,
+              13.648453719354
+            ]
+          ]
+        },
+        {
+          "edge_index_zero_based": 268,
+          "topological_type": "TopAbs_ShapeEnum.TopAbs_EDGE",
+          "curve_type": "GeomAbs_CurveType.GeomAbs_BSplineCurve",
+          "bounds_mm": [
+            [
+              83.46326018714325,
+              -15.173907353353261,
+              13.787064525185
+            ],
+            [
+              83.46326046245707,
+              -15.17390651219883,
+              14.570490470171643
+            ]
+          ],
+          "length_mm": 0.7834257449887969,
+          "tolerance_mm": 1.26517614319178e-06,
+          "adjacent_faces_zero_based": [
+            62,
+            68
+          ],
+          "adjacent_surface_types": [
+            "GeomAbs_SurfaceType.GeomAbs_Plane",
+            "GeomAbs_SurfaceType.GeomAbs_SurfaceOfExtrusion"
+          ],
+          "native_continuity": "GeomAbs_Shape.GeomAbs_C0",
+          "parameter_origin": "native_endpoint_parameter_verified_at_closest_vertex",
+          "boundary_normal_probe": {
+            "edge_parameter": 0.0,
+            "edge_point_mm": [
+              83.46326035065206,
+              -15.173907152897502,
+              13.787064625185
+            ],
+            "outward_normals": [
+              [
+                0.999168053100579,
+                -0.04078236951427282,
+                0.0
+              ],
+              [
+                -0.6216169848590926,
+                -0.7833213415544676,
+                0.0
+              ]
+            ],
+            "normal_angle_degrees": 126.0970058033116,
+            "supports": [
+              {
+                "uv": [
+                  26.376259130373878,
+                  -57.787064625184996
+                ],
+                "support_point_mm": [
+                  83.46326035065788,
+                  -15.173907152900037,
+                  13.787064625184996
+                ],
+                "support_uv_bounds": [
+                  26.37625782906451,
+                  28.46859563673287,
+                  -58.57049037017163,
+                  -55.067159149301
+                ]
+              },
+              {
+                "uv": [
+                  0.459038603086,
+                  -9.797064625185001
+                ],
+                "support_point_mm": [
+                  83.46326035064625,
+                  -15.173907152894968,
+                  13.787064625185002
+                ],
+                "support_uv_bounds": [
+                  0.0,
+                  1.0,
+                  -26.01,
+                  1.4726332354449876e-14
+                ]
+              }
+            ]
+          },
+          "distance_mm": 0.4471457724480504,
+          "closest_points_mm": [
+            [
+              83.463260350657,
+              -15.1739071529,
+              13.787064625185
+            ]
+          ]
+        },
+        {
+          "edge_index_zero_based": 80,
+          "topological_type": "TopAbs_ShapeEnum.TopAbs_EDGE",
+          "curve_type": "GeomAbs_CurveType.GeomAbs_BSplineCurve",
+          "bounds_mm": [
+            [
+              64.99999990002118,
+              -15.924825944210752,
+              3.999999899999911
+            ],
+            [
+              83.4326114521291,
+              -7.399999899999914,
+              13.7620844770302
+            ]
+          ],
+          "length_mm": 23.213965062152337,
+          "tolerance_mm": 3.54249686100042e-05,
+          "adjacent_faces_zero_based": [
+            11,
+            60
+          ],
+          "adjacent_surface_types": [
+            "GeomAbs_SurfaceType.GeomAbs_SurfaceOfExtrusion",
+            "GeomAbs_SurfaceType.GeomAbs_BSplineSurface"
+          ],
+          "native_continuity": "GeomAbs_Shape.GeomAbs_G1",
+          "parameter_origin": "native_ParOnEdgeS2",
+          "boundary_normal_probe": {
+            "edge_parameter": 0.4290221314174925,
+            "edge_point_mm": [
+              82.93233298673681,
+              -15.528299216952226,
+              13.353629792801978
+            ],
+            "outward_normals": [
+              [
+                -0.632929938711952,
+                -0.0,
+                0.7742090755616887
+              ],
+              [
+                -0.6329312603233039,
+                -3.90740137933191e-06,
+                0.7742079951087345
+              ]
+            ],
+            "normal_angle_degrees": 0.00024431004158526206,
+            "supports": [
+              {
+                "uv": [
+                  0.5131004457807381,
+                  -84.47170069281897
+                ],
+                "support_point_mm": [
+                  82.93233269732843,
+                  -15.52829930718103,
+                  13.353631096541601
+                ],
+                "support_uv_bounds": [
+                  0.0,
+                  1.0,
+                  -92.6,
+                  -64.0
+                ]
+              },
+              {
+                "uv": [
+                  0.0,
+                  0.4290221314174925
+                ],
+                "support_point_mm": [
+                  82.93233298673681,
+                  -15.528299216952224,
+                  13.353629792801977
+                ],
+                "support_uv_bounds": [
+                  0.0,
+                  43.06466194769763,
+                  -0.451854664923225,
+                  23.33728979606525
+                ]
+              }
+            ]
+          },
+          "distance_mm": 0.5544514544448093,
+          "closest_points_mm": [
+            [
+              82.93233298673681,
+              -15.528299216952226,
+              13.353629792801978
+            ]
+          ]
+        },
+        {
+          "edge_index_zero_based": 264,
+          "topological_type": "TopAbs_ShapeEnum.TopAbs_EDGE",
+          "curve_type": "GeomAbs_CurveType.GeomAbs_BSplineCurve",
+          "bounds_mm": [
+            [
+              64.99999989997896,
+              -15.173906303065106,
+              4.9999998999997874
+            ],
+            [
+              83.46326048942666,
+              -6.399999899999894,
+              14.570490470171634
+            ]
+          ],
+          "length_mm": 23.246010005787237,
+          "tolerance_mm": 3.54249686100042e-05,
+          "adjacent_faces_zero_based": [
+            60,
+            68
+          ],
+          "adjacent_surface_types": [
+            "GeomAbs_SurfaceType.GeomAbs_BSplineSurface",
+            "GeomAbs_SurfaceType.GeomAbs_SurfaceOfExtrusion"
+          ],
+          "native_continuity": "GeomAbs_Shape.GeomAbs_G1",
+          "parameter_origin": "native_ParOnEdgeS2",
+          "boundary_normal_probe": {
+            "edge_parameter": 0.4293735043104775,
+            "edge_point_mm": [
+              82.91960234589158,
+              -14.743856403239612,
+              14.12878346383029
+            ],
+            "outward_normals": [
+              [
+                -0.619044333496385,
+                -0.7853560422785546,
+                4.752020373487969e-06
+              ],
+              [
+                -0.619042300428733,
+                -0.7853576448217094,
+                0.0
+              ]
+            ],
+            "normal_angle_degrees": 0.0003100501499666621,
+            "supports": [
+              {
+                "uv": [
+                  43.06466194769763,
+                  0.4293735043104775
+                ],
+                "support_point_mm": [
+                  82.91960234589156,
+                  -14.743856403239606,
+                  14.128783463830288
+                ],
+                "support_uv_bounds": [
+                  0.0,
+                  43.06466194769763,
+                  -0.451854664923225,
+                  23.33728979606525
+                ]
+              },
+              {
+                "uv": [
+                  0.44456814545695833,
+                  -10.138783647146617
+                ],
+                "support_point_mm": [
+                  82.91960220530848,
+                  -14.743857361018566,
+                  14.128783647146617
+                ],
+                "support_uv_bounds": [
+                  0.0,
+                  1.0,
+                  -26.01,
+                  1.4726332354449876e-14
+                ]
+              }
+            ]
+          },
+          "distance_mm": 0.5971368349441584,
+          "closest_points_mm": [
+            [
+              82.91960234589158,
+              -14.743856403239612,
+              14.12878346383029
+            ]
+          ]
+        },
+        {
+          "edge_index_zero_based": 263,
+          "topological_type": "TopAbs_ShapeEnum.TopAbs_EDGE",
+          "curve_type": "GeomAbs_CurveType.GeomAbs_BSplineCurve",
+          "bounds_mm": [
+            [
+              83.43261053155675,
+              -15.924825370878391,
+              13.76208368969394
+            ],
+            [
+              83.46326048942664,
+              -15.173906103065104,
+              14.570490470171633
+            ]
+          ],
+          "length_mm": 1.2365114219505124,
+          "tolerance_mm": 3.54249686100042e-05,
+          "adjacent_faces_zero_based": [
+            60,
+            62
+          ],
+          "adjacent_surface_types": [
+            "GeomAbs_SurfaceType.GeomAbs_BSplineSurface",
+            "GeomAbs_SurfaceType.GeomAbs_Plane"
+          ],
+          "native_continuity": "GeomAbs_Shape.GeomAbs_C0",
+          "parameter_origin": "native_ParOnEdgeS2",
+          "boundary_normal_probe": {
+            "edge_parameter": 0.47125217327601493,
+            "edge_point_mm": [
+              83.4539267273531,
+              -15.402580923866775,
+              13.969256121189153
+            ],
+            "outward_normals": [
+              [
+                -0.7507826422517675,
+                -0.4448228493270655,
+                0.4883216735001686
+              ],
+              [
+                0.999168053100579,
+                -0.04078236951427282,
+                0.0
+              ]
+            ],
+            "normal_angle_degrees": 137.0557623695335,
+            "supports": [
+              {
+                "uv": [
+                  20.294732285657357,
+                  -0.22754955401076057
+                ],
+                "support_point_mm": [
+                  83.45392670754441,
+                  -15.402580926079825,
+                  13.969256142886914
+                ],
+                "support_uv_bounds": [
+                  0.0,
+                  43.06466194769763,
+                  -0.451854664923225,
+                  23.33728979606525
+                ]
+              },
+              {
+                "uv": [
+                  26.6051233041804,
+                  -57.969256121189154
+                ],
+                "support_point_mm": [
+                  83.45392672735312,
+                  -15.402580923866774,
+                  13.969256121189154
+                ],
+                "support_uv_bounds": [
+                  26.37625782906451,
+                  28.46859563673287,
+                  -58.57049037017163,
+                  -55.067159149301
+                ]
+              }
+            ]
+          },
+          "distance_mm": 0.6116518794811012,
+          "closest_points_mm": [
+            [
+              83.4539267273531,
+              -15.402580923866775,
+              13.969256121189153
+            ]
+          ]
+        },
+        {
+          "edge_index_zero_based": 82,
+          "topological_type": "TopAbs_ShapeEnum.TopAbs_EDGE",
+          "curve_type": "GeomAbs_CurveType.GeomAbs_BSplineCurve",
+          "bounds_mm": [
+            [
+              83.377929810107,
+              -17.26450304639,
+              13.717505494509
+            ],
+            [
+              83.43261070815498,
+              -15.924825744210697,
+              13.762085389772933
+            ]
+          ],
+          "length_mm": 1.3415334755804722,
+          "tolerance_mm": 1e-07,
+          "adjacent_faces_zero_based": [
+            11,
+            62
+          ],
+          "adjacent_surface_types": [
+            "GeomAbs_SurfaceType.GeomAbs_SurfaceOfExtrusion",
+            "GeomAbs_SurfaceType.GeomAbs_Plane"
+          ],
+          "native_continuity": "GeomAbs_Shape.GeomAbs_C0",
+          "boundary_normal_probe_error": "",
+          "distance_mm": 0.9399820115116868,
+          "closest_points_mm": [
+            [
+              83.4326105749874,
+              -15.9248264635757,
+              13.7620852612734
+            ]
+          ]
+        },
+        {
+          "edge_index_zero_based": 267,
+          "topological_type": "TopAbs_ShapeEnum.TopAbs_EDGE",
+          "curve_type": "GeomAbs_CurveType.GeomAbs_Line",
+          "bounds_mm": [
+            [
+              83.377929910107,
+              -17.26450294639,
+              11.067159149300998
+            ],
+            [
+              83.377929910107,
+              -17.26450294639,
+              13.717505594509
+            ]
+          ],
+          "length_mm": 2.650346445208001,
+          "tolerance_mm": 1e-07,
+          "adjacent_faces_zero_based": [
+            62,
+            64
+          ],
+          "adjacent_surface_types": [
+            "GeomAbs_SurfaceType.GeomAbs_Plane",
+            "GeomAbs_SurfaceType.GeomAbs_Cylinder"
+          ],
+          "native_continuity": "GeomAbs_Shape.GeomAbs_G1",
+          "parameter_origin": "native_ParOnEdgeS2",
+          "boundary_normal_probe": {
+            "edge_parameter": 57.648453719354,
+            "edge_point_mm": [
+              83.377929910107,
+              -17.26450294639,
+              13.648453719354002
+            ],
+            "outward_normals": [
+              [
+                0.999168053100579,
+                -0.04078236951427282,
+                0.0
+              ],
+              [
+                0.9991680531005636,
+                -0.0407823695146502,
+                -0.0
+              ]
+            ],
+            "normal_angle_degrees": 2.164089162201295e-11,
+            "supports": [
+              {
+                "uv": [
+                  28.46859563673287,
+                  -57.648453719354
+                ],
+                "support_point_mm": [
+                  83.37792991010734,
+                  -17.264502946390024,
+                  13.648453719354002
+                ],
+                "support_uv_bounds": [
+                  26.37625782906451,
+                  28.46859563673287,
+                  -58.57049037017163,
+                  -55.067159149301
+                ]
+              },
+              {
+                "uv": [
+                  3.182386336458,
+                  -57.648453719354
+                ],
+                "support_point_mm": [
+                  83.37792991010654,
+                  -17.26450294639191,
+                  13.648453719354002
+                ],
+                "support_uv_bounds": [
+                  1.497399000894,
+                  3.182386336458,
+                  -59.941972845991,
+                  -55.06447205126
+                ]
+              }
+            ]
+          },
+          "distance_mm": 2.215153832155575,
+          "closest_points_mm": [
+            [
+              83.377929910107,
+              -17.26450294639,
+              13.648453719354002
+            ]
+          ]
+        },
+        {
+          "edge_index_zero_based": 84,
+          "topological_type": "TopAbs_ShapeEnum.TopAbs_EDGE",
+          "curve_type": "GeomAbs_CurveType.GeomAbs_BSplineCurve",
+          "bounds_mm": [
+            [
+              83.37576677638987,
+              -19.970537196371097,
+              13.71574163943502
+            ],
+            [
+              86.166428700062,
+              -17.26450284639,
+              15.941972945847999
+            ]
+          ],
+          "length_mm": 5.018442833239813,
+          "tolerance_mm": 1.01591801528788e-07,
+          "adjacent_faces_zero_based": [
+            11,
+            64
+          ],
+          "adjacent_surface_types": [
+            "GeomAbs_SurfaceType.GeomAbs_SurfaceOfExtrusion",
+            "GeomAbs_SurfaceType.GeomAbs_Cylinder"
+          ],
+          "native_continuity": "GeomAbs_Shape.GeomAbs_C0",
+          "parameter_origin": "native_endpoint_parameter_verified_at_closest_vertex",
+          "boundary_normal_probe": {
+            "edge_parameter": 0.0,
+            "edge_point_mm": [
+              83.377929910107,
+              -17.26450294639,
+              13.717505594509
+            ],
+            "outward_normals": [
+              [
+                -0.6319672036866256,
+                -0.0,
+                0.7749951312521306
+              ],
+              [
+                0.9991680531005636,
+                -0.0407823695146502,
+                -0.0
+              ]
+            ],
+            "normal_angle_degrees": 129.15654964963483,
+            "supports": [
+              {
+                "uv": [
+                  0.526599374302,
+                  -82.7354970536
+                ],
+                "support_point_mm": [
+                  83.377929910109,
+                  -17.2645029464,
+                  13.717505594510515
+                ],
+                "support_uv_bounds": [
+                  0.0,
+                  1.0,
+                  -92.6,
+                  -64.0
+                ]
+              },
+              {
+                "uv": [
+                  3.182386336458,
+                  -57.7175055945
+                ],
+                "support_point_mm": [
+                  83.37792991010654,
+                  -17.26450294639191,
+                  13.717505594499997
+                ],
+                "support_uv_bounds": [
+                  1.497399000894,
+                  3.182386336458,
+                  -59.941972845991,
+                  -55.06447205126
+                ]
+              }
+            ]
+          },
+          "distance_mm": 2.2162298304950125,
+          "closest_points_mm": [
+            [
+              83.377929910107,
+              -17.26450294639,
+              13.717505594509
+            ]
+          ]
+        }
+      ]
+    }
+  ],
+  "section": {
+    "X_mm": 83.39717404347466,
+    "Approximation": false,
+    "edges": [
+      {
+        "index": 0,
+        "curve_type": "GeomAbs_CurveType.GeomAbs_BSplineCurve",
+        "length_mm": 0.896384834387407,
+        "parameter_domain": [
+          21.220372347626796,
+          23.459095616299916
+        ],
+        "native_tolerance_mm": 5e-06
+      },
+      {
+        "index": 1,
+        "curve_type": "GeomAbs_CurveType.GeomAbs_BSplineCurve",
+        "length_mm": 1.2431932896069684,
+        "parameter_domain": [
+          0.0,
+          1001.0
+        ],
+        "native_tolerance_mm": 3.54249686100042e-05
+      },
+      {
+        "index": 2,
+        "curve_type": "GeomAbs_CurveType.GeomAbs_Line",
+        "length_mm": 2.648167083588895,
+        "parameter_domain": [
+          33.08502991454572,
+          35.733196998134616
+        ],
+        "native_tolerance_mm": 1.5e-07
+      },
+      {
+        "index": 3,
+        "curve_type": "GeomAbs_CurveType.GeomAbs_BSplineCurve",
+        "length_mm": 17.50961028451074,
+        "parameter_domain": [
+          25.732998340887395,
+          69.46329192190406
+        ],
+        "native_tolerance_mm": 5e-06
+      },
+      {
+        "index": 4,
+        "curve_type": "GeomAbs_CurveType.GeomAbs_Line",
+        "length_mm": 2.6481670842685006,
+        "parameter_domain": [
+          -57.733196998614126,
+          -55.085029914345625
+        ],
+        "native_tolerance_mm": 1e-07
+      },
+      {
+        "index": 5,
+        "curve_type": "GeomAbs_CurveType.GeomAbs_BSplineCurve",
+        "length_mm": 27.466394005023204,
+        "parameter_domain": [
+          13.420135344247894,
+          55.47454034544914
+        ],
+        "native_tolerance_mm": 5e-06
+      },
+      {
+        "index": 6,
+        "curve_type": "GeomAbs_CurveType.GeomAbs_BSplineCurve",
+        "length_mm": 11.994559010684828,
+        "parameter_domain": [
+          9.580362416217438,
+          42.44834851305631
+        ],
+        "native_tolerance_mm": 5e-06
+      },
+      {
+        "index": 7,
+        "curve_type": "GeomAbs_CurveType.GeomAbs_BSplineCurve",
+        "length_mm": 1.671539832497597,
+        "parameter_domain": [
+          51.418063372412014,
+          53.153970616351735
+        ],
+        "native_tolerance_mm": 5e-06
+      },
+      {
+        "index": 8,
+        "curve_type": "GeomAbs_CurveType.GeomAbs_BSplineCurve",
+        "length_mm": 10.058842138483143,
+        "parameter_domain": [
+          54.09950145306211,
+          64.54568801371896
+        ],
+        "native_tolerance_mm": 5e-06
+      },
+      {
+        "index": 9,
+        "curve_type": "GeomAbs_CurveType.GeomAbs_BSplineCurve",
+        "length_mm": 17.50961028450834,
+        "parameter_domain": [
+          53.27727388189711,
+          70.64791871590761
+        ],
+        "native_tolerance_mm": 5e-06
+      },
+      {
+        "index": 10,
+        "curve_type": "GeomAbs_CurveType.GeomAbs_BSplineCurve",
+        "length_mm": 2.8000000000005163,
+        "parameter_domain": [
+          27.322938499217642,
+          36.09486786210146
+        ],
+        "native_tolerance_mm": 5e-06
+      },
+      {
+        "index": 11,
+        "curve_type": "GeomAbs_CurveType.GeomAbs_BSplineCurve",
+        "length_mm": 7.095029966445932,
+        "parameter_domain": [
+          51.814609152611574,
+          70.99999615532496
+        ],
+        "native_tolerance_mm": 5e-06
+      },
+      {
+        "index": 12,
+        "curve_type": "GeomAbs_CurveType.GeomAbs_Line",
+        "length_mm": 2.799999999999997,
+        "parameter_domain": [
+          6.277579816030682,
+          9.07757981603068
+        ],
+        "native_tolerance_mm": 1.5e-07
+      },
+      {
+        "index": 13,
+        "curve_type": "GeomAbs_CurveType.GeomAbs_BSplineCurve",
+        "length_mm": 52.00612433152606,
+        "parameter_domain": [
+          0.7806527125394103,
+          52.37402916567484
+        ],
+        "native_tolerance_mm": 5e-06
+      },
+      {
+        "index": 14,
+        "curve_type": "GeomAbs_CurveType.GeomAbs_BSplineCurve",
+        "length_mm": 27.466393996322132,
+        "parameter_domain": [
+          13.420135351260845,
+          55.47454033881112
+        ],
+        "native_tolerance_mm": 5e-06
+      },
+      {
+        "index": 15,
+        "curve_type": "GeomAbs_CurveType.GeomAbs_Line",
+        "length_mm": 2.6481670835814146,
+        "parameter_domain": [
+          8.266803001874315,
+          10.91497008545573
+        ],
+        "native_tolerance_mm": 1.5e-07
+      },
+      {
+        "index": 16,
+        "curve_type": "GeomAbs_CurveType.GeomAbs_Line",
+        "length_mm": 2.6481670842686817,
+        "parameter_domain": [
+          -32.91497008565768,
+          -30.266803001388997
+        ],
+        "native_tolerance_mm": 1e-07
+      },
+      {
+        "index": 17,
+        "curve_type": "GeomAbs_CurveType.GeomAbs_BSplineCurve",
+        "length_mm": 3.3654369340203756,
+        "parameter_domain": [
+          0.8171996983719001,
+          4.312232385722862
+        ],
+        "native_tolerance_mm": 5e-06
+      },
+      {
+        "index": 18,
+        "curve_type": "GeomAbs_CurveType.GeomAbs_BSplineCurve",
+        "length_mm": 22.17005983157919,
+        "parameter_domain": [
+          16.330958900084987,
+          54.95475538562701
+        ],
+        "native_tolerance_mm": 5e-06
+      },
+      {
+        "index": 19,
+        "curve_type": "GeomAbs_CurveType.GeomAbs_Line",
+        "length_mm": 22.170059826598894,
+        "parameter_domain": [
+          32.9149700867041,
+          55.085029913302996
+        ],
+        "native_tolerance_mm": 1e-07
+      },
+      {
+        "index": 20,
+        "curve_type": "GeomAbs_CurveType.GeomAbs_BSplineCurve",
+        "length_mm": 12.640852534615206,
+        "parameter_domain": [
+          6.8828834162250745,
+          20.010508051783294
+        ],
+        "native_tolerance_mm": 5e-06
+      },
+      {
+        "index": 21,
+        "curve_type": "GeomAbs_CurveType.GeomAbs_Line",
+        "length_mm": 22.17005982860171,
+        "parameter_domain": [
+          32.91497008570143,
+          55.085029914303135
+        ],
+        "native_tolerance_mm": 1e-07
+      },
+      {
+        "index": 22,
+        "curve_type": "GeomAbs_CurveType.GeomAbs_BSplineCurve",
+        "length_mm": 7.095029976981395,
+        "parameter_domain": [
+          40.732759101445176,
+          70.99999596204349
+        ],
+        "native_tolerance_mm": 5e-06
+      },
+      {
+        "index": 23,
+        "curve_type": "GeomAbs_CurveType.GeomAbs_BSplineCurve",
+        "length_mm": 24.6429636969853,
+        "parameter_domain": [
+          22.918330042341925,
+          48.5102413818534
+        ],
+        "native_tolerance_mm": 5e-06
+      },
+      {
+        "index": 24,
+        "curve_type": "GeomAbs_CurveType.GeomAbs_BSplineCurve",
+        "length_mm": 7.095029976981393,
+        "parameter_domain": [
+          40.73275910144518,
+          70.99999596204336
+        ],
+        "native_tolerance_mm": 5e-06
+      },
+      {
+        "index": 25,
+        "curve_type": "GeomAbs_CurveType.GeomAbs_BSplineCurve",
+        "length_mm": 7.095029966445467,
+        "parameter_domain": [
+          51.81460915261277,
+          70.99999615532496
+        ],
+        "native_tolerance_mm": 5e-06
+      },
+      {
+        "index": 26,
+        "curve_type": "GeomAbs_CurveType.GeomAbs_Line",
+        "length_mm": 22.17005982868681,
+        "parameter_domain": [
+          32.91497008565965,
+          55.08502991434646
+        ],
+        "native_tolerance_mm": 1e-07
+      },
+      {
+        "index": 27,
+        "curve_type": "GeomAbs_CurveType.GeomAbs_BSplineCurve",
+        "length_mm": 3.3654369305193805,
+        "parameter_domain": [
+          67.11633904637392,
+          70.61137173008908
+        ],
+        "native_tolerance_mm": 5e-06
+      },
+      {
+        "index": 28,
+        "curve_type": "GeomAbs_CurveType.GeomAbs_Line",
+        "length_mm": 22.170059826617866,
+        "parameter_domain": [
+          32.91497008669304,
+          55.085029913310905
+        ],
+        "native_tolerance_mm": 1e-07
+      },
+      {
+        "index": 29,
+        "curve_type": "GeomAbs_CurveType.GeomAbs_BSplineCurve",
+        "length_mm": 22.170059830121343,
+        "parameter_domain": [
+          16.330958901357576,
+          54.95475538435979
+        ],
+        "native_tolerance_mm": 5e-06
+      },
+      {
+        "index": 30,
+        "curve_type": "GeomAbs_CurveType.GeomAbs_BSplineCurve",
+        "length_mm": 20.09162082299933,
+        "parameter_domain": [
+          1.8988849311110303,
+          50.31109537627063
+        ],
+        "native_tolerance_mm": 5e-06
+      },
+      {
+        "index": 31,
+        "curve_type": "GeomAbs_CurveType.GeomAbs_BSplineCurve",
+        "length_mm": 12.778210263652959,
+        "parameter_domain": [
+          9.584047170827324,
+          44.6890188023919
+        ],
+        "native_tolerance_mm": 5e-06
+      },
+      {
+        "index": 32,
+        "curve_type": "GeomAbs_CurveType.GeomAbs_BSplineCurve",
+        "length_mm": 2.7999999999964995,
+        "parameter_domain": [
+          35.33370356645572,
+          44.10563292932695
+        ],
+        "native_tolerance_mm": 5e-06
+      },
+      {
+        "index": 33,
+        "curve_type": "GeomAbs_CurveType.GeomAbs_BSplineCurve",
+        "length_mm": 12.778210263651365,
+        "parameter_domain": [
+          9.584047170831237,
+          44.68901880239143
+        ],
+        "native_tolerance_mm": 5e-06
+      },
+      {
+        "index": 34,
+        "curve_type": "GeomAbs_CurveType.GeomAbs_BSplineCurve",
+        "length_mm": 24.642963658921236,
+        "parameter_domain": [
+          21.31826702032399,
+          71.33797999358184
+        ],
+        "native_tolerance_mm": 5e-06
+      },
+      {
+        "index": 35,
+        "curve_type": "GeomAbs_CurveType.GeomAbs_BSplineCurve",
+        "length_mm": 12.778210264754247,
+        "parameter_domain": [
+          9.58036241621862,
+          44.60040875888278
+        ],
+        "native_tolerance_mm": 5e-06
+      },
+      {
+        "index": 36,
+        "curve_type": "GeomAbs_CurveType.GeomAbs_BSplineCurve",
+        "length_mm": 44.5553560640965,
+        "parameter_domain": [
+          6.882883416226664,
+          53.15397061635168
+        ],
+        "native_tolerance_mm": 5e-06
+      },
+      {
+        "index": 37,
+        "curve_type": "GeomAbs_CurveType.GeomAbs_BSplineCurve",
+        "length_mm": 10.058842138481136,
+        "parameter_domain": [
+          54.0995014530622,
+          64.54568801371697
+        ],
+        "native_tolerance_mm": 5e-06
+      },
+      {
+        "index": 38,
+        "curve_type": "GeomAbs_CurveType.GeomAbs_BSplineCurve",
+        "length_mm": 3.3654369340217745,
+        "parameter_domain": [
+          0.8171996983719001,
+          4.312232385724315
+        ],
+        "native_tolerance_mm": 5e-06
+      },
+      {
+        "index": 39,
+        "curve_type": "GeomAbs_CurveType.GeomAbs_BSplineCurve",
+        "length_mm": 3.365436930518779,
+        "parameter_domain": [
+          67.11633904637456,
+          70.61137173008909
+        ],
+        "native_tolerance_mm": 5e-06
+      },
+      {
+        "index": 40,
+        "curve_type": "GeomAbs_CurveType.GeomAbs_Line",
+        "length_mm": 2.799999999999997,
+        "parameter_domain": [
+          6.277579816030682,
+          9.07757981603068
+        ],
+        "native_tolerance_mm": 1.5e-07
+      }
+    ]
+  },
+  "all_retained_nearest_face_statuses": 42,
+  "all_qualified_chords": [
+    {
+      "probe": "case_IP",
+      "face": 60,
+      "status": "native_D2_at_reported_UV",
+      "chord": {
+        "status": "unambiguous_first_native_in_out_normal_chord",
+        "thickness_mm": 0.08591308377440818,
+        "target_face_index_zero_based": 62,
+        "scope": "one_local_native_normal_chord_not_global_minimum_thickness"
+      }
+    },
+    {
+      "probe": "case_IP",
+      "face": 62,
+      "status": "native_D2_at_reported_UV",
+      "chord": {
+        "status": "unambiguous_first_native_in_out_normal_chord",
+        "thickness_mm": 0.06745367212333821,
+        "target_face_index_zero_based": 60,
+        "scope": "one_local_native_normal_chord_not_global_minimum_thickness"
+      }
+    },
+    {
+      "probe": "case_IP",
+      "face": 68,
+      "status": "native_D2_at_reported_UV",
+      "chord": {
+        "status": "unambiguous_first_native_in_out_normal_chord",
+        "thickness_mm": 2.1887321277361664,
+        "target_face_index_zero_based": 149,
+        "scope": "one_local_native_normal_chord_not_global_minimum_thickness"
+      }
+    },
+    {
+      "probe": "case_IP",
+      "face": 149,
+      "status": "native_D2_at_reported_UV",
+      "chord": {
+        "status": "unambiguous_first_native_in_out_normal_chord",
+        "thickness_mm": 2.1887151948082537,
+        "target_face_index_zero_based": 68,
+        "scope": "one_local_native_normal_chord_not_global_minimum_thickness"
+      }
+    },
+    {
+      "probe": "corner_0",
+      "face": 68,
+      "status": "native_D2_at_reported_UV",
+      "chord": {
+        "status": "unambiguous_first_native_in_out_normal_chord",
+        "thickness_mm": 2.1885865308108974,
+        "target_face_index_zero_based": 149,
+        "scope": "one_local_native_normal_chord_not_global_minimum_thickness"
+      }
+    },
+    {
+      "probe": "corner_0",
+      "face": 149,
+      "status": "native_D2_at_reported_UV",
+      "chord": {
+        "status": "unambiguous_first_native_in_out_normal_chord",
+        "thickness_mm": 2.188571437805919,
+        "target_face_index_zero_based": 68,
+        "scope": "one_local_native_normal_chord_not_global_minimum_thickness"
+      }
+    },
+    {
+      "probe": "corner_2",
+      "face": 68,
+      "status": "native_D2_at_reported_UV",
+      "chord": {
+        "status": "unambiguous_first_native_in_out_normal_chord",
+        "thickness_mm": 2.1876373537839573,
+        "target_face_index_zero_based": 149,
+        "scope": "one_local_native_normal_chord_not_global_minimum_thickness"
+      }
+    },
+    {
+      "probe": "corner_2",
+      "face": 149,
+      "status": "native_D2_at_reported_UV",
+      "chord": {
+        "status": "unambiguous_first_native_in_out_normal_chord",
+        "thickness_mm": 2.187628320770091,
+        "target_face_index_zero_based": 68,
+        "scope": "one_local_native_normal_chord_not_global_minimum_thickness"
+      }
+    },
+    {
+      "probe": "corner_3",
+      "face": 60,
+      "status": "native_D2_at_reported_UV",
+      "chord": {
+        "status": "unambiguous_first_native_in_out_normal_chord",
+        "thickness_mm": 2.8751619591984032,
+        "target_face_index_zero_based": 149,
+        "scope": "one_local_native_normal_chord_not_global_minimum_thickness"
+      }
+    },
+    {
+      "probe": "corner_3",
+      "face": 149,
+      "status": "native_D2_at_reported_UV",
+      "chord": {
+        "status": "unambiguous_first_native_in_out_normal_chord",
+        "thickness_mm": 2.3688103109181706,
+        "target_face_index_zero_based": 60,
+        "scope": "one_local_native_normal_chord_not_global_minimum_thickness"
+      }
+    }
+  ],
+  "all_unresolved_rows": [
+    {
+      "probe": "case_IP",
+      "face": 11,
+      "status": "closest_support_not_face_interior",
+      "chord": null
+    },
+    {
+      "probe": "case_IP",
+      "face": 64,
+      "status": "closest_support_not_face_interior",
+      "chord": null
+    },
+    {
+      "probe": "case_IP",
+      "face": 131,
+      "status": "closest_support_not_face_interior",
+      "chord": null
+    },
+    {
+      "probe": "case_IP",
+      "face": 144,
+      "status": "closest_support_not_face_interior",
+      "chord": null
+    },
+    {
+      "probe": "case_IP",
+      "face": 205,
+      "status": "closest_support_not_face_interior",
+      "chord": null
+    },
+    {
+      "probe": "corner_0",
+      "face": 60,
+      "status": "closest_support_not_face_interior",
+      "chord": null
+    },
+    {
+      "probe": "corner_0",
+      "face": 62,
+      "status": "closest_support_not_face_interior",
+      "chord": null
+    },
+    {
+      "probe": "corner_0",
+      "face": 11,
+      "status": "closest_support_not_face_interior",
+      "chord": null
+    },
+    {
+      "probe": "corner_0",
+      "face": 64,
+      "status": "closest_support_not_face_interior",
+      "chord": null
+    },
+    {
+      "probe": "corner_0",
+      "face": 131,
+      "status": "closest_support_not_face_interior",
+      "chord": null
+    },
+    {
+      "probe": "corner_0",
+      "face": 144,
+      "status": "closest_support_not_face_interior",
+      "chord": null
+    },
+    {
+      "probe": "corner_0",
+      "face": 205,
+      "status": "closest_support_not_face_interior",
+      "chord": null
+    },
+    {
+      "probe": "corner_1",
+      "face": 62,
+      "status": "closest_support_not_face_interior",
+      "chord": null
+    },
+    {
+      "probe": "corner_1",
+      "face": 68,
+      "status": "closest_support_not_face_interior",
+      "chord": null
+    },
+    {
+      "probe": "corner_1",
+      "face": 60,
+      "status": "native_D2_at_reported_UV",
+      "chord": {
+        "status": "unresolved_normal_chord",
+        "thickness_mm": null
+      }
+    },
+    {
+      "probe": "corner_1",
+      "face": 11,
+      "status": "closest_support_not_face_interior",
+      "chord": null
+    },
+    {
+      "probe": "corner_1",
+      "face": 64,
+      "status": "closest_support_not_face_interior",
+      "chord": null
+    },
+    {
+      "probe": "corner_1",
+      "face": 149,
+      "status": "native_D2_at_reported_UV",
+      "chord": {
+        "status": "unresolved_normal_chord",
+        "thickness_mm": null
+      }
+    },
+    {
+      "probe": "corner_1",
+      "face": 131,
+      "status": "closest_support_not_face_interior",
+      "chord": null
+    },
+    {
+      "probe": "corner_1",
+      "face": 205,
+      "status": "closest_support_not_face_interior",
+      "chord": null
+    },
+    {
+      "probe": "corner_2",
+      "face": 11,
+      "status": "unresolved_native_multiple_closest_supports",
+      "chord": null
+    },
+    {
+      "probe": "corner_2",
+      "face": 60,
+      "status": "closest_support_not_face_interior",
+      "chord": null
+    },
+    {
+      "probe": "corner_2",
+      "face": 62,
+      "status": "unresolved_native_multiple_closest_supports",
+      "chord": null
+    },
+    {
+      "probe": "corner_2",
+      "face": 64,
+      "status": "closest_support_not_face_interior",
+      "chord": null
+    },
+    {
+      "probe": "corner_2",
+      "face": 131,
+      "status": "closest_support_not_face_interior",
+      "chord": null
+    },
+    {
+      "probe": "corner_2",
+      "face": 205,
+      "status": "closest_support_not_face_interior",
+      "chord": null
+    },
+    {
+      "probe": "corner_3",
+      "face": 62,
+      "status": "closest_support_not_face_interior",
+      "chord": null
+    },
+    {
+      "probe": "corner_3",
+      "face": 68,
+      "status": "closest_support_not_face_interior",
+      "chord": null
+    },
+    {
+      "probe": "corner_3",
+      "face": 11,
+      "status": "closest_support_not_face_interior",
+      "chord": null
+    },
+    {
+      "probe": "corner_3",
+      "face": 64,
+      "status": "closest_support_not_face_interior",
+      "chord": null
+    },
+    {
+      "probe": "corner_3",
+      "face": 131,
+      "status": "closest_support_not_face_interior",
+      "chord": null
+    },
+    {
+      "probe": "corner_3",
+      "face": 205,
+      "status": "closest_support_not_face_interior",
+      "chord": null
+    }
+  ],
+  "independent_ROOT_sha256": null,
+  "new_scientific_calculation": false,
+  "source_sha256": "228e96a744926ae089d7374e265eef980c9c16c3e5809c8f0532399303c7d3c0"
+}

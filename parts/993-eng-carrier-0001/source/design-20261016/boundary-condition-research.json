@@ -1,0 +1,36 @@
+{
+  "review_date": "2026-10-16",
+  "target": "993 Turbo engine carrier 99311502153",
+  "purpose": "Keep published mounting references separate from the declared numerical support idealizations.",
+  "public_sources": [
+    {
+      "publisher": "JP Group / DANSK CLASSIC",
+      "url": "https://jpgroup.dk/en/p/engine-mount-left-right/15376768/",
+      "part_number": "1617900700",
+      "OE_reference": "99337504909",
+      "published_application": "Porsche 993 Turbo 3.6, 03/95-09/97",
+      "published_directional_stiffness_N_per_mm": null,
+      "published_rotational_stiffness_Nm_per_rad": null,
+      "published_frequency_or_temperature_law": null
+    },
+    {
+      "publisher": "Rennline",
+      "url": "https://www.rennline.com/rs-engine-mount/",
+      "part_number": "M154",
+      "published_Shore_A": 75,
+      "published_application": "964 / 993 non-Turbo; Turbo explicitly excluded",
+      "used_to_assign_Turbo_stiffness": false,
+      "reason": "Different declared application, and a hardness value does not specify the directional stiffness of a complete mounting."
+    }
+  ],
+  "declared_numerical_cases": {
+    "rigid": "Kinematic reference condition retained for comparison with V6f.",
+    "K1000": {
+      "translation_stiffness_per_eye_per_axis_N_per_mm": 1000,
+      "distribution": "Total per eye divided across that eye's selected nodes, not 1000 N/mm per node.",
+      "origin": "Explicit study idealization; not a property recovered from the public product pages.",
+      "published_Turbo_mount_law_assigned": false
+    }
+  },
+  "source_copy_policy": "Only source references and short factual observations retained; no supplier page, manual, personal data or quote copied."
+}

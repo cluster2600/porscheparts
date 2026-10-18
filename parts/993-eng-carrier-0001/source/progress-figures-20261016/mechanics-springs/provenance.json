@@ -1,0 +1,34 @@
+{
+  "status": "rendered_verified_actual_elastic_solver_fields",
+  "inputs_sha256": {
+    "work/part-workflow/run-001/cad/mesh-7/mesh.inp": "295fdfa65e2b8deb39cab646ba3b5f867f03711994faa04507b0392a85311ccd",
+    "work/part-workflow/run-001/cad/mesh-7/mesh.npz": "b89c47fec8b993b02ab57a6ab6306dee0f781fc01e3b71b5d888ecd805fb9c85",
+    "work/part-workflow/run-001/cad/mesh-7/combined-spring-1000-static.npz": "1aba11dfc1c363c71c7c54c86758ca2171a3b548703b105c56de6b9f69f8546b",
+    "work/part-workflow/run-001/cad/mesh-7/combined-spring-1000-static.json": "992562e44fe8953638f2d3da904abb86b758e3e9c984b34dbeaa5a757a1460d3",
+    "work/part-workflow/run-001/cad/mesh-7/combined-spring-1000-static.inp": "931fedac7a782d33cfd08a329a5dd87d4cc636f49156e3e7887aaf138b54923d",
+    "scripts/render_carrier_fields.py": "9e89a43e95836cfac6d451c22148f9269d5b30099297b1222c711db5a3d5cd78",
+    "work/part-workflow/run-001/workflow.json": "6ae5ac96c8b7684a1b8ac0d773da17b828005fddb39ba2e2269122fe542d690f",
+    "work/part-workflow/field-images-springs-001/combined.png": "bbf5c4985fa44c3dc76590837734e64572adfac23617094176aab8c5dfb77dae",
+    "work/part-workflow/field-images-springs-001/combined.svg": "58d6d673ab840cc031d7ecb27cc20a4646bfc3eacc05facd6a2c4540d5aa53be",
+    "work/part-workflow/field-images-springs-001/combined.json": "1c3f4cf324769d52baaa30dc681dc07328bb3673de01c2aef06947cbf120582c"
+  },
+  "files_sha256": {
+    "combined.png": "bbf5c4985fa44c3dc76590837734e64572adfac23617094176aab8c5dfb77dae",
+    "combined.svg": "58d6d673ab840cc031d7ecb27cc20a4646bfc3eacc05facd6a2c4540d5aa53be",
+    "combined.json": "1c3f4cf324769d52baaa30dc681dc07328bb3673de01c2aef06947cbf120582c"
+  },
+  "case": "combined-spring-1000-static",
+  "mesh_size_mm": 7,
+  "maximum_integration_point_VM_MPa": 1676.5460429720838,
+  "maximum_displacement_mm": 18.24864939681427,
+  "deformation_amplification": 10,
+  "load_scope": "Assumed study Fz=-4000N, My=850000Nmm; 1000N/mm total per eye per axis, distributed over eye nodes; elastic comparison only.",
+  "all_inputs_unchanged": true,
+  "new_solver_execution": false,
+  "visual_review": {
+    "all_geometry_visible": true,
+    "colourbars_and_labels_legible": true,
+    "displacement_amplification_explicit": true
+  },
+  "reproduce": "AM_PYTHON -B scripts/render_carrier_fields.py RUN/cad/mesh-7 combined-spring-1000-static NEW_OUTPUT.png --context \"Révision 1,262 kg — appuis souples 1 000 N/mm par œillet et par axe, maillage 7 mm\""
+}

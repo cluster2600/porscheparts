@@ -1,0 +1,66 @@
+{
+  "status": "software_witness_pass",
+  "operation": "difference(intersection(chain,mask),intersection(part,strict_bbox(chain))) in one native CSGTree",
+  "volume_mm3": 3200,
+  "components": 2,
+  "probe_xyz_mm": [
+    [
+      2,
+      2,
+      4
+    ],
+    [
+      2,
+      2,
+      9
+    ],
+    [
+      2,
+      2,
+      10
+    ],
+    [
+      2,
+      2,
+      11
+    ],
+    [
+      2,
+      2,
+      16
+    ]
+  ],
+  "probe_inside": [
+    true,
+    false,
+    false,
+    false,
+    true
+  ],
+  "snap_grid_bits": 51,
+  "iteration_budget": 5,
+  "snap_pass": true,
+  "exact_distance_pass": true,
+  "raw_detector_pair_count": 15,
+  "remaining_exactly_nonconforming_pair_count": 0,
+  "classifier_sha256": "906a413033b58d34cd28e705ac148f25e5a4dc3326298a6ff00c123b29d69f97",
+  "receipts_and_results_sha256": {
+    "snap.npz": "1c76acd048c47393b05544d499f7ec21314b36b391757bb709a4041acdcbb50c",
+    "pairs.npz": "ce23eb19bbf239eb71cca7ca5fb549cadb2975f2a293714e3237d30211cea7f5",
+    "contacts.json": "21a86ced3d923cacc0cdd7eab48ca827fab384cff3b903ee33352ffae8ffe682",
+    "csg/execution-receipt.json": "d0cd498841fff1b5059148c6a24310dddccec7eda4bdc668a79e6254a1552b1a",
+    "csg/stdout.log": "303e090f1a62e451d134d67341636570ed2e3799047f9d56185c854b0d5184de",
+    "csg/receipt.json": "764bbc65bcc597d8220e063c6eb5195f85d88935c36c0b404f44cf6e72fe7d9a",
+    "distance/audit.json": "a6c23604a70c51d4cc0e7490cd0756d56be842e5ecc829254ecbf81dc01ed129",
+    "distance/execution-receipt.json": "c85ccb85e5bc85c0e00cd100fe7067605642e4de7f4d0c491809a282947b5c81",
+    "snap/audit.json": "e8df32d00caca51ee6fd22b42871c55471510844ea19b89eb3fefebd0c55db0c",
+    "snap/execution-receipt.json": "bf77ad7644be4bd20f0d30bbdeeeb4b00ae9d6980bae607be9604afbebaef195",
+    "snap/native.json": "6d87e6225509fe19cb7cf7f815a72ab45e471647d871865ed7a95fbb37372640",
+    "snap/native.log": "f9f84e028db552afff0fe0c60af520b982c749d49154a0d897c94083c018350e"
+  },
+  "source_files_sha256": {
+    "run.py": "705410637ab066d1371498f7eb8c19e8b4e21e76fbf913f72dde8e9a144267b4",
+    "setup.py": "a7b3d4a1870fcad074f76a5fad23c99061e5303ef10550420fcbb744a0cb892a"
+  },
+  "scope": "Software witness only; production outputs require their own native, topology, exact-contact and frozen-drift admission."
+}

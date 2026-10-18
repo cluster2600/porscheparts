@@ -1,0 +1,44 @@
+{
+  "frozen_at_UTC": "2026-10-16T12:31:38.888436+00:00",
+  "design_id": "carrier-design-20261016-normal-webs",
+  "baseline_step_sha256": "9de8f6c30e8b7388689579850b497f43ed02feb5b59894ea8af856fd7683e563",
+  "baseline": "thick-skins complete V6f ribs 2.8mm topZ30, caps1.5mm",
+  "reason": "Exact STEP probes find curved outer webs 1.493869mm, root window/arch ligament0.27814358mm and secondary bore(-160,-26) outer ligament0.502556mm",
+  "generators": {
+    "outer_web_true_XY_inward_offset_mm": 1.6,
+    "rounded_window_inward_offset_mm": 1.5,
+    "secondary_boss_radius_mm": 4.0,
+    "secondary_bore_radius_mm": 2.0,
+    "secondary_centres_xy_mm": [
+      [
+        -160,
+        -26
+      ],
+      [
+        -180,
+        -23
+      ]
+    ],
+    "secondary_boss_z_mm": [
+      -22,
+      22
+    ],
+    "window_rim_reference_cap_mm": 1.6,
+    "outer_web_ring_outer_overlap_inset_mm": 0.05
+  },
+  "construction": "Additive union only. Window reinforcement clipped to unperforated hollow arm shell and XZ arch; continuous outer web ring clipped to XZ arch. Bore cylinders recut at unchanged axes. Complete central pad and frozen six end interface BRep retained exactly. No rib width/height changes.",
+  "criteria": {
+    "nominal_mass_kg_max": 1.3,
+    "STEP_readback_relative_volume_error_max": 1e-08,
+    "central_pad_symmetric_difference_mm3": 0.0,
+    "all_six_end_region_differences_mm3": 0.0,
+    "all_four_combined_displacement_and_VM_not_above_V6f": true,
+    "energy_relative_tolerance": 0.0001,
+    "superposition_stress_abs_tolerance_MPa": 0.02,
+    "superposition_displacement_abs_tolerance_mm": 0.0002
+  },
+  "mass_limit_provenance": "Direct user instruction: Jusqu\u2019\u00e01,30kg\u00e7ava",
+  "thickness_scope": "1.5mm geometry screen, no supplier allowable; checker/ray results determine whether local defects resolved",
+  "revision_reason": "Preserve failed original normal-webs exact-offset CAD export. Separate added faces from coincident retained STEP surfaces to avoid intersected pcurve loops at hollow core root. No tolerance relaxation.",
+  "baseline_volume_mm3": 276418.26978162496
+}

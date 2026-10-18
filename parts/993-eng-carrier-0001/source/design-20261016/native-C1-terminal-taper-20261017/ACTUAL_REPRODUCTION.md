@@ -1,0 +1,24 @@
+# Actual terminal-taper calculations and portable reproduction
+
+The preserved master is native BREP `dde710a2…`. The native Build succeeded, followed by a retained post-Build law-gate refusal. Independent native containment and positive-addition checks, sampled surface/topology/intersection screens, protected-interface checks and T10 meshing each have their own closed evidence. The separate strict STEP roundtrip remains refused. These outcomes do not establish physical or manufacturing qualification.
+
+The two actual static cases use assumed Fz −4,000 N and My 850,000 Nmm, E 107,000 MPa and ν 0.31. Their same-geometry global-7 mesh has 166,403 nodes and 89,536 C3D10 elements. The rigid case recorded Umax 2.7940146926593012 mm and VMmax 697.3125042834432 MPa at element 84327/IP1. The spring case, with total 1,000 N/mm per eye and axis, recorded Umax 18.17020118428633 mm and VMmax 1,977.809950603409 MPa at element 54403/IP3. Independent energy errors are 4.351436988514479e−9 and 1.988860853785468e−9 under the unchanged 1e−4 criterion. Native ROOT closure is `15c76fbd…`. No allowable stress or stress convergence is asserted.
+
+The actual fixed 495-member pack closed with RC0 in 53.120090208016336 seconds. Archive sizes are 93,841,512, 84,650,783 and 68,539,028 bytes, each below the unchanged strict 100,000,000-byte limit. The raw total is 598,766,939 bytes. The packer counted and hashed each actual member stream and rehashed all originals afterwards. [Pack ROOT closure](preservation-evidence/pack/root-terminal-review-001.json) is `f317dd09…`. The unchanged [capsule manifest](manifest.json) SHA-256 is `17d285db1e0b86849bc847b66a201687acd532e74b9f618d43408631d609b1f8`. The earlier common-archive size refusal remains recorded separately; one shared original STL was reassigned to the rigid archive without changing any restored path or byte identity.
+
+Stored-byte verification closed with actual RC0 in 1.77530258288607 seconds. The original verifier decompressed and hashed every member of all three archives and checked the complete capsule inventory. Its actual stdout reports 495 verified files. The child was reaped, the owned group was empty and all 37 current source/input pins were unchanged. [Independent verification ROOT closure](preservation-evidence/verify/root-verify-terminal-review-001.json) is `403432cd…`; owner terminal is `d5fe4964…`. The collector and ROOT review did not repeat decompression.
+
+The single portable analysis replay also closed with actual RC0: 9.827129208948463 seconds under the supervisor and 9.425447250017896 seconds for reanalysis, using 9.232701 CPU seconds and 634,503,168 bytes peak RSS. It performed exactly one fresh restoration of all 495 paths and recalculated the two complete energy reports and two global-peak reports from preserved solver outputs. All four whole JSON objects and their serialized bytes matched the preserved reports. Every restored input SHA and all 500 analysis runtime files remained unchanged; cwd was `/`, with zero workers. The child was reaped and the owned group was empty. [Replay ROOT closure](preservation-evidence/replay/root-replay-terminal-review-001.json) is `42f34557…`; [actual reanalysis receipt](preservation-evidence/replay/analysis-replay-001/reanalysis-receipt.json) SHA is `d966b909…`. The owner collector and independent ROOT review performed no second restoration or numerical reanalysis.
+
+The four reproduced report SHA-256 values are:
+
+| Report | SHA-256 |
+|---|---|
+| Rigid energy | `cbc3777f866246ef79807a634f0150ec83ad15699e20f6622b02edde4d069d1b` |
+| Rigid global peaks | `0d4c4720f64819943783de1ba56bdee4b7537fe5e88b5c5d819f8fb18ca32d24` |
+| Spring energy | `fd3df834c7dc983ac70525a37467106f8e40291de58c196f6e833a7dbbfe148c` |
+| Spring global peaks | `f85764ada9a455a7134fb1045a663669dfc8b204bd4d1eb83ff80fb755fdb82b` |
+
+Use the unchanged [root README](README.md) and portable `restore.py` / `replay_analysis.py` entry points for the executable verification and analysis operations. This replay used the preserved outputs; it did not run CAD, a mesher or CCX. Historical native output paths remain immutable and require a separately reviewed fresh-output rebinding for native reproduction.
+
+The captured initial capsule inventory is preserved under `preservation-evidence/initial-capsule-archive.json`. The durable root `archive.json` covers all copied files and actual proofs, excluding itself. Earlier proposal versions and the metadata refusal remain explicitly historical under `preservation-evidence/publication-source-history/`. The restored 495-body analysis tree and external runtimes are not duplicated. Figure 26 and Figure 27 remain separate dependent artifacts; no later refined-mesh case or result is included in this coarse capsule. The linked reproduction evidence does not constitute a catalogue release or physical validation.

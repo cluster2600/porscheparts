@@ -1,0 +1,11 @@
+--- render_v2.py
++++ render_v3.py
+@@ -158,7 +158,7 @@
+         fig.text(.055,.817-r*.365,('Boîte1 — pic rigide EF7'if r==0 else'Boîte2 — pic K1000 EF7'),fontsize=11.5,weight='bold')
+     fig.text(.055,.085,'Contours orange : boîtes de mesure fixes. h : maximum des arêtes entières des cellules à centroïde dans la boîte et des arêtes à deux extrémités dans la boîte.',fontsize=9.1,color='#536D7D')
+     fig.text(.055,.055,'Arêtes de coin des vrais T10 à milieux droits, non déformés. Déduplication des seules paires d’IDs ; aucune arête raccourcie aux boîtes.',fontsize=9.1,color='#536D7D')
+-    fig.text(.055,.025,'Objectifs vérifiés aux valeurs non arrondies. Aucun raffinement global par2, nouveau calcul de contraintes ou résultat de convergence mécanique n’est revendiqué.',fontsize=9.1,color='#536D7D')
++    fig.text(.055,.025,'Objectifs vérifiés aux valeurs non arrondies. Cette planche décrit le maillage ; résultats mécaniques et convergence sont documentés séparément.',fontsize=9.1,color='#536D7D')
+     font=findfont(FontProperties(family='DejaVu Sans'),fallback_to_default=False)
+     paths={str(Path(sys.executable).resolve()),font}
+     paths.update(str(Path(module.__file__).resolve())for name,module in list(sys.modules.items())if name.split('.')[0]in ['matplotlib','numpy','PIL']and getattr(module,'__file__',None)and Path(module.__file__).is_file())

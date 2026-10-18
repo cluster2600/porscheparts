@@ -1,0 +1,97 @@
+{
+  "design_id": "carrier-design-20261016-reinforcement-3-root-fillet",
+  "base_STEP_sha256": "fd080c7d033db9447a3a364644406f8beca44fdd5d11ecc3b9819b2b88a333bd",
+  "radius_mm": 1.0,
+  "method": "One R1.0mm OCCT concave fillet on the exact critical root edge and its exact X-reflection; existing width law unchanged",
+  "mass_ceiling_kg": 1.3,
+  "required_removed_reference_volume_mm3_max": 1e-05,
+  "required_pad_difference_mm3_max": 1e-06,
+  "required_STEP_relative_volume_difference_max": 1e-08,
+  "selected_edges": [
+    {
+      "mirror_X": -1,
+      "mirror_Y": 1,
+      "edge_index_zero_based": 113,
+      "selection_probe_mm": [
+        -88.7737746463,
+        15.096830113,
+        17.8481674254
+      ],
+      "selection_distance_mm": 9.76639278419791e-09,
+      "nearest_edge_point_mm": [
+        -88.77377463943313,
+        15.096830116207872,
+        17.84816743155939
+      ],
+      "edge_centre_mm": [
+        -93.69837298682206,
+        18.983797237920015,
+        20.62518773791096
+      ],
+      "edge_length_mm": 14.895600821313717,
+      "adjacent_face_indices_zero_based": [
+        14,
+        15
+      ],
+      "analytic_outward_normals": [
+        [
+          -0.6372345745890183,
+          -0.770669901415874,
+          0.0
+        ],
+        [
+          0.5646925408225054,
+          -0.0,
+          0.8253013597101503
+        ]
+      ],
+      "normal_dot": -0.3598416110246211,
+      "concavity_material_probes_both_inside": true
+    },
+    {
+      "mirror_X": 1,
+      "mirror_Y": 1,
+      "edge_index_zero_based": 614,
+      "selection_probe_mm": [
+        88.7737746463,
+        15.096830113,
+        17.8481674254
+      ],
+      "selection_distance_mm": 3.24288641499606e-11,
+      "nearest_edge_point_mm": [
+        88.77377464631073,
+        15.096830112973855,
+        17.848167425415905
+      ],
+      "edge_centre_mm": [
+        93.69837301558421,
+        18.983797215201065,
+        20.625187706541517
+      ],
+      "edge_length_mm": 14.895600819014852,
+      "adjacent_face_indices_zero_based": [
+        188,
+        189
+      ],
+      "analytic_outward_normals": [
+        [
+          -0.5646925407806005,
+          -0.0,
+          0.8253013597388229
+        ],
+        [
+          0.6372345745837714,
+          -0.7706699014202123,
+          -0.0
+        ]
+      ],
+      "normal_dot": -0.35984161099495493,
+      "concavity_material_probes_both_inside": true
+    }
+  ],
+  "localisation_source": "Actual contour-2 peak45059/IP3 measured independently at[88.8950412913,15.1151324520,17.6488179618]mm,0.234052950mm from the chosen positive-X/positive-Y edge",
+  "next_mechanics_criteria": "Keep contour-2 V6f/ad12 no-regression and 10%peak/20%volume objectives unchanged; no results yet",
+  "selected_edge_count": 2,
+  "Y_asymmetry_note": "Other Y-side root creases differ because the retained windows are asymmetric; they are diagnosed but not included in this trial",
+  "independent_true_IP_diagnostic": "work/carrier-design-20261016/contour2-root-diagnostic/diagnosis-v2.json"
+}

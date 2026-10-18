@@ -1,0 +1,110 @@
+{
+  "mesh": "mesh-7",
+  "case": "combined-rigid-static",
+  "CAD_source": {
+    "format": "BREP",
+    "filename": "carrier.brep",
+    "sha256": "07b354e3716b4e856010e271f7a36aa7f6fe05a4ee4ce36eb0959af84e92409e",
+    "master_description_sha256": "4f11ab175481048bf4e75a4fe894312f76bc71107e7808c951ed2e799a54b2a0",
+    "native_containment_receipt_sha256": "ee36e5525850e4c00d8cb4c8ca20cb0c71cfb66c30dc9c49ef7a78663cbcd7ed",
+    "native_volume_receipt_sha256": "9dde10cbbdd7d297c2c738de199243a40f0f5d5843a93694ac5ff5797bbe6981",
+    "nonadaptive_volume_receipt_sha256": "9dde10cbbdd7d297c2c738de199243a40f0f5d5843a93694ac5ff5797bbe6981",
+    "adaptive_volume_mm3": 285602.8077120175,
+    "adaptive_operator": {
+      "api": "BRepGProp.VolumeProperties_s",
+      "arguments": [
+        1e-10,
+        true,
+        false
+      ],
+      "scope": "Separate adaptive native reference for material mass and mesh volume error"
+    },
+    "nonadaptive_import_reference_mm3": 285603.08225145866,
+    "nonadaptive_import_operator": {
+      "api": "BRepGProp.VolumeProperties_s",
+      "arguments": [
+        false,
+        false,
+        false
+      ],
+      "scope": "Same nonadaptive overload used by Gmsh getMass; only the future import comparison reference"
+    },
+    "imported_CAD_absolute_identity_proved": false,
+    "STEP_exchange_qualified": false
+  },
+  "C3D10_elements": 89485,
+  "nodes": 166263,
+  "maximum_VM_MPa": 690.2505709153038,
+  "all_global_maximum_ties": [
+    {
+      "DAT_row_zero_based": 336984,
+      "element_index_zero_based": 84246,
+      "element_id": 84247,
+      "IP_one_based": 1,
+      "reference_undeformed_IP_xyz_mm": [
+        -82.13632624982483,
+        -14.3888459152194,
+        12.860276723145864
+      ],
+      "VM_MPa": 690.2505709153038,
+      "element_corner_centroid_mm": [
+        -82.089195067391,
+        -14.39602822627025,
+        12.76928513888475
+      ],
+      "nearest_prescribed_displacement_node": {
+        "node_id": 9019,
+        "undeformed_xyz_mm": [
+          -273.25,
+          -14.0,
+          1.4553512901e-15
+        ],
+        "distance_mm": 191.54627172782574,
+        "scope": "Euclidean distance to the retained discrete node set only; not distance to a BC/load surface"
+      },
+      "nearest_grounded_spring_node": null,
+      "nearest_applied_load_node": {
+        "node_id": 811,
+        "undeformed_xyz_mm": [
+          -55.230810839623,
+          -18.300406530938,
+          4.0
+        ],
+        "distance_mm": 28.595656480482656,
+        "scope": "Euclidean distance to the retained discrete node set only; not distance to a BC/load surface"
+      },
+      "corner_measure": {
+        "bounds_mm": [
+          [
+            -82.2026652233,
+            -14.932586106339,
+            12.61593399243
+          ],
+          [
+            -81.787503691314,
+            -14.089590506987,
+            12.972748506673
+          ]
+        ],
+        "six_corner_edge_lengths_mm": [
+          0.2931237042049009,
+          0.4480222278998377,
+          0.6033236404525884,
+          0.6142880323770677,
+          0.7516606386702994,
+          0.933757089694419
+        ],
+        "measured_h_mm": 0.933757089694419,
+        "proposed_half_h_mm": 0.4668785448472095,
+        "h_definition": "Maximum of the six actual corner edges of this peak element; not global mesh label"
+      }
+    }
+  ],
+  "maximum_ties": 1,
+  "constrained_node_count": 4548,
+  "grounded_spring_node_count": 0,
+  "loaded_node_count": 2112,
+  "no_peak_excluded": true,
+  "coordinate_scope": "Reference coordinates from solver mesh INP",
+  "quadrature": "Official CCX2.21 gauss3d5 / straight-midside C3D10; IP1..4 have barycentric a at corners1..4"
+}

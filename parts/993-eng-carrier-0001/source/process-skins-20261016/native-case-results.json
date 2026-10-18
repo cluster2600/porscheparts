@@ -1,0 +1,129 @@
+{
+  "schema": "native-envelope-cold-case-software-validation-v2",
+  "status": "software_witnesses_passed_large_cases_not_replayed",
+  "source_files_sha256": {
+    "run_native_envelope_case.py": "f64b476899a3c90b2eb87b829304b7609e39841c37e731457da09305a746f4de",
+    "native_case_remote.py": "0fdf95ea1add055c6fbe858d940180a1b81839f9eb2a6effde5ba79728b767f1",
+    "native_case_contract.py": "2735a217ee36d57d30697c811d33ea8d9de35f6c70ea356398e2326c65cd9c82",
+    "left-repair-template-v2.json": "1119dd42a038a550ae652f4a1d1db87bff5a24b3bea71281c9dd8936a72803b0",
+    "test_native_case_contract.py": "59578444f0bf7f68aa6e545a6164348f7e12bb2183228735435e4b9ab09dae44",
+    "README-native-case.md": "f11eea5ab4067eb8c5b71929f2a288a9eebabd6a674d38bf527e2afe800f21b2"
+  },
+  "profiles": {
+    "0": {
+      "backend": "cgal-positive-roof-prisms-v4",
+      "order": "mask-first",
+      "csg_seconds": 1200
+    },
+    "2": {
+      "backend": "cgal-positive-roof-prisms-v4",
+      "order": "mask-first-explicit-local-repair",
+      "csg_seconds": 600
+    },
+    "8": {
+      "backend": "pymesh-csgtree-explicit-order",
+      "order": "mask-first",
+      "csg_seconds": 600
+    },
+    "1": {
+      "backend": "pymesh-csgtree-explicit-order",
+      "order": "difference-first",
+      "csg_seconds": 600
+    },
+    "3": {
+      "backend": "pymesh-csgtree-explicit-order",
+      "order": "difference-first",
+      "csg_seconds": 600
+    },
+    "9": {
+      "backend": "pymesh-csgtree-explicit-order",
+      "order": "difference-first",
+      "csg_seconds": 600
+    },
+    "10": {
+      "backend": "pymesh-csgtree-explicit-order",
+      "order": "difference-first",
+      "csg_seconds": 600
+    }
+  },
+  "unit_tests": {
+    "command": "AM_PYTHON -B -m unittest discover -s parts/993-eng-carrier-0001/source/process-skins-20261016 -p test_native_case_contract.py -v",
+    "passed": 6
+  },
+  "native_witnesses": [
+    {
+      "name": "witness-prism-003",
+      "source_index": 0,
+      "status": "passed",
+      "native_volume_mm3": 3200.0,
+      "independent_float_volume_mm3": 3200.0000000000005,
+      "terminal_sha256": "43fc22c88c09e48cc03a0d2a936ff0aa31c70c854fb9811a9aade81b3781aeb7",
+      "remote_terminal_sha256": "d4605eb201933a272613a7b8d47eeb2edb05e5414ca48507794c4ae2b380f2fb",
+      "execution_receipt_sha256": "2dcb5cc4bed5c4b4df9f0d4a53b409fbcaa0ab8f7ea0e71edbd9a8744b0d1a19",
+      "native_execution_receipt_sha256": "1b55067fbafb46de78ebd6fea223aba2ec7d240e1d34f4d0c66b98e7518cd294",
+      "all_owned_scopes_inactive": true,
+      "seconds": 4.390588666778058,
+      "source_snapshot_sha256": {
+        "process-skins-20261016/run_native_envelope_case.py": "b1be33322258eb3833f71b8bfe8e0666cb5e083c2ac564ab95444923bd863515",
+        "process-skins-20261016/native_case_remote.py": "0fdf95ea1add055c6fbe858d940180a1b81839f9eb2a6effde5ba79728b767f1",
+        "process-skins-20261016/native_case_contract.py": "2735a217ee36d57d30697c811d33ea8d9de35f6c70ea356398e2326c65cd9c82",
+        "process-skins-20261016/left-repair-template-v2.json": "1119dd42a038a550ae652f4a1d1db87bff5a24b3bea71281c9dd8936a72803b0",
+        "process-skins-20261016/repair_ancestral_line_sheet.py": "267a57f261dab35b25b6aa7d0b78feee32fcfd7f6ff602a120376610d51f3601",
+        "process-skins-20261016/native_prism_case.py": "d4c8131feb365fbbfe8a92a39398bd89d9728916062ed1a2d9c67a19015f9259",
+        "process-skins-20261016/seal_prism_native_case.py": "687a5a42b413b76817f2ec82d4789bc0759563acd14ea5518479981c428944b7",
+        "process-skins-20261016/audit_envelope_case.py": "bd5d61e65390337de8c9528044b175d12492cc581c409eb7efb5fdab49dfc0c6",
+        "process-skins-20261016/audit_exact_volume.py": "32c96b6589a0071c59f75c8e83c17cea5704312f4f9561a31aafef32f0de0df6",
+        "design-20261016/classify_mesh_contacts.py": "906a413033b58d34cd28e705ac148f25e5a4dc3326298a6ff00c123b29d69f97",
+        "native-cgal-mesh-remeasure-20261016/run.py": "0c4c67d11b8f92ca8834af427ad417257d5decc9177420557e4dd630536471d5",
+        "native-cgal-mesh-remeasure-20261016/worker.py": "11b4f1deca51634f177006683b4079e49a7014a845b11db5a1d1132c0bb5df24",
+        "native-cgal-mesh-remeasure-20261016/audit_composed_repair.py": "6a5b2d99b72b7ca75ef4edcc70f0c9bb3cbb20f4c9b586249b5f9440fead8388",
+        "native-cgal-prism-free-20261016-v4/audit_composed_drift_initial.py": "56d6ef4aef136ea3c8cb29ca91a69e563abb69a2afec55d903a9b3d3220580a9",
+        "native-cgal-prism-free-20261016-v4/prism-face-schema.json": "5795da4caeb9f6154b866f2fa34b6268d87807c4a57efd950f6cbd764777f648"
+      }
+    },
+    {
+      "name": "witness-chain-002",
+      "source_index": 8,
+      "status": "passed",
+      "native_volume_mm3": 3200.0,
+      "independent_float_volume_mm3": 3200.0,
+      "terminal_sha256": "7f548d8bd738f8082ae0ddd9f0780043ea8d318401bb4e678bc4cca4c1d258eb",
+      "remote_terminal_sha256": "7ed811509a4ba602bb79608b83c837a558492e123f7cbf183c19b58471d58de7",
+      "execution_receipt_sha256": "58e6caa5acf86e6e83ab066775d47a7ec5f7b0129794bae69444725c593dd644",
+      "native_execution_receipt_sha256": "dc651839098dae585e412802d16f7b4e35d6c66c4d0271f4424e85b097da7418",
+      "all_owned_scopes_inactive": true,
+      "seconds": 4.642950624926016,
+      "source_snapshot_sha256": {
+        "process-skins-20261016/run_native_envelope_case.py": "b1be33322258eb3833f71b8bfe8e0666cb5e083c2ac564ab95444923bd863515",
+        "process-skins-20261016/native_case_remote.py": "0fdf95ea1add055c6fbe858d940180a1b81839f9eb2a6effde5ba79728b767f1",
+        "process-skins-20261016/native_case_contract.py": "2735a217ee36d57d30697c811d33ea8d9de35f6c70ea356398e2326c65cd9c82",
+        "process-skins-20261016/left-repair-template-v2.json": "1119dd42a038a550ae652f4a1d1db87bff5a24b3bea71281c9dd8936a72803b0",
+        "process-skins-20261016/repair_ancestral_line_sheet.py": "267a57f261dab35b25b6aa7d0b78feee32fcfd7f6ff602a120376610d51f3601",
+        "process-skins-20261016/native_prism_case.py": "d4c8131feb365fbbfe8a92a39398bd89d9728916062ed1a2d9c67a19015f9259",
+        "process-skins-20261016/seal_prism_native_case.py": "687a5a42b413b76817f2ec82d4789bc0759563acd14ea5518479981c428944b7",
+        "process-skins-20261016/audit_envelope_case.py": "bd5d61e65390337de8c9528044b175d12492cc581c409eb7efb5fdab49dfc0c6",
+        "process-skins-20261016/audit_exact_volume.py": "32c96b6589a0071c59f75c8e83c17cea5704312f4f9561a31aafef32f0de0df6",
+        "design-20261016/classify_mesh_contacts.py": "906a413033b58d34cd28e705ac148f25e5a4dc3326298a6ff00c123b29d69f97",
+        "native-cgal-mesh-remeasure-20261016/run.py": "0c4c67d11b8f92ca8834af427ad417257d5decc9177420557e4dd630536471d5",
+        "native-cgal-mesh-remeasure-20261016/worker.py": "11b4f1deca51634f177006683b4079e49a7014a845b11db5a1d1132c0bb5df24",
+        "native-cgal-mesh-remeasure-20261016/audit_composed_repair.py": "6a5b2d99b72b7ca75ef4edcc70f0c9bb3cbb20f4c9b586249b5f9440fead8388",
+        "native-cgal-prism-free-20261016-v4/audit_composed_drift_initial.py": "56d6ef4aef136ea3c8cb29ca91a69e563abb69a2afec55d903a9b3d3220580a9",
+        "native-cgal-prism-free-20261016-v4/prism-face-schema.json": "5795da4caeb9f6154b866f2fa34b6268d87807c4a57efd950f6cbd764777f648"
+      }
+    }
+  ],
+  "cancellation": {
+    "assessment_path": "work/carrier-native-cold-case-20261016/witness-cancel-001/cancellation-assessment.json",
+    "assessment_sha256": "66a206bb9b1f075b3b9bd8c56fc8efcbfb476d0af95c3639ee8c5468017af76a",
+    "passed": true
+  },
+  "native_runtime_sha256": "27b131cb62892f7979ecf60ce903c8e7f2176871a7f5ada23f5989e777376ea4",
+  "last_frontend_only_change": "Added STOP/deadline guard between each upload, after native witnesses; covered by a pure mocked upload-cancellation test. All native geometry/controller/contract sources remain identical to these witnesses.",
+  "left_template_scope": "All RAW and first-snap arrays must match historical canonical identities exactly before packaging SHA rebinding; no nearest-neighbor or changed-index fallback.",
+  "limitations": [
+    "No actual carrier case was rerun for cold driver tests.",
+    "Left cold replay remains conditional on all exact array/index identities; mismatch fails closed.",
+    "The final composed distance admission is finite vertices and rational centroids, not continuous Hausdorff.",
+    "Existing native installed prefixes were used; this CLI test is not a second complete native toolchain installation."
+  ]
+}

@@ -1,0 +1,119 @@
+{
+  "schema": "actual-carrier-pose-nominal-machine-figure-data-1",
+  "original_sources": {
+    "part.npz": {
+      "path": "work/carrier-process-20261016/positive-roof-inputs-001/part.npz",
+      "sha256": "13fb2ff1f8861e48069b56b47d50ab9002d9ffafc516ce96604e0134ba8a9a3e",
+      "copied_sha256": "13fb2ff1f8861e48069b56b47d50ab9002d9ffafc516ce96604e0134ba8a9a3e"
+    },
+    "inputs-v2.json": {
+      "path": "work/carrier-process-20261016/positive-roof-inputs-001/inputs-v2.json",
+      "sha256": "540d41a04ce12648dfd5c211f25a17a5f3729f032a59cdd842b9723df1d27ca8",
+      "copied_sha256": "540d41a04ce12648dfd5c211f25a17a5f3729f032a59cdd842b9723df1d27ca8"
+    },
+    "machine-options-20261016.json": {
+      "path": "parts/993-eng-carrier-0001/source/process-20261016/machine-options.json",
+      "sha256": "773b0a183e9d93088fb123c28ab949b6a0feab9275eaee0a71c09ffc8ecb8b86",
+      "copied_sha256": "773b0a183e9d93088fb123c28ab949b6a0feab9275eaee0a71c09ffc8ecb8b86"
+    }
+  },
+  "arrays": {
+    "vertices": {
+      "dtype": "<f8",
+      "shape": [
+        293660,
+        3
+      ],
+      "sha256": "6f4f3667e17786b9f2e6224c4b82c415612282544743be994063679c344fc3d3"
+    },
+    "faces": {
+      "dtype": "<i8",
+      "shape": [
+        587404,
+        3
+      ],
+      "sha256": "3e609ab43ef8b5af2b5ec4e36efa971a0a5c220c20aa43de5917989037d0a2db"
+    }
+  },
+  "posed_bounds_mm": [
+    [
+      -225.56706319850866,
+      -225.56706319850863,
+      10.0
+    ],
+    [
+      225.56706319850866,
+      225.56706319850863,
+      62.0
+    ]
+  ],
+  "posed_extent_mm": [
+    451.1341263970173,
+    451.13412639701727,
+    52.0
+  ],
+  "margins": {
+    "part_to_study_plate_each_edge_mm": [
+      24.432936801491337,
+      24.432936801491337,
+      24.432936801491365,
+      24.432936801491365
+    ],
+    "study_plate_to_650_chamber_each_edge_mm": [
+      75.0,
+      75.0,
+      75.0,
+      75.0
+    ],
+    "part_to_650_chamber_each_edge_mm": [
+      99.43293680149134,
+      99.43293680149134,
+      99.43293680149137,
+      99.43293680149137
+    ],
+    "EP_M650_occupied_height_including_plate_mm": 82.0,
+    "BLT_S600_occupied_height_excluding_plate_mm": 62.0
+  },
+  "renderer_runtime_versions": {
+    "python": "3.10.11",
+    "matplotlib": "3.10.8",
+    "numpy": "2.2.6",
+    "Pillow": "11.3.0"
+  },
+  "official_specifications": [
+    {
+      "manufacturer": "Eplus3D",
+      "model": "EP-M650",
+      "volume_mm": [
+        650,
+        650,
+        800
+      ],
+      "height_convention": "including_build_plate",
+      "layer_range_um": [
+        20,
+        120
+      ],
+      "source": "https://www.eplus3d.com/products/ep-m650-metal-3d-printer/",
+      "material_source": "https://www.eplus3d.com/products/titanium-additive-manufacturing/",
+      "verified_on": "2026-10-17",
+      "process_variant": "Ti64: process variant to choose"
+    },
+    {
+      "manufacturer": "Bright Laser Technologies",
+      "model": "BLT-S600 upgraded",
+      "volume_mm": [
+        650,
+        650,
+        850
+      ],
+      "height_convention": "excluding_substrate",
+      "layer_range_um": null,
+      "source": "https://www.xa-blt.com/en/product/blt-s600/?category=8",
+      "upgrade_source": "https://www.xa-blt.com/en/news/enhance-quality-and-efficiency-standing-out-with-strength-join-us-at-airshow-china-2024-to-witness-the-upgraded-blt-s600/",
+      "verified_on": "2026-10-17",
+      "process_variant": "Ti64: process variant to choose"
+    }
+  ],
+  "scope": "Posed part and study plate only; no final supports or laser/process qualification. No mechanical equivalence of Grade5 candidate and Grade23 specimen is inferred."
+}

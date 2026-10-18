@@ -1,0 +1,62 @@
+{
+  "schema": "workshop-pdf-runtime-validation-1",
+  "status": "software_runtime_verified",
+  "scope": "New PDF venv, package checks and synthetic renderer witness; no actual carrier guide or process admission.",
+  "pdf_python": "work/part-workflow/runtimes/pdf-base-001/bin/python",
+  "python_version": "3.12.14",
+  "machine": "arm64",
+  "python_executable_sha256": "7a314947596fc484d4ec36ffc28e843b78d6d749c68736f8b5c24e7333f418eb",
+  "packages": {
+    "reportlab": "4.4.9",
+    "Pillow": "12.3.0",
+    "charset-normalizer": "3.5.2"
+  },
+  "lock_sha256": "46d96053de400e63c367aa0cca4a22f2231cc5ea0e9e96e0a9097f2e43bd1805",
+  "wheels_manifest_sha256": "1dfbcb04510125bbd098f7b724faf2aaace14d892561ff8bd6fd72258f36d336",
+  "downloaded_wheels_verified_against_primary_pypi": true,
+  "installed_archives_match_verified_wheels": true,
+  "total_download_bytes": 7102504,
+  "all_pdf_packages_loaded_from_fresh_venv": true,
+  "pip_check": {
+    "command": "work/part-workflow/runtimes/pdf-base-001/bin/python -B -m pip --isolated check",
+    "exit_code": 0,
+    "stdout": "No broken requirements found."
+  },
+  "guide_tests": {
+    "command": "work/part-workflow/runtimes/pdf-base-001/bin/python -B -m unittest tests.test_part_workflow_guide -v",
+    "passed": 2,
+    "failed": 0,
+    "scope": "Software fixtures; PDF generation is mocked in these two tests.",
+    "test_source_sha256": "728edc9f3e688ea99d341ca682cedf02a89893a2e6447da33e0fdf686e4b581d"
+  },
+  "actual_synthetic_pdf": {
+    "path": "work/part-workflow/pdf-runtime-validation-001/software-witness/guide-atelier.pdf",
+    "sha256": "f6cc014aa17a0db7838d186f7e25934c3e7e886790dbf52b211e97082db49eb9",
+    "bytes": 72655,
+    "has_pdf_header": true,
+    "has_pdf_eof": true,
+    "png_image_embedded": true
+  },
+  "synthetic_image": {
+    "size_pixels": [
+      32,
+      20
+    ],
+    "mode": "RGB",
+    "sha256": "055c0266505007e8437b5d747348c5953706941a59cfb50857be9a4c9a78c9f3"
+  },
+  "frozen_guide_source_sha256": "796a5bb2690b5f71dbac01737b64393fe40984b2ebe779cc386ed19cb5e379bc",
+  "frozen_guide_source_unchanged": true,
+  "raw_evidence": {
+    "directory": "work/part-workflow/pdf-runtime-validation-001",
+    "files_sha256": {
+      "runtime-witness.json": "46978d1d50c3312bba886f118215fd50b93f58b3e6a6c2d2ae6ea1eceece2f8e",
+      "runtime-venv-binding.json": "15da4d9ef69411b867981d3f06b2c596ad4da1a9231cbf104716fb358a19b126",
+      "primary-wheel-verification.json": "1dfbcb04510125bbd098f7b724faf2aaace14d892561ff8bd6fd72258f36d336",
+      "pip-install-report.json": "f7ce7bbf618bfd697b20c53af425a4954740c2788ee9decd7d99e97e44c357da",
+      "witness.py": "01edaa9766456e1b4fe15ac952e0444e8a064dd1809541ac45a500c0412439af"
+    }
+  },
+  "actual_carrier_guide_generated": false,
+  "existing_runtime_modified": false
+}

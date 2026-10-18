@@ -1,0 +1,123 @@
+{
+  "status": "fresh_wrapper_install_and_complete_native_witness_pass",
+  "runtime_prefix": "/home/lolman/carrier-pymesh-clip-20261016",
+  "installation_receipt_sha256": "029977627e727d42892c185166f8bc24923c9b774ffba4572eef491d24a39a8e",
+  "image_id": "sha256:ecf699d33793efe612b66c36b2a7d3954085af55999cc3f631748fcf1671eb4e",
+  "algorithm": "intersection(difference(chain,intersection(part,strict_bbox(chain))),mask) in one native CSGTree",
+  "bbox_proof": {
+    "source_chain_bounds_mm": [
+      [
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        20.0,
+        20.0,
+        20.0
+      ]
+    ],
+    "strict_bounds_mm": [
+      [
+        -5e-324,
+        -5e-324,
+        -5e-324
+      ],
+      [
+        20.000000000000004,
+        20.000000000000004,
+        20.000000000000004
+      ]
+    ],
+    "construction": "np.nextafter of each of the six original IEEE bounds toward exterior infinity; no arbitrary padding",
+    "all_chain_vertices_strictly_inside": true,
+    "chain_indexed_closed_oriented": true,
+    "box_closed_oriented_template_faces": [
+      [
+        0,
+        2,
+        1
+      ],
+      [
+        0,
+        3,
+        2
+      ],
+      [
+        4,
+        5,
+        6
+      ],
+      [
+        4,
+        6,
+        7
+      ],
+      [
+        0,
+        1,
+        5
+      ],
+      [
+        0,
+        5,
+        4
+      ],
+      [
+        1,
+        2,
+        6
+      ],
+      [
+        1,
+        6,
+        5
+      ],
+      [
+        2,
+        3,
+        7
+      ],
+      [
+        2,
+        7,
+        6
+      ],
+      [
+        3,
+        0,
+        4
+      ],
+      [
+        3,
+        4,
+        7
+      ]
+    ],
+    "bbox_npz_sha256": "7b6f7708444dfd75cf5a3fabc0c4b5ff96113092480b9e2c14cd3c04c80337ea",
+    "proof": "A closed chain and all its triangles lie within its convex bounding box. Since A is contained in B, A minus (C intersect B) equals A minus C."
+  },
+  "volume_mm3": 3200.0,
+  "raw_libigl_pair_count": 115,
+  "snap_native_return": true,
+  "post_double_exact_intersection_free": true,
+  "topology": {
+    "boundary_edges": 0,
+    "nonmanifold_edges": 0,
+    "nonmanifold_vertices": 0,
+    "unused_vertices": 0,
+    "inconsistent_orientation_edges": 0,
+    "signed_volume_mm3": 3200.0,
+    "pass": true
+  },
+  "exact_distance_gate_pass": true,
+  "raw_post_snap_igl_pairs": 15,
+  "post_snap_nonconformal_pairs": 0,
+  "independent_pair_adjudication_sha256": "890957980a9b08eaac7509d97c7228b233840041f5025e44013f2f274765f5f0",
+  "source_files_sha256": {
+    "parts/993-eng-carrier-0001/source/native-pymesh-clip-20261016/run.py": "6395238d4e83816a17f940f1af8771f4b99d179b349719d90f79341f5316e1fe",
+    "parts/993-eng-carrier-0001/source/native-pymesh-clip-20261016/README.md": "bd9959f2238975fe71294fe5d4c244580db348dde87f1021485cb2864c49d9f0",
+    "parts/993-eng-carrier-0001/source/native-pymesh-clip-20261016/setup.py": "677af7fd701e208e5b8f5b0ee2acd106b0ef082d8cff0098aae109c32136ae7d"
+  },
+  "scope": "Software witness; real central and left trial runs have separately frozen plans and receipts."
+}

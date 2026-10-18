@@ -1,0 +1,247 @@
+{
+  "schema": "root-seven-edge-R1-default-STEP-terminal-review-1",
+  "status": "closed_actual_RC1_default_STEP_strict_roundtrip_refusal_preserved",
+  "owner_terminal_sha256": "bbaf919cfa0befa9f6057836eb1bfb0416c8a9f0681ba8dfc52fc76ee7037ce7",
+  "entire_owner_object_and_stored_bytes_reproduced": true,
+  "whole_actual_binding_and_collector_source_inverses": true,
+  "all_current_pin_count": 22542,
+  "all_output_count": 11,
+  "all_execution_files": 4,
+  "all_six_controls_current": true,
+  "actual_session_id": 7152,
+  "actual_terminal_chunk": "7a8c8d",
+  "actual_tool_returncode": 1,
+  "actual_child_returncode": 1,
+  "fresh_PID_and_PGID_absent": true,
+  "settings_before_after_final_equal": true,
+  "native_volume_methods": [
+    {
+      "method": "Gmsh_boolean_F_F_F",
+      "arguments": [
+        false,
+        false,
+        false
+      ],
+      "signed_mass_mm3": 288451.89106919506,
+      "mass_binary64_hex": "0x1.19b0f9074716dp+18",
+      "returned_error_estimate": null
+    },
+    {
+      "method": "boolean_OnlyClosed_T_F_F",
+      "arguments": [
+        true,
+        false,
+        false
+      ],
+      "signed_mass_mm3": 288451.89106919506,
+      "mass_binary64_hex": "0x1.19b0f9074716dp+18",
+      "returned_error_estimate": null
+    },
+    {
+      "method": "adaptive_1e-10_T_F",
+      "arguments": [
+        1e-10,
+        true,
+        false
+      ],
+      "signed_mass_mm3": 288451.89219496236,
+      "mass_binary64_hex": "0x1.19b0f919b8e64p+18",
+      "returned_error_estimate": 9.710123808066412e-11
+    }
+  ],
+  "STEP_volume_methods": [
+    {
+      "method": "Gmsh_boolean_F_F_F",
+      "arguments": [
+        false,
+        false,
+        false
+      ],
+      "signed_mass_mm3": 288451.8920225766,
+      "mass_binary64_hex": "0x1.19b0f916e5dc7p+18",
+      "returned_error_estimate": null
+    },
+    {
+      "method": "boolean_OnlyClosed_T_F_F",
+      "arguments": [
+        true,
+        false,
+        false
+      ],
+      "signed_mass_mm3": 288451.8920225766,
+      "mass_binary64_hex": "0x1.19b0f916e5dc7p+18",
+      "returned_error_estimate": null
+    },
+    {
+      "method": "adaptive_1e-10_T_F",
+      "arguments": [
+        1e-10,
+        true,
+        false
+      ],
+      "signed_mass_mm3": 288451.8942689849,
+      "mass_binary64_hex": "0x1.19b0f93bb3fb0p+18",
+      "returned_error_estimate": 9.712909004690841e-11
+    }
+  ],
+  "adaptive_volume_relative_difference": 7.190185336014565e-09,
+  "adaptive_volume_guard_pass": true,
+  "whole_raw_differences": {
+    "native-minus-STEP": {
+      "status": "complete",
+      "fresh_imports": true,
+      "NonDestructive": true,
+      "RunParallel": false,
+      "FuzzyValue": 0.0,
+      "IsDone": true,
+      "raw_BREP_write_returned": true,
+      "raw_BREP_sha256": "17eb6ae136b09fa1579b7561e9cea3b076a1ceff6c9fdf492658b94dce7bfd66",
+      "raw_summary": {
+        "native_null": false,
+        "native_type": "TopAbs_ShapeEnum.TopAbs_COMPOUND",
+        "native_valid": false,
+        "counts": {
+          "solids": 1,
+          "faces": 243,
+          "edges": 741,
+          "vertices": 490
+        },
+        "bounds_mm": [
+          -296.00004466795446,
+          -36.50089284547445,
+          -22.000044667954462,
+          296.00004466795446,
+          36.50089342375446,
+          30.00004466795445
+        ],
+        "solids": [
+          {
+            "volume_mm3": 0.0,
+            "estimated_relative_integration_error": 0.0,
+            "native_valid": false,
+            "bounds_mm": [
+              -296.00004466795446,
+              -36.50089284547445,
+              -22.000044667954462,
+              296.00004466795446,
+              36.50089342375446,
+              30.00004466795445
+            ]
+          }
+        ],
+        "tolerances_mm": {
+          "faces": {
+            "count": 243,
+            "minimum": 1e-07,
+            "maximum": 4.46679483124578e-05
+          },
+          "edges": {
+            "count": 741,
+            "minimum": 1e-07,
+            "maximum": 4.46679483124578e-05
+          },
+          "vertices": {
+            "count": 490,
+            "minimum": 1.0000000088817842e-07,
+            "maximum": 0.000453159174909248
+          }
+        },
+        "material_solid_volume_mm3": 0.0,
+        "sum_absolute_solid_volume_mm3": 0.0,
+        "volume_scope": "BRepGProp adaptive integrals of each actual Solid only; no fictitious material volume integrated from an open face or edge residue.",
+        "surface_area_sum_mm2": 193161.77012262784,
+        "surface_types": {
+          "GeomAbs_SurfaceType.GeomAbs_SurfaceOfExtrusion": 84,
+          "GeomAbs_SurfaceType.GeomAbs_Plane": 86,
+          "GeomAbs_SurfaceType.GeomAbs_BSplineSurface": 8,
+          "GeomAbs_SurfaceType.GeomAbs_Cylinder": 65
+        },
+        "degenerated_edge_count": 0,
+        "native_topologically_empty": false,
+        "highest_topological_dimension": 3
+      },
+      "strict_native_empty": false
+    },
+    "STEP-minus-native": {
+      "status": "complete",
+      "fresh_imports": true,
+      "NonDestructive": true,
+      "RunParallel": false,
+      "FuzzyValue": 0.0,
+      "IsDone": true,
+      "raw_BREP_write_returned": true,
+      "raw_BREP_sha256": "a44841ef70bdfaabfc4b3270c29df622df295f8847613e4e79118cdfb2da5917",
+      "raw_summary": {
+        "native_null": false,
+        "native_type": "TopAbs_ShapeEnum.TopAbs_COMPOUND",
+        "native_valid": false,
+        "counts": {
+          "solids": 1,
+          "faces": 243,
+          "edges": 742,
+          "vertices": 490
+        },
+        "bounds_mm": [
+          -296.0000446679571,
+          -36.500892845477125,
+          -22.000044667957127,
+          296.0000446679571,
+          36.500893423757134,
+          30.000044667957127
+        ],
+        "solids": [
+          {
+            "volume_mm3": 0.0,
+            "estimated_relative_integration_error": 0.0,
+            "native_valid": false,
+            "bounds_mm": [
+              -296.0000446679571,
+              -36.500892845477125,
+              -22.000044667957127,
+              296.0000446679571,
+              36.500893423757134,
+              30.000044667957127
+            ]
+          }
+        ],
+        "tolerances_mm": {
+          "faces": {
+            "count": 243,
+            "minimum": 1e-07,
+            "maximum": 1e-07
+          },
+          "edges": {
+            "count": 742,
+            "minimum": 1e-07,
+            "maximum": 4.466795711132775e-05
+          },
+          "vertices": {
+            "count": 490,
+            "minimum": 1.0000000177635683e-07,
+            "maximum": 0.000453159174909248
+          }
+        },
+        "material_solid_volume_mm3": 0.0,
+        "sum_absolute_solid_volume_mm3": 0.0,
+        "volume_scope": "BRepGProp adaptive integrals of each actual Solid only; no fictitious material volume integrated from an open face or edge residue.",
+        "surface_area_sum_mm2": 193161.7700473642,
+        "surface_types": {
+          "GeomAbs_SurfaceType.GeomAbs_SurfaceOfExtrusion": 84,
+          "GeomAbs_SurfaceType.GeomAbs_Plane": 86,
+          "GeomAbs_SurfaceType.GeomAbs_BSplineSurface": 8,
+          "GeomAbs_SurfaceType.GeomAbs_Cylinder": 65
+        },
+        "degenerated_edge_count": 0,
+        "native_topologically_empty": false,
+        "highest_topological_dimension": 3
+      },
+      "strict_native_empty": false
+    }
+  },
+  "strict_roundtrip_passed": false,
+  "physical_erosion_inferred": false,
+  "geometry_rebuilt": false,
+  "native_BREP_retained": true,
+  "FEA_executed": false,
+  "automatic_retry": false
+}

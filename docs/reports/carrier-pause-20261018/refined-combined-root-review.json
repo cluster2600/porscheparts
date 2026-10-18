@@ -1,0 +1,807 @@
+{
+  "schema": "root-current24af-saved-P2-refined-combined-static-terminal-review-1",
+  "status": "closed_actual_RC0_both_refined_combined_cases_complete_fields_and_samecase_coarse_ratios",
+  "owner_terminal_sha256": "912cbc566f242a80dd008e27a5f5f055aae03eb44bf0a521d71f71fd98f13d21",
+  "whole_owner_object_and_original_encoded_bytes_equal": true,
+  "only_normalized_field": "collector_seconds",
+  "whole_sixteen_block_and_NDIFF_collector_inverse": true,
+  "four_original_helpers_literal": true,
+  "comparison_arithmetic_literal_except_two_scope_labels": true,
+  "sole_genuine_two_tuple_line_binding": true,
+  "all67_output_FD_identities_and3025_case3029_native_pins_per_case_rechecked": true,
+  "original_1800_1680_60_one_CPU_6GiB_network_none_nice_once_preserved": true,
+  "all_actual_container_image_binary_mount_helper_and_cleanup_rechecked": true,
+  "fresh_exact_Docker_ID_and_host_PID_PGID_absent": true,
+  "all_original_energy_full_IP_ties_and_Umax_preserved": true,
+  "original_failed_volume_gates_preserved": true,
+  "P2_ROOT_sha256": "2bf2756515860c9a1565a6a23edd11262bcfcd755dad465114818a57d98dd1f3",
+  "results": {
+    "combined-rigid": {
+      "actual_native_result": {
+        "name": "combined-rigid-static",
+        "procedure": "static",
+        "seconds": 52.657453666906804,
+        "solver_container": "carrier-corner24af-P2-combined-rigid-20261018-001",
+        "input_sha256": "76642b4be93e6d34d5f11c6fcbc2fdd198aed6d496c27f13f325efae7abfc785",
+        "mesh_sha256": "fb418e8524db1ed3f60dcf8f669b1a2e5ff25f4d39e30c50b4853716bf13241d",
+        "geometry_provisional": true,
+        "load_assumed": true,
+        "material_allowable": null,
+        "physical_validation": false,
+        "displacement_max_mm": 2.702355365925825,
+        "integration_point_VM_max_MPa": 907.7983758398386,
+        "VM_peak_element": 86108,
+        "force_residual_N": [
+          -1.5273117578817885e-05,
+          2.2528481084815605e-05,
+          8.336770406458527e-05
+        ],
+        "moment_residual_Nmm": [
+          -0.000693567391820693,
+          -0.024730975041165948,
+          0.0023481478910136744
+        ],
+        "external_work_Nmm": 21875.76288683271,
+        "bolt_group_forces_N": [
+          [
+            1.427658034932111,
+            0.29132030106117446,
+            3212.8824237753006
+          ],
+          [
+            -0.9971445599971167,
+            0.2904835920500607,
+            3212.1741319204857
+          ],
+          [
+            0.5666310850630932,
+            -0.2906116741925123,
+            -5212.003361235914
+          ],
+          [
+            -0.9971445599971167,
+            -0.2911922189187225,
+            -5213.053194459773
+          ]
+        ]
+      },
+      "independent_energy_audit": {
+        "case": "combined-rigid-static",
+        "CAD_source": {
+          "format": "BREP",
+          "filename": "carrier.brep",
+          "sha256": "24af058467fd82a9f0c1d391bf947d427dffd311371cf8f73dafa492d204f4fd",
+          "master_description_sha256": "ff23908dd2f2924e6ad1fdcad0a924eadbcbad760498156049985a7c50e4c650",
+          "native_containment_receipt_sha256": "36b493beb53077332606de9c6a8092abbca2fdb8fc8f88d3425b0b9a9a9a57a3",
+          "native_volume_receipt_sha256": "c876b40f99933e450790d41dc358a21f94e179075fbbd57348026042885e2096",
+          "nonadaptive_volume_receipt_sha256": "c876b40f99933e450790d41dc358a21f94e179075fbbd57348026042885e2096",
+          "adaptive_volume_mm3": 288685.89908443496,
+          "adaptive_operator": {
+            "api": "BRepGProp.VolumeProperties_s",
+            "arguments": [
+              1e-10,
+              true,
+              false
+            ],
+            "scope": "Separate adaptive native reference for material mass and mesh volume error"
+          },
+          "nonadaptive_import_reference_mm3": 288685.9375234367,
+          "nonadaptive_import_operator": {
+            "api": "BRepGProp.VolumeProperties_s",
+            "arguments": [
+              false,
+              false,
+              false
+            ],
+            "scope": "Same nonadaptive overload used by Gmsh getMass; only the future import comparison reference"
+          },
+          "imported_CAD_absolute_identity_proved": false,
+          "STEP_exchange_qualified": false
+        },
+        "E_MPa": 107000.0,
+        "nu": 0.31,
+        "C3D10_elements": 88569,
+        "volume_mm3": 288623.35054920905,
+        "solid_strain_energy_Nmm": 10937.881418157389,
+        "spring_strain_energy_Nmm": 0.0,
+        "half_load_dot_displacement_Nmm": 10937.881443414695,
+        "relative_energy_closure_error": 2.309158864122196e-09,
+        "tolerance": 0.0001,
+        "energy_closure_pass": true,
+        "inputs_sha256": {
+          "mesh-7/mesh.inp": "fb418e8524db1ed3f60dcf8f669b1a2e5ff25f4d39e30c50b4853716bf13241d",
+          "mesh-7/mesh.npz": "7fa1c1542fa25cac9f080ede39f6f0645dc51f8ea1eb4e9b05a88b083c68a109",
+          "mesh-7/mesh.json": "696c50b10e600fc86fade59dfe67b377250dcfe9996d2f719b5171324505b131",
+          "mesh-7/combined-rigid-static.json": "b1af946ecdcd0319f1f014f88e570bd9f69f221eea15835452705106ee6ad0ad",
+          "mesh-7/combined-rigid-static.inp": "76642b4be93e6d34d5f11c6fcbc2fdd198aed6d496c27f13f325efae7abfc785",
+          "mesh-7/combined-rigid-static.dat": "0185ab5a867e27979fff38491172527dddcc13a16503bcf99aa3b63910557b12",
+          "mesh-7/combined-rigid-static.npz": "969adbe5d3d1fc7da33629f54e61ec1fa7bf0e7da8d3745e6c7a7f212b0520da",
+          "carrier.brep": "24af058467fd82a9f0c1d391bf947d427dffd311371cf8f73dafa492d204f4fd",
+          "study.json": "8637fa166fbb1853c118a84a4952c5c15f049f3599c27c6a39078c440adc6614",
+          "brep-master.json": "ff23908dd2f2924e6ad1fdcad0a924eadbcbad760498156049985a7c50e4c650"
+        }
+      },
+      "all_global_peak_ties": {
+        "mesh": "mesh-7",
+        "case": "combined-rigid-static",
+        "CAD_source": {
+          "format": "BREP",
+          "filename": "carrier.brep",
+          "sha256": "24af058467fd82a9f0c1d391bf947d427dffd311371cf8f73dafa492d204f4fd",
+          "master_description_sha256": "ff23908dd2f2924e6ad1fdcad0a924eadbcbad760498156049985a7c50e4c650",
+          "native_containment_receipt_sha256": "36b493beb53077332606de9c6a8092abbca2fdb8fc8f88d3425b0b9a9a9a57a3",
+          "native_volume_receipt_sha256": "c876b40f99933e450790d41dc358a21f94e179075fbbd57348026042885e2096",
+          "nonadaptive_volume_receipt_sha256": "c876b40f99933e450790d41dc358a21f94e179075fbbd57348026042885e2096",
+          "adaptive_volume_mm3": 288685.89908443496,
+          "adaptive_operator": {
+            "api": "BRepGProp.VolumeProperties_s",
+            "arguments": [
+              1e-10,
+              true,
+              false
+            ],
+            "scope": "Separate adaptive native reference for material mass and mesh volume error"
+          },
+          "nonadaptive_import_reference_mm3": 288685.9375234367,
+          "nonadaptive_import_operator": {
+            "api": "BRepGProp.VolumeProperties_s",
+            "arguments": [
+              false,
+              false,
+              false
+            ],
+            "scope": "Same nonadaptive overload used by Gmsh getMass; only the future import comparison reference"
+          },
+          "imported_CAD_absolute_identity_proved": false,
+          "STEP_exchange_qualified": false
+        },
+        "C3D10_elements": 88569,
+        "nodes": 164109,
+        "maximum_VM_MPa": 907.7983758398386,
+        "all_global_maximum_ties": [
+          {
+            "DAT_row_zero_based": 344430,
+            "element_index_zero_based": 86107,
+            "element_id": 86108,
+            "IP_one_based": 3,
+            "reference_undeformed_IP_xyz_mm": [
+              -89.04392978299794,
+              16.72123990142789,
+              18.137604781068063
+            ],
+            "VM_MPa": 907.7983758398386,
+            "element_corner_centroid_mm": [
+              -89.09525510788762,
+              16.7657126883195,
+              18.356720612942375
+            ],
+            "nearest_prescribed_displacement_node": {
+              "node_id": 2871,
+              "undeformed_xyz_mm": [
+                -273.25,
+                17.0,
+                -5.428031462575e-15
+              ],
+              "distance_mm": 185.09707377259608,
+              "scope": "Euclidean distance to the retained discrete node set only; not distance to a BC/load surface"
+            },
+            "nearest_grounded_spring_node": null,
+            "nearest_applied_load_node": {
+              "node_id": 3763,
+              "undeformed_xyz_mm": [
+                -55.5,
+                20.0,
+                4.0
+              ],
+              "distance_mm": 36.548835303144244,
+              "scope": "Euclidean distance to the retained discrete node set only; not distance to a BC/load surface"
+            },
+            "corner_measure": {
+              "bounds_mm": [
+                [
+                  -89.807633515676,
+                  16.409123854786998,
+                  17.40936771498
+                ],
+                [
+                  -88.6041394482275,
+                  17.31462878402,
+                  20.322956335219
+                ]
+              ],
+              "six_corner_edge_lengths_mm": [
+                0.45747151020463206,
+                1.1461896067316402,
+                1.5631439831987797,
+                2.456216306498491,
+                2.5383655782650107,
+                3.0937776037279736
+              ],
+              "measured_h_mm": 3.0937776037279736,
+              "proposed_half_h_mm": 1.5468888018639868,
+              "h_definition": "Maximum of the six actual corner edges of this peak element; not global mesh label"
+            }
+          }
+        ],
+        "maximum_ties": 1,
+        "constrained_node_count": 4556,
+        "grounded_spring_node_count": 0,
+        "loaded_node_count": 2112,
+        "no_peak_excluded": true,
+        "coordinate_scope": "Reference coordinates from solver mesh INP",
+        "quadrature": "Official CCX2.21 gauss3d5 / straight-midside C3D10; IP1..4 have barycentric a at corners1..4"
+      },
+      "whole_same24af_coarse_comparisons": [
+        {
+          "mesh": "same24af admitted coarse T10 mesh",
+          "retained": {
+            "name": "combined-rigid-static",
+            "procedure": "static",
+            "seconds": 38.09042025008239,
+            "solver_container": "carrier-corner24af-combined-rigid-20261018-001",
+            "input_sha256": "7ee50b0074a3837d1363ebd3b3e16576201d9b0cc352dc3e07e6e4dfab40dc0e",
+            "mesh_sha256": "da29b0de8021236ffdbc28162949b95089549b4422a9da57ce4163d582e43483",
+            "geometry_provisional": true,
+            "load_assumed": true,
+            "material_allowable": null,
+            "physical_validation": false,
+            "displacement_max_mm": 2.7011416626958313,
+            "integration_point_VM_max_MPa": 602.2914366799436,
+            "VM_peak_element": 35426,
+            "force_residual_N": [
+              0.00027351000023118077,
+              7.059094963475206e-05,
+              -1.3265907909953967e-06
+            ],
+            "moment_residual_Nmm": [
+              -6.282638177879107e-05,
+              0.009202882181853056,
+              0.02818033349413529
+            ],
+            "external_work_Nmm": 21864.37102457855,
+            "bolt_group_forces_N": [
+              [
+                1.427658034932111,
+                0.29132030106117446,
+                3212.8824237753006
+              ],
+              [
+                -0.9971445599971167,
+                0.2904835920500607,
+                3212.1741319204857
+              ],
+              [
+                0.5666310850630932,
+                -0.2906116741925123,
+                -5212.003361235914
+              ],
+              [
+                -0.9971445599971167,
+                -0.2911922189187225,
+                -5213.053194459773
+              ]
+            ]
+          },
+          "retained_global_peaks": {
+            "mesh": "mesh-7",
+            "case": "combined-rigid-static",
+            "CAD_source": {
+              "format": "BREP",
+              "filename": "carrier.brep",
+              "sha256": "24af058467fd82a9f0c1d391bf947d427dffd311371cf8f73dafa492d204f4fd",
+              "master_description_sha256": "ff23908dd2f2924e6ad1fdcad0a924eadbcbad760498156049985a7c50e4c650",
+              "native_containment_receipt_sha256": "36b493beb53077332606de9c6a8092abbca2fdb8fc8f88d3425b0b9a9a9a57a3",
+              "native_volume_receipt_sha256": "c876b40f99933e450790d41dc358a21f94e179075fbbd57348026042885e2096",
+              "nonadaptive_volume_receipt_sha256": "c876b40f99933e450790d41dc358a21f94e179075fbbd57348026042885e2096",
+              "adaptive_volume_mm3": 288685.89908443496,
+              "adaptive_operator": {
+                "api": "BRepGProp.VolumeProperties_s",
+                "arguments": [
+                  1e-10,
+                  true,
+                  false
+                ],
+                "scope": "Separate adaptive native reference for material mass and mesh volume error"
+              },
+              "nonadaptive_import_reference_mm3": 288685.9375234367,
+              "nonadaptive_import_operator": {
+                "api": "BRepGProp.VolumeProperties_s",
+                "arguments": [
+                  false,
+                  false,
+                  false
+                ],
+                "scope": "Same nonadaptive overload used by Gmsh getMass; only the future import comparison reference"
+              },
+              "imported_CAD_absolute_identity_proved": false,
+              "STEP_exchange_qualified": false
+            },
+            "C3D10_elements": 85958,
+            "nodes": 160005,
+            "maximum_VM_MPa": 602.2914366799436,
+            "all_global_maximum_ties": [
+              {
+                "DAT_row_zero_based": 141701,
+                "element_index_zero_based": 35425,
+                "element_id": 35426,
+                "IP_one_based": 2,
+                "reference_undeformed_IP_xyz_mm": [
+                  264.01520879155095,
+                  21.485040329392003,
+                  -11.309999511128929
+                ],
+                "VM_MPa": 602.2914366799436,
+                "element_corner_centroid_mm": [
+                  263.8928327064225,
+                  21.199557910901753,
+                  -11.1613373970365
+                ],
+                "nearest_prescribed_displacement_node": {
+                  "node_id": 89146,
+                  "undeformed_xyz_mm": [
+                    274.42288827337,
+                    21.259127485281,
+                    -3.8024103919294
+                  ],
+                  "distance_mm": 12.834902539253461,
+                  "scope": "Euclidean distance to the retained discrete node set only; not distance to a BC/load surface"
+                },
+                "nearest_grounded_spring_node": null,
+                "nearest_applied_load_node": {
+                  "node_id": 171,
+                  "undeformed_xyz_mm": [
+                    55.5,
+                    20.0,
+                    -4.0
+                  ],
+                  "distance_mm": 208.64858910382478,
+                  "scope": "Euclidean distance to the retained discrete node set only; not distance to a BC/load surface"
+                },
+                "corner_measure": {
+                  "bounds_mm": [
+                    [
+                      262.71509057776,
+                      20.497762126228,
+                      -11.639483600432
+                    ],
+                    [
+                      264.88884952199,
+                      21.850730505332,
+                      -10.22904385359
+                    ]
+                  ],
+                  "six_corner_edge_lengths_mm": [
+                    1.1504959586854397,
+                    1.2877005187878041,
+                    1.5369544868275544,
+                    1.925142773092625,
+                    2.1686979038230607,
+                    2.7688832354912423
+                  ],
+                  "measured_h_mm": 2.7688832354912423,
+                  "proposed_half_h_mm": 1.3844416177456211,
+                  "h_definition": "Maximum of the six actual corner edges of this peak element; not global mesh label"
+                }
+              }
+            ],
+            "maximum_ties": 1,
+            "constrained_node_count": 4556,
+            "grounded_spring_node_count": 0,
+            "loaded_node_count": 2112,
+            "no_peak_excluded": true,
+            "coordinate_scope": "Reference coordinates from solver mesh INP",
+            "quadrature": "Official CCX2.21 gauss3d5 / straight-midside C3D10; IP1..4 have barycentric a at corners1..4"
+          },
+          "displacement_max_ratio": 1.0004493297211159,
+          "global_VM_max_ratio": 1.507241047363987,
+          "load_dot_displacement_ratio": 1.0005210240093965,
+          "interpretation": "Measured same24af coarse/refined ratios for the same declared load/support; no convergence or strength threshold"
+        }
+      ],
+      "actual_tool_handle": 59451,
+      "actual_initial_chunk": "ac129f",
+      "actual_terminal_chunk": "ca1335",
+      "case_plan_sha256": "77754678dc0310c448f1d880cba6eef33360ebb81836ae5c4a83503af2710ad3",
+      "assessment_sha256": "cc1c7dfdccd28ee6a91771882bedb3a29d6d09159d2a5c2db8e38a680a472503",
+      "native_receipt_sha256": "c52309c6988bbe703f5e3c58fd838b63aac0173d5650f52c18d9586372271e1b",
+      "output_count": 34,
+      "output_bytes": 145508488
+    },
+    "combined-spring": {
+      "actual_native_result": {
+        "name": "combined-spring-1000-static",
+        "procedure": "static",
+        "seconds": 41.48933166707866,
+        "solver_container": "carrier-corner24af-P2-combined-spring-20261018-001",
+        "input_sha256": "a6c0398c8e64dc271c2c76cc85a62e38fed493f0c28fa0646a637a3258ae1c51",
+        "mesh_sha256": "fb418e8524db1ed3f60dcf8f669b1a2e5ff25f4d39e30c50b4853716bf13241d",
+        "geometry_provisional": true,
+        "load_assumed": true,
+        "material_allowable": null,
+        "physical_validation": false,
+        "displacement_max_mm": 16.428119783820648,
+        "integration_point_VM_max_MPa": 2141.970118136313,
+        "VM_peak_element": 86965,
+        "force_residual_N": [
+          -2.477602338013529e-07,
+          4.1677129110904206e-07,
+          -8.24397193355253e-06
+        ],
+        "moment_residual_Nmm": [
+          -5.035648934637038e-05,
+          0.0035458661150187254,
+          2.8765043570189164e-05
+        ],
+        "external_work_Nmm": 84583.42668839893,
+        "bolt_group_forces_N": [
+          [
+            1.427658034932111,
+            0.29132030106117446,
+            3212.8824237753006
+          ],
+          [
+            -0.9971445599971167,
+            0.2904835920500607,
+            3212.1741319204857
+          ],
+          [
+            0.5666310850630932,
+            -0.2906116741925123,
+            -5212.003361235914
+          ],
+          [
+            -0.9971445599971167,
+            -0.2911922189187225,
+            -5213.053194459773
+          ]
+        ]
+      },
+      "independent_energy_audit": {
+        "case": "combined-spring-1000-static",
+        "CAD_source": {
+          "format": "BREP",
+          "filename": "carrier.brep",
+          "sha256": "24af058467fd82a9f0c1d391bf947d427dffd311371cf8f73dafa492d204f4fd",
+          "master_description_sha256": "ff23908dd2f2924e6ad1fdcad0a924eadbcbad760498156049985a7c50e4c650",
+          "native_containment_receipt_sha256": "36b493beb53077332606de9c6a8092abbca2fdb8fc8f88d3425b0b9a9a9a57a3",
+          "native_volume_receipt_sha256": "c876b40f99933e450790d41dc358a21f94e179075fbbd57348026042885e2096",
+          "nonadaptive_volume_receipt_sha256": "c876b40f99933e450790d41dc358a21f94e179075fbbd57348026042885e2096",
+          "adaptive_volume_mm3": 288685.89908443496,
+          "adaptive_operator": {
+            "api": "BRepGProp.VolumeProperties_s",
+            "arguments": [
+              1e-10,
+              true,
+              false
+            ],
+            "scope": "Separate adaptive native reference for material mass and mesh volume error"
+          },
+          "nonadaptive_import_reference_mm3": 288685.9375234367,
+          "nonadaptive_import_operator": {
+            "api": "BRepGProp.VolumeProperties_s",
+            "arguments": [
+              false,
+              false,
+              false
+            ],
+            "scope": "Same nonadaptive overload used by Gmsh getMass; only the future import comparison reference"
+          },
+          "imported_CAD_absolute_identity_proved": false,
+          "STEP_exchange_qualified": false
+        },
+        "E_MPa": 107000.0,
+        "nu": 0.31,
+        "C3D10_elements": 88569,
+        "volume_mm3": 288623.35054920905,
+        "solid_strain_energy_Nmm": 35820.316663604535,
+        "spring_strain_energy_Nmm": 6471.396740143274,
+        "half_load_dot_displacement_Nmm": 42291.71334418941,
+        "relative_energy_closure_error": 1.4082759403066802e-09,
+        "tolerance": 0.0001,
+        "energy_closure_pass": true,
+        "inputs_sha256": {
+          "mesh-7/mesh.inp": "fb418e8524db1ed3f60dcf8f669b1a2e5ff25f4d39e30c50b4853716bf13241d",
+          "mesh-7/mesh.npz": "7fa1c1542fa25cac9f080ede39f6f0645dc51f8ea1eb4e9b05a88b083c68a109",
+          "mesh-7/mesh.json": "696c50b10e600fc86fade59dfe67b377250dcfe9996d2f719b5171324505b131",
+          "mesh-7/combined-spring-1000-static.json": "f76c174c68d540a3a79e1e8cc6ff5aeca4f17b53fb2f989b29d8bd1882f5b592",
+          "mesh-7/combined-spring-1000-static.inp": "a6c0398c8e64dc271c2c76cc85a62e38fed493f0c28fa0646a637a3258ae1c51",
+          "mesh-7/combined-spring-1000-static.dat": "84484cdaf1ac3b0dcd26be5a78ad3129d7c665d86f55ca8f8f520daf1433d270",
+          "mesh-7/combined-spring-1000-static.npz": "4ddb40c56d8658688812dce2bfc094b7ddcda7a1fed80542d415a0f06c3b1f08",
+          "carrier.brep": "24af058467fd82a9f0c1d391bf947d427dffd311371cf8f73dafa492d204f4fd",
+          "study.json": "8637fa166fbb1853c118a84a4952c5c15f049f3599c27c6a39078c440adc6614",
+          "brep-master.json": "ff23908dd2f2924e6ad1fdcad0a924eadbcbad760498156049985a7c50e4c650"
+        }
+      },
+      "all_global_peak_ties": {
+        "mesh": "mesh-7",
+        "case": "combined-spring-1000-static",
+        "CAD_source": {
+          "format": "BREP",
+          "filename": "carrier.brep",
+          "sha256": "24af058467fd82a9f0c1d391bf947d427dffd311371cf8f73dafa492d204f4fd",
+          "master_description_sha256": "ff23908dd2f2924e6ad1fdcad0a924eadbcbad760498156049985a7c50e4c650",
+          "native_containment_receipt_sha256": "36b493beb53077332606de9c6a8092abbca2fdb8fc8f88d3425b0b9a9a9a57a3",
+          "native_volume_receipt_sha256": "c876b40f99933e450790d41dc358a21f94e179075fbbd57348026042885e2096",
+          "nonadaptive_volume_receipt_sha256": "c876b40f99933e450790d41dc358a21f94e179075fbbd57348026042885e2096",
+          "adaptive_volume_mm3": 288685.89908443496,
+          "adaptive_operator": {
+            "api": "BRepGProp.VolumeProperties_s",
+            "arguments": [
+              1e-10,
+              true,
+              false
+            ],
+            "scope": "Separate adaptive native reference for material mass and mesh volume error"
+          },
+          "nonadaptive_import_reference_mm3": 288685.9375234367,
+          "nonadaptive_import_operator": {
+            "api": "BRepGProp.VolumeProperties_s",
+            "arguments": [
+              false,
+              false,
+              false
+            ],
+            "scope": "Same nonadaptive overload used by Gmsh getMass; only the future import comparison reference"
+          },
+          "imported_CAD_absolute_identity_proved": false,
+          "STEP_exchange_qualified": false
+        },
+        "C3D10_elements": 88569,
+        "nodes": 164109,
+        "maximum_VM_MPa": 2141.970118136313,
+        "all_global_maximum_ties": [
+          {
+            "DAT_row_zero_based": 347856,
+            "element_index_zero_based": 86964,
+            "element_id": 86965,
+            "IP_one_based": 1,
+            "reference_undeformed_IP_xyz_mm": [
+              84.57058571200653,
+              -16.388927834261594,
+              14.596211088253137
+            ],
+            "VM_MPa": 2141.970118136313,
+            "element_corner_centroid_mm": [
+              84.481451018196,
+              -16.5865613178065,
+              14.453978196310999
+            ],
+            "nearest_prescribed_displacement_node": null,
+            "nearest_grounded_spring_node": {
+              "node_id": 90745,
+              "undeformed_xyz_mm": [
+                273.25795057106,
+                -16.014143219812,
+                -0.32751904366282
+              ],
+              "distance_mm": 189.27699237364018,
+              "scope": "Euclidean distance to the retained discrete node set only; not distance to a BC/load surface"
+            },
+            "nearest_applied_load_node": {
+              "node_id": 210,
+              "undeformed_xyz_mm": [
+                55.5,
+                -20.0,
+                4.0
+              ],
+              "distance_mm": 31.15154065615548,
+              "scope": "Euclidean distance to the retained discrete node set only; not distance to a BC/load surface"
+            },
+            "corner_measure": {
+              "bounds_mm": [
+                [
+                  83.889488466199,
+                  -17.036763028479,
+                  14.13060780093
+                ],
+                [
+                  84.68076225271,
+                  -16.14463941397,
+                  14.77202061133
+                ]
+              ],
+              "six_corner_edge_lengths_mm": [
+                0.5837316254430683,
+                0.6892234669192286,
+                0.6921148545917071,
+                0.9917070212974353,
+                1.0593761039830794,
+                1.3540343947364422
+              ],
+              "measured_h_mm": 1.3540343947364422,
+              "proposed_half_h_mm": 0.6770171973682211,
+              "h_definition": "Maximum of the six actual corner edges of this peak element; not global mesh label"
+            }
+          }
+        ],
+        "maximum_ties": 1,
+        "constrained_node_count": 0,
+        "grounded_spring_node_count": 4556,
+        "loaded_node_count": 2112,
+        "no_peak_excluded": true,
+        "coordinate_scope": "Reference coordinates from solver mesh INP",
+        "quadrature": "Official CCX2.21 gauss3d5 / straight-midside C3D10; IP1..4 have barycentric a at corners1..4"
+      },
+      "whole_same24af_coarse_comparisons": [
+        {
+          "mesh": "same24af admitted coarse T10 mesh",
+          "retained": {
+            "name": "combined-spring-1000-static",
+            "procedure": "static",
+            "seconds": 37.44841945799999,
+            "solver_container": "carrier-corner24af-combined-spring-20261018-001",
+            "input_sha256": "63bb41710a63a54c3af3ecba3ed88bc8cdd8e079dd9b77f85b34e5315b700bb1",
+            "mesh_sha256": "da29b0de8021236ffdbc28162949b95089549b4422a9da57ce4163d582e43483",
+            "geometry_provisional": true,
+            "load_assumed": true,
+            "material_allowable": null,
+            "physical_validation": false,
+            "displacement_max_mm": 16.4254197895954,
+            "integration_point_VM_max_MPa": 1564.8975101325768,
+            "VM_peak_element": 81055,
+            "force_residual_N": [
+              -4.3520537315600016e-07,
+              -4.2067980603980194e-07,
+              -1.4475654097623192e-07
+            ],
+            "moment_residual_Nmm": [
+              -6.09833934248627e-05,
+              -0.0002170145744457841,
+              -2.210301330052289e-05
+            ],
+            "external_work_Nmm": 84575.2699059648,
+            "bolt_group_forces_N": [
+              [
+                1.427658034932111,
+                0.29132030106117446,
+                3212.8824237753006
+              ],
+              [
+                -0.9971445599971167,
+                0.2904835920500607,
+                3212.1741319204857
+              ],
+              [
+                0.5666310850630932,
+                -0.2906116741925123,
+                -5212.003361235914
+              ],
+              [
+                -0.9971445599971167,
+                -0.2911922189187225,
+                -5213.053194459773
+              ]
+            ]
+          },
+          "retained_global_peaks": {
+            "mesh": "mesh-7",
+            "case": "combined-spring-1000-static",
+            "CAD_source": {
+              "format": "BREP",
+              "filename": "carrier.brep",
+              "sha256": "24af058467fd82a9f0c1d391bf947d427dffd311371cf8f73dafa492d204f4fd",
+              "master_description_sha256": "ff23908dd2f2924e6ad1fdcad0a924eadbcbad760498156049985a7c50e4c650",
+              "native_containment_receipt_sha256": "36b493beb53077332606de9c6a8092abbca2fdb8fc8f88d3425b0b9a9a9a57a3",
+              "native_volume_receipt_sha256": "c876b40f99933e450790d41dc358a21f94e179075fbbd57348026042885e2096",
+              "nonadaptive_volume_receipt_sha256": "c876b40f99933e450790d41dc358a21f94e179075fbbd57348026042885e2096",
+              "adaptive_volume_mm3": 288685.89908443496,
+              "adaptive_operator": {
+                "api": "BRepGProp.VolumeProperties_s",
+                "arguments": [
+                  1e-10,
+                  true,
+                  false
+                ],
+                "scope": "Separate adaptive native reference for material mass and mesh volume error"
+              },
+              "nonadaptive_import_reference_mm3": 288685.9375234367,
+              "nonadaptive_import_operator": {
+                "api": "BRepGProp.VolumeProperties_s",
+                "arguments": [
+                  false,
+                  false,
+                  false
+                ],
+                "scope": "Same nonadaptive overload used by Gmsh getMass; only the future import comparison reference"
+              },
+              "imported_CAD_absolute_identity_proved": false,
+              "STEP_exchange_qualified": false
+            },
+            "C3D10_elements": 85958,
+            "nodes": 160005,
+            "maximum_VM_MPa": 1564.8975101325768,
+            "all_global_maximum_ties": [
+              {
+                "DAT_row_zero_based": 324217,
+                "element_index_zero_based": 81054,
+                "element_id": 81055,
+                "IP_one_based": 2,
+                "reference_undeformed_IP_xyz_mm": [
+                  84.461509428434,
+                  -16.471882962575826,
+                  14.421283322716533
+                ],
+                "VM_MPa": 1564.8975101325768,
+                "element_corner_centroid_mm": [
+                  84.28413016753,
+                  -16.7366285546975,
+                  14.13753089566725
+                ],
+                "nearest_prescribed_displacement_node": null,
+                "nearest_grounded_spring_node": {
+                  "node_id": 90745,
+                  "undeformed_xyz_mm": [
+                    273.25795057106,
+                    -16.014143219812,
+                    -0.32751904366282
+                  ],
+                  "distance_mm": 189.3722072666305,
+                  "scope": "Euclidean distance to the retained discrete node set only; not distance to a BC/load surface"
+                },
+                "nearest_applied_load_node": {
+                  "node_id": 210,
+                  "undeformed_xyz_mm": [
+                    55.5,
+                    -20.0,
+                    4.0
+                  ],
+                  "distance_mm": 30.980958414732168,
+                  "scope": "Euclidean distance to the retained discrete node set only; not distance to a BC/load surface"
+                },
+                "corner_measure": {
+                  "bounds_mm": [
+                    [
+                      83.098214679687,
+                      -17.928886642989,
+                      13.489194990531
+                    ],
+                    [
+                      84.68076225271,
+                      -16.14463941397,
+                      14.77202061133
+                    ]
+                  ],
+                  "six_corner_edge_lengths_mm": [
+                    0.5837316254430683,
+                    1.2519430131020002,
+                    1.3784469338388772,
+                    2.360218450292233,
+                    2.385151720667074,
+                    2.7080687894736486
+                  ],
+                  "measured_h_mm": 2.7080687894736486,
+                  "proposed_half_h_mm": 1.3540343947368243,
+                  "h_definition": "Maximum of the six actual corner edges of this peak element; not global mesh label"
+                }
+              }
+            ],
+            "maximum_ties": 1,
+            "constrained_node_count": 0,
+            "grounded_spring_node_count": 4556,
+            "loaded_node_count": 2112,
+            "no_peak_excluded": true,
+            "coordinate_scope": "Reference coordinates from solver mesh INP",
+            "quadrature": "Official CCX2.21 gauss3d5 / straight-midside C3D10; IP1..4 have barycentric a at corners1..4"
+          },
+          "displacement_max_ratio": 1.0001643790088677,
+          "global_VM_max_ratio": 1.3687606404043975,
+          "load_dot_displacement_ratio": 1.0000964440603406,
+          "interpretation": "Measured same24af coarse/refined ratios for the same declared load/support; no convergence or strength threshold"
+        }
+      ],
+      "actual_tool_handle": 14758,
+      "actual_initial_chunk": "495da7",
+      "actual_terminal_chunk": "cd4be6",
+      "case_plan_sha256": "9a198863fbf9ae051b8a58c9f1a3f9fd21287eb4295612672a8b5e67b5fbd054",
+      "assessment_sha256": "892a0cea5cc976f3829ec7083f8e8e31f648c9ec2e510d9a9eee3354984c91fb",
+      "native_receipt_sha256": "7236102231843f87cbf172ee3f1f7df1fe54c3b4cc6964b34e10eda708529d76",
+      "output_count": 33,
+      "output_bytes": 146284210
+    }
+  },
+  "remaining18_queued_not_armed": true,
+  "peak_stress_increased_in_both_cases": true,
+  "stress_convergence_demonstrated": false,
+  "strength_acceptance": false,
+  "native_or_scientific_numerical_operations_reexecuted": false
+}

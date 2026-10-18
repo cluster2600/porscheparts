@@ -1,0 +1,32 @@
+{
+  "recorded_at_UTC": "2026-10-16T12:34:42.009701+00:00",
+  "frozen_web_Y_translation_mm": 1.61,
+  "control_points_X": [
+    65,
+    100,
+    220,
+    278
+  ],
+  "control_points_Y": [
+    36,
+    36,
+    20,
+    22
+  ],
+  "positive_control_differences_X": [
+    35,
+    120,
+    58
+  ],
+  "control_differences_Y": [
+    0,
+    -16,
+    2
+  ],
+  "proof": "The Bezier derivative ratio is a convex combination of control differences dy/dx weighted by positive Bernstein derivative dx terms. Therefore abs(dy/dx) <=max(0,16/120,2/58)=2/15. Two Y-translated graphs with Lipschitz bound M have minimum distance >=w/sqrt(1+M\u00b2): minimize dx\u00b2+(w-M*abs(dx))\u00b2, with the region M*abs(dx)>=w giving no smaller bound.",
+  "maximum_abs_slope_bound": 0.13333333333333333,
+  "minimum_normal_distance_bound_mm": 1.5958769200990421,
+  "screen_mm": 1.5,
+  "screen_bound_pass": true,
+  "scope": "Only paired long XY walls, excluding other cuts, caps, arch and intersections; exact thickness audit still required."
+}

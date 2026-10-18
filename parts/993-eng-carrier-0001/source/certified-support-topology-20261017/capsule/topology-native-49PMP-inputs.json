@@ -1,0 +1,1838 @@
+{
+  "schema": "finite-IEEE-quad-selection-input-1",
+  "source_sha256": {
+    "parts/993-eng-carrier-0001/source/process-scanpath-audit-20261016/audit_support_scanpaths.py": "4ace9f24b61fa8f2d514f18d2e3eb6e9794983d6dee41fad4a8f44dc1f4c53ef",
+    "parts/993-eng-carrier-0001/source/process-scanpath-audit-20261016/exact_support_section.py": "7a6416ca48322b0be9210117c660d830e1f14183a7e49a58d755ae674f81aef4",
+    "parts/993-eng-carrier-0001/source/process-scanpath-audit-20261016/exact_zero_face_coverage.py": "910151f42cd028e780619bb3e863d6fec2672331e753ffd9b26b6220f8f5fec3",
+    "parts/993-eng-carrier-0001/source/process-skins-20261016/peripheral_skins.py": "92f5dbf81fa868e29d13769094e66ae234a4ce09103fb8d2d234ad9c898fb5d7",
+    "parts/993-eng-carrier-0001/source/process-skins-20261016/region_checkpoints.py": "943c8f9193f3ea8a4d1654fec91482e4167c4c4ce351a65c9fd8623ddb9ac589",
+    "parts/993-eng-carrier-0001/source/process-skins-20261016/zero_area_faces.py": "96a985e869fba6a6c9183fe4d9fae7ccf55d34a2ba20f28d8e547f769ea8f658",
+    "parts/993-eng-carrier-0001/source/process-support-slicing-20261016/parallel_support_sections.py": "608cc638ee6f2e9228802442290547a792463fec807066398e95c075287483af",
+    "work/carrier-process-20261016/real-support-v5-regions-001/source-003/geometry-assessment.json": "064bbe4b384491653c958d859e9db2445243d537216af0e16807c8f28f623ffd",
+    "work/carrier-process-20261016/real-support-v5-regions-001/source-003/region-checkpoint.json": "f968a52e955fd621bc457d0c615d6d9039bb5dcc43cb242342308a5a4713cb74",
+    "work/carrier-process-20261016/real-support-v5-regions-001/source-003/support.npz": "cba69543b45d599f4d5298e66889872f1c78f6bf2a6788899af4ebacdb93dd35",
+    "work/carrier-process-20261016/real-support-v5-regions-001/source-009/geometry-assessment.json": "fc8ef47f12f387dcc3fb1c862bc83a2f05564031582da851210c3a1a50d8bd22",
+    "work/carrier-process-20261016/real-support-v5-regions-001/source-009/region-checkpoint.json": "c8cb26890e206dbdba7950c5ddc4ab98eadb5c1cc99baa9c01d87b178a4c5464",
+    "work/carrier-process-20261016/real-support-v5-regions-001/source-009/support.npz": "607dfadf95edff7738ae11e6e3c1560f13e73a416844bebd01d49034e1a6c943",
+    "work/carrier-process-20261017/source003-all-collapsed-cuts-001/execution-001/execution-receipt.json": "d1d9c24d3b110bdd186db15a95c6e51be4fc8a034b082ed4a222909e2df22f65",
+    "work/carrier-process-20261017/source003-all-collapsed-cuts-001/output-001/assessment.json": "a9b0a5c00703a4d172f18099a9f06242f75720ae0e61c35b6b9f7fdc1cca895c",
+    "work/carrier-process-20261017/source003-all-collapsed-cuts-001/output-001/layers.jsonl": "9700cf63bcd81d7aae3c25a63e968421c8a43e550ab523344368eb48c91f489b",
+    "work/carrier-process-20261017/source003-all-collapsed-cuts-001/plan.json": "2079cc16aa45a0f1a4247a9791cda14a9042398f5d32b1301c9b9247dbf9e755",
+    "work/carrier-process-20261017/source003-remap-trace-experiment-001/README.md": "3682d47855aebbabfa67417f80c0030e3ad835decaea27d13bc9475a2e4919c3",
+    "work/carrier-process-20261017/source003-remap-trace-experiment-001/plan.json": "0bead389c8f611eb22addedcd2e253e8ba2a48e3230d84c179b87b88722d5f30",
+    "work/carrier-process-20261017/source003-remap-trace-experiment-001/preflight.json": "738c41c0ed98c80a933728b6a0ae88a938030f10d9d26cff641e483351616bfd",
+    "work/carrier-process-20261017/source003-remap-trace-experiment-001/selfcheck.py": "38c9d78a3898cc7d7b568f638bba24920530cd96a4ac820eb6ea9579a5df3da6",
+    "work/carrier-process-20261017/source003-remap-trace-experiment-001/trace-001/assessment.json": "9978b0312ede7f65be981d65188070726629441ee6684f0644714042a99781bd",
+    "work/carrier-process-20261017/source003-remap-trace-experiment-001/trace-001/skin-parameters.npz": "e46ef868b7c287a990242c47e86838fcc006b2ebefec114dd6eec39f03348831",
+    "work/carrier-process-20261017/source003-remap-trace-experiment-001/trace-from-source010.diff": "0b2bd97b3d3dfb0e1c60c50f4f762a34e61b353f36ef6b8201579a8d59bb2cf0",
+    "work/carrier-process-20261017/source003-remap-trace-experiment-001/trace.py": "0f1e06afd7e9c385f9307e149ef499c025ea36d84aad874aef73769268a04add",
+    "work/carrier-process-20261017/source003009-SKIN-flip-inventory-001/README.md": "57ff84c3ae46a082686bce93572c1e3e3ab3f90ed8239d3a36c8f8a8cd7eb859",
+    "work/carrier-process-20261017/source003009-SKIN-flip-inventory-001/inventory.py": "e47ef15ab260d1dc1ff55106e8e98e621f5f2bb5a29721ca42d619cb5be57489",
+    "work/carrier-process-20261017/source003009-SKIN-flip-inventory-001/output-001/assessment.json": "ea19e7481ac7d348007ad3c0ea695b98193e75a047e286ecfd162d0fb8e381c7",
+    "work/carrier-process-20261017/source003009-SKIN-flip-inventory-001/selfcheck-assessment.json": "e716b76314f139f6aac24056a718e45ef58d065bd3f23e6b4865e664b27b4902",
+    "work/carrier-process-20261017/source003009-SKIN-flip-inventory-001/selfcheck.py": "e7844b3092700ce8ebe4d54a5a5c4b7ec30ff747820d5dee0832e70dc9b20420",
+    "work/carrier-process-20261017/source003009-SKIN-flip-inventory-001/trace003-binding-readonly.json": "f194debbdc542c1b027f574fc0a55430a2645f80b59de5998a3e282ebe510ba7",
+    "work/carrier-process-20261017/source003009-SKIN-flip-inventory-001/trace009-binding-readonly.json": "54d1da86a89943f5bf69310a55da1908377301045a216fc168dc6e8077a4825b",
+    "work/carrier-process-20261017/source003009-certified-flip-repair-001/GRID-operation-plans.json": "d225493bc84e4d3f4e037dafe66325ce3233508fab68f885ad101f7585169f76",
+    "work/carrier-process-20261017/source003009-certified-flip-repair-001/certify_flips_v3.py": "f02b133ab42723d45d5733257546f0872c55c9d18a0ffc1a890011a20613ab8e",
+    "work/carrier-process-20261017/source003009-certified-flip-repair-001/prepare_GRID_plans.py": "4f63321ce831d5f9c72f2f35b76e42f6cc0e194240ca638d2b07513232da6d81",
+    "work/carrier-process-20261017/source003009-certified-flip-repair-001/selfcheck-assessment.json": "0e39e4e32a3120121c3b3d2d33805321fb13ff235a556250308a1a342551b802",
+    "work/carrier-process-20261017/source003009-certified-flip-repair-001/selfcheck.py": "c35c4d8e526d6d157332435926bd98a538dd551dd9b5dcd45780441a20287775",
+    "work/carrier-process-20261017/source003009-combined-flip-packets-001/README.md": "0b8c84611d25bdf27feee6329622656c24f6128ea1d15696a1f230ed2897b008",
+    "work/carrier-process-20261017/source003009-combined-flip-packets-001/prepare_packets.py": "2989e3f6bfcae3865d4af6aafd2d435b8933df4cd1c1aaf38a4076dd1c867797",
+    "work/carrier-process-20261017/source003009-combined-flip-packets-001/selfcheck-assessment.json": "b14110592efacec83e0678750bcf92991f5e155b97a0290bf29c1df024aeb589",
+    "work/carrier-process-20261017/source003009-combined-flip-packets-001/selfcheck.py": "4cab85be702eecec9bf2d32b03649bece4720072f0939eb0d45bffa96d658740",
+    "work/carrier-process-20261017/source003009-flip-feasibility-001/assessment.json": "0a8c1fa0c960e4bd0f12c050ab1fbc72605627c94ec9af664f2d3e0de15b31f5",
+    "work/carrier-process-20261017/source003009-flip-feasibility-001/audit_neighbours.py": "270513da028f32d0bfa5107b78bc889bc2cd2aae7f1d06eda36ffc783b4addca",
+    "work/carrier-process-20261017/source003009-flip-feasibility-002/assessment.json": "8a250f5142a56830c3717677e64b274b5922d29c0af158e24af7f51ea45a9956",
+    "work/carrier-process-20261017/source003009-flip-feasibility-002/composites.py": "e21977f521875af4378a6e8940d497260975d6079c7a31d1f45f63eb7c235eed",
+    "work/carrier-process-20261017/source003009-flip-feasibility-003/assessment.json": "f6882f5cdcfe424cd854c231c63efbdb9f5dc6642f66fcc562c1b74c9b05d355",
+    "work/carrier-process-20261017/source003009-flip-feasibility-003/sequential.py": "1feeede794453991cd97dfd85dae35876dd4b280eb25df202cdb192fd682064a",
+    "work/carrier-process-20261017/source009-all-collapsed-cuts-001/execution-001/execution-receipt.json": "d06179edf3c573ad4968a0eaac9258349bfc7e1d4b6c39e85922cc7b7dcabf22",
+    "work/carrier-process-20261017/source009-all-collapsed-cuts-001/output-001/assessment.json": "157e01c4c7448435062fd3501b11a7deecf2fc63bab3c335e716ed6da0ec72f3",
+    "work/carrier-process-20261017/source009-all-collapsed-cuts-001/output-001/layers.jsonl": "0631fab808869b91fd7ddaaebdc764b9f85734bbfba463569306e872abc4e7d9",
+    "work/carrier-process-20261017/source009-all-collapsed-cuts-001/plan.json": "bd89826ca5620fb4f66af17eb2ce6559eb26605abf7d1f7df0b25de66b25557a",
+    "work/carrier-process-20261017/source009-remap-trace-experiment-001/README.md": "76fa6edf07ceb9aef01c98c318b86934029d31f51c5130ddb4d4e4bd34c2215e",
+    "work/carrier-process-20261017/source009-remap-trace-experiment-001/plan.json": "360a37c71f018d35ee49adb8d8ff8233c906227b0ce1e630bd4ade42c996ad82",
+    "work/carrier-process-20261017/source009-remap-trace-experiment-001/preflight.json": "9b74fc6ff62a24356bc9eb2b3f7c6d5c97dac7a39fea74b0e812a555f5f559f4",
+    "work/carrier-process-20261017/source009-remap-trace-experiment-001/selfcheck.py": "38c9d78a3898cc7d7b568f638bba24920530cd96a4ac820eb6ea9579a5df3da6",
+    "work/carrier-process-20261017/source009-remap-trace-experiment-001/trace-001/assessment.json": "4b315d6f8be146b47709d01c9b980d57e40e6faec1e6cb5c4fb8bc3c436f1c33",
+    "work/carrier-process-20261017/source009-remap-trace-experiment-001/trace-001/skin-parameters.npz": "c0f3e8fcb3e71659f5e665bf943b08d4883b5ac36d1044b4a22e4cd30aa39167",
+    "work/carrier-process-20261017/source009-remap-trace-experiment-001/trace-from-source010.diff": "61905c0725472bd3d3716c6dcd9ef6cbc05bd426efec0c0a64dec133c1bb7001",
+    "work/carrier-process-20261017/source009-remap-trace-experiment-001/trace.py": "b6e349b0bcc5dc047eef650e741e36f37dc12f08d46bb4b7b9cd8e432519a58f",
+    "work/carrier-process-20261017/source010-certified-flip-repair-001/certify_flips_v2.py": "9647fd31520111064181058a9b7ce2dc3111e8e3e83160a278fa655c7d02d506",
+    "work/carrier-process-20261017/source010-certified-flip-repair-001/prepare_inventory.py": "4e2836e74c48c2a9823340292fbd4af96398c93aca382de7e04ac2528fc315e5",
+    "work/carrier-process-20261017/source010-remap-trace-experiment-001/plan.json": "66500268f0370ba692b1c887abce4a498628a59246ba889399b7a33f18f1094a",
+    "work/carrier-process-20261017/source010-remap-trace-experiment-001/trace.py": "e75f19ca1545e090ef8237069f2d05df7a967d2335d41cff171fee3e5d1cbc47",
+    "work/part-workflow/runtimes/pyslm-coverage-011/env/lib/python3.11/site-packages/pyslm/support/support.py": "68db985051d252619d80dc96558c1db6d3d20b60b5965c4825d5aab51e228744",
+    "work/part-workflow/runtimes/pyslm-coverage-011/source/pyslm/support/support.py": "68db985051d252619d80dc96558c1db6d3d20b60b5965c4825d5aab51e228744"
+  },
+  "records": [
+    {
+      "name": "source003-GRID-000-step-0",
+      "expected_exact_coplanarity": true,
+      "boundary_ids": [
+        611,
+        614,
+        619,
+        623
+      ],
+      "vertices_ieee_hex": [
+        [
+          "-0x1.7bf6dc7314276p+7",
+          "-0x1.6d8de09d72740p+7",
+          "0x1.102caf2c321b3p+5"
+        ],
+        [
+          "-0x1.7bf6dc7314275p+7",
+          "-0x1.6d8de09d72740p+7",
+          "0x1.f7bbdea7738bep+4"
+        ],
+        [
+          "-0x1.7bf6dc7314274p+7",
+          "-0x1.6d8de09d72740p+7",
+          "0x1.dfa6d4ddf9d23p+4"
+        ],
+        [
+          "-0x1.7bf676dfd9c13p+7",
+          "-0x1.6d8de09d72740p+7",
+          "0x1.11c8251164befp+5"
+        ]
+      ],
+      "original_diagonal_ids": [
+        611,
+        619
+      ]
+    },
+    {
+      "name": "source003-GRID-000-step-1",
+      "expected_exact_coplanarity": true,
+      "boundary_ids": [
+        610,
+        614,
+        623,
+        611
+      ],
+      "vertices_ieee_hex": [
+        [
+          "-0x1.7bf6dc7314276p+7",
+          "-0x1.6d8de09d72740p+7",
+          "0x1.102c81d224c9ap+5"
+        ],
+        [
+          "-0x1.7bf6dc7314275p+7",
+          "-0x1.6d8de09d72740p+7",
+          "0x1.f7bbdea7738bep+4"
+        ],
+        [
+          "-0x1.7bf676dfd9c13p+7",
+          "-0x1.6d8de09d72740p+7",
+          "0x1.11c8251164befp+5"
+        ],
+        [
+          "-0x1.7bf6dc7314276p+7",
+          "-0x1.6d8de09d72740p+7",
+          "0x1.102caf2c321b3p+5"
+        ]
+      ],
+      "original_diagonal_ids": [
+        611,
+        614
+      ]
+    },
+    {
+      "name": "source003-GRID-001-step-0",
+      "expected_exact_coplanarity": true,
+      "boundary_ids": [
+        103,
+        125,
+        155,
+        126
+      ],
+      "vertices_ieee_hex": [
+        [
+          "-0x1.71e57d273546cp+7",
+          "-0x1.779f3fe95154ap+7",
+          "0x1.453f90748fe91p+0"
+        ],
+        [
+          "-0x1.71e57d273546cp+7",
+          "-0x1.779f3fe951548p+7",
+          "0x1.a3d9aae075567p-1"
+        ],
+        [
+          "-0x1.71e57d273546cp+7",
+          "-0x1.774801f1d9d21p+7",
+          "0x1.46571df9ac0bdp+4"
+        ],
+        [
+          "-0x1.71e57d273546cp+7",
+          "-0x1.779f3fe951548p+7",
+          "0x1.22a5b1cc42738p+2"
+        ]
+      ],
+      "original_diagonal_ids": [
+        125,
+        126
+      ]
+    },
+    {
+      "name": "source003-GRID-002-step-0",
+      "expected_exact_coplanarity": true,
+      "boundary_ids": [
+        187,
+        204,
+        213,
+        193
+      ],
+      "vertices_ieee_hex": [
+        [
+          "-0x1.71e57d273546cp+7",
+          "-0x1.779f3fe95154ap+7",
+          "0x1.ef6d462a4d244p+4"
+        ],
+        [
+          "-0x1.71e57d273546cp+7",
+          "-0x1.779f3fe951548p+7",
+          "0x1.e6e5f35d4f0d5p+4"
+        ],
+        [
+          "-0x1.71e57d273546cp+7",
+          "-0x1.779ec9ed3b761p+7",
+          "0x1.11c6e8587fe30p+5"
+        ],
+        [
+          "-0x1.71e57d273546cp+7",
+          "-0x1.779f3fe951549p+7",
+          "0x1.f066666666661p+4"
+        ]
+      ],
+      "original_diagonal_ids": [
+        193,
+        204
+      ]
+    },
+    {
+      "name": "source003-GRID-003-step-0",
+      "expected_exact_coplanarity": true,
+      "boundary_ids": [
+        190,
+        214,
+        195,
+        191
+      ],
+      "vertices_ieee_hex": [
+        [
+          "-0x1.71e57d273546cp+7",
+          "-0x1.779f3fe951549p+7",
+          "0x1.dc727358633bfp+4"
+        ],
+        [
+          "-0x1.71e57d273546cp+7",
+          "-0x1.7796eceb199b5p+7",
+          "0x1.dc4b06d149bedp+4"
+        ],
+        [
+          "-0x1.71e57d273546cp+7",
+          "-0x1.779f3fe951548p+7",
+          "0x1.dfa5d84bfceefp+4"
+        ],
+        [
+          "-0x1.71e57d273546cp+7",
+          "-0x1.779f3fe951549p+7",
+          "0x1.dfa5a68b966f2p+4"
+        ]
+      ],
+      "original_diagonal_ids": [
+        190,
+        195
+      ]
+    },
+    {
+      "name": "source003-GRID-004-step-0",
+      "expected_exact_coplanarity": true,
+      "boundary_ids": [
+        229,
+        245,
+        255,
+        230
+      ],
+      "vertices_ieee_hex": [
+        [
+          "-0x1.67e57d273546cp+7",
+          "-0x1.819f3fe95154ap+7",
+          "0x1.5bb741ae1a6f8p+1"
+        ],
+        [
+          "-0x1.67e57d273546cp+7",
+          "-0x1.819f3fe951548p+7",
+          "0x1.4fca885e7dfc0p+1"
+        ],
+        [
+          "-0x1.67e57d273546cp+7",
+          "-0x1.8191b1b7432cbp+7",
+          "0x1.47268d245a1cep+4"
+        ],
+        [
+          "-0x1.67e57d273546cp+7",
+          "-0x1.819f3fe95154ap+7",
+          "0x1.460f089fe4164p+2"
+        ]
+      ],
+      "original_diagonal_ids": [
+        230,
+        245
+      ]
+    },
+    {
+      "name": "source003-GRID-005-step-0",
+      "expected_exact_coplanarity": true,
+      "boundary_ids": [
+        330,
+        347,
+        353,
+        338
+      ],
+      "vertices_ieee_hex": [
+        [
+          "-0x1.67f6dc7314276p+7",
+          "-0x1.818de09d72740p+7",
+          "0x1.75aeeba1e7cc0p+1"
+        ],
+        [
+          "-0x1.67f6dc7314274p+7",
+          "-0x1.818de09d72740p+7",
+          "0x1.69e581c329048p+1"
+        ],
+        [
+          "-0x1.67f6530130294p+7",
+          "-0x1.818de09d72740p+7",
+          "0x1.474b1c25d1ee5p+4"
+        ],
+        [
+          "-0x1.67f6dc7314275p+7",
+          "-0x1.818de09d72740p+7",
+          "0x1.51482ecd83514p+2"
+        ]
+      ],
+      "original_diagonal_ids": [
+        338,
+        347
+      ]
+    },
+    {
+      "name": "source003-GRID-006-step-0",
+      "expected_exact_coplanarity": true,
+      "boundary_ids": [
+        427,
+        449,
+        473,
+        450
+      ],
+      "vertices_ieee_hex": [
+        [
+          "-0x1.71f6dc7314276p+7",
+          "-0x1.778de09d72740p+7",
+          "0x1.eae77894a1915p-1"
+        ],
+        [
+          "-0x1.71f6dc7314274p+7",
+          "-0x1.778de09d72740p+7",
+          "0x1.007893f5c9808p-1"
+        ],
+        [
+          "-0x1.71d24e736bc84p+7",
+          "-0x1.778de09d72740p+7",
+          "0x1.46e53b69acab5p+4"
+        ],
+        [
+          "-0x1.71f6dc7314274p+7",
+          "-0x1.778de09d72740p+7",
+          "0x1.1222989cca8f1p+2"
+        ]
+      ],
+      "original_diagonal_ids": [
+        449,
+        450
+      ]
+    },
+    {
+      "name": "source003-GRID-007-step-0",
+      "expected_exact_coplanarity": true,
+      "boundary_ids": [
+        543,
+        555,
+        564,
+        544
+      ],
+      "vertices_ieee_hex": [
+        [
+          "-0x1.7bf6dc7314276p+7",
+          "-0x1.6d8de09d72740p+7",
+          "0x1.5eb064f0c843fp+0"
+        ],
+        [
+          "-0x1.7bf6dc7314274p+7",
+          "-0x1.6d8de09d72740p+7",
+          "0x0.0p+0"
+        ],
+        [
+          "-0x1.7bf182e6893e3p+7",
+          "-0x1.6d8de09d72740p+7",
+          "0x0.0p+0"
+        ],
+        [
+          "-0x1.7bf6dc7314276p+7",
+          "-0x1.6d8de09d72740p+7",
+          "0x1.6a48ab41e1ce4p+0"
+        ]
+      ],
+      "original_diagonal_ids": [
+        544,
+        555
+      ]
+    },
+    {
+      "name": "source003-SKIN-704-705-step-0",
+      "expected_exact_coplanarity": false,
+      "boundary_ids": [
+        750,
+        754,
+        752,
+        751
+      ],
+      "vertices_ieee_hex": [
+        [
+          "-0x1.720d9aff75bd8p+7",
+          "-0x1.76f0ebc15aaffp+7",
+          "0x1.45d42badd6b41p+4"
+        ],
+        [
+          "-0x1.72230fcc37486p+7",
+          "-0x1.76e5b91409b71p+7",
+          "0x1.45f450b846fdfp+4"
+        ],
+        [
+          "-0x1.72223daeb6c64p+7",
+          "-0x1.76e626bca14b3p+7",
+          "0x1.45f333ec8ee9dp+4"
+        ],
+        [
+          "-0x1.721c1656fb6b4p+7",
+          "-0x1.76e95ce7615c2p+7",
+          "0x1.45e9f2e17aee7p+4"
+        ]
+      ],
+      "original_diagonal_ids": [
+        750,
+        752
+      ]
+    },
+    {
+      "name": "source003-SKIN-897-898-step-0",
+      "expected_exact_coplanarity": false,
+      "boundary_ids": [
+        1013,
+        1015,
+        1016,
+        1014
+      ],
+      "vertices_ieee_hex": [
+        [
+          "-0x1.7c94ddb61ebd4p+7",
+          "-0x1.6c6dee713201ap+7",
+          "0x1.45e191369eeadp+4"
+        ],
+        [
+          "-0x1.7cab8d48d8362p+7",
+          "-0x1.6c654898554e6p+7",
+          "0x0.0p+0"
+        ],
+        [
+          "-0x1.7cab8d48d8362p+7",
+          "-0x1.6c654898554e6p+7",
+          "0x1.46081f2864bebp+4"
+        ],
+        [
+          "-0x1.7ca42d1aec224p+7",
+          "-0x1.6c68185e7df23p+7",
+          "0x1.45fb963496749p+4"
+        ]
+      ],
+      "original_diagonal_ids": [
+        1013,
+        1016
+      ]
+    },
+    {
+      "name": "source003-SKIN-1579-1580-step-0",
+      "expected_exact_coplanarity": true,
+      "boundary_ids": [
+        1737,
+        1795,
+        1796,
+        1799
+      ],
+      "vertices_ieee_hex": [
+        [
+          "-0x1.805d49532708dp+7",
+          "-0x1.692773bd5f928p+7",
+          "0x1.dfa3314f1783ap+4"
+        ],
+        [
+          "-0x1.75105fc0c00ecp+7",
+          "-0x1.74745d4fc68c9p+7",
+          "0x1.dc54b9974d0e3p+4"
+        ],
+        [
+          "-0x1.75105fc0c00dap+7",
+          "-0x1.74745d4fc68dbp+7",
+          "0x1.dc54b9974d0e3p+4"
+        ],
+        [
+          "-0x1.742da3735dd71p+7",
+          "-0x1.7557199d28c44p+7",
+          "0x1.dc7391b3a8b93p+4"
+        ]
+      ],
+      "original_diagonal_ids": [
+        1737,
+        1796
+      ]
+    },
+    {
+      "name": "source003-SKIN-2101-2102-step-0",
+      "expected_exact_coplanarity": false,
+      "boundary_ids": [
+        2438,
+        2441,
+        2443,
+        2439
+      ],
+      "vertices_ieee_hex": [
+        [
+          "-0x1.73f02a66a9164p+7",
+          "-0x1.7435243a533c9p+7",
+          "0x1.d548698dba655p+4"
+        ],
+        [
+          "-0x1.746235d9d562ep+7",
+          "-0x1.741c2d7c04f7bp+7",
+          "0x1.d725660a25973p+4"
+        ],
+        [
+          "-0x1.7486c79085abep+7",
+          "-0x1.74142c401baa3p+7",
+          "0x1.d7be58ee693abp+4"
+        ],
+        [
+          "-0x1.73f02a66a9164p+7",
+          "-0x1.7435243a533c9p+7",
+          "0x1.d87b9cc0ed988p+4"
+        ]
+      ],
+      "original_diagonal_ids": [
+        2438,
+        2443
+      ]
+    },
+    {
+      "name": "source003-SKIN-2315-2316-step-0",
+      "expected_exact_coplanarity": false,
+      "boundary_ids": [
+        2706,
+        2711,
+        2712,
+        2713
+      ],
+      "vertices_ieee_hex": [
+        [
+          "-0x1.6d74c0bd57101p+7",
+          "-0x1.7b5fe8cf2d77ep+7",
+          "0x1.d8e016078df67p+4"
+        ],
+        [
+          "-0x1.6d7af09b60d45p+7",
+          "-0x1.7b54cf94283b2p+7",
+          "0x1.d8c6735d5ebbdp+4"
+        ],
+        [
+          "-0x1.6d80a3493e539p+7",
+          "-0x1.7b4a96eaf4e49p+7",
+          "0x1.d8aed768fa869p+4"
+        ],
+        [
+          "-0x1.6d80a3493e539p+7",
+          "-0x1.7b4a96eaf4e49p+7",
+          "0x1.dbe20a9c2db9cp+4"
+        ]
+      ],
+      "original_diagonal_ids": [
+        2706,
+        2712
+      ]
+    },
+    {
+      "name": "source003-SKIN-2402-2403-step-0",
+      "expected_exact_coplanarity": false,
+      "boundary_ids": [
+        2821,
+        2823,
+        2824,
+        2825
+      ],
+      "vertices_ieee_hex": [
+        [
+          "-0x1.6b91c4384e66bp+7",
+          "-0x1.7c6d56e726dfep+7",
+          "0x1.d488dc895d071p+4"
+        ],
+        [
+          "-0x1.6b98aca14392ep+7",
+          "-0x1.7c5f39407a6d8p+7",
+          "0x1.d46097b39805fp+4"
+        ],
+        [
+          "-0x1.6bba18668c466p+7",
+          "-0x1.7c1aedfe32f56p+7",
+          "0x1.d39dc45fa748bp+4"
+        ],
+        [
+          "-0x1.6bba18668c466p+7",
+          "-0x1.7c1aedfe32f56p+7",
+          "0x1.d6d0f792da7bep+4"
+        ]
+      ],
+      "original_diagonal_ids": [
+        2821,
+        2824
+      ]
+    },
+    {
+      "name": "source003-SKIN-2445-2446-step-0",
+      "expected_exact_coplanarity": false,
+      "boundary_ids": [
+        2864,
+        2869,
+        2870,
+        2871
+      ],
+      "vertices_ieee_hex": [
+        [
+          "-0x1.6af7ab8e3140fp+7",
+          "-0x1.7e67af9771d0bp+7",
+          "0x1.dbae3f0fb88c5p+4"
+        ],
+        [
+          "-0x1.6afdb1d1507bap+7",
+          "-0x1.7e5c65d09444ap+7",
+          "0x1.db933d64c01c1p+4"
+        ],
+        [
+          "-0x1.6b034e51617c6p+7",
+          "-0x1.7e51e234f339bp+7",
+          "0x1.db7a15d619b29p+4"
+        ],
+        [
+          "-0x1.6b034e51617c6p+7",
+          "-0x1.7e51e234f339bp+7",
+          "0x1.dead49094ce5cp+4"
+        ]
+      ],
+      "original_diagonal_ids": [
+        2864,
+        2870
+      ]
+    },
+    {
+      "name": "source003-SKIN-2680-2681-step-0",
+      "expected_exact_coplanarity": false,
+      "boundary_ids": [
+        3160,
+        3161,
+        3164,
+        3165
+      ],
+      "vertices_ieee_hex": [
+        [
+          "-0x1.6764dd79d00b2p+7",
+          "-0x1.810b041964183p+7",
+          "0x1.d6d7363961169p+4"
+        ],
+        [
+          "-0x1.67857b68f4bf4p+7",
+          "-0x1.81003d70ca306p+7",
+          "0x1.d7477e0847c47p+4"
+        ],
+        [
+          "-0x1.681c896466099p+7",
+          "-0x1.80ce559e2923fp+7",
+          "0x1.d94f7b8e2a4d7p+4"
+        ],
+        [
+          "-0x1.681c896466099p+7",
+          "-0x1.80ce559e2923fp+7",
+          "0x1.dc82aec15d80ap+4"
+        ]
+      ],
+      "original_diagonal_ids": [
+        3160,
+        3164
+      ]
+    },
+    {
+      "name": "source003-SKIN-2691-2692-step-0",
+      "expected_exact_coplanarity": false,
+      "boundary_ids": [
+        3168,
+        3173,
+        3176,
+        3177
+      ],
+      "vertices_ieee_hex": [
+        [
+          "-0x1.66974ba92fc15p+7",
+          "-0x1.81f4c5ddfd51fp+7",
+          "0x1.d76c4b6661591p+4"
+        ],
+        [
+          "-0x1.66cb8c2a8621cp+7",
+          "-0x1.818cc68f9846ep+7",
+          "0x1.d65e3cb4dbf31p+4"
+        ],
+        [
+          "-0x1.66fb3446cb070p+7",
+          "-0x1.812deca330ee8p+7",
+          "0x1.d567ee0db5cebp+4"
+        ],
+        [
+          "-0x1.66fb3446cb070p+7",
+          "-0x1.812deca330ee8p+7",
+          "0x1.d89b2140e901ep+4"
+        ]
+      ],
+      "original_diagonal_ids": [
+        3168,
+        3176
+      ]
+    },
+    {
+      "name": "source003-SKIN-2710-2711-step-0",
+      "expected_exact_coplanarity": false,
+      "boundary_ids": [
+        3180,
+        3186,
+        3187,
+        3181
+      ],
+      "vertices_ieee_hex": [
+        [
+          "-0x1.661f7e9f9805cp+7",
+          "-0x1.831f72d487835p+7",
+          "0x1.db0d6d4b529afp+4"
+        ],
+        [
+          "-0x1.665dcfedb0068p+7",
+          "-0x1.828415a71d21ep+7",
+          "0x1.d92b44826aa43p+4"
+        ],
+        [
+          "-0x1.666688ccd07a0p+7",
+          "-0x1.826e56e1b5124p+7",
+          "0x1.d8e7c87e3dca7p+4"
+        ],
+        [
+          "-0x1.661f7e9f9805cp+7",
+          "-0x1.831f72d487835p+7",
+          "0x1.de40a07e85ce2p+4"
+        ]
+      ],
+      "original_diagonal_ids": [
+        3180,
+        3187
+      ]
+    },
+    {
+      "name": "source003-SKIN-2830-2831-step-0",
+      "expected_exact_coplanarity": false,
+      "boundary_ids": [
+        3337,
+        3342,
+        3343,
+        3344
+      ],
+      "vertices_ieee_hex": [
+        [
+          "-0x1.63ecbc943595dp+7",
+          "-0x1.854bcdbc167f6p+7",
+          "0x1.daf159e9b99dfp+4"
+        ],
+        [
+          "-0x1.63f3e79c4f39cp+7",
+          "-0x1.853ec33b64246p+7",
+          "0x1.dad18f123df9bp+4"
+        ],
+        [
+          "-0x1.63fa8f983031dp+7",
+          "-0x1.8532a725840c0p+7",
+          "0x1.dab40975d49d9p+4"
+        ],
+        [
+          "-0x1.63fa8f983031dp+7",
+          "-0x1.8532a725840c0p+7",
+          "0x1.dde73ca907d0cp+4"
+        ]
+      ],
+      "original_diagonal_ids": [
+        3337,
+        3343
+      ]
+    },
+    {
+      "name": "source009-GRID-000-step-0",
+      "expected_exact_coplanarity": true,
+      "boundary_ids": [
+        172,
+        175,
+        176,
+        173
+      ],
+      "vertices_ieee_hex": [
+        [
+          "0x1.72b202f78300cp+7",
+          "0x1.7612d2a01e8d7p+7",
+          "0x1.41eadd1394ac2p+4"
+        ],
+        [
+          "0x1.72b202f78300cp+7",
+          "0x1.7612d2a01e8d8p+7",
+          "0x1.281b333e3a728p+2"
+        ],
+        [
+          "0x1.72b202f78300cp+7",
+          "0x1.761b62fd7f3fap+7",
+          "0x1.4539ad530fdc8p+4"
+        ],
+        [
+          "0x1.72b202f78300cp+7",
+          "0x1.7612d2a01e8d7p+7",
+          "0x1.451e1046c7df5p+4"
+        ]
+      ],
+      "original_diagonal_ids": [
+        173,
+        175
+      ]
+    },
+    {
+      "name": "source009-GRID-000-step-1",
+      "expected_exact_coplanarity": true,
+      "boundary_ids": [
+        171,
+        175,
+        176,
+        172
+      ],
+      "vertices_ieee_hex": [
+        [
+          "0x1.72b202f78300cp+7",
+          "0x1.7612d2a01e8d7p+7",
+          "0x1.41e947a6a6b9fp+4"
+        ],
+        [
+          "0x1.72b202f78300cp+7",
+          "0x1.7612d2a01e8d8p+7",
+          "0x1.281b333e3a728p+2"
+        ],
+        [
+          "0x1.72b202f78300cp+7",
+          "0x1.761b62fd7f3fap+7",
+          "0x1.4539ad530fdc8p+4"
+        ],
+        [
+          "0x1.72b202f78300cp+7",
+          "0x1.7612d2a01e8d7p+7",
+          "0x1.41eadd1394ac2p+4"
+        ]
+      ],
+      "original_diagonal_ids": [
+        172,
+        175
+      ]
+    },
+    {
+      "name": "source009-GRID-001-step-0",
+      "expected_exact_coplanarity": true,
+      "boundary_ids": [
+        451,
+        454,
+        455,
+        452
+      ],
+      "vertices_ieee_hex": [
+        [
+          "0x1.86b202f78300cp+7",
+          "0x1.618cc045c7e0cp+7",
+          "0x1.403a82c662304p+4"
+        ],
+        [
+          "0x1.86b202f78300cp+7",
+          "0x1.618cc045c7e0dp+7",
+          "0x1.73ba321ef619ep+3"
+        ],
+        [
+          "0x1.86b202f78300cp+7",
+          "0x1.619583f5f42d2p+7",
+          "0x1.4389f986fdf37p+4"
+        ],
+        [
+          "0x1.86b202f78300cp+7",
+          "0x1.618cc045c7e0cp+7",
+          "0x1.436db5f995637p+4"
+        ]
+      ],
+      "original_diagonal_ids": [
+        452,
+        454
+      ]
+    },
+    {
+      "name": "source009-GRID-001-step-1",
+      "expected_exact_coplanarity": true,
+      "boundary_ids": [
+        450,
+        454,
+        455,
+        451
+      ],
+      "vertices_ieee_hex": [
+        [
+          "0x1.86b202f78300cp+7",
+          "0x1.618cc045c7e0cp+7",
+          "0x1.38d910ed2efbbp+4"
+        ],
+        [
+          "0x1.86b202f78300cp+7",
+          "0x1.618cc045c7e0dp+7",
+          "0x1.73ba321ef619ep+3"
+        ],
+        [
+          "0x1.86b202f78300cp+7",
+          "0x1.619583f5f42d2p+7",
+          "0x1.4389f986fdf37p+4"
+        ],
+        [
+          "0x1.86b202f78300cp+7",
+          "0x1.618cc045c7e0cp+7",
+          "0x1.403a82c662304p+4"
+        ]
+      ],
+      "original_diagonal_ids": [
+        451,
+        454
+      ]
+    },
+    {
+      "name": "source009-GRID-002-step-0",
+      "expected_exact_coplanarity": true,
+      "boundary_ids": [
+        1114,
+        1117,
+        1120,
+        1115
+      ],
+      "vertices_ieee_hex": [
+        [
+          "0x1.682dc7fa9ba4ep+7",
+          "0x1.80a6439e5c212p+7",
+          "0x1.421c00bbf1b34p+4"
+        ],
+        [
+          "0x1.682dc7fa9ba4fp+7",
+          "0x1.80a6439e5c212p+7",
+          "0x1.ea644d2047241p-3"
+        ],
+        [
+          "0x1.6849e71e9c97bp+7",
+          "0x1.80a6439e5c212p+7",
+          "0x1.45a9df204b850p+4"
+        ],
+        [
+          "0x1.682dc7fa9ba4ep+7",
+          "0x1.80a6439e5c212p+7",
+          "0x1.454f33ef24e67p+4"
+        ]
+      ],
+      "original_diagonal_ids": [
+        1115,
+        1117
+      ]
+    },
+    {
+      "name": "source009-GRID-002-step-1",
+      "expected_exact_coplanarity": true,
+      "boundary_ids": [
+        1113,
+        1117,
+        1120,
+        1114
+      ],
+      "vertices_ieee_hex": [
+        [
+          "0x1.682dc7fa9ba4ep+7",
+          "0x1.80a6439e5c212p+7",
+          "0x1.2b15ba00d30e9p+4"
+        ],
+        [
+          "0x1.682dc7fa9ba4fp+7",
+          "0x1.80a6439e5c212p+7",
+          "0x1.ea644d2047241p-3"
+        ],
+        [
+          "0x1.6849e71e9c97bp+7",
+          "0x1.80a6439e5c212p+7",
+          "0x1.45a9df204b850p+4"
+        ],
+        [
+          "0x1.682dc7fa9ba4ep+7",
+          "0x1.80a6439e5c212p+7",
+          "0x1.421c00bbf1b34p+4"
+        ]
+      ],
+      "original_diagonal_ids": [
+        1114,
+        1117
+      ]
+    },
+    {
+      "name": "source009-GRID-003-step-0",
+      "expected_exact_coplanarity": true,
+      "boundary_ids": [
+        0,
+        2,
+        12,
+        3
+      ],
+      "vertices_ieee_hex": [
+        [
+          "0x1.5eb202f78300cp+7",
+          "0x1.8ab1ccc638e5ap+7",
+          "0x1.c063886e74a62p+2"
+        ],
+        [
+          "0x1.5eb202f78300cp+7",
+          "0x1.8ab1ccc638e5bp+7",
+          "0x1.746fabadb7238p+1"
+        ],
+        [
+          "0x1.5eb202f78300cp+7",
+          "0x1.8ac219df6c176p+7",
+          "0x1.471e6fea96d17p+4"
+        ],
+        [
+          "0x1.5eb202f78300cp+7",
+          "0x1.8ab1ccc638e5bp+7",
+          "0x1.43bd47f8a92a9p+4"
+        ]
+      ],
+      "original_diagonal_ids": [
+        2,
+        3
+      ]
+    },
+    {
+      "name": "source009-GRID-004-step-0",
+      "expected_exact_coplanarity": true,
+      "boundary_ids": [
+        68,
+        75,
+        77,
+        69
+      ],
+      "vertices_ieee_hex": [
+        [
+          "0x1.68b202f78300cp+7",
+          "0x1.80218d0e8c448p+7",
+          "0x1.10c5b8167691bp+4"
+        ],
+        [
+          "0x1.68b202f78300cp+7",
+          "0x1.80218d0e8c449p+7",
+          "0x1.da1da62f94cb7p+3"
+        ],
+        [
+          "0x1.68b202f78300cp+7",
+          "0x1.80358920e7eb6p+7",
+          "0x1.458e68e768c13p+4"
+        ],
+        [
+          "0x1.68b202f78300cp+7",
+          "0x1.80218d0e8c448p+7",
+          "0x1.16fae74861dc1p+4"
+        ]
+      ],
+      "original_diagonal_ids": [
+        69,
+        75
+      ]
+    },
+    {
+      "name": "source009-GRID-005-step-0",
+      "expected_exact_coplanarity": true,
+      "boundary_ids": [
+        293,
+        295,
+        300,
+        296
+      ],
+      "vertices_ieee_hex": [
+        [
+          "0x1.7cb202f78300cp+7",
+          "0x1.6baff39b1496bp+7",
+          "0x1.46d0a6b67893dp+3"
+        ],
+        [
+          "0x1.7cb202f78300cp+7",
+          "0x1.6baff39b1496cp+7",
+          "0x1.3b331808524d6p+3"
+        ],
+        [
+          "0x1.7cb202f78300cp+7",
+          "0x1.6bb5fc6335e88p+7",
+          "0x1.43f2a44903913p+4"
+        ],
+        [
+          "0x1.7cb202f78300cp+7",
+          "0x1.6baff39b1496cp+7",
+          "0x1.30b76767c7890p+4"
+        ]
+      ],
+      "original_diagonal_ids": [
+        295,
+        296
+      ]
+    },
+    {
+      "name": "source009-GRID-006-step-0",
+      "expected_exact_coplanarity": true,
+      "boundary_ids": [
+        798,
+        802,
+        803,
+        799
+      ],
+      "vertices_ieee_hex": [
+        [
+          "0x1.86896bf403a57p+7",
+          "0x1.62a6439e5c212p+7",
+          "0x1.110b07dabf6e0p+5"
+        ],
+        [
+          "0x1.86896bf403a58p+7",
+          "0x1.62a6439e5c212p+7",
+          "0x1.0909d6ec403cep+5"
+        ],
+        [
+          "0x1.869237853bb38p+7",
+          "0x1.62a6439e5c212p+7",
+          "0x1.128de0cbce94fp+5"
+        ],
+        [
+          "0x1.86896bf403a57p+7",
+          "0x1.62a6439e5c212p+7",
+          "0x1.12a4a1745907ap+5"
+        ]
+      ],
+      "original_diagonal_ids": [
+        799,
+        802
+      ]
+    },
+    {
+      "name": "source009-GRID-007-step-0",
+      "expected_exact_coplanarity": true,
+      "boundary_ids": [
+        950,
+        956,
+        958,
+        951
+      ],
+      "vertices_ieee_hex": [
+        [
+          "0x1.7b8fcdb1de2f4p+7",
+          "0x1.6ca6439e5c212p+7",
+          "0x1.0798bfc6d3840p+5"
+        ],
+        [
+          "0x1.7b8fcdb1de2f5p+7",
+          "0x1.6ca6439e5c212p+7",
+          "0x1.0747fa11e0ffap+5"
+        ],
+        [
+          "0x1.7c2af6945d5f5p+7",
+          "0x1.6ca6439e5c212p+7",
+          "0x1.1394e41425ed6p+5"
+        ],
+        [
+          "0x1.7b8fcdb1de2f4p+7",
+          "0x1.6ca6439e5c212p+7",
+          "0x1.0896d305784c8p+5"
+        ]
+      ],
+      "original_diagonal_ids": [
+        951,
+        956
+      ]
+    },
+    {
+      "name": "source009-GRID-008-step-0",
+      "expected_exact_coplanarity": true,
+      "boundary_ids": [
+        983,
+        989,
+        992,
+        990
+      ],
+      "vertices_ieee_hex": [
+        [
+          "0x1.7206cde4019f6p+7",
+          "0x1.76a6439e5c212p+7",
+          "0x1.f37421c24ce18p+1"
+        ],
+        [
+          "0x1.7206cde4019f7p+7",
+          "0x1.76a6439e5c212p+7",
+          "0x0.0p+0"
+        ],
+        [
+          "0x1.7211e7652dc75p+7",
+          "0x1.76a6439e5c212p+7",
+          "0x0.0p+0"
+        ],
+        [
+          "0x1.7206cde4019f7p+7",
+          "0x1.76a6439e5c212p+7",
+          "0x1.7761144cd4906p+2"
+        ]
+      ],
+      "original_diagonal_ids": [
+        989,
+        990
+      ]
+    },
+    {
+      "name": "source009-GRID-009-step-0",
+      "expected_exact_coplanarity": true,
+      "boundary_ids": [
+        1112,
+        1117,
+        1120,
+        1113
+      ],
+      "vertices_ieee_hex": [
+        [
+          "0x1.682dc7fa9ba4ep+7",
+          "0x1.80a6439e5c212p+7",
+          "0x1.0d85f6e63a96bp+4"
+        ],
+        [
+          "0x1.682dc7fa9ba4fp+7",
+          "0x1.80a6439e5c212p+7",
+          "0x1.ea644d2047241p-3"
+        ],
+        [
+          "0x1.6849e71e9c97bp+7",
+          "0x1.80a6439e5c212p+7",
+          "0x1.45a9df204b850p+4"
+        ],
+        [
+          "0x1.682dc7fa9ba4ep+7",
+          "0x1.80a6439e5c212p+7",
+          "0x1.2b15ba00d30e9p+4"
+        ]
+      ],
+      "original_diagonal_ids": [
+        1113,
+        1117
+      ]
+    },
+    {
+      "name": "source009-GRID-010-step-0",
+      "expected_exact_coplanarity": true,
+      "boundary_ids": [
+        1111,
+        1117,
+        1120,
+        1112
+      ],
+      "vertices_ieee_hex": [
+        [
+          "0x1.682dc7fa9ba4ep+7",
+          "0x1.80a6439e5c212p+7",
+          "0x1.417107f4ca6cep+3"
+        ],
+        [
+          "0x1.682dc7fa9ba4fp+7",
+          "0x1.80a6439e5c212p+7",
+          "0x1.ea644d2047241p-3"
+        ],
+        [
+          "0x1.6849e71e9c97bp+7",
+          "0x1.80a6439e5c212p+7",
+          "0x1.45a9df204b850p+4"
+        ],
+        [
+          "0x1.682dc7fa9ba4ep+7",
+          "0x1.80a6439e5c212p+7",
+          "0x1.0d85f6e63a96bp+4"
+        ]
+      ],
+      "original_diagonal_ids": [
+        1112,
+        1117
+      ]
+    },
+    {
+      "name": "source009-GRID-011-step-0",
+      "expected_exact_coplanarity": true,
+      "boundary_ids": [
+        170,
+        175,
+        176,
+        171
+      ],
+      "vertices_ieee_hex": [
+        [
+          "0x1.72b202f78300cp+7",
+          "0x1.7612d2a01e8d7p+7",
+          "0x1.aabd4c7011074p+3"
+        ],
+        [
+          "0x1.72b202f78300cp+7",
+          "0x1.7612d2a01e8d8p+7",
+          "0x1.281b333e3a728p+2"
+        ],
+        [
+          "0x1.72b202f78300cp+7",
+          "0x1.761b62fd7f3fap+7",
+          "0x1.4539ad530fdc8p+4"
+        ],
+        [
+          "0x1.72b202f78300cp+7",
+          "0x1.7612d2a01e8d7p+7",
+          "0x1.41e947a6a6b9fp+4"
+        ]
+      ],
+      "original_diagonal_ids": [
+        171,
+        175
+      ]
+    },
+    {
+      "name": "source009-GRID-012-step-0",
+      "expected_exact_coplanarity": true,
+      "boundary_ids": [
+        1110,
+        1117,
+        1120,
+        1111
+      ],
+      "vertices_ieee_hex": [
+        [
+          "0x1.682dc7fa9ba4ep+7",
+          "0x1.80a6439e5c212p+7",
+          "0x1.12fa4dd437349p+3"
+        ],
+        [
+          "0x1.682dc7fa9ba4fp+7",
+          "0x1.80a6439e5c212p+7",
+          "0x1.ea644d2047241p-3"
+        ],
+        [
+          "0x1.6849e71e9c97bp+7",
+          "0x1.80a6439e5c212p+7",
+          "0x1.45a9df204b850p+4"
+        ],
+        [
+          "0x1.682dc7fa9ba4ep+7",
+          "0x1.80a6439e5c212p+7",
+          "0x1.417107f4ca6cep+3"
+        ]
+      ],
+      "original_diagonal_ids": [
+        1111,
+        1117
+      ]
+    },
+    {
+      "name": "source009-GRID-013-step-0",
+      "expected_exact_coplanarity": true,
+      "boundary_ids": [
+        449,
+        454,
+        455,
+        450
+      ],
+      "vertices_ieee_hex": [
+        [
+          "0x1.86b202f78300cp+7",
+          "0x1.618cc045c7e0cp+7",
+          "0x1.369ca9ddea364p+4"
+        ],
+        [
+          "0x1.86b202f78300cp+7",
+          "0x1.618cc045c7e0dp+7",
+          "0x1.73ba321ef619ep+3"
+        ],
+        [
+          "0x1.86b202f78300cp+7",
+          "0x1.619583f5f42d2p+7",
+          "0x1.4389f986fdf37p+4"
+        ],
+        [
+          "0x1.86b202f78300cp+7",
+          "0x1.618cc045c7e0cp+7",
+          "0x1.38d910ed2efbbp+4"
+        ]
+      ],
+      "original_diagonal_ids": [
+        450,
+        454
+      ]
+    },
+    {
+      "name": "source009-GRID-014-step-0",
+      "expected_exact_coplanarity": true,
+      "boundary_ids": [
+        448,
+        454,
+        455,
+        449
+      ],
+      "vertices_ieee_hex": [
+        [
+          "0x1.86b202f78300cp+7",
+          "0x1.618cc045c7e0cp+7",
+          "0x1.d10660d1e57c1p+3"
+        ],
+        [
+          "0x1.86b202f78300cp+7",
+          "0x1.618cc045c7e0dp+7",
+          "0x1.73ba321ef619ep+3"
+        ],
+        [
+          "0x1.86b202f78300cp+7",
+          "0x1.619583f5f42d2p+7",
+          "0x1.4389f986fdf37p+4"
+        ],
+        [
+          "0x1.86b202f78300cp+7",
+          "0x1.618cc045c7e0cp+7",
+          "0x1.369ca9ddea364p+4"
+        ]
+      ],
+      "original_diagonal_ids": [
+        449,
+        454
+      ]
+    },
+    {
+      "name": "source009-SKIN-1373-1374-step-0",
+      "expected_exact_coplanarity": false,
+      "boundary_ids": [
+        1446,
+        1448,
+        1449,
+        1447
+      ],
+      "vertices_ieee_hex": [
+        [
+          "0x1.81e669b4b938fp+7",
+          "0x1.672873543fa53p+7",
+          "0x1.46018aa1b997bp+4"
+        ],
+        [
+          "0x1.81e6a0c6ac559p+7",
+          "0x1.670fd69c36b88p+7",
+          "0x0.0p+0"
+        ],
+        [
+          "0x1.81e6a0c6ac559p+7",
+          "0x1.670fd69c36b88p+7",
+          "0x1.45bd17f142691p+4"
+        ],
+        [
+          "0x1.81e68ee15436fp+7",
+          "0x1.6717d6200772ep+7",
+          "0x1.45d35635484c9p+4"
+        ]
+      ],
+      "original_diagonal_ids": [
+        1446,
+        1449
+      ]
+    },
+    {
+      "name": "source009-SKIN-2636-2637-step-0",
+      "expected_exact_coplanarity": false,
+      "boundary_ids": [
+        2952,
+        2955,
+        2956,
+        2957
+      ],
+      "vertices_ieee_hex": [
+        [
+          "0x1.77937ad50cf09p+7",
+          "0x1.716bdab4936acp+7",
+          "0x1.d9c3f24a082d5p+4"
+        ],
+        [
+          "0x1.779415e7d4facp+7",
+          "0x1.715e8a7dc43d2p+7",
+          "0x1.d9825fb89735bp+4"
+        ],
+        [
+          "0x1.7794a5254f2f1p+7",
+          "0x1.71523e593ad7cp+7",
+          "0x1.d945ce16e5c23p+4"
+        ],
+        [
+          "0x1.7794a5254f2f1p+7",
+          "0x1.71523e593ad7cp+7",
+          "0x1.135da67a9c364p+5"
+        ]
+      ],
+      "original_diagonal_ids": [
+        2952,
+        2956
+      ]
+    },
+    {
+      "name": "source009-SKIN-2640-2641-step-0",
+      "expected_exact_coplanarity": false,
+      "boundary_ids": [
+        2958,
+        2961,
+        2962,
+        2963
+      ],
+      "vertices_ieee_hex": [
+        [
+          "0x1.7794a5254f2f1p+7",
+          "0x1.71523e593ad7cp+7",
+          "0x1.d945ce16e5c23p+4"
+        ],
+        [
+          "0x1.7793ea5d38defp+7",
+          "0x1.7144ec4887082p+7",
+          "0x1.d8fd4af610457p+4"
+        ],
+        [
+          "0x1.77933e326875ep+7",
+          "0x1.7138a5081f3d4p+7",
+          "0x1.d8ba744472037p+4"
+        ],
+        [
+          "0x1.77933e326875ep+7",
+          "0x1.7138a5081f3d4p+7",
+          "0x1.13a3c4e77bd66p+5"
+        ]
+      ],
+      "original_diagonal_ids": [
+        2958,
+        2962
+      ]
+    },
+    {
+      "name": "source009-SKIN-2792-2793-step-0",
+      "expected_exact_coplanarity": false,
+      "boundary_ids": [
+        3162,
+        3165,
+        3166,
+        3167
+      ],
+      "vertices_ieee_hex": [
+        [
+          "0x1.81e669b4b938fp+7",
+          "0x1.672873543fa53p+7",
+          "0x1.da148262421edp+4"
+        ],
+        [
+          "0x1.81e68650d8130p+7",
+          "0x1.671baa0014374p+7",
+          "0x1.d9d2e4ce5f115p+4"
+        ],
+        [
+          "0x1.81e6a0c6ac559p+7",
+          "0x1.670fd69c36b88p+7",
+          "0x1.d996354cbb199p+4"
+        ],
+        [
+          "0x1.81e6a0c6ac559p+7",
+          "0x1.670fd69c36b88p+7",
+          "0x1.133654ae5dc24p+5"
+        ]
+      ],
+      "original_diagonal_ids": [
+        3162,
+        3166
+      ]
+    },
+    {
+      "name": "source009-SKIN-2826-2827-step-0",
+      "expected_exact_coplanarity": false,
+      "boundary_ids": [
+        3212,
+        3216,
+        3218,
+        3219
+      ],
+      "vertices_ieee_hex": [
+        [
+          "0x1.81a8872f06a4ap+7",
+          "0x1.667287edf80c9p+7",
+          "0x1.d507d1166d431p+4"
+        ],
+        [
+          "0x1.81a5d0936baf0p+7",
+          "0x1.666fae289fb26p+7",
+          "0x1.d4ea5698eadc5p+4"
+        ],
+        [
+          "0x1.81a35ac2bfffdp+7",
+          "0x1.666d1875e4460p+7",
+          "0x1.d4cf9c0a5508fp+4"
+        ],
+        [
+          "0x1.81a35ac2bfffdp+7",
+          "0x1.666d1875e4460p+7",
+          "0x1.158af61a59b96p+5"
+        ]
+      ],
+      "original_diagonal_ids": [
+        3212,
+        3218
+      ]
+    },
+    {
+      "name": "source009-SKIN-2869-2870-step-0",
+      "expected_exact_coplanarity": false,
+      "boundary_ids": [
+        3262,
+        3265,
+        3266,
+        3269
+      ],
+      "vertices_ieee_hex": [
+        [
+          "0x1.850787455b01fp+7",
+          "0x1.63e33c32eb425p+7",
+          "0x1.d9530ba597e93p+4"
+        ],
+        [
+          "0x1.858c181b594bap+7",
+          "0x1.6389ac8cccb5fp+7",
+          "0x1.da33c13348f1fp+4"
+        ],
+        [
+          "0x1.859e1cc04353cp+7",
+          "0x1.637d8042132c6p+7",
+          "0x1.da5380f290cbdp+4"
+        ],
+        [
+          "0x1.85dd539dba474p+7",
+          "0x1.6352cb26c05a0p+7",
+          "0x1.dac2e418b28a5p+4"
+        ]
+      ],
+      "original_diagonal_ids": [
+        3265,
+        3269
+      ]
+    },
+    {
+      "name": "source009-SKIN-2895-2896-step-0",
+      "expected_exact_coplanarity": false,
+      "boundary_ids": [
+        3308,
+        3311,
+        3312,
+        3313
+      ],
+      "vertices_ieee_hex": [
+        [
+          "0x1.86886cea20f02p+7",
+          "0x1.62a934ed187a7p+7",
+          "0x1.dac303d3883a3p+4"
+        ],
+        [
+          "0x1.868caef6e68ffp+7",
+          "0x1.629ca13eeb88cp+7",
+          "0x1.da98145a4d475p+4"
+        ],
+        [
+          "0x1.8690a240a5a09p+7",
+          "0x1.6290f63446036p+7",
+          "0x1.da703f121df71p+4"
+        ],
+        [
+          "0x1.8690a240a5a09p+7",
+          "0x1.6290f63446036p+7",
+          "0x1.12ca27f20826ep+5"
+        ]
+      ],
+      "original_diagonal_ids": [
+        3308,
+        3312
+      ]
+    },
+    {
+      "name": "source009-SKIN-2909-2910-step-0",
+      "expected_exact_coplanarity": false,
+      "boundary_ids": [
+        3330,
+        3332,
+        3333,
+        3334
+      ],
+      "vertices_ieee_hex": [
+        [
+          "0x1.86a034f36a310p+7",
+          "0x1.62085ebc96b68p+7",
+          "0x1.d808d389d4c19p+4"
+        ],
+        [
+          "0x1.86a1b89168ecap+7",
+          "0x1.61f495421dff6p+7",
+          "0x1.d7a4d503a647fp+4"
+        ],
+        [
+          "0x1.86a928fa4e4e3p+7",
+          "0x1.61935df42f946p+7",
+          "0x1.d5b98c632ef61p+4"
+        ],
+        [
+          "0x1.86a928fa4e4e3p+7",
+          "0x1.61935df42f946p+7",
+          "0x1.15158c270c1a0p+5"
+        ]
+      ],
+      "original_diagonal_ids": [
+        3330,
+        3333
+      ]
+    },
+    {
+      "name": "source009-SKIN-3223-3224-step-0",
+      "expected_exact_coplanarity": false,
+      "boundary_ids": [
+        3656,
+        3659,
+        3660,
+        3661
+      ],
+      "vertices_ieee_hex": [
+        [
+          "0x1.58da67988da4dp+7",
+          "0x1.90aa5577f8f68p+7",
+          "0x1.dc6dd8a8e3809p+4"
+        ],
+        [
+          "0x1.58b957f50bf81p+7",
+          "0x1.9089ceacdd4cbp+7",
+          "0x1.db1ace5210fabp+4"
+        ],
+        [
+          "0x1.589a9baabf647p+7",
+          "0x1.906b919ab7da1p+7",
+          "0x1.d9df9d42b3937p+4"
+        ],
+        [
+          "0x1.589a9baabf647p+7",
+          "0x1.906b919ab7da1p+7",
+          "0x1.1310315ea6364p+5"
+        ]
+      ],
+      "original_diagonal_ids": [
+        3656,
+        3660
+      ]
+    },
+    {
+      "name": "source009-SKIN-3249-3250-step-0",
+      "expected_exact_coplanarity": false,
+      "boundary_ids": [
+        3694,
+        3697,
+        3698,
+        3699
+      ],
+      "vertices_ieee_hex": [
+        [
+          "0x1.5911556094ee5p+7",
+          "0x1.9018c41d56c51p+7",
+          "0x1.da95aa5a32efbp+4"
+        ],
+        [
+          "0x1.591c46b0a86fcp+7",
+          "0x1.90114246a6ab3p+7",
+          "0x1.daa82b42cf807p+4"
+        ],
+        [
+          "0x1.59266e409fbbcp+7",
+          "0x1.900a4ad91ca5cp+7",
+          "0x1.dab9570485179p+4"
+        ],
+        [
+          "0x1.59266e409fbbcp+7",
+          "0x1.900a4ad91ca5cp+7",
+          "0x1.12a3547dbd744p+5"
+        ]
+      ],
+      "original_diagonal_ids": [
+        3694,
+        3698
+      ]
+    },
+    {
+      "name": "source009-SKIN-3317-3318-step-0",
+      "expected_exact_coplanarity": false,
+      "boundary_ids": [
+        3787,
+        3790,
+        3791,
+        3792
+      ],
+      "vertices_ieee_hex": [
+        [
+          "0x1.5c269943778d8p+7",
+          "0x1.8d2b43b625942p+7",
+          "0x1.db6ef40bd6a8fp+4"
+        ],
+        [
+          "0x1.5c32079132502p+7",
+          "0x1.8d268ca2a72abp+7",
+          "0x1.db91d78bf9e43p+4"
+        ],
+        [
+          "0x1.5c3cad23139bap+7",
+          "0x1.8d22285c39510p+7",
+          "0x1.dbb25660fd359p+4"
+        ],
+        [
+          "0x1.5c3cad23139bap+7",
+          "0x1.8d22285c39510p+7",
+          "0x1.1226d534ade6cp+5"
+        ]
+      ],
+      "original_diagonal_ids": [
+        3787,
+        3791
+      ]
+    }
+  ],
+  "no_mesh_written": true,
+  "global_admission": false
+}

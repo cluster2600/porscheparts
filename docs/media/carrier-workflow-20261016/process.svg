@@ -1,0 +1,103 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1500" height="960" style="width:100%;height:auto;display:block" viewBox="0 0 1500 960" role="img" aria-labelledby="title description">
+  <title id="title">De la référence au dossier d’impression</title>
+  <desc id="description">Trois entrées convergent vers six étapes : géométrie éditable, surface, calculs mécaniques, supports, couches et dossier. Chaque étape conserve ses fichiers et ses contrôles. Le retour du mécanicien alimente une nouvelle révision après impression.</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 0 10 5 0 10Z" fill="#386b68"/></marker>
+    <style>
+      text{font-family:Arial,Helvetica,sans-serif;fill:#20363d}
+      .title{font-size:38px;font-weight:700;letter-spacing:-.6px}
+      .subtitle{font-size:22px;fill:#53676b}
+      .input{fill:#e9eff1;stroke:#cbd9dc;stroke-width:1.5}
+      .input-label{font-size:23px;font-weight:600;text-anchor:middle}
+      .card{fill:white;stroke:#cbd9dc;stroke-width:1.5}
+      .number{font-size:24px;font-weight:700;fill:white;text-anchor:middle}
+      .heading{font-size:27px;font-weight:700}
+      .tool{font-size:20px;fill:#386b68;font-weight:600}
+      .body{font-size:21px}
+      .label{font-size:17px;fill:#6a7c80;letter-spacing:1px}
+      .flow{fill:none;stroke:#386b68;stroke-width:3;marker-end:url(#arrow)}
+    </style>
+  </defs>
+  <rect width="1500" height="960" fill="#f4f6f4"/>
+  <rect x="0" y="0" width="1500" height="12" fill="#386b68"/>
+  <text x="55" y="78" class="title">De la référence au dossier d’impression</text>
+  <text x="55" y="115" class="subtitle">Pilote : support moteur 993 Turbo · géométrie retenue : 1,262 kg · plafond : 1,30 kg</text>
+
+  <rect x="55" y="151" width="430" height="58" rx="13" class="input"/>
+  <rect x="535" y="151" width="430" height="58" rx="13" class="input"/>
+  <rect x="1015" y="151" width="430" height="58" rx="13" class="input"/>
+  <text x="270" y="187" class="input-label">Images + échelle de référence</text>
+  <text x="750" y="187" class="input-label">Scan 3D + unité + orientation</text>
+  <text x="1230" y="187" class="input-label">Plan + axes + cotes</text>
+  <path d="M750 209V232H270V251 M1230 209V232H750 M270 209V251" class="flow"/>
+
+  <g transform="translate(55 265)">
+    <rect width="430" height="230" rx="17" class="card"/>
+    <circle cx="39" cy="41" r="21" fill="#386b68"/><text x="39" y="49" class="number">1</text>
+    <text x="75" y="49" class="heading">Géométrie éditable</text>
+    <text x="26" y="90" class="tool">build123d / OCCT · PicoGK</text>
+    <text x="26" y="129" class="label">CONSERVER</text>
+    <text x="26" y="156" class="body">Source, paramètres et maître STEP</text>
+    <text x="26" y="190" class="body">Vérifier axes, cotes, solide et masse</text>
+    <text x="26" y="216" class="body">Consigner les dimensions retenues</text>
+  </g>
+  <path d="M490 380H523" class="flow"/>
+  <g transform="translate(535 265)">
+    <rect width="430" height="230" rx="17" class="card"/>
+    <circle cx="39" cy="41" r="21" fill="#386b68"/><text x="39" y="49" class="number">2</text>
+    <text x="75" y="49" class="heading">Surface et triangles</text>
+    <text x="26" y="90" class="tool">PyMesh · Gmsh · libigl</text>
+    <text x="26" y="129" class="label">CONSERVER</text>
+    <text x="26" y="156" class="body">STL corrigé et rapport avant / après</text>
+    <text x="26" y="190" class="body">Fermeture, intersections et qualité</text>
+    <text x="26" y="216" class="body">Mesurer les écarts au maître STEP</text>
+  </g>
+  <path d="M970 380H1003" class="flow"/>
+  <g transform="translate(1015 265)">
+    <rect width="430" height="230" rx="17" class="card"/>
+    <circle cx="39" cy="41" r="21" fill="#386b68"/><text x="39" y="49" class="number">3</text>
+    <text x="75" y="49" class="heading">Calculs mécaniques</text>
+    <text x="26" y="90" class="tool">Gmsh C3D10 · CalculiX</text>
+    <text x="26" y="129" class="label">CONSERVER</text>
+    <text x="26" y="156" class="body">Charges, appuis, matériau et champs</text>
+    <text x="26" y="190" class="body">Comparer contraintes et déplacements</text>
+    <text x="26" y="216" class="body">Contrôler l’énergie et la sensibilité</text>
+  </g>
+  <path d="M1230 505V561" class="flow"/>
+
+  <g transform="translate(1015 575)">
+    <rect width="430" height="230" rx="17" class="card"/>
+    <circle cx="39" cy="41" r="21" fill="#386b68"/><text x="39" y="49" class="number">4</text>
+    <text x="75" y="49" class="heading">Orientation et supports</text>
+    <text x="26" y="90" class="tool">PySLM · PyMesh / CGAL</text>
+    <text x="26" y="129" class="label">CONSERVER</text>
+    <text x="26" y="156" class="body">Pose, enveloppes et surfaces réelles</text>
+    <text x="26" y="190" class="body">Couverture, contacts et confinement</text>
+    <text x="26" y="216" class="body">Garder les preuves et leurs verdicts</text>
+  </g>
+  <path d="M1005 690H977" class="flow"/>
+  <g transform="translate(535 575)">
+    <rect width="430" height="230" rx="17" class="card"/>
+    <circle cx="39" cy="41" r="21" fill="#386b68"/><text x="39" y="49" class="number">5</text>
+    <text x="75" y="49" class="heading">Couches et trajectoires</text>
+    <text x="26" y="90" class="tool">PySLM · sections et audits exacts</text>
+    <text x="26" y="129" class="label">CONSERVER</text>
+    <text x="26" y="156" class="body">Toutes les couches et tous les vecteurs</text>
+    <text x="26" y="190" class="body">Auditer les segments entiers et trous</text>
+    <text x="26" y="216" class="body">Vérifier les contacts réellement exposés</text>
+  </g>
+  <path d="M525 690H497" class="flow"/>
+  <g transform="translate(55 575)">
+    <rect width="430" height="230" rx="17" class="card"/>
+    <circle cx="39" cy="41" r="21" fill="#386b68"/><text x="39" y="49" class="number">6</text>
+    <text x="75" y="49" class="heading">Dossier imprimeur / atelier</text>
+    <text x="26" y="90" class="tool">Guide hors ligne · PDF · manifeste</text>
+    <text x="26" y="129" class="label">REMETTRE</text>
+    <text x="26" y="156" class="body">Dessins, STEP / STL, supports, couches</text>
+    <text x="26" y="190" class="body">Résultats, réglages et reproduction</text>
+    <text x="26" y="216" class="body">Affecter le format machine et le laser</text>
+  </g>
+  <rect x="55" y="845" width="1390" height="61" rx="13" fill="#e4eeea"/>
+  <text x="750" y="882" text-anchor="middle" font-size="23" fill="#386b68">Après impression : compte rendu du mécanicien → corrections → nouvelle révision</text>
+  <text x="55" y="940" font-size="17" fill="#6a7c80">Schéma du processus · chaque étape conserve ses données et son verdict · révision du 16 octobre 2026</text>
+</svg>

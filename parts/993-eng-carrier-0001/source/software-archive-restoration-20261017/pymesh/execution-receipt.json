@@ -1,0 +1,205 @@
+{
+  "status": "pinned_archive_restored_and_native_smoke_passed_no_carrier_admission",
+  "events": [
+    {
+      "stage": "preflight",
+      "returncode": 0,
+      "wall_seconds": 0.6447457079775631,
+      "timeout_seconds": 30
+    },
+    {
+      "stage": "upload",
+      "returncode": 0,
+      "wall_seconds": 0.21252979198470712,
+      "timeout_seconds": 25
+    },
+    {
+      "stage": "uploaded",
+      "returncode": 0,
+      "wall_seconds": 0.6526345829479396,
+      "timeout_seconds": 25
+    },
+    {
+      "stage": "restore",
+      "returncode": 0,
+      "wall_seconds": 12.339490374783054,
+      "timeout_seconds": 205
+    },
+    {
+      "stage": "restored",
+      "returncode": 0,
+      "wall_seconds": 1.3640430001541972,
+      "timeout_seconds": 35
+    },
+    {
+      "stage": "smoke",
+      "returncode": 0,
+      "wall_seconds": 0.42959616612643003,
+      "timeout_seconds": 40
+    },
+    {
+      "stage": "postflight",
+      "returncode": 0,
+      "wall_seconds": 1.2899315000977367,
+      "timeout_seconds": 35
+    },
+    {
+      "stage": "collect-installation-receipt.json",
+      "returncode": 0,
+      "wall_seconds": 0.21212087501771748,
+      "timeout_seconds": 15
+    },
+    {
+      "stage": "collect-smoke-receipt.json",
+      "returncode": 0,
+      "wall_seconds": 0.20251745800487697,
+      "timeout_seconds": 15
+    },
+    {
+      "stage": "collect-result.npz",
+      "returncode": 0,
+      "wall_seconds": 0.14392591593787074,
+      "timeout_seconds": 15
+    },
+    {
+      "stage": "cleanup",
+      "returncode": 0,
+      "wall_seconds": 0.19897033390589058,
+      "timeout_seconds": 35
+    }
+  ],
+  "global_admission": false,
+  "native_stdout": {
+    "status": "restored_runtime_import_and_existing_prism_smoke_passed",
+    "python": "3.6.11 (default, Jun 30 2020, 19:21:43) \n[GCC 8.3.0]",
+    "numpy": "1.19.0",
+    "pymesh": "0.3",
+    "native_sha256": "17cd2bb3a74539b1f913501f49a362f65cb395a62ab65bc5a6e8815ccc585d8a",
+    "native_module": "/usr/local/lib/python3.6/site-packages/pymesh/lib/PyMesh.cpython-36m-x86_64-linux-gnu.so",
+    "vertices": 12,
+    "faces": 20,
+    "volume_mm3": 4000.0,
+    "boundary_edges": 0,
+    "nonmanifold_edges": 0,
+    "inconsistent_orientation_edges": 0,
+    "final_tree_mesh_accesses": 1,
+    "result_sha256": "581c9da239b0ca8e27dd59b12245475a5958f9fd3b63e2ab97e238e8f47c5add",
+    "seconds": 0.020268841879442334,
+    "exact_installed_Cpp_commit": null,
+    "carrier_mesh_written": false,
+    "global_admission": false
+  },
+  "actual_foreground_restore_exit_code": 0,
+  "actual_foreground_smoke_exit_code": 0,
+  "runtime": {
+    "copied_files_sha256": {
+      "original_v4.py": "40d7c2d11586abc84c500ec010561f867fac59cbb1c523b367ae282b649d5901",
+      "run.py": "af35ff444be8b5624d620252f592e7ceb18dff6e282215a3338f708010d0a714",
+      "setup.py": "91f7b8ea3e2b8a2f259990429a69c8cf3abc758111373994a6d6e2ece1d717cd",
+      "smoke.py": "72b720bd7de235d738905886e98a6b70f31f0de8925f8343dccf7814fd15fc6e",
+      "witnesses.py": "8eaec0bf0d785c1573b125f37f4e6d1fc94646b954144bc15ce00c1842108a5a"
+    },
+    "installation_receipt_sha256": "fb4e89c6d57040698b6171e515a3e6160a7cbf714d4b7f3d6717eb78afd55341",
+    "runtime_file_count": 8346,
+    "runtime_symlink_count": 3077,
+    "smoke": {
+      "boundary_edges": 0,
+      "carrier_mesh_written": false,
+      "exact_installed_Cpp_commit": null,
+      "faces": 20,
+      "final_tree_mesh_accesses": 1,
+      "global_admission": false,
+      "inconsistent_orientation_edges": 0,
+      "native_module": "/usr/local/lib/python3.6/site-packages/pymesh/lib/PyMesh.cpython-36m-x86_64-linux-gnu.so",
+      "native_sha256": "17cd2bb3a74539b1f913501f49a362f65cb395a62ab65bc5a6e8815ccc585d8a",
+      "nonmanifold_edges": 0,
+      "numpy": "1.19.0",
+      "pymesh": "0.3",
+      "python": "3.6.11 (default, Jun 30 2020, 19:21:43) \n[GCC 8.3.0]",
+      "result_sha256": "581c9da239b0ca8e27dd59b12245475a5958f9fd3b63e2ab97e238e8f47c5add",
+      "seconds": 0.020268841879442334,
+      "status": "restored_runtime_import_and_existing_prism_smoke_passed",
+      "vertices": 12,
+      "volume_mm3": 4000.0
+    },
+    "smoke_receipt_sha256": "f97aa9b009c19d2325097d7802a7d219ec918cd18a8481137a979b951bc2f98d",
+    "status": "copied_sources_verified"
+  },
+  "scope_cleanup": {
+    "scopes": {
+      "carrier-software-restore-fef1fa1d56e04c48-restore.scope": {
+        "ActiveState": "inactive",
+        "ControlGroup": "",
+        "LoadState": "not-found",
+        "absent": true
+      },
+      "carrier-software-restore-fef1fa1d56e04c48-smoke.scope": {
+        "ActiveState": "inactive",
+        "ControlGroup": "",
+        "LoadState": "not-found",
+        "absent": true
+      }
+    },
+    "status": "owned_scopes_inactive_or_absent_verified"
+  },
+  "owned_scopes_inactive": true,
+  "local_frozen_files_unchanged": true,
+  "plan_sha256": "18e5c63d7e16c7315d6df5d72e05669ec24395a3d636acf6dd8e81e2902fa21a",
+  "caller_sha256": "4877b8dd57e173867e18a745390846b423bcb63eae29e9fce29042271d871ad2",
+  "wall_seconds": 20.541092375060543,
+  "global_budget_seconds": 360,
+  "cleanup_reserve_seconds": 45,
+  "attempted_exact_scopes": [
+    "carrier-software-restore-fef1fa1d56e04c48-restore.scope",
+    "carrier-software-restore-fef1fa1d56e04c48-smoke.scope"
+  ],
+  "output_files_sha256": {
+    "restore.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "witnesses.py": "8eaec0bf0d785c1573b125f37f4e6d1fc94646b954144bc15ce00c1842108a5a",
+    "run.py": "4877b8dd57e173867e18a745390846b423bcb63eae29e9fce29042271d871ad2",
+    "uploaded.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "cleanup.stdout.log": "3189a82eae6c3da7d1d175ef51c05bd93079dc70c66c10a82f5c5df2c7757c74",
+    "upload.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "smoke.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "plan.json": "18e5c63d7e16c7315d6df5d72e05669ec24395a3d636acf6dd8e81e2902fa21a",
+    "preflight.stdout.log": "df0db9c93b0bfe9d1d2eced34957c3798937b8b46176dae0602f0b433b0029a1",
+    "selfcheck.json": "8dc8c7e7f6e2c7fcc81f5d2c12d4385fb52e47d63d6c98c8212978031efc554e",
+    "restored.stdout.log": "0de5faa79fe61f09acc8bcdcb7810ce6e2db717d8e91ab16ff1da318abdd3afd",
+    "postflight.json": "61c063f73f1fe08b984bbdf852ca3ca399dd6ad79efef05452faeac331521c6f",
+    "postflight.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "collect-installation-receipt.json.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "collect-smoke-receipt.json.stdout.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "collect-result.npz.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "original_v4.py": "40d7c2d11586abc84c500ec010561f867fac59cbb1c523b367ae282b649d5901",
+    "remote_check.py": "29c6b4efdf31d1d59b07b0f0f945bbbba03b649ce505758c34f24dba2f0cf43e",
+    "uploaded.stdout.log": "6f40aeac1d57d528905c03933868d05feaa42e3e0096f2e5e2df1c28c17f3e37",
+    "restore.stdout.log": "a1c41fc0f2350c80b4f872187f5230408957d317f868d20ef40ec8010f07c459",
+    "setup.py": "91f7b8ea3e2b8a2f259990429a69c8cf3abc758111373994a6d6e2ece1d717cd",
+    "cleanup.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "smoke.stdout.log": "c7ffdc4c323141484e5ae89886303a387e01d4bdcd80fd82ee885cc4a6e54b76",
+    "upload.stdout.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "preflight.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "collect-installation-receipt.json.stdout.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "postflight.stdout.log": "756bec347c78d1df9926632a16dcec313bd843d527d00d4dd38d537fdd49c623",
+    "preflight.json": "c29a56a0a9c0e9a34ad3ff92e8f0bfd51e3b1750791d7d7505fd8bce664cde7e",
+    "restored.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "native-run.py": "af35ff444be8b5624d620252f592e7ceb18dff6e282215a3338f708010d0a714",
+    "restored.json": "081c5c00d36675cfd507610245a7d3b95d2dfb131a5d298280483a8c84c99cbd",
+    "smoke.py": "72b720bd7de235d738905886e98a6b70f31f0de8925f8343dccf7814fd15fc6e",
+    "collect-smoke-receipt.json.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "collect-result.npz.stdout.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "draft-before-root-caps-001/plan.json": "a8ab1611371bba6f61d6f0f68ec0495916680b7a12436ddad3b939b117f5ac4d",
+    "draft-before-root-caps-001/selfcheck.json": "9aa0bc9f0cb9628d11770cb6e53f892df7f1624d94c4bcdd3b27610eee988c84",
+    "installer/run.py": "af35ff444be8b5624d620252f592e7ceb18dff6e282215a3338f708010d0a714",
+    "installer/original_v4.py": "40d7c2d11586abc84c500ec010561f867fac59cbb1c523b367ae282b649d5901",
+    "installer/setup.py": "91f7b8ea3e2b8a2f259990429a69c8cf3abc758111373994a6d6e2ece1d717cd",
+    "collected/result.npz": "581c9da239b0ca8e27dd59b12245475a5958f9fd3b63e2ab97e238e8f47c5add",
+    "collected/smoke-receipt.json": "f97aa9b009c19d2325097d7802a7d219ec918cd18a8481137a979b951bc2f98d",
+    "collected/installation-receipt.json": "fb4e89c6d57040698b6171e515a3e6160a7cbf714d4b7f3d6717eb78afd55341",
+    "upload/witnesses.py": "8eaec0bf0d785c1573b125f37f4e6d1fc94646b954144bc15ce00c1842108a5a",
+    "upload/run.py": "af35ff444be8b5624d620252f592e7ceb18dff6e282215a3338f708010d0a714",
+    "upload/original_v4.py": "40d7c2d11586abc84c500ec010561f867fac59cbb1c523b367ae282b649d5901",
+    "upload/setup.py": "91f7b8ea3e2b8a2f259990429a69c8cf3abc758111373994a6d6e2ece1d717cd",
+    "upload/smoke.py": "72b720bd7de235d738905886e98a6b70f31f0de8925f8343dccf7814fd15fc6e"
+  }
+}

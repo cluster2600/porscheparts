@@ -1,0 +1,112 @@
+{
+  "title": "Support moteur 993 Turbo — dossier numérique",
+  "subtitle": "De la géométrie éditable aux supports et trajectoires : les fichiers, réglages et résultats de la même révision, dans un parcours explicable à l’atelier.",
+  "revision": "",
+  "metrics": [],
+  "inputs": [
+    {
+      "title": "Image / vues",
+      "description": "Repérer la taille de référence et les formes visibles. Transformer les dimensions retenues en paramètres éditables ; consigner les parties reconstruites."
+    },
+    {
+      "title": "Scan 3D",
+      "description": "Conserver le scan original, son unité et son orientation. Nettoyer la surface, reconstruire les interfaces puis mesurer l’écart entre scan et CAO."
+    },
+    {
+      "title": "Plan de mesures",
+      "description": "Saisir les axes, entraxes, diamètres, portées et tolérances dans un fichier de paramètres. Le même fichier pilote la géométrie, les dessins et les contrôles."
+    }
+  ],
+  "stages": [
+    {
+      "id": "geometry",
+      "title": "Géométrie et cotes",
+      "purpose": "Construire le modèle éditable et vérifier les cotes, les axes et les portées conservées. Les dimensions de travail proviennent du fichier de paramètres de cette révision.",
+      "tools": [
+        "build123d",
+        "Open CASCADE"
+      ],
+      "checks": [],
+      "files": [],
+      "commands": [],
+      "state": "passed",
+      "state_label": "Exécuté et contrôlé"
+    },
+    {
+      "id": "surface",
+      "title": "Surface et triangles",
+      "purpose": "Reconstruire le STL depuis le maître STEP puis contrôler fermeture, orientation, intersections et fidélité de la surface.",
+      "tools": [
+        "PyMesh",
+        "Gmsh 4.15.2",
+        "libigl 2.6.3"
+      ],
+      "checks": [],
+      "files": [],
+      "commands": [],
+      "state": "passed",
+      "state_label": "Exécuté et contrôlé"
+    },
+    {
+      "id": "mechanics",
+      "title": "Masse et résistance",
+      "purpose": "Calculer la masse puis comparer déplacements et contraintes à la référence V6f, sous les mêmes forces, moments et appuis. Le bilan énergétique et la superposition contrôlent la cohérence du calcul.",
+      "tools": [
+        "Gmsh C3D10",
+        "CalculiX",
+        "Audit énergétique"
+      ],
+      "checks": [],
+      "files": [],
+      "commands": [],
+      "state": "passed",
+      "state_label": "Exécuté et contrôlé"
+    },
+    {
+      "id": "supports",
+      "title": "Orientation et supports",
+      "purpose": "Placer la pièce à plat et générer la grille de supports avec ses dents de contact. Le dossier conserve les surfaces de supports et leurs trajectoires.",
+      "tools": [
+        "PySLM 0.6.1",
+        "Trimesh"
+      ],
+      "checks": [],
+      "files": [],
+      "commands": [],
+      "state": "passed",
+      "state_label": "Exécuté et contrôlé"
+    },
+    {
+      "id": "layers",
+      "title": "Couches et trajectoires",
+      "purpose": "Couper la géométrie et les supports sur toutes les couches, conserver les trous puis calculer les contours et les hachures. Le programme refuse les sections ouvertes et vérifie les données finies.",
+      "tools": [
+        "PySLM",
+        "Trimesh",
+        "NumPy"
+      ],
+      "checks": [],
+      "files": [],
+      "commands": [],
+      "state": "passed",
+      "state_label": "Exécuté et contrôlé"
+    },
+    {
+      "id": "delivery",
+      "title": "Dossier imprimeur et atelier",
+      "purpose": "Remettre des fichiers de la même révision avec leurs résultats et leurs empreintes. Une commande relance la recette complète et conserve les journaux de chaque étape.",
+      "tools": [
+        "Guide hors ligne",
+        "PDF",
+        "SHA-256"
+      ],
+      "checks": [],
+      "files": [],
+      "commands": [],
+      "state": "passed",
+      "state_label": "Exécuté et contrôlé"
+    }
+  ],
+  "delivery_note": "Le dossier réunit le maître STEP, le STL contrôlé, les surfaces des supports, les couches et leurs trajectoires, les paramètres et les résultats de calcul. La révision exacte accompagne la fiche de retour de pose.",
+  "footer_note": "PorscheParts · fichiers et figures issus des calculs réels · cotes du modèle d’étude"
+}

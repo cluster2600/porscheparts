@@ -1,0 +1,244 @@
+{
+  "files": {
+    "work/carrier-terminal-taper-raw-refined-delivery-preparation-001/assemble.py": {
+      "reference": "parts/993-eng-carrier-0001/source/design-20261016/native-C1-h2-20261017/sources/assemble.py",
+      "reference_sha256": "8d46e61ea307103b4de623b66596c600061ee370709de1d43d40678fdea8e2c3",
+      "sha256": "5697127a3beb30fb0b2ff6173b6d8dd110e51388adf63acdb377c49e279dbb7e",
+      "substitutions": [
+        [
+          "HERE.parents[2]",
+          "HERE.parents[1]",
+          1
+        ],
+        [
+          "inherited_C1_members=186",
+          "inherited_taper_members=495",
+          1
+        ],
+        [
+          "new_H2_members",
+          "new_raw_refined_members",
+          1
+        ]
+      ],
+      "whole_inverse_byte_exact": true
+    },
+    "work/carrier-terminal-taper-raw-refined-delivery-preparation-001/capsule-source/replay_analysis.py": {
+      "reference": "parts/993-eng-carrier-0001/source/design-20261016/native-C1-h2-20261017/replay_analysis.py",
+      "reference_sha256": "8f8e41a1afb75b682d3e7ddaeac297077d5df312df27b52e9408b5f79a9a20c2",
+      "sha256": "a799d3092b3f86800b8c4ddbbb5f7b7b10ee2569670171fdc8a731238132865e",
+      "substitutions": [
+        [
+          "two closed h2 cases",
+          "two closed raw-refined diagnostic cases",
+          1
+        ],
+        [
+          "Actual qualified C1 local-h2 mesh identity differs",
+          "Actual raw-refined diagnostic taper mesh identity differs",
+          1
+        ],
+        [
+          "report = archive.manifest(expected, base_capsule)\n    output",
+          "report = archive.manifest(expected, base_capsule)\n    archive.require(report['h2_qualified'] is False and report['candidate_qualified'] is False and report['strict_H2_volume_refusal_preserved'] is True and report['law_original_RC1_preserved'] is True and report['fine_ROOT_sha256'] == '9e0dd41305bf77c7b957c59172582da079f1806fb814290aaf1564cdfa7fb5d3', 'Closed raw diagnostic refusal scope required')\n    output",
+          1
+        ],
+        [
+          "C1_h2_mesh_sha256",
+          "raw_refined_mesh_sha256",
+          1
+        ],
+        [
+          "90371",
+          "89539",
+          2
+        ],
+        [
+          "two_actual_C1_h2_BREP_cases_reanalysed_entire_results_and_bytes_equal",
+          "two_actual_raw_refined_taper_cases_reanalysed_entire_results_and_bytes_equal",
+          1
+        ]
+      ],
+      "whole_inverse_byte_exact": true
+    },
+    "work/carrier-terminal-taper-raw-refined-delivery-preparation-001/capsule-source/restore.py": {
+      "reference": "parts/993-eng-carrier-0001/source/design-20261016/native-C1-h2-20261017/restore.py",
+      "reference_sha256": "ee701f045f97167754febcdae598c55b9a0b457e52aa65e22b0aa28c370bb8c2",
+      "sha256": "de3837c3401e0e05cb47de2a3a105e26f8fda83c722e8b1cc3f91ee3ad5f071c",
+      "substitutions": [
+        [
+          "native-C1-20261017",
+          "native-C1-terminal-taper-20261017",
+          1
+        ],
+        [
+          "actual-C1-h2-dependent-native-capsule-1",
+          "actual-taper-raw-refined-dependent-native-capsule-1",
+          1
+        ],
+        [
+          "186",
+          "495",
+          3
+        ],
+        [
+          "c1-h2-common.zip",
+          "taper-raw-refined-common.zip",
+          1
+        ],
+        [
+          "c1-h2-rigid.zip",
+          "taper-raw-refined-rigid.zip",
+          1
+        ],
+        [
+          "c1-h2-spring.zip",
+          "taper-raw-refined-spring.zip",
+          1
+        ]
+      ],
+      "whole_inverse_byte_exact": true
+    },
+    "work/carrier-terminal-taper-raw-refined-delivery-preparation-001/capsule-source/selfcheck.py": {
+      "reference": "parts/993-eng-carrier-0001/source/design-20261016/native-C1-h2-20261017/selfcheck.py",
+      "reference_sha256": "6fd1bd6ada6ab2a33972d620c7a948fd3c445ae52a100667759cfac1fd9f6947",
+      "sha256": "38a4f6e1ede204055adac562110cf8f9a84cc3aee6156ef4c394a2392c7d2d06",
+      "substitutions": [
+        [
+          "native-C1-20261017",
+          "native-C1-terminal-taper-20261017",
+          1
+        ],
+        [
+          "c1-native-common.zip",
+          "taper-common.zip",
+          1
+        ],
+        [
+          "c1-native-rigid.zip",
+          "taper-rigid.zip",
+          1
+        ],
+        [
+          "c1-native-spring.zip",
+          "taper-spring.zip",
+          1
+        ],
+        [
+          "range(62)",
+          "range(165)",
+          1
+        ],
+        [
+          "actual-C1-BREP-native-capsule-1",
+          "actual-preserved-taper-native-capsule-1",
+          1
+        ],
+        [
+          "actual-C1-h2-dependent-native-capsule-1",
+          "actual-taper-raw-refined-dependent-native-capsule-1",
+          1
+        ],
+        [
+          "test_exact_186_plus_three",
+          "test_exact_495_plus_three",
+          1
+        ],
+        [
+          "len(members),189",
+          "len(members),498",
+          1
+        ],
+        [
+          "rglob('*.txt'))),186",
+          "rglob('*.txt'))),495",
+          1
+        ],
+        [
+          "c1-h2-common.zip",
+          "taper-raw-refined-common.zip",
+          5
+        ],
+        [
+          "c1-h2-rigid.zip",
+          "taper-raw-refined-rigid.zip",
+          2
+        ],
+        [
+          "c1-h2-spring.zip",
+          "taper-raw-refined-spring.zip",
+          2
+        ],
+        [
+          "if __name__=='__main__':unittest.main()",
+          "    def test_direct_unchanged_pack_entry_has_one_call_caps_and_no_nice_or_exec(self):\n        wrapper=load('direct_fixed_pack_fixture',HERE.parent/'package_owned.py')\n        with tempfile.TemporaryDirectory() as tmp:\n            root=Path(tmp).resolve();plan=root/'plan.json';fake=root/'fake_package.py'\n            fake.write_text(\"def pack(path,expected):\\n    with path.with_name('called').open('x') as f:f.write(expected)\\n\")\n            plan.write_text(json.dumps(dict(source_root=str(root),destination=str(root/'archives'),archives={n:{} for n in ('taper-raw-refined-common.zip','taper-raw-refined-rigid.zip','taper-raw-refined-spring.zip')})))\n            with patch.object(wrapper,'HERE',root),patch.object(wrapper,'ROOT',root),patch.object(wrapper,'PACKER',fake),patch.object(wrapper,'PACKER_SHA',sha(fake)),patch.object(wrapper.shutil,'disk_usage',return_value=SimpleNamespace(free=10**9)),patch.object(wrapper.os,'getpriority',return_value=10),patch.object(wrapper.os,'nice',side_effect=AssertionError('No second nice')),patch.object(wrapper.os,'execv',side_effect=AssertionError('No CLI exec')),patch.object(wrapper.signal,'signal'),patch.object(wrapper.signal,'alarm')as alarm,patch.object(wrapper.resource,'setrlimit')as limits:\n                wrapper.run(plan,sha(plan))\n                self.assertEqual((root/'called').read_text(),sha(plan));self.assertEqual([c.args for c in alarm.call_args_list],[(180,),(0,)])\n                limits.assert_called_once_with(wrapper.resource.RLIMIT_CPU,(150,151))\n\nif __name__=='__main__':unittest.main()",
+          1
+        ]
+      ],
+      "whole_inverse_byte_exact": true
+    },
+    "work/carrier-terminal-taper-raw-refined-delivery-preparation-001/package_owned.py": {
+      "reference": "parts/993-eng-carrier-0001/source/design-20261016/native-C1-h2-20261017/sources/package_owned.py",
+      "reference_sha256": "3a2e0779bee6d812e9750255a19ea320e8e61f3bedf1d6a01373dcc2b7cfe57b",
+      "sha256": "f4da34c7ff4b6036afe9a426a299a089262f1c148c5497d81d955368bc1d1de0",
+      "substitutions": [
+        [
+          "ROOT=HERE.parents[2]",
+          "ROOT=HERE.parents[1]",
+          1
+        ],
+        [
+          "c1-h2-common.zip",
+          "taper-raw-refined-common.zip",
+          1
+        ],
+        [
+          "c1-h2-rigid.zip",
+          "taper-raw-refined-rigid.zip",
+          1
+        ],
+        [
+          "c1-h2-spring.zip",
+          "taper-raw-refined-spring.zip",
+          1
+        ],
+        [
+          "Only fixed H2 delta plan allowed",
+          "Only fixed raw-refined taper delta plan allowed",
+          1
+        ],
+        [
+          "then exec the unchanged697277 packer",
+          "then call the unchanged697277 packer",
+          1
+        ],
+        [
+          "import argparse\n",
+          "import argparse\nimport importlib.util\nimport resource\nimport signal\n",
+          1
+        ],
+        [
+          "    os.execv(sys.executable,[sys.executable,'-I','-B',str(PACKER),str(path),expected])",
+          "    if os.getpriority(os.PRIO_PROCESS,0)!=10:raise ValueError('Owned child nice10 required')\n    spec=importlib.util.spec_from_file_location('_unchanged_fixed_packer',PACKER)\n    module=importlib.util.module_from_spec(spec);spec.loader.exec_module(module)\n    signal.signal(signal.SIGALRM,lambda *_:(_ for _ in ()).throw(TimeoutError('180s packaging cap')))\n    signal.alarm(180);resource.setrlimit(resource.RLIMIT_CPU,(150,151))\n    try:module.pack(path,expected)\n    finally:signal.alarm(0)",
+          1
+        ]
+      ],
+      "whole_inverse_byte_exact": true
+    }
+  },
+  "original_packer_sha256": "697277ea5c4ccc10cec323f6815409e4d948726f55b52045c17d1be99bfa1a9a",
+  "schema": "raw-refined-dependent-capsule-literal-source-derivation-1",
+  "scientific_helpers_from_actual_base_unchanged": {
+    "audit_energy.py": "b71603069518e6aa8820a7c5fec02115ab82a585e6fe9c160452f1ca2025b186",
+    "cad_binding.py": "07addd2439be51920d393c8bee170611fea4774c3723906bf446387bbef382fb",
+    "locate.py": "962379625759f1e467da8eb904c3d25d7f7860443745cb37529dad5ea293dad7",
+    "simulate.py": "87be70c955e2532255fdee37cf3a686d970cb421bc9bf6094ca867f1f3098e77"
+  },
+  "unchanged_restore_methods_AST": [
+    "require",
+    "sha",
+    "relative",
+    "transfer",
+    "all_members"
+  ]
+}

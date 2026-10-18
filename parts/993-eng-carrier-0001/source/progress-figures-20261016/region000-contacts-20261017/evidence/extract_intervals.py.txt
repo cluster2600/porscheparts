@@ -1,0 +1,177 @@
+"""Read completed contact evidence once; retain display intervals, never recut."""
+from array import array
+from collections import Counter
+from fractions import Fraction
+import hashlib
+import json
+import math
+from pathlib import Path
+import resource
+import signal
+import struct
+import sys
+import time
+import zipfile
+
+import ijson
+
+HERE = Path(__file__).resolve().parent
+ROOT = HERE.parents[2]
+RUN = ROOT / 'work/carrier-process-20261017/source000-all-owner-one-layer-contact-preparation-001'
+METHOD = 'own_source_parametric_encoded_contact_1'
+EXPECTED = {
+    'assessment.json': 'c14687057115cb62e00033fc8632f0955f1401553a3c973628b616b1aaed6861',
+    'contact-proofs.json': 'bd6bc4b133b68c225b97f8d8f4483e5963bc51a9bc43ed552ffddcca5938365c',
+    'Q-witnesses.json': 'edf598245965ac85231a7b322dc2ef59b88e94276f44583ee06f6c5398d692d2',
+}
+
+
+def sha(path):
+    digest = hashlib.sha256()
+    with Path(path).open('rb') as stream:
+        for block in iter(lambda: stream.read(1024 * 1024), b''): digest.update(block)
+    return digest.hexdigest()
+
+
+def coordinate(value):
+    if set(value) != {'numerator', 'denominator', 'nearest_float'}:
+        raise ValueError('Complete exact/display coordinate required')
+    n, d = value['numerator'], value['denominator']
+    if type(n) is not str or type(d) is not str or str(int(n)) != n or str(int(d)) != d or int(d) <= 0:
+        raise ValueError('Canonical rational strings required')
+    exact = Fraction(int(n), int(d))
+    if (str(exact.numerator), str(exact.denominator)) != (n, d):
+        raise ValueError('Reduced rational required')
+    nearest = value['nearest_float']
+    encoded = float(exact)
+    if type(nearest) not in (int, float) or not math.isfinite(encoded) or encoded.hex() != float(nearest).hex():
+        raise ValueError('Retained nearest IEEE coordinate differs')
+    return encoded
+
+
+def append_interval(target, raw):
+    if len(raw) != 2 or any(len(point) != 2 for point in raw):
+        raise ValueError('A retained two-dimensional interval is required')
+    target.extend(coordinate(c) for point in raw for c in point)
+
+
+class HashedReader:
+    def __init__(self, stream): self.stream, self.digest = stream, hashlib.sha256()
+    def read(self, size=-1):
+        block = self.stream.read(size); self.digest.update(block); return block
+
+
+def items(path, prefix, digest_result):
+    before = path.stat()
+    with path.open('rb') as source:
+        stream = HashedReader(source)
+        yield from ijson.items(stream, prefix, use_float=True)
+        while stream.read(1024 * 1024): pass
+        digest_result[path.name] = stream.digest.hexdigest()
+    after = path.stat()
+    if (before.st_dev, before.st_ino, before.st_size, before.st_mtime_ns) != (after.st_dev, after.st_ino, after.st_size, after.st_mtime_ns):
+        raise ValueError('A completed evidence file changed during its one-pass read')
+    if digest_result[path.name] != EXPECTED[path.name]: raise ValueError('Completed evidence SHA differs')
+
+
+def tail_field(path, key):
+    with path.open('rb') as stream:
+        stream.seek(max(0, path.stat().st_size - 1024 * 1024)); tail = stream.read().decode()
+    position = tail.rindex(json.dumps(key) + ':') + len(json.dumps(key)) + 1
+    return json.JSONDecoder().raw_decode(tail[position:].lstrip())[0]
+
+
+def npy_bytes(values, shape, dtype):
+    if math.prod(shape) != len(values): raise ValueError('Display array shape differs')
+    values = array(values.typecode, values)
+    if sys.byteorder != 'little': values.byteswap()
+    header = repr(dict(descr=dtype, fortran_order=False, shape=shape)).encode('ascii')
+    header += b' ' * ((64 - (10 + len(header) + 1) % 64) % 64) + b'\n'
+    return b'\x93NUMPY\x01\x00' + struct.pack('<H', len(header)) + header + values.tobytes()
+
+
+def write(path, value):
+    with path.open('x') as stream: json.dump(value, stream, indent=2, allow_nan=False); stream.write('\n')
+
+
+def main(output):
+    started = time.monotonic()
+    signal.signal(signal.SIGALRM, lambda *_: (_ for _ in ()).throw(TimeoutError('180s retained-interval read budget')))
+    signal.alarm(180)
+    if output.exists() or output.is_symlink(): raise ValueError('A fresh display extraction output is required')
+    source_sha = sha(__file__)
+    assessment_path = RUN / 'output-001/assessment.json'
+    if sha(assessment_path) != EXPECTED['assessment.json']: raise ValueError('Completed local assessment differs')
+    assessment = json.loads(assessment_path.read_text())
+    if assessment['phase'] != 'completed' or assessment['method'] != METHOD or assessment['global_admission'] is not False:
+        raise ValueError('Completed explicit local contact method required')
+    qintervals, eintervals = array('d'), array('d')
+    qids, qsegments, eids, certids, efaces = (array('q') for _ in range(5))
+    qhashes, referenced, passed_refs, vector_keys = {}, {}, set(), set()
+    counts, streamed = Counter(), {}
+    proofs_path = RUN / 'output-001/contact-proofs.json'
+    skipped = tail_field(proofs_path, 'skipped_collapsed_sources')
+    covered = tail_field(proofs_path, 'covered_point_proofs')
+    for i, certificate in enumerate(items(proofs_path, 'certificates.item', streamed)):
+        if certificate['method'] != METHOD or type(certificate['passed']) is not bool or certificate['side'] != 'lower':
+            raise ValueError('Unexpected certificate method/side/status')
+        scope, provenance = certificate['scope'], certificate['provenance']
+        if scope[:3] != ['c351989c2191382d51aec2d8941d08ec1ccaaba30197bdc6121dd92e351bba6b', 0, 0] or scope[-1] != 0 or provenance[0] != 0:
+            raise ValueError('A display certificate is outside original000 native layer0')
+        index, witness_sha = certificate['q_witness_index'], certificate['q_witness_sha256']
+        if type(index) is not int or not 0 <= index < 70144 or referenced.setdefault(index, witness_sha) != witness_sha:
+            raise ValueError('Certificate-to-witness identity differs')
+        counts['certificates'] += 1; counts['certificate_passed' if certificate['passed'] else 'certificate_refused'] += 1
+        if certificate['passed'] != bool(certificate['positive_domain_intervals']):
+            raise ValueError('Positive display portions and retained certificate status differ')
+        if certificate['passed']:
+            passed_refs.add(index)
+            vector_keys.add(tuple((v['numerator'], v['denominator']) for p in certificate['own_encoded_vector'] for v in p))
+        for interval in certificate['positive_domain_intervals']:
+            append_interval(eintervals, interval); eids.append(index); certids.append(i); efaces.append(provenance[1])
+    for i, witness in enumerate(items(RUN / 'output-001/Q-witnesses.json', 'witnesses.item', streamed)):
+        if witness['side'] != 'lower' or witness['region'] != 0 or witness['anchor'] != 'plate_first_layer' or witness['exact_part_overlap_intervals']:
+            raise ValueError('Unexpected first-layer retained Q anchor')
+        digest = hashlib.sha256(json.dumps(witness, sort_keys=True, separators=(',', ':'), allow_nan=False).encode()).hexdigest()
+        qhashes[i] = digest
+        if i in referenced and referenced[i] != digest: raise ValueError('A retained Q witness SHA differs from its certificates')
+        for interval in witness['exact_plate_overlap_intervals']:
+            append_interval(qintervals, interval); qids.append(i); qsegments.append(witness['segment'])
+        counts['Q_witnesses'] += 1
+    missing = sorted(set(qhashes) - passed_refs)
+    covered_faces = {tuple(row['provenance']) for row in covered}
+    if (counts['Q_witnesses'] != 70144 or counts['certificates'] != 129023 or len(vector_keys) != 70141 or
+            missing != sorted({row['q_witness_index'] for row in skipped}) or len(skipped) != 3 or
+            any(tuple(row['provenance']) not in covered_faces for row in skipped) or len(covered) != 72):
+        raise ValueError('The three excluded covered-point anchors do not exactly explain the completed counts')
+    output.mkdir()
+    arrays = {'Q_intervals_mm': (qintervals, (len(qids), 2, 2), '<f8'),
+        'Q_witness_index': (qids, (len(qids),), '<i8'), 'Q_segment_index': (qsegments, (len(qsegments),), '<i8'),
+        'E_positive_intervals_mm': (eintervals, (len(eids), 2, 2), '<f8'),
+        'E_Q_witness_index': (eids, (len(eids),), '<i8'), 'E_certificate_index': (certids, (len(certids),), '<i8'),
+        'E_source_face': (efaces, (len(efaces),), '<i8')}
+    with zipfile.ZipFile(output / 'contact-intervals.npz', 'x', compression=zipfile.ZIP_DEFLATED) as archive:
+        for name, (values, shape, dtype) in arrays.items(): archive.writestr(name + '.npy', npy_bytes(values, shape, dtype))
+    if sha(__file__) != source_sha or sha(assessment_path) != EXPECTED['assessment.json']:
+        raise ValueError('The extraction source or completed assessment changed')
+    result = dict(status='retained_anchor_intervals_extracted_no_recalculation', method=METHOD,
+        source_sha256=source_sha, inputs_sha256=dict(streamed, **{'assessment.json': EXPECTED['assessment.json']}),
+        counts=dict(counts), unique_passed_Q_witnesses=len(passed_refs), unique_anchored_encoded_vectors=len(vector_keys),
+        Q_retained_intervals=len(qids), E_positive_retained_intervals=len(eids), covered_points=len(covered),
+        missing_Q_witness_indices=missing, skipped_collapsed_sources=skipped,
+        all_three_skipped_sources_are_covered_points=True, complete_Q_to_E_anchor_count_difference_explained=True,
+        retained_interval_order_and_duplicates_preserved=True, all_display_coordinates_exactly_nearest_retained_rationals=True,
+        arrays={name: dict(dtype=dtype, shape=shape) for name, (_, shape, dtype) in arrays.items()},
+        input_file_stats_stable=True, section_or_contact_recalculation=False, Fraction_geometry_algebra_recomputed=False,
+        display_scope='Retained positively anchored contact intervals only; not the complete94734 machine vectors.',
+        source_index=0, layer=0, z_mm=.03, groups=337, upper_contacts=0, global_admission=False,
+        output_sha256=sha(output / 'contact-intervals.npz'), output_bytes=(output / 'contact-intervals.npz').stat().st_size,
+        elapsed_seconds=time.monotonic() - started, maxRSS_bytes=resource.getrusage(resource.RUSAGE_SELF).ru_maxrss,
+        ijson_version=ijson.__version__, ijson_backend=ijson.backend)
+    write(output / 'extraction-receipt.json', result)
+    signal.alarm(0)
+    print(json.dumps({k: result[k] for k in ('status', 'counts', 'unique_passed_Q_witnesses', 'unique_anchored_encoded_vectors',
+        'Q_retained_intervals', 'E_positive_retained_intervals', 'missing_Q_witness_indices', 'output_sha256', 'output_bytes', 'elapsed_seconds', 'maxRSS_bytes')}))
+
+
+if __name__ == '__main__': main(HERE / 'extraction-001')

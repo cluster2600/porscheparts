@@ -1,0 +1,20 @@
+--- parts/993-eng-carrier-0001/source/design-20261016/native-C1-h2-20261017/sources/assemble.py
++++ work/carrier-terminal-taper-raw-refined-delivery-preparation-001/assemble.py
+@@ -31,7 +31,7 @@
+     auxiliary.update({'source-derivation.json':HERE/'source-derivation.json','sources/package_owned.py':HERE/'package_owned.py',
+         'sources/assemble.py':HERE/'assemble.py','verification/pack-plan.json':planpath,'verification/packaging.json':receiptpath})
+     prepared={name:row for name,row in template['utility_sources'].items()}
+-    actual_sources={name:str(path.relative_to(HERE.parents[2])) for name,path in auxiliary.items() if not name.startswith('verification/')}
++    actual_sources={name:str(path.relative_to(HERE.parents[1])) for name,path in auxiliary.items() if not name.startswith('verification/')}
+     if actual_sources!={name:row['source'] for name,row in prepared.items()} or any(sha(auxiliary[name])!=row['sha256'] for name,row in prepared.items()):
+         raise ValueError('Reviewed utility source paths or whole SHA differ')
+     needed=sum(row['bytes']for row in receipt['archives'].values())+sum(p.stat().st_size for p in auxiliary.values())+templatepath.stat().st_size
+@@ -48,7 +48,7 @@
+     template['files_sha256']={name:sha(output/name)for name in auxiliary}
+     write(output/'manifest.json',template)
+     write(HERE/'assembly.json',dict(status='actual_delta_archives_and_sources_copied_no_reanalysis',manifest_sha256=sha(output/'manifest.json'),packaging_sha256=receipt_sha,
+-        inherited_C1_members=186,new_H2_members=sum(len(row['members'])for row in receipt['archives'].values()),new_solver_run=False,numerical_replay=False))
++        inherited_taper_members=495,new_raw_refined_members=sum(len(row['members'])for row in receipt['archives'].values()),new_solver_run=False,numerical_replay=False))
+     print(json.dumps(dict(capsule=str(output),manifest_sha256=sha(output/'manifest.json'),assembly_sha256=sha(HERE/'assembly.json'))))
+ 
+ if __name__=='__main__':

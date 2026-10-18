@@ -1,0 +1,82 @@
+{
+  "frozen_at_UTC": "2026-10-16T14:04:38.416115+00:00",
+  "status": "awaiting_admitted_geometry_not_executed",
+  "candidate_STEP_sha256": null,
+  "subject": "Independent seam and finite-element resolution diagnostics for the rational C(u)+r(u)Q(v) root addition",
+  "reference_hotspot_diagnostic_sha256": "347382b4a0cc7b55377b3df95cbabd758a78db84d069ab9c3e28920c64bfeadb",
+  "reference_true_IP_xyz_mm": [
+    88.895041291314,
+    15.115132451964987,
+    17.648817961813048
+  ],
+  "required_before_any_mesh_or_field_analysis": "New STEP must first pass the unchanged CAD, interface, mass and STEP gates; no analysis of a rejected STEP.",
+  "geometry_seams": {
+    "inspect": [
+      "cap_contact_rail",
+      "rib_contact_rail",
+      "window_end_and_third_support",
+      "extinction_end_and_adjacent_roof"
+    ],
+    "measure": [
+      "exact_surface_distance",
+      "analytic_normal_angle_on_both_sides",
+      "trimmed_face_membership",
+      "exposed_degenerate_or_C0_termination",
+      "added_volume_and_spatial_bounds"
+    ],
+    "requirement": "Two G1 rails alone do not admit exposed C0 longitudinal caps; original protected geometry and all existing gates remain unchanged."
+  },
+  "fixed_sections": [
+    {
+      "plane": "YZ",
+      "X_mm": 88.895041291314
+    },
+    {
+      "plane": "YZ",
+      "X_mm": -88.895041291314
+    }
+  ],
+  "local_radius": "Use the actual declared r(u) on each fixed-X section; nominal1mm is an upper bound, not a claim of constant normal-section radius.",
+  "geometry_error_existing_max_mm": 0.06,
+  "circle_R1_max_chord_angle_deg": 39.89688717760541,
+  "circle_R1_min_segments_per_quarter": 3,
+  "mesh_measurements": [
+    "number_of_boundary_triangle_intersection_segments_spanning_actual_blend_arc",
+    "projected_arc_segment_angle_and_sagitta",
+    "local_corner_edge_min_median_max_mm",
+    "actual_local_h_over_radius",
+    "nearest_reference_Gauss_point_distance_to_blend",
+    "actual_peak_element_IP_position_and_distance_to_blend"
+  ],
+  "compare_meshes": [
+    "mesh-9",
+    "mesh-7"
+  ],
+  "one_local_refinement_rule": {
+    "trigger": "Identical local resolution in mesh9/7, insufficient chord resolution, or peak stability not established by those actual local meshes.",
+    "size_change": "Halve the measured local characteristic length of the fine mesh once, restricted to the declared blend and transition band; retain the global fine-mesh prescription elsewhere.",
+    "unchanged": [
+      "geometry",
+      "elastic_material",
+      "loads",
+      "support_definition",
+      "solver",
+      "energy_tolerance",
+      "superposition_tolerance",
+      "original_V6f_and_ad12_selection_criteria"
+    ],
+    "record": [
+      "local_size_field_and_bounds",
+      "mesh_and_deck_hashes",
+      "actual_arc_subdivisions",
+      "all_minimum_Jacobians",
+      "peak_VM_and_location",
+      "displacement_maximum",
+      "relative_changes_at_the_same_geometric_patch",
+      "solver_resource_receipt"
+    ],
+    "interpretation": "Report measured changes. Do not infer a rigorous peak error bound, Richardson order or convergence solely from two global labels or one local halving."
+  },
+  "material_allowable_added": false,
+  "source_geometry_changed": false
+}

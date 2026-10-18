@@ -1,0 +1,1035 @@
+{
+  "source_sha256": "ea583d521738c1b775655fc0485c20c9d6db4e4e16310273899e5c1e1d4a8e85",
+  "runtime_sha256": "4d89f06abf5804d932957fc7f66f2f0b182d191e26c799df07009060ff87cde0",
+  "inputs_sha256": {
+    "mesh.inp": "80dab86242b2433bccb9dfe3ed3d1321a21f638c8da245586fb5c4c3f10c765a",
+    "combined-spring-1000-luo-flat1-NLGEOM.inp": "babc246c0d6d739a045c244258599643f7f214948fa715b7fe913b5d9ac3ef30",
+    "combined-spring-1000-luo-flat1-NLGEOM.dat": "4457f8e1fdb6d6c05ea3d3c58515225ec0c1a890475383f9e91dca1307c3f82d",
+    "combined-spring-1000-luo-flat1-NLGEOM.sta": "75b75f99dc13ad1c3d52eb3cec49d2b6bbc67c5aa4dd7a99953b2d0c5a598c1c"
+  },
+  "geometric_nonlinearity": true,
+  "constitutive_model": {
+    "type": "Isotropic J2 with published pre-necking Grade23 ELI true-stress/plastic-strain curve",
+    "E_MPa": 106000,
+    "nu": 0.31,
+    "nu_source": "Frozen carrier isotropic assumption, not supplied by dataset",
+    "true_VM_yield_MPa": 956.8778700555556,
+    "geometric_nonlinearity": true,
+    "curve_input": "process-20261016/material-luo-set1/flat-set-1-plastic.inp",
+    "curve_sha256": "b6123556870e2cfe6d183d4c4e1b512da0b5c273ba62e792a3e6c6b51b236ac7",
+    "curve_provenance_sha256": "986a13f5acea0cabc999b3996fc590a1b729c56070fb7c5eff0e8431cd4d3077",
+    "maximum_measured_equivalent_plastic_strain": 0.04698042567140203,
+    "model_origin": "Published Rp0.2 used as model first yield; plastic strain origin reset explicitly in source conversion",
+    "condition": "LaserForm Ti Gr23(A)ELI,ProX DMP320,275W/800mm/s,60um/hatch82um,Ztension,SR670C5h+argon12h",
+    "source_record": "https://zenodo.org/records/6587905",
+    "article": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9880387/",
+    "license": "CC-BY-4.0",
+    "case_selection": "First published process set, first flat specimen, fixed by data agent independently of carrier outcome"
+  },
+  "frames": [
+    {
+      "total_time": 0.125,
+      "load_factor": 0.125,
+      "displacement_max_mm": 2.2885669419178223,
+      "displacement_peak_node": 31924,
+      "displacement_peak_original_xyz_mm": [
+        40.229127283694,
+        -36.0,
+        2.0
+      ],
+      "VM_max_MPa": 232.46445221265853,
+      "VM_peak_element": 38852,
+      "PEEQ_max": 0.0,
+      "PEEQ_detection_threshold": 1e-08,
+      "PEEQ_peak_element": 1,
+      "PEEQ_peak_element_corner_centroid_mm": [
+        -260.5892662972375,
+        4.0943268040331,
+        12.839983002679
+      ],
+      "plastic_quadrature_volume_mm3": 0.0,
+      "plastic_element_centroid_bounds_mm": null,
+      "spring_energy_Nmm": 101.69216216828968,
+      "CCX_solid_internal_energy_Nmm": 625.9011291899042,
+      "external_incremental_trapezoid_work_Nmm": 726.4417787313397,
+      "external_gross_trapezoid_work_Nmm": 726.4417787313397,
+      "work_absolute_residual_Nmm": 1.151512626854128,
+      "work_relative_closure_error": 0.0015851409714693343,
+      "work_relative_to_gross_error": 0.0015851409714693634,
+      "applied_force_N": [
+        2.9521385336295225e-12,
+        3.956914413098464e-15,
+        -499.99999999974483
+      ],
+      "applied_moment_about_model_origin_Nmm": [
+        -1.092699214022268,
+        106252.06423613596,
+        0.046378253826003135
+      ],
+      "force_residual_N": [
+        7.994721451867748e-08,
+        1.928079362291911e-11,
+        -3.6532878339157193e-07
+      ],
+      "moment_residual_Nmm": [
+        -0.0003251563770616528,
+        -0.00028709986514741104,
+        8.183733443856145e-06
+      ]
+    },
+    {
+      "total_time": 0.25,
+      "load_factor": 0.25,
+      "displacement_max_mm": 4.595309228317467,
+      "displacement_peak_node": 31924,
+      "displacement_peak_original_xyz_mm": [
+        40.229127283694,
+        -36.0,
+        2.0
+      ],
+      "VM_max_MPa": 465.14749285502467,
+      "VM_peak_element": 38852,
+      "PEEQ_max": 0.0,
+      "PEEQ_detection_threshold": 1e-08,
+      "PEEQ_peak_element": 1,
+      "PEEQ_peak_element_corner_centroid_mm": [
+        -260.5892662972375,
+        4.0943268040331,
+        12.839983002679
+      ],
+      "plastic_quadrature_volume_mm3": 0.0,
+      "plastic_element_centroid_bounds_mm": null,
+      "spring_energy_Nmm": 407.1665744066577,
+      "CCX_solid_internal_energy_Nmm": 2519.937377851078,
+      "external_incremental_trapezoid_work_Nmm": 2924.954658607631,
+      "external_gross_trapezoid_work_Nmm": 2924.954658607631,
+      "work_absolute_residual_Nmm": 2.149293650104937,
+      "work_relative_closure_error": 0.0007348126384727482,
+      "work_relative_to_gross_error": 0.0007348126384728533,
+      "applied_force_N": [
+        5.904277067259045e-12,
+        7.913828826196928e-15,
+        -999.9999999994897
+      ],
+      "applied_moment_about_model_origin_Nmm": [
+        -5.152413878372855,
+        212503.99897326156,
+        0.18074320278825162
+      ],
+      "force_residual_N": [
+        -2.2042198258992451e-07,
+        -2.016173200614091e-09,
+        1.6100664010920696e-06
+      ],
+      "moment_residual_Nmm": [
+        -0.0035086310017771183,
+        -0.0019220349520310265,
+        0.00011015754562515578
+      ]
+    },
+    {
+      "total_time": 0.375,
+      "load_factor": 0.375,
+      "displacement_max_mm": 6.916413078089649,
+      "displacement_peak_node": 31924,
+      "displacement_peak_original_xyz_mm": [
+        40.229127283694,
+        -36.0,
+        2.0
+      ],
+      "VM_max_MPa": 697.659820438432,
+      "VM_peak_element": 38852,
+      "PEEQ_max": 0.0,
+      "PEEQ_detection_threshold": 1e-08,
+      "PEEQ_peak_element": 1,
+      "PEEQ_peak_element_corner_centroid_mm": [
+        -260.5892662972375,
+        4.0943268040331,
+        12.839983002679
+      ],
+      "plastic_quadrature_volume_mm3": 0.0,
+      "plastic_element_centroid_bounds_mm": null,
+      "spring_energy_Nmm": 918.1164585707671,
+      "CCX_solid_internal_energy_Nmm": 5701.241009063808,
+      "external_incremental_trapezoid_work_Nmm": 6616.376107502161,
+      "external_gross_trapezoid_work_Nmm": 6616.376107502161,
+      "work_absolute_residual_Nmm": 2.981360132414011,
+      "work_relative_closure_error": 0.0004506031827655743,
+      "work_relative_to_gross_error": 0.000450603182765489,
+      "applied_force_N": [
+        8.792550021397005e-12,
+        1.1811718595398923e-14,
+        -1499.999999999235
+      ],
+      "applied_moment_about_model_origin_Nmm": [
+        -13.24736422920708,
+        318749.2767907873,
+        0.3935961378313908
+      ],
+      "force_residual_N": [
+        7.44504463495721e-07,
+        8.275215263194285e-09,
+        -1.2687909795694452e-05
+      ],
+      "moment_residual_Nmm": [
+        -0.004469292045616413,
+        0.0023509533214678413,
+        0.00012374837564843588
+      ]
+    },
+    {
+      "total_time": 0.5,
+      "load_factor": 0.5,
+      "displacement_max_mm": 9.247864662568881,
+      "displacement_peak_node": 31924,
+      "displacement_peak_original_xyz_mm": [
+        40.229127283694,
+        -36.0,
+        2.0
+      ],
+      "VM_max_MPa": 929.5976169698528,
+      "VM_peak_element": 38852,
+      "PEEQ_max": 0.0,
+      "PEEQ_detection_threshold": 1e-08,
+      "PEEQ_peak_element": 1,
+      "PEEQ_peak_element_corner_centroid_mm": [
+        -260.5892662972375,
+        4.0943268040331,
+        12.839983002679
+      ],
+      "plastic_quadrature_volume_mm3": 0.0,
+      "plastic_element_centroid_bounds_mm": null,
+      "spring_energy_Nmm": 1637.760380272015,
+      "CCX_solid_internal_energy_Nmm": 10181.276859068335,
+      "external_incremental_trapezoid_work_Nmm": 11815.39879176876,
+      "external_gross_trapezoid_work_Nmm": 11815.39879176876,
+      "work_absolute_residual_Nmm": 3.638447571591314,
+      "work_relative_closure_error": 0.00030794115676613387,
+      "work_relative_to_gross_error": 0.00030794115676620684,
+      "applied_force_N": [
+        1.180855413451809e-11,
+        1.5827657652393856e-14,
+        -1999.9999999989793
+      ],
+      "applied_moment_about_model_origin_Nmm": [
+        -26.254824709313993,
+        424981.20473236794,
+        0.6728479387773945
+      ],
+      "force_residual_N": [
+        1.0869217881848137e-06,
+        -2.29826353716385e-09,
+        9.264660299157512e-06
+      ],
+      "moment_residual_Nmm": [
+        -0.005311727990356729,
+        -0.0035914608762368516,
+        0.0001350342747152844
+      ]
+    },
+    {
+      "total_time": 0.625,
+      "load_factor": 0.625,
+      "displacement_max_mm": 11.585700094901924,
+      "displacement_peak_node": 31924,
+      "displacement_peak_original_xyz_mm": [
+        40.229127283694,
+        -36.0,
+        2.0
+      ],
+      "VM_max_MPa": 975.0006221401476,
+      "VM_peak_element": 38852,
+      "PEEQ_max": 0.00224594,
+      "PEEQ_detection_threshold": 1e-08,
+      "PEEQ_peak_element": 38852,
+      "PEEQ_peak_element_corner_centroid_mm": [
+        87.749535220834,
+        15.26901425822275,
+        16.879368724248
+      ],
+      "plastic_quadrature_volume_mm3": 0.8027413521412774,
+      "plastic_element_centroid_bounds_mm": [
+        [
+          24.354638525585,
+          -20.8984791551485,
+          12.2468065079
+        ],
+        [
+          96.4398599517775,
+          15.26901425822275,
+          29.16869432730725
+        ]
+      ],
+      "spring_energy_Nmm": 2570.8802345635518,
+      "CCX_solid_internal_energy_Nmm": 15964.06616914166,
+      "external_incremental_trapezoid_work_Nmm": 18530.832863955082,
+      "external_gross_trapezoid_work_Nmm": 18530.832863955082,
+      "work_absolute_residual_Nmm": 4.113539750131167,
+      "work_relative_closure_error": 0.00022198353308411356,
+      "work_relative_to_gross_error": 0.00022198353308407122,
+      "applied_force_N": [
+        1.4673817716470694e-11,
+        1.9911969208891156e-14,
+        -2499.9999999987244
+      ],
+      "applied_moment_about_model_origin_Nmm": [
+        -44.82742674363607,
+        531192.95586486,
+        1.0045117192981907
+      ],
+      "force_residual_N": [
+        -4.3376727459909503e-07,
+        1.3081577712888669e-09,
+        -3.4784975928570105e-06
+      ],
+      "moment_residual_Nmm": [
+        -0.005794250687099378,
+        0.0005856419151086811,
+        0.00012774871846588098
+      ]
+    },
+    {
+      "total_time": 0.75,
+      "load_factor": 0.75,
+      "displacement_max_mm": 13.927580688597718,
+      "displacement_peak_node": 31923,
+      "displacement_peak_original_xyz_mm": [
+        42.346449740132,
+        -36.0,
+        0.0
+      ],
+      "VM_max_MPa": 990.4085052152645,
+      "VM_peak_element": 38852,
+      "PEEQ_max": 0.005030634,
+      "PEEQ_detection_threshold": 1e-08,
+      "PEEQ_peak_element": 38852,
+      "PEEQ_peak_element_corner_centroid_mm": [
+        87.749535220834,
+        15.26901425822275,
+        16.879368724248
+      ],
+      "plastic_quadrature_volume_mm3": 9.421886650121255,
+      "plastic_element_centroid_bounds_mm": [
+        [
+          24.354638525585,
+          -20.8984791551485,
+          11.57725155160575
+        ],
+        [
+          97.12128581162375,
+          16.9482745806945,
+          29.6036087937315
+        ]
+      ],
+      "spring_energy_Nmm": 3723.8624185329136,
+      "CCX_solid_internal_energy_Nmm": 23051.49777200207,
+      "external_incremental_trapezoid_work_Nmm": 26770.9615915177,
+      "external_gross_trapezoid_work_Nmm": 26770.9615915177,
+      "work_absolute_residual_Nmm": 4.398599017284141,
+      "work_relative_closure_error": 0.0001643048570463268,
+      "work_relative_to_gross_error": 0.00016430485704621922,
+      "applied_force_N": [
+        1.758510004279401e-11,
+        2.3623437190797847e-14,
+        -2999.99999999847
+      ],
+      "applied_moment_about_model_origin_Nmm": [
+        -69.37450575169242,
+        637377.5574916962,
+        1.373484900814728
+      ],
+      "force_residual_N": [
+        4.3866448184992635e-07,
+        -2.8986420520793477e-09,
+        1.3936288651095197e-05
+      ],
+      "moment_residual_Nmm": [
+        -0.0064057966859394355,
+        -0.003699365913917063,
+        0.00017859669338715634
+      ]
+    },
+    {
+      "total_time": 0.875,
+      "load_factor": 0.875,
+      "displacement_max_mm": 16.279710269661074,
+      "displacement_peak_node": 31923,
+      "displacement_peak_original_xyz_mm": [
+        42.346449740132,
+        -36.0,
+        0.0
+      ],
+      "VM_max_MPa": 1003.4830882011629,
+      "VM_peak_element": 38852,
+      "PEEQ_max": 0.008334983,
+      "PEEQ_detection_threshold": 1e-08,
+      "PEEQ_peak_element": 38852,
+      "PEEQ_peak_element_corner_centroid_mm": [
+        87.749535220834,
+        15.26901425822275,
+        16.879368724248
+      ],
+      "plastic_quadrature_volume_mm3": 109.02019348211682,
+      "plastic_element_centroid_bounds_mm": [
+        [
+          23.32094297629725,
+          -26.07950479174925,
+          -3.536395995179325
+        ],
+        [
+          98.46950664614876,
+          25.903172204451,
+          29.6125591210195
+        ]
+      ],
+      "spring_energy_Nmm": 5105.184014540281,
+      "CCX_solid_internal_energy_Nmm": 31481.02186606761,
+      "external_incremental_trapezoid_work_Nmm": 36581.736083018484,
+      "external_gross_trapezoid_work_Nmm": 36581.736083018484,
+      "work_absolute_residual_Nmm": 4.469797589408699,
+      "work_relative_closure_error": 0.00012218659003138121,
+      "work_relative_to_gross_error": 0.00012218659003129196,
+      "applied_force_N": [
+        2.0449031357117065e-11,
+        2.7674341767855437e-14,
+        -3499.999999998217
+      ],
+      "applied_moment_about_model_origin_Nmm": [
+        -99.95086749492947,
+        743527.6485736232,
+        1.763331028915914
+      ],
+      "force_residual_N": [
+        -1.453353291602788e-07,
+        4.1486339544911585e-09,
+        -4.778810343442075e-06
+      ],
+      "moment_residual_Nmm": [
+        -0.007104511276594394,
+        0.002283655884525615,
+        0.00030656828223829535
+      ]
+    },
+    {
+      "total_time": 1.0,
+      "load_factor": 1.0,
+      "displacement_max_mm": 18.683490284482183,
+      "displacement_peak_node": 31923,
+      "displacement_peak_original_xyz_mm": [
+        42.346449740132,
+        -36.0,
+        0.0
+      ],
+      "VM_max_MPa": 1013.2942855497444,
+      "VM_peak_element": 38852,
+      "PEEQ_max": 0.01154945,
+      "PEEQ_detection_threshold": 1e-08,
+      "PEEQ_peak_element": 38852,
+      "PEEQ_peak_element_corner_centroid_mm": [
+        87.749535220834,
+        15.26901425822275,
+        16.879368724248
+      ],
+      "plastic_quadrature_volume_mm3": 338.45665066079306,
+      "plastic_element_centroid_bounds_mm": [
+        [
+          21.30759977485375,
+          -26.592014182063,
+          -3.536395995179325
+        ],
+        [
+          105.46208700567001,
+          26.3906171967655,
+          29.6125591210195
+        ]
+      ],
+      "spring_energy_Nmm": 6728.489446290583,
+      "CCX_solid_internal_energy_Nmm": 41484.45794967973,
+      "external_incremental_trapezoid_work_Nmm": 48208.71671090566,
+      "external_gross_trapezoid_work_Nmm": 48208.71671090566,
+      "work_absolute_residual_Nmm": 4.230685064656427,
+      "work_relative_closure_error": 8.775767855473404e-05,
+      "work_relative_to_gross_error": 8.775767855482807e-05,
+      "applied_force_N": [
+        2.361710826903618e-11,
+        3.165531530478771e-14,
+        -3999.9999999979586
+      ],
+      "applied_moment_about_model_origin_Nmm": [
+        -136.5922920170927,
+        849633.0269193541,
+        2.1590291286860124
+      ],
+      "force_residual_N": [
+        -6.275966142887945e-07,
+        5.886905780449862e-09,
+        -6.302770877653074e-06
+      ],
+      "moment_residual_Nmm": [
+        -7.083566589471957e-05,
+        0.0013638840500789229,
+        -1.3801739791041712e-05
+      ]
+    },
+    {
+      "total_time": 1.125,
+      "load_factor": 0.875,
+      "displacement_max_mm": 16.354529635926138,
+      "displacement_peak_node": 31923,
+      "displacement_peak_original_xyz_mm": [
+        42.346449740132,
+        -36.0,
+        0.0
+      ],
+      "VM_max_MPa": 866.4760514152281,
+      "VM_peak_element": 23190,
+      "PEEQ_max": 0.01154945,
+      "PEEQ_detection_threshold": 1e-08,
+      "PEEQ_peak_element": 38852,
+      "PEEQ_peak_element_corner_centroid_mm": [
+        87.749535220834,
+        15.26901425822275,
+        16.879368724248
+      ],
+      "plastic_quadrature_volume_mm3": 338.45665066079306,
+      "plastic_element_centroid_bounds_mm": [
+        [
+          21.30759977485375,
+          -26.592014182063,
+          -3.536395995179325
+        ],
+        [
+          105.46208700567001,
+          26.3906171967655,
+          29.6125591210195
+        ]
+      ],
+      "spring_energy_Nmm": 5109.645170523172,
+      "CCX_solid_internal_energy_Nmm": 31867.464605267272,
+      "external_incremental_trapezoid_work_Nmm": 36972.99439652293,
+      "external_gross_trapezoid_work_Nmm": 59444.43902528839,
+      "work_absolute_residual_Nmm": 4.115379267510434,
+      "work_relative_closure_error": 0.00011130770809031354,
+      "work_relative_to_gross_error": 6.923068557783348e-05,
+      "applied_force_N": [
+        2.0449031357117065e-11,
+        2.7674341767855437e-14,
+        -3499.999999998217
+      ],
+      "applied_moment_about_model_origin_Nmm": [
+        -100.45956179770462,
+        743524.7498948084,
+        1.7718002430856066
+      ],
+      "force_residual_N": [
+        1.6376695355369009e-07,
+        -6.467291549299911e-09,
+        1.81651708981434e-05
+      ],
+      "moment_residual_Nmm": [
+        -3.0358556215228774,
+        -2.527886728425301,
+        -0.572858694087528
+      ]
+    },
+    {
+      "total_time": 1.25,
+      "load_factor": 0.75,
+      "displacement_max_mm": 14.017179861586785,
+      "displacement_peak_node": 31923,
+      "displacement_peak_original_xyz_mm": [
+        42.346449740132,
+        -36.0,
+        0.0
+      ],
+      "VM_max_MPa": 769.1950142431047,
+      "VM_peak_element": 37445,
+      "PEEQ_max": 0.01154945,
+      "PEEQ_detection_threshold": 1e-08,
+      "PEEQ_peak_element": 38852,
+      "PEEQ_peak_element_corner_centroid_mm": [
+        87.749535220834,
+        15.26901425822275,
+        16.879368724248
+      ],
+      "plastic_quadrature_volume_mm3": 338.45665066079306,
+      "plastic_element_centroid_bounds_mm": [
+        [
+          21.30759977485375,
+          -26.592014182063,
+          -3.536395995179325
+        ],
+        [
+          105.46208700567001,
+          26.3906171967655,
+          29.6125591210195
+        ]
+      ],
+      "spring_energy_Nmm": 3727.619398454193,
+      "CCX_solid_internal_energy_Nmm": 23507.169333809543,
+      "external_incremental_trapezoid_work_Nmm": 27230.96365669606,
+      "external_gross_trapezoid_work_Nmm": 69186.46976511525,
+      "work_absolute_residual_Nmm": 3.825075567674503,
+      "work_relative_closure_error": 0.00014046787384747184,
+      "work_relative_to_gross_error": 5.528646830312995e-05,
+      "applied_force_N": [
+        1.758510004279401e-11,
+        2.3623437190797847e-14,
+        -2999.99999999847
+      ],
+      "applied_moment_about_model_origin_Nmm": [
+        -69.47686032458813,
+        637375.1661895756,
+        1.368529768442154
+      ],
+      "force_residual_N": [
+        -7.80854670257014e-07,
+        9.670697938681059e-09,
+        1.2113620445397544e-05
+      ],
+      "moment_residual_Nmm": [
+        -0.011774997597960635,
+        -0.0028670431239561367,
+        0.00020659547849088966
+      ]
+    },
+    {
+      "total_time": 1.375,
+      "load_factor": 0.625,
+      "displacement_max_mm": 11.67860147763191,
+      "displacement_peak_node": 31923,
+      "displacement_peak_original_xyz_mm": [
+        42.346449740132,
+        -36.0,
+        0.0
+      ],
+      "VM_max_MPa": 671.1222459683994,
+      "VM_peak_element": 37445,
+      "PEEQ_max": 0.01154945,
+      "PEEQ_detection_threshold": 1e-08,
+      "PEEQ_peak_element": 38852,
+      "PEEQ_peak_element_corner_centroid_mm": [
+        87.749535220834,
+        15.26901425822275,
+        16.879368724248
+      ],
+      "plastic_quadrature_volume_mm3": 338.45665066079306,
+      "plastic_element_centroid_bounds_mm": [
+        [
+          21.30759977485375,
+          -26.592014182063,
+          -3.536395995179325
+        ],
+        [
+          105.46208700567001,
+          26.3906171967655,
+          29.6125591210195
+        ]
+      ],
+      "spring_energy_Nmm": 2573.5290490047764,
+      "CCX_solid_internal_energy_Nmm": 16432.364566237102,
+      "external_incremental_trapezoid_work_Nmm": 19002.351443586995,
+      "external_gross_trapezoid_work_Nmm": 77415.08197822432,
+      "work_absolute_residual_Nmm": 3.5421716548844415,
+      "work_relative_closure_error": 0.00018640701733141363,
+      "work_relative_to_gross_error": 4.5755575843487455e-05,
+      "applied_force_N": [
+        1.4673817716470694e-11,
+        1.9911969208891156e-14,
+        -2499.9999999987244
+      ],
+      "applied_moment_about_model_origin_Nmm": [
+        -44.920412733246735,
+        531191.3237682784,
+        1.0004846558891565
+      ],
+      "force_residual_N": [
+        1.5484650911778974e-06,
+        -1.7481355687510875e-08,
+        -5.6351324908554545e-06
+      ],
+      "moment_residual_Nmm": [
+        -0.003960374817108203,
+        0.0019387664768828472,
+        7.945131867259647e-05
+      ]
+    },
+    {
+      "total_time": 1.5,
+      "load_factor": 0.5,
+      "displacement_max_mm": 9.341963158720107,
+      "displacement_peak_node": 31924,
+      "displacement_peak_original_xyz_mm": [
+        40.229127283694,
+        -36.0,
+        2.0
+      ],
+      "VM_max_MPa": 574.5447211341213,
+      "VM_peak_element": 47585,
+      "PEEQ_max": 0.01154945,
+      "PEEQ_detection_threshold": 1e-08,
+      "PEEQ_peak_element": 38852,
+      "PEEQ_peak_element_corner_centroid_mm": [
+        87.749535220834,
+        15.26901425822275,
+        16.879368724248
+      ],
+      "plastic_quadrature_volume_mm3": 338.45665066079306,
+      "plastic_element_centroid_bounds_mm": [
+        [
+          21.30759977485375,
+          -26.592014182063,
+          -3.536395995179325
+        ],
+        [
+          105.46208700567001,
+          26.3906171967655,
+          29.6125591210195
+        ]
+      ],
+      "spring_energy_Nmm": 1639.5171584724778,
+      "CCX_solid_internal_energy_Nmm": 10653.504725138246,
+      "external_incremental_trapezoid_work_Nmm": 12289.947697392314,
+      "external_gross_trapezoid_work_Nmm": 84127.485724419,
+      "work_absolute_residual_Nmm": 3.0741862184095226,
+      "work_relative_closure_error": 0.0002501382669888308,
+      "work_relative_to_gross_error": 3.654199566215258e-05,
+      "applied_force_N": [
+        1.180855413451809e-11,
+        1.5827657652393856e-14,
+        -1999.9999999989793
+      ],
+      "applied_moment_about_model_origin_Nmm": [
+        -26.299428483636717,
+        424980.21659430524,
+        0.6699824779900525
+      ],
+      "force_residual_N": [
+        7.652624972598332e-08,
+        -1.8181218231242899e-09,
+        1.8214412902395338e-06
+      ],
+      "moment_residual_Nmm": [
+        -0.006202131963476631,
+        -0.0008456886277485864,
+        0.00013464125762130408
+      ]
+    },
+    {
+      "total_time": 1.625,
+      "load_factor": 0.375,
+      "displacement_max_mm": 7.011348699684339,
+      "displacement_peak_node": 31924,
+      "displacement_peak_original_xyz_mm": [
+        40.229127283694,
+        -36.0,
+        2.0
+      ],
+      "VM_max_MPa": 480.59772988229844,
+      "VM_peak_element": 47585,
+      "PEEQ_max": 0.01154945,
+      "PEEQ_detection_threshold": 1e-08,
+      "PEEQ_peak_element": 38852,
+      "PEEQ_peak_element_corner_centroid_mm": [
+        87.749535220834,
+        15.26901425822275,
+        16.879368724248
+      ],
+      "plastic_quadrature_volume_mm3": 338.45665066079306,
+      "plastic_element_centroid_bounds_mm": [
+        [
+          21.30759977485375,
+          -26.592014182063,
+          -3.536395995179325
+        ],
+        [
+          105.46208700567001,
+          26.3906171967655,
+          29.6125591210195
+        ]
+      ],
+      "spring_energy_Nmm": 919.2226606003914,
+      "CCX_solid_internal_energy_Nmm": 6175.638023252065,
+      "external_incremental_trapezoid_work_Nmm": 7092.4347740115945,
+      "external_gross_trapezoid_work_Nmm": 89324.99864779973,
+      "work_absolute_residual_Nmm": 2.425909840862005,
+      "work_relative_closure_error": 0.00034204189649389427,
+      "work_relative_to_gross_error": 2.7158241002915036e-05,
+      "applied_force_N": [
+        8.792550021397005e-12,
+        1.1811718595398923e-14,
+        -1499.999999999235
+      ],
+      "applied_moment_about_model_origin_Nmm": [
+        -13.243845757873004,
+        318748.77393786487,
+        0.3917333897804931
+      ],
+      "force_residual_N": [
+        1.0737439337382693e-06,
+        1.193035315644967e-08,
+        2.822568307969675e-06
+      ],
+      "moment_residual_Nmm": [
+        -0.005795838935171105,
+        -0.0008815515325295564,
+        0.00014528156692517058
+      ]
+    },
+    {
+      "total_time": 1.75,
+      "load_factor": 0.25,
+      "displacement_max_mm": 4.690886969864199,
+      "displacement_peak_node": 31924,
+      "displacement_peak_original_xyz_mm": [
+        40.229127283694,
+        -36.0,
+        2.0
+      ],
+      "VM_max_MPa": 391.3166522953059,
+      "VM_peak_element": 30206,
+      "PEEQ_max": 0.01154945,
+      "PEEQ_detection_threshold": 1e-08,
+      "PEEQ_peak_element": 38852,
+      "PEEQ_peak_element_corner_centroid_mm": [
+        87.749535220834,
+        15.26901425822275,
+        16.879368724248
+      ],
+      "plastic_quadrature_volume_mm3": 338.45665066079306,
+      "plastic_element_centroid_bounds_mm": [
+        [
+          21.30759977485375,
+          -26.592014182063,
+          -3.536395995179325
+        ],
+        [
+          105.46208700567001,
+          26.3906171967655,
+          29.6125591210195
+        ]
+      ],
+      "spring_energy_Nmm": 407.80782849795844,
+      "CCX_solid_internal_energy_Nmm": 2995.624090231097,
+      "external_incremental_trapezoid_work_Nmm": 3401.8293539199067,
+      "external_gross_trapezoid_work_Nmm": 93015.60406789141,
+      "work_absolute_residual_Nmm": 1.6025648091485891,
+      "work_relative_closure_error": 0.00047108912365101396,
+      "work_relative_to_gross_error": 1.722898889071224e-05,
+      "applied_force_N": [
+        5.904277067259045e-12,
+        7.913828826196928e-15,
+        -999.9999999994897
+      ],
+      "applied_moment_about_model_origin_Nmm": [
+        -5.122050798723947,
+        212503.8227689787,
+        0.17965328576875894
+      ],
+      "force_residual_N": [
+        -2.6314277519479123e-07,
+        -5.6507687831242395e-09,
+        -7.362507713493116e-07
+      ],
+      "moment_residual_Nmm": [
+        -0.005329733263634395,
+        -0.00013678019348617454,
+        0.00013906017115716818
+      ]
+    },
+    {
+      "total_time": 1.875,
+      "load_factor": 0.125,
+      "displacement_max_mm": 2.3845908014336326,
+      "displacement_peak_node": 31924,
+      "displacement_peak_original_xyz_mm": [
+        40.229127283694,
+        -36.0,
+        2.0
+      ],
+      "VM_max_MPa": 615.1288871947055,
+      "VM_peak_element": 38852,
+      "PEEQ_max": 0.01154945,
+      "PEEQ_detection_threshold": 1e-08,
+      "PEEQ_peak_element": 38852,
+      "PEEQ_peak_element_corner_centroid_mm": [
+        87.749535220834,
+        15.26901425822275,
+        16.879368724248
+      ],
+      "plastic_quadrature_volume_mm3": 338.45665066079306,
+      "plastic_element_centroid_bounds_mm": [
+        [
+          21.30759977485375,
+          -26.592014182063,
+          -3.536395995179325
+        ],
+        [
+          105.46208700567001,
+          26.3906171967655,
+          29.6125591210195
+        ]
+      ],
+      "spring_energy_Nmm": 101.98891131577409,
+      "CCX_solid_internal_energy_Nmm": 1102.2723992114506,
+      "external_incremental_trapezoid_work_Nmm": 1203.6476619961823,
+      "external_gross_trapezoid_work_Nmm": 95213.78575981513,
+      "work_absolute_residual_Nmm": 0.6136485310425996,
+      "work_relative_closure_error": 0.0005098240543457422,
+      "work_relative_to_gross_error": 6.444954647540013e-06,
+      "applied_force_N": [
+        2.9521385336295225e-12,
+        3.956914413098464e-15,
+        -499.99999999974483
+      ],
+      "applied_moment_about_model_origin_Nmm": [
+        -1.0622572582782936,
+        106252.0554837537,
+        0.04588726287641909
+      ],
+      "force_residual_N": [
+        2.42208041876385e-07,
+        9.142616055771245e-10,
+        -6.135729226919295e-07
+      ],
+      "moment_residual_Nmm": [
+        -0.004608501402548981,
+        -0.00087668421470255,
+        0.00011453260974991775
+      ]
+    },
+    {
+      "total_time": 2.0,
+      "load_factor": 0.0,
+      "displacement_max_mm": 0.09925853846232784,
+      "displacement_peak_node": 3943,
+      "displacement_peak_original_xyz_mm": [
+        30.307345545289,
+        -6.2883407190154,
+        30.0
+      ],
+      "VM_max_MPa": 845.7416518671683,
+      "VM_peak_element": 38852,
+      "PEEQ_max": 0.01154945,
+      "PEEQ_detection_threshold": 1e-08,
+      "PEEQ_peak_element": 38852,
+      "PEEQ_peak_element_corner_centroid_mm": [
+        87.749535220834,
+        15.26901425822275,
+        16.879368724248
+      ],
+      "plastic_quadrature_volume_mm3": 338.45665066079306,
+      "plastic_element_centroid_bounds_mm": [
+        [
+          21.30759977485375,
+          -26.592014182063,
+          -3.536395995179325
+        ],
+        [
+          105.46208700567001,
+          26.3906171967655,
+          29.6125591210195
+        ]
+      ],
+      "spring_energy_Nmm": 0.00649543850952473,
+      "CCX_solid_internal_energy_Nmm": 476.72852908041136,
+      "external_incremental_trapezoid_work_Nmm": 477.2641751245394,
+      "external_gross_trapezoid_work_Nmm": 95940.16924668677,
+      "work_absolute_residual_Nmm": -0.5291506056184971,
+      "work_relative_closure_error": 0.0011087163738623396,
+      "work_relative_to_gross_error": 5.515422890884373e-06,
+      "applied_force_N": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "applied_moment_about_model_origin_Nmm": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "force_residual_N": [
+        1.4234926370244524e-09,
+        -1.2010841863618587e-10,
+        -1.0095120156483617e-08
+      ],
+      "moment_residual_Nmm": [
+        -0.0036030637826862805,
+        -0.0012734340135739375,
+        9.026920042710419e-05
+      ]
+    }
+  ],
+  "target_load_factor_reached": true,
+  "planned_path_complete": true,
+  "mesh_volume_mm3": 285403.5077847362,
+  "work_relative_tolerance": 0.001,
+  "incremental_work_diagnostic_pass": true,
+  "maximum_ENER_relative_to_gross_error": 0.0015851409714693634,
+  "all_frames_ENER_diagnostic_pass": false,
+  "scope": "J2 reference sensitivity; no damage/fatigue model. Volume uses reference integration-point quadrature threshold; bounds use element centroids. Incremental external work follows the frozen loading/unloading path.",
+  "measured_plastic_domain_max": 0.04698042567140203,
+  "within_measured_pre_necking_domain": true,
+  "unloading_complete": true,
+  "unloaded_residual": {
+    "total_time": 2.0,
+    "load_factor": 0.0,
+    "displacement_max_mm": 0.09925853846232784,
+    "displacement_peak_node": 3943,
+    "displacement_peak_original_xyz_mm": [
+      30.307345545289,
+      -6.2883407190154,
+      30.0
+    ],
+    "VM_max_MPa": 845.7416518671683,
+    "VM_peak_element": 38852,
+    "PEEQ_max": 0.01154945,
+    "PEEQ_detection_threshold": 1e-08,
+    "PEEQ_peak_element": 38852,
+    "PEEQ_peak_element_corner_centroid_mm": [
+      87.749535220834,
+      15.26901425822275,
+      16.879368724248
+    ],
+    "plastic_quadrature_volume_mm3": 338.45665066079306,
+    "plastic_element_centroid_bounds_mm": [
+      [
+        21.30759977485375,
+        -26.592014182063,
+        -3.536395995179325
+      ],
+      [
+        105.46208700567001,
+        26.3906171967655,
+        29.6125591210195
+      ]
+    ],
+    "spring_energy_Nmm": 0.00649543850952473,
+    "CCX_solid_internal_energy_Nmm": 476.72852908041136,
+    "external_incremental_trapezoid_work_Nmm": 477.2641751245394,
+    "external_gross_trapezoid_work_Nmm": 95940.16924668677,
+    "work_absolute_residual_Nmm": -0.5291506056184971,
+    "work_relative_closure_error": 0.0011087163738623396,
+    "work_relative_to_gross_error": 5.515422890884373e-06,
+    "applied_force_N": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "applied_moment_about_model_origin_Nmm": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "force_residual_N": [
+      1.4234926370244524e-09,
+      -1.2010841863618587e-10,
+      -1.0095120156483617e-08
+    ],
+    "moment_residual_Nmm": [
+      -0.0036030637826862805,
+      -0.0012734340135739375,
+      9.026920042710419e-05
+    ]
+  }
+}

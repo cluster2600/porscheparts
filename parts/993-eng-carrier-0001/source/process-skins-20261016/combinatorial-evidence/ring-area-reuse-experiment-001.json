@@ -1,0 +1,50 @@
+{
+  "schema": "ring-area-reuse-experiment-results-1",
+  "status": "passed_equivalent_not_adopted",
+  "plan_sha256": "2da4ad05a8b1c1b556f0bc198fdc7d69f65c587c2fdfcdcc7b810c03ca07315b",
+  "runner_sha256": "43666495ff3cca06a48a98e05bb2574eb8162f299d9254707ce6b4437d2f4942",
+  "adopted": false,
+  "region_generator_executed": false,
+  "fixtures_receipt_sha256": "3dd9a78b968c168fcd8d1bad1c97e18ca18ca7f6174092a93294a210603cc7a4",
+  "large_chart": {
+    "checks": {
+      "wkb_identical": true,
+      "full_receipt_identical": true,
+      "statistics_identical": true
+    },
+    "statistics": {
+      "calls": 5875,
+      "full_recompute_fallbacks": 0,
+      "changed_line_updates": 29370,
+      "accepted_trials": 5874,
+      "rejected_trials": 0
+    },
+    "seconds": 238.35008545801975,
+    "cpu_seconds": 223.834712,
+    "baseline_seconds": 324.72908308380283,
+    "baseline_cpu_seconds": 313.498215,
+    "observed_wall_speedup": 1.3624038877930122,
+    "observed_cpu_speedup": 1.4005790799775506,
+    "baseline_receipt_sha256": "cc48c4830655acd63c288055e822ee105f35213366eec34ea0d63d2b91463866",
+    "result_sha256": "9650ca2d1e46edecc4f1baad9e905323a2c019a645e4e140826503c3e9d6933a"
+  },
+  "runtime": {
+    "python": "3.11.15 (main, Jul 23 2026, 14:34:23) [Clang 22.1.3 ]",
+    "executable": "/Users/maxime/.codex/worktrees/993-carrier-revalidation/3dprinting993/work/part-workflow/runtimes/pyslm-coverage-011/env/bin/python",
+    "numpy": "1.26.4",
+    "shapely": "2.2.0",
+    "nice": 10,
+    "load_average": [
+      13.08203125,
+      15.09033203125,
+      14.6103515625
+    ]
+  },
+  "comparison_limits": "Historical baseline not rerun under concurrent load. This single isolated nice10 process shares the machine with four unchanged live v5 workers and watcher006. Wall-time ratio is observational, not a controlled performance guarantee.",
+  "maximum_rss_bytes": 199573504,
+  "total_seconds": 240.0043224999681,
+  "total_cpu_seconds": 225.42556100000002,
+  "frozen_inputs_unchanged": true,
+  "experimental_snapshot_unchanged": true,
+  "no_versioned_source_or_recipe_changed": true
+}

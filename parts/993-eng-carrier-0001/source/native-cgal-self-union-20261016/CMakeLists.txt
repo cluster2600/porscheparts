@@ -1,0 +1,7 @@
+cmake_minimum_required(VERSION 3.16)
+project(carrier_soup_boolean LANGUAGES CXX)
+find_package(CGAL REQUIRED)
+add_executable(carrier_soup_boolean soup_boolean.cpp)
+target_compile_features(carrier_soup_boolean PRIVATE cxx_std_17)
+target_compile_definitions(carrier_soup_boolean PRIVATE CGAL_BO3_TIMERS)
+target_link_libraries(carrier_soup_boolean PRIVATE CGAL::CGAL)

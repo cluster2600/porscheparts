@@ -1,0 +1,71 @@
+{
+  "schema": "root-current24af-installed-law-API-terminal-review-1",
+  "status": "closed_actual_RC1_native_endpoint_evaluator_refusal_preserved_no_candidate",
+  "owner_terminal_sha256": "322e7f9bc5b7cc5fada53acd84bb5cec53406830e7ab08b16a45714560f4f650",
+  "whole_owner_object_and_original_encoded_bytes_equal": true,
+  "only_normalized_field": "collection_elapsed_seconds",
+  "whole_original_collector_NDIFF_inverse": true,
+  "four_original_functions_literal": true,
+  "sole_genuine_actual_tuple_inverse": true,
+  "actual_tool": {
+    "handle": 31497,
+    "initial": "f5c07a",
+    "terminal": "7fc9e3",
+    "returncode": 1,
+    "pid": 65952
+  },
+  "all10513_input_FD_pins9_outputs6_controls_rechecked": true,
+  "three_whole_pending_object_and_encoded_byte_inverses": true,
+  "whole_eight_source_roles_and_full_endpoint_stars_rechecked": true,
+  "actual_contour_and_domain": [
+    {
+      "side_index": 0,
+      "source_selected_path": [
+        76,
+        179,
+        337,
+        350
+      ],
+      "storage_sandbox_only": true,
+      "geometric_ElementarySpine_constructed": false,
+      "may_be_passed_to_Compute": false,
+      "actual_contour": [
+        76,
+        179,
+        337,
+        350
+      ],
+      "domain_mm": [
+        0.0,
+        83.97984790055281
+      ],
+      "native_split_flag_before": false
+    }
+  ],
+  "actual_API_method_docs": {
+    "MakeFillet.Add": "Add(*args, **kwargs)\nOverloaded function.\n\n1. Add(self: OCP.OCP.BRepFilletAPI.BRepFilletAPI_MakeFillet, E: OCP.OCP.TopoDS.TopoDS_Edge) -> None\n\nAdds a fillet contour in the builder (builds a contour of tangent edges). The Radius must be set after.\n\n2. Add(self: OCP.OCP.BRepFilletAPI.BRepFilletAPI_MakeFillet, Radius: float, E: OCP.OCP.TopoDS.TopoDS_Edge) -> None\n\nAdds a fillet description in the builder - builds a contour of tangent edges, - sets the radius.\n\n3. Add(self: OCP.OCP.BRepFilletAPI.BRepFilletAPI_MakeFillet, R1: float, R2: float, E: OCP.OCP.TopoDS.TopoDS_Edge) -> None\n\nAdds a fillet description in the builder - builds a contour of tangent edges, - sets a linear radius evolution law between the first and last vertex of the spine.\n\n4. Add(self: OCP.OCP.BRepFilletAPI.BRepFilletAPI_MakeFillet, L: OCP.OCP.Law.Law_Function, E: OCP.OCP.TopoDS.TopoDS_Edge) -> None\n\nAdds a fillet description in the builder - builds a contour of tangent edges, - sest the radius evolution law.\n\n5. Add(self: OCP.OCP.BRepFilletAPI.BRepFilletAPI_MakeFillet, UandR: OCP.OCP.TColgp.TColgp_Array1OfPnt2d, E: OCP.OCP.TopoDS.TopoDS_Edge) -> None\n\nAdds a fillet description in the builder - builds a contour of tangent edges, - sets the radius evolution law interpolating the values given in the array UandR :\n",
+    "MakeFillet.GetLaw": "GetLaw(self: OCP.OCP.BRepFilletAPI.BRepFilletAPI_MakeFillet, IC: int, E: OCP.OCP.TopoDS.TopoDS_Edge) -> OCP.OCP.Law.Law_Function\n",
+    "FilBuilder": "Tool of construction of fillets 3d on edges (on a solid).",
+    "FilBuilder.GetLaw": "GetLaw(self: OCP.OCP.ChFi3d.ChFi3d_FilBuilder, IC: int, E: OCP.OCP.TopoDS.TopoDS_Edge) -> OCP.OCP.Law.Law_Function\n\nReturns the rule of elementary evolution of the part to variable vector framing E, returns a rule zero if E is flagged as edge constant.\n",
+    "FilBuilder.SetLaw": "SetLaw(self: OCP.OCP.ChFi3d.ChFi3d_FilBuilder, IC: int, E: OCP.OCP.TopoDS.TopoDS_Edge, L: OCP.OCP.Law.Law_Function) -> None\n\nSets the rule of elementary evolution of the part to variable vector framing E.\n",
+    "FilSpine.AppendElSpine": "AppendElSpine(self: OCP.OCP.ChFiDS.ChFiDS_FilSpine, Els: OCP.OCP.ChFiDS.ChFiDS_ElSpine) -> None\n",
+    "Spine.SplitDone": "SplitDone(*args, **kwargs)\nOverloaded function.\n\n1. SplitDone(self: OCP.OCP.ChFiDS.ChFiDS_Spine) -> bool\n\n2. SplitDone(self: OCP.OCP.ChFiDS.ChFiDS_Spine, B: bool) -> None\n",
+    "ElSpine.FirstParameter": "FirstParameter(*args, **kwargs)\nOverloaded function.\n\n1. FirstParameter(self: OCP.OCP.ChFiDS.ChFiDS_ElSpine) -> float\n\n2. FirstParameter(self: OCP.OCP.ChFiDS.ChFiDS_ElSpine, P: float) -> None\n",
+    "Law_BSpline": "Definition of the 1D B_spline curve.Definition of the 1D B_spline curve.Definition of the 1D B_spline curve.",
+    "Law_BSpFunc": "Law Function based on a BSpline curve 1d. Package methods and classes are implemented in package Law to construct the basis curve with several constraints.Law Function based on a BSpline curve 1d. Package methods and classes are implemented in package Law to construct the basis curve with several constraints.Law Function based on a BSpline curve 1d. Package methods and classes are implemented in package Law to construct the basis curve with several constraints.",
+    "Law.Bounds": "Bounds(self: OCP.OCP.Law.Law_BSpFunc) -> tuple[float, float]\n",
+    "Law.D1": "D1(self: OCP.OCP.Law.Law_BSpFunc, X: float) -> tuple[float, float]\n"
+  },
+  "actual_failure": {
+    "type": "ValueError",
+    "message": "Native endpoint value/derivative readback differs",
+    "traceback": "Traceback (most recent call last):\n  File \"/Users/maxime/.codex/worktrees/993-carrier-revalidation/3dprinting993/work/carrier-process-20261017/bounded-webs-first-window-corner-slide-law-API-observer-preparation-001/observe.py\", line 121, in run\n    knots.SetValue(1,first);knots.SetValue(2,last);multiplicities.SetValue(1,5);multiplicities.SetValue(2,5);quartic=Law_BSpFunc(Law_BSpline(poles,knots,multiplicities,4,False),first,last);route['constructed_quartic']=readback(quartic,first,last)\n  File \"/Users/maxime/.codex/worktrees/993-carrier-revalidation/3dprinting993/work/carrier-process-20261017/bounded-webs-first-window-corner-slide-law-API-observer-preparation-001/observe.py\", line 89, in readback\n    require(probes[0]['value_mm']==probes[-1]['value_mm']==0. and list(probes[0]['D1'])==list(probes[-1]['D1'])==[0.,0.],'Native endpoint value/derivative readback differs')\n  File \"/Users/maxime/.codex/worktrees/993-carrier-revalidation/3dprinting993/work/carrier-process-20261017/bounded-webs-C1-endfillet-preparation-002/close_end.py\", line 22, in require\n    if not value:raise ValueError(message)\nValueError: Native endpoint value/derivative readback differs\n"
+  },
+  "native_endpoint_value_and_derivative_numbers_saved": false,
+  "endpoint_failure_attributed_to_rounding": false,
+  "direct_Add_Law_GetLaw_SetLaw_or_manual_ElSpine_reached": false,
+  "law_storage_demonstrated": false,
+  "Build_or_Compute_or_Simulate_or_Shape_or_Boolean_or_candidate": false,
+  "current_master_unchanged": true,
+  "fresh_PID_PGID_absent": true
+}
