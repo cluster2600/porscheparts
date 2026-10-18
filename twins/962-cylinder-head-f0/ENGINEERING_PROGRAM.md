@@ -39,6 +39,14 @@ seven absolute SI limits and its own BEGIN40 birth reference. Root accepts
 fixed synthetic single-level software verification only. Both coarse and fine
 results remain available; their existence does not establish mechanical convergence.
 
+The [completed matched-time sensitivity diagnostic](derived/engineering/cp1-oneway-thermoelastic-time-sensitivity/README.md)
+compares 81 saved END pairs and all 225 own-birth references without another
+native solve. It scans 3,854,107 END scalar pairs and retains per-time/region
+counts, maxima and witnesses. The largest postbirth stress-component difference
+is about 1.65 kPa. Separate BEGIN40/BEGIN80 references and thermal histories remain
+part of that sensitivity; no mechanical convergence order or cross-level pass
+threshold is asserted. Material/strength, calibrated LPBF and head admission remain open.
+
 ## Current execution order
 
 All new deliverables remain in English. Preserve the water-cooled 962 C 3.0 L

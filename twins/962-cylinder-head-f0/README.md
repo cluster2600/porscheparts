@@ -25,6 +25,12 @@ completes 80 steps and passes **15,734,237 scalar comparisons** under the same
 absolute SI limits, using its own BEGIN40 birth reference. Complete fields and
 saved-result reviews are retained. Mechanical convergence and physical qualification
 remain open.
+The [matched-time sensitivity diagnostic](derived/engineering/cp1-oneway-thermoelastic-time-sensitivity/README.md)
+compares 81 saved coarse/fine END pairs and all 225 own-birth references.
+It retains complete counts and maximum witnesses for 3,854,107 END scalar pairs;
+the largest postbirth stress-component difference is about 1.65 kPa.
+This is a fixed synthetic sensitivity result, with no convergence order or
+cross-level acceptance threshold. Head and material/process qualification remain open.
 The [corrected one-way thermoelastic coupon](derived/engineering/cp1-oneway-thermoelastic-transfer/README.md)
 passes 31,241,797 scalar comparisons under the unchanged SI limits. Its complete
 fields, source, earlier setup failure and separate saved-result reviews are retained.
