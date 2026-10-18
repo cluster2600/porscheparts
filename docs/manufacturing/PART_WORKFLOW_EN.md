@@ -8,38 +8,33 @@ package. The Porsche 993 Turbo engine carrier is the working example. Each
 stage retains its inputs, settings, software identities, outputs and reports.
 A geometry change creates a new revision; results follow that revision.
 
-## Current carrier revision — first-window stock design
+## Current carrier revision — smooth rib reinforcement
 
-The closed mechanical checkpoint is **stock-only BREP 42da92cc**, with the first main-window cut-profile inset increased from **1.5 mm to 2.8 mm** on both mirrored arms. This is an inset parameter, not a measured wall thickness. The design also omits the old 07b blend. [Figure 32](../../parts/993-eng-carrier-0001/source/progress-figures-20261016/index.html#first-window-stock-comparison) shows both actual surfaces at the same camera and scale.
+The current **d64a7faf** native master weighs **1.274797998 kg**, leaving **25.20 g** below the **1.30 kg** limit. Four smooth outward rib additions use **6.96 g** over the preceding stock design. The [actual CAD comparison](../media/carrier-rib-actual-surfaces-20261018/README.md), [reinforcement drawing](../media/carrier-rib-C2-20261018/README.md) and [nominal interface sheet](../media/carrier-nominal-interfaces-20261018/README.md) show the shape change and the present model dimensions.
 
-| Stage for this stock revision | Actual result retained |
+| Stage for this rib revision | Actual retained result |
 | --- | --- |
-| Native geometry | Valid single solid; strict original-baseline retention; positive added material; native mass **1.267835378 kg** under **1.30 kg**. The rejected union remains a separate failed version. |
-| Surface | Fresh **433c85bf** STL with **582,946 triangles**. Whole topology/intersection checks pass; sampled CAD distances are **0.038562 mm forward / 0.047388 mm inverse**, within the original **0.06 mm** screen. These are sampled bounds. |
-| Protected interfaces | All eight complete original probe rosters and the original assembly predicate pass for this stock BREP and its fresh STL. The [closed stock check](../../parts/993-eng-carrier-0001/source/progress-figures-20261016/first-window-stock-comparison-20261018/proofs/stock-protected/root-terminal-review-001.json) retains the full results. |
-| T10 mesh | **158,156 nodes / 84,903 quadratic tetrahedra**; positive sampled Jacobians, minimum **0.008285532**. Import volume agrees with the corresponding native operator at relative difference **−4.44 × 10⁻¹⁶**. All six actual node rosters were checked. |
-| Mechanics | Both new stock cases completed, with original loads and independent energy checks. Results follow below; no earlier CAD result is transferred. |
-| Process preparation | Fresh pose, **seven regions and 1,034 layers** are retained. Separating one duplicated vertex identity resolved the prism-chain pinch while preserving all oriented triangle coordinates and original guards. Remaining native CSG envelopes, supports, whole-layer vectors and the machine job remain to be produced. |
-| Reusable delivery | [139 exact geometry/source files](../../parts/993-eng-carrier-0001/source/design-20261016/first-window-stock-20261018/archive.json) are copied and ROOT-closed. Rebuilding from these sources reproduced the BREP and construction STL byte-for-byte; the STEP differs only in its export timestamp. The delivery README is a frozen proposal snapshot; [the present explanation and actual copy review](../../parts/993-eng-carrier-0001/source/progress-figures-20261016/first-window-stock-comparison-20261018/README.md) identify the completed copy and external reproduction dependencies. |
+| Native geometry | One valid solid, 236 faces; strict original-baseline and stock retention; positive material addition; mass and bounds checks pass. |
+| STEP exchange | Both fresh strict native differences are valid and empty in all dimensions. Adaptive relative volume difference **5.98 × 10⁻⁹**, below the retained **10⁻⁸** guard. Native BREP remains master. |
+| Surface | Fresh **597,720-triangle** STL; whole topology/intersection checks pass. Sampled distances **0.015438140 mm STL-to-CAD / 0.047388128 mm CAD-to-STL** pass the original **0.06 mm** screen. |
+| Protected interfaces | All eight complete original probe rosters and the original study assembly predicate pass for this BREP and its fresh STL. |
+| Volume mesh | **159,612 nodes / 85,767 C3D10 tetrahedra**; positive sampled Jacobians, minimum **0.008331803**. CAD import agrees exactly with the corresponding native volume operator; all six actual bore-node rosters checked. |
+| Mechanics | Two actual current-geometry cases completed with full peak and independent energy reports. Local refinement is the next calculation. |
+| Source reproduction | Rebuilding from the rebased handover sources reproduced both the generated **b95c1659** BREP and the canonical **d64a7faf** master byte-for-byte. All 12 window and four rail ledger rows match. |
+| Process preparation | Seven-region, 1,034-layer experiments still describe the preceding stock body. Six native-envelope cases are closed; the last repair reached direct-distance calculation before a composed-report schema error. These results are not transferred to the new rib geometry. Supports, complete vectors and a machine job remain subsequent stages. |
 
-[Figure 33](../../parts/993-eng-carrier-0001/source/progress-figures-20261016/index.html#first-window-stock-fields) shows both actual stock mechanical fields with common scales, true displacement x1 and all global integration-point ties. Its [accepted PNG/PDF review](../../parts/993-eng-carrier-0001/source/progress-figures-20261016/first-window-stock-fields-20261018/proofs/render/root-terminal-review-001.json) is separate from mechanical acceptance.
+Both mechanical cases use **Fz = −4,000 N**, **My = 850 N·m**, **E = 107,000 MPa** and **ν = 0.31**. K1000 means **1,000 N/mm total per end eye and axis**, distributed across that eye's actual nodes.
 
-The [rib reinforcement drawing](../media/carrier-rib-C2-20261018/README.md) explains the separate d64a7faf geometry trial; its image does not establish new mechanical performance.
-
-A later **rib-width trial, BREP d64a7faf**, has passed local single-solid, strict original-baseline and stock-retention, addition, mass and bounds gates at **1.274797998 kg**. The [actual trial review](../../work/carrier-process-20261017/bounded-webs-stock-rib-C2-width-trial-preparation-002/root-terminal-review-001.json) keeps this geometry result separate. Its fresh **597,720-triangle** surface passes the complete topology/intersection checks and sampled distances of **0.015438140 mm STL-to-CAD / 0.047388128 mm CAD-to-STL**, within the original **0.06 mm** screen. The [actual surface comparison](../media/carrier-rib-actual-surfaces-20261018/README.md) shows both complete surfaces and the wider rib transition. Its [closed protected-interface check](../../work/carrier-process-20261017/bounded-webs-stock-rib-protected-chunks-preparation-001/root-terminal-review-001.json) also passes all eight original rosters and the assembly predicate. Fresh mesh and mechanical results remain pending; Figure 33 contains only the 1.267835378 kg stock fields.
-
-Both mechanical cases use **Fz = −4,000 N**, **My = 850 N·m**, E = 107,000 MPa and Poisson ratio 0.31. K1000 means **1,000 N/mm total per end eye and axis**, distributed across that eye's actual nodes.
-
-| New stock case | Maximum von Mises stress | Maximum displacement | Relative energy closure error |
+| Current rib case | Maximum von Mises stress | Maximum displacement | Relative energy closure error |
 | --- | ---: | ---: | ---: |
-| Rigid end eyes | 621.141462 MPa | 2.771585 mm | 6.14 × 10⁻¹⁰ |
-| K1000 end eyes | 1,633.128570 MPa | 18.025226 mm | 4.06 × 10⁻⁹ |
+| Rigid end eyes | 600.659493 MPa | 2.709626 mm | 1.70 × 10⁻⁹ |
+| K1000 end eyes | 1,548.151984 MPa | 16.478757 mm | 1.56 × 10⁻⁸ |
 
-Both energy errors pass the original **10⁻⁴** limit. Every global maximum is retained; both cases have one common peak at element **39298 / integration point 1**, at **(26.773663, 13.630434, 29.778673) mm**. These initial mesh results do not establish stress convergence. The spring peak exceeds the linked Ti64 specimen yield references, so structural work continues at this hotspot within the remaining **32.16 g** mass allowance.
+Both energy errors pass the original **10⁻⁴** limit. Relative to the preceding stock results, the maximum stresses decrease by **3.30% / 5.20%**. Every global maximum is retained. The peaks moved to the end junction and the outer rib transition; current work refines both actual peak-element regions on the same CAD. Stress convergence and adequate strength remain open.
 
-The detailed [T10 review](../../work/carrier-process-20261017/bounded-webs-first-window-stock-BREP-mesh-preparation-001/root-terminal-review-001.json), [two-case mechanical review](../../work/carrier-process-20261017/bounded-webs-first-window-stock-static-preparation-001/root-solver-terminal-review-001.json), [exact fan/pose/calendar review](../../work/carrier-stock-prism-fan-correction-preparation-001/root-terminal-review-001.json) and [source reconstruction review](../../work/carrier-first-window-stock-reproduction-preparation-001/root-terminal-review-001.json) currently use retained local `work/` files. They are separate from the frozen Figure 32 image capsule and its earlier checkpoint.
+The [English numerical checkpoint](../reports/carrier-rib-20261018/README.md) contains the complete copied STEP, volume-mesh, mechanical and energy reports, exact peak coordinates and proposed local sizes. The [actual source-reproduction review](../../work/carrier-stock-rib-C2-handover-reproduction-preparation-001/root-terminal-review-001.json) retains both complete BREP comparisons and all ledger checks; its full runtime maps remain local.
 
-The [results supplement](CARRIER_SUPPLEMENTS_20261017_EN.md) and [Figures 27–31](../../parts/993-eng-carrier-0001/source/progress-figures-20261016/index.html#C1-terminal-taper-fields) preserve the earlier terminal-taper, seven-edge-law, 07b coarse mechanics and original C1/H2 histories with their own refusals and scopes. They do not establish current stock strength or stress convergence. The [LPBF material reference note](CARRIER_LPBF_REFERENCES_20261018_EN.md) records process-specific supplier data without assigning a qualified design allowable or fatigue curve.
+The preceding **42da92cc** stock design weighed **1.267835378 kg** and produced **621.141462 / 1,633.128570 MPa** peaks. [Figure 32](../../parts/993-eng-carrier-0001/source/progress-figures-20261016/index.html#first-window-stock-comparison), [Figure 33](../../parts/993-eng-carrier-0001/source/progress-figures-20261016/index.html#first-window-stock-fields) and its [source handover](../../parts/993-eng-carrier-0001/source/design-20261016/first-window-stock-20261018/archive.json) retain that separate revision. The [17 October supplement](CARRIER_SUPPLEMENTS_20261017_EN.md) preserves the earlier C1/H2, terminal-taper and 07b histories with their own refusals. The [LPBF reference note](CARRIER_LPBF_REFERENCES_20261018_EN.md) records process-specific supplier data without assigning a qualified design allowable or fatigue curve.
 
 ## One workflow, three possible starting points
 
