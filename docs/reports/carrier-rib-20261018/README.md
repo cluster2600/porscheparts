@@ -104,9 +104,21 @@ The [two completed R1 cases](R1-mechanics-root-review.json) use this fresh **166
 
 The complete [rigid](R1-rigid-energy-audit.json) and [spring](R1-spring-energy-audit.json) energy audits pass the unchanged **10⁻⁴** criterion. The ROOT review verifies all **62 output files**, actual native plans, solver identity, every global maximum and all current input identities.
 
-Both sole maxima occur at **element 83,728 / integration point 1**, undeformed coordinates **(83.397174, −15.380329, 13.889129) mm**. Its measured maximum corner edge is **0.939982012 mm**, giving the proposed original H/2 target **0.469991006 mm**. Both roles identify the same measured site. This point is distinct from the older d64 reference locations used for the preceding R1 geometric observations; its local geometry is the next observation target.
+Both sole maxima occur at **element 83,728 / integration point 1**, undeformed coordinates **(83.397174, −15.380329, 13.889129) mm**. Its measured maximum corner edge is **0.939982012 mm**, giving the proposed original H/2 target **0.469991006 mm**. Both roles identify the same measured site. This point is distinct from the older d64 reference locations used for the preceding R1 geometric observations; its actual native observations and section are recorded below.
 
-R1 and d64 use different CAD and independently generated coarse meshes, so changes in their maxima include geometry and discretisation effects. R1 stress convergence and adequate strength remain open. The d64 field images retain their original identities; a local R1 refinement is being prepared from these new actual peak objects.
+R1 and d64 use different CAD and independently generated coarse meshes, so changes in their maxima include geometry and discretisation effects. R1 stress convergence and adequate strength remain open. The d64 field images retain their original identities. The separate R1 refinement and its original refusal are recorded below.
+
+### Actual R1 peak geometry and saved refinement
+
+The [fresh own-peak observation](R1-own-peak-geometry-root-review.json) queries the actual R1 body at its own common peak and all four corner probes. Every probe retains all **243 face / 738 edge distances**. The [complete observations](R1-own-peak-geometry-observations.md) and [machine-readable summary](R1-own-peak-geometry-summary.json) preserve all **10 qualified chords and 32 unresolved nearest-support rows**.
+
+At the integration point, the nearest B-spline support has a qualified **0.085913084 mm** normal chord to a planar support. A reciprocal support chord is **0.067453672 mm**. Their fresh shared edge has native C0 continuity, lies **0.092581044 mm** from the peak and has a reported outward-normal angle of **137.055729°**. These are local support/normal observations near an edge, not a global minimum wall thickness, material-side classification or established stress singularity. The summary's pending-ROOT sentence is its frozen creation-time status; the linked review closes the actual job.
+
+The [separate exact section](R1-own-peak-section-root-review.json) retains the complete native BREP intersection and all **41 curves / 1,833 sampled positions** at **X = 83.39717404347466 mm**. It uses the original **0.001 mm** drawing deflection. Maximum observed plane residual is **4.2633 × 10⁻¹⁴ mm**, below the section's native edge tolerance. Raw native curves are saved before sampling, and complete sampled data before their checks. A normal chord in three dimensions is distinct from this plane section; a YZ projection must be labelled as such.
+
+The [R1 discrete refinement](R1-discrete-volume-refusal-root-review.json) actually completed **four passes**, saving **167,765 nodes / 90,628 T10 elements**. All original NPZ coordinate bytes, serialized NODE lines, node IDs, six complete bore rosters, protected corner facets and their edge-to-midside associations remain unchanged. The original generated-volume nonregression gate then refuses **288,388.7266472696 mm³**, compared with the generated reference **288,388.7266472701 mm³**. Its relative errors are **−0.00021898122148578114 / −0.00021898122148422683**. The final full H/2 measurement is not reached, and no refined R1 mechanical case is solved.
+
+The complete refusal remains unchanged. A distinct read-only diagnostic of the two saved serialized meshes is being prepared with the same operator and original full H/2 checks. It will not replace this generated-reference result. A subsequent geometry revision may alter local material around the opening while retaining the declared holes, bearing surfaces and tool clearances; each actual revision will require its own geometry, mesh and mechanical results within **1.30 kg**.
 
 ## Evidence scope
 
