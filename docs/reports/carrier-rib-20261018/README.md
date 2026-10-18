@@ -1,5 +1,7 @@
 # Reinforced carrier: current numerical checkpoint
 
+Latest design work: [reinforcing the window root](#reinforcing-the-window-root--new-24af-design-trial). The **24af** shape is a locally checked design trial; the completed d64 study and separate R1 mechanical results retain their own identities below.
+
 The **d64a7faf** native master has an adaptive volume of **288,415.83655452315 mm³** and a dense reference mass of **1.274797998 kg**. The four smooth rib additions use **6.96 g**, leaving **25.20 g** below the **1.30 kg** limit.
 
 See the [actual CAD surface comparison](../../media/carrier-rib-actual-surfaces-20261018/README.md), [reinforcement construction drawing](../../media/carrier-rib-C2-20261018/README.md) and [nominal interface sheet](../../media/carrier-nominal-interfaces-20261018/README.md).
@@ -116,9 +118,35 @@ At the integration point, the nearest B-spline support has a qualified **0.08591
 
 The [separate exact section](R1-own-peak-section-root-review.json) retains the complete native BREP intersection and all **41 curves / 1,833 sampled positions** at **X = 83.39717404347466 mm**. It uses the original **0.001 mm** drawing deflection. Maximum observed plane residual is **4.2633 × 10⁻¹⁴ mm**, below the section's native edge tolerance. Raw native curves are saved before sampling, and complete sampled data before their checks. A normal chord in three dimensions is distinct from this plane section; a YZ projection must be labelled as such. The [actual native section image](../../media/carrier-R1-own-peak-section-20261018/README.md) retains the whole outline and uses the actual peak-element bounds for the detail, with projected endpoints and 3D lengths labelled.
 
-The [R1 discrete refinement](R1-discrete-volume-refusal-root-review.json) actually completed **four passes**, saving **167,765 nodes / 90,628 T10 elements**. All original NPZ coordinate bytes, serialized NODE lines, node IDs, six complete bore rosters, protected corner facets and their edge-to-midside associations remain unchanged. The original generated-volume nonregression gate then refuses **288,388.7266472696 mm³**, compared with the generated reference **288,388.7266472701 mm³**. Its relative errors are **−0.00021898122148578114 / −0.00021898122148422683**. The final full H/2 measurement is not reached, and no refined R1 mechanical case is solved.
+The [R1 discrete refinement](R1-discrete-volume-refusal-root-review.json) actually completed **four passes**, saving **167,765 nodes / 90,628 T10 elements**. All original NPZ coordinate bytes, serialized NODE lines, node IDs, six complete bore rosters, protected corner facets and their edge-to-midside associations remain unchanged. The original generated-volume nonregression gate then refuses **288,388.7266472696 mm³**, compared with the generated reference **288,388.7266472701 mm³**. Its relative errors are **−0.00021898122148578114 / −0.00021898122148422683**. Within that original refused stage, the final full H/2 measurement is not reached and no refined mechanical case is started.
 
-The complete refusal remains unchanged. A distinct read-only diagnostic of the two saved serialized meshes is being prepared with the same operator and original full H/2 checks. It will not replace this generated-reference result. A subsequent geometry revision may alter local material around the opening while retaining the declared holes, bearing surfaces and tool clearances; each actual revision will require its own geometry, mesh and mechanical results within **1.30 kg**.
+The complete refusal remains unchanged. The [distinct saved-mesh diagnostic](R1-saved-operator-H2-root-review.json) subsequently reads both saved INPs with the same Gmsh operator. Its [complete volume comparison](R1-saved-operator-volume-comparison.json) observes **288,388.7266472696 mm³** for each serialized mesh, with **zero exact binary64 difference**. Both complete original region-edge measurements ([rigid](R1-saved-H2-measurement-0.json), [spring](R1-saved-H2-measurement-1.json)) return **0.4699910057556872 mm**, below the unchanged **0.4699910057558742 mm** H/2 target. This separate diagnostic retains the original coordinates, NODE lexemes, six complete bore rosters and protected facets/midsides. It does not replace the original generated-reference comparison or adopt a new master.
+
+### Actual R1 mechanics on the saved refinement
+
+The [two completed refined R1 cases](R1-refined-mechanics-root-review.json) use the saved **167,765-node / 90,628-T10** mesh. Whole serialized coordinates, all loads and support cards were checked again. Material, load and K1000 definitions are unchanged from the coarse R1 cases.
+
+| Case | Coarse peak | Refined peak | Refined/coarse peak | Refined maximum displacement | Relative energy error |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| Rigid eyes | 735.976996 MPa | 842.642887 MPa | 1.144931 | 2.708498 mm | 5.13 × 10⁻⁹ |
+| K1000 eyes | 2,095.883175 MPa | 2,435.105337 MPa | 1.161852 | 16.427288 mm | 5.85 × 10⁻¹⁰ |
+
+Both complete [rigid](R1-refined-rigid-energy-audit.json) and [spring](R1-refined-spring-energy-audit.json) energy audits pass the original **10⁻⁴** limit. The ROOT review verifies all **64 output files**, native resources, solver identity and cleanup. Complete [rigid](R1-refined-rigid-assessment.json) and [spring](R1-refined-spring-assessment.json) assessments retain every global maximum and same-R1 coarse comparison.
+
+Both sole global peaks occur at **element 89,936 / integration point 2**, undeformed coordinates **(83.42304294902544, −15.452886912386544, 13.911696709557964) mm**. Its measured maximum corner edge is **0.385433557 mm**. Peak stresses rise **14.49% / 16.19%** while maximum displacements change **0.0226% / 0.0209%**. This remaining mesh sensitivity supplies no converged-stress or adequate-strength conclusion. No peak is excluded. These are two context cases, not the complete declared ten load cases under both support conditions.
+
+## Reinforcing the window root — new 24af design trial
+
+The editable change moves only the first main-window corner A along its original AB edge: **+1.5 mm in scaled X and +0.110294118 mm in Y**, mirrored across X. B and C stay fixed. Both targeted window branches change; the other **ten window branches** and four rib rails remain unchanged. The [effective override](corner-slide-effective-trial.json) is authoritative; copied nominal construction plans remain historical snapshots.
+
+The [actual construction review](corner-slide-construction-root-review.json) closes native BREP **24af0584** as one valid solid. The [strict original-baseline difference](corner-slide-baseline-minus-candidate.json) and [strict d64 difference](corner-slide-d64-minus-candidate.json) are valid and empty in all dimensions. The new design deliberately omits the separate R1 fillet; the [R1-minus-candidate result](corner-slide-R1-minus-candidate.json) retains that nonempty difference rather than claiming R1 containment. All [four tool-column predicates](corner-slide-four-tool-predicates.json) pass with zero positive solid intersection; any boundary contact must lie on the recorded exact pad support.
+
+The [fresh native-body review](corner-slide-body-root-review.json) records **one Solid / one shell, 236 faces / 725 edges / 482 vertices**, with zero degenerate edges. The [three same-Solid volume observations](corner-slide-three-volume-observations.json) keep **288,685.9375234367 mm³** F/F/F separate from **288,685.89908443496 mm³** adaptive volume. The [actual local measurements](corner-slide-local-measurements.json) give nominal mass **1.2759916739532025 kg** at **4,420 kg/m³**, leaving **24.01 g** below **1.30 kg**; bounds pass. This is **1.194 g** above d64.
+
+The [dedicated surface generation](corner-slide-surface-generation-root-review.json) produces the fresh **598,372-triangle** STL, SHA-256 **b4026f66…**. Surface distance/topology/intersection audits, complete protected-interface checks, volume mesh, mechanical cases and STEP exchange are still pending for this design. Earlier d64/R1 results do not complete those stages.
+
+The [new native observation](corner-slide-prior-R1-reference-root-review.json) queries 24af at the **prior R1 coarse reference** (83.39717404347466, −15.380328571289892, 13.889129384939432) mm and its four retained corner probes. This is not a stress peak calculated for 24af. At the reference point, fresh 24af support directions give three local normal chords: **5.959720525 mm (120→169)**, **2.188732128 mm (163→169)** and **2.188715195 mm (169→163)**. These distinct directions are not a global thickness or strength measurement, and their face indices belong only to this query body. The [complete assessment](corner-slide-prior-R1-reference-assessment.json) and ROOT review retain all **ten qualified chords / thirty unresolved nearest-support rows**, complete five-probe distances and raw ray hits.
+
 
 ## Evidence scope
 
