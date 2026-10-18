@@ -1,0 +1,181 @@
+{
+  "schema": "ROOT-independent-symbolic-T6-divergence-flux-fixture-1",
+  "scope": "Universal reference-face symbolic fixture only; no current mesh body, Gmsh or NumPy read",
+  "node_order": [
+    "corner00",
+    "corner10",
+    "corner01",
+    "mid01",
+    "mid12",
+    "mid20"
+  ],
+  "formula": "One third integral x dot (dx/du cross dx/dv), reference u>=0,v>=0,u+v<=1; sum coefficients times det(Xi,Xj,Xk)",
+  "coefficients": [
+    {
+      "indices": [
+        0,
+        1,
+        2
+      ],
+      "coefficient": "1/45"
+    },
+    {
+      "indices": [
+        0,
+        1,
+        3
+      ],
+      "coefficient": "1/30"
+    },
+    {
+      "indices": [
+        0,
+        1,
+        4
+      ],
+      "coefficient": "-1/18"
+    },
+    {
+      "indices": [
+        0,
+        1,
+        5
+      ],
+      "coefficient": "-1/18"
+    },
+    {
+      "indices": [
+        0,
+        2,
+        3
+      ],
+      "coefficient": "1/18"
+    },
+    {
+      "indices": [
+        0,
+        2,
+        4
+      ],
+      "coefficient": "1/18"
+    },
+    {
+      "indices": [
+        0,
+        2,
+        5
+      ],
+      "coefficient": "-1/30"
+    },
+    {
+      "indices": [
+        0,
+        3,
+        4
+      ],
+      "coefficient": "2/45"
+    },
+    {
+      "indices": [
+        0,
+        3,
+        5
+      ],
+      "coefficient": "4/15"
+    },
+    {
+      "indices": [
+        0,
+        4,
+        5
+      ],
+      "coefficient": "2/45"
+    },
+    {
+      "indices": [
+        1,
+        2,
+        3
+      ],
+      "coefficient": "-1/18"
+    },
+    {
+      "indices": [
+        1,
+        2,
+        4
+      ],
+      "coefficient": "1/30"
+    },
+    {
+      "indices": [
+        1,
+        2,
+        5
+      ],
+      "coefficient": "-1/18"
+    },
+    {
+      "indices": [
+        1,
+        3,
+        4
+      ],
+      "coefficient": "-4/15"
+    },
+    {
+      "indices": [
+        1,
+        3,
+        5
+      ],
+      "coefficient": "-2/45"
+    },
+    {
+      "indices": [
+        1,
+        4,
+        5
+      ],
+      "coefficient": "2/45"
+    },
+    {
+      "indices": [
+        2,
+        3,
+        4
+      ],
+      "coefficient": "2/45"
+    },
+    {
+      "indices": [
+        2,
+        3,
+        5
+      ],
+      "coefficient": "-2/45"
+    },
+    {
+      "indices": [
+        2,
+        4,
+        5
+      ],
+      "coefficient": "-4/15"
+    },
+    {
+      "indices": [
+        3,
+        4,
+        5
+      ],
+      "coefficient": "8/45"
+    }
+  ],
+  "partition_of_unity": true,
+  "affine_z1_flux": "1/6",
+  "reversed_orientation_flux": "-1/6",
+  "nonaffine_midside_flux": "3/16",
+  "direct_coordinate_polynomial_integral_equals_determinant_expansion": true,
+  "actual_mesh_result": null
+}
