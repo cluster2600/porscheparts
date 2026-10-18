@@ -41,6 +41,12 @@ cells, including 2,997 initially good cells and 99 shared cells. Its complete
 read-only report and separate reviews are available. This census changes no mesh
 and establishes no repair feasibility or head-analysis admission.
 
+The [completed 15-case local-domain checks](derived/engineering/current126-alternative-case-domains/README.md)
+retain all 41,886 exact pair records for 580 old and 834 candidate cells.
+All 15 relative local domains pass. These saved associations support current-parent
+context preparation; no replacement is applied and the head retains 126 poor
+cells with minimum SICN 0.039074265058645995.
+
 The [completed alternative local campaign](derived/engineering/current126-alternative-local-campaign/README.md)
 retains the full 31-star screen, 29 generation runs and 28 conditional Netgen
 runs. Fifteen candidates pass local quality and storage for later domain
