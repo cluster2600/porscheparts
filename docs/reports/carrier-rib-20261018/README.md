@@ -195,7 +195,7 @@ The [two-path R1 attempt](corner-slide-two-four-edge-R1-root-review.json) freshl
 
 ### Editable current candidate and actual reproduction
 
-The [editable source handover](../../../parts/993-eng-carrier-0001/source/design-20261016/corner-slide-candidate-20261018/ACTUAL_REPLAY.md) preserves all **55 original files**, their manifest, relative editable construction sources and licences. The actual public `rebuild.py rebuild` CLI reproduces both generated **2fea38f6…** and canonical **24af0584…** BREP bytes and every 12-window/four-rail ledger row, five strict differences and four tool-column checks. The exact external CAD runtime is still required. The original bundled README's “not run yet” sentence is a frozen proposal snapshot; the separate actual-replay entry point supplies the current closure. Reproduction does not replace current geometry or downstream qualification.
+The [editable source handover](../../../parts/993-eng-carrier-0001/source/design-20261016/corner-slide-candidate-20261018-evidence/ACTUAL_REPLAY.md) preserves all **55 original files**, their manifest, relative editable construction sources and licences. The actual public `rebuild.py rebuild` CLI reproduces both generated **2fea38f6…** and canonical **24af0584…** BREP bytes and every 12-window/four-rail ledger row, five strict differences and four tool-column checks. The exact external CAD runtime is still required. The original bundled README's “not run yet” sentence is a frozen proposal snapshot; the separate actual-replay entry point supplies the current closure. Reproduction does not replace current geometry or downstream qualification.
 
 ### Current process inputs and one geometric envelope
 

@@ -1,6 +1,6 @@
 # From a part reference to the manufacturing handover
 
-[French guide](PART_WORKFLOW.md) · [17 October results and reproduction notes](CARRIER_SUPPLEMENTS_20261017_EN.md)
+[Workshop quick start](CARRIER_QUICK_START_EN.md) · [French guide](PART_WORKFLOW.md) · [17 October results and reproduction notes](CARRIER_SUPPLEMENTS_20261017_EN.md)
 
 This workflow turns a photograph, scan or dimensioned drawing into an editable
 CAD revision, controlled meshes, mechanical results and an LPBF preparation
@@ -14,7 +14,7 @@ The latest **24af0584** design trial shifts the first window corner by **1.5 mm 
 
 The [actual before/after surface comparison](../media/carrier-corner-slide-actual-surfaces-20261018/README.md) shows the complete d64 and 24af meshes at a common camera and scale, with the window root in a shared prior-R1 reference section plane. No stress field is transferred. A separate [native section](../reports/carrier-rib-20261018/corner-slide-native-section-root-review.json) at **X = 83.397174043 mm** retains **32 curves / 821 samples**, its raw BREP and all sampled coordinates. This is the prior R1 reference location, not a new 24af stress peak.
 
-The [editable current candidate](../../parts/993-eng-carrier-0001/source/design-20261016/corner-slide-candidate-20261018/ACTUAL_REPLAY.md) now includes the actual public-CLI reproduction: both generated and canonical BREP hashes and all construction ledgers match. The external exact CAD runtime remains required.
+The [editable current candidate](../../parts/993-eng-carrier-0001/source/design-20261016/corner-slide-candidate-20261018-evidence/ACTUAL_REPLAY.md) now includes the actual public-CLI reproduction: both generated and canonical BREP hashes and all construction ledgers match. The external exact CAD runtime remains required.
 
 Fresh [24af process inputs](../reports/carrier-rib-20261018/corner-slide-AM-inputs-root-review.json) close the actual pose, seven regional inputs and 1,034-layer calendar for this geometry. The [source-0 geometric envelope](../reports/carrier-rib-20261018/corner-slide-native-source0-root-review.json) passes its unchanged strict final reader. Its legacy first-snap native RC2/controller-step RC1 refusal remains recorded. This is partial envelope progress; complete supports, regional/global admission, layer vectors and a machine job remain open. A separate [one-Q1 conduction software control](../reports/carrier-rib-20261018/software-control-Q1-conduction-root-review.json) checks three temperature frames; it is not a carrier thermal or print-distortion prediction.
 
