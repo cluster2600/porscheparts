@@ -1,0 +1,93 @@
+{
+  "original": "work/carrier-functional-law-FEA-figure-preparation-001/prepare.py",
+  "original_sha256": "9c53e4b47b3e99d519459ae2d48b9f09a03e4efb85da2e2a7fbe9ecb513b5811",
+  "derived_sha256": "52d4019c707c0d6812a1cfd2caeb46c63b264f013e683442d65747c66532440f",
+  "substitutions": [
+    [
+      "current closed 07b",
+      "current closed STOCK",
+      1
+    ],
+    [
+      "bounded-webs-C1-functional-law-static-preparation-001",
+      "bounded-webs-first-window-stock-static-preparation-001",
+      1
+    ],
+    [
+      "work/carrier-terminal-taper-FEA-figure-preparation-001",
+      "work/carrier-functional-law-FEA-figure-preparation-001",
+      1
+    ],
+    [
+      "review.stat().st_size<10000",
+      "review.stat().st_size<100000",
+      1
+    ],
+    [
+      "term.stat().st_size<400000",
+      "term.stat().st_size<2000000",
+      1
+    ],
+    [
+      "name=a['case_name'];mesh=folder/'cad/mesh-7'",
+      "name=a['case_name'];mesh=folder/'cad/mesh-7'\n assert a['sources_before']==a['sources_after']\n for source,expected in a['sources_before'].items():\n  assert source not in files or files[source]==expected;assert sha(R/source)==expected;files[source]=expected",
+      1
+    ],
+    [
+      "2b8c079b19b1c329ad75cec098dd4c044603701a412691e36cac55e01e94db05",
+      "ca58265ede731817ce8a7bcf1776084f6ba58181925471afed17c42af6b86ac9",
+      1
+    ],
+    [
+      "90ab99de7c502f3bb2c62441a6469466a806f2962a1067173dfb08d5245746a5",
+      "d48fcaf93998cd817f42ca2395aede5b5981b1408180091e680a482c57a7976b",
+      1
+    ],
+    [
+      "H/'figure-from-taper.diff'",
+      "H/'figure-from-Figure31.diff'",
+      1
+    ],
+    [
+      "H/'prepare.py',O/'figure.py'",
+      "H/'prepare.py',H/'selfcheck.py',H/'ARMING.md',H/'derive.py',H/'prepare-source-changes.json',H/'prepare-from-Figure31.diff',F/'root-deck-terminal-review-001.json',R/'work/carrier-process-20261017/bounded-webs-first-window-stock-BREP-mesh-preparation-001/root-terminal-review-001.json',O/'figure.py',O/'prepare.py'",
+      1
+    ],
+    [
+      "actual-current07b-two-coarse-case-fields-plan-1",
+      "actual-first-window-stock-two-coarse-case-fields-plan-1",
+      1
+    ],
+    [
+      "combined_terminal=rel(term),",
+      "mesh_root=rel(R/'work/carrier-process-20261017/bounded-webs-first-window-stock-BREP-mesh-preparation-001/root-terminal-review-001.json'),deck_root=rel(F/'root-deck-terminal-review-001.json'),combined_terminal=rel(term),",
+      1
+    ],
+    [
+      "07b354e3716b4e856010e271f7a36aa7f6fe05a4ee4ce36eb0959af84e92409e",
+      "42da92ccbcf08783e69edba68bbeb56d3963746538d48682a3e495310a88e776",
+      1
+    ],
+    [
+      "display_zoom_XY_mm=prior['display_zoom_XY_mm']",
+      "display_zoom_XY_mm={r['role']:[[fixture[i]['docs']['peaks']['all_global_maximum_ties'][0]['reference_undeformed_IP_xyz_mm'][0]-25,fixture[i]['docs']['peaks']['all_global_maximum_ties'][0]['reference_undeformed_IP_xyz_mm'][1]-26],[fixture[i]['docs']['peaks']['all_global_maximum_ties'][0]['reference_undeformed_IP_xyz_mm'][0]+25,fixture[i]['docs']['peaks']['all_global_maximum_ties'][0]['reference_undeformed_IP_xyz_mm'][1]+26]]for i,r in enumerate(cases)}",
+      1
+    ],
+    [
+      "new_complete_function_contract_passed=True",
+      "candidate_version=\"first-window-stock-alone-v1\",old_complete7_law_inherited=False,failed_union_used_as_candidate=False",
+      1
+    ],
+    [
+      "owned_actual_current07b_coarse_field_draw_pending_1",
+      "owned_actual_first_window_stock_coarse_field_draw_pending_1",
+      1
+    ],
+    [
+      "actual-current07b-figure31-fields-byte-sources-1",
+      "actual-first-window-stock-figure33-fields-byte-sources-1",
+      1
+    ]
+  ],
+  "whole_inverse_byteexact": true
+}

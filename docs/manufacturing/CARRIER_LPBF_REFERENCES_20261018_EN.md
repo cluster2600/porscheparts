@@ -1,7 +1,7 @@
 # Carrier: published LPBF material and machine references
 
 Retrieved **18 October 2026**. These references support comparison of the
-carrier's forthcoming stress results with documented process data. The active
+carrier's retained stress results with documented process data. The active
 [material card](../../parts/993-eng-carrier-0001/source/design-20261016/bounded-webs.json)
 retains its original elastic model: E = 107,000 MPa, Poisson ratio 0.31 and
 density 4,420 kg/m³. Its strength allowable and fatigue curve remain unassigned.
@@ -34,11 +34,22 @@ lists a 650 × 650 × 800 mm build volume, with build plate included in the heig
 titanium-alloy capability, a 20–120 µm layer range, and STL input through
 EPControl/EPHatch.
 
-The current carrier's nominal unposed CAD bounds are 592 × 73 × 52 mm.
-**Inference:** a 592 mm span leaves 58 mm across a 650 mm axis before placement
-and process allowances. Actual posed-part, support and plate bounds must come
-from the new process-geometry run. This scalar comparison supplies no machine
-build file, laser parameters or simulated distortion result.
+The stock carrier's nominal unposed CAD bounds are 592 × 73 × 52 mm. Its
+[closed process-input run](../../work/carrier-stock-prism-fan-correction-preparation-001/root-terminal-review-001.json)
+retains a 45° rotation about Z and a 32 mm Z translation. The actual posed STL
+bounds are approximately **451.134 × 451.134 × 52 mm**, with Z from **10 to
+62 mm**. These values belong to BREP `42da92cc` and surface `433c85bf`.
+The current recipe uses a **500 × 500 mm reference plate**, declared 20 mm
+thick, and 60 µm layers. Centring the posed part on that plate leaves about
+**24.43 mm on each XY side**, before support extensions.
+
+**Layout inference:** centring that posed part on a 650 mm square leaves
+approximately **99.43 mm on each XY side**, before support extensions and
+process allowances. Complete support and plate bounds remain to be calculated.
+This comparison supplies no machine build file, laser parameters or simulated
+distortion result.
+
+The manufacturer's [EPHatch description](https://www.eplus3d.com/eplus3d-printing-software-for-high-productivity-metal-3d-printing.html) also identifies SLC and CLI slice import, with separate upper-surface, lower-surface and body parameters. This documents a vendor import route for later checked slice/support data; it does not provide a carrier machine job, scan strategy, laser parameters or process qualification. Whole-layer and support admission must precede a new format export.
 
 The retained reference pages belong to their manufacturers; this note contains
 links and summarized facts. No manufacturer PDF is redistributed here.
