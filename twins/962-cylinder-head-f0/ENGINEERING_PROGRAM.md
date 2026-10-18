@@ -41,6 +41,13 @@ cells, including 2,997 initially good cells and 99 shared cells. Its complete
 read-only report and separate reviews are available. This census changes no mesh
 and establishes no repair feasibility or head-analysis admission.
 
+The [combined fifteen-cavity repair](derived/engineering/current126-alternative-combined-application/README.md)
+replaces 580 original tetrahedra with 834 locally passing cells. The saved head
+retains 110 positive-poor cells, down from 126; its unchanged global minimum
+0.039074265058645995 still rejects the whole-head quality gate. The evidence
+capsule includes six small native outputs and the new raw mesh identity; the
+235,798,094-byte mesh body has no published delivery yet.
+
 The [union-context and default-optimizer checkpoint](derived/engineering/current126-union-and-default/README.md)
 records accepted read-only interface associations for all 15 cases and a distinct
 rejected default-optimizer trial at apex 1485102. The latter changes 64 tetrahedra
