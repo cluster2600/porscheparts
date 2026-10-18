@@ -79,6 +79,11 @@ assumed bionic geometry; a missing original dimension stays unknown.
    evidence. The saved head has 1,097,219 nodes and 3,621,755 tetrahedra, with
    unchanged minimum SICN 0.039074265058645995. The 129 remaining poor cells
    still reject the whole head; the separate 414 Mesh_2 failures remain open.
+   The [subsequent census and thermoelastic setup checkpoint](derived/engineering/current129-thermoelastic-setup/README.md)
+   covers all 129 poor cells with 102 complete seed stars and 3,165 incident
+   cells, including 3,036 initially good cells. Its declared controller command
+   was not followed: the already pinned geometry Python was used. The deviation
+   remains explicit; acceptance covers the observed query and saved associations.
    The first conditional isothermal screen has an
    [explicit assumed card](engineering/cp1-isothermal-assumed-card.json):
    E = 71 GPa, ν = 0.33, uniform 25 °C and constant isotropic elasticity.
@@ -106,6 +111,13 @@ assumed bionic geometry; a missing original dimension stays unknown.
    This is the synthetic coupon's energy-error refinement criterion only.
    Full-field/spatial convergence and the original Newton nonlinear criterion
    remain unverified, as do head strength and calibrated LPBF acceptance.
+   The later temperature transfer preserves all 54,675 selected original tokens
+   in three tables, with the actual BEGIN80 reference on all 225 born nodes,
+   including 25 shared nodes. Its first mechanical attempt fails during setup
+   from overlapping temperature initial conditions, before any timestep or
+   CSV/Exodus/QP field capture. The complete 22-file failure and independent
+   review are retained in the census/setup checkpoint. Source and assessor
+   guards do not establish mechanics, material or LPBF acceptance.
    The earlier [replacement prerequisites](derived/engineering/local-replacement-prerequisites/README.md)
    now establish sparse-tag editing capability, exact relative local-domain
    equality and the original head's nine exterior/nineteen connected interfaces.

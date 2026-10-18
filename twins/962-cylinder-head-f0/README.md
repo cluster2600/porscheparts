@@ -69,6 +69,16 @@ words without replaying global geometry. The saved head has 1,097,219 nodes and
 3,621,755 tetrahedra. Its unchanged minimum SICN 0.039074265058645995 and 129
 remaining poor cells still reject the whole head; the stronger 414 Mesh_2
 failures remain open.
+The [census and thermoelastic setup checkpoint](derived/engineering/current129-thermoelastic-setup/README.md)
+retains all 129 poor cells in 102 complete seed stars: 3,165 incident cells,
+including 3,036 initially good cells. Its controller used a different, already
+pinned Python than declared; the deviation is preserved and acceptance covers
+the observed query and saved associations only.
+The same checkpoint preserves all 54,675 original temperature tokens transferred
+to three mechanical input tables, including the BEGIN80 reference on all 225
+born nodes and 25 shared nodes. The first mechanical attempt then failed during
+setup because its temperature initial conditions overlapped. All 22 stopped
+files are retained; no timestep, stress field or mechanical assessment completed.
 The [assumed-material thermal coupon](derived/engineering/cp1-assumed-thermal-birth-failed/README.md)
 failed its first time step: 33 internal cutbacks, zero converged steps and no
 energy assessment. The full failure and initial fields are retained. Its

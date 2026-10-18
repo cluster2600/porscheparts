@@ -1,0 +1,50 @@
+{
+  "schema": "962-oneway-native-root-owned-adapter-launch/v1",
+  "actual_sha256": "7ab4ee5b5fdbb85997c64e091644697105641cc887b434bb7af1cbfff2246395",
+  "exact_child_peer_sha256": "375ca32794a03b11597acc6710f1bec7f20c41fc445376cde34cca4f7a0403c9",
+  "root_preflight_sha256": "0bd6f100185aec1539228e6e0dff69e42abb6b9c87426f900e040919efa0845a",
+  "root_pid": "process-role://mechanical-failed-setup/root-owner",
+  "adapter_pid": "process-role://mechanical-failed-setup/recorded-adapter",
+  "adapter_pgid": "process-role://mechanical-failed-setup/recorded-adapter",
+  "argv": [
+    "runtime-role://controller/python",
+    "-I",
+    "-B",
+    "work/962-engineering/cp1-oneway-thermoelastic-transfer-prep-001/run_mac.py",
+    "--stage",
+    "coupon",
+    "--contract",
+    "work/962-engineering/cp1-oneway-thermoelastic-transfer-execution-prep-001/actual-contract.json",
+    "--contract-sha256",
+    "7ab4ee5b5fdbb85997c64e091644697105641cc887b434bb7af1cbfff2246395",
+    "--execute"
+  ],
+  "adapter_environment": {
+    "PATH": "/usr/bin:/bin",
+    "LANG": "C",
+    "LC_ALL": "C",
+    "PYTHONNOUSERSITE": "1",
+    "PYTHONDONTWRITEBYTECODE": "1"
+  },
+  "native_environment": {
+    "PATH": "/usr/bin:/bin",
+    "LANG": "C",
+    "LC_ALL": "C",
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "VECLIB_MAXIMUM_THREADS": "1",
+    "FI_PROVIDER": "tcp"
+  },
+  "outer_wall_seconds": 115,
+  "SIGTERM_grace_seconds": 10,
+  "inner_resources": {
+    "wall_seconds": 100,
+    "sampled_RSS_stop_bytes": 2147483648,
+    "sampled_output_stop_bytes": 536870912
+  },
+  "native_PID_directly_observed": false,
+  "native_cleanup_attributed_to_exact_adapter_finally_and_receipt": true,
+  "universal_descendant_absence_claimed": false,
+  "automatic_retry": false,
+  "automatic_assessment": false
+}

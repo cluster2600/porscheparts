@@ -1,0 +1,26 @@
+
+[33m
+*** Deprecation Warning ***
+work/962-engineering/cp1-oneway-thermoelastic-transfer-001/thermoelastic-birth.i:556.5:
+Outputs/console/output_postprocessors: The parameter 'output_postprocessors' is deprecated.
+'execute_postprocessors_on' has replaced this parameter
+
+[39m
+
+[31m
+*** ERROR ***
+The initial condition 'temperature_moose' is being defined on a block that already has an initial condition defined with the same variable and state.[39m
+
+Stack frames: 11
+0: 0   libmesh_opt.0.dylib                 0x000000011287e4cc libMesh::print_trace(std::__1::basic_ostream<char, std::__1::char_traits<char>>&) + 984
+1: 1   libmoose-opt.0.dylib                0x00000001065ce890 moose::internal::mooseErrorRaw(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char>>, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char>> const&, hit::Node const*, bool) + 272
+2: 2   libmoose-opt.0.dylib                0x00000001065a7b04 void mooseError<char const (&) [24], std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char>> const&, char const (&) [110]>(char const (&) [24], std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char>> const&, char const (&) [110]) + 328
+3: 3   libmoose-opt.0.dylib                0x0000000106597a78 InitialConditionWarehouse::addObject(std::__1::shared_ptr<InitialConditionBase>, unsigned int, bool) + 904
+4: 4   libmoose-opt.0.dylib                0x0000000105b45980 FEProblemBase::addInitialCondition(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char>> const&, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char>> const&, InputParameters&) + 1104
+5: 5   libmoose-opt.0.dylib                0x00000001061b2c3c ActionWarehouse::executeActionsWithAction(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char>> const&) + 1304
+6: 6   libmoose-opt.0.dylib                0x00000001061b2590 ActionWarehouse::executeAllActions() + 256
+7: 7   libmoose-opt.0.dylib                0x00000001065c7df4 MooseApp::runInputFile() + 160
+8: 8   libmoose-opt.0.dylib                0x00000001065c2c30 MooseApp::run() + 1656
+9: 9   combined-opt                        0x00000001023c7cd4 int Moose::main<CombinedTestApp>(int, char**) + 160
+10: 10  dyld                                0x0000000187fbfef0 start + 6688
+Abort(1) on node 0 (rank 0 in comm 0): application called MPI_Abort(MPI_COMM_WORLD, 1) - process 0

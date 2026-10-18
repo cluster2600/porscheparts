@@ -1,0 +1,41 @@
+{
+  "schema": "962-current129-census-reader-exact-delta/v1",
+  "preserved_reader": "work/962-engineering/head-star-current204-full-stars-prep-001/reader.py",
+  "preserved_reader_sha256": "eb9b5cfeab50c9c74c87c3995b0ce97ebbc365581a2cc552f26fb73b96bd0a1f",
+  "selected_reader_sha256": "186f3a52ac2f227afc56dfc7ec1cf9ab7a85e0303c04a2ad7dea32b74aa6d108",
+  "exact_replacements": [
+    {
+      "old": "worker.get('schema')!='962-apex1474426-head-application-result/v1'",
+      "new": "worker.get('schema')!='962-current204-fixed47-combined-head-application-result/v1'",
+      "count": 1
+    },
+    {
+      "old": "     or any(worker.get(key)!=contract[key] for key in ['local_candidate_report_sha256','local_candidate_arrays_sha256','current_local_domain_report_sha256','current_local_domain_peer_sha256'])",
+      "new": "     or any(worker.get(key)!=contract[key] for key in ['admitted_manifest_sha256','current_local_domain_peer_sha256','current_local_domain_root_acceptance_sha256','context_sha256'])\n     or worker.get('native_operation_counts')!=contract['expected_partial_operation_counts'] or worker.get('call_counts_are_attempts') is not True",
+      "count": 1
+    },
+    {
+      "old": "     or closed.get('returncode')!=2 or closed.get('stop_reason') is not None or closed.get('wait_reaped') is not True\n     or any(closed.get(k) is not True for k in ['all56_inputs_unchanged','all3_selected_native_runtime_unchanged','selected_NumPy_unchanged','actual_unchanged'])\n     or closed.get('actual_sha256')!=contract['partial_contract_sha256']\n     or closed.get('outputs')!=contract['partial_output_inventory']):",
+      "new": "     or receipt.get('native_generate_optimize_solve_calls_declared')!=0 or receipt.get('mesh_write_calls_declared')!=1 or receipt.get('counters_are_declarations') is not True\n     or closed.get('controller_returncode')!=2 or closed.get('root_stop_reason') is not None or closed.get('root_error') is not None or closed.get('pin_error') is not None\n     or any(closed.get(k) is not True for k in ['controller_wait_reaped','observed_owned_controller_leader_absent','all420_input_actual_selected_runtime_python_unchanged','partial_procedural_checks_passed'])\n     or closed.get('root_fallback_SIGKILL') is not False or closed.get('actual_whole_head_quality_gate_passed') is not False\n     or closed.get('actual_sha256')!=contract['partial_contract_sha256']\n     or closed.get('output_files')!=contract['partial_output_inventory']):",
+      "count": 1
+    },
+    {
+      "old": "w=ROOT/'work/962-engineering/apex1474426-head-application-001'",
+      "new": "w=ROOT/'work/962-engineering/head-star-current204-combined-application-001'",
+      "count": 1
+    }
+  ],
+  "full_reverse_byte_exact": true,
+  "modified_function": "partial_after_proof",
+  "modified_top_level_statement": "fixed saved combined partial-head directory only",
+  "unchanged_function_ASTs": [
+    "classify_positive_poor_chunk",
+    "require_after_match",
+    "classifications",
+    "movable_from_poor_rows",
+    "incident_positions"
+  ],
+  "reader_algorithm_or_quality_gate_changed": false,
+  "runner_byte_exact_sha256": "4fb37080e1f3847b8b1d14d5df467799d8e9f7bf81b0a09170e5850857de3943",
+  "prepared_functions_or_tests_executed": false
+}
