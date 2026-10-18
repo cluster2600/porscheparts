@@ -16,6 +16,10 @@ reduces the observed poor-cell count from **129 to 127** and supplies the exact
 generated mesh as a lossless review download. All 44 replacement cells pass the
 local SICN 0.1 gate; the whole head remains rejected, with unchanged minimum
 SICN 0.039074265058645995. Head strength and manufacturing qualification remain open.
+The [current 127-cell census](derived/engineering/current127-full-stars/README.md)
+finds 101 interior seed nodes and their complete 3,137-cell incident union,
+including 3,010 initially good cells and 99 cells shared by several seeds.
+All 127 poor cells are covered; repair feasibility remains unproven.
 The [coarse thermoelastic follow-up](derived/engineering/cp1-oneway-thermoelastic-level1/README.md)
 completes 80 steps and passes **15,734,237 scalar comparisons** under the same
 absolute SI limits, using its own BEGIN40 birth reference. Complete fields and

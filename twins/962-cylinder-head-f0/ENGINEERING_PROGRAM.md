@@ -27,6 +27,12 @@ completes one further local replacement and full save/reopen procedure:
 for review. All 44 local replacement cells pass the gate, while the whole-head
 minimum remains 0.039074265058645995 and head analysis admission remains open.
 
+The [current 127-cell census](derived/engineering/current127-full-stars/README.md)
+freshly maps all remaining poor cells to 101 interior seeds and 3,137 incident
+cells, including 3,010 initially good cells and 99 shared cells. The read-only
+query and saved associations pass their reviews; this does not establish repair
+feasibility or admit the whole head for analysis.
+
 The [coarse one-way coupon](derived/engineering/cp1-oneway-thermoelastic-level1/README.md)
 passes 15,734,237 scalar comparisons after 80 steps at 0.005 s, with the same
 seven absolute SI limits and its own BEGIN40 birth reference. Root accepts
