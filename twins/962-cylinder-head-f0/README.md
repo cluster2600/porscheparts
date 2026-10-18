@@ -34,8 +34,11 @@ Its complete outputs and separate reviews are available; head replacement and
 engineering qualification remain separate gates.
 The [exact local-domain check](derived/engineering/domain-apex1613031/README.md)
 passes all 182 within-complex cell pairs and retains the full report. The old and
-new cavities occupy the same local volume; current-head connections remain the
-next gate.
+new cavities occupy the same local volume.
+The [current-head connection check](derived/engineering/current127-apex1613031-head-context/README.md)
+records one exterior face and thirteen internal interfaces with current outside
+owners. The full read-only report is available; no replacement was applied and
+the head remains quality-rejected.
 The [coarse thermoelastic follow-up](derived/engineering/cp1-oneway-thermoelastic-level1/README.md)
 completes 80 steps and passes **15,734,237 scalar comparisons** under the same
 absolute SI limits, using its own BEGIN40 birth reference. Complete fields and

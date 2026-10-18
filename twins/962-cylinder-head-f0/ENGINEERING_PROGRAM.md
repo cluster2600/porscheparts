@@ -60,6 +60,14 @@ and the same fourteen-face oriented boundary. The complete report, source,
 execution and saved-result reviews support relative local occupied-domain equality.
 Current-parent outside owners and head admission remain separate gates.
 
+The [current-parent connection checkpoint](derived/engineering/current127-apex1613031-head-context/README.md)
+records the unchanged head's complete fourteen-cell apex1613031 star. One shell
+face is exterior; thirteen have opposite current outside owners, involving
+thirteen tetrahedra and nineteen coordinate nodes. Full selected words, classes,
+available-parameter and preservation-reference metadata are retained. This was
+one read-only query: quality was not recomputed, no replacement was applied,
+and whole-head embedding, strength and process qualification remain open.
+
 The [coarse one-way coupon](derived/engineering/cp1-oneway-thermoelastic-level1/README.md)
 passes 15,734,237 scalar comparisons after 80 steps at 0.005 s, with the same
 seven absolute SI limits and its own BEGIN40 birth reference. Root accepts
