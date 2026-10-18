@@ -12,7 +12,7 @@ The current native body is one valid solid. Its fresh 597,720-triangle STL passe
 
 The [STEP review](STEP-root-review.json) records two valid, empty strict native differences in all dimensions. The STEP adaptive relative volume difference is **5.980736573 × 10⁻⁹**, below **10⁻⁸**. The [volume-mesh review](mesh-root-review.json) records **159,612 nodes and 85,767 C3D10 tetrahedra**, minimum sampled Jacobian **0.008331803**, exact same-operator CAD import volume agreement, and all six actual bore-node rosters. Native BREP remains the master.
 
-## Two actual mechanical cases
+## Two coarse mechanical cases
 
 Both cases use **Fz = −4,000 N**, **My = 850 N·m**, **E = 107,000 MPa** and **ν = 0.31**. K1000 applies **1,000 N/mm total per eye and axis**, distributed over that eye's nodes.
 
@@ -56,7 +56,18 @@ Every edge-to-midside association was checked. All stored binary64 midpoint expr
 
 A separate adaptive discrete refinement of the admitted coarse mesh completed three passes, producing **161,826 nodes / 87,256 T10 elements**. All original node IDs, NPZ coordinate bytes, serialized NODE lines, six bore rosters, protected corner facets and protected midside IDs remain unchanged. Its original comparison against generated coarse metadata refused a volume difference of about **3 × 10⁻¹⁰ mm³** before the final edge-size test; that refusal remains unchanged.
 
-The [saved-mesh diagnostic](same-operator-H2-root-review.json) applies the same retained Gmsh operator and element order to both serialized INPs. Both observed volumes are exactly **288,348.6899786381 mm³**, binary64 hex **41119972c289c296**, with exact observed difference **0**. It also independently recomputes both complete original edge-size measurements: **1.384441617742 / 0.953185688956 mm**, at most the original **1.384441617746 / 0.953185688957 mm** targets. This distinct, zero-tolerance serialized-reference contract passes. It does not rewrite the earlier generated-metadata result. Refined mechanical cases are the next step; stress convergence remains open.
+The [saved-mesh diagnostic](same-operator-H2-root-review.json) applies the same retained Gmsh operator and element order to both serialized INPs. Both observed volumes are exactly **288,348.6899786381 mm³**, binary64 hex **41119972c289c296**, with exact observed difference **0**. It also independently recomputes both complete original edge-size measurements: **1.384441617742 / 0.953185688956 mm**, at most the original **1.384441617746 / 0.953185688957 mm** targets. This distinct, zero-tolerance serialized-reference contract passes. It does not rewrite the earlier generated-metadata result.
+
+### Actual mechanical cases on the saved refinement
+
+The [two refined cases](refined-mechanics-root-review.json) use the same d64 CAD, loads, material assumptions, original coordinates and protected mesh entities. All serialized force, moment, rigid-support and spring-stiffness cards were checked before solving. Both actual solvers completed and passed the unchanged independent energy test.
+
+| Case | Coarse peak | Refined peak | Refined/coarse peak ratio | Refined maximum displacement | Relative energy error |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| Rigid eyes | 600.659493 MPa | 925.772793 MPa | 1.541261 | 2.710864 mm | 6.02 × 10⁻⁹ |
+| K1000 eyes | 1,548.151984 MPa | 2,740.902001 MPa | 1.770435 | 16.482678 mm | 8.57 × 10⁻⁹ |
+
+Both global peaks occur at **element 85,784 / integration point 2**, undeformed coordinates **(83.421659, −15.366811, 13.685695) mm**, with a measured corner-edge maximum of **0.701533164 mm**. Every global maximum and tie remains retained. Maximum displacements change by only **0.0457% / 0.0238%**, while the peaks increase by **54.13% / 77.04%**. This demonstrates strong local stress sensitivity to refinement; it supplies no converged stress or adequate-strength conclusion. The complete [rigid](refined-rigid-energy-audit.json) and [spring](refined-spring-energy-audit.json) energy records and all 64 output identities are retained. The R1 geometric correction is evaluated separately below.
 
 ## R1 junction trial — separate candidate
 
@@ -70,7 +81,9 @@ All [four actual tool-column Commons](R1-four-tool-columns-root-review.json) com
 
 The [fresh surface generation](R1-surface-generation-root-review.json) produced a **651,012-triangle** STL, SHA-256 **88c405af…**, with the original Gmsh recipe. The [whole-native and sampled forward audit](R1-forward-surface-root-review.json) measures **0.021524182 mm** across **3,072 STL probes**. The [complete joint surface audit](R1-joint-surface-root-review.json) measures **0.047388128 mm** from all **8,430 trimmed CAD sample points** to the STL. Both sampled directions pass the unchanged **0.06 mm** screen. All triangles participate in topology and intersection checks: one positive-volume component, zero open/nonmanifold/orientation edges, zero degenerate or needle triangles, and zero self-intersection pairs. Relative mesh volume error is **2.7481 × 10⁻⁵**, below **0.002**; maximum bounds error is **1.052 × 10⁻⁷ mm**, below **0.06 mm**. These sampled distances remain distinct from a continuous fidelity bound.
 
-The [actual before/after image and X50 foot section](../../media/carrier-R1-actual-surfaces-20261018/README.md) show the new rounded junction with English labels. Its footer records the pending audit status at image creation; the subsequent joint audit is linked above. Full protected-interface checks, STEP exchange and mechanics follow this candidate. The d64 mechanical results and existing section/stress images remain attached to d64; they do not establish the new trial's stress response.
+The [complete protected comparison](R1-protected-root-review.json) passes all original study-interface checks for this actual R1 BREP and STL. All **eight complete 3,264-point rosters** contain zero hits, with **1,632 saved chunk hashes** and no random fallback. The whole original assembly predicate passes. The central-pad and all six end-interface symmetric-difference volume observations are zero, as is the whole-pair mesh intersection volume. These retain the original ROI volume predicates and finite-probe scope; the strict native Cut and tool Commons remain separate records.
+
+The [actual before/after image and X50 foot section](../../media/carrier-R1-actual-surfaces-20261018/README.md) show the new rounded junction with English labels. Its footer records the pending audit status at image creation; subsequent audits are linked above. STEP exchange and mechanics follow this candidate. The d64 mechanical results and existing section/stress images remain attached to d64; they do not establish the new trial's stress response.
 
 ## Evidence scope
 
