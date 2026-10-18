@@ -1,0 +1,121 @@
+{
+  "schema": "962-CDF-private-prefix-projection-policy-source-byte-peer/v1",
+  "decision": "CLEAR_NARROW_METADATA_PROJECTION_POLICY",
+  "blockers": [],
+  "scope": "Proposed selected byte projection only, before assembly. No projected CDF was written; no original changed. No producer/query/decoder/assessor/native invocation or numerical field evaluation.",
+  "records": {
+    "query.py": {
+      "path": "work/962-engineering/cp1-oneway-thermoelastic-CDF-metadata-query-001/query.py",
+      "sha256": "0a8e07dced22896dc990bf5182fbff97a9298056d73f9e8b224b61e985a36a6d",
+      "bytes": 2598
+    },
+    "execution.json": {
+      "path": "work/962-engineering/cp1-oneway-thermoelastic-CDF-metadata-query-001/execution.json",
+      "sha256": "14883535ef67fb8af33dfa394ebc9e13dc7984b9438b8f8ddd324d2e73476058",
+      "bytes": 39459
+    },
+    "root-triage.json": {
+      "path": "work/962-engineering/cp1-oneway-thermoelastic-CDF-metadata-query-001/root-triage.json",
+      "sha256": "ae165f904815c295a26c224c2b3c2daba87ae983e78411477cc7a7dae5aac06d",
+      "bytes": 2863
+    },
+    "stdout.json": {
+      "path": "work/962-engineering/cp1-oneway-thermoelastic-CDF-metadata-query-001/stdout.json",
+      "sha256": "96ad00215b49c804a8c797188502cd9e5aa7dda09d41c43ad4aaa341c949a8d9",
+      "bytes": 28596297
+    },
+    "stderr.log": {
+      "path": "work/962-engineering/cp1-oneway-thermoelastic-CDF-metadata-query-001/stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    }
+  },
+  "filtered_metadata_check": "Root triage is exactly the full saved query file records after retaining only info_records character-variable rows. The complete28,596,297-byte stdout remains private identity-only; no redundant offset lists copied.",
+  "query_source_review": "Source selects only variable.typecode()==c rows, records raw payload identity and exact raw matches, requires a unique info_records payload when private prefixes exist, joins all raw private-home-prefix-role:/// offsets to that metadata span, and confirms original byte equality afterward. scipy.netcdf_file loads arrays but numerical fields are not evaluated.",
+  "execution_attribution": {
+    "returncode": 0,
+    "wall_seconds": 7.3237503750715405,
+    "wait_reaped": true,
+    "selected258_and_Python_before_after_unchanged": true,
+    "source_before_after_sha256": "0a8e07dced22896dc990bf5182fbff97a9298056d73f9e8b224b61e985a36a6d",
+    "selected_runtime_metadata_matches_registered258": true,
+    "runtime_body_freshness": "Root execution metadata only; reviewer read no runtime/library bodies."
+  },
+  "independent_stdlib_byte_checks": [
+    {
+      "filename": "thermoelastic.e",
+      "original_bytes": 2671960,
+      "original_sha256_before": "c40425a42ed4c650dbe58020ca0ed6a1d579d91a5586d7abcf3f3da6fae0184b",
+      "private_prefix_offsets": [
+        37022
+      ],
+      "CDF_magic_hex_observed": "43444602",
+      "info_records_span_half_open": [
+        36048,
+        223320
+      ],
+      "info_records_payload_sha256": "d5ffb828300f3d84ac244c48473f4da4b8c58d1b430087219fef40e98d67f489",
+      "NC_CHAR_shape_attributed_to_root_query": [
+        2312,
+        81
+      ],
+      "replacement": {
+        "old_ASCII": "workspace:____",
+        "new_ASCII": "workspace:____",
+        "offset_zero_based": 37022,
+        "bytes": 14
+      },
+      "all_changed_byte_positions": [
+        37022,
+        37023,
+        37024,
+        37025,
+        37026,
+        37027,
+        37028,
+        37029,
+        37030,
+        37031,
+        37032,
+        37033,
+        37034,
+        37035
+      ],
+      "unchanged_bytes_outside_replacement_span": 2671946,
+      "prospective_in_memory_only_sha256": "08677eba4c0cd5ea1f64f473cc7f170a071ae2e5be91a99bbf6f15d2eee8cf75",
+      "projected_CDF_written": false,
+      "original_sha256_after": "c40425a42ed4c650dbe58020ca0ed6a1d579d91a5586d7abcf3f3da6fae0184b"
+    },
+    {
+      "filename": "thermoelastic.e-s002",
+      "original_bytes": 2515220,
+      "original_sha256_before": "34e7eb2cedf0e6789c758b120823b73f6d89ef919b2173339e6a6a1fff43a17d",
+      "private_prefix_offsets": [],
+      "CDF_magic_hex_observed": "43444602",
+      "selected_policy": "Exact unchanged second-family body; no substitution.",
+      "projected_CDF_written": false,
+      "original_sha256_after": "34e7eb2cedf0e6789c758b120823b73f6d89ef919b2173339e6a6a1fff43a17d"
+    }
+  ],
+  "policy_requirements": [
+    "Only substitute the one14-byte literal at primary-file offset37022; preserve length and every other byte.",
+    "Select the second family member byte-exact unchanged.",
+    "Record the primary selected body as a metadata/path projection, never an exact-body alias. Retain original size/hash, zero-based byte offset, old/new literals, replacement count1 and projected hash in the ledger.",
+    "Any assembly verification must require the exact original c404 hash and exact projected08677 hash; do not silently apply the rule to another CDF.",
+    "The claim that the span is NC_CHAR info_records is attributed to this root-owned selected-SciPy query. The independent check establishes exact raw span hash/offset/confinement and unchanged outside bytes, not an independent CDF header decode or scientific semantic validation."
+  ],
+  "limits": [
+    "No independent netCDF header/offset parser, numeric-array decoder, tensor/geometry re-evaluation or new reader-conformance claim.",
+    "The two CDF magic prefixes are directly observed CDF2 bytes. Header and numeric-array unchanged claims use byte equality outside the narrowly queried character span; no structure or offsets are rewritten.",
+    "Prefix scanning is the specifically declared workspace:____ policy, not a universal absence-of-private-data or secret scan.",
+    "Reviewer authored earlier e382 decoder lineage; the current query was root-authored and not executed by this reviewer. No new independent mathematical derivation is claimed."
+  ],
+  "source_or_original_modified": false,
+  "projected_CDF_written": false,
+  "scientific_or_native_replay": false,
+  "engineering_accepted": false,
+  "physics_qualified": false,
+  "material_qualified": false,
+  "process_calibrated": false,
+  "manufacturing_authorized": false
+}

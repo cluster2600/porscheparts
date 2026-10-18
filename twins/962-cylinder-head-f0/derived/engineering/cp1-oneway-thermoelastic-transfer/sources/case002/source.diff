@@ -1,0 +1,111 @@
+--- work/962-engineering/cp1-oneway-thermoelastic-transfer-prep-001/thermoelastic-birth.i
++++ work/962-engineering/cp1-oneway-thermoelastic-transfer-prep-002/thermoelastic-birth.i
+@@ -72,7 +72,6 @@
+     family = LAGRANGE
+     order = FIRST
+     block = '2 3'
+-    initial_condition = 400
+   []
+   [born_reference_temperature]
+     family = LAGRANGE
+@@ -121,6 +120,12 @@
+     variable = disp_z
+     function = 0
+     block = '2 3'
++  []
++  [old_temperature]
++    type = FunctionIC
++    variable = temperature
++    function = 400
++    block = 2
+   []
+   [born_temperature]
+     type = FunctionIC
+--- work/962-engineering/cp1-oneway-thermoelastic-transfer-prep-001/run_mac.py
++++ work/962-engineering/cp1-oneway-thermoelastic-transfer-prep-002/run_mac.py
+@@ -148,7 +148,7 @@
+          and frozen["source_input_sha256"]["thermoelastic-birth.i"] == sha(CASE / "thermoelastic-birth.i"),
+          "Exact separate source physics contract required")
+     output = Path(c["output"])
+-    need(output == ENGINEERING / "cp1-oneway-thermoelastic-transfer-001" and output.resolve() == output
++    need(output == ENGINEERING / "cp1-oneway-thermoelastic-transfer-002" and output.resolve() == output
+          and not output.exists() and not output.is_symlink(), "Fresh fixed direct case output required")
+     return c, output
+ 
+--- work/962-engineering/cp1-oneway-thermoelastic-transfer-prep-001/case-contract.json
++++ work/962-engineering/cp1-oneway-thermoelastic-transfer-prep-002/case-contract.json
+@@ -202,7 +202,7 @@
+   },
+   "card_sha256": "c723e017daabd75a01c4157e6e099db5da7709ce1cc220a01530b679d453b111",
+   "source_input_sha256": {
+-    "thermoelastic-birth.i": "ab53a2354d1d9feda27afb8c09fd697cdbcb25d6c8610320182f3935e1c31329",
++    "thermoelastic-birth.i": "cbead6d0ec032a0cc1bb82dd2abc032aa3f94321340ddc06058f42c8a1ce6fdb",
+     "prepare_transfer.py": "d40ae738d5e934611672418ff65a4c501734c1ae78b0fc062626e43dee7bc21c",
+     "thermal-input-index.json": "ad60a9b29ccb9f6b7114abe686402bd7bd40cb87bfdd40d540a3d38bb31e56d6"
+   },
+--- work/962-engineering/cp1-oneway-thermoelastic-transfer-prep-001/selfcheck.py
++++ work/962-engineering/cp1-oneway-thermoelastic-transfer-prep-002/selfcheck.py
+@@ -12,8 +12,8 @@
+ 
+ PREP = Path(__file__).resolve().parent
+ SOURCE_SHA = "d40ae738d5e934611672418ff65a4c501734c1ae78b0fc062626e43dee7bc21c"
+-ADAPTER_SHA = "5b4ee33be98e0004d55f532d03146bc35759133dd9bfe0a478a17f39fe78c082"
+-DECK_SHA = "ab53a2354d1d9feda27afb8c09fd697cdbcb25d6c8610320182f3935e1c31329"
++ADAPTER_SHA = "dcc8f5a26f3834dd195778536ba527a6179558a57b956a021ee3feae94f5d992"
++DECK_SHA = "cbead6d0ec032a0cc1bb82dd2abc032aa3f94321340ddc06058f42c8a1ce6fdb"
+ 
+ 
+ def load_pure():
+@@ -192,5 +192,32 @@
+         self.assertFalse(card["time"]["source_off_cooling_history_present"])
+ 
+ 
++    def test_explicit_temperature_IC_scopes_and_no_generated_overlap(self):
++        from copy import deepcopy
++        s = sections((PREP / "thermoelastic-birth.i").read_text())
++        self.assertNotIn("initial_condition", s["AuxVariables/temperature"])
++        self.assertEqual(s["ICs/old_temperature"], dict(type="FunctionIC", variable="temperature", function="400", block="2"))
++        self.assertEqual(s["ICs/born_temperature"], dict(type="FunctionIC", variable="temperature", function="born_begin80", block="3"))
++        self.assertEqual(s["ICs/born_reference"]["function"], "born_begin80")
++        def overlaps(parts):
++            assignments = []
++            for path, values in parts.items():
++                if path.startswith(("Variables/", "AuxVariables/")) and "initial_condition" in values:
++                    assignments.append((path, path.split("/")[-1], set(values.get("block", "*").split())))
++                if path.startswith("ICs/") and "variable" in values:
++                    self.assertNotIn("state", values)  # Fixed case uses default current-state ICs only.
++                    assignments.append((path, values["variable"], set(values.get("block", "*").split())))
++            return [(a[0], b[0]) for i, a in enumerate(assignments) for b in assignments[i+1:]
++                    if a[1] == b[1] and ("*" in a[2] or "*" in b[2] or a[2] & b[2])]
++        self.assertEqual(overlaps(s), [])
++        inline = [(p, v["initial_condition"]) for p, v in s.items() if p.startswith(("Variables/", "AuxVariables/")) and "initial_condition" in v]
++        self.assertEqual(inline, [("Variables/inactive_placeholder", "0")])
++        bad = deepcopy(s); bad["AuxVariables/temperature"]["initial_condition"] = "400"
++        self.assertTrue(overlaps(bad))
++        bad = deepcopy(s); bad["ICs/duplicate_birth"] = deepcopy(bad["ICs/born_temperature"])
++        self.assertTrue(overlaps(bad))
++
++
++
+ if __name__ == "__main__":
+     unittest.main()
+--- work/962-engineering/cp1-oneway-thermoelastic-transfer-prep-001/test_controls.py
++++ work/962-engineering/cp1-oneway-thermoelastic-transfer-prep-002/test_controls.py
+@@ -10,7 +10,7 @@
+ from unittest import TestCase, main, mock
+ 
+ SOURCE = Path(__file__).with_name("run_mac.py")
+-SOURCE_SHA256 = "5b4ee33be98e0004d55f532d03146bc35759133dd9bfe0a478a17f39fe78c082"
++SOURCE_SHA256 = "dcc8f5a26f3834dd195778536ba527a6179558a57b956a021ee3feae94f5d992"
+ assert hashlib.sha256(SOURCE.read_bytes()).hexdigest() == SOURCE_SHA256
+ spec = importlib.util.spec_from_file_location("mac_thermal_candidate", SOURCE)
+ module = importlib.util.module_from_spec(spec)
+@@ -189,7 +189,7 @@
+                      independent_assessment_source_root_review=relfake,
+                      transfer_manifest=str((transfer / "transfer-manifest.json").relative_to(module.ROOT)),
+                      transfer_manifest_sha256=module.sha(transfer / "transfer-manifest.json"),
+-                     output=str(base / "cp1-oneway-thermoelastic-transfer-001"))
++                     output=str(base / "cp1-oneway-thermoelastic-transfer-002"))
+             path = base / "actual.json"
+             with mock.patch.object(module, "HELD", held), mock.patch.object(module, "PREP", case), \
+                  mock.patch.object(module, "CASE", case), mock.patch.object(module, "CARD", case / "card.json"), \

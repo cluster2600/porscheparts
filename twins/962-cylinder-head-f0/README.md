@@ -11,6 +11,11 @@ with explicit assumptions for unavailable dimensions.
 
 The [engineering execution programme](ENGINEERING_PROGRAM.md) continues through
 material/strength assessment, LPBF simulation, an Omniverse twin and PhysicsNeMo.
+The [corrected one-way thermoelastic coupon](derived/engineering/cp1-oneway-thermoelastic-transfer/README.md)
+passes 31,241,797 scalar comparisons under the unchanged SI limits. Its complete
+fields, source, earlier setup failure and separate saved-result reviews are retained.
+Acceptance covers one synthetic software case with assumed material properties;
+head strength, mechanical convergence and material/process qualification remain open.
 The [grouped-scaling mechanics cube](derived/engineering/moose-local-grouped-scaling-cube/README.md)
 passes the unchanged analytical field, energy and saved-algebra checks. The
 [earlier runtime checkpoint](derived/engineering/moose-local-runtime/README.md)

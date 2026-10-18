@@ -1,0 +1,119 @@
+{
+  "schema": "962-oneway-thermoelastic-IC-only-source-successor/v1",
+  "status": "HELD_SOURCE_ONLY_UNRUN",
+  "whole_byte_reversals": {
+    "thermoelastic-birth.i": {
+      "donor_path": "work/962-engineering/cp1-oneway-thermoelastic-transfer-prep-001/thermoelastic-birth.i",
+      "donor_sha256": "ab53a2354d1d9feda27afb8c09fd697cdbcb25d6c8610320182f3935e1c31329",
+      "selected_sha256": "cbead6d0ec032a0cc1bb82dd2abc032aa3f94321340ddc06058f42c8a1ce6fdb",
+      "reverse_chunks": [
+        {
+          "old_start_line": 75,
+          "selected_start_line": 75,
+          "old": "    initial_condition = 400\n",
+          "selected": ""
+        },
+        {
+          "old_start_line": 124,
+          "selected_start_line": 123,
+          "old": "",
+          "selected": "  []\n  [old_temperature]\n    type = FunctionIC\n    variable = temperature\n    function = 400\n    block = 2\n"
+        }
+      ],
+      "whole_reverse_byte_exact": true
+    },
+    "run_mac.py": {
+      "donor_path": "work/962-engineering/cp1-oneway-thermoelastic-transfer-prep-001/run_mac.py",
+      "donor_sha256": "5b4ee33be98e0004d55f532d03146bc35759133dd9bfe0a478a17f39fe78c082",
+      "selected_sha256": "dcc8f5a26f3834dd195778536ba527a6179558a57b956a021ee3feae94f5d992",
+      "reverse_chunks": [
+        {
+          "old_start_line": 151,
+          "selected_start_line": 151,
+          "old": "    need(output == ENGINEERING / \"cp1-oneway-thermoelastic-transfer-001\" and output.resolve() == output\n",
+          "selected": "    need(output == ENGINEERING / \"cp1-oneway-thermoelastic-transfer-002\" and output.resolve() == output\n"
+        }
+      ],
+      "whole_reverse_byte_exact": true
+    },
+    "case-contract.json": {
+      "donor_path": "work/962-engineering/cp1-oneway-thermoelastic-transfer-prep-001/case-contract.json",
+      "donor_sha256": "ff0dfe2e0a99f8e4d208e8db66ac580fbbdb89f43ae1563cc7c015c9b0bcc666",
+      "selected_sha256": "cf56e131b449595ba78b0889725a3536fdda82cff67330bad8e062c93e2d18d2",
+      "reverse_chunks": [
+        {
+          "old_start_line": 205,
+          "selected_start_line": 205,
+          "old": "    \"thermoelastic-birth.i\": \"ab53a2354d1d9feda27afb8c09fd697cdbcb25d6c8610320182f3935e1c31329\",\n",
+          "selected": "    \"thermoelastic-birth.i\": \"cbead6d0ec032a0cc1bb82dd2abc032aa3f94321340ddc06058f42c8a1ce6fdb\",\n"
+        }
+      ],
+      "whole_reverse_byte_exact": true
+    },
+    "selfcheck.py": {
+      "donor_path": "work/962-engineering/cp1-oneway-thermoelastic-transfer-prep-001/selfcheck.py",
+      "donor_sha256": "02aa2d29a05f1dd463bb202119a2121a655c0023af1b59fccc9062c60f505e28",
+      "selected_sha256": "bbc8aa783c0713f9947f4e04212b793c86a80dc05a2d2f6c71ad7948a26d0a12",
+      "reverse_chunks": [
+        {
+          "old_start_line": 15,
+          "selected_start_line": 15,
+          "old": "ADAPTER_SHA = \"5b4ee33be98e0004d55f532d03146bc35759133dd9bfe0a478a17f39fe78c082\"\nDECK_SHA = \"ab53a2354d1d9feda27afb8c09fd697cdbcb25d6c8610320182f3935e1c31329\"\n",
+          "selected": "ADAPTER_SHA = \"dcc8f5a26f3834dd195778536ba527a6179558a57b956a021ee3feae94f5d992\"\nDECK_SHA = \"cbead6d0ec032a0cc1bb82dd2abc032aa3f94321340ddc06058f42c8a1ce6fdb\"\n"
+        },
+        {
+          "old_start_line": 195,
+          "selected_start_line": 195,
+          "old": "",
+          "selected": "    def test_explicit_temperature_IC_scopes_and_no_generated_overlap(self):\n        from copy import deepcopy\n        s = sections((PREP / \"thermoelastic-birth.i\").read_text())\n        self.assertNotIn(\"initial_condition\", s[\"AuxVariables/temperature\"])\n        self.assertEqual(s[\"ICs/old_temperature\"], dict(type=\"FunctionIC\", variable=\"temperature\", function=\"400\", block=\"2\"))\n        self.assertEqual(s[\"ICs/born_temperature\"], dict(type=\"FunctionIC\", variable=\"temperature\", function=\"born_begin80\", block=\"3\"))\n        self.assertEqual(s[\"ICs/born_reference\"][\"function\"], \"born_begin80\")\n        def overlaps(parts):\n            assignments = []\n            for path, values in parts.items():\n                if path.startswith((\"Variables/\", \"AuxVariables/\")) and \"initial_condition\" in values:\n                    assignments.append((path, path.split(\"/\")[-1], set(values.get(\"block\", \"*\").split())))\n                if path.startswith(\"ICs/\") and \"variable\" in values:\n                    self.assertNotIn(\"state\", values)  # Fixed case uses default current-state ICs only.\n                    assignments.append((path, values[\"variable\"], set(values.get(\"block\", \"*\").split())))\n            return [(a[0], b[0]) for i, a in enumerate(assignments) for b in assignments[i+1:]\n                    if a[1] == b[1] and (\"*\" in a[2] or \"*\" in b[2] or a[2] & b[2])]\n        self.assertEqual(overlaps(s), [])\n        inline = [(p, v[\"initial_condition\"]) for p, v in s.items() if p.startswith((\"Variables/\", \"AuxVariables/\")) and \"initial_condition\" in v]\n        self.assertEqual(inline, [(\"Variables/inactive_placeholder\", \"0\")])\n        bad = deepcopy(s); bad[\"AuxVariables/temperature\"][\"initial_condition\"] = \"400\"\n        self.assertTrue(overlaps(bad))\n        bad = deepcopy(s); bad[\"ICs/duplicate_birth\"] = deepcopy(bad[\"ICs/born_temperature\"])\n        self.assertTrue(overlaps(bad))\n\n\n\n"
+        }
+      ],
+      "whole_reverse_byte_exact": true
+    },
+    "test_controls.py": {
+      "donor_path": "work/962-engineering/cp1-oneway-thermoelastic-transfer-prep-001/test_controls.py",
+      "donor_sha256": "3e2f5d3bf46a6c2eb5f44e30a5ba980d59f01069a60507e4ba778a02aabb9b79",
+      "selected_sha256": "555755bb1c738db1db8b8ff4c7c1dc250d8b75eff9cd39c4b3786e728dea3f17",
+      "reverse_chunks": [
+        {
+          "old_start_line": 13,
+          "selected_start_line": 13,
+          "old": "SOURCE_SHA256 = \"5b4ee33be98e0004d55f532d03146bc35759133dd9bfe0a478a17f39fe78c082\"\n",
+          "selected": "SOURCE_SHA256 = \"dcc8f5a26f3834dd195778536ba527a6179558a57b956a021ee3feae94f5d992\"\n"
+        },
+        {
+          "old_start_line": 192,
+          "selected_start_line": 192,
+          "old": "                     output=str(base / \"cp1-oneway-thermoelastic-transfer-001\"))\n",
+          "selected": "                     output=str(base / \"cp1-oneway-thermoelastic-transfer-002\"))\n"
+        }
+      ],
+      "whole_reverse_byte_exact": true
+    }
+  },
+  "unchanged_body_files": [
+    "prepare_transfer.py",
+    "card.json",
+    "thermal-input-index.json",
+    "primary-source-supplement.json"
+  ],
+  "adapter_unchanged_function_ASTs": [
+    "need",
+    "sha",
+    "same",
+    "check_pins",
+    "runtime_unchanged",
+    "commands",
+    "registry_features",
+    "run"
+  ],
+  "adapter_changed_function_ASTs": [
+    "checked_contract"
+  ],
+  "complete_run_native_cleanup_AST_exact": true,
+  "old8_source_guard_method_ASTs_exact": true,
+  "new_source_guard_methods": 9,
+  "old5_mock_guard_method_ASTs_exact": true,
+  "mock_guard_changed_fixture": "Expected fixed output path001 to002 only; source binding updated.",
+  "prepared_functions_modules_tests_or_native_executed": false
+}

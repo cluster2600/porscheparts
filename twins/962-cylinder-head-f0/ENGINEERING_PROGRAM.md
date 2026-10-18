@@ -118,6 +118,17 @@ assumed bionic geometry; a missing original dimension stays unknown.
    CSV/Exodus/QP field capture. The complete 22-file failure and independent
    review are retained in the census/setup checkpoint. Source and assessor
    guards do not establish mechanics, material or LPBF acceptance.
+   The [separate corrected one-way coupon](derived/engineering/cp1-oneway-thermoelastic-transfer/README.md)
+   completes all 160 steps and passes the strict saved-field assessment:
+   31,241,797 scalar SI comparisons, including full stress/strain and equilibrium
+   checks. Root accepts fixed synthetic single-level software verification only;
+   independent peers check complete saved byte/token/ID/cardinality associations.
+   Original capture-stage passed=false and historical pending fields remain
+   immutable. All 966 CSVs, both CDF2 representations and complete evidence roles
+   are retained; one primary CDF text-metadata prefix has an explicit 14-byte
+   public projection, with every numerical byte unchanged. No head strength,
+   matched material, cooling/release, calibrated LPBF or mechanical convergence
+   qualification follows.
    The earlier [replacement prerequisites](derived/engineering/local-replacement-prerequisites/README.md)
    now establish sparse-tag editing capability, exact relative local-domain
    equality and the original head's nine exterior/nineteen connected interfaces.
