@@ -65,10 +65,13 @@ flowchart LR
     CHECK --> PACK
 ```
 
-The retained [process illustration](../media/carrier-workflow-20261016/process.png),
-[SVG](../media/carrier-workflow-20261016/process.svg) and
-[PDF](../media/carrier-workflow-20261016/process.pdf) describe the same stages.
-Their original artwork is unchanged.
+The [English process illustration](../media/carrier-workflow-20261018-en/process.png),
+[editable SVG](../media/carrier-workflow-20261018-en/process.svg) and
+[one-page PDF](../media/carrier-workflow-20261018-en/process.pdf) describe these
+stages with the current **1.274798 kg** master and **1.30 kg** limit. Their
+[source and render records](../media/carrier-workflow-20261018-en/README.md)
+retain the exact artwork changes and visual checks. The diagram is a workflow
+map; each actual stage result remains in its own report.
 
 ## The six stages and their deliverables
 
