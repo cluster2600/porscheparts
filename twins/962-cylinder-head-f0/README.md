@@ -28,6 +28,10 @@ The [next local study](derived/engineering/apex1613031-local-repair/README.md)
 retains the complete nine-node shell extraction and its rejected first generation:
 nine cells, one below SICN 0.1, minimum 0.05102133753836959. Its source, full
 results and separate reviews are available; this checkpoint changes no head mesh.
+The [saved Netgen successor](derived/engineering/netgen-apex1613031/README.md)
+passes the local SICN 0.1 gate: fourteen cells, minimum 0.1008883740399272.
+Its complete outputs and separate reviews are available; head replacement and
+engineering qualification remain separate gates.
 The [coarse thermoelastic follow-up](derived/engineering/cp1-oneway-thermoelastic-level1/README.md)
 completes 80 steps and passes **15,734,237 scalar comparisons** under the same
 absolute SI limits, using its own BEGIN40 birth reference. Complete fields and

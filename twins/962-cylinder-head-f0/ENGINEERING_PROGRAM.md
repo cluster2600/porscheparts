@@ -46,6 +46,13 @@ quality-rejected first generation: nine cells, one poor, minimum SICN
 reviews remain inspectable. This two-stage checkpoint does not apply a replacement
 to the head; domain, outside-owner and head admission remain separate gates.
 
+The [saved Netgen successor](derived/engineering/netgen-apex1613031/README.md)
+adds one interior node and passes the local SICN 0.1 gate across fourteen cells,
+with minimum 0.1008883740399272. All nine shell coordinate words and fourteen
+oriented faces remain fixed. Full saved arrays, the diagnostic MSH, source/control
+records and separate reviews are retained. This checkpoint establishes local
+software quality; current-parent connections and head admission remain separate.
+
 The [coarse one-way coupon](derived/engineering/cp1-oneway-thermoelastic-level1/README.md)
 passes 15,734,237 scalar comparisons after 80 steps at 0.005 s, with the same
 seven absolute SI limits and its own BEGIN40 birth reference. Root accepts

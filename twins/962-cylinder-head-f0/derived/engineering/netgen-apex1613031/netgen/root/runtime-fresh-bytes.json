@@ -1,0 +1,79 @@
+{
+  "schema": "962-apex1613031-Netgen-root-selected-runtime-fresh-review/v1",
+  "UTC": "2026-10-18T04:16:30.420907+00:00",
+  "held_sha256": "4e270580bfaf18f4446389bd765f75825f4380e85b079a7612ba5c6293eff75d",
+  "native3": {
+    "runtime-role://registered-native/geometry/bin/python": {
+      "sha256": "72956ad35cff7691dfed9e04c9593de825ffd5b2fa7e8bc9ae96ce9a1af65621",
+      "bytes": 152624,
+      "resolved_path": "runtime-role://registered-native/resolved-python3.10"
+    },
+    "runtime-role://registered-native/geometry/lib/libgmsh.4.15.dylib": {
+      "sha256": "def0f5c10988a986e5e879b3db9669d8fe016a81e2d994bbaf2b8497c6b8a58a",
+      "bytes": 82659384,
+      "resolved_path": "runtime-role://registered-native/geometry/lib/libgmsh.4.15.dylib"
+    },
+    "runtime-role://registered-native/geometry/lib/python3.10/site-packages/gmsh.py": {
+      "sha256": "f4b0935cebde899750293d87a643090e5ea33c9b18d249267f507db68a0e01c3",
+      "bytes": 427222,
+      "resolved_path": "runtime-role://registered-native/geometry/lib/python3.10/site-packages/gmsh.py"
+    }
+  },
+  "NumPy_init": {
+    "sha256": "c09e25b58f6b2f8e2cb3c158168f902d447f8171e5ea6513c0aca41ecbda7c2b",
+    "bytes": 21817,
+    "resolved_path": "runtime-role://registered-native/numpy-environment/lib/python3.10/site-packages/numpy/__init__.py"
+  },
+  "outer_python": {
+    "sha256": "1699bf8aa705a8bb71613bef5cdd7d7c8c9d9a188a841f41679aa9b5830b8f60",
+    "bytes": 49968,
+    "resolved_path": "runtime-role://controller/resolved-python3.12"
+  },
+  "tiny_saved_MSH": {
+    "sha256": "23bbb0a2800b468b1b2ee9e22c6d83fad0238c4989bb83b4de6aaa1309d3b140",
+    "bytes": 1518,
+    "resolved_path": "work/962-engineering/fixed-shell-generation-apex1613031-001/cavity.msh"
+  },
+  "free_disk_bytes": 14429167616,
+  "controls": {
+    "wall_seconds": 30,
+    "sampled_RSS_stop_bytes": 1073741824,
+    "sampled_output_stop_bytes": 16777216,
+    "threads": 2,
+    "hard_OS_CPU_quota_applied": false,
+    "hard_address_space_limit_applied": false,
+    "environment": {
+      "PATH": "/usr/bin:/bin",
+      "LANG": "C",
+      "PYTHONUTF8": "1",
+      "OMP_NUM_THREADS": "2",
+      "OPENBLAS_NUM_THREADS": "2",
+      "VECLIB_MAXIMUM_THREADS": "2",
+      "PYTHONDONTWRITEBYTECODE": "1"
+    }
+  },
+  "outer_controls": {
+    "wall_seconds": 40,
+    "TERM_grace_seconds": 8,
+    "verified_owned_process_group_KILL_if_needed": true,
+    "wait_and_reap": true,
+    "root_observes_owned_controller_only": true,
+    "valid_closed_controller_receipt_required": true,
+    "no_automatic_continuation_after_fallback_or_missing_receipt": true,
+    "authority": false
+  },
+  "origin_evidence": {
+    "prior_import_query": "work/962-engineering/fixed-shell-generation-apex1613790-runtime-origin-001/closed-result.json",
+    "prior_query_sha256": "5af4f4182a39648008de2672d6874a3b202e091c77281940fd5976fab1ef7398",
+    "current_generation_report": "work/962-engineering/fixed-shell-generation-apex1613031-001/fixture-report.json",
+    "current_report_sha256": "7cd2b6107d3055644a48f603b076348f627f3c58ff9c7de742f49825e53d2911",
+    "scope": "Current generation passed reviewed loader checks for exact NumPy origin/version and selected3 loaded bodies. Native/source attribution, not a new import probe."
+  },
+  "scope": "Finite native3/NumPy-init/outer/tiny-MSH fresh byte hashes only; tiny MSH not decoded/reopened. No new scientific import/ABI/OS closure, reservation, head read or authority. Root will freshly rehash at actual launch and after.",
+  "native_execution_authorized": false,
+  "cavity_Netgen_optimizer_authorized": false,
+  "physics_qualified": false,
+  "material_qualified": false,
+  "process_calibrated": false,
+  "manufacturing_authorized": false
+}
