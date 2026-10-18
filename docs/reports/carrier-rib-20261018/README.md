@@ -23,6 +23,8 @@ Both cases use **Fz = −4,000 N**, **My = 850 N·m**, **E = 107,000 MPa** and *
 
 Both independent energy checks pass the original **10⁻⁴** limit. The [complete mechanical review](mechanics-root-review.json) retains every global maximum, the corresponding element and integration point, current CAD identity, tool return codes and cleanup checks. The full [rigid](rigid-energy-audit.json) and [spring](spring-energy-audit.json) energy reports are exact copies of the executed records.
 
+The [complete stress-distribution image](../../media/carrier-stress-distribution-20261018/README.md) plots all **686,136 integration-point rows** across the two cases, with a common scale and every global maximum retained.
+
 The current peaks moved away from the former rib hotspot:
 
 | Case | Element / integration point | Undeformed peak coordinates (mm) | Measured corner-edge maximum | Proposed local size |
