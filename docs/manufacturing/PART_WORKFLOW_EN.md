@@ -20,6 +20,8 @@ Fresh [24af process inputs](../reports/carrier-rib-20261018/corner-slide-AM-inpu
 
 The [current source2 repair checkpoint](../reports/carrier-rib-20261018/corner-slide-source2-fixed-repair-root-review.json) now passes the original strict geometric and exact finite E+D gates after a current-operand-specific repair. Its **13 positive-area deletions / four unknown final faces** remain explicit; no positive ancestry or attachment anchor is inherited for those faces. The final snap **native RC2 / controller-step RC1** remains recorded. This is a scoped geometric envelope, with the complete store, support/contact admission, slicing and scan-vector stages still pending.
 
+The [actual native section at 24af’s own worst coarse peak](../media/carrier-current24af-own-worst-section-20261018/README.md) shows all **28 curves / 708 samples**, its actual element/IP and two qualified reciprocal normal-chord pairs. Dashed lines are explicitly Y–Z projections of 3D chords, not section thicknesses. This is a **current coarse all20 snapshot**; refined results remain separate.
+
 The following completed study remains tied to **d64a7faf**. The separate R1 fillet trial has its own coarse/refined results below; those stress fields are not transferred to 24af.
 
 The current **d64a7faf** native master weighs **1.274797998 kg**, leaving **25.20 g** below the **1.30 kg** limit. Four smooth outward rib additions use **6.96 g** over the preceding stock design. The [actual CAD comparison](../media/carrier-rib-actual-surfaces-20261018/README.md), [reinforcement drawing](../media/carrier-rib-C2-20261018/README.md) and [nominal interface sheet](../media/carrier-nominal-interfaces-20261018/README.md) show the shape change and the present model dimensions.

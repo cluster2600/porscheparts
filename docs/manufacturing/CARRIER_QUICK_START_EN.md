@@ -66,6 +66,6 @@ Read `assessment.json` and `fresh-reproduction-comparisons.json` in the output. 
 | Mass | **1.275992 kg**, below **1.30 kg** |
 | Surface | **598,372 triangles**; whole topology/intersection checks and sampled CAD distances pass |
 | Mechanics | **20 coarse cases computed**; seven refinement targets pass; exact P2 volume comparison permits fresh refined calculations |
-| Supports | Current pose and seven regional inputs prepared; source-0 and repaired source-2 geometric envelopes checked; complete support and layer stages remain open |
+| Supports | Current pose and [all seven geometric envelopes](../reports/carrier-rib-20261018/corner-slide-seven-envelope-store-root-review.json) joined for this geometry; repaired source-2 retains four unknown faces and no process anchors; complete support and layer stages remain open |
 
 The [20-case image](../media/carrier-corner-slide-all20-summary-20261018/README.md) shows every coarse stress and displacement maximum. These results still guide the geometry correction and refinement; a strength acceptance is not recorded. The [English numerical report](../reports/carrier-rib-20261018/README.md) links each result to its exact geometry, inputs and calculation.

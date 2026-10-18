@@ -17,6 +17,7 @@
 [**964 structure and monocoque**](#1-the-964-body-shell-and-the-carbon-monocoque-programme) ·
 [**Engine cooling**](#3-engine-cooling) ·
 [**Gallery**](docs/GALLERY.md) ·
+[**993 carrier workflow**](docs/manufacturing/993_CARRIER_PROJECT_EN.md) ·
 [**Run the checks**](#quick-start) ·
 [**Safety first**](SAFETY.md)
 
