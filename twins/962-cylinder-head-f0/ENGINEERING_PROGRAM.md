@@ -53,6 +53,13 @@ oriented faces remain fixed. Full saved arrays, the diagnostic MSH, source/contr
 records and separate reviews are retained. This checkpoint establishes local
 software quality; current-parent connections and head admission remain separate.
 
+The [exact local-domain checkpoint](derived/engineering/domain-apex1613031/README.md)
+passes 91 original and 91 candidate within-complex pair checks. Both 14-cell
+complexes have exact positive volumes, the same nine fixed shell coordinate words
+and the same fourteen-face oriented boundary. The complete report, source,
+execution and saved-result reviews support relative local occupied-domain equality.
+Current-parent outside owners and head admission remain separate gates.
+
 The [coarse one-way coupon](derived/engineering/cp1-oneway-thermoelastic-level1/README.md)
 passes 15,734,237 scalar comparisons after 80 steps at 0.005 s, with the same
 seven absolute SI limits and its own BEGIN40 birth reference. Root accepts
