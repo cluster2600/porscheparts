@@ -151,8 +151,8 @@ physical-release gates remain closed.
 The retained corrected runtime completed the original direct exporter, CTest
 and coupled coupon again, with return code 0 at all three native stages.
 A separate local assessment then checked their saved outputs without repeating
-the native work. The [native completion](../../work/carrier-adamantine-corrected-runtime-replay-preparation-003/root-terminal-review-001.json)
-and [local assessment closure](../../work/carrier-adamantine-corrected-runtime-replay-preparation-004/root-terminal-review-001.json)
+the native work. The [native completion](carrier-adamantine-historical-links-20261018/native-replay-root-review.json)
+and [local assessment closure](carrier-adamantine-historical-links-20261018/local-assessment-root-review.json)
 keep execution, assessment and owned cleanup distinct. Earlier mount-setup
 refusals remain unchanged.
 

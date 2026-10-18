@@ -5,14 +5,14 @@
 The newest candidate master is native BREP **`07b354e3716b…`**, with CAD mass
 **1.262364410 kg** at 4,420 kg/m³, below the 1.30 kg design target. The complete
 seven-edge radius function passed its retained exact native-law check, and the
-[strict baseline-retention check](../../work/carrier-process-20261017/bounded-webs-C1-functional-law-geometry-gates-preparation-001/root-terminal-review-001.json)
+[strict baseline-retention check](../reports/carrier-historical-links-20261018/bounded-webs-C1-functional-law-geometry-gates-preparation-001/root-terminal-review-001.json)
 returned an empty difference in every topological dimension. The separate
-[addition and mass closeout](../../work/carrier-process-20261017/bounded-webs-C1-functional-law-addition-preparation-001/root-terminal-review-001.json)
+[addition and mass closeout](../reports/carrier-historical-links-20261018/bounded-webs-C1-functional-law-addition-preparation-001/root-terminal-review-001.json)
 records positive added material. This closes the revision's native geometry
 retention and added-material checks.
 
 The fresh surface is STL **`8d0b09b705e1…`**, with **637,850 triangles**. Its
-[joint surface closeout](../../work/carrier-process-20261017/bounded-webs-C1-functional-law-libigl-preparation-001/root-terminal-review-001.json)
+[joint surface closeout](../reports/carrier-historical-links-20261018/bounded-webs-C1-functional-law-libigl-preparation-001/root-terminal-review-001.json)
 records one connected component and zero boundary/non-manifold edges,
 inconsistent orientation edges, degenerate triangles, needles and
 self-intersection pairs. The **3,072 STL→BREP probes** have maximum distance
@@ -30,11 +30,11 @@ The [actual seven-edge law figure](../../parts/993-eng-carrier-0001/source/progr
 shows the retained radius coefficients and exact proof references. It is a
 scalar law plot, not a rendering of the surface or a mechanical result.
 
-The [complete protected-interface and tool-access comparison](../../work/carrier-process-20261017/bounded-webs-C1-functional-law-protected-chunks-preparation-002/root-terminal-review-001.json)
+The [complete protected-interface and tool-access comparison](../reports/carrier-historical-links-20261018/bounded-webs-C1-functional-law-protected-chunks-preparation-002/root-terminal-review-001.json)
 now passes for this master under retained study-interface dimensions. The
 complete ordered probe results and native CAD/assembly checks were retained.
 
-The [fresh T10 mesh closeout](../../work/carrier-process-20261017/bounded-webs-C1-functional-law-BREP-mesh-preparation-001/root-terminal-review-001.json)
+The [fresh T10 mesh closeout](../reports/carrier-historical-links-20261018/bounded-webs-C1-functional-law-BREP-mesh-preparation-001/root-terminal-review-001.json)
 records **166,263 nodes and 89,485 C3D10 elements**, straight midsides and zero
 nonpositive sampled Jacobians; the minimum sampled Jacobian is
 **0.0003884557712**. The six current node groups were measured anew: 528 nodes
@@ -46,7 +46,7 @@ the mesh volume is 285,525.5303865585 mm3, with relative error
 -0.0002705762106 against the adaptive native material-volume reference. These
 operators remain separate; the import check does not prove absolute CAD identity.
 
-The [two closed linear-static cases](../../work/carrier-process-20261017/bounded-webs-C1-functional-law-static-preparation-001/root-solver-terminal-review-001.json)
+The [two closed linear-static cases](../reports/carrier-historical-links-20261018/bounded-webs-C1-functional-law-static-preparation-001/root-solver-terminal-review-001.json)
 use this same 07b354 master and coarse T10 mesh: Fz = −4,000 N,
 My = +850,000 N·mm, E = 107,000 MPa and ν = 0.31.
 
@@ -116,7 +116,7 @@ peaks increase by about **9.86% and 12.52%**; displacement changes by only
 about 0.016%. The energy checks pass, but these two meshes do **not establish
 stress convergence** or an allowable-stress decision.
 
-The [actual H2 root closeout](../../work/carrier-process-20261017/bounded-webs-C1-qualified-h2-static-preparation-001/root-terminal-review-001.json)
+The [actual H2 root closeout](../reports/carrier-historical-links-20261018/bounded-webs-C1-qualified-h2-static-preparation-001/root-terminal-review-001.json)
 (SHA-256 `a988350ed8ac84008b35c893ad24dba377756bfa211d400aee7be9ea85e5afe1`)
 joins the two solver returns, full outputs, independent audits, all peaks and
 owned-container cleanup. Its [durable copy](../../parts/993-eng-carrier-0001/source/design-20261016/native-C1-h2-20261017/evidence/root-review/native-FEA-root-review.json)
@@ -124,7 +124,7 @@ is now retained in the separate H2 capsule; the coarse-C1 capsule is unchanged.
 
 The existing H2 mesh had first been refused by its original float-volume
 non-regression guard. That refusal remains unchanged. A separate closed
-[qualification](../../work/carrier-process-20261017/bounded-webs-C1-existing-mesh-qualification-preparation-001/root-terminal-review-001.json)
+[qualification](../reports/carrier-historical-links-20261018/bounded-webs-C1-existing-mesh-qualification-preparation-001/root-terminal-review-001.json)
 verified the same serialized binary64 volume operator on both meshes, all
 three refinement passes, protected faces/nodes and the original local size
 measurements. It does not rewrite the original verdict. The two fixed target
@@ -270,14 +270,14 @@ mass is **1.262364740 kg**, leaving **37.635 g** below the 1.30 kg ceiling at
 candidate-minus-baseline Boolean and the adaptive CAD volumes retain their own
 results: the added solid integrates to 34.420893 mm³, while the difference of
 the two whole-solid integrals is 34.414293 mm³. These values are not forced to
-match. The [mass and material closeout](../../work/carrier-process-20261017/bounded-webs-C1-terminal-taper-addition-preparation-001/root-terminal-review-001.json)
+match. The [mass and material closeout](../reports/carrier-historical-links-20261018/bounded-webs-C1-terminal-taper-addition-preparation-001/root-terminal-review-001.json)
 retains the actual measurements.
 
 Gmsh generated a new surface from this BREP, with **637,836 triangles** and STL
 identity `7ef349d6…`. The independent native import measures one valid solid,
 one shell, 247 faces, 748 edges, 494 vertices and **zero degenerated edges**.
 Those counts concern the whole candidate; the added-material residue has its
-own topology. The [forward screen closeout](../../work/carrier-process-20261017/bounded-webs-C1-terminal-taper-native-screen-preparation-001/root-terminal-review-001.json)
+own topology. The [forward screen closeout](../reports/carrier-historical-links-20261018/bounded-webs-C1-terminal-taper-native-screen-preparation-001/root-terminal-review-001.json)
 retains 3,072 STL-to-BREP samples, a maximum distance of **0.018234 mm** under
 the unchanged 0.06 mm criterion, and 8,638 native CAD points for the separate
 inverse check. A finite sample does not establish a continuous distance bound.
@@ -299,7 +299,7 @@ The analytical cases include a shared edge, an uncovered hole, a positive
 2⁻⁸⁰-scale slit and a point contact. The real case retains its original triangle
 index 3 and all 708 selected primitives in their original order.
 
-The [native comparison closeout](../../work/carrier-process-20261017/native-band-union-benchmark-preparation-002/root-native-terminal-review-001.json)
+The [native comparison closeout](../reports/carrier-historical-links-20261018/native-band-union-benchmark-preparation-002/root-native-terminal-review-001.json)
 binds the compiled binary, input transports, complete outputs, original
 reference certificates, libraries and runtime identities. Both owned scopes
 were checked inactive/absent after execution. This establishes the first
@@ -312,7 +312,7 @@ The independent libigl audit of this revision's surface is complete: one
 closed, positively oriented component, **637,836 triangles**, and zero boundary,
 nonmanifold, orientation, degenerate, needle or self-intersection defects.
 Its **8,638 CAD-to-STL samples** have a maximum distance of **0.047388 mm**, below
-the unchanged 0.06 mm criterion. The [joint surface closeout](../../work/carrier-process-20261017/bounded-webs-C1-terminal-taper-libigl-preparation-001/root-terminal-review-001.json)
+the unchanged 0.06 mm criterion. The [joint surface closeout](../reports/carrier-historical-links-20261018/bounded-webs-C1-terminal-taper-libigl-preparation-001/root-terminal-review-001.json)
 retains the actual input identities and complete audit. These finite samples
 remain distinct from a continuous distance bound.
 
@@ -322,7 +322,7 @@ gauge intersections, and the whole-pair Manifold intersection are zero. All
 **eight complete 3,264-point containment rosters** return zero hits. Ordered
 16-point execution chunks bound temporary work; all 1,632 chunk hashes and
 eight whole Boolean rosters are retained. The random ambiguity fallback was
-never requested and its binding was restored. The [mounting closeout](../../work/carrier-process-20261017/bounded-webs-C1-terminal-taper-protected-chunks-preparation-001/root-terminal-review-001.json)
+never requested and its binding was restored. The [mounting closeout](../reports/carrier-historical-links-20261018/bounded-webs-C1-terminal-taper-protected-chunks-preparation-001/root-terminal-review-001.json)
 records an actual **2,566,619,136-byte peak RSS**, not a hard memory ceiling.
 It preserves the historical 1.20 kg flag as false and separately passes the
 current 1.30 kg ceiling. The comparator uses the retained F0 study interfaces.
@@ -331,7 +331,7 @@ The new volume mesh contains **166,403 nodes and 89,536 quadratic T10 elements**
 All sampled Jacobians are positive; the minimum is **0.007956871**. Its volume
 differs from the adaptive native reference by **−0.023078%**. Six mounting
 rosters were measured afresh, with **528 / 528 / 528 / 528 / 2,274 / 2,278 nodes**;
-old roster identities are not assumed. The [T10 closeout](../../work/carrier-process-20261017/bounded-webs-C1-terminal-taper-BREP-mesh-preparation-001/root-terminal-review-001.json)
+old roster identities are not assumed. The [T10 closeout](../reports/carrier-historical-links-20261018/bounded-webs-C1-terminal-taper-BREP-mesh-preparation-001/root-terminal-review-001.json)
 also joins the unchanged 10⁻⁸ import-volume criterion to the same nonadaptive
 native operator. The rigid and elastic cases below use these new identities.
 No old C1/H2 stress result is transferred.
@@ -350,7 +350,7 @@ the sum of exact rational residual areas is **0/1**. The retained transport
 derives from the original geometry without changing its triangulation or
 coordinates. All **4,615 ordered output rows** are preserved and checked.
 The actual native run took **126.359 s**, with **47,374,336 bytes peak RSS**.
-The [whole-band closeout](../../work/carrier-process-20261017/native-band-union-full-band-preparation-001/root-terminal-review-001.json)
+The [whole-band closeout](../reports/carrier-historical-links-20261018/native-band-union-full-band-preparation-001/root-terminal-review-001.json)
 binds the unchanged binary, complete inputs, outputs, libraries and scoped
 cleanup evidence.
 
@@ -364,7 +364,7 @@ retain reconstruction, contacts, components and all original regional gates.
 
 The explicit new policy has also completed a full captured planar unit:
 genuine reconstructed material, reconstruction record, two complete contacts
-and whole-unit admission all pass. Its [unit closeout](../../work/carrier-process-20261017/cgal-captured-unit-policy-diagnostic-preparation-001/root-terminal-review-001.json)
+and whole-unit admission all pass. Its [unit closeout](../reports/carrier-historical-links-20261018/cgal-captured-unit-policy-diagnostic-preparation-001/root-terminal-review-001.json)
 retains the original captured native input and the new outputs. This extends
 the band result to that captured unit; fresh native generation, 3D remapping
 and regional assembly remain separate stages.
@@ -385,7 +385,7 @@ that eye's 2,274 or 2,278 nodes.
 | Unchanged energy criterion | 10⁻⁴ | 10⁻⁴ |
 | Global peak element / integration point | 84327 / 1 | 54403 / 3 |
 
-The [complete two-case closeout](../../work/carrier-process-20261017/bounded-webs-C1-terminal-taper-static-preparation-001/root-solver-terminal-review-001.json)
+The [complete two-case closeout](../reports/carrier-historical-links-20261018/bounded-webs-C1-terminal-taper-static-preparation-001/root-solver-terminal-review-001.json)
 retains both full results, independent energy audits and every global maximum.
 The rigid peak lies at approximately **(−82.1363, −14.3888, 12.8603) mm**; the
 elastic peak lies at **(82.0534, −14.6036, 12.5321) mm**. Neither was excluded
@@ -404,7 +404,7 @@ protected boundary facet. The resulting mesh contains **168,675 nodes and
 
 The unchanged volume non-regression test refused this run: the refined mesh
 volume is **285,536.9707756387 mm³**, versus **285,536.9707756392 mm³** in the
-parent's metadata. The [refinement closeout](../../work/carrier-process-20261017/bounded-webs-terminal-taper-discrete-refinement-preparation-001/root-terminal-review-001.json)
+parent's metadata. The [refinement closeout](../reports/carrier-historical-links-20261018/bounded-webs-terminal-taper-discrete-refinement-preparation-001/root-terminal-review-001.json)
 preserves the refusal and all four complete pass records. Independent edge
 measurement was not reached, and no refined mechanical case has run. Comparing
 both serialized meshes with the same volume operator is the next diagnostic.
@@ -420,7 +420,7 @@ separate records.
 
 Both fresh, serial, non-destructive differences at fuzzy zero completed, but
 neither was topologically empty. The strict STEP roundtrip therefore remains
-**refused**. Its [complete exchange closeout](../../work/carrier-process-20261017/bounded-webs-C1-terminal-taper-STEP-preparation-001/root-terminal-review-001.json)
+**refused**. Its [complete exchange closeout](../reports/carrier-historical-links-20261018/bounded-webs-C1-terminal-taper-STEP-preparation-001/root-terminal-review-001.json)
 preserves both raw BREP residues and all dimensional summaries. These Boolean
 outputs are not interpreted as material erosion. The native BREP and its
 separately checked STL remain the geometry references; the STEP does not
@@ -431,14 +431,14 @@ replace that master.
 The new native candidate `07b354e3716b…` retains the requested radius function
 over all seven source edges. The isolated rebuilt-stock control reproduced
 `NCollection_Sequence::First`; the patched control completed and saved one valid
-Solid. The [complete native observation](../../work/carrier-process-20261017/bounded-webs-C1-full-contour-native-observer-preparation-001/root-terminal-review-001.json)
+Solid. The [complete native observation](../reports/carrier-historical-links-20261018/bounded-webs-C1-full-contour-native-observer-preparation-001/root-terminal-review-001.json)
 retains both outcomes and the exact rational restrictions of every native knot
-span. The [English law figure](../../work/carrier-seven-edge-law-figure-preparation-002/render-001/carrier-seven-edge-radius-law.png)
+span. The [English law figure](../reports/carrier-historical-links-20261018/carrier-seven-edge-law-figure-preparation-002/render-001/carrier-seven-edge-radius-law.png)
 shows the progressive first edge and the constant 1 mm radius on the remaining
 six edges. Its sampled curves illustrate the separate full-function proof.
 
-The new candidate has its own [strict baseline-retention check](../../work/carrier-process-20261017/bounded-webs-C1-functional-law-geometry-gates-preparation-001/root-terminal-review-001.json)
-and [positive-addition, mass and bounds check](../../work/carrier-process-20261017/bounded-webs-C1-functional-law-addition-preparation-001/root-terminal-review-001.json):
+The new candidate has its own [strict baseline-retention check](../reports/carrier-historical-links-20261018/bounded-webs-C1-functional-law-geometry-gates-preparation-001/root-terminal-review-001.json)
+and [positive-addition, mass and bounds check](../reports/carrier-historical-links-20261018/bounded-webs-C1-functional-law-addition-preparation-001/root-terminal-review-001.json):
 
 | Actual CAD result | Value |
 | --- | --- |
@@ -450,7 +450,7 @@ and [positive-addition, mass and bounds check](../../work/carrier-process-202610
 
 The two volume differences use distinct operators and retain their distinct
 values. The original bounds gate passes with its unchanged 10⁻⁶ mm guard.
-The [fresh surface export](../../work/carrier-process-20261017/bounded-webs-C1-functional-law-surface-preparation-001/root-terminal-review-001.json)
+The [fresh surface export](../reports/carrier-historical-links-20261018/bounded-webs-C1-functional-law-surface-preparation-001/root-terminal-review-001.json)
 contains **637,850 triangles**, STL `8d0b09b705e1…`. At this export checkpoint,
 its two-way surface, protected-interface and mechanical checks are pending.
 Earlier terminal-taper fields remain results of their own geometry revision.

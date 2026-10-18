@@ -312,7 +312,7 @@ Its retained analysis replay reproduced both complete energy reports and both
 peak reports without rerunning CCX. [Figure 24's dependent replay](../../parts/993-eng-carrier-0001/source/progress-figures-20261016/C1-fields-20261017/README.md)
 restores those archives, adds only its small source/proof mirror and redraws
 three byte-identical formats. Both require their documented installed runtimes.
-The newer H2 results have their own [root closeout](../../work/carrier-process-20261017/bounded-webs-C1-qualified-h2-static-preparation-001/root-terminal-review-001.json);
+The newer H2 results have their own [root closeout](../reports/carrier-historical-links-20261018/bounded-webs-C1-qualified-h2-static-preparation-001/root-terminal-review-001.json);
 they are not silently inserted into that coarse-C1 archive or figure.
 
 The separate [durable C1 H2 capsule](../../parts/993-eng-carrier-0001/source/design-20261016/native-C1-h2-20261017/ACTUAL_REPRODUCTION.md)

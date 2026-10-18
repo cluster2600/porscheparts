@@ -35,7 +35,7 @@ titanium-alloy capability, a 20–120 µm layer range, and STL input through
 EPControl/EPHatch.
 
 The stock carrier's nominal unposed CAD bounds are 592 × 73 × 52 mm. Its
-[closed process-input run](../../work/carrier-stock-prism-fan-correction-preparation-001/root-terminal-review-001.json)
+[closed process-input run](../reports/carrier-stock-process-links-20261018/root-terminal-review-001.json)
 retains a 45° rotation about Z and a 32 mm Z translation. The actual posed STL
 bounds are approximately **451.134 × 451.134 × 52 mm**, with Z from **10 to
 62 mm**. These values belong to BREP `42da92cc` and surface `433c85bf`.
