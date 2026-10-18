@@ -41,6 +41,13 @@ cells, including 2,997 initially good cells and 99 shared cells. Its complete
 read-only report and separate reviews are available. This census changes no mesh
 and establishes no repair feasibility or head-analysis admission.
 
+The [cooling and support-release capture](derived/engineering/cp1-oneway-cooling-release-failed/README.md)
+preserves a failed synthetic coupon run: the unchanged 100 s inner limit stopped
+its final hold at step 182. The complete 183-frame trajectory was not accepted.
+Sources, accepted temperature inputs, native log/receipt, terminal review and
+diagnosis remain inspectable; raw CSV/CDF fields are excluded. No complete
+storage or independent 3D assessment was invoked on this incomplete capture.
+
 The [combined fifteen-cavity repair](derived/engineering/current126-alternative-combined-application/README.md)
 replaces 580 original tetrahedra with 834 locally passing cells. The saved head
 retains 110 positive-poor cells, down from 126; its unchanged global minimum

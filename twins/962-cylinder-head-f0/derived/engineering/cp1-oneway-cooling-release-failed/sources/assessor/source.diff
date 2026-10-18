@@ -1,0 +1,284 @@
+--- work/962-engineering/cp1-oneway-thermoelastic-assessor-prep-003/assess.py
++++ work/962-engineering/cp1-oneway-cooling-release-assessor-prep-001/assess.py
+@@ -1,7 +1,7 @@
+ """HELD fixed SI coupon saved-field assessor; never launches a native process."""
+ import argparse
+ import csv
+-from decimal import Decimal
++from decimal import Decimal, localcontext
+ import hashlib
+ from itertools import product
+ import json
+@@ -13,8 +13,9 @@
+ 
+ PREP = Path(__file__).resolve().parent
+ ROOT = PREP.parents[2]
+-CASE = ROOT / 'work/962-engineering/cp1-oneway-thermoelastic-transfer-prep-002'
+-OUTPUT = 'work/962-engineering/cp1-oneway-thermoelastic-assessment-002'
++CASE = ROOT / 'work/962-engineering/cp1-oneway-cooling-release-prep-001'
++SOURCE_CASE = ROOT / 'work/962-engineering/cp1-oneway-thermoelastic-transfer-prep-002'
++OUTPUT = 'work/962-engineering/cp1-oneway-cooling-release-assessment-001'
+ DISP = ('disp_x', 'disp_y', 'disp_z')
+ FORCE = ('rx', 'ry', 'rz')
+ TENSORS = ('stress', 'elastic_strain', 'mechanical_strain', 'total_strain', 'thermal_eigenstrain')
+@@ -267,14 +268,14 @@
+         need(boxes == set(product((i / 8 for i in range(16)), (i / 4 for i in range(4)), (i / 4 for i in range(4)))), 'Complete256 native HEX8 grid bijection required')
+         for ti, time in enumerate(data['times']):
+             step = round(time * 400)
+-            need(0 <= step <= 160 and abs(time - step / 400) <= 5e-13 and step not in frames, 'One unambiguous native END frame per exact fixed time required')
++            need(0 <= step <= 182 and abs(time - step / 400) <= 5e-13 and step not in frames, 'One unambiguous native END frame per exact fixed time required')
+             for tag, conn in mesh.items():
+                 old = max(geometry[n][0] for n in conn) <= 1.
+                 need(data['blocks'][tag] == (2 if old else 1 if step < 80 else 3), 'Native per-element block transition must match old/inactive/born geometry')
+             frames[step] = dict(member=name, index=ti, fields={field: {tag - 1: values[ti][k] for k, tag in enumerate(data['node_map'])} for field, values in data['fields'].items()})
+         member_rows.append(dict(filename=name, sha256=sha(directory / name), magic=cdf_magic(directory / name), times=data['times'],
+                                 node_map=data['node_map'], element_map=data['element_map'], block_ids=data['block_ids'], block_status=data['block_status']))
+-    need(set(frames) == set(range(161)), 'Complete161 END Exodus frames required')
++    need(set(frames) == set(range(183)), 'Complete183 END Exodus frames required')
+     return geometry, mesh, frames, member_rows
+ 
+ 
+@@ -321,6 +322,107 @@
+     return forces, strain_energy, independent
+ 
+ 
++def support_masks(geometry, active_nodes, step, phase):
++    need(type(step) is int and 0 <= step <= 182 and phase in ('begin', 'end'), 'Fixed183-step phase required')
++    point = {(0, 0), (0, 1), (0, 2), (32, 1), (32, 2), (137, 2)}
++    need(geometry.get(0) == (0., 0., 0.) and geometry.get(32) == (1., 0., 0.)
++         and geometry.get(137) == (0., 1., 0.), 'Exact original six support IDs/positions required')
++    clamp = {(tag, component) for tag in active_nodes if geometry[tag][2] == 0. for component in range(3)}
++    need(len(clamp) == (135 if step < 80 else 255) and point <= clamp,
++         'Exact45/85 active z=0 plane nodes and six remaining components required')
++    constrained = clamp if step < 181 else point
++    universe = {(tag, component) for tag in active_nodes for component in range(3)}
++    free = universe - constrained
++    need(constrained <= universe and not constrained & free and constrained | free == universe,
++         'One complete disjoint constrained/free mask; no simultaneous clamp/point BCs')
++    released = clamp - point if step == 181 and phase == 'begin' else set()
++    # BEGIN181 is inherited END180 state, before the new free rows have equilibrated.
++    # Only newly released components are exempt then; every END row is checked.
++    need(not released or (len(released) == 249 and released <= free), 'Only249 newly released BEGIN181 components may be unequilibrated')
++    return constrained, free, released
++
++
++def cooling_values(tokens, step, phase):
++    need(type(step) is int and 161 <= step <= 182 and phase in ('begin', 'end'), 'Only declared continuation phases required')
++    end_step = step - 1 if phase == 'begin' else step
++    need(160 <= end_step <= 182, 'Continuation BEGIN carries previous END temperature')
++    if end_step == 160:
++        return {tag: number(token) for tag, token in tokens.items()}
++    with localcontext() as context:
++        context.prec = 80
++        j = min(end_step - 160, 20)
++        return {tag: 300. if j == 20 else float(Decimal(300) + (Decimal(token) - Decimal(300)) * Decimal(20-j) / Decimal(20))
++                for tag, token in tokens.items()}
++
++
++def energy_products(geometry, cells, qp, policy):
++    energy = []; bounds = []
++    rules = {tag: hex_rule([geometry[n] for n in cells[tag]]) for tag in {t for t, q in qp}}
++    for (tag, q), (index, state) in qp.items():
++        weight = rules[tag][index][3]
++        for i in range(3):
++            for j in range(3):
++                sigma = state['stress'][i][j]; strain = state['elastic_strain'][i][j]
++                energy.append(.5 * weight * sigma * strain)
++                # Product perturbation bound from the two unchanged scalar SI gates.
++                bounds.append(.5 * weight * (policy['stress_Pa'] * abs(strain)
++                              + policy['strain'] * abs(sigma) + policy['stress_Pa'] * policy['strain']))
++    return math.fsum(energy), math.fsum(bounds)
++
++
++def release_energy_check(before, after, remaining, policy):
++    need(set(before['nodes']) == set(after['nodes']) == set(before['forces']) == set(after['forces']),
++         'Complete same-node release states required')
++    delta = {(tag, k): after['nodes'][tag][DISP[k]] - before['nodes'][tag][DISP[k]]
++             for tag in before['nodes'] for k in range(3)}
++    need(remaining <= set(delta), 'Remaining support components must exist')
++    residual_work_bound = math.fsum((abs(after['forces'][tag][k]) if (tag, k) in remaining else policy['force_N']) * abs(value)
++                                   for (tag, k), value in delta.items())
++    product_bound = before['energy_product_error_bound_J'] + after['energy_product_error_bound_J']
++    change = after['energy_J'] - before['energy_J']
++    secant_work = math.fsum(.5 * (before['forces'][tag][k] + after['forces'][tag][k]) * value
++                           for (tag, k), value in delta.items())
++    allowance = product_bound + residual_work_bound
++    need(all(math.isfinite(v) for v in (change, secant_work, allowance)) and allowance >= 0,
++         'Finite release energy/work diagnostic and propagated nonnegative bound required')
++    need(change <= allowance, 'Fixed-reference elastic potential must not increase on homogeneous support removal beyond propagated existing SI bounds')
++    need(abs(change - secant_work) <= allowance,
++         'Linear fixed-reference energy increment must match trapezoidal internal work within propagated existing SI bounds')
++    return dict(energy_before_J=before['energy_J'], energy_after_J=after['energy_J'], change_J=change,
++                trapezoidal_internal_work_J=secant_work, energy_work_defect_J=change-secant_work,
++                inherited_tensor_product_bound_J=product_bound, inherited_residual_work_bound_J=residual_work_bound,
++                total_derived_bound_J=allowance, new_independent_Joule_tolerance=None,
++                work_equals_2U_used=False, physical_dynamic_energy_conservation_claimed=False,
++                floating_point_roundoff_proof_claimed=False)
++
++
++def hold_state_check(audit, before, after):
++    need(set(before['nodes']) == set(after['nodes']) and set(before['qp']) == set(after['qp']), 'Complete fixed300K hold associations required')
++    for tag, row in before['nodes'].items():
++        for name in (*DISP, 'temperature', *FORCE):
++            audit.close(after['nodes'][tag][name], row[name], 'temperature_K' if name == 'temperature' else 'displacement_m' if name in DISP else 'force_N')
++    for key, (_, fields) in before['qp'].items():
++        for name in TENSORS:
++            for i, j in COMP:
++                audit.close(after['qp'][key][1][name][i][j], fields[name][i][j], 'stress_Pa' if name == 'stress' else 'strain')
++    bound = before['energy_product_error_bound_J'] + after['energy_product_error_bound_J']
++    need(abs(after['energy_J'] - before['energy_J']) <= bound, 'Identical prescribed300K released hold energy must agree within propagated tensor gates')
++    return dict(END181_to_END182_individual_SI_gates_passed=True, energy_change_J=after['energy_J']-before['energy_J'],
++                inherited_tensor_product_bound_J=bound, mechanical_convergence_claimed=False)
++
++
++def completed_evidence(c, pins):
++    need(c.get('continuation_data_peer_and_root_accepted') is True
++         and c.get('complete_native_storage_audit_and_root_review_complete') is True
++         and c.get('TimePeriod24_registry_peer_and_root_review_complete') is True,
++         'Separate completed continuation data, raw-storage audit and TimePeriod24 metadata admissions required')
++    for key in ('data_result_peer', 'data_root_acceptance', 'native_capture_peer', 'native_capture_root_acceptance',
++                'native_storage_audit', 'native_storage_root_acceptance', 'TimePeriod24_presence', 'TimePeriod24_root_closed'):
++        name = c.get(key)
++        need(isinstance(name, str) and name in pins and not Path(name).is_absolute()
++             and sha(ROOT/name) == pins[name], 'Every named completed admission must be directly bound: ' + key)
++
++
+ def assess_data(directory, transfer, source_directory, source_index, filenames, policy):
+     audit = Audit(policy)
+     geometry, cells, frames, family = geometry_family(directory, filenames, transfer)
+@@ -330,20 +432,30 @@
+     shared_nodes = old_nodes & born_nodes
+     need(len(shared_nodes) == 25 and shared_nodes == {r['source_node_id'] for r in transfer['node_rows'] if r['shared'] is True},
+          'Exact frozen source shared25 IDs must join the native old/born partition')
+-    constraints = {(0, 0), (0, 1), (0, 2), (32, 1), (32, 2), (137, 2)}
+-    need(geometry[0] == (0., 0., 0.) and geometry[32] == (1., 0., 0.) and geometry[137] == (0., 1., 0.), 'Observed exact support IDs and positions required')
++    support_masks(geometry, old_nodes, 0, 'begin')
+     source = {(r['step'], r['phase']): r for r in source_index['selected']}
+     need(len(source) == 321, 'Complete original321 thermal source associations required')
++    terminal = source[(160, 'end')]
++    terminal_path = source_directory / terminal['filename']
++    need(sha(terminal_path) == terminal['sha256'], 'Accepted original END160 source identity required')
++    node_sample(terminal_path, geometry, set(geometry), ('temperature',))  # Strict425 unique original source rows.
++    terminal_tokens = {integer(row['id']): row['temperature'] for row in rows(terminal_path, ('id', 'x', 'y', 'z', 'temperature'))}
++    need(set(terminal_tokens) == set(geometry), 'Complete original terminal temperature tokens required')
+     def thermal(step, phase, active):
++        if step > 160:
++            values = cooling_values(terminal_tokens, step, phase)
++            return {tag: {'temperature': values[tag]} for tag in active}
+         item = source[(step, phase) if step else (0, 'end')]
+         path = source_directory / item['filename']; need(sha(path) == item['sha256'], 'Original thermal source drift')
+         return node_sample(path, geometry, active, ('temperature',))[0]  # Original thermal rows remain strictly unique.
+     birth_T = {tag: value['temperature'] for tag, value in thermal(80, 'begin', set(geometry)).items() if tag in born_nodes}
+     born_u = None; previous_end = None; previous_qp = None; qcoords = {}; summaries = []; total_qp = dict(begin=0, end=0)
+-    for step in range(161):
++    release_states = {}
++    for step in range(183):
+         active_nodes = old_nodes if step < 80 else set(geometry); active_cells = old_cells if step < 80 else set(cells)
+         phase_state = {}
+         for phase in ('begin', 'end'):
++            constraints, free, released = support_masks(geometry, active_nodes, step, phase)
+             cols = (*DISP, 'temperature') if phase == 'begin' else (*DISP, 'temperature', *FORCE)
+             nodal, nodal_storage = node_sample(directory / f'thermoelastic_{phase}_{step:04d}.csv', geometry, active_nodes, cols,
+                                                shared_nodes if step >= 80 else ())
+@@ -387,7 +499,7 @@
+                 energy += en; computed.update(state)
+             for tag in active_nodes:
+                 for k in range(3):
+-                    if (tag, k) not in constraints: audit.close(forces[tag][k], 0., 'force_N')
++                    if (tag, k) in free - released: audit.close(forces[tag][k], 0., 'force_N')
+             if phase == 'begin' and previous_qp is not None:
+                 for key, (_, tensors) in qp.items():
+                     if key in previous_qp:
+@@ -420,15 +532,29 @@
+                             expected = computed[key][name][i][j] - phase_state['begin'][2][key][name][i][j]
+                             audit.close(observed, expected, 'stress_Pa' if name == 'stress' else 'strain')
+                 previous_end = nodal; previous_qp = qp
++            observed_energy, product_bound = energy_products(geometry, cells, qp, policy)
++            need(abs(observed_energy-energy) <= product_bound, 'Independent/native elastic energy products must agree within inherited tensor gates')
++            if step >= 181 or (step == 180 and phase == 'end'):
++                for row in nodal.values(): audit.close(row['temperature'], 300., 'temperature_K')
++            if (step, phase) in ((180, 'end'), (181, 'begin'), (181, 'end'), (182, 'begin'), (182, 'end')):
++                release_states[(step, phase)] = dict(nodes=nodal, qp=qp, forces=forces, energy_J=energy,
++                                                    energy_product_error_bound_J=product_bound)
+             phase_state[phase] = (nodal, qp, computed); total_qp[phase] += len(qp)
+-            summaries.append(dict(step=step, phase=phase, active_nodes=len(nodal), active_cells=len(active_cells), quadrature_rows=len(qp), elastic_strain_energy_J_diagnostic=energy,
++            summaries.append(dict(step=step, phase=phase, active_nodes=len(nodal), active_cells=len(active_cells), quadrature_rows=len(qp), elastic_strain_energy_J_diagnostic=energy, native_QP_energy_J_diagnostic=observed_energy,
++                                  inherited_tensor_product_bound_J=product_bound, constrained_DOFs=len(constraints),
++                                  free_DOFs=len(free), pre_equilibrium_released_DOFs=len(released),
+                                   native_nodal_storage=nodal_storage, born_reference_storage=reference_storage))
+-    need(total_qp == dict(begin=247808, end=247808) and len(qcoords) == 2048, 'Complete fixed161-phase/8-GP coverage required')
++    need(total_qp == dict(begin=292864, end=292864) and len(qcoords) == 2048, 'Complete fixed183-phase/8-GP coverage required')
++    remaining, _, _ = support_masks(geometry, set(geometry), 181, 'end')
++    release = release_energy_check(release_states[(180, 'end')], release_states[(181, 'end')], remaining, policy)
++    hold = hold_state_check(audit, release_states[(181, 'end')], release_states[(182, 'end')])
+     return dict(passed=True, maximum_SI_errors=audit.maximum, scalar_comparisons=audit.counts, phase_summaries=summaries,
+                 native_nodes=[dict(id=t, coordinates_m=list(p)) for t, p in sorted(geometry.items())],
+                 native_ordered_cells=[dict(id=t, nodes=row) for t, row in sorted(cells.items())], exodus_family=family,
+                 observed_QP_ID_coordinate_map=[dict(elem_id=t, qp_id=q, coordinates_m=list(x)) for (t, q), x in sorted(qcoords.items())],
+-                quadrature_rows=total_qp, PETSc_order_assumed=False, work_equals_2U_used=False,
++                quadrature_rows=total_qp, release_energy=release, released_fixed300K_hold=hold,
++                own_clamped_BEGIN80_reference_used=True, prior_unclamped_mechanical_fields_used=False,
++                PETSc_order_assumed=False, work_equals_2U_used=False,
+                 material_process_head_or_manufacturing_qualified=False)
+ 
+ 
+@@ -436,7 +562,7 @@
+     contract_path = Path(contract_path)
+     need(contract_path.is_file() and not contract_path.is_symlink() and sha(contract_path) == digest, 'Exact external assessment actual required')
+     c = json.loads(contract_path.read_text()); held = json.loads((PREP / 'held-preparation.json').read_text())
+-    need(c.get('schema') == '962-cp1-oneway-thermoelastic-assessment-actual/v1' and c.get('assessment_authorized') is True
++    need(c.get('schema') == '962-cp1-oneway-cooling-release-assessment-actual/v1' and c.get('assessment_authorized') is True
+          and c.get('root_and_independent_source_review_complete') is True and c.get('native_completed_and_peer_reviewed') is True
+          and all(c.get(k) is False for k in ('native_execution_authorized', 'automatic_retry', 'head_execution_authorized', 'engineering_accepted', 'physics_qualified', 'material_qualified', 'process_calibrated', 'manufacturing_authorized')),
+          'Only separately reviewed saved-data assessment is authorized')
+@@ -450,15 +576,20 @@
+             need(not Path(name).is_absolute() and '..' not in Path(name).parts and p.is_file() and not p.is_symlink() and p.resolve().is_relative_to(ROOT) and sha(p) == expected, 'Direct saved input drift: ' + name)
+         need(sha(contract_path) == digest, 'Assessment actual drift')
+     checked()
++    completed_evidence(c, pins)
+     policy = json.loads((PREP / 'POLICY.json').read_text())['absolute_SI_limits']
+-    need(c.get('native_directory') == 'work/962-engineering/cp1-oneway-thermoelastic-transfer-002', 'Only the fixed future native coupon may be assessed')
++    need(c.get('native_directory') == 'work/962-engineering/cp1-oneway-cooling-release-001', 'Only the fixed future native coupon may be assessed')
+     native = ROOT / c['native_directory']; receipt = json.loads((native / 'native-execution.json').read_text())
+     need(receipt.get('native_execution_completed') is True and receipt.get('returncode') == 0 and receipt.get('inputs_unchanged') is True and receipt.get('binary_and_runtime_unchanged') is True, 'Stopped completed immutable native receipt required')
++    need(receipt.get('passed') is False and receipt.get('independent_assessment_performed') is False
++         and receipt.get('prescribed_cooling_extension_present') is True and receipt.get('build_clamp_then_release') is True
++         and receipt.get('head_input_read') is False and receipt.get('automatic_retry') is False,
++         'Original unassessed local cooling capture and no head/retry scope required')
+     need(receipt.get('process_reaped') is True and receipt.get('physics_contract_sha256') == sha(CASE / 'case-contract.json')
+          and (native / 'frozen-contract.json').read_bytes() == (CASE / 'case-contract.json').read_bytes(), 'Exact source physics and stopped native lifecycle required')
+     native_actual = json.loads((native / 'actual-contract.json').read_text())
+     need(sha(native / 'actual-contract.json') == receipt['actual_contract_sha256']
+-         and native_actual.get('schema') == '962-macos-oneway-thermoelastic-case-actual/v1'
++         and native_actual.get('schema') == '962-macos-oneway-cooling-release-case-actual/v1'
+          and all(native_actual['input_sha256'].get(k) == v for k, v in json.loads((CASE / 'held-preparation.json').read_text())['input_sha256'].items()), 'Same separately authorized source-bound native actual required')
+     inventory = c['native_output_inventory']
+     entries = list(native.rglob('*'))
+@@ -479,14 +610,24 @@
+          and Path(scipy.__file__).resolve() == (Path(selection['site_packages']) / 'scipy/__init__.py').resolve()
+          and netcdf_file.__module__ == 'scipy.io._netcdf'
+          and Path(sys.modules[netcdf_file.__module__].__file__).resolve() == (Path(selection['site_packages']) / 'scipy/io/_netcdf.py').resolve(), 'Actual decoder import origins must equal selected files')
+-    transfer = json.loads((ROOT / c['transfer_manifest']).read_text()); need(transfer.get('schema') == '962-oneway-thermoelastic-prepared-transfer/v1' and transfer.get('birth_reference_phase') == 'BEGIN80_all225_born_DOFs_including25shared', 'Exact completed original transfer associations required')
++    transfer = json.loads((ROOT / c['transfer_manifest']).read_text()); need(transfer.get('schema') == '962-oneway-cooling-release-prepared-transfer/v1' and transfer.get('birth_reference_phase') == 'Original exact BEGIN80 temperature on225 born DOFs incl25shared', 'Exact completed original transfer associations required')
+     need(pins.get(c['transfer_manifest']) == receipt['transfer_manifest_sha256'] == sha(ROOT / c['transfer_manifest']), 'Native and assessor must use the same completed transfer manifest')
+-    result = assess_data(native, transfer, ROOT / 'work/962-engineering/cp1-assumed-thermal-birth-linear-001', json.loads((CASE / 'thermal-input-index.json').read_text()), c['exodus_family'], policy)
++    need(transfer.get('table_value_counts') == {'old-end.grid': 41175, 'born-end.grid': 23175, 'born-begin80.grid': 225}
++         and transfer.get('original_tokens_preserved') == 54675 and transfer.get('new_assumed_cooling_hold_values') == 9900
++         and transfer.get('cooling_card_sha256') == sha(CASE/'card.json')
++         and transfer.get('prescribed_cooling_not_heat_equation_or_process_calibration') is True,
++         'Exact completed continuation counts, card and research scope required')
++    original = json.loads((CASE/'thermal-input-index.json').read_text())
++    need(transfer.get('source_manifest_sha256') == original['source_manifest']['sha256']
++         and transfer.get('original_table_sha256') == {name: row['sha256'] for name, row in original['table_descriptors'].items()}
++         and transfer['table_sha256']['born-begin80.grid'] == original['table_descriptors']['born-begin80.grid']['sha256'],
++         'Original accepted thermal lineage and whole-byte BEGIN80 temperature reference required')
++    result = assess_data(native, transfer, ROOT / 'work/962-engineering/cp1-assumed-thermal-birth-linear-001', json.loads((SOURCE_CASE / 'thermal-input-index.json').read_text()), c['exodus_family'], policy)
+     checked()
+     for name, record in inventory.items(): need(sha(native / name) == record['sha256'], 'Native output drift during assessment')
+     for name, record in selection['files'].items(): need(sha(Path(selection['site_packages']) / name) == record['sha256'], 'Selected decoder runtime changed')
+     need(c.get('output_directory') == OUTPUT and not output.exists() and not output.is_symlink(), 'Fresh fixed assessment output required')
+-    result.update(schema='962-cp1-oneway-thermoelastic-saved-field-assessment/v1', actual_sha256=digest, input_sha256=pins,
++    result.update(schema='962-cp1-oneway-cooling-release-saved-field-assessment/v1', actual_sha256=digest, input_sha256=pins,
+                   source_physics_contract_sha256=sha(CASE / 'case-contract.json'), policy_sha256=sha(PREP / 'POLICY.json'),
+                   native_original_receipt_passed_field=receipt.get('passed'), native_receipt_is_not_assessment_authority=True,
+                   decoder_runtime_selection_sha256='2b3b2ac0f52ecef6f349d45524f26011da94c257fc0ede5067a9f236681e9713',

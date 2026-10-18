@@ -1,0 +1,58 @@
+{
+  "schema": "962-cooling-release-TimePeriod-parameter-root-launch/v1",
+  "argv": [
+    "work/962-engineering/moose-local-installed-002/bin/combined-opt",
+    "-skip_petscrc",
+    "--n-threads=1",
+    "--dump-search",
+    "TimePeriod"
+  ],
+  "environment": {
+    "PATH": "/usr/bin:/bin",
+    "LANG": "C",
+    "LC_ALL": "C",
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "VECLIB_MAXIMUM_THREADS": "1",
+    "FI_PROVIDER": "tcp"
+  },
+  "runtime_bindings": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-TimePeriod-parameters-001/runtime-bindings.json",
+    "sha256": "3200d21dae8e1d09968faa089ef0ac04cb51ffc60b25fcdc95432b950a705e3e",
+    "bytes": 6886
+  },
+  "future_required_objects": [
+    "GeneratedMeshGenerator",
+    "SubdomainBoundingBoxGenerator",
+    "BoundingBoxNodeSetGenerator",
+    "ADTimeDerivative",
+    "FunctionIC",
+    "PiecewiseMultilinear",
+    "FunctionAux",
+    "TimedSubdomainModifier",
+    "ADDirichletBC",
+    "ADStressDivergenceTensors",
+    "ADComputeIncrementalStrain",
+    "ADComputeIsotropicElasticityTensor",
+    "ADComputeThermalExpansionEigenstrain",
+    "ADComputeFiniteStrainElasticStress",
+    "RankTwoTensorMaterialADConverter",
+    "RankTwoCartesianComponent",
+    "NodalValueSampler",
+    "ElementMaterialSampler",
+    "TimePeriod",
+    "SMP",
+    "Transient",
+    "CSV",
+    "Console",
+    "Exodus"
+  ],
+  "ordinary_timeout_seconds": 60,
+  "TERM_grace_seconds": 8,
+  "output_stop_bytes": 33554432,
+  "sampled_RSS_stop_bytes": 2147483648,
+  "new_owned_session": true,
+  "owned_KILL_wait": true,
+  "no_head_read_or_solver_case": true,
+  "automatic_retry": false
+}
