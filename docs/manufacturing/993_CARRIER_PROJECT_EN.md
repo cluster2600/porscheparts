@@ -36,32 +36,22 @@ preparation remain unfinished.
 
 ```mermaid
 flowchart TB
-    subgraph INPUT["01 · Establish the reference"]
-        direction LR
-        PHOTO["Photographs"]
-        SCAN["3D scan"]
-        DRAW["Measurement drawing"]
-        REF["Units, dimensions, axes<br/>mounting faces and assumptions"]
-        PHOTO --> REF
-        SCAN --> REF
-        DRAW --> REF
-    end
+    REF["01 · Reference<br/>photo · scan · drawing"]
+    REF --> CAD["02 · Editable CAD<br/>build123d · OCCT"]
 
-    REF --> CAD["02 · Editable CAD master<br/>build123d + OCCT<br/>parameters · BREP · STEP"]
+    CAD --> SURFACE["03 · Surface mesh<br/>Gmsh · PyMesh · CGAL · libigl"]
+    CAD --> MESH["04 · Volume mesh<br/>Gmsh T10"]
+    MESH --> SOLVE["Mechanical calculations<br/>CalculiX · independent audits"]
+    SOLVE --> REVIEW{"Peaks and<br/>mesh sensitivity"}
+    REVIEW -->|"Revise"| CAD
 
-    CAD --> SURFACE["03 · Surface geometry<br/>Gmsh · PyMesh · libigl · CGAL<br/>triangles · topology · intersections · distance"]
-    CAD --> MESH["04 · Volume mesh<br/>Gmsh T10 tetrahedra<br/>protected interfaces · local refinement"]
-    MESH --> SOLVE["Mechanical calculations<br/>CalculiX + independent audits<br/>all stress peaks · displacement · energy"]
-    SOLVE --> REVIEW{"Review mesh sensitivity<br/>and junction geometry"}
-    REVIEW -->|"Improve the next revision"| CAD
+    SURFACE --> AM["05 · Print preparation<br/>PySLM · regional envelopes"]
+    AM --> LAYERS["Supports · layers · vectors<br/>complete audits pending"]
 
-    SURFACE --> AM["05 · Additive preparation<br/>PySLM + exact geometry checks<br/>pose · seven regional envelopes"]
-    AM --> LAYERS["Layers and supports<br/>contours · hatches · contacts · collisions<br/>complete vector audits"]
-
-    REVIEW -->|"Accepted calculation checkpoint"| PACK["06 · Manufacturing handover<br/>one revision · matching files<br/>settings · drawings · reports · manifest"]
+    REVIEW -->|"Accepted checkpoint"| PACK["06 · Handover<br/>CAD · settings · drawings · reports"]
     LAYERS --> PACK
 
-    RECORD["Reproducibility throughout<br/>input hashes · source and runtime identities<br/>parameters · raw outputs · retained failures"]
+    RECORD["At every stage<br/>revision · hashes · settings · evidence"]
     RECORD -.-> CAD
     RECORD -.-> SOLVE
     RECORD -.-> LAYERS
@@ -72,7 +62,7 @@ flowchart TB
     classDef preparation fill:#e7f2ec,stroke:#49856a,color:#193e2e;
     classDef pending fill:#f1edf8,stroke:#8b75a8,color:#46345e,stroke-dasharray:5 3;
     classDef record fill:#f3f5f7,stroke:#8595a2,color:#34495e;
-    class PHOTO,SCAN,DRAW,REF reference;
+    class REF reference;
     class CAD,SURFACE,MESH geometry;
     class SOLVE,REVIEW calculation;
     class AM preparation;
