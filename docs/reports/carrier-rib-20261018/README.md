@@ -69,6 +69,8 @@ The [two refined cases](refined-mechanics-root-review.json) use the same d64 CAD
 
 Both global peaks occur at **element 85,784 / integration point 2**, undeformed coordinates **(83.421659, −15.366811, 13.685695) mm**, with a measured corner-edge maximum of **0.701533164 mm**. Every global maximum and tie remains retained. Maximum displacements change by only **0.0457% / 0.0238%**, while the peaks increase by **54.13% / 77.04%**. This demonstrates strong local stress sensitivity to refinement; it supplies no converged stress or adequate-strength conclusion. The complete [rigid](refined-rigid-energy-audit.json) and [spring](refined-spring-energy-audit.json) energy records and all 64 output identities are retained. The R1 geometric correction is evaluated separately below.
 
+The [actual coarse/refined field image](../../media/carrier-d64-coarse-refined-20261018/README.md) compares all four completed d64 cases with a common camera, common field scales and true deformation ×1. It retains all integration-point rows and every global maximum; it does not establish convergence or transfer d64 results to R1.
+
 ## R1 junction trial — separate candidate
 
 A [new seven-edge junction trial](R1-junction-trial-root-review.json) produced native BREP **240109ca**, one valid solid with **243 faces** and no degenerate edges. A single declared **1 mm** fillet follows the complete actual reentrant contour; all seven source-profile, finite normal and material-side checks precede the native build.
