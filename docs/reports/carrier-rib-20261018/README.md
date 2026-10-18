@@ -4,6 +4,8 @@ The **d64a7faf** native master has an adaptive volume of **288,415.83655452315 m
 
 See the [actual CAD surface comparison](../../media/carrier-rib-actual-surfaces-20261018/README.md), [reinforcement construction drawing](../../media/carrier-rib-C2-20261018/README.md) and [nominal interface sheet](../../media/carrier-nominal-interfaces-20261018/README.md).
 
+The [editable handover](../../../parts/993-eng-carrier-0001/source/design-20261016/stock-rib-C2-candidate-20261018/README.md) contains the actual BREP, STEP and STL, construction sources, parameters and tested local reconstruction commands. Both original BREP byte identities were reproduced in a fresh run. The [copy review](handover-copy-root-review.json) verifies all 65 copied payloads and the final 66-file path set.
+
 ## Geometry and mesh
 
 The current native body is one valid solid. Its fresh 597,720-triangle STL passes whole topology and intersection checks; the sampled two-way distances are **0.015438140 / 0.047388128 mm**, below the retained **0.06 mm** screen. All eight complete protected-interface probe rosters and the original assembly predicate pass.
@@ -32,6 +34,6 @@ These are initial mesh results. Stress convergence and adequate strength are sti
 
 ## Evidence scope
 
-[Provenance](provenance.json) maps every copied report to its actual source and hash. This compact folder contains the five complete reports listed there. Full native fields, owner collections, solver binaries and runtime maps remain at the retained local paths recorded in those reports; this folder does not claim a self-contained solver replay.
+[Provenance](provenance.json) maps every copied report to its actual source and hash. This compact folder contains the six complete reports listed there. Full native fields, owner collections, solver binaries and runtime maps remain at the retained local paths recorded in those reports; this folder does not claim a self-contained solver replay.
 
 Process preparation must follow the selected geometry. The seven-region, 1,034-layer native-envelope experiments still refer to the preceding stock body; they are not transferred to d64. Supports, full layer vectors and a machine job remain subsequent stages.
