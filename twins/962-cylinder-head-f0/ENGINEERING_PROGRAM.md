@@ -27,13 +27,15 @@ and independent reviews. Matched hot-property laws, fatigue/TMF, creep and the
 head's load/interface histories remain open. Supplier recipes and synthetic
 solver coefficients remain distinct; no production material or process is selected.
 
-The [current head checkpoint](derived/engineering/apex1613790-head-application/README.md)
-completes one further local replacement and full save/reopen procedure:
-**129 to 127** cells below SICN 0.1. Its exact generated mesh is downloadable
-for review. All 44 local replacement cells pass the gate, while the whole-head
+The [current head checkpoint](derived/engineering/apex1613031-head-application/README.md)
+completes the reviewed fourteen-cell replacement and full save/reopen procedure:
+**127 to 126** cells below SICN 0.1. Its exact saved mesh is downloadable
+for review. All 14 local replacement cells pass the gate, while the whole-head
 minimum remains 0.039074265058645995 and head analysis admission remains open.
+The [preceding 129-to-127 result](derived/engineering/apex1613790-head-application/README.md)
+and its distinct mesh download remain available.
 
-The [current 127-cell census](derived/engineering/current127-full-stars/README.md)
+The [preceding 127-cell census](derived/engineering/current127-full-stars/README.md)
 freshly maps all remaining poor cells to 101 interior seeds and 3,137 incident
 cells, including 3,010 initially good cells and 99 shared cells. The read-only
 query and saved associations pass their reviews; this does not establish repair
@@ -60,7 +62,7 @@ and the same fourteen-face oriented boundary. The complete report, source,
 execution and saved-result reviews support relative local occupied-domain equality.
 Current-parent outside owners and head admission remain separate gates.
 
-The [current-parent connection checkpoint](derived/engineering/current127-apex1613031-head-context/README.md)
+The [pre-replacement connection checkpoint](derived/engineering/current127-apex1613031-head-context/README.md)
 records the unchanged head's complete fourteen-cell apex1613031 star. One shell
 face is exterior; thirteen have opposite current outside owners, involving
 thirteen tetrahedra and nineteen coordinate nodes. Full selected words, classes,

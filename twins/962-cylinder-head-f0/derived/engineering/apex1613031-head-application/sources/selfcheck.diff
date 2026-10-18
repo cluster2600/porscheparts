@@ -1,0 +1,11 @@
+--- work/962-engineering/apex1613031-head-application-prep-001/selfcheck.py
++++ work/962-engineering/apex1613031-head-application-prep-002/selfcheck.py
+@@ -5,7 +5,7 @@
+ from types import SimpleNamespace
+ import ast,copy,hashlib,json,math,struct,sys,unittest
+ 
+-SOURCE_SHA='5f7df7d36b297100ac997979f2cdc5f66e6562c87601359d952ea6047e246b56'
++SOURCE_SHA='bd352d87c6fc3f4cfd8311ef169279725cf6a7c49e8cc0df2dca01b26d582361'
+ source=Path(__file__).with_name('reader.py');ROOT=source.resolve().parents[3]
+ assert hashlib.sha256(source.read_bytes()).hexdigest()==SOURCE_SHA
+ tree=ast.parse(source.read_text());functions={n.name:n for n in tree.body if isinstance(n,ast.FunctionDef)}

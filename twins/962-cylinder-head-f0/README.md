@@ -15,12 +15,14 @@ The [material-gap audit](derived/engineering/material-production-gap-audit/READM
 adds a separate Nikon CP1 characterization lead and traces the matched hot-property,
 fatigue and creep data still needed. Its coupon statistics do not select a head
 material or qualify a production process.
-The [latest head checkpoint](derived/engineering/apex1613790-head-application/README.md)
-reduces the observed poor-cell count from **129 to 127** and supplies the exact
-generated mesh as a lossless review download. All 44 replacement cells pass the
+The [latest head checkpoint](derived/engineering/apex1613031-head-application/README.md)
+reduces the observed poor-cell count from **127 to 126** and supplies the exact
+saved mesh as a lossless review download. All 14 replacement cells pass the
 local SICN 0.1 gate; the whole head remains rejected, with unchanged minimum
 SICN 0.039074265058645995. Head strength and manufacturing qualification remain open.
-The [current 127-cell census](derived/engineering/current127-full-stars/README.md)
+The [previous 129-to-127 checkpoint](derived/engineering/apex1613790-head-application/README.md)
+and its separate mesh download remain available.
+The [preceding 127-cell census](derived/engineering/current127-full-stars/README.md)
 finds 101 interior seed nodes and their complete 3,137-cell incident union,
 including 3,010 initially good cells and 99 cells shared by several seeds.
 All 127 poor cells are covered; repair feasibility remains unproven.
@@ -35,7 +37,7 @@ engineering qualification remain separate gates.
 The [exact local-domain check](derived/engineering/domain-apex1613031/README.md)
 passes all 182 within-complex cell pairs and retains the full report. The old and
 new cavities occupy the same local volume.
-The [current-head connection check](derived/engineering/current127-apex1613031-head-context/README.md)
+The [pre-replacement connection check](derived/engineering/current127-apex1613031-head-context/README.md)
 records one exterior face and thirteen internal interfaces with current outside
 owners. The full read-only report is available; no replacement was applied and
 the head remains quality-rejected.
