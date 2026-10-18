@@ -21,6 +21,12 @@ runtime preparations remain evidence for their stated software scope. They do
 not complete head strength, calibrated LPBF or a physically correlated twin.
 Each completed checkpoint is published in the existing GitHub draft review.
 
+The [material-gap audit](derived/engineering/material-production-gap-audit/README.md)
+records a separate Nikon CP1 characterization state with bounded primary-source
+and independent reviews. Matched hot-property laws, fatigue/TMF, creep and the
+head's load/interface histories remain open. Supplier recipes and synthetic
+solver coefficients remain distinct; no production material or process is selected.
+
 The [current head checkpoint](derived/engineering/apex1613790-head-application/README.md)
 completes one further local replacement and full save/reopen procedure:
 **129 to 127** cells below SICN 0.1. Its exact generated mesh is downloadable

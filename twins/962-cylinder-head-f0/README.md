@@ -11,6 +11,10 @@ with explicit assumptions for unavailable dimensions.
 
 The [engineering execution programme](ENGINEERING_PROGRAM.md) continues through
 material/strength assessment, LPBF simulation, an Omniverse twin and PhysicsNeMo.
+The [material-gap audit](derived/engineering/material-production-gap-audit/README.md)
+adds a separate Nikon CP1 characterization lead and traces the matched hot-property,
+fatigue and creep data still needed. Its coupon statistics do not select a head
+material or qualify a production process.
 The [latest head checkpoint](derived/engineering/apex1613790-head-application/README.md)
 reduces the observed poor-cell count from **129 to 127** and supplies the exact
 generated mesh as a lossless review download. All 44 replacement cells pass the
