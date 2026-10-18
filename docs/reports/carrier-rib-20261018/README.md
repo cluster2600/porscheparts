@@ -50,13 +50,21 @@ The [raw-preserving refinement](frozen-bore-T6-refinement-refusal-root-review.js
 
 This refinement still refuses the original volume-error nonregression guard: **−0.000242000454338** versus the coarse **−0.000232811681518**. Its measured local maxima are **1.559827077 / 1.015801710 mm**, above the unchanged **1.384441618 / 0.953185689 mm** targets. No refined mechanical case was solved. The original coordinate, connectivity, volume and actual edge-size gates remain in force.
 
+The [saved-boundary volume study](boundary-volume-attribution-root-review.json) independently recomputes both complete encoded corner meshes with dyadic integer arithmetic. The exact corner-boundary change is **−2.650187600 mm³**; the original Gmsh T10 volume observations differ by **−2.650187600 mm³**, with a separate operator-delta residual of **4.27 × 10⁻¹¹ mm³**. The changed saved boundary accounts for this volume difference beyond summation roundoff. Exact corner-polytope arithmetic remains distinct from the full quadratic T10 operator and does not qualify the rejected mesh.
+
+Every edge-to-midside association was checked. All stored binary64 midpoint expressions match; most are not exact rational midpoints, with maximum rational deviation **2.8422 × 10⁻¹⁴ mm**. Complete unchanged-face cancellation and all unmatched boundary contributions are retained. Only the latest mesh has captured native face identities; the coarse mesh's native face IDs remain unknown. The next method reuses the existing adaptive discrete refinement of the admitted coarse mesh, retaining original coordinates, protected facets and all numerical gates.
+
 ## R1 junction trial — separate candidate
 
 A [new seven-edge junction trial](R1-junction-trial-root-review.json) produced native BREP **240109ca**, one valid solid with **243 faces** and no degenerate edges. A single declared **1 mm** fillet follows the complete actual reentrant contour; all seven source-profile, finite normal and material-side checks precede the native build.
 
 The strict **d64 minus trial** native difference is valid and empty in all dimensions. The reverse difference is one valid positive solid, with **36.049512 mm³** measured volume. The separate whole-body adaptive volume difference is **36.055640 mm³**; these two observations are retained separately. The trial mass is **1.274957364 kg**, leaving **25.04 g** below the ceiling, and the original overall bounds pass.
 
-This closes the trial's local geometry, retention and mass checks. Fresh body-volume observations, all four actual tool-column intersections, surface, protected interfaces, exchange and mechanics follow this candidate. The d64 mechanical results and existing section/stress images remain attached to d64; they do not establish the new trial's stress response.
+The [fresh body inspection](R1-body-volume-root-review.json) confirms one valid Solid and one shell, **243 faces / 738 edges / 488 vertices**, and zero degenerate edges. It observes all three original volume overloads on the same native Solid. F/F/F and T/F/F each return **288,451.89106919506 mm³**; the separate adaptive result is **288,451.89219496236 mm³**, exactly matching the construction trial's binary64 observation.
+
+All [four actual tool-column Commons](R1-four-tool-columns-root-review.json) completed and returned valid, entirely empty results in all dimensions. They use the original **12.5 mm radius**, centres **(±50, ±20) mm** and **Z = 4–44 mm**. Each operation imports the candidate afresh and preserves its raw result before evaluating the predicates.
+
+The [fresh surface generation](R1-surface-generation-root-review.json) produced a **651,012-triangle** STL, SHA-256 **88c405af…**, with the original Gmsh recipe. Its full topology/intersection, forward/inverse distance and protected-interface audits remain separate subsequent stages. STEP exchange and mechanics also follow this candidate. The d64 mechanical results and existing section/stress images remain attached to d64; they do not establish the new trial's stress response.
 
 ## Evidence scope
 
