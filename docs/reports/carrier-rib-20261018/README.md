@@ -32,10 +32,20 @@ The current peaks moved away from the former rib hotspot:
 | Rigid | 35,381 / 2 | (264.015209, 21.485040, −11.310000) | 2.768883 mm | 1.384442 mm |
 | K1000 | 81,008 / 3 | (83.308756, −15.653915, 13.526061) | 1.906371 mm | 0.953186 mm |
 
-These are initial mesh results. Stress convergence and adequate strength are still open; the next calculation refines the current peak-element regions on the same CAD master. The size proposal halves each measured corner-edge maximum. Earlier stock Figure 33 shows the preceding geometry's fields.
+These are initial mesh results. Stress convergence and adequate strength are still open. The size proposal halves each measured corner-edge maximum. Earlier stock Figure 33 shows the preceding geometry's fields.
+
+## Current junction observations and refinement
+
+The [actual section image](../../media/carrier-current-thin-junction-20261018/README.md) shows the current spring-case peak inside a thin wedge between the arm arch and a window wall. Its nearest-face native normal chord is **0.317968484 mm**, from current face 120 to face 164. A reverse chord at a different nearby point is **0.300345471 mm**. The adjacent rib observation is **2.188382396 mm**. These are separate local measurements, not a global minimum thickness or an established stress singularity.
+
+The [observation review](hotspots-root-review.json) closes both actual five-probe native runs. Their [complete compact summary](hotspots-observed-summary.json) retains every reported nearest-face and edge observation, qualified chord and null count. Both complete face/edge distance rosters remain in the original records.
+
+The first [local refinement](local-refinement-refusal-root-review.json) measured **2.360754878 / 1.351859995 mm**, above the unchanged **1.384441618 / 0.953185689 mm** targets. It also changed the end1 bore coordinates: **2,145 of 2,274** nodes had no unique match within the original **10⁻¹⁰ mm** bound. That mesh was refused and was not solved.
+
+A subsequent [frozen-bore attempt](frozen-bore-refusal-root-review.json) recovered all six original T6 bore meshes from the complete current T10 boundary. No fixed bore edge conflicted with the two local targets. Native 1D generation completed, but a curve-parameter ambiguity stopped installation before any protected curve was cleared or injected. No volume mesh or FEA followed. The original coordinate, complete connectivity, volume and actual edge-size gates remain unchanged while this mapping is corrected.
 
 ## Evidence scope
 
-[Provenance](provenance.json) maps every copied report to its actual source and hash. This compact folder contains the six complete reports listed there. Full native fields, owner collections, solver binaries and runtime maps remain at the retained local paths recorded in those reports; this folder does not claim a self-contained solver replay.
+[Provenance](provenance.json) maps every copied record to its actual source and hash. This compact folder contains the complete records listed there. Full native fields, owner collections, solver binaries and runtime maps remain at the retained local paths recorded in those reports; this folder does not claim a self-contained solver replay.
 
-Process preparation must follow the selected geometry. The seven-region, 1,034-layer native-envelope experiments still refer to the preceding stock body; they are not transferred to d64. Supports, full layer vectors and a machine job remain subsequent stages.
+Process preparation must follow the selected geometry. The seven-region, 1,034-layer native-envelope experiments still refer to the preceding stock body; they are not transferred to d64. The last repaired stock case passes its composed finite-distance and independent contact checks, but its strict reader refuses changed final triangles. A proposed separate contract keeps all 22 affected final faces explicitly unknown and claims no continuous coverage or process anchors; it has not been applied. Supports, full layer vectors and a machine job remain subsequent stages.

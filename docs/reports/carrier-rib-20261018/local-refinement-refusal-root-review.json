@@ -1,0 +1,161 @@
+{
+  "schema": "root-same-d64-local-native-refinement-terminal-review-1",
+  "status": "closed_actual_RC1_local_mesh_h2_and_lexsorted_roster_refusals_preserved_no_FEA",
+  "owner_terminal_sha256": "e84fb247d2576809b32c821966860881a16973fde5347fd78ccefde6097fd5ce",
+  "collector_sha256": "cb6dba527858ef0c76c51e671cf5210c84d49fb5a029095e5a2224edad768c03",
+  "whole_owner_object_and_stored_bytes_equal": true,
+  "only_normalized_field": "collector_seconds",
+  "NPY_header_tuples_JSON_roundtripped": true,
+  "all24_outputs663pins_and6controls_verified": true,
+  "whole_original_region_measurements_and_six_lexsorted_roster_checks_recomputed": true,
+  "same_native_master_import_and_positive_Jacobians_pass": true,
+  "volume_error_non_regression_pass": true,
+  "whole_actual_refinement_result": {
+    "actual_regional_edge_measurements": [
+      {
+        "region_id": "combined-rigid-static",
+        "bounds_mm": [
+          [
+            262.71509057776,
+            20.497762126228,
+            -11.639483600432
+          ],
+          [
+            264.88884952199,
+            21.850730505332,
+            -10.22904385359
+          ]
+        ],
+        "target_h_mm": 1.3844416177456211,
+        "source_measured_h_mm": 2.7688832354912423,
+        "centroid_selected_element_count": 11,
+        "centroid_selected_element_ids": [
+          11440,
+          15145,
+          25582,
+          27247,
+          37188,
+          40734,
+          43784,
+          47266,
+          48320,
+          58036,
+          70926
+        ],
+        "centroid_selected_six_edges_min_max_mm": [
+          0.9390363356398665,
+          2.3607548780603165
+        ],
+        "all_mesh_whole_edge_incidences_with_both_endpoints_in_box_count": 16,
+        "all_mesh_whole_edges_with_both_endpoints_in_box_min_max_mm": [
+          1.179750562602872,
+          1.4497402401450297
+        ],
+        "measured_h_mm": 2.3607548780603165,
+        "measured_to_target_ratio": 1.7052036343031145,
+        "measured_to_reference_ratio": 0.8526018171515573,
+        "target_attained": false,
+        "measurement": "Maximum whole corner-edge length across centroid-selected T10 elements and all whole edges fully inside the box; no edge clipping, no distance-based peak omission",
+        "qualification": "target_not_attained_no_h2_claim"
+      },
+      {
+        "region_id": "combined-spring-1000-static",
+        "bounds_mm": [
+          [
+            82.431386523478,
+            -16.537174444708,
+            12.779370290015
+          ],
+          [
+            83.463260350657,
+            -15.1739071529,
+            13.787064625185
+          ]
+        ],
+        "target_h_mm": 0.9531856889566888,
+        "source_measured_h_mm": 1.9063713779133775,
+        "centroid_selected_element_count": 14,
+        "centroid_selected_element_ids": [
+          17291,
+          29985,
+          38778,
+          39289,
+          45038,
+          48575,
+          49904,
+          56280,
+          59306,
+          60823,
+          62091,
+          67490,
+          84742,
+          84743
+        ],
+        "centroid_selected_six_edges_min_max_mm": [
+          0.545584742478586,
+          1.3518599953373978
+        ],
+        "all_mesh_whole_edge_incidences_with_both_endpoints_in_box_count": 48,
+        "all_mesh_whole_edges_with_both_endpoints_in_box_min_max_mm": [
+          0.545584742478586,
+          0.9500501127225963
+        ],
+        "measured_h_mm": 1.3518599953373978,
+        "measured_to_target_ratio": 1.4182546076799356,
+        "measured_to_reference_ratio": 0.7091273038399678,
+        "target_attained": false,
+        "measurement": "Maximum whole corner-edge length across centroid-selected T10 elements and all whole edges fully inside the box; no edge clipping, no distance-based peak omission",
+        "qualification": "target_not_attained_no_h2_claim"
+      }
+    ],
+    "target_h2_qualified": false,
+    "group_coordinate_comparison": {
+      "bolt0": {
+        "reference_nodes": 528,
+        "refined_nodes": 528,
+        "identical_coordinates_within_serialization_roundoff": true
+      },
+      "bolt1": {
+        "reference_nodes": 528,
+        "refined_nodes": 528,
+        "identical_coordinates_within_serialization_roundoff": true
+      },
+      "bolt2": {
+        "reference_nodes": 528,
+        "refined_nodes": 528,
+        "identical_coordinates_within_serialization_roundoff": true
+      },
+      "bolt3": {
+        "reference_nodes": 528,
+        "refined_nodes": 528,
+        "identical_coordinates_within_serialization_roundoff": true
+      },
+      "end0": {
+        "reference_nodes": 2278,
+        "refined_nodes": 2278,
+        "identical_coordinates_within_serialization_roundoff": true
+      },
+      "end1": {
+        "reference_nodes": 2274,
+        "refined_nodes": 2274,
+        "identical_coordinates_within_serialization_roundoff": false
+      }
+    },
+    "volume_reference_relative_error": -0.0002328116815183412,
+    "volume_refined_relative_error": -0.00022049326290229931,
+    "volume_error_non_regression": true,
+    "nearest_native_faces": null
+  },
+  "actual_returncode": 1,
+  "actual_handle": 1412,
+  "actual_terminal_chunk": "12559d",
+  "fresh_owned_PID_PGID_absent": true,
+  "original_refusal_preserved": {
+    "type": "AssertionError",
+    "message": "Protected bore coordinates changed; do not solve",
+    "traceback": "Traceback (most recent call last):\n  File \"/Users/maxime/.codex/worktrees/993-carrier-revalidation/3dprinting993/work/carrier-process-20261017/bounded-webs-stock-rib-native-local-refinement-preparation-002/run.py\", line 166, in run\n    assert all(r['identical_coordinates_within_serialization_roundoff']for r in checks.values()),'Protected bore coordinates changed; do not solve'\nAssertionError: Protected bore coordinates changed; do not solve\n"
+  },
+  "FEA_executed": false,
+  "candidate_qualified": false,
+  "coordinate_matching_diagnostic_is_separate_pending": true
+}
