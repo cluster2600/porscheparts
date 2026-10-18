@@ -86,7 +86,7 @@ flowchart LR
 The [English process illustration](../media/carrier-workflow-20261018-en/process.png),
 [editable SVG](../media/carrier-workflow-20261018-en/process.svg) and
 [one-page PDF](../media/carrier-workflow-20261018-en/process.pdf) describe these
-stages with the current **1.274798 kg** master and **1.30 kg** limit. Their
+stages using the historical d64 **1.274798 kg** snapshot and **1.30 kg** limit. The current 24af CAD mass is **1.275991674 kg**; the artwork retains its original revision. Their
 [source and render records](../media/carrier-workflow-20261018-en/README.md)
 retain the exact artwork changes and visual checks. The diagram is a workflow
 map; each actual stage result remains in its own report.
@@ -286,6 +286,10 @@ ordered section heights. It contains only part sections and trajectories;
 supports and their graphs are controlled separately. A partial cache is refused.
 C1 mechanical results are not substituted into the old STEP recipe by renaming
 metadata.
+
+## Current numerical checkpoint
+
+The [all20 image](../media/carrier-corner-slide-all20-summary-20261018/README.md) shows every current coarse stress and displacement result. [All seven saved-mesh H/2 measurements pass](../reports/carrier-rib-20261018/README.md#current-images-saved-refinement-and-the-attempted-inner-blend), but the unchanged strict volume comparison returns RC1 at an exact observed difference of **1/8,589,934,592 mm³**. No refined 24af mechanical result is substituted. The attempted pair of R1 inner junctions reached one Build and produced no new solid; the current **1.275991674 kg** master is retained while source-order alternatives are investigated.
 
 ## Reproducing and handing over the evidence
 
