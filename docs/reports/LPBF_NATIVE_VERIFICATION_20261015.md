@@ -145,3 +145,43 @@ geometry, deposition history, thermal boundaries and treatment/cutoff stages.
 Physical stiffness, airflow, fatigue and manufacturing acceptance require
 appropriate independent tests and engineering review. All manufacturing and
 physical-release gates remain closed.
+
+## 18 October replay of the original corrected control
+
+The retained corrected runtime completed the original direct exporter, CTest
+and coupled coupon again, with return code 0 at all three native stages.
+A separate local assessment then checked their saved outputs without repeating
+the native work. The [native completion](../../work/carrier-adamantine-corrected-runtime-replay-preparation-003/root-terminal-review-001.json)
+and [local assessment closure](../../work/carrier-adamantine-corrected-runtime-replay-preparation-004/root-terminal-review-001.json)
+keep execution, assessment and owned cleanup distinct. Earlier mount-setup
+refusals remain unchanged.
+
+Both export paths passed **16/16 cases each: 32 checks**, at the original
+relative and absolute `2e-7` tolerances. The coupled control passed all three
+frames at **0, 5 and 10 ms**. Its maximum observed errors were:
+
+| Quantity | Maximum observed error | Original absolute limit |
+| --- | ---: | ---: |
+| Temperature | 0 K | 1e-4 K |
+| Node coordinate | 1.8998981e-10 m | 1e-9 m |
+| Displacement component | 3.4047304e-15 m | 1e-12 m |
+| Stored cell-mean von Mises scalar | 0.034424727 Pa | 2 Pa |
+| Adamantine–CalculiX mean von Mises | 0.050189510 Pa | 4 Pa |
+
+The original assessor self-test passed its Float32 quantization and XML/VTU
+round-trip checks and rejected all **12 invalid field/path fixtures**. Stored
+fields remain Float32; the unchanged assessor promotes them to Float64 for
+error arithmetic. The nonzero quantization probe remains explicitly recorded.
+
+The [small replay evidence folder](../../benchmarks/lpbf-adamantine-export/coupon/replay-20261018/archive.json)
+preserves the four complete original assessment reports byte for byte.
+Its [observed summary](../../benchmarks/lpbf-adamantine-export/coupon/replay-20261018/observed-replay.json)
+records the exact errors, unchanged limits and source, binary, profile,
+protocol and closure hashes. Current raw fields and full runtime evidence
+remain in the linked local work directories; this folder makes no portable
+full-replay claim.
+
+This is the original hypothetical single-Q1-element software control described
+above. It contains no carrier geometry, powder, deposition, melting,
+plasticity, supports, cooling or cutoff stages, and supplies no carrier
+print-distortion or manufacturing qualification result.
