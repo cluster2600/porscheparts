@@ -1,0 +1,236 @@
+--- work/962-engineering/head-star-current204-union-context-prep-002/reader.py
++++ work/962-engineering/head-star-current126-alternative-union-context-prep-001/reader.py
+@@ -1,28 +1,42 @@
+-"""HELD read-only current204 selected116 union parent-context census; no candidate or geometry writes."""
++"""HELD read-only current126 alternative15 union parent context; no candidate or geometry writes."""
+ from pathlib import Path
+ from types import SimpleNamespace
+ import ast, hashlib, json, math, platform, struct, sys, time
+ 
+ ROOT=Path(__file__).resolve().parents[3];OUT=Path(__file__).resolve().parent
+-OUTPUT='work/962-engineering/head-star-current204-union-context-001'
+-MSH_SHA='4c6543f8e905c2771f9f313e5e131d06d081928deafb8dd5b43b18d9d2c73a3f'
+-MESH='work/962-engineering/apex1474426-head-application-001/head-volume.msh'
+-WORKER='work/962-engineering/apex1474426-head-application-001/readback-report.json'
+-RECEIPT='work/962-engineering/apex1474426-head-application-001/execution-receipt.json'
+-FIRST='work/962-engineering/head-star-current204-full-stars-001/readback-report.json'
+-CLASS_HELPER='work/962-engineering/head-star-current204-full-stars-prep-001/reader.py'
+-FIRST_CONTRACT='work/962-engineering/head-star-current204-full-stars-001/frozen-contract.json'
+-CLOSED='work/962-engineering/apex1474426-head-application-root-execution-001/closed-result.json'
+-CENSUS_PEER='work/962-engineering/head-star-current204-full-stars-result-peer-001/review.json'
+-BATCH='work/962-engineering/head-star-current204-batch-shells-001/report.json'
+-MANIFEST='work/962-engineering/head-star-current204-local-stages-prep-001/case-manifest.json'
++OUTPUT='work/962-engineering/head-star-current126-alternative-union-context-001'
++MSH_SHA='48b66aafbd9f1eb69e44305982186e966fe8f041d9b4a6a59be4b610b5d12e08'
++MESH='work/962-engineering/apex1613031-head-application-001/head-volume.msh'
++WORKER='work/962-engineering/apex1613031-head-application-001/readback-report.json'
++RECEIPT='work/962-engineering/apex1613031-head-application-001/execution-receipt.json'
++CLOSED='work/962-engineering/apex1613031-head-application-root-execution-001/closed-result.json'
++PARTIAL_ACCEPT='work/962-engineering/apex1613031-head-application-root-execution-001/result-peer-acceptance.json'
++FIRST='work/962-engineering/head-star-current126-full-stars-001/readback-report.json'
++FIRST_CONTRACT='work/962-engineering/head-star-current126-full-stars-001/frozen-contract.json'
++FIRST_ACTUAL='work/962-engineering/head-star-current126-full-stars-execution-prep-001/actual-contract.json'
++CLASS_HELPER='work/962-engineering/head-star-current126-full-stars-prep-001/reader.py'
++CENSUS_PEER='work/962-engineering/head-star-current126-full-stars-result-peer-001/review.json'
++CENSUS_BINDINGS='work/962-engineering/head-star-current126-full-stars-result-peer-001/bindings.json'
++CENSUS_ACCEPT='work/962-engineering/head-star-current126-full-stars-root-execution-001/result-peer-acceptance.json'
++BATCH='work/962-engineering/head-star-current126-alternative-batch-shells-001/report.json'
++MANIFEST='work/962-engineering/head-star-current126-alternative-union-context-prep-001/case-manifest.json'
++DOMAIN_MANIFEST='work/962-engineering/head-star-current126-alternative-case-domains-prep-001/case-manifest.json'
++NETGEN_ACCEPT='work/962-engineering/current126-alternative-Netgen-root-execution-001/result-peer-acceptance.json'
++DEVIATION='work/962-engineering/head-star-current129-full-stars-root-execution-001/launch-deviation-001.json'
+ MESH_HELPER='twins/962-cylinder-head-f0/source/mesh_head.py'
+-FIXED_INPUTS={'work/962-engineering/apex1474426-head-application-001/head-volume.msh': '4c6543f8e905c2771f9f313e5e131d06d081928deafb8dd5b43b18d9d2c73a3f', 'work/962-engineering/apex1474426-head-application-001/readback-report.json': 'c39dce34ee4b7b3cdf5e470041ecc1316642dbc547b63047cd300d8ffc23d70d', 'work/962-engineering/apex1474426-head-application-001/execution-receipt.json': 'f78151937f4085a6611a209595402a9daa934be906f4f1e132ba2b913ea6f652', 'work/962-engineering/head-star-current204-full-stars-001/readback-report.json': '0124cdb9dd65a1d2434e0ff44e3d390257ad32bbc9c068c9c330532f46d03239', 'work/962-engineering/head-star-current204-full-stars-prep-001/reader.py': 'eb9b5cfeab50c9c74c87c3995b0ce97ebbc365581a2cc552f26fb73b96bd0a1f', 'work/962-engineering/head-star-current204-full-stars-001/frozen-contract.json': 'a613681c5d653a4bd68e31604d50f14716bfc003d7eb2eff2f7149a89ecba7d2', 'work/962-engineering/apex1474426-head-application-root-execution-001/closed-result.json': '0b2c61d3f5418394aca86733bdcda859739d7ab1e9d2fbafec9dbd3f1b8be250', 'work/962-engineering/head-star-current204-full-stars-result-peer-001/review.json': '239e8c4e154872a75aa1b5dd23599f344f6e857778b80c87461f9492dc655a01', 'work/962-engineering/head-star-current204-batch-shells-001/report.json': '4f9fc0354918a907083006484d534c34c3b2621dfcc83b00cc4a4b731f009e86', 'work/962-engineering/head-star-current204-local-stages-prep-001/case-manifest.json': '3a558ede04cbc52c59e401befb36b8983ebd9b7f57d4266de0bea38fb1a963c5', 'work/962-engineering/head-star-current204-full-stars-001/execution-receipt.json': 'f6cb320e261eb33f501aa36497f990213c5d856defa9b286f8bda25dab5f5d0c', 'work/962-engineering/head-star-current204-full-stars-root-execution-001/closed-result.json': '67ce69c8c2a35d8b56763550043c18a3db28d963a1cee5675c41e9f8f1765456', 'work/962-engineering/head-star-current204-full-stars-root-execution-001/result-review.json': 'af50c15ef52da35a5c265cbfa7bff10c3aa99694b0d86acad121a8bc2b2f68af', 'work/962-engineering/head-star-current204-full-stars-root-execution-001/result-peer-acceptance.json': 'f145fe76eab27efe97bcd64c5fe217f74bcaa12a2ae095ff9dac4ee9c3c20f26', 'work/962-engineering/head-star-current204-batch-shells-001/receipt.json': '78e215c5c85f01ca614e44e4e443fd4181086f63e2edc5d5aee81fbef77dbedb', 'work/962-engineering/head-star-current204-batch-shells-execution-prep-001/actual-contract.json': 'daf7c31a9cb24bdad32bf6ddf281d82dbd1a805b0d5a2a5bac159a32c6cb9d06', 'work/962-engineering/head-star-current204-batch-shells-root-execution-001/closed-result.json': '67d9b2763fcd5ac887eddca79010d8a21dc6365b19f56224512acbaf7a3150e2', 'work/962-engineering/head-star-current204-batch-shells-root-execution-001/result-review.json': '5a80128a5e4dd3ea685449c1124fd1fad4c07a3bb1c586f9f80a2e26caacf913', 'work/962-engineering/head-star-current204-batch-shells-root-execution-001/result-peer-acceptance.json': '47a98aad883748178b7b25a1a5957ca01c0780eb0274f778567e6c5fb22fe538', 'work/962-engineering/head-star-current204-batch-shells-result-peer-001/review.json': '3fd325b3e4e18b942bda26d9292127d1dc1c2b8ecc5841d11257dc61884030da', 'work/962-engineering/head-star-current204-local-stages-prep-001/held-contract.json': 'ddbeaae99f3a51297b7be6f16701985a9fd9d0b721e00113a564f07be4a4f6fe', 'work/962-engineering/head-star-current204-local-stages-source-peer-001/review.json': '88c1aa3923ea9eaf3d53e980fd4d3bb9fb9a9487be9c7101f4e7467a4101e7ac', 'work/962-engineering/head-star-current204-finite-batch-plan-001/NOTE.md': 'b5a4d575324e0ea268bd2ccb5ff853fa8ada83a4417f9c1cba17c3acd7e1a02f', 'twins/962-cylinder-head-f0/source/mesh_head.py': '69c8012e99057e384d44d6971d41f0e2cc7197a978120a7c566b0ad5a6477da5'}
++DOMAIN_ACCEPT='work/962-engineering/current126-alternative-case-domains-root-execution-001/result-peer-acceptance.json'
++DOMAIN_PEER='work/962-engineering/current126-alternative-case-domains-result-peer-001/review.json'
++DOMAIN_BINDINGS='work/962-engineering/current126-alternative-case-domains-result-peer-001/bindings.json'
++DOMAIN_INDEX='work/962-engineering/head-star-current126-alternative-case-domains-actuals-prep-001/index.json'
++DOMAIN_MASTER='work/962-engineering/current126-alternative-case-domains-root-execution-001/closed-result.json'
++DOMAIN_OWN_REVIEW='work/962-engineering/current126-alternative-case-domains-root-execution-001/own-review.json'
++FIXED_INPUTS={'work/962-engineering/apex1613031-head-application-001/head-volume.msh': '48b66aafbd9f1eb69e44305982186e966fe8f041d9b4a6a59be4b610b5d12e08', 'work/962-engineering/apex1613031-head-application-001/readback-report.json': '64caf59811e229628ea1be138ebcc48cdf940c4ca2724be0b9080e255951c9f5', 'work/962-engineering/apex1613031-head-application-001/execution-receipt.json': '496b0e01950b777acd1c1759177fe26fac5659e5ec6512bb19ff9cb56b5fd46d', 'work/962-engineering/apex1613031-head-application-root-execution-001/closed-result.json': '9324c5ef88293efa33f9e14cfeff3e092795eec337fceeaffd7481ac2ee41471', 'work/962-engineering/apex1613031-head-application-root-execution-001/result-peer-acceptance.json': '19ef174a208868bf174909a1add690971fdf018b8cf438c5c26e3a2bca9bfada', 'work/962-engineering/head-star-current126-full-stars-001/readback-report.json': 'ac40521a4add15f1bb414d7d1a1c2cd231a0107278b6fe43ec38dad27c269e1a', 'work/962-engineering/head-star-current126-full-stars-001/frozen-contract.json': 'd579a794f18bc9f7c4e153cb2042f32cb32b2c6b2f2235cec2edbef8aba91317', 'work/962-engineering/head-star-current126-full-stars-execution-prep-001/actual-contract.json': 'd579a794f18bc9f7c4e153cb2042f32cb32b2c6b2f2235cec2edbef8aba91317', 'work/962-engineering/head-star-current126-full-stars-prep-001/reader.py': '2348c032ecbbb694563978cb333aff1a7e4d37a5052c3ed841a7128bf797409c', 'work/962-engineering/head-star-current126-full-stars-result-peer-001/review.json': 'f22ee8bfc026caec2b6182bddfdfa250795ea3ee698c73c41a823a6dd1f5a4c4', 'work/962-engineering/head-star-current126-full-stars-result-peer-001/bindings.json': 'c2c33a39a1cb3f393288ee4a7f344f17d45bfa44c8c81347fe07cca6421b66d5', 'work/962-engineering/head-star-current126-full-stars-root-execution-001/result-peer-acceptance.json': 'f66d5857a0fa75352c3880ab2cd7bbc0bcae73833254f39423fd48971ebd52d9', 'work/962-engineering/head-star-current126-alternative-batch-shells-001/report.json': '721e05802e305a124b99f97c779426e3d7b8960cab30fbabc3d93ee318e3de73', 'work/962-engineering/head-star-current126-alternative-case-domains-prep-001/case-manifest.json': '66200c5c18ff6137037ffdf5750cb966ff6f99df1ef6e6d1f290695d02ac7cf7', 'work/962-engineering/current126-alternative-Netgen-root-execution-001/result-peer-acceptance.json': '930277138dfe5564c47165989096b2f1b936362f428391d1fab61b039127ae15', 'work/962-engineering/head-star-current129-full-stars-root-execution-001/launch-deviation-001.json': 'd60fff297c6c45dc92e117262e36ffde36e2169d53fcd32ce2b79fabde5eebc3', 'twins/962-cylinder-head-f0/source/mesh_head.py': '69c8012e99057e384d44d6971d41f0e2cc7197a978120a7c566b0ad5a6477da5', 'work/962-engineering/head-star-current204-union-context-prep-002/reader.py': 'c852a8a536a0ef2c58a37132fb51e42e525403d1f519375cc04a9860bfe53b29', 'work/962-engineering/current127-apex1613031-head-context-prep-001/reader.py': '7b38ef1fd0928544126e3b4f9720049037ad47e82a48162863b3a103057c81dd', 'work/962-engineering/head-star-current126-alternative-local-stages-prep-001/case-manifest.json': 'e83b8824581d68c3b3ca29acbd9f50573833561298159cf7969bbd46eb722e4c', 'work/962-engineering/head-star-current126-full-stars-runtime-root-001/review.json': '28101a316a5070a9d33092f5afc08dd84a347f6b8e2b51bed88a4c00ab951e7c', 'work/962-engineering/current126-alternative-case-domains-root-execution-001/result-peer-acceptance.json': '77353b4522df7defc9678ff8446876bcaa76a610660d108d13d74564af93b469', 'work/962-engineering/current126-alternative-case-domains-result-peer-001/review.json': '438a90ab8f00bede3b5e732587fce9782b5fa95d5057eb24f0603ecb80db5f20', 'work/962-engineering/current126-alternative-case-domains-result-peer-001/bindings.json': '99094124ca55cf5b6a607b38acd33cb05cfa46e8fcec7040a44568265aa4c3f2', 'work/962-engineering/head-star-current126-alternative-case-domains-actuals-prep-001/index.json': 'f85c5da3333b9242f05cc04023e233e38612758362aab3ff0b6e995ea13eb56c', 'work/962-engineering/current126-alternative-case-domains-root-execution-001/closed-result.json': 'e6758081fb4ebb20f635b509962c74c828e1c53ce0ad07b7795d487b3d5b203e', 'work/962-engineering/current126-alternative-case-domains-root-execution-001/own-review.json': '4907cf77076b5a9d6d5261134ed83650950033654a041b23ae18ba854aa2f2ae', 'work/962-engineering/head-star-current126-alternative-union-context-prep-001/case-manifest.json': '498127125485ace52a61f5668a31d0e07045704af0b961490427a173c0f4aac7'}
+ FACES=((0,2,1),(0,1,3),(1,2,3),(2,0,3));CHUNK=100000;BOUNDARY=871731
+ RUNTIME={'python':'3.10.11','numpy':'2.0.2','gmsh':'4.15.2','machine':'arm64'}
+ NUMPY_SHA='c09e25b58f6b2f8e2cb3c158168f902d447f8171e5ea6513c0aca41ecbda7c2b'
+ FORBIDDEN=['optimization_authorized','mesh_write_authorized','generation_authorized','head_edit_authorized',
+- 'head_execution_authorized','stitching_authorized','engineering_accepted','physics_qualified','manufacturing_authorized']
++ 'head_execution_authorized','stitching_authorized','engineering_accepted','physics_qualified','manufacturing_authorized',
++ 'material_qualified','process_calibrated','head_PDE_authorized']
+ 
+ def sha(path):
+  h=hashlib.sha256()
+@@ -62,11 +76,12 @@
+  return possible[wanted[positions[possible]]==values[possible]]
+ 
+ def require_inputs(c):
+- if (c.get('schema')!='962-current204-selected116-union-head-context/v1' or c.get('native_execution_authorized') is not True
++ if (c.get('schema')!='962-current126-alternative15-union-head-context/v1' or c.get('native_execution_authorized') is not True
+      or c.get('native_read_only_query_authorized') is not True or c.get('root_and_peer_review_complete') is not True
+      or c.get('selected_runtime_review_complete') is not True or any(c.get(k) is not False for k in FORBIDDEN)
+-     or c.get('automatic_retry') is not False or c.get('output_directory')!=OUTPUT or ROOT/OUTPUT!=OUT
+-     or c.get('MSH_sha256')!=MSH_SHA or c.get('MSH_bytes')!=235744782):raise ValueError('Exact read-only context authority required')
++     or c.get('upstream_census_launch_deviation_sha256')!=FIXED_INPUTS[DEVIATION]
++     or c.get('declared_controller_command_conformant') is not False or c.get('automatic_retry') is not False or c.get('output_directory')!=OUTPUT or ROOT/OUTPUT!=OUT
++     or c.get('MSH_sha256')!=MSH_SHA or c.get('MSH_bytes')!=235786462):raise ValueError('Exact read-only context authority required')
+  if any(c['input_hashes'].get(k)!=v for k,v in FIXED_INPUTS.items()):raise ValueError('Every consumed record/source/parent must be a direct fixed pin')
+  for name,digest in c['input_hashes'].items():
+   f=ROOT/name
+@@ -82,19 +97,37 @@
+  if {n.name for n in rows}!=set(names):raise ValueError('Selected frozen helper definition absent')
+  exec(compile(ast.Module(body=rows,type_ignores=[]),path,'exec'),namespace)
+ 
+-def current_after_proof(worker,receipt,closed,first,prior,peer,helpers):
+- """One current partial.after==saved proof; no optimizer aliases or quality query."""
++def current_after_proof(worker,receipt,closed,first,prior,peer,peer_bindings,acceptance,helpers):
++ """Current partial.after==saved and descriptor-shaped accepted126 census; d60 stays false."""
+  proof=helpers['partial_after_proof'](worker,receipt,closed,prior)
+- if (prior['MSH_sha256']!=MSH_SHA or prior['MSH_bytes']!=235744782
+-     or prior['partial_report_sha256']!=FIXED_INPUTS[WORKER] or prior['expected_positive_poor_total']!=204
++ report_record=peer_bindings.get('outputs',{}).get('readback-report.json',{})
++ contract_record=peer_bindings.get('outputs',{}).get('frozen-contract.json',{})
++ actual_record=peer_bindings.get('selected_control_records',{}).get('actual',{})
++ if (prior['MSH_sha256']!=MSH_SHA or prior['MSH_bytes']!=235786462
++     or prior['partial_report_sha256']!=FIXED_INPUTS[WORKER] or prior['expected_positive_poor_total']!=126
+      or first.get('status')!='direct_saved_file_readback_completed' or first.get('bound_inputs_unchanged') is not True
+      or first.get('single_partial_replacement_saved_proof')!={'report_sha256':FIXED_INPUTS[WORKER],'field':'after','after_equals_saved_reopen':True,'independent_prior_reader_alias_used':False,'old210_bins_reused':False}
+      or any(first.get(k)!=v for k,v in proof['array_sha256s'].items())
+      or first['direct_fresh_classifications']!=proof['classifications']
+-     or peer.get('decision')!='CLEAR_COMPLETED_READ_ONLY_CENSUS_WHOLE_HEAD_QUALITY_REJECTED'
+-     or peer['records']['worker_report']['sha256']!=FIXED_INPUTS[FIRST] or peer['blockers']!=[] or peer['engineering_accepted'] is not False):
+-  raise ValueError('Current partial-after/saved census proof required')
+- helpers['require_after_match'](first,proof,204)
++     or peer.get('schema')!='962-current126-census-independent-stopped-saved-review/v1'
++     or peer.get('decision')!='CLEAR_COMPLETED_READ_ONLY_CENSUS_SAVED_ASSOCIATIONS_ONLY'
++     or peer.get('blockers')!=[] or peer.get('checked',{}).get('d60_false_conformance_preserved') is not True
++     or any(peer.get(k) is not False for k in ['engineering_accepted','head_edit_authorized','head_PDE_authorized','physics_qualified','material_qualified','process_calibrated','manufacturing_authorized','automatic_retry'])
++     or peer.get('bindings',{}).get('path')!=CENSUS_BINDINGS or peer['bindings'].get('sha256')!=FIXED_INPUTS[CENSUS_BINDINGS]
++     or peer_bindings.get('schema')!='962-current126-census-saved-result-bindings/v1'
++     or report_record.get('path')!=FIRST or report_record.get('sha256')!=FIXED_INPUTS[FIRST]
++     or contract_record.get('path')!=FIRST_CONTRACT or contract_record.get('sha256')!=FIXED_INPUTS[FIRST_CONTRACT]
++     or actual_record.get('path')!=FIRST_ACTUAL or actual_record.get('sha256')!=FIXED_INPUTS[FIRST_ACTUAL]
++     or peer_bindings.get('source_proof',{}).get('path')!=WORKER or peer_bindings['source_proof'].get('sha256')!=FIXED_INPUTS[WORKER]
++     or acceptance.get('schema')!='962-current126-census-root-result-acceptance/v1'
++     or acceptance.get('decision')!='ACCEPT_COMPLETE_CURRENT126_READ_ONLY_CENSUS_ASSOCIATIONS_ONLY'
++     or acceptance.get('peer_review',{}).get('path')!=CENSUS_PEER or acceptance['peer_review'].get('sha256')!=FIXED_INPUTS[CENSUS_PEER]
++     or acceptance.get('peer_bindings')!=peer['bindings'] or acceptance.get('current_report')!=report_record or acceptance.get('current_contract')!=contract_record
++     or acceptance.get('prior_d60_command_conformant') is not False
++     or acceptance.get('counts',{}).get('positive_poor')!=126 or acceptance['counts'].get('seeds')!=100 or acceptance['counts'].get('incident_cells')!=3123
++     or any(acceptance.get(k) is not False for k in ['whole_head_quality_accepted','native_query_or_mesh_edit_authorized_by_this_record','head_PDE_authorized','physics_qualified','material_qualified','process_calibrated','manufacturing_authorized','automatic_retry'])):
++  raise ValueError('Current partial-after/saved126 census descriptor proof with historical d60 false required')
++ helpers['require_after_match'](first,proof,126)
+  return proof
+ 
+ def one_case_records(observation,shell,case):
+@@ -180,18 +213,61 @@
+ 
+ def selection_records(manifest,batch,first):
+  cases=manifest['cases_in_increasing_apex_order'];tags=[r['apex'] for r in cases];star=first['complete_seed_star_census']
+- if (manifest.get('schema')!='962-current204-finite-local-stage-manifest/v1' or manifest['selected_count']!=116
+-     or len(tags)!=116 or tags!=sorted(set(tags)) or set(tags)!=set(batch['selected_apex_tags'])
++ domain_manifest=json.loads((ROOT/DOMAIN_MANIFEST).read_text())
++ if (manifest.get('schema')!='962-current126-alternative15-union-context-manifest/v1' or manifest['selected_count']!=15
++     or len(tags)!=15 or tags!=sorted(set(tags)) or tags!=manifest['selected_apex_tags']
++     or tags!=domain_manifest['accepted_apices'] or not set(tags)<=set(batch['selected_apex_tags'])
+      or manifest['source_batch_report_sha256']!=FIXED_INPUTS[BATCH] or batch['source_census_sha256']!=FIXED_INPUTS[FIRST]
+      or manifest['source_parent_MSH_sha256']!=MSH_SHA or batch['source_MSH_sha256']!=MSH_SHA
+-     or batch['source_current_positive_poor_cells']!=204 or star['movable_count']!=154
+-     or not set(tags)<=set(star['movable_node_tags']) or star['complete_incident_tetrahedron_count']!=5267):
+-  raise ValueError('Exact current154-seed census and frozen selected116 manifest required')
++     or batch['source_current_positive_poor_cells']!=126 or star['movable_count']!=100
++     or not set(tags)<=set(star['movable_node_tags']) or star['complete_incident_tetrahedron_count']!=3123
++     or manifest.get('declared_controller_command_conformant') is not False or batch.get('declared_controller_command_conformant') is not False):
++  raise ValueError('Exact current100-seed census and fixed15 original-source manifest required')
+  records={r['apex']:r for r in batch['all_candidate_star_records']};nodes={r['node_tag']:r for r in star['unique_incident_nodes']}
+  answer=merge_case_records(cases,records,star['complete_incident_tetrahedra'],nodes)
+- if (len(answer[0]),len(answer[1]),len(answer[2]),len(answer[3]),len(answer[5]))!=(4164,2430,2314,4164,116):
++ if (len(answer[0]),len(answer[1]),len(answer[2]),len(answer[3]),len(answer[5]))!=(580,335,320,580,15):
+   raise ValueError('Exact selected union old-cells/vertices/shells/faces/apices required')
+  return answer
++
++def require_domain_gate(manifest,accepted,peer,bindings):
++ tags=manifest['selected_apex_tags']
++ descriptors={'manifest':DOMAIN_MANIFEST,'index':DOMAIN_INDEX,'master':DOMAIN_MASTER,'own_review':DOMAIN_OWN_REVIEW}
++ if (accepted.get('schema')!='962-current126-alternative15-domain-root-result-acceptance/v1'
++     or accepted.get('decision')!='ACCEPT_COMPLETE15_RELATIVE_LOCAL_DOMAIN_ASSOCIATIONS_FOR_CURRENT_PARENT_CONTEXT_PREPARATION_ONLY'
++     or accepted.get('accepted_domain_case_tags')!=tags or set(accepted['case_reports'])!={str(t) for t in tags}
++     or accepted.get('parent_context_preparation_authorized') is not True or accepted.get('parent_context_execution_authorized') is not False
++     or accepted.get('outside_owner_context_established') is not False or accepted.get('parent_context_sha256') is not None
++     or accepted.get('whole_head_quality_accepted') is not False
++     or accepted.get('current_parent')!={'sha256':MSH_SHA,'bytes':235786462}
++     or accepted.get('current_census',{}).get('sha256')!=FIXED_INPUTS[FIRST]
++     or accepted.get('current_partial_report',{}).get('sha256')!=FIXED_INPUTS[WORKER]
++     or accepted['peer_review']!=manifest['domain_stopped_peer'] or accepted['peer_bindings']!=manifest['domain_peer_bindings']
++     or accepted['peer_review']['path']!=DOMAIN_PEER or accepted['peer_review']['sha256']!=FIXED_INPUTS[DOMAIN_PEER]
++     or accepted['peer_bindings']['path']!=DOMAIN_BINDINGS or accepted['peer_bindings']['sha256']!=FIXED_INPUTS[DOMAIN_BINDINGS]
++     or peer.get('decision')!='CLEAR_COMPLETED_SAVED15_RELATIVE_LOCAL_DOMAIN_ASSOCIATIONS_ONLY'
++     or peer.get('bindings')!=accepted['peer_bindings'] or peer.get('declared_controller_command_conformant') is not False
++     or bindings.get('schema')!='962-current126-alternative15-domain-independent-stopped-bindings/v1'
++     or bindings.get('case_count')!=15 or bindings.get('complete_pairs')!=41886 or bindings.get('complete_plane_triples')!=2345616
++     or any(accepted.get(k) is not False for k in ['diagnostic_execution_authorized','native_execution_authorized','head_execution_authorized','head_PDE_authorized','engineering_accepted','physics_qualified','material_qualified','process_calibrated','manufacturing_authorized','automatic_retry'])):
++  raise ValueError('Exact accepted relative15 domain descriptor gate only; no context/native/head authority inherited')
++ for key,path in descriptors.items():
++  if accepted[key]['path']!=path or accepted[key]['sha256']!=FIXED_INPUTS[path]:raise ValueError('Current domain source/index/master/own identities differ')
++ for key in ['master','actual_index','root_own_review']:
++  role={'master':'master','actual_index':'index','root_own_review':'own_review'}[key]
++  if peer.get(key)!=accepted[role] or bindings.get(key)!=accepted[role]:raise ValueError('Domain root/peer/bindings descriptor association differs')
++ rows={r['apex']:r for r in bindings['per_case_bindings']}
++ if sorted(rows)!=tags or len(rows)!=15:raise ValueError('Exactly the accepted15 saved-domain case associations required')
++ for case in manifest['cases_in_increasing_apex_order']:
++  apex=case['apex'];record=accepted['case_reports'][str(apex)];row=rows[apex]
++  if (record['source_record_sha256']!=case['source_record_sha256'] or row['case_record_sha256']!=case['source_record_sha256']
++      or any(record[key]!=row[key] for key in ['report','root_closed','actual'])
++      or row['source_shell']['sha256']!=case['shell_serialized_sha256'] or row['source_observation']['sha256']!=case['observation_serialized_sha256']
++      or row['old']['cells']!=case['old_tetrahedra'] or row['old']['shell_faces']!=case['shell_faces']
++      or row['natural_returncode']!=0 or row['parent_owner_context_established'] is not False or any(row['qualification'].values())):
++   raise ValueError('Every same-case original-source and accepted relative-domain descriptor must join')
++ return {'root_acceptance_sha256':FIXED_INPUTS[DOMAIN_ACCEPT],'peer_sha256':FIXED_INPUTS[DOMAIN_PEER],
++  'peer_bindings_sha256':FIXED_INPUTS[DOMAIN_BINDINGS],'case_reports':accepted['case_reports'],
++  'scope':'Accepted saved relative-domain descriptors only; full pair geometry and root queries are attributed, not replayed.'}
+ 
+ def mask_exclusions(apices,old,tags,element_tags):
+  a=sorted(apices);e=sorted(old)
+@@ -228,8 +304,11 @@
+   core=SimpleNamespace(np=np,array_sha=arrsha)
+   worker=json.loads((ROOT/WORKER).read_text());receipt=json.loads((ROOT/RECEIPT).read_text());first=json.loads((ROOT/FIRST).read_text())
+   prior=json.loads((ROOT/FIRST_CONTRACT).read_text());closed=json.loads((ROOT/CLOSED).read_text());peer=json.loads((ROOT/CENSUS_PEER).read_text())
+-  proof=current_after_proof(worker,receipt,closed,first,prior,peer,ns);expected=proof['array_sha256s']
++  peer_bindings=json.loads((ROOT/CENSUS_BINDINGS).read_text());acceptance=json.loads((ROOT/CENSUS_ACCEPT).read_text())
++  proof=current_after_proof(worker,receipt,closed,first,prior,peer,peer_bindings,acceptance,ns);expected=proof['array_sha256s']
+   manifest=json.loads((ROOT/MANIFEST).read_text());batch=json.loads((ROOT/BATCH).read_text())
++  domain_accepted=json.loads((ROOT/DOMAIN_ACCEPT).read_text());domain_peer=json.loads((ROOT/DOMAIN_PEER).read_text());domain_bindings=json.loads((ROOT/DOMAIN_BINDINGS).read_text())
++  domain_proof=require_domain_gate(manifest,domain_accepted,domain_peer,domain_bindings)
+   old,old_points,mapping,expected_faces,original_boundary,by_apex,case_summaries=selection_records(manifest,batch,first)
+   gmsh.initialize([],readConfigFiles=False,run=False);initialized=True
+   gmsh.option.setNumber('General.NumThreads',2);gmsh.option.setNumber('Mesh.MaxNumThreads3D',2)
+@@ -238,7 +317,7 @@
+   order=np.argsort(et);et=np.asarray(et,dtype='<u8')[order];en=np.asarray(en,dtype='<u8')[order]
+   if not np.isfinite(xyz).all() or len(np.unique(tags))!=len(tags) or len(np.unique(et))!=len(et):raise ValueError('Unique full finite arrays required')
+   actual_arrays=dict(zip(['sorted_coordinates_sha256','sorted_node_tags_sha256','sorted_tetra_tags_sha256','tagged_tetra_connectivity_sha256'],map(arrsha,[xyz,tags,et,en])))
+-  if actual_arrays!=expected or (len(tags),len(et))!=(1097057,3620861):raise ValueError('Opened complete parent arrays differ from original worker.after')
++  if actual_arrays!=expected or (len(tags),len(et))!=(1097222,3621771):raise ValueError('Opened complete parent arrays differ from original worker.after')
+   classes=ns['classifications'](core,gmsh,tags,BOUNDARY)
+   if classes!=proof['classifications']:raise ValueError('Complete native classifications differ from original worker.after')
+   boundary_tags=np.arange(1,BOUNDARY+1,dtype='<u8');boundary_ix=np.searchsorted(tags,boundary_tags)
+@@ -356,8 +435,8 @@
+   if metadata!=worker['after_preservation']['metadata_sha256s']:raise ValueError('Current partial lower/entity/physical/periodic metadata differs')
+   require_inputs(c)
+   if sha(np.__file__)!=NUMPY_SHA:raise ValueError('Selected NumPy bytes changed after query')
+-  report.update(status='complete_current204_selected116_union_parent_context_census',stage='completed',complete_context_census=True,
+-   original_parent_MSH_sha256=MSH_SHA,original_parent_MSH_bytes=235744782,full_array_sha256s=actual_arrays,
++  report.update(status='complete_current126_alternative15_union_parent_context_census',stage='completed',complete_context_census=True,
++   original_parent_MSH_sha256=MSH_SHA,original_parent_MSH_bytes=235786462,full_array_sha256s=actual_arrays,
+    full_native_classifications=classes,full_node_count=len(tags),full_TET4_count=len(et),
+    selected_case_contexts=case_summaries,selected_apex_tags=sorted(by_apex),complete_old_selected_apex_incident_rows=[{'tetrahedron_tag':t,'node_tags':old[t]} for t in sorted(old)],
+    all_selected_shell_face_records=joined,complete_outside_owner_rows=[{'tetrahedron_tag':t,'node_tags':outside_rows[t]} for t in sorted(outside_rows)],
+@@ -367,7 +446,11 @@
+    future_preservation_references=preservation,runtime=observed,runtime_sha256s=actual,bound_inputs_unchanged=True,
+    current_source_boundary_identity=source_boundary_identity,
+    retained_current_quality_and_global_incidence={'quality':proof['quality'],'actual_tetra_boundary':proof['actual_tetra_boundary'],'internal_tetra_face_orientation':proof['internal_tetra_face_orientation']},
+-   quality_and_global_incidence='Current204 partial.after/saved quality and whole-head face-incidence retained only; complete selected116 apex/face-owner lookup is freshly scanned.',
++   quality_and_global_incidence='Current126 partial.after/saved quality and whole-head face-incidence retained only; complete selected15 apex/face-owner lookup is freshly scanned.',
++   upstream_census_launch_deviation_sha256=FIXED_INPUTS[DEVIATION],declared_controller_command_conformant=False,
++   outside_mask_scope={'excluded_apex_tags':excluded_nodes,'excluded_original_TET4_tags':excluded_cells,'subset':'Exactly these15 original complete stars; no old116/47/14 masks transferred.'},
++   parameter_reference_scope='All1097222 current tags captured exactly once. The prior64caf retained1097221-tag projection is a different subset and is not compared to this full inventory. Future application must derive retained original tags from its actual admitted apex subset using a fresh before scan, never digest subtraction.',
++   accepted_relative_domain_prerequisites=domain_proof,
+    candidate_or_MSH_written=False,selected_geometry_JSON_exported=True,connected_interface_ownership_only=True,
+    global_embedding_containment_or_after_edit_preservation_proved=False,readback_wall_seconds=time.monotonic()-start)
+   save();return 0

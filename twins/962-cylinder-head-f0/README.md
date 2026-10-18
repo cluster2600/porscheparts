@@ -28,6 +28,13 @@ cells, including 2,997 initially good cells and 99 shared cells. Its complete
 read-only report and separate reviews are available. This census changes no mesh
 and establishes no repair feasibility or head-analysis admission.
 
+The [union-context and default-optimizer checkpoint](derived/engineering/current126-union-and-default/README.md)
+records accepted read-only interface associations for all 15 cases and a distinct
+rejected default-optimizer trial at apex 1485102. The latter changes 64 tetrahedra
+to 67 while leaving all 31 node coordinates unchanged; one cell still fails
+SICN 0.1. This checkpoint applies no head edit and retains its original 126-cell
+whole-head rejection. The later combined edit is a separate research result.
+
 The [completed 15-case local-domain checks](derived/engineering/current126-alternative-case-domains/README.md)
 retain all 41,886 exact pair records for 580 old and 834 candidate cells.
 All 15 relative local domains pass. These saved associations support current-parent
