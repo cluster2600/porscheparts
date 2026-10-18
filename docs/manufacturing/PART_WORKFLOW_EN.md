@@ -24,6 +24,8 @@ The closed mechanical checkpoint is **stock-only BREP 42da92cc**, with the first
 
 [Figure 33](../../parts/993-eng-carrier-0001/source/progress-figures-20261016/index.html#first-window-stock-fields) shows both actual stock mechanical fields with common scales, true displacement x1 and all global integration-point ties. Its [accepted PNG/PDF review](../../parts/993-eng-carrier-0001/source/progress-figures-20261016/first-window-stock-fields-20261018/proofs/render/root-terminal-review-001.json) is separate from mechanical acceptance.
 
+The [rib reinforcement drawing](../media/carrier-rib-C2-20261018/README.md) explains the separate d64a7faf geometry trial; its image does not establish new mechanical performance.
+
 A later **rib-width trial, BREP d64a7faf**, has passed local single-solid, strict original-baseline and stock-retention, addition, mass and bounds gates at **1.274797998 kg**. The [actual trial review](../../work/carrier-process-20261017/bounded-webs-stock-rib-C2-width-trial-preparation-002/root-terminal-review-001.json) keeps this geometry result separate. Fresh surface, protected-interface, mesh and mechanical results remain pending for that trial; Figure 33 contains only the 1.267835378 kg stock fields.
 
 Both mechanical cases use **Fz = −4,000 N**, **My = 850 N·m**, E = 107,000 MPa and Poisson ratio 0.31. K1000 means **1,000 N/mm total per end eye and axis**, distributed across that eye's actual nodes.
