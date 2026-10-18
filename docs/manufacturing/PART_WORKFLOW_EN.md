@@ -12,6 +12,8 @@ A geometry change creates a new revision; results follow that revision.
 
 The latest **24af0584** design trial shifts the first window corner by **1.5 mm in X along its original AB edge**, on both mirrored arms. This adds material at the thin arch/window junction while retaining the d64 rib shape. Its nominal CAD mass is **1.276 kg** (**1.275991674 kg** at **4,420 kg/m³**), below **1.30 kg**. Local native construction, baseline/d64 retention, mass, bounds and four tool-column checks pass. The fresh **598,372-triangle** STL is generated; its surface audits, protected comparison, volume mesh and mechanics remain pending. The [window-root checkpoint](../reports/carrier-rib-20261018/README.md#reinforcing-the-window-root--new-24af-design-trial) separates these actual stages from the preceding designs.
 
+The [actual before/after surface comparison](../media/carrier-corner-slide-actual-surfaces-20261018/README.md) shows the complete d64 and 24af meshes at a common camera and scale, with the window root in a shared prior-R1 reference section plane. No stress field is transferred.
+
 The following completed study remains tied to **d64a7faf**. The separate R1 fillet trial has its own coarse/refined results below; those stress fields are not transferred to 24af.
 
 The current **d64a7faf** native master weighs **1.274797998 kg**, leaving **25.20 g** below the **1.30 kg** limit. Four smooth outward rib additions use **6.96 g** over the preceding stock design. The [actual CAD comparison](../media/carrier-rib-actual-surfaces-20261018/README.md), [reinforcement drawing](../media/carrier-rib-C2-20261018/README.md) and [nominal interface sheet](../media/carrier-nominal-interfaces-20261018/README.md) show the shape change and the present model dimensions.
