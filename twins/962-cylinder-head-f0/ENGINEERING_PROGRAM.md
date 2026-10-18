@@ -35,6 +35,12 @@ minimum remains 0.039074265058645995 and head analysis admission remains open.
 The [preceding 129-to-127 result](derived/engineering/apex1613790-head-application/README.md)
 and its distinct mesh download remain available.
 
+The [current complete census](derived/engineering/current126-full-stars/README.md)
+maps all **126 remaining poor cells** to 100 interior seeds and 3,123 incident
+cells, including 2,997 initially good cells and 99 shared cells. Its complete
+read-only report and separate reviews are available. This census changes no mesh
+and establishes no repair feasibility or head-analysis admission.
+
 The [preceding 127-cell census](derived/engineering/current127-full-stars/README.md)
 freshly maps all remaining poor cells to 101 interior seeds and 3,137 incident
 cells, including 3,010 initially good cells and 99 shared cells. The read-only
