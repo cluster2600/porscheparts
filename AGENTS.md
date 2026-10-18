@@ -27,6 +27,13 @@ parts for additive and conventional manufacturing.
   review and an approved validation plan.
 - For titanium parts, document alloy, build process, orientation, heat
   treatment, machining, inspection, fatigue assumptions, and galvanic isolation.
+- Every created part must have a catalogue record and public images for
+  PorscheFanatics.com in `parts/<part-id>/media/`: `preview.png`, orthographic
+  `views.png` for CAD, and `preview.json` with source, record and image hashes,
+  image kind, caption and publication terms. Run `make part-previews` after
+  creating or changing geometry; `make check` must reject missing or stale images.
+  Records with no geometry use explicit status cards, never invented geometry.
+  Keep deliberately withdrawn renders withdrawn and label archival study cards.
 - Keep changes surgical and run `make check` before proposing a merge.
 
 ## Repository location

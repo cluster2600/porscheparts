@@ -76,6 +76,12 @@ Catalogue record: [`catalog/parts/993-exh-cat-converter-pair-pet-0001.json`](../
 
 - none
 
+## Images
+
+![preview](../../parts/993-exh-cat-converter-pair-pet-0001/media/preview.png)
+
+*`parts/993-exh-cat-converter-pair-pet-0001/media/preview.png` — Catalogue study only. No CAD geometry is available for this record. Status card; no part geometry depicted. Not a print file or evidence of fit..*
+
 ## Provenance and sources
 
 | field | value |
@@ -94,7 +100,7 @@ Catalogue record: [`catalog/parts/993-exh-cat-converter-pair-pet-0001.json`](../
 | status | concept |
 | vehicle tested | not recorded |
 | reviewed by |  |
-| limitations | not recorded |
+| limitations | Identity only: no dimensions, substrate volume, cell density, ageing data or pressure drop are carried by the transcription.<br>Position 14 (left) appears only in the KAT 17 transcription; the KAT 517 transcription lists a 993 113 285 00 converter at the naturally aspirated 202-00 illustration, not at 202-15, so the left-hand Turbo number is single-source locally.<br>The -57 versus -58 suffix difference at position 15 is transcribed without asserting a supersession relation.<br>Which of pos 14/15 is left and which is right is not annotated in the local transcription; the assignment to banks is by assembly convention, not by a transcribed field. |
 
 **Evidence**
 

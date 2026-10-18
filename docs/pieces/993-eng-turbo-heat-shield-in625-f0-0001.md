@@ -79,6 +79,10 @@ Catalogue record: [`catalog/parts/993-eng-turbo-heat-shield-in625-f0-0001.json`]
 
 *`parts/993-eng-turbo-heat-shield-in625-f0-0001/evidence/lpbf-f0/993-eng-turbo-heat-shield-in625-f0-0001-lpbf-geometry-screen.png` — a screening output, not a validation.*
 
+![photo-concept](../../parts/993-eng-turbo-heat-shield-in625-f0-0001/media/photo-concept.png)
+
+*`parts/993-eng-turbo-heat-shield-in625-f0-0001/media/photo-concept.png` — AI-generated studio illustration based on the concept CAD preview. Material and finish are illustrative; generated details may differ. Not a photograph or evidence of fit, function or manufacturing.*
+
 ![picogk-batch-01](../../parts/993-eng-turbo-heat-shield-in625-f0-0001/media/picogk-batch-01.png)
 
 *`parts/993-eng-turbo-heat-shield-in625-f0-0001/media/picogk-batch-01.png` — concept CAD block, **not** the original part, not a print file.*
@@ -111,7 +115,7 @@ Catalogue record: [`catalog/parts/993-eng-turbo-heat-shield-in625-f0-0001.json`]
 | status | concept |
 | vehicle tested | not recorded |
 | reviewed by |  |
-| limitations | not recorded |
+| limitations | Only the 160 x 110 x 105 mm envelope comes from FVD; profile, wall, bosses and holes are hypothetical.<br>The F0 mass of 325.58 g exceeds the published 230 g by 41.6%; the commercial material is unknown and no validation by mass is possible.<br>The temperatures, emissivity, view factor, force and support conditions are synthetic.<br>The calculation ignores convection, real turbo geometry, shell curvature, contact, vibration, thermal fatigue, oxidation and creep.<br>The STEP proves only a computable BREP within the envelope and must not be manufactured for fitment. |
 
 **Evidence**
 

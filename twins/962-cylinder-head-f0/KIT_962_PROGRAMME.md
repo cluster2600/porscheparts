@@ -19,16 +19,20 @@ une seule configuration de véhicule. Le kit commercial viendrait après
 qualification, avec montage par un motoriste et dossier de traçabilité.
 
 Cible confirmée par le propriétaire : **1 000 ch métriques (PS) au
-vilebrequin**, avec qualification **sur banc puis sur piste**. Le carburant,
-le donneur et le cycle d'endurance restent à définir. Aucun calcul ne convertit
+vilebrequin**, avec qualification **sur banc puis sur piste**. Le propriétaire
+a ensuite précisé **Mezger 4 L biturbo au SP95** ; le
+[dimensionnement actualisé](MEZGER_4L_SP95.md) conserve les hypothèses et les
+besoins associés. La variante précise du donneur, le lot carburant et le cycle
+d'endurance restent à définir. Aucun calcul ne convertit
 une puissance moteur en
 puissance aux roues par un pourcentage de pertes arbitraire.
 
-Le M64/60 de 993 Turbo est proposé comme premier **candidat de référence**
+Le M64/60 de 993 Turbo était proposé comme premier **candidat de référence**
 parce que le [programme moteur existant](../m64-engine-system/program.json)
 porte déjà sur cette variante. Sa disponibilité physique et sa capacité à
 1 000 ch ne sont pas établies. Cette proposition ne choisit pas le donneur
-à la place du propriétaire et ne prouve pas la compatibilité Carrera.
+à la place du propriétaire et ne prouve pas la compatibilité Carrera. La cible
+Mezger annoncée ne suffit pas à identifier une variante ni ses interfaces.
 
 | Base commerciale envisagée | Traitement dans le programme |
 |---|---|
@@ -84,7 +88,9 @@ Calculs quatre temps de cadrage, avec une cylindrée **hypothétique de 3,6 L** 
 
 Relations : `P = 2πNT/60` et `PME = 4πT/Vd`. La PME est une pression
 moyenne équivalente au frein, **pas la pression maximale de combustion**.
-Ces points ne choisissent ni régime, cylindrée, boost, rendement ni carburant.
+Ces points historiques ne choisissaient ni régime, cylindrée, boost, rendement
+ni carburant. Le bilan 4 L/SP95 lié ci-dessus remplace leur hypothèse de 3,6 L
+pour le dimensionnement actif ; les données historiques restent lisibles.
 Ils ne calculent pas le flux thermique vers une culasse et ne valident pas
 le carter ou la boîte. Les valeurs complètes sont dans
 [kit-program.json](kit-program.json), vérifiées par un test dimensionnel.
@@ -161,6 +167,13 @@ Les gates G1–G5 restent ouvertes. Le [dossier d'acquisition G1](DONOR_METROLOG
 fournit la feuille d'interfaces
 à mesurer sur le donneur ; la [qualification matière](MATERIAL_QUALIFICATION.md)
 précise les données à obtenir sur chaque recette LPBF.
+The [F0 coolant boundary diagnostic](COOLANT_BOUNDARIES.md) extracts the
+two sections and keeps the coolant/metal probing gaps before any CFD.
+The [cylinder head gallery](GALLERY.md) shows the exterior, a cutaway and the
+conformal water jacket. The [architectural dossier](ORIGINAL_ARCHITECTURE.md) links
+the 962 C photographs to the ShapeKernel shapes and documents the accepted/rejected
+Qwen responses. The [generic block](STOCK_ENVELOPE.md) and the
+[routing refinement](REFINEMENT.md) are kept.
 Le [contrat culasse F0](interface-contract.json) et ses empreintes sont conservés.
 Le [programme M64 existant](../m64-engine-system/program.json) apporte des
 références par zone sans transmettre ses niveaux de fidélité ou interfaces à

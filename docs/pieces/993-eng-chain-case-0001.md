@@ -78,6 +78,10 @@ Catalogue record: [`catalog/parts/993-eng-chain-case-0001.json`](../../catalog/p
 
 ## Images
 
+![photo-concept](../../parts/993-eng-chain-case-0001/media/photo-concept.png)
+
+*`parts/993-eng-chain-case-0001/media/photo-concept.png` — AI-generated studio illustration based on the concept CAD preview. Material and finish are illustrative; generated details may differ. Not a photograph or evidence of fit, function or manufacturing.*
+
 ![preview](../../parts/993-eng-chain-case-0001/media/preview.png)
 
 *`parts/993-eng-chain-case-0001/media/preview.png` — concept CAD block, **not** the original part, not a print file.*
@@ -103,7 +107,7 @@ Catalogue record: [`catalog/parts/993-eng-chain-case-0001.json`](../../catalog/p
 | status | concept |
 | vehicle tested | not recorded |
 | reviewed by |  |
-| limitations | not recorded |
+| limitations | No dimension, no material and no interface is established: the catalogue identifies, it does not dimension.<br>The grade of the original case is not published; "aluminum" is an inference from consistency with the engine case, not an identification.<br>The case carries the timing drive and pressurized oil: its failure can cost the engine, and the oil has hot neighbors on this plate, which includes a heat protection plate.<br>Titanium is ruled out by three independent contraindications from the grid: differential expansion against the aluminum case, threads reworked at every removal, galvanic couple with aluminum.<br>The real additive gain — consolidating the case, the bridges and the oil galleries — is not investigated and will not be without measuring a physical example. |
 
 **Evidence**
 

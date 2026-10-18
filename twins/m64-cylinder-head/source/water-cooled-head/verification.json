@@ -1,0 +1,157 @@
+{
+  "schema": "m64-water-head-verification/v1",
+  "date": "2026-10-12",
+  "status": "initial_routing_study_not_a_functional_water_cooled_head",
+  "units": "uncalibrated_scan_unit_assumed_mm",
+  "source_sha256": {
+    "twins/m64-cylinder-head/source/water-cooled-head/Program.cs": "ac43a67847ff43aefdfa51f70d3855bc9cd9c1097b93c2e462615f9f91abb893",
+    "twins/m64-cylinder-head/source/water-cooled-head/WaterHead.csproj": "f4a4e0b0e7fda9980fc5c8c3035808c3acbaa0ccfd6ca8d5d00d0c4cafaaba2e",
+    "twins/m64-cylinder-head/source/water-cooled-head/contract.json": "37878b2795c405b26668823548f069853221c0d273cab35d3f3128d9ff9f9039",
+    "twins/m64-cylinder-head/source/water-cooled-head/audit.py": "983c727afd97d08446751356ab10793d5ef04437067cd435c229b02e3bfdaf11",
+    "twins/m64-cylinder-head/source/water-cooled-head/render.py": "e96d22d47cccbd297d97b3d7289258b794a391f744b09217960bddc018956b4d",
+    "tests/test_m64_water_head.py": "90d69a580e07c62d83e4c608e036da553fe4506bd430ad0c953d4fa823659785"
+  },
+  "native_versions": {
+    "picogk": "26.2.0",
+    "shape_kernel": "7b9097842446a28bb5d49203724622e594ce7510",
+    "managed_picogk_sha256": "710c4e0428efbe9c1cd1db1663247b45604f96d167a6726782ab8ddca350565a"
+  },
+  "runs": [
+    {
+      "voxel_scan_units": 0.6,
+      "generation_sha256": "e936a8ef05dc89ef99b5df85947a3ed07c6067016b64b13f2b07643a5013dbc8",
+      "inspection_sha256": "04d97b6165ee4e5814084a4f6601ab6714e948b2a6e3639a21173a939259e856",
+      "status": "routing_surface_passed_integration_blocked",
+      "exports": [
+        {
+          "filename": "coolant-routing.stl",
+          "sha256": "bd429838940aa7a050567444231a1f6ba776876b8d0e700190e8b74a9f761b32",
+          "triangles": 82480,
+          "native_volume": 20623.25
+        },
+        {
+          "filename": "routing-plus-wall-margin.stl",
+          "sha256": "e7df970bdb23fe3fe01fa0b5e742d6f69c10b7846a6fe4d194382c29a93918aa",
+          "triangles": 143900,
+          "native_volume": 64992.965
+        },
+        {
+          "filename": "outside-eroded-head.stl",
+          "sha256": "6f8d9f7c09611d1627b467d7ea0b8bb74336af9b58b63670b2494fbf3f845410",
+          "triangles": 38476,
+          "native_volume": 8508.58
+        }
+      ],
+      "routing_surface": {
+        "triangles": 82480,
+        "connected_vertex_components": 1,
+        "boundary_edges": 0,
+        "nonmanifold_edges": 0,
+        "winding_consistent_on_two_face_edges": true,
+        "zero_area_triangles": 0,
+        "duplicate_triangles_ignoring_winding": 0,
+        "signed_volume_scan_units_cubed": 20512.65731069579,
+        "basic_surface_pass": true
+      },
+      "retained_references_checked": 12,
+      "reference_wall_margin_conflicts": []
+    },
+    {
+      "voxel_scan_units": 0.3,
+      "generation_sha256": "af75a70b2b13d82e853fea179545def2c13a4df8a45fe44d31a1fe9502fc00da",
+      "inspection_sha256": "b7762915f0a91b3b12245e3ce5d14a77d012ce64a1618f377f9d952e8a8f11fe",
+      "status": "routing_surface_passed_integration_blocked",
+      "exports": [
+        {
+          "filename": "coolant-routing.stl",
+          "sha256": "20e11448b6ee2e4298967136b698fb3dfde7dca6ce18c0e4157fce669776d54f",
+          "triangles": 332836,
+          "native_volume": 20672.756
+        },
+        {
+          "filename": "routing-plus-wall-margin.stl",
+          "sha256": "ec550628c53f9dd0f959443efb3504d8b52499169502122b03a1eb938ab6c95a",
+          "triangles": 578812,
+          "native_volume": 65084.758
+        },
+        {
+          "filename": "outside-eroded-head.stl",
+          "sha256": "c1d42df87146de4a5deab4ebe2291e9c29e28723e914a8b68ea495cfb16cc649",
+          "triangles": 156676,
+          "native_volume": 8548.063
+        }
+      ],
+      "routing_surface": {
+        "triangles": 332836,
+        "connected_vertex_components": 1,
+        "boundary_edges": 0,
+        "nonmanifold_edges": 0,
+        "winding_consistent_on_two_face_edges": true,
+        "zero_area_triangles": 0,
+        "duplicate_triangles_ignoring_winding": 0,
+        "signed_volume_scan_units_cubed": 20661.63682969213,
+        "basic_surface_pass": true
+      },
+      "retained_references_checked": 12,
+      "reference_wall_margin_conflicts": []
+    }
+  ],
+  "raw_mesh_volume_change_relative": 0.007210441274538504,
+  "source_master_brep_sha256": "9c40df1642d5eb47a3c1a1aae68c761b23b77e3f7e02e0818294e88ee0322598",
+  "source_master_modified": false,
+  "material_removed": false,
+  "manufacturing_authorized": false,
+  "negative_native_test": {
+    "returncode": 1,
+    "error": "InvalidDataException: Research-only gate required: manufacturing_authorized",
+    "output_created": false,
+    "head_brep_sha256": "9c40df1642d5eb47a3c1a1aae68c761b23b77e3f7e02e0818294e88ee0322598"
+  },
+  "targeted_tests": {
+    "water_head": 2,
+    "retained_bionic": 12,
+    "passed": true,
+    "generated_catalogue_pages": 9
+  },
+  "render": {
+    "image_sha256": "8a6def0af314ffd4fa5a25a8093ca8fc43ce7e7ff61773e083a03aba77507a4a",
+    "receipt_sha256": "d9eea15c2189861ad14829e3163dbd46ad99c9c9816395e56e1f66cab63c260e",
+    "vtk_version": "9.6.2",
+    "actual_triangles": true,
+    "visually_inspected": true,
+    "private_not_redistributed": true
+  },
+  "physical_qualification": {
+    "calibrated_interfaces": false,
+    "closed_metal_jacket": false,
+    "full_protected_domains": false,
+    "cht": false,
+    "thermal_gain": null,
+    "hydraulic_flow_or_pressure": null,
+    "hot_strength_or_fatigue": false
+  },
+  "local_make_check": {
+    "status": "failed_with_one_generated_page_fixed_after_run",
+    "tests": 3642,
+    "failures_at_run": 3,
+    "errors": 23,
+    "skipped": 206,
+    "log_sha256": "15c4d75766e2cf3508451d53e6d0f3787fe8a320b1c98ab8356177a10cbbf42c",
+    "changed_page_failure_fixed": true,
+    "followup_generated_page_tests_passed": 9,
+    "remaining_failures": [
+      "pre_existing_WE43_exact_float_comparison",
+      "pre_existing_fan_stator_exact_float_comparison"
+    ],
+    "environment_errors": [
+      "system_Python_3_10_SciPy_native_extension_import",
+      "system_Python_3_10_missing_hashlib_file_digest"
+    ],
+    "remaining_make_targets_after_test_failure": "not_executed"
+  },
+  "documentation_links": {
+    "broken": 0,
+    "markdown_files": 834
+  },
+  "catalogue_and_source_validation": "passed"
+}

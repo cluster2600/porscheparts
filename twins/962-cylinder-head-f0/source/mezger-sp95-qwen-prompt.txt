@@ -1,0 +1,15 @@
+Review these engineering equations, not an engine tune. Do not write code.
+Given a four-stroke flat six: bore 0.102 m, stroke 0.0816 m,
+735498.75 W crankshaft power, 7000 rpm, brake efficiency 0.30,
+fuel lower heating value 42.5e6 J/kg, stoichiometric AFR 14.4, lambda 0.82.
+Vd = pi/4 * bore^2 * stroke * 6.
+Torque = P / (2*pi*rpm/60).
+BMEP = 4*pi*Torque/Vd.
+Fuel kg/s = P/(efficiency*LHV).
+Air kg/s = fuel kg/s * AFR_stoich * lambda.
+Head coolant heat = P/efficiency * 0.12.
+Water kg/s = head coolant heat/(4180*15).
+Water volumetric flow per head = water kg/s / 965 / 6.
+Circular port diameter = sqrt(4*flow_per_head/(pi*3)), in metres.
+Check units and say which equations cannot establish knock-safe boost or
+real coolant heat split. Give three short comments, no code or tuning advice.

@@ -1,0 +1,482 @@
+{
+  "source_sha256": {
+    "mezger_sp95_budget.py": "985e6d8c0b96c952763b0a994b2540c72468df5d86e360e5f473181b1488dc43",
+    "thermal_budget.py": "029dfc5b4c7dea8d94887547236e174b541bd897d3b5a97a012d2d3699a571b2",
+    "architecture-report.json": "fe420f7001f803fe4ea12152ba133bb17c63438826404b5d850f16dd6da2a2d0"
+  },
+  "status": "assumption_only_not_a_validated_sp95_operating_point",
+  "target": {
+    "engine": "Mezger",
+    "displacement_l": 4,
+    "crankshaft_power_ch": 1000,
+    "fuel": "SP95",
+    "ron": 95,
+    "ethanol_volume_fraction": null,
+    "turbos": 2,
+    "valves_per_cylinder": 4,
+    "ignition_points_per_cylinder": 2
+  },
+  "constants": {
+    "bore_mm": 102,
+    "stroke_mm": 81.6,
+    "cylinders": 6,
+    "strokes": 4,
+    "ambient_pa": 101325,
+    "filter_loss_pa": 2000,
+    "charge_path_loss_pa": 10000,
+    "compressor_inlet_c": 25,
+    "compressor_isentropic_efficiency": 0.72,
+    "water_cp_j_kg_k": 4180,
+    "water_density_kg_m3": 965,
+    "air_cp_j_kg_k": 1005,
+    "air_gamma": 1.4,
+    "air_r_j_kg_k": 287.05,
+    "old_study_port_area_mm2": 75.84238854259503,
+    "target_port_mean_speed_m_s": 3,
+    "injectors": 6,
+    "injector_duty": 0.8,
+    "injector_differential_bar": 3,
+    "fuel_pump_delivery_factor": 1.25
+  },
+  "nominal": {
+    "assumptions": {
+      "rpm": 7000,
+      "brake_efficiency": 0.3,
+      "lambda_value": 0.82,
+      "volumetric_efficiency": 1.0,
+      "charge_c": 50.0,
+      "fuel_lhv_j_kg": 42500000.0,
+      "stoich_afr": 14.4,
+      "fuel_density_kg_m3": 745.0,
+      "head_heat_fraction": 0.12,
+      "water_delta_k": 15.0
+    },
+    "results": {
+      "power_kw": 735.49875,
+      "displacement_cm3": 4000.6599080768606,
+      "torque_nm": 1003.3565288606586,
+      "bmep_bar": 31.516175555299828,
+      "mean_piston_speed_m_s": 19.040000000000003,
+      "fuel_power_kw": 2451.6625,
+      "total_non_brake_power_kw": 1716.16375,
+      "bsfc_g_kwh": 282.35294117647055,
+      "fuel_kg_h": 207.67023529411765,
+      "fuel_l_h": 278.7519936833794,
+      "assumed_pump_delivery_l_h": 348.43999210422425,
+      "assumed_pump_pressure_bar": 4.69420584223076,
+      "injector_cm3_min_each_at_80pct": 967.8888669561784,
+      "air_kg_s": 0.6811583717647058,
+      "air_each_turbo_kg_s": 0.3405791858823529,
+      "air_each_turbo_lb_min": 45.05091466362447,
+      "manifold_absolute_bar": 2.70745584223076,
+      "boost_gauge_bar": 1.6942058422307602,
+      "compressor_pressure_ratio": 2.826534953164621,
+      "compressor_outlet_c": 168.1297557490788,
+      "intercoolers_total_kw": 80.86739744341995,
+      "head_coolant_total_kw": 294.1995,
+      "head_coolant_each_kw": 49.03325,
+      "unallocated_non_brake_power_kw": 1421.96425,
+      "water_total_kg_s": 4.692177033492823,
+      "water_total_l_min": 291.74157721198895,
+      "water_each_bank_l_min": 145.87078860599448,
+      "water_each_head_l_min": 48.62359620199816,
+      "old_port_mean_speed_m_s": 10.685228743529946,
+      "old_port_dynamic_pressure_bar": 0.5508900966800199,
+      "head_port_id_at_3m_s_mm": 18.54566218997174,
+      "bank_header_id_at_3m_s_mm": 32.12202917304014
+    }
+  },
+  "one_at_a_time_sensitivity": {
+    "rpm": [
+      {
+        "rpm": 6500,
+        "torque_nm": 1080.5378003114783,
+        "bmep_bar": 33.940496751861346,
+        "mean_piston_speed_m_s": 17.680000000000003,
+        "boost_gauge_bar": 1.902471676248511
+      },
+      {
+        "rpm": 7000,
+        "torque_nm": 1003.3565288606586,
+        "bmep_bar": 31.516175555299828,
+        "mean_piston_speed_m_s": 19.040000000000003,
+        "boost_gauge_bar": 1.6942058422307602
+      },
+      {
+        "rpm": 7500,
+        "torque_nm": 936.4660936032813,
+        "bmep_bar": 29.415097184946504,
+        "mean_piston_speed_m_s": 20.4,
+        "boost_gauge_bar": 1.5137087860820426
+      },
+      {
+        "rpm": 8000,
+        "torque_nm": 877.9369627530763,
+        "bmep_bar": 27.57665361088735,
+        "mean_piston_speed_m_s": 21.76,
+        "boost_gauge_bar": 1.355773861951915
+      }
+    ],
+    "brake_efficiency": [
+      {
+        "brake_efficiency": 0.26,
+        "bsfc_g_kwh": 325.7918552036199,
+        "fuel_l_h": 321.63691578851467,
+        "air_kg_s": 0.7859519674208144,
+        "boost_gauge_bar": 2.1107375102662616,
+        "head_coolant_total_kw": 339.4609615384615
+      },
+      {
+        "brake_efficiency": 0.3,
+        "bsfc_g_kwh": 282.35294117647055,
+        "fuel_l_h": 278.7519936833794,
+        "air_kg_s": 0.6811583717647058,
+        "boost_gauge_bar": 1.6942058422307602,
+        "head_coolant_total_kw": 294.1995
+      },
+      {
+        "brake_efficiency": 0.34,
+        "bsfc_g_kwh": 249.13494809688578,
+        "fuel_l_h": 245.95764148533473,
+        "air_kg_s": 0.6010220927335639,
+        "boost_gauge_bar": 1.3756816254977295,
+        "head_coolant_total_kw": 259.58779411764704
+      }
+    ],
+    "lambda_value": [
+      {
+        "lambda_value": 0.78,
+        "air_kg_s": 0.6479311341176471,
+        "boost_gauge_bar": 1.5621348255365775
+      },
+      {
+        "lambda_value": 0.82,
+        "air_kg_s": 0.6811583717647058,
+        "boost_gauge_bar": 1.6942058422307602
+      },
+      {
+        "lambda_value": 0.86,
+        "air_kg_s": 0.7143856094117648,
+        "boost_gauge_bar": 1.8262768589249438
+      }
+    ],
+    "volumetric_efficiency": [
+      {
+        "volumetric_efficiency": 0.9,
+        "boost_gauge_bar": 1.995034269145289
+      },
+      {
+        "volumetric_efficiency": 1.0,
+        "boost_gauge_bar": 1.6942058422307602
+      },
+      {
+        "volumetric_efficiency": 1.1,
+        "boost_gauge_bar": 1.4480734929370545
+      }
+    ],
+    "charge_c": [
+      {
+        "charge_c": 40,
+        "boost_gauge_bar": 1.6104225885643275,
+        "intercoolers_total_kw": 84.42523006637568
+      },
+      {
+        "charge_c": 50,
+        "boost_gauge_bar": 1.6942058422307602,
+        "intercoolers_total_kw": 80.86739744341995
+      },
+      {
+        "charge_c": 60,
+        "boost_gauge_bar": 1.7779890958971925,
+        "intercoolers_total_kw": 77.24020805651755
+      }
+    ]
+  },
+  "fuel_property_brackets": [
+    {
+      "fuel_lhv_j_kg": 41500000.0,
+      "stoich_afr": 14.1,
+      "fuel_density_kg_m3": 755,
+      "fuel_l_h": 281.6878640389372,
+      "air_kg_s": 0.683039080120482,
+      "boost_gauge_bar": 1.7016812474176428
+    },
+    {
+      "fuel_lhv_j_kg": 42500000.0,
+      "stoich_afr": 14.4,
+      "fuel_density_kg_m3": 745,
+      "fuel_l_h": 278.7519936833794,
+      "air_kg_s": 0.6811583717647058,
+      "boost_gauge_bar": 1.6942058422307602
+    },
+    {
+      "fuel_lhv_j_kg": 43000000.0,
+      "stoich_afr": 14.7,
+      "fuel_density_kg_m3": 735,
+      "fuel_l_h": 279.2591362126245,
+      "air_kg_s": 0.6872637156976743,
+      "boost_gauge_bar": 1.7184732516693593
+    }
+  ],
+  "cooling_sensitivity": [
+    {
+      "head_heat_fraction": 0.08,
+      "water_delta_k": 10,
+      "head_coolant_total_kw": 196.133,
+      "water_total_l_min": 291.74157721198895,
+      "water_each_head_l_min": 48.62359620199816,
+      "head_port_id_at_3m_s_mm": 18.54566218997174
+    },
+    {
+      "head_heat_fraction": 0.08,
+      "water_delta_k": 15,
+      "head_coolant_total_kw": 196.133,
+      "water_total_l_min": 194.49438480799267,
+      "water_each_head_l_min": 32.41573080133211,
+      "head_port_id_at_3m_s_mm": 15.142469769152529
+    },
+    {
+      "head_heat_fraction": 0.08,
+      "water_delta_k": 20,
+      "head_coolant_total_kw": 196.133,
+      "water_total_l_min": 145.87078860599448,
+      "water_each_head_l_min": 24.31179810099908,
+      "head_port_id_at_3m_s_mm": 13.113763496123974
+    },
+    {
+      "head_heat_fraction": 0.12,
+      "water_delta_k": 10,
+      "head_coolant_total_kw": 294.1995,
+      "water_total_l_min": 437.61236581798346,
+      "water_each_head_l_min": 72.93539430299724,
+      "head_port_id_at_3m_s_mm": 22.713704653728794
+    },
+    {
+      "head_heat_fraction": 0.12,
+      "water_delta_k": 15,
+      "head_coolant_total_kw": 294.1995,
+      "water_total_l_min": 291.74157721198895,
+      "water_each_head_l_min": 48.62359620199816,
+      "head_port_id_at_3m_s_mm": 18.54566218997174
+    },
+    {
+      "head_heat_fraction": 0.12,
+      "water_delta_k": 20,
+      "head_coolant_total_kw": 294.1995,
+      "water_total_l_min": 218.80618290899173,
+      "water_each_head_l_min": 36.46769715149862,
+      "head_port_id_at_3m_s_mm": 16.061014586520074
+    },
+    {
+      "head_heat_fraction": 0.16,
+      "water_delta_k": 10,
+      "head_coolant_total_kw": 392.266,
+      "water_total_l_min": 583.4831544239779,
+      "water_each_head_l_min": 97.24719240399632,
+      "head_port_id_at_3m_s_mm": 26.22752699224795
+    },
+    {
+      "head_heat_fraction": 0.16,
+      "water_delta_k": 15,
+      "head_coolant_total_kw": 392.266,
+      "water_total_l_min": 388.98876961598535,
+      "water_each_head_l_min": 64.83146160266422,
+      "head_port_id_at_3m_s_mm": 21.414686115360094
+    },
+    {
+      "head_heat_fraction": 0.16,
+      "water_delta_k": 20,
+      "head_coolant_total_kw": 392.266,
+      "water_total_l_min": 291.74157721198895,
+      "water_each_head_l_min": 48.62359620199816,
+      "head_port_id_at_3m_s_mm": 18.54566218997174
+    }
+  ],
+  "clearance_volume_sweep": [
+    {
+      "compression_ratio": 8,
+      "total_clearance_volume_cm3": 95.25380733516333
+    },
+    {
+      "compression_ratio": 8.5,
+      "total_clearance_volume_cm3": 88.90355351281912
+    },
+    {
+      "compression_ratio": 9,
+      "total_clearance_volume_cm3": 83.34708141826792
+    },
+    {
+      "compression_ratio": 9.5,
+      "total_clearance_volume_cm3": 78.44431192307569
+    }
+  ],
+  "hypothetical_peak_pressure_loads": [
+    {
+      "peak_cylinder_pressure_bar": 140,
+      "gas_force_kn": 114.3979548878187
+    },
+    {
+      "peak_cylinder_pressure_bar": 180,
+      "gas_force_kn": 147.0830848557669
+    },
+    {
+      "peak_cylinder_pressure_bar": 220,
+      "gas_force_kn": 179.76821482371514
+    }
+  ],
+  "wall_conduction_sensitivity": [
+    {
+      "heat_flux_mw_m2": 1,
+      "thickness_mm": 4.5,
+      "conductivity_w_m_k": 100,
+      "solid_only_delta_k": 45.0
+    },
+    {
+      "heat_flux_mw_m2": 1,
+      "thickness_mm": 4.5,
+      "conductivity_w_m_k": 160,
+      "solid_only_delta_k": 28.125
+    },
+    {
+      "heat_flux_mw_m2": 1,
+      "thickness_mm": 4.5,
+      "conductivity_w_m_k": 220,
+      "solid_only_delta_k": 20.454545454545453
+    },
+    {
+      "heat_flux_mw_m2": 1,
+      "thickness_mm": 4.5,
+      "conductivity_w_m_k": 320,
+      "solid_only_delta_k": 14.0625
+    },
+    {
+      "heat_flux_mw_m2": 3,
+      "thickness_mm": 4.5,
+      "conductivity_w_m_k": 100,
+      "solid_only_delta_k": 134.99999999999997
+    },
+    {
+      "heat_flux_mw_m2": 3,
+      "thickness_mm": 4.5,
+      "conductivity_w_m_k": 160,
+      "solid_only_delta_k": 84.37499999999999
+    },
+    {
+      "heat_flux_mw_m2": 3,
+      "thickness_mm": 4.5,
+      "conductivity_w_m_k": 220,
+      "solid_only_delta_k": 61.36363636363635
+    },
+    {
+      "heat_flux_mw_m2": 3,
+      "thickness_mm": 4.5,
+      "conductivity_w_m_k": 320,
+      "solid_only_delta_k": 42.18749999999999
+    },
+    {
+      "heat_flux_mw_m2": 5,
+      "thickness_mm": 4.5,
+      "conductivity_w_m_k": 100,
+      "solid_only_delta_k": 225.0
+    },
+    {
+      "heat_flux_mw_m2": 5,
+      "thickness_mm": 4.5,
+      "conductivity_w_m_k": 160,
+      "solid_only_delta_k": 140.625
+    },
+    {
+      "heat_flux_mw_m2": 5,
+      "thickness_mm": 4.5,
+      "conductivity_w_m_k": 220,
+      "solid_only_delta_k": 102.27272727272727
+    },
+    {
+      "heat_flux_mw_m2": 5,
+      "thickness_mm": 4.5,
+      "conductivity_w_m_k": 320,
+      "solid_only_delta_k": 70.3125
+    }
+  ],
+  "peltier_entire_head_loop": [
+    {
+      "status": "assumption_only_no_hardware_sizing",
+      "hardware_qualified": false,
+      "assumptions": {
+        "cold_load_w": 294199.5,
+        "assumed_cop": 0.5,
+        "assumed_bus_v": 48,
+        "assumed_dc_efficiency": 0.9,
+        "auxiliaries_w": 0
+      },
+      "results": {
+        "tec_electrical_input_w": 588399.0,
+        "tec_hot_side_rejection_w": 882598.5,
+        "bus_input_w": 653776.6666666666,
+        "converter_loss_w": 65377.66666666663,
+        "bus_current_a": 13620.34722222222,
+        "total_added_ambient_rejection_w": 947976.1666666666
+      }
+    },
+    {
+      "status": "assumption_only_no_hardware_sizing",
+      "hardware_qualified": false,
+      "assumptions": {
+        "cold_load_w": 294199.5,
+        "assumed_cop": 1,
+        "assumed_bus_v": 48,
+        "assumed_dc_efficiency": 0.9,
+        "auxiliaries_w": 0
+      },
+      "results": {
+        "tec_electrical_input_w": 294199.5,
+        "tec_hot_side_rejection_w": 588399.0,
+        "bus_input_w": 326888.3333333333,
+        "converter_loss_w": 32688.833333333314,
+        "bus_current_a": 6810.17361111111,
+        "total_added_ambient_rejection_w": 621087.8333333333
+      }
+    },
+    {
+      "status": "assumption_only_no_hardware_sizing",
+      "hardware_qualified": false,
+      "assumptions": {
+        "cold_load_w": 294199.5,
+        "assumed_cop": 2,
+        "assumed_bus_v": 48,
+        "assumed_dc_efficiency": 0.9,
+        "auxiliaries_w": 0
+      },
+      "results": {
+        "tec_electrical_input_w": 147099.75,
+        "tec_hot_side_rejection_w": 441299.25,
+        "bus_input_w": 163444.16666666666,
+        "converter_loss_w": 16344.416666666657,
+        "bus_current_a": 3405.086805555555,
+        "total_added_ambient_rejection_w": 457643.6666666666
+      }
+    }
+  ],
+  "unknowns": {
+    "exact_donor_variant": null,
+    "measured_interfaces": null,
+    "compression_ratio": null,
+    "peak_cylinder_pressure_bar": null,
+    "cam_timing_and_lift": null,
+    "coolant_mixture": null,
+    "coolant_heat_split": null,
+    "alloy_and_lpbf_process": null,
+    "knock_limited_boost_bar": null,
+    "ignition_timing_deg": null,
+    "compressor_map_selection": null,
+    "turbine_backpressure_bar": null
+  },
+  "qualification": {
+    "combustion_validated": false,
+    "knock_validated": false,
+    "fitment_validated": false,
+    "cfd_cht_validated": false,
+    "material_qualified": false,
+    "manufacturing_authorized": false
+  }
+}

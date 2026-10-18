@@ -91,6 +91,10 @@ Catalogue record: [`catalog/parts/993-eng-exhaust-valve-f1-0001.json`](../../cat
 
 ## Images
 
+![photo-concept](../../parts/993-eng-exhaust-valve-f1-0001/media/photo-concept.png)
+
+*`parts/993-eng-exhaust-valve-f1-0001/media/photo-concept.png` — AI-generated studio illustration based on the concept CAD preview. Material and finish are illustrative; generated details may differ. Not a photograph or evidence of fit, function or manufacturing.*
+
 ![preview](../../parts/993-eng-exhaust-valve-f1-0001/media/preview.png)
 
 *`parts/993-eng-exhaust-valve-f1-0001/media/preview.png` — concept CAD block, **not** the original part, not a print file.*
@@ -117,7 +121,7 @@ Catalogue record: [`catalog/parts/993-eng-exhaust-valve-f1-0001.json`](../../cat
 | status | concept |
 | vehicle tested | not recorded |
 | reviewed by |  |
-| limitations | not recorded |
+| limitations | The public dimensions do not define keeper grooves, seat angles and widths, margins, neck radii, coatings or tolerances.<br>Titanium is not selected for exhaust duty; it remains a comparison requiring measured temperatures and full thermal-fatigue validation.<br>The generated STLs are fit-check-only and must never be installed in an engine. |
 
 **Evidence**
 

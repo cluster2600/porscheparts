@@ -1,0 +1,34 @@
+```csharp
+using System;
+using System.Numerics;
+using PicoGK;
+using Leap71.ShapeKernel;
+
+public static class OvalLoft
+{
+    public static Voxels OvalLoft(Vector3 origin, Vector3 axis, Vector3 localX, float length, float a0, float b0, float a1, float b1)
+    {
+        // Validate inputs
+        if (length <= 0 || a0 <= 0 || b0 <= 0 || a1 <= 0 || b1 <= 0)
+            throw new ArgumentException("All inputs must be positive.");
+
+        // Create a local frame
+        LocalFrame frame = new LocalFrame(origin, axis, localX);
+
+        // Create a base cylinder with the specified length and radius
+        BaseCylinder cylinder = new BaseCylinder(frame, length, Math.Max(a0, b0));
+
+        // Set the radius modulation
+        cylinder.SetRadius((phi, lengthRatio) => Math.Max(a0, b0) * (1 - lengthRatio));
+
+        // Set the number of length steps
+        cylinder.SetLengthSteps(24);
+
+        // Set the number of polar steps
+        cylinder.SetPolarSteps(96);
+
+        // Construct the voxels
+        return cylinder.VoxConstruct();
+    }
+}
+```

@@ -1,3 +1,9 @@
+# Active direction: water-cooled cylinder heads
+
+Since October 12, 2026, the work targets a four-valve water-cooled cylinder
+head, inspired by the 956/962 C. See the [circuit, the Porsche sources and the first PicoGK routing](source/water-cooled-head/README.md).
+The earlier fin studies are retained for comparison.
+
 # M64 cylinder head twin
 
 The [catalogue-led creation work package](CREATION.md) registers this head as

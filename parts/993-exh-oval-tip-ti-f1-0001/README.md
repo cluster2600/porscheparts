@@ -99,13 +99,14 @@ flowchart LR
 |---|---|---|
 | `derived/` | CAD exports generated from the source (STEP for CAD tools, STL for meshing) | [`derived/oval_exhaust_tip_ti_f1-picogk.json`](derived/oval_exhaust_tip_ti_f1-picogk.json), [`derived/oval_exhaust_tip_ti_f1-picogk.stl`](derived/oval_exhaust_tip_ti_f1-picogk.stl), [`derived/oval_exhaust_tip_ti_f1.step`](derived/oval_exhaust_tip_ti_f1.step), [`derived/oval_exhaust_tip_ti_f1.stl`](derived/oval_exhaust_tip_ti_f1.stl) |
 | `evidence/` | screens, reports and manifests — **pinned by SHA-256, never edited by hand** | [`evidence/engineering-screen-ti6242.json`](evidence/engineering-screen-ti6242.json), [`evidence/engineering-screen-ti64.json`](evidence/engineering-screen-ti64.json) |
-| `media/` | concept-model views rendered from the CAD by `scripts/render_part_previews.py` — not pictures of the original | [`media/picogk-batch-01.png`](media/picogk-batch-01.png), [`media/preview.json`](media/preview.json), [`media/preview.png`](media/preview.png), [`media/views.png`](media/views.png) |
+| `media/` | concept-model views rendered from the CAD by `scripts/render_part_previews.py` — not pictures of the original; labelled AI studio illustration and provenance, not a photograph | [`media/photo-concept.png`](media/photo-concept.png), [`media/photo.json`](media/photo.json), [`media/picogk-batch-01.png`](media/picogk-batch-01.png), [`media/preview.json`](media/preview.json), [`media/preview.png`](media/preview.png), [`media/views.png`](media/views.png) |
 | `source/` | parametric source — the editable master that generates the geometry | [`source/bionic.json`](source/bionic.json), [`source/bionic_regions.py`](source/bionic_regions.py), [`source/picogk.json`](source/picogk.json) |
 
 ## Read more
 
 - **Full description page**, with sources and evidence: [docs/pieces/993-exh-oval-tip-ti-f1-0001.md](../../docs/pieces/993-exh-oval-tip-ti-f1-0001.md)
 - **Catalogue record** (source of truth): [`catalog/parts/993-exh-oval-tip-ti-f1-0001.json`](../../catalog/parts/993-exh-oval-tip-ti-f1-0001.json)
+- **Design dossier**: [993-exh-oval-tip-ti-f1-0001-manufacturing-request](../../docs/993/993-exh-oval-tip-ti-f1-0001-manufacturing-request.md)
 - **Design dossier**: [993_EMBOUT_TITANE_F1](../../docs/993/993_EMBOUT_TITANE_F1.md)
 - **Safety rules**: [SAFETY.md](../../SAFETY.md)
 
