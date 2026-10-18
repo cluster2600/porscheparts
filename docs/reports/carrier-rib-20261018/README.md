@@ -42,7 +42,21 @@ The [observation review](hotspots-root-review.json) closes both actual five-prob
 
 The first [local refinement](local-refinement-refusal-root-review.json) measured **2.360754878 / 1.351859995 mm**, above the unchanged **1.384441618 / 0.953185689 mm** targets. It also changed the end1 bore coordinates: **2,145 of 2,274** nodes had no unique match within the original **10⁻¹⁰ mm** bound. That mesh was refused and was not solved.
 
-A subsequent [frozen-bore attempt](frozen-bore-refusal-root-review.json) recovered all six original T6 bore meshes from the complete current T10 boundary. No fixed bore edge conflicted with the two local targets. Native 1D generation completed, but a curve-parameter ambiguity stopped installation before any protected curve was cleared or injected. No volume mesh or FEA followed. The original coordinate, complete connectivity, volume and actual edge-size gates remain unchanged while this mapping is corrected.
+A subsequent [frozen-bore attempt](frozen-bore-refusal-root-review.json) recovered all six original T6 bore meshes from the complete current T10 boundary. No fixed bore edge conflicted with the two local targets. Native 1D generation completed, but a curve-parameter ambiguity stopped installation before any protected curve was cleared or injected. Its refusal remains unchanged.
+
+The [independent parameter observer](curve-parameter-observer-root-review.json) then checked all 18 protected curves. The `getClosestPoint` parameter guards failed; the separate `getParametrization` → `getValue` route passed the original domain, uniqueness and **10⁻¹⁰ mm** roundtrip guards on every curve, with maximum error **2.8422 × 10⁻¹⁴ mm**. The [next attempt](raw-preservation-gap-root-review.json) completed installation and native volume generation but refused repeated node-tag enumeration before its mesh writer ran. Its unavailable final arrays remain unknown.
+
+The [raw-preserving refinement](frozen-bore-T6-refinement-refusal-root-review.json) saves the complete mesh before verification. All six original bore coordinate bijections and full T6 connectivity proofs now pass, with zero coordinate mismatch. Repeated rows combine only when the same native tag has identical binary64 XYZ; all raw rows and multiplicities remain retained. The mesh has **161,547 nodes / 86,820 T10 elements**, positive sampled Jacobians and exact same-operator CAD import agreement.
+
+This refinement still refuses the original volume-error nonregression guard: **−0.000242000454338** versus the coarse **−0.000232811681518**. Its measured local maxima are **1.559827077 / 1.015801710 mm**, above the unchanged **1.384441618 / 0.953185689 mm** targets. No refined mechanical case was solved. The original coordinate, connectivity, volume and actual edge-size gates remain in force.
+
+## R1 junction trial — separate candidate
+
+A [new seven-edge junction trial](R1-junction-trial-root-review.json) produced native BREP **240109ca**, one valid solid with **243 faces** and no degenerate edges. A single declared **1 mm** fillet follows the complete actual reentrant contour; all seven source-profile, finite normal and material-side checks precede the native build.
+
+The strict **d64 minus trial** native difference is valid and empty in all dimensions. The reverse difference is one valid positive solid, with **36.049512 mm³** measured volume. The separate whole-body adaptive volume difference is **36.055640 mm³**; these two observations are retained separately. The trial mass is **1.274957364 kg**, leaving **25.04 g** below the ceiling, and the original overall bounds pass.
+
+This closes the trial's local geometry, retention and mass checks. Fresh body-volume observations, all four actual tool-column intersections, surface, protected interfaces, exchange and mechanics follow this candidate. The d64 mechanical results and existing section/stress images remain attached to d64; they do not establish the new trial's stress response.
 
 ## Evidence scope
 
