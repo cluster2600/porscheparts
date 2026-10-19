@@ -1,0 +1,101 @@
+{
+  "frozen_at_UTC": "2026-10-16T13:35:30.573957+00:00",
+  "scope": "Published ambient Ti Grade23 ELI Z stress-relieved reference sensitivity, not Grade5 carrier material law or design allowable",
+  "geometry_STEP_sha256": "fd080c7d033db9447a3a364644406f8beca44fdd5d11ecc3b9819b2b88a333bd",
+  "linear_reference_case": "combined-spring-1000-static",
+  "mesh": "mesh-9",
+  "mesh_inp_sha256": null,
+  "reference_deck_sha256": null,
+  "plasticity": {
+    "type": "Isotropic J2 with published pre-necking Grade23 ELI true-stress/plastic-strain curve",
+    "E_MPa": 106000,
+    "nu": 0.31,
+    "nu_source": "Frozen carrier isotropic assumption, not supplied by dataset",
+    "true_VM_yield_MPa": 956.8778700555556,
+    "geometric_nonlinearity": true,
+    "curve_input": "process-20261016/material-luo-set1/flat-set-1-plastic.inp",
+    "curve_sha256": "b6123556870e2cfe6d183d4c4e1b512da0b5c273ba62e792a3e6c6b51b236ac7",
+    "curve_provenance_sha256": "986a13f5acea0cabc999b3996fc590a1b729c56070fb7c5eff0e8431cd4d3077",
+    "maximum_measured_equivalent_plastic_strain": 0.04698042567140203,
+    "model_origin": "Published Rp0.2 used as model first yield; plastic strain origin reset explicitly in source conversion",
+    "condition": "LaserForm Ti Gr23(A)ELI,ProX DMP320,275W/800mm/s,60um/hatch82um,Ztension,SR670C5h+argon12h",
+    "source_record": "https://zenodo.org/records/6587905",
+    "article": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9880387/",
+    "license": "CC-BY-4.0",
+    "case_selection": "First published process set, first flat specimen, fixed by data agent independently of carrier outcome"
+  },
+  "step": {
+    "initial_increment": 0.125,
+    "end_time": 1,
+    "minimum_increment": 0.001,
+    "maximum_increment": 0.125,
+    "maximum_increments": 100,
+    "timeout_seconds": 1800
+  },
+  "fixture": "CLOAD and all support/node/section blocks copied byte-for-byte from reference; no softening or recalculation of nodal forces",
+  "outputs": [
+    "U",
+    "RF",
+    "S",
+    "PEEQ",
+    "ENER"
+  ],
+  "interpretation": "Require full load factor1 and finalPEEQ within0.0469804257 measured pre-necking range. Report all increments and work balance. No damage model and no post-necking extrapolation admitted.",
+  "solver_reference": "https://www.dhondt.de/ccx_2.21.pdf sections6.8.9,7.105,7.52",
+  "resources": {
+    "cpus": 1,
+    "memory_GiB": 6,
+    "swap_GiB": 0,
+    "network": "none"
+  },
+  "case_name": "combined-spring-1000-luo-flat1-contour2-NLGEOM",
+  "unload_to_zero": true,
+  "unload_step": {
+    "initial_increment": 0.125,
+    "end_time": 1,
+    "minimum_increment": 0.001,
+    "maximum_increment": 0.125,
+    "maximum_increments": 100
+  },
+  "unload_scope": "Second NLGEOM step ramps exactly the same nodal force pattern from full load to zero; unchanged eye springs/material. Report residual displacement/location, stress, plastic volume and incremental work. Monotonic measured curve supplies isotropic hardening; unloading is a constitutive-model prediction, not measured cyclic data.",
+  "coupon_reference_preprocessing": {
+    "file": "ccx221-curve-preprocessing.json",
+    "sha256": "b12a757670531b346f7ff907fe6e3a1b9cad45adef00663a800f00b07fc4c5f7",
+    "earlier_raw_interpolant_coupon_rejected": true,
+    "correction": "Reproduce documented CCX2.21 internal248to200resampling for analytic expectation; retain original248point input unchanged and stress tolerance0.01MPa unchanged."
+  },
+  "status": "planned_not_executed",
+  "identity_binding": "Template is immutable. Only a new bound execution plan may fill the retained contour2 mesh/deck hashes after the full mechanical admission passes.",
+  "admission": {
+    "criteria_file": "reinforcement-2/mechanical-criteria.json",
+    "criteria_sha256": "ead5c18d12b9cc7e3d4e672592326bcc00d3c8cad812b7953aef665b85e5047f",
+    "required_flags": [
+      "comparative_non_regression_pass",
+      "reinforcement_objectives_pass"
+    ],
+    "required_comparisons": 4,
+    "require_energy_and_superposition_pass": true,
+    "candidate_mass_kg_max": 1.3
+  },
+  "comparison_baseline": {
+    "geometry_STEP_sha256": "ad12b8e0a382d8cc8b585254bb4b6fcfafab99fbcedf40691752271d04947a3e",
+    "analysis_label": "work/carrier-design-20261016/luo-flat1-analysis.json",
+    "analysis_sha256": "42a37d1f736fc0ffd29c67d34caca54989f6faa8c49229f7814c4d81cdefc450",
+    "independent_work_label": "work/carrier-design-20261016/luo-flat1-finite-work.json",
+    "independent_work_sha256": "dcb6e61829ddf09548da0c537068943ef443233fdad232d4f9abe3dec1afd46a",
+    "full_load": {
+      "displacement_max_mm": 18.683490284482183,
+      "VM_max_MPa": 1013.2942855497444,
+      "PEEQ_max": 0.01154945,
+      "plastic_quadrature_volume_mm3": 338.45665066079306
+    },
+    "unloaded_residual_max_mm": 0.09925853846232784,
+    "comparison_convention": "Report actual candidate/baseline ratios for full-load displacement, PEEQ max, plastic quadrature volume and residual maximum. Ratios<=1 mean non-regression for that metric; do not average away a worse metric."
+  },
+  "sources_sha256": {
+    "run_plastic900.py": "6e7c65681a774cffbbc251a5f2b50fa275802ab42d4b0f0b40027dd01d3c0c38",
+    "ccx_curve_reference.py": "0a5dc5016c7968d0bb6c067b8a64eda7fc8991aea642d08bee939f5e41f39443",
+    "analyze_plastic900.py": "ea583d521738c1b775655fc0485c20c9d6db4e4e16310273899e5c1e1d4a8e85",
+    "audit_finite_work.py": "e13397c0fd15d48d29b859bff371b2f135a73d34ee94ba104f74c869149b821c"
+  }
+}

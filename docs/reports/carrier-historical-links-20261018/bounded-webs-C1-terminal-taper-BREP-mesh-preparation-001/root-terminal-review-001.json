@@ -1,0 +1,87 @@
+{
+  "schema": "root-new-taper-T10-terminal-1",
+  "actual_tool_RC": 0,
+  "actual_tool_terminal_chunk": "91a8ce",
+  "terminal_sha256": "a5316718609e1b91b3d93997d383ec0280cf6a36af0d749bc2475fb98cd557ca",
+  "supervision_sha256": "e08bad3a78a09a5ebecaeae8909617bb1a123f86aebc39aa98cb3fc9062e33f1",
+  "all18_whole_outputs_verified": true,
+  "all535_fresh_pins_verified": true,
+  "whole_pending_plan_launch_inverses_equal": true,
+  "whole_original_caller_inverse_and_helpers_verified": true,
+  "actual_verify_master_passed": true,
+  "NPZ_headers_and_INP_counts_verified": true,
+  "fresh_PGID_absent": true,
+  "node_count": 166403,
+  "C3D10_count": 89536,
+  "surface_corner_triangles": 47344,
+  "minimum_Jacobian": 0.007956870776194523,
+  "nonpositive_elements": 0,
+  "six_actual_roster_counts": [
+    528,
+    528,
+    528,
+    528,
+    2274,
+    2278
+  ],
+  "BREP_sha256": "dde710a2f318545ec99b066bbeddc71af0b526066eed97f8220ae2f61b3a75fb",
+  "BREP_import": {
+    "CAD_source_format": "BREP",
+    "BREP_sha256": "dde710a2f318545ec99b066bbeddc71af0b526066eed97f8220ae2f61b3a75fb",
+    "OCC_imported_volume_mm3": 285603.1567960073,
+    "nonadaptive_reference_volume_mm3": 285603.15679600753,
+    "nonadaptive_reference_operator": {
+      "api": "BRepGProp.VolumeProperties_s",
+      "arguments": [
+        false,
+        false,
+        false
+      ],
+      "scope": "Same nonadaptive overload used by Gmsh getMass; only the future import comparison reference"
+    },
+    "nonadaptive_reference_receipt_sha256": "531d8adf905bd3805b9e3525ebb5aab62450afe9a531492586e1e6cd2f433ff7",
+    "adaptive_master_volume_mm3": 285602.88227244973,
+    "adaptive_master_operator": {
+      "api": "BRepGProp.VolumeProperties_s",
+      "arguments": [
+        1e-10,
+        true,
+        false
+      ],
+      "scope": "Separate adaptive native reference for material mass and mesh volume error"
+    },
+    "actual_import_options_before": {
+      "Geometry.OCCFixDegenerated": 0.0,
+      "Geometry.OCCFixSmallEdges": 0.0,
+      "Geometry.OCCFixSmallFaces": 0.0,
+      "Geometry.OCCSewFaces": 0.0,
+      "Geometry.OCCMakeSolids": 0.0,
+      "Geometry.OCCScaling": 1.0
+    },
+    "actual_import_options_after": {
+      "Geometry.OCCFixDegenerated": 0.0,
+      "Geometry.OCCFixSmallEdges": 0.0,
+      "Geometry.OCCFixSmallFaces": 0.0,
+      "Geometry.OCCSewFaces": 0.0,
+      "Geometry.OCCMakeSolids": 0.0,
+      "Geometry.OCCScaling": 1.0
+    },
+    "imported_CAD_absolute_identity_proved": false,
+    "relative_volume_difference": -7.771561172376096e-16,
+    "historical_relative_guard": 1e-08,
+    "passed": true
+  },
+  "mesh_volume_mm3": 285536.9707756392,
+  "mesh_volume_relative_error": -0.00023078022282585486,
+  "candidate_qualified": false,
+  "law_original_RC1_preserved": true,
+  "protected_interfaces_pending_in_this_run": true,
+  "FEA_executed": false,
+  "STEP_exchange_qualified": false,
+  "prior_ROOT_metadata_check_failure": {
+    "actual_chunk": "69aa36",
+    "reason": "ROOT incorrectly expected faces.npy to contain volume connectivity; unchanged mesher stores surface corner triangles and INP stores C3D10 connectivity",
+    "scientific_rerun": false
+  },
+  "review_seconds": 0.38493533385917544
+}

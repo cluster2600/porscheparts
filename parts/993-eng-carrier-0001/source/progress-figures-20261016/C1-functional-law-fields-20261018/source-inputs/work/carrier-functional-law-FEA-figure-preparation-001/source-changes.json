@@ -1,0 +1,132 @@
+{
+  "current_sha256": "f8820a5446d770e8d010d276cce2507517dbc27240b95bfd957dc181b4fd1f25",
+  "five_math_helpers_literal_AST_unchanged": [
+    "maxima_record",
+    "boundary_values",
+    "camera_basis",
+    "project",
+    "elements"
+  ],
+  "no_render_or_new_FEA": true,
+  "original_path": "work/carrier-terminal-taper-FEA-figure-preparation-001/figure.py",
+  "original_sha256": "5be01fcf492ee1fdd3fbef18147d57c8b8ffa6b818a1c0ab409816346f3e8a84",
+  "schema": "actual07b-field-figure-from-closed-taper-source-1",
+  "substitutions": [
+    [
+      "Actual closed raw-taper FE fields; English diagnostic, no new solver.",
+      "Actual current07b coarse FE fields; English comparison, no new solver.",
+      1
+    ],
+    [
+      "whole['status']=='two_actual_linear_static_cases_closed_no_qualification'",
+      "whole['status']=='closed_actual_RC0_two_current_static_and_independent_energy_cases'",
+      1
+    ],
+    [
+      "a['law_original_RC1_preserved']is True",
+      "a['new_complete_function_contract_passed']is True and a['all_original_stock_and_old_candidate_refusals_preserved']is True",
+      1
+    ],
+    [
+      "root_case['assessment_sha256']==hashes[row['assessment']]and root_case['native_receipt_sha256']==hashes[row['native_receipt']]and root_case['actual_tool_RC']==0 and root_case['all31_whole_outputs_verified']is True and root_case['fresh_exact_Docker_ID_absent']is True",
+      "root_case['native_VM_MPa']==record['integration_point_VM_max_MPa']and root_case['native_U_mm']==record['displacement_max_mm']and root_case['actual_tool_handle']==term['actual_tool_handle']and root_case['actual_terminal_chunk']==term['actual_terminal_chunk']and root_case['outputs']==31 and root_case['fresh_exact_container_ID_absent']is True",
+      1
+    ],
+    [
+      "term['whole_outputs_sha256'][path]",
+      "term['whole_outputs'][str(Path(path).relative_to(Path(row['folder']).parent))]['sha256']",
+      1
+    ],
+    [
+      "root_case['all_global_maximum_ties']",
+      "root_case['all_global_peak_ties']",
+      1
+    ],
+    [
+      "loads['actual_eye_node_counts']==[2274,2278]",
+      "loads['actual_eye_node_counts']==[2274,2274]",
+      1
+    ],
+    [
+      "loads['rigid_constrained_DOFs']==13656",
+      "loads['rigid_constrained_DOFs']==13644",
+      1
+    ],
+    [
+      "loads['SPRING1_elements']==13656",
+      "loads['SPRING1_elements']==13644",
+      1
+    ],
+    [
+      "actual-new-taper-two-case-fields-plan-1",
+      "actual-current07b-two-coarse-case-fields-plan-1",
+      1
+    ],
+    [
+      "review=read(root/plan['root_review']);require(review['schema']=='root-two-new-taper-linear-static-terminal-1'and review['status']=='closed_actual_RC0_two_new_taper_static_and_energy_cases'and review['actual_tool_RC']==0 and review['terminal_sha256']==hashes[plan['combined_terminal']]and review['all_global_peaks_retained']is True and review['candidate_qualified']is False and review['law_original_RC1_preserved']is True,'Two actual new-taper ROOT closures required')",
+      "review=read(root/plan['root_review']);require(review['schema']=='root-current-functional-law-two-static-terminal-review-1'and review['status']=='closed_actual_RC0_two_current_static_and_independent_energy_cases_no_convergence'and review['owner_terminal_sha256']==hashes[plan['combined_terminal']]and review['all_global_peak_ties_retained']is True and review['candidate_qualified']is False and review['convergence_proved']is False,'Two actual current07b coarse ROOT closures required')",
+      1
+    ],
+    [
+      "review['actual_new_BREP_sha256']",
+      "plan['actual_BREP_sha256']",
+      1
+    ],
+    [
+      "carrier-terminal-taper-fields-001",
+      "carrier-complete-function-fields-001",
+      1
+    ],
+    [
+      "993 TURBO \u00b7 PRESERVED TAPER \u00b7 TWO CLOSED LINEAR CASES",
+      "993 TURBO \u00b7 COMPLETE SEVEN-EDGE LAW \u00b7 COARSE LINEAR CASES",
+      1
+    ],
+    [
+      "89 536 C3D10 \u00b7 166 403 nodes",
+      "89 485 C3D10 \u00b7 166 263 nodes",
+      1
+    ],
+    [
+      "Rigid: 4 552 nodes fixed in XYZ. K1000: 1 000 N/mm TOTAL per eye and axis, distributed over 2 274 / 2 278 nodes.",
+      "Rigid: 4 548 nodes fixed in XYZ. K1000: 1 000 N/mm TOTAL per eye and axis, distributed over 2 274 nodes at each end.",
+      1
+    ],
+    [
+      "New raw-BREP geometry and mesh. Assumed linear loads/material; no strength allowable or stress convergence established.",
+      "Coarse T10 mesh: support-model comparison. Stress convergence has not been established.",
+      1
+    ],
+    [
+      "Unqualified raw taper: post-Build law refusal retained; STEP exchange not qualified. Orthographic view 8\u00b0 / 22\u00b0.",
+      "Complete seven-edge function \u00b7 E = 107 000 MPa, \u03bd = 0.31 \u00b7 orthographic view 8\u00b0 / 22\u00b0.",
+      1
+    ],
+    [
+      "Actual preserved-taper finite-element fields",
+      "Actual complete-function coarse finite-element fields",
+      3
+    ],
+    [
+      "carrier-terminal-taper-stress-displacement.",
+      "carrier-complete-function-stress-displacement.",
+      1
+    ],
+    [
+      "actual_closed_new_taper_fields_rendered_no_new_FEA",
+      "actual_closed_current07b_coarse_fields_rendered_no_new_FEA",
+      1
+    ],
+    [
+      "TimeoutError('95s actual field figure budget')",
+      "TimeoutError('150s actual field figure budget')",
+      1
+    ],
+    [
+      "signal.setitimer(signal.ITIMER_REAL,95);resource.setrlimit(resource.RLIMIT_CPU,(90,91))",
+      "signal.setitimer(signal.ITIMER_REAL,150);resource.setrlimit(resource.RLIMIT_CPU,(140,141))",
+      1
+    ]
+  ],
+  "whole_literal_forward_inverse_byte_equal": true
+}

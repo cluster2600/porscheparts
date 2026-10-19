@@ -1,0 +1,457 @@
+{
+  "status": "independent_diagnostic_complete_no_geometry_modified",
+  "classification_source_sha256": "906a413033b58d34cd28e705ac148f25e5a4dc3326298a6ff00c123b29d69f97",
+  "tests_sha256": "1d48cfed5760a16b5fd41b83e4ec270157ea5f9f9fc07481dd1796120c09fa15",
+  "unit_test_count": 8,
+  "unit_tests_passed": true,
+  "test_log_sha256": "60bb849356ffbc091f601e17fc6ae0b2eb5e26d734d433da020c6e775efbf97f",
+  "arithmetic": "Exact rational values of retained float64 IEEE754 coordinates. No epsilon or coordinate modification. Ignore only the intersection contained in the simplex shared by node indices.",
+  "scope": "Reclassifies all retained detector pairs for these eight stage meshes; this is not a global topology or pair-discovery certificate. Raw detector counts remain unchanged.",
+  "finding": "Both XY masks and source000 clipped/free have only legitimate shared-simplex contacts among the reported pairs. Actual area overlaps exist already in both triangular-prism union inputs; source008 retains true crossings after clipping and subtraction.",
+  "stages": [
+    {
+      "stage": "source-000-XY-mask",
+      "report_sha256": "c6b09458c9aefec966b51a81f6e6e4f4c74505a6156ba043abcd76516f277a55",
+      "raw_pairs": 36,
+      "shared_topological_simplex_only": 36,
+      "remaining": 0,
+      "diagnostic_categories": {},
+      "input_mesh_npz_sha256": "49c8d166b53413790c613d1e77b41681a8d9169362624d3808363e9f78d465d0",
+      "raw_pair_npz_sha256": "ed4116171d814c35ac1b3e886336f8b14d2c09c918cc40aa7c8934d7c74a6e4a",
+      "categories": {
+        "('point', True)": 36
+      }
+    },
+    {
+      "stage": "source-000-clipped",
+      "report_sha256": "341ed0c15a112253d60a0b39f4418ec12470c3632f6e4f6e66994ef11b8333f2",
+      "raw_pairs": 1,
+      "shared_topological_simplex_only": 1,
+      "remaining": 0,
+      "diagnostic_categories": {},
+      "input_mesh_npz_sha256": "49e9338eff2cf660c69b9aae0f2210e034d53a7dd4e4b47c49626909395cc35e",
+      "raw_pair_npz_sha256": "bd28d4478607330b3ec88b5804c989db02e9ae27a087178365ac18ed0c4671ca",
+      "categories": {
+        "('point', True)": 1
+      }
+    },
+    {
+      "stage": "source-000-free",
+      "report_sha256": "12b5c22b345d169e4e0d732bafa30d94d171ed601e0ab6d7b622728f5e11f2a6",
+      "raw_pairs": 3,
+      "shared_topological_simplex_only": 3,
+      "remaining": 0,
+      "diagnostic_categories": {},
+      "input_mesh_npz_sha256": "be6dd070e3d1f85e735a23f4f8582aff62ea76c666248e1b69bcb80e4d143ccf",
+      "raw_pair_npz_sha256": "6693b1641e96ed55b2d451c2290b9514b5c9c9703d0bf151a354e6a56558b2ed",
+      "categories": {
+        "('point', True)": 3
+      }
+    },
+    {
+      "stage": "source-000-triangular-prism-union",
+      "report_sha256": "6b975234b4a2a828d31832d469f11c48a5185eee87127b8b3d3371a6181b8c07",
+      "raw_pairs": 306,
+      "shared_topological_simplex_only": 25,
+      "remaining": 281,
+      "diagnostic_categories": {
+        "('coincident_vertex_indices_unmerged', 'segment')": 31,
+        "('coincident_vertex_indices_unmerged', 'point')": 244,
+        "('intersection_beyond_even_geometric_shared_simplex', 'coplanar_area')": 5,
+        "('intersection_beyond_even_geometric_shared_simplex', 'segment')": 1
+      },
+      "input_mesh_npz_sha256": "16fb2a21df901d12c2ab805170e23ec894b84ed4df57bdd5365f522b205e2091",
+      "raw_pair_npz_sha256": "ed4736d957602e72e544366c914909f4f71fae446f7f3a2b3f0bd70bfd3ba4a0",
+      "categories": {
+        "('segment', False)": 32,
+        "('point', False)": 244,
+        "('segment', True)": 18,
+        "('point', True)": 7,
+        "('coplanar_area', False)": 5
+      }
+    },
+    {
+      "stage": "source-008-XY-mask",
+      "report_sha256": "6dcfbab2d68a1e3883aad7384fd5b37f97beaf65ad8e74c7218bc71e83b3174c",
+      "raw_pairs": 302,
+      "shared_topological_simplex_only": 302,
+      "remaining": 0,
+      "diagnostic_categories": {},
+      "input_mesh_npz_sha256": "afe21c0993cf72b27a2284af1dd0c140c73c0c1efbb65ba821f75fc2587ff65a",
+      "raw_pair_npz_sha256": "060f7b435161172dc839eb132f2eb702ba880463a94aa271c093fe48464764be",
+      "categories": {
+        "('point', True)": 297,
+        "('segment', True)": 5
+      }
+    },
+    {
+      "stage": "source-008-clipped",
+      "report_sha256": "0ac0f6ae33fafc56a56488cda243bc79f536fdaa1a20c01be26a21d7a52b6200",
+      "raw_pairs": 281,
+      "shared_topological_simplex_only": 6,
+      "remaining": 275,
+      "diagnostic_categories": {
+        "('coincident_vertex_indices_unmerged', 'point')": 245,
+        "('coincident_vertex_indices_unmerged', 'segment')": 10,
+        "('intersection_beyond_even_geometric_shared_simplex', 'coplanar_area')": 6,
+        "('intersection_beyond_even_geometric_shared_simplex', 'segment')": 12,
+        "('intersection_beyond_even_geometric_shared_simplex', 'point')": 2
+      },
+      "input_mesh_npz_sha256": "40edf2276aca578b4a7788f85949b4c0f7672157ad2d5fcd252b86abdf634d97",
+      "raw_pair_npz_sha256": "1dfd442ec4e277f005537a17d3bb6c80b20ae4e89b2b38bb9c82a72ee70a0687",
+      "categories": {
+        "('point', False)": 247,
+        "('segment', False)": 22,
+        "('coplanar_area', False)": 6,
+        "('segment', True)": 4,
+        "('point', True)": 2
+      }
+    },
+    {
+      "stage": "source-008-free",
+      "report_sha256": "2631db811db7083020ec1283fa588bd6740ff50482d329ad1fc767f48bce1163",
+      "raw_pairs": 629,
+      "shared_topological_simplex_only": 5,
+      "remaining": 624,
+      "diagnostic_categories": {
+        "('coincident_vertex_indices_unmerged', 'point')": 463,
+        "('intersection_beyond_even_geometric_shared_simplex', 'segment')": 54,
+        "('intersection_beyond_even_geometric_shared_simplex', 'point')": 40,
+        "('coincident_vertex_indices_unmerged', 'segment')": 65,
+        "('intersection_beyond_even_geometric_shared_simplex', 'coplanar_area')": 2
+      },
+      "input_mesh_npz_sha256": "4c4052ed70ae993f077fd3b3f3a9ade57e5fda091787c76fbed80555815646f4",
+      "raw_pair_npz_sha256": "fd6ad6d8192c260d63df9cde89e4d8ac2aae3183005d20a5b16d538825adea40",
+      "categories": {
+        "('point', False)": 503,
+        "('segment', False)": 119,
+        "('segment', True)": 3,
+        "('coplanar_area', False)": 2,
+        "('point', True)": 2
+      }
+    },
+    {
+      "stage": "source-008-triangular-prism-union",
+      "report_sha256": "c0bb0a3ee4378a4d9d7e5f34f9da973dffcddaa537d5c30e9d3b541be5dd9e40",
+      "raw_pairs": 526,
+      "shared_topological_simplex_only": 19,
+      "remaining": 507,
+      "diagnostic_categories": {
+        "('coincident_vertex_indices_unmerged', 'point')": 447,
+        "('coincident_vertex_indices_unmerged', 'segment')": 43,
+        "('intersection_beyond_even_geometric_shared_simplex', 'coplanar_area')": 10,
+        "('intersection_beyond_even_geometric_shared_simplex', 'segment')": 5,
+        "('intersection_beyond_even_geometric_shared_simplex', 'point')": 2
+      },
+      "input_mesh_npz_sha256": "1e15e0c8068eac68e77dc8138ac5c4c0b101e0862a6660065cd182602aa8dbe1",
+      "raw_pair_npz_sha256": "d9ca13731421b3ad4857f3aef7cae1ef92fb993e94665aa6c8d363109c7a7942",
+      "categories": {
+        "('point', False)": 449,
+        "('segment', False)": 48,
+        "('coplanar_area', False)": 10,
+        "('segment', True)": 19
+      }
+    }
+  ],
+  "minimal_witnesses": [
+    {
+      "stage": "source-000-triangular-prism-union",
+      "face_pair": [
+        18034,
+        18311
+      ],
+      "vertex_ids": [
+        [
+          63850,
+          63854,
+          82900
+        ],
+        [
+          63850,
+          82906,
+          63854
+        ]
+      ],
+      "xyz_mm": [
+        [
+          [
+            174.82602585682395,
+            206.24501380653035,
+            0.0
+          ],
+          [
+            174.9576264809826,
+            205.83389654765423,
+            7.734169883469598e-13
+          ],
+          [
+            174.82602585682395,
+            206.24501380653035,
+            19.964022636413574
+          ]
+        ],
+        [
+          [
+            174.82602585682395,
+            206.24501380653035,
+            0.0
+          ],
+          [
+            174.9576264809826,
+            205.83389654765423,
+            20.023786417391857
+          ],
+          [
+            174.9576264809826,
+            205.83389654765423,
+            7.734169883469598e-13
+          ]
+        ]
+      ],
+      "kind": "coplanar_area",
+      "intersection_Linf_extent_mm": 9.996929933461479,
+      "projected_area_mm2": 2.0549552157105677,
+      "projected_area_exact_ratio": [
+        "30024050794637990850563215103700602744776787976945",
+        "14610562101352752931304633473622854767183940026368"
+      ],
+      "intersection_points_exact_ratios": [
+        [
+          [
+            "7256601307235257",
+            "35184372088832"
+          ],
+          [
+            "0",
+            "1"
+          ]
+        ],
+        [
+          [
+            "7242136404626819",
+            "35184372088832"
+          ],
+          [
+            "7659550855505727",
+            "9903520314283042199192993792"
+          ]
+        ],
+        [
+          [
+            "2870899909798063503711528409590445175880689273",
+            "13933717824318650180153497193930487410720768"
+          ],
+          [
+            "3958984984886253064660577157120",
+            "396020079288025788746196474049"
+          ]
+        ]
+      ]
+    },
+    {
+      "stage": "source-008-triangular-prism-union",
+      "face_pair": [
+        1344,
+        3478
+      ],
+      "vertex_ids": [
+        [
+          3313,
+          7724,
+          3315
+        ],
+        [
+          3313,
+          3315,
+          6867
+        ]
+      ],
+      "xyz_mm": [
+        [
+          [
+            86.8813845535347,
+            54.555090010744806,
+            0.0
+          ],
+          [
+            87.0083006815718,
+            55.128179004685805,
+            52.5
+          ],
+          [
+            87.0083006815718,
+            55.128179004685805,
+            0.0
+          ]
+        ],
+        [
+          [
+            86.8813845535347,
+            54.555090010744806,
+            0.0
+          ],
+          [
+            87.0083006815718,
+            55.128179004685805,
+            0.0
+          ],
+          [
+            86.8813845535347,
+            54.555090010744806,
+            35.99000000953674
+          ]
+        ]
+      ],
+      "kind": "coplanar_area",
+      "intersection_Linf_extent_mm": 21.352412705357064,
+      "projected_area_mm2": 6.118416357763043,
+      "projected_area_exact_ratio": [
+        "71021593055019895897805",
+        "11607839169838080589824"
+      ],
+      "intersection_points_exact_ratios": [
+        [
+          [
+            "1919486586277767",
+            "35184372088832"
+          ],
+          [
+            "0",
+            "1"
+          ]
+        ],
+        [
+          [
+            "476979221428574880644281",
+            "8705879377378560442368"
+          ],
+          [
+            "1761118345",
+            "82478658"
+          ]
+        ],
+        [
+          [
+            "3879300725361203",
+            "70368744177664"
+          ],
+          [
+            "0",
+            "1"
+          ]
+        ]
+      ]
+    },
+    {
+      "stage": "source-008-free",
+      "face_pair": [
+        2981,
+        19663
+      ],
+      "vertex_ids": [
+        [
+          2155,
+          2164,
+          2153
+        ],
+        [
+          2150,
+          21893,
+          2155
+        ]
+      ],
+      "xyz_mm": [
+        [
+          [
+            64.44384081353438,
+            46.842500324319346,
+            25.224225859098702
+          ],
+          [
+            64.27173294260855,
+            47.00591566728247,
+            25.23009310575779
+          ],
+          [
+            64.18117812393703,
+            47.091896899114396,
+            25.232608772726262
+          ]
+        ],
+        [
+          [
+            63.817625035416064,
+            47.43708827430468,
+            25.243659047140333
+          ],
+          [
+            63.817625035416064,
+            47.43708827430468,
+            35.99000000953674
+          ],
+          [
+            64.44384081353438,
+            46.842500324319346,
+            25.224225859098702
+          ]
+        ]
+      ],
+      "kind": "segment",
+      "intersection_Linf_extent_mm": 0.20890920370851407,
+      "projected_area_mm2": 0.0,
+      "projected_area_exact_ratio": [
+        "0",
+        "1"
+      ],
+      "intersection_points_exact_ratios": [
+        [
+          [
+            "4534832148033703",
+            "70368744177664"
+          ],
+          [
+            "3296247921964171",
+            "70368744177664"
+          ],
+          [
+            "3549994193117067",
+            "140737488355328"
+          ]
+        ],
+        [
+          [
+            "172186365141348928991676471643",
+            "2680572094125340192260751360"
+          ],
+          [
+            "126096412047304339181338516507",
+            "2680572094125340192260751360"
+          ],
+          [
+            "811605888350900706823582372603",
+            "32166865129504082307129016320"
+          ]
+        ]
+      ]
+    }
+  ],
+  "detector_primary_source": {
+    "installed_libigl_version": "2.6.3",
+    "upstream_tag": "v2.6.3",
+    "limitation": "The adjacent-pair branches call double shared-vertex/shared-edge helpers with tolerances1e-14 and1e-8; not every branch uses exact constructions.",
+    "files": [
+      {
+        "url": "https://github.com/libigl/libigl/blob/v2.6.3/include/igl/predicates/find_intersections.cpp",
+        "retained_sha256": "92f65ea060a0219fbd15edf0938f14657782be1c593af5151a85c472986e250a"
+      },
+      {
+        "url": "https://github.com/libigl/libigl/blob/v2.6.3/include/igl/triangle_triangle_intersect_shared_edge.cpp",
+        "retained_sha256": "52df7c9873f46bb8fa0fbecee94a168cd25345abfe6b87c16d41653fcc178722"
+      },
+      {
+        "url": "https://github.com/libigl/libigl/blob/v2.6.3/include/igl/triangle_triangle_intersect_shared_vertex.cpp",
+        "retained_sha256": "dc99976972df1ad98449f76f316ed39239cb1faaa0b613f8f7b4288061460896"
+      }
+    ]
+  }
+}

@@ -1,0 +1,257 @@
+{
+  "schema": "real-chart35-exact-inclusion-result-1",
+  "status": "diagnosed_and_corrected_local_witness",
+  "full_support_admitted": false,
+  "mathematical_finding": "For p>=0 the IEEE z-p and z+p bracket z; their exact hull already contains the original triangle. The observed loss is a GEOS union overlay hole, not missing original hull inputs.",
+  "original_loss_exact_area_mm2": {
+    "numerator": "152008507243411",
+    "denominator": "20282409603651670423947251286016",
+    "nearest_float": 7.494598039083246e-18
+  },
+  "proof_source_sha256": "0b1c7598a7358b9e9a384dd5b90dc66aa9e1ea53828033b6722477ec11409bed",
+  "fixture_sha256": "96d1d07460e81e0f9131891f221f3d1787fb92192cd311ae97fbdd8a7de3bf80",
+  "inputs_sha256": {
+    "work/carrier-process-20261016/continuous-chart35-rational-001/run_frozen_helper.py": "0c1d6b9485fe0499f9f6ce8d907723c9d5537cdaf6fa62e1d22e81de6dd18180",
+    "work/carrier-process-20261016/continuous-chart35-loss-001/inputs.json": "6669c5ca2e56d2f3fef3100b6f4e73fa358ecc37e5ce6fa7348bfeaf7d15bfee",
+    "work/carrier-process-20261016/continuous-chart35-loss-001/assessment.json": "6ab83529f26b2e022ac65bbf6ddd0104bef5cfdb2d33c5148963a0c8cf880fd6",
+    "work/carrier-process-20261016/continuous-chart35-loss-001/construction-order-diagnostic.json": "6f97d94ab21c9f0307db06da493fdf479bb903950370db4d684f602b65121f70",
+    "work/carrier-process-20261016/continuous-chart35-rational-001/assessment.json": "16046d00914d3f31bcce3e391fee73e4ccab85e42d201ede5b660872188b9d8f"
+  },
+  "cases": [
+    {
+      "case": "old_union_loses_domain",
+      "receipt": {
+        "schema": "closed-ieee-polygon-inclusion-1",
+        "status": "refused",
+        "passed": false,
+        "source_geometry_sha256": "3a28f3f1cf6f787bcf2e93f3541f434ca8f151934f05d2a53578988758e15731",
+        "target_geometry_sha256": "be48991a9928d238d2c493c6bac6a19e445e0db1fca48bd0aa13658c8e18ff64",
+        "proof_source_sha256": "0b1c7598a7358b9e9a384dd5b90dc66aa9e1ea53828033b6722477ec11409bed",
+        "exact_contact_kernel_sha256": "399db612b1d5fde6b1a0290d4d497d9b01e6afe3a28d7b63a095a2a06e271cca",
+        "arithmetic": "Fraction of stored float64 coordinates; no intermediate encoding",
+        "validity_gate": "GEOS valid nonempty Polygon pair; no overlay used by proof",
+        "boundary_intervals_checked": 19,
+        "entire_source_boundary_covered": true,
+        "bounded_target_complements_outside_source": false,
+        "complement_sampling": "one_rational_interior_point_per_target_hole",
+        "complement_samples": [
+          {
+            "kind": "target_hole_sample",
+            "hole": 0,
+            "point": [
+              {
+                "numerator": "-82111059014527603",
+                "denominator": "1152921504606846976",
+                "nearest_float": -0.07121999085490903
+              },
+              {
+                "numerator": "12300423882850991",
+                "denominator": "281474976710656",
+                "nearest_float": 43.69988418364909
+              }
+            ],
+            "outside_source": true
+          },
+          {
+            "kind": "target_hole_sample",
+            "hole": 1,
+            "point": [
+              {
+                "numerator": "-43712830008915365",
+                "denominator": "288230376151711744",
+                "nearest_float": -0.1516593448356979
+              },
+              {
+                "numerator": "12716545133593105",
+                "denominator": "281474976710656",
+                "nearest_float": 45.178243843200164
+              }
+            ],
+            "outside_source": true
+          },
+          {
+            "kind": "target_hole_sample",
+            "hole": 2,
+            "point": [
+              {
+                "numerator": "19198294549495345",
+                "denominator": "36028797018963968",
+                "nearest_float": 0.5328597160596344
+              },
+              {
+                "numerator": "5819665709875967",
+                "denominator": "140737488355328",
+                "nearest_float": 41.35121194704515
+              }
+            ],
+            "outside_source": true
+          },
+          {
+            "kind": "target_hole_sample",
+            "hole": 3,
+            "point": [
+              {
+                "numerator": "-20777381868522063",
+                "denominator": "288230376151711744",
+                "nearest_float": -0.07208602419332016
+              },
+              {
+                "numerator": "11970453178982845",
+                "denominator": "281474976710656",
+                "nearest_float": 42.52759275041329
+              }
+            ],
+            "outside_source": false
+          }
+        ],
+        "witnesses": [
+          {
+            "kind": "target_hole_inside_source",
+            "hole": 3,
+            "point": [
+              {
+                "numerator": "-20777381868522063",
+                "denominator": "288230376151711744",
+                "nearest_float": -0.07208602419332016
+              },
+              {
+                "numerator": "11970453178982845",
+                "denominator": "281474976710656",
+                "nearest_float": 42.52759275041329
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "case": "new_union_keeps_domain",
+      "receipt": {
+        "schema": "closed-ieee-polygon-inclusion-1",
+        "status": "passed",
+        "passed": true,
+        "source_geometry_sha256": "3a28f3f1cf6f787bcf2e93f3541f434ca8f151934f05d2a53578988758e15731",
+        "target_geometry_sha256": "dd4dcbbcb3905937da706aa26196b15da27e75ef9c43622f3f48e8ca7b1d044d",
+        "proof_source_sha256": "0b1c7598a7358b9e9a384dd5b90dc66aa9e1ea53828033b6722477ec11409bed",
+        "exact_contact_kernel_sha256": "399db612b1d5fde6b1a0290d4d497d9b01e6afe3a28d7b63a095a2a06e271cca",
+        "arithmetic": "Fraction of stored float64 coordinates; no intermediate encoding",
+        "validity_gate": "GEOS valid nonempty Polygon pair; no overlay used by proof",
+        "boundary_intervals_checked": 19,
+        "entire_source_boundary_covered": true,
+        "bounded_target_complements_outside_source": true,
+        "complement_sampling": "one_rational_interior_point_per_target_hole",
+        "complement_samples": [
+          {
+            "kind": "target_hole_sample",
+            "hole": 0,
+            "point": [
+              {
+                "numerator": "-43712830008915365",
+                "denominator": "288230376151711744",
+                "nearest_float": -0.1516593448356979
+              },
+              {
+                "numerator": "12716545133593105",
+                "denominator": "281474976710656",
+                "nearest_float": 45.178243843200164
+              }
+            ],
+            "outside_source": true
+          },
+          {
+            "kind": "target_hole_sample",
+            "hole": 1,
+            "point": [
+              {
+                "numerator": "19198294549495345",
+                "denominator": "36028797018963968",
+                "nearest_float": 0.5328597160596344
+              },
+              {
+                "numerator": "5819665709875967",
+                "denominator": "140737488355328",
+                "nearest_float": 41.35121194704515
+              }
+            ],
+            "outside_source": true
+          },
+          {
+            "kind": "target_hole_sample",
+            "hole": 2,
+            "point": [
+              {
+                "numerator": "-19707494515840311",
+                "denominator": "288230376151711744",
+                "nearest_float": -0.06837410677862474
+              },
+              {
+                "numerator": "11713823143101719",
+                "denominator": "281474976710656",
+                "nearest_float": 41.61585971154736
+              }
+            ],
+            "outside_source": true
+          },
+          {
+            "kind": "target_hole_sample",
+            "hole": 3,
+            "point": [
+              {
+                "numerator": "-82111059014527603",
+                "denominator": "1152921504606846976",
+                "nearest_float": -0.07121999085490903
+              },
+              {
+                "numerator": "12300423882850991",
+                "denominator": "281474976710656",
+                "nearest_float": 43.69988418364909
+              }
+            ],
+            "outside_source": true
+          }
+        ],
+        "witnesses": []
+      }
+    },
+    {
+      "case": "new_union_inside_band",
+      "receipt": {
+        "schema": "closed-ieee-polygon-inclusion-1",
+        "status": "passed",
+        "passed": true,
+        "source_geometry_sha256": "dd4dcbbcb3905937da706aa26196b15da27e75ef9c43622f3f48e8ca7b1d044d",
+        "target_geometry_sha256": "66e732d0fa6ee42ce1d2ae70142efdef5b76edbc6b2268710cd2af51d16a6e97",
+        "proof_source_sha256": "0b1c7598a7358b9e9a384dd5b90dc66aa9e1ea53828033b6722477ec11409bed",
+        "exact_contact_kernel_sha256": "399db612b1d5fde6b1a0290d4d497d9b01e6afe3a28d7b63a095a2a06e271cca",
+        "arithmetic": "Fraction of stored float64 coordinates; no intermediate encoding",
+        "validity_gate": "GEOS valid nonempty Polygon pair; no overlay used by proof",
+        "boundary_intervals_checked": 45,
+        "entire_source_boundary_covered": true,
+        "bounded_target_complements_outside_source": true,
+        "complement_sampling": "one_rational_interior_point_per_target_hole",
+        "complement_samples": [],
+        "witnesses": []
+      }
+    },
+    {
+      "case": "band_contains_domain",
+      "receipt": {
+        "schema": "closed-ieee-polygon-inclusion-1",
+        "status": "passed",
+        "passed": true,
+        "source_geometry_sha256": "3a28f3f1cf6f787bcf2e93f3541f434ca8f151934f05d2a53578988758e15731",
+        "target_geometry_sha256": "66e732d0fa6ee42ce1d2ae70142efdef5b76edbc6b2268710cd2af51d16a6e97",
+        "proof_source_sha256": "0b1c7598a7358b9e9a384dd5b90dc66aa9e1ea53828033b6722477ec11409bed",
+        "exact_contact_kernel_sha256": "399db612b1d5fde6b1a0290d4d497d9b01e6afe3a28d7b63a095a2a06e271cca",
+        "arithmetic": "Fraction of stored float64 coordinates; no intermediate encoding",
+        "validity_gate": "GEOS valid nonempty Polygon pair; no overlay used by proof",
+        "boundary_intervals_checked": 22,
+        "entire_source_boundary_covered": true,
+        "bounded_target_complements_outside_source": true,
+        "complement_sampling": "one_rational_interior_point_per_target_hole",
+        "complement_samples": [],
+        "witnesses": []
+      }
+    }
+  ]
+}

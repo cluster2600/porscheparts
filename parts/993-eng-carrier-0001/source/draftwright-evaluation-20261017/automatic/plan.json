@@ -1,0 +1,64 @@
+{
+  "schema": "carrier-draftwright-isolated-trial-plan-1",
+  "source": {
+    "repository": "https://github.com/pzfreo/draftwright",
+    "commit": "f1a5db9b4490e9b233ae5b7cac1138633929c693",
+    "version": "0.5.0.dev0",
+    "licence": "AGPL-3.0",
+    "files_sha256": {
+      "LICENSE": "0d96a4ff68ad6d4b6f1f30f713b18d5184912ba8dd389f86aa7710db079abcb0",
+      "AGENTS.md": "67b4ac352cc154b00cd5885d17bfe3c73a140495ffd31d5361984b344eb2ef87",
+      "pyproject.toml": "5761540fa7bb2a302a2498051281c8596bfdaad5de16c9200412788910aa2a46",
+      "docs/using-draftwright.md": "eec2787f4aaf27c7f163c5e00bd13dcbcc8a051276ca02c203e800569f284a88",
+      "docs/reference/isolated-execution.md": "46c3f1ac09b3cf6376f4617b93a98612e944b37622376846e1dbb34f94af1cc4",
+      "src/draftwright/cli.py": "61f380595eba0057b9c887a031db8b029450c671a7ae1c359420a4793a7e8bf3",
+      "src/draftwright/builder.py": "10f87f7cfbaf48441a5da23bf09fc714a7d85098f6cd31f84e27111ae608d04e",
+      "src/draftwright/_core.py": "549121bb91d9f684f05caa3b19ef04e59e7f7b711f8327e7d316dfb79929ff89",
+      "src/draftwright/annotations/_sheet_furniture.py": "8c680f97ee6a55896f09797cd147ad5c1835ef67b1eae3265cb279f6cc3fb5a8"
+    }
+  },
+  "step": {
+    "path": "parts/993-eng-carrier-0001/derived/workflow-20261016/carrier.step",
+    "sha256": "de0e55a3150dacc5428bbc301d18d2e43477f038c3f4df295d9373af8e906b63"
+  },
+  "nominal_model_reference": {
+    "envelope_mm": [
+      592,
+      73,
+      52
+    ],
+    "bounds_mm": [
+      [
+        -296,
+        -36.5,
+        -22
+      ],
+      [
+        296,
+        36.5,
+        30
+      ]
+    ],
+    "eye_centre_distance_mm": 560,
+    "eye_bore_diameter_mm": 13.5,
+    "eye_bore_axis": "Y",
+    "central_bore_count": 4,
+    "central_bore_diameter_mm": 11,
+    "central_bore_pattern_mm": [
+      100,
+      40
+    ],
+    "central_bore_axis": "Z",
+    "pad_top_z_mm": 8
+  },
+  "intent": "One public CLI drawing attempt only; no geometry changes or release claim.",
+  "tolerance_handling": {
+    "cli_tolerance": "",
+    "cli_pmi": "off",
+    "cli_material": "",
+    "code_proof": "builder._resolve_title_document_defaults only sources STEP tolerance when a.tolerance is None; _core Analysis documents empty string as explicit blank. No fit/GDT/finish is declared."
+  },
+  "output_directory": "work/carrier-draftwright-20261017/drawing-001",
+  "cli_timeout_seconds": 480,
+  "process_nice": 10
+}

@@ -1,0 +1,553 @@
+{
+  "schema": "root-current24af-original-source0-native-terminal-review-1",
+  "status": "closed_actual_RC0_current24af_source0_original_geometric_envelope_PASS_retained_legacy_snap_refusal",
+  "owner_terminal_sha256": "fca68094972a1afb290a20b5ffa1783e2b9304672c46a90ab37014347247d877",
+  "collector_sha256": "43b27461cd6a3540014e7f4b6efc9552b1a264b7ee480c2305da02b625ae71f2",
+  "three_whole_original_readonly_collector_source_inverses": true,
+  "source_inverse_block_counts": [
+    1,
+    1,
+    7
+  ],
+  "genuine_actual_tuple_whole_binding_inverse": true,
+  "whole_owner_object_and_stored_bytes_equal": true,
+  "normalization": [],
+  "actual_native_tool": {
+    "handle": 82223,
+    "initial_chunk": "6c52c5",
+    "terminal_chunk": "a8b986",
+    "outer_returncode": 0,
+    "child_returncode": 0
+  },
+  "output_count": 145,
+  "output_bytes": 397334502,
+  "all_current_local_pins": 2661,
+  "all_saved_fresh_remote_pins": 3013,
+  "full_three_pending_control_object_and_stored_byte_inverses": true,
+  "input_ROOT": {
+    "path": "work/carrier-corner-slide-AM-inputs-preparation-001/root-terminal-review-001.json",
+    "sha256": "41b7a40148b7acb3f9c7fc0b557cc2392ead99433de66b2b0b9884b837290599"
+  },
+  "input_manifest": {
+    "path": "work/carrier-corner-slide-AM-inputs-preparation-001/output-001/input-manifest.json",
+    "sha256": "3d888e49de6f1fb7e447dac25a90d8d6b23cb91ecbf25aa7ecd09929b7ea56e3"
+  },
+  "case_roles": {
+    "roofs": {
+      "path": "/Users/maxime/.codex/worktrees/993-carrier-revalidation/3dprinting993/work/carrier-corner-slide-AM-inputs-preparation-001/output-001/envelope-inputs/source-000-roofs.npz",
+      "sha256": "427bdb54ccbd19998cf3c61c450e4431891d0794740faeac0ce11b670e702b48"
+    },
+    "mask": {
+      "path": "/Users/maxime/.codex/worktrees/993-carrier-revalidation/3dprinting993/work/carrier-corner-slide-AM-inputs-preparation-001/output-001/envelope-inputs/source-000-mask-000.npz",
+      "sha256": "eca8ff490e8343352ed54bcc6a63616bee51e2564cd565f027ebcf15f4432343"
+    },
+    "part": {
+      "path": "/Users/maxime/.codex/worktrees/993-carrier-revalidation/3dprinting993/work/carrier-corner-slide-AM-inputs-preparation-001/output-001/envelope-inputs/part.npz",
+      "sha256": "30487ce8c5683c6b988f2cf3d2f6e71fbfe4b7669bb567cfc80554bbc05e6a4f"
+    }
+  },
+  "complete_native_steps": [
+    {
+      "name": "csg",
+      "command": [
+        "/usr/bin/python3",
+        "/home/lolman/carrier-cgal-prism-free-v4-20261016/run.py",
+        "prism_free",
+        "/home/lolman/carrier-native-cold-cases-20261016/native-case-169fa9cc672746e7/inputs/source-000-roofs.npz",
+        "/home/lolman/carrier-cgal-prism-free-v4-20261016/jobs/native-case-169fa9cc672746e7-csg",
+        "--second-input",
+        "/home/lolman/carrier-native-cold-cases-20261016/native-case-169fa9cc672746e7/inputs/source-000-mask-000.npz",
+        "--part-input",
+        "/home/lolman/carrier-native-cold-cases-20261016/native-case-169fa9cc672746e7/inputs/part.npz",
+        "--timeout-seconds",
+        "1200"
+      ],
+      "timeout_seconds": 1200,
+      "status": "executed",
+      "returncode": 0,
+      "seconds": 601.5761470799334
+    },
+    {
+      "name": "first-snap",
+      "command": [
+        "/usr/bin/python3",
+        "/home/lolman/carrier-cgal-autorefine-reproduction-20261016/run.py",
+        "/home/lolman/carrier-cgal-prism-free-v4-20261016/jobs/native-case-169fa9cc672746e7-csg/result.npz",
+        "/home/lolman/carrier-cgal-autorefine-reproduction-20261016/jobs/native-case-169fa9cc672746e7-first-snap",
+        "--grid-bits",
+        "51",
+        "--iterations",
+        "5",
+        "--cumulative-grid-bound"
+      ],
+      "timeout_seconds": 600,
+      "status": "retained_refusal",
+      "returncode": 1,
+      "seconds": 26.779214255977422
+    },
+    {
+      "name": "exact-distance",
+      "command": [
+        "/usr/bin/python3",
+        "/home/lolman/carrier-cgal-distance-v3-20261016/run.py",
+        "/home/lolman/carrier-cgal-prism-free-v4-20261016/jobs/native-case-169fa9cc672746e7-csg/result.npz",
+        "/home/lolman/carrier-cgal-autorefine-reproduction-20261016/jobs/native-case-169fa9cc672746e7-first-snap",
+        "/home/lolman/carrier-cgal-distance-v3-20261016/jobs/native-case-169fa9cc672746e7-distance"
+      ],
+      "timeout_seconds": 600,
+      "status": "executed",
+      "returncode": 0,
+      "seconds": 20.52393656806089
+    },
+    {
+      "name": "composed",
+      "command": [
+        "systemd-run",
+        "--user",
+        "--scope",
+        "--quiet",
+        "--unit",
+        "carrier-case-030e2b0c3877.scope",
+        "-p",
+        "CPUQuota=200%",
+        "-p",
+        "MemoryMax=4G",
+        "-p",
+        "MemorySwapMax=0",
+        "-p",
+        "TasksMax=128",
+        "-p",
+        "RuntimeMaxSec=130",
+        "timeout",
+        "--kill-after=10s",
+        "120",
+        "bwrap",
+        "--ro-bind",
+        "/",
+        "/",
+        "--unshare-net",
+        "--unshare-pid",
+        "--die-with-parent",
+        "--proc",
+        "/proc",
+        "--dev",
+        "/dev",
+        "--bind",
+        "/home/lolman/carrier-native-cold-cases-20261016/native-case-169fa9cc672746e7/output",
+        "/home/lolman/carrier-native-cold-cases-20261016/native-case-169fa9cc672746e7/output",
+        "--tmpfs",
+        "/tmp",
+        "--clearenv",
+        "--setenv",
+        "PATH",
+        "/usr/bin:/bin",
+        "--setenv",
+        "OMP_NUM_THREADS",
+        "1",
+        "--setenv",
+        "OPENBLAS_NUM_THREADS",
+        "1",
+        "--setenv",
+        "PYTHONDONTWRITEBYTECODE",
+        "1",
+        "/home/lolman/carrier-native-cold-reproduction-20261016/audit/venv/bin/python",
+        "/home/lolman/carrier-native-cold-cases-20261016/native-case-169fa9cc672746e7/source/native-cgal-prism-free-20261016-v4/audit_composed_drift_initial.py",
+        "/home/lolman/carrier-cgal-prism-free-v4-20261016/jobs/native-case-169fa9cc672746e7-csg",
+        "/home/lolman/carrier-cgal-autorefine-reproduction-20261016/jobs/native-case-169fa9cc672746e7-first-snap",
+        "/home/lolman/carrier-cgal-distance-v3-20261016/jobs/native-case-169fa9cc672746e7-distance",
+        "/home/lolman/carrier-cgal-autorefine-reproduction-20261016/jobs/native-case-169fa9cc672746e7-first-snap",
+        "/home/lolman/carrier-native-cold-cases-20261016/native-case-169fa9cc672746e7/output/composed",
+        "--plan",
+        "/home/lolman/carrier-native-cold-cases-20261016/native-case-169fa9cc672746e7/output/frozen-plan.json"
+      ],
+      "timeout_seconds": 120,
+      "status": "executed",
+      "unit": "carrier-case-030e2b0c3877.scope",
+      "returncode": 0,
+      "scope_cleanup": {
+        "unit": "carrier-case-030e2b0c3877.scope",
+        "kill_returncode": null,
+        "stop_returncode": null,
+        "state_returncode": 4,
+        "state": "inactive",
+        "inactive": true,
+        "already_inactive": true
+      },
+      "owned_scope_inactive": true,
+      "seconds": 5.767555142985657
+    },
+    {
+      "name": "independent",
+      "command": [
+        "systemd-run",
+        "--user",
+        "--scope",
+        "--quiet",
+        "--unit",
+        "carrier-case-d6d7b5163d19.scope",
+        "-p",
+        "CPUQuota=200%",
+        "-p",
+        "MemoryMax=4G",
+        "-p",
+        "MemorySwapMax=0",
+        "-p",
+        "TasksMax=128",
+        "-p",
+        "RuntimeMaxSec=130",
+        "timeout",
+        "--kill-after=10s",
+        "120",
+        "bwrap",
+        "--ro-bind",
+        "/",
+        "/",
+        "--unshare-net",
+        "--unshare-pid",
+        "--die-with-parent",
+        "--proc",
+        "/proc",
+        "--dev",
+        "/dev",
+        "--bind",
+        "/home/lolman/carrier-native-cold-cases-20261016/native-case-169fa9cc672746e7/output",
+        "/home/lolman/carrier-native-cold-cases-20261016/native-case-169fa9cc672746e7/output",
+        "--tmpfs",
+        "/tmp",
+        "--clearenv",
+        "--setenv",
+        "PATH",
+        "/usr/bin:/bin",
+        "--setenv",
+        "OMP_NUM_THREADS",
+        "1",
+        "--setenv",
+        "OPENBLAS_NUM_THREADS",
+        "1",
+        "--setenv",
+        "PYTHONDONTWRITEBYTECODE",
+        "1",
+        "/home/lolman/carrier-native-cold-reproduction-20261016/audit/venv/bin/python",
+        "/home/lolman/carrier-native-cold-cases-20261016/native-case-169fa9cc672746e7/source/process-skins-20261016/audit_envelope_case.py",
+        "/home/lolman/carrier-cgal-autorefine-reproduction-20261016/jobs/native-case-169fa9cc672746e7-first-snap/result.npz",
+        "/home/lolman/carrier-native-cold-cases-20261016/native-case-169fa9cc672746e7/output/independent",
+        "--audit-python",
+        "/home/lolman/carrier-native-cold-reproduction-20261016/audit/venv/bin/python"
+      ],
+      "timeout_seconds": 120,
+      "status": "executed",
+      "unit": "carrier-case-d6d7b5163d19.scope",
+      "returncode": 0,
+      "scope_cleanup": {
+        "unit": "carrier-case-d6d7b5163d19.scope",
+        "kill_returncode": null,
+        "stop_returncode": null,
+        "state_returncode": 4,
+        "state": "inactive",
+        "inactive": true,
+        "already_inactive": true
+      },
+      "owned_scope_inactive": true,
+      "seconds": 3.768344656098634
+    },
+    {
+      "name": "seal-prism",
+      "command": [
+        "systemd-run",
+        "--user",
+        "--scope",
+        "--quiet",
+        "--unit",
+        "carrier-case-08e527de41da.scope",
+        "-p",
+        "CPUQuota=200%",
+        "-p",
+        "MemoryMax=4G",
+        "-p",
+        "MemorySwapMax=0",
+        "-p",
+        "TasksMax=128",
+        "-p",
+        "RuntimeMaxSec=130",
+        "timeout",
+        "--kill-after=10s",
+        "120",
+        "bwrap",
+        "--ro-bind",
+        "/",
+        "/",
+        "--unshare-net",
+        "--unshare-pid",
+        "--die-with-parent",
+        "--proc",
+        "/proc",
+        "--dev",
+        "/dev",
+        "--bind",
+        "/home/lolman/carrier-native-cold-cases-20261016/native-case-169fa9cc672746e7/output",
+        "/home/lolman/carrier-native-cold-cases-20261016/native-case-169fa9cc672746e7/output",
+        "--tmpfs",
+        "/tmp",
+        "--clearenv",
+        "--setenv",
+        "PATH",
+        "/usr/bin:/bin",
+        "--setenv",
+        "OMP_NUM_THREADS",
+        "1",
+        "--setenv",
+        "OPENBLAS_NUM_THREADS",
+        "1",
+        "--setenv",
+        "PYTHONDONTWRITEBYTECODE",
+        "1",
+        "/home/lolman/carrier-native-cold-reproduction-20261016/audit/venv/bin/python",
+        "/home/lolman/carrier-native-cold-cases-20261016/native-case-169fa9cc672746e7/source/process-skins-20261016/seal_prism_native_case.py",
+        "--original-native-job",
+        "/home/lolman/carrier-cgal-prism-free-v4-20261016/jobs/native-case-169fa9cc672746e7-csg",
+        "--final-snap-job",
+        "/home/lolman/carrier-cgal-autorefine-reproduction-20261016/jobs/native-case-169fa9cc672746e7-first-snap",
+        "--distance-job",
+        "/home/lolman/carrier-cgal-distance-v3-20261016/jobs/native-case-169fa9cc672746e7-distance",
+        "--composed",
+        "/home/lolman/carrier-native-cold-cases-20261016/native-case-169fa9cc672746e7/output/composed/composed-drift.json",
+        "--contacts",
+        "/home/lolman/carrier-native-cold-cases-20261016/native-case-169fa9cc672746e7/output/independent/exact-contacts.json",
+        "--pairs",
+        "/home/lolman/carrier-native-cold-cases-20261016/native-case-169fa9cc672746e7/output/independent/topology/pairs.npz",
+        "--frozen-plan",
+        "/home/lolman/carrier-native-cold-cases-20261016/native-case-169fa9cc672746e7/output/frozen-plan.json",
+        "--schema",
+        "/home/lolman/carrier-native-cold-cases-20261016/native-case-169fa9cc672746e7/source/native-cgal-prism-free-20261016-v4/prism-face-schema.json",
+        "--output",
+        "/home/lolman/carrier-native-cold-cases-20261016/native-case-169fa9cc672746e7/output/sealed",
+        "--source-index",
+        "0"
+      ],
+      "timeout_seconds": 120,
+      "status": "executed",
+      "unit": "carrier-case-08e527de41da.scope",
+      "returncode": 0,
+      "scope_cleanup": {
+        "unit": "carrier-case-08e527de41da.scope",
+        "kill_returncode": null,
+        "stop_returncode": null,
+        "state_returncode": 4,
+        "state": "inactive",
+        "inactive": true,
+        "already_inactive": true
+      },
+      "owned_scope_inactive": true,
+      "seconds": 1.0128135201521218
+    }
+  ],
+  "three_original_native_jobs": {
+    "csg": {
+      "status": "executed",
+      "actual_returncode": 0,
+      "seconds": 601.3427420898806,
+      "unit": "carrier-experimental-soup-c34b4b55f8ff.scope",
+      "files": 23,
+      "execution_receipt_sha256": "b6f4a1032964fde38dd14e23ad723f833b21d5590f1031e251c3a81075a3e0da"
+    },
+    "first-snap": {
+      "status": "rejected_or_failed",
+      "actual_returncode": 2,
+      "seconds": 26.627365537919104,
+      "unit": "carrier-cgal-snap-d98ef42df415.scope",
+      "files": 14,
+      "execution_receipt_sha256": "0144c2ac3aa8fa9c3fca2e7f9a4f684eed3fa8122b2f77068cbf2bc6812f6289"
+    },
+    "distance": {
+      "status": "executed",
+      "actual_returncode": 0,
+      "seconds": 20.235479533905163,
+      "unit": "carrier-exact-distance-3339d1920f70.scope",
+      "files": 17,
+      "execution_receipt_sha256": "0ac5aa5abc2813271d830798caeddc9736ae35ef09d865a0848709d910d5f620"
+    }
+  },
+  "retained_first_snap_refusal": {
+    "native_returncode": 2,
+    "controller_step_returncode": 1,
+    "status": "retained_refusal",
+    "original_allowed_codes": [
+      0,
+      1
+    ],
+    "original_strict_reader_accepts_only_legacy_drift_false_with_native_topology_and_exact_composed_distance_pass": true
+  },
+  "actual_original_strict_reader_replay_sha256": "18a2da43bee7e588b74781fdb0af21648882d35f47268aacb6880aaab0dd6a16",
+  "actual_final_face_count": 532594,
+  "unknown_positive_parent_lookup_faces": 0,
+  "original_strict_seal": {
+    "status": "passed",
+    "native_audit_sha256": "1163b8720c8b16a6f76eaaea6a1ee84cf5bce5c6584682a4096ff5f5a805ea7c",
+    "local_evidence_map_sha256": "19f25ee3ff20351f416aeb5ddd293adad1285673841434fd2cd05b0154e74ffd",
+    "source_index": 0,
+    "final_mesh_sha256": "04a6d50ab4640344655a7edde067bbc176e557b6a47b40d5ba00b59d29dbaa80",
+    "unknown_final_faces": 0,
+    "payloads": 16,
+    "all_evidence_map_paths_relative": true,
+    "strict_reader_verified": true,
+    "native_calculation_executed_by_sealer": false,
+    "sealer_source_sha256": "687a5a42b413b76817f2ec82d4789bc0759563acd14ea5518479981c428944b7",
+    "strict_reader_source_sha256": "d4c8131feb365fbbfe8a92a39398bd89d9728916062ed1a2d9c67a19015f9259"
+  },
+  "all_saved_fresh_exact_remote_scope_queries": [
+    {
+      "command": [
+        "systemctl",
+        "--user",
+        "show",
+        "carrier-case-030e2b0c3877.scope",
+        "-p",
+        "LoadState",
+        "-p",
+        "ActiveState",
+        "-p",
+        "ControlGroup"
+      ],
+      "actual_returncode": 0,
+      "stdout": "LoadState=not-found\nActiveState=inactive\nControlGroup=\n",
+      "stderr": "",
+      "fields": {
+        "LoadState": "not-found",
+        "ActiveState": "inactive",
+        "ControlGroup": ""
+      },
+      "exact_scope_absent": true
+    },
+    {
+      "command": [
+        "systemctl",
+        "--user",
+        "show",
+        "carrier-case-08e527de41da.scope",
+        "-p",
+        "LoadState",
+        "-p",
+        "ActiveState",
+        "-p",
+        "ControlGroup"
+      ],
+      "actual_returncode": 0,
+      "stdout": "LoadState=not-found\nActiveState=inactive\nControlGroup=\n",
+      "stderr": "",
+      "fields": {
+        "LoadState": "not-found",
+        "ActiveState": "inactive",
+        "ControlGroup": ""
+      },
+      "exact_scope_absent": true
+    },
+    {
+      "command": [
+        "systemctl",
+        "--user",
+        "show",
+        "carrier-case-d6d7b5163d19.scope",
+        "-p",
+        "LoadState",
+        "-p",
+        "ActiveState",
+        "-p",
+        "ControlGroup"
+      ],
+      "actual_returncode": 0,
+      "stdout": "LoadState=not-found\nActiveState=inactive\nControlGroup=\n",
+      "stderr": "",
+      "fields": {
+        "LoadState": "not-found",
+        "ActiveState": "inactive",
+        "ControlGroup": ""
+      },
+      "exact_scope_absent": true
+    },
+    {
+      "command": [
+        "systemctl",
+        "--user",
+        "show",
+        "carrier-cgal-snap-d98ef42df415.scope",
+        "-p",
+        "LoadState",
+        "-p",
+        "ActiveState",
+        "-p",
+        "ControlGroup"
+      ],
+      "actual_returncode": 0,
+      "stdout": "LoadState=not-found\nActiveState=inactive\nControlGroup=\n",
+      "stderr": "",
+      "fields": {
+        "LoadState": "not-found",
+        "ActiveState": "inactive",
+        "ControlGroup": ""
+      },
+      "exact_scope_absent": true
+    },
+    {
+      "command": [
+        "systemctl",
+        "--user",
+        "show",
+        "carrier-exact-distance-3339d1920f70.scope",
+        "-p",
+        "LoadState",
+        "-p",
+        "ActiveState",
+        "-p",
+        "ControlGroup"
+      ],
+      "actual_returncode": 0,
+      "stdout": "LoadState=not-found\nActiveState=inactive\nControlGroup=\n",
+      "stderr": "",
+      "fields": {
+        "LoadState": "not-found",
+        "ActiveState": "inactive",
+        "ControlGroup": ""
+      },
+      "exact_scope_absent": true
+    },
+    {
+      "command": [
+        "systemctl",
+        "--user",
+        "show",
+        "carrier-experimental-soup-c34b4b55f8ff.scope",
+        "-p",
+        "LoadState",
+        "-p",
+        "ActiveState",
+        "-p",
+        "ControlGroup"
+      ],
+      "actual_returncode": 0,
+      "stdout": "LoadState=not-found\nActiveState=inactive\nControlGroup=\n",
+      "stderr": "",
+      "fields": {
+        "LoadState": "not-found",
+        "ActiveState": "inactive",
+        "ControlGroup": ""
+      },
+      "exact_scope_absent": true
+    }
+  ],
+  "ROOT_new_SSH_requery": false,
+  "fresh_local_owned_PID_PGID_absent": true,
+  "source_runtime_plan_C22_unchanged": true,
+  "other_six_cases_or_store_support_hatch_admission": false,
+  "retained_ROOT_metadata_refusals": [
+    {
+      "chunk": "a4ebde",
+      "reason": "Reviewer used repository root for basename-derived collector paths"
+    },
+    {
+      "initial_chunk": "60f770",
+      "terminal_chunk": "3dc815",
+      "reason": "Reviewer assumed all individual native return codes zero; actual legacy snap refusal is faithfully retained and explicitly allowed by unchanged strict reader, which was directly rerun"
+    }
+  ],
+  "scope": "One actual source0 geometric envelope under unchanged native/topology/exact finite-distance/composed radical and strict-parent predicates. 532594 final faces with zero unknown positive-parent lookups. Legacy IGL drift refusal preserved. No continuous Hausdorff, process anchor, support mesh, layer vectors or print admission."
+}

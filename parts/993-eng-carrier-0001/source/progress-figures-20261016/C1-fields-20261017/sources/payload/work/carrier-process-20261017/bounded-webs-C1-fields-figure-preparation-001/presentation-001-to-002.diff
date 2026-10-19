@@ -1,0 +1,29 @@
+--- figure.py-executed001
++++ figure_v2.py-presentation002
+@@ -159,7 +159,7 @@
+             cases.append(dict(row=row,tags=tags,xyz=xyz,faces=faces,ids=ids,u=u,stress=stress,amplitude=amplitude,corner_u=corners,summary=summary))
+     vm_scale=max(c['summary']['global_IP_VM_MPa']for c in cases);u_scale=max(c['summary']['all_nodes_Umax_mm']for c in cases)
+     lower=np.min(np.asarray(all_bounds)[:,0,:],0)-[9,6];upper=np.max(np.asarray(all_bounds)[:,1,:],0)+[9,6]
+-    fig,axes=plt.subplots(2,2,figsize=(17,12.4),facecolor='#F8FAFC');fig.subplots_adjust(left=.055,right=.88,top=.78,bottom=.31,wspace=.14,hspace=.17)
++    fig,axes=plt.subplots(2,2,figsize=(17,12.4),facecolor='#F8FAFC');fig.subplots_adjust(left=.055,right=.88,top=.78,bottom=.26,wspace=.14,hspace=.17)
+     fig.text(.055,.955,'993 TURBO · PROTOTYPE C1 · DEUX CAS LINÉAIRES CLOS',fontsize=11,color='#536D7D',weight='bold')
+     fig.text(.055,.918,'Contraintes et déplacements sur le vrai maillage',fontsize=23,weight='bold')
+     fig.text(.055,.887,'Fz = −4 000 N · My = +850 000 N·mm · mêmes caméra, axes en mm et échelles pour les deux cas',fontsize=10.5)
+@@ -183,7 +183,7 @@
+                     marker,_=project([peak['reference_undeformed_IP_xyz_mm']],basis)
+                     ax.scatter(*marker[0],s=100,marker='o',facecolors='none',edgecolors='#D47732',linewidths=1.5,zorder=5)
+                     ax.annotate('Pic IP global',marker[0],xytext=(12,18),textcoords='offset points',fontsize=8,color='#9A491E',arrowprops=dict(arrowstyle='-',color='#D47732'))
+-                inset=ax.inset_axes([.63,.06,.35,.44]);top=np.argsort(xyz[ids][:,:,2].mean(1),kind='stable');inset.add_collection(PolyCollection(xyz[ids][top,:,:2],facecolors=cmap(norms[0](c['stress'][top])),edgecolors='none',rasterized=True))
++                inset=fig.add_axes([.22+.43*col,.475,.14,.075]);top=np.argsort(xyz[ids][:,:,2].mean(1),kind='stable');inset.add_collection(PolyCollection(xyz[ids][top,:,:2],facecolors=cmap(norms[0](c['stress'][top])),edgecolors='none',rasterized=True))
+                 inset.set(xlim=zoom_bounds[:,0],ylim=zoom_bounds[:,1],xlabel='X (mm)',ylabel='Y (mm)');inset.set_aspect('equal');inset.tick_params(labelsize=6);inset.set_title('Zoom XY commun · même échelle MPa',fontsize=6.7)
+                 for peak in c['summary']['all_global_IP_ties']:inset.scatter(*peak['reference_undeformed_IP_xyz_mm'][:2],s=40,facecolors='none',edgecolors='#D47732',linewidths=1.2,zorder=5)
+             else:
+@@ -206,7 +206,7 @@
+     fig.text(.055,.117,'Facettes linéaires des coins des C3D10 ; déplacement de leurs sommets ×1. Gris : état au repos. Croix : tous les maxima de |u| parmi les nœuds.',fontsize=9,color='#536D7D')
+     fig.text(.055,.093,'Le champ de déplacement est coloré par le maximum des 3 nœuds de coin de chaque facette ; le maximum global inclut aussi les nœuds milieux.',fontsize=9,color='#536D7D')
+     fig.text(.055,.061,'Géométrie et maillage différents des campagnes STEP antérieures : comparaison descriptive seulement. Aucun critère de résistance ni convergence des contraintes établi.',fontsize=9,color='#536D7D')
+-    fig.text(.055,.037,'Prototype CAO BREP · échange STEP en contrôle · résultats linéaires du cas de charge déclaré · vue orthographique 8° / 22°.',fontsize=9,color='#536D7D')
++    fig.text(.055,.037,'Prototype CAO BREP · échange STEP refusé · résultats linéaires du cas de charge déclaré · vue orthographique 8° / 22°.',fontsize=9,color='#536D7D')
+     loaded={str(Path(m.__file__).resolve())for n,m in list(sys.modules.items())if n.split('.')[0]in ['numpy','matplotlib','PIL']and getattr(m,'__file__',None)and Path(m.__file__).is_file()}
+     runtime=plan['runtime_sha256'];require(loaded<=set(runtime),'An imported scientific runtime file is outside the attested runtime')
+     verify(plan_path,expected,True);fresh(output).mkdir()

@@ -1,0 +1,598 @@
+{
+  "schema": "fixed-C1-h2-dependent-capsule-source-derivation-1",
+  "sources": {
+    "restore.py": {
+      "reference": "parts/993-eng-carrier-0001/source/design-20261016/native-C1-20261017/restore.py",
+      "reference_sha256": "909caf964dd03d05b287f740a28a09e48baa132d1154f348f7053d81bd189a1b",
+      "source_sha256": "ee701f045f97167754febcdae598c55b9a0b457e52aa65e22b0aa28c370bb8c2"
+    },
+    "replay_analysis.py": {
+      "reference": "parts/993-eng-carrier-0001/source/design-20261016/native-C1-20261017/replay_analysis.py",
+      "reference_sha256": "436d4d8e4387792d171533dc18596190060fc6f01b575a3592b9616302d0b9b0",
+      "source_sha256": "8f8e41a1afb75b682d3e7ddaeac297077d5df312df27b52e9408b5f79a9a20c2"
+    }
+  },
+  "unchanged_analysis_sources": {
+    "audit_energy.py": "b71603069518e6aa8820a7c5fec02115ab82a585e6fe9c160452f1ca2025b186",
+    "locate.py": "962379625759f1e467da8eb904c3d25d7f7860443745cb37529dad5ea293dad7",
+    "cad_binding.py": "07addd2439be51920d393c8bee170611fea4774c3723906bf446387bbef382fb"
+  },
+  "dependency": "Exact closed C1 capsule, restored with its unchanged utility; exclusive new H2 destinations only.",
+  "unchanged_restore_AST": [
+    "require",
+    "sha",
+    "relative",
+    "transfer"
+  ],
+  "resource_delta": "Preflight exact free bytes for one inherited+H2 restoration and four unchanged reports; no source moved, no extra restoration.",
+  "exact_edit_operations": {
+    "restore.py": [
+      {
+        "old_start": 110,
+        "old_end": 110,
+        "new_start": 110,
+        "new_end": 132,
+        "before": "",
+        "after": "importlib.util\nimport "
+      },
+      {
+        "old_start": 129,
+        "old_end": 129,
+        "new_start": 151,
+        "new_end": 165,
+        "before": "",
+        "after": "\nimport shutil"
+      },
+      {
+        "old_start": 796,
+        "old_end": 796,
+        "new_start": 832,
+        "new_end": 2563,
+        "before": "",
+        "after": "dependency(report, base_capsule=None):\n    root = Path(base_capsule).absolute() if base_capsule is not None else HERE.parent / 'native-C1-20261017'\n    require(root.is_dir() and not any(p.is_symlink() for p in [root, *root.parents]), 'Regular closed C1 dependency required')\n    row = report['dependency']\n    for name, key in [('manifest.json', 'manifest_sha256'), ('archive.json', 'inventory_sha256'), ('restore.py', 'restore_source_sha256')]:\n        require(sha(root / name) == row[key], 'Closed C1 dependency identity differs')\n    spec = importlib.util.spec_from_file_location('_unchanged_closed_C1_restore', root / 'restore.py')\n    base = importlib.util.module_from_spec(spec); spec.loader.exec_module(base)\n    inherited = base.manifest(row['manifest_sha256'])\n    actual = {p: item for archive in inherited['archives'].values() for p, item in archive['members'].items()}\n    require(actual == row['members'] and len(actual) == 186, 'Exact 186 C1 dependency members required')\n    inventory = json.loads((root / 'archive.json').read_text())['files_sha256']\n    files = {str(p.relative_to(root)) for p in root.rglob('*') if p.is_file() and p.name != 'archive.json'}\n    require(files == set(inventory) and all(not (root / p).is_symlink() and sha(root / p) == h for p, h in inventory.items()),\n            'Complete durable C1 dependency inventory differs')\n    return root, base\n\n\ndef all_members(report):\n    seen = dict(report['dependency']['members'])\n    for archive in report['archives'].values():\n        for path, item in archive['members'].items():\n            require(path not in seen, 'No overwrites or duplicate destination across dependency and H2 archives')\n            seen[path] = item\n    return seen\n\n\ndef "
+      },
+      {
+        "old_start": 813,
+        "old_end": 813,
+        "new_start": 2580,
+        "new_end": 2599,
+        "before": "",
+        "after": ", base_capsule=None"
+      },
+      {
+        "old_start": 1003,
+        "old_end": 1007,
+        "new_start": 2789,
+        "new_end": 2801,
+        "before": "BREP",
+        "after": "h2-dependent"
+      },
+      {
+        "old_start": 1099,
+        "old_end": 1105,
+        "new_start": 2893,
+        "new_end": 2895,
+        "before": "native",
+        "after": "h2"
+      },
+      {
+        "old_start": 1123,
+        "old_end": 1129,
+        "new_start": 2913,
+        "new_end": 2915,
+        "before": "native",
+        "after": "h2"
+      },
+      {
+        "old_start": 1146,
+        "old_end": 1152,
+        "new_start": 2932,
+        "new_end": 2934,
+        "before": "native",
+        "after": "h2"
+      },
+      {
+        "old_start": 1179,
+        "old_end": 1179,
+        "new_start": 2961,
+        "new_end": 2964,
+        "before": "",
+        "after": " H2"
+      },
+      {
+        "old_start": 1376,
+        "old_end": 1376,
+        "new_start": 3161,
+        "new_end": 3182,
+        "before": "",
+        "after": "dependency(report, ba"
+      },
+      {
+        "old_start": 1378,
+        "old_end": 1378,
+        "new_start": 3184,
+        "new_end": 3191,
+        "before": "",
+        "after": "_capsul"
+      },
+      {
+        "old_start": 1379,
+        "old_end": 1380,
+        "new_start": 3192,
+        "new_end": 3194,
+        "before": "n",
+        "after": ")\n"
+      },
+      {
+        "old_start": 1381,
+        "old_end": 1382,
+        "new_start": 3195,
+        "new_end": 3195,
+        "before": "=",
+        "after": ""
+      },
+      {
+        "old_start": 1383,
+        "old_end": 1383,
+        "new_start": 3196,
+        "new_end": 3208,
+        "before": "",
+        "after": "  all_member"
+      },
+      {
+        "old_start": 1384,
+        "old_end": 1384,
+        "new_start": 3209,
+        "new_end": 3211,
+        "before": "",
+        "after": "(r"
+      },
+      {
+        "old_start": 1385,
+        "old_end": 1385,
+        "new_start": 3212,
+        "new_end": 3215,
+        "before": "",
+        "after": "por"
+      },
+      {
+        "old_start": 1386,
+        "old_end": 1387,
+        "new_start": 3216,
+        "new_end": 3216,
+        "before": "(",
+        "after": ""
+      },
+      {
+        "old_start": 1699,
+        "old_end": 1711,
+        "new_start": 3528,
+        "new_end": 3528,
+        "before": "\n           ",
+        "after": ""
+      },
+      {
+        "old_start": 1720,
+        "old_end": 1808,
+        "new_start": 3537,
+        "new_end": 3537,
+        "before": "(member); require(member not in seen, 'Duplicate destination across archives'); seen.add",
+        "after": ""
+      },
+      {
+        "old_start": 3306,
+        "old_end": 3306,
+        "new_start": 5035,
+        "new_end": 5054,
+        "before": "",
+        "after": ", base_capsule=None"
+      },
+      {
+        "old_start": 3339,
+        "old_end": 3339,
+        "new_start": 5087,
+        "new_end": 5202,
+        "before": "",
+        "after": ", base_capsule)\n    _, base = dependency(report, base_capsule); base.verify(report['dependency']['manifest_sha256']"
+      },
+      {
+        "old_start": 3821,
+        "old_end": 3821,
+        "new_start": 5684,
+        "new_end": 5698,
+        "before": "",
+        "after": ", base_capsule"
+      },
+      {
+        "old_start": 3871,
+        "old_end": 3871,
+        "new_start": 5748,
+        "new_end": 5767,
+        "before": "",
+        "after": ", base_capsule=None"
+      },
+      {
+        "old_start": 4123,
+        "old_end": 4123,
+        "new_start": 6019,
+        "new_end": 6033,
+        "before": "",
+        "after": ", base_capsule"
+      },
+      {
+        "old_start": 4124,
+        "old_end": 4125,
+        "new_start": 6034,
+        "new_end": 6035,
+        "before": ";",
+        "after": "\n"
+      },
+      {
+        "old_start": 4126,
+        "old_end": 4126,
+        "new_start": 6036,
+        "new_end": 6112,
+        "before": "",
+        "after": "   _, base = dependency(report, base_capsule)\n    require(shutil.disk_usage("
+      },
+      {
+        "old_start": 4133,
+        "old_end": 4133,
+        "new_start": 6119,
+        "new_end": 6137,
+        "before": "",
+        "after": "parent).free >= su"
+      },
+      {
+        "old_start": 4134,
+        "old_end": 4135,
+        "new_start": 6138,
+        "new_end": 6253,
+        "before": "k",
+        "after": "(row['bytes'] for row in all_members(report).values()),\n            'Insufficient free space for the exact inherite"
+      },
+      {
+        "old_start": 4136,
+        "old_end": 4136,
+        "new_start": 6254,
+        "new_end": 6328,
+        "before": "",
+        "after": " and new raw payloads')\n    base.restore(output, report['dependency']['man"
+      },
+      {
+        "old_start": 4137,
+        "old_end": 4139,
+        "new_start": 6329,
+        "new_end": 6342,
+        "before": "r(",
+        "after": "fest_sha256']"
+      },
+      {
+        "old_start": 4239,
+        "old_end": 4239,
+        "new_start": 6442,
+        "new_end": 6456,
+        "before": "",
+        "after": ", base_capsule"
+      },
+      {
+        "old_start": 4503,
+        "old_end": 4503,
+        "new_start": 6720,
+        "new_end": 6768,
+        "before": "",
+        "after": "p.add_argument('--base-capsule', type=Path)\n    "
+      },
+      {
+        "old_start": 4674,
+        "old_end": 4674,
+        "new_start": 6939,
+        "new_end": 6955,
+        "before": "",
+        "after": ", a.base_capsule"
+      },
+      {
+        "old_start": 4728,
+        "old_end": 4728,
+        "new_start": 7009,
+        "new_end": 7025,
+        "before": "",
+        "after": ", a.base_capsule"
+      },
+      {
+        "old_start": 4868,
+        "old_end": 4872,
+        "new_start": 7165,
+        "new_end": 7165,
+        "before": "sum(",
+        "after": ""
+      },
+      {
+        "old_start": 4876,
+        "old_end": 4879,
+        "new_start": 7169,
+        "new_end": 7173,
+        "before": "r['",
+        "after": "all_"
+      },
+      {
+        "old_start": 4886,
+        "old_end": 4899,
+        "new_start": 7180,
+        "new_end": 7181,
+        "before": "']) for r in ",
+        "after": "("
+      },
+      {
+        "old_start": 4905,
+        "old_end": 4925,
+        "new_start": 7187,
+        "new_end": 7187,
+        "before": "['archives'].values(",
+        "after": ""
+      },
+      {
+        "old_start": 4927,
+        "old_end": 4927,
+        "new_start": 7189,
+        "new_end": 7215,
+        "before": "",
+        "after": ", inherited_C1_members=186"
+      }
+    ],
+    "replay_analysis.py": [
+      {
+        "old_start": 186,
+        "old_end": 186,
+        "new_start": 186,
+        "new_end": 200,
+        "before": "",
+        "after": "\nimport shutil"
+      },
+      {
+        "old_start": 815,
+        "old_end": 815,
+        "new_start": 829,
+        "new_end": 839,
+        "before": "",
+        "after": "qualified "
+      },
+      {
+        "old_start": 818,
+        "old_end": 819,
+        "new_start": 842,
+        "new_end": 842,
+        "before": "g",
+        "after": ""
+      },
+      {
+        "old_start": 821,
+        "old_end": 822,
+        "new_start": 844,
+        "new_end": 845,
+        "before": "b",
+        "after": "c"
+      },
+      {
+        "old_start": 824,
+        "old_end": 825,
+        "new_start": 847,
+        "new_end": 850,
+        "before": "7",
+        "after": "-h2"
+      },
+      {
+        "old_start": 890,
+        "old_end": 890,
+        "new_start": 915,
+        "new_end": 934,
+        "before": "",
+        "after": "e, base_capsule=Non"
+      },
+      {
+        "old_start": 987,
+        "old_end": 987,
+        "new_start": 1031,
+        "new_end": 1045,
+        "before": "",
+        "after": ", base_capsule"
+      },
+      {
+        "old_start": 1206,
+        "old_end": 1206,
+        "new_start": 1264,
+        "new_end": 1705,
+        "before": "",
+        "after": "')\n    required = sum(row['bytes'] for row in archive.all_members(report).values())\n    required += sum(report['archives'][case['archive']]['members'][case['root'] + '/' + name]['bytes']\n                    for case in report['cases'] for name in ('energy-audit.json', 'global-peaks.json')) + 1024*1024\n    archive.require(shutil.disk_usage(output.parent).free >= required, 'Insufficient free space for one exact restoration and four reports"
+      },
+      {
+        "old_start": 1796,
+        "old_end": 1796,
+        "new_start": 2295,
+        "new_end": 2359,
+        "before": "",
+        "after": "base_root, _ = archive.dependency(report, base_capsule)\n        "
+      },
+      {
+        "old_start": 1818,
+        "old_end": 1822,
+        "new_start": 2381,
+        "new_end": 2390,
+        "before": "HERE",
+        "after": "base_root"
+      },
+      {
+        "old_start": 2559,
+        "old_end": 2559,
+        "new_start": 3127,
+        "new_end": 3141,
+        "before": "",
+        "after": ", base_capsule"
+      },
+      {
+        "old_start": 2610,
+        "old_end": 2614,
+        "new_start": 3192,
+        "new_end": 3201,
+        "before": "HERE",
+        "after": "base_root"
+      },
+      {
+        "old_start": 2689,
+        "old_end": 2693,
+        "new_start": 3276,
+        "new_end": 3285,
+        "before": "HERE",
+        "after": "base_root"
+      },
+      {
+        "old_start": 2819,
+        "old_end": 2823,
+        "new_start": 3411,
+        "new_end": 3420,
+        "before": "HERE",
+        "after": "base_root"
+      },
+      {
+        "old_start": 2899,
+        "old_end": 2903,
+        "new_start": 3496,
+        "new_end": 3505,
+        "before": "HERE",
+        "after": "base_root"
+      },
+      {
+        "old_start": 3322,
+        "old_end": 3322,
+        "new_start": 3924,
+        "new_end": 3927,
+        "before": "",
+        "after": "_h2"
+      },
+      {
+        "old_start": 4134,
+        "old_end": 4136,
+        "new_start": 4739,
+        "new_end": 4740,
+        "before": "84",
+        "after": "9"
+      },
+      {
+        "old_start": 4139,
+        "old_end": 4139,
+        "new_start": 4743,
+        "new_end": 4744,
+        "before": "",
+        "after": "1"
+      },
+      {
+        "old_start": 4233,
+        "old_end": 4234,
+        "new_start": 4838,
+        "new_end": 4839,
+        "before": "1",
+        "after": "2"
+      },
+      {
+        "old_start": 4535,
+        "old_end": 4535,
+        "new_start": 5140,
+        "new_end": 5446,
+        "before": "",
+        "after": "')\n                retained_path = case_root / ('energy-audit.json' if label == 'energy' else 'global-peaks.json')\n                archive.require(archive.sha(output / (case['key'] + '-' + label + '.json')) == archive.sha(retained_path),\n                                'Entire replayed report bytes differ"
+      },
+      {
+        "old_start": 4856,
+        "old_end": 4858,
+        "new_start": 5767,
+        "new_end": 5768,
+        "before": "84",
+        "after": "9"
+      },
+      {
+        "old_start": 4861,
+        "old_end": 4861,
+        "new_start": 5771,
+        "new_end": 5772,
+        "before": "",
+        "after": "1"
+      },
+      {
+        "old_start": 4876,
+        "old_end": 4877,
+        "new_start": 5787,
+        "new_end": 5788,
+        "before": "1",
+        "after": "2"
+      },
+      {
+        "old_start": 4955,
+        "old_end": 5020,
+        "new_start": 5866,
+        "new_end": 5866,
+        "before": "a in report['archives'].values()\n                            for ",
+        "after": ""
+      },
+      {
+        "old_start": 5031,
+        "old_end": 5033,
+        "new_start": 5877,
+        "new_end": 5888,
+        "before": "['",
+        "after": "rchive.all_"
+      },
+      {
+        "old_start": 5040,
+        "old_end": 5042,
+        "new_start": 5895,
+        "new_end": 5903,
+        "before": "']",
+        "after": "(report)"
+      },
+      {
+        "old_start": 5143,
+        "old_end": 5143,
+        "new_start": 6004,
+        "new_end": 6007,
+        "before": "",
+        "after": "h2_"
+      },
+      {
+        "old_start": 5178,
+        "old_end": 5178,
+        "new_start": 6042,
+        "new_end": 6052,
+        "before": "",
+        "after": "s_and_byte"
+      },
+      {
+        "old_start": 5664,
+        "old_end": 5664,
+        "new_start": 6538,
+        "new_end": 6552,
+        "before": "",
+        "after": ", base_capsule"
+      },
+      {
+        "old_start": 6622,
+        "old_end": 6622,
+        "new_start": 7510,
+        "new_end": 7558,
+        "before": "",
+        "after": "p.add_argument('--base-capsule', type=Path)\n    "
+      },
+      {
+        "old_start": 6898,
+        "old_end": 6898,
+        "new_start": 7834,
+        "new_end": 7850,
+        "before": "",
+        "after": ", a.base_capsule"
+      }
+    ]
+  },
+  "new_helpers_sha256": {
+    "package_owned.py": "3a2e0779bee6d812e9750255a19ea320e8e61f3bedf1d6a01373dcc2b7cfe57b",
+    "assemble.py": "8d46e61ea307103b4de623b66596c600061ee370709de1d43d40678fdea8e2c3"
+  }
+}

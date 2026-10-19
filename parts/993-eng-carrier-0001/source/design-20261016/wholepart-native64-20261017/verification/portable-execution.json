@@ -1,0 +1,51 @@
+{
+  "status": "portable_reanalysis_passed_no_new_CCX",
+  "steps": [
+    {
+      "step": "restore",
+      "actual_returncode": 0,
+      "timed_out": false,
+      "seconds": 15.261101375101134,
+      "pid": 62541,
+      "reaped": true,
+      "command": [
+        "/Users/maxime/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "-I",
+        "-B",
+        "/Users/maxime/.codex/worktrees/993-carrier-revalidation/3dprinting993/work/carrier-native64-portable-replay-001/capsule/restore.py",
+        "restore",
+        "/Users/maxime/.codex/worktrees/993-carrier-revalidation/3dprinting993/work/carrier-native64-portable-replay-001/restored-workspace",
+        "--manifest-sha256",
+        "d7c4e32f905b0e607aca6a5a3f196659530fb0cc4c25e563dd9bfdcb48dcaeb5"
+      ],
+      "cwd": "/",
+      "outer_timeout_seconds": 60
+    },
+    {
+      "step": "reanalyse",
+      "actual_returncode": 0,
+      "timed_out": false,
+      "seconds": 25.4203187499661,
+      "pid": 62799,
+      "reaped": true,
+      "command": [
+        "/Users/maxime/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "-I",
+        "-B",
+        "/Users/maxime/.codex/worktrees/993-carrier-revalidation/3dprinting993/work/carrier-native64-portable-replay-001/capsule/replay_analysis.py",
+        "/Users/maxime/.codex/worktrees/993-carrier-revalidation/3dprinting993/work/carrier-native64-portable-replay-001/restored-workspace",
+        "--manifest-sha256",
+        "d7c4e32f905b0e607aca6a5a3f196659530fb0cc4c25e563dd9bfdcb48dcaeb5"
+      ],
+      "cwd": "/",
+      "outer_timeout_seconds": 90
+    }
+  ],
+  "capsule_manifest_sha256": "d7c4e32f905b0e607aca6a5a3f196659530fb0cc4c25e563dd9bfdcb48dcaeb5",
+  "copy_all_sources_inputs_unchanged": true,
+  "whole_numerical_assessment_byte_identical": true,
+  "actual_analysis_sha256": "9982186046f1e975f38a5189e69bc923897372c7705892e842832ed90f7c591d",
+  "new_solver_run": false,
+  "section_workers": 0,
+  "seconds": 40.74498183396645
+}

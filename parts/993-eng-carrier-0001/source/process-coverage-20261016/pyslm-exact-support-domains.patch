@@ -1,0 +1,503 @@
+diff --git a/pyslm/support/geometry.py b/pyslm/support/geometry.py
+index e31cd2b..3b07a06 100644
+--- a/pyslm/support/geometry.py
++++ b/pyslm/support/geometry.py
+@@ -288,12 +288,30 @@ def extrudeFace(extrudeMesh: trimesh.Trimesh,
+     meshVerts = np.vstack(meshVerts)
+ 
+     # Generate the extrusion
+-    extMesh = trimesh.Trimesh(vertices=meshVerts, faces=meshInd, validate=True, process=True)
++    uniqueVertices, inverse = np.unique(meshVerts, axis=0, return_inverse=True)
++    extMesh = trimesh.Trimesh(vertices=uniqueVertices, faces=inverse[meshInd], process=False)
+     extMesh.fix_normals()
+ 
+     return extMesh
+ 
+ 
++def _boolean64(meshA, meshB, operation):
++    """Use Manifold's native double-precision interface; preserve input coordinates."""
++    import manifold3d
++    solids = [manifold3d.Manifold(manifold3d.Mesh64(
++        vert_properties=np.array(mesh.vertices, dtype=np.float64, order='C', copy=True),
++        tri_verts=np.array(mesh.faces, dtype=np.uint64, order='C', copy=True))) for mesh in (meshA, meshB)]
++    if any(solid.status() != manifold3d.Error.NoError for solid in solids):
++        raise ValueError("Manifold Mesh64 rejected a Boolean input")
++    result = {'union': lambda: solids[0] + solids[1],
++              'intersection': lambda: solids[0] ^ solids[1],
++              'difference': lambda: solids[0] - solids[1]}[operation]()
++    if result.status() != manifold3d.Error.NoError:
++        raise ValueError("Manifold Mesh64 Boolean failed")
++    mesh = result.to_mesh64()
++    return trimesh.Trimesh(vertices=mesh.vert_properties[:, :3], faces=mesh.tri_verts, process=False)
++
++
+ def boolUnion(meshA: trimesh.Trimesh, meshB: trimesh.Trimesh) -> trimesh.Trimesh:
+     """
+     Performs a Boolean CSG union operation using the `manifold3d <https://github.com/elalish/manifold>`_ library
+@@ -309,7 +327,7 @@ def boolUnion(meshA: trimesh.Trimesh, meshB: trimesh.Trimesh) -> trimesh.Trimesh
+     :return: The Boolean union between Mesh A and Mesh B.
+     """
+ 
+-    outMesh = trimesh.boolean.union([meshA, meshB], engine='manifold', check_volume=False)
++    outMesh = _boolean64(meshA, meshB, 'union')
+     return outMesh
+ 
+ 
+@@ -329,7 +347,7 @@ def boolIntersect(meshA: trimesh.Trimesh, meshB: trimesh.Trimesh) -> trimesh.Tri
+       """
+     #vertsOut, facesOut = pycork.intersection(meshA.vertices, meshA.faces, meshB.vertices, meshB.faces)
+ 
+-    outMesh = trimesh.boolean.intersection([meshA, meshB], engine='manifold', check_volume=False)
++    outMesh = _boolean64(meshA, meshB, 'intersection')
+     return outMesh
+ 
+ 
+@@ -350,7 +368,7 @@ def boolDiff(meshA: trimesh.Trimesh, meshB: trimesh.Trimesh) -> trimesh.Trimesh:
+     """
+     #vertsOut, facesOut = pycork.difference(meshA.vertices, meshA.faces, meshB.vertices, meshB.faces)
+ 
+-    outMesh = trimesh.boolean.difference([meshA, meshB], engine='manifold', check_volume=False)
++    outMesh = _boolean64(meshA, meshB, 'difference')
+     return outMesh
+ 
+ 
+@@ -789,3 +807,36 @@ def generatePolygonBoundingBox(bbox: np.ndarray) -> shapely.geometry.Polygon:
+                                                  [a[0], b[0]]])
+ 
+     return bboxPoly
++
++
++def extrudeProjectedUnion(surface, lower_z=0., upper_offset=0.):
++    import manifold3d
++    faces=np.array([[0,1,2],[3,5,4],[0,3,4],[0,4,1],
++                    [1,4,5],[1,5,2],[2,5,3],[2,3,0]],dtype=np.uint64)
++    prisms=[]
++    expected_sum=0.
++    for triangle in surface.triangles:
++        top=np.array(triangle,dtype=np.float64,copy=True)
++        top[:,2]+=upper_offset
++        determinant=np.cross(top[1,:2]-top[0,:2],top[2,:2]-top[0,:2])
++        if determinant==0:
++            raise ValueError('A vertical triangle cannot define a downward support prism')
++        if determinant<0: top=top[[0,2,1]]
++        if np.any(top[:,2]<=lower_z):
++            raise ValueError('Support prism must lie above its lower plane')
++        lower=top.copy();lower[:,2]=lower_z
++        mesh=manifold3d.Mesh64(vert_properties=np.vstack([top,lower]),tri_verts=faces.copy())
++        prism=manifold3d.Manifold(mesh)
++        if prism.status()!=manifold3d.Error.NoError:
++            raise ValueError('Native Manifold rejected a triangular prism')
++        expected_sum+=abs(determinant)/2*(top[:,2].mean()-lower_z)
++        prisms.append(prism)
++    union=manifold3d.Manifold.batch_boolean(prisms,manifold3d.OpType.Add)
++    if union.status()!=manifold3d.Error.NoError:
++        raise ValueError('Native triangular-prism union failed')
++    result=union.to_mesh64()
++    mesh=trimesh.Trimesh(result.vert_properties[:,:3],result.tri_verts,process=False)
++    if not mesh.is_watertight or not mesh.is_winding_consistent or mesh.volume<=0:
++        raise ValueError('Triangular-prism union did not produce a closed positive volume')
++    return mesh,dict(triangular_prisms=len(prisms),sum_prism_volumes_mm3=expected_sum,
++                     union_volume_mm3=mesh.volume,boolean_precision='Manifold Mesh64')
+diff --git a/pyslm/support/gridBlockSupport.py b/pyslm/support/gridBlockSupport.py
+index fbaab93..ec6d714 100644
+--- a/pyslm/support/gridBlockSupport.py
++++ b/pyslm/support/gridBlockSupport.py
+@@ -99,6 +99,7 @@ class GridBlockSupport(BlockSupportBase):
+ 
+         super().__init__(supportObject, supportVolume, supportSurface, intersectsPart)
+ 
++        self.gridCoverage = dict(short_contours_without_teeth=[], sections_without_truss_interior=[])
+         self._gridSpacing = [3.0, 3.0] # mm
+         self._useSupportBorder = True
+         self._useSupportSkin = True
+@@ -203,7 +204,7 @@ class GridBlockSupport(BlockSupportBase):
+         """
+         The bottom span or length of the perforated support teeth
+         """
+-        return self._supportTeethTopLength
++        return self._supportTeethBottomLength
+ 
+     @supportTeethBottomLength.setter
+     def supportTeethBottomLength(self, bottomLength: float) -> None:
+@@ -640,8 +641,17 @@ class GridBlockSupport(BlockSupportBase):
+ 
+                 newPaths.append(teethFinal)
+ 
+-            nPaths = np.vstack(newPaths)
+-            nPaths = np.vstack([nPaths, nPaths[0,:]])
++            if not newPaths:
++                # Native 1e-4 edge classifier cannot place a tooth on this tiny contour.
++                # Keep the original closed section instead of dropping it or inventing a tooth.
++                nPaths = path.copy()
++                self.gridCoverage['short_contours_without_teeth'].append(dict(
++                    area_mm2=float(abs(np.cross(path[:-1], path[1:]).sum()) / 2),
++                    extent_2d_mm=np.ptp(path, axis=0).tolist(), vertices=len(path),
++                    original_contour_retained=True, boundary_vertex_displacement_mm=0.0))
++            else:
++                nPaths = np.vstack(newPaths)
++                nPaths = np.vstack([nPaths, nPaths[0,:]])
+             nPathPoly = shapely.geometry.Polygon(nPaths).buffer(1e-5)
+             slicePaths.append(nPathPoly)
+ 
+@@ -742,6 +752,14 @@ class GridBlockSupport(BlockSupportBase):
+             offsetPathInner = pc.execute(-self._supportBorderDistance)
+ 
+         if len(offsetPathInner) < 1:
++            self.gridCoverage['sections_without_truss_interior'].append(dict(
++                section_area_mm2=sum(float(poly.area) for poly in polys),
++                support_border_distance_mm=self._supportBorderDistance,
++                treatment='configured_boundary_fills_section' if self._useSupportBorder else 'no_interior_and_no_boundary'))
++            if self._useSupportBorder:
++                borderClipper = pyclipr.Clipper()
++                borderClipper.addPaths(outerPaths, pyclipr.Subject, False)
++                return borderClipper.execute2(pyclipr.Union)
+             return None
+ 
+         diag = self._gridSpacing[0] * np.sin(np.deg2rad(self._trussAngle))
+@@ -1012,6 +1030,7 @@ class GridBlockSupport(BlockSupportBase):
+         :return: A :class:`trimesh.Trimesh` object containing the mesh  of the generated support boundary
+         """
+         blockSupportMesh = self.supportVolume
++        self.skinCoverage = dict(status='pending', boundary_skin_requested=True)
+ 
+         """
+         Extract the top and bottom surfaces of the mesh that are perpendicular to the z direction
+@@ -1029,20 +1048,29 @@ class GridBlockSupport(BlockSupportBase):
+         blockSupportSides.update_faces(mask3)
+ 
+         # Split the top and bottom surfaces to a path - guaranteed to be a manifold 2D polygon
+-        supportSurfCpy = blockSupportSides.split(only_watertight=False)
++        supportSurfCpy = blockSupportSides.split(only_watertight=False, repair=False)
+ 
+         supportSurf = []
+         for surf in supportSurfCpy:
+             if surf.area > 5:
+                 supportSurf.append(surf)
+ 
++        lateral = blockSupportMesh.copy()
++        lateral.update_faces(~mask2)
++        self.skinCoverage.update(cap_components=len(supportSurf),
++            cap_component_areas_mm2=[float(item.area) for item in supportSurf],
++            lateral_envelope_reference_area_mm2=float(lateral.area),
++            lateral_envelope_reference_triangles=len(lateral.faces),
++            dedicated_skin_meshes=0)
+         if len(supportSurf) < 2:
++            self.skinCoverage['status'] = 'not_generated_insufficient_cap_components'
+             return []
+ 
+         if len(supportSurf) > 2:
+ 
+             # Uncomment below to identify issues with support generation
+             # blockSupportSides.show()
++            self.skinCoverage['status'] = 'not_generated_complex_cap_topology'
+             warnings.warn('Warning: number of isolated curves', stacklevel=2)
+             return []
+ 
+@@ -1083,17 +1111,16 @@ class GridBlockSupport(BlockSupportBase):
+ 
+         # remove isolated edges in poly
+         if len(pairs) < 1:
+-
+-            # Uncomment to visualise the support if there any issues with the support generation
+-            # blockSupportSides.show()
++            self.skinCoverage.update(status='not_generated_unpaired_boundary_paths',
++                upper_paths=len(topPoly3D.paths), lower_paths=len(bottomPoly3D.paths))
+             return []
+ 
+         topPaths = topPoly3D.paths
+         bottomPaths = bottomPoly3D.paths
+ 
+         if len(topPoly3D.paths) != len(bottomPoly3D.paths):
+-            blockSupportSides.show()
+-            # print('numer of paths between top and bottom do not match', len(topPoly3D.paths) , len(bottomPoly3D.paths))
++            self.skinCoverage.update(status='not_generated_unpaired_boundary_paths',
++                upper_paths=len(topPoly3D.paths), lower_paths=len(bottomPoly3D.paths))
+             logging.warning('Number of paths between top and bottom of support structure do not match - skipping')
+             return []
+ 
+@@ -1372,6 +1399,8 @@ class GridBlockSupport(BlockSupportBase):
+             boundaryMesh = trimesh.Trimesh(vertices=verts, faces=fy, process=True)
+             boundaryMeshList.append(boundaryMesh)
+ 
++        self.skinCoverage.update(status='generated', dedicated_skin_meshes=len(boundaryMeshList),
++            generated_skin_surface_area_mm2=sum(float(item.area) for item in boundaryMeshList))
+         return boundaryMeshList
+ 
+     def generateSupportSlices(self) -> Tuple[trimesh.Trimesh, trimesh.Trimesh]:
+@@ -1898,7 +1927,7 @@ class GridBlockSupportGenerator(BlockSupportGenerator):
+         """
+         The bottom span or length of the perforated support teeth
+         """
+-        return self._supportTeethTopLength
++        return self._supportTeethBottomLength
+ 
+     @supportTeethBottomLength.setter
+     def supportTeethBottomLength(self, bottomLength: float) -> None:
+@@ -1956,7 +1985,7 @@ class GridBlockSupportGenerator(BlockSupportGenerator):
+ 
+             # Support Teeth Parameters
+             gridBlock.supportTeethHeight = self._supportTeethHeight
+-            gridBlock.supportTeethTopLength = self._supportTeethHeight
++            gridBlock.supportTeethTopLength = self._supportTeethTopLength
+             gridBlock.supportTeethBottomLength = self._supportTeethBottomLength
+             gridBlock.supportTeethBaseInterval = self._supportTeethBaseInterval
+             gridBlock.supportTeethUpperPenetration = self._supportTeethUpperPenetration
+diff --git a/pyslm/support/support.py b/pyslm/support/support.py
+index 8566f94..e0ef523 100644
+--- a/pyslm/support/support.py
++++ b/pyslm/support/support.py
+@@ -29,6 +29,7 @@ import skimage.measure
+ 
+ import shapely.geometry
+ import shapely.affinity
++import shapely.ops
+ 
+ import numpy as np
+ import trimesh
+@@ -43,6 +44,49 @@ from . import render
+ from . import utils
+ 
+ 
++def _triangulate_exact_projected_domain(polygon, maximum_area):
++    """Preserve all rings; conformingly split only triangle interiors to the existing area limit."""
++    vertices, faces = trimesh.creation.triangulate_polygon(polygon, engine='earcut')
++    vertices, inverse = np.unique(vertices, axis=0, return_inverse=True)
++    faces = inverse[faces]
++    used = np.unique(faces)
++    remap = np.full(len(vertices), -1, dtype=np.int64)
++    remap[used] = np.arange(len(used))
++    vertices, faces = vertices[used], remap[faces]
++    original_vertices = vertices.copy()
++    refinements = 0
++    while True:
++        points = vertices[faces]
++        areas = np.abs(np.cross(points[:, 1] - points[:, 0], points[:, 2] - points[:, 0])) / 2
++        large = areas > maximum_area
++        if not np.any(large):
++            break
++        old = faces[large]
++        indices = np.arange(len(vertices), len(vertices) + len(old))
++        vertices = np.vstack([vertices, vertices[old].mean(axis=1)])
++        children = np.stack([np.column_stack([old[:, 0], old[:, 1], indices]),
++                             np.column_stack([old[:, 1], old[:, 2], indices]),
++                             np.column_stack([old[:, 2], old[:, 0], indices])], axis=1).reshape(-1, 3)
++        faces = np.vstack([faces[~large], children])
++        refinements += 1
++        if len(faces) > 2000000:
++            raise ValueError("Projected-domain triangulation exceeded its face budget")
++    triangles = shapely.polygons(vertices[faces])
++    triangulated_area = float(shapely.area(triangles).sum())
++    difference_area = polygon.symmetric_difference(shapely.ops.unary_union(triangles)).area
++    tolerance = 64 * np.finfo(float).eps * max(1.0, polygon.area) * max(1, len(faces))
++    if (abs(triangulated_area - polygon.area) > tolerance or difference_area > tolerance or
++            not np.array_equal(vertices[:len(original_vertices)], original_vertices)):
++        raise ValueError("Projected-domain triangulation changed the exact polygon")
++    receipt = dict(engine='mapbox-earcut then conforming interior-centroid subdivisions',
++                   vertices=len(vertices), triangles=len(faces), source_polygon_area_mm2=polygon.area,
++                   triangulated_area_mm2=triangulated_area, symmetric_difference_area_mm2=difference_area,
++                   numerical_area_tolerance_mm2=tolerance, max_triangle_area_mm2=float(areas.max()),
++                   area_limit_mm2=maximum_area, refinement_steps=refinements,
++                   original_vertices_unchanged=True, boundary_vertex_displacement_mm=0.0)
++    return (vertices, faces), receipt
++
++
+ class SupportStructure(abc.ABC):
+     """
+     The Support Structure is the base class representing all definitions of support structures used in PySLM.
+@@ -743,6 +787,9 @@ class BlockSupportGenerator(BaseSupportGenerator):
+         """
+ 
+         overhangSubregions = utils.getOverhangMesh(part, overhangAngle, True)
++        self.projectionCoverage = dict(overhang_subregions=len(overhangSubregions),
++            expected_regions=0, generated_regions=0, complete_region_omissions=0,
++            clipping=[], regions=[], initial_prism_unions=[], configured_area_exclusions=[], strategy_area_threshold_mm2=self.minimumAreaThreshold)
+ 
+         supportBlockRegions = []
+ 
+@@ -755,8 +802,7 @@ class BlockSupportGenerator(BaseSupportGenerator):
+             try:
+                 polygon = SupportStructure.flattenSupportRegion(subregion)
+             except:
+-                logging.warning('PySLM: Could not flatten region')
+-                continue
++                raise ValueError('Could not flatten an overhang region; refusing silent omission')
+ 
+             # mergedPoly = trimesh.load_path(outline)
+             # mergedPoly.merge_vertices(1)
+@@ -767,6 +813,8 @@ class BlockSupportGenerator(BaseSupportGenerator):
+             offsetShape = offsetShape.buffer(-self.outerSupportEdgeGap)
+ 
+             if offsetShape is None or offsetShape.area < self.minimumAreaThreshold:
++                self.projectionCoverage['configured_area_exclusions'].append(dict(stage='outer_edge_gap',
++                    area_mm2=None if offsetShape is None else offsetShape.area, source_surface_area_mm2=subregion.area))
+                 logging.info('\t - Note: skipping shape (area too small)')
+                 continue
+ 
+@@ -793,17 +841,10 @@ class BlockSupportGenerator(BaseSupportGenerator):
+             """
+             Create an extrusion at the vertical extent of the part and perform self-intersection test
+             """
+-            extruMesh2Flat = subregion.copy()
+-            extruMesh2Flat.vertices[:, 2] = 0.0
+-
+-            extruMesh2 = trimesh.creation.extrude_triangulation(extruMesh2Flat.vertices[:, :2], extruMesh2Flat.faces, 100)
+-
+-            # Position the upper-surface of the mesh just below the upper surface (1e-2) to avoid self-intersection
+-            eMesh2Idx = extruMesh2.vertices[:, 2] > 1.0
+-            extruMesh2.vertices[eMesh2Idx, 2] = subregion.vertices[:, 2] - 0.01
+-            extruMesh = extruMesh2
+-            #extruMesh = extrudeFace(subregion, 0.0)
+-            #extruMesh.vertices[:, 2] = extruMesh.vertices[:, 2] - 0.01
++            # Preserve the 3D vertex correspondence when projected XY vertices coincide.
++            extruMesh, prismReceipt = geometry.extrudeProjectedUnion(subregion,
++                lower_z=0.0, upper_offset=-0.01)
++            self.projectionCoverage['initial_prism_unions'].append(prismReceipt)
+ 
+             timeIntersect = time.time()
+ 
+@@ -930,17 +971,40 @@ class BlockSupportGenerator(BaseSupportGenerator):
+                 else:
+                     polygons.append(bufferPoly)
+ 
+-            for bufferPoly in polygons:
++            # Clip approximate raster/outline domains to the union of actual projected triangles.
++            # This removes out-of-surface slivers; no vertex is moved and no hole is filled.
++            exactProjection = shapely.ops.unary_union([
++                shapely.geometry.Polygon(triangle[:, :2]) for triangle in subregion.triangles])
++            if not exactProjection.is_valid:
++                raise ValueError("Invalid exact projected overhang domain")
++            clippedPolygons = []
++            for candidatePolygon in polygons:
++                clipped = candidatePolygon.intersection(exactProjection)
++                self.projectionCoverage['clipping'].append(dict(candidate_area_mm2=candidatePolygon.area,
++                    exact_intersection_area_mm2=clipped.area, removed_outside_triangle_projection_area_mm2=candidatePolygon.difference(exactProjection).area,
++                    candidate_bounds_xy_mm=list(candidatePolygon.bounds)))
++                if isinstance(clipped, shapely.geometry.Polygon):
++                    clippedPolygons.append(clipped)
++                elif isinstance(clipped, shapely.geometry.MultiPolygon):
++                    clippedPolygons.extend(clipped.geoms)
++                elif not clipped.is_empty:
++                    raise ValueError("Projected support domain is not polygonal")
++            for bufferPoly in clippedPolygons:
+ 
+                 if bufferPoly.area < self.minimumAreaThreshold:
++                    self.projectionCoverage['configured_area_exclusions'].append(dict(stage='clipped_buffer',
++                        area_mm2=bufferPoly.area, bounds_xy_mm=list(bufferPoly.bounds)))
+                     continue
++                coverageRow = dict(index=len(self.projectionCoverage['regions']), area_mm2=bufferPoly.area,
++                    bounds_xy_mm=list(bufferPoly.bounds), generated=False)
++                self.projectionCoverage['regions'].append(coverageRow)
++                self.projectionCoverage['expected_regions'] += 1
+ 
+                 """
+                 Triangulate the polygon into a planar mesh
+                 """
+-                poly_tri = trimesh.creation.triangulate_polygon(bufferPoly,
+-                                                                triangle_args='pa{:.3f}'.format(self.triangulationSpacing),
+-                                                                engine='triangle')
++                poly_tri, coverageRow['triangulation'] = _triangulate_exact_projected_domain(
++                    bufferPoly, self.triangulationSpacing)
+ 
+                 """
+                 Project upwards to intersect with the upper surface
+@@ -954,6 +1018,10 @@ class BlockSupportGenerator(BaseSupportGenerator):
+                                                                                  ray_directions=ray_dir,
+                                                                                  multiple_hits=False)
+ 
++                coverageRow['upper_projection_vertices'] = len(coords)
++                coverageRow['upper_projection_hits'] = len(hitLoc)
++                if len(hitLoc) != len(coords):
++                    raise ValueError("Incomplete upper projection after exact-domain clipping")
+                 coords2 = coords.copy()
+                 coords2[index_ray, 2] = hitLoc[:, 2] + self.upperProjectionOffset
+ 
+@@ -975,6 +1043,8 @@ class BlockSupportGenerator(BaseSupportGenerator):
+                     # The region was not intersecting with the part so this is a Base-plate support
+                     hitLoc2 = []
+ 
++                coverageRow['lower_projection_hits'] = len(hitLoc2)
++                coverageRow['lower_projection_mode'] = 'plate' if len(hitLoc2) == 0 else 'part'
+                 if len(hitLoc) != len(coords) or len(hitLoc2) != len(hitLoc):
+                     # The projections up and down do not match indicating that there maybe some flaw
+ 
+@@ -985,27 +1055,25 @@ class BlockSupportGenerator(BaseSupportGenerator):
+ 
+                         logging.info('\tCreating Base-plate support')
+                     else:
+-                        logging.warning('PROJECTIONS NOT MATCHING - skipping support generation')
+-                        continue
++                        raise ValueError('Incomplete lower projection; refusing to omit a support region')
+                 else:
+                     coords3[index_ray2, 2] = hitLoc2[:, 2] - self.lowerProjectionOffset
+ 
+                 # Create the upper and lower surface from the Ray intersection
+-                surf2 = trimesh.Trimesh(vertices=coords2, faces=poly_tri[1], process=True)
+-
+-                # Perform a simple 2D prismatic extrusion on the mesh
+-                ab = trimesh.creation.extrude_triangulation(surf2.vertices[:, :2], surf2.faces, 100)
+-
+-                # Identify the upper and lower surfaces based on the prismatic extrusion
+-                lowerIdx = ab.vertices[:, 2] < 1
+-                upperIdx = ab.vertices[:, 2] > 1
+-
+-                # Assign the coordinates for the upper and lower surface
+-                ab.vertices[lowerIdx] = coords2
+-                ab.vertices[upperIdx] = coords3
++                # Keep projected XY indices aligned with both Z fields through extrusion.
++                projectedFace = trimesh.Trimesh(vertices=coords2, faces=poly_tri[1], process=False)
++                xy = coords2[poly_tri[1], :2]
++                faceAreas = np.abs(np.cross(xy[:, 1] - xy[:, 0], xy[:, 2] - xy[:, 0])) / 2
++                heights = coords2[:, 2] - coords3[:, 2]
++                expectedVolume = float(np.sum(faceAreas * heights[poly_tri[1]].mean(axis=1)))
++                extrudedBlock = geometry.extrudeFace(projectedFace, heightArray=coords3[:, 2])
++                volumeTolerance = 128 * np.finfo(float).eps * max(1.0, abs(expectedVolume)) * max(1, len(faceAreas))
++                if expectedVolume <= 0 or abs(extrudedBlock.volume - expectedVolume) > volumeTolerance:
++                    raise ValueError("Extrusion lost projected vertex/height correspondence")
++                coverageRow['extrusion'] = dict(expected_volume_mm3=expectedVolume,
++                    generated_volume_mm3=float(extrudedBlock.volume), numerical_volume_tolerance_mm3=volumeTolerance,
++                    projected_vertex_displacement_mm=0.0, height_array_correspondence_preserved=True)
+ 
+-                # Reference the sup[p
+-                extrudedBlock = ab
+ 
+                 timeDiff = time.time()
+ 
+@@ -1020,7 +1088,7 @@ class BlockSupportGenerator(BaseSupportGenerator):
+                 """
+ 
+                 extrudedBlock.fix_normals()
+-                extrudedBlock.merge_vertices()
++                # Extrusion already has exact duplicate indexing; no rounded merge.
+ 
+                 if cutMesh.volume < BlockSupportGenerator._intersectionVolumeTolerance:
+                     # Baseplate support voliume is created but requires intersection with the previous full mesh
+@@ -1042,9 +1110,16 @@ class BlockSupportGenerator(BaseSupportGenerator):
+                                                     intersectsPart=True)
+ 
+                 supportBlockRegions.append(baseSupportBlock)
++                coverageRow['generated'] = True
++                self.projectionCoverage['generated_regions'] += 1
+ 
+             logging.info('\t - processed support face\n')
+ 
+         logging.info('Total boolean time: {:.3f}\n'.format(totalBooleanTime))
+ 
++        if (self.projectionCoverage['generated_regions'] != self.projectionCoverage['expected_regions'] or
++                len(supportBlockRegions) != self.projectionCoverage['generated_regions'] or
++                not all(row['generated'] for row in self.projectionCoverage['regions'])):
++            raise ValueError('A required projected support region was not generated')
++        self.projectionCoverage['region_projection_admission_passed'] = True
+         return supportBlockRegions
+diff --git a/pyslm/support/utils.py b/pyslm/support/utils.py
+index ca79228..c49830c 100644
+--- a/pyslm/support/utils.py
++++ b/pyslm/support/utils.py
+@@ -110,7 +110,7 @@ def getOverhangMesh(part: Part,
+                                    faces=part.geometry.faces[supportFaceIds])
+ 
+     if splitMesh:
+-        return overhangMesh.split(only_watertight=False)
++        return overhangMesh.split(only_watertight=False, repair=False)
+     else:
+         return overhangMesh
+ 

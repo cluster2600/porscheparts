@@ -1,0 +1,126 @@
+{
+  "status": "identical_discrete_reference_verified",
+  "case_id": "published_Flat1_NLGEOM_0125_unload",
+  "scope": "Reuse of an existing constitutive sensitivity for the exact same finite-element mesh, linear reference deck, loads and springs. No new solve and no equivalence of STEP exports is claimed.",
+  "source_geometry_STEP_sha256": "ad12b8e0a382d8cc8b585254bb4b6fcfafab99fbcedf40691752271d04947a3e",
+  "current_geometry_STEP_sha256": "de0e55a3150dacc5428bbc301d18d2e43477f038c3f4df295d9373af8e906b63",
+  "identical_mesh_npz_sha256": "b156b03ab99f65e534a024a63f9cec12529ce9eb6392b0579bf2c20f857a5119",
+  "identical_reference_deck_sha256": "903956e464014c32f674869d55c62ca635edce42dfa01a4125938053dc3d8caf",
+  "material_model": {
+    "type": "Isotropic J2 with published pre-necking Grade23 ELI true-stress/plastic-strain curve",
+    "E_MPa": 106000,
+    "nu": 0.31,
+    "nu_source": "Frozen carrier isotropic assumption, not supplied by dataset",
+    "true_VM_yield_MPa": 956.8778700555556,
+    "geometric_nonlinearity": true,
+    "curve_input": "process-20261016/material-luo-set1/flat-set-1-plastic.inp",
+    "curve_sha256": "b6123556870e2cfe6d183d4c4e1b512da0b5c273ba62e792a3e6c6b51b236ac7",
+    "curve_provenance_sha256": "986a13f5acea0cabc999b3996fc590a1b729c56070fb7c5eff0e8431cd4d3077",
+    "maximum_measured_equivalent_plastic_strain": 0.04698042567140203,
+    "model_origin": "Published Rp0.2 used as model first yield; plastic strain origin reset explicitly in source conversion",
+    "condition": "LaserForm Ti Gr23(A)ELI,ProX DMP320,275W/800mm/s,60um/hatch82um,Ztension,SR670C5h+argon12h",
+    "source_record": "https://zenodo.org/records/6587905",
+    "article": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9880387/",
+    "license": "CC-BY-4.0",
+    "case_selection": "First published process set, first flat specimen, fixed by data agent independently of carrier outcome"
+  },
+  "unloaded_residual": {
+    "total_time": 2.0,
+    "load_factor": 0.0,
+    "displacement_max_mm": 0.09925853846232784,
+    "displacement_peak_node": 3943,
+    "displacement_peak_original_xyz_mm": [
+      30.307345545289,
+      -6.2883407190154,
+      30.0
+    ],
+    "VM_max_MPa": 845.7416518671683,
+    "VM_peak_element": 38852,
+    "PEEQ_max": 0.01154945,
+    "PEEQ_detection_threshold": 1e-08,
+    "PEEQ_peak_element": 38852,
+    "PEEQ_peak_element_corner_centroid_mm": [
+      87.749535220834,
+      15.26901425822275,
+      16.879368724248
+    ],
+    "plastic_quadrature_volume_mm3": 338.45665066079306,
+    "plastic_element_centroid_bounds_mm": [
+      [
+        21.30759977485375,
+        -26.592014182063,
+        -3.536395995179325
+      ],
+      [
+        105.46208700567001,
+        26.3906171967655,
+        29.6125591210195
+      ]
+    ],
+    "spring_energy_Nmm": 0.00649543850952473,
+    "CCX_solid_internal_energy_Nmm": 476.72852908041136,
+    "external_incremental_trapezoid_work_Nmm": 477.2641751245394,
+    "external_gross_trapezoid_work_Nmm": 95940.16924668677,
+    "work_absolute_residual_Nmm": -0.5291506056184971,
+    "work_relative_closure_error": 0.0011087163738623396,
+    "work_relative_to_gross_error": 5.515422890884373e-06,
+    "applied_force_N": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "applied_moment_about_model_origin_Nmm": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "force_residual_N": [
+      1.4234926370244524e-09,
+      -1.2010841863618587e-10,
+      -1.0095120156483617e-08
+    ],
+    "moment_residual_Nmm": [
+      -0.0036030637826862805,
+      -0.0012734340135739375,
+      9.026920042710419e-05
+    ]
+  },
+  "independent_work": {
+    "all_frames_pass": true,
+    "maximum_relative_residual": 5.637878071167981e-06,
+    "relative_tolerance": 0.0001,
+    "minimum_Gauss_detF": 0.9863948602235302,
+    "cycle_net_external_work_Nmm": 477.2641751245394,
+    "plastic_work_curve_integral_J_trapezoid_estimate_Nmm": 448.04237724700073
+  },
+  "ENER_all_frames_pass": false,
+  "retained_original_folder": "work/carrier-design-20261016/luo-flat1-verified-nlgeom-unload-mesh9",
+  "inputs_sha256": {
+    "/Users/maxime/.codex/worktrees/993-carrier-revalidation/3dprinting993/parts/993-eng-carrier-0001/source/design-20261016/constitutive-results.json": "8b37d9d6832cd350b90ec1be1bc2608ba22a97898b969cd71a150835c42275e8",
+    "/Users/maxime/.codex/worktrees/993-carrier-revalidation/3dprinting993/scripts/bind_carrier_constitutive_evidence.py": "5fd47bb553f36fcd19318ecdbcb3f5270e735a1b6a0cb8a223cb88ebd0a64309",
+    "/Users/maxime/.codex/worktrees/993-carrier-revalidation/3dprinting993/work/carrier-design-20261016/luo-flat1-verified-nlgeom-unload-mesh9/runtime.json": "4d89f06abf5804d932957fc7f66f2f0b182d191e26c799df07009060ff87cde0",
+    "/Users/maxime/.codex/worktrees/993-carrier-revalidation/3dprinting993/work/carrier-design-20261016/luo-flat1-verified-nlgeom-unload-mesh9/plan.json": "943d8a8478cda785101c22ed7bdda92c5225272a9c5cd2c5da692e112121a0a6",
+    "/Users/maxime/.codex/worktrees/993-carrier-revalidation/3dprinting993/work/carrier-design-20261016/luo-flat1-verified-nlgeom-unload-mesh9/source-snapshot.py": "6e7c65681a774cffbbc251a5f2b50fa275802ab42d4b0f0b40027dd01d3c0c38",
+    "/Users/maxime/.codex/worktrees/993-carrier-revalidation/3dprinting993/work/carrier-design-20261016/luo-flat1-verified-nlgeom-unload-mesh9/mesh.inp": "80dab86242b2433bccb9dfe3ed3d1321a21f638c8da245586fb5c4c3f10c765a",
+    "/Users/maxime/.codex/worktrees/993-carrier-revalidation/3dprinting993/work/carrier-design-20261016/luo-flat1-verified-nlgeom-unload-mesh9/mesh.npz": "b156b03ab99f65e534a024a63f9cec12529ce9eb6392b0579bf2c20f857a5119",
+    "/Users/maxime/.codex/worktrees/993-carrier-revalidation/3dprinting993/work/carrier-design-20261016/luo-flat1-verified-nlgeom-unload-mesh9/mesh.json": "f9076864f2c928ca9723a340907a92498df452ba48b6f7208fa09ba00431f089",
+    "/Users/maxime/.codex/worktrees/993-carrier-revalidation/3dprinting993/work/carrier-design-20261016/luo-flat1-verified-nlgeom-unload-mesh9/combined-spring-1000-luo-flat1-NLGEOM.inp": "babc246c0d6d739a045c244258599643f7f214948fa715b7fe913b5d9ac3ef30",
+    "/Users/maxime/.codex/worktrees/993-carrier-revalidation/3dprinting993/work/carrier-design-20261016/luo-flat1-verified-nlgeom-unload-mesh9/combined-spring-1000-luo-flat1-NLGEOM.dat": "4457f8e1fdb6d6c05ea3d3c58515225ec0c1a890475383f9e91dca1307c3f82d",
+    "/Users/maxime/.codex/worktrees/993-carrier-revalidation/3dprinting993/work/carrier-design-20261016/luo-flat1-verified-nlgeom-unload-mesh9/combined-spring-1000-luo-flat1-NLGEOM.sta": "75b75f99dc13ad1c3d52eb3cec49d2b6bbc67c5aa4dd7a99953b2d0c5a598c1c",
+    "/Users/maxime/.codex/worktrees/993-carrier-revalidation/3dprinting993/work/carrier-design-20261016/luo-flat1-verified-nlgeom-unload-mesh9/material-curve.inp": "b6123556870e2cfe6d183d4c4e1b512da0b5c273ba62e792a3e6c6b51b236ac7",
+    "/Users/maxime/.codex/worktrees/993-carrier-revalidation/3dprinting993/work/carrier-design-20261016/luo-flat1-verified-nlgeom-unload-mesh9/material-provenance.json": "986a13f5acea0cabc999b3996fc590a1b729c56070fb7c5eff0e8431cd4d3077",
+    "/Users/maxime/.codex/worktrees/993-carrier-revalidation/3dprinting993/work/carrier-design-20261016/luo-flat1-verified-nlgeom-unload-mesh9/material-DATA_LICENSE.json": "4e50008af6c2b03e6ba9c4658ded5490779274f12adaaa3aeb2d359f0373ca59",
+    "/Users/maxime/.codex/worktrees/993-carrier-revalidation/3dprinting993/work/part-workflow/run-001/cad/mesh-9/mesh.npz": "b156b03ab99f65e534a024a63f9cec12529ce9eb6392b0579bf2c20f857a5119",
+    "/Users/maxime/.codex/worktrees/993-carrier-revalidation/3dprinting993/work/part-workflow/run-001/cad/mesh-9/combined-spring-1000-static.inp": "903956e464014c32f674869d55c62ca635edce42dfa01a4125938053dc3d8caf",
+    "/Users/maxime/.codex/worktrees/993-carrier-revalidation/3dprinting993/work/carrier-design-20261016/luo-flat1-verified-nlgeom-unload-mesh9/reference-linear.inp": "903956e464014c32f674869d55c62ca635edce42dfa01a4125938053dc3d8caf",
+    "/Users/maxime/.codex/worktrees/993-carrier-revalidation/3dprinting993/work/part-workflow/run-001/cad/geometry.json": "13b1e29d3ccd3501c7a163fc3a27bb54c7eaff2c2d9e6d8a7d415c1ac1aa7cb3",
+    "/Users/maxime/.codex/worktrees/993-carrier-revalidation/3dprinting993/work/part-workflow/run-001/cad/carrier.step": "de0e55a3150dacc5428bbc301d18d2e43477f038c3f4df295d9373af8e906b63",
+    "/Users/maxime/.codex/worktrees/993-carrier-revalidation/3dprinting993/parts/993-eng-carrier-0001/source/design-20261016/constitutive-evidence/luo-flat1-analysis.json": "42a37d1f736fc0ffd29c67d34caca54989f6faa8c49229f7814c4d81cdefc450",
+    "/Users/maxime/.codex/worktrees/993-carrier-revalidation/3dprinting993/parts/993-eng-carrier-0001/source/design-20261016/constitutive-evidence/luo-flat1-finite-work.json": "dcb6e61829ddf09548da0c537068943ef443233fdad232d4f9abe3dec1afd46a"
+  },
+  "outputs_sha256": {
+    "luo-flat1-analysis.json": "42a37d1f736fc0ffd29c67d34caca54989f6faa8c49229f7814c4d81cdefc450",
+    "luo-flat1-finite-work.json": "dcb6e61829ddf09548da0c537068943ef443233fdad232d4f9abe3dec1afd46a",
+    "constitutive-results.json": "8b37d9d6832cd350b90ec1be1bc2608ba22a97898b969cd71a150835c42275e8"
+  }
+}

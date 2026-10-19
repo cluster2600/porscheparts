@@ -33,9 +33,13 @@ HEADING = re.compile(r"^(#{1,6})\s+(.*?)\s*#*\s*$", re.M)
 EXPLICIT = re.compile(r"<a\s+(?:name|id)=\"([^\"]+)\"", re.I)
 
 # Frozen by assembly/verification.json; current downloads are in F1/REMOTE-ARCHIVE.md.
+# The carrier extraction is pinned by its archive.json and copy-provenance.json.
 PINNED_MARKDOWN = {
     "twins/bionic-turbo-f0/assembly/README.md":
         "9fb4e8e89acca8d39d8fc84ef9dcb179c9e70992662922b74655e423af059dbd",
+    "parts/993-eng-carrier-0001/source/progress-figures-20261016/"
+    "C1-terminal-taper-profile-20261017/extraction/README.md":
+        "3141a271415bae973b25fd21316c097c6b1a405a965afc725ed95b5c4f7d236c",
 }
 
 

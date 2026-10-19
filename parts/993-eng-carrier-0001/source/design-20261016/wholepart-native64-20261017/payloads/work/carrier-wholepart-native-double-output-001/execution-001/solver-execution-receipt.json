@@ -1,0 +1,321 @@
+{
+  "status": "solver_executed_no_numeric_admission",
+  "global_admission": false,
+  "container_id": "19dc8800a47125771ea042dca94a5c758ca68b360ade0a6c33598a02b71aa1f1",
+  "actual_container_exit_code": 0,
+  "attach_cli_returncode": 0,
+  "container_removed": true,
+  "creation_attempted": true,
+  "operations": [
+    {
+      "arguments": [
+        "image",
+        "inspect",
+        "sha256:c9772ae9223a4f800a3ceda77d2494e67e34c8526eb0f204b3c8e052266641b4",
+        "--format",
+        "{\"Id\":{{json .Id}},\"Architecture\":{{json .Architecture}},\"Os\":{{json .Os}}}"
+      ],
+      "timeout_seconds": 20,
+      "cleanup": false,
+      "returncode": 0,
+      "timed_out": false,
+      "cancelled": false,
+      "stdout": "{\"Id\":\"sha256:c9772ae9223a4f800a3ceda77d2494e67e34c8526eb0f204b3c8e052266641b4\",\"Architecture\":\"arm64\",\"Os\":\"linux\"}\n",
+      "stderr": ""
+    },
+    {
+      "arguments": [
+        "container",
+        "ls",
+        "-a",
+        "--no-trunc",
+        "--filter",
+        "name=^/carrier-wholepart-native64-bc58171bf2e14c57$",
+        "--format",
+        "{{.ID}}"
+      ],
+      "timeout_seconds": 20,
+      "cleanup": false,
+      "returncode": 0,
+      "timed_out": false,
+      "cancelled": false,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "arguments": [
+        "create",
+        "--pull=never",
+        "--name",
+        "carrier-wholepart-native64-bc58171bf2e14c57",
+        "--label",
+        "org.porscheparts.carrier.ener-supervision=bc58171bf2e14c57909d2877b30dbde2",
+        "--network",
+        "none",
+        "--cpus",
+        "1",
+        "--memory",
+        "6g",
+        "--memory-swap",
+        "6g",
+        "--pids-limit",
+        "128",
+        "--read-only",
+        "--tmpfs",
+        "/tmp:rw,size=512m",
+        "--mount",
+        "type=bind,src=/Users/maxime/.codex/worktrees/993-carrier-revalidation/3dprinting993/work/carrier-wholepart-native-double-output-001/prepared-001,dst=/work",
+        "--workdir",
+        "/work",
+        "--env",
+        "OMP_NUM_THREADS=1",
+        "--env",
+        "CCX_NPROC_RESULTS=1",
+        "--env",
+        "OPENBLAS_NUM_THREADS=1",
+        "--entrypoint",
+        "/usr/bin/timeout",
+        "sha256:c9772ae9223a4f800a3ceda77d2494e67e34c8526eb0f204b3c8e052266641b4",
+        "--signal=TERM",
+        "--kill-after=10s",
+        "720",
+        "/usr/bin/ccx",
+        "-i",
+        "wholepart-release"
+      ],
+      "timeout_seconds": 30,
+      "cleanup": false,
+      "returncode": 0,
+      "timed_out": false,
+      "cancelled": false,
+      "stdout": "19dc8800a47125771ea042dca94a5c758ca68b360ade0a6c33598a02b71aa1f1\n",
+      "stderr": ""
+    },
+    {
+      "arguments": [
+        "container",
+        "inspect",
+        "19dc8800a47125771ea042dca94a5c758ca68b360ade0a6c33598a02b71aa1f1",
+        "--format",
+        "{\"Id\":{{json .Id}},\"Name\":{{json .Name}},\"Image\":{{json .Image}},\"Owner\":{{json (index .Config.Labels \"org.porscheparts.carrier.ener-supervision\")}},\"NanoCpus\":{{json .HostConfig.NanoCpus}},\"Memory\":{{json .HostConfig.Memory}},\"MemorySwap\":{{json .HostConfig.MemorySwap}},\"PidsLimit\":{{json .HostConfig.PidsLimit}},\"NetworkMode\":{{json .HostConfig.NetworkMode}},\"ReadonlyRootfs\":{{json .HostConfig.ReadonlyRootfs}},\"Tmpfs\":{{json .HostConfig.Tmpfs}},\"Mounts\":{{json .Mounts}},\"Entrypoint\":{{json .Config.Entrypoint}},\"Cmd\":{{json .Config.Cmd}},\"WorkingDir\":{{json .Config.WorkingDir}},\"Running\":{{json .State.Running}},\"ExitCode\":{{json .State.ExitCode}},\"OOMKilled\":{{json .State.OOMKilled}},\"StateError\":{{json .State.Error}}}"
+      ],
+      "timeout_seconds": 15,
+      "cleanup": false,
+      "returncode": 0,
+      "timed_out": false,
+      "cancelled": false,
+      "stdout": "{\"Id\":\"19dc8800a47125771ea042dca94a5c758ca68b360ade0a6c33598a02b71aa1f1\",\"Name\":\"/carrier-wholepart-native64-bc58171bf2e14c57\",\"Image\":\"sha256:c9772ae9223a4f800a3ceda77d2494e67e34c8526eb0f204b3c8e052266641b4\",\"Owner\":\"bc58171bf2e14c57909d2877b30dbde2\",\"NanoCpus\":1000000000,\"Memory\":6442450944,\"MemorySwap\":6442450944,\"PidsLimit\":128,\"NetworkMode\":\"none\",\"ReadonlyRootfs\":true,\"Tmpfs\":{\"/tmp\":\"rw,size=512m\"},\"Mounts\":[{\"Destination\":\"/work\",\"Mode\":\"\",\"Propagation\":\"rprivate\",\"RW\":true,\"Source\":\"/Users/maxime/.codex/worktrees/993-carrier-revalidation/3dprinting993/work/carrier-wholepart-native-double-output-001/prepared-001\",\"Type\":\"bind\"}],\"Entrypoint\":[\"/usr/bin/timeout\"],\"Cmd\":[\"--signal=TERM\",\"--kill-after=10s\",\"720\",\"/usr/bin/ccx\",\"-i\",\"wholepart-release\"],\"WorkingDir\":\"/work\",\"Running\":false,\"ExitCode\":0,\"OOMKilled\":false,\"StateError\":\"\"}\n",
+      "stderr": ""
+    },
+    {
+      "arguments": [
+        "cp",
+        "19dc8800a47125771ea042dca94a5c758ca68b360ade0a6c33598a02b71aa1f1:/usr/bin/ccx",
+        "/Users/maxime/.codex/worktrees/993-carrier-revalidation/3dprinting993/work/carrier-wholepart-native-double-output-001/execution-001/ccx.prestart"
+      ],
+      "timeout_seconds": 25,
+      "cleanup": false,
+      "returncode": 0,
+      "timed_out": false,
+      "cancelled": false,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "arguments": [
+        "start",
+        "--attach",
+        "19dc8800a47125771ea042dca94a5c758ca68b360ade0a6c33598a02b71aa1f1"
+      ],
+      "timeout_seconds": 735,
+      "cleanup": false,
+      "returncode": 0,
+      "timed_out": false,
+      "cancelled": false,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "arguments": [
+        "container",
+        "inspect",
+        "19dc8800a47125771ea042dca94a5c758ca68b360ade0a6c33598a02b71aa1f1",
+        "--format",
+        "{\"Id\":{{json .Id}},\"Name\":{{json .Name}},\"Image\":{{json .Image}},\"Owner\":{{json (index .Config.Labels \"org.porscheparts.carrier.ener-supervision\")}},\"NanoCpus\":{{json .HostConfig.NanoCpus}},\"Memory\":{{json .HostConfig.Memory}},\"MemorySwap\":{{json .HostConfig.MemorySwap}},\"PidsLimit\":{{json .HostConfig.PidsLimit}},\"NetworkMode\":{{json .HostConfig.NetworkMode}},\"ReadonlyRootfs\":{{json .HostConfig.ReadonlyRootfs}},\"Tmpfs\":{{json .HostConfig.Tmpfs}},\"Mounts\":{{json .Mounts}},\"Entrypoint\":{{json .Config.Entrypoint}},\"Cmd\":{{json .Config.Cmd}},\"WorkingDir\":{{json .Config.WorkingDir}},\"Running\":{{json .State.Running}},\"ExitCode\":{{json .State.ExitCode}},\"OOMKilled\":{{json .State.OOMKilled}},\"StateError\":{{json .State.Error}}}"
+      ],
+      "timeout_seconds": 15,
+      "cleanup": false,
+      "returncode": 0,
+      "timed_out": false,
+      "cancelled": false,
+      "stdout": "{\"Id\":\"19dc8800a47125771ea042dca94a5c758ca68b360ade0a6c33598a02b71aa1f1\",\"Name\":\"/carrier-wholepart-native64-bc58171bf2e14c57\",\"Image\":\"sha256:c9772ae9223a4f800a3ceda77d2494e67e34c8526eb0f204b3c8e052266641b4\",\"Owner\":\"bc58171bf2e14c57909d2877b30dbde2\",\"NanoCpus\":1000000000,\"Memory\":6442450944,\"MemorySwap\":6442450944,\"PidsLimit\":128,\"NetworkMode\":\"none\",\"ReadonlyRootfs\":true,\"Tmpfs\":{\"/tmp\":\"rw,size=512m\"},\"Mounts\":[{\"Destination\":\"/work\",\"Mode\":\"\",\"Propagation\":\"rprivate\",\"RW\":true,\"Source\":\"/Users/maxime/.codex/worktrees/993-carrier-revalidation/3dprinting993/work/carrier-wholepart-native-double-output-001/prepared-001\",\"Type\":\"bind\"}],\"Entrypoint\":[\"/usr/bin/timeout\"],\"Cmd\":[\"--signal=TERM\",\"--kill-after=10s\",\"720\",\"/usr/bin/ccx\",\"-i\",\"wholepart-release\"],\"WorkingDir\":\"/work\",\"Running\":false,\"ExitCode\":0,\"OOMKilled\":false,\"StateError\":\"\"}\n",
+      "stderr": ""
+    },
+    {
+      "arguments": [
+        "container",
+        "inspect",
+        "19dc8800a47125771ea042dca94a5c758ca68b360ade0a6c33598a02b71aa1f1",
+        "--format",
+        "{\"Id\":{{json .Id}},\"Name\":{{json .Name}},\"Image\":{{json .Image}},\"Owner\":{{json (index .Config.Labels \"org.porscheparts.carrier.ener-supervision\")}},\"NanoCpus\":{{json .HostConfig.NanoCpus}},\"Memory\":{{json .HostConfig.Memory}},\"MemorySwap\":{{json .HostConfig.MemorySwap}},\"PidsLimit\":{{json .HostConfig.PidsLimit}},\"NetworkMode\":{{json .HostConfig.NetworkMode}},\"ReadonlyRootfs\":{{json .HostConfig.ReadonlyRootfs}},\"Tmpfs\":{{json .HostConfig.Tmpfs}},\"Mounts\":{{json .Mounts}},\"Entrypoint\":{{json .Config.Entrypoint}},\"Cmd\":{{json .Config.Cmd}},\"WorkingDir\":{{json .Config.WorkingDir}},\"Running\":{{json .State.Running}},\"ExitCode\":{{json .State.ExitCode}},\"OOMKilled\":{{json .State.OOMKilled}},\"StateError\":{{json .State.Error}}}"
+      ],
+      "timeout_seconds": 15,
+      "cleanup": true,
+      "returncode": 0,
+      "timed_out": false,
+      "cancelled": false,
+      "stdout": "{\"Id\":\"19dc8800a47125771ea042dca94a5c758ca68b360ade0a6c33598a02b71aa1f1\",\"Name\":\"/carrier-wholepart-native64-bc58171bf2e14c57\",\"Image\":\"sha256:c9772ae9223a4f800a3ceda77d2494e67e34c8526eb0f204b3c8e052266641b4\",\"Owner\":\"bc58171bf2e14c57909d2877b30dbde2\",\"NanoCpus\":1000000000,\"Memory\":6442450944,\"MemorySwap\":6442450944,\"PidsLimit\":128,\"NetworkMode\":\"none\",\"ReadonlyRootfs\":true,\"Tmpfs\":{\"/tmp\":\"rw,size=512m\"},\"Mounts\":[{\"Destination\":\"/work\",\"Mode\":\"\",\"Propagation\":\"rprivate\",\"RW\":true,\"Source\":\"/Users/maxime/.codex/worktrees/993-carrier-revalidation/3dprinting993/work/carrier-wholepart-native-double-output-001/prepared-001\",\"Type\":\"bind\"}],\"Entrypoint\":[\"/usr/bin/timeout\"],\"Cmd\":[\"--signal=TERM\",\"--kill-after=10s\",\"720\",\"/usr/bin/ccx\",\"-i\",\"wholepart-release\"],\"WorkingDir\":\"/work\",\"Running\":false,\"ExitCode\":0,\"OOMKilled\":false,\"StateError\":\"\"}\n",
+      "stderr": ""
+    },
+    {
+      "arguments": [
+        "rm",
+        "--force",
+        "19dc8800a47125771ea042dca94a5c758ca68b360ade0a6c33598a02b71aa1f1"
+      ],
+      "timeout_seconds": 25,
+      "cleanup": true,
+      "returncode": 0,
+      "timed_out": false,
+      "cancelled": false,
+      "stdout": "19dc8800a47125771ea042dca94a5c758ca68b360ade0a6c33598a02b71aa1f1\n",
+      "stderr": ""
+    },
+    {
+      "arguments": [
+        "container",
+        "ls",
+        "-a",
+        "--no-trunc",
+        "--filter",
+        "id=19dc8800a47125771ea042dca94a5c758ca68b360ade0a6c33598a02b71aa1f1",
+        "--format",
+        "{{.ID}}"
+      ],
+      "timeout_seconds": 15,
+      "cleanup": true,
+      "returncode": 0,
+      "timed_out": false,
+      "cancelled": false,
+      "stdout": "",
+      "stderr": ""
+    }
+  ],
+  "input_hashes_unchanged": true,
+  "actual_container_before_start": {
+    "Id": "19dc8800a47125771ea042dca94a5c758ca68b360ade0a6c33598a02b71aa1f1",
+    "Name": "/carrier-wholepart-native64-bc58171bf2e14c57",
+    "Image": "sha256:c9772ae9223a4f800a3ceda77d2494e67e34c8526eb0f204b3c8e052266641b4",
+    "Owner": "bc58171bf2e14c57909d2877b30dbde2",
+    "NanoCpus": 1000000000,
+    "Memory": 6442450944,
+    "MemorySwap": 6442450944,
+    "PidsLimit": 128,
+    "NetworkMode": "none",
+    "ReadonlyRootfs": true,
+    "Tmpfs": {
+      "/tmp": "rw,size=512m"
+    },
+    "Mounts": [
+      {
+        "Destination": "/work",
+        "Mode": "",
+        "Propagation": "rprivate",
+        "RW": true,
+        "Source": "/Users/maxime/.codex/worktrees/993-carrier-revalidation/3dprinting993/work/carrier-wholepart-native-double-output-001/prepared-001",
+        "Type": "bind"
+      }
+    ],
+    "Entrypoint": [
+      "/usr/bin/timeout"
+    ],
+    "Cmd": [
+      "--signal=TERM",
+      "--kill-after=10s",
+      "720",
+      "/usr/bin/ccx",
+      "-i",
+      "wholepart-release"
+    ],
+    "WorkingDir": "/work",
+    "Running": false,
+    "ExitCode": 0,
+    "OOMKilled": false,
+    "StateError": ""
+  },
+  "prestart_binary_sha256": "271f8411371b978d7a8d31a7a13d0765e6e1f872e8a8b1d6aac6d0856c71ec6c",
+  "actual_container_after_start": {
+    "Id": "19dc8800a47125771ea042dca94a5c758ca68b360ade0a6c33598a02b71aa1f1",
+    "Name": "/carrier-wholepart-native64-bc58171bf2e14c57",
+    "Image": "sha256:c9772ae9223a4f800a3ceda77d2494e67e34c8526eb0f204b3c8e052266641b4",
+    "Owner": "bc58171bf2e14c57909d2877b30dbde2",
+    "NanoCpus": 1000000000,
+    "Memory": 6442450944,
+    "MemorySwap": 6442450944,
+    "PidsLimit": 128,
+    "NetworkMode": "none",
+    "ReadonlyRootfs": true,
+    "Tmpfs": {
+      "/tmp": "rw,size=512m"
+    },
+    "Mounts": [
+      {
+        "Destination": "/work",
+        "Mode": "",
+        "Propagation": "rprivate",
+        "RW": true,
+        "Source": "/Users/maxime/.codex/worktrees/993-carrier-revalidation/3dprinting993/work/carrier-wholepart-native-double-output-001/prepared-001",
+        "Type": "bind"
+      }
+    ],
+    "Entrypoint": [
+      "/usr/bin/timeout"
+    ],
+    "Cmd": [
+      "--signal=TERM",
+      "--kill-after=10s",
+      "720",
+      "/usr/bin/ccx",
+      "-i",
+      "wholepart-release"
+    ],
+    "WorkingDir": "/work",
+    "Running": false,
+    "ExitCode": 0,
+    "OOMKilled": false,
+    "StateError": ""
+  },
+  "outputs": {
+    "wholepart-release.dat": {
+      "sha256": "51962537dbaf9cf567909932cd874b08839738a1e33fc65d2d7ebb3934813eae",
+      "bytes": 154797156
+    },
+    "wholepart-release.frd": {
+      "sha256": "649d937d219720c3276dd633134836f07e27cca9281479d40abb4056763f278e",
+      "bytes": 17529324
+    },
+    "wholepart-release.sta": {
+      "sha256": "09f7fb889a9e185d1095890d5faa8c473ee2de288d70a20696a3bc1b72614a2c",
+      "bytes": 386
+    },
+    "wholepart-release.cvg": {
+      "sha256": "65086dedb4572132b815ace04b294909c7f6f337111f9704fc310b02320f67f7",
+      "bytes": 274
+    },
+    "wholepart-release.log": {
+      "sha256": "a37683e033d8f9ee8669492e7f88f84ab5dec2d78972784c87bdef383e99f46d",
+      "bytes": 5205
+    }
+  },
+  "wall_seconds": 167.21010325010866,
+  "global_budget_seconds": 900,
+  "cleanup_reserve_seconds": 90,
+  "within_global_budget": true,
+  "plan_sha256": "bd4cab78f07c4d820293305e879888f937c19e141227a2808057a1d533712789",
+  "plan_unchanged": true,
+  "caller_sha256": "a9a2704fc672e95ebd7bcbd7bca5183981e1d2413bd2ae689046218c9c4bbb55",
+  "controller_sha256": "cbba58f0f6dd6333dc1063386eb61fe6f85652a4709e82032294c4c2c7726b0c",
+  "controller_bytes_unchanged": true,
+  "scope": "Four linear wholepart sensitivity states only. Fictitious zmin fixture, not final print supports; no process prediction or numeric admission.",
+  "mechanical_DOF": 310602
+}

@@ -1,0 +1,96 @@
+--- /Users/maxime/.codex/worktrees/993-carrier-revalidation/3dprinting993/work/carrier-R1-actual-surface-comparison-002/render.py
++++ /Users/maxime/.codex/worktrees/993-carrier-revalidation/3dprinting993/work/carrier-corner-slide-actual-surface-comparison-preparation-001/render.py
+@@ -1,4 +1,4 @@
+-"""Actual d64/R1 STL preview; unchanged full-triangle raster and section helpers."""
++"""Actual d64/24af STL preview; unchanged full-triangle raster and section helpers."""
+ import ast
+ import hashlib
+ import importlib.util
+@@ -31,11 +31,11 @@
+ 
+ def verify(plan, hash_inputs=True):
+     assert plan['bounds'] == dict(outer=180, inner=150, CPU=[140,141], threads=1, workers=0)
+-    assert plan['triangle_counts'] == [597720,651012] and plan['camera_degrees'] == [30.,0.]
++    assert plan['triangle_counts'] == [597720,598372] and plan['camera_degrees'] == [30.,0.]
+     assert plan['STL_sha256'] == ['17d7de30d5d6e2ef51fee4c1dac9da66ad618bcfeda4cf61fe90e084a807d7b2',
+-                                '88c405af6b34e4cacffebf26baabdbd04f728e98e53318035d59c0ba36dfba45']
+-    assert plan['masses_kg'] == [1.2747979975709924,1.2749573635017337]
+-    assert plan['section_X_mm'] == 50. and plan['detail_YZ_mm'] == [[-8.5,3.],[-5.5,6.]]
++                                'b4026f66dc77b8022e82c358553e8e93ce0cbc2ea0fd31da19ac39a9f891a803']
++    assert plan['masses_kg'] == [1.2747979975709924,1.2759916739532025]
++    assert plan['section_X_mm'] == 83.39717404347466 and plan['detail_YZ_mm'] == [[-18.,10.],[-12.,17.]]
+     assert [plan['files_sha256'][p] for p in plan['STLs']] == plan['STL_sha256']
+     for path, digest in plan['files_sha256'].items():
+         if hash_inputs or path not in plan['STLs']:
+@@ -55,6 +55,19 @@
+     assert generation['STL_sha256'] == owner['STL_sha256'] == plan['STL_sha256'][1]
+     assert generation['triangles'] == owner['triangles'] == plan['triangle_counts'][1]
+     assert owner['actual_outer_returncode'] == owner['actual_child_returncode'] == 0
++    construction = read(plan['new_construction_ROOT'])
++    assert sha(plan['new_construction_ROOT']) == '1b19ca5c20fcedfd3afc272aa37254aed32a40f09ec4060933cfc1ec352df1e5'
++    assert sha(plan['new_observer_ROOT']) == '40a69b368f8e6612c59480a3e8d143c7bbde4d0dc7b6a67e85cbf48a096143cd'
++    reference = read(plan['new_observer_ROOT'])
++    assert reference['candidate_BREP_sha256'] == plan['BREP_sha256'][1]
++    assert reference['reference_FE_BREP_sha256'] != plan['BREP_sha256'][1]
++    assert reference['reference_case_peak']['reference_undeformed_IP_xyz_mm'][0] == plan['section_X_mm']
++    assert reference['query_stress_inferred'] is False
++    assert construction['candidate_sha256'] == plan['BREP_sha256'][1]
++    assert plan['BREP_sha256'] == ['d64a7faf8455735e05198661be823ead7037c23b58d36522e1cca60056aea624','24af058467fd82a9f0c1d391bf947d427dffd311371cf8f73dafa492d204f4fd']
++    assert plan['launch_ready'] is (not plan['root_GO'] is None)
++    if plan['launch_ready']:
++        assert sha(ROOT/plan['root_GO']) == plan['root_GO_sha256']
+     assert not any(n.split('.')[0] in ['OCP','build123d','gmsh','trimesh'] for n in sys.modules)
+ 
+ 
+@@ -67,6 +80,7 @@
+     output = HERE/'output-001'
+     assert not output.exists() and not any(p.is_symlink() for p in [output,*output.parents])
+     verify(plan)
++    assert plan['launch_ready'] is True
+     import numpy as np
+     import matplotlib
+     matplotlib.use('Agg')
+@@ -96,32 +110,32 @@
+                                     coplanar_triangles=coplanar,whole_profile_sha256=hashlib.sha256(segments.tobytes()).hexdigest()))
+     assert pictures[0].shape == pictures[1].shape
+     matplotlib.rcParams.update({'font.family':'DejaVu Sans','font.size':10,'svg.fonttype':'none',
+-                               'svg.hashsalt':'R1-actual-surface-comparison-002','path.simplify':False})
++                               'svg.hashsalt':'corner-slide-actual-surface-comparison-001','path.simplify':False})
+     fig = plt.figure(figsize=(14,9),facecolor='#f5f7f9')
+     fig.text(.055,.95,'993 TURBO CARRIER | ACTUAL STL PREVIEW',size=12,weight='bold',color='#536d7d')
+-    fig.text(.055,.895,'A 1 mm junction fillet on the actual surfaces',size=24,weight='bold',color='#183347')
+-    fig.text(.055,.85,'Before d64 → R1 candidate 2401 | complete meshes, common camera, scale and section plane.',color='#536d7d')
+-    for i,label in enumerate(['Before: outward-C2 rib','After: seven-edge R1 junction']):
++    fig.text(.055,.895,'Reinforcing the window root',size=24,weight='bold',color='#183347')
++    fig.text(.055,.85,'Before d64 → corner-slide candidate 24af | complete meshes, common camera, scale and section plane.',color='#536d7d')
++    for i,label in enumerate(['Before: outward-C2 rib (d64)','After: shifted window root (24af)']):
+         left=.055+i*.49
+         ax=fig.add_axes([left,.61,.42,.17]); ax.imshow(pictures[i]); ax.axis('off')
+         ax.set_title(label+' | '+f"{plan['masses_kg'][i]:.6f} kg",loc='left',size=12,weight='bold',pad=10)
+         ax=fig.add_axes([left+.07,.23,.29,.29])
+         ax.add_collection(LineCollection(sections[i],colors='#345a70' if i==0 else '#ba6337',linewidths=1.3))
+-        ax.set(xlim=(-8.5,-5.5),ylim=(3,6),xlabel='Y (mm)',ylabel='Z (mm)',aspect='equal')
+-        ax.set_title('R1 foot: STL section at X = 50 mm',loc='left',size=10,weight='bold',pad=10)
++        ax.set(xlim=(-18,-12),ylim=(10,17),xlabel='Y (mm)',ylabel='Z (mm)',aspect='equal')
++        ax.set_title('Window root: STL section at X = 83.397 mm',loc='left',size=10,weight='bold',pad=10)
+         ax.grid(alpha=.18)
+-    fig.text(.055,.16,'Same section X = 50 mm; all intersecting facets are retained. Axes crop the display only.',color='#536d7d')
+-    fig.text(.055,.105,'Mass 1.274957 kg / 1.30 kg cap | added 0.159 g | remaining allowance 25.04 g',size=12,weight='bold',color='#183347')
+-    fig.text(.055,.055,'Actual STL geometry. Surface audits pending.',color='#536d7d',size=10)
++    fig.text(.055,.16,'Same prior-R1 reference X plane; all intersecting facets retained. Display crop only; no stress overlay.',color='#536d7d')
++    fig.text(.055,.105,'Mass 1.275992 kg / 1.30 kg cap | added 1.194 g over d64 | remaining allowance 24.01 g',size=12,weight='bold',color='#183347')
++    fig.text(.055,.055,'Editable corner shift: 1.5 mm in X along AB | actual STL geometry; new-candidate audits and mechanics pending.',color='#536d7d',size=10)
+     output.mkdir()
+     for suffix in ['png','svg']:
+-        fig.savefig(output/('carrier-R1-actual-surfaces.'+suffix),dpi=180,facecolor=fig.get_facecolor())
++        fig.savefig(output/('carrier-corner-slide-actual-surfaces.'+suffix),dpi=180,facecolor=fig.get_facecolor())
+     plt.close(fig)
+     loaded={str(Path(m.__file__).resolve()) for m in list(sys.modules.values()) if getattr(m,'__file__',None)
+             and Path(m.__file__).is_file() and 'site-packages' in str(Path(m.__file__).resolve())}
+     assert loaded <= set(plan['runtime_sha256']), sorted(loaded-set(plan['runtime_sha256']))
+     verify(plan); assert sha(planpath)==plan_sha
+-    report=dict(schema='d64-and-R1-complete-STL-preview-2',status='complete_actual_display_only',language='English',
++    report=dict(schema='d64-and-corner-slide-complete-STL-preview-1',status='complete_actual_display_only',language='English',
+                 plan_sha256=plan_sha,inputs_sha256=plan['files_sha256'],runtime_sha256=plan['runtime_sha256'],
+                 loaded_runtime_files=sorted(loaded),whole_triangle_counts=plan['triangle_counts'],
+                 common_camera_degrees=plan['camera_degrees'],common_bounds_mm=box.tolist(),

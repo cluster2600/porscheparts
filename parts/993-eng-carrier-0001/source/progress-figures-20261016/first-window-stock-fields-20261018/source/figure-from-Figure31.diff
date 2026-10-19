@@ -1,0 +1,11 @@
+--- /Users/maxime/.codex/worktrees/993-carrier-revalidation/3dprinting993/work/carrier-first-window-stock-FEA-figure-preparation-001/figure.py
++++ /Users/maxime/.codex/worktrees/993-carrier-revalidation/3dprinting993/work/carrier-first-window-stock-FEA-figure-preparation-002/figure.py
+@@ -181,7 +181,7 @@
+                 for peak in c['summary']['all_global_IP_ties']:
+                     marker,_=project([peak['reference_undeformed_IP_xyz_mm']],basis)
+                     ax.scatter(*marker[0],s=100,marker='o',facecolors='none',edgecolors='#D47732',linewidths=1.5,zorder=5)
+-                    ax.annotate('Global IP peak',marker[0],xytext=(12,18),textcoords='offset points',fontsize=8,color='#9A491E',arrowprops=dict(arrowstyle='-',color='#D47732'))
++                    ax.annotate('Global IP peak',marker[0],xytext=(30,-55),textcoords='offset points',fontsize=8,color='#9A491E',arrowprops=dict(arrowstyle='-',color='#D47732'))
+                 inset=fig.add_axes([.22+.43*col,.475,.14,.075]);top=np.argsort(xyz[ids][:,:,2].mean(1),kind='stable');inset.add_collection(PolyCollection(xyz[ids][top,:,:2],facecolors=cmap(norms[0](c['stress'][top])),edgecolors='none',rasterized=True))
+                 inset.set(xlim=zoom_bounds[:,0],ylim=zoom_bounds[:,1],xlabel='X (mm)',ylabel='Y (mm)');inset.set_aspect('equal');inset.tick_params(labelsize=6);inset.set_title('Peak-region XY · shared MPa scale',fontsize=6.7)
+                 for peak in c['summary']['all_global_IP_ties']:inset.scatter(*peak['reference_undeformed_IP_xyz_mm'][:2],s=40,facecolors='none',edgecolors='#D47732',linewidths=1.2,zorder=5)

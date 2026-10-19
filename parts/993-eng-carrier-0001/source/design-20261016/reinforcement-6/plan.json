@@ -1,0 +1,23 @@
+{
+  "design_id": "carrier-reinforcement-6-local-C2-shoulder",
+  "base_STEP_sha256": "fd080c7d033db9447a3a364644406f8beca44fdd5d11ecc3b9819b2b88a333bd",
+  "base_mass_kg": 1.292875790174124,
+  "mass_ceiling_kg": 1.3,
+  "mirror_X": [-1, 1],
+  "mirror_Y": [1],
+  "window_bridge_X_range_mm": [84.5, 94.0],
+  "maximum_shoulder_width_Y_mm": 2.5,
+  "shoulder_full_width_X_mm": 89.5,
+  "shoulder_end_X_mm": 105.0,
+  "internal_overlap_mm": 0.25,
+  "support_mapping_degree": 7,
+  "maximum_corresponding_support_X_difference_mm": 0.00001,
+  "G0_support_gap_mm_max": 0.0000001,
+  "G1_normal_angle_degrees_max": 0.00001,
+  "STEP_relative_volume_difference_max": 0.00000001,
+  "removed_reference_volume_mm3_max": 0.00001,
+  "protected_pad_difference_mm3_max": 0.000001,
+  "construction": "Before solid unions, replace the upper-skin window/rib corner by one C2 XY quintic bridge from the exact rib atX84.5 to the exact window line atX94. Add only material between old and new planar boundaries intersected with the unchanged upper skin. Construct a polynomial shoulder from that cap to the rib ROOF, using exact-support polynomial rails and transverse quintic smoothstep. The roof becomes tangent to the cap atX105; the complete shoulder then becomes planar. Its upstream cap is inside the original rib because width and width derivative vanish atX84.5.",
+  "physical_scope": "Local positiveY roots, mirroredX. Width2.5mm is a horizontal design scale, not a constant-radius or rolling-ball fillet. Actual section curvature must be measured before mechanics. No protected interfaces, envelope, core fill, mass threshold or old rejection is changed.",
+  "before_FE": "Require one valid solid, STEProundtrip, additive-only and protected-region proofs, exact sections, actual final STEP rail and termination normal checks. Local witness G1 alone never admits the carrier."
+}

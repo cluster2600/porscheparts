@@ -1,0 +1,58 @@
+{
+  "schema": "carrier-v6-targeted-cold-recipe-review-1",
+  "status": "passed",
+  "recipe": "manufacturing/workflows/993-carrier-lpbf-v6.json",
+  "recipe_sha256": "54d777d2bbb43a35a23450591514e9ea1b5245f621f57ca914b43780322b58ae",
+  "previous_recipe_sha256": "fcbeedb53ab5308c45b35bcbdcacac86ef765575021d482b56b6bbd4ce2b21be",
+  "stage_count": 37,
+  "pin_count": 293,
+  "preserved_previous_pin_count": 285,
+  "all_previous_pins_unchanged_and_current": true,
+  "preserved_v1_pin_count": 45,
+  "first_twelve_stages_identical_to_v1": true,
+  "stage_objects_reused_by_exact_identity": 27,
+  "new_complete_argv_parses": 10,
+  "new_argv_parse_seconds": 17.475841749925166,
+  "resource_stage_caps_seconds": 14400,
+  "resource_stage_caps_count": 9,
+  "other_27_stage_objects_unchanged": true,
+  "added_process_output": "process/exact-admission-replays.json",
+  "new_runner": {
+    "path": "scripts/run_part_workflow_v2.py",
+    "sha256": "caeee30d5768926bc924b5ce253b0fac5a06caa6b552828bcf33a57dd07d3bba",
+    "scope": "Only validation bound and error-message 3600→14400; frozen original runner remains pinned. validate(recipe) executed, no run."
+  },
+  "evidence": {
+    "argv-results.json": {
+      "path": "work/part-workflow/cold-v6-recipe-review-001/argv-results.json",
+      "sha256": "6d9598bad9fb9bc6cd699b6dff0ec69a559ea2f6be729d5456ca3ec4ff437695"
+    },
+    "closure-results.json": {
+      "path": "work/part-workflow/cold-v6-recipe-review-001/closure-results.json",
+      "sha256": "db3f98e10e898ce50d478d62c2d408a8b1e4888f7056ee73c7f657f45cc05b07"
+    },
+    "exact-delta.json": {
+      "path": "work/part-workflow/cold-v6-recipe-review-001/exact-delta.json",
+      "sha256": "3152988c4e15ecf77f6dab020e16c74be213242a53c38c805e7c8eee9fcea0f5"
+    },
+    "check_argv.py": {
+      "path": "work/part-workflow/cold-v6-recipe-review-001/check_argv.py",
+      "sha256": "13400cbea9fa950af6b7c19fb25d8ef1cdb982a816771edc11bd09cf99508814"
+    },
+    "check_closure.py": {
+      "path": "work/part-workflow/cold-v6-recipe-review-001/check_closure.py",
+      "sha256": "20faa161aa931eca479773beec8e090d71f981bfb35496d75b3da736fa483d39"
+    }
+  },
+  "guide_final_validation": {
+    "path": "work/part-workflow/guide-v6-runner-token-validation-001/assessment.json",
+    "sha256": "3d91d59acf966b557d98d072da0aa8c6a1008d8a3437bfb8acfe7912553b9adc"
+  },
+  "limitations": [
+    "No cold carrier rebuild or new region/solver/slicing/guide run was performed.",
+    "The 27 unchanged CLI contracts are retained from v5 only after stage object, script SHA, all 285 previous pins and runtime JSON byte identity checks.",
+    "Current long-running jobs use preserved earlier producer sources under the separate watcher008 resource handoff; the new cold recipe does not retroactively relabel them."
+  ],
+  "source_tests_frozen": true,
+  "staged_package_modified": false
+}

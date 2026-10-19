@@ -1,0 +1,40 @@
+{
+  "schema": "compiled-exact-convex-search-benchmark-v2",
+  "status": "passed",
+  "scope": "Containing-convex search only, excluding unchanged triangulation, broadphase and exact subtraction. No end-to-end process speedup claimed.",
+  "query_api": "three strict Fraction point predicates; source triangles already proved positive by frozen triangulation",
+  "triangles": 102,
+  "primitives": 95,
+  "candidate_pairs": 768,
+  "candidates_sha256": "afb5fb6f24a82ecaff583b7b5624f4b9ba626913c1c6fd70139a61ca9c4a097b",
+  "all_candidate_results_equal": true,
+  "first_containing_ids_equal": true,
+  "query_results_sha256": "22c053f43e4267267e3742121cd3e0a064cbaf3249d957e16e2e675ca27a5cef",
+  "compilation_seconds": 0.015994083136320114,
+  "three_repetitions": {
+    "reference_seconds": [
+      0.04951579193584621,
+      0.05066779186017811,
+      0.051839500200003386
+    ],
+    "compiled_seconds": [
+      0.002610167022794485,
+      0.0031609588768333197,
+      0.002609292045235634
+    ]
+  },
+  "reference_median_seconds": 0.05066779186017811,
+  "compiled_median_seconds": 0.002610167022794485,
+  "compile_plus_search_seconds": 0.0186042501591146,
+  "speedup_search_only": 19.411704851719563,
+  "speedup_including_compilation": 2.723452513637317,
+  "sources_and_fixture_unchanged": true,
+  "sources_sha256": {
+    "work/carrier-process-20261016/compiled-convex-predicate-001/benchmark_points.py": "1f2b2bd4e8d2bafc05ed8d33172d7db47364b4a67dcef68a71111ab767918f13",
+    "parts/993-eng-carrier-0001/source/process-scanpath-audit-20261016/exact_convex_halfplanes.py": "a91f5af282bda8b348e060af7bd76b78776a69e2284fa7d9c2049ec63c45545f",
+    "parts/993-eng-carrier-0001/source/process-skins-20261016/exact_band_union_v2.py": "ebaa9e86727d6300ecb4c8dcd7814fc44bad0e42260687e07f854af0c06dec5c",
+    "parts/993-eng-carrier-0001/source/process-scanpath-audit-20261016/band-union-evidence/left-grid.json": "fed9e3d93fbc588124995fc0c930a811ff38fd6ffd44068a42a7e19f24ec9c12"
+  },
+  "geometry_regenerated": false,
+  "integrated_in_generator": false
+}

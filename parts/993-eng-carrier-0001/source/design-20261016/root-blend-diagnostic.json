@@ -1,0 +1,221 @@
+{
+  "status": "diagnostic_geometry_rejections_retained_no_carrier_mesh_or_solve",
+  "normal_method": "SameParameter edge pcurves and oriented exact-support D1. Cross-checked with BRepGProp_Face.Normal and projected Face.normal_at on the lower XY endpoints.",
+  "tensor_foot5": {
+    "STEP_sha256": "169e7b3c833b36e087a9836186dd309d55b1764cef38de9410c35d5cebebb3eb",
+    "source_sha256": "9e5a1fee6e899717c83620b838c63275a4db3aef7febf2cd9db1262b03411b59",
+    "seam_report_sha256": "35ccdc5cc8c0ec4200207cb56b390af06b8601d68cc961523868afba890a19d2",
+    "pcurve_probe_report_sha256": "0f1469bfddc8c471ab3aa4225dc8b2e855df94dab18b6e29d546637fb608fe4e",
+    "criterion_degrees_unchanged": 1e-05,
+    "new_seam_screen_pass": false,
+    "new_reentrant_or_unresolved_edges": [
+      256,
+      258,
+      262,
+      265,
+      266,
+      267,
+      469,
+      471,
+      473
+    ],
+    "findings": [
+      "Original614 root edge is buried, but the window trim extends the old618 reentrant cylinder/rib seam upward by1mm; its angle remains58.2188313848degrees.",
+      "Small rail normal errors up to0.037115degrees persist using stored pcurves. The Boolean intersection lies slightly away from nominal tangent boundaries V=0 or1; this is not merely a nearest-point normal projection artifact."
+    ],
+    "small_rail_probes": [
+      {
+        "edge_index_zero_based": 262,
+        "maximum_normal_angle_degrees": 0.01216096020322127,
+        "maximum_edge_point_error_mm": 2.764072827575319e-10
+      },
+      {
+        "edge_index_zero_based": 265,
+        "maximum_normal_angle_degrees": 0.01566361336469949,
+        "maximum_edge_point_error_mm": 1.5476108396178542e-09
+      },
+      {
+        "edge_index_zero_based": 266,
+        "maximum_normal_angle_degrees": 0.03711506498256262,
+        "maximum_edge_point_error_mm": 1.2850066792016682e-08
+      },
+      {
+        "edge_index_zero_based": 469,
+        "maximum_normal_angle_degrees": 0.002897505186928566,
+        "maximum_edge_point_error_mm": 1.018098775227183e-08
+      },
+      {
+        "edge_index_zero_based": 471,
+        "maximum_normal_angle_degrees": 0.011448680474379743,
+        "maximum_edge_point_error_mm": 1.0888580426260921e-10
+      }
+    ]
+  },
+  "rounded_window_caps_intermediate": {
+    "STEP_sha256": "abfe5fb2bdc53994b69cfb8340e24437021c6a7930e5d15756d1431389b0eb39",
+    "join_report_sha256": "5a4f414d9fb1072c87efc5edade520cfc2a5547c75e281164f29ae04146d33b9",
+    "orientation_and_material_probe_report_sha256": "c2be3394965067faa4ccbf8a9740be18523a0b6656d2ec053f961cd70635d9ca",
+    "scope": "Eight endpoint seams only, not full geometry admission.",
+    "six_other_seams_maximum_normal_angle_degrees": 1.6002960879783684e-10,
+    "lower_rib_endpoint_edges": [
+      {
+        "edge_index": 514,
+        "bounds_mm": [
+          [
+            -87.90736872073,
+            14.379407661876,
+            -17.240589301
+          ],
+          [
+            -87.90736872073,
+            14.379407661876,
+            -15.079560037249998
+          ]
+        ],
+        "length_mm": 2.1610292637500024,
+        "faces": [
+          157,
+          158
+        ],
+        "types": [
+          "GeomAbs_SurfaceType.GeomAbs_SurfaceOfExtrusion",
+          "GeomAbs_SurfaceType.GeomAbs_Cylinder"
+        ],
+        "probes": [
+          {
+            "parameter_fraction": 0.25,
+            "angle_deg": 179.9999999999886,
+            "support_G0_error_mm": 2.1028819576209295e-11,
+            "support_points_mm": [
+              [
+                -87.90736872075107,
+                14.37940766188867,
+                -16.700331985062498
+              ],
+              [
+                -87.90736872073431,
+                14.379407661875963,
+                -16.700331985062498
+              ]
+            ]
+          },
+          {
+            "parameter_fraction": 0.5,
+            "angle_deg": 179.9999999999886,
+            "support_G0_error_mm": 2.1028819576209295e-11,
+            "support_points_mm": [
+              [
+                -87.90736872075107,
+                14.37940766188867,
+                -16.160074669125
+              ],
+              [
+                -87.90736872073431,
+                14.379407661875963,
+                -16.160074669125
+              ]
+            ]
+          },
+          {
+            "parameter_fraction": 0.75,
+            "angle_deg": 179.9999999999886,
+            "support_G0_error_mm": 2.1028819576209295e-11,
+            "support_points_mm": [
+              [
+                -87.90736872075107,
+                14.37940766188867,
+                -15.6198173531875
+              ],
+              [
+                -87.90736872073431,
+                14.379407661875963,
+                -15.6198173531875
+              ]
+            ]
+          }
+        ]
+      },
+      {
+        "edge_index": 786,
+        "bounds_mm": [
+          [
+            87.907368720735,
+            14.379407661876,
+            -17.240589301
+          ],
+          [
+            87.907368720735,
+            14.379407661876,
+            -15.079560037249998
+          ]
+        ],
+        "length_mm": 2.1610292637500024,
+        "faces": [
+          252,
+          253
+        ],
+        "types": [
+          "GeomAbs_SurfaceType.GeomAbs_Cylinder",
+          "GeomAbs_SurfaceType.GeomAbs_SurfaceOfExtrusion"
+        ],
+        "probes": [
+          {
+            "parameter_fraction": 0.25,
+            "angle_deg": 179.9999999999886,
+            "support_G0_error_mm": 2.0245177162678343e-11,
+            "support_points_mm": [
+              [
+                87.9073687207353,
+                14.379407661875963,
+                -16.700331985062498
+              ],
+              [
+                87.90736872075107,
+                14.37940766188867,
+                -16.700331985062498
+              ]
+            ]
+          },
+          {
+            "parameter_fraction": 0.5,
+            "angle_deg": 179.9999999999886,
+            "support_G0_error_mm": 2.0245177162678343e-11,
+            "support_points_mm": [
+              [
+                87.9073687207353,
+                14.379407661875963,
+                -16.160074669125
+              ],
+              [
+                87.90736872075107,
+                14.37940766188867,
+                -16.160074669125
+              ]
+            ]
+          },
+          {
+            "parameter_fraction": 0.75,
+            "angle_deg": 179.9999999999886,
+            "support_G0_error_mm": 2.0245177162678343e-11,
+            "support_points_mm": [
+              [
+                87.9073687207353,
+                14.379407661875963,
+                -15.6198173531875
+              ],
+              [
+                87.90736872075107,
+                14.37940766188867,
+                -15.6198173531875
+              ]
+            ]
+          }
+        ]
+      }
+    ],
+    "finding": "Lower cap additions end at opposed outward normals180degrees with both +/-0.001mm normal probes outside material; the new XY addition forms an exposed zero-thickness termination there. The corresponding upper seams are tangent."
+  },
+  "next_construction_method": "Keep the useful upper XY rounding. Use rails constructed as pcurves on actual cap/rib supports for a support-constrained G1 patch. Close any longitudinal end wholly inside existing material, or continue until supports meet smoothly; r=0 alone cannot provide a regular G1 patch touching two distinct support tangent planes.",
+  "thresholds_softened": false,
+  "geometry_modified_by_this_audit": false
+}

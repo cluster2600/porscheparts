@@ -1,0 +1,46 @@
+{
+  "method": "OCP BRepExtrema_DistShapeShape against exact source shell, not solid occupancy",
+  "CAD_source": {
+    "format": "brep",
+    "sha256": "d64a7faf8455735e05198661be823ead7037c23b58d36522e1cca60056aea624",
+    "path": "/Users/maxime/.codex/worktrees/993-carrier-revalidation/3dprinting993/work/carrier-process-20261017/bounded-webs-stock-rib-C2-width-trial-preparation-002/output-001/candidate-native.brep"
+  },
+  "random_seed": 9931016,
+  "exact_CAD_surface_samples": 8123,
+  "CAD_sampling": "7x7 UV grid per trimmed face, IN/ON classified",
+  "exact_CAD_surface_samples_sha256": "77d3f1f14ab1c4e983fe5c0c06cca4f8a57b638e009ff84b4f3800ce56812b21",
+  "exact_CAD_surface_samples_file": "exact-CAD-surface-samples.npz",
+  "exact_CAD_volume_mm3": 288415.83655452315,
+  "CAD_volume_method": "OCP adaptive VolumeProperties, requested relative error 1e-10",
+  "CAD_volume_estimated_relative_error": 1.1016741628405133e-10,
+  "exact_CAD_bounds_mm": [
+    [
+      -296.0000001,
+      -36.50000010519314,
+      -22.000000100000005
+    ],
+    [
+      296.0000001,
+      36.50000010484759,
+      30.0000001
+    ]
+  ],
+  "sampling": "512 vertices, 512 face centroids and 2048 area-weighted points per STL",
+  "documented_source_STL_requested_chord_tolerance_mm": 0.06,
+  "results": {
+    "candidate_STL": {
+      "sha256": "17d7de30d5d6e2ef51fee4c1dac9da66ad618bcfeda4cf61fe90e084a807d7b2",
+      "samples": 3072,
+      "maximum_distance_to_BREP_shell_mm": 0.015438139919712964,
+      "p99_distance_mm": 0.008016563668967578,
+      "worst_sample_mm": [
+        -75.86970088746833,
+        6.975552600474696,
+        10.857663463833196
+      ],
+      "wall_seconds": 19.44277170812711
+    }
+  },
+  "candidate_sampled_chord_screen_pass": true,
+  "manufacturing_authorized": false
+}

@@ -1,0 +1,101 @@
+--- parts/993-eng-carrier-0001/source/design-20261016/native-C1-h2-20261017/selfcheck.py
++++ work/carrier-terminal-taper-raw-refined-delivery-preparation-001/capsule-source/selfcheck.py
+@@ -16,7 +16,7 @@
+ HERE=Path(__file__).resolve().parent
+ if '--base-capsule' in sys.argv:
+     index=sys.argv.index('--base-capsule');BASE=Path(sys.argv[index+1]).absolute();del sys.argv[index:index+2]
+-else:BASE=HERE.parent/'native-C1-20261017'
++else:BASE=HERE.parent/'native-C1-terminal-taper-20261017'
+ 
+ def sha(path):return hashlib.sha256(Path(path).read_bytes()).hexdigest()
+ def load(name,path):
+@@ -34,16 +34,16 @@
+     base=root/'base';base.mkdir();cap=root/'delta';cap.mkdir()
+     shutil.copyfile(BASE/'restore.py',base/'restore.py');shutil.copyfile(HERE/'restore.py',cap/'restore.py')
+     inherited={};basearchives={}
+-    for i,name in enumerate(('c1-native-common.zip','c1-native-rigid.zip','c1-native-spring.zip')):
+-        data={f'old/{i}-{j:03}.txt':bytes([65+i]) for j in range(62)}
++    for i,name in enumerate(('taper-common.zip','taper-rigid.zip','taper-spring.zip')):
++        data={f'old/{i}-{j:03}.txt':bytes([65+i]) for j in range(165)}
+         row=archive(base/name,data);basearchives[name]=row;inherited.update(row['members'])
+-    bm=dict(schema='actual-C1-BREP-native-capsule-1',archives=basearchives,files_sha256={'restore.py':sha(base/'restore.py')})
++    bm=dict(schema='actual-preserved-taper-native-capsule-1',archives=basearchives,files_sha256={'restore.py':sha(base/'restore.py')})
+     (base/'manifest.json').write_text(json.dumps(bm))
+     inventory={p.name:sha(p) for p in base.iterdir() if p.is_file()}
+     (base/'archive.json').write_text(json.dumps({'files_sha256':inventory}))
+     new={name:archive(cap/name,{f'new/{i}.json':json.dumps({'float':1.25,'Unicode':'µ','unused':None}).encode()})
+-         for i,name in enumerate(('c1-h2-common.zip','c1-h2-rigid.zip','c1-h2-spring.zip'))}
+-    manifest=dict(schema='actual-C1-h2-dependent-native-capsule-1',dependency=dict(manifest_sha256=sha(base/'manifest.json'),inventory_sha256=sha(base/'archive.json'),restore_source_sha256=sha(base/'restore.py'),members=inherited),archives=new,files_sha256={'restore.py':sha(cap/'restore.py')})
++         for i,name in enumerate(('taper-raw-refined-common.zip','taper-raw-refined-rigid.zip','taper-raw-refined-spring.zip'))}
++    manifest=dict(schema='actual-taper-raw-refined-dependent-native-capsule-1',dependency=dict(manifest_sha256=sha(base/'manifest.json'),inventory_sha256=sha(base/'archive.json'),restore_source_sha256=sha(base/'restore.py'),members=inherited),archives=new,files_sha256={'restore.py':sha(cap/'restore.py')})
+     (cap/'manifest.json').write_text(json.dumps(manifest));module=load('synthetic_delta',cap/'restore.py')
+     return module,base,cap,manifest
+ 
+@@ -54,10 +54,10 @@
+         for name in ('require','sha','relative','transfer'):self.assertEqual(old[name],new[name])
+     def test_unchanged_real_analysis_sources(self):
+         for name,digest in {'audit_energy.py':'b71603069518e6aa8820a7c5fec02115ab82a585e6fe9c160452f1ca2025b186','locate.py':'962379625759f1e467da8eb904c3d25d7f7860443745cb37529dad5ea293dad7','cad_binding.py':'07addd2439be51920d393c8bee170611fea4774c3723906bf446387bbef382fb'}.items():self.assertEqual(sha(BASE/'sources'/name),digest)
+-    def test_exact_186_plus_three_and_whole_JSON_restore(self):
++    def test_exact_495_plus_three_and_whole_JSON_restore(self):
+         with tempfile.TemporaryDirectory() as tmp:
+             root=Path(tmp).resolve();r,base,cap,m=fixture(root);dest=root/'restored';r.restore(dest,sha(cap/'manifest.json'),base)
+-            members=r.all_members(m);self.assertEqual(len(members),189)
++            members=r.all_members(m);self.assertEqual(len(members),498)
+             self.assertTrue(all(sha(dest/p)==row['sha256'] for p,row in members.items()))
+             self.assertEqual(json.loads((dest/'new/0.json').read_text()),{'float':1.25,'Unicode':'µ','unused':None})
+             r.verify(sha(cap/'manifest.json'),base)
+@@ -68,7 +68,7 @@
+             self.assertFalse((root/'out').exists())
+     def test_collision_refuses_before_creating_destination(self):
+         with tempfile.TemporaryDirectory() as tmp:
+-            root=Path(tmp).resolve();r,base,cap,m=fixture(root);path=next(iter(m['dependency']['members']));m['archives']['c1-h2-common.zip']['members'][path]=m['dependency']['members'][path];(cap/'manifest.json').write_text(json.dumps(m))
++            root=Path(tmp).resolve();r,base,cap,m=fixture(root);path=next(iter(m['dependency']['members']));m['archives']['taper-raw-refined-common.zip']['members'][path]=m['dependency']['members'][path];(cap/'manifest.json').write_text(json.dumps(m))
+             with self.assertRaisesRegex(ValueError,'overwrites'):r.restore(root/'out',sha(cap/'manifest.json'),base)
+             self.assertFalse((root/'out').exists())
+     def test_path_traversal_and_symlink_destination_refuse(self):
+@@ -80,12 +80,12 @@
+             with self.assertRaises(ValueError):r.restore(root/'link/out',sha(cap/'manifest.json'),base)
+     def test_new_member_SHA_refuses_without_overwriting(self):
+         with tempfile.TemporaryDirectory() as tmp:
+-            root=Path(tmp).resolve();r,base,cap,m=fixture(root);m['archives']['c1-h2-common.zip']['members']['new/0.json']['sha256']='0'*64;(cap/'manifest.json').write_text(json.dumps(m))
++            root=Path(tmp).resolve();r,base,cap,m=fixture(root);m['archives']['taper-raw-refined-common.zip']['members']['new/0.json']['sha256']='0'*64;(cap/'manifest.json').write_text(json.dumps(m))
+             with self.assertRaisesRegex(ValueError,'Decompressed original'):r.restore(root/'out',sha(cap/'manifest.json'),base)
+             with self.assertRaisesRegex(ValueError,'fresh restoration'):r.restore(root/'out',sha(cap/'manifest.json'),base)
+     def test_strict_archive_limit_and_inventory(self):
+         with tempfile.TemporaryDirectory() as tmp:
+-            root=Path(tmp).resolve();r,base,cap,m=fixture(root);m['archives']['c1-h2-common.zip']['bytes']=100000000;(cap/'manifest.json').write_text(json.dumps(m))
++            root=Path(tmp).resolve();r,base,cap,m=fixture(root);m['archives']['taper-raw-refined-common.zip']['bytes']=100000000;(cap/'manifest.json').write_text(json.dumps(m))
+             with self.assertRaisesRegex(ValueError,'strict size'):r.manifest(sha(cap/'manifest.json'),base)
+     def test_insufficient_disk_refuses_before_writes(self):
+         with tempfile.TemporaryDirectory() as tmp:
+@@ -95,7 +95,7 @@
+     def test_dependency_can_be_relocated_without_symlink(self):
+         with tempfile.TemporaryDirectory() as tmp:
+             root=Path(tmp).resolve();r,base,cap,m=fixture(root);relocated=root/'different-base-name';base.rename(relocated)
+-            r.restore(root/'out',sha(cap/'manifest.json'),relocated);self.assertEqual(len(list((root/'out').rglob('*.txt'))),186)
++            r.restore(root/'out',sha(cap/'manifest.json'),relocated);self.assertEqual(len(list((root/'out').rglob('*.txt'))),495)
+     def test_four_replayed_reports_require_entire_equality_and_exact_bytes(self):
+         text=(HERE/'replay_analysis.py').read_text();tree=ast.parse(text)
+         self.assertIn('actual_energy == historical_energy',text);self.assertIn('actual_peak == historical_peak',text)
+@@ -110,9 +110,20 @@
+         wrapper=load('fixed_pack_space_fixture',path)
+         with tempfile.TemporaryDirectory() as tmp:
+             root=Path(tmp).resolve();plan=root/'plan.json'
+-            plan.write_text(json.dumps(dict(source_root=str(root),destination=str(root/'archives'),archives={n:{} for n in ('c1-h2-common.zip','c1-h2-rigid.zip','c1-h2-spring.zip')})))
++            plan.write_text(json.dumps(dict(source_root=str(root),destination=str(root/'archives'),archives={n:{} for n in ('taper-raw-refined-common.zip','taper-raw-refined-rigid.zip','taper-raw-refined-spring.zip')})))
+             with patch.object(wrapper,'HERE',root),patch.object(wrapper,'ROOT',root),patch.object(wrapper.shutil,'disk_usage',return_value=SimpleNamespace(free=0)),self.assertRaisesRegex(ValueError,'free space'):
+                 wrapper.run(plan,sha(plan))
+             self.assertFalse((root/'archives').exists())
+ 
++    def test_direct_unchanged_pack_entry_has_one_call_caps_and_no_nice_or_exec(self):
++        wrapper=load('direct_fixed_pack_fixture',HERE.parent/'package_owned.py')
++        with tempfile.TemporaryDirectory() as tmp:
++            root=Path(tmp).resolve();plan=root/'plan.json';fake=root/'fake_package.py'
++            fake.write_text("def pack(path,expected):\n    with path.with_name('called').open('x') as f:f.write(expected)\n")
++            plan.write_text(json.dumps(dict(source_root=str(root),destination=str(root/'archives'),archives={n:{} for n in ('taper-raw-refined-common.zip','taper-raw-refined-rigid.zip','taper-raw-refined-spring.zip')})))
++            with patch.object(wrapper,'HERE',root),patch.object(wrapper,'ROOT',root),patch.object(wrapper,'PACKER',fake),patch.object(wrapper,'PACKER_SHA',sha(fake)),patch.object(wrapper.shutil,'disk_usage',return_value=SimpleNamespace(free=10**9)),patch.object(wrapper.os,'getpriority',return_value=10),patch.object(wrapper.os,'nice',side_effect=AssertionError('No second nice')),patch.object(wrapper.os,'execv',side_effect=AssertionError('No CLI exec')),patch.object(wrapper.signal,'signal'),patch.object(wrapper.signal,'alarm')as alarm,patch.object(wrapper.resource,'setrlimit')as limits:
++                wrapper.run(plan,sha(plan))
++                self.assertEqual((root/'called').read_text(),sha(plan));self.assertEqual([c.args for c in alarm.call_args_list],[(180,),(0,)])
++                limits.assert_called_once_with(wrapper.resource.RLIMIT_CPU,(150,151))
++
+ if __name__=='__main__':unittest.main()

@@ -1,0 +1,54 @@
+{
+  "source_sha256": "1e5cda2c801efeefdcd800ef696907199e12a99d19a18d2c523d4a7de397cb81",
+  "field_parser_sha256": "6327774e8cdb90178052bd8d49164b4764520d82c481596bc3eb8def453aa2e1",
+  "analysis_sha256": "bc0b3e8669a090d0dcd7b1591d6ff4796eec54437ed122bc0bc854d2fe23cdc2",
+  "solver_dat_sha256": "7853336bde0aac2dd921654d65dd4fab977dd93b9f3f35ba362c297b2286b628",
+  "frames": [
+    {
+      "load_factor": 0.25,
+      "elastic_compliance_energy_Nmm": 2461.9655307471853,
+      "perfect_plastic_dissipation_Nmm": 0.0,
+      "spring_energy_Nmm": 406.5947072836926,
+      "external_incremental_trapezoid_work_Nmm": 2868.560247457951,
+      "relative_closure_error": 3.286343086550403e-09,
+      "tolerance": 0.001,
+      "closure_pass": true
+    },
+    {
+      "load_factor": 0.5,
+      "elastic_compliance_energy_Nmm": 9847.86244902921,
+      "perfect_plastic_dissipation_Nmm": 0.022910328634780562,
+      "spring_energy_Nmm": 1626.3789300424814,
+      "external_incremental_trapezoid_work_Nmm": 11474.258731654329,
+      "relative_closure_error": 4.843664525022717e-07,
+      "tolerance": 0.001,
+      "closure_pass": true
+    },
+    {
+      "load_factor": 0.75,
+      "elastic_compliance_energy_Nmm": 22160.230158174334,
+      "perfect_plastic_dissipation_Nmm": 30.922081484400586,
+      "spring_energy_Nmm": 3659.5103099909193,
+      "external_incremental_trapezoid_work_Nmm": 25847.29455108075,
+      "relative_closure_error": 0.00013030371756128645,
+      "tolerance": 0.001,
+      "closure_pass": true
+    },
+    {
+      "load_factor": 1.0,
+      "elastic_compliance_energy_Nmm": 39497.26216658331,
+      "perfect_plastic_dissipation_Nmm": 992.8875009785419,
+      "spring_energy_Nmm": 6510.772296784273,
+      "external_incremental_trapezoid_work_Nmm": 46947.89599219366,
+      "relative_closure_error": 0.0011294642929531307,
+      "tolerance": 0.001,
+      "closure_pass": false
+    }
+  ],
+  "all_frames_pass": false,
+  "coupon_expected_PEEQ": 0.011588785046728972,
+  "coupon_max_absolute_PEEQ_error": 4.953271027716144e-09,
+  "coupon_PEEQ_tolerance": 1e-06,
+  "coupon_PEEQ_pass": true,
+  "scope": "Additive small-strain J2, constant900MPa perfectly plastic stress. Dissipation=900*integral(PEEQ). External work uses retained increments; tighten increments if this diagnostic fails. Not applied to finite-deformation Cauchy stresses."
+}

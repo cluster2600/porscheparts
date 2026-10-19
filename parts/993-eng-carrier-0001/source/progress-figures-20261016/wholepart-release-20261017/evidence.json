@@ -1,0 +1,1038 @@
+{
+  "status": "lossless_native_four_fields_extracted_no_new_solve",
+  "bundle_sha256": "5e87583ce00de4f98fccd745065d630e2ad69207baa1cc985890ab8a108b024b",
+  "numerical_assessment_sha256": "9982186046f1e975f38a5189e69bc923897372c7705892e842832ed90f7c591d",
+  "summary_sha256": "839a5047225b5aef2b8657fc0d9e87ad72d616ba6c1954e66947d0176275d072",
+  "source_FRD_sha256": "649d937d219720c3276dd633134836f07e27cca9281479d40abb4056763f278e",
+  "source_INP_sha256": "6dae0fa717c2fa3009737efcd81f6f976fba545fe69640afc93b59936f6976d5",
+  "surface_faces_NPZ_sha256": "b156b03ab99f65e534a024a63f9cec12529ce9eb6392b0579bf2c20f857a5119",
+  "plot_data_sha256": "5fbc06eac4069651afe232d8413b0cc4b19284065b9383d688bda13853cda390",
+  "tags": 103534,
+  "surface_faces": 31408,
+  "times": [
+    1.0,
+    2.0,
+    3.0,
+    4.0
+  ],
+  "maximum_u_mm": [
+    0.0,
+    0.053838082436085025,
+    0.009866625031396941,
+    0.05809006602808973
+  ],
+  "geometry": "Original finite-element INP coordinates and provided surface triangle IDs. No triangles or nodes added/removed; no subdivision.",
+  "color": "Face colour is mean of its three actual native nodal displacement magnitudes; global node extrema remain in the labels.",
+  "interpolation": "The original 31408 provided surface facets are retained for display; no claim of exact curved quadratic face rendering.",
+  "summary": {
+    "status": "wholepart_four_state_numerical_sensitivity_passed_no_physical_prediction",
+    "actual_pilot_returncode": 0,
+    "actual_native_returncode": 0,
+    "total_seconds": 182.19920970895328,
+    "native_seconds": 167.21010325010866,
+    "container_removed": true,
+    "OOMKilled": false,
+    "all59_pins_unchanged": true,
+    "nodes": 103534,
+    "C3D10": 54149,
+    "mechanical_DOF": 310602,
+    "CPUs": 1,
+    "memory_GiB": 6,
+    "network": "none",
+    "image_unchanged": "sha256:c9772ae9223a4f800a3ceda77d2494e67e34c8526eb0f204b3c8e052266641b4",
+    "binary_unchanged": "271f8411371b978d7a8d31a7a13d0765e6e1f872e8a8b1d6aac6d0856c71ec6c",
+    "solver_rebuilt": false,
+    "zero_control": {
+      "max_u_mm": 0.0,
+      "max_stress_component_MPa": 0.0,
+      "max_strain_error": 0.0,
+      "passed": true
+    },
+    "uniform_control": {
+      "max_nodal_error_mm": 9.958522721731367e-13,
+      "max_strain_error": 1.2434497875801753e-14,
+      "strain_limit_unchanged": 1e-07,
+      "max_stress_component_MPa": 1.875589e-09,
+      "passed": true
+    },
+    "all_four_full_frames_checked": true,
+    "all_force_moment_equilibria_passed": true,
+    "all_Gauss_detF_positive": true,
+    "release": {
+      "imposed_eigenstrain": "-1e-4*((Z-Zmin)/H)^2 I, nodal equivalent-temperature samples",
+      "provisional_fixture": "Original exact zmin plane,3845nodes; released to six rigid-mode gauges",
+      "attached_max_u_mm": 0.009866625031396941,
+      "released_max_u_mm": 0.05809006602808973,
+      "release_increment_max_u_mm": 0.0574710419093121,
+      "projected_bore_diameter_changes_mm": {
+        "bolt0": -0.00019053751916864314,
+        "bolt1": -0.00019355609479454472,
+        "bolt2": -0.00019990257058921657,
+        "bolt3": -0.00020591966416105834,
+        "end0": -0.0002744189609362735,
+        "end1": -0.00027501901371884685
+      },
+      "center_distances": {
+        "bolt0__bolt1": {
+          "original_mm": 39.99988960165897,
+          "deformed_mm": 39.99916698252313,
+          "change_mm": -0.0007226191358427059
+        },
+        "bolt2__bolt3": {
+          "original_mm": 39.99926639816674,
+          "deformed_mm": 39.998546350685245,
+          "change_mm": -0.0007200474814936797
+        },
+        "end0__end1": {
+          "original_mm": 559.999601612906,
+          "deformed_mm": 559.9864145008532,
+          "change_mm": -0.013187112052719385
+        }
+      },
+      "attached_max_stress_component_MPa": 15.98341,
+      "released_max_stress_component_MPa": 3.394341,
+      "reference_volume_mm3": 285403.5077847362,
+      "released_volume_4Gauss_mm3": 285381.33303052606,
+      "material_mass_kg": 1.2614835044085342,
+      "material_mass_change_kg": 0.0
+    },
+    "old_DAT_byte_identical": true,
+    "old_DAT_sha256": "51962537dbaf9cf567909932cd874b08839738a1e33fc65d2d7ebb3934813eae",
+    "old_RC1_preserved_sha256": "468494f3547ded879329fa74b003d76268761738b7f06dbec4d7f6168427e480",
+    "plan_sha256": "bd4cab78f07c4d820293305e879888f937c19e141227a2808057a1d533712789",
+    "preflight_sha256": "032a1d4bfc76cd5064656f252e42c1189de4ad633d3fdc2d1858b4b2fcf92e2e",
+    "actual_numeric_assessment_sha256": "9982186046f1e975f38a5189e69bc923897372c7705892e842832ed90f7c591d",
+    "actual_execution_receipt_sha256": "da207fd3b03ff265fe62dd16bc30e455f37df41ad5f67f81d0167e92ad2cda21",
+    "actual_solver_receipt_sha256": "5a16b5215b208a85d93d7dd7e089e040e7a865bd854a862974a270d94156f99f",
+    "actual_terminal_collection_sha256": "90d2919f39d1a1e267f32f63b02f2daf12e204e7985a76f7a903aa4251eb90fa",
+    "physical_print_prediction": false,
+    "real_seven_support_release_simulated": false,
+    "manufacturing_admission": false,
+    "global_admission": false
+  },
+  "numerical_frames": {
+    "zero": [
+      {
+        "analytic_strain_max_error": 0.0,
+        "bore_projected_metrics": {
+          "bolt0": {
+            "original": {
+              "projected_center_mm": [
+                -49.99600858727201,
+                -20.000253414650075,
+                -0.003984596725758248
+              ],
+              "projected_diameter_mm": 10.922879711997059,
+              "radial_residual_max_mm": 0.07412514455441244,
+              "fixed_projection_axis": 2,
+              "scope": "Least-squares projected circle of the identical original nodes; not a newly fitted 3D cylinder or physical bore tolerance."
+            },
+            "deformed": {
+              "projected_center_mm": [
+                -49.99600858727201,
+                -20.000253414650075,
+                -0.003984596725758248
+              ],
+              "projected_diameter_mm": 10.922879711997059,
+              "radial_residual_max_mm": 0.07412514455441244,
+              "fixed_projection_axis": 2,
+              "scope": "Least-squares projected circle of the identical original nodes; not a newly fitted 3D cylinder or physical bore tolerance."
+            },
+            "diameter_change_mm": 0.0,
+            "center_shift_mm": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          "bolt1": {
+            "original": {
+              "projected_center_mm": [
+                -49.9956951153845,
+                19.999635975861768,
+                0.00011338561276936058
+              ],
+              "projected_diameter_mm": 10.922788227821254,
+              "radial_residual_max_mm": 0.07939478997337979,
+              "fixed_projection_axis": 2,
+              "scope": "Least-squares projected circle of the identical original nodes; not a newly fitted 3D cylinder or physical bore tolerance."
+            },
+            "deformed": {
+              "projected_center_mm": [
+                -49.9956951153845,
+                19.999635975861768,
+                0.00011338561276936058
+              ],
+              "projected_diameter_mm": 10.922788227821254,
+              "radial_residual_max_mm": 0.07939478997337979,
+              "fixed_projection_axis": 2,
+              "scope": "Least-squares projected circle of the identical original nodes; not a newly fitted 3D cylinder or physical bore tolerance."
+            },
+            "diameter_change_mm": 0.0,
+            "center_shift_mm": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          "bolt2": {
+            "original": {
+              "projected_center_mm": [
+                50.00399289115603,
+                -20.000254390125853,
+                -0.004092231408527084
+              ],
+              "projected_diameter_mm": 10.922879431898034,
+              "radial_residual_max_mm": 0.07412374919229414,
+              "fixed_projection_axis": 2,
+              "scope": "Least-squares projected circle of the identical original nodes; not a newly fitted 3D cylinder or physical bore tolerance."
+            },
+            "deformed": {
+              "projected_center_mm": [
+                50.00399289115603,
+                -20.000254390125853,
+                -0.004092231408527084
+              ],
+              "projected_diameter_mm": 10.922879431898034,
+              "radial_residual_max_mm": 0.07412374919229414,
+              "fixed_projection_axis": 2,
+              "scope": "Least-squares projected circle of the identical original nodes; not a newly fitted 3D cylinder or physical bore tolerance."
+            },
+            "diameter_change_mm": 0.0,
+            "center_shift_mm": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          "bolt3": {
+            "original": {
+              "projected_center_mm": [
+                50.00344214771848,
+                19.99900965650588,
+                -0.017796830141775556
+              ],
+              "projected_diameter_mm": 10.924061344690685,
+              "radial_residual_max_mm": 0.08934220650398039,
+              "fixed_projection_axis": 2,
+              "scope": "Least-squares projected circle of the identical original nodes; not a newly fitted 3D cylinder or physical bore tolerance."
+            },
+            "deformed": {
+              "projected_center_mm": [
+                50.00344214771848,
+                19.99900965650588,
+                -0.017796830141775556
+              ],
+              "projected_diameter_mm": 10.924061344690685,
+              "radial_residual_max_mm": 0.08934220650398039,
+              "fixed_projection_axis": 2,
+              "scope": "Least-squares projected circle of the identical original nodes; not a newly fitted 3D cylinder or physical bore tolerance."
+            },
+            "diameter_change_mm": 0.0,
+            "center_shift_mm": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          "end0": {
+            "original": {
+              "projected_center_mm": [
+                -279.99807063234226,
+                0.09687932996397769,
+                0.00046673943021383404
+              ],
+              "projected_diameter_mm": 13.407487703342019,
+              "radial_residual_max_mm": 0.10650729402112358,
+              "fixed_projection_axis": 1,
+              "scope": "Least-squares projected circle of the identical original nodes; not a newly fitted 3D cylinder or physical bore tolerance."
+            },
+            "deformed": {
+              "projected_center_mm": [
+                -279.99807063234226,
+                0.09687932996397769,
+                0.00046673943021383404
+              ],
+              "projected_diameter_mm": 13.407487703342019,
+              "radial_residual_max_mm": 0.10650729402112358,
+              "fixed_projection_axis": 1,
+              "scope": "Least-squares projected circle of the identical original nodes; not a newly fitted 3D cylinder or physical bore tolerance."
+            },
+            "diameter_change_mm": 0.0,
+            "center_shift_mm": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          "end1": {
+            "original": {
+              "projected_center_mm": [
+                280.0015302661355,
+                0.06861295201830277,
+                -0.0006153816365300109
+              ],
+              "projected_diameter_mm": 13.40777137481536,
+              "radial_residual_max_mm": 0.10596903604817776,
+              "fixed_projection_axis": 1,
+              "scope": "Least-squares projected circle of the identical original nodes; not a newly fitted 3D cylinder or physical bore tolerance."
+            },
+            "deformed": {
+              "projected_center_mm": [
+                280.0015302661355,
+                0.06861295201830277,
+                -0.0006153816365300109
+              ],
+              "projected_diameter_mm": 13.40777137481536,
+              "radial_residual_max_mm": 0.10596903604817776,
+              "fixed_projection_axis": 1,
+              "scope": "Least-squares projected circle of the identical original nodes; not a newly fitted 3D cylinder or physical bore tolerance."
+            },
+            "diameter_change_mm": 0.0,
+            "center_shift_mm": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          }
+        },
+        "center_distances": {
+          "bolt0__bolt1": {
+            "original_mm": 39.99988960165897,
+            "deformed_mm": 39.99988960165897,
+            "change_mm": 0.0
+          },
+          "bolt2__bolt3": {
+            "original_mm": 39.99926639816674,
+            "deformed_mm": 39.99926639816674,
+            "change_mm": 0.0
+          },
+          "end0__end1": {
+            "original_mm": 559.999601612906,
+            "deformed_mm": 559.999601612906,
+            "change_mm": 0.0
+          }
+        },
+        "displacement_max_mm": 0.0,
+        "reference_volume_mm3": 285403.5077847362,
+        "deformed_volume_4Gauss_mm3": 285403.5077847362,
+        "minimum_Gauss_detF": 1.0,
+        "reference_mass_kg": 1.2614835044085342,
+        "material_mass_kg": 1.2614835044085342,
+        "mass_conserved_by_Lagrangian_definition": true,
+        "mass_note": "Same material and cells. Deformed volume is diagnostic; keeping rho0 constant on that new volume would incorrectly change material mass.",
+        "time": 1.0,
+        "net_force_N": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "net_moment_Nmm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "maximum_abs_stress_component_MPa": 0.0,
+        "force_residual_bound_N": 0.001,
+        "moment_residual_bound_Nmm": 0.01,
+        "equilibrium_pass": true,
+        "analytic_displacement_max_error_mm": 0.0,
+        "analytic_strain": 0.0,
+        "analytic_pass": true
+      }
+    ],
+    "uniform": [
+      {
+        "analytic_strain_max_error": 1.2434497875801753e-14,
+        "bore_projected_metrics": {
+          "bolt0": {
+            "original": {
+              "projected_center_mm": [
+                -49.99600858727201,
+                -20.000253414650075,
+                -0.003984596725758248
+              ],
+              "projected_diameter_mm": 10.922879711997059,
+              "radial_residual_max_mm": 0.07412514455441244,
+              "fixed_projection_axis": 2,
+              "scope": "Least-squares projected circle of the identical original nodes; not a newly fitted 3D cylinder or physical bore tolerance."
+            },
+            "deformed": {
+              "projected_center_mm": [
+                -50.01500898641303,
+                -20.000507411753443,
+                -0.006184198267050279
+              ],
+              "projected_diameter_mm": 10.921787424025856,
+              "radial_residual_max_mm": 0.07411773203995509,
+              "fixed_projection_axis": 2,
+              "scope": "Least-squares projected circle of the identical original nodes; not a newly fitted 3D cylinder or physical bore tolerance."
+            },
+            "diameter_change_mm": -0.0010922879712023104,
+            "center_shift_mm": [
+              -0.019000399141020807,
+              -0.0002539971033677091,
+              -0.002199601541292031
+            ]
+          },
+          "bolt1": {
+            "original": {
+              "projected_center_mm": [
+                -49.9956951153845,
+                19.999635975861768,
+                0.00011338561276936058
+              ],
+              "projected_diameter_mm": 10.922788227821254,
+              "radial_residual_max_mm": 0.07939478997337979,
+              "fixed_projection_axis": 2,
+              "scope": "Least-squares projected circle of the identical original nodes; not a newly fitted 3D cylinder or physical bore tolerance."
+            },
+            "deformed": {
+              "projected_center_mm": [
+                -50.01469554587269,
+                19.99538198981935,
+                -0.0020866257267504176
+              ],
+              "projected_diameter_mm": 10.921695948998472,
+              "radial_residual_max_mm": 0.07938685049438554,
+              "fixed_projection_axis": 2,
+              "scope": "Least-squares projected circle of the identical original nodes; not a newly fitted 3D cylinder or physical bore tolerance."
+            },
+            "diameter_change_mm": -0.0010922788227816227,
+            "center_shift_mm": [
+              -0.019000430488191,
+              -0.004253986042417779,
+              -0.002200011339519778
+            ]
+          },
+          "bolt2": {
+            "original": {
+              "projected_center_mm": [
+                50.00399289115603,
+                -20.000254390125853,
+                -0.004092231408527084
+              ],
+              "projected_diameter_mm": 10.922879431898034,
+              "radial_residual_max_mm": 0.07412374919229414,
+              "fixed_projection_axis": 2,
+              "scope": "Least-squares projected circle of the identical original nodes; not a newly fitted 3D cylinder or physical bore tolerance."
+            },
+            "deformed": {
+              "projected_center_mm": [
+                49.97499249186719,
+                -20.000508387131685,
+                -0.006291822186292609
+              ],
+              "projected_diameter_mm": 10.921787143954846,
+              "radial_residual_max_mm": 0.07411633681737673,
+              "fixed_projection_axis": 2,
+              "scope": "Least-squares projected circle of the identical original nodes; not a newly fitted 3D cylinder or physical bore tolerance."
+            },
+            "diameter_change_mm": -0.0010922879431873866,
+            "center_shift_mm": [
+              -0.02900039928884013,
+              -0.00025399700583150775,
+              -0.002199590777765525
+            ]
+          },
+          "bolt3": {
+            "original": {
+              "projected_center_mm": [
+                50.00344214771848,
+                19.99900965650588,
+                -0.017796830141775556
+              ],
+              "projected_diameter_mm": 10.924061344690685,
+              "radial_residual_max_mm": 0.08934220650398039,
+              "fixed_projection_axis": 2,
+              "scope": "Least-squares projected circle of the identical original nodes; not a newly fitted 3D cylinder or physical bore tolerance."
+            },
+            "deformed": {
+              "projected_center_mm": [
+                49.974441803503986,
+                19.994755733095715,
+                -0.019995050459622986
+              ],
+              "projected_diameter_mm": 10.922968938556226,
+              "radial_residual_max_mm": 0.08933327228326604,
+              "fixed_projection_axis": 2,
+              "scope": "Least-squares projected circle of the identical original nodes; not a newly fitted 3D cylinder or physical bore tolerance."
+            },
+            "diameter_change_mm": -0.0010924061344592673,
+            "center_shift_mm": [
+              -0.029000344214495044,
+              -0.004253923410164617,
+              -0.0021982203178474297
+            ]
+          },
+          "end0": {
+            "original": {
+              "projected_center_mm": [
+                -279.99807063234226,
+                0.09687932996397769,
+                0.00046673943021383404
+              ],
+              "projected_diameter_mm": 13.407487703342019,
+              "radial_residual_max_mm": 0.10650729402112358,
+              "fixed_projection_axis": 1,
+              "scope": "Least-squares projected circle of the identical original nodes; not a newly fitted 3D cylinder or physical bore tolerance."
+            },
+            "deformed": {
+              "projected_center_mm": [
+                -279.9940708252788,
+                0.09461561958627335,
+                -0.0017333072434667397
+              ],
+              "projected_diameter_mm": 13.406146954571694,
+              "radial_residual_max_mm": 0.10649664329173536,
+              "fixed_projection_axis": 1,
+              "scope": "Least-squares projected circle of the identical original nodes; not a newly fitted 3D cylinder or physical bore tolerance."
+            },
+            "diameter_change_mm": -0.0013407487703247511,
+            "center_shift_mm": [
+              0.003999807063451044,
+              -0.002263710377704342,
+              -0.0022000466736805738
+            ]
+          },
+          "end1": {
+            "original": {
+              "projected_center_mm": [
+                280.0015302661355,
+                0.06861295201830277,
+                -0.0006153816365300109
+              ],
+              "projected_diameter_mm": 13.40777137481536,
+              "radial_residual_max_mm": 0.10596903604817776,
+              "fixed_projection_axis": 1,
+              "scope": "Least-squares projected circle of the identical original nodes; not a newly fitted 3D cylinder or physical bore tolerance."
+            },
+            "deformed": {
+              "projected_center_mm": [
+                279.9495301131092,
+                0.06635206827826103,
+                -0.0028153200983289
+              ],
+              "projected_diameter_mm": 13.40643059767788,
+              "radial_residual_max_mm": 0.10595843914456626,
+              "fixed_projection_axis": 1,
+              "scope": "Least-squares projected circle of the identical original nodes; not a newly fitted 3D cylinder or physical bore tolerance."
+            },
+            "diameter_change_mm": -0.0013407771374787103,
+            "center_shift_mm": [
+              -0.052000153026313,
+              -0.0022608837400417414,
+              -0.0021999384617988893
+            ]
+          }
+        },
+        "center_distances": {
+          "bolt0__bolt1": {
+            "original_mm": 39.99988960165897,
+            "deformed_mm": 39.99588961269881,
+            "change_mm": -0.0039999889601602945
+          },
+          "bolt2__bolt3": {
+            "original_mm": 39.99926639816674,
+            "deformed_mm": 39.99526647152725,
+            "change_mm": -0.003999926639487228
+          },
+          "end0__end1": {
+            "original_mm": 559.999601612906,
+            "deformed_mm": 559.9436016527449,
+            "change_mm": -0.055999960161102535
+          }
+        },
+        "displacement_max_mm": 0.053838082436085025,
+        "reference_volume_mm3": 285403.5077847362,
+        "deformed_volume_4Gauss_mm3": 285317.89529422065,
+        "minimum_Gauss_detF": 0.9997000299989881,
+        "reference_mass_kg": 1.2614835044085342,
+        "material_mass_kg": 1.2614835044085342,
+        "mass_conserved_by_Lagrangian_definition": true,
+        "mass_note": "Same material and cells. Deformed volume is diagnostic; keeping rho0 constant on that new volume would incorrectly change material mass.",
+        "time": 2.0,
+        "net_force_N": [
+          5.259361218285211e-16,
+          -1.2967308157705032e-16,
+          -2.5306397460787015e-16
+        ],
+        "net_moment_Nmm": [
+          9.685871405049403e-16,
+          -4.340563133366178e-15,
+          3.390316712882788e-15
+        ],
+        "maximum_abs_stress_component_MPa": 1.875589e-09,
+        "force_residual_bound_N": 0.001,
+        "moment_residual_bound_Nmm": 0.01,
+        "equilibrium_pass": true,
+        "analytic_displacement_max_error_mm": 9.958522721731367e-13,
+        "analytic_strain": -9.999999999999977e-05,
+        "analytic_pass": true
+      }
+    ],
+    "incompatible-release": [
+      {
+        "analytic_strain_max_error": null,
+        "bore_projected_metrics": {
+          "bolt0": {
+            "original": {
+              "projected_center_mm": [
+                -49.99600858727201,
+                -20.000253414650075,
+                -0.003984596725758248
+              ],
+              "projected_diameter_mm": 10.922879711997059,
+              "radial_residual_max_mm": 0.07412514455441244,
+              "fixed_projection_axis": 2,
+              "scope": "Least-squares projected circle of the identical original nodes; not a newly fitted 3D cylinder or physical bore tolerance."
+            },
+            "deformed": {
+              "projected_center_mm": [
+                -49.995601518923145,
+                -19.999884423179104,
+                -0.0033952224629276526
+              ],
+              "projected_diameter_mm": 10.922799314000061,
+              "radial_residual_max_mm": 0.07419917298720158,
+              "fixed_projection_axis": 2,
+              "scope": "Least-squares projected circle of the identical original nodes; not a newly fitted 3D cylinder or physical bore tolerance."
+            },
+            "diameter_change_mm": -8.039799699766093e-05,
+            "center_shift_mm": [
+              0.00040706834886350407,
+              0.00036899147097102514,
+              0.0005893742628305951
+            ]
+          },
+          "bolt1": {
+            "original": {
+              "projected_center_mm": [
+                -49.9956951153845,
+                19.999635975861768,
+                0.00011338561276936058
+              ],
+              "projected_diameter_mm": 10.922788227821254,
+              "radial_residual_max_mm": 0.07939478997337979,
+              "fixed_projection_axis": 2,
+              "scope": "Least-squares projected circle of the identical original nodes; not a newly fitted 3D cylinder or physical bore tolerance."
+            },
+            "deformed": {
+              "projected_center_mm": [
+                -49.9953034749576,
+                19.999345164126552,
+                0.000609179188285974
+              ],
+              "projected_diameter_mm": 10.922700885339001,
+              "radial_residual_max_mm": 0.07924455350155313,
+              "fixed_projection_axis": 2,
+              "scope": "Least-squares projected circle of the identical original nodes; not a newly fitted 3D cylinder or physical bore tolerance."
+            },
+            "diameter_change_mm": -8.734248225295005e-05,
+            "center_shift_mm": [
+              0.0003916404268977658,
+              -0.00029081173521561254,
+              0.0004957935755166134
+            ]
+          },
+          "bolt2": {
+            "original": {
+              "projected_center_mm": [
+                50.00399289115603,
+                -20.000254390125853,
+                -0.004092231408527084
+              ],
+              "projected_diameter_mm": 10.922879431898034,
+              "radial_residual_max_mm": 0.07412374919229414,
+              "fixed_projection_axis": 2,
+              "scope": "Least-squares projected circle of the identical original nodes; not a newly fitted 3D cylinder or physical bore tolerance."
+            },
+            "deformed": {
+              "projected_center_mm": [
+                50.00360956565061,
+                -19.999848916433653,
+                -0.0034968529777627934
+              ],
+              "projected_diameter_mm": 10.922800329248183,
+              "radial_residual_max_mm": 0.07415331454831975,
+              "fixed_projection_axis": 2,
+              "scope": "Least-squares projected circle of the identical original nodes; not a newly fitted 3D cylinder or physical bore tolerance."
+            },
+            "diameter_change_mm": -7.910264985078186e-05,
+            "center_shift_mm": [
+              -0.0003833255054175311,
+              0.0004054736922007862,
+              0.0005953784307642903
+            ]
+          },
+          "bolt3": {
+            "original": {
+              "projected_center_mm": [
+                50.00344214771848,
+                19.99900965650588,
+                -0.017796830141775556
+              ],
+              "projected_diameter_mm": 10.924061344690685,
+              "radial_residual_max_mm": 0.08934220650398039,
+              "fixed_projection_axis": 2,
+              "scope": "Least-squares projected circle of the identical original nodes; not a newly fitted 3D cylinder or physical bore tolerance."
+            },
+            "deformed": {
+              "projected_center_mm": [
+                50.003050008412984,
+                19.998763713844063,
+                -0.017342849083498268
+              ],
+              "projected_diameter_mm": 10.923976855021897,
+              "radial_residual_max_mm": 0.08924373102003358,
+              "fixed_projection_axis": 2,
+              "scope": "Least-squares projected circle of the identical original nodes; not a newly fitted 3D cylinder or physical bore tolerance."
+            },
+            "diameter_change_mm": -8.448966878837894e-05,
+            "center_shift_mm": [
+              -0.00039213930549664155,
+              -0.00024594266181665603,
+              0.0004539810582772884
+            ]
+          },
+          "end0": {
+            "original": {
+              "projected_center_mm": [
+                -279.99807063234226,
+                0.09687932996397769,
+                0.00046673943021383404
+              ],
+              "projected_diameter_mm": 13.407487703342019,
+              "radial_residual_max_mm": 0.10650729402112358,
+              "fixed_projection_axis": 1,
+              "scope": "Least-squares projected circle of the identical original nodes; not a newly fitted 3D cylinder or physical bore tolerance."
+            },
+            "deformed": {
+              "projected_center_mm": [
+                -279.99518370811717,
+                0.09677201317700473,
+                0.005410273270037857
+              ],
+              "projected_diameter_mm": 13.407212001357369,
+              "radial_residual_max_mm": 0.10645653250928966,
+              "fixed_projection_axis": 1,
+              "scope": "Least-squares projected circle of the identical original nodes; not a newly fitted 3D cylinder or physical bore tolerance."
+            },
+            "diameter_change_mm": -0.0002757019846502118,
+            "center_shift_mm": [
+              0.0028869242250948446,
+              -0.00010731678697295521,
+              0.004943533839824023
+            ]
+          },
+          "end1": {
+            "original": {
+              "projected_center_mm": [
+                280.0015302661355,
+                0.06861295201830277,
+                -0.0006153816365300109
+              ],
+              "projected_diameter_mm": 13.40777137481536,
+              "radial_residual_max_mm": 0.10596903604817776,
+              "fixed_projection_axis": 1,
+              "scope": "Least-squares projected circle of the identical original nodes; not a newly fitted 3D cylinder or physical bore tolerance."
+            },
+            "deformed": {
+              "projected_center_mm": [
+                279.9986332001459,
+                0.06854658141932485,
+                0.004349316641726457
+              ],
+              "projected_diameter_mm": 13.407494652186227,
+              "radial_residual_max_mm": 0.10591168865467804,
+              "fixed_projection_axis": 1,
+              "scope": "Least-squares projected circle of the identical original nodes; not a newly fitted 3D cylinder or physical bore tolerance."
+            },
+            "diameter_change_mm": -0.00027672262913291945,
+            "center_shift_mm": [
+              -0.002897065989600378,
+              -6.637059897791897e-05,
+              0.004964698278256468
+            ]
+          }
+        },
+        "center_distances": {
+          "bolt0__bolt1": {
+            "original_mm": 39.99988960165897,
+            "deformed_mm": 39.99922978886032,
+            "change_mm": -0.0006598127986521263
+          },
+          "bolt2__bolt3": {
+            "original_mm": 39.99926639816674,
+            "deformed_mm": 39.99861503066981,
+            "change_mm": -0.0006513674969284011
+          },
+          "end0__end1": {
+            "original_mm": 559.999601612906,
+            "deformed_mm": 559.993817620593,
+            "change_mm": -0.0057839923130131865
+          }
+        },
+        "displacement_max_mm": 0.009866625031396941,
+        "reference_volume_mm3": 285403.5077847362,
+        "deformed_volume_4Gauss_mm3": 285381.9541211251,
+        "minimum_Gauss_detF": 0.999682148988616,
+        "reference_mass_kg": 1.2614835044085342,
+        "material_mass_kg": 1.2614835044085342,
+        "mass_conserved_by_Lagrangian_definition": true,
+        "mass_note": "Same material and cells. Deformed volume is diagnostic; keeping rho0 constant on that new volume would incorrectly change material mass.",
+        "time": 3.0,
+        "net_force_N": [
+          -2.0910456792585583e-06,
+          -2.5983529263810806e-06,
+          -5.609026089508781e-06
+        ],
+        "net_moment_Nmm": [
+          -0.0003955496842691763,
+          -0.0020001896122660437,
+          -0.00046769163368172494
+        ],
+        "maximum_abs_stress_component_MPa": 15.98341,
+        "force_residual_bound_N": 0.25039438993172203,
+        "moment_residual_bound_Nmm": 32.48125847768145,
+        "equilibrium_pass": true
+      },
+      {
+        "analytic_strain_max_error": null,
+        "bore_projected_metrics": {
+          "bolt0": {
+            "original": {
+              "projected_center_mm": [
+                -49.99600858727201,
+                -20.000253414650075,
+                -0.003984596725758248
+              ],
+              "projected_diameter_mm": 10.922879711997059,
+              "radial_residual_max_mm": 0.07412514455441244,
+              "fixed_projection_axis": 2,
+              "scope": "Least-squares projected circle of the identical original nodes; not a newly fitted 3D cylinder or physical bore tolerance."
+            },
+            "deformed": {
+              "projected_center_mm": [
+                -49.99126021409986,
+                -19.999791111546468,
+                -0.05743893923512019
+              ],
+              "projected_diameter_mm": 10.92268917447789,
+              "radial_residual_max_mm": 0.07412562256742028,
+              "fixed_projection_axis": 2,
+              "scope": "Least-squares projected circle of the identical original nodes; not a newly fitted 3D cylinder or physical bore tolerance."
+            },
+            "diameter_change_mm": -0.00019053751916864314,
+            "center_shift_mm": [
+              0.00474837317214849,
+              0.00046230310360684257,
+              -0.05345434250936194
+            ]
+          },
+          "bolt1": {
+            "original": {
+              "projected_center_mm": [
+                -49.9956951153845,
+                19.999635975861768,
+                0.00011338561276936058
+              ],
+              "projected_diameter_mm": 10.922788227821254,
+              "radial_residual_max_mm": 0.07939478997337979,
+              "fixed_projection_axis": 2,
+              "scope": "Least-squares projected circle of the identical original nodes; not a newly fitted 3D cylinder or physical bore tolerance."
+            },
+            "deformed": {
+              "projected_center_mm": [
+                -49.99095191375273,
+                19.999375659986292,
+                -0.05334213202451245
+              ],
+              "projected_diameter_mm": 10.92259467172646,
+              "radial_residual_max_mm": 0.0796313266369868,
+              "fixed_projection_axis": 2,
+              "scope": "Least-squares projected circle of the identical original nodes; not a newly fitted 3D cylinder or physical bore tolerance."
+            },
+            "diameter_change_mm": -0.00019355609479454472,
+            "center_shift_mm": [
+              0.004743201631768557,
+              -0.00026031587547592494,
+              -0.05345551763728181
+            ]
+          },
+          "bolt2": {
+            "original": {
+              "projected_center_mm": [
+                50.00399289115603,
+                -20.000254390125853,
+                -0.004092231408527084
+              ],
+              "projected_diameter_mm": 10.922879431898034,
+              "radial_residual_max_mm": 0.07412374919229414,
+              "fixed_projection_axis": 2,
+              "scope": "Least-squares projected circle of the identical original nodes; not a newly fitted 3D cylinder or physical bore tolerance."
+            },
+            "deformed": {
+              "projected_center_mm": [
+                50.006929504444344,
+                -19.999777687915504,
+                -0.05746266999503863
+              ],
+              "projected_diameter_mm": 10.922679529327445,
+              "radial_residual_max_mm": 0.07411536498806015,
+              "fixed_projection_axis": 2,
+              "scope": "Least-squares projected circle of the identical original nodes; not a newly fitted 3D cylinder or physical bore tolerance."
+            },
+            "diameter_change_mm": -0.00019990257058921657,
+            "center_shift_mm": [
+              0.0029366132883126284,
+              0.00047670221034934457,
+              -0.05337043858651155
+            ]
+          },
+          "bolt3": {
+            "original": {
+              "projected_center_mm": [
+                50.00344214771848,
+                19.99900965650588,
+                -0.017796830141775556
+              ],
+              "projected_diameter_mm": 10.924061344690685,
+              "radial_residual_max_mm": 0.08934220650398039,
+              "fixed_projection_axis": 2,
+              "scope": "Least-squares projected circle of the identical original nodes; not a newly fitted 3D cylinder or physical bore tolerance."
+            },
+            "deformed": {
+              "projected_center_mm": [
+                50.00637865876294,
+                19.998766309568,
+                -0.07117200481752842
+              ],
+              "projected_diameter_mm": 10.923855425026524,
+              "radial_residual_max_mm": 0.08934598962988893,
+              "fixed_projection_axis": 2,
+              "scope": "Least-squares projected circle of the identical original nodes; not a newly fitted 3D cylinder or physical bore tolerance."
+            },
+            "diameter_change_mm": -0.00020591966416105834,
+            "center_shift_mm": [
+              0.0029365110444601328,
+              -0.00024334693787864126,
+              -0.05337517467575286
+            ]
+          },
+          "end0": {
+            "original": {
+              "projected_center_mm": [
+                -279.99807063234226,
+                0.09687932996397769,
+                0.00046673943021383404
+              ],
+              "projected_diameter_mm": 13.407487703342019,
+              "radial_residual_max_mm": 0.10650729402112358,
+              "fixed_projection_axis": 1,
+              "scope": "Least-squares projected circle of the identical original nodes; not a newly fitted 3D cylinder or physical bore tolerance."
+            },
+            "deformed": {
+              "projected_center_mm": [
+                -279.98763957840924,
+                0.09683938437062506,
+                0.018844549678829006
+              ],
+              "projected_diameter_mm": 13.407213284381083,
+              "radial_residual_max_mm": 0.10661727894942796,
+              "fixed_projection_axis": 1,
+              "scope": "Least-squares projected circle of the identical original nodes; not a newly fitted 3D cylinder or physical bore tolerance."
+            },
+            "diameter_change_mm": -0.0002744189609362735,
+            "center_shift_mm": [
+              0.010431053933018575,
+              -3.994559335263048e-05,
+              0.01837781024861517
+            ]
+          },
+          "end1": {
+            "original": {
+              "projected_center_mm": [
+                280.0015302661355,
+                0.06861295201830277,
+                -0.0006153816365300109
+              ],
+              "projected_diameter_mm": 13.40777137481536,
+              "radial_residual_max_mm": 0.10596903604817776,
+              "fixed_projection_axis": 1,
+              "scope": "Least-squares projected circle of the identical original nodes; not a newly fitted 3D cylinder or physical bore tolerance."
+            },
+            "deformed": {
+              "projected_center_mm": [
+                279.99877420949235,
+                0.0686025843007615,
+                0.01776305426867436
+              ],
+              "projected_diameter_mm": 13.40749635580164,
+              "radial_residual_max_mm": 0.10581634942463936,
+              "fixed_projection_axis": 1,
+              "scope": "Least-squares projected circle of the identical original nodes; not a newly fitted 3D cylinder or physical bore tolerance."
+            },
+            "diameter_change_mm": -0.00027501901371884685,
+            "center_shift_mm": [
+              -0.002756056643136162,
+              -1.0367717541273636e-05,
+              0.018378435905204372
+            ]
+          }
+        },
+        "center_distances": {
+          "bolt0__bolt1": {
+            "original_mm": 39.99988960165897,
+            "deformed_mm": 39.99916698252313,
+            "change_mm": -0.0007226191358427059
+          },
+          "bolt2__bolt3": {
+            "original_mm": 39.99926639816674,
+            "deformed_mm": 39.998546350685245,
+            "change_mm": -0.0007200474814936797
+          },
+          "end0__end1": {
+            "original_mm": 559.999601612906,
+            "deformed_mm": 559.9864145008532,
+            "change_mm": -0.013187112052719385
+          }
+        },
+        "displacement_max_mm": 0.05809006602808973,
+        "reference_volume_mm3": 285403.5077847362,
+        "deformed_volume_4Gauss_mm3": 285381.33303052606,
+        "minimum_Gauss_detF": 0.9996994582644763,
+        "reference_mass_kg": 1.2614835044085342,
+        "material_mass_kg": 1.2614835044085342,
+        "mass_conserved_by_Lagrangian_definition": true,
+        "mass_note": "Same material and cells. Deformed volume is diagnostic; keeping rho0 constant on that new volume would incorrectly change material mass.",
+        "time": 4.0,
+        "net_force_N": [
+          -7.526730779067529e-14,
+          -7.052097365337717e-15,
+          1.6022559092395167e-14
+        ],
+        "net_moment_Nmm": [
+          1.152648693610144e-12,
+          -7.656438092536619e-12,
+          -3.053966210724604e-13
+        ],
+        "maximum_abs_stress_component_MPa": 3.394341,
+        "force_residual_bound_N": 0.001,
+        "moment_residual_bound_Nmm": 0.01,
+        "equilibrium_pass": true,
+        "release_increment_displacement_max_mm": 0.0574710419093121,
+        "release_bore_diameter_changes_mm": {
+          "bolt0": -0.00011013952217098222,
+          "bolt1": -0.00010621361254159467,
+          "bolt2": -0.00012079992073843471,
+          "bolt3": -0.0001214299953726794,
+          "end0": 1.2830237139382916e-06,
+          "end1": 1.7036154140726012e-06
+        }
+      }
+    ]
+  },
+  "global_admission": false,
+  "source_sha256": "40f87d55e15f396743c083f4371bf9aa9a109f91bfdd8e2b62a6e592c24ea3c2"
+}

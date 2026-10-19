@@ -1,0 +1,70 @@
+--- /Users/maxime/.codex/worktrees/993-carrier-revalidation/3dprinting993/work/carrier-process-20261017/bounded-webs-first-window-parameter-trial-preparation-001/trial.py
++++ /Users/maxime/.codex/worktrees/993-carrier-revalidation/3dprinting993/work/carrier-process-20261017/bounded-webs-first-window-parameter-trial-preparation-002/trial.py
+@@ -104,6 +104,7 @@
+         from OCP.BRepBndLib import BRepBndLib
+         from OCP.BRepCheck import BRepCheck_Analyzer
+         from OCP.BRepGProp import BRepGProp
++        from OCP.BRepTools import BRepTools
+         from OCP.Bnd import Bnd_Box
+         from OCP.GProp import GProp_GProps
+         from OCP.OSD import OSD_ThreadPool
+@@ -132,11 +133,12 @@
+         event('before_one_union_with_current07b')
+         candidate = old + stock
+         event('after_one_union_with_current07b')
+-        require(candidate.is_valid and len(candidate.solids()) == 1, 'One valid candidate Solid required')
+         raw = out / 'candidate-native.brep'
+         export_brep(candidate, raw)
+         report['outputs_sha256'] = {'candidate-native.brep': sha(raw)}
+-        event('valid_raw_candidate_saved_before_all_local_gates', sha256=sha(raw))
++        event('raw_candidate_saved_before_validity_and_all_local_gates', sha256=sha(raw))
++        report['candidate_native_valid'] = candidate.is_valid
++        report['candidate_native_solid_count'] = len(candidate.solids())
+         summary = GATE.retain_cut_helpers(R / p['strict_cut_source'], dict(TopTools_IndexedMapOfShape=TopTools_IndexedMapOfShape, TopExp=TopExp, Bnd_Box=Bnd_Box, BRepBndLib=BRepBndLib, TopAbs_SOLID=TopAbs_SOLID, TopAbs_FACE=TopAbs_FACE, TopAbs_EDGE=TopAbs_EDGE, TopAbs_VERTEX=TopAbs_VERTEX, BRepCheck_Analyzer=BRepCheck_Analyzer, volume=volume, SimpleNamespace=SimpleNamespace, TopoDS=TopoDS, BRep_Tool=BRep_Tool, GProp_GProps=GProp_GProps, BRepGProp=BRepGProp, BRepAdaptor_Surface=BRepAdaptor_Surface))
+         summaries = {}
+         for name, argument, tool in (('baseline-minus-candidate', baseline, candidate), ('current07b-minus-candidate', old, candidate), ('candidate-minus-current07b', candidate, old)):
+@@ -148,23 +150,35 @@
+             event('before_' + name, NonDestructive=True, RunParallel=False, FuzzyValue=0.)
+             cut.Build(); event('after_' + name, IsDone=cut.IsDone())
+             require(cut.IsDone(), 'Native Cut incomplete: ' + name)
+-            summaries[name] = summary(cut.Shape())
++            raw_shape = cut.Shape()
++            raw_path = out / (name + '-raw.brep')
++            if raw_shape.IsNull():
++                preservation = dict(path=None, sha256=None, reason='completed_native_Cut_returned_a_null_shape')
++            else:
++                require(BRepTools.Write_s(raw_shape, str(raw_path)) is True, 'Native raw Cut export failed: ' + name)
++                preservation = dict(path=raw_path.name, sha256=sha(raw_path), reason=None)
++            write(out / (name + '-raw-preservation.json'), preservation)
++            report.setdefault('raw_Cut_preservation', {})[name] = preservation
++            summaries[name] = summary(raw_shape)
+             write(out / (name + '.json'), summaries[name])
+             report['native_Cut_summaries'] = summaries
+-            if name != 'candidate-minus-current07b':
+-                strict_empty(summaries[name])
+-        added = summaries['candidate-minus-current07b']
+-        require(not added['native_topologically_empty'] and added.get('native_valid') is True and added['material_solid_volume_mm3'] > 0 and all(row['native_valid'] and row['volume_mm3'] > 0 for row in added.get('solids', [])), 'Strict positive valid new addition required')
+         native_volume, error = volume.precise_volume(candidate)
+         old_volume, old_error = volume.precise_volume(old)
+-        require(native_volume > old_volume, 'Adaptive candidate volume must exceed current07b')
+         study = json.loads((R / p['baseline_study']).read_text())
+         mass = native_volume * study['material']['density_tonne_mm3'] * 1000
+         box = candidate.bounding_box(); bounds = [list(box.min), list(box.max)]
+-        report.update(GATE.local_gate_flags(summaries['baseline-minus-candidate'], candidate.is_valid, len(candidate.solids()), mass, bounds, p),
+-            native_volume_mm3=native_volume, estimated_relative_integration_error=error, current07b_volume_mm3=old_volume,
++        measurements = dict(native_volume_mm3=native_volume, estimated_relative_integration_error=error, current07b_volume_mm3=old_volume,
+             current07b_estimated_relative_integration_error=old_error, delta_from_current07b_volume_mm3=native_volume-old_volume,
+-            mass_kg=mass, bounds_mm=bounds, status='single_first_window_trial_local_gates_complete_downstream_PENDING')
++            mass_kg=mass, bounds_mm=bounds, candidate_native_valid=report['candidate_native_valid'], candidate_native_solid_count=report['candidate_native_solid_count'])
++        write(out / 'local-measurements-before-gates.json', measurements)
++        report.update(measurements)
++        require(candidate.is_valid and len(candidate.solids()) == 1, 'One valid candidate Solid required')
++        strict_empty(summaries['baseline-minus-candidate'])
++        strict_empty(summaries['current07b-minus-candidate'])
++        added = summaries['candidate-minus-current07b']
++        require(not added['native_topologically_empty'] and added.get('native_valid') is True and added['material_solid_volume_mm3'] > 0 and all(row['native_valid'] and row['volume_mm3'] > 0 for row in added.get('solids', [])), 'Strict positive valid new addition required')
++        require(native_volume > old_volume, 'Adaptive candidate volume must exceed current07b')
++        report.update(GATE.local_gate_flags(summaries['baseline-minus-candidate'], candidate.is_valid, len(candidate.solids()), mass, bounds, p), status='single_first_window_trial_local_gates_complete_downstream_PENDING')
+         code = 0
+     except BaseException as error:
+         report['failure'] = dict(type=type(error).__name__, message=str(error), traceback=traceback.format_exc())

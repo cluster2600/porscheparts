@@ -1,0 +1,58 @@
+{
+  "status": "failed_with_classified_baseline_and_runtime_mismatches",
+  "make_exit_code": 2,
+  "tests": 4146,
+  "seconds": 267.17,
+  "failures": 4,
+  "errors": 1,
+  "skipped": 177,
+  "log": {
+    "path": "work/part-workflow/make-check-current-python311-20261016T155914Z.log",
+    "sha256": "d26477570f7710fef946ac1f194eaf73ce91f0c8179e0462def28364ca81c376"
+  },
+  "comparison_baseline": {
+    "path": "work/part-workflow/make-check-python311-20261016.log",
+    "sha256": "e825e628b7488cfc1c157ceeff7f790c632ee17d605a194f8f240f39f13df9e2"
+  },
+  "runtime": {
+    "python": "3.11.15",
+    "numpy": "1.26.4",
+    "environment": "work/part-workflow/runtimes/pyslm-coverage-011/env",
+    "support_source_sha256": "68db985051d252619d80dc96558c1db6d3d20b60b5965c4825d5aab51e228744",
+    "historic_process_expected_support_source_sha256": "fea7275ce46ad8d4f9c9471457c260111e7a1278b2dce315d126c8341e957c52"
+  },
+  "preexisting": [
+    {
+      "test": "test_917_bionic_head.BionicHeadTests.setUpClass",
+      "reason": "NumPy1.26.4 has no np.trapezoid; same error in prior Python3.11 log"
+    },
+    {
+      "test": "test_993_cooling_impeller_we43_f1.CoolingImpellerWE43F1Tests.test_committed_step_sources_and_catalogue_are_fail_closed",
+      "reason": "Exact floating dictionary mismatch; same values/error in baseline log"
+    },
+    {
+      "test": "test_993_fan_stator_alsi10mg_f1.FanStatorAlSi10MgF1Tests.test_committed_step_and_catalogue_are_fail_closed",
+      "reason": "Exact floating dictionary mismatch; same values/error in baseline log"
+    }
+  ],
+  "newly_observed_runtime_mismatches": [
+    {
+      "test": "test_carrier_process_20261016.NativeBuildPreparationTests.test_meshing_identity_receipt_is_strict_and_mutually_exclusive",
+      "reason": "Historical builder rejects installed coverage-runtime support SHA before reaching the input identity guard expected by this test"
+    },
+    {
+      "test": "test_carrier_process_20261016.NativeBuildPreparationTests.test_wrong_input_hash_cannot_create_output",
+      "reason": "Historical builder rejects installed coverage-runtime support SHA before reaching the input identity guard expected by this test"
+    }
+  ],
+  "new_code_failures_identified": [],
+  "previous_new_fixture_error_corrected": "test_finite_work_load_unload_cycle_has_exact_spring_work_and_zero_net_work passes",
+  "targeted_new_checks": {
+    "exact_support_and_contacts": 19,
+    "complete_group_coverage_wrapper": 3,
+    "material_graph_in_full_suite": 9,
+    "parallel_supports_in_full_suite": 4
+  },
+  "repeats_of_full_make_check": 0,
+  "scope": "One complete make check invocation in active shared worktree; later edits require their targeted checks"
+}

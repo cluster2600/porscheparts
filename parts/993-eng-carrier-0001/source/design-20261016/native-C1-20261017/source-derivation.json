@@ -1,0 +1,64 @@
+{
+  "restore.py": {
+    "reference": "parts/993-eng-carrier-0001/source/design-20261016/local-refinement-20261017/restore.py",
+    "reference_sha256": "3848e40a4b3e2e02a2aec668e3f5f7ca6ae0df916af457d68c0534d06e1fbc90",
+    "executed_copy_sha256": "909caf964dd03d05b287f740a28a09e48baa132d1154f348f7053d81bd189a1b",
+    "replacements": [
+      {
+        "before": "report['schema'] == 'actual-local-refinement-native-capsule-1'",
+        "after": "report['schema'] == 'actual-C1-BREP-native-capsule-1'"
+      },
+      {
+        "before": "{'common.zip', 'rigid.zip', 'spring.zip'}",
+        "after": "{'c1-native-common.zip', 'c1-native-rigid.zip', 'c1-native-spring.zip'}"
+      }
+    ]
+  },
+  "replay_analysis.py": {
+    "reference": "parts/993-eng-carrier-0001/source/design-20261016/local-refinement-20261017/replay_analysis.py",
+    "reference_sha256": "592ac05fe8101cb177e5706df44a172f61390c99b198980ad6d0a372af09d573",
+    "executed_copy_sha256": "436d4d8e4387792d171533dc18596190060fc6f01b575a3592b9616302d0b9b0",
+    "replacements": [
+      {
+        "before": "def load(name, path):",
+        "after": "def load(name, path, injected=None):"
+      },
+      {
+        "before": "module = importlib.util.module_from_spec(spec); spec.loader.exec_module(module)",
+        "after": "module = importlib.util.module_from_spec(spec); module.__dict__.update(injected or {}); spec.loader.exec_module(module)"
+      },
+      {
+        "before": "'Actual h2 mesh identity differs'",
+        "after": "'Actual C1 global7 mesh identity differs'"
+      },
+      {
+        "before": "energy = load('_unchanged_energy_h2', HERE / 'sources/audit_energy.py')",
+        "after": "binding = load('_exact_C1_BREP_binding', HERE / 'sources/cad_binding.py')\n        energy = load('_unchanged_energy_C1', HERE / 'sources/audit_energy.py', {'_verify_BREP_binding': binding.verify})"
+      },
+      {
+        "before": "peak = load('_unchanged_peak_locator_h2', HERE / 'sources/locate.py')",
+        "after": "peak = load('_unchanged_peak_locator_C1', HERE / 'sources/locate.py', {'_verify_BREP_binding': binding.verify})"
+      },
+      {
+        "before": "folder = case_root / 'cad/mesh-h2'",
+        "after": "folder = case_root / 'cad/mesh-7'"
+      },
+      {
+        "before": "report['h2_mesh_sha256']",
+        "after": "report['C1_mesh_sha256']"
+      },
+      {
+        "before": "['element_id'] == 85535",
+        "after": "['element_id'] == 84037"
+      },
+      {
+        "before": "element_id=85535, IP_one_based=1",
+        "after": "element_id=84037, IP_one_based=1"
+      },
+      {
+        "before": "status='two_actual_h2_cases_reanalysed_entire_results_equal'",
+        "after": "status='two_actual_C1_BREP_cases_reanalysed_entire_results_equal'"
+      }
+    ]
+  }
+}

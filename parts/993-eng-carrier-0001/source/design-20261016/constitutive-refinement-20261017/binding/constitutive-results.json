@@ -1,0 +1,329 @@
+{
+  "geometry_STEP_sha256": "ad12b8e0a382d8cc8b585254bb4b6fcfafab99fbcedf40691752271d04947a3e",
+  "scope": "Reference mesh9 sensitivities under the unchanged K1000 fixture and combined dead nodal loads. Perfect plastic900 is an idealization; published Flat1 is Grade23 ELI Z stress-relieved reference data, not an effective Grade5 carrier law. No damage, fatigue, cyclic hardening or failure criterion is included. Residual displacement retains the same springs at zero external load.",
+  "cases": [
+    {
+      "id": "perfect900_small_strain_025",
+      "retained_folder": "work/carrier-design-20261016/plastic900-mesh9",
+      "runtime_status": "executed",
+      "runtime_seconds": 168.3048176660668,
+      "owned_container_removed": true,
+      "constitutive_model": {
+        "type": "J2 elastic perfectly plastic isotropic reference",
+        "E_MPa": 107000,
+        "nu": 0.31,
+        "true_VM_yield_MPa": 900,
+        "equivalent_plastic_strain_table": [
+          [
+            900,
+            0
+          ],
+          [
+            900,
+            1
+          ]
+        ],
+        "source": "Explicit diagnostic idealization authorized by parent; not a measured or fitted Ti64 LPBF law",
+        "geometric_nonlinearity": false,
+        "reason_for_geometric_linearity": "Isolate material redistribution against exact frozen linear reference; finite rotation effects require a distinct study"
+      },
+      "full_load": {
+        "displacement_max_mm": 18.30169672762496,
+        "VM_max_MPa": 900.0005269326009,
+        "PEEQ_max": 0.01697764,
+        "plastic_quadrature_volume_mm3": 545.6963746403766
+      },
+      "independent_work": {
+        "all_frames_pass": false,
+        "maximum_relative_residual": 0.0011294642929531307,
+        "relative_tolerance": 0.001
+      },
+      "ENER_diagnostic_final_pass": true,
+      "ENER_maximum_reported_frame_error": 4.705512979263915e-08,
+      "compact_evidence": {
+        "plastic900-analysis.json": "bc0b3e8669a090d0dcd7b1591d6ff4796eec54437ed122bc0bc854d2fe23cdc2",
+        "plastic900-independent-work.json": "3c507798634bce2cdf4b0bcff007580a5bbfcd0c38ef9c1eb50911d47c1d7db1"
+      },
+      "raw_inputs_sha256": {
+        "runtime.json": "5f4cb118dc00392d3f8830afdb60eee8386be2bc0a19faa11e771395bcadabc2",
+        "plan.json": "3375d9d4c9d6747079bae6e1e6276bdb9edc4fe16a01e895053c69a99ea60890",
+        "source-snapshot.py": "34fdc1af393e6dd74b5584381007b2d19ac0b7d848695086bf881a95bede2101",
+        "mesh.inp": "80dab86242b2433bccb9dfe3ed3d1321a21f638c8da245586fb5c4c3f10c765a",
+        "mesh.npz": "b156b03ab99f65e534a024a63f9cec12529ce9eb6392b0579bf2c20f857a5119",
+        "mesh.json": "f9076864f2c928ca9723a340907a92498df452ba48b6f7208fa09ba00431f089",
+        "combined-spring-1000-plastic900.inp": "035a06c47185dd2bd1e7844f786bbdbf65eb6c50840efc0973176c4d17360d62",
+        "combined-spring-1000-plastic900.dat": "7853336bde0aac2dd921654d65dd4fab977dd93b9f3f35ba362c297b2286b628",
+        "combined-spring-1000-plastic900.sta": "17feecdf018a0b758c449eaf9f21bf5a22cc751dc43a7bd897c938dc5b7ab9b0"
+      }
+    },
+    {
+      "id": "perfect900_NLGEOM_025",
+      "retained_folder": "work/carrier-design-20261016/plastic900-nlgeom-mesh9",
+      "runtime_status": "executed",
+      "runtime_seconds": 250.21630212501623,
+      "owned_container_removed": true,
+      "constitutive_model": {
+        "type": "J2 elastic perfectly plastic isotropic reference",
+        "E_MPa": 107000,
+        "nu": 0.31,
+        "true_VM_yield_MPa": 900,
+        "equivalent_plastic_strain_table": [
+          [
+            900,
+            0
+          ],
+          [
+            900,
+            1
+          ]
+        ],
+        "source": "Explicit diagnostic idealization authorized by parent; not a measured or fitted Ti64 LPBF law",
+        "geometric_nonlinearity": true,
+        "reason_for_geometric_linearity": "Not applied: this separate case adds finite deformation to the same 900MPa J2 law, frozen support and nodal loads."
+      },
+      "full_load": {
+        "displacement_max_mm": 18.62025992906118,
+        "VM_max_MPa": 900.0004621483448,
+        "PEEQ_max": 0.01352494,
+        "plastic_quadrature_volume_mm3": 554.2707226087753
+      },
+      "independent_work": {
+        "all_frames_pass": true,
+        "maximum_relative_residual": 5.157836308648992e-06,
+        "relative_tolerance": 0.0001
+      },
+      "ENER_diagnostic_final_pass": true,
+      "ENER_maximum_reported_frame_error": 0.002922080780972225,
+      "compact_evidence": {
+        "plastic900-nlgeom-analysis.json": "0e6f57c539fdd7ede6297d7332d199e3cdb79f24042c63f1198189c855a88587",
+        "plastic900-nlgeom-finite-work.json": "f949744854153e00c907685fe498195cb6afd9971fff7f47ffd405d21097fd34"
+      },
+      "raw_inputs_sha256": {
+        "runtime.json": "d049f7be0129e76b2efac6705fe9945e6f987bd04cf693957fccc5f6383cb2dd",
+        "plan.json": "2baa7a10de3fe8c590ff376b08dd08510ce409af61d009835b79cc812593963b",
+        "source-snapshot.py": "ab5986852f21e8feb43de4a5c58fd7e2322e837a5ae573f86814ff0a7608ba98",
+        "mesh.inp": "80dab86242b2433bccb9dfe3ed3d1321a21f638c8da245586fb5c4c3f10c765a",
+        "mesh.npz": "b156b03ab99f65e534a024a63f9cec12529ce9eb6392b0579bf2c20f857a5119",
+        "mesh.json": "f9076864f2c928ca9723a340907a92498df452ba48b6f7208fa09ba00431f089",
+        "combined-spring-1000-plastic900-NLGEOM.inp": "a1eb308ed397b768a0bcca85d16352766f2673dd01130532e23bc994fe1a01a3",
+        "combined-spring-1000-plastic900-NLGEOM.dat": "f0ec0aca09c31e3d3deb13c3c14ad644918b0acbdc5cd43a7fb02e798c4c93af",
+        "combined-spring-1000-plastic900-NLGEOM.sta": "4bd469de66a7412711cbf4918badfe860a20e8fbb2051dee188895f0bd14c07e"
+      }
+    },
+    {
+      "id": "perfect900_small_strain_0125",
+      "retained_folder": "work/carrier-design-20261016/plastic900-refined-mesh9",
+      "runtime_status": "executed",
+      "runtime_seconds": 418.63162470888346,
+      "owned_container_removed": true,
+      "constitutive_model": {
+        "type": "J2 elastic perfectly plastic isotropic reference",
+        "E_MPa": 107000,
+        "nu": 0.31,
+        "true_VM_yield_MPa": 900,
+        "equivalent_plastic_strain_table": [
+          [
+            900,
+            0
+          ],
+          [
+            900,
+            1
+          ]
+        ],
+        "source": "Explicit diagnostic idealization authorized by parent; not a measured or fitted Ti64 LPBF law",
+        "geometric_nonlinearity": false,
+        "reason_for_geometric_linearity": "Isolate material redistribution against exact frozen linear reference; finite rotation effects require a distinct study"
+      },
+      "full_load": {
+        "displacement_max_mm": 18.300916725877258,
+        "VM_max_MPa": 900.0004378670915,
+        "PEEQ_max": 0.01688903,
+        "plastic_quadrature_volume_mm3": 545.7839512707535
+      },
+      "independent_work": {
+        "all_frames_pass": true,
+        "maximum_relative_residual": 0.00029191821362473114,
+        "relative_tolerance": 0.001
+      },
+      "ENER_diagnostic_final_pass": true,
+      "ENER_maximum_reported_frame_error": 2.6398215946521475e-08,
+      "compact_evidence": {
+        "plastic900-refined-analysis.json": "a30206ce991cc614be852974d7e15821ab4ceae462c145c2ac26614392111373",
+        "plastic900-refined-independent-work.json": "1888cbd6c0bbd8f786fb085d4872b4d6593bb61608867e67d96caf935cab8c32"
+      },
+      "raw_inputs_sha256": {
+        "runtime.json": "f572aeabe2400fb3b9b05410c45695ce993bb561d38ca1f100c38f15f31fcf93",
+        "plan.json": "3ef396015ced33e284679425e6beffcae20a4679d10da4ccf15cfd47e5eb01de",
+        "source-snapshot.py": "eda395d03fb2cae3f703196cf1c05367b57a24041a08422469a34c633604062a",
+        "mesh.inp": "80dab86242b2433bccb9dfe3ed3d1321a21f638c8da245586fb5c4c3f10c765a",
+        "mesh.npz": "b156b03ab99f65e534a024a63f9cec12529ce9eb6392b0579bf2c20f857a5119",
+        "mesh.json": "f9076864f2c928ca9723a340907a92498df452ba48b6f7208fa09ba00431f089",
+        "combined-spring-1000-plastic900-step125.inp": "45ed167a1fb48e1c642876f1cd5c11ec37c0772a71096177624848ad7a017f1b",
+        "combined-spring-1000-plastic900-step125.dat": "cb77bc5113461f4a981ea11bfaa835d06cb29c94fd60b16c4875ad76674841ba",
+        "combined-spring-1000-plastic900-step125.sta": "3df9dec81c7c2da139f07c1ed41471293c400a13c0c6d175e3646671774c4d17"
+      }
+    },
+    {
+      "id": "published_Flat1_NLGEOM_0125_unload",
+      "retained_folder": "work/carrier-design-20261016/luo-flat1-verified-nlgeom-unload-mesh9",
+      "runtime_status": "executed",
+      "runtime_seconds": 1130.8001999580301,
+      "owned_container_removed": true,
+      "constitutive_model": {
+        "type": "Isotropic J2 with published pre-necking Grade23 ELI true-stress/plastic-strain curve",
+        "E_MPa": 106000,
+        "nu": 0.31,
+        "nu_source": "Frozen carrier isotropic assumption, not supplied by dataset",
+        "true_VM_yield_MPa": 956.8778700555556,
+        "geometric_nonlinearity": true,
+        "curve_input": "process-20261016/material-luo-set1/flat-set-1-plastic.inp",
+        "curve_sha256": "b6123556870e2cfe6d183d4c4e1b512da0b5c273ba62e792a3e6c6b51b236ac7",
+        "curve_provenance_sha256": "986a13f5acea0cabc999b3996fc590a1b729c56070fb7c5eff0e8431cd4d3077",
+        "maximum_measured_equivalent_plastic_strain": 0.04698042567140203,
+        "model_origin": "Published Rp0.2 used as model first yield; plastic strain origin reset explicitly in source conversion",
+        "condition": "LaserForm Ti Gr23(A)ELI,ProX DMP320,275W/800mm/s,60um/hatch82um,Ztension,SR670C5h+argon12h",
+        "source_record": "https://zenodo.org/records/6587905",
+        "article": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9880387/",
+        "license": "CC-BY-4.0",
+        "case_selection": "First published process set, first flat specimen, fixed by data agent independently of carrier outcome"
+      },
+      "full_load": {
+        "displacement_max_mm": 18.683490284482183,
+        "VM_max_MPa": 1013.2942855497444,
+        "PEEQ_max": 0.01154945,
+        "plastic_quadrature_volume_mm3": 338.45665066079306
+      },
+      "independent_work": {
+        "all_frames_pass": true,
+        "maximum_relative_residual": 5.637878071167981e-06,
+        "relative_tolerance": 0.0001,
+        "minimum_Gauss_detF": 0.9863948602235302,
+        "cycle_net_external_work_Nmm": 477.2641751245394,
+        "plastic_work_curve_integral_J_trapezoid_estimate_Nmm": 448.04237724700073
+      },
+      "ENER_diagnostic_final_pass": true,
+      "ENER_maximum_reported_frame_error": 0.0015851409714693634,
+      "compact_evidence": {
+        "luo-flat1-analysis.json": "42a37d1f736fc0ffd29c67d34caca54989f6faa8c49229f7814c4d81cdefc450",
+        "luo-flat1-finite-work.json": "dcb6e61829ddf09548da0c537068943ef443233fdad232d4f9abe3dec1afd46a"
+      },
+      "raw_inputs_sha256": {
+        "runtime.json": "4d89f06abf5804d932957fc7f66f2f0b182d191e26c799df07009060ff87cde0",
+        "plan.json": "943d8a8478cda785101c22ed7bdda92c5225272a9c5cd2c5da692e112121a0a6",
+        "source-snapshot.py": "6e7c65681a774cffbbc251a5f2b50fa275802ab42d4b0f0b40027dd01d3c0c38",
+        "mesh.inp": "80dab86242b2433bccb9dfe3ed3d1321a21f638c8da245586fb5c4c3f10c765a",
+        "mesh.npz": "b156b03ab99f65e534a024a63f9cec12529ce9eb6392b0579bf2c20f857a5119",
+        "mesh.json": "f9076864f2c928ca9723a340907a92498df452ba48b6f7208fa09ba00431f089",
+        "combined-spring-1000-luo-flat1-NLGEOM.inp": "babc246c0d6d739a045c244258599643f7f214948fa715b7fe913b5d9ac3ef30",
+        "combined-spring-1000-luo-flat1-NLGEOM.dat": "4457f8e1fdb6d6c05ea3d3c58515225ec0c1a890475383f9e91dca1307c3f82d",
+        "combined-spring-1000-luo-flat1-NLGEOM.sta": "75b75f99dc13ad1c3d52eb3cec49d2b6bbc67c5aa4dd7a99953b2d0c5a598c1c",
+        "material-curve.inp": "b6123556870e2cfe6d183d4c4e1b512da0b5c273ba62e792a3e6c6b51b236ac7",
+        "material-provenance.json": "986a13f5acea0cabc999b3996fc590a1b729c56070fb7c5eff0e8431cd4d3077",
+        "material-DATA_LICENSE.json": "4e50008af6c2b03e6ba9c4658ded5490779274f12adaaa3aeb2d359f0373ca59"
+      },
+      "within_measured_pre_necking_domain": true,
+      "measured_plastic_domain_max": 0.04698042567140203,
+      "unloading_complete": true,
+      "unloaded_residual": {
+        "total_time": 2.0,
+        "load_factor": 0.0,
+        "displacement_max_mm": 0.09925853846232784,
+        "displacement_peak_node": 3943,
+        "displacement_peak_original_xyz_mm": [
+          30.307345545289,
+          -6.2883407190154,
+          30.0
+        ],
+        "VM_max_MPa": 845.7416518671683,
+        "VM_peak_element": 38852,
+        "PEEQ_max": 0.01154945,
+        "PEEQ_detection_threshold": 1e-08,
+        "PEEQ_peak_element": 38852,
+        "PEEQ_peak_element_corner_centroid_mm": [
+          87.749535220834,
+          15.26901425822275,
+          16.879368724248
+        ],
+        "plastic_quadrature_volume_mm3": 338.45665066079306,
+        "plastic_element_centroid_bounds_mm": [
+          [
+            21.30759977485375,
+            -26.592014182063,
+            -3.536395995179325
+          ],
+          [
+            105.46208700567001,
+            26.3906171967655,
+            29.6125591210195
+          ]
+        ],
+        "spring_energy_Nmm": 0.00649543850952473,
+        "CCX_solid_internal_energy_Nmm": 476.72852908041136,
+        "external_incremental_trapezoid_work_Nmm": 477.2641751245394,
+        "external_gross_trapezoid_work_Nmm": 95940.16924668677,
+        "work_absolute_residual_Nmm": -0.5291506056184971,
+        "work_relative_closure_error": 0.0011087163738623396,
+        "work_relative_to_gross_error": 5.515422890884373e-06,
+        "applied_force_N": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "applied_moment_about_model_origin_Nmm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "force_residual_N": [
+          1.4234926370244524e-09,
+          -1.2010841863618587e-10,
+          -1.0095120156483617e-08
+        ],
+        "moment_residual_Nmm": [
+          -0.0036030637826862805,
+          -0.0012734340135739375,
+          9.026920042710419e-05
+        ]
+      },
+      "ENER_all_frames_pass": false
+    }
+  ],
+  "retained_rejections": [
+    {
+      "folder": "work/carrier-design-20261016/luo-flat1-nlgeom-unload-mesh9",
+      "reason": "Coupon reference on raw248 differed by 0.313MPa; no carrier solve started. Official CCX2.21 plcopy preprocessing to200 points was subsequently reproduced without changing raw curve or 0.01MPa coupon tolerance.",
+      "runtime_sha256": "ec20587550e59a2661c6c15fa15c261e1fcf6eb27704756923030570d864f08e"
+    },
+    {
+      "case": "perfect900_small_strain_025",
+      "reason": "Independent work error0.001129464 exceeds fixed0.001. Refined0.125 case is separate; original failure retained."
+    }
+  ],
+  "source_snapshots": {
+    "constitutive-analysis-v1.py": "6327774e8cdb90178052bd8d49164b4764520d82c481596bc3eb8def453aa2e1",
+    "constitutive-analysis-v2.py": "9291a9b911d24c34c6dd018135693f5af11c93215c7849d296857723e5086298",
+    "constitutive-analysis-v3.py": "ea583d521738c1b775655fc0485c20c9d6db4e4e16310273899e5c1e1d4a8e85",
+    "small-plastic-work-v1.py": "1e5cda2c801efeefdcd800ef696907199e12a99d19a18d2c523d4a7de397cb81",
+    "finite-work-v1.py": "05401be69c8eee65b717d744378766f1b144338cc319e0cc6a2777a47aa89232",
+    "finite-work-v2.py": "e13397c0fd15d48d29b859bff371b2f135a73d34ee94ba104f74c869149b821c"
+  },
+  "test_status": {
+    "test_file": "tests/test_carrier_design_20261016.py",
+    "test_sha256": "2f072f1b2315b5f2b687181570a63bc63e9eb7fad715f70e407305ae03c075b7",
+    "passed": 10,
+    "log_label": "work/carrier-design-20261016/design-tests-latest.log",
+    "log_sha256": "b132f3b2c994c414cabdabe64f6893e21d78e0e6dc27bbbf4e34234255e170bd"
+  },
+  "figure": {
+    "label": "constitutive-evidence/luo-flat1-cycle.png",
+    "receipt": "constitutive-evidence/luo-flat1-cycle.json",
+    "source_sha256": "26e18520beb1bca125d0f14625609cd2ceb071bd8eb729f08b5137a1a71023be",
+    "outputs_sha256": {
+      ".png": "fd76752e49dfffdb93fdc3a4ac26faabff1992ccfca734e000435b30b508e2ae",
+      ".svg": "72584586f353435a33408b0887f6c63003c6731e4cdd6da7cdb7dba0ee584a4c",
+      ".json": "66fe96b0be4ad3ebe99a026ff4945738b10f22dcb6deea99b73760ed5dbaa6ce"
+    },
+    "visually_checked": true
+  }
+}

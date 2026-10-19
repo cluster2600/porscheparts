@@ -1,0 +1,3485 @@
+{
+  "schema": "owned-original-unprofiled-Ti64-Q1-conduction-terminal-1",
+  "status": "closed_actual_RC0_one_frozen_solid_Ti64_Q1_discrete_conduction_software_witness_only",
+  "actual_tool_handle": 77639,
+  "actual_initial_chunk": "fbb581",
+  "actual_terminal_chunk": "66636e",
+  "actual_tool_returncode": 0,
+  "actual_child_returncode": 0,
+  "direct_child_reaped": true,
+  "owned_group_empty": true,
+  "fresh_local_process_queries": {
+    "PID": {
+      "argv": [
+        "/bin/ps",
+        "-p",
+        "17022",
+        "-o",
+        "pid=,ppid=,pgid=,stat="
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": ""
+    },
+    "PGID": {
+      "argv": [
+        "/bin/ps",
+        "-g",
+        "17022",
+        "-o",
+        "pid=,ppid=,pgid=,stat="
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": ""
+    }
+  },
+  "fresh_assessor_absence": {
+    "exact_name": {
+      "argv": [
+        "/usr/local/bin/docker",
+        "--host",
+        "unix:///var/run/docker.sock",
+        "--config",
+        "/Users/maxime/.codex/worktrees/993-carrier-revalidation/3dprinting993/work/carrier-adamantine-Ti64-conduction-preparation-002/output-001/empty-Docker-config",
+        "container",
+        "ls",
+        "-a",
+        "--no-trunc",
+        "--filter",
+        "name=^/carrier-Ti64-Q1-conduction-assessor-20261018-001$",
+        "--format",
+        "{{.ID}}"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    "exact_ID": {
+      "argv": [
+        "/usr/local/bin/docker",
+        "--host",
+        "unix:///var/run/docker.sock",
+        "--config",
+        "/Users/maxime/.codex/worktrees/993-carrier-revalidation/3dprinting993/work/carrier-adamantine-Ti64-conduction-preparation-002/output-001/empty-Docker-config",
+        "container",
+        "ls",
+        "-a",
+        "--no-trunc",
+        "--filter",
+        "id=48238fcedf2173a01aecc3517a6288180a89dbd1293b36602c710fdbeb7ad67d",
+        "--format",
+        "{{.ID}}"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    }
+  },
+  "assessor_actual_container_id": "48238fcedf2173a01aecc3517a6288180a89dbd1293b36602c710fdbeb7ad67d",
+  "assessor_create": {
+    "argv": [
+      "--host",
+      "unix:///var/run/docker.sock",
+      "--config",
+      "/Users/maxime/.codex/worktrees/993-carrier-revalidation/3dprinting993/work/carrier-adamantine-Ti64-conduction-preparation-002/output-001/empty-Docker-config",
+      "create",
+      "--pull=never",
+      "--name",
+      "carrier-Ti64-Q1-conduction-assessor-20261018-001",
+      "--label",
+      "org.porscheparts.carrier.thermal-capability=Q1-conduction-thermal-exclusive-20261018-001",
+      "--platform",
+      "linux/amd64",
+      "--network",
+      "none",
+      "--read-only",
+      "--cpus",
+      "2",
+      "--memory",
+      "2g",
+      "--memory-swap",
+      "2g",
+      "--pids-limit",
+      "128",
+      "--cap-drop",
+      "ALL",
+      "--security-opt",
+      "no-new-privileges",
+      "--tmpfs",
+      "/tmp:rw,nosuid,nodev,size=128m",
+      "--env",
+      "OMP_NUM_THREADS=1",
+      "--env",
+      "OPENBLAS_NUM_THREADS=1",
+      "--env",
+      "PYTHONDONTWRITEBYTECODE=1",
+      "--mount",
+      "type=bind,src=/Users/maxime/.codex/worktrees/993-carrier-revalidation/3dprinting993/work/carrier-adamantine-Ti64-conduction-preparation-002,dst=/benchmark,readonly",
+      "--mount",
+      "type=bind,src=/Users/maxime/.codex/worktrees/993-carrier-revalidation/3dprinting993/work/carrier-adamantine-Ti64-conduction-preparation-002/output-001,dst=/output",
+      "--entrypoint",
+      "/opt/venv/bin/python3",
+      "sha256:f9c09072b2cfb4d177c8700263f76c6f065d81fd68f8115697a884b4473e63b1",
+      "/benchmark/assess.py",
+      "/output",
+      "--plan-sha256",
+      "c8a31c9c5e592d7307006a4d2926979eec514076564d26efb5b17ad65a33de04"
+    ],
+    "actual": {
+      "Id": "48238fcedf2173a01aecc3517a6288180a89dbd1293b36602c710fdbeb7ad67d",
+      "Name": "/carrier-Ti64-Q1-conduction-assessor-20261018-001",
+      "Image": "sha256:f9c09072b2cfb4d177c8700263f76c6f065d81fd68f8115697a884b4473e63b1",
+      "Owner": "Q1-conduction-thermal-exclusive-20261018-001",
+      "NanoCpus": 2000000000,
+      "Memory": 2147483648,
+      "MemorySwap": 2147483648,
+      "PidsLimit": 128,
+      "NetworkMode": "none",
+      "ReadonlyRootfs": true,
+      "Mounts": [
+        {
+          "Destination": "/benchmark",
+          "Mode": "",
+          "Propagation": "rprivate",
+          "RW": false,
+          "Source": "/Users/maxime/.codex/worktrees/993-carrier-revalidation/3dprinting993/work/carrier-adamantine-Ti64-conduction-preparation-002",
+          "Type": "bind"
+        },
+        {
+          "Destination": "/output",
+          "Mode": "",
+          "Propagation": "rprivate",
+          "RW": true,
+          "Source": "/Users/maxime/.codex/worktrees/993-carrier-revalidation/3dprinting993/work/carrier-adamantine-Ti64-conduction-preparation-002/output-001",
+          "Type": "bind"
+        }
+      ],
+      "Running": false,
+      "ExitCode": 0,
+      "OOMKilled": false,
+      "StateError": ""
+    }
+  },
+  "assessor_state": {
+    "Id": "48238fcedf2173a01aecc3517a6288180a89dbd1293b36602c710fdbeb7ad67d",
+    "Name": "/carrier-Ti64-Q1-conduction-assessor-20261018-001",
+    "Image": "sha256:f9c09072b2cfb4d177c8700263f76c6f065d81fd68f8115697a884b4473e63b1",
+    "Owner": "Q1-conduction-thermal-exclusive-20261018-001",
+    "NanoCpus": 2000000000,
+    "Memory": 2147483648,
+    "MemorySwap": 2147483648,
+    "PidsLimit": 128,
+    "NetworkMode": "none",
+    "ReadonlyRootfs": true,
+    "Mounts": [
+      {
+        "Destination": "/benchmark",
+        "Mode": "",
+        "Propagation": "rprivate",
+        "RW": false,
+        "Source": "/Users/maxime/.codex/worktrees/993-carrier-revalidation/3dprinting993/work/carrier-adamantine-Ti64-conduction-preparation-002",
+        "Type": "bind"
+      },
+      {
+        "Destination": "/output",
+        "Mode": "",
+        "Propagation": "rprivate",
+        "RW": true,
+        "Source": "/Users/maxime/.codex/worktrees/993-carrier-revalidation/3dprinting993/work/carrier-adamantine-Ti64-conduction-preparation-002/output-001",
+        "Type": "bind"
+      }
+    ],
+    "Running": false,
+    "ExitCode": 0,
+    "OOMKilled": false,
+    "StateError": ""
+  },
+  "assessor_cleanup": {
+    "container_id": "48238fcedf2173a01aecc3517a6288180a89dbd1293b36602c710fdbeb7ad67d",
+    "creation_attempted": true,
+    "owned_container_absent": true,
+    "absence": {
+      "returncode": 0,
+      "stdout": "",
+      "stderr": "",
+      "timed_out": false,
+      "cancelled": false
+    }
+  },
+  "assessment_sha256": "dc3a1104f63c425ae6264806c457f3414aa53f7281d527f0ce07808ce8aaf8e6",
+  "supervision_sha256": "8fbb9fbb37f2abc0e15c72c5ca6afb9020e919324ea27a91f8610540c2fec98c",
+  "thermal_assessment_sha256": "bce05c4804a7ebfea5bdcc0b598cdcfaccff4aabf9672793be854f2f1cc35d81",
+  "all_outputs": {
+    "output-001/assessment.json": {
+      "bytes": 119054,
+      "sha256": "dc3a1104f63c425ae6264806c457f3414aa53f7281d527f0ce07808ce8aaf8e6",
+      "identity": [
+        16777234,
+        352757925,
+        33188,
+        119054,
+        1792312039002092206,
+        1792312039002092206
+      ],
+      "declared_tool_alias": null
+    },
+    "output-001/assessor-cleanup.json": {
+      "bytes": 277,
+      "sha256": "3a123bd9153e6cb21559f9e0a45342e890adfd916da76a37b5d022057815bbf9",
+      "identity": [
+        16777234,
+        352757923,
+        33188,
+        277,
+        1792312038947788138,
+        1792312038947788138
+      ],
+      "declared_tool_alias": null
+    },
+    "output-001/assessor-create.json": {
+      "bytes": 2737,
+      "sha256": "34fc2fff1b961e2216e2665357d54a097be693a7a2155d4f6fe2316fd6ea028c",
+      "identity": [
+        16777234,
+        352757555,
+        33188,
+        2737,
+        1792312032250049548,
+        1792312032250049548
+      ],
+      "declared_tool_alias": null
+    },
+    "output-001/assessor-state.json": {
+      "bytes": 1108,
+      "sha256": "0de6fb93984a4ec151ad7d1470e86c4b1ff63da0979acca2d3478cd7e17a2036",
+      "identity": [
+        16777234,
+        352757920,
+        33188,
+        1108,
+        1792312038802323160,
+        1792312038802323160
+      ],
+      "declared_tool_alias": null
+    },
+    "output-001/assessor.stdout.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "identity": [
+        16777234,
+        352757556,
+        33188,
+        0,
+        1792312032250465425,
+        1792312032250511134
+      ],
+      "declared_tool_alias": null
+    },
+    "output-001/assessor.stdout.log.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "identity": [
+        16777234,
+        352757557,
+        33188,
+        0,
+        1792312032250621426,
+        1792312032250650135
+      ],
+      "declared_tool_alias": null
+    },
+    "output-001/events.jsonl": {
+      "bytes": 461,
+      "sha256": "7fda53de339dd155737f8d6fc7718a0b7fc5e46565ad1cfbf90c3999b92784d0",
+      "identity": [
+        16777234,
+        352757296,
+        33188,
+        461,
+        1792312039002807210,
+        1792312039002807210
+      ],
+      "declared_tool_alias": null
+    },
+    "output-001/operative-plan.json": {
+      "bytes": 45840,
+      "sha256": "c8a31c9c5e592d7307006a4d2926979eec514076564d26efb5b17ad65a33de04",
+      "identity": [
+        16777234,
+        352757295,
+        33188,
+        45840,
+        1792312025903747267,
+        1792312025903747267
+      ],
+      "declared_tool_alias": null
+    },
+    "output-001/remote/evidence/carrier-Ti64-Q1-conduction-20261018-001-ti64-frozen-conduction-ownership.json": {
+      "bytes": 3037,
+      "sha256": "402294842977aadd1c1fd518c9f75824a5747cd5bf58e081c142ba921319b34b",
+      "identity": [
+        16777234,
+        352757539,
+        33188,
+        3037,
+        1792312032122951344,
+        1792312032122951344
+      ],
+      "declared_tool_alias": null
+    },
+    "output-001/remote/evidence/prepared-inputs.json": {
+      "bytes": 110,
+      "sha256": "45485f24545a0b988fb8dbdad5bb616941e1fe8db0dcfb18bb7c0f260baec484",
+      "identity": [
+        16777234,
+        352757540,
+        33188,
+        110,
+        1792312032123163637,
+        1792312032123163637
+      ],
+      "declared_tool_alias": null
+    },
+    "output-001/remote/evidence/ti64-frozen-conduction.json": {
+      "bytes": 2904,
+      "sha256": "194d50cae7c17d2709b52d171835496d34d91b758923ff0841e18f07a746ae08",
+      "identity": [
+        16777234,
+        352757541,
+        33188,
+        2904,
+        1792312032123588765,
+        1792312032123588765
+      ],
+      "declared_tool_alias": null
+    },
+    "output-001/remote/evidence/ti64-frozen-conduction.log": {
+      "bytes": 526,
+      "sha256": "43e885f1a54f1f66c0688714b22521b93cdc88195f193af0f2cab1a11bb14655",
+      "identity": [
+        16777234,
+        352757542,
+        33188,
+        526,
+        1792312032123774516,
+        1792312032123774516
+      ],
+      "declared_tool_alias": null
+    },
+    "output-001/remote/native-assessment.json": {
+      "bytes": 46588,
+      "sha256": "1c813c64194f6eadcc87802dce3cfb2f1f6e0cfacaef03889cf292fdebe27b26",
+      "identity": [
+        16777234,
+        352757543,
+        33188,
+        46588,
+        1792312032124313311,
+        1792312032124313311
+      ],
+      "declared_tool_alias": null
+    },
+    "output-001/remote/outputs/ti64-frozen-conduction/ti64-frozen-Q1-conduction.0.0.vtu": {
+      "bytes": 1700,
+      "sha256": "2577c781214972ca5affc808a7247cac6f19e87fa178d97a8cb886d2de07fc13",
+      "identity": [
+        16777234,
+        352757546,
+        33188,
+        1700,
+        1792312032124644813,
+        1792312032124644813
+      ],
+      "declared_tool_alias": null
+    },
+    "output-001/remote/outputs/ti64-frozen-conduction/ti64-frozen-Q1-conduction.0.pvtu": {
+      "bytes": 763,
+      "sha256": "c53400a74e64885c9f1c18ddf0c5e16d8bedd66f18bfa3dc10c9eb06524debe7",
+      "identity": [
+        16777234,
+        352757547,
+        33188,
+        763,
+        1792312032124824730,
+        1792312032124824730
+      ],
+      "declared_tool_alias": null
+    },
+    "output-001/remote/outputs/ti64-frozen-conduction/ti64-frozen-Q1-conduction.2048.0.vtu": {
+      "bytes": 1710,
+      "sha256": "029c81bae5349d6da9138fe5c9b677ba5b803e3721295ce543ed3e8a33e2946d",
+      "identity": [
+        16777234,
+        352757548,
+        33188,
+        1710,
+        1792312032125006940,
+        1792312032125006940
+      ],
+      "declared_tool_alias": null
+    },
+    "output-001/remote/outputs/ti64-frozen-conduction/ti64-frozen-Q1-conduction.2048.pvtu": {
+      "bytes": 766,
+      "sha256": "96cc70ac76ddc8493fe248d62f7914100221e5e64309f746d4af4b0c5bdf69bb",
+      "identity": [
+        16777234,
+        352757549,
+        33188,
+        766,
+        1792312032125168816,
+        1792312032125168816
+      ],
+      "declared_tool_alias": null
+    },
+    "output-001/remote/outputs/ti64-frozen-conduction/ti64-frozen-Q1-conduction.4096.0.vtu": {
+      "bytes": 1708,
+      "sha256": "59d4cce604ab2f9fa9a0d60ec07b609a5d37da64632678dea5ff70751040092f",
+      "identity": [
+        16777234,
+        352757550,
+        33188,
+        1708,
+        1792312032125340942,
+        1792312032125340942
+      ],
+      "declared_tool_alias": null
+    },
+    "output-001/remote/outputs/ti64-frozen-conduction/ti64-frozen-Q1-conduction.4096.pvtu": {
+      "bytes": 766,
+      "sha256": "9a36a7c11658b5663c05e901e6da989c5fe42e9a5ef1f607414724b7b2b5f84a",
+      "identity": [
+        16777234,
+        352757551,
+        33188,
+        766,
+        1792312032125561568,
+        1792312032125561568
+      ],
+      "declared_tool_alias": null
+    },
+    "output-001/remote/outputs/ti64-frozen-conduction/ti64-frozen-Q1-conduction.pvd": {
+      "bytes": 584,
+      "sha256": "efe995f6aaf28688e246262bd6aad5bb4f850df4be16684e26af6488cd5f155f",
+      "identity": [
+        16777234,
+        352757552,
+        33188,
+        584,
+        1792312032125858903,
+        1792312032125858903
+      ],
+      "declared_tool_alias": null
+    },
+    "output-001/remote/owner.json": {
+      "bytes": 344,
+      "sha256": "8d518226539eee580ac954d0bc6b97c1e56759e05b0f18bb41845502c19704d7",
+      "identity": [
+        16777234,
+        352757553,
+        33188,
+        344,
+        1792312032126200613,
+        1792312032126200613
+      ],
+      "declared_tool_alias": null
+    },
+    "output-001/run-controller.stderr.log": {
+      "bytes": 83,
+      "sha256": "8ed8827ef6d35f4734842f96cbd0e659e6030b7327788d8d52855322cd9174d1",
+      "identity": [
+        16777234,
+        352757426,
+        33188,
+        83,
+        1792312031101924027,
+        1792312031101924027
+      ],
+      "declared_tool_alias": null
+    },
+    "output-001/run-transfer.json": {
+      "bytes": 128817,
+      "sha256": "d46ccd17a420dcdd6458db72551234e7954f2263292fcf6c2716f76f5e43ab74",
+      "identity": [
+        16777234,
+        352757425,
+        33188,
+        128817,
+        1792312032113781624,
+        1792312032113781624
+      ],
+      "declared_tool_alias": null
+    },
+    "output-001/run-transport.json": {
+      "bytes": 420,
+      "sha256": "28119529607cc85a883eae606a82ebfdca5ca0ab740e08b863155f3176176063",
+      "identity": [
+        16777234,
+        352757536,
+        33188,
+        420,
+        1792312032121923547,
+        1792312032121923547
+      ],
+      "declared_tool_alias": null
+    },
+    "output-001/thermal-assessment.json": {
+      "bytes": 17479,
+      "sha256": "bce05c4804a7ebfea5bdcc0b598cdcfaccff4aabf9672793be854f2f1cc35d81",
+      "identity": [
+        16777234,
+        352757910,
+        33188,
+        17479,
+        1792312038580722695,
+        1792312038580722695
+      ],
+      "declared_tool_alias": null
+    },
+    "execution-001/execution-receipt.json": {
+      "bytes": 43333,
+      "sha256": "8fbb9fbb37f2abc0e15c72c5ca6afb9020e919324ea27a91f8610540c2fec98c",
+      "identity": [
+        16777234,
+        352757929,
+        33188,
+        43333,
+        1792312039114698158,
+        1792312039114698158
+      ],
+      "declared_tool_alias": null
+    },
+    "execution-001/started.json": {
+      "bytes": 236,
+      "sha256": "9d0572b71243a779da5986e8ce1f023e4c8c8f90254678704800adc01f939cee",
+      "identity": [
+        16777234,
+        352757293,
+        33188,
+        236,
+        1792312025807286952,
+        1792312025807286952
+      ],
+      "declared_tool_alias": null
+    },
+    "execution-001/stderr.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "identity": [
+        16777234,
+        352757292,
+        33188,
+        0,
+        1792312025801387001,
+        1792312025801404209
+      ],
+      "declared_tool_alias": null
+    },
+    "execution-001/stdout.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "identity": [
+        16777234,
+        352757291,
+        33188,
+        0,
+        1792312025801319958,
+        1792312025801341875
+      ],
+      "declared_tool_alias": null
+    }
+  },
+  "current_local_pins": {
+    "work/carrier-process-20261017/source010-exposure-preflight-003/supervise.py": {
+      "bytes": 10124,
+      "sha256": "4d18d747b5db84725b4c3da50cc12b7eb41c6ce9c9a9239a34f3e130b8980a37",
+      "identity": [
+        16777234,
+        351206046,
+        33188,
+        10124,
+        1792205273827426889,
+        1792205273827426889
+      ],
+      "declared_tool_alias": null
+    },
+    "work/carrier-adamantine-Ti64-conduction-preparation-002/run.py": {
+      "bytes": 14822,
+      "sha256": "d86dc948a362e8daefb391aab2441c682d2060bc660961de15d56bb1b925b612",
+      "identity": [
+        16777234,
+        352718525,
+        33188,
+        14822,
+        1792311221320493483,
+        1792311221320493483
+      ],
+      "declared_tool_alias": null
+    },
+    "work/carrier-adamantine-Ti64-runtime-attestation-preparation-003/source-packet.json": {
+      "bytes": 2846,
+      "sha256": "1763134eef2b97deb31e3eab9598d4cd8c723175380f7ba2c9c4f80957f8502e",
+      "identity": [
+        16777234,
+        352520675,
+        33188,
+        2846,
+        1792304577574094241,
+        1792304577574094241
+      ],
+      "declared_tool_alias": null
+    },
+    "work/carrier-adamantine-Ti64-runtime-attestation-preparation-003/README.md": {
+      "bytes": 3864,
+      "sha256": "92de945425ae9d4547f73a9f816b0baaa9ee047ea45b37deb2b6875c875c5ade",
+      "identity": [
+        16777234,
+        352520673,
+        33188,
+        3864,
+        1792304577566315948,
+        1792304577566315948
+      ],
+      "declared_tool_alias": null
+    },
+    "work/carrier-adamantine-Ti64-runtime-attestation-preparation-003/candidate-roster.json": {
+      "bytes": 210011,
+      "sha256": "443591a573215e83b572bf8264f769ce83545b31e13d3b383a2ceff14704d420",
+      "identity": [
+        16777234,
+        352520207,
+        33188,
+        210011,
+        1792304462729234836,
+        1792304462729234836
+      ],
+      "declared_tool_alias": null
+    },
+    "work/carrier-adamantine-Ti64-runtime-attestation-preparation-003/control-source-derivations.json": {
+      "bytes": 22880,
+      "sha256": "00a97bbd6162aa47e13b3a08cdb089d04c80a492d3b38183484e8f0bedf68347",
+      "identity": [
+        16777234,
+        352520368,
+        33188,
+        22880,
+        1792304503435191444,
+        1792304503435191444
+      ],
+      "declared_tool_alias": null
+    },
+    "work/carrier-adamantine-Ti64-runtime-attestation-preparation-003/discovery-scope.json": {
+      "bytes": 1252,
+      "sha256": "6da61902396f6748aed68d3c7d060637867dd921a4df748da5343daa58819b03",
+      "identity": [
+        16777234,
+        352520208,
+        33188,
+        1252,
+        1792304462729441171,
+        1792304462729441171
+      ],
+      "declared_tool_alias": null
+    },
+    "work/carrier-adamantine-Ti64-runtime-attestation-preparation-003/known-interpreter-evidence.json": {
+      "bytes": 2953,
+      "sha256": "6aea107b2603de1990b1fe974ef670951d0cf90a9e90c00c1b499c3bffa48e2e",
+      "identity": [
+        16777234,
+        352520671,
+        33188,
+        2953,
+        1792304577565331734,
+        1792304577565331734
+      ],
+      "declared_tool_alias": null
+    },
+    "work/carrier-adamantine-Ti64-runtime-attestation-preparation-003/preflight.py": {
+      "bytes": 6032,
+      "sha256": "cd71f90897157793dd8276a90a1171727cdc2fbefeaaae71acf8bbddee513408",
+      "identity": [
+        16777234,
+        352520367,
+        33188,
+        6032,
+        1792304503434367814,
+        1792304503434367814
+      ],
+      "declared_tool_alias": null
+    },
+    "work/carrier-adamantine-Ti64-runtime-attestation-preparation-003/preparation-assessment.json": {
+      "bytes": 600,
+      "sha256": "f5805e49ea741aee20a188e5145ed89bfc936bebffdcc1e4240c6d7284a01085",
+      "identity": [
+        16777234,
+        352520674,
+        33188,
+        600,
+        1792304577566584533,
+        1792304577566584533
+      ],
+      "declared_tool_alias": null
+    },
+    "work/carrier-adamantine-Ti64-runtime-attestation-preparation-003/protocol.json": {
+      "bytes": 15264,
+      "sha256": "41db62a21d84fb367e3b936d1345755386adfc1853cab4f29e832914fe18d0c5",
+      "identity": [
+        16777234,
+        352520212,
+        33188,
+        15264,
+        1792304462731822643,
+        1792304462731822643
+      ],
+      "declared_tool_alias": null
+    },
+    "work/carrier-adamantine-Ti64-runtime-attestation-preparation-003/read-metadata.diff": {
+      "bytes": 2472,
+      "sha256": "c2b48965a35f10d908ba968e5fb00c05050111bed4c6e73f9396117e3a0086ac",
+      "identity": [
+        16777234,
+        352520672,
+        33188,
+        2472,
+        1792304577566227239,
+        1792304577566227239
+      ],
+      "declared_tool_alias": null
+    },
+    "work/carrier-adamantine-Ti64-runtime-attestation-preparation-003/read_metadata.py": {
+      "bytes": 164302,
+      "sha256": "a4d0ee519bc2d97f47d2036eea21c4583fdc9abcc815dc088f1f9f4dd7f93753",
+      "identity": [
+        16777234,
+        352520210,
+        33188,
+        164302,
+        1792304462730060008,
+        1792304462730060008
+      ],
+      "declared_tool_alias": null
+    },
+    "work/carrier-adamantine-Ti64-runtime-attestation-preparation-003/run_query_once.py": {
+      "bytes": 1186,
+      "sha256": "b36a21ed407bc8ae2c7a41d800691663fa004997e065fb716ac0349dc9908aab",
+      "identity": [
+        16777234,
+        352520209,
+        33188,
+        1186,
+        1792304462729560713,
+        1792304462729560713
+      ],
+      "declared_tool_alias": null
+    },
+    "work/carrier-adamantine-Ti64-runtime-attestation-preparation-003/selfcheck.py": {
+      "bytes": 12784,
+      "sha256": "34c24a163d855fdabfda55a083ee75589d0f324a867ee508d44d4fef385695e3",
+      "identity": [
+        16777234,
+        352520366,
+        33188,
+        12784,
+        1792304503433933062,
+        1792304503433933062
+      ],
+      "declared_tool_alias": null
+    },
+    "work/carrier-adamantine-Ti64-runtime-attestation-preparation-003/source-derivation.json": {
+      "bytes": 2154,
+      "sha256": "1c4e303a9eb79fb0f21bcd15d04aa9d0fc065b609b879845953e41361211333e",
+      "identity": [
+        16777234,
+        352520211,
+        33188,
+        2154,
+        1792304462730413010,
+        1792304462730413010
+      ],
+      "declared_tool_alias": null
+    },
+    "/Users/maxime/.codex/worktrees/993-carrier-revalidation/3dprinting993/work/carrier-adamantine-unprofiled-binary-hash-preparation-003/root-terminal-review-001.json": {
+      "bytes": 1791,
+      "sha256": "80b7f8560ec719069af5479b6bbe3d31f40ac08e45d707ad243bd525c75864d8",
+      "identity": [
+        16777234,
+        352486682,
+        33188,
+        1791,
+        1792302056450465202,
+        1792302056450465202
+      ],
+      "declared_tool_alias": null
+    },
+    "/Users/maxime/.codex/worktrees/993-carrier-revalidation/3dprinting993/work/carrier-adamantine-unprofiled-binary-hash-preparation-003/actual-tool.json": {
+      "bytes": 794,
+      "sha256": "6927d5553b91cbaa337dc7504531aa1d1dc45debabcb4fcbd18b4020bc67e01b",
+      "identity": [
+        16777234,
+        352486349,
+        33188,
+        794,
+        1792301948440630849,
+        1792301948440630849
+      ],
+      "declared_tool_alias": null
+    },
+    "/Users/maxime/.codex/worktrees/993-carrier-revalidation/3dprinting993/work/carrier-adamantine-unprofiled-binary-hash-preparation-003/stdout.json": {
+      "bytes": 1370,
+      "sha256": "35e361cfbf328af578872b8d9c6422b36dab0281b4ebc4f933e8bccd92d8b2a5",
+      "identity": [
+        16777234,
+        352486347,
+        33188,
+        1370,
+        1792301948401061516,
+        1792301948401061516
+      ],
+      "declared_tool_alias": null
+    },
+    "/Users/maxime/.codex/worktrees/993-carrier-revalidation/3dprinting993/work/carrier-adamantine-unprofiled-attestation-preparation-001/root-terminal-review-001.json": {
+      "bytes": 17295,
+      "sha256": "27e268c61bef17ed5680ed9a4a6ad2f8027900a545de53869f2be1704da647d1",
+      "identity": [
+        16777234,
+        352485137,
+        33188,
+        17295,
+        1792301608929780556,
+        1792301608929780556
+      ],
+      "declared_tool_alias": null
+    },
+    "/Users/maxime/.codex/worktrees/993-carrier-revalidation/3dprinting993/work/carrier-adamantine-unprofiled-attestation-preparation-001/stdout.json": {
+      "bytes": 12451,
+      "sha256": "c613a30b085956a80c23cb6ceae72ad3eb0af62446bcc6850d66112fc19dac55",
+      "identity": [
+        16777234,
+        352483442,
+        33188,
+        12451,
+        1792301551637895843,
+        1792301551637895843
+      ],
+      "declared_tool_alias": null
+    },
+    "/Users/maxime/.codex/worktrees/993-carrier-revalidation/3dprinting993/work/carrier-adamantine-thermomechanical-readiness-001/metadata-003/stdout.json": {
+      "bytes": 158938,
+      "sha256": "9cd805bc27b31f482fc4ed330bdf2afcd4eb40d3875ea123f95a3fb31fd071aa",
+      "identity": [
+        16777234,
+        352372133,
+        33188,
+        158938,
+        1792285979656440760,
+        1792285979656440760
+      ],
+      "declared_tool_alias": null
+    },
+    "/Users/maxime/.codex/worktrees/993-carrier-revalidation/3dprinting993/work/carrier-adamantine-thermomechanical-readiness-001/metadata-004/read_metadata.py": {
+      "bytes": 6370,
+      "sha256": "a6af9a39556d4edb006157f01548c9096baeb1c2932cf058bc61554434d7e7a2",
+      "identity": [
+        16777234,
+        352372278,
+        33188,
+        6370,
+        1792286017417329193,
+        1792286017417329193
+      ],
+      "declared_tool_alias": null
+    },
+    "/Users/maxime/.codex/worktrees/993-carrier-revalidation/3dprinting993/work/carrier-adamantine-thermomechanical-readiness-001/kali-metadata.stdout.json": {
+      "bytes": 2424,
+      "sha256": "408a41c3afca53005124c345d3bb43d36679a6cd6410e1f833c809623636dc67",
+      "identity": [
+        16777234,
+        352362332,
+        33188,
+        2424,
+        1792285180221102999,
+        1792285180221102999
+      ],
+      "declared_tool_alias": null
+    },
+    "/Users/maxime/.codex/worktrees/993-carrier-revalidation/3dprinting993/work/carrier-adamantine-corrected-runtime-replay-preparation-003/output-001/remote/native-assessment.json": {
+      "bytes": 56769,
+      "sha256": "53cbaa67a5dfe3b7aaf888e92cfe7b5d2b25ba6c7b03a59ff452e60f5473f8b3",
+      "identity": [
+        16777234,
+        352382716,
+        33188,
+        56769,
+        1792288773129087579,
+        1792288773129087579
+      ],
+      "declared_tool_alias": null
+    },
+    "/Users/maxime/.codex/worktrees/993-carrier-revalidation/3dprinting993/work/carrier-adamantine-corrected-runtime-replay-preparation-003/native.py": {
+      "bytes": 7877,
+      "sha256": "03582a0e4f52183c783b534474de8397fad827fe2e339c0252fa59cd051ecc9c",
+      "identity": [
+        16777234,
+        352380577,
+        33188,
+        7877,
+        1792288288236094377,
+        1792288288236094377
+      ],
+      "declared_tool_alias": null
+    },
+    "/Users/maxime/.codex/worktrees/993-carrier-revalidation/3dprinting993/work/carrier-adamantine-corrected-runtime-replay-preparation-003/source/remote_owner.py": {
+      "bytes": 8292,
+      "sha256": "c814753aaa95b68bb3805aa4ed34da4976ee9ee19c9e84b9ebddd98ae9eb0146",
+      "identity": [
+        16777234,
+        352380586,
+        33188,
+        8292,
+        1792288288235888292,
+        1792288288235888292
+      ],
+      "declared_tool_alias": null
+    },
+    "/Users/maxime/.codex/worktrees/993-carrier-revalidation/3dprinting993/work/carrier-adamantine-corrected-runtime-replay-preparation-003/source/native_run_function.py": {
+      "bytes": 2551,
+      "sha256": "d874e054d497912e9c7d55cce54a677c6c430179034b4d46798374af4189f71a",
+      "identity": [
+        16777234,
+        352380584,
+        33188,
+        2551,
+        1792288288300078305,
+        1792288288300078305
+      ],
+      "declared_tool_alias": null
+    },
+    "/Users/maxime/.codex/worktrees/993-carrier-revalidation/3dprinting993/work/carrier-adamantine-thermomechanical-readiness-001/local-assessor-image-metadata.json": {
+      "bytes": 1613,
+      "sha256": "f1aae3fc9de75a56c0331ac7f5ea0d006ddc4df19113336ce8d78a3c63ee193d",
+      "identity": [
+        16777234,
+        352371248,
+        33188,
+        1613,
+        1792285919412590328,
+        1792285919412590328
+      ],
+      "declared_tool_alias": null
+    },
+    "/Users/maxime/.codex/worktrees/993-carrier-revalidation/3dprinting993/work/carrier-Ti64-thermal-research-20261018/sources.json": {
+      "bytes": 32445,
+      "sha256": "5845014a51cd75f521a490f1aa86b385e53543769cded8e9b0767400a145db12",
+      "identity": [
+        16777234,
+        352467010,
+        33188,
+        32445,
+        1792300174751199119,
+        1792300174751199119
+      ],
+      "declared_tool_alias": null
+    },
+    "/usr/bin/ssh": {
+      "bytes": 1748944,
+      "sha256": "81650dfb27934c1092afb9821091822be94d0b904059cef429de6da03ef1b9d2",
+      "identity": [
+        16777234,
+        1152921500312611851,
+        33261,
+        1748944,
+        1789801172000000000,
+        1789801172000000000
+      ],
+      "declared_tool_alias": null
+    },
+    "/Library/Frameworks/Python.framework/Versions/3.10/bin/python3.10": {
+      "bytes": 152624,
+      "sha256": "72956ad35cff7691dfed9e04c9593de825ffd5b2fa7e8bc9ae96ce9a1af65621",
+      "identity": [
+        16777234,
+        1960024,
+        33277,
+        152624,
+        1680650282000000000,
+        1740226413064596041
+      ],
+      "declared_tool_alias": null
+    },
+    "/Users/maxime/Developer/Qwen993/lpbf-upstream-tests-20261015/sources/adamantine/adamantine-3990489a10902912889617856f6e2e097d52a412/source/CubeHeatSource.cc": {
+      "bytes": 3618,
+      "sha256": "130581f5ca15c5f2a2399a0435aaa392f1d67c6ccda261b2c5bd97d38b613696",
+      "identity": [
+        16777234,
+        349522668,
+        33188,
+        3618,
+        1786737635000000000,
+        1792092012305414832
+      ],
+      "declared_tool_alias": null
+    },
+    "/Users/maxime/Developer/Qwen993/lpbf-upstream-tests-20261015/sources/adamantine/adamantine-3990489a10902912889617856f6e2e097d52a412/source/ThermalPhysics.templates.hh": {
+      "bytes": 45969,
+      "sha256": "1c0c3cbc6d2b53ca77970406f767ab63483100ab8ede5f10d45e42c54c198bf7",
+      "identity": [
+        16777234,
+        349522713,
+        33188,
+        45969,
+        1786737635000000000,
+        1792092012313701615
+      ],
+      "declared_tool_alias": null
+    },
+    "/Users/maxime/Developer/Qwen993/lpbf-upstream-tests-20261015/sources/adamantine/adamantine-3990489a10902912889617856f6e2e097d52a412/source/ThermalOperator.templates.hh": {
+      "bytes": 39298,
+      "sha256": "b72db08973d68b4aca7734d2226bdaee6a5ebb5d605895577d5f2c171eae94c1",
+      "identity": [
+        16777234,
+        349522702,
+        33188,
+        39298,
+        1786737635000000000,
+        1792092012311814691
+      ],
+      "declared_tool_alias": null
+    },
+    "/Users/maxime/Developer/Qwen993/lpbf-upstream-tests-20261015/sources/adamantine/adamantine-3990489a10902912889617856f6e2e097d52a412/source/instantiation.hh": {
+      "bytes": 16798,
+      "sha256": "c40ff7beb53edb2d798aba1a471341635227bf4b7b4580d89c844780335ad873",
+      "identity": [
+        16777234,
+        349522727,
+        33188,
+        16798,
+        1786737635000000000,
+        1792092012315887999
+      ],
+      "declared_tool_alias": null
+    },
+    "/Users/maxime/Developer/Qwen993/lpbf-upstream-tests-20261015/sources/adamantine/adamantine-3990489a10902912889617856f6e2e097d52a412/source/MaterialProperty.templates.hh": {
+      "bytes": 50835,
+      "sha256": "7084a45bccac11c94c87387d4bff208c1fb47e8e3a053fd00dfab111ccedf4c3",
+      "identity": [
+        16777234,
+        349522681,
+        33188,
+        50835,
+        1786737635000000000,
+        1792092012308118676
+      ],
+      "declared_tool_alias": null
+    },
+    "/Users/maxime/Developer/Qwen993/lpbf-upstream-tests-20261015/sources/adamantine/adamantine-3990489a10902912889617856f6e2e097d52a412/application/adamantine.cc": {
+      "bytes": 21469,
+      "sha256": "60504cf6778dc3193f05d48cb7947c4419525fc384db3fa9b6e3f4b8e1c8606f",
+      "identity": [
+        16777234,
+        349522611,
+        33188,
+        21469,
+        1786737635000000000,
+        1792092012295473375
+      ],
+      "declared_tool_alias": null
+    },
+    "/Users/maxime/.codex/worktrees/993-carrier-revalidation/3dprinting993/work/carrier-adamantine-Ti64-solid-capability-preparation-001/source-packet.json": {
+      "bytes": 10649,
+      "sha256": "ab4e872c67e7ca67a74b21b350d1db25ff8245628f09b20f67584fb7d0b1e9a6",
+      "identity": [
+        16777234,
+        352509607,
+        33188,
+        10649,
+        1792303123987777567,
+        1792303123987777567
+      ],
+      "declared_tool_alias": null
+    },
+    "/Users/maxime/.codex/worktrees/993-carrier-revalidation/3dprinting993/work/carrier-adamantine-Ti64-solid-capability-preparation-001/runtime-attestation/read_metadata.py": {
+      "bytes": 155922,
+      "sha256": "70819b46451a1597b365fbdf3d669692e9b76871007edea245e963319c5a560e",
+      "identity": [
+        16777234,
+        352489403,
+        33188,
+        155922,
+        1792302745935968209,
+        1792302745935968209
+      ],
+      "declared_tool_alias": null
+    },
+    "/Users/maxime/.codex/worktrees/993-carrier-revalidation/3dprinting993/work/carrier-adamantine-Ti64-solid-capability-preparation-001/runtime-attestation/run_query_once.py": {
+      "bytes": 1186,
+      "sha256": "b36a21ed407bc8ae2c7a41d800691663fa004997e065fb716ac0349dc9908aab",
+      "identity": [
+        16777234,
+        352489404,
+        33188,
+        1186,
+        1792302591149072537,
+        1792302591149072537
+      ],
+      "declared_tool_alias": null
+    },
+    "/Users/maxime/.codex/worktrees/993-carrier-revalidation/3dprinting993/work/carrier-adamantine-Ti64-solid-capability-preparation-001/runtime-attestation/candidate-roster.json": {
+      "bytes": 210011,
+      "sha256": "443591a573215e83b572bf8264f769ce83545b31e13d3b383a2ceff14704d420",
+      "identity": [
+        16777234,
+        352489402,
+        33188,
+        210011,
+        1792302657909935251,
+        1792302657909935251
+      ],
+      "declared_tool_alias": null
+    },
+    "/Users/maxime/.codex/worktrees/993-carrier-revalidation/3dprinting993/work/carrier-adamantine-Ti64-solid-capability-preparation-001/runtime-attestation/protocol.json": {
+      "bytes": 6582,
+      "sha256": "2ee296437dcccc3f04c782d3b443286685504ac4f5aca91c78b5cb5bfc16212f",
+      "identity": [
+        16777234,
+        352489405,
+        33188,
+        6582,
+        1792303123971708104,
+        1792303123971708104
+      ],
+      "declared_tool_alias": null
+    },
+    "/Users/maxime/.codex/worktrees/993-carrier-revalidation/3dprinting993/work/carrier-adamantine-Ti64-solid-capability-preparation-001/runtime-attestation/stdout.json": {
+      "bytes": 64399,
+      "sha256": "9a3c902e2e6beb51822cc33c71059c8e23884db3a4efd8e9a433aeb06aafcadb",
+      "identity": [
+        16777234,
+        352514000,
+        33188,
+        64399,
+        1792303769833052466,
+        1792303769833052466
+      ],
+      "declared_tool_alias": null
+    },
+    "/Users/maxime/.codex/worktrees/993-carrier-revalidation/3dprinting993/work/carrier-adamantine-Ti64-solid-capability-preparation-001/runtime-attestation/stderr.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "identity": [
+        16777234,
+        352514001,
+        33188,
+        0,
+        1792303768646778440,
+        1792303768646824982
+      ],
+      "declared_tool_alias": null
+    },
+    "/Users/maxime/.codex/worktrees/993-carrier-revalidation/3dprinting993/work/carrier-adamantine-Ti64-solid-capability-preparation-001/runtime-attestation/actual-tool.json": {
+      "bytes": 796,
+      "sha256": "bdaed0de5cb2eb3d005a11874a4de1ccd091b1ce4ad60179fcef1d09e21db343",
+      "identity": [
+        16777234,
+        352514008,
+        33188,
+        796,
+        1792303769887512016,
+        1792303769887512016
+      ],
+      "declared_tool_alias": null
+    },
+    "/Users/maxime/.codex/worktrees/993-carrier-revalidation/3dprinting993/work/carrier-adamantine-Ti64-solid-capability-preparation-001/runtime-attestation/root-terminal-review-001.json": {
+      "bytes": 2181,
+      "sha256": "4e34bbb370d45ec7908715f92bc47f353eac5553ce72c5ed625c68e75b56c31e",
+      "identity": [
+        16777234,
+        352514090,
+        33188,
+        2181,
+        1792303810846279331,
+        1792303810846279331
+      ],
+      "declared_tool_alias": null
+    },
+    "/Users/maxime/.codex/worktrees/993-carrier-revalidation/3dprinting993/work/carrier-adamantine-Ti64-runtime-attestation-preparation-002/source-packet.json": {
+      "bytes": 2559,
+      "sha256": "1a79d5dce35e886d99ee5fe7b8cef826a7e2a150ce5b43ca11b512a81dcaa6ac",
+      "identity": [
+        16777234,
+        352519384,
+        33188,
+        2559,
+        1792304277490733020,
+        1792304277490733020
+      ],
+      "declared_tool_alias": null
+    },
+    "/Users/maxime/.codex/worktrees/993-carrier-revalidation/3dprinting993/work/carrier-adamantine-Ti64-runtime-attestation-preparation-002/read_metadata.py": {
+      "bytes": 163530,
+      "sha256": "36a7eaf6b58da366b4c47907618fbae7ef4b4b501bfb3c3d69189d63cb75e45f",
+      "identity": [
+        16777234,
+        352516350,
+        33188,
+        163530,
+        1792304166290365768,
+        1792304166290365768
+      ],
+      "declared_tool_alias": null
+    },
+    "/Users/maxime/.codex/worktrees/993-carrier-revalidation/3dprinting993/work/carrier-adamantine-Ti64-runtime-attestation-preparation-002/protocol.json": {
+      "bytes": 12048,
+      "sha256": "f425d7519f6265668a7465cbdd2e0e37c5c441a2ad22cff37736b1d162581712",
+      "identity": [
+        16777234,
+        352518092,
+        33188,
+        12048,
+        1792304202178782525,
+        1792304202178782525
+      ],
+      "declared_tool_alias": null
+    },
+    "/Users/maxime/.codex/worktrees/993-carrier-revalidation/3dprinting993/work/carrier-adamantine-Ti64-runtime-attestation-preparation-002/stdout.json": {
+      "bytes": 434553,
+      "sha256": "7126e79e0f5d01f6b3645fb78cf5b48b0bfd60fc4461b5b081546eff05037436",
+      "identity": [
+        16777234,
+        352519600,
+        33188,
+        434553,
+        1792304343360788946,
+        1792304343360788946
+      ],
+      "declared_tool_alias": null
+    },
+    "/Users/maxime/.codex/worktrees/993-carrier-revalidation/3dprinting993/work/carrier-adamantine-Ti64-runtime-attestation-preparation-002/stderr.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "identity": [
+        16777234,
+        352519601,
+        33188,
+        0,
+        1792304342096384391,
+        1792304342096408891
+      ],
+      "declared_tool_alias": null
+    },
+    "/Users/maxime/.codex/worktrees/993-carrier-revalidation/3dprinting993/work/carrier-adamantine-Ti64-runtime-attestation-preparation-002/actual-tool.json": {
+      "bytes": 796,
+      "sha256": "a64769f7869993729c7edabdee5174de7c134d54b25d8f89fc829f2f23961349",
+      "identity": [
+        16777234,
+        352519607,
+        33188,
+        796,
+        1792304343378148835,
+        1792304343378148835
+      ],
+      "declared_tool_alias": null
+    },
+    "/Users/maxime/.codex/worktrees/993-carrier-revalidation/3dprinting993/work/carrier-adamantine-Ti64-runtime-attestation-preparation-002/root-terminal-review-001.json": {
+      "bytes": 2832,
+      "sha256": "aafb412010e381500486f71852cd27dcad4faabda7cff1ead045cc0512dbc518",
+      "identity": [
+        16777234,
+        352519799,
+        33188,
+        2832,
+        1792304402320592702,
+        1792304402320592702
+      ],
+      "declared_tool_alias": null
+    },
+    "/Users/maxime/.codex/worktrees/993-carrier-revalidation/3dprinting993/work/carrier-adamantine-Ti64-runtime-attestation-preparation-002/selfcheck.py": {
+      "bytes": 9726,
+      "sha256": "0213a1fb04b8030bba4c99215679b5c97a4db20b45321af23d59c7a5cd9a0379",
+      "identity": [
+        16777234,
+        352517656,
+        33188,
+        9726,
+        1792304166290730311,
+        1792304166290730311
+      ],
+      "declared_tool_alias": null
+    },
+    "/Users/maxime/.codex/worktrees/993-carrier-revalidation/3dprinting993/work/carrier-adamantine-Ti64-runtime-attestation-preparation-002/preflight.py": {
+      "bytes": 4416,
+      "sha256": "9602d50f14fffff895b69e15b14e719e5fcd4f03a11ccfba0a66f577a33a7415",
+      "identity": [
+        16777234,
+        352519293,
+        33188,
+        4416,
+        1792304256257288252,
+        1792304256257288252
+      ],
+      "declared_tool_alias": null
+    },
+    "work/carrier-adamantine-Ti64-conduction-source-preparation-001/source-packet.json": {
+      "bytes": 5072,
+      "sha256": "c3dfdf5fce56469008929e2f08931df2706813a87381139ef518d2a04b8138e1",
+      "identity": [
+        16777234,
+        352654312,
+        33188,
+        5072,
+        1792309904280530715,
+        1792309904280530715
+      ],
+      "declared_tool_alias": null
+    },
+    "work/carrier-adamantine-Ti64-conduction-source-preparation-001/README.md": {
+      "bytes": 9833,
+      "sha256": "9651d9e212b82c9323b2ddac881642778f0ce60fc4e1150bb670158d3ff6f615",
+      "identity": [
+        16777234,
+        352648565,
+        33188,
+        9833,
+        1792309788746567869,
+        1792309788746567869
+      ],
+      "declared_tool_alias": null
+    },
+    "work/carrier-adamantine-Ti64-conduction-source-preparation-001/expected-reference.json": {
+      "bytes": 6526,
+      "sha256": "b6fc81c4cebb0b8209d2f8d73d5732c728f471b20508f0190a9cefafe0eed1db",
+      "identity": [
+        16777234,
+        352650609,
+        33188,
+        6526,
+        1792309828932417363,
+        1792309828932417363
+      ],
+      "declared_tool_alias": null
+    },
+    "work/carrier-adamantine-Ti64-conduction-source-preparation-001/input-changes.diff": {
+      "bytes": 2467,
+      "sha256": "c6636bae991005f1b9573391de9ab001986d2840dae800c92e145231286a866c",
+      "identity": [
+        16777234,
+        352640235,
+        33188,
+        2467,
+        1792309661670391651,
+        1792309661670391651
+      ],
+      "declared_tool_alias": null
+    },
+    "work/carrier-adamantine-Ti64-conduction-source-preparation-001/input-from-uniform.ndiff": {
+      "bytes": 3204,
+      "sha256": "8d75b03194aef0bf37fa78673309e87101eee35e884e1daba72bd284f087e646",
+      "identity": [
+        16777234,
+        352640234,
+        33188,
+        3204,
+        1792309661670088650,
+        1792309661670088650
+      ],
+      "declared_tool_alias": null
+    },
+    "work/carrier-adamantine-Ti64-conduction-source-preparation-001/inputs/input.info": {
+      "bytes": 1385,
+      "sha256": "120ce48cb35cb7111891601120521ac9dfc5a623e466931066b47eba7766daea",
+      "identity": [
+        16777234,
+        352640233,
+        33188,
+        1385,
+        1792309661668508182,
+        1792309661668508182
+      ],
+      "declared_tool_alias": null
+    },
+    "work/carrier-adamantine-Ti64-conduction-source-preparation-001/pending-proposal.json": {
+      "bytes": 4250,
+      "sha256": "f4f7bc11f92a569cc9f8472a9efa82eff6d42ec3d098f9a712e30f359f815fdf",
+      "identity": [
+        16777234,
+        352650610,
+        33188,
+        4250,
+        1792309828934568334,
+        1792309828934568334
+      ],
+      "declared_tool_alias": null
+    },
+    "work/carrier-adamantine-Ti64-conduction-source-preparation-001/reference.py": {
+      "bytes": 8590,
+      "sha256": "0906a97034d3283fb3b5d5deacba92a73821a5b330aa66d1f5a7806212c25ea1",
+      "identity": [
+        16777234,
+        352639608,
+        33188,
+        8590,
+        1792309590346051526,
+        1792309590346051526
+      ],
+      "declared_tool_alias": null
+    },
+    "work/carrier-adamantine-Ti64-conduction-source-preparation-001/selfcheck.py": {
+      "bytes": 7552,
+      "sha256": "76442154aa010e84072133b2855479a48485953d4302e385d4d1f54cec6afa32",
+      "identity": [
+        16777234,
+        352643114,
+        33188,
+        7552,
+        1792309853752627606,
+        1792309853752627606
+      ],
+      "declared_tool_alias": null
+    },
+    "work/carrier-adamantine-Ti64-conduction-source-preparation-001/source-checks-001.json": {
+      "bytes": 1554,
+      "sha256": "fb6c7113a6c30a8e01cf12ff69f380436f051cd504cb14159e81b4b3534b22a1",
+      "identity": [
+        16777234,
+        352654310,
+        33188,
+        1554,
+        1792309904276442441,
+        1792309904276442441
+      ],
+      "declared_tool_alias": null
+    },
+    "work/carrier-adamantine-Ti64-conduction-source-preparation-001/source-proof.json": {
+      "bytes": 2552,
+      "sha256": "c4d07302732099181347ee2ba0a97a05391b70c62c28a8e2d5d5032daef25f22",
+      "identity": [
+        16777234,
+        352654311,
+        33188,
+        2552,
+        1792309904276865693,
+        1792309904276865693
+      ],
+      "declared_tool_alias": null
+    },
+    "work/carrier-adamantine-Ti64-conduction-source-preparation-001/upstream-5aca/applications/adamantine.cc": {
+      "bytes": 21469,
+      "sha256": "60504cf6778dc3193f05d48cb7947c4419525fc384db3fa9b6e3f4b8e1c8606f",
+      "identity": [
+        16777234,
+        352625061,
+        33188,
+        21469,
+        1792309290674509509,
+        1792309290674509509
+      ],
+      "declared_tool_alias": null
+    },
+    "work/carrier-adamantine-Ti64-conduction-source-preparation-001/upstream-5aca/applications/adamantine.hh": {
+      "bytes": 98210,
+      "sha256": "6c314a5b40c8328a34e9ac4c64ed6e21af7d88551200de4e003beec30ec4b915",
+      "identity": [
+        16777234,
+        352627642,
+        33188,
+        98210,
+        1792309342720152461,
+        1792309342720152461
+      ],
+      "declared_tool_alias": null
+    },
+    "work/carrier-adamantine-Ti64-conduction-source-preparation-001/upstream-5aca/source/Boundary.cc": {
+      "bytes": 3477,
+      "sha256": "5fb4e4d5b2176ee06d81030ba0b79b8fc5b45e70a8f3161d87302ac734dc61b8",
+      "identity": [
+        16777234,
+        352625001,
+        33188,
+        3477,
+        1792309289833763381,
+        1792309289833763381
+      ],
+      "declared_tool_alias": null
+    },
+    "work/carrier-adamantine-Ti64-conduction-source-preparation-001/upstream-5aca/source/Boundary.hh": {
+      "bytes": 3500,
+      "sha256": "f72496b236f2c204b3bb59f1345a14a35eb93591a6a00ee47314c50af7bc8137",
+      "identity": [
+        16777234,
+        352625031,
+        33188,
+        3500,
+        1792309290239444633,
+        1792309290239444633
+      ],
+      "declared_tool_alias": null
+    },
+    "work/carrier-adamantine-Ti64-conduction-source-preparation-001/upstream-5aca/source/Geometry.cc": {
+      "bytes": 13002,
+      "sha256": "d58cab9a1220a61324dff91aabdc639982238cbd62642b0cb5b9e72a23101b47",
+      "identity": [
+        16777234,
+        352624960,
+        33188,
+        13002,
+        1792309289391157045,
+        1792309289391157045
+      ],
+      "declared_tool_alias": null
+    },
+    "work/carrier-adamantine-Ti64-conduction-source-preparation-001/upstream-5aca/source/PostProcessor.cc": {
+      "bytes": 8840,
+      "sha256": "c91a5426f6816ad5361890c3da068e590389ae08bca0d9ff6f6836a4507d1fea",
+      "identity": [
+        16777234,
+        352633116,
+        33188,
+        8840,
+        1792309437336886976,
+        1792309437336886976
+      ],
+      "declared_tool_alias": null
+    },
+    "work/carrier-adamantine-Ti64-conduction-source-preparation-001/upstream-5aca/source/ThermalOperator.templates.hh": {
+      "bytes": 39298,
+      "sha256": "b72db08973d68b4aca7734d2226bdaee6a5ebb5d605895577d5f2c171eae94c1",
+      "identity": [
+        16777234,
+        352627665,
+        33188,
+        39298,
+        1792309343650797961,
+        1792309343650797961
+      ],
+      "declared_tool_alias": null
+    },
+    "work/carrier-adamantine-Ti64-conduction-source-preparation-001/upstream-5aca/source/ThermalPhysics.templates.hh": {
+      "bytes": 46166,
+      "sha256": "bc2d3947b64ea4a1977c52c92a7f58703c24ab277f4eaf89674725d4ba46de33",
+      "identity": [
+        16777234,
+        352627661,
+        33188,
+        46166,
+        1792309343146342974,
+        1792309343146342974
+      ],
+      "declared_tool_alias": null
+    },
+    "work/carrier-adamantine-Ti64-conduction-source-preparation-001/upstream-5aca/source/instantiation.hh": {
+      "bytes": 16798,
+      "sha256": "c40ff7beb53edb2d798aba1a471341635227bf4b7b4580d89c844780335ad873",
+      "identity": [
+        16777234,
+        352627707,
+        33188,
+        16798,
+        1792309344937981994,
+        1792309344937981994
+      ],
+      "declared_tool_alias": null
+    },
+    "work/carrier-adamantine-Ti64-conduction-source-preparation-001/upstream-5aca/source/validate_input_database.cc": {
+      "bytes": 23065,
+      "sha256": "750101dbb459d324b7cdac334e0f66fb703510162215a2671042c556f0b6d0f2",
+      "identity": [
+        16777234,
+        352627688,
+        33188,
+        23065,
+        1792309344487507116,
+        1792309344487507116
+      ],
+      "declared_tool_alias": null
+    },
+    "work/carrier-adamantine-Ti64-conduction-source-preparation-001/upstream-5aca/tests/data/analytical_1D_transient.py": {
+      "bytes": 16776,
+      "sha256": "48a3d9faef8d92378e4a5385b871f8ff9a44d44f79a30b04e9abbaa9e5fb8377",
+      "identity": [
+        16777234,
+        352624918,
+        33188,
+        16776,
+        1792309288327710408,
+        1792309288327710408
+      ],
+      "declared_tool_alias": null
+    },
+    "work/carrier-adamantine-Ti64-conduction-source-preparation-001/upstream-5aca/tests/data/convective_bc_gold.txt": {
+      "bytes": 34372,
+      "sha256": "366ec576762405ea3d71eb9a8f37bc090301d83d178e2bd33dddb2860f979470",
+      "identity": [
+        16777234,
+        352624940,
+        33188,
+        34372,
+        1792309288828203404,
+        1792309288828203404
+      ],
+      "declared_tool_alias": null
+    },
+    "work/carrier-adamantine-Ti64-conduction-source-preparation-001/upstream-5aca/tests/test_thermal_physics.cc": {
+      "bytes": 1428,
+      "sha256": "00b32537e65c477f34b25573785c30a8681968b651fcec49c703a7bd0e59bc90",
+      "identity": [
+        16777234,
+        352624885,
+        33188,
+        1428,
+        1792309287809454102,
+        1792309287809454102
+      ],
+      "declared_tool_alias": null
+    },
+    "work/carrier-adamantine-Ti64-conduction-source-preparation-001/upstream-5aca/tests/test_thermal_physics.hh": {
+      "bytes": 29518,
+      "sha256": "5ec7dae11d827cb7ddc33e6a7be09ab829ac021f9d61851b213428171620d10a",
+      "identity": [
+        16777234,
+        352624864,
+        33188,
+        29518,
+        1792309287379161545,
+        1792309287379161545
+      ],
+      "declared_tool_alias": null
+    },
+    "work/carrier-adamantine-Ti64-conduction-source-preparation-001/upstream-retrieval-001.json": {
+      "bytes": 5740,
+      "sha256": "8f6c73f7db525bf1ccb2a2eb996bcaf4dffe05d08c6e36d80a955a106287046b",
+      "identity": [
+        16777234,
+        352625062,
+        33188,
+        5740,
+        1792309290674966095,
+        1792309290674966095
+      ],
+      "declared_tool_alias": null
+    },
+    "work/carrier-adamantine-Ti64-conduction-source-preparation-001/upstream-retrieval-002.json": {
+      "bytes": 2728,
+      "sha256": "d145b274ddeec324dfad237b05f595ecd65d67da70c417828f76348b426d30d8",
+      "identity": [
+        16777234,
+        352627708,
+        33188,
+        2728,
+        1792309345319369052,
+        1792309345319369052
+      ],
+      "declared_tool_alias": null
+    },
+    "work/carrier-adamantine-Ti64-conduction-source-preparation-001/upstream-retrieval-003.json": {
+      "bytes": 655,
+      "sha256": "018e3b826db18e633e4c4daf396d076c3dd8c1e8e5255026b6425469c2cda930",
+      "identity": [
+        16777234,
+        352654309,
+        33188,
+        655,
+        1792309904276116939,
+        1792309904276116939
+      ],
+      "declared_tool_alias": null
+    },
+    "work/carrier-adamantine-Ti64-runtime-attestation-preparation-003/root-terminal-review-001.json": {
+      "bytes": 2855,
+      "sha256": "f1b98452585b3803ddc73575a9d0f019fc36057098ae7df0ade33e508b487270",
+      "identity": [
+        16777234,
+        352521135,
+        33188,
+        2855,
+        1792304716361810876,
+        1792304716361810876
+      ],
+      "declared_tool_alias": null
+    },
+    "work/carrier-adamantine-Ti64-runtime-attestation-preparation-003/stdout.json": {
+      "bytes": 445918,
+      "sha256": "791debdeb4bc6170c82fe9c0b841cc71aa57e97f934d4d2adfea2213ee3843dc",
+      "identity": [
+        16777234,
+        352520847,
+        33188,
+        445918,
+        1792304622023507554,
+        1792304622023507554
+      ],
+      "declared_tool_alias": null
+    },
+    "work/carrier-adamantine-Ti64-runtime-attestation-preparation-003/actual-tool.json": {
+      "bytes": 796,
+      "sha256": "351ef7a98b6f5b41ea9b1aecb40cbf59bc9aad8ae16f4ee07ec3a9f66de4b751",
+      "identity": [
+        16777234,
+        352520849,
+        33188,
+        796,
+        1792304622079629828,
+        1792304622079629828
+      ],
+      "declared_tool_alias": null
+    },
+    "work/carrier-adamantine-Ti64-conduction-source-preparation-001/root-source-review-001.json": {
+      "bytes": 1926,
+      "sha256": "f7b15759d74d7099c46511d056da10acbe996d9942ad5ef7a66325e25d46cc95",
+      "identity": [
+        16777234,
+        352663952,
+        33188,
+        1926,
+        1792310175139931579,
+        1792310175139931579
+      ],
+      "declared_tool_alias": null
+    },
+    "work/carrier-adamantine-Ti64-thermal-capability-preparation-001/root-terminal-review-001.json": {
+      "bytes": 5380,
+      "sha256": "34dc28152bd2000b81fc82c366dfb517399b65430c22fdd0f2b7d77f8faff082",
+      "identity": [
+        16777234,
+        352532070,
+        33188,
+        5380,
+        1792306981890622720,
+        1792306981890622720
+      ],
+      "declared_tool_alias": null
+    },
+    "work/carrier-adamantine-Ti64-conduction-preparation-002/native.py": {
+      "bytes": 7450,
+      "sha256": "ecd03fb349edbbef56eb60ced7c85c252ccab123025aa5e4f57bf02dfca179f4",
+      "identity": [
+        16777234,
+        352718520,
+        33188,
+        7450,
+        1792311221319502019,
+        1792311221319502019
+      ],
+      "declared_tool_alias": null
+    },
+    "work/carrier-adamantine-Ti64-conduction-preparation-002/binding.py": {
+      "bytes": 6856,
+      "sha256": "a18c17dacf7fe2b08690485c137821f68806feeafb97b6b036b9c3a70a84eaa9",
+      "identity": [
+        16777234,
+        352718513,
+        33188,
+        6856,
+        1792311221318531139,
+        1792311221318531139
+      ],
+      "declared_tool_alias": null
+    },
+    "work/carrier-adamantine-Ti64-conduction-preparation-002/assess.py": {
+      "bytes": 5988,
+      "sha256": "f3a6dd545363463c8a95c0dcd1c7e3146e749340b3274b7be6a392185bede371",
+      "identity": [
+        16777234,
+        352718510,
+        33188,
+        5988,
+        1792311221318077011,
+        1792311221318077011
+      ],
+      "declared_tool_alias": null
+    },
+    "work/carrier-adamantine-Ti64-conduction-preparation-002/reference.py": {
+      "bytes": 8590,
+      "sha256": "0906a97034d3283fb3b5d5deacba92a73821a5b330aa66d1f5a7806212c25ea1",
+      "identity": [
+        16777234,
+        352718524,
+        33188,
+        8590,
+        1792311221320327607,
+        1792311221320327607
+      ],
+      "declared_tool_alias": null
+    },
+    "work/carrier-adamantine-Ti64-conduction-preparation-002/prepare.py": {
+      "bytes": 7231,
+      "sha256": "669e573308a0ecc7e649ee13f0d9301de190e3ec1b84f283bec865c664f6d30e",
+      "identity": [
+        16777234,
+        352718522,
+        33188,
+        7231,
+        1792311440923264156,
+        1792311440923264156
+      ],
+      "declared_tool_alias": null
+    },
+    "work/carrier-adamantine-Ti64-conduction-preparation-002/selfcheck.py": {
+      "bytes": 11948,
+      "sha256": "98e820d97970188c1a281303453c206a4b3fc9f9cb3db3ae39be651cfd1dbb61",
+      "identity": [
+        16777234,
+        352718528,
+        33188,
+        11948,
+        1792311287717880143,
+        1792311287717880143
+      ],
+      "declared_tool_alias": null
+    },
+    "work/carrier-adamantine-Ti64-conduction-preparation-002/README.md": {
+      "bytes": 7012,
+      "sha256": "c7f6defc95fe238cdaf2e0ce739fb28f66f707f790ef05f7d962f03444291d5e",
+      "identity": [
+        16777234,
+        352718509,
+        33188,
+        7012,
+        1792311440924260829,
+        1792311440924260829
+      ],
+      "declared_tool_alias": null
+    },
+    "work/carrier-adamantine-Ti64-conduction-preparation-002/ARMING.md": {
+      "bytes": 1382,
+      "sha256": "d96ea5fa95ccf2cd803d0083c15ddd425040cca109be09d0237f16bdd435f124",
+      "identity": [
+        16777234,
+        352718508,
+        33188,
+        1382,
+        1792311221317708134,
+        1792311221317708134
+      ],
+      "declared_tool_alias": null
+    },
+    "work/carrier-adamantine-Ti64-conduction-preparation-002/material-law.json": {
+      "bytes": 1358,
+      "sha256": "5d0ba218ae07d4b547cd204705bf31c68cf7dfb71d2d12bb991112648cb692b7",
+      "identity": [
+        16777234,
+        352718519,
+        33188,
+        1358,
+        1792311221319343518,
+        1792311221319343518
+      ],
+      "declared_tool_alias": null
+    },
+    "work/carrier-adamantine-Ti64-conduction-preparation-002/frozen-material.json": {
+      "bytes": 640,
+      "sha256": "967faf382c9c4294c0390355d405cd91d40b2b15cc362091ef37ea3aaadc6397",
+      "identity": [
+        16777234,
+        352718516,
+        33188,
+        640,
+        1792311221318999308,
+        1792311221318999308
+      ],
+      "declared_tool_alias": null
+    },
+    "work/carrier-adamantine-Ti64-conduction-preparation-002/expected-reference.json": {
+      "bytes": 6526,
+      "sha256": "b6fc81c4cebb0b8209d2f8d73d5732c728f471b20508f0190a9cefafe0eed1db",
+      "identity": [
+        16777234,
+        352718515,
+        33188,
+        6526,
+        1792311221318838015,
+        1792311221318838015
+      ],
+      "declared_tool_alias": null
+    },
+    "work/carrier-adamantine-Ti64-conduction-preparation-002/runtime-authority.json": {
+      "bytes": 39942,
+      "sha256": "581dbbf6192428d419291865dae9f177e9c18d78a6a36a789ef422cff1d34def",
+      "identity": [
+        16777234,
+        352718527,
+        33188,
+        39942,
+        1792311221320857235,
+        1792311221320857235
+      ],
+      "declared_tool_alias": null
+    },
+    "work/carrier-adamantine-Ti64-conduction-preparation-002/source-derivation.json": {
+      "bytes": 16875,
+      "sha256": "0ec1dd7f9d24875c9d7f487b17d262b2f81501c5b18d8b236024ec5386925798",
+      "identity": [
+        16777234,
+        352718529,
+        33188,
+        16875,
+        1792311440923931493,
+        1792311440923931493
+      ],
+      "declared_tool_alias": null
+    },
+    "work/carrier-adamantine-Ti64-conduction-preparation-002/assessor-image-current-001.json": {
+      "bytes": 1822,
+      "sha256": "9ab4ebd1b39d5f504614de126d6a0605ac32928a42b066ca5d14df852d676a9e",
+      "identity": [
+        16777234,
+        352718512,
+        33188,
+        1822,
+        1792311221318383221,
+        1792311221318383221
+      ],
+      "declared_tool_alias": null
+    },
+    "work/carrier-adamantine-Ti64-conduction-preparation-002/source/native_run_function.py": {
+      "bytes": 2551,
+      "sha256": "d874e054d497912e9c7d55cce54a677c6c430179034b4d46798374af4189f71a",
+      "identity": [
+        16777234,
+        352718533,
+        33188,
+        2551,
+        1792311221322182368,
+        1792311221322182368
+      ],
+      "declared_tool_alias": null
+    },
+    "work/carrier-adamantine-Ti64-conduction-preparation-002/source/remote_owner.py": {
+      "bytes": 8259,
+      "sha256": "62bf5b1ff066f6f0594120e8baf7affed4a252c87f31b41be40323b7904bc397",
+      "identity": [
+        16777234,
+        352718534,
+        33188,
+        8259,
+        1792311221322519453,
+        1792311221322519453
+      ],
+      "declared_tool_alias": null
+    },
+    "work/carrier-adamantine-Ti64-conduction-preparation-002/source/native_frames.py": {
+      "bytes": 1785,
+      "sha256": "9ff81280cc88eda9432579f8c2cfce6a3749de8abceace41aa29e16eecba63b7",
+      "identity": [
+        16777234,
+        352718532,
+        33188,
+        1785,
+        1792311221322014367,
+        1792311221322014367
+      ],
+      "declared_tool_alias": null
+    },
+    "work/carrier-adamantine-Ti64-conduction-preparation-002/source/docker_cli.py": {
+      "bytes": 1798,
+      "sha256": "9de87c6060fb74e354c125276db680858b51b518647ccd383eea6efdae4925db",
+      "identity": [
+        16777234,
+        352718531,
+        33188,
+        1798,
+        1792311221321835741,
+        1792311221321835741
+      ],
+      "declared_tool_alias": null
+    },
+    "work/carrier-adamantine-Ti64-conduction-preparation-002/inputs/input.info": {
+      "bytes": 1385,
+      "sha256": "120ce48cb35cb7111891601120521ac9dfc5a623e466931066b47eba7766daea",
+      "identity": [
+        16777234,
+        352718518,
+        33188,
+        1385,
+        1792311221319197726,
+        1792311221319197726
+      ],
+      "declared_tool_alias": null
+    },
+    "work/carrier-adamantine-Ti64-conduction-preparation-001/source-packet.json": {
+      "bytes": 5373,
+      "sha256": "b97b22b6c5b016c511e7115c6631e280f6a438059522cc438a4d495aa140d382",
+      "identity": [
+        16777234,
+        352690183,
+        33188,
+        5373,
+        1792310702706855385,
+        1792310702706855385
+      ],
+      "declared_tool_alias": null
+    },
+    "work/carrier-Ti64-conduction-independent-source-review-001/review-receipt.json": {
+      "bytes": 4697,
+      "sha256": "0a33496088126ab128fdf386751d86137f12a7c9e19a6da10f6753560ee4af6e",
+      "identity": [
+        16777234,
+        352720153,
+        33188,
+        4697,
+        1792311242434434232,
+        1792311242434434232
+      ],
+      "declared_tool_alias": null
+    },
+    "/usr/local/bin/docker": {
+      "bytes": 42998560,
+      "sha256": "6c33f6c851de8ea6729a44f952b41774973a6d20768ea514dfa700497c884392",
+      "identity": [
+        16777234,
+        342570146,
+        33261,
+        42998560,
+        1790961243000000000,
+        1791835288157588506
+      ],
+      "declared_tool_alias": {
+        "path": "/usr/local/bin/docker",
+        "identity": [
+          16777234,
+          345039844,
+          41453,
+          54,
+          1791835285725016986,
+          1791835285725061070
+        ],
+        "target": "/Applications/Docker.app/Contents/Resources/bin/docker"
+      }
+    },
+    "work/carrier-adamantine-Ti64-conduction-preparation-002/plan.json": {
+      "bytes": 45840,
+      "sha256": "c8a31c9c5e592d7307006a4d2926979eec514076564d26efb5b17ad65a33de04",
+      "identity": [
+        16777234,
+        352752357,
+        33188,
+        45840,
+        1792311938001333217,
+        1792311938001333217
+      ],
+      "declared_tool_alias": null
+    },
+    "work/carrier-adamantine-Ti64-conduction-preparation-002/root-GO-001.json": {
+      "bytes": 2064,
+      "sha256": "6d0935ab04467163bd7565fb39fbf34dcffb4a12fceb0cea4c238f1d8957ed31",
+      "identity": [
+        16777234,
+        352747269,
+        33188,
+        2064,
+        1792311846658345210,
+        1792311846658345210
+      ],
+      "declared_tool_alias": null
+    }
+  },
+  "whole_three_pending_object_and_byte_inverses": true,
+  "all_local_worker_and_merged_supervisor_pins_unchanged": true,
+  "all119_remote_static_pins_and_control_tool_observations_unchanged": true,
+  "complete_transfer": {
+    "files": 13,
+    "bytes": 61506,
+    "assessment": {
+      "schema": "unprofiled-one-Q1-conduction-native-1",
+      "status": "native_one_Q1_conduction_stage_complete_assessment_PENDING",
+      "actual_returncode": 0,
+      "stages": [
+        {
+          "command": [
+            "/usr/bin/systemd-run",
+            "--user",
+            "--scope",
+            "--quiet",
+            "--unit=carrier-Ti64-Q1-conduction-20261018-001-ti64-frozen-conduction.scope",
+            "-p",
+            "MemoryMax=4G",
+            "-p",
+            "MemorySwapMax=0",
+            "-p",
+            "CPUQuota=200%",
+            "-p",
+            "TasksMax=128",
+            "-p",
+            "RuntimeMaxSec=135",
+            "/usr/bin/timeout",
+            "--signal=TERM",
+            "--kill-after=10s",
+            "120",
+            "/usr/bin/bwrap",
+            "--unshare-user",
+            "--uid",
+            "0",
+            "--gid",
+            "0",
+            "--ro-bind",
+            "/home/lolman/lpbf-adamantine-fix-20261015/runtime/rootfs",
+            "/",
+            "--ro-bind",
+            "/home/lolman/lpbf-adamantine-fix-20261015/project",
+            "/work",
+            "--clearenv",
+            "--dev",
+            "/dev",
+            "--proc",
+            "/proc",
+            "--tmpfs",
+            "/tmp",
+            "--bind",
+            "/home/lolman/lpbf-adamantine-fix-20261015/project/Ti64-Q1-conduction-20261018-001/outputs",
+            "/tmp/replay",
+            "--unshare-net",
+            "--unshare-pid",
+            "--die-with-parent",
+            "--chdir",
+            "/tmp",
+            "--setenv",
+            "DEAL_II_DIR",
+            "/opt/dealii",
+            "--setenv",
+            "TRILINOS_DIR",
+            "/opt/trilinos",
+            "--setenv",
+            "ARBORX_DIR",
+            "/opt/arborx",
+            "--setenv",
+            "OMP_NUM_THREADS",
+            "1",
+            "--setenv",
+            "OPENBLAS_NUM_THREADS",
+            "1",
+            "--setenv",
+            "OMPI_ALLOW_RUN_AS_ROOT",
+            "1",
+            "--setenv",
+            "OMPI_ALLOW_RUN_AS_ROOT_CONFIRM",
+            "1",
+            "--setenv",
+            "OMPI_MCA_btl_vader_single_copy_mechanism",
+            "none",
+            "--setenv",
+            "PATH",
+            "/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+            "/home/adamantine/bin/adamantine",
+            "--input-file",
+            "/work/Ti64-Q1-conduction-20261018-001/inputs/ti64-frozen-conduction/input.info",
+            "--output-dir",
+            "/tmp/replay/ti64-frozen-conduction"
+          ],
+          "native_returncode": 0,
+          "deadline_s": 120,
+          "wall_s": 0.5085303783416748,
+          "simulation_done_marker": true,
+          "log_sha256": "43e885f1a54f1f66c0688714b22521b93cdc88195f193af0f2cab1a11bb14655",
+          "timed_out": false,
+          "physical_validation": false,
+          "vast_new_spend_USD": 0,
+          "owned_scope": "carrier-Ti64-Q1-conduction-20261018-001-ti64-frozen-conduction.scope",
+          "scope_before": {
+            "fields": {
+              "LoadState": "not-found",
+              "ActiveState": "inactive",
+              "ControlGroup": "",
+              "absent": true,
+              "query_returncode": 0,
+              "query_stdout": "LoadState=not-found\nActiveState=inactive\nControlGroup=\n",
+              "query_stderr": ""
+            },
+            "absent_or_inactive": true,
+            "empty_ControlGroup": true,
+            "query_error": null
+          },
+          "scope_after": {
+            "fields": {
+              "LoadState": "not-found",
+              "ActiveState": "inactive",
+              "ControlGroup": "",
+              "absent": true,
+              "query_returncode": 0,
+              "query_stdout": "LoadState=not-found\nActiveState=inactive\nControlGroup=\n",
+              "query_stderr": ""
+            },
+            "absent_or_inactive": true,
+            "empty_ControlGroup": true,
+            "query_error": null
+          }
+        }
+      ],
+      "failure": null,
+      "static_runtime_before": {
+        "/home/lolman/lpbf-adamantine-fix-20261015/runtime/rootfs/opt/dealii/lib/libdeal_II.so.9.6.2": "78974a80f7393e9c918746e8a123fe0ce5feb925fcb985333a325a928337d785",
+        "/home/lolman/lpbf-adamantine-fix-20261015/runtime/rootfs/usr/lib/x86_64-linux-gnu/libboost_iostreams.so.1.83.0": "3e029a8a694b343cacea94d842d16ad76e74e10b5070544de6c9e50551616acc",
+        "/home/lolman/lpbf-adamantine-fix-20261015/runtime/rootfs/usr/lib/x86_64-linux-gnu/libboost_serialization.so.1.83.0": "cb6b870f1c1278453f38b01f5e0c3e7feff8f23fcd533c8969cf08e6364b890c",
+        "/home/lolman/lpbf-adamantine-fix-20261015/runtime/rootfs/usr/lib/x86_64-linux-gnu/libboost_chrono.so.1.83.0": "3a7decc1cafd2e0eeeab6dd7b503ba7628ac5e3308eea24460cb8e39cff75238",
+        "/home/lolman/lpbf-adamantine-fix-20261015/runtime/rootfs/opt/trilinos/lib/libkokkoscore.so.14.4": "2cba7f34284bab1481acfb83b41164e2a1ac085cb765c505944de4ca8beb801d",
+        "/home/lolman/lpbf-adamantine-fix-20261015/runtime/rootfs/opt/trilinos/lib/libepetra.so.14.4": "a619045ce719c664008aef97fe502d97099d3267dd93121b579bdb2375ea2a9c",
+        "/home/lolman/lpbf-adamantine-fix-20261015/runtime/rootfs/opt/trilinos/lib/libteuchoscore.so.14.4": "c6488d9b02376ce16236d485398119bebf9f70f9e0853c73d2ba2199416b0f17",
+        "/home/lolman/lpbf-adamantine-fix-20261015/runtime/rootfs/usr/lib/x86_64-linux-gnu/libm.so.6": "fce00b6f25f459cf4ae0b7fae4257909a1a8a86f9149e7c029a5d617baf1ccd0",
+        "/home/lolman/lpbf-adamantine-fix-20261015/runtime/rootfs/usr/lib/x86_64-linux-gnu/libboost_program_options.so.1.83.0": "15f34bcb75dfb0fa30af13cf2b82fb7a9a8e0fbbadf7cabcd397dd65bde552f3",
+        "/home/lolman/lpbf-adamantine-fix-20261015/runtime/rootfs/usr/lib/x86_64-linux-gnu/libmpi_cxx.so.40.30.1": "bf970d3b7ffdd471e5d073ff3bd689f2ef26a0b318eec5cfcef6acab802fe24b",
+        "/home/lolman/lpbf-adamantine-fix-20261015/runtime/rootfs/usr/lib/x86_64-linux-gnu/libmpi.so.40.30.6": "9055018b12757e830591aa0283e485e471f1f2a06d3bc0dd5fb35ab00386c172",
+        "/home/lolman/lpbf-adamantine-fix-20261015/runtime/rootfs/usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.33": "1fd75fe70354a416d75aef22bcae68c47bd25d20e2d0568c30b1a9838cf62f11",
+        "/home/lolman/lpbf-adamantine-fix-20261015/runtime/rootfs/usr/lib/x86_64-linux-gnu/libgcc_s.so.1": "d93224d2b0dab4247598be683adca02f5cf00586f99c187579cd7e92058fb7cb",
+        "/home/lolman/lpbf-adamantine-fix-20261015/runtime/rootfs/usr/lib/x86_64-linux-gnu/libc.so.6": "3a15d66867d83762c7f2f1e37359cb8f6c5743edb369c65285cb0b1c4f7498bf",
+        "/home/lolman/lpbf-adamantine-fix-20261015/runtime/rootfs/usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2": "c20a2dc8917c755f02b94049356320fe1f62ac7d9f8994731f807d9df39302da",
+        "/home/lolman/lpbf-adamantine-fix-20261015/runtime/rootfs/opt/trilinos/lib/libexodus.so.14.4": "622ef0c3293715eaa039c2cbeea27b91fcd1a668db4c7bffd4b5c35daae5448d",
+        "/home/lolman/lpbf-adamantine-fix-20261015/runtime/rootfs/opt/trilinos/lib/libml.so.14.4": "d2969743f854f3d361089b1e04de2cba4b98f9c0520a702709213ed26d85c19f",
+        "/home/lolman/lpbf-adamantine-fix-20261015/runtime/rootfs/opt/trilinos/lib/libifpack.so.14.4": "791f478b64459cf3062928212a2fb2c5375b10cf5de815b5b755ec00522e26d3",
+        "/home/lolman/lpbf-adamantine-fix-20261015/runtime/rootfs/opt/trilinos/lib/libamesos.so.14.4": "beee9a1879fd15bcba2ded67f6407ae40e5bcec210942013502b4a999e78c8d6",
+        "/home/lolman/lpbf-adamantine-fix-20261015/runtime/rootfs/opt/trilinos/lib/libaztecoo.so.14.4": "9426661f49e92dfe75ded3f5649e11290611d84feea17c023919593218931033",
+        "/home/lolman/lpbf-adamantine-fix-20261015/runtime/rootfs/opt/trilinos/lib/libteuchosparameterlist.so.14.4": "ff4fe3c3d27f837d6b500112c3815088adcabd7371d3e9a99da51e9dfc150ebe",
+        "/home/lolman/lpbf-adamantine-fix-20261015/runtime/rootfs/opt/trilinos/lib/libteuchoscomm.so.14.4": "233ceec3ce408be68d54c95d293c8dcf323ab3106da3cf87b75f0c659ee1dd5e",
+        "/home/lolman/lpbf-adamantine-fix-20261015/runtime/rootfs/usr/lib/x86_64-linux-gnu/libumfpack.so.6.3.2": "e3668a9962d2786ec76541b146ecd384546bdfa24670d2be5ca32cb7fa9900e6",
+        "/home/lolman/lpbf-adamantine-fix-20261015/runtime/rootfs/usr/lib/x86_64-linux-gnu/libhdf5_openmpi.so.103.4.0": "dfd01ebf23f1e7f78b9ac17195aa836d963210ae5ffb8def21689e2ee3094f61",
+        "/home/lolman/lpbf-adamantine-fix-20261015/runtime/rootfs/usr/lib/x86_64-linux-gnu/libp4est-2.3.so": "9ce7234c040ac1c2b619e7b68996df7fda2bf867b59a036af66363429cdbd6bb",
+        "/home/lolman/lpbf-adamantine-fix-20261015/runtime/rootfs/usr/lib/x86_64-linux-gnu/libsc-2.3.so": "c69b64359c3432d23a830fc7a2b6700bf8607bb85339b055a38622c489654c63",
+        "/home/lolman/lpbf-adamantine-fix-20261015/runtime/rootfs/usr/lib/x86_64-linux-gnu/libscalapack-openmpi.so.2.2.1": "2b80ad7c56e6d670b92da7b58cfae9b2d41378e6fe69f727868f021a4402bf3c",
+        "/home/lolman/lpbf-adamantine-fix-20261015/runtime/rootfs/usr/lib/x86_64-linux-gnu/openblas-pthread/libopenblasp-r0.3.26.so": "bfc7492adbf84a8f567720a9e1fae2afc18f3d817da233e7f4d453683485308e",
+        "/home/lolman/lpbf-adamantine-fix-20261015/runtime/rootfs/usr/lib/x86_64-linux-gnu/libz.so.1.3": "86200da370f20476a2507e9097a789b5ef97269b4ca8d5e164ad82dab9d99892",
+        "/home/lolman/lpbf-adamantine-fix-20261015/runtime/rootfs/usr/lib/x86_64-linux-gnu/libsundials_idas.so.5.4.1": "eb40bafed7c87b4e35876e6c0cf026dc1e7cda68f90b1881b1c288a141b4ad70",
+        "/home/lolman/lpbf-adamantine-fix-20261015/runtime/rootfs/usr/lib/x86_64-linux-gnu/libsundials_arkode.so.5.4.1": "25f125b86aa6634b8089bc89ed90340bd52907dbe81e830218526844d9c0ad74",
+        "/home/lolman/lpbf-adamantine-fix-20261015/runtime/rootfs/usr/lib/x86_64-linux-gnu/libsundials_kinsol.so.6.4.1": "a8a721d23877134f211fca05145747a1b444ef843d5433e9da6ddf3c4f80c026",
+        "/home/lolman/lpbf-adamantine-fix-20261015/runtime/rootfs/usr/lib/x86_64-linux-gnu/libbz2.so.1.0.4": "cc08c9f50a8009ffd6391e0116a100369b11ca9238fa52392c019e6645b122a1",
+        "/home/lolman/lpbf-adamantine-fix-20261015/runtime/rootfs/usr/lib/x86_64-linux-gnu/liblzma.so.5.4.5": "696e868dd0700a19a6d65fc01608ec2d70d3cb91f65710e89180cd2e688f30cb",
+        "/home/lolman/lpbf-adamantine-fix-20261015/runtime/rootfs/usr/lib/x86_64-linux-gnu/libzstd.so.1.5.5": "0a2128bc10841fb29e76d08d945864dfb0b6a66da5df6df5d8299197439e54bb",
+        "/home/lolman/lpbf-adamantine-fix-20261015/runtime/rootfs/usr/lib/x86_64-linux-gnu/libopen-pal.so.40.30.3": "59c4d9b111cd3ec326a4df475a338daae050496087c67e86956187056fdc3051",
+        "/home/lolman/lpbf-adamantine-fix-20261015/runtime/rootfs/usr/lib/x86_64-linux-gnu/libopen-rte.so.40.30.3": "26467e1da428d31dab924ddbc50bc6ade75da47dbb82c77498a5f127a5466ba7",
+        "/home/lolman/lpbf-adamantine-fix-20261015/runtime/rootfs/usr/lib/x86_64-linux-gnu/libhwloc.so.15.7.0": "86dff44a023254d997cea910b9a51f35afefe6780f4b5530f974a2009ba47487",
+        "/home/lolman/lpbf-adamantine-fix-20261015/runtime/rootfs/usr/lib/x86_64-linux-gnu/libnetcdf.so.19": "04fc972259131718fd96f0ea876654fe0a410a4af1635349dc8ec1590764f0f5",
+        "/home/lolman/lpbf-adamantine-fix-20261015/runtime/rootfs/opt/trilinos/lib/libtrilinosss.so.14.4": "956f21a2feb873449de99173705795feda06e114dd165865fcd50d3a0a8efc72",
+        "/home/lolman/lpbf-adamantine-fix-20261015/runtime/rootfs/opt/trilinos/lib/libteuchosnumerics.so.14.4": "167d3f89b93e90bdeb62b302ed300bd34c9aa1f7cac1df65cf8fcf6c6f86cad9",
+        "/home/lolman/lpbf-adamantine-fix-20261015/runtime/rootfs/opt/trilinos/lib/libteuchosremainder.so.14.4": "79aba518c11129c2477c8b31e43e39b1bc1c029f512a2d566dad5d479d1272c6",
+        "/home/lolman/lpbf-adamantine-fix-20261015/runtime/rootfs/opt/trilinos/lib/libteuchosparser.so.14.4": "433c9ea5c1cdcbecfc1411dc25692fd03657a5e6aabef25597aa868320904921",
+        "/home/lolman/lpbf-adamantine-fix-20261015/runtime/rootfs/usr/lib/x86_64-linux-gnu/libcholmod.so.5.2.0": "f72594b896387b607d6c885ae9f1d73f19a419cde5e1d1c04c1b8f804c0c68eb",
+        "/home/lolman/lpbf-adamantine-fix-20261015/runtime/rootfs/usr/lib/x86_64-linux-gnu/openblas-pthread/libblas.so.3": "8ba4a98f44d763c2e648755ef452025919e28633339f23ff605044de3483a25d",
+        "/home/lolman/lpbf-adamantine-fix-20261015/runtime/rootfs/usr/lib/x86_64-linux-gnu/libamd.so.3.3.1": "242ddc8b1812397afccec6c435f099b7acbd477ab12534e3c84a84386032cfa4",
+        "/home/lolman/lpbf-adamantine-fix-20261015/runtime/rootfs/usr/lib/x86_64-linux-gnu/libsuitesparseconfig.so.7.6.1": "e1619265d8ad8e3f04902aebc2e415c5c3f1f9d0595fb948f29c60218a334679",
+        "/home/lolman/lpbf-adamantine-fix-20261015/runtime/rootfs/usr/lib/x86_64-linux-gnu/libcrypto.so.3": "6866ed711dab8927e1bf82bf1cd30e828bdfc34f3cc1e83b1c9eb01ce6c37d9a",
+        "/home/lolman/lpbf-adamantine-fix-20261015/runtime/rootfs/usr/lib/x86_64-linux-gnu/libcurl.so.4.8.0": "cf6398ebba028cc7dcc5425208bb2da2d0706b885a7c9c4cbac3d453e512c1f6",
+        "/home/lolman/lpbf-adamantine-fix-20261015/runtime/rootfs/usr/lib/x86_64-linux-gnu/libsz.so.2.0.1": "e73fa40252e84d38d64f9b3268ae6679530a777a55d6478d6b24de176d845c4b",
+        "/home/lolman/lpbf-adamantine-fix-20261015/runtime/rootfs/usr/lib/x86_64-linux-gnu/openblas-pthread/liblapack.so.3": "1e82245607c58d13405580c71b9b0134b5a952686ac861f979fc7a886ebd4229",
+        "/home/lolman/lpbf-adamantine-fix-20261015/runtime/rootfs/usr/lib/x86_64-linux-gnu/libgfortran.so.5.0.0": "342618ccfebe840446e4ef2b7893f4161b2084845e570f42d68a70bfde58a58d",
+        "/home/lolman/lpbf-adamantine-fix-20261015/runtime/rootfs/usr/lib/x86_64-linux-gnu/libevent_core-2.1.so.7.0.1": "7fa4592ebaec38a7c1ce665c29244fbaae249cab6c1dbdd5024418dcdfd4898e",
+        "/home/lolman/lpbf-adamantine-fix-20261015/runtime/rootfs/usr/lib/x86_64-linux-gnu/libevent_pthreads-2.1.so.7.0.1": "e386329c9c16032b489bebbd545750f35eafc0f50ab88ef0c986a31acb4b47a2",
+        "/home/lolman/lpbf-adamantine-fix-20261015/runtime/rootfs/usr/lib/x86_64-linux-gnu/libudev.so.1.7.8": "4298228175fa62a36af88b1afd4406cdd8b1bf166621f957d0dbbde45a698fe5",
+        "/home/lolman/lpbf-adamantine-fix-20261015/runtime/rootfs/usr/lib/x86_64-linux-gnu/libhdf5_serial_hl.so.100.1.7": "f7612eea5f3df4d0fb7b7d8d0840b79ee25958e00da8d4934fe869ae36431a2b",
+        "/home/lolman/lpbf-adamantine-fix-20261015/runtime/rootfs/usr/lib/x86_64-linux-gnu/libhdf5_serial.so.103.4.0": "aa9c9c402261b73469d0b79fe0d585537bdea8d4b5dab872fab613640277db0e",
+        "/home/lolman/lpbf-adamantine-fix-20261015/runtime/rootfs/usr/lib/x86_64-linux-gnu/libcurl-gnutls.so.4.8.0": "d04ccee993de5f87dfadb2c27d58b7117645ceba7f11dc9916999fcaf17d2e55",
+        "/home/lolman/lpbf-adamantine-fix-20261015/runtime/rootfs/usr/lib/x86_64-linux-gnu/libxml2.so.2.9.14": "ddd3af3f491a9686c82fe1232f1250cec368eb2fbcb1d2725c6ce9401a6dbd3b",
+        "/home/lolman/lpbf-adamantine-fix-20261015/runtime/rootfs/usr/lib/x86_64-linux-gnu/libcolamd.so.3.3.2": "2c50410c2e57b719fd797106e291bb98771f02fd737c948ef93b3c27e0127456",
+        "/home/lolman/lpbf-adamantine-fix-20261015/runtime/rootfs/usr/lib/x86_64-linux-gnu/libcamd.so.3.3.1": "5324f4256e1b27bb68c1b6d3178cc2ba57ea4fbb77ecc3021902ad04f03440fe",
+        "/home/lolman/lpbf-adamantine-fix-20261015/runtime/rootfs/usr/lib/x86_64-linux-gnu/libccolamd.so.3.3.2": "722311b0c9d074c97c6d3e5b651e9006e248da181293a7ba62b86d8d79df83fb",
+        "/home/lolman/lpbf-adamantine-fix-20261015/runtime/rootfs/usr/lib/x86_64-linux-gnu/libgomp.so.1.0.0": "135f3c8f006d2fe5e68e51281c7974cb991a03de3bfb3593d68d174dfcf854d1",
+        "/home/lolman/lpbf-adamantine-fix-20261015/runtime/rootfs/usr/lib/x86_64-linux-gnu/libnghttp2.so.14.26.0": "46764ab5b6ca7e353a322054f0bee45d9158a27f3e6a82a2fa4447f2ba9ba268",
+        "/home/lolman/lpbf-adamantine-fix-20261015/runtime/rootfs/usr/lib/x86_64-linux-gnu/libidn2.so.0.4.0": "6e632fd9a3125db60bbc623719bbc17b0470330321c5b1c57f1ff7190e5551ad",
+        "/home/lolman/lpbf-adamantine-fix-20261015/runtime/rootfs/usr/lib/x86_64-linux-gnu/librtmp.so.1": "15a2a75e8c437b9c99971b5ee10278ab110beef1a56d1d9e5d6759ea140e98ac",
+        "/home/lolman/lpbf-adamantine-fix-20261015/runtime/rootfs/usr/lib/x86_64-linux-gnu/libssh.so.4.9.6": "b82bd54edb908605b8142be1a6d242df65501af0e9bb7581cc36ebf4d8a5ecfd",
+        "/home/lolman/lpbf-adamantine-fix-20261015/runtime/rootfs/usr/lib/x86_64-linux-gnu/libpsl.so.5.3.4": "ae6c5a9aecc249fc66e03c16ec6c4385d09d7e12e0ea7694bb831ab4fee8133c",
+        "/home/lolman/lpbf-adamantine-fix-20261015/runtime/rootfs/usr/lib/x86_64-linux-gnu/libssl.so.3": "a40e7b67489bbd257e432c700ff8f6a1ad796425b5eccecdc2930127fdd86624",
+        "/home/lolman/lpbf-adamantine-fix-20261015/runtime/rootfs/usr/lib/x86_64-linux-gnu/libgssapi_krb5.so.2.2": "c7aa00cf51646f7c32f196d329a562bc873ff32906c9caf6554ca489dd657507",
+        "/home/lolman/lpbf-adamantine-fix-20261015/runtime/rootfs/usr/lib/x86_64-linux-gnu/libldap.so.2.0.200": "a9829b999c95452eb0a34cc7b5349427b76dbf3e5d5c8672a5ca69e454c1b151",
+        "/home/lolman/lpbf-adamantine-fix-20261015/runtime/rootfs/usr/lib/x86_64-linux-gnu/liblber.so.2.0.200": "ddf14275b1fb70ba06510094071adcc1462e675f15ae6cdcadbf40c1dabe5a03",
+        "/home/lolman/lpbf-adamantine-fix-20261015/runtime/rootfs/usr/lib/x86_64-linux-gnu/libbrotlidec.so.1.1.0": "64d8a5019d4c294b89fde1193343ea324bbd8603652554e5545f0a01595fa2c5",
+        "/home/lolman/lpbf-adamantine-fix-20261015/runtime/rootfs/usr/lib/x86_64-linux-gnu/libaec.so.0.1.2": "4fd52145f7a3f0648b3f5a9527bc3143f96e47768bb68acd62bd12399871ddcc",
+        "/home/lolman/lpbf-adamantine-fix-20261015/runtime/rootfs/usr/lib/x86_64-linux-gnu/libcap.so.2.66": "6ac6abc86ac891c6e13486470e26f1d939f47fda9e6b5d5508a7f5ec881adc84",
+        "/home/lolman/lpbf-adamantine-fix-20261015/runtime/rootfs/usr/lib/x86_64-linux-gnu/libnettle.so.8.8": "a245ed916229583d6fe0b07657b3ed945bc148c28cc08b5266295f620d2b91cc",
+        "/home/lolman/lpbf-adamantine-fix-20261015/runtime/rootfs/usr/lib/x86_64-linux-gnu/libgnutls.so.30.37.1": "ddbae2995750875c07bc218d12a062d73f8250678f54dedda7e9be5068781c98",
+        "/home/lolman/lpbf-adamantine-fix-20261015/runtime/rootfs/usr/lib/x86_64-linux-gnu/libicuuc.so.74.2": "7560aadde38e5f4237a47a1ddd5891f9b36768a77a60faae30beee003ac01901",
+        "/home/lolman/lpbf-adamantine-fix-20261015/runtime/rootfs/usr/lib/x86_64-linux-gnu/libunistring.so.5.0.0": "7bcf825cd449892db5105ad2aed91dcf94a27b796426600c765720c584c54dd1",
+        "/home/lolman/lpbf-adamantine-fix-20261015/runtime/rootfs/usr/lib/x86_64-linux-gnu/libhogweed.so.6.8": "c3c606139d4f7776efa4dbd4a6b62e30c916b07a0cafd8c3ef173d6f093607e3",
+        "/home/lolman/lpbf-adamantine-fix-20261015/runtime/rootfs/usr/lib/x86_64-linux-gnu/libgmp.so.10.5.0": "0ccdfb6d6f5c039465f6d002cf7e4c072d48ac6a2cffc8dd6c748dec31592804",
+        "/home/lolman/lpbf-adamantine-fix-20261015/runtime/rootfs/usr/lib/x86_64-linux-gnu/libkrb5.so.3.3": "fad617a72b5839d30143e7db03281279089def6f18788cbb0b7f86385301bf04",
+        "/home/lolman/lpbf-adamantine-fix-20261015/runtime/rootfs/usr/lib/x86_64-linux-gnu/libk5crypto.so.3.1": "b37407fb2930939bf78b47267019cd201a8af1f4b6a3852249c849cf3a985798",
+        "/home/lolman/lpbf-adamantine-fix-20261015/runtime/rootfs/usr/lib/x86_64-linux-gnu/libcom_err.so.2.1": "022943b3b11c860b049bce41342f1c2594941b7b401d95dfdf235521099fee08",
+        "/home/lolman/lpbf-adamantine-fix-20261015/runtime/rootfs/usr/lib/x86_64-linux-gnu/libkrb5support.so.0.1": "936bae947a838bd47676a419dfcfb036d0163249215b58ec706ec7d46b7497aa",
+        "/home/lolman/lpbf-adamantine-fix-20261015/runtime/rootfs/usr/lib/x86_64-linux-gnu/libsasl2.so.2.0.25": "a0f410ad093236856eee59c4ff2838dc04d932ea0993400f23ed77d67d85af34",
+        "/home/lolman/lpbf-adamantine-fix-20261015/runtime/rootfs/usr/lib/x86_64-linux-gnu/libbrotlicommon.so.1.1.0": "a91ead095d2c80520c55a89057bbe10b031a075340442e63f44b310f93883a1b",
+        "/home/lolman/lpbf-adamantine-fix-20261015/runtime/rootfs/usr/lib/x86_64-linux-gnu/libp11-kit.so.0.3.1": "a59efd4792d3343dedea1d26a28f5597abfe3369082deb504c4802a31b014897",
+        "/home/lolman/lpbf-adamantine-fix-20261015/runtime/rootfs/usr/lib/x86_64-linux-gnu/libtasn1.so.6.6.3": "59994414d0cdec4f678ef91eaaafc44b26b00bca507e4cc7978caaf79f584173",
+        "/home/lolman/lpbf-adamantine-fix-20261015/runtime/rootfs/usr/lib/x86_64-linux-gnu/libicudata.so.74.2": "ddbb3718b8bd9cbd780e5ab08b4503c30a6c4fa0706ebe5d074ed6b596c1714e",
+        "/home/lolman/lpbf-adamantine-fix-20261015/runtime/rootfs/usr/lib/x86_64-linux-gnu/libkeyutils.so.1.10": "f48214417757f18793ed6e180cc14ee1d6f04252a518fc7270e8ca1d0b4260fe",
+        "/home/lolman/lpbf-adamantine-fix-20261015/runtime/rootfs/usr/lib/x86_64-linux-gnu/libresolv.so.2": "1d730ea434da5a5595bc6a961d7a9ace83e03703205df9644044b3dca79c362f",
+        "/home/lolman/lpbf-adamantine-fix-20261015/runtime/rootfs/usr/lib/x86_64-linux-gnu/libffi.so.8.1.4": "00f593fe192f2851b8ce23b25cec2488d769beb5a8f63e8c9e563071e1075153",
+        "/home/lolman/lpbf-adamantine-fix-20261015/runtime/rootfs/etc/ld.so.conf": "d4b198c463418b493208485def26a6f4c57279467b9dfa491b70433cedb602e8",
+        "/home/lolman/lpbf-adamantine-fix-20261015/runtime/rootfs/etc/ld.so.conf.d/000_cuda.conf": "a9327cff9435220eac872cffedc7f6144d915bdcb70d985304c72f4c3cb9a7d3",
+        "/home/lolman/lpbf-adamantine-fix-20261015/runtime/rootfs/etc/ld.so.conf.d/988_cuda-12.conf": "93ff348ce54a0588c04b495e9c36a7057c46e96262350c7fa1bee2a649bdd479",
+        "/home/lolman/lpbf-adamantine-fix-20261015/runtime/rootfs/etc/ld.so.conf.d/gds-12-6.conf": "9b049192a4cfd7c9ac7e05e1f28814b4515f2031e4ee634203747ef140aa2567",
+        "/home/lolman/lpbf-adamantine-fix-20261015/runtime/rootfs/etc/ld.so.conf.d/libc.conf": "90d4c7e43e7661cd116010eb9f50ad5817e43162df344bd1ad10898851b15d41",
+        "/home/lolman/lpbf-adamantine-fix-20261015/runtime/rootfs/etc/ld.so.conf.d/nvidia.conf": "b9d9e6d3b6425ffbfecda87f34a876143faef8b75620f452a9e747cca666f31d",
+        "/home/lolman/lpbf-adamantine-fix-20261015/runtime/rootfs/etc/ld.so.conf.d/x86_64-linux-gnu.conf": "f03e4740e6922b4f4a1181cd696b52f62f9f10d003740a8940f7121795c59c98",
+        "/usr/bin/bwrap": "d68586674e868f44fbd8bfc96fc19427dfd2637fa0bd15bee1d150afdd4fa030",
+        "/usr/bin/systemd-run": "a24721ee7a0d128064f559ecf033fa15d40429fd75bbf502f155d1522019c8e5",
+        "/usr/bin/timeout": "9cd6f7a935624ed29b130f922f4a829fc1ca300463d47c1e4892ec17926d9ed9",
+        "/usr/bin/systemctl": "7bb757102440352dba4519926cd8fd7d2e5efe1a8c73d9ccb9d2324094f36cbb",
+        "/usr/bin/python3.14": "7b6c7e71d7b8caeb173b848d24a9a90bb3ecc348ef0f9a6762b477afc798a91e",
+        "/home/lolman/lpbf-adamantine-fix-20261015/runtime/rootfs/opt/caliper/lib/libcaliper.so.2.11.0": "c0ed6e7159849d3164f8cf91ad052886abd44cb983968a702a97241e30f7b587",
+        "/home/lolman/lpbf-adamantine-fix-20261015/runtime/rootfs/opt/adiak/lib/libadiak.so": "d4887f576e634d432752b620ade8242fb5d72b7d6516a0dc48f487753a68149f",
+        "/home/lolman/lpbf-adamantine-fix-20261015/runtime/rootfs/usr/lib/x86_64-linux-gnu/libpfm.so.4.13.0": "268e5d0a894a414b9475d9fc4352d04ce057434042e6dffe96317ff87f6a249f",
+        "/home/lolman/lpbf-adamantine-fix-20261015/runtime/rootfs/usr/lib/x86_64-linux-gnu/libdw-0.190.so": "989dc9873f358a5af7d18d6100cf5fd66531d7990dc47d69068b3c6c96588867",
+        "/home/lolman/lpbf-adamantine-fix-20261015/runtime/rootfs/usr/lib/x86_64-linux-gnu/libunwind.so.8.0.1": "28e77a498f2f17f8cb883c91303f9901343ea0d8e34959d138dd462fcc9b201f",
+        "/home/lolman/lpbf-adamantine-fix-20261015/runtime/rootfs/usr/lib/x86_64-linux-gnu/libelf-0.190.so": "248c989360783cdc52f3659921de852c2efcc2097253ce58e34443f856412814",
+        "/home/lolman/lpbf-adamantine-fix-20261015/runtime/rootfs/home/adamantine/bin/adamantine": "02562951aed133c8c9436637e31707976151b3f4e9a1d45b80818c5135ce4e55",
+        "/home/lolman/lpbf-adamantine-fix-20261015/runtime/rootfs/home/adamantine/applications/adamantine.cc": "60504cf6778dc3193f05d48cb7947c4419525fc384db3fa9b6e3f4b8e1c8606f",
+        "/home/lolman/lpbf-adamantine-fix-20261015/runtime/rootfs/home/adamantine/source/PostProcessor.cc": "c91a5426f6816ad5361890c3da068e590389ae08bca0d9ff6f6836a4507d1fea",
+        "/home/lolman/lpbf-adamantine-fix-20261015/runtime/rootfs/home/adamantine/source/instantiation.hh": "c40ff7beb53edb2d798aba1a471341635227bf4b7b4580d89c844780335ad873",
+        "/home/lolman/lpbf-adamantine-fix-20261015/runtime/rootfs/home/adamantine/source/MaterialProperty.templates.hh": "7084a45bccac11c94c87387d4bff208c1fb47e8e3a053fd00dfab111ccedf4c3",
+        "/home/lolman/lpbf-adamantine-fix-20261015/runtime/manifest.json": "a7c394fb9075ea8343f0ed1734574a5d158563e6f2b71894cdcc9f5f75d6e4d9",
+        "/home/lolman/lpbf-adamantine-fix-20261015/runtime/receipt.json": "0fc4081fa5f50a095865867906302394c85622c20768ae2a5a2355e141dde813",
+        "/home/lolman/lpbf-adamantine-fix-20261015/runtime/native-proof.json": "5757b389776fe568ac643f9a2c4762c46d307199abe666538bf2e57e9c9e36af"
+      },
+      "static_runtime_after": {
+        "/home/lolman/lpbf-adamantine-fix-20261015/runtime/rootfs/opt/dealii/lib/libdeal_II.so.9.6.2": "78974a80f7393e9c918746e8a123fe0ce5feb925fcb985333a325a928337d785",
+        "/home/lolman/lpbf-adamantine-fix-20261015/runtime/rootfs/usr/lib/x86_64-linux-gnu/libboost_iostreams.so.1.83.0": "3e029a8a694b343cacea94d842d16ad76e74e10b5070544de6c9e50551616acc",
+        "/home/lolman/lpbf-adamantine-fix-20261015/runtime/rootfs/usr/lib/x86_64-linux-gnu/libboost_serialization.so.1.83.0": "cb6b870f1c1278453f38b01f5e0c3e7feff8f23fcd533c8969cf08e6364b890c",
+        "/home/lolman/lpbf-adamantine-fix-20261015/runtime/rootfs/usr/lib/x86_64-linux-gnu/libboost_chrono.so.1.83.0": "3a7decc1cafd2e0eeeab6dd7b503ba7628ac5e3308eea24460cb8e39cff75238",
+        "/home/lolman/lpbf-adamantine-fix-20261015/runtime/rootfs/opt/trilinos/lib/libkokkoscore.so.14.4": "2cba7f34284bab1481acfb83b41164e2a1ac085cb765c505944de4ca8beb801d",
+        "/home/lolman/lpbf-adamantine-fix-20261015/runtime/rootfs/opt/trilinos/lib/libepetra.so.14.4": "a619045ce719c664008aef97fe502d97099d3267dd93121b579bdb2375ea2a9c",
+        "/home/lolman/lpbf-adamantine-fix-20261015/runtime/rootfs/opt/trilinos/lib/libteuchoscore.so.14.4": "c6488d9b02376ce16236d485398119bebf9f70f9e0853c73d2ba2199416b0f17",
+        "/home/lolman/lpbf-adamantine-fix-20261015/runtime/rootfs/usr/lib/x86_64-linux-gnu/libm.so.6": "fce00b6f25f459cf4ae0b7fae4257909a1a8a86f9149e7c029a5d617baf1ccd0",
+        "/home/lolman/lpbf-adamantine-fix-20261015/runtime/rootfs/usr/lib/x86_64-linux-gnu/libboost_program_options.so.1.83.0": "15f34bcb75dfb0fa30af13cf2b82fb7a9a8e0fbbadf7cabcd397dd65bde552f3",
+        "/home/lolman/lpbf-adamantine-fix-20261015/runtime/rootfs/usr/lib/x86_64-linux-gnu/libmpi_cxx.so.40.30.1": "bf970d3b7ffdd471e5d073ff3bd689f2ef26a0b318eec5cfcef6acab802fe24b",
+        "/home/lolman/lpbf-adamantine-fix-20261015/runtime/rootfs/usr/lib/x86_64-linux-gnu/libmpi.so.40.30.6": "9055018b12757e830591aa0283e485e471f1f2a06d3bc0dd5fb35ab00386c172",
+        "/home/lolman/lpbf-adamantine-fix-20261015/runtime/rootfs/usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.33": "1fd75fe70354a416d75aef22bcae68c47bd25d20e2d0568c30b1a9838cf62f11",
+        "/home/lolman/lpbf-adamantine-fix-20261015/runtime/rootfs/usr/lib/x86_64-linux-gnu/libgcc_s.so.1": "d93224d2b0dab4247598be683adca02f5cf00586f99c187579cd7e92058fb7cb",
+        "/home/lolman/lpbf-adamantine-fix-20261015/runtime/rootfs/usr/lib/x86_64-linux-gnu/libc.so.6": "3a15d66867d83762c7f2f1e37359cb8f6c5743edb369c65285cb0b1c4f7498bf",
+        "/home/lolman/lpbf-adamantine-fix-20261015/runtime/rootfs/usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2": "c20a2dc8917c755f02b94049356320fe1f62ac7d9f8994731f807d9df39302da",
+        "/home/lolman/lpbf-adamantine-fix-20261015/runtime/rootfs/opt/trilinos/lib/libexodus.so.14.4": "622ef0c3293715eaa039c2cbeea27b91fcd1a668db4c7bffd4b5c35daae5448d",
+        "/home/lolman/lpbf-adamantine-fix-20261015/runtime/rootfs/opt/trilinos/lib/libml.so.14.4": "d2969743f854f3d361089b1e04de2cba4b98f9c0520a702709213ed26d85c19f",
+        "/home/lolman/lpbf-adamantine-fix-20261015/runtime/rootfs/opt/trilinos/lib/libifpack.so.14.4": "791f478b64459cf3062928212a2fb2c5375b10cf5de815b5b755ec00522e26d3",
+        "/home/lolman/lpbf-adamantine-fix-20261015/runtime/rootfs/opt/trilinos/lib/libamesos.so.14.4": "beee9a1879fd15bcba2ded67f6407ae40e5bcec210942013502b4a999e78c8d6",
+        "/home/lolman/lpbf-adamantine-fix-20261015/runtime/rootfs/opt/trilinos/lib/libaztecoo.so.14.4": "9426661f49e92dfe75ded3f5649e11290611d84feea17c023919593218931033",
+        "/home/lolman/lpbf-adamantine-fix-20261015/runtime/rootfs/opt/trilinos/lib/libteuchosparameterlist.so.14.4": "ff4fe3c3d27f837d6b500112c3815088adcabd7371d3e9a99da51e9dfc150ebe",
+        "/home/lolman/lpbf-adamantine-fix-20261015/runtime/rootfs/opt/trilinos/lib/libteuchoscomm.so.14.4": "233ceec3ce408be68d54c95d293c8dcf323ab3106da3cf87b75f0c659ee1dd5e",
+        "/home/lolman/lpbf-adamantine-fix-20261015/runtime/rootfs/usr/lib/x86_64-linux-gnu/libumfpack.so.6.3.2": "e3668a9962d2786ec76541b146ecd384546bdfa24670d2be5ca32cb7fa9900e6",
+        "/home/lolman/lpbf-adamantine-fix-20261015/runtime/rootfs/usr/lib/x86_64-linux-gnu/libhdf5_openmpi.so.103.4.0": "dfd01ebf23f1e7f78b9ac17195aa836d963210ae5ffb8def21689e2ee3094f61",
+        "/home/lolman/lpbf-adamantine-fix-20261015/runtime/rootfs/usr/lib/x86_64-linux-gnu/libp4est-2.3.so": "9ce7234c040ac1c2b619e7b68996df7fda2bf867b59a036af66363429cdbd6bb",
+        "/home/lolman/lpbf-adamantine-fix-20261015/runtime/rootfs/usr/lib/x86_64-linux-gnu/libsc-2.3.so": "c69b64359c3432d23a830fc7a2b6700bf8607bb85339b055a38622c489654c63",
+        "/home/lolman/lpbf-adamantine-fix-20261015/runtime/rootfs/usr/lib/x86_64-linux-gnu/libscalapack-openmpi.so.2.2.1": "2b80ad7c56e6d670b92da7b58cfae9b2d41378e6fe69f727868f021a4402bf3c",
+        "/home/lolman/lpbf-adamantine-fix-20261015/runtime/rootfs/usr/lib/x86_64-linux-gnu/openblas-pthread/libopenblasp-r0.3.26.so": "bfc7492adbf84a8f567720a9e1fae2afc18f3d817da233e7f4d453683485308e",
+        "/home/lolman/lpbf-adamantine-fix-20261015/runtime/rootfs/usr/lib/x86_64-linux-gnu/libz.so.1.3": "86200da370f20476a2507e9097a789b5ef97269b4ca8d5e164ad82dab9d99892",
+        "/home/lolman/lpbf-adamantine-fix-20261015/runtime/rootfs/usr/lib/x86_64-linux-gnu/libsundials_idas.so.5.4.1": "eb40bafed7c87b4e35876e6c0cf026dc1e7cda68f90b1881b1c288a141b4ad70",
+        "/home/lolman/lpbf-adamantine-fix-20261015/runtime/rootfs/usr/lib/x86_64-linux-gnu/libsundials_arkode.so.5.4.1": "25f125b86aa6634b8089bc89ed90340bd52907dbe81e830218526844d9c0ad74",
+        "/home/lolman/lpbf-adamantine-fix-20261015/runtime/rootfs/usr/lib/x86_64-linux-gnu/libsundials_kinsol.so.6.4.1": "a8a721d23877134f211fca05145747a1b444ef843d5433e9da6ddf3c4f80c026",
+        "/home/lolman/lpbf-adamantine-fix-20261015/runtime/rootfs/usr/lib/x86_64-linux-gnu/libbz2.so.1.0.4": "cc08c9f50a8009ffd6391e0116a100369b11ca9238fa52392c019e6645b122a1",
+        "/home/lolman/lpbf-adamantine-fix-20261015/runtime/rootfs/usr/lib/x86_64-linux-gnu/liblzma.so.5.4.5": "696e868dd0700a19a6d65fc01608ec2d70d3cb91f65710e89180cd2e688f30cb",
+        "/home/lolman/lpbf-adamantine-fix-20261015/runtime/rootfs/usr/lib/x86_64-linux-gnu/libzstd.so.1.5.5": "0a2128bc10841fb29e76d08d945864dfb0b6a66da5df6df5d8299197439e54bb",
+        "/home/lolman/lpbf-adamantine-fix-20261015/runtime/rootfs/usr/lib/x86_64-linux-gnu/libopen-pal.so.40.30.3": "59c4d9b111cd3ec326a4df475a338daae050496087c67e86956187056fdc3051",
+        "/home/lolman/lpbf-adamantine-fix-20261015/runtime/rootfs/usr/lib/x86_64-linux-gnu/libopen-rte.so.40.30.3": "26467e1da428d31dab924ddbc50bc6ade75da47dbb82c77498a5f127a5466ba7",
+        "/home/lolman/lpbf-adamantine-fix-20261015/runtime/rootfs/usr/lib/x86_64-linux-gnu/libhwloc.so.15.7.0": "86dff44a023254d997cea910b9a51f35afefe6780f4b5530f974a2009ba47487",
+        "/home/lolman/lpbf-adamantine-fix-20261015/runtime/rootfs/usr/lib/x86_64-linux-gnu/libnetcdf.so.19": "04fc972259131718fd96f0ea876654fe0a410a4af1635349dc8ec1590764f0f5",
+        "/home/lolman/lpbf-adamantine-fix-20261015/runtime/rootfs/opt/trilinos/lib/libtrilinosss.so.14.4": "956f21a2feb873449de99173705795feda06e114dd165865fcd50d3a0a8efc72",
+        "/home/lolman/lpbf-adamantine-fix-20261015/runtime/rootfs/opt/trilinos/lib/libteuchosnumerics.so.14.4": "167d3f89b93e90bdeb62b302ed300bd34c9aa1f7cac1df65cf8fcf6c6f86cad9",
+        "/home/lolman/lpbf-adamantine-fix-20261015/runtime/rootfs/opt/trilinos/lib/libteuchosremainder.so.14.4": "79aba518c11129c2477c8b31e43e39b1bc1c029f512a2d566dad5d479d1272c6",
+        "/home/lolman/lpbf-adamantine-fix-20261015/runtime/rootfs/opt/trilinos/lib/libteuchosparser.so.14.4": "433c9ea5c1cdcbecfc1411dc25692fd03657a5e6aabef25597aa868320904921",
+        "/home/lolman/lpbf-adamantine-fix-20261015/runtime/rootfs/usr/lib/x86_64-linux-gnu/libcholmod.so.5.2.0": "f72594b896387b607d6c885ae9f1d73f19a419cde5e1d1c04c1b8f804c0c68eb",
+        "/home/lolman/lpbf-adamantine-fix-20261015/runtime/rootfs/usr/lib/x86_64-linux-gnu/openblas-pthread/libblas.so.3": "8ba4a98f44d763c2e648755ef452025919e28633339f23ff605044de3483a25d",
+        "/home/lolman/lpbf-adamantine-fix-20261015/runtime/rootfs/usr/lib/x86_64-linux-gnu/libamd.so.3.3.1": "242ddc8b1812397afccec6c435f099b7acbd477ab12534e3c84a84386032cfa4",
+        "/home/lolman/lpbf-adamantine-fix-20261015/runtime/rootfs/usr/lib/x86_64-linux-gnu/libsuitesparseconfig.so.7.6.1": "e1619265d8ad8e3f04902aebc2e415c5c3f1f9d0595fb948f29c60218a334679",
+        "/home/lolman/lpbf-adamantine-fix-20261015/runtime/rootfs/usr/lib/x86_64-linux-gnu/libcrypto.so.3": "6866ed711dab8927e1bf82bf1cd30e828bdfc34f3cc1e83b1c9eb01ce6c37d9a",
+        "/home/lolman/lpbf-adamantine-fix-20261015/runtime/rootfs/usr/lib/x86_64-linux-gnu/libcurl.so.4.8.0": "cf6398ebba028cc7dcc5425208bb2da2d0706b885a7c9c4cbac3d453e512c1f6",
+        "/home/lolman/lpbf-adamantine-fix-20261015/runtime/rootfs/usr/lib/x86_64-linux-gnu/libsz.so.2.0.1": "e73fa40252e84d38d64f9b3268ae6679530a777a55d6478d6b24de176d845c4b",
+        "/home/lolman/lpbf-adamantine-fix-20261015/runtime/rootfs/usr/lib/x86_64-linux-gnu/openblas-pthread/liblapack.so.3": "1e82245607c58d13405580c71b9b0134b5a952686ac861f979fc7a886ebd4229",
+        "/home/lolman/lpbf-adamantine-fix-20261015/runtime/rootfs/usr/lib/x86_64-linux-gnu/libgfortran.so.5.0.0": "342618ccfebe840446e4ef2b7893f4161b2084845e570f42d68a70bfde58a58d",
+        "/home/lolman/lpbf-adamantine-fix-20261015/runtime/rootfs/usr/lib/x86_64-linux-gnu/libevent_core-2.1.so.7.0.1": "7fa4592ebaec38a7c1ce665c29244fbaae249cab6c1dbdd5024418dcdfd4898e",
+        "/home/lolman/lpbf-adamantine-fix-20261015/runtime/rootfs/usr/lib/x86_64-linux-gnu/libevent_pthreads-2.1.so.7.0.1": "e386329c9c16032b489bebbd545750f35eafc0f50ab88ef0c986a31acb4b47a2",
+        "/home/lolman/lpbf-adamantine-fix-20261015/runtime/rootfs/usr/lib/x86_64-linux-gnu/libudev.so.1.7.8": "4298228175fa62a36af88b1afd4406cdd8b1bf166621f957d0dbbde45a698fe5",
+        "/home/lolman/lpbf-adamantine-fix-20261015/runtime/rootfs/usr/lib/x86_64-linux-gnu/libhdf5_serial_hl.so.100.1.7": "f7612eea5f3df4d0fb7b7d8d0840b79ee25958e00da8d4934fe869ae36431a2b",
+        "/home/lolman/lpbf-adamantine-fix-20261015/runtime/rootfs/usr/lib/x86_64-linux-gnu/libhdf5_serial.so.103.4.0": "aa9c9c402261b73469d0b79fe0d585537bdea8d4b5dab872fab613640277db0e",
+        "/home/lolman/lpbf-adamantine-fix-20261015/runtime/rootfs/usr/lib/x86_64-linux-gnu/libcurl-gnutls.so.4.8.0": "d04ccee993de5f87dfadb2c27d58b7117645ceba7f11dc9916999fcaf17d2e55",
+        "/home/lolman/lpbf-adamantine-fix-20261015/runtime/rootfs/usr/lib/x86_64-linux-gnu/libxml2.so.2.9.14": "ddd3af3f491a9686c82fe1232f1250cec368eb2fbcb1d2725c6ce9401a6dbd3b",
+        "/home/lolman/lpbf-adamantine-fix-20261015/runtime/rootfs/usr/lib/x86_64-linux-gnu/libcolamd.so.3.3.2": "2c50410c2e57b719fd797106e291bb98771f02fd737c948ef93b3c27e0127456",
+        "/home/lolman/lpbf-adamantine-fix-20261015/runtime/rootfs/usr/lib/x86_64-linux-gnu/libcamd.so.3.3.1": "5324f4256e1b27bb68c1b6d3178cc2ba57ea4fbb77ecc3021902ad04f03440fe",
+        "/home/lolman/lpbf-adamantine-fix-20261015/runtime/rootfs/usr/lib/x86_64-linux-gnu/libccolamd.so.3.3.2": "722311b0c9d074c97c6d3e5b651e9006e248da181293a7ba62b86d8d79df83fb",
+        "/home/lolman/lpbf-adamantine-fix-20261015/runtime/rootfs/usr/lib/x86_64-linux-gnu/libgomp.so.1.0.0": "135f3c8f006d2fe5e68e51281c7974cb991a03de3bfb3593d68d174dfcf854d1",
+        "/home/lolman/lpbf-adamantine-fix-20261015/runtime/rootfs/usr/lib/x86_64-linux-gnu/libnghttp2.so.14.26.0": "46764ab5b6ca7e353a322054f0bee45d9158a27f3e6a82a2fa4447f2ba9ba268",
+        "/home/lolman/lpbf-adamantine-fix-20261015/runtime/rootfs/usr/lib/x86_64-linux-gnu/libidn2.so.0.4.0": "6e632fd9a3125db60bbc623719bbc17b0470330321c5b1c57f1ff7190e5551ad",
+        "/home/lolman/lpbf-adamantine-fix-20261015/runtime/rootfs/usr/lib/x86_64-linux-gnu/librtmp.so.1": "15a2a75e8c437b9c99971b5ee10278ab110beef1a56d1d9e5d6759ea140e98ac",
+        "/home/lolman/lpbf-adamantine-fix-20261015/runtime/rootfs/usr/lib/x86_64-linux-gnu/libssh.so.4.9.6": "b82bd54edb908605b8142be1a6d242df65501af0e9bb7581cc36ebf4d8a5ecfd",
+        "/home/lolman/lpbf-adamantine-fix-20261015/runtime/rootfs/usr/lib/x86_64-linux-gnu/libpsl.so.5.3.4": "ae6c5a9aecc249fc66e03c16ec6c4385d09d7e12e0ea7694bb831ab4fee8133c",
+        "/home/lolman/lpbf-adamantine-fix-20261015/runtime/rootfs/usr/lib/x86_64-linux-gnu/libssl.so.3": "a40e7b67489bbd257e432c700ff8f6a1ad796425b5eccecdc2930127fdd86624",
+        "/home/lolman/lpbf-adamantine-fix-20261015/runtime/rootfs/usr/lib/x86_64-linux-gnu/libgssapi_krb5.so.2.2": "c7aa00cf51646f7c32f196d329a562bc873ff32906c9caf6554ca489dd657507",
+        "/home/lolman/lpbf-adamantine-fix-20261015/runtime/rootfs/usr/lib/x86_64-linux-gnu/libldap.so.2.0.200": "a9829b999c95452eb0a34cc7b5349427b76dbf3e5d5c8672a5ca69e454c1b151",
+        "/home/lolman/lpbf-adamantine-fix-20261015/runtime/rootfs/usr/lib/x86_64-linux-gnu/liblber.so.2.0.200": "ddf14275b1fb70ba06510094071adcc1462e675f15ae6cdcadbf40c1dabe5a03",
+        "/home/lolman/lpbf-adamantine-fix-20261015/runtime/rootfs/usr/lib/x86_64-linux-gnu/libbrotlidec.so.1.1.0": "64d8a5019d4c294b89fde1193343ea324bbd8603652554e5545f0a01595fa2c5",
+        "/home/lolman/lpbf-adamantine-fix-20261015/runtime/rootfs/usr/lib/x86_64-linux-gnu/libaec.so.0.1.2": "4fd52145f7a3f0648b3f5a9527bc3143f96e47768bb68acd62bd12399871ddcc",
+        "/home/lolman/lpbf-adamantine-fix-20261015/runtime/rootfs/usr/lib/x86_64-linux-gnu/libcap.so.2.66": "6ac6abc86ac891c6e13486470e26f1d939f47fda9e6b5d5508a7f5ec881adc84",
+        "/home/lolman/lpbf-adamantine-fix-20261015/runtime/rootfs/usr/lib/x86_64-linux-gnu/libnettle.so.8.8": "a245ed916229583d6fe0b07657b3ed945bc148c28cc08b5266295f620d2b91cc",
+        "/home/lolman/lpbf-adamantine-fix-20261015/runtime/rootfs/usr/lib/x86_64-linux-gnu/libgnutls.so.30.37.1": "ddbae2995750875c07bc218d12a062d73f8250678f54dedda7e9be5068781c98",
+        "/home/lolman/lpbf-adamantine-fix-20261015/runtime/rootfs/usr/lib/x86_64-linux-gnu/libicuuc.so.74.2": "7560aadde38e5f4237a47a1ddd5891f9b36768a77a60faae30beee003ac01901",
+        "/home/lolman/lpbf-adamantine-fix-20261015/runtime/rootfs/usr/lib/x86_64-linux-gnu/libunistring.so.5.0.0": "7bcf825cd449892db5105ad2aed91dcf94a27b796426600c765720c584c54dd1",
+        "/home/lolman/lpbf-adamantine-fix-20261015/runtime/rootfs/usr/lib/x86_64-linux-gnu/libhogweed.so.6.8": "c3c606139d4f7776efa4dbd4a6b62e30c916b07a0cafd8c3ef173d6f093607e3",
+        "/home/lolman/lpbf-adamantine-fix-20261015/runtime/rootfs/usr/lib/x86_64-linux-gnu/libgmp.so.10.5.0": "0ccdfb6d6f5c039465f6d002cf7e4c072d48ac6a2cffc8dd6c748dec31592804",
+        "/home/lolman/lpbf-adamantine-fix-20261015/runtime/rootfs/usr/lib/x86_64-linux-gnu/libkrb5.so.3.3": "fad617a72b5839d30143e7db03281279089def6f18788cbb0b7f86385301bf04",
+        "/home/lolman/lpbf-adamantine-fix-20261015/runtime/rootfs/usr/lib/x86_64-linux-gnu/libk5crypto.so.3.1": "b37407fb2930939bf78b47267019cd201a8af1f4b6a3852249c849cf3a985798",
+        "/home/lolman/lpbf-adamantine-fix-20261015/runtime/rootfs/usr/lib/x86_64-linux-gnu/libcom_err.so.2.1": "022943b3b11c860b049bce41342f1c2594941b7b401d95dfdf235521099fee08",
+        "/home/lolman/lpbf-adamantine-fix-20261015/runtime/rootfs/usr/lib/x86_64-linux-gnu/libkrb5support.so.0.1": "936bae947a838bd47676a419dfcfb036d0163249215b58ec706ec7d46b7497aa",
+        "/home/lolman/lpbf-adamantine-fix-20261015/runtime/rootfs/usr/lib/x86_64-linux-gnu/libsasl2.so.2.0.25": "a0f410ad093236856eee59c4ff2838dc04d932ea0993400f23ed77d67d85af34",
+        "/home/lolman/lpbf-adamantine-fix-20261015/runtime/rootfs/usr/lib/x86_64-linux-gnu/libbrotlicommon.so.1.1.0": "a91ead095d2c80520c55a89057bbe10b031a075340442e63f44b310f93883a1b",
+        "/home/lolman/lpbf-adamantine-fix-20261015/runtime/rootfs/usr/lib/x86_64-linux-gnu/libp11-kit.so.0.3.1": "a59efd4792d3343dedea1d26a28f5597abfe3369082deb504c4802a31b014897",
+        "/home/lolman/lpbf-adamantine-fix-20261015/runtime/rootfs/usr/lib/x86_64-linux-gnu/libtasn1.so.6.6.3": "59994414d0cdec4f678ef91eaaafc44b26b00bca507e4cc7978caaf79f584173",
+        "/home/lolman/lpbf-adamantine-fix-20261015/runtime/rootfs/usr/lib/x86_64-linux-gnu/libicudata.so.74.2": "ddbb3718b8bd9cbd780e5ab08b4503c30a6c4fa0706ebe5d074ed6b596c1714e",
+        "/home/lolman/lpbf-adamantine-fix-20261015/runtime/rootfs/usr/lib/x86_64-linux-gnu/libkeyutils.so.1.10": "f48214417757f18793ed6e180cc14ee1d6f04252a518fc7270e8ca1d0b4260fe",
+        "/home/lolman/lpbf-adamantine-fix-20261015/runtime/rootfs/usr/lib/x86_64-linux-gnu/libresolv.so.2": "1d730ea434da5a5595bc6a961d7a9ace83e03703205df9644044b3dca79c362f",
+        "/home/lolman/lpbf-adamantine-fix-20261015/runtime/rootfs/usr/lib/x86_64-linux-gnu/libffi.so.8.1.4": "00f593fe192f2851b8ce23b25cec2488d769beb5a8f63e8c9e563071e1075153",
+        "/home/lolman/lpbf-adamantine-fix-20261015/runtime/rootfs/etc/ld.so.conf": "d4b198c463418b493208485def26a6f4c57279467b9dfa491b70433cedb602e8",
+        "/home/lolman/lpbf-adamantine-fix-20261015/runtime/rootfs/etc/ld.so.conf.d/000_cuda.conf": "a9327cff9435220eac872cffedc7f6144d915bdcb70d985304c72f4c3cb9a7d3",
+        "/home/lolman/lpbf-adamantine-fix-20261015/runtime/rootfs/etc/ld.so.conf.d/988_cuda-12.conf": "93ff348ce54a0588c04b495e9c36a7057c46e96262350c7fa1bee2a649bdd479",
+        "/home/lolman/lpbf-adamantine-fix-20261015/runtime/rootfs/etc/ld.so.conf.d/gds-12-6.conf": "9b049192a4cfd7c9ac7e05e1f28814b4515f2031e4ee634203747ef140aa2567",
+        "/home/lolman/lpbf-adamantine-fix-20261015/runtime/rootfs/etc/ld.so.conf.d/libc.conf": "90d4c7e43e7661cd116010eb9f50ad5817e43162df344bd1ad10898851b15d41",
+        "/home/lolman/lpbf-adamantine-fix-20261015/runtime/rootfs/etc/ld.so.conf.d/nvidia.conf": "b9d9e6d3b6425ffbfecda87f34a876143faef8b75620f452a9e747cca666f31d",
+        "/home/lolman/lpbf-adamantine-fix-20261015/runtime/rootfs/etc/ld.so.conf.d/x86_64-linux-gnu.conf": "f03e4740e6922b4f4a1181cd696b52f62f9f10d003740a8940f7121795c59c98",
+        "/usr/bin/bwrap": "d68586674e868f44fbd8bfc96fc19427dfd2637fa0bd15bee1d150afdd4fa030",
+        "/usr/bin/systemd-run": "a24721ee7a0d128064f559ecf033fa15d40429fd75bbf502f155d1522019c8e5",
+        "/usr/bin/timeout": "9cd6f7a935624ed29b130f922f4a829fc1ca300463d47c1e4892ec17926d9ed9",
+        "/usr/bin/systemctl": "7bb757102440352dba4519926cd8fd7d2e5efe1a8c73d9ccb9d2324094f36cbb",
+        "/usr/bin/python3.14": "7b6c7e71d7b8caeb173b848d24a9a90bb3ecc348ef0f9a6762b477afc798a91e",
+        "/home/lolman/lpbf-adamantine-fix-20261015/runtime/rootfs/opt/caliper/lib/libcaliper.so.2.11.0": "c0ed6e7159849d3164f8cf91ad052886abd44cb983968a702a97241e30f7b587",
+        "/home/lolman/lpbf-adamantine-fix-20261015/runtime/rootfs/opt/adiak/lib/libadiak.so": "d4887f576e634d432752b620ade8242fb5d72b7d6516a0dc48f487753a68149f",
+        "/home/lolman/lpbf-adamantine-fix-20261015/runtime/rootfs/usr/lib/x86_64-linux-gnu/libpfm.so.4.13.0": "268e5d0a894a414b9475d9fc4352d04ce057434042e6dffe96317ff87f6a249f",
+        "/home/lolman/lpbf-adamantine-fix-20261015/runtime/rootfs/usr/lib/x86_64-linux-gnu/libdw-0.190.so": "989dc9873f358a5af7d18d6100cf5fd66531d7990dc47d69068b3c6c96588867",
+        "/home/lolman/lpbf-adamantine-fix-20261015/runtime/rootfs/usr/lib/x86_64-linux-gnu/libunwind.so.8.0.1": "28e77a498f2f17f8cb883c91303f9901343ea0d8e34959d138dd462fcc9b201f",
+        "/home/lolman/lpbf-adamantine-fix-20261015/runtime/rootfs/usr/lib/x86_64-linux-gnu/libelf-0.190.so": "248c989360783cdc52f3659921de852c2efcc2097253ce58e34443f856412814",
+        "/home/lolman/lpbf-adamantine-fix-20261015/runtime/rootfs/home/adamantine/bin/adamantine": "02562951aed133c8c9436637e31707976151b3f4e9a1d45b80818c5135ce4e55",
+        "/home/lolman/lpbf-adamantine-fix-20261015/runtime/rootfs/home/adamantine/applications/adamantine.cc": "60504cf6778dc3193f05d48cb7947c4419525fc384db3fa9b6e3f4b8e1c8606f",
+        "/home/lolman/lpbf-adamantine-fix-20261015/runtime/rootfs/home/adamantine/source/PostProcessor.cc": "c91a5426f6816ad5361890c3da068e590389ae08bca0d9ff6f6836a4507d1fea",
+        "/home/lolman/lpbf-adamantine-fix-20261015/runtime/rootfs/home/adamantine/source/instantiation.hh": "c40ff7beb53edb2d798aba1a471341635227bf4b7b4580d89c844780335ad873",
+        "/home/lolman/lpbf-adamantine-fix-20261015/runtime/rootfs/home/adamantine/source/MaterialProperty.templates.hh": "7084a45bccac11c94c87387d4bff208c1fb47e8e3a053fd00dfab111ccedf4c3",
+        "/home/lolman/lpbf-adamantine-fix-20261015/runtime/manifest.json": "a7c394fb9075ea8343f0ed1734574a5d158563e6f2b71894cdcc9f5f75d6e4d9",
+        "/home/lolman/lpbf-adamantine-fix-20261015/runtime/receipt.json": "0fc4081fa5f50a095865867906302394c85622c20768ae2a5a2355e141dde813",
+        "/home/lolman/lpbf-adamantine-fix-20261015/runtime/native-proof.json": "5757b389776fe568ac643f9a2c4762c46d307199abe666538bf2e57e9c9e36af"
+      },
+      "prepared_inputs_before": {
+        "ti64-frozen-conduction/input.info": "120ce48cb35cb7111891601120521ac9dfc5a623e466931066b47eba7766daea"
+      },
+      "prepared_inputs_after": {
+        "ti64-frozen-conduction/input.info": "120ce48cb35cb7111891601120521ac9dfc5a623e466931066b47eba7766daea"
+      },
+      "observed_control_tools_before": {
+        "/usr/bin/systemctl": "7bb757102440352dba4519926cd8fd7d2e5efe1a8c73d9ccb9d2324094f36cbb",
+        "/usr/bin/python3.14": "7b6c7e71d7b8caeb173b848d24a9a90bb3ecc348ef0f9a6762b477afc798a91e"
+      },
+      "observed_control_tools_after": {
+        "/usr/bin/systemctl": "7bb757102440352dba4519926cd8fd7d2e5efe1a8c73d9ccb9d2324094f36cbb",
+        "/usr/bin/python3.14": "7b6c7e71d7b8caeb173b848d24a9a90bb3ecc348ef0f9a6762b477afc798a91e"
+      },
+      "observed_control_tools_unchanged": true,
+      "control_tool_scope": "first-run control-tool observation, not prior native-library pin",
+      "integrity_error": null,
+      "source_runtime_unchanged": true,
+      "owned_scope_states": {
+        "carrier-Ti64-Q1-conduction-20261018-001-ti64-frozen-conduction.scope": {
+          "fields": {
+            "LoadState": "not-found",
+            "ActiveState": "inactive",
+            "ControlGroup": "",
+            "absent": true,
+            "query_returncode": 0,
+            "query_stdout": "LoadState=not-found\nActiveState=inactive\nControlGroup=\n",
+            "query_stderr": ""
+          },
+          "absent_or_inactive": true,
+          "empty_ControlGroup": true,
+          "query_error": null
+        }
+      },
+      "owned_scope_cleanup": {
+        "carrier-Ti64-Q1-conduction-20261018-001-ti64-frozen-conduction.scope": {
+          "unit": "carrier-Ti64-Q1-conduction-20261018-001-ti64-frozen-conduction.scope",
+          "states": [
+            {
+              "fields": {
+                "LoadState": "not-found",
+                "ActiveState": "inactive",
+                "ControlGroup": "",
+                "absent": true,
+                "query_returncode": 0,
+                "query_stdout": "LoadState=not-found\nActiveState=inactive\nControlGroup=\n",
+                "query_stderr": ""
+              },
+              "absent_or_inactive": true,
+              "empty_ControlGroup": true,
+              "query_error": null
+            }
+          ],
+          "actions": [],
+          "closed": true,
+          "error": null
+        }
+      },
+      "owned_scopes_inactive": true,
+      "wall_seconds": 2.535170925082639,
+      "part_or_print_simulation": false,
+      "physical_validation": false
+    },
+    "transport": {
+      "argv": [
+        "/usr/bin/ssh",
+        "-F",
+        "/dev/null",
+        "-T",
+        "-o",
+        "BatchMode=yes",
+        "-o",
+        "ConnectTimeout=8",
+        "-o",
+        "ConnectionAttempts=1",
+        "-o",
+        "StrictHostKeyChecking=yes",
+        "lolman@192.168.2.3",
+        "/usr/bin/python3",
+        "-"
+      ],
+      "actual_returncode": 0,
+      "timed_out": false,
+      "cancelled": false,
+      "direct_child_reaped": true,
+      "wall_seconds": 2.8115072909276932
+    }
+  },
+  "complete_native_stages": [
+    {
+      "name": "ti64-frozen-conduction",
+      "stage": {
+        "command": [
+          "/usr/bin/systemd-run",
+          "--user",
+          "--scope",
+          "--quiet",
+          "--unit=carrier-Ti64-Q1-conduction-20261018-001-ti64-frozen-conduction.scope",
+          "-p",
+          "MemoryMax=4G",
+          "-p",
+          "MemorySwapMax=0",
+          "-p",
+          "CPUQuota=200%",
+          "-p",
+          "TasksMax=128",
+          "-p",
+          "RuntimeMaxSec=135",
+          "/usr/bin/timeout",
+          "--signal=TERM",
+          "--kill-after=10s",
+          "120",
+          "/usr/bin/bwrap",
+          "--unshare-user",
+          "--uid",
+          "0",
+          "--gid",
+          "0",
+          "--ro-bind",
+          "/home/lolman/lpbf-adamantine-fix-20261015/runtime/rootfs",
+          "/",
+          "--ro-bind",
+          "/home/lolman/lpbf-adamantine-fix-20261015/project",
+          "/work",
+          "--clearenv",
+          "--dev",
+          "/dev",
+          "--proc",
+          "/proc",
+          "--tmpfs",
+          "/tmp",
+          "--bind",
+          "/home/lolman/lpbf-adamantine-fix-20261015/project/Ti64-Q1-conduction-20261018-001/outputs",
+          "/tmp/replay",
+          "--unshare-net",
+          "--unshare-pid",
+          "--die-with-parent",
+          "--chdir",
+          "/tmp",
+          "--setenv",
+          "DEAL_II_DIR",
+          "/opt/dealii",
+          "--setenv",
+          "TRILINOS_DIR",
+          "/opt/trilinos",
+          "--setenv",
+          "ARBORX_DIR",
+          "/opt/arborx",
+          "--setenv",
+          "OMP_NUM_THREADS",
+          "1",
+          "--setenv",
+          "OPENBLAS_NUM_THREADS",
+          "1",
+          "--setenv",
+          "OMPI_ALLOW_RUN_AS_ROOT",
+          "1",
+          "--setenv",
+          "OMPI_ALLOW_RUN_AS_ROOT_CONFIRM",
+          "1",
+          "--setenv",
+          "OMPI_MCA_btl_vader_single_copy_mechanism",
+          "none",
+          "--setenv",
+          "PATH",
+          "/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+          "/home/adamantine/bin/adamantine",
+          "--input-file",
+          "/work/Ti64-Q1-conduction-20261018-001/inputs/ti64-frozen-conduction/input.info",
+          "--output-dir",
+          "/tmp/replay/ti64-frozen-conduction"
+        ],
+        "native_returncode": 0,
+        "deadline_s": 120,
+        "wall_s": 0.5085303783416748,
+        "simulation_done_marker": true,
+        "log_sha256": "43e885f1a54f1f66c0688714b22521b93cdc88195f193af0f2cab1a11bb14655",
+        "timed_out": false,
+        "physical_validation": false,
+        "vast_new_spend_USD": 0,
+        "owned_scope": "carrier-Ti64-Q1-conduction-20261018-001-ti64-frozen-conduction.scope",
+        "scope_before": {
+          "fields": {
+            "LoadState": "not-found",
+            "ActiveState": "inactive",
+            "ControlGroup": "",
+            "absent": true,
+            "query_returncode": 0,
+            "query_stdout": "LoadState=not-found\nActiveState=inactive\nControlGroup=\n",
+            "query_stderr": ""
+          },
+          "absent_or_inactive": true,
+          "empty_ControlGroup": true,
+          "query_error": null
+        },
+        "scope_after": {
+          "fields": {
+            "LoadState": "not-found",
+            "ActiveState": "inactive",
+            "ControlGroup": "",
+            "absent": true,
+            "query_returncode": 0,
+            "query_stdout": "LoadState=not-found\nActiveState=inactive\nControlGroup=\n",
+            "query_stderr": ""
+          },
+          "absent_or_inactive": true,
+          "empty_ControlGroup": true,
+          "query_error": null
+        }
+      },
+      "ownership": {
+        "argv": [
+          "/usr/bin/systemd-run",
+          "--user",
+          "--scope",
+          "--quiet",
+          "--unit=carrier-Ti64-Q1-conduction-20261018-001-ti64-frozen-conduction.scope",
+          "-p",
+          "MemoryMax=4G",
+          "-p",
+          "MemorySwapMax=0",
+          "-p",
+          "CPUQuota=200%",
+          "-p",
+          "TasksMax=128",
+          "-p",
+          "RuntimeMaxSec=135",
+          "/usr/bin/timeout",
+          "--signal=TERM",
+          "--kill-after=10s",
+          "120",
+          "/usr/bin/bwrap",
+          "--unshare-user",
+          "--uid",
+          "0",
+          "--gid",
+          "0",
+          "--ro-bind",
+          "/home/lolman/lpbf-adamantine-fix-20261015/runtime/rootfs",
+          "/",
+          "--ro-bind",
+          "/home/lolman/lpbf-adamantine-fix-20261015/project",
+          "/work",
+          "--clearenv",
+          "--dev",
+          "/dev",
+          "--proc",
+          "/proc",
+          "--tmpfs",
+          "/tmp",
+          "--bind",
+          "/home/lolman/lpbf-adamantine-fix-20261015/project/Ti64-Q1-conduction-20261018-001/outputs",
+          "/tmp/replay",
+          "--unshare-net",
+          "--unshare-pid",
+          "--die-with-parent",
+          "--chdir",
+          "/tmp",
+          "--setenv",
+          "DEAL_II_DIR",
+          "/opt/dealii",
+          "--setenv",
+          "TRILINOS_DIR",
+          "/opt/trilinos",
+          "--setenv",
+          "ARBORX_DIR",
+          "/opt/arborx",
+          "--setenv",
+          "OMP_NUM_THREADS",
+          "1",
+          "--setenv",
+          "OPENBLAS_NUM_THREADS",
+          "1",
+          "--setenv",
+          "OMPI_ALLOW_RUN_AS_ROOT",
+          "1",
+          "--setenv",
+          "OMPI_ALLOW_RUN_AS_ROOT_CONFIRM",
+          "1",
+          "--setenv",
+          "OMPI_MCA_btl_vader_single_copy_mechanism",
+          "none",
+          "--setenv",
+          "PATH",
+          "/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+          "/home/adamantine/bin/adamantine",
+          "--input-file",
+          "/work/Ti64-Q1-conduction-20261018-001/inputs/ti64-frozen-conduction/input.info",
+          "--output-dir",
+          "/tmp/replay/ti64-frozen-conduction"
+        ],
+        "unit": "carrier-Ti64-Q1-conduction-20261018-001-ti64-frozen-conduction.scope",
+        "actual_returncode": 0,
+        "direct_returncode": 0,
+        "direct_child_reaped": true,
+        "timed_out": false,
+        "failure": null,
+        "cleanup": {
+          "unit": "carrier-Ti64-Q1-conduction-20261018-001-ti64-frozen-conduction.scope",
+          "states": [
+            {
+              "fields": {
+                "LoadState": "not-found",
+                "ActiveState": "inactive",
+                "ControlGroup": "",
+                "absent": true,
+                "query_returncode": 0,
+                "query_stdout": "LoadState=not-found\nActiveState=inactive\nControlGroup=\n",
+                "query_stderr": ""
+              },
+              "absent_or_inactive": true,
+              "empty_ControlGroup": true,
+              "query_error": null
+            }
+          ],
+          "actions": [],
+          "closed": true,
+          "error": null
+        },
+        "fresh_scope_state": {
+          "fields": {
+            "LoadState": "not-found",
+            "ActiveState": "inactive",
+            "ControlGroup": "",
+            "absent": true,
+            "query_returncode": 0,
+            "query_stdout": "LoadState=not-found\nActiveState=inactive\nControlGroup=\n",
+            "query_stderr": ""
+          },
+          "absent_or_inactive": true,
+          "empty_ControlGroup": true,
+          "query_error": null
+        },
+        "owned_scope_empty": true,
+        "wall_seconds": 0.48706167796626687
+      }
+    }
+  ],
+  "complete_thermal_assessment": {
+    "schema": "one-Q1-conduction-capability-assessment-1",
+    "status": "one_Q1_discrete_conduction_software_case_passed",
+    "cases": {
+      "ti64-frozen-conduction": {
+        "status": "new_Q1_discrete_conduction_software_reference_pass",
+        "frames": [
+          {
+            "time_s": 0.0,
+            "coordinates_m": [
+              [
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                0.009999999776482582,
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.009999999776482582,
+                0.0
+              ],
+              [
+                0.009999999776482582,
+                0.009999999776482582,
+                0.0
+              ],
+              [
+                0.0,
+                0.0,
+                0.009999999776482582
+              ],
+              [
+                0.009999999776482582,
+                0.0,
+                0.009999999776482582
+              ],
+              [
+                0.0,
+                0.009999999776482582,
+                0.009999999776482582
+              ],
+              [
+                0.009999999776482582,
+                0.009999999776482582,
+                0.009999999776482582
+              ]
+            ],
+            "temperatures_K": [
+              398.0,
+              398.0,
+              398.0,
+              398.0,
+              398.0,
+              398.0,
+              398.0,
+              398.0
+            ],
+            "actual_energy_above_ambient_J": 246.856032,
+            "energy_error_J": 0.0,
+            "energy_limit_J": 0.0010201789341741374,
+            "Q1_gradient_lower_K_m": -0.0826537578125,
+            "Q1_conductive_flux_lower_W_m2": -0.4727794946875,
+            "boundary_outward_flux_lower_W_m2": 4999.9793365605465
+          },
+          {
+            "time_s": 0.5,
+            "coordinates_m": [
+              [
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                0.009999999776482582,
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.009999999776482582,
+                0.0
+              ],
+              [
+                0.009999999776482582,
+                0.009999999776482582,
+                0.0
+              ],
+              [
+                0.0,
+                0.0,
+                0.009999999776482582
+              ],
+              [
+                0.009999999776482582,
+                0.0,
+                0.009999999776482582
+              ],
+              [
+                0.0,
+                0.009999999776482582,
+                0.009999999776482582
+              ],
+              [
+                0.009999999776482582,
+                0.009999999776482582,
+                0.009999999776482582
+              ]
+            ],
+            "temperatures_K": [
+              397.9976806640625,
+              397.7999572753906,
+              397.9976806640625,
+              397.7999572753906,
+              397.9976806640625,
+              397.7999572753906,
+              397.9976806640625,
+              397.7999572753906
+            ],
+            "actual_energy_above_ambient_J": 246.60626052353027,
+            "energy_error_J": 2.2437906381636346e-05,
+            "energy_limit_J": 0.0010199291851355741,
+            "Q1_gradient_lower_K_m": 19.689705343763162,
+            "Q1_conductive_flux_lower_W_m2": 112.62511456632528,
+            "boundary_outward_flux_lower_W_m2": 4989.977210331864
+          },
+          {
+            "time_s": 1.0,
+            "coordinates_m": [
+              [
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                0.009999999776482582,
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.009999999776482582,
+                0.0
+              ],
+              [
+                0.009999999776482582,
+                0.009999999776482582,
+                0.0
+              ],
+              [
+                0.0,
+                0.0,
+                0.009999999776482582
+              ],
+              [
+                0.009999999776482582,
+                0.0,
+                0.009999999776482582
+              ],
+              [
+                0.0,
+                0.009999999776482582,
+                0.009999999776482582
+              ],
+              [
+                0.009999999776482582,
+                0.009999999776482582,
+                0.009999999776482582
+              ]
+            ],
+            "temperatures_K": [
+              397.99090576171875,
+              397.60479736328125,
+              397.99090576171875,
+              397.60479736328125,
+              397.99090576171875,
+              397.60479736328125,
+              397.99090576171875,
+              397.60479736328125
+            ],
+            "actual_energy_above_ambient_J": 246.3570163884375,
+            "energy_error_J": 1.148859034944941e-05,
+            "energy_limit_J": 0.0010196799300511653,
+            "Q1_gradient_lower_K_m": 38.528226514694204,
+            "Q1_conductive_flux_lower_W_m2": 220.38145566405086,
+            "boundary_outward_flux_lower_W_m2": 4980.219224484544
+          }
+        ],
+        "upstream_Q2_gold_validated": false,
+        "continuum_accuracy_or_convergence": false,
+        "variable_temperature_law_validated": false,
+        "LPBF_or_material_qualification": false,
+        "whole_native_records": [
+          {
+            "time_s": 0.0,
+            "points": [
+              [
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                0.009999999776482582,
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.009999999776482582,
+                0.0
+              ],
+              [
+                0.009999999776482582,
+                0.009999999776482582,
+                0.0
+              ],
+              [
+                0.0,
+                0.0,
+                0.009999999776482582
+              ],
+              [
+                0.009999999776482582,
+                0.0,
+                0.009999999776482582
+              ],
+              [
+                0.0,
+                0.009999999776482582,
+                0.009999999776482582
+              ],
+              [
+                0.009999999776482582,
+                0.009999999776482582,
+                0.009999999776482582
+              ]
+            ],
+            "points_dtype": "float32",
+            "cell_types": [
+              "hexahedron"
+            ],
+            "connectivity": [
+              [
+                0,
+                1,
+                3,
+                2,
+                4,
+                5,
+                7,
+                6
+              ]
+            ],
+            "field_shapes": {
+              "temperature": [
+                8
+              ],
+              "powder": [
+                8
+              ],
+              "liquid": [
+                8
+              ],
+              "solid": [
+                8
+              ],
+              "subdomain": [
+                8
+              ]
+            },
+            "temperature_dtype": "float32",
+            "temperature_K": [
+              398.0,
+              398.0,
+              398.0,
+              398.0,
+              398.0,
+              398.0,
+              398.0,
+              398.0
+            ],
+            "temperature_IEEEhex": [
+              "0x1.8e00000000000p+8",
+              "0x1.8e00000000000p+8",
+              "0x1.8e00000000000p+8",
+              "0x1.8e00000000000p+8",
+              "0x1.8e00000000000p+8",
+              "0x1.8e00000000000p+8",
+              "0x1.8e00000000000p+8",
+              "0x1.8e00000000000p+8"
+            ],
+            "all_fields": [
+              [
+                398.0,
+                398.0,
+                398.0,
+                398.0,
+                398.0,
+                398.0,
+                398.0,
+                398.0
+              ],
+              [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0
+              ],
+              [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ]
+            ]
+          },
+          {
+            "time_s": 0.5,
+            "points": [
+              [
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                0.009999999776482582,
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.009999999776482582,
+                0.0
+              ],
+              [
+                0.009999999776482582,
+                0.009999999776482582,
+                0.0
+              ],
+              [
+                0.0,
+                0.0,
+                0.009999999776482582
+              ],
+              [
+                0.009999999776482582,
+                0.0,
+                0.009999999776482582
+              ],
+              [
+                0.0,
+                0.009999999776482582,
+                0.009999999776482582
+              ],
+              [
+                0.009999999776482582,
+                0.009999999776482582,
+                0.009999999776482582
+              ]
+            ],
+            "points_dtype": "float32",
+            "cell_types": [
+              "hexahedron"
+            ],
+            "connectivity": [
+              [
+                0,
+                1,
+                3,
+                2,
+                4,
+                5,
+                7,
+                6
+              ]
+            ],
+            "field_shapes": {
+              "temperature": [
+                8
+              ],
+              "powder": [
+                8
+              ],
+              "liquid": [
+                8
+              ],
+              "solid": [
+                8
+              ],
+              "subdomain": [
+                8
+              ]
+            },
+            "temperature_dtype": "float32",
+            "temperature_K": [
+              397.9976806640625,
+              397.7999572753906,
+              397.9976806640625,
+              397.7999572753906,
+              397.9976806640625,
+              397.7999572753906,
+              397.9976806640625,
+              397.7999572753906
+            ],
+            "temperature_IEEEhex": [
+              "0x1.8dff680000000p+8",
+              "0x1.8dccca0000000p+8",
+              "0x1.8dff680000000p+8",
+              "0x1.8dccca0000000p+8",
+              "0x1.8dff680000000p+8",
+              "0x1.8dccca0000000p+8",
+              "0x1.8dff680000000p+8",
+              "0x1.8dccca0000000p+8"
+            ],
+            "all_fields": [
+              [
+                397.9976806640625,
+                397.7999572753906,
+                397.9976806640625,
+                397.7999572753906,
+                397.9976806640625,
+                397.7999572753906,
+                397.9976806640625,
+                397.7999572753906
+              ],
+              [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0
+              ],
+              [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ]
+            ]
+          },
+          {
+            "time_s": 1.0,
+            "points": [
+              [
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                0.009999999776482582,
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.009999999776482582,
+                0.0
+              ],
+              [
+                0.009999999776482582,
+                0.009999999776482582,
+                0.0
+              ],
+              [
+                0.0,
+                0.0,
+                0.009999999776482582
+              ],
+              [
+                0.009999999776482582,
+                0.0,
+                0.009999999776482582
+              ],
+              [
+                0.0,
+                0.009999999776482582,
+                0.009999999776482582
+              ],
+              [
+                0.009999999776482582,
+                0.009999999776482582,
+                0.009999999776482582
+              ]
+            ],
+            "points_dtype": "float32",
+            "cell_types": [
+              "hexahedron"
+            ],
+            "connectivity": [
+              [
+                0,
+                1,
+                3,
+                2,
+                4,
+                5,
+                7,
+                6
+              ]
+            ],
+            "field_shapes": {
+              "temperature": [
+                8
+              ],
+              "powder": [
+                8
+              ],
+              "liquid": [
+                8
+              ],
+              "solid": [
+                8
+              ],
+              "subdomain": [
+                8
+              ]
+            },
+            "temperature_dtype": "float32",
+            "temperature_K": [
+              397.99090576171875,
+              397.60479736328125,
+              397.99090576171875,
+              397.60479736328125,
+              397.99090576171875,
+              397.60479736328125,
+              397.99090576171875,
+              397.60479736328125
+            ],
+            "temperature_IEEEhex": [
+              "0x1.8dfdac0000000p+8",
+              "0x1.8d9ad40000000p+8",
+              "0x1.8dfdac0000000p+8",
+              "0x1.8d9ad40000000p+8",
+              "0x1.8dfdac0000000p+8",
+              "0x1.8d9ad40000000p+8",
+              "0x1.8dfdac0000000p+8",
+              "0x1.8d9ad40000000p+8"
+            ],
+            "all_fields": [
+              [
+                397.99090576171875,
+                397.60479736328125,
+                397.99090576171875,
+                397.60479736328125,
+                397.99090576171875,
+                397.60479736328125,
+                397.99090576171875,
+                397.60479736328125
+              ],
+              [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0
+              ],
+              [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ]
+            ]
+          }
+        ],
+        "entire_native_frame_files_sha256": {
+          "ti64-frozen-Q1-conduction.pvd": "efe995f6aaf28688e246262bd6aad5bb4f850df4be16684e26af6488cd5f155f",
+          "ti64-frozen-Q1-conduction.0.pvtu": "c53400a74e64885c9f1c18ddf0c5e16d8bedd66f18bfa3dc10c9eb06524debe7",
+          "ti64-frozen-Q1-conduction.0.0.vtu": "2577c781214972ca5affc808a7247cac6f19e87fa178d97a8cb886d2de07fc13",
+          "ti64-frozen-Q1-conduction.2048.pvtu": "96cc70ac76ddc8493fe248d62f7914100221e5e64309f746d4af4b0c5bdf69bb",
+          "ti64-frozen-Q1-conduction.2048.0.vtu": "029c81bae5349d6da9138fe5c9b677ba5b803e3721295ce543ed3e8a33e2946d",
+          "ti64-frozen-Q1-conduction.4096.pvtu": "9a36a7c11658b5663c05e901e6da989c5fe42e9a5ef1f607414724b7b2b5f84a",
+          "ti64-frozen-Q1-conduction.4096.0.vtu": "59d4cce604ab2f9fa9a0d60ec07b609a5d37da64632678dea5ff70751040092f"
+        }
+      }
+    },
+    "failure": null,
+    "plan_sha256": "c8a31c9c5e592d7307006a4d2926979eec514076564d26efb5b17ad65a33de04",
+    "source_sha256_before": {
+      "assess.py": "f3a6dd545363463c8a95c0dcd1c7e3146e749340b3274b7be6a392185bede371",
+      "reference.py": "0906a97034d3283fb3b5d5deacba92a73821a5b330aa66d1f5a7806212c25ea1",
+      "material-law.json": "5d0ba218ae07d4b547cd204705bf31c68cf7dfb71d2d12bb991112648cb692b7",
+      "frozen-material.json": "967faf382c9c4294c0390355d405cd91d40b2b15cc362091ef37ea3aaadc6397",
+      "expected-reference.json": "b6fc81c4cebb0b8209d2f8d73d5732c728f471b20508f0190a9cefafe0eed1db",
+      "source/native_frames.py": "9ff81280cc88eda9432579f8c2cfce6a3749de8abceace41aa29e16eecba63b7",
+      "inputs/input.info": "120ce48cb35cb7111891601120521ac9dfc5a623e466931066b47eba7766daea"
+    },
+    "material_law_sha256": "5d0ba218ae07d4b547cd204705bf31c68cf7dfb71d2d12bb991112648cb692b7",
+    "physical_validation": false,
+    "mechanical_or_manufacturing_admission": false,
+    "source_sha256_after": {
+      "assess.py": "f3a6dd545363463c8a95c0dcd1c7e3146e749340b3274b7be6a392185bede371",
+      "reference.py": "0906a97034d3283fb3b5d5deacba92a73821a5b330aa66d1f5a7806212c25ea1",
+      "material-law.json": "5d0ba218ae07d4b547cd204705bf31c68cf7dfb71d2d12bb991112648cb692b7",
+      "frozen-material.json": "967faf382c9c4294c0390355d405cd91d40b2b15cc362091ef37ea3aaadc6397",
+      "expected-reference.json": "b6fc81c4cebb0b8209d2f8d73d5732c728f471b20508f0190a9cefafe0eed1db",
+      "source/native_frames.py": "9ff81280cc88eda9432579f8c2cfce6a3749de8abceace41aa29e16eecba63b7",
+      "inputs/input.info": "120ce48cb35cb7111891601120521ac9dfc5a623e466931066b47eba7766daea"
+    },
+    "sources_unchanged": true
+  },
+  "all8_nodes_and3_times_and_whole7_XML_files_joined": true,
+  "original_numerical_assessor_rerun_by_collector": false,
+  "owned_remote_saved_fresh_scopes_empty": true,
+  "collector_remote_SSH_queries": 0,
+  "no_retry": true,
+  "CAD_mass_density_kg_m3": 4420,
+  "thermal_rho_at298_kg_m3": 4512,
+  "material_qualification": false,
+  "actual_loaded_image_or_MPI_closure": false,
+  "carrier_or_print_simulation": false,
+  "moving_source_validation": false,
+  "physical_validation": false,
+  "collector_source_sha256": "a8ccc8bb88ded2bda10a298e41d5b7208366dfa75aaf1410c8d139bcf4b33ff8"
+}

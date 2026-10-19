@@ -1,0 +1,36 @@
+{
+  "schema": "combinatorial-admissions-v3-targeted-validation-1",
+  "status": "passed_for_independent_review",
+  "source_sha256": {
+    "parts/993-eng-carrier-0001/source/process-skins-20261016/admissions_v3.py": "da60b5fd390cb9213638981c85bd7b95a4500d775ec41263d92c859785f8ba9d",
+    "parts/993-eng-carrier-0001/source/process-skins-20261016/admissions.py": "2015cbcf6483a728c47995811420e33fe1f59025e9cd1227fa9d71923c5e5868",
+    "parts/993-eng-carrier-0001/source/process-skins-20261016/combinatorial_interfaces.py": "94393c465fb15c1c3129ad8e482ea19cd597d3e716714e069b4eaee38b80e2fa",
+    "parts/993-eng-carrier-0001/source/process-skins-20261016/continuous_combinatorial_interfaces.py": "cf269edbf3cc4954d74085b8af24ecdcae86945e3a3e7bba7e3c53bc259d5a5d",
+    "parts/993-eng-carrier-0001/source/process-skins-20261016/exact_band_union_v3.py": "c6452e918ed5fd04bfd1595102eb8c691c697c18477d7b924e29ff7465c62286",
+    "parts/993-eng-carrier-0001/source/process-skins-20261016/compact_json.py": "2436b0e57e09d8c9f35a3f6c5a4b8dba9f12434cd0627347380fbe8b76b9cd6e",
+    "tests/test_carrier_combinatorial_admissions_v3.py": "542ac41dc18be3e979c84fd8107b4e00edab1ca772efd7cab518d3516109c9d2",
+    "parts/993-eng-carrier-0001/source/process-scanpath-audit-20261016/band-union-evidence/left-grid.json": "fed9e3d93fbc588124995fc0c930a811ff38fd6ffd44068a42a7e19f24ec9c12",
+    "parts/993-eng-carrier-0001/source/process-scanpath-audit-20261016/exact_band_union.py": "760a34fcfeb2de640864b91837dc797e3579da2b255ac5b07575c74b2154d44e",
+    "parts/993-eng-carrier-0001/source/process-scanpath-audit-20261016/exact_convex_union.py": "03678df0cb1887bc3ebe88d9d71fb8fff4e550a7ef16199272d58ba91695259b",
+    "parts/993-eng-carrier-0001/source/process-scanpath-audit-20261016/exact_convex_halfplanes.py": "a91f5af282bda8b348e060af7bd76b78776a69e2284fa7d9c2049ec63c45545f",
+    "parts/993-eng-carrier-0001/source/process-scanpath-audit-20261016/exact_polygon_coverage.py": "0b1c7598a7358b9e9a384dd5b90dc66aa9e1ea53828033b6722477ec11409bed",
+    "parts/993-eng-carrier-0001/source/process-scanpath-audit-20261016/exact_intended_holes.py": "bfcc3177f68b83c9c3139cb26e79d0633342caf04143565c2c80845cee403a7f",
+    "parts/993-eng-carrier-0001/source/process-scanpath-audit-20261016/exact_contacts.py": "399db612b1d5fde6b1a0290d4d497d9b01e6afe3a28d7b63a095a2a06e271cca"
+  },
+  "inputs_unchanged": true,
+  "tests": {
+    "command": "work/part-workflow/runtimes/pyslm-coverage-011/env/bin/python -B -m unittest discover -s tests -p test_carrier_combinatorial_admissions_v3.py -v",
+    "passed": 8,
+    "failed": 0,
+    "unittest_reported_seconds": 1.299,
+    "scope": "Recomputed retained real planar fixture and software rectangles/multiple intervals; source/contact/proof/export corruption refusals. Seal tests explicitly mock only exact-unit verdicts and isolate all historical gate decisions; their 4.99e-30 outside-area value is synthetic."
+  },
+  "six_receipts_schema": "support-geometry-v3-combinatorial-intervals",
+  "all_six_bind_actual_admission_source_sha256": true,
+  "changed_historical_authority": "Only the two explicit GEOS outside-area==0 predicates, replaced by recomputed exact unit gates.",
+  "old_source_recipe_driver_modified": false,
+  "actual_3d_generation_executed": false,
+  "new_epsilon_or_grid": false,
+  "promoted": false,
+  "independent_review": "requested from carrier_audit; pending"
+}

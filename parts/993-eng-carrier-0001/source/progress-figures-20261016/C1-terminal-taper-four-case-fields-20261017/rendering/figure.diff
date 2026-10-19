@@ -1,0 +1,161 @@
+--- work/carrier-terminal-taper-FEA-figure-preparation-001/figure.py
++++ work/carrier-terminal-taper-four-case-figure-preparation-001/figure.py
+@@ -1,4 +1,4 @@
+-"""Actual closed raw-taper FE fields; English diagnostic, no new solver."""
++"""Four closed coarse/raw-refined taper fields; separate diagnostic, no new solver."""
+ import ast
+ import hashlib
+ import json
+@@ -47,7 +47,12 @@
+     require(whole['status']=='two_actual_linear_static_cases_closed_no_qualification'and term['actual_tool_returncode']==term['actual_container_returncode']==term['attach_cli_returncode']==0 and term['owned_container_removed']is True and term['all_current_pins_equal']is True,'Case not actually closed')
+     require(a['status']=='actual_linear_static_and_independent_energy_completed'and a['sources_unchanged']is True and a['plan_unchanged']is True and a['all_global_maxima_included']is True and a['candidate_qualified']is False and a['law_original_RC1_preserved']is True,'Assessment not complete or diagnostic scope changed')
+     require(term['assessment_sha256']==hashes[row['assessment']]and term['native_receipt_sha256']==hashes[row['native_receipt']],'Terminal report cross-binding differs')
+-    require(root_case['assessment_sha256']==hashes[row['assessment']]and root_case['native_receipt_sha256']==hashes[row['native_receipt']]and root_case['actual_tool_RC']==0 and root_case['all31_whole_outputs_verified']is True and root_case['fresh_exact_Docker_ID_absent']is True,'Root closure differs')
++    require(root_case['assessment_sha256']==hashes[row['assessment']]and root_case['native_receipt_sha256']==hashes[row['native_receipt']],'Root report cross-binding differs')
++    if row['mesh_variant']=='coarse':
++        require(root_case['actual_tool_RC']==0 and root_case['all31_whole_outputs_verified']is True and root_case['fresh_exact_Docker_ID_absent']is True,'Coarse Root closure differs')
++    else:
++        require(row['mesh_variant']=='raw_refined_diagnostic'and root_case['actual_tool_returncode']==0 and root_case['whole_outputs']==29 and root_case['whole_actual_result_including_all_peaks_equal']is True and root_case['fresh_exact_owned_container_absence']is True,'Raw-refined Root closure differs')
++        require(a['h2_qualified']is False and a['strict_H2_volume_refusal_preserved']is True and a['diagnostic_raw_mesh_scope']is True and whole['h2_qualified']is False and whole['strict_H2_volume_refusal_preserved']is True and whole['diagnostic_raw_mesh_scope']is True,'Raw refined refusal/scope lost')
+     require(native['actual_container_exit_code']==native['attach_cli_returncode']==0 and native['container_removed']is True and native['input_hashes_unchanged']is True,'Native container not closed')
+     require(a['native_result']==record and a['prepared_actual_load_supports']==loads and a['energy_audit_sha256']==hashes[row['energy']]and a['global_peaks_sha256']==hashes[row['peaks']],'Whole case result/load/audits differ')
+     for key in ['record','field','deck','mesh_inp','mesh_npz','mesh_meta','loads','energy','peaks']:
+@@ -65,20 +70,38 @@
+ 
+ def verify(plan_path,expected,rendering=False):
+     plan_path=Path(plan_path);require(sha(plan_path)==expected,'Plan hash differs');plan=read(plan_path)
+-    require(plan['schema']=='actual-new-taper-two-case-fields-plan-1'and plan['actual_workers']==0 and plan['deformation_amplification']==1,'Wrong field scope')
++    require(plan['schema']=='actual-taper-four-case-field-comparison-plan-1'and plan['actual_workers']==0 and plan['deformation_amplification']==1,'Wrong four-case scope')
+     if rendering:require(plan['launch_ready']is True and plan['root_GO_sha256']is not None and sha(plan['root_GO'])==plan['root_GO_sha256'],'NON-ARMED: no array extraction/render before root review')
+     root=Path(plan['source_root']);hashes=plan['files_sha256'];require(all(hashes.get(name)==h for name,h in plan['runtime_sha256'].items()),'Runtime binding conflicts')
+     require(all(sha(root/name)==h for name,h in hashes.items()),'Input/source/runtime hash differs')
+     require(hashes[str(Path(__file__).relative_to(root))]==sha(__file__),'Renderer not pinned')
+     literal_functions(root,plan['literal_functions'])
+-    review=read(root/plan['root_review']);require(review['schema']=='root-two-new-taper-linear-static-terminal-1'and review['status']=='closed_actual_RC0_two_new_taper_static_and_energy_cases'and review['actual_tool_RC']==0 and review['terminal_sha256']==hashes[plan['combined_terminal']]and review['all_global_peaks_retained']is True and review['candidate_qualified']is False and review['law_original_RC1_preserved']is True,'Two actual new-taper ROOT closures required')
+-    require([row['role']for row in plan['cases']]==['rigid','spring'],'Two cases in exact order required')
++    reviews={}
++    for variant,context in plan['closed_contexts'].items():
++        review=read(root/context['root_review']);require(sha(root/context['root_review'])==context['root_review_sha256']==hashes[context['root_review']],'ROOT identity differs')
++        terminal_sha=hashes[context['combined_terminal']];require(terminal_sha==context['combined_terminal_sha256'],'Combined terminal identity differs')
++        if variant=='coarse':
++            require(review['schema']=='root-two-new-taper-linear-static-terminal-1'and review['status']=='closed_actual_RC0_two_new_taper_static_and_energy_cases'and review['actual_tool_RC']==0 and review['terminal_sha256']==terminal_sha and review['all_global_peaks_retained']is True and review['candidate_qualified']is False and review['law_original_RC1_preserved']is True,'Closed coarse ROOT required')
++        else:
++            require(variant=='raw_refined_diagnostic'and review['schema']=='root-two-raw-refined-terminal-taper-diagnostic-FEA-terminal-1'and review['status']=='closed_actual_RC0_both_diagnostic_linear_static_cases_no_qualification'and review['owner_terminal_sha256']==terminal_sha and review['whole_computed_terminal_equal']is True and review['whole_energy_all_ties_and_coarse_comparisons_equal']is True and review['both_owned_containers_freshly_absent']is True,'Closed raw-refined ROOT required')
++            require(review['candidate_qualified']is False and review['h2_qualified']is False and review['strict_H2_volume_refusal_preserved']is True and review['law_original_RC1_preserved']is True and review['stress_convergence_or_strength_admission']is False,'Raw-refined ROOT refusal scope lost')
++        reviews[variant]=review
++    require(set(reviews)=={'coarse','raw_refined_diagnostic'},'Both actual mesh contexts required')
++    order=[('rigid','coarse'),('rigid','raw_refined_diagnostic'),('spring','coarse'),('spring','raw_refined_diagnostic')]
++    require([(r['role'],r['mesh_variant'])for r in plan['cases']]==order,'Four actual cases in exact order required')
+     rows=[]
+     for row in plan['cases']:
++        context=plan['closed_contexts'][row['mesh_variant']];require(row['terminal']==context['combined_terminal'],'Foreign case terminal')
+         docs={key:read(root/row[key])for key in ['terminal','assessment','native_receipt','record','peaks','energy','loads']}
+-        rows.append(validate_case(row,docs,hashes,review['cases'][row['role']]))
+-    require(len({hashes[r['mesh_inp']]for r in rows})==len({hashes[r['mesh_npz']]for r in rows})==1,'Common actual mesh required')
+-    require(all(r['peak_data']['CAD_source']['sha256']==review['actual_new_BREP_sha256']for r in rows),'Actual BREP differs')
++        rows.append(validate_case(row,docs,hashes,reviews[row['mesh_variant']]['cases'][row['role']]))
++    for variant in reviews:
++        group=[r for r in rows if r['mesh_variant']==variant]
++        require(len({hashes[r['mesh_inp']]for r in group})==len({hashes[r['mesh_npz']]for r in group})==1,'Common actual mesh per variant required')
++    require(len({hashes[r['mesh_inp']]for r in rows})==2,'Two distinct actual meshes required')
++    for role in ['rigid','spring']:
++        group=[r for r in rows if r['role']==role]
++        require(hashes[group[0]['loads']]==hashes[group[1]['loads']]and group[0]['load_data']==group[1]['load_data'],'Complete coarse/raw-refined load/support contract differs')
++    require(all(r['peak_data']['CAD_source']['sha256']==plan['actual_BREP_sha256']=='dde710a2f318545ec99b066bbeddc71af0b526066eed97f8220ae2f61b3a75fb'for r in rows),'Actual BREP differs')
+     require(sha(plan_path)==expected,'Plan changed during preflight')
+     return plan,rows
+ 
+@@ -137,7 +160,7 @@
+     import matplotlib.backends.backend_pdf,matplotlib.backends.backend_svg
+     import PIL
+     matplotlib.rcParams.update({'font.family':'DejaVu Sans','font.size':9.5,'text.color':'#183347','axes.labelcolor':'#536D7D',
+-        'svg.fonttype':'none','svg.hashsalt':'carrier-terminal-taper-fields-001','pdf.fonttype':42,'path.simplify':False})
++        'svg.fonttype':'none','svg.hashsalt':'carrier-terminal-taper-four-case-fields-001','pdf.fonttype':42,'path.simplify':False})
+     basis=camera_basis();cases=[];all_bounds=[]
+     for row in rows:
+         with np.load(root/row['mesh_npz'],allow_pickle=False)as mesh,np.load(root/row['field'],allow_pickle=False)as field:
+@@ -157,23 +180,23 @@
+             cases.append(dict(row=row,tags=tags,xyz=xyz,faces=faces,ids=ids,u=u,stress=stress,amplitude=amplitude,corner_u=corners,summary=summary))
+     vm_scale=max(c['summary']['global_IP_VM_MPa']for c in cases);u_scale=max(c['summary']['all_nodes_Umax_mm']for c in cases)
+     lower=np.min(np.asarray(all_bounds)[:,0,:],0)-[9,6];upper=np.max(np.asarray(all_bounds)[:,1,:],0)+[9,6]
+-    fig,axes=plt.subplots(2,2,figsize=(17,12.4),facecolor='#F8FAFC');fig.subplots_adjust(left=.055,right=.88,top=.78,bottom=.26,wspace=.14,hspace=.17)
+-    fig.text(.055,.955,'993 TURBO · PRESERVED TAPER · TWO CLOSED LINEAR CASES',fontsize=11,color='#536D7D',weight='bold')
+-    fig.text(.055,.918,'Stress and displacement on the actual T10 mesh',fontsize=23,weight='bold')
++    fig,axes=plt.subplots(2,4,figsize=(24,12.4),facecolor='#F8FAFC');fig.subplots_adjust(left=.055,right=.88,top=.78,bottom=.26,wspace=.14,hspace=.17)
++    fig.text(.055,.955,'993 TURBO · PRESERVED TAPER · FOUR CLOSED LINEAR CASES',fontsize=11,color='#536D7D',weight='bold')
++    fig.text(.055,.918,'Coarse versus raw refined: stress and displacement',fontsize=23,weight='bold')
+     fig.text(.055,.887,'Fz = −4 000 N · My = +850 000 N·mm · common camera, mm axes and field scales',fontsize=10.5)
+-    fig.text(.055,.86,'89 536 C3D10 · 166 403 nodes · true deformation ×1 · raw BREP '+rows[0]['peak_data']['CAD_source']['sha256'][:12]+'…',fontsize=10,color='#087E8B')
++    fig.text(.055,.86,'Coarse: 89 536 T10 / 166 403 nodes · raw refined: 91 040 T10 / 168 675 nodes · true deformation ×1 · BREP '+rows[0]['peak_data']['CAD_source']['sha256'][:12]+'…',fontsize=10,color='#087E8B')
+     fig.text(.055,.834,'Rigid: 4 552 nodes fixed in XYZ. K1000: 1 000 N/mm TOTAL per eye and axis, distributed over 2 274 / 2 278 nodes.',fontsize=9.4)
+     norms=[colors.Normalize(0,vm_scale),colors.Normalize(0,u_scale)];cmap=plt.get_cmap('viridis');checks=[]
+-    # Actual peaks have opposite X signs: mirror the retained50mm display crop only.
++    # Each display-only crop follows this actual case peak, including the measured migration across X.
+     zoom=plan['display_zoom_XY_mm']
+     for col,c in enumerate(cases):
+-        row=c['row'];xyz=c['xyz'];ids=c['ids'];rest,_=project(xyz,basis);zoom_bounds=np.asarray(zoom[row['role']])
++        row=c['row'];xyz=c['xyz'];ids=c['ids'];rest,_=project(xyz,basis);zoom_bounds=np.asarray(zoom[row['case_key']])
+         for r in range(2):
+             ax=axes[r,col];points=xyz if r==0 else xyz+c['u'];values=c['stress']if r==0 else c['corner_u']
+             xy,depth=project(points,basis);order=np.argsort(depth[ids].mean(1),kind='stable')
+             if r:ax.add_collection(PolyCollection(rest[ids],facecolors='#E2E7EC',edgecolors='none',rasterized=True))
+             ax.add_collection(PolyCollection(xy[ids][order],facecolors=cmap(norms[r](values[order])),edgecolors='none',rasterized=True))
+-            title=('Rigid'if row['role']=='rigid'else'K1000 · total per eye / axis')+' — '+('von Mises'if r==0 else'actual displacement ×1')
++            title=row['display_label']+' — '+('von Mises'if r==0 else'actual displacement ×1')
+             ax.set(xlim=(lower[0],upper[0]),ylim=(lower[1],upper[1]),xlabel='Projected U (mm)',ylabel='Projected V (mm)',title=title)
+             ax.set_aspect('equal',adjustable='box');ax.grid(alpha=.12);ax.set_axisbelow(True);ax.tick_params(labelsize=8);ax.spines[['top','right']].set_visible(False)
+             if r==0:
+@@ -181,7 +204,7 @@
+                     marker,_=project([peak['reference_undeformed_IP_xyz_mm']],basis)
+                     ax.scatter(*marker[0],s=100,marker='o',facecolors='none',edgecolors='#D47732',linewidths=1.5,zorder=5)
+                     ax.annotate('Global IP peak',marker[0],xytext=(12,18),textcoords='offset points',fontsize=8,color='#9A491E',arrowprops=dict(arrowstyle='-',color='#D47732'))
+-                inset=fig.add_axes([.22+.43*col,.475,.14,.075]);top=np.argsort(xyz[ids][:,:,2].mean(1),kind='stable');inset.add_collection(PolyCollection(xyz[ids][top,:,:2],facecolors=cmap(norms[0](c['stress'][top])),edgecolors='none',rasterized=True))
++                inset=fig.add_axes([.12+.212*col,.475,.10,.075]);top=np.argsort(xyz[ids][:,:,2].mean(1),kind='stable');inset.add_collection(PolyCollection(xyz[ids][top,:,:2],facecolors=cmap(norms[0](c['stress'][top])),edgecolors='none',rasterized=True))
+                 inset.set(xlim=zoom_bounds[:,0],ylim=zoom_bounds[:,1],xlabel='X (mm)',ylabel='Y (mm)');inset.set_aspect('equal');inset.tick_params(labelsize=6);inset.set_title('Peak-region XY · shared MPa scale',fontsize=6.7)
+                 for peak in c['summary']['all_global_IP_ties']:inset.scatter(*peak['reference_undeformed_IP_xyz_mm'][:2],s=40,facecolors='none',edgecolors='#D47732',linewidths=1.2,zorder=5)
+             else:
+@@ -196,35 +219,35 @@
+     cellrows=[]
+     for c in cases:
+         for peak in c['summary']['all_global_IP_ties']:
+-            p=peak['reference_undeformed_IP_xyz_mm'];cellrows.append([('Rigid'if c['row']['role']=='rigid'else'K1000'),f"{peak['VM_MPa']:.3f}",f"{c['summary']['displayed_boundary_element_VM_max_MPa']:.3f}",f"{c['summary']['all_nodes_Umax_mm']:.6f}",str(peak['element_id'])+'/'+str(peak['IP_one_based']),', '.join(f'{v:.5f}'for v in p)])
++            p=peak['reference_undeformed_IP_xyz_mm'];cellrows.append([c['row']['display_label'],f"{peak['VM_MPa']:.3f}",f"{c['summary']['displayed_boundary_element_VM_max_MPa']:.3f}",f"{c['summary']['all_nodes_Umax_mm']:.6f}",str(peak['element_id'])+'/'+str(peak['IP_one_based']),', '.join(f'{v:.5f}'for v in p)])
+     table_ax=fig.add_axes([.055,.178,.895,.085]);table_ax.axis('off')
+-    table=table_ax.table(cellText=cellrows,colLabels=['Case','Global IP peak (MPa)','Boundary max (MPa)','All-node |u| (mm)','Element / IP','Reference IP XYZ (mm)'],loc='center',cellLoc='center',colWidths=[.09,.14,.15,.16,.12,.34]);table.auto_set_font_size(False);table.set_fontsize(8.6);table.scale(1,1.5)
++    table=table_ax.table(cellText=cellrows,colLabels=['Case','Global IP peak (MPa)','Boundary max (MPa)','All-node |u| (mm)','Element / IP','Reference IP XYZ (mm)'],loc='center',cellLoc='center',colWidths=[.17,.13,.14,.14,.12,.30]);table.auto_set_font_size(False);table.set_fontsize(8.6);table.scale(1,1.5)
+     for (r,_),cell in table.get_celld().items():cell.set_edgecolor('#DAE2E8');cell.set_facecolor('#E8F2F3'if r==0 else'white')
+     fig.text(.055,.141,'Stress colours: maximum of 4 IPs in each boundary-adjacent element, without nodal extrapolation. Orange circles: every global IP peak.',fontsize=9,color='#536D7D')
+     fig.text(.055,.117,'Linear C3D10 corner facets; actual corner displacement ×1. Grey: reference shape. Crosses: every all-node maximum of |u|.',fontsize=9,color='#536D7D')
+     fig.text(.055,.093,'Displacement colours use the largest of each facet’s 3 corner values; the global maximum also includes midside nodes.',fontsize=9,color='#536D7D')
+-    fig.text(.055,.061,'New raw-BREP geometry and mesh. Assumed linear loads/material; no strength allowable or stress convergence established.',fontsize=9,color='#536D7D')
+-    fig.text(.055,.037,'Unqualified raw taper: post-Build law refusal retained; STEP exchange not qualified. Orthographic view 8° / 22°.',fontsize=9,color='#536D7D')
++    fig.text(.055,.061,'Same raw BREP, two actual meshes. Assumed linear loads/material; no strength allowable or stress convergence established.',fontsize=9,color='#536D7D')
++    fig.text(.055,.037,'Unqualified raw taper; refined H2 volume and post-Build law refusals retained. STEP not qualified. Orthographic view 8° / 22°.',fontsize=9,color='#536D7D')
+     loaded={str(Path(m.__file__).resolve())for n,m in list(sys.modules.items())if n.split('.')[0]in ['numpy','matplotlib','PIL']and getattr(m,'__file__',None)and Path(m.__file__).is_file()}
+     runtime=plan['runtime_sha256'];require(loaded<=set(runtime),'An imported scientific runtime file is outside the attested runtime')
+     verify(plan_path,expected,True);fresh(output).mkdir()
+     for ext in ['png','svg','pdf']:
+         metadata={'Date':None,'Creator':'Actual preserved-taper finite-element fields'}if ext=='svg'else({'CreationDate':None,'ModDate':None,'Creator':'Actual preserved-taper finite-element fields'}if ext=='pdf'else{'Software':'Actual preserved-taper finite-element fields'})
+-        fig.savefig(output/('carrier-terminal-taper-stress-displacement.'+ext),dpi=180,metadata=metadata)
++        fig.savefig(output/('carrier-terminal-taper-four-case-comparison.'+ext),dpi=180,metadata=metadata)
+     plt.close(fig);verify(plan_path,expected,True)
+     loaded_after={str(Path(m.__file__).resolve())for n,m in list(sys.modules.items())if n.split('.')[0]in ['numpy','matplotlib','PIL']and getattr(m,'__file__',None)and Path(m.__file__).is_file()}
+     require(loaded_after<=set(runtime),'A post-export runtime file is outside the219 pinned files')
+-    write(output/'render-receipt.json',dict(status='actual_closed_new_taper_fields_rendered_no_new_FEA',plan_sha256=expected,source_sha256=sha(__file__),
++    write(output/'render-receipt.json',dict(status='actual_closed_coarse_refined_diagnostic_fields_rendered_no_new_FEA',plan_sha256=expected,source_sha256=sha(__file__),
+         data_sources_sha256=plan['files_sha256'],runtime_sha256=runtime,runtime_imported_files=sorted(loaded_after),checks=checks,camera_basis_U_V_depth=basis.tolist(),
+         global_maxima=[c['summary']for c in cases],all_faces_used=True,common_color_scales=True,all_global_IP_peaks_retained=True,FEA_started=False,
+-        all_axes_common_mm=True,display_only_zoom_XY_mm=zoom,geometry_modified=False,stress_convergence_established=False,strength_allowable=None,
++        all_axes_common_mm=True,display_only_zoom_XY_mm=zoom,geometry_modified=False,stress_convergence_established=False,strength_allowable=None,h2_qualified=False,strict_refined_volume_refusal_preserved=True,law_original_RC1_preserved=True,
+         wall_seconds=time.monotonic()-started,CPU_seconds=resource.getrusage(resource.RUSAGE_SELF).ru_utime+resource.getrusage(resource.RUSAGE_SELF).ru_stime,
+         maxRSS_bytes=resource.getrusage(resource.RUSAGE_SELF).ru_maxrss,cwd=os.getcwd(),outputs_sha256={p.name:sha(p)for p in sorted(output.iterdir())}))
+ 
+ if __name__=='__main__':
+     for key in ['OMP_NUM_THREADS','OPENBLAS_NUM_THREADS','MKL_NUM_THREADS']:os.environ[key]='1'
+-    signal.signal(signal.SIGALRM,lambda *_:(_ for _ in ()).throw(TimeoutError('95s actual field figure budget')))
+-    signal.setitimer(signal.ITIMER_REAL,95);resource.setrlimit(resource.RLIMIT_CPU,(90,91))
++    signal.signal(signal.SIGALRM,lambda *_:(_ for _ in ()).throw(TimeoutError('150s actual four-case field figure budget')))
++    signal.setitimer(signal.ITIMER_REAL,150);resource.setrlimit(resource.RLIMIT_CPU,(140,141))
+     mode,plan,expected=sys.argv[1:4]
+     if mode=='preflight':
+         p,rows=verify(plan,expected);print(json.dumps(dict(status='closed_case_bindings_checked_no_arrays_or_render',launch_ready=p['launch_ready'],cases=[r['case']for r in rows],pins=len(p['files_sha256'])),sort_keys=True))

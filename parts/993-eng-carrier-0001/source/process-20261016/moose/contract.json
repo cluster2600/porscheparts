@@ -1,0 +1,53 @@
+{
+  "purpose": "Necessary software witness for birth in a predeformed pose, equilibrium with J2 history, and restraint release in one continuous run. Not a carrier simulation.",
+  "image_digest": "sha256:47fc6c5bff5e86869e7c467f999e9585ece13af9ffd1f580fef5369728a93452",
+  "main_bar_mm": [
+    10,
+    1,
+    1
+  ],
+  "reference": "Infinitesimal strain, uniaxial stress, E=200000 MPa, yield200MPa, alpha1e-5/K, ideal plasticity; born atT300 with u_right0.005mm and zero stress.",
+  "expectations": {
+    "birth_t1": {
+      "u_right_mm": 0.005,
+      "stress_MPa": 0,
+      "plastic_xx": 0,
+      "temperature_K": 300
+    },
+    "hot_t2": {
+      "stress_MPa": -200,
+      "plastic_xx": -0.002,
+      "temperature_K": 600
+    },
+    "cold_clamped_t4": {
+      "stress_MPa": 200,
+      "plastic_xx": -0.001,
+      "temperature_K": 300
+    },
+    "released_t6": {
+      "u_right_mm": -0.005,
+      "stress_MPa": 0,
+      "plastic_xx": -0.001,
+      "residual_relative_birth_mm": -0.01,
+      "temperature_K": 300
+    },
+    "elastic_released_t6": {
+      "u_right_mm": 0.005,
+      "stress_MPa": 0,
+      "plastic_xx": 0,
+      "residual_relative_birth_mm": 0
+    }
+  },
+  "absolute_tolerances": {
+    "displacement_mm": 1e-06,
+    "stress_MPa": 0.001,
+    "plastic_strain": 1e-06,
+    "temperature_K": 1e-08
+  },
+  "inputs_sha256": {
+    "birth-cycle-release.i": "40e84b9caaa0bf9b1b800be93f5d11ef04bb953bfce8dce4f6cb1e66183cf63e",
+    "elastic-control.i": "bb701130859202ed46d016b85cd2b153f30e1887f6ac5dd3d35d3a9a39e3570c"
+  },
+  "presentation_revision": "Correct MOOSE object tag BCs::right_x; same numerical protocol and unchanged acceptance tolerances",
+  "implementation_revision": "Initialize stateful properties only on newly activated subdomain2; numerical reference and tolerances unchanged"
+}
