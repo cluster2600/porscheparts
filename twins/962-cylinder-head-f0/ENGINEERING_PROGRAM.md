@@ -64,6 +64,12 @@ with the original production observer object. Saved-result review accepts the bu
 and descriptor scope only. Static metadata and a separate clean host setup/shutdown
 check remain next; no callback, native field or equilibrium repair is accepted.
 
+The [corrected observer host checkpoint](derived/engineering/cp1-END181-observer-lifetime-host-check/README.md)
+completes six static inspections and one input setup/type check with normal host
+and outer exits. The expected new plugin, single observer and Syntax OK are observed.
+The original failure remains; live DOF/SNES capture and a separate instrumented
+coupon solve remain pending, with the twelve equilibrium failures unchanged.
+
 The earlier [complete 73-component coordinate study](derived/engineering/current110-complete73-coordinate-diagnostics/README.md)
 preserves all 62 passing and 11 rejected proposals. Only the passing subset was
 applied; rejected proposals, including their newly poor cells, remain unchanged.

@@ -1,0 +1,5 @@
+# Held six-query static metadata execution
+
+The exact six plan argv remain unchanged. Target identities29539701/daf8648b inherit root's closed build capture; accepted build peer0057bd59/b25a40c4 and root23d07749 are directly bound. No object/plugin body was reread, hashed, statted or queried in this preparation. Named four nm/otool tool paths plus their resolved alias targets were identity-captured once; no xcrun/provider discovery, library scan or tool invocation occurred. Explicit developer/SDK route and dispatch limitations are recorded.
+
+The owner reuses corrected build002 lifecycle/resource handling, accepts only six read-only queries, and retains all argv/rawlogs/status/cleanup/input/path evidence. Overall60/T8/2GiB/32MiB including receipt/T1/no retry remain. No load, guard, host, callback, solve or physical conclusion follows. A new independent static-source peer, root source/actual review and separate exact admission are required. This packet grants no query authority and creates no result directory.

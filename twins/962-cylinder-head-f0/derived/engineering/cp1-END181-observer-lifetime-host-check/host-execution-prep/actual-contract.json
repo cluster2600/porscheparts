@@ -1,0 +1,146 @@
+{
+  "schema": "962-observer004-held-one-host-registration-check-actual/v1",
+  "status": "HELD_STATIC_ASSOCIATIONS_ACCEPTED_STAGING_FRESHNESS_NEW_PEER_ROOT_ADMISSION_REQUIRED",
+  "controller": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-host-registration-owner-prep-001/run_host_check_once.py",
+    "sha256": "d3153618034c24a472fc5a9582467f1207964781f14ab4b7c3a79afb77adc9c1",
+    "bytes": 16384
+  },
+  "preflight": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-host-registration-execution-prep-001/input-runtime-preflight.002.json",
+    "sha256": "80363ae9328d2372f6ad46e6b4d59fb9fa87b9b951aa95341980d4541a3d3a78",
+    "bytes": 70121
+  },
+  "held_plan": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-host-registration-check-prep-001/held-check-plan.json",
+    "sha256": "8457640ebd81a58b3f74a56c0c0b100dcc1f6e1f3c6c54ee28a89cb33422f152",
+    "bytes": 11383
+  },
+  "staged_copy_metadata": null,
+  "argv": [
+    "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-local-installed-002/bin/combined-opt",
+    "-skip_petscrc",
+    "--n-threads=1",
+    "--check-input",
+    "--list-constructed-objects",
+    "-i",
+    "thermoelastic-birth-observer-registration.i"
+  ],
+  "environment": {
+    "PATH": "/usr/bin:/bin",
+    "LANG": "C",
+    "LC_ALL": "C",
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "MKL_NUM_THREADS": "1",
+    "VECLIB_MAXIMUM_THREADS": "1",
+    "FI_PROVIDER": "tcp",
+    "DYLD_LIBRARY_PATH": "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-local-installed-002/lib/combined:/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-local-installed-002/lib",
+    "DYLD_PRINT_LIBRARIES": "1",
+    "TMPDIR": "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-host-registration-root-execution-001/tmp"
+  },
+  "cwd": "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-host-registration-root-execution-001",
+  "positive_contract": {
+    "returncode": 0,
+    "stderr_required_text": "Syntax OK",
+    "stdout_start_marker": "**START OBJECT DATA**",
+    "stdout_end_marker": "**END OBJECT DATA**",
+    "required_exact_line_inside_constructed_type_frame": "CouponEnd181DofMap",
+    "plugin_load_trace_expected_path": "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/cp1-oneway-cooling-release-richardson2-END181-dof-map-observer-prep-004/build-001/libcoupon_end181_observer-opt.dylib",
+    "type_claim_scope": "Host parser/Factory registration and completed input setup with the observer type constructed; no output callback or live node/DOF/map proof",
+    "no_solve_source_basis": "MooseApp::run check_input branch calls errorCheck/SyntaxOK instead of executeExecutioner; list constructed types happens after input actions.",
+    "expected_outputs": "Full stdout/stderr/loader trace, status/lifecycle and fresh declared input identities; preserve unexpected files without decoding them."
+  },
+  "controls": {
+    "wall_seconds": 60,
+    "TERM_grace_seconds": 8,
+    "KILL_wait_seconds": 8,
+    "sampled_owned_group_RSS_stop_bytes": 2147483648,
+    "owned_output_stop_bytes": 33554432,
+    "OMP_BLAS_environment_threads": 1,
+    "thread_observations_nongating": true,
+    "numeric_reported_RSS_zero_allowed": true,
+    "missing_or_nonnumeric_RSS_not_zero_filled": true,
+    "retry": 0,
+    "core_bytes": 0
+  },
+  "outer_python": {
+    "alias": "/usr/local/bin/python3",
+    "resolved": "/Library/Frameworks/Python.framework/Versions/3.10/bin/python3.10",
+    "record": {
+      "path": "/Library/Frameworks/Python.framework/Versions/3.10/bin/python3.10",
+      "sha256": "72956ad35cff7691dfed9e04c9593de825ffd5b2fa7e8bc9ae96ce9a1af65621",
+      "bytes": 152624
+    }
+  },
+  "independent_source_input_peer": null,
+  "independent_source_input_bindings": null,
+  "host_check_execution_authorized": false,
+  "plugin_load_authorized": false,
+  "executioner_init_authorized": false,
+  "native_solve_authorized": false,
+  "callback_or_live_map_authorized": false,
+  "physical_acceptance": false,
+  "future_root_admission": null,
+  "launch_template": [
+    "/Library/Frameworks/Python.framework/Versions/3.10/bin/python3.10",
+    "-B",
+    "-I",
+    "-S",
+    "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-host-registration-owner-prep-001/run_host_check_once.py",
+    "<ROOT_ADMISSION_SHA256>"
+  ],
+  "provider_scope": "Exact known prior native selected library union with successful standalone11direct providers;22declared path/21canonical providers, not fulltransitive/sourceABI acceptance.",
+  "unexpected_outputs_preserved_without_body_decoding_or_hashing": true,
+  "root_registration_result_requires_expected_plugin_attribution": true,
+  "loader_attribution_separate_from_factory_input_check_status": true,
+  "staging_plan": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-host-registration-execution-prep-001/staging-plan.json",
+    "sha256": "46c48f5d899d7232246d1a932f9d3329ad1997a25a9f165675a5bfd2e912712b",
+    "bytes": 3214
+  },
+  "staging_performed": false,
+  "prior_source_input_peer_historical": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer003-host-registration-source-peer-001/review.json",
+    "sha256": "b51dab3cf21347706c5178af113bff3767bbe64a500d9007ccf0e8bdb280c331",
+    "bytes": 6941
+  },
+  "prior_source_input_bindings_historical": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer003-host-registration-source-peer-001/bindings.json",
+    "sha256": "dea5d6175ba1a2e3d33328e5dc9f8c879d82b60dd1fd59b9ac2785fcb504b4c7",
+    "bytes": 6258
+  },
+  "accepted_build_root_record": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-build-root-review-002/result-peer-acceptance.json",
+    "sha256": "23d077496ac300ccb469e9b9a4519fb0947578c3465e31d03f51336b0125d582",
+    "bytes": 2344
+  },
+  "accepted_static_root_record": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-static-metadata-root-review-001/result-peer-acceptance.json",
+    "sha256": "721a6b9dba716ad1ca3e1ed11a57f57e6dc695c0ee1bf15247a0d28f2c300649",
+    "bytes": 2793
+  },
+  "static_result_peer_review": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-static-metadata-result-peer-001/review.json",
+    "sha256": "f32db944991ec494cc7f6de37d1b9b8febcdc0bc97fe9e1a5f86efffc970df07",
+    "bytes": 7930
+  },
+  "static_result_peer_bindings": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-static-metadata-result-peer-001/bindings.json",
+    "sha256": "9b2cc330dd4ca243eec8d99a00ec9161b0b63142ff9d3ae60033d41c0925d44a",
+    "bytes": 34324
+  },
+  "required_compatible_root_admission_schema": "962-observer003-root-host-registration-check-admission/v1",
+  "mandatory_root_acceptance_conjunction": [
+    "Raw hostRC0 and independently observed outerRC0",
+    "Exactly one complete constructed-object frame with observer type exactly once and SyntaxOK",
+    "Expected new29539701plugin path observed, irrespective of separate owner positive-check flag",
+    "All declared input/control identities and22known provider-path associations unchanged",
+    "No stop/request/failure; owned child waited/reaped/groupabsent; unexpected outputs preserved and reviewed",
+    "Full net post-receipt output<=32MiB excluding only identity-matched4inputs; root observed inclusive wall/resource closure",
+    "No callback/liveDOF/solve/retention/cause/ABI/physics inference"
+  ],
+  "controller_scope_limits": "Owner003 protocol is namespace-only reused: expectedpluginpath is separately observed, owned output field precedes receipt, mutable stop-request/outer status must be independently checked. Root inclusive postchecks and rawhost0+frame/type+Syntax+newpath+outer0 are mandatory; owner positive flag alone never accepts.",
+  "freshness_staging_separate_pending": true,
+  "retention_crash_cause_ABI_or_physics_accepted": false
+}

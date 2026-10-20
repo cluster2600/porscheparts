@@ -1,0 +1,74 @@
+{
+  "schema": "962-observer004-four-named-static-tool-identity-capture/v1",
+  "created_utc": "2026-10-20T18:12:54.394907+00:00",
+  "tool_records": {
+    "/usr/bin/nm": {
+      "path": "/usr/bin/nm",
+      "sha256": "21df4f5520528e31b8632cfb3b4b57a3f2a33126693828bf69d1976f537aaec7",
+      "bytes": 200560
+    },
+    "/usr/bin/otool": {
+      "path": "/usr/bin/otool",
+      "sha256": "21df4f5520528e31b8632cfb3b4b57a3f2a33126693828bf69d1976f537aaec7",
+      "bytes": 200560
+    },
+    "/Library/Developer/CommandLineTools/usr/bin/nm": {
+      "path": "/Library/Developer/CommandLineTools/usr/bin/nm",
+      "sha256": "82e9189ec1a359699d4b680601c0a2930a9cbea7376c7320947dff5e9862cfa8",
+      "bytes": 16367008
+    },
+    "/Library/Developer/CommandLineTools/usr/bin/llvm-nm": {
+      "path": "/Library/Developer/CommandLineTools/usr/bin/llvm-nm",
+      "sha256": "82e9189ec1a359699d4b680601c0a2930a9cbea7376c7320947dff5e9862cfa8",
+      "bytes": 16367008
+    },
+    "/Library/Developer/CommandLineTools/usr/bin/otool": {
+      "path": "/Library/Developer/CommandLineTools/usr/bin/otool",
+      "sha256": "8353ad3c42743a93e9ca7d0d4e9d3df22305252d169c42c543ee22eeb8c33809",
+      "bytes": 72672
+    },
+    "/Library/Developer/CommandLineTools/usr/bin/llvm-otool": {
+      "path": "/Library/Developer/CommandLineTools/usr/bin/llvm-otool",
+      "sha256": "8353ad3c42743a93e9ca7d0d4e9d3df22305252d169c42c543ee22eeb8c33809",
+      "bytes": 72672
+    }
+  },
+  "path_metadata": {
+    "/usr/bin/nm": {
+      "path": "/usr/bin/nm",
+      "resolved": "/usr/bin/nm",
+      "link": null
+    },
+    "/usr/bin/otool": {
+      "path": "/usr/bin/otool",
+      "resolved": "/usr/bin/otool",
+      "link": null
+    },
+    "/Library/Developer/CommandLineTools/usr/bin/nm": {
+      "path": "/Library/Developer/CommandLineTools/usr/bin/nm",
+      "resolved": "/Library/Developer/CommandLineTools/usr/bin/llvm-nm",
+      "link": "llvm-nm"
+    },
+    "/Library/Developer/CommandLineTools/usr/bin/otool": {
+      "path": "/Library/Developer/CommandLineTools/usr/bin/otool",
+      "resolved": "/Library/Developer/CommandLineTools/usr/bin/llvm-otool",
+      "link": "llvm-otool"
+    }
+  },
+  "fixed_frontends": [
+    "/usr/bin/nm",
+    "/usr/bin/otool"
+  ],
+  "selected_provider_candidates": [
+    "/Library/Developer/CommandLineTools/usr/bin/nm",
+    "/Library/Developer/CommandLineTools/usr/bin/otool"
+  ],
+  "DEVELOPER_DIR": "/Library/Developer/CommandLineTools",
+  "SDKROOT": "/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk",
+  "fixed_xcrun_added": false,
+  "xcrun_scope": "None of the named paths resolves through an xcrun symlink. No frontend disassembly/strings/implementation inspection or command was performed to infer an additional dispatcher dependency; xcrun was not added. Explicit developer/SDK environment constrains a future dispatch route without proving its full implementation/runtime closure.",
+  "tools_invoked": false,
+  "queries_or_target_reads_or_hashes": false,
+  "directory_scan_or_provider_discovery": false,
+  "full_tool_runtime_or_dispatch_closure": false
+}

@@ -1,0 +1,496 @@
+{
+  "schema": "962-observer004-saved-host-result-accounting/v1",
+  "root_observed_outer_tool_chunk": "7e1f3d",
+  "root_outer_returncode": 0,
+  "root_outer_complete_wall_seconds": 3.705337792,
+  "saved_host_returncode": 0,
+  "saved_host_elapsed_seconds": 3.57345208292827,
+  "expected_93_union_digest": "e1e8901f24675058cc4dd3d7689410b48052b369d6338512656018e43d526150",
+  "saved_before_after_snapshots_match": true,
+  "provider_paths": {
+    "rows": 22,
+    "canonical": 21,
+    "before_after_and_staging_metadata_equal": true
+  },
+  "staging_copies_from_root_receipt": [
+    {
+      "source": {
+        "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-host-registration-check-prep-001/thermoelastic-birth-observer-registration.i",
+        "sha256": "190296e6c2ad1627feca4b374efd2c49739e0c2628764cd92388392a78fd2682",
+        "bytes": 15537
+      },
+      "destination": {
+        "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-host-registration-root-execution-001/thermoelastic-birth-observer-registration.i",
+        "sha256": "190296e6c2ad1627feca4b374efd2c49739e0c2628764cd92388392a78fd2682",
+        "bytes": 15537
+      },
+      "byte_exact": true
+    },
+    {
+      "source": {
+        "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer003-host-registration-root-execution-001/old-end.grid",
+        "sha256": "c64b252894a88730ad1f6ec0311cc5fe58a2cb3a8831f67e61db9d20be95823e",
+        "bytes": 767338
+      },
+      "destination": {
+        "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-host-registration-root-execution-001/old-end.grid",
+        "sha256": "c64b252894a88730ad1f6ec0311cc5fe58a2cb3a8831f67e61db9d20be95823e",
+        "bytes": 767338
+      },
+      "byte_exact": true
+    },
+    {
+      "source": {
+        "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer003-host-registration-root-execution-001/born-end.grid",
+        "sha256": "9caf52c69d0b14db442571b11d72252f3431d57b3991ab90ed849ddb6178b63f",
+        "bytes": 429552
+      },
+      "destination": {
+        "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-host-registration-root-execution-001/born-end.grid",
+        "sha256": "9caf52c69d0b14db442571b11d72252f3431d57b3991ab90ed849ddb6178b63f",
+        "bytes": 429552
+      },
+      "byte_exact": true
+    },
+    {
+      "source": {
+        "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer003-host-registration-root-execution-001/born-begin80.grid",
+        "sha256": "cf4d9df9c8ab66aa37c40ef4e9cf3be44607229ff901201017eba0ba176cfbe4",
+        "bytes": 1375
+      },
+      "destination": {
+        "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-host-registration-root-execution-001/born-begin80.grid",
+        "sha256": "cf4d9df9c8ab66aa37c40ef4e9cf3be44607229ff901201017eba0ba176cfbe4",
+        "bytes": 1375
+      },
+      "byte_exact": true
+    }
+  ],
+  "root_descriptor_based_budget": {
+    "all_nine_D_files_bytes": 1783132,
+    "identity_matched_four_inputs_bytes": 1213802,
+    "postreceipt_net_D_including_admission_bytes": 569330,
+    "owner_pre_receipt_net_bytes": 119240,
+    "receipt_bytes": 450090,
+    "cap_bytes": 33554432,
+    "grid_bodies_rechecked_by_reviewer": false
+  },
+  "frame": {
+    "start_marker_zero_based_line": 8,
+    "end_marker_zero_based_line": 52,
+    "all43_framed_lines": [
+      "ADComputeFiniteStrainElasticStress",
+      "ADComputeIncrementalStrain",
+      "ADComputeIsotropicElasticityTensor",
+      "ADComputeThermalExpansionEigenstrain",
+      "ADDirichletBC",
+      "ADStressDivergenceTensors",
+      "ADTimeDerivative",
+      "BoundingBoxNodeSetGenerator",
+      "CSV",
+      "Checkpoint",
+      "Console",
+      "ConstantDT",
+      "ConstantFunction",
+      "ConstantIC",
+      "CouponEnd181DofMap",
+      "DefaultMultiAppFixedPointConvergence",
+      "DefaultNonlinearConvergence",
+      "DefaultSteadyStateConvergence",
+      "DisplacedProblem",
+      "ElementMaterialSampler",
+      "ElementPointNeighborLayers",
+      "ElementSideNeighborLayers",
+      "Exodus",
+      "FEProblem",
+      "FunctionAux",
+      "FunctionIC",
+      "GeneratedMeshGenerator",
+      "GhostLowerDElems",
+      "ImplicitEuler",
+      "MeshGeneratorMesh",
+      "MooseVariable",
+      "NodalValueSampler",
+      "PiecewiseMultilinear",
+      "ProxyRelationshipManager",
+      "RankTwoCartesianComponent",
+      "RankTwoTensorMaterialADConverter",
+      "SMP",
+      "SolutionInvalidityOutput",
+      "SubdomainBoundingBoxGenerator",
+      "TimePeriod",
+      "TimedSubdomainModifier",
+      "Transient",
+      ""
+    ],
+    "nonempty_types42": [
+      "ADComputeFiniteStrainElasticStress",
+      "ADComputeIncrementalStrain",
+      "ADComputeIsotropicElasticityTensor",
+      "ADComputeThermalExpansionEigenstrain",
+      "ADDirichletBC",
+      "ADStressDivergenceTensors",
+      "ADTimeDerivative",
+      "BoundingBoxNodeSetGenerator",
+      "CSV",
+      "Checkpoint",
+      "Console",
+      "ConstantDT",
+      "ConstantFunction",
+      "ConstantIC",
+      "CouponEnd181DofMap",
+      "DefaultMultiAppFixedPointConvergence",
+      "DefaultNonlinearConvergence",
+      "DefaultSteadyStateConvergence",
+      "DisplacedProblem",
+      "ElementMaterialSampler",
+      "ElementPointNeighborLayers",
+      "ElementSideNeighborLayers",
+      "Exodus",
+      "FEProblem",
+      "FunctionAux",
+      "FunctionIC",
+      "GeneratedMeshGenerator",
+      "GhostLowerDElems",
+      "ImplicitEuler",
+      "MeshGeneratorMesh",
+      "MooseVariable",
+      "NodalValueSampler",
+      "PiecewiseMultilinear",
+      "ProxyRelationshipManager",
+      "RankTwoCartesianComponent",
+      "RankTwoTensorMaterialADConverter",
+      "SMP",
+      "SolutionInvalidityOutput",
+      "SubdomainBoundingBoxGenerator",
+      "TimePeriod",
+      "TimedSubdomainModifier",
+      "Transient"
+    ],
+    "one_blank_line": true,
+    "required_observer_count": 1,
+    "root_count_erratum": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-host-registration-root-review-001/observed-terminal-count-erratum.json",
+      "sha256": "fa097823501aafecf0972cde628e4a3d1437ea71a9c2b5e83f1713a92cf1122e",
+      "bytes": 876
+    }
+  },
+  "deprecation_warning_exact_stdout_prefix": "\n\u001b[33m\n*** Deprecation Warning ***\n/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-host-registration-root-execution-001/thermoelastic-birth-observer-registration.i:607.5:\nOutputs/console/output_postprocessors: The parameter 'output_postprocessors' is deprecated.\n'execute_postprocessors_on' has replaced this parameter\n\n\u001b[39m\n",
+  "raw_stderr_associations": {
+    "total_lines": 887,
+    "exact_nondyld_lines": [
+      "Syntax OK"
+    ],
+    "all_dyld_rows": 886,
+    "parsed_unique_path_rows": 731,
+    "unparsed_rows": 155,
+    "unparsed_all_match_observed_move_loaded_to_delayed_notice_shape": true,
+    "unparsed_rows_retained_in_receipt_and_raw_stderr": true,
+    "parsed_raw_row_associations_exact": true
+  },
+  "loaded_path_scope": {
+    "expected_new_plugin_row": {
+      "raw": "dyld[30363]: <BA380343-F7C9-3505-8256-8A27E93D5031> /Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/cp1-oneway-cooling-release-richardson2-END181-dof-map-observer-prep-004/build-001/libcoupon_end181_observer-opt.dylib",
+      "path": "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/cp1-oneway-cooling-release-richardson2-END181-dof-map-observer-prep-004/build-001/libcoupon_end181_observer-opt.dylib",
+      "resolved": "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/cp1-oneway-cooling-release-richardson2-END181-dof-map-observer-prep-004/build-001/libcoupon_end181_observer-opt.dylib",
+      "OS_system_image_attribution": false,
+      "shared_cache_placement_observed": false
+    },
+    "plugin_UUID_matches_saved_static_LC_UUID": "BA380343-F7C9-3505-8256-8A27E93D5031",
+    "declared_canonical_paths_observed20": [
+      "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-local-installed-002/lib/combined/libcombined-opt.0.dylib",
+      "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-local-installed-002/lib/combined/libheat_transfer-opt.0.dylib",
+      "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-local-installed-002/lib/combined/libhit-opt.0.dylib",
+      "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-local-installed-002/lib/combined/libmoose-opt.0.dylib",
+      "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-local-installed-002/lib/combined/libpcre-opt.0.dylib",
+      "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-local-installed-002/lib/combined/libsolid_mechanics-opt.0.dylib",
+      "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-local-installed-002/lib/libHYPRE-3.1.0.dylib",
+      "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-local-installed-002/lib/libc++.1.0.dylib",
+      "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-local-installed-002/lib/libfabric.1.dylib",
+      "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-local-installed-002/lib/libhdf5.310.dylib",
+      "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-local-installed-002/lib/libhdf5_hl.310.dylib",
+      "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-local-installed-002/lib/libmesh_opt.0.dylib",
+      "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-local-installed-002/lib/libmpi.12.dylib",
+      "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-local-installed-002/lib/libmpicxx.12.dylib",
+      "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-local-installed-002/lib/libnetcdf.13.dylib",
+      "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-local-installed-002/lib/libomp.dylib",
+      "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-local-installed-002/lib/libopenblasp-r0.3.32.dylib",
+      "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-local-installed-002/lib/libpetsc.3.25.4.dylib",
+      "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-local-installed-002/lib/libpmpi.12.dylib",
+      "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-local-installed-002/lib/libtimpi_opt.11.dylib"
+    ],
+    "declared_canonical_path_not_observed1": [
+      "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-local-installed-002/lib/libmetaphysicl.11.dylib"
+    ],
+    "same_missing_declared_path_in_old_failed003_receipt": true,
+    "additional182_unique_non_system_paths_are_receipt_parser_labels_not_new_pins": true,
+    "additional182_all_below_engineering_prefix": true,
+    "additional_path_set_sha256": "6491207617154f635362ca7ef5b0a8dcb0147ff27e123879b48ba56bfc971f24",
+    "full_transitive_or_ABI_acceptance": false
+  },
+  "all36_resource_samples": [
+    {
+      "ordinal": 1,
+      "elapsed_seconds": 0.04275762499310076,
+      "owned_processes": 1,
+      "RSS_bytes": 32768,
+      "observed_threads_nongating": 1
+    },
+    {
+      "ordinal": 2,
+      "elapsed_seconds": 0.13726949994452298,
+      "owned_processes": 1,
+      "RSS_bytes": 524288,
+      "observed_threads_nongating": 1
+    },
+    {
+      "ordinal": 3,
+      "elapsed_seconds": 0.2308606249280274,
+      "owned_processes": 1,
+      "RSS_bytes": 835584,
+      "observed_threads_nongating": 1
+    },
+    {
+      "ordinal": 4,
+      "elapsed_seconds": 0.3251760408747941,
+      "owned_processes": 1,
+      "RSS_bytes": 1196032,
+      "observed_threads_nongating": 1
+    },
+    {
+      "ordinal": 5,
+      "elapsed_seconds": 0.42196141579188406,
+      "owned_processes": 1,
+      "RSS_bytes": 1671168,
+      "observed_threads_nongating": 1
+    },
+    {
+      "ordinal": 6,
+      "elapsed_seconds": 0.524975165957585,
+      "owned_processes": 1,
+      "RSS_bytes": 1687552,
+      "observed_threads_nongating": 1
+    },
+    {
+      "ordinal": 7,
+      "elapsed_seconds": 0.6141032909508795,
+      "owned_processes": 1,
+      "RSS_bytes": 2162688,
+      "observed_threads_nongating": 1
+    },
+    {
+      "ordinal": 8,
+      "elapsed_seconds": 0.7024675828870386,
+      "owned_processes": 1,
+      "RSS_bytes": 1982464,
+      "observed_threads_nongating": 1
+    },
+    {
+      "ordinal": 9,
+      "elapsed_seconds": 0.7976837498135865,
+      "owned_processes": 1,
+      "RSS_bytes": 2146304,
+      "observed_threads_nongating": 1
+    },
+    {
+      "ordinal": 10,
+      "elapsed_seconds": 0.8943213748279959,
+      "owned_processes": 1,
+      "RSS_bytes": 2424832,
+      "observed_threads_nongating": 1
+    },
+    {
+      "ordinal": 11,
+      "elapsed_seconds": 0.9884548748377711,
+      "owned_processes": 1,
+      "RSS_bytes": 2621440,
+      "observed_threads_nongating": 1
+    },
+    {
+      "ordinal": 12,
+      "elapsed_seconds": 1.0800429158844054,
+      "owned_processes": 1,
+      "RSS_bytes": 2785280,
+      "observed_threads_nongating": 1
+    },
+    {
+      "ordinal": 13,
+      "elapsed_seconds": 1.169453457929194,
+      "owned_processes": 1,
+      "RSS_bytes": 2981888,
+      "observed_threads_nongating": 1
+    },
+    {
+      "ordinal": 14,
+      "elapsed_seconds": 1.2657298329286277,
+      "owned_processes": 1,
+      "RSS_bytes": 3096576,
+      "observed_threads_nongating": 1
+    },
+    {
+      "ordinal": 15,
+      "elapsed_seconds": 1.3547744159586728,
+      "owned_processes": 1,
+      "RSS_bytes": 3260416,
+      "observed_threads_nongating": 1
+    },
+    {
+      "ordinal": 16,
+      "elapsed_seconds": 1.442116707796231,
+      "owned_processes": 1,
+      "RSS_bytes": 3342336,
+      "observed_threads_nongating": 1
+    },
+    {
+      "ordinal": 17,
+      "elapsed_seconds": 1.5459141249302775,
+      "owned_processes": 1,
+      "RSS_bytes": 3407872,
+      "observed_threads_nongating": 1
+    },
+    {
+      "ordinal": 18,
+      "elapsed_seconds": 1.638309249887243,
+      "owned_processes": 1,
+      "RSS_bytes": 3686400,
+      "observed_threads_nongating": 1
+    },
+    {
+      "ordinal": 19,
+      "elapsed_seconds": 1.7395104998722672,
+      "owned_processes": 1,
+      "RSS_bytes": 3850240,
+      "observed_threads_nongating": 1
+    },
+    {
+      "ordinal": 20,
+      "elapsed_seconds": 1.8381632908713073,
+      "owned_processes": 1,
+      "RSS_bytes": 3997696,
+      "observed_threads_nongating": 1
+    },
+    {
+      "ordinal": 21,
+      "elapsed_seconds": 1.9333169998135418,
+      "owned_processes": 1,
+      "RSS_bytes": 4145152,
+      "observed_threads_nongating": 1
+    },
+    {
+      "ordinal": 22,
+      "elapsed_seconds": 2.028888582950458,
+      "owned_processes": 1,
+      "RSS_bytes": 10141696,
+      "observed_threads_nongating": 1
+    },
+    {
+      "ordinal": 23,
+      "elapsed_seconds": 2.124860290903598,
+      "owned_processes": 1,
+      "RSS_bytes": 15400960,
+      "observed_threads_nongating": 1
+    },
+    {
+      "ordinal": 24,
+      "elapsed_seconds": 2.38660137495026,
+      "owned_processes": 1,
+      "RSS_bytes": 19316736,
+      "observed_threads_nongating": 1
+    },
+    {
+      "ordinal": 25,
+      "elapsed_seconds": 2.481305457884446,
+      "owned_processes": 1,
+      "RSS_bytes": 26198016,
+      "observed_threads_nongating": 1
+    },
+    {
+      "ordinal": 26,
+      "elapsed_seconds": 2.573093915823847,
+      "owned_processes": 1,
+      "RSS_bytes": 28327936,
+      "observed_threads_nongating": 1
+    },
+    {
+      "ordinal": 27,
+      "elapsed_seconds": 2.669570915866643,
+      "owned_processes": 1,
+      "RSS_bytes": 29360128,
+      "observed_threads_nongating": 1
+    },
+    {
+      "ordinal": 28,
+      "elapsed_seconds": 2.757354165893048,
+      "owned_processes": 1,
+      "RSS_bytes": 29868032,
+      "observed_threads_nongating": 1
+    },
+    {
+      "ordinal": 29,
+      "elapsed_seconds": 2.846873707836494,
+      "owned_processes": 1,
+      "RSS_bytes": 32899072,
+      "observed_threads_nongating": 1
+    },
+    {
+      "ordinal": 30,
+      "elapsed_seconds": 2.9413013749290258,
+      "owned_processes": 1,
+      "RSS_bytes": 76136448,
+      "observed_threads_nongating": 1
+    },
+    {
+      "ordinal": 31,
+      "elapsed_seconds": 3.0416735408362,
+      "owned_processes": 1,
+      "RSS_bytes": 95469568,
+      "observed_threads_nongating": 1
+    },
+    {
+      "ordinal": 32,
+      "elapsed_seconds": 3.1317586249206215,
+      "owned_processes": 1,
+      "RSS_bytes": 143966208,
+      "observed_threads_nongating": 2
+    },
+    {
+      "ordinal": 33,
+      "elapsed_seconds": 3.2310562499333173,
+      "owned_processes": 1,
+      "RSS_bytes": 143966208,
+      "observed_threads_nongating": 2
+    },
+    {
+      "ordinal": 34,
+      "elapsed_seconds": 3.321073249913752,
+      "owned_processes": 1,
+      "RSS_bytes": 143966208,
+      "observed_threads_nongating": 2
+    },
+    {
+      "ordinal": 35,
+      "elapsed_seconds": 3.418050582986325,
+      "owned_processes": 1,
+      "RSS_bytes": 153272320,
+      "observed_threads_nongating": 2
+    },
+    {
+      "ordinal": 36,
+      "elapsed_seconds": 3.5073722498491406,
+      "owned_processes": 1,
+      "RSS_bytes": 165445632,
+      "observed_threads_nongating": null
+    }
+  ],
+  "nongating_threads_histogram": {
+    "1": 31,
+    "2": 4,
+    "None": 1
+  },
+  "normal_wait_scope": {
+    "receipt_termination_is_null_on_success_by_unchanged_protocol": true,
+    "owned_group_absent": true,
+    "no_stop_requests_or_exit_races_or_cleanup_failure": true
+  },
+  "authority": "Saved-text/descriptor accounting only; no helper/controller/query/host/guard/native replay or binary/grid/runtime body access."
+}
