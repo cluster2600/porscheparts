@@ -11,17 +11,25 @@ with explicit assumptions for unavailable dimensions.
 
 The [engineering execution programme](ENGINEERING_PROGRAM.md) continues through
 material/strength assessment, LPBF simulation, an Omniverse twin and PhysicsNeMo.
-The [complete 73-component coordinate study](derived/engineering/current110-complete73-coordinate-diagnostics/README.md)
-retains every one-call proposal: all optimizers report success, but exact checks
-accept only 62 local groups and preserve 11 failures, including 20 newly poor
-cells in rejected proposals. Passing groups cover 66 movable nodes and 86 of
-the original 110 poor cells. No proposal has been applied: the actual head still
-has 110 poor cells and its original minimum, in rejected group 30. All source,
-contracts, eight-file case outputs, closures and reviews are inspectable; native
-application, whole-head quality, strength and process qualification remain open.
+The [native partial head application](derived/engineering/current24-partial-application/README.md)
+reduces positive-poor cells from **110 to 24** in one fixed 66-node edit and complete
+saved-file readback. All other coordinates, connectivity, classifications and
+boundary geometry are preserved. The minimum remains 0.039074265058645995;
+the whole-head SICN 0.1 gate still fails. The remaining census has 16 movable
+seeds and 499 incident cells. Source, complete native reports and independent
+reviews retain the failure and resource-observation limits.
+
+The earlier [complete 73-component coordinate study](derived/engineering/current110-complete73-coordinate-diagnostics/README.md)
+preserves all 62 passing and 11 rejected proposals. Only the passing subset was
+applied; rejected proposals, including their newly poor cells, remain unchanged.
+The [RICH2 coupon checkpoint](derived/engineering/cp1-oneway-cooling-release-richardson2-refusal/README.md)
+completed native capture and separate lexical storage checks. The unchanged
+mechanical assessor then failed force balance: 2.29850465416348e-6 N exceeds
+1e-7 N. No accepted complete fields, release-energy or final-hold result follows.
+Head strength, material/process qualification and manufacturing remain open.
 
 The [20 October head census and derived coupon probe](derived/engineering/current110-census-and-END181-defect-probe/README.md)
-preserve two new completed diagnostics. The current head has 110 poor cells,
+preserve two earlier completed diagnostics. That previous head had 110 poor cells,
 82 movable nodes and 2,482 incident cells, partitioned into 73 local coupling groups.
 Its whole-head SICN 0.1 gate still fails. A separate one-state coupon correction
 improves derived balance while retaining 23 force-comparison exceedances and the

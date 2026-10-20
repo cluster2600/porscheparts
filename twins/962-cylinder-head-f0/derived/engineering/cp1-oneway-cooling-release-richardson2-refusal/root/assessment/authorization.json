@@ -1,0 +1,71 @@
+{
+  "schema": "962-richardson2-full-assessment-root-once-authorization/v1",
+  "created_utc": "2026-10-20T12:43:13.701665+00:00",
+  "decision": "AUTHORIZE_ONE_UNCHANGED_FULL_SAVED_FIELD_ASSESSMENT_ONLY",
+  "actual": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-assessment-execution-prep-001/actual-contract.json",
+    "sha256": "27d43c80ee3f32e1b437970fa7aec511aa19c32dc52adb452720d56159237050",
+    "bytes": 459239
+  },
+  "index": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-assessment-execution-prep-001/index.json",
+    "sha256": "dc1cb8ab694b8c64b1d105c5a3df6fc8d16fec0d306fb98b37e68422aeb684f4",
+    "bytes": 2026
+  },
+  "exact_child_peer": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-assessment-exact-child-peer-001/review.json",
+    "sha256": "e3ee9ce59de93e3ed2e8ba6355ff43b3b157d9a840fc0d16ef1b2d44f96a5c70",
+    "bytes": 7302
+  },
+  "peer_bindings": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-assessment-exact-child-peer-001/bindings.json",
+    "sha256": "4e310a2465b8a267b128a1e7a7d7b6055c9e8bbab025152060bb788dd3cab156",
+    "bytes": 590485
+  },
+  "fresh1659_inputs_match": true,
+  "fresh258_decoder_files_match": true,
+  "selected_python": {
+    "path": "runtime-role://controller/python",
+    "resolved": "runtime-role://controller/resolved-python3.12",
+    "sha256": "1699bf8aa705a8bb71613bef5cdd7d7c8c9d9a188a841f41679aa9b5830b8f60",
+    "bytes": 49968
+  },
+  "controls": {
+    "ordinary_wall_seconds": 300,
+    "sampled_RSS_stop_bytes": 2147483648,
+    "sampled_output_stop_bytes": 33554432,
+    "requested_CPU_threads": 1,
+    "TERM_grace_seconds": 8,
+    "start_new_session": true,
+    "owned_group_TERM_then_KILL_if_live": true,
+    "wait_and_reap_required": true,
+    "owned_group_absence_check_required": true,
+    "automatic_retry": false,
+    "hard_OS_CPU_or_memory_quota_applied": false,
+    "watchdog_external_to_assessor_source": true
+  },
+  "argv": [
+    "runtime-role://controller/python",
+    "-I",
+    "-B",
+    "work/962-engineering/cp1-oneway-cooling-release-richardson2-assessor-prep-001/assess.py",
+    "work/962-engineering/cp1-oneway-cooling-release-richardson2-assessment-execution-prep-001/actual-contract.json",
+    "27d43c80ee3f32e1b437970fa7aec511aa19c32dc52adb452720d56159237050"
+  ],
+  "environment": {
+    "PATH": "/usr/bin:/bin",
+    "LANG": "C",
+    "LC_ALL": "C",
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "VECLIB_MAXIMUM_THREADS": "1",
+    "PYTHONDONTWRITEBYTECODE": "1"
+  },
+  "resource_snapshot": "Filesystem   1024-blocks       Used Available Capacity  iused     ifree %iused  Mounted on\n/dev/disk3s5  1948424520 1883841836  13980296   100% 12823273 139802960    8%   /System/Volumes/Data\n",
+  "watchdog_scope": "Root inline stdlib supervisor enforces one new owned session,300s ordinary wall,2GiB sampled leader RSS/32MiB output,TERM8/KILL/wait/absence; no retry. Source supplies no watchdog.",
+  "assessment_once_authorized": true,
+  "native_execution_authorized": false,
+  "head_execution_authorized": false,
+  "engineering_accepted": false,
+  "manufacturing_authorized": false
+}

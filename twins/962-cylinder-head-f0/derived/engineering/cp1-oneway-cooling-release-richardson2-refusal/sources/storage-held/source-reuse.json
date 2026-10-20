@@ -1,0 +1,170 @@
+{
+  "schema": "962-richardson2-complete-lexical-storage-binding-source-reuse/v1",
+  "donor": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-linear-native-storage-audit-prep-002/check_saved.py",
+    "sha256": "4cd2d067164cc57c94e594303a7a53c588042ca86629cbf60ba9dc2dc5799549",
+    "bytes": 15460
+  },
+  "donor_held": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-linear-native-storage-audit-prep-002/held-preparation.json",
+    "sha256": "c7fa64e62f745e11ca254626facdea90f34dd0e7508c47a779b61e3cf5940a93",
+    "bytes": 21586
+  },
+  "donor_reuse": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-linear-native-storage-audit-prep-002/source-reuse.json",
+    "sha256": "e13c2b884e7be1f581abd064b35f3944294b97dafc6cdabde2cba668a019fbbf",
+    "bytes": 1374
+  },
+  "source": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-native-storage-audit-prep-001/check_saved.py",
+    "sha256": "0e64eb5b94cc796a919525eddc15ab6ff4b6f0f49a96245596ef42f0b465e8c1",
+    "bytes": 15837
+  },
+  "exact_reversible_groups": [
+    {
+      "label": "RICH2 native capture directory",
+      "old": "OUT = E / 'cp1-oneway-cooling-release-linear-001'",
+      "new": "OUT = E / 'cp1-oneway-cooling-release-richardson2-001'",
+      "count": 1
+    },
+    {
+      "label": "RICH2 native root closure namespace",
+      "old": "RUN = E / 'cp1-oneway-cooling-release-linear-native-root-execution-001'",
+      "new": "RUN = E / 'cp1-oneway-cooling-release-richardson2-native-root-execution-001'",
+      "count": 1
+    },
+    {
+      "label": "RICH2 concrete case preparation",
+      "old": "PREP = E / 'cp1-oneway-cooling-release-linear-prep-001'",
+      "new": "PREP = E / 'cp1-oneway-cooling-release-richardson2-prep-001'",
+      "count": 1
+    },
+    {
+      "label": "RICH2 future capture peer namespace",
+      "old": "E / 'cp1-oneway-cooling-release-linear-native-result-peer-001/review.json': None",
+      "new": "E / 'cp1-oneway-cooling-release-richardson2-native-result-peer-001/review.json': None",
+      "count": 1
+    },
+    {
+      "label": "RICH2 current deck digest",
+      "old": "de5c9ea62050645fb546fc650c01023913478c230011faa5172b76ffb36a4f7c",
+      "new": "6ab5e130c4a89d67a0f200dafa2032d731009db371028aa1ec66a9403ddff031",
+      "count": 1
+    },
+    {
+      "label": "RICH2 current physics contract digest",
+      "old": "294f5bf97c6ca3e9fe052e90fc4fc611e740395d1bca24595988d57b4a85758e",
+      "new": "732595141e351a607e3cb904f75fec59d181b814b5c0ec8d6f65a4e2f864b194",
+      "count": 1
+    },
+    {
+      "label": "RICH2 adapter digest",
+      "old": "5ec0fe4684dd51dd7934ca3069e75497a481a08db5a9ee8a78646d81e3813f6c",
+      "new": "c484dd4af5166e2eacebb7e8753339e7540602f60133374eddc5529a106843b8",
+      "count": 1
+    },
+    {
+      "label": "RICH2 case held digest",
+      "old": "438c32f9bd03d4932d331b5b34bfd21b14d64377afdc78f61e41c88fdc6d78da",
+      "new": "f7d0d365a0ee21a2fc84eb386a4fbb57446f45b5452012a968e80fb68207ac27",
+      "count": 1
+    },
+    {
+      "label": "RICH2 binding-only assessor source",
+      "old": "E / 'cp1-oneway-cooling-release-linear-assessor-prep-001/assess.py': 'b7c5c7c82c5a7fee11aa63032f9a136d46517b8163c3c880b8b39a06d083930f',",
+      "new": "E / 'cp1-oneway-cooling-release-richardson2-assessor-prep-001/assess.py': 'aa7ee403a0a3078df58410815f2b613aaeb9634bd14bc9c90517ce00cec7f2d5',\n    E / 'cp1-oneway-cooling-release-richardson2-assessor-prep-001/held-preparation.json': '474d11d42ea1acb27948a57c4aab0c24dcf257e3b0f129aababaa5a6b900adea',",
+      "count": 1
+    },
+    {
+      "label": "Historical function-count companion remains at its existing LINEAR path",
+      "old": "PREP / 'FUNCTION-COUNT-CLARIFICATION-001.json'",
+      "new": "E / 'cp1-oneway-cooling-release-linear-prep-001/FUNCTION-COUNT-CLARIFICATION-001.json'",
+      "count": 1
+    },
+    {
+      "label": "Historical grid-role companion remains at its existing LINEAR path",
+      "old": "PREP / 'GRID-ROLE-AND-READ-SCOPE-CLARIFICATION-001.json'",
+      "new": "E / 'cp1-oneway-cooling-release-linear-prep-001/GRID-ROLE-AND-READ-SCOPE-CLARIFICATION-001.json'",
+      "count": 1
+    },
+    {
+      "label": "RICH2 future native root closed schema",
+      "old": "962-cooling-release-linear-native-root-once-closed/v1",
+      "new": "962-cooling-release-richardson2-native-root-once-closed/v1",
+      "count": 1
+    },
+    {
+      "label": "RICH2 future native actual schema",
+      "old": "962-macos-oneway-cooling-release-linear-case-actual/v1",
+      "new": "962-macos-oneway-cooling-release-richardson2-case-actual/v1",
+      "count": 1
+    },
+    {
+      "label": "Direct new assessor-held role in future native actual input map",
+      "old": "'cp1-oneway-cooling-release-linear-assessor-prep-001/LATE-BINDING-ACKNOWLEDGEMENT-001.json'):",
+      "new": "'cp1-oneway-cooling-release-linear-assessor-prep-001/LATE-BINDING-ACKNOWLEDGEMENT-001.json',\n                 'cp1-oneway-cooling-release-richardson2-assessor-prep-001/held-preparation.json'):",
+      "count": 1
+    },
+    {
+      "label": "RICH2 lexical-storage result schema",
+      "old": "962-cooling-release-linear-complete-nodal-lexical-storage-audit/v1",
+      "new": "962-cooling-release-richardson2-complete-nodal-lexical-storage-audit/v1",
+      "count": 1
+    }
+  ],
+  "complete_reverse_restores_corrected002_source": true,
+  "physics_contract_key_retained": true,
+  "original001_wrong_field_not_in_source": true,
+  "all_numeric_literals_same_order_and_type": true,
+  "two_helper_definitions_exact_text_AST": {
+    "raw_file": {
+      "text_sha256": "047c5036581980b9163b15d5fb3ae7aaaa2f7bc17cb16bfc860da83dd220fbe7",
+      "AST_sha256": "7d61d546050373976d51011ed81fceafabbd38db643c3fa8ef2279a3ecd89560"
+    },
+    "require": {
+      "text_sha256": "64501835d64915debe0c2e3b87a4a8a7548abfc16f73d01adbeaf712482bba93",
+      "AST_sha256": "d47fad96ca88f18e917757455a6ed01a864d344c7e71b084e0920cf4e0878e36"
+    }
+  },
+  "complete_geometry_and732_CSV_loop_byte_exact": {
+    "sha256": "d151dcf4ab4f368c52be87f6a9698f6297e9da547e1e524873b8e4bbe6e95da1",
+    "bytes": 6790
+  },
+  "source_main_changes_only_namespace_or_concrete_binding_strings": true,
+  "AST_context": "3.12.11 (main, Aug 18 2025, 19:02:39) [Clang 20.1.4 ]",
+  "cross_version_AST_digest_equivalence_claim": false,
+  "literal_source_PIN_manifest": {
+    "work/962-engineering/cp1-oneway-cooling-release-richardson2-native-root-execution-001/closed-result.json": null,
+    "work/962-engineering/cp1-oneway-cooling-release-richardson2-001/native-execution.json": null,
+    "work/962-engineering/cp1-oneway-cooling-release-richardson2-001/actual-contract.json": null,
+    "work/962-engineering/cp1-oneway-cooling-release-richardson2-native-result-peer-001/review.json": null,
+    "work/962-engineering/cp1-oneway-cooling-release-richardson2-native-root-execution-001/result-peer-acceptance.json": null,
+    "work/962-engineering/cp1-oneway-cooling-release-richardson2-001/transfer-manifest.json": "c774e62c67e16c29dc024b8cc8e6641570e316265960e58cd7170827f8cecd06",
+    "work/962-engineering/cp1-oneway-cooling-release-richardson2-prep-001/thermal-input-index.json": "9e4da9faf9a6ccb9a55c66b2c0d9eef44b88d99e09afff69bb4f504b0cfb7aec",
+    "work/962-engineering/cp1-oneway-cooling-release-richardson2-prep-001/thermoelastic-birth.i": "6ab5e130c4a89d67a0f200dafa2032d731009db371028aa1ec66a9403ddff031",
+    "work/962-engineering/cp1-oneway-cooling-release-richardson2-prep-001/case-contract.json": "732595141e351a607e3cb904f75fec59d181b814b5c0ec8d6f65a4e2f864b194",
+    "work/962-engineering/cp1-oneway-cooling-release-richardson2-prep-001/run_mac.py": "c484dd4af5166e2eacebb7e8753339e7540602f60133374eddc5529a106843b8",
+    "work/962-engineering/cp1-oneway-cooling-release-richardson2-prep-001/held-preparation.json": "f7d0d365a0ee21a2fc84eb386a4fbb57446f45b5452012a968e80fb68207ac27",
+    "work/962-engineering/cp1-oneway-cooling-release-richardson2-assessor-prep-001/assess.py": "aa7ee403a0a3078df58410815f2b613aaeb9634bd14bc9c90517ce00cec7f2d5",
+    "work/962-engineering/cp1-oneway-cooling-release-richardson2-assessor-prep-001/held-preparation.json": "474d11d42ea1acb27948a57c4aab0c24dcf257e3b0f129aababaa5a6b900adea",
+    "work/962-engineering/cp1-oneway-cooling-release-contract-clarification-001/case-contract.corrected.json": "1dc7eefae6f6666a91fdb0adde2261aa9efc7f3424a713d21b6f60e6091dfb66",
+    "work/962-engineering/cp1-oneway-cooling-release-contract-clarification-001/correction.json": "3971d0f27293a04f051206a2b2afef3304c56aa3814b12e586c4f5fe0229ed46",
+    "work/962-engineering/cp1-oneway-cooling-release-linear-assessor-prep-001/LATE-BINDING-ACKNOWLEDGEMENT-001.json": "3c2cbab689212aafd2c5def017e9626126c5003723f60831fee757f734f127ce",
+    "work/962-engineering/cp1-oneway-cooling-release-linear-prep-001/FUNCTION-COUNT-CLARIFICATION-001.json": "8419d1fbbf3638736ac5cfd3d1287342bd787e3c560b95dc9eb9ecb3e930eaf4",
+    "work/962-engineering/cp1-oneway-cooling-release-linear-prep-001/GRID-ROLE-AND-READ-SCOPE-CLARIFICATION-001.json": "b505f5320760ddca2525f3db514948dbdec18c8e5a6396310b5e9b57d1ae4ce9"
+  },
+  "known_source_PIN_count": 13,
+  "future_capture_PIN_count": 5,
+  "prepared_source_functions_imports_helpers_guards_or_native_execution": false,
+  "raw_fields_runtime_or_grid_bodies_read": false,
+  "inspection_history": [
+    {
+      "scope": "authoring syntax",
+      "observation": "Initial inline authoring command had an incorrectly escaped string delimiter for the parser-loop byte-proof anchor. Python rejected it before any execution or write. Corrected that delimiter only; prepared source and frozen originals were not executed."
+    },
+    {
+      "scope": "donor bookkeeping",
+      "observation": "The frozen corrected002 held record lists current_source_PIN_count11. This successor recomputes the actual source PIN map rather than transferring that historical count:18 slots,13 known and5 future NULL. Frozen002 bytes remain unchanged."
+    }
+  ]
+}

@@ -1,0 +1,55 @@
+{
+  "schema": "962-fixed-oneway-thermoelastic-SI-predeclared-error-policy/v1",
+  "status": "SOURCE_HELD_BEFORE_COOLING_RELEASE_NATIVE_OR_ASSESSMENT",
+  "absolute_SI_limits": {
+    "temperature_K": 1e-10,
+    "displacement_m": 1e-12,
+    "QP_coordinate_m": 2e-13,
+    "strain": 1e-10,
+    "stress_Pa": 0.1,
+    "force_N": 1e-07,
+    "moment_Nm": 1e-07
+  },
+  "gate_definition": "Every individual scalar comparison must meet its fixed absolute bound. All comparisons must be finite. No relative-error fallback, percentile allowance, exclusion of poor rows or adaptive tolerance exists.",
+  "SI_basis": {
+    "temperature_K": "Original321 thermal source associations through160; declared Decimal80 per-node cooling thereafter. BEGIN retains previous END. Same absolute numerical transfer target, not thermometry or cooling calibration.",
+    "displacement_m": "Retains the proposed fixed SI support/current-restore target. Zero constraints and each retained previous-END value are tested directly in metres, with no millimetre conversion in code.",
+    "QP_coordinate_m": "Predeclared solely for the irrational 1/sqrt(3) physical Gauss-point coordinates on exactly binary Cartesian edges of length 0.125/0.25/0.25 m. This is much smaller than any cell dimension and permits one unique physical point only. Mesh-node/source/sampler coordinate words remain exact binary64 comparisons.",
+    "strain": "The nondimensional proposed source target is applied to Q1 symmetric gradients, all elastic/mechanical/total/eigenstrain components and increments. Ordered native connectivity must define a positive affine Cartesian HEX8; no geometric approximation, B-bar adjustment or tensor interpolation substitutes for that check.",
+    "stress_Pa": "Retains the proposed 0.1 Pa absolute target, independently applied to the three-dimensional isotropic Hooke reconstruction with E=71e9Pa and nu=.33. Shear entries are tensor shear, not engineering gamma; symmetry supplies the other three entries. A strain comparison alone cannot substitute for the stricter stress comparison.",
+    "force_N": "Retains the proposed 1e-7 N absolute target. Internal nodal forces are the eight-point integral of sigma_ij*dNa/dxj*dV, using m,Pa,m^3. Both reconstructed/native-QP force agreement and every combined free DOF are tested. Constrained reactions, total nodal force and constrained-only resultant are checked independently. No serial-bar force or mm/MPa formula is reused. The only pre-equilibrium exception is the249 newly released BEGIN181 components, inherited from END180. Every END181/182 free component is tested.",
+    "moment_Nm": "Retains the proposed 1e-7 N*m absolute target for the explicit SI coupon about its source origin. Uses observed source coordinates and nodal reaction forces, both all-node and constrained-only resultants. It is a numerical balance test, not an engine attachment/load-path allowance."
+  },
+  "separate_gates_are_not_an_error_budget_or_roundoff_proof": true,
+  "no_claim_that_first_native_attempt_will_pass": true,
+  "post_result_tuning_or_automatic_retry_allowed": false,
+  "reference_definition": {
+    "old2": "total_strain=symgrad(u), thermal_eigenstrain=alpha*(T-400K)*I",
+    "born3": "total_strain=symgrad(u-u_BEGIN80), thermal_eigenstrain=alpha*(T-Treference_BEGIN80)*I, all 225bornDOFs including 25shared",
+    "elastic_and_mechanical_strain": "total_strain-thermal_eigenstrain",
+    "stress": "2*mu*elastic_strain+lambda*trace(elastic_strain)*I",
+    "weak_form": "All active cells, including initially old cells, assembled before free/constrained residual decisions; a born/old shared interface is not independently traction-free.",
+    "generic_work_equals_2U": false
+  },
+  "qualification": {
+    "mechanical_space_or_time_convergence": false,
+    "head_execution_authorized": false,
+    "engineering_accepted": false,
+    "physics_qualified": false,
+    "material_qualified": false,
+    "process_calibrated": false,
+    "manufacturing_authorized": false
+  },
+  "release_energy_criterion": {
+    "new_independent_Joule_tolerance": null,
+    "tensor_product_bound": ".5*sum_QP w*sum_ij(stress_Pa*abs(elastic_strain_ij)+strain*abs(stress_ij)+stress_Pa*strain), all nine tensor entries",
+    "residual_work_bound": "sum_free force_N*abs(delta_u) + sum_remaining abs(after_force)*abs(delta_u)",
+    "checks": [
+      "QP energy products within propagated stress/strain bound",
+      "U_END181-U_END180 <= product_bound_before+after+residual_work_bound",
+      "energy increment equals trapezoidal internal work within same propagated bound",
+      "END181 and END182 individual u/T/reaction/tensor fields satisfy original seven SI gates; energy products agree within summed product bounds"
+    ],
+    "assumptions": "Fixed300K, constant positive-definite isotropic elastic law, fixed old/born stress-free references from this run, homogeneous remaining support subset. Numerical propagated criterion; no roundoff theorem, dynamic energy conservation, work=2U or process validation."
+  }
+}
