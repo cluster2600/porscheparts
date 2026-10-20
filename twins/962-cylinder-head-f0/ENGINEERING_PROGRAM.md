@@ -34,9 +34,15 @@ covers19 prescribed paths and916 cell associations. Independent exact arithmetic
 passes136,316 assertions and verifies empty feasible sets for these paths only.
 Full logical bytes and earlier failures remain; all24 head quality failures remain.
 The [passive residual-map plugin](derived/engineering/cp1-END181-observer-plugin/README.md)
-has reviewed source and compiled plugin/validator binaries. Validator execution,
-host registration and native measurement remain pending. These checkpoints continue the material/strength
+has reviewed source and compiled plugin/validator binaries. Host registration
+and native measurement remain pending. These checkpoints continue the material/strength
 and LPBF stages; Omniverse and PhysicsNeMo still require accepted engineering fields.
+
+The subsequent [standalone validator checkpoint](derived/engineering/cp1-END181-observer-validator/README.md)
+passes all 18 synthetic assertions with independent saved-result review. It preserves
+the failed missing-HIT-symbol attempt and the documented link correction. Host
+registration, live DOF capture and native measurement remain pending; no mechanical,
+material or LPBF qualification follows.
 
 The earlier [complete 73-component coordinate study](derived/engineering/current110-complete73-coordinate-diagnostics/README.md)
 preserves all 62 passing and 11 rejected proposals. Only the passing subset was

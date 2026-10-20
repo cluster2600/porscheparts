@@ -1,0 +1,5 @@
+# One corrected guard dependency link
+
+The preserved first standalone runtime attempt aborted on exact HIT what() symbol lookup; no18-assertion or ABI pass exists. Installed libhit exports that exact symbol and libmoose imports it. Pinned framework/moose.mk327 declares MOOSE/PCRE/HIT together. The existing guard link omitted PCRE/HIT; this successor inserts those exact installed direct paths after MOOSE in the documented order, with only its output path changed otherwise. Both original production objects and the005 guard-main object remain unchanged; no source compilation is repeated.
+
+The root authorizes exactly one bounded corrected link:120s/T8/2GiB sampled owned RSS/64MiB output, explicit thread1 environment, no retry. The reviewed nonnegative-RSS sampler and7 lifecycle helpers remain exact005. Controller stop requests defer safely across Popen and cause owned cleanup. Prior failures, raw trace and all compiled artifacts remain immutable. Fresh output is a link checkpoint; no guard/plugin/host/native execution or ABI/physics acceptance is authorized.

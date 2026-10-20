@@ -55,8 +55,14 @@ mechanical assessment remains refused.
 The [passive DOF-map observer](derived/engineering/cp1-END181-observer-plugin/README.md)
 adds reviewed plugin source for connecting solver vectors to displacement indices.
 The plugin and standalone validator executable compile and link with the matching
-macOS SDK linker. Validator execution, host registration and native measurement
-remain pending. All twelve aggregate failures remain open.
+macOS SDK linker. Host registration and native measurement remain pending.
+All twelve aggregate failures remain open.
+
+The later [standalone validator checkpoint](derived/engineering/cp1-END181-observer-validator/README.md)
+completes all 18 synthetic assertions after correcting the documented MOOSE/PCRE/HIT
+link dependencies. Independent review accepts that software scope only. The first
+SIGABRT remains preserved; live observer output, host registration and a new native
+coupon simulation remain pending. All twelve equilibrium failures remain open.
 
 The [20 October head census and derived coupon probe](derived/engineering/current110-census-and-END181-defect-probe/README.md)
 preserve two earlier completed diagnostics. That previous head had 110 poor cells,

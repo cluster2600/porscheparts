@@ -1,0 +1,276 @@
+{
+  "schema": "962-observer003-held-standalone18-guard-runtime-plan/v1",
+  "status": "HELD_UNRUN_ROOT_ADMISSION_REQUIRED",
+  "executable": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-END181-dof-map-observer-prep-003/build-005/guard_rows",
+    "sha256": "69e2b30ae8e6511e70253ea0d4e17e347c01f605b9817d0c6dee174eaf544560",
+    "bytes": 167832
+  },
+  "argv": [
+    "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/cp1-oneway-cooling-release-richardson2-END181-dof-map-observer-prep-003/build-005/guard_rows"
+  ],
+  "cwd": "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/cp1-oneway-cooling-release-richardson2-observer003-guard-root-execution-001",
+  "environment": {
+    "PATH": "/usr/bin:/bin",
+    "LANG": "C",
+    "LC_ALL": "C",
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "MKL_NUM_THREADS": "1",
+    "VECLIB_MAXIMUM_THREADS": "1",
+    "FI_PROVIDER": "tcp",
+    "DYLD_LIBRARY_PATH": "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-local-installed-002/lib/combined:/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-local-installed-002/lib",
+    "DYLD_PRINT_LIBRARIES": "1",
+    "TMPDIR": "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/cp1-oneway-cooling-release-richardson2-observer003-guard-root-execution-001/tmp"
+  },
+  "source_assertion_census": {
+    "source": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-END181-dof-map-observer-prep-003/guards/guard_rows.C",
+      "sha256": "1d675907950b02475789fd64aa3a41a1a83ec648dda2998fc3402e773e3f3097",
+      "bytes": 3694
+    },
+    "assertion_call_count": 18,
+    "call_line_numbers": [
+      37,
+      41,
+      44,
+      47,
+      50,
+      53,
+      56,
+      59,
+      62,
+      65,
+      68,
+      71,
+      72,
+      74,
+      75,
+      76,
+      77,
+      87
+    ],
+    "source_success_return": 0,
+    "source_own_stdout_expected": "",
+    "assertion_count_is_static_source_proof_not_a_new_stdout_counter": true
+  },
+  "scope": "One standalone metadata/synthetic guard executable; no MOOSE app instance, mesh/native case, plugin library load, host execution or physical field capture. Dependent shared libraries necessarily load if execution is later admitted.",
+  "loader_basis": {
+    "existing_admitted_native_launcher": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-prep-001/run_mac.py",
+      "sha256": "c484dd4af5166e2eacebb7e8753339e7540602f60133374eddc5529a106843b8",
+      "bytes": 19619
+    },
+    "existing_launcher_has_no_DYLD_environment": true,
+    "existing_launcher_environment_reused_subset": [
+      "PATH",
+      "LANG",
+      "LC_ALL",
+      "OMP_NUM_THREADS",
+      "OPENBLAS_NUM_THREADS",
+      "VECLIB_MAXIMUM_THREADS",
+      "FI_PROVIDER"
+    ],
+    "new_explicit_loader_mapping_not_previously_runtime_verified": true,
+    "primary_documentation": [
+      {
+        "url": "https://github.com/apple-oss-distributions/dyld/blob/main/doc/man/man1/dyld.1",
+        "line_ranges": [
+          [
+            91,
+            106
+          ],
+          [
+            149,
+            153
+          ]
+        ],
+        "paraphrase": "DYLD_LIBRARY_PATH searches each dependency leaf name in listed directories. DYLD_PRINT_LIBRARIES records loaded images."
+      }
+    ],
+    "absolute_MOOSE_dependency_candidate": "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-local-installed-002/lib/combined/libmoose-opt.0.dylib",
+    "prefix_or_binary_load_command_rewrite": false,
+    "DYLD_PRINT_ENV_used": false,
+    "loader_effectiveness_or_SIP_status_not_proven_by_plan": true
+  },
+  "direct_dependency_path_associations": [
+    {
+      "encoded_load_name": "/opt/civet0/build_0/_env/conda-bld/moose_1789461163665/work/framework/libmoose-opt.0.dylib",
+      "planned_candidate_path": "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-local-installed-002/lib/combined/libmoose-opt.0.dylib",
+      "resolved_path": "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-local-installed-002/lib/combined/libmoose-opt.0.dylib",
+      "raw_symlink": null,
+      "observed_size_metadata": 43914560,
+      "historical_firstparty_identity": {
+        "path": "work/962-engineering/moose-local-installed-002/lib/combined/libmoose-opt.0.dylib",
+        "sha256": "99ebae63dc8b164a49925bcf92396eeedd2b53496abf19416236f73e61847250",
+        "bytes": 43914560
+      },
+      "fresh_runtime_sha256_before_launch": null,
+      "new_library_body_read_or_hash_in_this_preparation": false
+    },
+    {
+      "encoded_load_name": "@rpath/libmesh_opt.0.dylib",
+      "planned_candidate_path": "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-local-installed-002/lib/libmesh_opt.0.dylib",
+      "resolved_path": "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-local-installed-002/lib/libmesh_opt.0.dylib",
+      "raw_symlink": null,
+      "observed_size_metadata": 17874960,
+      "historical_firstparty_identity": {
+        "path": "work/962-engineering/moose-local-installed-002/lib/libmesh_opt.0.dylib",
+        "sha256": "e24765601db10ae4c077a366452f47bcf606ade218ca606c6d60464275be5680",
+        "bytes": 17874960
+      },
+      "fresh_runtime_sha256_before_launch": null,
+      "new_library_body_read_or_hash_in_this_preparation": false
+    },
+    {
+      "encoded_load_name": "@rpath/libtimpi_opt.11.dylib",
+      "planned_candidate_path": "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-local-installed-002/lib/libtimpi_opt.11.dylib",
+      "resolved_path": "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-local-installed-002/lib/libtimpi_opt.11.dylib",
+      "raw_symlink": null,
+      "observed_size_metadata": 99952,
+      "historical_firstparty_identity": {
+        "path": "work/962-engineering/moose-local-installed-002/lib/libtimpi_opt.11.dylib",
+        "sha256": "efe1739323d62e0d6102d149dbc1716ceb4be940afc829380dd5b45b6bf90c94",
+        "bytes": 99952
+      },
+      "fresh_runtime_sha256_before_launch": null,
+      "new_library_body_read_or_hash_in_this_preparation": false
+    },
+    {
+      "encoded_load_name": "@rpath/libpetsc.3.25.dylib",
+      "planned_candidate_path": "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-local-installed-002/lib/libpetsc.3.25.dylib",
+      "resolved_path": "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-local-installed-002/lib/libpetsc.3.25.4.dylib",
+      "raw_symlink": "libpetsc.3.25.4.dylib",
+      "observed_size_metadata": 27359296,
+      "historical_firstparty_identity": {
+        "path": "work/962-engineering/moose-local-installed-002/lib/libpetsc.3.25.4.dylib",
+        "sha256": "5893a96e09b00eeb2cc724d4d2f9278756082dbfb101d3e892b90bc89f373e74",
+        "bytes": 27359296
+      },
+      "fresh_runtime_sha256_before_launch": null,
+      "new_library_body_read_or_hash_in_this_preparation": false
+    },
+    {
+      "encoded_load_name": "@rpath/libmpicxx.12.dylib",
+      "planned_candidate_path": "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-local-installed-002/lib/libmpicxx.12.dylib",
+      "resolved_path": "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-local-installed-002/lib/libmpicxx.12.dylib",
+      "raw_symlink": null,
+      "observed_size_metadata": 154928,
+      "historical_firstparty_identity": null,
+      "fresh_runtime_sha256_before_launch": null,
+      "new_library_body_read_or_hash_in_this_preparation": false
+    },
+    {
+      "encoded_load_name": "@rpath/libmpi.12.dylib",
+      "planned_candidate_path": "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-local-installed-002/lib/libmpi.12.dylib",
+      "resolved_path": "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-local-installed-002/lib/libmpi.12.dylib",
+      "raw_symlink": null,
+      "observed_size_metadata": 2093552,
+      "historical_firstparty_identity": {
+        "path": "work/962-engineering/moose-local-installed-002/lib/libmpi.12.dylib",
+        "sha256": "a61e0531bbd5e7ba81b2326004245b84b99fda8756a3f57580c03374f8353eb1",
+        "bytes": 2093552
+      },
+      "fresh_runtime_sha256_before_launch": null,
+      "new_library_body_read_or_hash_in_this_preparation": false
+    },
+    {
+      "encoded_load_name": "@rpath/libpmpi.12.dylib",
+      "planned_candidate_path": "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-local-installed-002/lib/libpmpi.12.dylib",
+      "resolved_path": "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-local-installed-002/lib/libpmpi.12.dylib",
+      "raw_symlink": null,
+      "observed_size_metadata": 10983760,
+      "historical_firstparty_identity": {
+        "path": "work/962-engineering/moose-local-installed-002/lib/libpmpi.12.dylib",
+        "sha256": "7626555b9c94e8870f702baf983cf4faedacfa80873c5878275bbebb09468d87",
+        "bytes": 10983760
+      },
+      "fresh_runtime_sha256_before_launch": null,
+      "new_library_body_read_or_hash_in_this_preparation": false
+    },
+    {
+      "encoded_load_name": "@rpath/libomp.dylib",
+      "planned_candidate_path": "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-local-installed-002/lib/libomp.dylib",
+      "resolved_path": "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-local-installed-002/lib/libomp.dylib",
+      "raw_symlink": null,
+      "observed_size_metadata": 844912,
+      "historical_firstparty_identity": null,
+      "fresh_runtime_sha256_before_launch": null,
+      "new_library_body_read_or_hash_in_this_preparation": false
+    },
+    {
+      "encoded_load_name": "@rpath/libc++.1.dylib",
+      "planned_candidate_path": "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-local-installed-002/lib/libc++.1.dylib",
+      "resolved_path": "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-local-installed-002/lib/libc++.1.0.dylib",
+      "raw_symlink": "libc++.1.0.dylib",
+      "observed_size_metadata": 1193632,
+      "historical_firstparty_identity": null,
+      "fresh_runtime_sha256_before_launch": null,
+      "new_library_body_read_or_hash_in_this_preparation": false
+    },
+    {
+      "encoded_load_name": "/usr/lib/libSystem.B.dylib",
+      "planned_candidate_path": "/usr/lib/libSystem.B.dylib",
+      "system_dyld_shared_cache_scope": true,
+      "fresh_runtime_sha256_before_launch": null
+    }
+  ],
+  "historical_selected_runtime_record": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-registry-001/runtime-bindings.json",
+    "sha256": "3200d21dae8e1d09968faa089ef0ac04cb51ffc60b25fcdc95432b950a705e3e",
+    "bytes": 6886
+  },
+  "full_transitive_runtime_closure_or_ABI_claim": false,
+  "future_capture_required": [
+    "Exact selected runtime file and raw-link identity map before/after, with provenance and scope",
+    "Owned stdout/stderr; retain every loader line and failure verbatim",
+    "Observed dyld loaded image map, identifying exact MOOSE override path and unexpected non-system images",
+    "Owned process/group samples, wait/reap/group absence and resource-stop accounting",
+    "Returncode and exact executable/source/control before/after identities"
+  ],
+  "proposed_controls": {
+    "invocations": 1,
+    "wall_seconds": 60,
+    "TERM_grace_seconds": 8,
+    "KILL_wait_seconds": 8,
+    "sampled_owned_group_RSS_stop_bytes": 2147483648,
+    "total_owned_output_stop_bytes": 33554432,
+    "sample_seconds": 0.05,
+    "numeric_reported_RSS_zero_allowed": true,
+    "missing_or_nonnumeric_RSS_not_zero_filled": true,
+    "wrapper_exit_race_checked_first": true,
+    "thread_observations_nongating": true,
+    "OMP_BLAS_environment_threads": 1,
+    "retries": 0,
+    "RLIMIT_CORE": 0
+  },
+  "source_and_build_checkpoint": {
+    "receipt": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer003-build-root-execution-005/receipt.json",
+      "sha256": "bf04b991f31e1b89a91d59611377548db0411a533807ad681a9410a8ee995548",
+      "bytes": 85826
+    },
+    "metadata": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer003-build-root-execution-005/compiled-link-metadata.json",
+      "sha256": "4951a4f23eeef384dfb98583759829d26f7d9933c4931acc07209ae95ac385fc",
+      "bytes": 36957
+    },
+    "result": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer003-build-root-execution-005/build-result.json",
+      "sha256": "d16ba50331900bc4e16de5574ac41ea596205e182feb5eb7a36766ea7705a29c",
+      "bytes": 3845
+    }
+  },
+  "future_root_admission": null,
+  "future_independent_build_peer": null,
+  "future_runtime_preflight": null,
+  "future_actual": null,
+  "future_owner_controller": null,
+  "guard_execution_authorized": false,
+  "runtime_probe_authorized": false,
+  "plugin_load_authorized": false,
+  "host_execution_authorized": false,
+  "native_execution_authorized": false,
+  "ABI_acceptance": false,
+  "physical_or_manufacturing_acceptance": false
+}

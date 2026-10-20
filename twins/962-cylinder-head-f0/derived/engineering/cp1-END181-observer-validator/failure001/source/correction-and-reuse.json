@@ -1,0 +1,35 @@
+{
+  "schema": "962-observer003-guard-owner003-lifecycle-observation-delta/v1",
+  "donor": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer003-guard-owner-prep-002/run_guards_once.py",
+    "sha256": "59001c9ae4146e003535eebe134f79c575501eef20be7f6799c0f6b95604066f",
+    "bytes": 12221
+  },
+  "successor": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer003-guard-owner-prep-003/run_guards_once.py",
+    "sha256": "088687d91504b85c1a34f95b7ca2cf8bfdb42debdf40739f07f646c52fa7a479",
+    "bytes": 13552
+  },
+  "preserved_prior_preparations_unrun": true,
+  "changes": [
+    "Own execution-preparation namespace002to003",
+    "Deferred recorded SIGTERM/SIGINT requests with owned-child TERM8/KILL/wait cleanup",
+    "Raw guard RC0/18 completion flag separate from controlled run acceptance and observational loader trace",
+    "Final provider path and output census errors retained in saved receipt",
+    "Cleanup errors retained rather than losing final receipt"
+  ],
+  "unchanged_function_texts_and_ASTs": [
+    "rec",
+    "group_exists",
+    "check",
+    "output_size",
+    "stop_wait",
+    "limits",
+    "sample",
+    "provider_links",
+    "loaded_trace"
+  ],
+  "new_narrow_signal_handler": "record_controller_stop; append only, no exception across Popen",
+  "guard_source_executable_loader_plan_controls_unchanged": true,
+  "prepared_source_executed": false
+}
