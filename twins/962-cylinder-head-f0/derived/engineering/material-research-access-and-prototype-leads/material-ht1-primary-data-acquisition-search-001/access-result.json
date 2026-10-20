@@ -1,0 +1,80 @@
+{
+  "schema": "962-HT1-finite-primary-data-acquisition-search/v1",
+  "date": "2026-10-21",
+  "decision": "NO_ACCESSIBLE_COMPLETE_MANUSCRIPT_SUPPLEMENT_OR_NUMERICAL_CURVES_FOUND_IN_BOUNDED_SEARCH",
+  "target": {
+    "doi": "10.1016/j.msea.2025.149372",
+    "needed": "Complete Figure6/S5 tensile curves with process/build-loading orientation/specimen/temperature/strain-rate/heat-state provenance."
+  },
+  "prior_denied_routes_not_reopened": [
+    "https://www.sciencedirect.com/science/article/pii/S0921509325015965",
+    "https://hal.science/hal-05380100v1"
+  ],
+  "new_primary_routes": [
+    {
+      "url": "https://www.mpie.de/publication-search/3007435?person=/persons/resource/persons214807",
+      "result": "Accessible primary MPI author publication list matches exact paper and links MPG.PuRe item3686049. No publisher-version attachment is exposed for this entry on this list.",
+      "scientific_data_acquired": false
+    },
+    {
+      "url": "https://pure.mpg.de/pubman/faces/ViewItemFullPage.jsp?itemId=item_3686049",
+      "discovery": "Clicked the actual MPG.PuRe link from the institute publication list; no URL guessed.",
+      "result": "403 Forbidden. Stopped route; no alternative endpoint/API/mirror/file path attempted.",
+      "manuscript_or_supplement_inspected": false
+    },
+    {
+      "url": "https://simap.grenoble-inp.fr/en/about-simap/tristan-lenoir-development-of-new-al-alloys-for-high-temperature-applications-by-leveraging-additive-manufacturing",
+      "result": "Accessible primary thesis announcement/abstract only; observed page links contain no manuscript or numerical-data attachment.",
+      "scientific_scope": "Institution independently identifies Al-4Mn-3Ni-2Cu-1Zr wt.% as HT1,comparing peak-aged and stress-relieved states. No numerical curves or complete specimen/protocol provenance supplied here.",
+      "limits": "A thesis abstract is not Figure6/S5 or a production recipe. No thesis PDF/data URL inferred."
+    }
+  ],
+  "finite_searches": [
+    {
+      "scope": "Exact DOI or paper title",
+      "primary_domains": [
+        "univ-grenoble-alpes.fr",
+        "grenoble-inp.fr",
+        "cnrs.fr"
+      ],
+      "result": "No separate accessible exact-paper manuscript/data deposit returned; found institution announcement,not fulltext."
+    },
+    {
+      "scope": "Exact DOI/title and named authors",
+      "primary_domains": [
+        "mpg.de",
+        "mpie.de",
+        "mpi-susmat.de"
+      ],
+      "result": "Found actual institute-to-PuRe route described above."
+    },
+    {
+      "scope": "Exact DOI/title",
+      "primary_domains": [
+        "edmond.mpg.de",
+        "data.mendeley.com",
+        "zenodo.org"
+      ],
+      "result": "No matching accessible primary numerical-data record returned by this bounded search; not a claim that none exists."
+    }
+  ],
+  "excluded": "Secondary aggregators,request-fulltext pages,unrelated results and a personal CV were not used for scientific facts,licensing or data access; no personal/contact details were retained.",
+  "license_and_access": "No manuscript/supplement license was verified because no accessible scientific copy was inspected. No download,digitization,fit,access-control bypass,paid service,author/supplier contact or third-party body redistribution.",
+  "new_data": {
+    "manuscript": false,
+    "supplement": false,
+    "Figure6_or_S5": false,
+    "numerical_curve_arrays": false,
+    "complete_process_orientation_specimen_heat_state": false,
+    "allowable_or_coefficient": false
+  },
+  "real_missing_external_input": "An authorized accessible primary full manuscript plus Figure6/S5 supplement or original numerical curve files,with complete sample process/build and loading orientation,machining/specimen geometry,thermal soak/test temperatures,strain rates,stress-relief and ageing schedules,and data-use rights. Supply via a public author/institution/publisher deposit or user-provided licensed source; contact was not authorized.",
+  "baseline_scope": "Existing approximate HT1 prose values remain comparison observations. Manufacturer treatments#1/#2 and retained CP1/EOS/Nikon states are not identified or calibrated by this search. The2026 prototype observations stay separate.",
+  "operations": {
+    "material_or_process_selected": false,
+    "model_source_or_coefficient_changed": false,
+    "solver_scientific_or_runtime_operation": false,
+    "PUB_Git_changed": false,
+    "qualification_or_manufacturing_authority": false
+  }
+}
