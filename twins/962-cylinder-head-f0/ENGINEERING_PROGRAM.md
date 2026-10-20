@@ -33,6 +33,10 @@ The [saved exact-segment certificate](derived/engineering/current24-exact-segmen
 covers19 prescribed paths and916 cell associations. Independent exact arithmetic
 passes136,316 assertions and verifies empty feasible sets for these paths only.
 Full logical bytes and earlier failures remain; all24 head quality failures remain.
+The [local flip-screen fixtures](derived/engineering/current24-flip-synthetic-guards/README.md)
+pass all 17 synthetic tests with independent saved-result review and root acceptance.
+They verify toy replacement, quality, preservation, ownership and conflict cases;
+no real-head repair or geometry change follows.
 The [passive residual-map plugin](derived/engineering/cp1-END181-observer-plugin/README.md)
 has reviewed source and compiled plugin/validator binaries. Host registration
 and native measurement remain pending. These checkpoints continue the material/strength
@@ -43,6 +47,12 @@ passes all 18 synthetic assertions with independent saved-result review. It pres
 the failed missing-HIT-symbol attempt and the documented link correction. Host
 registration, live DOF capture and native measurement remain pending; no mechanical,
 material or LPBF qualification follows.
+
+The [subsequent host check](derived/engineering/cp1-END181-observer-host-check-failure/README.md)
+loads the plugin and prints the observer type and Syntax OK, then exits with
+SIGSEGV during output cleanup. Independent review refuses completed registration.
+Full logs and selected crash frames preserve the failure. A source lifetime-order
+hypothesis is documented; no cause, live callback or native measurement is accepted.
 
 The earlier [complete 73-component coordinate study](derived/engineering/current110-complete73-coordinate-diagnostics/README.md)
 preserves all 62 passing and 11 rejected proposals. Only the passing subset was

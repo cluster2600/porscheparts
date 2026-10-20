@@ -37,6 +37,12 @@ retains all19 prescribed movement paths and916 cell associations in a lossless
 sets. Other movements and tetrahedralizations remain open. All24 head quality
 failures remain, with no mesh application.
 
+The [local flip-screen fixtures](derived/engineering/current24-flip-synthetic-guards/README.md)
+pass all 17 synthetic tests with independent saved-result review and root acceptance.
+They exercise both tetrahedral replacement patterns, quality and preservation
+checks, unavailable ownership and conflicts. No real-head repair or mesh change
+is accepted from these toy tests; all 24 poor cells remain.
+
 The earlier [complete 73-component coordinate study](derived/engineering/current110-complete73-coordinate-diagnostics/README.md)
 preserves all 62 passing and 11 rejected proposals. Only the passing subset was
 applied; rejected proposals, including their newly poor cells, remain unchanged.
@@ -63,6 +69,12 @@ completes all 18 synthetic assertions after correcting the documented MOOSE/PCRE
 link dependencies. Independent review accepts that software scope only. The first
 SIGABRT remains preserved; live observer output, host registration and a new native
 coupon simulation remain pending. All twelve equilibrium failures remain open.
+
+The [subsequent host check](derived/engineering/cp1-END181-observer-host-check-failure/README.md)
+loads the plugin and prints the constructed observer type and Syntax OK, then
+exits with SIGSEGV during output cleanup. Independent review refuses completed
+registration. The full logs, selected crash frames and source lifetime hypothesis
+remain inspectable; cause, live callback and native measurement remain open.
 
 The [20 October head census and derived coupon probe](derived/engineering/current110-census-and-END181-defect-probe/README.md)
 preserve two earlier completed diagnostics. That previous head had 110 poor cells,
