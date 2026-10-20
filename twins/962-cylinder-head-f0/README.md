@@ -24,6 +24,12 @@ finds no individual face obstruction among all24 remaining poor cells. Independe
 rational reconstruction confirms every row. This changes no mesh and proves no
 compatible repair; all24 quality failures remain.
 
+The [complete analytic-apex diagnostic](derived/engineering/current24-analytic-apex-diagnostic/README.md)
+rejects all19 full-component tuples: selected target cells pass, but neighboring
+cells fail, including42 inverted-cell dispositions. Independent exact arithmetic
+checks all1,415 baseline/candidate rows. No proposal is applied; the head retains
+all24 quality failures. These finite failures do not prove infeasibility.
+
 The earlier [complete 73-component coordinate study](derived/engineering/current110-complete73-coordinate-diagnostics/README.md)
 preserves all 62 passing and 11 rejected proposals. Only the passing subset was
 applied; rejected proposals, including their newly poor cells, remain unchanged.
