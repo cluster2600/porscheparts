@@ -270,3 +270,89 @@ Run `run_mesh64_audit.py` on every resulting surface. Then run
 The original 0.02 mm variant passes its full surface audit and six shank tests,
 but fails four strict tool-column intersection tests. The failed intersections
 are retained. No downstream result may be transferred across changed meshes.
+
+
+## Nominal-pad restoration and independent open-column proof
+
+```sh
+python "$CARRIER_SOURCE/restore_nominal_pad_planes.py" \
+  --mesh work/carrier-meshlib/output/surface.mesh64 \
+  --output work/carrier-restored --full-band .04 --outer-band .06
+python3 "$CARRIER_SOURCE/run_mesh64_audit.py" \
+  --mesh work/carrier-restored/surface.mesh64 --output work/carrier-restored-audit
+python "$CARRIER_SOURCE/certify_open_tool_columns.py" \
+  --mesh work/carrier-restored/surface.mesh64 \
+  --surface-audit work/carrier-restored-audit/output/assessment.json \
+  --output work/carrier-open-columns
+```
+
+Use the NumPy-enabled design Python for `python`; each output must be fresh.
+The declared band is projected fully within 0.04 mm of Z±4 and fades to zero
+at 0.06 mm. A second C2 fade limits the central X extent. Every actual movement
+is recorded exactly. The full-surface audit and the original closed-set volume
+gauges remain separate from the open-column certificate. The published
+`picogk-restored-study/` mesh and ledger allow independent replay.
+
+
+### Reproduce the completed volumetric branch on this Mac
+
+Run from the repository root. These commands use the installed pinned runtimes;
+change their explicit paths when reproducing on another host. The pinned audit
+Docker image must already be present. `CARRIER_SOURCE` must be absolute.
+
+```sh
+CARRIER_SOURCE="$PWD/parts/993-eng-carrier-0001/source/design-20261016/resume-20261020"
+CARRIER_RUN="$PWD/work/carrier-volumetric-replay"
+CARRIER_DOTNET="/Users/maxime/Developer/PicoGK/sdk/dotnet"
+CARRIER_RUNTIME="/Users/maxime/Developer/PicoGK/runtime"
+CARRIER_PYTHON="$PWD/work/part-workflow/runtimes/design-standalone/bin/python"
+CARRIER_MESHLIB="$PWD/work/part-workflow/runtimes/meshlib-3.1.4.297-20261020/bin/python"
+CARRIER_NATIVE_SITE="$PWD/work/part-workflow/runtimes/cad-base/lib/python3.10/site-packages"
+CARRIER_BASELINE="$PWD/parts/993-eng-carrier-0001/source/design-20261016/corner-slide-candidate-20261018/candidate-surface.stl"
+mkdir -p "$CARRIER_RUN/build/empty-nuget"
+(
+  cd "$CARRIER_SOURCE/picogk-closing"
+  "$CARRIER_DOTNET" build CarrierClosing.csproj -c Release \
+    -p:PicoGKRuntime="$CARRIER_RUNTIME" \
+    -p:BaseIntermediateOutputPath="$CARRIER_RUN/build/obj/" \
+    -o "$CARRIER_RUN/build/bin" --source "$CARRIER_RUN/build/empty-nuget" -v:q
+)
+python3 "$CARRIER_SOURCE/run_owned_picogk_closing.py" \
+  --dotnet "$CARRIER_DOTNET" --assembly "$CARRIER_RUN/build/bin/CarrierClosing.dll" \
+  --mode control --output "$CARRIER_RUN/control" --voxel .2 --radius 1
+python3 "$CARRIER_SOURCE/run_owned_picogk_closing.py" \
+  --dotnet "$CARRIER_DOTNET" --assembly "$CARRIER_RUN/build/bin/CarrierClosing.dll" \
+  --mode carrier --input "$CARRIER_BASELINE" \
+  --output "$CARRIER_RUN/closing" --voxel .2 --radius 1
+"$CARRIER_MESHLIB" "$CARRIER_SOURCE/meshlib_decimation.py" \
+  --mesh "$CARRIER_RUN/closing/output/closed-study.stl" \
+  --output "$CARRIER_RUN/decimation" --max-error .04
+"$CARRIER_PYTHON" "$CARRIER_SOURCE/restore_nominal_pad_planes.py" \
+  --mesh "$CARRIER_RUN/decimation/output/surface.mesh64" \
+  --output "$CARRIER_RUN/restored" --full-band .04 --outer-band .06
+python3 "$CARRIER_SOURCE/run_mesh64_audit.py" \
+  --mesh "$CARRIER_RUN/restored/surface.mesh64" --output "$CARRIER_RUN/surface-audit"
+"$CARRIER_PYTHON" "$CARRIER_SOURCE/screen_nominal_gauge_volumes.py" \
+  --mesh "$CARRIER_RUN/restored/surface.mesh64" --native-site "$CARRIER_NATIVE_SITE" \
+  --output "$CARRIER_RUN/gauges"
+"$CARRIER_PYTHON" "$CARRIER_SOURCE/certify_open_tool_columns.py" \
+  --mesh "$CARRIER_RUN/restored/surface.mesh64" \
+  --surface-audit "$CARRIER_RUN/surface-audit/output/assessment.json" \
+  --output "$CARRIER_RUN/open-columns"
+python3 "$CARRIER_SOURCE/run_tetgen_quality.py" \
+  --mesh "$CARRIER_RUN/restored/surface.mesh64" --output "$CARRIER_RUN/tetgen"
+"$CARRIER_PYTHON" "$CARRIER_SOURCE/audit_wildmeshing_volume.py" \
+  --mesh "$CARRIER_RUN/tetgen/output/volume.npz" \
+  --boundary "$CARRIER_RUN/tetgen/output/boundary.mesh64" --output "$CARRIER_RUN/exact-volume"
+"$CARRIER_PYTHON" "$CARRIER_SOURCE/orient_tetgen_boundary.py" \
+  --volume "$CARRIER_RUN/tetgen/output/volume.npz" \
+  --reference "$CARRIER_RUN/restored/surface.mesh64" --output "$CARRIER_RUN/outward"
+```
+
+Read each result before continuing to dependent stages. The closed-set gauge
+command intentionally returns 2 for retained planar contact; preserve that
+record and run the separate exact open-column certificate. Do not suppress
+other errors. Native scheduling and library changes can affect replay bytes;
+every fresh output needs its own audits. The large raw closing STL needs about
+0.54 GB of local storage; it is not committed. These commands document the
+executed route; the fresh directory named here has not been rerun just for docs.

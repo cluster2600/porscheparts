@@ -14,7 +14,8 @@ surface is **1.281674 kg**, with **2,293,220 triangles**.
 
 The new mechanical cases identified severe local hotspots in the first two
 routes. The PicoGK route passes the complete surface screen and six nominal
-shank gauges; four tool columns still intersect a small pad overshoot. No
+shank gauges. Pad restoration now has a separate exact open-tool-column
+exclusion certificate; its closed-set test still reports planar contact. No
 variant is adopted as the final design. The catalogue selection remains
 24af0584; the results below identify their actual geometry and scope.
 
@@ -77,7 +78,7 @@ flowchart TB
         direction TB
         C1["PicoGK closing R1<br/>MeshLib decimation"]
         C2["2,293,220-triangle full audit passed<br/>nominal mass 1.281674 kg"]
-        C3["Six shank gauges passed<br/>tool-plane interference ≤ 0.00343 mm"]
+        C3["Pad restoration · six shank gauges passed<br/>exact open-tool-column exclusion passed"]
         C1 --> C2 --> C3
     end
     S --> A1
@@ -90,8 +91,8 @@ flowchart TB
     classDef passed fill:#e7f2ec,stroke:#3b8063,color:#183f30;
     classDef refused fill:#fbe9e4,stroke:#b4644b,color:#743f2e;
     classDef next fill:#fff0dc,stroke:#b47a35,color:#67421a,stroke-dasharray:5 3;
-    class S,A1,A2,B1,B2,C1,C2 passed;
-    class A3,B3,C3 refused;
+    class S,A1,A2,B1,B2,C1,C2,C3 passed;
+    class A3,B3 refused;
     class D,P next;
 ```
 
@@ -145,6 +146,7 @@ mechanical improvement. The original carrier mesh stays exactly unchanged.
 | [TetGen via libigl](https://www.wias-berlin.de/software/tetgen/1.5/doc/manual/manual005.html) | Existing pinned libigl 2.6.3 Docker image; bundled TetGen version not independently established | Actual `pYMQ` carrier run; analytic control; exact boundary bijection; separate quality-refinement experiment |
 | [PicoGK](https://github.com/leap71/PicoGK) / OpenVDB | PicoGK 2.3.0.0 / native ABI 26.2; .NET SDK 9.0.319 | Actual full-carrier morphological closing, with an owned process, lock, resource receipts and positive control |
 | [MeshLib](https://github.com/MeshInspector/MeshLib) | meshlib / meshlib-core 3.1.4.297, NumPy 2.2.6 | Actual full-mesh decimation after PicoGK; pinned macOS ARM64 wheels; numerical evaluation |
+| [CalculiX](https://www.calculix.de/) | 2.21, Debian 2.21-1; pinned binary and Docker image | Direct SPOOLES affine control and actual carrier gravity/combined cases |
 | Git / GitHub | Repository-native source and evidence | Reviewable source, manifests, reports and images |
 
 The wider chain already includes **Gmsh, CalculiX and PySLM**, described in the
@@ -470,6 +472,55 @@ commercial binary or licence was purchased or redistributed here. The large
 raw voxel mesh remains a local run artifact; the trusted C# source, pinned
 runtime inputs and recorded hashes make the computation reproducible.
 
+## Nominal pad restoration and exact tool-column exclusion
+
+![Actual PicoGK and restored-pad sections](../../media/carrier-resume-20261020/carrier-picogk-sections.png)
+
+A declared vertex map restores the central pad neighbourhood to **Z = ±4 mm**.
+It retains every face index and introduces no coincident vertices or collapsed
+triangles. Every changed vertex is recorded; the largest exact L1 displacement
+is **23555560217999 / 562949953421312 mm ≈ 0.0418431 mm**. A piecewise-affine
+map with the same triangle roster bounds the complete two-way surface edit by
+that maximum. This bound covers this edit only, not preceding voxelization.
+
+The resulting **1,234,122-triangle surface** passes the independent complete
+surface audit. Its nominal dense mesh mass is **1.281680 kg**. All six shank
+volume checks still pass. The original strict closed-set tool test remains
+refused: its returned intersection vertices are all **exactly Z = 4 mm**.
+The small signed volume sums of those flat outputs are not used as tolerances
+or relabelled as an empty intersection.
+
+A separate whole-facet certificate addresses the connected **open volumes**
+`radius < 12.5 mm, 4 < Z < 40 mm` at the four nominal tool axes. Every source
+triangle is considered. Every triangle above Z=4 is separated from each tool
+column by an exact coordinate interval; no triangle needs the subsequent
+rational polygon-distance fallback. The global source Z maximum is below 40,
+providing an exterior witness in each open column. With the closed audited
+surface, this proves the absence of material in those open interiors while
+allowing their intended planar boundary contact. An independent regression
+replays all triangles and reconstructs both before/after mesh hashes from the
+published edit ledger.
+
+[Published complete indexed surface and edit ledger](../../../parts/993-eng-carrier-0001/source/design-20261016/resume-20261020/picogk-restored-study/) ·
+[complete surface audit](evidence/picogk-pad-datum-surface-audit-002/assessment.json) ·
+[exact open-column certificate](evidence/picogk-open-tool-certificate-001/assessment.json) ·
+[unchanged closed-set refusal](evidence/picogk-restored-nominal-gauges-002/assessment.json).
+
+The initial narrower pad-restoration band is retained as a separate failed
+trial: it still left a small true intrusion near the tool-column edge. The
+wider declared band fixes that geometry without moving the acceptance plane.
+TetGen has subsequently generated **745,347 nodes and 2,661,257 C3D4 cells**
+with exact input-boundary identity. The full exact audit confirms all
+**2,661,257 cells are strictly positive**, one face-connected volume and no
+missing boundary face. Full-cell quality diagnostics give minimum mean-ratio
+0.005272 and maximum Jacobian condition about 3,232. The first combined-load C3D4 attempt exited with code 137 in the 6 GiB
+container without a completed solution. That receipt is retained. A second
+attempt uses identical inputs and solver with a declared 12 GiB ceiling and
+600-second bound on the existing local host. The launcher now records container
+termination state before removing its own container; the fresh affine control
+still passes the original tolerances. No mechanical conclusion is transferred
+from other variants.
+
 ## Protected source regions
 
 The [source preservation certificate](evidence/source-preservation-certificate-001/assessment.json)
@@ -492,7 +543,7 @@ preparation on that same revision.
 
 ## Verification of this checkpoint
 
-The **51 focused tests pass**. They replay every saved contraction against the
+The **53 focused tests pass**. They replay every saved contraction against the
 actual input and output triangles, verify each rational displacement cost and
 error budget, and hash-check the published evidence and archive. The strict
 documentation check reports **zero broken links**.
@@ -502,4 +553,4 @@ environment: failures=4, errors=27, skipped=411. Recorded issues include the una
 `hashlib.file_digest`, a host SciPy import failure and exact floating-point
 comparison differences. The [check record](checks.json) and
 [complete compressed local log](make-check-local.log.gz) retain the result.
-The canonical [GitHub integration run](https://github.com/cluster2600/porscheparts/actions/runs/39447532730) **passed** for commit `312a4f21`. Later mechanical additions receive a separate run. No tests were weakened.
+The canonical [GitHub integration run](https://github.com/cluster2600/porscheparts/actions/runs/39447532730) **passed** for commit `312a4f21`. The subsequent [native/mechanical/PicoGK checkpoint run](https://github.com/cluster2600/porscheparts/actions/runs/39461106451) also passed for `f4b0c0e6`. Later datum additions receive a separate run. No tests were weakened.

@@ -186,7 +186,7 @@ chain has not yet become one complete portable command.
 
 ## Where to resume
 
-The user resumed engineering on 20 October. The [new prototype report](../reports/carrier-resume-20261020/README.md) records explicit NURBS patches, continuous surface-error bounds, a passing 603,152-triangle union audit and a 927,734-cell TetGen volume with exact boundary preservation. The earlier interrupted layer job remains stopped; its partial results stay with the baseline.
+The user resumed engineering on 20 October. The [current report](../reports/carrier-resume-20261020/README.md) now documents three executed routes: explicit NURBS reinforcement, a native rounded-cavity study, and PicoGK/MeshLib volumetric rounding. The first two new mechanical screens expose severe local hotspots. The restored PicoGK surface passes its complete audit, six shank gauges and a separate exact open-tool-column exclusion certificate. Its new 2,661,257-cell volume passes the full exact orientation/connectivity audit. Its nominal mass remains below **1.30 kg**. Mechanical convergence and full print preparation are still open. The earlier interrupted layer job remains stopped; its partial results stay with the baseline.
 
 1. Develop an endpoint-safe junction correction while keeping the **1.30 kg**
    limit and protected interfaces.
@@ -197,4 +197,4 @@ The user resumed engineering on 20 October. The [new prototype report](../report
 4. Assemble the matching manufacturing files, settings, drawings and reports
    into one handover package.
 
-These remain the downstream engineering steps for the resumed work. The new surface result is a separate prototype; revised mechanical and full print-preparation results remain pending.
+These remain the downstream engineering steps for the resumed work. These numerical variants remain separate studies; none has replaced the selected catalogue geometry.
