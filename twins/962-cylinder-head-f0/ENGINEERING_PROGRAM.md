@@ -94,6 +94,14 @@ state and cause remain unknown. The same capsule records all eleven parser002
 synthetic test methods passing under CPython 3.10. No real native 3.12 field
 association or resolution of the twelve mechanical failures follows.
 
+The [row-first process-sampling checkpoint](derived/engineering/cp1-END181-observer-row-first-synthetic-guards/README.md)
+passes all ten synthetic methods once, with independent saved-result review and
+separate root acceptance. The proposed correction removes a redundant liveness
+query when a valid numeric RSS row is available; missing live-group rows still refuse. The full
+main and cleanup are not executed by these tests. A fresh native003 source/control
+candidate is being prepared separately; no native retry, field association or
+engineering qualification follows. All twelve mechanical and 24 mesh failures remain.
+
 The earlier [complete 73-component coordinate study](derived/engineering/current110-complete73-coordinate-diagnostics/README.md)
 preserves all 62 passing and 11 rejected proposals. Only the passing subset was
 applied; rejected proposals, including their newly poor cells, remain unchanged.

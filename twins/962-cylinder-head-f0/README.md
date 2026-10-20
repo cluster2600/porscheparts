@@ -121,6 +121,14 @@ state and cause remain unknown. The same capsule records all eleven parser002
 synthetic test methods passing under CPython 3.10. No real native 3.12 field
 association or resolution of the twelve mechanical failures follows.
 
+The [row-first process-sampling checkpoint](derived/engineering/cp1-END181-observer-row-first-synthetic-guards/README.md)
+passes all ten synthetic methods once, with independent saved-result review and
+separate root acceptance. The proposed correction removes a redundant liveness
+query when a valid numeric RSS row is available; missing live-group rows still refuse. The full
+main and cleanup are not executed by these tests. A fresh native003 source/control
+candidate is being prepared separately; no native retry, field association or
+engineering qualification follows. All twelve mechanical and 24 mesh failures remain.
+
 The [20 October head census and derived coupon probe](derived/engineering/current110-census-and-END181-defect-probe/README.md)
 preserve two earlier completed diagnostics. That previous head had 110 poor cells,
 82 movable nodes and 2,482 incident cells, partitioned into 73 local coupling groups.

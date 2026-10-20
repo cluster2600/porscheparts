@@ -1,0 +1,161 @@
+{
+  "schema": "962-observer004-native-row-first-sampler-source-reuse/v1",
+  "status": "SOURCE_ONLY_UNRUN_NO_FUTURE_ACTUAL_OR_EXECUTION_AUTHORITY",
+  "donor": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native-measurement-prep-002/run_root_once.py",
+    "sha256": "c4450f31c12d5d3367f7663ece62598b16253aff31b557f7fc051d3854fadf0f",
+    "bytes": 18913
+  },
+  "proposed_owner": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native-row-first-sampler-prep-001/run_root_once_row_first_proposed.py",
+    "sha256": "5287901ed8459bc003243d89d122307d4d5852b804a6bfb97d0ece893a37cf3d",
+    "bytes": 18849
+  },
+  "replacement_groups": [
+    {
+      "old": "sample_owned({proc.pid}|{g for g in owned if group_exists(g)})",
+      "new": "sample_owned({proc.pid}|owned)",
+      "occurrences": 2,
+      "locations": "main operation label201 and actual call202"
+    },
+    {
+      "old": "if group_exists(g) and not any(x['pgid']==g for x in rows)",
+      "new": "if not any(x['pgid']==g for x in rows) and group_exists(g)",
+      "occurrences": 1,
+      "locations": "sample_owned missing-list104"
+    }
+  ],
+  "group_count": 2,
+  "literal_occurrences": 3,
+  "complete_inverse_recovers_donor_bytes_and_AST": true,
+  "top_level_definition_count": 19,
+  "helper_definition_count_including_changed_sample_owned": 18,
+  "unchanged_other_helper_count": 17,
+  "unchanged_other_helpers": [
+    {
+      "name": "ident",
+      "text_sha256": "f06fd6eb198e19f1531f05eca280140d315a50cbf235b61d03dcb7df5cadb459",
+      "bytes": 90,
+      "AST_exact": true
+    },
+    {
+      "name": "freeze",
+      "text_sha256": "39cc1c4eddcf0789584646ac807413d2c5b5d1e201daf0e5fce438a4eca24d2e",
+      "bytes": 110,
+      "AST_exact": true
+    },
+    {
+      "name": "input_map",
+      "text_sha256": "b749b73100a0ebc9fee67663c96b17b6ba469ac5e496cbf867ee13e5cf0d3741",
+      "bytes": 182,
+      "AST_exact": true
+    },
+    {
+      "name": "runtime_map",
+      "text_sha256": "2bf5a86bd0f17783a88336c541dfd20024812c5a08686847a635a1ab1f77789d",
+      "bytes": 531,
+      "AST_exact": true
+    },
+    {
+      "name": "group_exists",
+      "text_sha256": "67b74400b8ae03cab400d9360091514f9d295f0a93baa968468544e8b23cd5f3",
+      "bytes": 97,
+      "AST_exact": true
+    },
+    {
+      "name": "rec",
+      "text_sha256": "1c49fad82b6ce5d2a5432aa22114fa9b0e42eb46d4b57b8df2a0ba2c36d00543",
+      "bytes": 253,
+      "AST_exact": true
+    },
+    {
+      "name": "check",
+      "text_sha256": "7aafe9854e4e77c0b84d9232f40d979da358790349d8899b628ffe04418f3b77",
+      "bytes": 438,
+      "AST_exact": true
+    },
+    {
+      "name": "output_size",
+      "text_sha256": "0a86e778061dd08bb3109046fc15ea968e8bbe94ef7b8e4b02ea95365e320b65",
+      "bytes": 192,
+      "AST_exact": true
+    },
+    {
+      "name": "provider_links",
+      "text_sha256": "92d3d35a256f694cd8aa0183e3125c5f7b9dd8de6b8a746f8921644b2d95b940",
+      "bytes": 213,
+      "AST_exact": true
+    },
+    {
+      "name": "loaded_trace",
+      "text_sha256": "afd7878aad18864059d110fc46ae5bd355e8693d8bcf595ae00fdf40e096e663",
+      "bytes": 1242,
+      "AST_exact": true
+    },
+    {
+      "name": "children",
+      "text_sha256": "6826234d5582b1348b660735eff526ec209465d78c2c650931f45303776dbb05",
+      "bytes": 318,
+      "AST_exact": true
+    },
+    {
+      "name": "member",
+      "text_sha256": "49ae60bae67afc9a905015da7a727a3589326cb03818c9378a92063ea0e21808",
+      "bytes": 357,
+      "AST_exact": true
+    },
+    {
+      "name": "capture",
+      "text_sha256": "97a33490cd8f8824ad9e76e5bb8be2c730c27b0bf16d688f8a49db426494b66a",
+      "bytes": 140,
+      "AST_exact": true
+    },
+    {
+      "name": "python_record",
+      "text_sha256": "59e6e363f69744ea94e88d93992b2788e7657bf453b3a87020e8d7911831bbb3",
+      "bytes": 176,
+      "AST_exact": true
+    },
+    {
+      "name": "growth_bytes",
+      "text_sha256": "b6edf866a95c614f7171ea82992a1640e1cb408fa0d7d00b30c1c13e65c88156",
+      "bytes": 439,
+      "AST_exact": true
+    },
+    {
+      "name": "inclusive_bytes",
+      "text_sha256": "2a215500ebb6857c144c9c9e2b8deac678ceab0968e3bb440ea4439c6a291b7f",
+      "bytes": 59,
+      "AST_exact": true
+    },
+    {
+      "name": "direct_map",
+      "text_sha256": "5e3be4849678c798cb29cf0b4d10c7e04e9934685ae05cd5deda5c57dc63e18a",
+      "bytes": 370,
+      "AST_exact": true
+    }
+  ],
+  "unchanged_main_nested_definitions": [
+    {
+      "name": "main.request",
+      "text_sha256": "9db9dd3e5fbc02c04656215ebb135d8a817d1bd0eda18860eb9f26305f5874ed",
+      "bytes": 181,
+      "AST_exact": true
+    },
+    {
+      "name": "main.stop_wait",
+      "text_sha256": "e057f3aa2d50bdcde7ced993781d777f5c808139f601613f27ddbb75384645fc",
+      "bytes": 549,
+      "AST_exact": true
+    }
+  ],
+  "changed_definitions": {
+    "sample_owned": "One missing-row/liveness Boolean operand order only.",
+    "main": "Known-group argument and matching operation-label literal only."
+  },
+  "imports_exact": true,
+  "namespace_globals_and_root_caller_command_exact": true,
+  "no_extra_helper_or_controller_framework": true,
+  "cleanup_final_absence_and_all_resource_candidate_gates_exact": true,
+  "source_AST_only_no_target_definition_execution": true
+}

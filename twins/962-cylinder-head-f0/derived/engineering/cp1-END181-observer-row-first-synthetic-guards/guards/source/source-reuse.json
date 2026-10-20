@@ -1,0 +1,58 @@
+{
+  "schema": "962-row-first-mock-source-static-checks/v1",
+  "source_old": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native-measurement-prep-002/run_root_once.py",
+    "sha256": "c4450f31c12d5d3367f7663ece62598b16253aff31b557f7fc051d3854fadf0f",
+    "bytes": 18913
+  },
+  "source_new": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native-row-first-sampler-prep-001/run_root_once_row_first_proposed.py",
+    "sha256": "5287901ed8459bc003243d89d122307d4d5852b804a6bfb97d0ece893a37cf3d",
+    "bytes": 18849
+  },
+  "fixture": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-row-first-mock-guards-prep-001/test_row_first_mock_guards.py",
+    "sha256": "c4c6d0087052cc33f914378540c0f7e3b1f3385e89a4fe34810d32951ac1eb0c",
+    "bytes": 15197
+  },
+  "three_occurrence_inverse": true,
+  "exact_other_helpers": [
+    "capture",
+    "check",
+    "children",
+    "direct_map",
+    "freeze",
+    "group_exists",
+    "growth_bytes",
+    "ident",
+    "inclusive_bytes",
+    "input_map",
+    "loaded_trace",
+    "member",
+    "output_size",
+    "provider_links",
+    "python_record",
+    "rec",
+    "runtime_map"
+  ],
+  "exact_nested_helpers": [
+    "request",
+    "stop_wait"
+  ],
+  "parent_and_embedded_template_AST": true,
+  "expected_method_count": 10,
+  "exact_sorted_methods": [
+    "test_01_exact_three_occurrences_and_cleanup_lifecycle_reuse",
+    "test_02_known_R_Z_question_and_zero_RSS_skip_liveness_old_negative_witness",
+    "test_03_real_main_passes_known_set_and_discovery_predicate_stays_narrow",
+    "test_04_missing_group_absent_live_EPERM_and_unknown_remain_distinct",
+    "test_05_empty_rows_never_become_successful_zero_RSS",
+    "test_06_malformed_known_rows_and_changed_group_refuse_before_liveness",
+    "test_07_ps_failure_or_unknown_query_error_refuses_and_unowned_rows_do_not_join",
+    "test_08_real_handler_live_adapter_retains_fatal_error_context_and_prior_stop",
+    "test_09_real_handler_direct_exit_race_keeps_zero_and_nonzero_raw_RC",
+    "test_10_source_drift_and_unconfigured_providers_refuse_with_no_real_fallback"
+  ],
+  "compile_import_fixture_or_target_execution": false,
+  "author_lineage": "defect_gate_refresh authored donor owner002 and this harness; lpbf_linear_refinement authored row-first correction. Independent guard author from correction author, not independent of donor owner."
+}
