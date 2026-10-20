@@ -76,6 +76,13 @@ and outer exits. The expected new plugin, single observer and Syntax OK are obse
 The original failure remains; live DOF/SNES capture and a separate instrumented
 coupon solve remain pending, with the twelve equilibrium failures unchanged.
 
+The [instrumented observer004 native capture](derived/engineering/cp1-END181-observer-native-capture-refusal/README.md)
+is refused despite native exit 0: caller exits 1 and outer owner exits 2 after
+an unlocalized permission error in resource/group observation. Full stopped text,
+controls and separate saved refusal review remain inspectable. The map/vector
+bodies are excluded; no measurement completeness, retry or engineering acceptance
+follows. All twelve equilibrium failures and 24 poor head cells remain.
+
 The earlier [complete 73-component coordinate study](derived/engineering/current110-complete73-coordinate-diagnostics/README.md)
 preserves all 62 passing and 11 rejected proposals. Only the passing subset was
 applied; rejected proposals, including their newly poor cells, remain unchanged.

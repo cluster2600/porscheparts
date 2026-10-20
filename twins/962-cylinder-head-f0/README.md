@@ -102,6 +102,14 @@ and host/outer return codes are both 0. The earlier SIGSEGV remains preserved.
 Live callbacks, DOF/SNES measurement, complete ABI and all mechanical qualification
 remain separate; no coupon solve occurs in this check.
 
+The [instrumented observer004 native capture](derived/engineering/cp1-END181-observer-native-capture-refusal/README.md)
+now preserves a refused stopped run: native exit 0, caller exit 1 and outer exit 2.
+A permission error during resource/group observation triggers adapter termination;
+the exact operation and cause are unavailable in the original catch. Complete
+source/control/text receipts and independent refusal accounting are retained.
+Raw DOF-map/vector/CSV/CDF bodies are excluded; all twelve mechanical failures,
+24 poor head cells and measurement/physical qualification gates remain open.
+
 The [20 October head census and derived coupon probe](derived/engineering/current110-census-and-END181-defect-probe/README.md)
 preserve two earlier completed diagnostics. That previous head had 110 poor cells,
 82 movable nodes and 2,482 incident cells, partitioned into 73 local coupling groups.
