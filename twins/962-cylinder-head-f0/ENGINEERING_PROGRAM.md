@@ -29,6 +29,15 @@ the whole-head SICN 0.1 gate still fails. The remaining census has 16 movable
 seeds and 499 incident cells. Source, complete native reports and independent
 reviews retain the failure and resource-observation limits.
 
+The [saved exact-segment certificate](derived/engineering/current24-exact-segment-feasibility/README.md)
+covers19 prescribed paths and916 cell associations. Independent exact arithmetic
+passes136,316 assertions and verifies empty feasible sets for these paths only.
+Full logical bytes and earlier failures remain; all24 head quality failures remain.
+The [passive residual-map plugin](derived/engineering/cp1-END181-observer-plugin/README.md)
+has reviewed source and compiled plugin/validator binaries. Validator execution,
+host registration and native measurement remain pending. These checkpoints continue the material/strength
+and LPBF stages; Omniverse and PhysicsNeMo still require accepted engineering fields.
+
 The earlier [complete 73-component coordinate study](derived/engineering/current110-complete73-coordinate-diagnostics/README.md)
 preserves all 62 passing and 11 rejected proposals. Only the passing subset was
 applied; rejected proposals, including their newly poor cells, remain unchanged.

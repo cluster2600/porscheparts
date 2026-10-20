@@ -1,0 +1,11 @@
+--- work/962-engineering/head-star-current24-exact-segment-feasibility-result-peer-002/independent_saved_review.py
++++ work/962-engineering/head-star-current24-exact-segment-feasibility-result-peer-003/independent_saved_review.py
+@@ -195,7 +195,7 @@
+ def check_classification(case, polys):
+     cert = case['real_feasibility']
+     constraints = cert['constraints']
+-    insist(len(constraints) == 2*len(polys), 'Complete determinant/quality constraint count')
++    insist(len(constraints) == len(polys), 'Complete determinant/quality constraint count')
+     factors, owners = {}, {}
+     for item in cert['irreducible_factors']:
+         fid = item['factor_ID']; p = poly_record(item['monic_polynomial']); ip = primitive(p)

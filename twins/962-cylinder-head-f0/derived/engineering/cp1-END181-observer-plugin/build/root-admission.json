@@ -1,0 +1,59 @@
+{
+  "schema": "962-observer003-root-finite-build-admission/v1",
+  "time_UTC": "2026-10-20T16:13:09.696655+00:00",
+  "source_peer": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-END181-dof-map-observer-source-peer-003/review.json",
+    "sha256": "6e67379b88110d567241f177a2fe0b05e8a2ca08f91679341a4bd08853c73fee",
+    "bytes": 10889
+  },
+  "source_bindings": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-END181-dof-map-observer-source-peer-003/bindings.json",
+    "sha256": "ea8cf5a988628ed567eca1746fcfbab7e4c98747d4c7200c031dc89ab8b3dff7",
+    "bytes": 16804
+  },
+  "held": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-END181-dof-map-observer-prep-003/held-preparation.json",
+    "sha256": "71802c56c4dde5a96152b76388fcc0c4d5c59f43c0819911fb05e7e69ccd81fa",
+    "bytes": 5426
+  },
+  "recipe": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-END181-dof-map-observer-prep-003/build-recipe.json",
+    "sha256": "d29067e60a64c8c2164126ffef1d818ed963c5b22bbabd32813662de4e4e90a4",
+    "bytes": 117570
+  },
+  "toolchain_probe": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer003-toolchain-probe-001/probe.json",
+    "sha256": "4611e0ad69ace16130f4bee9526b326ca0783afdaf73aa050aad823d3b6fda81",
+    "bytes": 7361
+  },
+  "root_read_full_source_peer_shim_method_fragment_label_diff_reuse_and_four_recipe_argv": true,
+  "compiler_invocations_authorized": 4,
+  "descriptor_materializations_authorized": 1,
+  "run_each_step_once_stop_first_failure": true,
+  "automatic_retry": false,
+  "ordinary_seconds_per_compiler_step": 120,
+  "TERM_grace_seconds": 8,
+  "sampled_owned_process_group_RSS_stop_bytes": 2147483648,
+  "owned_build_and_log_stop_bytes": 67108864,
+  "threads": 1,
+  "optional_output_only_dependency_flags": {
+    "allowed": true,
+    "flags": [
+      "-MD",
+      "-MF",
+      "<fresh_owned_step_dependency_file>"
+    ],
+    "scope": "Three invocations compiling source may record actual include dependencies; no additional compiler invocation or source/physics change."
+  },
+  "required_before_build": [
+    "Capture actual compiler/wrapper/config/generated-header identities and aliases; explicit minimal environment/SDK selection.",
+    "Require exact source commit/tree and clean source plus all immutable held16 bindings.",
+    "Record prefix/source include inventory or actual compiler dependency-header identities before/after as appropriate; no full SDK/ABI equivalence claim."
+  ],
+  "unchanged_original_prefix_and_case": true,
+  "guard_execution_authorized": false,
+  "host_library_load_authorized": false,
+  "native_case_or_field_capture_authorized": false,
+  "scientific_or_material_process_manufacturing_acceptance": false,
+  "scope": "Reversible compilation/linking into fresh owned build directory only, plus exact fresh descriptor after actual plugin capture. Successful build is not ABI/guard/host acceptance."
+}

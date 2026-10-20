@@ -1,0 +1,62 @@
+{
+  "schema": "962-observer003-exact002-reuse-proof/v1",
+  "donor_header": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-END181-dof-map-observer-prep-002/modules/combined/include/outputs/CouponEnd181DofMap.h",
+    "sha256": "04594fb8360acd807994c4c99b073ff8ac5c380da6c500c44fed14e5ccfb538b",
+    "bytes": 1182
+  },
+  "new_header": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-END181-dof-map-observer-prep-003/include/CouponEnd181DofMap.h",
+    "sha256": "04594fb8360acd807994c4c99b073ff8ac5c380da6c500c44fed14e5ccfb538b",
+    "bytes": 1182
+  },
+  "header_bytes_exact": true,
+  "donor_source": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-END181-dof-map-observer-prep-002/modules/combined/src/outputs/CouponEnd181DofMap.C",
+    "sha256": "c190d1c7e7d3f258d251a28e498514c9bca5316705bf329b822bddf7dc95a445",
+    "bytes": 10977
+  },
+  "new_source": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-END181-dof-map-observer-prep-003/src/CouponEnd181DofMap.C",
+    "sha256": "e4c9d98f9fff50fc4ec41299eaed0afe34f23befcf459a21ebbfaaceeff473d9",
+    "bytes": 10989
+  },
+  "exact_one_literal_replacement": {
+    "from": "registerMooseObject(\"CombinedApp\", CouponEnd181DofMap);",
+    "to": "registerMooseObject(\"CouponEnd181ObserverApp\", CouponEnd181DofMap);",
+    "count": 1
+  },
+  "reversing_that_one_replacement_restores_all_donor_source_bytes": true,
+  "all_production_function_bodies_unchanged": true,
+  "Cxx_AST_or_compile_claim": false,
+  "donor_guard": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-END181-dof-map-observer-prep-002/guards/guard_rows.C",
+    "sha256": "1d675907950b02475789fd64aa3a41a1a83ec648dda2998fc3402e773e3f3097",
+    "bytes": 3694
+  },
+  "new_guard": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-END181-dof-map-observer-prep-003/guards/guard_rows.C",
+    "sha256": "1d675907950b02475789fd64aa3a41a1a83ec648dda2998fc3402e773e3f3097",
+    "bytes": 3694
+  },
+  "guard_bytes_exact": true,
+  "synthetic_assertion_calls": 18,
+  "donor_observer_output_fragment": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-END181-dof-map-observer-prep-002/observer-output.i.fragment",
+    "sha256": "594ab3ba150550bc7362964f861846d174b36b4a5d5edf98fea13816a95d08f4",
+    "bytes": 684
+  },
+  "new_fragment": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-END181-dof-map-observer-prep-003/plugin-input.i.fragment",
+    "sha256": "c0b11d2b00a6042ce61ec4f4706104eeac8194a3b27f173fd8bcb2afdd339290",
+    "bytes": 1088
+  },
+  "donor_fragment_retained_as_exact_suffix": true,
+  "new_only_registration_shim": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-END181-dof-map-observer-prep-003/src/CouponEnd181ObserverRegistration.C",
+    "sha256": "042e1b0f5a4c70a53a4e92fd00631e2073716e83cd6def943f549134328b53da",
+    "bytes": 737
+  },
+  "existing_case_unchanged": true,
+  "existing_failed_cases_preserved": true
+}

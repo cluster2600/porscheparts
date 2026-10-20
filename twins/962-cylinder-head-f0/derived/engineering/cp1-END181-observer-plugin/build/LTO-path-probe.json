@@ -1,0 +1,61 @@
+{
+  "schema": "962-observer003-LTO-path-and-object-format-metadata/v1",
+  "primary_source": {
+    "url": "https://github.com/llvm/llvm-project/blob/llvmorg-19.1.7/clang/lib/Driver/ToolChains/Darwin.cpp",
+    "lines": [
+      240,
+      257
+    ],
+    "scope": "Public Clang19 driver adds -lto_library unconditionally for relevant ld versions and derives an installed-library path. This does not prove the installed downstream binary is source-identical."
+  },
+  "library_paths": [
+    {
+      "path": "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-local-installed-002/lib/libLTO.dylib",
+      "exists": false,
+      "is_symlink": false,
+      "link": null
+    },
+    {
+      "path": "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-local-installed-002/lib/libLTO.19.1.dylib",
+      "exists": true,
+      "is_symlink": false,
+      "link": null,
+      "resolved": "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-local-installed-002/lib/libLTO.19.1.dylib",
+      "bytes": 103104,
+      "sha256": "4ab3b85dab6046ccf81186ffa5f9938e58f9b4b6f9a6e66a829c156d507d94dd"
+    },
+    {
+      "path": "/Library/Developer/CommandLineTools/usr/lib/libLTO.dylib",
+      "exists": true,
+      "is_symlink": false,
+      "link": null,
+      "resolved": "/Library/Developer/CommandLineTools/usr/lib/libLTO.dylib",
+      "bytes": 69069424,
+      "sha256": "08bd424518673ef9371ded084a3d614a65da784f2d898226262eb8e203801732"
+    }
+  ],
+  "object_format_metadata": [
+    {
+      "argv": [
+        "/usr/bin/otool",
+        "-hv",
+        "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/cp1-oneway-cooling-release-richardson2-END181-dof-map-observer-prep-003/build-003/CouponEnd181DofMap.o"
+      ],
+      "returncode": 0,
+      "stdout": "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/cp1-oneway-cooling-release-richardson2-END181-dof-map-observer-prep-003/build-003/CouponEnd181DofMap.o:\nMach header\n      magic  cputype cpusubtype  caps    filetype ncmds sizeofcmds      flags\nMH_MAGIC_64    ARM64        ALL  0x00      OBJECT     5       1096 SUBSECTIONS_VIA_SYMBOLS\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/usr/bin/otool",
+        "-hv",
+        "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/cp1-oneway-cooling-release-richardson2-END181-dof-map-observer-prep-003/build-003/CouponEnd181ObserverRegistration.o"
+      ],
+      "returncode": 0,
+      "stdout": "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/cp1-oneway-cooling-release-richardson2-END181-dof-map-observer-prep-003/build-003/CouponEnd181ObserverRegistration.o:\nMach header\n      magic  cputype cpusubtype  caps    filetype ncmds sizeofcmds      flags\nMH_MAGIC_64    ARM64        ALL  0x00      OBJECT     5        936 SUBSECTIONS_VIA_SYMBOLS\n",
+      "stderr": ""
+    }
+  ],
+  "library_or_object_execution": false,
+  "ABI_acceptance": false
+}

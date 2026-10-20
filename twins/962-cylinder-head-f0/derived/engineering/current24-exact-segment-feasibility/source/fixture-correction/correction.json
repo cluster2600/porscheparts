@@ -1,0 +1,38 @@
+{
+  "schema": "962-current24-serializer-fixture-builtin-origin-correction/v1",
+  "scope": "Synthetic fixture source only; exact four test bodies preserved. Original5748 remains unrun and immutable. Worker002 unchanged.",
+  "original": {
+    "path": "work/962-engineering/head-star-current24-exact-segment-feasibility-prep-002/test_serializer_guards.py",
+    "sha256": "5748a349618b9fb720de0847b11ad0a0cbef951ba77ea0391ae741c30378c85c",
+    "bytes": 4816
+  },
+  "corrected": {
+    "path": "work/962-engineering/head-star-current24-serializer-fixture-prep-002/test_serializer_guards_002.py",
+    "sha256": "826841329be7a7a9f700cff591f1c96b3621948721b0564c801f151d586ec96e",
+    "bytes": 4965
+  },
+  "diff": {
+    "path": "work/962-engineering/head-star-current24-serializer-fixture-prep-002/fixture.diff",
+    "sha256": "88f81f4cf067a348777254389a7d07d934f27bdc97858cbedbf4261750498284",
+    "bytes": 1462
+  },
+  "worker": {
+    "path": "work/962-engineering/head-star-current24-exact-segment-feasibility-prep-002/classify_segment_feasibility.py",
+    "sha256": "b4b1abb1d3dbcb30cd78d63f454c652ec5153cf0c140132f837a1fae6c559865",
+    "bytes": 57908
+  },
+  "worker_source_peer": {
+    "path": "work/962-engineering/head-star-current24-exact-segment-feasibility-source-peer-002/review.json",
+    "sha256": "e07e81065a2fdb0c3d9d0e485d09ab07b42e8d10d2cf96e0a54cb508f74386d7",
+    "bytes": 11829
+  },
+  "runtime_preflight": {
+    "path": "work/962-engineering/head-star-current24-segment-gzip-root-source-002/runtime-preflight.json",
+    "sha256": "56c6552ba29a8dcd240ff54dbe013050835ad9f0ffae06c4675822a44e906f32",
+    "bytes": 5071
+  },
+  "cause": "Selected CPython has built-in zlib with no __file__; __spec__.origin handles the observed built-in origin. Source path now explicitly selects the unchanged worker002 in its own preparation.",
+  "four_test_bodies_exact_AST": true,
+  "prepared_source_or_fixture_executed": false,
+  "scientific_execution_authorized": false
+}

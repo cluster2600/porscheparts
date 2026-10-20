@@ -1,0 +1,103 @@
+--- work/962-engineering/head-star-current24-exact-segment-feasibility-prep-001/classify_segment_feasibility.py
++++ work/962-engineering/head-star-current24-exact-segment-feasibility-prep-002/classify_segment_feasibility.py
+@@ -1,5 +1,7 @@
+ """HELD exact real feasibility of all nineteen saved current-to-apex segments; no word construction."""
+ import argparse
++import gzip
++import io
+ from fractions import Fraction
+ import hashlib
+ from itertools import product, combinations
+@@ -15,8 +17,8 @@
+ PREP=Path(__file__).resolve().parent
+ HELD=PREP/"held-preparation.json"
+ TUPLES=ROOT/"work/962-engineering/head-star-current24-analytic-apex-prep-001/component-tuples.json"
+-ACTUAL=ROOT/"work/962-engineering/head-star-current24-exact-segment-feasibility-execution-prep-001/actual-contract.json"
+-OUTPUT=ROOT/"work/962-engineering/head-star-current24-exact-segment-feasibility-001"
++ACTUAL=ROOT/"work/962-engineering/head-star-current24-exact-segment-feasibility-execution-prep-003/actual-contract.json"
++OUTPUT=ROOT/"work/962-engineering/head-star-current24-exact-segment-feasibility-002"
+ REPORT_REL="work/962-engineering/head-star-current110-pass62-application-001/worker-report.json"
+ PARENT_REL="work/962-engineering/head-star-current110-pass62-application-root-execution-001/result-peer-acceptance.json"
+ CLOSED_REL="work/962-engineering/head-star-current110-pass62-application-root-execution-001/closed-result.json"
+@@ -710,6 +712,58 @@
+         and saved["exact_point1_gate_passed"]is(d>0 and q2 is not None and q2>=Fraction(1,100)),
+         "Polynomial endpoint agrees with every original exact row and failure")
+ 
++def verify_lossless_gzip_bytes(compressed,manifest):
++    """Bounded streaming byte identity only; never decode or validate scientific JSON."""
++    need(type(compressed)is bytes and len(compressed)<=33554432,"Compressed input exceeds unchanged disk budget")
++    logical=manifest["logical_payload"];stored=manifest["compressed_payload"]
++    need(type(logical["bytes"])is int and 0<logical["bytes"]<=2147483648,
++        "Declared inflation exceeds existing2GiB capacity ceiling")
++    need(type(stored["bytes"])is int and stored["bytes"]==len(compressed)
++        and stored["sha256"]==hashlib.sha256(compressed).hexdigest(),"Compressed byte identity")
++    need(compressed[:10]==b"\x1f\x8b\x08\x00\x00\x00\x00\x00\x02\xff",
++        "Fixed gzip header: no filename/extra/time fields; level9")
++    count=0;digest=hashlib.sha256()
++    with gzip.GzipFile(fileobj=io.BytesIO(compressed),mode="rb")as stream:
++        while True:
++            block=stream.read1(min(io.DEFAULT_BUFFER_SIZE,logical["bytes"]-count+1))
++            if not block:break
++            count+=len(block)
++            need(count<=logical["bytes"] and count<=2147483648,"Declared bounded inflation exceeded")
++            digest.update(block)
++    need(count==logical["bytes"]and digest.hexdigest()==logical["sha256"],
++        "Complete uncompressed byte count and SHA256; EOF/CRC required")
++    return dict(bytes=count,sha256=digest.hexdigest(),complete_EOF_and_CRC=True)
++
++def lossless_gzip_certificate(encoded,result):
++    """Lossless storage of the identical complete JSON byte stream; no row projection."""
++    need(type(encoded)is bytes and 0<len(encoded)<=2147483648,
++        "Logical payload exceeds existing2GiB capacity ceiling")
++    buffer=io.BytesIO()
++    with gzip.GzipFile(filename="",mode="wb",compresslevel=9,fileobj=buffer,mtime=0)as stream:
++        stream.write(encoded)
++    compressed=buffer.getvalue()
++    manifest=dict(schema="962-current24-complete-exact-segment-lossless-gzip-manifest/v1",
++        status="complete_logical_certificate_stored_losslessly_scientific_review_pending",
++        logical_schema=result["schema"],logical_status=result["status"],
++        logical_payload=dict(filename="real-segment-feasibility.json",encoding="UTF-8",
++            JSON_indent=2,JSON_allow_nan=False,trailing_newline=True,
++            bytes=len(encoded),sha256=hashlib.sha256(encoded).hexdigest()),
++        compressed_payload=dict(filename="real-segment-feasibility.json.gz",
++            bytes=len(compressed),sha256=hashlib.sha256(compressed).hexdigest()),
++        gzip_parameters=dict(mtime=0,filename="",compresslevel=9),
++        source=result["source"],held_preparation=result["held_preparation"],own_actual=result["own_actual"],
++        tuple_list=result["tuple_list"],segment_count=result["segment_count"],
++        complete_cell_dispositions=result["complete_cell_dispositions"],
++        complete_constraint_associations=result["complete_constraint_associations"],
++        all_logical_coefficients_roots_factors_signs_intervals_witnesses_retained=True,
++        binary64_word_proposal_count=0,binary64_word_construction_supported=False,
++        scientific_result_accepted=False,qualification=result["qualification"],
++        reader_capacity_ceiling_bytes=2147483648,
++        reader_capacity_scope="Streaming count/hash ceiling only; not a JSON memory-fit, peak RSS or completion guarantee.")
++    verify_lossless_gzip_bytes(compressed,manifest)
++    manifest_bytes=(json.dumps(manifest,indent=2,allow_nan=False)+"\n").encode()
++    return compressed,manifest_bytes
++
+ def run(actual_path,actual_sha256):
+     need(actual_path.resolve()==ACTUAL,"Exact future segment actual path")
+     need(isinstance(actual_sha256,str) and len(actual_sha256)==64
+@@ -797,12 +851,18 @@
+         raw_MSH_BIN_body_access=False,native_call_count=0,optimizer_call_count=0,geometry_write_count=0,
+         quality_or_root_runtime_bound_promised=False,qualification=QUALIFICATION)
+     encoded=(json.dumps(result,indent=2,allow_nan=False)+"\n").encode()
+-    need(len(encoded)<=33554432,"Complete certificate exceeds output budget; refuse without truncation")
++    compressed,manifest_bytes=lossless_gzip_certificate(encoded,result)
++    summary=dict(status=result["status"],segments=19,cell_dispositions=916,
++        complete_real_feasibility=True,word_proposals=0)
++    summary_bytes=(json.dumps(summary)+"\n").encode()
++    need(len(compressed)+len(manifest_bytes)+len(summary_bytes)<=33554432,
++        "Complete compressed certificate/manifest/stdout exceed unchanged output budget; refuse without truncation")
+     OUTPUT.mkdir()
+-    with(OUTPUT/"real-segment-feasibility.json").open("xb")as stream:stream.write(encoded)
+-    print(json.dumps(dict(status=result["status"],segments=19,cell_dispositions=916,
+-        complete_real_feasibility=True,word_proposals=0)))
++    with(OUTPUT/"real-segment-feasibility.json.gz").open("xb")as stream:stream.write(compressed)
++    with(OUTPUT/"manifest.json").open("xb")as stream:stream.write(manifest_bytes)
++    print(json.dumps(summary))
+     return 0
++
+ 
+ if __name__=="__main__":
+     parser=argparse.ArgumentParser(description="Held exact19-segment saved-only feasibility diagnostic")

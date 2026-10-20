@@ -1,0 +1,9 @@
+# Observer003 compiler and linker outcome
+
+The003 attempt produced both frozen C++ object files. Those source compilations returned0 with empty diagnostics. The plugin link returned0 but warned that SDK27 libSystem.tbd contained an unknown arm64e.x1 target. The guard executable link returned1 with that warning and unresolved system symbols. The linked plugin exports CouponEnd181ObserverApp__registerAll but has no libSystem load command; its return code is not load or ABI acceptance.
+
+The003 sampled peak aggregate owned RSS was943652864 bytes, below2GiB. Four actual zero-RSS rows and17 non-gating thread observation gaps were retained. All51 input/control records stayed unchanged, and the exact public source tree stayed clean. The actual dependency records contain1640 unique paths with no cross-stage identity conflict; these after-compilation records do not establish a complete SDK identity before compilation.
+
+A driver-only comparison identified prefix ld64-956.6 with conda TAPI1600 as the original default and CLT ld27037.1 with Apple TAPI21 as the explicitly selected alternative. Its two-link004 successor reused both byte-exact003 objects. The first command failed at “-lto_library library filename must be 'libLTO.dylib'”; Clang19 had emitted the prefix filename libLTO.19.1.dylib. No second link ran and no004 plugin was generated. SDK-format acceptance is still unobserved. All60 input/control records stayed unchanged, the public tree remained clean, the owned group was absent, and no resource stop occurred.
+
+Both earlier instrumentation-stopped attempts, all003 outputs and the004 terminal are preserved. No guards, plugin/host loading, native case or field capture ran. No SDK/prefix rewrite, production-source change, physics/tolerance change, automatic retry or ABI/physical acceptance is implied. This note is the source/build author's accounting; it is not an independent review.

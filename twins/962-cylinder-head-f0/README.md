@@ -30,6 +30,13 @@ cells fail, including42 inverted-cell dispositions. Independent exact arithmetic
 checks all1,415 baseline/candidate rows. No proposal is applied; the head retains
 all24 quality failures. These finite failures do not prove infeasibility.
 
+The [saved exact-segment certificate](derived/engineering/current24-exact-segment-feasibility/README.md)
+retains all19 prescribed movement paths and916 cell associations in a lossless
+35.0 MB logical /5.75 MB compressed report. Independent exact arithmetic passes
+136,316 assertions and verifies that all19 prescribed paths have empty feasible
+sets. Other movements and tetrahedralizations remain open. All24 head quality
+failures remain, with no mesh application.
+
 The earlier [complete 73-component coordinate study](derived/engineering/current110-complete73-coordinate-diagnostics/README.md)
 preserves all 62 passing and 11 rejected proposals. Only the passing subset was
 applied; rejected proposals, including their newly poor cells, remain unchanged.
@@ -44,6 +51,12 @@ compares all 1,275 native and independently assembled force components. Individu
 checks meet their limits while twelve constrained/free force and moment sums
 still fail. Independent saved arithmetic confirms those failures; the full
 mechanical assessment remains refused.
+
+The [passive DOF-map observer](derived/engineering/cp1-END181-observer-plugin/README.md)
+adds reviewed plugin source for connecting solver vectors to displacement indices.
+The plugin and standalone validator executable compile and link with the matching
+macOS SDK linker. Validator execution, host registration and native measurement
+remain pending. All twelve aggregate failures remain open.
 
 The [20 October head census and derived coupon probe](derived/engineering/current110-census-and-END181-defect-probe/README.md)
 preserve two earlier completed diagnostics. That previous head had 110 poor cells,
