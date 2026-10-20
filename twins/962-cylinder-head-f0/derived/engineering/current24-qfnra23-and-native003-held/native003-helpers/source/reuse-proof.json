@@ -1,0 +1,152 @@
+{
+  "schema": "962-native003-finite-helper-source-reuse/v1",
+  "status": "STATIC_ONLY_UNRUN",
+  "author": "defect_gate_refresh",
+  "author_lineage": "Author of native003 namespace adaptation and earlier native control sources; not an independent helper reviewer.",
+  "sources": {
+    "stage_four_inputs.py": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native003-staging-freshness-prep-001/stage_four_inputs.py",
+      "sha256": "615400e65c86a59ea0867fe1a8381f1eb536695895ac495814f06a6244c95fb7",
+      "bytes": 8631
+    },
+    "capture_freshness.py": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native003-staging-freshness-prep-001/capture_freshness.py",
+      "sha256": "a577e2b3499aa3571d2f08e0b7e5f54d687464654e8de7af523f7d112a1edd7d",
+      "bytes": 15798
+    }
+  },
+  "donors": {
+    "owner": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native-measurement-prep-003/run_root_once.py",
+      "sha256": "6d91abc5bfb8970908d41406448e9091291736ab9bb910a72b58f0243e7d754f",
+      "bytes": 18849
+    },
+    "caller": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native-measurement-prep-003/run_native_capture.py",
+      "sha256": "7190f22f4d17869f6524743bc0de6f7eebc03393c17a4ed57984f282d0036a80",
+      "bytes": 22990
+    }
+  },
+  "exact_reuse": [
+    {
+      "name": "rec",
+      "donor": "owner",
+      "recipient": "stage",
+      "text_equal": true,
+      "AST_equal": true
+    },
+    {
+      "name": "rec",
+      "donor": "owner",
+      "recipient": "freshness",
+      "text_equal": true,
+      "AST_equal": true
+    },
+    {
+      "name": "need",
+      "donor": "caller",
+      "recipient": "stage",
+      "text_equal": true,
+      "AST_equal": true
+    },
+    {
+      "name": "need",
+      "donor": "caller",
+      "recipient": "freshness",
+      "text_equal": true,
+      "AST_equal": true
+    },
+    {
+      "name": "time_check",
+      "donor": "stage",
+      "recipient": "freshness",
+      "text_equal": true,
+      "AST_equal": true
+    },
+    {
+      "name": "selected",
+      "donor": "stage",
+      "recipient": "freshness",
+      "text_equal": true,
+      "AST_equal": true
+    }
+  ],
+  "definition_names": {
+    "stage": [
+      "need",
+      "rec",
+      "time_check",
+      "selected",
+      "admit",
+      "owned_bytes",
+      "main"
+    ],
+    "freshness": [
+      "need",
+      "rec",
+      "time_check",
+      "selected",
+      "admit",
+      "alias",
+      "observe",
+      "metadata_query",
+      "owned_bytes",
+      "main"
+    ]
+  },
+  "imports": {
+    "stage": [
+      "import hashlib, json, sys, time, traceback",
+      "from pathlib import Path"
+    ],
+    "freshness": [
+      "import hashlib, json, os, subprocess, sys, time, traceback",
+      "from pathlib import Path"
+    ]
+  },
+  "query_imports": [
+    "import json, os, sys"
+  ],
+  "source_only_checks": {
+    "stage_has_no_subprocess_interface": true,
+    "freshness_exactly_one_Popen": true,
+    "query_starts_new_session": false,
+    "no_ps_or_group_probe": true,
+    "parent_sources_AST_parsed": true,
+    "query_literal_AST_parsed": true
+  },
+  "runtime_scope": "Declared helper stdlib imports and json/os/sys query only; no fresh module-origin capture or complete stdlib/ABI closure.",
+  "new_logic": "All other operation-specific source is new, including admission, finite observation, copying, query retention and receipt closure; no full owner/main is reused.",
+  "execution": {
+    "helper": false,
+    "query": false,
+    "staging": false,
+    "fixture": false,
+    "native": false,
+    "body_refresh": false
+  },
+  "donor_imports": {
+    "owner": [
+      "from pathlib import Path",
+      "import datetime, hashlib, json, os, signal, subprocess, time, traceback",
+      "import sys, re"
+    ],
+    "caller": [
+      "import argparse",
+      "import hashlib",
+      "import json",
+      "import os",
+      "from pathlib import Path",
+      "import re",
+      "import shutil",
+      "import signal",
+      "import subprocess",
+      "import threading",
+      "import time"
+    ]
+  },
+  "new_top_level_import_modules_vs_native_owner": {
+    "stage_four_inputs.py": [],
+    "capture_freshness.py": []
+  }
+}

@@ -11,6 +11,15 @@ with explicit assumptions for unavailable dimensions.
 
 The [engineering execution programme](ENGINEERING_PROGRAM.md) continues through
 material/strength assessment, LPBF simulation, an Omniverse twin and PhysicsNeMo.
+
+The [QF_NRA software checkpoint](derived/engineering/current24-qfnra23-and-native003-held/README.md)
+passes 14 producer and 9 independently authored validator checks, once each.
+The full source, controls, logs and separate acceptance are inspectable.
+It also preserves held native003 source and staging/freshness helpers;
+those programs remain unrun.
+No installed solver or actual-head proposal was tested. The head retains
+24 poor cells and LPBF retains 12 aggregate mechanical failures.
+
 The [native partial head application](derived/engineering/current24-partial-application/README.md)
 reduces positive-poor cells from **110 to 24** in one fixed 66-node edit and complete
 saved-file readback. All other coordinates, connectivity, classifications and

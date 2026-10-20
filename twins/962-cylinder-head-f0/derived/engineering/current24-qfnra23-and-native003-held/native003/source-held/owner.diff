@@ -1,0 +1,17 @@
+--- work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native-row-first-sampler-prep-001/run_root_once_row_first_proposed.py
++++ work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native-measurement-prep-003/run_root_once.py
+@@ -3,10 +3,10 @@
+ import datetime,hashlib,json,os,signal,subprocess,time,traceback
+ import sys,re
+ R=Path('/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993');E=R/'work/962-engineering'
+-P=E/'cp1-oneway-cooling-release-richardson2-observer004-native-measurement-execution-prep-002'
+-S=E/'cp1-oneway-cooling-release-richardson2-observer004-native-measurement-prep-002'
+-D=E/'cp1-oneway-cooling-release-richardson2-observer004-native-measurement-root-execution-002'
+-O=E/'cp1-oneway-cooling-release-richardson2-observer004-native-measurement-002'
++P=E/'cp1-oneway-cooling-release-richardson2-observer004-native-measurement-execution-prep-003'
++S=E/'cp1-oneway-cooling-release-richardson2-observer004-native-measurement-prep-003'
++D=E/'cp1-oneway-cooling-release-richardson2-observer004-native-measurement-root-execution-003'
++O=E/'cp1-oneway-cooling-release-richardson2-observer004-native-measurement-003'
+ sha=lambda p:hashlib.sha256(Path(p).read_bytes()).hexdigest()
+ 
+ def ident(p):return dict(path=str(p.relative_to(R)),sha256=sha(p),bytes=p.stat().st_size)

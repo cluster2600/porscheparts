@@ -1,0 +1,127 @@
+{
+  "schema": "962-observer004-native003-source-reuse/v1",
+  "status": "SOURCE_AST_ONLY_UNRUN",
+  "source_preparation_decision": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native003-source-preparation-root-001/decision.json",
+    "sha256": "ece832763c9c03dada82298bc99b537bac69abd6037d279a8b2b1365a73fb5f9",
+    "bytes": 2691
+  },
+  "substitutions": [
+    {
+      "role": "owner",
+      "donor": {
+        "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native-row-first-sampler-prep-001/run_root_once_row_first_proposed.py",
+        "sha256": "5287901ed8459bc003243d89d122307d4d5852b804a6bfb97d0ece893a37cf3d",
+        "bytes": 18849
+      },
+      "successor": {
+        "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native-measurement-prep-003/run_root_once.py",
+        "sha256": "6d91abc5bfb8970908d41406448e9091291736ab9bb910a72b58f0243e7d754f",
+        "bytes": 18849
+      },
+      "groups": [
+        {
+          "line": 6,
+          "before": "P=E/'cp1-oneway-cooling-release-richardson2-observer004-native-measurement-execution-prep-002'",
+          "after": "P=E/'cp1-oneway-cooling-release-richardson2-observer004-native-measurement-execution-prep-003'",
+          "count": 1
+        },
+        {
+          "line": 7,
+          "before": "S=E/'cp1-oneway-cooling-release-richardson2-observer004-native-measurement-prep-002'",
+          "after": "S=E/'cp1-oneway-cooling-release-richardson2-observer004-native-measurement-prep-003'",
+          "count": 1
+        },
+        {
+          "line": 8,
+          "before": "D=E/'cp1-oneway-cooling-release-richardson2-observer004-native-measurement-root-execution-002'",
+          "after": "D=E/'cp1-oneway-cooling-release-richardson2-observer004-native-measurement-root-execution-003'",
+          "count": 1
+        },
+        {
+          "line": 9,
+          "before": "O=E/'cp1-oneway-cooling-release-richardson2-observer004-native-measurement-002'",
+          "after": "O=E/'cp1-oneway-cooling-release-richardson2-observer004-native-measurement-003'",
+          "count": 1
+        }
+      ],
+      "full_inverse_exact": true,
+      "all_function_names_text_AST_exact": [
+        "capture",
+        "check",
+        "children",
+        "direct_map",
+        "freeze",
+        "group_exists",
+        "growth_bytes",
+        "ident",
+        "inclusive_bytes",
+        "input_map",
+        "loaded_trace",
+        "main",
+        "member",
+        "output_size",
+        "provider_links",
+        "python_record",
+        "rec",
+        "request",
+        "runtime_map",
+        "sample_owned",
+        "stop_wait"
+      ],
+      "imports_exact": true,
+      "numeric_literals_unchanged": true
+    },
+    {
+      "role": "caller",
+      "donor": {
+        "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native-measurement-prep-002/run_native_capture.py",
+        "sha256": "997a57b382ea9c4ee8b2a49076b2f224b23684720291b769e5f145dbe97000f3",
+        "bytes": 22990
+      },
+      "successor": {
+        "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native-measurement-prep-003/run_native_capture.py",
+        "sha256": "7190f22f4d17869f6524743bc0de6f7eebc03393c17a4ed57984f282d0036a80",
+        "bytes": 22990
+      },
+      "groups": [
+        {
+          "line": 25,
+          "before": "ROOT_EXECUTION = ENGINEERING / \"cp1-oneway-cooling-release-richardson2-observer004-native-measurement-root-execution-002\"",
+          "after": "ROOT_EXECUTION = ENGINEERING / \"cp1-oneway-cooling-release-richardson2-observer004-native-measurement-root-execution-003\"",
+          "count": 1
+        },
+        {
+          "line": 26,
+          "before": "OUTPUT = ENGINEERING / \"cp1-oneway-cooling-release-richardson2-observer004-native-measurement-002\"",
+          "after": "OUTPUT = ENGINEERING / \"cp1-oneway-cooling-release-richardson2-observer004-native-measurement-003\"",
+          "count": 1
+        }
+      ],
+      "full_inverse_exact": true,
+      "all_function_names_text_AST_exact": [
+        "check_pins",
+        "checked_contract",
+        "commands",
+        "growth_bytes",
+        "interrupted",
+        "need",
+        "owned_size",
+        "registry_features",
+        "root_admission",
+        "run",
+        "runtime_unchanged",
+        "same",
+        "sha",
+        "stop"
+      ],
+      "imports_exact": true,
+      "numeric_literals_unchanged": true
+    }
+  ],
+  "changed_literal_occurrences": 6,
+  "no_global002_replacement": true,
+  "all_helper_main_diagnostic_cleanup_schema_CLI_and_numeric_logic_unchanged": true,
+  "source_compile_import_helper_fixture_process_native_execution": false,
+  "author_lineage": "defect_gate_refresh authored original native001/002 caller+owner and003namespace preparation; LPBF authored reviewed row-first3literal correction; Head source peer and separate mock source/result peers/root acceptance remain scoped evidence, not native003 authority."
+}
