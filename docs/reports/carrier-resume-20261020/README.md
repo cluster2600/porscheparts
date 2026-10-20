@@ -20,6 +20,16 @@ exclusion certificate; its closed-set test still reports planar contact. No
 variant is adopted as the final design. The catalogue selection remains
 24af0584; the results below identify their actual geometry and scope.
 
+## New: controlled element-order comparison
+
+The [convergence study](CONVERGENCE.md) now certifies the complete auxiliary
+surface within 0.06 mm of R2, verifies all quadratic-element mappings, and
+solves matched linear and quadratic cases with identical continuous bore
+tractions. Both pass reaction and independent stress-energy checks. The large
+displacement difference, **1.469 → 2.492 mm**, leaves convergence open.
+
+![Actual matched element-order comparison](../../media/carrier-resume-20261020/carrier-element-order-comparison.png)
+
 ## What changed
 
 The native radius-law trials and Boolean unions did not satisfy their original
@@ -641,7 +651,7 @@ preparation on that same revision.
 
 ## Verification of this checkpoint
 
-The **56 focused tests pass**. They replay every saved contraction against the
+The **67 focused tests pass**. They replay every saved contraction against the
 actual input and output triangles, verify each rational displacement cost and
 error budget, and hash-check the published evidence and archive. The strict
 documentation check reports **zero broken links**.

@@ -4,8 +4,8 @@
 
 This recipe reproduces the two certified patch meshes and the one-build-item
 3MF assembly from repository inputs. The parent is revision 24af0584. These
-are study files; the new volume mesh, mechanics and full print preparation
-remain open. Historical scripts and refused input meshes are retained for
+are study files; completed volume and mechanical stages are recorded below.
+Full print preparation remains open. Historical scripts and refused input meshes are retained for
 traceability. Use **`certified-patch-*.stl`** for the current assembly.
 
 Run from the repository root with a fresh Python environment:
@@ -384,3 +384,77 @@ combined solve uses `run_owned_ccx.py --memory-gib 12 --seconds 600`; the defaul
 remains 6 GiB. Both cases retain the same direct solver and input-field checks.
 The launcher records OOM/exit metadata before removing its own container. The
 12 GiB ceiling fits the current local Docker VM; no VM resource settings changed.
+
+## Complete-distance and matched-order continuation
+
+The [controlled comparison](../../../../../docs/reports/carrier-resume-20261020/CONVERGENCE.md)
+contains the completed results and a diagram. `auxiliary-fea-study/` supplies the
+complete simplified mesh; it is an analysis approximation with known tool-column
+interference. The reference manufacturing-study surface remains `picogk-R2-study/`.
+
+From the repository root, use the pinned runtimes and Docker images described
+above. Set `CARRIER_PY` to the design Python executable with NumPy; keep every
+output directory fresh. The complete interval covers generate about 790 MB of
+compressed witness arrays, which stay outside Git.
+
+```sh
+CARRIER_SOURCE=parts/993-eng-carrier-0001/source/design-20261016/resume-20261020
+CARRIER_RUN=work/carrier-convergence-replay
+CARRIER_PY=work/part-workflow/runtimes/design-standalone/bin/python
+mkdir -p "$CARRIER_RUN"
+gzip -dc "$CARRIER_SOURCE/picogk-R2-study/surface.mesh64.gz" > "$CARRIER_RUN/reference.mesh64"
+gzip -dc "$CARRIER_SOURCE/auxiliary-fea-study/surface.mesh64.gz" > "$CARRIER_RUN/auxiliary.mesh64"
+python3 "$CARRIER_SOURCE/run_interval_surface_cover.py" \
+  --first "$CARRIER_RUN/reference.mesh64" --second "$CARRIER_RUN/auxiliary.mesh64" \
+  --output "$CARRIER_RUN/forward"
+```
+
+The first command completes the forward cover but its overall report refuses
+the reverse quadtree budget. Retain its completed forward proof, then run:
+
+```sh
+python3 "$CARRIER_SOURCE/run_interval_surface_cover.py" \
+  --first "$CARRIER_RUN/reference.mesh64" --second "$CARRIER_RUN/auxiliary.mesh64" \
+  --worker-script "$CARRIER_SOURCE/interval_surface_cover_bisect.py" \
+  --reuse-proof-dir "$CARRIER_RUN/forward/output/result" \
+  --output "$CARRIER_RUN/reverse"
+python3 "$CARRIER_SOURCE/run_tetgen_quality.py" \
+  --mesh "$CARRIER_RUN/auxiliary.mesh64" --output "$CARRIER_RUN/tetgen"
+"$CARRIER_PY" "$CARRIER_SOURCE/audit_wildmeshing_volume.py" \
+  --mesh "$CARRIER_RUN/tetgen/output/volume.npz" \
+  --boundary "$CARRIER_RUN/tetgen/output/boundary.mesh64" \
+  --output "$CARRIER_RUN/exact-volume"
+"$CARRIER_PY" "$CARRIER_SOURCE/orient_tetgen_boundary.py" \
+  --volume "$CARRIER_RUN/tetgen/output/volume.npz" \
+  --reference "$CARRIER_RUN/auxiliary.mesh64" --output "$CARRIER_RUN/outward"
+"$CARRIER_PY" "$CARRIER_SOURCE/convert_quadratic_volume.py" \
+  --volume "$CARRIER_RUN/outward/volume.npz" \
+  --outward-proof "$CARRIER_RUN/outward/assessment.json" \
+  --distance-proof "$CARRIER_RUN/reverse/output/result/assessment.json" \
+  --output "$CARRIER_RUN/geometry"
+"$CARRIER_PY" "$CARRIER_SOURCE/audit_quadratic_mapping.py" \
+  --geometry "$CARRIER_RUN/geometry" --output "$CARRIER_RUN/mapping-audit"
+```
+
+Use the published R2 mechanics-study configuration
+`auxiliary-fea-study/mechanics-study.json`;
+if choosing a different configuration, the actual preparation report must record
+its identity. `prepare_matched_traction_cases.py --help` accepts that study,
+the geometry directory and the whole-mapping proof, and prepares separate
+`P1/` and `P2/` cases. Run `run_owned_ccx.py` with each `combined.inp` and
+`mesh.inp`, **one 12 GiB solve at a time**, using `--seconds 600`.
+`assess_tetgen_mechanics.py` reads P1; `assess_quadratic_mechanics.py` reads P2.
+The latter integrates all four stress points per element and independently
+checks compliance energy. `check_stress_strain_energy.py` performs the separate
+P1 energy check.
+
+`create_quadratic_patch_control.py` and `assess_quadratic_patch_control.py` run
+the quadratic manufactured solution and its missing-body-force counterexample.
+`traction_patch_control.py` generates and assesses the P1/P2 traction controls.
+Use `--help` for their explicit input paths; actual small decks and DAT outputs
+are published with the evidence. `render_order_comparison.py` reproduces both
+new images from the retained completed preparation and result directories.
+
+The two source-built tight-CG experiments and the CGAL distance timeouts remain
+experimental. Their receipts explain why they were not adopted. Neither changes
+the default direct-solver image or a geometry acceptance limit.

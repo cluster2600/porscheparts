@@ -1,0 +1,11 @@
+--- preiter-original.c
++++ preiter-tightened.c
+@@ -25,7 +25,7 @@
+   
+   ITG precFlg,niter=5000000,ndim,i,j,k,ier,*icol=NULL,*irow=NULL,
+     *irow_save=NULL,*icol_save=NULL;
+-  double eps=1.e-4,*u=NULL,*au=NULL;
++  double eps=1.e-12,*u=NULL,*au=NULL;
+ 
+   if(*neq==0) return;
+ 

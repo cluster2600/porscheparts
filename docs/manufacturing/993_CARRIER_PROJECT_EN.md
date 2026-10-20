@@ -198,3 +198,5 @@ The user resumed engineering on 20 October. The [current report](../reports/carr
    into one handover package.
 
 These remain the downstream engineering steps for the resumed work. These numerical variants remain separate studies; none has replaced the selected catalogue geometry.
+
+The [matched-order continuation](../reports/carrier-resume-20261020/CONVERGENCE.md) adds complete two-way auxiliary-surface fidelity, whole-element quadratic mapping certificates and completed P1/P2 mechanics under the same continuous bore tractions. The observed stiffness difference leaves convergence open.

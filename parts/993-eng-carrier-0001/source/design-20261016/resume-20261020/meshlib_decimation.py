@@ -38,7 +38,7 @@ def worker(a):
         if a.mesh.stat().st_size!=84+50*count:raise ValueError('Binary STL input length differs')
         phase('loading',input_faces=count);mesh=mr.loadMesh(a.mesh);loaded=mesh.topology.getValidFaces().count()
         if loaded!=count:raise ValueError(f'Loader did not retain every input face: {loaded}/{count}')
-        initial_volume=mesh.volume();settings=mr.DecimateSettings();settings.maxError=a.max_error;settings.packMesh=True
+        initial_volume=mesh.volume();settings=mr.DecimateSettings();settings.maxError=a.max_error;settings.packMesh=True;settings.stabilizer=a.stabilizer
         last=[0.]
         def progress(value):
             if time.monotonic()-last[0]>2:phase('decimating',backend_progress=float(value),input_faces=count);last[0]=time.monotonic()
@@ -53,7 +53,7 @@ def worker(a):
         dtype=np.dtype([('normal','<f4',3),('points','<f4',(3,3)),('attribute','<u2')]);saved=np.frombuffer(raw,offset=84,dtype=dtype)['points']
         identical=np.array_equal(saved.astype(np.float64),v[f])
         if not identical:raise ValueError('STL exporter changed triangle coordinates or order')
-        report.update(status='complete_meshlib_decimation_exported',versions=versions,analytic_control=control,input_faces=count,loaded_faces=loaded,output_vertices=len(v),output_faces=len(f),backend_deleted_faces=result.facesDeleted,backend_deleted_vertices=result.vertsDeleted,backend_estimated_error_introduced_mm=result.errorIntroduced,requested_max_error_mm=a.max_error,requested_error_independently_certified=False,all_input_faces_retained_on_load=True,STL_triangle_bytes_match_indexed_geometry=True,initial_volume_mm3=initial_volume,output_volume_mm3=mesh.volume(),nominal_mass_kg=mesh.volume()*4.42e-6,boundary_holes=len(mesh.topology.findHoleRepresentiveEdges()),maximum_new_triangle_aspect_ratio_setting=settings.maxTriangleAspectRatio,source_sha256=sha(a.mesh),output_sha256={p.name:sha(p)for p in [out/'decimated-study.stl',out/'surface.mesh64']},pending=['independent all-facet audit','independent reference fidelity','protected interfaces and source material','mechanical cases and print preparation'])
+        report.update(status='complete_meshlib_decimation_exported',versions=versions,analytic_control=control,input_faces=count,loaded_faces=loaded,output_vertices=len(v),output_faces=len(f),backend_deleted_faces=result.facesDeleted,backend_deleted_vertices=result.vertsDeleted,backend_estimated_error_introduced_mm=result.errorIntroduced,requested_max_error_mm=a.max_error,requested_error_independently_certified=False,all_input_faces_retained_on_load=True,STL_triangle_bytes_match_indexed_geometry=True,initial_volume_mm3=initial_volume,output_volume_mm3=mesh.volume(),nominal_mass_kg=mesh.volume()*4.42e-6,boundary_holes=len(mesh.topology.findHoleRepresentiveEdges()),maximum_new_triangle_aspect_ratio_setting=settings.maxTriangleAspectRatio,stabilizer_setting=settings.stabilizer,source_sha256=sha(a.mesh),output_sha256={p.name:sha(p)for p in [out/'decimated-study.stl',out/'surface.mesh64']},pending=['independent all-facet audit','independent reference fidelity','protected interfaces and source material','mechanical cases and print preparation'])
     except BaseException as error:report['failure']=dict(type=type(error).__name__,message=str(error),traceback=traceback.format_exc());raise
     finally:report['elapsed_seconds']=time.monotonic()-start;(out/'assessment.json').write_text(json.dumps(report,indent=2)+'\n')
     print(json.dumps({k:report[k]for k in ['status','input_faces','output_faces','nominal_mass_kg','backend_estimated_error_introduced_mm']}))
@@ -64,12 +64,12 @@ def child_limits():
 
 
 def main():
-    p=argparse.ArgumentParser(__doc__);p.add_argument('--mesh',type=Path,required=True);p.add_argument('--output',type=Path,required=True);p.add_argument('--max-error',type=float,required=True);p.add_argument('--worker',action='store_true');a=p.parse_args()
+    p=argparse.ArgumentParser(__doc__);p.add_argument('--mesh',type=Path,required=True);p.add_argument('--output',type=Path,required=True);p.add_argument('--max-error',type=float,required=True);p.add_argument('--worker',action='store_true');p.add_argument('--stabilizer',type=float,choices=[.001,.000001],default=.001);a=p.parse_args()
     if not 0<a.max_error<=.06:raise ValueError('Explicit error request must be in (0,0.06] mm')
     if a.worker:return worker(a)
     out=a.output.resolve()
     if out.exists():raise ValueError('Fresh output required')
-    out.mkdir(parents=True);mesh=a.mesh.resolve();source=Path(__file__).resolve();inputs={str(p):sha(p)for p in [mesh,source,Path(sys.executable)]};cmd=[sys.executable,'-I','-B',str(source),'--worker','--mesh',str(mesh),'--output',str(out/'output'),'--max-error',str(a.max_error)]
+    out.mkdir(parents=True);mesh=a.mesh.resolve();source=Path(__file__).resolve();inputs={str(p):sha(p)for p in [mesh,source,Path(sys.executable)]};cmd=[sys.executable,'-I','-B',str(source),'--worker','--mesh',str(mesh),'--output',str(out/'output'),'--max-error',str(a.max_error),'--stabilizer',str(a.stabilizer)]
     (out/'plan.json').write_text(json.dumps(dict(argv=cmd,input_sha256=inputs,resources=dict(wall_seconds=300,CPU_seconds=[2400,2420],sampled_RSS_limit_bytes=6*1024**3,nice=10),native_thread_limit_independently_verified=False),indent=2)+'\n');start=time.monotonic();peak=0;reason=None
     with (out/'stdout.log').open('w')as stdout,(out/'stderr.log').open('w')as stderr:
         child=subprocess.Popen(cmd,stdout=stdout,stderr=stderr,start_new_session=True,preexec_fn=child_limits)
