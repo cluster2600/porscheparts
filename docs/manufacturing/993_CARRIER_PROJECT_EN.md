@@ -2,7 +2,9 @@
 
 ### From a reference part to a reproducible manufacturing workflow
 
-**18 October 2026 · Engineering paused at the user's request**
+**20 October 2026 · Engineering resumed — new bounded reinforcement surfaces**
+
+[Latest progress, images and reproducible prototype](../reports/carrier-resume-20261020/README.md). The 18 October checkpoint below remains the retained 24af baseline.
 
 [Quick start](CARRIER_QUICK_START_EN.md) · [Software](#the-software-chain) · [Results](#what-the-calculations-show) · [Evidence](#files-and-evidence) · [Resume point](#where-to-resume)
 
@@ -184,8 +186,7 @@ chain has not yet become one complete portable command.
 
 ## Where to resume
 
-Engineering execution is paused. The workers and the interrupted cache job
-have been stopped; no continuation is scheduled by this checkpoint.
+The user resumed engineering on 20 October. The [new prototype report](../reports/carrier-resume-20261020/README.md) records explicit NURBS patches, continuous surface-error bounds and a passing complete component-surface audit. The earlier interrupted layer job remains stopped; its partial results stay with the baseline.
 
 1. Develop an endpoint-safe junction correction while keeping the **1.30 kg**
    limit and protected interfaces.
@@ -196,4 +197,4 @@ have been stopped; no continuation is scheduled by this checkpoint.
 4. Assemble the matching manufacturing files, settings, drawings and reports
    into one handover package.
 
-These are retained resume points. They start only after a new user request.
+These remain the downstream engineering steps for the resumed work. The new surface result is a separate prototype; revised mechanical and full print-preparation results remain pending.

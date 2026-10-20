@@ -1,0 +1,27 @@
+{
+  "focused_tests": {
+    "command": "python3 -m unittest discover -s tests -p 'test_carrier_*20261020.py'",
+    "passed": 35,
+    "actual_returncode": 0
+  },
+  "documentation_links": {
+    "actual_returncode": 0,
+    "markdown_files": 1311,
+    "broken_links": 0,
+    "frozen_sources_verified": 2
+  },
+  "repository_check": {
+    "command": "make check",
+    "actual_returncode": 2,
+    "tests": 4482,
+    "result": "failures=4, errors=27, skipped=411",
+    "environment": "macOS host Python 3.10 with local user-site packages",
+    "log_uncompressed_sha256": "7ed63f867fe1843c5b00bfe86987b3b65304ac05cec90df2ab486c43877abe48",
+    "observations": [
+      "hashlib.file_digest unavailable on Python 3.10",
+      "SciPy import failure through host user-site packages",
+      "four exact float-dictionary comparisons differed"
+    ],
+    "canonical_GitHub_CI": "pending"
+  }
+}
