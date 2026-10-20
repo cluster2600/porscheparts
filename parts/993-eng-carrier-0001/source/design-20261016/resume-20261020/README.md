@@ -356,3 +356,31 @@ other errors. Native scheduling and library changes can affect replay bytes;
 every fresh output needs its own audits. The large raw closing STL needs about
 0.54 GB of local storage; it is not committed. These commands document the
 executed route; the fresh directory named here has not been rerun just for docs.
+
+
+## R2 clearance-design iteration
+
+Repeat the pinned build/control/carrier route with `--radius 2` and entirely
+fresh paths. The first R2 open-column certificate refuses interference. Its
+saved facet list is the explicit input to the design correction:
+
+```sh
+python "$CARRIER_SOURCE/restore_intruding_tool_facets.py" \
+  --mesh work/carrier-R2-restored/surface.mesh64 \
+  --certificate work/carrier-R2-open-columns/assessment.json \
+  --output work/carrier-R2-capped
+```
+
+Repeat the full surface audit, original gauge screen and independent open-column
+certificate on that new surface, then TetGen, exact volume audit and winding
+normalization. `certify_surface_mass.py` computes a complete exact surface volume
+and the nominal mass at the explicit 4,420 kg/m³ density. Its exact Fraction
+matches the independent per-tetrahedron volume sum. The published R2 surface and
+both ledgers are in `picogk-R2-study/`.
+
+`prepare_voxel_ccx_mechanics.py` classifies nominal bore faces using its recorded
+0.06 mm radial band, inward-normal alignment and axial limits. The actual
+combined solve uses `run_owned_ccx.py --memory-gib 12 --seconds 600`; the default
+remains 6 GiB. Both cases retain the same direct solver and input-field checks.
+The launcher records OOM/exit metadata before removing its own container. The
+12 GiB ceiling fits the current local Docker VM; no VM resource settings changed.

@@ -10,7 +10,7 @@ string input = Path.GetFullPath(args[1]);
 string output = Path.GetFullPath(args[2]);
 float voxel = float.Parse(args[3], System.Globalization.CultureInfo.InvariantCulture);
 float rounding = float.Parse(args[4], System.Globalization.CultureInfo.InvariantCulture);
-if ((mode != "control" && mode != "carrier") || voxel < 0.1f || voxel > 0.2f || rounding < 0.6f || rounding > 1f)
+if ((mode != "control" && mode != "carrier") || voxel < 0.1f || voxel > 0.2f || rounding < 0.6f || rounding > 2f)
     throw new ArgumentException("Declared study bounds differ");
 Directory.CreateDirectory(output);
 if (Directory.EnumerateFileSystemEntries(output).Any()) throw new ArgumentException("Fresh output required");

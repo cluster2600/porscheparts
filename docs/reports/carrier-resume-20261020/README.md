@@ -7,8 +7,9 @@
 Three routes have now been executed from the retained **24af0584 carrier**:
 small NURBS reinforcement, native cavity redesign, and PicoGK volumetric
 rounding followed by MeshLib surface simplification. Their nominal masses
-remain below the requested **1.30 kg** ceiling. The newest fully audited
-surface is **1.281674 kg**, with **2,293,220 triangles**.
+remain below the requested **1.30 kg** ceiling. The two restored volumetric surfaces are **1.281680 kg (R1)** and
+**1.298200 kg (R2)**. Their own complete audits and new mechanical cases
+are recorded below.
 
 ![Actual carrier surface and reinforcement components](../../media/carrier-resume-20261020/carrier-certified-surface.png)
 
@@ -76,15 +77,15 @@ flowchart TB
     end
     subgraph C["C · Volumetric rounding"]
         direction TB
-        C1["PicoGK closing R1<br/>MeshLib decimation"]
-        C2["2,293,220-triangle full audit passed<br/>nominal mass 1.281674 kg"]
+        C1["PicoGK closing R1 / R2<br/>MeshLib decimation"]
+        C2["Complete surface audits passed<br/>R1 1.281680 kg · R2 1.298200 kg"]
         C3["Pad restoration · six shank gauges passed<br/>exact open-tool-column exclusion passed"]
         C1 --> C2 --> C3
     end
     S --> A1
     S --> B1
     S --> C1
-    A3 --> D["Current work<br/>datum correction · complete interfaces<br/>mechanical cases and convergence"]
+    A3 --> D["Current work<br/>rib transition · complete interfaces<br/>mechanical cases and convergence"]
     B3 --> D
     C3 --> D
     D --> P["Full layers · supports · vectors<br/>machine envelope · process handover"]
@@ -514,12 +515,109 @@ with exact input-boundary identity. The full exact audit confirms all
 **2,661,257 cells are strictly positive**, one face-connected volume and no
 missing boundary face. Full-cell quality diagnostics give minimum mean-ratio
 0.005272 and maximum Jacobian condition about 3,232. The first combined-load C3D4 attempt exited with code 137 in the 6 GiB
-container without a completed solution. That receipt is retained. A second
-attempt uses identical inputs and solver with a declared 12 GiB ceiling and
-600-second bound on the existing local host. The launcher now records container
-termination state before removing its own container; the fresh affine control
-still passes the original tolerances. No mechanical conclusion is transferred
-from other variants.
+container without a completed solution. The same inputs and direct solver then
+completed in **242.03 seconds** under a **12 GiB** ceiling. The recorded terminal
+state is `ExitCode=0`, `OOMKilled=false`; the owned container was removed and
+inputs stayed unchanged. The updated supervisor also passed a fresh affine
+control at the original fixed tolerances.
+
+### Actual first PicoGK combined-load result
+
+![Actual boundary-adjacent PicoGK stress field](../../media/carrier-resume-20261020/carrier-picogk-combined-stress.png)
+
+The complete result reader covers all **745,347 displacements**, **2,661,257
+stress rows** and **14,120 reactions**. Under the same assumed resultant
+−4,000 N / 850 N·m, the displacement maximum is **2.344956 mm** and elastic
+von Mises maximum is **1,362.854 MPa**, near **(50.517, 6.309, 4.489) mm**.
+Force and moment equilibrium checks pass. This new hotspot is at the central
+pad/rib transition. The declared bore classifier uses a 0.06 mm radial band,
+inward radial face alignment ≥ 0.9, and explicit axial bounds; those are
+numerical classification rules rather than dimensional acceptance.
+
+[Complete result summary](evidence/picogk-restored-combined-assessment-001/assessment.json) ·
+[actual completed solver receipt](evidence/picogk-restored-combined-direct-002/actual-terminal.json) ·
+[declared bore groups](evidence/picogk-restored-ccx-preparation-001/assessment.json).
+
+These linear-tetrahedron results have not demonstrated stress convergence or
+strength acceptance. The native and voxel studies have different surface and
+bore discretizations; their peaks are not presented as a converged improvement
+ratio. The separate R2 closing trial below repeats its own mass, interface, surface,
+volume and mechanical checks.
+
+### Flat-build envelope on this exact surface
+
+![Actual complete mesh projected into the flat build study](../../media/carrier-resume-20261020/carrier-flat-build-envelope.png)
+
+A fresh full-vertex check uses the manufacturer's documented
+[600 × 600 × 600 mm NXG XII 600 envelope](https://nikon-slm-solutions.com/newsroom/peak-productivity-slm-solutions-launches-12-laser-machine/),
+checked on 20 October. At the recorded 45-degree stored pose, the current part
+occupies **450.8614 × 450.8617 × 52.0074 mm**. It passes the complete guarded
+part-envelope check with 10 mm XY margins, an assumed 20 mm plate and a minimum
+10 mm support clearance. Its lowest placed Z is 31 mm, adding a declared 1 mm
+placement margin. Exact rational roundoff bounds cover the stored affine map;
+triangle containment follows from vertex containment.
+
+The first placement at exactly Z=30 failed its guarded lower-bound check and
+is retained. The second placement changes translation only. This is an
+inference about this part inside the stated box, not a selected supplier,
+support envelope, thermal simulation or machine job. Full layers and support
+checks remain separate. [Actual full-envelope result](evidence/picogk-flat-build-envelope-002/assessment.json).
+
+## R2 closing and local clearance design edit
+
+![Actual baseline, R1 and R2 junction sections](../../media/carrier-resume-20261020/carrier-radius-comparison.png)
+
+A separate R2 mm closing run completed in **89.10 seconds**, peaking near
+**4.88 GB sampled RSS**. Its own finite-probe control passed first. MeshLib
+retained every input triangle on load, then produced 1,218,348 surface triangles
+with the same 0.04 mm backend setting. This setting is still not an independent
+CAD-distance certificate.
+
+The first exact tool-column certificate refused genuine interference. The
+subsequent clearance design edit identifies all **231 intruding facets** and
+caps their above-plane vertices to **Z=4 mm**. It moves **125 vertices**; the
+complete two-way edit bound is **298643 / 1048576 mm ≈ 0.2848082 mm**. This is
+a deliberate shape correction rather than an enlarged tessellation tolerance.
+XY and every triangle index remain unchanged. The full affected facets now
+have Z≤4; all other surface points move only downwards. Fresh complete
+self-intersection, topology and original triangle-quality checks pass.
+
+Six shank gauges pass. The separate exact open-column certificate also passes:
+**155 / 149 / 149 / 153 facets** require rational polygon checks after coordinate
+interval exclusion. An independent regression reconstructs each clipped
+polygon and checks a feasible exact separating half-plane for its entire
+convex hull. This dual proof does not trust the worker's reported minimum
+distance. Original polygonal closed-set gauge refusals remain unchanged.
+
+The complete signed volume has been calculated twice: once by **integer
+surface determinants**, once by **per-cell rational determinants** over all
+**2,645,661 tetrahedra**. The two exact Fractions are identical. At the stated
+4,420 kg/m³ reference density, exact nominal dense mass is **1.29819981344 kg**,
+leaving **1.80019 g** below 1.30 kg. No supports or machining stock are included
+in that part-mass calculation.
+
+[Complete surface and both edit ledgers](../../../parts/993-eng-carrier-0001/source/design-20261016/resume-20261020/picogk-R2-study/) ·
+[whole surface audit](evidence/picogk-R2-capped-surface-audit-001/assessment.json) ·
+[exact open-column proof](evidence/picogk-R2-capped-open-tool-certificate-001/assessment.json) ·
+[exact surface mass](evidence/picogk-R2-exact-mass-001/assessment.json) ·
+[independent exact volume](evidence/picogk-R2-exact-volume-audit-001/assessment.json).
+
+The new volume has one face-connected component and the exact source skin.
+Full-cell diagnostics give minimum mean-ratio **0.016133** and maximum Jacobian
+condition about **707**. The minimum cell altitude is much smaller than in R1;
+cell size and shape are retained separately in the diagnostic record. Its own combined direct calculation completed in **244.58 seconds** under the
+same 12 GiB ceiling. All **739,620 displacement rows**, **2,645,661 stress rows**
+and **14,064 reaction rows** are read. Force and moment equilibrium pass.
+Displacement maximum is **2.246491 mm** and elastic von Mises maximum is
+**1,008.611 MPa**, near **(88.771, 13.091, 17.530) mm**. The maximum has moved
+from the central pad to another arm/rib junction. These remain unconverged
+linear-tetrahedron results; no strength acceptance or converged improvement
+ratio is inferred.
+
+![Actual R2 boundary-adjacent stress field](../../media/carrier-resume-20261020/carrier-R2-combined-stress.png)
+
+[Completed R2 solver receipt](evidence/picogk-R2-combined-direct-001/actual-terminal.json) ·
+[complete R2 result summary](evidence/picogk-R2-combined-assessment-001/assessment.json).
 
 ## Protected source regions
 
@@ -543,7 +641,7 @@ preparation on that same revision.
 
 ## Verification of this checkpoint
 
-The **53 focused tests pass**. They replay every saved contraction against the
+The **56 focused tests pass**. They replay every saved contraction against the
 actual input and output triangles, verify each rational displacement cost and
 error budget, and hash-check the published evidence and archive. The strict
 documentation check reports **zero broken links**.
@@ -553,4 +651,4 @@ environment: failures=4, errors=27, skipped=411. Recorded issues include the una
 `hashlib.file_digest`, a host SciPy import failure and exact floating-point
 comparison differences. The [check record](checks.json) and
 [complete compressed local log](make-check-local.log.gz) retain the result.
-The canonical [GitHub integration run](https://github.com/cluster2600/porscheparts/actions/runs/39447532730) **passed** for commit `312a4f21`. The subsequent [native/mechanical/PicoGK checkpoint run](https://github.com/cluster2600/porscheparts/actions/runs/39461106451) also passed for `f4b0c0e6`. Later datum additions receive a separate run. No tests were weakened.
+The canonical [GitHub integration run](https://github.com/cluster2600/porscheparts/actions/runs/39447532730) **passed** for commit `312a4f21`. The subsequent [native/mechanical/PicoGK checkpoint run](https://github.com/cluster2600/porscheparts/actions/runs/39461106451) also passed for `f4b0c0e6`. The [restored-pad checkpoint run](https://github.com/cluster2600/porscheparts/actions/runs/39462948199) also passed for `ab5de898`. Later mechanics, envelope and R2 additions receive a separate run. No tests were weakened.
