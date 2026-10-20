@@ -1,0 +1,9 @@
+# Observer004 build owner002: observational precision correction
+
+This unrun source successor preserves owner001 and actual001 byte-exact. The seven original005 helpers and all ten non-main function definitions are text/AST exact. The fixed recipe and both compiler/link argv remain unchanged, with the same unused fresh build-001 target. Only the owner/execution/result/admission namespaces change.
+
+Three main observations are corrected. A resource-sampling exception coinciding with a direct child exit is retained with repr(exception), raw direct returncode and overall/step elapsed times. Peak RSS starts null when no numeric sample exists; a measured numeric zero remains zero. The final overall60s check occurs after full receipt serialization/write and before returning0. A late wall overrun writes an explicit outer stderr refusal and returns2 without rewriting the existing receipt.
+
+The receipt complete flag is consequently a pre-final-write candidate. Acceptance requires that flag and independently observed outerRC0 after the end-of-closure check, plus both childRC0 and existing cleanup/control/output gates. Its recorded timing ends before serialization/write; signal capture ends at handler restoration. Later signals and interpreter teardown lie outside these receipt scopes; absent/partial receipts or any outer nonzero refuse acceptance. No complete interpreter teardown timing guarantee is made.
+
+Overall60/per-step60/T8/2GiB sampled group RSS/32MiB including final receipt/T1/no retry remain. No nm/otool, guard, compiler/linker, host/plugin, scientific helper or runtime query ran. The original selected59 identities are inherited from their pinned prior preflight, with fresh named metadata and alias checks only; original native bytes are not rescanned. Actual execution remains gated by root source/actual review, distinct admission and owner fresh pre/post checks.

@@ -1,0 +1,110 @@
+{
+  "schema": "962-observer004-self-retain-source-associations/v1",
+  "proposal": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer003-host-lifetime-remedy-proposal-001/proposal.json",
+    "sha256": "5af00baa90d8911c5619a6f25bc0cdc3f6925fc801f7e7a4505685c6a633701a",
+    "bytes": 11884
+  },
+  "proposal_bindings": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer003-host-lifetime-remedy-proposal-001/bindings.json",
+    "sha256": "2891803d769e0c32a108dff2524e4a070b0a457be4bf2e3e2a7be2731458b089",
+    "bytes": 3244
+  },
+  "public_source_revision": "7c06bdcefd02f9f31f4508839f21f410561309a4",
+  "loader_primary_sources": [
+    {
+      "source": "Exact local SDK dlfcn.h",
+      "identity": {
+        "path": "/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk/usr/include/dlfcn.h",
+        "sha256": "01b3575f40973f5549655b9d44fb845b67c663fa201bdb1f3a0b0266e5ec046b",
+        "bytes": 14871
+      },
+      "lines": [
+        74,
+        100,
+        115,
+        123,
+        158,
+        162,
+        214,
+        222
+      ],
+      "finding": "dladdr identifies the image containing a data address. Reopening the same resolved path increments its reference count. RTLD_NOLOAD refuses an absent image and acquires a counted handle for an existing image; NODELETE promises mapping retention."
+    },
+    {
+      "url": "https://github.com/apple-oss-distributions/dyld/blob/main/doc/man/man3/dlopen.3",
+      "document_date": "2024-02-08",
+      "lines": [
+        25,
+        28,
+        83,
+        99,
+        118,
+        123,
+        148,
+        159
+      ],
+      "finding": "A NOLOAD handle is reference counted. Search overrides may affect even full paths, so a self-path request still needs a same-image check. NODELETE is documented as address-space retention, not a C++ lifetime certificate."
+    },
+    {
+      "url": "https://github.com/apple-oss-distributions/dyld/blob/main/dyld/DyldAPIs.cpp",
+      "lines": [
+        1336,
+        1353,
+        1600,
+        1626
+      ],
+      "finding": "Current upstream NOLOAD increments the count and returns before later NODELETE marking; combining flags must not be assumed to apply both effects."
+    },
+    {
+      "url": "https://github.com/apple-oss-distributions/dyld/blob/main/dyld/DyldRuntimeState.cpp",
+      "lines": [
+        1268,
+        1288,
+        1320,
+        1331,
+        1396,
+        1448,
+        1482,
+        1518,
+        1949,
+        1965
+      ],
+      "finding": "Current upstream positive dlopen counts root an image and dependencies. Dead-image finalizers run before the later leaveMapped unmap exclusion. Mapping retention alone therefore does not establish live C++ registration state."
+    },
+    {
+      "url": "https://github.com/apple-oss-distributions/dyld/blob/main/doc/man/man1/dyld.1",
+      "lines": [
+        43,
+        49,
+        131,
+        138
+      ],
+      "finding": "DYLD_INSERT_LIBRARIES is a supported preload route but changes startup loading/initializer order and can be ignored for protected processes."
+    }
+  ],
+  "source_boundary": "Apple main URLs are moving public sources inspected on 2026-10-20, not a pinned installed-dyld implementation or full ABI match. The exact local SDK header is separately hashed. No installed dyld/libSystem body inspection occurred.",
+  "new_code_associations": [
+    {
+      "operation": "dladdr private nonconst unsigned char anchor",
+      "basis": "SDK dlfcn.h74-100 documents mapped image path/base even without a nearest symbol; no function-pointer cast."
+    },
+    {
+      "operation": "dlopen RTLD_LAZY|RTLD_NOLOAD",
+      "basis": "SDK219-220 gives a counted existing-image handle orNULL; no new image/fallback/NODELETE/preload."
+    },
+    {
+      "operation": "dlsym unique entry then dladdr samebase",
+      "basis": "Handle-scoped dlsym association plus both actual image bases rejects path override or wrong-image success."
+    },
+    {
+      "operation": "function-local static trivial raw pointer initialized by lambda",
+      "basis": "C++17 once successful initialization; raw pointer destruction has no dlclose. Failed initialization propagates; no local retry/fallback loop. Standard permits a later caller to attempt initialization again after an exception, but this prep grants no repeated external check."
+    },
+    {
+      "operation": "dlclose only rejected extra handle",
+      "basis": "Original caller retains its handle while registerAll executes. No close occurs on successful self-retain."
+    }
+  ],
+  "not_a_source_or_ABI_cause_proof": true
+}

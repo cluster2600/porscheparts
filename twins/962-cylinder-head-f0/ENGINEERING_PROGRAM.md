@@ -37,6 +37,10 @@ The [local flip-screen fixtures](derived/engineering/current24-flip-synthetic-gu
 pass all 17 synthetic tests with independent saved-result review and root acceptance.
 They verify toy replacement, quality, preservation, ownership and conflict cases;
 no real-head repair or geometry change follows.
+The [complete saved flip screen](derived/engineering/current24-saved-flip-screen/README.md)
+adds all 204 observed associations: 139 nonpatterns and 65 failed local replacement
+patterns. A separately authored rational checker verifies the finite result and
+89 conflicts. No mesh change follows and all 24 poor cells remain.
 The [passive residual-map plugin](derived/engineering/cp1-END181-observer-plugin/README.md)
 has reviewed source and compiled plugin/validator binaries. Host registration
 and native measurement remain pending. These checkpoints continue the material/strength
@@ -53,6 +57,12 @@ loads the plugin and prints the observer type and Syntax OK, then exits with
 SIGSEGV during output cleanup. Independent review refuses completed registration.
 Full logs and selected crash frames preserve the failure. A source lifetime-order
 hypothesis is documented; no cause, live callback or native measurement is accepted.
+
+The [observer lifetime candidate](derived/engineering/cp1-END181-observer-lifetime-build/README.md)
+adds one counted self-reference and successfully compiles and links the new plugin
+with the original production observer object. Saved-result review accepts the build
+and descriptor scope only. Static metadata and a separate clean host setup/shutdown
+check remain next; no callback, native field or equilibrium repair is accepted.
 
 The earlier [complete 73-component coordinate study](derived/engineering/current110-complete73-coordinate-diagnostics/README.md)
 preserves all 62 passing and 11 rejected proposals. Only the passing subset was

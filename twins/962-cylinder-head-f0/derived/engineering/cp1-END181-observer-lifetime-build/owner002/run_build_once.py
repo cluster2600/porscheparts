@@ -1,0 +1,260 @@
+"""HELD: two exact observer004 build commands only after separate root admission.
+No guards, plugin loading, host, scientific helper, Make or native physics execution.
+"""
+from pathlib import Path
+import hashlib,json,os,resource,signal,subprocess,sys,time,traceback
+R=Path('/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993')
+E=R/'work/962-engineering'
+P=E/'cp1-oneway-cooling-release-richardson2-END181-dof-map-observer-prep-004'
+X=E/'cp1-oneway-cooling-release-richardson2-observer004-build-execution-prep-002'
+D=E/'cp1-oneway-cooling-release-richardson2-observer004-build-root-execution-002'
+B=P/'build-001'
+A=E/'cp1-oneway-cooling-release-richardson2-observer004-root-build-admission-002/admission.json'
+CAP=32*1024**2
+WALL=60
+MAX_RSS=2*1024**3
+RECIPE='9a9a56ade7b86b896c36200d120f56f8e5e363249e8b3dc83f6022b1a5316128'
+
+def rec(p):
+ h=hashlib.sha256();size=0
+ with p.open('rb') as f:
+  while True:
+   b=f.read(1024**2)
+   if not b:break
+   h.update(b);size+=len(b)
+ return dict(path=str(p.relative_to(R)) if p.is_relative_to(R) else str(p),sha256=h.hexdigest(),bytes=size)
+
+def group_exists(pid):
+ try:os.killpg(pid,0);return True
+ except ProcessLookupError:return False
+
+def check(records):
+ changed={};digest=hashlib.sha256();count=0
+ for name,pin in sorted(records.items()):
+  path=Path(name) if Path(name).is_absolute() else R/name
+  try:
+   got=rec(path);digest.update(json.dumps(got,sort_keys=True).encode());count+=1
+   if got!=pin:changed[name]=dict(expected=pin,actual=got)
+  except Exception as exc:changed[name]=repr(exc)
+ return dict(count=count,observed_sha256=digest.hexdigest(),changed=changed)
+
+def output_size(root):
+ size=0
+ for p in root.rglob('*'):
+  if p.is_symlink():raise ValueError('Unexpected owned output symlink: '+str(p))
+  if p.is_file():size+=p.stat().st_size
+ return size
+
+def stop_wait(proc):
+ actions=[]
+ if group_exists(proc.pid):
+  try:os.killpg(proc.pid,signal.SIGTERM);actions.append('TERM')
+  except ProcessLookupError:pass
+ try:proc.wait(timeout=8)
+ except subprocess.TimeoutExpired:pass
+ if group_exists(proc.pid):
+  try:os.killpg(proc.pid,signal.SIGKILL);actions.append('KILL')
+  except ProcessLookupError:pass
+ proc.wait(timeout=8);deadline=time.monotonic()+8
+ while group_exists(proc.pid) and time.monotonic()<deadline:time.sleep(.05)
+ return dict(actions=actions,returncode=proc.returncode,group_absent=not group_exists(proc.pid))
+
+def limits():
+ resource.setrlimit(resource.RLIMIT_CORE,(0,0));resource.setrlimit(resource.RLIMIT_FSIZE,(CAP,CAP))
+
+def sample(pgid):
+ env={'PATH':'/usr/bin:/bin','LC_ALL':'C'}
+ ps=subprocess.run(['/bin/ps','-axo','pid=,pgid=,rss=,stat='],capture_output=True,text=True,env=env,timeout=5)
+ if ps.returncode:raise ValueError('RSS ps failed: '+ps.stderr)
+ live={};zombies=[];owned_rows=[]
+ for row in ps.stdout.splitlines():
+  x=row.split()
+  if len(x)>=2 and (x[1]==str(pgid) or x[0]==str(pgid)):
+   if len(x)!=4 or not all(v.isdigit() for v in x[:3]):
+    raise ValueError('Missing/nonnumeric owned RSS data: '+repr(row))
+   if int(x[1])!=pgid:raise ValueError('Direct wrapper PGID changed: '+repr(row))
+   rss=int(x[2])*1024
+   owned_rows.append(dict(raw=row,pid=int(x[0]),pgid=int(x[1]),reported_RSS_KiB=int(x[2]),RSS_bytes=rss,state=x[3]))
+   if x[3].startswith('Z'):zombies.append(int(x[0]))
+   else:live[int(x[0])]=rss
+ if not owned_rows:raise ValueError('No owned resource rows observed')
+
+ thread_observation=dict(observed_counts={},unobserved_pids=sorted(live),error=None)
+ try:
+  if not live:raise ValueError('No non-zombie PID available for non-gating thread observation')
+  tp=subprocess.run(['/bin/ps','-M','-p',','.join(map(str,live)),'-o','pid='],capture_output=True,text=True,env=env,timeout=5)
+  counts={}
+  for row in tp.stdout.splitlines():
+   x=row.split()
+   if x and x[-1].isdigit() and int(x[-1]) in live:
+    pid=int(x[-1]);counts[pid]=counts.get(pid,0)+1
+  thread_observation=dict(observed_counts=counts,unobserved_pids=sorted(set(live)-set(counts)),returncode=tp.returncode,error=tp.stderr if tp.returncode else None)
+ except Exception as exc:thread_observation['error']=repr(exc)
+ # Thread snapshots are non-gating and follow the RSS snapshot. Missing values stay unknown.
+ return dict(RSS_bytes=sum(row['RSS_bytes'] for row in owned_rows),processes=len(owned_rows),raw_owned_rows=owned_rows,threads=sum(thread_observation['observed_counts'].values()) if thread_observation['observed_counts'] else None,thread_observation=thread_observation,zombie_pids=zombies)
+
+def path_metadata(paths):
+ result={}
+ for name in paths:
+  p=Path(name)
+  result[name]=dict(path=name,resolved=str(p.resolve(strict=True)),link=os.readlink(p) if p.is_symlink() else None)
+ return result
+
+def owned_size():
+ return output_size(B)+output_size(D)
+
+def pinned_json(path,pin):
+ payload=path.read_bytes()
+ got=dict(path=str(path.relative_to(R)) if path.is_relative_to(R) else str(path),sha256=hashlib.sha256(payload).hexdigest(),bytes=len(payload))
+ if got!=pin:raise ValueError('Consumed JSON control identity mismatch: '+str(path))
+ return json.loads(payload)
+
+def main():
+ overall_started=time.monotonic()
+ if len(sys.argv)!=2 or len(sys.argv[1])!=64 or any(c not in '0123456789abcdef' for c in sys.argv[1]):
+  raise ValueError('HELD: one exact root admission digest required')
+ if not (sys.flags.isolated and sys.flags.no_site and sys.flags.dont_write_bytecode):
+  raise ValueError('Owner requires selected Python -B -I -S')
+ admission_payload=A.read_bytes()
+ admission_record=dict(path=str(A.relative_to(R)),sha256=hashlib.sha256(admission_payload).hexdigest(),bytes=len(admission_payload))
+ if admission_record['sha256']!=sys.argv[1]:raise ValueError('Root admission digest mismatch')
+ admission=json.loads(admission_payload)
+ actual_path=X/'actual-contract.json';preflight_path=X/'selected-input-preflight.json';index_path=X/'preparation-index.json'
+ actual=pinned_json(actual_path,admission['actual']);preflight=pinned_json(preflight_path,admission['preflight'])
+ for key,p in [('actual',actual_path),('controller',Path(__file__)),('preflight',preflight_path),('preparation_index',index_path)]:
+  if admission[key]!=rec(p):raise ValueError('Root exact control mismatch: '+key)
+ if not (admission['source_review_accepted'] is True and admission['actual_review_accepted'] is True and admission['run_each_step_once_stop_first_failure'] is True):
+  raise ValueError('Root source/actual review and once-only gates required')
+ if admission['build_commands_authorized']!=2 or admission['compiler_commands_authorized']!=1 or admission['linker_commands_authorized']!=1 or admission['descriptor_materialization_authorized'] is not True:
+  raise ValueError('Root two-command scope mismatch')
+ for key in ['automatic_retry','guard_execution_authorized','host_library_load_authorized','native_case_or_field_capture_authorized','scientific_or_ABI_acceptance']:
+  if admission[key] is not False:raise ValueError('Unexpected root authority: '+key)
+ if actual['controller']!=rec(Path(__file__)) or actual['preflight']!=rec(preflight_path):raise ValueError('Actual control join mismatch')
+ if actual['build_execution_authorized'] is not False or actual['host_load_authorized'] is not False:raise ValueError('Historical held actual authority changed')
+ if actual['recipe']!=rec(P/'build-recipe.json') or actual['recipe']['sha256']!=RECIPE:raise ValueError('Frozen recipe mismatch')
+ for key in ['source_peer_review','source_peer_bindings','source_peer_checks']:
+  descriptor=actual[key];path=Path(descriptor['path']) if Path(descriptor['path']).is_absolute() else R/descriptor['path']
+  if rec(path)!=descriptor or admission[key]!=descriptor:raise ValueError('Source peer binding mismatch: '+key)
+ if rec(Path(actual['outer_python']['resolved']))!=actual['outer_python']['record'] or Path(sys.executable).resolve()!=Path(actual['outer_python']['resolved']):
+  raise ValueError('Selected isolated owner interpreter mismatch')
+ if actual['controls']!={'overall_wall_seconds':60,'wall_seconds_per_step':60,'TERM_grace_seconds':8,'KILL_wait_seconds':8,'sampled_owned_group_RSS_stop_bytes':MAX_RSS,'owned_output_stop_bytes':CAP,'OMP_BLAS_environment_threads':1,'retry':0}:
+  raise ValueError('Exact resource controls mismatch')
+ recipe=json.loads((P/'build-recipe.json').read_text())
+ if actual['ordered_steps']!=recipe['ordered_steps'] or len(actual['ordered_steps'])!=2:raise ValueError('Exact two-command recipe mismatch')
+ if actual['cwd']!=str(B) or actual['result_directory']!=str(D):raise ValueError('Fixed output namespace mismatch')
+ env=actual['environment']
+ if env!=recipe['environment'] or env['TMPDIR']!=str(B/'tmp'):raise ValueError('Exact build environment mismatch')
+ if any(env[k]!='1' for k in ['OMP_NUM_THREADS','OPENBLAS_NUM_THREADS','MKL_NUM_THREADS','VECLIB_MAXIMUM_THREADS']):raise ValueError('Thread environment mismatch')
+ records=preflight['protected_records']
+ direct={str(actual_path):admission['actual'],str(preflight_path):admission['preflight'],str(index_path):admission['preparation_index'],str(Path(__file__)):admission['controller'],str(A):admission_record}
+ for name,pin in direct.items():
+  if name in records and records[name]!=pin:raise ValueError('Conflicting direct control pin')
+ pins={**records,**direct}
+ initial=check(pins)
+ if initial['changed']:raise ValueError('Protected input changed before any build')
+ if path_metadata(preflight['path_metadata'])!=preflight['path_metadata']:raise ValueError('Selected alias/path changed before build')
+ if B.exists() or D.exists():raise ValueError('Fresh build/result directories required; no retry')
+ if time.monotonic()-overall_started>=WALL:raise ValueError('Overall60s elapsed before any build')
+ D.mkdir();B.mkdir();(B/'tmp').mkdir()
+ receipt=dict(schema='962-observer004-once-two-build-receipt/v1',actual=rec(actual_path),admission=rec(A),controller=rec(Path(__file__)),preflight=rec(preflight_path),initial=initial,steps=[],requests=[],completed_two_build_steps=False,guards_executed=False,plugin_or_host_loaded=False,native_or_helper_executed=False,scientific_or_ABI_acceptance=False,automatic_retry=False,controls=actual['controls'],scope='Only exact shim compile then plugin link; descriptor only after actual plugin capture; original observer object reused')
+ (D/'run-started.json').write_text(json.dumps(dict(actual=rec(actual_path),admission=rec(A),controller=rec(Path(__file__)),pid=os.getpid(),overall_wall_seconds=WALL),indent=2)+'\n')
+ stop_latch={'requested':False};old_handlers={};failure=None;proc=None;current=None
+ def request_stop(sig,frame):
+  receipt['requests'].append(dict(signal=sig,elapsed_seconds=time.monotonic()-overall_started));stop_latch['requested']=True
+ for sig in [signal.SIGTERM,signal.SIGINT]:old_handlers[sig]=signal.signal(sig,request_stop)
+ def gate():
+  if stop_latch['requested']:raise ValueError('Root signal request received')
+  if time.monotonic()-overall_started>=WALL:raise ValueError('Overall60s build wall cap')
+  if owned_size()+len((json.dumps(receipt,indent=2)+'\n').encode())>CAP:raise ValueError('32MiB combined owned output/receipt projection cap')
+ try:
+  for index,step in enumerate(actual['ordered_steps']):
+   gate();current=dict(ordinal=index+1,name=step['name'],argv=list(step['argv']),before=check(pins),resource_samples=[],resource_observation_exit_races=[],peak_RSS_bytes=None,returncode=None,termination=None)
+   receipt['steps'].append(current)
+   if current['before']['changed']:raise ValueError('Protected input changed before step')
+   if path_metadata(preflight['path_metadata'])!=preflight['path_metadata']:raise ValueError('Selected alias changed before step')
+   gate();outp=D/f'step{index+1}.stdout';errp=D/f'step{index+1}.stderr';proc=None;started=time.monotonic()
+   try:
+    with outp.open('xb') as out,errp.open('xb') as err:
+     proc=subprocess.Popen(current['argv'],cwd=B,env=env,stdin=subprocess.DEVNULL,stdout=out,stderr=err,start_new_session=True,preexec_fn=limits);current['pid']=proc.pid
+     while proc.poll() is None:
+      gate()
+      if time.monotonic()-started>=60:raise ValueError('Per-step60s cap')
+      try:s=sample(proc.pid)
+      except Exception as exc:
+       direct_returncode=proc.poll()
+       if direct_returncode is not None:
+        current['resource_observation_exit_races'].append(dict(error=repr(exc),direct_returncode=direct_returncode,elapsed_seconds=time.monotonic()-overall_started,step_elapsed_seconds=time.monotonic()-started))
+        break
+       raise
+      s['elapsed_seconds']=time.monotonic()-overall_started;current['resource_samples'].append(s);current['peak_RSS_bytes']=s['RSS_bytes'] if current['peak_RSS_bytes'] is None else max(current['peak_RSS_bytes'],s['RSS_bytes'])
+      if s['RSS_bytes']>MAX_RSS:raise ValueError('2GiB sampled owned-group RSS cap')
+      time.sleep(.05)
+     proc.wait(timeout=8)
+    current['returncode']=proc.returncode
+    if group_exists(proc.pid):raise ValueError('Owned process group remains after compiler exit')
+    current['termination']=dict(actions=[],returncode=proc.returncode,group_absent=True)
+    if proc.returncode!=0:raise ValueError('Build step failed; no next step or retry')
+    gate()
+    current['after']=check(pins)
+    if current['after']['changed']:raise ValueError('Protected input changed after step')
+    if index==0:current['actual_shim_object']=rec(B/'CouponEnd181ObserverRegistration.o')
+    else:
+     current['actual_plugin']=rec(B/'libcoupon_end181_observer-opt.dylib')
+     template=R/recipe['post_link_descriptor']['template']['path']
+     if rec(template)!=recipe['post_link_descriptor']['template']:raise ValueError('Descriptor template changed')
+     (B/'libcoupon_end181_observer-opt.la').write_bytes(template.read_bytes());current['actual_descriptor']=rec(B/'libcoupon_end181_observer-opt.la')
+    gate()
+   finally:
+    if proc is not None:
+     try:
+      if proc.poll() is None or group_exists(proc.pid):current['termination']=stop_wait(proc)
+      elif current['termination'] is None:current['termination']=dict(actions=[],returncode=proc.returncode,group_absent=True)
+      current['returncode']=proc.returncode
+     except Exception:current['cleanup_error']=traceback.format_exc()
+    current['elapsed_seconds']=time.monotonic()-started;current['stdout']=rec(outp) if outp.exists() else None;current['stderr']=rec(errp) if errp.exists() else None
+    current['after']=check(pins)
+   if current.get('cleanup_error') or current['termination'] is None or not current['termination']['group_absent'] or current['after']['changed']:raise ValueError('Step cleanup/control closure failed')
+  receipt['completed_two_build_steps']=True
+ except BaseException:
+  failure=traceback.format_exc();receipt['completed_two_build_steps']=False
+ finally:
+  receipt['failure']=failure
+  try:
+   receipt['final_snapshot']=check(pins);receipt['path_metadata_after']=path_metadata(preflight['path_metadata']);receipt['path_metadata_unchanged']=receipt['path_metadata_after']==preflight['path_metadata']
+   receipt['owned_build_outputs']={str(p.relative_to(B)):rec(p) for p in B.rglob('*') if p.is_file() and not p.is_symlink()}
+   receipt['unexpected_build_files']=sorted(set(receipt['owned_build_outputs'])-{'CouponEnd181ObserverRegistration.o','libcoupon_end181_observer-opt.dylib','libcoupon_end181_observer-opt.la'})
+   receipt['unexpected_result_files']=sorted(str(p.relative_to(D)) for p in D.rglob('*') if p.is_file() and str(p.relative_to(D)) not in {'run-started.json','step1.stdout','step1.stderr','step2.stdout','step2.stderr'})
+   receipt['owned_output_bytes_excluding_receipt']=owned_size()
+  except BaseException:
+   receipt['finalization_error']=traceback.format_exc();receipt['completed_two_build_steps']=False
+  # All owned children have been waited on before the signal capture cutoff.
+  for sig,old in old_handlers.items():signal.signal(sig,old)
+  receipt['handler_restoration_cutoff_seconds']=time.monotonic()-overall_started
+  receipt['signal_capture_scope']='Received SIGTERM/INT until handler restoration above; later signals are outside this receipt. Outer nonzero/absent/partial receipt cannot establish acceptance.'
+  receipt['completion_scope']='complete is a pre-final-write candidate, not a final acceptance result. Outer returncode0 after the end-of-closure wall check is separately required; later interpreter teardown is outside the receipt timing/signal scope.'
+  receipt['requests_at_cutoff']=list(receipt['requests']);receipt['stop_requested_at_cutoff']=stop_latch['requested'];receipt['overall_elapsed_seconds']=time.monotonic()-overall_started
+  complete=(receipt['completed_two_build_steps'] and failure is None and not receipt['requests_at_cutoff'] and not receipt['stop_requested_at_cutoff'] and receipt['overall_elapsed_seconds']<=WALL and not receipt.get('finalization_error') and not receipt.get('final_snapshot',{}).get('changed',{'missing':True}) and receipt.get('path_metadata_unchanged') and not receipt.get('unexpected_build_files') and not receipt.get('unexpected_result_files') and len(receipt['steps'])==2 and all(s['returncode']==0 and s.get('termination',{}).get('group_absent') and not s.get('cleanup_error') for s in receipt['steps']))
+  receipt['complete']=bool(complete);receipt['receipt_bytes']=0;receipt['combined_owned_output_bytes']=0
+  for _ in range(20):
+   payload=(json.dumps(receipt,indent=2)+'\n').encode();size=len(payload);total=receipt.get('owned_output_bytes_excluding_receipt',0)+size
+   if receipt['receipt_bytes']==size and receipt['combined_owned_output_bytes']==total:break
+   receipt['receipt_bytes']=size;receipt['combined_owned_output_bytes']=total
+  else:raise ValueError('Receipt accounting did not stabilize')
+  if receipt['combined_owned_output_bytes']>CAP:
+   receipt['complete']=False;receipt['output_budget_exceeded']=True
+   for _ in range(20):
+    payload=(json.dumps(receipt,indent=2)+'\n').encode();size=len(payload);total=receipt.get('owned_output_bytes_excluding_receipt',0)+size
+    if receipt['receipt_bytes']==size and receipt['combined_owned_output_bytes']==total:break
+    receipt['receipt_bytes']=size;receipt['combined_owned_output_bytes']=total
+   else:raise ValueError('Refusal receipt accounting did not stabilize')
+  (D/'receipt.json').write_bytes(payload)
+ # Include full receipt serialization and write in the final wall decision.
+ # Do not rewrite a pre-final candidate into a claimed accepted result.
+ closure_elapsed=time.monotonic()-overall_started
+ if closure_elapsed>WALL:
+  print('REFUSE: overall60s exceeded after full receipt write; pre-final receipt complete is insufficient; outerRC2.',file=sys.stderr)
+  return 2
+ return 0 if receipt['complete'] else 2
+
+if __name__=='__main__':
+ raise SystemExit(main())

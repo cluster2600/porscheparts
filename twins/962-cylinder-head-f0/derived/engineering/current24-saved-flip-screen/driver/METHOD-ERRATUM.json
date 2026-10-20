@@ -1,0 +1,33 @@
+{
+  "schema": "962-current24-saved-flip-driver-method-postvalidation-erratum/v1",
+  "frozen_source": {
+    "path": "work/962-engineering/head-star-current24-interior-flip-saved-driver-prep-001/collect_saved_cavity_flips.py",
+    "sha256": "7ad6fcd1d47384e197eb1ed916774d40fba4963da4205c3d618b1ae82629049e",
+    "bytes": 8707
+  },
+  "frozen_METHOD": {
+    "path": "work/962-engineering/head-star-current24-interior-flip-saved-driver-prep-001/METHOD.md",
+    "sha256": "e030f092c4581e8558117354c4dcfb90bb2edfa06a715d9980407d0eff9ea203",
+    "bytes": 3057
+  },
+  "frozen_held": {
+    "path": "work/962-engineering/head-star-current24-interior-flip-saved-driver-prep-001/held-preparation.json",
+    "sha256": "60e2d1e604463d8c0787690ceaa4bca5108c7a0078b84ec272c9529fc06b6b54",
+    "bytes": 10812
+  },
+  "author_static_review": {
+    "path": "work/962-engineering/head-star-current24-interior-flip-saved-driver-author-review-001/review.json",
+    "sha256": "6eec6fc71aecdda14e51e725febee6f7ba42039f18831b4602ad02b7022771a4",
+    "bytes": 9609
+  },
+  "author_static_review_bindings": {
+    "path": "work/962-engineering/head-star-current24-interior-flip-saved-driver-author-review-001/bindings.json",
+    "sha256": "a1d08970690731dac992434ff36fab60a84e0bef3fded902f1d4df4d8b6a9366",
+    "bytes": 2485
+  },
+  "original_scope": "Context/input mutation is retained as a refused status with both snapshots and preservationfalse.",
+  "corrected_scope": "A context mutation or worker source/held postcomparison mismatch can return a refused report with complete snapshots and preservationfalse. A changed15input pin, unreadable/invalid postinput JSON or other intake/worker/serialization exception raises before return: no complete report is produced. The future savedcaller must retain the exception and mark an incomplete terminal, never infer empty feasibility or success.",
+  "no_original_source_METHOD_or_held_changed": true,
+  "no_execution_or_input_body_read": true,
+  "new_execution_authority": false
+}

@@ -43,6 +43,12 @@ They exercise both tetrahedral replacement patterns, quality and preservation
 checks, unavailable ownership and conflicts. No real-head repair or mesh change
 is accepted from these toy tests; all 24 poor cells remain.
 
+The [complete saved flip screen](derived/engineering/current24-saved-flip-screen/README.md)
+now checks all 204 observed associations: 139 are nonpatterns and all 65 replacement
+patterns fail the exact local checks. A separately authored rational checker verifies
+the complete finite result and 89 conflicts. No replacement is applied; other
+movements and tetrahedralizations remain open, with all 24 poor cells unchanged.
+
 The earlier [complete 73-component coordinate study](derived/engineering/current110-complete73-coordinate-diagnostics/README.md)
 preserves all 62 passing and 11 rejected proposals. Only the passing subset was
 applied; rejected proposals, including their newly poor cells, remain unchanged.
@@ -75,6 +81,13 @@ loads the plugin and prints the constructed observer type and Syntax OK, then
 exits with SIGSEGV during output cleanup. Independent review refuses completed
 registration. The full logs, selected crash frames and source lifetime hypothesis
 remain inspectable; cause, live callback and native measurement remain open.
+
+The [observer lifetime candidate](derived/engineering/cp1-END181-observer-lifetime-build/README.md)
+adds a counted self-reference and completes one new shim compile and plugin link
+using the unchanged production observer object. Independent saved-result review
+accepts build and descriptor capture only. Static metadata, clean host shutdown,
+callbacks and native measurement remain pending; the twelve equilibrium failures
+are unchanged.
 
 The [20 October head census and derived coupon probe](derived/engineering/current110-census-and-END181-defect-probe/README.md)
 preserve two earlier completed diagnostics. That previous head had 110 poor cells,
