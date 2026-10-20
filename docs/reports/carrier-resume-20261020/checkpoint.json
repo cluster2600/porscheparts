@@ -11,9 +11,40 @@
   "all_complete_component_surface_screens_passed": true,
   "all_native_tensor_coefficients_exact": true,
   "pending": [
-    "complete protected-interface screen",
-    "conformal volume mesh of the new union",
+    "complete protected-interface screen on the new mesh",
+    "cell quality refinement",
     "mechanical cases and refinement on the new geometry",
     "complete slicing/support/process preparation"
-  ]
+  ],
+  "volume_checkpoint": {
+    "status": "preserved_boundary_exact_orientation_and_connectivity_passed",
+    "nodes": 301543,
+    "C3D4_elements": 927734,
+    "boundary_triangles": 603152,
+    "exact_positive_determinants": 927734,
+    "exact_input_boundary_identity": true,
+    "raw_skin_winding": "inward; normalized in a separate exact-bijection step",
+    "mechanical_mesh_admitted": false,
+    "quality_refinement_pending": true
+  },
+  "single_union_surface": {
+    "status": "complete_surface_screen_passed",
+    "triangles": 603152,
+    "vertices": 301534,
+    "sha256": "23a05f9836ae1a99391440e6b795636c3f829aaf91dbab5e0b1e581e39acb223",
+    "complete_exact_polyhedral_master_L1_bound_mm": 0.023852781951784023,
+    "needle_ratio_threshold": 0.001,
+    "self_intersection_pairs": 0
+  },
+  "refined_volume_checkpoint": {
+    "status": "preserved_boundary_exact_orientation_and_connectivity_passed",
+    "nodes": 351600,
+    "C3D4_elements": 1163760,
+    "exact_positive_determinants": 1163760,
+    "boundary_triangles": 603152,
+    "exact_input_boundary_identity": true,
+    "median_mean_ratio": 0.7062631025724655,
+    "minimum_mean_ratio": 0.00013250375587126257,
+    "mechanical_mesh_admitted": false
+  }
 }

@@ -2,7 +2,7 @@
 
 ### From a reference part to a reproducible manufacturing workflow
 
-**20 October 2026 · Engineering resumed — new bounded reinforcement surfaces**
+**20 October 2026 · Engineering resumed — audited union and preserved-boundary volume mesh**
 
 [Latest progress, images and reproducible prototype](../reports/carrier-resume-20261020/README.md). The 18 October checkpoint below remains the retained 24af baseline.
 
@@ -186,7 +186,7 @@ chain has not yet become one complete portable command.
 
 ## Where to resume
 
-The user resumed engineering on 20 October. The [new prototype report](../reports/carrier-resume-20261020/README.md) records explicit NURBS patches, continuous surface-error bounds and a passing complete component-surface audit. The earlier interrupted layer job remains stopped; its partial results stay with the baseline.
+The user resumed engineering on 20 October. The [new prototype report](../reports/carrier-resume-20261020/README.md) records explicit NURBS patches, continuous surface-error bounds, a passing 603,152-triangle union audit and a 927,734-cell TetGen volume with exact boundary preservation. The earlier interrupted layer job remains stopped; its partial results stay with the baseline.
 
 1. Develop an endpoint-safe junction correction while keeping the **1.30 kg**
    limit and protected interfaces.
