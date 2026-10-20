@@ -1,0 +1,20 @@
+{
+  "schema": "962-current24-five-toy-transport-root-source-gap/v1",
+  "decision": "HOLD_UNRUN_SOURCE_REQUIRES_EXPLICIT_FULL_RETURN_QUERY_DEADLINE",
+  "source": {"path": "work/962-engineering/head-star-current24-qfnra-toy-transport-prep-001/check_toy_sessions.py", "sha256": "2a64e7e7c601895d40aeab28d4652dfa3950795d5d16c9c7056d24071b853526", "bytes": 21200},
+  "preparation_index": {"path": "work/962-engineering/head-star-current24-qfnra-toy-transport-prep-001/index.json", "sha256": "81aaf3abd63e935e03239507746915db1554b01057a5376f6b0450cefe5f76eb", "bytes": 2033},
+  "review_scope": "Root read the complete21200-byte helper and index as text. No target source/function/fragment import, compile, test, process, installed solver, runtime-body or real-head operation occurred.",
+  "finding": "Session.exchange computes the fixed per-query deadline and checks it before selector waits. Once the last wait/read completes a frame, it can serialize the response and return without checking that original deadline again. A delayed final return can exceed the5s query bound while remaining inside the separate60s global gate. This is a source-level control gap, not an observed overrun or failed toy run.",
+  "required_surgical_successor": [
+    "Preserve001 bytes and held status. Add an explicit final per-query time check after complete response/transcript serialization and before returning, using the original until deadline.",
+    "Review the same final-return window in normal5s draining and8s cleanup stages; retain abnormal failure and incomplete observations without retry or cap increases.",
+    "Prepare only a source successor with exact deltas, unchanged-source evidence, pure expectation changes where needed and independent peer/root review before any target operation."
+  ],
+  "synthetic14_and9_scope": "Those separate frozen pure fixtures passed once and have root acceptancee143cf35. Their success does not test or admit this transport.",
+  "source_successor_preparation_authorized": true,
+  "target_import_compile_or_execution_authorized": false,
+  "solver_execution_authorized": false,
+  "real_head_data_or_word_operation_authorized": false,
+  "geometry_or_physical_acceptance": false,
+  "automatic_retry": false
+}

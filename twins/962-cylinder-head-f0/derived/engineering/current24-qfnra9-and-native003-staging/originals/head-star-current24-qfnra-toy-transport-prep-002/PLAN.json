@@ -1,0 +1,112 @@
+{
+  "schema": "962-current24-five-persistent-Z3-toy-source-plan/v2",
+  "status": "SOURCE002_HELD_UNRUN_FINAL_DEADLINE_GATES",
+  "api": "run_fixed_toys(output_directory, expected_owner_group)",
+  "preserved_001_plan": {
+    "path": "work/962-engineering/head-star-current24-qfnra-toy-transport-prep-001/PLAN.json",
+    "sha256": "591256225631fececfca96bbb19d277195fe69829d25e995d948373f240bbca2",
+    "bytes": 4102
+  },
+  "argv": [
+    "/opt/homebrew/bin/z3",
+    "-in",
+    "-smt2"
+  ],
+  "unchanged_solver_protocol_options_formulas_words_environment_and_run_caller": true,
+  "controls": {
+    "global_normal_seconds": 60,
+    "per_query_full_capture_return_seconds": 5,
+    "normal_drain_wait_return_seconds": 5,
+    "TERM_grace_drain_wait_seconds": 8,
+    "KILL_drain_wait_seconds": 8,
+    "sampled_external_group_RSS_bytes": 2147483648,
+    "inclusive_external_output_control_receipt_cap_bytes": 33554432,
+    "requested_environment_threads": 1,
+    "observed_threads": null,
+    "retries": 0,
+    "maximum_attempted_sessions": 5,
+    "checks_per_attempted_session": 1
+  },
+  "deadline_bases": {
+    "query": "min(self.deadline,time.monotonic()+QUERY_SECONDS), unchanged",
+    "normal_drain": "min(self.deadline,time.monotonic()+QUERY_SECONDS), unchanged",
+    "TERM_and_KILL": "time.monotonic()+grace, unchanged for each original stage",
+    "final_comparison": "time.monotonic()<original_until; equality refuses",
+    "scope": "Final checks detect/refuse late completion; not hard preemption. External whole startup/preflight/full-return timing remains mandatory."
+  },
+  "source_insertions": [
+    {
+      "location": "Session.exchange: after complete response transcript, immediately before return",
+      "literal": "        need(time.monotonic()<until,'Query full-return deadline expired after response/transcript capture')\n"
+    },
+    {
+      "location": "Session.close normal: after wait and RC0, immediately before return",
+      "literal": "                need(time.monotonic()<until,'Normal drain full-return deadline expired')\n"
+    },
+    {
+      "location": "Session.close TERM/KILL: after wait, immediately before existing break",
+      "literal": "                need(time.monotonic()<until,'Cleanup %s full-return deadline expired'%name)\n"
+    }
+  ],
+  "failures": "Complete response/transcript retained before query deadline exception. Existing caller traceback/stop and normal_drain/terminate/kill exception retention and escalation remain unchanged; no retry or limit increase.",
+  "fixtures": {
+    "framing": {
+      "record": {
+        "path": "work/962-engineering/head-star-current24-qfnra-toy-transport-prep-002/test_framing_expectations.py",
+        "sha256": "f01782ee9738c3b39b182dcb0b1d25f81225768189e4a96176d9270a43d0bb25",
+        "bytes": 3998
+      },
+      "methods": [
+        "test_01_raw_and_quoted_echo_forms_are_complete_and_retained",
+        "test_02_split_markers_and_multiline_body_do_not_lose_bytes",
+        "test_03_noise_duplicate_wrong_form_and_EOF_refuse",
+        "test_04_ceiling_refuses_without_replacing_partial_bytes",
+        "test_05_child_group_and_fixed_once_only_source_boundary"
+      ],
+      "unrun": true,
+      "whole_original_fixture_inverse": "Only expected helper SHA and length differ"
+    },
+    "deadline": {
+      "record": {
+        "path": "work/962-engineering/head-star-current24-qfnra-toy-transport-prep-002/test_deadline_expectations.py",
+        "sha256": "cd94a9dfabcbfb121363d2e11cadea294a8046762f2b5bdde64804053dc692aa",
+        "bytes": 9211
+      },
+      "methods": [
+        "test_01_query_full_response_and_serialization_are_inside_original_until",
+        "test_02_normal_drain_retains_late_final_pump_or_wait_as_refusal",
+        "test_03_cleanup_TERM_and_KILL_late_return_errors_are_retained",
+        "test_04_final_checks_follow_complete_capture_or_wait_and_keep_original_until"
+      ],
+      "unrun": true,
+      "seam": "Only pinned need/ToyRefusal and exact Session.exchange/close AST methods in future fake-only namespace. No module/protocol/process/runtime import or operation."
+    },
+    "total_named_unrun_methods": 9
+  },
+  "accepted_prior_pure_guards": {
+    "root": {
+      "path": "work/962-engineering/head-star-current24-qfnra-guards-root-result-acceptance-001/acceptance.json",
+      "sha256": "e143cf3590e97e30c0bf4d5a47c9bead00d2c9793715e046ed5953944afc35db",
+      "bytes": 4728
+    },
+    "final_census": {
+      "path": "work/962-engineering/head-star-current24-qfnra-guards-root-result-acceptance-001/final-inclusive-census.json",
+      "sha256": "3d2ce163c9c9384be3055fc078048bce2683fac089a488b1ca73e60acf02d23c",
+      "bytes": 18204
+    },
+    "scope": "14 producer plus9 independent word-validator synthetic software checks only; no installedZ3/transport/toy or current-head result"
+  },
+  "future_transport002_source_peer": null,
+  "future_source_root_review": null,
+  "future_framing_deadline_guard_control_result": null,
+  "selected_python_runtime_and_provider_freshness": null,
+  "selected_Z3_runtime_link_dependency_freshness": null,
+  "external_owner": null,
+  "actual": null,
+  "root_admission": null,
+  "launch": null,
+  "result": null,
+  "all_execution_authorities": false,
+  "real23_intake_or_model_calculation_authorized": false,
+  "native_retry_or_physical_acceptance": false
+}

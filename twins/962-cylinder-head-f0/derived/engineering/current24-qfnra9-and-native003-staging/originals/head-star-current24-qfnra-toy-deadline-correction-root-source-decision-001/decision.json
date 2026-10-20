@@ -1,0 +1,28 @@
+{
+  "schema": "962-toy-deadline-fixture-root-correction-decision/v1",
+  "decision": "AUTHORIZE_MINIMAL_SOURCE_SUCCESSOR_AFTER_RETAINED_FAILURE",
+  "original_fixture": {
+    "path": "work/962-engineering/head-star-current24-qfnra-toy-transport-prep-002/test_deadline_expectations.py",
+    "sha256": "cd94a9dfabcbfb121363d2e11cadea294a8046762f2b5bdde64804053dc692aa",
+    "bytes": 9211
+  },
+  "failed_receipt": {
+    "path": "work/962-engineering/head-star-current24-qfnra-toy-deadline-guards-root-execution-001/receipt.json",
+    "sha256": "bf7d882c26be4004ac2adb73d15837a14e5e4fc791a1b0f11e6343cca77b1744",
+    "bytes": 51058
+  },
+  "failure": "Child1 / outer2; Ran4, FAILED(errors=11). The extracted pinned Session.exchange/close methods use dict, omitted from the isolated fixture builtin allowlist. Source-static root read confirms the omission; no target method/source correction is authorized.",
+  "authorized_changes": [
+    "Create a new immutable minimal fixture successor adding only dict to the permitted builtin names; retain all four tests and assertions.",
+    "Keep the hash-pinned transport helper byte-identical. If relocated, include exactly the required helper and document unchanged bytes; preserve old source and failed run.",
+    "Prepare exact delta/inverse, explicit builtin dependency check and metadata provenance. Separate source peer/root review and separate execution controls/admission required."
+  ],
+  "source_preparation_authorized": true,
+  "automatic_retry": false,
+  "execution_authorized": false,
+  "full_transport_execution_authorized": false,
+  "solver_authorized": false,
+  "native_authorized": false,
+  "scientific_body_access_authorized": false,
+  "physical_acceptance": false
+}

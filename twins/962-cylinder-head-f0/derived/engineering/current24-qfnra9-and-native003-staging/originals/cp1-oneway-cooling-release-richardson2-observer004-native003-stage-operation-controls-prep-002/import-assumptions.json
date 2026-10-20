@@ -1,0 +1,53 @@
+{
+  "schema": "962-native003-operation-import-assumptions/v1",
+  "operation": "stage",
+  "owner_import_statements": [
+    "import time",
+    "import hashlib,json,os,re,select,signal,subprocess,sys,traceback",
+    "from pathlib import Path"
+  ],
+  "wrapper_import_statements": [
+    "import os,re,signal,sys"
+  ],
+  "third_party_imports": [],
+  "new_relative_to_bd86647": [
+    "select"
+  ],
+  "removed_relative_to_bd86647": [
+    "resource"
+  ],
+  "selected_python": {
+    "path": "/Users/maxime/.codex/worktrees/962-watercooled-head/3dprinting993/work/962-head/check-venv/bin/python",
+    "resolved_path": "/Users/maxime/.local/share/uv/python/cpython-3.12.11-macos-aarch64-none/bin/python3.12",
+    "sha256": "1699bf8aa705a8bb71613bef5cdd7d7c8c9d9a188a841f41679aa9b5830b8f60",
+    "bytes": 49968
+  },
+  "expectation_only": true,
+  "current_runtime_freshness": false,
+  "select_provider_body_pinned": false,
+  "selected_runtime_19_unchanged": true,
+  "capabilities_before_Popen": [
+    "select.kqueue",
+    "select.kevent",
+    "select.KQ_FILTER_PROC",
+    "select.KQ_NOTE_EXIT",
+    "select.KQ_EV_ADD",
+    "select.KQ_EV_ENABLE",
+    "select.KQ_EV_ONESHOT",
+    "select.KQ_EV_ERROR",
+    "os.waitpid",
+    "os.WUNTRACED",
+    "os.WNOHANG",
+    "os.getpgid",
+    "os.getsid",
+    "os.killpg"
+  ],
+  "scope": "Fixed named API checks occur only during a later admitted owner run, before a helper child exists. This packet performs no query, import or provider capture. select source/API support is associated with primary references; installed provider/ABI/security behavior is not qualified.",
+  "no_waitid_or_numeric_kernel_flags": true,
+  "query_imports_unchanged": [
+    "json",
+    "os",
+    "sys"
+  ],
+  "future_capture_plan": "Use only the already fixed helper freshness scope 257 inputs/19 runtime files/13 aliases/22 provider routes/89 historical host records/4 staged inputs/selected original Python and one json-os-sys query. No new select-provider discovery or body is authorized; any additional identity requirement needs a separate named source decision."
+}

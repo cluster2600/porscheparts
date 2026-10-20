@@ -1,0 +1,131 @@
+{
+  "schema": "962-native003-operation-owner002-source-reuse/v1",
+  "operation": "freshness",
+  "source_only": true,
+  "author": "defect_gate_refresh",
+  "author_lineage": "Same author as held001 owners, original helpers and earlier donor controls; independent current source peer/root review remains required.",
+  "predecessor_index": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native003-freshness-operation-controls-prep-001/index.json",
+    "sha256": "4313f8d24ffd9696c400283ddc2c4063285f415b638100c8a55e4e6e0cdb141c",
+    "bytes": 4033
+  },
+  "predecessor_source": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native003-freshness-operation-controls-prep-001/run_operation_once.py",
+    "sha256": "b7de1a60c8e0aa764e3b6e6d1ed8e0f723b1716e81d0c7452e0373308a118b81",
+    "bytes": 18174
+  },
+  "predecessor_wrapper": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native003-freshness-operation-controls-prep-001/stopped_exec_wrapper.py",
+    "sha256": "94a3e73fbc4784050f65520914809f7cb9ec2eabedb2b036f6edbb6dc2c55297",
+    "bytes": 976
+  },
+  "source": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native003-freshness-operation-controls-prep-002/run_operation_once.py",
+    "sha256": "0555062736bd2b63dbd8da4cddfc5ef56d158eca0878be188a2cf32fcbe4fded",
+    "bytes": 18764
+  },
+  "wrapper": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native003-freshness-operation-controls-prep-002/stopped_exec_wrapper.py",
+    "sha256": "94a3e73fbc4784050f65520914809f7cb9ec2eabedb2b036f6edbb6dc2c55297",
+    "bytes": 976
+  },
+  "root_source_authority": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native003-owner002-root-source-decision-001/decision.json",
+    "sha256": "1198f2a70616e39c3ca2e6c5b4473c62994c90749281aaea88317d8ea7dac5b3",
+    "bytes": 2156
+  },
+  "hold_review": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native003-operation-controls-source-peer-001/review.json",
+    "sha256": "a0f1644687c790efe99bc3a22819d77d9f22e65aec9cdd3a20a2ff7dfae40d31",
+    "bytes": 3767
+  },
+  "hold_findings": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native003-operation-controls-source-peer-001/findings.json",
+    "sha256": "79bb577675cad3970867de80f59c1b8b00fc97d11156de419b45f2337c0177de",
+    "bytes": 11659
+  },
+  "hold_bindings": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native003-operation-controls-source-peer-001/bindings.json",
+    "sha256": "e2f83459b99628fb97771b7321ab09753b9c4d00d1d19708bcce4bfc8b3bc802",
+    "bytes": 13856
+  },
+  "exact_replacement_groups": [
+    {
+      "ID": "N01",
+      "scope": "Required successor source namespace",
+      "old": "cp1-oneway-cooling-release-richardson2-observer004-native003-freshness-operation-controls-prep-001",
+      "new": "cp1-oneway-cooling-release-richardson2-observer004-native003-freshness-operation-controls-prep-002",
+      "occurrences": 1
+    },
+    {
+      "ID": "N02",
+      "scope": "Required fresh external result namespace",
+      "old": "native003-freshness-operation-root-execution-001",
+      "new": "native003-freshness-operation-root-execution-002",
+      "occurrences": 1
+    },
+    {
+      "ID": "B01",
+      "scope": "Bounded exact-PID normal terminal reap",
+      "old": "            pid,status=os.waitpid(proc.pid,0);need(pid==proc.pid,'Wrong explicit final reap');reaped=True\n",
+      "new": "            deadline=started+58\n            while True:\n                need(not controller_stop_requests and time.monotonic()<deadline,'Stopped/deadline before exact terminal reap')\n                pid,status=os.waitpid(proc.pid,os.WNOHANG)\n                if pid:\n                    need(pid==proc.pid and (os.WIFEXITED(status) or os.WIFSIGNALED(status)),'Wrong explicit final terminal reap');reaped=True;break\n                time.sleep(.01)\n",
+      "occurrences": 1
+    },
+    {
+      "ID": "B02a",
+      "scope": "Remove premature stop-latch snapshot",
+      "old": "        report['handled_stop_requests']=list(controller_stop_requests)\n",
+      "new": "",
+      "occurrences": 1
+    },
+    {
+      "ID": "B02b",
+      "scope": "Final snapshot and refusal reason after handler cutoff",
+      "old": "        report['complete_candidate']=bool(positive and reaped and raw_returncode==0 and report['group_absent'] is True and report['failure'] is None and not report['cleanup_errors'] and report['all_controls_unchanged'] and not controller_stop_requests)\n        report['handler_cutoff_elapsed_seconds']=time.monotonic()-started\n",
+      "new": "        report['handler_cutoff_elapsed_seconds']=time.monotonic()-started\n        report['handled_stop_requests']=list(controller_stop_requests)\n        report['handled_stop_refusal_reason']='Controller stop request handled before recorded handler cutoff' if controller_stop_requests else None\n        report['complete_candidate']=bool(positive and reaped and raw_returncode==0 and report['group_absent'] is True and report['failure'] is None and not report['cleanup_errors'] and report['all_controls_unchanged'] and not controller_stop_requests)\n",
+      "occurrences": 1
+    },
+    {
+      "ID": "B03",
+      "scope": "Local direct-signal error capture, then existing unconditional bounded reap attempt",
+      "old": "                    os.kill(proc.pid,signal.SIGKILL);report['stop_actions'].append(dict(scope='own unreaped direct child before helper continuation',signal=int(signal.SIGKILL)))\n",
+      "new": "                    try:os.kill(proc.pid,signal.SIGKILL);report['stop_actions'].append(dict(scope='own unreaped direct child before helper continuation',signal=int(signal.SIGKILL)))\n                    except BaseException:report['cleanup_errors'].append(traceback.format_exc())\n",
+      "occurrences": 1
+    }
+  ],
+  "semantic_corrections": 3,
+  "namespace_replacements": 2,
+  "whole_source_inverse_exact": true,
+  "unchanged_nine_nonmain_definitions": [
+    "need",
+    "rec",
+    "record_controller_stop",
+    "group_exists",
+    "selected",
+    "identities",
+    "inclusive_bytes",
+    "event_record",
+    "normal_helper_receipt"
+  ],
+  "unchanged_function_text_AST": true,
+  "imports_exact": true,
+  "wrapper_bytes_exact": true,
+  "helper_sources_unchanged": true,
+  "helper_H_paths_unchanged": true,
+  "no_new_API": true,
+  "no_fixtures_or_target_execution": true,
+  "all_waitpid_sites_nonblocking": true,
+  "waitpid_sites": 3,
+  "original001_source_authoring_event": {
+    "action": "Static sibling source writer only",
+    "result": "AssertionError before successor source writes",
+    "reason": "Unanchored H=E/ literal also occurred inside STAGE_H=E/; no target source or helper was imported, compiled or executed.",
+    "preserved_state": "An empty freshness source directory existed; the two stage drafts were unchanged.",
+    "correction": "Use one whole-line newline-prefixed H assignment replacement; six exact owner substitutions and two exact wrapper substitutions reverse to the complete sibling bytes."
+  },
+  "scope": "The only main changes are B01, B02 and B03. Every other main byte is recovered by exact inverse. Signal ESRCH/errors remain retained failures; no absence or reap is inferred from a signal error.",
+  "inverse_instructions": {
+    "order": "Reverse exact replacement groups; B02a reinstates the removed line immediately before its unique unchanged elapsed_before_receipt assignment.",
+    "B02a_insert_before_anchor": "        report['elapsed_before_receipt']=time.monotonic()-started\n"
+  }
+}

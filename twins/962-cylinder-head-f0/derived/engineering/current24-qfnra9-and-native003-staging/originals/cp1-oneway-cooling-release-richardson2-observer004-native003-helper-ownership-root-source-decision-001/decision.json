@@ -1,0 +1,26 @@
+{
+  "schema": "962-native003-helper-owned-child-root-source-decision/v1",
+  "decision": "ACCEPT_SUPPORTED_MACOS_SOURCE_CANDIDATE_FOR_MINIMAL_OWNER_PREPARATION_ONLY",
+  "research_index": {"path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native003-helper-ownership-source-research-001/index.json", "sha256": "065d95d8f06e6bea3fc7eea7e20075f1faebfe32440e36ad63e87661788f3844", "bytes": 1142},
+  "research_note": {"path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native003-helper-ownership-source-research-001/NOTE.md", "sha256": "03eecc7e2e8e6c960b366e1d96c0a5bf8180a7fd39331a01929d1e8b04e12185", "bytes": 7095},
+  "primary_associations": {"path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native003-helper-ownership-source-research-001/source-associations.json", "sha256": "bb5559897e83cdda15ba9f71dd6acd92f32f9aacdd70c0f6f5920b91e6428149", "bytes": 5796},
+  "root_scope": "Read full note and index. Independently opened pinned CPython3.12.11 posixmodule.c and Apple kqueue manual; confirmed Apple exclusion of Python waitid and distinct NOTE_EXIT/NOTE_REAP semantics. This supports a source-design route, not installed runtime/API/ABI evidence.",
+  "source_requirements": [
+    "Two distinct finite operations and future admissions, preserving the existing reviewed helpers and native actual.",
+    "Same-PID new-session wrapper stops before exact helper exec. Bounded exact-child WUNTRACED handshake, SID/PGID certificate and kqueue NOTE_EXIT registration precede raw SIGCONT.",
+    "Keep the Popen child strongly referenced and unreaped while group signals may be needed. No implicit poll/wait/context/destructor/Popen signal-method reap, competing waiter or SIGCHLD reaper. Set documented SIGCHLD default before launch.",
+    "Use only supported named API constants; no waitid, invented EV_RECEIPT/NOTE_TRACK, ctypes, raw syscall, process/provider discovery or extra probe.",
+    "Handle pre-certificate setup failures using only the fresh direct-child ownership that is actually known; never guess a process group. Unknown cleanup remains incomplete.",
+    "Abnormal group cleanup uses raw signals while the ownership anchor is retained, then deliberate wait/reap and independent ESRCH. Normal completion requires full positive receipt, raw child0, deliberate reap, group absence and raw outer0.",
+    "All startup, handshake, helper, query, cleanup and complete serialization stay inside whole60s/query5s/TERM8s/inclusive32MiB/thread1/no-retry limits. No invented sampled RSS pass or hardquota.",
+    "Declare any new select/stdlib imports and unobserved installed API/origin assumptions explicitly. Existing native runtime maps are unchanged and do not establish complete closure for this new owner."
+  ],
+  "new_firstparty_owner_wrapper_actual_source_preparation_authorized": true,
+  "independent_implementation_review_required": true,
+  "runtime_probe_or_body_freshness_authorized": false,
+  "staging_or_metadata_query_authorized": false,
+  "owner_wrapper_or_helper_execution_authorized": false,
+  "native_execution_authorized": false,
+  "physical_or_manufacturing_acceptance": false,
+  "automatic_retry": false
+}

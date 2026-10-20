@@ -1,0 +1,141 @@
+test_01_query_full_response_and_serialization_are_inside_original_until (__main__.ToyDeadlineExpectations) ... test_02_normal_drain_retains_late_final_pump_or_wait_as_refusal (__main__.ToyDeadlineExpectations) ... test_03_cleanup_TERM_and_KILL_late_return_errors_are_retained (__main__.ToyDeadlineExpectations) ... test_04_final_checks_follow_complete_capture_or_wait_and_keep_original_until (__main__.ToyDeadlineExpectations) ... ok
+
+======================================================================
+ERROR: test_01_query_full_response_and_serialization_are_inside_original_until (__main__.ToyDeadlineExpectations) (deadline=60, pump_finish=4.99, serialization_finish=4.999)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/head-star-current24-qfnra-toy-transport-prep-002/test_deadline_expectations.py", line 110, in test_01_query_full_response_and_serialization_are_inside_original_until
+    self.assertEqual(session.exchange('model','(get-model)'),'sat\n')
+  File "held_deadline_only", line 215, in exchange
+NameError: name 'dict' is not defined
+
+======================================================================
+ERROR: test_01_query_full_response_and_serialization_are_inside_original_until (__main__.ToyDeadlineExpectations) (deadline=60, pump_finish=5, serialization_finish=5)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/head-star-current24-qfnra-toy-transport-prep-002/test_deadline_expectations.py", line 108, in test_01_query_full_response_and_serialization_are_inside_original_until
+    session.exchange('model','(get-model)')
+  File "held_deadline_only", line 215, in exchange
+NameError: name 'dict' is not defined
+
+======================================================================
+ERROR: test_01_query_full_response_and_serialization_are_inside_original_until (__main__.ToyDeadlineExpectations) (deadline=60, pump_finish=5.1, serialization_finish=5.1)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/head-star-current24-qfnra-toy-transport-prep-002/test_deadline_expectations.py", line 108, in test_01_query_full_response_and_serialization_are_inside_original_until
+    session.exchange('model','(get-model)')
+  File "held_deadline_only", line 215, in exchange
+NameError: name 'dict' is not defined
+
+======================================================================
+ERROR: test_01_query_full_response_and_serialization_are_inside_original_until (__main__.ToyDeadlineExpectations) (deadline=60, pump_finish=4, serialization_finish=5)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/head-star-current24-qfnra-toy-transport-prep-002/test_deadline_expectations.py", line 108, in test_01_query_full_response_and_serialization_are_inside_original_until
+    session.exchange('model','(get-model)')
+  File "held_deadline_only", line 215, in exchange
+NameError: name 'dict' is not defined
+
+======================================================================
+ERROR: test_01_query_full_response_and_serialization_are_inside_original_until (__main__.ToyDeadlineExpectations) (deadline=60, pump_finish=4, serialization_finish=5.1)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/head-star-current24-qfnra-toy-transport-prep-002/test_deadline_expectations.py", line 108, in test_01_query_full_response_and_serialization_are_inside_original_until
+    session.exchange('model','(get-model)')
+  File "held_deadline_only", line 215, in exchange
+NameError: name 'dict' is not defined
+
+======================================================================
+ERROR: test_01_query_full_response_and_serialization_are_inside_original_until (__main__.ToyDeadlineExpectations) (deadline=4, pump_finish=4, serialization_finish=4)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/head-star-current24-qfnra-toy-transport-prep-002/test_deadline_expectations.py", line 108, in test_01_query_full_response_and_serialization_are_inside_original_until
+    session.exchange('model','(get-model)')
+  File "held_deadline_only", line 215, in exchange
+NameError: name 'dict' is not defined
+
+======================================================================
+ERROR: test_02_normal_drain_retains_late_final_pump_or_wait_as_refusal (__main__.ToyDeadlineExpectations) (pump_finish=5, wait_finish=5)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "held_deadline_only", line 241, in close
+  File "held_deadline_only", line 46, in need
+held_deadline_only.ToyRefusal: Normal drain full-return deadline expired
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/head-star-current24-qfnra-toy-transport-prep-002/test_deadline_expectations.py", line 126, in test_02_normal_drain_retains_late_final_pump_or_wait_as_refusal
+    session.close(normal=True)
+  File "held_deadline_only", line 244, in close
+NameError: name 'dict' is not defined
+
+======================================================================
+ERROR: test_02_normal_drain_retains_late_final_pump_or_wait_as_refusal (__main__.ToyDeadlineExpectations) (pump_finish=4, wait_finish=5)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "held_deadline_only", line 241, in close
+  File "held_deadline_only", line 46, in need
+held_deadline_only.ToyRefusal: Normal drain full-return deadline expired
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/head-star-current24-qfnra-toy-transport-prep-002/test_deadline_expectations.py", line 126, in test_02_normal_drain_retains_late_final_pump_or_wait_as_refusal
+    session.close(normal=True)
+  File "held_deadline_only", line 244, in close
+NameError: name 'dict' is not defined
+
+======================================================================
+ERROR: test_02_normal_drain_retains_late_final_pump_or_wait_as_refusal (__main__.ToyDeadlineExpectations) (pump_finish=4, wait_finish=5.1)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "held_deadline_only", line 241, in close
+  File "held_deadline_only", line 46, in need
+held_deadline_only.ToyRefusal: Normal drain full-return deadline expired
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/head-star-current24-qfnra-toy-transport-prep-002/test_deadline_expectations.py", line 126, in test_02_normal_drain_retains_late_final_pump_or_wait_as_refusal
+    session.close(normal=True)
+  File "held_deadline_only", line 244, in close
+NameError: name 'dict' is not defined
+
+======================================================================
+ERROR: test_03_cleanup_TERM_and_KILL_late_return_errors_are_retained (__main__.ToyDeadlineExpectations) (late_stage='terminate')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "held_deadline_only", line 264, in close
+  File "held_deadline_only", line 46, in need
+held_deadline_only.ToyRefusal: Cleanup terminate full-return deadline expired
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/head-star-current24-qfnra-toy-transport-prep-002/test_deadline_expectations.py", line 150, in test_03_cleanup_TERM_and_KILL_late_return_errors_are_retained
+    session.close(normal=False)
+  File "held_deadline_only", line 267, in close
+NameError: name 'dict' is not defined
+
+======================================================================
+ERROR: test_03_cleanup_TERM_and_KILL_late_return_errors_are_retained (__main__.ToyDeadlineExpectations) (late_stage='kill')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "held_deadline_only", line 262, in close
+  File "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/head-star-current24-qfnra-toy-transport-prep-002/test_deadline_expectations.py", line 146, in pump
+    raise ns['ToyRefusal']('synthetic TERM drain failure')
+held_deadline_only.ToyRefusal: synthetic TERM drain failure
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/head-star-current24-qfnra-toy-transport-prep-002/test_deadline_expectations.py", line 150, in test_03_cleanup_TERM_and_KILL_late_return_errors_are_retained
+    session.close(normal=False)
+  File "held_deadline_only", line 267, in close
+NameError: name 'dict' is not defined
+
+----------------------------------------------------------------------
+Ran 4 tests in 0.045s
+
+FAILED (errors=11)

@@ -12,11 +12,19 @@ with explicit assumptions for unavailable dimensions.
 The [engineering execution programme](ENGINEERING_PROGRAM.md) continues through
 material/strength assessment, LPBF simulation, an Omniverse twin and PhysicsNeMo.
 
+The [transport and staging checkpoint](derived/engineering/current24-qfnra9-and-native003-staging/README.md)
+accepts five fake framing checks and four corrected fake deadline checks.
+The original test run with eleven errors and its two namespace corrections remain
+in the archive. A separate staging run preserves four exact input copies
+(1,213,802 bytes), with owner/helper exit statuses 0/0 and complete receipt and cleanup
+review. Freshness and native solver capture remain pending; the 24 poor head
+cells and 12 LPBF equilibrium failures remain unchanged.
+
 The [QF_NRA software checkpoint](derived/engineering/current24-qfnra23-and-native003-held/README.md)
 passes 14 producer and 9 independently authored validator checks, once each.
 The full source, controls, logs and separate acceptance are inspectable.
-It also preserves held native003 source and staging/freshness helpers;
-those programs remain unrun.
+It also preserves native003 source and staging/freshness helpers as held,
+unrun inputs at that earlier checkpoint.
 No installed solver or actual-head proposal was tested. The head retains
 24 poor cells and LPBF retains 12 aggregate mechanical failures.
 

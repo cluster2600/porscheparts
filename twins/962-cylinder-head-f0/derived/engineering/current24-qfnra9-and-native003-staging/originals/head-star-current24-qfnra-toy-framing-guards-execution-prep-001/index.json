@@ -1,0 +1,151 @@
+{
+  "schema": "962-current24-toy-fake-guards-held-control-index/v1",
+  "status": "HELD_UNRUN_SOURCE_PREPARATION_ONLY",
+  "operation": "framing5",
+  "records": [
+    {
+      "path": "work/962-engineering/head-star-current24-qfnra-toy-framing-guards-execution-prep-001/run_root_once.py",
+      "sha256": "b003b523c0a52c25fde706d87ed7020ff7fd399f9c82605e961170235f1b1508",
+      "bytes": 16347
+    },
+    {
+      "path": "work/962-engineering/head-star-current24-qfnra-toy-framing-guards-execution-prep-001/actual-contract.json",
+      "sha256": "a1ba07e5e23a505e727ba02da0df0eb8d1b7ef2b17db7fee41391b7a9d06e6f0",
+      "bytes": 23121
+    },
+    {
+      "path": "work/962-engineering/head-star-current24-qfnra-toy-framing-guards-execution-prep-001/METHOD.md",
+      "sha256": "e7a6ae0f304ad4e1bec4a46e22c867f3a68ba01514f59bbff8d650f0fa2cbf31",
+      "bytes": 4115
+    },
+    {
+      "path": "work/962-engineering/head-star-current24-qfnra-toy-framing-guards-execution-prep-001/source-reuse.json",
+      "sha256": "bc6520874185792a9f315968fb18be5523ec055e13efbf86e85fc5dbe75bb424",
+      "bytes": 6236
+    },
+    {
+      "path": "work/962-engineering/head-star-current24-qfnra-toy-framing-guards-execution-prep-001/source.diff",
+      "sha256": "a8e300babbb2fa2938c7e028d4eb48ab847337cbb42c8f95bfd83fec4f57f4a3",
+      "bytes": 10776
+    },
+    {
+      "path": "work/962-engineering/head-star-current24-qfnra-toy-framing-guards-execution-prep-001/import-coverage.json",
+      "sha256": "1acc4b70b68bf4b9c3a4a6e28cb1353d97a3a84d86e7505a4b7a92ca1c53c856",
+      "bytes": 9432
+    },
+    {
+      "path": "work/962-engineering/head-star-current24-qfnra-toy-framing-guards-execution-prep-001/runtime-reference.json",
+      "sha256": "2410821da322dea5712562e68871100ac262e0ca59b9cbe67e9c381bfc7c49d7",
+      "bytes": 1165
+    }
+  ],
+  "records_excluding_index": 7,
+  "expected_tests": 5,
+  "TestCase": "ToyFramingExpectations",
+  "exact_sorted_test_methods": [
+    "test_01_raw_and_quoted_echo_forms_are_complete_and_retained",
+    "test_02_split_markers_and_multiline_body_do_not_lose_bytes",
+    "test_03_noise_duplicate_wrong_form_and_EOF_refuse",
+    "test_04_ceiling_refuses_without_replacing_partial_bytes",
+    "test_05_child_group_and_fixed_once_only_source_boundary"
+  ],
+  "guard_scope": "pinned_fake_extracted_fragments_only",
+  "protected_records": 42,
+  "historical_runtime_files": 91,
+  "future_direct_control_records": 9,
+  "future_canonical_unique_total": 142,
+  "canonical_unique_requirement": "All142 eventual resolved paths must be distinct; only declared metadata key counts were checked here. Runtime paths/provider bodies were not resolved/read/stat/hashed.",
+  "original_runtime_preflight": {
+    "path": "work/962-engineering/head-star-current24-edge-removal-guards-execution-prep-001/runtime-preflight.json",
+    "sha256": "3b4f731ff16ec475b5de2d567292b25169a7c9c8618d38c1c8cd363d4f8c9169",
+    "bytes": 78434
+  },
+  "runtime_reference": {
+    "path": "work/962-engineering/head-star-current24-qfnra-toy-framing-guards-execution-prep-001/runtime-reference.json",
+    "sha256": "2410821da322dea5712562e68871100ac262e0ca59b9cbe67e9c381bfc7c49d7",
+    "bytes": 1165
+  },
+  "selected_interpreter": {
+    "path": "/Library/Frameworks/Python.framework/Versions/3.10/bin/python3.10",
+    "sha256": "72956ad35cff7691dfed9e04c9593de825ffd5b2fa7e8bc9ae96ce9a1af65621",
+    "bytes": 152624
+  },
+  "selected_runtime_currently_observed": false,
+  "no_new_runtime_query_or_body_operation": true,
+  "nine_helpers_text_AST_exact": true,
+  "full_literal_inverse_exact_to_donor": true,
+  "replacement_group_count": 16,
+  "literal_occurrences": 23,
+  "both_fixture_source_imports_checked": true,
+  "declared_stdlib_imports": 15,
+  "all_declared_imports_in_saved117origins91map": true,
+  "source_peer": {
+    "path": "work/962-engineering/head-star-current24-qfnra-toy-transport-source-peer-002/review.json",
+    "sha256": "6a96191baf7c06e0dc52794652d5dea0a240bd53b1b068ba8baa3716220d22ac",
+    "bytes": 3013
+  },
+  "source_peer_bindings": {
+    "path": "work/962-engineering/head-star-current24-qfnra-toy-transport-source-peer-002/bindings.json",
+    "sha256": "6ac6e8be11fd4994c869a7e3b6a6de1f771ee4334a8aeb08d2ff3c6626ecc0d7",
+    "bytes": 7675
+  },
+  "source_root_review": {
+    "path": "work/962-engineering/head-star-current24-qfnra-toy-transport-root-source-review-002/review.json",
+    "sha256": "e1d535e7e43a5396722ba6f3233db0e7d8c5e4fd203a155a2922c60d21f8c385",
+    "bytes": 3912
+  },
+  "external_root_must_match_root_review_to_sealed_actual": true,
+  "direct_fixture_argv": [
+    "/Library/Frameworks/Python.framework/Versions/3.10/bin/python3.10",
+    "-B",
+    "-I",
+    "-S",
+    "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/head-star-current24-qfnra-toy-transport-prep-002/test_framing_expectations.py"
+  ],
+  "future_output_directory": "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/head-star-current24-qfnra-toy-framing-guards-root-execution-001",
+  "output_created_during_preparation": false,
+  "output_absence_observed_at_preparation": false,
+  "fresh_admission_only_directory_required_at_launch": true,
+  "controls": {
+    "wall_seconds": 60,
+    "TERM_grace_seconds": 8,
+    "KILL_wait_seconds": 8,
+    "sampled_owned_RSS_bytes": 2147483648,
+    "total_owned_output_bytes": 33554432,
+    "sample_seconds": 0.05,
+    "thread_environment": 1,
+    "retries": 0
+  },
+  "future_root_direct_roles": [
+    "actual",
+    "runtime_preflight",
+    "controller",
+    "admission",
+    "exact_child_peer",
+    "exact_child_bindings",
+    "guard_source_peer",
+    "guard_source_bindings",
+    "guard_root_source_review"
+  ],
+  "required_root_postchecks": [
+    "raw_outer_returncode0",
+    "child_returncode0_no_failure_stop_or_cleanup_error",
+    "all5_exact_names_one_Ran_count_finalOK",
+    "142_canonical_unique_identity_records_and91_runtime_paths_and_OS_unchanged",
+    "external_root_guard_source_peer_guard_source_bindings_guard_root_source_review_equal_sealed_actual_descriptors",
+    "owned_single_fixture_group_independently_absent",
+    "inner_prefinal_handlercutoff_and_postreceipt_elapsed_below60s",
+    "independent_conservative_whole_root_startup_preflight_fullreturn_bracket_at_most60s",
+    "inclusive_final_D_admission_controls_receipts_outerstreams_terminal_records_at_most33554432bytes",
+    "positive_prefinal_receipt_never_overrides_nonzero_outer_late_stop_or_budget_refusal"
+  ],
+  "root_admission": null,
+  "independent_exact_child_peer": null,
+  "synthetic_result": null,
+  "solver_or_transport_result": null,
+  "execution_authority": false,
+  "source_fragment_or_module_execution_authority": false,
+  "real_head_solver_native_or_physical_authority": false,
+  "PUB_Git_mutation": false,
+  "not_included_in_published_checkpoint": "69687744"
+}

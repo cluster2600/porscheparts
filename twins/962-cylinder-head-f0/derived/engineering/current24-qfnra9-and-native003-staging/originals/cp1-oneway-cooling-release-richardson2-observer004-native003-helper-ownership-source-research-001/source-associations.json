@@ -1,0 +1,112 @@
+{
+  "schema": "962-native003-helper-owned-child-primary-source-associations/v1",
+  "status": "SOURCE_RESEARCH_ONLY_NO_IMPLEMENTATION",
+  "author": "defect_gate_refresh",
+  "sources": [
+    {
+      "title": "CPython3.12.11 os waitid unavailable on Apple",
+      "url": "https://github.com/python/cpython/blob/v3.12.11/Modules/posixmodule.c#L8755",
+      "source_lines": "8755-8816",
+      "association": "Explicit Apple exclusion; no Python waitid route."
+    },
+    {
+      "title": "Pinned3.12.11 wait API documentation",
+      "url": "https://github.com/python/cpython/blob/v3.12.11/Doc/library/os.rst#L4332",
+      "source_lines": "4332-4359,4496-4501",
+      "association": "waitid unavailable on macOS; WNOWAIT is not an option of other wait functions."
+    },
+    {
+      "title": "Pinned3.12.11 kqueue documentation",
+      "url": "https://github.com/python/cpython/blob/v3.12.11/Doc/library/select.rst#L92",
+      "source_lines": "92-105,425-578",
+      "association": "kqueue/kevent and process exit notifications; precise bounded control API."
+    },
+    {
+      "title": "Pinned3.12.11 select implementation",
+      "url": "https://github.com/python/cpython/blob/v3.12.11/Modules/selectmodule.c#L2497",
+      "source_lines": "2064-2078,2497-2575",
+      "association": "Exports KQ_FILTER_PROC/KQ_NOTE_EXIT; no KQ_EV_RECEIPT export."
+    },
+    {
+      "title": "Apple archived kqueue manual",
+      "url": "https://developer.apple.com/library/archive/documentation/System/Conceptual/ManPages_iPhoneOS/man2/kqueue.2.html",
+      "source_lines": "69-80,112-140,225-250",
+      "association": "Changes precede retrieval; exit notification distinct from reap."
+    },
+    {
+      "title": "Apple archived wait manual",
+      "url": "https://developer.apple.com/library/archive/documentation/System/Conceptual/ManPages_iPhoneOS/man2/wait.2.html",
+      "source_lines": "48-60",
+      "association": "Specific-child WUNTRACED stop reporting."
+    },
+    {
+      "title": "Apple XNU public current main process filter",
+      "url": "https://github.com/apple-oss-distributions/xnu/blob/main/bsd/kern/kern_event.c#L1031",
+      "source_lines": "1031-1066,1109-1164,1231-1241",
+      "association": "Registration can return ESRCH; no NOTE_TRACK; NOTE_EXIT records event without performing wait/reap."
+    },
+    {
+      "title": "Apple XNU public wait header",
+      "url": "https://github.com/apple-oss-distributions/xnu/blob/main/bsd/sys/wait.h#L151",
+      "source_lines": "151-163,228-238",
+      "association": "C waitid and WNOWAIT exist independently of Python exposure."
+    },
+    {
+      "title": "Apple XNU public waitid implementation",
+      "url": "https://github.com/apple-oss-distributions/xnu/blob/main/bsd/kern/kern_exit.c#L2984",
+      "source_lines": "2984-3019",
+      "association": "C WNOWAIT does not take ordinary reap branch; no installed-kernel equivalence claimed."
+    },
+    {
+      "title": "Pinned3.12.11 Popen implicit reap paths",
+      "url": "https://github.com/python/cpython/blob/v3.12.11/Lib/subprocess.py#L994",
+      "source_lines": "994-1032,1123-1126,1805-1887,1992-2031",
+      "association": "Context exit/destructor/poll/wait and signal methods can reap; retain strong handle and avoid them before cleanup."
+    },
+    {
+      "title": "POSIX status and automatic-reap semantics",
+      "url": "https://pubs.opengroup.org/onlinepubs/9699919799/functions/V2_chap02.html#tag_15_13",
+      "source_lines": "Status Information",
+      "association": "SIG_IGN/SA_NOCLDWAIT discard waitable status; normal wait consumes status."
+    },
+    {
+      "title": "Pinned3.12.11 signal wrapper",
+      "url": "https://github.com/python/cpython/blob/v3.12.11/Modules/signalmodule.c#L494",
+      "source_lines": "494-500",
+      "association": "signal.signal routes through PyOS_setsig."
+    },
+    {
+      "title": "Pinned3.12.11 signal disposition implementation",
+      "url": "https://github.com/python/cpython/blob/v3.12.11/Python/pylifecycle.c#L2975",
+      "source_lines": "2975-2991",
+      "association": "sigaction flags SA_ONSTACK omit SA_NOCLDWAIT; source-level default reset candidate."
+    }
+  ],
+  "original_task_root_review": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native003-helper-root-source-review-001/review.json",
+    "sha256": "eaaa82fe7058f39093a6b3d4c715182c584e5d9045268df089c83d7617240734",
+    "bytes": 4752
+  },
+  "source_note": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native003-helper-ownership-source-research-001/NOTE.md",
+    "sha256": "03eecc7e2e8e6c960b366e1d96c0a5bf8180a7fd39331a01929d1e8b04e12185",
+    "bytes": 7095
+  },
+  "chosen_source_candidate": "One stopped-before-exec samePID session wrapper plus kqueue NOTE_EXIT; separate future implementation/root source decision required.",
+  "rejected_route": "CPython3.12.11 os.waitid on Apple. No fallback using numeric waitpid flags, FFI layout or guaranteed-refusal owner.",
+  "public_source_limit": "Pinned CPython sources and archived/public Apple/POSIX APIs are source evidence, not current selected1699/installedOS/extension origin or full ABI observations. Apple main is unpinned to installed build.",
+  "research_access_limit": "Official/public primary web text only. No source vendor/download into packet, no local third-party runtime/SDK/scientific body operation.",
+  "implementation_or_execution": {
+    "owner": false,
+    "wrapper": false,
+    "actual": false,
+    "admission": false,
+    "helper": false,
+    "staging": false,
+    "query": false,
+    "process_probe": false,
+    "native": false,
+    "body_refresh": false
+  },
+  "future_scope": "Existing two distinct operation limits and unchanged native controls; no scientific/material/manufacturing authority."
+}
