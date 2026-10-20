@@ -195,3 +195,78 @@ and reaps that case; its repeat reached the 60-second bound. The cause remains
 unresolved. Both exported WildMeshing carrier boundaries failed the independent
 fidelity screen; lowering the requested mesher envelope to 0.03 mm did not fix
 window-tip loss. The preserved-boundary TetGen route avoids that surface edit.
+
+## Actual mechanical screening and rejected reinforcement study
+
+The English report now includes complete new gravity/combined CCX results and
+a same-recipe baseline comparison. The added-patch combined-load elastic peak
+is 32,284 MPa, versus 5,178 MPa on the baseline. These are unconverged numerical
+hotspots; the small patches are not adopted as a final mechanical design.
+
+`prepare_tetgen_mechanics_ccx.py` is the corrected preparation recipe for the
+published refined volume. It uses the unchanged retained six-component bore
+load distributor, nominal bore groups and dense elastic reference. Numeric
+fields fit CCX's 20-character input fields; its exact coordinate-transport
+bound is recorded. `prepare_tetgen_mechanics.py` remains the historical first
+preparation whose long CLOAD field was refused.
+
+```sh
+python "$CARRIER_SOURCE/prepare_tetgen_mechanics_ccx.py" \
+  --mesh "$CARRIER_SOURCE/tetgen-volume-refined-outward.npz" \
+  --output work/carrier-ccx-prepared
+python3 "$CARRIER_SOURCE/run_owned_ccx.py" \
+  --deck work/carrier-ccx-prepared/gravity.inp \
+  --mesh work/carrier-ccx-prepared/mesh.inp \
+  --output work/carrier-ccx-gravity --seconds 300
+python "$CARRIER_SOURCE/assess_tetgen_mechanics.py" \
+  --execution work/carrier-ccx-gravity --preparation work/carrier-ccx-prepared \
+  --output work/carrier-ccx-gravity-assessment
+```
+
+Use `combined.inp` and another fresh output for the second case. The owned
+launcher verifies the recorded CCX binary hash inside its pinned image, runs
+with network disabled, one CPU and 6 GiB, records actual termination and removes
+only its own container. `assess_ccx_affine_control.py` rechecks the retained
+unit-cube input/output against unchanged analytic tolerances before using this
+solver configuration. The original helper's container-wide `pkill` is never
+called by this launcher.
+
+`round_hollow_root_trial.py` begins a separate native CAD iteration with inner
+cavity ends trimmed at |X|=70 mm and end-cap corners rounded to R0.6. Its first
+run created and saved the native body, STEP and STL, then failed in the inherited
+report's source-dependency path. Do not rerun completed geometry to hide that
+failure. `audit_rounded_hollow_native.py` independently reads those exact saved
+files, measures mass/radii and attempts strict full-parent retention. The saved-body audits, complete radius certificate and coarse mechanical hotspot are now documented in the main English report. The generator has a report-path-only correction for future runs; the original failed worker is archived, and the corrected generator has not been rerun. `stl_to_mesh64.py` indexes every
+triangle without filtering, for the same independent complete-surface audit.
+
+The separate CGAL exact planar-patch experiment reduced 603,152 triangles to
+478,598 with zero new vertex coordinates and passed the full surface screen.
+Its complete bidirectional exact volume comparison reached the 230-second
+bound after the first difference succeeded with zero faces. The second
+difference remains unconfirmed; this representation has not replaced the
+published 603,152-triangle source or inherited its mechanical results.
+
+
+## PicoGK closing and MeshLib evaluation
+
+`picogk-closing/` is the actual .NET 9.0.319 project, using the existing PicoGK
+runtime through `-p:PicoGKRuntime=/absolute/runtime/path`. It restores without
+NuGet packages. Build in that project directory so `global.json` selects the
+pinned SDK. Use fresh output/intermediate directories outside the source tree.
+`run_owned_picogk_closing.py --help` describes the bounded worker and catalogue
+lock. The control must pass before a carrier invocation. The completed carrier
+case uses 0.2 mm voxels and 1 mm closing radius on the retained baseline STL.
+
+Install `requirements-meshlib.txt` into a separate Python environment. The
+recorded wheel download is under `dependencies/meshlib-3.1.4.297/`.
+`meshlib_decimation.py --help` describes the supervisor; run its cube control
+before processing the complete closing export. Both 0.02 and 0.04 mm backend
+error requests were executed. Backend estimates are not independent geometric
+certificates. MeshLib's published licence governs deployment; this was a
+numerical evaluation and does not provide a commercial software licence.
+
+Run `run_mesh64_audit.py` on every resulting surface. Then run
+`screen_nominal_gauge_volumes.py` using the separate native CAD Python site.
+The original 0.02 mm variant passes its full surface audit and six shank tests,
+but fails four strict tool-column intersection tests. The failed intersections
+are retained. No downstream result may be transferred across changed meshes.

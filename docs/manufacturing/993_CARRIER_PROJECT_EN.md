@@ -2,7 +2,7 @@
 
 ### From a reference part to a reproducible manufacturing workflow
 
-**20 October 2026 · Engineering resumed — audited union and preserved-boundary volume mesh**
+**20 October 2026 · Engineering resumed — numerical root hotspots under investigation**
 
 [Latest progress, images and reproducible prototype](../reports/carrier-resume-20261020/README.md). The 18 October checkpoint below remains the retained 24af baseline.
 
