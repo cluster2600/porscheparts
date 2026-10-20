@@ -1,0 +1,62 @@
+{
+  "schema": "962-native003-root-native-readiness-source-observation/v1",
+  "decision": "KEEP_NATIVE003_UNISSUED_PENDING_CURRENT_OWNERSHIP_LIFETIME_REVIEW",
+  "scope": "Additive current source observation. Earlier exact namespace/donor source review remains historical and did not grant a native launch. No prior receipt or source is modified.",
+  "sources": [
+    {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native-measurement-prep-003/run_root_once.py",
+      "sha256": "6d91abc5bfb8970908d41406448e9091291736ab9bb910a72b58f0243e7d754f",
+      "bytes": 18849
+    },
+    {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native-measurement-prep-003/run_native_capture.py",
+      "sha256": "7190f22f4d17869f6524743bc0de6f7eebc03393c17a4ed57984f282d0036a80",
+      "bytes": 22990
+    }
+  ],
+  "prior_root_source_review": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native003-root-source-control-review-001/review.json",
+    "sha256": "010e08cb4cb8dfc803f28f3f83fc4a0cea2fd0a312b675f2eb5f5becb1519478",
+    "bytes": 3583
+  },
+  "root_source_observations": [
+    {
+      "path": "run_root_once.py",
+      "lines": [
+        148,
+        160,
+        192,
+        210,
+        216,
+        218,
+        226,
+        229
+      ],
+      "issue": "Owner polls/waits and can reap its adapter before later raw numeric process-group cleanup; group IDs discovered by pgrep/ps do not themselves retain unreaped ownership anchors. Fresh cleanup waits and lingering deadline can extend115.",
+      "independent_review_pending": true
+    },
+    {
+      "path": "run_native_capture.py",
+      "lines": [
+        234,
+        242,
+        275,
+        277,
+        281,
+        290,
+        299
+      ],
+      "issue": "Caller creates a separate native session and has additional wait/poll/group-signal paths; exact lifetime ordering and nested-group ownership require full independent source review before any admission.",
+      "independent_review_pending": true
+    }
+  ],
+  "native_actual_or_admission_created": false,
+  "native_root_absent": true,
+  "staging_result_unchanged": true,
+  "separate_freshness_saved_result_review_may_proceed": true,
+  "solver_or_runtime_or_process_operation_performed_for_this_record": false,
+  "source_change_authorized_by_this_record": false,
+  "native_execution_authorized": false,
+  "physical_or_manufacturing_acceptance": false,
+  "automatic_retry": false
+}

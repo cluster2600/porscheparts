@@ -21,13 +21,20 @@ runtime preparations remain evidence for their stated software scope. They do
 not complete head strength, calibrated LPBF or a physically correlated twin.
 Each completed checkpoint is published in the existing GitHub draft review.
 
+The [freshness and native launch review](derived/engineering/native003-freshness-and-launch-hold/README.md)
+accepts one finite metadata check, with owner/helper/query exit statuses 0/0/0
+and unchanged before/after identity maps. It also records three unresolved
+native-controller ownership and lifetime findings. Native003 remains unissued;
+the separately reviewed metadata result supplies no native launch authority.
+Head, material, LPBF, twin and PhysicsNeMo qualification remain open.
+
 The [transport and staging checkpoint](derived/engineering/current24-qfnra9-and-native003-staging/README.md)
 accepts five fake framing checks and four corrected fake deadline checks.
 The original test run with eleven errors and its two namespace corrections remain
 in the archive. A separate staging run preserves four exact input copies
 (1,213,802 bytes), with owner/helper exit statuses 0/0 and complete receipt and cleanup
-review. Freshness and native solver capture remain pending; the 24 poor head
-cells and 12 LPBF equilibrium failures remain unchanged.
+review. Freshness and native solver capture were pending at that checkpoint;
+the 24 poor head cells and 12 LPBF equilibrium failures remain unchanged.
 
 The [QF_NRA software checkpoint](derived/engineering/current24-qfnra23-and-native003-held/README.md)
 passes 14 producer and 9 independently authored validator checks, once each.
