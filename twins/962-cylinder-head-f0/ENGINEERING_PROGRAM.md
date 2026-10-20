@@ -21,6 +21,15 @@ runtime preparations remain evidence for their stated software scope. They do
 not complete head strength, calibrated LPBF or a physically correlated twin.
 Each completed checkpoint is published in the existing GitHub draft review.
 
+The [complete 73-component coordinate study](derived/engineering/current110-complete73-coordinate-diagnostics/README.md)
+retains every one-call proposal: all optimizers report success, but exact checks
+accept only 62 local groups and preserve 11 failures, including 20 newly poor
+cells in rejected proposals. Passing groups cover 66 movable nodes and 86 of
+the original 110 poor cells. No proposal has been applied: the actual head still
+has 110 poor cells and its original minimum, in rejected group 30. All source,
+contracts, eight-file case outputs, closures and reviews are inspectable; native
+application, whole-head quality, strength and process qualification remain open.
+
 The [20 October head census and derived coupon probe](derived/engineering/current110-census-and-END181-defect-probe/README.md)
 preserve two new completed diagnostics. The current head has 110 poor cells,
 82 movable nodes and 2,482 incident cells, partitioned into 73 local coupling groups.
