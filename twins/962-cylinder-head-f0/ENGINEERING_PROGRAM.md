@@ -42,10 +42,14 @@ adds all 204 observed associations: 139 nonpatterns and 65 failed local replacem
 patterns. A separately authored rational checker verifies the finite result and
 89 conflicts. No mesh change follows and all 24 poor cells remain.
 The [complete edge-removal method's synthetic checkpoint](derived/engineering/current24-edge-removal-synthetic-guards/README.md)
-passes all 16 toy tests with separate saved-result review and root acceptance.
-The timing erratum preserves the original wait-time label and a conservative
-whole-command UTC bound. The actual 55-edge saved-head screen remains unrun;
-all 24 poor cells and engineering qualification gates remain.
+passes all 16 toy tests. Its [subsequent complete saved-head screen](derived/engineering/current24-saved-edge-removal-screen/README.md)
+now retains all 55 edge stars and 1,033 Catalan alternatives. A separately authored
+exact checker verifies every finite row and the 53,971-pair conflict union; its
+nine analytic guard groups pass. All 1,033 candidates fail quality and none passes
+the local predicate. No mesh is changed, and no global infeasibility or topology
+necessity is proved. All 24 poor head cells and twelve LPBF equilibrium failures
+remain; complete reports, source/control lineages and separate root acceptance
+are inspectable.
 
 The [passive residual-map plugin](derived/engineering/cp1-END181-observer-plugin/README.md)
 has reviewed source and compiled plugin/validator binaries. Host registration
@@ -82,6 +86,13 @@ an unlocalized permission error in resource/group observation. Full stopped text
 controls and separate saved refusal review remain inspectable. The map/vector
 bodies are excluded; no measurement completeness, retry or engineering acceptance
 follows. All twelve equilibrium failures and 24 poor head cells remain.
+
+The [native002 measurement attempt](derived/engineering/cp1-END181-observer-native002-refusal-and-parser11/README.md)
+remains refused: native exits 0, caller exits 1 and outer owner exits 2. Added
+diagnostics locate the failing group-existence call; the individual group, its
+state and cause remain unknown. The same capsule records all eleven parser002
+synthetic test methods passing under CPython 3.10. No real native 3.12 field
+association or resolution of the twelve mechanical failures follows.
 
 The earlier [complete 73-component coordinate study](derived/engineering/current110-complete73-coordinate-diagnostics/README.md)
 preserves all 62 passing and 11 rejected proposals. Only the passing subset was

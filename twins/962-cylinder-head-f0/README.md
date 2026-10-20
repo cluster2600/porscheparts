@@ -65,10 +65,14 @@ still fail. Independent saved arithmetic confirms those failures; the full
 mechanical assessment remains refused.
 
 The [complete edge-removal method's synthetic checkpoint](derived/engineering/current24-edge-removal-synthetic-guards/README.md)
-passes all 16 toy tests with separate saved-result review and root acceptance.
-The timing erratum preserves the original wait-time label and a conservative
-whole-command UTC bound. The actual 55-edge saved-head screen remains unrun;
-all 24 poor cells and engineering qualification gates remain.
+passes all 16 toy tests. Its [subsequent complete saved-head screen](derived/engineering/current24-saved-edge-removal-screen/README.md)
+now retains all 55 edge stars and 1,033 Catalan alternatives. A separately authored
+exact checker verifies every finite row and the 53,971-pair conflict union; its
+nine analytic guard groups pass. All 1,033 candidates fail quality and none passes
+the local predicate. No mesh is changed, and no global infeasibility or topology
+necessity is proved. All 24 poor head cells and twelve LPBF equilibrium failures
+remain; complete reports, source/control lineages and separate root acceptance
+are inspectable.
 
 The [passive DOF-map observer](derived/engineering/cp1-END181-observer-plugin/README.md)
 adds reviewed plugin source for connecting solver vectors to displacement indices.
@@ -109,6 +113,13 @@ the exact operation and cause are unavailable in the original catch. Complete
 source/control/text receipts and independent refusal accounting are retained.
 Raw DOF-map/vector/CSV/CDF bodies are excluded; all twelve mechanical failures,
 24 poor head cells and measurement/physical qualification gates remain open.
+
+The [native002 measurement attempt](derived/engineering/cp1-END181-observer-native002-refusal-and-parser11/README.md)
+remains refused: native exits 0, caller exits 1 and outer owner exits 2. Added
+diagnostics locate the failing group-existence call; the individual group, its
+state and cause remain unknown. The same capsule records all eleven parser002
+synthetic test methods passing under CPython 3.10. No real native 3.12 field
+association or resolution of the twelve mechanical failures follows.
 
 The [20 October head census and derived coupon probe](derived/engineering/current110-census-and-END181-defect-probe/README.md)
 preserve two earlier completed diagnostics. That previous head had 110 poor cells,

@@ -1,0 +1,60 @@
+{
+  "schema": "962-observer004-saved-parser002-independent-source-findings/v1",
+  "decision": "SOURCE_B01_CORRECTED_NO_NEW_DELTA_BLOCKER",
+  "blockers": [],
+  "predecessor_B01": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-saved-measurement-parser-source-peer-001/review.json",
+    "sha256": "83d63ce8d2f21e61817e659f2afe2f050ee0394f451a7010365c8e2173f546f3",
+    "bytes": 3212
+  },
+  "proofs": {
+    "whole_parser_reverse_byte_AST_exact": true,
+    "whole_fixture_reverse_byte_AST_exact": true,
+    "exact_source_diff": true,
+    "unchanged_parser_definitions": 7,
+    "changed_parser_definition": "parse_monitor_trace one refusal-regex literal only",
+    "unchanged_fixture_methods": 10,
+    "changed_fixture_method": "test_missing_extra_or_unrecognized_trace_monitor_refused adds4badlines",
+    "unchanged_fixture_module_helpers": [
+      "stream",
+      "word",
+      "toy_map",
+      "log_text"
+    ],
+    "one_direct_TestCase": true,
+    "all11methods_UNRUN": true,
+    "badtrace_loop_cases": 7,
+    "all_other_imports_constants_helpers_source_exact": true
+  },
+  "strict_marker_analysis": [
+    {
+      "case": "Negative step -1",
+      "static_result": "Full supported unsigned-step grammar fails, but unmatched Time/whitespace/Step marker now matches and reaches existing ValueError; no ignored line."
+    },
+    {
+      "case": "Decimal1.5, alphabetic unknown, missing step",
+      "static_result": "Each fails successful full header grammar and matches the fallback marker, so existing refusal applies. These four appended toy cases directly coverB01 and related malformed-step forms."
+    },
+    {
+      "case": "Space/tab/multiple-whitespace variants inside one physical line",
+      "static_result": "Successful full grammar remains literal Time Step; unsupported spacing fails it and fallback Time\\s+Step catches the two word markers. No broadened success grammar. Marker remains documented case-sensitive and line-based."
+    },
+    {
+      "case": "Numeric time/dt overflow or nonfinite token",
+      "static_result": "Unchanged successful step branch converts tokens and requires math.isfinite; overflow-to-inf/nan fails. Huge/out-of-range integer step fails the unchanged exact1..182 ordered sequence or integer conversion. These are static branch deductions, not executed fixture observations."
+    },
+    {
+      "case": "Monitor norm nonfinite token",
+      "static_result": "Unchanged lexical norm conversion intentionally retains nonfinite norm tokens as descriptive text, not accuracy acceptance; this is separate from finite time/dt requirements."
+    }
+  ],
+  "unchanged_format_and_scope": [
+    "Explicit4/8 big-endian class1211214/N/real8/8N/EOF; everyN independent,364/1700 bounds, opaque.info and payload signs/NaN bits preserved.",
+    "425x4 ordered map,1275 physical DOFs,complete actual0..N-1 range and expected original6labels, variable/scaling/coordinate/time words with external provenance.",
+    "Exactly182 solves/364events and conditionalEND181360/361 associations; earlier layouts not inferred from END181 map.",
+    "No automatic ownCSV/CDF/node-ID/doublet/X1word collector, rounded delta, Y0 interpretation, Y1 equality/F-to-SI/reaction/unscaling/cause/fullassessor or physical qualification.",
+    "Future guard/saved-input/actual/result roles remain null and all authorities false; failed native0/caller1/outer2 remains refused and is not accepted input."
+  ],
+  "coverage_precision": "Eleven test methods remain unrun; the existing badtrace method now has7 cases. Whitespace/time-overflow behavior is statically justified by unchanged/new predicates, not a newly executed or added explicit fixture case.",
+  "performed": "Named first-party source/metadata bytes, AST and exact diff/reversal reasoning only. No source imports/tests, native data/header/map/vector/CSV/CDF/grid/field/runtime read/hash/stat or execution."
+}

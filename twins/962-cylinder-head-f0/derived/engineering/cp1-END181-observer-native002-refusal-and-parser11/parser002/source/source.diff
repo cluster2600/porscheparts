@@ -1,0 +1,26 @@
+--- work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-saved-measurement-parser-prep-001/parse_saved_measurement.py
++++ work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-saved-measurement-parser-prep-002/parse_saved_measurement.py
+@@ -158,7 +158,7 @@
+             need(current is not None and int(monitor[1]) in (0,1),"Unbound/unexpected SNES monitor")
+             float(monitor[2]) # Lexical numeric check only; nonfinite norm is retained, not accepted as accuracy.
+             current['monitors'].append(dict(iteration=int(monitor[1]),norm_token=monitor[2],line=line_number));continue
+-        need('SNES Function norm' not in line and not re.search(r'\bTime Step\s+[0-9]+',line),"Unsupported monitor/time grammar; preserve, do not guess")
++        need('SNES Function norm' not in line and not re.search(r'\bTime\s+Step\b',line),"Unsupported monitor/time grammar; preserve, do not guess")
+     startup=[b for b in blocks if b['step']==0]
+     solves=[b for b in blocks if b['step']!=0]
+     need(len(startup)<=1 and all(not b['monitors'] for b in startup),"Initial step is not an invented solve")
+--- work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-saved-measurement-parser-prep-001/test_parser_synthetic.py
++++ work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-saved-measurement-parser-prep-002/test_parser_synthetic.py
+@@ -112,7 +112,11 @@
+     def test_missing_extra_or_unrecognized_trace_monitor_refused(self):
+         text=log_text()
+         for bad in [text.replace('  1 SNES Function norm 1.0e-16\n','',1),
+-                    text+'  1 SNES Function norm 1.0e-16\n',text.replace('0 SNES Function norm','2 SNES Function norm',1)]:
++                    text+'  1 SNES Function norm 1.0e-16\n',text.replace('0 SNES Function norm','2 SNES Function norm',1),
++                    text+'Time Step -1, time = 0, dt = 0.0025\n',
++                    text+'Time Step 1.5, time = 0, dt = 0.0025\n',
++                    text+'Time Step unknown, time = 0, dt = 0.0025\n',
++                    text+'Time Step, time = 0, dt = 0.0025\n']:
+             with self.assertRaises(ValueError):p.parse_monitor_trace(bad)
+ 
+     def test_header_join_keeps_earlier_N_independent_of_END181(self):
