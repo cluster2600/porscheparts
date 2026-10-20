@@ -1,0 +1,188 @@
+--- work/962-engineering/cp1-oneway-cooling-release-prep-001/thermoelastic-birth.i
++++ work/962-engineering/cp1-oneway-cooling-release-linear-prep-001/thermoelastic-birth.i
+@@ -581,9 +581,10 @@
+     order = SECOND
+   []
+   type = Transient
+-  solve_type = NEWTON
+-  petsc_options_iname = '-ksp_type -pc_type'
+-  petsc_options_value = 'preonly lu'
++  solve_type = LINEAR
++  petsc_options = '-snes_monitor'
++  petsc_options_iname = '-ksp_type -pc_type -snes_norm_schedule'
++  petsc_options_value = 'preonly lu always'
+   line_search = none
+   dt = 0.0025
+   end_time = 0.455
+--- work/962-engineering/cp1-oneway-cooling-release-prep-001/run_mac.py
++++ work/962-engineering/cp1-oneway-cooling-release-linear-prep-001/run_mac.py
+@@ -95,7 +95,7 @@
+     need(path.is_file() and not path.is_symlink() and path.resolve() == path
+          and re.fullmatch("[0-9a-f]{64}", expected) and same(path, expected), "Exact external actual child required")
+     c = json.loads(path.read_text())
+-    need(stage == "coupon" and c.get("schema") == "962-macos-oneway-cooling-release-case-actual/v1"
++    need(stage == "coupon" and c.get("schema") == "962-macos-oneway-cooling-release-linear-case-actual/v1"
+          and c.get("stage") == stage and c.get("root_and_peer_review_complete") is True
+          and c.get("native_launch_authorized") is True and c.get("coupon_solve_authorized") is True
+          and all(c.get(k) is False for k in ("head_authorized", "engineering_accepted", "physics_qualified",
+@@ -157,7 +157,7 @@
+          and frozen["source_input_sha256"]["thermoelastic-birth.i"] == sha(CASE / "thermoelastic-birth.i"),
+          "Exact separate source physics contract required")
+     output = Path(c["output"])
+-    need(output == ENGINEERING / "cp1-oneway-cooling-release-001" and output.resolve() == output
++    need(output == ENGINEERING / "cp1-oneway-cooling-release-linear-001" and output.resolve() == output
+          and not output.exists() and not output.is_symlink(), "Fresh fixed direct case output required")
+     return c, output
+ 
+--- work/962-engineering/cp1-oneway-cooling-release-prep-001/test_controls.py
++++ work/962-engineering/cp1-oneway-cooling-release-linear-prep-001/test_controls.py
+@@ -10,7 +10,7 @@
+ from unittest import TestCase, main, mock
+ 
+ SOURCE = Path(__file__).with_name("run_mac.py")
+-SOURCE_SHA256 = "104fcd61eb1441f05f7ff3a40eb60a10c80d83f03123d9c402b8a6972f722659"
++SOURCE_SHA256 = "5ec0fe4684dd51dd7934ca3069e75497a481a08db5a9ee8a78646d81e3813f6c"
+ assert hashlib.sha256(SOURCE.read_bytes()).hexdigest() == SOURCE_SHA256
+ spec = importlib.util.spec_from_file_location("mac_thermal_candidate", SOURCE)
+ module = importlib.util.module_from_spec(spec)
+@@ -52,7 +52,7 @@
+         with tempfile.TemporaryDirectory() as tmp:
+             path = Path(tmp).resolve() / "actual.json"
+             for stage, authority in (("readiness", True), ("coupon", False)):
+-                c = dict(schema="962-macos-oneway-cooling-release-case-actual/v1", stage=stage,
++                c = dict(schema="962-macos-oneway-cooling-release-linear-case-actual/v1", stage=stage,
+                          root_and_peer_review_complete=True, native_launch_authorized=authority,
+                          coupon_solve_authorized=True, head_authorized=False, manufacturing_authorized=False,
+                          engineering_accepted=False, physics_qualified=False, material_qualified=False,
+@@ -195,7 +195,7 @@
+                 coupon_resources=real_held["coupon_resources"])))
+             files=[held,fake,registry_log,runtime_binding,registry_closed,presence]+list(case.iterdir())+list(transfer.iterdir())
+             pins={str(p.relative_to(module.ROOT)):module.sha(p) for p in files};relfake=str(fake.relative_to(module.ROOT))
+-            c=dict(schema="962-macos-oneway-cooling-release-case-actual/v1",stage="coupon",
++            c=dict(schema="962-macos-oneway-cooling-release-linear-case-actual/v1",stage="coupon",
+                 root_and_peer_review_complete=True,native_launch_authorized=True,coupon_solve_authorized=True,
+                 head_authorized=False,engineering_accepted=False,physics_qualified=False,material_qualified=False,
+                 process_calibrated=False,manufacturing_authorized=False,automatic_retry=False,
+@@ -206,7 +206,7 @@
+                 independent_assessment_source_peer=relfake,independent_assessment_source_root_review=relfake,
+                 transfer_manifest=str((transfer/"transfer-manifest.json").relative_to(module.ROOT)),
+                 transfer_manifest_sha256=module.sha(transfer/"transfer-manifest.json"),
+-                output=str(base/"cp1-oneway-cooling-release-001"))
++                output=str(base/"cp1-oneway-cooling-release-linear-001"))
+             path=base/"actual.json"
+             with mock.patch.object(module,"HELD",held),mock.patch.object(module,"PREP",case), \
+                  mock.patch.object(module,"CASE",case),mock.patch.object(module,"CARD",case/"card.json"), \
+--- work/962-engineering/cp1-oneway-cooling-release-contract-clarification-001/case-contract.corrected.json
++++ work/962-engineering/cp1-oneway-cooling-release-linear-prep-001/case-contract.json
+@@ -1,5 +1,5 @@
+ {
+-  "schema": "962-oneway-cooling-release-source-case-contract/v1",
++  "schema": "962-oneway-cooling-release-linear-source-case-contract/v1",
+   "status": "HELD_SOURCE_PHYSICS_REFERENCE_NOT_DATA_OR_NATIVE_AUTHORITY",
+   "card": {
+     "schema": "962-oneway-assumed-SI-thermoelastic-birth-card/v1",
+@@ -250,7 +250,7 @@
+   },
+   "card_sha256": "04f65ecd853c7a4061fe902afd862b9cc9e3572000b7af5edf2cca2cebbd3de7",
+   "source_input_sha256": {
+-    "thermoelastic-birth.i": "08708c82f0f38568d9b87c301c6f478c19febc8902097681188b0be60713be07",
++    "thermoelastic-birth.i": "de5c9ea62050645fb546fc650c01023913478c230011faa5172b76ffb36a4f7c",
+     "prepare_continuation.py": "a2b61fde2968229861145ce1c99d22896ac15284843b3843760ae1702241e218"
+   },
+   "frozen_before_native_runs": true,
+@@ -261,13 +261,21 @@
+     "born-end.grid",
+     "born-begin80.grid"
+   ],
+-  "completed_transfer_manifest": null,
+-  "completed_transfer_table_sha256": null,
++  "completed_transfer_manifest": {
++    "path": "work/962-engineering/cp1-oneway-cooling-release-inputs-001/transfer-manifest.json",
++    "sha256": "c774e62c67e16c29dc024b8cc8e6641570e316265960e58cd7170827f8cecd06",
++    "bytes": 130095
++  },
++  "completed_transfer_table_sha256": {
++    "old-end.grid": "c64b252894a88730ad1f6ec0311cc5fe58a2cb3a8831f67e61db9d20be95823e",
++    "born-end.grid": "9caf52c69d0b14db442571b11d72252f3431d57b3991ab90ed849ddb6178b63f",
++    "born-begin80.grid": "cf4d9df9c8ab66aa37c40ef4e9cf3be44607229ff901201017eba0ba176cfbe4"
++  },
+   "completed_transfer_identities_must_be_directly_bound_by_future_external_native_actual": true,
+   "native_geometry_proven": false,
+   "independent_3D_assessment_source": null,
+   "independent_3D_assessment_source_peer": null,
+-  "native_adapter": "run_mac.py, case-only literal/source binding successor of fde482 lifecycle",
++  "native_adapter": "run_mac.py: schema/output-only successor of104f; run() and eight other top-level functions unchanged",
+   "capture": {
+     "file_base": "thermoelastic",
+     "times_s": {
+@@ -396,5 +404,70 @@
+     "symmetric_tensor_sets": 5,
+     "tensor_scalar_components_per_QP": 30,
+     "native_capture_or_storage_observed": false
++  },
++  "solver_profile": {
++    "formulation": "LINEAR",
++    "PETSc_SNES_type": "ksponly",
++    "petsc_options": [
++      "-snes_monitor"
++    ],
++    "petsc_options_iname": [
++      "-ksp_type",
++      "-pc_type",
++      "-snes_norm_schedule"
++    ],
++    "petsc_options_value": [
++      "preonly",
++      "lu",
++      "always"
++    ],
++    "original_nonlinear_literals_retained": {
++      "nl_rel_tol": 1e-11,
++      "nl_abs_tol": 1e-10,
++      "nl_max_its": 30
++    },
++    "original_nonlinear_tolerance_test_active": false,
++    "completion_label_is_not_original_NEWTON_acceptance": true,
++    "final_updated_solution_residual_callback_required": true,
++    "installed_source_ABI_equivalence_proven": false,
++    "independent_full_field_SI_assessment_required": true,
++    "independent_SI_limits": {
++      "temperature_K": 1e-10,
++      "displacement_m": 1e-12,
++      "QP_coordinate_m": 2e-13,
++      "strain": 1e-10,
++      "stress_Pa": 0.1,
++      "force_N": 1e-07,
++      "moment_Nm": 1e-07
++    },
++    "monitor_is_freshness_mechanism_not_a_new_residual_tolerance": true
++  },
++  "original_contract_and_corrected_reference": {
++    "original": {
++      "path": "work/962-engineering/cp1-oneway-cooling-release-prep-001/case-contract.json",
++      "sha256": "0cb6b9a16de29d503df0d2fe02a1ec4be5ed2e5a51ee2b610b3c4892846ece63",
++      "bytes": 13800
++    },
++    "corrected_companion": {
++      "path": "work/962-engineering/cp1-oneway-cooling-release-contract-clarification-001/case-contract.corrected.json",
++      "sha256": "1dc7eefae6f6666a91fdb0adde2261aa9efc7f3424a713d21b6f60e6091dfb66",
++      "bytes": 13800
++    },
++    "correction_receipt": {
++      "path": "work/962-engineering/cp1-oneway-cooling-release-contract-clarification-001/correction.json",
++      "sha256": "3971d0f27293a04f051206a2b2afef3304c56aa3814b12e586c4f5fe0229ed46",
++      "bytes": 2652
++    },
++    "new_profile_uses_corrected_capture_rule": true
++  },
++  "source_input_role_notes": {
++    "prepare_continuation.py": "Inherited completed-data preparer identity only; no clone or regeneration in this profile.",
++    "card.json": "Byte-exact original research hypothesis card. Its historical001 ID remains unchanged to bind accepted data.",
++    "thermal-input-index.json": "Byte-exact original metadata index, no raw thermal CSV/grid read during preparation."
++  },
++  "data_root_acceptance": {
++    "path": "work/962-engineering/cp1-oneway-cooling-release-data-root-review-001/acceptance.json",
++    "sha256": "f8be963292406fb682d62942fbcf7d61c3a3d86bbd1ee5d8f0e240c3764c4620",
++    "bytes": 34972
+   }
+ }

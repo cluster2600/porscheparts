@@ -1,0 +1,629 @@
+{
+  "schema": "962-cp1-oneway-cooling-release-linear-assessment-execution-index/v1",
+  "status": "FROZEN_AUTHOR_BINDING_PENDING_EXTERNAL_CHILD_AND_ROOT_FRESH_LAUNCH",
+  "actual": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-linear-assessment-execution-prep-001/actual-contract.json",
+    "sha256": "90c344486486f68abb6f2da67a75d9f754cc6fea9e9dcf268973c1f95b464098",
+    "bytes": 458258
+  },
+  "source": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-linear-assessor-prep-001/assess.py",
+    "sha256": "b7c5c7c82c5a7fee11aa63032f9a136d46517b8163c3c880b8b39a06d083930f",
+    "bytes": 46610
+  },
+  "held": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-linear-assessor-prep-001/held-preparation.json",
+    "sha256": "8a6fb92a5d3141f543aedd29184f1361e54e623eca69e3c1b7008bd1a5657f69",
+    "bytes": 214199
+  },
+  "preflight": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-linear-assessment-execution-prep-001/input-runtime-preflight.json",
+    "sha256": "618c8f8a3b1de9904a4588a26d4b4347cdad035f1e2f3a5da0667f2ef6971ad4",
+    "bytes": 565475
+  },
+  "complete_argv": [
+    "runtime-role://controller/python",
+    "-I",
+    "-B",
+    "work/962-engineering/cp1-oneway-cooling-release-linear-assessor-prep-001/assess.py",
+    "work/962-engineering/cp1-oneway-cooling-release-linear-assessment-execution-prep-001/actual-contract.json",
+    "90c344486486f68abb6f2da67a75d9f754cc6fea9e9dcf268973c1f95b464098"
+  ],
+  "working_directory": "project-role://engineering-checkout",
+  "environment": {
+    "PATH": "/usr/bin:/bin",
+    "LANG": "C",
+    "LC_ALL": "C",
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "VECLIB_MAXIMUM_THREADS": "1",
+    "PYTHONDONTWRITEBYTECODE": "1"
+  },
+  "source_consumed_fields": [
+    "TimePeriod24_presence",
+    "TimePeriod24_registry_peer_and_root_review_complete",
+    "TimePeriod24_root_closed",
+    "assessment_authorized",
+    "automatic_retry",
+    "complete_native_storage_audit_and_root_review_complete",
+    "continuation_data_peer_and_root_accepted",
+    "data_result_peer",
+    "data_root_acceptance",
+    "engineering_accepted",
+    "exodus_family",
+    "head_execution_authorized",
+    "input_sha256",
+    "manufacturing_authorized",
+    "material_qualified",
+    "native_capture_peer",
+    "native_capture_root_acceptance",
+    "native_completed_and_peer_reviewed",
+    "native_directory",
+    "native_execution_authorized",
+    "native_output_inventory",
+    "native_storage_audit",
+    "native_storage_root_acceptance",
+    "output_directory",
+    "physics_qualified",
+    "process_calibrated",
+    "root_and_independent_source_review_complete",
+    "runtime_selection",
+    "schema",
+    "transfer_manifest"
+  ],
+  "consumed_fields_count": 30,
+  "all_consumed_fields_present": true,
+  "completed_admission_paths": {
+    "data_result_peer": "work/962-engineering/cp1-oneway-cooling-release-data-result-peer-001/review.json",
+    "data_root_acceptance": "work/962-engineering/cp1-oneway-cooling-release-data-root-review-001/acceptance.json",
+    "native_capture_peer": "work/962-engineering/cp1-oneway-cooling-release-linear-native-result-peer-001/review.json",
+    "native_capture_root_acceptance": "work/962-engineering/cp1-oneway-cooling-release-linear-native-root-execution-001/result-peer-acceptance.json",
+    "native_storage_audit": "work/962-engineering/cp1-oneway-cooling-release-linear-native-storage-audit-001/complete-saved-audit.json",
+    "native_storage_root_acceptance": "work/962-engineering/cp1-oneway-cooling-release-linear-native-storage-root-execution-001/result-peer-acceptance.json",
+    "TimePeriod24_presence": "work/962-engineering/cp1-oneway-cooling-release-registry-001/required-object-presence.json",
+    "TimePeriod24_root_closed": "work/962-engineering/cp1-oneway-cooling-release-registry-001/closed-result.json"
+  },
+  "all_eight_named_admissions_direct_pinned": true,
+  "input_count": 1648,
+  "input_sha256_map_compact_sorted_JSON_sha256": "555a2c5a4a5605e4d9f33808875ff5a2220e75479b3ca0e0f294b3f979cb07d1",
+  "held_input_count": 430,
+  "native_actual_input_count": 129,
+  "native_root_input_count": 137,
+  "full_source_and_native_maps_preserved": true,
+  "native_inventory": {
+    "files": 1122,
+    "bytes": 423178297,
+    "all_original_artifacts_direct_pinned": true,
+    "exact_recursive_regular_name_set": true
+  },
+  "decoder_runtime_selection": {
+    "path": "work/962-engineering/imported-elastic-cube-assessor-runtime-selection-001/selection.json",
+    "sha256": "2b3b2ac0f52ecef6f349d45524f26011da94c257fc0ede5067a9f236681e9713",
+    "bytes": 55371
+  },
+  "decoder258_map_repeated_here_or_in_actual": false,
+  "donor_shape_only": {
+    "path": "work/962-engineering/cp1-oneway-thermoelastic-assessment-execution-prep-002/actual-contract.json",
+    "sha256": "5d76ec0fade67465e151292f5c7b9d3b5a954245c485af84e04967d68e86e78c",
+    "bytes": 444268
+  },
+  "donor_index": {
+    "path": "work/962-engineering/cp1-oneway-thermoelastic-assessment-execution-prep-002/index.json",
+    "sha256": "6d60ff61c2eca596483a25141e7ac7fbff0f29944d802b82c986cc47fda15a20",
+    "bytes": 32833
+  },
+  "robust_top_level_donor_delta": [
+    {
+      "field": "POLICY_sha256",
+      "old_present": true,
+      "new_present": true,
+      "old_type": "str",
+      "old_value": "b9d50d29ff349b7dc9de54445a9b4bea4d16fbfa177bf3b533bbc1c01f0a832f",
+      "new_type": "str",
+      "new_value": "a87df89f84706b36c0b665c0e9eac928e3c9b2b45f5a2921442b2d6403f4a638"
+    },
+    {
+      "field": "TimePeriod24_presence",
+      "old_present": false,
+      "new_present": true,
+      "new_type": "str",
+      "new_value": "work/962-engineering/cp1-oneway-cooling-release-registry-001/required-object-presence.json"
+    },
+    {
+      "field": "TimePeriod24_registry_peer_and_root_review_complete",
+      "old_present": false,
+      "new_present": true,
+      "new_type": "bool",
+      "new_value": true
+    },
+    {
+      "field": "TimePeriod24_root_closed",
+      "old_present": false,
+      "new_present": true,
+      "new_type": "str",
+      "new_value": "work/962-engineering/cp1-oneway-cooling-release-registry-001/closed-result.json"
+    },
+    {
+      "field": "assessment_execution_authorization_scope",
+      "old_present": true,
+      "new_present": false,
+      "old_type": "str",
+      "old_value": "Conditional exact saved-data assessment intent only. External exact-child peer and root current input/runtime/Python/resources/fresh-output acceptance must precede the one root-owned invocation. This JSON preparation does not launch or accept any result."
+    },
+    {
+      "field": "authority_scope",
+      "old_present": false,
+      "new_present": true,
+      "new_type": "str",
+      "new_value": "Only one future saved-field assessment after external exact-child acceptance and root fresh input/runtime/interpreter/resource/output checks. No native rerun or physical admission."
+    },
+    {
+      "field": "complete_lexical_storage",
+      "old_present": false,
+      "new_present": true,
+      "new_type": "dict",
+      "new_count": 8,
+      "new_compact_sorted_JSON_sha256": "c9298db4556f6b37bd8e901b38efa4aaf59d62301fe12eb83c7550a7caec6cd6"
+    },
+    {
+      "field": "complete_native_storage_audit_and_root_review_complete",
+      "old_present": false,
+      "new_present": true,
+      "new_type": "bool",
+      "new_value": true
+    },
+    {
+      "field": "completed_source_guard_counts",
+      "old_present": false,
+      "new_present": true,
+      "new_type": "dict",
+      "new_count": 2,
+      "new_compact_sorted_JSON_sha256": "c7591e58b606460b9c26b8b43ca661fd585eb7fc108c90c2efda48cbe6d26423"
+    },
+    {
+      "field": "continuation_data_peer_and_root_accepted",
+      "old_present": false,
+      "new_present": true,
+      "new_type": "bool",
+      "new_value": true
+    },
+    {
+      "field": "controls",
+      "old_present": true,
+      "new_present": true,
+      "old_type": "dict",
+      "old_count": 13,
+      "old_compact_sorted_JSON_sha256": "161d141992c63a6607af552445438ac9ccc6b7d9f5c4aaae41b443acdd59e779",
+      "new_type": "dict",
+      "new_count": 12,
+      "new_compact_sorted_JSON_sha256": "418da229966714185867fd409ebf9d5ccaf09d7124714dd11c6500f2a37076a2"
+    },
+    {
+      "field": "current_capture",
+      "old_present": true,
+      "new_present": true,
+      "old_type": "dict",
+      "old_count": 15,
+      "old_compact_sorted_JSON_sha256": "10804541b7263791cf01ec6c890ff0c998d4340af2070eedac1bc1b8b52301da",
+      "new_type": "dict",
+      "new_count": 9,
+      "new_compact_sorted_JSON_sha256": "10bdd0499916fe645617bef7b1b206060fe7c7990d492f3145d7d993c5f844d3"
+    },
+    {
+      "field": "data_result_peer",
+      "old_present": false,
+      "new_present": true,
+      "new_type": "str",
+      "new_value": "work/962-engineering/cp1-oneway-cooling-release-data-result-peer-001/review.json"
+    },
+    {
+      "field": "data_root_acceptance",
+      "old_present": false,
+      "new_present": true,
+      "new_type": "str",
+      "new_value": "work/962-engineering/cp1-oneway-cooling-release-data-root-review-001/acceptance.json"
+    },
+    {
+      "field": "decoder_runtime",
+      "old_present": false,
+      "new_present": true,
+      "new_type": "dict",
+      "new_count": 5,
+      "new_compact_sorted_JSON_sha256": "2cca1e958d4f6a78eb1e5212d16ce304e27a2025d6572d8be775959d8d228ee1"
+    },
+    {
+      "field": "decoder_runtime_metadata",
+      "old_present": true,
+      "new_present": false,
+      "old_type": "dict",
+      "old_count": 11,
+      "old_compact_sorted_JSON_sha256": "fd76e0ddda169819625e3a2f3f59bc3b9241fe790c1575df7b7f843f08c53260"
+    },
+    {
+      "field": "environment",
+      "old_present": false,
+      "new_present": true,
+      "new_type": "dict",
+      "new_count": 7,
+      "new_compact_sorted_JSON_sha256": "08e868f364adccc020360056e0d245015c920bca36f6ce5ba737bfc5c223c875"
+    },
+    {
+      "field": "exact_child_peer_review_complete_at_freeze",
+      "old_present": true,
+      "new_present": false,
+      "old_type": "bool",
+      "old_value": false
+    },
+    {
+      "field": "external_child_peer_required",
+      "old_present": true,
+      "new_present": false,
+      "old_type": "bool",
+      "old_value": true
+    },
+    {
+      "field": "external_child_peer_review_complete_at_freeze",
+      "old_present": false,
+      "new_present": true,
+      "new_type": "bool",
+      "new_value": false
+    },
+    {
+      "field": "held003_UNRUN_status_is_immutable_historical_author_record",
+      "old_present": true,
+      "new_present": false,
+      "old_type": "bool",
+      "old_value": true
+    },
+    {
+      "field": "held430_input_values_exact_preserved",
+      "old_present": false,
+      "new_present": true,
+      "new_type": "bool",
+      "new_value": true
+    },
+    {
+      "field": "held458_input_values_exact_preserved",
+      "old_present": true,
+      "new_present": false,
+      "old_type": "bool",
+      "old_value": true
+    },
+    {
+      "field": "historical_held_UNRUN_and_null_fields_preserved",
+      "old_present": false,
+      "new_present": true,
+      "new_type": "bool",
+      "new_value": true
+    },
+    {
+      "field": "identity_scope",
+      "old_present": true,
+      "new_present": false,
+      "old_type": "dict",
+      "old_count": 6,
+      "old_compact_sorted_JSON_sha256": "d472fc05433274f4b2a6f7457109c067ffe929767305f7a8c8bb7e955ea157bc"
+    },
+    {
+      "field": "input_count",
+      "old_present": true,
+      "new_present": true,
+      "old_type": "int",
+      "old_value": 1458,
+      "new_type": "int",
+      "new_value": 1648
+    },
+    {
+      "field": "input_sha256",
+      "old_present": true,
+      "new_present": true,
+      "old_type": "dict",
+      "old_count": 1458,
+      "old_compact_sorted_JSON_sha256": "3d872adca40867312d60f0e86bbfe299f0c9b824f5391d09f7c6993917cb40b0",
+      "new_type": "dict",
+      "new_count": 1648,
+      "new_compact_sorted_JSON_sha256": "555a2c5a4a5605e4d9f33808875ff5a2220e75479b3ca0e0f294b3f979cb07d1"
+    },
+    {
+      "field": "mandatory_late_companions",
+      "old_present": false,
+      "new_present": true,
+      "new_type": "list",
+      "new_count": 10,
+      "new_compact_sorted_JSON_sha256": "df2a21651f47f36eaf452c072e81bb19d03818dcda1b3bd7f23d8de6c51bd25e"
+    },
+    {
+      "field": "mechanical_space_or_time_convergence",
+      "old_present": true,
+      "new_present": false,
+      "old_type": "bool",
+      "old_value": false
+    },
+    {
+      "field": "mechanical_space_time_convergence",
+      "old_present": false,
+      "new_present": true,
+      "new_type": "bool",
+      "new_value": false
+    },
+    {
+      "field": "native129_input_values_exact_preserved",
+      "old_present": false,
+      "new_present": true,
+      "new_type": "bool",
+      "new_value": true
+    },
+    {
+      "field": "native437_input_values_exact_preserved",
+      "old_present": true,
+      "new_present": false,
+      "old_type": "bool",
+      "old_value": true
+    },
+    {
+      "field": "native_capture_peer",
+      "old_present": false,
+      "new_present": true,
+      "new_type": "str",
+      "new_value": "work/962-engineering/cp1-oneway-cooling-release-linear-native-result-peer-001/review.json"
+    },
+    {
+      "field": "native_capture_root_acceptance",
+      "old_present": false,
+      "new_present": true,
+      "new_type": "str",
+      "new_value": "work/962-engineering/cp1-oneway-cooling-release-linear-native-root-execution-001/result-peer-acceptance.json"
+    },
+    {
+      "field": "native_directory",
+      "old_present": true,
+      "new_present": true,
+      "old_type": "str",
+      "old_value": "work/962-engineering/cp1-oneway-thermoelastic-transfer-002",
+      "new_type": "str",
+      "new_value": "work/962-engineering/cp1-oneway-cooling-release-linear-001"
+    },
+    {
+      "field": "native_output_inventory",
+      "old_present": true,
+      "new_present": true,
+      "old_type": "dict",
+      "old_count": 990,
+      "old_compact_sorted_JSON_sha256": "5471c90c5464e693fcd68d30fa6c7c7124aba7b17e992c91f12c882b7c9ced87",
+      "new_type": "dict",
+      "new_count": 1122,
+      "new_compact_sorted_JSON_sha256": "373b5dbe76cc30190980bfe916149e1588cb1fb56565e5317334375cfbce4f9d"
+    },
+    {
+      "field": "native_storage_audit",
+      "old_present": false,
+      "new_present": true,
+      "new_type": "str",
+      "new_value": "work/962-engineering/cp1-oneway-cooling-release-linear-native-storage-audit-001/complete-saved-audit.json"
+    },
+    {
+      "field": "native_storage_root_acceptance",
+      "old_present": false,
+      "new_present": true,
+      "new_type": "str",
+      "new_value": "work/962-engineering/cp1-oneway-cooling-release-linear-native-storage-root-execution-001/result-peer-acceptance.json"
+    },
+    {
+      "field": "operations",
+      "old_present": false,
+      "new_present": true,
+      "new_type": "dict",
+      "new_count": 8,
+      "new_compact_sorted_JSON_sha256": "e23078a168c06532fbf9ecc4ab1475eb45b458e6901c101d7b8e9effff521886"
+    },
+    {
+      "field": "output_directory",
+      "old_present": true,
+      "new_present": true,
+      "old_type": "str",
+      "old_value": "work/962-engineering/cp1-oneway-thermoelastic-assessment-002",
+      "new_type": "str",
+      "new_value": "work/962-engineering/cp1-oneway-cooling-release-linear-assessment-001"
+    },
+    {
+      "field": "preparation_operations",
+      "old_present": true,
+      "new_present": false,
+      "old_type": "dict",
+      "old_count": 9,
+      "old_compact_sorted_JSON_sha256": "ebd83427299efc2660bfdcf2c113759bc308490911d0327227d4ec75bc63104a"
+    },
+    {
+      "field": "preparation_role",
+      "old_present": true,
+      "new_present": true,
+      "old_type": "str",
+      "old_value": "clip_source_review authored assessor001/002 mathematical and binding lineage, current003 reader by existing_study_audit; author of this JSON only, not its independent child reviewer or executor. No new independent mathematical or native/physical acceptance.",
+      "new_type": "str",
+      "new_value": "existing_study_audit authored this JSON and the LINEAR case binding, with earlier actual/source/storage/native-capture review lineage. Root authored b7c assessor namespace binding; replica_metrology authored original a366 numerical assessor. This is author preparation, not independent child review or mechanics rederivation."
+    },
+    {
+      "field": "root_fresh_input_runtime_python_resource_review_complete_at_freeze",
+      "old_present": true,
+      "new_present": false,
+      "old_type": "bool",
+      "old_value": false
+    },
+    {
+      "field": "root_fresh_launch_check_complete_at_freeze",
+      "old_present": false,
+      "new_present": true,
+      "new_type": "bool",
+      "new_value": false
+    },
+    {
+      "field": "root_invocation",
+      "old_present": true,
+      "new_present": true,
+      "old_type": "dict",
+      "old_count": 7,
+      "old_compact_sorted_JSON_sha256": "000706a9f29391998406c5eb97646e8637ed945e9711f32f991a8f793e1ae485",
+      "new_type": "dict",
+      "new_count": 6,
+      "new_compact_sorted_JSON_sha256": "ede2df1ae6872f037729660d7a84eb5c42251500828fdddaf07a998049948a36"
+    },
+    {
+      "field": "root_source_guard_review",
+      "old_present": true,
+      "new_present": true,
+      "old_type": "dict",
+      "old_count": 3,
+      "old_compact_sorted_JSON_sha256": "86584753a75e4ff8d0e879411fdfc0b91157c5f656781230b3cc7e962e83bbf6",
+      "new_type": "dict",
+      "new_count": 3,
+      "new_compact_sorted_JSON_sha256": "43f145d265e698f27bf73de27f1383a12dcac12b3eeea3e5a96a79f6403abb4c"
+    },
+    {
+      "field": "root_static_inspection",
+      "old_present": true,
+      "new_present": false,
+      "old_type": "dict",
+      "old_count": 3,
+      "old_compact_sorted_JSON_sha256": "3450d3182e7365d5f1952e94cc5227b52178d6d6d427e98fecff6482dd604cbc"
+    },
+    {
+      "field": "schema",
+      "old_present": true,
+      "new_present": true,
+      "old_type": "str",
+      "old_value": "962-cp1-oneway-thermoelastic-assessment-actual/v1",
+      "new_type": "str",
+      "new_value": "962-cp1-oneway-cooling-release-linear-assessment-actual/v1"
+    },
+    {
+      "field": "source",
+      "old_present": true,
+      "new_present": true,
+      "old_type": "dict",
+      "old_count": 3,
+      "old_compact_sorted_JSON_sha256": "b17a0fd47eb5657747101f39fdae50ed2b0901d886487fa1e293cc5f73876fa2",
+      "new_type": "dict",
+      "new_count": 3,
+      "new_compact_sorted_JSON_sha256": "0df63851a11d93a3588442da0a4593e3ac8aa10158cec0a79c975b12f04aaeb3"
+    },
+    {
+      "field": "source_guard_execution_attribution",
+      "old_present": true,
+      "new_present": false,
+      "old_type": "dict",
+      "old_count": 3,
+      "old_compact_sorted_JSON_sha256": "86584753a75e4ff8d0e879411fdfc0b91157c5f656781230b3cc7e962e83bbf6"
+    },
+    {
+      "field": "source_held",
+      "old_present": true,
+      "new_present": true,
+      "old_type": "dict",
+      "old_count": 3,
+      "old_compact_sorted_JSON_sha256": "a03227349aa696d956098ca8179934509ee6d3d071f75d06662402cc2126aca4",
+      "new_type": "dict",
+      "new_count": 3,
+      "new_compact_sorted_JSON_sha256": "9096111d157aebad1222dce899e1d8596a075caeaca2e3fe2026353fea31c172"
+    },
+    {
+      "field": "source_peer",
+      "old_present": true,
+      "new_present": true,
+      "old_type": "dict",
+      "old_count": 3,
+      "old_compact_sorted_JSON_sha256": "0cdac95b5010b22739358e7b1e9049a48eb3ade3f7b95fa71a9bef35a212516c",
+      "new_type": "dict",
+      "new_count": 3,
+      "new_compact_sorted_JSON_sha256": "fb73571798da5fdec322371816ebb15f4ecbd5773e8a025a2435113fb65d06f3"
+    },
+    {
+      "field": "source_peer_bindings",
+      "old_present": true,
+      "new_present": false,
+      "old_type": "dict",
+      "old_count": 3,
+      "old_compact_sorted_JSON_sha256": "523253cf7b79a2b490e42fbed634e3952f57e358940c4f76889a985748057492"
+    },
+    {
+      "field": "source_physics_contract",
+      "old_present": true,
+      "new_present": true,
+      "old_type": "dict",
+      "old_count": 2,
+      "old_compact_sorted_JSON_sha256": "41749bc621c964d258a02159fd94eb750d03d1817c50fc5ed58b400e9738f2c1",
+      "new_type": "dict",
+      "new_count": 3,
+      "new_compact_sorted_JSON_sha256": "7b6f705ef0430f7d20b418640433da524f4a224d2c983258a98a363bed44075c"
+    },
+    {
+      "field": "status",
+      "old_present": true,
+      "new_present": true,
+      "old_type": "str",
+      "old_value": "CONDITIONAL_SAVED_ASSESSMENT002_EXACT_BINDING_PENDING_EXTERNAL_CHILD_AND_ROOT_FRESH_CHECKS",
+      "new_type": "str",
+      "new_value": "CONDITIONAL_SAVED_FIELD_ASSESSMENT_INTENT_PENDING_EXTERNAL_CHILD_AND_ROOT_FRESH_LAUNCH"
+    },
+    {
+      "field": "storage_observation",
+      "old_present": true,
+      "new_present": false,
+      "old_type": "dict",
+      "old_count": 5,
+      "old_compact_sorted_JSON_sha256": "12e0f380c2918d68538b493cd413c69a916e795d04aececc9966b28b11a66048"
+    },
+    {
+      "field": "ten_source_guards_executed_by_root",
+      "old_present": true,
+      "new_present": false,
+      "old_type": "bool",
+      "old_value": true
+    },
+    {
+      "field": "transfer_manifest",
+      "old_present": true,
+      "new_present": true,
+      "old_type": "str",
+      "old_value": "work/962-engineering/cp1-oneway-thermoelastic-transfer-inputs-001/transfer-manifest.json",
+      "new_type": "str",
+      "new_value": "work/962-engineering/cp1-oneway-cooling-release-inputs-001/transfer-manifest.json"
+    },
+    {
+      "field": "transfer_manifest_sha256",
+      "old_present": true,
+      "new_present": false,
+      "old_type": "str",
+      "old_value": "86e10faa43c34156f0ec7eba1187125b487dc73433d8e7667a7f9ad2f98ba3fb"
+    }
+  ],
+  "delta_comparison_rule": "Explicit key membership is compared before value. Missing and present null are distinct; map/list values have type/count/canonical JSON digest rather than redundant full copies.",
+  "controls": {
+    "ordinary_wall_seconds": 300,
+    "sampled_RSS_stop_bytes": 2147483648,
+    "sampled_output_stop_bytes": 33554432,
+    "requested_CPU_threads": 1,
+    "TERM_grace_seconds": 8,
+    "start_new_session": true,
+    "owned_group_TERM_then_KILL_if_live": true,
+    "wait_and_reap_required": true,
+    "owned_group_absence_check_required": true,
+    "automatic_retry": false,
+    "hard_OS_CPU_or_memory_quota_applied": false,
+    "watchdog_external_to_assessor_source": true
+  },
+  "output_directory": "work/962-engineering/cp1-oneway-cooling-release-linear-assessment-001",
+  "output_absent_at_freeze": true,
+  "external_child_peer_required": true,
+  "root_fresh_launch_check_required": true,
+  "assessment_executed": false,
+  "assessment_result_sha256": null,
+  "new_source_controller_parser_or_runner": false,
+  "engineering_accepted": false,
+  "physics_qualified": false,
+  "material_qualified": false,
+  "process_calibrated": false,
+  "manufacturing_authorized": false,
+  "automatic_retry": false,
+  "preparation_role": "existing_study_audit authored this JSON and the LINEAR case binding, with earlier actual/source/storage/native-capture review lineage. Root authored b7c assessor namespace binding; replica_metrology authored original a366 numerical assessor. This is author preparation, not independent child review or mechanics rederivation.",
+  "own_inspection_history": []
+}

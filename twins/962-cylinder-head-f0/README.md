@@ -15,7 +15,7 @@ The [material-gap audit](derived/engineering/material-production-gap-audit/READM
 adds a separate Nikon CP1 characterization lead and traces the matched hot-property,
 fatigue and creep data still needed. Its coupon statistics do not select a head
 material or qualify a production process.
-The [latest head checkpoint](derived/engineering/apex1613031-head-application/README.md)
+The [earlier head checkpoint](derived/engineering/apex1613031-head-application/README.md)
 reduces the observed poor-cell count from **127 to 126** and supplies the exact
 saved mesh as a lossless review download. All 14 replacement cells pass the
 local SICN 0.1 gate; the whole head remains rejected, with unchanged minimum
@@ -27,6 +27,16 @@ maps all **126 remaining poor cells** to 100 interior seeds and 3,123 incident
 cells, including 2,997 initially good cells and 99 shared cells. Its complete
 read-only report and separate reviews are available. This census changes no mesh
 and establishes no repair feasibility or head-analysis admission.
+
+The [LINEAR cooling and support-release checkpoint](derived/engineering/cp1-oneway-cooling-release-linear-refusal/README.md)
+completes native capture for all 183 steps and the separate lexical-storage checks.
+The unchanged 3D assessor then refuses global force balance: 1.965162169881296e-6 N
+against 1e-7 N. No complete mechanical field dataset, release-energy or final-hold
+assessment is accepted. The separate [balance diagnostics](derived/engineering/cp1-cooling-release-balance-diagnostics/README.md)
+localize the failing reaction force and moments to END181, immediately after
+support release. Independent force assembly reproduces the imbalance while its
+individual scalar checks meet their limits. These synthetic software results do
+not qualify a head, material or LPBF process.
 
 The [cooling and support-release capture](derived/engineering/cp1-oneway-cooling-release-failed/README.md)
 preserves a failed synthetic coupon run: the unchanged 100 s inner limit stopped

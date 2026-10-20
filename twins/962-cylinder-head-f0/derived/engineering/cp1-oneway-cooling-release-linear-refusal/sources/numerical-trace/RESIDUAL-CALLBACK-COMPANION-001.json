@@ -1,0 +1,39 @@
+{
+  "schema": "962-cooling-release-LINEAR-residual-callback-source-companion/v1",
+  "note": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-linear-numerical-source-review-001/NOTE.md",
+    "sha256": "6c320842bbd321d45e154e36681cdd23f5c191cc88ce5025cf7806d25d221654",
+    "bytes": 6464
+  },
+  "bindings": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-linear-numerical-source-review-001/bindings.json",
+    "sha256": "48cc8813584051942392c5ea2df0535a6dd2da67ad90e26b9b42fc89d91230e6",
+    "bytes": 31975
+  },
+  "additional_pinned_primary_source": {
+    "url": "https://raw.githubusercontent.com/idaholab/moose/7c06bdcefd02f9f31f4508839f21f410561309a4/framework/src/systems/ComputeResidualFunctor.C",
+    "sha256": "7566849fb89b95e614482d83c460dd2c47b588c92e1497fa7b20598a9a073cce",
+    "bytes": 963,
+    "raw_source_line_count": 30,
+    "raw_line_evidence": {
+      "ComputeResidualFunctor::residual": [
+        18
+      ],
+      "getFailNextNonlinearConvergenceCheck": [
+        24
+      ],
+      "_fe_problem.computeResidualSys(sys, soln, residual);": [
+        27
+      ]
+    },
+    "body_saved_or_publication_authorized": false
+  },
+  "callback_bridge": "NonlinearSystem.C registers its residual_object to ComputeResidualFunctor. Provided no residual-skipping failure is set, this functor passes the PETSc-supplied current solution and residual through FEProblemBase::computeResidualSys; it toggles the computing flag without advancing time/history. The already pinned FEProblemBase/ADKernel/NonlinearSystemBase chain performs current-solution physical reaction refresh.",
+  "failure_limit": "A function-domain error or skipped residual is not evidence of refreshed saved reactions and must fail the subsequent native/capture/assessment gate.",
+  "profile_unchanged": "Explicit -snes_monitor plus -snes_norm_schedule always; preonly/lu unchanged. No -snes_ksp_ew, tolerance relaxation or claim of original Newton convergence.",
+  "preserved_original_note_and_bindings": true,
+  "prepared_source_guard_native_assessor_runtime_field_or_CDF_execution": false,
+  "source_body_read_only": true,
+  "native_authority": false,
+  "assessment_authority": false
+}

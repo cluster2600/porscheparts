@@ -1,0 +1,149 @@
+{
+  "schema": "962-LINEAR-source-grid-partition-and-read-scope-clarification/v1",
+  "status": "ADDITIVE_DISCLOSURE_ORIGINAL_FROZEN_FILES_PRESERVED",
+  "held": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-linear-prep-001/held-preparation.json",
+    "sha256": "438c32f9bd03d4932d331b5b34bfd21b14d64377afdc78f61e41c88fdc6d78da",
+    "bytes": 47081
+  },
+  "source_reuse": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-linear-prep-001/source-reuse.json",
+    "sha256": "ee1417ccacc254668a2cd767683e40cc73d5ae519ebe9a5d14f25b1575ce2daf",
+    "bytes": 43521
+  },
+  "case_contract": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-linear-prep-001/case-contract.json",
+    "sha256": "294f5bf97c6ca3e9fe052e90fc4fc611e740395d1bca24595988d57b4a85758e",
+    "bytes": 16830
+  },
+  "METHOD": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-linear-prep-001/METHOD.md",
+    "sha256": "49dd686f85f2531016da2260b45f3f22775a62b0f2fff2c2bf32bc3ca3197df5",
+    "bytes": 5316
+  },
+  "correct_partition": {
+    "total_held_input_roles": 75,
+    "non_grid_roles": 69,
+    "grid_roles": 6,
+    "old_thermal_transfer_grid_roles": 3,
+    "accepted_cooling_grid_roles": 3
+  },
+  "grid_roles": [
+    {
+      "path": "work/962-engineering/cp1-oneway-thermoelastic-transfer-inputs-001/old-end.grid",
+      "sha256": "b17422be864d22ef899fda86fbef4402d567248674442788c00032f81df5746a",
+      "bytes": 683431,
+      "role_scope": "Deferred scientific-field input identity; no numerical validation from byte hashing.",
+      "read_as_bytes_during_profile_authoring": true,
+      "SHA256_computed_during_profile_authoring": true,
+      "byte_read_pass_count": 2,
+      "field_tokens_or_grid_values_parsed": false,
+      "identity_source": "Original33 map was unfiltered in descriptor construction and original-pin verification."
+    },
+    {
+      "path": "work/962-engineering/cp1-oneway-thermoelastic-transfer-inputs-001/born-end.grid",
+      "sha256": "47ae13a813b711021aad62d97d4530cf31ba7673ab3dc5c411d7a2cfa948ca2d",
+      "bytes": 345773,
+      "role_scope": "Deferred scientific-field input identity; no numerical validation from byte hashing.",
+      "read_as_bytes_during_profile_authoring": true,
+      "SHA256_computed_during_profile_authoring": true,
+      "byte_read_pass_count": 2,
+      "field_tokens_or_grid_values_parsed": false,
+      "identity_source": "Original33 map was unfiltered in descriptor construction and original-pin verification."
+    },
+    {
+      "path": "work/962-engineering/cp1-oneway-thermoelastic-transfer-inputs-001/born-begin80.grid",
+      "sha256": "cf4d9df9c8ab66aa37c40ef4e9cf3be44607229ff901201017eba0ba176cfbe4",
+      "bytes": 1375,
+      "role_scope": "Deferred scientific-field input identity; no numerical validation from byte hashing.",
+      "read_as_bytes_during_profile_authoring": true,
+      "SHA256_computed_during_profile_authoring": true,
+      "byte_read_pass_count": 2,
+      "field_tokens_or_grid_values_parsed": false,
+      "identity_source": "Original33 map was unfiltered in descriptor construction and original-pin verification."
+    },
+    {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-inputs-001/old-end.grid",
+      "sha256": "c64b252894a88730ad1f6ec0311cc5fe58a2cb3a8831f67e61db9d20be95823e",
+      "bytes": 767338,
+      "body_read_or_hashed_by_preparation": false,
+      "role_scope": "Deferred scientific-field input identity; no numerical validation from byte hashing.",
+      "read_as_bytes_during_profile_authoring": false,
+      "SHA256_computed_during_profile_authoring": false,
+      "byte_read_pass_count": 0,
+      "field_tokens_or_grid_values_parsed": false,
+      "identity_source": "Existing accepted manifest and file stat only."
+    },
+    {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-inputs-001/born-end.grid",
+      "sha256": "9caf52c69d0b14db442571b11d72252f3431d57b3991ab90ed849ddb6178b63f",
+      "bytes": 429552,
+      "body_read_or_hashed_by_preparation": false,
+      "role_scope": "Deferred scientific-field input identity; no numerical validation from byte hashing.",
+      "read_as_bytes_during_profile_authoring": false,
+      "SHA256_computed_during_profile_authoring": false,
+      "byte_read_pass_count": 0,
+      "field_tokens_or_grid_values_parsed": false,
+      "identity_source": "Existing accepted manifest and file stat only."
+    },
+    {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-inputs-001/born-begin80.grid",
+      "sha256": "cf4d9df9c8ab66aa37c40ef4e9cf3be44607229ff901201017eba0ba176cfbe4",
+      "bytes": 1375,
+      "body_read_or_hashed_by_preparation": false,
+      "role_scope": "Deferred scientific-field input identity; no numerical validation from byte hashing.",
+      "read_as_bytes_during_profile_authoring": false,
+      "SHA256_computed_during_profile_authoring": false,
+      "byte_read_pass_count": 0,
+      "field_tokens_or_grid_values_parsed": false,
+      "identity_source": "Existing accepted manifest and file stat only."
+    }
+  ],
+  "preparation_scope_deviation": {
+    "out_of_scope_old_grid_byte_reads_occurred": true,
+    "unique_grid_bodies_read": 3,
+    "byte_read_passes_per_old_grid": 2,
+    "total_old_grid_bytes_per_pass": 1030579,
+    "method": "desc(ROOT/p) read_bytes/SHA256 while constructing input_descriptors for the unfiltered inherited33 map; later H(raw(ROOT/p)) read_bytes/SHA256 verified the same inherited33 map.",
+    "executed_inline_evidence_excerpts": [
+      "inputdesc={p:desc(ROOT/p) for p in pins}",
+      "for p,h in old_held[\"input_sha256\"].items(): assert H(raw(ROOT/p))==h,p"
+    ],
+    "tool_chunk_id": "4e0b03",
+    "authoring_returncode": 0,
+    "raw_grid_bytes_printed": false,
+    "tokens_parsed": false,
+    "files_modified": false,
+    "disposition": "The author incorrectly treated all inherited33 roles as non-deferred and omitted the .grid filter. No further field-body access is performed for this companion; do not treat these hashes as scientific validation."
+  },
+  "incorrect_prior_communication": "75 roles=72fresh small+3 accepted gridmetadata; no grids/runtime bodies.",
+  "corrected_communication": "75 roles=69 non-grid+6 grid roles. Three historical grids were byte-hashed twice during authoring; three current cooling grids were stat/accepted-hash metadata only. No field parser, scientific or native code ran.",
+  "affected_frozen_statements": [
+    {
+      "file": "METHOD.md",
+      "paragraph_prefix": "Card and thermal-input-index copies are exact.",
+      "incorrect_text": "with no raw table read during preparation",
+      "corrected_scope": "Three old thermal-transfer grids were read as bytes for SHA256 only; current cooling grids were not read."
+    },
+    {
+      "file": "METHOD.md",
+      "paragraph_prefix": "Preparation uses only stdlib byte/JSON/AST inspection and authoring.",
+      "incorrect_text": "No prepared function/module/guard, table/CSV/CDF/native/runtime body, scientific code, solver or assessor was executed or read.",
+      "corrected_scope": "No prepared function/module/guard, CSV/CDF/native/runtime/scientific/solver/assessor code ran or body was read; three old grid bodies were read as bytes only."
+    },
+    {
+      "file": "case-contract.json",
+      "pointer": "/source_input_role_notes/thermal-input-index.json",
+      "incorrect_text": "Byte-exact original metadata index, no raw thermal CSV/grid read during preparation.",
+      "corrected_scope": "The metadata index copy is byte-exact; no CSV was read, but three inherited grid byte bodies were hashed. The same text appears as historical contract replacement data in source-reuse.json."
+    }
+  ],
+  "source_card_deck_contract_numeric_values_and_thresholds_unchanged": true,
+  "original_frozen_files_edited": false,
+  "future_exact_actual_and_assessor_held_must_directly_pin_this_companion": true,
+  "prepared_function_guard_solver_assessor_execution": false,
+  "native_authority": false,
+  "engineering_accepted": false,
+  "material_qualified": false,
+  "process_calibrated": false
+}

@@ -1,0 +1,11 @@
+# Linear cooling profile: unchanged saved-field mathematics
+
+This is a binding-only source candidate. No held input contract, guard invocation, native capture, field reader or assessment is created or authorized by these files. The separate case preparation is still pending.
+
+All 27 donor function/class definitions except the top-level assess authorization wrapper remain exact text and AST. Seven reversible groups change only prose, exact case/native/output paths and native/assessment schema names. The wrapper has no mathematical or numerical-expression changes. The original eight guard definitions are exact; only their expected source SHA changes. The complete POLICY.json is byte-identical, retaining all seven individual absolute SI limits, phase/support masks, full 183-frame coverage, strict shared-node lexical checks, own clamped BEGIN80 reference, fixed-temperature final hold and release-energy criterion.
+
+The future profile uses a constant small-strain elastic operator and a source-reviewed linear solve with an explicit final residual refresh. This evaluator still independently reconstructs every tensor, assembled reaction, free-force balance, support, reference, phase, energy and hold condition. A linear solver success flag is not acceptance. Original Newton nonlinear tolerances may remain in the case source as inactive literals; they must never be represented as active convergence tests or substituted for this policy.
+
+Before execution, a fresh held/source-peer/root admission must bind the concrete new case sources, accepted data, exact numerical-profile primary-source evidence and independent review. A separately reviewed external actual must bind the completed native capture, complete lexical storage audit and root acceptance, observed final-residual monitor path, all original raw artifacts and exact decoder runtime. Historical originals, late documentary companions and the failed Newton capture remain unchanged and are not treated as completed trajectory evidence.
+
+The mathematical source is reused from replica_metrology's a366 cooling assessor. Root authors only this binding successor. No new derivation, material law, strength, process calibration, head field, fitment or manufacturing qualification follows.

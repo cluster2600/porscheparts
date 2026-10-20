@@ -1,0 +1,87 @@
+{
+  "schema": "962-linear-cooling-END-native-balance-source-reuse/v1",
+  "source": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-linear-END-native-balance-diagnostic-prep-001/diagnose_END_balance.py",
+    "sha256": "efcbf6580dd5ad5ab4ec76c334ac4f5151c45a1bddbeb28095b2ecd178445e1a",
+    "bytes": 20316
+  },
+  "held": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-linear-END-native-balance-diagnostic-prep-001/held-preparation.json",
+    "sha256": "c42c2ba80caeb10b5709dd5fa5747c379534e27851a13a1d802353653dc90537",
+    "bytes": 153739
+  },
+  "assessor_donor": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-linear-assessor-prep-001/assess.py",
+    "sha256": "b7c5c7c82c5a7fee11aa63032f9a136d46517b8163c3c880b8b39a06d083930f",
+    "bytes": 46610
+  },
+  "lexical_donor": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-linear-native-storage-result-peer-001/check_saved_001.py",
+    "sha256": "8f2775bac7f449dface73281402d49a0004440bd77a1925f1961873c1f7ec4f6",
+    "bytes": 19698
+  },
+  "copied_definitions": {
+    "need": {
+      "source_lines": [
+        33,
+        35
+      ],
+      "source_text_sha256": "bb3f7ff1e3116562b6f5df3a01682ea54e9a843aa823d6bf4b34b4ed04147281",
+      "AST_sha256": "50c73b0443cfa78614639ae4ee0d07d28a67ecca7324481e1cbb4212f796a592",
+      "text_and_AST_exact": true
+    },
+    "sha": {
+      "source_lines": [
+        38,
+        43
+      ],
+      "source_text_sha256": "1e60814e0a974c6ab3aedd73da0af97a261a6a92ecc9b293ca9c75b0b5f8ef4f",
+      "AST_sha256": "64876ad070ff727704057cef04e9e5d853e4b8b32b9d4c7279c85d7792de09f7",
+      "text_and_AST_exact": true
+    },
+    "number": {
+      "source_lines": [
+        50,
+        54
+      ],
+      "source_text_sha256": "7c82e271a836cf355ebabec1e65f412bcc9b7e9f02b5e0da038aebacb5546565",
+      "AST_sha256": "7f19ffd50e64d2008083de46cb371164c1281157cd69d7b36189f9a8ce0d0af5",
+      "text_and_AST_exact": true
+    },
+    "support_masks": {
+      "source_lines": [
+        325,
+        342
+      ],
+      "source_text_sha256": "4cdb0976a6625ce7dfae6701d6bf1f06d4aeab4d37cc907e51084c045ace86c3",
+      "AST_sha256": "cb3007d786b09ed0042bfe02ab00d1017b68a1346e7940da0c2d79f4d2bace7d",
+      "text_and_AST_exact": true
+    }
+  },
+  "AST_context": {
+    "python_version_used_for_static_serialization": "3.10.11",
+    "serialization": "ast.dump(node, include_attributes=False), UTF8, SHA256",
+    "same_process_comparison_only": true,
+    "no_cross_python_AST_digest_equivalence_claim": true
+  },
+  "exact_formula_provenance": {
+    "assessor_lines": [
+      516,
+      521
+    ],
+    "reaction_assignment": "Exact copied statement; component-wise support mask, sorted active source IDs.",
+    "all_forces_assignment": "Exact copied statement; all rx/ry/rz, sorted active source IDs.",
+    "force_sum": "Exact math.fsum(v[j] for v in force_rows)",
+    "moment_sum": "Exact cyclic expression with sorted active IDs and the original multiply/subtract evaluation order.",
+    "comparison_order": "Force then moment for each component; reaction before all_forces; steps ascending.",
+    "new_adapter": "The original audit.close stop is replaced only by observation/error/exceedance records so every fixed END balance is retained. This does not relax or accept a failed gate."
+  },
+  "finite_new_composition": [
+    "Fixed END-only 183-file lexical/storage association caller adapted from own8f source; no generic format discovery.",
+    "External two-digest admission gate avoids source/authorization self-hash cycle and refuses a held/no-argument invocation before raw reads.",
+    "Masked/global sums, ordered first failures and complete maximum contributor witnesses only; no QP/FEM/exodus/numerical-cause inference."
+  ],
+  "whole_source_reverse_claimed": false,
+  "clear_finite_formula_rationale_in_METHOD": true,
+  "prepared_functions_guards_diagnostic_or_native_executed": false
+}
