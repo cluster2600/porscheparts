@@ -11,6 +11,15 @@ with explicit assumptions for unavailable dimensions.
 
 The [engineering execution programme](ENGINEERING_PROGRAM.md) continues through
 material/strength assessment, LPBF simulation, an Omniverse twin and PhysicsNeMo.
+The [20 October head census and derived coupon probe](derived/engineering/current110-census-and-END181-defect-probe/README.md)
+preserve two new completed diagnostics. The current head has 110 poor cells,
+82 movable nodes and 2,482 incident cells, partitioned into 73 local coupling groups.
+Its whole-head SICN 0.1 gate still fails. A separate one-state coupon correction
+improves derived balance while retaining 23 force-comparison exceedances and the
+original native refusal. The [hot-property research update](MATERIAL_HOT_DATA_REFRESH.md)
+adds an HT1 hot-strength comparison and process-specific CuCrZr/CP1 data leads;
+it selects no production material.
+
 The [material-gap audit](derived/engineering/material-production-gap-audit/README.md)
 adds a separate Nikon CP1 characterization lead and traces the matched hot-property,
 fatigue and creep data still needed. Its coupon statistics do not select a head
@@ -22,7 +31,7 @@ local SICN 0.1 gate; the whole head remains rejected, with unchanged minimum
 SICN 0.039074265058645995. Head strength and manufacturing qualification remain open.
 The [previous 129-to-127 checkpoint](derived/engineering/apex1613790-head-application/README.md)
 and its separate mesh download remain available.
-The [current complete census](derived/engineering/current126-full-stars/README.md)
+The [previous complete census](derived/engineering/current126-full-stars/README.md)
 maps all **126 remaining poor cells** to 100 interior seeds and 3,123 incident
 cells, including 2,997 initially good cells and 99 shared cells. Its complete
 read-only report and separate reviews are available. This census changes no mesh

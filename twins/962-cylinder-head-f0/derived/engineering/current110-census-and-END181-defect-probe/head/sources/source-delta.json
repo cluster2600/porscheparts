@@ -1,0 +1,69 @@
+{
+  "schema": "962-current110-full-star-census-source-delta/v1",
+  "status": "SOURCE_TEXT_AND_AST_ONLY_NO_PREPARED_FUNCTION_OR_GUARD_EXECUTED",
+  "preserved_reader": "work/962-engineering/head-star-current126-full-stars-prep-001/reader.py",
+  "preserved_reader_sha256": "2348c032ecbbb694563978cb333aff1a7e4d37a5052c3ed841a7128bf797409c",
+  "new_reader_sha256": "485e0eac2a20d1abe1f12d48892ba17d2947ea3c6d0c963fa97408f421982ac5",
+  "exact_replacements": [
+    {
+      "old": "def partial_after_proof(worker,receipt,closed,contract):\n \"\"\"Bind the actual partial-replacement after/saved proof without optimizer aliases.\"\"\"\n if (worker.get('schema')!='962-apex1613031-head-application-result/v1'\n     or worker.get('status')!='completed_partial_head_replacement_whole_head_quality_gate_applied'\n     or worker.get('stage')!='completed_partial_repair_audits'\n     or any(worker.get(k) is not True for k in ['procedural_checks_passed','partial_replacement_completed','saved_mesh_identity_exact','bound_inputs_unchanged'])\n     or worker.get('after')!=worker.get('saved_reopen')\n     or worker.get('mesh_sha256')!=contract['MSH_sha256'] or worker.get('mesh_bytes')!=contract['MSH_bytes']\n     or any(worker.get(key)!=contract[key] for key in ['local_candidate_report_sha256','local_candidate_arrays_sha256','current_local_domain_report_sha256','current_local_domain_peer_sha256'])\n     or worker.get('native_operation_counts')!=contract['expected_partial_operation_counts'] or worker.get('call_counts_are_attempts') is not True\n     or worker.get('upstream_census_launch_deviation_sha256')!=contract['upstream_census_launch_deviation_sha256']\n     or worker.get('declared_controller_command_conformant') is not False or contract['declared_controller_command_conformant'] is not False\n     or worker.get('original_parent_MSH_sha256')!=contract['original_parent_MSH_sha256']\n     or receipt.get('returncode')!=2 or receipt.get('stop_reason') is not None\n     or receipt.get('readback_report_sha256')!=contract['partial_report_sha256']\n     or receipt.get('contract_sha256')!=contract['partial_contract_sha256']\n     or receipt.get('reader_sha256')!=contract['partial_reader_sha256']\n     or receipt.get('runner_sha256')!=contract['partial_runner_sha256']\n     or receipt.get('native_log_sha256')!=contract['partial_native_log_sha256']\n     or receipt.get('native_generate_optimize_solve_calls_declared')!=0 or receipt.get('mesh_write_calls_declared')!=1 or receipt.get('counters_are_declarations') is not True\n     or closed.get('schema')!='962-apex1613031-head-application-root-closed/v1'\n     or closed.get('returncode')!=2 or closed.get('error') is not None or closed.get('signals')!=[] or closed.get('outer_fallback_used') is not False\n     or any(closed.get(k) is not True for k in ['controller_waited_reaped','controller_owned_group_absent','all79_inputs_unchanged','runtime5_unchanged','static4_unchanged'])\n     or closed.get('automatic_retry') is not False\n     or closed.get('whole_actual_mirror_sha256')!=contract['partial_contract_sha256']\n     or closed.get('outputs')!=contract['partial_output_inventory']):\n  raise ValueError('Exact stopped partial-replacement after/saved proof required')\n proof=worker['after'];n=proof['tetrahedra'];quality=proof['quality'];keys={'sorted_node_tags_sha256','sorted_coordinates_sha256','sorted_tetra_tags_sha256','tagged_tetra_connectivity_sha256'}\n counts={k:proof[k] for k in contract['expected_saved_counts']}\n if (counts!=contract['expected_saved_counts'] or any(type(v) is not int for v in counts.values())\n     or set(proof['array_sha256s'])!=keys\n     or set(quality)!={'minimum_jacobian','native_volume_mm3','minimum_SICN','independent_signed_volume_mm3'}\n     or any(type(row.get('count')) is not int or row['count']!=n or type(row.get('nonpositive_count')) is not int for row in quality.values())\n     or quality['minimum_SICN']['below_point1_count']-quality['minimum_SICN']['nonpositive_count']!=contract['expected_positive_poor_total']\n     or quality['minimum_SICN']['nonpositive_count']!=contract['diagnostic_maximum_nonpositive_cells']\n     or worker.get('actual_whole_head_positive_poor_count')!=contract['expected_positive_poor_total']\n     or worker.get('actual_whole_head_SICN_gate_passed') is not (quality['minimum_SICN']['minimum']>=.1 and quality['minimum_SICN']['nonpositive_count']==0)\n     or proof['source_boundary_identity']!=contract['expected_source_boundary_identity']):\n  raise ValueError('Complete current partial-head arrays/counts/quality/boundary proof required')\n return proof",
+      "new": "def partial_after_proof(worker,receipt,closed,contract):\n \"\"\"Bind the actual partial-replacement after/saved proof without optimizer aliases.\"\"\"\n if (worker.get('schema')!='962-current126-alternative15-combined-head-application-result/v1'\n     or worker.get('status')!='completed_partial_head_replacement_whole_head_quality_gate_applied'\n     or worker.get('stage')!='completed_partial_repair_audits'\n     or any(worker.get(k) is not True for k in ['procedural_checks_passed','partial_replacement_completed','saved_mesh_identity_exact','bound_inputs_unchanged'])\n     or worker.get('after')!=worker.get('saved_reopen')\n     or worker.get('mesh_sha256')!=contract['MSH_sha256'] or worker.get('mesh_bytes')!=contract['MSH_bytes']\n     or any(worker.get(key)!=contract[key] for key in ['admitted_manifest_sha256','current_local_domain_peer_sha256','current_local_domain_root_acceptance_sha256','context_sha256'])\n     or worker.get('native_operation_counts')!=contract['expected_partial_operation_counts'] or worker.get('call_counts_are_attempts') is not True\n     or worker.get('upstream_census_launch_deviation_sha256')!=contract['upstream_census_launch_deviation_sha256']\n     or worker.get('declared_controller_command_conformant') is not False or contract['declared_controller_command_conformant'] is not False\n     or worker.get('original_parent_MSH_sha256')!=contract['original_parent_MSH_sha256']\n     or receipt.get('returncode')!=2 or receipt.get('stop_reason') is not None\n     or receipt.get('readback_report_sha256')!=contract['partial_report_sha256']\n     or receipt.get('contract_sha256')!=contract['partial_contract_sha256']\n     or receipt.get('reader_sha256')!=contract['partial_reader_sha256']\n     or receipt.get('runner_sha256')!=contract['partial_runner_sha256']\n     or receipt.get('native_log_sha256')!=contract['partial_native_log_sha256']\n     or receipt.get('native_generate_optimize_solve_calls_declared')!=0 or receipt.get('mesh_write_calls_declared')!=1 or receipt.get('counters_are_declarations') is not True\n     or closed.get('schema')!='962-current126-alternative15-combined002-native-root-execution/v1'\n     or closed.get('returncode')!=2 or closed.get('error') is not None or closed.get('signals')!=[]\n     or any(closed.get(k) is not True for k in ['waited_reaped','owned_group_absent','all_captured_inputs_and_runtime5_unchanged','full_parent_body_hash_checked_before_after'])\n     or closed.get('automatic_retry') is not False\n     or closed.get('actual')!=contract['partial_actual_descriptor']\n     or closed.get('output_files')!=contract['partial_output_inventory']):\n  raise ValueError('Exact stopped partial-replacement after/saved proof required')\n proof=worker['after'];n=proof['tetrahedra'];quality=proof['quality'];keys={'sorted_node_tags_sha256','sorted_coordinates_sha256','sorted_tetra_tags_sha256','tagged_tetra_connectivity_sha256'}\n counts={k:proof[k] for k in contract['expected_saved_counts']}\n if (counts!=contract['expected_saved_counts'] or any(type(v) is not int for v in counts.values())\n     or set(proof['array_sha256s'])!=keys\n     or set(quality)!={'minimum_jacobian','native_volume_mm3','minimum_SICN','independent_signed_volume_mm3'}\n     or any(type(row.get('count')) is not int or row['count']!=n or type(row.get('nonpositive_count')) is not int for row in quality.values())\n     or quality['minimum_SICN']['below_point1_count']-quality['minimum_SICN']['nonpositive_count']!=contract['expected_positive_poor_total']\n     or quality['minimum_SICN']['nonpositive_count']!=contract['diagnostic_maximum_nonpositive_cells']\n     or worker.get('actual_whole_head_positive_poor_count')!=contract['expected_positive_poor_total']\n     or worker.get('actual_whole_head_SICN_gate_passed') is not (quality['minimum_SICN']['minimum']>=.1 and quality['minimum_SICN']['nonpositive_count']==0)\n     or proof['source_boundary_identity']!=contract['expected_source_boundary_identity']):\n  raise ValueError('Complete current partial-head arrays/counts/quality/boundary proof required')\n return proof",
+      "count": 1,
+      "scope": "Combined worker result, exact batch proof identities and current root closure metadata only; after-count/native-metric/boundary mathematics unchanged."
+    },
+    {
+      "old": "w=ROOT/'work/962-engineering/apex1613031-head-application-001';",
+      "new": "w=ROOT/'work/962-engineering/head-star-current126-alternative-combined-application-001';",
+      "count": 1,
+      "scope": "One fixed current saved producer directory; no fallback or search."
+    }
+  ],
+  "unchanged_function_ASTs": [
+    "classify_positive_poor_chunk",
+    "require_after_match",
+    "classifications",
+    "movable_from_poor_rows",
+    "incident_positions"
+  ],
+  "unchanged_function_source_fragments": [
+    "classify_positive_poor_chunk",
+    "require_after_match",
+    "classifications",
+    "movable_from_poor_rows",
+    "incident_positions"
+  ],
+  "unchanged_core_AST_sha256s": {
+    "classify_positive_poor_chunk": "c728054aa6ca13ad802830b224901a19a9a9ada05d66f3bced378427bb33696c",
+    "require_after_match": "33dc5e680b6054085236c311946b4ccc767f161d1710cb03299b5603725f13ec",
+    "classifications": "87bfc0b508dc42457890c04e41288e8b2319ce3ee62fb4b63d54f99ea6ef6b5b",
+    "movable_from_poor_rows": "a24c18066b0b817c5dd38cc54a2943f96a03bcae97ac5176ec5f00112d50f2f4",
+    "incident_positions": "4240d653e75dcd01116e68c43fe2b26dc114a036251d93b22da793e7ab24ae80"
+  },
+  "after_proof_count_metric_and_boundary_tail_exact": true,
+  "runner": {
+    "path": "work/962-engineering/head-star-current126-full-stars-prep-001/run_readback.py",
+    "sha256": "4fb37080e1f3847b8b1d14d5df467799d8e9f7bf81b0a09170e5850857de3943",
+    "bytes": 4560
+  },
+  "guard_donor": {
+    "path": "work/962-engineering/head-star-current126-full-stars-prep-001/test_guards.py",
+    "sha256": "17b69bd7d5b69c6ed8efc6a330133d73dec5b11f0f922506db5129e3092b8f45",
+    "bytes": 9766
+  },
+  "new_guard_sha256": "8f943d1df079026d9613e44d4b19ce740e9399c11e230769ac22f813d5348a11",
+  "five_guard_methods_AST_exact": [
+    "test_complete_union_includes_initially_good_and_shared_rows",
+    "test_input_row_order_does_not_change_movable_membership",
+    "test_empty_and_all_boundary_seed_cases",
+    "test_invalid_boundary_classification_and_connectivity_refuse",
+    "test_exact_reuse_reverse_and_read_only_call_scope"
+  ],
+  "one_guard_method_adapted_only": "test_partial_saved_proof_join_and_refusals",
+  "source_reverse_byte_exact": true,
+  "AST_interpreter": "3.10.11",
+  "source_diff_sha256": "5b82880a72cf3615fa018356b17baf5c0ab49222b4043c4e98cf629fc8c55614",
+  "guard_diff_sha256": "60ae5f785199b76d03851ebb68af9dcf8e18a112fe707c12005b7387359f8e22",
+  "full_reader_NumPy_Gmsh_or_prepared_functions_imported_or_executed": false,
+  "raw_geometry_runtime_or_interpreter_bodies_read_or_hashed": false,
+  "lineage": "head_mesh_next authored this fixed-binding successor after read-only source/saved-metadata triage; no independent geometric derivation, source-peer verdict or execution approval."
+}
