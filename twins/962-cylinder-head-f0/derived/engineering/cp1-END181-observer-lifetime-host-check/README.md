@@ -33,8 +33,10 @@ The [full host receipt](host-execution/receipt.json),
 [saved-result review](host-result-peer/review.json) and
 [separate root decision](host-root/result-peer-acceptance.json) preserve the
 complete result. All 93 input/control identities and 22 provider paths are
-unchanged. The native check takes 3.573452083 seconds; the complete outer tool
-observation is 3.705337792 seconds. All owned workers are waited on and absent,
+unchanged. The saved native check takes 3.573452083 seconds. The tool reports
+3.705337792 seconds spent waiting; this is not an independent complete process
+duration. The [additive timing note](host-root/timing-scope-clarification.json)
+preserves the original records and this scope limitation. All owned workers are waited on and absent,
 with no stop or cleanup failure. Full post-receipt output is 569,330 bytes after
 subtracting only the four identity-matched staged inputs.
 

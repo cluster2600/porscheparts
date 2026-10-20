@@ -64,6 +64,12 @@ checks meet their limits while twelve constrained/free force and moment sums
 still fail. Independent saved arithmetic confirms those failures; the full
 mechanical assessment remains refused.
 
+The [complete edge-removal method's synthetic checkpoint](derived/engineering/current24-edge-removal-synthetic-guards/README.md)
+passes all 16 toy tests with separate saved-result review and root acceptance.
+The timing erratum preserves the original wait-time label and a conservative
+whole-command UTC bound. The actual 55-edge saved-head screen remains unrun;
+all 24 poor cells and engineering qualification gates remain.
+
 The [passive DOF-map observer](derived/engineering/cp1-END181-observer-plugin/README.md)
 adds reviewed plugin source for connecting solver vectors to displacement indices.
 The plugin and standalone validator executable compile and link with the matching

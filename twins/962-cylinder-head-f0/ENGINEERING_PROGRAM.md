@@ -41,6 +41,12 @@ The [complete saved flip screen](derived/engineering/current24-saved-flip-screen
 adds all 204 observed associations: 139 nonpatterns and 65 failed local replacement
 patterns. A separately authored rational checker verifies the finite result and
 89 conflicts. No mesh change follows and all 24 poor cells remain.
+The [complete edge-removal method's synthetic checkpoint](derived/engineering/current24-edge-removal-synthetic-guards/README.md)
+passes all 16 toy tests with separate saved-result review and root acceptance.
+The timing erratum preserves the original wait-time label and a conservative
+whole-command UTC bound. The actual 55-edge saved-head screen remains unrun;
+all 24 poor cells and engineering qualification gates remain.
+
 The [passive residual-map plugin](derived/engineering/cp1-END181-observer-plugin/README.md)
 has reviewed source and compiled plugin/validator binaries. Host registration
 and native measurement remain pending. These checkpoints continue the material/strength
