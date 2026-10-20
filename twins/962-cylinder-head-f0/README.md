@@ -33,6 +33,12 @@ mechanical assessor then failed force balance: 2.29850465416348e-6 N exceeds
 1e-7 N. No accepted complete fields, release-energy or final-hold result follows.
 Head strength, material/process qualification and manufacturing remain open.
 
+The [RICH2 END181 equilibrium diagnostic](derived/engineering/cp1-richardson2-END181-equilibrium/README.md)
+compares all 1,275 native and independently assembled force components. Individual
+checks meet their limits while twelve constrained/free force and moment sums
+still fail. Independent saved arithmetic confirms those failures; the full
+mechanical assessment remains refused.
+
 The [20 October head census and derived coupon probe](derived/engineering/current110-census-and-END181-defect-probe/README.md)
 preserve two earlier completed diagnostics. That previous head had 110 poor cells,
 82 movable nodes and 2,482 incident cells, partitioned into 73 local coupling groups.

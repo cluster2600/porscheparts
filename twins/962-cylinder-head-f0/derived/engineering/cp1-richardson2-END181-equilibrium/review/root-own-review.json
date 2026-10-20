@@ -1,0 +1,94 @@
+{
+  "schema": "962-richardson2-END181-equilibrium-root-own-review/v1",
+  "decision": "DIAGNOSTIC_COMPLETE_PHYSICAL_RESULTANTS_STILL_FAIL_AWAIT_INDEPENDENT_SAVED_REVIEW",
+  "report": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-END181-equilibrium-diagnostic-001/diagnostic.json",
+    "sha256": "b3614f3d383583549a9e5eb12e47ca8135ed35d2eee611e324fc38f072516255",
+    "bytes": 762717
+  },
+  "root_closure": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-END181-equilibrium-diagnostic-root-execution-001/closed-result.json",
+    "sha256": "81b1fb0c819677a869ef674e70db3e044cd2c00a4fa4574629603905770c69bb",
+    "bytes": 274169
+  },
+  "root_launch": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-END181-equilibrium-diagnostic-root-execution-001/launch.json",
+    "sha256": "8e02ddde88c395d9ceb8ebf68b2c3b2d740927e70e29b0e896c021c72702ffee",
+    "bytes": 2347
+  },
+  "root_authorization": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-END181-equilibrium-diagnostic-root-execution-001/authorization.json",
+    "sha256": "2e29f174e83a8e1ee1a85f976e88dee26801f52da308e6a7377252471b2f5053",
+    "bytes": 136768
+  },
+  "scope": "One own RICH2 END181 state with own BEGIN80 references and original seven SI gates. No solver/full-assessor rerun.",
+  "observed": {
+    "time": 0.4525,
+    "time_index": 101,
+    "source_nodes": 425,
+    "HEX8_cells": 256,
+    "QP_count": 2048,
+    "free_DOFs": 1269,
+    "native_assembled_components": 1275,
+    "scalar_counts": {
+      "temperature_K": 650,
+      "displacement_m": 606,
+      "stress_Pa": 12288,
+      "strain": 49152,
+      "force_N": 3894
+    },
+    "scalar_exceedances": 0,
+    "resultant_exceedances": {
+      "native": {
+        "constrained": {
+          "force_exceedances": 1,
+          "moment_exceedances": 2
+        },
+        "free": {
+          "force_exceedances": 1,
+          "moment_exceedances": 2
+        },
+        "all": {
+          "force_exceedances": 0,
+          "moment_exceedances": 0
+        }
+      },
+      "assembled": {
+        "constrained": {
+          "force_exceedances": 1,
+          "moment_exceedances": 2
+        },
+        "free": {
+          "force_exceedances": 1,
+          "moment_exceedances": 2
+        },
+        "all": {
+          "force_exceedances": 0,
+          "moment_exceedances": 0
+        }
+      }
+    },
+    "native_reaction_X_N": -2.29850465416348e-06,
+    "assembled_reaction_X_N": -2.299629159097094e-06,
+    "force_limit_N": 1e-07,
+    "moment_limit_Nm": 1e-07
+  },
+  "interpretation": "Own references, regional assembly and scalar comparisons agree at their gates while free and constrained resultants fail independently. The all-node cancellation and per-component limits do not establish global equilibrium. This selects the measured-residual outcome of the frozen next-measurement rationale; more inner iterations, a cause or numerical floor are not established.",
+  "evidence_limits": "Original2048 QP/tensor/region assembly checks are owner/source-attributed because complete operand arrays were not added by binding-only source. The full saved1275 component rows and coordinates support separate resultant reconstruction. Sampled direct-child RSS, point-in-time hashes, no complete ABI/OS closure; launch after descriptor omitted but equality true and original launch descriptor retained.",
+  "one_invocation": true,
+  "returncode": 0,
+  "wall_seconds": 0.8304414160083979,
+  "all317_inputs_and_controls_unchanged": true,
+  "independent_saved_review_pending": true,
+  "full_assessment_refusal_preserved": true,
+  "seven_SI_or_full_fields_accepted": false,
+  "mathematical_or_solver_cause": null,
+  "IEEE_floor_or_roundoff_cause": null,
+  "engineering_accepted": false,
+  "physics_qualified": false,
+  "material_qualified": false,
+  "process_calibrated": false,
+  "head_execution_authorized": false,
+  "manufacturing_authorized": false,
+  "automatic_retry": false
+}
