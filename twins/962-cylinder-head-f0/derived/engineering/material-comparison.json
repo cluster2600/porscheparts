@@ -1,0 +1,630 @@
+{
+  "schema_version": "1.0.0",
+  "status": "conditional_mass_and_manufacturer_coupon_point_arithmetic_only",
+  "inputs": [
+    {
+      "path": "twins/962-cylinder-head-f0/engineering/materials.json",
+      "sha256": "ac960911794d23e12e05e07aa74d4db85a7d97d62faa2c0bf2df3e8c98550d1d"
+    },
+    {
+      "path": "twins/962-cylinder-head-f0/engineering/input-contract.json",
+      "sha256": "bf7b7762238b0864529563a1fd8c8c846bff5df861434fb33e73331d7106fd89"
+    },
+    {
+      "path": "twins/962-cylinder-head-f0/derived/family/delivery-report.json",
+      "sha256": "90e5b91d4682b0a2a99a6c2966e2916c0302952d8ef42712dfa95d6cd771c904"
+    },
+    {
+      "path": "twins/962-cylinder-head-f0/engineering/validate_contract.py",
+      "sha256": "c196a30f2ae85c856a7ac2c5dc5dacb3ba5c9700ffef9b9c4bcd7989c0990c53"
+    },
+    {
+      "path": "twins/962-cylinder-head-f0/source/compare_materials.py",
+      "sha256": "f258397246a86fe1d8bac02e7ee948a500621aabd0e36629bc616407362d72f8"
+    },
+    {
+      "path": "twins/962-cylinder-head-f0/derived/family/bore-95-report.json",
+      "sha256": "5dc2c44ec6978cee9ea9bbd80c392227b68c3e13c0915e7f20e562cb489c7efb"
+    },
+    {
+      "path": "twins/962-cylinder-head-f0/source/family/configs/bore-95.json",
+      "sha256": "2d1b4eafb6e331436cd6b29ce47092090a449c7f3991ec7e6208a980ca589efa"
+    },
+    {
+      "path": "twins/962-cylinder-head-f0/derived/family/bore-98-report.json",
+      "sha256": "7cf232dfb8e3931955fed3e2939f6acd7108211b76a55317dbbc7f60a4772db9"
+    },
+    {
+      "path": "twins/962-cylinder-head-f0/source/family/configs/bore-98.json",
+      "sha256": "0980e2ed42e2968994d0f83a6dec59bca4984b68ca94b99a0944ad27f7160fab"
+    },
+    {
+      "path": "twins/962-cylinder-head-f0/derived/family/bore-100-report.json",
+      "sha256": "8253f06bcf412de21f46b35b4a259d500651887d498630e8776853f9dde51e5a"
+    },
+    {
+      "path": "twins/962-cylinder-head-f0/source/family/configs/bore-100.json",
+      "sha256": "833c1313eb5e55c248ef0e7e0172fae5c6b41c13fbabe66ab6817deee2a8bd82"
+    },
+    {
+      "path": "twins/962-cylinder-head-f0/derived/family/bore-102-report.json",
+      "sha256": "efd36a0cf8a47c271d40a024cfc955a3d7cae539dfca8fbccf2d81ce8f4d1347"
+    },
+    {
+      "path": "twins/962-cylinder-head-f0/source/family/configs/bore-102.json",
+      "sha256": "a0f9c819510a6c2e50b4ab9e801ae36708198e8411969975cc016042713b6dd2"
+    }
+  ],
+  "formulas": {
+    "conditional_mass_kg": "metal_volume_cm3 * 1e-6 * published_density_kg_m3",
+    "ht1_yield_retention_percent": "100 * yield_at_published_temperature / yield_at_25_C_same_recipe"
+  },
+  "geometry": [
+    {
+      "bore_mm": 95,
+      "metal_volume_cm3": 915.4581053358027,
+      "inspection_report": "twins/962-cylinder-head-f0/derived/family/bore-95-report.json",
+      "metal_stl_sha256": "ba7a0e28dade659550705e9737177c64c7f6fecd8d86d01e31732d7e739cd906"
+    },
+    {
+      "bore_mm": 98,
+      "metal_volume_cm3": 911.7039013542882,
+      "inspection_report": "twins/962-cylinder-head-f0/derived/family/bore-98-report.json",
+      "metal_stl_sha256": "3b35ef46240436faa0189d57adedbbdb1b3fe744a5164b2be4b299f08bcdf978"
+    },
+    {
+      "bore_mm": 100,
+      "metal_volume_cm3": 908.9213663797528,
+      "inspection_report": "twins/962-cylinder-head-f0/derived/family/bore-100-report.json",
+      "metal_stl_sha256": "67c8bc5ca0e9d3905017a18362163f3080bf753bba84f7cb4220f4d7bcfb4ab2"
+    },
+    {
+      "bore_mm": 102,
+      "metal_volume_cm3": 905.9818779039808,
+      "inspection_report": "twins/962-cylinder-head-f0/derived/family/bore-102-report.json",
+      "metal_stl_sha256": "a4ac91026a786e0fd7cb22173005598c01025d6cc6c49869e79fcb63ad0b9905"
+    }
+  ],
+  "sources": [
+    {
+      "id": "constellium-current-products",
+      "publisher": "Constellium SE",
+      "url": "https://www.constellium.com/products/aluminium-powders/",
+      "accessed_on": "2026-10-16",
+      "document_date": null,
+      "sha256": null,
+      "locator": "CP1 and HT1 alloy identification",
+      "rights": "manufacturer_copyright_reference_only_no_pdf_redistribution"
+    },
+    {
+      "id": "constellium-cp1-2021",
+      "publisher": "Constellium SE",
+      "url": "https://assets.foleon.com/eu-central-1/de-uploads-7e3kk3/41170/product_sheet_aheadd_cp1_nov_2021docx.e81a7d073ebf.pdf",
+      "accessed_on": "2026-10-16",
+      "document_date": "2021-11",
+      "sha256": "30d4071189259ae1c2fad121d52d9bedf04269cf220acd0eaaf0aa17ea7aa7bc",
+      "locator": "PDF page 2, heat-treatment/property table",
+      "rights": "manufacturer_copyright_reference_only_no_pdf_redistribution"
+    },
+    {
+      "id": "constellium-ht1-fact-sheet",
+      "publisher": "Constellium SE",
+      "url": "https://assets.foleon.com/eu-central-1/de-uploads-7e3kk3/41170/aheadd_ht1_fact_sheet_230620.ccac52e244fb.pdf",
+      "accessed_on": "2026-10-16",
+      "document_date": null,
+      "sha256": "068006da7419cc7566ae5a5ed18985e0af1f11f48a3bdd52cf3bb51bc9cd360a",
+      "locator": "PDF page 1, treatments #1/#2 and specimen footnote",
+      "rights": "manufacturer_copyright_reference_only_no_pdf_redistribution"
+    },
+    {
+      "id": "eos-cucrzr-2025",
+      "publisher": "EOS GmbH",
+      "url": "https://www.eos.info/var/assets/05-datasheet-images/Assets_MDS_Metal/EOS_CopperAlloy_CuCrZr/Material_DataSheet_EOS%20_Copper_CuCrZr_en.pdf?v=11",
+      "accessed_on": "2026-10-16",
+      "document_date": "2025-05",
+      "sha256": "274737eccc264b900ce8136bb5c3d786bea05378bccf2dd15dda70e53273f6c3",
+      "locator": "PDF pages 5-7, EOS M400-1/80 um; separate M290 data on pages 9-10 excluded",
+      "rights": "manufacturer_copyright_reference_only_no_pdf_redistribution"
+    }
+  ],
+  "recipes": [
+    {
+      "recipe_id": "cp1-400c-4h-vertical-machine-unspecified",
+      "alloy": "Aheadd CP1 AA8A61.50",
+      "machine_model": null,
+      "layer_thickness_um": null,
+      "build_orientation": "vertical_Z",
+      "heat_treatment": {
+        "label": "400_C_4_h",
+        "temperature_C": 400,
+        "hold_h": 4,
+        "atmosphere": "inert atmosphere not required",
+        "cooling": "no controlled heating/cooling rate required"
+      },
+      "source_id": "constellium-cp1-2021",
+      "locator": "PDF page 2, 4 h row",
+      "density_kg_m3": null,
+      "conditional_head_masses": [
+        {
+          "bore_mm": 95,
+          "conditional_head_mass_kg": null,
+          "bound_for_fixed_study_volume": null
+        },
+        {
+          "bore_mm": 98,
+          "conditional_head_mass_kg": null,
+          "bound_for_fixed_study_volume": null
+        },
+        {
+          "bore_mm": 100,
+          "conditional_head_mass_kg": null,
+          "bound_for_fixed_study_volume": null
+        },
+        {
+          "bore_mm": 102,
+          "conditional_head_mass_kg": null,
+          "bound_for_fixed_study_volume": null
+        }
+      ],
+      "tensile_points": [
+        {
+          "test_temperature_C": 25,
+          "yield_MPa": 323,
+          "ultimate_MPa": 342,
+          "elongation_pct": 12.8,
+          "modulus_GPa": null
+        }
+      ],
+      "ht1_yield_retention": null,
+      "thermal_conductivity_W_mK": {
+        "value": 187,
+        "temperature_C": null,
+        "temperature_note": "Conductivity-column temperature is not explicitly specified; do not create k(T) from this scalar."
+      },
+      "electrical_conductivity_IACS_pct": 49.0,
+      "design_allowables": null,
+      "limits": [
+        "Tensile-table machine and layer thickness are not explicitly identified; nearby EOS M290 roughness example is not reassigned to this tensile recipe.",
+        "Single conductivity value is not a temperature curve or a head-level thermal result."
+      ]
+    },
+    {
+      "recipe_id": "ht1-treatment-1-m290-60um-vertical",
+      "alloy": "Aheadd HT1 AA8A81.50",
+      "machine_model": "EOS M290",
+      "layer_thickness_um": 60,
+      "build_orientation": "vertical_Z",
+      "heat_treatment": {
+        "label": "manufacturer_treatment_1",
+        "temperature_C": null,
+        "hold_h": null,
+        "atmosphere": null,
+        "cooling": null
+      },
+      "source_id": "constellium-ht1-fact-sheet",
+      "locator": "PDF page 1, treatment #1, vertical specimen table",
+      "density_kg_m3": null,
+      "conditional_head_masses": [
+        {
+          "bore_mm": 95,
+          "conditional_head_mass_kg": null,
+          "bound_for_fixed_study_volume": null
+        },
+        {
+          "bore_mm": 98,
+          "conditional_head_mass_kg": null,
+          "bound_for_fixed_study_volume": null
+        },
+        {
+          "bore_mm": 100,
+          "conditional_head_mass_kg": null,
+          "bound_for_fixed_study_volume": null
+        },
+        {
+          "bore_mm": 102,
+          "conditional_head_mass_kg": null,
+          "bound_for_fixed_study_volume": null
+        }
+      ],
+      "tensile_points": [
+        {
+          "test_temperature_C": 25,
+          "yield_MPa": 425,
+          "ultimate_MPa": 445,
+          "elongation_pct": 6,
+          "modulus_GPa": null
+        },
+        {
+          "test_temperature_C": 200,
+          "yield_MPa": 238,
+          "ultimate_MPa": 268,
+          "elongation_pct": 13,
+          "modulus_GPa": null
+        },
+        {
+          "test_temperature_C": 250,
+          "yield_MPa": 188,
+          "ultimate_MPa": 225,
+          "elongation_pct": 6,
+          "modulus_GPa": null
+        }
+      ],
+      "ht1_yield_retention": [
+        {
+          "test_temperature_C": 200,
+          "yield_MPa": 238,
+          "reference_temperature_C": 25,
+          "same_recipe_reference_yield_MPa": 425,
+          "yield_retention_percent": 56.00000000000001
+        },
+        {
+          "test_temperature_C": 250,
+          "yield_MPa": 188,
+          "reference_temperature_C": 25,
+          "same_recipe_reference_yield_MPa": 425,
+          "yield_retention_percent": 44.23529411764706
+        }
+      ],
+      "thermal_conductivity_W_mK": null,
+      "electrical_conductivity_IACS_pct": null,
+      "design_allowables": null,
+      "limits": [
+        "Treatment number is published; the actual temperature/time schedule is not supplied.",
+        "Discrete tensile points are preserved without interpolation, extrapolation, plasticity or fatigue laws."
+      ]
+    },
+    {
+      "recipe_id": "ht1-treatment-2-m290-60um-vertical",
+      "alloy": "Aheadd HT1 AA8A81.50",
+      "machine_model": "EOS M290",
+      "layer_thickness_um": 60,
+      "build_orientation": "vertical_Z",
+      "heat_treatment": {
+        "label": "manufacturer_treatment_2",
+        "temperature_C": null,
+        "hold_h": null,
+        "atmosphere": null,
+        "cooling": null
+      },
+      "source_id": "constellium-ht1-fact-sheet",
+      "locator": "PDF page 1, treatment #2, vertical specimen table",
+      "density_kg_m3": null,
+      "conditional_head_masses": [
+        {
+          "bore_mm": 95,
+          "conditional_head_mass_kg": null,
+          "bound_for_fixed_study_volume": null
+        },
+        {
+          "bore_mm": 98,
+          "conditional_head_mass_kg": null,
+          "bound_for_fixed_study_volume": null
+        },
+        {
+          "bore_mm": 100,
+          "conditional_head_mass_kg": null,
+          "bound_for_fixed_study_volume": null
+        },
+        {
+          "bore_mm": 102,
+          "conditional_head_mass_kg": null,
+          "bound_for_fixed_study_volume": null
+        }
+      ],
+      "tensile_points": [
+        {
+          "test_temperature_C": 25,
+          "yield_MPa": 285,
+          "ultimate_MPa": 445,
+          "elongation_pct": 6,
+          "modulus_GPa": null
+        },
+        {
+          "test_temperature_C": 200,
+          "yield_MPa": 270,
+          "ultimate_MPa": 293,
+          "elongation_pct": 11,
+          "modulus_GPa": null
+        },
+        {
+          "test_temperature_C": 250,
+          "yield_MPa": 216,
+          "ultimate_MPa": 265,
+          "elongation_pct": 5,
+          "modulus_GPa": null
+        }
+      ],
+      "ht1_yield_retention": [
+        {
+          "test_temperature_C": 200,
+          "yield_MPa": 270,
+          "reference_temperature_C": 25,
+          "same_recipe_reference_yield_MPa": 285,
+          "yield_retention_percent": 94.73684210526315
+        },
+        {
+          "test_temperature_C": 250,
+          "yield_MPa": 216,
+          "reference_temperature_C": 25,
+          "same_recipe_reference_yield_MPa": 285,
+          "yield_retention_percent": 75.78947368421053
+        }
+      ],
+      "thermal_conductivity_W_mK": null,
+      "electrical_conductivity_IACS_pct": null,
+      "design_allowables": null,
+      "limits": [
+        "Treatment number is published; the actual temperature/time schedule is not supplied.",
+        "Discrete tensile points are preserved without interpolation, extrapolation, plasticity or fatigue laws."
+      ]
+    },
+    {
+      "recipe_id": "cucrzr-m400-1-80um-conductivity-horizontal_xy",
+      "alloy": "EOS CuCrZr C18150/CW106C",
+      "machine_model": "EOS M400-1",
+      "layer_thickness_um": 80,
+      "build_orientation": "horizontal_XY",
+      "heat_treatment": {
+        "label": "conductivity_optimized",
+        "temperature_C": 550,
+        "hold_h": 3,
+        "atmosphere": "inert gas",
+        "cooling": "slow cooling under inert gas to below 100 C"
+      },
+      "source_id": "eos-cucrzr-2025",
+      "locator": "PDF pages 5-7, conductivity-optimized heat treatment and horizontal_XY row",
+      "density_kg_m3": {
+        "value": 8840,
+        "bound": "minimum"
+      },
+      "conditional_head_masses": [
+        {
+          "bore_mm": 95,
+          "conditional_head_mass_kg": 8.092649651168495,
+          "bound_for_fixed_study_volume": "minimum"
+        },
+        {
+          "bore_mm": 98,
+          "conditional_head_mass_kg": 8.059462487971906,
+          "bound_for_fixed_study_volume": "minimum"
+        },
+        {
+          "bore_mm": 100,
+          "conditional_head_mass_kg": 8.034864878797014,
+          "bound_for_fixed_study_volume": "minimum"
+        },
+        {
+          "bore_mm": 102,
+          "conditional_head_mass_kg": 8.00887980067119,
+          "bound_for_fixed_study_volume": "minimum"
+        }
+      ],
+      "tensile_points": [
+        {
+          "test_temperature_C": null,
+          "yield_MPa": 255,
+          "ultimate_MPa": 410,
+          "elongation_pct": 30,
+          "modulus_GPa": 130
+        }
+      ],
+      "ht1_yield_retention": null,
+      "thermal_conductivity_W_mK": null,
+      "electrical_conductivity_IACS_pct": 88,
+      "design_allowables": null,
+      "limits": [
+        "ISO 6892-1 is cited; an exact numeric test temperature is not printed in this table.",
+        "Electrical conductivity uses separate sample cubes; it is not a thermal conductivity measurement.",
+        "M400-1 properties are not transferred to M290 1kW or AMCM M290 1kW."
+      ]
+    },
+    {
+      "recipe_id": "cucrzr-m400-1-80um-conductivity-vertical_z",
+      "alloy": "EOS CuCrZr C18150/CW106C",
+      "machine_model": "EOS M400-1",
+      "layer_thickness_um": 80,
+      "build_orientation": "vertical_Z",
+      "heat_treatment": {
+        "label": "conductivity_optimized",
+        "temperature_C": 550,
+        "hold_h": 3,
+        "atmosphere": "inert gas",
+        "cooling": "slow cooling under inert gas to below 100 C"
+      },
+      "source_id": "eos-cucrzr-2025",
+      "locator": "PDF pages 5-7, conductivity-optimized heat treatment and vertical_Z row",
+      "density_kg_m3": {
+        "value": 8840,
+        "bound": "minimum"
+      },
+      "conditional_head_masses": [
+        {
+          "bore_mm": 95,
+          "conditional_head_mass_kg": 8.092649651168495,
+          "bound_for_fixed_study_volume": "minimum"
+        },
+        {
+          "bore_mm": 98,
+          "conditional_head_mass_kg": 8.059462487971906,
+          "bound_for_fixed_study_volume": "minimum"
+        },
+        {
+          "bore_mm": 100,
+          "conditional_head_mass_kg": 8.034864878797014,
+          "bound_for_fixed_study_volume": "minimum"
+        },
+        {
+          "bore_mm": 102,
+          "conditional_head_mass_kg": 8.00887980067119,
+          "bound_for_fixed_study_volume": "minimum"
+        }
+      ],
+      "tensile_points": [
+        {
+          "test_temperature_C": null,
+          "yield_MPa": 230,
+          "ultimate_MPa": 350,
+          "elongation_pct": 35,
+          "modulus_GPa": 115
+        }
+      ],
+      "ht1_yield_retention": null,
+      "thermal_conductivity_W_mK": null,
+      "electrical_conductivity_IACS_pct": 88,
+      "design_allowables": null,
+      "limits": [
+        "ISO 6892-1 is cited; an exact numeric test temperature is not printed in this table.",
+        "Electrical conductivity uses separate sample cubes; it is not a thermal conductivity measurement.",
+        "M400-1 properties are not transferred to M290 1kW or AMCM M290 1kW."
+      ]
+    },
+    {
+      "recipe_id": "cucrzr-m400-1-80um-tensile-horizontal_xy",
+      "alloy": "EOS CuCrZr C18150/CW106C",
+      "machine_model": "EOS M400-1",
+      "layer_thickness_um": 80,
+      "build_orientation": "horizontal_XY",
+      "heat_treatment": {
+        "label": "tensile_optimized",
+        "temperature_C": 490,
+        "hold_h": 1,
+        "atmosphere": "inert gas",
+        "cooling": "slow cooling under inert gas to below 100 C"
+      },
+      "source_id": "eos-cucrzr-2025",
+      "locator": "PDF pages 5-7, tensile-optimized heat treatment and horizontal_XY row",
+      "density_kg_m3": {
+        "value": 8840,
+        "bound": "minimum"
+      },
+      "conditional_head_masses": [
+        {
+          "bore_mm": 95,
+          "conditional_head_mass_kg": 8.092649651168495,
+          "bound_for_fixed_study_volume": "minimum"
+        },
+        {
+          "bore_mm": 98,
+          "conditional_head_mass_kg": 8.059462487971906,
+          "bound_for_fixed_study_volume": "minimum"
+        },
+        {
+          "bore_mm": 100,
+          "conditional_head_mass_kg": 8.034864878797014,
+          "bound_for_fixed_study_volume": "minimum"
+        },
+        {
+          "bore_mm": 102,
+          "conditional_head_mass_kg": 8.00887980067119,
+          "bound_for_fixed_study_volume": "minimum"
+        }
+      ],
+      "tensile_points": [
+        {
+          "test_temperature_C": null,
+          "yield_MPa": 510,
+          "ultimate_MPa": 590,
+          "elongation_pct": 18,
+          "modulus_GPa": 120
+        }
+      ],
+      "ht1_yield_retention": null,
+      "thermal_conductivity_W_mK": null,
+      "electrical_conductivity_IACS_pct": 76,
+      "design_allowables": null,
+      "limits": [
+        "ISO 6892-1 is cited; an exact numeric test temperature is not printed in this table.",
+        "Electrical conductivity uses separate sample cubes; it is not a thermal conductivity measurement.",
+        "M400-1 properties are not transferred to M290 1kW or AMCM M290 1kW."
+      ]
+    },
+    {
+      "recipe_id": "cucrzr-m400-1-80um-tensile-vertical_z",
+      "alloy": "EOS CuCrZr C18150/CW106C",
+      "machine_model": "EOS M400-1",
+      "layer_thickness_um": 80,
+      "build_orientation": "vertical_Z",
+      "heat_treatment": {
+        "label": "tensile_optimized",
+        "temperature_C": 490,
+        "hold_h": 1,
+        "atmosphere": "inert gas",
+        "cooling": "slow cooling under inert gas to below 100 C"
+      },
+      "source_id": "eos-cucrzr-2025",
+      "locator": "PDF pages 5-7, tensile-optimized heat treatment and vertical_Z row",
+      "density_kg_m3": {
+        "value": 8840,
+        "bound": "minimum"
+      },
+      "conditional_head_masses": [
+        {
+          "bore_mm": 95,
+          "conditional_head_mass_kg": 8.092649651168495,
+          "bound_for_fixed_study_volume": "minimum"
+        },
+        {
+          "bore_mm": 98,
+          "conditional_head_mass_kg": 8.059462487971906,
+          "bound_for_fixed_study_volume": "minimum"
+        },
+        {
+          "bore_mm": 100,
+          "conditional_head_mass_kg": 8.034864878797014,
+          "bound_for_fixed_study_volume": "minimum"
+        },
+        {
+          "bore_mm": 102,
+          "conditional_head_mass_kg": 8.00887980067119,
+          "bound_for_fixed_study_volume": "minimum"
+        }
+      ],
+      "tensile_points": [
+        {
+          "test_temperature_C": null,
+          "yield_MPa": 495,
+          "ultimate_MPa": 540,
+          "elongation_pct": 18,
+          "modulus_GPa": 125
+        }
+      ],
+      "ht1_yield_retention": null,
+      "thermal_conductivity_W_mK": null,
+      "electrical_conductivity_IACS_pct": 76,
+      "design_allowables": null,
+      "limits": [
+        "ISO 6892-1 is cited; an exact numeric test temperature is not printed in this table.",
+        "Electrical conductivity uses separate sample cubes; it is not a thermal conductivity measurement.",
+        "M400-1 properties are not transferred to M290 1kW or AMCM M290 1kW."
+      ]
+    }
+  ],
+  "missing_laws": {
+    "conductivity_vs_temperature": null,
+    "youngs_modulus_vs_temperature": null,
+    "poisson_ratio_vs_temperature": null,
+    "thermal_expansion_vs_temperature": null,
+    "heat_capacity_vs_temperature": null,
+    "plastic_stress_strain_vs_temperature": null,
+    "fatigue_and_TMF": null,
+    "creep_and_relaxation": null,
+    "phase_change_and_latent_heat": null,
+    "powder_and_liquid_properties": null
+  },
+  "selected_material_recipe_id": null,
+  "selected_service_temperature_C": null,
+  "limitations": [
+    "Mass uses only the inspected study body's geometric volume; no installed assembly, machining, supports, seats, guides or fasteners are included.",
+    "A published minimum density gives a conditional minimum mass at fixed geometric volume, not a measured mass or a bound accounting for geometry uncertainty.",
+    "Missing density stays null; no aluminum density is inferred from another alloy or handbook.",
+    "Yield retention divides discrete manufacturer coupon points within one HT1 treatment; no interpolation, constitutive law, design allowable or service-temperature selection is produced.",
+    "Unknown EOS tensile-test temperatures stay null; heat-treatment temperatures are not tensile-test or service temperatures.",
+    "Electrical conductivity is not thermal conductivity; scalar properties are not temperature-dependent material cards."
+  ],
+  "qualification": {
+    "material_process_qualified": false,
+    "strength_validated": false,
+    "fatigue_validated": false,
+    "manufacturing_authorized": false
+  }
+}

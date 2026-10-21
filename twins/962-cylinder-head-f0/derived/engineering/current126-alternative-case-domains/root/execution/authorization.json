@@ -1,0 +1,1313 @@
+{
+  "schema": "962-current126-alternative15-domain-root-launch-authorization/v1",
+  "decision": "AUTHORIZE_ONE_FIXED15_STDLIB_DOMAIN_QUERY_PER_CASE_ONLY",
+  "source": {
+    "path": "work/962-engineering/head-star-current126-alternative-case-domains-prep-001/certify_domain.py",
+    "sha256": "8aad95004cd2bfb440e1436c679d8a5476cf84247a6911b4daa319b10f1f4558",
+    "bytes": 38349
+  },
+  "index": {
+    "path": "work/962-engineering/head-star-current126-alternative-case-domains-actuals-prep-001/index.json",
+    "sha256": "f85c5da3333b9242f05cc04023e233e38612758362aab3ff0b6e995ea13eb56c",
+    "bytes": 70361
+  },
+  "child_review": {
+    "path": "work/962-engineering/current126-alternative-case-domains-child-peer-001/review.json",
+    "sha256": "5a7f47b3bc81bbc2260d9183a72268a98f2a3e155a56a270c03f8f6546ffd2e5",
+    "bytes": 4938
+  },
+  "child_bindings": {
+    "path": "work/962-engineering/current126-alternative-case-domains-child-peer-001/bindings.json",
+    "sha256": "2d5726045afa960cb0a6f3c8e5628a6fe2c12928cda7fdbd9ecce7f67ed6ea65",
+    "bytes": 112111
+  },
+  "root_full_source_guard_METHOD_and_child_read": true,
+  "exact_root_inline_source": "import hashlib,json,os,re,shutil,signal,subprocess,sys,time\nfrom pathlib import Path\nR=Path('project-role://engineering-checkout');B=R/'work/962-engineering'\nP=B/'head-star-current126-alternative-case-domains-prep-001';D=B/'head-star-current126-alternative-case-domains-actuals-prep-001'\nQ=B/'current126-alternative-case-domains-child-peer-001';O=B/'current126-alternative-case-domains-root-execution-001'\npy=Path('runtime-role://controller/python')\nCHILD_REVIEW_SHA='5a7f47b3bc81bbc2260d9183a72268a98f2a3e155a56a270c03f8f6546ffd2e5';CHILD_BINDINGS_SHA='2d5726045afa960cb0a6f3c8e5628a6fe2c12928cda7fdbd9ecce7f67ed6ea65'\ndef rec(p):\n assert p.is_file() and not p.is_symlink() and p.resolve()==p,p\n raw=p.read_bytes();return dict(path=str(p.relative_to(R)),sha256=hashlib.sha256(raw).hexdigest(),bytes=len(raw))\ndef save(p,obj):\n with p.open('x') as f:json.dump(obj,f,indent=2,allow_nan=False);print(file=f)\n p.chmod(0o444);return rec(p)\ndef interpreter():\n raw=py.read_bytes();assert hashlib.sha256(raw).hexdigest()=='1699bf8aa705a8bb71613bef5cdd7d7c8c9d9a188a841f41679aa9b5830b8f60'\n return dict(path=str(py),resolved=str(py.resolve()),sha256=hashlib.sha256(raw).hexdigest(),bytes=len(raw))\nsource=P/'certify_domain.py';assert rec(source)['sha256']=='8aad95004cd2bfb440e1436c679d8a5476cf84247a6911b4daa319b10f1f4558'\nidx=rec(D/'index.json');assert idx['sha256']=='f85c5da3333b9242f05cc04023e233e38612758362aab3ff0b6e995ea13eb56c'\nindex=json.loads((D/'index.json').read_bytes());manifest=json.loads((P/'case-manifest.json').read_bytes());held=json.loads((P/'held-contract.json').read_bytes())\nassert rec(Q/'review.json')['sha256']==CHILD_REVIEW_SHA and rec(Q/'bindings.json')['sha256']==CHILD_BINDINGS_SHA\npeer=json.loads((Q/'review.json').read_bytes());bindings=json.loads((Q/'bindings.json').read_bytes())\nassert peer['decision']=='CLEAR_EXACT15_METADATA_BINDINGS_ONLY_ROOT_FRESH_LAUNCH_GATE_REQUIRED' and peer.get('findings',peer.get('blockers',[]))==[]\nassert index['case_count']==15 and index['selected_case_order']==manifest['accepted_apices']\nassert index['total_pairs']==41886 and index['total_plane_triples']==2345616 and index['queries_executed'] is False\nassert len(bindings['fresh_records'])==179 and bindings['fresh_record_count']==179\nfor rel,d in bindings['fresh_records'].items():\n got=rec(R/rel);assert all(got[k]==d[k] for k in ['path','sha256','bytes'])\nassert bindings['all_source_consumed33_per_case_subset_of_common162'] is True and bindings['all15_output_paths_fresh_absent'] is True\nassert bindings['planned_pairs']==41886 and bindings['planned_plane_triples']==2345616\ninitial={rel:rec(R/rel) for rel in index['shared162_input_records']}\nassert initial==index['shared162_input_records'] and len(initial)==162\nfor row in index['cases']:\n assert rec(R/row['actual']['path'])==row['actual'] and not (R/row['output_directory']).exists()\nassert all(not (R/row['output_directory']).is_symlink() for row in index['cases'])\nassert not O.exists() and shutil.disk_usage(R).free>1024**3\nprefixes=[str(p)+' -I -B '+str(source) for p in [py,py.resolve()]]\ndef query_jobs():\n observed=[]\n for prefix in prefixes:\n  p=subprocess.run(['/usr/bin/pgrep','-f','^'+re.escape(prefix)],capture_output=True,text=True,timeout=10)\n  assert p.returncode in [0,1] and not p.stderr\n  observed.append(dict(exact_prefix=prefix,pids=[int(n) for n in p.stdout.split()]))\n return observed\njobs=query_jobs();assert all(not row['pids'] for row in jobs)\npython_before=interpreter()\ninline=sys.orig_argv[sys.orig_argv.index('-c')+1];inline_bytes=inline.encode()\nO.mkdir()\nauthorization=save(O/'authorization.json',dict(schema='962-current126-alternative15-domain-root-launch-authorization/v1',\n decision='AUTHORIZE_ONE_FIXED15_STDLIB_DOMAIN_QUERY_PER_CASE_ONLY',source=rec(source),index=idx,child_review=rec(Q/'review.json'),child_bindings=rec(Q/'bindings.json'),root_full_source_guard_METHOD_and_child_read=True,\n exact_root_inline_source=inline,exact_root_inline_source_sha256=hashlib.sha256(inline_bytes).hexdigest(),exact_root_inline_source_bytes=len(inline_bytes),interpreter=python_before,shared162_inputs=initial,cases=index['cases'],\n initial_known_current_query_processes=jobs,ordinary_controls=held['ordinary_controls'],free_disk_bytes=shutil.disk_usage(R).free,\n procedural_failure_policy='Stop remaining cases on timeout, signals, input drift, unexpected exit or incomplete/mismatched report. No automatic retry.',\n natural_negative_policy='A complete matching RC2 exact-pair failure is terminal for that case and stays held; remaining independently bound cases can run once.',\n raw_head_MSH_BIN_or_native_runtime_access=False,native_or_head_or_PDE_execution_authorized=False,engineering_accepted=False,physics_qualified=False,manufacturing_authorized=False))\ncommon_paths=set(initial)|{idx['path'],str((Q/'review.json').relative_to(R)),str((Q/'bindings.json').relative_to(R))}\nassert len(common_paths)==165\nstarted=time.monotonic();summaries=[];halt=None\nfor item in index['cases']:\n apex=item['apex'];case_started=time.monotonic();A=R/item['actual']['path'];out=R/item['output_directory'];C=O/('apex-'+str(apex))\n assert not C.exists();C.mkdir()\n proc=None;signals=[];error=None;stop=None;before={};after={};python0=None;python1=None;output_files={};domain_passed=False;negative=False;procedural=False;jobs0=[];jobs1=[];group_absent=False;report=None;argv=None\n try:\n  assert rec(A)==item['actual'] and rec(D/'index.json')==idx\n  actual=json.loads(A.read_bytes());assert actual['case_apex']==apex and actual['source_sha256']==rec(source)['sha256']\n  assert actual['qualification']==held['qualification'] and not any(actual['qualification'].values())\n  assert set(actual['input_hashes'])==set(initial) and all(actual['input_hashes'][rel]==d['sha256'] for rel,d in initial.items())\n  paths=common_paths|{item['actual']['path']};before={rel:rec(R/rel) for rel in sorted(paths)};assert len(before)==166\n  assert all(before[rel]==d for rel,d in initial.items()) and rec(O/'authorization.json')==authorization\n  python0=interpreter();assert python0==python_before\n  jobs0=query_jobs();assert all(not row['pids'] for row in jobs0)\n  assert not out.exists() and not out.is_symlink() and out.resolve()==out and shutil.disk_usage(R).free>1024**3\n  argv=[str(py),'-I','-B',str(source),str(A),item['actual']['sha256']]\n  with (C/'stdout.log').open('xb') as so,(C/'stderr.log').open('xb') as se:\n   proc=subprocess.Popen(argv,cwd=R,stdout=so,stderr=se,start_new_session=True,env={'PATH':'/usr/bin:/bin','LANG':'C','PYTHONUTF8':'1','PYTHONDONTWRITEBYTECODE':'1'})\n   try:proc.wait(timeout=300)\n   except subprocess.TimeoutExpired:\n    stop='ordinary300_second_timeout'\n    if proc.poll() is None and os.getpgid(proc.pid)==proc.pid:os.killpg(proc.pid,signal.SIGTERM);signals.append('SIGTERM')\n    try:proc.wait(timeout=8)\n    except subprocess.TimeoutExpired:\n     if proc.poll() is None and os.getpgid(proc.pid)==proc.pid:os.killpg(proc.pid,signal.SIGKILL);signals.append('SIGKILL')\n     proc.wait()\n except BaseException as exc:error=repr(exc)\n finally:\n  if proc is not None:\n   if proc.poll() is None:\n    assert os.getpgid(proc.pid)==proc.pid;os.killpg(proc.pid,signal.SIGKILL);signals.append('SIGKILL-finally')\n   proc.wait()\n   try:os.killpg(proc.pid,0)\n   except ProcessLookupError:group_absent=True\n try:\n  after={rel:rec(R/rel) for rel in before};python1=interpreter();jobs1=query_jobs()\n  stable=bool(before) and before==after and python0==python1 and rec(O/'authorization.json')==authorization\n  if out.exists():\n   assert out.is_dir() and not out.is_symlink() and set(p.name for p in out.iterdir())=={'report.json'}\n   output_files['report.json']=rec(out/'report.json');report=json.loads((out/'report.json').read_bytes())\n  if report is not None and proc is not None:\n   matching=(report.get('schema')=='962-current126-alternative-fixed15-one-case-domain-result/v1'\n    and report.get('case_apex')==apex and report.get('contract_sha256')==item['actual']['sha256']\n    and report.get('source_sha256')==rec(source)['sha256'] and report.get('input_hashes')==actual['input_hashes']\n    and report.get('complete_unordered_pairs')==item['exact_counts']['total_pairs']\n    and report.get('plane_triples_enumerated')==item['exact_counts']['plane_triples']\n    and len(report.get('pair_results',{}).get('old',[]))==item['exact_counts']['old_unordered_pairs']\n    and len(report.get('pair_results',{}).get('candidate',[]))==item['exact_counts']['candidate_unordered_pairs']\n    and report.get('qualification')==held['qualification'] and report.get('parent_context_sha256') is None\n    and report.get('parent_owner_context_queried') is False and report.get('outside_owner_context_established') is False\n    and report.get('bound_inputs_unchanged') is True and report.get('coordinates_changed') is False\n    and report.get('native_optimizer_or_meshwrite_calls')==0)\n   failures=report.get('pair_failures',{})\n   domain_passed=matching and proc.returncode==0 and report.get('status')=='same_compact_oriented_local_domain' and report.get('local_domain_equivalence_proved') is True and failures==dict(old=0,candidate=0)\n   negative=matching and proc.returncode==2 and report.get('status')=='pair_embedding_failed_no_domain_certificate' and report.get('local_domain_equivalence_proved') is False and sum(failures.values())>0\n   procedural=stable and group_absent and all(not row['pids'] for row in jobs1) and not signals and error is None and stop is None and (domain_passed or negative)\n except BaseException as exc:\n  error=(error+'; ' if error else '')+repr(exc);procedural=False\n for p in C.iterdir():\n  if p.is_file():p.chmod(0o444)\n if 'report.json' in output_files:(out/'report.json').chmod(0o444)\n closed=save(C/'closed-result.json',dict(schema='962-current126-alternative15-one-domain-query-root-closed/v1',case_apex=apex,source=rec(source),actual=item['actual'],index=idx,child_review=rec(Q/'review.json'),child_bindings=rec(Q/'bindings.json'),authorization=authorization,\n argv=argv,query_pid=proc.pid if proc else None,returncode=proc.returncode if proc else None,waited_reaped=proc is not None and proc.poll() is not None,owned_group_absent=group_absent,universal_descendant_absence_claimed=False,\n signals=signals,error=error,stop_reason=stop,ordinary_wall_seconds=300,TERM_grace_seconds=8,hard_OS_CPU_or_RSS_quota=False,wall_seconds=time.monotonic()-case_started,inputs_before=before,inputs_after=after,all166_inputs_unchanged=bool(before) and before==after,\n interpreter_before=python0,interpreter_after=python1,known_current_query_processes_before=jobs0,known_current_query_processes_after=jobs1,outputs=output_files,\n stdout=rec(C/'stdout.log') if (C/'stdout.log').exists() else None,stderr=rec(C/'stderr.log') if (C/'stderr.log').exists() else None,\n procedural_checks_passed=procedural,local_domain_passed=domain_passed,held_complete_pair_failure=negative,native_or_head_or_PDE_execution=False,automatic_retry=False,engineering_accepted=False,physics_qualified=False,manufacturing_authorized=False))\n summaries.append(dict(apex=apex,closed=closed,outputs=output_files,returncode=proc.returncode if proc else None,procedural_checks_passed=procedural,local_domain_passed=domain_passed,held_complete_pair_failure=negative,wall_seconds=time.monotonic()-case_started))\n print(json.dumps(dict(completed=len(summaries),of=15,apex=apex,procedural=procedural,domain_passed=domain_passed,held_negative=negative,returncode=proc.returncode if proc else None,wall_seconds=summaries[-1]['wall_seconds'])),flush=True)\n if not procedural:\n  halt=dict(apex=apex,reason=stop or error or 'unexpected_or_incomplete_capture');break\nunattempted=[r['apex'] for r in index['cases'][len(summaries):]]\nmaster=save(O/'closed-result.json',dict(schema='962-current126-alternative15-domain-query-root-master-closed/v1',authorization=authorization,index=idx,child_review=rec(Q/'review.json'),child_bindings=rec(Q/'bindings.json'),selected_count=15,attempted_count=len(summaries),cases=summaries,halt=halt,unattempted_apices=unattempted,wall_seconds=time.monotonic()-started,\n complete15_procedural=halt is None and len(summaries)==15,domain_pass_count=sum(r['local_domain_passed'] for r in summaries),held_complete_pair_failures=sum(r['held_complete_pair_failure'] for r in summaries),total_declared_pairs=41886,total_declared_plane_triples=2345616,\n automatic_retry=False,native_or_head_or_PDE_execution=False,engineering_accepted=False,physics_qualified=False,manufacturing_authorized=False))\nprint(json.dumps(dict(master=master,attempted=len(summaries),domain_passes=sum(r['local_domain_passed'] for r in summaries),halt=halt,wall_seconds=time.monotonic()-started)),flush=True)\nraise SystemExit(0 if halt is None and len(summaries)==15 else 2)\n",
+  "exact_root_inline_source_sha256": "5249329b2f0b989b64fc5fe5a4baa73e1dd06cf13902e509ce8d241124b617f5",
+  "exact_root_inline_source_bytes": 12824,
+  "interpreter": {
+    "path": "runtime-role://controller/python",
+    "resolved": "runtime-role://controller/resolved-python3.12",
+    "sha256": "1699bf8aa705a8bb71613bef5cdd7d7c8c9d9a188a841f41679aa9b5830b8f60",
+    "bytes": 49968
+  },
+  "shared162_inputs": {
+    "work/962-engineering/head-star-current204-case-domains-prep-002/certify_domain.py": {
+      "path": "work/962-engineering/head-star-current204-case-domains-prep-002/certify_domain.py",
+      "sha256": "7060580b7aa2743dec511bb9fc5e8cfb40ef86ea3332b068c5de9c845422efc8",
+      "bytes": 25203
+    },
+    "work/962-engineering/apex1613031-domain-equivalence-prep-001/certify_domain.py": {
+      "path": "work/962-engineering/apex1613031-domain-equivalence-prep-001/certify_domain.py",
+      "sha256": "3cb92684b1d757617854d5ea1b0896e04db632648251810fc784289110330118",
+      "bytes": 17458
+    },
+    "work/962-engineering/fixed-shell-coupled-embedding-prep-001/check_embedding.py": {
+      "path": "work/962-engineering/fixed-shell-coupled-embedding-prep-001/check_embedding.py",
+      "sha256": "1b489cc8149f4b5db8f90c594e32fe4c09b5db00151df6b1cfc88362d1018134",
+      "bytes": 10914
+    },
+    "work/962-engineering/domain-equivalence-prep-001/certify_domain.py": {
+      "path": "work/962-engineering/domain-equivalence-prep-001/certify_domain.py",
+      "sha256": "0fe593d385e5a0ab4944528fa1b869ddf2c41c28d050576afe9be18213462296",
+      "bytes": 11876
+    },
+    "work/962-engineering/head-star-current126-full-stars-prep-001/reader.py": {
+      "path": "work/962-engineering/head-star-current126-full-stars-prep-001/reader.py",
+      "sha256": "2348c032ecbbb694563978cb333aff1a7e4d37a5052c3ed841a7128bf797409c",
+      "bytes": 28091
+    },
+    "work/962-engineering/head-star-current126-alternative-batch-shells-001/report.json": {
+      "path": "work/962-engineering/head-star-current126-alternative-batch-shells-001/report.json",
+      "sha256": "721e05802e305a124b99f97c779426e3d7b8960cab30fbabc3d93ee318e3de73",
+      "bytes": 7363613
+    },
+    "work/962-engineering/head-star-current126-alternative-local-stages-prep-001/case-manifest.json": {
+      "path": "work/962-engineering/head-star-current126-alternative-local-stages-prep-001/case-manifest.json",
+      "sha256": "e83b8824581d68c3b3ca29acbd9f50573833561298159cf7969bbd46eb722e4c",
+      "bytes": 99020
+    },
+    "work/962-engineering/current126-alternative-Netgen-result-peer-001/review.json": {
+      "path": "work/962-engineering/current126-alternative-Netgen-result-peer-001/review.json",
+      "sha256": "8bd554dffc1f7cc918ef7597a9dd6536e93015406f86d8dcce166d2cc960bdb9",
+      "bytes": 6646
+    },
+    "work/962-engineering/current126-alternative-Netgen-result-peer-001/bindings.json": {
+      "path": "work/962-engineering/current126-alternative-Netgen-result-peer-001/bindings.json",
+      "sha256": "0d920fd251ba9dd35eeacece6f260043f146fc4c1f12c0c87679aa72d7d13301",
+      "bytes": 533296
+    },
+    "work/962-engineering/current126-alternative-Netgen-root-execution-001/result-peer-acceptance.json": {
+      "path": "work/962-engineering/current126-alternative-Netgen-root-execution-001/result-peer-acceptance.json",
+      "sha256": "930277138dfe5564c47165989096b2f1b936362f428391d1fab61b039127ae15",
+      "bytes": 338044
+    },
+    "work/962-engineering/current126-alternative-Netgen-root-execution-001/closed-result.json": {
+      "path": "work/962-engineering/current126-alternative-Netgen-root-execution-001/closed-result.json",
+      "sha256": "ec4948878d396f995dda6df26795342bd0682f679d8e6c52acf3737be6294c3d",
+      "bytes": 67248
+    },
+    "work/962-engineering/current126-alternative-Netgen-root-execution-001/own-review.json": {
+      "path": "work/962-engineering/current126-alternative-Netgen-root-execution-001/own-review.json",
+      "sha256": "bfefc5be656cfc4fc2a4cde5f193c9cf10c36911973b9ae1916194d9bfd2553e",
+      "bytes": 228351
+    },
+    "work/962-engineering/head-star-current126-full-stars-001/readback-report.json": {
+      "path": "work/962-engineering/head-star-current126-full-stars-001/readback-report.json",
+      "sha256": "ac40521a4add15f1bb414d7d1a1c2cd231a0107278b6fe43ec38dad27c269e1a",
+      "bytes": 2092550
+    },
+    "work/962-engineering/head-star-current126-full-stars-001/frozen-contract.json": {
+      "path": "work/962-engineering/head-star-current126-full-stars-001/frozen-contract.json",
+      "sha256": "d579a794f18bc9f7c4e153cb2042f32cb32b2c6b2f2235cec2edbef8aba91317",
+      "bytes": 36806
+    },
+    "work/962-engineering/head-star-current126-full-stars-root-execution-001/result-peer-acceptance.json": {
+      "path": "work/962-engineering/head-star-current126-full-stars-root-execution-001/result-peer-acceptance.json",
+      "sha256": "f66d5857a0fa75352c3880ab2cd7bbc0bcae73833254f39423fd48971ebd52d9",
+      "bytes": 42852
+    },
+    "work/962-engineering/head-star-current126-full-stars-root-execution-001/closed-result.json": {
+      "path": "work/962-engineering/head-star-current126-full-stars-root-execution-001/closed-result.json",
+      "sha256": "4ec76692bd1fb7bb592bf24c82b199830eb6a4828cf9726fc879fa387022fb99",
+      "bytes": 104325
+    },
+    "work/962-engineering/head-star-current126-full-stars-result-peer-001/review.json": {
+      "path": "work/962-engineering/head-star-current126-full-stars-result-peer-001/review.json",
+      "sha256": "f22ee8bfc026caec2b6182bddfdfa250795ea3ee698c73c41a823a6dd1f5a4c4",
+      "bytes": 6090
+    },
+    "work/962-engineering/head-star-current126-full-stars-result-peer-001/bindings.json": {
+      "path": "work/962-engineering/head-star-current126-full-stars-result-peer-001/bindings.json",
+      "sha256": "c2c33a39a1cb3f393288ee4a7f344f17d45bfa44c8c81347fe07cca6421b66d5",
+      "bytes": 112560
+    },
+    "work/962-engineering/apex1613031-head-application-001/readback-report.json": {
+      "path": "work/962-engineering/apex1613031-head-application-001/readback-report.json",
+      "sha256": "64caf59811e229628ea1be138ebcc48cdf940c4ca2724be0b9080e255951c9f5",
+      "bytes": 25890
+    },
+    "work/962-engineering/apex1613031-head-application-001/execution-receipt.json": {
+      "path": "work/962-engineering/apex1613031-head-application-001/execution-receipt.json",
+      "sha256": "496b0e01950b777acd1c1759177fe26fac5659e5ec6512bb19ff9cb56b5fd46d",
+      "bytes": 30540
+    },
+    "work/962-engineering/apex1613031-head-application-root-execution-001/closed-result.json": {
+      "path": "work/962-engineering/apex1613031-head-application-root-execution-001/closed-result.json",
+      "sha256": "9324c5ef88293efa33f9e14cfeff3e092795eec337fceeaffd7481ac2ee41471",
+      "bytes": 106022
+    },
+    "work/962-engineering/apex1613031-head-application-root-execution-001/result-peer-acceptance.json": {
+      "path": "work/962-engineering/apex1613031-head-application-root-execution-001/result-peer-acceptance.json",
+      "sha256": "19ef174a208868bf174909a1add690971fdf018b8cf438c5c26e3a2bca9bfada",
+      "bytes": 5753
+    },
+    "work/962-engineering/head-star-current126-alternative-local-pipeline-reuse-plan-001/NOTE.md": {
+      "path": "work/962-engineering/head-star-current126-alternative-local-pipeline-reuse-plan-001/NOTE.md",
+      "sha256": "277365db120978ffc3b75702d192698f031677a267328c2e0bab176dfedf2c6c",
+      "bytes": 11684
+    },
+    "work/962-engineering/head-star-current126-full-stars-runtime-root-001/review.json": {
+      "path": "work/962-engineering/head-star-current126-full-stars-runtime-root-001/review.json",
+      "sha256": "28101a316a5070a9d33092f5afc08dd84a347f6b8e2b51bed88a4c00ab951e7c",
+      "bytes": 7139
+    },
+    "work/962-engineering/head-star-current126-alternative-case-domains-prep-001/case-manifest.json": {
+      "path": "work/962-engineering/head-star-current126-alternative-case-domains-prep-001/case-manifest.json",
+      "sha256": "66200c5c18ff6137037ffdf5750cb966ff6f99df1ef6e6d1f290695d02ac7cf7",
+      "bytes": 76898
+    },
+    "work/962-engineering/head-star-current126-alternative-apex-1433071-netgen-001/fixture-report.json": {
+      "path": "work/962-engineering/head-star-current126-alternative-apex-1433071-netgen-001/fixture-report.json",
+      "sha256": "1815323e255e64cebc4639147574cc6615ff1cf29fbc87b545709932f9e98987",
+      "bytes": 27409
+    },
+    "work/962-engineering/head-star-current126-alternative-apex-1433071-netgen-001/arrays.json": {
+      "path": "work/962-engineering/head-star-current126-alternative-apex-1433071-netgen-001/arrays.json",
+      "sha256": "f939a77936cdcad1e238806467e8ac7ded7a61650c32d35bdb927550c2f220ba",
+      "bytes": 73105
+    },
+    "work/962-engineering/head-star-current126-alternative-apex-1433071-netgen-001/execution-receipt.json": {
+      "path": "work/962-engineering/head-star-current126-alternative-apex-1433071-netgen-001/execution-receipt.json",
+      "sha256": "e490ad8a14073d6ca333c4e3ca8ae310056f5bc4615e407c88ac844c67928195",
+      "bytes": 1262
+    },
+    "work/962-engineering/head-star-current126-alternative-apex-1433071-netgen-001/frozen-contract.json": {
+      "path": "work/962-engineering/head-star-current126-alternative-apex-1433071-netgen-001/frozen-contract.json",
+      "sha256": "999353372694f7ac5b9b33047e30d4c7159c5bbea39596854be4a11637ed0d3a",
+      "bytes": 35784
+    },
+    "work/962-engineering/current126-alternative-Netgen-root-execution-001/apex-1433071/closed-result.json": {
+      "path": "work/962-engineering/current126-alternative-Netgen-root-execution-001/apex-1433071/closed-result.json",
+      "sha256": "ca06f48574a2cee4114ae7446d13d5afd7f05f3260468d31ac2c471b9fd3171a",
+      "bytes": 111505
+    },
+    "work/962-engineering/head-star-current126-alternative-local-stages-prep-001/case-inputs/apex-1433071/shell.json": {
+      "path": "work/962-engineering/head-star-current126-alternative-local-stages-prep-001/case-inputs/apex-1433071/shell.json",
+      "sha256": "f115393a9a4a665b0099932de3d6f8e09bf9f093b5fc9f214c46befa3afd42ee",
+      "bytes": 42571
+    },
+    "work/962-engineering/head-star-current126-alternative-local-stages-prep-001/case-inputs/apex-1433071/observation.json": {
+      "path": "work/962-engineering/head-star-current126-alternative-local-stages-prep-001/case-inputs/apex-1433071/observation.json",
+      "sha256": "031dbd7c212086fcf00e5d97f11ce820cecddf066710b94884220dd6f60372e7",
+      "bytes": 94464
+    },
+    "work/962-engineering/head-star-current126-alternative-local-stages-prep-001/case-inputs/apex-1433071/screen.json": {
+      "path": "work/962-engineering/head-star-current126-alternative-local-stages-prep-001/case-inputs/apex-1433071/screen.json",
+      "sha256": "2bd93747ad40594ed8dfa21031fb40a3b0562dfb6b5e1b8c49b7b2c6ff759e4e",
+      "bytes": 169386
+    },
+    "work/962-engineering/head-star-current126-alternative-apex-1468585-netgen-001/fixture-report.json": {
+      "path": "work/962-engineering/head-star-current126-alternative-apex-1468585-netgen-001/fixture-report.json",
+      "sha256": "478040c444432421472e6f5a463a02ac2a174110e1dbb7797b1ecbda7e991e85",
+      "bytes": 29604
+    },
+    "work/962-engineering/head-star-current126-alternative-apex-1468585-netgen-001/arrays.json": {
+      "path": "work/962-engineering/head-star-current126-alternative-apex-1468585-netgen-001/arrays.json",
+      "sha256": "166f078108f21c9736689a8de32ea9a2c7700d372aff5c0a37185d7a84c1c494",
+      "bytes": 88255
+    },
+    "work/962-engineering/head-star-current126-alternative-apex-1468585-netgen-001/execution-receipt.json": {
+      "path": "work/962-engineering/head-star-current126-alternative-apex-1468585-netgen-001/execution-receipt.json",
+      "sha256": "bd9f89e85f4ed1a42ed05c485560053c2ce8cf055b9c5faf253d5a3ad55fce73",
+      "bytes": 1262
+    },
+    "work/962-engineering/head-star-current126-alternative-apex-1468585-netgen-001/frozen-contract.json": {
+      "path": "work/962-engineering/head-star-current126-alternative-apex-1468585-netgen-001/frozen-contract.json",
+      "sha256": "6d139d7ce0214d345981fbd068077c344f29ddf1067e42c530ae0e5b649c1171",
+      "bytes": 35802
+    },
+    "work/962-engineering/current126-alternative-Netgen-root-execution-001/apex-1468585/closed-result.json": {
+      "path": "work/962-engineering/current126-alternative-Netgen-root-execution-001/apex-1468585/closed-result.json",
+      "sha256": "397c18e070be140a8a8434d9b4b0864d4627677b8486ea91465c2817a189b4c8",
+      "bytes": 111505
+    },
+    "work/962-engineering/head-star-current126-alternative-local-stages-prep-001/case-inputs/apex-1468585/shell.json": {
+      "path": "work/962-engineering/head-star-current126-alternative-local-stages-prep-001/case-inputs/apex-1468585/shell.json",
+      "sha256": "23b289afc63c85fa2fe88a46298aa12f53767f3f303e1714d48d86fdf92c17ed",
+      "bytes": 47499
+    },
+    "work/962-engineering/head-star-current126-alternative-local-stages-prep-001/case-inputs/apex-1468585/observation.json": {
+      "path": "work/962-engineering/head-star-current126-alternative-local-stages-prep-001/case-inputs/apex-1468585/observation.json",
+      "sha256": "6147a5fd7b57261a1f960da08c4174bfc98bd7ff57c0dd0981efa7dae96fdb8a",
+      "bytes": 109218
+    },
+    "work/962-engineering/head-star-current126-alternative-local-stages-prep-001/case-inputs/apex-1468585/screen.json": {
+      "path": "work/962-engineering/head-star-current126-alternative-local-stages-prep-001/case-inputs/apex-1468585/screen.json",
+      "sha256": "44ed72502bf35f48ffed14bbc707172e9fd769b2f50ca87811b257ad4a4f61d1",
+      "bytes": 203759
+    },
+    "work/962-engineering/head-star-current126-alternative-apex-1481549-netgen-001/fixture-report.json": {
+      "path": "work/962-engineering/head-star-current126-alternative-apex-1481549-netgen-001/fixture-report.json",
+      "sha256": "d1fe4725c3fab7145228c31ca8d6d1366bb0dba8a0666ca3800a9f3a8299716f",
+      "bytes": 31144
+    },
+    "work/962-engineering/head-star-current126-alternative-apex-1481549-netgen-001/arrays.json": {
+      "path": "work/962-engineering/head-star-current126-alternative-apex-1481549-netgen-001/arrays.json",
+      "sha256": "67adb3f4a09ca360ebdd77d83e57b9df76657d4106658ed163e93f579669ff94",
+      "bytes": 92385
+    },
+    "work/962-engineering/head-star-current126-alternative-apex-1481549-netgen-001/execution-receipt.json": {
+      "path": "work/962-engineering/head-star-current126-alternative-apex-1481549-netgen-001/execution-receipt.json",
+      "sha256": "04cecb70596772b518adcedc17c473667e1f6ddaa2844c1b15a9361f9c29fa54",
+      "bytes": 1261
+    },
+    "work/962-engineering/head-star-current126-alternative-apex-1481549-netgen-001/frozen-contract.json": {
+      "path": "work/962-engineering/head-star-current126-alternative-apex-1481549-netgen-001/frozen-contract.json",
+      "sha256": "e98f74edcb67ce776c84c95da328101cc2617725f7fcbd7566c36ed03c0d395f",
+      "bytes": 35785
+    },
+    "work/962-engineering/current126-alternative-Netgen-root-execution-001/apex-1481549/closed-result.json": {
+      "path": "work/962-engineering/current126-alternative-Netgen-root-execution-001/apex-1481549/closed-result.json",
+      "sha256": "d04224fda1922a17dcb0b8b8f2228c8c83343daf05271db1a83d1a2606b6593d",
+      "bytes": 111506
+    },
+    "work/962-engineering/head-star-current126-alternative-local-stages-prep-001/case-inputs/apex-1481549/shell.json": {
+      "path": "work/962-engineering/head-star-current126-alternative-local-stages-prep-001/case-inputs/apex-1481549/shell.json",
+      "sha256": "a48c3094a2f5a69b5ae81153f4c488f91cbb784e69393a3d10e437a8cca9fd60",
+      "bytes": 54183
+    },
+    "work/962-engineering/head-star-current126-alternative-local-stages-prep-001/case-inputs/apex-1481549/observation.json": {
+      "path": "work/962-engineering/head-star-current126-alternative-local-stages-prep-001/case-inputs/apex-1481549/observation.json",
+      "sha256": "3bd0356b884d7d505e8059de575c16bf876d1ce002502113770140c03f1b7f0b",
+      "bytes": 124441
+    },
+    "work/962-engineering/head-star-current126-alternative-local-stages-prep-001/case-inputs/apex-1481549/screen.json": {
+      "path": "work/962-engineering/head-star-current126-alternative-local-stages-prep-001/case-inputs/apex-1481549/screen.json",
+      "sha256": "e9d8f91b74c26125ae4986670a6e13d55003a6e67845d2c344514012d9e8aaaf",
+      "bytes": 232321
+    },
+    "work/962-engineering/head-star-current126-alternative-apex-1488093-netgen-001/fixture-report.json": {
+      "path": "work/962-engineering/head-star-current126-alternative-apex-1488093-netgen-001/fixture-report.json",
+      "sha256": "36507d5a39f0ea9db0d93cf44645ac500fd2422fb46ef7457b13a3a34935aaf7",
+      "bytes": 21771
+    },
+    "work/962-engineering/head-star-current126-alternative-apex-1488093-netgen-001/arrays.json": {
+      "path": "work/962-engineering/head-star-current126-alternative-apex-1488093-netgen-001/arrays.json",
+      "sha256": "6f6af6ed889a30b7c26c26efdb6d618844894bff2478d53799ddc846c98b626d",
+      "bytes": 37123
+    },
+    "work/962-engineering/head-star-current126-alternative-apex-1488093-netgen-001/execution-receipt.json": {
+      "path": "work/962-engineering/head-star-current126-alternative-apex-1488093-netgen-001/execution-receipt.json",
+      "sha256": "37435285bb723d7ec4e3c286b05893d8f7998bdde53beaaa943ad9cd650c5c5f",
+      "bytes": 1264
+    },
+    "work/962-engineering/head-star-current126-alternative-apex-1488093-netgen-001/frozen-contract.json": {
+      "path": "work/962-engineering/head-star-current126-alternative-apex-1488093-netgen-001/frozen-contract.json",
+      "sha256": "5313ce8abee6644e73c257cd9b065db639d1dfe30db1eb7ae098476411c77b17",
+      "bytes": 35782
+    },
+    "work/962-engineering/current126-alternative-Netgen-root-execution-001/apex-1488093/closed-result.json": {
+      "path": "work/962-engineering/current126-alternative-Netgen-root-execution-001/apex-1488093/closed-result.json",
+      "sha256": "3452c4b9c2e62556f80f2e0b4495ea3d4732907c5014c0e51b3e06e948227c49",
+      "bytes": 111506
+    },
+    "work/962-engineering/head-star-current126-alternative-local-stages-prep-001/case-inputs/apex-1488093/shell.json": {
+      "path": "work/962-engineering/head-star-current126-alternative-local-stages-prep-001/case-inputs/apex-1488093/shell.json",
+      "sha256": "f7e374286cc6c85a411b125c174bf02d6db9889b0d23ce6b7f62d2fe0ffd219d",
+      "bytes": 25108
+    },
+    "work/962-engineering/head-star-current126-alternative-local-stages-prep-001/case-inputs/apex-1488093/observation.json": {
+      "path": "work/962-engineering/head-star-current126-alternative-local-stages-prep-001/case-inputs/apex-1488093/observation.json",
+      "sha256": "9d3c3d689cab4e447eb3f9c3d295640267795c54cea946341b853a8fe3601c1c",
+      "bytes": 55940
+    },
+    "work/962-engineering/head-star-current126-alternative-local-stages-prep-001/case-inputs/apex-1488093/screen.json": {
+      "path": "work/962-engineering/head-star-current126-alternative-local-stages-prep-001/case-inputs/apex-1488093/screen.json",
+      "sha256": "b59f5a213a9489e073957cac7ad684a5598b12415109367efe64388bee086119",
+      "bytes": 100775
+    },
+    "work/962-engineering/head-star-current126-alternative-apex-1508641-netgen-001/fixture-report.json": {
+      "path": "work/962-engineering/head-star-current126-alternative-apex-1508641-netgen-001/fixture-report.json",
+      "sha256": "e72bac94ab5e7420c6f288a65c68bf0bdec91abd8bfb733b8c6099bea23f6c4c",
+      "bytes": 22310
+    },
+    "work/962-engineering/head-star-current126-alternative-apex-1508641-netgen-001/arrays.json": {
+      "path": "work/962-engineering/head-star-current126-alternative-apex-1508641-netgen-001/arrays.json",
+      "sha256": "f852ebc4fd5bb22d4d5e998a508829b6400b2a9c677a6dc80bd3db598c13d291",
+      "bytes": 48649
+    },
+    "work/962-engineering/head-star-current126-alternative-apex-1508641-netgen-001/execution-receipt.json": {
+      "path": "work/962-engineering/head-star-current126-alternative-apex-1508641-netgen-001/execution-receipt.json",
+      "sha256": "69547f21a1dadf21571e182f9e2a6f29502c41eb75516ca8b0054f4c961eb53e",
+      "bytes": 1260
+    },
+    "work/962-engineering/head-star-current126-alternative-apex-1508641-netgen-001/frozen-contract.json": {
+      "path": "work/962-engineering/head-star-current126-alternative-apex-1508641-netgen-001/frozen-contract.json",
+      "sha256": "57bfa8754bc9939800073098abdaeadbb13dc7c0e498eaed1a5a2e39693bd6c0",
+      "bytes": 35800
+    },
+    "work/962-engineering/current126-alternative-Netgen-root-execution-001/apex-1508641/closed-result.json": {
+      "path": "work/962-engineering/current126-alternative-Netgen-root-execution-001/apex-1508641/closed-result.json",
+      "sha256": "95bd2b125dd4476b8eea33f53f58afd9617e51129b10469fcbf1e29c4ed15849",
+      "bytes": 111506
+    },
+    "work/962-engineering/head-star-current126-alternative-local-stages-prep-001/case-inputs/apex-1508641/shell.json": {
+      "path": "work/962-engineering/head-star-current126-alternative-local-stages-prep-001/case-inputs/apex-1508641/shell.json",
+      "sha256": "244a00b0e2371539a9690f0486da4a054366a62b9dbc057427cf66d46e1f7e00",
+      "bytes": 23867
+    },
+    "work/962-engineering/head-star-current126-alternative-local-stages-prep-001/case-inputs/apex-1508641/observation.json": {
+      "path": "work/962-engineering/head-star-current126-alternative-local-stages-prep-001/case-inputs/apex-1508641/observation.json",
+      "sha256": "8ed107d91d00a7dfa08572f915baf4a206069bc1a656a299cec70ff6c4b08669",
+      "bytes": 51998
+    },
+    "work/962-engineering/head-star-current126-alternative-local-stages-prep-001/case-inputs/apex-1508641/screen.json": {
+      "path": "work/962-engineering/head-star-current126-alternative-local-stages-prep-001/case-inputs/apex-1508641/screen.json",
+      "sha256": "158ef64be95562e9ab0e0b5a83c684189aafc1f0a774d224fdad17045ec9ba7d",
+      "bytes": 92444
+    },
+    "work/962-engineering/head-star-current126-alternative-apex-1515013-netgen-001/fixture-report.json": {
+      "path": "work/962-engineering/head-star-current126-alternative-apex-1515013-netgen-001/fixture-report.json",
+      "sha256": "cb8d71a635670f6e696199c2c83e9ed8f591dbfff17bba01e12c47db1a77126e",
+      "bytes": 25355
+    },
+    "work/962-engineering/head-star-current126-alternative-apex-1515013-netgen-001/arrays.json": {
+      "path": "work/962-engineering/head-star-current126-alternative-apex-1515013-netgen-001/arrays.json",
+      "sha256": "221c01d12c14e8853b7e72ce23eded2d1467c4fc69d01e2163cec5c56654980e",
+      "bytes": 55123
+    },
+    "work/962-engineering/head-star-current126-alternative-apex-1515013-netgen-001/execution-receipt.json": {
+      "path": "work/962-engineering/head-star-current126-alternative-apex-1515013-netgen-001/execution-receipt.json",
+      "sha256": "e978013fe003f5ace3a570d533bddc91b3e5cda59ac4e85db00c8e291a98d18e",
+      "bytes": 1263
+    },
+    "work/962-engineering/head-star-current126-alternative-apex-1515013-netgen-001/frozen-contract.json": {
+      "path": "work/962-engineering/head-star-current126-alternative-apex-1515013-netgen-001/frozen-contract.json",
+      "sha256": "d7e9410336640e6d4b1959fa1f0720d4d5ce140a39fe215864e4215d3b985285",
+      "bytes": 35803
+    },
+    "work/962-engineering/current126-alternative-Netgen-root-execution-001/apex-1515013/closed-result.json": {
+      "path": "work/962-engineering/current126-alternative-Netgen-root-execution-001/apex-1515013/closed-result.json",
+      "sha256": "94b8549db71d3587a4b0b15884ec86ef25823918a8bbea4fa7b23e5556c42fcb",
+      "bytes": 111506
+    },
+    "work/962-engineering/head-star-current126-alternative-local-stages-prep-001/case-inputs/apex-1515013/shell.json": {
+      "path": "work/962-engineering/head-star-current126-alternative-local-stages-prep-001/case-inputs/apex-1515013/shell.json",
+      "sha256": "0047cad72700c6f2ef59d65c1b68158b34330eceeb79d83ae5d32bc282fa099e",
+      "bytes": 36864
+    },
+    "work/962-engineering/head-star-current126-alternative-local-stages-prep-001/case-inputs/apex-1515013/observation.json": {
+      "path": "work/962-engineering/head-star-current126-alternative-local-stages-prep-001/case-inputs/apex-1515013/observation.json",
+      "sha256": "007d9fc73d56ffbeb7c04daccd6c4ba75c3f742f4b1ff18a54d7bd7b7a6f58f3",
+      "bytes": 83977
+    },
+    "work/962-engineering/head-star-current126-alternative-local-stages-prep-001/case-inputs/apex-1515013/screen.json": {
+      "path": "work/962-engineering/head-star-current126-alternative-local-stages-prep-001/case-inputs/apex-1515013/screen.json",
+      "sha256": "cdef77cb49d71a54924118e6698c907defd98b7dea90371f174de18fd61d7bdc",
+      "bytes": 155087
+    },
+    "work/962-engineering/head-star-current126-alternative-apex-1538046-netgen-001/fixture-report.json": {
+      "path": "work/962-engineering/head-star-current126-alternative-apex-1538046-netgen-001/fixture-report.json",
+      "sha256": "09cab6daa41c3d307e792ae529c5eb14ac822fdad0691b54c9fa8842309ec5d5",
+      "bytes": 19806
+    },
+    "work/962-engineering/head-star-current126-alternative-apex-1538046-netgen-001/arrays.json": {
+      "path": "work/962-engineering/head-star-current126-alternative-apex-1538046-netgen-001/arrays.json",
+      "sha256": "368862904a107b358a7c1b6abf1a06610373474c98de1918a5a552f5e309ce1f",
+      "bytes": 26905
+    },
+    "work/962-engineering/head-star-current126-alternative-apex-1538046-netgen-001/execution-receipt.json": {
+      "path": "work/962-engineering/head-star-current126-alternative-apex-1538046-netgen-001/execution-receipt.json",
+      "sha256": "5c687a629d5a6329d28413ce46bad0ad9080b1f4e4e55ed47222ce8c9eb33b59",
+      "bytes": 1263
+    },
+    "work/962-engineering/head-star-current126-alternative-apex-1538046-netgen-001/frozen-contract.json": {
+      "path": "work/962-engineering/head-star-current126-alternative-apex-1538046-netgen-001/frozen-contract.json",
+      "sha256": "f6b75264fc2f1cd64e9517bd7ef5c0d5d2402b4c98bac8bd840477be473cc882",
+      "bytes": 35783
+    },
+    "work/962-engineering/current126-alternative-Netgen-root-execution-001/apex-1538046/closed-result.json": {
+      "path": "work/962-engineering/current126-alternative-Netgen-root-execution-001/apex-1538046/closed-result.json",
+      "sha256": "f712b37e0e8f8566a3e79e55d2375dc6b7ab9b91c2b9ffc8cb49927f4a15f4bd",
+      "bytes": 111505
+    },
+    "work/962-engineering/head-star-current126-alternative-local-stages-prep-001/case-inputs/apex-1538046/shell.json": {
+      "path": "work/962-engineering/head-star-current126-alternative-local-stages-prep-001/case-inputs/apex-1538046/shell.json",
+      "sha256": "a2445ce59d8ef870cb7ed01b26ceff3204acbfdce430af1391ac87e522d37708",
+      "bytes": 18379
+    },
+    "work/962-engineering/head-star-current126-alternative-local-stages-prep-001/case-inputs/apex-1538046/observation.json": {
+      "path": "work/962-engineering/head-star-current126-alternative-local-stages-prep-001/case-inputs/apex-1538046/observation.json",
+      "sha256": "8e06e1b7fc1c4c2e0ccdbcf00f01b6048662a8bbac7d1d6cec0282a3e24de5e4",
+      "bytes": 40245
+    },
+    "work/962-engineering/head-star-current126-alternative-local-stages-prep-001/case-inputs/apex-1538046/screen.json": {
+      "path": "work/962-engineering/head-star-current126-alternative-local-stages-prep-001/case-inputs/apex-1538046/screen.json",
+      "sha256": "a12868a622697751d03da67eaa1f003de435c0803c346f09fcbcafc3384a856d",
+      "bytes": 70438
+    },
+    "work/962-engineering/head-star-current126-alternative-apex-1541053-netgen-001/fixture-report.json": {
+      "path": "work/962-engineering/head-star-current126-alternative-apex-1541053-netgen-001/fixture-report.json",
+      "sha256": "dffc1f76994a4c8f4763a9b760325d31695ace4a744258d0aac3548e5854955d",
+      "bytes": 23278
+    },
+    "work/962-engineering/head-star-current126-alternative-apex-1541053-netgen-001/arrays.json": {
+      "path": "work/962-engineering/head-star-current126-alternative-apex-1541053-netgen-001/arrays.json",
+      "sha256": "116fb3046ee444ee86797edd5159cd3be3dbad02c3ba390bf868268ce3b8b233",
+      "bytes": 53003
+    },
+    "work/962-engineering/head-star-current126-alternative-apex-1541053-netgen-001/execution-receipt.json": {
+      "path": "work/962-engineering/head-star-current126-alternative-apex-1541053-netgen-001/execution-receipt.json",
+      "sha256": "3e6026dd6ff5ca4d36aa9cd5d454f6fb48d690b5ed43df5c35994000d76a7320",
+      "bytes": 1261
+    },
+    "work/962-engineering/head-star-current126-alternative-apex-1541053-netgen-001/frozen-contract.json": {
+      "path": "work/962-engineering/head-star-current126-alternative-apex-1541053-netgen-001/frozen-contract.json",
+      "sha256": "f77367f3241b813b3273d999d67c53b3bc6a093c5014b6ab36baf77ff6f5cd71",
+      "bytes": 35783
+    },
+    "work/962-engineering/current126-alternative-Netgen-root-execution-001/apex-1541053/closed-result.json": {
+      "path": "work/962-engineering/current126-alternative-Netgen-root-execution-001/apex-1541053/closed-result.json",
+      "sha256": "ab40c5afc7a68bc0373fd8f94c9c811ea14c98a17f262f74de0b08fa5383625e",
+      "bytes": 111506
+    },
+    "work/962-engineering/head-star-current126-alternative-local-stages-prep-001/case-inputs/apex-1541053/shell.json": {
+      "path": "work/962-engineering/head-star-current126-alternative-local-stages-prep-001/case-inputs/apex-1541053/shell.json",
+      "sha256": "574a8c1947de4d5f3a0766d578224d1c3c0e80cf1fa0b7ccde22ceb74f9156ce",
+      "bytes": 27927
+    },
+    "work/962-engineering/head-star-current126-alternative-local-stages-prep-001/case-inputs/apex-1541053/observation.json": {
+      "path": "work/962-engineering/head-star-current126-alternative-local-stages-prep-001/case-inputs/apex-1541053/observation.json",
+      "sha256": "98cab308100aaf08da991307fcbf9d0e388c20e313f2c73ed24e81e90955de2b",
+      "bytes": 61793
+    },
+    "work/962-engineering/head-star-current126-alternative-local-stages-prep-001/case-inputs/apex-1541053/screen.json": {
+      "path": "work/962-engineering/head-star-current126-alternative-local-stages-prep-001/case-inputs/apex-1541053/screen.json",
+      "sha256": "0de8eec52b7804ce82ff7e354fc2d60e42b0fb8bcdf7f9caae54cff3cafc932d",
+      "bytes": 112038
+    },
+    "work/962-engineering/head-star-current126-alternative-apex-1558088-netgen-001/fixture-report.json": {
+      "path": "work/962-engineering/head-star-current126-alternative-apex-1558088-netgen-001/fixture-report.json",
+      "sha256": "8328c3b25090896696ed1da63ab73fa00dbea109875b4459c2fdce8d73e621a4",
+      "bytes": 20214
+    },
+    "work/962-engineering/head-star-current126-alternative-apex-1558088-netgen-001/arrays.json": {
+      "path": "work/962-engineering/head-star-current126-alternative-apex-1558088-netgen-001/arrays.json",
+      "sha256": "ce1cfa2ee2d4b410a8e517a00d479d05272984614141ac1415635aece53e73d2",
+      "bytes": 30671
+    },
+    "work/962-engineering/head-star-current126-alternative-apex-1558088-netgen-001/execution-receipt.json": {
+      "path": "work/962-engineering/head-star-current126-alternative-apex-1558088-netgen-001/execution-receipt.json",
+      "sha256": "e6a5d9ef6634cc48248888ccf00aadd9c258b644b9dc9f65d7df37e3c183aea7",
+      "bytes": 1262
+    },
+    "work/962-engineering/head-star-current126-alternative-apex-1558088-netgen-001/frozen-contract.json": {
+      "path": "work/962-engineering/head-star-current126-alternative-apex-1558088-netgen-001/frozen-contract.json",
+      "sha256": "92d63e225b033cec31a459ea1fe7e1d92a85de76b534220ff841573660749810",
+      "bytes": 35785
+    },
+    "work/962-engineering/current126-alternative-Netgen-root-execution-001/apex-1558088/closed-result.json": {
+      "path": "work/962-engineering/current126-alternative-Netgen-root-execution-001/apex-1558088/closed-result.json",
+      "sha256": "6edbca5124934b411acb91084f2f1ccec0c4bf6a9268b450dc941d82a4f2db2c",
+      "bytes": 111506
+    },
+    "work/962-engineering/head-star-current126-alternative-local-stages-prep-001/case-inputs/apex-1558088/shell.json": {
+      "path": "work/962-engineering/head-star-current126-alternative-local-stages-prep-001/case-inputs/apex-1558088/shell.json",
+      "sha256": "2ec45f0150dd6bddb959f32228beea6d95faa04f4fa28cc5a6da808f05ad7319",
+      "bytes": 19800
+    },
+    "work/962-engineering/head-star-current126-alternative-local-stages-prep-001/case-inputs/apex-1558088/observation.json": {
+      "path": "work/962-engineering/head-star-current126-alternative-local-stages-prep-001/case-inputs/apex-1558088/observation.json",
+      "sha256": "d561d9c4ac9dfa28fa9e90851b2e9fe87c1e05421a5abfd9f01b02d964f71bcc",
+      "bytes": 42980
+    },
+    "work/962-engineering/head-star-current126-alternative-local-stages-prep-001/case-inputs/apex-1558088/screen.json": {
+      "path": "work/962-engineering/head-star-current126-alternative-local-stages-prep-001/case-inputs/apex-1558088/screen.json",
+      "sha256": "486c43b2ccd27621b6f650b4a7c9db84cba22768115a44227118f88cb9300369",
+      "bytes": 75751
+    },
+    "work/962-engineering/head-star-current126-alternative-apex-1570037-netgen-001/fixture-report.json": {
+      "path": "work/962-engineering/head-star-current126-alternative-apex-1570037-netgen-001/fixture-report.json",
+      "sha256": "fe7ae43f709cfbe0a45c8c8fade6529bdf5e28ebb94e61e5c3da805168141c61",
+      "bytes": 23923
+    },
+    "work/962-engineering/head-star-current126-alternative-apex-1570037-netgen-001/arrays.json": {
+      "path": "work/962-engineering/head-star-current126-alternative-apex-1570037-netgen-001/arrays.json",
+      "sha256": "b780cbbc91ccc9598cdb6854e5d300b1a36dab5398ce4ea226d6b5f307efbb35",
+      "bytes": 52363
+    },
+    "work/962-engineering/head-star-current126-alternative-apex-1570037-netgen-001/execution-receipt.json": {
+      "path": "work/962-engineering/head-star-current126-alternative-apex-1570037-netgen-001/execution-receipt.json",
+      "sha256": "bce6cd7728e2dd49dccadf4aafa618c823f4d48e12a8f72af742c1bef5cc9f3d",
+      "bytes": 1259
+    },
+    "work/962-engineering/head-star-current126-alternative-apex-1570037-netgen-001/frozen-contract.json": {
+      "path": "work/962-engineering/head-star-current126-alternative-apex-1570037-netgen-001/frozen-contract.json",
+      "sha256": "956022974846198cf54145dbfadfe24137ce95fbfb002f2fa0bb24bbddc92324",
+      "bytes": 35782
+    },
+    "work/962-engineering/current126-alternative-Netgen-root-execution-001/apex-1570037/closed-result.json": {
+      "path": "work/962-engineering/current126-alternative-Netgen-root-execution-001/apex-1570037/closed-result.json",
+      "sha256": "97bb7e966643790fdda7b13c1c12130d15ae9ab34d01770cc04b11504c813d9f",
+      "bytes": 111506
+    },
+    "work/962-engineering/head-star-current126-alternative-local-stages-prep-001/case-inputs/apex-1570037/shell.json": {
+      "path": "work/962-engineering/head-star-current126-alternative-local-stages-prep-001/case-inputs/apex-1570037/shell.json",
+      "sha256": "f719edf687577e21ad84ddff54afcf6da2dec4c03a6e54f765fd8e03d6985696",
+      "bytes": 31867
+    },
+    "work/962-engineering/head-star-current126-alternative-local-stages-prep-001/case-inputs/apex-1570037/observation.json": {
+      "path": "work/962-engineering/head-star-current126-alternative-local-stages-prep-001/case-inputs/apex-1570037/observation.json",
+      "sha256": "bd6f2556c3a22cbecca776dee8b7fc6f74320e76ebc3589370836e07d731b012",
+      "bytes": 70792
+    },
+    "work/962-engineering/head-star-current126-alternative-local-stages-prep-001/case-inputs/apex-1570037/screen.json": {
+      "path": "work/962-engineering/head-star-current126-alternative-local-stages-prep-001/case-inputs/apex-1570037/screen.json",
+      "sha256": "e6f3303e6ef7c08ddb2bb6611c0171dd2e4f671c5d64e14f9847b9de031e13ba",
+      "bytes": 129508
+    },
+    "work/962-engineering/head-star-current126-alternative-apex-1611558-netgen-001/fixture-report.json": {
+      "path": "work/962-engineering/head-star-current126-alternative-apex-1611558-netgen-001/fixture-report.json",
+      "sha256": "6ba457baed3c49a9e85f54a04927bf400df0f67dc6ef5dc806ecae9a8b6f1dfa",
+      "bytes": 18867
+    },
+    "work/962-engineering/head-star-current126-alternative-apex-1611558-netgen-001/arrays.json": {
+      "path": "work/962-engineering/head-star-current126-alternative-apex-1611558-netgen-001/arrays.json",
+      "sha256": "449138d2b052e773e762ab6d570573a490183090609ce37feda4d15b7dcedc40",
+      "bytes": 23077
+    },
+    "work/962-engineering/head-star-current126-alternative-apex-1611558-netgen-001/execution-receipt.json": {
+      "path": "work/962-engineering/head-star-current126-alternative-apex-1611558-netgen-001/execution-receipt.json",
+      "sha256": "f97fd573549eeabcd2b8fb9000e2473473f1576c7e7bbeeccbece77a61283df3",
+      "bytes": 1262
+    },
+    "work/962-engineering/head-star-current126-alternative-apex-1611558-netgen-001/frozen-contract.json": {
+      "path": "work/962-engineering/head-star-current126-alternative-apex-1611558-netgen-001/frozen-contract.json",
+      "sha256": "3c9f4a2ad574f2598c9ed8df8b265d2bec497cd4038c68887f237114840cf2a9",
+      "bytes": 35784
+    },
+    "work/962-engineering/current126-alternative-Netgen-root-execution-001/apex-1611558/closed-result.json": {
+      "path": "work/962-engineering/current126-alternative-Netgen-root-execution-001/apex-1611558/closed-result.json",
+      "sha256": "8c28e4eaa5d0235d8197027fbf3f74d49661b4b9f73d24b9501e6d54f1665e88",
+      "bytes": 111504
+    },
+    "work/962-engineering/head-star-current126-alternative-local-stages-prep-001/case-inputs/apex-1611558/shell.json": {
+      "path": "work/962-engineering/head-star-current126-alternative-local-stages-prep-001/case-inputs/apex-1611558/shell.json",
+      "sha256": "1a0e6e4c224c9454250257d0ca383900ae54e863af2af49a5a776c96660e9038",
+      "bytes": 15816
+    },
+    "work/962-engineering/head-star-current126-alternative-local-stages-prep-001/case-inputs/apex-1611558/observation.json": {
+      "path": "work/962-engineering/head-star-current126-alternative-local-stages-prep-001/case-inputs/apex-1611558/observation.json",
+      "sha256": "ea8c393a0935bfe517791f41de8fec1a94201e2f5e54e720fdb91aeabd7df699",
+      "bytes": 33714
+    },
+    "work/962-engineering/head-star-current126-alternative-local-stages-prep-001/case-inputs/apex-1611558/screen.json": {
+      "path": "work/962-engineering/head-star-current126-alternative-local-stages-prep-001/case-inputs/apex-1611558/screen.json",
+      "sha256": "570727d97283db13fcca234d427e4479ee4b04e08e220f718e4ed3c9ec228319",
+      "bytes": 58615
+    },
+    "work/962-engineering/head-star-current126-alternative-apex-1611564-netgen-001/fixture-report.json": {
+      "path": "work/962-engineering/head-star-current126-alternative-apex-1611564-netgen-001/fixture-report.json",
+      "sha256": "7f6d0c321984e536d8d56970712736d55eb54fbff47e37205a84d7fa36e33c49",
+      "bytes": 18928
+    },
+    "work/962-engineering/head-star-current126-alternative-apex-1611564-netgen-001/arrays.json": {
+      "path": "work/962-engineering/head-star-current126-alternative-apex-1611564-netgen-001/arrays.json",
+      "sha256": "91026ac7027e5da3ff10fb4c0d677c9e5de0b447d58fb80c3a105fd7b202030c",
+      "bytes": 22609
+    },
+    "work/962-engineering/head-star-current126-alternative-apex-1611564-netgen-001/execution-receipt.json": {
+      "path": "work/962-engineering/head-star-current126-alternative-apex-1611564-netgen-001/execution-receipt.json",
+      "sha256": "0524a24f368a13062db08a5f24cee381e174e26960e7de1d53207d3b9dd1ba5c",
+      "bytes": 1264
+    },
+    "work/962-engineering/head-star-current126-alternative-apex-1611564-netgen-001/frozen-contract.json": {
+      "path": "work/962-engineering/head-star-current126-alternative-apex-1611564-netgen-001/frozen-contract.json",
+      "sha256": "61f271bffeb0851593a322986be0f1f853c328a811de96198b74ed2c5575bc9c",
+      "bytes": 35801
+    },
+    "work/962-engineering/current126-alternative-Netgen-root-execution-001/apex-1611564/closed-result.json": {
+      "path": "work/962-engineering/current126-alternative-Netgen-root-execution-001/apex-1611564/closed-result.json",
+      "sha256": "c48d24ed210d12e2adcc92c2479b471dc4786dd3f2b46f3af0c12cc9f3dcfcf5",
+      "bytes": 111504
+    },
+    "work/962-engineering/head-star-current126-alternative-local-stages-prep-001/case-inputs/apex-1611564/shell.json": {
+      "path": "work/962-engineering/head-star-current126-alternative-local-stages-prep-001/case-inputs/apex-1611564/shell.json",
+      "sha256": "76707f26feeba67e3887997f6d984778b14288a2eef4329e25b899eca002c6aa",
+      "bytes": 15804
+    },
+    "work/962-engineering/head-star-current126-alternative-local-stages-prep-001/case-inputs/apex-1611564/observation.json": {
+      "path": "work/962-engineering/head-star-current126-alternative-local-stages-prep-001/case-inputs/apex-1611564/observation.json",
+      "sha256": "5682cc3721f117aff9a2701582164e3cfb3c98e3b695edcbd60ba6d64ba397fb",
+      "bytes": 33560
+    },
+    "work/962-engineering/head-star-current126-alternative-local-stages-prep-001/case-inputs/apex-1611564/screen.json": {
+      "path": "work/962-engineering/head-star-current126-alternative-local-stages-prep-001/case-inputs/apex-1611564/screen.json",
+      "sha256": "f43f4ca08f212ef0543d9e0d0ab175f221e56e6c1f977552a761ca5115cc4a6a",
+      "bytes": 58065
+    },
+    "work/962-engineering/head-star-current126-alternative-apex-1613030-netgen-001/fixture-report.json": {
+      "path": "work/962-engineering/head-star-current126-alternative-apex-1613030-netgen-001/fixture-report.json",
+      "sha256": "f9fba0888d8eb1e0df027d9d571c1bd18ca18a357ad28577a329b15e97fc9df3",
+      "bytes": 17966
+    },
+    "work/962-engineering/head-star-current126-alternative-apex-1613030-netgen-001/arrays.json": {
+      "path": "work/962-engineering/head-star-current126-alternative-apex-1613030-netgen-001/arrays.json",
+      "sha256": "c57389f71e937095c28408895b8fde398e7b9f3c61b1bd6ce55e918d6dc7edf0",
+      "bytes": 17391
+    },
+    "work/962-engineering/head-star-current126-alternative-apex-1613030-netgen-001/execution-receipt.json": {
+      "path": "work/962-engineering/head-star-current126-alternative-apex-1613030-netgen-001/execution-receipt.json",
+      "sha256": "f36dbcc1c55611e1ac6cf66e829d5ad59090ffda8930079f684d7e2cd5e5a62f",
+      "bytes": 1348
+    },
+    "work/962-engineering/head-star-current126-alternative-apex-1613030-netgen-001/frozen-contract.json": {
+      "path": "work/962-engineering/head-star-current126-alternative-apex-1613030-netgen-001/frozen-contract.json",
+      "sha256": "20ae7b0ba3aba16efcd624a013c8f2d203937e3f522c57c811985f20f6772ae1",
+      "bytes": 35804
+    },
+    "work/962-engineering/current126-alternative-Netgen-root-execution-001/apex-1613030/closed-result.json": {
+      "path": "work/962-engineering/current126-alternative-Netgen-root-execution-001/apex-1613030/closed-result.json",
+      "sha256": "267753b9d277157d836ed3fb5d09553112579ada13059aede79d76ee7b88db93",
+      "bytes": 111504
+    },
+    "work/962-engineering/head-star-current126-alternative-local-stages-prep-001/case-inputs/apex-1613030/shell.json": {
+      "path": "work/962-engineering/head-star-current126-alternative-local-stages-prep-001/case-inputs/apex-1613030/shell.json",
+      "sha256": "e16db5225dc4dce18643a289893238e2dddbbb3f7183681dcea15f92fc5a2cc0",
+      "bytes": 13082
+    },
+    "work/962-engineering/head-star-current126-alternative-local-stages-prep-001/case-inputs/apex-1613030/observation.json": {
+      "path": "work/962-engineering/head-star-current126-alternative-local-stages-prep-001/case-inputs/apex-1613030/observation.json",
+      "sha256": "7aec06693db4583c17a0935c73ab83570d5c4c09c6514b34fbb149457876a9fa",
+      "bytes": 27429
+    },
+    "work/962-engineering/head-star-current126-alternative-local-stages-prep-001/case-inputs/apex-1613030/screen.json": {
+      "path": "work/962-engineering/head-star-current126-alternative-local-stages-prep-001/case-inputs/apex-1613030/screen.json",
+      "sha256": "bc302ce8dfe2fc558374869c8f71ae4721fec61039f1318991ae7c46bda01690",
+      "bytes": 47146
+    },
+    "work/962-engineering/head-star-current126-alternative-apex-1613794-netgen-001/fixture-report.json": {
+      "path": "work/962-engineering/head-star-current126-alternative-apex-1613794-netgen-001/fixture-report.json",
+      "sha256": "dbdea591e6b750072d604a0e968c9e9d51b4de02bd5d3951d6b514a91c5704bf",
+      "bytes": 22319
+    },
+    "work/962-engineering/head-star-current126-alternative-apex-1613794-netgen-001/arrays.json": {
+      "path": "work/962-engineering/head-star-current126-alternative-apex-1613794-netgen-001/arrays.json",
+      "sha256": "322ee3eb4433f172b740e2f88e9212d845e48f7517dcb68d0faf2c6f168bced4",
+      "bytes": 45581
+    },
+    "work/962-engineering/head-star-current126-alternative-apex-1613794-netgen-001/execution-receipt.json": {
+      "path": "work/962-engineering/head-star-current126-alternative-apex-1613794-netgen-001/execution-receipt.json",
+      "sha256": "b53ea8047b3724dd268c478aac663d97c4b83fbb8f1d99808a3a358f01c083b5",
+      "bytes": 1262
+    },
+    "work/962-engineering/head-star-current126-alternative-apex-1613794-netgen-001/frozen-contract.json": {
+      "path": "work/962-engineering/head-star-current126-alternative-apex-1613794-netgen-001/frozen-contract.json",
+      "sha256": "5798a58d1728a1428d5fb09922fa9f907436af1e983d571a0166e1fec034c038",
+      "bytes": 35785
+    },
+    "work/962-engineering/current126-alternative-Netgen-root-execution-001/apex-1613794/closed-result.json": {
+      "path": "work/962-engineering/current126-alternative-Netgen-root-execution-001/apex-1613794/closed-result.json",
+      "sha256": "c10ffd753ba841c0b411b36c53251c6be798d45f2b3459a796e151d7a74cff66",
+      "bytes": 111506
+    },
+    "work/962-engineering/head-star-current126-alternative-local-stages-prep-001/case-inputs/apex-1613794/shell.json": {
+      "path": "work/962-engineering/head-star-current126-alternative-local-stages-prep-001/case-inputs/apex-1613794/shell.json",
+      "sha256": "b56df75b4089a9eb94f470493ea477e22ec02793df9d73231156f6da20834c98",
+      "bytes": 24966
+    },
+    "work/962-engineering/head-star-current126-alternative-local-stages-prep-001/case-inputs/apex-1613794/observation.json": {
+      "path": "work/962-engineering/head-star-current126-alternative-local-stages-prep-001/case-inputs/apex-1613794/observation.json",
+      "sha256": "b6646b935e4c5b0d9d281cdcf4ed488fbc233b8228e81b6075c10fbaec92a49d",
+      "bytes": 56372
+    },
+    "work/962-engineering/head-star-current126-alternative-local-stages-prep-001/case-inputs/apex-1613794/screen.json": {
+      "path": "work/962-engineering/head-star-current126-alternative-local-stages-prep-001/case-inputs/apex-1613794/screen.json",
+      "sha256": "81fc573e35f878264f78851a92d5738ea963682ce15b11b8bf56204163e0d6d3",
+      "bytes": 102592
+    },
+    "work/962-engineering/head-star-current126-alternative-apex-1613795-netgen-001/fixture-report.json": {
+      "path": "work/962-engineering/head-star-current126-alternative-apex-1613795-netgen-001/fixture-report.json",
+      "sha256": "63554e773681ba29e36f051d159512f0aefe94c9906edf0f2b69f11e31a61210",
+      "bytes": 22023
+    },
+    "work/962-engineering/head-star-current126-alternative-apex-1613795-netgen-001/arrays.json": {
+      "path": "work/962-engineering/head-star-current126-alternative-apex-1613795-netgen-001/arrays.json",
+      "sha256": "63f5a8bf484ca29bdbf8ced77a92694b52a7a73a56f321a897296045006720e8",
+      "bytes": 40911
+    },
+    "work/962-engineering/head-star-current126-alternative-apex-1613795-netgen-001/execution-receipt.json": {
+      "path": "work/962-engineering/head-star-current126-alternative-apex-1613795-netgen-001/execution-receipt.json",
+      "sha256": "6d75b661571cb7dfbef957959ee28d4f1d0f9bd0ad3ba6ab270f8c034831f680",
+      "bytes": 1348
+    },
+    "work/962-engineering/head-star-current126-alternative-apex-1613795-netgen-001/frozen-contract.json": {
+      "path": "work/962-engineering/head-star-current126-alternative-apex-1613795-netgen-001/frozen-contract.json",
+      "sha256": "4cb540c22185924cf583901e8f224bfcd18856d7b8515c586d3b44f7fed7f670",
+      "bytes": 35802
+    },
+    "work/962-engineering/current126-alternative-Netgen-root-execution-001/apex-1613795/closed-result.json": {
+      "path": "work/962-engineering/current126-alternative-Netgen-root-execution-001/apex-1613795/closed-result.json",
+      "sha256": "f9d5d77c3ea120b5036c42c07c0a2d92f0f01aaed14ad39f09eef0143f11e7ee",
+      "bytes": 111506
+    },
+    "work/962-engineering/head-star-current126-alternative-local-stages-prep-001/case-inputs/apex-1613795/shell.json": {
+      "path": "work/962-engineering/head-star-current126-alternative-local-stages-prep-001/case-inputs/apex-1613795/shell.json",
+      "sha256": "a481f208fd95d89dea25ad15e63ce67e8b74c1d55d885f26748dd2cbfe7edc66",
+      "bytes": 24932
+    },
+    "work/962-engineering/head-star-current126-alternative-local-stages-prep-001/case-inputs/apex-1613795/observation.json": {
+      "path": "work/962-engineering/head-star-current126-alternative-local-stages-prep-001/case-inputs/apex-1613795/observation.json",
+      "sha256": "b2b36d690d39ea4e30f6f4dd993ae18a9b8f45721c45a51adbbd383e2c6f2a8a",
+      "bytes": 56110
+    },
+    "work/962-engineering/head-star-current126-alternative-local-stages-prep-001/case-inputs/apex-1613795/screen.json": {
+      "path": "work/962-engineering/head-star-current126-alternative-local-stages-prep-001/case-inputs/apex-1613795/screen.json",
+      "sha256": "4e25cbfb240a46ce3256adc00aa38efa28b42059d555ed2ec344d001777a4d16",
+      "bytes": 102445
+    },
+    "work/962-engineering/head-star-current204-case-domains-prep-002/selfcheck.py": {
+      "path": "work/962-engineering/head-star-current204-case-domains-prep-002/selfcheck.py",
+      "sha256": "647769027292c5e46b9e8f4a7b419ffcd07ceed260e33a445692cdb23f37b50f",
+      "bytes": 10022
+    },
+    "work/962-engineering/apex1613031-domain-equivalence-execution-prep-001/actual-contract.json": {
+      "path": "work/962-engineering/apex1613031-domain-equivalence-execution-prep-001/actual-contract.json",
+      "sha256": "9886958b431db631b2ad1d9591dabea299119210802d2abe64cf9e501f2ee61d",
+      "bytes": 13593
+    },
+    "work/962-engineering/head-star-current126-alternative-case-domains-prep-001/certify_domain.py": {
+      "path": "work/962-engineering/head-star-current126-alternative-case-domains-prep-001/certify_domain.py",
+      "sha256": "8aad95004cd2bfb440e1436c679d8a5476cf84247a6911b4daa319b10f1f4558",
+      "bytes": 38349
+    },
+    "work/962-engineering/head-star-current126-alternative-case-domains-prep-001/selfcheck.py": {
+      "path": "work/962-engineering/head-star-current126-alternative-case-domains-prep-001/selfcheck.py",
+      "sha256": "995ab48c92ce5e6ef39a110dda762e806b738922d4951f00313aca41c6486628",
+      "bytes": 15952
+    },
+    "work/962-engineering/head-star-current126-alternative-case-domains-prep-001/source.diff": {
+      "path": "work/962-engineering/head-star-current126-alternative-case-domains-prep-001/source.diff",
+      "sha256": "7c2e23520b52816f22a727df5cb92a19d108337def65501e72fdffda787a66a3",
+      "bytes": 38829
+    },
+    "work/962-engineering/head-star-current126-alternative-case-domains-prep-001/selfcheck.diff": {
+      "path": "work/962-engineering/head-star-current126-alternative-case-domains-prep-001/selfcheck.diff",
+      "sha256": "d7c7bb5b6179ee36565af07f82910815622eeacdd0b0abd68b7b43fc512e13d3",
+      "bytes": 21721
+    },
+    "work/962-engineering/head-star-current126-alternative-case-domains-prep-001/METHOD.md": {
+      "path": "work/962-engineering/head-star-current126-alternative-case-domains-prep-001/METHOD.md",
+      "sha256": "47dd0efebf803af156742c460fc73515cc3c9c490388655cc5a856e217cbcda3",
+      "bytes": 7098
+    },
+    "work/962-engineering/head-star-current126-alternative-case-domains-prep-001/source-reuse.json": {
+      "path": "work/962-engineering/head-star-current126-alternative-case-domains-prep-001/source-reuse.json",
+      "sha256": "72a9fb0df8369a4bc8ea0f31e7ff76a11ce721d9787cff85bfb8de2747692a37",
+      "bytes": 133776
+    },
+    "work/962-engineering/head-star-current126-alternative-case-domains-prep-001/held-contract.json": {
+      "path": "work/962-engineering/head-star-current126-alternative-case-domains-prep-001/held-contract.json",
+      "sha256": "a7a1589ad4ec0757823362c6e41344fef45f6d02321fd9dbebfb6d8758deb5b1",
+      "bytes": 137975
+    },
+    "work/962-engineering/current126-alternative-case-domains-source-peer-001/review.json": {
+      "path": "work/962-engineering/current126-alternative-case-domains-source-peer-001/review.json",
+      "sha256": "9792b5e4eb387ca18081db5befedcb625a120c568fabab17cfe766041f12f675",
+      "bytes": 5461
+    },
+    "work/962-engineering/current126-alternative-case-domains-source-peer-001/bindings.json": {
+      "path": "work/962-engineering/current126-alternative-case-domains-source-peer-001/bindings.json",
+      "sha256": "c0f3525b607dcb617cdc95066952e2abc4a29bd57c80bade3d015bb85bf21b86",
+      "bytes": 62609
+    },
+    "work/962-engineering/current126-alternative-case-domains-root-source-001/static-review.json": {
+      "path": "work/962-engineering/current126-alternative-case-domains-root-source-001/static-review.json",
+      "sha256": "1a0f6b40b6a350a3fa76fdd5673518e0e8e437e3085895aafab64fb5423f649a",
+      "bytes": 54745
+    },
+    "work/962-engineering/current126-alternative-case-domains-root-source-001/runtime-preflight.json": {
+      "path": "work/962-engineering/current126-alternative-case-domains-root-source-001/runtime-preflight.json",
+      "sha256": "1a554c970c48776b28f217715611a199c138b29857e1af4c16d3981d3ef75ab1",
+      "bytes": 641
+    },
+    "work/962-engineering/current126-alternative-case-domains-root-source-001/authorization.json": {
+      "path": "work/962-engineering/current126-alternative-case-domains-root-source-001/authorization.json",
+      "sha256": "4b2a94b5b2d9fd47c6bc73124a9ebda13dfdfc5c00baddbd3d0c195796c95777",
+      "bytes": 54463
+    },
+    "work/962-engineering/current126-alternative-case-domains-root-source-001/review.json": {
+      "path": "work/962-engineering/current126-alternative-case-domains-root-source-001/review.json",
+      "sha256": "193e1bd45de959ffc91897160e8c89e4af8e99059c45647c08260f666b986ebc",
+      "bytes": 108932
+    },
+    "work/962-engineering/current126-alternative-case-domains-root-source-001/stdout.log": {
+      "path": "work/962-engineering/current126-alternative-case-domains-root-source-001/stdout.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "work/962-engineering/current126-alternative-case-domains-root-source-001/stderr.log": {
+      "path": "work/962-engineering/current126-alternative-case-domains-root-source-001/stderr.log",
+      "sha256": "91d78accde73ad71d07ae2dff64ea2d1cbd08aa8f3eb625b8aa202783506ac20",
+      "bytes": 106
+    }
+  },
+  "cases": [
+    {
+      "apex": 1433071,
+      "actual": {
+        "path": "work/962-engineering/head-star-current126-alternative-case-domains-actuals-prep-001/apex-1433071.json",
+        "sha256": "981ec55eeec7584ee88cc0f7902d29e0c87156b026d8545fe3e59301983be4a9",
+        "bytes": 34010
+      },
+      "output_directory": "work/962-engineering/head-star-current126-alternative-apex-1433071-domain-001",
+      "source_query_input_count": 33,
+      "all_current_small_input_count": 162,
+      "exact_counts": {
+        "NV": 32,
+        "NF": 60,
+        "K": 60,
+        "N": 37,
+        "M": 84,
+        "I": 5,
+        "old_unordered_pairs": 1770,
+        "candidate_unordered_pairs": 3486,
+        "total_pairs": 5256,
+        "plane_triples": 294336
+      },
+      "candidate_interior_node_tags": [
+        43,
+        44,
+        45,
+        46,
+        47
+      ]
+    },
+    {
+      "apex": 1468585,
+      "actual": {
+        "path": "work/962-engineering/head-star-current126-alternative-case-domains-actuals-prep-001/apex-1468585.json",
+        "sha256": "6e72b4659adaace7dd31eca77e9918951a9ae9283b7a5b9af2762999a83ba3a8",
+        "bytes": 34035
+      },
+      "output_directory": "work/962-engineering/head-star-current126-alternative-apex-1468585-domain-001",
+      "source_query_input_count": 33,
+      "all_current_small_input_count": 162,
+      "exact_counts": {
+        "NV": 36,
+        "NF": 68,
+        "K": 68,
+        "N": 44,
+        "M": 113,
+        "I": 8,
+        "old_unordered_pairs": 2278,
+        "candidate_unordered_pairs": 6328,
+        "total_pairs": 8606,
+        "plane_triples": 481936
+      },
+      "candidate_interior_node_tags": [
+        47,
+        48,
+        49,
+        50,
+        51,
+        52,
+        53,
+        54
+      ]
+    },
+    {
+      "apex": 1481549,
+      "actual": {
+        "path": "work/962-engineering/head-star-current126-alternative-case-domains-actuals-prep-001/apex-1481549.json",
+        "sha256": "70332f06b82e2fc44d3686a5ba28886b150a8993e4a439e0036ba7748183da5e",
+        "bytes": 34019
+      },
+      "output_directory": "work/962-engineering/head-star-current126-alternative-apex-1481549-domain-001",
+      "source_query_input_count": 33,
+      "all_current_small_input_count": 162,
+      "exact_counts": {
+        "NV": 41,
+        "NF": 78,
+        "K": 78,
+        "N": 47,
+        "M": 106,
+        "I": 6,
+        "old_unordered_pairs": 3003,
+        "candidate_unordered_pairs": 5565,
+        "total_pairs": 8568,
+        "plane_triples": 479808
+      },
+      "candidate_interior_node_tags": [
+        53,
+        54,
+        55,
+        56,
+        57,
+        58
+      ]
+    },
+    {
+      "apex": 1488093,
+      "actual": {
+        "path": "work/962-engineering/head-star-current126-alternative-case-domains-actuals-prep-001/apex-1488093.json",
+        "sha256": "477033383aac33fc8702380643bc90538803829963680f3c92ed9db76ed3d4aa",
+        "bytes": 33983
+      },
+      "output_directory": "work/962-engineering/head-star-current126-alternative-apex-1488093-domain-001",
+      "source_query_input_count": 33,
+      "all_current_small_input_count": 162,
+      "exact_counts": {
+        "NV": 19,
+        "NF": 34,
+        "K": 34,
+        "N": 21,
+        "M": 40,
+        "I": 2,
+        "old_unordered_pairs": 561,
+        "candidate_unordered_pairs": 780,
+        "total_pairs": 1341,
+        "plane_triples": 75096
+      },
+      "candidate_interior_node_tags": [
+        30,
+        31
+      ]
+    },
+    {
+      "apex": 1508641,
+      "actual": {
+        "path": "work/962-engineering/head-star-current126-alternative-case-domains-actuals-prep-001/apex-1508641.json",
+        "sha256": "e3c1d4f625bdb9af7448ad2ba40e670c7720f04f653219741d41dfdc64392fc1",
+        "bytes": 34025
+      },
+      "output_directory": "work/962-engineering/head-star-current126-alternative-apex-1508641-domain-001",
+      "source_query_input_count": 33,
+      "all_current_small_input_count": 162,
+      "exact_counts": {
+        "NV": 18,
+        "NF": 32,
+        "K": 32,
+        "N": 25,
+        "M": 64,
+        "I": 7,
+        "old_unordered_pairs": 496,
+        "candidate_unordered_pairs": 2016,
+        "total_pairs": 2512,
+        "plane_triples": 140672
+      },
+      "candidate_interior_node_tags": [
+        29,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35
+      ]
+    },
+    {
+      "apex": 1515013,
+      "actual": {
+        "path": "work/962-engineering/head-star-current126-alternative-case-domains-actuals-prep-001/apex-1515013.json",
+        "sha256": "ff8887a69b07c3d571cb161d1e28a2232a4c8620762782357ded993d97d1977b",
+        "bytes": 33986
+      },
+      "output_directory": "work/962-engineering/head-star-current126-alternative-apex-1515013-domain-001",
+      "source_query_input_count": 33,
+      "all_current_small_input_count": 162,
+      "exact_counts": {
+        "NV": 28,
+        "NF": 52,
+        "K": 52,
+        "N": 30,
+        "M": 57,
+        "I": 2,
+        "old_unordered_pairs": 1326,
+        "candidate_unordered_pairs": 1596,
+        "total_pairs": 2922,
+        "plane_triples": 163632
+      },
+      "candidate_interior_node_tags": [
+        43,
+        44
+      ]
+    },
+    {
+      "apex": 1538046,
+      "actual": {
+        "path": "work/962-engineering/head-star-current126-alternative-case-domains-actuals-prep-001/apex-1538046.json",
+        "sha256": "7bbeb40e478e84a0e3cd1d89a03ca9826622b9c87a291af801e2727b86088e36",
+        "bytes": 33990
+      },
+      "output_directory": "work/962-engineering/head-star-current126-alternative-apex-1538046-domain-001",
+      "source_query_input_count": 33,
+      "all_current_small_input_count": 162,
+      "exact_counts": {
+        "NV": 14,
+        "NF": 24,
+        "K": 24,
+        "N": 17,
+        "M": 33,
+        "I": 3,
+        "old_unordered_pairs": 276,
+        "candidate_unordered_pairs": 528,
+        "total_pairs": 804,
+        "plane_triples": 45024
+      },
+      "candidate_interior_node_tags": [
+        15,
+        16,
+        17
+      ]
+    },
+    {
+      "apex": 1541053,
+      "actual": {
+        "path": "work/962-engineering/head-star-current126-alternative-case-domains-actuals-prep-001/apex-1541053.json",
+        "sha256": "de64125763f8e8059557911ac7b4caf1d250563b1c3ac501204c6627e3cf7476",
+        "bytes": 34025
+      },
+      "output_directory": "work/962-engineering/head-star-current126-alternative-apex-1541053-domain-001",
+      "source_query_input_count": 33,
+      "all_current_small_input_count": 162,
+      "exact_counts": {
+        "NV": 21,
+        "NF": 38,
+        "K": 38,
+        "N": 28,
+        "M": 70,
+        "I": 7,
+        "old_unordered_pairs": 703,
+        "candidate_unordered_pairs": 2415,
+        "total_pairs": 3118,
+        "plane_triples": 174608
+      },
+      "candidate_interior_node_tags": [
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28
+      ]
+    },
+    {
+      "apex": 1558088,
+      "actual": {
+        "path": "work/962-engineering/head-star-current126-alternative-case-domains-actuals-prep-001/apex-1558088.json",
+        "sha256": "8a1346faab0cc90c5219fdd592e037a8f0c6f1b28d83a2ee1721b394b280d285",
+        "bytes": 33990
+      },
+      "output_directory": "work/962-engineering/head-star-current126-alternative-apex-1558088-domain-001",
+      "source_query_input_count": 33,
+      "all_current_small_input_count": 162,
+      "exact_counts": {
+        "NV": 15,
+        "NF": 26,
+        "K": 26,
+        "N": 18,
+        "M": 36,
+        "I": 3,
+        "old_unordered_pairs": 325,
+        "candidate_unordered_pairs": 630,
+        "total_pairs": 955,
+        "plane_triples": 53480
+      },
+      "candidate_interior_node_tags": [
+        16,
+        17,
+        18
+      ]
+    },
+    {
+      "apex": 1570037,
+      "actual": {
+        "path": "work/962-engineering/head-star-current126-alternative-case-domains-actuals-prep-001/apex-1570037.json",
+        "sha256": "41d0d895820e3466a3f48d7412cf63b4397bf2b6b24400c2ec51341c02e8e27a",
+        "bytes": 33993
+      },
+      "output_directory": "work/962-engineering/head-star-current126-alternative-apex-1570037-domain-001",
+      "source_query_input_count": 33,
+      "all_current_small_input_count": 162,
+      "exact_counts": {
+        "NV": 24,
+        "NF": 44,
+        "K": 44,
+        "N": 27,
+        "M": 55,
+        "I": 3,
+        "old_unordered_pairs": 946,
+        "candidate_unordered_pairs": 1485,
+        "total_pairs": 2431,
+        "plane_triples": 136136
+      },
+      "candidate_interior_node_tags": [
+        35,
+        36,
+        37
+      ]
+    },
+    {
+      "apex": 1611558,
+      "actual": {
+        "path": "work/962-engineering/head-star-current126-alternative-case-domains-actuals-prep-001/apex-1611558.json",
+        "sha256": "d58ae2fa2a5bbf9b792e736e08fe97a6229b31883e60bb8dbc338437fdab4d3e",
+        "bytes": 33982
+      },
+      "output_directory": "work/962-engineering/head-star-current126-alternative-apex-1611558-domain-001",
+      "source_query_input_count": 33,
+      "all_current_small_input_count": 162,
+      "exact_counts": {
+        "NV": 12,
+        "NF": 20,
+        "K": 20,
+        "N": 14,
+        "M": 25,
+        "I": 2,
+        "old_unordered_pairs": 190,
+        "candidate_unordered_pairs": 300,
+        "total_pairs": 490,
+        "plane_triples": 27440
+      },
+      "candidate_interior_node_tags": [
+        13,
+        14
+      ]
+    },
+    {
+      "apex": 1611564,
+      "actual": {
+        "path": "work/962-engineering/head-star-current126-alternative-case-domains-actuals-prep-001/apex-1611564.json",
+        "sha256": "4767aac7aa0c9a27caf9cb9d6f28e52bf617103867018d2b0cc1d7c06dcf86a8",
+        "bytes": 33982
+      },
+      "output_directory": "work/962-engineering/head-star-current126-alternative-apex-1611564-domain-001",
+      "source_query_input_count": 33,
+      "all_current_small_input_count": 162,
+      "exact_counts": {
+        "NV": 12,
+        "NF": 20,
+        "K": 20,
+        "N": 14,
+        "M": 24,
+        "I": 2,
+        "old_unordered_pairs": 190,
+        "candidate_unordered_pairs": 276,
+        "total_pairs": 466,
+        "plane_triples": 26096
+      },
+      "candidate_interior_node_tags": [
+        13,
+        14
+      ]
+    },
+    {
+      "apex": 1613030,
+      "actual": {
+        "path": "work/962-engineering/head-star-current126-alternative-case-domains-actuals-prep-001/apex-1613030.json",
+        "sha256": "e378ab43b017b644a652b11375db6aa92522dd033870c7bf4537f057d7cef904",
+        "bytes": 33974
+      },
+      "output_directory": "work/962-engineering/head-star-current126-alternative-apex-1613030-domain-001",
+      "source_query_input_count": 33,
+      "all_current_small_input_count": 162,
+      "exact_counts": {
+        "NV": 10,
+        "NF": 16,
+        "K": 16,
+        "N": 11,
+        "M": 16,
+        "I": 1,
+        "old_unordered_pairs": 120,
+        "candidate_unordered_pairs": 120,
+        "total_pairs": 240,
+        "plane_triples": 13440
+      },
+      "candidate_interior_node_tags": [
+        11
+      ]
+    },
+    {
+      "apex": 1613794,
+      "actual": {
+        "path": "work/962-engineering/head-star-current126-alternative-case-domains-actuals-prep-001/apex-1613794.json",
+        "sha256": "4b0d46554a4da8bda2fff8e00432b3f1378f067aaab475b7ddb00968cd34ee8d",
+        "bytes": 34017
+      },
+      "output_directory": "work/962-engineering/head-star-current126-alternative-apex-1613794-domain-001",
+      "source_query_input_count": 33,
+      "all_current_small_input_count": 162,
+      "exact_counts": {
+        "NV": 19,
+        "NF": 34,
+        "K": 34,
+        "N": 25,
+        "M": 61,
+        "I": 6,
+        "old_unordered_pairs": 561,
+        "candidate_unordered_pairs": 1830,
+        "total_pairs": 2391,
+        "plane_triples": 133896
+      },
+      "candidate_interior_node_tags": [
+        20,
+        21,
+        22,
+        23,
+        24,
+        25
+      ]
+    },
+    {
+      "apex": 1613795,
+      "actual": {
+        "path": "work/962-engineering/head-star-current126-alternative-case-domains-actuals-prep-001/apex-1613795.json",
+        "sha256": "beb428bf43b1a0c902dfdfbdef3d32f2cede83b86dbbeb5ac8d863f26e60a951",
+        "bytes": 34001
+      },
+      "output_directory": "work/962-engineering/head-star-current126-alternative-apex-1613795-domain-001",
+      "source_query_input_count": 33,
+      "all_current_small_input_count": 162,
+      "exact_counts": {
+        "NV": 19,
+        "NF": 34,
+        "K": 34,
+        "N": 23,
+        "M": 50,
+        "I": 4,
+        "old_unordered_pairs": 561,
+        "candidate_unordered_pairs": 1225,
+        "total_pairs": 1786,
+        "plane_triples": 100016
+      },
+      "candidate_interior_node_tags": [
+        20,
+        21,
+        22,
+        23
+      ]
+    }
+  ],
+  "initial_known_current_query_processes": [
+    {
+      "exact_prefix": "runtime-role://controller/python -I -B work/962-engineering/head-star-current126-alternative-case-domains-prep-001/certify_domain.py",
+      "pids": []
+    },
+    {
+      "exact_prefix": "runtime-role://controller/resolved-python3.12 -I -B work/962-engineering/head-star-current126-alternative-case-domains-prep-001/certify_domain.py",
+      "pids": []
+    }
+  ],
+  "ordinary_controls": {
+    "wall_timeout_seconds": 300,
+    "start_new_session": true,
+    "timeout_group_SIGTERM_then_SIGKILL_if_needed": true,
+    "TERM_grace_seconds": 8,
+    "owned_process_wait_and_reap_required": true,
+    "verified_owned_process_group_only": true,
+    "automatic_retry": false,
+    "hard_OS_CPU_or_RSS_quota": false,
+    "control_implementation": "Root-owned ordinary subprocess only; selected producer has no watchdog or controller. The eight-second grace is root-selected, not a held source requirement."
+  },
+  "free_disk_bytes": 12162359296,
+  "procedural_failure_policy": "Stop remaining cases on timeout, signals, input drift, unexpected exit or incomplete/mismatched report. No automatic retry.",
+  "natural_negative_policy": "A complete matching RC2 exact-pair failure is terminal for that case and stays held; remaining independently bound cases can run once.",
+  "raw_head_MSH_BIN_or_native_runtime_access": false,
+  "native_or_head_or_PDE_execution_authorized": false,
+  "engineering_accepted": false,
+  "physics_qualified": false,
+  "manufacturing_authorized": false
+}

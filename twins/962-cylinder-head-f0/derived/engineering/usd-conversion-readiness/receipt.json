@@ -1,0 +1,101 @@
+{
+  "schema_version": "1.0.0",
+  "status": "conversion_only_preflight_ready_no_asset_converted",
+  "scope": "Software prerequisites for a later geometry-only conversion. No asset was provided to this readiness check.",
+  "checked_on": "2026-10-16",
+  "runtime": {
+    "architecture": "native_linux_x86_64",
+    "glibc": "2.43",
+    "CPython_version": "3.12.13",
+    "CPython_distribution_build": "20260728",
+    "CPython_archive_sha256": "7ceaf4360f4b4ab44f31d8217cfdc70df8e12b61d9561b4900ee7af87176e50d",
+    "CPython_executable_sha256": "1e4461092175d186c4bcdb19ee2849a45d6e4d8d1f6a871e45f63418d52a4e35",
+    "CPython_shared_library_sha256": "cb2f23d580b27baba02ecfe594189ad6704b969a529b3b42dccc29854fa562a1",
+    "archive_binary_bindings_verified": true,
+    "uv_version": "0.12.0",
+    "uv_sha256": "b6e3cb5b4858d920c63e1d88e31a7a4d8f567073ee4e5e4a1889f93984dc28ea",
+    "Git_version": "2.53.0",
+    "Git_LFS_version": "3.4.1",
+    "Git_LFS_sha256": "f46cb435c34dc11043fd8f43f55633e7f27cc7c5a0ce50f5ca6064518cf45c31"
+  },
+  "packages": {
+    "usd-convert-cad": "0.2.0",
+    "PyYAML": "6.0.3"
+  },
+  "wheel_sha256": {
+    "pyyaml-6.0.3-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl": "ba1cc08a7ccde2d2ec775841541641e4548226580ab850948cbfda66a1befcdc",
+    "usd_convert_cad-0.2.0-cp312-cp312-manylinux_2_35_x86_64.whl": "9a6c34b55b0056a2fb19b99e250fcc94eff56829510f2df3e7e6e805a76e235c"
+  },
+  "preflight": {
+    "status": "ready",
+    "returncode": 0,
+    "blockers": [],
+    "target": "conversion",
+    "source_format": "stl",
+    "check_only": true,
+    "Content_Agents_skipped": true,
+    "deployment_skipped": true,
+    "source_asset_provided": false,
+    "report_sha256": "9737f68eb6d511e8a24de79042a2ba1730cbe7b9f51b715faa9a89b0d3936904",
+    "source_sha256": {
+      "references/preflight/scripts/preflight.py": "96686a068236c47c1a702d2334b6761c2c5c3117e66dd08b0ec4efc65656ff80",
+      "shared/script_utils.py": "972a1b01f0a79991bffb811bd2028f7f98c87a01a32db51e5667dae3792aef72",
+      "shared/preflight_manifest.py": "5d1a54b058d9fab2ba529d059fe08d111aa014672c73190fa6825dae49f09e09",
+      "shared/upstream_versions.py": "ad255cb8ecd231cabaed70b13a68d44ae75e9e5d405804d9a0eca4475ef7de9b",
+      "upstream-versions.lock.json": "4c5e6352db786fc744d914d398b2f7e63b9eb9dffea1cac5bceb0e572cb3a924"
+    },
+    "guidance_commit": "208fe2c1cd71ae2bb7bd825daf712617000ae028",
+    "guidance_skill_sha256": "1d2fe8949a4198933ebd5dbf7cbd56687e0c684d4df3bd5f85bd829badd4227f",
+    "transport_capture_sha256": "08253b769b0a23c00aa9ed9e43a42476c14c84887348e774453de796c597a403",
+    "captured_artifacts_verified": 9
+  },
+  "native_checks": [
+    "exact package versions and offline no-dependency installation",
+    "CLI help and pip check",
+    "bundled OpenUSD0.25.11 Usd/UsdGeom/UsdPhysics imports",
+    "native HOOPS converter binding import",
+    "Git discovers the native Git LFS binary"
+  ],
+  "prerequisites": [
+    "Use the dedicated Python3.12 runtime without another pxr distribution.",
+    "Put the bundled HOOPS library directory on LD_LIBRARY_PATH before Python starts.",
+    "Use the ready conversion manifest and exact pinned guidance checkout.",
+    "The formal minimum validator separately requires an openusd_python preflight component, absent from this conversion-only manifest."
+  ],
+  "retained_failures": [
+    {
+      "kind": "sandbox_setup_refusal",
+      "meaning": "Initial writable bind destination was incompatible with the read-only root. No interpreter ran in that attempt."
+    },
+    {
+      "kind": "older_rootfs_compatibility",
+      "meaning": "An existing rootfs Python3.12 worked, but GLIBC2.28 was too old for the NVIDIA manylinux_2_35 wheel and the chosen Git LFS binary. No converter installed there."
+    },
+    {
+      "kind": "dynamic_loader",
+      "meaning": "OpenUSD import without a startup library path failed. A separately retained run with the exact bundled path passed."
+    },
+    {
+      "kind": "archive_transport",
+      "meaning": "A Python urllib archive request returned HTTP403. A later public curl retrieval matched the release checksum and installed executable/library bytes; no Python reinstall."
+    }
+  ],
+  "limits": {
+    "asset_converted": false,
+    "minimum_USD_reference_passed": false,
+    "full_validation_ready": false,
+    "content_agents_probed_or_deployed": false,
+    "solver_fields_imported": false,
+    "rendering_checked": false,
+    "physical_material_assigned": false,
+    "historical_fidelity_validated": false,
+    "manufacturing_authorized": false
+  },
+  "public_sources": {
+    "python_release": "https://api.github.com/repos/astral-sh/python-build-standalone/releases/tags/20260728",
+    "NVIDIA_wheel_index": "https://pypi.nvidia.com/usd-convert-cad/",
+    "PyYAML_release": "https://pypi.org/pypi/PyYAML/6.0.3/json",
+    "converter_guidance": "https://github.com/NVIDIA-Omniverse/usd-convert-cad/tree/208fe2c1cd71ae2bb7bd825daf712617000ae028"
+  },
+  "rights": "Runtime names, versions and hashes only. No third-party binary, wheel, source-page copy or private transport record is included."
+}

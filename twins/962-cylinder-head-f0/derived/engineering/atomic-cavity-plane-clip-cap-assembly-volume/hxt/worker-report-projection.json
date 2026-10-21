@@ -1,0 +1,166 @@
+{
+  "status": "failed_outputs_preserved",
+  "stage": "reading_back_the_single_saved_mesh",
+  "options": {
+    "General.NumThreads": 2,
+    "Mesh.MaxNumThreads3D": 2,
+    "Mesh.Algorithm3D": 10,
+    "Mesh.MeshOnlyEmpty": 1,
+    "Mesh.Renumber": 0,
+    "Mesh.ElementOrder": 1,
+    "Mesh.Optimize": 0,
+    "Mesh.OptimizeNetgen": 0,
+    "Mesh.MeshSizeExtendFromBoundary": 0,
+    "Mesh.RandomSeed": 1,
+    "Mesh.Binary": 1,
+    "Mesh.SaveAll": 1,
+    "Mesh.MshFileVersion": 4.1,
+    "Mesh.MeshSizeMax": 1.75,
+    "Mesh.MeshSizeMin": 0,
+    "Mesh.MeshSizeFactor": 1
+  },
+  "qualification": {
+    "geometric_volume_gate_passed": false,
+    "mesh_convergence_established": false,
+    "thermal_resolution_established": false,
+    "engineering_accepted": false,
+    "thermal_performance_validated": false,
+    "strength_validated": false,
+    "manufacturing_authorized": false
+  },
+  "runtime": {
+    "python": "3.10.11 (v3.10.11:7d4cc5aa85, Apr  4 2023, 19:05:19) [Clang 13.0.0 (clang-1300.0.29.30)]",
+    "executable_sha256": "72956ad35cff7691dfed9e04c9593de825ffd5b2fa7e8bc9ae96ce9a1af65621",
+    "numpy": "2.0.2",
+    "machine": "arm64",
+    "gmsh": "4.15.2",
+    "gmsh_module_sha256": "f4b0935cebde899750293d87a643090e5ea33c9b18d249267f507db68a0e01c3",
+    "libgmsh_sha256": "def0f5c10988a986e5e879b3db9669d8fe016a81e2d994bbaf2b8497c6b8a58a"
+  },
+  "surface": {
+    "unique_edges": 2615817,
+    "boundary_edges": 0,
+    "nonmanifold_edges": 0,
+    "orientation_imbalanced_edges": 0,
+    "vertices": 871731,
+    "triangles": 1743878,
+    "euler_characteristic": -208,
+    "signed_volume_mm3": 915453.1236217883,
+    "points_sha256": "e0009dc6c5481cb77383b91a6e72ee4f223f207917b345e74f0b5b8e65ca6786",
+    "faces_sha256": "152dc93bc9d5ea98aa2ec88271b0385471c466a29259c0f874ccfcf81c5ea9bd"
+  },
+  "candidate_sha256": "9d62eac6e2cd7b6a9ecb4a7ea5b632685820369b5c4ede379acc34238f50d7b4",
+  "candidate_volume_reference_mm3": 915453.1236217883,
+  "volume_relative_bookkeeping_bound": 1e-06,
+  "bookkeeping_bound_is_manufacturing_tolerance": false,
+  "standard_optimization_threshold": 0.3,
+  "surface_import": {
+    "exact_source_coordinates": true,
+    "exact_source_oriented_connectivity": true,
+    "original_surface_nodes": 871731,
+    "original_surface_triangles": 1743878,
+    "source_element_tags_preserved": true,
+    "source_tagged_vertex_order_preserved": true,
+    "comparison": "exact_tagged_index_order"
+  },
+  "mesh_sha256": "4a17567e6394bcda8571b0ff07f74471338bc7f3be60b0153a20020f654c6b41",
+  "mesh_bytes": 205789862,
+  "surface_after_meshing": {
+    "exact_source_coordinates": true,
+    "exact_source_oriented_connectivity": true,
+    "original_surface_nodes": 871731,
+    "original_surface_triangles": 1743878,
+    "source_element_tags_preserved": false,
+    "source_tagged_vertex_order_preserved": true,
+    "comparison": "exact_oriented_triangle_set"
+  },
+  "tetrahedra": 2989608,
+  "total_mesh_nodes": 950032,
+  "retained_boundary_nodes": 871731,
+  "tetra_referenced_nodes": 950032,
+  "tetra_referenced_interior_nodes": 78301,
+  "unreferenced_mesh_nodes": 0,
+  "interior_node_count_establishes_thermal_resolution": false,
+  "quality": {
+    "minimum_jacobian": {
+      "minimum": 5.529727786779404e-10,
+      "p01": 1.7166114012070467e-05,
+      "p05": 0.0009632145442418826,
+      "p50": 0.4602520139920253,
+      "p95": 9.595796143481884,
+      "p99": 13.620423624438734,
+      "maximum": 66.38922075748538,
+      "count": 2989608,
+      "nonpositive_count": 0
+    },
+    "native_volume_mm3": {
+      "minimum": 9.216212977965672e-11,
+      "p01": 2.861019002011744e-06,
+      "p05": 0.0001605357573736471,
+      "p50": 0.07670866899867088,
+      "p95": 1.599299357246981,
+      "p99": 2.2700706040731222,
+      "maximum": 11.064870126247563,
+      "count": 2989608,
+      "nonpositive_count": 0
+    },
+    "minimum_SICN": {
+      "minimum": 3.784626658982107e-09,
+      "p01": 0.0002179641444203662,
+      "p05": 0.014155089720098648,
+      "p50": 0.2858604489894003,
+      "p95": 0.8808135369491283,
+      "p99": 0.9479905726530518,
+      "maximum": 0.9995335690971013,
+      "count": 2989608,
+      "nonpositive_count": 0
+    },
+    "independent_signed_volume_mm3": {
+      "minimum": 9.216212977965672e-11,
+      "p01": 2.8610190020117444e-06,
+      "p05": 0.00016053575737364712,
+      "p50": 0.07670866899867088,
+      "p95": 1.599299357246981,
+      "p99": 2.2700706040731222,
+      "maximum": 11.064870126247563,
+      "count": 2989608,
+      "nonpositive_count": 0
+    }
+  },
+  "summed_tetra_volume_mm3": 915453.1236217882,
+  "volume_relative_error": 1.1102230246251565e-16,
+  "actual_tetra_boundary": {
+    "boundary_triangles": 1743878,
+    "exact_oriented_tetra_boundary": true,
+    "nonmanifold_volume_faces": 0
+  },
+  "internal_tetra_face_orientation": {
+    "internal_faces": 5107277,
+    "same_oriented_internal_faces": 0,
+    "exact_internal_orientation_balance": true
+  },
+  "saved_surface": {
+    "exact_source_coordinates": true,
+    "exact_source_oriented_connectivity": true,
+    "original_surface_nodes": 871731,
+    "original_surface_triangles": 1743878,
+    "source_element_tags_preserved": false,
+    "source_tagged_vertex_order_preserved": true,
+    "comparison": "exact_oriented_triangle_set"
+  },
+  "saved_mesh_identity_exact": true,
+  "sorted_node_tags_sha256": "31a4ac67361dec07d454f0f4aead289e5baad6434f868924a9e5de2ef705d908",
+  "sorted_coordinates_sha256": "5b7c49eeb3b416675f427aef06ab9dfaf25654321c4df2728fad4bfe568b6f04",
+  "sorted_tetra_tags_sha256": "59c79d45d9c1a2b39355573baa009b4f81bff61b8a0cf8d43c26d4cb776e30f8",
+  "tagged_tetra_connectivity_sha256": "fd20369e26b300a987a9e52c395880d06e106f7c63ec3c543ef2ac365977b7f0",
+  "error": "ValueError: All Jacobians/volumes must be positive and actual minimum SICN at least0.1",
+  "gmsh_warnings_errors": [],
+  "bound_inputs_unchanged": true,
+  "worker_wall_s": 130.2221432919614,
+  "schema": "962-assembled-HXT-worker-public-projection/v1",
+  "original_worker_sha256": "9a648b8082e84361759b38be30fcbf641417dbc5ccb0bf77b4d22254a7818bd7",
+  "projection_not_worker_report": true,
+  "omitted_private_fields": [
+    "runtime.executable"
+  ]
+}

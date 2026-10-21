@@ -1,0 +1,55 @@
+{
+  "schema": "962-owner004-one-run-combined-source-join-review/v1",
+  "decision": "NO_NEW_CONCRETE_SOURCE_BLOCKER_FOR_ROOT_ONE_ATTEMPT_DECISION",
+  "reviewer": "/root/defect_gate_refresh",
+  "scope": "Named source/text/AST and first-party saved metadata only, plus the one separately authorized installed subprocess source body. Not an issued actual/admission or executed result.",
+  "checks": [
+    {
+      "subject": "subprocess active cleanup",
+      "lines": "subprocess.py244\u2013253,767,1065\u20131078; owner00427\u201330,264\u2013270",
+      "finding": "_active starts empty; each constructor calls _cleanup, which polls only recorded _active instances. Base destructor polls then appends an unfinished handle. The current private leader destructor is a no-op and a returned leader is strongly retained, so this route does not register that leader for later query cleanup."
+    },
+    {
+      "subject": "query exact-PID waits",
+      "lines": "owner004108\u2013138; subprocess.py503\u2013528,1037\u20131063,1879\u20131911,1914\u20131965",
+      "finding": "subprocess.run context/communicate/poll/wait belongs to its own ps query instance. Its waits use self.pid, not waitpid(-1). It supplies no competing leader waiter under the scoped successful fresh-owner arrangement."
+    },
+    {
+      "subject": "Popen methods poll",
+      "lines": "subprocess.py2082\u20132122; owner004274,318,365",
+      "finding": "Popen.send_signal calls poll; terminate/kill delegate to it. The retained owner leader uses raw os.waitpid and raw os.kill/os.killpg instead. Toy solver polling occurs in the separate adapter process and targets solver children, not its parent leader."
+    },
+    {
+      "subject": "constructor failure remains refusal",
+      "lines": "subprocess.py1737\u20131755,1796\u20131835; owner004265\u2013268,433\u2013439",
+      "finding": "start_new_session=True excludes the posix_spawn shortcut; successful exec closes the error pipe. Exec-error data can cause blocking exact-child waitpid before constructor raises. Custom destructor does not suppress that base-constructor path. Owner preserves partial relationship unknown and raw_exit2 without guessed PID/reap/absence or hard-preemption claims."
+    },
+    {
+      "subject": "current source integrations",
+      "lines": "owner004163\u2013215; adapter fixed dynamic source loading; transport53\u201359,288\u2013398; protocol complete299lines",
+      "finding": "Exact source pins and Python3.10-compatible streaming hash/path/bytes APIs retained; no hashlib.file_digest or process_group= dependency. Importlib source routes can use pyc, so two exact absent cache paths are a separately retained prelaunch constraint. No source module imported by this review."
+    },
+    {
+      "subject": "source and guard lineage",
+      "lines": "root source4ee2; core13 root1909; readiness2dd1",
+      "finding": "Corrected004 source/C01/C02 accepted; thirteen explicit fake cases accepted separately using3.12 with admit/normal_reports stubs. Current3.10 readiness is narrow. Prior003 HOLD is historical, not an unfixed004 defect. No actual five-case result exists in this review."
+    }
+  ],
+  "mandatory_root_completion": [
+    "Issue exact semantic runtime-selection under prospective arrangement; do not upgrade earlier readiness into delivered NOTE_EXIT/reap proof.",
+    "Finalize canonical actual map/count and aliases, independently verify late-role bindings and stable prefix, then separately seal root admission.",
+    "Retain both exact cache absences at launch, whole60/fullreturn and inclusive32MiB artifact census, sampled2GiB scope, raw0/complete five toy reports/reap/absence/input/alias equality."
+  ],
+  "source_blockers": [],
+  "runtime_audit_limits": "No installed _posixsubprocess extension/provider/ABI source audit; no process/API test, source import, Z3 call or scientific body access. Constructor/partial unknown refusal remains intentional.",
+  "lineage": "Reviewer authored source004 peer, core13 fixture and control peer, and readiness source; did not author current owner004/adapter/wrapper or transport/protocol. Root supplied current runtime observations. This is source/consumer join assistance; independent concrete canonical binding check remains root/material task.",
+  "read_script_event": "One bounded source text-render script requested an ending line beyond EOF and returned IndexError. A corrected bounded read completed; no target ran, source changed or evidence claim depended on that failed rendering.",
+  "authority": {
+    "actual_or_admission_issued": false,
+    "source_or_fixture_or_Z3_execution": false,
+    "runtime_API_process_operation": false,
+    "head_native_physical_manufacturing": false,
+    "PUB_Git_changes": false
+  },
+  "self_hash_claim": false
+}

@@ -1,0 +1,80 @@
+{
+  "schema": "962-observer004-root-exact-two-command-build-admission/v1",
+  "actual": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-build-execution-prep-002/actual-contract.json",
+    "sha256": "190ea8d8bb81c673eb65924ebbe5f7b23c63fab735a68f352810f97e017655b7",
+    "bytes": 39209
+  },
+  "controller": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-build-owner-prep-002/run_build_once.py",
+    "sha256": "e31840f411413452095b83513195abda083e34aab3798d4b2b1198130bd9e327",
+    "bytes": 18669
+  },
+  "preflight": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-build-execution-prep-002/selected-input-preflight.json",
+    "sha256": "b634cfb8bdbfd0e13f7bd92559dd54ee2ea5ac96158d6d6bc05e77671be9c626",
+    "bytes": 50903
+  },
+  "preparation_index": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-build-execution-prep-002/preparation-index.json",
+    "sha256": "3fc04a4e51caf59642aeaed21755001d0e42ba2ccbf3592889f99b071845b393",
+    "bytes": 1286
+  },
+  "source_review_accepted": true,
+  "actual_review_accepted": true,
+  "run_each_step_once_stop_first_failure": true,
+  "build_commands_authorized": 2,
+  "compiler_commands_authorized": 1,
+  "linker_commands_authorized": 1,
+  "descriptor_materialization_authorized": true,
+  "automatic_retry": false,
+  "guard_execution_authorized": false,
+  "host_library_load_authorized": false,
+  "native_case_or_field_capture_authorized": false,
+  "scientific_or_ABI_acceptance": false,
+  "source_peer_review": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-source-peer-001/review.json",
+    "sha256": "fb41c8d0a424fee1b30ba558f0661997bb3975e0b303d05a23c9b729c059d372",
+    "bytes": 16212
+  },
+  "source_peer_bindings": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-source-peer-001/bindings.json",
+    "sha256": "41ef6613aff7ce3ff4a2c19086378e5077c6ca18585dabc2bad829d2552b1256",
+    "bytes": 8578
+  },
+  "source_peer_checks": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-source-peer-001/checks.json",
+    "sha256": "dadbd53c6c47cff72d83381618433ba3337256cbb1276c3e00e25c24c7cc79b5",
+    "bytes": 14432
+  },
+  "exact_child_peer_review": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-build-exact-child-peer-002/review.json",
+    "sha256": "5743f0b665f67cf4ac904d8cd24000b6fd2b0901508522015e1dd2abe4081549",
+    "bytes": 11107
+  },
+  "exact_child_peer_bindings": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-build-exact-child-peer-002/bindings.json",
+    "sha256": "92e6c9a4939fdad23e93319bf044c98f1605417822dd8bda0b6f4555fd39c1de",
+    "bytes": 17116
+  },
+  "controls": {
+    "overall_wall_seconds": 60,
+    "wall_seconds_per_step": 60,
+    "TERM_grace_seconds": 8,
+    "KILL_wait_seconds": 8,
+    "sampled_owned_group_RSS_stop_bytes": 2147483648,
+    "owned_output_stop_bytes": 33554432,
+    "OMP_BLAS_environment_threads": 1,
+    "retry": 0
+  },
+  "root_review": "Root read the full corrected owner, the three corrections and full prior held/new exact-child reviews; frozen source shim and unchanged recipe reviewed. Original owner001 remains unrun. Only one new registration-shim compile and one plugin link using the unchanged original production observer object are admitted.",
+  "root_positive_postconditions": [
+    "observed outerRC0 after post-full-receipt-write wall gate",
+    "two fixed childRC0 and waited absent owned groups",
+    "75 protected/direct identities and 12 selected paths unchanged",
+    "no stop, failure, cleanup error or unexpected outputs",
+    "both result and build directories plus full receipt and external root admission at most33554432 bytes",
+    "candidate complete requires separate saved-result review",
+    "no static exports, ABI, library load, host, guard, callback, field or physical acceptance from this build"
+  ]
+}

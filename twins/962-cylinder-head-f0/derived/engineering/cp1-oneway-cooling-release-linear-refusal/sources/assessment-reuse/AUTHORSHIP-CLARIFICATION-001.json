@@ -1,0 +1,52 @@
+{
+  "schema": "962-linear-cooling-assessment-reuse-note-authorship-clarification/v1",
+  "original_note": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-linear-assessment-reuse-plan-001/NOTE.md",
+    "sha256": "7cccf136ce713b11ea7e9a437c9a51ea694f4efbb5b6e640ce33da1198e1a20e",
+    "bytes": 12496
+  },
+  "location": "Final Authorship paragraph",
+  "original_incorrect_statement": "existing_study_audit authored the new LINEAR case/assessor binding source.",
+  "corrected_lineage": {
+    "new_LINEAR_case_adapter": {
+      "source": {
+        "path": "work/962-engineering/cp1-oneway-cooling-release-linear-prep-001/run_mac.py",
+        "sha256": "5ec0fe4684dd51dd7934ca3069e75497a481a08db5a9ee8a78646d81e3813f6c",
+        "bytes": 19609
+      },
+      "author": "existing_study_audit"
+    },
+    "new_LINEAR_assessor_binding_successor": {
+      "source": {
+        "path": "work/962-engineering/cp1-oneway-cooling-release-linear-assessor-prep-001/assess.py",
+        "sha256": "b7c5c7c82c5a7fee11aa63032f9a136d46517b8163c3c880b8b39a06d083930f",
+        "bytes": 46610
+      },
+      "held": {
+        "path": "work/962-engineering/cp1-oneway-cooling-release-linear-assessor-prep-001/held-preparation.json",
+        "sha256": "8a6fb92a5d3141f543aedd29184f1361e54e623eca69e3c1b7008bd1a5657f69",
+        "bytes": 214199
+      },
+      "author": "root",
+      "authoring_code_identifiers": [
+        "cp1CoolingLinearAssessorBindingCandidateCode",
+        "heldcorrectedcode"
+      ],
+      "independent_source_reviewer": "existing_study_audit"
+    },
+    "original_continuation_assessor": {
+      "source": {
+        "path": "work/962-engineering/cp1-oneway-cooling-release-assessor-prep-001/assess.py",
+        "sha256": "a366dfc43f7bdba5d2c60b8a911098c883723b23f946d8a89fb4d42b3e3d4b5b",
+        "bytes": 46553
+      },
+      "author": "replica_metrology"
+    },
+    "reuse_note_and_numerical_trace_and_earlier_native_actual": "replica_metrology"
+  },
+  "scope": "Additive author-lineage correction only, as confirmed by root. The original NOTE remains immutable. All numerical source identities, actual-planning requirements, controls, pending capture/storage gates and false qualification fields are unchanged.",
+  "original_note_edited": false,
+  "source_code_data_or_numerical_policy_changed": false,
+  "prepared_source_helper_guard_native_or_assessor_executed": false,
+  "native_or_assessment_authority_granted": false
+}

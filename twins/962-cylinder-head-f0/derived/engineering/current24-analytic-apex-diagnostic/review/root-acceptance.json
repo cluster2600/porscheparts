@@ -1,0 +1,103 @@
+{
+  "schema": "962-current24-analytic-apex-root-result-acceptance/v1",
+  "decision": "ACCEPT_COMPLETE_FINITE_DIAGNOSTIC_ONLY_REJECT_ALL19_TUPLES",
+  "report": {
+    "path": "work/962-engineering/head-star-current24-analytic-apex-001/candidate-diagnostic.json",
+    "sha256": "515ad2ea01eb01a3c66ee1babef77441fcf6a44186d99854fe2b4e3bd1ca6374",
+    "bytes": 1278345
+  },
+  "independent_result_review": {
+    "path": "work/962-engineering/head-star-current24-analytic-apex-result-peer-001/review.json",
+    "sha256": "f589cf11b729a9b844023c49296d9aec283829ee2bab43b0d1c9eed1e8f82cb6",
+    "bytes": 33706
+  },
+  "independent_arithmetic_bindings": {
+    "path": "work/962-engineering/head-star-current24-analytic-apex-result-peer-001/bindings.json",
+    "sha256": "f7014f5e4c6867e9fed757f6bc5b33ff60cd34d5fef1aa5984170eec3612cce9",
+    "bytes": 1449218
+  },
+  "owner_review": {
+    "path": "work/962-engineering/head-star-current24-analytic-apex-root-execution-001/own-review.json",
+    "sha256": "c0a3cbe4b6d298ae0f6d3ade3e7ae2f2518a4b77bd4feaa311cd6891828839b9",
+    "bytes": 9587
+  },
+  "owner_closure": {
+    "path": "work/962-engineering/head-star-current24-analytic-apex-root-execution-001/closed-result.json",
+    "sha256": "49a155f138021fa0bcd0eeeaca8bced461bd5e882794e54d37ef843f6d0e2424",
+    "bytes": 38982
+  },
+  "source_peer": {
+    "path": "work/962-engineering/head-star-current24-analytic-apex-source-peer-001/review.json",
+    "sha256": "9957b18349949bca3518dfe8307454ff4e4d02b7be8bac02b5c86f1ac8c3040d",
+    "bytes": 23284
+  },
+  "exact_execution_peer": {
+    "path": "work/962-engineering/head-star-current24-analytic-apex-exact-child-peer-001/review.json",
+    "sha256": "52161ac27706365aae092223b31afc9c3e16a03125f1953b0c1f7894323791d2",
+    "bytes": 14160
+  },
+  "synthetic_guards_once": {
+    "path": "work/962-engineering/head-star-current24-analytic-apex-root-source-001/guards-once.json",
+    "sha256": "3c2b0c8bdc939aba7a8ef577e33fc124d07a7c597f7915d0c424495cb0da4471",
+    "bytes": 30024
+  },
+  "root_review": "Read complete independent result review and own saved review. Independent Cartesian determinant and six-edge/four-face Gram construction matches all499 baseline and916 candidate exact rows. All19 complete component volume/topology/fixed-word gates pass; all19 quality gates fail. No worker, guard, native or coordinate run repeated for this acceptance.",
+  "finite_accounting": {
+    "face_proposals": 24,
+    "tuples": 19,
+    "baseline_rows": 499,
+    "candidate_rows": 916,
+    "independent_exact_rows": 1415,
+    "quality_failed_tuples": 19,
+    "local_witness_tuples": 0,
+    "failed_cell_dispositions": 137,
+    "negative_dispositions": 42,
+    "zero_dispositions": 0,
+    "positive_poor_dispositions": 95,
+    "initially_good_failed_dispositions": 121,
+    "unique_failed_cells": 96,
+    "unique_initially_good_failed_cells": 80,
+    "selected_target_dispositions_passed": 29
+  },
+  "count_scope": "Dispositions count tuple-cell evaluations, with repetitions across different tuples. Unique failed-cell counts concern this finite diagnostic, not the unchanged whole-head mesh.",
+  "single_invocation_closure": {
+    "returncode": 0,
+    "wall_seconds": 0.30308562493883073,
+    "stop_reason": null,
+    "signals": [],
+    "error": null,
+    "reaped": true,
+    "owned_group_absent": true,
+    "sampled_max_RSS_bytes": 39649280,
+    "metadata_inputs_unchanged": 45,
+    "runtime_and_direct_controls_before_after_match": true,
+    "scope": "Owner-observed sampled resources; no hard quota or complete ABI/library closure."
+  },
+  "guards": {
+    "tests": 8,
+    "returncode": 0,
+    "wall_seconds": 0.13544166600331664,
+    "scope": "Synthetic pure guards only, once before saved diagnostic."
+  },
+  "historical_pending_text": "Frozen pre-result admission and own-review pending fields remain unchanged. This record resolves independent result review only; it grants no next execution authority.",
+  "unchanged_head_state": {
+    "poor_tetrahedra": 24,
+    "minimum_SICN": 0.039074265058645995,
+    "prior_improvements": 86,
+    "coordinate_or_mesh_application": false
+  },
+  "interpretation": "Isolated-face real optima improve all selected target cells but fail their full neighborhoods. The19 rejected tuples do not prove infeasibility elsewhere or along the paths to these endpoints.",
+  "authorities": {
+    "new_execution_authorized": false,
+    "native_execution_authorized": false,
+    "geometry_write_authorized": false,
+    "head_PDE_authorized": false,
+    "engineering_accepted": false,
+    "physics_qualified": false,
+    "material_qualified": false,
+    "process_calibrated": false,
+    "manufacturing_authorized": false,
+    "global_infeasibility_proved": false,
+    "automatic_retry": false
+  }
+}

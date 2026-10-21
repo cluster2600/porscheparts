@@ -1,0 +1,178 @@
+--- work/962-engineering/cp1-oneway-cooling-release-linear-prep-001/thermoelastic-birth.i
++++ work/962-engineering/cp1-oneway-cooling-release-richardson2-prep-001/thermoelastic-birth.i
+@@ -582,9 +582,9 @@
+   []
+   type = Transient
+   solve_type = LINEAR
+-  petsc_options = '-snes_monitor'
+-  petsc_options_iname = '-ksp_type -pc_type -snes_norm_schedule'
+-  petsc_options_value = 'preonly lu always'
++  petsc_options = '-snes_monitor -ksp_monitor_true_residual -ksp_converged_reason'
++  petsc_options_iname = '-ksp_type -pc_type -snes_norm_schedule -ksp_richardson_scale -ksp_richardson_self_scale -ksp_norm_type -ksp_convergence_test -ksp_max_it'
++  petsc_options_value = 'richardson lu always 1 false unpreconditioned skip 2'
+   line_search = none
+   dt = 0.0025
+   end_time = 0.455
+--- work/962-engineering/cp1-oneway-cooling-release-linear-prep-001/run_mac.py
++++ work/962-engineering/cp1-oneway-cooling-release-richardson2-prep-001/run_mac.py
+@@ -95,7 +95,7 @@
+     need(path.is_file() and not path.is_symlink() and path.resolve() == path
+          and re.fullmatch("[0-9a-f]{64}", expected) and same(path, expected), "Exact external actual child required")
+     c = json.loads(path.read_text())
+-    need(stage == "coupon" and c.get("schema") == "962-macos-oneway-cooling-release-linear-case-actual/v1"
++    need(stage == "coupon" and c.get("schema") == "962-macos-oneway-cooling-release-richardson2-case-actual/v1"
+          and c.get("stage") == stage and c.get("root_and_peer_review_complete") is True
+          and c.get("native_launch_authorized") is True and c.get("coupon_solve_authorized") is True
+          and all(c.get(k) is False for k in ("head_authorized", "engineering_accepted", "physics_qualified",
+@@ -157,7 +157,7 @@
+          and frozen["source_input_sha256"]["thermoelastic-birth.i"] == sha(CASE / "thermoelastic-birth.i"),
+          "Exact separate source physics contract required")
+     output = Path(c["output"])
+-    need(output == ENGINEERING / "cp1-oneway-cooling-release-linear-001" and output.resolve() == output
++    need(output == ENGINEERING / "cp1-oneway-cooling-release-richardson2-001" and output.resolve() == output
+          and not output.exists() and not output.is_symlink(), "Fresh fixed direct case output required")
+     return c, output
+ 
+--- work/962-engineering/cp1-oneway-cooling-release-linear-prep-001/case-contract.json
++++ work/962-engineering/cp1-oneway-cooling-release-richardson2-prep-001/case-contract.json
+@@ -1,6 +1,6 @@
+ {
+-  "schema": "962-oneway-cooling-release-linear-source-case-contract/v1",
+-  "status": "HELD_SOURCE_PHYSICS_REFERENCE_NOT_DATA_OR_NATIVE_AUTHORITY",
++  "schema": "962-oneway-cooling-release-richardson2-source-case-contract/v1",
++  "status": "SOURCE_HELD_FIXED_TWO_NATIVE_CORRECTIONS_UNRUN",
+   "card": {
+     "schema": "962-oneway-assumed-SI-thermoelastic-birth-card/v1",
+     "id": "cp1-oneway-cooling-release-001",
+@@ -250,7 +250,7 @@
+   },
+   "card_sha256": "04f65ecd853c7a4061fe902afd862b9cc9e3572000b7af5edf2cca2cebbd3de7",
+   "source_input_sha256": {
+-    "thermoelastic-birth.i": "de5c9ea62050645fb546fc650c01023913478c230011faa5172b76ffb36a4f7c",
++    "thermoelastic-birth.i": "6ab5e130c4a89d67a0f200dafa2032d731009db371028aa1ec66a9403ddff031",
+     "prepare_continuation.py": "a2b61fde2968229861145ce1c99d22896ac15284843b3843760ae1702241e218"
+   },
+   "frozen_before_native_runs": true,
+@@ -275,7 +275,7 @@
+   "native_geometry_proven": false,
+   "independent_3D_assessment_source": null,
+   "independent_3D_assessment_source_peer": null,
+-  "native_adapter": "run_mac.py: schema/output-only successor of104f; run() and eight other top-level functions unchanged",
++  "native_adapter": "run_mac.py: actual schema/output literals only; run lifecycle unchanged from LINEAR",
+   "capture": {
+     "file_base": "thermoelastic",
+     "times_s": {
+@@ -409,17 +409,29 @@
+     "formulation": "LINEAR",
+     "PETSc_SNES_type": "ksponly",
+     "petsc_options": [
+-      "-snes_monitor"
++      "-snes_monitor",
++      "-ksp_monitor_true_residual",
++      "-ksp_converged_reason"
+     ],
+     "petsc_options_iname": [
+       "-ksp_type",
+       "-pc_type",
+-      "-snes_norm_schedule"
++      "-snes_norm_schedule",
++      "-ksp_richardson_scale",
++      "-ksp_richardson_self_scale",
++      "-ksp_norm_type",
++      "-ksp_convergence_test",
++      "-ksp_max_it"
+     ],
+     "petsc_options_value": [
+-      "preonly",
++      "richardson",
+       "lu",
+-      "always"
++      "always",
++      "1",
++      "false",
++      "unpreconditioned",
++      "skip",
++      "2"
+     ],
+     "original_nonlinear_literals_retained": {
+       "nl_rel_tol": 1e-11,
+@@ -440,7 +452,15 @@
+       "force_N": 1e-07,
+       "moment_Nm": 1e-07
+     },
+-    "monitor_is_freshness_mechanism_not_a_new_residual_tolerance": true
++    "monitor_is_freshness_mechanism_not_a_new_residual_tolerance": true,
++    "linear_updates_per_regular_solve": 2,
++    "linear_norm_type": "unpreconditioned",
++    "linear_stopping": "KSPConvergedSkip count completion after exactly2 updates, not residual-accuracy acceptance",
++    "linear_completion_not_accuracy_proof": true,
++    "physical_residual_separate_from_linear_b_minus_AY": true,
++    "final_physical_residual_refresh_and_full_independent_assessment_required": true,
++    "extra_correction_basis": "Minimal one-extra-correction diagnostic suggested by accepted single derived END181 probe; native equivalence and success unproved.",
++    "source_runtime_equivalence_proven": false
+   },
+   "original_contract_and_corrected_reference": {
+     "original": {
+@@ -469,5 +489,24 @@
+     "path": "work/962-engineering/cp1-oneway-cooling-release-data-root-review-001/acceptance.json",
+     "sha256": "f8be963292406fb682d62942fbcf7d61c3a3d86bbd1ee5d8f0e240c3764c4620",
+     "bytes": 34972
++  },
++  "numerical_successor_context": {
++    "donor_contract": {
++      "path": "work/962-engineering/cp1-oneway-cooling-release-linear-prep-001/case-contract.json",
++      "sha256": "294f5bf97c6ca3e9fe052e90fc4fc611e740395d1bca24595988d57b4a85758e",
++      "bytes": 16830
++    },
++    "single_derived_probe": {
++      "path": "work/962-engineering/cp1-oneway-cooling-release-linear-END181-defect-correction-diagnostic-001/diagnostic.json",
++      "sha256": "09bfa703b8a5151f60e6c3e2b7849d4c41576168c612e2e151f2de1b373e37fe",
++      "bytes": 6714454
++    },
++    "root_probe_acceptance": {
++      "path": "work/962-engineering/cp1-oneway-cooling-release-linear-END181-defect-correction-root-execution-001/result-peer-acceptance.json",
++      "sha256": "1a589bd5eb65761c14f99f6d92eefb774ad2c07579c577f3aad15f28f55aefd4",
++      "bytes": 4572
++    },
++    "original_trajectory_refusal_retained": true,
++    "physical_case_card_capture_references_and_seven_SI_limits_unchanged": true
+   }
+ }
+--- work/962-engineering/cp1-oneway-cooling-release-linear-prep-001/test_controls.py
++++ work/962-engineering/cp1-oneway-cooling-release-richardson2-prep-001/test_controls.py
+@@ -10,7 +10,7 @@
+ from unittest import TestCase, main, mock
+ 
+ SOURCE = Path(__file__).with_name("run_mac.py")
+-SOURCE_SHA256 = "5ec0fe4684dd51dd7934ca3069e75497a481a08db5a9ee8a78646d81e3813f6c"
++SOURCE_SHA256 = "c484dd4af5166e2eacebb7e8753339e7540602f60133374eddc5529a106843b8"
+ assert hashlib.sha256(SOURCE.read_bytes()).hexdigest() == SOURCE_SHA256
+ spec = importlib.util.spec_from_file_location("mac_thermal_candidate", SOURCE)
+ module = importlib.util.module_from_spec(spec)
+@@ -52,7 +52,7 @@
+         with tempfile.TemporaryDirectory() as tmp:
+             path = Path(tmp).resolve() / "actual.json"
+             for stage, authority in (("readiness", True), ("coupon", False)):
+-                c = dict(schema="962-macos-oneway-cooling-release-linear-case-actual/v1", stage=stage,
++                c = dict(schema="962-macos-oneway-cooling-release-richardson2-case-actual/v1", stage=stage,
+                          root_and_peer_review_complete=True, native_launch_authorized=authority,
+                          coupon_solve_authorized=True, head_authorized=False, manufacturing_authorized=False,
+                          engineering_accepted=False, physics_qualified=False, material_qualified=False,
+@@ -195,7 +195,7 @@
+                 coupon_resources=real_held["coupon_resources"])))
+             files=[held,fake,registry_log,runtime_binding,registry_closed,presence]+list(case.iterdir())+list(transfer.iterdir())
+             pins={str(p.relative_to(module.ROOT)):module.sha(p) for p in files};relfake=str(fake.relative_to(module.ROOT))
+-            c=dict(schema="962-macos-oneway-cooling-release-linear-case-actual/v1",stage="coupon",
++            c=dict(schema="962-macos-oneway-cooling-release-richardson2-case-actual/v1",stage="coupon",
+                 root_and_peer_review_complete=True,native_launch_authorized=True,coupon_solve_authorized=True,
+                 head_authorized=False,engineering_accepted=False,physics_qualified=False,material_qualified=False,
+                 process_calibrated=False,manufacturing_authorized=False,automatic_retry=False,
+@@ -206,7 +206,7 @@
+                 independent_assessment_source_peer=relfake,independent_assessment_source_root_review=relfake,
+                 transfer_manifest=str((transfer/"transfer-manifest.json").relative_to(module.ROOT)),
+                 transfer_manifest_sha256=module.sha(transfer/"transfer-manifest.json"),
+-                output=str(base/"cp1-oneway-cooling-release-linear-001"))
++                output=str(base/"cp1-oneway-cooling-release-richardson2-001"))
+             path=base/"actual.json"
+             with mock.patch.object(module,"HELD",held),mock.patch.object(module,"PREP",case), \
+                  mock.patch.object(module,"CASE",case),mock.patch.object(module,"CARD",case/"card.json"), \

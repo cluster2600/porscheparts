@@ -1,0 +1,37 @@
+--- work/962-engineering/cp1-oneway-cooling-release-richardson2-prep-001/thermoelastic-birth.i
++++ work/962-engineering/cp1-oneway-cooling-release-richardson2-observer003-host-registration-check-prep-001/thermoelastic-birth-observer-registration.i
+@@ -1,6 +1,9 @@
+ # Unqualified one-way prescribed cooling/build-clamp/release case; SI m,Pa,N,K,s.
+ [Problem]
+   material_coverage_check = false
++  register_objects_from = CouponEnd181ObserverApp
++  library_path = '/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/cp1-oneway-cooling-release-richardson2-END181-dof-map-observer-prep-003/build-005'
++  library_name = libcoupon_end181_observer-opt.la
+ []
+ [GlobalParams]
+   displacements = 'disp_x disp_y disp_z'
+@@ -583,8 +586,8 @@
+   type = Transient
+   solve_type = LINEAR
+   petsc_options = '-snes_monitor -ksp_monitor_true_residual -ksp_converged_reason'
+-  petsc_options_iname = '-ksp_type -pc_type -snes_norm_schedule -ksp_richardson_scale -ksp_richardson_self_scale -ksp_norm_type -ksp_convergence_test -ksp_max_it'
+-  petsc_options_value = 'richardson lu always 1 false unpreconditioned skip 2'
++  petsc_options_iname = '-ksp_type -pc_type -snes_norm_schedule -ksp_richardson_scale -ksp_richardson_self_scale -ksp_norm_type -ksp_convergence_test -ksp_max_it -snes_monitor_solution -snes_monitor_residual -snes_monitor_solution_update'
++  petsc_options_value = 'richardson lu always 1 false unpreconditioned skip 2 binary:physical-X.petsc::append binary:physical-F.petsc::append binary:physical-Y.petsc::append'
+   line_search = none
+   dt = 0.0025
+   end_time = 0.455
+@@ -603,4 +606,12 @@
+     type = Console
+     output_postprocessors = false
+   []
+-[]
++  [rich2_END181_dof_map]
++    type = CouponEnd181DofMap
++    file_base = rich2-END181-dof-map
++    execute_on = TIMESTEP_END
++    start_step = 181
++    end_step = 181
++    use_displaced = false
++  []
++[]

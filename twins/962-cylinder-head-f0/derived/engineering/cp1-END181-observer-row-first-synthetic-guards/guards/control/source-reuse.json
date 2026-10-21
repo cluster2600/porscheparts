@@ -1,0 +1,137 @@
+{
+  "schema": "962-row-first-mock-owner-reuse/v1",
+  "donor": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-parser11-guards-execution-prep-001/run_root_once.py",
+    "sha256": "00a69981f4513905ff80e736113d5293ca20c129a920e0b370ab671c0fb8f76e",
+    "bytes": 14517
+  },
+  "controller": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-row-first-mock-guards-execution-prep-001/run_root_once.py",
+    "sha256": "bd86647db9f11bcf098a034094a722fa0972c9f3fb393fe6684c915bfffc71e3",
+    "bytes": 15061
+  },
+  "exact_helper_names": [
+    "check",
+    "group_exists",
+    "limits",
+    "output_size",
+    "provider_links",
+    "rec",
+    "record_controller_stop",
+    "sample",
+    "stop_wait"
+  ],
+  "imports_text_AST_exact": true,
+  "full_inverse_recovers_donor": true,
+  "groups": [
+    {
+      "label": "namespace",
+      "before": "parser11",
+      "after": "row-first-mock",
+      "count": 5
+    },
+    {
+      "label": "ten-method:ONE11-test",
+      "before": "ONE11-test",
+      "after": "ONE10-test",
+      "count": 1
+    },
+    {
+      "label": "ten-method:expected_tests']==11",
+      "before": "expected_tests']==11",
+      "after": "expected_tests']==10",
+      "count": 2
+    },
+    {
+      "label": "ten-method:len(actual['test_methods'])==11",
+      "before": "len(actual['test_methods'])==11",
+      "after": "len(actual['test_methods'])==10",
+      "count": 1
+    },
+    {
+      "label": "ten-method:expected_tests=11",
+      "before": "expected_tests=11",
+      "after": "expected_tests=10",
+      "count": 2
+    },
+    {
+      "label": "ten-method:all11_tests_completed",
+      "before": "all11_tests_completed",
+      "after": "all10_tests_completed",
+      "count": 6
+    },
+    {
+      "label": "ten-method:counts[0][0]!='11'",
+      "before": "counts[0][0]!='11'",
+      "after": "counts[0][0]!='10'",
+      "count": 1
+    },
+    {
+      "label": "ten-method:Complete11 named",
+      "before": "Complete11 named",
+      "after": "Complete10 named",
+      "count": 1
+    },
+    {
+      "label": "class",
+      "before": "SavedMeasurementFormatFixtures",
+      "after": "RowFirstMockGuards",
+      "count": 1
+    },
+    {
+      "label": "whole-start",
+      "before": "R=Path('/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993')",
+      "after": "started=time.monotonic();controller_stop_requests=[]\nR=Path('/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993')",
+      "count": 1
+    },
+    {
+      "label": "retain-start",
+      "before": "proc=None;failure=None;started=time.monotonic();controller_stop_requests=[]",
+      "after": "proc=None;failure=None",
+      "count": 1
+    },
+    {
+      "label": "prelaunch-whole-bound",
+      "before": " if controller_stop_requests:raise ValueError('Controller stop requested before synthetic launch')",
+      "after": " if controller_stop_requests or time.monotonic()-started>=60:raise ValueError('Controller stop/deadline before synthetic launch')",
+      "count": 1
+    },
+    {
+      "label": "late-source-roles",
+      "before": "for role in ['exact_child_peer','exact_child_bindings']:",
+      "after": "for role in ['exact_child_peer','exact_child_bindings','guard_source_peer','guard_source_bindings','guard_root_source_review']:",
+      "count": 1
+    },
+    {
+      "label": "review-gate",
+      "before": "assert auth['synthetic_guard_execution_authorized'] is True",
+      "after": "assert auth['guard_source_review_complete'] is True\nassert auth['synthetic_guard_execution_authorized'] is True",
+      "count": 1
+    },
+    {
+      "label": "authority-scope",
+      "before": "'geometry_write_authorized','physical_acceptance'",
+      "after": "'geometry_write_authorized','physical_acceptance','real_sampler_main_execution_authorized','native_retry_authorized'",
+      "count": 2
+    },
+    {
+      "label": "inclusive-late-gate",
+      "before": "raise SystemExit(0 if receipt['all10_tests_completed'] and not controller_stop_requests else 2)",
+      "after": "final_bytes=output_size(D);final_elapsed=time.monotonic()-started\nif not receipt['all10_tests_completed'] or controller_stop_requests or final_bytes>CAP or final_elapsed>=60:\n print('Final whole-time/inclusive-byte/stop/completion refusal; prefinal receipt is not acceptance.',file=sys.stderr,flush=True)\n raise SystemExit(2)\nraise SystemExit(0)",
+      "count": 1
+    },
+    {
+      "label": "docstring",
+      "before": "HELD ONE10-test saved-measurement parser synthetic owner",
+      "after": "HELD ONE10-test row-first sampler mock owner",
+      "count": 1
+    }
+  ],
+  "fixture": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-row-first-mock-guards-prep-001/test_row_first_mock_guards.py",
+    "sha256": "c4c6d0087052cc33f914378540c0f7e3b1f3385e89a4fe34810d32951ac1eb0c",
+    "bytes": 15197
+  },
+  "author_lineage": "defect_gate_refresh authored both donor parser11 control adaptation and this owner/mock fixture; LPBF authored the target3-literal correction; Head authored original guard-owner lineage and independently reviews targetsource. No independent exact-child or execution acceptance supplied.",
+  "preparation": "Source/AST/metadata only; no fixture/provider/source compile/import/execution or runtime refresh."
+}

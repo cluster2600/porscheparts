@@ -1,0 +1,238 @@
+{
+  "schema": "962-current127-apex1613031-extractor-source-delta/v1",
+  "source": {
+    "path": "work/962-engineering/direct-sicn-apex1613031-cavity-extract-prep-001/extract_shell.py",
+    "sha256": "a223996f23975912bdfb03590af5550fe2f92fbaf6a1b1b58fb488f2508cffbe",
+    "bytes": 20298
+  },
+  "guard": {
+    "path": "work/962-engineering/direct-sicn-apex1613031-cavity-extract-prep-001/selfcheck.py",
+    "sha256": "eb7c84ff43e20dedf7f3bffd96ec48765cefcf97f6563086db749367e3790246",
+    "bytes": 8753
+  },
+  "donor_source": {
+    "path": "work/962-engineering/direct-sicn-apex1613790-cavity-extract-prep-001/extract_shell.py",
+    "sha256": "0c0b968a369cf06cf54250fb7cf39f53ab4a55407efa21d04a78596a6c5fa054",
+    "bytes": 19281
+  },
+  "donor_guard": {
+    "path": "work/962-engineering/direct-sicn-apex1613790-cavity-extract-prep-001/selfcheck.py",
+    "sha256": "21e338aa44a10ce6aa9a81fc208a07b12dc349147ce17ca5f66295f44c0d91e8",
+    "bytes": 7331
+  },
+  "donor_METHOD": {
+    "path": "work/962-engineering/direct-sicn-apex1613790-cavity-extract-prep-001/METHOD.md",
+    "sha256": "296fb57782ed62ffa62b49444a78adcd6ddcbe1e57929f7adfdc8d5a379dc06e",
+    "bytes": 3501
+  },
+  "source_groups": [
+    {
+      "group": 1,
+      "label": "fixed caller case label",
+      "old": "\"\"\"HELD saved-JSON extraction of current129 apex1613790 star; no native or meshing calls.\"\"\"",
+      "new": "\"\"\"HELD saved-JSON extraction of current127 apex1613031 star; no native or meshing calls.\"\"\""
+    },
+    {
+      "group": 2,
+      "label": "current127 paths/pins; drop two unused129 comparison roles and add current stopped-peer bindings",
+      "old": "OUTPUT = 'work/962-engineering/direct-sicn-apex1613790-cavity-study-001'\nAPEX = 1613790\nFACES = ((0,2,1),(0,1,3),(1,2,3),(2,0,3))\nCENSUS = 'work/962-engineering/head-star-current129-full-stars-001/readback-report.json'\nPRIOR = 'work/962-engineering/head-star-current129-full-stars-001/frozen-contract.json'\nPARTIAL = 'work/962-engineering/head-star-current204-combined-application-001/readback-report.json'\nRECEIPT = 'work/962-engineering/head-star-current204-combined-application-001/execution-receipt.json'\nCLOSED = 'work/962-engineering/head-star-current204-combined-application-root-execution-001/closed-result.json'\nPEER = 'work/962-engineering/head-star-current129-full-stars-result-peer-001/review.json'\nCENSUS_ROOT = 'work/962-engineering/head-star-current129-full-stars-root-execution-001/closed-result.json'\nCENSUS_ACCEPT = 'work/962-engineering/head-star-current129-full-stars-root-execution-001/result-peer-acceptance.json'\nLAUNCH_DEVIATION = 'work/962-engineering/head-star-current129-full-stars-root-execution-001/launch-deviation-001.json'\nCOMPARISON = 'work/962-engineering/head-star-current129-saved-comparison-001/comparison.json'\nCOMPARISON_ROOT = 'work/962-engineering/head-star-current129-saved-comparison-root-review-001/review.json'\nCENSUS_ACTUAL = 'work/962-engineering/head-star-current129-full-stars-execution-prep-001/actual-contract-001.json'\nPROOF_SOURCE = 'work/962-engineering/head-star-current129-full-stars-prep-001/reader.py'\nEXACT_SOURCE = 'work/962-engineering/fixed-shell-coupled-embedding-prep-001/check_embedding.py'\nINCIDENCE_SOURCE = 'work/962-engineering/domain-equivalence-prep-001/certify_domain.py'\nFACE_SOURCE = 'twins/962-cylinder-head-f0/source/certify_fixed_face.py'\nPINS = {\n CENSUS:'a030a89ed377459bb7783c3da0dedec9b320dcb1935bec8a4e4d9a00ab49835b',\n PRIOR:'ec888011591b8eda74ae83a4a3e796d1ab6d2cf555d99fba1fbbc2c003fb215f',\n PARTIAL:'6ae60abe5266f1c932780b948961285ed6ef9b7944cf894be4ead4482c007a87',\n RECEIPT:'911f4926f6dff9ec3b900ad8414f92a44adb7e5333e60ed6371bb413f46b18a1',\n CLOSED:'36f4cfbde50c83680fd617dcc7536ddaba3c7d57ccb8cbf3b4263629df9f7684',\n PEER:'312347305a02687824d62150fe61c5db6d08110bd13d559cadf83204dd60b620',\n CENSUS_ROOT:'c08f9cfd9615095bbbbdc0547ee28ae797a75861000f87676db175e1804d1619',\n CENSUS_ACCEPT:'88fb86b6973eec793069fc5f5d6a624e785c2af9c2aca8f05b13c557c02da540',\n LAUNCH_DEVIATION:'d60fff297c6c45dc92e117262e36ffde36e2169d53fcd32ce2b79fabde5eebc3',\n COMPARISON:'cb1050d74125dfe171043b7665c07f20fb7515727205d8b08dbecacb626fbf4b',\n COMPARISON_ROOT:'538deb12aea414a5cec6a46e55d806838267565a799a078185656e4fd7d59e14',\n CENSUS_ACTUAL:'ec888011591b8eda74ae83a4a3e796d1ab6d2cf555d99fba1fbbc2c003fb215f',\n PROOF_SOURCE:'186f3a52ac2f227afc56dfc7ec1cf9ab7a85e0303c04a2ad7dea32b74aa6d108',\n EXACT_SOURCE:'1b489cc8149f4b5db8f90c594e32fe4c09b5db00151df6b1cfc88362d1018134',\n INCIDENCE_SOURCE:'0fe593d385e5a0ab4944528fa1b869ddf2c41c28d050576afe9be18213462296',\n FACE_SOURCE:'9b13f4dc7f2eca7da04e1587eb1f59a379a0d0c2101026f9b1d999ae09aaebb8',\n}\n",
+      "new": "OUTPUT = 'work/962-engineering/direct-sicn-apex1613031-cavity-study-001'\nAPEX = 1613031\nFACES = ((0,2,1),(0,1,3),(1,2,3),(2,0,3))\nCENSUS = 'work/962-engineering/head-star-current127-full-stars-002/readback-report.json'\nPRIOR = 'work/962-engineering/head-star-current127-full-stars-002/frozen-contract.json'\nPARTIAL = 'work/962-engineering/apex1613790-head-application-001/readback-report.json'\nRECEIPT = 'work/962-engineering/apex1613790-head-application-001/execution-receipt.json'\nCLOSED = 'work/962-engineering/apex1613790-head-application-root-execution-001/closed-result.json'\nPEER = 'work/962-engineering/head-star-current127-full-stars-result-peer-001/review.json'\nPEER_BINDINGS = 'work/962-engineering/head-star-current127-full-stars-result-peer-001/bindings.json'\nCENSUS_ROOT = 'work/962-engineering/head-star-current127-full-stars-root-execution-001/closed-result.json'\nCENSUS_ACCEPT = 'work/962-engineering/head-star-current127-full-stars-root-execution-001/result-peer-acceptance.json'\nLAUNCH_DEVIATION = 'work/962-engineering/head-star-current129-full-stars-root-execution-001/launch-deviation-001.json'\nCENSUS_ACTUAL = 'work/962-engineering/head-star-current127-full-stars-execution-prep-002/actual-contract.json'\nPROOF_SOURCE = 'work/962-engineering/head-star-current127-full-stars-prep-001/reader.py'\nEXACT_SOURCE = 'work/962-engineering/fixed-shell-coupled-embedding-prep-001/check_embedding.py'\nINCIDENCE_SOURCE = 'work/962-engineering/domain-equivalence-prep-001/certify_domain.py'\nFACE_SOURCE = 'twins/962-cylinder-head-f0/source/certify_fixed_face.py'\nPINS = {\n CENSUS:'34e3e29a23cedeb155485156cb40b4e92b6d0017eefd852f30383927eaaa7ef7',\n PRIOR:'54ad12959a10bb153afec2f2541bec2d22ec3f6e22ee0302c581062265c8fc95',\n PARTIAL:'bb1266ede7b8fd41f282a04c2363ba0eb684a94b6272956895bb7a30a09ffad0',\n RECEIPT:'28bb0647a28de19e2413c0066468946ac5eee77e4b2e24a8b5f570ca184150fa',\n CLOSED:'e6951a0c920f88dda87efce797c111b1da83bb81f33cc2cd2c8acb900867504f',\n PEER:'e3f53c5b7280138296e4ffd8399149a61b9ecaf3bf796e4f780c74806a20b68b',\n PEER_BINDINGS:'968353193fa36fb96ec9dc85b4268ad3d37f011b19acff745c0a250dcf4fc2ac',\n CENSUS_ROOT:'34529d377e1e8aa9a858214aec6ed6e568cbee3c1bde39f504d06dfac604ee9c',\n CENSUS_ACCEPT:'bac2ff58db7e1f33556e8460e23d35cdd0cb7089c64afa6921ac7640b1bf0444',\n LAUNCH_DEVIATION:'d60fff297c6c45dc92e117262e36ffde36e2169d53fcd32ce2b79fabde5eebc3',\n CENSUS_ACTUAL:'54ad12959a10bb153afec2f2541bec2d22ec3f6e22ee0302c581062265c8fc95',\n PROOF_SOURCE:'11ad364b54b6b8f264f1727027659351ab38c9144b4c98c64e5265203fcb8a63',\n EXACT_SOURCE:'1b489cc8149f4b5db8f90c594e32fe4c09b5db00151df6b1cfc88362d1018134',\n INCIDENCE_SOURCE:'0fe593d385e5a0ab4944528fa1b869ddf2c41c28d050576afe9be18213462296',\n FACE_SOURCE:'9b13f4dc7f2eca7da04e1587eb1f59a379a0d0c2101026f9b1d999ae09aaebb8',\n}\n"
+    },
+    {
+      "group": 3,
+      "label": "external actual schema",
+      "old": "c.get('schema')!='962-apex1613790-cavity-extraction-actual/v1'",
+      "new": "c.get('schema')!='962-apex1613031-cavity-extraction-actual/v1'"
+    },
+    {
+      "group": 4,
+      "label": "external fixed method",
+      "old": "c.get('method')!='current129_apex1613790_complete28_star_exact_shell_and_necessary_face_screen'",
+      "new": "c.get('method')!='current127_apex1613031_complete14_star_exact_shell_and_necessary_face_screen'"
+    },
+    {
+      "group": 5,
+      "label": "current stopped peer/root schemas and127 proof; d60 remains historical129",
+      "old": " census,prior,partial,receipt,closed,peer,census_root,accepted,deviation=[data[k] for k in\n  [CENSUS,PRIOR,PARTIAL,RECEIPT,CLOSED,PEER,CENSUS_ROOT,CENSUS_ACCEPT,LAUNCH_DEVIATION]]\n proof=h.partial_after_proof(partial,receipt,closed,prior);h.require_after_match(census,proof,129)\n peer_records={r['path']:r['sha256'] for r in peer['key_records']}\n if (census.get('status')!='direct_saved_file_readback_completed' or census.get('bound_inputs_unchanged') is not True\n     or {k:census[k] for k in proof['array_sha256s']}!=proof['array_sha256s']\n     or census['direct_fresh_classifications']!=proof['classifications']\n     or peer.get('decision')!='CLEAR_COMPLETED_SAVED_CENSUS_ASSOCIATIONS_WITH_DISCLOSED_CONTROLLER_COMMAND_DEVIATION'\n     or peer.get('declared_controller_command_conformant') is not False or peer_records.get(CENSUS)!=PINS[CENSUS]\n     or peer_records.get(CENSUS_ACTUAL)!=PINS[PRIOR]\n     or census_root.get('controller_returncode')!=0 or census_root.get('root_stop_reason') is not None\n     or census_root.get('controller_wait_reaped') is not True or census_root.get('all70_input_actual_runtime_python_unchanged') is not True\n     or census_root.get('actual_sha256')!=PINS[PRIOR] or census_root['output_files']['readback-report.json']['sha256']!=PINS[CENSUS]\n     or accepted.get('peer_sha256')!=PINS[PEER] or accepted.get('root_closed_sha256')!=PINS[CENSUS_ROOT]\n     or accepted.get('launch_deviation_sha256')!=PINS[LAUNCH_DEVIATION] or accepted.get('declared_controller_command_conformant') is not False\n     or deviation.get('actual_sha256')!=PINS[PRIOR] or deviation.get('declared_controller_command_conformant') is not False):\n  raise ValueError('Current129 stopped census/combined proof and explicit command-deviation associations required')\n",
+      "new": " census,prior,partial,receipt,closed,peer,peer_bindings,census_root,accepted,deviation=[data[k] for k in\n  [CENSUS,PRIOR,PARTIAL,RECEIPT,CLOSED,PEER,PEER_BINDINGS,CENSUS_ROOT,CENSUS_ACCEPT,LAUNCH_DEVIATION]]\n proof=h.partial_after_proof(partial,receipt,closed,prior);h.require_after_match(census,proof,127)\n if (census.get('status')!='direct_saved_file_readback_completed' or census.get('bound_inputs_unchanged') is not True\n     or {k:census[k] for k in proof['array_sha256s']}!=proof['array_sha256s']\n     or census['direct_fresh_classifications']!=proof['classifications']\n     or census.get('declared_controller_command_conformant') is not False\n     or census.get('upstream_census_launch_deviation_sha256')!=PINS[LAUNCH_DEVIATION]\n     or peer.get('decision')!='CLEAR_COMPLETED_READ_ONLY_CENSUS_SAVED_ASSOCIATIONS_ONLY'\n     or peer.get('bindings',{}).get('sha256')!=PINS[PEER_BINDINGS]\n     or peer.get('checked',{}).get('d60_false_conformance_preserved') is not True\n     or peer_bindings.get('outputs',{}).get('readback-report.json',{}).get('sha256')!=PINS[CENSUS]\n     or peer_bindings.get('selected_control_records',{}).get('actual',{}).get('sha256')!=PINS[CENSUS_ACTUAL]\n     or PINS[PRIOR]!=PINS[CENSUS_ACTUAL]\n     or census_root.get('schema')!='962-current127-head-census-root-closed/v1'\n     or census_root.get('returncode')!=0 or census_root.get('stop_reason') is not None\n     or census_root.get('waited_and_reaped') is not True or census_root.get('owned_controller_group_observed_absent') is not True\n     or census_root.get('all79inputs_runtime4_and_rootPython_before_after_exact') is not True\n     or census_root.get('actual',{}).get('sha256')!=PINS[PRIOR]\n     or census_root['output_files']['readback-report.json']['sha256']!=PINS[CENSUS]\n     or accepted.get('decision')!='ACCEPT_COMPLETED_READ_ONLY_CENSUS_SAVED_ASSOCIATIONS_ONLY'\n     or accepted.get('peer',{}).get('sha256')!=PINS[PEER]\n     or accepted.get('bindings',{}).get('sha256')!=PINS[PEER_BINDINGS]\n     or accepted.get('root_closed',{}).get('sha256')!=PINS[CENSUS_ROOT]\n     or accepted.get('report',{}).get('sha256')!=PINS[CENSUS]\n     or accepted.get('upstream_d60_command_conformance') is not False\n     or deviation.get('actual_sha256')!='ec888011591b8eda74ae83a4a3e796d1ab6d2cf555d99fba1fbbc2c003fb215f'\n     or deviation.get('declared_controller_command_conformant') is not False):\n  raise ValueError('Current127 stopped census/partial proof/corrected002 and historical d60 associations required')\n"
+    },
+    {
+      "group": 6,
+      "label": "complete current union/seed assertions",
+      "old": "if (len(all_rows)!=3165 or star['movable_count']!=102 or APEX not in star['movable_node_tags']",
+      "new": "if (len(all_rows)!=3137 or star['movable_count']!=101 or APEX not in star['movable_node_tags']"
+    },
+    {
+      "group": 7,
+      "label": "anticipated fourteen-cell complete star",
+      "old": "dict(star['per_movable_node_complete_incident_counts']).get(APEX)!=28",
+      "new": "dict(star['per_movable_node_complete_incident_counts']).get(APEX)!=14"
+    },
+    {
+      "group": 8,
+      "label": "star universe refusal label",
+      "old": "Complete current129 28-cell star attestation required",
+      "new": "Complete current127 14-cell star attestation required"
+    },
+    {
+      "group": 9,
+      "label": "selected14/one poor/native index bound from exact proof",
+      "old": "if (len(selected)!=28 or [r['tetrahedron_tag'] for r in selected]!=sorted({r['tetrahedron_tag'] for r in selected})\n     or len({r['native_array_index'] for r in selected})!=28 or sum(r['initially_positive_poor'] for r in selected)!=2\n     or any(APEX not in r['movable_node_tags'] or type(r['native_array_index']) is not int or not 0<=r['native_array_index']<3621755",
+      "new": "if (len(selected)!=14 or [r['tetrahedron_tag'] for r in selected]!=sorted({r['tetrahedron_tag'] for r in selected})\n     or len({r['native_array_index'] for r in selected})!=14 or sum(r['initially_positive_poor'] for r in selected)!=1\n     or any(APEX not in r['movable_node_tags'] or type(r['native_array_index']) is not int or not 0<=r['native_array_index']<proof['tetrahedra']"
+    },
+    {
+      "group": 10,
+      "label": "selected row refusal label",
+      "old": "All28 unique current native-ordered cells and exact2 poor rows required; shared movable labels retained",
+      "new": "All14 unique current native-ordered cells and exact1 poor row required; shared movable labels retained"
+    },
+    {
+      "group": 11,
+      "label": "all ten current source nodes asserted",
+      "old": "if set(nodes)!=needed or nodes[APEX]['source_boundary_tag'] is not False:raise ValueError('All current source nodes including dim3 apex required')",
+      "new": "if len(needed)!=10 or set(nodes)!=needed or nodes[APEX]['source_boundary_tag'] is not False:raise ValueError('All10 current source nodes including dim3 apex required')"
+    },
+    {
+      "group": 12,
+      "label": "observation case schema",
+      "old": "schema='962-current129-apex1613790-star-saved-observation/v1'",
+      "new": "schema='962-current127-apex1613031-star-saved-observation/v1'"
+    },
+    {
+      "group": 13,
+      "label": "current8b167 parent identity",
+      "old": "original_parent_MSH_sha256='b512a6ce68f48b95908cfe9c1c75a94c8b7c31a8929ea40254a1f9695a52f0b5'",
+      "new": "original_parent_MSH_sha256='8b16732d63cc69e48af113f6b618cc6378aaf121dbe1c63920dd6dd5eab8d07a'"
+    },
+    {
+      "group": 14,
+      "label": "current saved completeness attribution",
+      "old": "Accepted observed current129 census only; all28 retained rows selected here. Upstream declared controller command conformant=False; no fresh full-MSH incidence query.",
+      "new": "Accepted observed current127 census only; all14 retained rows selected here. Historical upstream d60 declared controller command conformant=False; no fresh full-MSH incidence query."
+    },
+    {
+      "group": 15,
+      "label": "current peer bindings loaded by main",
+      "old": " h=load_helpers();data={k:json.loads((ROOT/k).read_text()) for k in [CENSUS,PRIOR,PARTIAL,RECEIPT,CLOSED,PEER,CENSUS_ROOT,CENSUS_ACCEPT,LAUNCH_DEVIATION]}",
+      "new": " h=load_helpers();data={k:json.loads((ROOT/k).read_text()) for k in [CENSUS,PRIOR,PARTIAL,RECEIPT,CLOSED,PEER,PEER_BINDINGS,CENSUS_ROOT,CENSUS_ACCEPT,LAUNCH_DEVIATION]}"
+    },
+    {
+      "group": 16,
+      "label": "anticipated9/14 shell5+4 classes asserted only after exact construction",
+      "old": " try:observation,shell,screen=build_records(h,selected,nodes)\n except Exception as error:",
+      "new": " try:\n  observation,shell,screen=build_records(h,selected,nodes)\n  if (len(observation['native_ordered_cell_rows'])!=14 or len(observation['selected_node_rows'])!=10\n      or shell['vertices']!=9 or shell['oriented_triangles']!=14\n      or len(shell['original_source_classifications']['boundary_global_node_tags'])!=5\n      or len(shell['original_source_classifications']['other_interior_global_node_tags'])!=4):\n   raise ValueError('Anticipated current14/10 source and9/14 shell with5boundary+4dim3 classes required')\n except Exception as error:"
+    },
+    {
+      "group": 17,
+      "label": "receipt case schema",
+      "old": "schema='962-apex1613790-current129-saved-star-shell-extraction-receipt/v1'",
+      "new": "schema='962-apex1613031-current127-saved-star-shell-extraction-receipt/v1'"
+    }
+  ],
+  "guard_groups": [
+    {
+      "group": 1,
+      "label": "source SHA only",
+      "old": "SOURCE_SHA='0c0b968a369cf06cf54250fb7cf39f53ab4a55407efa21d04a78596a6c5fa054'",
+      "new": "SOURCE_SHA='a223996f23975912bdfb03590af5550fe2f92fbaf6a1b1b58fb488f2508cffbe'"
+    },
+    {
+      "group": 2,
+      "label": "stdlib module case label",
+      "old": "'held_current129_28_extractor'",
+      "new": "'held_current127_14_extractor'"
+    },
+    {
+      "group": 3,
+      "label": "current127 real-schema14/10 fake selection and precise binding/cardinality/word/index refusals",
+      "old": " # Current129 binding guard uses the real nine-record schema, with mocked prior proof only.\n # The four earlier geometry guards above remain exact; this checks caller refusal/selection.\n from copy import deepcopy\n from types import SimpleNamespace\n cells,nodes=fixture()\n selected=[dict(tetrahedron_tag=100+i,native_array_index=i,node_tags=[m.APEX,10,20,30],\n  initial_native_SICN=.05 if i<2 else .2,initially_positive_poor=i<2,movable_node_tags=[m.APEX,2000000]) for i in range(28)]\n filler=[dict(tetrahedron_tag=1000+i,native_array_index=100+i,node_tags=[40,50,60,70],\n  initial_native_SICN=.2,initially_positive_poor=False,movable_node_tags=[2000000]) for i in range(3165-28)]\n arrays={k:k+'-value' for k in ['sorted_node_tags_sha256','sorted_coordinates_sha256','sorted_tetra_tags_sha256','tagged_tetra_connectivity_sha256']}\n proof=dict(array_sha256s=arrays,classifications={'current':True})\n fake=SimpleNamespace(partial_after_proof=lambda *args:proof,require_after_match=lambda *args:None)\n data={k:{} for k in [m.CENSUS,m.PRIOR,m.PARTIAL,m.RECEIPT,m.CLOSED,m.PEER,m.CENSUS_ROOT,m.CENSUS_ACCEPT,m.LAUNCH_DEVIATION]}\n data[m.CENSUS]=dict(arrays,status='direct_saved_file_readback_completed',bound_inputs_unchanged=True,\n  direct_fresh_classifications=proof['classifications'],complete_seed_star_census=dict(complete_incident_tetrahedra=selected+filler,\n   movable_count=102,movable_node_tags=[m.APEX]+list(range(2000000,2000101)),all_seed_stars_complete_including_initially_good_and_shared_cells=True,\n   per_movable_node_complete_incident_counts=[[m.APEX,28]],unique_incident_nodes=list(nodes.values())))\n data[m.PEER]=dict(decision='CLEAR_COMPLETED_SAVED_CENSUS_ASSOCIATIONS_WITH_DISCLOSED_CONTROLLER_COMMAND_DEVIATION',\n  declared_controller_command_conformant=False,key_records=[dict(path=m.CENSUS,sha256=m.PINS[m.CENSUS]),dict(path=m.CENSUS_ACTUAL,sha256=m.PINS[m.PRIOR])])\n data[m.CENSUS_ROOT]=dict(controller_returncode=0,root_stop_reason=None,controller_wait_reaped=True,all70_input_actual_runtime_python_unchanged=True,\n  actual_sha256=m.PINS[m.PRIOR],output_files={'readback-report.json':{'sha256':m.PINS[m.CENSUS]}})\n data[m.CENSUS_ACCEPT]=dict(peer_sha256=m.PINS[m.PEER],root_closed_sha256=m.PINS[m.CENSUS_ROOT],launch_deviation_sha256=m.PINS[m.LAUNCH_DEVIATION],declared_controller_command_conformant=False)\n data[m.LAUNCH_DEVIATION]=dict(actual_sha256=m.PINS[m.PRIOR],declared_controller_command_conformant=False)\n got,gotnodes=m.select_original(fake,data)\n assert got==selected and set(gotnodes)=={m.APEX,10,20,30} and len(got)==28 and sum(r['initially_positive_poor'] for r in got)==2\n bad=deepcopy(data);bad[m.CENSUS_ACCEPT]['declared_controller_command_conformant']=True\n refused(lambda:m.select_original(fake,bad))\n bad=deepcopy(data);bad[m.PEER]['key_records'][1]['sha256']='old-census-actual'\n refused(lambda:m.select_original(fake,bad))\n bad=deepcopy(data);bad[m.CENSUS]['complete_seed_star_census']['complete_incident_tetrahedra'][0]['node_tags']=[40,50,60,70]\n refused(lambda:m.select_original(fake,bad))\n bad=deepcopy(data);bad[m.CENSUS]['complete_seed_star_census']['complete_incident_tetrahedra'][2]['initially_positive_poor']=True\n refused(lambda:m.select_original(fake,bad))\n bad=deepcopy(data);bad[m.CENSUS]['complete_seed_star_census']['unique_incident_nodes'][0]['binary64_hex'][1]='0x0.0p+0'\n refused(lambda:m.select_original(fake,bad))\n",
+      "new": " # Current127 binding guard uses the real ten-record schema, with mocked prior proof only.\n # The four earlier geometry guards above remain exact; this checks caller refusal/selection.\n from copy import deepcopy\n from types import SimpleNamespace\n cells,nodes=fixture()\n for i,tag in enumerate([40,50,1000001,1000002,1000003],1):\n  point=[i/8.,i/16.,.5]\n  nodes[tag]=dict(node_tag=tag,coordinates_mm=point,binary64_hex=[x.hex() for x in point],source_boundary_tag=tag<=871731,\n   freshly_proved_classification_scope='below_dim3' if tag<=871731 else 'dim3',in_movable_seed_set=tag==1000000)\n corners=[10,20,30,1000000,40,50,1000001,1000002,1000003]\n selected=[]\n for i in range(14):\n  row=[m.APEX]+[corners[(i+j)%9] for j in range(3)]\n  selected.append(dict(tetrahedron_tag=100+i,native_array_index=i,node_tags=row,initial_native_SICN=.05 if i==0 else .2,\n   initially_positive_poor=i==0,movable_node_tags=[m.APEX]+([1000000] if 1000000 in row else [])))\n filler=[dict(tetrahedron_tag=1000+i,native_array_index=100+i,node_tags=[40,50,60,70],\n  initial_native_SICN=.2,initially_positive_poor=False,movable_node_tags=[2000000]) for i in range(3137-14)]\n arrays={k:k+'-value' for k in ['sorted_node_tags_sha256','sorted_coordinates_sha256','sorted_tetra_tags_sha256','tagged_tetra_connectivity_sha256']}\n proof=dict(array_sha256s=arrays,classifications={'current':True},tetrahedra=3621771)\n fake=SimpleNamespace(partial_after_proof=lambda *args:proof,require_after_match=lambda *args:None)\n data={k:{} for k in [m.CENSUS,m.PRIOR,m.PARTIAL,m.RECEIPT,m.CLOSED,m.PEER,m.PEER_BINDINGS,m.CENSUS_ROOT,m.CENSUS_ACCEPT,m.LAUNCH_DEVIATION]}\n data[m.CENSUS]=dict(arrays,status='direct_saved_file_readback_completed',bound_inputs_unchanged=True,\n  direct_fresh_classifications=proof['classifications'],declared_controller_command_conformant=False,upstream_census_launch_deviation_sha256=m.PINS[m.LAUNCH_DEVIATION],\n  complete_seed_star_census=dict(complete_incident_tetrahedra=selected+filler,\n   movable_count=101,movable_node_tags=sorted([m.APEX,1000000]+list(range(2000000,2000099))),all_seed_stars_complete_including_initially_good_and_shared_cells=True,\n   per_movable_node_complete_incident_counts=[[m.APEX,14]],unique_incident_nodes=list(nodes.values())))\n data[m.PEER]=dict(decision='CLEAR_COMPLETED_READ_ONLY_CENSUS_SAVED_ASSOCIATIONS_ONLY',bindings={'sha256':m.PINS[m.PEER_BINDINGS]},checked={'d60_false_conformance_preserved':True})\n data[m.PEER_BINDINGS]=dict(outputs={'readback-report.json':{'sha256':m.PINS[m.CENSUS]}},selected_control_records={'actual':{'sha256':m.PINS[m.CENSUS_ACTUAL]}})\n data[m.CENSUS_ROOT]=dict(schema='962-current127-head-census-root-closed/v1',returncode=0,stop_reason=None,waited_and_reaped=True,\n  owned_controller_group_observed_absent=True,all79inputs_runtime4_and_rootPython_before_after_exact=True,\n  actual={'sha256':m.PINS[m.PRIOR]},output_files={'readback-report.json':{'sha256':m.PINS[m.CENSUS]}})\n data[m.CENSUS_ACCEPT]=dict(decision='ACCEPT_COMPLETED_READ_ONLY_CENSUS_SAVED_ASSOCIATIONS_ONLY',peer={'sha256':m.PINS[m.PEER]},\n  bindings={'sha256':m.PINS[m.PEER_BINDINGS]},root_closed={'sha256':m.PINS[m.CENSUS_ROOT]},report={'sha256':m.PINS[m.CENSUS]},upstream_d60_command_conformance=False)\n data[m.LAUNCH_DEVIATION]=dict(actual_sha256='ec888011591b8eda74ae83a4a3e796d1ab6d2cf555d99fba1fbbc2c003fb215f',declared_controller_command_conformant=False)\n got,gotnodes=m.select_original(fake,data)\n assert got==selected and len(gotnodes)==10 and len(got)==14 and sum(r['initially_positive_poor'] for r in got)==1\n assert sum(r['source_boundary_tag'] for t,r in gotnodes.items() if t!=m.APEX)==5\n assert any(len(r['movable_node_tags'])>1 for r in got)\n bad=deepcopy(data);bad[m.CENSUS_ACCEPT]['upstream_d60_command_conformance']=True\n refused(lambda:m.select_original(fake,bad))\n bad=deepcopy(data);bad[m.PEER_BINDINGS]['selected_control_records']['actual']['sha256']='refused001-or-old-census-actual'\n refused(lambda:m.select_original(fake,bad))\n bad=deepcopy(data);bad[m.CENSUS]['complete_seed_star_census']['complete_incident_tetrahedra'][0]['node_tags']=[40,50,60,70]\n refused(lambda:m.select_original(fake,bad))\n bad=deepcopy(data);bad[m.CENSUS]['complete_seed_star_census']['complete_incident_tetrahedra'][2]['initially_positive_poor']=True\n refused(lambda:m.select_original(fake,bad))\n bad=deepcopy(data);bad[m.CENSUS]['complete_seed_star_census']['unique_incident_nodes'][0]['binary64_hex'][1]='0x0.0p+0'\n refused(lambda:m.select_original(fake,bad))\n bad=deepcopy(data);bad[m.CENSUS]['complete_seed_star_census']['unique_incident_nodes'].pop()\n refused(lambda:m.select_original(fake,bad))\n bad=deepcopy(data);bad[m.CENSUS]['complete_seed_star_census']['complete_incident_tetrahedra'][0]['native_array_index']=3621771\n refused(lambda:m.select_original(fake,bad))\n"
+    }
+  ],
+  "source_reverse_to_donor_exact": true,
+  "guard_reverse_to_donor_exact": true,
+  "unchanged_complete_extractor_functions": [
+    "sha",
+    "load_helpers",
+    "verify_pins",
+    "shell_faces",
+    "shell_topology"
+  ],
+  "unchanged_extractor_AST_sha256s": {
+    "sha": "ffe880be810faf403257f80df6fbb7783c81e8c8f9ad8bf39407ac4a986a5658",
+    "load_helpers": "5cab2833a21aa935b8c29b09247f4a087596cf1f53d5c843d86807f45cbf4c7a",
+    "verify_pins": "331120fcdbd1503281938118f0a064c59fad0403b01d21f518e25d91d32ad152",
+    "shell_faces": "68eb43f409509bde6e73f31a84258d44810840f39b9b8e1f55a982941a20e4b2",
+    "shell_topology": "af750852a4f89ee123e56705c42b118cf88fd3cabc9ac5834f9f78a7931b389e"
+  },
+  "first_four_geometry_guard_groups_source_exact": true,
+  "selected_helper_groups": {
+    "work/962-engineering/fixed-shell-coupled-embedding-prep-001/check_embedding.py": {
+      "body": {
+        "path": "work/962-engineering/fixed-shell-coupled-embedding-prep-001/check_embedding.py",
+        "sha256": "1b489cc8149f4b5db8f90c594e32fe4c09b5db00151df6b1cfc88362d1018134",
+        "bytes": 10914
+      },
+      "selected_function_AST_sha256s": {
+        "rational": "e8d260a3097116e4bc5b957e357009ba38052d127e7faee4ea2cc582c1c218d1",
+        "subtract": "d4b0b100f5489132addba1a08feb014e192f6bc908c985ad77a12541c8bd5d25",
+        "dot": "aabddd46d96d402e5538a8ced2142ee9a1fef6bafbbff76443c369dd55c8d698",
+        "cross": "b807cea7d2b2cad4de09fae0dc1ff10ce95d5067d293c984aa6fda5c22f662a4",
+        "exact_quality": "0ce39e1ddda13fbaf97a6220d64e3d43eb3e12343b91f50e0727015de637cbf8"
+      }
+    },
+    "work/962-engineering/domain-equivalence-prep-001/certify_domain.py": {
+      "body": {
+        "path": "work/962-engineering/domain-equivalence-prep-001/certify_domain.py",
+        "sha256": "0fe593d385e5a0ab4944528fa1b869ddf2c41c28d050576afe9be18213462296",
+        "bytes": 11876
+      },
+      "selected_function_AST_sha256s": {
+        "cycle": "0fc6e87b07a2821a22509fb7715083f0425d724b4fff1a36f2f1aab14bd4e3ea",
+        "complex_rows": "9dae8a471f0c12847a07f77c427bda3cbe97eb02167bc9ed73bb57d77a4c3626"
+      }
+    },
+    "twins/962-cylinder-head-f0/source/certify_fixed_face.py": {
+      "body": {
+        "path": "twins/962-cylinder-head-f0/source/certify_fixed_face.py",
+        "sha256": "9b13f4dc7f2eca7da04e1587eb1f59a379a0d0c2101026f9b1d999ae09aaebb8",
+        "bytes": 4944
+      },
+      "selected_function_AST_sha256s": {
+        "certificate": "8f9eceb82233a169405da182563fab5a974ec4c802dab3adfc16f1c4954af3d0"
+      }
+    },
+    "work/962-engineering/head-star-current127-full-stars-prep-001/reader.py": {
+      "body": {
+        "path": "work/962-engineering/head-star-current127-full-stars-prep-001/reader.py",
+        "sha256": "11ad364b54b6b8f264f1727027659351ab38c9144b4c98c64e5265203fcb8a63",
+        "bytes": 28027
+      },
+      "selected_function_AST_sha256s": {
+        "partial_after_proof": "3106345416a844912989eefbaaaf6ceed6ad6cc1e4697eaa10dbf3eeebdcc8ff",
+        "require_after_match": "33dc5e680b6054085236c311946b4ccc767f161d1710cb03299b5603725f13ec"
+      }
+    }
+  },
+  "selected_helper_function_count": 10,
+  "AST_context": {
+    "interpreter": "CPython",
+    "version": "3.9.6",
+    "serialization": "ast.dump(include_attributes=False), UTF8 SHA256",
+    "cross_version_AST_digest_equivalence_claimed": false,
+    "root_should_compare_each_pair_on_its_selected_same_interpreter": true
+  },
+  "full_source_diff": {
+    "path": "work/962-engineering/direct-sicn-apex1613031-cavity-extract-prep-001/source.diff",
+    "sha256": "4e8dab81d77e7f6e343d12d017b991d5f71904e190e6c6e3189b716c4d8acf82",
+    "bytes": 17119
+  },
+  "full_guard_diff": {
+    "path": "work/962-engineering/direct-sicn-apex1613031-cavity-extract-prep-001/test-source.diff",
+    "sha256": "4ff2bd428bcfe67eb48867ea5faaa4ce215f14012e4254e8e7960613b905f191",
+    "bytes": 8145
+  },
+  "authoring_static_history": "An initial in-memory reverse-text assertion found that one unqualified replacement chunk matched both new list occurrences. No source/guard was written or executed by that attempt. The main-load chunk was qualified by its whole line; all17 current chunks now reverse exactly. No engineering or guard result exists from preparation.",
+  "source_helper_guard_query_or_native_execution": false,
+  "raw_MSH_BIN_runtime_bodies_read_or_hashed": false
+}

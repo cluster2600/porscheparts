@@ -64,10 +64,12 @@ that area times an **assumed** areal mass. There are no joints, inserts,
 adhesive, glass, doors or lids. It is an order of magnitude for comparing
 architectures, not a mass for this car.
 
-**Torsion.** On a shell model of the same members, K is about 47,300 N·m/deg
-in steel and 35,500 in the assumed CFRP layup (84 kg without tubs or rear
-rails). The two finer meshes agree within 2%. The open shell, on the same
-mesh, is not converged and is more than five times softer. Against the tube
+**Torsion.** On a shell model of the same members, in S6 shells, K is
+21,469 N·m/deg in steel and 19,900 in the assumed CFRP layup (84 kg
+without tubs or rear rails) on the finest mesh, still rising 8 to 10% on
+the last refinement: lower bounds. The open shell, on the same mesh, keeps
+softening and is more than forty times softer. (Until 2026-10-12 these
+read 47,300 and 35,500: S3 locks in bending.) Against the tube
 architecture of [`../picogk-rings/`](../picogk-rings/README.md), the
 ranking per kilogram depends on the tube-to-skin bond assumed: it is not
 settled. Values corrected on 2026-10-11:

@@ -1,0 +1,77 @@
+{
+  "schema": "962-toy-deadline-fixture-correction-held/v1",
+  "status": "SOURCE_ONLY_UNRUN_INDEPENDENT_REVIEW_AND_SEPARATE_CONTROLS_REQUIRED",
+  "fixture": {
+    "path": "work/962-engineering/head-star-current24-qfnra-toy-deadline-fixture-correction-prep-001/test_deadline_expectations.py",
+    "sha256": "ace4000e2f3ac770085fd9d2bd958e88089d68dc476f2aa9d395a6275ade8f8c",
+    "bytes": 9277
+  },
+  "helper": {
+    "path": "work/962-engineering/head-star-current24-qfnra-toy-deadline-fixture-correction-prep-001/check_toy_sessions.py",
+    "sha256": "76c13fe57d9598276b349e12dedd8bdfb1eff1ec3ad29d4c95a073abc8e6d49a",
+    "bytes": 21489
+  },
+  "expected_test_count": 4,
+  "TestCase": "ToyDeadlineExpectations",
+  "test_methods": [
+    "test_01_query_full_response_and_serialization_are_inside_original_until",
+    "test_02_normal_drain_retains_late_final_pump_or_wait_as_refusal",
+    "test_03_cleanup_TERM_and_KILL_late_return_errors_are_retained",
+    "test_04_final_checks_follow_complete_capture_or_wait_and_keep_original_until"
+  ],
+  "two_namespace_corrections_only": true,
+  "helper_and_all_four_tests_assertions_preserved": true,
+  "provenance": [
+    {
+      "path": "work/962-engineering/head-star-current24-qfnra-toy-transport-prep-002/test_deadline_expectations.py",
+      "sha256": "cd94a9dfabcbfb121363d2e11cadea294a8046762f2b5bdde64804053dc692aa",
+      "bytes": 9211
+    },
+    {
+      "path": "work/962-engineering/head-star-current24-qfnra-toy-transport-prep-002/check_toy_sessions.py",
+      "sha256": "76c13fe57d9598276b349e12dedd8bdfb1eff1ec3ad29d4c95a073abc8e6d49a",
+      "bytes": 21489
+    },
+    {
+      "path": "work/962-engineering/head-star-current24-qfnra-toy-transport-prep-002/index.json",
+      "sha256": "6b395b0ba5a14210349a747c18daebca9f4c2627afc0e260bd96c65d83762450",
+      "bytes": 2735
+    },
+    {
+      "path": "work/962-engineering/head-star-current24-qfnra-toy-deadline-guards-root-execution-001/receipt.json",
+      "sha256": "bf7d882c26be4004ac2adb73d15837a14e5e4fc791a1b0f11e6343cca77b1744",
+      "bytes": 51058
+    },
+    {
+      "path": "work/962-engineering/head-star-current24-qfnra-toy-deadline-guards-root-execution-001/tests.stderr",
+      "sha256": "c885c5dab341f2f43ce0bc62d466387924007f832b76563eeeddd3f5bdde0d6e",
+      "bytes": 10055
+    },
+    {
+      "path": "work/962-engineering/head-star-current24-qfnra-toy-deadline-correction-root-source-decision-001/decision.json",
+      "sha256": "35c7230e042aafa84d719cdf34df773046c632f37eb8da11403740487a3ee177",
+      "bytes": 1720
+    },
+    {
+      "path": "work/962-engineering/head-star-current24-qfnra-toy-deadline-correction-root-source-decision-002/decision.json",
+      "sha256": "a4ee263fe96d16094f840309477a4062812952927d32e03342e2afbd2f037c5e",
+      "bytes": 1558
+    }
+  ],
+  "future_source_peer": null,
+  "future_root_source_review": null,
+  "future_guard_controls": null,
+  "future_admission": null,
+  "future_guard_result": null,
+  "source_preparation_authorized_by": {
+    "path": "work/962-engineering/head-star-current24-qfnra-toy-deadline-correction-root-source-decision-002/decision.json",
+    "sha256": "a4ee263fe96d16094f840309477a4062812952927d32e03342e2afbd2f037c5e",
+    "bytes": 1558
+  },
+  "fixture_fragment_test_or_module_execution_authorized": false,
+  "full_transport_or_solver_runtime_authorized": false,
+  "real_head_native_or_scientific_execution_authorized": false,
+  "automatic_retry": false,
+  "physical_acceptance": false,
+  "PUB_Git_mutation": false
+}

@@ -1,0 +1,73 @@
+{
+  "schema": "962-current24-qfnra-toy-transport-source-reuse/v1",
+  "status": "NEW_COMPACT_HELPER_AND_FRAMING_EXPECTATIONS_UNRUN",
+  "production_helper": {
+    "path": "work/962-engineering/head-star-current24-qfnra-toy-transport-prep-001/check_toy_sessions.py",
+    "sha256": "2a64e7e7c601895d40aeab28d4652dfa3950795d5d16c9c7056d24071b853526",
+    "bytes": 21200
+  },
+  "framing_expectations": {
+    "path": "work/962-engineering/head-star-current24-qfnra-toy-transport-prep-001/test_framing_expectations.py",
+    "sha256": "d8ec76d34ac752774bd77255f58b0f72e0987629c769b011402d4813fe24a908",
+    "bytes": 3998
+  },
+  "protocol_reused_without_edit": {
+    "path": "work/962-engineering/head-star-current24-coupled-qfnra-prep-001/qfnra_protocol.py",
+    "sha256": "9b5885a35bfbc681c0354e937b9f57621b3d8137adc25b4e2ba455e86ce59785",
+    "bytes": 12459
+  },
+  "protocol_entrypoints": [
+    "parse_status",
+    "parse_sexpr",
+    "parse_projection",
+    "model_value",
+    "snapshot_id",
+    "parse_boolean",
+    "nearest_binary64"
+  ],
+  "producer_emitter_not_imported": true,
+  "emitter_literal_source": {
+    "path": "work/962-engineering/head-star-current24-coupled-qfnra-prep-001/qfnra_emitter.py",
+    "sha256": "5d76ef8218843ef92c83d64db3e5d9b0d8d1f6523d95aecdfa53b99dc569cd7b",
+    "bytes": 36312
+  },
+  "literal_prologue_and_check_AST_constant_equality": true,
+  "source_symbols": [
+    "ToyRefusal",
+    "need",
+    "encoded",
+    "load_protocol",
+    "fixed_toys",
+    "Frame",
+    "Capture",
+    "Session",
+    "one_model",
+    "run_fixed_toys"
+  ],
+  "source_imports": [
+    "import hashlib",
+    "import importlib.util",
+    "import json",
+    "import os",
+    "from pathlib import Path",
+    "import selectors",
+    "import subprocess",
+    "import sys",
+    "import time",
+    "import traceback"
+  ],
+  "production_Popen_call_count": 1,
+  "no_implicit_CLI_or_main_block": true,
+  "framing_fixture_methods": [
+    "test_01_raw_and_quoted_echo_forms_are_complete_and_retained",
+    "test_02_split_markers_and_multiline_body_do_not_lose_bytes",
+    "test_03_noise_duplicate_wrong_form_and_EOF_refuse",
+    "test_04_ceiling_refuses_without_replacing_partial_bytes",
+    "test_05_child_group_and_fixed_once_only_source_boundary"
+  ],
+  "fixture_future_execution_seam": "Only pinnedToyRefusal/need/Frame AST definitions in restricted namespace; no transport/module/process import.",
+  "source_read_AST_and_metadata_only": true,
+  "module_or_fragment_imported_compiled_or_executed": false,
+  "real23_intake_coordinate_coefficient_model_or_word_arithmetic_performed": false,
+  "affiliation": "lpbf_linear_refinement authored14 retained head-diagnostic kernels, method/source peers, row-first sampler and independent499word validator. This toy transport is new affiliated source requiring independent review."
+}

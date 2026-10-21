@@ -1,0 +1,39 @@
+{
+  "schema": "962-HEAD499-author-review-line-guidance-clarification/v1",
+  "review": {
+    "path": "work/962-engineering/head-star-current24-qfnra-head-adapter-author-review-001/review.json",
+    "sha256": "63522f1571a881d70aaf39c6156711d923dd803a4abbfe05fc3f32e6f1f386e9",
+    "bytes": 7423
+  },
+  "source": {
+    "path": "work/962-engineering/head-star-current24-qfnra-head-adapter-prep-001/adapter.py",
+    "sha256": "0c9eda66fc531431b590848d92dcfa48ac3e4cf7018a6a13f229881ebddca164",
+    "bytes": 20949
+  },
+  "clarification": "The source_lines strings in the author note are approximate navigation regions, not exact individual statement locations. Exact verified call sites are listed here; findings/source bytes remain unchanged.",
+  "exact_1_based_sites": {
+    "Session_construction": 170,
+    "Session_start": 171,
+    "bootstrap_exchange": 178,
+    "normal_close_nonSAT": 183,
+    "initial_full_model": 192,
+    "initial_projection": 195,
+    "initial_predicate_query": 203,
+    "oracle_query": 213,
+    "final_full_model": 222,
+    "final_projection": 224,
+    "final_predicate_query": 231,
+    "normal_close_SAT": 236,
+    "error_close": 250,
+    "Session_finish": 263,
+    "first_preservation": 280,
+    "all48_gate": 283,
+    "word_proposal": 285,
+    "independent_validator": 290,
+    "final_preservation": 303,
+    "complete_candidate_gate": 306,
+    "post_report_cap_time": 330,
+    "post_report_identity": 332
+  },
+  "target_execution": false
+}

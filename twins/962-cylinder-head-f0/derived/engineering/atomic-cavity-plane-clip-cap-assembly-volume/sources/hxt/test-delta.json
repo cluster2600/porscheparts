@@ -1,0 +1,38 @@
+{
+  "schema": "962-assembled-HXT-test-only-successor/v1",
+  "status": "HELD_unrun_fixture_only_correction",
+  "preserved_preparation": "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-hxt-prep-001",
+  "preserved_root_failure": {
+    "path": "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-hxt-root-source-001/review.json",
+    "sha256": "c0bd1b591fedf8dd598b24967b2ca386ce2ccc05db5ec01b0910709669e06d97",
+    "log_path": "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-hxt-root-source-001/guard-tests.log",
+    "log_sha256": "f551220b2a48b108eb68714a87588a845c528b037dd7ac7ab991dc5ba5bab6ea",
+    "tests": 12,
+    "passed": 11,
+    "failed": 1
+  },
+  "production_source_sha256": "b7d3de89c6ed166bb5d0df5c5d41ddd77b8deee9c36775b4e40b205722a2587e",
+  "production_byte_identical_to_001": true,
+  "old_test": {
+    "path": "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-hxt-prep-001/test_hxt_guards.py",
+    "sha256": "a4ca5b0ad5abb9b16a3f94346a998550874c047d1c0f7871634d8cf5b5bafd2f"
+  },
+  "selected_test": {
+    "path": "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-hxt-prep-002/test_hxt_guards.py",
+    "sha256": "6a6743e7c98579d8411b38505bf722cbb7f79e97d5e414bc588d4bc4b36d1b95"
+  },
+  "literal_replacement": {
+    "old": "admission_sha256='a'*64",
+    "new": "admission_sha256=hashlib.sha256(admission.read_bytes()).hexdigest()"
+  },
+  "reverse_restores_entire_old_test": true,
+  "diff": {
+    "path": "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-hxt-prep-002/test001-to002.diff",
+    "sha256": "679419e81905de10d0ae6c52f90384be4452d7988529c71b1fe62911bd192f69"
+  },
+  "mock_admission_bytes_utf8": "{}\n",
+  "mock_admission_actual_sha256": "ca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356",
+  "diagnosis": "The old fixture mismatches its own admission bytes; the production bound_inputs_unchanged refusal is correct.",
+  "tests_run_by_this_preparation": false,
+  "native_calls": 0
+}

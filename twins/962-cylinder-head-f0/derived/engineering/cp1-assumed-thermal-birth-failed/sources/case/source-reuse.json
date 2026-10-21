@@ -1,0 +1,388 @@
+{
+  "all_tolerance_values_exact_donor": true,
+  "assessor_unchanged_eleven_function_AST_names": [
+    "box_power",
+    "cell_values",
+    "csv_rows",
+    "enthalpy_density",
+    "gaussian_cell_average",
+    "grid",
+    "incoming_energy",
+    "integrals",
+    "nodal_field",
+    "sha",
+    "source_value"
+  ],
+  "author_executed_prepared_source_or_tests": false,
+  "changed_caller_only": "assess",
+  "donor_delta": {
+    "assess.py": {
+      "complete_reverse_exact": true,
+      "donor_path": "twins/962-cylinder-head-f0/source/physics_witness/thermal_birth/assess.py",
+      "donor_sha256": "41cf5f8f027b8ce44dab9808b52ef6b6432ccaaa9b50e3136da54cbef0d55c88",
+      "reversible_line_chunks": [
+        {
+          "new_lines": [
+            "def centered_enthalpy_increment(card, end, begin, xmax):\n",
+            "    \"\"\"Exact HEX8 integral form for constant cp; avoid subtracting inventories.\"\"\"\n",
+            "    if card['cp_slope_J_kgK2'] != 0:\n",
+            "        raise ValueError('This centered successor requires constant cp')\n",
+            "    capacity = card['density_kg_m3']*card['cp_at_300K_J_kgK']\n",
+            "    return capacity*math.fsum(math.prod(h)/8*math.fsum(end[p]-begin[p] for p in corners)\n",
+            "                              for lo,h,corners in grid(card,xmax))\n",
+            "\n",
+            "\n"
+          ],
+          "new_start_line0": 105,
+          "old_lines": [],
+          "old_start_line0": 105
+        },
+        {
+          "new_lines": [
+            "    if (card.get('id')!='cp1-assumed-thermal-birth-sensitivity-001' or card['cp_slope_J_kgK2']!=0\n",
+            "            or card['density_kg_m3']!=2700 or card['cp_at_300K_J_kgK']!=900\n",
+            "            or card['k_at_300K_W_mK']!=187 or card['k_slope_W_mK2']!=0):\n",
+            "        raise ValueError('Only the separately frozen assumed constant thermal card is supported')\n"
+          ],
+          "new_start_line0": 119,
+          "old_lines": [],
+          "old_start_line0": 110
+        },
+        {
+          "new_lines": [
+            "    thermal_increments=[]\n"
+          ],
+          "new_start_line0": 163,
+          "old_lines": [],
+          "old_start_line0": 150
+        },
+        {
+          "new_lines": [
+            "        delta_h=centered_enthalpy_increment(card,end,begin,xmax)\n",
+            "        thermal_increments.append(delta_h)\n",
+            "        cumulative_heat=math.fsum(thermal_increments)\n",
+            "        ee=e0+birth_energy+cumulative_heat  # reported inventory only; not subtracted in acceptance\n"
+          ],
+          "new_start_line0": 202,
+          "old_lines": [
+            "        eb=integrals(card,begin,xmax)\n",
+            "        ee=integrals(card,end,xmax)\n"
+          ],
+          "old_start_line0": 188
+        },
+        {
+          "new_lines": [
+            "        check('nonlinear_BE_enthalpy_identity',delta_h-dt*qh+correction,tol['corrected_step_energy_absolute_J'],step)\n"
+          ],
+          "new_start_line0": 207,
+          "old_lines": [
+            "        check('nonlinear_BE_enthalpy_identity',ee-eb-dt*qh+correction,tol['corrected_step_energy_absolute_J'],step)\n"
+          ],
+          "old_start_line0": 191
+        },
+        {
+          "new_lines": [
+            "        defect=cumulative_heat-incoming\n",
+            "        relative=defect/max(abs(incoming),1e-12)\n"
+          ],
+          "new_start_line0": 209,
+          "old_lines": [
+            "        defect=ee-e0-birth_energy-incoming\n",
+            "        relative=defect/max(abs(birth_energy)+abs(incoming),1e-12)\n"
+          ],
+          "old_start_line0": 193
+        },
+        {
+          "new_lines": [
+            "                       'centered_step_enthalpy_increment_J':delta_h,'cumulative_centered_heat_response_J':cumulative_heat,\n"
+          ],
+          "new_start_line0": 213,
+          "old_lines": [],
+          "old_start_line0": 197
+        },
+        {
+          "new_lines": [
+            "            'assessor_sha256':sha(__file__),'energy_normalization':'Centered constant-cp increments; continuous error relative to integrated source energy, excluding initial/birth inventory.',\n",
+            "            'scope':'Assumed CP1-like synthetic thermal/source/activation sensitivity only; no matched material/process, head, mechanics, LPBF or manufacturing qualification.'}\n"
+          ],
+          "new_start_line0": 226,
+          "old_lines": [
+            "            'assessor_sha256':sha(__file__),'scope':'Hypothetical thermal/source/activation integration; no head geometry, calibration, mechanics or LPBF qualification.'}\n"
+          ],
+          "old_start_line0": 209
+        }
+      ],
+      "successor_sha256": "0548fcbf6eba737aaaf816abbfbfd0511b5b8fb266aa10c34a1f5817eef0e338"
+    },
+    "card.json": {
+      "complete_reverse_exact": true,
+      "donor_path": "twins/962-cylinder-head-f0/source/physics_witness/thermal_birth/card.json",
+      "donor_sha256": "20e541f44359e4fe85c94fa2add15f5cc79285d849bfcb0c604e54b294f576ad",
+      "reversible_line_chunks": [
+        {
+          "new_lines": [
+            "  \"assumed_material\": {\n",
+            "    \"basis\": \"Explicit root-selected research hypotheses; no matched M291 thermal measurements\",\n",
+            "    \"cp_J_kgK\": {\n",
+            "      \"assumed\": true,\n",
+            "      \"temperature_dependence\": \"constant over declared numerical300-500K interval\",\n",
+            "      \"value\": 900\n",
+            "    },\n",
+            "    \"density_kg_m3\": {\n",
+            "      \"assumed\": true,\n",
+            "      \"value\": 2700\n",
+            "    },\n",
+            "    \"enthalpy_reference_K\": {\n",
+            "      \"assumed\": true,\n",
+            "      \"meaning\": \"Caloric bookkeeping reference, not stress-free temperature\",\n",
+            "      \"value\": 300\n",
+            "    },\n",
+            "    \"k_W_mK\": {\n",
+            "      \"assumed\": true,\n",
+            "      \"basis\": \"Unverified transfer of related Constellium CP1 scalar; source column test temperature unspecified\",\n",
+            "      \"value\": 187\n",
+            "    },\n",
+            "    \"measured_matched\": {\n",
+            "      \"absorbed_power_or_scan_calibration\": null,\n",
+            "      \"build_directions\": null,\n",
+            "      \"cp_T\": null,\n",
+            "      \"k_T\": null,\n",
+            "      \"rho_kg_m3\": null,\n",
+            "      \"scatter\": null,\n",
+            "      \"test_temperatures\": null\n",
+            "    },\n",
+            "    \"mechanical_isothermal_card_is_separate\": true,\n",
+            "    \"nominal_process_reference_only\": {\n",
+            "      \"gas\": \"argon\",\n",
+            "      \"layer_um\": 60,\n",
+            "      \"machine\": \"EOS M290\",\n",
+            "      \"parameter_set\": \"AlCP1_060_M291\",\n",
+            "      \"physical_recipe_selected_or_qualified\": false,\n",
+            "      \"plate_C\": 125,\n",
+            "      \"treatment_C\": 400,\n",
+            "      \"treatment_h\": 4\n",
+            "    },\n",
+            "    \"thermal_symmetry\": {\n",
+            "      \"assumed\": true,\n",
+            "      \"value\": \"isotropic\"\n",
+            "    }\n",
+            "  },\n",
+            "  \"birth_rule\": \"Preserve all existing nodal values, including shared interface nodes. Initialise genuinely new nodes to 350K. Integrate birth enthalpy from this predeclared interpolated field; do not assume shared nodes are 350K.\",\n",
+            "  \"birth_temperature_K\": 350.0,\n",
+            "  \"birth_time_s\": 0.2,\n"
+          ],
+          "new_start_line0": 1,
+          "old_lines": [
+            "  \"schema_version\": \"1.0.0\",\n",
+            "  \"classification\": \"HYPOTHETICAL_SOFTWARE_VERIFICATION_ONLY\",\n",
+            "  \"units\": \"m, kg, s, K, J, W; no physical material\",\n"
+          ],
+          "old_start_line0": 1
+        },
+        {
+          "new_lines": [
+            "  \"classification\": \"HYPOTHETICAL_SOFTWARE_VERIFICATION_ONLY\",\n",
+            "  \"cp_at_300K_J_kgK\": 900.0,\n",
+            "  \"cp_slope_J_kgK2\": 0.0,\n",
+            "  \"density_kg_m3\": 2700.0,\n",
+            "  \"efficiency\": 0.5,\n",
+            "  \"end_time_s\": 0.4,\n",
+            "  \"energy_normalization\": \"Constant-cp centered step increments with math.fsum; continuous defect divided by integrated heat input, not initial/birth inventory. All numerical thresholds unchanged.\",\n",
+            "  \"enthalpy_reference_K\": 300.0,\n",
+            "  \"factor\": 0.5,\n",
+            "  \"id\": \"cp1-assumed-thermal-birth-sensitivity-001\",\n",
+            "  \"initial_temperature_K\": 400.0,\n",
+            "  \"k_at_300K_W_mK\": 187.0,\n",
+            "  \"k_slope_W_mK2\": 0.0,\n",
+            "  \"laser_power_W\": 80.0,\n",
+            "  \"max_native_runtime_seconds\": 100,\n"
+          ],
+          "new_start_line0": 62,
+          "old_lines": [],
+          "old_start_line0": 16
+        },
+        {
+          "new_lines": [
+            "  \"native_binary_sha256\": \"b11b7c481e502e0ae5dc61eba18e3e096c9ebf0dfee3f29b005353c9a1455547\",\n",
+            "  \"native_execution_authorized\": false,\n",
+            "  \"native_source_revision\": \"7c06bdcefd (abbreviated revision in existing native version output; source/build equivalence not independently attested)\",\n"
+          ],
+          "new_start_line0": 82,
+          "old_lines": [],
+          "old_start_line0": 21
+        },
+        {
+          "new_lines": [
+            "  \"predeclared_tolerances\": {\n",
+            "    \"corrected_step_energy_absolute_J\": 1e-07,\n",
+            "    \"finest_continuous_energy_relative\": 0.01,\n",
+            "    \"finite_box_power_relative\": 0.0005,\n",
+            "    \"material_property_absolute\": 1e-09,\n",
+            "    \"minimum_final_temperature_range_K\": 1.0,\n",
+            "    \"minimum_refinement_error_ratio\": 1.4,\n",
+            "    \"node_history_K\": 1e-10,\n",
+            "    \"source_cell_average_relative\": 1e-09,\n",
+            "    \"temperature_lower_K\": 300.0,\n",
+            "    \"temperature_upper_K\": 500.0\n",
+            "  },\n",
+            "  \"quadrature\": \"2x2x2 Gauss, exact for quadratic enthalpy of trilinear HEX8 temperature\",\n",
+            "  \"qualification\": {\n",
+            "    \"engineering_accepted\": false,\n",
+            "    \"head_execution_authorized\": false,\n",
+            "    \"manufacturing_authorized\": false,\n",
+            "    \"material_qualified\": false,\n",
+            "    \"physics_qualified\": false,\n",
+            "    \"process_calibrated\": false\n",
+            "  },\n",
+            "  \"radii_m\": [\n",
+            "    0.5,\n",
+            "    0.8,\n",
+            "    0.8\n",
+            "  ],\n",
+            "  \"schema_version\": \"1.0.0\",\n",
+            "  \"scope\": \"One synthetic2x1x1m256HEX8 moving-source/birth calculation; all geometry/source/history values are numerical hypotheses. Not LPBF scale, powder/melting/scan calibration, head, stress or manufacturing.\",\n",
+            "  \"selected_time_level\": 2,\n",
+            "  \"solver_not_run\": true,\n",
+            "  \"source_normalization\": \"Full-space integral = 2*factor*efficiency*power; finite box integral uses product of error-function fractions.\",\n",
+            "  \"source_start_m\": [\n",
+            "    0.4,\n",
+            "    0.5,\n",
+            "    0.5\n",
+            "  ],\n",
+            "  \"status\": \"HELD_RESEARCH_HYPOTHESIS_NOT_QUALIFIED_MATERIAL_OR_PROCESS\",\n",
+            "  \"time_method\": \"Backward Euler: Delta H = dt*integral(Q_h) - rho*cp_slope/2*integral((T_end-T_begin)^2), with adiabatic exterior. Birth is applied at the beginning of the ending-time-labelled step. Continuous-time error must decrease under frozen time refinement.\",\n"
+          ],
+          "new_start_line0": 86,
+          "old_lines": [
+            "  \"birth_time_s\": 0.2,\n",
+            "  \"end_time_s\": 0.4,\n"
+          ],
+          "old_start_line0": 22
+        },
+        {
+          "new_lines": [
+            "  \"units\": \"m, kg, s, K, J, W; no physical material\",\n"
+          ],
+          "new_start_line0": 129,
+          "old_lines": [
+            "  \"initial_temperature_K\": 400.0,\n",
+            "  \"birth_temperature_K\": 350.0,\n",
+            "  \"enthalpy_reference_K\": 300.0,\n",
+            "  \"density_kg_m3\": 1.0,\n",
+            "  \"cp_at_300K_J_kgK\": 2.0,\n",
+            "  \"cp_slope_J_kgK2\": 0.01,\n",
+            "  \"k_at_300K_W_mK\": 0.2,\n",
+            "  \"k_slope_W_mK2\": 0.001,\n",
+            "  \"laser_power_W\": 80.0,\n",
+            "  \"efficiency\": 0.5,\n",
+            "  \"factor\": 0.5,\n",
+            "  \"radii_m\": [\n",
+            "    0.5,\n",
+            "    0.8,\n",
+            "    0.8\n",
+            "  ],\n",
+            "  \"source_start_m\": [\n",
+            "    0.4,\n",
+            "    0.5,\n",
+            "    0.5\n",
+            "  ],\n"
+          ],
+          "old_start_line0": 29
+        },
+        {
+          "new_lines": [],
+          "new_start_line0": 135,
+          "old_lines": [
+            "  \"quadrature\": \"2x2x2 Gauss, exact for quadratic enthalpy of trilinear HEX8 temperature\",\n",
+            "  \"birth_rule\": \"Preserve all existing nodal values, including shared interface nodes. Initialise genuinely new nodes to 350K. Integrate birth enthalpy from this predeclared interpolated field; do not assume shared nodes are 350K.\",\n",
+            "  \"source_normalization\": \"Full-space integral = 2*factor*efficiency*power; finite box integral uses product of error-function fractions.\",\n",
+            "  \"time_method\": \"Backward Euler: Delta H = dt*integral(Q_h) - rho*cp_slope/2*integral((T_end-T_begin)^2), with adiabatic exterior. Birth is applied at the beginning of the ending-time-labelled step. Continuous-time error must decrease under frozen time refinement.\",\n",
+            "  \"predeclared_tolerances\": {\n",
+            "    \"node_history_K\": 1e-10,\n",
+            "    \"material_property_absolute\": 1e-09,\n",
+            "    \"source_cell_average_relative\": 1e-09,\n",
+            "    \"finite_box_power_relative\": 0.0005,\n",
+            "    \"corrected_step_energy_absolute_J\": 1e-07,\n",
+            "    \"finest_continuous_energy_relative\": 0.01,\n",
+            "    \"minimum_refinement_error_ratio\": 1.4,\n",
+            "    \"temperature_lower_K\": 300.0,\n",
+            "    \"temperature_upper_K\": 500.0,\n",
+            "    \"minimum_final_temperature_range_K\": 1.0\n",
+            "  },\n",
+            "  \"native_binary_sha256\": \"c49e2c368799d80edf9ff858dd8960bd22f5430f48229ab49dcc0afd27afcc5b\",\n",
+            "  \"native_source_revision\": \"167ee97da204df5e8643695e18b9b28910f0014b\",\n",
+            "  \"max_native_runtime_seconds\": 100,\n"
+          ],
+          "old_start_line0": 55
+        }
+      ],
+      "successor_sha256": "4e07cbb997c831bac2c0abd43092148c5518b6c7aa04d7b3d287779f9e700986"
+    },
+    "thermal-birth.i": {
+      "complete_reverse_exact": true,
+      "donor_path": "twins/962-cylinder-head-f0/source/physics_witness/thermal_birth/thermal-birth.i",
+      "donor_sha256": "ec8b79d2f67a5e7bf49401685ff0f809ff4ae31b4a819ab9d728193fc0fbd73b",
+      "reversible_line_chunks": [
+        {
+          "new_lines": [
+            "    expression = '900+0*(t-300)'\n"
+          ],
+          "new_start_line0": 44,
+          "old_lines": [
+            "    expression = '2+0.01*(t-300)'\n"
+          ],
+          "old_start_line0": 44
+        },
+        {
+          "new_lines": [
+            "    expression = '187+0*(t-300)'\n"
+          ],
+          "new_start_line0": 48,
+          "old_lines": [
+            "    expression = '0.2+0.001*(t-300)'\n"
+          ],
+          "old_start_line0": 48
+        },
+        {
+          "new_lines": [
+            "    prop_values = 2700\n"
+          ],
+          "new_start_line0": 91,
+          "old_lines": [
+            "    prop_values = 1\n"
+          ],
+          "old_start_line0": 91
+        },
+        {
+          "new_lines": [
+            "  [csv]\n",
+            "    type = CSV\n",
+            "    precision = 17\n",
+            "  []\n"
+          ],
+          "new_start_line0": 216,
+          "old_lines": [
+            "  csv = true\n"
+          ],
+          "old_start_line0": 216
+        }
+      ],
+      "successor_sha256": "62527f4e88d9cc55e506cc11c97c48de5ea56e2fd7218231143fc3aa88e92b20"
+    }
+  },
+  "guard_methods_prepared_UNRUN": [
+    "test_constant_card_deck_time_and_tolerances",
+    "test_exact_case_guard_refuses_changed_binding",
+    "test_centered_uniform_small_increment_decimal",
+    "test_nonuniform_increment_decimal_and_curved_cp_refusal",
+    "test_birth_shared_field_has_no_fictitious_step_heat",
+    "test_source_normalization_and_omitted_PDE_source_refused",
+    "test_continuous_error_cannot_be_hidden_by_birth_inventory",
+    "test_all_eleven_other_oracle_functions_are_unchanged"
+  ],
+  "new_helper_only": "centered_enthalpy_increment",
+  "runtime_bodies_read_or_hashed": false,
+  "schema": "962-cp1-assumed-thermal-birth-source-reuse/v1",
+  "scientific_native_package_or_solver_import": false,
+  "single_level_2_input_exact_original_finest_override": true
+}

@@ -1,0 +1,89 @@
+{
+  "schema": "962-CGAL-directed-distance-literals-independent-byte-peer/v1",
+  "decision": "CLEAR_LITERAL_DATA_AND_ANALYTIC_ORACLES_ONLY",
+  "manifest_sha256": "7c6e7c12a64badb5131c5f11ab6323dc80c429ee0460371a5c0568169f0a98c5",
+  "expectations_sha256": "43109e0f5ca4f735bf7bc77adf1a0bbdb35135b9e8a2c5cbb8089fea3669db00",
+  "root_materialization_review_sha256": "77fb8cb40e3c746e2cdf2b6bef31079656d9ea80b71b890926c77c1dbeba50b6",
+  "selected_literal_source_sha256": "d8cad45244b0e91a78e490146d3597b07c6ed0f9da48a8c4fdc24f2139c2def3",
+  "wrapper_source_peer_sha256": "ba77c429e99e670a314580cc0cf123d6b0ece829d84f0900258ca28866c3e7fb",
+  "checks": {
+    "files": 19,
+    "manifest_payloads": 18,
+    "all_hashes_sizes_regular_non_symlink_complete_closure": true,
+    "every_BIN_header_point_binary64_coordinate_bit_and_ordered_face_index_compared": true,
+    "valid_models": 7,
+    "total_valid_model_coordinate_rows": 44,
+    "total_valid_model_oriented_face_rows": 34,
+    "every_valid_model_identity_u64_map_exact": true,
+    "all_valid_coordinates_exact_declared_dyadic_values": true,
+    "cube12_outward_oriented_faces_and_exact_signed_volume8": true,
+    "walls_exact8_vertical_cube_faces_no_horizontal_caps": true,
+    "malformed_exact_out_of_range_index3_with_only3_points": true,
+    "empty_exact_zero_point_zero_face_SURF1_header": true,
+    "both_refusals_have_selectedID0_but_must_refuse_before_query": true,
+    "six_query_source_target_ID_map_associations_and_exact_refs_complete": true
+  },
+  "models": {
+    "cube": {
+      "vertices": 8,
+      "faces": 12,
+      "full_identity_ID_rows": 12
+    },
+    "walls": {
+      "vertices": 8,
+      "faces": 8,
+      "full_identity_ID_rows": 8
+    },
+    "interior-square": {
+      "vertices": 4,
+      "faces": 2,
+      "full_identity_ID_rows": 2
+    },
+    "near-top-open": {
+      "vertices": 4,
+      "faces": 2,
+      "full_identity_ID_rows": 2
+    },
+    "plane": {
+      "vertices": 4,
+      "faces": 2,
+      "full_identity_ID_rows": 2
+    },
+    "two-open-components": {
+      "vertices": 8,
+      "faces": 4,
+      "full_identity_ID_rows": 4
+    },
+    "asymmetric-union": {
+      "vertices": 8,
+      "faces": 4,
+      "full_identity_ID_rows": 4
+    }
+  },
+  "exact_directed_distances_mm": [
+    "1/32",
+    "0",
+    "6143/131072",
+    "1/131072",
+    "4095/131072",
+    "1"
+  ],
+  "analytic_reasoning": [
+    "Near-top square to complete cube has uniform top distance1/32; vertical walls are at least1/2 away.",
+    "Coincident shifted plane distance0.",
+    "Equal-footprint parallel union to shifted plane has maximum3/64-delta.",
+    "Shifted plane to z0,z1/32 union has distance delta=1/131072<epsilon; reverse supremum1/32-delta.",
+    "Full z0 square to four vertical walls has maximum1 at center although every source vertex lies on a wall."
+  ],
+  "native_expected_outcomes": {
+    "six_completed_intervals_RC0": true,
+    "distance1_budget_flag_must_be_false_despite_RC0": true,
+    "malformed_and_empty_RC2_query_false_scalar_null": true
+  },
+  "blockers": [],
+  "limits": [
+    "Standard-library saved tiny-array/byte/Fraction oracle review only; no source import/generator replay, NumPy, CGAL/native distance query, geometry export, Git or network.",
+    "No live compile output was read. Native fixture interval containment, endpoint gap and immutability remain unobserved until root executes and assesses them.",
+    "Literal success does not establish head distance, CAD roundoff certificate, solver or physical acceptance."
+  ]
+}

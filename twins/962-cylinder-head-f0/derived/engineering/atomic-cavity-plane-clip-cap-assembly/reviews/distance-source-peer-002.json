@@ -1,0 +1,69 @@
+{
+  "schema": "962-assembled-CUB-source-delta-peer/v1",
+  "decision": "CLEAR_source_only_blocker_closed_HELD",
+  "predecessor_blocking_review": {
+    "path": "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-distance-source-peer-001/review.json",
+    "sha256": "e474d5df82cde9cd67864fd9ff9b2079c96e8b379f405084e1940e3f40248c88"
+  },
+  "bindings": {
+    "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-distance-prep-002/METHOD.md": "d6c2979c34fb4cf21b0b251f9dd7431f4464bf05ef6249a59312dcc98f2ffc80",
+    "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-distance-prep-002/assess_quality_distance.py": "015eec745e964c1d13c096a39afe706bbda4c29ac804efdf69deafdd841d8be5",
+    "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-distance-prep-002/audit_quality_distance.py": "58a23c788cd0d9053b64c0bab3acff68a5ea33427e79a19f56516d05cb090f0d",
+    "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-distance-prep-002/held-contract.json": "2c6df4a4f4209229ff954b691cc32e7f1eff41f8205c39cc49816d008b895ec9",
+    "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-distance-prep-002/preparation-checks.json": "f72a2d06b6e0fab9b2c3a2070a29af8d123ba015b030d2a7a658ccbd64664ae1",
+    "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-distance-prep-002/run_quality_distance_002.py": "637678b134c30af34ad56118945b820985e046c4682d8ea00c10b48477030ac5",
+    "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-distance-prep-002/run_quality_distance_002.py.diff": "0a3319400425e2823710f9b00ecb6884d6c0b6c303f8347c6efc06b9d027e34b",
+    "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-distance-prep-002/source-reuse.json": "60eccbd662676088cd2f7fb5b4b54fbd48d0070379e818093a8b2df84df66798",
+    "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-distance-runner-regression-prep-001/METHOD.md": "6c13d1ceeed22e6eb68bcbd406a350f02ac3509e52cd5fe3c0c7367b5ce47fba",
+    "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-distance-runner-regression-prep-001/held-tests.json": "c6295a05bd31a78da19c38d0df1a52e20871f061fbdf2078fa73d86cbc496087",
+    "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-distance-runner-regression-prep-001/source-reuse.json": "556273010afda948f37322cabeede0dae67404f2950ea577f3189c5fa352c57d",
+    "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-distance-runner-regression-prep-001/test_runner_regression_001.py": "ea1a04312cdd16801d91310c78d99528990006a6e2ab3c1c5835d028787c4e70",
+    "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-distance-runner-regression-prep-001/test_runner_regression_002.py": "cd85b6226dddad7ad2b5a1dfaa1f759b48a0ca95d327aa1ca51fed753f161402"
+  },
+  "current_source_runtime_pins": 40,
+  "current_query_config_pins": 2,
+  "all42_current_byte_hashes_checked": true,
+  "complete_two_literal_reverse_proof_to_7b7c_verified": true,
+  "blocker_resolution": {
+    "finding": "elapsed_budget_can_pass_without_timer_callback",
+    "closed_in_source": true,
+    "reason": "After protected cleanup, the runner synchronously computes elapsed. elapsed>=300 latches the existing deadline stop reason before observation, receipt, serial continuation and final completion. A delayed or cancelled zero-duration timer cannot suppress this refusal. The exact latched elapsed is used in the receipt.",
+    "preserved_behavior": "Existing earlier refusal reason remains first; an already-exited RC0 process is reaped without an unnecessary kill, but its exceeded wall budget still refuses the first query and prevents the second."
+  },
+  "unchanged_verified": [
+    "58a23 complete native worker bytes",
+    "015eec interval assessor bytes",
+    "300s query-start budget and sampled4GiB/two-thread/serial controls",
+    "CUB1.0.0 exact runtime metadata",
+    "1e-4mm absolute interval gap and.0625mm upper-bound budget",
+    "both exact query configs, independent source masks and complete opposing targets",
+    "original001source and blocking review preserved"
+  ],
+  "mock_source_review": {
+    "methods_each": 7,
+    "AST_syntax_only": true,
+    "old_new_only_path_and_runner_SHA_differ": true,
+    "new_case": "Already-exitedRC0 fakePopen consumes301s; Timer0 starts without invoking its callback. Expected synchronous deadline refusal, receipt301s, reaped process/no kill, no second query.",
+    "old_suite_expected": "Only the new counterexample must expose001; no observed test result asserted.",
+    "new_suite_expected": "All7 cases declared to pass; root execution still required.",
+    "temporary_root_resolved": true,
+    "actual_process_or_signal_or_scientific_calls": false
+  },
+  "late_prerequisites": {
+    "mask_result_peer": {
+      "path": "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-distance-mask-result-peer-001/review.json",
+      "sha256": "b091ee17d162434f7258064aaf191f332371e4fd5ca40603a169f17ab718f39f",
+      "outside_frozen40_map": true,
+      "must_bind_in_actual_child": true
+    },
+    "root_mock_execution_results_pending_in_this_review": true,
+    "fresh_CUB_runtime_preflight_pending": true,
+    "root_authorized_actual_child_pending": true
+  },
+  "findings": [],
+  "prepared_sources_imported": false,
+  "tests_or_scientific_or_native_queries_executed": false,
+  "independent_distance_gate_passed": false,
+  "head_surface_or_solver_admitted": false,
+  "manufacturing_authorized": false
+}

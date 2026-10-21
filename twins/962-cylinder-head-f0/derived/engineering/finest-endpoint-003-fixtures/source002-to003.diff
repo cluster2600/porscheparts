@@ -1,0 +1,133 @@
+--- twins/962-cylinder-head-f0/source/analysis-cgal/finest_endpoint_002.cpp
++++ twins/962-cylinder-head-f0/source/analysis-cgal/finest_endpoint_003.cpp
+@@ -1,4 +1,4 @@
+-// Prepared, uncompiled analysis trial. No source-master repair or mesh admission.
++// Version003 preparation: immutable original-patch envelope, no mesh admission.
+ // Reuse the pinned project reader/writer/quality code without invoking its pass.
+ #define main preserved_quality_patch_entrypoint
+ #include "quality_patch.cpp"
+@@ -102,25 +102,64 @@
+   }
+ };
+ 
++// Flushed scalar progress only; a stage never implies an accepted result.
++void finest_stage(const char* stage,const Mesh* mesh=nullptr,
++                  const std::vector<Face>* reference=nullptr,
++                  std::size_t seed_faces=0,std::size_t reference_vertices=0) {
++  std::cout<<"{\"schema\":\"962-endpoint003-progress/v1\",\"stage\":\""<<stage<<"\"";
++  if(mesh)std::cout<<",\"vertices\":"<<mesh->number_of_vertices()
++                   <<",\"faces\":"<<mesh->number_of_faces();
++  if(reference)std::cout<<",\"seed_faces\":"<<seed_faces
++                       <<",\"reference_faces\":"<<reference->size()
++                       <<",\"reference_vertices\":"<<reference_vertices;
++  std::cout<<"}"<<std::endl;
++}
++void write_reference_ids(const fs::path& path,const std::vector<std::uint64_t>& ids) {
++  if(fs::exists(path)||fs::is_symlink(path))throw std::runtime_error("Existing reference IDs preserved");
++  std::ofstream stream(path,std::ios::binary);
++  for(auto id:ids)for(unsigned shift=0;shift<64;shift+=8)
++    stream.put(static_cast<char>((id>>shift)&0xff));
++  stream.close();if(!stream)throw std::runtime_error("Reference ID output failed");
++}
++
+ int main(int argc,char** argv) {
+   try {
+     if(argc!=3)throw std::runtime_error("Usage: finest-endpoint original.bin fresh-output-directory");
+     fs::path output=argv[2];
+     if(!fs::create_directory(output))throw std::runtime_error("Output directory must be new");
+-    const Mesh original=read_surface(argv[1]);Mesh candidate=original;
++    finest_stage("original_import_begin");
++    const Mesh original=read_surface(argv[1]);
++    finest_stage("original_import_complete",&original);
++    finest_stage("candidate_copy_begin",&original);
++    Mesh candidate=original;
++    finest_stage("candidate_copy_complete",&candidate);
++    finest_stage("original_quality_scan_begin",&original);
+     const Quality before=quality(original);
++    finest_stage("original_quality_scan_complete",&original);
+     std::vector<bool> seeds(original.num_vertices(),false),in_patch(original.num_faces(),false);
+     std::size_t seed_faces=0,patch_faces=0;
+     for(auto f:original.faces())if(triangle_quality(original,f)<2.0/29.0) {
+       ++seed_faces;for(auto v:vertices(original,f))seeds[v.idx()]=true;
+     }
++    std::vector<Face> reference_faces;
++    std::vector<bool> reference_vertex(original.num_vertices(),false);
+     auto fixed=candidate.add_property_map<Vertex,bool>("v:finest-fixed",false).first;
+     for(auto f:original.faces()) {
+       auto v=vertices(original,f);bool inside=seeds[v[0].idx()]||seeds[v[1].idx()]||seeds[v[2].idx()];
+       in_patch[f.idx()]=inside;patch_faces+=inside;
++      if(inside) {
++        reference_faces.push_back(f); // Exact immutable original face order.
++        for(auto id:v)reference_vertex[id.idx()]=true;
++      }
+       if(!inside)for(auto id:v)fixed[id]=true;
+     }
+     for(auto v:original.vertices())if(original.point(v).x()==-76.0||original.point(v).x()==76.0)fixed[v]=true;
++    std::vector<std::uint64_t> reference_face_ids,reference_vertex_ids;
++    for(auto f:reference_faces)reference_face_ids.push_back(f.idx());
++    for(auto v:original.vertices())if(reference_vertex[v.idx()])reference_vertex_ids.push_back(v.idx());
++    write_reference_ids(output/"patch-reference-face-ids.u64",reference_face_ids);
++    write_reference_ids(output/"patch-reference-vertex-ids.u64",reference_vertex_ids);
++    finest_stage("patch_reference_exported",&original,&reference_faces,seed_faces,reference_vertex_ids.size());
+     auto constrained=candidate.add_property_map<Mesh::Edge_index,bool>("e:finest-fixed",false).first;
+     for(auto e:candidate.edges()) {
+       auto h=candidate.halfedge(e);
+@@ -130,15 +169,21 @@
+     }
+     std::vector<std::size_t> origins(original.num_vertices());
+     for(auto v:original.vertices())origins[v.idx()]=v.idx();
+-    // Build once from the immutable complete original, never a later candidate.
+-    CGAL::Polyhedral_envelope<Kernel> envelope(original,finest_budget_mm);
++    // A subset of original triangles is a conservative distance reference:
++    // distance(x,complete_original) <= distance(x,original_patch).
++    // Build once; never replace these immutable faces with candidate triangles.
++    finest_stage("patch_envelope_build_begin",&original,&reference_faces,seed_faces,reference_vertex_ids.size());
++    CGAL::Polyhedral_envelope<Kernel> envelope(reference_faces,original,finest_budget_mm);
++    finest_stage("patch_envelope_build_complete",&original,&reference_faces,seed_faces,reference_vertex_ids.size());
+     Endpoint_placement placement{&candidate,&fixed,&origins,&envelope};
+     std::size_t collapses=0;Endpoint_visitor visitor;
+     visitor.placement=&placement;visitor.origins=&origins;visitor.collapses=&collapses;
+     std::signal(SIGALRM,finest_stop);std::signal(SIGTERM,finest_stop);alarm(285);
++    finest_stage("SMS_begin",&candidate);
+     SMS::edge_collapse(candidate,Finest_stop(),CGAL::parameters::get_cost(Quality_cost{&placement})
+       .get_placement(placement).edge_is_constrained_map(constrained).visitor(visitor));
+     alarm(0);
++    finest_stage("SMS_returned",&candidate);
+     const Quality after=quality(candidate);
+     bool fixed_same=true,outside_same=true,source_points_exact=true;
+     for(auto v:original.vertices())if(fixed[v]
+@@ -151,6 +196,7 @@
+     bool counts=original.number_of_vertices()==candidate.number_of_vertices()+collapses
+       &&original.number_of_faces()==candidate.number_of_faces()+2*collapses;
+     bool proposed=!finest_stop_requested&&improve&&valid&&counts&&fixed_same&&outside_same&&source_points_exact;
++    finest_stage("result_export_begin",&candidate);
+     write_surface(candidate,output/"proposed-surface.bin");
+     // Export source-coordinate provenance in exactly the writer's vertex order.
+     std::ofstream map(output/"vertex-coordinate-origins.u64",std::ios::binary);
+@@ -162,7 +208,13 @@
+     report<<std::setprecision(17)<<"{\"schema\":\"962-finest-endpoint-trial/v1\",\"CGAL\":\""<<CGAL_VERSION_STR
+       <<"\",\"status\":\""<<(proposed?"local_quality_candidate_independent_gates_pending":"rejected_or_bounded_original_preserved")
+       <<"\",\"geometry_budget_mm\":"<<finest_budget_mm<<",\"source_seed_faces\":"<<seed_faces
+-      <<",\"original_patch_faces\":"<<patch_faces<<",\"accepted_collapses\":"<<collapses
++      <<",\"original_patch_faces\":"<<patch_faces
++      <<",\"envelope_reference_kind\":\"immutable_original_patch_faces\""
++      <<",\"envelope_reference_face_count\":"<<reference_faces.size()
++      <<",\"envelope_reference_vertex_count\":"<<reference_vertex_ids.size()
++      <<",\"envelope_reference_face_ids\":\"patch-reference-face-ids.u64\""
++      <<",\"envelope_reference_vertex_ids\":\"patch-reference-vertex-ids.u64\""
++      <<",\"accepted_collapses\":"<<collapses
+       <<",\"full_surface_before\":"<<json_quality(before)<<",\"full_surface_after\":"<<json_quality(after)
+       <<",\"fixed_source_coordinates_exact\":"<<b(fixed_same)<<",\"exterior_oriented_faces_exact\":"<<b(outside_same)
+       <<",\"retained_coordinates_are_exact_source_points\":"<<b(source_points_exact)
+@@ -171,9 +223,10 @@
+       <<",\"candidate_written\":"<<b(proposed)<<",\"source_master_altered\":false"
+       <<",\"independent_bidirectional_distance_completed\":false,\"complete_semantic_constraint_map\":false"
+       <<",\"independent_global_topology_and_intersections_completed\":false,\"solver_admission_established\":false"
+-      <<",\"engineering_accepted\":false,\"manufacturing_authorized\":false}";
++      <<",\"head_physics_executed\":false,\"engineering_accepted\":false,\"manufacturing_authorized\":false}";
+     std::ofstream stream(output/"report.json");stream<<report.str()<<"\n";stream.close();
+     if(!stream)throw std::runtime_error("Report output failed");
++    finest_stage("result_export_complete",&candidate);
+     std::cout<<report.str()<<std::endl;return proposed?0:3;
+   }catch(const std::exception& e){std::cerr<<"finest-endpoint failure: "<<e.what()<<std::endl;return 2;}
+ }

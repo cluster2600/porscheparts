@@ -1,0 +1,90 @@
+{
+  "schema": "962-rich3-source-guard-and-held-binding-root-review/v1",
+  "decision": "ACCEPT_REVIEWED_FIXED_VARIANT_SOURCE_GUARDS_AND_HELD_ACTUAL_ONLY",
+  "source_index": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson3-observer004-native-measurement-prep-001/index.json",
+    "sha256": "45099b34248242bbc21dedd03250e9c45879233a6ad7475073959eded4ac7435",
+    "bytes": 2337
+  },
+  "source_bindings": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson3-observer004-native-measurement-prep-001/bindings.json",
+    "sha256": "4c41ece609c7e2dfedeba6444fe55911a0fcd7afe096782bb2fb0009df20408e",
+    "bytes": 20317
+  },
+  "source_peer": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson3-reuse-source-peer-001/review.json",
+    "sha256": "c9e7507a993a60248d68432cf0d5b68793ac921f43bda103b48753bbe6317828",
+    "bytes": 1321
+  },
+  "source_findings": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson3-reuse-source-peer-001/findings.json",
+    "sha256": "0dd26053f4be58bf43fd1829230aeeba3816daa52566cd7b83f4eb3795eb1a70",
+    "bytes": 5900
+  },
+  "source_peer_bindings": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson3-reuse-source-peer-001/bindings.json",
+    "sha256": "0d8976f4c702d89f8f723c246caaacc941b193bc76ffde66476c6f7bba185581",
+    "bytes": 4006
+  },
+  "guard_fixture": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson3-guard-fixture-execution-001/result.json",
+    "sha256": "f60f29d2b00231ec3e4b7819f33a103898d8f835912bcd82988b2994049553f2",
+    "bytes": 14346
+  },
+  "guard_stdout": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson3-guard-fixture-execution-001/stdout.json",
+    "sha256": "dacdb10037b161a08be32e262f14db0591cee75fda7a85e10e3aef038bb433f4",
+    "bytes": 6693
+  },
+  "guard_census": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson3-guard-fixture-execution-001/census.json",
+    "sha256": "3b77f7ff55f21d28c2eb232feb8248f85c7ba0a60057b203879db0c31d0aa1de",
+    "bytes": 7409
+  },
+  "guard_cases_passed": 32,
+  "guard_target_scope": "Only AST-extracted profile/staging validators. No whole-module/native execution. Lifecycle/resource/wait code unchanged by complete source inverse.",
+  "held_actual": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson3-observer004-native-measurement-execution-prep-001/actual-contract.json",
+    "sha256": "68dd1d294286fc70504eaf0adb31d8d8b36213047a3ec2d77b7ae3d925a3a8cb",
+    "bytes": 283813
+  },
+  "candidate": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson3-execution-binding-prep-001/actual-contract.candidate.json",
+    "sha256": "68dd1d294286fc70504eaf0adb31d8d8b36213047a3ec2d77b7ae3d925a3a8cb",
+    "bytes": 283813
+  },
+  "candidate_bindings": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson3-execution-binding-prep-001/bindings.json",
+    "sha256": "c5b544694ed388a39e60e39377ccc3eea0432a824d69ab298defb9527224c025",
+    "bytes": 4029
+  },
+  "candidate_change_map": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson3-execution-binding-prep-001/change-map.json",
+    "sha256": "730e3667c189e52074426234e332381e6ee460d9bdd3816b960dd6b24cf96385",
+    "bytes": 5881
+  },
+  "all348_ancestor_inputs_retained": true,
+  "current_input_count": 367,
+  "current_identity_observation": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson3-current-metadata-root-001/fresh-preflight.json",
+    "sha256": "05eee9db518c2b3910e354839ec136aee296068b18fd74357b13b387fd29e7a5",
+    "bytes": 152283
+  },
+  "current_canonical_bodies": 442,
+  "current_identity_scope": "One fresh pinned body/route snapshot; no registry/API query or full ABI proof. Owned route rechecks entry/final.",
+  "input_staging": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson3-four-input-staging-root-001/staging-receipt.json",
+    "sha256": "9f4d533da7da07b0c95054076b6fa4ec455f0f283f7b875aa53ad57f9e734f1c",
+    "bytes": 3966
+  },
+  "physical_thresholds_runtime_or_resource_caps_changed": false,
+  "fixed_solver_variant": {
+    "name": "RICH2_TO_RICH3_ONE_ADDITIONAL_CORRECTION",
+    "scientific_basis": "One additional correction after captured RICH2 and QP arithmetic; no convergence acceptance."
+  },
+  "source_review_ASCII_clarification": "The actual byte change is ASCII0x32 to0x33 at offset14954. Source findings baseline_ASCII/current_ASCII2/3 denote digit values, not character-code integers. Input-source peer separately records50/51 correctly.",
+  "exact_child_complete_meaning": "Current three-unit source and changed guard behavior reviewed; no prior current native runtime/completion is implied.",
+  "native_execution_authorized_by_this_review": false,
+  "root_admission_required": true,
+  "assessment_head_physics_material_process_manufacturing_qualified": false
+}

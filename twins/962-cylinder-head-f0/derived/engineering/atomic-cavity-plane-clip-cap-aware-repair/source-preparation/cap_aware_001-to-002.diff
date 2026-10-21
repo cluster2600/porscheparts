@@ -1,0 +1,59 @@
+--- cap_aware.cpp
++++ cap_aware_002.cpp
+@@ -1,5 +1,6 @@
+ // One declared source-subset quotient plus exact planar CDT; local proposal only.
+ #include "atomic_policy.hpp"
++#include "head_binding.hpp"
+ #include <CGAL/Exact_predicates_exact_constructions_kernel.h>
+ #include <CGAL/Constrained_Delaunay_triangulation_2.h>
+ #include <CGAL/Constrained_triangulation_face_base_2.h>
+@@ -76,7 +77,7 @@
+   std::string stage="setup",old_area,new_area;std::size_t nv=0,nf=0,targets=0,fixed=0,reference=0,frozen_cap=0,side_dropped=0,cap_faces=0,cap_vertices=0,neighbor_pairs=0;
+   std::size_t nv_out=0,nf_out=0,ratio_failed=0,dihedral_failed=0,envelope_failed=0;bool exported=false;
+   Quality before,after;Topology old_global,new_global;Complex old_patch,new_patch,old_cap,new_cap;
+-  std::map<std::string,bool> guards;std::vector<Choice> choices;std::vector<std::size_t> coupled,cap_fixed_ids;std::vector<std::vector<std::size_t>> mapped_loops;
++  std::map<std::string,bool> guards;std::vector<Choice> choices;std::vector<std::size_t> coupled,cap_fixed_ids,poor_ids,reference_ids;std::vector<std::vector<std::size_t>> mapped_loops;
+ };
+ void emit(const fs::path& out,const Result& r,const char* status,const std::string& reason) {
+   if(out.empty()||!fs::is_directory(out))return;auto path=out/"report.json";if(fs::exists(path))throw std::runtime_error("Existing report preserved");
+@@ -86,17 +87,20 @@
+    <<",\"output_vertices\":"<<r.nv_out<<",\"output_faces\":"<<r.nf_out<<",\"before_poor_faces\":";
+   if(r.before.faces)s<<r.before.bad;else s<<"null";s<<",\"after_poor_faces\":";if(r.after.faces)s<<r.after.bad;else s<<"null";
+   s<<",\"before_minimum_quality\":";if(r.before.faces)s<<r.before.minimum;else s<<"null";s<<",\"after_minimum_quality\":";if(r.after.faces)s<<r.after.minimum;else s<<"null";
+-  s<<",\"global_Euler_before\":"<<r.old_global.euler<<",\"global_Euler_after\":"<<r.new_global.euler<<",\"patch_Euler_before\":"<<r.old_patch.euler<<",\"patch_Euler_after\":"<<r.new_patch.euler
+-   <<",\"original_cap_exact_area\":"<<quoted(r.old_area)<<",\"mapped_cap_exact_area\":"<<quoted(r.new_area)<<",\"final_affected_neighbor_pairs\":"<<r.neighbor_pairs
++  s<<",\"global_Euler_before\":";if(r.old_global.valid)s<<r.old_global.euler;else s<<"null";s<<",\"global_Euler_after\":";if(r.new_global.valid)s<<r.new_global.euler;else s<<"null";
++  s<<",\"patch_Euler_before\":";if(r.old_patch.valid)s<<r.old_patch.euler;else s<<"null";s<<",\"patch_Euler_after\":";if(r.new_patch.valid)s<<r.new_patch.euler;else s<<"null";
++  s<<",\"original_cap_exact_area\":"<<quoted(r.old_area)<<",\"mapped_cap_exact_area\":"<<quoted(r.new_area)<<",\"final_affected_neighbor_pairs\":"<<r.neighbor_pairs
+    <<",\"area_ratio_failures\":"<<r.ratio_failed<<",\"dihedral_failures\":"<<r.dihedral_failed<<",\"envelope_failures\":"<<r.envelope_failed<<",\"group_choices\":[";
+   bool comma=false;for(const auto& c:r.choices) {if(comma)s<<',';comma=true;s<<"{\"component_minimum\":"<<c.first<<",\"members\":";list(s,c.members);
+     s<<",\"selected_keeper\":";if(c.selected)s<<c.keeper;else s<<"null";s<<",\"side_star_minimum_quality\":";if(c.selected)s<<c.score;else s<<"null";s<<",\"side_star_faces\":";list(s,c.star);s<<'}';}
+-  s<<"],\"coupled_side_face_ids\":";list(s,r.coupled);s<<",\"fixed_cap_face_ids\":";list(s,r.cap_fixed_ids);s<<",\"mapped_cap_cycles\":[";comma=false;
++  s<<"],\"native_poor_face_ids\":";list(s,r.poor_ids);s<<",\"native_reference_face_ids\":";list(s,r.reference_ids);
++  s<<",\"coupled_side_face_ids\":";list(s,r.coupled);s<<",\"fixed_cap_face_ids\":";list(s,r.cap_fixed_ids);s<<",\"original_cap_cycles\":[";comma=false;
++  for(const auto& loop:r.old_cap.loops){if(comma)s<<',';comma=true;list(s,loop);}s<<"],\"mapped_cap_cycles\":[";comma=false;
+   for(const auto& loop:r.mapped_loops){if(comma)s<<',';comma=true;list(s,loop);}s<<"],\"guards\":{";comma=false;
+   for(const auto& g:r.guards){if(comma)s<<',';comma=true;s<<quoted(g.first)<<':'<<(g.second?"true":"false");}
+   s<<"},\"exported\":"<<(r.exported?"true":"false")<<",\"candidate_file_present\":"<<(fs::is_regular_file(out/"candidate.bin")?"true":"false")
+    <<",\"independent_maximin_guarantees_simultaneous_feasibility\":false,\"new_cap_face_source_sentinel\":18446744073709551615,\"local_vertex_origins_are_input_coordinate_IDs\":true"
+-   <<",\"original_geometric_domain_equality_claimed\":false,\"independent_global_intersection_feature_and_two_sided_distance_pending\":true,\"head_surface_or_solver_admitted\":false,\"manufacturing_authorized\":false}\n";
++   <<",\"original_vs_mapped_domain_equality_evaluated\":false,\"original_geometric_domain_equality_claimed\":false,\"independent_global_intersection_feature_and_two_sided_distance_pending\":true,\"head_surface_or_solver_admitted\":false,\"manufacturing_authorized\":false}\n";
+   s.close();if(!s)throw std::runtime_error("Report write failed");
+ }
+ int main(int argc,char** argv) {
+@@ -113,11 +117,13 @@
+     std::vector<Row> cap_rows,patch_rows,exterior;Chain original_boundary;std::map<Row,std::size_t> frozen_cap;
+     for(auto v:original.vertices())if(original.point(v).z()<0)throw Rejected("Nonnegative input z required");
+     for(auto f:original.faces()) {auto vs=vertices(original,f);Row t{vs[0].idx(),vs[1].idx(),vs[2].idx()};old.push_back(t);
+-      if(triangle_quality(original,f)<2.0/29.0)for(auto v:t)seed[v]=true;
++      if(triangle_quality(original,f)<2.0/29.0){r.poor_ids.push_back(f.idx());for(auto v:t)seed[v]=true;}
+       cap[f.idx()]=original.point(vs[0]).z()==0&&original.point(vs[1]).z()==0&&original.point(vs[2]).z()==0;
+       if(cap[f.idx()]){if(!(cross2(xy(original.point(vs[0])),xy(original.point(vs[1])),xy(original.point(vs[2])))<0))throw Rejected("Original cap must wind negative Z");cap_rows.push_back(t);for(auto v:t)cap_vertex[v]=true;}}
++    if(head&&!std::equal(r.poor_ids.begin(),r.poor_ids.end(),head_binding::poor_face_ids.begin(),head_binding::poor_face_ids.end()))throw Rejected("Exact frozen209a poor-face IDs differ");
++    r.guards["exact_frozen_head_poor_IDs_or_nonhead_fixture"]=true;
+     for(std::size_t i=0;i<old.size();++i) {auto t=old[i];inside[i]=seed[t[0]]||seed[t[1]]||seed[t[2]];
+-      if(inside[i]){reference.push_back(Face(i));patch_rows.push_back(t);chain_add(original_boundary,t);}else {exterior.push_back(oriented(t));for(auto v:t)fixed[v]=true;if(cap[i]){frozen_cap[oriented(t)]=i;r.cap_fixed_ids.push_back(i);}}}
++      if(inside[i]){reference.push_back(Face(i));r.reference_ids.push_back(i);patch_rows.push_back(t);chain_add(original_boundary,t);}else {exterior.push_back(oriented(t));for(auto v:t)fixed[v]=true;if(cap[i]){frozen_cap[oriented(t)]=i;r.cap_fixed_ids.push_back(i);}}}
+     r.fixed=std::count(fixed.begin(),fixed.end(),true);r.reference=reference.size();r.frozen_cap=frozen_cap.size();r.old_patch=complex(patch_rows);r.old_cap=complex(cap_rows);
+     if(!r.old_patch.valid||!r.old_cap.valid||r.old_cap.components!=1||r.old_cap.euler!=0||r.old_cap.loops.size()!=2||r.old_cap.vertices!=r.old_cap.boundary.size())throw Rejected("Manifold patch and all-boundary annular cap required");
+     std::vector<int> loop_of(r.nv,-1);for(int k=0;k<2;++k)for(auto v:r.old_cap.loops[k])loop_of[v]=k;

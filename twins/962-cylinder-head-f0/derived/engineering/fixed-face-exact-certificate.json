@@ -1,0 +1,133 @@
+{
+  "schema": "962-fixed-face-rational-certificate/v1",
+  "status": "exact_fixed_face_tetra_SICN_point1_impossibility_proved",
+  "source_npz_path": "work/962-engineering/analysis-envelope-025-002/checkpoint-audit-001/analysis-surface.npz",
+  "source_npz_sha256": "44056a870fef9415dd096f5a91390f4cd9c3cba00685df3b73643409c3e961d9",
+  "selected_face_index_zero_based": 443972,
+  "selected_node_indices_zero_based": [
+    2282,
+    2823,
+    2284
+  ],
+  "coordinates_mm": [
+    [
+      -75.75,
+      -3.27991330095756e-07,
+      13.0
+    ],
+    [
+      -75.25,
+      6.55982660191512e-07,
+      13.0
+    ],
+    [
+      -75.75,
+      3.27991330095756e-07,
+      13.0
+    ]
+  ],
+  "coordinate_binary64_hex": [
+    [
+      "-0x1.2f00000000000p+6",
+      "-0x1.602d920000000p-22",
+      "0x1.a000000000000p+3"
+    ],
+    [
+      "-0x1.2d00000000000p+6",
+      "0x1.602d920000000p-21",
+      "0x1.a000000000000p+3"
+    ],
+    [
+      "-0x1.2f00000000000p+6",
+      "0x1.602d920000000p-22",
+      "0x1.a000000000000p+3"
+    ]
+  ],
+  "coordinate_bytes_sha256": "1f58d574a91e0d700cde0a9afc0e1247a1470bfe57db97f924258b7adac36fed",
+  "certificate": {
+    "arithmetic": "Fraction.from_float preserves each input binary64 value exactly; all following operations are rational.",
+    "cross_squared_mm4": {
+      "numerator": "133175500548561",
+      "denominator": "1237940039285380274899124224"
+    },
+    "sum_squared_edge_lengths_mm2": {
+      "numerator": "309485009822277297228620983",
+      "denominator": "618970019642690137449562112"
+    },
+    "exact_triangle_SICN_squared": {
+      "numerator": "494589853142807360070767421216751450324992",
+      "denominator": "95780971304695075142730833500293590929713455867886289"
+    },
+    "exact_loose_tetra_SICN_squared_upper_bound": {
+      "numerator": "1112827169571316560159226697737690763231232",
+      "denominator": "95780971304695075142730833500293590929713455867886289"
+    },
+    "inequality_left_2700_cross_squared": {
+      "numerator": "89893462870278675",
+      "denominator": "309485009821345068724781056"
+    },
+    "inequality_right_edge_sum_squared": {
+      "numerator": "95780971304695075142730833500293590929713455867886289",
+      "denominator": "383123885216472214589586756787577295904684780545900544"
+    },
+    "exact_strict_inequality_2700_cross_squared_lt_edge_sum_squared": true,
+    "no_positive_linear_tetrahedron_with_this_fixed_face_can_reach_SICN_point1": true,
+    "no_square_root_or_floating_tolerance_used": true
+  },
+  "metric_definition_reference": {
+    "version": "4.15.2",
+    "primary_archive": "https://gmsh.info/src/gmsh-4.15.2-source.tgz",
+    "archive_sha256": "be3f66f225d27ba9fa014f07e83169285da8a051b0e8ab7103d88066b39bdd3e",
+    "primary_manual": "https://gmsh.info/doc/texinfo/",
+    "files": {
+      "src/common/gmsh.cpp": {
+        "sha256": "375f8ba655c0c2c5c7e0f52a5460e17e0bcf49a363449f2df1b287f6b38a2cb8",
+        "bytes": 297790,
+        "locators": [
+          "2423-2424: minSICN dispatch"
+        ]
+      },
+      "src/geo/MElement.h": {
+        "sha256": "4a6ec0d98f397c540cc9ef2f29a455f088471422a9074c94fea10357da4512df",
+        "bytes": 22390,
+        "locators": [
+          "259-264: minSICNShapeMeasure uses signedInvCondNumRange"
+        ]
+      },
+      "src/geo/MElement.cpp": {
+        "sha256": "969b99203046f3a6f8bc74c8228f1bc62cb2388946c7ab463c2b90297b0d16b6",
+        "bytes": 82045,
+        "locators": [
+          "387-433: signedInvCondNumRange calls CondNumBasis"
+        ]
+      },
+      "src/numeric/CondNumBasis.h": {
+        "sha256": "2f395457fe8751d9cce8e216781389f45ecfbd69c45d7f4c8330a23a12692691",
+        "bytes": 5117,
+        "locators": [
+          "46-54: signed inverse condition uses ideal-reference gradients"
+        ]
+      },
+      "src/numeric/CondNumBasis.cpp": {
+        "sha256": "786fb978baa73313a93f30dcad139972b987415f896f81c6fa6b22f74a8b1f8c",
+        "bytes": 26256,
+        "locators": [
+          "28-66: 2D normalized inverse Frobenius condition number",
+          "74-96: signed 3D inverse Frobenius condition number",
+          "400-413: linear triangle/tetrahedron condition-number order zero"
+        ]
+      }
+    },
+    "scope": "minSICN API follows CondNumBasis. The separately named qualityMeasuresJacobian.cpp minICNMeasure uses a different 3D mean-ratio-style formula and is not substituted for minSICN.",
+    "third_party_source_copied_into_public_delivery": false
+  },
+  "metric_definition_reference_sha256": "28cf35720fa94611a17b219b60b2ead8c1153f6ae346e581d32fd1efe08f112d",
+  "source_sha256": "9b13f4dc7f2eca7da04e1587eb1f59a379a0d0c2101026f9b1d999ae09aaebb8",
+  "all_source_inputs_unchanged": true,
+  "scope": "One selected fixed linear triangle in the bound recovered8GiB checkpoint only. This does not apply after surface remeshing or to another head/analysis representation.",
+  "full_native_facet_coverage": "The separately bound recovery receipt evaluated native minSICN on all1753570 imported fixed linear triangles, without facet subsampling. Its938 count is a floating diagnostic, not this exact certificate.",
+  "native_recovery_receipt_sha256": "91163fe909d196eac4b74e9ff41d9b26963becfa712b56db60d2008dfbd9870c",
+  "no_head_tetrahedra_generated": true,
+  "engineering_accepted": false,
+  "manufacturing_authorized": false
+}

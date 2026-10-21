@@ -1,0 +1,99 @@
+{
+  "schema": "962-toy-deadline-fixture-static-dependency-coverage/v1",
+  "inspection": "AST/name-binding source analysis only; no compiled fragment or fixture execution",
+  "permitted_builtin_names": [
+    "BaseException",
+    "KeyError",
+    "ValueError",
+    "__build_class__",
+    "all",
+    "bool",
+    "bytearray",
+    "bytes",
+    "dict",
+    "getattr",
+    "len",
+    "list",
+    "max",
+    "min",
+    "repr",
+    "str",
+    "type"
+  ],
+  "isolated_namespace_names": [
+    "Frame",
+    "KILL_SECONDS",
+    "QUERY_SECONDS",
+    "TERM_SECONDS",
+    "__builtins__",
+    "__name__",
+    "selectors",
+    "time",
+    "traceback"
+  ],
+  "exact_selected_fragment_global_dependencies": {
+    "exchange": [
+      "CHECK",
+      "Frame",
+      "PROLOGUE",
+      "QUERY_SECONDS",
+      "bool",
+      "bytearray",
+      "dict",
+      "len",
+      "list",
+      "min",
+      "need",
+      "selectors",
+      "time",
+      "type"
+    ],
+    "close": [
+      "BaseException",
+      "KILL_SECONDS",
+      "KeyError",
+      "QUERY_SECONDS",
+      "TERM_SECONDS",
+      "dict",
+      "getattr",
+      "max",
+      "min",
+      "need",
+      "repr",
+      "time",
+      "traceback"
+    ]
+  },
+  "all_supplied_except_unexercised_bootstrap": {
+    "exchange": [
+      "CHECK",
+      "PROLOGUE"
+    ],
+    "close": []
+  },
+  "exercised_paths": {
+    "exchange": "Only kind=model/get-model in test01; tests02/03 call close. Test04 is AST ordering only.",
+    "bootstrap": false
+  },
+  "intentionally_unprovided_unexercised_bootstrap": [
+    "PROLOGUE",
+    "CHECK"
+  ],
+  "new_dict_builtin": true,
+  "new_selectors_global": {
+    "provider": "SimpleNamespace(EVENT_WRITE=object())",
+    "semantics": "Inert unique sentinel accepted only by existing fake selector.register lambda; not an OS/event constant or installed selectors module."
+  },
+  "real_selectors_import_added": false,
+  "all_four_test_method_text_AST_exact": true,
+  "other_definition_changes": [
+    "isolated_session"
+  ],
+  "helper_full_bytes_unchanged": true,
+  "coverage_limit": "Static dependency coverage for the fixed exercised model/close paths is not an execution pass or a complete transport/bootstrap/Python-runtime API proof.",
+  "reference_precision": {
+    "actual_pinned_helper_line": 218,
+    "root_addendum_estimate": 217,
+    "explanation": "The root addendum used a one-line estimate, not an exact location claim or execution observation. Original decision remains unchanged."
+  }
+}

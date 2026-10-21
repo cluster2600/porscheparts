@@ -1,0 +1,63 @@
+{
+  "schema": "962-fixed-shell-apex1435493-runner-guard-successor/v1",
+  "status": "FROZEN_SOURCE_ONLY_UNRUN",
+  "reason": "Original copied guard SOURCE_SHA identified the cube runner, so import refused before mock methods; worker/controller remain unchanged.",
+  "substitutions": [
+    {
+      "old": "SOURCE = Path(__file__).resolve().with_name('run_readback.py')",
+      "new": "SOURCE = Path(__file__).resolve().parents[1]/'fixed-shell-generation-apex1435493-prep-001/run_readback.py'"
+    },
+    {
+      "old": "SOURCE_SHA = '9733e94c44fc12bf8f1a3382006511981cd78abdb72f709c4630be437404121c'",
+      "new": "SOURCE_SHA = '4963f5c66fa9e73797e76a8643f24bfb6b4ea8f1b9962063618504fc10e338ed'"
+    }
+  ],
+  "whole_byte_reverse_exact": true,
+  "original_test": {
+    "path": "work/962-engineering/fixed-shell-generation-apex1435493-prep-001/test_runner_guards.py",
+    "sha256": "e27780e75212bf6bd6b4d3a25c9d406e79b6bf0007b84526f7cf84469090001a"
+  },
+  "selected_test": {
+    "path": "work/962-engineering/fixed-shell-generation-apex1435493-guards-002/test_runner_guards.py",
+    "sha256": "b107bd6a3c8b45ff6da027da25a8422229e358da31e1e4473fff5749c229fcd4"
+  },
+  "selected_existing_runner": {
+    "path": "work/962-engineering/fixed-shell-generation-apex1435493-prep-001/run_readback.py",
+    "sha256": "4963f5c66fa9e73797e76a8643f24bfb6b4ea8f1b9962063618504fc10e338ed"
+  },
+  "historical_held": {
+    "path": "work/962-engineering/fixed-shell-generation-apex1435493-prep-001/held-contract.json",
+    "sha256": "a41928a1ca07d0a25efff4161fd32cb55e50cd0acc2a5d70f99b94d9d3f7a1b4"
+  },
+  "original_failed_import_log": {
+    "path": "work/962-engineering/fixed-shell-generation-apex1435493-root-source-001/test_runner_guards.py.log",
+    "sha256": "202e110767a1a70c9dacdeb2f47ed420c65ada2785bdd67f5094b6aad77d8706",
+    "test_methods_executed": 0
+  },
+  "unchanged_test_method_AST_count": 14,
+  "all_function_ASTs_unchanged": true,
+  "test_method_AST_sha256s": {
+    "test_SIGTERM_during_Popen_return_keeps_assigned_child_owned": "8c29c6c0be5977c017e567c35a22b5f5c954e61a31e57d64785e1e84d1b07735",
+    "test_SIGTERM_during_monitor_kills_reaps_and_restores": "3a69b5a1d7f296a6e6e55c3133626c6f8cdac75ded06fc59ab1e142271250515",
+    "test_Popen_refusal_restores_and_does_not_kill_unowned_process": "1798bc27e0bf849c87842809567b5be864f22b1cb5fdd5813f4f774206685f2a",
+    "test_timer_start_refusal_still_kills_reaps_and_restores": "1da16111ca968ae430ea4d62e660fdecd3aecabea6173def6208a1bf95f77f5e",
+    "test_monitor_refusal_stops_child_without_success": "4165b59d413394b0ec37328fb7eefd785fd4d1c237b16869c5616ec6a23bbd5c",
+    "test_wait_refusal_still_restores_handler": "244e0436062dfff8591df1b8b7bec60fec1431043bac5bfa97dd2890075485c8",
+    "test_late_SIGTERM_marks_interruption_without_signaling_reaped_PID": "6bfaaa31e36e84659c342df2a7dccac4a927600cc36c1198f69a4b341fbc2562",
+    "test_normal_reader_completion_reaps_restores_and_does_not_kill": "4910c1369852d4a6ba581ebc826b71aa2830a651b5d13cf3baee6db7559f25a4",
+    "test_Popen_creation_time_is_subtracted_from_timer_budget": "21d1e250a16d6482e10288ba8bb5e88f848488e81716b58f70cbd75247a1e491",
+    "test_late_valid_RC0_without_timer_callback_cannot_pass": "e15ac837d07cfd639b8f81f245df580ab00cc9e22806e2c75f0b55ae9b8ebd5e",
+    "test_output_limit_while_running_kills_reaps_and_restores": "89cd8f2ad642d94312bab53e60bd4ff08475b52eacbb692bc96853cab1353963",
+    "test_already_exited_output_over_limit_is_not_credited": "5fb5cdcb39c04318032febba541fc04a29107b42cd46d18bf3c0b50e36875538",
+    "test_declared_one_GiB_RSS_limit_stops_owned_child": "1031f0af4c71dde0ed83c1633c1164db11bab4d3114e762c34efc62afdd2283d",
+    "test_generation_declarations_and_requested_thread_environment": "0eae829a2ae174e88d87c8eac09a01068f5f6a27c377fb10a346c848202e7464"
+  },
+  "source_worker_or_controller_changes": false,
+  "tests_executed": false,
+  "scientific_imports_or_native_execution": false,
+  "native_execution_authorized": false,
+  "cavity_generation_authorized": false,
+  "head_execution_authorized": false,
+  "stitching_authorized": false,
+  "manufacturing_authorized": false
+}

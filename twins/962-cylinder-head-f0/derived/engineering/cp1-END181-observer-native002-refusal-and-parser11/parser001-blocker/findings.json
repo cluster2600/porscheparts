@@ -1,0 +1,161 @@
+{
+  "schema": "962-observer004-saved-parser-independent-source-findings/v1",
+  "decision": "HOLD001_UNRUN_PENDING_STRICT_TIME_MARKER_CORRECTION",
+  "blockers": [
+    {
+      "id": "B01",
+      "severity": "SOURCE_CONTRACT_BLOCKER_BEFORE_SYNTHETIC_OR_SAVED_ADMISSION",
+      "path": {
+        "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-saved-measurement-parser-prep-001/parse_saved_measurement.py",
+        "sha256": "a1c68558167b990f6f059f394fa085548eb0969dcaad6096864dc043b99ffc1d",
+        "bytes": 13047
+      },
+      "symbol": "parse_monitor_trace",
+      "line": 161,
+      "claim": "PLAN strict unrecognized time/monitor syntax refusal",
+      "counterexample": "Append or insert `Time Step -1, time = 0, dt = 0.0025` into an otherwise complete182-step/364-monitor toy trace.",
+      "deductive_path": [
+        "The full step regex requires unsigned digits immediately after the Time Step marker, so the negative marker line does not enter the step branch.",
+        "It is not a monitor line. The fallback searches Time Step followed only by unsigned digits; the minus sign prevents that search from matching.",
+        "The fallback condition remains true, so the malformed recognized time marker is silently ignored and does not change blocks/events; the otherwise complete trace can pass."
+      ],
+      "executed_reproduction": false,
+      "impact": "Unsupported extra time metadata can be dropped while complete_storage_trace_association can later become true. This violates the declared strict refusal/complete-association boundary; no claim that the refused native log actually contains this line.",
+      "minimal_successor": "Preserve001. In a new source-held successor, reject any Time Step marker that did not match the supported complete step grammar (a conservative marker search rather than unsigned-digit-only fallback). Add negative/noninteger malformed time-marker cases to the existing bad-trace fixture loop;11 methods can remain. Keep all framing/map/count/word/scientific limits unchanged.",
+      "no_edit_or_execution_performed": true
+    }
+  ],
+  "positive_source_checks": [
+    {
+      "id": "F01",
+      "scope": "Pure finite framing",
+      "finding": "Explicit integer4/8, big-endian class1211214/N, signed nonnegativeN<=1700, exact8N payload, max364 objects/4956224bytes and exactEOF. Sidecar complete bytes/hash retained separately; no ABI inference. Raw nonfinite count and signed payload bytes remain unnormalized."
+    },
+    {
+      "id": "F02",
+      "scope": "Map association",
+      "finding": "425x4 ordered rows, exact variable permutation/name/FIRST-LAGRANGE, all1275 displacement DOFs, unique actual globalrange up to1700 and absent placeholder null. Coordinates/scaling/time words match external expected metadata; six labels explicitly expected original mask, not live BC. Observer source fields/reaction caveats align."
+    },
+    {
+      "id": "F03",
+      "scope": "Event and header association",
+      "finding": "For supported grammar, ordered1..182 plus optional monitorfree0 and exactly0/1 pair enforce364. Per-objectN retained independently;X/F/Y sizes agree per event and within solve,END181 ownmapN only. Strict unknown-time refusal hasB01 gap."
+    },
+    {
+      "id": "F04",
+      "scope": "Unsupported semantics remain separate",
+      "finding": "No automatic CSV/CDF/sourceID/doublet collector or X1 displacement-word join, no rounded-delta construction, Y0 interpretation, Y1=rounded difference, F-to-SI/reaction/unscaling or twelve-failure repair/full-assessor acceptance. All future roles/authorities nullfalse."
+    },
+    {
+      "id": "F05",
+      "scope": "Composition boundary",
+      "finding": "bind_stream_headers and vector_words expect correctly associated return records from these pure scanners/trace/map functions. No saved-file owner/provenance/expected-word collector is implemented. Future admitted composition must bind complete own streams/sidecars/map/log and current expected words, not treat free dicts as self-certifying."
+    },
+    {
+      "id": "F06",
+      "scope": "Current refused capture",
+      "finding": "Parent reports one refused native capture caused by a resource/group observation exception, native0/caller1/outer2. This source review neither rechecks that result nor reads/stats/hashes its maps, headers, fields or streams. Presence is not accepted capture or field evidence; future stopped-capture acceptance remains absent."
+    }
+  ],
+  "fixture_static_expectations": [
+    {
+      "test_method": "test_both_integer_widths_variable_N_full_EOF_and_info",
+      "source_reason": "Two standard headers with independentN1/2, exact payload endpoint, LE signed-zero/3.5 words; literal info body is22bytes. Static reasoning supports the expectations."
+    },
+    {
+      "test_method": "test_class_signed_length_payload_and_trailing_bytes_refused",
+      "source_reason": "Wrong class, negativeN, short8N extent and final trailingbyte each reach a framing refusal."
+    },
+    {
+      "test_method": "test_duplicate_and_nonfinite_JSON_tokens_refused",
+      "source_reason": "Duplicate key and nonstandard NaN token reach explicit strict_json refusal. This covers those specific tokens, not an unrestricted schema/number-domain proof."
+    },
+    {
+      "test_method": "test_wrong_width_endian_oversize_or_missing_info_refused",
+      "source_reason": "64header-as32 starts with class0, little-endian class differs, N1701 exceedscap, None sidecar is distinct from empty bytes."
+    },
+    {
+      "test_method": "test_nonfinite_Y0_payload_and_signed_zero_are_preserved_uninterpreted",
+      "source_reason": "Specified NaN and negativeInf have exponentallones, -0 doesnot; counts2 and exact reversed rawwords retain payload/sign."
+    },
+    {
+      "test_method": "test_map_has_actual_permuted_full_global_range_and_expected_six_labels",
+      "source_reason": "425x4 rows,1275 physical indices `(3node+slot)*7 mod1275`;1275=7*182+1 makes7 coprime, so complete permutation. Variable numbers2/0/3/1 and six original labels are consistent."
+    },
+    {
+      "test_method": "test_map_missing_range_mask_coordinates_scaling_and_time_refused",
+      "source_reason": "GlobalN1276 leaves an uncovered index; each mask/coordinate/scaling/time perturbation conflicts with separately supplied expected metadata."
+    },
+    {
+      "test_method": "test_map_duplicate_index_and_absent_physical_DOF_refused",
+      "source_reason": "Duplicate physical globalindex and absent slot0 violate exact map range/presence requirements."
+    },
+    {
+      "test_method": "test_full_trace_gives_conditional_ordinals_not_times",
+      "source_reason": "One pair for steps1..182 implies364 events and conditional END181 ordinals360/361 by2*(181-1). Printed decimal time tokens remain non-word observations."
+    },
+    {
+      "test_method": "test_missing_extra_or_unrecognized_trace_monitor_refused",
+      "source_reason": "Missing monitor, extra final monitor and iteration2 refuse. It currently does not test the malformed-time-marker route inB01."
+    },
+    {
+      "test_method": "test_header_join_keeps_earlier_N_independent_of_END181",
+      "source_reason": "Prevalidated toy scan dictionaries keep earlyN9 and laterN1275 without backward map inference; Y361N1274 conflicts withX/F. This is association semantics only, not real-byte decoding."
+    }
+  ],
+  "fixture_count": 11,
+  "all_fixture_methods_unrun": true,
+  "primary_sources_read_current_public_text": [
+    {
+      "url": "https://gitlab.com/petsc/petsc/-/raw/v3.25.4/src/vec/vec/utils/vecio.c",
+      "symbols": [
+        "VecView_Binary",
+        "VecLoad_Binary"
+      ],
+      "source_observation": "Writer emits class/N asPetscInt and global scalar payload; loader distinguishes32/64-bit headers and checks nonnegative/current size. Sidecar blocksize output is separate."
+    },
+    {
+      "url": "https://gitlab.com/petsc/petsc/-/raw/v3.25.4/include/petscvec.h",
+      "symbols": [
+        "VEC_FILE_CLASSID"
+      ],
+      "source_observation": "Standard vector class is1211214."
+    },
+    {
+      "url": "https://gitlab.com/petsc/petsc/-/raw/v3.25.4/src/sys/fileio/sysio.c",
+      "symbols": [
+        "PetscBinaryWrite"
+      ],
+      "source_observation": "Standard binary writes use big-endian ordering and configured integer/scalar sizes; real8 is still an external runtime/observer precondition."
+    },
+    {
+      "url": "https://gitlab.com/petsc/petsc/-/raw/v3.25.4/src/snes/interface/snesut.c",
+      "symbols": [
+        "SNESMonitorSolution",
+        "SNESMonitorResidual",
+        "SNESMonitorSolutionUpdate"
+      ],
+      "source_observation": "Callbacks obtain current solution/function/update and invokeVecView. This does not establish recorded event counts in the installed native capture."
+    },
+    {
+      "url": "https://gitlab.com/petsc/petsc/-/raw/v3.25.4/src/snes/impls/ksponly/ksponly.c",
+      "symbols": [
+        "SNESSolve_KSPONLY"
+      ],
+      "source_observation": "Under the relevant norm schedule and installed monitors, callback0 precedesKSPSolve; X subtractsY, F refreshes beforecallback1. Y0 is not initialized by this solve. Public source and installed ABI/behavior are separate."
+    }
+  ],
+  "primary_source_bodies_saved": false,
+  "source_runtime_ABI_equivalence_accepted": false,
+  "performed": [
+    "Literal named first-party source/metadata byte identities",
+    "AST parse/overview and static control-flow/schema/fixture reasoning",
+    "Official pinnedPETScv3.25.4 public source text reads"
+  ],
+  "not_performed": [
+    "Any parser/fixture/observer/controller import or execution",
+    "Synthetic guard run or native/helper replay",
+    "Native output/header/map/field/grid/runtime body read/hash/stat",
+    "Real-coordinate/field arithmetic or new capture acceptance"
+  ]
+}

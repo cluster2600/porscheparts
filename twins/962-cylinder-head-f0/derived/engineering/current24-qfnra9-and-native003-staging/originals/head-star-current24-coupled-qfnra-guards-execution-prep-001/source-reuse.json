@@ -1,0 +1,165 @@
+{
+  "schema": "962-current24-qfnra-guards-owner-source-reuse/v1",
+  "status": "SOURCE_ONLY_UNRUN",
+  "donor": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-row-first-mock-guards-execution-prep-001/run_root_once.py",
+    "sha256": "bd86647db9f11bcf098a034094a722fa0972c9f3fb393fe6684c915bfffc71e3",
+    "bytes": 15061
+  },
+  "owner": {
+    "path": "work/962-engineering/head-star-current24-coupled-qfnra-guards-execution-prep-001/run_root_once.py",
+    "sha256": "46525eb39e8cf1b44b82fb81558d54a5ec91a88b7a661b08a756f18556fa0ec4",
+    "bytes": 15897
+  },
+  "diff": {
+    "path": "work/962-engineering/head-star-current24-coupled-qfnra-guards-execution-prep-001/source.diff",
+    "sha256": "6a9dd5703b67c11ad58668c45cb0efb6565eb2c00caf03e2da3da08e18f52a2c",
+    "bytes": 11131
+  },
+  "replacement_group_count": 18,
+  "literal_occurrences": 24,
+  "complete_forward_groups": [
+    {
+      "old": "HELD ONE10-test row-first sampler mock owner",
+      "new": "HELD ONE14-test pure QF_NRA synthetic owner",
+      "occurrences": 1
+    },
+    {
+      "old": "cp1-oneway-cooling-release-richardson2-observer004-row-first-mock-guards-execution-prep-001",
+      "new": "head-star-current24-coupled-qfnra-guards-execution-prep-001",
+      "occurrences": 1
+    },
+    {
+      "old": "cp1-oneway-cooling-release-richardson2-observer004-row-first-mock-guards-root-execution-001",
+      "new": "head-star-current24-coupled-qfnra-guards-root-execution-001",
+      "occurrences": 1
+    },
+    {
+      "old": "962-observer004-row-first-mock-root-synthetic-admission/v1",
+      "new": "962-current24-qfnra14-root-synthetic-admission/v1",
+      "occurrences": 1
+    },
+    {
+      "old": "962-observer004-row-first-mock-held-synthetic-actual/v1",
+      "new": "962-current24-qfnra14-held-synthetic-actual/v1",
+      "occurrences": 1
+    },
+    {
+      "old": "962-observer004-row-first-mock-once-synthetic-result/v1",
+      "new": "962-current24-qfnra14-once-synthetic-result/v1",
+      "occurrences": 1
+    },
+    {
+      "old": "auth['invocations']==1 and auth['expected_tests']==10",
+      "new": "auth['invocations']==1 and type(auth['expected_tests']) is int and auth['expected_tests']==14",
+      "occurrences": 1
+    },
+    {
+      "old": "actual['expected_tests']==10 and len(actual['test_methods'])==10",
+      "new": "type(actual['expected_tests']) is int and actual['expected_tests']==14 and len(actual['test_methods'])==14",
+      "occurrences": 1
+    },
+    {
+      "old": "expected_tests=10",
+      "new": "expected_tests=14",
+      "occurrences": 2
+    },
+    {
+      "old": "all10_tests_completed",
+      "new": "all14_tests_completed",
+      "occurrences": 6
+    },
+    {
+      "old": "__main__\\.RowFirstMockGuards",
+      "new": "__main__\\.QFNRASyntheticGuards",
+      "occurrences": 1
+    },
+    {
+      "old": "counts[0][0]!='10'",
+      "new": "counts[0][0]!='14'",
+      "occurrences": 1
+    },
+    {
+      "old": "Complete10 named unittest successes",
+      "new": "Complete14 named unittest successes",
+      "occurrences": 1
+    },
+    {
+      "old": "real_head_input_read_or_enumerated=False",
+      "new": "real_head_coordinate_field_or_scientific_body_read=False,source_or_descriptor_metadata_read=True",
+      "occurrences": 1
+    },
+    {
+      "old": "pin=auth[role];path=Path(pin['path']) if Path(pin['path']).is_absolute() else R/pin['path']",
+      "new": "pin=auth[role];path=Path(pin['path']) if Path(pin['path']).is_absolute() else R/pin['path']\n if role in ['guard_source_peer','guard_source_bindings']:assert pin==actual[role]",
+      "occurrences": 1
+    },
+    {
+      "old": "pins={**records,**runtime,**direct};before=check(pins);links_before=provider_links(runtime)",
+      "new": "pins={**records,**runtime,**direct}\nassert len(runtime)==actual['runtime_record_count']==91 and len(direct)==actual['direct_control_record_count_at_launch']==9\ncanonical_paths=[str((Path(k) if Path(k).is_absolute() else R/k).resolve(strict=True)) for k in pins]\nassert len(set(canonical_paths))==len(pins)==actual['total_record_count_at_launch'], 'Canonical unique complete identity count required'\nbefore=check(pins);links_before=provider_links(runtime)",
+      "occurrences": 1
+    },
+    {
+      "old": "'real_sampler_main_execution_authorized','native_retry_authorized'])",
+      "new": "'real_sampler_main_execution_authorized','native_retry_authorized','real_solver_execution_authorized','real_coordinate_coefficient_execution_authorized','real_model_or_word_execution_authorized','real_word_validator_execution_authorized'])",
+      "occurrences": 1
+    },
+    {
+      "old": "'native_retry_authorized','automatic_retry'])",
+      "new": "'native_retry_authorized','automatic_retry','real_solver_execution_authorized','real_coordinate_coefficient_execution_authorized','real_model_or_word_execution_authorized','real_word_validator_execution_authorized'])",
+      "occurrences": 1
+    }
+  ],
+  "full_reverse_exact_donor": true,
+  "nine_helper_names": [
+    "rec",
+    "group_exists",
+    "check",
+    "output_size",
+    "stop_wait",
+    "limits",
+    "sample",
+    "provider_links",
+    "record_controller_stop"
+  ],
+  "nine_helpers_text_AST_exact": true,
+  "imports_exact": true,
+  "changed_helper_or_lifecycle_code": false,
+  "main_only_semantic_changes": [
+    "Fixednamespace/schema/directfixturecount/class",
+    "Typed expected test counts",
+    "Explicit false real-solver/coefficient/model/word execution flags",
+    "Precise permitted source/descriptor metadata versus forbidden scientific-body read attribution",
+    "Own known sourcepeer role descriptors must equal actual",
+    "Canonical unique identity count assertion"
+  ],
+  "preparation_event": {
+    "kind": "Static source-authoring assertion, not guard execution",
+    "first_host_writer_RC": 1,
+    "error": "AssertionError: ('all10_tests_completed', 6, 7)",
+    "effect": "First source writer stopped before writing any owner/diff/actual. Empty private prep directory only. Expected count corrected to six and source generated; no target code/import/runtime/test/process operation occurred."
+  },
+  "root_resource_erratum_records": [
+    {
+      "path": "work/962-engineering/head-star-current24-coupled-qfnra-preparation-erratum-001/erratum.json",
+      "sha256": "ba07a1123189be5f97f739cd79c348c30ead4c48db82611cdaf529ac3124535f",
+      "bytes": 2267
+    },
+    {
+      "path": "work/962-engineering/head-star-current24-coupled-qfnra-preparation-erratum-001/method-root-binding.json",
+      "sha256": "ed1bed5094c70be22ea09dd9c50a3631f8c048639ac5bfba6c67151f0109f690",
+      "bytes": 1449
+    }
+  ],
+  "controls": {
+    "wall_seconds": 60,
+    "TERM_grace_seconds": 8,
+    "KILL_wait_seconds": 8,
+    "sampled_owned_RSS_bytes": 2147483648,
+    "total_owned_output_bytes": 33554432,
+    "sample_seconds": 0.05,
+    "thread_environment": 1,
+    "retries": 0
+  },
+  "no_new_execution_authority": true
+}

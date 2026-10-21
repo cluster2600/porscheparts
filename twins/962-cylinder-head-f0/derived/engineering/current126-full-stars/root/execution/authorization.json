@@ -1,0 +1,119 @@
+{
+  "schema": "962-current126-census-root-launch-authorization/v1",
+  "decision": "ROOT_AUTHORIZES_EXACTLY_ONE_CURRENT126_READ_ONLY_CENSUS",
+  "launch_source": {
+    "path": "work/962-engineering/head-star-current126-full-stars-root-launch-prep-001/launch-once-002.py",
+    "sha256": "76e51620369e0d00cb1039da7bfd2e3119d61ff2cb0abc8444f8caa81c9619e6",
+    "bytes": 17236
+  },
+  "actual": {
+    "path": "work/962-engineering/head-star-current126-full-stars-execution-prep-001/actual-contract.json",
+    "sha256": "d579a794f18bc9f7c4e153cb2042f32cb32b2c6b2f2235cec2edbef8aba91317",
+    "bytes": 36806
+  },
+  "index": {
+    "path": "work/962-engineering/head-star-current126-full-stars-execution-prep-001/index.json",
+    "sha256": "768aad54cfc1f2c620e8da4e3a5a9e69f73c45f85e18058dd4147d2f53805856",
+    "bytes": 65334
+  },
+  "child": {
+    "path": "work/962-engineering/head-star-current126-full-stars-exact-child-peer-001/review.json",
+    "sha256": "4fd56aa0073054a0d2010247cc8f020c4254f37dd14241ae78dad46b6e44321d",
+    "bytes": 5376
+  },
+  "child_bindings": {
+    "path": "work/962-engineering/head-star-current126-full-stars-exact-child-peer-001/bindings.json",
+    "sha256": "826b3d135f42c08b319baec082aa83246dda0fddad06a36c2b0917b94d3a9599",
+    "bytes": 115639
+  },
+  "root_guards": {
+    "path": "work/962-engineering/head-star-current126-full-stars-root-source-001/review.json",
+    "sha256": "6eecaf29b2fa8002afac6958aad76479e23745ea4b1857023058810b9d540b80",
+    "bytes": 94068
+  },
+  "finite_runtime": {
+    "path": "work/962-engineering/head-star-current126-full-stars-runtime-root-001/review.json",
+    "sha256": "28101a316a5070a9d33092f5afc08dd84a347f6b8e2b51bed88a4c00ab951e7c",
+    "bytes": 7139
+  },
+  "parent_acceptance": {
+    "path": "work/962-engineering/apex1613031-head-application-root-execution-001/result-peer-acceptance.json",
+    "sha256": "19ef174a208868bf174909a1add690971fdf018b8cf438c5c26e3a2bca9bfada",
+    "bytes": 5753
+  },
+  "native_serialization_and_resources_reviewed": true,
+  "read_only_query_authorized": true,
+  "automatic_retry": false,
+  "head_edit_authorized": false,
+  "PDE_solve_authorized": false,
+  "physical_qualification": false,
+  "root_read_scope": "Root fully read launcher001, exact two-line002 predicate diff, current actual/index controls and all32 consumer values, full4fb controller and independent child review. No selected source function or native code run in this authorization.",
+  "root_source002_delta": {
+    "prior_source": {
+      "path": "work/962-engineering/head-star-current126-full-stars-root-launch-prep-001/launch-once.py",
+      "sha256": "5074c99869780c5f7293a1732ef036cc18fea7629b96abc34d2e92678b7e6f4b",
+      "bytes": 17042
+    },
+    "preparation": {
+      "path": "work/962-engineering/head-star-current126-full-stars-root-launch-prep-001/preparation-002.json",
+      "sha256": "4a0c158ae5b573be50a3d563b5399274c582364148485c0e7c23c8728e1cf585",
+      "bytes": 10093
+    },
+    "diff": {
+      "path": "work/962-engineering/head-star-current126-full-stars-root-launch-prep-001/launch-001-to-002.diff",
+      "sha256": "14e775e23f512392bc7a3713c535025c894786f22892fcf1972bd899436f847d",
+      "bytes": 4265
+    },
+    "exact_two_changed_predicate_lines": true,
+    "prior001_unrun": true
+  },
+  "fresh_serialization_observation": {
+    "selected_962_native_worker_or_controller_matches": [],
+    "scope": "Finite command-prefix observation only; no universal process absence claim."
+  },
+  "free_disk_bytes": 14319411200,
+  "exact_controller_argv": [
+    "runtime-role://controller/python",
+    "-I",
+    "-B",
+    "work/962-engineering/head-star-current126-full-stars-001/run_readback.py",
+    "--contract-sha256",
+    "d579a794f18bc9f7c4e153cb2042f32cb32b2c6b2f2235cec2edbef8aba91317"
+  ],
+  "exact_native_argv": [
+    "runtime-role://registered-native/geometry/bin/python",
+    "-B",
+    "work/962-engineering/head-star-current126-full-stars-001/reader.py"
+  ],
+  "environment": {
+    "PATH": "/usr/bin:/bin",
+    "LANG": "C",
+    "PYTHONUTF8": "1",
+    "OMP_NUM_THREADS": "2",
+    "OPENBLAS_NUM_THREADS": "2",
+    "PYTHONDONTWRITEBYTECODE": "1"
+  },
+  "inner_controls": {
+    "complete_or_refuse_no_sampling_or_truncation": true,
+    "hard_OS_CPU_or_address_space_quota": false,
+    "hard_wall_seconds": 120,
+    "sampled_RSS_stop_bytes": 8589934592,
+    "sampled_output_stop_bytes": 1073741824,
+    "threads": 2
+  },
+  "outer_controls": {
+    "ordinary_wall_seconds": 135,
+    "start_new_session": true,
+    "TERM_at_deadline": true,
+    "TERM_grace_seconds": 8,
+    "SIGKILL_only_verified_owned_group_if_needed": true,
+    "wait_and_reap_required": true,
+    "automatic_retry": false,
+    "hard_OS_CPU_or_RSS_quota": false,
+    "scope": "Root ordinary outer bound; exact4fb inner sampled controls unchanged. No true peak or universal descendant observation."
+  },
+  "native_query_runs_authorized": 1,
+  "guard_reexecution_authorized": false,
+  "prior_d60_command_conformant": false,
+  "all108_and_finite5_fresh_hashes_required_in_launcher": true
+}

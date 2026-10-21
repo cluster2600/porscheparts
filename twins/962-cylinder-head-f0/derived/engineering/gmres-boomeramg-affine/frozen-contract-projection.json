@@ -1,0 +1,185 @@
+{
+  "projection": "Whitelist projection of original PREPARATION contract; private rootfs/output paths and local interpreter paths omitted. Later separate authorization and actual result do not rewrite these historical preparation flags.",
+  "original_sha256": "1783ad8397a0d0cbc892ad129487db7d3b983483903682d5375f94036a4c8978",
+  "contract": {
+    "schema_version": 1,
+    "study": "962-synthetic-GMRES-BoomerAMG-affine-001",
+    "status": "frozen_source_preflight_native_hold",
+    "native_execution_authorized": false,
+    "MOOSE_binary_invocations_in_this_preparation": 0,
+    "native_input_validation_performed": false,
+    "source_sha256s": {
+      "affine.i": "cd35fe49d1f9521af28a66d119aca25564025760693b2a1b439135ef36313353",
+      "assess_affine.py": "a2ac1475c50a4323fc105f0ec3a58e79ef9e9dee4de82e277916c4b730edf541",
+      "run_local.py": "61064f4a2421d5d492060a795252b29791f1e999e8753fe221459b3c9578fd76",
+      "test_affine.py": "a1805aa57c686cf6046e776c9395bd74c46875ab8a01c1624d21022029cc446d",
+      "PROTOCOL.md": "1076d294b0461d594860c69ab27746193cc767a57296c45b0d02464d3aace690",
+      "inspect_runtime.py": "dcc0d8f7a24eaf8c1981af85b810f36cb0f7936466a880ec12935d3ab6bccbca",
+      "runtime-inspection.json": "5dabf165d4036422279bd17a6bb1c67424f6e8f16dbdb74bb7baf7ff547f4baf",
+      "runtime-inspection-execution.json": "535781fcf119b6e94f4057ebc7121fffcaca1ae52308c9ad54a55d08a0f12026",
+      "runtime-linkage-inspection.json": "257a861f8b06b436323428f8ecf0c06ba8a65889764f7f3ef73b8425e9ed4619",
+      "primary-provenance.json": "040283fc2537d06df4a449ba2d8714e14320aec41ca608ffd5f93673bfe10511",
+      "normalized-PROTOCOL_PROPOSAL.md": "86b681dd40e48989ad6328e7a4f3fe22794f0522ff88652411ae19d0ec967ba8",
+      "normalized-SOLVER_RUNTIME_ADDENDUM.md": "a7987b474e9dea1a3dec040636e6d1c95b7a9f5a2c3694dade5e0ef837ebe0d8",
+      "normalized-proposal.json": "e5a75d1377d5caca155996efb00917fe36fdf17e082d77af04483f13b6e46395",
+      "normalized-runtime-availability.json": "ba70a5105eead8f5164b5fcf7598427ee0012e50b3c56fae65ca64d64b0a75c4",
+      "normalized-preparation-checks.json": "6780c3e10d5375b7c542317ec6d2cfb9b95ae264e3a3452c2598f19c1ede727b"
+    },
+    "runtime_sha256s": {
+      "opt/moose/bin/moose-opt": "c49e2c368799d80edf9ff858dd8960bd22f5430f48229ab49dcc0afd27afcc5b",
+      "opt/petsc/lib/libpetsc.so.3.25.2": "08fe5281281c9097411de4dba0f7409b3ea4254fef4d824e124647ddadef475a",
+      "opt/petsc/lib/libHYPRE-3.1.0.so": "9430a3931cc62ae387099576eee8f7719d83923aade3af4d12cfabed7e920079",
+      "opt/petsc/include/petscconf.h": "d97381968ccfea9eb893c0f1316cd51ade2be2d5adf3caa0790a0c00c22c9a5c",
+      "environment": "2ff5e3480067369fff550ebba7a5d3c565a393ec2a3f1a9f100c3c5f8aeb416b",
+      "opt/moose/lib/combined/libmoose-opt.so.0": "f8eb6b0dc6eba723f9e788b1e842b825635cc6ba4475b091a229ff12a9412aae",
+      "opt/moose/lib/combined/libcombined-opt.so.0": "24a1ef7eb74245725aac38b10493b7f9308235a872f3027bd36b7a16d10d44f7",
+      "opt/libmesh/lib/libmesh_opt.so.0": "7b4971177983443edc96070877cac4aa6d684e33a926e01183b6a67ee855ad37"
+    },
+    "runtime_binding_scope": "Selected executable, solver/operator libraries, compile configuration and environment bytes; not full transitive OS/library or build-source attestation.",
+    "reference_evidence": {
+      "work/962-engineering/head-normalized-protocol-prep-001/PROTOCOL_PROPOSAL.md": {
+        "sha256": "86b681dd40e48989ad6328e7a4f3fe22794f0522ff88652411ae19d0ec967ba8",
+        "frozen_copy": "normalized-PROTOCOL_PROPOSAL.md"
+      },
+      "work/962-engineering/head-normalized-protocol-prep-001/SOLVER_RUNTIME_ADDENDUM.md": {
+        "sha256": "a7987b474e9dea1a3dec040636e6d1c95b7a9f5a2c3694dade5e0ef837ebe0d8",
+        "frozen_copy": "normalized-SOLVER_RUNTIME_ADDENDUM.md"
+      },
+      "work/962-engineering/head-normalized-protocol-prep-001/proposal.json": {
+        "sha256": "e5a75d1377d5caca155996efb00917fe36fdf17e082d77af04483f13b6e46395",
+        "frozen_copy": "normalized-proposal.json"
+      },
+      "work/962-engineering/head-normalized-protocol-prep-001/runtime-availability.json": {
+        "sha256": "ba70a5105eead8f5164b5fcf7598427ee0012e50b3c56fae65ca64d64b0a75c4",
+        "frozen_copy": "normalized-runtime-availability.json"
+      },
+      "work/962-engineering/head-normalized-protocol-prep-001/preparation-checks.json": {
+        "sha256": "6780c3e10d5375b7c542317ec6d2cfb9b95ae264e3a3452c2598f19c1ede727b",
+        "frozen_copy": "normalized-preparation-checks.json"
+      }
+    },
+    "problem": {
+      "equation": "-laplacian(w)=0",
+      "domain": "dimensionless [1,2]^3",
+      "affine_reference": "x+2*y+3*z",
+      "mesh": "3x3x3 HEX8/Q1",
+      "nodes": 64,
+      "boundary_nodes": 56,
+      "interior_nodes": 8,
+      "all_boundary_Dirichlet": true,
+      "boundary_data_range": [
+        6,
+        12
+      ],
+      "initial_field": 0,
+      "coefficient": 1,
+      "physical_material_assigned": false
+    },
+    "solver": {
+      "executioner": "Steady NEWTON",
+      "nonlinear_max_iterations": 1,
+      "required_actual_linear_solves": 1,
+      "assembled_preconditioner": "SMP full",
+      "KSP": "gmres",
+      "restart": 30,
+      "PC": "hypre",
+      "HYPRE": "boomeramg",
+      "PC_cycle": "V",
+      "PC_max_iterations_per_call": 1,
+      "PC_tolerance": 0,
+      "linear_relative_tolerance": 1e-12,
+      "linear_absolute_tolerance": 1e-13,
+      "linear_max_iterations": 100,
+      "nonlinear_relative_tolerance": 1e-12,
+      "nonlinear_absolute_tolerance": 1e-12
+    },
+    "required_actual_exports": {
+      "A": "operator.m",
+      "P": "preconditioner.m",
+      "b": "rhs.m",
+      "Newton_correction_y": "correction.m",
+      "profile": "ksp.txt",
+      "native_true_residual": "true_residual.txt",
+      "full_spatial_samples": "exactly one affine_nodes*.csv",
+      "native_six_face_fluxes": "affine.csv"
+    },
+    "acceptance": {
+      "missing_partial_nonfinite_ambiguous_exports": "reject",
+      "derived_arithmetic_overflow": "reject",
+      "export_manifest": "complete exact nonsymlink inventory before and after assessment",
+      "current_and_executed_sources_input_contract": "exact hash identity",
+      "native_process_reaped": true,
+      "returncode_integer": 0,
+      "one_KSP_block_in_each_export": true,
+      "one_native_successful_linear_convergence_reason": true,
+      "native_nonlinear_convergence_required": true,
+      "native_true_residual_history_required": true,
+      "coordinate_absolute_tolerance": 1e-12,
+      "all_64_field_relative_max_tolerance": 1e-10,
+      "all_64_field_relative_unweighted_RMS_tolerance": 1e-10,
+      "boundary_absolute_field_tolerance": 1e-10,
+      "six_native_and_independent_Q1_flux_absolute_tolerance": 1e-09,
+      "independent_outer_Q1_cell_face_integrals": 54,
+      "face_fluxes": {
+        "left": 1,
+        "right": -1,
+        "bottom": 2,
+        "top": -2,
+        "back": 3,
+        "front": -3
+      },
+      "identity_BC_rows": 56,
+      "identity_row_absolute_tolerance": 1e-12,
+      "free_rows": 8,
+      "actual_KSP_true_residual_relative_tolerance": 1e-10,
+      "finite_nonzero_RHS_norm_required": true,
+      "finite_nonzero_operator_and_free_norm_required": true,
+      "free_symmetry_relative_Frobenius_tolerance": 1e-12,
+      "actual_A_P_relative_Frobenius_tolerance": 1e-12,
+      "full_symmetry_and_Dirichlet_column_couplings": "report without assuming full constrained-system symmetry"
+    },
+    "resource_contract": {
+      "soft_timeout_seconds": 30,
+      "kill_after_seconds": 5,
+      "controller_wait_seconds": 40,
+      "systemd_RuntimeMaxSec": 45,
+      "systemd_MemoryMax_bytes": 2147483648,
+      "systemd_MemorySwapMax": 0,
+      "systemd_CPUQuota_percent": 200,
+      "systemd_TasksMax": 128,
+      "MPI_ranks": 1,
+      "OpenMP_threads": 1,
+      "OpenBLAS_threads": 1,
+      "read_only_rootfs": true,
+      "network": "unshared",
+      "fresh_owned_output_only": true,
+      "hard_output_disk_quota_enforced": false,
+      "automatic_retry": false
+    },
+    "unestablished": {
+      "actual_native_input_syntax_and_PC_setup": true,
+      "numeric_KSP_exports_available_from_this_input": true,
+      "row_equals_spatial_node_mapping": true,
+      "native_free_operator_equals_geometric_P1_stiffness": true,
+      "CG_or_SPD_certificate": true,
+      "head_import_or_head_field_solution": true,
+      "head_mesh_resolution_or_convergence": true,
+      "head_scalability": true,
+      "CHT_material_strength_or_manufacturing_qualification": true
+    },
+    "no_head_geometry_loaded": true,
+    "no_solver_installation": true,
+    "no_shared_runtime_modification": true,
+    "no_paid_or_cloud_work": true,
+    "launch_boundary": "Separate root authorization required after source/input/test/contract review. This frozen preflight is not execution authorization.",
+    "preparation_tests": {
+      "scope": "Local pure arithmetic and mocked process guards only; no solver calls",
+      "unit_test_count": 11,
+      "selected_environments": [
+        "default local Python",
+        "existing native geometry Python"
+      ],
+      "both_returncodes": 0
+    }
+  }
+}

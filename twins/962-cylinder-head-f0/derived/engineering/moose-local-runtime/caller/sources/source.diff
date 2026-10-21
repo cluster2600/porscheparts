@@ -1,0 +1,11 @@
+--- prep002/run_mac.py
++++ prep003/run_mac.py
+@@ -21,7 +21,7 @@
+ CARD = ENGINEERING / "imported-elastic-cube-prep-001/affine-card.json"
+ HELD = PREP / "held-preparation.json"
+ ENVIRONMENT = {"PATH": "/usr/bin:/bin", "LANG": "C", "LC_ALL": "C", "OMP_NUM_THREADS": "1",
+-               "OPENBLAS_NUM_THREADS": "1", "VECLIB_MAXIMUM_THREADS": "1"}
++               "OPENBLAS_NUM_THREADS": "1", "VECLIB_MAXIMUM_THREADS": "1", "FI_PROVIDER": "tcp"}
+ CASE_FILES = ("imported-cube.i", "imported-cube.msh", "cube-reference.json", "assess_cube.py")
+ FEATURES = ("FileMeshGenerator", "ParsedFunction", "FunctionDirichletBC",
+             "ADComputeIsotropicElasticityTensor", "ADComputeLinearElasticStress",

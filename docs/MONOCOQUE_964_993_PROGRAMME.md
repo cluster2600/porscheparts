@@ -130,11 +130,14 @@ monocoque inside that shell with the pinned PicoGK kernel. Every aperture
 is framed by a closed section, the sills, tunnel and rails are closed boxes,
 and the floor and bulkheads are sandwich panels: the closures of section 2,
 by construction. The mass estimate is about 95 kg, from assumed layups.
-In torsion, on a shell model of the same members, K is about 47,300
-N·m/deg in steel and 35,500 in CFRP. The two finer meshes agree within 2%,
-and the architecture is more than five times stiffer than the open shell,
-which does not converge. Carbon gives ×1.17 to ×1.20 in specific stiffness,
-close to the box cell: the architecture is the lever. Every member size is a hypothesis, and
+In torsion, on a shell model of the same members, K is 21,469 N·m/deg in
+steel and 19,900 in CFRP on the finest mesh, in S6 shells, still rising 8
+to 10% on the last refinement: lower bounds, not converged values. The
+architecture is more than forty times stiffer than the open shell, which
+keeps softening with the mesh. Carbon gives ×1.46 to ×1.58 in specific
+stiffness; the architecture is the bigger lever. (Until 2026-10-12 these
+read 47,300 and 35,500, "converged", and ×1.17 to ×1.20: values of the
+locking S3 element, see the correction below.) Every member size is a hypothesis, and
 the architecture is still `prohibited_pending_engineering`.
 
 **Two PicoGK architectures compared (2026-10-09).** The second study,
@@ -181,6 +184,24 @@ effort.
 **Correction (2026-10-11).** Every torsion value published from #139 to
 #147 was computed without the bulkheads, which the shell builder dropped.
 They are corrected above; see the monocoque README, section Corrections.
+
+**Correction (2026-10-12): S3 locks in bending.** CalculiX's S3 triangle
+finds 7 to 21% of the reference deflection on the Scordelis-Lo roof, S6 82
+to 100%. Every stiffness of the 964 monocoque studies from #139 to #156,
+and the S3 strength audit of 2026-10-12, over-stated the model: the CFRP
+boxes ×1.8 (35,462 against 19,900 N·m/deg), the open shell ×10 to ×31.
+Redone in S6, the boxes gain ×45 to ×206 over the open shell in torsion
+and ×5.7 to ×17 in bending; the cabin is carried by the windscreen frame,
+the door rings and the quarter windows, then the sills; the B-ring is no
+longer among the weak members, and pruning the four left costs 6 to 10% of
+the torsional stiffness (under 1% in bending, on 300 sections); F1 gains
+7.5 to 8.1% in cabin torsion at constant mass. The comparison with the
+tubes meshed as shells (×1.18 for the skin boxes, "the direction holds") is
+withdrawn, not redone: its S6 solve does not fit the 6 GB container this
+host allows. The paragraphs above keep their S3 figures as dated records;
+the
+[monocoque README](../twins/964-chassis/monocoque/README.md#s6-correction-2026-10-12-every-stiffness-redone)
+has the S6 values and a linear buckling screen of the thin walls.
 
 ## 4. The missing denominator is measured, no longer searched for
 

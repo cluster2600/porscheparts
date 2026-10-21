@@ -1,0 +1,119 @@
+{
+  "schema": "962-atomic-head-safe-lifecycle-projection/v1",
+  "projection_kind": "explicit_whitelist_assembled_from_retained_phase_execution_child_and_review_records",
+  "raw_phase_sha256": "345e212d22eda70e7ce31c2946c82b7a124fea748ec7a398049cd86579271fcd",
+  "raw_execution_sha256": "ceffeae0e15f8b626c031dca378975b3c094b0109ee9555bd2f7210303b7e38b",
+  "raw_child_sha256": "57d4b8a313ed2257d1e03743c984da2c13fca74cd9c8324b79a52c6867db22e5",
+  "phase": {
+    "phase": "head",
+    "procedural_phase_finished": true,
+    "error": null,
+    "jobs": [
+      {
+        "label": "atomic-head002",
+        "execution_passed": true,
+        "previous_artifacts_unchanged": true,
+        "returncode": 0
+      }
+    ],
+    "all_inputs_unchanged": true,
+    "automatic_retry": false,
+    "controller_sha256": "05390ea80e96728186ae5652356ccb5d762d4e013bc5f1a86c03faf6934154e4",
+    "metadata_source_sha256": "a88477c47d406cea3761c324e1f6eb82dcb1c2b962698d7f328261c6cef2929b",
+    "cleanup_source_sha256": "b214e1cece8dbf66be6071199cbdf1a8e22a2a59328888011de17492f923c86b",
+    "head_surface_admitted": false,
+    "solver_admission_established": false,
+    "manufacturing_authorized": false
+  },
+  "runtime_image_id": "sha256:57c6b17ed0bd093a61a3d3cecb7563e912caeb3832fd59e8cec2d4d9d4d1e2f8",
+  "limits_declared": {
+    "cpus": 2,
+    "memory_bytes": 4294967296,
+    "swap_bytes": 0,
+    "hard_wall_seconds_each": 300,
+    "tmpfs_bytes": 0,
+    "network": "none"
+  },
+  "actual_controls_initial": {
+    "NanoCpus": 2000000000,
+    "Memory": 4294967296,
+    "MemorySwap": 4294967296,
+    "NetworkMode": "none",
+    "ReadonlyRootfs": true,
+    "Tmpfs": null
+  },
+  "actual_controls_final": {
+    "NanoCpus": 2000000000,
+    "Memory": 4294967296,
+    "MemorySwap": 4294967296,
+    "NetworkMode": "none",
+    "ReadonlyRootfs": true,
+    "Tmpfs": null
+  },
+  "native_returncode": 0,
+  "wall_seconds": 15.143341625109315,
+  "error": null,
+  "cleanup_errors": [],
+  "attach_process_started": true,
+  "attach_reaped": true,
+  "owned_stopped_container_removed": true,
+  "initial_state": {
+    "Status": "created",
+    "Running": false,
+    "OOMKilled": false,
+    "Dead": false,
+    "Paused": false,
+    "Restarting": false,
+    "Error": ""
+  },
+  "final_state": {
+    "Status": "exited",
+    "Running": false,
+    "OOMKilled": false,
+    "Dead": false,
+    "Paused": false,
+    "Restarting": false,
+    "Error": "",
+    "ExitCode": 0
+  },
+  "final_process_identity_zero": true,
+  "control_operation_returncodes": [
+    {
+      "operation": "create",
+      "returncode": 0
+    },
+    {
+      "operation": "inspect",
+      "returncode": 0
+    },
+    {
+      "operation": "inspect",
+      "returncode": 0
+    },
+    {
+      "operation": "inspect",
+      "returncode": 0
+    },
+    {
+      "operation": "remove_stopped_owned",
+      "returncode": 0
+    }
+  ],
+  "mount_roles": {
+    "readonly_inputs": [
+      "compiled_binary",
+      "original_surface",
+      "prior_surface",
+      "origin_map",
+      "target_edges",
+      "keepers"
+    ],
+    "writable_outputs": [
+      "fresh_owned_native_output"
+    ]
+  },
+  "exact_mount_command_and_owned_identity_verified_by_retained_reviews": true,
+  "native_log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "actual_peak_RSS_or_CPU_usage_measured": false,
+  "raw_owner_container_identity_machine_paths_commands_and_control_stdout_excluded": true
+}

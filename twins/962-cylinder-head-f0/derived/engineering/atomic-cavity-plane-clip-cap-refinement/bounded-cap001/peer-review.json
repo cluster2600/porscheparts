@@ -1,0 +1,105 @@
+{
+  "schema": "962-cap-refinement-actual001-stopped-timeout-peer/v1",
+  "status": "closed_timeout_preserved_no_native_geometric_outcome",
+  "method": "Read stopped JSON/source associations, complete directory, saved command/control/lifecycle observations and standard-library hashes only. No native/container/compiler, geometry decoding/query, prepared script/test, network or Git execution.",
+  "records": {
+    "work/962-engineering/atomic-cavity-plane-clip-cap-refinement-prep-001/actual-cap-execution-contract-001.json": {
+      "sha256": "901a11fd2bcf3a257ea540519afd9950ca2098864599c231283c7a54a2eab8d9",
+      "bytes": 19661
+    },
+    "work/962-engineering/atomic-cavity-plane-clip-cap-refinement-actual-001/phase-summary.json": {
+      "sha256": "3ba610726f9f2b001c036c634e755ab25f51598b9a5348ae7569ee4c9a392afb",
+      "bytes": 36480
+    },
+    "work/962-engineering/atomic-cavity-plane-clip-cap-refinement-actual-001/cap-refine-actual001.execution.json": {
+      "sha256": "a786b56263eed3d67111ba3e06f7c9b3c632b4ceb7d639c460643b84f8f021ee",
+      "bytes": 12515
+    }
+  },
+  "input_closure": {
+    "input_pins": 101,
+    "all_before_after_and_current_exact": true,
+    "frozen_executed_contract_exact": true,
+    "three_controller_snapshots_exact_by_artifact_hash": true,
+    "previous_artifacts_unchanged": true,
+    "actual_fixture_outcome_peer_pending_at_child_freeze_remains_historical_not_retroactively_added": true
+  },
+  "output_closure": {
+    "files": 7,
+    "artifact_map_entries": 6,
+    "complete_file_sha256": {
+      "phase-summary.json": "3ba610726f9f2b001c036c634e755ab25f51598b9a5348ae7569ee4c9a392afb",
+      "run_finest_patch_phase.py": "c2191896dba65d38cf41222f51dcab29c7896624481d1beb4b1b097c0546a440",
+      "frozen-execution-contract.json": "901a11fd2bcf3a257ea540519afd9950ca2098864599c231283c7a54a2eab8d9",
+      "run_finest_endpoint_metadata.py": "a88477c47d406cea3761c324e1f6eb82dcb1c2b962698d7f328261c6cef2929b",
+      "run_finest_endpoint_preflight.py": "b214e1cece8dbf66be6071199cbdf1a8e22a2a59328888011de17492f923c86b",
+      "cap-refine-actual001.execution.json": "a786b56263eed3d67111ba3e06f7c9b3c632b4ceb7d639c460643b84f8f021ee",
+      "cap-refine-actual001.native.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "directories": [
+      "cap-refinement"
+    ],
+    "cap_refinement_directory_empty": true,
+    "native_log_bytes": 0,
+    "native_report_present": false,
+    "candidate_present": false,
+    "provenance_arrays_present": false
+  },
+  "lifecycle": {
+    "job_count": 1,
+    "declared_returncodes": [
+      0,
+      3
+    ],
+    "actual_attach_and_container_returncode": 137,
+    "native_error": "TimeoutError: Declared native wall deadline",
+    "whole_execution_receipt_wall_seconds": 300.6291772921104,
+    "deadline_seconds": 300,
+    "procedural_phase_finished": false,
+    "execution_passed": false,
+    "summary_error_null_distinct_from_native_job_timeout": true,
+    "three_inspect_snapshots_checked": true,
+    "initial_created_before_attach": true,
+    "prekill_running_observed": true,
+    "explicit_owned_kill_RC0": true,
+    "final_stopped_exited_pid0": true,
+    "OOMKilled_false_in_all_observations": true,
+    "attach_reaped": true,
+    "owned_stopped_remove_RC0": true,
+    "cleanup_errors": [],
+    "automatic_retry": false
+  },
+  "controls": {
+    "actual_argv_exact_authorized_job": true,
+    "initial_pre_kill_final_controls_exact": {
+      "NanoCpus": 2000000000,
+      "Memory": 4294967296,
+      "MemorySwap": 4294967296,
+      "NetworkMode": "none",
+      "ReadonlyRootfs": true,
+      "Tmpfs": null
+    },
+    "immutable_image": "sha256:57c6b17ed0bd093a61a3d3cecb7563e912caeb3832fd59e8cec2d4d9d4d1e2f8",
+    "readonly_input_mounts": {
+      "work/962-engineering/atomic-cavity-plane-clip-cap-refinement-compile-001/cap-refine001": "/finest-endpoint",
+      "work/962-engineering/atomic-cavity-plane-clip-cap-input-extraction-001/cap.bin": "/cap.bin",
+      "work/962-engineering/atomic-cavity-plane-clip-cap-input-extraction-001/old-to-keeper.u64": "/map.u64",
+      "work/962-engineering/atomic-cavity-plane-clip-cap-input-extraction-001/fixed-face-ids.u64": "/fixed.u64"
+    },
+    "single_writable_owned_output_mount": true,
+    "native_input_scope": "Extracted 3508V/3508F planar cap plus raw map and fixed IDs only; full clipped head mesh not mounted."
+  },
+  "interpretation": {
+    "observed_algorithm_stage": null,
+    "native_cap_geometry_quality_domain_fixed_boundary_guard_results": null,
+    "reason": "No native report or telemetry was emitted. Timeout establishes a resource-bounded unfinished invocation only; the point at which the algorithm stopped and all cap guards remain unobserved.",
+    "memory_exhaustion_claimed": false,
+    "independent_OS_process_absence_or_resource_peak_measured": false,
+    "new_hypothesis_or_retry_authorized_by_this_review": false
+  },
+  "findings": [],
+  "cap_candidate_accepted": false,
+  "head_surface_admitted": false,
+  "solver_admission_established": false,
+  "manufacturing_authorized": false
+}

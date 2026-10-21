@@ -1,0 +1,63 @@
+--- observer004-build-owner001/run_build_once.py
++++ observer004-build-owner002/run_build_once.py
+@@ -6,10 +6,10 @@
+ R=Path('/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993')
+ E=R/'work/962-engineering'
+ P=E/'cp1-oneway-cooling-release-richardson2-END181-dof-map-observer-prep-004'
+-X=E/'cp1-oneway-cooling-release-richardson2-observer004-build-execution-prep-001'
+-D=E/'cp1-oneway-cooling-release-richardson2-observer004-build-root-execution-001'
++X=E/'cp1-oneway-cooling-release-richardson2-observer004-build-execution-prep-002'
++D=E/'cp1-oneway-cooling-release-richardson2-observer004-build-root-execution-002'
+ B=P/'build-001'
+-A=E/'cp1-oneway-cooling-release-richardson2-observer004-root-build-admission-001/admission.json'
++A=E/'cp1-oneway-cooling-release-richardson2-observer004-root-build-admission-002/admission.json'
+ CAP=32*1024**2
+ WALL=60
+ MAX_RSS=2*1024**3
+@@ -168,7 +168,7 @@
+   if owned_size()+len((json.dumps(receipt,indent=2)+'\n').encode())>CAP:raise ValueError('32MiB combined owned output/receipt projection cap')
+  try:
+   for index,step in enumerate(actual['ordered_steps']):
+-   gate();current=dict(ordinal=index+1,name=step['name'],argv=list(step['argv']),before=check(pins),resource_samples=[],peak_RSS_bytes=0,returncode=None,termination=None)
++   gate();current=dict(ordinal=index+1,name=step['name'],argv=list(step['argv']),before=check(pins),resource_samples=[],resource_observation_exit_races=[],peak_RSS_bytes=None,returncode=None,termination=None)
+    receipt['steps'].append(current)
+    if current['before']['changed']:raise ValueError('Protected input changed before step')
+    if path_metadata(preflight['path_metadata'])!=preflight['path_metadata']:raise ValueError('Selected alias changed before step')
+@@ -180,10 +180,13 @@
+       gate()
+       if time.monotonic()-started>=60:raise ValueError('Per-step60s cap')
+       try:s=sample(proc.pid)
+-      except Exception:
+-       if proc.poll() is not None:break
++      except Exception as exc:
++       direct_returncode=proc.poll()
++       if direct_returncode is not None:
++        current['resource_observation_exit_races'].append(dict(error=repr(exc),direct_returncode=direct_returncode,elapsed_seconds=time.monotonic()-overall_started,step_elapsed_seconds=time.monotonic()-started))
++        break
+        raise
+-      s['elapsed_seconds']=time.monotonic()-overall_started;current['resource_samples'].append(s);current['peak_RSS_bytes']=max(current['peak_RSS_bytes'],s['RSS_bytes'])
++      s['elapsed_seconds']=time.monotonic()-overall_started;current['resource_samples'].append(s);current['peak_RSS_bytes']=s['RSS_bytes'] if current['peak_RSS_bytes'] is None else max(current['peak_RSS_bytes'],s['RSS_bytes'])
+       if s['RSS_bytes']>MAX_RSS:raise ValueError('2GiB sampled owned-group RSS cap')
+       time.sleep(.05)
+      proc.wait(timeout=8)
+@@ -228,6 +231,7 @@
+   for sig,old in old_handlers.items():signal.signal(sig,old)
+   receipt['handler_restoration_cutoff_seconds']=time.monotonic()-overall_started
+   receipt['signal_capture_scope']='Received SIGTERM/INT until handler restoration above; later signals are outside this receipt. Outer nonzero/absent/partial receipt cannot establish acceptance.'
++  receipt['completion_scope']='complete is a pre-final-write candidate, not a final acceptance result. Outer returncode0 after the end-of-closure wall check is separately required; later interpreter teardown is outside the receipt timing/signal scope.'
+   receipt['requests_at_cutoff']=list(receipt['requests']);receipt['stop_requested_at_cutoff']=stop_latch['requested'];receipt['overall_elapsed_seconds']=time.monotonic()-overall_started
+   complete=(receipt['completed_two_build_steps'] and failure is None and not receipt['requests_at_cutoff'] and not receipt['stop_requested_at_cutoff'] and receipt['overall_elapsed_seconds']<=WALL and not receipt.get('finalization_error') and not receipt.get('final_snapshot',{}).get('changed',{'missing':True}) and receipt.get('path_metadata_unchanged') and not receipt.get('unexpected_build_files') and not receipt.get('unexpected_result_files') and len(receipt['steps'])==2 and all(s['returncode']==0 and s.get('termination',{}).get('group_absent') and not s.get('cleanup_error') for s in receipt['steps']))
+   receipt['complete']=bool(complete);receipt['receipt_bytes']=0;receipt['combined_owned_output_bytes']=0
+@@ -244,6 +248,12 @@
+     receipt['receipt_bytes']=size;receipt['combined_owned_output_bytes']=total
+    else:raise ValueError('Refusal receipt accounting did not stabilize')
+   (D/'receipt.json').write_bytes(payload)
++ # Include full receipt serialization and write in the final wall decision.
++ # Do not rewrite a pre-final candidate into a claimed accepted result.
++ closure_elapsed=time.monotonic()-overall_started
++ if closure_elapsed>WALL:
++  print('REFUSE: overall60s exceeded after full receipt write; pre-final receipt complete is insufficient; outerRC2.',file=sys.stderr)
++  return 2
+  return 0 if receipt['complete'] else 2
+ 
+ if __name__=='__main__':

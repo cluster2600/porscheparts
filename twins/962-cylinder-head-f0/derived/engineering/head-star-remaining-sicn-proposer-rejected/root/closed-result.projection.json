@@ -1,0 +1,674 @@
+{
+  "actual_sha256": "db488452751fbec4aade90b485a4bf3901cbe380be0b6ce9d28e5886adf86316",
+  "actual_unchanged": true,
+  "all32_selected_runtime_files_unchanged": true,
+  "all37_inputs_unchanged": true,
+  "analytic_quality": {
+    "array_sha256": "91b316f2ceb4bf97e3c15bbe1f451ec70f3c36619ca6c536681e48620786a2ad",
+    "below_point1_count": 213,
+    "count": 5327,
+    "minimum": 0.07200216465522885,
+    "nonpositive_count": 0
+  },
+  "cleanup_grace_seconds": 8,
+  "controller_error": null,
+  "coordinate_proposal_exported": false,
+  "external_child_peer_sha256": "29781c0be71a089d8de86f53988c57f33501bb8f0b118aedad877fa7ea4cc5f4",
+  "finite_diagnostic_exported": true,
+  "individually_observed_PIDs_still_visible": [],
+  "max_sampled_owned_RSS_bytes": 306282496,
+  "native_application_authorized": false,
+  "observed_owned_rows": [
+    {
+      "PGID": "{OWNED_ANALYTIC_CONTROLLER_PID}",
+      "PID": "{OWNED_ANALYTIC_CONTROLLER_PID}",
+      "PPID": "{OBSERVED_CONTROLLER_PARENT_PID}",
+      "RSS_bytes": 21643264,
+      "argv": "{SELECTED_ANALYTIC_RUNTIME}/bin/python -B {PROJECT_ROOT}/work/962-engineering/head-star-remaining-sicn-proposal-001/run_readback.py --contract-sha256 db488452751fbec4aade90b485a4bf3901cbe380be0b6ce9d28e5886adf86316"
+    },
+    {
+      "PGID": "{OWNED_ANALYTIC_WORKER_PID}",
+      "PID": "{OWNED_ANALYTIC_WORKER_PID}",
+      "PPID": "{OWNED_ANALYTIC_CONTROLLER_PID}",
+      "RSS_bytes": 284639232,
+      "argv": "{SELECTED_ANALYTIC_RUNTIME}/bin/python -B {PROJECT_ROOT}/work/962-engineering/head-star-remaining-sicn-proposal-001/reader.py"
+    }
+  ],
+  "outputs": {
+    "execution-receipt.json": {
+      "bytes": 3943,
+      "sha256": "d17da2c1a4a541d34a7cdfb3be4be0dba5cb81d6ff339426e8cbd815df4406f1"
+    },
+    "fixture-report.json": {
+      "bytes": 266848,
+      "sha256": "dce8c093f8eee253f79c7347cc66178bdd45036bc093e4ed7d716701bece9787"
+    },
+    "frozen-contract.json": {
+      "bytes": 20712,
+      "sha256": "db488452751fbec4aade90b485a4bf3901cbe380be0b6ce9d28e5886adf86316"
+    },
+    "native.log": {
+      "bytes": 119,
+      "sha256": "4af423eebfd609b4ff91548bdd27dbc3a0121694f133e354c7034c20dbe7e04d"
+    },
+    "reader.py": {
+      "bytes": 25591,
+      "sha256": "0edb4c66de7feabd275074544574b48a612e51f70fdd438b0f02934b41fa38cf"
+    },
+    "run_readback.py": {
+      "bytes": 4801,
+      "sha256": "aefd13ddd8344cb4e46eeb17126383ba2afbf8763ae40a99eb55a9bcb2779407"
+    },
+    "solver-final-state.json": {
+      "bytes": 249757,
+      "sha256": "a4f9d24ff68fa16c2b2e63b66afc985022bd9f8ef6b6835c928945b4fa2121fb"
+    },
+    "solver-start-checkpoint.json": {
+      "bytes": 133299,
+      "sha256": "53eb7773a935d6f9a0935f82db8eb8f008d91b3aced94dedfe76c4551b978950"
+    }
+  },
+  "qualification": {
+    "engineering_accepted": false,
+    "head_optimization_authorized": false,
+    "manufacturing_authorized": false,
+    "physics_qualified": false
+  },
+  "returncode": 2,
+  "root_SIGTERM_requested": false,
+  "root_outer_deadline_seconds": 315,
+  "root_wall_seconds": 16.880729000084102,
+  "samples": [
+    {
+      "observed_owned_RSS_bytes": 311296,
+      "owned_rows": [
+        {
+          "PGID": "{OWNED_ANALYTIC_CONTROLLER_PID}",
+          "PID": "{OWNED_ANALYTIC_CONTROLLER_PID}",
+          "PPID": "{OBSERVED_CONTROLLER_PARENT_PID}",
+          "RSS_bytes": 311296,
+          "argv": "{SELECTED_ANALYTIC_RUNTIME}/bin/python -B {PROJECT_ROOT}/work/962-engineering/head-star-remaining-sicn-proposal-001/run_readback.py --contract-sha256 db488452751fbec4aade90b485a4bf3901cbe380be0b6ce9d28e5886adf86316"
+        }
+      ],
+      "wall_seconds": 0.04476420790888369
+    },
+    {
+      "observed_owned_RSS_bytes": 88784896,
+      "owned_rows": [
+        {
+          "PGID": "{OWNED_ANALYTIC_CONTROLLER_PID}",
+          "PID": "{OWNED_ANALYTIC_CONTROLLER_PID}",
+          "PPID": "{OBSERVED_CONTROLLER_PARENT_PID}",
+          "RSS_bytes": 21544960,
+          "argv": "{SELECTED_ANALYTIC_RUNTIME}/bin/python -B {PROJECT_ROOT}/work/962-engineering/head-star-remaining-sicn-proposal-001/run_readback.py --contract-sha256 db488452751fbec4aade90b485a4bf3901cbe380be0b6ce9d28e5886adf86316"
+        },
+        {
+          "PGID": "{OWNED_ANALYTIC_WORKER_PID}",
+          "PID": "{OWNED_ANALYTIC_WORKER_PID}",
+          "PPID": "{OWNED_ANALYTIC_CONTROLLER_PID}",
+          "RSS_bytes": 67239936,
+          "argv": "{SELECTED_ANALYTIC_RUNTIME}/bin/python -B {PROJECT_ROOT}/work/962-engineering/head-star-remaining-sicn-proposal-001/reader.py"
+        }
+      ],
+      "wall_seconds": 0.6078792079351842
+    },
+    {
+      "observed_owned_RSS_bytes": 107216896,
+      "owned_rows": [
+        {
+          "PGID": "{OWNED_ANALYTIC_CONTROLLER_PID}",
+          "PID": "{OWNED_ANALYTIC_CONTROLLER_PID}",
+          "PPID": "{OBSERVED_CONTROLLER_PARENT_PID}",
+          "RSS_bytes": 21544960,
+          "argv": "{SELECTED_ANALYTIC_RUNTIME}/bin/python -B {PROJECT_ROOT}/work/962-engineering/head-star-remaining-sicn-proposal-001/run_readback.py --contract-sha256 db488452751fbec4aade90b485a4bf3901cbe380be0b6ce9d28e5886adf86316"
+        },
+        {
+          "PGID": "{OWNED_ANALYTIC_WORKER_PID}",
+          "PID": "{OWNED_ANALYTIC_WORKER_PID}",
+          "PPID": "{OWNED_ANALYTIC_CONTROLLER_PID}",
+          "RSS_bytes": 85671936,
+          "argv": "{SELECTED_ANALYTIC_RUNTIME}/bin/python -B {PROJECT_ROOT}/work/962-engineering/head-star-remaining-sicn-proposal-001/reader.py"
+        }
+      ],
+      "wall_seconds": 1.1709303329698741
+    },
+    {
+      "observed_owned_RSS_bytes": 123895808,
+      "owned_rows": [
+        {
+          "PGID": "{OWNED_ANALYTIC_CONTROLLER_PID}",
+          "PID": "{OWNED_ANALYTIC_CONTROLLER_PID}",
+          "PPID": "{OBSERVED_CONTROLLER_PARENT_PID}",
+          "RSS_bytes": 21544960,
+          "argv": "{SELECTED_ANALYTIC_RUNTIME}/bin/python -B {PROJECT_ROOT}/work/962-engineering/head-star-remaining-sicn-proposal-001/run_readback.py --contract-sha256 db488452751fbec4aade90b485a4bf3901cbe380be0b6ce9d28e5886adf86316"
+        },
+        {
+          "PGID": "{OWNED_ANALYTIC_WORKER_PID}",
+          "PID": "{OWNED_ANALYTIC_WORKER_PID}",
+          "PPID": "{OWNED_ANALYTIC_CONTROLLER_PID}",
+          "RSS_bytes": 102350848,
+          "argv": "{SELECTED_ANALYTIC_RUNTIME}/bin/python -B {PROJECT_ROOT}/work/962-engineering/head-star-remaining-sicn-proposal-001/reader.py"
+        }
+      ],
+      "wall_seconds": 1.7318965420126915
+    },
+    {
+      "observed_owned_RSS_bytes": 140673024,
+      "owned_rows": [
+        {
+          "PGID": "{OWNED_ANALYTIC_CONTROLLER_PID}",
+          "PID": "{OWNED_ANALYTIC_CONTROLLER_PID}",
+          "PPID": "{OBSERVED_CONTROLLER_PARENT_PID}",
+          "RSS_bytes": 21544960,
+          "argv": "{SELECTED_ANALYTIC_RUNTIME}/bin/python -B {PROJECT_ROOT}/work/962-engineering/head-star-remaining-sicn-proposal-001/run_readback.py --contract-sha256 db488452751fbec4aade90b485a4bf3901cbe380be0b6ce9d28e5886adf86316"
+        },
+        {
+          "PGID": "{OWNED_ANALYTIC_WORKER_PID}",
+          "PID": "{OWNED_ANALYTIC_WORKER_PID}",
+          "PPID": "{OWNED_ANALYTIC_CONTROLLER_PID}",
+          "RSS_bytes": 119128064,
+          "argv": "{SELECTED_ANALYTIC_RUNTIME}/bin/python -B {PROJECT_ROOT}/work/962-engineering/head-star-remaining-sicn-proposal-001/reader.py"
+        }
+      ],
+      "wall_seconds": 2.286174250068143
+    },
+    {
+      "observed_owned_RSS_bytes": 273350656,
+      "owned_rows": [
+        {
+          "PGID": "{OWNED_ANALYTIC_CONTROLLER_PID}",
+          "PID": "{OWNED_ANALYTIC_CONTROLLER_PID}",
+          "PPID": "{OBSERVED_CONTROLLER_PARENT_PID}",
+          "RSS_bytes": 21544960,
+          "argv": "{SELECTED_ANALYTIC_RUNTIME}/bin/python -B {PROJECT_ROOT}/work/962-engineering/head-star-remaining-sicn-proposal-001/run_readback.py --contract-sha256 db488452751fbec4aade90b485a4bf3901cbe380be0b6ce9d28e5886adf86316"
+        },
+        {
+          "PGID": "{OWNED_ANALYTIC_WORKER_PID}",
+          "PID": "{OWNED_ANALYTIC_WORKER_PID}",
+          "PPID": "{OWNED_ANALYTIC_CONTROLLER_PID}",
+          "RSS_bytes": 251805696,
+          "argv": "{SELECTED_ANALYTIC_RUNTIME}/bin/python -B {PROJECT_ROOT}/work/962-engineering/head-star-remaining-sicn-proposal-001/reader.py"
+        }
+      ],
+      "wall_seconds": 2.8385745000559837
+    },
+    {
+      "observed_owned_RSS_bytes": 273809408,
+      "owned_rows": [
+        {
+          "PGID": "{OWNED_ANALYTIC_CONTROLLER_PID}",
+          "PID": "{OWNED_ANALYTIC_CONTROLLER_PID}",
+          "PPID": "{OBSERVED_CONTROLLER_PARENT_PID}",
+          "RSS_bytes": 21544960,
+          "argv": "{SELECTED_ANALYTIC_RUNTIME}/bin/python -B {PROJECT_ROOT}/work/962-engineering/head-star-remaining-sicn-proposal-001/run_readback.py --contract-sha256 db488452751fbec4aade90b485a4bf3901cbe380be0b6ce9d28e5886adf86316"
+        },
+        {
+          "PGID": "{OWNED_ANALYTIC_WORKER_PID}",
+          "PID": "{OWNED_ANALYTIC_WORKER_PID}",
+          "PPID": "{OWNED_ANALYTIC_CONTROLLER_PID}",
+          "RSS_bytes": 252264448,
+          "argv": "{SELECTED_ANALYTIC_RUNTIME}/bin/python -B {PROJECT_ROOT}/work/962-engineering/head-star-remaining-sicn-proposal-001/reader.py"
+        }
+      ],
+      "wall_seconds": 3.3991806250996888
+    },
+    {
+      "observed_owned_RSS_bytes": 277774336,
+      "owned_rows": [
+        {
+          "PGID": "{OWNED_ANALYTIC_CONTROLLER_PID}",
+          "PID": "{OWNED_ANALYTIC_CONTROLLER_PID}",
+          "PPID": "{OBSERVED_CONTROLLER_PARENT_PID}",
+          "RSS_bytes": 21544960,
+          "argv": "{SELECTED_ANALYTIC_RUNTIME}/bin/python -B {PROJECT_ROOT}/work/962-engineering/head-star-remaining-sicn-proposal-001/run_readback.py --contract-sha256 db488452751fbec4aade90b485a4bf3901cbe380be0b6ce9d28e5886adf86316"
+        },
+        {
+          "PGID": "{OWNED_ANALYTIC_WORKER_PID}",
+          "PID": "{OWNED_ANALYTIC_WORKER_PID}",
+          "PPID": "{OWNED_ANALYTIC_CONTROLLER_PID}",
+          "RSS_bytes": 256229376,
+          "argv": "{SELECTED_ANALYTIC_RUNTIME}/bin/python -B {PROJECT_ROOT}/work/962-engineering/head-star-remaining-sicn-proposal-001/reader.py"
+        }
+      ],
+      "wall_seconds": 3.9605796670075506
+    },
+    {
+      "observed_owned_RSS_bytes": 301236224,
+      "owned_rows": [
+        {
+          "PGID": "{OWNED_ANALYTIC_CONTROLLER_PID}",
+          "PID": "{OWNED_ANALYTIC_CONTROLLER_PID}",
+          "PPID": "{OBSERVED_CONTROLLER_PARENT_PID}",
+          "RSS_bytes": 21544960,
+          "argv": "{SELECTED_ANALYTIC_RUNTIME}/bin/python -B {PROJECT_ROOT}/work/962-engineering/head-star-remaining-sicn-proposal-001/run_readback.py --contract-sha256 db488452751fbec4aade90b485a4bf3901cbe380be0b6ce9d28e5886adf86316"
+        },
+        {
+          "PGID": "{OWNED_ANALYTIC_WORKER_PID}",
+          "PID": "{OWNED_ANALYTIC_WORKER_PID}",
+          "PPID": "{OWNED_ANALYTIC_CONTROLLER_PID}",
+          "RSS_bytes": 279691264,
+          "argv": "{SELECTED_ANALYTIC_RUNTIME}/bin/python -B {PROJECT_ROOT}/work/962-engineering/head-star-remaining-sicn-proposal-001/reader.py"
+        }
+      ],
+      "wall_seconds": 4.526004625018686
+    },
+    {
+      "observed_owned_RSS_bytes": 301268992,
+      "owned_rows": [
+        {
+          "PGID": "{OWNED_ANALYTIC_CONTROLLER_PID}",
+          "PID": "{OWNED_ANALYTIC_CONTROLLER_PID}",
+          "PPID": "{OBSERVED_CONTROLLER_PARENT_PID}",
+          "RSS_bytes": 21544960,
+          "argv": "{SELECTED_ANALYTIC_RUNTIME}/bin/python -B {PROJECT_ROOT}/work/962-engineering/head-star-remaining-sicn-proposal-001/run_readback.py --contract-sha256 db488452751fbec4aade90b485a4bf3901cbe380be0b6ce9d28e5886adf86316"
+        },
+        {
+          "PGID": "{OWNED_ANALYTIC_WORKER_PID}",
+          "PID": "{OWNED_ANALYTIC_WORKER_PID}",
+          "PPID": "{OWNED_ANALYTIC_CONTROLLER_PID}",
+          "RSS_bytes": 279724032,
+          "argv": "{SELECTED_ANALYTIC_RUNTIME}/bin/python -B {PROJECT_ROOT}/work/962-engineering/head-star-remaining-sicn-proposal-001/reader.py"
+        }
+      ],
+      "wall_seconds": 5.08396108308807
+    },
+    {
+      "observed_owned_RSS_bytes": 301449216,
+      "owned_rows": [
+        {
+          "PGID": "{OWNED_ANALYTIC_CONTROLLER_PID}",
+          "PID": "{OWNED_ANALYTIC_CONTROLLER_PID}",
+          "PPID": "{OBSERVED_CONTROLLER_PARENT_PID}",
+          "RSS_bytes": 21544960,
+          "argv": "{SELECTED_ANALYTIC_RUNTIME}/bin/python -B {PROJECT_ROOT}/work/962-engineering/head-star-remaining-sicn-proposal-001/run_readback.py --contract-sha256 db488452751fbec4aade90b485a4bf3901cbe380be0b6ce9d28e5886adf86316"
+        },
+        {
+          "PGID": "{OWNED_ANALYTIC_WORKER_PID}",
+          "PID": "{OWNED_ANALYTIC_WORKER_PID}",
+          "PPID": "{OWNED_ANALYTIC_CONTROLLER_PID}",
+          "RSS_bytes": 279904256,
+          "argv": "{SELECTED_ANALYTIC_RUNTIME}/bin/python -B {PROJECT_ROOT}/work/962-engineering/head-star-remaining-sicn-proposal-001/reader.py"
+        }
+      ],
+      "wall_seconds": 5.647854916984215
+    },
+    {
+      "observed_owned_RSS_bytes": 301481984,
+      "owned_rows": [
+        {
+          "PGID": "{OWNED_ANALYTIC_CONTROLLER_PID}",
+          "PID": "{OWNED_ANALYTIC_CONTROLLER_PID}",
+          "PPID": "{OBSERVED_CONTROLLER_PARENT_PID}",
+          "RSS_bytes": 21544960,
+          "argv": "{SELECTED_ANALYTIC_RUNTIME}/bin/python -B {PROJECT_ROOT}/work/962-engineering/head-star-remaining-sicn-proposal-001/run_readback.py --contract-sha256 db488452751fbec4aade90b485a4bf3901cbe380be0b6ce9d28e5886adf86316"
+        },
+        {
+          "PGID": "{OWNED_ANALYTIC_WORKER_PID}",
+          "PID": "{OWNED_ANALYTIC_WORKER_PID}",
+          "PPID": "{OWNED_ANALYTIC_CONTROLLER_PID}",
+          "RSS_bytes": 279937024,
+          "argv": "{SELECTED_ANALYTIC_RUNTIME}/bin/python -B {PROJECT_ROOT}/work/962-engineering/head-star-remaining-sicn-proposal-001/reader.py"
+        }
+      ],
+      "wall_seconds": 6.231678917072713
+    },
+    {
+      "observed_owned_RSS_bytes": 303038464,
+      "owned_rows": [
+        {
+          "PGID": "{OWNED_ANALYTIC_CONTROLLER_PID}",
+          "PID": "{OWNED_ANALYTIC_CONTROLLER_PID}",
+          "PPID": "{OBSERVED_CONTROLLER_PARENT_PID}",
+          "RSS_bytes": 21594112,
+          "argv": "{SELECTED_ANALYTIC_RUNTIME}/bin/python -B {PROJECT_ROOT}/work/962-engineering/head-star-remaining-sicn-proposal-001/run_readback.py --contract-sha256 db488452751fbec4aade90b485a4bf3901cbe380be0b6ce9d28e5886adf86316"
+        },
+        {
+          "PGID": "{OWNED_ANALYTIC_WORKER_PID}",
+          "PID": "{OWNED_ANALYTIC_WORKER_PID}",
+          "PPID": "{OWNED_ANALYTIC_CONTROLLER_PID}",
+          "RSS_bytes": 281444352,
+          "argv": "{SELECTED_ANALYTIC_RUNTIME}/bin/python -B {PROJECT_ROOT}/work/962-engineering/head-star-remaining-sicn-proposal-001/reader.py"
+        }
+      ],
+      "wall_seconds": 6.849990792106837
+    },
+    {
+      "observed_owned_RSS_bytes": 303546368,
+      "owned_rows": [
+        {
+          "PGID": "{OWNED_ANALYTIC_CONTROLLER_PID}",
+          "PID": "{OWNED_ANALYTIC_CONTROLLER_PID}",
+          "PPID": "{OBSERVED_CONTROLLER_PARENT_PID}",
+          "RSS_bytes": 21610496,
+          "argv": "{SELECTED_ANALYTIC_RUNTIME}/bin/python -B {PROJECT_ROOT}/work/962-engineering/head-star-remaining-sicn-proposal-001/run_readback.py --contract-sha256 db488452751fbec4aade90b485a4bf3901cbe380be0b6ce9d28e5886adf86316"
+        },
+        {
+          "PGID": "{OWNED_ANALYTIC_WORKER_PID}",
+          "PID": "{OWNED_ANALYTIC_WORKER_PID}",
+          "PPID": "{OWNED_ANALYTIC_CONTROLLER_PID}",
+          "RSS_bytes": 281935872,
+          "argv": "{SELECTED_ANALYTIC_RUNTIME}/bin/python -B {PROJECT_ROOT}/work/962-engineering/head-star-remaining-sicn-proposal-001/reader.py"
+        }
+      ],
+      "wall_seconds": 7.466948583023623
+    },
+    {
+      "observed_owned_RSS_bytes": 303726592,
+      "owned_rows": [
+        {
+          "PGID": "{OWNED_ANALYTIC_CONTROLLER_PID}",
+          "PID": "{OWNED_ANALYTIC_CONTROLLER_PID}",
+          "PPID": "{OBSERVED_CONTROLLER_PARENT_PID}",
+          "RSS_bytes": 21610496,
+          "argv": "{SELECTED_ANALYTIC_RUNTIME}/bin/python -B {PROJECT_ROOT}/work/962-engineering/head-star-remaining-sicn-proposal-001/run_readback.py --contract-sha256 db488452751fbec4aade90b485a4bf3901cbe380be0b6ce9d28e5886adf86316"
+        },
+        {
+          "PGID": "{OWNED_ANALYTIC_WORKER_PID}",
+          "PID": "{OWNED_ANALYTIC_WORKER_PID}",
+          "PPID": "{OWNED_ANALYTIC_CONTROLLER_PID}",
+          "RSS_bytes": 282116096,
+          "argv": "{SELECTED_ANALYTIC_RUNTIME}/bin/python -B {PROJECT_ROOT}/work/962-engineering/head-star-remaining-sicn-proposal-001/reader.py"
+        }
+      ],
+      "wall_seconds": 8.050222875084728
+    },
+    {
+      "observed_owned_RSS_bytes": 303726592,
+      "owned_rows": [
+        {
+          "PGID": "{OWNED_ANALYTIC_CONTROLLER_PID}",
+          "PID": "{OWNED_ANALYTIC_CONTROLLER_PID}",
+          "PPID": "{OBSERVED_CONTROLLER_PARENT_PID}",
+          "RSS_bytes": 21610496,
+          "argv": "{SELECTED_ANALYTIC_RUNTIME}/bin/python -B {PROJECT_ROOT}/work/962-engineering/head-star-remaining-sicn-proposal-001/run_readback.py --contract-sha256 db488452751fbec4aade90b485a4bf3901cbe380be0b6ce9d28e5886adf86316"
+        },
+        {
+          "PGID": "{OWNED_ANALYTIC_WORKER_PID}",
+          "PID": "{OWNED_ANALYTIC_WORKER_PID}",
+          "PPID": "{OWNED_ANALYTIC_CONTROLLER_PID}",
+          "RSS_bytes": 282116096,
+          "argv": "{SELECTED_ANALYTIC_RUNTIME}/bin/python -B {PROJECT_ROOT}/work/962-engineering/head-star-remaining-sicn-proposal-001/reader.py"
+        }
+      ],
+      "wall_seconds": 8.654434042051435
+    },
+    {
+      "observed_owned_RSS_bytes": 303726592,
+      "owned_rows": [
+        {
+          "PGID": "{OWNED_ANALYTIC_CONTROLLER_PID}",
+          "PID": "{OWNED_ANALYTIC_CONTROLLER_PID}",
+          "PPID": "{OBSERVED_CONTROLLER_PARENT_PID}",
+          "RSS_bytes": 21610496,
+          "argv": "{SELECTED_ANALYTIC_RUNTIME}/bin/python -B {PROJECT_ROOT}/work/962-engineering/head-star-remaining-sicn-proposal-001/run_readback.py --contract-sha256 db488452751fbec4aade90b485a4bf3901cbe380be0b6ce9d28e5886adf86316"
+        },
+        {
+          "PGID": "{OWNED_ANALYTIC_WORKER_PID}",
+          "PID": "{OWNED_ANALYTIC_WORKER_PID}",
+          "PPID": "{OWNED_ANALYTIC_CONTROLLER_PID}",
+          "RSS_bytes": 282116096,
+          "argv": "{SELECTED_ANALYTIC_RUNTIME}/bin/python -B {PROJECT_ROOT}/work/962-engineering/head-star-remaining-sicn-proposal-001/reader.py"
+        }
+      ],
+      "wall_seconds": 9.243628832977265
+    },
+    {
+      "observed_owned_RSS_bytes": 304562176,
+      "owned_rows": [
+        {
+          "PGID": "{OWNED_ANALYTIC_CONTROLLER_PID}",
+          "PID": "{OWNED_ANALYTIC_CONTROLLER_PID}",
+          "PPID": "{OBSERVED_CONTROLLER_PARENT_PID}",
+          "RSS_bytes": 21626880,
+          "argv": "{SELECTED_ANALYTIC_RUNTIME}/bin/python -B {PROJECT_ROOT}/work/962-engineering/head-star-remaining-sicn-proposal-001/run_readback.py --contract-sha256 db488452751fbec4aade90b485a4bf3901cbe380be0b6ce9d28e5886adf86316"
+        },
+        {
+          "PGID": "{OWNED_ANALYTIC_WORKER_PID}",
+          "PID": "{OWNED_ANALYTIC_WORKER_PID}",
+          "PPID": "{OWNED_ANALYTIC_CONTROLLER_PID}",
+          "RSS_bytes": 282935296,
+          "argv": "{SELECTED_ANALYTIC_RUNTIME}/bin/python -B {PROJECT_ROOT}/work/962-engineering/head-star-remaining-sicn-proposal-001/reader.py"
+        }
+      ],
+      "wall_seconds": 9.840498167090118
+    },
+    {
+      "observed_owned_RSS_bytes": 304578560,
+      "owned_rows": [
+        {
+          "PGID": "{OWNED_ANALYTIC_CONTROLLER_PID}",
+          "PID": "{OWNED_ANALYTIC_CONTROLLER_PID}",
+          "PPID": "{OBSERVED_CONTROLLER_PARENT_PID}",
+          "RSS_bytes": 21643264,
+          "argv": "{SELECTED_ANALYTIC_RUNTIME}/bin/python -B {PROJECT_ROOT}/work/962-engineering/head-star-remaining-sicn-proposal-001/run_readback.py --contract-sha256 db488452751fbec4aade90b485a4bf3901cbe380be0b6ce9d28e5886adf86316"
+        },
+        {
+          "PGID": "{OWNED_ANALYTIC_WORKER_PID}",
+          "PID": "{OWNED_ANALYTIC_WORKER_PID}",
+          "PPID": "{OWNED_ANALYTIC_CONTROLLER_PID}",
+          "RSS_bytes": 282935296,
+          "argv": "{SELECTED_ANALYTIC_RUNTIME}/bin/python -B {PROJECT_ROOT}/work/962-engineering/head-star-remaining-sicn-proposal-001/reader.py"
+        }
+      ],
+      "wall_seconds": 10.434346582973376
+    },
+    {
+      "observed_owned_RSS_bytes": 305086464,
+      "owned_rows": [
+        {
+          "PGID": "{OWNED_ANALYTIC_CONTROLLER_PID}",
+          "PID": "{OWNED_ANALYTIC_CONTROLLER_PID}",
+          "PPID": "{OBSERVED_CONTROLLER_PARENT_PID}",
+          "RSS_bytes": 21643264,
+          "argv": "{SELECTED_ANALYTIC_RUNTIME}/bin/python -B {PROJECT_ROOT}/work/962-engineering/head-star-remaining-sicn-proposal-001/run_readback.py --contract-sha256 db488452751fbec4aade90b485a4bf3901cbe380be0b6ce9d28e5886adf86316"
+        },
+        {
+          "PGID": "{OWNED_ANALYTIC_WORKER_PID}",
+          "PID": "{OWNED_ANALYTIC_WORKER_PID}",
+          "PPID": "{OWNED_ANALYTIC_CONTROLLER_PID}",
+          "RSS_bytes": 283443200,
+          "argv": "{SELECTED_ANALYTIC_RUNTIME}/bin/python -B {PROJECT_ROOT}/work/962-engineering/head-star-remaining-sicn-proposal-001/reader.py"
+        }
+      ],
+      "wall_seconds": 11.030026291962713
+    },
+    {
+      "observed_owned_RSS_bytes": 305364992,
+      "owned_rows": [
+        {
+          "PGID": "{OWNED_ANALYTIC_CONTROLLER_PID}",
+          "PID": "{OWNED_ANALYTIC_CONTROLLER_PID}",
+          "PPID": "{OBSERVED_CONTROLLER_PARENT_PID}",
+          "RSS_bytes": 21643264,
+          "argv": "{SELECTED_ANALYTIC_RUNTIME}/bin/python -B {PROJECT_ROOT}/work/962-engineering/head-star-remaining-sicn-proposal-001/run_readback.py --contract-sha256 db488452751fbec4aade90b485a4bf3901cbe380be0b6ce9d28e5886adf86316"
+        },
+        {
+          "PGID": "{OWNED_ANALYTIC_WORKER_PID}",
+          "PID": "{OWNED_ANALYTIC_WORKER_PID}",
+          "PPID": "{OWNED_ANALYTIC_CONTROLLER_PID}",
+          "RSS_bytes": 283721728,
+          "argv": "{SELECTED_ANALYTIC_RUNTIME}/bin/python -B {PROJECT_ROOT}/work/962-engineering/head-star-remaining-sicn-proposal-001/reader.py"
+        }
+      ],
+      "wall_seconds": 11.630909458035603
+    },
+    {
+      "observed_owned_RSS_bytes": 305889280,
+      "owned_rows": [
+        {
+          "PGID": "{OWNED_ANALYTIC_CONTROLLER_PID}",
+          "PID": "{OWNED_ANALYTIC_CONTROLLER_PID}",
+          "PPID": "{OBSERVED_CONTROLLER_PARENT_PID}",
+          "RSS_bytes": 21643264,
+          "argv": "{SELECTED_ANALYTIC_RUNTIME}/bin/python -B {PROJECT_ROOT}/work/962-engineering/head-star-remaining-sicn-proposal-001/run_readback.py --contract-sha256 db488452751fbec4aade90b485a4bf3901cbe380be0b6ce9d28e5886adf86316"
+        },
+        {
+          "PGID": "{OWNED_ANALYTIC_WORKER_PID}",
+          "PID": "{OWNED_ANALYTIC_WORKER_PID}",
+          "PPID": "{OWNED_ANALYTIC_CONTROLLER_PID}",
+          "RSS_bytes": 284246016,
+          "argv": "{SELECTED_ANALYTIC_RUNTIME}/bin/python -B {PROJECT_ROOT}/work/962-engineering/head-star-remaining-sicn-proposal-001/reader.py"
+        }
+      ],
+      "wall_seconds": 12.264400332933292
+    },
+    {
+      "observed_owned_RSS_bytes": 305889280,
+      "owned_rows": [
+        {
+          "PGID": "{OWNED_ANALYTIC_CONTROLLER_PID}",
+          "PID": "{OWNED_ANALYTIC_CONTROLLER_PID}",
+          "PPID": "{OBSERVED_CONTROLLER_PARENT_PID}",
+          "RSS_bytes": 21643264,
+          "argv": "{SELECTED_ANALYTIC_RUNTIME}/bin/python -B {PROJECT_ROOT}/work/962-engineering/head-star-remaining-sicn-proposal-001/run_readback.py --contract-sha256 db488452751fbec4aade90b485a4bf3901cbe380be0b6ce9d28e5886adf86316"
+        },
+        {
+          "PGID": "{OWNED_ANALYTIC_WORKER_PID}",
+          "PID": "{OWNED_ANALYTIC_WORKER_PID}",
+          "PPID": "{OWNED_ANALYTIC_CONTROLLER_PID}",
+          "RSS_bytes": 284246016,
+          "argv": "{SELECTED_ANALYTIC_RUNTIME}/bin/python -B {PROJECT_ROOT}/work/962-engineering/head-star-remaining-sicn-proposal-001/reader.py"
+        }
+      ],
+      "wall_seconds": 12.884657541988418
+    },
+    {
+      "observed_owned_RSS_bytes": 306020352,
+      "owned_rows": [
+        {
+          "PGID": "{OWNED_ANALYTIC_CONTROLLER_PID}",
+          "PID": "{OWNED_ANALYTIC_CONTROLLER_PID}",
+          "PPID": "{OBSERVED_CONTROLLER_PARENT_PID}",
+          "RSS_bytes": 21643264,
+          "argv": "{SELECTED_ANALYTIC_RUNTIME}/bin/python -B {PROJECT_ROOT}/work/962-engineering/head-star-remaining-sicn-proposal-001/run_readback.py --contract-sha256 db488452751fbec4aade90b485a4bf3901cbe380be0b6ce9d28e5886adf86316"
+        },
+        {
+          "PGID": "{OWNED_ANALYTIC_WORKER_PID}",
+          "PID": "{OWNED_ANALYTIC_WORKER_PID}",
+          "PPID": "{OWNED_ANALYTIC_CONTROLLER_PID}",
+          "RSS_bytes": 284377088,
+          "argv": "{SELECTED_ANALYTIC_RUNTIME}/bin/python -B {PROJECT_ROOT}/work/962-engineering/head-star-remaining-sicn-proposal-001/reader.py"
+        }
+      ],
+      "wall_seconds": 13.480830082902685
+    },
+    {
+      "observed_owned_RSS_bytes": 306282496,
+      "owned_rows": [
+        {
+          "PGID": "{OWNED_ANALYTIC_CONTROLLER_PID}",
+          "PID": "{OWNED_ANALYTIC_CONTROLLER_PID}",
+          "PPID": "{OBSERVED_CONTROLLER_PARENT_PID}",
+          "RSS_bytes": 21643264,
+          "argv": "{SELECTED_ANALYTIC_RUNTIME}/bin/python -B {PROJECT_ROOT}/work/962-engineering/head-star-remaining-sicn-proposal-001/run_readback.py --contract-sha256 db488452751fbec4aade90b485a4bf3901cbe380be0b6ce9d28e5886adf86316"
+        },
+        {
+          "PGID": "{OWNED_ANALYTIC_WORKER_PID}",
+          "PID": "{OWNED_ANALYTIC_WORKER_PID}",
+          "PPID": "{OWNED_ANALYTIC_CONTROLLER_PID}",
+          "RSS_bytes": 284639232,
+          "argv": "{SELECTED_ANALYTIC_RUNTIME}/bin/python -B {PROJECT_ROOT}/work/962-engineering/head-star-remaining-sicn-proposal-001/reader.py"
+        }
+      ],
+      "wall_seconds": 14.078627666924149
+    },
+    {
+      "observed_owned_RSS_bytes": 306282496,
+      "owned_rows": [
+        {
+          "PGID": "{OWNED_ANALYTIC_CONTROLLER_PID}",
+          "PID": "{OWNED_ANALYTIC_CONTROLLER_PID}",
+          "PPID": "{OBSERVED_CONTROLLER_PARENT_PID}",
+          "RSS_bytes": 21643264,
+          "argv": "{SELECTED_ANALYTIC_RUNTIME}/bin/python -B {PROJECT_ROOT}/work/962-engineering/head-star-remaining-sicn-proposal-001/run_readback.py --contract-sha256 db488452751fbec4aade90b485a4bf3901cbe380be0b6ce9d28e5886adf86316"
+        },
+        {
+          "PGID": "{OWNED_ANALYTIC_WORKER_PID}",
+          "PID": "{OWNED_ANALYTIC_WORKER_PID}",
+          "PPID": "{OWNED_ANALYTIC_CONTROLLER_PID}",
+          "RSS_bytes": 284639232,
+          "argv": "{SELECTED_ANALYTIC_RUNTIME}/bin/python -B {PROJECT_ROOT}/work/962-engineering/head-star-remaining-sicn-proposal-001/reader.py"
+        }
+      ],
+      "wall_seconds": 14.651243166998029
+    },
+    {
+      "observed_owned_RSS_bytes": 306282496,
+      "owned_rows": [
+        {
+          "PGID": "{OWNED_ANALYTIC_CONTROLLER_PID}",
+          "PID": "{OWNED_ANALYTIC_CONTROLLER_PID}",
+          "PPID": "{OBSERVED_CONTROLLER_PARENT_PID}",
+          "RSS_bytes": 21643264,
+          "argv": "{SELECTED_ANALYTIC_RUNTIME}/bin/python -B {PROJECT_ROOT}/work/962-engineering/head-star-remaining-sicn-proposal-001/run_readback.py --contract-sha256 db488452751fbec4aade90b485a4bf3901cbe380be0b6ce9d28e5886adf86316"
+        },
+        {
+          "PGID": "{OWNED_ANALYTIC_WORKER_PID}",
+          "PID": "{OWNED_ANALYTIC_WORKER_PID}",
+          "PPID": "{OWNED_ANALYTIC_CONTROLLER_PID}",
+          "RSS_bytes": 284639232,
+          "argv": "{SELECTED_ANALYTIC_RUNTIME}/bin/python -B {PROJECT_ROOT}/work/962-engineering/head-star-remaining-sicn-proposal-001/reader.py"
+        }
+      ],
+      "wall_seconds": 15.217264875071123
+    },
+    {
+      "observed_owned_RSS_bytes": 306282496,
+      "owned_rows": [
+        {
+          "PGID": "{OWNED_ANALYTIC_CONTROLLER_PID}",
+          "PID": "{OWNED_ANALYTIC_CONTROLLER_PID}",
+          "PPID": "{OBSERVED_CONTROLLER_PARENT_PID}",
+          "RSS_bytes": 21643264,
+          "argv": "{SELECTED_ANALYTIC_RUNTIME}/bin/python -B {PROJECT_ROOT}/work/962-engineering/head-star-remaining-sicn-proposal-001/run_readback.py --contract-sha256 db488452751fbec4aade90b485a4bf3901cbe380be0b6ce9d28e5886adf86316"
+        },
+        {
+          "PGID": "{OWNED_ANALYTIC_WORKER_PID}",
+          "PID": "{OWNED_ANALYTIC_WORKER_PID}",
+          "PPID": "{OWNED_ANALYTIC_CONTROLLER_PID}",
+          "RSS_bytes": 284639232,
+          "argv": "{SELECTED_ANALYTIC_RUNTIME}/bin/python -B {PROJECT_ROOT}/work/962-engineering/head-star-remaining-sicn-proposal-001/reader.py"
+        }
+      ],
+      "wall_seconds": 15.790968208108097
+    },
+    {
+      "observed_owned_RSS_bytes": 306282496,
+      "owned_rows": [
+        {
+          "PGID": "{OWNED_ANALYTIC_CONTROLLER_PID}",
+          "PID": "{OWNED_ANALYTIC_CONTROLLER_PID}",
+          "PPID": "{OBSERVED_CONTROLLER_PARENT_PID}",
+          "RSS_bytes": 21643264,
+          "argv": "{SELECTED_ANALYTIC_RUNTIME}/bin/python -B {PROJECT_ROOT}/work/962-engineering/head-star-remaining-sicn-proposal-001/run_readback.py --contract-sha256 db488452751fbec4aade90b485a4bf3901cbe380be0b6ce9d28e5886adf86316"
+        },
+        {
+          "PGID": "{OWNED_ANALYTIC_WORKER_PID}",
+          "PID": "{OWNED_ANALYTIC_WORKER_PID}",
+          "PPID": "{OWNED_ANALYTIC_CONTROLLER_PID}",
+          "RSS_bytes": 284639232,
+          "argv": "{SELECTED_ANALYTIC_RUNTIME}/bin/python -B {PROJECT_ROOT}/work/962-engineering/head-star-remaining-sicn-proposal-001/reader.py"
+        }
+      ],
+      "wall_seconds": 16.371614875039086
+    }
+  ],
+  "schema": "962-current208-one-SLSQP-root-closed/v1",
+  "solver": {
+    "calls": 1,
+    "message": "Optimization terminated successfully",
+    "method": "SLSQP",
+    "nfev": 5137,
+    "nit": 11,
+    "njev": 11,
+    "status": 0,
+    "success": true
+  },
+  "stop_reason": null,
+  "universal_process_absence_claimed": false,
+  "wait_reaped": true,
+  "worker_error": "Single solver call did not produce a provisional all-cell SICN >= 0.1 proposal",
+  "worker_stage": "one_SLSQP",
+  "worker_status": "refused",
+  "worker_stop_reason": null
+}

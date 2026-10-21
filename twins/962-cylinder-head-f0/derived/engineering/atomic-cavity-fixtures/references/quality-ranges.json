@@ -1,0 +1,1977 @@
+{
+  "schema": "962-atomic-cavity-declared-six-order-quality-reference/v1",
+  "status": "frozen_before_native_compile_or_fixture_execution",
+  "vertex_orders": [
+    [
+      0,
+      1,
+      2
+    ],
+    [
+      0,
+      2,
+      1
+    ],
+    [
+      1,
+      0,
+      2
+    ],
+    [
+      1,
+      2,
+      0
+    ],
+    [
+      2,
+      0,
+      1
+    ],
+    [
+      2,
+      1,
+      0
+    ]
+  ],
+  "range_definition": "Per face min/max over all6literal vertex orders; global minimum interval is [min face minima,min face maxima]. No slack, epsilon, nextafter or fitted tolerance.",
+  "arithmetic_definition": "Binary64 source-expression reference for quality_patch.cpp triangle_quality; explicit subtract/cross/squared-length/add/multiply/divide grouping and host math.sqrt. This is not native CGAL execution or a compiler/FMA attestation.",
+  "native_comparison_rule": "All actual literal coordinates/orientedfaces/origins/masks/topology/volume/counts must match the full frozen reference first. Compare reported finite candidate minimum only within this reserved interval; preserve any mismatch without widening it.",
+  "cases": [
+    {
+      "name": "known-collapse",
+      "before": {
+        "vertices": 10,
+        "faces": 16,
+        "poor_count": 2,
+        "global_minimum_reserved_interval": [
+          2.2255998243252707e-05,
+          2.2255998243252707e-05
+        ],
+        "face_rows": [
+          {
+            "reference_face_row": 0,
+            "reference_vertex_IDs": [
+              0,
+              2,
+              1
+            ],
+            "quality_by_vertex_order": [
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386
+            ],
+            "minimum": 0.8660254037844386,
+            "maximum": 0.8660254037844386,
+            "below_necessary_bound": false
+          },
+          {
+            "reference_face_row": 1,
+            "reference_vertex_IDs": [
+              0,
+              3,
+              2
+            ],
+            "quality_by_vertex_order": [
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386
+            ],
+            "minimum": 0.8660254037844386,
+            "maximum": 0.8660254037844386,
+            "below_necessary_bound": false
+          },
+          {
+            "reference_face_row": 2,
+            "reference_vertex_IDs": [
+              8,
+              4,
+              5
+            ],
+            "quality_by_vertex_order": [
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386
+            ],
+            "minimum": 0.8660254037844386,
+            "maximum": 0.8660254037844386,
+            "below_necessary_bound": false
+          },
+          {
+            "reference_face_row": 3,
+            "reference_vertex_IDs": [
+              8,
+              5,
+              9
+            ],
+            "quality_by_vertex_order": [
+              2.2255998243252707e-05,
+              2.2255998243252707e-05,
+              2.2255998243252707e-05,
+              2.2255998243252707e-05,
+              2.2255998243252707e-05,
+              2.2255998243252707e-05
+            ],
+            "minimum": 2.2255998243252707e-05,
+            "maximum": 2.2255998243252707e-05,
+            "below_necessary_bound": true
+          },
+          {
+            "reference_face_row": 4,
+            "reference_vertex_IDs": [
+              9,
+              5,
+              6
+            ],
+            "quality_by_vertex_order": [
+              0.8660198396776346,
+              0.8660198396776346,
+              0.8660198396776346,
+              0.8660198396776346,
+              0.8660198396776346,
+              0.8660198396776346
+            ],
+            "minimum": 0.8660198396776346,
+            "maximum": 0.8660198396776346,
+            "below_necessary_bound": false
+          },
+          {
+            "reference_face_row": 5,
+            "reference_vertex_IDs": [
+              8,
+              9,
+              7
+            ],
+            "quality_by_vertex_order": [
+              2.2255998243252707e-05,
+              2.2255998243252707e-05,
+              2.2255998243252707e-05,
+              2.2255998243252707e-05,
+              2.2255998243252707e-05,
+              2.2255998243252707e-05
+            ],
+            "minimum": 2.2255998243252707e-05,
+            "maximum": 2.2255998243252707e-05,
+            "below_necessary_bound": true
+          },
+          {
+            "reference_face_row": 6,
+            "reference_vertex_IDs": [
+              9,
+              6,
+              7
+            ],
+            "quality_by_vertex_order": [
+              0.8660198396776346,
+              0.8660198396776346,
+              0.8660198396776346,
+              0.8660198396776346,
+              0.8660198396776346,
+              0.8660198396776346
+            ],
+            "minimum": 0.8660198396776346,
+            "maximum": 0.8660198396776346,
+            "below_necessary_bound": false
+          },
+          {
+            "reference_face_row": 7,
+            "reference_vertex_IDs": [
+              8,
+              7,
+              4
+            ],
+            "quality_by_vertex_order": [
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386
+            ],
+            "minimum": 0.8660254037844386,
+            "maximum": 0.8660254037844386,
+            "below_necessary_bound": false
+          },
+          {
+            "reference_face_row": 8,
+            "reference_vertex_IDs": [
+              0,
+              1,
+              5
+            ],
+            "quality_by_vertex_order": [
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386
+            ],
+            "minimum": 0.8660254037844386,
+            "maximum": 0.8660254037844386,
+            "below_necessary_bound": false
+          },
+          {
+            "reference_face_row": 9,
+            "reference_vertex_IDs": [
+              0,
+              5,
+              4
+            ],
+            "quality_by_vertex_order": [
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386
+            ],
+            "minimum": 0.8660254037844386,
+            "maximum": 0.8660254037844386,
+            "below_necessary_bound": false
+          },
+          {
+            "reference_face_row": 10,
+            "reference_vertex_IDs": [
+              1,
+              2,
+              6
+            ],
+            "quality_by_vertex_order": [
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386
+            ],
+            "minimum": 0.8660254037844386,
+            "maximum": 0.8660254037844386,
+            "below_necessary_bound": false
+          },
+          {
+            "reference_face_row": 11,
+            "reference_vertex_IDs": [
+              1,
+              6,
+              5
+            ],
+            "quality_by_vertex_order": [
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386
+            ],
+            "minimum": 0.8660254037844386,
+            "maximum": 0.8660254037844386,
+            "below_necessary_bound": false
+          },
+          {
+            "reference_face_row": 12,
+            "reference_vertex_IDs": [
+              2,
+              3,
+              7
+            ],
+            "quality_by_vertex_order": [
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386
+            ],
+            "minimum": 0.8660254037844386,
+            "maximum": 0.8660254037844386,
+            "below_necessary_bound": false
+          },
+          {
+            "reference_face_row": 13,
+            "reference_vertex_IDs": [
+              2,
+              7,
+              6
+            ],
+            "quality_by_vertex_order": [
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386
+            ],
+            "minimum": 0.8660254037844386,
+            "maximum": 0.8660254037844386,
+            "below_necessary_bound": false
+          },
+          {
+            "reference_face_row": 14,
+            "reference_vertex_IDs": [
+              3,
+              0,
+              4
+            ],
+            "quality_by_vertex_order": [
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386
+            ],
+            "minimum": 0.8660254037844386,
+            "maximum": 0.8660254037844386,
+            "below_necessary_bound": false
+          },
+          {
+            "reference_face_row": 15,
+            "reference_vertex_IDs": [
+              3,
+              4,
+              7
+            ],
+            "quality_by_vertex_order": [
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386
+            ],
+            "minimum": 0.8660254037844386,
+            "maximum": 0.8660254037844386,
+            "below_necessary_bound": false
+          }
+        ]
+      },
+      "expected_reference_after": {
+        "vertices": 9,
+        "faces": 14,
+        "poor_count": 0,
+        "global_minimum_reserved_interval": [
+          0.8660254037844386,
+          0.8660254037844386
+        ],
+        "face_rows": [
+          {
+            "reference_face_row": 0,
+            "reference_vertex_IDs": [
+              0,
+              2,
+              1
+            ],
+            "quality_by_vertex_order": [
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386
+            ],
+            "minimum": 0.8660254037844386,
+            "maximum": 0.8660254037844386,
+            "below_necessary_bound": false
+          },
+          {
+            "reference_face_row": 1,
+            "reference_vertex_IDs": [
+              0,
+              3,
+              2
+            ],
+            "quality_by_vertex_order": [
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386
+            ],
+            "minimum": 0.8660254037844386,
+            "maximum": 0.8660254037844386,
+            "below_necessary_bound": false
+          },
+          {
+            "reference_face_row": 2,
+            "reference_vertex_IDs": [
+              8,
+              4,
+              5
+            ],
+            "quality_by_vertex_order": [
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386
+            ],
+            "minimum": 0.8660254037844386,
+            "maximum": 0.8660254037844386,
+            "below_necessary_bound": false
+          },
+          {
+            "reference_face_row": 3,
+            "reference_vertex_IDs": [
+              8,
+              5,
+              6
+            ],
+            "quality_by_vertex_order": [
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386
+            ],
+            "minimum": 0.8660254037844386,
+            "maximum": 0.8660254037844386,
+            "below_necessary_bound": false
+          },
+          {
+            "reference_face_row": 4,
+            "reference_vertex_IDs": [
+              8,
+              6,
+              7
+            ],
+            "quality_by_vertex_order": [
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386
+            ],
+            "minimum": 0.8660254037844386,
+            "maximum": 0.8660254037844386,
+            "below_necessary_bound": false
+          },
+          {
+            "reference_face_row": 5,
+            "reference_vertex_IDs": [
+              8,
+              7,
+              4
+            ],
+            "quality_by_vertex_order": [
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386
+            ],
+            "minimum": 0.8660254037844386,
+            "maximum": 0.8660254037844386,
+            "below_necessary_bound": false
+          },
+          {
+            "reference_face_row": 6,
+            "reference_vertex_IDs": [
+              0,
+              1,
+              5
+            ],
+            "quality_by_vertex_order": [
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386
+            ],
+            "minimum": 0.8660254037844386,
+            "maximum": 0.8660254037844386,
+            "below_necessary_bound": false
+          },
+          {
+            "reference_face_row": 7,
+            "reference_vertex_IDs": [
+              0,
+              5,
+              4
+            ],
+            "quality_by_vertex_order": [
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386
+            ],
+            "minimum": 0.8660254037844386,
+            "maximum": 0.8660254037844386,
+            "below_necessary_bound": false
+          },
+          {
+            "reference_face_row": 8,
+            "reference_vertex_IDs": [
+              1,
+              2,
+              6
+            ],
+            "quality_by_vertex_order": [
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386
+            ],
+            "minimum": 0.8660254037844386,
+            "maximum": 0.8660254037844386,
+            "below_necessary_bound": false
+          },
+          {
+            "reference_face_row": 9,
+            "reference_vertex_IDs": [
+              1,
+              6,
+              5
+            ],
+            "quality_by_vertex_order": [
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386
+            ],
+            "minimum": 0.8660254037844386,
+            "maximum": 0.8660254037844386,
+            "below_necessary_bound": false
+          },
+          {
+            "reference_face_row": 10,
+            "reference_vertex_IDs": [
+              2,
+              3,
+              7
+            ],
+            "quality_by_vertex_order": [
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386
+            ],
+            "minimum": 0.8660254037844386,
+            "maximum": 0.8660254037844386,
+            "below_necessary_bound": false
+          },
+          {
+            "reference_face_row": 11,
+            "reference_vertex_IDs": [
+              2,
+              7,
+              6
+            ],
+            "quality_by_vertex_order": [
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386
+            ],
+            "minimum": 0.8660254037844386,
+            "maximum": 0.8660254037844386,
+            "below_necessary_bound": false
+          },
+          {
+            "reference_face_row": 12,
+            "reference_vertex_IDs": [
+              3,
+              0,
+              4
+            ],
+            "quality_by_vertex_order": [
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386
+            ],
+            "minimum": 0.8660254037844386,
+            "maximum": 0.8660254037844386,
+            "below_necessary_bound": false
+          },
+          {
+            "reference_face_row": 13,
+            "reference_vertex_IDs": [
+              3,
+              4,
+              7
+            ],
+            "quality_by_vertex_order": [
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386
+            ],
+            "minimum": 0.8660254037844386,
+            "maximum": 0.8660254037844386,
+            "below_necessary_bound": false
+          }
+        ]
+      },
+      "expected_native_quality_checked": true,
+      "expected_native_minimum_quality": [
+        0.8660254037844386,
+        0.8660254037844386
+      ],
+      "all_fixed_after_range_scope": null
+    },
+    {
+      "name": "all-fixed",
+      "before": {
+        "vertices": 10,
+        "faces": 16,
+        "poor_count": 2,
+        "global_minimum_reserved_interval": [
+          2.2255998243252707e-05,
+          2.2255998243252707e-05
+        ],
+        "face_rows": [
+          {
+            "reference_face_row": 0,
+            "reference_vertex_IDs": [
+              0,
+              2,
+              1
+            ],
+            "quality_by_vertex_order": [
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386
+            ],
+            "minimum": 0.8660254037844386,
+            "maximum": 0.8660254037844386,
+            "below_necessary_bound": false
+          },
+          {
+            "reference_face_row": 1,
+            "reference_vertex_IDs": [
+              0,
+              3,
+              2
+            ],
+            "quality_by_vertex_order": [
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386
+            ],
+            "minimum": 0.8660254037844386,
+            "maximum": 0.8660254037844386,
+            "below_necessary_bound": false
+          },
+          {
+            "reference_face_row": 2,
+            "reference_vertex_IDs": [
+              8,
+              4,
+              5
+            ],
+            "quality_by_vertex_order": [
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386
+            ],
+            "minimum": 0.8660254037844386,
+            "maximum": 0.8660254037844386,
+            "below_necessary_bound": false
+          },
+          {
+            "reference_face_row": 3,
+            "reference_vertex_IDs": [
+              8,
+              5,
+              9
+            ],
+            "quality_by_vertex_order": [
+              2.2255998243252707e-05,
+              2.2255998243252707e-05,
+              2.2255998243252707e-05,
+              2.2255998243252707e-05,
+              2.2255998243252707e-05,
+              2.2255998243252707e-05
+            ],
+            "minimum": 2.2255998243252707e-05,
+            "maximum": 2.2255998243252707e-05,
+            "below_necessary_bound": true
+          },
+          {
+            "reference_face_row": 4,
+            "reference_vertex_IDs": [
+              9,
+              5,
+              6
+            ],
+            "quality_by_vertex_order": [
+              0.8660198396776346,
+              0.8660198396776346,
+              0.8660198396776346,
+              0.8660198396776346,
+              0.8660198396776346,
+              0.8660198396776346
+            ],
+            "minimum": 0.8660198396776346,
+            "maximum": 0.8660198396776346,
+            "below_necessary_bound": false
+          },
+          {
+            "reference_face_row": 5,
+            "reference_vertex_IDs": [
+              8,
+              9,
+              7
+            ],
+            "quality_by_vertex_order": [
+              2.2255998243252707e-05,
+              2.2255998243252707e-05,
+              2.2255998243252707e-05,
+              2.2255998243252707e-05,
+              2.2255998243252707e-05,
+              2.2255998243252707e-05
+            ],
+            "minimum": 2.2255998243252707e-05,
+            "maximum": 2.2255998243252707e-05,
+            "below_necessary_bound": true
+          },
+          {
+            "reference_face_row": 6,
+            "reference_vertex_IDs": [
+              9,
+              6,
+              7
+            ],
+            "quality_by_vertex_order": [
+              0.8660198396776346,
+              0.8660198396776346,
+              0.8660198396776346,
+              0.8660198396776346,
+              0.8660198396776346,
+              0.8660198396776346
+            ],
+            "minimum": 0.8660198396776346,
+            "maximum": 0.8660198396776346,
+            "below_necessary_bound": false
+          },
+          {
+            "reference_face_row": 7,
+            "reference_vertex_IDs": [
+              8,
+              7,
+              4
+            ],
+            "quality_by_vertex_order": [
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386
+            ],
+            "minimum": 0.8660254037844386,
+            "maximum": 0.8660254037844386,
+            "below_necessary_bound": false
+          },
+          {
+            "reference_face_row": 8,
+            "reference_vertex_IDs": [
+              0,
+              1,
+              5
+            ],
+            "quality_by_vertex_order": [
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386
+            ],
+            "minimum": 0.8660254037844386,
+            "maximum": 0.8660254037844386,
+            "below_necessary_bound": false
+          },
+          {
+            "reference_face_row": 9,
+            "reference_vertex_IDs": [
+              0,
+              5,
+              4
+            ],
+            "quality_by_vertex_order": [
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386
+            ],
+            "minimum": 0.8660254037844386,
+            "maximum": 0.8660254037844386,
+            "below_necessary_bound": false
+          },
+          {
+            "reference_face_row": 10,
+            "reference_vertex_IDs": [
+              1,
+              2,
+              6
+            ],
+            "quality_by_vertex_order": [
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386
+            ],
+            "minimum": 0.8660254037844386,
+            "maximum": 0.8660254037844386,
+            "below_necessary_bound": false
+          },
+          {
+            "reference_face_row": 11,
+            "reference_vertex_IDs": [
+              1,
+              6,
+              5
+            ],
+            "quality_by_vertex_order": [
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386
+            ],
+            "minimum": 0.8660254037844386,
+            "maximum": 0.8660254037844386,
+            "below_necessary_bound": false
+          },
+          {
+            "reference_face_row": 12,
+            "reference_vertex_IDs": [
+              2,
+              3,
+              7
+            ],
+            "quality_by_vertex_order": [
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386
+            ],
+            "minimum": 0.8660254037844386,
+            "maximum": 0.8660254037844386,
+            "below_necessary_bound": false
+          },
+          {
+            "reference_face_row": 13,
+            "reference_vertex_IDs": [
+              2,
+              7,
+              6
+            ],
+            "quality_by_vertex_order": [
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386
+            ],
+            "minimum": 0.8660254037844386,
+            "maximum": 0.8660254037844386,
+            "below_necessary_bound": false
+          },
+          {
+            "reference_face_row": 14,
+            "reference_vertex_IDs": [
+              3,
+              0,
+              4
+            ],
+            "quality_by_vertex_order": [
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386
+            ],
+            "minimum": 0.8660254037844386,
+            "maximum": 0.8660254037844386,
+            "below_necessary_bound": false
+          },
+          {
+            "reference_face_row": 15,
+            "reference_vertex_IDs": [
+              3,
+              4,
+              7
+            ],
+            "quality_by_vertex_order": [
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386
+            ],
+            "minimum": 0.8660254037844386,
+            "maximum": 0.8660254037844386,
+            "below_necessary_bound": false
+          }
+        ]
+      },
+      "expected_reference_after": {
+        "vertices": 10,
+        "faces": 16,
+        "poor_count": 2,
+        "global_minimum_reserved_interval": [
+          2.2255998243252707e-05,
+          2.2255998243252707e-05
+        ],
+        "face_rows": [
+          {
+            "reference_face_row": 0,
+            "reference_vertex_IDs": [
+              0,
+              2,
+              1
+            ],
+            "quality_by_vertex_order": [
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386
+            ],
+            "minimum": 0.8660254037844386,
+            "maximum": 0.8660254037844386,
+            "below_necessary_bound": false
+          },
+          {
+            "reference_face_row": 1,
+            "reference_vertex_IDs": [
+              0,
+              3,
+              2
+            ],
+            "quality_by_vertex_order": [
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386
+            ],
+            "minimum": 0.8660254037844386,
+            "maximum": 0.8660254037844386,
+            "below_necessary_bound": false
+          },
+          {
+            "reference_face_row": 2,
+            "reference_vertex_IDs": [
+              8,
+              4,
+              5
+            ],
+            "quality_by_vertex_order": [
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386
+            ],
+            "minimum": 0.8660254037844386,
+            "maximum": 0.8660254037844386,
+            "below_necessary_bound": false
+          },
+          {
+            "reference_face_row": 3,
+            "reference_vertex_IDs": [
+              8,
+              5,
+              9
+            ],
+            "quality_by_vertex_order": [
+              2.2255998243252707e-05,
+              2.2255998243252707e-05,
+              2.2255998243252707e-05,
+              2.2255998243252707e-05,
+              2.2255998243252707e-05,
+              2.2255998243252707e-05
+            ],
+            "minimum": 2.2255998243252707e-05,
+            "maximum": 2.2255998243252707e-05,
+            "below_necessary_bound": true
+          },
+          {
+            "reference_face_row": 4,
+            "reference_vertex_IDs": [
+              9,
+              5,
+              6
+            ],
+            "quality_by_vertex_order": [
+              0.8660198396776346,
+              0.8660198396776346,
+              0.8660198396776346,
+              0.8660198396776346,
+              0.8660198396776346,
+              0.8660198396776346
+            ],
+            "minimum": 0.8660198396776346,
+            "maximum": 0.8660198396776346,
+            "below_necessary_bound": false
+          },
+          {
+            "reference_face_row": 5,
+            "reference_vertex_IDs": [
+              8,
+              9,
+              7
+            ],
+            "quality_by_vertex_order": [
+              2.2255998243252707e-05,
+              2.2255998243252707e-05,
+              2.2255998243252707e-05,
+              2.2255998243252707e-05,
+              2.2255998243252707e-05,
+              2.2255998243252707e-05
+            ],
+            "minimum": 2.2255998243252707e-05,
+            "maximum": 2.2255998243252707e-05,
+            "below_necessary_bound": true
+          },
+          {
+            "reference_face_row": 6,
+            "reference_vertex_IDs": [
+              9,
+              6,
+              7
+            ],
+            "quality_by_vertex_order": [
+              0.8660198396776346,
+              0.8660198396776346,
+              0.8660198396776346,
+              0.8660198396776346,
+              0.8660198396776346,
+              0.8660198396776346
+            ],
+            "minimum": 0.8660198396776346,
+            "maximum": 0.8660198396776346,
+            "below_necessary_bound": false
+          },
+          {
+            "reference_face_row": 7,
+            "reference_vertex_IDs": [
+              8,
+              7,
+              4
+            ],
+            "quality_by_vertex_order": [
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386
+            ],
+            "minimum": 0.8660254037844386,
+            "maximum": 0.8660254037844386,
+            "below_necessary_bound": false
+          },
+          {
+            "reference_face_row": 8,
+            "reference_vertex_IDs": [
+              0,
+              1,
+              5
+            ],
+            "quality_by_vertex_order": [
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386
+            ],
+            "minimum": 0.8660254037844386,
+            "maximum": 0.8660254037844386,
+            "below_necessary_bound": false
+          },
+          {
+            "reference_face_row": 9,
+            "reference_vertex_IDs": [
+              0,
+              5,
+              4
+            ],
+            "quality_by_vertex_order": [
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386
+            ],
+            "minimum": 0.8660254037844386,
+            "maximum": 0.8660254037844386,
+            "below_necessary_bound": false
+          },
+          {
+            "reference_face_row": 10,
+            "reference_vertex_IDs": [
+              1,
+              2,
+              6
+            ],
+            "quality_by_vertex_order": [
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386
+            ],
+            "minimum": 0.8660254037844386,
+            "maximum": 0.8660254037844386,
+            "below_necessary_bound": false
+          },
+          {
+            "reference_face_row": 11,
+            "reference_vertex_IDs": [
+              1,
+              6,
+              5
+            ],
+            "quality_by_vertex_order": [
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386
+            ],
+            "minimum": 0.8660254037844386,
+            "maximum": 0.8660254037844386,
+            "below_necessary_bound": false
+          },
+          {
+            "reference_face_row": 12,
+            "reference_vertex_IDs": [
+              2,
+              3,
+              7
+            ],
+            "quality_by_vertex_order": [
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386
+            ],
+            "minimum": 0.8660254037844386,
+            "maximum": 0.8660254037844386,
+            "below_necessary_bound": false
+          },
+          {
+            "reference_face_row": 13,
+            "reference_vertex_IDs": [
+              2,
+              7,
+              6
+            ],
+            "quality_by_vertex_order": [
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386
+            ],
+            "minimum": 0.8660254037844386,
+            "maximum": 0.8660254037844386,
+            "below_necessary_bound": false
+          },
+          {
+            "reference_face_row": 14,
+            "reference_vertex_IDs": [
+              3,
+              0,
+              4
+            ],
+            "quality_by_vertex_order": [
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386
+            ],
+            "minimum": 0.8660254037844386,
+            "maximum": 0.8660254037844386,
+            "below_necessary_bound": false
+          },
+          {
+            "reference_face_row": 15,
+            "reference_vertex_IDs": [
+              3,
+              4,
+              7
+            ],
+            "quality_by_vertex_order": [
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386
+            ],
+            "minimum": 0.8660254037844386,
+            "maximum": 0.8660254037844386,
+            "below_necessary_bound": false
+          }
+        ]
+      },
+      "expected_native_quality_checked": false,
+      "expected_native_minimum_quality": "null_before_fixed_group_refusal",
+      "all_fixed_after_range_scope": "Unchanged reference arrays only; native candidate/quality is unrun on early refusal."
+    },
+    {
+      "name": "four-vertex-disk",
+      "before": {
+        "vertices": 12,
+        "faces": 20,
+        "poor_count": 4,
+        "global_minimum_reserved_interval": [
+          3.4774997260819145e-07,
+          3.4774997260819145e-07
+        ],
+        "face_rows": [
+          {
+            "reference_face_row": 0,
+            "reference_vertex_IDs": [
+              0,
+              2,
+              1
+            ],
+            "quality_by_vertex_order": [
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386
+            ],
+            "minimum": 0.8660254037844386,
+            "maximum": 0.8660254037844386,
+            "below_necessary_bound": false
+          },
+          {
+            "reference_face_row": 1,
+            "reference_vertex_IDs": [
+              0,
+              3,
+              2
+            ],
+            "quality_by_vertex_order": [
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386
+            ],
+            "minimum": 0.8660254037844386,
+            "maximum": 0.8660254037844386,
+            "below_necessary_bound": false
+          },
+          {
+            "reference_face_row": 2,
+            "reference_vertex_IDs": [
+              4,
+              5,
+              9
+            ],
+            "quality_by_vertex_order": [
+              0.8660252299093737,
+              0.8660252299093737,
+              0.8660252299093737,
+              0.8660252299093737,
+              0.8660252299093737,
+              0.8660252299093737
+            ],
+            "minimum": 0.8660252299093737,
+            "maximum": 0.8660252299093737,
+            "below_necessary_bound": false
+          },
+          {
+            "reference_face_row": 3,
+            "reference_vertex_IDs": [
+              4,
+              9,
+              8
+            ],
+            "quality_by_vertex_order": [
+              3.4774997260819145e-07,
+              3.4774997260819145e-07,
+              3.4774997260819145e-07,
+              3.4774997260819145e-07,
+              3.4774997260819145e-07,
+              3.4774997260819145e-07
+            ],
+            "minimum": 3.4774997260819145e-07,
+            "maximum": 3.4774997260819145e-07,
+            "below_necessary_bound": true
+          },
+          {
+            "reference_face_row": 4,
+            "reference_vertex_IDs": [
+              5,
+              6,
+              10
+            ],
+            "quality_by_vertex_order": [
+              0.8660253168468931,
+              0.8660253168468931,
+              0.8660253168468931,
+              0.8660253168468931,
+              0.8660253168468931,
+              0.8660253168468931
+            ],
+            "minimum": 0.8660253168468931,
+            "maximum": 0.8660253168468931,
+            "below_necessary_bound": false
+          },
+          {
+            "reference_face_row": 5,
+            "reference_vertex_IDs": [
+              5,
+              10,
+              9
+            ],
+            "quality_by_vertex_order": [
+              6.954999452162987e-07,
+              6.954999452162987e-07,
+              6.954999452162987e-07,
+              6.954999452162987e-07,
+              6.954999452162987e-07,
+              6.954999452162987e-07
+            ],
+            "minimum": 6.954999452162987e-07,
+            "maximum": 6.954999452162987e-07,
+            "below_necessary_bound": true
+          },
+          {
+            "reference_face_row": 6,
+            "reference_vertex_IDs": [
+              6,
+              7,
+              11
+            ],
+            "quality_by_vertex_order": [
+              0.8660252299093737,
+              0.8660252299093737,
+              0.8660252299093737,
+              0.8660252299093737,
+              0.8660252299093737,
+              0.8660252299093737
+            ],
+            "minimum": 0.8660252299093737,
+            "maximum": 0.8660252299093737,
+            "below_necessary_bound": false
+          },
+          {
+            "reference_face_row": 7,
+            "reference_vertex_IDs": [
+              6,
+              11,
+              10
+            ],
+            "quality_by_vertex_order": [
+              3.4774997260819145e-07,
+              3.4774997260819145e-07,
+              3.4774997260819145e-07,
+              3.4774997260819145e-07,
+              3.4774997260819145e-07,
+              3.4774997260819145e-07
+            ],
+            "minimum": 3.4774997260819145e-07,
+            "maximum": 3.4774997260819145e-07,
+            "below_necessary_bound": true
+          },
+          {
+            "reference_face_row": 8,
+            "reference_vertex_IDs": [
+              7,
+              4,
+              8
+            ],
+            "quality_by_vertex_order": [
+              0.8660253168468931,
+              0.8660253168468931,
+              0.8660253168468931,
+              0.8660253168468931,
+              0.8660253168468931,
+              0.8660253168468931
+            ],
+            "minimum": 0.8660253168468931,
+            "maximum": 0.8660253168468931,
+            "below_necessary_bound": false
+          },
+          {
+            "reference_face_row": 9,
+            "reference_vertex_IDs": [
+              7,
+              8,
+              11
+            ],
+            "quality_by_vertex_order": [
+              6.954999452162987e-07,
+              6.954999452162987e-07,
+              6.954999452162987e-07,
+              6.954999452162987e-07,
+              6.954999452162987e-07,
+              6.954999452162987e-07
+            ],
+            "minimum": 6.954999452162987e-07,
+            "maximum": 6.954999452162987e-07,
+            "below_necessary_bound": true
+          },
+          {
+            "reference_face_row": 10,
+            "reference_vertex_IDs": [
+              8,
+              9,
+              10
+            ],
+            "quality_by_vertex_order": [
+              0.6928203230275509,
+              0.6928203230275509,
+              0.6928203230275509,
+              0.6928203230275509,
+              0.6928203230275509,
+              0.6928203230275509
+            ],
+            "minimum": 0.6928203230275509,
+            "maximum": 0.6928203230275509,
+            "below_necessary_bound": false
+          },
+          {
+            "reference_face_row": 11,
+            "reference_vertex_IDs": [
+              8,
+              10,
+              11
+            ],
+            "quality_by_vertex_order": [
+              0.6928203230275509,
+              0.6928203230275509,
+              0.6928203230275509,
+              0.6928203230275509,
+              0.6928203230275509,
+              0.6928203230275509
+            ],
+            "minimum": 0.6928203230275509,
+            "maximum": 0.6928203230275509,
+            "below_necessary_bound": false
+          },
+          {
+            "reference_face_row": 12,
+            "reference_vertex_IDs": [
+              0,
+              1,
+              5
+            ],
+            "quality_by_vertex_order": [
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386
+            ],
+            "minimum": 0.8660254037844386,
+            "maximum": 0.8660254037844386,
+            "below_necessary_bound": false
+          },
+          {
+            "reference_face_row": 13,
+            "reference_vertex_IDs": [
+              0,
+              5,
+              4
+            ],
+            "quality_by_vertex_order": [
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386
+            ],
+            "minimum": 0.8660254037844386,
+            "maximum": 0.8660254037844386,
+            "below_necessary_bound": false
+          },
+          {
+            "reference_face_row": 14,
+            "reference_vertex_IDs": [
+              1,
+              2,
+              6
+            ],
+            "quality_by_vertex_order": [
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386
+            ],
+            "minimum": 0.8660254037844386,
+            "maximum": 0.8660254037844386,
+            "below_necessary_bound": false
+          },
+          {
+            "reference_face_row": 15,
+            "reference_vertex_IDs": [
+              1,
+              6,
+              5
+            ],
+            "quality_by_vertex_order": [
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386
+            ],
+            "minimum": 0.8660254037844386,
+            "maximum": 0.8660254037844386,
+            "below_necessary_bound": false
+          },
+          {
+            "reference_face_row": 16,
+            "reference_vertex_IDs": [
+              2,
+              3,
+              7
+            ],
+            "quality_by_vertex_order": [
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386
+            ],
+            "minimum": 0.8660254037844386,
+            "maximum": 0.8660254037844386,
+            "below_necessary_bound": false
+          },
+          {
+            "reference_face_row": 17,
+            "reference_vertex_IDs": [
+              2,
+              7,
+              6
+            ],
+            "quality_by_vertex_order": [
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386
+            ],
+            "minimum": 0.8660254037844386,
+            "maximum": 0.8660254037844386,
+            "below_necessary_bound": false
+          },
+          {
+            "reference_face_row": 18,
+            "reference_vertex_IDs": [
+              3,
+              0,
+              4
+            ],
+            "quality_by_vertex_order": [
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386
+            ],
+            "minimum": 0.8660254037844386,
+            "maximum": 0.8660254037844386,
+            "below_necessary_bound": false
+          },
+          {
+            "reference_face_row": 19,
+            "reference_vertex_IDs": [
+              3,
+              4,
+              7
+            ],
+            "quality_by_vertex_order": [
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386
+            ],
+            "minimum": 0.8660254037844386,
+            "maximum": 0.8660254037844386,
+            "below_necessary_bound": false
+          }
+        ]
+      },
+      "expected_reference_after": {
+        "vertices": 9,
+        "faces": 14,
+        "poor_count": 0,
+        "global_minimum_reserved_interval": [
+          0.8660252299093737,
+          0.8660252299093737
+        ],
+        "face_rows": [
+          {
+            "reference_face_row": 0,
+            "reference_vertex_IDs": [
+              0,
+              2,
+              1
+            ],
+            "quality_by_vertex_order": [
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386
+            ],
+            "minimum": 0.8660254037844386,
+            "maximum": 0.8660254037844386,
+            "below_necessary_bound": false
+          },
+          {
+            "reference_face_row": 1,
+            "reference_vertex_IDs": [
+              0,
+              3,
+              2
+            ],
+            "quality_by_vertex_order": [
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386
+            ],
+            "minimum": 0.8660254037844386,
+            "maximum": 0.8660254037844386,
+            "below_necessary_bound": false
+          },
+          {
+            "reference_face_row": 2,
+            "reference_vertex_IDs": [
+              4,
+              5,
+              8
+            ],
+            "quality_by_vertex_order": [
+              0.8660252299093737,
+              0.8660252299093737,
+              0.8660252299093737,
+              0.8660252299093737,
+              0.8660252299093737,
+              0.8660252299093737
+            ],
+            "minimum": 0.8660252299093737,
+            "maximum": 0.8660252299093737,
+            "below_necessary_bound": false
+          },
+          {
+            "reference_face_row": 3,
+            "reference_vertex_IDs": [
+              5,
+              6,
+              8
+            ],
+            "quality_by_vertex_order": [
+              0.8660254907218794,
+              0.8660254907218794,
+              0.8660254907218794,
+              0.8660254907218794,
+              0.8660254907218794,
+              0.8660254907218794
+            ],
+            "minimum": 0.8660254907218794,
+            "maximum": 0.8660254907218794,
+            "below_necessary_bound": false
+          },
+          {
+            "reference_face_row": 4,
+            "reference_vertex_IDs": [
+              6,
+              7,
+              8
+            ],
+            "quality_by_vertex_order": [
+              0.8660255776593464,
+              0.8660255776593464,
+              0.8660255776593464,
+              0.8660255776593464,
+              0.8660255776593464,
+              0.8660255776593464
+            ],
+            "minimum": 0.8660255776593464,
+            "maximum": 0.8660255776593464,
+            "below_necessary_bound": false
+          },
+          {
+            "reference_face_row": 5,
+            "reference_vertex_IDs": [
+              7,
+              4,
+              8
+            ],
+            "quality_by_vertex_order": [
+              0.8660253168468931,
+              0.8660253168468931,
+              0.8660253168468931,
+              0.8660253168468931,
+              0.8660253168468931,
+              0.8660253168468931
+            ],
+            "minimum": 0.8660253168468931,
+            "maximum": 0.8660253168468931,
+            "below_necessary_bound": false
+          },
+          {
+            "reference_face_row": 6,
+            "reference_vertex_IDs": [
+              0,
+              1,
+              5
+            ],
+            "quality_by_vertex_order": [
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386
+            ],
+            "minimum": 0.8660254037844386,
+            "maximum": 0.8660254037844386,
+            "below_necessary_bound": false
+          },
+          {
+            "reference_face_row": 7,
+            "reference_vertex_IDs": [
+              0,
+              5,
+              4
+            ],
+            "quality_by_vertex_order": [
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386
+            ],
+            "minimum": 0.8660254037844386,
+            "maximum": 0.8660254037844386,
+            "below_necessary_bound": false
+          },
+          {
+            "reference_face_row": 8,
+            "reference_vertex_IDs": [
+              1,
+              2,
+              6
+            ],
+            "quality_by_vertex_order": [
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386
+            ],
+            "minimum": 0.8660254037844386,
+            "maximum": 0.8660254037844386,
+            "below_necessary_bound": false
+          },
+          {
+            "reference_face_row": 9,
+            "reference_vertex_IDs": [
+              1,
+              6,
+              5
+            ],
+            "quality_by_vertex_order": [
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386
+            ],
+            "minimum": 0.8660254037844386,
+            "maximum": 0.8660254037844386,
+            "below_necessary_bound": false
+          },
+          {
+            "reference_face_row": 10,
+            "reference_vertex_IDs": [
+              2,
+              3,
+              7
+            ],
+            "quality_by_vertex_order": [
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386
+            ],
+            "minimum": 0.8660254037844386,
+            "maximum": 0.8660254037844386,
+            "below_necessary_bound": false
+          },
+          {
+            "reference_face_row": 11,
+            "reference_vertex_IDs": [
+              2,
+              7,
+              6
+            ],
+            "quality_by_vertex_order": [
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386
+            ],
+            "minimum": 0.8660254037844386,
+            "maximum": 0.8660254037844386,
+            "below_necessary_bound": false
+          },
+          {
+            "reference_face_row": 12,
+            "reference_vertex_IDs": [
+              3,
+              0,
+              4
+            ],
+            "quality_by_vertex_order": [
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386
+            ],
+            "minimum": 0.8660254037844386,
+            "maximum": 0.8660254037844386,
+            "below_necessary_bound": false
+          },
+          {
+            "reference_face_row": 13,
+            "reference_vertex_IDs": [
+              3,
+              4,
+              7
+            ],
+            "quality_by_vertex_order": [
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386,
+              0.8660254037844386
+            ],
+            "minimum": 0.8660254037844386,
+            "maximum": 0.8660254037844386,
+            "below_necessary_bound": false
+          }
+        ]
+      },
+      "expected_native_quality_checked": true,
+      "expected_native_minimum_quality": [
+        0.8660252299093737,
+        0.8660252299093737
+      ],
+      "all_fixed_after_range_scope": null
+    }
+  ],
+  "pins_before": {
+    "twins/962-cylinder-head-f0/source/analysis-cgal/atomic_cavity_002.cpp": "e2dfe8417b77aaf8fb2e44bf98aa26232170c80c0bb2c69af0b551d695c8b11a",
+    "twins/962-cylinder-head-f0/source/analysis-cgal/quality_patch.cpp": "6a56acf7a1d7a4882251044f9331ff0e4590042a4d1d15f0b4599e0ab241d9ee",
+    "work/962-engineering/atomic-cavity-fixtures-prep-001/expectations.json": "2a6993b704a007da882fa8d48bbe9aa6c04a42831b520e77d7e3dd26246baa1e",
+    "work/962-engineering/atomic-cavity-fixtures-prep-001/fixture-freeze.json": "9584ca30708a08f738ce909bd479d3fdc52fb6581d4e3afbb630477ecbbd4ca2",
+    "work/962-engineering/atomic-cavity-fixture-quality-prep-001/quality_ranges.py": "7ffc4329500566be60563d9e358aef7178371a2b20ce1a5dd6020a9c184e135b"
+  },
+  "pins_after": {
+    "twins/962-cylinder-head-f0/source/analysis-cgal/atomic_cavity_002.cpp": "e2dfe8417b77aaf8fb2e44bf98aa26232170c80c0bb2c69af0b551d695c8b11a",
+    "twins/962-cylinder-head-f0/source/analysis-cgal/quality_patch.cpp": "6a56acf7a1d7a4882251044f9331ff0e4590042a4d1d15f0b4599e0ab241d9ee",
+    "work/962-engineering/atomic-cavity-fixtures-prep-001/expectations.json": "2a6993b704a007da882fa8d48bbe9aa6c04a42831b520e77d7e3dd26246baa1e",
+    "work/962-engineering/atomic-cavity-fixtures-prep-001/fixture-freeze.json": "9584ca30708a08f738ce909bd479d3fdc52fb6581d4e3afbb630477ecbbd4ca2",
+    "work/962-engineering/atomic-cavity-fixture-quality-prep-001/quality_ranges.py": "7ffc4329500566be60563d9e358aef7178371a2b20ce1a5dd6020a9c184e135b"
+  },
+  "all_inputs_unchanged": true,
+  "runtime": {
+    "python": "3.10.11",
+    "mantissa_bits": 53
+  },
+  "native_compiler_SSH_Git_calls": 0,
+  "fixture_execution_authorized": false,
+  "manufacturing_authorized": false
+}

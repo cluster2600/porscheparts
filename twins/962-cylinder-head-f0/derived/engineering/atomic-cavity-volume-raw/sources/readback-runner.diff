@@ -1,0 +1,44 @@
+--- work/962-engineering/quality-volume-default-postexport-readback-001/run_readback.py
++++ work/962-engineering/atomic-cavity-volume-readback-prep-002/run_readback.py
+@@ -18,12 +18,18 @@
+     if process is not None:
+      try:os.killpg(process.pid,signal.SIGKILL)
+      except ProcessLookupError:pass
++ sigterm_requested=False
++ def request_sigterm(*_):
++  nonlocal sigterm_requested
++  sigterm_requested=True
++ previous_sigterm=signal.getsignal(signal.SIGTERM)
+  try:
+   with (OUT/'native.log').open('x') as log:
+    try:
++    signal.signal(signal.SIGTERM,request_sigterm)
+     process=subprocess.Popen([str(py),'-B',str(OUT/'reader.py')],stdout=log,stderr=subprocess.STDOUT,start_new_session=True,env={'PATH':'/usr/bin:/bin','LANG':'C','PYTHONUTF8':'1','OMP_NUM_THREADS':'2','OPENBLAS_NUM_THREADS':'2','PYTHONDONTWRITEBYTECODE':'1'})
+     timer=threading.Timer(120,lambda:stop('readback_deadline'));timer.daemon=True;timer.start()
+-    while process.poll() is None:
++    while process.poll() is None and not sigterm_requested:
+      try:
+       ps=subprocess.run(['/bin/ps','-o','rss=','-p',str(process.pid)],capture_output=True,text=True,timeout=2)
+       if process.poll() is not None:break
+@@ -34,12 +40,16 @@
+      try:process.wait(timeout=.5)
+      except subprocess.TimeoutExpired:pass
+    finally:
+-    if timer is not None:timer.cancel()
+-    if process is not None:
+-     if process.poll() is None:stop('controller_interrupted')
+-     process.wait()
++    try:
++     if timer is not None:timer.cancel()
++     if process is not None:
++      if process.poll() is None:stop('controller_SIGTERM' if sigterm_requested else 'controller_interrupted')
++      process.wait()
++    finally:
++     if sigterm_requested and stopped['reason'] is None:stopped['reason']='controller_SIGTERM'
++     signal.signal(signal.SIGTERM,previous_sigterm)
+  finally:
+-  report=dict(scope='one_stopped_postexport_mesh_read_only',returncode=process.returncode if process is not None else None,stop_reason=stopped['reason'],wall_seconds=time.monotonic()-started,hard_wall_seconds=120,sampled_RSS_stop_bytes=4*1024**3,threads=2,hard_OS_CPU_quota_applied=False,hard_address_space_limit_applied=False,RSS_samples=samples,max_observed_RSS_bytes=max((s['RSS_bytes'] for s in samples),default=0),reader_sha256=sha(OUT/'reader.py'),runner_sha256=sha(Path(__file__).resolve()),contract_sha256=sha(path),native_log_sha256=sha(OUT/'native.log') if (OUT/'native.log').is_file() else None,readback_report_sha256=sha(OUT/'readback-report.json') if (OUT/'readback-report.json').is_file() else None,native_generate_optimize_meshwrite_solve_calls=0,manufacturing_authorized=False)
++  report=dict(scope='one_stopped_atomic_mesh_read_only',returncode=process.returncode if process is not None else None,stop_reason=stopped['reason'],wall_seconds=time.monotonic()-started,hard_wall_seconds=120,sampled_RSS_stop_bytes=4*1024**3,threads=2,hard_OS_CPU_quota_applied=False,hard_address_space_limit_applied=False,RSS_samples=samples,max_observed_RSS_bytes=max((s['RSS_bytes'] for s in samples),default=0),reader_sha256=sha(OUT/'reader.py'),runner_sha256=sha(Path(__file__).resolve()),contract_sha256=sha(path),native_log_sha256=sha(OUT/'native.log') if (OUT/'native.log').is_file() else None,readback_report_sha256=sha(OUT/'readback-report.json') if (OUT/'readback-report.json').is_file() else None,native_generate_optimize_meshwrite_solve_calls=0,manufacturing_authorized=False)
+   with (OUT/'execution-receipt.json').open('x') as f:json.dump(report,f,indent=2,allow_nan=False);f.write('\n')
+  return 0 if process is not None and process.returncode==0 and stopped['reason'] is None and (OUT/'readback-report.json').is_file() else 2
+ if __name__=='__main__':raise SystemExit(main())

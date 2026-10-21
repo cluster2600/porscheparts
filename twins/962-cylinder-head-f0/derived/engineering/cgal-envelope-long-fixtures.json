@@ -1,0 +1,137 @@
+{
+  "schema": "962-envelope-long-preflight-fixtures/v1",
+  "status": "known_result_complete_collapse_and_independent_distance_fixtures_passed",
+  "native_receipt_sha256": "b81c900a59885d0a7fc027c773212596db2a2da534f50ecfb583a7ca3f04cc52",
+  "independent_receipt_sha256": "b9d75f41f010c01755a8cc31cb6f84e090cb43539262db32f507b63179c9fa7c",
+  "helper_image_id": "sha256:7ed241be10194d98e4ae750cb7f983b0d501742f1ac651580b86c165cba39537",
+  "self_test": {
+    "status": "known_result_envelope_queries_passed",
+    "query_count": 5,
+    "epsilon_mm": 0.25,
+    "CGAL": "5.6"
+  },
+  "native_rows": [
+    {
+      "name": "subdivided_cube",
+      "returncode": 0,
+      "wall_s": 0.29091516602784395,
+      "input_sha256": "6397b1cf67049c68a60b53a8e57f79d4462bb38d39daed09a7a1c97576b3a7d8",
+      "log_sha256": "70661ec85f47e55e718e94bd8a8b7694cba1bdd3532468c198615bab3fde41d7"
+    },
+    {
+      "name": "coarse_octahedron",
+      "returncode": 0,
+      "wall_s": 0.5854565829504281,
+      "input_sha256": "55ac543effeba214b15f7b65639cd2a9da269c29ad6e46e370bbf6746a7340a7",
+      "log_sha256": "4fdf1bf48c7f8dee6e131e8b4021b45926c6359833a85c8d3a8f1e6b0a69df25"
+    }
+  ],
+  "independent_rows": [
+    {
+      "name": "subdivided_cube",
+      "expected_output_faces": 12,
+      "observed_output_faces": 12,
+      "source_import_exact": true,
+      "analytic_coordinate_error_mm": 4.440892098500626e-16,
+      "analytic_roundoff_bound_mm": 1.4210854715202004e-14,
+      "surface": {
+        "unique_edges": 18,
+        "boundary_edges": 0,
+        "nonmanifold_edges": 0,
+        "orientation_imbalanced_edges": 0,
+        "vertices": 8,
+        "triangles": 12,
+        "euler_characteristic": 2,
+        "signed_volume_mm3": 64.0,
+        "points_sha256": "0eaba516dbae0aa07100d73dfb684c795e18e2446bd5e7f4a43a9434d8a3fcc6",
+        "faces_sha256": "6103792273da8a6dfecbd4da28fc63b68368a11ac7d448c3a511e5726e7efcab"
+      },
+      "distance": {
+        "directions": [
+          {
+            "lower": 1.3322676295501878e-15,
+            "upper": 0.007812500000000444,
+            "diagonal": 1.0,
+            "interval_closed": true,
+            "allocation_factor": 41666.666666666664,
+            "bvh_ms": 0.0171661376953125,
+            "bounds_ms": 14.406919479370117
+          },
+          {
+            "lower": 7.691850745534255e-16,
+            "upper": 0.00781250000000011,
+            "diagonal": 1.0,
+            "interval_closed": true,
+            "allocation_factor": 166666.66666666666,
+            "bvh_ms": 0.03790855407714844,
+            "bounds_ms": 25.07305145263672
+          }
+        ],
+        "absolute_gap_tolerance": 0.01,
+        "upper": 0.007812500000000444,
+        "completed": true,
+        "native_CAD_deviation_certified": false,
+        "rounding_error_certificate": false
+      },
+      "input_sha256": "6397b1cf67049c68a60b53a8e57f79d4462bb38d39daed09a7a1c97576b3a7d8",
+      "output_sha256": "f44d1638f007fbed3440ba96e29c986e51ba65604791d6774b5bc72414f88ff6"
+    },
+    {
+      "name": "coarse_octahedron",
+      "expected_output_faces": 8,
+      "observed_output_faces": 8,
+      "source_import_exact": true,
+      "analytic_coordinate_error_mm": 0.0,
+      "analytic_roundoff_bound_mm": 7.105427357601002e-14,
+      "surface": {
+        "unique_edges": 12,
+        "boundary_edges": 0,
+        "nonmanifold_edges": 0,
+        "orientation_imbalanced_edges": 0,
+        "vertices": 6,
+        "triangles": 8,
+        "euler_characteristic": 2,
+        "signed_volume_mm3": 1333.3333333333333,
+        "points_sha256": "fdb515b7452cef36bec6bbb56ba3985ddc7cf957c7b3465e0f7fef45af822216",
+        "faces_sha256": "86248fc45abaafb0e1a79afa99738ec27ec5111f18db5adc3da25d70ef320f56"
+      },
+      "distance": {
+        "directions": [
+          {
+            "lower": 0.0,
+            "upper": 0.00751758163007291,
+            "diagonal": 1.0,
+            "interval_closed": true,
+            "allocation_factor": 250000.0,
+            "bvh_ms": 0.009059906005859375,
+            "bounds_ms": 43.534040451049805
+          },
+          {
+            "lower": 0.0,
+            "upper": 0.00751758163007291,
+            "diagonal": 1.0,
+            "interval_closed": true,
+            "allocation_factor": 250000.0,
+            "bvh_ms": 0.009059906005859375,
+            "bounds_ms": 42.78898239135742
+          }
+        ],
+        "absolute_gap_tolerance": 0.01,
+        "upper": 0.00751758163007291,
+        "completed": true,
+        "native_CAD_deviation_certified": false,
+        "rounding_error_certificate": false
+      },
+      "input_sha256": "55ac543effeba214b15f7b65639cd2a9da269c29ad6e46e370bbf6746a7340a7",
+      "output_sha256": "5fb646bdca32bfe36f439d910d8335dbad138ad11589575221c6e92d8e5a5222"
+    }
+  ],
+  "fixture_only_distance_interval_gap_mm": 0.01,
+  "head_distance_interval_gap_mm": 0.0001,
+  "previous_1e_4_fixture_allocation_exhaustion_preserved": true,
+  "qualification": {
+    "head_result_established": false,
+    "solver_admission_established": false,
+    "engineering_accepted": false
+  }
+}

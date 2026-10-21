@@ -1,0 +1,71 @@
+{
+  "projection": "Allowlisted actual native execution/control/cleanup ledger. Commands, private source-mount paths, host/container ownership identities, timestamps and process IDs omitted; stopped-PID-zero retained as a boolean.",
+  "original_sha256": "28f367f0944552f0f1b8472489b737addbd2f6882fbc31006ba5a372686e84cb",
+  "label": "original-head",
+  "error": null,
+  "cleanup_errors": [],
+  "attach_returncode": 137,
+  "attach_process_started": true,
+  "attach_reaped": true,
+  "owned_container_removed": true,
+  "wall_seconds": 19.158029792131856,
+  "native_log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "actual_controls": {
+    "initial_metadata": {
+      "Image": "sha256:57c6b17ed0bd093a61a3d3cecb7563e912caeb3832fd59e8cec2d4d9d4d1e2f8",
+      "Controls": {
+        "NanoCpus": 2000000000,
+        "Memory": 4294967296,
+        "MemorySwap": 4294967296,
+        "NetworkMode": "none",
+        "ReadonlyRootfs": true,
+        "Tmpfs": null
+      },
+      "State": {
+        "Status": "created",
+        "Running": false,
+        "ExitCode": 0,
+        "OOMKilled": false,
+        "Dead": false,
+        "Error": ""
+      }
+    },
+    "final_metadata": {
+      "Image": "sha256:57c6b17ed0bd093a61a3d3cecb7563e912caeb3832fd59e8cec2d4d9d4d1e2f8",
+      "Controls": {
+        "NanoCpus": 2000000000,
+        "Memory": 4294967296,
+        "MemorySwap": 4294967296,
+        "NetworkMode": "none",
+        "ReadonlyRootfs": true,
+        "Tmpfs": null
+      },
+      "State": {
+        "Status": "exited",
+        "Running": false,
+        "ExitCode": 137,
+        "OOMKilled": true,
+        "Dead": false,
+        "Error": ""
+      }
+    }
+  },
+  "stopped_PID_zero": true,
+  "actual_mounts": [
+    {
+      "Type": "bind",
+      "Destination": "/finest-endpoint",
+      "RW": false
+    },
+    {
+      "Type": "bind",
+      "Destination": "/original.bin",
+      "RW": false
+    },
+    {
+      "Type": "bind",
+      "Destination": "/out",
+      "RW": true
+    }
+  ]
+}

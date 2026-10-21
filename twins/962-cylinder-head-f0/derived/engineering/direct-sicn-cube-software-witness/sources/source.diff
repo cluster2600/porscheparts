@@ -1,0 +1,57 @@
+--- direct-sicn-cube-prep-001/direct_sicn_cube.py
++++ direct-sicn-cube-prep-002/direct_sicn_cube.py
+@@ -9,7 +9,7 @@
+ import re
+ import sys
+ 
+-OUTPUT_NAME = 'direct-sicn-cube-001'
++OUTPUT_NAME = 'direct-sicn-cube-002'
+ LIMITS = dict(wall_seconds=30, sampled_RSS_bytes=1024**3,
+               sampled_output_bytes=16*1024**2, threads=2)
+ SOLVER = dict(method='SLSQP', maxiter=100, ftol=1e-10, eps=2.0**-26)
+@@ -74,8 +74,8 @@
+ 
+ 
+ def same_numpy(module, original, expected_origin):
+-    if module is not original or module.__version__!='2.0.2' or Path(module.__file__).resolve()!=Path(expected_origin).resolve():
+-        raise ValueError('The original geometry NumPy object/version/origin must remain unchanged')
++    if module is not original or module.__version__!='2.2.6' or Path(module.__file__).resolve()!=Path(expected_origin).resolve():
++        raise ValueError('The selected local NumPy object/version/origin must remain unchanged')
+ 
+ 
+ def require_contract_fields(c):
+@@ -92,8 +92,11 @@
+     for mapping in maps:
+         if any(not isinstance(p,str) or not isinstance(h,str) or not re.fullmatch('[0-9a-f]{64}',h) for p,h in mapping.items()):
+             raise ValueError('Unknown/null source or runtime pins cannot authorize execution')
+-    if not isinstance(c.get('numpy_init'),str) or not isinstance(c.get('scipy_directory'),str):
+-        raise ValueError('Exact package origins required')
++    if (not isinstance(c.get('numpy_init'),str) or not isinstance(c.get('scipy_directory'),str)
++            or not isinstance(c.get('gmsh_module'),str)):
++        raise ValueError('Exact package and Gmsh ctypes-wrapper origins required')
++    if str(Path(c['gmsh_module']).resolve()) not in c['runtime_files']:
++        raise ValueError('Exact Gmsh ctypes-wrapper source requires a selected runtime pin')
+     return c
+ 
+ 
+@@ -142,11 +145,18 @@
+     scipy=importlib.util.module_from_spec(spec); sys.modules['scipy']=scipy
+     spec.loader.exec_module(scipy)
+     optimize=importlib.import_module('scipy.optimize')
+-    if (scipy.__version__!='1.15.3' or Path(scipy.__file__).resolve()!=directory/'__init__.py'
++    if (scipy.__version__!='1.17.1' or Path(scipy.__file__).resolve()!=directory/'__init__.py'
+             or tuple(sys.path)!=old_path):
+         raise ValueError('SciPy version/origin or search path changed')
+     same_numpy(sys.modules['numpy'],original,c['numpy_init']); loaded_files(c)
+-    import gmsh
++    gmsh_path=Path(c['gmsh_module']).resolve()
++    if 'gmsh' in sys.modules:raise ValueError('Only the initially unloaded exact Gmsh ctypes wrapper is permitted')
++    gmsh_spec=importlib.util.spec_from_file_location('gmsh',gmsh_path)
++    gmsh=importlib.util.module_from_spec(gmsh_spec);sys.modules['gmsh']=gmsh
++    gmsh_spec.loader.exec_module(gmsh)
++    if Path(gmsh.__file__).resolve()!=gmsh_path or tuple(sys.path)!=old_path:
++        raise ValueError('Gmsh ctypes-wrapper origin or search path changed')
++    same_numpy(sys.modules['numpy'],original,c['numpy_init'])
+     for filename in (gmsh.__file__,gmsh.lib._name):
+         p=Path(filename).resolve()
+         if c['runtime_files'].get(str(p))!=sha(p):

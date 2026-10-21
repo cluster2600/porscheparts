@@ -1,0 +1,128 @@
+{
+  "schema": "962-endpoint003-fixtures-root-readback/v1",
+  "status": "exact_synthetic_reference_arrays_and_subset_witness_pass",
+  "phase_summary_sha256": "245ac34c2e5e562b62aa7461a8ef2f3fdddfada10966b4d5b32c2f01619406c0",
+  "all_112_pins_current_and_before_after": true,
+  "all_retained_artifacts_match": true,
+  "all_actual_controls_cleanup_checked": true,
+  "subset_witness": {
+    "schema": "962-endpoint003-subset-envelope-witness/v1",
+    "epsilon_mm": 0.0625,
+    "reference_triangles": 2,
+    "subset_triangles": 1,
+    "included_point_accepted": true,
+    "complete_included_triangle_accepted": true,
+    "small_offset_point_accepted": true,
+    "omitted_point_full_accepts_subset_rejects": true,
+    "complete_omitted_triangle_full_accepts_subset_rejects": true,
+    "outside_point_rejected_by_both": true,
+    "passed": true,
+    "head_input_used": false,
+    "solver_admission_established": false,
+    "manufacturing_authorized": false
+  },
+  "results": {
+    "common-neighbor-source001": {
+      "before": {
+        "triangles": 16,
+        "below_necessary_bound": 2,
+        "minimum_triangle_SICN": 2.2255998243252707e-05
+      },
+      "after": {
+        "triangles": 16,
+        "below_necessary_bound": 2,
+        "minimum_triangle_SICN": 2.2255998243252707e-05
+      },
+      "actual_vertices": 10,
+      "fixed_vertices": 8,
+      "all_fixed_coordinates_exact": true,
+      "all_exterior_oriented_faces_exact": true,
+      "all_complete_coordinate_triangles_match_known_reference": true,
+      "exact_signed_volume_mm3": 3511808,
+      "source_origin_map_independently_checked": true,
+      "analytical_whole_surface_bidirectional_distance_mm": 0,
+      "distance_basis": "Exact known cube triangulation after an exact planar radial-edge subdivision; no sampled distance or CUB/head query.",
+      "original_transport_or_runtime_receipt_authenticated": false,
+      "head_geometry_used": false,
+      "solver_admission_established": false,
+      "engineering_accepted": false
+    },
+    "common-neighbor-source003": {
+      "before": {
+        "triangles": 16,
+        "below_necessary_bound": 2,
+        "minimum_triangle_SICN": 2.2255998243252707e-05
+      },
+      "after": {
+        "triangles": 14,
+        "below_necessary_bound": 0,
+        "minimum_triangle_SICN": 0.8660254037844386
+      },
+      "actual_vertices": 9,
+      "fixed_vertices": 8,
+      "all_fixed_coordinates_exact": true,
+      "all_exterior_oriented_faces_exact": true,
+      "all_complete_coordinate_triangles_match_known_reference": true,
+      "exact_signed_volume_mm3": 3511808,
+      "source_origin_map_independently_checked": true,
+      "analytical_whole_surface_bidirectional_distance_mm": 0,
+      "distance_basis": "Exact known cube triangulation after an exact planar radial-edge subdivision; no sampled distance or CUB/head query.",
+      "original_transport_or_runtime_receipt_authenticated": false,
+      "head_geometry_used": false,
+      "solver_admission_established": false,
+      "engineering_accepted": false,
+      "reference_exports": {
+        "patch-reference-face-ids.u64": {
+          "count": 12,
+          "bytes": 96,
+          "sha256": "f3a7dca9c3da5f19dd20e3ed5a4cc522f86ffadbaa06a130c739ccc3daeb36b2"
+        },
+        "patch-reference-vertex-ids.u64": {
+          "count": 10,
+          "bytes": 80,
+          "sha256": "23c379d6c0f22ef64cdef873fd530df1f1419b4a3935e9323d5f1d82ca697b6a"
+        }
+      }
+    },
+    "all-fixed-source003": {
+      "before": {
+        "triangles": 16,
+        "below_necessary_bound": 2,
+        "minimum_triangle_SICN": 2.2255998243252707e-05
+      },
+      "after": {
+        "triangles": 16,
+        "below_necessary_bound": 2,
+        "minimum_triangle_SICN": 2.2255998243252707e-05
+      },
+      "actual_vertices": 10,
+      "fixed_vertices": 10,
+      "all_fixed_coordinates_exact": true,
+      "all_exterior_oriented_faces_exact": true,
+      "all_complete_coordinate_triangles_match_known_reference": true,
+      "exact_signed_volume_mm3": 3511808,
+      "source_origin_map_independently_checked": true,
+      "analytical_whole_surface_bidirectional_distance_mm": 0,
+      "distance_basis": "Exact known cube triangulation after an exact planar radial-edge subdivision; no sampled distance or CUB/head query.",
+      "original_transport_or_runtime_receipt_authenticated": false,
+      "head_geometry_used": false,
+      "solver_admission_established": false,
+      "engineering_accepted": false,
+      "reference_exports": {
+        "patch-reference-face-ids.u64": {
+          "count": 12,
+          "bytes": 96,
+          "sha256": "f3a7dca9c3da5f19dd20e3ed5a4cc522f86ffadbaa06a130c739ccc3daeb36b2"
+        },
+        "patch-reference-vertex-ids.u64": {
+          "count": 10,
+          "bytes": 80,
+          "sha256": "23c379d6c0f22ef64cdef873fd530df1f1419b4a3935e9323d5f1d82ca697b6a"
+        }
+      }
+    }
+  },
+  "head_executed": false,
+  "head_surface_admitted": false,
+  "manufacturing_authorized": false
+}

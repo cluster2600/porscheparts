@@ -1,0 +1,182 @@
+{
+  "schema": "962-cp1-thermal-LINEAR-independent-source-peer/v1",
+  "decision": "CLEAR_HELD_LINEARNUMERICAL_VARIANT_SOURCE_ONLY",
+  "records": {
+    "case_held": {
+      "path": "work/962-engineering/cp1-assumed-thermal-birth-linear-prep-001/held-preparation.json",
+      "sha256": "4036f2d83d6c3cc452bf6fa8e469520abbf3f2f61b7a6d2bdb4738d2a7c20b01",
+      "bytes": 24977
+    },
+    "Mac_held": {
+      "path": "work/962-engineering/cp1-assumed-thermal-birth-linear-macos-prep-001/held-preparation.json",
+      "sha256": "4766e98a8abe3669b02baf92d39a5f1012a6be1a7f3d53c89043ee0e024000a1",
+      "bytes": 20213
+    },
+    "deck": {
+      "path": "work/962-engineering/cp1-assumed-thermal-birth-linear-prep-001/thermal-birth.i",
+      "sha256": "ffe9b19786d534a8b4ad60e78290c7d3698a2dcb6b7ddf183f100321b02df1aa",
+      "bytes": 4154
+    },
+    "numerical_reference": {
+      "path": "work/962-engineering/cp1-assumed-thermal-birth-linear-prep-001/case-contract.json",
+      "sha256": "13a12dc586cf773a0a4b0a2777276d062d60d2e7c67aa7357e6581fd83f4fddd",
+      "bytes": 6345
+    },
+    "case_source_assertions": {
+      "path": "work/962-engineering/cp1-assumed-thermal-birth-linear-prep-001/selfcheck.py",
+      "sha256": "ccf025d3cdbba53cb2abda5dca2815a30ddce061a1711ad0e3353e98f34729cf",
+      "bytes": 5250
+    },
+    "source_reuse": {
+      "path": "work/962-engineering/cp1-assumed-thermal-birth-linear-prep-001/source-reuse.json",
+      "sha256": "1817bc3b190b02b7cd42f0139fa84691da4bc73a968ed121cbc515b68d583ca9",
+      "bytes": 7693
+    },
+    "source_diff": {
+      "path": "work/962-engineering/cp1-assumed-thermal-birth-linear-prep-001/source.diff",
+      "sha256": "f217267299207baee4a010a58034d7508f004b5c1be19371510f8fb442a7bfe3",
+      "bytes": 3300
+    },
+    "case_METHOD": {
+      "path": "work/962-engineering/cp1-assumed-thermal-birth-linear-prep-001/METHOD.md",
+      "sha256": "a3ce99a20eb0a17938dd9fc0fb1c3e57d73ff05290bd535633884766b6146081",
+      "bytes": 3003
+    },
+    "Mac_adapter": {
+      "path": "work/962-engineering/cp1-assumed-thermal-birth-linear-macos-prep-001/run_mac.py",
+      "sha256": "fde48211a11066c8406076621b5cd1c2898e0353956a4e6ec879754e7452c9d3",
+      "bytes": 17113
+    },
+    "Mac_mock_guards": {
+      "path": "work/962-engineering/cp1-assumed-thermal-birth-linear-macos-prep-001/selfcheck.py",
+      "sha256": "0f21be38e9d4b0448c63ac6b44fe37d79c02641457abb2547d7bab483d23f8e9",
+      "bytes": 11432
+    },
+    "Mac_METHOD": {
+      "path": "work/962-engineering/cp1-assumed-thermal-birth-linear-macos-prep-001/METHOD.md",
+      "sha256": "4435e6e515861e8bb2b45d163d67b4a6ff8b1f335d69a831389cd7331dfde77c",
+      "bytes": 1697
+    },
+    "primary_version_context": {
+      "path": "work/962-engineering/cp1-assumed-thermal-birth-root-primary-context-002/sources.json",
+      "sha256": "f59807f9155c22ff0171ad652c3c0c8d3880f53ef2c5299d6981a3dd1bd87141",
+      "bytes": 3346
+    },
+    "retained_original_case_peer": {
+      "path": "work/962-engineering/cp1-assumed-thermal-birth-source-peer-001/review.json",
+      "sha256": "0f132c2952979466d95a5aedc3b219c29555248aeeeabdd0f0a24a2908f520bb",
+      "bytes": 10417
+    },
+    "failed_native_result_peer": {
+      "path": "work/962-engineering/cp1-assumed-thermal-birth-macos-result-peer-001/review.json",
+      "sha256": "d5b1e72dcb0609384893ea12c9123aae53c920ca336e14f495ed0e653e1610c5",
+      "bytes": 3227
+    },
+    "failed_native_source_diagnosis": {
+      "path": "work/962-engineering/cp1-assumed-thermal-birth-macos-result-peer-001/source-diagnosis.json",
+      "sha256": "da4d9326892ced56cfd16024fce5d63f16b2c02acf4fd893251ced0cd8143b6c",
+      "bytes": 10158
+    },
+    "failed_native_root_acceptance": {
+      "path": "work/962-engineering/cp1-assumed-thermal-birth-macos-root-execution-001/result-peer-acceptance.json",
+      "sha256": "6800c6ac797b6a0fdc7bc532bde046e1267c0303556d4156d0f25d7b1b896c12",
+      "bytes": 1016
+    }
+  },
+  "review_scope_and_authorship": "Reviewer did not author the LINEAR successor or its original CP1 case/Mac adapter. Reviewer previously source-reviewed the original CP1 case as0f132c; unchanged0548 assessment/math and its retained41cf/11helper donor lineage are reused evidence, not a new numerical execution or full independent mathematical requalification. This receipt independently reviews the new solver-mode/binding delta and all current small pins.",
+  "static_delta_checks": {
+    "all_four_files_whole_byte_reverse_exact": true,
+    "exact_reverse_chunks": 5,
+    "deck_only_change": "solve_type = NEWTON to solve_type = LINEAR, one occurrence; all other bytes exact",
+    "reference_only_structural_changes": [
+      "input_sha256.thermal-birth.i",
+      "scope"
+    ],
+    "reference_restores_exact_original_c5b7_after_those_two_fields": true,
+    "Mac_only_change": "CASE pointer to cp1-assumed-thermal-birth-linear-prep-001",
+    "Mac_guard_only_change": "SOURCE_SHA256 d2e7 to fde482; source selection remains sibling run_mac.py",
+    "source_diff_reconstructed_exact": true,
+    "exact_assessor_card_time_level": {
+      "assess.py": "0548fcbf6eba737aaaf816abbfbfd0511b5b8fb266aa10c34a1f5817eef0e338",
+      "card.json": "4e07cbb997c831bac2c0abd43092148c5518b6c7aa04d7b3d287779f9e700986",
+      "time-level.i": "460a3332eac1ec0eddd1884657d2b8b0cdd96bd49443180d00651e44fb76a09a"
+    },
+    "all_card_constants_tolerances_physical_Kelvin_birth_source_geometry_and_dt_unchanged": true,
+    "all9_Mac_function_ASTs_exact": [
+      "check_pins",
+      "checked_contract",
+      "commands",
+      "need",
+      "registry_features",
+      "run",
+      "runtime_unchanged",
+      "same",
+      "sha"
+    ],
+    "both_Mac_mock_class_ASTs_and_all6_methods_exact": true
+  },
+  "guard_source_review": {
+    "three_new_source_assertions_prepared_not_executed_here": [
+      "single solver keyword and exact assessor/card/time-level",
+      "reference only deck digest and solver scope; held authorities false",
+      "only Mac CASE and mock source hash; all9AST/ENV/resources/runtime metadata exact"
+    ],
+    "source_assertion_namespace_stdlib_only_no_prepared_module_import": true,
+    "six_inherited_mock_methods_use_updated_exact_source_digest": true,
+    "no_claim_old_guard_execution_is_new_variant_execution": true,
+    "author_flags_UNRUN_retained_root_guard_execution_separate": true
+  },
+  "binding_and_authority_checks": {
+    "case_map_count": 89,
+    "Mac_map_count": 90,
+    "unique_current_small_pins_including_both_held": 91,
+    "all91_current_regular_small_file_byte_hashes_checked": true,
+    "canonical_sorted_pin_map_sha256": "1eb5985fd7f9a26b5e999453db5ffcc504b240d17f4b85bbdb1b685c7e599b1e",
+    "case_held_map_is_subset_of_Mac_held_map": true,
+    "Mac_additional_pin_is_exact_case_held": [
+      "work/962-engineering/cp1-assumed-thermal-birth-linear-prep-001/held-preparation.json"
+    ],
+    "failed22_output_inventory_complete_and_165847_bytes_retained": true,
+    "all_original4eabad_d5b1_da4d_6800_f598_identity_joins_direct": true,
+    "new_actual_contract_and_digest_native_output_and_readiness_output_null": true,
+    "future_coupon_output_absent_raw_nonsymlink": "work/962-engineering/cp1-assumed-thermal-birth-linear-001",
+    "all_guard_native_coupon_assessment_head_engineering_material_physics_process_manufacturing_authorities_false": true,
+    "automatic_retry_and_assessment_false": true,
+    "numerical_reference_copy_and_future_external_actual_names_distinct": true
+  },
+  "unchanged_control_and_runtime_metadata": {
+    "resources": {
+      "sampled_RSS_stop_bytes": 2147483648,
+      "sampled_output_stop_bytes": 33554432,
+      "wall_seconds": 100
+    },
+    "requested_threads": 1,
+    "exact_explicit_environment": {
+      "PATH": "/usr/bin:/bin",
+      "LANG": "C",
+      "LC_ALL": "C",
+      "OMP_NUM_THREADS": "1",
+      "OPENBLAS_NUM_THREADS": "1",
+      "VECLIB_MAXIMUM_THREADS": "1",
+      "FI_PROVIDER": "tcp"
+    },
+    "all9function_AST_identity_preserves_command_lifecycle_timeout_sample_stop_SIGTERM_finally_wait_reap": true,
+    "runtime_metadata19_and_raw_symlinks13_exact_original_81f93": true,
+    "runtime_binary_body_or_raw_symlink_current_freshness_checked_by_reviewer": false,
+    "no_complete_transitive_ABI_or_build_attestation": true
+  },
+  "solver_semantic_and_evidence_limits": [
+    "LINEAR requests KSPONLY according to pinned public version-associated primary context. It changes convergence semantics and does not apply the original nonlinear convergence test. Retained nl tolerance literals do not establish that the failed Newton residual passed.",
+    "The0548 assessor remains byte-identical and may reject a later completed LINEAR history. No assumed heat/energy/material result is accepted by source review.",
+    "The original one-run Newton failure remains unchanged:33 internal first-step attempts,zero converged steps; its source diagnosis remains historical. Later primary context updates source availability without rewriting that evidence or establishing source-to-binary equivalence.",
+    "A new native actual, root fresh source/runtime/resource/output checks, root-authorized focused/mocked guards and independent exact-child review remain required. Any assessment is separately authorized after native completion.",
+    "This review imports/calls no prepared function/module/test, reads no runtime body/MSH, and performs no scientific/native/Git/network operation or source mutation."
+  ],
+  "blockers": [],
+  "execution_authorized_by_this_receipt": false,
+  "engineering_accepted": false,
+  "physics_qualified": false,
+  "material_qualified": false,
+  "process_calibrated": false,
+  "manufacturing_authorized": false
+}

@@ -1,0 +1,34 @@
+--- b7c/read_exodus
++++ singlephase/read_geometry_phase
+@@ -1,4 +1,4 @@
+-def read_exodus(path):
++def read_geometry_phase(path):
+     # The e382 decoder's read-only/mmap=False structure is reused, not its TET4/15-node case.
+     from scipy.io import netcdf_file
+     cdf_magic(path)
+@@ -10,8 +10,6 @@
+             a = dataset.variables[name].data.copy()
+             need(shape is None or a.shape == shape, 'Exodus shape mismatch: ' + name)
+             return a.tolist()
+-        def text(value):
+-            return b''.join(value).split(b'\0', 1)[0].decode('ascii').strip()
+         node_map = list(map(integer, array('node_num_map', (425,))))
+         element_map = list(map(integer, array('elem_num_map', (256,))))
+         need(min(node_map) > 0 and min(element_map) > 0 and len(set(node_map)) == 425 and len(set(element_map)) == 256, 'Complete positive external Exodus ID maps required')
+@@ -36,12 +34,8 @@
+         need(offset == 256 and len(cells) == 256, 'Complete block-ordered external element map required')
+         times = list(map(number, array('time_whole')))
+         need(times and all(a < b for a, b in zip(times, times[1:])), 'Finite strictly ordered Exodus family times required')
+-        names = [text(r) for r in array('name_nod_var')]
+-        required = {*DISP, *FORCE, 'temperature'}
+-        if any(time >= .2 - 5e-13 for time in times):
+-            required.add('born_reference_temperature')
+-        allowed = {*DISP, *FORCE, 'temperature', 'born_reference_temperature', 'inactive_placeholder'}
+-        need(len(set(names)) == len(names) and required <= set(names) <= allowed, 'Named active coupon nodal fields required; empty-block reference/placeholder fields may be absent')
+-        fields = {name: array('vals_nod_var' + str(k), (len(times), 425)) for k, name in enumerate(names, 1)}
++        matches = [index for index, value in enumerate(times) if round(value * 400) == 181 and abs(value - 181 / 400) <= 5e-13]
++        need(len(matches) == 1, 'Exactly one END181 time association in the selected family member required')
+         return dict(nodes=nodes, cells=cells, blocks=blocks, times=times, node_map=node_map,
+-                    element_map=element_map, fields=fields, dimensions=dict(dims), block_ids=block_ids, block_status=statuses)
++                    element_map=element_map, dimensions=dict(dims), block_ids=block_ids,
++                    block_status=statuses, END181_time_index=matches[0], END181_native_time=times[matches[0]])

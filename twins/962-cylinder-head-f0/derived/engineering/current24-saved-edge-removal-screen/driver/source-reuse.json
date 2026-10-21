@@ -1,0 +1,295 @@
+{
+  "schema": "962-current24-edge-removal-saved-driver-static-reuse/v1",
+  "status": "SOURCE_ONLY_UNRUN",
+  "donor_driver": {
+    "path": "work/962-engineering/head-star-current24-interior-flip-saved-driver-prep-001/collect_saved_cavity_flips.py",
+    "sha256": "7ad6fcd1d47384e197eb1ed916774d40fba4963da4205c3d618b1ae82629049e",
+    "bytes": 8707
+  },
+  "driver": {
+    "path": "work/962-engineering/head-star-current24-edge-removal-saved-driver-prep-001/collect_saved_edge_removal.py",
+    "sha256": "66f474c870495f78b36fdbd786c5cdb6cbbafe293f46c8922b4f98e4cfade07b",
+    "bytes": 10599
+  },
+  "unchanged_driver_helpers": [
+    {
+      "name": "identity",
+      "text_AST_exact": true,
+      "text_sha256": "8ea4033d54fdc95ede5f0a077ea214d8ff190fef3643bc705425a750b60e83eb"
+    },
+    {
+      "name": "strict_json",
+      "text_AST_exact": true,
+      "text_sha256": "4f47f0db215a7fc178bbfa9f65db7d3f00b2a406eba77a35208ffb17016ae15e"
+    },
+    {
+      "name": "context_snapshot",
+      "text_AST_exact": true,
+      "text_sha256": "71dbd5139f8d36daf46b916264644fbf489bdb5400340e864dd5858db7c5a8d0"
+    },
+    {
+      "name": "canonical_bytes",
+      "text_AST_exact": true,
+      "text_sha256": "bf0a26c5b9ed8bd0c7b673c2ab038149e046cf3aa47e9f6881be103ce7a1c9aa"
+    }
+  ],
+  "fixed_reader_change": "exact15_inputs/fixed15/len15/Exact15 -> exact23_inputs/fixed23/len23/Exact23 only; exact reversal verified",
+  "fixed_reader_reverse_text_exact": true,
+  "build_change": "One new build_saved_report body:23/15/prior204 joins, complete55 frozen-worker call, all rows/context retention and compact complete JSON; no geometric kernel.",
+  "donor_caller": {
+    "path": "work/962-engineering/head-star-current24-interior-flip-saved-execution-prep-001/call_saved_once.py",
+    "sha256": "9f8cb817f753c5a33a4e317616b102a4afbb8a57f7aba82deda8dc0c5d9fe721",
+    "bytes": 3139
+  },
+  "caller": {
+    "path": "work/962-engineering/head-star-current24-edge-removal-saved-driver-prep-001/call_saved_once.py",
+    "sha256": "70aff43480e8fc15e3f306c44aabdc1d287fcf15a3c9ba89dbdf0bf019cdd18b",
+    "bytes": 3161
+  },
+  "caller_rec_helper_text_AST_exact": true,
+  "caller_literal_groups": [
+    {
+      "before": "head-star-current24-interior-flip-saved-execution-prep-001",
+      "after": "head-star-current24-edge-removal-saved-execution-prep-001",
+      "occurrences": 1
+    },
+    {
+      "before": "head-star-current24-interior-flip-saved-root-execution-001",
+      "after": "head-star-current24-edge-removal-saved-root-execution-001",
+      "occurrences": 1
+    },
+    {
+      "before": "head-star-current24-interior-flip-saved-driver-prep-001/collect_saved_cavity_flips.py",
+      "after": "head-star-current24-edge-removal-saved-driver-prep-001/collect_saved_edge_removal.py",
+      "occurrences": 1
+    },
+    {
+      "before": "962-current24-fixed15-saved-flip-held-actual/v1",
+      "after": "962-current24-fixed23-saved-edge-removal-held-actual/v1",
+      "occurrences": 1
+    },
+    {
+      "before": "held_fixed15_saved_flip_driver",
+      "after": "held_fixed23_saved_edge_removal_driver",
+      "occurrences": 1
+    },
+    {
+      "before": "association_count",
+      "after": "selected_case_count",
+      "occurrences": 2
+    },
+    {
+      "before": "local_disposition_count",
+      "after": "candidate_count",
+      "occurrences": 2
+    },
+    {
+      "before": "complete_flip_eligibility",
+      "after": "complete_application_eligibility",
+      "occurrences": 3
+    }
+  ],
+  "caller_full_source_reverse_exact": true,
+  "driver_diff": {
+    "path": "work/962-engineering/head-star-current24-edge-removal-saved-driver-prep-001/driver.diff",
+    "sha256": "f0f1c30647d453648d866dd335c36f90e62517ed29a66df50ec9c1c033235302",
+    "bytes": 12731
+  },
+  "caller_diff": {
+    "path": "work/962-engineering/head-star-current24-edge-removal-saved-driver-prep-001/caller.diff",
+    "sha256": "04a88b81db01ccea4d3271a9d25e7a6ed97570fda9c10ad7f9b963e561591ed9",
+    "bytes": 4170
+  },
+  "donor_owner": {
+    "path": "work/962-engineering/head-star-current24-interior-flip-saved-execution-prep-001/run_root_once.py",
+    "sha256": "345597776cbd1afec3a898f3ea3f93eabd90d8f947c1270da138cec4199d5d2a",
+    "bytes": 16441
+  },
+  "future_reusable_nine_owner_helpers": [
+    {
+      "name": "rec",
+      "text_sha256": "1c49fad82b6ce5d2a5432aa22114fa9b0e42eb46d4b57b8df2a0ba2c36d00543"
+    },
+    {
+      "name": "group_exists",
+      "text_sha256": "67b74400b8ae03cab400d9360091514f9d295f0a93baa968468544e8b23cd5f3"
+    },
+    {
+      "name": "check",
+      "text_sha256": "7aafe9854e4e77c0b84d9232f40d979da358790349d8899b628ffe04418f3b77"
+    },
+    {
+      "name": "output_size",
+      "text_sha256": "0a86e778061dd08bb3109046fc15ea968e8bbe94ef7b8e4b02ea95365e320b65"
+    },
+    {
+      "name": "stop_wait",
+      "text_sha256": "a7d56d0d5231785caee558ceda897260fd59d43586cf11fc8fea905c46ddb6a8"
+    },
+    {
+      "name": "limits",
+      "text_sha256": "7fe128a40ee8e718cdd34812d396d17ae125a6de21a315ee85bd093ac40d2323"
+    },
+    {
+      "name": "sample",
+      "text_sha256": "4dd2bd71a1bc26903fefd25f1a577c215475c51dd002bd8b014ead5ca950968f"
+    },
+    {
+      "name": "provider_links",
+      "text_sha256": "92d3d35a256f694cd8aa0183e3125c5f7b9dd8de6b8a746f8921644b2d95b940"
+    },
+    {
+      "name": "record_controller_stop",
+      "text_sha256": "a003c9f5417a0da6dd023f5dc9db70c657d50c2d8b1c097e33e8b99ac118277d"
+    }
+  ],
+  "owner_authored_or_run_here": false,
+  "saved_runtime_preflight": {
+    "path": "work/962-engineering/head-star-current24-edge-removal-guards-execution-prep-001/runtime-preflight.json",
+    "sha256": "3b4f731ff16ec475b5de2d567292b25169a7c9c8618d38c1c8cd363d4f8c9169",
+    "bytes": 78434
+  },
+  "saved_runtime_file_count": 91,
+  "saved_module_origin_count": 117,
+  "source_import_coverage": [
+    {
+      "source": {
+        "path": "work/962-engineering/head-star-current24-edge-removal-saved-driver-prep-001/collect_saved_edge_removal.py",
+        "sha256": "66f474c870495f78b36fdbd786c5cdb6cbbafe293f46c8922b4f98e4cfade07b",
+        "bytes": 10599
+      },
+      "direct_imports": [
+        "copy",
+        "hashlib",
+        "importlib.util",
+        "json",
+        "pathlib",
+        "struct"
+      ],
+      "saved_origin_rows": {
+        "copy": {
+          "file": "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/copy.py",
+          "origin": "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/copy.py"
+        },
+        "hashlib": {
+          "file": "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/hashlib.py",
+          "origin": "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/hashlib.py"
+        },
+        "importlib.util": {
+          "file": "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/importlib/util.py",
+          "origin": "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/importlib/util.py"
+        },
+        "json": {
+          "file": "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/json/__init__.py",
+          "origin": "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/json/__init__.py"
+        },
+        "pathlib": {
+          "file": "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/pathlib.py",
+          "origin": "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/pathlib.py"
+        },
+        "struct": {
+          "file": "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/struct.py",
+          "origin": "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/struct.py"
+        }
+      },
+      "all_already_in_saved_closure": true
+    },
+    {
+      "source": {
+        "path": "work/962-engineering/head-star-current24-edge-removal-saved-driver-prep-001/call_saved_once.py",
+        "sha256": "70aff43480e8fc15e3f306c44aabdc1d287fcf15a3c9ba89dbdf0bf019cdd18b",
+        "bytes": 3161
+      },
+      "direct_imports": [
+        "hashlib",
+        "importlib.util",
+        "json",
+        "os",
+        "pathlib",
+        "re",
+        "sys"
+      ],
+      "saved_origin_rows": {
+        "hashlib": {
+          "file": "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/hashlib.py",
+          "origin": "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/hashlib.py"
+        },
+        "importlib.util": {
+          "file": "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/importlib/util.py",
+          "origin": "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/importlib/util.py"
+        },
+        "json": {
+          "file": "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/json/__init__.py",
+          "origin": "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/json/__init__.py"
+        },
+        "os": {
+          "file": "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/os.py",
+          "origin": "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/os.py"
+        },
+        "pathlib": {
+          "file": "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/pathlib.py",
+          "origin": "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/pathlib.py"
+        },
+        "re": {
+          "file": "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/re.py",
+          "origin": "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/re.py"
+        },
+        "sys": {
+          "file": null,
+          "origin": "built-in"
+        }
+      },
+      "all_already_in_saved_closure": true
+    },
+    {
+      "source": {
+        "path": "work/962-engineering/head-star-current24-edge-removal-prep-001/propose_saved_edge_removal.py",
+        "sha256": "672ee28f0a9eb03713d8333393d01cc731d20ad61f3e74e766107bd58ba6870d",
+        "bytes": 35886
+      },
+      "direct_imports": [
+        "copy",
+        "fractions",
+        "hashlib",
+        "itertools",
+        "json",
+        "math",
+        "struct"
+      ],
+      "saved_origin_rows": {
+        "copy": {
+          "file": "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/copy.py",
+          "origin": "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/copy.py"
+        },
+        "fractions": {
+          "file": "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/fractions.py",
+          "origin": "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/fractions.py"
+        },
+        "hashlib": {
+          "file": "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/hashlib.py",
+          "origin": "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/hashlib.py"
+        },
+        "itertools": {
+          "file": null,
+          "origin": "built-in"
+        },
+        "json": {
+          "file": "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/json/__init__.py",
+          "origin": "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/json/__init__.py"
+        },
+        "math": {
+          "file": "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/lib-dynload/math.cpython-310-darwin.so",
+          "origin": "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/lib-dynload/math.cpython-310-darwin.so"
+        },
+        "struct": {
+          "file": "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/struct.py",
+          "origin": "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/struct.py"
+        }
+      },
+      "all_already_in_saved_closure": true
+    }
+  ],
+  "runtime_query_or_module_body_access_performed": false,
+  "target_driver_caller_worker_or_helper_imported": false,
+  "real_context_quality_or_candidate_arithmetic_performed": false
+}

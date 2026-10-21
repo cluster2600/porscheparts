@@ -1,0 +1,96 @@
+{
+  "schema": "962-apex1613031-head-application-independent-source-peer/v1",
+  "decision": "BLOCKED_HELD_SOURCE_ONLY_CURRENT_CONTEXT_ACCEPTANCE_LITERAL",
+  "source": {
+    "path": "work/962-engineering/apex1613031-head-application-prep-001/reader.py",
+    "sha256": "5f7df7d36b297100ac997979f2cdc5f66e6562c87601359d952ea6047e246b56",
+    "bytes": 55884,
+    "observed_mode": "0o444"
+  },
+  "held": {
+    "path": "work/962-engineering/apex1613031-head-application-prep-001/held-contract.json",
+    "sha256": "cd545d6568245e879da3077454a5e5bf452d3dea1af729180e9e5404f6762aa9",
+    "bytes": 17870,
+    "observed_mode": "0o444"
+  },
+  "bindings": {
+    "path": "work/962-engineering/apex1613031-head-application-source-peer-001/bindings.json",
+    "sha256": "1116dc7155e44605181b2e52f484c782f54b4a973a0a27c5c6d20fb903c29546",
+    "bytes": 40484
+  },
+  "blockers": [
+    {
+      "id": "context-acceptance-decision",
+      "source_path": "work/962-engineering/apex1613031-head-application-prep-001/reader.py",
+      "line": 235,
+      "function": "make_case",
+      "required_decision": "ACCEPT_COMPLETED_READ_ONLY_CURRENT129_ONE_CASE_CONTEXT_ONLY",
+      "bound_input": {
+        "path": "work/962-engineering/current127-apex1613031-head-context-root-execution-001/result-peer-acceptance.json",
+        "sha256": "49c9181cdba8650211754723ef6729efaa4b3b05b2d7d3a82a3ba7cc78d45859",
+        "bytes": 4463,
+        "observed_mode": "0o444"
+      },
+      "actual_decision": "ACCEPT_COMPLETED_READ_ONLY_CURRENT127_ONE_CASE_CONTEXT_ONLY",
+      "consequence": "The exact accepted current127 context is refused before native mutation. The real-record guard fixtures also enter this branch. Preserve unrun001; a separate minimal source successor is required."
+    }
+  ],
+  "other_concrete_blockers_found": [],
+  "completed_static_checks": {
+    "current_small_held_inputs": 54,
+    "fixed_inputs": 48,
+    "source_reverse_groups": 12,
+    "guard_reverse_groups": 12,
+    "whole_reversals_and_diffs_exact": true,
+    "unchanged_caller_ASTs": 11,
+    "selected_helper_ASTs": 15,
+    "controller_exact": "5ab38b53e4019506772cc429b46699ac0e217141c87a0a043718d8123ecb159c",
+    "metadata_snapshot_only_two_selected_row_labels_changed": true,
+    "guards_read_unrun": 11,
+    "current_14_to_14_and_actual_tag_lookup": true,
+    "interior_local10_reuses_global1613031_storage_only": true,
+    "fresh_nodes_and_slots_empty_addNodes_zero": true,
+    "complete_before_after_saved_outside_source_class_and_retained_parameter_gates_preserved": true,
+    "retained_scope": "Full1097222 native before; exclude only apex1613031, leaving1097221. No1097218 inherited subset comparison.",
+    "attempts_before_mutation_one_mesh_write_reopen": true,
+    "SICN_threshold": 0.1,
+    "predicted_126_is_unobserved_nongate": true,
+    "whole_head_and_broad_qualification_false": true,
+    "resources": "Exact donor1200s/8GiB sampledRSS/1GiB sampledoutput/two threads; separate root outer actual not prepared by this review.",
+    "upstream_d60_false_retained": true
+  },
+  "inventory_clarification": {
+    "record": {
+      "path": "work/962-engineering/apex1613031-head-application-prep-001/CALLER-INVENTORY-CLARIFICATION-001.json",
+      "sha256": "db7bd0b1c8611b4a00ac9eaaaeeaf73ee42a4ab97a024eccf643b2446beaa44d",
+      "bytes": 5839,
+      "observed_mode": "0o444"
+    },
+    "original_union_count": 32,
+    "effective_union_count": 33,
+    "additional_key": "expected_runtime",
+    "all_seven_held_runtime_metadata_fields_equal_context": true,
+    "status": "Resolved additive documentation omission, not an execution defect; original source/reuse/held preserved."
+  },
+  "lineage": {
+    "source_author": "replica_metrology",
+    "reviewer": "clip_source_review",
+    "reviewer_prior_authorship": "Reviewer authored earlier single-head donor/census/publication selector lineage and reused mathematical helper preparation. This is an independent review of this author delta and saved metadata, not an independent kernel derivation.",
+    "executor": "No execution in this review; root owns any later separately reviewed guards/native."
+  },
+  "scope": {
+    "source_AST_hash_and_small_saved_metadata_only": true,
+    "prepared_source_functions_guards_tests_imports_native_or_science_executed": false,
+    "MSH_BIN_runtime_or_interpreter_bodies_read_or_hashed": false,
+    "source_files_modified": false,
+    "actual_or_output_created": false,
+    "execution_or_head_authority_granted": false,
+    "Git_or_publisher_mutation": false
+  },
+  "review_history": [
+    {
+      "stage": "prewrite metadata inspection",
+      "event": "Own ast.literal_eval attempt on QUALIFICATION dict(...) call refused; corrected to read its source text only. No prepared code or output was executed or created; completed earlier checks retained."
+    }
+  ]
+}

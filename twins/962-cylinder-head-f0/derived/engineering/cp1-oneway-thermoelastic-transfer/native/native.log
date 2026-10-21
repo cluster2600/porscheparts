@@ -1,0 +1,1830 @@
+
+[33m
+*** Deprecation Warning ***
+work/962-engineering/cp1-oneway-thermoelastic-transfer-002/thermoelastic-birth.i:561.5:
+Outputs/console/output_postprocessors: The parameter 'output_postprocessors' is deprecated.
+'execute_postprocessors_on' has replaced this parameter
+
+[39m
+Framework Information:
+MOOSE Version:           git commit 7c06bdcefd on 2026-09-13
+LibMesh Version:         
+PETSc Version:           3.25.4
+SLEPc Version:           3.25.1
+Current Time:            Sun Oct 18 02:06:09 2026
+Executable Timestamp:    Sat Oct 17 18:50:48 2026
+
+Input File(s):
+  work/962-engineering/cp1-oneway-thermoelastic-transfer-002/thermoelastic-birth.i
+
+Command Line Argument(s):
+  -skip_petscrc
+  --n-threads=1
+
+Checkpoint:
+  Wall Time Interval:      Every 3600 s
+  Checkpoint:              Outputs/checkpoint
+  # Checkpoints Kept:      2
+  Execute On:              TIMESTEP_END 
+
+Parallelism:
+  Num Processors:          1
+  Num Threads:             1
+
+Mesh: 
+  Parallel Type:           replicated
+  Mesh Dimension:          3
+  Spatial Dimension:       3
+  Nodes:                   425
+  Elems:                   256
+  Num Subdomains:          2
+
+Nonlinear System:
+  Num DOFs:                900
+  Num Local DOFs:          900
+  Variables:               "inactive_placeholder" { "disp_x" "disp_y" "disp_z" } 
+  Finite Element Types:    "LAGRANGE" "LAGRANGE" 
+  Approximation Orders:    "FIRST" "FIRST" 
+
+Auxiliary System:
+  Num DOFs:                900
+  Num Local DOFs:          900
+  Variables:               "temperature" "born_reference_temperature" { "rx" "ry" "rz" } 
+  Finite Element Types:    "LAGRANGE" "LAGRANGE" "LAGRANGE" 
+  Approximation Orders:    "FIRST" "FIRST" "FIRST" 
+
+Execution Information:
+  Executioner:             Transient
+  TimeStepper:             ConstantDT
+  TimeIntegrator(s):       ImplicitEuler
+  Solver Mode:             NEWTON 
+  PETSc Preconditioner:    lu 
+  MOOSE Preconditioner:    SMP 
+
+
+Time Step 0, time = 0
+
+Time Step 1, time = 0.0025, dt = 0.0025
+ 0 Nonlinear |R| = [32m3.394762e-02[39m
+      0 Linear |R| = [32m3.394762e-02[39m
+      1 Linear |R| = [32m5.671786e-17[39m
+ 1 Nonlinear |R| = [32m6.746979e-17[39m
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m6.222563e-17[39m
+
+Time Step 2, time = 0.005, dt = 0.0025
+ 0 Nonlinear |R| = [32m3.389875e-02[39m
+      0 Linear |R| = [32m3.389875e-02[39m
+      1 Linear |R| = [32m5.876254e-17[39m
+ 1 Nonlinear |R| = [32m7.036572e-17[39m
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [33m6.233804e-17[39m
+
+Time Step 3, time = 0.0075, dt = 0.0025
+ 0 Nonlinear |R| = [32m3.385558e-02[39m
+      0 Linear |R| = [32m3.385558e-02[39m
+      1 Linear |R| = [32m5.633886e-17[39m
+ 1 Nonlinear |R| = [32m7.638687e-17[39m
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m6.935360e-17[39m
+
+Time Step 4, time = 0.01, dt = 0.0025
+ 0 Nonlinear |R| = [32m3.381786e-02[39m
+      0 Linear |R| = [32m3.381786e-02[39m
+      1 Linear |R| = [32m5.097852e-17[39m
+ 1 Nonlinear |R| = [32m7.482691e-17[39m
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m6.723105e-17[39m
+
+Time Step 5, time = 0.0125, dt = 0.0025
+ 0 Nonlinear |R| = [32m3.378499e-02[39m
+      0 Linear |R| = [32m3.378499e-02[39m
+      1 Linear |R| = [32m5.631709e-17[39m
+ 1 Nonlinear |R| = [32m8.410335e-17[39m
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m7.603457e-17[39m
+
+Time Step 6, time = 0.015, dt = 0.0025
+ 0 Nonlinear |R| = [32m3.375668e-02[39m
+      0 Linear |R| = [32m3.375668e-02[39m
+      1 Linear |R| = [32m5.530715e-17[39m
+ 1 Nonlinear |R| = [32m9.278680e-17[39m
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m8.565400e-17[39m
+
+Time Step 7, time = 0.0175, dt = 0.0025
+ 0 Nonlinear |R| = [32m3.373300e-02[39m
+      0 Linear |R| = [32m3.373300e-02[39m
+      1 Linear |R| = [32m5.698310e-17[39m
+ 1 Nonlinear |R| = [32m8.813135e-17[39m
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [33m7.790732e-17[39m
+
+Time Step 8, time = 0.02, dt = 0.0025
+ 0 Nonlinear |R| = [32m3.371293e-02[39m
+      0 Linear |R| = [32m3.371293e-02[39m
+      1 Linear |R| = [32m5.151635e-17[39m
+ 1 Nonlinear |R| = [32m1.158007e-16[39m
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m1.079913e-16[39m
+
+Time Step 9, time = 0.0225, dt = 0.0025
+ 0 Nonlinear |R| = [32m3.369674e-02[39m
+      0 Linear |R| = [32m3.369674e-02[39m
+      1 Linear |R| = [32m5.502278e-17[39m
+ 1 Nonlinear |R| = [32m1.158990e-16[39m
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m1.053148e-16[39m
+
+Time Step 10, time = 0.025, dt = 0.0025
+ 0 Nonlinear |R| = [32m3.368413e-02[39m
+      0 Linear |R| = [32m3.368413e-02[39m
+      1 Linear |R| = [32m5.805668e-17[39m
+ 1 Nonlinear |R| = [32m1.298404e-16[39m
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [33m1.160855e-16[39m
+
+Time Step 11, time = 0.0275, dt = 0.0025
+ 0 Nonlinear |R| = [32m3.367489e-02[39m
+      0 Linear |R| = [32m3.367489e-02[39m
+      1 Linear |R| = [32m5.193839e-17[39m
+ 1 Nonlinear |R| = [32m1.412061e-16[39m
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m1.269805e-16[39m
+
+Time Step 12, time = 0.03, dt = 0.0025
+ 0 Nonlinear |R| = [32m3.366892e-02[39m
+      0 Linear |R| = [32m3.366892e-02[39m
+      1 Linear |R| = [32m5.076003e-17[39m
+ 1 Nonlinear |R| = [32m1.703483e-16[39m
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m1.594876e-16[39m
+
+Time Step 13, time = 0.0325, dt = 0.0025
+ 0 Nonlinear |R| = [32m3.366614e-02[39m
+      0 Linear |R| = [32m3.366614e-02[39m
+      1 Linear |R| = [32m5.710659e-17[39m
+ 1 Nonlinear |R| = [32m1.428606e-16[39m
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m1.292751e-16[39m
+
+Time Step 14, time = 0.035, dt = 0.0025
+ 0 Nonlinear |R| = [32m3.366653e-02[39m
+      0 Linear |R| = [32m3.366653e-02[39m
+      1 Linear |R| = [32m5.457470e-17[39m
+ 1 Nonlinear |R| = [32m1.507579e-16[39m
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m1.349022e-16[39m
+
+Time Step 15, time = 0.0375, dt = 0.0025
+ 0 Nonlinear |R| = [32m3.367004e-02[39m
+      0 Linear |R| = [32m3.367004e-02[39m
+      1 Linear |R| = [32m4.985639e-17[39m
+ 1 Nonlinear |R| = [32m1.648535e-16[39m
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [33m1.464115e-16[39m
+
+Time Step 16, time = 0.04, dt = 0.0025
+ 0 Nonlinear |R| = [32m3.367681e-02[39m
+      0 Linear |R| = [32m3.367681e-02[39m
+      1 Linear |R| = [32m4.539133e-17[39m
+ 1 Nonlinear |R| = [32m2.034251e-16[39m
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m1.879111e-16[39m
+
+Time Step 17, time = 0.0425, dt = 0.0025
+ 0 Nonlinear |R| = [32m3.368684e-02[39m
+      0 Linear |R| = [32m3.368684e-02[39m
+      1 Linear |R| = [32m5.032418e-17[39m
+ 1 Nonlinear |R| = [32m1.761663e-16[39m
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [33m1.558581e-16[39m
+
+Time Step 18, time = 0.045, dt = 0.0025
+ 0 Nonlinear |R| = [32m3.370048e-02[39m
+      0 Linear |R| = [32m3.370048e-02[39m
+      1 Linear |R| = [32m4.700056e-17[39m
+ 1 Nonlinear |R| = [32m1.671587e-16[39m
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [33m1.438157e-16[39m
+
+Time Step 19, time = 0.0475, dt = 0.0025
+ 0 Nonlinear |R| = [32m3.371746e-02[39m
+      0 Linear |R| = [32m3.371746e-02[39m
+      1 Linear |R| = [32m4.666901e-17[39m
+ 1 Nonlinear |R| = [32m1.983842e-16[39m
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m1.779739e-16[39m
+
+Time Step 20, time = 0.05, dt = 0.0025
+ 0 Nonlinear |R| = [32m3.373842e-02[39m
+      0 Linear |R| = [32m3.373842e-02[39m
+      1 Linear |R| = [32m4.804414e-17[39m
+ 1 Nonlinear |R| = [32m1.798536e-16[39m
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [33m1.509148e-16[39m
+
+Time Step 21, time = 0.0525, dt = 0.0025
+ 0 Nonlinear |R| = [32m3.376332e-02[39m
+      0 Linear |R| = [32m3.376332e-02[39m
+      1 Linear |R| = [32m4.579377e-17[39m
+ 1 Nonlinear |R| = [32m1.788826e-16[39m
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [33m1.536165e-16[39m
+
+Time Step 22, time = 0.055, dt = 0.0025
+ 0 Nonlinear |R| = [32m3.379296e-02[39m
+      0 Linear |R| = [32m3.379296e-02[39m
+      1 Linear |R| = [32m4.737513e-17[39m
+ 1 Nonlinear |R| = [32m2.088252e-16[39m
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [33m1.835891e-16[39m
+
+Time Step 23, time = 0.0575, dt = 0.0025
+ 0 Nonlinear |R| = [32m3.382716e-02[39m
+      0 Linear |R| = [32m3.382716e-02[39m
+      1 Linear |R| = [32m4.436824e-17[39m
+ 1 Nonlinear |R| = [32m2.128203e-16[39m
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [33m1.887750e-16[39m
+
+Time Step 24, time = 0.06, dt = 0.0025
+ 0 Nonlinear |R| = [32m3.386659e-02[39m
+      0 Linear |R| = [32m3.386659e-02[39m
+      1 Linear |R| = [32m4.517828e-17[39m
+ 1 Nonlinear |R| = [32m2.325988e-16[39m
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [33m2.059774e-16[39m
+
+Time Step 25, time = 0.0625, dt = 0.0025
+ 0 Nonlinear |R| = [32m3.391109e-02[39m
+      0 Linear |R| = [32m3.391109e-02[39m
+      1 Linear |R| = [32m4.756542e-17[39m
+ 1 Nonlinear |R| = [32m2.771026e-16[39m
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [33m2.451865e-16[39m
+
+Time Step 26, time = 0.065, dt = 0.0025
+ 0 Nonlinear |R| = [32m3.396197e-02[39m
+      0 Linear |R| = [32m3.396197e-02[39m
+      1 Linear |R| = [32m4.457744e-17[39m
+ 1 Nonlinear |R| = [32m2.972070e-16[39m
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m2.680322e-16[39m
+
+Time Step 27, time = 0.0675, dt = 0.0025
+ 0 Nonlinear |R| = [32m3.401899e-02[39m
+      0 Linear |R| = [32m3.401899e-02[39m
+      1 Linear |R| = [32m4.407438e-17[39m
+ 1 Nonlinear |R| = [32m2.653623e-16[39m
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m2.407034e-16[39m
+
+Time Step 28, time = 0.07, dt = 0.0025
+ 0 Nonlinear |R| = [32m3.408289e-02[39m
+      0 Linear |R| = [32m3.408289e-02[39m
+      1 Linear |R| = [32m4.718693e-17[39m
+ 1 Nonlinear |R| = [32m2.657378e-16[39m
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [33m2.335552e-16[39m
+
+Time Step 29, time = 0.0725, dt = 0.0025
+ 0 Nonlinear |R| = [32m3.415400e-02[39m
+      0 Linear |R| = [32m3.415400e-02[39m
+      1 Linear |R| = [32m4.487076e-17[39m
+ 1 Nonlinear |R| = [32m3.004644e-16[39m
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m2.706961e-16[39m
+
+Time Step 30, time = 0.075, dt = 0.0025
+ 0 Nonlinear |R| = [32m3.423293e-02[39m
+      0 Linear |R| = [32m3.423293e-02[39m
+      1 Linear |R| = [32m5.553417e-17[39m
+ 1 Nonlinear |R| = [32m3.249898e-16[39m
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m2.997287e-16[39m
+
+Time Step 31, time = 0.0775, dt = 0.0025
+ 0 Nonlinear |R| = [32m3.432004e-02[39m
+      0 Linear |R| = [32m3.432004e-02[39m
+      1 Linear |R| = [32m4.317360e-17[39m
+ 1 Nonlinear |R| = [32m2.626366e-16[39m
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [33m2.174834e-16[39m
+
+Time Step 32, time = 0.08, dt = 0.0025
+ 0 Nonlinear |R| = [32m3.441581e-02[39m
+      0 Linear |R| = [32m3.441581e-02[39m
+      1 Linear |R| = [32m4.475786e-17[39m
+ 1 Nonlinear |R| = [32m2.790006e-16[39m
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [33m2.360358e-16[39m
+
+Time Step 33, time = 0.0825, dt = 0.0025
+ 0 Nonlinear |R| = [32m3.452065e-02[39m
+      0 Linear |R| = [32m3.452065e-02[39m
+      1 Linear |R| = [32m4.984541e-17[39m
+ 1 Nonlinear |R| = [32m3.294156e-16[39m
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m2.998074e-16[39m
+
+Time Step 34, time = 0.085, dt = 0.0025
+ 0 Nonlinear |R| = [32m3.463496e-02[39m
+      0 Linear |R| = [32m3.463496e-02[39m
+      1 Linear |R| = [32m4.117081e-17[39m
+ 1 Nonlinear |R| = [32m2.737983e-16[39m
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [33m2.294713e-16[39m
+
+Time Step 35, time = 0.0875, dt = 0.0025
+ 0 Nonlinear |R| = [32m3.475907e-02[39m
+      0 Linear |R| = [32m3.475907e-02[39m
+      1 Linear |R| = [32m4.203858e-17[39m
+ 1 Nonlinear |R| = [32m3.021240e-16[39m
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [33m2.560366e-16[39m
+
+Time Step 36, time = 0.09, dt = 0.0025
+ 0 Nonlinear |R| = [32m3.489337e-02[39m
+      0 Linear |R| = [32m3.489337e-02[39m
+      1 Linear |R| = [32m4.679351e-17[39m
+ 1 Nonlinear |R| = [32m3.283687e-16[39m
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [33m2.890658e-16[39m
+
+Time Step 37, time = 0.0925, dt = 0.0025
+ 0 Nonlinear |R| = [32m3.503797e-02[39m
+      0 Linear |R| = [32m3.503797e-02[39m
+      1 Linear |R| = [32m4.650217e-17[39m
+ 1 Nonlinear |R| = [32m4.182111e-16[39m
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m3.842756e-16[39m
+
+Time Step 38, time = 0.095, dt = 0.0025
+ 0 Nonlinear |R| = [32m3.519304e-02[39m
+      0 Linear |R| = [32m3.519304e-02[39m
+      1 Linear |R| = [32m4.990591e-17[39m
+ 1 Nonlinear |R| = [32m2.419284e-16[39m
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [33m1.883988e-16[39m
+
+Time Step 39, time = 0.0975, dt = 0.0025
+ 0 Nonlinear |R| = [32m3.535867e-02[39m
+      0 Linear |R| = [32m3.535867e-02[39m
+      1 Linear |R| = [32m4.763788e-17[39m
+ 1 Nonlinear |R| = [32m3.574368e-16[39m
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [33m3.099616e-16[39m
+
+Time Step 40, time = 0.1, dt = 0.0025
+ 0 Nonlinear |R| = [32m3.553483e-02[39m
+      0 Linear |R| = [32m3.553483e-02[39m
+      1 Linear |R| = [32m4.542095e-17[39m
+ 1 Nonlinear |R| = [32m4.055266e-16[39m
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m3.688478e-16[39m
+
+Time Step 41, time = 0.1025, dt = 0.0025
+ 0 Nonlinear |R| = [32m3.572163e-02[39m
+      0 Linear |R| = [32m3.572163e-02[39m
+      1 Linear |R| = [32m5.197290e-17[39m
+ 1 Nonlinear |R| = [32m3.248532e-16[39m
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [33m2.848816e-16[39m
+
+Time Step 42, time = 0.105, dt = 0.0025
+ 0 Nonlinear |R| = [32m3.591792e-02[39m
+      0 Linear |R| = [32m3.591792e-02[39m
+      1 Linear |R| = [32m5.185742e-17[39m
+ 1 Nonlinear |R| = [32m3.306711e-16[39m
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [33m2.775261e-16[39m
+
+Time Step 43, time = 0.1075, dt = 0.0025
+ 0 Nonlinear |R| = [32m3.612424e-02[39m
+      0 Linear |R| = [32m3.612424e-02[39m
+      1 Linear |R| = [32m5.483330e-17[39m
+ 1 Nonlinear |R| = [32m4.311634e-16[39m
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m3.917837e-16[39m
+
+Time Step 44, time = 0.11, dt = 0.0025
+ 0 Nonlinear |R| = [32m3.633975e-02[39m
+      0 Linear |R| = [32m3.633975e-02[39m
+      1 Linear |R| = [32m5.431021e-17[39m
+ 1 Nonlinear |R| = [32m3.598528e-16[39m
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [33m3.042060e-16[39m
+
+Time Step 45, time = 0.1125, dt = 0.0025
+ 0 Nonlinear |R| = [32m3.656379e-02[39m
+      0 Linear |R| = [32m3.656379e-02[39m
+      1 Linear |R| = [32m5.568772e-17[39m
+ 1 Nonlinear |R| = [32m3.725287e-16[39m
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [33m3.229450e-16[39m
+
+Time Step 46, time = 0.115, dt = 0.0025
+ 0 Nonlinear |R| = [32m3.679560e-02[39m
+      0 Linear |R| = [32m3.679560e-02[39m
+      1 Linear |R| = [32m5.324624e-17[39m
+ 1 Nonlinear |R| = [32m3.094972e-16[39m
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [33m2.470795e-16[39m
+
+Time Step 47, time = 0.1175, dt = 0.0025
+ 0 Nonlinear |R| = [32m3.703409e-02[39m
+      0 Linear |R| = [32m3.703409e-02[39m
+      1 Linear |R| = [32m5.635912e-17[39m
+ 1 Nonlinear |R| = [32m4.090967e-16[39m
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [33m3.557894e-16[39m
+
+Time Step 48, time = 0.12, dt = 0.0025
+ 0 Nonlinear |R| = [32m3.727846e-02[39m
+      0 Linear |R| = [32m3.727846e-02[39m
+      1 Linear |R| = [32m5.388921e-17[39m
+ 1 Nonlinear |R| = [32m4.321176e-16[39m
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [33m3.720417e-16[39m
+
+Time Step 49, time = 0.1225, dt = 0.0025
+ 0 Nonlinear |R| = [32m3.752732e-02[39m
+      0 Linear |R| = [32m3.752732e-02[39m
+      1 Linear |R| = [32m5.340411e-17[39m
+ 1 Nonlinear |R| = [32m3.801469e-16[39m
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [33m3.209109e-16[39m
+
+Time Step 50, time = 0.125, dt = 0.0025
+ 0 Nonlinear |R| = [32m3.777934e-02[39m
+      0 Linear |R| = [32m3.777934e-02[39m
+      1 Linear |R| = [32m5.501636e-17[39m
+ 1 Nonlinear |R| = [32m4.374016e-16[39m
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [33m3.859173e-16[39m
+
+Time Step 51, time = 0.1275, dt = 0.0025
+ 0 Nonlinear |R| = [32m3.803296e-02[39m
+      0 Linear |R| = [32m3.803296e-02[39m
+      1 Linear |R| = [32m5.889190e-17[39m
+ 1 Nonlinear |R| = [32m4.066116e-16[39m
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [33m3.323734e-16[39m
+
+Time Step 52, time = 0.13, dt = 0.0025
+ 0 Nonlinear |R| = [32m3.828680e-02[39m
+      0 Linear |R| = [32m3.828680e-02[39m
+      1 Linear |R| = [32m5.899283e-17[39m
+ 1 Nonlinear |R| = [32m4.248094e-16[39m
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [33m3.595897e-16[39m
+
+Time Step 53, time = 0.1325, dt = 0.0025
+ 0 Nonlinear |R| = [32m3.853899e-02[39m
+      0 Linear |R| = [32m3.853899e-02[39m
+      1 Linear |R| = [32m5.773048e-17[39m
+ 1 Nonlinear |R| = [32m5.228882e-16[39m
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [33m4.464917e-16[39m
+
+Time Step 54, time = 0.135, dt = 0.0025
+ 0 Nonlinear |R| = [32m3.878779e-02[39m
+      0 Linear |R| = [32m3.878779e-02[39m
+      1 Linear |R| = [32m6.021220e-17[39m
+ 1 Nonlinear |R| = [32m5.014811e-16[39m
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [33m4.285605e-16[39m
+
+Time Step 55, time = 0.1375, dt = 0.0025
+ 0 Nonlinear |R| = [32m3.903137e-02[39m
+      0 Linear |R| = [32m3.903137e-02[39m
+      1 Linear |R| = [32m6.187962e-17[39m
+ 1 Nonlinear |R| = [32m4.484611e-16[39m
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [33m3.773924e-16[39m
+
+Time Step 56, time = 0.14, dt = 0.0025
+ 0 Nonlinear |R| = [32m3.926770e-02[39m
+      0 Linear |R| = [32m3.926770e-02[39m
+      1 Linear |R| = [32m6.085374e-17[39m
+ 1 Nonlinear |R| = [32m4.016373e-16[39m
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [33m3.079346e-16[39m
+
+Time Step 57, time = 0.1425, dt = 0.0025
+ 0 Nonlinear |R| = [32m3.949477e-02[39m
+      0 Linear |R| = [32m3.949477e-02[39m
+      1 Linear |R| = [32m6.407000e-17[39m
+ 1 Nonlinear |R| = [32m4.826555e-16[39m
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [33m4.186707e-16[39m
+
+Time Step 58, time = 0.145, dt = 0.0025
+ 0 Nonlinear |R| = [32m3.971077e-02[39m
+      0 Linear |R| = [32m3.971077e-02[39m
+      1 Linear |R| = [32m6.358949e-17[39m
+ 1 Nonlinear |R| = [32m3.876714e-16[39m
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [33m3.027238e-16[39m
+
+Time Step 59, time = 0.1475, dt = 0.0025
+ 0 Nonlinear |R| = [32m3.991333e-02[39m
+      0 Linear |R| = [32m3.991333e-02[39m
+      1 Linear |R| = [32m6.329342e-17[39m
+ 1 Nonlinear |R| = [32m3.624545e-16[39m
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [33m2.687047e-16[39m
+
+Time Step 60, time = 0.15, dt = 0.0025
+ 0 Nonlinear |R| = [32m4.010056e-02[39m
+      0 Linear |R| = [32m4.010056e-02[39m
+      1 Linear |R| = [32m6.700263e-17[39m
+ 1 Nonlinear |R| = [32m3.800773e-16[39m
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [33m2.992903e-16[39m
+
+Time Step 61, time = 0.1525, dt = 0.0025
+ 0 Nonlinear |R| = [32m4.027029e-02[39m
+      0 Linear |R| = [32m4.027029e-02[39m
+      1 Linear |R| = [32m6.610578e-17[39m
+ 1 Nonlinear |R| = [32m4.038290e-16[39m
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [33m3.257253e-16[39m
+
+Time Step 62, time = 0.155, dt = 0.0025
+ 0 Nonlinear |R| = [32m4.042065e-02[39m
+      0 Linear |R| = [32m4.042065e-02[39m
+      1 Linear |R| = [32m6.830785e-17[39m
+ 1 Nonlinear |R| = [32m4.870357e-16[39m
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [33m4.154611e-16[39m
+
+Time Step 63, time = 0.1575, dt = 0.0025
+ 0 Nonlinear |R| = [32m4.054947e-02[39m
+      0 Linear |R| = [32m4.054947e-02[39m
+      1 Linear |R| = [32m6.341241e-17[39m
+ 1 Nonlinear |R| = [32m4.656482e-16[39m
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [33m3.863281e-16[39m
+
+Time Step 64, time = 0.16, dt = 0.0025
+ 0 Nonlinear |R| = [32m4.065500e-02[39m
+      0 Linear |R| = [32m4.065500e-02[39m
+      1 Linear |R| = [32m6.372857e-17[39m
+ 1 Nonlinear |R| = [32m4.453579e-16[39m
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [33m3.581984e-16[39m
+
+Time Step 65, time = 0.1625, dt = 0.0025
+ 0 Nonlinear |R| = [32m4.073527e-02[39m
+      0 Linear |R| = [32m4.073527e-02[39m
+      1 Linear |R| = [32m6.930595e-17[39m
+ 1 Nonlinear |R| = [32m4.602571e-16[39m
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [33m3.817768e-16[39m
+
+Time Step 66, time = 0.165, dt = 0.0025
+ 0 Nonlinear |R| = [32m4.078860e-02[39m
+      0 Linear |R| = [32m4.078860e-02[39m
+      1 Linear |R| = [32m6.420357e-17[39m
+ 1 Nonlinear |R| = [32m5.215262e-16[39m
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [33m4.170273e-16[39m
+
+Time Step 67, time = 0.1675, dt = 0.0025
+ 0 Nonlinear |R| = [32m4.081332e-02[39m
+      0 Linear |R| = [32m4.081332e-02[39m
+      1 Linear |R| = [32m6.982463e-17[39m
+ 1 Nonlinear |R| = [32m5.090054e-16[39m
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [33m4.255692e-16[39m
+
+Time Step 68, time = 0.17, dt = 0.0025
+ 0 Nonlinear |R| = [32m4.080791e-02[39m
+      0 Linear |R| = [32m4.080791e-02[39m
+      1 Linear |R| = [32m6.471911e-17[39m
+ 1 Nonlinear |R| = [32m4.979012e-16[39m
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [33m4.332655e-16[39m
+
+Time Step 69, time = 0.1725, dt = 0.0025
+ 0 Nonlinear |R| = [32m4.077084e-02[39m
+      0 Linear |R| = [32m4.077084e-02[39m
+      1 Linear |R| = [32m6.517221e-17[39m
+ 1 Nonlinear |R| = [32m5.304574e-16[39m
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [33m4.283852e-16[39m
+
+Time Step 70, time = 0.175, dt = 0.0025
+ 0 Nonlinear |R| = [32m4.070120e-02[39m
+      0 Linear |R| = [32m4.070120e-02[39m
+      1 Linear |R| = [32m6.715089e-17[39m
+ 1 Nonlinear |R| = [32m4.428614e-16[39m
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [33m3.588546e-16[39m
+
+Time Step 71, time = 0.1775, dt = 0.0025
+ 0 Nonlinear |R| = [32m4.059760e-02[39m
+      0 Linear |R| = [32m4.059760e-02[39m
+      1 Linear |R| = [32m6.764360e-17[39m
+ 1 Nonlinear |R| = [32m5.283711e-16[39m
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [33m4.522180e-16[39m
+
+Time Step 72, time = 0.18, dt = 0.0025
+ 0 Nonlinear |R| = [32m4.045909e-02[39m
+      0 Linear |R| = [32m4.045909e-02[39m
+      1 Linear |R| = [32m6.388225e-17[39m
+ 1 Nonlinear |R| = [32m5.551657e-16[39m
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [33m4.465286e-16[39m
+
+Time Step 73, time = 0.1825, dt = 0.0025
+ 0 Nonlinear |R| = [32m4.028502e-02[39m
+      0 Linear |R| = [32m4.028502e-02[39m
+      1 Linear |R| = [32m6.350632e-17[39m
+ 1 Nonlinear |R| = [32m5.583924e-16[39m
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [33m4.966518e-16[39m
+
+Time Step 74, time = 0.185, dt = 0.0025
+ 0 Nonlinear |R| = [32m4.007470e-02[39m
+      0 Linear |R| = [32m4.007470e-02[39m
+      1 Linear |R| = [32m6.605901e-17[39m
+ 1 Nonlinear |R| = [32m5.341324e-16[39m
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [33m4.332885e-16[39m
+
+Time Step 75, time = 0.1875, dt = 0.0025
+ 0 Nonlinear |R| = [32m3.982777e-02[39m
+      0 Linear |R| = [32m3.982777e-02[39m
+      1 Linear |R| = [32m6.136243e-17[39m
+ 1 Nonlinear |R| = [32m5.514122e-16[39m
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [33m4.678495e-16[39m
+
+Time Step 76, time = 0.19, dt = 0.0025
+ 0 Nonlinear |R| = [32m3.954393e-02[39m
+      0 Linear |R| = [32m3.954393e-02[39m
+      1 Linear |R| = [32m6.362464e-17[39m
+ 1 Nonlinear |R| = [32m5.135146e-16[39m
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [33m4.287096e-16[39m
+
+Time Step 77, time = 0.1925, dt = 0.0025
+ 0 Nonlinear |R| = [32m3.922314e-02[39m
+      0 Linear |R| = [32m3.922314e-02[39m
+      1 Linear |R| = [32m6.388727e-17[39m
+ 1 Nonlinear |R| = [32m5.780989e-16[39m
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [33m4.781760e-16[39m
+
+Time Step 78, time = 0.195, dt = 0.0025
+ 0 Nonlinear |R| = [32m3.886552e-02[39m
+      0 Linear |R| = [32m3.886552e-02[39m
+      1 Linear |R| = [32m6.016558e-17[39m
+ 1 Nonlinear |R| = [32m5.768475e-16[39m
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [33m4.571366e-16[39m
+
+Time Step 79, time = 0.1975, dt = 0.0025
+ 0 Nonlinear |R| = [32m3.847141e-02[39m
+      0 Linear |R| = [32m3.847141e-02[39m
+      1 Linear |R| = [32m6.397110e-17[39m
+ 1 Nonlinear |R| = [32m5.480507e-16[39m
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [33m4.463947e-16[39m
+
+Time Step 80, time = 0.2, dt = 0.0025
+ 0 Nonlinear |R| = [32m5.688300e+02[39m
+      0 Linear |R| = [32m5.688300e+02[39m
+      1 Linear |R| = [32m7.694283e-13[39m
+ 1 Nonlinear |R| = [32m7.743432e-13[39m
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [33m5.684724e-13[39m
+
+Time Step 81, time = 0.2025, dt = 0.0025
+ 0 Nonlinear |R| = [32m5.687854e+02[39m
+      0 Linear |R| = [32m5.687854e+02[39m
+      1 Linear |R| = [32m7.707398e-13[39m
+ 1 Nonlinear |R| = [32m8.229515e-13[39m
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [33m6.339000e-13[39m
+
+Time Step 82, time = 0.205, dt = 0.0025
+ 0 Nonlinear |R| = [32m5.687407e+02[39m
+      0 Linear |R| = [32m5.687407e+02[39m
+      1 Linear |R| = [32m7.717957e-13[39m
+ 1 Nonlinear |R| = [32m8.822045e-13[39m
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [33m6.372173e-13[39m
+
+Time Step 83, time = 0.2075, dt = 0.0025
+ 0 Nonlinear |R| = [32m5.686961e+02[39m
+      0 Linear |R| = [32m5.686961e+02[39m
+      1 Linear |R| = [32m7.845457e-13[39m
+ 1 Nonlinear |R| = [32m9.232046e-13[39m
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [33m7.172667e-13[39m
+
+Time Step 84, time = 0.21, dt = 0.0025
+ 0 Nonlinear |R| = [32m5.686516e+02[39m
+      0 Linear |R| = [32m5.686516e+02[39m
+      1 Linear |R| = [32m7.480496e-13[39m
+ 1 Nonlinear |R| = [32m9.825393e-13[39m
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [33m7.710031e-13[39m
+
+Time Step 85, time = 0.2125, dt = 0.0025
+ 0 Nonlinear |R| = [32m5.686070e+02[39m
+      0 Linear |R| = [32m5.686070e+02[39m
+      1 Linear |R| = [32m7.322463e-13[39m
+ 1 Nonlinear |R| = [32m9.959433e-13[39m
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [33m7.315126e-13[39m
+
+Time Step 86, time = 0.215, dt = 0.0025
+ 0 Nonlinear |R| = [32m5.685624e+02[39m
+      0 Linear |R| = [32m5.685624e+02[39m
+      1 Linear |R| = [32m7.674067e-13[39m
+ 1 Nonlinear |R| = [32m1.218994e-12[39m
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [33m9.924462e-13[39m
+
+Time Step 87, time = 0.2175, dt = 0.0025
+ 0 Nonlinear |R| = [32m5.685179e+02[39m
+      0 Linear |R| = [32m5.685179e+02[39m
+      1 Linear |R| = [32m7.843230e-13[39m
+ 1 Nonlinear |R| = [32m1.299641e-12[39m
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [33m1.053297e-12[39m
+
+Time Step 88, time = 0.22, dt = 0.0025
+ 0 Nonlinear |R| = [32m5.684734e+02[39m
+      0 Linear |R| = [32m5.684734e+02[39m
+      1 Linear |R| = [32m7.361608e-13[39m
+ 1 Nonlinear |R| = [32m1.340702e-12[39m
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [33m1.083930e-12[39m
+
+Time Step 89, time = 0.2225, dt = 0.0025
+ 0 Nonlinear |R| = [32m5.684288e+02[39m
+      0 Linear |R| = [32m5.684288e+02[39m
+      1 Linear |R| = [32m7.460458e-13[39m
+ 1 Nonlinear |R| = [32m1.380013e-12[39m
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [33m1.061338e-12[39m
+
+Time Step 90, time = 0.225, dt = 0.0025
+ 0 Nonlinear |R| = [32m5.683843e+02[39m
+      0 Linear |R| = [32m5.683843e+02[39m
+      1 Linear |R| = [32m7.548592e-13[39m
+ 1 Nonlinear |R| = [32m1.469832e-12[39m
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [33m1.129603e-12[39m
+
+Time Step 91, time = 0.2275, dt = 0.0025
+ 0 Nonlinear |R| = [32m5.683398e+02[39m
+      0 Linear |R| = [32m5.683398e+02[39m
+      1 Linear |R| = [32m7.963829e-13[39m
+ 1 Nonlinear |R| = [32m1.607028e-12[39m
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [33m1.186571e-12[39m
+
+Time Step 92, time = 0.23, dt = 0.0025
+ 0 Nonlinear |R| = [32m5.682952e+02[39m
+      0 Linear |R| = [32m5.682952e+02[39m
+      1 Linear |R| = [32m7.886016e-13[39m
+ 1 Nonlinear |R| = [32m1.743453e-12[39m
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [33m1.338402e-12[39m
+
+Time Step 93, time = 0.2325, dt = 0.0025
+ 0 Nonlinear |R| = [32m5.682507e+02[39m
+      0 Linear |R| = [32m5.682507e+02[39m
+      1 Linear |R| = [32m7.686884e-13[39m
+ 1 Nonlinear |R| = [32m2.004727e-12[39m
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [33m1.661069e-12[39m
+
+Time Step 94, time = 0.235, dt = 0.0025
+ 0 Nonlinear |R| = [32m5.682062e+02[39m
+      0 Linear |R| = [32m5.682062e+02[39m
+      1 Linear |R| = [32m7.374112e-13[39m
+ 1 Nonlinear |R| = [32m1.884715e-12[39m
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [33m1.440854e-12[39m
+
+Time Step 95, time = 0.2375, dt = 0.0025
+ 0 Nonlinear |R| = [32m5.681616e+02[39m
+      0 Linear |R| = [32m5.681616e+02[39m
+      1 Linear |R| = [32m7.506528e-13[39m
+ 1 Nonlinear |R| = [32m2.119842e-12[39m
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [33m1.717582e-12[39m
+
+Time Step 96, time = 0.24, dt = 0.0025
+ 0 Nonlinear |R| = [32m5.681171e+02[39m
+      0 Linear |R| = [32m5.681171e+02[39m
+      1 Linear |R| = [32m7.445006e-13[39m
+ 1 Nonlinear |R| = [32m2.231270e-12[39m
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [33m1.790316e-12[39m
+
+Time Step 97, time = 0.2425, dt = 0.0025
+ 0 Nonlinear |R| = [32m5.680725e+02[39m
+      0 Linear |R| = [32m5.680725e+02[39m
+      1 Linear |R| = [32m7.597360e-13[39m
+ 1 Nonlinear |R| = [32m2.227572e-12[39m
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [33m1.827808e-12[39m
+
+Time Step 98, time = 0.245, dt = 0.0025
+ 0 Nonlinear |R| = [32m5.680280e+02[39m
+      0 Linear |R| = [32m5.680280e+02[39m
+      1 Linear |R| = [32m7.853318e-13[39m
+ 1 Nonlinear |R| = [32m2.478097e-12[39m
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [33m2.053575e-12[39m
+
+Time Step 99, time = 0.2475, dt = 0.0025
+ 0 Nonlinear |R| = [32m5.679834e+02[39m
+      0 Linear |R| = [32m5.679834e+02[39m
+      1 Linear |R| = [32m7.493711e-13[39m
+ 1 Nonlinear |R| = [32m2.225929e-12[39m
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [33m1.725313e-12[39m
+
+Time Step 100, time = 0.25, dt = 0.0025
+ 0 Nonlinear |R| = [32m5.679388e+02[39m
+      0 Linear |R| = [32m5.679388e+02[39m
+      1 Linear |R| = [32m7.555489e-13[39m
+ 1 Nonlinear |R| = [32m2.767805e-12[39m
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [33m2.249119e-12[39m
+
+Time Step 101, time = 0.2525, dt = 0.0025
+ 0 Nonlinear |R| = [32m5.678942e+02[39m
+      0 Linear |R| = [32m5.678942e+02[39m
+      1 Linear |R| = [32m7.367803e-13[39m
+ 1 Nonlinear |R| = [32m2.887391e-12[39m
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [33m2.360873e-12[39m
+
+Time Step 102, time = 0.255, dt = 0.0025
+ 0 Nonlinear |R| = [32m5.678496e+02[39m
+      0 Linear |R| = [32m5.678496e+02[39m
+      1 Linear |R| = [32m8.068932e-13[39m
+ 1 Nonlinear |R| = [32m3.073094e-12[39m
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [33m2.428934e-12[39m
+
+Time Step 103, time = 0.2575, dt = 0.0025
+ 0 Nonlinear |R| = [32m5.678050e+02[39m
+      0 Linear |R| = [32m5.678050e+02[39m
+      1 Linear |R| = [32m7.533617e-13[39m
+ 1 Nonlinear |R| = [32m3.107375e-12[39m
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [33m2.554268e-12[39m
+
+Time Step 104, time = 0.26, dt = 0.0025
+ 0 Nonlinear |R| = [32m5.677603e+02[39m
+      0 Linear |R| = [32m5.677603e+02[39m
+      1 Linear |R| = [32m7.486486e-13[39m
+ 1 Nonlinear |R| = [32m3.125423e-12[39m
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [33m2.438105e-12[39m
+
+Time Step 105, time = 0.2625, dt = 0.0025
+ 0 Nonlinear |R| = [32m5.677156e+02[39m
+      0 Linear |R| = [32m5.677156e+02[39m
+      1 Linear |R| = [32m7.485367e-13[39m
+ 1 Nonlinear |R| = [32m3.708096e-12[39m
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [33m3.114747e-12[39m
+
+Time Step 106, time = 0.265, dt = 0.0025
+ 0 Nonlinear |R| = [32m5.676710e+02[39m
+      0 Linear |R| = [32m5.676710e+02[39m
+      1 Linear |R| = [32m7.474112e-13[39m
+ 1 Nonlinear |R| = [32m3.164073e-12[39m
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [33m2.357624e-12[39m
+
+Time Step 107, time = 0.2675, dt = 0.0025
+ 0 Nonlinear |R| = [32m5.676263e+02[39m
+      0 Linear |R| = [32m5.676263e+02[39m
+      1 Linear |R| = [32m7.374622e-13[39m
+ 1 Nonlinear |R| = [32m3.614179e-12[39m
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [33m2.894882e-12[39m
+
+Time Step 108, time = 0.27, dt = 0.0025
+ 0 Nonlinear |R| = [32m5.675815e+02[39m
+      0 Linear |R| = [32m5.675815e+02[39m
+      1 Linear |R| = [32m7.737311e-13[39m
+ 1 Nonlinear |R| = [32m3.754200e-12[39m
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [33m3.131329e-12[39m
+
+Time Step 109, time = 0.2725, dt = 0.0025
+ 0 Nonlinear |R| = [32m5.675368e+02[39m
+      0 Linear |R| = [32m5.675368e+02[39m
+      1 Linear |R| = [32m7.727002e-13[39m
+ 1 Nonlinear |R| = [32m3.626593e-12[39m
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [33m2.878651e-12[39m
+
+Time Step 110, time = 0.275, dt = 0.0025
+ 0 Nonlinear |R| = [32m5.674921e+02[39m
+      0 Linear |R| = [32m5.674921e+02[39m
+      1 Linear |R| = [32m7.393031e-13[39m
+ 1 Nonlinear |R| = [32m3.988797e-12[39m
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [33m3.344482e-12[39m
+
+Time Step 111, time = 0.2775, dt = 0.0025
+ 0 Nonlinear |R| = [32m5.674473e+02[39m
+      0 Linear |R| = [32m5.674473e+02[39m
+      1 Linear |R| = [32m7.756263e-13[39m
+ 1 Nonlinear |R| = [32m4.096883e-12[39m
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [33m3.315045e-12[39m
+
+Time Step 112, time = 0.28, dt = 0.0025
+ 0 Nonlinear |R| = [32m5.674025e+02[39m
+      0 Linear |R| = [32m5.674025e+02[39m
+      1 Linear |R| = [32m7.466286e-13[39m
+ 1 Nonlinear |R| = [32m3.919756e-12[39m
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [33m3.161442e-12[39m
+
+Time Step 113, time = 0.2825, dt = 0.0025
+ 0 Nonlinear |R| = [32m5.673577e+02[39m
+      0 Linear |R| = [32m5.673577e+02[39m
+      1 Linear |R| = [32m7.446978e-13[39m
+ 1 Nonlinear |R| = [32m4.384978e-12[39m
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [33m3.739515e-12[39m
+
+Time Step 114, time = 0.285, dt = 0.0025
+ 0 Nonlinear |R| = [32m5.673129e+02[39m
+      0 Linear |R| = [32m5.673129e+02[39m
+      1 Linear |R| = [32m7.588504e-13[39m
+ 1 Nonlinear |R| = [32m4.525625e-12[39m
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [33m3.799570e-12[39m
+
+Time Step 115, time = 0.2875, dt = 0.0025
+ 0 Nonlinear |R| = [32m5.672681e+02[39m
+      0 Linear |R| = [32m5.672681e+02[39m
+      1 Linear |R| = [32m7.336980e-13[39m
+ 1 Nonlinear |R| = [32m4.503513e-12[39m
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [33m3.752670e-12[39m
+
+Time Step 116, time = 0.29, dt = 0.0025
+ 0 Nonlinear |R| = [32m5.672232e+02[39m
+      0 Linear |R| = [32m5.672232e+02[39m
+      1 Linear |R| = [32m7.439014e-13[39m
+ 1 Nonlinear |R| = [32m4.270734e-12[39m
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [33m3.391845e-12[39m
+
+Time Step 117, time = 0.2925, dt = 0.0025
+ 0 Nonlinear |R| = [32m5.671784e+02[39m
+      0 Linear |R| = [32m5.671784e+02[39m
+      1 Linear |R| = [32m7.516572e-13[39m
+ 1 Nonlinear |R| = [32m4.685013e-12[39m
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [33m3.776932e-12[39m
+
+Time Step 118, time = 0.295, dt = 0.0025
+ 0 Nonlinear |R| = [32m5.671335e+02[39m
+      0 Linear |R| = [32m5.671335e+02[39m
+      1 Linear |R| = [32m7.487330e-13[39m
+ 1 Nonlinear |R| = [32m4.392151e-12[39m
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [33m3.442450e-12[39m
+
+Time Step 119, time = 0.2975, dt = 0.0025
+ 0 Nonlinear |R| = [32m5.670886e+02[39m
+      0 Linear |R| = [32m5.670886e+02[39m
+      1 Linear |R| = [32m7.598974e-13[39m
+ 1 Nonlinear |R| = [32m5.313645e-12[39m
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [33m4.309419e-12[39m
+
+Time Step 120, time = 0.3, dt = 0.0025
+ 0 Nonlinear |R| = [32m5.670438e+02[39m
+      0 Linear |R| = [32m5.670438e+02[39m
+      1 Linear |R| = [32m7.657128e-13[39m
+ 1 Nonlinear |R| = [32m4.735934e-12[39m
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [33m3.883914e-12[39m
+
+Time Step 121, time = 0.3025, dt = 0.0025
+ 0 Nonlinear |R| = [32m5.669989e+02[39m
+      0 Linear |R| = [32m5.669989e+02[39m
+      1 Linear |R| = [32m7.435800e-13[39m
+ 1 Nonlinear |R| = [32m5.207123e-12[39m
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [33m4.101310e-12[39m
+
+Time Step 122, time = 0.305, dt = 0.0025
+ 0 Nonlinear |R| = [32m5.669540e+02[39m
+      0 Linear |R| = [32m5.669540e+02[39m
+      1 Linear |R| = [32m7.680182e-13[39m
+ 1 Nonlinear |R| = [32m5.332539e-12[39m
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [33m4.244499e-12[39m
+
+Time Step 123, time = 0.3075, dt = 0.0025
+ 0 Nonlinear |R| = [32m5.669091e+02[39m
+      0 Linear |R| = [32m5.669091e+02[39m
+      1 Linear |R| = [32m7.744958e-13[39m
+ 1 Nonlinear |R| = [32m5.814601e-12[39m
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [33m4.593591e-12[39m
+
+Time Step 124, time = 0.31, dt = 0.0025
+ 0 Nonlinear |R| = [32m5.668642e+02[39m
+      0 Linear |R| = [32m5.668642e+02[39m
+      1 Linear |R| = [32m7.567915e-13[39m
+ 1 Nonlinear |R| = [32m5.594249e-12[39m
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [33m4.444593e-12[39m
+
+Time Step 125, time = 0.3125, dt = 0.0025
+ 0 Nonlinear |R| = [32m5.668193e+02[39m
+      0 Linear |R| = [32m5.668193e+02[39m
+      1 Linear |R| = [32m7.666502e-13[39m
+ 1 Nonlinear |R| = [32m6.005167e-12[39m
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [33m5.022047e-12[39m
+
+Time Step 126, time = 0.315, dt = 0.0025
+ 0 Nonlinear |R| = [32m5.667744e+02[39m
+      0 Linear |R| = [32m5.667744e+02[39m
+      1 Linear |R| = [32m7.545264e-13[39m
+ 1 Nonlinear |R| = [32m6.808389e-12[39m
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [33m5.536840e-12[39m
+
+Time Step 127, time = 0.3175, dt = 0.0025
+ 0 Nonlinear |R| = [32m5.667295e+02[39m
+      0 Linear |R| = [32m5.667295e+02[39m
+      1 Linear |R| = [32m7.433768e-13[39m
+ 1 Nonlinear |R| = [32m6.283187e-12[39m
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [33m5.118597e-12[39m
+
+Time Step 128, time = 0.32, dt = 0.0025
+ 0 Nonlinear |R| = [32m5.666846e+02[39m
+      0 Linear |R| = [32m5.666846e+02[39m
+      1 Linear |R| = [32m7.711215e-13[39m
+ 1 Nonlinear |R| = [32m6.279043e-12[39m
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [33m5.120971e-12[39m
+
+Time Step 129, time = 0.3225, dt = 0.0025
+ 0 Nonlinear |R| = [32m5.666397e+02[39m
+      0 Linear |R| = [32m5.666397e+02[39m
+      1 Linear |R| = [32m7.671116e-13[39m
+ 1 Nonlinear |R| = [32m5.749183e-12[39m
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [33m4.430074e-12[39m
+
+Time Step 130, time = 0.325, dt = 0.0025
+ 0 Nonlinear |R| = [32m5.665948e+02[39m
+      0 Linear |R| = [32m5.665948e+02[39m
+      1 Linear |R| = [32m7.642279e-13[39m
+ 1 Nonlinear |R| = [32m6.366349e-12[39m
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [33m5.001838e-12[39m
+
+Time Step 131, time = 0.3275, dt = 0.0025
+ 0 Nonlinear |R| = [32m5.665499e+02[39m
+      0 Linear |R| = [32m5.665499e+02[39m
+      1 Linear |R| = [32m7.299618e-13[39m
+ 1 Nonlinear |R| = [32m7.050482e-12[39m
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [33m5.846136e-12[39m
+
+Time Step 132, time = 0.33, dt = 0.0025
+ 0 Nonlinear |R| = [32m5.665051e+02[39m
+      0 Linear |R| = [32m5.665051e+02[39m
+      1 Linear |R| = [32m7.693730e-13[39m
+ 1 Nonlinear |R| = [32m6.643985e-12[39m
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [33m5.229899e-12[39m
+
+Time Step 133, time = 0.3325, dt = 0.0025
+ 0 Nonlinear |R| = [32m5.664602e+02[39m
+      0 Linear |R| = [32m5.664602e+02[39m
+      1 Linear |R| = [32m7.575791e-13[39m
+ 1 Nonlinear |R| = [32m6.193454e-12[39m
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [33m4.880631e-12[39m
+
+Time Step 134, time = 0.335, dt = 0.0025
+ 0 Nonlinear |R| = [32m5.664153e+02[39m
+      0 Linear |R| = [32m5.664153e+02[39m
+      1 Linear |R| = [32m7.707082e-13[39m
+ 1 Nonlinear |R| = [32m6.869206e-12[39m
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [33m5.705229e-12[39m
+
+Time Step 135, time = 0.3375, dt = 0.0025
+ 0 Nonlinear |R| = [32m5.663705e+02[39m
+      0 Linear |R| = [32m5.663705e+02[39m
+      1 Linear |R| = [32m7.405874e-13[39m
+ 1 Nonlinear |R| = [32m7.734501e-12[39m
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [33m6.424506e-12[39m
+
+Time Step 136, time = 0.34, dt = 0.0025
+ 0 Nonlinear |R| = [32m5.663257e+02[39m
+      0 Linear |R| = [32m5.663257e+02[39m
+      1 Linear |R| = [32m7.547616e-13[39m
+ 1 Nonlinear |R| = [32m7.650303e-12[39m
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [33m6.567295e-12[39m
+
+Time Step 137, time = 0.3425, dt = 0.0025
+ 0 Nonlinear |R| = [32m5.662808e+02[39m
+      0 Linear |R| = [32m5.662808e+02[39m
+      1 Linear |R| = [32m7.542562e-13[39m
+ 1 Nonlinear |R| = [32m6.930338e-12[39m
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [33m5.587069e-12[39m
+
+Time Step 138, time = 0.345, dt = 0.0025
+ 0 Nonlinear |R| = [32m5.662360e+02[39m
+      0 Linear |R| = [32m5.662360e+02[39m
+      1 Linear |R| = [32m7.520000e-13[39m
+ 1 Nonlinear |R| = [32m7.137067e-12[39m
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [33m5.651407e-12[39m
+
+Time Step 139, time = 0.3475, dt = 0.0025
+ 0 Nonlinear |R| = [32m5.661912e+02[39m
+      0 Linear |R| = [32m5.661912e+02[39m
+      1 Linear |R| = [32m7.752453e-13[39m
+ 1 Nonlinear |R| = [32m7.477241e-12[39m
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [33m6.195211e-12[39m
+
+Time Step 140, time = 0.35, dt = 0.0025
+ 0 Nonlinear |R| = [32m5.661464e+02[39m
+      0 Linear |R| = [32m5.661464e+02[39m
+      1 Linear |R| = [32m7.810703e-13[39m
+ 1 Nonlinear |R| = [32m7.289200e-12[39m
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [33m5.975117e-12[39m
+
+Time Step 141, time = 0.3525, dt = 0.0025
+ 0 Nonlinear |R| = [32m5.661017e+02[39m
+      0 Linear |R| = [32m5.661017e+02[39m
+      1 Linear |R| = [32m7.800256e-13[39m
+ 1 Nonlinear |R| = [32m7.309636e-12[39m
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [33m5.593983e-12[39m
+
+Time Step 142, time = 0.355, dt = 0.0025
+ 0 Nonlinear |R| = [32m5.660569e+02[39m
+      0 Linear |R| = [32m5.660569e+02[39m
+      1 Linear |R| = [32m7.394461e-13[39m
+ 1 Nonlinear |R| = [32m7.961993e-12[39m
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [33m6.302330e-12[39m
+
+Time Step 143, time = 0.3575, dt = 0.0025
+ 0 Nonlinear |R| = [32m5.660122e+02[39m
+      0 Linear |R| = [32m5.660122e+02[39m
+      1 Linear |R| = [32m7.156682e-13[39m
+ 1 Nonlinear |R| = [32m7.667372e-12[39m
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [33m6.222989e-12[39m
+
+Time Step 144, time = 0.36, dt = 0.0025
+ 0 Nonlinear |R| = [32m5.659674e+02[39m
+      0 Linear |R| = [32m5.659674e+02[39m
+      1 Linear |R| = [32m7.701922e-13[39m
+ 1 Nonlinear |R| = [32m7.434102e-12[39m
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [33m6.005840e-12[39m
+
+Time Step 145, time = 0.3625, dt = 0.0025
+ 0 Nonlinear |R| = [32m5.659227e+02[39m
+      0 Linear |R| = [32m5.659227e+02[39m
+      1 Linear |R| = [32m7.795857e-13[39m
+ 1 Nonlinear |R| = [32m7.977603e-12[39m
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [33m6.179954e-12[39m
+
+Time Step 146, time = 0.365, dt = 0.0025
+ 0 Nonlinear |R| = [32m5.658780e+02[39m
+      0 Linear |R| = [32m5.658780e+02[39m
+      1 Linear |R| = [32m7.651297e-13[39m
+ 1 Nonlinear |R| = [32m8.691278e-12[39m
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [33m7.155986e-12[39m
+
+Time Step 147, time = 0.3675, dt = 0.0025
+ 0 Nonlinear |R| = [32m5.658333e+02[39m
+      0 Linear |R| = [32m5.658333e+02[39m
+      1 Linear |R| = [32m7.533256e-13[39m
+ 1 Nonlinear |R| = [32m8.337243e-12[39m
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [33m6.976774e-12[39m
+
+Time Step 148, time = 0.37, dt = 0.0025
+ 0 Nonlinear |R| = [32m5.657887e+02[39m
+      0 Linear |R| = [32m5.657887e+02[39m
+      1 Linear |R| = [32m7.429303e-13[39m
+ 1 Nonlinear |R| = [32m9.607595e-12[39m
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [33m8.090361e-12[39m
+
+Time Step 149, time = 0.3725, dt = 0.0025
+ 0 Nonlinear |R| = [32m5.657440e+02[39m
+      0 Linear |R| = [32m5.657440e+02[39m
+      1 Linear |R| = [32m7.671085e-13[39m
+ 1 Nonlinear |R| = [32m8.391361e-12[39m
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [33m6.911644e-12[39m
+
+Time Step 150, time = 0.375, dt = 0.0025
+ 0 Nonlinear |R| = [32m5.656994e+02[39m
+      0 Linear |R| = [32m5.656994e+02[39m
+      1 Linear |R| = [32m7.401114e-13[39m
+ 1 Nonlinear |R| = [32m8.356532e-12[39m
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [33m6.783764e-12[39m
+
+Time Step 151, time = 0.3775, dt = 0.0025
+ 0 Nonlinear |R| = [32m5.656547e+02[39m
+      0 Linear |R| = [32m5.656547e+02[39m
+      1 Linear |R| = [32m7.626157e-13[39m
+ 1 Nonlinear |R| = [32m8.892594e-12[39m
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [33m7.379430e-12[39m
+
+Time Step 152, time = 0.38, dt = 0.0025
+ 0 Nonlinear |R| = [32m5.656101e+02[39m
+      0 Linear |R| = [32m5.656101e+02[39m
+      1 Linear |R| = [32m7.606594e-13[39m
+ 1 Nonlinear |R| = [32m8.868380e-12[39m
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [33m7.005244e-12[39m
+
+Time Step 153, time = 0.3825, dt = 0.0025
+ 0 Nonlinear |R| = [32m5.655655e+02[39m
+      0 Linear |R| = [32m5.655655e+02[39m
+      1 Linear |R| = [32m7.457040e-13[39m
+ 1 Nonlinear |R| = [32m8.544040e-12[39m
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [33m6.763544e-12[39m
+
+Time Step 154, time = 0.385, dt = 0.0025
+ 0 Nonlinear |R| = [32m5.655209e+02[39m
+      0 Linear |R| = [32m5.655209e+02[39m
+      1 Linear |R| = [32m7.774100e-13[39m
+ 1 Nonlinear |R| = [32m9.163831e-12[39m
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [33m7.542486e-12[39m
+
+Time Step 155, time = 0.3875, dt = 0.0025
+ 0 Nonlinear |R| = [32m5.654764e+02[39m
+      0 Linear |R| = [32m5.654764e+02[39m
+      1 Linear |R| = [32m7.407954e-13[39m
+ 1 Nonlinear |R| = [32m9.808144e-12[39m
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [33m8.067552e-12[39m
+
+Time Step 156, time = 0.39, dt = 0.0025
+ 0 Nonlinear |R| = [32m5.654318e+02[39m
+      0 Linear |R| = [32m5.654318e+02[39m
+      1 Linear |R| = [32m7.674284e-13[39m
+ 1 Nonlinear |R| = [32m9.117312e-12[39m
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [33m7.254841e-12[39m
+
+Time Step 157, time = 0.3925, dt = 0.0025
+ 0 Nonlinear |R| = [32m5.653872e+02[39m
+      0 Linear |R| = [32m5.653872e+02[39m
+      1 Linear |R| = [32m7.649451e-13[39m
+ 1 Nonlinear |R| = [32m9.107792e-12[39m
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [33m7.132428e-12[39m
+
+Time Step 158, time = 0.395, dt = 0.0025
+ 0 Nonlinear |R| = [32m5.653427e+02[39m
+      0 Linear |R| = [32m5.653427e+02[39m
+      1 Linear |R| = [32m7.271308e-13[39m
+ 1 Nonlinear |R| = [32m1.010813e-11[39m
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [33m8.386356e-12[39m
+
+Time Step 159, time = 0.3975, dt = 0.0025
+ 0 Nonlinear |R| = [32m5.652981e+02[39m
+      0 Linear |R| = [32m5.652981e+02[39m
+      1 Linear |R| = [32m7.487591e-13[39m
+ 1 Nonlinear |R| = [32m9.685994e-12[39m
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [33m7.464576e-12[39m
+
+Time Step 160, time = 0.4, dt = 0.0025
+ 0 Nonlinear |R| = [32m5.652536e+02[39m
+      0 Linear |R| = [32m5.652536e+02[39m
+      1 Linear |R| = [32m7.806750e-13[39m
+ 1 Nonlinear |R| = [32m9.395795e-12[39m
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [33m7.467487e-12[39m
+Finished Executing                                                                       [[33m 39.85 s[39m] [[33m  207 MB[39m]
+WARNING! There are options you set that were not used!
+WARNING! could be spelling mistake, etc!
+There is one unused database option. It is:
+Option left: name:-skip_petscrc (no value) source: command line

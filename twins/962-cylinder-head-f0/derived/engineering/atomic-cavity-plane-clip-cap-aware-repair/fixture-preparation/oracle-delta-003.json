@@ -1,0 +1,20 @@
+{
+  "schema": "962-cap-aware-fixture-oracle-counting-correction/v1",
+  "reason": "Static review before execution found Counter(mapping) uses successor IDs as counts; count mapping keys explicitly.",
+  "original_002_unrun_and_preserved": true,
+  "assessor": {
+    "original_sha256": "b429e5ec09f9705b07b57df1c3dbb63fdb334ec594368971cb933b26bf0b6ea2",
+    "new_sha256": "5df03915cf8b1cbfb89c5e58b547e3a8e834795a28d6a868d011a9066fe715c5",
+    "old": "Counter(b for a,b in remaining)!=Counter(following)",
+    "new": "Counter(b for a,b in remaining)!=Counter(following.keys())",
+    "complete_reverse_to002": true
+  },
+  "tests": {
+    "original_sha256": "4848c8392b53f3dde08cdbcb0d6749944c31bfdd4edfa43d7dec44ef15e36036",
+    "new_sha256": "3be3afcf1bf1c024cc2428c1997941c6fd867c52713acbcc9532d6de39a9ef51",
+    "only_change": "assess_002 import -> assess_003",
+    "complete_reverse_to002": true
+  },
+  "geometry_oracle_and_all_numerical_criteria_changed": false,
+  "unit_or_native_tests_executed": false
+}

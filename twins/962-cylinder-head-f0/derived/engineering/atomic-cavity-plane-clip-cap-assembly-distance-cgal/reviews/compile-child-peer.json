@@ -1,0 +1,103 @@
+{
+  "schema": "962-CGAL-directed-distance-compile-child-peer/v1",
+  "status": "clear_exact_compile_child_only",
+  "method": "Independent stdlib source/AST/frozen JSON/hash and path/control inspection. No prepared import/test, NumPy/scientific/native/Docker/compiler, Git or network call.",
+  "actual_contract": {
+    "path": "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-distance-cgal-compile-prep-001/actual-contract-001.json",
+    "sha256": "a217354924266e64c434dd1e89e129a789562b9d2d9049454e27922bc815762e"
+  },
+  "all57_direct_input_pins_current_before_after": true,
+  "all20_wrapper_held_pins_and_all31_controller_held_pins_in_direct_map": true,
+  "selected_identities": {
+    "cpp_sha256": "26297ed13e6c95588d94abf8a320e7aaea2c8e4d12cec125b189cfd58ae7d408",
+    "controller002_sha256": "c51fc33575062b35d38d8f9d2920d3e3ef140707426e3d50b0f3b2f57a9fbaf5",
+    "metadata_sha256": "bb1d006e6146918df8b566aea4d244c0c00b143587d30dc41dfb1da361a5e215",
+    "absolute_budget_core_sha256": "f46c09cb7b9a53ce0470d103932bce8e6e6682c84bf2771c0827fd9f29996e43",
+    "own_controller_path_is_current_inputpin": true,
+    "same_depth_ROOT_and_adjacent_hash_bound_module_chain": true,
+    "wrapper_independent_source_peer_sha256": "ba77c429e99e670a314580cc0cf123d6b0ece829d84f0900258ca28866c3e7fb",
+    "controller_independent_source_peer_sha256": "7a4b30f569563d3d7c6afb052230ef63c468404e0469130ae009236ba58853c2"
+  },
+  "compile_job": {
+    "label": "compile-directed-distance",
+    "entrypoint": "/usr/bin/c++",
+    "arguments": [
+      "-std=c++17",
+      "-O2",
+      "-DNDEBUG",
+      "/directed_distance.cpp",
+      "-o",
+      "/out/bounded-distance",
+      "-lgmp",
+      "-lmpfr"
+    ],
+    "read_only_mounts": {
+      "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-distance-cgal-prep-001/directed_distance.cpp": "/directed_distance.cpp"
+    },
+    "expected_returncodes": [
+      0
+    ]
+  },
+  "limits": {
+    "cpus": 2,
+    "memory_bytes": 4294967296,
+    "swap_bytes": 0,
+    "hard_wall_seconds_each": 300,
+    "tmpfs_bytes": 1073741824,
+    "network": "none"
+  },
+  "actual_container_argv_scope": {
+    "image_id": "sha256:57c6b17ed0bd093a61a3d3cecb7563e912caeb3832fd59e8cec2d4d9d4d1e2f8",
+    "entrypoint": "/usr/bin/c++",
+    "serial_jobs": 1,
+    "NanoCpus": 2000000000,
+    "Memory": 4294967296,
+    "MemorySwap": 4294967296,
+    "network": "none",
+    "readonly_rootfs": true,
+    "tmpfs": {
+      "path": "/tmp",
+      "bytes": 1073741824
+    },
+    "read_only_native_mounts": [
+      {
+        "path": "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-distance-cgal-prep-001/directed_distance.cpp",
+        "container_path": "/directed_distance.cpp"
+      }
+    ],
+    "sole_writable_bind": {
+      "path": "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-distance-cgal-compile-001",
+      "container_path": "/out"
+    },
+    "no_geometry_BINARY_or_source_ID_mount_or_native_execution_job": true
+  },
+  "prerequisite_associations": {
+    "wrapper_preparation_sha256": "3feaf8c3c3dc45a0b0ca8fb0d4049992c93271dc2f28691f935080c85185bd84",
+    "controller002_preparation_sha256": "0666ab4531c58ea52024b354218b6d64bb47e129bd5aba50cf7ac5aa028e63c1",
+    "root_nine_mock_receipt_sha256": "e115a91bdbe8b813a61638fc0da0f7c55e0a0517e13c74e0da4090b690220859",
+    "root_nine_mocks_RC0_attributed_not_rerun": true,
+    "selected_test_sha256": "c0495150fd70adc085ec42c687313070a00c255b0f4cb27e819808112a0a8c0e",
+    "legacy001_required_test_also_current_directpin": true,
+    "resource_preflight_sha256": "06be885de2a1bfe6b2631fbe26c798f8c07d2712163986267041432a46491e07",
+    "selected_python_sha256": "72956ad35cff7691dfed9e04c9593de825ffd5b2fa7e8bc9ae96ce9a1af65621",
+    "recorded_ARM64_image_and_Docker_capacity_only": true,
+    "created_container_actual_controls_mounts_still_require_runtime_readback": true
+  },
+  "source_build_scope": "Self-contained directed_distance.cpp includes only installed CGAL and standard headers; selected command compiles C++17/O2/DNDEBUG and links GMP/MPFR to fresh/out/bounded-distance. It neither executes that binary nor performs fixture/head/distance calls. Actual compiler/API compatibility and ELF hash remain unknown until one bounded compile closes.",
+  "output_absent_and_non_symlink_before_review_completion": true,
+  "review_flag_scope": "True root/peer flags describe prior wrapper/controller source reviews only; this external exact-child review is an additional nonrecursive prerequisite. No actual compile or numerical result is retroactively credited to those flags.",
+  "limits_and_authority": [
+    "Unchanged2CPU/4GiB/no additional swap/no network/read-only rootfs/1GiB tmpfs and300s acceptance budget, with new absolute setup-started deadline and preserved bounded owned-container cleanup.",
+    "Complete immutable image identity and expected controls must be read back on the newly created owned container before start; preflight capacity is not free memory, CPU use or peak measurement.",
+    "This child authorizes only the one compiler process after root accepts this review. Actual compiled artifact identity, fixtures, head query and combined numerical assessment require separate stopped reviews and children."
+  ],
+  "findings": [],
+  "blocking_findings": 0,
+  "reviewer_native_or_compiler_calls": 0,
+  "qualification": {
+    "compilation_success_established": false,
+    "numerical_fixture_acceptance": false,
+    "two_way_distance_accepted": false,
+    "head_physics_or_manufacturing_admitted": false
+  }
+}

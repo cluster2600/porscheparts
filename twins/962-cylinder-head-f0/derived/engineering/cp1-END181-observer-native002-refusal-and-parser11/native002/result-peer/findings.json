@@ -1,0 +1,169 @@
+{
+  "schema": "962-observer004-native002-refusal-saved-result-findings/v1",
+  "decision": "REFUSAL_ACCOUNTING_RECONSTRUCTED_NO_NATIVE_CAPTURE_OR_MEASUREMENT_ACCEPTANCE",
+  "status": {
+    "raw_native_returncode": 0,
+    "caller_returncode": 1,
+    "raw_outer_returncode": 2,
+    "outer_completed_chunk": "52121f",
+    "initial_chunk": "8530c5",
+    "root_closed_candidate": false,
+    "caller_completed_candidate": false,
+    "original001_refusal_preserved": true
+  },
+  "observation_localization": {
+    "error": {
+      "type": "PermissionError",
+      "message": "[Errno 1] Operation not permitted",
+      "phase": "owned_resource_poll",
+      "operation": "sample_owned({proc.pid}|{g for g in owned if group_exists(g)})",
+      "target_PID": null,
+      "elapsed_seconds": 49.01976312487386,
+      "owned_adapter_group_ID": 41037,
+      "owned_native_group_IDs": [
+        41040
+      ],
+      "traceback": "Traceback (most recent call last):\n  File \"/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native-measurement-prep-002/run_root_once.py\", line 202, in main\n    observed=sample_owned({proc.pid}|{g for g in owned if group_exists(g)})\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native-measurement-prep-002/run_root_once.py\", line 104, in sample_owned\n    missing=[g for g in groups if group_exists(g) and not any(x['pgid']==g for x in rows)]\n                                  ^^^^^^^^^^^^^^^\n  File \"/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native-measurement-prep-002/run_root_once.py\", line 36, in group_exists\n    try:os.killpg(pid,0);return True\n        ^^^^^^^^^^^^^^^^\nPermissionError: [Errno 1] Operation not permitted\n"
+    },
+    "root_stop_reason": "resource_or_group_observation_failed",
+    "source_correspondence": "Owner002 main202 calls sample_owned. Inside its missing-list at104, group_exists36 calls os.killpg(pid,0). PermissionError propagates; group_exists only converts ProcessLookupError to absent. Main211 records live-adapter observation error and the unchanged stop path215 requests cleanup. The traceback names this call site; it does not capture the individual failing g.",
+    "specific_failing_group": "Unknown among the current owned group IDs41037/41040; aggregate observation_target_PID is null.",
+    "cause": "Unknown. Saved observations do not establish a zombie/permission/identity/platform explanation, or any cause for001. Later absence does not erase earlier EPERM.",
+    "separate_microprobe": "No source hypothesis, proposed probe or later probe result is used as this refusal evidence or an acceptance substitute."
+  },
+  "signals_and_cleanup": {
+    "root_external_stop_requests": [],
+    "root_sent_signals": [
+      {
+        "group": 41037,
+        "signal": "SIGTERM"
+      }
+    ],
+    "caller_stop_requests": [
+      {
+        "signal": 15,
+        "elapsed_seconds": 48.6589547090698
+      }
+    ],
+    "caller_TERM_requested": true,
+    "native_process_reaped": true,
+    "native_group_absent_saved": true,
+    "adapter_waited_reaped": true,
+    "adapter_group_absent_saved": true,
+    "native_group_join": true,
+    "native_PID": 41040,
+    "adapter_group": 41037,
+    "lingering_groups_before_final_cleanup": [],
+    "root_attributed_independent_poststop_queries": {
+      "41037": {
+        "absent": true,
+        "error": null
+      },
+      "41040": {
+        "absent": true,
+        "error": null
+      }
+    },
+    "caller_error": {
+      "type": "ValueError",
+      "message": "Native failure retained without retry"
+    },
+    "caller_raw_stderr_terminal": "Post-receipt native closure refused; retain prefinal receipt and require caller/outer RC0",
+    "interpretation": "The native0 status does not pass the caller and outer gates. Caller TERM latch and full refusal traceback are preserved; the caller raises again at its unchanged postreceipt305 need predicate. No new signaling or group query was executed by reviewer."
+  },
+  "identity_reconstruction": {
+    "normalized8": {
+      "authorization": true,
+      "direct": true,
+      "staged_inputs": true,
+      "inputs": true,
+      "runtime": true,
+      "selected_host_records": true,
+      "provider_paths": true,
+      "python": true
+    },
+    "normalization": "Compare each before[k] to after[k].observed with after[k].error null. Wrapper-dictionary equality is not an identity test.",
+    "inputs": 222,
+    "native_runtime_files": 19,
+    "native_aliases": 13,
+    "selected_host_records": 89,
+    "provider_paths": 22,
+    "selected_outer_python": "Saved CPython3.12.11/1699 original alias;3.10 entries in host map remain historical separate records.",
+    "direct_root_roles": 9,
+    "staged_inputs": 4,
+    "staged_bytes": 1213802,
+    "joins": "Root before values match fresh-preflight/actual expectations, authorization and nine current named direct source/control/peer descriptors. All222 saved input hash fields equal actual.input_sha256; runtime19 hashes/13 aliases and22 provider rows equal actual expectations. Host89 digest independently reconstructed from sorted saved descriptors as16d12faabb4fdb467ca5dd00dc7f6f21e90f189115024c3871a94b978d35913a. Staging hash/byte metadata join the opaque root inventory and caller input hash map. No described scientific/runtime body was dereferenced."
+  },
+  "timing_and_resources": {
+    "admitted_native_seconds": 100,
+    "admitted_outer_seconds": 115,
+    "TERM_grace_seconds": 10,
+    "sampled_RSS_limit_bytes": 2147483648,
+    "inclusive_output_limit_bytes": 536870912,
+    "positive_growth_limit_bytes": 33554432,
+    "native_threads_requested": 1,
+    "retry_count": 0,
+    "root_attributed_ordered_whole_outer_clock": {
+      "before_UTC": "2026-10-20 19:45:46 UTC",
+      "after_completed_UTC": "2026-10-20 19:46:36 UTC",
+      "resolution_seconds": 1,
+      "conservative_upper_seconds": 51,
+      "JS_whole_seconds": 50.449,
+      "exec_wait_is_not_complete_lifetime": true
+    },
+    "independently_derived_UTC_upper_seconds": 51,
+    "receipt_root_wall_seconds": 50.25319750001654,
+    "receipt_caller_wall_seconds": 48.8285271669738,
+    "root_sample_count": 85,
+    "native_sample_count": 351,
+    "root_sampled_peak_bytes": 249708544,
+    "native_sampled_peak_bytes": 219381760,
+    "samples": "All85 saved root aggregate values equal sums of their full saved owned PID/PGID/RSS/state rows; those raw numeric rows independently reconstruct exactly. All351 native samples and both saved maxima match. Numeric0 would be retained; no missing sample at the failure is invented. Empty saved exit-race lists are preserved; the terminal error is a live-adapter refusal.",
+    "scope": "Root UTC bracket19:45:46 to19:46:36 with1s resolution gives conservative51s covering complete return; JS50.449s is separate root observation. Receipt scalars are not whole-lifetime timing or hard quotas. Sample peaks do not bound unsampled true peaks. Timing/byte compliance does not override error/status refusal."
+  },
+  "inclusive_budget_reconstruction": {
+    "root_attributed_final_regular_files": 1128,
+    "final_inclusive_bytes": 433300929,
+    "positive_per_file_growth_bytes": 11638147,
+    "inclusive_headroom_bytes": 103569983,
+    "growth_headroom_bytes": 21916285,
+    "opaque_root_inventory_rows": 1127,
+    "opaque_caller_hash_rows": 1120,
+    "historical_allowance_rows": 1122,
+    "method": "Project all1127 root-produced path/hash/size descriptors into O/D sizes and add the closed-result self descriptor; exact equality with every1128 final root-census key/size. Sum all final sizes including all staged inputs, controls, both receipts and logs:433300929. Independently sum max(final-size - historical same-name O allowance,0) for O plus entire D:11638147. No negative shrink offsets, input subtraction or raw-file census/stat/hash by reviewer.",
+    "caller_inventory_join": "All1120 caller-produced opaque artifact hashes equal the corresponding root output descriptors. Those hashes are producer metadata, not independently verified bodies or completeness proof.",
+    "census_canonical_projection_sha256": "b41bcad50deb038ee271400805c686f4bc8074fc05ef37b038ce8fe5f9eca9b6",
+    "root_output_inventory_canonical_projection_sha256": "7ab65c4a0de19fa7e63b5989118c06c21a41660d327cb79bd51073e7fe7c2bf9",
+    "caveat": "Final filesystem census is root-attributed saved evidence. A preserved receipt or a path/size/hash list does not validate map/vector/field content."
+  },
+  "text_and_loader_observations": {
+    "native_log_full_UTF8_lines": 4233,
+    "adapter_stdout_bytes": 0,
+    "adapter_stderr_bytes": 1319,
+    "native_log_bytes": 272166,
+    "native_log_scope": "Complete native.log read as text. It ends with Finished Executing and preserves deprecation plus unused-option warnings for -skip_petscrc and -snes_linesearch_type basic. Those messages are recorded, not altered or diagnosed as the EPERM cause. No vector, node-map, CSV/CDF or real-field format parser ran.",
+    "loader_parsed_rows": 731,
+    "loader_unparsed_rows": 155,
+    "all_raw_row_associations_reconstructed": true,
+    "single_expected004_plugin_raw_row": {
+      "raw": "dyld[41040]: <BA380343-F7C9-3505-8256-8A27E93D5031> /Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/cp1-oneway-cooling-release-richardson2-END181-dof-map-observer-prep-004/build-001/libcoupon_end181_observer-opt.dylib",
+      "path": "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/cp1-oneway-cooling-release-richardson2-END181-dof-map-observer-prep-004/build-001/libcoupon_end181_observer-opt.dylib",
+      "resolved": "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/cp1-oneway-cooling-release-richardson2-END181-dof-map-observer-prep-004/build-001/libcoupon_end181_observer-opt.dylib",
+      "OS_system_image_attribution": false,
+      "shared_cache_placement_observed": false
+    },
+    "declared_provider_canonical_count": 21,
+    "observed_declared_canonical_count": 20,
+    "unobserved_declared_canonical_provider": [
+      "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-local-installed-002/lib/libmetaphysicl.11.dylib"
+    ],
+    "scope": "All731 raw image lines/path associations and155 unparsed dyld lines join full saved native log exactly. Saved resolved-path attribution is used without new filesystem resolution. Metaphysicl remains unobserved; no full transitive closure, ABI, callback/map fidelity or self-retention/crash-cause proof."
+  },
+  "refusal_limits": [
+    "Accept only preservation/accounting of this refused once-run and localized operation. Native0/caller1/outer2 is not a completed accepted capture.",
+    "Presence and producer hashes/sizes for the DOF map and three streams remain opaque. No headers, arrays, source-ID associations, vector counts, numerical values or physical interpretation accepted.",
+    "Original12 mechanical aggregate failures remain unresolved; no force/reaction/unscaling/scalar/field result reassessed here.",
+    "Original001 cause remains unknown. No physics/material/process/head/manufacturing acceptance, next actual, retry, new solver or tolerance authority."
+  ],
+  "reviewer_lineage": "lpbf_linear_refinement authored earlier observer/build/donor preparation and both current exact-child/diagnostics source peers, but not Head native002 binding adaptation or root execution/result assembly. This is independent saved refusal accounting within that disclosed ancestry, not new independent scientific validation."
+}

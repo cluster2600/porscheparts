@@ -1,0 +1,85 @@
+{
+  "schema": "962-fixed-thermoelastic-assessor-primary-source-context/v1",
+  "scope": "Read-only official source context and selected local Python decoder source; no source-to-installed-binary or complete ABI equivalence. No upstream source bodies distributed.",
+  "MOOSE_revision": "7c06bdcefd02f9f31f4508839f21f410561309a4",
+  "MOOSE_sampler_ID_sources": [
+    {
+      "path": "framework/src/vectorpostprocessors/NodalValueSampler.C",
+      "url": "https://raw.githubusercontent.com/idaholab/moose/7c06bdcefd02f9f31f4508839f21f410561309a4/framework/src/vectorpostprocessors/NodalValueSampler.C",
+      "sha256": "b71b3a7c45408e64cc8ffe16e71b8b9fb421e48a482921387dd07428e74f5a58",
+      "bytes": 4418,
+      "lines": [
+        101
+      ],
+      "finding": "Sampler ID is current native node.id()."
+    },
+    {
+      "path": "framework/src/vectorpostprocessors/ElementMaterialSampler.C",
+      "url": "https://raw.githubusercontent.com/idaholab/moose/7c06bdcefd02f9f31f4508839f21f410561309a4/framework/src/vectorpostprocessors/ElementMaterialSampler.C",
+      "sha256": "25088d78dc89d30313602b02d2f3f4f9eb29bc99c9310961fd0ae392d2331d4d",
+      "bytes": 7987,
+      "lines": [
+        143,
+        150,
+        151,
+        152
+      ],
+      "finding": "Native element.id(), qp index and physical quadrature coordinates are output together."
+    }
+  ],
+  "libMesh_writer": {
+    "revision": "e17a3d34a3ccc894ca0f510eab4f150f59cd7466",
+    "url": "https://raw.githubusercontent.com/libMesh/libmesh/e17a3d34a3ccc894ca0f510eab4f150f59cd7466/src/mesh/exodusII_io_helper.C",
+    "sha256": "9c765b63dd2c508f47b78825918520413786582969535f915233d46c13ead7c7",
+    "bytes": 212480,
+    "lines": {
+      "default_set_unique_ids_from_maps_false": 393,
+      "HEX8_identity_conversion": 497,
+      "node_id_plus_one": 2969,
+      "element_id_plus_one": 3649,
+      "read_inverse_map_minus_one": 2540
+    },
+    "observed_policy": "Require external map minus1 and exact complete source-ID coordinate words/native ordered-cell and QP associations. Refuse other writer numbering modes rather than infer an ID permutation.",
+    "installed_build_equivalence": false,
+    "package_label_0772c3d_public_resolution": "Official libMesh and idaholab/libmesh commit/raw URLs for this abbreviated label returned404; no package source revision is asserted."
+  },
+  "strain_context": {
+    "url": "https://raw.githubusercontent.com/idaholab/moose/7c06bdcefd02f9f31f4508839f21f410561309a4/modules/solid_mechanics/src/materials/ADComputeStrainBase.C",
+    "sha256": "33c1987ad3ca9e721fd43c5846a66fae33ce551017b358b9d92bb0a2d37ccf36",
+    "bytes": 4022,
+    "lines": [
+      29,
+      100
+    ],
+    "finding": "Default volumetric_locking_correction=false; zero initial strains. This is context, not runtime/source equivalence or a substitute for saved tensor checks."
+  },
+  "decoder_lineage": {
+    "path": "work/962-engineering/imported-elastic-cube-assessor-prep-002/assess_cube.py",
+    "sha256": "e3828c7d99b4afb16115096b95081337ee26429e40cfd7adfa8e34cebd6bce44",
+    "function": "read_exodus",
+    "lines": [
+      218,
+      247
+    ],
+    "reuse": "Read-only netcdf_file, explicit dimensions/maps/connectivity/named fields and copies with mmap=False. Case-specific code is new; no copied exact function AST or inherited elastic acceptance claim."
+  },
+  "selected_local_decoder": {
+    "selection_path": "work/962-engineering/imported-elastic-cube-assessor-runtime-selection-001/selection.json",
+    "selection_sha256": "2b3b2ac0f52ecef6f349d45524f26011da94c257fc0ede5067a9f236681e9713",
+    "python_sha256": "1699bf8aa705a8bb71613bef5cdd7d7c8c9d9a188a841f41679aa9b5830b8f60",
+    "numpy": "2.2.6",
+    "scipy": "1.17.1",
+    "module": "scipy.io._netcdf",
+    "module_sha256": "6025d4bac7f256ce5feecabeff1602652d870585ecff55f53400fc75aae9805c",
+    "source_lines": [
+      14,
+      235,
+      245,
+      292,
+      604,
+      611
+    ],
+    "CDF_policy": "Explicit CDF1/CDF2 magic only. SciPy source documents NetCDF3 scope. Selected258 file identities are metadata until future root verification; no scientific import or runtime body read by author."
+  },
+  "retrieval": "Official raw HTTPS text fetched using curl-q with normal certificate verification. An earlier stdlib Python metadata request failed certificate validation and was preserved in tool history; verification was never disabled. No credentials/config/token stores, package bodies or private registry were read."
+}

@@ -1,0 +1,45 @@
+{
+  "schema": "962-row-first-mock-test-plan/v1",
+  "status": "TEN_METHODS_UNRUN",
+  "test_case": "RowFirstMockGuards",
+  "expected_method_count": 10,
+  "exact_sorted_methods": [
+    "test_01_exact_three_occurrences_and_cleanup_lifecycle_reuse",
+    "test_02_known_R_Z_question_and_zero_RSS_skip_liveness_old_negative_witness",
+    "test_03_real_main_passes_known_set_and_discovery_predicate_stays_narrow",
+    "test_04_missing_group_absent_live_EPERM_and_unknown_remain_distinct",
+    "test_05_empty_rows_never_become_successful_zero_RSS",
+    "test_06_malformed_known_rows_and_changed_group_refuse_before_liveness",
+    "test_07_ps_failure_or_unknown_query_error_refuses_and_unowned_rows_do_not_join",
+    "test_08_real_handler_live_adapter_retains_fatal_error_context_and_prior_stop",
+    "test_09_real_handler_direct_exit_race_keeps_zero_and_nonzero_raw_RC",
+    "test_10_source_drift_and_unconfigured_providers_refuse_with_no_real_fallback"
+  ],
+  "cases": [
+    "Exact three-literal inverse;17helper and2nested definitions; cleanup/handler/discovery preservation.",
+    "Known R/Z/? and zeroRSS rows skip killpg0; exact old sampler negative control.",
+    "Exact main call drops prefilter; exact verified-child registration predicate remains narrow.",
+    "Missing-row absent/positiveexistence/EPERM/unknownEIO outcomes remain distinct.",
+    "All-empty always refuses, including absent and EPERM cases.",
+    "Malformed/nonnumeric/negativeRSS/missingstate/wrongPGID refuse.",
+    "NonzeroPS and raised query error refuse; unrelated rows never join; genuine zeroRSS retained.",
+    "Exact error handler preserves fatal live-adapter record and priorstop.",
+    "Exact handler preserves direct0 and1 exitrace records; no final success evaluated.",
+    "Frozen source drift or unconfigured fake provider refuses with no real fallback."
+  ],
+  "fakes": [
+    "Fixed FakePS.run",
+    "Configured FakeOS.killpg",
+    "FakeProc.poll",
+    "FakeClock.monotonic",
+    "FakeTraceback.format_exc"
+  ],
+  "extraction": "Only exact group_exists/sample_owned, sampler Assign, discovery If and observation ExceptHandler. Whole owner never imported/executed.",
+  "preparation": "Parent/template AST and source metadata only. No compile/exec/import/provider/fixture execution.",
+  "lineage": "defect_gate_refresh authored donor owner002 and this harness; lpbf_linear_refinement authored row-first correction. Independent guard author from correction author, not independent of donor owner.",
+  "future_source_peer": null,
+  "future_controls_actual": null,
+  "future_admission": null,
+  "future_result": null,
+  "native_retry_authorized": false
+}

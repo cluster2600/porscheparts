@@ -1,0 +1,44 @@
+{
+  "schema": "962-observer004-row-first-sampler-source-peer/v1",
+  "decision": "NO_SOURCE_DELTA_BLOCKER_MOCK_REVIEW_AND_SEPARATE_ROOT_DECISION_REQUIRED",
+  "source": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native-row-first-sampler-prep-001/run_root_once_row_first_proposed.py",
+    "sha256": "5287901ed8459bc003243d89d122307d4d5852b804a6bfb97d0ece893a37cf3d",
+    "bytes": 18849
+  },
+  "donor": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native-measurement-prep-002/run_root_once.py",
+    "sha256": "c4450f31c12d5d3367f7663ece62598b16253aff31b557f7fc051d3854fadf0f",
+    "bytes": 18913
+  },
+  "findings": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native-row-first-sampler-source-peer-001/findings.json",
+    "sha256": "7adf2cefbb39be66deb0a071b2869fceeed79acef0ba15f8bf09e6fb48f5e40e",
+    "bytes": 8349
+  },
+  "bindings": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native-row-first-sampler-source-peer-001/bindings.json",
+    "sha256": "54cd969c14d80bdec9b7a6ac30088ad54a3d545efc2eef6657e79fc316b4e86f",
+    "bytes": 4846
+  },
+  "blocker_count": 0,
+  "full3_occurrence_inverse_verified": true,
+  "other17_helpers_2nested_imports_cleanup_and_gates_exact": true,
+  "lineage": {
+    "new_policy_author": "/root/lpbf_linear_refinement",
+    "reviewer": "/root/head_mesh_next",
+    "disclosure": "Reviewer authored native002 binding/diagnostic adaptation of the donor and earlier donor-control ancestry. LPBF authored this row-first delta; this review independently checks that delta and its exact reuse. It is source-affiliated static review, not independent runtime/native/cause acceptance. Defect is the separately assigned mocked-guard author."
+  },
+  "scope": "Source policy review only. Observed valid PGID rows supply sampled RSS; missing-row live/unknown/no-row paths remain refused. The policy change neither identifies the native002 cause nor authorizes a native retry. Mock source/result review and separate root decision remain required.",
+  "authority": {
+    "source_review_only": true,
+    "owner_or_helper_or_mock_executed": false,
+    "runtime_or_process_query": false,
+    "raw_native_data_or_grid_access": false,
+    "new_actual_admission_or_namespace": false,
+    "native_retry_authorized": false,
+    "old_refusals_upgraded": false,
+    "physics_or_manufacturing_acceptance": false,
+    "PUB_or_Git_mutation": false
+  }
+}

@@ -1,0 +1,164 @@
+--- preserved65fe/reader.py
++++ netgen-full-stars/reader.py
+@@ -64,6 +64,63 @@
+  if (any(observed[k]!=expected[k] for k in fields) or observed['sum']!=proof['summed_tetra_volume_mm3'] or observed['relative_error_to_candidate']!=proof['volume_relative_error']):
+   raise ValueError('Independent saved signed-volume distribution/sum differs from worker.after')
+  if report['positive_poor_SICN_cells']['total']!=expected_positive_poor_total:raise ValueError('Exact current positive-poor partition required')
++
++
++def classifications(core,gmsh,node_tags,boundary_count):
++    np=core.np;dimensions=np.full(len(node_tags),-1,dtype=np.int8)
++    entity_tags=np.zeros(len(node_tags),dtype=np.int64);periodic=[]
++    for dim,tag in gmsh.model.getEntities():
++        if dim in (1,2):
++            masters=gmsh.model.mesh.getPeriodic(dim,[tag])
++            master,nodes,node_masters,transform=gmsh.model.mesh.getPeriodicNodes(dim,tag,True)
++            if list(masters)!=[tag] or master!=tag or len(nodes) or len(node_masters) or len(transform):
++                raise ValueError("Curve/surface periodic mappings are forbidden")
++            periodic.append([dim,tag])
++        tags=np.asarray(gmsh.model.mesh.getNodes(dim,tag,False,False)[0])
++        indices=np.searchsorted(node_tags,tags)
++        if (len(np.unique(tags))!=len(tags) or np.any(indices>=len(node_tags))
++                or not np.array_equal(node_tags[indices],tags) or np.any(dimensions[indices]!=-1)):
++            raise ValueError("Unique complete node classification required")
++        dimensions[indices]=dim;entity_tags[indices]=tag
++    boundary=node_tags<=boundary_count
++    if (np.any(dimensions<0) or np.count_nonzero(boundary)!=boundary_count
++            or np.any(dimensions[boundary]>=3) or np.any(dimensions[~boundary]!=3)):
++        raise ValueError("Fixed boundary nodes must classify below dim3 and interior nodes at dim3")
++    return dict(node_classification_dimensions_sha256=core.array_sha(dimensions),
++        node_classification_entity_tags_sha256=core.array_sha(entity_tags),
++        boundary_node_classification_dimensions_sha256=core.array_sha(dimensions[boundary]),
++        boundary_node_classification_entity_tags_sha256=core.array_sha(entity_tags[boundary]),
++        node_counts_by_classification_dimension={str(d):int(np.count_nonzero(dimensions==d)) for d in range(4)},
++        no_curve_or_surface_periodic_mapping=True,periodic_query_dimensions=[1,2],periodic_entities_checked=periodic)
++
++
++def movable_from_poor_rows(poor_rows,interior_tags,boundary_count):
++ """Only poor-cell members in the freshly proved dim3 tag set are variables."""
++ if (type(boundary_count) is not int or boundary_count<=0
++     or any(type(t) is not int or t<=boundary_count for t in interior_tags)
++     or interior_tags!=sorted(set(interior_tags))):
++  raise ValueError('Exact positive boundary count and sorted unique interior tags required')
++ interior=set(interior_tags);members=set()
++ for row in poor_rows:
++  if len(row)!=4 or any(type(t) is not int or t<=0 for t in row) or len(set(row))!=4:
++   raise ValueError('Complete positive distinct integer TET4 rows required')
++  if any(t>boundary_count and t not in interior for t in row):
++   raise ValueError('Poor row has an unclassified nonboundary tag')
++  members.update(row)
++ return sorted(members & interior)
++
++
++def incident_positions(node_rows,movable_tags):
++ """Every row touching any chosen tag, irrespective of its starting quality."""
++ if (any(type(t) is not int or t<=0 for t in movable_tags)
++     or movable_tags!=sorted(set(movable_tags))):
++  raise ValueError('Sorted unique positive integer movable tags required')
++ movable=set(movable_tags);positions=[]
++ for index,row in enumerate(node_rows):
++  if len(row)!=4 or any(type(t) is not int or t<=0 for t in row) or len(set(row))!=4:
++   raise ValueError('Complete positive distinct integer TET4 rows required')
++  if any(t in movable for t in row):positions.append(index)
++ return positions
+ 
+ 
+ contract=json.loads((OUT/'frozen-contract.json').read_text())
+@@ -104,7 +161,7 @@
+  report.update(actual_explicit_surface_triangles=len(actual_faces),exact_source_boundary_coordinates=True,exact_sorted_explicit_surface_connectivity=True,explicit_surface_elements_are_not_an_independent_tetra_boundary_incidence_audit=True)
+  del actual_faces,face_nodes,face_tags,face_order
+  native={};bad_tetrahedra=[]
+- positive_poor_counts={str(k):0 for k in range(5)};positive_poor_representatives={}
++ positive_poor_counts={str(k):0 for k in range(5)};positive_poor_representatives={};poor_indices=[]
+  for name,measure in [('SICN','minSICN'),('Jacobian','minDetJac'),('native_volume_mm3','volume')]:
+   row=dict(count=0,minimum=None,maximum=None,nonpositive_count=0,below_point1_count=0 if name=='SICN' else None)
+   metric_values=np.empty(len(tet_tags),dtype=np.float64)
+@@ -116,6 +173,7 @@
+    if name=='SICN':
+     row['below_point1_count']+=int(np.count_nonzero(q<.1))
+     classify_positive_poor_chunk(q,tet_tags[offset:offset+len(q)],tet_nodes[offset:offset+len(q)],offset,nv,positive_poor_counts,positive_poor_representatives)
++    poor_indices.extend((offset+np.flatnonzero((q>0)&(q<.1))).tolist())
+     for local in np.flatnonzero(q<=0):
+      index=offset+int(local);conn=tet_nodes[index];ids=np.searchsorted(tags,conn)
+      if np.any(ids>=len(tags)) or not np.array_equal(tags[ids],conn):raise ValueError('Nonpositive-SICN cell references missing node')
+@@ -128,6 +186,7 @@
+   row.update(dict(zip(('p01','p05','p50','p95','p99'),map(float,np.percentile(metric_values,[1,5,50,95,99])))))
+   row['array_sha256']=array_sha(metric_values[tetorder])
+   native[name]=row
++  if name=='SICN':sicn_values=metric_values
+  report['direct_native_quality_extrema']=native
+  for representative in positive_poor_representatives.values():
+   conn=tet_nodes[representative['native_array_index']];ids=np.searchsorted(tags,conn)
+@@ -154,9 +213,71 @@
+   original_boundary_definition='Exact admitted source surface tags1..nv; distinct from the surface-repair fixed-vertex mask.',
+   positive_poor_feature_or_OEM_classification_computed=False)
+  require_after_match(report,proof,contract['expected_positive_poor_total'])
++ prior=json.loads((ROOT/contract['completed_saved_diagnosis']).read_text())
++ if (prior.get('status')!='direct_saved_file_readback_completed' or prior.get('bound_inputs_unchanged') is not True
++     or prior['positive_poor_SICN_cells']['total']!=positive_poor_total
++     or prior['positive_poor_SICN_cells']['by_original_boundary_node_count']!=positive_poor_counts
++     or positive_poor_counts!=contract['expected_positive_poor_bins']):
++  raise ValueError('Complete current210 partition and prior stopped diagnosis required')
++ fresh_classifications=classifications(sys.modules[__name__],gmsh,tags,nv)
++ if fresh_classifications!=proof['classifications']:
++  raise ValueError('Fresh complete classifications differ from single worker.after')
++ poor_indices.sort(key=lambda i:int(tet_tags[i]))
++ if len(poor_indices)!=positive_poor_total:raise ValueError('All positive-poor rows required')
++ interior_tags=tags[tags>nv].tolist()
++ movable_tags=movable_from_poor_rows(tet_nodes[poor_indices].tolist(),interior_tags,nv)
++ incident_indices=[]
++ for offset in range(0,len(tet_tags),100000):
++  incident_indices.extend(offset+i for i in incident_positions(tet_nodes[offset:offset+100000].tolist(),movable_tags))
++ incident_indices.sort(key=lambda i:int(tet_tags[i]))
++ if not set(poor_indices)<=set(incident_indices):
++  raise ValueError('A baseline poor cell has no selected interior member; retain refusal, never omit it')
++ selected_nodes=tet_nodes[incident_indices]
++ union_tags=np.unique(selected_nodes).tolist();union_positions=np.searchsorted(tags,union_tags)
++ if np.any(union_positions>=len(tags)) or not np.array_equal(tags[union_positions],union_tags):
++  raise ValueError('Complete incident-cell coordinate association required')
++ movable=set(movable_tags);poor_set=set(poor_indices);star_counts={t:0 for t in movable_tags}
++ cells=[]
++ for i in incident_indices:
++  row=tet_nodes[i].tolist();touch=sorted(movable.intersection(row))
++  for t in touch:star_counts[t]+=1
++  cells.append(dict(tetrahedron_tag=int(tet_tags[i]),native_array_index=i,node_tags=row,
++   initial_native_SICN=float(sicn_values[i]),initially_positive_poor=i in poor_set,movable_node_tags=touch))
++ nodes=[]
++ for tag,index in zip(union_tags,union_positions):
++  row=xyz[index].tolist()
++  nodes.append(dict(node_tag=int(tag),coordinates_mm=row,binary64_hex=[float(x).hex() for x in row],
++   in_movable_seed_set=tag in movable,source_boundary_tag=tag<=nv,
++   freshly_proved_classification_scope='below_dim3' if tag<=nv else 'dim3'))
++ report['complete_seed_star_census']=dict(
++  schema='962-complete-current-poor-seed-stars/v1',
++  seed_policy='Union of nodes of ALL current positive SICN<0.1 cells, intersect freshly verified complete dim3 classifications; no optimizer proposal.',
++  positive_poor_tetrahedron_tags=[int(tet_tags[i]) for i in poor_indices],
++  movable_node_tags=movable_tags,movable_count=len(movable_tags),prospective_coordinate_variables=3*len(movable_tags),
++  complete_incident_tetrahedra=cells,complete_incident_tetrahedron_count=len(cells),
++  initially_positive_poor_incident_tetrahedra=sum(row['initially_positive_poor'] for row in cells),
++  initially_good_incident_tetrahedra=sum(not row['initially_positive_poor'] for row in cells),
++  shared_by_multiple_movable_nodes_tetrahedra=sum(len(row['movable_node_tags'])>1 for row in cells),
++  per_movable_node_complete_incident_counts=[[t,star_counts[t]] for t in movable_tags],
++  unique_incident_nodes=nodes,unique_incident_node_count=len(nodes),
++  unique_incident_boundary_node_count=sum(row['source_boundary_tag'] for row in nodes),
++  unique_incident_other_interior_node_count=sum(not row['source_boundary_tag'] and not row['in_movable_seed_set'] for row in nodes),
++  ordered_tagged_array_sha256s=dict(
++   movable_node_tags_u64=array_sha(np.asarray(movable_tags,dtype='<u8')),
++   selected_tetrahedron_tags_u64=array_sha(np.asarray([tet_tags[i] for i in incident_indices],dtype='<u8')),
++   selected_tetrahedron_connectivity_u64=array_sha(np.asarray(selected_nodes,dtype='<u8').reshape(-1,4)),
++   union_node_tags_u64=array_sha(np.asarray(union_tags,dtype='<u8')),
++   union_coordinates_f64=array_sha(np.asarray(xyz[union_positions],dtype='<f8')),
++   selected_initial_SICN_f64=array_sha(np.asarray(sicn_values[incident_indices],dtype='<f8'))),
++  all_seed_stars_complete_including_initially_good_and_shared_cells=True,
++  complete_list_policy='Complete or resource refusal; no sampling or record truncation.',
++  cell_order='Increasing tetrahedron tag; original corner order retained.',node_order='Increasing node tag; coordinate hex preserves binary64 bits.',
++  source_boundary_or_other_context_repair_policy_approved=False,
++  shared_star_feasibility_computed=False,SLSQP_or_other_optimization_calls=0,candidate_or_geometry_export_written=False)
++ report['direct_fresh_classifications']=fresh_classifications
+  report['direct_counts_metrics_and_positive_poor_total_match_single_worker_after']=True
+  report['single_optimized_worker_proof']=dict(worker_report_sha256=sha(w/'worker-report.json'),field='after',independent_prior_reader_alias_used=False)
+- report.update(retained_only_not_repeated=dict(tetra_exterior_incidence=proof['actual_tetra_boundary'],internal_face_orientation=proof['internal_tetra_face_orientation'],classifications=proof['classifications']),SICN_point1_gate_passed=native['SICN']['minimum']>=.1 and native['SICN']['nonpositive_count']==0,thermal_resolution_established=False,status='direct_saved_file_readback_completed')
++ report.update(retained_only_not_repeated=dict(tetra_exterior_incidence=proof['actual_tetra_boundary'],internal_face_orientation=proof['internal_tetra_face_orientation']),SICN_point1_gate_passed=native['SICN']['minimum']>=.1 and native['SICN']['nonpositive_count']==0,thermal_resolution_established=False,status='direct_saved_file_readback_completed')
+ finally:
+  if initialized:gmsh.finalize()
+ for name,h in contract['input_hashes'].items():

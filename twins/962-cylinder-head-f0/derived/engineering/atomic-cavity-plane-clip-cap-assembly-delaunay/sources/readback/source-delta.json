@@ -1,0 +1,56 @@
+{
+  "schema": "962-saved-Delaunay-audit-minimal-source-reuse/v1",
+  "reader_sha256": "ec5a45297a8d6ad73fb2fac5b087589e42a9553bc3d434a9d1dc7fb53122db30",
+  "reader_base_sha256": "8c7d73af930a75c3a0fb9cad70b130d4a1db326fdd3d8be34409f8231aa2ec9a",
+  "reader_change": "Replace nonexistent worker metrics/array comparison with unchanged selected audit_after/classifications/array_identity; keep direct read-only/reopen/current-input/quality boundaries.",
+  "runner_base_sha256": "5a93c61e5f8a476ce1c0d6bd562d27b7da4c79e428ab5502e7d9c89ba5ac0efd",
+  "runner_sha256": "4fb37080e1f3847b8b1d14d5df467799d8e9f7bf81b0a09170e5850857de3943",
+  "runner_replacements": [
+    {
+      "old": "if rss>=4*1024**3:",
+      "new": "if rss>=8*1024**3:"
+    },
+    {
+      "old": "scope='one_stopped_assembled_mesh_read_only'",
+      "new": "scope='one_stopped_Delaunay_saved_mesh_read_only'"
+    },
+    {
+      "old": "sampled_RSS_stop_bytes=4*1024**3",
+      "new": "sampled_RSS_stop_bytes=8*1024**3"
+    },
+    {
+      "old": "      if rss>=8*1024**3:stop('sampled_RSS_stop')",
+      "new": "      if rss>=8*1024**3:stop('sampled_RSS_stop')\n      if sum(p.stat().st_size for p in OUT.iterdir() if p.is_file())>=1024**3:stop('sampled_output_disk_stop')"
+    },
+    {
+      "old": "  report=dict(scope=",
+      "new": "  output_bytes=sum(p.stat().st_size for p in OUT.iterdir() if p.is_file())\n  if output_bytes>=1024**3:stopped['reason']=stopped['reason'] or 'sampled_output_disk_stop'\n  report=dict(scope="
+    },
+    {
+      "old": "threads=2,hard_OS_CPU_quota_applied=",
+      "new": "threads=2,sampled_output_stop_bytes=1024**3,final_output_bytes_before_receipt=output_bytes,hard_OS_CPU_quota_applied="
+    }
+  ],
+  "runner_reverse_bytes_exact": true,
+  "audit_helper_source": "work/962-engineering/atomic-cavity-volume-default-postexport-prep-002/mesh_atomic_postexport_002.py",
+  "audit_helper_sha256": "28746e14a041db464c3a41b732f1fc3e9ad9fd6ce96e886f728e5409d6ea0e36",
+  "selected_functions": {
+    "classifications": {
+      "source_sha256": "059eb36debb803d873a48c34c57bf7d3036e4643c810a7b05a74c2e2adc954f7",
+      "AST_sha256": "767ae1d4f0fab72b1839a585071025ff53f76cfb5790cdfeaab0e4bc605abff5"
+    },
+    "array_identity": {
+      "source_sha256": "bf958910e542a29730b38853763c624ef7f62119998c9687e6645b9a4be5796d",
+      "AST_sha256": "9d20e02630786870638da43ee16e08de164354490e83694ca561a03f5afa60da"
+    },
+    "audit_after": {
+      "source_sha256": "e4b71fc90ed6288ac31d40de6c3116c9f8a96590683dba7b9e42cafbb9428397",
+      "AST_sha256": "846e14b866b7a11c310eda7cd868e6e058581d5ab7cf06c2dda8c58f21bc276c"
+    }
+  },
+  "selected_functions_unchanged": true,
+  "optimizer_source_top_level_configure_worker_and_optimize_functions_not_selected": true,
+  "new_geometry_algorithm": false,
+  "reader_diff_sha256": "74a8e2e4e80364aa45f0425d7f2bec0d1e76cea9b4fb2c08d6e3c4e945933950",
+  "runner_diff_sha256": "02129f16dabece163a8dabd6c0bb6af9de74dcbd807b7a99b36ca6488dcb344c"
+}

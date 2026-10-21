@@ -1,0 +1,325 @@
+{
+  "schema": "962-observer004-native-measurement002-exact-source-reuse/v1",
+  "original_caller": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native-measurement-prep-001/run_native_capture.py",
+    "sha256": "a7d4657688dc66a5fd5e7b2e73c88b307e9c4c188301d27a4fd56a76949e5723",
+    "bytes": 22990
+  },
+  "original_owner": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native-measurement-prep-001/run_root_once.py",
+    "sha256": "c09c6d24cc9024bf5e7b36daad9348fa3c2db89d8eaf1423590122a5df5ec344",
+    "bytes": 18051
+  },
+  "reviewed_observability_source": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native-observation-diagnostics-proposal-001/run_root_once_observability_proposed.py",
+    "sha256": "d7f8324479f48fd29a3a4879730603ae15c2d21308df24975680a45014769a17",
+    "bytes": 18913
+  },
+  "successor_caller": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native-measurement-prep-002/run_native_capture.py",
+    "sha256": "997a57b382ea9c4ee8b2a49076b2f224b23684720291b769e5f145dbe97000f3",
+    "bytes": 22990
+  },
+  "successor_owner": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native-measurement-prep-002/run_root_once.py",
+    "sha256": "c4450f31c12d5d3367f7663ece62598b16253aff31b557f7fc051d3854fadf0f",
+    "bytes": 18913
+  },
+  "seven_observability_replacements": [
+    {
+      "old": "     for pid in children(proc.pid):\n",
+      "new": "     observation_operation='children(proc.pid)';observation_target_PID=proc.pid\n     for pid in children(proc.pid):\n"
+    },
+    {
+      "old": "      v=member(pid)\n",
+      "new": "      observation_operation='member(pid)';observation_target_PID=pid\n      v=member(pid)\n"
+    },
+    {
+      "old": "      observed=sample_owned({proc.pid}|{g for g in owned if group_exists(g)})\n",
+      "new": "      observation_operation='sample_owned({proc.pid}|{g for g in owned if group_exists(g)})';observation_target_PID=None\n      observed=sample_owned({proc.pid}|{g for g in owned if group_exists(g)})\n"
+    },
+    {
+      "old": "     if inclusive_bytes()>=536870912:stop=stop or 'inclusive_output_stop'\n",
+      "new": "     observation_operation='inclusive_bytes()';observation_target_PID=None\n     if inclusive_bytes()>=536870912:stop=stop or 'inclusive_output_stop'\n"
+    },
+    {
+      "old": "     if growth_bytes(O,D,baseline)>=33554432:stop=stop or 'incremental_growth_stop'\n",
+      "new": "     observation_operation='growth_bytes(O,D,baseline)';observation_target_PID=None\n     if growth_bytes(O,D,baseline)>=33554432:stop=stop or 'incremental_growth_stop'\n"
+    },
+    {
+      "old": "     if direct_RC is None:stop=stop or 'resource_or_group_observation_failed';error=dict(type=type(exc).__name__,message=str(exc))\n",
+      "new": "     if direct_RC is None:stop=stop or 'resource_or_group_observation_failed';error=dict(type=type(exc).__name__,message=str(exc),phase='owned_resource_poll',operation=observation_operation,target_PID=observation_target_PID,elapsed_seconds=time.monotonic()-started,owned_adapter_group_ID=proc.pid,owned_native_group_IDs=sorted(owned),traceback=traceback.format_exc())\n"
+    },
+    {
+      "old": "     else:exit_races.append(dict(error=repr(exc),direct_returncode=direct_RC,elapsed_seconds=time.monotonic()-started))\n",
+      "new": "     else:exit_races.append(dict(error=repr(exc),direct_returncode=direct_RC,elapsed_seconds=time.monotonic()-started,phase='owned_resource_poll',operation=observation_operation,target_PID=observation_target_PID,owned_adapter_group_ID=proc.pid,owned_native_group_IDs=sorted(owned),traceback=traceback.format_exc()))\n"
+    }
+  ],
+  "caller_namespace_replacements": [
+    {
+      "old": "cp1-oneway-cooling-release-richardson2-observer004-native-measurement-root-execution-001",
+      "new": "cp1-oneway-cooling-release-richardson2-observer004-native-measurement-root-execution-002",
+      "count": 1
+    },
+    {
+      "old": "cp1-oneway-cooling-release-richardson2-observer004-native-measurement-001",
+      "new": "cp1-oneway-cooling-release-richardson2-observer004-native-measurement-002",
+      "count": 1
+    }
+  ],
+  "owner_namespace_replacements": [
+    {
+      "old": "cp1-oneway-cooling-release-richardson2-observer004-native-measurement-execution-prep-001",
+      "new": "cp1-oneway-cooling-release-richardson2-observer004-native-measurement-execution-prep-002",
+      "count": 1
+    },
+    {
+      "old": "cp1-oneway-cooling-release-richardson2-observer004-native-measurement-prep-001",
+      "new": "cp1-oneway-cooling-release-richardson2-observer004-native-measurement-prep-002",
+      "count": 1
+    },
+    {
+      "old": "cp1-oneway-cooling-release-richardson2-observer004-native-measurement-root-execution-001",
+      "new": "cp1-oneway-cooling-release-richardson2-observer004-native-measurement-root-execution-002",
+      "count": 1
+    },
+    {
+      "old": "cp1-oneway-cooling-release-richardson2-observer004-native-measurement-001",
+      "new": "cp1-oneway-cooling-release-richardson2-observer004-native-measurement-002",
+      "count": 1
+    }
+  ],
+  "whole_caller_reverse_byte_AST_exact": true,
+  "whole_owner_reverse_namespace_then_seven_byte_AST_exact": true,
+  "all_functions": {
+    "caller": [
+      {
+        "name": "need",
+        "text_exact": true,
+        "AST_exact": true,
+        "donor_text_sha256": "3465e0985f3f62e9dea02f78e02f29cfa7b90ed3f7a940310e4ee3984d1993cd",
+        "successor_text_sha256": "3465e0985f3f62e9dea02f78e02f29cfa7b90ed3f7a940310e4ee3984d1993cd"
+      },
+      {
+        "name": "sha",
+        "text_exact": true,
+        "AST_exact": true,
+        "donor_text_sha256": "2fb169b79e90ef2457485b89490bc472e96cbec50fa981d2cfd4cb5505dab944",
+        "successor_text_sha256": "2fb169b79e90ef2457485b89490bc472e96cbec50fa981d2cfd4cb5505dab944"
+      },
+      {
+        "name": "same",
+        "text_exact": true,
+        "AST_exact": true,
+        "donor_text_sha256": "e7de4d1016310d9956dd9a0fd50455984f1e1be32ba6d5503138b4b549ddeca6",
+        "successor_text_sha256": "e7de4d1016310d9956dd9a0fd50455984f1e1be32ba6d5503138b4b549ddeca6"
+      },
+      {
+        "name": "check_pins",
+        "text_exact": true,
+        "AST_exact": true,
+        "donor_text_sha256": "dac767ab6dd49c3f39aa1b9461fd5d81bf3a566238895e2450edc06f635ede1a",
+        "successor_text_sha256": "dac767ab6dd49c3f39aa1b9461fd5d81bf3a566238895e2450edc06f635ede1a"
+      },
+      {
+        "name": "runtime_unchanged",
+        "text_exact": true,
+        "AST_exact": true,
+        "donor_text_sha256": "cc86a77cdb8fbaa14caa1e98a3f877346b0e973e4152e06d2da85661f81a86a1",
+        "successor_text_sha256": "cc86a77cdb8fbaa14caa1e98a3f877346b0e973e4152e06d2da85661f81a86a1"
+      },
+      {
+        "name": "registry_features",
+        "text_exact": true,
+        "AST_exact": true,
+        "donor_text_sha256": "15a7e285942a94aefbc18a131e3450f9e2c5a20a9342f944fd1b398dd3ac2073",
+        "successor_text_sha256": "15a7e285942a94aefbc18a131e3450f9e2c5a20a9342f944fd1b398dd3ac2073"
+      },
+      {
+        "name": "commands",
+        "text_exact": true,
+        "AST_exact": true,
+        "donor_text_sha256": "8c3c984d235559450ed37adc03d4a5df168fed59b5e0423a3584a5924778532d",
+        "successor_text_sha256": "8c3c984d235559450ed37adc03d4a5df168fed59b5e0423a3584a5924778532d"
+      },
+      {
+        "name": "root_admission",
+        "text_exact": true,
+        "AST_exact": true,
+        "donor_text_sha256": "0ee86e126ae027ed9aca47b6c57d6e0fb629e5e7a8c99c91646eb94216a43ec4",
+        "successor_text_sha256": "0ee86e126ae027ed9aca47b6c57d6e0fb629e5e7a8c99c91646eb94216a43ec4"
+      },
+      {
+        "name": "checked_contract",
+        "text_exact": true,
+        "AST_exact": true,
+        "donor_text_sha256": "baf76fd3bb10b98d8941e54b47c801492dcdcab16b90c339590d9d06f3ea8f1c",
+        "successor_text_sha256": "baf76fd3bb10b98d8941e54b47c801492dcdcab16b90c339590d9d06f3ea8f1c"
+      },
+      {
+        "name": "growth_bytes",
+        "text_exact": true,
+        "AST_exact": true,
+        "donor_text_sha256": "b6edf866a95c614f7171ea82992a1640e1cb408fa0d7d00b30c1c13e65c88156",
+        "successor_text_sha256": "b6edf866a95c614f7171ea82992a1640e1cb408fa0d7d00b30c1c13e65c88156"
+      },
+      {
+        "name": "owned_size",
+        "text_exact": true,
+        "AST_exact": true,
+        "donor_text_sha256": "f563aef0f32c0eea44ad6208850a6001a7b427e5baf0b4d63f43b0dbfacda24c",
+        "successor_text_sha256": "f563aef0f32c0eea44ad6208850a6001a7b427e5baf0b4d63f43b0dbfacda24c"
+      },
+      {
+        "name": "run",
+        "text_exact": true,
+        "AST_exact": true,
+        "donor_text_sha256": "6eb4506c175561aca1c2415f53b1d627edfcfba5126f87c32c88b6f71c55040e",
+        "successor_text_sha256": "6eb4506c175561aca1c2415f53b1d627edfcfba5126f87c32c88b6f71c55040e"
+      }
+    ],
+    "owner": [
+      {
+        "name": "ident",
+        "text_exact": true,
+        "AST_exact": true,
+        "donor_text_sha256": "f06fd6eb198e19f1531f05eca280140d315a50cbf235b61d03dcb7df5cadb459",
+        "successor_text_sha256": "f06fd6eb198e19f1531f05eca280140d315a50cbf235b61d03dcb7df5cadb459"
+      },
+      {
+        "name": "freeze",
+        "text_exact": true,
+        "AST_exact": true,
+        "donor_text_sha256": "39cc1c4eddcf0789584646ac807413d2c5b5d1e201daf0e5fce438a4eca24d2e",
+        "successor_text_sha256": "39cc1c4eddcf0789584646ac807413d2c5b5d1e201daf0e5fce438a4eca24d2e"
+      },
+      {
+        "name": "input_map",
+        "text_exact": true,
+        "AST_exact": true,
+        "donor_text_sha256": "b749b73100a0ebc9fee67663c96b17b6ba469ac5e496cbf867ee13e5cf0d3741",
+        "successor_text_sha256": "b749b73100a0ebc9fee67663c96b17b6ba469ac5e496cbf867ee13e5cf0d3741"
+      },
+      {
+        "name": "runtime_map",
+        "text_exact": true,
+        "AST_exact": true,
+        "donor_text_sha256": "2bf5a86bd0f17783a88336c541dfd20024812c5a08686847a635a1ab1f77789d",
+        "successor_text_sha256": "2bf5a86bd0f17783a88336c541dfd20024812c5a08686847a635a1ab1f77789d"
+      },
+      {
+        "name": "group_exists",
+        "text_exact": true,
+        "AST_exact": true,
+        "donor_text_sha256": "67b74400b8ae03cab400d9360091514f9d295f0a93baa968468544e8b23cd5f3",
+        "successor_text_sha256": "67b74400b8ae03cab400d9360091514f9d295f0a93baa968468544e8b23cd5f3"
+      },
+      {
+        "name": "rec",
+        "text_exact": true,
+        "AST_exact": true,
+        "donor_text_sha256": "1c49fad82b6ce5d2a5432aa22114fa9b0e42eb46d4b57b8df2a0ba2c36d00543",
+        "successor_text_sha256": "1c49fad82b6ce5d2a5432aa22114fa9b0e42eb46d4b57b8df2a0ba2c36d00543"
+      },
+      {
+        "name": "check",
+        "text_exact": true,
+        "AST_exact": true,
+        "donor_text_sha256": "7aafe9854e4e77c0b84d9232f40d979da358790349d8899b628ffe04418f3b77",
+        "successor_text_sha256": "7aafe9854e4e77c0b84d9232f40d979da358790349d8899b628ffe04418f3b77"
+      },
+      {
+        "name": "output_size",
+        "text_exact": true,
+        "AST_exact": true,
+        "donor_text_sha256": "0a86e778061dd08bb3109046fc15ea968e8bbe94ef7b8e4b02ea95365e320b65",
+        "successor_text_sha256": "0a86e778061dd08bb3109046fc15ea968e8bbe94ef7b8e4b02ea95365e320b65"
+      },
+      {
+        "name": "provider_links",
+        "text_exact": true,
+        "AST_exact": true,
+        "donor_text_sha256": "92d3d35a256f694cd8aa0183e3125c5f7b9dd8de6b8a746f8921644b2d95b940",
+        "successor_text_sha256": "92d3d35a256f694cd8aa0183e3125c5f7b9dd8de6b8a746f8921644b2d95b940"
+      },
+      {
+        "name": "loaded_trace",
+        "text_exact": true,
+        "AST_exact": true,
+        "donor_text_sha256": "afd7878aad18864059d110fc46ae5bd355e8693d8bcf595ae00fdf40e096e663",
+        "successor_text_sha256": "afd7878aad18864059d110fc46ae5bd355e8693d8bcf595ae00fdf40e096e663"
+      },
+      {
+        "name": "children",
+        "text_exact": true,
+        "AST_exact": true,
+        "donor_text_sha256": "6826234d5582b1348b660735eff526ec209465d78c2c650931f45303776dbb05",
+        "successor_text_sha256": "6826234d5582b1348b660735eff526ec209465d78c2c650931f45303776dbb05"
+      },
+      {
+        "name": "member",
+        "text_exact": true,
+        "AST_exact": true,
+        "donor_text_sha256": "49ae60bae67afc9a905015da7a727a3589326cb03818c9378a92063ea0e21808",
+        "successor_text_sha256": "49ae60bae67afc9a905015da7a727a3589326cb03818c9378a92063ea0e21808"
+      },
+      {
+        "name": "sample_owned",
+        "text_exact": true,
+        "AST_exact": true,
+        "donor_text_sha256": "77c205a689bf75910968db6e437e2f7ddcb43947cf1cf5dc499bdd63531f3212",
+        "successor_text_sha256": "77c205a689bf75910968db6e437e2f7ddcb43947cf1cf5dc499bdd63531f3212"
+      },
+      {
+        "name": "capture",
+        "text_exact": true,
+        "AST_exact": true,
+        "donor_text_sha256": "97a33490cd8f8824ad9e76e5bb8be2c730c27b0bf16d688f8a49db426494b66a",
+        "successor_text_sha256": "97a33490cd8f8824ad9e76e5bb8be2c730c27b0bf16d688f8a49db426494b66a"
+      },
+      {
+        "name": "python_record",
+        "text_exact": true,
+        "AST_exact": true,
+        "donor_text_sha256": "59e6e363f69744ea94e88d93992b2788e7657bf453b3a87020e8d7911831bbb3",
+        "successor_text_sha256": "59e6e363f69744ea94e88d93992b2788e7657bf453b3a87020e8d7911831bbb3"
+      },
+      {
+        "name": "growth_bytes",
+        "text_exact": true,
+        "AST_exact": true,
+        "donor_text_sha256": "b6edf866a95c614f7171ea82992a1640e1cb408fa0d7d00b30c1c13e65c88156",
+        "successor_text_sha256": "b6edf866a95c614f7171ea82992a1640e1cb408fa0d7d00b30c1c13e65c88156"
+      },
+      {
+        "name": "inclusive_bytes",
+        "text_exact": true,
+        "AST_exact": true,
+        "donor_text_sha256": "2a215500ebb6857c144c9c9e2b8deac678ceab0968e3bb440ea4439c6a291b7f",
+        "successor_text_sha256": "2a215500ebb6857c144c9c9e2b8deac678ceab0968e3bb440ea4439c6a291b7f"
+      },
+      {
+        "name": "direct_map",
+        "text_exact": true,
+        "AST_exact": true,
+        "donor_text_sha256": "5e3be4849678c798cb29cf0b4d10c7e04e9934685ae05cd5deda5c57dc63e18a",
+        "successor_text_sha256": "5e3be4849678c798cb29cf0b4d10c7e04e9934685ae05cd5deda5c57dc63e18a"
+      },
+      {
+        "name": "main",
+        "text_exact": false,
+        "AST_exact": false,
+        "donor_text_sha256": "07190aea1a301e8914dc2e589bfb78f17ffca46143bfebea7f32c79914880a6f",
+        "successor_text_sha256": "33cf625836b6d350935f18b5cb67d56213aa26bc79ba38e9ab6a7350d69637d6"
+      }
+    ]
+  },
+  "caller_semantics_unchanged_except_fixed_O_D_constants": true,
+  "owner_semantics_only_reviewed_seven_diagnostics_and_P_S_D_O_constants": true,
+  "new_import_or_dependency": false,
+  "new_process_query": false,
+  "resources_stop_signal_cleanup_physics_unchanged": true,
+  "AST_parse_only": true,
+  "source_import_helper_test_native_execution": false,
+  "raw_grid_field_runtime_body_read_hash_stat_copy": false
+}

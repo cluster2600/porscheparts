@@ -1,0 +1,748 @@
+{
+  "schema": "962-native005-fixed-freshness-source-reuse/v1",
+  "status": "SOURCE_ONLY_UNRUN",
+  "root_authority": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native005-freshness-adaptation-root-authority-001/review.json",
+    "sha256": "c777a995b439c8329f0aee20c432a5361416a12cee1a5c4d2f882fcf38a5d276",
+    "bytes": 7936
+  },
+  "three_unit_deltas": {
+    "capture_freshness.py": {
+      "donor": {
+        "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native003-staging-freshness-prep-001/capture_freshness.py",
+        "sha256": "a577e2b3499aa3571d2f08e0b7e5f54d687464654e8de7af523f7d112a1edd7d",
+        "bytes": 15798
+      },
+      "successor": {
+        "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native005-freshness-prep-001/capture_freshness.py",
+        "sha256": "e3f1c980ead8f7952eb82a1996db7fc167ca829c294afdccf4b9c83d65fe2dac",
+        "bytes": 17737
+      },
+      "group_count": 11,
+      "ordered_exact_replacements": [
+        {
+          "label": "helper title",
+          "old": "\"\"\"HELD/UNRUN finite identities plus one separately admitted metadata query.\"\"\"",
+          "new": "\"\"\"HELD/UNRUN native005 finite identities plus one separately admitted metadata query.\"\"\""
+        },
+        {
+          "label": "P namespace",
+          "old": "P=E/'cp1-oneway-cooling-release-richardson2-observer004-native003-staging-freshness-prep-001'",
+          "new": "P=E/'cp1-oneway-cooling-release-richardson2-observer004-native005-freshness-prep-001'"
+        },
+        {
+          "label": "H namespace",
+          "old": "H=E/'cp1-oneway-cooling-release-richardson2-observer004-native003-freshness-root-execution-001'",
+          "new": "H=E/'cp1-oneway-cooling-release-richardson2-observer004-native005-freshness-helper-root-execution-001'"
+        },
+        {
+          "label": "O namespace",
+          "old": "O=E/'cp1-oneway-cooling-release-richardson2-observer004-native-measurement-003'",
+          "new": "O=E/'cp1-oneway-cooling-release-richardson2-observer004-native-measurement-004'"
+        },
+        {
+          "label": "D namespace",
+          "old": "D=E/'cp1-oneway-cooling-release-richardson2-observer004-native-measurement-root-execution-003'",
+          "new": "D=E/'cp1-oneway-cooling-release-richardson2-observer004-native-measurement-root-execution-004'"
+        },
+        {
+          "label": "helper admit fixed DAG/late controls",
+          "old": "def admit():\n    need(len(sys.argv)==2 and len(sys.argv[1])==64 and all(x in '0123456789abcdef' for x in sys.argv[1]),'Exact separate root authorization digest required')\n    A=H/'authorization.json'\n    need(H.is_dir() and not H.is_symlink() and set(p.name for p in H.iterdir())=={'authorization.json'},'Fresh helper root with authorization only required')\n    need(A.is_file() and not A.is_symlink() and rec(A)['sha256']==sys.argv[1],'Changed root authorization')\n    auth=json.loads(A.read_text());plan_path=P/'held-plan.json';plan=json.loads(plan_path.read_text())\n    need(auth.get('schema')=='962-native003-finite-helper-root-admission/v1' and auth.get('operation')=='freshness' and auth.get('operation_authorized') is True,'No freshness authority')\n    need(type(auth.get('invocations')) is int and auth['invocations']==1 and auth.get('automatic_retry') is False,'One operation and no retry required')\n    need(auth.get('independent_source_review_complete') is True and auth.get('root_source_review_complete') is True,'Pending helper source reviews')\n    need(auth.get('runtime_metadata_query_authorized') is True and all(auth.get(k) is False for k in ['native_execution_authorized','fixture_execution_authorized','field_parsing_authorized','manufacturing_authorized']),'Metadata query only; no native/scientific authority')\n    need(auth['helper']==rec(Path(__file__)) and auth['plan']==rec(plan_path),'Exact helper/plan required')\n    need(auth['limits']==plan['operation_limits'] and auth['limits']==dict(whole_seconds=60,TERM_grace_seconds=8,stream_buffer_bytes=1048576,query_seconds=5,total_inclusive_bytes=33554432,thread_environment=1,retries=0),'Fixed helper limits required')\n    need(plan['operation_source_authority_only'] is True and plan['native_execution_authorized'] is False,'Exact held plan required')\n    before={name:selected(pin)[1] for name,pin in plan['known_native_roles'].items()}\n    for name,pin in plan['source_plan_bindings'].items():before[name]=selected(pin)[1]\n    for name in ['helper_source_peer','helper_source_bindings','helper_root_review','helper_preparation_index','staging_receipt']:before[name]=selected(auth[name])[1]\n    need(auth['staging_receipt']['path']==plan['future_staging_receipt'],'Fixed separate staging receipt required')\n    before.update(helper=rec(Path(__file__)),plan=rec(plan_path),authorization=rec(A))\n    return auth,plan,before\n",
+          "new": "def admit():\n    need(len(sys.argv)==2 and len(sys.argv[1])==64 and all(x in '0123456789abcdef' for x in sys.argv[1]),'Exact separate root authorization digest required')\n    A=H/'authorization.json'\n    need(H.is_dir() and not H.is_symlink() and set(p.name for p in H.iterdir())=={'authorization.json'},'Fresh helper root with authorization only required')\n    need(A.is_file() and not A.is_symlink() and rec(A)['sha256']==sys.argv[1],'Changed root authorization')\n    auth=json.loads(A.read_text());plan_path=P/'held-plan.json';plan=json.loads(plan_path.read_text())\n    need(auth.get('schema')=='962-native005-finite-helper-root-admission/v1' and auth.get('root_issued') is True and auth.get('operation')=='freshness' and auth.get('operation_authorized') is True,'No freshness authority')\n    need(type(auth.get('invocations')) is int and auth['invocations']==1 and auth.get('automatic_retry') is False,'One operation and no retry required')\n    need(auth.get('independent_source_review_complete') is True and auth.get('root_source_review_complete') is True,'Pending helper source reviews')\n    need(auth.get('runtime_metadata_query_authorized') is True and all(auth.get(k) is False for k in ['staging_authorized','native_execution_authorized','fixture_execution_authorized','field_parsing_authorized','manufacturing_authorized']),'Metadata query only; no staging/native/scientific authority')\n    need(auth['helper']==rec(Path(__file__)) and auth['plan']==rec(plan_path),'Exact helper/plan required')\n    need(auth['limits']==plan['operation_limits'] and auth['limits']==dict(whole_seconds=60,TERM_grace_seconds=8,stream_buffer_bytes=1048576,query_seconds=5,total_inclusive_bytes=33554432,thread_environment=1,retries=0),'Fixed helper limits required')\n    need(plan['operation_source_authority_only'] is True and plan['native_execution_authorized'] is False,'Exact held plan required')\n    need(set(plan['known_native_roles'])==set(plan['native_final_role_names'])-{'staging_receipt','fresh_preflight'} and len(plan['known_native_roles'])==12 and len(plan['native_final_role_names'])==14,'Exact twelve known/fourteen final native roles required')\n    before={name:selected(pin)[1] for name,pin in plan['known_native_roles'].items()}\n    for name,pin in plan['source_plan_bindings'].items():before[name]=selected(pin)[1]\n    late=('helper_source_peer','helper_source_findings','helper_source_bindings','helper_root_review','helper_preparation_index','staging_receipt','stage_root_acceptance')\n    for name in late:before[name]=selected(auth[name])[1]\n    need(auth['staging_receipt']==plan['accepted_staging_receipt'] and auth['stage_root_acceptance']==plan['accepted_stage_root'] and auth['helper_preparation_index']['path']==str((P/'index.json').relative_to(R)),'Fixed current staging/index bindings required')\n    packet=json.loads((P/'index.json').read_bytes())\n    expected={'capture_freshness.py','run_operation_once.py','stopped_exec_wrapper.py','held-plan.json','held-actual.json','METHOD.md','bindings.json','source-reuse.json','source.diff','source.inverse.diff'}\n    need(set(packet['files'])==expected and packet['file_count_including_this_index']==11,'Exact eleven-file source packet required')\n    protected=auth['protected_records']\n    need(all(pin in protected.values() for pin in packet['files'].values()) and auth['helper_preparation_index'] in protected.values(),'All eleven source/proof files must be externally protected')\n    for name,pin in protected.items():before['protected_'+name]=selected(pin)[1]\n    before.update(helper=rec(Path(__file__)),plan=rec(plan_path),authorization=rec(A))\n    unique={}\n    for pin in before.values():\n        need(pin['path'] not in unique or unique[pin['path']]==pin,'Conflicting helper control descriptor')\n        unique[pin['path']]=pin\n    need(type(auth['expected_canonical_input_count']) is int and len(unique)==auth['expected_canonical_input_count'],'Exact late helper control count required')\n    return auth,plan,before\n"
+        },
+        {
+          "label": "observe count348",
+          "old": "need(len(actual['input_sha256'])==257 and len(actual['runtime_sha256s'])==19",
+          "new": "need(len(actual['input_sha256'])==348 and len(actual['runtime_sha256s'])==19"
+        },
+        {
+          "label": "helper report label",
+          "old": "schema='962-observer004-native003-fresh-preflight/v1'",
+          "new": "schema='962-observer004-native005-fresh-preflight/v1'"
+        },
+        {
+          "label": "helper parent003 ancestry",
+          "old": "        prior_pin=actual['native002_actual_preserved'];prior=json.loads(selected(prior_pin)[0].read_text())\n        need(len(prior['input_sha256'])==222 and len(actual['input_sha256'])==257 and all(actual['input_sha256'].get(k)==v for k,v in prior['input_sha256'].items()),'Explicit222-to257 unchanged ancestry required')\n        report['ancestry']=dict(prior_actual=prior_pin,preserved222=222,new_records=35,total257=257,original197_reestablished=False,original197_scope='Historical lineage only; no separate197-map reconstruction is performed here.')",
+          "new": "        prior_pin=plan['parent003_actual'];prior=json.loads(selected(prior_pin)[0].read_text())\n        added=sorted(set(actual['input_sha256'])-set(prior['input_sha256']))\n        need(len(prior['input_sha256'])==257 and len(actual['input_sha256'])==348 and len(added)==91 and all(actual['input_sha256'].get(k)==v for k,v in prior['input_sha256'].items()),'Explicit257-to348 unchanged ancestry required')\n        report['ancestry']=dict(prior_actual=prior_pin,preserved257=257,new_records=91,total348=348,new_record_paths=added,older_ancestry_reestablished=False,older_ancestry_scope='Historical expected lineage only; this operation rechecks the complete current348 identities.')"
+        },
+        {
+          "label": "helper late/control postcheck",
+          "old": "        for name in ['helper_source_peer','helper_source_bindings','helper_root_review','helper_preparation_index','staging_receipt']:after[name]=selected(auth[name])[1]\n        after.update(helper=rec(Path(__file__)),plan=rec(P/'held-plan.json'),authorization=rec(H/'authorization.json'))",
+          "new": "        for name in ['helper_source_peer','helper_source_findings','helper_source_bindings','helper_root_review','helper_preparation_index','staging_receipt','stage_root_acceptance']:after[name]=selected(auth[name])[1]\n        for name,pin in auth['protected_records'].items():after['protected_'+name]=selected(pin)[1]\n        after.update(helper=rec(Path(__file__)),plan=rec(P/'held-plan.json'),authorization=rec(H/'authorization.json'))"
+        },
+        {
+          "label": "helper twelve/fourteen report",
+          "old": "report['late_native_roles']=dict(known_seven=plan['known_native_roles'],staging_receipt=auth['staging_receipt'],fresh_preflight='Externally compute this complete receipt identity; no embedded self hash or native admission.')",
+          "new": "report['late_native_roles']=dict(known_twelve=plan['known_native_roles'],native_final_role_names=plan['native_final_role_names'],staging_receipt=auth['staging_receipt'],fresh_preflight='Externally compute this complete receipt identity; no embedded self hash or native admission.')"
+        }
+      ],
+      "whole_forward_exact": true,
+      "whole_inverse_exact": true
+    },
+    "run_operation_once.py": {
+      "donor": {
+        "path": "work/962-engineering/head-star-current24-qfnra-five-toy-owner-f1-guards-controls-prep-002/run_guards_once.py",
+        "sha256": "42aec198fb911c43f7658544911e0af23cdc76222ce25e917ceb932c2473088a",
+        "bytes": 27767
+      },
+      "successor": {
+        "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native005-freshness-prep-001/run_operation_once.py",
+        "sha256": "a77b63acc9f88145f19c7004e909bb65152cf584be81b80e8ad9b0b247ab1138",
+        "bytes": 36459
+      },
+      "group_count": 22,
+      "ordered_exact_replacements": [
+        {
+          "label": "owner title",
+          "old": "\"\"\"HELD/UNRUN retained-anchor owner for one fixed nine-method F1 fixture.\"\"\"",
+          "new": "\"\"\"HELD/UNRUN retained-anchor owner for one fixed native005 freshness operation.\"\"\""
+        },
+        {
+          "label": "source namespace",
+          "old": "X=E/'head-star-current24-qfnra-five-toy-owner-f1-guards-controls-prep-002'",
+          "new": "X=E/'cp1-oneway-cooling-release-richardson2-observer004-native005-freshness-prep-001'"
+        },
+        {
+          "label": "fixed owner/helper/staged/native literals",
+          "old": "D=E/'head-star-current24-qfnra-five-toy-owner-f1-guards-root-execution-001'",
+          "new": "D=E/'cp1-oneway-cooling-release-richardson2-observer004-native005-freshness-owner-root-execution-001'\nH=E/'cp1-oneway-cooling-release-richardson2-observer004-native005-freshness-helper-root-execution-001'\nO=E/'cp1-oneway-cooling-release-richardson2-observer004-native-measurement-004'\nN=E/'cp1-oneway-cooling-release-richardson2-observer004-native-measurement-root-execution-004'"
+        },
+        {
+          "label": "outer streams namespace",
+          "old": "W=E/'head-star-current24-qfnra-five-toy-owner-f1-guards-root-terminal-review-001'",
+          "new": "W=E/'cp1-oneway-cooling-release-richardson2-observer004-native005-freshness-root-terminal-review-001'"
+        },
+        {
+          "label": "finite known native/source/stage bindings",
+          "old": "REQUIRED_PROTECTED={\n  \"owner\": {\n    \"path\": \"work/962-engineering/head-star-current24-qfnra-five-toy-owner-prep-002/run_owner_once.py\",\n    \"sha256\": \"f3a27f43c1ea794a552f697d556c9b6a51668d829b86f438debf03a0cd6892e2\",\n    \"bytes\": 32207\n  },\n  \"owner_index\": {\n    \"path\": \"work/962-engineering/head-star-current24-qfnra-five-toy-owner-prep-002/index.json\",\n    \"sha256\": \"2dbcb8b744677ecd01506447cd86c742b70472a1e4c3c2e867813835f1abebf0\",\n    \"bytes\": 7297\n  },\n  \"source_peer\": {\n    \"path\": \"work/962-engineering/head-star-current24-qfnra-five-toy-owner-source-peer-002/review.json\",\n    \"sha256\": \"38140b44382931e1554443a240b1c886e9cc74e2f0d2918eea2d5b59c91b8003\",\n    \"bytes\": 5080\n  },\n  \"source_findings\": {\n    \"path\": \"work/962-engineering/head-star-current24-qfnra-five-toy-owner-source-peer-002/findings.json\",\n    \"sha256\": \"75dc7b38f01bad3cc63576b99a699d24963dfcdb2873eac7dd4645825d50d0b3\",\n    \"bytes\": 2055\n  },\n  \"source_bindings\": {\n    \"path\": \"work/962-engineering/head-star-current24-qfnra-five-toy-owner-source-peer-002/bindings.json\",\n    \"sha256\": \"6eb138364cae041dc96ab01fff288b5abdd26751262674de38bcfb2e1de4f1ca\",\n    \"bytes\": 19790\n  },\n  \"root_guard_source_grant\": {\n    \"path\": \"work/962-engineering/head-star-current24-qfnra-five-toy-owner-root-source-review-002/review.json\",\n    \"sha256\": \"2b998f3bc1a895e9035a890ab1f67cb99872b77a647952239b220c80d7554b46\",\n    \"bytes\": 3455\n  },\n  \"F1_source_decision\": {\n    \"path\": \"work/962-engineering/head-star-current24-qfnra-five-toy-owner-root-source-decision-001/decision.json\",\n    \"sha256\": \"f3800b137892918d7532ed07267664f9043541e3082b739c66df04b57d84e7bf\",\n    \"bytes\": 2944\n  },\n  \"original_F1_findings\": {\n    \"path\": \"work/962-engineering/head-star-current24-qfnra-five-toy-owner-source-peer-001/findings.json\",\n    \"sha256\": \"3630255f9c2d786d11bb66663860407dcfc247a135efaa89d2d81c015d5606c9\",\n    \"bytes\": 3048\n  },\n  \"fixture\": {\n    \"path\": \"work/962-engineering/head-star-current24-qfnra-five-toy-owner-f1-guards-prep-001/test_final_evidence_guards.py\",\n    \"sha256\": \"1a81cdcd45aee1aeb917478763c9169b6be5e858c5b41b9226574ae0c70ed5fb\",\n    \"bytes\": 14566\n  },\n  \"fixture_bindings_json\": {\n    \"path\": \"work/962-engineering/head-star-current24-qfnra-five-toy-owner-f1-guards-prep-001/bindings.json\",\n    \"sha256\": \"3f1e80dda286909dd4c9482bfd1ceb47ab023bb8fff87eb352ff5e9d4e079374\",\n    \"bytes\": 12195\n  },\n  \"fixture_METHOD_md\": {\n    \"path\": \"work/962-engineering/head-star-current24-qfnra-five-toy-owner-f1-guards-prep-001/METHOD.md\",\n    \"sha256\": \"1ce871393d929c38776f4eb9106885b50264084b61034babed7661dfa89a7c03\",\n    \"bytes\": 5499\n  },\n  \"fixture_index_json\": {\n    \"path\": \"work/962-engineering/head-star-current24-qfnra-five-toy-owner-f1-guards-prep-001/index.json\",\n    \"sha256\": \"42448c88fc7b60166250bf5525c6713dc5d496914e110a8d0c3fe876ba44a87f\",\n    \"bytes\": 2508\n  },\n  \"fixture_root_review\": {\n    \"path\": \"work/962-engineering/head-star-current24-qfnra-five-toy-owner-f1-guards-root-source-review-001/review.json\",\n    \"sha256\": \"8efb54f578bc8d08a1eebedc90de083e0c4642207800229ca95eb5877f093954\",\n    \"bytes\": 2038\n  },\n  \"fixture_peer_0\": {\n    \"path\": \"work/962-engineering/head-star-current24-qfnra-five-toy-owner-f1-guards-source-peer-001/review.json\",\n    \"sha256\": \"0b98fd3173a016db569a15c41eaa7a044b2c950d066143ea703d60efe4d23100\",\n    \"bytes\": 5871\n  },\n  \"fixture_peer_1\": {\n    \"path\": \"work/962-engineering/head-star-current24-qfnra-five-toy-owner-f1-guards-source-peer-001/findings.json\",\n    \"sha256\": \"d46e3debe179a47d7a0b7c55855af019f511a553b75051ae0a990d4d9040c490\",\n    \"bytes\": 773\n  },\n  \"fixture_peer_2\": {\n    \"path\": \"work/962-engineering/head-star-current24-qfnra-five-toy-owner-f1-guards-source-peer-001/bindings.json\",\n    \"sha256\": \"05496115fee2eca30f0d518eae10827b2c309e5b36d59bc734dafac4e0d05fc9\",\n    \"bytes\": 7048\n  }\n}",
+          "new": "REQUIRED_PROTECTED={\n  \"native_actual\": {\n    \"path\": \"work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native-measurement-execution-prep-004/actual-contract.json\",\n    \"sha256\": \"a5e35548cacd4f2abfd4f0d29e5aeb738ce16bdc814f642e016851c3450f1986\",\n    \"bytes\": 273368\n  },\n  \"native_caller\": {\n    \"path\": \"work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native-measurement-prep-005/run_native_capture.py\",\n    \"sha256\": \"a04276da60fe09d9af26d32c7661fb421105b7c93724d43c728025dd1fd51aa5\",\n    \"bytes\": 45810\n  },\n  \"native_root_controller\": {\n    \"path\": \"work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native-measurement-prep-005/run_root_once.py\",\n    \"sha256\": \"34826ad993e4d874455adb40777df545f76cf611a6f23ae021a49302dc0dd649\",\n    \"bytes\": 61563\n  },\n  \"native_wrapper\": {\n    \"path\": \"work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native-measurement-prep-005/stopped_exec_wrapper.py\",\n    \"sha256\": \"a81328f9e07bded2120d8f908f8831bdafead07132ae09a1af4ccfcc4bf50e17\",\n    \"bytes\": 5295\n  },\n  \"native_source_index\": {\n    \"path\": \"work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native-measurement-prep-005/index.json\",\n    \"sha256\": \"acb06644ef2df3ed06273b4d936ecab8a76cd7760b1ddcc6e911bca0d1c554c3\",\n    \"bytes\": 6734\n  },\n  \"native_exact_child_peer\": {\n    \"path\": \"work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native005-source-peer-001/review.json\",\n    \"sha256\": \"777233540d91a59b70df3ae0947eddb32a07a3a7b1cc715de4906873d4fc946f\",\n    \"bytes\": 5291\n  },\n  \"native_exact_child_bindings\": {\n    \"path\": \"work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native005-source-peer-001/bindings.json\",\n    \"sha256\": \"29a29c02987c67782cd5a1ab8654bc43f3309995e49a6bad25fd4e04b9546691\",\n    \"bytes\": 14116\n  },\n  \"native_root_source_review\": {\n    \"path\": \"work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native005-root-source-review-001/review.json\",\n    \"sha256\": \"a8f8dd842abdc4a309b8bd4dc7c420af65ef1e9bb5b80826eb71ea93f9cd76f8\",\n    \"bytes\": 3969\n  },\n  \"native_binding_candidate\": {\n    \"path\": \"work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native005-execution-binding-prep-001/actual-contract.candidate.json\",\n    \"sha256\": \"a5e35548cacd4f2abfd4f0d29e5aeb738ce16bdc814f642e016851c3450f1986\",\n    \"bytes\": 273368\n  },\n  \"native_binding_method\": {\n    \"path\": \"work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native005-execution-binding-prep-001/METHOD.md\",\n    \"sha256\": \"3e06b15581208a893da4f145079a117e202ac6c54316bf886c18dcfae88ef188\",\n    \"bytes\": 6452\n  },\n  \"native_binding_inputs\": {\n    \"path\": \"work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native005-execution-binding-prep-001/bindings.json\",\n    \"sha256\": \"451d80933d3ce589032fe82189af060b90e27a913b719ca924b6ff9f96515b43\",\n    \"bytes\": 58253\n  },\n  \"native_binding_change_map\": {\n    \"path\": \"work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native005-execution-binding-prep-001/change-map.json\",\n    \"sha256\": \"b857a0c7486833aa8de671f7aaf1307d83353003e8ff01886746ccab25af763e\",\n    \"bytes\": 115691\n  },\n  \"helper\": {\n    \"path\": \"work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native005-freshness-prep-001/capture_freshness.py\",\n    \"sha256\": \"e3f1c980ead8f7952eb82a1996db7fc167ca829c294afdccf4b9c83d65fe2dac\",\n    \"bytes\": 17737\n  },\n  \"wrapper\": {\n    \"path\": \"work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native005-freshness-prep-001/stopped_exec_wrapper.py\",\n    \"sha256\": \"9839a4b3837115e13e331a07296daa0a95f77915be78f6e6c63afb732ad9a3a2\",\n    \"bytes\": 1588\n  },\n  \"source_adaptation_authority\": {\n    \"path\": \"work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native005-freshness-adaptation-root-authority-001/review.json\",\n    \"sha256\": \"c777a995b439c8329f0aee20c432a5361416a12cee1a5c4d2f882fcf38a5d276\",\n    \"bytes\": 7936\n  },\n  \"current_contract_root\": {\n    \"path\": \"work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native005-execution-binding-root-review-001/review.json\",\n    \"sha256\": \"3f030491c886a450d6be43f3f5d2f198ec1fc4bd4ae0b2ce9588c876b094a5d2\",\n    \"bytes\": 10112\n  },\n  \"accepted_staging_receipt\": {\n    \"path\": \"work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native005-four-input-staging-root-001/staging-receipt.json\",\n    \"sha256\": \"3ec1f62e359414c02eda78ed6e285beed3e9774c61366816560e22cfe6bddfa9\",\n    \"bytes\": 5897\n  },\n  \"stage_root_acceptance\": {\n    \"path\": \"work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native005-four-input-staging-root-001/postreturn-acceptance.json\",\n    \"sha256\": \"44b4efd5a9fada59392979b628f9a12c87ce5f86293b8397d5713936e251d087\",\n    \"bytes\": 3920\n  },\n  \"parent003_actual\": {\n    \"path\": \"work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native-measurement-execution-prep-003/actual-contract.json\",\n    \"sha256\": \"85a9195ed1a217eef6bad44518390f1b2dfdb879c9cdfc072b6e1465461a5198\",\n    \"bytes\": 116306\n  },\n  \"historical_freshness_acceptance\": {\n    \"path\": \"work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native003-freshness-root-result-acceptance-001/acceptance.json\",\n    \"sha256\": \"ac5477484c620b2fd3d0b67a9d4c73945bc14e8e5564d1bf9559bc9b12fc2984\",\n    \"bytes\": 3866\n  },\n  \"donor_freshness_helper\": {\n    \"path\": \"work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native003-staging-freshness-prep-001/capture_freshness.py\",\n    \"sha256\": \"a577e2b3499aa3571d2f08e0b7e5f54d687464654e8de7af523f7d112a1edd7d\",\n    \"bytes\": 15798\n  },\n  \"donor_legacy_owner_semantic_receipt_only\": {\n    \"path\": \"work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native003-freshness-operation-controls-prep-002/run_operation_once.py\",\n    \"sha256\": \"0555062736bd2b63dbd8da4cddfc5ef56d158eca0878be188a2cf32fcbe4fded\",\n    \"bytes\": 18764\n  },\n  \"donor_modern_retained_owner\": {\n    \"path\": \"work/962-engineering/head-star-current24-qfnra-five-toy-owner-f1-guards-controls-prep-002/run_guards_once.py\",\n    \"sha256\": \"42aec198fb911c43f7658544911e0af23cdc76222ce25e917ceb932c2473088a\",\n    \"bytes\": 27767\n  },\n  \"donor_modern_stopped_wrapper\": {\n    \"path\": \"work/962-engineering/head-star-current24-qfnra-five-toy-owner-f1-guards-controls-prep-002/stopped_exec_wrapper.py\",\n    \"sha256\": \"ab0ebf6bc3110680ce0f03022da2d66452175877a07612b6657ecb66c02afdf4\",\n    \"bytes\": 1536\n  }\n}"
+        },
+        {
+          "label": "fixed helper limits/late roles; remove fixture list",
+          "old": "RUNTIME_SELECTION=dict(path='work/962-engineering/head-star-current24-qfnra-five-toy-owner-f1-guard-runtime-selection-root-001/runtime-identity.json',sha256='ec373001917f5fb80fae1c507186e0505f3ba699abc550ea31585c6c8c144269',bytes=1624)\nDIRECT_ROLES=('controller','wrapper','control_preparation_index','fixture_source_peer','fixture_source_bindings',\n    'root_fixture_source_review','exact_control_peer','exact_control_bindings','root_control_review','runtime_selection')\nMETHODS=('test_01_complete_normal_control','test_02_final_stdout_rec_failure','test_03_final_stderr_rec_failure',\n    'test_04_final_adapter_report_rec_failure','test_05_final_helper_report_rec_failure',\n    'test_06_missing_final_stdout_descriptor','test_07_missing_final_stderr_descriptor',\n    'test_08_missing_final_adapter_descriptor','test_09_missing_final_helper_descriptor')\n",
+          "new": "HELPER_LIMITS=dict(whole_seconds=60,TERM_grace_seconds=8,stream_buffer_bytes=1048576,query_seconds=5,total_inclusive_bytes=33554432,thread_environment=1,retries=0)\nDIRECT_ROLES=('controller','wrapper','helper','held_plan','held_actual','control_preparation_index','helper_authorization','helper_source_peer','helper_source_findings','helper_source_bindings','helper_root_review','root_control_review','staging_receipt','stage_root_acceptance',)\n"
+        },
+        {
+          "label": "inclusive owner/helper/staged canonical union",
+          "old": "    # Installed runtime/provider bodies are excluded unless copied into owned D.\n    files={}\n    for p in D.rglob('*'):\n        need(not p.is_symlink(),'Unexpected owned symlink')\n        if p.is_file():files[str(p)]=p.stat().st_size",
+          "new": "    # Installed runtime/provider bodies are excluded unless copied into an owned root.\n    files={}\n    for owned in (D,H,O):\n        need(owned.is_dir() and not owned.is_symlink(),'Changed fixed owned directory')\n        for p in owned.rglob('*'):\n            need(not p.is_symlink(),'Unexpected owned symlink')\n            if p.is_file():files[str(p)]=p.stat().st_size"
+        },
+        {
+          "label": "typed positive helper/query closure before leader reap",
+          "old": "def diagnostics():\n    need(all((D/name).stat().st_size<=CAP for name in ('fixture.stdout','fixture.stderr')),'Full stream exceeds cap; retained without parsing')\n    with (D/'fixture.stdout').open('rb') as f:out=f.read(CAP+1)\n    with (D/'fixture.stderr').open('rb') as f:err=f.read(CAP+1)\n    need(len(out)+len(err)<=CAP and out==b'','Unexpected/oversize full diagnostics retained')\n    text=err.decode('utf-8','strict')\n    prefix=''.join(name+' (__main__.FinalEvidenceF1Guards.'+name+') ... ok\\n' for name in METHODS)\n    need(text.startswith(prefix),'Exact ordered nine method rows required')\n    need(re.fullmatch(r'\\n-{70}\\nRan 9 tests in [0-9]+(?:\\.[0-9]+)?s\\n\\nOK\\n',text[len(prefix):]) is not None,'Complete Ran9/finalOK diagnostics required')\n    return dict(methods=list(METHODS),method_count=9,all_nine_completed=True,F1_synthetic_only=True)\n",
+          "new": "def diagnostics(auth):\n    need(all((D/name).stat().st_size<=CAP for name in ('helper.stdout','helper.stderr')),'Full helper stream exceeds cap; retained without parsing')\n    with (D/'helper.stdout').open('rb') as f:out=f.read(CAP+1)\n    with (D/'helper.stderr').open('rb') as f:err=f.read(CAP+1)\n    need(out==err==b'','Positive helper closure requires complete empty helper streams')\n    path=H/'fresh-preflight.json'\n    need(path.is_file() and not path.is_symlink() and path.stat().st_size<=CAP,'Complete fixed helper receipt required before leader reap')\n    value=json.loads(path.read_bytes());q=value['query']\n    need(value['schema']=='962-observer004-native005-fresh-preflight/v1' and value['status']=='COMPLETE_METADATA_ONLY' and value['all_declared_identities_unchanged'] is True and value['error'] is None,'Finite freshness refused')\n    need(value['metadata_query_only'] is True and value['native_execution'] is False and value['fixture_execution'] is False and value['field_parsing'] is False,'Only fixed metadata operation permitted')\n    need(value['helper']==REQUIRED_PROTECTED['helper'] and value['held_plan']==auth['held_plan'] and value['authorization']==auth['helper_authorization']==rec(H/'authorization.json'),'Helper receipt source/authority associations changed')\n    need(value['controls_before']==value['controls_after'] and value['observations_before']==value['observations_after'],'Complete before/after helper identity maps required')\n    observations=value['observations_before']\n    need(all(len(observations[key])==count for key,count in [('inputs',348),('runtime_files',19),('runtime_links',13),('providers',22),('host_records',89),('staged_inputs',4)]),'Complete finite observation counts required')\n    need(type(q['attempts']) is int and q['attempts']==1 and q['started'] is True and type(q['returncode']) is int and q['returncode']==0 and q['reaped'] is True and q['new_session'] is False,'One normally reaped inherited-group query required')\n    need(q['error'] is None and q.get('validation_error') is None and q['stop_actions']==[] and type(q['elapsed_through_cleanup']) in (int,float) and 0<=q['elapsed_through_cleanup']<=5,'Query cleanup failed/unknown/late; retain group anchor')\n    need(q.get('cleanup_TERM_error') is None and q.get('cleanup_KILL_error') is None,'No query cleanup error may release the helper leader')\n    need(q['stdout']==rec(H/'query.stdout') and 0<q['stdout']['bytes']<=65536 and q['stderr']==rec(H/'query.stderr') and q['stderr']['bytes']==0,'Complete exact query streams required')\n    meta=q['metadata']\n    need(meta['version_info']==[3,12,11] and meta['executable']==PYTHON['path'] and meta['resolved_executable']==PYTHON['resolved_path'],'Exact selected query identity required')\n    need(meta['flags']==dict(isolated=1,no_site=1,dont_write_bytecode=1,no_user_site=1,optimize=0) and meta['site_loaded'] is False and meta['distutils_hack_loaded'] is False,'Exact query startup flags required')\n    return dict(helper_receipt=rec(path),query_reaped=True,query_returncode=0,query_elapsed_through_cleanup=q['elapsed_through_cleanup'],complete_metadata_only=True)\n"
+        },
+        {
+          "label": "fixed freshness admission/acyclic known/late inputs",
+          "old": "def admit():\n    need(len(sys.argv)==2 and re.fullmatch('[0-9a-f]{64}',sys.argv[1]),'HELD: sole external root-admission digest required')\n    A=D/'admission.json';ap=rec(A)\n    need(ap['sha256']==sys.argv[1] and ap['bytes']<=CAP,'Changed/oversize root admission')\n    auth=json.loads(A.read_bytes())\n    need(auth['schema']=='962-five-toy-F1-nine-guard-root-admission/v1' and auth['root_issued'] is True and auth['guard_execution_authorized'] is True,'No guard authority')\n    need(type(auth['invocations']) is int and auth['invocations']==1 and auth['automatic_retry'] is False and auth['controls']==CONTROLS,'One fixed bounded invocation required')\n    need(all(auth[k] is True for k in ('independent_fixture_source_review_complete','independent_control_source_review_complete','root_control_review_complete','selected_runtime_and_inputs_accepted_by_root')),'Pending source/control/fixed-runtime admission')\n    need(all(auth[k] is False for k in ('real_head_input_authorized','Z3_authorized','native_execution_authorized','physical_acceptance','manufacturing_authorized')),'No scientific/native authority')\n    need(auth['selected_python']==PYTHON and auth['runtime_selection']==RUNTIME_SELECTION and auth['environment']==ENV and all(os.environ.get(k)==v for k,v in ENV.items()),'Exact3.12/thread-one route required; no environment dump')\n    need(str(Path(sys.executable).resolve(strict=True))==PYTHON['resolved_path'] and sys.version_info[:3]==(3,12,11),'Selected3.12.11 owner required')\n    need(Path(PYTHON['path']).is_symlink() is PYTHON['is_symlink'] and os.readlink(PYTHON['path'])==PYTHON['raw_target'],'Changed selected alias metadata')\n    need(sys.flags.isolated==sys.flags.dont_write_bytecode==sys.flags.no_site==1 and sys.flags.optimize==0 and 'site' not in sys.modules and '_distutils_hack' not in sys.modules,'Exact -B-I-S startup required')\n    need(signal.getsignal(signal.SIGCHLD)==signal.SIG_DFL,'Already-default SIGCHLD and no competing waiter required')\n    need(all(hasattr(select,k) for k in ('kqueue','kevent','KQ_FILTER_PROC','KQ_NOTE_EXIT','KQ_EV_ADD','KQ_EV_ENABLE','KQ_EV_ONESHOT','KQ_EV_ERROR')) and all(hasattr(os,k) for k in ('waitpid','WUNTRACED','WNOHANG','WIFSTOPPED','WSTOPSIG','WIFEXITED','WIFSIGNALED','waitstatus_to_exitcode','getpgid','getsid','killpg','kill')),'Named APIs unavailable; no launch')\n    need(not D.is_symlink() and D.resolve(strict=True)==D and set(p.name for p in D.iterdir())=={'admission.json'},'Fresh fixed owned root required')\n    need(auth['fixture']==REQUIRED_PROTECTED['fixture'] and auth['owner_source']==REQUIRED_PROTECTED['owner'],'Pinned fixture and selected owner source required')\n    need(auth['root_fixture_source_review']==REQUIRED_PROTECTED['fixture_root_review'],'Exact root focused fixture source decision required')\n    need(auth['fixture_source_peer']==REQUIRED_PROTECTED['fixture_peer_0'] and auth['fixture_source_bindings']==REQUIRED_PROTECTED['fixture_peer_2'],'Exact independent fixture source peer required')\n    need(selected(auth['controller'])==X/'run_guards_once.py' and auth['controller']==rec(Path(__file__)) and selected(auth['wrapper'])==WRAPPER and selected(auth['control_preparation_index'])==X/'index.json','Fixed executed controller and source preparation paths required')\n    need(auth['outer_stream_paths']==[str(W/'outer.stdout'),str(W/'outer.stderr')],'Fixed external streams required')\n    first=dict(auth['protected_records'])\n    need(all(first.get(k)==v for k,v in REQUIRED_PROTECTED.items()),'All known finite provenance must be protected')\n    for k in DIRECT_ROLES:first['direct_'+k]=auth[k]\n    packet=json.loads(selected(auth['control_preparation_index']).read_bytes())\n    need(set(packet['files'])=={'run_guards_once.py','stopped_exec_wrapper.py','METHOD.md','source-reuse.json','source.diff'} and packet['file_count_including_this_index']==6,'Fixed six-file control source packet required')\n    need(all(pin in first.values() for pin in packet['files'].values()),'All finite control source/proof files must be admitted and protected')\n    first['root_admission']=ap\n    records={}\n    for pin in first.values():\n        p=Path(pin['path']);p=p if p.is_absolute() else R/p\n        need(str(p) not in records or records[str(p)]==pin,'Conflicting descriptor for one canonical path')\n        records[str(p)]=pin\n    need(type(auth['expected_canonical_input_count']) is int and len(records)==auth['expected_canonical_input_count'],'Exact canonical unique input count required')\n    before=identities(records,PYTHON)\n    need(inclusive_census(first)['total_bytes']<=CAP,'Initial full inclusive cap')\n    gate(40,'Preflight exhausted normal40; no child launched')\n    return auth,first,records,before,ap\n",
+          "new": "def admit():\n    need(len(sys.argv)==2 and re.fullmatch('[0-9a-f]{64}',sys.argv[1]),'HELD: sole external root-admission digest required')\n    A=D/'admission.json';ap=rec(A)\n    need(ap['sha256']==sys.argv[1] and ap['bytes']<=CAP,'Changed/oversize root admission')\n    auth=json.loads(A.read_bytes())\n    need(auth['schema']=='962-native005-freshness-owner-root-admission/v1' and auth['root_issued'] is True and auth['metadata_freshness_authorized'] is True,'No metadata freshness authority')\n    need(type(auth['invocations']) is int and auth['invocations']==1 and auth['automatic_retry'] is False and auth['controls']==CONTROLS,'One fixed bounded invocation required')\n    need(all(auth[k] is True for k in ('independent_source_review_complete','independent_control_source_review_complete','root_control_review_complete','selected_operation_identity_accepted_by_root','opaque_declared_identity_reads_authorized')),'Pending source/control/fixed-operation admission')\n    need(all(auth[k] is False for k in ('staging_authorized','fixture_execution_authorized','Z3_authorized','native_execution_authorized','field_parsing_authorized','physical_acceptance','manufacturing_authorized')),'No staging/scientific/native authority')\n    need(auth['selected_python']==PYTHON and auth['environment']==ENV and all(os.environ.get(k)==v for k,v in ENV.items()),'Exact3.12/thread-one route required; no environment dump')\n    need(str(Path(sys.executable).resolve(strict=True))==PYTHON['resolved_path'] and sys.version_info[:3]==(3,12,11),'Selected3.12.11 owner required')\n    need(Path(PYTHON['path']).is_symlink() is PYTHON['is_symlink'] and os.readlink(PYTHON['path'])==PYTHON['raw_target'],'Changed selected alias metadata')\n    need(sys.flags.isolated==sys.flags.dont_write_bytecode==sys.flags.no_site==1 and sys.flags.optimize==0 and 'site' not in sys.modules and '_distutils_hack' not in sys.modules,'Exact -B-I-S startup required')\n    need(signal.getsignal(signal.SIGCHLD)==signal.SIG_DFL,'Already-default SIGCHLD and no competing waiter required')\n    need(all(hasattr(select,k) for k in ('kqueue','kevent','KQ_FILTER_PROC','KQ_NOTE_EXIT','KQ_EV_ADD','KQ_EV_ENABLE','KQ_EV_ONESHOT','KQ_EV_ERROR')) and all(hasattr(os,k) for k in ('waitpid','WUNTRACED','WNOHANG','WIFSTOPPED','WSTOPSIG','WIFEXITED','WIFSIGNALED','waitstatus_to_exitcode','getpgid','getsid','killpg','kill')),'Named APIs unavailable; no launch')\n    need(not D.is_symlink() and D.resolve(strict=True)==D and set(p.name for p in D.iterdir())=={'admission.json'},'Fresh fixed owner root required')\n    need(H.is_dir() and not H.is_symlink() and H.resolve(strict=True)==H and set(p.name for p in H.iterdir())=={'authorization.json'} and not N.exists(),'Fresh helper authorization only and no native root required')\n    need(selected(auth['controller'])==X/'run_operation_once.py' and auth['controller']==rec(Path(__file__)) and selected(auth['wrapper'])==WRAPPER and selected(auth['control_preparation_index'])==X/'index.json','Fixed executed controller and source preparation paths required')\n    need(auth['helper']==REQUIRED_PROTECTED['helper'] and selected(auth['held_plan'])==X/'held-plan.json' and selected(auth['held_actual'])==X/'held-actual.json','Fixed helper/held context required')\n    need(auth['helper_authorization']==rec(H/'authorization.json') and auth['staging_receipt']==REQUIRED_PROTECTED['accepted_staging_receipt'] and auth['stage_root_acceptance']==REQUIRED_PROTECTED['stage_root_acceptance'],'Exact helper authorization/current staging required')\n    need(auth['outer_stream_paths']==[str(W/'outer.stdout'),str(W/'outer.stderr')],'Fixed external streams required')\n    held=json.loads((X/'held-actual.json').read_bytes());plan=json.loads((X/'held-plan.json').read_bytes())\n    need(held['status']=='HELD_UNRUN_SOURCE_ONLY' and held['operation_authorized'] is False and held['controller']==auth['controller'] and held['wrapper']==auth['wrapper'] and held['helper']==auth['helper'] and held['helper_plan']==auth['held_plan'] and held['controls']==CONTROLS and held['helper_limits']==HELPER_LIMITS,'Exact immutable held operation context required')\n    need(plan['known_native_roles']==held['known_native_roles'] and plan['native_final_role_names']==held['native_final_role_names'] and len(plan['known_native_roles'])==12 and set(plan['known_native_roles'])==set(plan['native_final_role_names'])-{'staging_receipt','fresh_preflight'} and len(plan['native_final_role_names'])==14,'Exact12 known/14 final native roles required')\n    helper_auth=json.loads((H/'authorization.json').read_bytes())\n    need(helper_auth['schema']=='962-native005-finite-helper-root-admission/v1' and helper_auth['helper']==auth['helper'] and helper_auth['plan']==auth['held_plan'] and helper_auth['limits']==HELPER_LIMITS,'Fixed helper source/plan/limits required')\n    for key in ('helper_source_peer','helper_source_findings','helper_source_bindings','helper_root_review','staging_receipt','stage_root_acceptance'):\n        need(helper_auth[key]==auth[key],'Exact shared late helper/control roles required')\n    need(helper_auth['helper_preparation_index']==auth['control_preparation_index'],'Shared packet index required')\n    first=dict(auth['protected_records'])\n    need(all(first.get(k)==v for k,v in REQUIRED_PROTECTED.items()),'All known finite provenance must be protected')\n    for k in DIRECT_ROLES:first['direct_'+k]=auth[k]\n    for k,pin in helper_auth['protected_records'].items():\n        need(pin in first.values(),'Every helper-protected record must also be owner-protected')\n    packet=json.loads(selected(auth['control_preparation_index']).read_bytes())\n    expected={'capture_freshness.py','run_operation_once.py','stopped_exec_wrapper.py','held-plan.json','held-actual.json','METHOD.md','bindings.json','source-reuse.json','source.diff','source.inverse.diff'}\n    need(set(packet['files'])==expected and packet['file_count_including_this_index']==11,'Fixed eleven-file freshness source packet required')\n    need(all(pin in first.values() for pin in packet['files'].values()),'All finite source/proof files must be admitted and protected')\n    actual=json.loads(selected(REQUIRED_PROTECTED['native_actual']).read_bytes())\n    need(len(actual['input_sha256'])==348 and len(actual['inclusive_external_records'])==348,'Exact current348 input scope required')\n    expected_inputs={pin['path']:pin for pin in actual['inclusive_external_records'].values()}\n    need(len(expected_inputs)==348 and set(expected_inputs)==set(actual['input_sha256']) and all(pin['sha256']==actual['input_sha256'][name] for name,pin in expected_inputs.items()),'Complete348 input descriptor association required')\n    for i,(name,pin) in enumerate(sorted(expected_inputs.items())):first['native_input_'+str(i)]=pin\n    need(O.is_dir() and not O.is_symlink() and set(p.name for p in O.iterdir())==set(actual['staged_inputs']) and len(actual['staged_inputs'])==4,'Exactly four existing staged inputs required')\n    first['root_admission']=ap\n    records={}\n    for pin in first.values():\n        p=Path(pin['path']);p=p if p.is_absolute() else R/p\n        need(str(p) not in records or records[str(p)]==pin,'Conflicting descriptor for one canonical path')\n        records[str(p)]=pin\n    need(type(auth['expected_canonical_input_count']) is int and len(records)==auth['expected_canonical_input_count'],'Exact canonical unique input count required')\n    before=identities(records,PYTHON)\n    need(inclusive_census(first)['total_bytes']<=CAP,'Initial full inclusive cap')\n    gate(40,'Preflight exhausted normal40; no child launched')\n    return auth,first,records,before,ap\n"
+        },
+        {
+          "label": "owner result schema",
+          "old": "schema='962-five-toy-F1-nine-guard-owner-result/v1'",
+          "new": "schema='962-native005-freshness-owner-result/v1'"
+        },
+        {
+          "label": "positive pre-reap proof fields",
+          "old": "diagnostics=None,owned_streams={}",
+          "new": "diagnostics=None,pre_reap_helper_diagnostics=None,helper_query_cleanup_confirmed=False,owned_streams={}"
+        },
+        {
+          "label": "scope exact opaque identity reads",
+          "old": "scientific_body_read=False,Z3_executed=False",
+          "new": "scientific_body_decode=False,opaque_declared_identity_reads=True,Z3_executed=False"
+        },
+        {
+          "label": "wrapper receives H digest only",
+          "old": "argv=[PYTHON['path'],'-B','-I','-S',str(WRAPPER),ap['sha256']]",
+          "new": "argv=[PYTHON['path'],'-B','-I','-S',str(WRAPPER),auth['helper_authorization']['sha256']]"
+        },
+        {
+          "label": "helper cwd authorization",
+          "old": "auth['cwd']==str(D)",
+          "new": "auth['cwd']==str(H)"
+        },
+        {
+          "label": "fixed helper streams",
+          "old": "with (D/'fixture.stdout').open('xb') as out,(D/'fixture.stderr').open('xb') as err:",
+          "new": "with (D/'helper.stdout').open('xb') as out,(D/'helper.stderr').open('xb') as err:"
+        },
+        {
+          "label": "helper working directory",
+          "old": "proc=_RetainedPopen(argv,cwd=D,env=ENV",
+          "new": "proc=_RetainedPopen(argv,cwd=H,env=ENV"
+        },
+        {
+          "label": "positive helper cleanup before anchor release",
+          "old": "                if seen:\n                    report['normal_NOTE_EXIT']=True;report['group_signal_intent_ended']=True\n                gate(40,'Exit query returned late/stopped')\n                if seen:\n                    break",
+          "new": "                if seen:\n                    report['normal_NOTE_EXIT']=True\n                gate(40,'Exit query returned late/stopped')\n                if seen:\n                    report['pre_reap_helper_diagnostics']=diagnostics(auth)\n                    gate(40,'Positive helper query-cleanup validation returned late/stopped')\n                    report['helper_query_cleanup_confirmed']=True\n                    report['group_signal_intent_ended']=True\n                    break"
+        },
+        {
+          "label": "raw helper label",
+          "old": "need(report['raw_returncode']==0,'Fixture raw nonzero; full diagnostics retained')",
+          "new": "need(report['raw_returncode']==0,'Helper raw nonzero; full diagnostics retained')"
+        },
+        {
+          "label": "final helper streams",
+          "old": "for name in ('fixture.stdout','fixture.stderr'):",
+          "new": "for name in ('helper.stdout','helper.stderr'):"
+        },
+        {
+          "label": "final complete helper receipt recheck",
+          "old": "try:report['diagnostics']=diagnostics();gate(60,'Diagnostics returned late/stopped')",
+          "new": "try:\n                report['diagnostics']=diagnostics(auth)\n                need(report['diagnostics']==report['pre_reap_helper_diagnostics'],'Helper receipt changed after deliberate reap')\n                gate(60,'Diagnostics returned late/stopped')"
+        },
+        {
+          "label": "completion includes positive pre/post helper association",
+          "old": "set(report['owned_streams'])=={'fixture.stdout','fixture.stderr'} and report['diagnostics'] is not None",
+          "new": "set(report['owned_streams'])=={'helper.stdout','helper.stderr'} and report['helper_query_cleanup_confirmed'] is True and report['diagnostics'] is not None and report['diagnostics']==report['pre_reap_helper_diagnostics']"
+        },
+        {
+          "label": "owner completion label",
+          "old": "'COMPLETE_NINE_F1_SYNTHETIC_GUARDS_CANDIDATE_ONLY'",
+          "new": "'COMPLETE_NATIVE005_METADATA_FRESHNESS_CANDIDATE_ONLY'"
+        }
+      ],
+      "whole_forward_exact": true,
+      "whole_inverse_exact": true
+    },
+    "stopped_exec_wrapper.py": {
+      "donor": {
+        "path": "work/962-engineering/head-star-current24-qfnra-five-toy-owner-f1-guards-controls-prep-002/stopped_exec_wrapper.py",
+        "sha256": "ab0ebf6bc3110680ce0f03022da2d66452175877a07612b6657ecb66c02afdf4",
+        "bytes": 1536
+      },
+      "successor": {
+        "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native005-freshness-prep-001/stopped_exec_wrapper.py",
+        "sha256": "9839a4b3837115e13e331a07296daa0a95f77915be78f6e6c63afb732ad9a3a2",
+        "bytes": 1588
+      },
+      "group_count": 5,
+      "ordered_exact_replacements": [
+        {
+          "label": "wrapper title",
+          "old": "\"\"\"HELD/UNRUN fixed same-PID stopped-exec wrapper for nine F1 fake tests.\"\"\"",
+          "new": "\"\"\"HELD/UNRUN fixed same-PID stopped-exec wrapper for native005 freshness.\"\"\""
+        },
+        {
+          "label": "helper authorization path",
+          "old": "head-star-current24-qfnra-five-toy-owner-f1-guards-root-execution-001/admission.json",
+          "new": "cp1-oneway-cooling-release-richardson2-observer004-native005-freshness-helper-root-execution-001/authorization.json"
+        },
+        {
+          "label": "fixed helper path",
+          "old": "FIXTURE=Path('/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/head-star-current24-qfnra-five-toy-owner-f1-guards-prep-001/test_final_evidence_guards.py')",
+          "new": "HELPER=Path('/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native005-freshness-prep-001/capture_freshness.py')"
+        },
+        {
+          "label": "fixed helper bytes",
+          "old": "raw=FIXTURE.read_bytes()\nassert len(raw)==14566 and hashlib.sha256(raw).hexdigest()=='1a81cdcd45aee1aeb917478763c9169b6be5e858c5b41b9226574ae0c70ed5fb'",
+          "new": "raw=HELPER.read_bytes()\nassert len(raw)==17737 and hashlib.sha256(raw).hexdigest()=='e3f1c980ead8f7952eb82a1996db7fc167ca829c294afdccf4b9c83d65fe2dac'"
+        },
+        {
+          "label": "exec unchanged interpreter/helper external H digest",
+          "old": "os.execv(PY,[PY,'-B','-I','-S',str(FIXTURE)])",
+          "new": "os.execv(PY,[PY,'-B','-I','-S',str(HELPER),sys.argv[1]])"
+        }
+      ],
+      "whole_forward_exact": true,
+      "whole_inverse_exact": true
+    }
+  },
+  "total_exact_change_groups": 38,
+  "complete_forward_diff": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native005-freshness-prep-001/source.diff",
+    "sha256": "22b642cc5fc620926c773d8c163f2ff48bea5349cbb489b29504ed907ae61d58",
+    "bytes": 50115
+  },
+  "complete_inverse_diff": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native005-freshness-prep-001/source.inverse.diff",
+    "sha256": "8af6168bebeb11a79e6510c838b31af0b8bd81ec82c12b7547296b54cf828e8c",
+    "bytes": 50115
+  },
+  "source_AST_text_proof": {
+    "capture_freshness.py": {
+      "donor": {
+        "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native003-staging-freshness-prep-001/capture_freshness.py",
+        "sha256": "a577e2b3499aa3571d2f08e0b7e5f54d687464654e8de7af523f7d112a1edd7d",
+        "bytes": 15798
+      },
+      "successor": {
+        "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native005-freshness-prep-001/capture_freshness.py",
+        "sha256": "e3f1c980ead8f7952eb82a1996db7fc167ca829c294afdccf4b9c83d65fe2dac",
+        "bytes": 17737
+      },
+      "imports_text_and_AST_exact": true,
+      "definitions": [
+        {
+          "name": "admit",
+          "disposition": "changed_or_added",
+          "before_text_sha256": "ff58830c20c3c42908ef3bc4ac6bf224a72cecf146218775c5137b71c3359298",
+          "after_text_sha256": "caf2e19a14314fbb7c2a4d820a410e9c8220c79b83152ffa4ea1ae6a1fe96f76",
+          "before_AST_sha256": "57baf08f3b88e0c62324773ed7b0a574348942b1446fecdc440b1ad21c705955",
+          "after_AST_sha256": "a1269787a1bf8d08e7e88976f9e8cbb95ba5cdb1a73a99a8905bc1ff62b6e45e"
+        },
+        {
+          "name": "alias",
+          "disposition": "retained_text_and_AST_exact",
+          "before_text_sha256": "22cd41129761457c8210b46351289e9df2accd7f6e1554f343d9d86c13f41b3b",
+          "after_text_sha256": "22cd41129761457c8210b46351289e9df2accd7f6e1554f343d9d86c13f41b3b",
+          "before_AST_sha256": "b99b7f6687d76d449da86d255ae9c9b9caccb32d59b68e2178934f0c4a4d8c61",
+          "after_AST_sha256": "b99b7f6687d76d449da86d255ae9c9b9caccb32d59b68e2178934f0c4a4d8c61"
+        },
+        {
+          "name": "main",
+          "disposition": "changed_or_added",
+          "before_text_sha256": "9f3bac8f8bf07dcbfef9675362a4cd585b19c9d5ab66b6040a412fd4296f7bac",
+          "after_text_sha256": "df38cf0abb12d7e034c7b6f935ac7dc94f2600ecae1a5fe0f4e93a6d13476240",
+          "before_AST_sha256": "925180c32561cd6fa9d31e1c47ebc747c998edf38227bd062e5d49710f300ae9",
+          "after_AST_sha256": "33a968f89545cbc2bcf5e73d509d6b95dd0bd1a0a9befc075edc04de9365a694"
+        },
+        {
+          "name": "metadata_query",
+          "disposition": "retained_text_and_AST_exact",
+          "before_text_sha256": "3c4a14e7f040bf5b4fdb743a0f0c4bf614469a4e168109b6e67f2092eefe508b",
+          "after_text_sha256": "3c4a14e7f040bf5b4fdb743a0f0c4bf614469a4e168109b6e67f2092eefe508b",
+          "before_AST_sha256": "cd64f04d51895130ffbd193ec61bda9aea37e9249ab31260502f294eb0b6a590",
+          "after_AST_sha256": "cd64f04d51895130ffbd193ec61bda9aea37e9249ab31260502f294eb0b6a590"
+        },
+        {
+          "name": "need",
+          "disposition": "retained_text_and_AST_exact",
+          "before_text_sha256": "098b7ab9ef05c6267cec7bb1127e289155ed079b6b4e97dcc21dae0b9f8d9fb3",
+          "after_text_sha256": "098b7ab9ef05c6267cec7bb1127e289155ed079b6b4e97dcc21dae0b9f8d9fb3",
+          "before_AST_sha256": "acd835d407017ae4ddfcb4f79fa2adbd3bd71ca44738278a4cf2c5e31a8c754a",
+          "after_AST_sha256": "acd835d407017ae4ddfcb4f79fa2adbd3bd71ca44738278a4cf2c5e31a8c754a"
+        },
+        {
+          "name": "observe",
+          "disposition": "changed_or_added",
+          "before_text_sha256": "c817f376c7b5a3405961a14e1b4f39755950550edaf4789dc05f1f32600554d0",
+          "after_text_sha256": "c9782157cf3f824df46d24c8485ada4487492c622960540a6a769a1e4c604922",
+          "before_AST_sha256": "fe032c79b8ba321ae0d5abceb5c49815160785a3346d3108ed07978fbe28fe7f",
+          "after_AST_sha256": "e5611bf14fd1f53740197be21e96b237641cfc16cf6e19d6e1fa4a5e80060258"
+        },
+        {
+          "name": "owned_bytes",
+          "disposition": "retained_text_and_AST_exact",
+          "before_text_sha256": "b902e05e1c56e06193cec4e2dc81ce382c877a4889523dabf0464bcc5bd7c001",
+          "after_text_sha256": "b902e05e1c56e06193cec4e2dc81ce382c877a4889523dabf0464bcc5bd7c001",
+          "before_AST_sha256": "39bc3f9ad292dafae168e0558dcabb09b43fdda68c9f6d1e705098af40866324",
+          "after_AST_sha256": "39bc3f9ad292dafae168e0558dcabb09b43fdda68c9f6d1e705098af40866324"
+        },
+        {
+          "name": "rec",
+          "disposition": "retained_text_and_AST_exact",
+          "before_text_sha256": "2495b3fe4e7c97b0b60041f78816b905953e91e59240db327877994de195cc18",
+          "after_text_sha256": "2495b3fe4e7c97b0b60041f78816b905953e91e59240db327877994de195cc18",
+          "before_AST_sha256": "f682dfb5395dba173b5c952555eec453de760f24d94a3a9e274af481e44c2f13",
+          "after_AST_sha256": "f682dfb5395dba173b5c952555eec453de760f24d94a3a9e274af481e44c2f13"
+        },
+        {
+          "name": "selected",
+          "disposition": "retained_text_and_AST_exact",
+          "before_text_sha256": "cbef756299862b6d1e802c3cf5f278295accfbbb85df3dfc50461468657206c1",
+          "after_text_sha256": "cbef756299862b6d1e802c3cf5f278295accfbbb85df3dfc50461468657206c1",
+          "before_AST_sha256": "a73070d77de7743d2a1abc36f9dc890139f300b0cbc14c8e018251fd11fd6853",
+          "after_AST_sha256": "a73070d77de7743d2a1abc36f9dc890139f300b0cbc14c8e018251fd11fd6853"
+        },
+        {
+          "name": "time_check",
+          "disposition": "retained_text_and_AST_exact",
+          "before_text_sha256": "3ebf4f45bf2a63cef748ab9ed82d1df9c4431c4be95dbf3e3345dd131da70218",
+          "after_text_sha256": "3ebf4f45bf2a63cef748ab9ed82d1df9c4431c4be95dbf3e3345dd131da70218",
+          "before_AST_sha256": "0216d0a5c37df354a763eb2b2b98da1d888f8bde0e982233ce1da4496cc04d09",
+          "after_AST_sha256": "0216d0a5c37df354a763eb2b2b98da1d888f8bde0e982233ce1da4496cc04d09"
+        }
+      ]
+    },
+    "run_operation_once.py": {
+      "donor": {
+        "path": "work/962-engineering/head-star-current24-qfnra-five-toy-owner-f1-guards-controls-prep-002/run_guards_once.py",
+        "sha256": "42aec198fb911c43f7658544911e0af23cdc76222ce25e917ceb932c2473088a",
+        "bytes": 27767
+      },
+      "successor": {
+        "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native005-freshness-prep-001/run_operation_once.py",
+        "sha256": "a77b63acc9f88145f19c7004e909bb65152cf584be81b80e8ad9b0b247ab1138",
+        "bytes": 36459
+      },
+      "imports_text_and_AST_exact": true,
+      "definitions": [
+        {
+          "name": "_RetainedPopen",
+          "disposition": "retained_text_and_AST_exact",
+          "before_text_sha256": "31cbe573548d65f90c01b8d4efc7fd40902483c89fa710b01c4b9337900032b2",
+          "after_text_sha256": "31cbe573548d65f90c01b8d4efc7fd40902483c89fa710b01c4b9337900032b2",
+          "before_AST_sha256": "f69b979d4cb940a4a9e2717286fcbd12c9574e91b4dfb7f7ab0921effc91cdaf",
+          "after_AST_sha256": "f69b979d4cb940a4a9e2717286fcbd12c9574e91b4dfb7f7ab0921effc91cdaf"
+        },
+        {
+          "name": "admit",
+          "disposition": "changed_or_added",
+          "before_text_sha256": "01d6dd56d9497be85ea6ae84f56c2ebb5265c5d6b2382f44c775e0d84afb550f",
+          "after_text_sha256": "c33401edd63b7fa1233d727ab5264e2bb34d11eaf30294ad95500793dcd08870",
+          "before_AST_sha256": "34e5a8a08632608b3fa8c04f65d797da707d7348f5ce89706760847a413b5c35",
+          "after_AST_sha256": "d3d6c1caac32973bdbdf7be6dd7453a328e0a0aef74ffeb8042fbdc8157bdaee"
+        },
+        {
+          "name": "diagnostics",
+          "disposition": "changed_or_added",
+          "before_text_sha256": "7d234d8bb5596de36550e4ed3ba8cd66a302d9b7b431bf86cb9fafec1cac8aca",
+          "after_text_sha256": "d249d3869d80962dcaca200274718885384d187071fc416c8df1f41760644faa",
+          "before_AST_sha256": "5c73f8c2f0447dd2192dd16c6c01beb087d7f0d73c3b4937e8f970cf38fa476d",
+          "after_AST_sha256": "bc1b12d44ee81f2073a3c241bed6b312f9ab51123c7da21dbe7ff5e2748e1285"
+        },
+        {
+          "name": "event_record",
+          "disposition": "retained_text_and_AST_exact",
+          "before_text_sha256": "f04ae616da6285faee940b3123ac7077f8ecb1ae6041ea55e848990c75338d84",
+          "after_text_sha256": "f04ae616da6285faee940b3123ac7077f8ecb1ae6041ea55e848990c75338d84",
+          "before_AST_sha256": "05437fd16ea2ebc28ce90b3d207300052ad569420db90b55c898f5f03fbb40a6",
+          "after_AST_sha256": "05437fd16ea2ebc28ce90b3d207300052ad569420db90b55c898f5f03fbb40a6"
+        },
+        {
+          "name": "exit_events",
+          "disposition": "retained_text_and_AST_exact",
+          "before_text_sha256": "e70c335e5a650dd3b5cf1a039d184e31ba71c26ba16306c1939c6bfcfac1ff49",
+          "after_text_sha256": "e70c335e5a650dd3b5cf1a039d184e31ba71c26ba16306c1939c6bfcfac1ff49",
+          "before_AST_sha256": "b06f232942b9d7b236e04e09ee3c0b1d18dd117beb85441088dbb228d274c48f",
+          "after_AST_sha256": "b06f232942b9d7b236e04e09ee3c0b1d18dd117beb85441088dbb228d274c48f"
+        },
+        {
+          "name": "gate",
+          "disposition": "retained_text_and_AST_exact",
+          "before_text_sha256": "ca7d8702009aebfda504e1f205fa2ca714097d5083be80557c24989198f2a147",
+          "after_text_sha256": "ca7d8702009aebfda504e1f205fa2ca714097d5083be80557c24989198f2a147",
+          "before_AST_sha256": "76a5d628f34caeb5f8383d09734a3f06343c9be40a4fc5cdad02206a5bcd973d",
+          "after_AST_sha256": "76a5d628f34caeb5f8383d09734a3f06343c9be40a4fc5cdad02206a5bcd973d"
+        },
+        {
+          "name": "group_exists",
+          "disposition": "retained_text_and_AST_exact",
+          "before_text_sha256": "34640570e5eacbb1cdc37b61bf5963cc713013e7394d7b29f52865b626e56c9f",
+          "after_text_sha256": "34640570e5eacbb1cdc37b61bf5963cc713013e7394d7b29f52865b626e56c9f",
+          "before_AST_sha256": "562fb8e5337856805496224ebed60639e444fd984da9617ceca59d8b7f5c1857",
+          "after_AST_sha256": "562fb8e5337856805496224ebed60639e444fd984da9617ceca59d8b7f5c1857"
+        },
+        {
+          "name": "identities",
+          "disposition": "retained_text_and_AST_exact",
+          "before_text_sha256": "bcfd5eb138de93359ca599c7a198a4e3a891d415d6c588c8a3993e51759b5702",
+          "after_text_sha256": "bcfd5eb138de93359ca599c7a198a4e3a891d415d6c588c8a3993e51759b5702",
+          "before_AST_sha256": "c7488082bc776bd01999634155c47171aaa210d1e6d4dfedb03deb2d0b3cfc9a",
+          "after_AST_sha256": "c7488082bc776bd01999634155c47171aaa210d1e6d4dfedb03deb2d0b3cfc9a"
+        },
+        {
+          "name": "inclusive_census",
+          "disposition": "changed_or_added",
+          "before_text_sha256": "a5406871d9d21546c581425849d312b5f3b5ecc45d8f2232e3bc62a832591ddc",
+          "after_text_sha256": "bac07f9481446ac01172afbad789910d19fb037bc8a701cec14eeb05b0023d34",
+          "before_AST_sha256": "78f26194a299edc07d1f7e296d2b65fcdf033546fdb998779f6d2599ed7f3be0",
+          "after_AST_sha256": "f79f7e997d4744dd0e1a936867474bb2a8c55d3fe12d0c1e13b1f7c37b938d64"
+        },
+        {
+          "name": "main",
+          "disposition": "changed_or_added",
+          "before_text_sha256": "92ea96ca848e6ef276e1dcb80af371c3a13141596400e51f34897f3a90ab39e6",
+          "after_text_sha256": "2e0ab23c5af53c56f5b10ca618115cf235c264205108e90b9cd47325fe82bc98",
+          "before_AST_sha256": "570e5815529d1e2b150c88e08ad56d991b3eeec40f3b7366021f99fc0dfc0a55",
+          "after_AST_sha256": "758cba78227e7ff225b28d09d151eccc72b7f932a1f4950dba8e482dc3d97518"
+        },
+        {
+          "name": "need",
+          "disposition": "retained_text_and_AST_exact",
+          "before_text_sha256": "098b7ab9ef05c6267cec7bb1127e289155ed079b6b4e97dcc21dae0b9f8d9fb3",
+          "after_text_sha256": "098b7ab9ef05c6267cec7bb1127e289155ed079b6b4e97dcc21dae0b9f8d9fb3",
+          "before_AST_sha256": "acd835d407017ae4ddfcb4f79fa2adbd3bd71ca44738278a4cf2c5e31a8c754a",
+          "after_AST_sha256": "acd835d407017ae4ddfcb4f79fa2adbd3bd71ca44738278a4cf2c5e31a8c754a"
+        },
+        {
+          "name": "reap",
+          "disposition": "retained_text_and_AST_exact",
+          "before_text_sha256": "3ef9e2e22f2c9dc2991f3637a9655b46ba4f56f053aad8689d8c6be1b49f11a7",
+          "after_text_sha256": "3ef9e2e22f2c9dc2991f3637a9655b46ba4f56f053aad8689d8c6be1b49f11a7",
+          "before_AST_sha256": "d0353f9c937d06b9c65fcfd2ab58570ce361662b144bdc5443292ca9a473e56a",
+          "after_AST_sha256": "d0353f9c937d06b9c65fcfd2ab58570ce361662b144bdc5443292ca9a473e56a"
+        },
+        {
+          "name": "rec",
+          "disposition": "retained_text_and_AST_exact",
+          "before_text_sha256": "2495b3fe4e7c97b0b60041f78816b905953e91e59240db327877994de195cc18",
+          "after_text_sha256": "2495b3fe4e7c97b0b60041f78816b905953e91e59240db327877994de195cc18",
+          "before_AST_sha256": "f682dfb5395dba173b5c952555eec453de760f24d94a3a9e274af481e44c2f13",
+          "after_AST_sha256": "f682dfb5395dba173b5c952555eec453de760f24d94a3a9e274af481e44c2f13"
+        },
+        {
+          "name": "record_controller_stop",
+          "disposition": "retained_text_and_AST_exact",
+          "before_text_sha256": "9305909782fcb5d8b5c1e9e8681f771ccd248c6a1377259389aec3720cbb7aba",
+          "after_text_sha256": "9305909782fcb5d8b5c1e9e8681f771ccd248c6a1377259389aec3720cbb7aba",
+          "before_AST_sha256": "4cc443cf5e67b9ceac87d4ccd779425299253712d12b04d3e4fcf5afa54a2789",
+          "after_AST_sha256": "4cc443cf5e67b9ceac87d4ccd779425299253712d12b04d3e4fcf5afa54a2789"
+        },
+        {
+          "name": "selected",
+          "disposition": "retained_text_and_AST_exact",
+          "before_text_sha256": "70e2c3c4ab90fe4507d249cc9b8c224f48e1270301b65cf95c2ed2d3d95b50ac",
+          "after_text_sha256": "70e2c3c4ab90fe4507d249cc9b8c224f48e1270301b65cf95c2ed2d3d95b50ac",
+          "before_AST_sha256": "1bda39cc9d48711846e0719963d1e24273c51c3e1ddefa1173fb74168fff4c25",
+          "after_AST_sha256": "1bda39cc9d48711846e0719963d1e24273c51c3e1ddefa1173fb74168fff4c25"
+        }
+      ]
+    },
+    "stopped_exec_wrapper.py": {
+      "donor": {
+        "path": "work/962-engineering/head-star-current24-qfnra-five-toy-owner-f1-guards-controls-prep-002/stopped_exec_wrapper.py",
+        "sha256": "ab0ebf6bc3110680ce0f03022da2d66452175877a07612b6657ecb66c02afdf4",
+        "bytes": 1536
+      },
+      "successor": {
+        "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native005-freshness-prep-001/stopped_exec_wrapper.py",
+        "sha256": "9839a4b3837115e13e331a07296daa0a95f77915be78f6e6c63afb732ad9a3a2",
+        "bytes": 1588
+      },
+      "imports_text_and_AST_exact": true,
+      "definitions": []
+    }
+  },
+  "QUERY_assignment_text_exact": true,
+  "QUERY_assignment_sha256": "3067961feaf6e13ad944eee55f8cc4e12f49c625f51a4996baae98103fba2a8d",
+  "metadata_query_definition_text_and_AST_exact": true,
+  "helper_imports_exact": true,
+  "owner_imports_exact": true,
+  "wrapper_imports_exact": true,
+  "owner_retained_private_class_and_ten_functions": "_RetainedPopen,need,rec,record_controller_stop,group_exists,selected,identities,event_record,gate,exit_events,reap",
+  "owner_no_implicit_process_reaping_or_signal_methods": true,
+  "owner_core": {
+    "default_SIGCHLD_required_not_reset": true,
+    "stopped_exact_PID_PGID_SID_certificate": true,
+    "NOTE_EXIT_registered_before_CONT": true,
+    "continuation_intent_before_syscall": true,
+    "deliberate_bounded_reap": true,
+    "no_numeric_group_signal_after_reap": true,
+    "one_owner_postreap_absence_observation": true,
+    "stop_snapshot_and_postwrite_raw_return_requirements_retained": true,
+    "no_RSS_query_or_pass": true,
+    "partial_constructor_and_kernel_fault_paths_unproved": true
+  },
+  "functional_changes": [
+    "Fixed helper P/H/O/D and owner X/C/H/O/N/W namespaces; no future path inspection in preparation.",
+    "348 current input scope and exact parent003257+91 proof; runtime19/13/89/22 and selected/staged loops unchanged.",
+    "Twelve concrete native roles and fourteen final roles; current staging receipt/root accepted descriptors, native source and four private binding files fixed.",
+    "External peer/root/index/authorization descriptors and exact late canonical counts replace no fabricated pre-existing runtime/query acceptance.",
+    "Modern retained owner replaces fixture binding/diagnostics with one metadata helper; typed positive helper/query-cleanup evidence is required before ending group-signal intent or deliberate reap.",
+    "Full helper receipt/source/control/stream/count/selected startup associations, then identical pre/post helper receipt descriptor at final closure.",
+    "All348 first-party input descriptors plus all11source/proof files and late controls join canonical protection/census; owned C/H/O and explicit W streams counted.",
+    "Wrapper uses independent Hauthorization digest as its sole late argument and same-PID execs fixed helper; C's own digest remains external."
+  ],
+  "legacy055_scope": "Only typed normal-helper receipt intent informs the new diagnostics. No SIGCHLD resetting, basePopen leader, after-CONT flag, legacy cleanup or old output roots are reused.",
+  "global_disposition": {
+    "helper_changed": [
+      "module docstring",
+      "P",
+      "H",
+      "O",
+      "D"
+    ],
+    "helper_exact": [
+      "imports",
+      "R",
+      "E",
+      "PREFIX",
+      "CAP",
+      "START",
+      "QUERY"
+    ],
+    "owner_changed": [
+      "module docstring",
+      "X",
+      "D",
+      "W",
+      "REQUIRED_PROTECTED",
+      "DIRECT_ROLES"
+    ],
+    "owner_added": [
+      "H",
+      "O",
+      "N",
+      "HELPER_LIMITS"
+    ],
+    "owner_removed": [
+      "RUNTIME_SELECTION",
+      "METHODS"
+    ],
+    "owner_exact": [
+      "imports",
+      "started/controller_stop_requests initialization",
+      "R",
+      "E",
+      "WRAPPER",
+      "CAP",
+      "PYTHON",
+      "ENV",
+      "CONTROLS",
+      "HELD_LEADERS"
+    ],
+    "wrapper_changed": [
+      "module docstring",
+      "A",
+      "FIXTURE replaced by HELPER",
+      "fixed helper byte identity",
+      "final fixed helper argv includes external H digest"
+    ],
+    "wrapper_exact": [
+      "imports",
+      "PY",
+      "RESOLVED",
+      "startup/defaultSIGCHLD/session assertions",
+      "SIGSTOP syscall"
+    ]
+  },
+  "known_required_firstparty_records_verified_without_nested_expansion": {
+    "native_actual": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native-measurement-execution-prep-004/actual-contract.json",
+      "sha256": "a5e35548cacd4f2abfd4f0d29e5aeb738ce16bdc814f642e016851c3450f1986",
+      "bytes": 273368
+    },
+    "native_caller": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native-measurement-prep-005/run_native_capture.py",
+      "sha256": "a04276da60fe09d9af26d32c7661fb421105b7c93724d43c728025dd1fd51aa5",
+      "bytes": 45810
+    },
+    "native_root_controller": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native-measurement-prep-005/run_root_once.py",
+      "sha256": "34826ad993e4d874455adb40777df545f76cf611a6f23ae021a49302dc0dd649",
+      "bytes": 61563
+    },
+    "native_wrapper": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native-measurement-prep-005/stopped_exec_wrapper.py",
+      "sha256": "a81328f9e07bded2120d8f908f8831bdafead07132ae09a1af4ccfcc4bf50e17",
+      "bytes": 5295
+    },
+    "native_source_index": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native-measurement-prep-005/index.json",
+      "sha256": "acb06644ef2df3ed06273b4d936ecab8a76cd7760b1ddcc6e911bca0d1c554c3",
+      "bytes": 6734
+    },
+    "native_exact_child_peer": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native005-source-peer-001/review.json",
+      "sha256": "777233540d91a59b70df3ae0947eddb32a07a3a7b1cc715de4906873d4fc946f",
+      "bytes": 5291
+    },
+    "native_exact_child_bindings": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native005-source-peer-001/bindings.json",
+      "sha256": "29a29c02987c67782cd5a1ab8654bc43f3309995e49a6bad25fd4e04b9546691",
+      "bytes": 14116
+    },
+    "native_root_source_review": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native005-root-source-review-001/review.json",
+      "sha256": "a8f8dd842abdc4a309b8bd4dc7c420af65ef1e9bb5b80826eb71ea93f9cd76f8",
+      "bytes": 3969
+    },
+    "native_binding_candidate": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native005-execution-binding-prep-001/actual-contract.candidate.json",
+      "sha256": "a5e35548cacd4f2abfd4f0d29e5aeb738ce16bdc814f642e016851c3450f1986",
+      "bytes": 273368
+    },
+    "native_binding_method": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native005-execution-binding-prep-001/METHOD.md",
+      "sha256": "3e06b15581208a893da4f145079a117e202ac6c54316bf886c18dcfae88ef188",
+      "bytes": 6452
+    },
+    "native_binding_inputs": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native005-execution-binding-prep-001/bindings.json",
+      "sha256": "451d80933d3ce589032fe82189af060b90e27a913b719ca924b6ff9f96515b43",
+      "bytes": 58253
+    },
+    "native_binding_change_map": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native005-execution-binding-prep-001/change-map.json",
+      "sha256": "b857a0c7486833aa8de671f7aaf1307d83353003e8ff01886746ccab25af763e",
+      "bytes": 115691
+    },
+    "helper": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native005-freshness-prep-001/capture_freshness.py",
+      "sha256": "e3f1c980ead8f7952eb82a1996db7fc167ca829c294afdccf4b9c83d65fe2dac",
+      "bytes": 17737
+    },
+    "wrapper": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native005-freshness-prep-001/stopped_exec_wrapper.py",
+      "sha256": "9839a4b3837115e13e331a07296daa0a95f77915be78f6e6c63afb732ad9a3a2",
+      "bytes": 1588
+    },
+    "source_adaptation_authority": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native005-freshness-adaptation-root-authority-001/review.json",
+      "sha256": "c777a995b439c8329f0aee20c432a5361416a12cee1a5c4d2f882fcf38a5d276",
+      "bytes": 7936
+    },
+    "current_contract_root": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native005-execution-binding-root-review-001/review.json",
+      "sha256": "3f030491c886a450d6be43f3f5d2f198ec1fc4bd4ae0b2ce9588c876b094a5d2",
+      "bytes": 10112
+    },
+    "accepted_staging_receipt": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native005-four-input-staging-root-001/staging-receipt.json",
+      "sha256": "3ec1f62e359414c02eda78ed6e285beed3e9774c61366816560e22cfe6bddfa9",
+      "bytes": 5897
+    },
+    "stage_root_acceptance": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native005-four-input-staging-root-001/postreturn-acceptance.json",
+      "sha256": "44b4efd5a9fada59392979b628f9a12c87ce5f86293b8397d5713936e251d087",
+      "bytes": 3920
+    },
+    "parent003_actual": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native-measurement-execution-prep-003/actual-contract.json",
+      "sha256": "85a9195ed1a217eef6bad44518390f1b2dfdb879c9cdfc072b6e1465461a5198",
+      "bytes": 116306
+    },
+    "historical_freshness_acceptance": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native003-freshness-root-result-acceptance-001/acceptance.json",
+      "sha256": "ac5477484c620b2fd3d0b67a9d4c73945bc14e8e5564d1bf9559bc9b12fc2984",
+      "bytes": 3866
+    },
+    "donor_freshness_helper": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native003-staging-freshness-prep-001/capture_freshness.py",
+      "sha256": "a577e2b3499aa3571d2f08e0b7e5f54d687464654e8de7af523f7d112a1edd7d",
+      "bytes": 15798
+    },
+    "donor_legacy_owner_semantic_receipt_only": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native003-freshness-operation-controls-prep-002/run_operation_once.py",
+      "sha256": "0555062736bd2b63dbd8da4cddfc5ef56d158eca0878be188a2cf32fcbe4fded",
+      "bytes": 18764
+    },
+    "donor_modern_retained_owner": {
+      "path": "work/962-engineering/head-star-current24-qfnra-five-toy-owner-f1-guards-controls-prep-002/run_guards_once.py",
+      "sha256": "42aec198fb911c43f7658544911e0af23cdc76222ce25e917ceb932c2473088a",
+      "bytes": 27767
+    },
+    "donor_modern_stopped_wrapper": {
+      "path": "work/962-engineering/head-star-current24-qfnra-five-toy-owner-f1-guards-controls-prep-002/stopped_exec_wrapper.py",
+      "sha256": "ab0ebf6bc3110680ce0f03022da2d66452175877a07612b6657ecb66c02afdf4",
+      "bytes": 1536
+    }
+  },
+  "preparation_events": [
+    {
+      "kind": "metadata_authoring_output_limit",
+      "description": "An initial combined metadata/source JSON return included the large actual and was truncated. JSON parsing refused before writing; repeated only named bounded source/selected metadata reads. No target or runtime operation."
+    },
+    {
+      "kind": "literal_authoring_assertion",
+      "description": "First helper transform found a nonunique generic257 literal and refused before any file write; narrowed to the exact observe statement."
+    },
+    {
+      "kind": "draft_terminal_LF",
+      "description": "The initial new helper apply_patch appended one extra LF. Removed before binding its hash; final three-unit whole projections use exact complete EOF bytes. No frozen original changed."
+    }
+  ],
+  "verification_scope": {
+    "only_named_firstparty_hashes_and_AST_text": true,
+    "no_target_module_import_compile_evaluate_execute": true,
+    "no_query_process_API_or_runtime_body_operation": true,
+    "no_scientific_body_hash_or_decode": true,
+    "no_future_C_H_W_D_root_access_or_creation": true,
+    "no_tests_added_or_run": true,
+    "no_actual_or_operational_admission_issued": true
+  },
+  "scientific_and_manufacturing_authority": false
+}

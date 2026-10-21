@@ -1,0 +1,720 @@
+{
+  "schema": "962-observer004-owned-native-control-choices/v1",
+  "status": "SOURCE_DESIGN_ONLY_U1_U6_CHOICES_FIXED_UNIMPLEMENTED",
+  "input_bindings": [
+    {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native003-owned-control-proposal-root-review-001/review.json",
+      "sha256": "a36c4772c348d88a321b4b83fc79750fa24e4705f08250c4b3386fd1e694fbac",
+      "bytes": 4446
+    },
+    {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native003-owned-control-proposal-peer-001/review.json",
+      "sha256": "c6694e57df53b4b8d22bacfcef1547de08e0860ea05a3dccfaa7471dc4c3b2de",
+      "bytes": 8303
+    },
+    {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native003-owned-control-proposal-peer-001/bindings.json",
+      "sha256": "8b62a6bceba046f75b974936731773db6f571d7ae27034e3fbd3abbcf9354738",
+      "bytes": 33101
+    },
+    {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native003-owned-control-proposal-peer-001/REUSE-COUNT-CLARIFICATION-001.json",
+      "sha256": "6921cea77fa894fe8dc4cbc42dae6440f212eb6511aecbc11606b4934234c028",
+      "bytes": 1721
+    },
+    {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native003-owned-control-proposal-001/PROPOSAL.md",
+      "sha256": "0d01e67266821482a925a6aeca5065be5e3d9c8bcd8fe6c3f48cffb437fb165c",
+      "bytes": 10474
+    },
+    {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native003-owned-control-proposal-001/bindings.json",
+      "sha256": "a9519011ee75d40f844e2298edb1eb328873bd56bd94846bc943a828d6ccb824",
+      "bytes": 23798
+    },
+    {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native003-owned-control-proposal-001/index.json",
+      "sha256": "4091504e37a88654a6f8ad85238625a09302cac4407d2675372ce4aa409b39df",
+      "bytes": 3381
+    },
+    {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native-measurement-prep-003/run_root_once.py",
+      "sha256": "6d91abc5bfb8970908d41406448e9091291736ab9bb910a72b58f0243e7d754f",
+      "bytes": 18849
+    },
+    {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native-measurement-prep-003/run_native_capture.py",
+      "sha256": "7190f22f4d17869f6524743bc0de6f7eebc03393c17a4ed57984f282d0036a80",
+      "bytes": 22990
+    },
+    {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native-measurement-execution-prep-003/actual-contract.json",
+      "sha256": "85a9195ed1a217eef6bad44518390f1b2dfdb879c9cdfc072b6e1465461a5198",
+      "bytes": 116306
+    },
+    {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native003-native-readiness-root-review-001/review.json",
+      "sha256": "d2067914570997779ed1a139ea85900845664800d83114e17206a76fd4db7311",
+      "bytes": 3886
+    },
+    {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native003-native-readiness-source-peer-001/review.json",
+      "sha256": "fd91081d966ac1a83dde7ffb9642f72a21dd521a36a725076dc802a0d9320cfe",
+      "bytes": 15108
+    },
+    {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native003-freshness-root-result-acceptance-001/acceptance.json",
+      "sha256": "ac5477484c620b2fd3d0b67a9d4c73945bc14e8e5564d1bf9559bc9b12fc2984",
+      "bytes": 3866
+    },
+    {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native003-freshness-operation-controls-prep-002/run_operation_once.py",
+      "sha256": "0555062736bd2b63dbd8da4cddfc5ef56d158eca0878be188a2cf32fcbe4fded",
+      "bytes": 18764
+    },
+    {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native003-freshness-operation-controls-prep-002/stopped_exec_wrapper.py",
+      "sha256": "94a3e73fbc4784050f65520914809f7cb9ec2eabedb2b036f6edbb6dc2c55297",
+      "bytes": 976
+    }
+  ],
+  "author": "/root/lpbf_linear_refinement",
+  "lineage": "Author of accepted proposal409150, prior row-first/native control and freshness peers; not an independent successor source reviewer. Roota36c selects supplement scope; independentc669+mandatory6921 count correction preserved.",
+  "U_resolution": {
+    "U1": "owner/caller/query transitions and typed unknown terminals fixed",
+    "U2": "new exact schemas, joins and finite member observations fixed",
+    "U3": "exact ASCII token and integer-ns API seams fixed",
+    "U4": "phase assignment, once-only deadlines and partial closure fixed",
+    "U5": "six conditional reuses, error and resource semantics fixed",
+    "U6": "finite guard cases and separate source/operation gates fixed"
+  },
+  "clock": {
+    "argument": "--owner-start-ns",
+    "token_type": "ASCII string",
+    "grammar": "[1-9][0-9]*; full match with ASCII semantics",
+    "reject": [
+      "zero",
+      "leading zero",
+      "plus/minus",
+      "whitespace/newline",
+      "Unicode digits",
+      "number/bool instead of string",
+      "future value",
+      "changed/reformatted echo"
+    ],
+    "parse_sequence": [
+      "owner captures t0=time.monotonic_ns immediately after importing time, before remaining imports/preflight",
+      "wrapper/caller read local now_ns; reject invalid ASCII and token length greater than decimal digit length of now_ns before integer conversion",
+      "parse base10; require str(parsed)==original and0<parsed<=now_ns",
+      "wrapper revalidates after continuation and forwards original token unchanged; caller echoes exact string in receipt and terminal",
+      "owner joins its literal token, complete wrapper argv, wrapper hello, caller receipt and terminal; token is neither ownership certificate nor permission"
+    ],
+    "clock_fields": "All absolute timestamps/deadlines in receipts are canonical positive decimal ns strings; null means unavailable. Durations are nonnegative integer ns strings. No float timestamp is used for deadline comparison.",
+    "absolute_ns_definitions": {
+      "normal": "t0+95000000000",
+      "TERM_cap": "t0+105000000000",
+      "KILL_reap_cap": "t0+110000000000",
+      "closure_return": "t0+115000000000",
+      "caller_normal": "min(t0+95000000000,caller_entry_ns+100000000000)"
+    },
+    "first_deadlines": {
+      "TERM": "first_TERM_ns and min(first_TERM_ns+10000000000,t0+105000000000) stored before first attempt; never overwritten",
+      "KILL": "first_KILL_ns and min(first_KILL_ns+5000000000,t0+110000000000) stored before first attempt; never overwritten",
+      "precontinuation_direct_KILL": "own unreaped direct PID only; exact reap deadline=min(first_direct_KILL_ns+5000000000,t0+110000000000) stored once"
+    },
+    "API_conversion": "remaining_ns=original_until_ns-now_ns must be>0. wait_ns=min(remaining_ns,fixed_query_or_poll_bound_ns). Convert seconds with math.nextafter(wait_ns/1000000000,0.0); reject nonpositive result. Compare integer now_ns<original_until_ns again after the entire API/drain/hash/serialization return. No max(0.001,...) or fresh grace.",
+    "newly_required_stdlib_API": "math.nextafter; future source/import/API review required, no current runtime import or query.",
+    "startup_limit": "t0 follows the time import, not all interpreter startup. Independent root startup-through-full-return<=115 and raw outer0 remain mandatory; no hard-preemption claim."
+  },
+  "error_policy": {
+    "DeadlineRefusal": "Future private control exception derives directly from BaseException; carries phase/until/observed-time strings. It bypasses unchanged capture(Exception) and same(OSError), while outer/caller top-level BaseException preservation paths still run.",
+    "primary_refusal": "First non-null reason is latched and never cleared. All later errors/cleanup outcomes append complete structured evidence.",
+    "captured_error": "capture result observed=null/error!=null is unavailable/error, never numeric0 or unchanged. Every consumer checks error before using observed. A deadline bypasses capture.",
+    "same_false": "False is MISMATCH_OR_READ_FAILURE, never observed unchanged; root/caller positive gates require True. DeadlineRefusal must not be an OSError and must propagate.",
+    "sample_failure": "Every actual RSS/member query/parser/cleanup error latches refusal. A contemporaneous valid NOTE_EXIT may label timing exit_race but never clear the error or substitute zero.",
+    "unknown_status": "PID/status/identity/receipt/time that is missing, partial or unobserved stays null with an explicit reason. No fallbacks to discovered groups or guessed completion.",
+    "teardown": "No acceptance relies on interpreter teardown. Strong references survive preservation; late/unknown/unreaped objects cause raw refusal. No new owned process API or wait is deliberately initiated after110."
+  },
+  "ownership_invariants": [
+    "Only the returned retained outer caller leader is the certified group anchor. No detached native session, preexec group change, discovery-based authority or competing wait.",
+    "Outer leader-only private Popen subclass overrides only __del__ with no-op; constructor otherwise unchanged. No leader poll/wait/communicate/send_signal/terminate/kill/context manager. This is an unimplemented source obligation, not proof of cleanup/containment.",
+    "Exact-PID waitpid is the sole deliberate leader reap. A consumed terminal pre-certificate status counts as that sole early reap; never assign returncode0 from absence or NOTE_EXIT data.",
+    "Set continuation_attempted=true before the SIGCONT syscall. Any uncertainty after that attempt requires certified-group cleanup; never fall back to assuming caller/native were not released.",
+    "Before certificate, or with certificate but no continuation attempt, abort may KILL only the known unreaped direct wrapper PID. Never CONT on an abort path.",
+    "After continuation attempt, outer alone may attempt certified-group TERM then at most one KILL before intentional leader reap. Signal attempt timestamp/state are stored before syscall, including failures.",
+    "Caller never signals native PID/group, owns no native stop timer/lock, and makes no native-group-absence claim. It may bounded-reap its own native direct child because it is not the group anchor.",
+    "Readonly ps queries may be cleaned only through their separately retained own direct PID; they confer no native/group signal authority.",
+    "After final signal decision and intentional leader reap, only one absence observation is allowed before110; never signal that numeric group again.",
+    "Unsupported native detachment or unknown constructor PID remains potential-cleanup/containment unknown and refusal. No broader opaque-native containment is claimed."
+  ],
+  "owner_state_fields": {
+    "leader_handle_returned": "bool",
+    "leader_PID": "positive int|null",
+    "certificate": "typed certificate|null",
+    "continuation_attempted": "bool",
+    "SIGCONT_acknowledged": "bool",
+    "caller_exit_event": "typed event|null",
+    "leader_reap": "{status:not_created|unreaped|reaped|unknown,wait_status:int|null,raw_returncode:int|null,reason:string}",
+    "further_group_signals_closed": "bool; true before deliberate final terminal reap",
+    "first_TERM_ns": "ns string|null",
+    "TERM_until_ns": "ns string|null",
+    "first_KILL_ns": "ns string|null",
+    "KILL_until_ns": "ns string|null",
+    "pending_query_handles": "finite records with role/PID/reap state; unknown stays retained",
+    "primary_refusal": "{kind,phase,message,time_ns}|null",
+    "events": "ordered complete records, no truncation"
+  },
+  "owner_transitions": [
+    {
+      "from": "START",
+      "event": "invalid admission/input/clock/environment or stop/deadline before spawn",
+      "to": "NO_CHILD_REFUSAL",
+      "actions": "No process/API signal. Record unattempted or unavailable fields; preserve within115; raw2."
+    },
+    {
+      "from": "PREFLIGHT_OK",
+      "event": "one wrapper construction begins",
+      "to": "SPAWN_IN_PROGRESS",
+      "actions": "Mark attempt before API; no constructor return is not proof no child."
+    },
+    {
+      "from": "SPAWN_IN_PROGRESS",
+      "event": "constructor raises without reliable returned handle/PID",
+      "to": "OWNERSHIP_UNKNOWN_REFUSAL",
+      "actions": "No guessed PID/group signal or discovery. Cleanup/reap unknown, no absence claim; preserve available evidence and raw2."
+    },
+    {
+      "from": "SPAWN_IN_PROGRESS",
+      "event": "reliable returned strong leader handle",
+      "to": "AWAIT_STOP",
+      "actions": "Record PID; exact WUNTRACED|WNOHANG checks within min(now+5s,normal95). No implicit leader poll."
+    },
+    {
+      "from": "AWAIT_STOP",
+      "event": "exact terminal wait status consumed",
+      "to": "EARLY_REAPED_REFUSAL",
+      "actions": "Count sole intentional early reap, set actual raw status; no CONT/group signal; uncertified group absence not_applicable, raw2."
+    },
+    {
+      "from": "AWAIT_STOP",
+      "event": "stop/time/API/mismatch, no terminal status consumed",
+      "to": "PRECONT_ABORT",
+      "actions": "Known unreaped own direct-PID KILL once; bounded exact reap before110. No certificate inferred and no group signal."
+    },
+    {
+      "from": "AWAIT_STOP",
+      "event": "exact stopped SIGSTOP and parent PID=PGID=SID",
+      "to": "CERTIFIED_STOPPED",
+      "actions": "Record certificate; preregister NOTE_EXIT; hello is documentary, parent stop is authority."
+    },
+    {
+      "from": "CERTIFIED_STOPPED",
+      "event": "registration failure/unexpected event or stop/deadline before CONT attempt",
+      "to": "PRECONT_ABORT",
+      "actions": "If an actual exit event is already known close signal decision and exact reap; otherwise own direct-PID KILL once. Never resume."
+    },
+    {
+      "from": "CERTIFIED_STOPPED",
+      "event": "registration succeeds and no stop/time failure",
+      "to": "CONTINUATION_ATTEMPTED",
+      "actions": "Store continuation_attempted before single SIGCONT. Success ->NORMAL; error/uncertainty ->GROUP_STOP with refusal."
+    },
+    {
+      "from": "NORMAL",
+      "event": "resource/identity/query/stop/deadline/native-or-caller evidence failure",
+      "to": "GROUP_STOP",
+      "actions": "Latch first refusal. Store first TERM/time/deadline before at most one group TERM. No new native invocation."
+    },
+    {
+      "from": "NORMAL",
+      "event": "caller NOTE_EXIT observed before95",
+      "to": "NORMAL_EXIT_VALIDATION",
+      "actions": "Do not reap. Read/validate complete typed caller evidence and one final member snapshot within95; any failure ->GROUP_STOP."
+    },
+    {
+      "from": "NORMAL_EXIT_VALIDATION",
+      "event": "all required joins/native-reaped0/normal gates and only anchorZ members",
+      "to": "FINAL_REAP",
+      "actions": "Close further group signals. Exact bounded reap once before110, then raw caller0 required."
+    },
+    {
+      "from": "GROUP_STOP",
+      "event": "TERM phase begins/continues",
+      "to": "TERM_WAIT",
+      "actions": "No grace reset; nonreaping event observation only. One post-TERM member snapshot if time remains before stored TERM deadline. Unknown/error/nonanchor stays refusal."
+    },
+    {
+      "from": "TERM_WAIT",
+      "event": "exit known and post-TERM snapshot proves only anchorZ",
+      "to": "FINAL_REAP",
+      "actions": "No KILL needed; close signal decision. Candidate remains refused because stop/error was latched."
+    },
+    {
+      "from": "TERM_WAIT",
+      "event": "nonanchor/unknown or stored TERM deadline reached",
+      "to": "KILL_REAP",
+      "actions": "Store first KILL/deadline once, attempt group KILL once. Exact reap uses remaining min(firstKILL+5,110); do not wait for group absence while anchor is unreaped."
+    },
+    {
+      "from": "KILL_REAP",
+      "event": "terminal leader status consumed before110",
+      "to": "POST_REAP_ABSENCE",
+      "actions": "Set actual raw status/reaped once; further group signals closed forever. Nonanchor members before reap remain documented cleanup evidence."
+    },
+    {
+      "from": "FINAL_REAP",
+      "event": "terminal leader status consumed before110",
+      "to": "POST_REAP_ABSENCE",
+      "actions": "Set actual raw status/reaped once; no later group signal."
+    },
+    {
+      "from": "FINAL_REAP|KILL_REAP|PRECONT_ABORT",
+      "event": "no terminal reap by original bound/110 or wait error",
+      "to": "UNREAPED_REFUSAL",
+      "actions": "Retain handle, status unknown/unreaped, no more owned API/wait/signal after110; preserve known bytes through115; raw2."
+    },
+    {
+      "from": "POST_REAP_ABSENCE",
+      "event": "single bounded absence observation before110 yields ESRCH",
+      "to": "CLOSURE",
+      "actions": "Record observed absent. Refusal latch, if set, stays set."
+    },
+    {
+      "from": "POST_REAP_ABSENCE",
+      "event": "present,EPERM,error or no phase time",
+      "to": "CLOSURE_REFUSAL",
+      "actions": "Record present/unknown/not_reached; never signal/retry the reaped numeric group."
+    },
+    {
+      "from": "CLOSURE|CLOSURE_REFUSAL|NO_CHILD_REFUSAL|EARLY_REAPED_REFUSAL|OWNERSHIP_UNKNOWN_REFUSAL|UNREAPED_REFUSAL",
+      "event": "deadline-aware preservation until115",
+      "to": "RETURN",
+      "actions": "Normal0 only if all positive predicates and complete postwrite checks hold; otherwise2 or externally observed nonzero/partial. No prefinal receipt overrides return."
+    }
+  ],
+  "caller_transitions": [
+    {
+      "from": "ENTRY",
+      "event": "invalid token/admission/self PID-PGID-SID/clock or preflight failure",
+      "to": "CALLER_REFUSAL",
+      "actions": "No native Popen; record not_created/unknown accurately."
+    },
+    {
+      "from": "READY",
+      "event": "no stop and time<caller_normal",
+      "to": "NATIVE_SPAWN",
+      "actions": "Exactly one Popen, start_new_sessionfalse, no preexec/session/group change; record attempt before API."
+    },
+    {
+      "from": "NATIVE_SPAWN",
+      "event": "constructor failure/no reliable PID",
+      "to": "CALLER_PARTIAL_REFUSAL",
+      "actions": "No discovered fallback or native signal. Record constructor cleanup unknown; outer owns certified group."
+    },
+    {
+      "from": "NATIVE_SPAWN",
+      "event": "returned handle",
+      "to": "NATIVE_IDENTITY",
+      "actions": "Retain native handle; one three-field identity query before native poll/reap. PID/PPID/PGID must match native/caller/certified caller group."
+    },
+    {
+      "from": "NATIVE_IDENTITY",
+      "event": "identity missing/mismatched/late or stop during spawn",
+      "to": "CALLER_REFUSAL",
+      "actions": "No second native/identity attempt and no native/group signal. A raced spawn stays in inherited group by configured source; opaque behavior not accepted."
+    },
+    {
+      "from": "NATIVE_RUNNING",
+      "event": "native still running within normal bound",
+      "to": "NATIVE_RUNNING",
+      "actions": "Exact retained native PID os.waitpid with WNOHANG only; actual terminal wait status decoded with os.waitstatus_to_exitcode and assigned once to retained handle. No competing Popen poll/wait/context reap, Timer/Lock/native signal; outer alone polls resources."
+    },
+    {
+      "from": "NATIVE_RUNNING",
+      "event": "actual terminal native status consumed",
+      "to": "CALLER_NORMAL_VALIDATION",
+      "actions": "Record actual raw/reaped. Raw!=0 refuses. Native reap is not group absence."
+    },
+    {
+      "from": "ANY_CALLER_STATE",
+      "event": "stop/error or original normal deadline",
+      "to": "CALLER_PARTIAL_PRESERVATION",
+      "actions": "No new native work. Bounded native/query exact-PID reap only before110, without native signals; outer TERM/KILL may interrupt caller. Caller cannot complete a child reap after being killed; outer cannot reap its grandchild. Missing receipt/remaining child reap stays unknown, independently of eventual group absence."
+    },
+    {
+      "from": "CALLER_NORMAL_VALIDATION",
+      "event": "identity/byte/presence/receipt/terminal work all timely before caller_normal",
+      "to": "CALLER_RETURN0_CANDIDATE",
+      "actions": "Write/hash full caller receipt, then terminal summary; no engineering/field claim."
+    },
+    {
+      "from": "CALLER_NORMAL_VALIDATION|CALLER_PARTIAL_PRESERVATION",
+      "event": "late/missing/read/write/partial/stop or native nonzero",
+      "to": "CALLER_RETURN_REFUSAL",
+      "actions": "Preserve available bytes through115 if alive; raw2. No owned process wait/API initiated after110, no retry and no claim outer group absent."
+    }
+  ],
+  "readonly_query_contract": {
+    "forms": {
+      "GROUP_ROWS": [
+        "/bin/ps",
+        "-axo",
+        "pid=,pgid=,rss=,stat="
+      ],
+      "NATIVE_IDENTITY": [
+        "/bin/ps",
+        "-o",
+        "pid=,ppid=,pgid=",
+        "-p",
+        "<retained_native_PID>"
+      ]
+    },
+    "allowed_dynamic_argument": "Only the retained caller-owned native PID in NATIVE_IDENTITY. No arbitrary command/target path or group discovery.",
+    "lifecycle": "Narrow fixed query route only. Retain direct Popen query handle; nonblocking drain both streams and exact-PID WNOHANG status checks; decode actual terminal status with os.waitstatus_to_exitcode and assign once. No competing Popen poll/wait/context reap. A terminal status closes query signal authority forever. Timeout/read/error latches parent refusal; an outer query error initiates the parent group-TERM decision before query cleanup. If query remains unreaped, store its first own-PID KILL attempt and min(first-query-KILL+5s,shared110) reap deadline once. Never native/group signal from query cleanup. No new query work after110; unknown/late output remains partial/refused.",
+    "constructor_unknown": "No reliable PID ->no signal/discovery/clean claim; record unknown and refuse.",
+    "time": "until=min(query_start+2s,parent original phase deadline); all return/drain/status checks use that until for normal query acceptance. Failure cleanup uses existing shared110, not a fresh query allowance.",
+    "streams": "Complete stdout/stderr bytes retained in finite owned query files and count toward inclusive/growth caps; no truncation or deletion to hide overrun.",
+    "normal_RSS_schedule": "Immediately after CONT, then spacing>=0.5s with no catch-up; at most191 normal attempts before95. Query/parser failure stops normal work, not retry-to-success.",
+    "final_member_snapshots": "At most one normal-exit GROUP_ROWS snapshot before95, one post-TERM cleanup snapshot before stored TERM deadline, and one optional pre-reap KILL-phase diagnostic snapshot before110. Each has a distinct purpose; failure never becomes normal success.",
+    "after_reap": "No ps retry. One outer killpg(group,0) absence-only observation before110; only ESRCH means absent. Root's independent postreturn absence check remains separate and cannot erase owner refusal."
+  },
+  "group_member_semantics": {
+    "selected_rows": "Filter same existing four-field parser by certified PGID or anchor PID. Selected rows require exact four fields and numeric nonnegative PID/PGID/RSS, reject changed direct group. Preserve every owned row/state and exact sum(RSS_KiB*1024). No row truncation.",
+    "normal_valid_sample": "Observed rows are valid reported data even if RSS0. No sample ->peaknull. At least one valid post-CONT normal RSS sample required for a normal candidate; no true-peak/hardquota claim.",
+    "normal_exit_snapshot": "Caller NOTE_EXIT already latched, anchor retained unreaped. Exactly one anchor row, state startsZ, no nonanchor row of any state. Otherwise refuse and clean while anchored.",
+    "cleanup_snapshot": "Nonanchor or unknown is preserved, never treated as absent or clean. Final reap may occur after final authorized KILL even with nonanchor zombies; only later ESRCH observation decides group absence, and refusal remains.",
+    "scope": "Point observations plus configured inheritance, not opaque-native containment or a complete future member census."
+  },
+  "phase_assignment": {
+    "normal95": [
+      "all admission/source/input/runtime/provider/staged preflight",
+      "clock validation and wrapper handshake/hello/registration/CONT",
+      "caller contract checks/copies/native spawn/native identity and normal native child observation",
+      "normal aggregate RSS/inclusive/growth checks",
+      "native/caller normal receipt/output hashes and terminal summary",
+      "outer NOTE_EXIT positive receipt validation and normal member snapshot"
+    ],
+    "TERM105": [
+      "first certified-group TERM attempt",
+      "stop latches/nonreaping exit observations",
+      "one cleanup member snapshot and bounded readonly-query cleanup as remaining time permits"
+    ],
+    "KILL_reap110": [
+      "first group KILL if needed",
+      "own readonly-query direct-PID KILL/terminal reap",
+      "all leader/native/query exact owned terminal reap attempts",
+      "single postreap absence-only observation"
+    ],
+    "closure115": [
+      "already available bytes/partial facts preserved",
+      "deadline-checked input/runtime/provider/control identity recapture",
+      "complete output hashing/loaded-trace parsing without Vec/CSV/CDF decoding",
+      "full receipt serialization/write and full postwrite size/growth/time/stop checks"
+    ],
+    "no_phase_extension": "Every operation has its assigned original until. A caught error does not move ordinary work to closure or restart a grace. Once late, mark incomplete/refused; do not continue normal candidate work.",
+    "forced_stop": "Caller may be killed before any receipt exists; outer records missing/partial rather than synthetic returncode/reap/map completeness."
+  },
+  "schemas": {
+    "wrapper_hello": {
+      "schema": "962-observer004-owned-native-wrapper-hello/v1",
+      "fields": {
+        "status": "ABOUT_TO_STOP",
+        "root_admission_sha256": "64 lowercase hex",
+        "owner_start_ns": "exact token string",
+        "PID": "positive int",
+        "PGID": "positive int",
+        "SID": "positive int",
+        "wrapper_source": "path/hash/bytes descriptor",
+        "caller_source": "path/hash/bytes descriptor",
+        "caller_actual": "path/hash/bytes descriptor"
+      },
+      "meaning": "One JSON line flushed before SIGSTOP; not a certificate of actual stopping. Parent wait status/certificate remains authoritative."
+    },
+    "caller_receipt": {
+      "schema": "962-observer004-owned-native-caller-receipt/v2",
+      "required_fields": {
+        "status": "COMPLETE_CANDIDATE|REFUSED_METADATA|INCOMPLETE_PARTIAL",
+        "root_admission_sha256": "64 lowercase hex",
+        "actual": "descriptor",
+        "source": "descriptor",
+        "clock": "{owner_start_ns,caller_entry_ns,normal_until_ns,native_spawn_ns|null,receipt_encoding_started_ns|null}: exact ns strings; completed-write/hash timestamps belong to the later terminal, never predicted inside this receipt",
+        "caller_identity": "{PID,PGID,SID}:positive integers; joined to certificate",
+        "native": "{spawn_attempted:bool,PID:int|null,start_new_session:false,preexec_fn_used:false,identity_observation:typed status/raw PID-PPID-PGID|null,exit:{status:not_created|unreaped|reaped|unknown,wait_status:int|null,raw_returncode:int|null}}",
+        "native_signal_actions": "[]; readonly-query own-PID cleanup is recorded separately",
+        "group_absence_scope": "OUTER_ONLY_NOT_OBSERVED_BY_CALLER",
+        "resources": "{authority:outer_certified_group,sampled_RSS_by_caller:false,native100_upper_bound:true,limits:unchanged}",
+        "inputs_and_outputs": "complete original pin/byte/presence/hash evidence or typed unavailable/partial reason; map/Vec/field completeness acceptedfalse",
+        "primary_refusal": "structured reason|null",
+        "secondary_errors": "complete ordered list",
+        "stop_requests": "complete ordered list",
+        "query_records": "complete fixed-query evidence",
+        "science_or_physical_qualification": "false",
+        "opaque_native_containment_accepted": "false",
+        "automatic_retry": "false"
+      }
+    },
+    "caller_terminal": {
+      "schema": "962-observer004-owned-native-caller-terminal/v1",
+      "fields": {
+        "owner_start_ns": "exact token",
+        "caller_PID": "positive int",
+        "root_admission_sha256": "64 lowercase hex",
+        "caller_receipt": "descriptor only after full save/hash",
+        "caller_receipt_saved_ns": "actual positive ns string observed after complete write",
+        "caller_receipt_hashed_ns": "actual positive ns string observed after complete hash; both must be before caller_normal",
+        "prefinal_candidate": "bool"
+      },
+      "meaning": "Second typed adapter stdout line after wrapper hello for a normal candidate; not an observed raw caller returncode."
+    },
+    "owner_closed": {
+      "schema": "962-observer004-owned-native-root-closed/v2",
+      "required_fields": {
+        "status": "COMPLETE_CANDIDATE|REFUSED_COMPLETE_METADATA|INCOMPLETE_PARTIAL",
+        "sources_actual_admission": "complete exact descriptors",
+        "clock": "t0/token and all original/first-signal/stored deadlines as ns strings; unknownnull",
+        "wrapper_argv_and_hello": "full argv and complete raw text/typed line, or status/reason",
+        "certificate": "{PID,PGID,SID,wait_status,direct_child_unreaped_at_certificate:true}|null",
+        "continuation": "{attempted:bool,acknowledged:bool,error|null}",
+        "caller_exit": "{NOTE_EXIT_events:complete,reap:typed actual raw/wait status|null}",
+        "native_receipt_and_terminal": "complete descriptors/typed values or explicit missing/partial/read-error",
+        "joins": "each required equality has observed|failed|not_reached status; no implicit truth fornull",
+        "group_members": "complete selected rows and query phases/statuses; no detached discovered-group set",
+        "final_group_absence": "ESRCH|present|unknown|not_reached|not_applicable_uncertified with observation/error",
+        "resources": "full valid samples,valid_count,peaknull ifnone,all query/error/exit-race evidence; pre-receipt size/growth observations labeled prefinal. Full postwrite inclusive/growth/time/outer-status observations belong to the separate root record and are not predicted inside this receipt",
+        "errors_stops_signals": "latched primary,all secondary/errors/requests and once-only signal attempts/outcomes",
+        "outputs_and_trace": "complete file/stream descriptors plus raw/native.log and unparsed dyld evidence; no field decoding",
+        "root_outer_RC0_fullreturn_finalcensus_required": "true",
+        "measurement_stream_map_and_field_completeness_accepted": "false",
+        "opaque_native_containment_accepted": "false",
+        "science_or_physical_qualification": "false",
+        "automatic_retry": "false"
+      }
+    },
+    "typing": "bool requires JSON boolean, int requires actual integer not boolean, descriptor requires path/string,64hex SHA and nonnegative bytes integer. Null is never an observed0/false/absent. JSON forbids duplicate keys/nonfinite values."
+  },
+  "positive_joins": [
+    "issued admission/source/actual/wrapper/provenance and all immutable numerical pins unchanged",
+    "owner token == wrapper argv token == hello token == caller receipt token == terminal token; derived deadlines exactly match fixed formulas",
+    "certificate PID=PGID=SID ==hello PID/PGID/SID ==caller PID/PGID/SID, actual stopped certificate and preregistered exit event precede CONT",
+    "native identity observed PID==retained native PID, PPID==caller PID, PGID==certificate PGID; start flags fixed",
+    "native actual raw0 and direct-child reaped; complete caller receipt and terminal descriptor match full bytes",
+    "normal member snapshot only anchorZ; final exact leader raw0/reaped; absence ESRCH; no refusal/stop/error/query cleanup gap",
+    "valid normal RSS sample count>=1, no numeric cap violation, complete inclusive/growth postchecks and all root external full-return/raw0 predicates"
+  ],
+  "receipt_write_policy": {
+    "normal": "Encode full strict JSON, no truncation/row selection. Caller receipt <=33554432B validation ceiling derived from existing growth bound, not an added allowance. Write exclusive final pathname and hash complete bytes before summary within normal deadline.",
+    "partial_or_overrun": "If full encoding/write does not fit time/budget or fails, preserve existing/partial file and streams, no rewrite/truncate/repair. Do not label incomplete file a receipt. Raw refusal/missing typed evidence is acceptable failure evidence.",
+    "self_hash": "No receipt embeds its own hash; separate terminal/outer/root metadata binds it.",
+    "owner_final": "Full closed-result write then postwrite stop/identity/size/growth/time checks. Keep their final acceptance/outer status in a separate root observation record, avoiding a self-rewriting receipt or self-predicted completion. Prefinal candidate fields cannot override outer nonzero or late/incomplete closure."
+  },
+  "resource_accounting": {
+    "RSS_bytes": 2147483648,
+    "inclusive_bytes": 536870912,
+    "growth_bytes": 33554432,
+    "thread_environment": 1,
+    "native_upper_seconds": 100,
+    "TERM_upper_seconds": 10,
+    "inclusive": "Canonical-path union O004+D004+finite admitted external control/source/peer/root-authority/staging/freshness/outer-stream files. Same bytes at different paths count separately. No symlink traversal. Runtime/library/provider bodies are identity references unless copied artifacts.",
+    "growth": "Original O+D sum(max(0,file_size-historical_baseline_relative_O_allowance)); D allowance0. Preserve original baseline descriptor/meaning. No global512/32 allowance reset.",
+    "refusal": "Sample errors/unknowns never valid0. All owned query files/full receipts/external streams count. Threshold reached/exceeded or incomplete accounting refuses. Sampled cap is not hardquota/truepeak."
+  },
+  "guard_cases": [
+    [
+      "G01",
+      "constructor raises without reliable PID",
+      "ownership_unknown, no guessed signal/absence"
+    ],
+    [
+      "G02",
+      "exact pre-certificate terminal status",
+      "one early reap/raw actual, no CONT/group signal"
+    ],
+    [
+      "G03",
+      "bad stop signal or PID/PGID/SID mismatch",
+      "direct-own PID abort only"
+    ],
+    [
+      "G04",
+      "registration error or stop before CONT",
+      "never continue, explicit direct abort/reap"
+    ],
+    [
+      "G05",
+      "stop/error between CONT intent and acknowledgement",
+      "intent set before call, certified group cleanup"
+    ],
+    [
+      "G06",
+      "native spawn races outer TERM",
+      "zero/one inherited spawn; no detached discovery/replacement; refusal persists"
+    ],
+    [
+      "G07",
+      "native member identity absent/mismatched",
+      "no native reap before query result, no other-group signal"
+    ],
+    [
+      "G08",
+      "native0/reaped versus group still occupied",
+      "caller never claims absence; outer member/absence gates separate"
+    ],
+    [
+      "G09",
+      "normal exit snapshot anchorZ-only",
+      "close signals then one final exact reap and ESRCH"
+    ],
+    [
+      "G10",
+      "nonanchor/missing/error member snapshot",
+      "refusal, anchored cleanup, no retry-to-success"
+    ],
+    [
+      "G11",
+      "repeated stop/finally entry",
+      "one TERM/KILL attempt and original deadlines unchanged"
+    ],
+    [
+      "G12",
+      "TERM/KILL returns EPERM/ESRCH/other error",
+      "retain outcome, no fabricated clean/absence"
+    ],
+    [
+      "G13",
+      "leader/query unreaped by110",
+      "unknown retained, no new owned work/wait/signal, raw refusal"
+    ],
+    [
+      "G14",
+      "postreap present/EPERM/late absence",
+      "no additional numeric group signal"
+    ],
+    [
+      "G15",
+      "invalid ASCII token variants/future token",
+      "reject all, exact original echo only"
+    ],
+    [
+      "G16",
+      "token/deadline/identity echo mutation",
+      "join fails, no live authority inferred"
+    ],
+    [
+      "G17",
+      "API timeout float seam/equality/late return",
+      "downward conversion and original integer return check"
+    ],
+    [
+      "G18",
+      "early/late TERM/KILL and cleanup restart",
+      "min first+grace/global ceilings, no renewed allowance"
+    ],
+    [
+      "G19",
+      "RSS zero/missing/malformed/no sample",
+      "zero valid data, others refusal/peaknull"
+    ],
+    [
+      "G20",
+      "sampler error aligned with NOTE_EXIT",
+      "exit_race label does not erase failure"
+    ],
+    [
+      "G21",
+      "DeadlineRefusal through same/capture",
+      "not caught as unchanged/zero; preservation still runs"
+    ],
+    [
+      "G22",
+      "readonly query terminal before timeout then cleanup",
+      "actual reap closes PID-signal authority; no reused-PID signal"
+    ],
+    [
+      "G23",
+      "query stdout/stderr split/EOF/timeout/unknown PID",
+      "full drain/partial/error retained; two fixed forms only"
+    ],
+    [
+      "G24",
+      "missing/partial/bad-schema/unexpected receipt/stdout",
+      "no full candidate, all bytes retained"
+    ],
+    [
+      "G25",
+      "late/read/hash/write/trace/serialization after phase",
+      "no normal work reclassified into closure; refusal"
+    ],
+    [
+      "G26",
+      "signals before spawn, during query, after reap and final receipt",
+      "latch retained, no late native/group signal or prefinal override"
+    ],
+    [
+      "G27",
+      "full union duplicate paths/hashes and final receipt pushes cap",
+      "path dedup only, full external streams/receipts included"
+    ],
+    [
+      "G28",
+      "all31+4 donors/global initializers/new calls",
+      "six exact candidates conditional; complete source/diff/AST inventory"
+    ],
+    [
+      "G29",
+      "native argv/card/callback/material/solver/threshold mutation",
+      "unchanged scientific contract refuses"
+    ],
+    [
+      "G30",
+      "future004 staging/freshness/counts/admission still absent",
+      "no operation implied by design, source or old metadata acceptance"
+    ]
+  ],
+  "conditional_exact_six": {
+    "run_root_once.py": [
+      "group_exists",
+      "capture"
+    ],
+    "run_native_capture.py": [
+      "need",
+      "same",
+      "registry_features",
+      "commands"
+    ],
+    "meaning": "Only conditional exact definition reuse; caller contexts/error contracts change and must be reviewed. No successor source hash or identity exists."
+  },
+  "future_gates": {
+    "new_sources": null,
+    "full_diff_reuse_and_AST_peer": null,
+    "source_guards_and_results": null,
+    "finite004_actual_and_pin_counts": null,
+    "staging": null,
+    "freshness": null,
+    "native_admission": null,
+    "launch": null,
+    "result": null
+  },
+  "unresolved_design_questions": [],
+  "remaining_unproved_gates": [
+    "exact successor bytes and helper/class/API implementation",
+    "named3.12 math/select/ps/clock/runtime/source behavior and closure",
+    "guard source/results and finite004 canonical role counts",
+    "separate staging/freshness/admission and any native runtime result"
+  ],
+  "authorities": {
+    "supplement_only": true,
+    "implementation": false,
+    "actual_admission": false,
+    "source_or_guard_import_compile_execute": false,
+    "runtime_body_provider_alias_or_API_process_query": false,
+    "future004_stat_create": false,
+    "staging_native_assessor": false,
+    "PUB_Git": false,
+    "physical_manufacturing": false
+  },
+  "unchanged_failures": {
+    "head_poor_cells": 24,
+    "LPBF_aggregate_mechanical_failures": 12
+  }
+}
+

@@ -1,0 +1,91 @@
+{
+  "scope": "Primary API/source provenance only; not installed-binary build attestation",
+  "version": "PETSc 3.25.2",
+  "retrieval": "Jina primary-source fetch followed by independently matching direct official raw HTTPS bytes; cached outside repository",
+  "source_files": [
+    {
+      "path": "src/ksp/ksp/interface/itfunc.c",
+      "url": "https://gitlab.com/petsc/petsc/-/blob/v3.25.2/src/ksp/ksp/interface/itfunc.c",
+      "raw_url": "https://gitlab.com/petsc/petsc/-/raw/v3.25.2/src/ksp/ksp/interface/itfunc.c",
+      "sha256": "c39912808699922624961b10ce622842dab11175945fdfec63aeb652937047b4",
+      "bytes": 119966,
+      "locators": [
+        {
+          "function": "KSPSolve_Private",
+          "lines": [
+            958,
+            967
+          ],
+          "claim": "Views A/P and the RHS/correction vectors belonging to that same KSP object after its solve."
+        },
+        {
+          "function": "KSPViewFinalResidual_Internal",
+          "lines": [
+            747,
+            770
+          ],
+          "claim": "Independently forms the actual operator times that KSP solution minus its RHS and reports its Euclidean norm."
+        }
+      ]
+    },
+    {
+      "path": "src/ksp/pc/impls/hypre/impl/ihypre.c",
+      "url": "https://gitlab.com/petsc/petsc/-/blob/v3.25.2/src/ksp/pc/impls/hypre/impl/ihypre.c",
+      "raw_url": "https://gitlab.com/petsc/petsc/-/raw/v3.25.2/src/ksp/pc/impls/hypre/impl/ihypre.c",
+      "sha256": "a16522fb70fd6e36e6fcf20ffec298b69a654c505df1021c1616be2124b60656",
+      "bytes": 163805,
+      "locators": [
+        {
+          "function": "PCSetFromOptions_HYPRE_BoomerAMG",
+          "lines": [
+            997,
+            1007
+          ],
+          "claim": "Configures V/W cycle, maximum iterations per PC call, and internal tolerance; zero tolerance fixes iteration count."
+        },
+        {
+          "function": "PCView_HYPRE_BoomerAMG",
+          "lines": [
+            1388,
+            1392
+          ],
+          "claim": "Reports the actual BoomerAMG cycle, maximum iterations per call, and tolerance inspected by the assessor."
+        }
+      ]
+    }
+  ],
+  "license": {
+    "spdx": "BSD-2-Clause",
+    "url": "https://gitlab.com/petsc/petsc/-/blob/v3.25.2/LICENSE",
+    "sha256": "efc206ebe66fda24a32ebe69e81caa2c5595e093626170e57fbeff522507cc54",
+    "bytes": 1536
+  },
+  "documentation": [
+    {
+      "url": "https://petsc.org/release/manual/other/#viewing-from-options",
+      "scope": "Viewer option syntax; release documentation may be newer than installed version."
+    },
+    {
+      "url": "https://petsc.org/release/manualpages/PC/PCHYPRE/",
+      "scope": "HYPRE options; exact installed-version semantics use the 3.25.2 source above."
+    },
+    {
+      "url": "https://mooseframework.inl.gov/source/vectorpostprocessors/NodalValueSampler.html",
+      "scope": "Spatial node IDs, coordinates and variable samples, not a PETSc row mapping."
+    },
+    {
+      "url": "https://mooseframework.inl.gov/source/bcs/FunctionDirichletBC.html",
+      "scope": "Functional Dirichlet boundary condition."
+    },
+    {
+      "url": "https://mooseframework.inl.gov/source/postprocessors/SideDiffusiveFluxIntegral.html",
+      "scope": "Negative diffusivity times gradient dotted with outward normal."
+    },
+    {
+      "url": "https://mooseframework.inl.gov/docs/doxygen/moose/classDOFMapOutput.html",
+      "scope": "Variable/subdomain DOF information does not establish node-to-DOF mapping."
+    }
+  ],
+  "source_code_copied_into_witness": false,
+  "native_setup_or_numeric_exports_yet_demonstrated": false
+}

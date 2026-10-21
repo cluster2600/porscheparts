@@ -1,0 +1,43 @@
+{
+  "schema": "962-oneway-IC002-root-source-guard-review/v1",
+  "decision": "PASS_SOURCE15_GUARDS_ONLY",
+  "held_sha256": "0d5fda5ba02d990420f6585e7fb4380a24efc236446a85d860f48b5064465955",
+  "source_peer_sha256": "4fac718cbaaa2016398af8f3b62e262950fa636b131f9a1f1e5bf7af2924c6b5",
+  "source_peer_bindings_sha256": "22834117991e20c580560aa8dd8ceddb8ed749eab43b10501714dd936c7e0227",
+  "root_complete_source_inspection_sha256": "b7955f72dbda5d21f7fc835c823ac992de4e283f58ef70d5715eb03b362322a3",
+  "selected_python_sha256": "1699bf8aa705a8bb71613bef5cdd7d7c8c9d9a188a841f41679aa9b5830b8f60",
+  "all400_inputs_and_source_peer_before_after_unchanged": true,
+  "old8_source_tests_AST_exact": true,
+  "old5_control_tests_AST_exact": true,
+  "new_temperature_IC_overlap_guard_and_sixth_output_fixture_read": true,
+  "runs": [
+    {
+      "guard": "selfcheck.py",
+      "tests": 9,
+      "returncode": 0,
+      "elapsed_seconds": 0.36689691711217165,
+      "passed": true,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "8a255e394ca8ed1f6e05b7f4ede8f420f77ca8f1889fc0589341d10dc21d4845"
+    },
+    {
+      "guard": "test_controls.py",
+      "tests": 6,
+      "returncode": 0,
+      "elapsed_seconds": 0.14897454087622464,
+      "passed": true,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "7b86291b37cb634af5195202c0758a163d4a9c13965b0604b083e8d0d77f781a"
+    }
+  ],
+  "all_guards_passed": true,
+  "no_real_data_conversion_or_native_or_scientific_import": true,
+  "full_adapter_module_control_paths_tested_only_under_stdlib_mocks": true,
+  "native_execution_authorized": false,
+  "assessment002_source_peer_root_gate_still_required": true,
+  "engineering_accepted": false,
+  "physics_qualified": false,
+  "material_qualified": false,
+  "process_calibrated": false,
+  "manufacturing_authorized": false
+}

@@ -1,0 +1,103 @@
+--- work/962-engineering/cp1-oneway-cooling-release-richardson2-observer003-build-owner-prep-004/run_links_once.py
++++ work/962-engineering/cp1-oneway-cooling-release-richardson2-observer003-build-owner-prep-005/run_build_once.py
+@@ -1,4 +1,4 @@
+-"""Root explicit CLT-linker correction: at most two link commands, stop at first failure.
++"""Root explicit CLT-linker correction: at most three fixed build commands, stop at first failure.
+ No guards, host loading, Make or native physics are executed.
+ """
+ from pathlib import Path
+@@ -7,12 +7,13 @@
+ E=R/'work/962-engineering'
+ P=E/'cp1-oneway-cooling-release-richardson2-END181-dof-map-observer-prep-003'
+ S=E/'moose-public-source-001/moose'
+-D=E/'cp1-oneway-cooling-release-richardson2-observer003-build-root-execution-004'
++D=E/'cp1-oneway-cooling-release-richardson2-observer003-build-root-execution-005'
+ A=E/'cp1-observer003-root-build-admission-001/admission.json'
+ AUTH='d4a07f779dbfeebae57afbc9efcfa52981f016206e35f4c11063d77fb99a0eee'
+ RECIPE='d29067e60a64c8c2164126ffef1d818ed963c5b22bbabd32813662de4e4e90a4'
+-G=D/'CLT-linker-grant-binding.json'
+-GRANT='9bdce5c3da0b8b025982139bb67b989adb585b9d4047c7991573e16ccb689dd7'
++G=D/'driver-compatibility-grant-binding.json'
++GRANT='91fb221d946ea60b08be978c7599f33cf68b87f3c64baa7a102c2f0f0b102795'
++PLAN='2c394d0878f2c862e0134d55c1b6cc33858a106ece7041ede4e4a26d874ca28e'
+ CLT_LD='/Library/Developer/CommandLineTools/usr/bin/ld'
+ CAP=64*1024**2
+ 
+@@ -110,7 +111,7 @@
+  rows={};errors={}
+  for name in dict.fromkeys(names):
+   path=Path(name)
+-  if not path.is_absolute():path=P/'build-004'/path
++  if not path.is_absolute():path=P/'build-005'/path
+   try:rows[str(path)]=dict(record=rec(path),content_identity_known_before_compilation=str(path) in before)
+   except Exception as exc:errors[str(path)]=repr(exc)
+  out=D/f'step{ordinal}-dependency-headers.json'
+@@ -124,27 +125,24 @@
+ actual=json.loads(actual_path.read_text());manifest=json.loads(manifest_path.read_text());recipe_path=P/'build-recipe.json'
+ assert rec(recipe_path)['sha256']==RECIPE and actual['input_manifest']==rec(manifest_path)
+ assert actual['controller']==rec(Path(__file__)) and actual['root_admission']==rec(A)
+-assert actual['compiler_step_indices']==[2,4] and actual['threads_scope']=='Two strictly sequential link commands; OMP/BLAS/VECLIB1 environment; observed internal process/thread counts recorded with no invented thread-count refusal.'
+-assert rec(G)['sha256']==GRANT and actual['CLT_linker_grant_binding']==rec(G)
+-grant=json.loads(G.read_text());assert grant['link_invocations_authorized']==2 and grant['recipe_indices']==[2,4] and not grant['observer_or_shim_recompilation_authorized'] and not grant['automatic_retry']
++assert actual['compiler_step_indices']==[0,1,2] and actual['threads_scope']=='Three strictly sequential fixed build commands; OMP/BLAS/VECLIB1 environment; observed internal process/thread counts recorded with no invented thread-count refusal.'
++assert rec(G)['sha256']==GRANT and actual['driver_compatibility_grant_binding']==rec(G)
++grant=json.loads(G.read_text());assert grant['build_invocations_authorized']==3 and not grant['observer_or_shim_recompilation_authorized'] and not grant['automatic_retry']
+ assert actual['selected_linker']==rec(Path(CLT_LD))
+ records=manifest['protected_records'];direct={str(p):rec(p) for p in [actual_path,manifest_path,Path(__file__),A]}
+ assert not set(records)&set(direct);pins={**records,**direct}
+ initial=check(pins);assert not initial['changed'];source_before=git_state();assert aliases()==actual['compiler_aliases_before']
+-B=P/'build-004';assert not B.exists() and not (D/'receipt.json').exists();B.mkdir();(B/'tmp').mkdir()
+-recipe=json.loads(recipe_path.read_text());env=actual['environment'];assert env['TMPDIR']==str(B/'tmp')
++B=P/'build-005';assert not B.exists() and not (D/'receipt.json').exists();B.mkdir();(B/'tmp').mkdir()
++recipe=json.loads(recipe_path.read_text());plan_path=D/'finite-build-argv.json';assert rec(plan_path)['sha256']==PLAN and actual['finite_plan']==rec(plan_path);plan=json.loads(plan_path.read_text());assert [x['name'] for x in plan['ordered_steps']]==['direct_CLT_plugin_link','compile_unchanged_guard_main','direct_CLT_guard_link'];env=actual['environment'];assert env['TMPDIR']==str(B/'tmp')
+ assert set(env)=={'PATH','SDKROOT','CPLUS_INCLUDE_PATH','LC_ALL','LANG','TMPDIR','OMP_NUM_THREADS','OPENBLAS_NUM_THREADS','MKL_NUM_THREADS','VECLIB_MAXIMUM_THREADS'}
+ assert all(env[x]=='1' for x in ['OMP_NUM_THREADS','OPENBLAS_NUM_THREADS','MKL_NUM_THREADS','VECLIB_MAXIMUM_THREADS'])
+-receipt=dict(schema='962-observer003-once-root-admitted-build-receipt/v1',actual=rec(actual_path),admission=rec(A),controller=rec(Path(__file__)),initial=initial,source_before=source_before,steps=[],completed_two_link_steps=False,guards_executed=False,host_loaded=False,native_executed=False,scientific_or_ABI_acceptance=False,threads_scope=actual['threads_scope'],automatic_retry=False)
++receipt=dict(schema='962-observer003-once-root-admitted-build-receipt/v1',actual=rec(actual_path),admission=rec(A),controller=rec(Path(__file__)),initial=initial,source_before=source_before,steps=[],completed_three_build_steps=False,guards_executed=False,host_loaded=False,native_executed=False,scientific_or_ABI_acceptance=False,threads_scope=actual['threads_scope'],automatic_retry=False)
+ failure=None
+ try:
+- for ordinal,index in enumerate([2,4],1):
+-  step=recipe['ordered_steps'][index];old_build=str(P/'build');new_build=str(B)
+-  objects={old_build+'/CouponEnd181DofMap.o':str(P/'build-003/CouponEnd181DofMap.o'),old_build+'/CouponEnd181ObserverRegistration.o':str(P/'build-003/CouponEnd181ObserverRegistration.o')}
+-  argv=[objects[arg] if arg in objects else new_build+arg[len(old_build):] if arg.startswith(old_build+'/') else arg for arg in step['argv']]
+-  argv+=['-fuse-ld='+CLT_LD]
++ for index,step in enumerate(plan['ordered_steps']):
++  ordinal=index+1;argv=list(step['argv'])
+   depfile=B/f'step{ordinal}.d'
+-  if index==4:argv+=['-MD','-MF',str(depfile)]
++  if index==1:argv+=['-MD','-MF',str(depfile)]
+   item=dict(ordinal=ordinal,recipe_index=index,name=step['name'],argv=argv,before=check(pins),samples=0,resource_samples=[],peak_RSS_bytes=0,peak_processes=0,peak_observed_threads=None)
+   receipt['steps'].append(item)
+   if item['before']['changed']:raise ValueError('Protected input changed before compiler step')
+@@ -167,7 +165,7 @@
+    if group_exists(proc.pid):raise ValueError('Owned group remains after normal compiler exit')
+    if proc.returncode:raise ValueError('Compiler step failed; no retry or next step')
+    if output_size(B)>CAP:raise ValueError('64MiB completion output cap')
+-   if index==2:
++   if index==0:
+     item['actual_plugin']=rec(B/'libcoupon_end181_observer-opt.dylib')
+     spec=recipe['ordered_steps'][3];template=R/spec['template']['path'];assert rec(template)==spec['template']
+     (B/'libcoupon_end181_observer-opt.la').write_bytes(template.read_bytes());item['actual_descriptor']=rec(B/'libcoupon_end181_observer-opt.la')
+@@ -178,16 +176,16 @@
+    item['elapsed_seconds']=time.monotonic()-started;item['stdout']=rec(outp) if outp.exists() else None;item['stderr']=rec(errp) if errp.exists() else None
+    item['dependencies']=dependencies(depfile,ordinal,manifest['header_records']);item['after']=check(pins)
+   if item['after']['changed']:raise ValueError('Protected input changed after compiler step')
+- receipt['completed_two_link_steps']=True
++ receipt['completed_three_build_steps']=True
+ except Exception:failure=traceback.format_exc()
+ finally:
+  receipt['failure']=failure;receipt['final_snapshot']=check(pins);receipt['compiler_aliases_after']=aliases()
+- if receipt['compiler_aliases_after']!=actual['compiler_aliases_before']:receipt['completed_two_link_steps']=False
++ if receipt['compiler_aliases_after']!=actual['compiler_aliases_before']:receipt['completed_three_build_steps']=False
+  try:receipt['source_after']=git_state()
+- except Exception:receipt['source_after_error']=traceback.format_exc();receipt['completed_two_link_steps']=False
++ except Exception:receipt['source_after_error']=traceback.format_exc();receipt['completed_three_build_steps']=False
+  try:receipt['owned_output_bytes']=output_size(B)
+- except Exception:receipt['output_census_error']=traceback.format_exc();receipt['completed_two_link_steps']=False
++ except Exception:receipt['output_census_error']=traceback.format_exc();receipt['completed_three_build_steps']=False
+  receipt['owned_outputs']={str(p.relative_to(B)):rec(p) for p in B.rglob('*') if p.is_file() and not p.is_symlink()}
+- if receipt['final_snapshot']['changed']:receipt['completed_two_link_steps']=False
++ if receipt['final_snapshot']['changed']:receipt['completed_three_build_steps']=False
+  (D/'receipt.json').write_text(json.dumps(receipt,indent=2)+'\n')
+-raise SystemExit(0 if receipt['completed_two_link_steps'] and failure is None else 2)
++raise SystemExit(0 if receipt['completed_three_build_steps'] and failure is None else 2)

@@ -1,0 +1,168 @@
+{
+  "schema": "962-current24-saved55-independent-checker-owner-source-reuse/v1",
+  "status": "SOURCE_ONLY_UNRUN",
+  "donor_owner": {
+    "path": "work/962-engineering/head-star-current24-interior-flip-independent-verifier-execution-prep-001/run_root_once.py",
+    "sha256": "204a24d325f0cbe465b1debe43624eeb51a0c4cc315a537e4d080aec2da43d2c",
+    "bytes": 16301
+  },
+  "current_owner": {
+    "path": "work/962-engineering/head-star-current24-edge-removal-independent-verifier-execution-prep-001/run_root_once.py",
+    "sha256": "646d4ceb918dfc602c8e07960e744f220f8353292cc5052a0ba38b2c75805226",
+    "bytes": 17514
+  },
+  "exact_helper_count": 9,
+  "exact_helpers": [
+    {
+      "name": "rec",
+      "text_sha256": "1c49fad82b6ce5d2a5432aa22114fa9b0e42eb46d4b57b8df2a0ba2c36d00543",
+      "bytes": 253,
+      "AST_exact": true
+    },
+    {
+      "name": "group_exists",
+      "text_sha256": "67b74400b8ae03cab400d9360091514f9d295f0a93baa968468544e8b23cd5f3",
+      "bytes": 97,
+      "AST_exact": true
+    },
+    {
+      "name": "check",
+      "text_sha256": "7aafe9854e4e77c0b84d9232f40d979da358790349d8899b628ffe04418f3b77",
+      "bytes": 438,
+      "AST_exact": true
+    },
+    {
+      "name": "output_size",
+      "text_sha256": "0a86e778061dd08bb3109046fc15ea968e8bbe94ef7b8e4b02ea95365e320b65",
+      "bytes": 192,
+      "AST_exact": true
+    },
+    {
+      "name": "stop_wait",
+      "text_sha256": "a7d56d0d5231785caee558ceda897260fd59d43586cf11fc8fea905c46ddb6a8",
+      "bytes": 571,
+      "AST_exact": true
+    },
+    {
+      "name": "limits",
+      "text_sha256": "7fe128a40ee8e718cdd34812d396d17ae125a6de21a315ee85bd093ac40d2323",
+      "bytes": 114,
+      "AST_exact": true
+    },
+    {
+      "name": "sample",
+      "text_sha256": "4dd2bd71a1bc26903fefd25f1a577c215475c51dd002bd8b014ead5ca950968f",
+      "bytes": 1971,
+      "AST_exact": true
+    },
+    {
+      "name": "provider_links",
+      "text_sha256": "92d3d35a256f694cd8aa0183e3125c5f7b9dd8de6b8a746f8921644b2d95b940",
+      "bytes": 213,
+      "AST_exact": true
+    },
+    {
+      "name": "record_controller_stop",
+      "text_sha256": "a003c9f5417a0da6dd023f5dc9db70c657d50c2d8b1c097e33e8b99ac118277d",
+      "bytes": 170,
+      "AST_exact": true
+    }
+  ],
+  "literal_replacement_groups": [
+    {
+      "old": "HELD ONE independent saved-flip verification",
+      "new": "HELD ONE independent saved55 edge-removal verification",
+      "occurrences": 1
+    },
+    {
+      "old": "X=E/'head-star-current24-interior-flip-independent-verifier-execution-prep-001'",
+      "new": "X=E/'head-star-current24-edge-removal-independent-verifier-execution-prep-001'",
+      "occurrences": 1
+    },
+    {
+      "old": "D=E/'head-star-current24-interior-flip-independent-verifier-root-execution-001'",
+      "new": "D=E/'head-star-current24-edge-removal-independent-verifier-root-execution-001'",
+      "occurrences": 1
+    },
+    {
+      "old": "962-current24-independent-saved-flip-verifier-root-admission/v1",
+      "new": "962-current24-independent-saved55-edge-verifier-root-admission/v1",
+      "occurrences": 1
+    },
+    {
+      "old": "962-current24-independent-saved-flip-verifier-held-actual/v1",
+      "new": "962-current24-independent-saved55-edge-verifier-held-actual/v1",
+      "occurrences": 1
+    },
+    {
+      "old": "962-current24-independent-saved-flip-verification-once-receipt/v1",
+      "new": "962-current24-independent-saved55-edge-verification-once-receipt/v1",
+      "occurrences": 1
+    },
+    {
+      "old": "auth['analytic_guard_groups']==5",
+      "new": "auth['analytic_guard_groups']==9",
+      "occurrences": 1
+    },
+    {
+      "old": "assert auth['checker_source_peer_reviewed_and_accepted'] is True and auth['automatic_retry'] is False",
+      "new": "assert auth['checker_source_peer_reviewed_and_accepted'] is True and auth['exact_child_peer_reviewed_and_accepted'] is True and auth['automatic_retry'] is False",
+      "occurrences": 1
+    },
+    {
+      "old": "['native_execution_authorized','geometry_write_authorized','physical_acceptance']",
+      "new": "['native_execution_authorized','geometry_write_authorized','global_embedding_or_infeasibility_authorized','physical_acceptance']",
+      "occurrences": 1
+    },
+    {
+      "old": "['verification_execution_authorized','native_execution_authorized','geometry_write_authorized','physical_acceptance','automatic_retry']",
+      "new": "['verification_execution_authorized','native_execution_authorized','geometry_write_authorized','global_embedding_or_infeasibility_authorized','physical_acceptance','automatic_retry']",
+      "occurrences": 1
+    },
+    {
+      "old": "actual['protected_record_count']==36",
+      "new": "actual['protected_record_count']==50",
+      "occurrences": 1
+    },
+    {
+      "old": "actual['expected_total_records']==134",
+      "new": "actual['expected_total_records']==148",
+      "occurrences": 1
+    },
+    {
+      "old": "'checker_source_peer'",
+      "new": "'exact_child_peer'",
+      "occurrences": 3
+    },
+    {
+      "old": "'checker_source_bindings'",
+      "new": "'exact_child_bindings'",
+      "occurrences": 2
+    },
+    {
+      "old": "checker_source_peer=auth[",
+      "new": "exact_child_peer=auth[",
+      "occurrences": 2
+    },
+    {
+      "old": "checker_source_bindings=auth[",
+      "new": "exact_child_bindings=auth[",
+      "occurrences": 1
+    },
+    {
+      "old": "complete_flip_eligibility=None",
+      "new": "complete_application_eligibility=None",
+      "occurrences": 1
+    }
+  ],
+  "one_completion_block_replacement": {
+    "old": " if result['schema']!='962-current24-independent-saved-flip-exact-verification/v1' or result['complete_finite_family_verified'] is not True:raise ValueError('Complete exact verification output required')\n guards=result['analytic_guards']\n expected_names=['right_D1_Q2_2over3','regular_D2_Q2_1','orientation_sign_quality_invariant','coincident_refusal','boundary_and_exact_threshold']\n if guards!=dict(guard_count=5,names=expected_names,all_passed=True):raise ValueError('Five exact analytic guard groups required')\n if result['complete_association_count']!=204 or result['independent_local_status_counts']!={'refused_observed_incidence_not_2_or_3_five_point_pattern':139,'failed_exact_local_screen':65} or result['observed_pair_conflicts']!=89:raise ValueError('Complete204/139+65/89 current report parity required')\n if result['inputs_before']!=actual['checker_input_records'] or result['inputs_after']!=actual['checker_input_records']:raise ValueError('All32 verifier inputs beforeafter exact required')\n if result['full271_words_and499_cells_parent_associated'] is not True or result['prior1983_66_86_protected'] is not True:raise ValueError('Complete parent/protected scope required')\n if result['complete_flip_eligibility'] is not None or any(result[k] is not False for k in ['mesh_application_authorized','global_embedding_accepted','native_or_physical_or_manufacturing_accepted']):raise ValueError('No embedding/application/physical qualification')\n receipt['verification_output']=rec(D/'verifier.stdout.json');receipt['analytic_guards']=guards;receipt['complete_association_count']=result['complete_association_count'];receipt['independent_local_status_counts']=result['independent_local_status_counts'];receipt['observed_pair_conflicts']=result['observed_pair_conflicts']\n receipt['original_cell_witnesses']=result['original_cell_witnesses'];receipt['replacement_cell_witnesses']=result['replacement_cell_witnesses'];receipt['support_determinant_witnesses']=result['support_determinant_witnesses']\n",
+    "new": " if result['schema']!='962-current24-independent-saved55-edge-removal-exact-verification/v1' or result['complete_finite_family_verified'] is not True:raise ValueError('Complete exact saved55 verification output required')\n guards=result['analytic_guards']\n expected_names=['right_D1_Q2_2over3','regular_D2_Q2_1','orientation_sign_quality_invariant','coincident_refusal','boundary_and_exact_threshold','maximal_diagonal_Catalan_complete','missing_duplicate_extra_candidate_refusal','disjoint_removal_duplicate_conflict','disconnected_link_no_subset_refusal']\n if guards!=dict(guard_count=9,names=expected_names,all_passed=True):raise ValueError('Nine exact analytic guard groups required')\n if any(type(result[k]) is not int or result[k]!=v for k,v in actual['expected_saved_summary_counts'].items()):raise ValueError('Complete55/1033/current row and conflict metadata parity required')\n if result['inputs_before']!=actual['checker_input_records'] or result['inputs_after']!=actual['checker_input_records']:raise ValueError('All30 fixed verifier inputs beforeafter exact required')\n if result['full271_words499_cells_and_six_typed_hashes_parent_associated'] is not True or result['prior1983_cells66_nodes86_poor_protected'] is not True:raise ValueError('Complete saved context/six hashes/protected history required')\n if result['complete_application_eligibility'] is not None or any(result[k] is not False for k in ['mesh_application_authorized','global_embedding_accepted','global_infeasibility_or_topology_necessity_proved','native_or_physical_or_manufacturing_accepted']):raise ValueError('No global/application/physical qualification')\n for key,pin in actual['expected_report_projection_sha256s'].items():\n  if result[key]!=pin:raise ValueError('Full fixed report row projection changed: '+key)\n failed=result['full_candidate_quality_failure_IDs']\n if not isinstance(failed,list) or len(failed)!=1033 or len(set(failed))!=len(failed) or hashlib.sha256(json.dumps(failed,sort_keys=True,separators=(',',':'),allow_nan=False).encode()).hexdigest()!=actual['expected_quality_failed_IDs_sha256']:raise ValueError('Every reported quality failure ID must remain, exact order/no subset')\n if result['full_local_finite_pass_IDs']!=[]:raise ValueError('Original all-failed finite result changed; refuse parity')\n if not re.fullmatch('[0-9a-f]{64}',result['exact_conflicting_pair_union_sha256']):raise ValueError('Complete exact pair-union digest required')\n receipt['verification_output']=rec(D/'verifier.stdout.json');receipt['analytic_guards']=guards\n receipt['confirmed_saved_summary_counts']={k:result[k] for k in actual['expected_saved_summary_counts']}\n receipt['confirmed_complete_report_projection_sha256s']={k:result[k] for k in actual['expected_report_projection_sha256s']}\n receipt['quality_failed_candidate_ID_count']=len(failed);receipt['quality_failed_candidate_IDs_sha256']=actual['expected_quality_failed_IDs_sha256']\n receipt['exact_conflicting_pair_union_sha256']=result['exact_conflicting_pair_union_sha256'];receipt['complete_application_eligibility']=None\n"
+  },
+  "full_inverse_recovers_donor_bytes_AST": true,
+  "imports_exact": true,
+  "new_runtime_dependencies": [],
+  "unchanged_lifecycle_scope": "All bytes outside declared schema/path/count/role/false-authority/completion-record bindings. Owned Popen/session, full sampling, observation exit-race handling, signal latch, stop_wait, before/after identities, cleanup, cutoff, full receipt cap and final inclusive size gate unchanged.",
+  "no_scientific_arithmetic_or_source_helper_execution": true,
+  "pre_freeze_metadata_assembly_correction": "An author-only draft assertion expected51 protected entries; exact union has50 because prior flip acceptance is already in checker30. Corrected draft counter to50/148 before freezing; no checker/guard/scientific/runtime execution occurred."
+}

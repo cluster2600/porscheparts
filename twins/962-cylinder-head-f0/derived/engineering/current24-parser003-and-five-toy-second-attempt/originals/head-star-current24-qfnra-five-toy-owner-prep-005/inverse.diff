@@ -1,0 +1,71 @@
+--- head-star-current24-qfnra-five-toy-owner-prep-005/run_owner_once.py
++++ head-star-current24-qfnra-five-toy-owner-prep-004/run_owner_once.py
+@@ -6,8 +6,8 @@
+ 
+ R=Path('/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993')
+ E=R/'work/962-engineering'
+-P=E/'head-star-current24-qfnra-five-toy-owner-prep-005'
+-D=E/'head-star-current24-qfnra-five-toy-root-execution-002'
++P=E/'head-star-current24-qfnra-five-toy-owner-prep-004'
++D=E/'head-star-current24-qfnra-five-toy-root-execution-001'
+ PY='/Library/Frameworks/Python.framework/Versions/3.10/bin/python3.10'
+ CAP=33554432
+ RSS_CAP=2147483648
+@@ -19,7 +19,7 @@
+               whole_seconds=60,TERM_grace_seconds=8,KILL_grace_seconds=8,
+               RSS_query_seconds=5,sampled_RSS_bytes=RSS_CAP,inclusive_bytes=CAP,
+               thread_environment=1,retries=0)
+-CHOICE_SHA='e515e203bf928a57efbe44ebfb2c20da2e127dbfae5b690897175c0b86db0322'
++CHOICE_SHA='a96c130fd8044ebe55d7a8c3e2cab0067e2f60d77b58cd8a33b1b4427eb7f9c5'
+ # Retain even an unreaped refusal through explicit last-resort os._exit; no destructor poll.
+ HELD_LEADERS=[]
+ 
+@@ -182,7 +182,7 @@
+     need(signal.getsignal(signal.SIGCHLD)==signal.SIG_DFL,'SIGCHLD must already be default; no changed disposition or competing waiter permitted')
+     required=['kqueue','kevent','KQ_FILTER_PROC','KQ_NOTE_EXIT','KQ_EV_ADD','KQ_EV_ENABLE','KQ_EV_ONESHOT','KQ_EV_ERROR']
+     need(all(hasattr(select,k) for k in required) and all(hasattr(os,k) for k in ['WUNTRACED','WNOHANG','WIFSTOPPED','WSTOPSIG','WIFEXITED','WIFSIGNALED','waitstatus_to_exitcode','getpgid','getsid','killpg','waitpid']),'Named APIs unavailable')
+-    need(actual['transport']['sha256']=='3619b5316cf23398ed479ebf724a1159bb816ce3bafb85ad93c40b67b7df4990' and actual['transport']['bytes']==22291,'Frozen transport required')
++    need(actual['transport']['sha256']=='76c13fe57d9598276b349e12dedd8bdfb1eff1ec3ad29d4c95a073abc8e6d49a' and actual['transport']['bytes']==21489,'Frozen transport required')
+     need(actual['protocol']['sha256']=='9b5885a35bfbc681c0354e937b9f57621b3d8137adc25b4e2ba455e86ce59785' and actual['protocol']['bytes']==12459,'Frozen protocol required')
+     need(actual['root_source_choice']['sha256']==CHOICE_SHA,'Changed root source choice')
+     need(actual['historical_runtime_preflight']['sha256']=='3b4f731ff16ec475b5de2d567292b25169a7c9c8618d38c1c8cd363d4f8c9169' and actual['historical_runtime_preflight']['bytes']==78434,'Unchanged historical no-site metadata required')
+--- head-star-current24-qfnra-five-toy-owner-prep-005/run_fixed_adapter.py
++++ head-star-current24-qfnra-five-toy-owner-prep-004/run_fixed_adapter.py
+@@ -6,13 +6,13 @@
+ 
+ R=Path('/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993')
+ E=R/'work/962-engineering'
+-P=E/'head-star-current24-qfnra-five-toy-owner-prep-005'
+-D=E/'head-star-current24-qfnra-five-toy-root-execution-002'
++P=E/'head-star-current24-qfnra-five-toy-owner-prep-004'
++D=E/'head-star-current24-qfnra-five-toy-root-execution-001'
+ TOYS=D/'toys'
+ PY='/Library/Frameworks/Python.framework/Versions/3.10/bin/python3.10'
+-TRANSPORT=E/'head-star-current24-qfnra-toy-transport-prep-003/check_toy_sessions.py'
++TRANSPORT=E/'head-star-current24-qfnra-toy-transport-prep-002/check_toy_sessions.py'
+ PROTOCOL=E/'head-star-current24-coupled-qfnra-prep-001/qfnra_protocol.py'
+-TRANSPORT_SHA='3619b5316cf23398ed479ebf724a1159bb816ce3bafb85ad93c40b67b7df4990'
++TRANSPORT_SHA='76c13fe57d9598276b349e12dedd8bdfb1eff1ec3ad29d4c95a073abc8e6d49a'
+ PROTOCOL_SHA='9b5885a35bfbc681c0354e937b9f57621b3d8137adc25b4e2ba455e86ce59785'
+ IDS=('rational','algebraic','maxfinite','negative_half_minsubnormal','unsat')
+ CAP=33554432
+@@ -53,7 +53,7 @@
+     group=os.getpgrp();need(os.getpid()==group==os.getsid(0),'Same retained owned leader required')
+     need(not TOYS.exists() and not (D/'adapter-report.json').exists(),'Fresh single-call capture required')
+     before=dict(transport=rec(TRANSPORT),protocol=rec(PROTOCOL),actual=rec(actual_path),admission=rec(A),adapter=rec(Path(__file__)))
+-    need(before['transport']==actual['transport'] and before['transport']['sha256']==TRANSPORT_SHA and before['transport']['bytes']==22291,'Frozen transport required')
++    need(before['transport']==actual['transport'] and before['transport']['sha256']==TRANSPORT_SHA and before['transport']['bytes']==21489,'Frozen transport required')
+     need(before['protocol']==actual['protocol'] and before['protocol']['sha256']==PROTOCOL_SHA and before['protocol']['bytes']==12459,'Frozen protocol required')
+     report=dict(schema='962-five-toy-fixed-adapter-result/v1',status='INCOMPLETE',transport_calls=0,transport_returned=False,helper_report=None,helper_complete=None,helper_failure=None,unattempted_session_IDs=None,traceback=None,controls_before=before,controls_after=None,owned_group=group,returned_report_agrees_with_saved=None,real_head_input_used=False,physical_acceptance=False)
+     try:
+--- head-star-current24-qfnra-five-toy-owner-prep-005/stopped_exec_wrapper.py
++++ head-star-current24-qfnra-five-toy-owner-prep-004/stopped_exec_wrapper.py
+@@ -2,7 +2,7 @@
+ import os,re,signal,sys
+ 
+ PY='/Library/Frameworks/Python.framework/Versions/3.10/bin/python3.10'
+-ADAPTER='/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/head-star-current24-qfnra-five-toy-owner-prep-005/run_fixed_adapter.py'
++ADAPTER='/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/head-star-current24-qfnra-five-toy-owner-prep-004/run_fixed_adapter.py'
+ 
+ def main():
+     if not (len(sys.argv)==2 and re.fullmatch('[0-9a-f]{64}',sys.argv[1])):

@@ -1,0 +1,33 @@
+# Cooling and support release: failed final-hold capture
+
+One prescribed-temperature mechanical coupon was invoked once. It **did not complete** its declared 183 END frames / 366 BEGIN and END samples. The [terminal root acceptance](root/native/result-peer-acceptance.json) accepts preservation of a failed research capture only; it does not accept a complete field dataset or another run.
+
+The native adapter reached its unchanged 100 s inner deadline, killed its owned native process group and waited. The inner receipt records `stage_deadline`, return code -9 and 100.11908745812252 s. The outer adapter returned 1 after 100.46200558310375 s; root recorded no outer signal/error and observed its owned adapter group absent after wait/reap. Empty outer signals do not mean the inner native received no signal. These are source/receipt/root-attributed lifecycle observations, not universal process-absence proof.
+
+## Preserved failure and declared case
+
+The complete [native log](native/output/native.log), [receipt](native/output/native-execution.json), [independent stopped peer](reviews/native-result/review.json) and [source-backed diagnosis](diagnosis/NOTE.md) are retained. The accepted text inspection records 203 Time Step headers including initial step 0: 202 solve-attempt headers comprise 181 converged, 20 failed and one interrupted. Nominal steps 180 (end of cooling) and 181 (release) are logged as converged; the first failed solve is final hold step 182 at nominal time 0.455 s. This is not independent acceptance of the corresponding phase fields or functional clamp control.
+
+Repeated native timestep cutbacks occurred inside that single invocation. They are separate from external `automatic_retry=false`. NEWTON, nonlinear tolerances and the 100 s limit remain unchanged. A near-steady convergence-criterion explanation remains a hypothesis; an IEEE-754 floor, numerical cause, acceptable field or material response has not been proved. No LINEAR alternative or new formulation is selected here.
+
+The [case source](sources/case/thermoelastic-birth.i) replays mechanics from time zero, with a temporary z=0 plane clamp, birth at BEGIN80, twenty assumed linear cooling steps to 300 K at END180, then replacement by the original six point constraints at BEGIN181. The born displacement reference must come from this new clamped trajectory; the old unclamped displacement reference is not reused. E = 71 GPa, nu = 0.33 and alpha = 1e-5/K are assumed constant elastic values, not a matched CP1 supplier law or calibrated LPBF process.
+
+## Inputs, correction and unexecuted assessment
+
+The [accepted data record](root/data-acceptance/acceptance.json) concerns complete input temperature tables only. The three exact project-owned tables are readable once: [old history](inputs/old-end.grid), [born history](inputs/born-end.grid), [original BEGIN80 reference](inputs/born-begin80.grid). They contain the accepted 54,675-token prefix/reference plus 9,900 explicitly assumed cooling/hold values. Their six native materialized copies are identity aliases. This publication does not regenerate, parse or modify those grid bytes.
+
+The original 14-file case preparation and ten-file [continuation assessor preparation](sources/assessor/assess.py), source/guard reviews, actuals, exact-child reviews, data peers, runtime registry/parameter records and failed native controls remain inspectable. The original contract's stale descriptive step160 label is preserved with its [one-string corrected companion](contracts/capture-rule/case-contract.corrected.json) and correction receipt; numeric steps/counts and executable/card/tolerance bytes are unchanged. The assessor's explicit late-binding acknowledgement is retained.
+
+Source/root guards and the fresh 24-object registry/TimePeriod parameter observations are separate source/runtime metadata gates. They do not prove the functional switch or fields. The prepared storage auditor and continuation 3D assessor were **not invoked** on this incomplete capture. There is no completed storage/constitutive/equilibrium/release-energy assessment or accepted cooling dataset. Historical null/false/UNRUN creation fields and the original native `passed=false` remain intact.
+
+## Complete identity inventory and exclusions
+
+The [original-record ledger](original-records.json) will account for every native actual input role, all 109 root-captured input/control identities, all 19 native materialized input roles and every one of the 1,116 output identities (420,336,314 bytes). All small source/control/receipt/log records and their exact or declared path-projected representations are selected. Duplicate source snapshots, whole actual/physics mirrors and empty streams remain explicit aliases.
+
+Bodies of all 1,092 native CSVs and both CDF files are excluded: their 1,094 identities total 417,044,388 bytes and remain source/root/stopped-peer attributed. No raw field/CDF/Exodus body is parsed, hashed, compressed or distributed by this selection. The package cannot reproduce a raw-field assessment without separately obtained, admitted original bodies. Previous thermal inputs, solver/runtime bodies, vendor primary-source bodies and old archives are not recopied or recertified. Exact named prior ledger pointers distinguish original bytes, projections, archive members and identity-only roles; unavailable body anchors are not invented.
+
+The [prior accepted fine synthetic coupon](../cp1-oneway-thermoelastic-transfer/README.md) remains a separate software-verification anchor; its acceptance is not transferred to this failed continuation. Existing fourteen finite path-prefix rules may project complete JSON string fields/keys or whole text. Current source/SHA/pointer/count allowlists are explicit. Numeric PID/PGID values, binary64 words, integer/bool/null types, field/list order and failure history stay unchanged. There are no PID substitutions, generic stripping or new lexical exceptions.
+
+The case/adapter author is existing_study_audit; the separate continuation assessor is authored by replica_metrology. Root owns conversion/runtime/guard/native operations and terminal acceptance. clip_source_review authored this finite publication selection and earlier source/helper/peer lineage; it is not independent physical validation. [Project view-only rights](LICENSE.project) and third-party terms remain unchanged. The copied [byte verifier](verify.py) is not invoked by this selection.
+
+Material, process, strength/head PDE, convergence, physical and manufacturing qualification remain false. Coupon fields are not head labels. No data/native retry, new source variant, trainer/viewer, assembly, publication or release is authorized by this SOURCE-HELD selection.

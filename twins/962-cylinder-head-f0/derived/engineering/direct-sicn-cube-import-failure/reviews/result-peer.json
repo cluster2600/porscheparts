@@ -1,0 +1,101 @@
+{
+  "schema": "962-direct-SICN-cube-stopped-result-peer/v1",
+  "decision": "CLEAR_AS_PRESERVED_IMPORT_FAILURE_ONLY",
+  "created_utc": "2026-10-17T10:54:43.299592+00:00",
+  "scope": "Independent stdlib/source/small-byte review; no prepared module, scientific import, test, geometry, runtime binary, native execution or retry.",
+  "original_directory": "work/962-engineering/direct-sicn-cube-001",
+  "original_inventory": {
+    "execution-receipt.json": {
+      "bytes": 1441,
+      "sha256": "2120803f8fd10a82a214697a9fc1720aef426ec552d0b638bb7397e939d5a801"
+    },
+    "fixture-report.json": {
+      "bytes": 1151,
+      "sha256": "cbb309e45583976b6b85a8db68b7a0829e1dbc5b13a3939cf6bde79a102bf59c"
+    },
+    "frozen-contract.json": {
+      "bytes": 16538,
+      "sha256": "14b6d72a1d1caa0c5e9ff2da9e72e1582cc4a964b7e39d7fd52a4c150ca1ce68"
+    },
+    "native.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "reader.py": {
+      "bytes": 19291,
+      "sha256": "0ddc9c6c96fa17302416c21c8f6a8873d1306dab1056acf7fb2a552c2a7c1d9b"
+    },
+    "run_readback.py": {
+      "bytes": 4751,
+      "sha256": "5b9c10be3b09f4f72f2e4dcedb4588a5fee3e61d98eed9b4797498410795fae5"
+    },
+    "worker-claimed.json": {
+      "bytes": 92,
+      "sha256": "bcc9755163f11d010167767967a2f175fdd3da3c15b0e3609725338eb9ff0288"
+    }
+  },
+  "root_records": {
+    "direct-sicn-cube-root-execution-001/closed-result.json": "c0abc336df13cff2f3db42d23bdba5fe3cb6958afe6d8ce656009c2733c88fd9",
+    "direct-sicn-cube-root-execution-001/controller.json": "4fa31325bc6a3f0a291fcb911963badf565a08e561e0ff7338fde5dcb0a9e5ac",
+    "direct-sicn-cube-root-execution-001/controller.stdout.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "direct-sicn-cube-root-execution-001/execution.json": "0fbc85727889074e49efbbff2415b884ed6ec618cc65357db5503efdc5451936",
+    "direct-sicn-cube-root-execution-001/launch-guard.json": "5dfaa0eead0fa233b20c81ad3a62790347bbba40ab714b6a9ab8cdce4c6e00ab"
+  },
+  "closure": {
+    "exact_seven_regular_files": true,
+    "total_bytes": 43264,
+    "inventory_matches_root_closed_record": true,
+    "frozen_contract_matches_exact_child": true,
+    "known_reader_runner_snapshots_exact": true,
+    "report_receipt_worker_claim_controller_launch_guard_associations_exact": true,
+    "input29_before_contract_after_maps_identical": true,
+    "runtime33_before_contract_after_maps_identical": true,
+    "independently_current_hashed_small_input_files": 28,
+    "one_tiny_geometry_reference_body_and_current_hash_deferred_to_root": true,
+    "all_current_runtime_binary_hashes_deferred_to_root": true,
+    "no_cube_msh_or_other_export_present": true
+  },
+  "observed_outcome": {
+    "worker_and_controller_returncode": 2,
+    "stop_reason": null,
+    "controller_wall_seconds": 1.1904273331165314,
+    "root_outer_wall_seconds": 1.2712747501209378,
+    "RSS_sample_count": 3,
+    "max_observed_RSS_bytes": 139182080,
+    "stage": "imports",
+    "error_type": "ImportError",
+    "loader_rejection": "SciPy sparse PROPACK _spropack extension: section '__DATA/__thread_bss' has a zero-fill section type, but offset field is not zero.",
+    "scipy_minimize_calls_attempted": 0,
+    "Gmsh_import_calibration_optimizer_and_export_not_reached": true,
+    "cube_SICN_gate_passed": false,
+    "complete_loaded_module_inventory_not_reached": true,
+    "spropack_not_in_selected_33_file_prebound_scope": true
+  },
+  "source_association": {
+    "reader_scientific_modules_lines134_155": "scipy.optimize import at 144 precedes gmsh import at149. Its ImportError propagates before return and before worker assigns gmsh.",
+    "worker_lines243_310": "Initial stage imports/count0; scientific_modules at249, Gmsh initialization251, native calibration254, minimize272-276 and mesh export293 all later. Exception is preserved and report saved in finally.",
+    "runner_lines43_59": "Timer cancellation, active process cleanup/wait and signal restoration occur in finally; receipt declares planned operations separately from observed report.",
+    "planned_minimize1_and_write1_are_not_observed_counts": true
+  },
+  "lifecycle": {
+    "natural_failure_no_watchdog_stop": true,
+    "30s_sampled1GiB_16MiB_two_threads_controls_exact": true,
+    "hard_OS_CPU_or_address_space_quota_claimed": false,
+    "root_controller_wait_reap_and_individual_absence_records_joined": true,
+    "worker_wait_reap_attribution": "Reviewed controller finalizer; worker PID was not independently captured in this short run.",
+    "known_selected_full_argv_matches_after": [],
+    "process_absence_scope": "Only selected known tokens at recorded observation; no universal or retroactive sole-process claim.",
+    "automatic_retry": false
+  },
+  "limits": [
+    "This is a pre-optimizer import failure, not an SLSQP numerical result, Gmsh calibration or mesh-quality failure.",
+    "The exact loader message is observed; no compiler, wheel-generation or OS root cause is inferred and no binary was inspected or modified.",
+    "Selected runtime pins are not complete package, dylib, OS or ABI closure.",
+    "The historical pending fields in the immutable launch child remain point-in-time metadata; the external peer and launch guard supply actual authorization.",
+    "No tiny optimization success, head optimization authority, physical strength, material, LPBF, PDE or manufacturing qualification."
+  ],
+  "blockers_to_preserved_failure_review": [],
+  "blockers_to_scientific_success": [
+    "SciPy optimize import did not complete; all planned calibration, one SLSQP call and export/reopen gates remain unobserved."
+  ]
+}

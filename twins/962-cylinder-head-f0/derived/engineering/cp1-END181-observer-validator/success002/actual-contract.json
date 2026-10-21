@@ -1,0 +1,115 @@
+{
+  "schema": "962-observer003-held-exact-standalone18-guard-actual/v1",
+  "status": "HELD_ROOT_ADMISSION_REQUIRED",
+  "controller": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer003-guard-owner-prep-004/run_guards_once.py",
+    "sha256": "00af391d9fda955b56b8f3f1366579240f899ade71d90c2f447ad220398031b7",
+    "bytes": 13552
+  },
+  "preflight": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer003-guard-execution-prep-004/input-runtime-preflight.json",
+    "sha256": "3ca97fec27261899be4b568e2ea1e11c60fde19c629ffc15b8b188830281a4e6",
+    "bytes": 22460
+  },
+  "held_plan": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer003-guard-runtime-prep-002/held-runtime-plan.json",
+    "sha256": "7ba506d35e2f1922b21697113464f976a910e93937f6eda8d65f199e09d4002c",
+    "bytes": 17333
+  },
+  "held_plan_adjunct": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer003-guard-runtime-prep-002/direct-owner-and-build-peer-adjunct.json",
+    "sha256": "2c015e81a2ba9a39a059b5670eb2df800cf3beb0b75b32d0fc28cb4fe0a65201",
+    "bytes": 2058
+  },
+  "argv": [
+    "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/cp1-oneway-cooling-release-richardson2-END181-dof-map-observer-prep-003/build-006/guard_rows"
+  ],
+  "environment": {
+    "PATH": "/usr/bin:/bin",
+    "LANG": "C",
+    "LC_ALL": "C",
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "MKL_NUM_THREADS": "1",
+    "VECLIB_MAXIMUM_THREADS": "1",
+    "FI_PROVIDER": "tcp",
+    "DYLD_LIBRARY_PATH": "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-local-installed-002/lib/combined:/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-local-installed-002/lib",
+    "DYLD_PRINT_LIBRARIES": "1",
+    "TMPDIR": "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/cp1-oneway-cooling-release-richardson2-observer003-guard-root-execution-002/tmp"
+  },
+  "cwd": "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/cp1-oneway-cooling-release-richardson2-observer003-guard-root-execution-002",
+  "executable": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-END181-dof-map-observer-prep-003/build-006/guard_rows",
+    "sha256": "194950021ab3d4a97a9001db3693d46b28e3e16563f41fffe06c3175e853de69",
+    "bytes": 167832
+  },
+  "guard_source": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-END181-dof-map-observer-prep-003/guards/guard_rows.C",
+    "sha256": "1d675907950b02475789fd64aa3a41a1a83ec648dda2998fc3402e773e3f3097",
+    "bytes": 3694
+  },
+  "expected_assertions": 18,
+  "controls": {
+    "invocations": 1,
+    "wall_seconds": 60,
+    "TERM_grace_seconds": 8,
+    "KILL_wait_seconds": 8,
+    "sampled_owned_group_RSS_stop_bytes": 2147483648,
+    "total_owned_output_stop_bytes": 33554432,
+    "sample_seconds": 0.05,
+    "numeric_reported_RSS_zero_allowed": true,
+    "missing_or_nonnumeric_RSS_not_zero_filled": true,
+    "wrapper_exit_race_checked_first": true,
+    "thread_observations_nongating": true,
+    "OMP_BLAS_environment_threads": 1,
+    "retries": 0,
+    "RLIMIT_CORE": 0
+  },
+  "outer_python": {
+    "alias": "/usr/local/bin/python3",
+    "resolved": "/Library/Frameworks/Python.framework/Versions/3.10/bin/python3.10",
+    "record": {
+      "path": "/Library/Frameworks/Python.framework/Versions/3.10/bin/python3.10",
+      "sha256": "72956ad35cff7691dfed9e04c9593de825ffd5b2fa7e8bc9ae96ce9a1af65621",
+      "bytes": 152624
+    }
+  },
+  "independent_build_peer": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer003-build-result-peer-005/review.json",
+    "sha256": "20435eb54295b89c8e2bc27bc6cf8dbfe343e32ab3c5abfb956875dc3ef0a6c6",
+    "bytes": 7744
+  },
+  "guard_execution_authorized": false,
+  "runtime_probe_authorized": false,
+  "plugin_load_authorized": false,
+  "host_execution_authorized": false,
+  "native_execution_authorized": false,
+  "ABI_acceptance": false,
+  "future_root_admission": null,
+  "launch_template": [
+    "/Library/Frameworks/Python.framework/Versions/3.10/bin/python3.10",
+    "-B",
+    "-I",
+    "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/cp1-oneway-cooling-release-richardson2-observer003-guard-owner-prep-004/run_guards_once.py",
+    "<ROOT_ADMISSION_SHA256>"
+  ],
+  "scope": "A future root admission grants the sole one-shot authority; this held actual and source do not. Only the standalone18 assertion executable is a target.",
+  "preserved_unrun_owner001": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer003-guard-owner-prep-001/run_guards_once.py",
+    "sha256": "d13e6c11836fec929af91c900d27fa02c65437cb3898473fcb608f939c549909",
+    "bytes": 12219
+  },
+  "loader_attribution_scope": "Observational and separate from18 assertions; full raw stderr retained, unfamiliar/failed parsing never erases guard returncode/cleanup or authorizes retry.",
+  "preserved_unrun_owner002": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer003-guard-owner-prep-002/run_guards_once.py",
+    "sha256": "59001c9ae4146e003535eebe134f79c575501eef20be7f6799c0f6b95604066f",
+    "bytes": 12221
+  },
+  "controller_lifecycle_scope": "SIGTERM/SIGINT requests are retained and deferred across Popen, then owned child is stopped/waited. Raw guard RC0/18 assertion completion is separate from controlled completion and loader attribution. Provider finalization errors retained without losing receipt.",
+  "preserved_failed_runtime001": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer003-guard-root-execution-001/receipt.json",
+    "sha256": "8a6fa391671f8acb3d3eaf65044da283688fc877ff5396b177b79a8f5bacc746",
+    "bytes": 351797
+  },
+  "capability_successor": "Corrected MOOSE-PCRE-HIT link, unchanged assertion/production objects and owner003 logic; parent explicitly authorizes one new namespace run, not an unchanged retry."
+}

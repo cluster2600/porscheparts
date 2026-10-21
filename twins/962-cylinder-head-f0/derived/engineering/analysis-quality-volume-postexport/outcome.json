@@ -1,0 +1,43 @@
+{
+  "schema": "962-postexport-stop-outcome/v1",
+  "status": "deadline_stop_during_optimizer_no_export_no_final_quality",
+  "authoritative_controller": {
+    "native_worker_returncode": -9,
+    "outer_controller_cli_returncode": 2,
+    "native_stop_reason": "native_deadline",
+    "native_process_window_seconds": 300.0737672080286,
+    "worker_reaped_and_absent": true
+  },
+  "last_worker_checkpoint": {
+    "original_status": "running",
+    "stage": "calling_default_postexport_optimizer",
+    "stale_pre_stop_checkpoint": true,
+    "API_call_counters_record_attempts": true,
+    "optimizer_call_attempts": 1,
+    "optimizer_returned": false,
+    "cache_refresh_attempts": 0,
+    "cache_refresh_completed": false
+  },
+  "final_output": {
+    "mesh_exported": false,
+    "mesh_sha256": null,
+    "mesh_bytes": null,
+    "tetrahedra": null,
+    "nodes": null,
+    "minimum_SICN": null,
+    "positive_jacobians_and_volumes": null,
+    "actual_tetra_boundary_audited": null,
+    "internal_orientation_audited": null,
+    "saved_readback_identity": null,
+    "geometric_volume_gate_passed": false
+  },
+  "before_input_scope": "Input hashes/current loaded arrays, explicit source surface and classifications were checked; input quality/full tetra incidence was explicitly retained proof. Those rejected-input values are not final optimized outputs.",
+  "independent_reader_run": false,
+  "qualification": {
+    "mesh_convergence_established": false,
+    "thermal_resolution_established": false,
+    "head_thermal_or_stress_result_credited": false,
+    "LPBF_result_credited": false,
+    "manufacturing_authorized": false
+  }
+}

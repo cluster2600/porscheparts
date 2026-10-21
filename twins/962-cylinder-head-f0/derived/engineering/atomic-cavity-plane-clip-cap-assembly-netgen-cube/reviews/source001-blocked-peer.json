@@ -1,0 +1,67 @@
+{
+  "schema": "962-Netgen-cube-prep001-independent-source-peer/v1",
+  "decision": "BLOCKED_UNRUN_PRESERVE_PREPARATION001",
+  "blockers": [
+    {
+      "id": "gmsh_import_scope",
+      "severity": "blocks_first_native_audit",
+      "path": "reader.py",
+      "global_consumer_function": "inspect_live",
+      "global_consumer_line": 22,
+      "main_local_import_line": 103,
+      "finding": "inspect_live references module-global gmsh, but the only import gmsh is local to main and there is no global declaration/module binding. Normal entry reaches full_before_audit then raises NameError before any Netgen call. Tests injecting fake gmsh into helper namespaces do not validate this integration.",
+      "smallest_successor": "Preserve001 and prepare a separately frozen002 declaring global gmsh before the existing deferred main-local import, with a tiny guard for actual global binding; retain all algorithms and exact upstream/source reuse."
+    }
+  ],
+  "additional_blockers_identified": [],
+  "selected_sha256": {
+    "held-contract.json": "7be7f20150b863521c997f2ac618445afb62da45be2000ed60683775dfcbf468",
+    "reader.py": "09264fd31e19ab3ccb995358a1c60a7ef64f3cd4db8a9d38d65c6e9e38cec668",
+    "run_readback.py": "f7165620ac95b9095969b21ae912e87d491019e295a62155abbf33c2eb3b2944",
+    "inspect-transform.json": "42c265f53b6e3417088c0ae6c3030acacf3829adb558d46f45575d33514f90b0",
+    "runner-transform.json": "a5454ddc09b42fb04367c94516a2f8df814430ce4f8715f172cbecbf7d9c3f26",
+    "runner-tests-transform.json": "9648c884d37a406b138958767fd239ebab881564091d66d4f76c898dd3148d9e",
+    "source-delta.json": "95087b9335e81527b533dec1e325dd9f56d2bfad079d15a16352d65df1847417",
+    "METHOD.md": "04cfa5fb59ae5ad3734840124e773403ac21ff2d35b492a6cd39d0917024be8f",
+    "test_fixture_guards.py": "4b7cfb3f1a811cde2d74f9b6448836d3f4d6955739619b4ec41f5770fb2591ca",
+    "test_runner_guards.py": "da7af8d29cd24a092b5f33bd4ccc402b1e57a8334738a4c917cdd72fe494140b"
+  },
+  "checks_completed": {
+    "held27_pin_map_entries": 27,
+    "current_small_input_hashes_verified": 26,
+    "sole_tiny_geometry_binding_stat_only_not_read_or_hashed": {
+      "work/962-engineering/hxt-size-cap-fixture-001/capped-1p75/cube.msh": {
+        "sha256": "e773cc4a2f68187c623e984eb9f58441f3fa5eed2733295e7eb26bd7b3910ac1",
+        "bytes": 9790
+      }
+    },
+    "inspect_eleven_edits_reverse_exact_to_c493": true,
+    "canonical_distribution_function_ASTs_and_P_F_constant_ASTs_identical": true,
+    "runner_all_declared_edits_reverse_to_exact4fb": true,
+    "runner_thirteen_test_adapter_reverses_to_exact_old_tests": true,
+    "prepared_test_counts_read_not_executed": {
+      "test_fixture_guards.py": 7,
+      "test_runner_guards.py": 13
+    },
+    "capability002_saved_record_hash_matches": true,
+    "fresh_output_absent_at_review": true
+  },
+  "nonblocking_source_findings": [
+    "Boundary tags1..8 and binary64 coordinate words, exact cyclic oriented12face explicit/exterior sets, full opposite internal parity, duplicate-cell refusal, positive independent volume and343mm3 bookkeeping are retained/strengthened. Interior IDs/counts may change only across Netgen and every actual node remains uniquely classified/referenced; no old interior ancestry is claimed.",
+    "Volume-only createGeometry([(3,1)]) is constrained to one known region with a nonempty shell. Before/flag snapshots compare all four tagged arrays, full native and signed quality arrays, classification and periodic metadata byte-exact.",
+    "Exactly one Netgen(force=True) call precedes one rebuildElementCache(False). Full after inspection is followed by save/clear/reopen and exact after-to-saved array/quality/classification identity. SICN0.1 is an after acceptance gate; original below0.1cube is allowed as the input.",
+    "Runner resource/report/mutation metadata edits retain the original owned-group cleanup, nonraising SIGTERM, remaining startup budget and synchronous postwait latches.30s/1GiB RSS/16MiB output/two threads are requested sampled controls, not OS quotas. Declared operations are explicitly not observed counters.",
+    "Assertions are part of the inherited inspection checks; the selected isolated child command uses -B without -O and a fixed environment without PYTHONOPTIMIZE. Root must preserve that invocation."
+  ],
+  "limits": [
+    "Source/AST and small-file hashes only. No prepared source imports, tests, scientific/runtime or geometry reads, native calls, Git or network.",
+    "All20prepared tests and the native fixture remain unrun. Root independently reported the same gmsh scope blocker; this review grants no native or head authority.",
+    "A successor still needs new exact source/test/held bindings, root20+binding tests, fresh actual cube child/runtime/mesh/resources and external child review."
+  ],
+  "qualification": {
+    "Netgen_fixture_executed": false,
+    "head_execution_authorized": false,
+    "quality_success_established": false,
+    "manufacturing_authorized": false
+  }
+}

@@ -1,0 +1,56 @@
+--- work/962-engineering/cp1-oneway-cooling-release-assessor-prep-001/assess.py
++++ work/962-engineering/cp1-oneway-cooling-release-linear-assessor-prep-001/assess.py
+@@ -1,4 +1,4 @@
+-"""HELD fixed SI coupon saved-field assessor; never launches a native process."""
++"""HELD fixed SI linear cooling coupon saved-field assessor; never launches a native process."""
+ import argparse
+ import csv
+ from decimal import Decimal, localcontext
+@@ -13,9 +13,9 @@
+ 
+ PREP = Path(__file__).resolve().parent
+ ROOT = PREP.parents[2]
+-CASE = ROOT / 'work/962-engineering/cp1-oneway-cooling-release-prep-001'
++CASE = ROOT / 'work/962-engineering/cp1-oneway-cooling-release-linear-prep-001'
+ SOURCE_CASE = ROOT / 'work/962-engineering/cp1-oneway-thermoelastic-transfer-prep-002'
+-OUTPUT = 'work/962-engineering/cp1-oneway-cooling-release-assessment-001'
++OUTPUT = 'work/962-engineering/cp1-oneway-cooling-release-linear-assessment-001'
+ DISP = ('disp_x', 'disp_y', 'disp_z')
+ FORCE = ('rx', 'ry', 'rz')
+ TENSORS = ('stress', 'elastic_strain', 'mechanical_strain', 'total_strain', 'thermal_eigenstrain')
+@@ -562,7 +562,7 @@
+     contract_path = Path(contract_path)
+     need(contract_path.is_file() and not contract_path.is_symlink() and sha(contract_path) == digest, 'Exact external assessment actual required')
+     c = json.loads(contract_path.read_text()); held = json.loads((PREP / 'held-preparation.json').read_text())
+-    need(c.get('schema') == '962-cp1-oneway-cooling-release-assessment-actual/v1' and c.get('assessment_authorized') is True
++    need(c.get('schema') == '962-cp1-oneway-cooling-release-linear-assessment-actual/v1' and c.get('assessment_authorized') is True
+          and c.get('root_and_independent_source_review_complete') is True and c.get('native_completed_and_peer_reviewed') is True
+          and all(c.get(k) is False for k in ('native_execution_authorized', 'automatic_retry', 'head_execution_authorized', 'engineering_accepted', 'physics_qualified', 'material_qualified', 'process_calibrated', 'manufacturing_authorized')),
+          'Only separately reviewed saved-data assessment is authorized')
+@@ -578,7 +578,7 @@
+     checked()
+     completed_evidence(c, pins)
+     policy = json.loads((PREP / 'POLICY.json').read_text())['absolute_SI_limits']
+-    need(c.get('native_directory') == 'work/962-engineering/cp1-oneway-cooling-release-001', 'Only the fixed future native coupon may be assessed')
++    need(c.get('native_directory') == 'work/962-engineering/cp1-oneway-cooling-release-linear-001', 'Only the fixed future native coupon may be assessed')
+     native = ROOT / c['native_directory']; receipt = json.loads((native / 'native-execution.json').read_text())
+     need(receipt.get('native_execution_completed') is True and receipt.get('returncode') == 0 and receipt.get('inputs_unchanged') is True and receipt.get('binary_and_runtime_unchanged') is True, 'Stopped completed immutable native receipt required')
+     need(receipt.get('passed') is False and receipt.get('independent_assessment_performed') is False
+@@ -589,7 +589,7 @@
+          and (native / 'frozen-contract.json').read_bytes() == (CASE / 'case-contract.json').read_bytes(), 'Exact source physics and stopped native lifecycle required')
+     native_actual = json.loads((native / 'actual-contract.json').read_text())
+     need(sha(native / 'actual-contract.json') == receipt['actual_contract_sha256']
+-         and native_actual.get('schema') == '962-macos-oneway-cooling-release-case-actual/v1'
++         and native_actual.get('schema') == '962-macos-oneway-cooling-release-linear-case-actual/v1'
+          and all(native_actual['input_sha256'].get(k) == v for k, v in json.loads((CASE / 'held-preparation.json').read_text())['input_sha256'].items()), 'Same separately authorized source-bound native actual required')
+     inventory = c['native_output_inventory']
+     entries = list(native.rglob('*'))
+@@ -627,7 +627,7 @@
+     for name, record in inventory.items(): need(sha(native / name) == record['sha256'], 'Native output drift during assessment')
+     for name, record in selection['files'].items(): need(sha(Path(selection['site_packages']) / name) == record['sha256'], 'Selected decoder runtime changed')
+     need(c.get('output_directory') == OUTPUT and not output.exists() and not output.is_symlink(), 'Fresh fixed assessment output required')
+-    result.update(schema='962-cp1-oneway-cooling-release-saved-field-assessment/v1', actual_sha256=digest, input_sha256=pins,
++    result.update(schema='962-cp1-oneway-cooling-release-linear-saved-field-assessment/v1', actual_sha256=digest, input_sha256=pins,
+                   source_physics_contract_sha256=sha(CASE / 'case-contract.json'), policy_sha256=sha(PREP / 'POLICY.json'),
+                   native_original_receipt_passed_field=receipt.get('passed'), native_receipt_is_not_assessment_authority=True,
+                   decoder_runtime_selection_sha256='2b3b2ac0f52ecef6f349d45524f26011da94c257fc0ede5067a9f236681e9713',

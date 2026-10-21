@@ -1,0 +1,556 @@
+{
+  "next_stage": "hold_mapping_incompatible_no_Netgen",
+  "later_head_storage_compatible": false,
+  "schema": "962-finite-selected-current126_alternative-generation/v1",
+  "status": "completed_finite_selected_cavity_generation_only",
+  "stage": "completed_all_local_checks",
+  "fixture_procedural_checks_passed": true,
+  "actual_SICN_gate_passed": true,
+  "actual_SICN_threshold": 0.1,
+  "native_operation_counts": {
+    "generate": 1,
+    "createGeometry_dim3": 0,
+    "optimize_Netgen": 0,
+    "rebuildElementCache": 0,
+    "write_mesh": 1,
+    "solve": 0
+  },
+  "call_counts_are_attempts": true,
+  "options": {
+    "General.NumThreads": 2,
+    "Mesh.MaxNumThreads3D": 2,
+    "Mesh.Algorithm3D": 1,
+    "Mesh.MeshOnlyEmpty": 1,
+    "Mesh.Renumber": 0,
+    "Mesh.ElementOrder": 1,
+    "Mesh.Optimize": 0,
+    "Mesh.OptimizeNetgen": 0,
+    "Mesh.MeshSizeExtendFromBoundary": 0,
+    "Mesh.RandomSeed": 1,
+    "Mesh.Binary": 1,
+    "Mesh.SaveAll": 1,
+    "Mesh.MshFileVersion": 4.1
+  },
+  "frozen_contract_sha256": "3b6e5a4ef4420b99d98f9a18e8f95a58030d94ce1fd00bdec56cd612418cb9b3",
+  "local_shell_serialized_sha256": "b447dc427c21768a732d8a06a3e7ffa79f4df238193e26a97ad3992c0b940bbe",
+  "case_key": "apex-1613791",
+  "case_apex": 1613791,
+  "case_record_sha256": "05516dd75870b3ca732ee6253575389eacb343b72d257032b04024f356ff3eb6",
+  "case_manifest_sha256": "e83b8824581d68c3b3ca29acbd9f50573833561298159cf7969bbd46eb722e4c",
+  "source_batch_sha256": "721e05802e305a124b99f97c779426e3d7b8960cab30fbabc3d93ee318e3de73",
+  "input_MSH_read": false,
+  "full_head_geometry_read": false,
+  "head_execution_authorized": false,
+  "stitching_authorized": false,
+  "native_head_application_authorized": false,
+  "global_self_intersection_checked": false,
+  "geometric_tetrahedron_overlap_checked": false,
+  "new_interior_node_point_in_cavity_containment_checked": false,
+  "engineering_accepted": false,
+  "physics_qualified": false,
+  "manufacturing_authorized": false,
+  "runtime": {
+    "python": "3.10.11",
+    "numpy": "2.0.2",
+    "gmsh": "4.15.2",
+    "machine": "arm64"
+  },
+  "runtime_sha256s": {
+    "python": "72956ad35cff7691dfed9e04c9593de825ffd5b2fa7e8bc9ae96ce9a1af65621",
+    "gmsh_module": "f4b0935cebde899750293d87a643090e5ea33c9b18d249267f507db68a0e01c3",
+    "gmsh_library": "def0f5c10988a986e5e879b3db9669d8fe016a81e2d994bbaf2b8497c6b8a58a"
+  },
+  "shell": {
+    "vertices": 15,
+    "faces": 26,
+    "edges": 39,
+    "exact_volume_mm3": {
+      "numerator": "28455776745292057574353786754818743006386397",
+      "denominator": "713623846352979940529142984724747568191373312"
+    }
+  },
+  "original_source_classifications": {
+    "boundary_global_node_tags": [
+      119945,
+      866726,
+      866744,
+      868112,
+      868391,
+      869473,
+      869477,
+      869480,
+      869482,
+      869483,
+      869488,
+      869491,
+      869493
+    ],
+    "other_interior_global_node_tags": [
+      1480172,
+      1613944
+    ],
+    "boundary_local_node_tags": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13
+    ],
+    "other_interior_local_node_tags": [
+      14,
+      15
+    ]
+  },
+  "local_to_global_shell_node_tags": [
+    119945,
+    866726,
+    866744,
+    868112,
+    868391,
+    869473,
+    869477,
+    869480,
+    869482,
+    869483,
+    869488,
+    869491,
+    869493,
+    1480172,
+    1613944
+  ],
+  "all_shell_nodes_fixed_only_for_this_cavity_generation": true,
+  "mesh_sha256": "24c82a2391eb230fa427d0694233abf690f976b38db7881057c066eb14923a82",
+  "mesh_bytes": 2494,
+  "saved_mesh_identity_exact": true,
+  "exact_boundary_bits_faces_classifications": true,
+  "gmsh_warnings_errors": [],
+  "bound_inputs_unchanged": true,
+  "full_tiny_arrays_sha256": "f4607d366a3b13e9ceb309e35c21771d8d36cf85a0c467074512e2337eaf704a",
+  "after_generation": {
+    "nodes": 15,
+    "tetrahedra": 19,
+    "referenced_nodes": 15,
+    "referenced_interior_nodes": 0,
+    "unreferenced_nodes": 0,
+    "duplicate_tetrahedra": 0,
+    "boundary_triangles": 26,
+    "exact_oriented_tetra_boundary": true,
+    "nonmanifold_volume_faces": 0,
+    "internal_faces": 25,
+    "same_oriented_internal_faces": 0,
+    "exact_internal_orientation_balance": true,
+    "node_classifications": [
+      [
+        1,
+        2
+      ],
+      [
+        2,
+        2
+      ],
+      [
+        3,
+        2
+      ],
+      [
+        4,
+        2
+      ],
+      [
+        5,
+        2
+      ],
+      [
+        6,
+        2
+      ],
+      [
+        7,
+        2
+      ],
+      [
+        8,
+        2
+      ],
+      [
+        9,
+        2
+      ],
+      [
+        10,
+        2
+      ],
+      [
+        11,
+        2
+      ],
+      [
+        12,
+        2
+      ],
+      [
+        13,
+        2
+      ],
+      [
+        14,
+        2
+      ],
+      [
+        15,
+        2
+      ]
+    ],
+    "node_entity_classifications": [
+      [
+        1,
+        2,
+        1
+      ],
+      [
+        2,
+        2,
+        1
+      ],
+      [
+        3,
+        2,
+        1
+      ],
+      [
+        4,
+        2,
+        1
+      ],
+      [
+        5,
+        2,
+        1
+      ],
+      [
+        6,
+        2,
+        1
+      ],
+      [
+        7,
+        2,
+        1
+      ],
+      [
+        8,
+        2,
+        1
+      ],
+      [
+        9,
+        2,
+        1
+      ],
+      [
+        10,
+        2,
+        1
+      ],
+      [
+        11,
+        2,
+        1
+      ],
+      [
+        12,
+        2,
+        1
+      ],
+      [
+        13,
+        2,
+        1
+      ],
+      [
+        14,
+        2,
+        1
+      ],
+      [
+        15,
+        2,
+        1
+      ]
+    ],
+    "node_counts_by_classification_dimension": {
+      "0": 0,
+      "1": 0,
+      "2": 15,
+      "3": 0
+    },
+    "no_curve_or_surface_periodic_mapping": true,
+    "periodic_entities_checked": [
+      [
+        2,
+        1
+      ]
+    ],
+    "quality": {
+      "SICN": {
+        "count": 19,
+        "minimum": 0.11759038353948613,
+        "maximum": 0.7605279001142918,
+        "nonpositive_count": 0,
+        "below_point1_count": 0,
+        "array_sha256": "8c75b08e191a8d39acd396080e22d2ff1c6121300db49c44a19d760ed6a063fa"
+      },
+      "Jacobian": {
+        "count": 19,
+        "minimum": 0.00028378997198632335,
+        "maximum": 0.04414362445705267,
+        "nonpositive_count": 0,
+        "below_point1_count": 19,
+        "array_sha256": "61df40d584c3c36b38f4c9b9d105056302e4bf5edb46695e8b82659814b01907"
+      },
+      "native_volume_mm3": {
+        "count": 19,
+        "minimum": 4.7298328664387223e-05,
+        "maximum": 0.0073572707428421116,
+        "nonpositive_count": 0,
+        "below_point1_count": 19,
+        "array_sha256": "0faea9d41ccc4a809534757785fab8cec9b896e5fb84ecfbc5fafcf7e16c5933"
+      }
+    },
+    "independent_signed_volume_mm3": {
+      "sum": 0.0398750362543476,
+      "relative_error": 0.0,
+      "count": 19,
+      "minimum": 4.729832866438724e-05,
+      "maximum": 0.007357270742842113,
+      "nonpositive_count": 0,
+      "below_point1_count": 19,
+      "array_sha256": "eb82745a0ab301a5b464f7891ba7395b4db827aa67064d50560c86ebca1a8524"
+    },
+    "native_volume_sum_mm3": 0.0398750362543476,
+    "sorted_node_tags_sha256": "fdb5fe2efd7fd0ffa98784e5da857e0d6c24011baeffb6c354a000d2275daaf3",
+    "sorted_coordinates_sha256": "a19e06f364d5dd53afb56ce2526df161c7d01b0af8a81b12803f8fe4eebc7482",
+    "tetra_tags_sha256": "804479c1b93e866e1f0c34587d6fd8eae029b8840303d7d3ae78eeb3663861f8",
+    "tagged_tetra_connectivity_sha256": "8eb2c4ebf43c156fe08d63e0c145533070725e1883086782f9455045ef920756",
+    "canonical_cells_sha256": "74bc982ff4a0f47c7076089d5407bbfabba85873d43806b08f0b3d94b51f75f3",
+    "software_geometric_invariants_passed": true
+  },
+  "saved_reopen": {
+    "nodes": 15,
+    "tetrahedra": 19,
+    "referenced_nodes": 15,
+    "referenced_interior_nodes": 0,
+    "unreferenced_nodes": 0,
+    "duplicate_tetrahedra": 0,
+    "boundary_triangles": 26,
+    "exact_oriented_tetra_boundary": true,
+    "nonmanifold_volume_faces": 0,
+    "internal_faces": 25,
+    "same_oriented_internal_faces": 0,
+    "exact_internal_orientation_balance": true,
+    "node_classifications": [
+      [
+        1,
+        2
+      ],
+      [
+        2,
+        2
+      ],
+      [
+        3,
+        2
+      ],
+      [
+        4,
+        2
+      ],
+      [
+        5,
+        2
+      ],
+      [
+        6,
+        2
+      ],
+      [
+        7,
+        2
+      ],
+      [
+        8,
+        2
+      ],
+      [
+        9,
+        2
+      ],
+      [
+        10,
+        2
+      ],
+      [
+        11,
+        2
+      ],
+      [
+        12,
+        2
+      ],
+      [
+        13,
+        2
+      ],
+      [
+        14,
+        2
+      ],
+      [
+        15,
+        2
+      ]
+    ],
+    "node_entity_classifications": [
+      [
+        1,
+        2,
+        1
+      ],
+      [
+        2,
+        2,
+        1
+      ],
+      [
+        3,
+        2,
+        1
+      ],
+      [
+        4,
+        2,
+        1
+      ],
+      [
+        5,
+        2,
+        1
+      ],
+      [
+        6,
+        2,
+        1
+      ],
+      [
+        7,
+        2,
+        1
+      ],
+      [
+        8,
+        2,
+        1
+      ],
+      [
+        9,
+        2,
+        1
+      ],
+      [
+        10,
+        2,
+        1
+      ],
+      [
+        11,
+        2,
+        1
+      ],
+      [
+        12,
+        2,
+        1
+      ],
+      [
+        13,
+        2,
+        1
+      ],
+      [
+        14,
+        2,
+        1
+      ],
+      [
+        15,
+        2,
+        1
+      ]
+    ],
+    "node_counts_by_classification_dimension": {
+      "0": 0,
+      "1": 0,
+      "2": 15,
+      "3": 0
+    },
+    "no_curve_or_surface_periodic_mapping": true,
+    "periodic_entities_checked": [
+      [
+        2,
+        1
+      ]
+    ],
+    "quality": {
+      "SICN": {
+        "count": 19,
+        "minimum": 0.11759038353948613,
+        "maximum": 0.7605279001142918,
+        "nonpositive_count": 0,
+        "below_point1_count": 0,
+        "array_sha256": "8c75b08e191a8d39acd396080e22d2ff1c6121300db49c44a19d760ed6a063fa"
+      },
+      "Jacobian": {
+        "count": 19,
+        "minimum": 0.00028378997198632335,
+        "maximum": 0.04414362445705267,
+        "nonpositive_count": 0,
+        "below_point1_count": 19,
+        "array_sha256": "61df40d584c3c36b38f4c9b9d105056302e4bf5edb46695e8b82659814b01907"
+      },
+      "native_volume_mm3": {
+        "count": 19,
+        "minimum": 4.7298328664387223e-05,
+        "maximum": 0.0073572707428421116,
+        "nonpositive_count": 0,
+        "below_point1_count": 19,
+        "array_sha256": "0faea9d41ccc4a809534757785fab8cec9b896e5fb84ecfbc5fafcf7e16c5933"
+      }
+    },
+    "independent_signed_volume_mm3": {
+      "sum": 0.0398750362543476,
+      "relative_error": 0.0,
+      "count": 19,
+      "minimum": 4.729832866438724e-05,
+      "maximum": 0.007357270742842113,
+      "nonpositive_count": 0,
+      "below_point1_count": 19,
+      "array_sha256": "eb82745a0ab301a5b464f7891ba7395b4db827aa67064d50560c86ebca1a8524"
+    },
+    "native_volume_sum_mm3": 0.0398750362543476,
+    "sorted_node_tags_sha256": "fdb5fe2efd7fd0ffa98784e5da857e0d6c24011baeffb6c354a000d2275daaf3",
+    "sorted_coordinates_sha256": "a19e06f364d5dd53afb56ce2526df161c7d01b0af8a81b12803f8fe4eebc7482",
+    "tetra_tags_sha256": "804479c1b93e866e1f0c34587d6fd8eae029b8840303d7d3ae78eeb3663861f8",
+    "tagged_tetra_connectivity_sha256": "8eb2c4ebf43c156fe08d63e0c145533070725e1883086782f9455045ef920756",
+    "canonical_cells_sha256": "74bc982ff4a0f47c7076089d5407bbfabba85873d43806b08f0b3d94b51f75f3",
+    "software_geometric_invariants_passed": true
+  },
+  "wall_seconds": 0.3381841250229627
+}

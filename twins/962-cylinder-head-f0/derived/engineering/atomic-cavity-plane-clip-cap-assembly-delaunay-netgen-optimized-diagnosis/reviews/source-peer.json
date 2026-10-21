@@ -1,0 +1,159 @@
+{
+  "blockers": [],
+  "control_limits": "RSS/output are sampled stop thresholds, not hard OS quotas or proof of unsampled peak. Owned-process cleanup and handler restoration are source-reviewed; no new execution is claimed.",
+  "controls": {
+    "automatic_retry": false,
+    "hard_OS_CPU_quota_applied": false,
+    "hard_address_space_limit_applied": false,
+    "hard_disk_quota_applied": false,
+    "hard_wall_seconds": 120,
+    "native_threads": 2,
+    "remaining_budget_after_Popen": true,
+    "sampled_RSS_stop_bytes": 8589934592,
+    "sampled_output_stop_bytes": 1073741824,
+    "synchronous_postwait_deadline_refusal": true
+  },
+  "decision": "CLEAR_SOURCE_ONLY_PENDING_FRESH_ACTUAL_CHILD_AND_ROOT_PREFLIGHT",
+  "pin_closure": {
+    "all_current_non_geometry_small_pins_independently_hashed": 157,
+    "deferred_geometry_count_precision": "Three large geometry files and one 2886-byte toy MSH; all four deferred.",
+    "four_geometry_entries_not_read_or_hashed_here": {
+      "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-001/candidate.bin": {
+        "bytes": 62774640,
+        "hash_reobserved_here": false,
+        "sha256": "9d62eac6e2cd7b6a9ecb4a7ea5b632685820369b5c4ede379acc34238f50d7b4"
+      },
+      "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-netgen-cube-fixture-001/cube.msh": {
+        "bytes": 2886,
+        "hash_reobserved_here": false,
+        "sha256": "0db89b0cf7b4e57af1c6a091d999a7f521cd365f052f699a1798f05ba75eb92d"
+      },
+      "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-volume-delaunay-default-postexport-001/head-volume.msh": {
+        "bytes": 243246094,
+        "hash_reobserved_here": false,
+        "sha256": "e32ef35be1171ec55477e921dd75def0066f9f1e21bd2821dfbe363270354522"
+      },
+      "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-volume-delaunay-netgen-postexport-001/head-volume.msh": {
+        "bytes": 235742414,
+        "hash_reobserved_here": false,
+        "sha256": "4b983f4ab0134d01573059aecb8f4ba512dabbdfe54fbce6abaa0a06af29fe1d"
+      }
+    },
+    "fresh_output_absent_at_source_review": true,
+    "held_input_pins": 163,
+    "held_self_or_output_contract_hash_cycle": false,
+    "small_input_map_sha256": "a6245b44ae35ef353eb9bd5e8bde03b75efe28dd2f81bc375920316a446cacd8",
+    "three_external_runtime_byte_identities_metadata_only": {
+      "gmsh_module_sha256": "f4b0935cebde899750293d87a643090e5ea33c9b18d249267f507db68a0e01c3",
+      "libgmsh_sha256": "def0f5c10988a986e5e879b3db9669d8fe016a81e2d994bbaf2b8497c6b8a58a",
+      "python_executable_sha256": "72956ad35cff7691dfed9e04c9593de825ffd5b2fa7e8bc9ae96ce9a1af65621"
+    },
+    "two_expected_future_source_copies_absent": true
+  },
+  "qualification": {
+    "accepted_volume": false,
+    "head_PDE": false,
+    "material_or_strength_qualification": false,
+    "new_diagnosis_result_observed": false,
+    "new_optimizer_authority": false,
+    "new_positive_poor_bins_observed": false
+  },
+  "reader_assessment": [
+    "Selected source reads only the current saved MSH and source-reference BIN. Full current four tagged arrays and all three native metric arrays/counts/distributions must match the sole worker.after. Signed-volume distributions, reference counts, finite values and zero-orphan association are independently recomputed by the proposed reader and compared.",
+    "Positive poor cells are classified using current tetra tags and current source-boundary tag membership. Complete five-bin total must be exactly 210. Each nonempty bin has a deterministic minimum-(SICN,tetra-tag) witness with coordinates, metrics and signed volume; no old bins or interior ancestry are transferred.",
+    "Zero nonpositive cells makes the fixed-boundary all(empty) flag vacuously true. Separate positive-poor participation counts remain unknown until a completed read; no fixed-boundary repair implication follows from this empty set.",
+    "Source-boundary numeric coordinate and explicit oriented-face comparisons are retained. Numeric array equality alone does not distinguish signed zero; full tagged coordinate hashes join to the stopped worker with its separate exact-boundary proof.",
+    "Complete tetra exterior/internal parity and entity classifications remain stopped-worker evidence; the reader does not independently repeat that full incidence audit.",
+    "The reused 4fb runner requires root to materialize exactly reader.py, run_readback.py and frozen-contract.json in a fresh output. This is distinct from the 12-file head-optimizer controller closure. Cleanup, remaining-start timer and synchronous final deadline/output checks are unchanged."
+  ],
+  "records": {
+    "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-delaunay-netgen-optimized-diagnosis-prep-001/METHOD.md": {
+      "bytes": 4576,
+      "sha256": "1c9ee98fa2126b6809f20faf724926be6e0da7926574ab5563c0bb5a087af332"
+    },
+    "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-delaunay-netgen-optimized-diagnosis-prep-001/held-contract.json": {
+      "bytes": 39001,
+      "sha256": "c0c7e8b978bb078526e8cc65a514cbc4caa3fb9c1072fa9d443af7578e4f3811"
+    },
+    "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-delaunay-netgen-optimized-diagnosis-prep-001/preparation-checks.json": {
+      "bytes": 1939,
+      "sha256": "5e3cc2441dd0b0164b3c093526143b338317af2a75a27d3de9055dad3b474d6c"
+    },
+    "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-delaunay-netgen-optimized-diagnosis-prep-001/reader.py": {
+      "bytes": 16238,
+      "sha256": "65fe8215e9d96100bde76a1ec659d253102e5c3db2ec8ab12cca3f98e8629560"
+    },
+    "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-delaunay-netgen-optimized-diagnosis-prep-001/run_readback.py": {
+      "bytes": 4560,
+      "sha256": "4fb37080e1f3847b8b1d14d5df467799d8e9f7bf81b0a09170e5850857de3943"
+    },
+    "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-delaunay-netgen-optimized-diagnosis-prep-001/source-delta.json": {
+      "bytes": 1913,
+      "sha256": "4733639f411d7e133b91b1ef35a5ff27d4dae4db227b5e31fc85bd49a042c216"
+    },
+    "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-delaunay-netgen-optimized-diagnosis-prep-001/source.diff": {
+      "bytes": 1038,
+      "sha256": "d9cfd9ad4ed92c36bbf4303b2dd624395475709afb518691dac98b8863be3aa5"
+    },
+    "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-delaunay-netgen-optimized-diagnosis-prep-001/test-source.diff": {
+      "bytes": 1727,
+      "sha256": "70e6a5de3322e1a6b6f6563494e119e2e3de2fa404d38a1766c0f156fd6e8574"
+    },
+    "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-delaunay-netgen-optimized-diagnosis-prep-001/test_proof_guards.py": {
+      "bytes": 5934,
+      "sha256": "d5a1f1b4d47581776c7dbfe3ab6f277d738489838b215099181306d03de204c3"
+    },
+    "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-delaunay-netgen-optimized-diagnosis-root-source-001/guard-tests.log": {
+      "bytes": 545,
+      "sha256": "0ae61e1fa7c520c302cd2d0fdb7f9a81656569dbc2598d36461b6dc2852830e2"
+    },
+    "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-delaunay-netgen-optimized-diagnosis-root-source-001/review.json": {
+      "bytes": 30668,
+      "sha256": "e719300be3223243f2ec9d6973ec0bf83990915c437723685ff7c3632cef9a35"
+    }
+  },
+  "required_before_launch": [
+    "Separate fresh root-authorized exact child, independent child review and exact three-file materialization; review of the actual child is an external launch guard, not a self-referential child hash.",
+    "Root freshly verifies all actual input pins including the four deferred geometry and three external runtime hashes, resources and intended owned-worker availability before the sole read-only run."
+  ],
+  "reuse": {
+    "all_three_function_ASTs_exact": [
+      "classify_positive_poor_chunk",
+      "optimizer_after_proof",
+      "require_after_match"
+    ],
+    "five_test_bodies_preserved_with_only_selected_source_and_reverse_target_digest_changes": true,
+    "no_new_geometry_or_optimizer_logic": true,
+    "unchanged_runner_sha256": "4fb37080e1f3847b8b1d14d5df467799d8e9f7bf81b0a09170e5850857de3943",
+    "whole_reader_one_literal_reverse_byte_exact_to_c44eed": true
+  },
+  "reviewed_utc": "2026-10-17T09:22:27.075406+00:00",
+  "schema": "962-Netgen-saved-diagnosis-independent-source-peer/v1",
+  "scope": "Independent source, AST, saved-small-record and standard-library hash review only; no prepared source import or execution, tests, scientific modules, geometry/runtime byte reads, native operation, Git or network.",
+  "single_current_proof_binding": {
+    "native_SICN_minimum": 0.039074265058645995,
+    "nodes": 1097048,
+    "nonpositive_expected_and_diagnostic_cap": 0,
+    "positive_poor_expected": 210,
+    "previous_default_after_or_old_diagnosis_not_used_as_current_proof": true,
+    "referenced_interiors": 225317,
+    "root_closed_sha256": "abb7db891abc8a4efd096b63c95fb198f4397cb9264259de72326eda04ddd9c8",
+    "selected_field": "after",
+    "stopped_receipt_sha256": "426e76e578b4ae0093e85515703f216c64cf1b2aaaf7474d6d8fb8a4641a32de",
+    "stopped_result_peer_sha256": "ccda5bedaba2cb743fda933b31ed88f2a3fa6881bbc3b50841c8d5f2eea77d6f",
+    "tetrahedra": 3620809,
+    "worker_embedded_receipt_and_12_file_inventory_associations_checked": true,
+    "worker_sha256": "16f6ecc580d766c3c541517f0f89bd80d5cd0f660f40b157a04c5362c2245e6a"
+  },
+  "tests": {
+    "historical_held_unrun_fields_preserved": true,
+    "independently_read_not_run_here": 5,
+    "root_completed_guard_methods": 5,
+    "root_log_sha256": "0ae61e1fa7c520c302cd2d0fdb7f9a81656569dbc2598d36461b6dc2852830e2",
+    "root_outer_seconds": 0.2935111657716334,
+    "root_reported_unittest_seconds": 0.017,
+    "root_returncode": 0,
+    "root_review_sha256": "e719300be3223243f2ec9d6973ec0bf83990915c437723685ff7c3632cef9a35",
+    "unchanged_seven_classifier_and_thirteen_runner_tests_not_repeated": true
+  }
+}

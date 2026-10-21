@@ -1,0 +1,29 @@
+--- fixture-prep-001/test_saved_cavity_flips.py
++++ fixture-prep-002/test_saved_cavity_flips.py
+@@ -247,5 +247,26 @@
+             worker.screen_local_cavity(ctx,a)
+ 
+ 
++    def test_duplicate_new_four_set_conflict_without_overlapping_removals(self):
++        # Two3->2 symbolic association outputs with distinct old edge-star tags.
++        # This tests compatibility accounting only, not their global embedding.
++        a=dict(association_ID="3_to_2:4,5",kind="3_to_2",
++            removed_simplex=[4,5],observed_owner_tags=[201,202,203],
++            observed_bistellar_pattern=True,triangle=[1,2,3],apices=[4,5],
++            replacement_unoriented_cells=[[1,2,3,4],[1,2,3,5]])
++        b=dict(association_ID="3_to_2:1,6",kind="3_to_2",
++            removed_simplex=[1,6],observed_owner_tags=[301,302,303],
++            observed_bistellar_pattern=True,triangle=[2,3,4],apices=[1,6],
++            replacement_unoriented_cells=[[2,3,4,1],[2,3,4,6]])
++        self.assertTrue(set(a["observed_owner_tags"]).isdisjoint(b["observed_owner_tags"]))
++        # The common output has different node order but the same four nodes.
++        self.assertNotEqual(a["replacement_unoriented_cells"][0],b["replacement_unoriented_cells"][0])
++        self.assertEqual(set(a["replacement_unoriented_cells"][0]),{1,2,3,4})
++        self.assertEqual(set(b["replacement_unoriented_cells"][0]),{1,2,3,4})
++        rows=worker.association_conflicts([a,b])
++        self.assertEqual(rows,[dict(association_IDs=[a["association_ID"],b["association_ID"]],
++            shared_removed_cell_tags=[],duplicate_replacement4sets=[[1,2,3,4]])])
++
++
+ if __name__=="__main__":
+     unittest.main(verbosity=2)

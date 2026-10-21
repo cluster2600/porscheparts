@@ -1,0 +1,67 @@
+{
+  "schema": "962-CGAL-literal-group2-stopped-root-review/v1",
+  "decision": "TWO_ANALYTIC_INTERVALS_AND_TWO_EXPECTED_REFUSALS_PASS_ONLY",
+  "child_sha256": "0263c12a826b8dd1cb4a4a4776e85e942ff622e91073ff9c4c17e642011f6e9c",
+  "summary_sha256": "8d9e0d380b5fd706cd149cade459f3f0881e2efb7ffe96463caa5aed4638cf01",
+  "all108_pins_current_before_after": true,
+  "seventeen_file_closure": true,
+  "all_report_modes_counts_IDs_and_interval_arithmetic_exact": true,
+  "all_created_controls_and_stopped_cleanup_pass": true,
+  "cases": [
+    {
+      "id": "asymmetric-reverse",
+      "expected_returncode": 0,
+      "observed_returncode": 0,
+      "wall_seconds": 0.993291666964069,
+      "report_sha256": "6aa4a1e3df5d1023d653f67447896c055a660ce0293e9148f9430a32bbf849da",
+      "known_exact_mm": 0.03124237060546875,
+      "observed_scalar_mm": 0.03124237060546875,
+      "interval_mm": [
+        0.031217370605468746,
+        0.031267370605468754
+      ],
+      "gap_mm": 5.000000000000837e-05,
+      "contains_reference": true,
+      "polygon_budget_passed": true
+    },
+    {
+      "id": "continuous-interior-max",
+      "expected_returncode": 0,
+      "observed_returncode": 0,
+      "wall_seconds": 0.9947550829965621,
+      "report_sha256": "63d07f76cd2549fa7a559b9a91476d22fdfc323f137c9d91df93681e6ffc6c43",
+      "known_exact_mm": 1,
+      "observed_scalar_mm": 1,
+      "interval_mm": [
+        0.9999749999999998,
+        1.0000250000000002
+      ],
+      "gap_mm": 5.000000000032756e-05,
+      "contains_reference": true,
+      "polygon_budget_passed": false
+    },
+    {
+      "id": "malformed",
+      "expected_returncode": 2,
+      "observed_returncode": 2,
+      "wall_seconds": 0.9024500411469489,
+      "report_sha256": "5cbdaa54584680234b3462be1b19544c7987c1962e531a04c0fd72c4428e0eac",
+      "error": "Invalid or degenerate triangle",
+      "refused_before_query": true,
+      "scalar_mm": null
+    },
+    {
+      "id": "empty",
+      "expected_returncode": 2,
+      "observed_returncode": 2,
+      "wall_seconds": 0.92236362490803,
+      "report_sha256": "f4e93d0f0a7c40bd09aefbed82760e98e2975e2f150fc73e244a43969f6c0501",
+      "error": "Invalid indexed surface counts",
+      "refused_before_query": true,
+      "scalar_mm": null
+    }
+  ],
+  "six_analytic_and_two_negative_cases_passed_across_both_groups": true,
+  "both_independent_result_peers_required_before_head": true,
+  "head_query_or_two_way_surface_or_physics_acceptance": false
+}

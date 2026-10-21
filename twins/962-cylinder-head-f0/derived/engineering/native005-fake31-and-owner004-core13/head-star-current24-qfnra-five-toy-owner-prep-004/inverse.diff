@@ -1,0 +1,123 @@
+--- source004/run_owner_once.py
++++ source003/run_owner_once.py
+@@ -6,7 +6,7 @@
+ 
+ R=Path('/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993')
+ E=R/'work/962-engineering'
+-P=E/'head-star-current24-qfnra-five-toy-owner-prep-004'
++P=E/'head-star-current24-qfnra-five-toy-owner-prep-003'
+ D=E/'head-star-current24-qfnra-five-toy-root-execution-001'
+ PY='/Library/Frameworks/Python.framework/Versions/3.10/bin/python3.10'
+ CAP=33554432
+@@ -22,12 +22,6 @@
+ CHOICE_SHA='a96c130fd8044ebe55d7a8c3e2cab0067e2f60d77b58cd8a33b1b4427eb7f9c5'
+ # Retain even an unreaped refusal through explicit last-resort os._exit; no destructor poll.
+ HELD_LEADERS=[]
+-
+-
+-class _RetainedPopen(subprocess.Popen):
+-    # Source policy only; base construction/active-list effects remain unproved.
+-    def __del__(self):
+-        pass
+ 
+ 
+ def need(condition, message):
+@@ -242,14 +236,11 @@
+         observed_max_RSS_bytes=None,sampled_RSS_observation_pass=None,observed_threads=None,
+         reaped=False,raw_returncode=None,group_absent=None,stop_actions=[],cleanup_errors=[],
+         failure=None,adapter_report=None,helper_report=None,capture_files=None,controls_before=None,
+-        continuation_intent=False,continuation_acknowledged=False,continuation_error=None,
+-        leader_construction_attempted=False,leader_construction_returned=False,leader_construction_error=None,
+-        partial_construction_unknown=False,last_resort_partial_construction_exit=False,
+         controls_after=None,aliases_before=None,aliases_after=None,handled_stop_requests=None,
+         complete_candidate=False,last_resort_unreaped_exit=False,receipt_write_error=None,direct_relationship_unknown=False,
+         forced_stop_missing_helper_fields_are_unknown=True,real_head_input_used=False,
+         native_execution=False,physical_acceptance=False,automatic_retry=False)
+-    proc=None;kq=None;certificate=None;continuation_intent=False;reaped=False;raw_returncode=None
++    proc=None;kq=None;certificate=None;continued=False;reaped=False;raw_returncode=None
+     actual=None;records={};before=None;aliases=None;normal=False;old_TERM=None;old_INT=None
+     try:
+         auth,actual,records,before,aliases,argv=admit()
+@@ -259,14 +250,7 @@
+         limits();kq=select.kqueue()
+         with (D/'adapter.stdout').open('xb') as out,(D/'adapter.stderr').open('xb') as err:
+             gate(40,'Stopped before wrapper launch')
+-            report['leader_construction_attempted']=True
+-            try:
+-                proc=_RetainedPopen(argv,cwd=D,env=ENV,stdin=subprocess.DEVNULL,stdout=out,stderr=err,start_new_session=True)
+-            except BaseException:
+-                report['leader_construction_error']=traceback.format_exc()
+-                report['partial_construction_unknown']=True;report['direct_relationship_unknown']=True
+-                raise
+-            report['leader_construction_returned']=True
++            proc=subprocess.Popen(argv,cwd=D,env=ENV,stdin=subprocess.DEVNULL,stdout=out,stderr=err,start_new_session=True)
+             HELD_LEADERS.append(proc);report.update(process_started=True,PID=proc.pid)
+             handshake_until=min(started+40,time.monotonic()+5)
+             while True:
+@@ -288,13 +272,7 @@
+             events=kq.control([watch],1,0);report['events'].extend(event_record(ev) for ev in events)
+             need(not events,'Registration event/error before continuation')
+             gate(40,'Stopped before fixed adapter exec')
+-            continuation_intent=True;report['continuation_intent']=True
+-            try:
+-                os.kill(proc.pid,signal.SIGCONT)
+-                report['continuation_acknowledged']=True
+-            except BaseException:
+-                report['continuation_error']=traceback.format_exc()
+-                raise
++            os.kill(proc.pid,signal.SIGCONT);continued=True
+             while True:
+                 gate(40,'Normal40 reservation exhausted')
+                 if exit_events(kq,proc.pid,report,0):break
+@@ -334,7 +312,7 @@
+     finally:
+         if proc is not None and not reaped:
+             if proc not in HELD_LEADERS:HELD_LEADERS.append(proc)
+-            if certificate is not None and continuation_intent:
++            if certificate is not None and continued:
+                 try:
+                     need(certificate['PID']==certificate['PGID']==certificate['SID']==proc.pid and proc.returncode is None,'Lost unreaped group anchor')
+                     need(not report['direct_relationship_unknown'],'Unknown direct-child relation; no numeric group signal')
+@@ -404,7 +382,6 @@
+         report['handled_stop_refusal_reason']='Stop handled before recorded handler cutoff' if controller_stop_requests else None
+         report['sampled_RSS_observation_pass']=bool(report['valid_live_sample_count']>0 and report['observed_max_RSS_bytes'] is not None and report['observed_max_RSS_bytes']<=RSS_CAP and normal)
+         report['last_resort_unreaped_exit']=proc is not None and not reaped
+-        report['last_resort_partial_construction_exit']=report['partial_construction_unknown']
+         report['complete_candidate']=bool(normal and reaped and raw_returncode==0 and report['group_absent'] is True and report['failure'] is None and not report['cleanup_errors'] and report['all_controls_unchanged'] and not controller_stop_requests and report['sampled_RSS_observation_pass'] and left(60)>0 and not report.get('stream_read_errors') and not report.get('available_evidence_errors') and (report.get('owned_streams') or {}).get('adapter.stdout') is not None and (report.get('owned_streams') or {}).get('adapter.stderr') is not None and report.get('available_adapter_report') is not None and report.get('available_helper_report') is not None)
+         report['status']='COMPLETE_FIVE_TOY_OWNER_CANDIDATE_ONLY' if report['complete_candidate'] else 'INCOMPLETE'
+         report['resource_scope']='Sampled inherited-group RSS only; null threads; no true peak,controller memory cap,hard quota or all-lifetime guarantee. Final root full-return/inclusive postchecks required.'
+@@ -430,10 +407,9 @@
+             try:print(report['receipt_write_error'],file=sys.stderr,flush=True)
+             except BaseException:pass
+     rc=0 if report['complete_candidate'] and report['receipt_write_error'] is None and left(60)>0 and not report.get('stream_read_errors') and not report.get('available_evidence_errors') and (report.get('owned_streams') or {}).get('adapter.stdout') is not None and (report.get('owned_streams') or {}).get('adapter.stderr') is not None and report.get('available_adapter_report') is not None and report.get('available_helper_report') is not None else 2
+-    if (proc is not None and not reaped) or report['partial_construction_unknown']:
++    if proc is not None and not reaped:
+         # Last-resort refusal only: this does not reap, clean up or prove absence.
+-        # Returned leaders stay retained; partial construction stays unknown.
+-        # _exit bypasses ordinary teardown; base construction is not qualified.
++        # Strong reference is retained; _exit avoids implicit Popen destructor poll.
+         try:sys.stdout.flush();sys.stderr.flush()
+         except BaseException:pass
+         os._exit(2)
+--- source004/stopped_exec_wrapper.py
++++ source003/stopped_exec_wrapper.py
+@@ -2,7 +2,7 @@
+ import os,re,signal,sys
+ 
+ PY='/Library/Frameworks/Python.framework/Versions/3.10/bin/python3.10'
+-ADAPTER='/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/head-star-current24-qfnra-five-toy-owner-prep-004/run_fixed_adapter.py'
++ADAPTER='/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/head-star-current24-qfnra-five-toy-owner-prep-003/run_fixed_adapter.py'
+ 
+ def main():
+     if not (len(sys.argv)==2 and re.fullmatch('[0-9a-f]{64}',sys.argv[1])):
+--- source004/run_fixed_adapter.py
++++ source003/run_fixed_adapter.py
+@@ -6,7 +6,7 @@
+ 
+ R=Path('/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993')
+ E=R/'work/962-engineering'
+-P=E/'head-star-current24-qfnra-five-toy-owner-prep-004'
++P=E/'head-star-current24-qfnra-five-toy-owner-prep-003'
+ D=E/'head-star-current24-qfnra-five-toy-root-execution-001'
+ TOYS=D/'toys'
+ PY='/Library/Frameworks/Python.framework/Versions/3.10/bin/python3.10'

@@ -1,0 +1,18 @@
+# Combined partial head replacement: 204 → 129 poor cells
+
+One completed partial replacement reduced the observed positive cells below SICN 0.1 from 204 to 129. All 2,972 replacement cells pass the unchanged local threshold; the whole head remains rejected, with minimum native SICN 0.039074265058645995. This is a completed research procedure, not an accepted head mesh or engineering result.
+
+| Saved state | Nodes | TET4 cells | Referenced interior nodes | Orphans | Positive cells below 0.1 |
+|---|---:|---:|---:|---:|---:|
+| Parent | 1,097,057 | 3,620,861 | 225,326 | 0 | 204 |
+| After and saved reopen | 1,097,219 | 3,621,755 | 225,488 | 0 | 129 |
+
+The fixed [47-case manifest](contracts/admitted-manifest.json) uses the previously accepted [local-domain evidence](../current204-case-domains/README.md). The caller removes 2,078 original cells and inserts 2,972 ordered cells. It reuses each original apex tag as a declared storage slot, adds 162 nodes, and allocates 894 additional element tags from the verified parent maxima. Actual local interior tags are mapped by lookup, including the 30 cases with noncontiguous tags.
+
+The worker records one mesh write and a complete reopen, with zero generation, optimization, geometry creation or PDE solve calls. Its subset-specific proofs preserve every outside coordinate and ordered cell, original classifications and entity parameters filtered to original tags, lower-dimensional elements, physical groups and periodic metadata. These global native audits and saved-mesh identity are worker/root-attributed. The independent stopped check reconstructs all 47 maps and 2,972 ordered replacement rows and compares all 8,916 saved native metric words; it does not decode the raw head MSH, rerun native audits or prove global embedding.
+
+The [worker and reuse notes](sources/METHOD.md), [actual contract](contracts/actual-contract.json), [complete worker report](native/readback-report.json), [execution receipt](native/execution-receipt.json), [independent stopped review](reviews/result/review.json) and [root acceptance](root/execution/result-peer-acceptance.json) retain the separate source, execution and saved-association scopes. Earlier [local stages](../current204-local-stages/README.md) and the [parent partial application](../apex1474426-head-application/README.md) remain linked dependencies. The stronger Mesh2 evidence with 414 active surface failures is still open.
+
+The seven-file native inventory includes `head-volume.msh`, 235,785,726 bytes, SHA256 `b512a6ce68f48b95908cfe9c1c75a94c8b7c31a8929ea40254a1f9695a52f0b5`. Its body remains local and is omitted from this capsule. The [original-record ledger](original-records.json) preserves its identity, every original size/hash, all 420 input roles, source-snapshot aliases, and every literal path or typed process-role substitution. Four typed root/controller PID fields are projected. The root observed the owned controller only; native cleanup is attributed to the frozen inner controller and receipt, without a universal descendant-absence claim.
+
+These are selected evidence and editable project sources with retained original work-layout references and selected runtime identities. They are not a standalone runnable distribution. Existing archive/projection dependencies are linked with their original and public identities; their members are not recertified here. No runtime, vendor or head-mesh body is included. All engineering, physics, material, process and manufacturing qualification flags remain false. Project use is governed by the exact [current project licence](LICENSE.project). The unchanged [byte verifier](verify.py) checks this selected byte seal; it does not replay engineering work.

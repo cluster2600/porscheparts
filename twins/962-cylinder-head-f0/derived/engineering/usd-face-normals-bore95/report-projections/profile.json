@@ -1,0 +1,151 @@
+{
+  "status": "FAIL",
+  "passed": false,
+  "validator_skill": "simready-validate",
+  "validator_tool": "simready-validate",
+  "issue_counts": {
+    "ERROR": 0,
+    "FAILURE": 6,
+    "INFO": 0,
+    "WARNING": 0
+  },
+  "requirement_counts": {
+    "GSP.001": 1,
+    "NP.006": 1,
+    "RB.001": 2,
+    "UN.007": 1,
+    "VM.MAT.001": 1
+  },
+  "profile_name": "Prop-Robotics-Neutral",
+  "profile_target": {
+    "name": "Prop-Robotics-Neutral",
+    "version": "1.0.0"
+  },
+  "validation_policy": {
+    "ignored_requirements": [
+      "RB.MB.001"
+    ],
+    "single_component_rb_mb_001_nonblocking": true
+  },
+  "asset_alias": "steps/bore95-profile-alias001/solid-face-normals.usd",
+  "issues": [
+    {
+      "severity": "FAILURE",
+      "message": "FET000_CORE failed requirement NP.006",
+      "requirement_id": "NP.006",
+      "feature_id": "FET000_CORE"
+    },
+    {
+      "severity": "FAILURE",
+      "message": "FET001_BASE_NEUTRAL failed requirement UN.007",
+      "requirement_id": "UN.007",
+      "feature_id": "FET001_BASE_NEUTRAL"
+    },
+    {
+      "severity": "FAILURE",
+      "message": "FET003_BASE_NEUTRAL failed requirement RB.001",
+      "requirement_id": "RB.001",
+      "feature_id": "FET003_BASE_NEUTRAL"
+    },
+    {
+      "severity": "FAILURE",
+      "message": "FET004_BASE_NEUTRAL failed requirement RB.001",
+      "requirement_id": "RB.001",
+      "feature_id": "FET004_BASE_NEUTRAL"
+    },
+    {
+      "severity": "FAILURE",
+      "message": "FET005_BASE_NEUTRAL failed requirement GSP.001",
+      "requirement_id": "GSP.001",
+      "feature_id": "FET005_BASE_NEUTRAL"
+    },
+    {
+      "severity": "FAILURE",
+      "message": "FET006_BASE_MDL failed requirement VM.MAT.001",
+      "requirement_id": "VM.MAT.001",
+      "feature_id": "FET006_BASE_MDL"
+    }
+  ],
+  "original_issues_rows": 6,
+  "ignored_issues": [
+    {
+      "severity": "FAILURE",
+      "message": "FET004_BASE_NEUTRAL failed requirement RB.MB.001",
+      "requirement_id": "RB.MB.001",
+      "feature_id": "FET004_BASE_NEUTRAL",
+      "nonblocking_reason": "RB.MB.001 is non-blocking for assets with a single mesh component or a single GeomSubset component."
+    }
+  ],
+  "original_ignored_issues_rows": 1,
+  "feature_results": [
+    {
+      "feature_id": "FET000_CORE",
+      "version": "0.1.0",
+      "passed": false,
+      "failing_requirements": [
+        "NP.006"
+      ],
+      "dependencies": "[]"
+    },
+    {
+      "feature_id": "FET001_BASE_NEUTRAL",
+      "version": "0.1.0",
+      "passed": false,
+      "failing_requirements": [
+        "UN.007"
+      ],
+      "dependencies": "[]"
+    },
+    {
+      "feature_id": "FET003_BASE_NEUTRAL",
+      "version": "0.1.0",
+      "passed": false,
+      "failing_requirements": [
+        "RB.001"
+      ],
+      "dependencies": "[]"
+    },
+    {
+      "feature_id": "FET004_BASE_NEUTRAL",
+      "version": "0.1.0",
+      "passed": false,
+      "failing_requirements": [
+        "RB.001"
+      ],
+      "ignored_requirements": [
+        "RB.MB.001"
+      ],
+      "dependencies": "[{'FET003_BASE_NEUTRAL': {'version': '0.1.0'}}]"
+    },
+    {
+      "feature_id": "FET005_BASE_NEUTRAL",
+      "version": "0.1.0",
+      "passed": false,
+      "failing_requirements": [
+        "GSP.001"
+      ],
+      "dependencies": "[]"
+    },
+    {
+      "feature_id": "FET006_BASE_MDL",
+      "version": "0.1.0",
+      "passed": false,
+      "failing_requirements": [
+        "VM.MAT.001"
+      ],
+      "dependencies": "[]"
+    }
+  ],
+  "errors": [
+    "FET000_CORE failed requirement NP.006",
+    "FET001_BASE_NEUTRAL failed requirement UN.007",
+    "FET003_BASE_NEUTRAL failed requirement RB.001",
+    "FET004_BASE_NEUTRAL failed requirement RB.001",
+    "FET005_BASE_NEUTRAL failed requirement GSP.001",
+    "FET006_BASE_MDL failed requirement VM.MAT.001"
+  ],
+  "warnings": [
+    "Ignored non-blocking RB.MB.001 for single-component asset topology (mesh_count=1, geom_subset_count=0)."
+  ],
+  "projection": "Explicit allowlist; machine paths replaced by logical aliases. Original report hash retained separately."
+}

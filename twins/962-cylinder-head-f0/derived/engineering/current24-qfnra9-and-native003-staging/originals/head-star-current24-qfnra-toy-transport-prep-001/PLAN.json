@@ -1,0 +1,115 @@
+{
+  "schema": "962-current24-five-persistent-Z3-toy-source-plan/v1",
+  "status": "SOURCE_HELD_UNRUN",
+  "api": "run_fixed_toys(output_directory, expected_owner_group)",
+  "argv": [
+    "/opt/homebrew/bin/z3",
+    "-in",
+    "-smt2"
+  ],
+  "solver_expected_metadata_only": {
+    "alias": "/opt/homebrew/bin/z3",
+    "relative_link": "../Cellar/z3/5.1.0/bin/z3",
+    "resolved": "/opt/homebrew/Cellar/z3/5.1.0/bin/z3",
+    "sha256": "b9a2c3a7dc833da652955116ad743cc733aa7938dbe64f528f71cb09066e2512",
+    "bytes": 16244496,
+    "version_stdout": "Z3 version 5.1.0 - 64 bit\n",
+    "current_identity_freshness": null,
+    "installed_source_or_ABI_equivalence": null
+  },
+  "sessions": [
+    {
+      "ID": "rational",
+      "formula": "x=3/2",
+      "expected_status": "sat",
+      "expected_word_hex": "3ff8000000000000"
+    },
+    {
+      "ID": "algebraic",
+      "formulas": [
+        "x*x=2",
+        "x>0"
+      ],
+      "expected_status": "sat",
+      "expected_word_hex": "3ff6a09e667f3bcd"
+    },
+    {
+      "ID": "maxfinite",
+      "formula": "x=(2^53-1)*2^971, emitted as one integer",
+      "expected_status": "sat",
+      "expected_word_hex": "7fefffffffffffff"
+    },
+    {
+      "ID": "negative_half_minsubnormal",
+      "formula": "x=-1/2^1075, emitted as one rational",
+      "expected_status": "sat",
+      "expected_word_hex": "8000000000000000"
+    },
+    {
+      "ID": "unsat",
+      "formula": "x*x+1=0",
+      "expected_status": "unsat",
+      "expected_word_hex": null,
+      "scope": "Solver-attributed toy only; no checked refutation"
+    }
+  ],
+  "expected_values_are_source_constants_not_results": true,
+  "max_solver_processes": 5,
+  "checks_per_attempted_session": 1,
+  "stop_at_first_refusal": true,
+  "retries": 0,
+  "after_SAT_allowed_commands": [
+    "get-model",
+    "get-value",
+    "echo"
+  ],
+  "original_assertion_semantics": "Exact fixed Boolaliases defined/associated/asserted before solecheck; query each closedalias before and after mapping with unchanged protocol Booleanparser.",
+  "continuity_contract": [
+    "Same retainedSession/Popen/PID; no replacement or detachedchild.",
+    "One check counter and read-only command grammar, source-fixed formula/alias association.",
+    "Complete initialmodel/projection, originalalias truth values, every mapper query/reply, finalmodel/projection and aliastruth values.",
+    "Snapshot hash is an association token, never sufficient alone."
+  ],
+  "controls_pending_external_owner": {
+    "global_normal_seconds": 60,
+    "per_query_IO_seconds": 5,
+    "sampled_group_RSS_bytes": 2147483648,
+    "TERM_grace_seconds": 8,
+    "KILL_drain_wait_seconds": 8,
+    "helper_output_stop_bytes": 33554432,
+    "full_inclusive_external_output_control_receipt_cap_bytes": 33554432,
+    "requested_environment_threads": 1,
+    "observed_threads": null,
+    "hard_quota_claim": false,
+    "complete_whole_startup_and_return_postcheck_required": true
+  },
+  "environment_literal": {
+    "PATH": "/usr/bin:/bin",
+    "LANG": "C",
+    "LC_ALL": "C",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "MKL_NUM_THREADS": "1",
+    "VECLIB_MAXIMUM_THREADS": "1",
+    "NUMEXPR_NUM_THREADS": "1"
+  },
+  "python_flags_required": [
+    "-B",
+    "-I",
+    "-S"
+  ],
+  "child_working_directory": "Fresh helper output subdirectory; explicit cwd passed to Popen",
+  "selected_python_runtime": null,
+  "child_group": "Inherits named externalowner group; start_new_sessionFalse, no preexec_fn/setpgid/setsid",
+  "capture": "Full per-session.stdout/.stderr/.jsonl and complete report.json. Full observed chunks retained before limit refusal. Failed EOF/incomplete capture never success; external owner must retain its receipt even if helper report unavailable.",
+  "framing_expectations_unrun": 5,
+  "required_prior_pure_guard_results": {
+    "emitter_protocol_14": null,
+    "independent_word_validator_9": null
+  },
+  "future_transport_source_peer": null,
+  "future_framing_guard_runtime_control_and_result": null,
+  "future_owner_actual_admission": null,
+  "all_execution_authorities": false
+}

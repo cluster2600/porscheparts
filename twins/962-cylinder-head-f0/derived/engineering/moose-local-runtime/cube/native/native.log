@@ -1,0 +1,88 @@
+
+[33m
+*** Deprecation Warning ***
+{PROJECT_ROOT}/work/962-engineering/moose-local-macos-imported-elastic-cube-001/imported-cube.i:216.5:
+Outputs/console/output_postprocessors: The parameter 'output_postprocessors' is deprecated.
+'execute_postprocessors_on' has replaced this parameter
+
+[39m
+Framework Information:
+MOOSE Version:           git commit 7c06bdcefd on 2026-09-13
+LibMesh Version:         
+PETSc Version:           3.25.4
+SLEPc Version:           3.25.1
+Current Time:            Sat Oct 17 19:38:02 2026
+Executable Timestamp:    Sat Oct 17 18:50:48 2026
+
+Input File(s):
+  {PROJECT_ROOT}/work/962-engineering/moose-local-macos-imported-elastic-cube-001/imported-cube.i
+
+Command Line Argument(s):
+  -skip_petscrc
+  --n-threads=1
+
+Checkpoint:
+  Wall Time Interval:      Every 3600 s
+  Checkpoint:              Outputs/checkpoint
+  # Checkpoints Kept:      2
+  Execute On:              TIMESTEP_END 
+
+Parallelism:
+  Num Processors:          1
+  Num Threads:             1
+
+Mesh: 
+  Parallel Type:           replicated
+  Mesh Dimension:          3
+  Spatial Dimension:       3
+  Nodes:                   15
+  Elems:                   40
+  Num Subdomains:          1
+
+Nonlinear System:
+  Num DOFs:                45
+  Num Local DOFs:          45
+  Variables:               { "disp_x" "disp_y" "disp_z" } 
+  Finite Element Types:    "LAGRANGE" 
+  Approximation Orders:    "FIRST" 
+
+Auxiliary System:
+  Num DOFs:                45
+  Num Local DOFs:          45
+  Variables:               { "rx" "ry" "rz" } 
+  Finite Element Types:    "LAGRANGE" 
+  Approximation Orders:    "FIRST" 
+
+Execution Information:
+  Executioner:             Steady
+  Solver Mode:             NEWTON 
+  PETSc Preconditioner:    hypre boomeramg strong_threshold: 0.7 (auto)
+  MOOSE Preconditioner:    SMP 
+
+ 0 Nonlinear |R| = [32m2.168871e-02[39m
+      0 Linear |R| = [32m2.168871e-02[39m
+    0 KSP unpreconditioned resid norm 2.168870673876e-02 true resid norm 2.168870673876e-02 ||r(i)||/||b|| 1.000000000000e+00
+      1 Linear |R| = [33m2.168870e-02[39m
+    1 KSP unpreconditioned resid norm 2.168870476125e-02 true resid norm 2.168870476125e-02 ||r(i)||/||b|| 9.999999088232e-01
+      2 Linear |R| = [32m2.050842e-02[39m
+    2 KSP unpreconditioned resid norm 2.050841846040e-02 true resid norm 2.050841846044e-02 ||r(i)||/||b|| 9.455805137423e-01
+      3 Linear |R| = [32m1.305989e-04[39m
+    3 KSP unpreconditioned resid norm 1.305988648111e-04 true resid norm 1.305988638543e-04 ||r(i)||/||b|| 6.021514580253e-03
+      4 Linear |R| = [32m6.467001e-08[39m
+    4 KSP unpreconditioned resid norm 6.467000834589e-08 true resid norm 6.467351132081e-08 ||r(i)||/||b|| 2.981898003408e-06
+      5 Linear |R| = [32m6.156417e-11[39m
+    5 KSP unpreconditioned resid norm 6.156417083847e-11 true resid norm 6.232681112057e-11 ||r(i)||/||b|| 2.873698827288e-09
+      6 Linear |R| = [32m1.055248e-13[39m
+    6 KSP unpreconditioned resid norm 1.055248147189e-13 true resid norm 1.079578267332e-11 ||r(i)||/||b|| 4.977605536078e-10
+    Linear solve converged due to CONVERGED_ATOL iterations 6
+ 1 Nonlinear |R| = [32m9.578327e-12[39m
+  Nonlinear solve converged due to CONVERGED_FNORM_ABS iterations 1
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [33m8.181158e-12[39m
+WARNING! There are options you set that were not used!
+WARNING! could be spelling mistake, etc!
+There is one unused database option. It is:
+Option left: name:-skip_petscrc (no value) source: command line

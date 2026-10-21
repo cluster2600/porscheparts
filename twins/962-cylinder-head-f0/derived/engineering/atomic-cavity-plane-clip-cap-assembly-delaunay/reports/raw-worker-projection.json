@@ -1,0 +1,73 @@
+{
+  "status": "running",
+  "stage": "auditing_all_linear_tetrahedra",
+  "options": {
+    "General.NumThreads": 2,
+    "Mesh.MaxNumThreads3D": 2,
+    "Mesh.Algorithm3D": 1,
+    "Mesh.MeshOnlyEmpty": 1,
+    "Mesh.Renumber": 0,
+    "Mesh.ElementOrder": 1,
+    "Mesh.Optimize": 0,
+    "Mesh.OptimizeNetgen": 0,
+    "Mesh.MeshSizeExtendFromBoundary": 0,
+    "Mesh.RandomSeed": 1,
+    "Mesh.Binary": 1,
+    "Mesh.SaveAll": 1,
+    "Mesh.MshFileVersion": 4.1,
+    "Mesh.MeshSizeMax": 1.75,
+    "Mesh.MeshSizeMin": 0,
+    "Mesh.MeshSizeFactor": 1
+  },
+  "qualification": {
+    "geometric_volume_gate_passed": false,
+    "mesh_convergence_established": false,
+    "thermal_resolution_established": false,
+    "engineering_accepted": false,
+    "thermal_performance_validated": false,
+    "strength_validated": false,
+    "manufacturing_authorized": false
+  },
+  "runtime": {
+    "python": "3.10.11 (v3.10.11:7d4cc5aa85, Apr  4 2023, 19:05:19) [Clang 13.0.0 (clang-1300.0.29.30)]",
+    "executable": "runtime:python_executable",
+    "executable_sha256": "72956ad35cff7691dfed9e04c9593de825ffd5b2fa7e8bc9ae96ce9a1af65621",
+    "numpy": "2.0.2",
+    "machine": "arm64",
+    "gmsh": "4.15.2",
+    "gmsh_module_sha256": "f4b0935cebde899750293d87a643090e5ea33c9b18d249267f507db68a0e01c3",
+    "libgmsh_sha256": "def0f5c10988a986e5e879b3db9669d8fe016a81e2d994bbaf2b8497c6b8a58a"
+  },
+  "surface": {
+    "unique_edges": 2615817,
+    "boundary_edges": 0,
+    "nonmanifold_edges": 0,
+    "orientation_imbalanced_edges": 0,
+    "vertices": 871731,
+    "triangles": 1743878,
+    "euler_characteristic": -208,
+    "signed_volume_mm3": 915453.1236217883,
+    "points_sha256": "e0009dc6c5481cb77383b91a6e72ee4f223f207917b345e74f0b5b8e65ca6786",
+    "faces_sha256": "152dc93bc9d5ea98aa2ec88271b0385471c466a29259c0f874ccfcf81c5ea9bd"
+  },
+  "candidate_sha256": "9d62eac6e2cd7b6a9ecb4a7ea5b632685820369b5c4ede379acc34238f50d7b4",
+  "candidate_volume_reference_mm3": 915453.1236217883,
+  "volume_relative_bookkeeping_bound": 1e-06,
+  "bookkeeping_bound_is_manufacturing_tolerance": false,
+  "standard_optimization_threshold": 0.3,
+  "surface_import": {
+    "exact_source_coordinates": true,
+    "exact_source_oriented_connectivity": true,
+    "original_surface_nodes": 871731,
+    "original_surface_triangles": 1743878,
+    "source_element_tags_preserved": true,
+    "source_tagged_vertex_order_preserved": true,
+    "comparison": "exact_tagged_index_order"
+  },
+  "mesh_sha256": "3dd7939f34c8246a813334b2f570b2408b590965734bdf3761866569290e3593",
+  "mesh_bytes": 249628334,
+  "original_schema": null,
+  "schema": "962-selected-stopped-Delaunay-public-projection/v1",
+  "original_record_sha256": "ddd89a9f1da6f17e7974205a8ced234c18d47a0e7c02db10d21fa3a3bb22199b",
+  "projection_not_execution_contract": true
+}

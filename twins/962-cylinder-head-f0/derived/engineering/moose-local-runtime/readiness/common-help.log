@@ -1,0 +1,77 @@
+Usage: combined-opt [<options>]
+
+Options:
+  --app <type>                      Specify the application type to run (case-sensitive)
+  --check-capabilities              A list of conditions that is checked against the registered capabilities. Will exit based on whether or not the capaiblities are fulfilled. Does not check dynamically loaded apps.
+  --citations [file]                List the papers (in BibTeX format) that should be cited for the framework, PETSc, and the modules and objects used in this simulation; optionally write them to [file] instead of the console
+  --compute-device                  The device type we want to run accelerated (libtorch, MFEM) computations on.
+  --copy-inputs <dir>               Copies installed inputs (e.g. tests, examples, etc.) to a directory <appname>_<dir>
+  --csg-only <optional path>        Setup and output the input mesh in CSG format only (Default: "<input_file_name>_out_csg.json")
+  -v --version                      Print application version
+  --dump                            Shows a dump of available input file syntax
+  --dump-search <search>            Shows a dump of available input syntax matching a search
+  -h --help                         Displays CLI usage statement
+  -i <input file(s)>                Specify input file(s); multiple files are merged
+  --json                            Dumps all input file syntax in JSON format
+  --json-search                     Dumps input file syntax matching a search in JSON format
+  --language-server                 Starts a process to communicate with development tools using the language server protocol
+  --list-constructed-objects        List all moose object type names constructed by the master app factory
+  --mesh-only <optional path>       Build and output the mesh only (Default: "<input_file_name>_in.e")
+  --minimal                         Ignore input file and build a minimal application with Transient executioner
+  --parse-neml2-only                Executes the [NEML2] block to parse the input file and terminate.
+  -r <num refinements>              Specify additional initial uniform mesh refinements
+  --registry                        Lists all known objects and actions
+  --registry-hit                    Lists all known objects and actions in hit format
+  --required-capabilities           A list of conditions that is checked against the registered capabilities (see --show-capabilities). The executable will terminate early if the conditions are not met.
+  --run <test harness args>         Runs the inputs in the current directory copied to a user-writable location by "--copy-inputs"
+  --show-capabilities               Dumps the capability registry in JSON format.
+  --show-data-params                Show found paths for all DataFileName parameters in the header
+  --show-data-paths                 Show registered data paths for searching in the header
+  --docs                            Print url/path to the documentation website
+  --show-copyable-inputs            Shows the directories able to be copied into a user-writable location
+  --show-type                       Return the name of the application object
+  --split-file <filename>           Name of split mesh file(s) to write/read
+  --split-mesh <splits>             Comma-separated list of numbers of chunks to split the mesh into
+  --start-in-debugger <debugger>    Start the application and attach a debugger; this will launch xterm windows using <debugger>
+  --stop-for-debugger <seconds>     Pauses the application during startup for <seconds> to allow for connection of debuggers
+  --syntax                          Dumps the associated Action syntax paths ONLY
+  --test-restep                     Test re-running the middle timestep; used by the TestHarness
+  --testharness-capabilities        Path to JSON from the TestHarness that contains capabilities to be appended.
+  --executor                        Use the new Executor system instead of Executioners
+  --use-split                       Use split distributed mesh files
+  --yaml                            Dumps all input file syntax in YAML format
+  --yaml-search                     Dumps input file syntax matching a search in YAML format
+
+Global Options:
+  --allow-test-objects              Register test objects and syntax
+  -w --allow-unused                 Warn about unused input file options instead of erroring
+  --check-input                     Check the input file (i.e. requires -i <filename>) and quit
+  --color <auto,on,off=on>          Whether to use color in console output
+  --disable-perf-graph-live         Disables PerfGraph live printing
+  --distributed-mesh                Forces the use of a distributed finite element mesh
+  --error                           Turn all warnings into errors
+  --error-deprecated                Turn deprecated code messages into Errors
+  -o --error-override               Error when encountering overridden or parameters supplied multiple times
+  -e --error-unused                 Error when encountering unused input file options
+  --force-restart                   Forcefully load checkpoints despite possible incompatibilities
+  --keep-cout                       Keep standard output from all processors when running in parallel
+  --n-threads=<n>                   Runs the specified number of threads per process
+  --no-color                        Disable coloring of all Console outputs
+  --no-gdb-backtrace                Disables gdb backtraces.
+  --no-timing                       Disabled performance logging; overrides -t or --timing
+  --no-trap-fpe                     Disable floating point exception handling in critical sections of code (unused due to non-debug build)
+  --perf-graph-live-all             Forces printing of ALL progress messages
+  --recover <optional file base>    Continue the calculation. Without <file base>, the most recent recovery file will be used
+  --redirect-stdout                 Keep standard output from all processors when running in parallel
+  --show-actions                    Shows the list of Actions as they execute, in order of execution
+  --show-controls                   Shows the Control logic available and executed
+  --show-input                      Shows the parsed input file before running the simulation
+  --show-outputs                    Shows the output execution time information
+  --suppress-header                 Disables the output of the application header.
+  --test-checkpoint-half-transient  Run half of a transient with checkpoints enabled; used by the TestHarness
+  -t --timing                       Enable all performance logging for timing; disables screen output of performance logs for all Console objects
+  --timpi-sync <type=nbx>           Changes the sync type used in spare parallel communitations within TIMPI
+  --trap-fpe                        Enable floating point exception handling in critical sections of code
+
+Solver Options:
+  See PETSc manual for details

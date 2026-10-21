@@ -1,0 +1,132 @@
+{
+  "schema": "962-observer003-root-requested-toolchain-metadata-probe/v1",
+  "status": "SHOW_AND_VERSION_ONLY_NO_COMPILATION",
+  "commands": [
+    {
+      "argv": [
+        "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-local-installed-002/bin/mpicxx",
+        "-show"
+      ],
+      "returncode": 0,
+      "stdout": "arm64-apple-darwin20.0.0-clang++ -I/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-local-installed-002/include -I/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-local-installed-002/include -L/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-local-installed-002/lib -Wl,-rpath,/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-local-installed-002/lib -I/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-local-installed-002/include -L/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-local-installed-002/lib -lmpicxx -lmpi -lpmpi\n",
+      "stderr": "",
+      "environment": {
+        "PATH": "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-local-installed-002/bin:/usr/bin:/bin",
+        "SDKROOT": "/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk",
+        "LC_ALL": "C",
+        "LANG": "C",
+        "TMPDIR": "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/cp1-oneway-cooling-release-richardson2-observer003-toolchain-probe-001"
+      },
+      "compilation": false
+    },
+    {
+      "argv": [
+        "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-local-installed-002/bin/clang-19",
+        "--version"
+      ],
+      "returncode": 0,
+      "stdout": "clang version 19.1.7\nTarget: arm64-apple-darwin27.2.0\nThread model: posix\nInstalledDir: /Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-local-installed-002/bin\n",
+      "stderr": "",
+      "environment": {
+        "PATH": "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-local-installed-002/bin:/usr/bin:/bin",
+        "SDKROOT": "/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk",
+        "LC_ALL": "C",
+        "LANG": "C",
+        "TMPDIR": "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/cp1-oneway-cooling-release-richardson2-observer003-toolchain-probe-001"
+      },
+      "compilation": false
+    }
+  ],
+  "compiler_and_alias_metadata": {
+    "mpicxx": {
+      "path": "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-local-installed-002/bin/mpicxx",
+      "resolved": "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-local-installed-002/bin/mpicxx",
+      "is_symlink": false,
+      "raw_link": null,
+      "lstat_bytes": 13681,
+      "mode": "0o755",
+      "binary_body_read_or_hashed": false,
+      "binary_sha256": null
+    },
+    "clang-19": {
+      "path": "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-local-installed-002/bin/clang-19",
+      "resolved": "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-local-installed-002/bin/clang-19",
+      "is_symlink": false,
+      "raw_link": null,
+      "lstat_bytes": 171216,
+      "mode": "0o755",
+      "binary_body_read_or_hashed": false,
+      "binary_sha256": null
+    },
+    "clang++": {
+      "path": "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-local-installed-002/bin/clang++",
+      "resolved": "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-local-installed-002/bin/clang-19",
+      "is_symlink": true,
+      "raw_link": "clang-19",
+      "lstat_bytes": 8,
+      "mode": "0o755",
+      "binary_body_read_or_hashed": false,
+      "binary_sha256": null
+    },
+    "arm64-apple-darwin20.0.0-clang++": {
+      "path": "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-local-installed-002/bin/arm64-apple-darwin20.0.0-clang++",
+      "resolved": "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-local-installed-002/bin/clang-19",
+      "is_symlink": true,
+      "raw_link": "clang-19",
+      "lstat_bytes": 8,
+      "mode": "0o755",
+      "binary_body_read_or_hashed": false,
+      "binary_sha256": null
+    }
+  },
+  "wrapper_script": {
+    "path": "work/962-engineering/moose-local-installed-002/bin/mpicxx",
+    "sha256": "343f3b28830e974bdd1d279d126da130a2956ebda6f51016d1737ce9d500bdd2",
+    "bytes": 13681
+  },
+  "libMesh_config_script": {
+    "path": "work/962-engineering/moose-local-installed-002/bin/libmesh-config",
+    "sha256": "7ca41f2f6da64954fc89f7b5bb5cece226da7c154b860c88848e4955c8da76d0",
+    "bytes": 6389
+  },
+  "MooseConfig_header": {
+    "path": "work/962-engineering/moose-local-installed-002/include/moose/MooseConfig.h",
+    "sha256": "f5e35b7f99b2f6ee425dafd3085ad9adb72bb60fd658c3cdda558b3acec7d855",
+    "bytes": 2109
+  },
+  "libMesh_config_header": {
+    "path": "work/962-engineering/moose-local-installed-002/include/libmesh/libmesh_config.h",
+    "sha256": "99c730473bd19cc73c27643a95002ed7db146c48e3b54b305dea8a4c6d720af2",
+    "bytes": 39758
+  },
+  "PETSc_config_header": {
+    "path": "work/962-engineering/moose-local-installed-002/include/petscconf.h",
+    "sha256": "d94fb68c8c27ac0c5190039866fe34fd019ce4f7e77ba4ed51fc65c2328512bd",
+    "bytes": 9305
+  },
+  "prefix_libcxx_header_directory": "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-local-installed-002/include/c++/v1",
+  "prefix_Clang_resource_header_directory": "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-local-installed-002/lib/clang/19/include",
+  "SDK_selection_evidence": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer-sdk-root-probe-001/probe.json",
+    "sha256": "3d859bf790bf089397d04e93172c90dc444a74e49b3896b70564e2c6725b9367",
+    "bytes": 7771
+  },
+  "root_loader_metadata": {
+    "path": "work/962-engineering/cp1-observer-plugin-link-metadata-root-001/metadata.json",
+    "sha256": "53f1953170c88222adad8124576f70690554c9490fe61ccb9320214aa6ff5142",
+    "bytes": 15362
+  },
+  "observer003_held": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-END181-dof-map-observer-prep-003/held-preparation.json",
+    "sha256": "71802c56c4dde5a96152b76388fcc0c4d5c59f43c0819911fb05e7e69ccd81fa",
+    "bytes": 5426
+  },
+  "SDK_body_read_or_stat_by_agent": false,
+  "secret_or_inherited_environment_read": false,
+  "native_case_or_guard_or_Make_or_source_helper_run": false,
+  "binary_or_library_body_read_or_hashed": false,
+  "compiler_SDK_ABI_build_compatibility_proven": false,
+  "build_authorized": false,
+  "guard_authorized": false,
+  "native_authorized": false
+}

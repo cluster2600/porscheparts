@@ -1,0 +1,30 @@
+{
+  "schema": "962-root-one-fixed47-combined-launch/v1",
+  "root_pid": "process-role://fixed47-combined-head/root-owner",
+  "controller_pid": "process-role://fixed47-combined-head/owned-controller",
+  "controller_pgid": "process-role://fixed47-combined-head/owned-controller",
+  "argv": [
+    "runtime-role://controller/python",
+    "-I",
+    "-B",
+    "work/962-engineering/head-star-current204-combined-application-001/run_readback.py",
+    "--contract-sha256",
+    "98949f822fafd53199204eb812e5eec85b93516873743637de5b1baab5a2b600"
+  ],
+  "owned_new_session": true,
+  "actual_sha256": "98949f822fafd53199204eb812e5eec85b93516873743637de5b1baab5a2b600",
+  "exact_child_peer_sha256": "e8a5118589da985a630b287679a5de242317853cc765d85094115c5018946fd1",
+  "root_child_acceptance_sha256": "d68e239b12b45d3b0d9da0f1bd81e6e5d31ca7bfd9285bf6250b039fe45265ae",
+  "controls": {
+    "wall_timeout_seconds": 1260,
+    "controller_SIGTERM_then_10s_grace_before_SIGKILL": true,
+    "owned_controller_wait_and_reap_required": true,
+    "sampled_controller_RSS_stop_bytes": 536870912,
+    "total_output_stop_bytes": 1073741824,
+    "native_PID_directly_observed": false,
+    "native_cleanup_attributed_to_exact5ab38_controller_and_receipt": true,
+    "hard_OS_CPU_or_RSS_quota": false,
+    "automatic_retry": false
+  },
+  "native_PID_directly_observed": false
+}

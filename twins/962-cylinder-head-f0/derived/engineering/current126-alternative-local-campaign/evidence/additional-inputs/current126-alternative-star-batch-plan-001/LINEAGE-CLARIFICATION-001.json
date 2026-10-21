@@ -1,0 +1,87 @@
+{
+  "schema": "962-current126-alternative-star-plan-lineage-clarification/v1",
+  "status": "ADDITIVE_AUTHOR_METADATA_CLARIFICATION_ORIGINAL_PLAN_AND_SEVEN_SOURCE_FILES_UNCHANGED",
+  "plan": {
+    "path": "work/962-engineering/current126-alternative-star-batch-plan-001/plan.json",
+    "sha256": "d9b820a6cf25a06cfa33128e4a17555046d545735a0f8299300b613892f183f5",
+    "bytes": 58205
+  },
+  "source": {
+    "path": "work/962-engineering/head-star-current126-alternative-batch-shells-prep-001/select_batch.py",
+    "sha256": "e3857d365f605b52b6a5253ad2d010fe87699f24d7b8eebf8952eb82339a1687",
+    "bytes": 32960
+  },
+  "held": {
+    "path": "work/962-engineering/head-star-current126-alternative-batch-shells-prep-001/held-contract.json",
+    "sha256": "c99a5efbc07c5ae36aaf424cd85d05c941279d13e0fb281b88c317bca096d200",
+    "bytes": 13976
+  },
+  "source_METHOD": {
+    "path": "work/962-engineering/head-star-current126-alternative-batch-shells-prep-001/METHOD.md",
+    "sha256": "da435ff370b8a8f5fcd658d7b49b440e023b712125a8066b983fe855c24d3527",
+    "bytes": 4047
+  },
+  "clarified_field": {
+    "pointer": "/prospective_pool/current_native_indices_changed_in_pool",
+    "preserved_original_typed_value": 1113,
+    "actual_author_expression": "sum(row['changed_native_index_count'] for row in per_apex_summaries)",
+    "scope": "Per-apex changed native-index incidences, not distinct TET tags."
+  },
+  "two_exact_scopes": {
+    "distinct_TET_tag_union": {
+      "cells": 1120,
+      "changed_native_indices": 1097
+    },
+    "per_apex_incidence_sum": {
+      "cells": 1136,
+      "changed_native_indices": 1113
+    },
+    "duplicate_incidences": 16,
+    "reason": "The two eight-TET overlapping star pairs each duplicate eight cell/index incidences.",
+    "overlapping_apex_pairs": [
+      [
+        1468585,
+        1613803
+      ],
+      [
+        1481549,
+        1613801
+      ]
+    ],
+    "all31_have_at_least_one_index_change": true
+  },
+  "digest_encoding": {
+    "pointers": [
+      "/prospective_pool/per_apex_saved_identity_summary/*/old_native_index_vector_sha256",
+      "/prospective_pool/per_apex_saved_identity_summary/*/current_native_index_vector_sha256"
+    ],
+    "payload": "[[tetrahedron_tag,native_array_index], ...] in the filtered original/current census row order, increasing tetrahedron tag.",
+    "serialization": "json.dumps(value, sort_keys=True, separators=(',', ':'), allow_nan=False).encode('utf-8')",
+    "newline": false,
+    "sort_keys_has_no_effect_on_list_payload": true,
+    "not_a_bare_native_index_vector": true
+  },
+  "first_observed_index_change_scope": "The frozen example28717406:180025→180022 is the actual first encountered inspection example, not a declaration of first sorted global tag.",
+  "selector_or_held_field_consumption": {
+    "mislabelled_field_logically_consumed": false,
+    "aggregate_used_as_a_selection_gate": false,
+    "COHORT_COMPARISON_has_no_AST_Load_reference": true,
+    "comparison_plan_body_is_pinned_by_identity_only": true,
+    "held_records_plan_in_input_hashes_and_fixed_path_metadata_only": true,
+    "actual_screening_uses_complete_fresh_current_census_rows": true,
+    "source_or_held_successor_required": false
+  },
+  "METHOD_wording_scope": "The frozen phrase 1,113 pooled indices means changed per-apex incidences;1097 is the distinct changed-TET count.",
+  "scope_limits": [
+    "The clarification changes no plan/source/held/guard bytes, arithmetic/geometry kernel, threshold, cohort or authority.",
+    "Ordinary JSON/tag-set arithmetic and source AST/text inspection only; no source/helper/guard/native/scientific function or mesh/runtime body operation.",
+    "Current126 global quality remains rejected; all eligibility/selected/feasibility values remain null."
+  ],
+  "future_binding": "Root source/guard and future exact actual should direct-pin this additive companion. Do not mutate the held29 map or frozen plan.",
+  "native_execution_authorized": false,
+  "saved_query_execution_authorized": false,
+  "engineering_accepted": false,
+  "physics_qualified": false,
+  "manufacturing_authorized": false,
+  "author": "replica_metrology, plan/source author; clarifies own incidence label and serialization, not an independent review."
+}

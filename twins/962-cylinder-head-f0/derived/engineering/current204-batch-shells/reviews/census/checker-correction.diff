@@ -1,0 +1,32 @@
+--- check_saved.py
++++ check_saved-002.py
+@@ -7,14 +7,16 @@
+ AP='work/962-engineering/head-star-current204-full-stars-execution-prep-001/actual-contract.json'
+ CP='work/962-engineering/head-star-current204-full-stars-root-execution-001/closed-result.json'
+ RP='work/962-engineering/head-star-current204-full-stars-root-execution-001/result-review.json'
++LP='work/962-engineering/head-star-current204-full-stars-root-execution-001/launch.json'
+ PEER='work/962-engineering/head-star-current204-full-stars-child-peer-001/review.json'
+-a=load(AP);closed=load(CP);root_review=load(RP);directory=ROOT/a['output_directory']
++a=load(AP);closed=load(CP);root_review=load(RP);launch=load(LP);directory=ROOT/a['output_directory']
+ assert sha((ROOT/AP).read_bytes())=='a613681c5d653a4bd68e31604d50f14716bfc003d7eb2eff2f7149a89ecba7d2'
+ assert sha((ROOT/CP).read_bytes())=='67ce69c8c2a35d8b56763550043c18a3db28d963a1cee5675c41e9f8f1765456'
+ assert sha((ROOT/RP).read_bytes())=='af50c15ef52da35a5c265cbfa7bff10c3aa99694b0d86acad121a8bc2b2f68af'
++assert sha((ROOT/LP).read_bytes())=='56936bca2f235e4f6285b39eb0aeeb92bdb71919b1ff1b9cfe0fc053e7f68363'
+ skip={a['MSH'],a['candidate']};assert len(skip)==2
+ bound=set(a['input_hashes'])-skip
+-bound.update([AP,CP,RP,PEER,str(Path(__file__).relative_to(ROOT))])
++bound.update([AP,CP,RP,LP,PEER,str(Path(__file__).relative_to(ROOT))])
+ bound.update(str((directory/n).relative_to(ROOT)) for n in closed['outputs'])
+ before={rel:sha((ROOT/rel).read_bytes()) for rel in sorted(bound)}
+ for rel,digest in a['input_hashes'].items():
+@@ -31,7 +33,9 @@
+ assert closed['all4_selected_runtime_unchanged'] and set(closed['runtime_match_by_path'])==set(a['external_runtime_hashes']) and all(closed['runtime_match_by_path'].values())
+ assert all(closed[k] for k in ['actual_unchanged','materialized_actual_copy_unchanged','child_peer_unchanged'])
+ assert len(closed['observed_owned_worker_processes'])==1
+-assert set(closed['individual_owned_PID_absence'])=={str(row['PID']) for row in closed['observed_owned_worker_processes']}
++assert set(closed['individual_owned_PID_absence'])==({str(launch['owned_controller_PID'])}|{str(row['PID']) for row in closed['observed_owned_worker_processes']})
++assert all(row['PPID']==launch['owned_controller_PID'] for row in closed['observed_owned_worker_processes'])
++assert launch['actual_sha256']==closed['actual_sha256'] and launch['child_peer_sha256']==closed['child_peer_sha256']
+ assert all(closed['individual_owned_PID_absence'].values()) and closed['universal_process_absence_claimed'] is False
+ r=json.loads((directory/'readback-report.json').read_text());receipt=json.loads((directory/'execution-receipt.json').read_text())
+ assert sha((directory/'readback-report.json').read_bytes())=='0124cdb9dd65a1d2434e0ff44e3d390257ad32bbc9c068c9c330532f46d03239'

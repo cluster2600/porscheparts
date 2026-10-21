@@ -1,0 +1,158 @@
+{
+  "schema": "962-current204-union-context-exact-child-peer/v1",
+  "decision": "CLEAR_ONE_EXACT_READ_ONLY_SELECTED116_UNION_CONTEXT_CHILD",
+  "records": {
+    "actual": {
+      "path": "work/962-engineering/head-star-current204-union-context-execution-prep-001/actual-contract.json",
+      "sha256": "0029346b50660ce65595afc65d4360dd2a8806d9e52d27dc1f46209279a5a5b5",
+      "bytes": 14322
+    },
+    "held002": {
+      "path": "work/962-engineering/head-star-current204-union-context-prep-002/held-contract.json",
+      "sha256": "e69e5e652b0d18e64387fce3838ae4d21c9c4f2c13a06769f54881d0303bc90b",
+      "bytes": 11969
+    },
+    "reader": {
+      "path": "work/962-engineering/head-star-current204-union-context-prep-002/reader.py",
+      "sha256": "c852a8a536a0ef2c58a37132fb51e42e525403d1f519375cc04a9860bfe53b29",
+      "bytes": 34933
+    },
+    "runner": {
+      "path": "work/962-engineering/head-star-current204-union-context-prep-002/run_readback.py",
+      "sha256": "694687cec480bd8c119081fe4d04ec3834d3b095de81c5c5f95c3239285903c9",
+      "bytes": 4576
+    },
+    "independent_source_peer002": {
+      "path": "work/962-engineering/head-star-current204-union-context-source-peer-002/review.json",
+      "sha256": "195c7e3b20639872b9922ec2f885e336f74c91fb24b668ca6a1c007b49808a3b",
+      "bytes": 6932
+    },
+    "root_source_guard_review": {
+      "path": "work/962-engineering/head-star-current204-union-context-root-source-001/review.json",
+      "sha256": "be75be84fd9967906c3ddf9f15008481dbf9b7f341ab193a8e0b1ac06119b4f1",
+      "bytes": 1233
+    },
+    "root_source_peer_acceptance": {
+      "path": "work/962-engineering/head-star-current204-union-context-root-source-001/source-peer-acceptance.json",
+      "sha256": "fa281fa078bcea92621acbc248067e77e6a1e134d3a940939fd2852ea3f512d2",
+      "bytes": 609
+    },
+    "root_runtime_origin_preflight": {
+      "path": "work/962-engineering/head-star-current204-local-stages-root-preflight-001/preflight.json",
+      "sha256": "2230b31896586a7dd903f04ef76f5068c7a465014ffc45d880f4c8b2f995c163",
+      "bytes": 2442
+    }
+  },
+  "reviewer_role": "External root actual/held/source-contract binding review. Reviewer independently reviewed earlier current census/batch results and authored historical reused census/generation lineage. No new independent derivation of unchanged helper math is claimed; the195c independent002 source peer and root7guards are bound.",
+  "input_roles": {
+    "input_count": 53,
+    "held46_exact_subset": true,
+    "seven_added_completed_evidence_pins": {
+      "work/962-engineering/head-star-current204-local-stages-root-preflight-001/preflight.json": "2230b31896586a7dd903f04ef76f5068c7a465014ffc45d880f4c8b2f995c163",
+      "work/962-engineering/head-star-current204-union-context-prep-002/held-contract.json": "e69e5e652b0d18e64387fce3838ae4d21c9c4f2c13a06769f54881d0303bc90b",
+      "work/962-engineering/head-star-current204-union-context-root-source-001/review.json": "be75be84fd9967906c3ddf9f15008481dbf9b7f341ab193a8e0b1ac06119b4f1",
+      "work/962-engineering/head-star-current204-union-context-root-source-001/source-peer-acceptance.json": "fa281fa078bcea92621acbc248067e77e6a1e134d3a940939fd2852ea3f512d2",
+      "work/962-engineering/head-star-current204-union-context-root-source-001/stderr.log": "77ecdaf76b0a4f9f157b08dc741287943417847cdfae17660c5fea600de76490",
+      "work/962-engineering/head-star-current204-union-context-root-source-001/stdout.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "work/962-engineering/head-star-current204-union-context-source-peer-002/review.json": "195c7e3b20639872b9922ec2f885e336f74c91fb24b668ca6a1c007b49808a3b"
+    },
+    "all50_current_small_regular_source_data_files_hashed": true,
+    "canonical_sorted50_current_pin_map_sha256": "91c976a41000f856610bacf5acf93bb72a64b8b1b90a8c2b7d248fd3351fc6ed",
+    "three_deferred_roles": {
+      "work/962-engineering/apex1474426-head-application-001/head-volume.msh": {
+        "role": "large-parent-metadata-only-root-hash-attributed",
+        "sha256": "4c6543f8e905c2771f9f313e5e131d06d081928deafb8dd5b43b18d9d2c73a3f",
+        "bytes": 235744782
+      },
+      "work/962-engineering/head-star-current204-union-context-001/reader.py": {
+        "role": "future-exact-source-copy",
+        "sha256": "c852a8a536a0ef2c58a37132fb51e42e525403d1f519375cc04a9860bfe53b29"
+      },
+      "work/962-engineering/head-star-current204-union-context-001/run_readback.py": {
+        "role": "future-exact-source-copy",
+        "sha256": "694687cec480bd8c119081fe4d04ec3834d3b095de81c5c5f95c3239285903c9"
+      }
+    },
+    "large_parent_body_or_runtime_bodies_not_read_or_hashed_by_reviewer": true
+  },
+  "precise_actual_delta": {
+    "changed_held_fields": [
+      "input_count",
+      "input_hashes",
+      "native_execution_authorized",
+      "native_read_only_query_authorized",
+      "prepared_guards_executed",
+      "root_and_peer_review_complete",
+      "selected_runtime_review_complete",
+      "status"
+    ],
+    "new_explicit_root_source_runtime_copy_metadata_only": true,
+    "all_held_expected_selection_controls_runtime_parent_schema_source_and_guard_values_unchanged": true,
+    "no_selfhash_or_frozen_actual_pin_cycle": true
+  },
+  "source_and_namespace_binding": {
+    "reader_c852_runner694687_exact": true,
+    "source002_correction_and_prior001_blocked_history_preserved": true,
+    "selected_volume_arrays_namespace_np_bound": true,
+    "selected_classifications_namespace_uses_explicit_core_np_and_array_sha_before_call": true,
+    "selected_partial_after_proof_and_require_after_match_selfcontained_parameter_helpers": true,
+    "no_full_module_import_of_top_level_native_reader": true,
+    "expected_current_parent_after_equals_saved_and_all4_array_and_classification_joins": true,
+    "current_parent_counts": {
+      "nodes": 1097057,
+      "TET4": 3620861,
+      "positive_poor": 204,
+      "nonpositive_SICN": 0
+    },
+    "stored_quality_and_global_incidence_retained_not_recomputed": true,
+    "source_no_generate_optimize_solve_or_MSHwrite_path": true,
+    "read_only_original_union_not_new_generation_result_input": true
+  },
+  "expected_union": {
+    "apices": 116,
+    "old_TET4": 4164,
+    "original_nodes": 2430,
+    "shell_nodes": 2314,
+    "shell_faces": 4164,
+    "outside_nodes_expected": 1096941,
+    "outside_TET4_expected": 3616697,
+    "interface_partition": null,
+    "global_maxima": null
+  },
+  "control_and_authority": {
+    "schema": "962-current204-selected116-union-head-context/v1",
+    "one_native_read_only_query_authorized": true,
+    "source_guard7PASS_root_attributed_and_logs_bound": true,
+    "resources": {
+      "hard_wall_seconds": 120,
+      "sampled_RSS_stop_bytes": 8589934592,
+      "sampled_output_stop_bytes": 1073741824,
+      "threads": 2,
+      "hard_OS_quota": false
+    },
+    "root_outer_wall_seconds": 135,
+    "all_native3_runtime_and_NumPy_c09_metadata_equal_held": true,
+    "parent_body_and_native3_NumPy_freshness_root_attributed": true,
+    "root_disk_snapshot_only_bytes": 13902372864,
+    "output_project_relative": "work/962-engineering/head-star-current204-union-context-001",
+    "output_directory_raw_absent_nonsymlink": true,
+    "exact_future_source_copy_count": 2,
+    "future_source_hashes_match_selected_originals": true,
+    "future_third_copy_is_exact_actual_without_selfpin": true,
+    "all_observed_interface_and_global_maxima_fields_still_null": true,
+    "automatic_retry": false,
+    "mesh_write_generation_optimization_head_edit_head_execution_stitching_engineering_physics_manufacturing_all_false": true
+  },
+  "limits": [
+    "This query is separately root-owned and must wait until the active115 serial native stages are closed; root states all native work will be serialized. No live generation outputs were read or made dependencies.",
+    "The exact parent after/saved and current204 quality/global-incidence proof is retained authority. The query plans fresh selected116 apex/face ownership and metadata scans, not a new whole-head quality/embedding/containment proof or head edit.",
+    "Expected selected4164cells/2430nodes/2314shellnodes/4164faces/116apices and outside counts are fixed saved-data joins. Interface partition/maxima/ownership/parameter observations remain unknown until the one future query.",
+    "The source exports selected original geometry/context as JSON, but has no Gmsh mesh writer, generation, optimizer, solver or candidate admission path.",
+    "Root must make exactly two pinned source copies and one exact frozen-actual copy, freshly verify all53 inputs/parent/native3/NumPy/peer and own bounded launch/cleanup after prior native closure. Source/runtime body freshness is not established by reviewer.",
+    "No prepared function, guard, test, scientific/native import, query, runtime/MSH body, Git/network operation or future output materialization is performed here."
+  ],
+  "blockers": [],
+  "engineering_accepted": false,
+  "physics_qualified": false,
+  "manufacturing_authorized": false
+}

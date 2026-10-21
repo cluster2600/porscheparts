@@ -1,0 +1,50 @@
+{
+  "schema": "962-native005-rawdiag002-six-case-independent-fixture-source-peer/v1",
+  "decision": "NO_CONCRETE_SOURCE_BLOCKER_WITHIN_EXACT_SIX_CASE_SCOPE",
+  "reviewer": "/root/defect_gate_refresh",
+  "status": "SOURCE_ONLY_ALL_CASES_UNRUN",
+  "input_count": 5,
+  "input_bytes": 47279,
+  "checks": [
+    {
+      "id": "F01_EXACT_PACKET_AND_LOAD_ISOLATION",
+      "source": "fixture32-53,163-171; dependency top-level AST",
+      "finding": "All5 named complete SHA/size pins match; index names/order/count match the script. Future loader verifies bounded canonical regular source bytes, compiles those same bytes into fresh separate ModuleType dictionaries, injects only __file__, uses no importlib/pyc source loader and verifies source again. Target has no module-global NAMES; actual002 structural_map27 aliases parser.NAMES locally. Parser owns its tuple in its own namespace. Dependency module-level effects are stdlib imports, literals and an inert Path construction; no file decoder, scientific import or diagnostic entrypoint is invoked."
+    },
+    {
+      "id": "F02_NONTRIVIAL_POSITIVE_ASSOCIATIONS",
+      "source": "fixture60-129; diagnostic00227-85",
+      "finding": "The fixture constructs1700 ordered rows,425 independent coordinate triples and1275 physical rows with affine permutation (37*i+23)%1275. Coprimality gives a bijection of the complete range; expected rows are generated from analytic inputs, not copied target output. Variable numbers [2,0,3,1] are nonidentity;425 slot3 placeholders are absent/null. Valid case compares every returned physical association, ndof/integer width, exact six expected labels, observed dt/scaling words and unchanged input JSON. Supplied coordinates are separately retained and row triples copied; supplied synthetic time is passed independently. These analytic words are not native dt/scaling witnesses."
+    },
+    {
+      "id": "F03_FIVE_PRECISE_REFUSALS",
+      "source": "fixture132-160; diagnostic00238,59,66,68",
+      "finding": "Wrong external finite time targets exact-time mismatch; wrong finite row coordinate and raw -0 versus independent +0 target exact coordinate-word mismatch; duplicate physical global index targets duplicate/out-of-range rejection; absent/null physical row with total1700 retained targets the earlier only-placeholder-may-be-absent guard. Each requires actual ValueError and exact message. Acceptance, NameError or another exception becomes a case failure with traceback. No mocked predicate replaces target enforcement."
+    },
+    {
+      "id": "F04_COMPLETE_FAILURE_RECORD_AND_NO_SEMANTIC_PROMOTION",
+      "source": "fixture119-126,163-191; METHOD",
+      "finding": "The fixed loop retains all six ordinary case outcomes and full failure tracebacks; complete JSON returns0 only if all pass, otherwise2. Source-load/final-pin or BaseException failure is deliberately left to full external stderr/raw-status preservation. Semantic dt/scaling, strict validation, field/force/reaction, live BC and ABI flags remain false; common-solver-origin consistency is explicitly limited. No caller, decoder, strict collector, validate_map, full diagnose_saved_displacements or native operation is called."
+    }
+  ],
+  "coverage_limits": [
+    "Only structural_map is exercised; no complete Vec/EOF/log/CSV/CDF decoding or1275 three-way displacement assessment.",
+    "Positive case covers observed integer width4 and1275 global physical DOFs with absent placeholders; width8, present placeholder and additional malformed contracts are outside these six cases.",
+    "Fixture checks loading/hash stability at finite boundaries, not transient ABA mutation or installed-runtime behavior.",
+    "Future selected3.12.11-B-I-S, external deadlines/streams/rawRC/census/identity checks and separate root one-run admission remain required.",
+    "24 poor head cells and12 aggregate mechanical failures, actual dt/scaling and material/LPBF/physical/manufacturing qualification remain unchanged."
+  ],
+  "lineage": "Independent of material_publication fixture authorship and head_mesh_next diagnostic/parser authorship. Reviewer previously reviewed native005 source/contract/freshness and authored legacy helper/receipt lineage, parser11 controls and owner004 core13 fixture/control evidence. This is source-fixture review only, not independent runtime, measurement or physics validation.",
+  "review_operations": {
+    "named_text_hash_JSON_AST_only": true,
+    "target_or_fragment_import_compile_eval_execute_or_tests": false,
+    "scientific_or_runtime_provider_alias_body_or_API_process_access": false,
+    "new_data_helper_or_decoder_execution": false,
+    "original_PUB_Git_mutation": false
+  },
+  "tool_note": "Serena symbolic requests rejected the worktree paths as outside its active project; bounded local AST/text inspection was used. No target was executed and no file was changed by the rejected requests.",
+  "execution_authorized": false,
+  "real_data_intake_authorized": false,
+  "qualification": false,
+  "self_hash": null
+}

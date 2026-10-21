@@ -1,144 +1,152 @@
-# Culasse 4 L SP95 : géométrie dimensionnée pour le débit d'eau
+<a id="culasse-4-l-sp95--géométrie-dimensionnée-pour-le-débit-deau"></a>
 
-Cette variante fait passer le [bilan Mezger 4 L/SP95](MEZGER_4L_SP95.md) dans
-une nouvelle géométrie native PicoGK. Elle conserve quatre passages de
-soupapes, deux réservations d'allumage, les lofts ShapeKernel et les nervures
-BCC externes LatticeLibrary. Les anciens modèles et leurs reçus restent intacts.
+# 4 L SP95 head: geometry sized for water flow
 
-![Vue de chambre : quatre passages de soupapes et deux puits proposés](derived/flow4l/views/chamber.png)
+This variant transfers the [Mezger 4 L/SP95 budget](MEZGER_4L_SP95_EN.md) into
+new native PicoGK geometry. It retains four valve passages, two ignition
+reservations, ShapeKernel lofts and external LatticeLibrary BCC ribs.
+The previous models and their receipts remain intact.
 
-## Changements effectivement générés
+![Chamber view: four valve passages and two proposed wells](derived/flow4l/views/chamber.png)
 
-- Enveloppe de chambre de demi-axes 49 × 49 × 13 mm, avec embase de rayon
-  59 mm, pour l'hypothèse d'alésage de 102 mm. Le volume mort et le rapport
-  volumétrique du moteur ne sont pas établis par cette cavité.
-- Deux ports d'eau de diamètre nominal **22 mm**, contre 10 mm dans la
-  variante précédente. Ce sont des terminaisons de calcul sans raccord monté.
-- Un puits d'allumage central de 12 mm et un second de 10 mm à X=38 mm.
-  Ces enveloppes proposées ne sont ni des filetages ni un choix de bougies.
-- Une alimentation bifurquée autour de la réservation du second allumage.
-  Le premier essai laissait un tronçon aveugle près de son volume protégé.
-- Lissage des volumes secs et de l'eau **avant** la soustraction finale au
-  métal. La paroi métallique au contact de l'eau n'est pas lissée ensuite.
-- 36 cellules BCC externes, de 12 × 14 × 14 mm et diamètre de barre 3,5 mm.
-  Leur forme n'est pas issue d'une optimisation mécanique sous combustion.
+<a id="changements-effectivement-générés"></a>
 
-Les axes sont locaux à l'étude. Aucun entraxe de cylindres, axe de banc,
-plan d'assemblage ou coordonnées de goujons du donneur n'est déduit de ces
-dimensions. L'enveloppe hors tout d'environ 152 × 150 × 90 mm doit notamment
-être confrontée à l'implantation réelle des culasses voisines.
+## Changes actually generated
 
-Le [contrat de conception](source/flow4l/design.json) liste les interfaces et
-le chemin de charge requis. La variante précise du moteur, les fixations,
-les portées, la distribution, les sièges/guides, les bougies et l'huile
-restent inconnus. La géométrie ne constitue pas une culasse montable.
+- Chamber envelope with semiaxes 49 × 49 × 13 mm and a 59 mm base radius,
+  for the assumed 102 mm bore. This cavity does not establish the engine's
+  clearance volume or compression ratio.
+- Two water ports of **22 mm** nominal diameter, versus 10 mm in the previous
+  variant. These are computational terminations with no installed fittings.
+- A 12 mm central ignition well and a second 10 mm well at X=38 mm.
+  These proposed envelopes are neither threads nor a spark-plug selection.
+- A bifurcated supply around the second ignition reservation. The first
+  attempt left a blind segment near its protected volume.
+- Smoothing of the dry and water volumes **before** final subtraction from
+  the metal. The metal wall in contact with water is not smoothed afterward.
+- 36 external BCC cells, 12 × 14 × 14 mm, with 3.5 mm strut diameter.
+  Their shape does not come from mechanical optimization under combustion loads.
 
-## Contrôles sur les fichiers réellement produits
+The axes are local to the study. No cylinder pitch, bank axis, assembly plane
+or donor stud coordinates are inferred from these dimensions.
+The overall envelope of approximately 152 × 150 × 90 mm must in particular
+be checked against the actual layout of adjacent heads.
 
-Le [rapport indépendant](derived/flow4l/study-report.json) lie les sources,
-binaires, STL, VDB et images par empreintes. La
-[provenance complémentaire](derived/flow4l/provenance.json) conserve le SDK
-et les sources communes. Les trois domaines sont fermés, orientés et ont
-chacun une seule composante de surface après retrait tracé des faces dégénérées.
+The [design contract](source/flow4l/design.json) lists the required interfaces
+and load path. The precise engine variant, fasteners, seats, valvetrain,
+valve seats/guides, spark plugs and oil remain unknown.
+The geometry is not a head that can be installed.
 
-| Grandeur géométrique | Résultat |
+<a id="contrôles-sur-les-fichiers-réellement-produits"></a>
+
+## Checks on the actual generated files
+
+The [independent report](derived/flow4l/study-report.json) links sources,
+binaries, STL files, VDB and images by digest. The [additional provenance](derived/flow4l/provenance.json)
+retains the SDK and shared sources. The three domains are closed, oriented
+and each has one surface component after recorded removal of degenerate faces.
+
+| Geometric quantity | Result |
 |---|---:|
-| Volume métallique | 952,07 cm³ |
-| Volume d'eau | 148,93 cm³ |
-| Volumes secs, prolongements inclus | 487,11 cm³ |
-| Séparation eau/sec minimale échantillonnée | 4,439 mm |
-| Section d'entrée / sortie | 375,44 / 375,23 mm² |
-| Diamètre hydraulique d'entrée / sortie | 21,48 / 21,56 mm |
-| Vitesse moyenne à 48,62 L/min | 2,159 / 2,160 m/s |
+| Metal volume | 952.07 cm³ |
+| Water volume | 148.93 cm³ |
+| Dry volumes, including extensions | 487.11 cm³ |
+| Minimum sampled water/dry separation | 4.439 mm |
+| Inlet / outlet section | 375.44 / 375.23 mm² |
+| Inlet / outlet hydraulic diameter | 21.48 / 21.56 mm |
+| Mean velocity at 48.62 L/min | 2.159 / 2.160 m/s |
 
-Le débit de 48,62 L/min par culasse reste celui du scénario supposant
-49,03 kW par culasse et 15 K d'échauffement de l'eau. Il n'est pas mesuré sur
-un moteur. La section a été multipliée par environ cinq ; cela ne donne pas
-la perte de charge interne ni la distribution du débit entre zones chaudes.
+The 48.62 L/min per head remains the scenario assuming 49.03 kW per head
+and a 15 K water-temperature rise. It is not measured on an engine.
+The section increased approximately fivefold; this does not determine
+internal pressure loss or flow distribution among hot areas.
 
-![Volume d'eau dans l'enveloppe transparente](derived/flow4l/views/coolant.png)
+![Water volume inside the transparent envelope](derived/flow4l/views/coolant.png)
 
-Les sondes à 0,25 mm donnent zéro point non assigné, mais encore **deux
-chevauchements** sur 607 232 sondes. Les autres distances de sondage sont
-conservées dans le rapport. Il ne s'agit toujours pas d'une interface
-conforme certifiée pour CHT ; fermeture et échantillonnage ne suffisent pas
-à valider une paroi ou une étanchéité.
+The probes at 0.25 mm give zero unassigned points, but still **two overlaps**
+among 607,232 probes. The other probing distances are retained in the report.
+This is still not a certified conformal CHT interface; closure and sampling
+are insufficient to validate a wall or sealing.
 
-Le premier essai rejeté est conservé dans
-[le diagnostic de composantes](derived/flow4l/rejected/native-001-components.json).
-Les sources et sorties complètes de chaque essai restent dans les répertoires
-locaux `work/962-flow4l/run-*`, sans écrasement.
+The first rejected attempt is preserved in the
+[component diagnostic](derived/flow4l/rejected/native-001-components.json).
+Complete sources and outputs for each attempt remain in local
+`work/962-flow4l/run-*` directories without overwriting.
 
-## Échange VDB et préparation hydraulique
+<a id="échange-vdb-et-préparation-hydraulique"></a>
 
-PicoGK a enregistré et relu à l'identique les trois domaines, le champ de
-distance et son gradient, avec comparaison native et vérification de toutes
-les valeurs actives dans les deux sens. Ces deux derniers champs sont
-**géométriques**, sans température, pression ou vitesse calculée.
+## VDB exchange and hydraulic preparation
 
-Une dérivée cartésienne de l'eau est également exportée par classification
-native `Voxels.bIsInside` au centre des cellules. À 2 mm, deux cellules
-isolées font rejeter cette dérivée. À 1 mm, les 149 980 cellules sont reliées,
-mais le maillage volumique échoue ensuite à `checkMesh` sur 708 déterminants
-de cellule. La tentative de tétraédrisation directe Gmsh de la surface est
-également rejetée par les contrôles complets. Aucun seuil n'est abaissé.
+PicoGK saved and read back the three domains, distance field and gradient
+identically, using native comparison and verification of every active value
+in both directions. The latter two fields are **geometric**, with no
+calculated temperature, pressure or velocity.
 
-La surface dérivée pour maillage reste fermée : 61 504 triangles, écart
-maximal mesuré aux sommets de 0,238 mm et écart de volume de −0,150 %.
-Ce contrôle échantillonné n'est pas une borne de Hausdorff globale.
-L'accrochage à la surface par `snappyHexMesh` dans OpenFOAM **Foundation 13**
-produit 138 400 cellules et une seule région, mais le contrôle complet rejette
-720 cellules concaves et une face trop déformée. Une nouvelle représentation
-conforme aux faces utilise ensuite les centres et bases de faces natifs
-d'OpenFOAM : 1 612 960 tétraèdres de volume positif, avec un écart de volume
-de 0,0207 % par rapport au parent. Elle est également rejetée : cinq contrôles
-échouent, notamment sur 9 055 déterminants et sept faces trop déformées.
+A Cartesian derivative of the water is also exported using native
+`Voxels.bIsInside` classification at cell centers. At 2 mm, two isolated cells
+cause this derivative to be rejected. At 1 mm, the 149,980 cells are connected,
+but the volume mesh then fails `checkMesh` on 708 cell determinants.
+Direct Gmsh tetrahedralization of the surface is also rejected by the full
+checks. No threshold is lowered.
 
-Le [rapport de maillage](derived/flow4l/meshing-report.json) conserve les
-empreintes des cas et les journaux principaux. Le contrôle bloquant a empêché
-le lancement du solveur sur ces maillages. Aucun seuil n'a été abaissé et
-aucune itération d'écoulement n'est créditée. La perte de charge, la répartition
-du débit, l'efficacité thermique et la puissance moteur restent à établir.
+The derived meshing surface remains closed: 61,504 triangles, maximum measured
+vertex deviation of 0.238 mm and volume deviation of −0.150%.
+This sampled check is not a global Hausdorff bound.
+Surface snapping with `snappyHexMesh` in OpenFOAM **Foundation 13** produces
+138,400 cells and one region, but the full check rejects 720 concave cells
+and one excessively warped face. A new face-conforming representation then
+uses native OpenFOAM face centers and bases: 1,612,960 positive-volume
+tetrahedra, with a 0.0207% volume deviation from the parent. It is also
+rejected: five checks fail, including 9,055 determinants and seven
+excessively warped faces.
+
+The [meshing report](derived/flow4l/meshing-report.json) retains case digests
+and the main logs. The blocking check prevented solver launch on these
+meshes. No threshold was lowered and no flow iteration is credited.
+Pressure loss, flow distribution, thermal efficiency and engine power
+remain to be established.
 
 ## Reproduction
 
-Le [générateur C#](source/flow4l/HeadFlow4LStudy.cs), le
-[programme d'export](source/flow4l/HeadFlowRunner.cs) et le
-[pilote](source/flow4l/run_study.py) utilisent l'installation PicoGK documentée.
-Le runtime vérifié utilise le SDK 9.0.319, .NET 9.0.21 et un voxel de 0,5 mm.
-ShapeKernel et LatticeLibrary sont comparés à leurs références existantes.
-Le pilote prend le verrou natif partagé du catalogue.
+The [C# generator](source/flow4l/HeadFlow4LStudy.cs),
+[export program](source/flow4l/HeadFlowRunner.cs) and
+[driver](source/flow4l/run_study.py) use the documented PicoGK installation.
+The verified runtime uses SDK 9.0.319, .NET 9.0.21 and a 0.5 mm voxel.
+ShapeKernel and LatticeLibrary are compared with their existing references.
+The driver acquires the catalog's shared native lock.
 
 ```sh
 python3 twins/962-cylinder-head-f0/source/flow4l/run_study.py \
-  /chemin/vers/PicoGK work/962-flow4l/nouvel-essai
+  /path/to/PicoGK work/962-flow4l/new-run
 python3 -m unittest discover -s tests -p 'test_962_flow4l.py' -v
 ```
 
-Les grandes sorties STL/VDB restent des fichiers dérivés locaux ; leurs
-empreintes et les rendus sont versionnés. Aucun scan ou manuel tiers, poids
-de modèle ou binaire fournisseur n'est ajouté au dépôt.
+Large STL/VDB outputs remain local derived files; their digests and renders
+are versioned. No third-party scan or manual, model weights or vendor binary
+is added to the repository.
 
-Une archive locale de consultation rassemble les trois STL inspectés, le
-VDB géométrique, les sources de cette variante, les rapports et les rendus :
+A local review archive collects the three inspected STL files, geometric
+VDB, this variant's sources, reports and renders:
 `work/962-flow4l/delivery-001/mezger-4l-sp95-head-study.zip`.
-Le [reçu de livraison](derived/flow4l/delivery-report.json) enregistre ses
-95 532 176 octets et les empreintes des 37 fichiers, tous relus après
-compression. Cette archive accompagne le dépôt complet pour la reproduction :
-les helpers partagés et les dépendances PicoGK restent ceux du dépôt et de
-l'installation vérifiée. Elle ne contient aucun résultat de pression,
-vitesse ou température de solveur, ni dossier de fabrication.
+The [delivery receipt](derived/flow4l/delivery-report.json) records its
+95,532,176 bytes and digests of all 37 files, reread after compression.
+This archive accompanies the complete repository for reproduction: shared
+helpers and PicoGK dependencies remain those of the repository and verified
+installation. It contains no solver pressure, velocity or temperature result
+and no manufacturing dossier.
 
-## Suite de la chaîne d'outils
+<a id="suite-de-la-chaîne-doutils"></a>
 
-Le [workflow du dépôt](../../docs/TOOLCHAIN.md) reste applicable. L'étape
-hydraulique doit produire un maillage accepté, une solution convergente et
-un bilan de débit avant de créditer un résultat numérique. Le calcul CHT
-nécessite ensuite une partition solide/eau conforme, les flux et les
-propriétés thermiques du matériau en fonction de la température.
+## Continuing the toolchain
 
-CalculiX ne peut établir une tenue moteur avec des goujons, contacts et
-précharges inventés. Les interfaces mesurées et le cycle de pression
-conditionnent cette analyse. La sélection d'alliage LPBF, la simulation de
-fabrication, les coupons, l'inspection, les essais de pression et le banc
-restent ouverts ; tous les drapeaux de qualification restent faux.
+The [repository workflow](../../docs/TOOLCHAIN.md) remains applicable.
+The hydraulic stage must produce an accepted mesh, a converged solution
+and a flow balance before a numerical result can be credited.
+CHT then requires a conformal solid/water partition, heat fluxes and
+material thermal properties as functions of temperature.
+
+CalculiX cannot establish engine strength with invented studs, contacts and
+preloads. Measured interfaces and the pressure cycle condition this analysis.
+LPBF alloy selection, manufacturing simulation, coupons, inspection,
+pressure tests and engine bench testing remain open; every qualification
+flag remains false.

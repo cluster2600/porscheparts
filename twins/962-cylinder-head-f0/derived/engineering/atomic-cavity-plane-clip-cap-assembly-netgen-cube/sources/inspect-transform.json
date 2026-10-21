@@ -1,0 +1,52 @@
+{
+  "base_path": "work/962-engineering/saved-cube-default-readback-001/reader.py",
+  "base_sha256": "c493da25ff2e675db533f9261a4040358b46ae98c822d04e4ec68e59d1f4116e",
+  "ordered_exact_replacements": [
+    [
+      "def inspect(path):",
+      "def inspect_live():"
+    ],
+    [
+      " gmsh.open(str(path));tags,coords,_=gmsh.model.mesh.getNodes();",
+      " tags,coords,_=gmsh.model.mesh.getNodes();"
+    ],
+    [
+      "len(np.unique(tags))==len(tags) and np.all((coords>=0)&(coords<=7))",
+      "len(np.unique(tags))==len(tags) and np.all(tags>0) and np.all((coords>=0)&(coords<=7))"
+    ],
+    [
+      "np.array_equal(coords[ix],P)",
+      "coords[ix].tobytes()==P.tobytes()"
+    ],
+    [
+      "assert len(np.unique(et))==len(et);",
+      "assert len(np.unique(et))==len(et) and np.all(et>0);"
+    ],
+    [
+      "referenced=np.unique(en);inner=",
+      "referenced=np.unique(en);assert np.array_equal(referenced,tags);inner="
+    ],
+    [
+      " dims={};periodic=[]",
+      " dims={};entities={};periodic=[]"
+    ],
+    [
+      "dims[int(n)]=dim",
+      "dims[int(n)]=dim;entities[int(n)]=[dim,tag]"
+    ],
+    [
+      "report={'mesh_sha256':sha(path),'mesh_bytes':path.stat().st_size,",
+      "report={"
+    ],
+    [
+      "'node_classifications':[[n,dims[n]] for n in sorted(dims)],",
+      "'node_classifications':[[n,dims[n]] for n in sorted(dims)],'node_entity_classifications':[[n,*entities[n]] for n in sorted(entities)],"
+    ],
+    [
+      " gmsh.clear();return report,arrays,(tags,coords,et,en,canonical_tets)",
+      " return report,arrays,(tags,coords,et,en,canonical_tets),(*qualities.values(),signed)"
+    ]
+  ],
+  "reverse_recovers_complete_original_inspect_source": true,
+  "canonical_distribution_and_P_F_copied_exact": true
+}

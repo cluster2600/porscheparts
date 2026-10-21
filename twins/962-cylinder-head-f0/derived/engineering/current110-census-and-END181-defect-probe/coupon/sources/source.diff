@@ -1,0 +1,213 @@
+--- work/962-engineering/cp1-oneway-cooling-release-linear-END181-equilibrium-diagnostic-prep-001/diagnose_END181.py
++++ work/962-engineering/cp1-oneway-cooling-release-linear-END181-defect-correction-prep-001/diagnose_defect.py
+@@ -1,4 +1,4 @@
+-"""HELD one-phase END181 equilibrium localization; never launches or reruns the assessor/solver."""
++"""HELD one-END181 derived Q1 tangent/defect probe; never changes or accepts saved native fields."""
+ import csv
+ from decimal import Decimal, localcontext
+ import hashlib
+@@ -15,8 +15,8 @@
+ HERE = Path(__file__).resolve().parent
+ HELD = HERE / 'held-preparation.json'
+ NATIVE = BASE / 'cp1-oneway-cooling-release-linear-001'
+-OUTPUT = BASE / 'cp1-oneway-cooling-release-linear-END181-equilibrium-diagnostic-001'
+-AUTHORIZATION = BASE / 'cp1-oneway-cooling-release-linear-END181-equilibrium-diagnostic-root-execution-001/authorization.json'
++OUTPUT = BASE / 'cp1-oneway-cooling-release-linear-END181-defect-correction-diagnostic-001'
++AUTHORIZATION = BASE / 'cp1-oneway-cooling-release-linear-END181-defect-correction-root-execution-001/authorization.json'
+ DISP = ('disp_x', 'disp_y', 'disp_z')
+ FORCE = ('rx', 'ry', 'rz')
+ TENSORS = ('stress', 'elastic_strain', 'mechanical_strain', 'total_strain', 'thermal_eigenstrain')
+@@ -315,6 +315,55 @@
+     return out
+ 
+ 
++def consistent_tangent(numpy, geometry, cells):
++    """Full Q1 small-strain tangent: engineering shear gamma=2*epsilon_xy/xz/yz."""
++    order = [(tag, j) for tag in sorted(geometry) for j in range(3)]
++    position = {pair: k for k, pair in enumerate(order)}
++    need(len(order) == 1275 and len(cells) == 256, 'Fixed full coupon tangent only')
++    # Stress=[xx,yy,zz,xy,xz,yz]; strain=[xx,yy,zz,2xy,2xz,2yz].
++    constitutive = numpy.diag(numpy.array([2*MU, 2*MU, 2*MU, MU, MU, MU], dtype=numpy.float64))
++    constitutive[:3, :3] += LAM
++    stiffness = numpy.zeros((1275,1275), dtype=numpy.float64)
++    cell_order = sorted(cells)
++    for tag in cell_order:
++        conn = cells[tag]; indices = [position[(node,j)] for node in conn for j in range(3)]
++        local = numpy.zeros((24,24), dtype=numpy.float64)
++        for _, _, gradients, weight in hex_rule([geometry[node] for node in conn]):
++            B = numpy.zeros((6,24), dtype=numpy.float64)
++            for a, (gx,gy,gz) in enumerate(gradients):
++                B[0,3*a] = gx; B[1,3*a+1] = gy; B[2,3*a+2] = gz
++                B[3,3*a] = gy; B[3,3*a+1] = gx
++                B[4,3*a] = gz; B[4,3*a+2] = gx
++                B[5,3*a+1] = gz; B[5,3*a+2] = gy
++            local += weight * (B.T @ constitutive @ B)
++        stiffness[numpy.ix_(indices,indices)] += local
++    need(stiffness.shape == (1275,1275) and numpy.isfinite(stiffness).all(), 'Finite fixed tangent required')
++    # No arbitrary symmetry, rigid-mode, condition-number or rank acceptance limit.
++    rigid = []
++    for kind in ('translation','rotation'):
++        for axis in range(3):
++            mode = numpy.zeros(1275, dtype=numpy.float64)
++            for tag in sorted(geometry):
++                x,y,z = geometry[tag]
++                vector = ([float(axis == j) for j in range(3)] if kind == 'translation' else
++                          ((0.,-z,y), (z,0.,-x), (-y,x,0.))[axis])
++                for j in range(3): mode[position[(tag,j)]] = vector[j]
++            defect = stiffness @ mode
++            need(numpy.isfinite(defect).all(), 'Finite unconstrained rigid-mode diagnostic required')
++            rigid.append(dict(kind=kind,axis=axis,input_amplitude='1 m translation' if kind == 'translation' else '1 rad rotation about original origin',
++                output_unit='N',all1275_force_values=[float(x) for x in defect],maximum_absolute_force_N=float(numpy.max(numpy.abs(defect))),
++                acceptance_limit=None,accepted_as_zero=None))
++    metadata = dict(matrix_shape=[1275,1275],unit='N/m',dtype='float64',
++        row_and_column_DOF_order=[list(pair) for pair in order],cell_assembly_order=cell_order,
++        engineering_strain_order=['epsilon_xx','epsilon_yy','epsilon_zz','2epsilon_xy','2epsilon_xz','2epsilon_yz'],
++        conjugate_stress_order=['sigma_xx','sigma_yy','sigma_zz','sigma_xy','sigma_xz','sigma_yz'],
++        constitutive_matrix_Pa=constitutive.tolist(),quadrature_points_per_cell=8,
++        matrix_binary64_LE_C_order_sha256=hashlib.sha256(numpy.asarray(stiffness,dtype='<f8',order='C').tobytes(order='C')).hexdigest(),
++        matrix_bytes=int(stiffness.nbytes),maximum_absolute_asymmetry_N_per_m=float(numpy.max(numpy.abs(stiffness-stiffness.T))),
++        symmetry_acceptance_limit=None,unconstrained_rigid_modes=rigid)
++    return stiffness, order, metadata
++
++
+ def main(authorization_sha256=None):
+     # An absent external authorization refuses before metadata, runtime, CSV or CDF body access.
+     need(isinstance(authorization_sha256, str) and re.fullmatch('[0-9a-f]{64}', authorization_sha256),
+@@ -322,8 +371,9 @@
+     need(AUTHORIZATION.is_file() and not AUTHORIZATION.is_symlink() and sha(AUTHORIZATION) == authorization_sha256,
+          'Exact separate root authorization required')
+     held = json.loads(HELD.read_text()); authorization = json.loads(AUTHORIZATION.read_text())
+-    need(authorization.get('schema') == '962-linear-cooling-END181-equilibrium-diagnostic-authorization/v1'
++    need(authorization.get('schema') == '962-linear-cooling-END181-defect-correction-authorization/v1'
+          and authorization.get('diagnostic_execution_authorized') is True
++         and authorization.get('derived_algebraic_probe_authorized') is True
+          and authorization.get('root_and_independent_source_review_complete') is True
+          and authorization.get('source') == held['source']
+          and authorization.get('held') == dict(path=str(HELD.relative_to(ROOT)), sha256=sha(HELD), bytes=HELD.stat().st_size)
+@@ -371,6 +421,15 @@
+          and netcdf_file.__module__ == 'scipy.io._netcdf'
+          and Path(sys.modules[netcdf_file.__module__].__file__).resolve() == (Path(selection['site_packages']) / 'scipy/io/_netcdf.py').resolve(),
+          'Exact decoder versions and origins required')
++    prior = json.loads((ROOT / held['accepted_original_END181_diagnostic']['path']).read_text())
++    prior_acceptance = json.loads((ROOT / held['accepted_original_END181_root_acceptance']['path']).read_text())
++    need(prior_acceptance.get('decision') == 'ACCEPT_SINGLE_PHASE_SAVED_DIAGNOSTIC_ASSOCIATIONS_ONLY_GLOBAL_REFUSAL_RETAINED'
++         and prior_acceptance.get('result') == held['accepted_original_END181_diagnostic']
++         and prior.get('status') == 'COMPLETED_SINGLE_PHASE_DIAGNOSTIC_ONLY'
++         and prior.get('step') == 181 and prior.get('phase') == 'end',
++         'Accepted original single-phase localization only; strict trajectory refusal retained')
++    need(Path(numpy.linalg.__file__).resolve() == (Path(selection['site_packages']) / 'numpy/linalg/__init__.py').resolve(),
++         'Use only the already selected NumPy linear algebra route')
+     transfer = json.loads((ROOT / held['accepted_transfer_manifest']['path']).read_text())
+     geometry = {row['source_node_id']: tuple(row['coordinates_m']) for row in transfer['node_rows']}
+     need(len(geometry) == len(transfer['node_rows']) == 425 and len(set(map(bits, geometry.values()))) == 425,
+@@ -450,12 +509,99 @@
+                 audit.context = 'END181_independent_free_DOF_residual'; audit.close(forces[tag][j], 0., 'force_N')
+     native_sums = resultants(native, geometry, set(geometry), constraints)
+     assembled_sums = resultants(forces, geometry, set(geometry), constraints)
++    need(native_sums == prior['native_resultants'] and assembled_sums == prior['independently_assembled_resultants'],
++         'Original independent reassembly must reproduce the accepted single-phase resultants exactly')
++    need(components == prior['all1275_native_vs_assembled_component_observations'],
++         'Every original native/reconstructed force and source association must reproduce exactly')
++    stiffness, order, tangent_metadata = consistent_tangent(numpy, geometry, cells)
++    free_positions = [k for k,pair in enumerate(order) if pair in free]
++    constrained_positions = [k for k,pair in enumerate(order) if pair in constraints]
++    need(len(free_positions) == 1269 and len(constrained_positions) == 6, 'Same six eliminated constraints required')
++    residual = numpy.array([forces[tag][j] for tag,j in order], dtype=numpy.float64)
++    correction = numpy.zeros(1275, dtype=numpy.float64)
++    # Exactly one solve. A singular/nonfinite solve refuses; no retry, regularization or new support.
++    correction[free_positions] = numpy.linalg.solve(stiffness[numpy.ix_(free_positions,free_positions)], -residual[free_positions])
++    need(numpy.isfinite(correction).all() and all(correction[k] == 0. for k in constrained_positions),
++         'Finite correction with exactly zero constrained increments required')
++    predicted_force_change = stiffness @ correction
++    algebraic_free_defect = predicted_force_change[free_positions] + residual[free_positions]
++    derived_nodes = {tag:dict(row) for tag,row in nodal.items()}
++    for k in free_positions:
++        tag,j = order[k]; derived_nodes[tag][DISP[j]] = number(nodal[tag][DISP[j]] + float(correction[k]))
++    need(all(derived_nodes[tag][DISP[j]].hex() == nodal[tag][DISP[j]].hex() for tag,j in constraints),
++         'All original constrained displacement words retained')
++    effective_correction = numpy.array([derived_nodes[tag][DISP[j]]-nodal[tag][DISP[j]] for tag,j in order], dtype=numpy.float64)
++    predicted_effective_force_change = stiffness @ effective_correction
++    derived_forces = {tag:[0.]*3 for tag in geometry};derived_energy = 0.;derived_fields = {}
++    derived_audit = DiagnosticAudit(policy)
++    for label, subset, ru, rt in [('old2', old_cells, {n:ZERO[0] for n in old_nodes}, {n:400. for n in old_nodes}),
++                                  ('born3', set(cells)-old_cells, born_u, birth_T)]:
++        subset_nodes = {n for tag in subset for n in cells[tag]}
++        all_constrained = {(n,k) for n in subset_nodes for k in range(3)}
++        derived_audit.context = 'derived_END181_' + label + '_same_kernel_and_original_saved_QP_comparison'
++        f,en,state = field_phase(derived_audit, geometry, cells, subset,
++                                {n:derived_nodes[n] for n in subset_nodes}, ru, rt, qp, all_constrained)
++        for n,values in f.items():
++            for j in range(3): derived_forces[n][j] += values[j]
++        derived_energy += en;derived_fields.update(state)
++    correction_rows = []
++    for k,(tag,j) in enumerate(order):
++        original_u = nodal[tag][DISP[j]];derived_u = derived_nodes[tag][DISP[j]]
++        change = derived_forces[tag][j]-forces[tag][j]
++        derived_audit.context = dict(step=181,phase='derived',source_ID=tag,component=j)
++        derived_audit.close(derived_u, original_u, 'displacement_m')
++        derived_audit.close(change, float(predicted_force_change[k]), 'force_N')
++        derived_audit.close(change, float(predicted_effective_force_change[k]), 'force_N')
++        derived_audit.close(derived_forces[tag][j], native[tag][j], 'force_N')
++        if (tag,j) in free: derived_audit.close(derived_forces[tag][j], 0., 'force_N')
++        correction_rows.append(dict(source_ID=tag,component=j,constrained=(tag,j) in constraints,
++            coordinate_binary64_LE_hex=bits(geometry[tag]).hex(),native_and_original_displacement_m=original_u,
++            original_displacement_hex=original_u.hex(),requested_correction_m=float(correction[k]),
++            requested_correction_hex=float(correction[k]).hex(),effective_representable_increment_m=float(effective_correction[k]),
++            effective_increment_hex=float(effective_correction[k]).hex(),derived_displacement_m=derived_u,derived_displacement_hex=derived_u.hex(),
++            native_force_N=native[tag][j],original_assembled_force_N=forces[tag][j],derived_assembled_force_N=derived_forces[tag][j],
++            native_force_hex=native[tag][j].hex(),original_assembled_force_hex=forces[tag][j].hex(),derived_force_hex=derived_forces[tag][j].hex(),
++            fresh_force_difference_N=change,requested_Kdu_N=float(predicted_force_change[k]),effective_Kdu_N=float(predicted_effective_force_change[k]),
++            requested_Kdu_minus_fresh_difference_N=float(predicted_force_change[k])-change,
++            original_displacement_limit_m=policy['displacement_m'],original_force_limit_N=policy['force_N']))
++    tensor_rows = []
++    for key in sorted(computed):
++        tag,q = key;original_fields=computed[key];new_fields=derived_fields[key];saved_fields=qp[key][1]
++        native_values={name:[saved_fields[name][i][j] for i,j in COMP] for name in TENSORS}
++        original_values={name:[original_fields[name][i][j] for i,j in COMP] for name in TENSORS}
++        derived_values={name:[new_fields[name][i][j] for i,j in COMP] for name in TENSORS}
++        for name in TENSORS:
++            unit='stress_Pa' if name == 'stress' else 'strain'
++            for i,j in COMP:
++                derived_audit.context=dict(step=181,phase='derived_vs_original',source_cell_ID=tag,native_qp_ID=q,tensor=name,component=[i,j])
++                derived_audit.close(new_fields[name][i][j],original_fields[name][i][j],unit)
++        tensor_rows.append(dict(source_cell_ID=tag,native_qp_ID=q,physical_rule_index=qp[key][0],
++            native_saved=native_values,original_reconstructed=original_values,derived_reconstructed=derived_values))
++    derived_sums = resultants(derived_forces,geometry,set(geometry),constraints)
++    for rowset,rows_of_sums in derived_sums.items():
++        for row in rows_of_sums:
++            derived_audit.context=dict(step=181,phase='derived_resultant',rowset=rowset,component=row['component'])
++            derived_audit.close(row['force_N'],0.,'force_N');derived_audit.close(row['moment_Nm'],0.,'moment_Nm')
++    need(len(correction_rows)==1275 and len(tensor_rows)==2048, 'Complete derived rows required; no truncated field comparison')
++    probe = dict(tangent=tangent_metadata,solve='one numpy.linalg.solve(K_FF,-assembled_original_free_residual)',
++        solve_count=1,constrained_correction_m=0.,free_DOF_positions=free_positions,constrained_DOF_positions=constrained_positions,
++        maximum_requested_correction_m=float(numpy.max(numpy.abs(correction))),maximum_effective_correction_m=float(numpy.max(numpy.abs(effective_correction))),
++        all1269_free_linear_defect_N=[float(x) for x in algebraic_free_defect],maximum_absolute_linear_defect_N=float(numpy.max(numpy.abs(algebraic_free_defect))),
++        all1275_native_original_derived_rows=correction_rows,all2048_native_original_derived_QP_tensors=tensor_rows,
++        tensor_component_order=[list(x) for x in COMP],derived_resultants=derived_sums,
++        original_elastic_strain_energy_J=energy,derived_elastic_strain_energy_J=derived_energy,
++        derived_comparisons_under_original_SI_gates=dict(counts=derived_audit.counts,maximum=derived_audit.maximum,exceedances=derived_audit.exceedances),
++        all_temperature_and_birth_references_unchanged=True,original_saved_fields_rewritten=False,
++        original_trajectory_or_derived_state_accepted=False,convergence_or_roundoff_floor_established=False,
++        mathematical_or_solver_cause=None,physics_or_material_or_LPBF_or_head_qualification=False)
+     for name, record in held['raw_input_records'].items(): need(sha(NATIVE/name)==record['sha256'], 'Fixed raw input changed')
+     for name, record in held['metadata_records'].items(): need(sha(ROOT/name)==record['sha256'], 'Fixed metadata changed')
+     for name, record in selection['files'].items(): need(sha(Path(selection['site_packages'])/name)==record['sha256'], 'Selected decoder changed')
+     need(sha(AUTHORIZATION)==authorization_sha256, 'External authorization changed')
+-    result = dict(schema='962-linear-cooling-END181-one-phase-independent-equilibrium-localization/v1',
+-        status='COMPLETED_SINGLE_PHASE_DIAGNOSTIC_ONLY', step=181, phase='end',
++    result = dict(schema='962-linear-cooling-END181-one-derived-tangent-defect-probe/v1',
++        status='COMPLETED_ONE_DERIVED_ALGEBRAIC_PROBE_ONLY', step=181, phase='end',
++        derived_probe=probe,accepted_original_diagnostic=held['accepted_original_END181_diagnostic'],
++        accepted_original_diagnostic_root=held['accepted_original_END181_root_acceptance'],
+         source=held['source'], input_metadata=held['metadata_records'], raw_inputs=held['raw_input_records'],
+         selected_geometry_member='thermoelastic.e-s002', selected_END181_time=mesh['END181_native_time'],
+         selected_END181_time_index=mesh['END181_time_index'],
+@@ -471,7 +617,7 @@
+         exact_region_assembly_iteration_order=assembly_order,elastic_strain_energy_J=energy,
+         unchanged_scalar_gate_observations=dict(counts=audit.counts,maximum=audit.maximum,exceedances=audit.exceedances),
+         accepted_original_thermal_values_metadata_only_root_attributed=True,
+-        source_math_and_limits_unchanged=True,original_full_assessment_refusal_retained=True,
++        eighteen_original_math_and_parser_kernels_and_limits_unchanged=True,new_consistent_tangent_and_one_solve_only=True,original_full_assessment_refusal_retained=True,
+         mathematical_or_solver_cause=None,IEEE_floor_or_roundoff_cause=None,feasibility_claim=None,
+         full_trajectory_or_assessor_reexecuted=False,native_solver_replayed=False,
+         seven_SI_or_full_fields_accepted=False,engineering_accepted=False,physics_qualified=False,

@@ -1,0 +1,157 @@
+{
+  "schema": "962-current24-edge-removal-source-findings/v1",
+  "status": "STATIC_REASONING_ONLY_NO_EXECUTION",
+  "source_function_refs": {
+    "coordinate_rows": 22,
+    "need": 42,
+    "typed_hash": 46,
+    "current_faces": 50,
+    "rational": 190,
+    "subtract": 194,
+    "dot": 198,
+    "cross": 202,
+    "exact_quality": 206,
+    "prepare_context": 220,
+    "oriented_boundary": 260,
+    "context_snapshot": 275,
+    "canonical_bytes": 294,
+    "link_cycle": 298,
+    "link_triangulations": 330,
+    "enumerate_edge_stars": 350,
+    "convex_edge_cavity": 370,
+    "screen_edge_candidate": 415,
+    "complete_conflict_relations": 479,
+    "screen_complete_saved_family": 512
+  },
+  "proof_obligations": [
+    {
+      "obligation": "Known old abstract manifold/ball",
+      "source": "link_cycle298–327 and convex_edge_cavity376–389",
+      "finding": "Each unique owner gives one link edge disjoint from u,v. A connected degree2 n-cycle and n unique owners identify exactly [u,v]*C. This is a compact connected orientable3-ball with boundary suspension S0*C. Complete incidence/opposite internal orientations and full2n-face cone-cycle boundary are explicitly checked; positive old determinants are separate."
+    },
+    {
+      "obligation": "Actual boundary bijection",
+      "source": "convex_edge_cavity390–409 and METHOD",
+      "finding": "Every other cavity vertex lies strictly inside each outward triangular face halfspace. With full dimension and exactly n+2 distinct/extreme vertices, these are2n distinct exposed triangular hull facets. Convex3-polytope F<=2V−4 gives F<=2n, so they exhaust the hull. Strict supports prohibit co-planar extra vertices/coincident facets. Matching labeled cycle-sphere incidence gives a boundary bijection, including shared edges/vertices."
+    },
+    {
+      "obligation": "Replacement ball and orientation",
+      "source": "link_triangulations330–347 and screen_edge_candidate418–455",
+      "finding": "The root-edge recursion enumerates triangulated abstract disks, independent of ring planarity. Membership in that exact family gives the suspension3-ball. Candidate cell orientations may be reordered, but all final determinants must be positive, all internal faces cancel oppositely and the entire oriented boundary must equal the old boundary."
+    },
+    {
+      "obligation": "Local filling theorem scope",
+      "source": "Primary Lipman Theorem1, Section2 and proof; source embedded gate454–455",
+      "finding": "For each known abstract ball, the verified boundary bijection and consistent nondegenerate orientation satisfy the cited global-inversion sufficient conditions, including lower-dimensional injectivity. Convexity keeps all vertex/affine images in the same target hull. This is a conditional local result, not a whole-head or nonconvex proof."
+    },
+    {
+      "obligation": "Unchanged quality and volume",
+      "source": "exact_quality206–217, candidate423–433",
+      "finding": "Binary64 coordinates enter Fraction exactly. Every replacement requires D>0 and Q²>=1/100 with no tolerance. Old cells only require positive orientation, retaining known poor cells. Exact total signed volume is independently recorded/equality gated; neither positive volumes nor equal volume alone certifies embedding."
+    },
+    {
+      "obligation": "Full fixed-word context/history",
+      "source": "donor intake/current_faces/prepare_context and snapshots275–295, full screen514/532–533",
+      "finding": "13 donor definitions remain text/AST exact. Full271 coordinate/word/classification rows,499 ordered cells,24poor/475good/33shared/16seeds and protected66/1983/86 ancestry are checked/retained. Signed zero is included in actual binary64 words and declared words; geometric Fraction zero does not erase storage-word preservation."
+    },
+    {
+      "obligation": "Determinism and family completeness",
+      "source": "enumerate_edge_stars350–367, fixed55 map20, full screen518–530",
+      "finding": "Edges derive from every poor cell edge containing a complete-star seed; all owners in the accepted seed context are gathered. Static expected55 IDs/degrees match held and reason-accounting metadata. Invalid links/outside-degree cases retain rows. For every valid cycle all Catalan alternatives are screened even if convex/quality gates fail. Conditional count <=1033 and all24poor/all16seed coverage are required; no alternative or pass is selected."
+    },
+    {
+      "obligation": "Complete declared conflict union",
+      "source": "complete_conflict_relations479–509",
+      "finding": "Case-to-candidate membership plus all same-case cliques, all shared-removal cross-case products and every equal-proposed-four-set clique reconstruct each declared pair/reason. Canonical unordered pairs are union-counted without truncation. This is complete only for those three combinatorial relations; arbitrary global geometric/semantic conflicts remain unproved and no combination/application is selected."
+    },
+    {
+      "obligation": "Observed complements and missing ownership",
+      "source": "candidate434–476",
+      "finding": "Within-proposal duplicates, duplicates of observed unchanged cells and all introduced edge/face owner sets are retained and locally refused when observed. Feature coverage is complete only when it contains a complete-star seed; otherwise absent global owners stay null. Eligibility, exterior/BIN/region/interface and whole-head embedding remain unavailable."
+    }
+  ],
+  "sixteen_fixture_expected_results": [
+    {
+      "method": "test_regular_octahedron_both_four_to_four_fillings",
+      "independent_static_rationale": "Square-equator unit poles give original and replacement D=2 per tet. S=T=14 gives Q²=36*4/(14*14)=36/49; four volumes1/3 total4/3. Eight strict triangular faces have24 support rows. Both diagonals give valid four-cell fillings.",
+      "executed": false
+    },
+    {
+      "method": "test_catalan_completeness_for_all_five_degrees",
+      "independent_static_rationale": "Root-edge decomposition has C(n−2) alternatives:2,5,14,42,132. Closed-form Catalan count and unique/cell/vertex cardinalities are meaningful checks separate from one fixed expected example.",
+      "executed": false
+    },
+    {
+      "method": "test_duplicate_link_edge_is_not_a_cycle",
+      "independent_static_rationale": "Replacing owner104 with owner101 duplicates an opposite edge; the duplicate-link reason must prevent a cycle certificate.",
+      "executed": false
+    },
+    {
+      "method": "test_disconnected_degree_two_link_is_refused",
+      "independent_static_rationale": "Two disjoint four-cycles satisfy local degree2 but traversal visits only the first component; single-cycle closure must fail. This fixture calls no coordinate geometry.",
+      "executed": false
+    },
+    {
+      "method": "test_reversed_original_orientation_is_not_repaired",
+      "independent_static_rationale": "Swapping the two poles of one original ordered tetrahedron reverses its determinant; old positivity and filling certificate must fail. Old orientation is never repaired.",
+      "executed": false
+    },
+    {
+      "method": "test_coincident_vertices_refuse_non_degeneracy",
+      "independent_static_rationale": "Coincident ring coordinates make an original tetrahedron degenerate and cause zero support; positive and strict-boundary certificates must fail.",
+      "executed": false
+    },
+    {
+      "method": "test_nonplanar_ring_can_keep_positive_cells_without_convex_certificate",
+      "independent_static_rationale": "Moving ring vertex3 only in z leaves central-edge determinants positive because the pole edge is axial. Pole5 is no longer extreme; a boundary support test fails. Positivity alone therefore cannot certify embedding.",
+      "executed": false
+    },
+    {
+      "method": "test_skinny_convex_case_refuses_unchanged_quality",
+      "independent_static_rationale": "h=2^-10 is exact binary64 and preserves a strictly convex octahedron. Replacement D²=4h², S>=8,T>=4 imply Q²<=4.5h²<1/100, so embedding can pass while unchanged quality fails.",
+      "executed": false
+    },
+    {
+      "method": "test_incomplete_disk_refuses_full_boundary_and_exact_volume",
+      "independent_static_rationale": "One triangle coned to two poles gives two cells, volume2/3, wrong full boundary and no Catalan-disk membership; all required refusals are coherent. Boundary and volume failures are not claimed independent.",
+      "executed": false
+    },
+    {
+      "method": "test_repeated_triangle_cannot_be_a_multiplicity_two_filling",
+      "independent_static_rationale": "Repeated triangle preserves each individual regular tet quality but duplicates unordered four-sets and breaks complete disk/boundary incidence, blocking embedded filling.",
+      "executed": false
+    },
+    {
+      "method": "test_protected_history_refuses_otherwise_valid_replacement",
+      "independent_static_rationale": "Marking removed cell101 protected leaves the geometric filling certificate intact but adds the protected-history refusal and prevents local finite pass.",
+      "executed": false
+    },
+    {
+      "method": "test_existing_complement_cell_and_feature_are_not_silently_reused",
+      "independent_static_rationale": "Observed complement999 duplicates candidate four-set{1,2,3,5}; its diagonal/face also owns an introduced feature. Both duplicate/feature evidence is retained and local pass fails.",
+      "executed": false
+    },
+    {
+      "method": "test_missing_owner_evidence_is_unavailable_even_for_analytic_octahedron",
+      "independent_static_rationale": "Explicit incomplete owner scope blocks the cycle/filling certificate even for otherwise ideal coordinates; saved owner evidence is not inferred from geometry.",
+      "executed": false
+    },
+    {
+      "method": "test_duplicate_proposals_with_disjoint_removals_are_a_distinct_conflict",
+      "independent_static_rationale": "Different removal tags10/20 share no removal conflict, but equal unordered proposed cell gives one duplicate-cell clique and exactly one conflict pair.",
+      "executed": false
+    },
+    {
+      "method": "test_factorized_relations_preserve_exact_pair_union",
+      "independent_static_rationale": "Four candidate IDs, including ordinal2/10 ordering, produce the complete six-pair union. Within cliques, cross products and duplicate cliques overlap; normalized pair set must count six rather than summing repeated reasons.",
+      "executed": false
+    },
+    {
+      "method": "test_all_words_fixed_and_local_pass_does_not_close_global_evidence",
+      "independent_static_rationale": "Pure local screening preserves the complete signed-zero-aware snapshot. -0x0.0p+0 remains exact; introduced equator diagonal has unavailable outside ownership. Local pass does not set eligibility/application/global proof.",
+      "executed": false
+    }
+  ],
+  "performance_and_future_control_scope": "At most1033 candidates and at most533028 distinct unordered candidate pairs is a finite planning bound, not an observed memory/time/serialization guarantee. Full rows must be retained; exception/timeout/size refusal must be incomplete, never zero candidates. Held recursive_process_count8 is only a future metadata ceiling; a later owned actual must separately spell out concrete TERM/KILL/time/RSS/output controls. No actual/controller exists here.",
+  "real_geometry_or_fixture_evaluated": false
+}

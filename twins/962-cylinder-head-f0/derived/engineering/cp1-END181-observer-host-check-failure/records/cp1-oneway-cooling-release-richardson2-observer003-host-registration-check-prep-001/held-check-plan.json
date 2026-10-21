@@ -1,0 +1,183 @@
+{
+  "schema": "962-observer003-held-positive-host-type-registration-check/v1",
+  "status": "HELD_UNRUN",
+  "one_check": {
+    "host_historical_identity": {
+      "path": "work/962-engineering/moose-local-installed-002/bin/combined-opt",
+      "sha256": "b11b7c481e502e0ae5dc61eba18e3e096c9ebf0dfee3f29b005353c9a1455547",
+      "bytes": 216704
+    },
+    "host_fresh_identity": null,
+    "argv": [
+      "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-local-installed-002/bin/combined-opt",
+      "-skip_petscrc",
+      "--n-threads=1",
+      "--check-input",
+      "--list-constructed-objects",
+      "-i",
+      "thermoelastic-birth-observer-registration.i"
+    ],
+    "cwd": "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/cp1-oneway-cooling-release-richardson2-observer003-host-registration-root-execution-001",
+    "environment": {
+      "PATH": "/usr/bin:/bin",
+      "LANG": "C",
+      "LC_ALL": "C",
+      "OMP_NUM_THREADS": "1",
+      "OPENBLAS_NUM_THREADS": "1",
+      "MKL_NUM_THREADS": "1",
+      "VECLIB_MAXIMUM_THREADS": "1",
+      "FI_PROVIDER": "tcp",
+      "DYLD_LIBRARY_PATH": "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-local-installed-002/lib/combined:/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-local-installed-002/lib",
+      "DYLD_PRINT_LIBRARIES": "1",
+      "TMPDIR": "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/cp1-oneway-cooling-release-richardson2-observer003-host-registration-root-execution-001/tmp"
+    },
+    "direct_Popen_no_shell_or_usr_bin_env": true,
+    "invocations": 1
+  },
+  "minimal_positive_result_contract": {
+    "returncode": 0,
+    "stderr_required_text": "Syntax OK",
+    "stdout_start_marker": "**START OBJECT DATA**",
+    "stdout_end_marker": "**END OBJECT DATA**",
+    "required_exact_line_inside_constructed_type_frame": "CouponEnd181DofMap",
+    "plugin_load_trace_expected_path": "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/cp1-oneway-cooling-release-richardson2-END181-dof-map-observer-prep-003/build-005/libcoupon_end181_observer-opt.dylib",
+    "type_claim_scope": "Host parser/Factory registration and completed input setup with the observer type constructed; no output callback or live node/DOF/map proof",
+    "no_solve_source_basis": "MooseApp::run check_input branch calls errorCheck/SyntaxOK instead of executeExecutioner; list constructed types happens after input actions.",
+    "expected_outputs": "Full stdout/stderr/loader trace, status/lifecycle and fresh declared input identities; preserve unexpected files without decoding them."
+  },
+  "input": {
+    "held_source": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer003-host-registration-check-prep-001/thermoelastic-birth-observer-registration.i",
+      "sha256": "af8e25dc6edfea8da24321b032dca6e46cf9ea59aa927b46a7c40de1b210fd1d",
+      "bytes": 15537
+    },
+    "future_owned_copy_basename": "thermoelastic-birth-observer-registration.i",
+    "delta_proof": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer003-host-registration-check-prep-001/input-delta-proof.json",
+      "sha256": "5153405c5ba7fd812ad5f3979dd81a56f4c3d5d3b59158560b82b5b68480e2bc",
+      "bytes": 2341
+    },
+    "input_diff": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer003-host-registration-check-prep-001/input.diff",
+      "sha256": "2f1829bff419b77cda35d25781762351f6d18fb897927e5a86ec6c41fd29bca9",
+      "bytes": 1907
+    },
+    "original_RICH2_input": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-prep-001/thermoelastic-birth.i",
+      "sha256": "6ab5e130c4a89d67a0f200dafa2032d731009db371028aa1ec66a9403ddff031",
+      "bytes": 14878
+    },
+    "future_copy_must_be_byte_exact": true,
+    "unchanged_three_grid_dependencies": [
+      {
+        "future_owned_basename": "old-end.grid",
+        "existing_source": "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/cp1-oneway-cooling-release-inputs-001/old-end.grid",
+        "expected_current_table_sha256_from_saved_metadata": "c64b252894a88730ad1f6ec0311cc5fe58a2cb3a8831f67e61db9d20be95823e",
+        "fresh_source_or_copy_hash": null,
+        "grid_body_read_or_copied_in_this_preparation": false
+      },
+      {
+        "future_owned_basename": "born-end.grid",
+        "existing_source": "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/cp1-oneway-cooling-release-inputs-001/born-end.grid",
+        "expected_current_table_sha256_from_saved_metadata": "9caf52c69d0b14db442571b11d72252f3431d57b3991ab90ed849ddb6178b63f",
+        "fresh_source_or_copy_hash": null,
+        "grid_body_read_or_copied_in_this_preparation": false
+      },
+      {
+        "future_owned_basename": "born-begin80.grid",
+        "existing_source": "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/cp1-oneway-cooling-release-inputs-001/born-begin80.grid",
+        "expected_current_table_sha256_from_saved_metadata": "cf4d9df9c8ab66aa37c40ef4e9cf3be44607229ff901201017eba0ba176cfbe4",
+        "fresh_source_or_copy_hash": null,
+        "grid_body_read_or_copied_in_this_preparation": false
+      }
+    ],
+    "grid_pin_metadata": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-inputs-001/transfer-manifest.json",
+      "sha256": "c774e62c67e16c29dc024b8cc8e6641570e316265960e58cd7170827f8cecd06",
+      "bytes": 130095
+    },
+    "setup_may_read_grid_data_and_generate_original_mesh_without_a_time_step_solve": true,
+    "no_grid_bodies_read_copied_or_interpolated_in_this_preparation": true
+  },
+  "unchanged_plugin_registration_inputs": {
+    "plugin": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-END181-dof-map-observer-prep-003/build-005/libcoupon_end181_observer-opt.dylib",
+      "sha256": "a45fa2d7d3b699bdfc654e6eb5432064d51132dfdb196f528487eed1f1bf2382",
+      "bytes": 166704
+    },
+    "descriptor": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-END181-dof-map-observer-prep-003/build-005/libcoupon_end181_observer-opt.la",
+      "sha256": "b4b32aa0a5ebd176bba5040c1bd4fb116f567bc198c015c06a06d816aa523c21",
+      "bytes": 214
+    },
+    "shim_source": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-END181-dof-map-observer-prep-003/src/CouponEnd181ObserverRegistration.C",
+      "sha256": "042e1b0f5a4c70a53a4e92fd00631e2073716e83cd6def943f549134328b53da",
+      "bytes": 737
+    },
+    "observer_source": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-END181-dof-map-observer-prep-003/src/CouponEnd181DofMap.C",
+      "sha256": "e4c9d98f9fff50fc4ec41299eaed0afe34f23befcf459a21ebbfaaceeff473d9",
+      "bytes": 10989
+    },
+    "observer_header": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-END181-dof-map-observer-prep-003/include/CouponEnd181DofMap.h",
+      "sha256": "04594fb8360acd807994c4c99b073ff8ac5c380da6c500c44fed14e5ccfb538b",
+      "bytes": 1182
+    },
+    "held_input_fragment": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-END181-dof-map-observer-prep-003/plugin-input.i.fragment",
+      "sha256": "c0b11d2b00a6042ce61ec4f4706104eeac8194a3b27f173fd8bcb2afdd339290",
+      "bytes": 1088
+    },
+    "plugin_source_or_binary_rewritten": false,
+    "object_names_restriction_added": false
+  },
+  "loader_scope": {
+    "mapping": "DYLD_LIBRARY_PATH=isolatedprefix/lib/combined:isolatedprefix/lib; same explicit leaf mapping as successful standalone guard, with DYLD_PRINT_LIBRARIES=1",
+    "proven_prior_scope": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer003-guard-root-execution-002/receipt.json",
+      "sha256": "71df7770f7474d7d12242a8d67111a7f64839ea1a1b1685ca34fae4d16da94c5",
+      "bytes": 356858
+    },
+    "guard_helper_success_is_not_host_or_full_ABI_acceptance": true,
+    "original_native_host_runtime_reference": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-registry-001/runtime-bindings.json",
+      "sha256": "3200d21dae8e1d09968faa089ef0ac04cb51ffc60b25fcdc95432b950a705e3e",
+      "bytes": 6886
+    },
+    "full_transitive_runtime_closure_exercise_required": false,
+    "fresh_host_plugin_declared_provider_and_input_pins_deferred_to_root_admission": true
+  },
+  "proposed_resources": {
+    "wall_seconds": 60,
+    "TERM_grace_seconds": 8,
+    "KILL_wait_seconds": 8,
+    "sampled_owned_group_RSS_stop_bytes": 2147483648,
+    "owned_output_stop_bytes": 33554432,
+    "OMP_BLAS_environment_threads": 1,
+    "thread_observations_nongating": true,
+    "numeric_reported_RSS_zero_allowed": true,
+    "missing_or_nonnumeric_RSS_not_zero_filled": true,
+    "retry": 0,
+    "core_bytes": 0
+  },
+  "source_associations": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer003-host-registration-check-prep-001/source-associations.json",
+    "sha256": "dac7133110cfc00dce8285013df1dffdcc6f9c42c6b33ac72219d7974a667557",
+    "bytes": 3883
+  },
+  "factory_registration_accepted": false,
+  "output_callback_execution_authorized": false,
+  "live_node_DOF_or_XFY_capture_authorized": false,
+  "host_check_execution_authorized": false,
+  "plugin_load_authorized": false,
+  "native_solve_authorized": false,
+  "guard_or_runtime_probe_executed": false,
+  "future_actual": null,
+  "future_root_admission": null,
+  "future_runtime_preflight": null,
+  "future_host_result": null,
+  "physics_or_manufacturing_acceptance": false,
+  "accepted_guard_scope_root_record": null
+}

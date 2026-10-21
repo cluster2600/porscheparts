@@ -1,0 +1,214 @@
+--- work/962-engineering/cp1-oneway-thermoelastic-assessor-prep-003/assess.py
++++ work/962-engineering/cp1-oneway-thermoelastic-level1-assessor-prep-001/assess.py
+@@ -13,8 +13,8 @@
+ 
+ PREP = Path(__file__).resolve().parent
+ ROOT = PREP.parents[2]
+-CASE = ROOT / 'work/962-engineering/cp1-oneway-thermoelastic-transfer-prep-002'
+-OUTPUT = 'work/962-engineering/cp1-oneway-thermoelastic-assessment-002'
++CASE = ROOT / 'work/962-engineering/cp1-oneway-thermoelastic-level1-prep-001'
++OUTPUT = 'work/962-engineering/cp1-oneway-thermoelastic-level1-assessment-001'
+ DISP = ('disp_x', 'disp_y', 'disp_z')
+ FORCE = ('rx', 'ry', 'rz')
+ TENSORS = ('stress', 'elastic_strain', 'mechanical_strain', 'total_strain', 'thermal_eigenstrain')
+@@ -266,15 +266,15 @@
+             box = tuple(min(geometry[n][j] for n in conn) for j in range(3)); need(box not in boxes, 'Duplicate native Cartesian cell refused'); boxes.add(box)
+         need(boxes == set(product((i / 8 for i in range(16)), (i / 4 for i in range(4)), (i / 4 for i in range(4)))), 'Complete256 native HEX8 grid bijection required')
+         for ti, time in enumerate(data['times']):
+-            step = round(time * 400)
+-            need(0 <= step <= 160 and abs(time - step / 400) <= 5e-13 and step not in frames, 'One unambiguous native END frame per exact fixed time required')
++            step = round(time * 200)
++            need(0 <= step <= 80 and abs(time - step / 200) <= 5e-13 and step not in frames, 'One unambiguous native END frame per exact fixed time required')
+             for tag, conn in mesh.items():
+                 old = max(geometry[n][0] for n in conn) <= 1.
+-                need(data['blocks'][tag] == (2 if old else 1 if step < 80 else 3), 'Native per-element block transition must match old/inactive/born geometry')
++                need(data['blocks'][tag] == (2 if old else 1 if step < 40 else 3), 'Native per-element block transition must match old/inactive/born geometry')
+             frames[step] = dict(member=name, index=ti, fields={field: {tag - 1: values[ti][k] for k, tag in enumerate(data['node_map'])} for field, values in data['fields'].items()})
+         member_rows.append(dict(filename=name, sha256=sha(directory / name), magic=cdf_magic(directory / name), times=data['times'],
+                                 node_map=data['node_map'], element_map=data['element_map'], block_ids=data['block_ids'], block_status=data['block_status']))
+-    need(set(frames) == set(range(161)), 'Complete161 END Exodus frames required')
++    need(set(frames) == set(range(81)), 'Complete81 END Exodus frames required')
+     return geometry, mesh, frames, member_rows
+ 
+ 
+@@ -333,20 +333,20 @@
+     constraints = {(0, 0), (0, 1), (0, 2), (32, 1), (32, 2), (137, 2)}
+     need(geometry[0] == (0., 0., 0.) and geometry[32] == (1., 0., 0.) and geometry[137] == (0., 1., 0.), 'Observed exact support IDs and positions required')
+     source = {(r['step'], r['phase']): r for r in source_index['selected']}
+-    need(len(source) == 321, 'Complete original321 thermal source associations required')
++    need(len(source) == 161, 'Complete original161 thermal source associations required')
+     def thermal(step, phase, active):
+         item = source[(step, phase) if step else (0, 'end')]
+         path = source_directory / item['filename']; need(sha(path) == item['sha256'], 'Original thermal source drift')
+         return node_sample(path, geometry, active, ('temperature',))[0]  # Original thermal rows remain strictly unique.
+-    birth_T = {tag: value['temperature'] for tag, value in thermal(80, 'begin', set(geometry)).items() if tag in born_nodes}
++    birth_T = {tag: value['temperature'] for tag, value in thermal(40, 'begin', set(geometry)).items() if tag in born_nodes}
+     born_u = None; previous_end = None; previous_qp = None; qcoords = {}; summaries = []; total_qp = dict(begin=0, end=0)
+-    for step in range(161):
+-        active_nodes = old_nodes if step < 80 else set(geometry); active_cells = old_cells if step < 80 else set(cells)
++    for step in range(81):
++        active_nodes = old_nodes if step < 40 else set(geometry); active_cells = old_cells if step < 40 else set(cells)
+         phase_state = {}
+         for phase in ('begin', 'end'):
+             cols = (*DISP, 'temperature') if phase == 'begin' else (*DISP, 'temperature', *FORCE)
+             nodal, nodal_storage = node_sample(directory / f'thermoelastic_{phase}_{step:04d}.csv', geometry, active_nodes, cols,
+-                                               shared_nodes if step >= 80 else ())
++                                               shared_nodes if step >= 40 else ())
+             source_T = thermal(step, phase, active_nodes)
+             for tag, row in nodal.items():
+                 audit.close(row['temperature'], source_T[tag]['temperature'], 'temperature_K')
+@@ -357,14 +357,14 @@
+                 for tag, previous in previous_end.items():
+                     for name in (*DISP, 'temperature'):
+                         audit.close(nodal[tag][name], previous[name], 'temperature_K' if name == 'temperature' else 'displacement_m')
+-            if phase == 'begin' and step == 80:
++            if phase == 'begin' and step == 40:
+                 born_u = {tag: [nodal[tag][k] for k in DISP] for tag in born_nodes}
+                 for tag in born_nodes - old_nodes:
+                     for value in born_u[tag]:
+                         audit.close(value, 0., 'displacement_m')
+             reference_path = directory / f'thermoelastic_reference_{phase}_{step:04d}.csv'
+             reference_storage = None
+-            if step >= 80:
++            if step >= 40:
+                 ref, reference_storage = node_sample(reference_path, geometry, born_nodes, ('born_reference_temperature',))
+                 for tag in born_nodes:
+                     audit.close(ref[tag]['born_reference_temperature'], birth_T[tag], 'temperature_K')
+@@ -377,7 +377,7 @@
+             # Shared nodes have old and born material references; override per cell below.
+             qp = quadrature_sample(directory / f'thermoelastic_{phase}_fields_{step:04d}.csv', geometry, cells, active_cells, qcoords, policy['QP_coordinate_m'])
+             forces = {tag: [0.] * 3 for tag in active_nodes}; energy = 0.; computed = {}
+-            for subset, ru, rt in [(old_cells, {n: ZERO[0] for n in old_nodes}, {n: 400. for n in old_nodes})] + ([(set(cells) - old_cells, born_u, birth_T)] if step >= 80 else []):
++            for subset, ru, rt in [(old_cells, {n: ZERO[0] for n in old_nodes}, {n: 400. for n in old_nodes})] + ([(set(cells) - old_cells, born_u, birth_T)] if step >= 40 else []):
+                 subset_nodes = {n for t in subset for n in cells[t]}; ns = {n: nodal[n] for n in subset_nodes}
+                 # A subdomain's interface nodal forces are not individually free equilibrium rows.
+                 all_constrained = {(n, k) for n in subset_nodes for k in range(3)}
+@@ -395,7 +395,7 @@
+                         for name in TENSORS:
+                             for i, j in COMP: audit.close(tensors[name][i][j], before[name][i][j], 'stress_Pa' if name == 'stress' else 'strain')
+                     else:
+-                        need(step == 80 and key[0] not in old_cells, 'Only newborn material rows may appear')
++                        need(step == 40 and key[0] not in old_cells, 'Only newborn material rows may appear')
+                         for name in TENSORS:
+                             for i, j in COMP: audit.close(tensors[name][i][j], 0., 'stress_Pa' if name == 'stress' else 'strain')
+             if phase == 'end':
+@@ -410,7 +410,7 @@
+                 frame = frames[step]['fields']
+                 for tag in active_nodes:
+                     for name in cols: audit.close(frame[name][tag], nodal[tag][name], 'temperature_K' if name == 'temperature' else 'displacement_m' if name in DISP else 'force_N')
+-                if step >= 80:
++                if step >= 40:
+                     for tag in born_nodes: audit.close(frame['born_reference_temperature'][tag], birth_T[tag], 'temperature_K')
+                 begin_qp = phase_state['begin'][1]
+                 for key, (_, tensors) in qp.items():
+@@ -423,7 +423,7 @@
+             phase_state[phase] = (nodal, qp, computed); total_qp[phase] += len(qp)
+             summaries.append(dict(step=step, phase=phase, active_nodes=len(nodal), active_cells=len(active_cells), quadrature_rows=len(qp), elastic_strain_energy_J_diagnostic=energy,
+                                   native_nodal_storage=nodal_storage, born_reference_storage=reference_storage))
+-    need(total_qp == dict(begin=247808, end=247808) and len(qcoords) == 2048, 'Complete fixed161-phase/8-GP coverage required')
++    need(total_qp == dict(begin=124928, end=124928) and len(qcoords) == 2048, 'Complete fixed81-phase/8-GP coverage required')
+     return dict(passed=True, maximum_SI_errors=audit.maximum, scalar_comparisons=audit.counts, phase_summaries=summaries,
+                 native_nodes=[dict(id=t, coordinates_m=list(p)) for t, p in sorted(geometry.items())],
+                 native_ordered_cells=[dict(id=t, nodes=row) for t, row in sorted(cells.items())], exodus_family=family,
+@@ -436,7 +436,7 @@
+     contract_path = Path(contract_path)
+     need(contract_path.is_file() and not contract_path.is_symlink() and sha(contract_path) == digest, 'Exact external assessment actual required')
+     c = json.loads(contract_path.read_text()); held = json.loads((PREP / 'held-preparation.json').read_text())
+-    need(c.get('schema') == '962-cp1-oneway-thermoelastic-assessment-actual/v1' and c.get('assessment_authorized') is True
++    need(c.get('schema') == '962-cp1-oneway-thermoelastic-level1-assessment-actual/v1' and c.get('assessment_authorized') is True
+          and c.get('root_and_independent_source_review_complete') is True and c.get('native_completed_and_peer_reviewed') is True
+          and all(c.get(k) is False for k in ('native_execution_authorized', 'automatic_retry', 'head_execution_authorized', 'engineering_accepted', 'physics_qualified', 'material_qualified', 'process_calibrated', 'manufacturing_authorized')),
+          'Only separately reviewed saved-data assessment is authorized')
+@@ -451,7 +451,7 @@
+         need(sha(contract_path) == digest, 'Assessment actual drift')
+     checked()
+     policy = json.loads((PREP / 'POLICY.json').read_text())['absolute_SI_limits']
+-    need(c.get('native_directory') == 'work/962-engineering/cp1-oneway-thermoelastic-transfer-002', 'Only the fixed future native coupon may be assessed')
++    need(c.get('native_directory') == 'work/962-engineering/cp1-oneway-thermoelastic-level1-001', 'Only the fixed future native coupon may be assessed')
+     native = ROOT / c['native_directory']; receipt = json.loads((native / 'native-execution.json').read_text())
+     need(receipt.get('native_execution_completed') is True and receipt.get('returncode') == 0 and receipt.get('inputs_unchanged') is True and receipt.get('binary_and_runtime_unchanged') is True, 'Stopped completed immutable native receipt required')
+     need(receipt.get('process_reaped') is True and receipt.get('physics_contract_sha256') == sha(CASE / 'case-contract.json')
+@@ -479,14 +479,14 @@
+          and Path(scipy.__file__).resolve() == (Path(selection['site_packages']) / 'scipy/__init__.py').resolve()
+          and netcdf_file.__module__ == 'scipy.io._netcdf'
+          and Path(sys.modules[netcdf_file.__module__].__file__).resolve() == (Path(selection['site_packages']) / 'scipy/io/_netcdf.py').resolve(), 'Actual decoder import origins must equal selected files')
+-    transfer = json.loads((ROOT / c['transfer_manifest']).read_text()); need(transfer.get('schema') == '962-oneway-thermoelastic-prepared-transfer/v1' and transfer.get('birth_reference_phase') == 'BEGIN80_all225_born_DOFs_including25shared', 'Exact completed original transfer associations required')
++    transfer = json.loads((ROOT / c['transfer_manifest']).read_text()); need(transfer.get('schema') == '962-oneway-thermoelastic-prepared-transfer/v1' and transfer.get('birth_reference_phase') == 'BEGIN40_all225_born_DOFs_including25shared', 'Exact completed original transfer associations required')
+     need(pins.get(c['transfer_manifest']) == receipt['transfer_manifest_sha256'] == sha(ROOT / c['transfer_manifest']), 'Native and assessor must use the same completed transfer manifest')
+-    result = assess_data(native, transfer, ROOT / 'work/962-engineering/cp1-assumed-thermal-birth-linear-001', json.loads((CASE / 'thermal-input-index.json').read_text()), c['exodus_family'], policy)
++    result = assess_data(native, transfer, ROOT / 'work/962-engineering/cp1-assumed-thermal-birth-linear-level1-001', json.loads((CASE / 'thermal-input-index.json').read_text()), c['exodus_family'], policy)
+     checked()
+     for name, record in inventory.items(): need(sha(native / name) == record['sha256'], 'Native output drift during assessment')
+     for name, record in selection['files'].items(): need(sha(Path(selection['site_packages']) / name) == record['sha256'], 'Selected decoder runtime changed')
+     need(c.get('output_directory') == OUTPUT and not output.exists() and not output.is_symlink(), 'Fresh fixed assessment output required')
+-    result.update(schema='962-cp1-oneway-thermoelastic-saved-field-assessment/v1', actual_sha256=digest, input_sha256=pins,
++    result.update(schema='962-cp1-oneway-thermoelastic-level1-saved-field-assessment/v1', actual_sha256=digest, input_sha256=pins,
+                   source_physics_contract_sha256=sha(CASE / 'case-contract.json'), policy_sha256=sha(PREP / 'POLICY.json'),
+                   native_original_receipt_passed_field=receipt.get('passed'), native_receipt_is_not_assessment_authority=True,
+                   decoder_runtime_selection_sha256='2b3b2ac0f52ecef6f349d45524f26011da94c257fc0ede5067a9f236681e9713',
+--- work/962-engineering/cp1-oneway-thermoelastic-assessor-prep-003/selfcheck.py
++++ work/962-engineering/cp1-oneway-thermoelastic-level1-assessor-prep-001/selfcheck.py
+@@ -9,7 +9,7 @@
+ import unittest
+ 
+ SOURCE = Path(__file__).with_name('assess.py')
+-SOURCE_SHA = '55f5f9ca281f9752a6dcac28afca8d18f2c12b4759cf06f8c639a1bb3b8a81bd'
++SOURCE_SHA = '52a705a13cc46aa3fce2a485611129668624ae258134fc26991d3cca080135cb'
+ assert hashlib.sha256(SOURCE.read_bytes()).hexdigest() == SOURCE_SHA
+ spec = importlib.util.spec_from_file_location('fixed_coupon_assessor_guard', SOURCE)
+ a = importlib.util.module_from_spec(spec)
+@@ -32,12 +32,12 @@
+              for i, (x, y, z) in enumerate(product((i / 8 for i in range(16)), (i / 4 for i in range(4)), (i / 4 for i in range(4))))}
+     names = (*a.DISP, *a.FORCE, 'temperature', 'born_reference_temperature', 'inactive_placeholder')
+     def member(first, last):
+-        times = [i / 400 for i in range(first, last + 1)]
++        times = [i / 200 for i in range(first, last + 1)]
+         return dict(nodes=geometry, cells=cells,
+-                    blocks={tag: 2 if max(geometry[n][0] for n in conn) <= 1. else 1 if first < 80 else 3 for tag, conn in cells.items()},
++                    blocks={tag: 2 if max(geometry[n][0] for n in conn) <= 1. else 1 if first < 40 else 3 for tag, conn in cells.items()},
+                     times=times, node_map=[t + 1 for t in geometry], element_map=[t + 1 for t in cells],
+-                    fields={name: [[0.] * 425 for _ in times] for name in names}, block_ids=[1, 2] if first < 80 else [2, 3], block_status=[1, 1])
+-    return geometry, member(0, 79), member(80, 160)
++                    fields={name: [[0.] * 425 for _ in times] for name in names}, block_ids=[1, 2] if first < 40 else [2, 3], block_status=[1, 1])
++    return geometry, member(0, 39), member(40, 80)
+ 
+ 
+ class Guards(unittest.TestCase):
+@@ -102,7 +102,7 @@
+             for fn in filenames: (directory / fn).write_bytes(b'CDF\x02')
+             with patch.object(a, 'read_exodus', side_effect=[before, after]):
+                 got = a.geometry_family(directory, filenames, transfer)
+-                self.assertEqual(len(got[0]), 425); self.assertEqual(len(got[1]), 256); self.assertEqual(len(got[2]), 161)
++                self.assertEqual(len(got[0]), 425); self.assertEqual(len(got[1]), 256); self.assertEqual(len(got[2]), 81)
+             bad = dict(before, nodes={t + 1: xyz for t, xyz in geometry.items()})
+             with patch.object(a, 'read_exodus', return_value=bad), self.assertRaises(ValueError): a.geometry_family(directory, filenames, transfer)
+             with patch.object(a, 'read_exodus', side_effect=[before, dict(after, blocks=before['blocks'])]), self.assertRaises(ValueError): a.geometry_family(directory, filenames, transfer)
+@@ -156,7 +156,7 @@
+         geometry, shared, columns, fields, saved = native_storage_fixture()
+         self.assertEqual(len(shared), 25); self.assertEqual(len(saved), 450)
+         with TemporaryDirectory() as name:
+-            path = Path(name) / 'thermoelastic_begin_0080.csv'
++            path = Path(name) / 'thermoelastic_begin_0040.csv'
+             path.write_text('\n'.join([','.join(fields), *(','.join(row) for row in saved)]) + '\n')
+             values, storage = a.node_sample(path, geometry, set(geometry), columns, shared)
+             self.assertEqual(set(values), set(geometry)); self.assertEqual(storage['raw_row_count'], 450)
+@@ -184,7 +184,7 @@
+             bad = [list(row) for row in saved]; bad[pair[1]][fields.index(field)] = value; cases.append(bad)
+         bad = [list(row) for row in saved]; bad[pair[1]][fields.index('y')] = '-0.0'; cases.append(bad)
+         with TemporaryDirectory() as name:
+-            path = Path(name) / 'thermoelastic_end_0080.csv'
++            path = Path(name) / 'thermoelastic_end_0040.csv'
+             # All eleven END fields, including reaction tokens, must match exactly.
+             self.assertEqual(len(fields), 11)
+             path.write_text('\n'.join([','.join(fields), *(','.join(row) for row in saved)]) + '\n')
+--- work/962-engineering/cp1-oneway-thermoelastic-assessor-prep-003/POLICY.json
++++ work/962-engineering/cp1-oneway-thermoelastic-level1-assessor-prep-001/POLICY.json
+@@ -25,7 +25,7 @@
+   "post_result_tuning_or_automatic_retry_allowed": false,
+   "reference_definition": {
+     "old2": "total_strain=symgrad(u), thermal_eigenstrain=alpha*(T-400K)*I",
+-    "born3": "total_strain=symgrad(u-u_BEGIN80), thermal_eigenstrain=alpha*(T-Treference_BEGIN80)*I, all 225bornDOFs including 25shared",
++    "born3": "total_strain=symgrad(u-u_BEGIN40), thermal_eigenstrain=alpha*(T-Treference_BEGIN40)*I, all 225bornDOFs including 25shared",
+     "elastic_and_mechanical_strain": "total_strain-thermal_eigenstrain",
+     "stress": "2*mu*elastic_strain+lambda*trace(elastic_strain)*I",
+     "weak_form": "All active cells, including initially old cells, assembled before free/constrained residual decisions; a born/old shared interface is not independently traction-free.",

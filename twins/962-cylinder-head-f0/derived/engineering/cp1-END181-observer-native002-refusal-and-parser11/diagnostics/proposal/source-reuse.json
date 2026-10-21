@@ -1,0 +1,163 @@
+{
+  "schema": "962-observer004-native-observation-diagnostics-source-reuse/v1",
+  "status": "SOURCE_ONLY_UNRUN",
+  "original_owner": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native-measurement-prep-001/run_root_once.py",
+    "sha256": "c09c6d24cc9024bf5e7b36daad9348fa3c2db89d8eaf1423590122a5df5ec344",
+    "bytes": 18051
+  },
+  "proposed_source": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native-observation-diagnostics-proposal-001/run_root_once_observability_proposed.py",
+    "sha256": "d7f8324479f48fd29a3a4879730603ae15c2d21308df24975680a45014769a17",
+    "bytes": 18913
+  },
+  "replacement_group_count": 7,
+  "replacement_groups": [
+    {
+      "old": "     for pid in children(proc.pid):\n",
+      "new": "     observation_operation='children(proc.pid)';observation_target_PID=proc.pid\n     for pid in children(proc.pid):\n"
+    },
+    {
+      "old": "      v=member(pid)\n",
+      "new": "      observation_operation='member(pid)';observation_target_PID=pid\n      v=member(pid)\n"
+    },
+    {
+      "old": "      observed=sample_owned({proc.pid}|{g for g in owned if group_exists(g)})\n",
+      "new": "      observation_operation='sample_owned({proc.pid}|{g for g in owned if group_exists(g)})';observation_target_PID=None\n      observed=sample_owned({proc.pid}|{g for g in owned if group_exists(g)})\n"
+    },
+    {
+      "old": "     if inclusive_bytes()>=536870912:stop=stop or 'inclusive_output_stop'\n",
+      "new": "     observation_operation='inclusive_bytes()';observation_target_PID=None\n     if inclusive_bytes()>=536870912:stop=stop or 'inclusive_output_stop'\n"
+    },
+    {
+      "old": "     if growth_bytes(O,D,baseline)>=33554432:stop=stop or 'incremental_growth_stop'\n",
+      "new": "     observation_operation='growth_bytes(O,D,baseline)';observation_target_PID=None\n     if growth_bytes(O,D,baseline)>=33554432:stop=stop or 'incremental_growth_stop'\n"
+    },
+    {
+      "old": "     if direct_RC is None:stop=stop or 'resource_or_group_observation_failed';error=dict(type=type(exc).__name__,message=str(exc))\n",
+      "new": "     if direct_RC is None:stop=stop or 'resource_or_group_observation_failed';error=dict(type=type(exc).__name__,message=str(exc),phase='owned_resource_poll',operation=observation_operation,target_PID=observation_target_PID,elapsed_seconds=time.monotonic()-started,owned_adapter_group_ID=proc.pid,owned_native_group_IDs=sorted(owned),traceback=traceback.format_exc())\n"
+    },
+    {
+      "old": "     else:exit_races.append(dict(error=repr(exc),direct_returncode=direct_RC,elapsed_seconds=time.monotonic()-started))\n",
+      "new": "     else:exit_races.append(dict(error=repr(exc),direct_returncode=direct_RC,elapsed_seconds=time.monotonic()-started,phase='owned_resource_poll',operation=observation_operation,target_PID=observation_target_PID,owned_adapter_group_ID=proc.pid,owned_native_group_IDs=sorted(owned),traceback=traceback.format_exc()))\n"
+    }
+  ],
+  "reverse_all_groups_restores_full_original_bytes": true,
+  "reverse_all_groups_restores_full_original_AST": true,
+  "unchanged_top_level_function_count": 18,
+  "unchanged_top_level_functions": [
+    {
+      "name": "ident",
+      "text_sha256": "f06fd6eb198e19f1531f05eca280140d315a50cbf235b61d03dcb7df5cadb459",
+      "bytes": 90,
+      "AST_equal": true
+    },
+    {
+      "name": "freeze",
+      "text_sha256": "39cc1c4eddcf0789584646ac807413d2c5b5d1e201daf0e5fce438a4eca24d2e",
+      "bytes": 110,
+      "AST_equal": true
+    },
+    {
+      "name": "input_map",
+      "text_sha256": "b749b73100a0ebc9fee67663c96b17b6ba469ac5e496cbf867ee13e5cf0d3741",
+      "bytes": 182,
+      "AST_equal": true
+    },
+    {
+      "name": "runtime_map",
+      "text_sha256": "2bf5a86bd0f17783a88336c541dfd20024812c5a08686847a635a1ab1f77789d",
+      "bytes": 531,
+      "AST_equal": true
+    },
+    {
+      "name": "group_exists",
+      "text_sha256": "67b74400b8ae03cab400d9360091514f9d295f0a93baa968468544e8b23cd5f3",
+      "bytes": 97,
+      "AST_equal": true
+    },
+    {
+      "name": "rec",
+      "text_sha256": "1c49fad82b6ce5d2a5432aa22114fa9b0e42eb46d4b57b8df2a0ba2c36d00543",
+      "bytes": 253,
+      "AST_equal": true
+    },
+    {
+      "name": "check",
+      "text_sha256": "7aafe9854e4e77c0b84d9232f40d979da358790349d8899b628ffe04418f3b77",
+      "bytes": 438,
+      "AST_equal": true
+    },
+    {
+      "name": "output_size",
+      "text_sha256": "0a86e778061dd08bb3109046fc15ea968e8bbe94ef7b8e4b02ea95365e320b65",
+      "bytes": 192,
+      "AST_equal": true
+    },
+    {
+      "name": "provider_links",
+      "text_sha256": "92d3d35a256f694cd8aa0183e3125c5f7b9dd8de6b8a746f8921644b2d95b940",
+      "bytes": 213,
+      "AST_equal": true
+    },
+    {
+      "name": "loaded_trace",
+      "text_sha256": "afd7878aad18864059d110fc46ae5bd355e8693d8bcf595ae00fdf40e096e663",
+      "bytes": 1242,
+      "AST_equal": true
+    },
+    {
+      "name": "children",
+      "text_sha256": "6826234d5582b1348b660735eff526ec209465d78c2c650931f45303776dbb05",
+      "bytes": 318,
+      "AST_equal": true
+    },
+    {
+      "name": "member",
+      "text_sha256": "49ae60bae67afc9a905015da7a727a3589326cb03818c9378a92063ea0e21808",
+      "bytes": 357,
+      "AST_equal": true
+    },
+    {
+      "name": "sample_owned",
+      "text_sha256": "77c205a689bf75910968db6e437e2f7ddcb43947cf1cf5dc499bdd63531f3212",
+      "bytes": 1035,
+      "AST_equal": true
+    },
+    {
+      "name": "capture",
+      "text_sha256": "97a33490cd8f8824ad9e76e5bb8be2c730c27b0bf16d688f8a49db426494b66a",
+      "bytes": 140,
+      "AST_equal": true
+    },
+    {
+      "name": "python_record",
+      "text_sha256": "59e6e363f69744ea94e88d93992b2788e7657bf453b3a87020e8d7911831bbb3",
+      "bytes": 176,
+      "AST_equal": true
+    },
+    {
+      "name": "growth_bytes",
+      "text_sha256": "b6edf866a95c614f7171ea82992a1640e1cb408fa0d7d00b30c1c13e65c88156",
+      "bytes": 439,
+      "AST_equal": true
+    },
+    {
+      "name": "inclusive_bytes",
+      "text_sha256": "2a215500ebb6857c144c9c9e2b8deac678ceab0968e3bb440ea4439c6a291b7f",
+      "bytes": 59,
+      "AST_equal": true
+    },
+    {
+      "name": "direct_map",
+      "text_sha256": "5e3be4849678c798cb29cf0b4d10c7e04e9934685ae05cd5deda5c57dc63e18a",
+      "bytes": 370,
+      "AST_equal": true
+    }
+  ],
+  "imports_exact": true,
+  "unchanged_main_regions": "Every original byte outside the seven exact replacement groups. No root/caller/native argv, environment, source path, P/S/D/O namespace, predicate, resource constant, signal/cleanup/finalization statement changed.",
+  "new_runtime_dependency": null,
+  "source_parse_only": true,
+  "execution_or_fixtures_performed": false
+}

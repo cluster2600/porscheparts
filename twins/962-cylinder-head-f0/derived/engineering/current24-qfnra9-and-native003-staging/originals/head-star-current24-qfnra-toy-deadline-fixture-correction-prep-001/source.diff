@@ -1,0 +1,16 @@
+--- work/962-engineering/head-star-current24-qfnra-toy-transport-prep-002/test_deadline_expectations.py
++++ work/962-engineering/head-star-current24-qfnra-toy-deadline-fixture-correction-prep-001/test_deadline_expectations.py
+@@ -58,11 +58,12 @@
+     shell=ast.copy_location(ast.ClassDef(name='Session',bases=[],keywords=[],body=methods,decorator_list=[]),original)
+     selected.append(shell)
+     permitted={name:getattr(builtins,name) for name in
+-        ('__build_class__','ValueError','BaseException','KeyError','type','str','list','bytes','bytearray',
++        ('__build_class__','ValueError','BaseException','KeyError','type','str','list','dict','bytes','bytearray',
+          'all','bool','len','min','max','getattr','repr')}
+     ns={'__builtins__':permitted,'__name__':'held_deadline_only','QUERY_SECONDS':5,'TERM_SECONDS':8,'KILL_SECONDS':8,
+         'time':SimpleNamespace(monotonic=lambda:clock.now),
+         'traceback':SimpleNamespace(format_exc=lambda:'synthetic traceback'),
++        'selectors':SimpleNamespace(EVENT_WRITE=object()),
+         'Frame':lambda tag:SimpleNamespace(state='before',echo_form='raw',response=lambda:'sat\n')}
+     exec(compile(ast.fix_missing_locations(ast.Module(body=selected,type_ignores=[])),
+                  'held_deadline_only','exec'),ns)

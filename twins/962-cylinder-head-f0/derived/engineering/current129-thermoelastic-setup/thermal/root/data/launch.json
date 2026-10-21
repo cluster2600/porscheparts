@@ -1,0 +1,25 @@
+{
+  "schema": "962-root-oneway-data-launch/v1",
+  "argv": [
+    "runtime-role://controller/python",
+    "-I",
+    "-B",
+    "work/962-engineering/cp1-oneway-thermoelastic-transfer-prep-001/prepare_transfer.py",
+    "work/962-engineering/cp1-oneway-thermoelastic-transfer-data-execution-prep-001/actual-contract.json",
+    "ca5d42d050bfa53a599bde36dfbc09c9b10dc9eb22371c8c2b873aa7c1963037"
+  ],
+  "root_pid": "process-role://temperature-data/root-owner",
+  "query_pid": "process-role://temperature-data/recorded-query",
+  "query_pgid": "process-role://temperature-data/recorded-query",
+  "owned_new_session": true,
+  "actual_sha256": "ca5d42d050bfa53a599bde36dfbc09c9b10dc9eb22371c8c2b873aa7c1963037",
+  "exact_child_peer_sha256": "2136c71a66256523d40653862607599ae6a19e5cd18a7bda0b65e8c7029fce76",
+  "controls": {
+    "wall_timeout_seconds": 60,
+    "start_new_session": true,
+    "TERM_then_2s_grace_KILL_if_needed": true,
+    "owned_process_wait_and_reap_required": true,
+    "output_stop_bytes": 33554432,
+    "hard_OS_CPU_or_RSS_quota": false
+  }
+}

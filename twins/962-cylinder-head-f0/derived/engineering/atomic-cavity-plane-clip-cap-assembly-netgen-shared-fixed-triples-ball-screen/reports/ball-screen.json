@@ -1,0 +1,4785 @@
+{
+  "schema": "962-exact-saved-shared-apex-centroid-ball-screen/v1",
+  "status": "no_shared_pair_obstruction_certified_inconclusive",
+  "source_sha256": "4e6d677e11ccaa6b8a9a66b3e59b764e7e4575bb6b467bdc3dd8e5a689d22007",
+  "input_hashes": {
+    "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-netgen-fixed-triples-001/readback-report.json": "d65f86d5d1cabd3e2013a127c1cd9713a232cb1d1bd7817d459f84949d1e1c14",
+    "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-netgen-shared-fixed-triples-assessment-001/review.json": "44a1e632adfc35be9f352fc46dd9d305597b04a2d502bd8dd49e97d4a2ee2a3a",
+    "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-netgen-shared-fixed-triples-assessment-001/minimum-ties.json": "fa39306ff18637869f0d1b2b9fa7db4c65009c8cbe2f30b61f3a5ca13030587f",
+    "twins/962-cylinder-head-f0/source/certify_fixed_face.py": "9b13f4dc7f2eca7da04e1587eb1f59a379a0d0c2101026f9b1d999ae09aaebb8",
+    "twins/962-cylinder-head-f0/FIXED_FACE_QUALITY.md": "7d93764a19b57fba3788c320a6a6ebbda29e59117fa4c694c6392807ef0a4d1c",
+    "twins/962-cylinder-head-f0/source/gmsh_sicn_reference.json": "28cf35720fa94611a17b219b60b2ead8c1153f6ae346e581d32fd1efe08f112d"
+  },
+  "shared_groups": 48,
+  "shared_cells": 99,
+  "complete_pair_count": 55,
+  "certified_disjoint_pair_count": 0,
+  "exact_arithmetic": "Fraction only; stored binary64 coordinates; no square roots/tolerance/grid",
+  "necessary_bound": "Q>=.1 implies u=|sqrt(3/2)*(p-centroid)|^2 lies between roots of S*u^2+(S^2-899*T)*u+S*T<=0. Both roots positive; u+<root sum. Physical squared radius U=(2/3)*(899*T/S-S).",
+  "pair_certificate": "D>U+V and (D-U-V)^2>4*U*V; strict separation of necessary outer balls",
+  "source_corner_scope": "Unsigned necessary bound symmetric in the fixed triple; it also bounds the positive native-orientation subset. No exterior-face membership inferred.",
+  "smallest_ceiling_ties_retained": [
+    {
+      "tetrahedron_tag": 29366318,
+      "apex_tag": 1613784,
+      "apex_group_multiplicity": 2,
+      "group_tetrahedron_tags": [
+        29366318,
+        29664233
+      ],
+      "already_recorded_approximate_ceiling": 0.10023686897656423
+    },
+    {
+      "tetrahedron_tag": 29366445,
+      "apex_tag": 1613757,
+      "apex_group_multiplicity": 2,
+      "group_tetrahedron_tags": [
+        29366445,
+        29672503
+      ],
+      "already_recorded_approximate_ceiling": 0.10023686897656423
+    },
+    {
+      "tetrahedron_tag": 29664587,
+      "apex_tag": 1613783,
+      "apex_group_multiplicity": 2,
+      "group_tetrahedron_tags": [
+        29664587,
+        31251529
+      ],
+      "already_recorded_approximate_ceiling": 0.10023686897656423
+    }
+  ],
+  "no_feasibility_or_global_infeasibility_from_inconclusive_pairs": true,
+  "selected_scope": "Only the195 originally positive-poor class3 cells; initially-good fixed-triple cells are not added.",
+  "all_other_incident_cell_constraints_not_tested": true,
+  "fixed_boundary_connectivity_scope_only": true,
+  "native_or_optimizer_calls": 0,
+  "engineering_accepted": false,
+  "physics_qualified": false,
+  "manufacturing_authorized": false,
+  "face_bounds": [
+    {
+      "tetrahedron_tag": 31580321,
+      "interior_apex_node_tag": 1393392,
+      "fixed_triple_node_tags": [
+        66221,
+        64982,
+        65123
+      ],
+      "source_coordinate_bits_sha256": "382df92d89b3c510f66d4946b3ded0ed953006546a6e52ca4b0a2c418624de34",
+      "exact_centroid_mm": [
+        {
+          "numerator": "-45189043",
+          "denominator": "786432"
+        },
+        {
+          "numerator": "38838913",
+          "denominator": "12582912"
+        },
+        {
+          "numerator": "5448823",
+          "denominator": "131072"
+        }
+      ],
+      "exact_S_mm2": {
+        "numerator": "1845794683289",
+        "denominator": "13194139533312"
+      },
+      "exact_T_mm4": {
+        "numerator": "22387249718285668825",
+        "denominator": "906694364710971881029632"
+      },
+      "squared_radius_upper_mm2": {
+        "numerator": "457260386515912908688079",
+        "denominator": "36530508901740745957834752"
+      }
+    },
+    {
+      "tetrahedron_tag": 31787912,
+      "interior_apex_node_tag": 1393392,
+      "fixed_triple_node_tags": [
+        64982,
+        65123,
+        64520
+      ],
+      "source_coordinate_bits_sha256": "eaa9456d96af32d93058fedcd194d7ac15c85e74191916f911edf697d4b31310",
+      "exact_centroid_mm": [
+        {
+          "numerator": "-22619585",
+          "denominator": "393216"
+        },
+        {
+          "numerator": "4611685",
+          "denominator": "1572864"
+        },
+        {
+          "numerator": "10870933",
+          "denominator": "262144"
+        }
+      ],
+      "exact_S_mm2": {
+        "numerator": "93757390601",
+        "denominator": "824633720832"
+      },
+      "exact_T_mm4": {
+        "numerator": "1230952824214521625",
+        "denominator": "56668397794435742564352"
+      },
+      "squared_radius_upper_mm2": {
+        "numerator": "22113649139496434233",
+        "denominator": "571296841380308975616"
+      }
+    },
+    {
+      "tetrahedron_tag": 29195394,
+      "interior_apex_node_tag": 1421487,
+      "fixed_triple_node_tags": [
+        314106,
+        313379,
+        314105
+      ],
+      "source_coordinate_bits_sha256": "0859574d7f0f154a06ff92168a197282947193bae668b5e7bd703c0a9ba48dd8",
+      "exact_centroid_mm": [
+        {
+          "numerator": "-25277717",
+          "denominator": "1572864"
+        },
+        {
+          "numerator": "848675",
+          "denominator": "24576"
+        },
+        {
+          "numerator": "40446415",
+          "denominator": "786432"
+        }
+      ],
+      "exact_S_mm2": {
+        "numerator": "8525558599",
+        "denominator": "68719476736"
+      },
+      "exact_T_mm4": {
+        "numerator": "125220808191998621",
+        "denominator": "3541774862152233910272"
+      },
+      "squared_radius_upper_mm2": {
+        "numerator": "232238577983478512713",
+        "denominator": "2636423666124233637888"
+      }
+    },
+    {
+      "tetrahedron_tag": 31835387,
+      "interior_apex_node_tag": 1421487,
+      "fixed_triple_node_tags": [
+        314106,
+        316915,
+        314105
+      ],
+      "source_coordinate_bits_sha256": "92a0507c4ab5e3d0c58bca9cc1e7314e05c5a87983b34b0d03e8060b3f81a523",
+      "exact_centroid_mm": [
+        {
+          "numerator": "-8340011",
+          "denominator": "524288"
+        },
+        {
+          "numerator": "27117757",
+          "denominator": "786432"
+        },
+        {
+          "numerator": "40446415",
+          "denominator": "786432"
+        }
+      ],
+      "exact_S_mm2": {
+        "numerator": "36160446281",
+        "denominator": "206158430208"
+      },
+      "exact_T_mm4": {
+        "numerator": "221685113124319345",
+        "denominator": "3541774862152233910272"
+      },
+      "squared_radius_upper_mm2": {
+        "numerator": "1083961125144070362899",
+        "denominator": "11182171261367507484672"
+      }
+    },
+    {
+      "tetrahedron_tag": 29669287,
+      "interior_apex_node_tag": 1425809,
+      "fixed_triple_node_tags": [
+        536511,
+        535783,
+        535782
+      ],
+      "source_coordinate_bits_sha256": "78869cc03baaeb44ac242e979df42f24fa1a11f9f460d3dab14cbb64c538f23c",
+      "exact_centroid_mm": [
+        {
+          "numerator": "25277717",
+          "denominator": "1572864"
+        },
+        {
+          "numerator": "27159007",
+          "denominator": "786432"
+        },
+        {
+          "numerator": "2534681",
+          "denominator": "49152"
+        }
+      ],
+      "exact_S_mm2": {
+        "numerator": "8656898239",
+        "denominator": "68719476736"
+      },
+      "exact_T_mm4": {
+        "numerator": "128088284852899529",
+        "denominator": "3541774862152233910272"
+      },
+      "squared_radius_upper_mm2": {
+        "numerator": "235779810969822802921",
+        "denominator": "2677038827133959405568"
+      }
+    },
+    {
+      "tetrahedron_tag": 31836264,
+      "interior_apex_node_tag": 1425809,
+      "fixed_triple_node_tags": [
+        535782,
+        534840,
+        535783
+      ],
+      "source_coordinate_bits_sha256": "e308b6c11d9cee36cc2c193c1917133a1c625d7e1d7a53e92bd1c46b114b26d9",
+      "exact_centroid_mm": [
+        {
+          "numerator": "50092025",
+          "denominator": "3145728"
+        },
+        {
+          "numerator": "27111101",
+          "denominator": "786432"
+        },
+        {
+          "numerator": "2534681",
+          "denominator": "49152"
+        }
+      ],
+      "exact_S_mm2": {
+        "numerator": "39687669619",
+        "denominator": "274877906944"
+      },
+      "exact_T_mm4": {
+        "numerator": "650711235594370145",
+        "denominator": "14167099448608935641088"
+      },
+      "squared_radius_upper_mm2": {
+        "numerator": "356499773340671796169",
+        "denominator": "3776283538738510823424"
+      }
+    },
+    {
+      "tetrahedron_tag": 28933157,
+      "interior_apex_node_tag": 1432342,
+      "fixed_triple_node_tags": [
+        279605,
+        279606,
+        276872
+      ],
+      "source_coordinate_bits_sha256": "135fa017292647caf338b412bc89e3840439778acccc52fa254ccafd2ec7073d",
+      "exact_centroid_mm": [
+        {
+          "numerator": "-16585505",
+          "denominator": "786432"
+        },
+        {
+          "numerator": "-40957223",
+          "denominator": "786432"
+        },
+        {
+          "numerator": "7022335",
+          "denominator": "131072"
+        }
+      ],
+      "exact_S_mm2": {
+        "numerator": "48268959017",
+        "denominator": "206158430208"
+      },
+      "exact_T_mm4": {
+        "numerator": "1378262738873845085",
+        "denominator": "14167099448608935641088"
+      },
+      "squared_radius_upper_mm2": {
+        "numerator": "346820550539483646989",
+        "denominator": "3731644807019627544576"
+      }
+    },
+    {
+      "tetrahedron_tag": 30929912,
+      "interior_apex_node_tag": 1432342,
+      "fixed_triple_node_tags": [
+        279606,
+        279605,
+        280597
+      ],
+      "source_coordinate_bits_sha256": "b17a7c587252b441c7810615461012d5f8d810d67401e0cac2165d780b57f2a3",
+      "exact_centroid_mm": [
+        {
+          "numerator": "-10966841",
+          "denominator": "524288"
+        },
+        {
+          "numerator": "-13608493",
+          "denominator": "262144"
+        },
+        {
+          "numerator": "42138835",
+          "denominator": "786432"
+        }
+      ],
+      "exact_S_mm2": {
+        "numerator": "3152461363",
+        "denominator": "12884901888"
+      },
+      "exact_T_mm4": {
+        "numerator": "114722292307764243",
+        "denominator": "1180591620717411303424"
+      },
+      "squared_radius_upper_mm2": {
+        "numerator": "292185257768820152897",
+        "denominator": "3899438915324712321024"
+      }
+    },
+    {
+      "tetrahedron_tag": 28946957,
+      "interior_apex_node_tag": 1435493,
+      "fixed_triple_node_tags": [
+        296418,
+        296945,
+        296946
+      ],
+      "source_coordinate_bits_sha256": "7f45a65fe3d76ffb7e66105b21ac0b42783c83f3bbd9a0d0dab243e50ca5c9d4",
+      "exact_centroid_mm": [
+        {
+          "numerator": "-7307053",
+          "denominator": "393216"
+        },
+        {
+          "numerator": "4255269",
+          "denominator": "65536"
+        },
+        {
+          "numerator": "15245641",
+          "denominator": "524288"
+        }
+      ],
+      "exact_S_mm2": {
+        "numerator": "19356439991",
+        "denominator": "103079215104"
+      },
+      "exact_T_mm4": {
+        "numerator": "152765511995516665",
+        "denominator": "3541774862152233910272"
+      },
+      "squared_radius_upper_mm2": {
+        "numerator": "333364435060038977",
+        "denominator": "26722053234106564608"
+      }
+    },
+    {
+      "tetrahedron_tag": 31225364,
+      "interior_apex_node_tag": 1435493,
+      "fixed_triple_node_tags": [
+        297733,
+        297101,
+        297102
+      ],
+      "source_coordinate_bits_sha256": "1d636e315d73844e811ca035b65f9eb9ff86d4fc7f033e4bed65425a041b5a8c",
+      "exact_centroid_mm": [
+        {
+          "numerator": "-7244557",
+          "denominator": "393216"
+        },
+        {
+          "numerator": "12773017",
+          "denominator": "196608"
+        },
+        {
+          "numerator": "1895953",
+          "denominator": "65536"
+        }
+      ],
+      "exact_S_mm2": {
+        "numerator": "6403884329",
+        "denominator": "51539607552"
+      },
+      "exact_T_mm4": {
+        "numerator": "23520327937151717",
+        "denominator": "885443715538058477568"
+      },
+      "squared_radius_upper_mm2": {
+        "numerator": "5606147486821600127",
+        "denominator": "123770131921898569728"
+      }
+    },
+    {
+      "tetrahedron_tag": 31081341,
+      "interior_apex_node_tag": 1441004,
+      "fixed_triple_node_tags": [
+        64975,
+        66227,
+        65126
+      ],
+      "source_coordinate_bits_sha256": "dfeb74523131b57f6f005dba011c814b9e651b948158690625c3311c20bb1ba0",
+      "exact_centroid_mm": [
+        {
+          "numerator": "-7531503",
+          "denominator": "131072"
+        },
+        {
+          "numerator": "-34328399",
+          "denominator": "3145728"
+        },
+        {
+          "numerator": "32692789",
+          "denominator": "786432"
+        }
+      ],
+      "exact_S_mm2": {
+        "numerator": "7207079015",
+        "denominator": "51539607552"
+      },
+      "exact_T_mm4": {
+        "numerator": "46239066229255681",
+        "denominator": "1770887431076116955136"
+      },
+      "squared_radius_upper_mm2": {
+        "numerator": "20822785763395831207",
+        "denominator": "1114350072088064163840"
+      }
+    },
+    {
+      "tetrahedron_tag": 31477480,
+      "interior_apex_node_tag": 1441004,
+      "fixed_triple_node_tags": [
+        64501,
+        65126,
+        64975
+      ],
+      "source_coordinate_bits_sha256": "081740e09ffc3310e5d77c04eabf06e27d286ff945a18f665c6309f9294a1699",
+      "exact_centroid_mm": [
+        {
+          "numerator": "-22619765",
+          "denominator": "393216"
+        },
+        {
+          "numerator": "-5802539",
+          "denominator": "524288"
+        },
+        {
+          "numerator": "4076477",
+          "denominator": "98304"
+        }
+      ],
+      "exact_S_mm2": {
+        "numerator": "94945754513",
+        "denominator": "824633720832"
+      },
+      "exact_T_mm4": {
+        "numerator": "1317287890868603881",
+        "denominator": "56668397794435742564352"
+      },
+      "squared_radius_upper_mm2": {
+        "numerator": "5196205466647638801059",
+        "denominator": "117443206231885269172224"
+      }
+    },
+    {
+      "tetrahedron_tag": 31081428,
+      "interior_apex_node_tag": 1441011,
+      "fixed_triple_node_tags": [
+        66225,
+        65125,
+        64973
+      ],
+      "source_coordinate_bits_sha256": "9f47e9e4e9a086606b66460d1fa99e602fe965041a62517450221c2248130859",
+      "exact_centroid_mm": [
+        {
+          "numerator": "-7531503",
+          "denominator": "131072"
+        },
+        {
+          "numerator": "-39184295",
+          "denominator": "1572864"
+        },
+        {
+          "numerator": "32692789",
+          "denominator": "786432"
+        }
+      ],
+      "exact_S_mm2": {
+        "numerator": "28828116329",
+        "denominator": "206158430208"
+      },
+      "exact_T_mm4": {
+        "numerator": "369909564705714269",
+        "denominator": "14167099448608935641088"
+      },
+      "squared_radius_upper_mm2": {
+        "numerator": "41646451233238736813",
+        "denominator": "2228684703090094374912"
+      }
+    },
+    {
+      "tetrahedron_tag": 31477486,
+      "interior_apex_node_tag": 1441011,
+      "fixed_triple_node_tags": [
+        64499,
+        65125,
+        64973
+      ],
+      "source_coordinate_bits_sha256": "76fffc1c3cfb3e4d4a01666d62b5f93971599f0179daa3a5f32b368ab4ac31b4",
+      "exact_centroid_mm": [
+        {
+          "numerator": "-22619765",
+          "denominator": "393216"
+        },
+        {
+          "numerator": "-308029",
+          "denominator": "12288"
+        },
+        {
+          "numerator": "4076477",
+          "denominator": "98304"
+        }
+      ],
+      "exact_S_mm2": {
+        "numerator": "1978048515",
+        "denominator": "17179869184"
+      },
+      "exact_T_mm4": {
+        "numerator": "20582756489393921",
+        "denominator": "885443715538058477568"
+      },
+      "squared_radius_upper_mm2": {
+        "numerator": "845733787610502413",
+        "denominator": "19115220784109322240"
+      }
+    },
+    {
+      "tetrahedron_tag": 31081429,
+      "interior_apex_node_tag": 1441012,
+      "fixed_triple_node_tags": [
+        64977,
+        66229,
+        65127
+      ],
+      "source_coordinate_bits_sha256": "4a12fc9385facbecb8dfb8165c18cd2d4f09cc557b9fbf61f56131048e214b54",
+      "exact_centroid_mm": [
+        {
+          "numerator": "-7531503",
+          "denominator": "131072"
+        },
+        {
+          "numerator": "26875993",
+          "denominator": "1572864"
+        },
+        {
+          "numerator": "32692789",
+          "denominator": "786432"
+        }
+      ],
+      "exact_S_mm2": {
+        "numerator": "28828116329",
+        "denominator": "206158430208"
+      },
+      "exact_T_mm4": {
+        "numerator": "369909564705714269",
+        "denominator": "14167099448608935641088"
+      },
+      "squared_radius_upper_mm2": {
+        "numerator": "41646451233238736813",
+        "denominator": "2228684703090094374912"
+      }
+    },
+    {
+      "tetrahedron_tag": 31477487,
+      "interior_apex_node_tag": 1441012,
+      "fixed_triple_node_tags": [
+        64503,
+        65127,
+        64977
+      ],
+      "source_coordinate_bits_sha256": "4ff009dd96a9ebf6c8a27733f6c061e599c201bb5c89cf5096ae8d7425bad2c6",
+      "exact_centroid_mm": [
+        {
+          "numerator": "-22619765",
+          "denominator": "393216"
+        },
+        {
+          "numerator": "208067",
+          "denominator": "12288"
+        },
+        {
+          "numerator": "4076477",
+          "denominator": "98304"
+        }
+      ],
+      "exact_S_mm2": {
+        "numerator": "1978048515",
+        "denominator": "17179869184"
+      },
+      "exact_T_mm4": {
+        "numerator": "20582756489393921",
+        "denominator": "885443715538058477568"
+      },
+      "squared_radius_upper_mm2": {
+        "numerator": "845733787610502413",
+        "denominator": "19115220784109322240"
+      }
+    },
+    {
+      "tetrahedron_tag": 31081437,
+      "interior_apex_node_tag": 1441013,
+      "fixed_triple_node_tags": [
+        66223,
+        65124,
+        64971
+      ],
+      "source_coordinate_bits_sha256": "f0621d76429fe8d6e4eb72f03e6e15ee5ece129a1e3b46158f0f68efeb54803c",
+      "exact_centroid_mm": [
+        {
+          "numerator": "-7531503",
+          "denominator": "131072"
+        },
+        {
+          "numerator": "-30602195",
+          "denominator": "786432"
+        },
+        {
+          "numerator": "32692789",
+          "denominator": "786432"
+        }
+      ],
+      "exact_S_mm2": {
+        "numerator": "7207079015",
+        "denominator": "51539607552"
+      },
+      "exact_T_mm4": {
+        "numerator": "46239066229255681",
+        "denominator": "1770887431076116955136"
+      },
+      "squared_radius_upper_mm2": {
+        "numerator": "20822785763395831207",
+        "denominator": "1114350072088064163840"
+      }
+    },
+    {
+      "tetrahedron_tag": 31477489,
+      "interior_apex_node_tag": 1441013,
+      "fixed_triple_node_tags": [
+        64497,
+        65124,
+        64971
+      ],
+      "source_coordinate_bits_sha256": "949c754fa0feb908998950b7c219ba9b711ee34d91ee23a5c1b8cf4a6b8be953",
+      "exact_centroid_mm": [
+        {
+          "numerator": "-22619765",
+          "denominator": "393216"
+        },
+        {
+          "numerator": "-480061",
+          "denominator": "12288"
+        },
+        {
+          "numerator": "4076477",
+          "denominator": "98304"
+        }
+      ],
+      "exact_S_mm2": {
+        "numerator": "1978048515",
+        "denominator": "17179869184"
+      },
+      "exact_T_mm4": {
+        "numerator": "20582756489393921",
+        "denominator": "885443715538058477568"
+      },
+      "squared_radius_upper_mm2": {
+        "numerator": "845733787610502413",
+        "denominator": "19115220784109322240"
+      }
+    },
+    {
+      "tetrahedron_tag": 31203851,
+      "interior_apex_node_tag": 1450443,
+      "fixed_triple_node_tags": [
+        65128,
+        64979,
+        66231
+      ],
+      "source_coordinate_bits_sha256": "ed768b28523a212fa6b843dc2f7b7e361673818be5cdc82b048bf8e66e7ede53",
+      "exact_centroid_mm": [
+        {
+          "numerator": "-7531503",
+          "denominator": "131072"
+        },
+        {
+          "numerator": "48896089",
+          "denominator": "1572864"
+        },
+        {
+          "numerator": "32692789",
+          "denominator": "786432"
+        }
+      ],
+      "exact_S_mm2": {
+        "numerator": "28828116329",
+        "denominator": "206158430208"
+      },
+      "exact_T_mm4": {
+        "numerator": "369909564705714269",
+        "denominator": "14167099448608935641088"
+      },
+      "squared_radius_upper_mm2": {
+        "numerator": "41646451233238736813",
+        "denominator": "2228684703090094374912"
+      }
+    },
+    {
+      "tetrahedron_tag": 31848215,
+      "interior_apex_node_tag": 1450443,
+      "fixed_triple_node_tags": [
+        64505,
+        64979,
+        65128
+      ],
+      "source_coordinate_bits_sha256": "9fab84fd38c5ea3611363c96230dc54c7493ae37a61a13cca09754e7ef565f07",
+      "exact_centroid_mm": [
+        {
+          "numerator": "-22619765",
+          "denominator": "393216"
+        },
+        {
+          "numerator": "380099",
+          "denominator": "12288"
+        },
+        {
+          "numerator": "4076477",
+          "denominator": "98304"
+        }
+      ],
+      "exact_S_mm2": {
+        "numerator": "1978048515",
+        "denominator": "17179869184"
+      },
+      "exact_T_mm4": {
+        "numerator": "20582756489393921",
+        "denominator": "885443715538058477568"
+      },
+      "squared_radius_upper_mm2": {
+        "numerator": "845733787610502413",
+        "denominator": "19115220784109322240"
+      }
+    },
+    {
+      "tetrahedron_tag": 31192445,
+      "interior_apex_node_tag": 1458419,
+      "fixed_triple_node_tags": [
+        798579,
+        799743,
+        799885
+      ],
+      "source_coordinate_bits_sha256": "a1acb96a1474d407e4e2e696e41c6a5b102def7fed66f06f21ebe2682e2b5c07",
+      "exact_centroid_mm": [
+        {
+          "numerator": "22594517",
+          "denominator": "393216"
+        },
+        {
+          "numerator": "-4855207",
+          "denominator": "1572864"
+        },
+        {
+          "numerator": "4086611",
+          "denominator": "98304"
+        }
+      ],
+      "exact_S_mm2": {
+        "numerator": "615226047467",
+        "denominator": "4398046511104"
+      },
+      "exact_T_mm4": {
+        "numerator": "7612896846425670267",
+        "denominator": "302231454903657293676544"
+      },
+      "squared_radius_upper_mm2": {
+        "numerator": "59512543474080027366023",
+        "denominator": "4058689157403814869860352"
+      }
+    },
+    {
+      "tetrahedron_tag": 31463903,
+      "interior_apex_node_tag": 1458419,
+      "fixed_triple_node_tags": [
+        800392,
+        799885,
+        799743
+      ],
+      "source_coordinate_bits_sha256": "f04bbb96da9b979d57a0f7053202d7b690eb09311063b5b9bd5db7e422643155",
+      "exact_centroid_mm": [
+        {
+          "numerator": "11309809",
+          "denominator": "196608"
+        },
+        {
+          "numerator": "-6149265",
+          "denominator": "2097152"
+        },
+        {
+          "numerator": "16306313",
+          "denominator": "393216"
+        }
+      ],
+      "exact_S_mm2": {
+        "numerator": "1504311370025",
+        "denominator": "13194139533312"
+      },
+      "exact_T_mm4": {
+        "numerator": "6715788582461036403",
+        "denominator": "302231454903657293676544"
+      },
+      "squared_radius_upper_mm2": {
+        "numerator": "1214643808937811245846447",
+        "denominator": "29772141176486383268659200"
+      }
+    },
+    {
+      "tetrahedron_tag": 31203852,
+      "interior_apex_node_tag": 1459063,
+      "fixed_triple_node_tags": [
+        799734,
+        799886,
+        798570
+      ],
+      "source_coordinate_bits_sha256": "f2acaf945c06ea581426ea19a3005d46e34c230780b79f7e1ef272241d0a1e8c",
+      "exact_centroid_mm": [
+        {
+          "numerator": "7531503",
+          "denominator": "131072"
+        },
+        {
+          "numerator": "-48896089",
+          "denominator": "1572864"
+        },
+        {
+          "numerator": "32692789",
+          "denominator": "786432"
+        }
+      ],
+      "exact_S_mm2": {
+        "numerator": "28828116329",
+        "denominator": "206158430208"
+      },
+      "exact_T_mm4": {
+        "numerator": "369909564705714269",
+        "denominator": "14167099448608935641088"
+      },
+      "squared_radius_upper_mm2": {
+        "numerator": "41646451233238736813",
+        "denominator": "2228684703090094374912"
+      }
+    },
+    {
+      "tetrahedron_tag": 31851970,
+      "interior_apex_node_tag": 1459063,
+      "fixed_triple_node_tags": [
+        800396,
+        799886,
+        799734
+      ],
+      "source_coordinate_bits_sha256": "f66f8186e4b7e86af4dd1a79ffccaa979421547c8d03f3b7826d0e719743e860",
+      "exact_centroid_mm": [
+        {
+          "numerator": "22619765",
+          "denominator": "393216"
+        },
+        {
+          "numerator": "-380099",
+          "denominator": "12288"
+        },
+        {
+          "numerator": "4076477",
+          "denominator": "98304"
+        }
+      ],
+      "exact_S_mm2": {
+        "numerator": "1978048515",
+        "denominator": "17179869184"
+      },
+      "exact_T_mm4": {
+        "numerator": "20582756489393921",
+        "denominator": "885443715538058477568"
+      },
+      "squared_radius_upper_mm2": {
+        "numerator": "845733787610502413",
+        "denominator": "19115220784109322240"
+      }
+    },
+    {
+      "tetrahedron_tag": 31203858,
+      "interior_apex_node_tag": 1459064,
+      "fixed_triple_node_tags": [
+        799890,
+        798578,
+        799742
+      ],
+      "source_coordinate_bits_sha256": "08658f644b8a5da4659e580d83a40d59b266a65096754b92ac10986faa88e1c4",
+      "exact_centroid_mm": [
+        {
+          "numerator": "7531503",
+          "denominator": "131072"
+        },
+        {
+          "numerator": "30602195",
+          "denominator": "786432"
+        },
+        {
+          "numerator": "32692789",
+          "denominator": "786432"
+        }
+      ],
+      "exact_S_mm2": {
+        "numerator": "7207079015",
+        "denominator": "51539607552"
+      },
+      "exact_T_mm4": {
+        "numerator": "46239066229255681",
+        "denominator": "1770887431076116955136"
+      },
+      "squared_radius_upper_mm2": {
+        "numerator": "20822785763395831207",
+        "denominator": "1114350072088064163840"
+      }
+    },
+    {
+      "tetrahedron_tag": 31844366,
+      "interior_apex_node_tag": 1459064,
+      "fixed_triple_node_tags": [
+        800404,
+        799890,
+        799742
+      ],
+      "source_coordinate_bits_sha256": "9171664fcdaeabd3931a15b63ad4adb49e75970c43f399cd9154a757ade92dc9",
+      "exact_centroid_mm": [
+        {
+          "numerator": "22619765",
+          "denominator": "393216"
+        },
+        {
+          "numerator": "480061",
+          "denominator": "12288"
+        },
+        {
+          "numerator": "4076477",
+          "denominator": "98304"
+        }
+      ],
+      "exact_S_mm2": {
+        "numerator": "1978048515",
+        "denominator": "17179869184"
+      },
+      "exact_T_mm4": {
+        "numerator": "20582756489393921",
+        "denominator": "885443715538058477568"
+      },
+      "squared_radius_upper_mm2": {
+        "numerator": "845733787610502413",
+        "denominator": "19115220784109322240"
+      }
+    },
+    {
+      "tetrahedron_tag": 28819955,
+      "interior_apex_node_tag": 1459940,
+      "fixed_triple_node_tags": [
+        834730,
+        834086,
+        834729
+      ],
+      "source_coordinate_bits_sha256": "8ff8af8765c0e914abe35477e56500c7d0ddaaf83935aa3c9299f4e7ab733963",
+      "exact_centroid_mm": [
+        {
+          "numerator": "15727811",
+          "denominator": "262144"
+        },
+        {
+          "numerator": "46654903",
+          "denominator": "6291456"
+        },
+        {
+          "numerator": "6851419",
+          "denominator": "393216"
+        }
+      ],
+      "exact_S_mm2": {
+        "numerator": "346314820289",
+        "denominator": "3298534883328"
+      },
+      "exact_T_mm4": {
+        "numerator": "1871562067415681859",
+        "denominator": "75557863725914323419136"
+      },
+      "squared_radius_upper_mm2": {
+        "numerator": "122350984247562144695183",
+        "denominator": "1713497273005100853362688"
+      }
+    },
+    {
+      "tetrahedron_tag": 31624843,
+      "interior_apex_node_tag": 1459940,
+      "fixed_triple_node_tags": [
+        834753,
+        834729,
+        834730
+      ],
+      "source_coordinate_bits_sha256": "052972f86d3ce31fdb29084c6c4e0aeec6f69f377e7bb050eac6b87ba5a7622a",
+      "exact_centroid_mm": [
+        {
+          "numerator": "23593517",
+          "denominator": "393216"
+        },
+        {
+          "numerator": "15871771",
+          "denominator": "2097152"
+        },
+        {
+          "numerator": "27388315",
+          "denominator": "1572864"
+        }
+      ],
+      "exact_S_mm2": {
+        "numerator": "559374915785",
+        "denominator": "3298534883328"
+      },
+      "exact_T_mm4": {
+        "numerator": "3586662706902129387",
+        "denominator": "75557863725914323419136"
+      },
+      "squared_radius_upper_mm2": {
+        "numerator": "151414710975246219757247",
+        "denominator": "2767676508863227200798720"
+      }
+    },
+    {
+      "tetrahedron_tag": 28819925,
+      "interior_apex_node_tag": 1459941,
+      "fixed_triple_node_tags": [
+        834727,
+        834085,
+        834728
+      ],
+      "source_coordinate_bits_sha256": "e6e19dea5c113b243d0a519135a703c747660a35c2dd15219166fae8cbb4e603",
+      "exact_centroid_mm": [
+        {
+          "numerator": "15727811",
+          "denominator": "262144"
+        },
+        {
+          "numerator": "-46654903",
+          "denominator": "6291456"
+        },
+        {
+          "numerator": "12022949",
+          "denominator": "393216"
+        }
+      ],
+      "exact_S_mm2": {
+        "numerator": "346314820289",
+        "denominator": "3298534883328"
+      },
+      "exact_T_mm4": {
+        "numerator": "1871562067415681859",
+        "denominator": "75557863725914323419136"
+      },
+      "squared_radius_upper_mm2": {
+        "numerator": "122350984247562144695183",
+        "denominator": "1713497273005100853362688"
+      }
+    },
+    {
+      "tetrahedron_tag": 31624844,
+      "interior_apex_node_tag": 1459941,
+      "fixed_triple_node_tags": [
+        834752,
+        834728,
+        834727
+      ],
+      "source_coordinate_bits_sha256": "0d410f29686f30c3749f1b814daaea31e087fb60e6e9831c3a7ba6ed0170cf4f",
+      "exact_centroid_mm": [
+        {
+          "numerator": "23593517",
+          "denominator": "393216"
+        },
+        {
+          "numerator": "-15871771",
+          "denominator": "2097152"
+        },
+        {
+          "numerator": "48109157",
+          "denominator": "1572864"
+        }
+      ],
+      "exact_S_mm2": {
+        "numerator": "559374915785",
+        "denominator": "3298534883328"
+      },
+      "exact_T_mm4": {
+        "numerator": "3586662706902129387",
+        "denominator": "75557863725914323419136"
+      },
+      "squared_radius_upper_mm2": {
+        "numerator": "151414710975246219757247",
+        "denominator": "2767676508863227200798720"
+      }
+    },
+    {
+      "tetrahedron_tag": 30884674,
+      "interior_apex_node_tag": 1460612,
+      "fixed_triple_node_tags": [
+        424965,
+        424918,
+        425570
+      ],
+      "source_coordinate_bits_sha256": "d51e0cd8a5e38c68b559060a9ddb3997430d1dad5051979e7035a0dcdeb06cb4",
+      "exact_centroid_mm": [
+        {
+          "numerator": "3843163",
+          "denominator": "50331648"
+        },
+        {
+          "numerator": "-6444239",
+          "denominator": "262144"
+        },
+        {
+          "numerator": "40174309",
+          "denominator": "786432"
+        }
+      ],
+      "exact_S_mm2": {
+        "numerator": "201188014757853731",
+        "denominator": "864691128455135232"
+      },
+      "exact_T_mm4": {
+        "numerator": "1269003710943802153468525",
+        "denominator": "14855280471424563298789490688"
+      },
+      "squared_radius_upper_mm2": {
+        "numerator": "16943454950629190136145036071280439",
+        "denominator": "260948237268925414934750624521125888"
+      }
+    },
+    {
+      "tetrahedron_tag": 31973066,
+      "interior_apex_node_tag": 1460612,
+      "fixed_triple_node_tags": [
+        424918,
+        424393,
+        424965
+      ],
+      "source_coordinate_bits_sha256": "72d87de8bb9168015a3f131a03e1c25d31308863c490f1a70103977d3cc8e9e5",
+      "exact_centroid_mm": [
+        {
+          "numerator": "-4627943",
+          "denominator": "67108864"
+        },
+        {
+          "numerator": "-9598075",
+          "denominator": "393216"
+        },
+        {
+          "numerator": "13361665",
+          "denominator": "262144"
+        }
+      ],
+      "exact_S_mm2": {
+        "numerator": "160991232725197603",
+        "denominator": "864691128455135232"
+      },
+      "exact_T_mm4": {
+        "numerator": "251540730530979272902525",
+        "denominator": "3713820117856140824697372672"
+      },
+      "squared_radius_upper_mm2": {
+        "numerator": "19608835371887438658311517096929591",
+        "denominator": "208811536044801617125972480930873344"
+      }
+    },
+    {
+      "tetrahedron_tag": 28849588,
+      "interior_apex_node_tag": 1462610,
+      "fixed_triple_node_tags": [
+        240779,
+        240276,
+        239922
+      ],
+      "source_coordinate_bits_sha256": "70efc57a3a8520a9ac8144ca2a442f132cc6bc9021ad59cf1f02ad7a90ee66b9",
+      "exact_centroid_mm": [
+        {
+          "numerator": "-3404323",
+          "denominator": "131072"
+        },
+        {
+          "numerator": "-4221343",
+          "denominator": "65536"
+        },
+        {
+          "numerator": "6607755",
+          "denominator": "131072"
+        }
+      ],
+      "exact_S_mm2": {
+        "numerator": "3000456295",
+        "denominator": "17179869184"
+      },
+      "exact_T_mm4": {
+        "numerator": "22443464239249683",
+        "denominator": "73786976294838206464"
+      },
+      "squared_radius_upper_mm2": {
+        "numerator": "71703959426136733043",
+        "denominator": "77321169960613969920"
+      }
+    },
+    {
+      "tetrahedron_tag": 32127616,
+      "interior_apex_node_tag": 1462610,
+      "fixed_triple_node_tags": [
+        234882,
+        236244,
+        236061
+      ],
+      "source_coordinate_bits_sha256": "b4d6a3b7ea156794cdcc7be99c99f2628b7cd45e503459f9aec10df68ae26e9f",
+      "exact_centroid_mm": [
+        {
+          "numerator": "-41788267",
+          "denominator": "1572864"
+        },
+        {
+          "numerator": "-25346887",
+          "denominator": "393216"
+        },
+        {
+          "numerator": "39382481",
+          "denominator": "786432"
+        }
+      ],
+      "exact_S_mm2": {
+        "numerator": "8929241625",
+        "denominator": "68719476736"
+      },
+      "exact_T_mm4": {
+        "numerator": "6042669139905533",
+        "denominator": "221360928884514619392"
+      },
+      "squared_radius_upper_mm2": {
+        "numerator": "108476943640706824813",
+        "denominator": "2761257654536896512000"
+      }
+    },
+    {
+      "tetrahedron_tag": 31173327,
+      "interior_apex_node_tag": 1468704,
+      "fixed_triple_node_tags": [
+        613780,
+        612496,
+        613672
+      ],
+      "source_coordinate_bits_sha256": "1ae6f28c50f8efc07cb5d946127f4b6fa831854e40b746b3b61f31ff90656b32",
+      "exact_centroid_mm": [
+        {
+          "numerator": "20786111",
+          "denominator": "786432"
+        },
+        {
+          "numerator": "25329173",
+          "denominator": "393216"
+        },
+        {
+          "numerator": "9818071",
+          "denominator": "196608"
+        }
+      ],
+      "exact_S_mm2": {
+        "numerator": "13137802563",
+        "denominator": "68719476736"
+      },
+      "exact_T_mm4": {
+        "numerator": "405432601977382011",
+        "denominator": "4722366482869645213696"
+      },
+      "squared_radius_upper_mm2": {
+        "numerator": "2665028513795792485",
+        "denominator": "18808810783129993216"
+      }
+    },
+    {
+      "tetrahedron_tag": 31295659,
+      "interior_apex_node_tag": 1468704,
+      "fixed_triple_node_tags": [
+        613781,
+        613780,
+        613672
+      ],
+      "source_coordinate_bits_sha256": "ee5a62daab6bb7e99a5c305d04687c71c58fe8e4436a08a15ab9fe2d2dba4d1b",
+      "exact_centroid_mm": [
+        {
+          "numerator": "41787443",
+          "denominator": "1572864"
+        },
+        {
+          "numerator": "3168271",
+          "denominator": "49152"
+        },
+        {
+          "numerator": "39373777",
+          "denominator": "786432"
+        }
+      ],
+      "exact_S_mm2": {
+        "numerator": "2319587199",
+        "denominator": "17179869184"
+      },
+      "exact_T_mm4": {
+        "numerator": "17297624185475235",
+        "denominator": "295147905179352825856"
+      },
+      "squared_radius_upper_mm2": {
+        "numerator": "423753307040732111",
+        "denominator": "2490637789981310976"
+      }
+    },
+    {
+      "tetrahedron_tag": 28752536,
+      "interior_apex_node_tag": 1474426,
+      "fixed_triple_node_tags": [
+        869096,
+        868568,
+        869098
+      ],
+      "source_coordinate_bits_sha256": "dfe41d42358382891528b8875163bb5fd384e841a9b3a905d83a134a062ba59c",
+      "exact_centroid_mm": [
+        {
+          "numerator": "-7772934944076765",
+          "denominator": "140737488355328"
+        },
+        {
+          "numerator": "11658428622152339",
+          "denominator": "211106232532992"
+        },
+        {
+          "numerator": "0",
+          "denominator": "1"
+        }
+      ],
+      "exact_S_mm2": {
+        "numerator": "68924741850490790469128113",
+        "denominator": "14855280471424563298789490688"
+      },
+      "exact_T_mm4": {
+        "numerator": "2765008161054152860628295445190803571500265325625",
+        "denominator": "18389946490390666300300164325803710203424869466203226112"
+      },
+      "squared_radius_upper_mm2": {
+        "numerator": "25078288002295404425183619221228543836105135925901731",
+        "denominator": "1535844557414362735784475330344921383717398706038767616"
+      }
+    },
+    {
+      "tetrahedron_tag": 29592348,
+      "interior_apex_node_tag": 1474426,
+      "fixed_triple_node_tags": [
+        869079,
+        869077,
+        869074
+      ],
+      "source_coordinate_bits_sha256": "a21dcd542435f24f2551b9b5e9d28f177d3f1e63983aac74f49fa9c657e4ee7b",
+      "exact_centroid_mm": [
+        {
+          "numerator": "-7825873786697051",
+          "denominator": "140737488355328"
+        },
+        {
+          "numerator": "3852610974750005",
+          "denominator": "70368744177664"
+        },
+        {
+          "numerator": "0",
+          "denominator": "1"
+        }
+      ],
+      "exact_S_mm2": {
+        "numerator": "21782605202155636199913439",
+        "denominator": "1237940039285380274899124224"
+      },
+      "exact_T_mm4": {
+        "numerator": "6120505702012423552951651524847976194028709837229467",
+        "denominator": "98079714615416886934934209737619787751599303819750539264"
+      },
+      "squared_radius_upper_mm2": {
+        "numerator": "5471967785188018195889151860086398255907023513729660689",
+        "denominator": "2588693677410669794112088638791643506263273507972448256"
+      }
+    },
+    {
+      "tetrahedron_tag": 29792709,
+      "interior_apex_node_tag": 1474426,
+      "fixed_triple_node_tags": [
+        869074,
+        869077,
+        868523
+      ],
+      "source_coordinate_bits_sha256": "556f679de2afcb03fa865ae429b655d18977df5dd4168a9051a074c81a9128bf",
+      "exact_centroid_mm": [
+        {
+          "numerator": "-23503538698215793",
+          "denominator": "422212465065984"
+        },
+        {
+          "numerator": "7707816109251939",
+          "denominator": "140737488355328"
+        },
+        {
+          "numerator": "0",
+          "denominator": "1"
+        }
+      ],
+      "exact_S_mm2": {
+        "numerator": "339863306151794939604029221",
+        "denominator": "14855280471424563298789490688"
+      },
+      "exact_T_mm4": {
+        "numerator": "207617785695135036429445753975938181934383975761123",
+        "denominator": "6129982163463555433433388108601236734474956488734408704"
+      },
+      "squared_radius_upper_mm2": {
+        "numerator": "6603834949368921622963749274048543189247726653711117931",
+        "denominator": "7573147102245820521440502634818563655688551502889091072"
+      }
+    },
+    {
+      "tetrahedron_tag": 30249790,
+      "interior_apex_node_tag": 1474426,
+      "fixed_triple_node_tags": [
+        869098,
+        868398,
+        869096
+      ],
+      "source_coordinate_bits_sha256": "6943d1d7bbe47605beee7e071f78352986151b162e1144626f9c99914cbe4337",
+      "exact_centroid_mm": [
+        {
+          "numerator": "-11658428071288553",
+          "denominator": "211106232532992"
+        },
+        {
+          "numerator": "3886467685720145",
+          "denominator": "70368744177664"
+        },
+        {
+          "numerator": "0",
+          "denominator": "1"
+        }
+      ],
+      "exact_S_mm2": {
+        "numerator": "34462370925245080421261081",
+        "denominator": "7427640235712281649394745344"
+      },
+      "exact_T_mm4": {
+        "numerator": "14401084172179912296785275253498986871155597947",
+        "denominator": "95780971304118053647396689196894323976171195136475136"
+      },
+      "squared_radius_upper_mm2": {
+        "numerator": "6269572000585713444777569049078034018645417986018767",
+        "denominator": "383961139353587176466184955129093439984101408999735296"
+      }
+    },
+    {
+      "tetrahedron_tag": 28752535,
+      "interior_apex_node_tag": 1474427,
+      "fixed_triple_node_tags": [
+        871275,
+        867062,
+        871273
+      ],
+      "source_coordinate_bits_sha256": "cb2e3b27b04126ef2c5d46d56b90ad8396ebc0813e54b8dc01821e0156681c0f",
+      "exact_centroid_mm": [
+        {
+          "numerator": "23318804832230299",
+          "denominator": "422212465065984"
+        },
+        {
+          "numerator": "-23316857244304681",
+          "denominator": "422212465065984"
+        },
+        {
+          "numerator": "0",
+          "denominator": "1"
+        }
+      ],
+      "exact_S_mm2": {
+        "numerator": "34462370925219807079156597",
+        "denominator": "7427640235712281649394745344"
+      },
+      "exact_T_mm4": {
+        "numerator": "44240130576871070766500162569361229559097183367001",
+        "denominator": "294239143846250660804802629212859363254797911459251617792"
+      },
+      "squared_radius_upper_mm2": {
+        "numerator": "100313152009222309828247429983942727248895905962875153",
+        "denominator": "6143378229652889512434010801982767691075130218703224832"
+      }
+    },
+    {
+      "tetrahedron_tag": 30249789,
+      "interior_apex_node_tag": 1474427,
+      "fixed_triple_node_tags": [
+        871273,
+        866202,
+        871275
+      ],
+      "source_coordinate_bits_sha256": "1bc0495c017630a79ad89b3b18b2d42da5ea28a320f24482844770f1b11bc215",
+      "exact_centroid_mm": [
+        {
+          "numerator": "11658428071288555",
+          "denominator": "211106232532992"
+        },
+        {
+          "numerator": "-7772935371440291",
+          "denominator": "140737488355328"
+        },
+        {
+          "numerator": "0",
+          "denominator": "1"
+        }
+      ],
+      "exact_S_mm2": {
+        "numerator": "68924741850440932680271423",
+        "denominator": "14855280471424563298789490688"
+      },
+      "exact_T_mm4": {
+        "numerator": "2765008161053393285366489079689951677791943044121",
+        "denominator": "18389946490390666300300164325803710203424869466203226112"
+      },
+      "squared_radius_upper_mm2": {
+        "numerator": "25078288002294082997711616933652362259077800609532419",
+        "denominator": "1535844557413251758628748536101908879393713335656513536"
+      }
+    },
+    {
+      "tetrahedron_tag": 31034268,
+      "interior_apex_node_tag": 1474427,
+      "fixed_triple_node_tags": [
+        866266,
+        783743,
+        866547
+      ],
+      "source_coordinate_bits_sha256": "4d5a2d22c748b9fb7b1ed56f0613e1b24da628b8fd4337f028032a0addc90238",
+      "exact_centroid_mm": [
+        {
+          "numerator": "23549346211342489",
+          "denominator": "422212465065984"
+        },
+        {
+          "numerator": "-11599724732453155",
+          "denominator": "211106232532992"
+        },
+        {
+          "numerator": "13781305",
+          "denominator": "3221225472"
+        }
+      ],
+      "exact_S_mm2": {
+        "numerator": "702014997590601587435406225",
+        "denominator": "2475880078570760549798248448"
+      },
+      "exact_T_mm4": {
+        "numerator": "279350461529339721701084886780703531531895659093702643",
+        "denominator": "98079714615416886934934209737619787751599303819750539264"
+      },
+      "squared_radius_upper_mm2": {
+        "numerator": "14308874353258958362793009847939054347114777048996392121",
+        "denominator": "2453795219848194263093541467151544892577412015561113600"
+      }
+    },
+    {
+      "tetrahedron_tag": 30419427,
+      "interior_apex_node_tag": 1476316,
+      "fixed_triple_node_tags": [
+        432123,
+        432124,
+        431665
+      ],
+      "source_coordinate_bits_sha256": "f73af90096602a1fd66044dcf1d42d04450d4822ca2bd6fd3efbd2033e13a15e",
+      "exact_centroid_mm": [
+        {
+          "numerator": "48662033",
+          "denominator": "50331648"
+        },
+        {
+          "numerator": "36275951",
+          "denominator": "1572864"
+        },
+        {
+          "numerator": "38643299",
+          "denominator": "1572864"
+        }
+      ],
+      "exact_S_mm2": {
+        "numerator": "8732980471259",
+        "denominator": "70368744177664"
+      },
+      "exact_T_mm4": {
+        "numerator": "287789916145962973169",
+        "denominator": "14507109835375550096474112"
+      },
+      "squared_radius_upper_mm2": {
+        "numerator": "36137646111812812812890101",
+        "denominator": "2765379909107520770137915392"
+      }
+    },
+    {
+      "tetrahedron_tag": 30419439,
+      "interior_apex_node_tag": 1476316,
+      "fixed_triple_node_tags": [
+        432123,
+        431981,
+        432124
+      ],
+      "source_coordinate_bits_sha256": "679fea6893066fb1debc891b374b8653b4e595c2561a03d0e4da6a5adaf2f44f",
+      "exact_centroid_mm": [
+        {
+          "numerator": "8317519",
+          "denominator": "8388608"
+        },
+        {
+          "numerator": "36275951",
+          "denominator": "1572864"
+        },
+        {
+          "numerator": "19215355",
+          "denominator": "786432"
+        }
+      ],
+      "exact_S_mm2": {
+        "numerator": "6092598666161",
+        "denominator": "52776558133248"
+      },
+      "exact_T_mm4": {
+        "numerator": "62570763991669997329",
+        "denominator": "3626777458843887524118528"
+      },
+      "squared_radius_upper_mm2": {
+        "numerator": "124104065661018434068943",
+        "denominator": "9843256765934548191019008"
+      }
+    },
+    {
+      "tetrahedron_tag": 29189579,
+      "interior_apex_node_tag": 1479268,
+      "fixed_triple_node_tags": [
+        286650,
+        287565,
+        286877
+      ],
+      "source_coordinate_bits_sha256": "4f1dee38c2ec8a44d300416f5053e2020499349aab619ec8a95c90ca33840177",
+      "exact_centroid_mm": [
+        {
+          "numerator": "-15672415",
+          "denominator": "786432"
+        },
+        {
+          "numerator": "42467329",
+          "denominator": "786432"
+        },
+        {
+          "numerator": "11221993",
+          "denominator": "262144"
+        }
+      ],
+      "exact_S_mm2": {
+        "numerator": "18685282841",
+        "denominator": "206158430208"
+      },
+      "exact_T_mm4": {
+        "numerator": "55279756385870077",
+        "denominator": "885443715538058477568"
+      },
+      "squared_radius_upper_mm2": {
+        "numerator": "2036292252714896531423",
+        "denominator": "5778192867739557691392"
+      }
+    },
+    {
+      "tetrahedron_tag": 29628376,
+      "interior_apex_node_tag": 1479268,
+      "fixed_triple_node_tags": [
+        286884,
+        285955,
+        286647
+      ],
+      "source_coordinate_bits_sha256": "ed7e0c696a8cc3e1f709e9491cb6fb7c2e5d653fe53cd0a6fbe9bb02a6a64095",
+      "exact_centroid_mm": [
+        {
+          "numerator": "-31569755",
+          "denominator": "1572864"
+        },
+        {
+          "numerator": "42467329",
+          "denominator": "786432"
+        },
+        {
+          "numerator": "11453931",
+          "denominator": "262144"
+        }
+      ],
+      "exact_S_mm2": {
+        "numerator": "2331981139",
+        "denominator": "25769803776"
+      },
+      "exact_T_mm4": {
+        "numerator": "874779408924109",
+        "denominator": "13835058055282163712"
+      },
+      "squared_radius_upper_mm2": {
+        "numerator": "32310345021241414247",
+        "denominator": "90142044542044471296"
+      }
+    },
+    {
+      "tetrahedron_tag": 29212465,
+      "interior_apex_node_tag": 1481857,
+      "fixed_triple_node_tags": [
+        251019,
+        251655,
+        251656
+      ],
+      "source_coordinate_bits_sha256": "e4cc29e9a6512835f92fc4187d04e189c6aee6162cbba38570f9894ad9ff7a3c",
+      "exact_centroid_mm": [
+        {
+          "numerator": "-38592115",
+          "denominator": "1572864"
+        },
+        {
+          "numerator": "19437775",
+          "denominator": "393216"
+        },
+        {
+          "numerator": "9418827",
+          "denominator": "262144"
+        }
+      ],
+      "exact_S_mm2": {
+        "numerator": "406945403",
+        "denominator": "3221225472"
+      },
+      "exact_T_mm4": {
+        "numerator": "80050748253161225",
+        "denominator": "3541774862152233910272"
+      },
+      "squared_radius_upper_mm2": {
+        "numerator": "46317797551395437009",
+        "denominator": "2013485411108206411776"
+      }
+    },
+    {
+      "tetrahedron_tag": 29713840,
+      "interior_apex_node_tag": 1481857,
+      "fixed_triple_node_tags": [
+        252322,
+        251656,
+        251655
+      ],
+      "source_coordinate_bits_sha256": "0cfa6f9a7b0a5bcc4fd120850d944fe8d7ee71353cf8a6c83c1f6f7e508e42ed",
+      "exact_centroid_mm": [
+        {
+          "numerator": "-12825463",
+          "denominator": "524288"
+        },
+        {
+          "numerator": "6496829",
+          "denominator": "131072"
+        },
+        {
+          "numerator": "9418827",
+          "denominator": "262144"
+        }
+      ],
+      "exact_S_mm2": {
+        "numerator": "2170272745",
+        "denominator": "17179869184"
+      },
+      "exact_T_mm4": {
+        "numerator": "6670327111189575",
+        "denominator": "295147905179352825856"
+      },
+      "squared_radius_upper_mm2": {
+        "numerator": "64327014263479645",
+        "denominator": "2796375138952544256"
+      }
+    },
+    {
+      "tetrahedron_tag": 29801902,
+      "interior_apex_node_tag": 1485102,
+      "fixed_triple_node_tags": [
+        355231,
+        353122,
+        355230
+      ],
+      "source_coordinate_bits_sha256": "0714b64ca6a39e501eb1528a2f43e609efc2e0c9131e981f11b119e2fb7c14ef",
+      "exact_centroid_mm": [
+        {
+          "numerator": "-7628491",
+          "denominator": "786432"
+        },
+        {
+          "numerator": "13664503",
+          "denominator": "196608"
+        },
+        {
+          "numerator": "2939339",
+          "denominator": "131072"
+        }
+      ],
+      "exact_S_mm2": {
+        "numerator": "2080824217",
+        "denominator": "25769803776"
+      },
+      "exact_T_mm4": {
+        "numerator": "125814975203224625",
+        "denominator": "14167099448608935641088"
+      },
+      "squared_radius_upper_mm2": {
+        "numerator": "62213905111662375929",
+        "denominator": "5147753449386128965632"
+      }
+    },
+    {
+      "tetrahedron_tag": 30103489,
+      "interior_apex_node_tag": 1485102,
+      "fixed_triple_node_tags": [
+        357990,
+        355231,
+        355230
+      ],
+      "source_coordinate_bits_sha256": "4862d4cebdfeb5c2b413ab4ebfac6e0359145eee72adedb4a475a38a6b363a42",
+      "exact_centroid_mm": [
+        {
+          "numerator": "-2495435",
+          "denominator": "262144"
+        },
+        {
+          "numerator": "27328273",
+          "denominator": "393216"
+        },
+        {
+          "numerator": "17681579",
+          "denominator": "786432"
+        }
+      ],
+      "exact_S_mm2": {
+        "numerator": "11291624987",
+        "denominator": "51539607552"
+      },
+      "exact_T_mm4": {
+        "numerator": "1070579206341232825",
+        "denominator": "14167099448608935641088"
+      },
+      "squared_radius_upper_mm2": {
+        "numerator": "847339401949620926321",
+        "denominator": "13967182090904090443776"
+      }
+    },
+    {
+      "tetrahedron_tag": 29533680,
+      "interior_apex_node_tag": 1495066,
+      "fixed_triple_node_tags": [
+        869381,
+        868083,
+        869378
+      ],
+      "source_coordinate_bits_sha256": "4843c492f15482c3bfb1bb8e8d817c924410ee850e2e254682a8b4af6974ac0d",
+      "exact_centroid_mm": [
+        {
+          "numerator": "-19940110326576655",
+          "denominator": "422212465065984"
+        },
+        {
+          "numerator": "8899152818280059",
+          "denominator": "140737488355328"
+        },
+        {
+          "numerator": "0",
+          "denominator": "1"
+        }
+      ],
+      "exact_S_mm2": {
+        "numerator": "28429704692732045203205057",
+        "denominator": "7427640235712281649394745344"
+      },
+      "exact_T_mm4": {
+        "numerator": "36606901590482072282836203235631060823486705434761",
+        "denominator": "294239143846250660804802629212859363254797911459251617792"
+      },
+      "squared_radius_upper_mm2": {
+        "numerator": "85796843846874941382630589005831524301816841511578433",
+        "denominator": "5067974843163715391412224288637618205647881355072110592"
+      }
+    },
+    {
+      "tetrahedron_tag": 29803043,
+      "interior_apex_node_tag": 1495066,
+      "fixed_triple_node_tags": [
+        869378,
+        868453,
+        869381
+      ],
+      "source_coordinate_bits_sha256": "d52276a2252ee3d0adffc26df5e4e50914b98df8d7560f6b162affc19b0f259f",
+      "exact_centroid_mm": [
+        {
+          "numerator": "-623189348023717",
+          "denominator": "13194139533312"
+        },
+        {
+          "numerator": "26695509663238741",
+          "denominator": "422212465065984"
+        },
+        {
+          "numerator": "0",
+          "denominator": "1"
+        }
+      ],
+      "exact_S_mm2": {
+        "numerator": "1776856543295756254409155",
+        "denominator": "464227514732017603087171584"
+      },
+      "exact_T_mm4": {
+        "numerator": "9151725397619042643742612148837404457521358207761",
+        "denominator": "73559785961562665201200657303214840813699477864812904448"
+      },
+      "squared_radius_upper_mm2": {
+        "numerator": "21449210961714743640230650735680629897963879724769817",
+        "denominator": "1266993710790931293062292752387133661486414887093534720"
+      }
+    },
+    {
+      "tetrahedron_tag": 30578355,
+      "interior_apex_node_tag": 1504145,
+      "fixed_triple_node_tags": [
+        798131,
+        799880,
+        799704
+      ],
+      "source_coordinate_bits_sha256": "7b6116a58167eb9b48c03e9d89303e427fda288ee239a2773bf7d3ccc919f56a",
+      "exact_centroid_mm": [
+        {
+          "numerator": "15054525",
+          "denominator": "262144"
+        },
+        {
+          "numerator": "4740479",
+          "denominator": "196608"
+        },
+        {
+          "numerator": "36528811",
+          "denominator": "786432"
+        }
+      ],
+      "exact_S_mm2": {
+        "numerator": "28125212393",
+        "denominator": "206158430208"
+      },
+      "exact_T_mm4": {
+        "numerator": "120367119167198657",
+        "denominator": "3541774862152233910272"
+      },
+      "squared_radius_upper_mm2": {
+        "numerator": "507492909424378325267",
+        "denominator": "8697374454311200751616"
+      }
+    },
+    {
+      "tetrahedron_tag": 31170556,
+      "interior_apex_node_tag": 1504145,
+      "fixed_triple_node_tags": [
+        800416,
+        799704,
+        799880
+      ],
+      "source_coordinate_bits_sha256": "1aec2f14c6502590ae2c3910a757d0cb874a5154434dba5585b546949b35a35a",
+      "exact_centroid_mm": [
+        {
+          "numerator": "15079585",
+          "denominator": "262144"
+        },
+        {
+          "numerator": "18835847",
+          "denominator": "786432"
+        },
+        {
+          "numerator": "12194283",
+          "denominator": "262144"
+        }
+      ],
+      "exact_S_mm2": {
+        "numerator": "27347090209",
+        "denominator": "206158430208"
+      },
+      "exact_T_mm4": {
+        "numerator": "185416483218278233",
+        "denominator": "3541774862152233910272"
+      },
+      "squared_radius_upper_mm2": {
+        "numerator": "1252409678059601913923",
+        "denominator": "8456749782366009950208"
+      }
+    },
+    {
+      "tetrahedron_tag": 30680135,
+      "interior_apex_node_tag": 1504157,
+      "fixed_triple_node_tags": [
+        798127,
+        799876,
+        799700
+      ],
+      "source_coordinate_bits_sha256": "e6d82ff49be0ea30eb6b46553e072ad256dee71511f73b087bb861eff6679e76",
+      "exact_centroid_mm": [
+        {
+          "numerator": "15054525",
+          "denominator": "262144"
+        },
+        {
+          "numerator": "-8155145",
+          "denominator": "2097152"
+        },
+        {
+          "numerator": "36528811",
+          "denominator": "786432"
+        }
+      ],
+      "exact_S_mm2": {
+        "numerator": "112501225777",
+        "denominator": "824633720832"
+      },
+      "exact_T_mm4": {
+        "numerator": "481471221235127833",
+        "denominator": "14167099448608935641088"
+      },
+      "squared_radius_upper_mm2": {
+        "numerator": "279997253014162310203",
+        "denominator": "4798567469516297601024"
+      }
+    },
+    {
+      "tetrahedron_tag": 31170555,
+      "interior_apex_node_tag": 1504157,
+      "fixed_triple_node_tags": [
+        800412,
+        799700,
+        799876
+      ],
+      "source_coordinate_bits_sha256": "5e5d4b6b2cd8d0c7e18ce1fe45f95844088f9f68c70b6e17bd6e22abeed7ea18",
+      "exact_centroid_mm": [
+        {
+          "numerator": "15079585",
+          "denominator": "262144"
+        },
+        {
+          "numerator": "-4245665",
+          "denominator": "1048576"
+        },
+        {
+          "numerator": "12194283",
+          "denominator": "262144"
+        }
+      ],
+      "exact_S_mm2": {
+        "numerator": "145851569347",
+        "denominator": "1099511627776"
+      },
+      "exact_T_mm4": {
+        "numerator": "988890985988070075",
+        "denominator": "18889465931478580854784"
+      },
+      "squared_radius_upper_mm2": {
+        "numerator": "35624151488826849828791",
+        "denominator": "240548244639606173073408"
+      }
+    },
+    {
+      "tetrahedron_tag": 30774390,
+      "interior_apex_node_tag": 1504163,
+      "fixed_triple_node_tags": [
+        798129,
+        799878,
+        799702
+      ],
+      "source_coordinate_bits_sha256": "30445b2aaa7178187bed5eb422e2cb928d4a6d772134f9a0e1544396e5543b78",
+      "exact_centroid_mm": [
+        {
+          "numerator": "15054525",
+          "denominator": "262144"
+        },
+        {
+          "numerator": "10602491",
+          "denominator": "1048576"
+        },
+        {
+          "numerator": "36528811",
+          "denominator": "786432"
+        }
+      ],
+      "exact_S_mm2": {
+        "numerator": "112501225777",
+        "denominator": "824633720832"
+      },
+      "exact_T_mm4": {
+        "numerator": "481471221235127833",
+        "denominator": "14167099448608935641088"
+      },
+      "squared_radius_upper_mm2": {
+        "numerator": "279997253014162310203",
+        "denominator": "4798567469516297601024"
+      }
+    },
+    {
+      "tetrahedron_tag": 31170558,
+      "interior_apex_node_tag": 1504163,
+      "fixed_triple_node_tags": [
+        800414,
+        799702,
+        799878
+      ],
+      "source_coordinate_bits_sha256": "5ba678a5866f68bfbeee41e5a6ec485a9acf9b21cf71f8f82cb4b7e6bcd546e9",
+      "exact_centroid_mm": [
+        {
+          "numerator": "15079585",
+          "denominator": "262144"
+        },
+        {
+          "numerator": "7825799",
+          "denominator": "786432"
+        },
+        {
+          "numerator": "12194283",
+          "denominator": "262144"
+        }
+      ],
+      "exact_S_mm2": {
+        "numerator": "27347090209",
+        "denominator": "206158430208"
+      },
+      "exact_T_mm4": {
+        "numerator": "185416483218278233",
+        "denominator": "3541774862152233910272"
+      },
+      "squared_radius_upper_mm2": {
+        "numerator": "1252409678059601913923",
+        "denominator": "8456749782366009950208"
+      }
+    },
+    {
+      "tetrahedron_tag": 29866036,
+      "interior_apex_node_tag": 1512642,
+      "fixed_triple_node_tags": [
+        598239,
+        598238,
+        598856
+      ],
+      "source_coordinate_bits_sha256": "cfedcd16597aae70c0bcf08254fa8033cfe54433f2d589634b0383108ef66c3b",
+      "exact_centroid_mm": [
+        {
+          "numerator": "6431765",
+          "denominator": "262144"
+        },
+        {
+          "numerator": "38875237",
+          "denominator": "786432"
+        },
+        {
+          "numerator": "28364161",
+          "denominator": "786432"
+        }
+      ],
+      "exact_S_mm2": {
+        "numerator": "26169419945",
+        "denominator": "206158430208"
+      },
+      "exact_T_mm4": {
+        "numerator": "79740897858092797",
+        "denominator": "3541774862152233910272"
+      },
+      "squared_radius_upper_mm2": {
+        "numerator": "175406265835341291011",
+        "denominator": "8092569802972688547840"
+      }
+    },
+    {
+      "tetrahedron_tag": 30457175,
+      "interior_apex_node_tag": 1512642,
+      "fixed_triple_node_tags": [
+        598238,
+        598239,
+        597571
+      ],
+      "source_coordinate_bits_sha256": "ad1721fa18a5835eae02e63f69be6bc4a370272024e5504764af2f076dfa229e",
+      "exact_centroid_mm": [
+        {
+          "numerator": "38477027",
+          "denominator": "1572864"
+        },
+        {
+          "numerator": "6496829",
+          "denominator": "131072"
+        },
+        {
+          "numerator": "28364161",
+          "denominator": "786432"
+        }
+      ],
+      "exact_S_mm2": {
+        "numerator": "1633183211",
+        "denominator": "12884901888"
+      },
+      "exact_T_mm4": {
+        "numerator": "19882040950256857",
+        "denominator": "885443715538058477568"
+      },
+      "squared_radius_upper_mm2": {
+        "numerator": "10945266031766414993",
+        "denominator": "505041730532731256832"
+      }
+    },
+    {
+      "tetrahedron_tag": 30043047,
+      "interior_apex_node_tag": 1513213,
+      "fixed_triple_node_tags": [
+        99190,
+        99194,
+        99193
+      ],
+      "source_coordinate_bits_sha256": "79fa1e848ddf6b38310bddbc56a179d1873efcede3b742ff3c3d1bda89f34c04",
+      "exact_centroid_mm": [
+        {
+          "numerator": "-20648045",
+          "denominator": "393216"
+        },
+        {
+          "numerator": "19",
+          "denominator": "12"
+        },
+        {
+          "numerator": "26763367",
+          "denominator": "3145728"
+        }
+      ],
+      "exact_S_mm2": {
+        "numerator": "92081691217",
+        "denominator": "274877906944"
+      },
+      "exact_T_mm4": {
+        "numerator": "92672478269141235",
+        "denominator": "295147905179352825856"
+      },
+      "squared_radius_upper_mm2": {
+        "numerator": "12848976981390305446751",
+        "denominator": "37966833824389002166272"
+      }
+    },
+    {
+      "tetrahedron_tag": 30257035,
+      "interior_apex_node_tag": 1513213,
+      "fixed_triple_node_tags": [
+        99197,
+        99194,
+        99193
+      ],
+      "source_coordinate_bits_sha256": "0b30ad7fad091c4d7fe0f19d7a35929a073ff3ef452dc50f7215866c9fb36fb4",
+      "exact_centroid_mm": [
+        {
+          "numerator": "-5161679",
+          "denominator": "98304"
+        },
+        {
+          "numerator": "23",
+          "denominator": "12"
+        },
+        {
+          "numerator": "8911083",
+          "denominator": "1048576"
+        }
+      ],
+      "exact_S_mm2": {
+        "numerator": "275730400913",
+        "denominator": "824633720832"
+      },
+      "exact_T_mm4": {
+        "numerator": "1482844526277907515",
+        "denominator": "4722366482869645213696"
+      },
+      "squared_radius_upper_mm2": {
+        "numerator": "115935867006189084028271",
+        "denominator": "341064879677079419879424"
+      }
+    },
+    {
+      "tetrahedron_tag": 30423546,
+      "interior_apex_node_tag": 1527816,
+      "fixed_triple_node_tags": [
+        415297,
+        413991,
+        415298
+      ],
+      "source_coordinate_bits_sha256": "2f581453a6052f64701fdb2cd6d3583a754a91d8040398fc2cadaa82a5be8908",
+      "exact_centroid_mm": [
+        {
+          "numerator": "-8438279",
+          "denominator": "6291456"
+        },
+        {
+          "numerator": "-7077885",
+          "denominator": "131072"
+        },
+        {
+          "numerator": "43248743",
+          "denominator": "786432"
+        }
+      ],
+      "exact_S_mm2": {
+        "numerator": "330242978801",
+        "denominator": "3298534883328"
+      },
+      "exact_T_mm4": {
+        "numerator": "1324312558383099625",
+        "denominator": "56668397794435742564352"
+      },
+      "squared_radius_upper_mm2": {
+        "numerator": "119526517030032324674399",
+        "denominator": "1633976978323871568494592"
+      }
+    },
+    {
+      "tetrahedron_tag": 31183397,
+      "interior_apex_node_tag": 1527816,
+      "fixed_triple_node_tags": [
+        415297,
+        415298,
+        418274
+      ],
+      "source_coordinate_bits_sha256": "e9bba4946bf816fbdc164b2a1bc597c979387a72a2f2b70c95b38906e8496da9",
+      "exact_centroid_mm": [
+        {
+          "numerator": "-1775909",
+          "denominator": "1572864"
+        },
+        {
+          "numerator": "-42467303",
+          "denominator": "786432"
+        },
+        {
+          "numerator": "10812485",
+          "denominator": "196608"
+        }
+      ],
+      "exact_S_mm2": {
+        "numerator": "12076464623",
+        "denominator": "68719476736"
+      },
+      "exact_T_mm4": {
+        "numerator": "145384241290131125",
+        "denominator": "3541774862152233910272"
+      },
+      "squared_radius_upper_mm2": {
+        "numerator": "85278738307599929113",
+        "denominator": "3734497483710189797376"
+      }
+    },
+    {
+      "tetrahedron_tag": 28548276,
+      "interior_apex_node_tag": 1531817,
+      "fixed_triple_node_tags": [
+        431996,
+        432129,
+        432128
+      ],
+      "source_coordinate_bits_sha256": "33e124e0b6e0e9196054af14a9d6910762322740b0ece233dc418f154d0a2c5e",
+      "exact_centroid_mm": [
+        {
+          "numerator": "1041443",
+          "denominator": "1048576"
+        },
+        {
+          "numerator": "35525221",
+          "denominator": "1572864"
+        },
+        {
+          "numerator": "19583875",
+          "denominator": "786432"
+        }
+      ],
+      "exact_S_mm2": {
+        "numerator": "33719602067",
+        "denominator": "206158430208"
+      },
+      "exact_T_mm4": {
+        "numerator": "54174332868822725",
+        "denominator": "442721857769029238784"
+      },
+      "squared_radius_upper_mm2": {
+        "numerator": "3538450060354045785911",
+        "denominator": "10427370344056728059904"
+      }
+    },
+    {
+      "tetrahedron_tag": 29020064,
+      "interior_apex_node_tag": 1531817,
+      "fixed_triple_node_tags": [
+        431981,
+        431996,
+        432123
+      ],
+      "source_coordinate_bits_sha256": "e530b789d0fe69be9ffed5f0e743bc8391eeefdc3d817a563dc8410941c54f88",
+      "exact_centroid_mm": [
+        {
+          "numerator": "8250595",
+          "denominator": "8388608"
+        },
+        {
+          "numerator": "6023535",
+          "denominator": "262144"
+        },
+        {
+          "numerator": "38552303",
+          "denominator": "1572864"
+        }
+      ],
+      "exact_S_mm2": {
+        "numerator": "21170877186277",
+        "denominator": "52776558133248"
+      },
+      "exact_T_mm4": {
+        "numerator": "2533285358581660911221",
+        "denominator": "7253554917687775048237056"
+      },
+      "squared_radius_upper_mm2": {
+        "numerator": "60903513930243244081564001",
+        "denominator": "239427006547157558117793792"
+      }
+    },
+    {
+      "tetrahedron_tag": 31210046,
+      "interior_apex_node_tag": 1534323,
+      "fixed_triple_node_tags": [
+        355233,
+        356628,
+        355232
+      ],
+      "source_coordinate_bits_sha256": "3fd557d4373161194b70c1c3af4e6e1d26368b80e10903f17079eaa5e2784dd7",
+      "exact_centroid_mm": [
+        {
+          "numerator": "-14972609",
+          "denominator": "1572864"
+        },
+        {
+          "numerator": "-27328273",
+          "denominator": "393216"
+        },
+        {
+          "numerator": "11794697",
+          "denominator": "524288"
+        }
+      ],
+      "exact_S_mm2": {
+        "numerator": "179868315461",
+        "denominator": "824633720832"
+      },
+      "exact_T_mm4": {
+        "numerator": "17125680123398697233",
+        "denominator": "226673591177742970257408"
+      },
+      "squared_radius_upper_mm2": {
+        "numerator": "108088659265847459335",
+        "denominator": "1738189198106113867776"
+      }
+    },
+    {
+      "tetrahedron_tag": 31905042,
+      "interior_apex_node_tag": 1534323,
+      "fixed_triple_node_tags": [
+        353124,
+        355232,
+        355233
+      ],
+      "source_coordinate_bits_sha256": "00f7c7aa31cf4f256496690e71420ffa66a634aa2b9cedf7b1e5540c9e019db8",
+      "exact_centroid_mm": [
+        {
+          "numerator": "-30513961",
+          "denominator": "3145728"
+        },
+        {
+          "numerator": "-27333721",
+          "denominator": "393216"
+        },
+        {
+          "numerator": "17743823",
+          "denominator": "786432"
+        }
+      ],
+      "exact_S_mm2": {
+        "numerator": "739055663",
+        "denominator": "8589934592"
+      },
+      "exact_T_mm4": {
+        "numerator": "546591424395086585",
+        "denominator": "56668397794435742564352"
+      },
+      "squared_radius_upper_mm2": {
+        "numerator": "71901576857683010923",
+        "denominator": "7313402655379808059392"
+      }
+    },
+    {
+      "tetrahedron_tag": 31201463,
+      "interior_apex_node_tag": 1534574,
+      "fixed_triple_node_tags": [
+        494657,
+        493262,
+        494656
+      ],
+      "source_coordinate_bits_sha256": "388795a7c4ffda4ac2c206b755ae15695695943c95f6ebabe05508c3ee2a8d31",
+      "exact_centroid_mm": [
+        {
+          "numerator": "14973433",
+          "denominator": "1572864"
+        },
+        {
+          "numerator": "9109421",
+          "denominator": "131072"
+        },
+        {
+          "numerator": "35383597",
+          "denominator": "1572864"
+        }
+      ],
+      "exact_S_mm2": {
+        "numerator": "180616165685",
+        "denominator": "824633720832"
+      },
+      "exact_T_mm4": {
+        "numerator": "393989130940059",
+        "denominator": "4611686018427387904"
+      },
+      "squared_radius_upper_mm2": {
+        "numerator": "19606159794664337054471",
+        "denominator": "223413271126845822074880"
+      }
+    },
+    {
+      "tetrahedron_tag": 31902918,
+      "interior_apex_node_tag": 1534574,
+      "fixed_triple_node_tags": [
+        496773,
+        494656,
+        494657
+      ],
+      "source_coordinate_bits_sha256": "6edd7ddf1af3bbb2ed84171797921dabc8562b15ef23d46bd61fd0d65a78fb0c",
+      "exact_centroid_mm": [
+        {
+          "numerator": "30516103",
+          "denominator": "3145728"
+        },
+        {
+          "numerator": "27333833",
+          "denominator": "393216"
+        },
+        {
+          "numerator": "11829053",
+          "denominator": "524288"
+        }
+      ],
+      "exact_S_mm2": {
+        "numerator": "17805847061",
+        "denominator": "206158430208"
+      },
+      "exact_T_mm4": {
+        "numerator": "3130208522379",
+        "denominator": "288230376151711744"
+      },
+      "squared_radius_upper_mm2": {
+        "numerator": "97901467500727786055",
+        "denominator": "5506238217929235628032"
+      }
+    },
+    {
+      "tetrahedron_tag": 28945654,
+      "interior_apex_node_tag": 1536736,
+      "fixed_triple_node_tags": [
+        870871,
+        870873,
+        867586
+      ],
+      "source_coordinate_bits_sha256": "0701e8963936995fbb22306979f92983a60e056dfa22c2b0a0b30e3a081ab65e",
+      "exact_centroid_mm": [
+        {
+          "numerator": "6295752891929185",
+          "denominator": "140737488355328"
+        },
+        {
+          "numerator": "-4625295270860347",
+          "denominator": "70368744177664"
+        },
+        {
+          "numerator": "0",
+          "denominator": "1"
+        }
+      ],
+      "exact_S_mm2": {
+        "numerator": "16152521388338850580073899",
+        "denominator": "4951760157141521099596496896"
+      },
+      "exact_T_mm4": {
+        "numerator": "40748410714307735734672943434017755501079660675",
+        "denominator": "383123885216472214589586756787577295904684780545900544"
+      },
+      "squared_radius_upper_mm2": {
+        "numerator": "2083596611657665854202067933267925538672091055534599",
+        "denominator": "119975117772228850958579879959573085482375321806176256"
+      }
+    },
+    {
+      "tetrahedron_tag": 31789461,
+      "interior_apex_node_tag": 1536736,
+      "fixed_triple_node_tags": [
+        867481,
+        870871,
+        870873
+      ],
+      "source_coordinate_bits_sha256": "5fbb117fff0b868ec80f1d37e3975b51e940d9205e2b719d92826b62273fedcd",
+      "exact_centroid_mm": [
+        {
+          "numerator": "18885309924886415",
+          "denominator": "422212465065984"
+        },
+        {
+          "numerator": "-6938430167653217",
+          "denominator": "105553116266496"
+        },
+        {
+          "numerator": "0",
+          "denominator": "1"
+        }
+      ],
+      "exact_S_mm2": {
+        "numerator": "48457564165016159684294813",
+        "denominator": "14855280471424563298789490688"
+      },
+      "exact_T_mm4": {
+        "numerator": "7823694857106871959306610257633451713908813645401",
+        "denominator": "73559785961562665201200657303214840813699477864812904448"
+      },
+      "squared_radius_upper_mm2": {
+        "numerator": "334863741157331703734780777075958401328324023266813",
+        "denominator": "19281715356250909329930132150423174671031563804737536"
+      }
+    },
+    {
+      "tetrahedron_tag": 28945655,
+      "interior_apex_node_tag": 1536737,
+      "fixed_triple_node_tags": [
+        869499,
+        866397,
+        869501
+      ],
+      "source_coordinate_bits_sha256": "34dc7c1f018f5fb2c6a34094ff2fc4eeb51cd350eb353dc39a1076f11ff4b328",
+      "exact_centroid_mm": [
+        {
+          "numerator": "-9443629337893775",
+          "denominator": "211106232532992"
+        },
+        {
+          "numerator": "13875885812581039",
+          "denominator": "211106232532992"
+        },
+        {
+          "numerator": "0",
+          "denominator": "1"
+        }
+      ],
+      "exact_S_mm2": {
+        "numerator": "6057195520633457545072075",
+        "denominator": "1856910058928070412348686336"
+      },
+      "exact_T_mm4": {
+        "numerator": "1955923714281144419528365429777818475745001932329",
+        "denominator": "18389946490390666300300164325803710203424869466203226112"
+      },
+      "squared_radius_upper_mm2": {
+        "numerator": "76853973380546461221798632855424730986924575321333",
+        "denominator": "4425311721111469294926386816968600101776119352524800"
+      }
+    },
+    {
+      "tetrahedron_tag": 31789459,
+      "interior_apex_node_tag": 1536737,
+      "fixed_triple_node_tags": [
+        866409,
+        869501,
+        869499
+      ],
+      "source_coordinate_bits_sha256": "06470870ef394a2ac84e433c537d322969fe5aa6b06da01d00d8a218598062da",
+      "exact_centroid_mm": [
+        {
+          "numerator": "-3147551654147735",
+          "denominator": "70368744177664"
+        },
+        {
+          "numerator": "216825942739163",
+          "denominator": "3298534883328"
+        },
+        {
+          "numerator": "0",
+          "denominator": "1"
+        }
+      ],
+      "exact_S_mm2": {
+        "numerator": "6057195520633165091493395",
+        "denominator": "1856910058928070412348686336"
+      },
+      "exact_T_mm4": {
+        "numerator": "10187102678575175117790161422464203714701788747",
+        "denominator": "95780971304118053647396689196894323976171195136475136"
+      },
+      "squared_radius_upper_mm2": {
+        "numerator": "293005773514228487600531521636364849761217362381883",
+        "denominator": "16871500936736662096918819133877590293147015006126080"
+      }
+    },
+    {
+      "tetrahedron_tag": 31449528,
+      "interior_apex_node_tag": 1555744,
+      "fixed_triple_node_tags": [
+        800398,
+        799887,
+        799736
+      ],
+      "source_coordinate_bits_sha256": "b5ec07c1b6b5c741d2f4633ef1000b4e8d5e7c61acf1094c67fe3ffd34c82b18",
+      "exact_centroid_mm": [
+        {
+          "numerator": "22619765",
+          "denominator": "393216"
+        },
+        {
+          "numerator": "-208067",
+          "denominator": "12288"
+        },
+        {
+          "numerator": "4076477",
+          "denominator": "98304"
+        }
+      ],
+      "exact_S_mm2": {
+        "numerator": "1978048515",
+        "denominator": "17179869184"
+      },
+      "exact_T_mm4": {
+        "numerator": "20582756489393921",
+        "denominator": "885443715538058477568"
+      },
+      "squared_radius_upper_mm2": {
+        "numerator": "845733787610502413",
+        "denominator": "19115220784109322240"
+      }
+    },
+    {
+      "tetrahedron_tag": 31481822,
+      "interior_apex_node_tag": 1555744,
+      "fixed_triple_node_tags": [
+        799887,
+        798572,
+        799736
+      ],
+      "source_coordinate_bits_sha256": "a5bfd1386fd0ca1c297bad7771dbd966a99352570406411d4ac16312b7ad63dd",
+      "exact_centroid_mm": [
+        {
+          "numerator": "7531503",
+          "denominator": "131072"
+        },
+        {
+          "numerator": "-26875993",
+          "denominator": "1572864"
+        },
+        {
+          "numerator": "32692789",
+          "denominator": "786432"
+        }
+      ],
+      "exact_S_mm2": {
+        "numerator": "28828116329",
+        "denominator": "206158430208"
+      },
+      "exact_T_mm4": {
+        "numerator": "369909564705714269",
+        "denominator": "14167099448608935641088"
+      },
+      "squared_radius_upper_mm2": {
+        "numerator": "41646451233238736813",
+        "denominator": "2228684703090094374912"
+      }
+    },
+    {
+      "tetrahedron_tag": 29103550,
+      "interior_apex_node_tag": 1561842,
+      "fixed_triple_node_tags": [
+        871197,
+        867507,
+        871200
+      ],
+      "source_coordinate_bits_sha256": "5e36455160bed802fa37e67246cbb4c308d629ff7f3f266580b4f0136d25982b",
+      "exact_centroid_mm": [
+        {
+          "numerator": "11236242456222155",
+          "denominator": "211106232532992"
+        },
+        {
+          "numerator": "-24163283727075025",
+          "denominator": "422212465065984"
+        },
+        {
+          "numerator": "0",
+          "denominator": "1"
+        }
+      ],
+      "exact_S_mm2": {
+        "numerator": "68199314069726409939087797",
+        "denominator": "14855280471424563298789490688"
+      },
+      "exact_T_mm4": {
+        "numerator": "2736372616013441501515818613957958598509159794201",
+        "denominator": "18389946490390666300300164325803710203424869466203226112"
+      },
+      "squared_radius_upper_mm2": {
+        "numerator": "857546253171442215945991030415248959923068254673351",
+        "denominator": "52402755437821923912294559669447648166920084600651776"
+      }
+    },
+    {
+      "tetrahedron_tag": 30531530,
+      "interior_apex_node_tag": 1561842,
+      "fixed_triple_node_tags": [
+        865907,
+        871197,
+        871200
+      ],
+      "source_coordinate_bits_sha256": "ca19f634fedc1595b65074585f222f5101718e9251b09e076fbd75f9532c09f9",
+      "exact_centroid_mm": [
+        {
+          "numerator": "3745738949872187",
+          "denominator": "70368744177664"
+        },
+        {
+          "numerator": "-24161334916617725",
+          "denominator": "422212465065984"
+        },
+        {
+          "numerator": "0",
+          "denominator": "1"
+        }
+      ],
+      "exact_S_mm2": {
+        "numerator": "68199314069727052118130865",
+        "denominator": "14855280471424563298789490688"
+      },
+      "exact_T_mm4": {
+        "numerator": "684093154005218136027480343120539733441539350329",
+        "denominator": "4597486622597666575075041081450927550856217366550806528"
+      },
+      "squared_radius_upper_mm2": {
+        "numerator": "24868841342051902757598426058799772630194444779748783",
+        "denominator": "1519679907696850103081238699674948746483421645824327680"
+      }
+    },
+    {
+      "tetrahedron_tag": 29103551,
+      "interior_apex_node_tag": 1561843,
+      "fixed_triple_node_tags": [
+        869174,
+        868608,
+        869171
+      ],
+      "source_coordinate_bits_sha256": "6277e3aa7fbef1122bd8c6a1509de839ea46fd72afeba1e4d7873233ab7d9c1f",
+      "exact_centroid_mm": [
+        {
+          "numerator": "-22472484912444307",
+          "denominator": "422212465065984"
+        },
+        {
+          "numerator": "12081641863537511",
+          "denominator": "211106232532992"
+        },
+        {
+          "numerator": "0",
+          "denominator": "1"
+        }
+      ],
+      "exact_S_mm2": {
+        "numerator": "34099657034883148438397767",
+        "denominator": "7427640235712281649394745344"
+      },
+      "exact_T_mm4": {
+        "numerator": "43781961856240853644991220597470336368381195777009",
+        "denominator": "294239143846250660804802629212859363254797911459251617792"
+      },
+      "squared_radius_upper_mm2": {
+        "numerator": "99475365367935089562529593735263408058265939241212649",
+        "denominator": "6078719630790898363706936962605262795843108136237924352"
+      }
+    },
+    {
+      "tetrahedron_tag": 30531531,
+      "interior_apex_node_tag": 1561843,
+      "fixed_triple_node_tags": [
+        867797,
+        869174,
+        869171
+      ],
+      "source_coordinate_bits_sha256": "1179e470c0f4c40c96eff481f037dd1bc8cbcc842b5698b62b914e3dddf49403",
+      "exact_centroid_mm": [
+        {
+          "numerator": "-7491477899744373",
+          "denominator": "140737488355328"
+        },
+        {
+          "numerator": "12080667458308861",
+          "denominator": "211106232532992"
+        },
+        {
+          "numerator": "0",
+          "denominator": "1"
+        }
+      ],
+      "exact_S_mm2": {
+        "numerator": "34099657034883469492416569",
+        "denominator": "7427640235712281649394745344"
+      },
+      "exact_T_mm4": {
+        "numerator": "43781961856359750280587069112890588666947020327129",
+        "denominator": "294239143846250660804802629212859363254797911459251617792"
+      },
+      "squared_radius_upper_mm2": {
+        "numerator": "99475365368255403458109810967673541921639323010558737",
+        "denominator": "6078719630790955595876886343307291446246554358108913664"
+      }
+    },
+    {
+      "tetrahedron_tag": 28850346,
+      "interior_apex_node_tag": 1580334,
+      "fixed_triple_node_tags": [
+        314483,
+        314149,
+        314150
+      ],
+      "source_coordinate_bits_sha256": "16376e7794be81400645ad88b7dd3b2be9630a57a16c9673d62cfd6483f024fc",
+      "exact_centroid_mm": [
+        {
+          "numerator": "-12558523",
+          "denominator": "786432"
+        },
+        {
+          "numerator": "1312981",
+          "denominator": "24576"
+        },
+        {
+          "numerator": "17329979",
+          "denominator": "393216"
+        }
+      ],
+      "exact_S_mm2": {
+        "numerator": "38600439123",
+        "denominator": "274877906944"
+      },
+      "exact_T_mm4": {
+        "numerator": "774561813668671875",
+        "denominator": "18889465931478580854784"
+      },
+      "squared_radius_upper_mm2": {
+        "numerator": "431776793821371684457",
+        "denominator": "5305203956624765485056"
+      }
+    },
+    {
+      "tetrahedron_tag": 28850361,
+      "interior_apex_node_tag": 1580334,
+      "fixed_triple_node_tags": [
+        314150,
+        313121,
+        314149
+      ],
+      "source_coordinate_bits_sha256": "273444586c36584314e161638361a697f8821c4d68c6cf53d9ce94472279e850",
+      "exact_centroid_mm": [
+        {
+          "numerator": "-12645671",
+          "denominator": "786432"
+        },
+        {
+          "numerator": "21054959",
+          "denominator": "393216"
+        },
+        {
+          "numerator": "1079563",
+          "denominator": "24576"
+        }
+      ],
+      "exact_S_mm2": {
+        "numerator": "46035081043",
+        "denominator": "274877906944"
+      },
+      "exact_T_mm4": {
+        "numerator": "1230879486262531875",
+        "denominator": "18889465931478580854784"
+      },
+      "squared_radius_upper_mm2": {
+        "numerator": "329573420852069522093",
+        "denominator": "2711577154949411241984"
+      }
+    },
+    {
+      "tetrahedron_tag": 29467726,
+      "interior_apex_node_tag": 1594361,
+      "fixed_triple_node_tags": [
+        570282,
+        570281,
+        569738
+      ],
+      "source_coordinate_bits_sha256": "48b1da241be2aa33faebbadc64a3813b5ab86adfcff134580ff037f4feac4415",
+      "exact_centroid_mm": [
+        {
+          "numerator": "1373215",
+          "denominator": "65536"
+        },
+        {
+          "numerator": "4809713",
+          "denominator": "98304"
+        },
+        {
+          "numerator": "18509833",
+          "denominator": "393216"
+        }
+      ],
+      "exact_S_mm2": {
+        "numerator": "31655637545",
+        "denominator": "206158430208"
+      },
+      "exact_T_mm4": {
+        "numerator": "224909479483892725",
+        "denominator": "3541774862152233910272"
+      },
+      "squared_radius_upper_mm2": {
+        "numerator": "284848815258364218055",
+        "denominator": "1957822963053188087808"
+      }
+    },
+    {
+      "tetrahedron_tag": 32094443,
+      "interior_apex_node_tag": 1594361,
+      "fixed_triple_node_tags": [
+        570281,
+        573182,
+        570282
+      ],
+      "source_coordinate_bits_sha256": "146c55fd7fd8f8b2157fd63b89b1a379630417463fe0411517b45b3be6bedbc5",
+      "exact_centroid_mm": [
+        {
+          "numerator": "11061733",
+          "denominator": "524288"
+        },
+        {
+          "numerator": "12863329",
+          "denominator": "262144"
+        },
+        {
+          "numerator": "12304605",
+          "denominator": "262144"
+        }
+      ],
+      "exact_S_mm2": {
+        "numerator": "495520211",
+        "denominator": "2147483648"
+      },
+      "exact_T_mm4": {
+        "numerator": "7982630164339275",
+        "denominator": "73786976294838206464"
+      },
+      "squared_radius_upper_mm2": {
+        "numerator": "3247740045589255889",
+        "denominator": "25538917209024233472"
+      }
+    },
+    {
+      "tetrahedron_tag": 30169548,
+      "interior_apex_node_tag": 1611467,
+      "fixed_triple_node_tags": [
+        195399,
+        197177,
+        195400
+      ],
+      "source_coordinate_bits_sha256": "9c5da3fa17e9b81e3eadfc1bb8e942d579cfd92c036ae120a3e4cb24014c07bb",
+      "exact_centroid_mm": [
+        {
+          "numerator": "-4119071",
+          "denominator": "131072"
+        },
+        {
+          "numerator": "9217271",
+          "denominator": "3145728"
+        },
+        {
+          "numerator": "49472611",
+          "denominator": "1572864"
+        }
+      ],
+      "exact_S_mm2": {
+        "numerator": "1992701549225",
+        "denominator": "13194139533312"
+      },
+      "exact_T_mm4": {
+        "numerator": "5109840354453663219",
+        "denominator": "151115727451828646838272"
+      },
+      "squared_radius_upper_mm2": {
+        "numerator": "45556430314672838183803",
+        "denominator": "1359930118382153839411200"
+      }
+    },
+    {
+      "tetrahedron_tag": 31861676,
+      "interior_apex_node_tag": 1611467,
+      "fixed_triple_node_tags": [
+        193758,
+        195399,
+        195400
+      ],
+      "source_coordinate_bits_sha256": "c2574f319db91818ef2b64c17e527a1c5d0402626a22c143af776482a96679be",
+      "exact_centroid_mm": [
+        {
+          "numerator": "-12413791",
+          "denominator": "393216"
+        },
+        {
+          "numerator": "6432397",
+          "denominator": "2097152"
+        },
+        {
+          "numerator": "24821089",
+          "denominator": "786432"
+        }
+      ],
+      "exact_S_mm2": {
+        "numerator": "2112685598807",
+        "denominator": "13194139533312"
+      },
+      "exact_T_mm4": {
+        "numerator": "44512272208825656495",
+        "denominator": "1208925819614629174706176"
+      },
+      "squared_radius_upper_mm2": {
+        "numerator": "1298940271659242027393471",
+        "denominator": "41812602871017561365938176"
+      }
+    },
+    {
+      "tetrahedron_tag": 29367524,
+      "interior_apex_node_tag": 1613756,
+      "fixed_triple_node_tags": [
+        866364,
+        870008,
+        866248
+      ],
+      "source_coordinate_bits_sha256": "e5297b473a0b665e386589c804f4a5b5c9e86f4f5fce1f778093397a08945631",
+      "exact_centroid_mm": [
+        {
+          "numerator": "-3878277265717091",
+          "denominator": "281474976710656"
+        },
+        {
+          "numerator": "6233238205128047",
+          "denominator": "140737488355328"
+        },
+        {
+          "numerator": "0",
+          "denominator": "1"
+        }
+      ],
+      "exact_S_mm2": {
+        "numerator": "225526472021359769441503883",
+        "denominator": "79228162514264337593543950336"
+      },
+      "exact_T_mm4": {
+        "numerator": "15193750779646010675092498713896235944683622024427",
+        "denominator": "1569275433846670190958947355801916604025588861116008628224"
+      },
+      "squared_radius_upper_mm2": {
+        "numerator": "3774538221205883497424823409995109355190572095761803",
+        "denominator": "26802071964865471526201435917740235797745443282754732032"
+      }
+    },
+    {
+      "tetrahedron_tag": 29672654,
+      "interior_apex_node_tag": 1613756,
+      "fixed_triple_node_tags": [
+        866366,
+        866248,
+        866364
+      ],
+      "source_coordinate_bits_sha256": "07b517086c8e3bd68a40e87d676d73788c05a4e03838d81af5b5644357009f86",
+      "exact_centroid_mm": [
+        {
+          "numerator": "-1937478225890479",
+          "denominator": "140737488355328"
+        },
+        {
+          "numerator": "292031953745479",
+          "denominator": "6597069766656"
+        },
+        {
+          "numerator": "0",
+          "denominator": "1"
+        }
+      ],
+      "exact_S_mm2": {
+        "numerator": "360752669338046629369232167",
+        "denominator": "237684487542793012780631851008"
+      },
+      "exact_T_mm4": {
+        "numerator": "1146233002938137662917506990920604363105078949601",
+        "denominator": "294239143846250660804802629212859363254797911459251617792"
+      },
+      "squared_radius_upper_mm2": {
+        "numerator": "67706497736620057023780941609117212025078988185213519",
+        "denominator": "128617970011962406413537722055754235125104069013357461504"
+      }
+    },
+    {
+      "tetrahedron_tag": 29366445,
+      "interior_apex_node_tag": 1613757,
+      "fixed_triple_node_tags": [
+        866062,
+        870364,
+        866572
+      ],
+      "source_coordinate_bits_sha256": "80a7b3de3de1b6cf75efac84297af974c0d9d25c5924789df4569bf6b9091333",
+      "exact_centroid_mm": [
+        {
+          "numerator": "23269663594302547",
+          "denominator": "1688849860263936"
+        },
+        {
+          "numerator": "-9349857307692071",
+          "denominator": "211106232532992"
+        },
+        {
+          "numerator": "0",
+          "denominator": "1"
+        }
+      ],
+      "exact_S_mm2": {
+        "numerator": "676579416064293654270912491",
+        "denominator": "237684487542793012780631851008"
+      },
+      "exact_T_mm4": {
+        "numerator": "3798437694912707486559210688323847883690197902675",
+        "denominator": "392318858461667547739736838950479151006397215279002157056"
+      },
+      "squared_radius_upper_mm2": {
+        "numerator": "33970843990718878257635746992373915636340453908869719",
+        "denominator": "241218647683865663795453661923405546471825571813777211392"
+      }
+    },
+    {
+      "tetrahedron_tag": 29672503,
+      "interior_apex_node_tag": 1613757,
+      "fixed_triple_node_tags": [
+        866059,
+        866572,
+        866062
+      ],
+      "source_coordinate_bits_sha256": "4db079dfd39364a14f8d35ffa4096ba014c5422eba3ec1a7920c93b5b33c1043",
+      "exact_centroid_mm": [
+        {
+          "numerator": "1937478225890479",
+          "denominator": "140737488355328"
+        },
+        {
+          "numerator": "-292031953745479",
+          "denominator": "6597069766656"
+        },
+        {
+          "numerator": "0",
+          "denominator": "1"
+        }
+      ],
+      "exact_S_mm2": {
+        "numerator": "360752669338046629369232167",
+        "denominator": "237684487542793012780631851008"
+      },
+      "exact_T_mm4": {
+        "numerator": "1146233002938137662917506990920604363105078949601",
+        "denominator": "294239143846250660804802629212859363254797911459251617792"
+      },
+      "squared_radius_upper_mm2": {
+        "numerator": "67706497736620057023780941609117212025078988185213519",
+        "denominator": "128617970011962406413537722055754235125104069013357461504"
+      }
+    },
+    {
+      "tetrahedron_tag": 29664587,
+      "interior_apex_node_tag": 1613783,
+      "fixed_triple_node_tags": [
+        870846,
+        866095,
+        867101
+      ],
+      "source_coordinate_bits_sha256": "41a69aafaabf6eb64db794b918647a2053a16cb629426a560da2487492273f4c",
+      "exact_centroid_mm": [
+        {
+          "numerator": "9349857307692071",
+          "denominator": "211106232532992"
+        },
+        {
+          "numerator": "-23269663594302547",
+          "denominator": "1688849860263936"
+        },
+        {
+          "numerator": "0",
+          "denominator": "1"
+        }
+      ],
+      "exact_S_mm2": {
+        "numerator": "676579416064293654270912491",
+        "denominator": "237684487542793012780631851008"
+      },
+      "exact_T_mm4": {
+        "numerator": "3798437694912707486559210688323847883690197902675",
+        "denominator": "392318858461667547739736838950479151006397215279002157056"
+      },
+      "squared_radius_upper_mm2": {
+        "numerator": "33970843990718878257635746992373915636340453908869719",
+        "denominator": "241218647683865663795453661923405546471825571813777211392"
+      }
+    },
+    {
+      "tetrahedron_tag": 31251529,
+      "interior_apex_node_tag": 1613783,
+      "fixed_triple_node_tags": [
+        868201,
+        867101,
+        866095
+      ],
+      "source_coordinate_bits_sha256": "04809cef560bb27dc7d16dbfb0e8d985aa17bf428099c047a2eda6f3ccea1d29",
+      "exact_centroid_mm": [
+        {
+          "numerator": "292031953745479",
+          "denominator": "6597069766656"
+        },
+        {
+          "numerator": "-1937478225890479",
+          "denominator": "140737488355328"
+        },
+        {
+          "numerator": "0",
+          "denominator": "1"
+        }
+      ],
+      "exact_S_mm2": {
+        "numerator": "360752669338046629369232167",
+        "denominator": "237684487542793012780631851008"
+      },
+      "exact_T_mm4": {
+        "numerator": "1146233002938137662917506990920604363105078949601",
+        "denominator": "294239143846250660804802629212859363254797911459251617792"
+      },
+      "squared_radius_upper_mm2": {
+        "numerator": "67706497736620057023780941609117212025078988185213519",
+        "denominator": "128617970011962406413537722055754235125104069013357461504"
+      }
+    },
+    {
+      "tetrahedron_tag": 29366318,
+      "interior_apex_node_tag": 1613784,
+      "fixed_triple_node_tags": [
+        869526,
+        866966,
+        868045
+      ],
+      "source_coordinate_bits_sha256": "f26d8ab7cc0c1f0feab7b54ba5849efa19c6bfa7ba94d471d05dc863ff3cf63d",
+      "exact_centroid_mm": [
+        {
+          "numerator": "-9349857307692071",
+          "denominator": "211106232532992"
+        },
+        {
+          "numerator": "23269663594302547",
+          "denominator": "1688849860263936"
+        },
+        {
+          "numerator": "0",
+          "denominator": "1"
+        }
+      ],
+      "exact_S_mm2": {
+        "numerator": "676579416064293654270912491",
+        "denominator": "237684487542793012780631851008"
+      },
+      "exact_T_mm4": {
+        "numerator": "3798437694912707486559210688323847883690197902675",
+        "denominator": "392318858461667547739736838950479151006397215279002157056"
+      },
+      "squared_radius_upper_mm2": {
+        "numerator": "33970843990718878257635746992373915636340453908869719",
+        "denominator": "241218647683865663795453661923405546471825571813777211392"
+      }
+    },
+    {
+      "tetrahedron_tag": 29664233,
+      "interior_apex_node_tag": 1613784,
+      "fixed_triple_node_tags": [
+        868045,
+        868245,
+        866966
+      ],
+      "source_coordinate_bits_sha256": "5c14599944ada38dc793debb54e963b592137c6592adbe07023deef38119c2c5",
+      "exact_centroid_mm": [
+        {
+          "numerator": "-292031953745479",
+          "denominator": "6597069766656"
+        },
+        {
+          "numerator": "1937478225890479",
+          "denominator": "140737488355328"
+        },
+        {
+          "numerator": "0",
+          "denominator": "1"
+        }
+      ],
+      "exact_S_mm2": {
+        "numerator": "360752669338046629369232167",
+        "denominator": "237684487542793012780631851008"
+      },
+      "exact_T_mm4": {
+        "numerator": "1146233002938137662917506990920604363105078949601",
+        "denominator": "294239143846250660804802629212859363254797911459251617792"
+      },
+      "squared_radius_upper_mm2": {
+        "numerator": "67706497736620057023780941609117212025078988185213519",
+        "denominator": "128617970011962406413537722055754235125104069013357461504"
+      }
+    },
+    {
+      "tetrahedron_tag": 28847992,
+      "interior_apex_node_tag": 1613790,
+      "fixed_triple_node_tags": [
+        739447,
+        867315,
+        867228
+      ],
+      "source_coordinate_bits_sha256": "ce22b07283d38e6bc415e46ded11d19a800506aa5a3a852c61543284ad0cb82a",
+      "exact_centroid_mm": [
+        {
+          "numerator": "2389513159680803",
+          "denominator": "52776558133248"
+        },
+        {
+          "numerator": "-3454084050217633",
+          "denominator": "52776558133248"
+        },
+        {
+          "numerator": "13780427",
+          "denominator": "3221225472"
+        }
+      ],
+      "exact_S_mm2": {
+        "numerator": "351027569607609182444690765",
+        "denominator": "1237940039285380274899124224"
+      },
+      "exact_T_mm4": {
+        "numerator": "3272007760567554472658141297173378274318381663886041",
+        "denominator": "1149371655649416643768760270362731887714054341637701632"
+      },
+      "squared_radius_upper_mm2": {
+        "numerator": "11396478843127051154277285691693950040068025453905347761",
+        "denominator": "1955479874896328716458583078788311697098219776502661120"
+      }
+    },
+    {
+      "tetrahedron_tag": 28848742,
+      "interior_apex_node_tag": 1613790,
+      "fixed_triple_node_tags": [
+        867315,
+        868209,
+        867228
+      ],
+      "source_coordinate_bits_sha256": "5dfcd90e2f527f25058222794e9690566413fc2f34c9dcfac35a69e77d6b7364",
+      "exact_centroid_mm": [
+        {
+          "numerator": "19118054132078615",
+          "denominator": "422212465065984"
+        },
+        {
+          "numerator": "-3445287957195425",
+          "denominator": "52776558133248"
+        },
+        {
+          "numerator": "0",
+          "denominator": "1"
+        }
+      ],
+      "exact_S_mm2": {
+        "numerator": "312931609542384242758849205",
+        "denominator": "14855280471424563298789490688"
+      },
+      "exact_T_mm4": {
+        "numerator": "145854399188910135806884781671050984421189454421481",
+        "denominator": "18389946490390666300300164325803710203424869466203226112"
+      },
+      "squared_radius_upper_mm2": {
+        "numerator": "1475551066199175316224945796456166063667484498369805003",
+        "denominator": "6973030242189655747014712911110804239703281450415554560"
+      }
+    },
+    {
+      "tetrahedron_tag": 28847004,
+      "interior_apex_node_tag": 1613791,
+      "fixed_triple_node_tags": [
+        119945,
+        866744,
+        868112
+      ],
+      "source_coordinate_bits_sha256": "c8790dae061785ea7aede4fe4f6d061feb59b9dab0ae76b995b3671d759fcabb",
+      "exact_centroid_mm": [
+        {
+          "numerator": "-2389513159680803",
+          "denominator": "52776558133248"
+        },
+        {
+          "numerator": "3454084050217633",
+          "denominator": "52776558133248"
+        },
+        {
+          "numerator": "13780427",
+          "denominator": "3221225472"
+        }
+      ],
+      "exact_S_mm2": {
+        "numerator": "351027569607609182444690765",
+        "denominator": "1237940039285380274899124224"
+      },
+      "exact_T_mm4": {
+        "numerator": "3272007760567554472658141297173378274318381663886041",
+        "denominator": "1149371655649416643768760270362731887714054341637701632"
+      },
+      "squared_radius_upper_mm2": {
+        "numerator": "11396478843127051154277285691693950040068025453905347761",
+        "denominator": "1955479874896328716458583078788311697098219776502661120"
+      }
+    },
+    {
+      "tetrahedron_tag": 28847352,
+      "interior_apex_node_tag": 1613791,
+      "fixed_triple_node_tags": [
+        866744,
+        866726,
+        868112
+      ],
+      "source_coordinate_bits_sha256": "83dec65429dd72d185feae8298e46c6b2a95f921aec23e15ee08d23fb471c760",
+      "exact_centroid_mm": [
+        {
+          "numerator": "-19118054132078615",
+          "denominator": "422212465065984"
+        },
+        {
+          "numerator": "3445287957195425",
+          "denominator": "52776558133248"
+        },
+        {
+          "numerator": "0",
+          "denominator": "1"
+        }
+      ],
+      "exact_S_mm2": {
+        "numerator": "312931609542384242758849205",
+        "denominator": "14855280471424563298789490688"
+      },
+      "exact_T_mm4": {
+        "numerator": "145854399188910135806884781671050984421189454421481",
+        "denominator": "18389946490390666300300164325803710203424869466203226112"
+      },
+      "squared_radius_upper_mm2": {
+        "numerator": "1475551066199175316224945796456166063667484498369805003",
+        "denominator": "6973030242189655747014712911110804239703281450415554560"
+      }
+    }
+  ],
+  "pair_results": [
+    {
+      "interior_apex_node_tag": 1393392,
+      "tetrahedron_tags": [
+        31580321,
+        31787912
+      ],
+      "exact_centroid_distance_squared_mm2": {
+        "numerator": "6072063272689",
+        "denominator": "158329674399744"
+      },
+      "gap_D_minus_U_minus_V_mm2": {
+        "numerator": "-193079091876530750987609800143597",
+        "denominator": "14997286007460600536861848799019008"
+      },
+      "exact_gap_squared_minus_4UV_mm4": {
+        "numerator": "-32288657478135940080150092701312276236238274329235969643103195992007",
+        "denominator": "18218405594755455121765956996298910178956592563698113678040394769629184"
+      },
+      "strictly_disjoint_outer_balls_certified": false,
+      "decision": "inconclusive"
+    },
+    {
+      "interior_apex_node_tag": 1421487,
+      "tetrahedron_tags": [
+        29195394,
+        31835387
+      ],
+      "exact_centroid_distance_squared_mm2": {
+        "numerator": "18187725613",
+        "denominator": "618475290624"
+      },
+      "gap_D_minus_U_minus_V_mm2": {
+        "numerator": "-9890463936098944519500988382387",
+        "denominator": "63556170901894953290094820196352"
+      },
+      "exact_gap_squared_minus_4UV_mm4": {
+        "numerator": "-361331374980129968117693442320370397797972197632229159591253727",
+        "denominator": "36354481737397908842782423684618917488097122948992166086506971136"
+      },
+      "strictly_disjoint_outer_balls_certified": false,
+      "decision": "inconclusive"
+    },
+    {
+      "interior_apex_node_tag": 1425809,
+      "tetrahedron_tags": [
+        29669287,
+        31836264
+      ],
+      "exact_centroid_distance_squared_mm2": {
+        "numerator": "251467658657",
+        "denominator": "9895604649984"
+      },
+      "gap_D_minus_U_minus_V_mm2": {
+        "numerator": "-41077486064784246353730001365815",
+        "denominator": "261527218531760821030253324402688"
+      },
+      "exact_gap_squared_minus_4UV_mm4": {
+        "numerator": "-65269479018465972062131775576911625233596526401880348361583223",
+        "denominator": "7599609559217708957071740257260234996620963845678919692442402816"
+      },
+      "strictly_disjoint_outer_balls_certified": false,
+      "decision": "inconclusive"
+    },
+    {
+      "interior_apex_node_tag": 1432342,
+      "tetrahedron_tags": [
+        28933157,
+        30929912
+      ],
+      "exact_centroid_distance_squared_mm2": {
+        "numerator": "47560755271",
+        "denominator": "824633720832"
+      },
+      "gap_D_minus_U_minus_V_mm2": {
+        "numerator": "-4609154566434377530207135651411",
+        "denominator": "41827079376245216060182756327424"
+      },
+      "exact_gap_squared_minus_4UV_mm4": {
+        "numerator": "-2226699003612215717342985866082651976949699941694160491222689607",
+        "denominator": "141709870100884149300853401603937938571426652673061574171852537856"
+      },
+      "strictly_disjoint_outer_balls_certified": false,
+      "decision": "inconclusive"
+    },
+    {
+      "interior_apex_node_tag": 1435493,
+      "tetrahedron_tags": [
+        28946957,
+        31225364
+      ],
+      "exact_centroid_distance_squared_mm2": {
+        "numerator": "120598853257",
+        "denominator": "2473901162496"
+      },
+      "gap_D_minus_U_minus_V_mm2": {
+        "numerator": "-395219687795107707976308401087",
+        "denominator": "43807984113817292136754490376192"
+      },
+      "exact_gap_squared_minus_4UV_mm4": {
+        "numerator": "-4181552561520478139226541369715425058296904744671378035521407",
+        "denominator": "1919139472116468238654909042000061779474260062179990345680420864"
+      },
+      "strictly_disjoint_outer_balls_certified": false,
+      "decision": "inconclusive"
+    },
+    {
+      "interior_apex_node_tag": 1441004,
+      "tetrahedron_tags": [
+        31081341,
+        31477480
+      ],
+      "exact_centroid_distance_squared_mm2": {
+        "numerator": "382737739193",
+        "denominator": "9895604649984"
+      },
+      "gap_D_minus_U_minus_V_mm2": {
+        "numerator": "-164225578454749984745560317964169",
+        "denominator": "6771379736705100378710096090234880"
+      },
+      "exact_gap_squared_minus_4UV_mm4": {
+        "numerator": "-41553878102191125076140867924740214051278245837022576216948550373",
+        "denominator": "15283861179553478176328035837371902917523156150312047613097856204800"
+      },
+      "strictly_disjoint_outer_balls_certified": false,
+      "decision": "inconclusive"
+    },
+    {
+      "interior_apex_node_tag": 1441011,
+      "tetrahedron_tags": [
+        31081428,
+        31477486
+      ],
+      "exact_centroid_distance_squared_mm2": {
+        "numerator": "95684191381",
+        "denominator": "2473901162496"
+      },
+      "gap_D_minus_U_minus_V_mm2": {
+        "numerator": "-3421392774278185980295064795017",
+        "denominator": "141070286955218466864145115381760"
+      },
+      "exact_gap_squared_minus_4UV_mm4": {
+        "numerator": "-54107546360118813270874272114953507348226712853480348858669231",
+        "denominator": "19900825861627681538455268583103664546182363598475303350540697600"
+      },
+      "strictly_disjoint_outer_balls_certified": false,
+      "decision": "inconclusive"
+    },
+    {
+      "interior_apex_node_tag": 1441012,
+      "tetrahedron_tags": [
+        31081429,
+        31477487
+      ],
+      "exact_centroid_distance_squared_mm2": {
+        "numerator": "95684191381",
+        "denominator": "2473901162496"
+      },
+      "gap_D_minus_U_minus_V_mm2": {
+        "numerator": "-3421392774278185980295064795017",
+        "denominator": "141070286955218466864145115381760"
+      },
+      "exact_gap_squared_minus_4UV_mm4": {
+        "numerator": "-54107546360118813270874272114953507348226712853480348858669231",
+        "denominator": "19900825861627681538455268583103664546182363598475303350540697600"
+      },
+      "strictly_disjoint_outer_balls_certified": false,
+      "decision": "inconclusive"
+    },
+    {
+      "interior_apex_node_tag": 1441013,
+      "tetrahedron_tags": [
+        31081437,
+        31477489
+      ],
+      "exact_centroid_distance_squared_mm2": {
+        "numerator": "11960584777",
+        "denominator": "309237645312"
+      },
+      "gap_D_minus_U_minus_V_mm2": {
+        "numerator": "-4276643463094491406079166005",
+        "denominator": "176339080422715061480674295808"
+      },
+      "exact_gap_squared_minus_4UV_mm4": {
+        "numerator": "-2113560386501960466603037651652919094022958149907319742639",
+        "denominator": "777386782108219256649477735186785076456732680662917159321600"
+      },
+      "strictly_disjoint_outer_balls_certified": false,
+      "decision": "inconclusive"
+    },
+    {
+      "interior_apex_node_tag": 1450443,
+      "tetrahedron_tags": [
+        31203851,
+        31848215
+      ],
+      "exact_centroid_distance_squared_mm2": {
+        "numerator": "95684191381",
+        "denominator": "2473901162496"
+      },
+      "gap_D_minus_U_minus_V_mm2": {
+        "numerator": "-3421392774278185980295064795017",
+        "denominator": "141070286955218466864145115381760"
+      },
+      "exact_gap_squared_minus_4UV_mm4": {
+        "numerator": "-54107546360118813270874272114953507348226712853480348858669231",
+        "denominator": "19900825861627681538455268583103664546182363598475303350540697600"
+      },
+      "strictly_disjoint_outer_balls_certified": false,
+      "decision": "inconclusive"
+    },
+    {
+      "interior_apex_node_tag": 1458419,
+      "tetrahedron_tags": [
+        31192445,
+        31463903
+      ],
+      "exact_centroid_distance_squared_mm2": {
+        "numerator": "1520375903761",
+        "denominator": "39582418599936"
+      },
+      "gap_D_minus_U_minus_V_mm2": {
+        "numerator": "-624618360122075892052688068568788273",
+        "denominator": "36633193481278473714246559185292492800"
+      },
+      "exact_gap_squared_minus_4UV_mm4": {
+        "numerator": "-2821079907670652116471549007094457236959038422869223789070323610099069871",
+        "denominator": "1341990864636783660267811365156201510938558094324520616197858288038051840000"
+      },
+      "strictly_disjoint_outer_balls_certified": false,
+      "decision": "inconclusive"
+    },
+    {
+      "interior_apex_node_tag": 1459063,
+      "tetrahedron_tags": [
+        31203852,
+        31851970
+      ],
+      "exact_centroid_distance_squared_mm2": {
+        "numerator": "95684191381",
+        "denominator": "2473901162496"
+      },
+      "gap_D_minus_U_minus_V_mm2": {
+        "numerator": "-3421392774278185980295064795017",
+        "denominator": "141070286955218466864145115381760"
+      },
+      "exact_gap_squared_minus_4UV_mm4": {
+        "numerator": "-54107546360118813270874272114953507348226712853480348858669231",
+        "denominator": "19900825861627681538455268583103664546182363598475303350540697600"
+      },
+      "strictly_disjoint_outer_balls_certified": false,
+      "decision": "inconclusive"
+    },
+    {
+      "interior_apex_node_tag": 1459064,
+      "tetrahedron_tags": [
+        31203858,
+        31844366
+      ],
+      "exact_centroid_distance_squared_mm2": {
+        "numerator": "11960584777",
+        "denominator": "309237645312"
+      },
+      "gap_D_minus_U_minus_V_mm2": {
+        "numerator": "-4276643463094491406079166005",
+        "denominator": "176339080422715061480674295808"
+      },
+      "exact_gap_squared_minus_4UV_mm4": {
+        "numerator": "-2113560386501960466603037651652919094022958149907319742639",
+        "denominator": "777386782108219256649477735186785076456732680662917159321600"
+      },
+      "strictly_disjoint_outer_balls_certified": false,
+      "decision": "inconclusive"
+    },
+    {
+      "interior_apex_node_tag": 1459940,
+      "tetrahedron_tags": [
+        28819955,
+        31624843
+      ],
+      "exact_centroid_distance_squared_mm2": {
+        "numerator": "232009934525",
+        "denominator": "9895604649984"
+      },
+      "gap_D_minus_U_minus_V_mm2": {
+        "numerator": "-196809536309213936424525799704206951",
+        "denominator": "1916974785570110887450370468122460160"
+      },
+      "exact_gap_squared_minus_4UV_mm4": {
+        "numerator": "-6228950790260272392895473095247291752332760919057286375012319607493813",
+        "denominator": "1224930776170524205705897558862751273698922243812122581052035416929075200"
+      },
+      "strictly_disjoint_outer_balls_certified": false,
+      "decision": "inconclusive"
+    },
+    {
+      "interior_apex_node_tag": 1459941,
+      "tetrahedron_tags": [
+        28819925,
+        31624844
+      ],
+      "exact_centroid_distance_squared_mm2": {
+        "numerator": "232009934525",
+        "denominator": "9895604649984"
+      },
+      "gap_D_minus_U_minus_V_mm2": {
+        "numerator": "-196809536309213936424525799704206951",
+        "denominator": "1916974785570110887450370468122460160"
+      },
+      "exact_gap_squared_minus_4UV_mm4": {
+        "numerator": "-6228950790260272392895473095247291752332760919057286375012319607493813",
+        "denominator": "1224930776170524205705897558862751273698922243812122581052035416929075200"
+      },
+      "strictly_disjoint_outer_balls_certified": false,
+      "decision": "inconclusive"
+    },
+    {
+      "interior_apex_node_tag": 1460612,
+      "tetrahedron_tags": [
+        30884674,
+        31973066
+      ],
+      "exact_centroid_distance_squared_mm2": {
+        "numerator": "289000431707769",
+        "denominator": "4503599627370496"
+      },
+      "gap_D_minus_U_minus_V_mm2": {
+        "numerator": "-220942384822487322451750428455303445493801505427469",
+        "denominator": "2333909910855091891164259997271501168982640713269248"
+      },
+      "exact_gap_squared_minus_4UV_mm4": {
+        "numerator": "-212721158247733048781526386998756054393389050186122147567169009629668306578004583256328048275973557413",
+        "denominator": "13788061663468670663642150765368322159747341336760703673404939790021933924568256663104611920602235666432"
+      },
+      "strictly_disjoint_outer_balls_certified": false,
+      "decision": "inconclusive"
+    },
+    {
+      "interior_apex_node_tag": 1462610,
+      "tetrahedron_tags": [
+        28849588,
+        32127616
+      ],
+      "exact_centroid_distance_squared_mm2": {
+        "numerator": "387129367447",
+        "denominator": "824633720832"
+      },
+      "gap_D_minus_U_minus_V_mm2": {
+        "numerator": "-6590663149512741838476964658761",
+        "denominator": "13256052658675466318710308864000"
+      },
+      "exact_gap_squared_minus_4UV_mm4": {
+        "numerator": "17829548323728948717947258484786579415400920695750926430528721",
+        "denominator": "175722932089576899143514784644968377574522224186276970496000000"
+      },
+      "strictly_disjoint_outer_balls_certified": false,
+      "decision": "inconclusive"
+    },
+    {
+      "interior_apex_node_tag": 1468704,
+      "tetrahedron_tags": [
+        31173327,
+        31295659
+      ],
+      "exact_centroid_distance_squared_mm2": {
+        "numerator": "92144675437",
+        "denominator": "2473901162496"
+      },
+      "gap_D_minus_U_minus_V_mm2": {
+        "numerator": "-766698099175782233996185882949",
+        "denominator": "2792235310141535834674588286976"
+      },
+      "exact_gap_squared_minus_4UV_mm4": {
+        "numerator": "-163982246308676888640164702661042130596170554282156832801639",
+        "denominator": "7796578027201198810437447941710633033182628352893214131224576"
+      },
+      "strictly_disjoint_outer_balls_certified": false,
+      "decision": "inconclusive"
+    },
+    {
+      "interior_apex_node_tag": 1474426,
+      "tetrahedron_tags": [
+        28752536,
+        29592348
+      ],
+      "exact_centroid_distance_squared_mm2": {
+        "numerator": "16425166816900304549196725017",
+        "denominator": "44565841414273689896368472064"
+      },
+      "gap_D_minus_U_minus_V_mm2": {
+        "numerator": "-314307154228828961535922345223444315942756875882367131906953187159241607706104521",
+        "denominator": "178425043445528098179133722039982443167360188994446183224253693477567346327420928"
+      },
+      "exact_gap_squared_minus_4UV_mm4": {
+        "numerator": "283181165372208879205560898110443623917747922829808266855386925413290095122473848259998987802033734605344927780784246693664502316214613071208210504108255166461491",
+        "denominator": "95506488385615768047406795147750941753358805769108681279668891561515228134002818116038698453742061967646408894094499590735838608523436451567033980515920277143552"
+      },
+      "strictly_disjoint_outer_balls_certified": false,
+      "decision": "inconclusive"
+    },
+    {
+      "interior_apex_node_tag": 1474426,
+      "tetrahedron_tags": [
+        28752536,
+        29792709
+      ],
+      "exact_centroid_distance_squared_mm2": {
+        "numerator": "71533610242552213341346705325",
+        "denominator": "178263365657094759585473888256"
+      },
+      "gap_D_minus_U_minus_V_mm2": {
+        "numerator": "-677950773802119825891536681946271117627666338615468734908871764599607801677033269",
+        "denominator": "1391939224048228168268817253442218531211539578766923681798385553229067261046685696"
+      },
+      "exact_gap_squared_minus_4UV_mm4": {
+        "numerator": "3143408374603904165554785698208886943874290285865192965536035710146508903666806996119935344527353697415158799226179755969170758752413118152222395623226738600530881",
+        "denominator": "17437453230995851808091634006706202003650125786875797572263256542991984413655750140808074784989456721734138950357371540885745242276015186677572034210391795899039744"
+      },
+      "strictly_disjoint_outer_balls_certified": false,
+      "decision": "inconclusive"
+    },
+    {
+      "interior_apex_node_tag": 1474426,
+      "tetrahedron_tags": [
+        28752536,
+        30249790
+      ],
+      "exact_centroid_distance_squared_mm2": {
+        "numerator": "7595485704458071440050585",
+        "denominator": "178263365657094759585473888256"
+      },
+      "gap_D_minus_U_minus_V_mm2": {
+        "numerator": "-1534452731066602681566410472525036207158511076902755545793875464306987325522991",
+        "denominator": "47047862063229007070422231301765030339804127640247281824136109672197114510180352"
+      },
+      "exact_gap_squared_minus_4UV_mm4": {
+        "numerator": "-498638103280787205553220283065057372700139195394687012391630034086535621824392471163889562328817334340996999226568553771632548353382323466622275920657200911",
+        "denominator": "179293607302370479369322900186870349487332286616490076480174126431796481012841399591658039837853955563300144393142328101934568213168707276733470975472052914356224"
+      },
+      "strictly_disjoint_outer_balls_certified": false,
+      "decision": "inconclusive"
+    },
+    {
+      "interior_apex_node_tag": 1474426,
+      "tetrahedron_tags": [
+        29592348,
+        29792709
+      ],
+      "exact_centroid_distance_squared_mm2": {
+        "numerator": "732275398833673009548118969",
+        "denominator": "178263365657094759585473888256"
+      },
+      "gap_D_minus_U_minus_V_mm2": {
+        "numerator": "-874433403577494645168499139962792179378964889782660444058523658404393802447568481",
+        "denominator": "293267330606346118772386234688382344708597895905660049893000616876903864511496192"
+      },
+      "exact_gap_squared_minus_4UV_mm4": {
+        "numerator": "3523927210874166153767368233878917190251056346228937552480802089090830104215248188659491181217711378657706066062086372053260681049175084210296687298006010101720603",
+        "denominator": "2322154634426241704571693419153115995703129578516634577757155326904200455546850720558013344786359390896040681907824175136622141307252978103635395112603521623523328"
+      },
+      "strictly_disjoint_outer_balls_certified": false,
+      "decision": "inconclusive"
+    },
+    {
+      "interior_apex_node_tag": 1474426,
+      "tetrahedron_tags": [
+        29592348,
+        30249790
+      ],
+      "exact_centroid_distance_squared_mm2": {
+        "numerator": "67111422760100380189620623809",
+        "denominator": "178263365657094759585473888256"
+      },
+      "gap_D_minus_U_minus_V_mm2": {
+        "numerator": "-156447559618582228010828939214192445937962855950584803998232703098864717926506927",
+        "denominator": "89212521722763234134359883573540991388513443472173736765072112985716150539124736"
+      },
+      "exact_gap_squared_minus_4UV_mm4": {
+        "numerator": "70131067675306878178133818323419761220365630277982447199559929128375507931483723441340948084952746047653108336078490387051989589404465490786758395675642360333411",
+        "denominator": "23876622096403505786597065458251056314664965954116906558197530904491578361196013860483554137657327285952426091574471157823190270579766718785847710084842901209088"
+      },
+      "strictly_disjoint_outer_balls_certified": false,
+      "decision": "inconclusive"
+    },
+    {
+      "interior_apex_node_tag": 1474426,
+      "tetrahedron_tags": [
+        29792709,
+        30249790
+      ],
+      "exact_centroid_distance_squared_mm2": {
+        "numerator": "4056391186188237213505109821",
+        "denominator": "9903520314283042199192993792"
+      },
+      "gap_D_minus_U_minus_V_mm2": {
+        "numerator": "-499787452886687294693199638221649776874701816742949441051013895860891540649476211",
+        "denominator": "1043954418036161589691800230708174719031255995505130321297475781884635552392675328"
+      },
+      "exact_gap_squared_minus_4UV_mm4": {
+        "numerator": "20857313043884719003356824831010917278422465205097901087890905024502795105686514222777825321280605960593086361147424564006018262799972464921449199615186973399585",
+        "denominator": "121093425215246758515847097667941627333523633184513240400947932451887605775585946014124376689525272057126863378755198231256310938019517812172905693146225024434176"
+      },
+      "strictly_disjoint_outer_balls_certified": false,
+      "decision": "inconclusive"
+    },
+    {
+      "interior_apex_node_tag": 1474427,
+      "tetrahedron_tags": [
+        28752535,
+        30249789
+      ],
+      "exact_centroid_distance_squared_mm2": {
+        "numerator": "7595485704458071440050585",
+        "denominator": "178263365657094759585473888256"
+      },
+      "gap_D_minus_U_minus_V_mm2": {
+        "numerator": "-3452518644894684291740161776580604276535039087161419526014364927795866369685557",
+        "denominator": "105857689642111060244952129469615557298018621716250887827951525829791848788393984"
+      },
+      "exact_gap_squared_minus_4UV_mm4": {
+        "numerator": "-31164881454957118679946411401450907509031866731710285294928410917721086910864308897820861020979446660896425484249888739509142047980342236510841687751761385",
+        "denominator": "11205850456365507250047426371461140294016383457637314003133179273436437585231557634638512720006538548436398071820942396746739653322531022912106492449938007392256"
+      },
+      "strictly_disjoint_outer_balls_certified": false,
+      "decision": "inconclusive"
+    },
+    {
+      "interior_apex_node_tag": 1474427,
+      "tetrahedron_tags": [
+        28752535,
+        31034268
+      ],
+      "exact_centroid_distance_squared_mm2": {
+        "numerator": "66937177021995621357548331341",
+        "denominator": "178263365657094759585473888256"
+      },
+      "gap_D_minus_U_minus_V_mm2": {
+        "numerator": "-462745253849412694114997616801383133919106795196741413785268494951686631122977837",
+        "denominator": "84563601040939754446309915387282959805469667003125309081325015915803998106419200"
+      },
+      "exact_gap_squared_minus_4UV_mm4": {
+        "numerator": "211409561308148838476146164893752552181448937638304667693805695382139942029341669392914698350945316264027158119787890156729510533435776388116604655879461776994669",
+        "denominator": "7151002621011227121747518708432065860802447854769615716892683350543578624511418565713014780038803247903354739865176341554523371891589020278261659248246128640000"
+      },
+      "strictly_disjoint_outer_balls_certified": false,
+      "decision": "inconclusive"
+    },
+    {
+      "interior_apex_node_tag": 1474427,
+      "tetrahedron_tags": [
+        30249789,
+        31034268
+      ],
+      "exact_centroid_distance_squared_mm2": {
+        "numerator": "11383484118298352356368296035",
+        "denominator": "29710560942849126597578981376"
+      },
+      "gap_D_minus_U_minus_V_mm2": {
+        "numerator": "-924196672325611242814144288860411435059497836311298581391283780567169078517810133",
+        "denominator": "169127202081882744275498197975233803310858005274901081935387762424932092136652800"
+      },
+      "exact_gap_squared_minus_4UV_mm4": {
+        "numerator": "281081684843234600578633976168932941026942554404372349134767577953473166186417474688928803480149203435876863968500508445708616328587611859328087195118269840379763",
+        "denominator": "9534670161348667623165946189757783270000511367930105814609832331826838084368409851744477160171620933085097492623082208521370131761268151233328127329729249280000"
+      },
+      "strictly_disjoint_outer_balls_certified": false,
+      "decision": "inconclusive"
+    },
+    {
+      "interior_apex_node_tag": 1476316,
+      "tetrahedron_tags": [
+        30419427,
+        30419439
+      ],
+      "exact_centroid_distance_squared_mm2": {
+        "numerator": "47823991283665",
+        "denominator": "2533274790395904"
+      },
+      "gap_D_minus_U_minus_V_mm2": {
+        "numerator": "-18698447065428150799412897574715069181",
+        "denominator": "2750751011535821789400141517928534114304"
+      },
+      "exact_gap_squared_minus_4UV_mm4": {
+        "numerator": "-4637086043848173142805119345370962562495827112248504417879744899445759137271",
+        "denominator": "7566631127465346779103641717965949290478833803605950927741883519762313737404416"
+      },
+      "strictly_disjoint_outer_balls_certified": false,
+      "decision": "inconclusive"
+    },
+    {
+      "interior_apex_node_tag": 1479268,
+      "tetrahedron_tags": [
+        29189579,
+        29628376
+      ],
+      "exact_centroid_distance_squared_mm2": {
+        "numerator": "220802194001",
+        "denominator": "274877906944"
+      },
+      "gap_D_minus_U_minus_V_mm2": {
+        "numerator": "9963222142754627471821947744187",
+        "denominator": "107797094280583760804228213243904"
+      },
+      "exact_gap_squared_minus_4UV_mm4": {
+        "numerator": "-213780093560065851157578303646166721784485251990329037845740709",
+        "denominator": "430378279086557931677816867705728941364732658354160192096043008"
+      },
+      "strictly_disjoint_outer_balls_certified": false,
+      "decision": "inconclusive"
+    },
+    {
+      "interior_apex_node_tag": 1481857,
+      "tetrahedron_tags": [
+        29212465,
+        29713840
+      ],
+      "exact_centroid_distance_squared_mm2": {
+        "numerator": "14462346545",
+        "denominator": "618475290624"
+      },
+      "gap_D_minus_U_minus_V_mm2": {
+        "numerator": "-2196911964461221166326910789",
+        "denominator": "97106944670739124918037774336"
+      },
+      "exact_gap_squared_minus_4UV_mm4": {
+        "numerator": "-408603385698142777908550453504107033333193773793623466973",
+        "denominator": "254603484988721722816400821872859028771489957766504426504192"
+      },
+      "strictly_disjoint_outer_balls_certified": false,
+      "decision": "inconclusive"
+    },
+    {
+      "interior_apex_node_tag": 1485102,
+      "tetrahedron_tags": [
+        29801902,
+        30103489
+      ],
+      "exact_centroid_distance_squared_mm2": {
+        "numerator": "7431118259",
+        "denominator": "206158430208"
+      },
+      "gap_D_minus_U_minus_V_mm2": {
+        "numerator": "-2133616226692151876501724468905",
+        "denominator": "58126501476003853639534755446784"
+      },
+      "exact_gap_squared_minus_4UV_mm4": {
+        "numerator": "-1785536738464330014792046952191783953160244897532864304461421",
+        "denominator": "1126230057946626058581403294570705364912181447293939051818647552"
+      },
+      "strictly_disjoint_outer_balls_certified": false,
+      "decision": "inconclusive"
+    },
+    {
+      "interior_apex_node_tag": 1495066,
+      "tetrahedron_tags": [
+        29533680,
+        29803043
+      ],
+      "exact_centroid_distance_squared_mm2": {
+        "numerator": "7595649832420774886541617",
+        "denominator": "178263365657094759585473888256"
+      },
+      "gap_D_minus_U_minus_V_mm2": {
+        "numerator": "-1218054674664176738314028376494857718780310071679309462067444747524509844452249",
+        "denominator": "36020257045334927081898167829160582644119611570598918607036934721592687109079040"
+      },
+      "exact_gap_squared_minus_4UV_mm4": {
+        "numerator": "-3741277710582056875742939056951441738031304423406468988063691173625323783159763881829249074584477303017237020871949253490323835005777282071828029910064959",
+        "denominator": "1297458917612000451187719719592016488866652759696905945856110280489899803864145097290607905393676115384419067940648744600157680686774099827964149859196967321600"
+      },
+      "strictly_disjoint_outer_balls_certified": false,
+      "decision": "inconclusive"
+    },
+    {
+      "interior_apex_node_tag": 1504145,
+      "tetrahedron_tags": [
+        30578355,
+        31170556
+      ],
+      "exact_centroid_distance_squared_mm2": {
+        "numerator": "24465530605",
+        "denominator": "618475290624"
+      },
+      "gap_D_minus_U_minus_V_mm2": {
+        "numerator": "-79388000378868590397078031224199",
+        "denominator": "475695767567001111827102709055488"
+      },
+      "exact_gap_squared_minus_4UV_mm4": {
+        "numerator": "-1519284222008552281776972201127859846901417929227353724102799071",
+        "denominator": "226286463281158346882383049957027051013833804621263231237062918144"
+      },
+      "strictly_disjoint_outer_balls_certified": false,
+      "decision": "inconclusive"
+    },
+    {
+      "interior_apex_node_tag": 1504157,
+      "tetrahedron_tags": [
+        30680135,
+        31170555
+      ],
+      "exact_centroid_distance_squared_mm2": {
+        "numerator": "1565800010041",
+        "denominator": "39582418599936"
+      },
+      "gap_D_minus_U_minus_V_mm2": {
+        "numerator": "-415293326965004984960124069983017",
+        "denominator": "2488457230387251868808681508306944"
+      },
+      "exact_gap_squared_minus_4UV_mm4": {
+        "numerator": "-1122561127175175099779825060543580672489296582507287995692139890869",
+        "denominator": "167195323461597992793519677517327911624215321504750204317287602716672"
+      },
+      "strictly_disjoint_outer_balls_certified": false,
+      "decision": "inconclusive"
+    },
+    {
+      "interior_apex_node_tag": 1504163,
+      "tetrahedron_tags": [
+        30774390,
+        31170558
+      ],
+      "exact_centroid_distance_squared_mm2": {
+        "numerator": "391449498233",
+        "denominator": "9895604649984"
+      },
+      "gap_D_minus_U_minus_V_mm2": {
+        "numerator": "-58400544402547652095673107311241",
+        "denominator": "349938286567560128242382983397376"
+      },
+      "exact_gap_squared_minus_4UV_mm4": {
+        "numerator": "-7399610879682153116448080265252712840486211523807248001280912423",
+        "denominator": "1102111239652558499522554980316187822081052349399817846968113168384"
+      },
+      "strictly_disjoint_outer_balls_certified": false,
+      "decision": "inconclusive"
+    },
+    {
+      "interior_apex_node_tag": 1512642,
+      "tetrahedron_tags": [
+        29866036,
+        30457175
+      ],
+      "exact_centroid_distance_squared_mm2": {
+        "numerator": "57617807645",
+        "denominator": "2473901162496"
+      },
+      "gap_D_minus_U_minus_V_mm2": {
+        "numerator": "-2120660823972080033183557958873",
+        "denominator": "105733193088484582622914066513920"
+      },
+      "exact_gap_squared_minus_4UV_mm4": {
+        "numerator": "-1834294903216472208012382985733424518281195192071427653391959",
+        "denominator": "1242167568965195990201728866245954119550083447087594429061529600"
+      },
+      "strictly_disjoint_outer_balls_certified": false,
+      "decision": "inconclusive"
+    },
+    {
+      "interior_apex_node_tag": 1513213,
+      "tetrahedron_tags": [
+        30043047,
+        30257035
+      ],
+      "exact_centroid_distance_squared_mm2": {
+        "numerator": "275132940281",
+        "denominator": "2473901162496"
+      },
+      "gap_D_minus_U_minus_V_mm2": {
+        "numerator": "-11874238031016807479081387302386197",
+        "denominator": "20937220623592057209148408093212672"
+      },
+      "exact_gap_squared_minus_4UV_mm4": {
+        "numerator": "-182159154936793830583124270079011335737199162288767280859540100448229",
+        "denominator": "1315101622322905718844318840397708580671837049452907751422862664138752"
+      },
+      "strictly_disjoint_outer_balls_certified": false,
+      "decision": "inconclusive"
+    },
+    {
+      "interior_apex_node_tag": 1527816,
+      "tetrahedron_tags": [
+        30423546,
+        31183397
+      ],
+      "exact_centroid_distance_squared_mm2": {
+        "numerator": "1781363640361",
+        "denominator": "39582418599936"
+      },
+      "gap_D_minus_U_minus_V_mm2": {
+        "numerator": "-8048111375739716577123463216476977",
+        "denominator": "157861321388197382666563693238550528"
+      },
+      "exact_gap_squared_minus_4UV_mm4": {
+        "numerator": "-101737161187451401780934115068282823072796836045034660456076340625567",
+        "denominator": "24920196790427744423669702199723194697874966032451882878466162409078784"
+      },
+      "strictly_disjoint_outer_balls_certified": false,
+      "decision": "inconclusive"
+    },
+    {
+      "interior_apex_node_tag": 1531817,
+      "tetrahedron_tags": [
+        28548276,
+        29020064
+      ],
+      "exact_centroid_distance_squared_mm2": {
+        "numerator": "194162643895489",
+        "denominator": "633318697598976"
+      },
+      "gap_D_minus_U_minus_V_mm2": {
+        "numerator": "-18545193324757870500777914077120059151",
+        "denominator": "64587067078905252237467457425623744512"
+      },
+      "exact_gap_squared_minus_4UV_mm4": {
+        "numerator": "-1096394525112748739721053414827717930126382250870016893022642928457581579551",
+        "denominator": "4171489233855006632052459996795179803501871579996379725320263860416250118144"
+      },
+      "strictly_disjoint_outer_balls_certified": false,
+      "decision": "inconclusive"
+    },
+    {
+      "interior_apex_node_tag": 1534323,
+      "tetrahedron_tags": [
+        31210046,
+        31905042
+      ],
+      "exact_centroid_distance_squared_mm2": {
+        "numerator": "368262717205",
+        "denominator": "9895604649984"
+      },
+      "gap_D_minus_U_minus_V_mm2": {
+        "numerator": "-953737496874346027553061798671",
+        "denominator": "27405196164816049683257301663744"
+      },
+      "exact_gap_squared_minus_4UV_mm4": {
+        "numerator": "-8343367560900245861578606661422939216802755998257322377220871",
+        "denominator": "6759402991488434863756248968214001041546289785592224873996877824"
+      },
+      "strictly_disjoint_outer_balls_certified": false,
+      "decision": "inconclusive"
+    },
+    {
+      "interior_apex_node_tag": 1534574,
+      "tetrahedron_tags": [
+        31201463,
+        31902918
+      ],
+      "exact_centroid_distance_squared_mm2": {
+        "numerator": "122972235715",
+        "denominator": "3298534883328"
+      },
+      "gap_D_minus_U_minus_V_mm2": {
+        "numerator": "-2172232148800170941580910783049623",
+        "denominator": "31824500296658750713537047759421440"
+      },
+      "exact_gap_squared_minus_4UV_mm4": {
+        "numerator": "-534209396455029265135331419440570545129307090540025110073421864357",
+        "denominator": "337599606377344304057444642585311025898549584143624342965427843891200"
+      },
+      "strictly_disjoint_outer_balls_certified": false,
+      "decision": "inconclusive"
+    },
+    {
+      "interior_apex_node_tag": 1536736,
+      "tetrahedron_tags": [
+        28945654,
+        31789461
+      ],
+      "exact_centroid_distance_squared_mm2": {
+        "numerator": "1899102060980891000329349",
+        "denominator": "44565841414273689896368472064"
+      },
+      "gap_D_minus_U_minus_V_mm2": {
+        "numerator": "-57624083255519083131047657616726523403688060613979679457567175751065871850843",
+        "denominator": "1661057705043757188690296719149133785130225307720608974639876535226544955588608"
+      },
+      "exact_gap_squared_minus_4UV_mm4": {
+        "numerator": "-24487973585051746213125661452495797764295571380207061405816998296044429751687150633030003591602897417749302774731256771832619222260126000411287650432629",
+        "denominator": "8277338098455700367544681419159573000521330818494624645811426108290979469713246671683390348819278487706869542318625504086013744185724085787613113275218132992"
+      },
+      "strictly_disjoint_outer_balls_certified": false,
+      "decision": "inconclusive"
+    },
+    {
+      "interior_apex_node_tag": 1536737,
+      "tetrahedron_tags": [
+        28945655,
+        31789459
+      ],
+      "exact_centroid_distance_squared_mm2": {
+        "numerator": "1899102060980891000329349",
+        "denominator": "44565841414273689896368472064"
+      },
+      "gap_D_minus_U_minus_V_mm2": {
+        "numerator": "-92989683532397199501078739042646741734864486858838049472524638271676589351",
+        "denominator": "2680497833452183413463000571143282945718718283624042756758005447969577369600"
+      },
+      "exact_gap_squared_minus_4UV_mm4": {
+        "numerator": "-21256564471728320913471480871169257423530248478508886875699072789734955091388912095517704544441727859806760077688339841465983863745594194786370239",
+        "denominator": "7185068635141849209016701952665715463185169491302025747712789886532796876885528455572532427630036721444095064831608384512388900029544698040455004160000"
+      },
+      "strictly_disjoint_outer_balls_certified": false,
+      "decision": "inconclusive"
+    },
+    {
+      "interior_apex_node_tag": 1555744,
+      "tetrahedron_tags": [
+        31449528,
+        31481822
+      ],
+      "exact_centroid_distance_squared_mm2": {
+        "numerator": "95684191381",
+        "denominator": "2473901162496"
+      },
+      "gap_D_minus_U_minus_V_mm2": {
+        "numerator": "-3421392774278185980295064795017",
+        "denominator": "141070286955218466864145115381760"
+      },
+      "exact_gap_squared_minus_4UV_mm4": {
+        "numerator": "-54107546360118813270874272114953507348226712853480348858669231",
+        "denominator": "19900825861627681538455268583103664546182363598475303350540697600"
+      },
+      "strictly_disjoint_outer_balls_certified": false,
+      "decision": "inconclusive"
+    },
+    {
+      "interior_apex_node_tag": 1561842,
+      "tetrahedron_tags": [
+        29103550,
+        30531530
+      ],
+      "exact_centroid_distance_squared_mm2": {
+        "numerator": "237363504585313181614417",
+        "denominator": "5570730176784211237046059008"
+      },
+      "gap_D_minus_U_minus_V_mm2": {
+        "numerator": "-58407927461917051015323022124987192908523660694853660514827301459625721616437",
+        "denominator": "1786915988111557262262680009507180076504763353072460622524821799396262931333120"
+      },
+      "exact_gap_squared_minus_4UV_mm4": {
+        "numerator": "-1112501834197403984967151773748398478625922938934532935511881612542487925805121549107956725246873978183872874357698845039145431992590008326201524454527",
+        "denominator": "399133593571087881880228619024536066044670041533709211551561933993357141076780713476151655469841344831671997991891452048016697369603415514309622032551116800"
+      },
+      "strictly_disjoint_outer_balls_certified": false,
+      "decision": "inconclusive"
+    },
+    {
+      "interior_apex_node_tag": 1561843,
+      "tetrahedron_tags": [
+        29103551,
+        30531531
+      ],
+      "exact_centroid_distance_squared_mm2": {
+        "numerator": "237363504585313181614417",
+        "denominator": "5570730176784211237046059008"
+      },
+      "gap_D_minus_U_minus_V_mm2": {
+        "numerator": "-76992268018063576870364398366914992606982393582038808778990423657074566584421",
+        "denominator": "2355480166149807996794497863692998602697612248416291927291607335222731421515776"
+      },
+      "exact_gap_squared_minus_4UV_mm4": {
+        "numerator": "-247435118694111154420204290614954207412533604194759714902460292870239021356601685720688400029052024815839423441043567602610037544524775597126547925459263",
+        "denominator": "88772589010002033381403280441920635610293838537937258386142609343858593407527855420131105834023382897302181781079402222993628182852279772229732544982670114816"
+      },
+      "strictly_disjoint_outer_balls_certified": false,
+      "decision": "inconclusive"
+    },
+    {
+      "interior_apex_node_tag": 1580334,
+      "tetrahedron_tags": [
+        28850346,
+        28850361
+      ],
+      "exact_centroid_distance_squared_mm2": {
+        "numerator": "1229696581",
+        "denominator": "25769803776"
+      },
+      "gap_D_minus_U_minus_V_mm2": {
+        "numerator": "-2707622906503253594427890036821",
+        "denominator": "17444678149490381131815868956672"
+      },
+      "exact_gap_squared_minus_4UV_mm4": {
+        "numerator": "-294379822994925038926799426147617226179679258180551407851473",
+        "denominator": "19019799733706696764436301838390496560335178304157816113332224"
+      },
+      "strictly_disjoint_outer_balls_certified": false,
+      "decision": "inconclusive"
+    },
+    {
+      "interior_apex_node_tag": 1594361,
+      "tetrahedron_tags": [
+        29467726,
+        32094443
+      ],
+      "exact_centroid_distance_squared_mm2": {
+        "numerator": "147249410681",
+        "denominator": "2473901162496"
+      },
+      "gap_D_minus_U_minus_V_mm2": {
+        "numerator": "-551401590772174573525633511723",
+        "denominator": "2587042260674029241315484499968"
+      },
+      "exact_gap_squared_minus_4UV_mm4": {
+        "numerator": "-573832118012121428397644408724212460632852412117518435711573",
+        "denominator": "20078362975540175591916324617198090797742764794888176976003072"
+      },
+      "strictly_disjoint_outer_balls_certified": false,
+      "decision": "inconclusive"
+    },
+    {
+      "interior_apex_node_tag": 1611467,
+      "tetrahedron_tags": [
+        30169548,
+        31861676
+      ],
+      "exact_centroid_distance_squared_mm2": {
+        "numerator": "674561572843",
+        "denominator": "13194139533312"
+      },
+      "gap_D_minus_U_minus_V_mm2": {
+        "numerator": "-77223357030650721879853405274860517",
+        "denominator": "5746209552979750164557690376604876800"
+      },
+      "exact_gap_squared_minus_4UV_mm4": {
+        "numerator": "-43828137800008723782536308259172874953513951487858464333422154302851037",
+        "denominator": "11006308075585246737756618326387220722692368457385759905472409847726080000"
+      },
+      "strictly_disjoint_outer_balls_certified": false,
+      "decision": "inconclusive"
+    },
+    {
+      "interior_apex_node_tag": 1613756,
+      "tetrahedron_tags": [
+        29367524,
+        29672654
+      ],
+      "exact_centroid_distance_squared_mm2": {
+        "numerator": "473253021606747902755124101",
+        "denominator": "713053462628379038341895553024"
+      },
+      "gap_D_minus_U_minus_V_mm2": {
+        "numerator": "-22859999125354345936404209798904619810446995162440636164563983594420211408511",
+        "denominator": "6445946003410428777903358425708240676515849545569150107641498761922029043786448896"
+      },
+      "exact_gap_squared_minus_4UV_mm4": {
+        "numerator": "-332661712692440047038836713358735298248824225064015347177637663029496137069444646765528741419884872433489934979841972052633801649092807760289724807281028293365",
+        "denominator": "1121855936729837746231433908188145543952527009924171558034076417535010275399141132374104226335510155490375004506130732634940333999140207773001503202853022894529708032"
+      },
+      "strictly_disjoint_outer_balls_certified": false,
+      "decision": "inconclusive"
+    },
+    {
+      "interior_apex_node_tag": 1613757,
+      "tetrahedron_tags": [
+        29366445,
+        29672503
+      ],
+      "exact_centroid_distance_squared_mm2": {
+        "numerator": "1893012086427340887209281537",
+        "denominator": "2852213850513516153367582212096"
+      },
+      "gap_D_minus_U_minus_V_mm2": {
+        "numerator": "-2468879905035802708877796780439372332366866919338475920576179123586983156553827",
+        "denominator": "696162168368546857937613663557727443024930478872313567618378941143208622283881971712"
+      },
+      "exact_gap_squared_minus_4UV_mm4": {
+        "numerator": "-143709859882614905951669856215008722678262073521438112842878173318078234434083758578989813877722885623411804725621963631920857018243965091204281548353459334090423",
+        "denominator": "484641764667596983398701060033227847226695316911168729013360333886777234625112217197836442396241481951758310515004700441338688774636212976964610023625975591092768210944"
+      },
+      "strictly_disjoint_outer_balls_certified": false,
+      "decision": "inconclusive"
+    },
+    {
+      "interior_apex_node_tag": 1613783,
+      "tetrahedron_tags": [
+        29664587,
+        31251529
+      ],
+      "exact_centroid_distance_squared_mm2": {
+        "numerator": "1893012086427340887209281537",
+        "denominator": "2852213850513516153367582212096"
+      },
+      "gap_D_minus_U_minus_V_mm2": {
+        "numerator": "-2468879905035802708877796780439372332366866919338475920576179123586983156553827",
+        "denominator": "696162168368546857937613663557727443024930478872313567618378941143208622283881971712"
+      },
+      "exact_gap_squared_minus_4UV_mm4": {
+        "numerator": "-143709859882614905951669856215008722678262073521438112842878173318078234434083758578989813877722885623411804725621963631920857018243965091204281548353459334090423",
+        "denominator": "484641764667596983398701060033227847226695316911168729013360333886777234625112217197836442396241481951758310515004700441338688774636212976964610023625975591092768210944"
+      },
+      "strictly_disjoint_outer_balls_certified": false,
+      "decision": "inconclusive"
+    },
+    {
+      "interior_apex_node_tag": 1613784,
+      "tetrahedron_tags": [
+        29366318,
+        29664233
+      ],
+      "exact_centroid_distance_squared_mm2": {
+        "numerator": "1893012086427340887209281537",
+        "denominator": "2852213850513516153367582212096"
+      },
+      "gap_D_minus_U_minus_V_mm2": {
+        "numerator": "-2468879905035802708877796780439372332366866919338475920576179123586983156553827",
+        "denominator": "696162168368546857937613663557727443024930478872313567618378941143208622283881971712"
+      },
+      "exact_gap_squared_minus_4UV_mm4": {
+        "numerator": "-143709859882614905951669856215008722678262073521438112842878173318078234434083758578989813877722885623411804725621963631920857018243965091204281548353459334090423",
+        "denominator": "484641764667596983398701060033227847226695316911168729013360333886777234625112217197836442396241481951758310515004700441338688774636212976964610023625975591092768210944"
+      },
+      "strictly_disjoint_outer_balls_certified": false,
+      "decision": "inconclusive"
+    },
+    {
+      "interior_apex_node_tag": 1613790,
+      "tetrahedron_tags": [
+        28847992,
+        28848742
+      ],
+      "exact_centroid_distance_squared_mm2": {
+        "numerator": "1652940217189462337690828971",
+        "denominator": "59421121885698253195157962752"
+      },
+      "gap_D_minus_U_minus_V_mm2": {
+        "numerator": "-7848076609227576807941327718589980989250382352177928662804528615789755250863570153",
+        "denominator": "1305453791315303092501554373596160344005029224004079711416175417319238637432340480"
+      },
+      "exact_gap_squared_minus_4UV_mm4": {
+        "numerator": "95733830907547945329437999833151409954402472029769950166943619716823847548426752838837327211237737093647999924628189600476100825098228906234724606177770098180441733",
+        "denominator": "3067577282267098048691589061707334923787201563016326583809202020210726307362846050232973630241301031313829542088942080961719287747946552513311788534905659163934720"
+      },
+      "strictly_disjoint_outer_balls_certified": false,
+      "decision": "inconclusive"
+    },
+    {
+      "interior_apex_node_tag": 1613791,
+      "tetrahedron_tags": [
+        28847004,
+        28847352
+      ],
+      "exact_centroid_distance_squared_mm2": {
+        "numerator": "1652940217189462337690828971",
+        "denominator": "59421121885698253195157962752"
+      },
+      "gap_D_minus_U_minus_V_mm2": {
+        "numerator": "-7848076609227576807941327718589980989250382352177928662804528615789755250863570153",
+        "denominator": "1305453791315303092501554373596160344005029224004079711416175417319238637432340480"
+      },
+      "exact_gap_squared_minus_4UV_mm4": {
+        "numerator": "95733830907547945329437999833151409954402472029769950166943619716823847548426752838837327211237737093647999924628189600476100825098228906234724606177770098180441733",
+        "denominator": "3067577282267098048691589061707334923787201563016326583809202020210726307362846050232973630241301031313829542088942080961719287747946552513311788534905659163934720"
+      },
+      "strictly_disjoint_outer_balls_certified": false,
+      "decision": "inconclusive"
+    }
+  ],
+  "bound_inputs_unchanged": true
+}

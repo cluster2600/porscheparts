@@ -1,0 +1,29 @@
+{
+  "schema": "962-current24-edge-removal16-root-timing-erratum/v1",
+  "supersedes_only": [
+    "complete_outer_tool_wall_seconds",
+    "complete_outer_wall_gate60_passed timing justification"
+  ],
+  "preserved_original": {
+    "path": "work/962-engineering/head-star-current24-edge-removal-guards-root-review-001/observed-terminal.json",
+    "sha256": "3c0159b6d3ac8ce4b5de9dfe66f725eb832cdea3b428879b78beae52cbbba7df",
+    "bytes": 1834
+  },
+  "reason": "exec_command wall_time_seconds is elapsed waiting time, not a guaranteed complete command lifetime. Its0.167407375value is shorter than saved controller cutoff0.22357229189947248, so root must not label it complete outer wall. Original observation remains immutable.",
+  "exec_wait_seconds_observed": 0.167407375,
+  "independent_ordered_UTC_bracket": {
+    "tool": "clock.curr_time",
+    "before_launch_UTC": "2026-10-20 19:02:24 UTC",
+    "after_complete_outer_return_UTC": "2026-10-20 19:02:30 UTC",
+    "display_resolution_seconds": 1,
+    "conservative_elapsed_upper_bound_seconds": 7,
+    "ordering": "Before clock call completed after admission write and before launch; after clock call occurred after exec_command returned complete outerRC0. Includes all preflight and receipt write.",
+    "scope": "Conservative UTC tool bracket, not an exact monotonic process-duration measurement."
+  },
+  "whole_outer60_second_gate_passed_by_conservative_bracket": true,
+  "receipt_elapsed_seconds": 0.1914689999539405,
+  "receipt_handler_cutoff_seconds": 0.22357229189947248,
+  "other_terminal_findings_unchanged": true,
+  "no_rerun_no_resource_or_acceptance_relaxation": true,
+  "saved_result_peer_pending": true
+}

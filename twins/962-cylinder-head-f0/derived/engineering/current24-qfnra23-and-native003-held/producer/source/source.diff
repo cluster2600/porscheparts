@@ -1,0 +1,1187 @@
+--- work/962-engineering/head-star-current24-edge-removal-prep-001/propose_saved_edge_removal.py
++++ work/962-engineering/head-star-current24-coupled-qfnra-prep-001/qfnra_emitter.py
+@@ -1,23 +1,11 @@
+-"""HELD SOURCE ONLY: complete fixed-word degree4..8 seed-edge removal screen.
+-
+-No entrypoint/file IO/runtime/mesh writer/actual/launch or execution authority.
+-All functions and fixtures are UNRUN. Strict-convex local certificates do not
+-establish whole-head, semantic-interface, material or manufacturing acceptance.
+-"""
++"""HELD/UNRUN exact intake and pure QF_NRA DAG source; no process or file IO."""
+ from fractions import Fraction
+-import copy
+-import hashlib
+ from itertools import combinations
+-import json
+-import math
+-import struct
+-
++import copy,hashlib,json,math,struct
+ REPORT_REL="work/962-engineering/head-star-current110-pass62-application-001/worker-report.json"
+ CLOSED_REL="work/962-engineering/head-star-current110-pass62-application-root-execution-001/closed-result.json"
+ BOUNDARY=871731
+ 
+-# Frozen saved incidence identities, copied from accepted reason accounting; no geometry computation.
+-EXPECTED_EDGE_DEGREES={'edge:123712,1436406': 6, 'edge:223544,1520064': 4, 'edge:223689,1520064': 4, 'edge:224470,1520064': 5, 'edge:250618,1549537': 7, 'edge:251580,1549537': 4, 'edge:251581,1549537': 4, 'edge:332107,1436407': 6, 'edge:353122,1485102': 8, 'edge:353124,1534323': 8, 'edge:355230,1485102': 4, 'edge:355231,1485102': 5, 'edge:355232,1534323': 5, 'edge:355233,1534323': 4, 'edge:356628,1534323': 6, 'edge:357990,1485102': 6, 'edge:362061,1459657': 4, 'edge:362062,1459657': 5, 'edge:362640,1459657': 8, 'edge:431665,1476316': 7, 'edge:431981,1476316': 8, 'edge:432123,1476316': 5, 'edge:517789,1436405': 6, 'edge:626184,1487573': 5, 'edge:626352,1487573': 4, 'edge:627517,1487573': 7, 'edge:64520,1393392': 5, 'edge:64982,1393392': 5, 'edge:65123,1393392': 4, 'edge:66221,1393392': 6, 'edge:735799,1436404': 7, 'edge:866059,1436405': 5, 'edge:866059,1613757': 4, 'edge:866062,1436405': 5, 'edge:866062,1613757': 4, 'edge:866095,1436404': 5, 'edge:866095,1613783': 4, 'edge:866248,1613756': 7, 'edge:866364,1436407': 5, 'edge:866364,1613756': 4, 'edge:866366,1436407': 5, 'edge:866366,1613756': 4, 'edge:866572,1613757': 7, 'edge:866966,1436406': 5, 'edge:866966,1613784': 4, 'edge:867101,1613783': 5, 'edge:868045,1613784': 7, 'edge:868201,1436404': 5, 'edge:868201,1613783': 4, 'edge:868245,1436406': 5, 'edge:868245,1613784': 4, 'edge:869526,1613784': 4, 'edge:870008,1613756': 4, 'edge:870364,1613757': 4, 'edge:870846,1613783': 4}
+ 
+ def coordinate_rows(rows,expected_tags):
+     """Strict ordered row/hex association; floats are compared by binary64 representation."""
+@@ -187,36 +175,6 @@
+         explicit_exterior_facet_membership_computed=False,source_BIN_read=False,raw_MSH_read=False)
+ 
+ 
+-def rational(value):
+-    return dict(numerator=str(value.numerator),denominator=str(value.denominator))
+-
+-
+-def subtract(a,b):
+-    return [x-y for x,y in zip(a,b)]
+-
+-
+-def dot(a,b):
+-    return sum(x*y for x,y in zip(a,b))
+-
+-
+-def cross(a,b):
+-    return [a[1]*b[2]-a[2]*b[1],a[2]*b[0]-a[0]*b[2],a[0]*b[1]-a[1]*b[0]]
+-
+-
+-def exact_quality(coordinates):
+-    if len(coordinates)!=4 or any(len(p)!=3 or any(type(v) not in (int,float) or not math.isfinite(v) for v in p) for p in coordinates):
+-        raise ValueError('Four finite binary64 triples required')
+-    p=[[Fraction.from_float(float(x)) for x in row] for row in coordinates]
+-    a,e2,e3=[subtract(row,p[0]) for row in p[1:]]
+-    b=[2*y-x for x,y in zip(a,e2)];c=[3*z-x-y for x,y,z in zip(a,e2,e3)]
+-    determinant=dot(a,cross(e2,e3))
+-    norm2=dot(a,a)+dot(b,b)/3+dot(c,c)/6
+-    bc,ca,ab=cross(b,c),cross(c,a),cross(a,b)
+-    cofactor2=dot(bc,bc)/18+dot(ca,ca)/6+dot(ab,ab)/3
+-    q2=18*determinant**2/(norm2*cofactor2) if norm2*cofactor2>0 else None
+-    return determinant,q2
+-
+-
+ def prepare_context(report,parent,closed,manifest,selected,held):
+     """Reuse accepted complete intake; protect the earlier66/1983/86 scope."""
+     faces,intake=current_faces(report,parent,closed,held)
+@@ -291,256 +249,340 @@
+         classification_rows=copy.deepcopy(context["classification_rows"]))
+ 
+ 
+-def canonical_bytes(value):
+-    return json.dumps(value,sort_keys=True,separators=(",",":"),allow_nan=False).encode("utf-8")
+-
+-
+-def link_cycle(context,case):
+-    """Validate a complete edge star combinatorially; never infer geometric order."""
+-    edge=tuple(case["central_edge"]);tags=case["removed_cell_tags"]
+-    reasons=[];opposite=[];adj={}
+-    if (len(edge)!=2 or len(set(edge))!=2 or not set(edge)&context["seeds"]
+-            or case["owner_scope_complete"] is not True):
+-        reasons.append("complete central-seed owner coverage unavailable")
+-    if len(tags)!=len(set(tags)) or not 4<=len(tags)<=8:
+-        reasons.append("degree outside4..8 or duplicate owner tags")
++EDGE_HELD_SHA256 = 'eec69197200e1d1c1651b2ae172f0ddca379262997d35d8e5461f30d49eda4b7'
++EDGE_HELD_BYTES = 20559
++EXPECTED_INPUT_MAP_SHA256 = '61a9482457279b33b43ae53aae18c5a7ebc6717e21a72ede8bab0e22e8cdc0e5'
++PARENT_REL = 'work/962-engineering/head-star-current110-pass62-application-root-execution-001/result-peer-acceptance.json'
++MANIFEST_REL = 'work/962-engineering/head-star-current110-component-sicn-prep-001/component-manifest.json'
++SELECTED_REL = 'work/962-engineering/head-star-current110-pass62-apply-prep-002/selected-proposals.json'
++EXPECTED_COMPONENTS = (2, 7, 8, 9, 10, 21, 28, 30, 31, 39, 45)
++CAP = 32 * 1024**2
++# Untested command/parameter plans. No transport or call site exists in this module.
++SOLVER_PLAN = dict(argv=['/opt/homebrew/bin/z3', '-in', '-smt2'],
++    version_expected_root_metadata='Z3 version 5.1.0 - 64 bit\n',
++    source_tag='z3-5.1.0', source_runtime_equivalence=None,
++    status_semantics=dict(sat='model candidate only', unsat='solver-attributed; no checked proof',
++                          unknown='incomplete; never empty feasibility'),
++    unique_or_cross_version_model_claim=False)
++SMT_PROLOGUE = ('(set-option :print-success false)\n'
++                '(set-option :produce-models true)\n'
++                '(set-option :pp.decimal false)\n'
++                '(set-logic QF_NRA)\n')
++SMT_CHECK = ('(check-sat-using (using-params qfnra-nlsat '
++             ':randomize false :shuffle_vars false :reorder false :seed 0 :zero_accuracy 0))\n')
++
++
++def canonical(value):
++    return json.dumps(value, sort_keys=True, separators=(',', ':'), allow_nan=False)
++
++
++def strict_json(data):
++    need(type(data) is bytes, 'Explicit saved JSON bytes required')
++    def pairs(rows):
++        result = {}
++        for name, value in rows:
++            need(name not in result, 'Duplicate JSON key')
++            result[name] = value
++        return result
++    def reject(value):
++        raise ValueError('Nonfinite JSON token: ' + value)
++    return json.loads(data.decode('utf-8'), object_pairs_hook=pairs, parse_constant=reject)
++
++
++def admit_current(saved_bytes, edge_held_bytes):
++    """Pure23-byte-map intake. No path is opened and no source is imported."""
++    need(type(edge_held_bytes) is bytes and len(edge_held_bytes) == EDGE_HELD_BYTES
++         and hashlib.sha256(edge_held_bytes).hexdigest() == EDGE_HELD_SHA256,
++         'Exact accepted edge intake contract required')
++    held = strict_json(edge_held_bytes)
++    pins = held['input_records']
++    need(hashlib.sha256(canonical(pins).encode()).hexdigest() == EXPECTED_INPUT_MAP_SHA256,
++         'Original exact23 descriptor map required')
++    need(type(saved_bytes) is dict and len(pins) == 23 and set(saved_bytes) == set(pins),
++         'Exactly23 existing saved inputs required')
++    observed = {}
++    for name, pin in pins.items():
++        data = saved_bytes[name]
++        need(type(data) is bytes and type(pin['bytes']) is int,
++             'Input bytes and exact bytecount required')
++        observed[name] = dict(path=name, sha256=hashlib.sha256(data).hexdigest(), bytes=len(data))
++        need(observed[name] == pin, 'Changed saved input: ' + name)
++    report, parent, closed, manifest, selected = [strict_json(saved_bytes[name]) for name in
++        (REPORT_REL, PARENT_REL, CLOSED_REL, MANIFEST_REL, SELECTED_REL)]
++    context = prepare_context(report, parent, closed, manifest, selected, held)
++    groups = {g['component_ID']:g for g in manifest['cases']}
++    need(tuple(sorted(selected['rejected_component_IDs'])) == EXPECTED_COMPONENTS,
++         'Exactly the complete11 remaining components required')
++    blocks = []
++    cells_seen = set()
++    seeds_seen = set()
++    for cid in EXPECTED_COMPONENTS:
++        g = groups[cid]
++        seeds = g['movable_node_tags']
++        tags = g['tetrahedron_tags']
++        need(type(cid) is int and len(seeds) in (1, 2)
++             and all(type(t) is int and t in context['seeds'] for t in seeds),
++             'One/two current seeds per block required')
++        need(not seeds_seen.intersection(seeds) and not cells_seen.intersection(tags),
++             'Disjoint complete variable/cell blocks required')
++        need(set(tags) == {t for t,c in context['cells'].items() if set(c).intersection(seeds)},
++             'Every good/shared/poor incident cell belongs to its block')
++        need(all(set(context['cells'][t]).intersection(context['seeds']) <= set(seeds) for t in tags),
++             'No omitted cross-block variable coupling allowed')
++        seeds_seen.update(seeds)
++        cells_seen.update(tags)
++        blocks.append(dict(component_ID=cid, movable_node_tags=list(seeds), tetrahedron_tags=list(tags)))
++    need(seeds_seen == context['seeds'] and cells_seen == set(context['cells']), 'Full16/499 union required')
++    rows = report['after']['complete_native_census']['complete_seed_star_census']['complete_incident_tetrahedra']
++    return dict(context=context, context_before=context_snapshot(context), blocks=blocks,
++                native_cell_rows=copy.deepcopy(rows), input_records=observed,
++                edge_held=dict(sha256=EDGE_HELD_SHA256, bytes=EDGE_HELD_BYTES))
++
++
++def integer_normalization(context):
++    """Common K=2^k; no real head arithmetic occurs until a separately admitted call."""
++    fractions = {t:tuple(Fraction.from_float(x) for x in p) for t,p in context['points'].items()}
++    exponent = 0
++    for point in fractions.values():
++        for q in point:
++            denominator = q.denominator
++            need(denominator > 0 and denominator & (denominator - 1) == 0, 'Dyadic denominator required')
++            exponent = max(exponent, denominator.bit_length() - 1)
++    scale = 1 << exponent
++    integers = {}
++    for tag, point in fractions.items():
++        row = tuple(q * scale for q in point)
++        need(all(q.denominator == 1 for q in row), 'Exact common integer coordinates required')
++        integers[tag] = tuple(q.numerator for q in row)
++    return dict(power_of_two_exponent=exponent, scale_integer=str(scale),
++                fixed_coordinate_projection='y=K*x; native x=y/K',
++                positive_homogeneous_powers=dict(D=3, S=2, T=4, P=6), integers=integers)
++
++
++def variable_symbol(component, tag, axis):
++    need(type(component) is int and component > 0 and type(tag) is int and tag > 0
++         and type(axis) is int and 0 <= axis < 3, 'Exact coordinate identity required')
++    return 'c%03d_n%d_%s' % (component, tag, 'xyz'[axis])
++
++
++class IntegerDAG:
++    """Small exact +,-,* expression DAG; no polynomial solver or dense expansion."""
++    def __init__(self):
++        self.nodes = []
++        self.keys = {}
++        self.degrees = []
++    def node(self, key, record, degree):
++        if key not in self.keys:
++            self.keys[key] = len(self.nodes)
++            self.nodes.append(record)
++            self.degrees.append(degree)
++        return self.keys[key]
++    def integer(self, value):
++        need(type(value) is int, 'Exact integer coefficient required')
++        return self.node(('integer', value), dict(op='integer', value=str(value)), 0)
++    def variable(self, name):
++        return self.node(('variable', name), dict(op='variable', symbol=name), 1)
++    def binary(self, op, a, b):
++        need(op in ('+', '-', '*') and type(a) is int and type(b) is int
++             and 0 <= a < len(self.nodes) and 0 <= b < len(self.nodes), 'Earlier exact DAG operands required')
++        x, y = self.nodes[a], self.nodes[b]
++        if x['op'] == y['op'] == 'integer':
++            u, v = int(x['value']), int(y['value'])
++            return self.integer(u + v if op == '+' else u - v if op == '-' else u * v)
++        degree = self.degrees[a] + self.degrees[b] if op == '*' else max(self.degrees[a], self.degrees[b])
++        return self.node((op, a, b), dict(op=op, args=[a, b]), degree)
++    def sum(self, values):
++        result = self.integer(0)
++        for value in values:
++            result = self.binary('+', result, value)
++        return result
++    def subtract(self, a, b):
++        return [self.binary('-', x, y) for x,y in zip(a,b)]
++    def dot(self, a, b):
++        return self.sum(self.binary('*', x, y) for x,y in zip(a,b))
++    def cross(self, a, b):
++        return [self.binary('-', self.binary('*',a[i],b[j]), self.binary('*',a[j],b[i]))
++                for i,j in ((1,2),(2,0),(0,1))]
++    def evaluate(self, variables):
++        values = []
++        for node in self.nodes:
++            op = node['op']
++            if op == 'integer':
++                value = int(node['value'])
++            elif op == 'variable':
++                value = variables[node['symbol']]
++                need(type(value) is int, 'Exact baseline substitution required')
++            else:
++                a, b = (values[i] for i in node['args'])
++                value = a + b if op == '+' else a - b if op == '-' else a * b
++            values.append(value)
++        return values
++
++
++def cell_roots(dag, connectivity, points, seeds):
++    """Fixed-base determinant preserves native sign and the degree4/6 bounds."""
++    fixed = [i for i,t in enumerate(connectivity) if t not in seeds]
++    moving = len(connectivity) - len(fixed)
++    need(moving in (1, 2), 'Every affected cell has exactly one/two admitted variables')
++    base = fixed[0]
++    order = [base] + [i for i in range(4) if i != base]
++    p = [points[connectivity[i]] for i in order]
++    a, b, c = [dag.subtract(row, p[0]) for row in p[1:]]
++    determinant = dag.dot(a, dag.cross(b,c))
++    if base % 2:
++        determinant = dag.binary('*', dag.integer(-1), determinant)
++    edges = []
++    for i,j in combinations(range(4),2):
++        edge = dag.subtract(points[connectivity[i]], points[connectivity[j]])
++        edges.append(dag.dot(edge,edge))
++    S = dag.sum(edges)
++    faces = []
++    for face in combinations(range(4),3):
++        pivot = next(i for i in face if connectivity[i] not in seeds)
++        other = [i for i in face if i != pivot]
++        u,v = [dag.subtract(points[connectivity[i]], points[connectivity[pivot]]) for i in other]
++        normal = dag.cross(u,v)
++        faces.append(dag.dot(normal,normal))
++    T = dag.sum(faces)
++    P = dag.binary('-', dag.binary('*',dag.integer(3600),dag.binary('*',determinant,determinant)),
++                   dag.binary('*',S,T))
++    need(dag.degrees[determinant] <= moving and dag.degrees[P] <= (4 if moving == 1 else 6),
++         'Exact fixed-base degree scope changed')
++    return dict(D=determinant,S=S,T=T,P=P,maximum_total_degree=dag.degrees[P])
++
++
++def emit_block(admitted, block, normalization):
++    context = admitted['context']
++    cid = block['component_ID']
++    seeds = set(block['movable_node_tags'])
++    dag = IntegerDAG()
++    integers = normalization['integers']
++    variables = [dict(component_ID=cid,node_tag=t,axis=a,symbol=variable_symbol(cid,t,a))
++                 for t in sorted(seeds) for a in range(3)]
++    baseline_variables = {v['symbol']:integers[v['node_tag']][v['axis']] for v in variables}
++    points = {t:[dag.variable(variable_symbol(cid,t,a)) if t in seeds else dag.integer(p[a])
++                 for a in range(3)] for t,p in integers.items()}
++    by_tag = {r['tetrahedron_tag']:r for r in admitted['native_cell_rows']}
++    tags = sorted(block['tetrahedron_tags'], key=lambda t:by_tag[t]['native_array_index'])
++    valid,boundary = oriented_boundary([context['cells'][t] for t in tags])
++    need(valid and all(t not in seeds for f in boundary for t in f),
++         'Own complete oriented boundary must cancel internally and be fixed')
++    rows = []
+     for tag in tags:
+-        conn=context["cells"].get(tag,())
+-        if len(conn)!=4 or len(set(conn))!=4 or not set(edge)<=set(conn):
+-            reasons.append("invalid edge-owner tetrahedron");continue
+-        pair=tuple(sorted(set(conn)-set(edge)));opposite.append(pair)
+-        for a,b in (pair,pair[::-1]):adj.setdefault(a,set()).add(b)
+-    if len(set(opposite))!=len(opposite):reasons.append("duplicate link edge")
+-    n=len(tags)
+-    if len(adj)!=n or any(len(v)!=2 for v in adj.values()):reasons.append("link is not a degree-two n-cycle")
+-    cycle=[]
+-    if not reasons:
+-        start=min(adj);previous=None;node=start
+-        for _ in range(n):
+-            if node in cycle:break
+-            cycle.append(node)
+-            choices=sorted(adj[node]-({previous} if previous is not None else set()))
+-            previous,node=node,choices[0]
+-        if len(cycle)!=n or node!=start or set(cycle)!=set(adj):
+-            reasons.append("link disconnected or fails single-cycle closure")
+-    return dict(valid=not reasons,reasons=reasons,cycle=cycle,
+-                opposite_link_edges=[list(e) for e in opposite],degree=n)
+-
+-
+-def link_triangulations(cycle):
+-    """Complete root-edge Catalan recursion on an abstract cycle, without projection."""
+-    cycle=tuple(cycle)
+-    need(4<=len(cycle)<=8 and len(set(cycle))==len(cycle),"A simple4..8 cycle required")
+-    def disk(poly):
+-        if len(poly)==2:return ((),)
+-        rows=[]
+-        for k in range(1,len(poly)-1):
+-            for left in disk(poly[:k+1]):
+-                for right in disk(poly[k:]):
+-                    triangle=tuple(sorted((poly[0],poly[k],poly[-1])))
+-                    rows.append(tuple(sorted(left+right+(triangle,))))
+-        return tuple(sorted(rows))
+-    rows=disk(cycle)
+-    need(len(rows)==len(set(rows))=={4:2,5:5,6:14,7:42,8:132}[len(cycle)],
+-         "Complete distinct Catalan family required")
+-    need(all(len(r)==len(cycle)-2 for r in rows),"Every triangulation must have n-2 faces")
+-    return rows
+-
+-
+-def enumerate_edge_stars(context):
+-    """All seed-containing poor edges; retain out-of-scope rows rather than dropping them."""
+-    cells=context["cells"];seeds=context["seeds"]
+-    edges=sorted({tuple(sorted(e)) for tag in context["poor"]
+-                  for e in combinations(cells[tag],2) if set(e)&seeds})
+-    selected=[];outside=[]
+-    for edge in edges:
+-        owners=sorted(t for t,c in cells.items() if set(edge)<=set(c))
+-        complete=bool(set(edge)&seeds)
+-        row=dict(case_ID="edge:"+",".join(map(str,edge)),central_edge=list(edge),
+-            removed_cell_tags=owners,removed_poor_cell_tags=sorted(set(owners)&context["poor"]),
+-            owner_scope_complete=complete,owner_scope_basis="contains accepted complete-star seed",
+-            observed_degree=len(owners))
+-        if complete and 4<=len(owners)<=8:selected.append(row)
+-        else:
+-            row["disposition"]="outside selected degree4..8 route; retained, not infeasible"
+-            outside.append(row)
+-    return selected,outside
+-
+-
+-def convex_edge_cavity(context,case):
+-    """Strict convex boundary + known abstract ball + consistent old orientation.
+-
+-    METHOD supplies the boundary-facet proof and Lipman Theorem1 prerequisites.
+-    Positivity or volume equality alone never sets this certificate true.
++        conn = context['cells'][tag]
++        roots = cell_roots(dag,conn,points,seeds)
++        rows.append(dict(component_ID=cid,tetrahedron_tag=tag,
++            native_array_index=by_tag[tag]['native_array_index'],ordered_node_tags=list(conn),
++            moving_node_tags=sorted(set(conn)&seeds),initially_positive_poor=tag in context['poor'],
++            roots=roots))
++    baseline = dag.evaluate(baseline_variables)
++    need(all(baseline[r['roots']['D']] > 0 for r in rows), 'Original exact orientation must be positive')
++    volume_root = dag.sum(r['roots']['D'] for r in rows)
++    baseline_sum = sum(baseline[r['roots']['D']] for r in rows)
++    predicates = []
++    for row in rows:
++        predicates.extend(dict(name='c%03d_t%d_%s'%(cid,row['tetrahedron_tag'],name),
++            component_ID=cid,tetrahedron_tag=row['tetrahedron_tag'],root=row['roots'][name],
++            relation='>=' if name=='P' else '>',integer_rhs='0') for name in ('D','S','T','P'))
++    predicates.append(dict(name='c%03d_own_volume'%cid,component_ID=cid,root=volume_root,
++                           relation='=',integer_rhs=str(baseline_sum)))
++    result = dict(component_ID=cid,variables=variables,normalization={k:v for k,v in normalization.items() if k!='integers'},
++        nodes=dag.nodes,cell_rows=rows,predicates=predicates,
++        exact_oriented_boundary=[list(f) for f in boundary],baseline_scaled_six_volume=str(baseline_sum),
++        integer_coefficient_DAG_sha256=hashlib.sha256(canonical(dag.nodes).encode()).hexdigest(),
++        complete_application_eligibility=None,application_authorized=False)
++    need(len(canonical(result).encode()) <= CAP, 'Full block DAG exceeds32MiB; no truncation')
++    return result
++
++
++def smt_integer(value):
++    q = int(value)
++    return str(q) if q >= 0 else '(- ' + str(-q) + ')'
++
++
++def smt_block(block):
++    """Only source text is returned; the planned check is never called here."""
++    cid = block['component_ID']
++    name = lambda i:'d_c%03d_%d'%(cid,i)
++    lines = [SMT_PROLOGUE]
++    for variable in block['variables']:
++        lines.append('(declare-fun '+variable['symbol']+' () Real)\n')
++    for i,node in enumerate(block['nodes']):
++        if node['op']=='integer':expression=smt_integer(node['value'])
++        elif node['op']=='variable':expression=node['symbol']
++        else:expression='('+node['op']+' '+ ' '.join(name(j) for j in node['args'])+')'
++        lines.append('(define-fun '+name(i)+' () Real '+expression+')\n')
++    for predicate in block['predicates']:
++        expression='('+predicate['relation']+' '+name(predicate['root'])+' '+smt_integer(predicate['integer_rhs'])+')'
++        lines.append('(assert (! '+expression+' :named '+predicate['name']+'))\n')
++    lines.append(SMT_CHECK)
++    text=''.join(lines)
++    need(len(text.encode())<=CAP,'Full SMT text exceeds32MiB; no truncation')
++    return text
++
++
++def emit_all(admitted):
++    before = canonical(context_snapshot(admitted['context']))
++    need(before == canonical(admitted['context_before']), 'Unchanged complete context required')
++    normalization = integer_normalization(admitted['context'])
++    blocks = [emit_block(admitted,b,normalization) for b in admitted['blocks']]
++    need(len(blocks)==11 and sum(len(b['cell_rows']) for b in blocks)==499
++         and sum(len(b['variables']) for b in blocks)==48, 'Complete11/499/48 emission required')
++    need(canonical(context_snapshot(admitted['context']))==before, 'Emitter mutated context')
++    result = dict(schema='962-current24-coupled-qfnra-exact-DAGs/v1',blocks=blocks,
++        context_before=admitted['context_before'],context_after=context_snapshot(admitted['context']),
++        original_native_cell_rows=admitted['native_cell_rows'],input_records=admitted['input_records'],
++        geometry_and_global_eligibility=None,application_authorized=False,physical_accepted=False)
++    need(len(canonical(result).encode())<=CAP,'Complete11-case output exceeds32MiB; no truncation')
++    return result
++
++
++def word_proposal(admitted, mapping_evidence):
++    """Full48 mappings -> full271 proposed rows; no validation or mesh mutation.
++
++    A separately authored exact499-cell validator must decide coordinate quality.
++    This construction never selects an accepted subset or replaces missing words.
+     """
+-    points=context["points"];cells=context["cells"];link=link_cycle(context,case)
+-    tags=case["removed_cell_tags"];entries=[(t,cells[t]) for t in tags if t in cells]
+-    old=[c for _,c in entries]
+-    vertices=sorted({v for c in old for v in c});rows=[];total=Fraction(0)
+-    for tag,conn in entries:
+-        d,q=exact_quality([points[t] for t in conn]);total+=d/6
+-        rows.append(dict(tetrahedron_tag=tag,node_tags=list(conn),D=rational(d),
+-                         Q_squared=None if q is None else rational(q),positive=d>0))
+-    valid,boundary=oriented_boundary(old)
+-    expected={tuple(sorted((apex,link["cycle"][i],link["cycle"][(i+1)%len(link["cycle"])])))
+-              for apex in case["central_edge"] for i in range(len(link["cycle"]))}
+-    sphere=(link["valid"] and len(vertices)==link["degree"]+2 and valid
+-            and len(boundary)==2*link["degree"]
+-            and {tuple(sorted(f)) for f in boundary}==expected)
+-    support=[]
+-    for face in boundary:
+-        for other in vertices:
+-            if other in face:continue
+-            d,_=exact_quality([points[t] for t in face]+[points[other]])
+-            support.append(dict(outward_face=list(face),other_node_tag=other,D=rational(d),strict_inside=d<0))
+-    positive=len(rows)==len(tags) and bool(rows) and all(r["positive"] for r in rows)
+-    strict=sphere and len(support)==2*link["degree"]*(link["degree"]-1) and all(r["strict_inside"] for r in support)
+-    protected=not set(tags)&context["protected_cells"]
+-    reasons=list(link["reasons"])
+-    if not sphere:reasons.append("old oriented cone-cycle sphere not established")
+-    if not positive:reasons.append("old orientation/nondegeneracy failed")
+-    if not strict:reasons.append("strict convex supporting-facet certificate unresolved")
+-    if not protected:reasons.append("removed cells intersect protected history")
+-    return dict(case=case,link=link,vertices=vertices,old_rows=rows,
+-        old_oriented_boundary=[list(f) for f in boundary],old_signed_volume=rational(total),
+-        abstract_edge_cycle_ball_and_boundary_sphere=sphere,
+-        all_old_tetrahedra_positive=positive,strict_support_rows=support,
+-        strict_convex_boundary_bijection_certified=strict,
+-        old_embedded_convex_filling_certified=sphere and positive and strict,
+-        protected_prior_cells_disjoint=protected,reasons=reasons,
+-        source_region_interface_exterior_or_BIN_evidence=None,
+-        whole_head_embedding_or_nonoverlap_accepted=False)
+-
+-
+-def screen_edge_candidate(context,cavity,triangulation,ordinal):
+-    """One full Catalan replacement; failed candidates remain complete records."""
+-    points=context["points"];case=cavity["case"];cycle=cavity["link"]["cycle"]
+-    tris=tuple(sorted(tuple(sorted(t)) for t in triangulation))
+-    disk=cavity["link"]["valid"] and tris in link_triangulations(cycle)
+-    cells=[];rows=[];total=Fraction(0)
+-    for apex in case["central_edge"]:
+-        for tri in tris:
+-            conn=(apex,)+tri;d,q=exact_quality([points[t] for t in conn])
+-            if d<0:
+-                conn=conn[:2]+(conn[3],conn[2]);d,q=exact_quality([points[t] for t in conn])
+-            cells.append(conn);total+=d/6
+-            rows.append(dict(node_tags=list(conn),D=rational(d),
+-                Q_squared=None if q is None else rational(q),positive=d>0,
+-                exact_quality_gate_passed=d>0 and q is not None and q>=Fraction(1,100)))
+-    valid,boundary=oriented_boundary(cells)
+-    chain=valid and [list(f) for f in boundary]==cavity["old_oriented_boundary"]
+-    volume=rational(total)==cavity["old_signed_volume"]
+-    quality=bool(rows) and all(r["exact_quality_gate_passed"] for r in rows)
+-    sets=[tuple(sorted(c)) for c in cells]
+-    duplicates=sorted(s for s in set(sets) if sets.count(s)>1)
+-    removed=set(case["removed_cell_tags"])
+-    complement={tuple(sorted(c)):t for t,c in context["cells"].items() if t not in removed}
+-    existing=[dict(node_tags=list(s),existing_tetrahedron_tag=complement[s])
+-              for s in sorted(set(sets)&set(complement))]
+-    old=[context["cells"][t] for t in case["removed_cell_tags"]]
+-    old_features={k:{tuple(sorted(s)) for c in old for s in combinations(c,k)} for k in (2,3)}
+-    introduced=[]
+-    for k in (2,3):
+-        features={tuple(sorted(s)) for c in cells for s in combinations(c,k)}-old_features[k]
+-        for feature in sorted(features):
+-            owners=sorted(t for t,c in context["cells"].items()
+-                          if t not in removed and set(feature)<=set(c))
+-            introduced.append(dict(dimension=k-1,node_tags=list(feature),observed_complement_owner_tags=owners,
+-                complete_owner_scope=bool(set(feature)&context["seeds"]),
+-                absent_from_observed_complement=not owners,
+-                global_missing_owner_absence=None if not set(feature)&context["seeds"] else not owners,
+-                semantic_region_interface_or_exterior_evidence=None))
+-    introduced_conflict=any(r["observed_complement_owner_tags"] for r in introduced)
+-    embedded=(disk and cavity["old_embedded_convex_filling_certified"] and chain
+-              and len(cells)==2*(len(cycle)-2) and bool(rows) and all(r["positive"] for r in rows))
+-    reasons=list(cavity["reasons"])
+-    if not disk:reasons.append("replacement is not a complete Catalan link disk")
+-    if not chain:reasons.append("full oriented boundary/internal cancellation mismatch")
+-    if not volume:reasons.append("exact signed-volume mismatch")
+-    if not quality:reasons.append("replacement quality/orientation failure")
+-    if duplicates:reasons.append("duplicate replacement unordered four-set")
+-    if existing:reasons.append("replacement duplicates observed unchanged cell")
+-    if introduced_conflict:reasons.append("introduced feature already present in observed complement")
+-    if not embedded:reasons.append("local embedded convex filling not certified")
+-    return dict(candidate_ID=case["case_ID"]+":triangulation:"+str(ordinal),case_ID=case["case_ID"],
+-        removed_cell_tags=case["removed_cell_tags"],link_triangles=[list(t) for t in tris],
+-        replacement_cells=[list(c) for c in cells],replacement_exact_rows=rows,
+-        abstract_suspension_of_triangulated_disk_ball=disk,
+-        oriented_boundary=[list(f) for f in boundary],oriented_boundary_equal=chain,
+-        signed_volume=rational(total),exact_signed_volume_equal=volume,
+-        all_replacement_exact_quality_gates_passed=quality,
+-        duplicate_replacement_four_sets=[list(s) for s in duplicates],observed_unchanged_cell_duplicates=existing,
+-        introduced_feature_owner_rows=introduced,local_embedded_convex_filling_certified=embedded,
+-        local_finite_predicates_passed=not reasons,reasons=reasons,
+-        complete_application_eligibility=None,global_embedding_and_nonoverlap_accepted=False,
+-        mesh_application_authorized=False,physics_material_LPBF_or_manufacturing_accepted=False)
+-
+-
+-def complete_conflict_relations(cases,candidates):
+-    """Lossless cliques/cartesian products, not a quadratic repeated JSON pair table."""
+-    by_case={r["case"]["case_ID"]:[] for r in cases}
+-    for r in candidates:by_case[r["case_ID"]].append(r["candidate_ID"])
+-    removals={r["case"]["case_ID"]:set(r["case"]["removed_cell_tags"]) for r in cases}
+-    case_pairs=[];pairs=set()
+-    for a,b in combinations(sorted(by_case),2):
+-        shared=sorted(removals[a]&removals[b])
+-        if shared:
+-            case_pairs.append(dict(case_IDs=[a,b],shared_removed_cell_tags=shared,
+-                relation="every candidate from first case conflicts with every candidate from second"))
+-            pairs.update(tuple(sorted((x,y))) for x in by_case[a] for y in by_case[b])
+-    within=[]
+-    for case,ids in sorted(by_case.items()):
+-        if len(ids)>1:
+-            within.append(dict(case_ID=case,candidate_IDs=ids,shared_removed_cell_tags=sorted(removals[case])))
+-            pairs.update(tuple(sorted(p)) for p in combinations(ids,2))
+-    proposed={}
+-    for r in candidates:
+-        for cell in {tuple(sorted(c)) for c in r["replacement_cells"]}:
+-            proposed.setdefault(cell,set()).add(r["candidate_ID"])
+-    duplicate=[]
+-    for cell,ids in sorted(proposed.items()):
+-        if len(ids)>1:
+-            ids=sorted(ids);duplicate.append(dict(unordered_four_set=list(cell),candidate_IDs=ids))
+-            pairs.update(combinations(ids,2))
+-    return dict(encoding="exact union of within-case cliques, cross-case complete products, duplicate-four-set cliques",
+-        case_candidate_memberships=by_case,within_case_conflict_cliques=within,
+-        cross_case_removed_cell_conflict_products=case_pairs,duplicate_proposed_cell_cliques=duplicate,
+-        distinct_conflicting_candidate_pair_count=len(pairs),all_pairs_represented_without_truncation=True,
+-        application_subset_selected=False)
+-
+-
+-def screen_complete_saved_family(context):
+-    """Future finite call only: all55 stars, all valid-cycle Catalan alternatives, no choice."""
+-    before=context_snapshot(context)
+-    need((len(context["points"]),len(context["cells"]),len(context["poor"]),len(context["seeds"]))==(271,499,24,16),
+-         "Full271/499/24/16 context required")
+-    need((len(context["protected_cells"]),len(context["protected_nodes"]))==(1983,66),"Prior1983/66 protection required")
+-    selected,outside=enumerate_edge_stars(context)
+-    observed={r["case_ID"]:r["observed_degree"] for r in selected}
+-    need(observed==EXPECTED_EDGE_DEGREES,"All55 exact saved degree4..8 associations required")
+-    cases=[];candidates=[];expected_count=0
+-    for case in selected:
+-        cavity=convex_edge_cavity(context,case);cases.append(cavity)
+-        if cavity["link"]["valid"]:
+-            triangles=link_triangulations(cavity["link"]["cycle"]);expected_count+=len(triangles)
+-            for ordinal,triangulation in enumerate(triangles,1):
+-                candidates.append(screen_edge_candidate(context,cavity,triangulation,ordinal))
+-    need(len(candidates)==expected_count<=1033,"Complete bounded Catalan family required")
+-    need({t for r in selected for t in r["removed_poor_cell_tags"]}==context["poor"],"All24 poor rows covered")
+-    need({t for r in selected for t in r["central_edge"] if t in context["seeds"]}==context["seeds"],"All16 seeds covered")
+-    conflicts=complete_conflict_relations(cases,candidates)
+-    after=context_snapshot(context)
+-    need(canonical_bytes(before)==canonical_bytes(after),"Complete saved context changed; refuse")
+-    return dict(schema="962-current24-complete-fixed-word-edge-removal-screen/v1",
+-        status="COMPLETE_FINITE_LOCAL_SCREEN_APPLICATION_ELIGIBILITY_UNAVAILABLE",
+-        context_before=before,context_after=after,complete_context_byte_identical=True,
+-        selected_complete_edge_stars=cases,outside_degree_route_associations=outside,
+-        selected_case_count=len(cases),valid_link_count=sum(r["link"]["valid"] for r in cases),
+-        candidate_count=len(candidates),conditional_Catalan_bound=1033,all_candidate_rows=candidates,
+-        local_finite_pass_count=sum(r["local_finite_predicates_passed"] for r in candidates),
+-        conflicts=conflicts,all_failed_unavailable_and_outside_rows_retained=True,
+-        complete_application_eligibility=None,whole_head_embedding_or_nonoverlap_accepted=False,
+-        region_interface_exterior_or_BIN_evidence=None,mesh_application_authorized=False,
+-        optimizer_or_native_called=False,coordinates_or_connectivity_written=False,
+-        physics_material_LPBF_or_manufacturing_accepted=False,global_infeasibility_proved=False,
+-        topology_change_necessity_proved=False)
++    context = admitted['context']
++    before = context_snapshot(context)
++    need(canonical(before) == canonical(admitted['context_before']), 'Current context drift')
++    wanted = [(b['component_ID'],t,a) for b in admitted['blocks']
++              for t in sorted(b['movable_node_tags']) for a in range(3)]
++    need(len(wanted) == 48 and type(mapping_evidence) is list and len(mapping_evidence) == 48,
++         'Exactly48 mappings for all16 seeds; no partial selection')
++    proposed = {t:list(p) for t,p in context['points'].items()}
++    records = []
++    model_ids = {}
++    for evidence, (cid,tag,axis) in zip(mapping_evidence,wanted):
++        coord = evidence['coordinate']
++        expected = dict(component_ID=cid,node_tag=tag,axis=axis,symbol=variable_symbol(cid,tag,axis))
++        need(coord == expected and type(coord['axis']) is int, 'Exact ordered coordinate association required')
++        word = evidence['word_u64']
++        need(type(word) is int and 0 <= word < 2**64, 'One actual binary64 word required')
++        packed = struct.pack('<Q',word)
++        value = struct.unpack('<d',packed)[0]
++        need(math.isfinite(value) and evidence['word_le_hex'] == packed.hex(), 'Finite word/hex association required')
++        model = evidence['model_id']
++        need(type(model) is str and len(model)==64 and all(c in '0123456789abcdef' for c in model),
++             'Retained model identity required')
++        need(cid not in model_ids or model_ids[cid] == model, 'One retained model per component')
++        model_ids[cid] = model
++        need(type(evidence['events']) is list and evidence['events'], 'Complete oracle event record required')
++        proposed[tag][axis] = value
++        records.append(dict(component_ID=cid,node_tag=tag,axis='xyz'[axis],symbol=coord['symbol'],
++            word_u64=word,word_le_hex=packed.hex(),model_ID=model,events=copy.deepcopy(evidence['events'])))
++    need(len(model_ids) == 11, 'All11 components require model-associated mappings')
++    rows = [dict(node_tag=t,coordinates_mm=list(p),binary64_hex=[float(x).hex() for x in p],
++                 words_le_hex=struct.pack('<3d',*p).hex()) for t,p in sorted(proposed.items())]
++    need(len(rows)==271 and canonical(context_snapshot(context))==canonical(before), 'Full unchanged271 context required')
++    normalization = integer_normalization(context)
++    result = dict(schema='962-current24-qfnra-one-model-word-proposal/v1',
++        input_records=copy.deepcopy(admitted['input_records']),context_before=before,
++        original_cell_rows=copy.deepcopy(admitted['native_cell_rows']),components=copy.deepcopy(admitted['blocks']),
++        proposed_coordinate_rows=rows,coordinate_mapping_records=records,
++        mapping_evidence=copy.deepcopy(mapping_evidence),
++        normalization={k:v for k,v in normalization.items() if k!='integers'},
++        complete_application_eligibility=None,application_authorized=False,global_embedding_accepted=False,
++        physical_accepted=False,manufacturing_authorized=False)
++    need(len(canonical(result).encode())<=CAP,'Complete word proposal exceeds32MiB; no truncation')
++    return result
+--- /dev/null
++++ work/962-engineering/head-star-current24-coupled-qfnra-prep-001/qfnra_protocol.py
+@@ -0,0 +1,299 @@
++"""HELD/UNRUN pure QF_NRA reply projection and same-model word mapping.
++
++No transport, subprocess, solver import, file IO, fallback or execution authority.
++Only protocol and rounding GIVEN a retained model are deterministic.
++"""
++from fractions import Fraction
++import hashlib
++import json
++import struct
++
++CAP = 32 * 1024**2
++MAX_POSITIVE_WORD = 0x7fefffffffffffff
++
++
++class ProtocolRefusal(ValueError):
++    pass
++
++
++class MappingRefusal(ValueError):
++    def __init__(self, message, events):
++        super().__init__(message)
++        self.events = list(events)
++
++
++def need(value, message):
++    if not value:
++        raise ProtocolRefusal(message)
++
++
++def canonical(value):
++    return json.dumps(value, sort_keys=True, separators=(',', ':'), allow_nan=False)
++
++
++def symbol(component, node, axis):
++    need(type(component) is int and component > 0 and type(node) is int and node > 0,
++         'Positive component/node IDs required')
++    need(type(axis) is int and 0 <= axis < 3, 'Exact axis0..2 required')
++    return 'c%03d_n%d_%s' % (component, node, 'xyz'[axis])
++
++
++def parse_sexpr(text):
++    """One complete response; iterative, bounded by full input bytes, never eval."""
++    need(type(text) is str and len(text.encode('utf-8')) <= CAP,
++         'Complete response must fit32MiB')
++    roots = []
++    stack = []
++    i = 0
++    while i < len(text):
++        c = text[i]
++        if c in ' \r\n\t':
++            i += 1
++            continue
++        if c == '(':
++            row = []
++            (stack[-1] if stack else roots).append(row)
++            stack.append(row)
++            i += 1
++            continue
++        if c == ')':
++            need(bool(stack), 'Unexpected closing parenthesis')
++            stack.pop()
++            i += 1
++            continue
++        if c == '"':
++            i += 1
++            out = []
++            while True:
++                need(i < len(text), 'Unterminated SMT string')
++                if text[i] == '"':
++                    if i + 1 < len(text) and text[i + 1] == '"':
++                        out.append('"')
++                        i += 2
++                        continue
++                    i += 1
++                    break
++                need(ord(text[i]) >= 32 or text[i] in '\r\n\t', 'Control byte in string')
++                out.append(text[i])
++                i += 1
++            token = {'SMT_string': ''.join(out)}
++        else:
++            start = i
++            while i < len(text) and text[i] not in '() \r\n\t':
++                need(text[i].isascii() and ord(text[i]) >= 33
++                     and text[i] not in ';"|\\', 'Unsupported reply token')
++                i += 1
++            token = text[start:i]
++            need(bool(token), 'Empty token')
++        (stack[-1] if stack else roots).append(token)
++    need(not stack and len(roots) == 1, 'Exactly one complete response required')
++    root = roots[0]
++    if isinstance(root, list) and root and root[0] == 'error':
++        raise ProtocolRefusal('Solver error response: ' + canonical(root))
++    return root
++
++
++def rational_value(term):
++    """Exact finite numeral forms only; '?' decimal and nonconstant division refuse."""
++    if type(term) is str:
++        if term.isascii() and term.isdigit():
++            return Fraction(int(term))
++        if term.count('.') == 1:
++            a, b = term.split('.')
++            if a.isascii() and b.isascii() and a.isdigit() and b.isdigit():
++                return Fraction(int(a + b), 10**len(b))
++        raise ProtocolRefusal('Unsupported exact numeral')
++    need(type(term) is list and bool(term), 'Exact numeral expression required')
++    if term[0] == '-' and len(term) == 2:
++        return -rational_value(term[1])
++    if term[0] == '/' and len(term) == 3:
++        a, b = rational_value(term[1]), rational_value(term[2])
++        need(b != 0, 'Constant division by zero refuses')
++        return a / b
++    raise ProtocolRefusal('Unsupported exact numeral expression')
++
++
++def model_value(term):
++    """Algebraic root terms remain solver-owned syntax, never decimal approximations."""
++    try:
++        q = rational_value(term)
++    except ProtocolRefusal:
++        q = None
++    if q is not None:
++        return dict(kind='rational', numerator=str(q.numerator), denominator=str(q.denominator))
++    need(type(term) is list and len(term) == 3 and term[0] == 'root-obj'
++         and type(term[2]) is str and term[2].isascii() and term[2].isdigit(),
++         'Unsupported model value; no approximate fallback')
++    def polynomial(node):
++        if node == 'x':
++            return
++        try:
++            rational_value(node)
++            return
++        except ProtocolRefusal:
++            pass
++        need(type(node) is list and bool(node), 'Root polynomial syntax required')
++        if node[0] in ('+', '*') and len(node) >= 3:
++            for child in node[1:]:
++                polynomial(child)
++        elif node[0] == '-' and len(node) in (2, 3):
++            for child in node[1:]:
++                polynomial(child)
++        elif node[0] == '^' and len(node) == 3:
++            need(type(node[2]) is str and node[2].isascii() and node[2].isdigit(),
++                 'Nonnegative integer polynomial exponent required')
++            polynomial(node[1])
++        else:
++            raise ProtocolRefusal('Unsupported root polynomial syntax')
++    polynomial(term[1])
++    return dict(kind='solver_algebraic_root_term', term=term,
++                root_index_interpretation='Uninterpreted solver-owned syntax; no root theorem claimed')
++
++
++def parse_status(text):
++    status = parse_sexpr(text)
++    need(type(status) is str and status in ('sat', 'unsat', 'unknown'), 'Exact solver status required')
++    return status
++
++
++def parse_projection(text, expected_symbols, status):
++    need(status == 'sat', 'Only SAT permits a candidate projection')
++    need(type(expected_symbols) is list and expected_symbols
++         and len(expected_symbols) == len(set(expected_symbols)), 'Unique ordered symbols required')
++    rows = parse_sexpr(text)
++    need(type(rows) is list and len(rows) == len(expected_symbols), 'Full model projection required')
++    out = []
++    for row, name in zip(rows, expected_symbols):
++        need(type(row) is list and len(row) == 2 and row[0] == name,
++             'Ordered model symbol association changed')
++        out.append(dict(symbol=name, value=model_value(row[1]), raw_term=row[1]))
++    return out
++
++
++def normalized_term(term):
++    try:
++        q = rational_value(term)
++        return ['exact_rational', str(q.numerator), str(q.denominator)]
++    except ProtocolRefusal:
++        pass
++    if type(term) is str:
++        need(term and all(c.isascii() and (c.isalnum() or c == '_') for c in term),
++             'Unsupported queried symbol')
++        return term
++    need(type(term) is list and term and term[0] in ('<', '<=', '=', '>', '>=', '-'),
++         'Unsupported Boolean query expression')
++    need(len(term) == (2 if term[0] == '-' else 3), 'Exact query arity required')
++    return [term[0]] + [normalized_term(x) for x in term[1:]]
++
++
++def parse_boolean(text, expected_term, status):
++    need(status == 'sat', 'Only retained SAT model queries allowed')
++    rows = parse_sexpr(text)
++    need(type(rows) is list and len(rows) == 1 and type(rows[0]) is list and len(rows[0]) == 2,
++         'One complete Boolean get-value pair required')
++    need(normalized_term(rows[0][0]) == normalized_term(parse_sexpr(expected_term)),
++         'Returned query term does not match request')
++    need(type(rows[0][1]) is str and rows[0][1] in ('true', 'false'), 'Exact Boolean response required')
++    return rows[0][1] == 'true'
++
++
++def snapshot_id(projection):
++    return hashlib.sha256(canonical(projection).encode()).hexdigest()
++
++
++def positive_word_value(word):
++    need(type(word) is int and 0 <= word <= MAX_POSITIVE_WORD, 'Finite nonnegative word required')
++    exponent = (word >> 52) & 2047
++    mantissa = word & ((1 << 52) - 1)
++    if exponent:
++        mantissa += 1 << 52
++    shift = exponent - 1023 - 52 if exponent else -1074
++    return Fraction(mantissa << shift) if shift >= 0 else Fraction(mantissa, 1 << -shift)
++
++
++def smt_rational(value):
++    need(type(value) in (int, Fraction), 'Exact rational constant required')
++    q = Fraction(value)
++    number = str(abs(q.numerator))
++    if q.numerator < 0:
++        number = '(- ' + number + ')'
++    return number if q.denominator == 1 else '(/ ' + number + ' ' + str(q.denominator) + ')'
++
++
++def nearest_binary64(coordinate, scale, retained_model_id, oracle):
++    """One model coordinate -> one word, through a pure same-model callback.
++
++    Callback receives {model_id,term,command}; returns a real bool. No transport
++    exists here. External code must keep the same SAT session and retain replies.
++    """
++    need(type(coordinate) is dict and set(coordinate) == {'component_ID', 'node_tag', 'axis', 'symbol'},
++         'Exact coordinate association required')
++    name = symbol(coordinate['component_ID'], coordinate['node_tag'], coordinate['axis'])
++    need(coordinate['symbol'] == name, 'Coordinate symbol mismatch')
++    need(type(scale) is int and scale > 0 and scale & (scale - 1) == 0, 'Positive power-of-two scale required')
++    need(type(retained_model_id) is str and len(retained_model_id) == 64
++         and all(c in '0123456789abcdef' for c in retained_model_id), 'Retained model identity required')
++    need(callable(oracle), 'Explicit callback required; no fallback')
++    events = []
++    def ask(operator, left, right):
++        term = '(' + operator + ' ' + left + ' ' + right + ')'
++        request = dict(model_id=retained_model_id, term=term, command='(get-value (' + term + '))')
++        event = dict(request=request, value=None)
++        events.append(event)
++        try:
++            answer = oracle(request)
++        except Exception as exc:
++            event['error'] = repr(exc)
++            raise MappingRefusal('Same-model callback failed', events) from exc
++        if type(answer) is not bool:
++            event['error'] = 'Callback returned a non-Boolean'
++            raise MappingRefusal('Same-model callback must return bool', events)
++        event['value'] = answer
++        return answer
++    def threshold(q):
++        return smt_rational(scale * q)
++    if ask('=', name, '0'):
++        return dict(coordinate=coordinate, word_u64=0, word_le_hex='0000000000000000',
++                    rule='Exact zero -> canonical+0', model_id=retained_model_id, events=events)
++    negative = ask('<', name, '0')
++    magnitude = '(- ' + name + ')' if negative else name
++    if not ask('<=', magnitude, threshold(positive_word_value(MAX_POSITIVE_WORD))):
++        raise MappingRefusal('Model coordinate outside finite-word range; no fallback', events)
++    lo, hi = 0, MAX_POSITIVE_WORD
++    decisions = 0
++    while lo < hi:
++        mid = (lo + hi + 1) // 2
++        if ask('<=', threshold(positive_word_value(mid)), magnitude):
++            lo = mid
++        else:
++            hi = mid - 1
++        decisions += 1
++    need(decisions <= 63, 'Finite-word rank bound violated')
++    lower = positive_word_value(lo)
++    if ask('=', magnitude, threshold(lower)):
++        chosen = lo
++        bracket = dict(lower_word=lo, exact_representable=True)
++    else:
++        if lo == MAX_POSITIVE_WORD:
++            raise MappingRefusal('Inconsistent model range/equality replies', events)
++        upper = positive_word_value(lo + 1)
++        if not ask('<', magnitude, threshold(upper)):
++            raise MappingRefusal('Inconsistent final adjacent-word bracket', events)
++        midpoint = (lower + upper) / 2
++        if ask('<', magnitude, threshold(midpoint)):
++            chosen = lo
++            relation = 'below_midpoint'
++        elif ask('=', magnitude, threshold(midpoint)):
++            chosen = lo if lo & 1 == 0 else lo + 1
++            relation = 'tie_to_even'
++        else:
++            chosen = lo + 1
++            relation = 'above_midpoint'
++        bracket = dict(lower_word=lo, upper_word=lo + 1,
++            lower_rational=[str(lower.numerator), str(lower.denominator)],
++            upper_rational=[str(upper.numerator), str(upper.denominator)],
++            midpoint_rational=[str(midpoint.numerator), str(midpoint.denominator)], relation=relation)
++    word = chosen | (1 << 63 if negative else 0)
++    return dict(coordinate=coordinate, word_u64=word, word_le_hex=struct.pack('<Q', word).hex(),
++                bracket=bracket, rank_decisions=decisions, model_id=retained_model_id, events=events,
++                real_model_feasibility_implies_rounded_gate=False, application_authorized=False)
+--- /dev/null
++++ work/962-engineering/head-star-current24-coupled-qfnra-prep-001/test_qfnra_synthetic.py
+@@ -0,0 +1,225 @@
++"""HELD/UNRUN pure synthetic source; no solver/process/current-head evaluation."""
++from fractions import Fraction
++from pathlib import Path
++import ast
++import hashlib
++import importlib.util
++import unittest
++
++ROOT = Path('/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering')
++PREP = ROOT/'head-star-current24-coupled-qfnra-prep-001'
++SOURCES = {
++    'qfnra_emitter.py': ('5d76ef8218843ef92c83d64db3e5d9b0d8d1f6523d95aecdfa53b99dc569cd7b',36312),
++    'qfnra_protocol.py': ('9b5885a35bfbc681c0354e937b9f57621b3d8137adc25b4e2ba455e86ce59785',12459)}
++MODEL = '0'*64
++COORDINATE = dict(component_ID=2,node_tag=101,axis=0,symbol='c002_n101_x')
++X = COORDINATE['symbol']
++
++
++def load_pure(name):
++    data = (PREP/name).read_bytes()
++    digest,size = SOURCES[name]
++    if len(data)!=size or hashlib.sha256(data).hexdigest()!=digest:
++        raise ValueError('Frozen pure source changed')
++    spec = importlib.util.spec_from_file_location(name[:-3]+'_held',PREP/name)
++    module = importlib.util.module_from_spec(spec)
++    spec.loader.exec_module(module)
++    return module
++
++
++class ExactOracle:
++    """Synthetic exact value only. Never owns a process or solver interface."""
++    def __init__(self, protocol, value, sqrt_two=False):
++        self.p=protocol;self.value=value;self.sqrt_two=sqrt_two;self.calls=[]
++    def linear(self, term):
++        if term==X:return (1,Fraction()) if self.sqrt_two else (0,Fraction(self.value))
++        if term==['-',X]:return (-1,Fraction()) if self.sqrt_two else (0,-Fraction(self.value))
++        return 0,self.p.rational_value(term)
++    def __call__(self, request):
++        if set(request)!={'model_id','term','command'} or request['model_id']!=MODEL:
++            raise AssertionError('Wrong retained synthetic model')
++        if request['command']!='(get-value ('+request['term']+'))':
++            raise AssertionError('Wrong exact Boolean request')
++        self.calls.append(request)
++        op,left,right=self.p.parse_sexpr(request['term'])
++        a,b=self.linear(left);c,d=self.linear(right)
++        coefficient,constant=a-c,b-d
++        if coefficient==0:
++            sign=(constant>0)-(constant<0)
++        else:
++            if coefficient not in (-1,1):raise AssertionError('Unsupported synthetic expression')
++            bound=-constant/coefficient
++            if bound<=0:root_sign=1
++            else:root_sign=(Fraction(2)>bound*bound)-(Fraction(2)<bound*bound)
++            sign=coefficient*root_sign
++        return {'<':sign<0,'<=':sign<=0,'=':sign==0,'>':sign>0,'>=':sign>=0}[op]
++
++
++class QFNRASyntheticGuards(unittest.TestCase):
++    @classmethod
++    def setUpClass(cls):
++        cls.e=load_pure('qfnra_emitter.py')
++        cls.p=load_pure('qfnra_protocol.py')
++
++    def roots(self,seeds=(4,),conn=(1,2,3,4)):
++        dag=self.e.IntegerDAG()
++        baseline={1:(0,0,0),2:(1,0,0),3:(0,1,0),4:(0,0,1)}
++        points={t:[dag.variable('n%d_%d'%(t,a)) if t in seeds else dag.integer(v)
++                   for a,v in enumerate(row)] for t,row in baseline.items()}
++        roots=self.e.cell_roots(dag,conn,points,set(seeds))
++        values=dag.evaluate({'n%d_%d'%(t,a):v for t,row in baseline.items() if t in seeds
++                            for a,v in enumerate(row)})
++        return dag,roots,values
++
++    def test_01_strict_bytes_JSON_and_held_input_refusal(self):
++        for data in (b'{"a":1,"a":2}',b'{"a":NaN}'):
++            with self.subTest(data=data),self.assertRaises(ValueError):self.e.strict_json(data)
++        with self.assertRaisesRegex(ValueError,'Exact accepted edge intake contract'):
++            self.e.admit_current({},b'{}')
++        held=(ROOT/'head-star-current24-edge-removal-prep-001/held-preparation.json').read_bytes()
++        with self.assertRaisesRegex(ValueError,'Exactly23'):
++            self.e.admit_current({},held)
++
++    def test_02_uniform_dyadic_normalization_preserves_context_and_homogeneous_gate(self):
++        context=dict(points={1:(-0.0,0.,0.),2:(.125,0.,0.),3:(0.,.125,0.),4:(0.,0.,.125)})
++        norm=self.e.integer_normalization(context)
++        self.assertEqual((norm['power_of_two_exponent'],norm['scale_integer']),(3,'8'))
++        self.assertEqual(norm['integers'],{1:(0,0,0),2:(1,0,0),3:(0,1,0),4:(0,0,1)})
++        self.assertEqual(context['points'][1][0].hex(),'-0x0.0p+0')
++        _,roots,values=self.roots()
++        D,S,T,P=(values[roots[n]] for n in ('D','S','T','P'))
++        self.assertEqual((D,S,T,P),(1,9,6,3546))
++        native_D=Fraction(1,8**3);native_S=Fraction(9,8**2);native_T=Fraction(6,8**4)
++        self.assertEqual(Fraction(P,8**6),3600*native_D**2-native_S*native_T)
++        self.assertEqual(Fraction(36*D*D,S*T),Fraction(2,3))
++
++    def test_03_native_orientation_planarity_and_one_two_seed_degrees(self):
++        for seeds in ((4,),(3,4)):
++            with self.subTest(seeds=seeds):
++                _,roots,values=self.roots(seeds)
++                self.assertLessEqual(roots['maximum_total_degree'],4 if len(seeds)==1 else 6)
++                self.assertEqual(values[roots['D']],1)
++        _,roots,values=self.roots((4,),(4,1,2,3))
++        self.assertEqual(values[roots['D']],-1)
++        dag,roots,_=self.roots()
++        for height,expected in ((0,0),(-1,-1)):
++            values=dag.evaluate({'n4_0':0,'n4_1':0,'n4_2':height})
++            self.assertEqual(values[roots['D']],expected)
++            self.assertFalse(values[roots['D']]>0)
++
++    def test_04_integer_DAG_constants_and_exact_untested_solver_plan(self):
++        dag=self.e.IntegerDAG();zero=dag.integer(0)
++        self.assertEqual(dag.nodes[dag.binary('*',zero,dag.integer(7))]['value'],'0')
++        self.assertEqual(dag.nodes[dag.binary('-',zero,zero)]['value'],'0')
++        block=dict(component_ID=2,variables=[dict(symbol=X)],nodes=[dict(op='integer',value='0')],
++                   predicates=[dict(name='strict_zero',root=0,relation='>',integer_rhs='0')])
++        text=self.e.smt_block(block)
++        self.assertIn('(assert (! (> d_c002_0 0) :named strict_zero))',text)
++        self.assertIn(':zero_accuracy 0',text);self.assertIn(':randomize false',text)
++        self.assertIn('(set-logic QF_NRA)',text)
++        self.assertEqual(self.e.SOLVER_PLAN['argv'],['/opt/homebrew/bin/z3','-in','-smt2'])
++        self.assertFalse(self.e.SOLVER_PLAN['unique_or_cross_version_model_claim'])
++
++    def test_05_exact_status_and_complete_rational_algebraic_projection(self):
++        self.assertEqual([self.p.parse_status(x) for x in ('sat','unsat','unknown')],['sat','unsat','unknown'])
++        rows=self.p.parse_projection('((a (/ (- 1.0) 2.0)) (b (root-obj (+ (^ x 2) (- 2)) 2)))',
++                                     ['a','b'],'sat')
++        self.assertEqual(rows[0]['value'],dict(kind='rational',numerator='-1',denominator='2'))
++        self.assertEqual(rows[1]['value']['kind'],'solver_algebraic_root_term')
++        for text,status,names in [('((a 1))','unknown',['a']),('((a 1) (a 2))','sat',['a','b']),
++                                 ('((b 1))','sat',['a']),('((a 1.4?))','sat',['a'])]:
++            with self.subTest(text=text),self.assertRaises(ValueError):self.p.parse_projection(text,names,status)
++
++    def test_06_single_complete_response_and_error_or_approximation_refusal(self):
++        for text in ('sat unsat','(sat','(error "synthetic failure")','|quoted|','a;comment'):
++            with self.subTest(text=text),self.assertRaises(ValueError):self.p.parse_sexpr(text)
++        for term in (['/','1','0'],['sqrt','2'],'1.2?'):
++            with self.subTest(term=term),self.assertRaises(ValueError):self.p.rational_value(term)
++        with self.assertRaisesRegex(ValueError,'32MiB'):
++            self.p.parse_sexpr('a'*(self.p.CAP+1))
++
++    def test_07_exact_same_model_boolean_query_association(self):
++        term='(<= '+X+' (/ 1 2))'
++        self.assertTrue(self.p.parse_boolean('(((<= '+X+' (/ 1.0 2.0)) true))',term,'sat'))
++        for response,status in [('(((< '+X+' (/ 1 2)) true))','sat'),
++            ('(((<= '+X+' (/ 1 2)) 1))','sat'),('(((<= '+X+' (/ 1 2)) true))','unknown')]:
++            with self.subTest(response=response),self.assertRaises(ValueError):
++                self.p.parse_boolean(response,term,status)
++
++    def test_08_rational_ties_even_and_negative_subnormal_zero(self):
++        cases=[(Fraction(1),0x3ff0000000000000),
++               (Fraction(1)+Fraction(1,2**53),0x3ff0000000000000),
++               (Fraction(1)+Fraction(3,2**53),0x3ff0000000000002),
++               (Fraction(1,2**1075),0),(-Fraction(1,2**1075),1<<63)]
++        for value,word in cases:
++            with self.subTest(value=str(value)):
++                oracle=ExactOracle(self.p,value)
++                record=self.p.nearest_binary64(COORDINATE,1,MODEL,oracle)
++                self.assertEqual(record['word_u64'],word)
++                self.assertEqual(record['events'][0]['request']['model_id'],MODEL)
++                self.assertLessEqual(record.get('rank_decisions',0),63)
++
++    def test_09_subnormal_normal_and_exponent_word_boundaries(self):
++        self.assertEqual(self.p.positive_word_value(1),Fraction(1,2**1074))
++        self.assertEqual(self.p.positive_word_value(0x3ff0000000000000),Fraction(1))
++        for lower,upper in ((0x000fffffffffffff,0x0010000000000000),
++                            (0x3fefffffffffffff,0x3ff0000000000000)):
++            midpoint=(self.p.positive_word_value(lower)+self.p.positive_word_value(upper))/2
++            result=self.p.nearest_binary64(COORDINATE,8,MODEL,ExactOracle(self.p,8*midpoint))
++            self.assertEqual(result['word_u64'],upper)
++            self.assertEqual(result['bracket']['relation'],'tie_to_even')
++
++    def test_10_algebraic_model_uses_exact_comparison_oracle_not_decimals(self):
++        result=self.p.nearest_binary64(COORDINATE,1,MODEL,ExactOracle(self.p,None,sqrt_two=True))
++        self.assertEqual(result['word_u64'],0x3ff6a09e667f3bcd)
++        self.assertFalse(result['real_model_feasibility_implies_rounded_gate'])
++        self.assertFalse(result['application_authorized'])
++
++    def test_11_a_real_feasible_interval_does_not_validate_the_rounded_word(self):
++        lower=Fraction(1)
++        upper=lower+Fraction(1,2**52)
++        real=(lower+upper)/2
++        self.assertTrue(lower<real<upper)
++        result=self.p.nearest_binary64(COORDINATE,1,MODEL,ExactOracle(self.p,real))
++        actual=self.p.positive_word_value(result['word_u64'])
++        self.assertEqual(actual,lower)
++        self.assertFalse(lower<actual<upper)
++
++    def test_12_unavailable_nonboolean_or_out_of_range_oracle_refuses(self):
++        def missing(request):raise RuntimeError('synthetic unavailable')
++        with self.assertRaises(self.p.MappingRefusal) as caught:
++            self.p.nearest_binary64(COORDINATE,1,MODEL,missing)
++        self.assertEqual(len(caught.exception.events),1)
++        with self.assertRaises(self.p.MappingRefusal):
++            self.p.nearest_binary64(COORDINATE,1,MODEL,lambda request:1)
++        too_large=self.p.positive_word_value(self.p.MAX_POSITIVE_WORD)+1
++        with self.assertRaises(self.p.MappingRefusal):
++            self.p.nearest_binary64(COORDINATE,1,MODEL,ExactOracle(self.p,too_large))
++
++    def test_13_incomplete_mapping_never_materializes_a_partial_subset(self):
++        context=dict(points={},words={},cells={},poor=set(),seeds=set(),protected_cells=set(),
++                     protected_nodes=set(),intake={},classification_rows=[])
++        admitted=dict(context=context,context_before=self.e.context_snapshot(context),blocks=[])
++        with self.assertRaisesRegex(ValueError,'Exactly48'):
++            self.e.word_proposal(admitted,[])
++
++    def test_14_source_reuse_and_no_process_or_implicit_execution_entrypoint(self):
++        donor=(ROOT/'head-star-current24-edge-removal-prep-001/propose_saved_edge_removal.py').read_text()
++        proposed=(PREP/'qfnra_emitter.py').read_text()
++        a,b=ast.parse(donor),ast.parse(proposed)
++        for name in ('coordinate_rows','need','typed_hash','current_faces','prepare_context','oriented_boundary','context_snapshot'):
++            old=next(n for n in a.body if isinstance(n,ast.FunctionDef) and n.name==name)
++            new=next(n for n in b.body if isinstance(n,ast.FunctionDef) and n.name==name)
++            self.assertEqual(ast.get_source_segment(donor,old),ast.get_source_segment(proposed,new))
++            self.assertEqual(ast.dump(old,include_attributes=False),ast.dump(new,include_attributes=False))
++        for filename in SOURCES:
++            tree=ast.parse((PREP/filename).read_text())
++            self.assertFalse(any(isinstance(n,(ast.Import,ast.ImportFrom)) and 'subprocess' in ast.unparse(n)
++                                 for n in ast.walk(tree)))
++            self.assertFalse(any(isinstance(n,ast.If) and '__name__' in ast.unparse(n.test) for n in tree.body))
++            self.assertFalse(any(isinstance(n,ast.Call) and isinstance(n.func,ast.Name)
++                                 and n.func.id in ('exec','eval','compile','open') for n in ast.walk(tree)))
++
++
++if __name__=='__main__':
++    unittest.main(verbosity=2)

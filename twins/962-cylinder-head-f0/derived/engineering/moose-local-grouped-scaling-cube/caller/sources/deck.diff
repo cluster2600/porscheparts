@@ -1,0 +1,11 @@
+--- flat001/imported-cube.i
++++ flat002/imported-cube.i
+@@ -186,6 +186,8 @@
+ [Executioner]
+   type = Steady
+   solve_type = NEWTON
++  automatic_scaling = true
++  scaling_group_variables = 'disp_x disp_y disp_z'
+   nl_rel_tol = 1e-11
+   nl_abs_tol = 1e-10
+   nl_max_its = 1

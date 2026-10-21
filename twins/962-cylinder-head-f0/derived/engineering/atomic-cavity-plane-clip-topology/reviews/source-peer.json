@@ -1,0 +1,112 @@
+{
+  "schema": "962-clipped-pre-repair-topology-source-peer-review/v1",
+  "status": "clear_for_separate_root_authorization",
+  "findings": [],
+  "scope": "Independent frozen source/contract review and three pure controller-refusal tests only. No topology, intersection, runtime availability, surface admission or physical result is established.",
+  "reviewed_preparation": {
+    "preparation-contract.json": "ab16cd928c63aa987b406b03f00e76f712648ddd3c6d364a1488132027bcdb7c",
+    "held-child.json": "cb1565a9343bed812c176bbc8f2996130e7f9300bd6f27efae401a2d72d678bf",
+    "source-reuse.json": "9bc141465c39f72ab13f9e1dd3c9112d6f5467c9a9e35986784bbac202fc7b05",
+    "preparation-checks.json": "f95bac773974fbd014f6ddbe25c323f09b75dcc7770f5b150eb4fc9d2a78d042"
+  },
+  "worker_sha256": "9025dfaacb8e3b51f2ef80ccf7570b8e5e9cea1081902cad60c5c758844b0092",
+  "controller_sha256": "414d1ee3200c9db21c5b8b045feb225e8c6f6596e567a0d7260c25ef4e1496e2",
+  "guard_tests_sha256": "370c114f14440cfb0c7cf5c48e00df1e3a958c9ae56a788fac34a971b387c9ab",
+  "prepared_files": 16,
+  "complete_prepared_input_pins": 38,
+  "complete_held_input_pins": 39,
+  "all_current_pins_verified_before_and_after": true,
+  "source_reverse_proofs": {
+    "worker_entire_original_recovered": true,
+    "controller_entire_original_recovered": true,
+    "local_generic_guard_recovers_original_helper_function_after_four_declared_changes": true,
+    "exact_unchanged_copies": 9
+  },
+  "candidate": {
+    "sha256": "d2af68ee8ab242e992b15b6e2a93ac7e487972277af7f31a8496a7036ec32240",
+    "bytes": 62603568,
+    "expected_counts": {
+      "triangles": 1739126,
+      "vertices": 869355
+    },
+    "point_array_sha256": "477e65be335b2f6df405860185d82f1a802153ce25172bdbd83f65ef49be5a68",
+    "face_array_sha256": "c48b58414373daea24df55d785ade98a9da10d184a1120f1e82e5537c943449b",
+    "array_hashes_associated_with_completed_readback": true,
+    "candidate_arrays_loaded_by_reviewer": false
+  },
+  "source_review": {
+    "old_Euler_minus208_equality_not_inherited_by_new_worker_or_controller": true,
+    "Euler_required_as_integer_measured_observation": true,
+    "generic_criterion": "one connected closed consistently oriented edge/vertex-manifold surface with finite positive signed volume",
+    "unchanged_helper_functions": "validate_surface; components; audit_intersections (including is_vertex_manifold and five known-result fixtures)",
+    "legacy_verify_contract_and_require_topology_entrypoints_not_called": true,
+    "component_fixtures": [
+      1,
+      2
+    ],
+    "intersection_fixture_count": 5,
+    "intersection_options": {
+      "detect_only": true,
+      "first_only": false,
+      "stitch_all": false,
+      "complete_pair_cap": 100001
+    },
+    "complete_zero_pair_result_required": true,
+    "nonmanifold_vertices_required": 0,
+    "worker_candidate_and_source_hash_checks_before_imports_and_after": true,
+    "ordered_candidate_arrays_verified_and_unchanged_required": true,
+    "runtime_module_hashes_and_ARM64_Python_NumPy_libigl_versions_bound": true,
+    "no_geometry_mutation_or_repair_or_distance_or_meshing_calls": true,
+    "fresh_output_refusal_and_complete_pinset_before_cleanup_import": true,
+    "owned_cleanup_sources_unchanged": true,
+    "isolated_temporary_image_and_optional_Tmpfs_format_restored_in_finally": true,
+    "owned_identity_control_and_mount_checks_before_attach": true,
+    "attach_kill_wait_reap_and_stopped_owned_only_removal_preserved": true,
+    "authoritative_success_requires_clean_controller_native_zero_and_report_subgates": true,
+    "generic_guard_read_source_only_by_reviewer": true
+  },
+  "resources": {
+    "cpus": 2,
+    "hard_wall_seconds": 300,
+    "memory_bytes": 4294967296,
+    "memory_swap_bytes": 4294967296,
+    "network": "none",
+    "swap_bytes": 0,
+    "tmpfs_bytes": 0
+  },
+  "read_only_input_mounts": 4,
+  "writable_output_mounts": 1,
+  "immutable_image_id": "sha256:3ccaf5701c7c9add59eda6e8db918106fc8d51f4c2ef5b148d8079262861c7e1",
+  "tests": {
+    "methods_passed": 3,
+    "returncode": 0,
+    "log_sha256": "79150a9081ecfbef5570f68d9a7eedcf9f31f9112f3d9912e08b1ff98e6ba509",
+    "interpreter_sha256": "72956ad35cff7691dfed9e04c9593de825ffd5b2fa7e8bc9ae96ce9a1af65621",
+    "worker_or_NumPy_libigl_imports": false,
+    "Docker_or_native_calls": 0
+  },
+  "held_authority_flags_remain_false": true,
+  "reserved_output_absent_after_tests": true,
+  "qualification": {
+    "conformal_metal_fluid_interface_validated": false,
+    "feature_channel_BCC_review_completed": false,
+    "head_solver_executed": false,
+    "head_surface_admitted": false,
+    "independent_distance_completed": false,
+    "manufacturing_authorized": false,
+    "repair_region_or_targets_approved": false,
+    "solver_admission_established": false,
+    "strength_validated": false,
+    "surface_quality_admitted": false,
+    "thermal_performance_validated": false,
+    "volume_mesh_admitted": false
+  },
+  "limitations": [
+    "This review does not authorize a launch. A distinct root child, fresh runtime/resource preflight and its exact current pins are still required.",
+    "Actual global component count, Euler and self-intersections remain unknown until the separately reviewed execution completes.",
+    "The retained 3112 faces below 2/29 remain rejected regardless of prospective topology/intersection results. No repair region, features, CUB, accepted volume mesh, head physics, material/process or manufacturing qualification is established.",
+    "Cleanup is the preserved owned-process implementation; no arbitrary SIGKILL or external host-failure survival guarantee is asserted."
+  ],
+  "scientific_imports_native_Docker_SSH_API_Git_or_network_calls": 0,
+  "original_frozen_sources_contracts_receipts_modified": false
+}

@@ -1,0 +1,76 @@
+{
+  "schema": "962-observer003-root-host-registration-check-admission/v1",
+  "actual": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer003-host-registration-execution-prep-001/actual-contract.json",
+    "sha256": "18a8e43248b97fe4e810e606124eb6e291a401248bd6c63efa4733cbca56aa2c",
+    "bytes": 5876
+  },
+  "controller": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer003-host-registration-owner-prep-001/run_host_check_once.py",
+    "sha256": "c868be7615b080cf4d0437835e5b30329aea16496321ec131672754783346317",
+    "bytes": 16384
+  },
+  "preflight": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer003-host-registration-execution-prep-001/input-runtime-preflight.002.json",
+    "sha256": "46aaa402d7bc73f2a14f04a07228a5922c4b4ee22fc2888af5cf717042614991",
+    "bytes": 40546
+  },
+  "exact_child_peer": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer003-host-registration-exact-child-peer-001/review.json",
+    "sha256": "e8fd801e12851dcdf6bc395db0fe23f0de1623303d71b163d52e3eec282f3d3a",
+    "bytes": 8119
+  },
+  "exact_child_bindings": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer003-host-registration-exact-child-peer-001/bindings.json",
+    "sha256": "c513e4e5322f4b63f0a982e200f6d15fa901fc798b6309324e1ab1acef4212ca",
+    "bytes": 41244
+  },
+  "outer_no_site_peer": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer003-host-registration-outer-no-site-peer-001/review.json",
+    "sha256": "9a068565713e9989149f6fd60e998015e0b538782d2b57b5134c40a98682ecd5",
+    "bytes": 4101
+  },
+  "outer_no_site_bindings": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer003-host-registration-outer-no-site-peer-001/bindings.json",
+    "sha256": "fbbe9d8d150452d15f210ab229fd31052c6bfb1ed9a1b2e117d95619d903f321",
+    "bytes": 1766
+  },
+  "host_check_execution_authorized": true,
+  "plugin_load_authorized": true,
+  "invocations": 1,
+  "automatic_retry": false,
+  "executioner_init_authorized": false,
+  "native_solve_authorized": false,
+  "callback_or_live_map_authorized": false,
+  "physical_acceptance": false,
+  "controls": {
+    "wall_seconds": 60,
+    "TERM_grace_seconds": 8,
+    "KILL_wait_seconds": 8,
+    "sampled_owned_group_RSS_stop_bytes": 2147483648,
+    "owned_output_stop_bytes": 33554432,
+    "OMP_BLAS_environment_threads": 1,
+    "thread_observations_nongating": true,
+    "numeric_reported_RSS_zero_allowed": true,
+    "missing_or_nonnumeric_RSS_not_zero_filled": true,
+    "retry": 0,
+    "core_bytes": 0
+  },
+  "outer_prefix": [
+    "/Library/Frameworks/Python.framework/Versions/3.10/bin/python3.10",
+    "-B",
+    "-I",
+    "-S",
+    "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/cp1-oneway-cooling-release-richardson2-observer003-host-registration-owner-prep-001/run_host_check_once.py"
+  ],
+  "last_argument_role": "SHA256 of these frozen admission bytes",
+  "root_required_postchecks": [
+    "Observed outer owner RC0 and raw host RC0; complete no-stop/no-error receipt and owned group absence",
+    "All63 selected records and22 provider paths unchanged",
+    "Single complete type frame, exact observer type once, exact Syntax OK line",
+    "Exact005 plugin path observed in retained raw trace",
+    "Full post-receipt owned bytes <=33554432, exclude only four pinned inputs totaling1213802",
+    "Rehash exact-child and outer-variant peer/control metadata after run"
+  ],
+  "scope": "Host plugin/Factory/input construction only. No executioner init/solve/callback/live map/full ABI/physical acceptance."
+}

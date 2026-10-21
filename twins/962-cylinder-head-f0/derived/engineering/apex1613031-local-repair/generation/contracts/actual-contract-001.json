@@ -1,0 +1,357 @@
+{
+  "schema": "962-specific-apex1613031-cavity-generation-actual-child/v1",
+  "status": "CONDITIONAL_ONE_GENERATION_ONLY_EXTERNAL_CHILD_AND_ROOT_FRESH_LAUNCH_REQUIRED",
+  "scope": "One controlled generation on accepted saved9-node14-face apex1613031 diagnostic shell only; original5boundary4dim3 distinction retained; no Netgen/domain/outside-owner/head/stitch/PDE/physical admission.",
+  "native_python": "runtime-role://registered-native/geometry/bin/python",
+  "runtime": {
+    "python_executable_sha256": "72956ad35cff7691dfed9e04c9593de825ffd5b2fa7e8bc9ae96ce9a1af65621"
+  },
+  "runtime_sha256s": {
+    "gmsh_library": "def0f5c10988a986e5e879b3db9669d8fe016a81e2d994bbaf2b8497c6b8a58a",
+    "gmsh_module": "f4b0935cebde899750293d87a643090e5ea33c9b18d249267f507db68a0e01c3",
+    "python": "72956ad35cff7691dfed9e04c9593de825ffd5b2fa7e8bc9ae96ce9a1af65621"
+  },
+  "external_runtime_hashes": {
+    "runtime-role://registered-native/geometry/bin/python": "72956ad35cff7691dfed9e04c9593de825ffd5b2fa7e8bc9ae96ce9a1af65621",
+    "runtime-role://registered-native/geometry/lib/libgmsh.4.15.dylib": "def0f5c10988a986e5e879b3db9669d8fe016a81e2d994bbaf2b8497c6b8a58a",
+    "runtime-role://registered-native/geometry/lib/python3.10/site-packages/gmsh.py": "f4b0935cebde899750293d87a643090e5ea33c9b18d249267f507db68a0e01c3"
+  },
+  "expected_runtime": {
+    "python": "3.10.11",
+    "numpy": "2.0.2",
+    "gmsh": "4.15.2",
+    "machine": "arm64"
+  },
+  "numpy_init": "runtime-role://registered-native/numpy-environment/lib/python3.10/site-packages/numpy/__init__.py",
+  "numpy_init_sha256": "c09e25b58f6b2f8e2cb3c158168f902d447f8171e5ea6513c0aca41ecbda7c2b",
+  "numpy_origin_provenance": {
+    "root_query": {
+      "path": "work/962-engineering/fixed-shell-generation-apex1613790-runtime-origin-001/closed-result.json",
+      "sha256": "5af4f4182a39648008de2672d6874a3b202e091c77281940fd5976fab1ef7398",
+      "bytes": 2647
+    },
+    "observed": {
+      "python": "3.10.11",
+      "numpy": "2.0.2",
+      "numpy_init": "runtime-role://registered-native/numpy-environment/lib/python3.10/site-packages/numpy/__init__.py",
+      "numpy_init_sha256": "c09e25b58f6b2f8e2cb3c158168f902d447f8171e5ea6513c0aca41ecbda7c2b"
+    },
+    "all3_and_numpy_before_after_unchanged": true,
+    "scope": "Root-observed import/origin/version and selected-byte identity only; no Gmsh API/generation/full ABI proof. Prelaunch fresh checks still required."
+  },
+  "options": {
+    "General.NumThreads": 2,
+    "Mesh.MaxNumThreads3D": 2,
+    "Mesh.Algorithm3D": 1,
+    "Mesh.MeshOnlyEmpty": 1,
+    "Mesh.Renumber": 0,
+    "Mesh.ElementOrder": 1,
+    "Mesh.Optimize": 0,
+    "Mesh.OptimizeNetgen": 0,
+    "Mesh.MeshSizeExtendFromBoundary": 0,
+    "Mesh.RandomSeed": 1,
+    "Mesh.Binary": 1,
+    "Mesh.SaveAll": 1,
+    "Mesh.MshFileVersion": 4.1
+  },
+  "declared_operation_counts": {
+    "generate": 1,
+    "createGeometry_dim3": 0,
+    "optimize_Netgen": 0,
+    "rebuildElementCache": 0,
+    "write_mesh": 1,
+    "solve": 0
+  },
+  "controls": {
+    "wall_seconds": 30,
+    "sampled_RSS_stop_bytes": 1073741824,
+    "sampled_output_stop_bytes": 16777216,
+    "threads": 2,
+    "hard_OS_CPU_quota_applied": false,
+    "hard_address_space_limit_applied": false,
+    "environment": {
+      "PATH": "/usr/bin:/bin",
+      "LANG": "C",
+      "PYTHONUTF8": "1",
+      "OMP_NUM_THREADS": "2",
+      "OPENBLAS_NUM_THREADS": "2",
+      "VECLIB_MAXIMUM_THREADS": "2",
+      "PYTHONDONTWRITEBYTECODE": "1"
+    }
+  },
+  "input_count": 59,
+  "current_input_count": 57,
+  "future_input_count": 2,
+  "input_hashes": {
+    "twins/962-cylinder-head-f0/source/mesh_head.py": "69c8012e99057e384d44d6971d41f0e2cc7197a978120a7c566b0ad5a6477da5",
+    "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-delaunay-prep-001/mesh_assembled_delaunay.py": "a3268687edc90b0149775cf5d80a89df82175cc982bbf5d7184b6ea8935be8a4",
+    "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-netgen-cube-prep-002/reader.py": "97b7e9fc7d17defa84594c50dac1d4e09cd39bb47ef2059e00b6ac07fe8c029b",
+    "work/962-engineering/direct-sicn-cube-prep-001/held-contract.json": "db6def5bf8909387b6ba4be4dc68769360dd396eca55e35b88718b6ff558e5cd",
+    "work/962-engineering/head-star-current129-full-stars-root-execution-001/launch-deviation-001.json": "d60fff297c6c45dc92e117262e36ffde36e2169d53fcd32ce2b79fabde5eebc3",
+    "work/962-engineering/fixed-shell-generation-apex1435493-guards-002/test_runner_guards.py": "b107bd6a3c8b45ff6da027da25a8422229e358da31e1e4473fff5749c229fcd4",
+    "work/962-engineering/fixed-shell-generation-apex1435493-root-source-001/review.json": "ca89794b65df9a80751319a3f617bdb6d13c3819e16e134f914f78d0cd2fa05d",
+    "work/962-engineering/fixed-shell-generation-apex1435493-root-source-001/test_runner_guards-002.py.log": "70cb5b07949bed66fdb35ce48d922f0d960ca0f521435253b893257e09beafad",
+    "work/962-engineering/fixed-shell-generation-apex1613790-prep-001/reader.py": "21fca7c9dbdc1944b27f4c91f1aeba2cf251a059b0808dbc71356e2ff10b9239",
+    "work/962-engineering/fixed-shell-generation-apex1613790-prep-001/run_readback.py": "4963f5c66fa9e73797e76a8643f24bfb6b4ea8f1b9962063618504fc10e338ed",
+    "work/962-engineering/fixed-shell-generation-apex1613790-prep-001/test_shell_guards.py": "41c7286300b1fb2c44f7217ebccd0c01747b4920d12fed600bda7904ad0e2d0c",
+    "work/962-engineering/fixed-shell-generation-apex1613790-prep-001/test_runner_guards.py": "5d14d39fb69f22ec019feeae20c5fbbedc473e6561583d7eeedcd94c3ea3a441",
+    "work/962-engineering/fixed-shell-generation-apex1613790-prep-001/held-contract.json": "d23874969c2c4116cd48e0ee5e06d0192349dca44a32c801aea2cf599edfe3f5",
+    "work/962-engineering/fixed-shell-generation-apex1613790-prep-001/source-delta.json": "d769acb8877ba9b6c45e9fef0ee3c927e6cd6e87ad474903c4b0d92031887173",
+    "work/962-engineering/fixed-shell-generation-apex1613790-prep-001/METHOD.md": "3588e9a40b84ef1ad866631cbb2966917f390f666539ef7c5e39b5475cd5404f",
+    "work/962-engineering/fixed-shell-generation-apex1613790-source-peer-001/review.json": "88fb1f03b17eb8f5bba1889ca24205e87df9926635ec649870358bc08d51ec69",
+    "work/962-engineering/fixed-shell-generation-apex1613790-source-peer-001/bindings.json": "51bc9bfbf64875537eede59d07e702bba60192e14c571ca178a1142878132f51",
+    "work/962-engineering/fixed-shell-generation-apex1613790-root-source-001/review.json": "a843d57694e933fe959d34e3d945de0e9abd93599ec43e9d260cb22c78417f4a",
+    "work/962-engineering/fixed-shell-generation-apex1613790-root-source-001/source.stdout.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "work/962-engineering/fixed-shell-generation-apex1613790-root-source-001/source.stderr.log": "4190e6532da5d52050bd5ea71ff40310f4ffe0846610b4b159650675a5a9c2b2",
+    "work/962-engineering/fixed-shell-generation-apex1613790-root-source-001/runner.stdout.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "work/962-engineering/fixed-shell-generation-apex1613790-root-source-001/runner.stderr.log": "8bdfc5381c2481c252b2d602f90f24f6af6d60878c0a73b83e828037f95301bb",
+    "work/962-engineering/direct-sicn-apex1613031-cavity-extract-prep-001/extract_shell.py": "a223996f23975912bdfb03590af5550fe2f92fbaf6a1b1b58fb488f2508cffbe",
+    "work/962-engineering/direct-sicn-apex1613031-cavity-extract-prep-001/held-contract.json": "2dff48e0abf11acd82929489e287a010d0f2d1854f15bf2f38c7264b3223a8ba",
+    "work/962-engineering/direct-sicn-apex1613031-cavity-extract-prep-001/source-delta.json": "2a2776a5eb735a242c48f6c7792d88b1c173e2c1ff8f0bfb701a1036c7c03013",
+    "work/962-engineering/direct-sicn-apex1613031-cavity-extract-execution-prep-001/actual-contract.json": "e8dee7c23e94bda331fc46efeb8756ba9988d3d421eefb7cf46cdad14163e1e2",
+    "work/962-engineering/direct-sicn-apex1613031-cavity-extract-execution-prep-001/index.json": "35ff49c607d3deb7d5ec3a74b4d90f78a4ecbe50e9fa782765cd22d9dcaa40ce",
+    "work/962-engineering/direct-sicn-apex1613031-cavity-extract-source-peer-001/review.json": "a28bfc02405b5728f02c217264cddb1d1955f2d242af5e6d4d1a2d84d00ed519",
+    "work/962-engineering/direct-sicn-apex1613031-cavity-extract-source-peer-001/bindings.json": "ef03f214d1c1ff39db7f5cdf0d8d06c37ea4b1e0a21e1d9befa3b24c9b06acce",
+    "work/962-engineering/direct-sicn-apex1613031-cavity-study-001/fixed-shell-tight-face-screen-001.json": "998208d59c5067ea60e62d2cb00d22b914118e0edd8fd1ab5866ebbcd8c6570e",
+    "work/962-engineering/direct-sicn-apex1613031-cavity-study-001/local-shell-input-001.json": "6529ffc5a5ca738c4bfe3041d858f2d40cc50efc6ee0e1dc5bcc626fd720d92d",
+    "work/962-engineering/direct-sicn-apex1613031-cavity-study-001/receipt.json": "7b5fad28cdc8529e1bbbbc179d2d24b4b96bbab6771ae435ede82e251f977707",
+    "work/962-engineering/direct-sicn-apex1613031-cavity-study-001/saved-star-observation.json": "89689ac5ce5f12c8922be4cbe45e36565f60eed080633aaffa79539c8e12c8d3",
+    "work/962-engineering/direct-sicn-apex1613031-cavity-extract-result-peer-001/review.json": "a49de0ebf1915641e613b2ec7cc456c87876bbbdfd3452919551a889850a5cef",
+    "work/962-engineering/direct-sicn-apex1613031-cavity-extract-result-peer-001/bindings.json": "828ce82491ed11d4566c91a0e28529d5fd7d4b597a18dea340f02946f6f75109",
+    "work/962-engineering/direct-sicn-apex1613031-cavity-extract-root-execution-001/closed.json": "efc92338d42f459cf6c4b8e079cba74251f3f5966b7ebf19c33281dd0b795bc1",
+    "work/962-engineering/direct-sicn-apex1613031-cavity-extract-root-execution-001/own-review.json": "581a56cca01279de9ad44345434ed1129250a150d82de8b1423ae42f76c855f4",
+    "work/962-engineering/direct-sicn-apex1613031-cavity-extract-root-execution-001/result-peer-acceptance.json": "18a4c51a085cb70ec28e2eaade18f621c7f450a22eba2f4102956cb9c6910e74",
+    "work/962-engineering/fixed-shell-generation-apex1613031-prep-001/reader.py": "d3842f573f8a41d3d579d2276e0bf5ea6080362bb6a6bf44eda2174db60f3c6a",
+    "work/962-engineering/fixed-shell-generation-apex1613031-prep-001/run_readback.py": "4963f5c66fa9e73797e76a8643f24bfb6b4ea8f1b9962063618504fc10e338ed",
+    "work/962-engineering/fixed-shell-generation-apex1613031-prep-001/test_shell_guards.py": "976f6344bbdcb142e9d4a55196d765b0999f133532a7d4b2ef42a77afca2ead1",
+    "work/962-engineering/fixed-shell-generation-apex1613031-prep-001/test_runner_guards.py": "5d14d39fb69f22ec019feeae20c5fbbedc473e6561583d7eeedcd94c3ea3a441",
+    "work/962-engineering/fixed-shell-generation-apex1613031-prep-001/source.diff": "09dfd7b224abbc09ba2eadb35b518debf1949cb644c07626b0eb676bf8cbdae2",
+    "work/962-engineering/fixed-shell-generation-apex1613031-prep-001/test-source.diff": "310d3881430ec1b2b1900e3e7b2c682ae8d38c56a39b50c82ba7f4086271dd0e",
+    "work/962-engineering/fixed-shell-generation-apex1613031-prep-001/METHOD.md": "400a1e8160e45e69b1ef4053289da54c8924d291032d83157ad99669d4f11a13",
+    "work/962-engineering/fixed-shell-generation-apex1613031-prep-001/source-delta.json": "8e15655888a438773b61aa63393f220003caec99b5fe13da50dda2266ef25308",
+    "work/962-engineering/fixed-shell-generation-apex1613031-prep-001/held-contract.json": "e26d71cc4615a4f84de81c271bdfc420b469aa3a90eed555fdfcfb146fb69e3a",
+    "work/962-engineering/fixed-shell-generation-apex1613031-source-peer-001/review.json": "eae782748f9a3eaae1a9e6b1bbab327642ce04a2c65f89133c4767efc33c8139",
+    "work/962-engineering/fixed-shell-generation-apex1613031-source-peer-001/bindings.json": "98a7b80d711f87603b301ce6fa51bf6bbeabe048c09cfb389c12943a936ed968",
+    "work/962-engineering/fixed-shell-generation-apex1613031-root-source-001/review.json": "c392310b10841153104c7d32847e6c7cd62fdc05dfe64f61f1cbf70feceb1888",
+    "work/962-engineering/fixed-shell-generation-apex1613031-root-source-001/source.stdout.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "work/962-engineering/fixed-shell-generation-apex1613031-root-source-001/source.stderr.log": "86c967a00f06ad033ecab8fdfd48f0dfe4f7c54ecd2a5af426df39e10af79aa8",
+    "work/962-engineering/fixed-shell-generation-apex1613031-runtime-root-001/review.json": "f654d0aab3d72855ff40769c6643489b2844cabf1a6c30d26c31a7b87fd257f3",
+    "work/962-engineering/fixed-shell-generation-apex1613790-runtime-origin-001/closed-result.json": "5af4f4182a39648008de2672d6874a3b202e091c77281940fd5976fab1ef7398",
+    "work/962-engineering/fixed-shell-generation-apex1613790-root-source-inspection-001/review.json": "d013d35fcd9597758f60ce2c6486aae9858320ea7f035a78768e5ab8aa62e4d3",
+    "work/962-engineering/fixed-shell-generation-apex1613790-execution-prep-001/actual-contract-001.json": "1ade3088410ec8381237aedf0bd89c8402e2f9dcfd933ff83ec01ab9b482ee97",
+    "work/962-engineering/fixed-shell-generation-apex1613790-execution-prep-001/index.json": "caed3f9450dc339c23e510f5e680f2521a9654a90cfd669a1eb676a84430ad17",
+    "work/962-engineering/fixed-shell-generation-apex1613031-001/reader.py": "d3842f573f8a41d3d579d2276e0bf5ea6080362bb6a6bf44eda2174db60f3c6a",
+    "work/962-engineering/fixed-shell-generation-apex1613031-001/run_readback.py": "4963f5c66fa9e73797e76a8643f24bfb6b4ea8f1b9962063618504fc10e338ed"
+  },
+  "reader_sha256": "d3842f573f8a41d3d579d2276e0bf5ea6080362bb6a6bf44eda2174db60f3c6a",
+  "runner_sha256": "4963f5c66fa9e73797e76a8643f24bfb6b4ea8f1b9962063618504fc10e338ed",
+  "audit_helper_source": "twins/962-cylinder-head-f0/source/mesh_head.py",
+  "audit_helper_sha256": "69c8012e99057e384d44d6971d41f0e2cc7197a978120a7c566b0ad5a6477da5",
+  "local_shell_input": "work/962-engineering/direct-sicn-apex1613031-cavity-study-001/local-shell-input-001.json",
+  "local_shell_input_sha256": "6529ffc5a5ca738c4bfe3041d858f2d40cc50efc6ee0e1dc5bcc626fd720d92d",
+  "output_directory": "work/962-engineering/fixed-shell-generation-apex1613031-001",
+  "planned_output_directory": "work/962-engineering/fixed-shell-generation-apex1613031-001",
+  "scientific_scope": {
+    "boundary_nodes": 9,
+    "oriented_tagged_surface_triangles": 14,
+    "excluded_original_apex": 1613031,
+    "original_source_cells": 14,
+    "original_source_positive_poor": 1,
+    "original_source_nodes": 10,
+    "original_source_boundary_nodes": 5,
+    "original_source_interior_shell_nodes": 4,
+    "exact_reference_volume_mm3": {
+      "numerator": "104308130846515511471660941377843352992235",
+      "denominator": "1045347431181122959759486794030391945592832"
+    },
+    "minimum_SICN": 0.1,
+    "relative_volume_numerical_bookkeeping_bound": 1e-06,
+    "new_candidate_nodes": null,
+    "new_candidate_TET4": null,
+    "new_candidate_interior_nodes": null,
+    "new_candidate_interior_tags": null,
+    "all_native_metrics_and_signed_volume_lengths_equal_actual_cells": true,
+    "full_incidence_no_duplicates_no_orphans": true,
+    "fixed_shell_bits_tagged_faces_classifications_exact": true,
+    "full_saved_reopen_identity": true,
+    "negative_SICN_result_preserves_procedurally_valid_MSH_and_full_arrays": true,
+    "global_embedding_containment_or_domain_equality_checked": false,
+    "all9_prospectively_fixed_for_separate_cavity_generation_only": true,
+    "original_dim3_shell_nodes_are_not_new_OEM_head_boundary": true
+  },
+  "source_preparation_sha256": "e26d71cc4615a4f84de81c271bdfc420b469aa3a90eed555fdfcfb146fb69e3a",
+  "source_peer_sha256": "eae782748f9a3eaae1a9e6b1bbab327642ce04a2c65f89133c4767efc33c8139",
+  "source_peer_bindings_sha256": "98a7b80d711f87603b301ce6fa51bf6bbeabe048c09cfb389c12943a936ed968",
+  "root_source_review_sha256": "c392310b10841153104c7d32847e6c7cd62fdc05dfe64f61f1cbf70feceb1888",
+  "root_static_sha256": "c392310b10841153104c7d32847e6c7cd62fdc05dfe64f61f1cbf70feceb1888",
+  "runtime_origin_root_query_sha256": "5af4f4182a39648008de2672d6874a3b202e091c77281940fd5976fab1ef7398",
+  "prepared_tests": {
+    "current_shell_stdlib_AST": 7,
+    "current_runner_stdlib_mock": 14,
+    "current7_root_executed_and_passed": true,
+    "current7_invocations": 1,
+    "current7_root_review_sha256": "c392310b10841153104c7d32847e6c7cd62fdc05dfe64f61f1cbf70feceb1888",
+    "unchanged14_reused_not_rerun": true,
+    "unchanged14_evidence": {
+      "path": "work/962-engineering/fixed-shell-generation-apex1613790-root-source-001/review.json",
+      "identity": {
+        "sha256": "a843d57694e933fe959d34e3d945de0e9abd93599ec43e9d260cb22c78417f4a",
+        "bytes": 2011
+      },
+      "selected_python_sha256": "1699bf8aa705a8bb71613bef5cdd7d7c8c9d9a188a841f41679aa9b5830b8f60",
+      "controller_sha256": "4963f5c66fa9e73797e76a8643f24bfb6b4ea8f1b9962063618504fc10e338ed",
+      "exact_mock_sha256": "5d14d39fb69f22ec019feeae20c5fbbedc473e6561583d7eeedcd94c3ea3a441",
+      "prior_held": {
+        "path": "work/962-engineering/fixed-shell-generation-apex1613790-prep-001/held-contract.json",
+        "sha256": "d23874969c2c4116cd48e0ee5e06d0192349dca44a32c801aea2cf599edfe3f5"
+      },
+      "root_static": {
+        "path": "work/962-engineering/fixed-shell-generation-apex1613790-root-source-inspection-001/review.json",
+        "sha256": "d013d35fcd9597758f60ce2c6486aae9858320ea7f035a78768e5ab8aa62e4d3",
+        "bytes": 1319
+      },
+      "runner_stderr": {
+        "path": "work/962-engineering/fixed-shell-generation-apex1613790-root-source-001/runner.stderr.log",
+        "sha256": "8bdfc5381c2481c252b2d602f90f24f6af6d60878c0a73b83e828037f95301bb",
+        "bytes": 113
+      },
+      "one_prior14_guard_run": {
+        "role": "runner",
+        "guard_methods": 14,
+        "invocations": 1,
+        "returncode": 0,
+        "wall_seconds": 0.1100121249910444,
+        "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderr_sha256": "8bdfc5381c2481c252b2d602f90f24f6af6d60878c0a73b83e828037f95301bb"
+      },
+      "binding": "Transitive root review -> exact prior held40-input pins -> exact5d14 mock and4963 controller; selected1699 reported by root. No separate per-run argv or full pin manifest located.",
+      "reuse_recommendation": "Reuse unchanged14 lifecycle guard evidence; new7 current-shell source guards still require root review/selected execution separately. No repeated tests by reviewer."
+    },
+    "source_held_unrun_flags_are_historical": true
+  },
+  "native_execution_authorized": true,
+  "root_and_peer_review_complete": true,
+  "root_and_peer_review_complete_scope": "Current source peer eae78274/bindings98a7 and root source/current7-guard review c392 only; exact actual peer and root final fresh launch acceptance remain external prerequisites. Prior14 lifecycle evidence is reused transitively, not rerun.",
+  "selected_runtime_review_complete": true,
+  "selected_runtime_review_complete_scope": "Root f654 freshly hashes native3, separate NumPy initc09 and outer1699; prior5af4 is import/origin/version evidence only. No scientific import or full transitive ABI closure is claimed. Root will rehash immediately before/after selected native execution.",
+  "cavity_generation_authorized": true,
+  "head_execution_authorized": false,
+  "stitching_authorized": false,
+  "native_head_application_authorized": false,
+  "Netgen_preparation_or_execution_authorized": false,
+  "PDE_execution_authorized": false,
+  "engineering_accepted": false,
+  "physics_qualified": false,
+  "material_qualified": false,
+  "process_calibrated": false,
+  "manufacturing_authorized": false,
+  "feasibility_accepted": false,
+  "automatic_retry": false,
+  "upstream_census_launch_deviation_sha256": "d60fff297c6c45dc92e117262e36ffde36e2169d53fcd32ce2b79fabde5eebc3",
+  "declared_controller_command_conformant": false,
+  "upstream_deviation_scope": "Historical current129 census1699/-I/-B declaration was observed72956/-B. Current planned root1699/-I/-B controller command must be observed separately; this does not upgrade historical conformance.",
+  "controller_label_scope": "Exact4963 historical apex1435493 labels retained. Current reader/shell/future actual bind9/14 apex1613031. Receipt exact contract/reader/report hashes retain d60 false; no new direct controller field.",
+  "root_controller_interpreter": {
+    "configured": "runtime-role://controller/python",
+    "resolved": "runtime-role://controller/resolved-python3.12",
+    "sha256": "1699bf8aa705a8bb71613bef5cdd7d7c8c9d9a188a841f41679aa9b5830b8f60",
+    "flags": [
+      "-I",
+      "-B"
+    ],
+    "fresh_body_hash_required_by_root": true
+  },
+  "inner_native_command": {
+    "interpreter": "runtime-role://registered-native/geometry/bin/python",
+    "python_executable_sha256": "72956ad35cff7691dfed9e04c9593de825ffd5b2fa7e8bc9ae96ce9a1af65621",
+    "flags": [
+      "-B"
+    ],
+    "script": "work/962-engineering/fixed-shell-generation-apex1613031-001/reader.py"
+  },
+  "outer_wall_seconds": 40,
+  "root_outer_cleanup": {
+    "new_owned_controller_session": true,
+    "TERM_at_outer_deadline": true,
+    "grace_seconds": 8,
+    "fallback_KILL_only_verified_owned_group": true,
+    "always_wait_reap": true,
+    "receipt_and_original_streams_retained": true,
+    "universal_descendant_absence_or_hard_OS_quota_claimed": false,
+    "valid_closed_controller_receipt_required": true,
+    "halt_after_fallback_or_missing_receipt": true,
+    "root_observes_owned_controller_only": true
+  },
+  "future_materializations": {
+    "work/962-engineering/fixed-shell-generation-apex1613031-001/reader.py": {
+      "source": "work/962-engineering/fixed-shell-generation-apex1613031-prep-001/reader.py",
+      "sha256": "d3842f573f8a41d3d579d2276e0bf5ea6080362bb6a6bf44eda2174db60f3c6a",
+      "bytes": 20434,
+      "exists_before_materialization": false
+    },
+    "work/962-engineering/fixed-shell-generation-apex1613031-001/run_readback.py": {
+      "source": "work/962-engineering/fixed-shell-generation-apex1613031-prep-001/run_readback.py",
+      "sha256": "4963f5c66fa9e73797e76a8643f24bfb6b4ea8f1b9962063618504fc10e338ed",
+      "bytes": 4805,
+      "exists_before_materialization": false
+    }
+  },
+  "materialization": {
+    "copies_made": false,
+    "output_reserved": false,
+    "files": [
+      "reader.py",
+      "run_readback.py",
+      "frozen-contract.json"
+    ],
+    "mode": "Root only after exact child and final fresh launch acceptance; two source copies exact, whole frozen-contract.json equals this external actual. Digest is external, no self-pin.",
+    "external_actual_path": "work/962-engineering/fixed-shell-generation-apex1613031-execution-prep-001/actual-contract-001.json"
+  },
+  "actual_contract_digest_is_external": true,
+  "external_exact_child_required": true,
+  "exact_child_review_complete_at_freeze": false,
+  "actual_child_sha256": null,
+  "required_before_execution": [
+    "Independent exact review of complete actual/index and external digest; root full actual read and acceptance.",
+    "Root freshly verifies all57 current small records and exact actual/peer, selected native3 plus separate NumPy init/origin and outer1699; current runtime receipt is only a finite byte/resource snapshot.",
+    "Root confirms raw/canonical output remains absent, resources and no conflicting owned selected jobs. No automatic scheduling, retry or quality success assumption.",
+    "Root alone materializes exactly two source files and whole actual mirror once after acceptance; verifies all59 input roles after copies. Outer1699-I-B unchanged4963, inner72956-B. Retain30/40s bounds, sampled1GiB/16MiB/2threads, root TERM8/verified-owned-groupKILL/wait and valid closed controller receipt; halt after fallback or missing receipt."
+  ],
+  "author_preparation": {
+    "JSON_only": true,
+    "prepared_functions_helpers_or_modules_executed": false,
+    "guards_or_native_generation_executed": false,
+    "scientific_imports": false,
+    "runtime_or_MSH_bodies_read_or_hashed": false,
+    "source_or_output_materialization": false,
+    "Git_or_publisher_mutation": false
+  },
+  "author_role": "Prepared by replica_metrology, author of current generator and earlier helper/extractor/child lineage. This is finite JSON binding preparation, not independent exact-child review, native evidence or mathematical recertification.",
+  "root_selected_runtime_review_sha256": "f654d0aab3d72855ff40769c6643489b2844cabf1a6c30d26c31a7b87fd257f3",
+  "root_static_scope": "Current full source/reverse/AST inspection is in c392 source review; d013 is inherited exact4963/14-lifecycle-lineage metadata only, directly pinned.",
+  "selected_runtime_fresh_byte_review": {
+    "path": "work/962-engineering/fixed-shell-generation-apex1613031-runtime-root-001/review.json",
+    "sha256": "f654d0aab3d72855ff40769c6643489b2844cabf1a6c30d26c31a7b87fd257f3",
+    "bytes": 4736
+  },
+  "selected_runtime_fresh_byte_scope": "Fresh bytes of three selected native files, one NumPy init and outer executable only; no scientific imports, version calls, geometry run or full transitive ABI/library/stdlib/OS closure. Free disk/VM are observations, not reservation or hard quota.",
+  "source_held_authority_flags_are_preserved_historical_false": true,
+  "optimization_authorized": false,
+  "head_edit_authorized": false,
+  "head_PDE_authorized": false,
+  "domain_query_authorized": false,
+  "outside_owner_context_query_authorized": false,
+  "binding_template": {
+    "actual": {
+      "path": "work/962-engineering/fixed-shell-generation-apex1613790-execution-prep-001/actual-contract-001.json",
+      "sha256": "1ade3088410ec8381237aedf0bd89c8402e2f9dcfd933ff83ec01ab9b482ee97",
+      "bytes": 20998
+    },
+    "index": {
+      "path": "work/962-engineering/fixed-shell-generation-apex1613790-execution-prep-001/index.json",
+      "sha256": "caed3f9450dc339c23e510f5e680f2521a9654a90cfd669a1eb676a84430ad17",
+      "bytes": 8579
+    },
+    "scope": "Existing1613790 generation control/schema donor only; no old candidate/head/context results transferred."
+  }
+}

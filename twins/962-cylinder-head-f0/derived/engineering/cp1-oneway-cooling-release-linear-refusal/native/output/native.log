@@ -1,0 +1,2437 @@
+
+[33m
+*** Deprecation Warning ***
+work/962-engineering/cp1-oneway-cooling-release-linear-001/thermoelastic-birth.i:604.5:
+Outputs/console/output_postprocessors: The parameter 'output_postprocessors' is deprecated.
+'execute_postprocessors_on' has replaced this parameter
+
+[39m
+Framework Information:
+MOOSE Version:           git commit 7c06bdcefd on 2026-09-13
+LibMesh Version:         
+PETSc Version:           3.25.4
+SLEPc Version:           3.25.1
+Current Time:            Sun Oct 18 13:13:03 2026
+Executable Timestamp:    Sat Oct 17 18:50:48 2026
+
+Input File(s):
+  work/962-engineering/cp1-oneway-cooling-release-linear-001/thermoelastic-birth.i
+
+Command Line Argument(s):
+  -skip_petscrc
+  --n-threads=1
+
+Checkpoint:
+  Wall Time Interval:      Every 3600 s
+  Checkpoint:              Outputs/checkpoint
+  # Checkpoints Kept:      2
+  Execute On:              TIMESTEP_END 
+
+Parallelism:
+  Num Processors:          1
+  Num Threads:             1
+
+Mesh: 
+  Parallel Type:           replicated
+  Mesh Dimension:          3
+  Spatial Dimension:       3
+  Nodes:                   425
+  Elems:                   256
+  Num Subdomains:          2
+
+Nonlinear System:
+  Num DOFs:                900
+  Num Local DOFs:          900
+  Variables:               "inactive_placeholder" { "disp_x" "disp_y" "disp_z" } 
+  Finite Element Types:    "LAGRANGE" "LAGRANGE" 
+  Approximation Orders:    "FIRST" "FIRST" 
+
+Auxiliary System:
+  Num DOFs:                900
+  Num Local DOFs:          900
+  Variables:               "temperature" "born_reference_temperature" { "rx" "ry" "rz" } 
+  Finite Element Types:    "LAGRANGE" "LAGRANGE" "LAGRANGE" 
+  Approximation Orders:    "FIRST" "FIRST" "FIRST" 
+
+Execution Information:
+  Executioner:             Transient
+  TimeStepper:             ConstantDT
+  TimeIntegrator(s):       ImplicitEuler
+  Solver Mode:             Linear 
+  PETSc Preconditioner:    lu 
+  MOOSE Preconditioner:    SMP 
+
+
+Time Step 0, time = 0
+
+Time Step 1, time = 0.0025, dt = 0.0025
+  0 SNES Function norm 3.215304397902e-02
+      0 Linear |R| = [32m3.215304e-02[39m
+      1 Linear |R| = [32m5.096727e-17[39m
+  1 SNES Function norm 5.536579002916e-17
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m4.090128e-17[39m
+  disp_y: [31m1.725089e-17[39m
+  disp_z: [31m3.308870e-17[39m
+
+Time Step 2, time = 0.005, dt = 0.0025
+  0 SNES Function norm 3.210163600865e-02
+      0 Linear |R| = [32m3.210164e-02[39m
+      1 Linear |R| = [32m5.210494e-17[39m
+  1 SNES Function norm 5.941826259071e-17
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m4.386669e-17[39m
+  disp_y: [31m2.323684e-17[39m
+  disp_z: [31m3.265413e-17[39m
+
+Time Step 3, time = 0.0075, dt = 0.0025
+  0 SNES Function norm 3.205623854839e-02
+      0 Linear |R| = [32m3.205624e-02[39m
+      1 Linear |R| = [32m5.572301e-17[39m
+  1 SNES Function norm 5.890376353245e-17
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m4.451366e-17[39m
+  disp_y: [31m1.710517e-17[39m
+  disp_z: [31m3.457745e-17[39m
+
+Time Step 4, time = 0.01, dt = 0.0025
+  0 SNES Function norm 3.201655804285e-02
+      0 Linear |R| = [32m3.201656e-02[39m
+      1 Linear |R| = [32m4.848453e-17[39m
+  1 SNES Function norm 5.773467626123e-17
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m4.132571e-17[39m
+  disp_y: [31m2.111009e-17[39m
+  disp_z: [31m3.434884e-17[39m
+
+Time Step 5, time = 0.0125, dt = 0.0025
+  0 SNES Function norm 3.198199553606e-02
+      0 Linear |R| = [32m3.198200e-02[39m
+      1 Linear |R| = [32m5.751538e-17[39m
+  1 SNES Function norm 6.634135212879e-17
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m4.800140e-17[39m
+  disp_y: [31m2.190172e-17[39m
+  disp_z: [31m4.021636e-17[39m
+
+Time Step 6, time = 0.015, dt = 0.0025
+  0 SNES Function norm 3.195224176294e-02
+      0 Linear |R| = [32m3.195224e-02[39m
+      1 Linear |R| = [32m4.967580e-17[39m
+  1 SNES Function norm 7.821398016015e-17
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m5.389291e-17[39m
+  disp_y: [31m2.987374e-17[39m
+  disp_z: [31m4.817199e-17[39m
+
+Time Step 7, time = 0.0175, dt = 0.0025
+  0 SNES Function norm 3.192729430192e-02
+      0 Linear |R| = [32m3.192729e-02[39m
+      1 Linear |R| = [32m5.104880e-17[39m
+  1 SNES Function norm 7.387402163899e-17
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m5.382721e-17[39m
+  disp_y: [31m2.593197e-17[39m
+  disp_z: [31m4.344577e-17[39m
+
+Time Step 8, time = 0.02, dt = 0.0025
+  0 SNES Function norm 3.190620983123e-02
+      0 Linear |R| = [32m3.190621e-02[39m
+      1 Linear |R| = [32m5.032590e-17[39m
+  1 SNES Function norm 8.956249006169e-17
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m6.895584e-17[39m
+  disp_y: [31m3.156893e-17[39m
+  disp_z: [31m4.764383e-17[39m
+
+Time Step 9, time = 0.0225, dt = 0.0025
+  0 SNES Function norm 3.188919463886e-02
+      0 Linear |R| = [32m3.188919e-02[39m
+      1 Linear |R| = [32m5.202797e-17[39m
+  1 SNES Function norm 1.179525446591e-16
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m1.032121e-16[39m
+  disp_y: [31m3.304643e-17[39m
+  disp_z: [31m4.656170e-17[39m
+
+Time Step 10, time = 0.025, dt = 0.0025
+  0 SNES Function norm 3.187591556421e-02
+      0 Linear |R| = [32m3.187592e-02[39m
+      1 Linear |R| = [32m5.216227e-17[39m
+  1 SNES Function norm 1.007447238447e-16
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m7.169456e-17[39m
+  disp_y: [31m3.325122e-17[39m
+  disp_z: [31m6.247997e-17[39m
+
+Time Step 11, time = 0.0275, dt = 0.0025
+  0 SNES Function norm 3.186619874904e-02
+      0 Linear |R| = [32m3.186620e-02[39m
+      1 Linear |R| = [32m4.553303e-17[39m
+  1 SNES Function norm 1.094959553154e-16
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m7.549765e-17[39m
+  disp_y: [31m3.421179e-17[39m
+  disp_z: [31m7.154735e-17[39m
+
+Time Step 12, time = 0.03, dt = 0.0025
+  0 SNES Function norm 3.185990344724e-02
+      0 Linear |R| = [32m3.185990e-02[39m
+      1 Linear |R| = [32m4.991567e-17[39m
+  1 SNES Function norm 1.027919786147e-16
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m7.753122e-17[39m
+  disp_y: [31m3.137586e-17[39m
+  disp_z: [31m5.975497e-17[39m
+
+Time Step 13, time = 0.0325, dt = 0.0025
+  0 SNES Function norm 3.185696086846e-02
+      0 Linear |R| = [32m3.185696e-02[39m
+      1 Linear |R| = [32m4.990777e-17[39m
+  1 SNES Function norm 1.072147229313e-16
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m7.927221e-17[39m
+  disp_y: [31m3.833342e-17[39m
+  disp_z: [31m6.116750e-17[39m
+
+Time Step 14, time = 0.035, dt = 0.0025
+  0 SNES Function norm 3.185734233851e-02
+      0 Linear |R| = [32m3.185734e-02[39m
+      1 Linear |R| = [32m4.821093e-17[39m
+  1 SNES Function norm 1.125202776482e-16
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m8.333581e-17[39m
+  disp_y: [31m3.780844e-17[39m
+  disp_z: [31m6.547119e-17[39m
+
+Time Step 15, time = 0.0375, dt = 0.0025
+  0 SNES Function norm 3.186100653178e-02
+      0 Linear |R| = [32m3.186101e-02[39m
+      1 Linear |R| = [32m5.022627e-17[39m
+  1 SNES Function norm 1.515648590657e-16
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m1.190452e-16[39m
+  disp_y: [31m4.957335e-17[39m
+  disp_z: [31m7.964070e-17[39m
+
+Time Step 16, time = 0.04, dt = 0.0025
+  0 SNES Function norm 3.186809300447e-02
+      0 Linear |R| = [32m3.186809e-02[39m
+      1 Linear |R| = [32m4.990714e-17[39m
+  1 SNES Function norm 1.425890765752e-16
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m1.105912e-16[39m
+  disp_y: [31m3.876189e-17[39m
+  disp_z: [31m8.123269e-17[39m
+
+Time Step 17, time = 0.0425, dt = 0.0025
+  0 SNES Function norm 3.187859531653e-02
+      0 Linear |R| = [32m3.187860e-02[39m
+      1 Linear |R| = [32m4.865919e-17[39m
+  1 SNES Function norm 1.533547264762e-16
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m1.206837e-16[39m
+  disp_y: [31m4.837431e-17[39m
+  disp_z: [31m8.132061e-17[39m
+
+Time Step 18, time = 0.045, dt = 0.0025
+  0 SNES Function norm 3.189285820725e-02
+      0 Linear |R| = [32m3.189286e-02[39m
+      1 Linear |R| = [32m5.128431e-17[39m
+  1 SNES Function norm 1.589871929535e-16
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m1.238487e-16[39m
+  disp_y: [31m5.484873e-17[39m
+  disp_z: [31m8.324686e-17[39m
+
+Time Step 19, time = 0.0475, dt = 0.0025
+  0 SNES Function norm 3.191069902182e-02
+      0 Linear |R| = [32m3.191070e-02[39m
+      1 Linear |R| = [32m4.890132e-17[39m
+  1 SNES Function norm 1.527711011822e-16
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m1.116070e-16[39m
+  disp_y: [31m5.237868e-17[39m
+  disp_z: [31m9.021845e-17[39m
+
+Time Step 20, time = 0.05, dt = 0.0025
+  0 SNES Function norm 3.193268028065e-02
+      0 Linear |R| = [32m3.193268e-02[39m
+      1 Linear |R| = [32m4.853407e-17[39m
+  1 SNES Function norm 1.653668946418e-16
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m1.288292e-16[39m
+  disp_y: [31m5.621508e-17[39m
+  disp_z: [31m8.711548e-17[39m
+
+Time Step 21, time = 0.0525, dt = 0.0025
+  0 SNES Function norm 3.195884170897e-02
+      0 Linear |R| = [32m3.195884e-02[39m
+      1 Linear |R| = [32m5.104641e-17[39m
+  1 SNES Function norm 1.812466112692e-16
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m1.429449e-16[39m
+  disp_y: [31m6.190382e-17[39m
+  disp_z: [31m9.265534e-17[39m
+
+Time Step 22, time = 0.055, dt = 0.0025
+  0 SNES Function norm 3.198990803783e-02
+      0 Linear |R| = [32m3.198991e-02[39m
+      1 Linear |R| = [32m5.252322e-17[39m
+  1 SNES Function norm 2.117140434623e-16
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m1.711666e-16[39m
+  disp_y: [31m7.158337e-17[39m
+  disp_z: [31m1.019836e-16[39m
+
+Time Step 23, time = 0.0575, dt = 0.0025
+  0 SNES Function norm 3.202579542969e-02
+      0 Linear |R| = [32m3.202580e-02[39m
+      1 Linear |R| = [32m4.954609e-17[39m
+  1 SNES Function norm 1.877035562632e-16
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m1.534876e-16[39m
+  disp_y: [31m6.216450e-17[39m
+  disp_z: [31m8.837286e-17[39m
+
+Time Step 24, time = 0.06, dt = 0.0025
+  0 SNES Function norm 3.206716482563e-02
+      0 Linear |R| = [32m3.206716e-02[39m
+      1 Linear |R| = [32m5.305512e-17[39m
+  1 SNES Function norm 2.031955278975e-16
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m1.589969e-16[39m
+  disp_y: [31m6.294050e-17[39m
+  disp_z: [31m1.097584e-16[39m
+
+Time Step 25, time = 0.0625, dt = 0.0025
+  0 SNES Function norm 3.211394861196e-02
+      0 Linear |R| = [32m3.211395e-02[39m
+      1 Linear |R| = [32m5.379691e-17[39m
+  1 SNES Function norm 2.135892369201e-16
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m1.559811e-16[39m
+  disp_y: [31m7.316871e-17[39m
+  disp_z: [31m1.262402e-16[39m
+
+Time Step 26, time = 0.065, dt = 0.0025
+  0 SNES Function norm 3.216734591725e-02
+      0 Linear |R| = [32m3.216735e-02[39m
+      1 Linear |R| = [32m5.218015e-17[39m
+  1 SNES Function norm 2.065431110082e-16
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m1.656786e-16[39m
+  disp_y: [31m7.289735e-17[39m
+  disp_z: [31m9.948187e-17[39m
+
+Time Step 27, time = 0.0675, dt = 0.0025
+  0 SNES Function norm 3.222724223005e-02
+      0 Linear |R| = [32m3.222724e-02[39m
+      1 Linear |R| = [32m5.300471e-17[39m
+  1 SNES Function norm 1.994607034057e-16
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m1.476914e-16[39m
+  disp_y: [31m7.250741e-17[39m
+  disp_z: [31m1.127586e-16[39m
+
+Time Step 28, time = 0.07, dt = 0.0025
+  0 SNES Function norm 3.229438165733e-02
+      0 Linear |R| = [32m3.229438e-02[39m
+      1 Linear |R| = [32m5.558678e-17[39m
+  1 SNES Function norm 2.272111816698e-16
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m1.804367e-16[39m
+  disp_y: [31m7.204033e-17[39m
+  disp_z: [31m1.178037e-16[39m
+
+Time Step 29, time = 0.0725, dt = 0.0025
+  0 SNES Function norm 3.236910487455e-02
+      0 Linear |R| = [32m3.236910e-02[39m
+      1 Linear |R| = [32m5.611859e-17[39m
+  1 SNES Function norm 2.262487522246e-16
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m1.758063e-16[39m
+  disp_y: [31m7.743087e-17[39m
+  disp_z: [31m1.195203e-16[39m
+
+Time Step 30, time = 0.075, dt = 0.0025
+  0 SNES Function norm 3.245205336213e-02
+      0 Linear |R| = [32m3.245205e-02[39m
+      1 Linear |R| = [32m5.379196e-17[39m
+  1 SNES Function norm 2.349912376434e-16
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m1.800529e-16[39m
+  disp_y: [31m8.119874e-17[39m
+  disp_z: [31m1.273131e-16[39m
+
+Time Step 31, time = 0.0775, dt = 0.0025
+  0 SNES Function norm 3.254363313969e-02
+      0 Linear |R| = [32m3.254363e-02[39m
+      1 Linear |R| = [32m5.465523e-17[39m
+  1 SNES Function norm 2.424539103705e-16
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m1.855763e-16[39m
+  disp_y: [31m8.009994e-17[39m
+  disp_z: [31m1.339005e-16[39m
+
+Time Step 32, time = 0.08, dt = 0.0025
+  0 SNES Function norm 3.264432185080e-02
+      0 Linear |R| = [32m3.264432e-02[39m
+      1 Linear |R| = [32m5.783066e-17[39m
+  1 SNES Function norm 2.693844319710e-16
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m2.256641e-16[39m
+  disp_y: [31m7.942127e-17[39m
+  disp_z: [31m1.238384e-16[39m
+
+Time Step 33, time = 0.0825, dt = 0.0025
+  0 SNES Function norm 3.275457884750e-02
+      0 Linear |R| = [32m3.275458e-02[39m
+      1 Linear |R| = [32m5.543959e-17[39m
+  1 SNES Function norm 2.644577378461e-16
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m1.935894e-16[39m
+  disp_y: [31m9.075027e-17[39m
+  disp_z: [31m1.556452e-16[39m
+
+Time Step 34, time = 0.085, dt = 0.0025
+  0 SNES Function norm 3.287482498648e-02
+      0 Linear |R| = [32m3.287482e-02[39m
+      1 Linear |R| = [32m5.551085e-17[39m
+  1 SNES Function norm 2.982081593546e-16
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m2.361683e-16[39m
+  disp_y: [31m9.069077e-17[39m
+  disp_z: [31m1.578855e-16[39m
+
+Time Step 35, time = 0.0875, dt = 0.0025
+  0 SNES Function norm 3.300540598229e-02
+      0 Linear |R| = [32m3.300541e-02[39m
+      1 Linear |R| = [32m5.564505e-17[39m
+  1 SNES Function norm 3.493621877008e-16
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m2.831930e-16[39m
+  disp_y: [31m1.014750e-16[39m
+  disp_z: [31m1.776471e-16[39m
+
+Time Step 36, time = 0.09, dt = 0.0025
+  0 SNES Function norm 3.314672737491e-02
+      0 Linear |R| = [32m3.314673e-02[39m
+      1 Linear |R| = [32m5.477930e-17[39m
+  1 SNES Function norm 3.164421699087e-16
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m2.459221e-16[39m
+  disp_y: [31m9.537148e-17[39m
+  disp_z: [31m1.748206e-16[39m
+
+Time Step 37, time = 0.0925, dt = 0.0025
+  0 SNES Function norm 3.329893121098e-02
+      0 Linear |R| = [32m3.329893e-02[39m
+      1 Linear |R| = [32m5.590340e-17[39m
+  1 SNES Function norm 3.242449596602e-16
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m2.329046e-16[39m
+  disp_y: [31m9.242523e-17[39m
+  disp_z: [31m2.057858e-16[39m
+
+Time Step 38, time = 0.095, dt = 0.0025
+  0 SNES Function norm 3.346219537881e-02
+      0 Linear |R| = [32m3.346220e-02[39m
+      1 Linear |R| = [32m5.360259e-17[39m
+  1 SNES Function norm 3.005846232441e-16
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m2.297708e-16[39m
+  disp_y: [31m1.011651e-16[39m
+  disp_z: [31m1.652941e-16[39m
+
+Time Step 39, time = 0.0975, dt = 0.0025
+  0 SNES Function norm 3.363662683009e-02
+      0 Linear |R| = [32m3.363663e-02[39m
+      1 Linear |R| = [32m5.697610e-17[39m
+  1 SNES Function norm 2.981943392191e-16
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m2.274823e-16[39m
+  disp_y: [31m1.140423e-16[39m
+  disp_z: [31m1.554543e-16[39m
+
+Time Step 40, time = 0.1, dt = 0.0025
+  0 SNES Function norm 3.382220393125e-02
+      0 Linear |R| = [32m3.382220e-02[39m
+      1 Linear |R| = [32m5.458642e-17[39m
+  1 SNES Function norm 3.073033698387e-16
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m2.398329e-16[39m
+  disp_y: [31m1.086139e-16[39m
+  disp_z: [31m1.584884e-16[39m
+
+Time Step 41, time = 0.1025, dt = 0.0025
+  0 SNES Function norm 3.401899877428e-02
+      0 Linear |R| = [32m3.401900e-02[39m
+      1 Linear |R| = [32m5.442280e-17[39m
+  1 SNES Function norm 2.921401595613e-16
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m1.947139e-16[39m
+  disp_y: [31m1.129166e-16[39m
+  disp_z: [31m1.862316e-16[39m
+
+Time Step 42, time = 0.105, dt = 0.0025
+  0 SNES Function norm 3.422599196906e-02
+      0 Linear |R| = [32m3.422599e-02[39m
+      1 Linear |R| = [32m5.943842e-17[39m
+  1 SNES Function norm 3.387978811879e-16
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m2.495208e-16[39m
+  disp_y: [31m1.081584e-16[39m
+  disp_z: [31m2.020523e-16[39m
+
+Time Step 43, time = 0.1075, dt = 0.0025
+  0 SNES Function norm 3.444358965666e-02
+      0 Linear |R| = [32m3.444359e-02[39m
+      1 Linear |R| = [32m5.536288e-17[39m
+  1 SNES Function norm 3.334179920830e-16
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m2.619413e-16[39m
+  disp_y: [31m1.092381e-16[39m
+  disp_z: [31m1.749896e-16[39m
+
+Time Step 44, time = 0.11, dt = 0.0025
+  0 SNES Function norm 3.467099750922e-02
+      0 Linear |R| = [32m3.467100e-02[39m
+      1 Linear |R| = [32m5.490466e-17[39m
+  1 SNES Function norm 4.388099998181e-16
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m3.506142e-16[39m
+  disp_y: [31m1.170014e-16[39m
+  disp_z: [31m2.365049e-16[39m
+
+Time Step 45, time = 0.1125, dt = 0.0025
+  0 SNES Function norm 3.490754242870e-02
+      0 Linear |R| = [32m3.490754e-02[39m
+      1 Linear |R| = [32m5.812804e-17[39m
+  1 SNES Function norm 4.054959543154e-16
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m3.306591e-16[39m
+  disp_y: [31m1.062528e-16[39m
+  disp_z: [31m2.092890e-16[39m
+
+Time Step 46, time = 0.115, dt = 0.0025
+  0 SNES Function norm 3.515244745768e-02
+      0 Linear |R| = [32m3.515245e-02[39m
+      1 Linear |R| = [32m5.738135e-17[39m
+  1 SNES Function norm 3.691474643804e-16
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m2.907933e-16[39m
+  disp_y: [31m1.146641e-16[39m
+  disp_z: [31m1.963701e-16[39m
+
+Time Step 47, time = 0.1175, dt = 0.0025
+  0 SNES Function norm 3.540463099846e-02
+      0 Linear |R| = [32m3.540463e-02[39m
+      1 Linear |R| = [32m5.892746e-17[39m
+  1 SNES Function norm 3.691394731422e-16
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m2.805446e-16[39m
+  disp_y: [31m1.376481e-16[39m
+  disp_z: [31m1.964986e-16[39m
+
+Time Step 48, time = 0.12, dt = 0.0025
+  0 SNES Function norm 3.566324026915e-02
+      0 Linear |R| = [32m3.566324e-02[39m
+      1 Linear |R| = [32m6.187183e-17[39m
+  1 SNES Function norm 3.817731302796e-16
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m2.638368e-16[39m
+  disp_y: [31m1.068886e-16[39m
+  disp_z: [31m2.543928e-16[39m
+
+Time Step 49, time = 0.1225, dt = 0.0025
+  0 SNES Function norm 3.592689434675e-02
+      0 Linear |R| = [32m3.592689e-02[39m
+      1 Linear |R| = [32m5.699313e-17[39m
+  1 SNES Function norm 4.409317340968e-16
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m3.622204e-16[39m
+  disp_y: [31m1.455811e-16[39m
+  disp_z: [31m2.049959e-16[39m
+
+Time Step 50, time = 0.125, dt = 0.0025
+  0 SNES Function norm 3.619423807002e-02
+      0 Linear |R| = [32m3.619424e-02[39m
+      1 Linear |R| = [32m5.827785e-17[39m
+  1 SNES Function norm 4.301399704049e-16
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m3.536095e-16[39m
+  disp_y: [31m1.479055e-16[39m
+  disp_z: [31m1.952042e-16[39m
+
+Time Step 51, time = 0.1275, dt = 0.0025
+  0 SNES Function norm 3.646369097041e-02
+      0 Linear |R| = [32m3.646369e-02[39m
+      1 Linear |R| = [32m5.654857e-17[39m
+  1 SNES Function norm 3.826613666811e-16
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m3.137466e-16[39m
+  disp_y: [31m1.246286e-16[39m
+  disp_z: [31m1.801679e-16[39m
+
+Time Step 52, time = 0.13, dt = 0.0025
+  0 SNES Function norm 3.673383653790e-02
+      0 Linear |R| = [32m3.673384e-02[39m
+      1 Linear |R| = [32m5.772049e-17[39m
+  1 SNES Function norm 4.033242586764e-16
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m3.122148e-16[39m
+  disp_y: [31m1.412896e-16[39m
+  disp_z: [31m2.126725e-16[39m
+
+Time Step 53, time = 0.1325, dt = 0.0025
+  0 SNES Function norm 3.700280828531e-02
+      0 Linear |R| = [32m3.700281e-02[39m
+      1 Linear |R| = [32m5.908423e-17[39m
+  1 SNES Function norm 4.533001722256e-16
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m3.645786e-16[39m
+  disp_y: [31m1.341387e-16[39m
+  disp_z: [31m2.336029e-16[39m
+
+Time Step 54, time = 0.135, dt = 0.0025
+  0 SNES Function norm 3.726882020279e-02
+      0 Linear |R| = [32m3.726882e-02[39m
+      1 Linear |R| = [32m5.780913e-17[39m
+  1 SNES Function norm 4.700434808420e-16
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m3.909735e-16[39m
+  disp_y: [31m1.485380e-16[39m
+  disp_z: [31m2.145158e-16[39m
+
+Time Step 55, time = 0.1375, dt = 0.0025
+  0 SNES Function norm 3.753003706193e-02
+      0 Linear |R| = [32m3.753004e-02[39m
+      1 Linear |R| = [32m5.690453e-17[39m
+  1 SNES Function norm 4.230044701797e-16
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m3.393144e-16[39m
+  disp_y: [31m1.338596e-16[39m
+  disp_z: [31m2.141965e-16[39m
+
+Time Step 56, time = 0.14, dt = 0.0025
+  0 SNES Function norm 3.778440493032e-02
+      0 Linear |R| = [32m3.778440e-02[39m
+      1 Linear |R| = [32m5.398045e-17[39m
+  1 SNES Function norm 4.634044568153e-16
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m3.797489e-16[39m
+  disp_y: [31m1.349227e-16[39m
+  disp_z: [31m2.287582e-16[39m
+
+Time Step 57, time = 0.1425, dt = 0.0025
+  0 SNES Function norm 3.802989895795e-02
+      0 Linear |R| = [32m3.802990e-02[39m
+      1 Linear |R| = [32m5.816590e-17[39m
+  1 SNES Function norm 4.710273622567e-16
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m3.862085e-16[39m
+  disp_y: [31m1.615641e-16[39m
+  disp_z: [31m2.158861e-16[39m
+
+Time Step 58, time = 0.145, dt = 0.0025
+  0 SNES Function norm 3.826466075941e-02
+      0 Linear |R| = [32m3.826466e-02[39m
+      1 Linear |R| = [32m5.840432e-17[39m
+  1 SNES Function norm 4.847857192351e-16
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m4.059033e-16[39m
+  disp_y: [31m1.579253e-16[39m
+  disp_z: [31m2.128834e-16[39m
+
+Time Step 59, time = 0.1475, dt = 0.0025
+  0 SNES Function norm 3.848634842775e-02
+      0 Linear |R| = [32m3.848635e-02[39m
+      1 Linear |R| = [32m5.978375e-17[39m
+  1 SNES Function norm 4.480632261847e-16
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m3.487604e-16[39m
+  disp_y: [31m1.385381e-16[39m
+  disp_z: [31m2.448143e-16[39m
+
+Time Step 60, time = 0.15, dt = 0.0025
+  0 SNES Function norm 3.869303763530e-02
+      0 Linear |R| = [32m3.869304e-02[39m
+      1 Linear |R| = [32m5.762413e-17[39m
+  1 SNES Function norm 5.332160676780e-16
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m4.232092e-16[39m
+  disp_y: [31m1.808125e-16[39m
+  disp_z: [31m2.692957e-16[39m
+
+Time Step 61, time = 0.1525, dt = 0.0025
+  0 SNES Function norm 3.888254686969e-02
+      0 Linear |R| = [32m3.888255e-02[39m
+      1 Linear |R| = [32m5.537076e-17[39m
+  1 SNES Function norm 5.136729638851e-16
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m4.223283e-16[39m
+  disp_y: [31m1.563296e-16[39m
+  disp_z: [31m2.471027e-16[39m
+
+Time Step 62, time = 0.155, dt = 0.0025
+  0 SNES Function norm 3.905298595234e-02
+      0 Linear |R| = [32m3.905299e-02[39m
+      1 Linear |R| = [32m5.652118e-17[39m
+  1 SNES Function norm 6.003243633669e-16
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m5.027865e-16[39m
+  disp_y: [31m1.680260e-16[39m
+  disp_z: [31m2.817133e-16[39m
+
+Time Step 63, time = 0.1575, dt = 0.0025
+  0 SNES Function norm 3.920218255766e-02
+      0 Linear |R| = [32m3.920218e-02[39m
+      1 Linear |R| = [32m5.430612e-17[39m
+  1 SNES Function norm 5.063296925062e-16
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m4.127324e-16[39m
+  disp_y: [31m1.570371e-16[39m
+  disp_z: [31m2.477116e-16[39m
+
+Time Step 64, time = 0.16, dt = 0.0025
+  0 SNES Function norm 3.932838307044e-02
+      0 Linear |R| = [32m3.932838e-02[39m
+      1 Linear |R| = [32m5.196521e-17[39m
+  1 SNES Function norm 4.893709869466e-16
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m3.970466e-16[39m
+  disp_y: [31m1.528457e-16[39m
+  disp_z: [31m2.418184e-16[39m
+
+Time Step 65, time = 0.1625, dt = 0.0025
+  0 SNES Function norm 3.942959827437e-02
+      0 Linear |R| = [32m3.942960e-02[39m
+      1 Linear |R| = [32m5.410363e-17[39m
+  1 SNES Function norm 5.648806605094e-16
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m4.718118e-16[39m
+  disp_y: [31m1.730566e-16[39m
+  disp_z: [31m2.579441e-16[39m
+
+Time Step 66, time = 0.165, dt = 0.0025
+  0 SNES Function norm 3.950413951029e-02
+      0 Linear |R| = [32m3.950414e-02[39m
+      1 Linear |R| = [32m4.892673e-17[39m
+  1 SNES Function norm 6.075395640932e-16
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m5.169560e-16[39m
+  disp_y: [31m1.519111e-16[39m
+  disp_z: [31m2.806846e-16[39m
+
+Time Step 67, time = 0.1675, dt = 0.0025
+  0 SNES Function norm 3.955033482605e-02
+      0 Linear |R| = [32m3.955033e-02[39m
+      1 Linear |R| = [32m5.652344e-17[39m
+  1 SNES Function norm 5.805688060539e-16
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m4.366770e-16[39m
+  disp_y: [31m1.455494e-16[39m
+  disp_z: [31m3.538201e-16[39m
+
+Time Step 68, time = 0.17, dt = 0.0025
+  0 SNES Function norm 3.956665249312e-02
+      0 Linear |R| = [32m3.956665e-02[39m
+      1 Linear |R| = [32m5.017558e-17[39m
+  1 SNES Function norm 5.148524760011e-16
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m3.757008e-16[39m
+  disp_y: [31m1.835861e-16[39m
+  disp_z: [31m3.003633e-16[39m
+
+Time Step 69, time = 0.1725, dt = 0.0025
+  0 SNES Function norm 3.955156302746e-02
+      0 Linear |R| = [32m3.955156e-02[39m
+      1 Linear |R| = [32m5.215096e-17[39m
+  1 SNES Function norm 5.826949560753e-16
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m4.913917e-16[39m
+  disp_y: [31m1.672126e-16[39m
+  disp_z: [31m2.647784e-16[39m
+
+Time Step 70, time = 0.175, dt = 0.0025
+  0 SNES Function norm 3.950412929514e-02
+      0 Linear |R| = [32m3.950413e-02[39m
+      1 Linear |R| = [32m5.322999e-17[39m
+  1 SNES Function norm 5.141288125831e-16
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m4.107130e-16[39m
+  disp_y: [31m1.690104e-16[39m
+  disp_z: [31m2.589956e-16[39m
+
+Time Step 71, time = 0.1775, dt = 0.0025
+  0 SNES Function norm 3.942297700170e-02
+      0 Linear |R| = [32m3.942298e-02[39m
+      1 Linear |R| = [32m5.005770e-17[39m
+  1 SNES Function norm 5.312900652294e-16
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m4.226064e-16[39m
+  disp_y: [31m1.710586e-16[39m
+  disp_z: [31m2.727854e-16[39m
+
+Time Step 72, time = 0.18, dt = 0.0025
+  0 SNES Function norm 3.930714336775e-02
+      0 Linear |R| = [32m3.930714e-02[39m
+      1 Linear |R| = [32m5.064385e-17[39m
+  1 SNES Function norm 5.994387529543e-16
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m5.095479e-16[39m
+  disp_y: [31m1.770334e-16[39m
+  disp_z: [31m2.614325e-16[39m
+
+Time Step 73, time = 0.1825, dt = 0.0025
+  0 SNES Function norm 3.915595424539e-02
+      0 Linear |R| = [32m3.915595e-02[39m
+      1 Linear |R| = [32m4.896261e-17[39m
+  1 SNES Function norm 6.115080859601e-16
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m4.613893e-16[39m
+  disp_y: [31m1.852016e-16[39m
+  disp_z: [31m3.560371e-16[39m
+
+Time Step 74, time = 0.185, dt = 0.0025
+  0 SNES Function norm 3.896872874511e-02
+      0 Linear |R| = [32m3.896873e-02[39m
+      1 Linear |R| = [32m4.685884e-17[39m
+  1 SNES Function norm 6.524532954802e-16
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m5.296220e-16[39m
+  disp_y: [31m1.680800e-16[39m
+  disp_z: [31m3.419721e-16[39m
+
+Time Step 75, time = 0.1875, dt = 0.0025
+  0 SNES Function norm 3.874508162881e-02
+      0 Linear |R| = [32m3.874508e-02[39m
+      1 Linear |R| = [32m4.599485e-17[39m
+  1 SNES Function norm 6.477762984819e-16
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m5.218579e-16[39m
+  disp_y: [31m2.014110e-16[39m
+  disp_z: [31m3.266681e-16[39m
+
+Time Step 76, time = 0.19, dt = 0.0025
+  0 SNES Function norm 3.848471163629e-02
+      0 Linear |R| = [32m3.848471e-02[39m
+      1 Linear |R| = [32m4.450306e-17[39m
+  1 SNES Function norm 5.438497882122e-16
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m3.972450e-16[39m
+  disp_y: [31m1.973751e-16[39m
+  disp_z: [31m3.146618e-16[39m
+
+Time Step 77, time = 0.1925, dt = 0.0025
+  0 SNES Function norm 3.818755626616e-02
+      0 Linear |R| = [32m3.818756e-02[39m
+      1 Linear |R| = [32m4.109666e-17[39m
+  1 SNES Function norm 6.757724146310e-16
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m5.450486e-16[39m
+  disp_y: [31m1.762869e-16[39m
+  disp_z: [31m3.584875e-16[39m
+
+Time Step 78, time = 0.195, dt = 0.0025
+  0 SNES Function norm 3.785372318406e-02
+      0 Linear |R| = [32m3.785372e-02[39m
+      1 Linear |R| = [32m4.600811e-17[39m
+  1 SNES Function norm 6.113309523796e-16
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m5.053178e-16[39m
+  disp_y: [31m1.946670e-16[39m
+  disp_z: [31m2.836974e-16[39m
+
+Time Step 79, time = 0.1975, dt = 0.0025
+  0 SNES Function norm 3.748353039125e-02
+      0 Linear |R| = [32m3.748353e-02[39m
+      1 Linear |R| = [32m4.403541e-17[39m
+  1 SNES Function norm 5.795149705944e-16
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m4.673169e-16[39m
+  disp_y: [31m1.838281e-16[39m
+  disp_z: [31m2.892399e-16[39m
+
+Time Step 80, time = 0.2, dt = 0.0025
+  0 SNES Function norm 5.399281095157e+02
+      0 Linear |R| = [32m5.399281e+02[39m
+      1 Linear |R| = [32m2.248352e-13[39m
+  1 SNES Function norm 2.290054424436e-13
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m1.980621e-13[39m
+  disp_y: [31m8.625592e-14[39m
+  disp_z: [31m7.599228e-14[39m
+
+Time Step 81, time = 0.2025, dt = 0.0025
+  0 SNES Function norm 5.398859071080e+02
+      0 Linear |R| = [32m5.398859e+02[39m
+      1 Linear |R| = [32m2.255277e-13[39m
+  1 SNES Function norm 2.342818033209e-13
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m2.074274e-13[39m
+  disp_y: [31m7.686948e-14[39m
+  disp_z: [31m7.715508e-14[39m
+
+Time Step 82, time = 0.205, dt = 0.0025
+  0 SNES Function norm 5.398437224275e+02
+      0 Linear |R| = [32m5.398437e+02[39m
+      1 Linear |R| = [32m2.114924e-13[39m
+  1 SNES Function norm 2.634447507677e-13
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m2.146233e-13[39m
+  disp_y: [31m9.934054e-14[39m
+  disp_z: [31m1.160665e-13[39m
+
+Time Step 83, time = 0.2075, dt = 0.0025
+  0 SNES Function norm 5.398015537660e+02
+      0 Linear |R| = [32m5.398016e+02[39m
+      1 Linear |R| = [32m2.106013e-13[39m
+  1 SNES Function norm 2.766901658593e-13
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m2.166830e-13[39m
+  disp_y: [31m1.123067e-13[39m
+  disp_z: [31m1.303577e-13[39m
+
+Time Step 84, time = 0.21, dt = 0.0025
+  0 SNES Function norm 5.397593996294e+02
+      0 Linear |R| = [32m5.397594e+02[39m
+      1 Linear |R| = [32m1.991274e-13[39m
+  1 SNES Function norm 3.197839698897e-13
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m2.421862e-13[39m
+  disp_y: [31m1.392919e-13[39m
+  disp_z: [31m1.555808e-13[39m
+
+Time Step 85, time = 0.2125, dt = 0.0025
+  0 SNES Function norm 5.397172582298e+02
+      0 Linear |R| = [32m5.397173e+02[39m
+      1 Linear |R| = [32m2.280055e-13[39m
+  1 SNES Function norm 3.451378937746e-13
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m2.711385e-13[39m
+  disp_y: [31m1.419788e-13[39m
+  disp_z: [31m1.595183e-13[39m
+
+Time Step 86, time = 0.215, dt = 0.0025
+  0 SNES Function norm 5.396751278233e+02
+      0 Linear |R| = [32m5.396751e+02[39m
+      1 Linear |R| = [32m2.130461e-13[39m
+  1 SNES Function norm 4.582521654433e-13
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m3.452791e-13[39m
+  disp_y: [31m1.946998e-13[39m
+  disp_z: [31m2.299334e-13[39m
+
+Time Step 87, time = 0.2175, dt = 0.0025
+  0 SNES Function norm 5.396330065137e+02
+      0 Linear |R| = [32m5.396330e+02[39m
+      1 Linear |R| = [32m1.962513e-13[39m
+  1 SNES Function norm 4.151293124997e-13
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m3.020725e-13[39m
+  disp_y: [31m1.963186e-13[39m
+  disp_z: [31m2.062610e-13[39m
+
+Time Step 88, time = 0.22, dt = 0.0025
+  0 SNES Function norm 5.395908925067e+02
+      0 Linear |R| = [32m5.395909e+02[39m
+      1 Linear |R| = [32m2.207708e-13[39m
+  1 SNES Function norm 5.348429525790e-13
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m3.968985e-13[39m
+  disp_y: [31m2.618449e-13[39m
+  disp_z: [31m2.448792e-13[39m
+
+Time Step 89, time = 0.2225, dt = 0.0025
+  0 SNES Function norm 5.395487838671e+02
+      0 Linear |R| = [32m5.395488e+02[39m
+      1 Linear |R| = [32m2.018302e-13[39m
+  1 SNES Function norm 5.333326721925e-13
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m4.013592e-13[39m
+  disp_y: [31m2.291339e-13[39m
+  disp_z: [31m2.661807e-13[39m
+
+Time Step 90, time = 0.225, dt = 0.0025
+  0 SNES Function norm 5.395066787547e+02
+      0 Linear |R| = [32m5.395067e+02[39m
+      1 Linear |R| = [32m1.933519e-13[39m
+  1 SNES Function norm 5.541165438553e-13
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m3.789240e-13[39m
+  disp_y: [31m2.530010e-13[39m
+  disp_z: [31m3.153605e-13[39m
+
+Time Step 91, time = 0.2275, dt = 0.0025
+  0 SNES Function norm 5.394645752299e+02
+      0 Linear |R| = [32m5.394646e+02[39m
+      1 Linear |R| = [32m2.121519e-13[39m
+  1 SNES Function norm 5.990868104643e-13
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m4.546083e-13[39m
+  disp_y: [31m2.879941e-13[39m
+  disp_z: [31m2.632408e-13[39m
+
+Time Step 92, time = 0.23, dt = 0.0025
+  0 SNES Function norm 5.394224714830e+02
+      0 Linear |R| = [32m5.394225e+02[39m
+      1 Linear |R| = [32m2.030864e-13[39m
+  1 SNES Function norm 6.795258986573e-13
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m4.742262e-13[39m
+  disp_y: [31m3.349299e-13[39m
+  disp_z: [31m3.531104e-13[39m
+
+Time Step 93, time = 0.2325, dt = 0.0025
+  0 SNES Function norm 5.393803657284e+02
+      0 Linear |R| = [32m5.393804e+02[39m
+      1 Linear |R| = [32m1.934915e-13[39m
+  1 SNES Function norm 6.606586361262e-13
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m4.754437e-13[39m
+  disp_y: [31m3.264742e-13[39m
+  disp_z: [31m3.222386e-13[39m
+
+Time Step 94, time = 0.235, dt = 0.0025
+  0 SNES Function norm 5.393382560048e+02
+      0 Linear |R| = [32m5.393383e+02[39m
+      1 Linear |R| = [32m2.105603e-13[39m
+  1 SNES Function norm 7.959121247374e-13
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m5.414277e-13[39m
+  disp_y: [31m4.128271e-13[39m
+  disp_z: [31m4.121964e-13[39m
+
+Time Step 95, time = 0.2375, dt = 0.0025
+  0 SNES Function norm 5.392961409836e+02
+      0 Linear |R| = [32m5.392961e+02[39m
+      1 Linear |R| = [32m2.312195e-13[39m
+  1 SNES Function norm 8.629695271094e-13
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m6.104401e-13[39m
+  disp_y: [31m3.935398e-13[39m
+  disp_z: [31m4.660533e-13[39m
+
+Time Step 96, time = 0.24, dt = 0.0025
+  0 SNES Function norm 5.392540187255e+02
+      0 Linear |R| = [32m5.392540e+02[39m
+      1 Linear |R| = [32m2.125802e-13[39m
+  1 SNES Function norm 8.793286934898e-13
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m6.478803e-13[39m
+  disp_y: [31m4.003053e-13[39m
+  disp_z: [31m4.395744e-13[39m
+
+Time Step 97, time = 0.2425, dt = 0.0025
+  0 SNES Function norm 5.392118877888e+02
+      0 Linear |R| = [32m5.392119e+02[39m
+      1 Linear |R| = [32m2.375818e-13[39m
+  1 SNES Function norm 9.138983555545e-13
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m6.972751e-13[39m
+  disp_y: [31m3.519155e-13[39m
+  disp_z: [31m4.745241e-13[39m
+
+Time Step 98, time = 0.245, dt = 0.0025
+  0 SNES Function norm 5.391697468168e+02
+      0 Linear |R| = [32m5.391697e+02[39m
+      1 Linear |R| = [32m2.182494e-13[39m
+  1 SNES Function norm 1.002410760086e-12
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m7.536863e-13[39m
+  disp_y: [31m4.254888e-13[39m
+  disp_z: [31m5.057111e-13[39m
+
+Time Step 99, time = 0.2475, dt = 0.0025
+  0 SNES Function norm 5.391275943808e+02
+      0 Linear |R| = [32m5.391276e+02[39m
+      1 Linear |R| = [32m2.371372e-13[39m
+  1 SNES Function norm 9.898533993379e-13
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m7.398399e-13[39m
+  disp_y: [31m4.469149e-13[39m
+  disp_z: [31m4.824041e-13[39m
+
+Time Step 100, time = 0.25, dt = 0.0025
+  0 SNES Function norm 5.390854294286e+02
+      0 Linear |R| = [32m5.390854e+02[39m
+      1 Linear |R| = [32m2.259393e-13[39m
+  1 SNES Function norm 1.128058111077e-12
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m8.496585e-13[39m
+  disp_y: [31m3.909241e-13[39m
+  disp_z: [31m6.306931e-13[39m
+
+Time Step 101, time = 0.2525, dt = 0.0025
+  0 SNES Function norm 5.390432507578e+02
+      0 Linear |R| = [32m5.390433e+02[39m
+      1 Linear |R| = [32m2.092250e-13[39m
+  1 SNES Function norm 1.134898159362e-12
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m8.369754e-13[39m
+  disp_y: [31m5.295961e-13[39m
+  disp_z: [31m5.540704e-13[39m
+
+Time Step 102, time = 0.255, dt = 0.0025
+  0 SNES Function norm 5.390010575236e+02
+      0 Linear |R| = [32m5.390011e+02[39m
+      1 Linear |R| = [32m2.296775e-13[39m
+  1 SNES Function norm 1.200856459650e-12
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m9.808452e-13[39m
+  disp_y: [31m4.374009e-13[39m
+  disp_z: [31m5.372889e-13[39m
+
+Time Step 103, time = 0.2575, dt = 0.0025
+  0 SNES Function norm 5.389588489327e+02
+      0 Linear |R| = [32m5.389588e+02[39m
+      1 Linear |R| = [32m2.191604e-13[39m
+  1 SNES Function norm 1.142592278661e-12
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m8.832827e-13[39m
+  disp_y: [31m5.676269e-13[39m
+  disp_z: [31m4.506979e-13[39m
+
+Time Step 104, time = 0.26, dt = 0.0025
+  0 SNES Function norm 5.389166243294e+02
+      0 Linear |R| = [32m5.389166e+02[39m
+      1 Linear |R| = [32m2.105618e-13[39m
+  1 SNES Function norm 1.352028148522e-12
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m1.016386e-12[39m
+  disp_y: [31m6.965621e-13[39m
+  disp_z: [31m5.565438e-13[39m
+
+Time Step 105, time = 0.2625, dt = 0.0025
+  0 SNES Function norm 5.388743832097e+02
+      0 Linear |R| = [32m5.388744e+02[39m
+      1 Linear |R| = [32m1.988657e-13[39m
+  1 SNES Function norm 1.447897009707e-12
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m1.119432e-12[39m
+  disp_y: [31m6.277727e-13[39m
+  disp_z: [31m6.702077e-13[39m
+
+Time Step 106, time = 0.265, dt = 0.0025
+  0 SNES Function norm 5.388321252942e+02
+      0 Linear |R| = [32m5.388321e+02[39m
+      1 Linear |R| = [32m2.353992e-13[39m
+  1 SNES Function norm 1.316190258179e-12
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m9.941686e-13[39m
+  disp_y: [31m5.437176e-13[39m
+  disp_z: [31m6.695945e-13[39m
+
+Time Step 107, time = 0.2675, dt = 0.0025
+  0 SNES Function norm 5.387898503486e+02
+      0 Linear |R| = [32m5.387899e+02[39m
+      1 Linear |R| = [32m2.197552e-13[39m
+  1 SNES Function norm 1.387897409453e-12
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m1.046205e-12[39m
+  disp_y: [31m6.547442e-13[39m
+  disp_z: [31m6.348414e-13[39m
+
+Time Step 108, time = 0.27, dt = 0.0025
+  0 SNES Function norm 5.387475582633e+02
+      0 Linear |R| = [32m5.387476e+02[39m
+      1 Linear |R| = [32m2.563484e-13[39m
+  1 SNES Function norm 1.561353853318e-12
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m1.314841e-12[39m
+  disp_y: [31m6.091872e-13[39m
+  disp_z: [31m5.813012e-13[39m
+
+Time Step 109, time = 0.2725, dt = 0.0025
+  0 SNES Function norm 5.387052493072e+02
+      0 Linear |R| = [32m5.387052e+02[39m
+      1 Linear |R| = [32m2.098180e-13[39m
+  1 SNES Function norm 1.635577056765e-12
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m1.279197e-12[39m
+  disp_y: [31m7.096465e-13[39m
+  disp_z: [31m7.315521e-13[39m
+
+Time Step 110, time = 0.275, dt = 0.0025
+  0 SNES Function norm 5.386629235523e+02
+      0 Linear |R| = [32m5.386629e+02[39m
+      1 Linear |R| = [32m1.902908e-13[39m
+  1 SNES Function norm 1.450427083861e-12
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m1.052018e-12[39m
+  disp_y: [31m6.443310e-13[39m
+  disp_z: [31m7.627810e-13[39m
+
+Time Step 111, time = 0.2775, dt = 0.0025
+  0 SNES Function norm 5.386205815174e+02
+      0 Linear |R| = [32m5.386206e+02[39m
+      1 Linear |R| = [32m1.941796e-13[39m
+  1 SNES Function norm 1.575813718060e-12
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m1.003261e-12[39m
+  disp_y: [31m8.416863e-13[39m
+  disp_z: [31m8.764813e-13[39m
+
+Time Step 112, time = 0.28, dt = 0.0025
+  0 SNES Function norm 5.385782236160e+02
+      0 Linear |R| = [32m5.385782e+02[39m
+      1 Linear |R| = [32m2.232526e-13[39m
+  1 SNES Function norm 1.656529005379e-12
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m1.225822e-12[39m
+  disp_y: [31m6.944553e-13[39m
+  disp_z: [31m8.713093e-13[39m
+
+Time Step 113, time = 0.2825, dt = 0.0025
+  0 SNES Function norm 5.385358505771e+02
+      0 Linear |R| = [32m5.385359e+02[39m
+      1 Linear |R| = [32m2.040410e-13[39m
+  1 SNES Function norm 1.737078253306e-12
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m1.228997e-12[39m
+  disp_y: [31m6.646792e-13[39m
+  disp_z: [31m1.032090e-12[39m
+
+Time Step 114, time = 0.285, dt = 0.0025
+  0 SNES Function norm 5.384934630774e+02
+      0 Linear |R| = [32m5.384935e+02[39m
+      1 Linear |R| = [32m2.121992e-13[39m
+  1 SNES Function norm 1.686761790545e-12
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m1.270596e-12[39m
+  disp_y: [31m7.667896e-13[39m
+  disp_z: [31m8.017387e-13[39m
+
+Time Step 115, time = 0.2875, dt = 0.0025
+  0 SNES Function norm 5.384510620498e+02
+      0 Linear |R| = [32m5.384511e+02[39m
+      1 Linear |R| = [32m2.017920e-13[39m
+  1 SNES Function norm 1.774234586612e-12
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m1.188551e-12[39m
+  disp_y: [31m8.718127e-13[39m
+  disp_z: [31m9.875211e-13[39m
+
+Time Step 116, time = 0.29, dt = 0.0025
+  0 SNES Function norm 5.384086483692e+02
+      0 Linear |R| = [32m5.384086e+02[39m
+      1 Linear |R| = [32m2.431183e-13[39m
+  1 SNES Function norm 1.850023934629e-12
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m1.326349e-12[39m
+  disp_y: [31m7.737229e-13[39m
+  disp_z: [31m1.031863e-12[39m
+
+Time Step 117, time = 0.2925, dt = 0.0025
+  0 SNES Function norm 5.383662231575e+02
+      0 Linear |R| = [32m5.383662e+02[39m
+      1 Linear |R| = [32m2.323764e-13[39m
+  1 SNES Function norm 1.893869190959e-12
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m1.452991e-12[39m
+  disp_y: [31m9.338387e-13[39m
+  disp_z: [31m7.768537e-13[39m
+
+Time Step 118, time = 0.295, dt = 0.0025
+  0 SNES Function norm 5.383237875710e+02
+      0 Linear |R| = [32m5.383238e+02[39m
+      1 Linear |R| = [32m2.050664e-13[39m
+  1 SNES Function norm 2.270308824876e-12
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m1.771676e-12[39m
+  disp_y: [31m9.590805e-13[39m
+  disp_z: [31m1.046724e-12[39m
+
+Time Step 119, time = 0.2975, dt = 0.0025
+  0 SNES Function norm 5.382813426579e+02
+      0 Linear |R| = [32m5.382813e+02[39m
+      1 Linear |R| = [32m2.007817e-13[39m
+  1 SNES Function norm 2.269001986538e-12
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m1.735693e-12[39m
+  disp_y: [31m9.878708e-13[39m
+  disp_z: [31m1.076965e-12[39m
+
+Time Step 120, time = 0.3, dt = 0.0025
+  0 SNES Function norm 5.382388897918e+02
+      0 Linear |R| = [32m5.382389e+02[39m
+      1 Linear |R| = [32m1.852388e-13[39m
+  1 SNES Function norm 2.180312442682e-12
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m1.554557e-12[39m
+  disp_y: [31m1.029317e-12[39m
+  disp_z: [31m1.130319e-12[39m
+
+Time Step 121, time = 0.3025, dt = 0.0025
+  0 SNES Function norm 5.381964302644e+02
+      0 Linear |R| = [32m5.381964e+02[39m
+      1 Linear |R| = [32m2.171528e-13[39m
+  1 SNES Function norm 2.177496114112e-12
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m1.603598e-12[39m
+  disp_y: [31m1.118141e-12[39m
+  disp_z: [31m9.590219e-13[39m
+
+Time Step 122, time = 0.305, dt = 0.0025
+  0 SNES Function norm 5.381539652901e+02
+      0 Linear |R| = [32m5.381540e+02[39m
+      1 Linear |R| = [32m2.350897e-13[39m
+  1 SNES Function norm 1.818489705153e-12
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m1.192307e-12[39m
+  disp_y: [31m9.800494e-13[39m
+  disp_z: [31m9.616716e-13[39m
+
+Time Step 123, time = 0.3075, dt = 0.0025
+  0 SNES Function norm 5.381114963085e+02
+      0 Linear |R| = [32m5.381115e+02[39m
+      1 Linear |R| = [32m2.402366e-13[39m
+  1 SNES Function norm 2.237351953949e-12
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m1.613667e-12[39m
+  disp_y: [31m8.051655e-13[39m
+  disp_z: [31m1.324210e-12[39m
+
+Time Step 124, time = 0.31, dt = 0.0025
+  0 SNES Function norm 5.380690246291e+02
+      0 Linear |R| = [32m5.380690e+02[39m
+      1 Linear |R| = [32m2.505646e-13[39m
+  1 SNES Function norm 2.034375038159e-12
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m1.555475e-12[39m
+  disp_y: [31m1.008725e-12[39m
+  disp_z: [31m8.376480e-13[39m
+
+Time Step 125, time = 0.3125, dt = 0.0025
+  0 SNES Function norm 5.380265515808e+02
+      0 Linear |R| = [32m5.380266e+02[39m
+      1 Linear |R| = [32m2.031040e-13[39m
+  1 SNES Function norm 2.074589214466e-12
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m1.530759e-12[39m
+  disp_y: [31m9.500127e-13[39m
+  disp_z: [31m1.028675e-12[39m
+
+Time Step 126, time = 0.315, dt = 0.0025
+  0 SNES Function norm 5.379840785585e+02
+      0 Linear |R| = [32m5.379841e+02[39m
+      1 Linear |R| = [32m2.218575e-13[39m
+  1 SNES Function norm 2.077017844685e-12
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m1.366873e-12[39m
+  disp_y: [31m1.130703e-12[39m
+  disp_z: [31m1.080357e-12[39m
+
+Time Step 127, time = 0.3175, dt = 0.0025
+  0 SNES Function norm 5.379416068039e+02
+      0 Linear |R| = [32m5.379416e+02[39m
+      1 Linear |R| = [32m2.049724e-13[39m
+  1 SNES Function norm 2.538360413022e-12
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m1.975038e-12[39m
+  disp_y: [31m1.131174e-12[39m
+  disp_z: [31m1.123808e-12[39m
+
+Time Step 128, time = 0.32, dt = 0.0025
+  0 SNES Function norm 5.378991376388e+02
+      0 Linear |R| = [32m5.378991e+02[39m
+      1 Linear |R| = [32m1.829365e-13[39m
+  1 SNES Function norm 2.543909754604e-12
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m1.979453e-12[39m
+  disp_y: [31m1.083078e-12[39m
+  disp_z: [31m1.174813e-12[39m
+
+Time Step 129, time = 0.3225, dt = 0.0025
+  0 SNES Function norm 5.378566723133e+02
+      0 Linear |R| = [32m5.378567e+02[39m
+      1 Linear |R| = [32m2.091411e-13[39m
+  1 SNES Function norm 2.584984353883e-12
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m1.823988e-12[39m
+  disp_y: [31m1.293978e-12[39m
+  disp_z: [31m1.296470e-12[39m
+
+Time Step 130, time = 0.325, dt = 0.0025
+  0 SNES Function norm 5.378142119496e+02
+      0 Linear |R| = [32m5.378142e+02[39m
+      1 Linear |R| = [32m2.407136e-13[39m
+  1 SNES Function norm 2.722253903098e-12
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m2.132874e-12[39m
+  disp_y: [31m1.101718e-12[39m
+  disp_z: [31m1.283641e-12[39m
+
+Time Step 131, time = 0.3275, dt = 0.0025
+  0 SNES Function norm 5.377717577975e+02
+      0 Linear |R| = [32m5.377718e+02[39m
+      1 Linear |R| = [32m1.960383e-13[39m
+  1 SNES Function norm 2.558489009439e-12
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m2.030428e-12[39m
+  disp_y: [31m1.051858e-12[39m
+  disp_z: [31m1.147528e-12[39m
+
+Time Step 132, time = 0.33, dt = 0.0025
+  0 SNES Function norm 5.377293108291e+02
+      0 Linear |R| = [32m5.377293e+02[39m
+      1 Linear |R| = [32m2.092283e-13[39m
+  1 SNES Function norm 2.562768954198e-12
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m1.731492e-12[39m
+  disp_y: [31m1.274837e-12[39m
+  disp_z: [31m1.394457e-12[39m
+
+Time Step 133, time = 0.3325, dt = 0.0025
+  0 SNES Function norm 5.376868720719e+02
+      0 Linear |R| = [32m5.376869e+02[39m
+      1 Linear |R| = [32m2.386340e-13[39m
+  1 SNES Function norm 2.560345641742e-12
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m1.769648e-12[39m
+  disp_y: [31m1.460320e-12[39m
+  disp_z: [31m1.136303e-12[39m
+
+Time Step 134, time = 0.335, dt = 0.0025
+  0 SNES Function norm 5.376444425100e+02
+      0 Linear |R| = [32m5.376444e+02[39m
+      1 Linear |R| = [32m2.236044e-13[39m
+  1 SNES Function norm 2.651159754051e-12
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m1.973300e-12[39m
+  disp_y: [31m1.071190e-12[39m
+  disp_z: [31m1.409712e-12[39m
+
+Time Step 135, time = 0.3375, dt = 0.0025
+  0 SNES Function norm 5.376020229143e+02
+      0 Linear |R| = [32m5.376020e+02[39m
+      1 Linear |R| = [32m2.308841e-13[39m
+  1 SNES Function norm 2.948906003169e-12
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m2.342365e-12[39m
+  disp_y: [31m1.258909e-12[39m
+  disp_z: [31m1.274566e-12[39m
+
+Time Step 136, time = 0.34, dt = 0.0025
+  0 SNES Function norm 5.375596141345e+02
+      0 Linear |R| = [32m5.375596e+02[39m
+      1 Linear |R| = [32m2.071389e-13[39m
+  1 SNES Function norm 2.588756627918e-12
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m2.000018e-12[39m
+  disp_y: [31m1.028153e-12[39m
+  disp_z: [31m1.282376e-12[39m
+
+Time Step 137, time = 0.3425, dt = 0.0025
+  0 SNES Function norm 5.375172168077e+02
+      0 Linear |R| = [32m5.375172e+02[39m
+      1 Linear |R| = [32m2.495201e-13[39m
+  1 SNES Function norm 2.754080284960e-12
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m2.062046e-12[39m
+  disp_y: [31m1.030015e-12[39m
+  disp_z: [31m1.507314e-12[39m
+
+Time Step 138, time = 0.345, dt = 0.0025
+  0 SNES Function norm 5.374748315408e+02
+      0 Linear |R| = [32m5.374748e+02[39m
+      1 Linear |R| = [32m2.188734e-13[39m
+  1 SNES Function norm 3.528107741332e-12
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m2.794425e-12[39m
+  disp_y: [31m1.311016e-12[39m
+  disp_z: [31m1.708792e-12[39m
+
+Time Step 139, time = 0.3475, dt = 0.0025
+  0 SNES Function norm 5.374324590084e+02
+      0 Linear |R| = [32m5.374325e+02[39m
+      1 Linear |R| = [32m2.363988e-13[39m
+  1 SNES Function norm 3.642045011796e-12
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m2.903862e-12[39m
+  disp_y: [31m1.176141e-12[39m
+  disp_z: [31m1.857085e-12[39m
+
+Time Step 140, time = 0.35, dt = 0.0025
+  0 SNES Function norm 5.373900994480e+02
+      0 Linear |R| = [32m5.373901e+02[39m
+      1 Linear |R| = [32m2.353498e-13[39m
+  1 SNES Function norm 3.016646404294e-12
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m2.326586e-12[39m
+  disp_y: [31m1.272951e-12[39m
+  disp_z: [31m1.437618e-12[39m
+
+Time Step 141, time = 0.3525, dt = 0.0025
+  0 SNES Function norm 5.373477533084e+02
+      0 Linear |R| = [32m5.373478e+02[39m
+      1 Linear |R| = [32m2.276616e-13[39m
+  1 SNES Function norm 3.366442297552e-12
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m2.535343e-12[39m
+  disp_y: [31m1.451658e-12[39m
+  disp_z: [31m1.672621e-12[39m
+
+Time Step 142, time = 0.355, dt = 0.0025
+  0 SNES Function norm 5.373054208945e+02
+      0 Linear |R| = [32m5.373054e+02[39m
+      1 Linear |R| = [32m2.029718e-13[39m
+  1 SNES Function norm 3.106976601997e-12
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m2.507022e-12[39m
+  disp_y: [31m1.165775e-12[39m
+  disp_z: [31m1.417432e-12[39m
+
+Time Step 143, time = 0.3575, dt = 0.0025
+  0 SNES Function norm 5.372631023390e+02
+      0 Linear |R| = [32m5.372631e+02[39m
+      1 Linear |R| = [32m2.394755e-13[39m
+  1 SNES Function norm 3.320019433720e-12
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m2.465779e-12[39m
+  disp_y: [31m1.223222e-12[39m
+  disp_z: [31m1.856393e-12[39m
+
+Time Step 144, time = 0.36, dt = 0.0025
+  0 SNES Function norm 5.372207978175e+02
+      0 Linear |R| = [32m5.372208e+02[39m
+      1 Linear |R| = [32m2.082497e-13[39m
+  1 SNES Function norm 3.332397790369e-12
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m2.408479e-12[39m
+  disp_y: [31m1.703342e-12[39m
+  disp_z: [31m1.550075e-12[39m
+
+Time Step 145, time = 0.3625, dt = 0.0025
+  0 SNES Function norm 5.371785073891e+02
+      0 Linear |R| = [32m5.371785e+02[39m
+      1 Linear |R| = [32m2.019107e-13[39m
+  1 SNES Function norm 3.592540482157e-12
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m2.811480e-12[39m
+  disp_y: [31m1.353968e-12[39m
+  disp_z: [31m1.780084e-12[39m
+
+Time Step 146, time = 0.365, dt = 0.0025
+  0 SNES Function norm 5.371362310407e+02
+      0 Linear |R| = [32m5.371362e+02[39m
+      1 Linear |R| = [32m2.319360e-13[39m
+  1 SNES Function norm 3.665630230782e-12
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m2.924410e-12[39m
+  disp_y: [31m1.516256e-12[39m
+  disp_z: [31m1.607991e-12[39m
+
+Time Step 147, time = 0.3675, dt = 0.0025
+  0 SNES Function norm 5.370939685973e+02
+      0 Linear |R| = [32m5.370940e+02[39m
+      1 Linear |R| = [32m2.193039e-13[39m
+  1 SNES Function norm 3.356816963235e-12
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m2.560321e-12[39m
+  disp_y: [31m1.413378e-12[39m
+  disp_z: [31m1.647828e-12[39m
+
+Time Step 148, time = 0.37, dt = 0.0025
+  0 SNES Function norm 5.370517200431e+02
+      0 Linear |R| = [32m5.370517e+02[39m
+      1 Linear |R| = [32m2.215076e-13[39m
+  1 SNES Function norm 3.477792042069e-12
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m2.475230e-12[39m
+  disp_y: [31m1.723440e-12[39m
+  disp_z: [31m1.731481e-12[39m
+
+Time Step 149, time = 0.3725, dt = 0.0025
+  0 SNES Function norm 5.370094851318e+02
+      0 Linear |R| = [32m5.370095e+02[39m
+      1 Linear |R| = [32m2.361570e-13[39m
+  1 SNES Function norm 4.300134801098e-12
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m3.119508e-12[39m
+  disp_y: [31m1.823805e-12[39m
+  disp_z: [31m2.331001e-12[39m
+
+Time Step 150, time = 0.375, dt = 0.0025
+  0 SNES Function norm 5.369672636124e+02
+      0 Linear |R| = [32m5.369673e+02[39m
+      1 Linear |R| = [32m2.191063e-13[39m
+  1 SNES Function norm 3.197748933630e-12
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m2.537241e-12[39m
+  disp_y: [31m1.389937e-12[39m
+  disp_z: [31m1.362381e-12[39m
+
+Time Step 151, time = 0.3775, dt = 0.0025
+  0 SNES Function norm 5.369250552090e+02
+      0 Linear |R| = [32m5.369251e+02[39m
+      1 Linear |R| = [32m2.157264e-13[39m
+  1 SNES Function norm 3.817606677578e-12
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m2.864259e-12[39m
+  disp_y: [31m1.471644e-12[39m
+  disp_z: [31m2.050464e-12[39m
+
+Time Step 152, time = 0.38, dt = 0.0025
+  0 SNES Function norm 5.368828596083e+02
+      0 Linear |R| = [32m5.368829e+02[39m
+      1 Linear |R| = [32m2.350129e-13[39m
+  1 SNES Function norm 3.668351465829e-12
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m2.513048e-12[39m
+  disp_y: [31m1.825765e-12[39m
+  disp_z: [31m1.951403e-12[39m
+
+Time Step 153, time = 0.3825, dt = 0.0025
+  0 SNES Function norm 5.368406764179e+02
+      0 Linear |R| = [32m5.368407e+02[39m
+      1 Linear |R| = [32m2.154466e-13[39m
+  1 SNES Function norm 3.449331255128e-12
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m2.456627e-12[39m
+  disp_y: [31m1.762073e-12[39m
+  disp_z: [31m1.660713e-12[39m
+
+Time Step 154, time = 0.385, dt = 0.0025
+  0 SNES Function norm 5.367985052952e+02
+      0 Linear |R| = [32m5.367985e+02[39m
+      1 Linear |R| = [32m2.169019e-13[39m
+  1 SNES Function norm 3.435405144213e-12
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m2.398840e-12[39m
+  disp_y: [31m2.000930e-12[39m
+  disp_z: [31m1.429634e-12[39m
+
+Time Step 155, time = 0.3875, dt = 0.0025
+  0 SNES Function norm 5.367563457752e+02
+      0 Linear |R| = [32m5.367563e+02[39m
+      1 Linear |R| = [32m2.037381e-13[39m
+  1 SNES Function norm 3.752754919724e-12
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m2.665080e-12[39m
+  disp_y: [31m1.859825e-12[39m
+  disp_z: [31m1.876584e-12[39m
+
+Time Step 156, time = 0.39, dt = 0.0025
+  0 SNES Function norm 5.367141974579e+02
+      0 Linear |R| = [32m5.367142e+02[39m
+      1 Linear |R| = [32m1.939567e-13[39m
+  1 SNES Function norm 3.672130368997e-12
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m2.683447e-12[39m
+  disp_y: [31m1.654689e-12[39m
+  disp_z: [31m1.882991e-12[39m
+
+Time Step 157, time = 0.3925, dt = 0.0025
+  0 SNES Function norm 5.366720599309e+02
+      0 Linear |R| = [32m5.366721e+02[39m
+      1 Linear |R| = [32m2.432658e-13[39m
+  1 SNES Function norm 4.145299937625e-12
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m3.274393e-12[39m
+  disp_y: [31m1.852786e-12[39m
+  disp_z: [31m1.740416e-12[39m
+
+Time Step 158, time = 0.395, dt = 0.0025
+  0 SNES Function norm 5.366299326488e+02
+      0 Linear |R| = [32m5.366299e+02[39m
+      1 Linear |R| = [32m2.132970e-13[39m
+  1 SNES Function norm 4.330938623850e-12
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m3.070882e-12[39m
+  disp_y: [31m2.330383e-12[39m
+  disp_z: [31m1.973836e-12[39m
+
+Time Step 159, time = 0.3975, dt = 0.0025
+  0 SNES Function norm 5.365878152883e+02
+      0 Linear |R| = [32m5.365878e+02[39m
+      1 Linear |R| = [32m1.891451e-13[39m
+  1 SNES Function norm 4.339068689589e-12
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m3.362750e-12[39m
+  disp_y: [31m1.897911e-12[39m
+  disp_z: [31m1.979233e-12[39m
+
+Time Step 160, time = 0.4, dt = 0.0025
+  0 SNES Function norm 5.365457074152e+02
+      0 Linear |R| = [32m5.365457e+02[39m
+      1 Linear |R| = [32m1.869246e-13[39m
+  1 SNES Function norm 4.337444925365e-12
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m3.040491e-12[39m
+  disp_y: [31m2.047478e-12[39m
+  disp_z: [31m2.318766e-12[39m
+
+Time Step 161, time = 0.4025, dt = 0.0025
+  0 SNES Function norm 4.158992906785e+06
+      0 Linear |R| = [32m4.158993e+06[39m
+      1 Linear |R| = [32m8.302198e-09[39m
+  1 SNES Function norm 8.687382051936e-09
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m6.021335e-09[39m
+  disp_y: [31m2.548119e-09[39m
+  disp_z: [31m5.720246e-09[39m
+
+Time Step 162, time = 0.405, dt = 0.0025
+  0 SNES Function norm 4.158992906785e+06
+      0 Linear |R| = [32m4.158993e+06[39m
+      1 Linear |R| = [32m8.055074e-09[39m
+  1 SNES Function norm 9.116705599503e-09
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m6.331178e-09[39m
+  disp_y: [31m2.579731e-09[39m
+  disp_z: [31m6.031210e-09[39m
+
+Time Step 163, time = 0.4075, dt = 0.0025
+  0 SNES Function norm 4.158992906785e+06
+      0 Linear |R| = [32m4.158993e+06[39m
+      1 Linear |R| = [32m8.388468e-09[39m
+  1 SNES Function norm 9.651301643141e-09
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m7.125896e-09[39m
+  disp_y: [31m2.520886e-09[39m
+  disp_z: [31m6.001197e-09[39m
+
+Time Step 164, time = 0.41, dt = 0.0025
+  0 SNES Function norm 4.158992906785e+06
+      0 Linear |R| = [32m4.158993e+06[39m
+      1 Linear |R| = [32m8.453640e-09[39m
+  1 SNES Function norm 9.986104162967e-09
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m7.208901e-09[39m
+  disp_y: [31m3.049964e-09[39m
+  disp_z: [31m6.200947e-09[39m
+
+Time Step 165, time = 0.4125, dt = 0.0025
+  0 SNES Function norm 4.158992906785e+06
+      0 Linear |R| = [32m4.158993e+06[39m
+      1 Linear |R| = [32m8.229848e-09[39m
+  1 SNES Function norm 1.089169380122e-08
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m8.094007e-09[39m
+  disp_y: [31m2.926325e-09[39m
+  disp_z: [31m6.674779e-09[39m
+
+Time Step 166, time = 0.415, dt = 0.0025
+  0 SNES Function norm 4.158992906785e+06
+      0 Linear |R| = [32m4.158993e+06[39m
+      1 Linear |R| = [32m7.831564e-09[39m
+  1 SNES Function norm 1.112865509446e-08
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m7.623903e-09[39m
+  disp_y: [31m3.272696e-09[39m
+  disp_z: [31m7.417043e-09[39m
+
+Time Step 167, time = 0.4175, dt = 0.0025
+  0 SNES Function norm 4.158992906785e+06
+      0 Linear |R| = [32m4.158993e+06[39m
+      1 Linear |R| = [32m8.247830e-09[39m
+  1 SNES Function norm 1.206923151275e-08
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m8.685854e-09[39m
+  disp_y: [31m2.917526e-09[39m
+  disp_z: [31m7.855592e-09[39m
+
+Time Step 168, time = 0.42, dt = 0.0025
+  0 SNES Function norm 4.158992906785e+06
+      0 Linear |R| = [32m4.158993e+06[39m
+      1 Linear |R| = [32m8.316839e-09[39m
+  1 SNES Function norm 1.327728442990e-08
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m9.822597e-09[39m
+  disp_y: [31m3.576986e-09[39m
+  disp_z: [31m8.185844e-09[39m
+
+Time Step 169, time = 0.4225, dt = 0.0025
+  0 SNES Function norm 4.158992906785e+06
+      0 Linear |R| = [32m4.158993e+06[39m
+      1 Linear |R| = [32m8.455857e-09[39m
+  1 SNES Function norm 1.474018655600e-08
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m1.117808e-08[39m
+  disp_y: [31m4.235392e-09[39m
+  disp_z: [31m8.624683e-09[39m
+
+Time Step 170, time = 0.425, dt = 0.0025
+  0 SNES Function norm 4.158992906785e+06
+      0 Linear |R| = [32m4.158993e+06[39m
+      1 Linear |R| = [32m8.353432e-09[39m
+  1 SNES Function norm 1.707389420096e-08
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m1.367975e-08[39m
+  disp_y: [31m4.681072e-09[39m
+  disp_z: [31m9.081297e-09[39m
+
+Time Step 171, time = 0.4275, dt = 0.0025
+  0 SNES Function norm 4.158992906785e+06
+      0 Linear |R| = [32m4.158993e+06[39m
+      1 Linear |R| = [32m8.582804e-09[39m
+  1 SNES Function norm 1.683306336528e-08
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m1.197744e-08[39m
+  disp_y: [31m4.971992e-09[39m
+  disp_z: [31m1.073183e-08[39m
+
+Time Step 172, time = 0.43, dt = 0.0025
+  0 SNES Function norm 4.158992906785e+06
+      0 Linear |R| = [32m4.158993e+06[39m
+      1 Linear |R| = [32m8.534359e-09[39m
+  1 SNES Function norm 1.766797490091e-08
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m1.371975e-08[39m
+  disp_y: [31m4.914782e-09[39m
+  disp_z: [31m9.988529e-09[39m
+
+Time Step 173, time = 0.4325, dt = 0.0025
+  0 SNES Function norm 4.158992906785e+06
+      0 Linear |R| = [32m4.158993e+06[39m
+      1 Linear |R| = [32m8.542786e-09[39m
+  1 SNES Function norm 2.207274341683e-08
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m1.752113e-08[39m
+  disp_y: [31m5.190652e-09[39m
+  disp_z: [31m1.238035e-08[39m
+
+Time Step 174, time = 0.435, dt = 0.0025
+  0 SNES Function norm 4.158992906785e+06
+      0 Linear |R| = [32m4.158993e+06[39m
+      1 Linear |R| = [32m7.941377e-09[39m
+  1 SNES Function norm 1.904151269205e-08
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m1.351780e-08[39m
+  disp_y: [31m5.470810e-09[39m
+  disp_z: [31m1.224412e-08[39m
+
+Time Step 175, time = 0.4375, dt = 0.0025
+  0 SNES Function norm 4.158992906785e+06
+      0 Linear |R| = [32m4.158993e+06[39m
+      1 Linear |R| = [32m8.534120e-09[39m
+  1 SNES Function norm 2.164302739924e-08
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m1.652378e-08[39m
+  disp_y: [31m5.756350e-09[39m
+  disp_z: [31m1.273772e-08[39m
+
+Time Step 176, time = 0.44, dt = 0.0025
+  0 SNES Function norm 4.158992906785e+06
+      0 Linear |R| = [32m4.158993e+06[39m
+      1 Linear |R| = [32m8.259678e-09[39m
+  1 SNES Function norm 2.369523532124e-08
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m1.924809e-08[39m
+  disp_y: [31m5.649052e-09[39m
+  disp_z: [31m1.261204e-08[39m
+
+Time Step 177, time = 0.4425, dt = 0.0025
+  0 SNES Function norm 4.158992906785e+06
+      0 Linear |R| = [32m4.158993e+06[39m
+      1 Linear |R| = [32m8.290558e-09[39m
+  1 SNES Function norm 2.788279350227e-08
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m2.276897e-08[39m
+  disp_y: [31m6.613521e-09[39m
+  disp_z: [31m1.467262e-08[39m
+
+Time Step 178, time = 0.445, dt = 0.0025
+  0 SNES Function norm 4.158992906785e+06
+      0 Linear |R| = [32m4.158993e+06[39m
+      1 Linear |R| = [32m8.228160e-09[39m
+  1 SNES Function norm 2.602247318620e-08
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m2.032380e-08[39m
+  disp_y: [31m6.783382e-09[39m
+  disp_z: [31m1.476815e-08[39m
+
+Time Step 179, time = 0.4475, dt = 0.0025
+  0 SNES Function norm 4.158992906785e+06
+      0 Linear |R| = [32m4.158993e+06[39m
+      1 Linear |R| = [32m8.389036e-09[39m
+  1 SNES Function norm 2.832467987273e-08
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m2.187190e-08[39m
+  disp_y: [31m8.099914e-09[39m
+  disp_z: [31m1.607169e-08[39m
+
+Time Step 180, time = 0.45, dt = 0.0025
+  0 SNES Function norm 4.158992906785e+06
+      0 Linear |R| = [32m4.158993e+06[39m
+      1 Linear |R| = [32m8.511448e-09[39m
+  1 SNES Function norm 3.154897920534e-08
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m2.495533e-08[39m
+  disp_y: [31m8.796440e-09[39m
+  disp_z: [31m1.718116e-08[39m
+
+Time Step 181, time = 0.4525, dt = 0.0025
+  0 SNES Function norm 1.380381581056e+07
+      0 Linear |R| = [32m1.380382e+07[39m
+      1 Linear |R| = [32m3.631765e-07[39m
+  1 SNES Function norm 3.857054640015e-07
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m3.723122e-07[39m
+  disp_y: [31m8.474005e-08[39m
+  disp_z: [31m5.451096e-08[39m
+
+Time Step 182, time = 0.455, dt = 0.0025
+  0 SNES Function norm 3.891021906264e-07
+      0 Linear |R| = [32m3.891022e-07[39m
+      1 Linear |R| = [32m3.325514e-19[39m
+  1 SNES Function norm 5.853417716819e-08
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m5.478245e-08[39m
+  disp_y: [31m1.405879e-08[39m
+  disp_z: [31m1.508257e-08[39m
+Finished Executing                                                                       [[33m 52.04 s[39m] [[33m  207 MB[39m]
+WARNING! There are options you set that were not used!
+WARNING! could be spelling mistake, etc!
+There are 2 unused database options. They are:
+Option left: name:-skip_petscrc (no value) source: command line
+Option left: name:-snes_linesearch_type value: basic source: code

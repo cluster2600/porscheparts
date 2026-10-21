@@ -1,0 +1,78 @@
+{
+  "exact_replacements": [
+    {
+      "count": 1,
+      "new": "def partial_after_proof(worker,receipt,closed,contract):\n \"\"\"Bind the actual partial-replacement after/saved proof without optimizer aliases.\"\"\"\n if (worker.get('schema')!='962-one-head-star-partial-replacement/v1'\n     or worker.get('status')!='completed_partial_head_replacement_whole_head_quality_gate_applied'\n     or worker.get('stage')!='completed_partial_repair_audits'\n     or any(worker.get(k) is not True for k in ['procedural_checks_passed','partial_replacement_completed','saved_mesh_identity_exact','bound_inputs_unchanged'])\n     or worker.get('after')!=worker.get('saved_reopen')\n     or worker.get('mesh_sha256')!=contract['MSH_sha256'] or worker.get('mesh_bytes')!=contract['MSH_bytes']\n     or worker.get('candidate_sha256')!=contract['partial_coordinate_candidate_sha256']\n     or worker.get('original_parent_MSH_sha256')!=contract['original_parent_MSH_sha256']\n     or receipt.get('returncode')!=2 or receipt.get('stop_reason') is not None\n     or receipt.get('readback_report_sha256')!=contract['partial_report_sha256']\n     or receipt.get('contract_sha256')!=contract['partial_contract_sha256']\n     or receipt.get('reader_sha256')!=contract['partial_reader_sha256']\n     or receipt.get('runner_sha256')!=contract['partial_runner_sha256']\n     or receipt.get('native_log_sha256')!=contract['partial_native_log_sha256']\n     or closed.get('returncode')!=2 or closed.get('stop_reason') is not None or closed.get('wait_reaped') is not True\n     or any(closed.get(k) is not True for k in ['all72_inputs_unchanged','all3_selected_native_runtime_unchanged','selected_NumPy_unchanged','actual_unchanged'])\n     or closed.get('actual_sha256')!=contract['partial_contract_sha256']\n     or closed.get('outputs')!=contract['partial_output_inventory']):\n  raise ValueError('Exact stopped partial-replacement after/saved proof required')\n proof=worker['after'];n=proof['tetrahedra'];quality=proof['quality'];keys={'sorted_node_tags_sha256','sorted_coordinates_sha256','sorted_tetra_tags_sha256','tagged_tetra_connectivity_sha256'}\n counts={k:proof[k] for k in contract['expected_saved_counts']}\n if (counts!=contract['expected_saved_counts'] or any(type(v) is not int for v in counts.values())\n     or set(proof['array_sha256s'])!=keys\n     or set(quality)!={'minimum_jacobian','native_volume_mm3','minimum_SICN','independent_signed_volume_mm3'}\n     or any(type(row.get('count')) is not int or row['count']!=n or type(row.get('nonpositive_count')) is not int for row in quality.values())\n     or quality['minimum_SICN']['below_point1_count']-quality['minimum_SICN']['nonpositive_count']!=contract['expected_positive_poor_total']\n     or quality['minimum_SICN']['nonpositive_count']!=contract['diagnostic_maximum_nonpositive_cells']\n     or worker.get('actual_whole_head_positive_poor_count')!=contract['expected_positive_poor_total']\n     or worker.get('actual_whole_head_SICN_gate_passed') is not (quality['minimum_SICN']['minimum']>=.1 and quality['minimum_SICN']['nonpositive_count']==0)\n     or proof['source_boundary_identity']!=contract['expected_source_boundary_identity']):\n  raise ValueError('Complete current partial-head arrays/counts/quality/boundary proof required')\n return proof",
+      "old": "def optimizer_after_proof(worker,receipt,contract):\n \"\"\"Select the one actual optimized worker's after proof, never a reader alias.\"\"\"\n if (receipt.get('returncode')!=2 or receipt.get('stop_reason') is not None\n     or receipt.get('bound_inputs_unchanged') is not True or receipt.get('worker_report')!=worker\n     or worker.get('optimizer_returned') is not True or worker.get('element_cache_refresh_completed') is not True\n     or worker.get('saved_mesh_identity_exact') is not True\n     or receipt.get('mesh_sha256')!=contract['MSH_sha256'] or worker.get('mesh_sha256')!=contract['MSH_sha256']\n     or receipt.get('mesh_bytes')!=contract['MSH_bytes'] or worker.get('mesh_bytes')!=contract['MSH_bytes']\n     or worker.get('candidate_sha256')!=contract['candidate_sha256']):\n  raise ValueError('Exact completed optimized-worker after proof required')\n proof=worker['after'];n=proof['tetrahedra'];quality=proof['quality'];keys={'sorted_node_tags_sha256','sorted_coordinates_sha256','sorted_tetra_tags_sha256','tagged_tetra_connectivity_sha256'}\n if (type(n) is not int or n<=0 or set(proof['array_sha256s'])!=keys\n     or set(quality)!={'minimum_jacobian','native_volume_mm3','minimum_SICN','independent_signed_volume_mm3'}\n     or any(type(row.get('count')) is not int or row['count']!=n or type(row.get('nonpositive_count')) is not int for row in quality.values())\n     or quality['minimum_SICN']['below_point1_count']-quality['minimum_SICN']['nonpositive_count']!=contract['expected_positive_poor_total']\n     or quality['minimum_SICN']['nonpositive_count']!=contract['diagnostic_maximum_nonpositive_cells']):\n  raise ValueError('Complete actual worker-after arrays, metric counts and poor-cell baseline required')\n return proof"
+    },
+    {
+      "count": 1,
+      "new": "w=ROOT/'work/962-engineering/head-star-replacement-001';worker=json.loads((w/'readback-report.json').read_text());receipt=json.loads((w/'execution-receipt.json').read_text());closed=json.loads((ROOT/contract['partial_root_closed_result']).read_text());admission=json.loads((ROOT/contract['surface_admission']).read_text())\nproof=partial_after_proof(worker,receipt,closed,contract)",
+      "old": "w=ROOT/'work/962-engineering/atomic-cavity-plane-clip-cap-assembly-volume-delaunay-netgen-postexport-001';worker=json.loads((w/'worker-report.json').read_text());receipt=json.loads((w/'receipt.json').read_text());admission=json.loads((w/'surface-admission.json').read_text())\nproof=optimizer_after_proof(worker,receipt,contract)"
+    },
+    {
+      "count": 1,
+      "new": "for filename,key in [('reader.py','partial_reader_sha256'),('run_readback.py','partial_runner_sha256'),('frozen-contract.json','partial_contract_sha256')]:\n if sha(w/filename)!=contract[key]:raise ValueError('Executed partial source/caller/contract copy changed')",
+      "old": "for name,h in receipt['source_sha256s'].items():\n if sha(ROOT/name)!=h or sha(w/'source-snapshots'/Path(name).name)!=h:raise ValueError('Executed source/snapshot changed')"
+    },
+    {
+      "count": 1,
+      "new": "positive_poor_counts={str(k):0 for k in range(5)};positive_poor_representatives={};poor_indices=[];positive_poor_records=[]",
+      "old": "positive_poor_counts={str(k):0 for k in range(5)};positive_poor_representatives={};poor_indices=[]"
+    },
+    {
+      "count": 1,
+      "new": "    poor_indices.extend((offset+np.flatnonzero((q>0)&(q<.1))).tolist())\n    for local in np.flatnonzero((q>0)&(q<.1)):\n     index=offset+int(local);conn=tet_nodes[index];ids=np.searchsorted(tags,conn)\n     if np.any(ids>=len(tags)) or not np.array_equal(tags[ids],conn):raise ValueError('Positive poor cell references missing saved node')\n     coordinates=xyz[ids].tolist();boundary_nodes=int(np.count_nonzero((conn>=1)&(conn<=nv)))\n     positive_poor_records.append(dict(native_array_index=index,tetrahedron_tag=int(tet_tags[index]),node_tags=conn.tolist(),coordinates_mm=coordinates,binary64_hex=[[float(v).hex() for v in point] for point in coordinates],SICN=float(q[local]),original_boundary_node_count=boundary_nodes,interior_node_count=4-boundary_nodes))",
+      "old": "    poor_indices.extend((offset+np.flatnonzero((q>0)&(q<.1))).tolist())"
+    },
+    {
+      "count": 2,
+      "new": "[*bad_tetrahedra,*positive_poor_representatives.values(),*positive_poor_records]",
+      "old": "[*bad_tetrahedra,*positive_poor_representatives.values()]"
+    },
+    {
+      "count": 1,
+      "new": "total/contract['candidate_volume_mm3']",
+      "old": "total/worker['candidate_volume_reference_mm3']"
+    },
+    {
+      "count": 1,
+      "new": " # Fresh bins are measured here; no old210 partition is a prerequisite.\n",
+      "old": " prior=json.loads((ROOT/contract['completed_saved_diagnosis']).read_text())\n if (prior.get('status')!='direct_saved_file_readback_completed' or prior.get('bound_inputs_unchanged') is not True\n     or prior['positive_poor_SICN_cells']['total']!=positive_poor_total\n     or prior['positive_poor_SICN_cells']['by_original_boundary_node_count']!=positive_poor_counts\n     or positive_poor_counts!=contract['expected_positive_poor_bins']):\n  raise ValueError('Complete current210 partition and prior stopped diagnosis required')\n"
+    },
+    {
+      "count": 1,
+      "new": " poor_indices.sort(key=lambda i:int(tet_tags[i]))\n positive_poor_records.sort(key=lambda row:row['tetrahedron_tag'])\n if [row['tetrahedron_tag'] for row in positive_poor_records]!=[int(tet_tags[i]) for i in poor_indices]:raise ValueError('Complete ordered current positive-poor records required')\n report['positive_poor_SICN_cells']['complete_tagged_cells']=positive_poor_records",
+      "old": " poor_indices.sort(key=lambda i:int(tet_tags[i]))"
+    },
+    {
+      "count": 1,
+      "new": " unseedable_poor_indices=sorted(set(poor_indices)-set(incident_indices),key=lambda i:int(tet_tags[i]))",
+      "old": " if not set(poor_indices)<=set(incident_indices):\n  raise ValueError('A baseline poor cell has no selected interior member; retain refusal, never omit it')"
+    },
+    {
+      "count": 1,
+      "new": "  all_seed_stars_complete_including_initially_good_and_shared_cells=True,\n  all_positive_poor_rows_covered_by_movable_stars=not unseedable_poor_indices,\n  unseedable_positive_poor_tetrahedron_tags=[int(tet_tags[i]) for i in unseedable_poor_indices],",
+      "old": "  all_seed_stars_complete_including_initially_good_and_shared_cells=True,"
+    },
+    {
+      "count": 1,
+      "new": " report['single_partial_replacement_saved_proof']=dict(report_sha256=sha(w/'readback-report.json'),field='after',after_equals_saved_reopen=True,independent_prior_reader_alias_used=False,old210_bins_reused=False)",
+      "old": " report['single_optimized_worker_proof']=dict(worker_report_sha256=sha(w/'worker-report.json'),field='after',independent_prior_reader_alias_used=False)"
+    }
+  ],
+  "no_import_functions_tests_or_native_execution_by_preparer": true,
+  "preserved_reader": "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-netgen-full-stars-prep-001/reader.py",
+  "preserved_reader_sha256": "d978448ac685730c8ab1cf652dec23a00227eb5369869b89d6068017e678c5d5",
+  "runner_byte_exact_sha256": "4fb37080e1f3847b8b1d14d5df467799d8e9f7bf81b0a09170e5850857de3943",
+  "schema": "962-specific-partial-head-census-source-delta/v1",
+  "selected_reader_sha256": "afcad55f5e716b90ff4bac39cee4268101a21c4bbd9078f950b9bf372948a05d",
+  "unchanged_function_ASTs": [
+    "classify_positive_poor_chunk",
+    "require_after_match",
+    "classifications",
+    "movable_from_poor_rows",
+    "incident_positions"
+  ],
+  "whole_byte_reverse_verified": true
+}
