@@ -1,0 +1,169 @@
+{
+  "status": "native_classifier_and_cut_controls_recorded",
+  "scope": "Diagnostic controls; no geometry mutation or candidate adoption",
+  "classifiers": {
+    "baseline": {
+      "infinite_point": "TopAbs_State.TopAbs_OUT",
+      "nominal_datum_probes": [
+        {
+          "label": "central_pad_origin",
+          "point_mm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "state": "TopAbs_State.TopAbs_IN"
+        },
+        {
+          "label": "nominal_lightening_void",
+          "point_mm": [
+            20.0,
+            0.0,
+            0.0
+          ],
+          "state": "TopAbs_State.TopAbs_OUT"
+        },
+        {
+          "label": "outside_bounds",
+          "point_mm": [
+            1000.0,
+            1000.0,
+            1000.0
+          ],
+          "state": "TopAbs_State.TopAbs_OUT"
+        }
+      ]
+    },
+    "candidate": {
+      "infinite_point": "TopAbs_State.TopAbs_OUT",
+      "nominal_datum_probes": [
+        {
+          "label": "central_pad_origin",
+          "point_mm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "state": "TopAbs_State.TopAbs_IN"
+        },
+        {
+          "label": "nominal_lightening_void",
+          "point_mm": [
+            20.0,
+            0.0,
+            0.0
+          ],
+          "state": "TopAbs_State.TopAbs_OUT"
+        },
+        {
+          "label": "outside_bounds",
+          "point_mm": [
+            1000.0,
+            1000.0,
+            1000.0
+          ],
+          "state": "TopAbs_State.TopAbs_OUT"
+        }
+      ]
+    },
+    "patch0": {
+      "infinite_point": "TopAbs_State.TopAbs_OUT",
+      "nominal_datum_probes": [
+        {
+          "label": "central_pad_origin",
+          "point_mm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "state": "TopAbs_State.TopAbs_OUT"
+        },
+        {
+          "label": "nominal_lightening_void",
+          "point_mm": [
+            20.0,
+            0.0,
+            0.0
+          ],
+          "state": "TopAbs_State.TopAbs_OUT"
+        },
+        {
+          "label": "outside_bounds",
+          "point_mm": [
+            1000.0,
+            1000.0,
+            1000.0
+          ],
+          "state": "TopAbs_State.TopAbs_OUT"
+        }
+      ]
+    },
+    "patch1": {
+      "infinite_point": "TopAbs_State.TopAbs_OUT",
+      "nominal_datum_probes": [
+        {
+          "label": "central_pad_origin",
+          "point_mm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "state": "TopAbs_State.TopAbs_OUT"
+        },
+        {
+          "label": "nominal_lightening_void",
+          "point_mm": [
+            20.0,
+            0.0,
+            0.0
+          ],
+          "state": "TopAbs_State.TopAbs_OUT"
+        },
+        {
+          "label": "outside_bounds",
+          "point_mm": [
+            1000.0,
+            1000.0,
+            1000.0
+          ],
+          "state": "TopAbs_State.TopAbs_OUT"
+        }
+      ]
+    }
+  },
+  "cuts": [
+    {
+      "name": "baseline-self",
+      "solid_count": 0,
+      "volume_mm3": 0.0
+    },
+    {
+      "name": "baseline-independent-import",
+      "solid_count": 0,
+      "volume_mm3": 0.0
+    },
+    {
+      "name": "candidate-self",
+      "solid_count": 0,
+      "volume_mm3": 0.0
+    }
+  ],
+  "inputs": {
+    "baseline": {
+      "path": "work/carrier-process-20261017/bounded-webs-first-window-corner-slide-preparation-001/output-001/candidate-native.brep",
+      "sha256": "24af058467fd82a9f0c1d391bf947d427dffd311371cf8f73dafa492d204f4fd"
+    },
+    "candidate": {
+      "path": "work/carrier-resume-20261020/nurbs-assembly-together-001/output/fuse-all.brep",
+      "sha256": "09a2d61e212af294b15cce6f73f12631b99c066f693fb033110d99c06f9830ee"
+    },
+    "patch0": {
+      "path": "work/carrier-resume-20261020/nurbs-root-patch-001/output/patch-0.brep",
+      "sha256": "9b2dae417fb2c9ffc76d40dd80978be7eb6c019c73b6f5b3a4f51372cd861771"
+    },
+    "patch1": {
+      "path": "work/carrier-resume-20261020/nurbs-root-patch-001/output/patch-1.brep",
+      "sha256": "397571f0c8b601da97a72abde026f9e146f346a7a760604efc12b827095681eb"
+    }
+  }
+}

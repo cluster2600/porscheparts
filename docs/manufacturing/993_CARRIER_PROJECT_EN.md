@@ -2,7 +2,9 @@
 
 ### From a reference part to a reproducible manufacturing workflow
 
-**18 October 2026 · Engineering paused at the user's request**
+**20 October 2026 · Engineering resumed — numerical root hotspots under investigation**
+
+[Latest progress, images and reproducible prototype](../reports/carrier-resume-20261020/README.md). The 18 October checkpoint below remains the retained 24af baseline.
 
 [Quick start](CARRIER_QUICK_START_EN.md) · [Software](#the-software-chain) · [Results](#what-the-calculations-show) · [Evidence](#files-and-evidence) · [Resume point](#where-to-resume)
 
@@ -184,8 +186,7 @@ chain has not yet become one complete portable command.
 
 ## Where to resume
 
-Engineering execution is paused. The workers and the interrupted cache job
-have been stopped; no continuation is scheduled by this checkpoint.
+The user resumed engineering on 20 October. The [current report](../reports/carrier-resume-20261020/README.md) now documents three executed routes: explicit NURBS reinforcement, a native rounded-cavity study, and PicoGK/MeshLib volumetric rounding. The first two new mechanical screens expose severe local hotspots. The restored PicoGK surface passes its complete audit, six shank gauges and a separate exact open-tool-column exclusion certificate. Its new 2,661,257-cell volume passes the full exact orientation/connectivity audit. Its nominal mass remains below **1.30 kg**. Mechanical convergence and full print preparation are still open. The earlier interrupted layer job remains stopped; its partial results stay with the baseline.
 
 1. Develop an endpoint-safe junction correction while keeping the **1.30 kg**
    limit and protected interfaces.
@@ -196,4 +197,6 @@ have been stopped; no continuation is scheduled by this checkpoint.
 4. Assemble the matching manufacturing files, settings, drawings and reports
    into one handover package.
 
-These are retained resume points. They start only after a new user request.
+These remain the downstream engineering steps for the resumed work. These numerical variants remain separate studies; none has replaced the selected catalogue geometry.
+
+The [matched-order continuation](../reports/carrier-resume-20261020/CONVERGENCE.md) adds complete two-way auxiliary-surface fidelity, whole-element quadratic mapping certificates and completed P1/P2 mechanics under the same continuous bore tractions. The observed stiffness difference leaves convergence open.

@@ -1,0 +1,20 @@
+--- pcgsolver-original.c
++++ pcgsolver-tightened.c
+@@ -151,7 +151,7 @@
+   ITG			i=0, k=0, ncg=0,iam,ier=0;
+   double		alpha=0.0, ekm1=0.0, rrho=0.0;
+   double		rrho1=0.0, gz=0.0, qk=0.0;
+-  double          c1=0.005,qam,err,ram=0;
++  double          c1=1.e-12,qam,err,ram=0;
+   
+   
+   /*  initialize result and residual vectors  */
+@@ -505,7 +505,7 @@
+ 		double *eps, ITG *niter, double *r, double *p, double *z)
+ {
+ 	ITG			i=0, k=0, ncg=0,iam;
+-	double		ekm1=0.0,c1=0.005,qam,ram=0.,err;
++	double		ekm1=0.0,c1=1.e-12,qam,ram=0.,err;
+ 	double		rr=0.0, pz=0.0, qk=0.0, rro=0.0;
+ 
+ 

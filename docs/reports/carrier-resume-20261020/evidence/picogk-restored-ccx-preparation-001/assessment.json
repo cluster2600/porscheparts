@@ -1,0 +1,210 @@
+{
+  "geometry_study_id": "carrier-picogk-closing-restored-pad-20261020",
+  "numeric_field_width_limit": 20,
+  "complete_coordinate_transport_L1_bound_mm": "1/144115188075855872",
+  "complete_coordinate_transport_L1_bound_mm_float": 6.938893903907228e-18,
+  "source_derivation": {
+    "parent_source_sha256": "f81980a9d1232964ba9ebea96f32de21edf22c3c37041801bb4147b7e7a9001e",
+    "changes": [
+      "Explicit voxel-surface nominal bore selection: 0.06 mm radial band, inward radial normal alignment >= 0.9 and declared axial bounds",
+      "Select SPOOLES after affine-control comparison",
+      "Serialize every numeric value within 20 characters; quantify complete coordinate transport displacement"
+    ]
+  },
+  "status": "nominal_C3D4_mechanical_inputs_prepared_not_solved",
+  "nodes": 745347,
+  "C3D4_elements": 2661257,
+  "bore_groups": {
+    "bolt0": {
+      "triangles": 2063,
+      "nodes": 1181,
+      "radial_deviation_max_mm": 0.059996128796928616,
+      "bounds_mm": [
+        [
+          -55.55306625366211,
+          -25.553043365478516,
+          -3.918196678161621
+        ],
+        [
+          -44.44624710083008,
+          -14.446964263916016,
+          3.9182186126708984
+        ]
+      ]
+    },
+    "bolt1": {
+      "triangles": 2053,
+      "nodes": 1177,
+      "radial_deviation_max_mm": 0.059985453058135185,
+      "bounds_mm": [
+        [
+          -55.553035736083984,
+          14.446961402893066,
+          -3.918210983276367
+        ],
+        [
+          -44.446250915527344,
+          25.553098678588867,
+          3.91819429397583
+        ]
+      ]
+    },
+    "bolt2": {
+      "triangles": 2054,
+      "nodes": 1177,
+      "radial_deviation_max_mm": 0.059998104864289026,
+      "bounds_mm": [
+        [
+          44.44694900512695,
+          -25.55303955078125,
+          -3.918196678161621
+        ],
+        [
+          55.55375289916992,
+          -14.446964263916016,
+          3.9182186126708984
+        ]
+      ]
+    },
+    "bolt3": {
+      "triangles": 2053,
+      "nodes": 1178,
+      "radial_deviation_max_mm": 0.059985453058135185,
+      "bounds_mm": [
+        [
+          44.446964263916016,
+          14.446961402893066,
+          -3.918210983276367
+        ],
+        [
+          55.553749084472656,
+          25.5531005859375,
+          3.918194532394409
+        ]
+      ]
+    },
+    "end0": {
+      "triangles": 13715,
+      "nodes": 7047,
+      "radial_deviation_max_mm": 0.05929605056853582,
+      "bounds_mm": [
+        [
+          -286.7734375,
+          -22.923744201660156,
+          -6.776785850524902
+        ],
+        [
+          -273.2261657714844,
+          22.92289924621582,
+          6.776859760284424
+        ]
+      ]
+    },
+    "end1": {
+      "triangles": 13762,
+      "nodes": 7073,
+      "radial_deviation_max_mm": 0.05929819235463274,
+      "bounds_mm": [
+        [
+          273.2265625,
+          -22.923765182495117,
+          -6.776785850524902
+        ],
+        [
+          286.77386474609375,
+          22.92291259765625,
+          6.776859760284424
+        ]
+      ]
+    }
+  },
+  "node_selection_tolerance_mm": 0.06,
+  "face_inward_radial_alignment_minimum": 0.9,
+  "central_axial_half_length_mm": 4.0,
+  "end_axial_half_length_mm": 23.0,
+  "selection_tolerance_is_dimensional_acceptance": false,
+  "support_model": "All translations fixed on both nominal end-bore groups",
+  "load_distribution": "Unchanged retained weighted minimum-norm six-component distributor; no contact or bolt preload",
+  "loads": {
+    "gravity": {
+      "force_N": [
+        3.674428925189155e-18,
+        -5.4183003569963084e-17,
+        -2000.0000000001085
+      ],
+      "moment_Nmm": [
+        1.9332091483192926e-11,
+        5.523759227799019e-11,
+        6.611464847816606e-16
+      ],
+      "requested": {
+        "force_N": [
+          0,
+          0,
+          -2000
+        ],
+        "moment_Nmm": [
+          0,
+          0,
+          0
+        ]
+      },
+      "deck_sha256": "1d194f5c336e236631d9cedf3fec41774701604ecdf2557330cc189d81060686"
+    },
+    "combined": {
+      "force_N": [
+        -4.739542092124793e-13,
+        -1.5516017290440054e-15,
+        -4000.0000000002296
+      ],
+      "moment_Nmm": [
+        -1.8835066839528736e-10,
+        849999.9999999999,
+        -1.2168044349891716e-13
+      ],
+      "requested": {
+        "force_N": [
+          0,
+          0,
+          -4000
+        ],
+        "moment_Nmm": [
+          0,
+          850000,
+          0
+        ]
+      },
+      "deck_sha256": "fc0eb7f8002232a4860ca354a377f2b3beed19cf32566e666e4a52abe0126bce"
+    }
+  },
+  "material": {
+    "name": "Ti-6Al-4V dense elastic reference only",
+    "source": "https://www.timet.com/documents/datasheets/alpha-and-beta-alloys/timetal-6-4.pdf",
+    "E_MPa": 107000.0,
+    "nu": 0.31,
+    "density_tonne_mm3": 4.42e-09,
+    "expansion_per_K": 9e-06,
+    "strength_allowable_MPa": null,
+    "fatigue_curve": null,
+    "manufactured_state_qualified": false
+  },
+  "solver_requested": "CalculiX SPOOLES",
+  "source_sha256": {
+    "work/carrier-resume-20261020/picogk-restored-tetgen-outward-001/volume.npz": "71ac986f096040cf3ab5a715783753a96fe14133fcdba9e8e8b06205a9e77581",
+    "/Users/maxime/.codex/worktrees/993-carrier-revalidation/3dprinting993/work/carrier-resume-20261020/picogk-mechanics-study.json": "426c4925eefd9a0a0ae8250ec9bf0e9a63c543497d4d774f9025e73779c7111a",
+    "/Users/maxime/.codex/worktrees/993-carrier-revalidation/3dprinting993/parts/993-eng-carrier-0001/source/bionic-20261011/simulate.py": "87be70c955e2532255fdee37cf3a686d970cb421bc9bf6094ca867f1f3098e77",
+    "/Users/maxime/.codex/worktrees/993-carrier-revalidation/3dprinting993/work/carrier-resume-20261020/picogk-restored-tetgen-outward-001/assessment.json": "87b68ca6ad30148ea5eb94f4cfcf3faff9911811f86fb8cc37e81921a26dc7fb",
+    "/Users/maxime/.codex/worktrees/993-carrier-revalidation/3dprinting993/parts/993-eng-carrier-0001/source/design-20261016/resume-20261020/prepare_voxel_ccx_mechanics.py": "18eb595e0c46a639ad55aec56d4299d771298adf93d34a873431614790a044ab"
+  },
+  "output_sha256": {
+    "combined.inp": "fc0eb7f8002232a4860ca354a377f2b3beed19cf32566e666e4a52abe0126bce",
+    "distribute-source.py": "d1a45a3993f9234e54e023037f21d88a81dc3efecbae3e1f9bff63a87d5cb493",
+    "gravity.inp": "1d194f5c336e236631d9cedf3fec41774701604ecdf2557330cc189d81060686",
+    "gravity-loads.npz": "19c6bc412474cfe7b8434e2a17a3639bce3c6d37cccf9136046e531830f2f881",
+    "transport.npz": "18ec21a2785e6f739d1040bb535f05656718d81253a33400f167ac2b8188e9f5",
+    "combined-loads.npz": "8f5d0cf872bb0cac45eec77b2dd2943cf81c5a8b862efa4e84203be9db999be8",
+    "mesh.inp": "ecbaee9c75d0c628f78734219442c2386fbdac427bd945d7576029cd7f8dc39c",
+    "groups.npz": "781d115872185351867fa8aaa3c9490a44e04dbc106836c7a39d887790985636"
+  },
+  "mechanical_mesh_admitted": false
+}

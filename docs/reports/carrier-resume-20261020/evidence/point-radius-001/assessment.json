@@ -1,0 +1,1496 @@
+{
+  "status": "native_construction_refused",
+  "Compute_call_count": 1,
+  "candidate_adopted": false,
+  "downstream_checks": "pending",
+  "declaration": "One R1 point-radius construction, not the old quartic",
+  "contours": [
+    {
+      "source_selected_path": [
+        76,
+        179,
+        337,
+        350
+      ],
+      "public_method_docs": {
+        "Add": "Add(*args, **kwargs)\nOverloaded function.\n\n1. Add(self: OCP.OCP.ChFi3d.ChFi3d_FilBuilder, E: OCP.OCP.TopoDS.TopoDS_Edge) -> None\n\ninitialisation of a contour with the first edge (the following are found by propagation). Attention, you need to start with SetRadius.\n\n2. Add(self: OCP.OCP.ChFi3d.ChFi3d_FilBuilder, Radius: float, E: OCP.OCP.TopoDS.TopoDS_Edge) -> None\n\ninitialisation of the constant vector the corresponding 1st edge.\n",
+        "SetRadius": "SetRadius(*args, **kwargs)\nOverloaded function.\n\n1. SetRadius(self: OCP.OCP.ChFi3d.ChFi3d_FilBuilder, C: OCP.OCP.Law.Law_Function, IC: int, IinC: int) -> None\n\nSet the radius of the contour of index IC.\n\n2. SetRadius(self: OCP.OCP.ChFi3d.ChFi3d_FilBuilder, Radius: float, IC: int, E: OCP.OCP.TopoDS.TopoDS_Edge) -> None\n\nSet a constant on edge E of the contour of index IC. Since then E is flagged as constant.\n\n3. SetRadius(self: OCP.OCP.ChFi3d.ChFi3d_FilBuilder, Radius: float, IC: int, V: OCP.OCP.TopoDS.TopoDS_Vertex) -> None\n\nSet a vector on vertex V of the contour of index IC.\n\n4. SetRadius(self: OCP.OCP.ChFi3d.ChFi3d_FilBuilder, UandR: OCP.OCP.gp.gp_XY, IC: int, IinC: int) -> None\n\nSet a vertex on the point of parametre U in the edge IinC of the contour of index IC\n",
+        "GetLaw": "GetLaw(self: OCP.OCP.ChFi3d.ChFi3d_FilBuilder, IC: int, E: OCP.OCP.TopoDS.TopoDS_Edge) -> OCP.OCP.Law.Law_Function\n\nReturns the rule of elementary evolution of the part to variable vector framing E, returns a rule zero if E is flagged as edge constant.\n",
+        "Compute": "Compute(self: OCP.OCP.ChFi3d.ChFi3d_Builder) -> None\n\ngeneral calculation of geometry on all edges, topologic reconstruction.\n"
+      },
+      "actual_contour": [
+        76,
+        179,
+        337,
+        350
+      ],
+      "actual_domain_mm": [
+        0.0,
+        83.97984790055281
+      ],
+      "point_radius_inputs_mm": [
+        [
+          0.0,
+          0.0
+        ],
+        [
+          41.989923950276406,
+          1.0
+        ],
+        [
+          83.97984790055281,
+          0.0
+        ]
+      ],
+      "IinC": 0,
+      "setter_events": [
+        {
+          "absolute_abscissa_mm": 0.0,
+          "radius_mm": 0.0,
+          "IinC": 0,
+          "completed": true
+        },
+        {
+          "absolute_abscissa_mm": 41.989923950276406,
+          "radius_mm": 1.0,
+          "IinC": 0,
+          "completed": true
+        },
+        {
+          "absolute_abscissa_mm": 83.97984790055281,
+          "radius_mm": 0.0,
+          "IinC": 0,
+          "completed": true
+        }
+      ],
+      "standalone_interpolation_before_any_assertion": {
+        "type": "Law_Interpol",
+        "method_docs": {
+          "Bounds": "Bounds(self: OCP.OCP.Law.Law_BSpFunc) -> tuple[float, float]\n",
+          "Value": "Value(self: OCP.OCP.Law.Law_BSpFunc, X: float) -> float\n",
+          "D1": "D1(self: OCP.OCP.Law.Law_BSpFunc, X: float) -> tuple[float, float]\n"
+        },
+        "bounds_mm": [
+          0.0,
+          83.97984790055281
+        ],
+        "curve": {
+          "type": "Law_BSpline",
+          "degree": 3,
+          "poles": [
+            0.0,
+            0.0,
+            2.0,
+            -0.0,
+            0.0
+          ],
+          "knots_mm": [
+            0.0,
+            41.989923950276406,
+            83.97984790055281
+          ],
+          "multiplicities": [
+            4,
+            1,
+            4
+          ],
+          "rational": false,
+          "periodic": false
+        },
+        "probes": [
+          {
+            "normalized_probe": 0.0,
+            "abscissa_mm": 0.0,
+            "value_mm": 0.0,
+            "D1": [
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "normalized_probe": 0.25,
+            "abscissa_mm": 20.994961975138203,
+            "value_mm": 0.5,
+            "D1": [
+              0.5,
+              0.035722855839802635
+            ]
+          },
+          {
+            "normalized_probe": 0.5,
+            "abscissa_mm": 41.989923950276406,
+            "value_mm": 1.0,
+            "D1": [
+              0.9999999999999999,
+              -4.874954371417003e-18
+            ]
+          },
+          {
+            "normalized_probe": 0.75,
+            "abscissa_mm": 62.98488592541461,
+            "value_mm": 0.5,
+            "D1": [
+              0.49999999999999983,
+              -0.03572285583980264
+            ]
+          },
+          {
+            "normalized_probe": 1.0,
+            "abscissa_mm": 83.97984790055281,
+            "value_mm": 0.0,
+            "D1": [
+              -3.260831515735997e-16,
+              -5.53338648444384e-18
+            ]
+          }
+        ],
+        "all_scalar_binary64_hex": {
+          "0": "0x0.0p+0",
+          "1": "0x0.0p+0",
+          "2": "0x1.0000000000000p+1",
+          "3": "-0x0.0p+0",
+          "4": "0x0.0p+0",
+          "5": "0x0.0p+0",
+          "6": "0x1.4feb5d3f7fb6ep+5",
+          "7": "0x1.4feb5d3f7fb6ep+6"
+        }
+      },
+      "temporary_SplitDone_manually_changed": false,
+      "temporary_ElSpine_created": false,
+      "exact_standalone_certificate": {
+        "passed": true,
+        "exact_serialized_binary64_arithmetic": true,
+        "radius_range_mm": [
+          0,
+          1
+        ],
+        "zero_endpoint_and_join_derivatives": true,
+        "domains_join": true,
+        "pieces": [
+          {
+            "domain_mm": [
+              "0",
+              "2954778216496567/70368744177664"
+            ],
+            "local_power_coefficients": [
+              "0",
+              "0",
+              "3",
+              "-2"
+            ],
+            "derivative_Bernstein": [
+              "0",
+              "3",
+              "0"
+            ],
+            "start": "0",
+            "end": "1",
+            "monotone": true,
+            "passed": true
+          },
+          {
+            "domain_mm": [
+              "2954778216496567/70368744177664",
+              "2954778216496567/35184372088832"
+            ],
+            "local_power_coefficients": [
+              "1",
+              "0",
+              "-3",
+              "2"
+            ],
+            "derivative_Bernstein": [
+              "0",
+              "-3",
+              "0"
+            ],
+            "start": "1",
+            "end": "0",
+            "monotone": true,
+            "passed": true
+          }
+        ],
+        "scope": "Standalone interpolant only; not the law consumed by Compute"
+      }
+    },
+    {
+      "source_selected_path": [
+        536,
+        570,
+        445,
+        443
+      ],
+      "public_method_docs": {
+        "Add": "Add(*args, **kwargs)\nOverloaded function.\n\n1. Add(self: OCP.OCP.ChFi3d.ChFi3d_FilBuilder, E: OCP.OCP.TopoDS.TopoDS_Edge) -> None\n\ninitialisation of a contour with the first edge (the following are found by propagation). Attention, you need to start with SetRadius.\n\n2. Add(self: OCP.OCP.ChFi3d.ChFi3d_FilBuilder, Radius: float, E: OCP.OCP.TopoDS.TopoDS_Edge) -> None\n\ninitialisation of the constant vector the corresponding 1st edge.\n",
+        "SetRadius": "SetRadius(*args, **kwargs)\nOverloaded function.\n\n1. SetRadius(self: OCP.OCP.ChFi3d.ChFi3d_FilBuilder, C: OCP.OCP.Law.Law_Function, IC: int, IinC: int) -> None\n\nSet the radius of the contour of index IC.\n\n2. SetRadius(self: OCP.OCP.ChFi3d.ChFi3d_FilBuilder, Radius: float, IC: int, E: OCP.OCP.TopoDS.TopoDS_Edge) -> None\n\nSet a constant on edge E of the contour of index IC. Since then E is flagged as constant.\n\n3. SetRadius(self: OCP.OCP.ChFi3d.ChFi3d_FilBuilder, Radius: float, IC: int, V: OCP.OCP.TopoDS.TopoDS_Vertex) -> None\n\nSet a vector on vertex V of the contour of index IC.\n\n4. SetRadius(self: OCP.OCP.ChFi3d.ChFi3d_FilBuilder, UandR: OCP.OCP.gp.gp_XY, IC: int, IinC: int) -> None\n\nSet a vertex on the point of parametre U in the edge IinC of the contour of index IC\n",
+        "GetLaw": "GetLaw(self: OCP.OCP.ChFi3d.ChFi3d_FilBuilder, IC: int, E: OCP.OCP.TopoDS.TopoDS_Edge) -> OCP.OCP.Law.Law_Function\n\nReturns the rule of elementary evolution of the part to variable vector framing E, returns a rule zero if E is flagged as edge constant.\n",
+        "Compute": "Compute(self: OCP.OCP.ChFi3d.ChFi3d_Builder) -> None\n\ngeneral calculation of geometry on all edges, topologic reconstruction.\n"
+      },
+      "actual_contour": [
+        536,
+        570,
+        445,
+        443
+      ],
+      "actual_domain_mm": [
+        0.0,
+        83.97984790377022
+      ],
+      "point_radius_inputs_mm": [
+        [
+          0.0,
+          0.0
+        ],
+        [
+          41.98992395188511,
+          1.0
+        ],
+        [
+          83.97984790377022,
+          0.0
+        ]
+      ],
+      "IinC": 0,
+      "setter_events": [
+        {
+          "absolute_abscissa_mm": 0.0,
+          "radius_mm": 0.0,
+          "IinC": 0,
+          "completed": true
+        },
+        {
+          "absolute_abscissa_mm": 41.98992395188511,
+          "radius_mm": 1.0,
+          "IinC": 0,
+          "completed": true
+        },
+        {
+          "absolute_abscissa_mm": 83.97984790377022,
+          "radius_mm": 0.0,
+          "IinC": 0,
+          "completed": true
+        }
+      ],
+      "standalone_interpolation_before_any_assertion": {
+        "type": "Law_Interpol",
+        "method_docs": {
+          "Bounds": "Bounds(self: OCP.OCP.Law.Law_BSpFunc) -> tuple[float, float]\n",
+          "Value": "Value(self: OCP.OCP.Law.Law_BSpFunc, X: float) -> float\n",
+          "D1": "D1(self: OCP.OCP.Law.Law_BSpFunc, X: float) -> tuple[float, float]\n"
+        },
+        "bounds_mm": [
+          0.0,
+          83.97984790377022
+        ],
+        "curve": {
+          "type": "Law_BSpline",
+          "degree": 3,
+          "poles": [
+            0.0,
+            0.0,
+            2.0,
+            -0.0,
+            0.0
+          ],
+          "knots_mm": [
+            0.0,
+            41.98992395188511,
+            83.97984790377022
+          ],
+          "multiplicities": [
+            4,
+            1,
+            4
+          ],
+          "rational": false,
+          "periodic": false
+        },
+        "probes": [
+          {
+            "normalized_probe": 0.0,
+            "abscissa_mm": 0.0,
+            "value_mm": 0.0,
+            "D1": [
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "normalized_probe": 0.25,
+            "abscissa_mm": 20.994961975942555,
+            "value_mm": 0.5,
+            "D1": [
+              0.5,
+              0.03572285583843403
+            ]
+          },
+          {
+            "normalized_probe": 0.5,
+            "abscissa_mm": 41.98992395188511,
+            "value_mm": 1.0,
+            "D1": [
+              1.0,
+              1.5463592236127383e-18
+            ]
+          },
+          {
+            "normalized_probe": 0.75,
+            "abscissa_mm": 62.98488592782766,
+            "value_mm": 0.5000000000000002,
+            "D1": [
+              0.5000000000000002,
+              -0.03572285583843403
+            ]
+          },
+          {
+            "normalized_probe": 1.0,
+            "abscissa_mm": 83.97984790377022,
+            "value_mm": 0.0,
+            "D1": [
+              6.237550818110293e-17,
+              -1.5463592236127383e-18
+            ]
+          }
+        ],
+        "all_scalar_binary64_hex": {
+          "0": "0x0.0p+0",
+          "1": "0x0.0p+0",
+          "2": "0x1.0000000000000p+1",
+          "3": "-0x0.0p+0",
+          "4": "0x0.0p+0",
+          "5": "0x0.0p+0",
+          "6": "0x1.4feb5d3fb6fd3p+5",
+          "7": "0x1.4feb5d3fb6fd3p+6"
+        }
+      },
+      "temporary_SplitDone_manually_changed": false,
+      "temporary_ElSpine_created": false,
+      "exact_standalone_certificate": {
+        "passed": true,
+        "exact_serialized_binary64_arithmetic": true,
+        "radius_range_mm": [
+          0,
+          1
+        ],
+        "zero_endpoint_and_join_derivatives": true,
+        "domains_join": true,
+        "pieces": [
+          {
+            "domain_mm": [
+              "0",
+              "5909556433219539/140737488355328"
+            ],
+            "local_power_coefficients": [
+              "0",
+              "0",
+              "3",
+              "-2"
+            ],
+            "derivative_Bernstein": [
+              "0",
+              "3",
+              "0"
+            ],
+            "start": "0",
+            "end": "1",
+            "monotone": true,
+            "passed": true
+          },
+          {
+            "domain_mm": [
+              "5909556433219539/140737488355328",
+              "5909556433219539/70368744177664"
+            ],
+            "local_power_coefficients": [
+              "1",
+              "0",
+              "-3",
+              "2"
+            ],
+            "derivative_Bernstein": [
+              "0",
+              "-3",
+              "0"
+            ],
+            "start": "1",
+            "end": "0",
+            "monotone": true,
+            "passed": true
+          }
+        ],
+        "scope": "Standalone interpolant only; not the law consumed by Compute"
+      }
+    }
+  ],
+  "native_state": {
+    "IsDone": false,
+    "HasResult": false,
+    "NbFaultyContours": 0,
+    "NbFaultyVertices": 2,
+    "StripeStatus": [
+      "ChFiDS_ErrorStatus.ChFiDS_Ok",
+      "ChFiDS_ErrorStatus.ChFiDS_Ok"
+    ]
+  },
+  "fault_vertices": [
+    {
+      "index": 1,
+      "xyz_mm": [
+        -105.0,
+        23.6,
+        22.0
+      ]
+    },
+    {
+      "index": 2,
+      "xyz_mm": [
+        105.0,
+        23.6,
+        22.0
+      ]
+    }
+  ],
+  "consumed_laws": [
+    {
+      "contour": 1,
+      "source_edge": 76,
+      "raw": {
+        "type": "Law_Interpol",
+        "method_docs": {
+          "Bounds": "Bounds(self: OCP.OCP.Law.Law_BSpFunc) -> tuple[float, float]\n",
+          "Value": "Value(self: OCP.OCP.Law.Law_BSpFunc, X: float) -> float\n",
+          "D1": "D1(self: OCP.OCP.Law.Law_BSpFunc, X: float) -> tuple[float, float]\n"
+        },
+        "bounds_mm": [
+          -41.989923950276406,
+          125.96977185082922
+        ],
+        "curve": {
+          "type": "Law_BSpline",
+          "degree": 3,
+          "poles": [
+            0.0,
+            0.0,
+            -0.4999999999999999,
+            1.75,
+            -0.5000000000000001,
+            -0.0,
+            0.0
+          ],
+          "knots_mm": [
+            -41.989923950276406,
+            0.0,
+            41.989923950276406,
+            83.97984790055281,
+            125.96977185082922
+          ],
+          "multiplicities": [
+            4,
+            1,
+            1,
+            1,
+            4
+          ],
+          "rational": false,
+          "periodic": false
+        },
+        "probes": [
+          {
+            "normalized_probe": 0.0,
+            "abscissa_mm": -41.989923950276406,
+            "value_mm": 0.0,
+            "D1": [
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "normalized_probe": 0.25,
+            "abscissa_mm": 0.0,
+            "value_mm": 8.326672684688674e-17,
+            "D1": [
+              1.2301089535725024e-16,
+              0.01786142791990132
+            ]
+          },
+          {
+            "normalized_probe": 0.5,
+            "abscissa_mm": 41.989923950276406,
+            "value_mm": 1.0,
+            "D1": [
+              1.0000000000000002,
+              2.3602869431067682e-18
+            ]
+          },
+          {
+            "normalized_probe": 0.75,
+            "abscissa_mm": 83.97984790055281,
+            "value_mm": -1.249000902703301e-16,
+            "D1": [
+              -2.241441291059607e-17,
+              -0.017861427919901317
+            ]
+          },
+          {
+            "normalized_probe": 1.0,
+            "abscissa_mm": 125.96977185082922,
+            "value_mm": 0.0,
+            "D1": [
+              -1.2508226889111323e-16,
+              -5.4454883942976595e-18
+            ]
+          }
+        ],
+        "all_scalar_binary64_hex": {
+          "0": "0x0.0p+0",
+          "1": "0x0.0p+0",
+          "2": "-0x1.ffffffffffffep-2",
+          "3": "0x1.c000000000000p+0",
+          "4": "-0x1.0000000000001p-1",
+          "5": "-0x0.0p+0",
+          "6": "0x0.0p+0",
+          "7": "-0x1.4feb5d3f7fb6ep+5",
+          "8": "0x0.0p+0",
+          "9": "0x1.4feb5d3f7fb6ep+5",
+          "10": "0x1.4feb5d3f7fb6ep+6",
+          "11": "0x1.f7e10bdf3f925p+6"
+        }
+      },
+      "available_methods": [
+        "Bounds",
+        "Continuity",
+        "Curve",
+        "D1",
+        "D2",
+        "DecrementRefCounter",
+        "Delete",
+        "DynamicType",
+        "GetRefCount",
+        "IncrementRefCounter",
+        "Intervals",
+        "IsInstance",
+        "IsKind",
+        "NbIntervals",
+        "Set",
+        "SetCurve",
+        "SetInRelative",
+        "This",
+        "Trim",
+        "Value",
+        "get_type_descriptor_s",
+        "get_type_name_s"
+      ]
+    },
+    {
+      "contour": 1,
+      "source_edge": 179,
+      "raw": {
+        "type": "Law_Interpol",
+        "method_docs": {
+          "Bounds": "Bounds(self: OCP.OCP.Law.Law_BSpFunc) -> tuple[float, float]\n",
+          "Value": "Value(self: OCP.OCP.Law.Law_BSpFunc, X: float) -> float\n",
+          "D1": "D1(self: OCP.OCP.Law.Law_BSpFunc, X: float) -> tuple[float, float]\n"
+        },
+        "bounds_mm": [
+          -41.989923950276406,
+          125.96977185082922
+        ],
+        "curve": {
+          "type": "Law_BSpline",
+          "degree": 3,
+          "poles": [
+            0.0,
+            0.0,
+            -0.4999999999999999,
+            1.75,
+            -0.5000000000000001,
+            -0.0,
+            0.0
+          ],
+          "knots_mm": [
+            -41.989923950276406,
+            0.0,
+            41.989923950276406,
+            83.97984790055281,
+            125.96977185082922
+          ],
+          "multiplicities": [
+            4,
+            1,
+            1,
+            1,
+            4
+          ],
+          "rational": false,
+          "periodic": false
+        },
+        "probes": [
+          {
+            "normalized_probe": 0.0,
+            "abscissa_mm": -41.989923950276406,
+            "value_mm": 0.0,
+            "D1": [
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "normalized_probe": 0.25,
+            "abscissa_mm": 0.0,
+            "value_mm": 8.326672684688674e-17,
+            "D1": [
+              1.2301089535725024e-16,
+              0.01786142791990132
+            ]
+          },
+          {
+            "normalized_probe": 0.5,
+            "abscissa_mm": 41.989923950276406,
+            "value_mm": 1.0,
+            "D1": [
+              1.0000000000000002,
+              2.3602869431067682e-18
+            ]
+          },
+          {
+            "normalized_probe": 0.75,
+            "abscissa_mm": 83.97984790055281,
+            "value_mm": -1.249000902703301e-16,
+            "D1": [
+              -2.241441291059607e-17,
+              -0.017861427919901317
+            ]
+          },
+          {
+            "normalized_probe": 1.0,
+            "abscissa_mm": 125.96977185082922,
+            "value_mm": 0.0,
+            "D1": [
+              -1.2508226889111323e-16,
+              -5.4454883942976595e-18
+            ]
+          }
+        ],
+        "all_scalar_binary64_hex": {
+          "0": "0x0.0p+0",
+          "1": "0x0.0p+0",
+          "2": "-0x1.ffffffffffffep-2",
+          "3": "0x1.c000000000000p+0",
+          "4": "-0x1.0000000000001p-1",
+          "5": "-0x0.0p+0",
+          "6": "0x0.0p+0",
+          "7": "-0x1.4feb5d3f7fb6ep+5",
+          "8": "0x0.0p+0",
+          "9": "0x1.4feb5d3f7fb6ep+5",
+          "10": "0x1.4feb5d3f7fb6ep+6",
+          "11": "0x1.f7e10bdf3f925p+6"
+        }
+      },
+      "available_methods": [
+        "Bounds",
+        "Continuity",
+        "Curve",
+        "D1",
+        "D2",
+        "DecrementRefCounter",
+        "Delete",
+        "DynamicType",
+        "GetRefCount",
+        "IncrementRefCounter",
+        "Intervals",
+        "IsInstance",
+        "IsKind",
+        "NbIntervals",
+        "Set",
+        "SetCurve",
+        "SetInRelative",
+        "This",
+        "Trim",
+        "Value",
+        "get_type_descriptor_s",
+        "get_type_name_s"
+      ]
+    },
+    {
+      "contour": 1,
+      "source_edge": 337,
+      "raw": {
+        "type": "Law_Interpol",
+        "method_docs": {
+          "Bounds": "Bounds(self: OCP.OCP.Law.Law_BSpFunc) -> tuple[float, float]\n",
+          "Value": "Value(self: OCP.OCP.Law.Law_BSpFunc, X: float) -> float\n",
+          "D1": "D1(self: OCP.OCP.Law.Law_BSpFunc, X: float) -> tuple[float, float]\n"
+        },
+        "bounds_mm": [
+          -41.989923950276406,
+          125.96977185082922
+        ],
+        "curve": {
+          "type": "Law_BSpline",
+          "degree": 3,
+          "poles": [
+            0.0,
+            0.0,
+            -0.4999999999999999,
+            1.75,
+            -0.5000000000000001,
+            -0.0,
+            0.0
+          ],
+          "knots_mm": [
+            -41.989923950276406,
+            0.0,
+            41.989923950276406,
+            83.97984790055281,
+            125.96977185082922
+          ],
+          "multiplicities": [
+            4,
+            1,
+            1,
+            1,
+            4
+          ],
+          "rational": false,
+          "periodic": false
+        },
+        "probes": [
+          {
+            "normalized_probe": 0.0,
+            "abscissa_mm": -41.989923950276406,
+            "value_mm": 0.0,
+            "D1": [
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "normalized_probe": 0.25,
+            "abscissa_mm": 0.0,
+            "value_mm": 8.326672684688674e-17,
+            "D1": [
+              1.2301089535725024e-16,
+              0.01786142791990132
+            ]
+          },
+          {
+            "normalized_probe": 0.5,
+            "abscissa_mm": 41.989923950276406,
+            "value_mm": 1.0,
+            "D1": [
+              1.0000000000000002,
+              2.3602869431067682e-18
+            ]
+          },
+          {
+            "normalized_probe": 0.75,
+            "abscissa_mm": 83.97984790055281,
+            "value_mm": -1.249000902703301e-16,
+            "D1": [
+              -2.241441291059607e-17,
+              -0.017861427919901317
+            ]
+          },
+          {
+            "normalized_probe": 1.0,
+            "abscissa_mm": 125.96977185082922,
+            "value_mm": 0.0,
+            "D1": [
+              -1.2508226889111323e-16,
+              -5.4454883942976595e-18
+            ]
+          }
+        ],
+        "all_scalar_binary64_hex": {
+          "0": "0x0.0p+0",
+          "1": "0x0.0p+0",
+          "2": "-0x1.ffffffffffffep-2",
+          "3": "0x1.c000000000000p+0",
+          "4": "-0x1.0000000000001p-1",
+          "5": "-0x0.0p+0",
+          "6": "0x0.0p+0",
+          "7": "-0x1.4feb5d3f7fb6ep+5",
+          "8": "0x0.0p+0",
+          "9": "0x1.4feb5d3f7fb6ep+5",
+          "10": "0x1.4feb5d3f7fb6ep+6",
+          "11": "0x1.f7e10bdf3f925p+6"
+        }
+      },
+      "available_methods": [
+        "Bounds",
+        "Continuity",
+        "Curve",
+        "D1",
+        "D2",
+        "DecrementRefCounter",
+        "Delete",
+        "DynamicType",
+        "GetRefCount",
+        "IncrementRefCounter",
+        "Intervals",
+        "IsInstance",
+        "IsKind",
+        "NbIntervals",
+        "Set",
+        "SetCurve",
+        "SetInRelative",
+        "This",
+        "Trim",
+        "Value",
+        "get_type_descriptor_s",
+        "get_type_name_s"
+      ]
+    },
+    {
+      "contour": 1,
+      "source_edge": 350,
+      "raw": {
+        "type": "Law_Interpol",
+        "method_docs": {
+          "Bounds": "Bounds(self: OCP.OCP.Law.Law_BSpFunc) -> tuple[float, float]\n",
+          "Value": "Value(self: OCP.OCP.Law.Law_BSpFunc, X: float) -> float\n",
+          "D1": "D1(self: OCP.OCP.Law.Law_BSpFunc, X: float) -> tuple[float, float]\n"
+        },
+        "bounds_mm": [
+          -41.989923950276406,
+          125.96977185082922
+        ],
+        "curve": {
+          "type": "Law_BSpline",
+          "degree": 3,
+          "poles": [
+            0.0,
+            0.0,
+            -0.4999999999999999,
+            1.75,
+            -0.5000000000000001,
+            -0.0,
+            0.0
+          ],
+          "knots_mm": [
+            -41.989923950276406,
+            0.0,
+            41.989923950276406,
+            83.97984790055281,
+            125.96977185082922
+          ],
+          "multiplicities": [
+            4,
+            1,
+            1,
+            1,
+            4
+          ],
+          "rational": false,
+          "periodic": false
+        },
+        "probes": [
+          {
+            "normalized_probe": 0.0,
+            "abscissa_mm": -41.989923950276406,
+            "value_mm": 0.0,
+            "D1": [
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "normalized_probe": 0.25,
+            "abscissa_mm": 0.0,
+            "value_mm": 8.326672684688674e-17,
+            "D1": [
+              1.2301089535725024e-16,
+              0.01786142791990132
+            ]
+          },
+          {
+            "normalized_probe": 0.5,
+            "abscissa_mm": 41.989923950276406,
+            "value_mm": 1.0,
+            "D1": [
+              1.0000000000000002,
+              2.3602869431067682e-18
+            ]
+          },
+          {
+            "normalized_probe": 0.75,
+            "abscissa_mm": 83.97984790055281,
+            "value_mm": -1.249000902703301e-16,
+            "D1": [
+              -2.241441291059607e-17,
+              -0.017861427919901317
+            ]
+          },
+          {
+            "normalized_probe": 1.0,
+            "abscissa_mm": 125.96977185082922,
+            "value_mm": 0.0,
+            "D1": [
+              -1.2508226889111323e-16,
+              -5.4454883942976595e-18
+            ]
+          }
+        ],
+        "all_scalar_binary64_hex": {
+          "0": "0x0.0p+0",
+          "1": "0x0.0p+0",
+          "2": "-0x1.ffffffffffffep-2",
+          "3": "0x1.c000000000000p+0",
+          "4": "-0x1.0000000000001p-1",
+          "5": "-0x0.0p+0",
+          "6": "0x0.0p+0",
+          "7": "-0x1.4feb5d3f7fb6ep+5",
+          "8": "0x0.0p+0",
+          "9": "0x1.4feb5d3f7fb6ep+5",
+          "10": "0x1.4feb5d3f7fb6ep+6",
+          "11": "0x1.f7e10bdf3f925p+6"
+        }
+      },
+      "available_methods": [
+        "Bounds",
+        "Continuity",
+        "Curve",
+        "D1",
+        "D2",
+        "DecrementRefCounter",
+        "Delete",
+        "DynamicType",
+        "GetRefCount",
+        "IncrementRefCounter",
+        "Intervals",
+        "IsInstance",
+        "IsKind",
+        "NbIntervals",
+        "Set",
+        "SetCurve",
+        "SetInRelative",
+        "This",
+        "Trim",
+        "Value",
+        "get_type_descriptor_s",
+        "get_type_name_s"
+      ]
+    },
+    {
+      "contour": 2,
+      "source_edge": 536,
+      "raw": {
+        "type": "Law_Interpol",
+        "method_docs": {
+          "Bounds": "Bounds(self: OCP.OCP.Law.Law_BSpFunc) -> tuple[float, float]\n",
+          "Value": "Value(self: OCP.OCP.Law.Law_BSpFunc, X: float) -> float\n",
+          "D1": "D1(self: OCP.OCP.Law.Law_BSpFunc, X: float) -> tuple[float, float]\n"
+        },
+        "bounds_mm": [
+          -41.98992395188511,
+          125.96977185565532
+        ],
+        "curve": {
+          "type": "Law_BSpline",
+          "degree": 3,
+          "poles": [
+            0.0,
+            0.0,
+            -0.5000000000000001,
+            1.75,
+            -0.4999999999999998,
+            -0.0,
+            0.0
+          ],
+          "knots_mm": [
+            -41.98992395188511,
+            0.0,
+            41.98992395188511,
+            83.97984790377022,
+            125.96977185565532
+          ],
+          "multiplicities": [
+            4,
+            1,
+            1,
+            1,
+            4
+          ],
+          "rational": false,
+          "periodic": false
+        },
+        "probes": [
+          {
+            "normalized_probe": 0.0,
+            "abscissa_mm": -41.98992395188511,
+            "value_mm": 0.0,
+            "D1": [
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "normalized_probe": 0.25,
+            "abscissa_mm": 0.0,
+            "value_mm": -1.3877787807814457e-16,
+            "D1": [
+              -6.601356917897049e-17,
+              0.017861427919217014
+            ]
+          },
+          {
+            "normalized_probe": 0.5,
+            "abscissa_mm": 41.98992395188511,
+            "value_mm": 0.9999999999999999,
+            "D1": [
+              1.0,
+              2.1371900439349425e-18
+            ]
+          },
+          {
+            "normalized_probe": 0.75,
+            "abscissa_mm": 83.9798479037702,
+            "value_mm": 4.163336342344339e-16,
+            "D1": [
+              1.086398914363859e-16,
+              -0.017861427919217042
+            ]
+          },
+          {
+            "normalized_probe": 1.0,
+            "abscissa_mm": 125.96977185565532,
+            "value_mm": 0.0,
+            "D1": [
+              -5.444949969522979e-16,
+              -7.811618270338783e-18
+            ]
+          }
+        ],
+        "all_scalar_binary64_hex": {
+          "0": "0x0.0p+0",
+          "1": "0x0.0p+0",
+          "2": "-0x1.0000000000001p-1",
+          "3": "0x1.c000000000000p+0",
+          "4": "-0x1.ffffffffffffcp-2",
+          "5": "-0x0.0p+0",
+          "6": "0x0.0p+0",
+          "7": "-0x1.4feb5d3fb6fd3p+5",
+          "8": "0x0.0p+0",
+          "9": "0x1.4feb5d3fb6fd3p+5",
+          "10": "0x1.4feb5d3fb6fd3p+6",
+          "11": "0x1.f7e10bdf927bcp+6"
+        }
+      },
+      "available_methods": [
+        "Bounds",
+        "Continuity",
+        "Curve",
+        "D1",
+        "D2",
+        "DecrementRefCounter",
+        "Delete",
+        "DynamicType",
+        "GetRefCount",
+        "IncrementRefCounter",
+        "Intervals",
+        "IsInstance",
+        "IsKind",
+        "NbIntervals",
+        "Set",
+        "SetCurve",
+        "SetInRelative",
+        "This",
+        "Trim",
+        "Value",
+        "get_type_descriptor_s",
+        "get_type_name_s"
+      ]
+    },
+    {
+      "contour": 2,
+      "source_edge": 570,
+      "raw": {
+        "type": "Law_Interpol",
+        "method_docs": {
+          "Bounds": "Bounds(self: OCP.OCP.Law.Law_BSpFunc) -> tuple[float, float]\n",
+          "Value": "Value(self: OCP.OCP.Law.Law_BSpFunc, X: float) -> float\n",
+          "D1": "D1(self: OCP.OCP.Law.Law_BSpFunc, X: float) -> tuple[float, float]\n"
+        },
+        "bounds_mm": [
+          -41.98992395188511,
+          125.96977185565532
+        ],
+        "curve": {
+          "type": "Law_BSpline",
+          "degree": 3,
+          "poles": [
+            0.0,
+            0.0,
+            -0.5000000000000001,
+            1.75,
+            -0.4999999999999998,
+            -0.0,
+            0.0
+          ],
+          "knots_mm": [
+            -41.98992395188511,
+            0.0,
+            41.98992395188511,
+            83.97984790377022,
+            125.96977185565532
+          ],
+          "multiplicities": [
+            4,
+            1,
+            1,
+            1,
+            4
+          ],
+          "rational": false,
+          "periodic": false
+        },
+        "probes": [
+          {
+            "normalized_probe": 0.0,
+            "abscissa_mm": -41.98992395188511,
+            "value_mm": 0.0,
+            "D1": [
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "normalized_probe": 0.25,
+            "abscissa_mm": 0.0,
+            "value_mm": -1.3877787807814457e-16,
+            "D1": [
+              -6.601356917897049e-17,
+              0.017861427919217014
+            ]
+          },
+          {
+            "normalized_probe": 0.5,
+            "abscissa_mm": 41.98992395188511,
+            "value_mm": 0.9999999999999999,
+            "D1": [
+              1.0,
+              2.1371900439349425e-18
+            ]
+          },
+          {
+            "normalized_probe": 0.75,
+            "abscissa_mm": 83.9798479037702,
+            "value_mm": 4.163336342344339e-16,
+            "D1": [
+              1.086398914363859e-16,
+              -0.017861427919217042
+            ]
+          },
+          {
+            "normalized_probe": 1.0,
+            "abscissa_mm": 125.96977185565532,
+            "value_mm": 0.0,
+            "D1": [
+              -5.444949969522979e-16,
+              -7.811618270338783e-18
+            ]
+          }
+        ],
+        "all_scalar_binary64_hex": {
+          "0": "0x0.0p+0",
+          "1": "0x0.0p+0",
+          "2": "-0x1.0000000000001p-1",
+          "3": "0x1.c000000000000p+0",
+          "4": "-0x1.ffffffffffffcp-2",
+          "5": "-0x0.0p+0",
+          "6": "0x0.0p+0",
+          "7": "-0x1.4feb5d3fb6fd3p+5",
+          "8": "0x0.0p+0",
+          "9": "0x1.4feb5d3fb6fd3p+5",
+          "10": "0x1.4feb5d3fb6fd3p+6",
+          "11": "0x1.f7e10bdf927bcp+6"
+        }
+      },
+      "available_methods": [
+        "Bounds",
+        "Continuity",
+        "Curve",
+        "D1",
+        "D2",
+        "DecrementRefCounter",
+        "Delete",
+        "DynamicType",
+        "GetRefCount",
+        "IncrementRefCounter",
+        "Intervals",
+        "IsInstance",
+        "IsKind",
+        "NbIntervals",
+        "Set",
+        "SetCurve",
+        "SetInRelative",
+        "This",
+        "Trim",
+        "Value",
+        "get_type_descriptor_s",
+        "get_type_name_s"
+      ]
+    },
+    {
+      "contour": 2,
+      "source_edge": 445,
+      "raw": {
+        "type": "Law_Interpol",
+        "method_docs": {
+          "Bounds": "Bounds(self: OCP.OCP.Law.Law_BSpFunc) -> tuple[float, float]\n",
+          "Value": "Value(self: OCP.OCP.Law.Law_BSpFunc, X: float) -> float\n",
+          "D1": "D1(self: OCP.OCP.Law.Law_BSpFunc, X: float) -> tuple[float, float]\n"
+        },
+        "bounds_mm": [
+          -41.98992395188511,
+          125.96977185565532
+        ],
+        "curve": {
+          "type": "Law_BSpline",
+          "degree": 3,
+          "poles": [
+            0.0,
+            0.0,
+            -0.5000000000000001,
+            1.75,
+            -0.4999999999999998,
+            -0.0,
+            0.0
+          ],
+          "knots_mm": [
+            -41.98992395188511,
+            0.0,
+            41.98992395188511,
+            83.97984790377022,
+            125.96977185565532
+          ],
+          "multiplicities": [
+            4,
+            1,
+            1,
+            1,
+            4
+          ],
+          "rational": false,
+          "periodic": false
+        },
+        "probes": [
+          {
+            "normalized_probe": 0.0,
+            "abscissa_mm": -41.98992395188511,
+            "value_mm": 0.0,
+            "D1": [
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "normalized_probe": 0.25,
+            "abscissa_mm": 0.0,
+            "value_mm": -1.3877787807814457e-16,
+            "D1": [
+              -6.601356917897049e-17,
+              0.017861427919217014
+            ]
+          },
+          {
+            "normalized_probe": 0.5,
+            "abscissa_mm": 41.98992395188511,
+            "value_mm": 0.9999999999999999,
+            "D1": [
+              1.0,
+              2.1371900439349425e-18
+            ]
+          },
+          {
+            "normalized_probe": 0.75,
+            "abscissa_mm": 83.9798479037702,
+            "value_mm": 4.163336342344339e-16,
+            "D1": [
+              1.086398914363859e-16,
+              -0.017861427919217042
+            ]
+          },
+          {
+            "normalized_probe": 1.0,
+            "abscissa_mm": 125.96977185565532,
+            "value_mm": 0.0,
+            "D1": [
+              -5.444949969522979e-16,
+              -7.811618270338783e-18
+            ]
+          }
+        ],
+        "all_scalar_binary64_hex": {
+          "0": "0x0.0p+0",
+          "1": "0x0.0p+0",
+          "2": "-0x1.0000000000001p-1",
+          "3": "0x1.c000000000000p+0",
+          "4": "-0x1.ffffffffffffcp-2",
+          "5": "-0x0.0p+0",
+          "6": "0x0.0p+0",
+          "7": "-0x1.4feb5d3fb6fd3p+5",
+          "8": "0x0.0p+0",
+          "9": "0x1.4feb5d3fb6fd3p+5",
+          "10": "0x1.4feb5d3fb6fd3p+6",
+          "11": "0x1.f7e10bdf927bcp+6"
+        }
+      },
+      "available_methods": [
+        "Bounds",
+        "Continuity",
+        "Curve",
+        "D1",
+        "D2",
+        "DecrementRefCounter",
+        "Delete",
+        "DynamicType",
+        "GetRefCount",
+        "IncrementRefCounter",
+        "Intervals",
+        "IsInstance",
+        "IsKind",
+        "NbIntervals",
+        "Set",
+        "SetCurve",
+        "SetInRelative",
+        "This",
+        "Trim",
+        "Value",
+        "get_type_descriptor_s",
+        "get_type_name_s"
+      ]
+    },
+    {
+      "contour": 2,
+      "source_edge": 443,
+      "raw": {
+        "type": "Law_Interpol",
+        "method_docs": {
+          "Bounds": "Bounds(self: OCP.OCP.Law.Law_BSpFunc) -> tuple[float, float]\n",
+          "Value": "Value(self: OCP.OCP.Law.Law_BSpFunc, X: float) -> float\n",
+          "D1": "D1(self: OCP.OCP.Law.Law_BSpFunc, X: float) -> tuple[float, float]\n"
+        },
+        "bounds_mm": [
+          -41.98992395188511,
+          125.96977185565532
+        ],
+        "curve": {
+          "type": "Law_BSpline",
+          "degree": 3,
+          "poles": [
+            0.0,
+            0.0,
+            -0.5000000000000001,
+            1.75,
+            -0.4999999999999998,
+            -0.0,
+            0.0
+          ],
+          "knots_mm": [
+            -41.98992395188511,
+            0.0,
+            41.98992395188511,
+            83.97984790377022,
+            125.96977185565532
+          ],
+          "multiplicities": [
+            4,
+            1,
+            1,
+            1,
+            4
+          ],
+          "rational": false,
+          "periodic": false
+        },
+        "probes": [
+          {
+            "normalized_probe": 0.0,
+            "abscissa_mm": -41.98992395188511,
+            "value_mm": 0.0,
+            "D1": [
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "normalized_probe": 0.25,
+            "abscissa_mm": 0.0,
+            "value_mm": -1.3877787807814457e-16,
+            "D1": [
+              -6.601356917897049e-17,
+              0.017861427919217014
+            ]
+          },
+          {
+            "normalized_probe": 0.5,
+            "abscissa_mm": 41.98992395188511,
+            "value_mm": 0.9999999999999999,
+            "D1": [
+              1.0,
+              2.1371900439349425e-18
+            ]
+          },
+          {
+            "normalized_probe": 0.75,
+            "abscissa_mm": 83.9798479037702,
+            "value_mm": 4.163336342344339e-16,
+            "D1": [
+              1.086398914363859e-16,
+              -0.017861427919217042
+            ]
+          },
+          {
+            "normalized_probe": 1.0,
+            "abscissa_mm": 125.96977185565532,
+            "value_mm": 0.0,
+            "D1": [
+              -5.444949969522979e-16,
+              -7.811618270338783e-18
+            ]
+          }
+        ],
+        "all_scalar_binary64_hex": {
+          "0": "0x0.0p+0",
+          "1": "0x0.0p+0",
+          "2": "-0x1.0000000000001p-1",
+          "3": "0x1.c000000000000p+0",
+          "4": "-0x1.ffffffffffffcp-2",
+          "5": "-0x0.0p+0",
+          "6": "0x0.0p+0",
+          "7": "-0x1.4feb5d3fb6fd3p+5",
+          "8": "0x0.0p+0",
+          "9": "0x1.4feb5d3fb6fd3p+5",
+          "10": "0x1.4feb5d3fb6fd3p+6",
+          "11": "0x1.f7e10bdf927bcp+6"
+        }
+      },
+      "available_methods": [
+        "Bounds",
+        "Continuity",
+        "Curve",
+        "D1",
+        "D2",
+        "DecrementRefCounter",
+        "Delete",
+        "DynamicType",
+        "GetRefCount",
+        "IncrementRefCounter",
+        "Intervals",
+        "IsInstance",
+        "IsKind",
+        "NbIntervals",
+        "Set",
+        "SetCurve",
+        "SetInRelative",
+        "This",
+        "Trim",
+        "Value",
+        "get_type_descriptor_s",
+        "get_type_name_s"
+      ]
+    }
+  ],
+  "elapsed_seconds": 12.13234300003387
+}
