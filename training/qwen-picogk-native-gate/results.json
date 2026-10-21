@@ -1,0 +1,695 @@
+{
+  "schema": "qwen-picogk-native-gate-results/v1",
+  "date": "2026-10-12",
+  "base_merge_commit": "0b5e21f3072b22e1032109bbd3454f197967935e",
+  "parent_pr": "https://github.com/cluster2600/porscheparts/pull/190",
+  "scope": "Authored native regression witnesses and one model usage smoke; shared recipes, no new generalisation benchmark",
+  "source_sha256": {
+    "training/qwen-picogk-native-gate/gate.py": "34c84f72b0bc67780203e78a9df4b7510c4a78c2a91c8446510020b2a6d15efa",
+    "training/qwen-picogk-native-gate/VdbWitness.cs": "930573868024a2daa9c5837099d85a917266dfac3a7a764c8235073e92f81da1",
+    "twins/m64-cylinder-head/source/picogk-local-junction/audit_mesh.py": "cc55e633309e52f0a6d0af75f59d3e983bf3b184168abcaf521be3f7752f33e3"
+  },
+  "frozen_manifest_sha256": "e44e04217a0712eefb233aa187d991bb0fc40c3b9b88c28a74d57fae42f34251",
+  "registered_protocol_sha256": "48ca978dd26d717822e2ca042f385d3985a52dd8f20d02c81b530c4d68695c99",
+  "host_build": {
+    "third_party_sources": 87,
+    "owner_host_files": 2,
+    "errors": 0,
+    "obsolete_method_warnings": 44,
+    "log_sha256": "19c2c834e1e1850c537bbfbe03f0fd6737fab1490fa3b65418d4b11ff5de2e0b"
+  },
+  "summary": {
+    "native": {
+      "passed": 10,
+      "total": 10
+    },
+    "vdb": {
+      "passed": 10,
+      "total": 10
+    },
+    "raw_mesh": {
+      "passed": 9,
+      "total": 10
+    },
+    "negative_inputs_rejected_before_execution": 8,
+    "existing_output_overwrite_rejected": true
+  },
+  "fixtures": [
+    {
+      "recipe": "cylinder",
+      "voxel_mm": 0.5,
+      "status": "accepted_synthetic_geometry",
+      "native_pass": true,
+      "vdb_pass": true,
+      "raw_mesh_pass": true,
+      "error": null,
+      "plan": {
+        "recipe": "cylinder",
+        "parameters_mm": [
+          13.5,
+          6.25
+        ],
+        "missing": []
+      },
+      "report_sha256": "293a32bfc19e1de9139f09029ba7507aaa1caf559e70b74d7c0ca6efb2d29d31",
+      "raw_stl_sha256": "670aae5081253a86748938d9412feae6b9ecf2184b19df0b9584d7f30b2af03d",
+      "vdb_sha256": "db4dba0db23aeb30caf1175f48f4edee1153654cd1c2e4d8d268af70123fa018",
+      "raw_mesh": {
+        "faces": 7556,
+        "exact_unique_vertices": 3780,
+        "watertight": true,
+        "winding_consistent": true,
+        "exact_zero_area_faces": 0,
+        "boundary_edges_incidence_one": 0,
+        "edges_incidence_above_two": 0,
+        "surface_components_including_degenerate_faces": 1,
+        "components_are_not_interpreted_as_physical_voids": true,
+        "signed_triangle_volume": 1647.2920593184015,
+        "strict_raw_mesh_screen_pass": true
+      },
+      "vdb": {
+        "passed": true,
+        "field_name": "model_geometry",
+        "field_type": "Voxels",
+        "voxel_mm": 0.5,
+        "voxel_metadata_m": 0.0005,
+        "native_fields_equal": true,
+        "before_volume_mm3": 1650.5923,
+        "after_volume_mm3": 1650.5923,
+        "bounds_equal": true,
+        "original_field_serialized": true,
+        "reconstructed_from_stl": false
+      }
+    },
+    {
+      "recipe": "cylinder",
+      "voxel_mm": 1.0,
+      "status": "accepted_synthetic_geometry",
+      "native_pass": true,
+      "vdb_pass": true,
+      "raw_mesh_pass": true,
+      "error": null,
+      "plan": {
+        "recipe": "cylinder",
+        "parameters_mm": [
+          13.5,
+          6.25
+        ],
+        "missing": []
+      },
+      "report_sha256": "a3b6ddbc660a8f8573df3456ccb654887bc81634f3fbcad77378b8397f4dd38d",
+      "raw_stl_sha256": "17df8d8a6ff77daf1825db5f3900a8ec50d787748dfc6a1c30952d4fc3d799bd",
+      "vdb_sha256": "e529dd9968a6fb6e9d401206a9f90732cfb0cae33a9394906adf41efb1a18c7e",
+      "raw_mesh": {
+        "faces": 1940,
+        "exact_unique_vertices": 972,
+        "watertight": true,
+        "winding_consistent": true,
+        "exact_zero_area_faces": 0,
+        "boundary_edges_incidence_one": 0,
+        "edges_incidence_above_two": 0,
+        "surface_components_including_degenerate_faces": 1,
+        "components_are_not_interpreted_as_physical_voids": true,
+        "signed_triangle_volume": 1618.8703661040988,
+        "strict_raw_mesh_screen_pass": true
+      },
+      "vdb": {
+        "passed": true,
+        "field_name": "model_geometry",
+        "field_type": "Voxels",
+        "voxel_mm": 1,
+        "voxel_metadata_m": 0.001,
+        "native_fields_equal": true,
+        "before_volume_mm3": 1642.4967,
+        "after_volume_mm3": 1642.4967,
+        "bounds_equal": true,
+        "original_field_serialized": true,
+        "reconstructed_from_stl": false
+      }
+    },
+    {
+      "recipe": "pipe",
+      "voxel_mm": 0.5,
+      "status": "accepted_synthetic_geometry",
+      "native_pass": true,
+      "vdb_pass": true,
+      "raw_mesh_pass": true,
+      "error": null,
+      "plan": {
+        "recipe": "pipe",
+        "parameters_mm": [
+          18,
+          7,
+          3
+        ],
+        "missing": []
+      },
+      "report_sha256": "a699b9aa94ca70d2ae233e90ae0712f917e459579a3858c5dc32c2dfaf57deb2",
+      "raw_stl_sha256": "c978ab04a3214aaed3260eeb8e12c25219586ef85eb0b69e751be4f22a6327b9",
+      "vdb_sha256": "908b96fd855e3f2cc254c43bc92f62a5388d90bdb85c7d4b3a59b6bb4c50e9d4",
+      "raw_mesh": {
+        "faces": 13688,
+        "exact_unique_vertices": 6844,
+        "watertight": true,
+        "winding_consistent": true,
+        "exact_zero_area_faces": 0,
+        "boundary_edges_incidence_one": 0,
+        "edges_incidence_above_two": 0,
+        "surface_components_including_degenerate_faces": 1,
+        "components_are_not_interpreted_as_physical_voids": true,
+        "signed_triangle_volume": 2255.685022758436,
+        "strict_raw_mesh_screen_pass": true
+      },
+      "vdb": {
+        "passed": true,
+        "field_name": "model_geometry",
+        "field_type": "Voxels",
+        "voxel_mm": 0.5,
+        "voxel_metadata_m": 0.0005,
+        "native_fields_equal": true,
+        "before_volume_mm3": 2259.9094,
+        "after_volume_mm3": 2259.9094,
+        "bounds_equal": true,
+        "original_field_serialized": true,
+        "reconstructed_from_stl": false
+      }
+    },
+    {
+      "recipe": "pipe",
+      "voxel_mm": 1.0,
+      "status": "accepted_synthetic_geometry",
+      "native_pass": true,
+      "vdb_pass": true,
+      "raw_mesh_pass": true,
+      "error": null,
+      "plan": {
+        "recipe": "pipe",
+        "parameters_mm": [
+          18,
+          7,
+          3
+        ],
+        "missing": []
+      },
+      "report_sha256": "f34c0b617960bed8664050450f7f3e2a9709eb1af9c35305237c95e9500cabc4",
+      "raw_stl_sha256": "b5421de0f8d6c4c17a2d296fbef68b895fd150ead4083149ebcc8fb2985636de",
+      "vdb_sha256": "e0900ce0331f4f76489f782266b802277983d5753d9ed31522592c754d15b3a8",
+      "raw_mesh": {
+        "faces": 3296,
+        "exact_unique_vertices": 1648,
+        "watertight": true,
+        "winding_consistent": true,
+        "exact_zero_area_faces": 0,
+        "boundary_edges_incidence_one": 0,
+        "edges_incidence_above_two": 0,
+        "surface_components_including_degenerate_faces": 1,
+        "components_are_not_interpreted_as_physical_voids": true,
+        "signed_triangle_volume": 2236.175597105235,
+        "strict_raw_mesh_screen_pass": true
+      },
+      "vdb": {
+        "passed": true,
+        "field_name": "model_geometry",
+        "field_type": "Voxels",
+        "voxel_mm": 1,
+        "voxel_metadata_m": 0.001,
+        "native_fields_equal": true,
+        "before_volume_mm3": 2268.8853,
+        "after_volume_mm3": 2268.8853,
+        "bounds_equal": true,
+        "original_field_serialized": true,
+        "reconstructed_from_stl": false
+      }
+    },
+    {
+      "recipe": "washer",
+      "voxel_mm": 0.5,
+      "status": "accepted_synthetic_geometry",
+      "native_pass": true,
+      "vdb_pass": true,
+      "raw_mesh_pass": true,
+      "error": null,
+      "plan": {
+        "recipe": "washer",
+        "parameters_mm": [
+          2.5,
+          6.5,
+          2.75
+        ],
+        "missing": []
+      },
+      "report_sha256": "dd125f2e5c80788dd1d0233f78a735332381b8ed724c0af67474073412510689",
+      "raw_stl_sha256": "b71dfebc303c767c1ba5b3e88df530ea0c47166a051dedf9b97d2b491e1f1008",
+      "vdb_sha256": "a92006b85b8458d9934a284476d96c416ce08a403156a2a6101af3f459135b47",
+      "raw_mesh": {
+        "faces": 3468,
+        "exact_unique_vertices": 1734,
+        "watertight": true,
+        "winding_consistent": true,
+        "exact_zero_area_faces": 0,
+        "boundary_edges_incidence_one": 0,
+        "edges_incidence_above_two": 0,
+        "surface_components_including_degenerate_faces": 1,
+        "components_are_not_interpreted_as_physical_voids": true,
+        "signed_triangle_volume": 262.9927773555366,
+        "strict_raw_mesh_screen_pass": true
+      },
+      "vdb": {
+        "passed": true,
+        "field_name": "model_geometry",
+        "field_type": "Voxels",
+        "voxel_mm": 0.5,
+        "voxel_metadata_m": 0.0005,
+        "native_fields_equal": true,
+        "before_volume_mm3": 266.90186,
+        "after_volume_mm3": 266.90186,
+        "bounds_equal": true,
+        "original_field_serialized": true,
+        "reconstructed_from_stl": false
+      }
+    },
+    {
+      "recipe": "washer",
+      "voxel_mm": 1.0,
+      "status": "accepted_synthetic_geometry",
+      "native_pass": true,
+      "vdb_pass": true,
+      "raw_mesh_pass": true,
+      "error": null,
+      "plan": {
+        "recipe": "washer",
+        "parameters_mm": [
+          2.5,
+          6.5,
+          2.75
+        ],
+        "missing": []
+      },
+      "report_sha256": "29c35ff8678de31fccda3d3121215392f7b29e77f6f01bf7054cf63d3b9cb99f",
+      "raw_stl_sha256": "26f131c6a9cd3ec57d4bd3513063cb13b6bf57f2435228d59706b66d14e3a8a9",
+      "vdb_sha256": "af0015b9e6f60b68a54ff75e2a92b2de98baa968073897e295e44d80a22fc5d3",
+      "raw_mesh": {
+        "faces": 896,
+        "exact_unique_vertices": 448,
+        "watertight": true,
+        "winding_consistent": true,
+        "exact_zero_area_faces": 0,
+        "boundary_edges_incidence_one": 0,
+        "edges_incidence_above_two": 0,
+        "surface_components_including_degenerate_faces": 1,
+        "components_are_not_interpreted_as_physical_voids": true,
+        "signed_triangle_volume": 245.77149471340203,
+        "strict_raw_mesh_screen_pass": true
+      },
+      "vdb": {
+        "passed": true,
+        "field_name": "model_geometry",
+        "field_type": "Voxels",
+        "voxel_mm": 1,
+        "voxel_metadata_m": 0.001,
+        "native_fields_equal": true,
+        "before_volume_mm3": 265.22388,
+        "after_volume_mm3": 265.22388,
+        "bounds_equal": true,
+        "original_field_serialized": true,
+        "reconstructed_from_stl": false
+      }
+    },
+    {
+      "recipe": "bcc",
+      "voxel_mm": 0.5,
+      "status": "accepted_synthetic_geometry",
+      "native_pass": true,
+      "vdb_pass": true,
+      "raw_mesh_pass": true,
+      "error": null,
+      "plan": {
+        "recipe": "bcc",
+        "parameters_mm": [
+          10.5,
+          2
+        ],
+        "missing": []
+      },
+      "report_sha256": "4372a5f00871bd633c7b4680da477bfed78387a3d2bc49beccd43cb77d0a18f3",
+      "raw_stl_sha256": "cdb6d15a1934107f0a024c8568782af2d4987dcb75efa42659125cc5e2ca78a8",
+      "vdb_sha256": "2011cd1a5b59674548184de9d62ebda1921265be019575b68ed9588d438d4249",
+      "raw_mesh": {
+        "faces": 5508,
+        "exact_unique_vertices": 2756,
+        "watertight": true,
+        "winding_consistent": true,
+        "exact_zero_area_faces": 0,
+        "boundary_edges_incidence_one": 0,
+        "edges_incidence_above_two": 0,
+        "surface_components_including_degenerate_faces": 1,
+        "components_are_not_interpreted_as_physical_voids": true,
+        "signed_triangle_volume": 204.23314889210494,
+        "strict_raw_mesh_screen_pass": true
+      },
+      "vdb": {
+        "passed": true,
+        "field_name": "model_geometry",
+        "field_type": "Voxels",
+        "voxel_mm": 0.5,
+        "voxel_metadata_m": 0.0005,
+        "native_fields_equal": true,
+        "before_volume_mm3": 215.71265,
+        "after_volume_mm3": 215.71265,
+        "bounds_equal": true,
+        "original_field_serialized": true,
+        "reconstructed_from_stl": false
+      }
+    },
+    {
+      "recipe": "bcc",
+      "voxel_mm": 1.0,
+      "status": "accepted_synthetic_geometry",
+      "native_pass": true,
+      "vdb_pass": true,
+      "raw_mesh_pass": true,
+      "error": null,
+      "plan": {
+        "recipe": "bcc",
+        "parameters_mm": [
+          10.5,
+          2
+        ],
+        "missing": []
+      },
+      "report_sha256": "163d57641eff4b93e919a8b639204e75aadc253eb0d8022d29abca84d7f36be9",
+      "raw_stl_sha256": "32a3676a39d08967b4077f00fe11eda531964f7a7b494ab8e2f2e18d4f1d896f",
+      "vdb_sha256": "252e485a9f5f384348c21b024f09d141484e71d2bd256bd63a07be313592e00b",
+      "raw_mesh": {
+        "faces": 1460,
+        "exact_unique_vertices": 732,
+        "watertight": true,
+        "winding_consistent": true,
+        "exact_zero_area_faces": 0,
+        "boundary_edges_incidence_one": 0,
+        "edges_incidence_above_two": 0,
+        "surface_components_including_degenerate_faces": 1,
+        "components_are_not_interpreted_as_physical_voids": true,
+        "signed_triangle_volume": 149.9059226750143,
+        "strict_raw_mesh_screen_pass": true
+      },
+      "vdb": {
+        "passed": true,
+        "field_name": "model_geometry",
+        "field_type": "Voxels",
+        "voxel_mm": 1,
+        "voxel_metadata_m": 0.001,
+        "native_fields_equal": true,
+        "before_volume_mm3": 200.06154,
+        "after_volume_mm3": 200.06154,
+        "bounds_equal": true,
+        "original_field_serialized": true,
+        "reconstructed_from_stl": false
+      }
+    },
+    {
+      "recipe": "thread",
+      "voxel_mm": 0.5,
+      "status": "rejected",
+      "native_pass": true,
+      "vdb_pass": true,
+      "raw_mesh_pass": false,
+      "error": null,
+      "plan": {
+        "recipe": "thread",
+        "parameters_mm": [
+          13.5,
+          6.25,
+          3.25,
+          3
+        ],
+        "missing": []
+      },
+      "report_sha256": "42aec34d720585ab7326e7a3b77cc24ba384ccd047de456dfb605fbe04b09f25",
+      "raw_stl_sha256": "ff89428293ec993887a8ca1eab6935b75fb031803bf3485097e29c034684358c",
+      "vdb_sha256": "6cbef420509d885723890d500e24caa63b36d11e6215ed14dfdf689224f54643",
+      "raw_mesh": {
+        "faces": 10676,
+        "exact_unique_vertices": 5333,
+        "watertight": false,
+        "winding_consistent": true,
+        "exact_zero_area_faces": 14,
+        "boundary_edges_incidence_one": 0,
+        "edges_incidence_above_two": 9,
+        "surface_components_including_degenerate_faces": 8,
+        "components_are_not_interpreted_as_physical_voids": true,
+        "signed_triangle_volume": 1004.4975407505511,
+        "strict_raw_mesh_screen_pass": false
+      },
+      "vdb": {
+        "passed": true,
+        "field_name": "model_geometry",
+        "field_type": "Voxels",
+        "voxel_mm": 0.5,
+        "voxel_metadata_m": 0.0005,
+        "native_fields_equal": true,
+        "before_volume_mm3": 1030.1638,
+        "after_volume_mm3": 1030.1638,
+        "bounds_equal": true,
+        "original_field_serialized": true,
+        "reconstructed_from_stl": false
+      }
+    },
+    {
+      "recipe": "thread",
+      "voxel_mm": 1.0,
+      "status": "accepted_synthetic_geometry",
+      "native_pass": true,
+      "vdb_pass": true,
+      "raw_mesh_pass": true,
+      "error": null,
+      "plan": {
+        "recipe": "thread",
+        "parameters_mm": [
+          13.5,
+          6.25,
+          3.25,
+          3
+        ],
+        "missing": []
+      },
+      "report_sha256": "02d470a797d597b93e3da2f029db0a9644ebf209cf63d49f7bdf32a13f8acdf9",
+      "raw_stl_sha256": "30115aa06ee16c773557d15298697a72f216b71b31048537aed8baca9bdc51f6",
+      "vdb_sha256": "eb1b92551cfed8932374870a23d9237e51f03384db92f638b0c4e7d6e178f4c8",
+      "raw_mesh": {
+        "faces": 2512,
+        "exact_unique_vertices": 1258,
+        "watertight": true,
+        "winding_consistent": true,
+        "exact_zero_area_faces": 0,
+        "boundary_edges_incidence_one": 0,
+        "edges_incidence_above_two": 0,
+        "surface_components_including_degenerate_faces": 1,
+        "components_are_not_interpreted_as_physical_voids": true,
+        "signed_triangle_volume": 964.7333263310016,
+        "strict_raw_mesh_screen_pass": true
+      },
+      "vdb": {
+        "passed": true,
+        "field_name": "model_geometry",
+        "field_type": "Voxels",
+        "voxel_mm": 1,
+        "voxel_metadata_m": 0.001,
+        "native_fields_equal": true,
+        "before_volume_mm3": 1058.3391,
+        "after_volume_mm3": 1058.3391,
+        "bounds_equal": true,
+        "original_field_serialized": true,
+        "reconstructed_from_stl": false
+      }
+    }
+  ],
+  "model_usage": {
+    "adapter_sha256": "2f5da92d4cf9dff0f8b6bac8b28d5c34d26323ca780adf18cdcf11dd88249e1f",
+    "expected_plan": {
+      "recipe": "pipe",
+      "parameters_mm": [
+        18.0,
+        7.0,
+        3.0
+      ],
+      "missing": []
+    },
+    "status": "accepted_synthetic_geometry",
+    "report_sha256": "78c74267814846707bdd376c28b2fbc15c302da07c4799885de2f6507a8c329d",
+    "receipt_sha256": "af6ccece36a2badcefdc64e36307abdc43fa710f633b6c1d4bdd5cd2e8ef76b7",
+    "expected_sha256": "4a77d2144dba51cd85441a8589adffdc80323f007c997f1dfe80ff8c2bcab623",
+    "native": {
+      "recipe": "pipe",
+      "volume": 2259.9094,
+      "triangles": 13688,
+      "roundtrip_triangles": 13688,
+      "min": [
+        -6.9907956,
+        -6.9908805,
+        -8.940697e-08
+      ],
+      "max": [
+        7,
+        6.9908805,
+        18
+      ],
+      "material_inside": true,
+      "axis_inside": false,
+      "distant_point_inside": false,
+      "voxel_mm": 0.5,
+      "analytic_volume_mm3": 2261.946710584651,
+      "relative_volume_error": 0.0009006890282240586,
+      "geometry_screen_passed": true,
+      "raw_stl_sha256": "c978ab04a3214aaed3260eeb8e12c25219586ef85eb0b69e751be4f22a6327b9",
+      "manufacturing_qualified": false
+    },
+    "vdb": {
+      "passed": true,
+      "field_name": "model_geometry",
+      "field_type": "Voxels",
+      "voxel_mm": 0.5,
+      "voxel_metadata_m": 0.0005,
+      "native_fields_equal": true,
+      "before_volume_mm3": 2259.9094,
+      "after_volume_mm3": 2259.9094,
+      "bounds_equal": true,
+      "original_field_serialized": true,
+      "reconstructed_from_stl": false
+    },
+    "raw_mesh": {
+      "faces": 13688,
+      "exact_unique_vertices": 6844,
+      "watertight": true,
+      "winding_consistent": true,
+      "exact_zero_area_faces": 0,
+      "boundary_edges_incidence_one": 0,
+      "edges_incidence_above_two": 0,
+      "surface_components_including_degenerate_faces": 1,
+      "components_are_not_interpreted_as_physical_voids": true,
+      "signed_triangle_volume": 2255.685022758436,
+      "strict_raw_mesh_screen_pass": true
+    }
+  },
+  "negative_checks": {
+    "cases": [
+      {
+        "case": "wrong-dimensions",
+        "status": "rejected",
+        "geometry_executed": false,
+        "error": "Plan differs from the independently authored expected dimensions"
+      },
+      {
+        "case": "missing-interfaces",
+        "status": "rejected",
+        "geometry_executed": false,
+        "error": "Measured interfaces are missing; no geometry may execute"
+      },
+      {
+        "case": "incomplete-receipt",
+        "status": "rejected",
+        "geometry_executed": false,
+        "error": "A complete raw response accepted by the inference boundary is required"
+      },
+      {
+        "case": "fenced",
+        "status": "rejected",
+        "geometry_executed": false,
+        "error": "Expecting value: line 1 column 1 (char 0)"
+      },
+      {
+        "case": "duplicate-key",
+        "status": "rejected",
+        "geometry_executed": false,
+        "error": "Duplicate JSON key"
+      },
+      {
+        "case": "nan",
+        "status": "rejected",
+        "geometry_executed": false,
+        "error": "Numeric bounds"
+      },
+      {
+        "case": "boolean",
+        "status": "rejected",
+        "geometry_executed": false,
+        "error": "Numeric bounds"
+      },
+      {
+        "case": "oversize",
+        "status": "rejected",
+        "geometry_executed": false,
+        "error": "Input exceeds 16 KiB"
+      }
+    ],
+    "existing_output_overwrite_rejected": true,
+    "existing_raw_stl_unchanged": true
+  },
+  "model_weights_updated": false,
+  "serving_defaults_changed": false,
+  "mesh_repairs_applied": false,
+  "manufacturing_qualified": false,
+  "checks": {
+    "focused_unittests": {
+      "passed": 2,
+      "total": 2
+    },
+    "cad_python_make_check": {
+      "status": "aborted",
+      "test": "test_m64_openusd.OpenUSDTests.test_native_contract_and_boundary",
+      "reported_before_abort": {
+        "floating_result_failures": 2,
+        "docker_audit_error": true,
+        "openusd_subtest_error": "usd2-test-019"
+      },
+      "log_sha256": "03afb0f1ec8d4347d7afc028adc083d1e88b9ff29eb4b716b163622706441281"
+    },
+    "system_python_make_check": {
+      "status": "failed",
+      "python": "3.10.11",
+      "tests": 3798,
+      "seconds": 253.086,
+      "failures": 2,
+      "errors": 26,
+      "skipped": 229,
+      "limits": "Existing floating-result assertions and SciPy/Python-version errors; no guards or dependencies changed",
+      "log_sha256": "bf58e38b146577c7d0de3559b4a4520513d0d022ea9430a2d61bda164eee8a72"
+    },
+    "strict_document_links": {
+      "status": "passed",
+      "broken": 0,
+      "markdown_files": 884,
+      "frozen_sources_verified": 1,
+      "historical_links_checked": false,
+      "log_sha256": "9a965fbf9bdfcf4004d1e98cd39c831d28e52cf752ce0d4b7635035b0b632e59"
+    },
+    "github_ci": {
+      "status": "not_run_at_experiment_snapshot",
+      "parent_pr_190_conclusion": "SUCCESS",
+      "parent_pr_190_check_url": "https://github.com/cluster2600/porscheparts/actions/runs/38293693303/job/114959568726"
+    },
+    "isolated_existing_openusd": {
+      "passed": 3,
+      "total": 3,
+      "log_sha256": "d72999195756d14dca31b15dd2e7333748ff9f6a5e9c4b2ca09f4a7517bd6638",
+      "full_suite_abort_cause_proved": false
+    }
+  },
+  "runtime": {
+    "numpy": "2.2.6",
+    "trimesh": "4.6.8",
+    "library_profile_sha256": "ce158abb032b1a5c76dda835c581571e98b425578eae9eb031df77e8159f4a50"
+  },
+  "preserved_completed_training_runs": [
+    {
+      "manifest": "2026-10-12-r2/run-001/FROZEN-RUN.json",
+      "files_verified": 1046,
+      "unchanged": true
+    },
+    {
+      "manifest": "2026-10-12-r3/run-001/FROZEN-RUN.json",
+      "files_verified": 1130,
+      "unchanged": true
+    }
+  ]
+}

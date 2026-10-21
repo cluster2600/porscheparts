@@ -586,7 +586,10 @@ reference.
   [Mezger variants and materials](docs/research/mezger-turbo-materials-20261003/README.md),
   [German-source supplement](docs/research/mezger-german-sources-20261003/README.md).
 - **Local compute**: [architecture](docs/architecture/README.md) and
-  [local Qwen training](training/m64-qwen/README.md).
+  [local Qwen training](training/m64-qwen/README.md). The
+  [PicoGK library adaptation](training/qwen-picogk-20261012/README.md) and
+  [native proposal validation](training/qwen-picogk-native-gate/README.md)
+  add bounded training and independently checked STL/VDB exports.
 
 ## 5. Body and interior
 
