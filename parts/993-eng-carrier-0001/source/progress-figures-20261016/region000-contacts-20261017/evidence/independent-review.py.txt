@@ -1,0 +1,171 @@
+"""Independent Fraction equations and witness bindings for the retained layer0."""
+from fractions import Fraction as F
+import hashlib
+import json
+import math
+from pathlib import Path
+import signal
+import sys
+import time
+
+ROOT = Path(__file__).resolve().parents[2]
+BASE = ROOT/'work/carrier-process-20261017/source000-all-owner-one-layer-contact-preparation-001'
+OUT = BASE/'output-001'
+METHOD = 'own_source_parametric_encoded_contact_1'
+NPZ = 'c351989c2191382d51aec2d8941d08ec1ccaaba30197bdc6121dd92e351bba6b'
+PINS = {'assessment.json':'c14687057115cb62e00033fc8632f0955f1401553a3c973628b616b1aaed6861',
+        'Q-witnesses.json':'edf598245965ac85231a7b322dc2ef59b88e94276f44583ee06f6c5398d692d2',
+        'contact-proofs.json':'bd6bc4b133b68c225b97f8d8f4483e5963bc51a9bc43ed552ffddcca5938365c'}
+
+
+def sha(path):
+    digest = hashlib.sha256()
+    with path.open('rb') as stream:
+        for block in iter(lambda: stream.read(1048576), b''): digest.update(block)
+    return digest.hexdigest()
+
+
+def identity(value):
+    return hashlib.sha256(json.dumps(value, sort_keys=True, separators=(',', ':'), allow_nan=False).encode()).hexdigest()
+
+
+def fraction(value):
+    assert set(value) == {'numerator', 'denominator', 'nearest_float'}
+    n, d = value['numerator'], value['denominator']
+    assert type(n) is str and type(d) is str and str(int(n)) == n and str(int(d)) == d and int(d) > 0
+    result = F(int(n), int(d))
+    assert str(result.numerator) == n and str(result.denominator) == d
+    assert type(value['nearest_float']) in (int, float) and math.isfinite(value['nearest_float'])
+    assert float(result) == value['nearest_float']
+    return result
+
+
+def segment(value):
+    result = tuple(tuple(fraction(c) for c in p) for p in value)
+    assert len(result) == 2 and all(len(p) == 2 for p in result) and result[0] != result[1]
+    return result
+
+
+def at(line, t): return tuple(line[0][k]+t*(line[1][k]-line[0][k]) for k in (0, 1))
+
+
+def parameter(line, point):
+    axis = next(k for k in (0, 1) if line[0][k] != line[1][k])
+    t = (point[axis]-line[0][axis])/(line[1][axis]-line[0][axis])
+    assert 0 <= t <= 1 and at(line, t) == point
+    return t
+
+
+def plate_clip(line):
+    lo, hi = F(0), F(1)
+    for axis in (0, 1):
+        a, delta = line[0][axis], line[1][axis]-line[0][axis]
+        if delta == 0:
+            if not -250 <= a <= 250: return []
+        else:
+            first, last = sorted(((-250-a)/delta, (250-a)/delta))
+            lo, hi = max(lo, first), min(hi, last)
+    return [tuple((at(line, lo), at(line, hi)))] if lo < hi else []
+
+
+def selfcheck():
+    assert fraction(dict(numerator='1', denominator='3', nearest_float=1/3)) == F(1, 3)
+    try: fraction(dict(numerator='2', denominator='6', nearest_float=1/3))
+    except AssertionError: pass
+    else: raise AssertionError('An unreduced coordinate was accepted')
+    inside = ((F(0), F(0)), (F(2), F(0)))
+    assert parameter(inside, (F(1), F(0))) == F(1, 2)
+    assert plate_clip(inside) == [inside]
+    assert plate_clip(((F(300), F(0)), (F(-300), F(0)))) == [((F(250), F(0)), (F(-250), F(0)))]
+    assert plate_clip(((F(250), F(0)), (F(251), F(0)))) == []
+    assert plate_clip(((F(251), F(0)), (F(251), F(1)))) == []
+    assert plate_clip(((F(250), F(0)), (F(250), F(1)))) == [((F(250), F(0)), (F(250), F(1)))]
+    try: parameter(inside, (F(1), F(1)))
+    except AssertionError: pass
+    else: raise AssertionError('A foreign point was accepted')
+
+
+def expired(*_):
+    raise TimeoutError('Root review240s budget')
+
+
+def run():
+    import ijson
+    selfcheck()
+    started = time.monotonic()
+    result = dict(status='incomplete', phase='input_bindings', certificates_checked=0, global_admission=False)
+    signal.signal(signal.SIGALRM, expired)
+    signal.alarm(240)
+    try:
+        before = {name: sha(OUT/name) for name in PINS}; assert before == PINS
+        a = json.loads((OUT/'assessment.json').read_text())
+        supervision = json.loads((BASE/'execution-001/execution-receipt.json').read_text())
+        assert supervision['actual_returncode'] == 0 and supervision['direct_child_reaped']
+        assert supervision['no_non_zombie_group_members'] and not supervision['final_group_members']
+        pins = supervision['sources_before']; assert pins == supervision['sources_after']
+        assert {name: sha(ROOT/name) for name in pins} == pins
+        assert a['phase'] == 'completed' and a['groups_BOTH_checked'] == 337 and a['check_vectors']['passed']
+        owners = json.loads((ROOT/'work/carrier-process-20261017/source000-owner-index-preparation-001/extraction-001/owners.json').read_text())
+        ranges = {g['id']:g['face_range'] for g in owners['groups']}; assert len(ranges) == 337
+        result['phase'] = 'source_witnesses'
+        witnesses = []
+        with (OUT/'Q-witnesses.json').open('rb') as stream:
+            for w in ijson.items(stream, 'witnesses.item', use_float=True):
+                assert w['side'] == 'lower' and w['region'] == 0 and w['anchor'] == 'plate_first_layer'
+                assert w['group'] in ranges and not w['exact_part_overlap_intervals']
+                witnesses.append((identity(w), w['group'], {identity(p) for p in w['exact_plate_overlap_intervals']}))
+        assert len(witnesses) == 70144
+        seen, vectors, provenances = set(), set(), set()
+        result['phase'] = 'certificate_equations'
+        with (OUT/'contact-proofs.json').open('rb') as stream:
+            for c in ijson.items(stream, 'certificates.item', use_float=True):
+                scope, provenance, index = c['scope'], c['provenance'], c['q_witness_index']
+                assert c['method'] == METHOD and scope[:3] == [NPZ, 0, 0] and scope[4] == 0
+                assert type(index) is int and 0 <= index < len(witnesses)
+                wsha, owner, portions = witnesses[index]
+                assert scope[3] == owner and c['q_witness_sha256'] == wsha and identity(c['source_portion']) in portions
+                assert provenance[0] == 0 and type(provenance[1]) is int and ranges[owner][0] <= provenance[1] < ranges[owner][1]
+                assert c['side'] == 'lower' and c['domain_kind'] == 'plate'
+                cut, portion = segment(c['source_cut']), segment(c['source_portion'])
+                rounded = tuple(tuple(F(float(v)) for v in p) for p in cut)
+                assert rounded[0] != rounded[1] and segment(c['own_encoded_vector']) == tuple(sorted(rounded))
+                times = tuple(sorted(parameter(cut, p) for p in portion)); assert times[0] < times[1]
+                assert times == tuple(fraction(t) for t in c['exact_parameter_interval'])
+                image = tuple(at(rounded, t) for t in times); assert segment(c['mapped_portion']) == image
+                clipped = [segment(v) for v in c['positive_domain_intervals']]
+                assert clipped == plate_clip(image) and c['passed'] is bool(clipped)
+                bounds = tuple(max(abs(cut[i][k]-rounded[i][k]) for i in (0, 1)) for k in (0, 1))
+                assert bounds == tuple(fraction(v) for v in c['convex_encoding_error_axis_bounds'])
+                assert max(bounds) == fraction(c['convex_encoding_error_Linf_bound'])
+                assert c['point_anchor_transfer'] is False and c['literal_encoded_band_overlap_claimed'] is False
+                seen.add(index); vectors.add(tuple(sorted(rounded))); provenances.add(tuple(provenance))
+                result['certificates_checked'] += 1
+        assert result['certificates_checked'] == 129023 and len(vectors) == len(seen) == 70141
+        result['phase'] = 'collapsed_sources'
+        with (OUT/'contact-proofs.json').open('rb') as stream:
+            skipped = list(ijson.items(stream, 'skipped_collapsed_sources.item', use_float=True))
+        with (OUT/'contact-proofs.json').open('rb') as stream:
+            points = list(ijson.items(stream, 'covered_point_proofs.item', use_float=True))
+        expected = {(31219, (0, 115663)), (43904, (0, 126546)), (51179, (0, 53968))}
+        assert {(s['q_witness_index'], tuple(s['provenance'])) for s in skipped} == expected
+        assert set(range(len(witnesses)))-seen == {i for i, _ in expected}
+        point_faces = {tuple(p['provenance']) for p in points}; assert len(points) == len(point_faces) == 72
+        assert {p for _, p in expected} <= point_faces and not point_faces & provenances
+        assert {name: sha(OUT/name) for name in PINS} == before
+        assert {name: sha(ROOT/name) for name in pins} == pins
+        result.update(status='all129023_retained_certificate_equations_and_witness_bindings_verified',
+            phase='completed', fresh_input_pins=len(pins), source_witnesses=len(witnesses),
+            encoded_anchor_vectors=len(vectors), collapsed_source_anchors_omitted=3,
+            covered_point_faces=72, all_output_sha256=before, actual_returncode=0,
+            triangle_slices_and_BOTH_not_recomputed=True, rounding_cell_internal_receipts_not_replayed=True)
+    finally:
+        signal.alarm(0)
+        result['elapsed_seconds'] = time.monotonic()-started
+        with Path(__file__).with_name('assessment.json').open('x') as stream:
+            json.dump(result, stream, indent=2); stream.write('\n')
+    print(json.dumps(result))
+
+
+if __name__ == '__main__':
+    if sys.argv[1:] == ['selfcheck']: selfcheck(); print('Root Fraction/plate checks passed')
+    else: run()

@@ -1,0 +1,62 @@
+{
+  "schema": "owned-local-diagnostic-supervision-1",
+  "status": "executed",
+  "plan_sha256": "151ef1ade0b068563c00877ecf7a0e65064c52badec8e0f24c847f54fdb9c8a1",
+  "command": [
+    "/Library/Frameworks/Python.framework/Versions/3.10/bin/python3.10",
+    "-B",
+    "-c",
+    "import os,runpy,sys;os.chdir('/');sys.argv=sys.argv[1:];runpy.run_path(sys.argv[0],run_name='__main__')",
+    "/Users/maxime/.codex/worktrees/993-carrier-revalidation/3dprinting993/work/carrier-fillet-section-figure-001/figure.py",
+    "render",
+    "/Users/maxime/.codex/worktrees/993-carrier-revalidation/3dprinting993/work/carrier-fillet-section-figure-001/data-001/section-data.json",
+    "388ca637aa7df954717baa6ac34f3553a7bfbad91184af83534b58a9fede5c9c",
+    "/Users/maxime/.codex/worktrees/993-carrier-revalidation/3dprinting993/work/carrier-fillet-section-figure-001/render-001"
+  ],
+  "cwd": "/Users/maxime/.codex/worktrees/993-carrier-revalidation/3dprinting993",
+  "pid": 11647,
+  "actual_returncode": 0,
+  "direct_child_reaped": true,
+  "total_wall_budget_seconds": 120,
+  "cleanup_grace_seconds": [
+    10,
+    10
+  ],
+  "timeout": false,
+  "interrupted": false,
+  "budget_scope": "Owned group deadline, including preparation and cleanup grace; final group queries and hash I/O add reported overhead, not a universal kernel hard wall.",
+  "calculation_phase_budget_seconds": 100,
+  "failure": null,
+  "cleanup_error": null,
+  "residual_members_before_cleanup": [],
+  "signals_to_owned_group_only": [],
+  "final_group_members": [],
+  "no_non_zombie_group_members": true,
+  "sources_before": {
+    "work/carrier-process-20261017/source010-exposure-preflight-003/supervise.py": "4d18d747b5db84725b4c3da50cc12b7eb41c6ce9c9a9239a34f3e130b8980a37",
+    "work/carrier-fillet-section-figure-001/figure.py": "13b85508ce7bf09e25312bd9c1c05002c28d1ea0f166deb0bd99bea04f844389",
+    "work/carrier-fillet-section-figure-001/selfcheck.py": "8ea93f37dd405f9d220bb22f9d3d3a400da86a34a2dfa9c1f419ec1b3d659a02",
+    "work/carrier-fillet-section-figure-001/data-001/section-data.json": "388ca637aa7df954717baa6ac34f3553a7bfbad91184af83534b58a9fede5c9c",
+    "work/carrier-fillet-section-figure-001/data-001/extraction-receipt.json": "b34da964facdee69c94c6545e096a8e18e04cd3f0bb35f4414207a1e47b660ae",
+    "work/carrier-fillet-section-figure-001/export-plan.json": "1264dcaa7d7fff9dbaa72a95ff947a0f0a84de34dde8aba54e634e144dae250d",
+    "work/carrier-fillet-section-figure-001/export-execution-001/execution-receipt.json": "2cb99c424465f07a6c664646ec694f41852574b06ecf97fca542ac757794675b"
+  },
+  "sources_after": {
+    "work/carrier-process-20261017/source010-exposure-preflight-003/supervise.py": "4d18d747b5db84725b4c3da50cc12b7eb41c6ce9c9a9239a34f3e130b8980a37",
+    "work/carrier-fillet-section-figure-001/figure.py": "13b85508ce7bf09e25312bd9c1c05002c28d1ea0f166deb0bd99bea04f844389",
+    "work/carrier-fillet-section-figure-001/selfcheck.py": "8ea93f37dd405f9d220bb22f9d3d3a400da86a34a2dfa9c1f419ec1b3d659a02",
+    "work/carrier-fillet-section-figure-001/data-001/section-data.json": "388ca637aa7df954717baa6ac34f3553a7bfbad91184af83534b58a9fede5c9c",
+    "work/carrier-fillet-section-figure-001/data-001/extraction-receipt.json": "b34da964facdee69c94c6545e096a8e18e04cd3f0bb35f4414207a1e47b660ae",
+    "work/carrier-fillet-section-figure-001/export-plan.json": "1264dcaa7d7fff9dbaa72a95ff947a0f0a84de34dde8aba54e634e144dae250d",
+    "work/carrier-fillet-section-figure-001/export-execution-001/execution-receipt.json": "2cb99c424465f07a6c664646ec694f41852574b06ecf97fca542ac757794675b"
+  },
+  "sources_and_plan_unchanged": true,
+  "source010_or_global_admission": false,
+  "elapsed_seconds": 2.156246667029336,
+  "output_directory": "/Users/maxime/.codex/worktrees/993-carrier-revalidation/3dprinting993/work/carrier-fillet-section-figure-001/render-001",
+  "process_group_limit": "Only PGID from this new Popen; zombie members recorded separately.",
+  "logs_sha256": {
+    "stdout.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  }
+}

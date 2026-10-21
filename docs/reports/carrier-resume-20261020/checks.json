@@ -1,0 +1,36 @@
+{
+  "focused_tests": {
+    "command": "python3 -m unittest discover -s tests -p 'test_carrier_*20261020.py'",
+    "passed": 67,
+    "actual_returncode": 0
+  },
+  "documentation_links": {
+    "actual_returncode": 0,
+    "markdown_files": 1316,
+    "broken_links": 0,
+    "frozen_sources_verified": 2
+  },
+  "repository_check": {
+    "command": "make check",
+    "actual_returncode": 2,
+    "tests": 4482,
+    "result": "failures=4, errors=27, skipped=411",
+    "environment": "macOS host Python 3.10 with local user-site packages",
+    "log_uncompressed_sha256": "7ed63f867fe1843c5b00bfe86987b3b65304ac05cec90df2ab486c43877abe48",
+    "observations": [
+      "hashlib.file_digest unavailable on Python 3.10",
+      "SciPy import failure through host user-site packages",
+      "four exact float-dictionary comparisons differed"
+    ],
+    "canonical_GitHub_CI": {
+      "commit": "20fda3927692d65705567ec57a76dd0abfe8267c",
+      "run_url": "https://github.com/cluster2600/porscheparts/actions/runs/39466650874",
+      "conclusion": "success",
+      "scope": "Published R2 geometry, mass and mechanical checkpoint; the current convergence additions require their own CI"
+    }
+  },
+  "authored_whitespace": {
+    "result": "passed",
+    "scope": "Current authored sources, tests and documentation; immutable raw solver output, patches and third-party licence receipts excluded"
+  }
+}

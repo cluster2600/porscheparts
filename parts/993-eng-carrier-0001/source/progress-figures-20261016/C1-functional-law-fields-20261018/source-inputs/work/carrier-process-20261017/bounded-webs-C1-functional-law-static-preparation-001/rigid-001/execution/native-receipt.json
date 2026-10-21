@@ -1,0 +1,316 @@
+{
+  "status": "solver_executed_no_numeric_admission",
+  "global_admission": false,
+  "container_id": "56fcc47345f8cd59abae94d67906488d816893fa9129ba1e527e10165916dff5",
+  "actual_container_exit_code": 0,
+  "attach_cli_returncode": 0,
+  "container_removed": true,
+  "creation_attempted": true,
+  "operations": [
+    {
+      "arguments": [
+        "image",
+        "inspect",
+        "sha256:c9772ae9223a4f800a3ceda77d2494e67e34c8526eb0f204b3c8e052266641b4",
+        "--format",
+        "{\"Id\":{{json .Id}},\"Architecture\":{{json .Architecture}},\"Os\":{{json .Os}}}"
+      ],
+      "timeout_seconds": 20,
+      "cleanup": false,
+      "returncode": 0,
+      "timed_out": false,
+      "cancelled": false,
+      "stdout": "{\"Id\":\"sha256:c9772ae9223a4f800a3ceda77d2494e67e34c8526eb0f204b3c8e052266641b4\",\"Architecture\":\"arm64\",\"Os\":\"linux\"}\n",
+      "stderr": ""
+    },
+    {
+      "arguments": [
+        "container",
+        "ls",
+        "-a",
+        "--no-trunc",
+        "--filter",
+        "name=^/carrier-complete-function-global7-rigid-20261018-001$",
+        "--format",
+        "{{.ID}}"
+      ],
+      "timeout_seconds": 20,
+      "cleanup": false,
+      "returncode": 0,
+      "timed_out": false,
+      "cancelled": false,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "arguments": [
+        "create",
+        "--pull=never",
+        "--name",
+        "carrier-complete-function-global7-rigid-20261018-001",
+        "--label",
+        "org.porscheparts.carrier.ener-supervision=4ad5ff1cbc3440aca3d67397",
+        "--network",
+        "none",
+        "--cpus",
+        "1",
+        "--memory",
+        "6g",
+        "--memory-swap",
+        "6g",
+        "--pids-limit",
+        "128",
+        "--read-only",
+        "--tmpfs",
+        "/tmp:rw,size=512m",
+        "--mount",
+        "type=bind,src=/Users/maxime/.codex/worktrees/993-carrier-revalidation/3dprinting993/work/carrier-process-20261017/bounded-webs-C1-functional-law-static-preparation-001/rigid-001/cad/mesh-7,dst=/work",
+        "--workdir",
+        "/work",
+        "--env",
+        "OMP_NUM_THREADS=1",
+        "--env",
+        "CCX_NPROC_RESULTS=1",
+        "--env",
+        "OPENBLAS_NUM_THREADS=1",
+        "--entrypoint",
+        "/usr/bin/timeout",
+        "sha256:c9772ae9223a4f800a3ceda77d2494e67e34c8526eb0f204b3c8e052266641b4",
+        "--signal=TERM",
+        "--kill-after=10s",
+        "1680s",
+        "/usr/bin/ccx",
+        "-i",
+        "combined-rigid-static"
+      ],
+      "timeout_seconds": 30,
+      "cleanup": false,
+      "returncode": 0,
+      "timed_out": false,
+      "cancelled": false,
+      "stdout": "56fcc47345f8cd59abae94d67906488d816893fa9129ba1e527e10165916dff5\n",
+      "stderr": ""
+    },
+    {
+      "arguments": [
+        "container",
+        "inspect",
+        "56fcc47345f8cd59abae94d67906488d816893fa9129ba1e527e10165916dff5",
+        "--format",
+        "{\"Id\":{{json .Id}},\"Name\":{{json .Name}},\"Image\":{{json .Image}},\"Owner\":{{json (index .Config.Labels \"org.porscheparts.carrier.ener-supervision\")}},\"NanoCpus\":{{json .HostConfig.NanoCpus}},\"Memory\":{{json .HostConfig.Memory}},\"MemorySwap\":{{json .HostConfig.MemorySwap}},\"PidsLimit\":{{json .HostConfig.PidsLimit}},\"NetworkMode\":{{json .HostConfig.NetworkMode}},\"ReadonlyRootfs\":{{json .HostConfig.ReadonlyRootfs}},\"Tmpfs\":{{json .HostConfig.Tmpfs}},\"Mounts\":{{json .Mounts}},\"Entrypoint\":{{json .Config.Entrypoint}},\"Cmd\":{{json .Config.Cmd}},\"WorkingDir\":{{json .Config.WorkingDir}},\"Running\":{{json .State.Running}},\"ExitCode\":{{json .State.ExitCode}},\"OOMKilled\":{{json .State.OOMKilled}},\"StateError\":{{json .State.Error}}}"
+      ],
+      "timeout_seconds": 15,
+      "cleanup": false,
+      "returncode": 0,
+      "timed_out": false,
+      "cancelled": false,
+      "stdout": "{\"Id\":\"56fcc47345f8cd59abae94d67906488d816893fa9129ba1e527e10165916dff5\",\"Name\":\"/carrier-complete-function-global7-rigid-20261018-001\",\"Image\":\"sha256:c9772ae9223a4f800a3ceda77d2494e67e34c8526eb0f204b3c8e052266641b4\",\"Owner\":\"4ad5ff1cbc3440aca3d67397\",\"NanoCpus\":1000000000,\"Memory\":6442450944,\"MemorySwap\":6442450944,\"PidsLimit\":128,\"NetworkMode\":\"none\",\"ReadonlyRootfs\":true,\"Tmpfs\":{\"/tmp\":\"rw,size=512m\"},\"Mounts\":[{\"Destination\":\"/work\",\"Mode\":\"\",\"Propagation\":\"rprivate\",\"RW\":true,\"Source\":\"/Users/maxime/.codex/worktrees/993-carrier-revalidation/3dprinting993/work/carrier-process-20261017/bounded-webs-C1-functional-law-static-preparation-001/rigid-001/cad/mesh-7\",\"Type\":\"bind\"}],\"Entrypoint\":[\"/usr/bin/timeout\"],\"Cmd\":[\"--signal=TERM\",\"--kill-after=10s\",\"1680s\",\"/usr/bin/ccx\",\"-i\",\"combined-rigid-static\"],\"WorkingDir\":\"/work\",\"Running\":false,\"ExitCode\":0,\"OOMKilled\":false,\"StateError\":\"\"}\n",
+      "stderr": ""
+    },
+    {
+      "arguments": [
+        "cp",
+        "56fcc47345f8cd59abae94d67906488d816893fa9129ba1e527e10165916dff5:/usr/bin/ccx",
+        "/Users/maxime/.codex/worktrees/993-carrier-revalidation/3dprinting993/work/carrier-process-20261017/bounded-webs-C1-functional-law-static-preparation-001/rigid-001/execution/ccx.prestart"
+      ],
+      "timeout_seconds": 25,
+      "cleanup": false,
+      "returncode": 0,
+      "timed_out": false,
+      "cancelled": false,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "arguments": [
+        "start",
+        "--attach",
+        "56fcc47345f8cd59abae94d67906488d816893fa9129ba1e527e10165916dff5"
+      ],
+      "timeout_seconds": 1695,
+      "cleanup": false,
+      "returncode": 0,
+      "timed_out": false,
+      "cancelled": false,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "arguments": [
+        "container",
+        "inspect",
+        "56fcc47345f8cd59abae94d67906488d816893fa9129ba1e527e10165916dff5",
+        "--format",
+        "{\"Id\":{{json .Id}},\"Name\":{{json .Name}},\"Image\":{{json .Image}},\"Owner\":{{json (index .Config.Labels \"org.porscheparts.carrier.ener-supervision\")}},\"NanoCpus\":{{json .HostConfig.NanoCpus}},\"Memory\":{{json .HostConfig.Memory}},\"MemorySwap\":{{json .HostConfig.MemorySwap}},\"PidsLimit\":{{json .HostConfig.PidsLimit}},\"NetworkMode\":{{json .HostConfig.NetworkMode}},\"ReadonlyRootfs\":{{json .HostConfig.ReadonlyRootfs}},\"Tmpfs\":{{json .HostConfig.Tmpfs}},\"Mounts\":{{json .Mounts}},\"Entrypoint\":{{json .Config.Entrypoint}},\"Cmd\":{{json .Config.Cmd}},\"WorkingDir\":{{json .Config.WorkingDir}},\"Running\":{{json .State.Running}},\"ExitCode\":{{json .State.ExitCode}},\"OOMKilled\":{{json .State.OOMKilled}},\"StateError\":{{json .State.Error}}}"
+      ],
+      "timeout_seconds": 15,
+      "cleanup": false,
+      "returncode": 0,
+      "timed_out": false,
+      "cancelled": false,
+      "stdout": "{\"Id\":\"56fcc47345f8cd59abae94d67906488d816893fa9129ba1e527e10165916dff5\",\"Name\":\"/carrier-complete-function-global7-rigid-20261018-001\",\"Image\":\"sha256:c9772ae9223a4f800a3ceda77d2494e67e34c8526eb0f204b3c8e052266641b4\",\"Owner\":\"4ad5ff1cbc3440aca3d67397\",\"NanoCpus\":1000000000,\"Memory\":6442450944,\"MemorySwap\":6442450944,\"PidsLimit\":128,\"NetworkMode\":\"none\",\"ReadonlyRootfs\":true,\"Tmpfs\":{\"/tmp\":\"rw,size=512m\"},\"Mounts\":[{\"Destination\":\"/work\",\"Mode\":\"\",\"Propagation\":\"rprivate\",\"RW\":true,\"Source\":\"/Users/maxime/.codex/worktrees/993-carrier-revalidation/3dprinting993/work/carrier-process-20261017/bounded-webs-C1-functional-law-static-preparation-001/rigid-001/cad/mesh-7\",\"Type\":\"bind\"}],\"Entrypoint\":[\"/usr/bin/timeout\"],\"Cmd\":[\"--signal=TERM\",\"--kill-after=10s\",\"1680s\",\"/usr/bin/ccx\",\"-i\",\"combined-rigid-static\"],\"WorkingDir\":\"/work\",\"Running\":false,\"ExitCode\":0,\"OOMKilled\":false,\"StateError\":\"\"}\n",
+      "stderr": ""
+    },
+    {
+      "arguments": [
+        "container",
+        "inspect",
+        "56fcc47345f8cd59abae94d67906488d816893fa9129ba1e527e10165916dff5",
+        "--format",
+        "{\"Id\":{{json .Id}},\"Name\":{{json .Name}},\"Image\":{{json .Image}},\"Owner\":{{json (index .Config.Labels \"org.porscheparts.carrier.ener-supervision\")}},\"NanoCpus\":{{json .HostConfig.NanoCpus}},\"Memory\":{{json .HostConfig.Memory}},\"MemorySwap\":{{json .HostConfig.MemorySwap}},\"PidsLimit\":{{json .HostConfig.PidsLimit}},\"NetworkMode\":{{json .HostConfig.NetworkMode}},\"ReadonlyRootfs\":{{json .HostConfig.ReadonlyRootfs}},\"Tmpfs\":{{json .HostConfig.Tmpfs}},\"Mounts\":{{json .Mounts}},\"Entrypoint\":{{json .Config.Entrypoint}},\"Cmd\":{{json .Config.Cmd}},\"WorkingDir\":{{json .Config.WorkingDir}},\"Running\":{{json .State.Running}},\"ExitCode\":{{json .State.ExitCode}},\"OOMKilled\":{{json .State.OOMKilled}},\"StateError\":{{json .State.Error}}}"
+      ],
+      "timeout_seconds": 15,
+      "cleanup": true,
+      "returncode": 0,
+      "timed_out": false,
+      "cancelled": false,
+      "stdout": "{\"Id\":\"56fcc47345f8cd59abae94d67906488d816893fa9129ba1e527e10165916dff5\",\"Name\":\"/carrier-complete-function-global7-rigid-20261018-001\",\"Image\":\"sha256:c9772ae9223a4f800a3ceda77d2494e67e34c8526eb0f204b3c8e052266641b4\",\"Owner\":\"4ad5ff1cbc3440aca3d67397\",\"NanoCpus\":1000000000,\"Memory\":6442450944,\"MemorySwap\":6442450944,\"PidsLimit\":128,\"NetworkMode\":\"none\",\"ReadonlyRootfs\":true,\"Tmpfs\":{\"/tmp\":\"rw,size=512m\"},\"Mounts\":[{\"Destination\":\"/work\",\"Mode\":\"\",\"Propagation\":\"rprivate\",\"RW\":true,\"Source\":\"/Users/maxime/.codex/worktrees/993-carrier-revalidation/3dprinting993/work/carrier-process-20261017/bounded-webs-C1-functional-law-static-preparation-001/rigid-001/cad/mesh-7\",\"Type\":\"bind\"}],\"Entrypoint\":[\"/usr/bin/timeout\"],\"Cmd\":[\"--signal=TERM\",\"--kill-after=10s\",\"1680s\",\"/usr/bin/ccx\",\"-i\",\"combined-rigid-static\"],\"WorkingDir\":\"/work\",\"Running\":false,\"ExitCode\":0,\"OOMKilled\":false,\"StateError\":\"\"}\n",
+      "stderr": ""
+    },
+    {
+      "arguments": [
+        "rm",
+        "--force",
+        "56fcc47345f8cd59abae94d67906488d816893fa9129ba1e527e10165916dff5"
+      ],
+      "timeout_seconds": 25,
+      "cleanup": true,
+      "returncode": 0,
+      "timed_out": false,
+      "cancelled": false,
+      "stdout": "56fcc47345f8cd59abae94d67906488d816893fa9129ba1e527e10165916dff5\n",
+      "stderr": ""
+    },
+    {
+      "arguments": [
+        "container",
+        "ls",
+        "-a",
+        "--no-trunc",
+        "--filter",
+        "id=56fcc47345f8cd59abae94d67906488d816893fa9129ba1e527e10165916dff5",
+        "--format",
+        "{{.ID}}"
+      ],
+      "timeout_seconds": 15,
+      "cleanup": true,
+      "returncode": 0,
+      "timed_out": false,
+      "cancelled": false,
+      "stdout": "",
+      "stderr": ""
+    }
+  ],
+  "input_hashes_unchanged": true,
+  "actual_container_before_start": {
+    "Id": "56fcc47345f8cd59abae94d67906488d816893fa9129ba1e527e10165916dff5",
+    "Name": "/carrier-complete-function-global7-rigid-20261018-001",
+    "Image": "sha256:c9772ae9223a4f800a3ceda77d2494e67e34c8526eb0f204b3c8e052266641b4",
+    "Owner": "4ad5ff1cbc3440aca3d67397",
+    "NanoCpus": 1000000000,
+    "Memory": 6442450944,
+    "MemorySwap": 6442450944,
+    "PidsLimit": 128,
+    "NetworkMode": "none",
+    "ReadonlyRootfs": true,
+    "Tmpfs": {
+      "/tmp": "rw,size=512m"
+    },
+    "Mounts": [
+      {
+        "Destination": "/work",
+        "Mode": "",
+        "Propagation": "rprivate",
+        "RW": true,
+        "Source": "/Users/maxime/.codex/worktrees/993-carrier-revalidation/3dprinting993/work/carrier-process-20261017/bounded-webs-C1-functional-law-static-preparation-001/rigid-001/cad/mesh-7",
+        "Type": "bind"
+      }
+    ],
+    "Entrypoint": [
+      "/usr/bin/timeout"
+    ],
+    "Cmd": [
+      "--signal=TERM",
+      "--kill-after=10s",
+      "1680s",
+      "/usr/bin/ccx",
+      "-i",
+      "combined-rigid-static"
+    ],
+    "WorkingDir": "/work",
+    "Running": false,
+    "ExitCode": 0,
+    "OOMKilled": false,
+    "StateError": ""
+  },
+  "prestart_binary_sha256": "271f8411371b978d7a8d31a7a13d0765e6e1f872e8a8b1d6aac6d0856c71ec6c",
+  "actual_container_after_start": {
+    "Id": "56fcc47345f8cd59abae94d67906488d816893fa9129ba1e527e10165916dff5",
+    "Name": "/carrier-complete-function-global7-rigid-20261018-001",
+    "Image": "sha256:c9772ae9223a4f800a3ceda77d2494e67e34c8526eb0f204b3c8e052266641b4",
+    "Owner": "4ad5ff1cbc3440aca3d67397",
+    "NanoCpus": 1000000000,
+    "Memory": 6442450944,
+    "MemorySwap": 6442450944,
+    "PidsLimit": 128,
+    "NetworkMode": "none",
+    "ReadonlyRootfs": true,
+    "Tmpfs": {
+      "/tmp": "rw,size=512m"
+    },
+    "Mounts": [
+      {
+        "Destination": "/work",
+        "Mode": "",
+        "Propagation": "rprivate",
+        "RW": true,
+        "Source": "/Users/maxime/.codex/worktrees/993-carrier-revalidation/3dprinting993/work/carrier-process-20261017/bounded-webs-C1-functional-law-static-preparation-001/rigid-001/cad/mesh-7",
+        "Type": "bind"
+      }
+    ],
+    "Entrypoint": [
+      "/usr/bin/timeout"
+    ],
+    "Cmd": [
+      "--signal=TERM",
+      "--kill-after=10s",
+      "1680s",
+      "/usr/bin/ccx",
+      "-i",
+      "combined-rigid-static"
+    ],
+    "WorkingDir": "/work",
+    "Running": false,
+    "ExitCode": 0,
+    "OOMKilled": false,
+    "StateError": ""
+  },
+  "outputs": {
+    "combined-rigid-static.dat": {
+      "sha256": "62db17b0b0e71e7b7e7ca3182ae6b5a41354b804a68b181d662a091ace629c03",
+      "bytes": 44489351
+    },
+    "combined-rigid-static.frd": {
+      "sha256": "cff08dd1f3f750f9c7738ad3c56208cbf395bf8aa97576e94a9c924bb45b7bef",
+      "bytes": 47151136
+    },
+    "combined-rigid-static.sta": {
+      "sha256": "01e324ec0ea28f4d1fd7f5e2da1277af53812b873e218be1604c17a4c8e4990d",
+      "bytes": 170
+    },
+    "combined-rigid-static.cvg": {
+      "sha256": "65086dedb4572132b815ace04b294909c7f6f337111f9704fc310b02320f67f7",
+      "bytes": 274
+    },
+    "combined-rigid-static.log": {
+      "sha256": "56384daa52d63fc3757022159d2c40aa01a5fe2380af5ac4318350ae856a1eac",
+      "bytes": 2271
+    }
+  },
+  "wall_seconds": 77.04911304102279,
+  "global_budget_seconds": 1800,
+  "cleanup_reserve_seconds": 60,
+  "within_global_budget": true,
+  "native_plan_sha256": "bb2935c1486ba2dd0f6b318b8b2efc0021c8ae4c609617787aa9459090340e90",
+  "helper_source_sha256": "cbba58f0f6dd6333dc1063386eb61fe6f85652a4709e82032294c4c2c7726b0c"
+}

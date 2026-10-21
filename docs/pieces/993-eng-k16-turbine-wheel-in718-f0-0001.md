@@ -82,6 +82,10 @@ Catalogue record: [`catalog/parts/993-eng-k16-turbine-wheel-in718-f0-0001.json`]
 
 *`parts/993-eng-k16-turbine-wheel-in718-f0-0001/evidence/lpbf-f0/993-eng-k16-turbine-wheel-in718-f0-0001-lpbf-geometry-screen.png` — a screening output, not a validation.*
 
+![photo-concept](../../parts/993-eng-k16-turbine-wheel-in718-f0-0001/media/photo-concept.png)
+
+*`parts/993-eng-k16-turbine-wheel-in718-f0-0001/media/photo-concept.png` — AI-generated studio illustration based on the concept CAD preview. Material and finish are illustrative; generated details may differ. Not a photograph or evidence of fit, function or manufacturing.*
+
 ![preview](../../parts/993-eng-k16-turbine-wheel-in718-f0-0001/media/preview.png)
 
 *`parts/993-eng-k16-turbine-wheel-in718-f0-0001/media/preview.png` — concept CAD block, **not** the original part, not a print file.*
@@ -116,7 +120,7 @@ Catalogue record: [`catalog/parts/993-eng-k16-turbine-wheel-in718-f0-0001.json`]
 | status | concept |
 | vehicle tested | not recorded |
 | reviewed by |  |
-| limitations | not recorded |
+| limitations | Only reference 5316-120-5000, the diameters, twelve blades, tip height and shaft diameter are published, by replacement-part catalogues.<br>The 20 mm axial envelope, the disk, the hub and the straight four-step blades are synthetic.<br>The STEP excludes the full shaft, the weld, the aerodynamic profiles, fillets, clearances and balancing details.<br>The speed of 103,464 rpm comes from the synthetic F1 compressor point, not from a K16 measurement.<br>The F0 fails the root and thermal-gradient screens at the 1.5 threshold; the gas context also exceeds the generic range stated by EOS.<br>The EOS properties are room-temperature coupons of the API process, not hot HCF, creep or burst allowables.<br>The single-point power balance replaces neither a turbine map, nor rotating CFD, nor CHT, nor rotordynamics.<br>The STEP proves only a readable BREP and is authorized neither for manufacturing, nor rotation, nor turbo or engine use. |
 
 **Evidence**
 

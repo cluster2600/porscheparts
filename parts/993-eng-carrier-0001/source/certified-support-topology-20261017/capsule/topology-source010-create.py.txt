@@ -1,0 +1,275 @@
+"""SHA-bound local flip caller; preparation only until an explicit reviewed run."""
+import argparse
+import ast
+from collections import Counter
+from copy import deepcopy
+from fractions import Fraction as Q
+import hashlib
+import importlib.util
+import json
+import math
+import os
+from pathlib import Path
+import sys
+import time
+
+HERE=Path(__file__).resolve().parent
+ROOT=HERE.parents[2]
+RUNTIME_SHA='c22f488f62a19b23d68452db4d3ce09f08cc26f70ca8502e9518e50493d2a64b'
+REQUIRED={
+ 'original':'cdd21de198227d6facef7789b98751659ed85d1c3ce666a219c2ccf795c18d91',
+ 'reference':'802157ce829af807b0cc98c9c399e8babd6e07b0dd008bae1e86d442a23846f5',
+ 'metadata':'8387aa8106655ad6add3fb14760afb3202d7de3ec6bced45e2e3d1fa894069b2',
+ 'packet':'050b04b625289b543f2c79c97c9f5f0bfc941c8601393082b92b24fd80ec8c2b',
+ 'trace':'c508c99eb04e5a153bde4c2d9c0dd3fb1ef6fd9c0e5abb4c8de7ef8ce9969bb4',
+ 'trace_receipt':'ab513738fe4960296998b8637b6fd529e307eb457f488954d7d3eab1a9f62527',
+ 'census':'ff34c629878ccb1183c8f89a1c232f16e3cd1ab8d02ac282d2efc63c8924d196',
+ 'census_receipt':'99ade325429e416927addae4081d08981431416a642152ec3481b231cc92dbc9',
+ 'census_plan':'7162baea7d5240bfed3aba6e6a0ab19416916572c574265d42d777ddce63920c',
+ 'old_helper':'05537277f8290d0c2dbca6d43f0999e84ec2a4808b3fccd0d37b0bd000950fbb',
+ 'certifier':'9647fd31520111064181058a9b7ce2dc3111e8e3e83160a278fa655c7d02d506',
+ 'clip_source':'4ace9f24b61fa8f2d514f18d2e3eb6e9794983d6dee41fad4a8f44dc1f4c53ef',
+ 'native_receipt':'5d0128155a3d90c0c32ca08e851e404e56e2a8efd1f15f5c405da3a04542b739',
+ 'native_lines':'7565a31350156ff11789faec20045275b61f3b3bc0e9ae96347d794a76d729e7',
+ 'quad_records':'080fb7157145f773bc9d88442c89b95c63b3d53b737092a131e2a9574454ba36',
+ 'native_binder':'c86b8bcfd8da668b203519161707889f22e48145c55061eba3aa24e0fd89f650'}
+
+
+def sha(path):
+    h=hashlib.sha256()
+    with Path(path).open('rb') as stream:
+        for block in iter(lambda:stream.read(1048576),b''):h.update(block)
+    return h.hexdigest()
+
+
+def canonical(value):return hashlib.sha256(json.dumps(value,sort_keys=True,separators=(',',':'),allow_nan=False).encode()).hexdigest()
+
+
+def path(name):
+    p=Path(name)
+    if p.is_absolute() or '..' in p.parts:raise ValueError('Only workspace-relative retained paths are allowed')
+    return ROOT/p
+
+
+def fresh(name):
+    p=path(name)
+    if p.exists() or p.is_symlink():raise ValueError('The candidate destination must be fresh')
+    return p
+
+
+def private(name,source):
+    spec=importlib.util.spec_from_file_location(name,source)
+    module=importlib.util.module_from_spec(spec);spec.loader.exec_module(module)
+    return module
+
+
+def verify(plan):
+    if (plan['schema']!='source010-certified-flip-caller-1' or plan['source_index']!=10 or
+        plan['runtime_expected_sha256']!=RUNTIME_SHA or plan['total_wall_budget_seconds']!=300 or
+        plan['threads']!=1 or plan['workers']!=0 or plan['nice']!=10 or
+        plan['heights_mm']!=[(i+.5)*.06 for i in range(1034)]):
+        raise ValueError('The fixed caller scope, calendar or runtime differs')
+    if plan['files_sha256'].get(str(Path(__file__).resolve().relative_to(ROOT)))!=sha(__file__):
+        raise ValueError('The caller source is not pinned')
+    for role,digest in REQUIRED.items():
+        if plan['files_sha256'].get(plan[role])!=digest:raise ValueError('A required retained identity differs: '+role)
+    for name,digest in plan['files_sha256'].items():
+        if sha(path(name))!=digest:raise ValueError('Changed retained input: '+name)
+    fresh(plan['output_directory'])
+    if json.loads((HERE/'plan.json').read_text())!=plan:raise ValueError('The caller plan changed after parsing')
+    return dict(status='prepared_not_executed',plan_sha256=sha(HERE/'plan.json'),
+                files_sha256=plan['files_sha256'],declared_layers=1034,workers=0,
+                no_AM_imported=True,no_candidate_created=True,global_admission=False)
+
+
+def bind_trace_groups(groups,components,trace,arrays):
+    """Bind the measured per-chart error authority; introduce no new epsilon."""
+    groups=deepcopy(groups);skins={g['id']:g for g in groups if g['kind']=='skin'}
+    if {row['owner'] for row in trace['rows']}!=set(skins):raise ValueError('The trace does not cover exactly the SKIN owners')
+    owners={}
+    for row in trace['rows']:
+        g=skins[row['owner']];ci=row['skin_component_index'];proof=row['trace_proof']
+        if (g['face_range']!=row['global_face_range'] or g['mapping_t_xy_mm']!=row['mapping_t_xy_mm'] or
+            row['remapping_receipt']!=components[ci]['remapping'] or
+            proof['exact_zero_area_cleanup']!=row['remapping_receipt']['exact_zero_area_cleanup'] or
+            not all(proof.get(k) is True for k in ('forward_XYZ_bytes_identical','raw_to_kept_faces_identical',
+                'parameter_vertices_in_original_call_order','all_retained_faces_have_one_affine_branch',
+                'every_actual_error_within_unchanged_original_gamma8_bound'))):
+            raise ValueError('The original remapping/cleanup/encoding authority differs')
+        bound=proof['maximum_exact_mapping_error_squared_mm2']
+        if not isinstance(bound,str) or Q(bound)<0:raise ValueError('The measured trace bound must be an exact nonnegative ratio')
+        g['trace_maximum_error_squared_mm2']=bound
+        expected=list(range(row['global_vertex_offset'],row['global_vertex_offset']+proof['vertices']))
+        actual=[int(i) for i,c in zip(arrays['global_vertex_ids'],arrays['skin_component_index']) if int(c)==ci]
+        if actual!=expected:raise ValueError('The actual trace global ID block differs')
+        owners[ci]=g['id']
+    sizes={len(value) for value in arrays.values()}
+    if len(sizes)!=1 or len(set(map(int,arrays['global_vertex_ids'])))!=len(arrays['global_vertex_ids']):
+        raise ValueError('The actual trace array counts or unique IDs differ')
+    parameters={}
+    for i,tz,branch,ci in zip(arrays['global_vertex_ids'],arrays['vertex_parameters_tz'],arrays['vertex_mapping_branch'],arrays['skin_component_index']):
+        if len(tz)!=2 or not all(math.isfinite(float(v)) for v in tz) or int(ci) not in owners:
+            raise ValueError('Invalid original trace parameters')
+        parameters[int(i)]=dict(owner=owners[int(ci)],tz=tuple(Q(float(v)) for v in tz),branch=int(branch))
+    return groups,parameters
+
+
+def verify_census_header(census,census_plan,reference):
+    if (census.get('status')!='diagnostic_calendar_completed_no_global_admission' or
+        census.get('declared_layers')!=1034 or census.get('completed_layers')!=1034 or
+        census.get('collapsed_cuts')!=987 or census.get('runtime_unchanged') is not True or
+        census.get('files_unchanged') is not True or census.get('worker_group_closed') is not True or
+        census.get('fabrication_vectors_exported') is not False or
+        census.get('files_sha256',{}).get('layers.jsonl')!=REQUIRED['census'] or
+        census.get('plan_sha256')!=REQUIRED['census_plan'] or
+        census_plan.get('surface')!=reference or
+        census_plan.get('files_sha256',{}).get(reference)!=REQUIRED['reference']):
+        raise ValueError('The retained full reference census is not complete and input-bound')
+
+
+def verify_native_receipt(receipt):
+    if (receipt.get('status')!='complete_native_quad_batch_verified_no_carrier_admission' or
+        receipt.get('actual_foreground_native_test_exit_code')!=0 or receipt.get('test_transport_exit_code')!=0 or
+        receipt.get('owned_scopes_inactive') is not True or receipt.get('local_frozen_files_unchanged') is not True or
+        receipt.get('execution_files_sha256',{}).get('test.stdout.log')!=REQUIRED['native_lines']):
+        raise ValueError('The actual native batch completion is not input-bound')
+
+
+def bind_native_operations(packet,records,rows,receipt,binder):
+    verify_native_receipt(receipt)
+    if len(records)!=146 or len(rows)!=146 or receipt['cases']!=rows or [r['name'] for r in records]!=[r['case'] for r in rows]:
+        raise ValueError('The complete native rows and finite input records differ')
+    for expected,row in zip(records,rows):
+        if (not all(row.get(k) is True for k in ('coordinates_exactly_unchanged','directed_boundary_preserved',
+                'topology_valid','all_triangles_exactly_noncollinear')) or
+            row.get('vertices')!=4 or row.get('faces')!=2 or row.get('kept_source_diagonal') is not False or
+            row.get('exactly_coplanar')!=expected['expected_exact_coplanarity'] or
+            sorted(row['source_diagonal_original_vertex_ids'])!=sorted(expected['original_diagonal_ids']) or
+            sorted(row['chosen_diagonal_original_vertex_ids'])!=sorted(set(expected['boundary_ids'])-set(expected['original_diagonal_ids']))):
+            raise ValueError('A native quad does not retain its exact input or new diagonal')
+    native_packet,binding=binder.bind_operations(packet,rows)
+    if binding['cases_verified']!=146 or not binding['normalized_rows_used'] or not binding['plan_face_assignment_preserved']:
+        raise ValueError('The native rows are not completely aligned to the finite face assignments')
+    return native_packet,binding
+
+
+def create(plan,expected):
+    if sha(HERE/'preflight.json')!=expected or json.loads((HERE/'preflight.json').read_text())!=verify(plan):
+        raise ValueError('The reviewed preflight differs')
+    if (os.getpriority(os.PRIO_PROCESS,0)<10 or
+        any(os.environ.get(k)!='1' for k in ('OMP_NUM_THREADS','OPENBLAS_NUM_THREADS'))):
+        raise ValueError('The reviewed nice/thread bounds are not active')
+    import numpy as np
+    source_path=str(path(plan['runtime_source']).parent);saved=list(sys.path)
+    try:
+        sys.path.insert(0,source_path)
+        checkpoints=private('_flip_candidate_runtime',path(plan['runtime_source']))
+    finally:sys.path[:]=saved
+    runtime_before=checkpoints.runtime_identity()
+    if canonical(runtime_before)!=RUNTIME_SHA:raise ValueError('The actual geometry runtime differs')
+    original_checkpoint=json.loads(path(plan['checkpoint']).read_text())
+    if original_checkpoint['runtime_before']!=runtime_before or original_checkpoint['runtime_after']!=runtime_before:
+        raise ValueError('The retained original checkpoint runtime differs')
+    def load_npz(name):
+        with np.load(path(name),allow_pickle=False) as mesh:return {n:mesh[n].copy() for n in mesh.files}
+    original,reference=load_npz(plan['original']),load_npz(plan['reference'])
+    if set(original)!=set(reference) or set(original)!={'vertices','faces','order','type'}:
+        raise ValueError('Unexpected retained surface arrays')
+    for name in original:
+        a,b=original[name],reference[name]
+        if a.dtype!=b.dtype or a.shape!=b.shape or name!='faces' and a.tobytes()!=b.tobytes():
+            raise ValueError('The original/reference attributes or vertices differ')
+    vertices,faces=original['vertices'],original['faces']
+    if (vertices.dtype!=np.float64 or vertices.ndim!=2 or vertices.shape[1]!=3 or not np.isfinite(vertices).all() or
+        faces.dtype!=np.int64 or faces.ndim!=2 or faces.shape[1]!=3 or np.any(faces<0) or np.any(faces>=len(vertices))):
+        raise ValueError('Invalid original geometry arrays')
+    changed=np.flatnonzero(np.any(faces!=reference['faces'],axis=1)).tolist()
+    if changed!=[3341,3475]:raise ValueError('The retained reference differs beyond the two original GRID faces')
+    packet=json.loads(path(plan['packet']).read_text());trace=json.loads(path(plan['trace_receipt']).read_text())
+    for name,digest in packet['inputs_sha256_before'].items():
+        if plan['files_sha256'].get(name)!=digest or sha(path(name))!=digest:raise ValueError('The finite packet ancestry differs')
+    if (trace['original_surface_sha256']!=REQUIRED['original'] or trace['base_surface_sha256']!=REQUIRED['reference'] or
+        trace['metadata_sha256']!=REQUIRED['metadata'] or trace['trace_npz_sha256']!=REQUIRED['trace'] or
+        trace['runtime_before_sha256']!=RUNTIME_SHA or trace['runtime_after_sha256']!=RUNTIME_SHA):
+        raise ValueError('The actual parameter trace belongs to a different input/runtime')
+    arrays=load_npz(plan['trace'])
+    if set(arrays)!=set(trace['arrays']):raise ValueError('Unexpected trace arrays')
+    for name,array in arrays.items():
+        if checkpoints.array_identity(array)!=trace['arrays'][name]:raise ValueError('The actual trace array differs: '+name)
+    metadata=json.loads(path(plan['metadata']).read_text())
+    groups,parameters=bind_trace_groups(metadata['peripheral_skin']['support_surface_face_groups'],metadata['peripheral_skin']['components'],trace,arrays)
+    certifier=private('_certified_flips_v2',path(plan['certifier']))
+    tree=ast.parse(path(plan['clip_source']).read_text());ns={'Q':Q}
+    selected=[n for n in tree.body if isinstance(n,ast.FunctionDef) and n.name in ('canonical','clip_triangle')]
+    if len(selected)!=2:raise ValueError('The exact clip source functions differ')
+    exec(compile(ast.Module(body=selected,type_ignores=[]),str(path(plan['clip_source'])),'exec'),ns)
+    heights=[Q(z) for z in plan['heights_mm']];points=[tuple(Q(float(v)) for v in p) for p in vertices]
+    census=json.loads(path(plan['census_receipt']).read_text())
+    verify_census_header(census,json.loads(path(plan['census_plan']).read_text()),plan['reference'])
+    counts=Counter();layers=0
+    with path(plan['census']).open() as stream:
+        for line in stream:
+            row=json.loads(line)
+            if row['layer']!=layers or row['z_mm']!=plan['heights_mm'][layers]:raise ValueError('The census calendar/order differs')
+            for item in row['collapsed_cuts']:counts[item['face_id']]+=1
+            layers+=1
+    if layers!=1034 or sum(counts.values())!=987 or len(counts)!=145:raise ValueError('The full reference census count differs')
+    old_first=certifier.collapsed_count(points,{i:faces[i].tolist() for i in changed},heights,ns['clip_triangle'])
+    ref_first=certifier.collapsed_count(points,{i:reference['faces'][i].tolist() for i in changed},heights,ns['clip_triangle'])
+    if old_first!={3341:198,3475:0} or ref_first!={3341:0,3475:0} or any(counts[i]!=ref_first[i] for i in changed):
+        raise ValueError('The exact original/reference event multiplicities differ')
+    counts.update({i:old_first[i]-ref_first[i] for i in changed})
+    if (dict(counts)!={int(i):n for i,n in packet['initial_counts_by_face'].items()} or sum(counts.values())!=1185):
+        raise ValueError('The exact pulled-back global ledger differs from the finite packet')
+    native_receipt=json.loads(path(plan['native_receipt']).read_text())
+    native_rows=[json.loads(line) for line in path(plan['native_lines']).read_text().splitlines()]
+    records=json.loads(path(plan['quad_records']).read_text())['records']
+    binder=private('_oriented_native_flip_rows',path(plan['native_binder']))
+    native_packet,native_binding=bind_native_operations(packet,records,native_rows,native_receipt,binder)
+    result,proof=certifier.certify_operations(points,faces.tolist(),original['order'].tolist(),original['type'].tolist(),
+        groups,parameters,native_packet['operations'],heights,dict(counts),ns['clip_triangle'])
+    candidate={name:value.copy() for name,value in original.items()};candidate['faces']=np.asarray(result,dtype=faces.dtype)
+    actual=np.flatnonzero(np.any(candidate['faces']!=faces,axis=1)).tolist()
+    if (actual!=proof['changed_face_ids'] or len(actual)!=290 or
+        any(candidate[n].tobytes()!=original[n].tobytes() for n in ('vertices','order','type'))):
+        raise ValueError('The candidate differs beyond the certified face rows')
+    def area(rows):
+        triangles=vertices[rows]
+        return float(np.linalg.norm(np.cross(triangles[:,1]-triangles[:,0],triangles[:,2]-triangles[:,0]),axis=1).sum()/2.)
+    area_diagnostics=dict(method='NumPy float64 cross/norm/sum on retained XYZ triangles; diagnostic only, no tolerance/gate',
+        original_global_mm2=area(faces),candidate_global_mm2=area(candidate['faces']),skin_groups=[])
+    for group in groups:
+        if group['kind']=='skin':
+            lo,hi=group['face_range']
+            area_diagnostics['skin_groups'].append(dict(owner=group['id'],face_range=[lo,hi],
+                original_mm2=area(faces[lo:hi]),candidate_mm2=area(candidate['faces'][lo:hi])))
+    output=fresh(plan['output_directory']);output.mkdir(exist_ok=False)
+    np.savez_compressed(output/'support.npz',**candidate)
+    with np.load(output/'support.npz',allow_pickle=False) as mesh:
+        if set(mesh.files)!=set(candidate) or any(checkpoints.array_identity(mesh[n])!=checkpoints.array_identity(candidate[n]) for n in candidate):
+            raise ValueError('The candidate NPZ roundtrip differs')
+    runtime_after=checkpoints.runtime_identity();after={n:sha(path(n)) for n in plan['files_sha256']}
+    passed=runtime_before==runtime_after and after==plan['files_sha256'] and sha(HERE/'plan.json')==json.loads((HERE/'preflight.json').read_text())['plan_sha256']
+    receipt=dict(status='certified_local_flip_candidate_no_global_admission' if passed else 'failed_integrity',
+        source_sha256=sha(__file__),plan_sha256=sha(HERE/'plan.json'),preflight_sha256=expected,
+        inputs_sha256_before=plan['files_sha256'],inputs_sha256_after=after,inputs_unchanged=after==plan['files_sha256'],
+        runtime_before_sha256=canonical(runtime_before),runtime_after_sha256=canonical(runtime_after),
+        original_arrays={n:checkpoints.array_identity(a) for n,a in original.items()},
+        candidate_arrays={n:checkpoints.array_identity(a) for n,a in candidate.items()},
+        output_npz_sha256=sha(output/'support.npz'),original_first_pair_events=old_first,
+        reference_first_pair_events=ref_first,proof=proof,float_surface_area_diagnostics=area_diagnostics,global_admission=False,
+        native_topology=dict(receipt_sha256=REQUIRED['native_receipt'],result_sha256=REQUIRED['native_lines'],
+            input_records_sha256=REQUIRED['quad_records'],cases_verified=146,new_diagonals=146,
+            normalized_rows_used=True,binding=native_binding),
+        complete_calendar_hook_run=False,material_graph_recomputed=False)
+    with (output/'receipt.json').open('x') as stream:json.dump(receipt,stream,indent=2,allow_nan=False);stream.write('\n')
+    if not passed:raise ValueError('A source, input or runtime changed during candidate creation')
+    print(json.dumps(dict(status=receipt['status'],changed_faces=len(actual),initial_collapsed=1185,final_local_counter=0,output_npz_sha256=receipt['output_npz_sha256'])))
+
+
+if __name__=='__main__':
+    parser=argparse.ArgumentParser();parser.add_argument('mode',choices=('preflight','create'));parser.add_argument('--preflight-sha256')
+    args=parser.parse_args();plan=json.loads((HERE/'plan.json').read_text())
+    if args.mode=='preflight':
+        with (HERE/'preflight.json').open('x') as stream:json.dump(verify(plan),stream,indent=2);stream.write('\n')
+    else:create(plan,args.preflight_sha256)

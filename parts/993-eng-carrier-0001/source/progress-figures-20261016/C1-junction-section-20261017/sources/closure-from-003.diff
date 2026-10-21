@@ -1,0 +1,18 @@
+--- 003.closed_extraction
++++ portable.closed_extraction
+@@ -10,11 +10,11 @@
+         and not supervision['final_group_members'] and not supervision['timeout'] and not supervision['interrupted']
+         and supervision['sources_and_plan_unchanged'], 'Actual extraction group is not closed successfully')
+     data=json.loads(Path(plan['data']).read_text());command=supervision['command'];root=Path(supervision['cwd'])
+-    require(len(command)==7 and command[4]=='export' and Path(command[3]).absolute()==Path(__file__).absolute()
+-        and Path(command[6]).absolute()==Path(plan['data']).absolute().parent, 'Successful supervision belongs to another producer/output')
++    require(len(command)==7 and command[4]=='export' and Path(command[3]).absolute()==Path(plan['historical_producer']).absolute()
++        and Path(command[6]).absolute()==Path(plan['historical_data']).absolute().parent, 'Successful supervision belongs to another producer/output')
+     export_plan=Path(command[5]);require(export_plan.is_absolute(), 'Supervised export plan must be absolute')
+     plan_key=str(export_plan.relative_to(root));producer_key=str(Path(command[3]).relative_to(root))
+-    require(sha(export_plan)==data['plan_sha256']==supervision['sources_before'].get(plan_key)==supervision['sources_after'].get(plan_key), 'Supervised export plan does not belong to these data')
+-    require(sha(__file__)==data['source_sha256'].get(producer_key)==supervision['sources_before'].get(producer_key)==supervision['sources_after'].get(producer_key), 'Supervised producer identity differs')
++    require(sha(Path(plan['capsule_root'])/plan_key)==data['plan_sha256']==supervision['sources_before'].get(plan_key)==supervision['sources_after'].get(plan_key), 'Supervised export plan does not belong to these data')
++    require(sha(Path(plan['capsule_root'])/producer_key)==data['source_sha256'].get(producer_key)==supervision['sources_before'].get(producer_key)==supervision['sources_after'].get(producer_key), 'Supervised producer identity differs')
+     require(receipt['sources_before']==data['source_sha256'] and all(supervision['sources_before'].get(k)==supervision['sources_after'].get(k)==v
+         for k,v in data['source_sha256'].items()), 'Supervised source context does not belong to these profiles')

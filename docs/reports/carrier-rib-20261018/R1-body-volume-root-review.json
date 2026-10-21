@@ -1,0 +1,135 @@
+{
+  "schema": "root-new-rib-native-body-volume-terminal-review-1",
+  "status": "closed_actual_RC0_new_rib_one_valid_Solid_fresh_topology_and_same_Solid_volumes",
+  "candidate_version": "stock-rib-seven-edge-R1-v1",
+  "owner_terminal": "work/carrier-process-20261017/bounded-webs-stock-rib-R1-body-inspection-preparation-001/terminal-collection-002.json",
+  "owner_terminal_sha256": "90da1b112b2ebb556f21a0591d5ad2511e2cd340c77866ed713cc864a2d05968",
+  "whole_owner_object_and_stored_bytes_equal": true,
+  "only_normalized_field": "collection_elapsed_seconds",
+  "collector_source_sha256": "b60a4f3898e4f34b4e46ccbe6d13d61d96202f9343c5be5af8a3b9940f411711",
+  "collector_whole_literal_inverse_verified": true,
+  "actual_tool_session": 31000,
+  "actual_initial_chunk": "37b401",
+  "actual_terminal_chunk": "d520ac",
+  "actual_child_returncode": 0,
+  "actual_PID_PGID": 67238,
+  "fresh_PID_and_PGID_absent": true,
+  "output_count": 10,
+  "merged_pins": 10393,
+  "all6controls_and3pending_object_and_byte_inverses": true,
+  "candidate_BREP_sha256": "240109caadf961b2c5b70e580dcd50e6fef61dfd3aaa861cdb932c80a9df31a2",
+  "whole_native_body": {
+    "native_null": false,
+    "native_type": "TopAbs_ShapeEnum.TopAbs_SOLID",
+    "native_valid": true,
+    "counts": {
+      "solids": 1,
+      "faces": 243,
+      "edges": 738,
+      "vertices": 488
+    },
+    "bounds_mm": [
+      -296.0000446679483,
+      -36.50089284546831,
+      -22.000044667948323,
+      296.0000446679483,
+      36.500893423748316,
+      30.000044667948313
+    ],
+    "solids": [
+      {
+        "native_valid": true,
+        "bounds_mm": [
+          -296.0000446679483,
+          -36.50089284546831,
+          -22.000044667948323,
+          296.0000446679483,
+          36.500893423748316,
+          30.000044667948313
+        ]
+      }
+    ],
+    "tolerances_mm": {
+      "faces": {
+        "count": 243,
+        "minimum": 1e-07,
+        "maximum": 4.46679483124578e-05
+      },
+      "edges": {
+        "count": 738,
+        "minimum": 1e-07,
+        "maximum": 4.46679483124578e-05
+      },
+      "vertices": {
+        "count": 488,
+        "minimum": 1e-07,
+        "maximum": 0.000453159174909248
+      }
+    },
+    "volume_integrals_not_called_here": true,
+    "surface_area_sum_mm2": 193161.77012262907,
+    "surface_types": {
+      "GeomAbs_SurfaceType.GeomAbs_SurfaceOfExtrusion": 84,
+      "GeomAbs_SurfaceType.GeomAbs_Plane": 86,
+      "GeomAbs_SurfaceType.GeomAbs_BSplineSurface": 8,
+      "GeomAbs_SurfaceType.GeomAbs_Cylinder": 65
+    },
+    "degenerated_edge_count": 0,
+    "native_topologically_empty": false,
+    "highest_topological_dimension": 3,
+    "shell_count": 1
+  },
+  "same_Solid_three_volume_observation": {
+    "schema": "three-actual-volume-overloads-one-native-Solid-1",
+    "candidate_BREP_sha256": "240109caadf961b2c5b70e580dcd50e6fef61dfd3aaa861cdb932c80a9df31a2",
+    "same_Solid_native_identity": true,
+    "one_reloaded_valid_native_Solid": true,
+    "methods": [
+      {
+        "method": "Gmsh_boolean_F_F_F",
+        "arguments": [
+          false,
+          false,
+          false
+        ],
+        "signed_mass_mm3": 288451.89106919506,
+        "mass_binary64_hex": "0x1.19b0f9074716dp+18",
+        "returned_error_estimate": null
+      },
+      {
+        "method": "boolean_OnlyClosed_T_F_F",
+        "arguments": [
+          true,
+          false,
+          false
+        ],
+        "signed_mass_mm3": 288451.89106919506,
+        "mass_binary64_hex": "0x1.19b0f9074716dp+18",
+        "returned_error_estimate": null
+      },
+      {
+        "method": "adaptive_1e-10_T_F",
+        "arguments": [
+          1e-10,
+          true,
+          false
+        ],
+        "signed_mass_mm3": 288451.89219496236,
+        "mass_binary64_hex": "0x1.19b0f919b8e64p+18",
+        "returned_error_estimate": 9.710123808066412e-11
+      }
+    ],
+    "operator_source_sha256": "6863fdf7055231989208f31112b9c1d7d80ffaec470a0347da790fc817dd3cec",
+    "closed_trial_adaptive_volume_mm3": 288451.89219496236,
+    "closed_trial_adaptive_binary64_hex": "0x1.19b0f919b8e64p+18",
+    "adaptive_exact_binary64_equal_to_closed_trial": true,
+    "adaptive_signed_delta_vs_closed_trial_mm3": 0.0,
+    "exact_binary64_adaptive_delta_as_rational": "0",
+    "Gmsh_getMass_mm3": null
+  },
+  "measured_mass_kg": 1.2749573635017337,
+  "candidate_qualified": false,
+  "no_geometry_edit_or_Cuts_or_mesh_or_FEA_executed": true,
+  "strength_allowable_MPa": null,
+  "fatigue_curve": null
+}

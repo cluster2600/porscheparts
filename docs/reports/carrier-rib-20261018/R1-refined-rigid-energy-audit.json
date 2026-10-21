@@ -1,0 +1,56 @@
+{
+  "case": "combined-rigid-static",
+  "CAD_source": {
+    "format": "BREP",
+    "filename": "carrier.brep",
+    "sha256": "240109caadf961b2c5b70e580dcd50e6fef61dfd3aaa861cdb932c80a9df31a2",
+    "master_description_sha256": "398c5bdff7c109e53a9d496e58bc428174dbf27c9818e064a4f656dcd3664546",
+    "native_containment_receipt_sha256": "c7c47b9f5a1a392cbbad2ca288756674373b8f75264b8ec000424ee06d273b2f",
+    "native_volume_receipt_sha256": "2d72c0ead6c7d8323d7cd4696b3aff2ed28e5c29cb9a268170263f2b8dd111e7",
+    "nonadaptive_volume_receipt_sha256": "2d72c0ead6c7d8323d7cd4696b3aff2ed28e5c29cb9a268170263f2b8dd111e7",
+    "adaptive_volume_mm3": 288451.89219496236,
+    "adaptive_operator": {
+      "api": "BRepGProp.VolumeProperties_s",
+      "arguments": [
+        1e-10,
+        true,
+        false
+      ],
+      "scope": "Separate adaptive native reference for material mass and mesh volume error"
+    },
+    "nonadaptive_import_reference_mm3": 288451.89106919506,
+    "nonadaptive_import_operator": {
+      "api": "BRepGProp.VolumeProperties_s",
+      "arguments": [
+        false,
+        false,
+        false
+      ],
+      "scope": "Same nonadaptive overload used by Gmsh getMass; only the future import comparison reference"
+    },
+    "imported_CAD_absolute_identity_proved": false,
+    "STEP_exchange_qualified": false
+  },
+  "E_MPa": 107000.0,
+  "nu": 0.31,
+  "C3D10_elements": 90628,
+  "volume_mm3": 288388.7266472697,
+  "solid_strain_energy_Nmm": 10946.382720711974,
+  "spring_strain_energy_Nmm": 0.0,
+  "half_load_dot_displacement_Nmm": 10946.382664584431,
+  "relative_energy_closure_error": 5.1274968715375735e-09,
+  "tolerance": 0.0001,
+  "energy_closure_pass": true,
+  "inputs_sha256": {
+    "mesh-7/mesh.inp": "66be0f9fac4fc8d54b081dcb81e0b742d91b4bc49ee1faf175d0bcaf1c6af103",
+    "mesh-7/mesh.npz": "74bab109f5e48742f8bf6ad9ce6341cd6aba01e2b59a7ddd6c2badf26500690a",
+    "mesh-7/mesh.json": "701bbb9866626f7afb90698744075437c08ae807ec7ab426c5e1509accff1de1",
+    "mesh-7/combined-rigid-static.json": "cd8538ee0b9bd7a6aacc6a6f0dc712481157f7d5d4664130f244212806fe9f2d",
+    "mesh-7/combined-rigid-static.inp": "b46d6775c1eeda5b46e159951371a07d64f79761eb0543c7b552de0156448623",
+    "mesh-7/combined-rigid-static.dat": "ead8f92663dbe1663e45384063ea4724c9180e59ba4304d600577610ea1bf406",
+    "mesh-7/combined-rigid-static.npz": "ffbeb41bbb48125c32bdf66f6413481ba505d68776e7a1f707aee5618fd05bab",
+    "carrier.brep": "240109caadf961b2c5b70e580dcd50e6fef61dfd3aaa861cdb932c80a9df31a2",
+    "study.json": "8637fa166fbb1853c118a84a4952c5c15f049f3599c27c6a39078c440adc6614",
+    "brep-master.json": "398c5bdff7c109e53a9d496e58bc428174dbf27c9818e064a4f656dcd3664546"
+  }
+}

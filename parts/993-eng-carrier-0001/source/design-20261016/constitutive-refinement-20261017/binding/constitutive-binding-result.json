@@ -1,0 +1,90 @@
+{
+  "status": "identical_discrete_reference_verified",
+  "scope": "Reuse of an existing constitutive sensitivity for the exact same finite-element mesh, linear reference deck, loads and springs. No new solve and no equivalence of STEP exports is claimed.",
+  "case_id": "published_Flat1_NLGEOM_0125_unload",
+  "source_geometry_STEP_sha256": "ad12b8e0a382d8cc8b585254bb4b6fcfafab99fbcedf40691752271d04947a3e",
+  "current_geometry_STEP_sha256": "de0e55a3150dacc5428bbc301d18d2e43477f038c3f4df295d9373af8e906b63",
+  "identical_mesh_npz_sha256": "b156b03ab99f65e534a024a63f9cec12529ce9eb6392b0579bf2c20f857a5119",
+  "identical_reference_deck_sha256": "903956e464014c32f674869d55c62ca635edce42dfa01a4125938053dc3d8caf",
+  "independent_work": {
+    "all_frames_pass": true,
+    "maximum_relative_residual": 5.637878071167981e-06,
+    "relative_tolerance": 0.0001,
+    "minimum_Gauss_detF": 0.9863948602235302,
+    "cycle_net_external_work_Nmm": 477.2641751245394,
+    "plastic_work_curve_integral_J_trapezoid_estimate_Nmm": 448.04237724700073
+  },
+  "unloaded_residual": {
+    "total_time": 2.0,
+    "load_factor": 0.0,
+    "displacement_max_mm": 0.09925853846232784,
+    "displacement_peak_node": 3943,
+    "displacement_peak_original_xyz_mm": [
+      30.307345545289,
+      -6.2883407190154,
+      30.0
+    ],
+    "VM_max_MPa": 845.7416518671683,
+    "VM_peak_element": 38852,
+    "PEEQ_max": 0.01154945,
+    "PEEQ_detection_threshold": 1e-08,
+    "PEEQ_peak_element": 38852,
+    "PEEQ_peak_element_corner_centroid_mm": [
+      87.749535220834,
+      15.26901425822275,
+      16.879368724248
+    ],
+    "plastic_quadrature_volume_mm3": 338.45665066079306,
+    "plastic_element_centroid_bounds_mm": [
+      [
+        21.30759977485375,
+        -26.592014182063,
+        -3.536395995179325
+      ],
+      [
+        105.46208700567001,
+        26.3906171967655,
+        29.6125591210195
+      ]
+    ],
+    "spring_energy_Nmm": 0.00649543850952473,
+    "CCX_solid_internal_energy_Nmm": 476.72852908041136,
+    "external_incremental_trapezoid_work_Nmm": 477.2641751245394,
+    "external_gross_trapezoid_work_Nmm": 95940.16924668677,
+    "work_absolute_residual_Nmm": -0.5291506056184971,
+    "work_relative_closure_error": 0.0011087163738623396,
+    "work_relative_to_gross_error": 5.515422890884373e-06,
+    "applied_force_N": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "applied_moment_about_model_origin_Nmm": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "force_residual_N": [
+      1.4234926370244524e-09,
+      -1.2010841863618587e-10,
+      -1.0095120156483617e-08
+    ],
+    "moment_residual_Nmm": [
+      -0.0036030637826862805,
+      -0.0012734340135739375,
+      9.026920042710419e-05
+    ]
+  },
+  "ENER_all_frames_pass": false,
+  "retained_original_folder": "work/carrier-design-20261016/luo-flat1-verified-nlgeom-unload-mesh9",
+  "retained_binding": {
+    "path": "work/part-workflow/run001-constitutive-binding-002/binding.json",
+    "sha256": "609c2e1ade2b1adabe220493cfe60ea562a84d153dccc582fa1da99e2552ca44"
+  },
+  "binding_source_sha256": "5fd47bb553f36fcd19318ecdbcb3f5270e735a1b6a0cb8a223cb88ebd0a64309",
+  "targeted_tests": {
+    "passed": 4,
+    "test_sha256": "b7d64cd8f4524f6c6fa87c76f75637dc76f1dd843a102de7014ca567e1423684",
+    "log_sha256": "ad09a8714731a7dae3e6f914f6307d7c8c9f25f8690c9db3ffdd354ce7073f7d"
+  }
+}

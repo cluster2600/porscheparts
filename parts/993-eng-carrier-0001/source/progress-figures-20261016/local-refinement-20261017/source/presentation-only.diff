@@ -1,0 +1,11 @@
+--- figure.py
++++ render_v2.py
+@@ -123,7 +123,7 @@
+     from matplotlib.patches import Rectangle
+     matplotlib.rcParams.update({'font.family':'DejaVu Sans','font.size':10,'text.color':'#183347','axes.labelcolor':'#536D7D',
+         'svg.fonttype':'none','svg.hashsalt':'carrier-local-refinement-001','pdf.fonttype':42,'path.simplify':False})
+-    fig,axes=plt.subplots(2,4,figsize=(17,10.5),facecolor='#F8FAFC');fig.subplots_adjust(left=.055,right=.98,top=.80,bottom=.14,wspace=.28,hspace=.38)
++    fig,axes=plt.subplots(2,4,figsize=(17,10.5),facecolor='#F8FAFC');fig.subplots_adjust(left=.055,right=.98,top=.775,bottom=.14,wspace=.28,hspace=.38)
+     fig.text(.055,.95,'993 TURBO · MAILLAGE LOCAL RÉEL · DEUX BOÎTES FIXES',fontsize=11,color='#536D7D',weight='bold')
+     fig.text(.055,.904,'Raffiner les éléments sans redessiner la géométrie',fontsize=23,weight='bold')
+     fig.text(.055,.862,'Cibles fixes : moitié de la plus grande arête du tétraèdre du pic initial — pas moitié du maximum de chaque boîte.',fontsize=10.5)

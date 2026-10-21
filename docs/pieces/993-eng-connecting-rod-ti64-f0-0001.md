@@ -90,6 +90,10 @@ Catalogue record: [`catalog/parts/993-eng-connecting-rod-ti64-f0-0001.json`](../
 
 ## Images
 
+![photo-concept](../../parts/993-eng-connecting-rod-ti64-f0-0001/media/photo-concept.png)
+
+*`parts/993-eng-connecting-rod-ti64-f0-0001/media/photo-concept.png` — AI-generated studio illustration based on the concept CAD preview. Material and finish are illustrative; generated details may differ. Not a photograph or evidence of fit, function or manufacturing.*
+
 ![preview](../../parts/993-eng-connecting-rod-ti64-f0-0001/media/preview.png)
 
 *`parts/993-eng-connecting-rod-ti64-f0-0001/media/preview.png` — concept CAD block, **not** the original part, not a print file.*
@@ -123,7 +127,7 @@ Catalogue record: [`catalog/parts/993-eng-connecting-rod-ti64-f0-0001.json`](../
 | status | concept |
 | vehicle tested | not recorded |
 | reviewed by |  |
-| limitations | not recorded |
+| limitations | Only the center distance, the two functional diameters, the two widths, the steel mass and the advertised titanium gain come from the PAUTER/TZR record.<br>The 78/40 mm outer diameters, the two 10 x 14 mm flanges, the cap and the bolt passages are F0 assumptions.<br>The CAD mass of 341.02 g depends on a synthetic shape and a nominal density; it validates neither the PAUTER gain nor the balancing.<br>The load case uses a cylinder pressure of 12 MPa, 600 g piston/pin, one third of the rod mass and 100 h, all entirely synthetic.<br>LPBF is the preferred process only to study the F0 topology; the production choice remains conditional on comparison with forged/machined steel and conventional titanium.<br>Section stresses, the Kt=1.5 factor and Euler replace neither 3D contact, nor bolt preload, nor bearing shells, nor multiaxial fatigue.<br>The EOS/TIMET values are ambient and physical comparisons, not hot or fatigue LPBF allowables.<br>The full-scale Cecchel study reports fatigue below the conventional reference and requires dedicated qualification.<br>The STEP proves only two re-readable BREP solids; it is authorized neither for manufacturing, nor for installation, nor for an engine. |
 
 **Evidence**
 

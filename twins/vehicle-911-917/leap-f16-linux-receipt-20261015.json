@@ -1,0 +1,233 @@
+{
+  "phase": "F16",
+  "kind": "linux_native_reproduction_receipt",
+  "date": "2026-10-15",
+  "status": "geometry_study_not_qualified_vehicle",
+  "manufacturing_authorized": false,
+  "purpose": "Records a Linux native regeneration of the r3 F16 study. It does not replace the Mac result or preview/leap-f16.png.",
+  "host": {
+    "platform": "Linux x86_64 6.18.33.2-microsoft-standard-WSL2",
+    "os": "Ubuntu 24.04.5 LTS (WSL2)",
+    "opengl": "4.1 (Core Profile) Mesa 25.2.8-0ubuntu0.24.04.4 / D3D12 (Intel(R) Iris(R) Xe Graphics) / Microsoft Corporation"
+  },
+  "run": {
+    "output": "work/911-917-leap-f16-r3-linux-d",
+    "build": "work/911-917-leap-f16-r3-linux-d-build",
+    "retained_outside_git": true,
+    "memory_cap": "systemd-run MemoryMax=6G, MemorySwapMax=0, under /tmp/porscheparts-heavy.lock",
+    "native_exit": {
+      "returncode": -11,
+      "after_log_closed": true
+    },
+    "native_exit_note": "SIGSEGV during process teardown after PicoGK logged 'Done.' and report.json was written; check_native_exit tolerates only this case, then verify_output re-hashed every export.",
+    "native_log_closed_with_done": true,
+    "inputs_json_sha256": "341b26c826963b3c48f22516e228666a94acb2525a7543d066516b90cb83e830",
+    "repository_inputs_sha256": {
+      "twins/vehicle-911-917/leap-f16/VehicleLeap.csproj": "7c1fbb41368d2b6f5242aa5b0bf7dfa1de52dcbc7212ae63f6eab23153ec2248",
+      "twins/vehicle-911-917/leap-f16/NuGet.Config": "9508cae5f76364f56e80eb97cb16493977243cf38e5cca6284e3d74f83b20a2c",
+      "twins/vehicle-911-917/leap-f16/study.json": "fbbf15e7996c15dc04f94214c8fc4db109f6961b3b0fafee21030d7f923144d3",
+      "twins/vehicle-911-917/leap-f16/Program.cs": "ac8a463391f0390c57d74d52bc99d384f1ad1230ab5fea4012307605f0345120",
+      "twins/vehicle-911-917/source/run_leap_f16.py": "41bb6319ea7e4b1cc1738d28ab6e7a795172414919cc8efb507eb25da10399e8",
+      "twins/vehicle-911-917/full-vehicle-study-f15.json": "f690696f751b8d6e782182a4a0b55e6c45dc682d6a9b3cefd5e370d106e3ed1e"
+    }
+  },
+  "leap_root": {
+    "path": "~/picogk/leap-root-linux-20261015",
+    "prepared_by": "twins/vehicle-911-917/source/prepare_linux_leap_root.py",
+    "installation_json_sha256": "250ccd39775b06eac95c3ce763cea868a39fb7f670311448167ef92ea850d4f6",
+    "picogk_nuget": "2.3.0",
+    "skiasharp_nuget": "3.119.0",
+    "native_runtime_commit": "0f26321c18ed878a7820ef769c38fd5d49d39242",
+    "dotnet_sdk": "9.0.318",
+    "libraries": [
+      {
+        "repository": "leap71/LEAP71_ShapeKernel",
+        "revision": "554bce4791d2676ed00bd6704f6eb010111a7fd3",
+        "license": "Apache-2.0",
+        "verified_by": "git rev-parse HEAD on a clean checkout"
+      },
+      {
+        "repository": "leap71/LEAP71_LatticeLibrary",
+        "revision": "81c3c7b2064c19e573c38d76ac09bf1cd2f562d5",
+        "license": "Apache-2.0",
+        "verified_by": "git rev-parse HEAD on a clean checkout"
+      }
+    ],
+    "hashed_files": 170
+  },
+  "baseline": {
+    "path": "work/911-917-picogk-f15-linux-20261015",
+    "vehicle_report_f15_sha256": "67dcde93923d003b271dedb564c54ccb23cb7ecc1ea8754a3771e5677026dbd8",
+    "note": "F15 context regenerated on this Linux host, not the Mac F15 baseline. F16-Linux was built on F15-Linux context."
+  },
+  "report_sha256": "f1a0c3634f5437fa4c1ab9c369212640672efce78c47e1965bc853b6500f5d6a",
+  "kernel": "26.2.0",
+  "assembly_sha256": "a0742c800579a68afb2c150ec9c792b9817ab8696bff33344d30a50fa999267a",
+  "voxel_mm": 5,
+  "context_components": 42,
+  "components": [
+    {
+      "id": "quarter_intake_left",
+      "volume_mm3": 5986869.5,
+      "triangles": 98368,
+      "stl_sha256": "d3902ccc9ad08f337db6d6014b1ddc9fa304de9fdac4b091d2bc4fc0f5e0acb7",
+      "vdb_sha256": "2124e7d997eaf1d1bd4939ba52f80311b837bdb69e0a0dee04152d0c9fb42d50",
+      "vdb_equal": true
+    },
+    {
+      "id": "quarter_intake_right",
+      "volume_mm3": 5980211,
+      "triangles": 98368,
+      "stl_sha256": "8761e4ab43803c0daf206ea52f25f916852b8dc2d0bd028f8eda29bc3e358ea4",
+      "vdb_sha256": "d3cec3abfde38357b01dad6f91b28ceb4a3d5555909d9df935ed9bc0cf29bd24",
+      "vdb_equal": true
+    },
+    {
+      "id": "tail_cooling_duct_left",
+      "volume_mm3": 9412197,
+      "triangles": 149260,
+      "stl_sha256": "251d343c6b78a318a294a65426869131cee97ba5bf66fb61b6a8ad7c61efe930",
+      "vdb_sha256": "a713387b3cd3050caf47f50aafb1e7def7a650d333b57469aab2024ba1e56182",
+      "vdb_equal": true
+    },
+    {
+      "id": "tail_cooling_duct_right",
+      "volume_mm3": 9413583,
+      "triangles": 149260,
+      "stl_sha256": "922a95dd5f57d391adbcbcd677a835346e42c989b284ae09ec207eadeabbd07e",
+      "vdb_sha256": "c075887bec11a5139f9551cd099f3869d23229768754bfb0aa1a84e5ae4bc4a1",
+      "vdb_equal": true
+    },
+    {
+      "id": "tail_lattice_insert",
+      "volume_mm3": 8033026.5,
+      "triangles": 284560,
+      "stl_sha256": "be4ae91667681d65823c64421da481389dd5e1151725a03c8883a9db5010fd26",
+      "vdb_sha256": "29c9d174861d25a98b570b7d197e9f473f52348b4d13512f4c68f0125759bf75",
+      "vdb_equal": true
+    },
+    {
+      "id": "quarter_intake_left_air",
+      "volume_mm3": 10876885,
+      "triangles": 45980,
+      "stl_sha256": "78dd58e476cf5626ad5502dd76fce2f8b2adec279a78646341db42290e2b5f2a",
+      "vdb_sha256": "72def06f28e9b5ba4855b88c95099ab6c8301d8cb636fc9d912598ea77685a1c",
+      "vdb_equal": true
+    },
+    {
+      "id": "quarter_intake_right_air",
+      "volume_mm3": 10874086,
+      "triangles": 45976,
+      "stl_sha256": "fec1e6e7f903a4f5ddb123e87d81c46971a1a16567902095f63f0439bbb370f7",
+      "vdb_sha256": "7e1a5c7807637c83f9c3ba8dbceb87911c4719014528e8cda55c922dc2d8b94a",
+      "vdb_equal": true
+    },
+    {
+      "id": "tail_cooling_duct_left_air",
+      "volume_mm3": 15176159,
+      "triangles": 67484,
+      "stl_sha256": "764c75c317673c6a64361b0b332efff08d53ee7ca4766f294d0fba7a68b76a99",
+      "vdb_sha256": "404ed3ebfed4fe9351c9c0d19f9eb9b1e2d71aee7513a2085e88b5b1c2da0076",
+      "vdb_equal": true
+    },
+    {
+      "id": "tail_cooling_duct_right_air",
+      "volume_mm3": 15168785,
+      "triangles": 67488,
+      "stl_sha256": "ad7cd7b6e5df27561f39a2058716efb559db3953ee9647b6b745a16ed0f013c2",
+      "vdb_sha256": "c78c2814d3844d1f83276a46f0e883f1fa6ca5da50d691f78ba0bda1c9ef4cdb",
+      "vdb_equal": true
+    },
+    {
+      "id": "tail_core_air",
+      "volume_mm3": 29625750,
+      "triangles": 339068,
+      "stl_sha256": "d619333f99986b0bb23a02b7bd39486ba79b16d5d7247b92c5b139dd9afe4568",
+      "vdb_sha256": "34ff6db916de6272c9082363fcfddba755e1fa91f365a08b56282a1da060037c",
+      "vdb_equal": true
+    }
+  ],
+  "views": {
+    "mechanical": "49f70d922308dfa5776aad4b802af7ccb189c5eb6df8578d225a6faa3f6a6a7f",
+    "exterior": "96c8e8a30be14a9aa0aa9fc3734b3ee9b45db6c6e632a7f4ba8671b28201927b",
+    "air_paths": "836d4189ca1e646400013c26a3322e9634aa7bfc72019a5f6c83d4a7dc8c6ca4",
+    "tail_core": "3975654c1fb8e9afefa8816fe669f13041e52f7830ac0b70c451bee49f1f7b85",
+    "air_domains": "9b0b38a17949a483ff1b61cc117b2a240a72222e2d3d3341de6f07e2a53406a7"
+  },
+  "field_exchange": {
+    "file": "tail-fields.vdb",
+    "sha256": "027fbd5313cc7b6e35d8a6d7f13ee8c60e985e82a315e1b0ed02e12a07ff68b7",
+    "field_count": 4,
+    "solid_air_equal": true,
+    "scalar_active_values": 393293,
+    "vector_active_values": 393293,
+    "bidirectional_values_equal": true,
+    "added_value_negative_control_rejected": true,
+    "physical_solver_executed": false
+  },
+  "lattice_cells_before_clipping": 567,
+  "solid_fraction_in_zone": 0.2440856,
+  "checks": 45,
+  "intersections": [
+    "tail_cooling_duct_left__body_shell",
+    "tail_cooling_duct_left__tail_plenum",
+    "tail_cooling_duct_right__body_shell",
+    "tail_cooling_duct_right__tail_plenum"
+  ],
+  "board_sha256": "b3449312e7c7fc220c21c895018eee05f3384b2caddbcbeba22923b87d4e15bf",
+  "raw_mesh_inspection": {
+    "sha256": "2afc905d356577f53e6b3c324c4712e66684a0a8d5c703d232ae0023c32e93b9",
+    "status": "passed_raw_mesh_screen",
+    "numpy": "2.5.2",
+    "trimesh": "5.1.0",
+    "inspector_sha256": "bec8f698cfb1a139553ec27f68aece223e12339eb37418b40dce8c825199ba94",
+    "adapter_sha256": "9d3da91b9dc88a614e08c460c4a4958e1b1873edf9a7334425a94eb8efa44481",
+    "self_intersections_checked": false,
+    "environment": "an existing local venv that already had trimesh; nothing was installed"
+  },
+  "comparison_with_mac_published_metrics": {
+    "source": "twins/vehicle-911-917/LEAP_STACK.md, local result of 12 October 2026",
+    "mac": {
+      "solid_fraction_in_zone": 0.2440856,
+      "lattice_cells_before_clipping": 567,
+      "scalar_active_values": 393293,
+      "vector_active_values": 393293,
+      "checks": 45,
+      "intersections": [
+        "tail_cooling_duct_left__body_shell",
+        "tail_cooling_duct_left__tail_plenum",
+        "tail_cooling_duct_right__body_shell",
+        "tail_cooling_duct_right__tail_plenum"
+      ]
+    },
+    "metrics_match": true,
+    "byte_equality_vs_mac_checked": false,
+    "byte_equality_note": "The Mac report.json and export hashes are not in the repository, so only the published metrics are compared."
+  },
+  "linux_repeatability": {
+    "compared_with": "work/911-917-leap-f16-r3-linux-c (same host, runner from commit 46895624, report sha256 c7c6d7cb5a9a7d82277586432543b8fe846f5225810b4cdd076d68ea22af5d86)",
+    "stl_bytes_identical": true,
+    "capture_bytes_identical": true,
+    "volumes_and_checks_identical": true,
+    "vdb_bytes_identical": false,
+    "vdb_note": "Every VDB differs from attempt c only within its first 57 bytes, the header region that holds a per-file UUID; active values are compared by the native roundtrip instead.",
+    "assembly_note": "assembly_sha256 differs between rebuilt binaries; the C# sources hashed in inputs.json are identical."
+  },
+  "earlier_linux_attempts_not_used": {
+    "work/911-917-leap-f16-r3-linux": "no native-exit.json and no board; not used",
+    "work/911-917-leap-f16-r3-linux-b": "no board was produced; not used",
+    "work/911-917-leap-f16-r3-linux-c": "complete with the commit 46895624 runner; superseded by d because run_leap_f16.py changed"
+  },
+  "not_established": [
+    "fitment",
+    "port or flange interfaces",
+    "attachment load paths",
+    "self-intersection",
+    "voxel-resolution convergence",
+    "CFD, pressure drop or heat rejection",
+    "strength or fatigue",
+    "manufacturing",
+    "1,600 hp capability",
+    "qualified heat exchanger"
+  ]
+}

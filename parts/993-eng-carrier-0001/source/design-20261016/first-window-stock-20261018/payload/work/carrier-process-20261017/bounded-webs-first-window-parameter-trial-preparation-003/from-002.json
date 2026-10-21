@@ -1,0 +1,31 @@
+{
+  "schema": "first-window-original-operand-independence-from002-1",
+  "trial_original": "work/carrier-process-20261017/bounded-webs-first-window-parameter-trial-preparation-002/trial.py",
+  "original_sha256": "d69175c2dbf9a12bdce4de5d3013526c7d2d1e9c61bd9964f8f0d9cd457f2bd3",
+  "current_sha256": "82a4a8dfd45b4a05bdb786f8e11bdc39156621011760a4c442340b94e5f30222",
+  "trial_literal_replacements": [
+    {
+      "old": "        stock = import_brep(out / 'regenerated-stock/native-body.brep')\n        old = import_brep(R / p['current_BREP'])\n        baseline = import_step(R / p['baseline_STEP'])\n        require(all(body.is_valid and len(body.solids()) == 1 for body in (stock, old, baseline)), 'Each operand must be one valid Solid')\n        event('before_one_union_with_current07b')\n        candidate = old + stock\n",
+      "new": "        stock = import_brep(out / 'regenerated-stock/native-body.brep')\n        old = import_brep(R / p['current_BREP'])\n        require(all(body.is_valid and len(body.solids()) == 1 for body in (stock, old)), 'Each operand must be one valid Solid')\n        event('before_one_union_with_current07b')\n        candidate = old + stock\n"
+    },
+    {
+      "old": "        summary = GATE.retain_cut_helpers(R / p['strict_cut_source'], dict(TopTools_IndexedMapOfShape=TopTools_IndexedMapOfShape, TopExp=TopExp, Bnd_Box=Bnd_Box, BRepBndLib=BRepBndLib, TopAbs_SOLID=TopAbs_SOLID, TopAbs_FACE=TopAbs_FACE, TopAbs_EDGE=TopAbs_EDGE, TopAbs_VERTEX=TopAbs_VERTEX, BRepCheck_Analyzer=BRepCheck_Analyzer, volume=volume, SimpleNamespace=SimpleNamespace, TopoDS=TopoDS, BRep_Tool=BRep_Tool, GProp_GProps=GProp_GProps, BRepGProp=BRepGProp, BRepAdaptor_Surface=BRepAdaptor_Surface))\n        summaries = {}\n        for name, argument, tool in (('baseline-minus-candidate', baseline, candidate), ('current07b-minus-candidate', old, candidate), ('candidate-minus-current07b', candidate, old)):\n            cut = BRepAlgoAPI_Cut()\n            args, tools = TopTools_ListOfShape(), TopTools_ListOfShape()\n",
+      "new": "        summary = GATE.retain_cut_helpers(R / p['strict_cut_source'], dict(TopTools_IndexedMapOfShape=TopTools_IndexedMapOfShape, TopExp=TopExp, Bnd_Box=Bnd_Box, BRepBndLib=BRepBndLib, TopAbs_SOLID=TopAbs_SOLID, TopAbs_FACE=TopAbs_FACE, TopAbs_EDGE=TopAbs_EDGE, TopAbs_VERTEX=TopAbs_VERTEX, BRepCheck_Analyzer=BRepCheck_Analyzer, volume=volume, SimpleNamespace=SimpleNamespace, TopoDS=TopoDS, BRep_Tool=BRep_Tool, GProp_GProps=GProp_GProps, BRepGProp=BRepGProp, BRepAdaptor_Surface=BRepAdaptor_Surface))\n        summaries = {}\n        for name, argument, tool in (('baseline-minus-candidate', None, candidate), ('current07b-minus-candidate', None, candidate), ('candidate-minus-current07b', candidate, None)):\n            if name == 'baseline-minus-candidate':\n                original = import_step(R / p['baseline_STEP'])\n                argument = original\n            elif name == 'current07b-minus-candidate':\n                original = import_brep(R / p['current_BREP'])\n                argument = original\n            else:\n                original = import_brep(R / p['current_BREP'])\n                tool = original\n            require(original.is_valid and len(original.solids()) == 1, 'Each fresh original reference must be one valid Solid')\n            event('fresh_original_import_for_' + name, source=p['baseline_STEP'] if name == 'baseline-minus-candidate' else p['current_BREP'], independent_of_construction_union_operand=True)\n            cut = BRepAlgoAPI_Cut()\n            args, tools = TopTools_ListOfShape(), TopTools_ListOfShape()\n"
+    },
+    {
+      "old": "            report['native_Cut_summaries'] = summaries\n        native_volume, error = volume.precise_volume(candidate)\n        old_volume, old_error = volume.precise_volume(old)\n        study = json.loads((R / p['baseline_study']).read_text())\n        mass = native_volume * study['material']['density_tonne_mm3'] * 1000\n",
+      "new": "            report['native_Cut_summaries'] = summaries\n        native_volume, error = volume.precise_volume(candidate)\n        current_volume_reference = import_brep(R / p['current_BREP'])\n        require(current_volume_reference.is_valid and len(current_volume_reference.solids()) == 1, 'Fresh current07b volume reference must be one valid Solid')\n        old_volume, old_error = volume.precise_volume(current_volume_reference)\n        report['original_reference_scope'] = 'Fresh baseline/current source imports for each strict Cut and a separate fresh current volume import; construction union operands are not original authority.'\n        study = json.loads((R / p['baseline_study']).read_text())\n        mass = native_volume * study['material']['density_tonne_mm3'] * 1000\n"
+    }
+  ],
+  "whole_forward_inverse_byteexact": true,
+  "unchanged_source_bytes": {
+    "normal-builder/cad.py": "42b22c15101b83c1ce1e18167bc8aa40966e7e9ccea71eb4d05fc6725b4dbd74",
+    "build_stock.py": "f25ba15eaf2ba9ded8c707ecd3c388e93f323a387552786683881305df5b1625",
+    "ARMING.md": "571c8629ef5b78f8f225aaa457964ccfdadde685a925e327dc841d6cb9f1cb80"
+  },
+  "old_pending_controls_preserved": {
+    "pending-plan.json": "7bd1934600cc1fe5a78f6f2737eaf16930d95aef474a30abea377c4ac574f587",
+    "pending-launch-plan.json": "ac893bae3f6431f3ab798ab49c870669d7abd2af462fcda0f3a86055c355b04c",
+    "pending-command.json": "abc655a0561e629e8bcaba4aafdf61511505197d182bd8521b3406c29d57580a"
+  }
+}

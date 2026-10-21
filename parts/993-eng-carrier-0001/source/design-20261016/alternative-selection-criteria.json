@@ -1,0 +1,35 @@
+{
+  "frozen_at_UTC": "2026-10-16T12:09:17.912327+00:00",
+  "scope": "Explicit heavier alternative numerical selection; does not pass the preceding 1.2 kg mass criterion and is not a material allowable",
+  "geometry": {
+    "nominal_mass_kg_max": 1.23,
+    "central_pad_symmetric_BRep_difference_mm3": 0.0,
+    "all_six_end_region_symmetric_BRep_differences_mm3": 0.0,
+    "study_assembly_screen_pass": true
+  },
+  "mechanics": {
+    "comparison_to": "frozen V6f under identical declared loads/material/support model",
+    "meshes": [
+      "mesh-9",
+      "mesh-7"
+    ],
+    "cases": [
+      "combined-rigid-static",
+      "combined-spring-1000-static"
+    ],
+    "displacement_max_mm_not_above_V6f": true,
+    "integration_point_VM_max_MPa_not_above_V6f": true,
+    "all_four_case_comparisons_required": true,
+    "moving_hotspot_above_baseline_is_rejected": true
+  },
+  "consistency": {
+    "energy_relative_tolerance": 0.0001,
+    "superposition_stress_abs_tolerance_MPa": 0.02,
+    "superposition_displacement_abs_tolerance_mm": 0.0002
+  },
+  "on_failure": "Retain every diagnostic result and geometry; refuse final preparation under this comparison rule.",
+  "alternative_geometry_has_not_been_solved_or_read": true,
+  "geometry_STEP_sha256": "9de8f6c30e8b7388689579850b497f43ed02feb5b59894ea8af856fd7683e563",
+  "original_mass_ceiling_kg": 1.2,
+  "original_mass_ceiling_must_remain_reported": true
+}

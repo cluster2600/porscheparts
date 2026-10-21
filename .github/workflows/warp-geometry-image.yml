@@ -1,0 +1,118 @@
+name: Build Warp geometry pilot image
+
+on:
+  pull_request:
+    paths:
+      - containers/warp-geometry*
+      - benchmarks/warp-geometry/**
+      - tests/test_warp_geometry_pilot.py
+      - .github/workflows/warp-geometry-image.yml
+  workflow_dispatch:
+    inputs:
+      push:
+        description: Publish the CPU-tested image to GHCR (requires explicit approval)
+        type: boolean
+        required: true
+        default: false
+
+permissions:
+  contents: read
+
+env:
+  IMAGE_REPOSITORY: ghcr.io/${{ github.repository_owner }}/porscheparts-warp-geometry
+
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+      - name: Build the allowlisted linux/amd64 image
+        run: bash containers/warp-geometry-build.sh "${IMAGE_REPOSITORY}:${GITHUB_SHA}"
+      - name: Verify the image and run the CPU fixture offline
+        run: |
+          set -euo pipefail
+          image_ref="${IMAGE_REPOSITORY}:${GITHUB_SHA}"
+          test "$(docker image inspect --format '{{.Os}}/{{.Architecture}}' "${image_ref}")" = linux/amd64
+          test "$(docker image inspect --format '{{.Config.User}}' "${image_ref}")" = 9179:9179
+          mkdir -p evidence-output
+          docker run --rm --network none --read-only \
+            --user "$(id -u):$(id -g)" \
+            --tmpfs /tmp:rw,exec,nosuid,nodev,size=512m,mode=1777 \
+            --cap-drop ALL --security-opt no-new-privileges \
+            --memory 2g --cpus 2 --pids-limit 128 \
+            -v "${PWD}/evidence-output:/output" \
+            "${image_ref}" --device cpu --output /output/report.json --samples 512 --repeats 2 \
+            > evidence-output/cpu.log 2>&1
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          report = json.loads(Path('evidence-output/report.json').read_text())
+          assert report['status'] == 'passed', report
+          assert report['device']['type'] == 'cpu', report
+          assert report['cpu_smoke_only'] is True, report
+          assert report['gpu_validated'] is False, report
+          assert report['manufacturing_authorized'] is False, report
+          assert all(case['passed'] for case in report['cases']), report
+          PY
+      - name: Run the pilot's independent tests in the same image
+        run: |
+          docker run --rm --network none --read-only \
+            --tmpfs /tmp:rw,exec,nosuid,nodev,size=512m,mode=1777 \
+            --cap-drop ALL --security-opt no-new-privileges \
+            --memory 2g --cpus 2 --pids-limit 128 \
+            --entrypoint python \
+            -v "${PWD}/tests/test_warp_geometry_pilot.py:/repo/tests/test_warp_geometry_pilot.py:ro" \
+            -v "${PWD}/benchmarks/warp-geometry:/repo/benchmarks/warp-geometry:ro" \
+            "${IMAGE_REPOSITORY}:${GITHUB_SHA}" -m unittest discover -s /repo/tests -p test_warp_geometry_pilot.py -v
+      - name: Export the tested image and its identity
+        run: |
+          docker image inspect "${IMAGE_REPOSITORY}:${GITHUB_SHA}" > evidence-output/image-inspect.json
+          docker save "${IMAGE_REPOSITORY}:${GITHUB_SHA}" | gzip -1 > warp-geometry-image.tar.gz
+          sha256sum warp-geometry-image.tar.gz > evidence-output/image-archive.sha256
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: warp-geometry-cpu-tested-${{ github.sha }}
+          path: |
+            warp-geometry-image.tar.gz
+            evidence-output/
+          if-no-files-found: error
+          retention-days: 14
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: failure()
+        with:
+          name: warp-geometry-failed-${{ github.sha }}
+          path: evidence-output/
+          if-no-files-found: warn
+          retention-days: 14
+  publish:
+    if: github.event_name == 'workflow_dispatch' && inputs.push
+    needs: build
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093
+        with:
+          name: warp-geometry-cpu-tested-${{ github.sha }}
+      - name: Verify and load the exact CPU-tested image
+        run: |
+          sha256sum -c evidence-output/image-archive.sha256
+          gunzip -c warp-geometry-image.tar.gz | docker load
+      - uses: docker/login-action@c94ce9fb468520275223c153574b00df6fe4bcc9
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - name: Publish the tested image and record its registry digest
+        run: |
+          image_ref="${IMAGE_REPOSITORY}:${GITHUB_SHA}"
+          docker push "${image_ref}"
+          docker image inspect --format '{{json .RepoDigests}}' "${image_ref}" > published-image.json
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: warp-geometry-published-${{ github.sha }}
+          path: published-image.json
+          if-no-files-found: error

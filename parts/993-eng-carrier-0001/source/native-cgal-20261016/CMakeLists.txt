@@ -1,0 +1,7 @@
+cmake_minimum_required(VERSION 3.16)
+project(carrier_autorefine LANGUAGES CXX)
+find_package(CGAL 6.1.3 EXACT REQUIRED)
+add_executable(carrier_autorefine autorefine.cpp)
+target_compile_features(carrier_autorefine PRIVATE cxx_std_17)
+target_compile_definitions(carrier_autorefine PRIVATE PMP_ROUNDING_VERTICES_IN_POLYGON_SOUP_VERBOSE)
+target_link_libraries(carrier_autorefine PRIVATE CGAL::CGAL)

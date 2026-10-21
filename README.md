@@ -13,10 +13,14 @@
 [![Active phase](https://img.shields.io/badge/active%20phase-manufactures%20nothing-critical)](SAFETY.md)
 [![Docs](https://img.shields.io/badge/docs-English-brightgreen)](docs/TRANSLATION.md)
 
+[**Our Porsche information catalogue**](https://porschefanatics.com/) ·
+[**Our Qwen: qwen-picogk**](#our-qwen-qwen-picogk) ·
+[**Software chain: Qwen and PicoGK**](#software-chain-qwen-and-picogk) ·
 [**Parts**](#2-993-parts-for-additive-manufacturing) ·
 [**964 structure and monocoque**](#1-the-964-body-shell-and-the-carbon-monocoque-programme) ·
 [**Engine cooling**](#3-engine-cooling) ·
 [**Gallery**](docs/GALLERY.md) ·
+[**993 carrier workflow**](docs/manufacturing/993_CARRIER_PROJECT_EN.md) ·
 [**Run the checks**](#quick-start) ·
 [**Safety first**](SAFETY.md)
 
@@ -32,13 +36,124 @@ The repository has withdrawn several, listed
 [further down this page](#what-the-repository-withdrew-from-its-own-results).
 
 > [!IMPORTANT]
-> **No part is validated.** All 41 part records are at status `concept`, and 23
+> **No part is validated.** All 43 part records are at status `concept`, and 25
 > of them are `prohibited_pending_engineering`. Read [SAFETY.md](SAFETY.md).
+
+## Software chain: Qwen and PicoGK
+
+**[PorscheFanatics.com](https://porschefanatics.com/) is our Porsche information
+catalogue.** It brings together [parts and suppliers](https://porschefanatics.com/parts/),
+[factory references](https://porschefanatics.com/oem/), a
+[research library](https://porschefanatics.com/library/) and
+[technical guides](https://porschefanatics.com/knowledge/), with links to their
+sources. We use it upstream to identify parts, applications and documentary
+evidence. Each reused fact retains its source and evidence level; physical
+interface measurements are recorded separately in this engineering repository.
+
+**[qwen-picogk](https://github.com/cluster2600/qwen-picogk) is our locally trained
+Qwen project.** We develop task-specific adapters, authored training data,
+independent request checks and trusted native PicoGK hosts there. The released
+planner is our MLX LoRA adaptation of **Qwen2.5-Coder-1.5B-Instruct**, used with
+a 4-bit base on Apple Silicon. Its documented tasks cover English, French,
+German, Japanese and Chinese. See [our Qwen's role and supported paths](#our-qwen-qwen-picogk).
+
+**Our qwen-picogk adapter proposes a checked plan; PicoGK builds geometry;
+OpenFOAM and CalculiX calculate its behaviour.** This repository, `porscheparts`,
+holds the part records, design sources and engineering evidence. The
+engineering order starts with the part's requirements,
+measured interfaces, material/process assumptions and loads. Missing physical
+inputs keep a result at study level. The diagram describes dependencies, not
+an autonomous system or a claim that every step has run on every part.
+
+```mermaid
+flowchart TB
+    CATALOG["PorscheFanatics.com<br/>our Porsche information catalogue"] -->|sourced part references and documentation| INPUT
+    INPUT["Requirements, measurements and interfaces"] -->|manual authoring| CODE["Reviewed C# recipes and parameters"]
+    INPUT -. optional assistance .-> QWEN["qwen-picogk<br/>our trained Qwen adapter; bounded JSON proposal"]
+    QWEN --> CHECK["Independent schema, units and intent checks"]
+    CHECK -->|accepted parameters| CODE
+    CODE --> PICO["PicoGK + ShapeKernel / LatticeLibrary<br/>new M64 geometry; VDB and mesh exports"]
+    INPUT --> EXISTING["Existing build123d / FreeCAD / STEP masters"]
+    PICO --> GEO["Geometry and assembly checks<br/>dimensions, interfaces, topology and clearances"]
+    PICO -. optional mesh queries .-> WARP["NVIDIA Warp<br/>batched point-to-surface queries; isolated synthetic pilot"]
+    WARP -->|measurement report| GEO
+    EXISTING --> GEO
+    GEO --> CAE["Case preparation and meshing: Gmsh / OpenFOAM tools<br/>Solvers: OpenFOAM / CalculiX; Cantera when needed"]
+    CAE --> REVIEW["Convergence, balances and comparison with measurements"]
+    REVIEW -->|revise the design| CODE
+    REVIEW --> PREP["Engineering and process review<br/>DfAM, supplier preparation; Adamantine if applicable"]
+    PREP --> PHYSICAL["Authorised prototypes, metrology and physical tests"]
+    PHYSICAL -->|measured discrepancies| INPUT
+    GEO -. visual inspection .-> USD["OpenUSD / Omniverse<br/>assembly, contacts and rendering"]
+    REVIEW -. optional reference dataset .-> PN["PhysicsNeMo<br/>train and validate a fast surrogate"]
+```
+
+| Tool or layer | What it does here | When it enters |
+|---|---|---|
+| **[PorscheFanatics.com](https://porschefanatics.com/)** | Our information catalogue: part listings, factory references, library and technical guides with sources. | Research and identification, before defining the engineering inputs. |
+| **[Our qwen-picogk](https://github.com/cluster2600/qwen-picogk)** | Our trained Qwen adapters and guarded toolchains. The released planner proposes JSON parameters for trusted PicoGK recipes; the scan demonstration has a separate adapter. | After explicit requirements or independently extracted scan features; outputs are checked before native geometry. |
+| **Codex** | Assist with authoring, repository changes and review. | Throughout development, alongside the local Qwen project. |
+| **C# / PicoGK** | Generate new M64 geometry from reviewed rules; ShapeKernel and LatticeLibrary provide geometric building blocks. OpenVDB stores volumes and fields. | Before geometric inspection and simulation, then again when the design changes. Existing CAD masters remain authoritative for their own zones. |
+| **[NVIDIA Warp](docs/WARP_GEOMETRY_VAST_PILOT.md)** | Batched geometric queries after PicoGK. The isolated Docker pilot checks synthetic point-to-surface distances against an analytic oracle. | Optional geometry screening; a CPU image check does not establish CUDA execution or application performance. |
+| **[Our cluster_compilot](docs/WARP_GEOMETRY_VAST_PILOT.md#where-cluster_compilot-can-help)** | Optimize regular C/OpenMP CPU loops through model proposals, dependence checks and numerical verification. | Optional, after profiling identifies a costly CPU loop; a separate environment and experiment from Warp. |
+| **Gmsh / OpenFOAM / CalculiX** | Prepare calculation meshes and solve fluid, thermal or structural cases; ParaView/PyVista inspect results. | After geometry, materials, loads and boundary conditions are sufficient for the declared study. |
+| **Adamantine / AdditiveFOAM** | Study additive manufacturing: global thermomechanics or the local melt pool. | With a defined process case, including material, orientation and heat-source history. These are research tools, not a qualified machine job. |
+| **OpenUSD / Omniverse** | Compose and inspect the assembly, contacts, motion and visual results. | A branch from checked geometry; rendering is not required to run CFD/FEA or prepare fabrication. |
+| **PhysicsNeMo** | Learn a fast approximation of reference behaviour. | Optional, after suitable solver/measurement references exist, with separate validation. |
+| **PrusaSlicer / supplier tools** | Prepare polymer prototypes or an industrial machine job. | After the relevant design and process review; an LPBF job requires the supplier's qualified workflow. |
+
+### Our Qwen: qwen-picogk
+
+The [qwen-picogk repository](https://github.com/cluster2600/qwen-picogk) contains
+our adapters, training configuration, datasets, evaluation records and native
+C# hosts. Its role is visible in three separately documented paths:
+
+- **Published multilingual planner:** request → our pinned MLX LoRA adapter →
+  JSON → independent unit and intent checks → trusted C# recipe → PicoGK →
+  native geometry checks. It covers bounded synthetic cylinders, pipes,
+  washers, BCC cells and thread cutters, plus missing-interface refusal.
+  [Architecture and evidence](https://github.com/cluster2600/qwen-picogk/blob/main/docs/ARCHITECTURE.md).
+- **Scan demonstration:** scan → independent feature extraction → our
+  dedicated scan-demo adapter → checked tool plan → reconstruction tools and
+  trusted PicoGK host → geometry checks. PyMesh cleanup and intersection
+  auditing surround this path. The model plans from typed features; geometric
+  tools process the actual vertices and triangles.
+  [OBJ-to-STL demonstration](https://github.com/cluster2600/qwen-picogk/blob/main/docs/OBJ_TO_STL_DEMO.md)
+  and [PyMesh integration](https://github.com/cluster2600/qwen-picogk/blob/main/docs/PYMESH_SCAN_RECONSTRUCTION.md).
+- **Direct C# research:** our adapter produced six restricted C# beam statements,
+  admitted into a trusted wrapper after code checks and run through native PicoGK.
+  Broader AM program generation
+  remains experimental, with rejected trials preserved and no qualified AM C#
+  adapter. [Bounded C# probe](https://github.com/cluster2600/qwen-picogk/blob/main/docs/SCAN_TO_PICOGK.md)
+  and [AM training study](https://github.com/cluster2600/qwen-picogk/blob/main/am-code/README.md).
+
+The planner command itself neither writes C# nor executes geometry. Model
+training, code generation, native geometry and physical validation have
+separate evidence. The recorded Mac inference uses MLX; the generic
+vLLM/CUDA serving route is documented separately. Training another adapter is
+a parallel software activity, not a prerequisite for designing a part.
+See [PicoGK and Qwen on the Mac](docs/PICOGK_MAC_SETUP.md),
+[local training evidence](docs/QWEN_TRAINING.md) and
+[our published model's training record](https://github.com/cluster2600/qwen-picogk/blob/main/docs/TRAINING.md).
+
+### Execution and detailed contracts
+
+**Where it runs.** Mac and Kali provide local authoring, Qwen assistance and
+versioned geometry and solver runs. Docker packages runtimes; Git, Make and CI
+preserve versions and check outputs. A final Vast/Omniverse review is a
+separate, explicitly approved GPU job. These machines and containers are
+execution environments, not additional design stages.
+
+Read the [engineering workflow](docs/architecture/engineering-workflow.md),
+[PicoGK decision](docs/decisions/0004-picogk-new-geometry.md),
+[software inventory and dated execution evidence](docs/SOFTWARE_STACK.md), and
+[per-part workflow](docs/WORKFLOW.md) for the detailed contracts. Passing code,
+mesh or USD checks does not close physical qualification.
 
 <table>
 <tr>
-<td align="center"><h3>527</h3>qualified source records</td>
-<td align="center"><h3>41</h3>part records<br><sub>23 prohibited as they stand</sub></td>
+<td align="center"><h3>545</h3>qualified source records</td>
+<td align="center"><h3>43</h3>part records<br><sub>25 prohibited as they stand</sub></td>
 <td align="center"><h3>34</h3>993 design dossiers<br><sub>for additive manufacturing</sub></td>
 </tr>
 <tr>
@@ -216,7 +331,7 @@ tolerance, not data: the points carry ±2 to 9 mm where a tool needs ±1 mm.
 
 ## 2. 993 parts for additive manufacturing
 
-**34 design dossiers** in [`docs/993/`](docs/993/) and **41 part records**,
+**34 design dossiers** in [`docs/993/`](docs/993/) and **43 part records**,
 from the headlamp spring hook to the K16 turbine wheel in Inconel 718, by way
 of the Ti-6Al-4V connecting rod, the AlSi10Mg compressor wheel, the IN625
 exhaust manifold and the WE43 cooling impeller. Each dossier starts from
@@ -260,13 +375,21 @@ engineering** stays so until an engineering review lifts it.
 <tr>
 <td align="center" width="16%"><a href="parts/993-body-front-impact-support-alsi10mg-f0-0001/"><img src="parts/993-body-front-impact-support-alsi10mg-f0-0001/media/preview.png" alt="993 front impact support" width="130"><br><sub>993 front impact support</sub></a></td>
 <td align="center" width="16%"><a href="parts/993-body-front-lid-0001/"><img src="parts/993-body-front-lid-0001/media/preview.png" alt="Front lid" width="130"><br><sub>Front lid</sub></a></td>
+<td align="center" width="16%"><a href="parts/993-ca-charge-pipe-set-pet-0001/"><img src="parts/993-ca-charge-pipe-set-pet-0001/media/preview.png" alt="993 Turbo charge-air tract transc…" width="130"><br><sub>993 Turbo charge-air tract transc…</sub></a></td>
+<td align="center" width="16%"><a href="parts/993-ca-turbo-intake-manifold-pet-0001/"><img src="parts/993-ca-turbo-intake-manifold-pet-0001/media/preview.png" alt="993 Turbo turbocharging intake tr…" width="130"><br><sub>993 Turbo turbocharging intake tr…</sub></a></td>
 <td align="center" width="16%"><a href="parts/993-elec-headlamp-spring-hook-f0-0001/"><img src="parts/993-elec-headlamp-spring-hook-f0-0001/media/preview.png" alt="Headlamp spring hook repair" width="130"><br><sub>Headlamp spring hook repair</sub></a></td>
-<td align="center" width="16%"><a href="parts/993-eng-carrier-0001/"><img src="parts/993-eng-carrier-0001/media/preview.png" alt="Turbo engine carrier (Motortraege…" width="130"><br><sub>Turbo engine carrier (Motortraege…</sub></a></td>
-<td align="center" width="16%"><a href="parts/993-eng-chain-case-0001/"><img src="parts/993-eng-chain-case-0001/media/preview.png" alt="993 timing chain case and its lids" width="130"><br><sub>993 timing chain case and its lids</sub></a></td>
-<td align="center" width="16%"><a href="parts/993-eng-connecting-rod-ti64-f0-0001/"><img src="parts/993-eng-connecting-rod-ti64-f0-0001/media/preview.png" alt="🧩 993/993 Turbo connecting rod" width="130"><br><sub>🧩 993/993 Turbo connecting rod</sub></a></td>
+<td align="center" width="16%"><a href="parts/993-eng-bracket-0001/"><img src="parts/993-eng-bracket-0001/media/preview.png" alt="Console centrale moteur Turbo bio…" width="130"><br><sub>Console centrale moteur Turbo bio…</sub></a></td>
 </tr>
 <tr>
+<td align="center" width="16%"><a href="parts/993-eng-carrier-0001/"><img src="parts/993-eng-carrier-0001/media/preview.png" alt="Turbo engine carrier (Motortraege…" width="130"><br><sub>Turbo engine carrier (Motortraege…</sub></a></td>
+<td align="center" width="16%"><a href="parts/993-eng-chain-case-0001/"><img src="parts/993-eng-chain-case-0001/media/preview.png" alt="993 timing chain case and its lids" width="130"><br><sub>993 timing chain case and its lids</sub></a></td>
+<td align="center" width="16%"><a href="parts/993-eng-chain-case-lid-ti-f0-0001/"><img src="parts/993-eng-chain-case-lid-ti-f0-0001/media/preview.png" alt="Left chain case lid 964 105 107 01" width="130"><br><sub>Left chain case lid 964 105 107 01</sub></a></td>
+<td align="center" width="16%"><a href="parts/993-eng-connecting-rod-ti64-f0-0001/"><img src="parts/993-eng-connecting-rod-ti64-f0-0001/media/preview.png" alt="🧩 993/993 Turbo connecting rod" width="130"><br><sub>🧩 993/993 Turbo connecting rod</sub></a></td>
+<td align="center" width="16%"><a href="parts/993-eng-cooling-impeller-alsi10mg-f0-0001/"><img src="parts/993-eng-cooling-impeller-alsi10mg-f0-0001/media/preview.png" alt="993 engine cooling fan — archived…" width="130"><br><sub>993 engine cooling fan — archived…</sub></a></td>
 <td align="center" width="16%"><a href="parts/993-eng-cooling-impeller-we43-f1-0001/"><img src="parts/993-eng-cooling-impeller-we43-f1-0001/media/preview.png" alt="Engine cooling fan impeller" width="130"><br><sub>Engine cooling fan impeller</sub></a></td>
+</tr>
+<tr>
+<td align="center" width="16%"><a href="parts/993-eng-cylinder-head-4v-f0-0001/"><img src="parts/993-eng-cylinder-head-4v-f0-0001/media/preview.png" alt="M64 four-valve water-cooled cylin…" width="130"><br><sub>M64 four-valve water-cooled cylin…</sub></a></td>
 <td align="center" width="16%"><a href="parts/993-eng-exhaust-manifold-in625-f0-0001/"><img src="parts/993-eng-exhaust-manifold-in625-f0-0001/media/preview.png" alt="993 Turbo three-into-one exhaust…" width="130"><br><sub>993 Turbo three-into-one exhaust…</sub></a></td>
 <td align="center" width="16%"><a href="parts/993-eng-exhaust-valve-f1-0001/"><img src="parts/993-eng-exhaust-valve-f1-0001/media/preview.png" alt="993 exhaust valves - F1 proxies" width="130"><br><sub>993 exhaust valves - F1 proxies</sub></a></td>
 <td align="center" width="16%"><a href="parts/993-eng-fan-housing-alsi10mg-f0-0001/"><img src="parts/993-eng-fan-housing-alsi10mg-f0-0001/media/preview.png" alt="Stationary engine fan housing" width="130"><br><sub>Stationary engine fan housing</sub></a></td>
@@ -282,25 +405,30 @@ engineering** stays so until an engineering review lifts it.
 <td align="center" width="16%"><a href="parts/993-eng-k16-turbine-wheel-in718-f0-0001/"><img src="parts/993-eng-k16-turbine-wheel-in718-f0-0001/media/preview.png" alt="🧩 K16 turbine wheel" width="130"><br><sub>🧩 K16 turbine wheel</sub></a></td>
 </tr>
 <tr>
+<td align="center" width="16%"><a href="parts/993-eng-mounting-0001/"><img src="parts/993-eng-mounting-0001/media/preview.png" alt="Support moteur Turbo bionique — c…" width="130"><br><sub>Support moteur Turbo bionique — c…</sub></a></td>
 <td align="center" width="16%"><a href="parts/993-eng-oil-filter-console-alsi10mg-f0-0001/"><img src="parts/993-eng-oil-filter-console-alsi10mg-f0-0001/media/preview.png" alt="Engine oil filter console with in…" width="130"><br><sub>Engine oil filter console with in…</sub></a></td>
 <td align="center" width="16%"><a href="parts/993-eng-piston-cp1-gallery-f0-0001/"><img src="parts/993-eng-piston-cp1-gallery-f0-0001/media/preview.png" alt="M64/60 piston with cooling gallery" width="130"><br><sub>M64/60 piston with cooling gallery</sub></a></td>
 <td align="center" width="16%"><a href="parts/993-eng-three-runner-intake-alsi10mg-f0-0001/"><img src="parts/993-eng-three-runner-intake-alsi10mg-f0-0001/media/preview.png" alt="993 three-runner intake manifold" width="130"><br><sub>993 three-runner intake manifold</sub></a></td>
 <td align="center" width="16%"><a href="parts/993-eng-turbo-heat-shield-in625-f0-0001/"><img src="parts/993-eng-turbo-heat-shield-in625-f0-0001/media/preview.png" alt="993 left turbo heat shield cover" width="130"><br><sub>993 left turbo heat shield cover</sub></a></td>
 <td align="center" width="16%"><a href="parts/993-eng-turbo-oil-return-line-in625-f0-0001/"><img src="parts/993-eng-turbo-oil-return-line-in625-f0-0001/media/preview.png" alt="Turbo oil return line" width="130"><br><sub>Turbo oil return line</sub></a></td>
-<td align="center" width="16%"><a href="parts/993-eng-upper-valve-cover-alsi10mg-f0-0001/"><img src="parts/993-eng-upper-valve-cover-alsi10mg-f0-0001/media/preview.png" alt="Upper valve cover with COP towers" width="130"><br><sub>Upper valve cover with COP towers</sub></a></td>
 </tr>
 <tr>
+<td align="center" width="16%"><a href="parts/993-eng-upper-valve-cover-alsi10mg-f0-0001/"><img src="parts/993-eng-upper-valve-cover-alsi10mg-f0-0001/media/preview.png" alt="Upper valve cover with COP towers" width="130"><br><sub>Upper valve cover with COP towers</sub></a></td>
+<td align="center" width="16%"><a href="parts/993-exh-cat-converter-pair-pet-0001/"><img src="parts/993-exh-cat-converter-pair-pet-0001/media/preview.png" alt="993 Turbo catalytic converters (f…" width="130"><br><sub>993 Turbo catalytic converters (f…</sub></a></td>
+<td align="center" width="16%"><a href="parts/993-exh-heat-exchanger-pair-pet-0001/"><img src="parts/993-exh-heat-exchanger-pair-pet-0001/media/preview.png" alt="993 Turbo exhaust heat exchangers…" width="130"><br><sub>993 Turbo exhaust heat exchangers…</sub></a></td>
 <td align="center" width="16%"><a href="parts/993-exh-oval-tip-in625-f0-0001/"><img src="parts/993-exh-oval-tip-in625-f0-0001/media/preview.png" alt="993 oval exhaust tip" width="130"><br><sub>993 oval exhaust tip</sub></a></td>
 <td align="center" width="16%"><a href="parts/993-exh-oval-tip-ti-f1-0001/"><img src="parts/993-exh-oval-tip-ti-f1-0001/media/preview.png" alt="Oval exhaust tip" width="130"><br><sub>Oval exhaust tip</sub></a></td>
 <td align="center" width="16%"><a href="parts/993-int-dashboard-trim-0001/"><img src="parts/993-int-dashboard-trim-0001/media/preview.png" alt="Dashboard trim" width="130"><br><sub>Dashboard trim</sub></a></td>
+</tr>
+<tr>
 <td align="center" width="16%"><a href="parts/993-int-door-opener-lever-f0-0001/"><img src="parts/993-int-door-opener-lever-f0-0001/media/preview.png" alt="993 interior door opener lever" width="130"><br><sub>993 interior door opener lever</sub></a></td>
 <td align="center" width="16%"><a href="parts/993-int-door-pull-0001/"><img src="parts/993-int-door-pull-0001/media/preview.png" alt="Interior door pull handle" width="130"><br><sub>Interior door pull handle</sub></a></td>
 <td align="center" width="16%"><a href="parts/993-int-seat-rail-cover-0001/"><img src="parts/993-int-seat-rail-cover-0001/media/preview.png" alt="Seat rail cover" width="130"><br><sub>Seat rail cover</sub></a></td>
-</tr>
-<tr>
 <td align="center" width="16%"><a href="parts/993-int-switch-blank-0001/"><img src="parts/993-int-switch-blank-0001/media/preview.png" alt="Switch blank" width="130"><br><sub>Switch blank</sub></a></td>
 <td align="center" width="16%"><a href="parts/993-int-switch-trim-ring-f1-0001/"><img src="parts/993-int-switch-trim-ring-f1-0001/media/preview.png" alt="🖨️ Aluminum switch trim ring" width="130"><br><sub>🖨️ Aluminum switch trim ring</sub></a></td>
 <td align="center" width="16%"><a href="parts/993-turbocharger-k16-pair-0001/"><img src="parts/993-turbocharger-k16-pair-0001/media/preview.png" alt="Pair of K16 turbochargers of the…" width="130"><br><sub>Pair of K16 turbochargers of the…</sub></a></td>
+</tr>
+<tr>
 <td align="center" width="16%"><a href="parts/993-whl-center-cap-alsi10mg-f0-0001/"><img src="parts/993-whl-center-cap-alsi10mg-f0-0001/media/preview.png" alt="993 center cap" width="130"><br><sub>993 center cap</sub></a></td>
 </tr>
 </table>
@@ -347,7 +475,7 @@ flowchart LR
 | [993/993 Turbo connecting rod](docs/pieces/993-eng-connecting-rod-ti64-f0-0001.md) | Ti-6Al-4V Grade 5 LPBF for screening | LPBF | **prohibited pending engineering** |
 | [993 engine cooling fan — archived Carrera F0…](docs/pieces/993-eng-cooling-impeller-alsi10mg-f0-0001.md) | EOS Aluminium AlSi10Mg T6 for comparison | undecided | **prohibited pending engineering** |
 | [Engine cooling fan impeller](docs/pieces/993-eng-cooling-impeller-we43-f1-0001.md) | WE43 LPBF, solutionized and aged, for c… | LPBF | **prohibited pending engineering** |
-| [M64 four-valve cylinder head — creation prepa…](docs/pieces/993-eng-cylinder-head-4v-f0-0001.md) | not selected | undecided | **prohibited pending engineering** |
+| [M64 four-valve water-cooled cylinder head — c…](docs/pieces/993-eng-cylinder-head-4v-f0-0001.md) | not selected | undecided | **prohibited pending engineering** |
 | [993 Turbo three-into-one exhaust manifold](docs/pieces/993-eng-exhaust-manifold-in625-f0-0001.md) | EOS NickelAlloy IN625 / UNS N06625 for… | undecided | **prohibited pending engineering** |
 | [993 exhaust valves - F1 proxies](docs/pieces/993-eng-exhaust-valve-f1-0001.md) | INCONEL 751 / UNS N07751 candidate | CNC | **prohibited pending engineering** |
 | [Stationary engine fan housing](docs/pieces/993-eng-fan-housing-alsi10mg-f0-0001.md) | EOS Aluminium AlSi10Mg T6 for comparison | undecided | **prohibited pending engineering** |
@@ -473,9 +601,9 @@ opens with an entry gate that can stop the project.
 
 ## 6. The catalogue and its data contract
 
-**527 source records** qualified by provenance, rights and level of evidence;
-41 part records, 10 twin records, 4 components, 2 assemblies and 3 workshop-manual
-transcriptions. Everything is validated by a JSON schema and by the test suite.
+**545 source records** qualified by provenance, rights and level of evidence;
+43 part records, 10 twin records, 5 components, 3 assemblies, 3 workshop-manual
+transcriptions and 2 records of declared community values. Everything is validated by a JSON schema and by the test suite.
 
 A record keeps technical access, reading method and reuse rights separate. An
 accessible page is not redistributable; a page read in a browser is neither an
@@ -485,10 +613,10 @@ authorized download nor a validation of accuracy.
 flowchart TB
     subgraph catalog["catalog/ — source of truth, JSON-schema validated"]
       direction LR
-      src["sources/<br/>527 records"] --- prt["parts/<br/>41 records"]
+      src["sources/<br/>545 records"] --- prt["parts/<br/>43 records"]
       prt --- tw["twins/<br/>10 records"]
       prt --- cmp["components/ · assemblies/"]
-      prt --- mea["measurements/<br/>3 manual transcriptions"]
+      prt --- mea["measurements/<br/>5 documentary records"]
     end
     prt -- "render_part_pages.py" --> pages["docs/pieces/<br/>one page per part"]
     prt -- "render_parts_table.py" --> table["README parts table"]
@@ -537,11 +665,12 @@ calculation's data.
 - **No absolute stiffness value is a 964 stiffness.** The model's sections are
   `ASSUMED` and the mesh is not converged; only ratios and rankings are usable.
 - **No part is validated.** The printable files above have not been checked on
-  a car. All 41 records are at status `concept`, 23 of them
+  a car. All 43 records are at status `concept`, 25 of them
   `prohibited_pending_engineering`. No twin reaches the `F2_interface` level.
-- **No physical measurement is recorded yet.** The three records in
-  `catalog/measurements/` are transcriptions from the workshop manual, not
-  instrumented measurements.
+- **No physical measurement is recorded yet.** The five records in
+  `catalog/measurements/` are documentary: three transcriptions from the
+  workshop manuals and two of values declared in forum posts, not instrumented
+  measurements.
 - **No fan gain over the Porsche part.** Its performance is not published.
 - **A rendering or a simulation is not evidence of physical behavior**:
   neither Omniverse, nor an image, nor a print simulation.

@@ -36,6 +36,14 @@ from volume V, and above all **964 and 993 share the longitudinal spacing of
 the jacking points**. A 993 point table would therefore be at least partly
 transferable — and the repository is already 993-oriented.
 
+> **Correction, 2026-10-15.** The paragraph above overstates the thread. The same
+> Rennlist thread gives three incompatible values — 1245 mm read from a
+> diagram, 1195 mm computed by its author, and 52 in in a reply — with no common
+> datum. It neither confirms dimension R nor shows that the 964 and the 993
+> share the jacking-point spacing. This is open contradiction `CTR-0001` in
+> [`catalog/registers/contradictions.json`](../../catalog/registers/contradictions.json);
+> R stays a 964 value.
+
 It is the cheapest lead in the dossier and it has never been pushed.
 
 ### Frame bench data publishers
@@ -137,7 +145,8 @@ so that the search is not repeated.
 ## Priorities
 
 1. **The Rennlist 993 point table.** Free, already identified in the
-   repository, and the 1245 mm cross-check makes it transferable to the 964.
+   repository. (The 1245 mm "cross-check" does not hold: see the correction of
+   2026-10-15 above and `CTR-0001`.)
 2. **A request for a single sheet from Autorobot**, citing the photographs of
    measuring points. Free to ask.
 3. **The FIA database**, to be opened in a browser.

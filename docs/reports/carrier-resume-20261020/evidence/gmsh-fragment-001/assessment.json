@@ -1,0 +1,159 @@
+{
+  "status": "fragment_volume_balance_diagnostic_refused",
+  "diagnostic_only": true,
+  "mechanical_mesh_admitted": false,
+  "source_sha256": {
+    "/Users/maxime/.codex/worktrees/993-carrier-revalidation/3dprinting993/parts/993-eng-carrier-0001/source/design-20261016/corner-slide-candidate-20261018/candidate-native.brep": "24af058467fd82a9f0c1d391bf947d427dffd311371cf8f73dafa492d204f4fd",
+    "/Users/maxime/.codex/worktrees/993-carrier-revalidation/3dprinting993/parts/993-eng-carrier-0001/source/design-20261016/resume-20261020/inputs/patch-0.brep": "9b2dae417fb2c9ffc76d40dd80978be7eb6c019c73b6f5b3a4f51372cd861771",
+    "/Users/maxime/.codex/worktrees/993-carrier-revalidation/3dprinting993/parts/993-eng-carrier-0001/source/design-20261016/resume-20261020/inputs/patch-1.brep": "397571f0c8b601da97a72abde026f9e146f346a7a760604efc12b827095681eb",
+    "/Users/maxime/.codex/worktrees/993-carrier-revalidation/3dprinting993/parts/993-eng-carrier-0001/source/design-20261016/resume-20261020/gmsh_fragment_preflight.py": "1549ac9d919b0e3dae716e06bff359af17c5343dffdfe5ee79682f13348e08a4"
+  },
+  "gmsh_version": "4.15.2",
+  "import_options": {
+    "Geometry.OCCFixDegenerated": 0.0,
+    "Geometry.OCCFixSmallEdges": 0.0,
+    "Geometry.OCCFixSmallFaces": 0.0,
+    "Geometry.OCCSewFaces": 0.0,
+    "Geometry.OCCMakeSolids": 0.0,
+    "Geometry.OCCScaling": 1.0
+  },
+  "imported": [
+    {
+      "source": "/Users/maxime/.codex/worktrees/993-carrier-revalidation/3dprinting993/parts/993-eng-carrier-0001/source/design-20261016/corner-slide-candidate-20261018/candidate-native.brep",
+      "volume_tag": 1,
+      "volume_mm3": 288685.9375234367,
+      "bounds_mm": [
+        -296.0000036784745,
+        -36.50085185599451,
+        -22.000003678474524,
+        296.0000036784745,
+        36.50085243427452,
+        30.000003678474513
+      ]
+    },
+    {
+      "source": "/Users/maxime/.codex/worktrees/993-carrier-revalidation/3dprinting993/parts/993-eng-carrier-0001/source/design-20261016/resume-20261020/inputs/patch-0.brep",
+      "volume_tag": 2,
+      "volume_mm3": 4.098410745061572,
+      "bounds_mm": [
+        -100.0000001,
+        3.5999999000000003,
+        3.9399999,
+        -64.9999999,
+        22.924955578291,
+        22.0000001
+      ]
+    },
+    {
+      "source": "/Users/maxime/.codex/worktrees/993-carrier-revalidation/3dprinting993/parts/993-eng-carrier-0001/source/design-20261016/resume-20261020/inputs/patch-1.brep",
+      "volume_tag": 3,
+      "volume_mm3": 4.098410745082733,
+      "bounds_mm": [
+        64.9999999,
+        3.5999999000000003,
+        3.9399999,
+        100.0000001,
+        22.924955578291,
+        22.0000001
+      ]
+    }
+  ],
+  "fragment_outputs": [
+    [
+      3,
+      4
+    ],
+    [
+      3,
+      5
+    ],
+    [
+      3,
+      6
+    ],
+    [
+      3,
+      7
+    ]
+  ],
+  "source_to_fragment_map": [
+    [
+      [
+        3,
+        4
+      ]
+    ],
+    [
+      [
+        3,
+        5
+      ],
+      [
+        3,
+        6
+      ]
+    ],
+    [
+      [
+        3,
+        7
+      ],
+      [
+        3,
+        4
+      ]
+    ]
+  ],
+  "output_volumes": [
+    {
+      "dim": 3,
+      "tag": 4,
+      "volume_mm3": 1.557100789847042
+    },
+    {
+      "dim": 3,
+      "tag": 5,
+      "volume_mm3": 2.620878219516287
+    },
+    {
+      "dim": 3,
+      "tag": 6,
+      "volume_mm3": 1.4789082515575889
+    },
+    {
+      "dim": 3,
+      "tag": 7,
+      "volume_mm3": 2.541524496448549
+    }
+  ],
+  "source_volume_balances": [
+    {
+      "source": "/Users/maxime/.codex/worktrees/993-carrier-revalidation/3dprinting993/parts/993-eng-carrier-0001/source/design-20261016/corner-slide-candidate-20261018/candidate-native.brep",
+      "fragment_volume_sum_mm3": 1.557100789847042,
+      "relative_difference": -0.9999946062464864,
+      "historical_volume_guard": 1e-08,
+      "passed": false
+    },
+    {
+      "source": "/Users/maxime/.codex/worktrees/993-carrier-revalidation/3dprinting993/parts/993-eng-carrier-0001/source/design-20261016/resume-20261020/inputs/patch-0.brep",
+      "fragment_volume_sum_mm3": 4.099786471073876,
+      "relative_difference": 0.00033567304447501556,
+      "historical_volume_guard": 1e-08,
+      "passed": false
+    },
+    {
+      "source": "/Users/maxime/.codex/worktrees/993-carrier-revalidation/3dprinting993/parts/993-eng-carrier-0001/source/design-20261016/resume-20261020/inputs/patch-1.brep",
+      "fragment_volume_sum_mm3": 4.098625286295591,
+      "relative_difference": 5.2347416157783044e-05,
+      "historical_volume_guard": 1e-08,
+      "passed": false
+    }
+  ],
+  "pending": [
+    "strict complete geometry retention",
+    "protected interfaces",
+    "conformal volume mesh and quality",
+    "mechanics on the new mesh"
+  ],
+  "elapsed_seconds": 7.787182416999713
+}

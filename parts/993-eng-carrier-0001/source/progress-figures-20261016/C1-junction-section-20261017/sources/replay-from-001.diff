@@ -1,0 +1,11 @@
+--- 001/replay.py
++++ 002/replay.py
+@@ -50,7 +50,7 @@
+     renderer=load(safe(root,RENDERER),'_portable_presentation004')
+     renderer.render(p['data'],p['data_sha256'],out,p['runtime_sha256'])
+     r=json.loads((out/'render-receipt.json').read_text());reference=json.loads(safe(root,p['reference_render_receipt']).read_text())
+-    keys=['data_sha256','source_sha256','common_axes_and_aspect','checks','annotation_ray_actual_XYZ_mm','coarse_source_peak','h2_peak_plotted','runtime_files_sha256','no_geometry_modified','no_FEA']
++    keys=['status','data_sha256','source_sha256','common_axes_and_aspect','checks','annotation_ray_actual_XYZ_mm','coarse_source_peak','h2_peak_plotted','runtime_files_sha256','no_geometry_modified','no_FEA']
+     require(all(r[k]==reference[k]for k in keys),'Whole scientific render records differ')
+     actual={name:sha(out/name)for name in p['expected_exports_sha256']}
+     require(actual==p['expected_exports_sha256'],'Whole export bytes differ')

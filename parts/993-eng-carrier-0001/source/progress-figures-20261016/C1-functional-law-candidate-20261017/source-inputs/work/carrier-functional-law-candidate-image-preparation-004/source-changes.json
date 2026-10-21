@@ -1,0 +1,64 @@
+{
+  "actual003_refusal_ROOT_join": {
+    "path": "work/carrier-functional-law-candidate-image-preparation-003/root-terminal-review-001.json",
+    "sha256": "6a0000ddf4235e555a804297f7bfb1f3c5a4e707b01a7aff085b29a45cf80acb"
+  },
+  "all_previous_5249_rows_unchanged": true,
+  "copied_bytes_equal": {
+    "ARMING.md": "b0ee0ebbac6d1d10cc1a742b781d01d9b64a11cb4332ead25433a9259bdbec68",
+    "README.md": "f28f4fe6d10ba591261a72742609c4537369c25cb9dc52c5c00dcb35d0f7e227",
+    "closed-context.json": "028dc13120d820bc005fd7168b280e668cb47495b94e4432d905ca3efd714866",
+    "geometry-data.json": "071ff568699490b6b0ced4e968fb3e26b28a21f78bf3313edf17be7adfd5f693",
+    "raster_unlit.py": "262e766aee94a0244037f89194453726953ddc4016c7bdccda63ff9ac866f6e0",
+    "selfcheck.py": "d8280ee8b873eb5e1ef0d3af2c2f97a94a5c0f6505d1b2bb5c3f93340793e7eb",
+    "sources-and-pending-display-spec.json": "83615100d8ba26303d322b543027db189f39d1c2ca9f3bb64fb775eeb548d024"
+  },
+  "documentation_substitutions": [
+    {
+      "after": "Revision003 added 44 existing files from pyparsing 3.3.3, hsluv 5.0.4 and their\ndistribution metadata. Its actual 598-file import diagnostic then identified\nexactly one outside module: _distutils_hack, owned by installed setuptools\n84.0.0. Revision004 adds that package's two non-cache source files and eight\nowning distribution metadata files. All previous 5,249 runtime rows remain\nunchanged, for 5,259 rows in total. Matplotlib explicitly imports pyparsing;\nVisPy declares hsluv in its metadata. The package manager's existing startup\nhook explains _distutils_hack; no startup setting is changed. All unconditional\ndependency names are joined to installed distribution metadata.",
+      "before": "This revision adds 44 existing files from pyparsing 3.3.3, hsluv 5.0.4 and their\ndistribution metadata, for 5,249 runtime files. Matplotlib explicitly imports\npyparsing; VisPy declares hsluv in its package metadata. All unconditional\ndependency names are joined to installed distribution metadata."
+    }
+  ],
+  "figure_substitutions": [
+    {
+      "after": "len(plan['runtime_sha256']) == 5259",
+      "before": "len(plan['runtime_sha256']) == 5249"
+    }
+  ],
+  "new_directory": "work/carrier-functional-law-candidate-image-preparation-004",
+  "new_source_sha256": "6946190c695d10c1b3da460c4c238ed6525c646a1e17bd035f5a8dfcbd07e4f1",
+  "no_installation_or_render_or_graphics_import": true,
+  "original_directory": "work/carrier-functional-law-candidate-image-preparation-003",
+  "original_source_sha256": "98a069bca4a7f8e6cf0e2213719135a80d827eee73b26812fd9111ba725bea6f",
+  "preparer_substitutions": [
+    {
+      "after": "completion['completed_runtime_files'] == 5259",
+      "before": "completion['completed_runtime_files'] == 5249"
+    },
+    {
+      "after": "assert len(runtime) == 5259",
+      "before": "assert len(runtime) == 5249"
+    },
+    {
+      "after": "names += [completion['runtime_origin_evidence']['owner_terminal'], completion['runtime_origin_evidence']['diagnostic'], completion['runtime_origin_evidence']['root_review']]\nfiles = {n:sha(R/n) for n in names}",
+      "before": "files = {n:sha(R/n) for n in names}"
+    }
+  ],
+  "render_function_AST_byte_body_unchanged": true,
+  "schema": "functional-law-candidate-observed-startup-package-revision-1",
+  "ten_observed_package_and_owner_rows_added": true,
+  "test_substitutions": [
+    {
+      "after": "O = R / 'work/carrier-functional-law-candidate-image-preparation-003'",
+      "before": "O = R / 'work/carrier-functional-law-candidate-image-preparation-002'"
+    },
+    {
+      "after": "",
+      "before": "            if name=='render':\n                q=changes['figure_substitutions'][1];b=node(new.replace(q['after'],q['before'],1),name)\n"
+    },
+    {
+      "after": "        self.assertEqual(len(original),5249);self.assertEqual(len(added),54)\n        self.assertEqual(len(set(added)-set(original)),10)\n        self.assertEqual(len(dict(original,**added)),5259)\n        for name,digest in original.items():self.assertEqual(dict(original,**added)[name],digest)\n        self.assertEqual(completion['runtime_origin_evidence']['whole_imported_files'],598)\n        self.assertEqual(len(completion['runtime_origin_evidence']['new_exact_package_rows']),10)",
+      "before": "        self.assertEqual(len(original),5205);self.assertEqual(len(added),44);self.assertFalse(set(original)&set(added))\n        self.assertEqual(len(dict(original,**added)),5249)"
+    }
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "design_id": "carrier-design-20261016-reinforcement-1",
+  "scope": "Separate smooth-contour reinforcement experiment; frozen run-001 inputs are unchanged",
+  "base_STEP_sha256": "ad12b8e0a382d8cc8b585254bb4b6fcfafab99fbcedf40691752271d04947a3e",
+  "base_mass_kg": 1.2622126284702597,
+  "mass_ceiling_kg": 1.30,
+  "density_kg_mm3": 0.00000442,
+  "width_law": "Degree-five Bezier controls [2.8,2.8,W,W,2.8,2.8], W=2.8+(peak-2.8)/0.625; original cubic centreline elevated exactly to degree five",
+  "base_Y_width_mm": 2.8,
+  "root_peak_Y_width_mm": 6.0,
+  "central_curve_peak_Y_width_mm": 5.2,
+  "root_centreline_XY_mm": [[65,5],[80,5],[90,25],[105,25]],
+  "central_centreline_XY_mm": [[22,16],[27,16],[29,5],[35,5]],
+  "mirror_X": [-1,1],
+  "mirror_Y": [-1,1],
+  "bottom_Z_mm": 4.0,
+  "top_Z_mm": 30.0,
+  "root_outer_top_profile_XZ_mm": [[65,30],[80,30],[90,22],[105,22]],
+  "maximum_added_volume_upper_bound_mm3": 8443.61142857143,
+  "maximum_added_mass_upper_bound_kg": 0.03732076251428572,
+  "upper_bound_method": "4 copies of exact integral of added Y width times dx/dt, multiplied by the enclosing 26mm Z height; roof clipping, overlap and recut tools can only reduce this volume",
+  "protected_geometry": "Central pad |X|<=65, |Y|<=36, |Z|<=4; all six frozen end regions; bores; F0 bracket and tool columns; original global bounds",
+  "predeclared_numeric_objectives": {
+    "comparison": "Against retained ad12 results, separately at mesh9 and mesh7; same material, loads and support definitions",
+    "K1000_maximum_VM_ratio_max": 0.90,
+    "K1000_quadrature_volume_above_900MPa_ratio_max": 0.80,
+    "combined_rigid_and_K1000_displacement_ratio_max": 1.0,
+    "scope": "Objectives for selecting this distinct experiment, not yet computed results or material allowables"
+  },
+  "source_of_localisation": "work/carrier-design-20261016/bounded-webs-hotspots.json and plastic900-refined-analysis.json; element centroids, not integration-point positions"
+}

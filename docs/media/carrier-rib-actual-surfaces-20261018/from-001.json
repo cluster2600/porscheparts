@@ -1,0 +1,14 @@
+{
+  "reason": "Actual001passed; same-colour detail obscures height difference. Use exact Z30 face colour without filtering geometry.",
+  "changes": [
+    {
+      "before": "details.append((tri[selected, :, :2][order], colors[selected][order], int(selected.sum())))",
+      "after": "top = (tri[:, :, 2] == 30.).all(1)\n        detail_colors = np.tile(matplotlib.colors.to_rgba('#d4dce1'), (len(faces), 1))\n        detail_colors[top] = matplotlib.colors.to_rgba('#3385ab')\n        details.append((tri[selected, :, :2][order], detail_colors[selected][order], int(selected.sum())))"
+    },
+    {
+      "before": "Common XY detail, viewed from +Z",
+      "after": "Upper rib at Z=30 mm in blue; lower surfaces gray"
+    }
+  ],
+  "original_source_sha256": "7e87c19f1ebb78968a334679001e55d1db2a70a12cf7a37295b1c548b2c585c9"
+}

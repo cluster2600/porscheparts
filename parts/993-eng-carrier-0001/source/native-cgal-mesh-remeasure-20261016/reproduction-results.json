@@ -1,0 +1,116 @@
+{
+  "schema": "direct-repair-distance-real-case-reproduction-v1",
+  "status": "passed_geometric_measurement",
+  "source_files_sha256": {
+    "worker.py": "11b4f1deca51634f177006683b4079e49a7014a845b11db5a1d1132c0bb5df24",
+    "run.py": "0c4c67d11b8f92ca8834af427ad417257d5decc9177420557e4dd630536471d5",
+    "audit_composed_repair.py": "6a5b2d99b72b7ca75ef4edcc70f0c9bb3cbb20f4c9b586249b5f9440fead8388",
+    "README.md": "9a48d40b21f01ccb35ec0f00bbe5de421f84e25c1e24e7fc200f28596886dc90"
+  },
+  "native_case_sha256": "7ce16e57a5ed186140da2c0f9be7f2d6e207eca5dc73f9fccce7e3c25311efce",
+  "receipt_references": {
+    "direct_distance_audit": {
+      "path": "/home/lolman/carrier-cgal-prism-finalize-20261016/jobs/carrier-left-002-direct-distance-001/audit.json",
+      "sha256": "4c7b6c364b5849377b5e08b379c2b9b472af72227047dcdf0a2bcda6f8b5f7be"
+    },
+    "direct_distance_execution-receipt": {
+      "path": "/home/lolman/carrier-cgal-prism-finalize-20261016/jobs/carrier-left-002-direct-distance-001/execution-receipt.json",
+      "sha256": "36d670436d8d7cd33ce5088dcf2fe42f57f6c205750b9f4d94376c18b3bdca63"
+    },
+    "composed_drift": {
+      "path": "/home/lolman/carrier-cgal-prism-finalize-20261016/left-composed-repair-001/composed-drift.json",
+      "sha256": "41e57a6676d88ea3bec83eb8446501cb6c70eb97bfeb9c28ce5fb6621c1fc7da"
+    },
+    "final_snap_native": {
+      "path": "/home/lolman/carrier-cgal-autorefine-reproduction-20261016/jobs/carrier-left-002-local-repair-check-001/native.json",
+      "sha256": "24a49914a68edae1a88cd74ab3e16de2a0ecd45648896498b11a2fe06696d3e4"
+    },
+    "final_snap_audit": {
+      "path": "/home/lolman/carrier-cgal-autorefine-reproduction-20261016/jobs/carrier-left-002-local-repair-check-001/audit.json",
+      "sha256": "52d3d8743630b80b1210a0f64bdd053c0b499411c8be09fedecf7eca995c5166"
+    },
+    "contacts": {
+      "path": "/home/lolman/carrier-cgal-prism-finalize-20261016/left-repaired-contacts-001/contacts.json",
+      "sha256": "938ebd3b01917af61c280cf4d8a9adcd2fb72e2456509bbef0be26c46d88b8ca"
+    }
+  },
+  "direct_distance": {
+    "CGAL_version": "6.1.3",
+    "CGAL_commit": "109ed62eeaa7e38eb383e9444700e6ff7bd4c449",
+    "kernel": "Epeck; exact original IEEE double coordinates; rational face centroids",
+    "input_primitives": {
+      "positive_area_triangles": 254506,
+      "collinear_triangles_as_segments": 118,
+      "collapsed_triangles_as_points": 0
+    },
+    "output_primitives": {
+      "positive_area_triangles": 254490,
+      "collinear_triangles_as_segments": 0,
+      "collapsed_triangles_as_points": 0
+    },
+    "input_to_output": {
+      "maximum_mm": 1.2809491335957507e-13,
+      "maximum_distance_squared_exact": "325/19807040628566084398385987584",
+      "samples": 381852,
+      "local_exact_triangle_witnesses": 381824,
+      "global_aabb_fallbacks": 28,
+      "distance_semantics": "Rigorous upper bounds from exact distances to identified target faces; exact global AABB fallback when no local witness meets the same bound",
+      "pass": true,
+      "worst": {
+        "kind": "vertices",
+        "index": 106553,
+        "point_mm": [
+          -55.62829283476652,
+          -90.94152280915925,
+          11.5
+        ]
+      }
+    },
+    "output_to_input": {
+      "maximum_mm": 1.309910902294842e-13,
+      "maximum_distance_squared_exact": "22837982282649698346125/1330988239760601906399582404251980935816038842368",
+      "samples": 381651,
+      "local_exact_triangle_witnesses": 381651,
+      "global_aabb_fallbacks": 0,
+      "distance_semantics": "Rigorous upper bounds from exact distances to identified target faces; exact global AABB fallback when no local witness meets the same bound",
+      "pass": true,
+      "worst": {
+        "kind": "vertices",
+        "index": 44439,
+        "point_mm": [
+          -56.91493900401133,
+          -91.52463831927366,
+          0
+        ]
+      }
+    },
+    "shape_drift_limit_mm": 8.163514517232825e-13,
+    "limit_squared_exact": "4085202129641754845233391660025/6129982163463555433433388108601236734474956488734408704",
+    "comparison": "exact squared_distance <= exact square of the unchanged IEEE bound",
+    "sampling": "All original vertices and exact rational face centroids; not a continuous Hausdorff certificate",
+    "pass": true,
+    "seconds": 5.233030541
+  },
+  "composed_directions": {
+    "input_to_output": {
+      "distance_witness_upper_bound_squared_exact": "325/19807040628566084398385987584",
+      "conversion_upper_bound_squared_exact": "437052903129047450183379091793005111518382857538111593/271216233448826632273107429996426535582985073817299397225630016911876612566286336",
+      "composed_upper_bound_mm_approx": 1.682378522707276e-13,
+      "finite_samples": 381852,
+      "pass": true
+    },
+    "output_to_input": {
+      "distance_witness_upper_bound_squared_exact": "22837982282649698346125/1330988239760601906399582404251980935816038842368",
+      "conversion_upper_bound_squared_exact": "437052903129047450183379091793005111518382857538111593/271216233448826632273107429996426535582985073817299397225630016911876612566286336",
+      "composed_upper_bound_mm_approx": 1.7113402914063673e-13,
+      "finite_samples": 381651,
+      "pass": true
+    }
+  },
+  "limitations": [
+    "Finite samples, not continuous Hausdorff.",
+    "Nine altered faces have no inherited positive parent/anchor proof.",
+    "The repair command outer completion was attested afterwards; its source, plan and assessment were copied/hashed before construction.",
+    "The existing exact distance binary was reused, not reinstalled or altered."
+  ]
+}

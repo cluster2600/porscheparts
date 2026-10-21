@@ -1,0 +1,104 @@
+{
+  "schema": "continuous-interfaces-verification-1",
+  "status": "captured_intervals_verified_not_whole_carrier_admission",
+  "preflight": {
+    "report": "work/carrier-process-20261016/continuous-preflight-normalized-002/assessment.json",
+    "sha256": "4a840f7fc4abbe35b191d2c8e2c28ad8c1b1ba54b2c90a544a2bc2e0bd4acb0a",
+    "selected_units": 33,
+    "captured_total_units": 662,
+    "seconds": 67.46544554200955,
+    "rejected_units": [],
+    "sources_unchanged": true,
+    "exact_scope": "Closed IEEE polygon inclusion D subset material subset allowed, with certified intended-hole normalization; no overlays in proofs.",
+    "certified_removed_holes": 40,
+    "affected_units": 11,
+    "holes": [
+      {
+        "unit": "skin-18",
+        "interval": 0,
+        "removed_holes": 3
+      },
+      {
+        "unit": "skin-25",
+        "interval": 0,
+        "removed_holes": 2
+      },
+      {
+        "unit": "skin-35",
+        "interval": 0,
+        "removed_holes": 4
+      },
+      {
+        "unit": "skin-44",
+        "interval": 0,
+        "removed_holes": 5
+      },
+      {
+        "unit": "skin-59",
+        "interval": 0,
+        "removed_holes": 3
+      },
+      {
+        "unit": "skin-60",
+        "interval": 0,
+        "removed_holes": 5
+      },
+      {
+        "unit": "skin-62",
+        "interval": 0,
+        "removed_holes": 1
+      },
+      {
+        "unit": "skin-77",
+        "interval": 0,
+        "removed_holes": 4
+      },
+      {
+        "unit": "skin-88",
+        "interval": 0,
+        "removed_holes": 7
+      },
+      {
+        "unit": "skin-530",
+        "interval": 0,
+        "removed_holes": 2
+      },
+      {
+        "unit": "skin-576",
+        "interval": 0,
+        "removed_holes": 4
+      }
+    ]
+  },
+  "native_tests": {
+    "command": "work/part-workflow/runtimes/pyslm-coverage-011/env/bin/python -m unittest tests.test_carrier_region_checkpoints tests.test_carrier_skin_geometry_20261016 tests.test_carrier_material_connections tests.test_carrier_zero_face_coverage tests.test_carrier_exact_intended_holes",
+    "tests": 45,
+    "seconds": 6.01,
+    "exit_code": 0,
+    "result": "OK",
+    "evidence": "Native unittest output observed before full004 launch; this compact receipt does not replace per-run geometry and exposure admissions."
+  },
+  "frozen_full004_sources_sha256": {
+    "classify_mesh_contacts.py": "906a413033b58d34cd28e705ac148f25e5a4dc3326298a6ff00c123b29d69f97",
+    "continuous_interfaces.py": "e60404b9260573bdd42cd2dfebee10a75e210d2dacca9e61f90f47045cb49640",
+    "diagnose_support.py": "6ecfcf95254f41eaf7ab6149b5990881c0d87e55e190f61e7640834fefe3fbe9",
+    "exact_contacts.py": "399db612b1d5fde6b1a0290d4d497d9b01e6afe3a28d7b63a095a2a06e271cca",
+    "exact_contacts_both.py": "102aaffcf0c1ac2646b2aef8d5e0dfbfebf14a9b2182b59a731434bcd6a7a855",
+    "exact_intended_holes.py": "bfcc3177f68b83c9c3139cb26e79d0633342caf04143565c2c80845cee403a7f",
+    "exact_polygon_coverage.py": "0b1c7598a7358b9e9a384dd5b90dc66aa9e1ea53828033b6722477ec11409bed",
+    "exact_regions.py": "f03686632a3df02b97cf926d2e09bee32a68c0e988a7b358942a3a8211911029",
+    "exact_zero_face_coverage.py": "910151f42cd028e780619bb3e863d6fec2672331e753ffd9b26b6220f8f5fec3",
+    "grid_intervals.py": "ad011c9b8350863c869c00d2d553da3f66f9ad380091ce330ce0e7cc377878a9",
+    "interface_sources.py": "cfe0c0c7ccbeffcd21f96500aa5c546826cdd6be47a77428f506e20e99e106c4",
+    "layer_schedule.py": "f9ad79146f4fdb863aef6e0d3fba228c5e19a8ac7e1509f914cf08d6023b445f",
+    "material_connections.py": "1bc3fbebe739a08f72d5f8b5e85841b3f67d40f035f9bd0c283492c2bbf077e6",
+    "peripheral_skins.py": "92f5dbf81fa868e29d13769094e66ae234a4ce09103fb8d2d234ad9c898fb5d7",
+    "prismatic_envelopes.py": "cf1ca6f378b6b2415712a62dfd124e4d57a4da8e343f99ca69f03df720009a34",
+    "quantized_contacts.py": "a9fcf947e64c4c7239639d0e8f9d84e968553155b7ae18254c16c52fe3af6706",
+    "region_checkpoints.py": "943c8f9193f3ea8a4d1654fec91482e4167c4c4ce351a65c9fd8623ddb9ac589",
+    "solid_sheets.py": "3ad3f89959d9a0e423f0a32b76194cc39c9323bb445f2d93b51ded90f5245477",
+    "zero_area_faces.py": "96a985e869fba6a6c9183fe4d9fae7ccf55d34a2ba20f28d8e547f769ea8f658"
+  },
+  "current_whole_region_run": "work/carrier-process-20261016/real-support-source-008-full-004",
+  "whole_region_run_status": "running_at_receipt_creation"
+}

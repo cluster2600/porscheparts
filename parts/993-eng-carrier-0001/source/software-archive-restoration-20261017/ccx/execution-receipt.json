@@ -1,0 +1,630 @@
+{
+  "status": "archive_accepted_and_native_smokes_passed_cached_image_explicit",
+  "operations": [
+    {
+      "arguments": [
+        "image",
+        "inspect",
+        "sha256:c9772ae9223a4f800a3ceda77d2494e67e34c8526eb0f204b3c8e052266641b4",
+        "--format",
+        "{\"Id\":{{json .Id}},\"RepoTags\":{{json .RepoTags}},\"Architecture\":{{json .Architecture}},\"Os\":{{json .Os}}}"
+      ],
+      "returncode": 0,
+      "stdout": "{\"Id\":\"sha256:c9772ae9223a4f800a3ceda77d2494e67e34c8526eb0f204b3c8e052266641b4\",\"RepoTags\":[\"935-cae-native:20261012\"],\"Architecture\":\"arm64\",\"Os\":\"linux\"}\n",
+      "stderr": "",
+      "timed_out": false,
+      "cancelled": false
+    },
+    {
+      "arguments": [
+        "image",
+        "load",
+        "--input",
+        "/Users/maxime/.codex/worktrees/993-carrier-revalidation/3dprinting993/work/carrier-delivery-software-20261016/archives/calculix-c9772ae9.docker.tar"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": "",
+      "timed_out": false,
+      "cancelled": false
+    },
+    {
+      "arguments": [
+        "image",
+        "inspect",
+        "sha256:c9772ae9223a4f800a3ceda77d2494e67e34c8526eb0f204b3c8e052266641b4",
+        "--format",
+        "{\"Id\":{{json .Id}},\"RepoTags\":{{json .RepoTags}},\"Architecture\":{{json .Architecture}},\"Os\":{{json .Os}}}"
+      ],
+      "returncode": 0,
+      "stdout": "{\"Id\":\"sha256:c9772ae9223a4f800a3ceda77d2494e67e34c8526eb0f204b3c8e052266641b4\",\"RepoTags\":[\"935-cae-native:20261012\"],\"Architecture\":\"arm64\",\"Os\":\"linux\"}\n",
+      "stderr": "",
+      "timed_out": false,
+      "cancelled": false
+    },
+    {
+      "arguments": [
+        "container",
+        "ls",
+        "-a",
+        "--no-trunc",
+        "--filter",
+        "name=^/carrier-restore-d82610a708fc4f2c-version$",
+        "--format",
+        "{{.ID}}"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": "",
+      "timed_out": false,
+      "cancelled": false
+    },
+    {
+      "arguments": [
+        "create",
+        "--pull=never",
+        "--name",
+        "carrier-restore-d82610a708fc4f2c-version",
+        "--label",
+        "org.porscheparts.carrier.ener-supervision=d82610a708fc4f2c-version",
+        "--network",
+        "none",
+        "--cpus",
+        "1",
+        "--memory",
+        "6g",
+        "--memory-swap",
+        "6g",
+        "--pids-limit",
+        "128",
+        "--read-only",
+        "--tmpfs",
+        "/tmp:rw,size=64m",
+        "--mount",
+        "type=bind,src=/Users/maxime/.codex/worktrees/993-carrier-revalidation/3dprinting993/work/software-archive-restoration-execution-001/ccx/version,dst=/work",
+        "--workdir",
+        "/work",
+        "--env",
+        "OMP_NUM_THREADS=1",
+        "--env",
+        "OPENBLAS_NUM_THREADS=1",
+        "--env",
+        "CCX_NPROC_RESULTS=1",
+        "--entrypoint",
+        "/usr/bin/timeout",
+        "sha256:c9772ae9223a4f800a3ceda77d2494e67e34c8526eb0f204b3c8e052266641b4",
+        "--kill-after=2s",
+        "10s",
+        "/usr/bin/ccx",
+        "-v"
+      ],
+      "returncode": 0,
+      "stdout": "de4fc095d5161d185c0e3a262932df8cabc0fdb8cb97f21af1800f9fa2bf3815\n",
+      "stderr": "",
+      "timed_out": false,
+      "cancelled": false
+    },
+    {
+      "arguments": [
+        "container",
+        "inspect",
+        "de4fc095d5161d185c0e3a262932df8cabc0fdb8cb97f21af1800f9fa2bf3815",
+        "--format",
+        "{\"Id\":{{json .Id}},\"Name\":{{json .Name}},\"Image\":{{json .Image}},\"Owner\":{{json (index .Config.Labels \"org.porscheparts.carrier.ener-supervision\")}},\"NanoCpus\":{{json .HostConfig.NanoCpus}},\"Memory\":{{json .HostConfig.Memory}},\"MemorySwap\":{{json .HostConfig.MemorySwap}},\"PidsLimit\":{{json .HostConfig.PidsLimit}},\"NetworkMode\":{{json .HostConfig.NetworkMode}},\"ReadonlyRootfs\":{{json .HostConfig.ReadonlyRootfs}},\"Tmpfs\":{{json .HostConfig.Tmpfs}},\"Mounts\":{{json .Mounts}},\"Entrypoint\":{{json .Config.Entrypoint}},\"Cmd\":{{json .Config.Cmd}},\"WorkingDir\":{{json .Config.WorkingDir}},\"Running\":{{json .State.Running}},\"ExitCode\":{{json .State.ExitCode}},\"OOMKilled\":{{json .State.OOMKilled}},\"StateError\":{{json .State.Error}}}"
+      ],
+      "returncode": 0,
+      "stdout": "{\"Id\":\"de4fc095d5161d185c0e3a262932df8cabc0fdb8cb97f21af1800f9fa2bf3815\",\"Name\":\"/carrier-restore-d82610a708fc4f2c-version\",\"Image\":\"sha256:c9772ae9223a4f800a3ceda77d2494e67e34c8526eb0f204b3c8e052266641b4\",\"Owner\":\"d82610a708fc4f2c-version\",\"NanoCpus\":1000000000,\"Memory\":6442450944,\"MemorySwap\":6442450944,\"PidsLimit\":128,\"NetworkMode\":\"none\",\"ReadonlyRootfs\":true,\"Tmpfs\":{\"/tmp\":\"rw,size=64m\"},\"Mounts\":[{\"Destination\":\"/work\",\"Mode\":\"\",\"Propagation\":\"rprivate\",\"RW\":true,\"Source\":\"/Users/maxime/.codex/worktrees/993-carrier-revalidation/3dprinting993/work/software-archive-restoration-execution-001/ccx/version\",\"Type\":\"bind\"}],\"Entrypoint\":[\"/usr/bin/timeout\"],\"Cmd\":[\"--kill-after=2s\",\"10s\",\"/usr/bin/ccx\",\"-v\"],\"WorkingDir\":\"/work\",\"Running\":false,\"ExitCode\":0,\"OOMKilled\":false,\"StateError\":\"\"}\n",
+      "stderr": "",
+      "timed_out": false,
+      "cancelled": false
+    },
+    {
+      "arguments": [
+        "cp",
+        "de4fc095d5161d185c0e3a262932df8cabc0fdb8cb97f21af1800f9fa2bf3815:/usr/bin/ccx",
+        "/Users/maxime/.codex/worktrees/993-carrier-revalidation/3dprinting993/work/software-archive-restoration-execution-001/ccx/version-ccx.prestart"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": "",
+      "timed_out": false,
+      "cancelled": false
+    },
+    {
+      "arguments": [
+        "start",
+        "--attach",
+        "de4fc095d5161d185c0e3a262932df8cabc0fdb8cb97f21af1800f9fa2bf3815"
+      ],
+      "returncode": 201,
+      "stdout": "",
+      "stderr": "",
+      "timed_out": false,
+      "cancelled": false
+    },
+    {
+      "arguments": [
+        "container",
+        "inspect",
+        "de4fc095d5161d185c0e3a262932df8cabc0fdb8cb97f21af1800f9fa2bf3815",
+        "--format",
+        "{\"Id\":{{json .Id}},\"Name\":{{json .Name}},\"Image\":{{json .Image}},\"Owner\":{{json (index .Config.Labels \"org.porscheparts.carrier.ener-supervision\")}},\"NanoCpus\":{{json .HostConfig.NanoCpus}},\"Memory\":{{json .HostConfig.Memory}},\"MemorySwap\":{{json .HostConfig.MemorySwap}},\"PidsLimit\":{{json .HostConfig.PidsLimit}},\"NetworkMode\":{{json .HostConfig.NetworkMode}},\"ReadonlyRootfs\":{{json .HostConfig.ReadonlyRootfs}},\"Tmpfs\":{{json .HostConfig.Tmpfs}},\"Mounts\":{{json .Mounts}},\"Entrypoint\":{{json .Config.Entrypoint}},\"Cmd\":{{json .Config.Cmd}},\"WorkingDir\":{{json .Config.WorkingDir}},\"Running\":{{json .State.Running}},\"ExitCode\":{{json .State.ExitCode}},\"OOMKilled\":{{json .State.OOMKilled}},\"StateError\":{{json .State.Error}}}"
+      ],
+      "returncode": 0,
+      "stdout": "{\"Id\":\"de4fc095d5161d185c0e3a262932df8cabc0fdb8cb97f21af1800f9fa2bf3815\",\"Name\":\"/carrier-restore-d82610a708fc4f2c-version\",\"Image\":\"sha256:c9772ae9223a4f800a3ceda77d2494e67e34c8526eb0f204b3c8e052266641b4\",\"Owner\":\"d82610a708fc4f2c-version\",\"NanoCpus\":1000000000,\"Memory\":6442450944,\"MemorySwap\":6442450944,\"PidsLimit\":128,\"NetworkMode\":\"none\",\"ReadonlyRootfs\":true,\"Tmpfs\":{\"/tmp\":\"rw,size=64m\"},\"Mounts\":[{\"Destination\":\"/work\",\"Mode\":\"\",\"Propagation\":\"rprivate\",\"RW\":true,\"Source\":\"/Users/maxime/.codex/worktrees/993-carrier-revalidation/3dprinting993/work/software-archive-restoration-execution-001/ccx/version\",\"Type\":\"bind\"}],\"Entrypoint\":[\"/usr/bin/timeout\"],\"Cmd\":[\"--kill-after=2s\",\"10s\",\"/usr/bin/ccx\",\"-v\"],\"WorkingDir\":\"/work\",\"Running\":false,\"ExitCode\":201,\"OOMKilled\":false,\"StateError\":\"\"}\n",
+      "stderr": "",
+      "timed_out": false,
+      "cancelled": false
+    },
+    {
+      "arguments": [
+        "container",
+        "inspect",
+        "de4fc095d5161d185c0e3a262932df8cabc0fdb8cb97f21af1800f9fa2bf3815",
+        "--format",
+        "{\"Id\":{{json .Id}},\"Name\":{{json .Name}},\"Image\":{{json .Image}},\"Owner\":{{json (index .Config.Labels \"org.porscheparts.carrier.ener-supervision\")}},\"NanoCpus\":{{json .HostConfig.NanoCpus}},\"Memory\":{{json .HostConfig.Memory}},\"MemorySwap\":{{json .HostConfig.MemorySwap}},\"PidsLimit\":{{json .HostConfig.PidsLimit}},\"NetworkMode\":{{json .HostConfig.NetworkMode}},\"ReadonlyRootfs\":{{json .HostConfig.ReadonlyRootfs}},\"Tmpfs\":{{json .HostConfig.Tmpfs}},\"Mounts\":{{json .Mounts}},\"Entrypoint\":{{json .Config.Entrypoint}},\"Cmd\":{{json .Config.Cmd}},\"WorkingDir\":{{json .Config.WorkingDir}},\"Running\":{{json .State.Running}},\"ExitCode\":{{json .State.ExitCode}},\"OOMKilled\":{{json .State.OOMKilled}},\"StateError\":{{json .State.Error}}}"
+      ],
+      "returncode": 0,
+      "stdout": "{\"Id\":\"de4fc095d5161d185c0e3a262932df8cabc0fdb8cb97f21af1800f9fa2bf3815\",\"Name\":\"/carrier-restore-d82610a708fc4f2c-version\",\"Image\":\"sha256:c9772ae9223a4f800a3ceda77d2494e67e34c8526eb0f204b3c8e052266641b4\",\"Owner\":\"d82610a708fc4f2c-version\",\"NanoCpus\":1000000000,\"Memory\":6442450944,\"MemorySwap\":6442450944,\"PidsLimit\":128,\"NetworkMode\":\"none\",\"ReadonlyRootfs\":true,\"Tmpfs\":{\"/tmp\":\"rw,size=64m\"},\"Mounts\":[{\"Destination\":\"/work\",\"Mode\":\"\",\"Propagation\":\"rprivate\",\"RW\":true,\"Source\":\"/Users/maxime/.codex/worktrees/993-carrier-revalidation/3dprinting993/work/software-archive-restoration-execution-001/ccx/version\",\"Type\":\"bind\"}],\"Entrypoint\":[\"/usr/bin/timeout\"],\"Cmd\":[\"--kill-after=2s\",\"10s\",\"/usr/bin/ccx\",\"-v\"],\"WorkingDir\":\"/work\",\"Running\":false,\"ExitCode\":201,\"OOMKilled\":false,\"StateError\":\"\"}\n",
+      "stderr": "",
+      "timed_out": false,
+      "cancelled": false
+    },
+    {
+      "arguments": [
+        "rm",
+        "--force",
+        "de4fc095d5161d185c0e3a262932df8cabc0fdb8cb97f21af1800f9fa2bf3815"
+      ],
+      "returncode": 0,
+      "stdout": "de4fc095d5161d185c0e3a262932df8cabc0fdb8cb97f21af1800f9fa2bf3815\n",
+      "stderr": "",
+      "timed_out": false,
+      "cancelled": false
+    },
+    {
+      "arguments": [
+        "container",
+        "ls",
+        "-a",
+        "--no-trunc",
+        "--filter",
+        "id=de4fc095d5161d185c0e3a262932df8cabc0fdb8cb97f21af1800f9fa2bf3815",
+        "--format",
+        "{{.ID}}"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": "",
+      "timed_out": false,
+      "cancelled": false
+    },
+    {
+      "arguments": [
+        "container",
+        "ls",
+        "-a",
+        "--no-trunc",
+        "--filter",
+        "name=^/carrier-restore-d82610a708fc4f2c-solve$",
+        "--format",
+        "{{.ID}}"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": "",
+      "timed_out": false,
+      "cancelled": false
+    },
+    {
+      "arguments": [
+        "create",
+        "--pull=never",
+        "--name",
+        "carrier-restore-d82610a708fc4f2c-solve",
+        "--label",
+        "org.porscheparts.carrier.ener-supervision=d82610a708fc4f2c-solve",
+        "--network",
+        "none",
+        "--cpus",
+        "1",
+        "--memory",
+        "6g",
+        "--memory-swap",
+        "6g",
+        "--pids-limit",
+        "128",
+        "--read-only",
+        "--tmpfs",
+        "/tmp:rw,size=64m",
+        "--mount",
+        "type=bind,src=/Users/maxime/.codex/worktrees/993-carrier-revalidation/3dprinting993/work/software-archive-restoration-execution-001/ccx/solve,dst=/work",
+        "--workdir",
+        "/work",
+        "--env",
+        "OMP_NUM_THREADS=1",
+        "--env",
+        "OPENBLAS_NUM_THREADS=1",
+        "--env",
+        "CCX_NPROC_RESULTS=1",
+        "--entrypoint",
+        "/usr/bin/timeout",
+        "sha256:c9772ae9223a4f800a3ceda77d2494e67e34c8526eb0f204b3c8e052266641b4",
+        "--kill-after=2s",
+        "60s",
+        "/usr/bin/ccx",
+        "-i",
+        "common"
+      ],
+      "returncode": 0,
+      "stdout": "1066a2b456e1f8487395c35f7f478ca022146b118ba5512a2c8a9df0b463ee71\n",
+      "stderr": "",
+      "timed_out": false,
+      "cancelled": false
+    },
+    {
+      "arguments": [
+        "container",
+        "inspect",
+        "1066a2b456e1f8487395c35f7f478ca022146b118ba5512a2c8a9df0b463ee71",
+        "--format",
+        "{\"Id\":{{json .Id}},\"Name\":{{json .Name}},\"Image\":{{json .Image}},\"Owner\":{{json (index .Config.Labels \"org.porscheparts.carrier.ener-supervision\")}},\"NanoCpus\":{{json .HostConfig.NanoCpus}},\"Memory\":{{json .HostConfig.Memory}},\"MemorySwap\":{{json .HostConfig.MemorySwap}},\"PidsLimit\":{{json .HostConfig.PidsLimit}},\"NetworkMode\":{{json .HostConfig.NetworkMode}},\"ReadonlyRootfs\":{{json .HostConfig.ReadonlyRootfs}},\"Tmpfs\":{{json .HostConfig.Tmpfs}},\"Mounts\":{{json .Mounts}},\"Entrypoint\":{{json .Config.Entrypoint}},\"Cmd\":{{json .Config.Cmd}},\"WorkingDir\":{{json .Config.WorkingDir}},\"Running\":{{json .State.Running}},\"ExitCode\":{{json .State.ExitCode}},\"OOMKilled\":{{json .State.OOMKilled}},\"StateError\":{{json .State.Error}}}"
+      ],
+      "returncode": 0,
+      "stdout": "{\"Id\":\"1066a2b456e1f8487395c35f7f478ca022146b118ba5512a2c8a9df0b463ee71\",\"Name\":\"/carrier-restore-d82610a708fc4f2c-solve\",\"Image\":\"sha256:c9772ae9223a4f800a3ceda77d2494e67e34c8526eb0f204b3c8e052266641b4\",\"Owner\":\"d82610a708fc4f2c-solve\",\"NanoCpus\":1000000000,\"Memory\":6442450944,\"MemorySwap\":6442450944,\"PidsLimit\":128,\"NetworkMode\":\"none\",\"ReadonlyRootfs\":true,\"Tmpfs\":{\"/tmp\":\"rw,size=64m\"},\"Mounts\":[{\"Destination\":\"/work\",\"Mode\":\"\",\"Propagation\":\"rprivate\",\"RW\":true,\"Source\":\"/Users/maxime/.codex/worktrees/993-carrier-revalidation/3dprinting993/work/software-archive-restoration-execution-001/ccx/solve\",\"Type\":\"bind\"}],\"Entrypoint\":[\"/usr/bin/timeout\"],\"Cmd\":[\"--kill-after=2s\",\"60s\",\"/usr/bin/ccx\",\"-i\",\"common\"],\"WorkingDir\":\"/work\",\"Running\":false,\"ExitCode\":0,\"OOMKilled\":false,\"StateError\":\"\"}\n",
+      "stderr": "",
+      "timed_out": false,
+      "cancelled": false
+    },
+    {
+      "arguments": [
+        "cp",
+        "1066a2b456e1f8487395c35f7f478ca022146b118ba5512a2c8a9df0b463ee71:/usr/bin/ccx",
+        "/Users/maxime/.codex/worktrees/993-carrier-revalidation/3dprinting993/work/software-archive-restoration-execution-001/ccx/solve-ccx.prestart"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": "",
+      "timed_out": false,
+      "cancelled": false
+    },
+    {
+      "arguments": [
+        "start",
+        "--attach",
+        "1066a2b456e1f8487395c35f7f478ca022146b118ba5512a2c8a9df0b463ee71"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": "",
+      "timed_out": false,
+      "cancelled": false
+    },
+    {
+      "arguments": [
+        "container",
+        "inspect",
+        "1066a2b456e1f8487395c35f7f478ca022146b118ba5512a2c8a9df0b463ee71",
+        "--format",
+        "{\"Id\":{{json .Id}},\"Name\":{{json .Name}},\"Image\":{{json .Image}},\"Owner\":{{json (index .Config.Labels \"org.porscheparts.carrier.ener-supervision\")}},\"NanoCpus\":{{json .HostConfig.NanoCpus}},\"Memory\":{{json .HostConfig.Memory}},\"MemorySwap\":{{json .HostConfig.MemorySwap}},\"PidsLimit\":{{json .HostConfig.PidsLimit}},\"NetworkMode\":{{json .HostConfig.NetworkMode}},\"ReadonlyRootfs\":{{json .HostConfig.ReadonlyRootfs}},\"Tmpfs\":{{json .HostConfig.Tmpfs}},\"Mounts\":{{json .Mounts}},\"Entrypoint\":{{json .Config.Entrypoint}},\"Cmd\":{{json .Config.Cmd}},\"WorkingDir\":{{json .Config.WorkingDir}},\"Running\":{{json .State.Running}},\"ExitCode\":{{json .State.ExitCode}},\"OOMKilled\":{{json .State.OOMKilled}},\"StateError\":{{json .State.Error}}}"
+      ],
+      "returncode": 0,
+      "stdout": "{\"Id\":\"1066a2b456e1f8487395c35f7f478ca022146b118ba5512a2c8a9df0b463ee71\",\"Name\":\"/carrier-restore-d82610a708fc4f2c-solve\",\"Image\":\"sha256:c9772ae9223a4f800a3ceda77d2494e67e34c8526eb0f204b3c8e052266641b4\",\"Owner\":\"d82610a708fc4f2c-solve\",\"NanoCpus\":1000000000,\"Memory\":6442450944,\"MemorySwap\":6442450944,\"PidsLimit\":128,\"NetworkMode\":\"none\",\"ReadonlyRootfs\":true,\"Tmpfs\":{\"/tmp\":\"rw,size=64m\"},\"Mounts\":[{\"Destination\":\"/work\",\"Mode\":\"\",\"Propagation\":\"rprivate\",\"RW\":true,\"Source\":\"/Users/maxime/.codex/worktrees/993-carrier-revalidation/3dprinting993/work/software-archive-restoration-execution-001/ccx/solve\",\"Type\":\"bind\"}],\"Entrypoint\":[\"/usr/bin/timeout\"],\"Cmd\":[\"--kill-after=2s\",\"60s\",\"/usr/bin/ccx\",\"-i\",\"common\"],\"WorkingDir\":\"/work\",\"Running\":false,\"ExitCode\":0,\"OOMKilled\":false,\"StateError\":\"\"}\n",
+      "stderr": "",
+      "timed_out": false,
+      "cancelled": false
+    },
+    {
+      "arguments": [
+        "container",
+        "inspect",
+        "1066a2b456e1f8487395c35f7f478ca022146b118ba5512a2c8a9df0b463ee71",
+        "--format",
+        "{\"Id\":{{json .Id}},\"Name\":{{json .Name}},\"Image\":{{json .Image}},\"Owner\":{{json (index .Config.Labels \"org.porscheparts.carrier.ener-supervision\")}},\"NanoCpus\":{{json .HostConfig.NanoCpus}},\"Memory\":{{json .HostConfig.Memory}},\"MemorySwap\":{{json .HostConfig.MemorySwap}},\"PidsLimit\":{{json .HostConfig.PidsLimit}},\"NetworkMode\":{{json .HostConfig.NetworkMode}},\"ReadonlyRootfs\":{{json .HostConfig.ReadonlyRootfs}},\"Tmpfs\":{{json .HostConfig.Tmpfs}},\"Mounts\":{{json .Mounts}},\"Entrypoint\":{{json .Config.Entrypoint}},\"Cmd\":{{json .Config.Cmd}},\"WorkingDir\":{{json .Config.WorkingDir}},\"Running\":{{json .State.Running}},\"ExitCode\":{{json .State.ExitCode}},\"OOMKilled\":{{json .State.OOMKilled}},\"StateError\":{{json .State.Error}}}"
+      ],
+      "returncode": 0,
+      "stdout": "{\"Id\":\"1066a2b456e1f8487395c35f7f478ca022146b118ba5512a2c8a9df0b463ee71\",\"Name\":\"/carrier-restore-d82610a708fc4f2c-solve\",\"Image\":\"sha256:c9772ae9223a4f800a3ceda77d2494e67e34c8526eb0f204b3c8e052266641b4\",\"Owner\":\"d82610a708fc4f2c-solve\",\"NanoCpus\":1000000000,\"Memory\":6442450944,\"MemorySwap\":6442450944,\"PidsLimit\":128,\"NetworkMode\":\"none\",\"ReadonlyRootfs\":true,\"Tmpfs\":{\"/tmp\":\"rw,size=64m\"},\"Mounts\":[{\"Destination\":\"/work\",\"Mode\":\"\",\"Propagation\":\"rprivate\",\"RW\":true,\"Source\":\"/Users/maxime/.codex/worktrees/993-carrier-revalidation/3dprinting993/work/software-archive-restoration-execution-001/ccx/solve\",\"Type\":\"bind\"}],\"Entrypoint\":[\"/usr/bin/timeout\"],\"Cmd\":[\"--kill-after=2s\",\"60s\",\"/usr/bin/ccx\",\"-i\",\"common\"],\"WorkingDir\":\"/work\",\"Running\":false,\"ExitCode\":0,\"OOMKilled\":false,\"StateError\":\"\"}\n",
+      "stderr": "",
+      "timed_out": false,
+      "cancelled": false
+    },
+    {
+      "arguments": [
+        "rm",
+        "--force",
+        "1066a2b456e1f8487395c35f7f478ca022146b118ba5512a2c8a9df0b463ee71"
+      ],
+      "returncode": 0,
+      "stdout": "1066a2b456e1f8487395c35f7f478ca022146b118ba5512a2c8a9df0b463ee71\n",
+      "stderr": "",
+      "timed_out": false,
+      "cancelled": false
+    },
+    {
+      "arguments": [
+        "container",
+        "ls",
+        "-a",
+        "--no-trunc",
+        "--filter",
+        "id=1066a2b456e1f8487395c35f7f478ca022146b118ba5512a2c8a9df0b463ee71",
+        "--format",
+        "{{.ID}}"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": "",
+      "timed_out": false,
+      "cancelled": false
+    },
+    {
+      "arguments": [
+        "image",
+        "inspect",
+        "sha256:c9772ae9223a4f800a3ceda77d2494e67e34c8526eb0f204b3c8e052266641b4",
+        "--format",
+        "{\"Id\":{{json .Id}},\"RepoTags\":{{json .RepoTags}},\"Architecture\":{{json .Architecture}},\"Os\":{{json .Os}}}"
+      ],
+      "returncode": 0,
+      "stdout": "{\"Id\":\"sha256:c9772ae9223a4f800a3ceda77d2494e67e34c8526eb0f204b3c8e052266641b4\",\"RepoTags\":[\"935-cae-native:20261012\"],\"Architecture\":\"arm64\",\"Os\":\"linux\"}\n",
+      "stderr": "",
+      "timed_out": false,
+      "cancelled": false
+    }
+  ],
+  "containers": [
+    {
+      "kind": "version",
+      "creation_attempted": true,
+      "container_removed": true,
+      "container_id": "de4fc095d5161d185c0e3a262932df8cabc0fdb8cb97f21af1800f9fa2bf3815",
+      "before_start": {
+        "Id": "de4fc095d5161d185c0e3a262932df8cabc0fdb8cb97f21af1800f9fa2bf3815",
+        "Name": "/carrier-restore-d82610a708fc4f2c-version",
+        "Image": "sha256:c9772ae9223a4f800a3ceda77d2494e67e34c8526eb0f204b3c8e052266641b4",
+        "Owner": "d82610a708fc4f2c-version",
+        "NanoCpus": 1000000000,
+        "Memory": 6442450944,
+        "MemorySwap": 6442450944,
+        "PidsLimit": 128,
+        "NetworkMode": "none",
+        "ReadonlyRootfs": true,
+        "Tmpfs": {
+          "/tmp": "rw,size=64m"
+        },
+        "Mounts": [
+          {
+            "Destination": "/work",
+            "Mode": "",
+            "Propagation": "rprivate",
+            "RW": true,
+            "Source": "/Users/maxime/.codex/worktrees/993-carrier-revalidation/3dprinting993/work/software-archive-restoration-execution-001/ccx/version",
+            "Type": "bind"
+          }
+        ],
+        "Entrypoint": [
+          "/usr/bin/timeout"
+        ],
+        "Cmd": [
+          "--kill-after=2s",
+          "10s",
+          "/usr/bin/ccx",
+          "-v"
+        ],
+        "WorkingDir": "/work",
+        "Running": false,
+        "ExitCode": 0,
+        "OOMKilled": false,
+        "StateError": ""
+      },
+      "attach_cli_returncode": 201,
+      "after_start": {
+        "Id": "de4fc095d5161d185c0e3a262932df8cabc0fdb8cb97f21af1800f9fa2bf3815",
+        "Name": "/carrier-restore-d82610a708fc4f2c-version",
+        "Image": "sha256:c9772ae9223a4f800a3ceda77d2494e67e34c8526eb0f204b3c8e052266641b4",
+        "Owner": "d82610a708fc4f2c-version",
+        "NanoCpus": 1000000000,
+        "Memory": 6442450944,
+        "MemorySwap": 6442450944,
+        "PidsLimit": 128,
+        "NetworkMode": "none",
+        "ReadonlyRootfs": true,
+        "Tmpfs": {
+          "/tmp": "rw,size=64m"
+        },
+        "Mounts": [
+          {
+            "Destination": "/work",
+            "Mode": "",
+            "Propagation": "rprivate",
+            "RW": true,
+            "Source": "/Users/maxime/.codex/worktrees/993-carrier-revalidation/3dprinting993/work/software-archive-restoration-execution-001/ccx/version",
+            "Type": "bind"
+          }
+        ],
+        "Entrypoint": [
+          "/usr/bin/timeout"
+        ],
+        "Cmd": [
+          "--kill-after=2s",
+          "10s",
+          "/usr/bin/ccx",
+          "-v"
+        ],
+        "WorkingDir": "/work",
+        "Running": false,
+        "ExitCode": 201,
+        "OOMKilled": false,
+        "StateError": ""
+      },
+      "actual_container_exit_code": 201,
+      "status": "passed_software_smoke"
+    },
+    {
+      "kind": "solve",
+      "creation_attempted": true,
+      "container_removed": true,
+      "container_id": "1066a2b456e1f8487395c35f7f478ca022146b118ba5512a2c8a9df0b463ee71",
+      "before_start": {
+        "Id": "1066a2b456e1f8487395c35f7f478ca022146b118ba5512a2c8a9df0b463ee71",
+        "Name": "/carrier-restore-d82610a708fc4f2c-solve",
+        "Image": "sha256:c9772ae9223a4f800a3ceda77d2494e67e34c8526eb0f204b3c8e052266641b4",
+        "Owner": "d82610a708fc4f2c-solve",
+        "NanoCpus": 1000000000,
+        "Memory": 6442450944,
+        "MemorySwap": 6442450944,
+        "PidsLimit": 128,
+        "NetworkMode": "none",
+        "ReadonlyRootfs": true,
+        "Tmpfs": {
+          "/tmp": "rw,size=64m"
+        },
+        "Mounts": [
+          {
+            "Destination": "/work",
+            "Mode": "",
+            "Propagation": "rprivate",
+            "RW": true,
+            "Source": "/Users/maxime/.codex/worktrees/993-carrier-revalidation/3dprinting993/work/software-archive-restoration-execution-001/ccx/solve",
+            "Type": "bind"
+          }
+        ],
+        "Entrypoint": [
+          "/usr/bin/timeout"
+        ],
+        "Cmd": [
+          "--kill-after=2s",
+          "60s",
+          "/usr/bin/ccx",
+          "-i",
+          "common"
+        ],
+        "WorkingDir": "/work",
+        "Running": false,
+        "ExitCode": 0,
+        "OOMKilled": false,
+        "StateError": ""
+      },
+      "attach_cli_returncode": 0,
+      "after_start": {
+        "Id": "1066a2b456e1f8487395c35f7f478ca022146b118ba5512a2c8a9df0b463ee71",
+        "Name": "/carrier-restore-d82610a708fc4f2c-solve",
+        "Image": "sha256:c9772ae9223a4f800a3ceda77d2494e67e34c8526eb0f204b3c8e052266641b4",
+        "Owner": "d82610a708fc4f2c-solve",
+        "NanoCpus": 1000000000,
+        "Memory": 6442450944,
+        "MemorySwap": 6442450944,
+        "PidsLimit": 128,
+        "NetworkMode": "none",
+        "ReadonlyRootfs": true,
+        "Tmpfs": {
+          "/tmp": "rw,size=64m"
+        },
+        "Mounts": [
+          {
+            "Destination": "/work",
+            "Mode": "",
+            "Propagation": "rprivate",
+            "RW": true,
+            "Source": "/Users/maxime/.codex/worktrees/993-carrier-revalidation/3dprinting993/work/software-archive-restoration-execution-001/ccx/solve",
+            "Type": "bind"
+          }
+        ],
+        "Entrypoint": [
+          "/usr/bin/timeout"
+        ],
+        "Cmd": [
+          "--kill-after=2s",
+          "60s",
+          "/usr/bin/ccx",
+          "-i",
+          "common"
+        ],
+        "WorkingDir": "/work",
+        "Running": false,
+        "ExitCode": 0,
+        "OOMKilled": false,
+        "StateError": ""
+      },
+      "actual_container_exit_code": 0,
+      "temperatures_K_by_time_s": {
+        "0.005": [
+          300.5,
+          300.5,
+          300.5,
+          300.5,
+          300.5,
+          300.5,
+          300.5,
+          300.5
+        ],
+        "0.01": [
+          301.0,
+          301.0,
+          301.0,
+          301.0,
+          301.0,
+          301.0,
+          301.0,
+          301.0
+        ]
+      },
+      "status": "passed_software_smoke"
+    }
+  ],
+  "archive_load_executed": true,
+  "global_admission": false,
+  "clean_daemon_claim": false,
+  "image_metadata_before": {
+    "Id": "sha256:c9772ae9223a4f800a3ceda77d2494e67e34c8526eb0f204b3c8e052266641b4",
+    "RepoTags": [
+      "935-cae-native:20261012"
+    ],
+    "Architecture": "arm64",
+    "Os": "linux"
+  },
+  "load_cli_returncode": 0,
+  "image_metadata_after_load": {
+    "Id": "sha256:c9772ae9223a4f800a3ceda77d2494e67e34c8526eb0f204b3c8e052266641b4",
+    "RepoTags": [
+      "935-cae-native:20261012"
+    ],
+    "Architecture": "arm64",
+    "Os": "linux"
+  },
+  "image_metadata_final": {
+    "Id": "sha256:c9772ae9223a4f800a3ceda77d2494e67e34c8526eb0f204b3c8e052266641b4",
+    "RepoTags": [
+      "935-cae-native:20261012"
+    ],
+    "Architecture": "arm64",
+    "Os": "linux"
+  },
+  "inputs_and_image_preserved": true,
+  "plan_sha256": "8eaa2f82d548fecce4aa25e22655342e36920b36ee4acd3ad6c15cb9acd50899",
+  "caller_sha256": "7682fa48db01df86db294c7c6b8e3c524a15bc68345d9e772ca1cb923205c64e",
+  "wall_seconds": 17.08613008307293,
+  "global_budget_seconds": 300,
+  "cleanup_reserve_seconds": 45,
+  "within_global_budget": true,
+  "output_files_sha256": {
+    "solve-ccx.prestart": "271f8411371b978d7a8d31a7a13d0765e6e1f872e8a8b1d6aac6d0856c71ec6c",
+    "run.py": "7682fa48db01df86db294c7c6b8e3c524a15bc68345d9e772ca1cb923205c64e",
+    "version-ccx.prestart": "271f8411371b978d7a8d31a7a13d0765e6e1f872e8a8b1d6aac6d0856c71ec6c",
+    "plan.json": "8eaa2f82d548fecce4aa25e22655342e36920b36ee4acd3ad6c15cb9acd50899",
+    "selfcheck.json": "da78357bf7e488a7886ee69a9ffd5f969198db565e758dd158c0ca5381cba318",
+    "load.log": "15c64cf6d447d513f5d9eb6a5ebb534915a16db7e05352b927301a3a444dd24d",
+    "load.log.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "solve/common.cvg": "c18a85967549b6693c764721081978b328c7638a648bfa7e1df276bfad684586",
+    "solve/common.frd": "34e13f2ec49326614719621eaabbc85d695dc6c74b6af2501ee33203d00f7bdb",
+    "solve/common.sta": "9dd0872b66485b95bf9800d7a88f9915157966680b891861f31892eeeb078bb2",
+    "solve/common.12d": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "solve/native.log": "9815b0bcae1e0e980690d6d1db7722942dad0ab41a571d59e57eace6aa4dc168",
+    "solve/spooles.out": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "solve/common.inp": "9a7b15a80cecae10dadd891e35f932b76b448c5685439c9823e259f9d54041a0",
+    "solve/native.log.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "solve/common.dat": "26f2e116f36b9d09414fe29825f2cd539d9ddef49a8f373fe54c63775f99edf4",
+    "version/native.log": "2f722d9641eb6ea729c12d2acb53cf4c93c5308aa0171704e8fcd1b91fb336a4",
+    "version/native.log.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  }
+}

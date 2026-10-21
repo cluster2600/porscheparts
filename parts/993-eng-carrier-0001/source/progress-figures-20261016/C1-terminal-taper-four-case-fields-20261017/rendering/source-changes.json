@@ -1,0 +1,126 @@
+{
+  "five_math_functions_AST_unchanged": [
+    "maxima_record",
+    "boundary_values",
+    "camera_basis",
+    "project",
+    "elements"
+  ],
+  "reference_path": "work/carrier-terminal-taper-FEA-figure-preparation-001/figure.py",
+  "reference_sha256": "5be01fcf492ee1fdd3fbef18147d57c8b8ffa6b818a1c0ab409816346f3e8a84",
+  "schema": "four-case-figure-declared-source-delta-1",
+  "source_sha256": "41eb1a339b928aaabb83d80b7b3937b91f1c158ab60bd77cf26197bcf3483bd2",
+  "substitutions": [
+    [
+      "\"\"\"Actual closed raw-taper FE fields; English diagnostic, no new solver.\"\"\"",
+      "\"\"\"Four closed coarse/raw-refined taper fields; separate diagnostic, no new solver.\"\"\"",
+      1
+    ],
+    [
+      "    require(root_case['assessment_sha256']==hashes[row['assessment']]and root_case['native_receipt_sha256']==hashes[row['native_receipt']]and root_case['actual_tool_RC']==0 and root_case['all31_whole_outputs_verified']is True and root_case['fresh_exact_Docker_ID_absent']is True,'Root closure differs')",
+      "    require(root_case['assessment_sha256']==hashes[row['assessment']]and root_case['native_receipt_sha256']==hashes[row['native_receipt']],'Root report cross-binding differs')\n    if row['mesh_variant']=='coarse':\n        require(root_case['actual_tool_RC']==0 and root_case['all31_whole_outputs_verified']is True and root_case['fresh_exact_Docker_ID_absent']is True,'Coarse Root closure differs')\n    else:\n        require(row['mesh_variant']=='raw_refined_diagnostic'and root_case['actual_tool_returncode']==0 and root_case['whole_outputs']==29 and root_case['whole_actual_result_including_all_peaks_equal']is True and root_case['fresh_exact_owned_container_absence']is True,'Raw-refined Root closure differs')\n        require(a['h2_qualified']is False and a['strict_H2_volume_refusal_preserved']is True and a['diagnostic_raw_mesh_scope']is True and whole['h2_qualified']is False and whole['strict_H2_volume_refusal_preserved']is True and whole['diagnostic_raw_mesh_scope']is True,'Raw refined refusal/scope lost')",
+      1
+    ],
+    [
+      "def verify(plan_path,expected,rendering=False):\n    plan_path=Path(plan_path);require(sha(plan_path)==expected,'Plan hash differs');plan=read(plan_path)\n    require(plan['schema']=='actual-new-taper-two-case-fields-plan-1'and plan['actual_workers']==0 and plan['deformation_amplification']==1,'Wrong field scope')\n    if rendering:require(plan['launch_ready']is True and plan['root_GO_sha256']is not None and sha(plan['root_GO'])==plan['root_GO_sha256'],'NON-ARMED: no array extraction/render before root review')\n    root=Path(plan['source_root']);hashes=plan['files_sha256'];require(all(hashes.get(name)==h for name,h in plan['runtime_sha256'].items()),'Runtime binding conflicts')\n    require(all(sha(root/name)==h for name,h in hashes.items()),'Input/source/runtime hash differs')\n    require(hashes[str(Path(__file__).relative_to(root))]==sha(__file__),'Renderer not pinned')\n    literal_functions(root,plan['literal_functions'])\n    review=read(root/plan['root_review']);require(review['schema']=='root-two-new-taper-linear-static-terminal-1'and review['status']=='closed_actual_RC0_two_new_taper_static_and_energy_cases'and review['actual_tool_RC']==0 and review['terminal_sha256']==hashes[plan['combined_terminal']]and review['all_global_peaks_retained']is True and review['candidate_qualified']is False and review['law_original_RC1_preserved']is True,'Two actual new-taper ROOT closures required')\n    require([row['role']for row in plan['cases']]==['rigid','spring'],'Two cases in exact order required')\n    rows=[]\n    for row in plan['cases']:\n        docs={key:read(root/row[key])for key in ['terminal','assessment','native_receipt','record','peaks','energy','loads']}\n        rows.append(validate_case(row,docs,hashes,review['cases'][row['role']]))\n    require(len({hashes[r['mesh_inp']]for r in rows})==len({hashes[r['mesh_npz']]for r in rows})==1,'Common actual mesh required')\n    require(all(r['peak_data']['CAD_source']['sha256']==review['actual_new_BREP_sha256']for r in rows),'Actual BREP differs')\n    require(sha(plan_path)==expected,'Plan changed during preflight')\n    return plan,rows",
+      "def verify(plan_path,expected,rendering=False):\n    plan_path=Path(plan_path);require(sha(plan_path)==expected,'Plan hash differs');plan=read(plan_path)\n    require(plan['schema']=='actual-taper-four-case-field-comparison-plan-1'and plan['actual_workers']==0 and plan['deformation_amplification']==1,'Wrong four-case scope')\n    if rendering:require(plan['launch_ready']is True and plan['root_GO_sha256']is not None and sha(plan['root_GO'])==plan['root_GO_sha256'],'NON-ARMED: no array extraction/render before root review')\n    root=Path(plan['source_root']);hashes=plan['files_sha256'];require(all(hashes.get(name)==h for name,h in plan['runtime_sha256'].items()),'Runtime binding conflicts')\n    require(all(sha(root/name)==h for name,h in hashes.items()),'Input/source/runtime hash differs')\n    require(hashes[str(Path(__file__).relative_to(root))]==sha(__file__),'Renderer not pinned')\n    literal_functions(root,plan['literal_functions'])\n    reviews={}\n    for variant,context in plan['closed_contexts'].items():\n        review=read(root/context['root_review']);require(sha(root/context['root_review'])==context['root_review_sha256']==hashes[context['root_review']],'ROOT identity differs')\n        terminal_sha=hashes[context['combined_terminal']];require(terminal_sha==context['combined_terminal_sha256'],'Combined terminal identity differs')\n        if variant=='coarse':\n            require(review['schema']=='root-two-new-taper-linear-static-terminal-1'and review['status']=='closed_actual_RC0_two_new_taper_static_and_energy_cases'and review['actual_tool_RC']==0 and review['terminal_sha256']==terminal_sha and review['all_global_peaks_retained']is True and review['candidate_qualified']is False and review['law_original_RC1_preserved']is True,'Closed coarse ROOT required')\n        else:\n            require(variant=='raw_refined_diagnostic'and review['schema']=='root-two-raw-refined-terminal-taper-diagnostic-FEA-terminal-1'and review['status']=='closed_actual_RC0_both_diagnostic_linear_static_cases_no_qualification'and review['owner_terminal_sha256']==terminal_sha and review['whole_computed_terminal_equal']is True and review['whole_energy_all_ties_and_coarse_comparisons_equal']is True and review['both_owned_containers_freshly_absent']is True,'Closed raw-refined ROOT required')\n            require(review['candidate_qualified']is False and review['h2_qualified']is False and review['strict_H2_volume_refusal_preserved']is True and review['law_original_RC1_preserved']is True and review['stress_convergence_or_strength_admission']is False,'Raw-refined ROOT refusal scope lost')\n        reviews[variant]=review\n    require(set(reviews)=={'coarse','raw_refined_diagnostic'},'Both actual mesh contexts required')\n    order=[('rigid','coarse'),('rigid','raw_refined_diagnostic'),('spring','coarse'),('spring','raw_refined_diagnostic')]\n    require([(r['role'],r['mesh_variant'])for r in plan['cases']]==order,'Four actual cases in exact order required')\n    rows=[]\n    for row in plan['cases']:\n        context=plan['closed_contexts'][row['mesh_variant']];require(row['terminal']==context['combined_terminal'],'Foreign case terminal')\n        docs={key:read(root/row[key])for key in ['terminal','assessment','native_receipt','record','peaks','energy','loads']}\n        rows.append(validate_case(row,docs,hashes,reviews[row['mesh_variant']]['cases'][row['role']]))\n    for variant in reviews:\n        group=[r for r in rows if r['mesh_variant']==variant]\n        require(len({hashes[r['mesh_inp']]for r in group})==len({hashes[r['mesh_npz']]for r in group})==1,'Common actual mesh per variant required')\n    require(len({hashes[r['mesh_inp']]for r in rows})==2,'Two distinct actual meshes required')\n    for role in ['rigid','spring']:\n        group=[r for r in rows if r['role']==role]\n        require(hashes[group[0]['loads']]==hashes[group[1]['loads']]and group[0]['load_data']==group[1]['load_data'],'Complete coarse/raw-refined load/support contract differs')\n    require(all(r['peak_data']['CAD_source']['sha256']==plan['actual_BREP_sha256']=='dde710a2f318545ec99b066bbeddc71af0b526066eed97f8220ae2f61b3a75fb'for r in rows),'Actual BREP differs')\n    require(sha(plan_path)==expected,'Plan changed during preflight')\n    return plan,rows",
+      1
+    ],
+    [
+      "'svg.hashsalt':'carrier-terminal-taper-fields-001'",
+      "'svg.hashsalt':'carrier-terminal-taper-four-case-fields-001'",
+      1
+    ],
+    [
+      "plt.subplots(2,2,figsize=(17,12.4)",
+      "plt.subplots(2,4,figsize=(24,12.4)",
+      1
+    ],
+    [
+      "TWO CLOSED LINEAR CASES",
+      "FOUR CLOSED LINEAR CASES",
+      1
+    ],
+    [
+      "Stress and displacement on the actual T10 mesh",
+      "Coarse versus raw refined: stress and displacement",
+      1
+    ],
+    [
+      "'89 536 C3D10 \u00b7 166 403 nodes \u00b7 true deformation \u00d71 \u00b7 raw BREP '",
+      "'Coarse: 89 536 T10 / 166 403 nodes \u00b7 raw refined: 91 040 T10 / 168 675 nodes \u00b7 true deformation \u00d71 \u00b7 BREP '",
+      1
+    ],
+    [
+      "# Actual peaks have opposite X signs: mirror the retained50mm display crop only.",
+      "# Each display-only crop follows this actual case peak, including the measured migration across X.",
+      1
+    ],
+    [
+      "zoom_bounds=np.asarray(zoom[row['role']])",
+      "zoom_bounds=np.asarray(zoom[row['case_key']])",
+      1
+    ],
+    [
+      "title=('Rigid'if row['role']=='rigid'else'K1000 \u00b7 total per eye / axis')+' \u2014 '",
+      "title=row['display_label']+' \u2014 '",
+      1
+    ],
+    [
+      "[.22+.43*col,.475,.14,.075]",
+      "[.12+.212*col,.475,.10,.075]",
+      1
+    ],
+    [
+      "('Rigid'if c['row']['role']=='rigid'else'K1000'),f\"{peak['VM_MPa']:.3f}\"",
+      "c['row']['display_label'],f\"{peak['VM_MPa']:.3f}\"",
+      1
+    ],
+    [
+      "colWidths=[.09,.14,.15,.16,.12,.34]",
+      "colWidths=[.17,.13,.14,.14,.12,.30]",
+      1
+    ],
+    [
+      "New raw-BREP geometry and mesh. Assumed linear loads/material; no strength allowable or stress convergence established.",
+      "Same raw BREP, two actual meshes. Assumed linear loads/material; no strength allowable or stress convergence established.",
+      1
+    ],
+    [
+      "Unqualified raw taper: post-Build law refusal retained; STEP exchange not qualified. Orthographic view 8\u00b0 / 22\u00b0.",
+      "Unqualified raw taper; refined H2 volume and post-Build law refusals retained. STEP not qualified. Orthographic view 8\u00b0 / 22\u00b0.",
+      1
+    ],
+    [
+      "carrier-terminal-taper-stress-displacement.",
+      "carrier-terminal-taper-four-case-comparison.",
+      1
+    ],
+    [
+      "actual_closed_new_taper_fields_rendered_no_new_FEA",
+      "actual_closed_coarse_refined_diagnostic_fields_rendered_no_new_FEA",
+      1
+    ],
+    [
+      "strength_allowable=None,\n        wall_seconds",
+      "strength_allowable=None,h2_qualified=False,strict_refined_volume_refusal_preserved=True,law_original_RC1_preserved=True,\n        wall_seconds",
+      1
+    ],
+    [
+      "95s actual field figure budget",
+      "150s actual four-case field figure budget",
+      1
+    ],
+    [
+      "ITIMER_REAL,95",
+      "ITIMER_REAL,150",
+      1
+    ],
+    [
+      "RLIMIT_CPU,(90,91)",
+      "RLIMIT_CPU,(140,141)",
+      1
+    ]
+  ],
+  "whole_inverse_byte_exact": true
+}

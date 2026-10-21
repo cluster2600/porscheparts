@@ -1,0 +1,29 @@
+{
+  "schema": "retained-parent-and-two-explicit-NURBS-patches-1",
+  "part_reference": "993 115 021 53 nominal study",
+  "unit": "millimeter",
+  "density_kg_m3": 4420,
+  "maximum_mass_kg": 1.3,
+  "source_roles": [
+    "unchanged current24af surface",
+    "negative-X bounded NURBS patch mesh",
+    "positive-X bounded NURBS patch mesh"
+  ],
+  "source_sha256": [
+    "b4026f66dc77b8022e82c358553e8e93ce0cbc2ea0fd31da19ac39a9f891a803",
+    "d9802221bc4d679f9a3a2342d175a0e34a5da17e912a1e6be4e41963012febd6",
+    "16e9c3a50c71083235121af6cfd0cfde947f46f3753572ca945ca273165273a3"
+  ],
+  "qualification": "Study representation only; mechanics, complete surface/interface checks and process preparation remain open",
+  "patch_mesh_bound_source": {
+    "parametric_bound_path": "docs/reports/carrier-resume-20261020/evidence/bounded-tessellation-001/assessment.json",
+    "contraction_bound_path": "docs/reports/carrier-resume-20261020/evidence/certified-collapse-001/assessment.json",
+    "tolerance_mm": 0.06
+  },
+  "required_runtime_versions": {
+    "numpy": "2.0.2",
+    "lib3mf": "2.5.0",
+    "manifold3d": "3.5.2"
+  },
+  "description": "Certified edge contractions from complete parametric surface bounds; independent mesh audit required"
+}

@@ -1,0 +1,44 @@
+{
+  "revision": 2,
+  "reason": "First mass-balanced shell trial loses global stiffness and its restored 0.01 mm pad lip is the stress hotspot. Preserve pad and support its complete baseline rib footprint; recover rib bending efficiency by moving material upward.",
+  "preceding_rejected_geometry_STEP_sha256": "e2abb447e337f45138716649bdeaf575df8fc78c074a31f24745046c021649ab",
+  "central_back_rib_width_mm": 1.9,
+  "central_back_rib_top_z_mm": 34,
+  "arm_cap_mm": 1.5,
+  "arm_web_mm": 1.5,
+  "foot": {
+    "baseline_width_mm": 2.8,
+    "top_width_mm": 1.9,
+    "bottom_z_mm": 4,
+    "height_mm": 3,
+    "width_law": "w(t)=2.8+(1.9-2.8)*(3*t^2-2*t^3), t=(z-4)/3",
+    "section_parameters": [
+      0,
+      0.3333333333333333,
+      0.6666666666666666,
+      1
+    ],
+    "section_role": "Four equal-parameter stations determine one cubic, not a parameter sweep",
+    "numerical_width_law_error_mm_max": 1e-05,
+    "numerical_endpoint_width_slope_abs_max": 0.0001
+  },
+  "criteria": {
+    "mass_kg_max": 1.2,
+    "STEP_readback_relative_volume_error_max": 1e-08,
+    "protected_pad_symmetric_difference_mm3_max": 1e-05,
+    "protected_end_region_symmetric_difference_mm3_max": 1e-05,
+    "same_central_bores_axes_tools_and_end_interfaces": true,
+    "flat_build_without_tilt": true,
+    "allowed_local_rib_growth_above_prior_top_mm": 4,
+    "allowed_other_envelope_growth_mm": 0
+  },
+  "rectangular_rib_section_comparison": {
+    "preceding_width_times_height_mm2": 56.94,
+    "revised_width_times_height_mm2": 57.0,
+    "revised_to_preceding_width_times_height_cubed_ratio": 1.3327638560677386,
+    "scope": "Simple section comparison motivates the revision; actual BRep mass and FE response decide."
+  },
+  "mechanics": "Same six linear cases and energy/superposition checks as comparison-plan.json; no transfer of old fields.",
+  "OEM_interfaces": null,
+  "manufacturing_authorized": false
+}

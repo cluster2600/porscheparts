@@ -1,0 +1,43 @@
+{
+  "status": "implemented_two_domain_contacts_and_audit_adapters_waiting_complete_carrier_process",
+  "full_carrier_support_audit_executed": false,
+  "source_and_evidence_sha256": {
+    "parts/993-eng-carrier-0001/source/process-scanpath-audit-20261016/exact_contacts_both.py": "102aaffcf0c1ac2646b2aef8d5e0dfbfebf14a9b2182b59a731434bcd6a7a855",
+    "parts/993-eng-carrier-0001/source/process-scanpath-audit-20261016/audit_support_scanpaths_both.py": "be4ce81a979ad2a42ca6136e7321f926630bbb2b6fae1f5739a71941aedb5d9a",
+    "parts/993-eng-carrier-0001/source/process-scanpath-audit-20261016/audit_complete_supports_both.py": "4eac35d2de9702b6871b4829cff38fbff3a4e71387f93edab17bd22ce8d7a7a9",
+    "tests/test_carrier_exact_contacts_both.py": "0e113c2966e1d36e7717b835c8648b99d18ef1e27272404340d31cf1bdd4dcce",
+    "tests/test_carrier_support_audit_both.py": "dfac5019c3ea77d213fd42237ddcc31cfd761884dd560091552212f57be92b71",
+    "parts/993-eng-carrier-0001/source/process-scanpath-audit-20261016/both-contact-evidence/chart225-inputs.json": "a11cfba264083efd432df050137d34f18ed8264979b35ef8013a3195e48a791f",
+    "parts/993-eng-carrier-0001/source/process-scanpath-audit-20261016/both-contact-evidence/chart225-assessment.json": "3b7ec4473f2bee3f9a95c6d032b08561363a58d25895cc28603108670f32fa68"
+  },
+  "frozen_dependencies_sha256": {
+    "exact_contacts.py": "399db612b1d5fde6b1a0290d4d497d9b01e6afe3a28d7b63a095a2a06e271cca",
+    "audit_support_scanpaths.py": "4ace9f24b61fa8f2d514f18d2e3eb6e9794983d6dee41fad4a8f44dc1f4c53ef",
+    "audit_complete_supports.py": "d366055cf91a981efe65df55aca137b2dc3795963b1beceb2c633b2fe9854347"
+  },
+  "tests": {
+    "status": "passed",
+    "count": 14,
+    "runtime": "pyslm-coverage-011",
+    "modules": [
+      "tests/test_carrier_exact_contacts_both.py",
+      "tests/test_carrier_support_audit_both.py"
+    ],
+    "retained_log": "work/carrier-process-20261016/skin-chart225-contact-clipped-001/both-contact-tests.log",
+    "log_sha256": "d6dfbda986211a24520fe54b673874af3a8f999473e5c89f2fe3cef3653236c8"
+  },
+  "real_chart225": {
+    "status": "passed",
+    "exact_upper_segments": 5,
+    "exact_lower_segments": 2,
+    "no_intermediate_float_encoding": true,
+    "all_final_coordinate_errors_at_most_half_ULP": true,
+    "scope": "Contact witness only; no mesh or carrier process admission."
+  },
+  "final_entrypoint": "audit_complete_supports_both.py",
+  "final_receipt": "support-scanpath-audit/assessment.json",
+  "required_subreceipts": [
+    "scanpaths/assessment.json",
+    "group-exposure-coverage.json"
+  ]
+}

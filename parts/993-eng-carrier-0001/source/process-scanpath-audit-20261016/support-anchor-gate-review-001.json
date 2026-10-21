@@ -1,0 +1,25 @@
+{
+  "status": "software_gate_regression_passed",
+  "required_true_field": "rational_part_contact_intersections",
+  "required_receipt_levels": [
+    "assessment.json",
+    "scanpaths/assessment.json"
+  ],
+  "reproduced_before_fix": {
+    "tests": 1,
+    "failed_subcases": 4,
+    "cause": "Missing or false rational-part-contact field was accepted at either receipt level, including a correctly rehashed subreceipt."
+  },
+  "after_fix": {
+    "guide_tests_passed": 17,
+    "assembly_tests_passed": 8,
+    "all_passed": true
+  },
+  "source_sha256": {
+    "scripts/build_carrier_workshop_guide_v2.py": "f2250f6856326d5a05336354b2f6daacd4eef3550b69fd8ffc65d845fde839de",
+    "scripts/assemble_carrier_workflow.py": "e237c44eea984def6a575003b3366af4b071f8ee254da5ee9ec589009990e64a",
+    "tests/test_carrier_workshop_guide_v2.py": "76e27949a2d6a666c80c85e7318103f43e6b8e482a7a11b015fafa6b0517f38e",
+    "tests/test_carrier_workflow_assembly.py": "cfac23d67f8bb0131b561a313bbc560816d0c380472102b0669bc50c7286e9a9"
+  },
+  "whole_carrier_support_audit_executed": false
+}

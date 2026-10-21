@@ -1,0 +1,69 @@
+{
+  "status": "passed",
+  "input_sha256": "443b5ae20f7f1b2fd19a210aa5347890086523bc66749dfc95fa3560b85e9a6e",
+  "sources_sha256": {
+    "benchmark_parallel.py": "b10b3258fbcdb7adf63d0fbe47f68c2852d02d67734033ff321019ee7e68c07d",
+    "benchmark.py": "5d63131056b13f345f0c3b857fbe68e92d6086c3287e05f51aaac18232ca3963",
+    "layers.py": "3158d0a9f5e3ef4be149d54b0f2050fdebbb280045c2798959d51199d05d6d6b",
+    "parallel_layers.py": "e19d3a2dad3dd2cf00b176d2f24035f2664a37c2c0d0f11eadeb12e85cb29f12",
+    "build_pyslm.py": "fdec5cf793fc2b9d9932a5720d2c9a0f9c777eb29671882d516da4dc13681c84"
+  },
+  "checks": [
+    {
+      "layer": 0,
+      "z_mm": 0.03,
+      "all_arrays_area_and_order_exactly_equal": true
+    },
+    {
+      "layer": 166,
+      "z_mm": 9.99,
+      "all_arrays_area_and_order_exactly_equal": true
+    },
+    {
+      "layer": 167,
+      "z_mm": 10.049999999999999,
+      "all_arrays_area_and_order_exactly_equal": true
+    },
+    {
+      "layer": 299,
+      "z_mm": 17.97,
+      "all_arrays_area_and_order_exactly_equal": true
+    },
+    {
+      "layer": 518,
+      "z_mm": 31.11,
+      "all_arrays_area_and_order_exactly_equal": true
+    },
+    {
+      "layer": 701,
+      "z_mm": 42.089999999999996,
+      "all_arrays_area_and_order_exactly_equal": true
+    },
+    {
+      "layer": 900,
+      "z_mm": 54.03,
+      "all_arrays_area_and_order_exactly_equal": true
+    },
+    {
+      "layer": 1033,
+      "z_mm": 62.01,
+      "all_arrays_area_and_order_exactly_equal": true
+    }
+  ],
+  "serial_seconds": 32.281746125081554,
+  "parallel": {
+    "workers": 4,
+    "maximum_pending_layers": 8,
+    "completed_layers": 8,
+    "declared_layers": 8,
+    "worker_group_closed": true,
+    "maximum_individual_worker_ru_maxrss_native_units": 177848320,
+    "ru_maxrss_units": "bytes on macOS; KiB on Linux",
+    "elapsed_seconds": 11.80787374987267,
+    "layer_order_preserved": true,
+    "worker_BLAS_thread_limit": 1,
+    "scope": "Independent native layer calculations; parent retains support slicing and ordered file publication."
+  },
+  "observed_eight_layer_speedup_including_worker_startup": 2.733916240288803,
+  "scope": "Exact native outputs on eight predetermined real carrier planes; timing includes process startup, not a full-build time claim."
+}

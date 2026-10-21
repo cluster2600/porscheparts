@@ -1,0 +1,48 @@
+{
+  "schema": "first-window-private-two-source-derivation-1",
+  "sources": [
+    {
+      "original": "parts/993-eng-carrier-0001/source/design-20261016/normal-builder/cad.py",
+      "private": "work/carrier-process-20261017/bounded-webs-first-window-parameter-trial-preparation-003/normal-builder/cad.py",
+      "original_sha256": "8e02f468bafc6e363117b4698e3405cc3b8ba4c88e2d25f4af72cbe8412ce7ca",
+      "private_sha256": "42b22c15101b83c1ce1e18167bc8aa40966e7e9ccea71eb4d05fc6725b4dbd74",
+      "replacements": [
+        {
+          "old": "    for side in (-1, 1):\n        for points, radius in windows:",
+          "new": "    import os\n    for side in (-1, 1):\n        for window_index, (points, radius) in enumerate(windows):"
+        },
+        {
+          "old": "            face = Face(original_face.outer_wire().offset_2d(-g['window_edge_inset_mm']))",
+          "new": "            inset = 2.8 if window_index == 0 and scale == 0.9 else g['window_edge_inset_mm']\n            with (output/'window-branch-ledger.jsonl').open('a') as ledger:\n                ledger.write(json.dumps(dict(X_side=side, scale=scale, window_index=window_index, inset_mm=inset, rounded_radius_before_offset_mm=radius*scale, nominal_radius_after_offset_mm=radius*scale-inset, scaled_triangle_points_mm=points), allow_nan=False)+'\\n')\n                ledger.flush(); os.fsync(ledger.fileno())\n            face = Face(original_face.outer_wire().offset_2d(-inset))"
+        }
+      ],
+      "whole_inverse_byteexact": true
+    },
+    {
+      "original": "parts/993-eng-carrier-0001/source/design-20261016/build_bounded_webs.py",
+      "private": "work/carrier-process-20261017/bounded-webs-first-window-parameter-trial-preparation-003/build_stock.py",
+      "original_sha256": "4f36dad629625a9a23425499d779756c61004e6cdc58271382b7e06f136dccab",
+      "private_sha256": "f25ba15eaf2ba9ded8c707ecd3c388e93f323a387552786683881305df5b1625",
+      "replacements": [
+        {
+          "old": "SOURCE = Path(__file__).resolve().parent",
+          "new": "SOURCE = Path('/Users/maxime/.codex/worktrees/993-carrier-revalidation/3dprinting993/parts/993-eng-carrier-0001/source/design-20261016')"
+        },
+        {
+          "old": "    corrected_cad.BASE=SOURCE/'normal-builder'",
+          "new": "    corrected_cad.BASE=Path(__file__).resolve().parent/'normal-builder'"
+        },
+        {
+          "old": "str(p.relative_to(SOURCE.parent)):corrected_cad.sha(p)",
+          "new": "str(p):corrected_cad.sha(p)"
+        },
+        {
+          "old": "(SOURCE/'normal-builder/cad.py',SOURCE.parent/'bionic-20261011/cad.py'",
+          "new": "(Path(__file__).resolve().parent/'normal-builder/cad.py',SOURCE.parent/'bionic-20261011/cad.py'"
+        }
+      ],
+      "whole_inverse_byteexact": true
+    }
+  ],
+  "native_executed": false
+}

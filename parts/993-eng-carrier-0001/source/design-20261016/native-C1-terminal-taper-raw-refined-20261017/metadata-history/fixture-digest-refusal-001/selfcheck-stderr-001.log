@@ -1,0 +1,18 @@
+...........F
+======================================================================
+FAIL: test_unchanged_real_analysis_sources (__main__.Checks)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/maxime/.codex/worktrees/993-carrier-revalidation/3dprinting993/work/carrier-terminal-taper-raw-refined-delivery-preparation-001/capsule-source/selfcheck.py", line 56, in test_unchanged_real_analysis_sources
+    for name,digest in {'audit_energy.py':'b71603069518e6aa8820a7c5fec02115ab82a585e6fe9c160452f1ca2025b495','locate.py':'962379625759f1e467da8eb904c3d25d7f7860443745cb37529dad5ea293dad7','cad_binding.py':'07addd2439be51920d393c8bee170611fea4774c3723906bf446387bbef382fb'}.items():self.assertEqual(sha(BASE/'sources'/name),digest)
+AssertionError: 'b71603069518e6aa8820a7c5fec02115ab82a585e6fe9c160452f1ca2025b186' != 'b71603069518e6aa8820a7c5fec02115ab82a585e6fe9c160452f1ca2025b495'
+- b71603069518e6aa8820a7c5fec02115ab82a585e6fe9c160452f1ca2025b186
+?                                                              ^^^
++ b71603069518e6aa8820a7c5fec02115ab82a585e6fe9c160452f1ca2025b495
+?                                                              ^^^
+
+
+----------------------------------------------------------------------
+Ran 12 tests in 0.507s
+
+FAILED (failures=1)

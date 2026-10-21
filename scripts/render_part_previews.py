@@ -1,5 +1,12 @@
 #!/usr/bin/env python3
-"""Render a product view of every part from its own CAD, for its folder's README.
+"""Provide a public image for every catalogue record, including PorscheFanatics.
+
+Records without geometry receive a labelled status card, never invented CAD.
+The withdrawn synthetic Carrera F0 impeller also gets a status card. Catalogue
+CAD held in a digital-twin directory is supported. Every manifest records the
+image kind, publication terms, caption, source CAD and catalogue/image hashes.
+
+Render a product view of every modelled part from its own CAD.
 
 A part folder on GitHub used to open on a bare list of STEP, STL and JSON files:
 nothing showed what the part looks like. This script tessellates each part's
@@ -57,23 +64,33 @@ def records() -> list[dict]:
 
 
 def sources(part_id: str) -> list[Path]:
-    """The part's derived CAD, one file per stem, STEP before STL, at most three.
+    """Prefer the existing per-part CAD; otherwise use catalogue-derived CAD.
 
-    A PicoGK model (`derived/*-picogk.stl`, see parts/picogk-catalog/) takes
-    precedence: when one exists, only the PicoGK models are shown.
+    Digital-twin outputs are valid sources too. A missing declared file must
+    fail rather than silently turn a model into a "not modelled" status card.
     """
     folder = PARTS / part_id.lower() / "derived"
-    if not folder.is_dir():
-        return []
-    picogk = sorted(folder.glob("*-picogk.stl"))
+    local = sorted(folder.iterdir()) if folder.is_dir() else []
+    picogk = [p for p in local if p.name.endswith("-picogk.stl")]
     if picogk:
         return picogk[:3]
     chosen: dict[str, Path] = {}
-    for p in sorted(folder.iterdir()):
+    for p in local:
         if p.suffix.lower() not in (".step", ".stp", ".stl"):
             continue
         if p.stem not in chosen or p.suffix.lower() in (".step", ".stp"):
             chosen[p.stem] = p
+    if chosen:
+        return list(chosen.values())[:3]
+    record = next(r for r in records() if r["part_id"] == part_id)
+    for name in record.get("geometry", {}).get("derived_files", []):
+        path = ROOT / name
+        if path.suffix.lower() not in (".step", ".stp", ".stl"):
+            continue
+        if not path.resolve().is_relative_to(ROOT.resolve()) or not path.is_file():
+            raise ValueError(f"Invalid catalogue CAD source: {name}")
+        if path.stem not in chosen or path.suffix.lower() in (".step", ".stp"):
+            chosen[path.stem] = path
     return list(chosen.values())[:3]
 
 
@@ -102,18 +119,91 @@ def mesh_of(path: Path):
         return pv.read(str(out))
 
 
-def render(record: dict) -> dict | None:
-    import pyvista as pv
-    pv.OFF_SCREEN = True
+def status_card(record: dict, files: list[Path]) -> dict:
+    """Provide an honest public image when no publishable geometry is available."""
+    from PIL import Image, ImageDraw, ImageFont
+    import textwrap
+
+    part_id = record["part_id"]
+    media = PARTS / part_id.lower() / "media"
+    media.mkdir(parents=True, exist_ok=True)
+    archived = part_id == "993-ENG-COOLING-IMPELLER-ALSI10MG-F0-0001"
+    heading = "ARCHIVED GEOMETRY" if archived else "GEOMETRY NOT CREATED"
+    caption = (
+        "Archived synthetic Carrera F0 study; not the 993 Turbo fan. "
+        "The generic rotor views were withdrawn to avoid confusing the two designs."
+        if archived else
+        "Catalogue study only. No CAD geometry is available for this record."
+    )
+    image = Image.new("RGB", (1400, 900), "#f4f5f6")
+    draw = ImageDraw.Draw(image)
+    # Pillow ships this scalable font: no operating-system font dependency.
+    def font(size):
+        return ImageFont.load_default(size=size)
+    draw.rectangle((0, 0, 18, 900), fill="#a5282c")
+    draw.text((85, 75), "PORSCHE PARTS / RESEARCH", font=font(26), fill="#626970")
+    draw.text((85, 170), heading, font=font(52), fill="#252a30")
+    for i, line in enumerate(textwrap.wrap(part_id, width=42)):
+        draw.text((85, 280 + i * 48), line, font=font(34), fill="#252a30")
+    for i, line in enumerate(textwrap.wrap(caption, width=65)):
+        draw.text((85, 425 + i * 46), line, font=font(30), fill="#444b52")
+    draw.line((85, 720, 1315, 720), fill="#c4c9ce", width=2)
+    draw.text((85, 760), "Status card - no part geometry depicted", font=font(25), fill="#626970")
+    draw.text((85, 807), "Not a photograph or evidence of fit, function or manufacturing release.",
+              font=font(23), fill="#626970")
+    image.save(media / "preview.png")
+    info = {
+        "part_id": part_id,
+        "kind": "status_card",
+        "note": caption + " Status card; no part geometry depicted.",
+        "sources": [{"path": f.relative_to(ROOT).as_posix(), "sha256": sha256(f)} for f in files],
+        "bounding_box_mm": None,
+        "images": ["preview.png"],
+        "generator": "scripts/render_part_previews.py",
+    }
+    return save_manifest(record, info)
+
+
+def save_manifest(record: dict, info: dict) -> dict:
+    media = PARTS / record["part_id"].lower() / "media"
+    info["record_sha256"] = sha256(RECORDS / (record["part_id"].lower() + ".json"))
+    info["license"] = "Repository LICENSE; owner-authorized publication on PorscheFanatics.com."
+    info["image_sha256"] = {name: sha256(media / name) for name in info["images"]}
+    (media / "preview.json").write_text(json.dumps(info, indent=2) + "\n",
+                                        encoding="utf-8", newline="\n")
+    return info
+
+
+def display_rotation_x_deg(part_id: str, files: list[Path]) -> int:
+    """Show the blade face of the two rotors archived back-face-up.
+
+    Their documented bionic frame is a 180-degree X rotation, not a mirror.
+    The source meshes and blade handedness are preserved.
+    """
+    back_face_up = {
+        "993-ENG-K16-COMPRESSOR-WHEEL-ALSI10MG-F0-0001",
+        "993-ENG-K16-COMPRESSOR-WHEEL-AL2139-F1-0001",
+    }
+    return 180 if (part_id in back_face_up and files
+                   and all(f.name.endswith("-picogk.stl") for f in files)) else 0
+
+
+def render(record: dict) -> dict:
     part_id = record["part_id"]
     files = sources(part_id)
-    if not files:
-        return None
+    if not files or part_id == "993-ENG-COOLING-IMPELLER-ALSI10MG-F0-0001":
+        return status_card(record, files)
+    import pyvista as pv
+    pv.OFF_SCREEN = True
+    rotation_x_deg = display_rotation_x_deg(part_id, files)
     meshes = [mesh_of(f) for f in files]
-    smooth = all(f.name.endswith("-picogk.stl") for f in files)   # voxel meshes read as solids smoothed
+    if rotation_x_deg:
+        meshes = [m.rotate_x(rotation_x_deg, inplace=False) for m in meshes]
+    smooth = (record.get("geometry", {}).get("master_format") == "PicoGK"
+              or all(f.name.endswith("-picogk.stl") for f in files))
     tint = color(record)
     media = PARTS / part_id.lower() / "media"
-    media.mkdir(exist_ok=True)
+    media.mkdir(parents=True, exist_ok=True)
 
     def scene(plotter, view: str):
         plotter.set_background("white")
@@ -164,44 +254,85 @@ def render(record: dict) -> dict | None:
 
     info = {
         "part_id": part_id,
-        "note": ("Geometry views of the part's PicoGK concept model (parts/picogk-catalog/). "
+        "kind": "geometry_render",
+        "note": ("Blade-side views of the existing K16 compressor concept. "
+                 "Blade surfaces, hub and shaft interfaces remain unmeasured design hypotheses. "
+                 if rotation_x_deg else
+                 "Geometry views of the part's PicoGK concept model (parts/picogk-catalog/). "
                  if smooth else "Geometry views of the concept CAD. ")
                 + "Not a photograph, not a render of a manufactured part, not evidence of fit or function.",
+        "display_rotation_x_deg": rotation_x_deg,
         "sources": [{"path": f.relative_to(ROOT).as_posix(), "sha256": sha256(f)} for f in files],
         "bounding_box_mm": dims,
         "images": ["preview.png", "views.png"],
         "generator": "scripts/render_part_previews.py",
     }
-    (media / "preview.json").write_text(json.dumps(info, indent=2) + "\n", encoding="utf-8", newline="\n")
-    return info
+    return save_manifest(record, info)
 
 
 # --- check (standard library only) -------------------------------------------
 
 def check() -> int:
-    stale, missing = [], []
+    failures = []
     for record in records():
         part_id = record["part_id"]
-        files = sources(part_id)
         info_path = PARTS / part_id.lower() / "media" / "preview.json"
-        if not files:
-            continue
-        if not info_path.exists():
-            missing.append(part_id)
-            continue
-        info = json.loads(info_path.read_text(encoding="utf-8"))
-        expected = [{"path": f.relative_to(ROOT).as_posix(), "sha256": sha256(f)} for f in files]
-        images = [info_path.parent / name for name in info.get("images", [])]
-        if info.get("sources") != expected or not all(i.exists() for i in images):
-            stale.append(part_id)
-    for part_id in missing:
-        print(f"FAIL   no preview for {part_id}", file=sys.stderr)
-    for part_id in stale:
-        print(f"FAIL   preview older than its CAD: {part_id}", file=sys.stderr)
-    if missing or stale:
+        try:
+            files = sources(part_id)
+            info = json.loads(info_path.read_text(encoding="utf-8"))
+            expected = [{"path": f.relative_to(ROOT).as_posix(), "sha256": sha256(f)} for f in files]
+            card = not files or part_id == "993-ENG-COOLING-IMPELLER-ALSI10MG-F0-0001"
+            names = ["preview.png"] if card else ["preview.png", "views.png"]
+            if info.get("kind") != ("status_card" if card else "geometry_render"):
+                raise ValueError("incorrect image kind")
+            if info.get("part_id") != part_id or info.get("sources") != expected:
+                raise ValueError("preview does not match its CAD")
+            if info.get("display_rotation_x_deg", 0) != display_rotation_x_deg(part_id, files):
+                raise ValueError("preview does not show the expected model face")
+            if info.get("record_sha256") != sha256(RECORDS / (part_id.lower() + ".json")):
+                raise ValueError("preview does not match its catalogue record")
+            if info.get("images") != names or not info.get("note") or not info.get("license"):
+                raise ValueError("incomplete publication metadata")
+            hashes = info.get("image_sha256", {})
+            photo_path = info_path.parent / "photo.json"
+            if photo_path.exists():
+                photo = json.loads(photo_path.read_text(encoding="utf-8"))
+                # The illustration depicts the CAD geometry, so it goes stale
+                # only when a CAD source changes. The record and reference
+                # preview hashes are provenance: what it was generated from.
+                if (card or photo.get("kind") != "ai_illustration"
+                        or photo.get("part_id") != part_id
+                        or photo.get("sources") != expected
+                        or not photo.get("record_sha256")
+                        or not photo.get("reference_sha256")
+                        or photo.get("images") != ["photo-concept.png"]
+                        or not photo.get("prompt") or not photo.get("generator")
+                        or "not a photograph" not in photo.get("note", "").lower()
+                        or not photo.get("license")):
+                    raise ValueError("incomplete or stale AI illustration metadata")
+                names += photo["images"]
+                hashes = {**hashes, **photo.get("image_sha256", {})}
+            elif (info_path.parent / "photo-concept.png").exists():
+                raise ValueError("AI illustration is missing its publication metadata")
+            for name in names:
+                path = info_path.parent / name
+                with path.open("rb") as stream:
+                    header = stream.read(24)
+                if (len(header) != 24 or header[:8] != b"\x89PNG\r\n\x1a\n"
+                        or header[12:16] != b"IHDR"
+                        or not int.from_bytes(header[16:20], "big")
+                        or not int.from_bytes(header[20:24], "big")):
+                    raise ValueError(f"invalid PNG: {name}")
+                if hashes.get(name) != sha256(path):
+                    raise ValueError(f"changed image: {name}")
+        except (OSError, ValueError, KeyError, TypeError, StopIteration) as exc:
+            failures.append(f"{part_id}: {exc}")
+    for failure in failures:
+        print(f"FAIL   {failure}", file=sys.stderr)
+    if failures:
         print("       rerun: make part-previews", file=sys.stderr)
         return 1
-    print("OK   parts/*/media, every part with CAD has a preview made from its current CAD")
+    print(f"OK   {len(records())} catalogue records have current, hashed public images")
     return 0
 
 
@@ -211,20 +342,19 @@ def main() -> int:
     g.add_argument("--write", action="store_true")
     g.add_argument("--check", action="store_true")
     ap.add_argument("--only", help="render a single part_id")
-    ap.add_argument("--list", action="store_true", help="print part_ids that have CAD")
+    ap.add_argument("--list", action="store_true", help="print all catalogue part_ids")
     a = ap.parse_args()
     if a.check:
         return check()
     todo = [r for r in records() if not a.only or r["part_id"].lower() == a.only.lower()]
     if a.list:
         for r in todo:
-            if sources(r["part_id"]):
-                print(r["part_id"])
+            print(r["part_id"])
         return 0
     for r in todo:
         info = render(r)
-        print(f"{'rendered' if info else 'no CAD  '} {r['part_id']}"
-              + (f"  {info['bounding_box_mm']} mm" if info else ""))
+        print(f"{info['kind']} {r['part_id']}"
+              + (f"  {info['bounding_box_mm']} mm" if info["bounding_box_mm"] else ""))
     return 0
 
 

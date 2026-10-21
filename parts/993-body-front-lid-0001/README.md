@@ -93,7 +93,7 @@ flowchart LR
 |---|---|---|
 | `derived/` | CAD exports generated from the source (STEP for CAD tools, STL for meshing) | [`derived/front_lid_concept_f0-picogk.json`](derived/front_lid_concept_f0-picogk.json), [`derived/front_lid_concept_f0-picogk.stl`](derived/front_lid_concept_f0-picogk.stl), [`derived/front_lid_concept_f0.step`](derived/front_lid_concept_f0.step) |
 | `evidence/` | screens, reports and manifests — **pinned by SHA-256, never edited by hand** | [`evidence/concept-f0.json`](evidence/concept-f0.json), [`evidence/measurement-plan.md`](evidence/measurement-plan.md) |
-| `media/` | concept-model views rendered from the CAD by `scripts/render_part_previews.py` — not pictures of the original | [`media/preview.json`](media/preview.json), [`media/preview.png`](media/preview.png), [`media/views.png`](media/views.png) |
+| `media/` | concept-model views rendered from the CAD by `scripts/render_part_previews.py` — not pictures of the original; labelled AI studio illustration and provenance, not a photograph | [`media/photo-concept.png`](media/photo-concept.png), [`media/photo.json`](media/photo.json), [`media/preview.json`](media/preview.json), [`media/preview.png`](media/preview.png), [`media/views.png`](media/views.png) |
 | `source/` | parametric source — the editable master that generates the geometry | [`source/bionic.json`](source/bionic.json), [`source/bionic_regions.py`](source/bionic_regions.py), [`source/bionic_skin_contact.py`](source/bionic_skin_contact.py), [`source/picogk.json`](source/picogk.json) |
 
 ## Read more

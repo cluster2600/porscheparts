@@ -76,6 +76,20 @@ Catalogue record: [`catalog/parts/993-eng-bracket-0001.json`](../../catalog/part
 
 - [`twins/993-engine-mount-system-f0/derived/993-ENG-BRACKET-0001.stl`](../../twins/993-engine-mount-system-f0/derived/993-ENG-BRACKET-0001.stl)
 
+## Images
+
+![photo-concept](../../parts/993-eng-bracket-0001/media/photo-concept.png)
+
+*`parts/993-eng-bracket-0001/media/photo-concept.png` — AI-generated studio illustration based on the concept CAD preview. Material and finish are illustrative; generated details may differ. Not a photograph or evidence of fit, function or manufacturing.*
+
+![preview](../../parts/993-eng-bracket-0001/media/preview.png)
+
+*`parts/993-eng-bracket-0001/media/preview.png` — concept CAD block, **not** the original part, not a print file.*
+
+![views](../../parts/993-eng-bracket-0001/media/views.png)
+
+*`parts/993-eng-bracket-0001/media/views.png` — concept CAD block, **not** the original part, not a print file.*
+
 ## Provenance and sources
 
 | field | value |
@@ -94,7 +108,7 @@ Catalogue record: [`catalog/parts/993-eng-bracket-0001.json`](../../catalog/part
 | status | concept |
 | vehicle tested | not recorded |
 | reviewed by |  |
-| limitations | not recorded |
+| limitations | F0 study; OEM geometry, mounting, material, loads and fatigue not validated.<br>Dimensions, hole coordinates and exploded-view poses: study assumptions, not Porsche measurements.<br>The native report shows a zero mass because the mass calculation is disabled; the real mass is unknown.<br>No part from this study may carry the engine.<br>Bionic morphology only; no topology or mechanical optimisation under measured loads. |
 
 **Evidence**
 
