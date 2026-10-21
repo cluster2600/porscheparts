@@ -39,7 +39,7 @@ labels or trained surrogate are accepted.
 | Workstream | Next concrete work | Acceptance before the next phase |
 |---|---|---|
 | Strength and material | Resolve the 24 remaining head-mesh quality failures; establish operating loads and a documented material/process/heat-treatment state. Review hot-property references separately from the existing hypothetical cards. | Admitted meshes, equilibrium and convergence; temperature-dependent constitutive data and stated allowable stresses. Fatigue, creep and physical correlation need their own evidence. |
-| LPBF | Review the completed fixed coupon capture, associate its saved fields with current IDs, coordinates and time, then assess against the unchanged mechanical criteria. Resolve the 12 aggregate mechanical failures and verify deposition, cooling and release before a head calculation. | Numerical witnesses plus machine/material-specific calibration against measured temperature, distortion and residual stress. A coupon capture or successful process exit alone does not qualify LPBF. |
+| LPBF | Investigate the 192 Exodus word differences and establish actual timestep/scaling provenance, then assess against the unchanged mechanical criteria. Resolve the 12 aggregate mechanical failures and verify deposition, cooling and release before a head calculation. | Numerical witnesses plus machine/material-specific calibration against measured temperature, distortion and residual stress. A coupon capture or successful process exit alone does not qualify LPBF. |
 | Omniverse | After accepted strength and LPBF results exist, assemble the family in OpenUSD and attach those fields. Track native mesh/field identities, units, frames, associations and time. | Preflight, required service readiness, asset/conformance checks, native-field mapping checks and measurement correlation. Preserve the six current substantive USD profile failures until their repairs are verified. |
 | PhysicsNeMo | Build a dataset from accepted solver cases; split whole geometries, builds and load cases before normalization. Compare suitable model families and simple baselines, then train, evaluate and connect checked inference to the twin. | Independent-case field and hotspot errors, conservation checks, uncertainty and out-of-domain limits, reproducible training and end-to-end inference timings. Recheck proposed designs with the reference solvers. |
 
@@ -60,6 +60,17 @@ decisions are now published. Field association and assessment against the
 unchanged mechanical criteria follow separately. No production alloy,
 qualified build recipe, accepted head-field dataset or trained head surrogate
 is claimed at this milestone.
+
+The [displacement storage checkpoint](derived/engineering/native005-displacement-storage-diagnostic/README.md)
+now records six structural and nine parser cases passing once, the preserved
+first failed intake, and a corrected complete offline diagnostic. All 1,275
+PETSc X1 words match CSV; Exodus differs in 192 entries (173 by one ULP and
+19 by two). Every differing row and its exact arithmetic are retained.
+The saved-result peer accepts reporting completeness only. Actual timestep/
+scaling, field/force and mechanical acceptance remain open. A separate Python
+3.10 read-only readiness check passed; the real owner004 five-toy Z3 and
+current head repair remain unrun. These results change neither the 24 poor
+head cells nor the 12 aggregate mechanical failures.
 
 The [full five-toy owner003 checkpoint](derived/engineering/full-five-toy-owner003-prefix-and-core-hold/README.md)
 accepts only the four-line admission-prefix repair. Operation remains on HOLD

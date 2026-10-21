@@ -1,0 +1,12 @@
+--- work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-saved-measurement-parser-prep-002/parse_saved_measurement.py
++++ work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-saved-measurement-parser-prep-003/parse_saved_measurement.py
+@@ -148,6 +148,9 @@
+     need(type(text) is str and len(text.encode('utf-8'))<=32*1024**2,"Bounded complete raw log text required")
+     blocks=[];current=None
+     for line_number,line in enumerate(text.splitlines(),1):
++        if line=='Time Step 0, time = 0':
++            current=dict(step=0,time_token='0',dt_token=None,line=line_number,monitors=[])
++            blocks.append(current);continue
+         step=re.fullmatch(r'\s*Time Step ([0-9]+), time = ([^,\s]+), dt = (\S+)\s*',line)
+         if step:
+             current=dict(step=int(step[1]),time_token=step[2],dt_token=step[3],line=line_number,monitors=[])
