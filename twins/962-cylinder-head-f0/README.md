@@ -24,6 +24,14 @@ no 005 guard result, current runtime/API acceptance, actual or pin counts, stagi
 admission, launch, native result or physical qualification. The separate five-toy003
 C01/C02 HOLD and all 24 head-mesh and 12 aggregate mechanical failures remain.
 
+The later [fake31 and core13 software checkpoint](derived/engineering/native005-fake31-and-owner004-core13/README.md)
+records one accepted run of 31 native005 fake guards and one of 13 owner004
+core guards, each with child/outer exit statuses 0/0. The corrected C01/C02
+source policies have finite fake-provider evidence; the real full five-toy Z3
+and native005 execution routes remain separately gated. All 24 poor head cells
+and 12 mechanical failures remain. Material/strength, calibrated LPBF,
+Omniverse and PhysicsNeMo qualification are still open.
+
 The [F1 final-evidence checkpoint](derived/engineering/f1-final-evidence-guards9-and-admission-fix/README.md)
 records all nine fake-provider integration cases passing in one accepted run,
 with child/outer exit statuses 0/0. The pre-issuance admission self-hash refusal

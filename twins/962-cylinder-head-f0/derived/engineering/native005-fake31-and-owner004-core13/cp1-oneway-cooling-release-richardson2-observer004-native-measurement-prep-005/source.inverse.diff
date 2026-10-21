@@ -1,0 +1,586 @@
+--- work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native-measurement-prep-005/run_root_once.py
++++ work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native-measurement-prep-004/run_root_once.py
+@@ -1,14 +1,13 @@
+ """HELD/UNRUN fixed owned-group RICH2 capture. Separate source/API/guard/actual/root gates remain."""
+ import time
+ START_NS = time.monotonic_ns()
+-import errno
+ import hashlib, json, math, os, re, select, signal, subprocess, sys, traceback
+ from pathlib import Path
+ 
+ ROOT = Path("/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993")
+ R = ROOT
+ E = ROOT/"work/962-engineering"
+-S = E/"cp1-oneway-cooling-release-richardson2-observer004-native-measurement-prep-005"
++S = E/"cp1-oneway-cooling-release-richardson2-observer004-native-measurement-prep-004"
+ P = E/"cp1-oneway-cooling-release-richardson2-observer004-native-measurement-execution-prep-004"
+ ROOT_EXECUTION = E/"cp1-oneway-cooling-release-richardson2-observer004-native-measurement-root-execution-004"
+ OUTPUT = E/"cp1-oneway-cooling-release-richardson2-observer004-native-measurement-004"
+@@ -31,27 +30,6 @@
+     # Applies to leader, native and both fixed-query roles, including partial init.
+     def __del__(self):
+         pass
+-
+-
+-class ChildRelationshipError(ValueError):
+-    """An exact wait returned an untrustworthy direct-child relationship."""
+-
+-
+-def retained_unreaped(record):
+-    return (record.get("status") == "unreaped"
+-            and record.get("direct_child_relationship") == "retained_unreaped")
+-
+-
+-def can_signal(record):
+-    return retained_unreaped(record) and record.get("numeric_signal_authority") is True
+-
+-
+-def lose_relationship(record, exc):
+-    # Permanent per-handle barrier; no later numeric query/wait restores ownership.
+-    record.update(status="unknown",direct_child_relationship="lost",
+-                  numeric_signal_authority=False)
+-    if record.get("relationship_error") is None:
+-        record["relationship_error"] = note_error(exc,"lost-direct-child-relationship")
+ 
+ 
+ _RETAINED = []
+@@ -236,28 +214,18 @@
+ 
+ 
+ def exact_reap(handle, record, until):
+-    # A consumed terminal status is stored before the full-return deadline check.
+-    if record.get("direct_child_relationship") == "lost":
+-        raise ChildRelationshipError("Lost relationship; no numeric wait or signal authority")
++    # A consumed exact terminal status is the sole recorded reap for this handle.
+     if record["status"] == "reaped":
+         return True
+-    if not retained_unreaped(record):
+-        raise ChildRelationshipError("Unknown direct-child relationship; no numeric wait")
+     guard(until, "exact-WNOHANG-reap", False)
+-    try:
+-        pid, status = os.waitpid(handle.pid, os.WNOHANG)
+-        if pid:
+-            if pid != handle.pid or not (os.WIFEXITED(status) or os.WIFSIGNALED(status)):
+-                raise ChildRelationshipError("Unexpected exact terminal wait status")
+-            raw = os.waitstatus_to_exitcode(status)
+-            handle.returncode = raw
+-            record.update(status="reaped",wait_status=status,raw_returncode=raw,
+-                          direct_child_relationship="reaped",numeric_signal_authority=False)
+-    except BaseException as exc:
+-        if isinstance(exc,(ChildProcessError,ChildRelationshipError)) or (
+-                isinstance(exc,OSError) and exc.errno == errno.ECHILD):
+-            lose_relationship(record,exc)
+-        raise
++    pid, status = os.waitpid(handle.pid, os.WNOHANG)
++    if pid:
++        if pid != handle.pid or not (os.WIFEXITED(status) or os.WIFSIGNALED(status)):
++            raise ValueError("Unexpected exact terminal wait status")
++        raw = os.waitstatus_to_exitcode(status)
++        handle.returncode = raw
++        record.update(status="reaped", wait_status=status, raw_returncode=raw)
++    # Preserve a consumed status even when the syscall itself returned late.
+     guard(until, "exact-WNOHANG-reap/full-return", False)
+     return pid != 0
+ 
+@@ -283,21 +251,16 @@
+                                time_ns=str(time.monotonic_ns())))
+ 
+ 
+-def positive_ns(value, maximum):
+-    """Canonical positive ASCII integer, bounded by its declared clock role."""
+-    if type(value) is not str or not re.fullmatch(r"[1-9][0-9]*",value,flags=re.ASCII):
+-        raise ValueError("Canonical positive ASCII nanoseconds required")
+-    if len(value) > len(str(maximum)):
+-        raise ValueError("Nanosecond value exceeds declared clock bound")
+-    result = int(value,10)
+-    if str(result) != value or not 0 < result <= maximum:
+-        raise ValueError("Nanosecond value exceeds declared clock bound")
+-    return result
+-
+-
+ def clock_token(token):
+-    # Observed times, unlike future deadlines, must not exceed the current clock.
+-    return positive_ns(token,time.monotonic_ns())
++    now = time.monotonic_ns()
++    if type(token) is not str or not re.fullmatch(r"[1-9][0-9]*", token, flags=re.ASCII):
++        raise ValueError("Canonical positive ASCII owner-start token required")
++    if len(token) > len(str(now)):
++        raise ValueError("Future/oversize owner-start token")
++    value = int(token, 10)
++    if str(value) != token or not 0 < value <= now:
++        raise ValueError("Future/noncanonical owner-start token")
++    return value
+ 
+ def group_exists(pid):
+  try:os.killpg(pid,0);return True
+@@ -421,10 +384,7 @@
+     clock = value["clock"]
+     for key,stamp in clock.items():
+         if stamp is not None:
+-            if key == "normal_until_ns":
+-                positive_ns(stamp,START_NS+95_000_000_000)
+-            else:
+-                clock_token(stamp)
++            clock_token(stamp)
+     require(clock["owner_start_ns"] == token
+             and int(clock["normal_until_ns"]) ==
+             min(START_NS+95_000_000_000,int(clock["caller_entry_ns"])+100_000_000_000),
+@@ -489,8 +449,7 @@
+     until = min(query_started + 2_000_000_000, _UNTIL_NS)
+     row = dict(role=QUERY_ROLE, purpose=purpose, started_ns=str(query_started),
+                until_ns=str(until), PID=None, constructor_attempted=False,
+-               exit=dict(status="not_created", wait_status=None, raw_returncode=None,
+-                         direct_child_relationship="not_created",numeric_signal_authority=False),
++               exit=dict(status="not_created", wait_status=None, raw_returncode=None),
+                stop_actions=[], error=None, stdout_complete=False, stderr_complete=False)
+     _QUERY_RECORDS.append(row)
+     number = len(_QUERY_RECORDS)
+@@ -508,13 +467,13 @@
+         streams.append(call(until, "query-stderr-open", errpath.open, "xb"))
+         guard(until, "query-constructor")
+         row["constructor_attempted"] = True
+-        row["exit"].update(status="unknown",direct_child_relationship="unknown",numeric_signal_authority=False)
++        row["exit"]["status"] = "unknown"
+         handle = _RetainedPopen(["/bin/ps", "-axo", "pid=,pgid=,rss=,stat="], stdin=subprocess.DEVNULL,
+                                stdout=subprocess.PIPE, stderr=subprocess.PIPE,
+                                start_new_session=False, env={"PATH":"/usr/bin:/bin","LC_ALL":"C"})
+         _RETAINED.append(handle)
+         row["PID"] = handle.pid
+-        row["exit"].update(status="unreaped",direct_child_relationship="retained_unreaped",numeric_signal_authority=True)
++        row["exit"]["status"] = "unreaped"
+         guard(until, "query-constructor/full-return")
+         pending = {handle.stdout.fileno(): 0, handle.stderr.fileno(): 1}
+         for fd in pending:
+@@ -570,7 +529,7 @@
+         except BaseException as callback_error:
+             row["parent_error_callback"] = note_error(callback_error, "query-parent-refusal")
+     finally:
+-        if handle is not None and can_signal(row["exit"]):
++        if handle is not None and row["exit"]["status"] != "reaped":
+             try:
+                 kill_started = guard(_OWNER_START_NS + 110_000_000_000,
+                                      "query-own-PID-KILL", False)
+@@ -581,8 +540,6 @@
+                                                 signal=int(signal.SIGKILL),
+                                                 attempted_ns=str(kill_started)))
+                 try:
+-                    if not can_signal(row["exit"]):
+-                        raise ChildRelationshipError("Query relationship lost before own-PID KILL")
+                     os.kill(handle.pid, signal.SIGKILL)
+                     row["stop_actions"][-1]["returned"] = True
+                 except BaseException as kill_error:
+@@ -592,8 +549,6 @@
+             except BaseException as cleanup_error:
+                 row["cleanup_error"] = note_error(cleanup_error, "query-cleanup")
+                 error = error or cleanup_error
+-        if handle is not None and row["exit"]["status"] != "reaped" and not retained_unreaped(row["exit"]):
+-            row["cleanup_signal_and_wait_skipped"] = "Lost or unknown direct-child relationship; no numeric authority"
+         close_streams = streams + ([handle.stdout, handle.stderr] if handle is not None else [])
+         for stream in close_streams:
+             if stream is not None:
+@@ -627,11 +582,9 @@
+     auth = actual = None
+     before = {}
+     after = {}
+-    postwrite = {}
+     state = dict(leader_constructor_attempted=False,leader_handle_returned=False,leader_PID=None,certificate=None,
+         continuation_attempted=False,SIGCONT_acknowledged=False,caller_exit_event=None,
+-        leader_reap=dict(status="not_created",wait_status=None,raw_returncode=None,
+-            direct_child_relationship="not_created",numeric_signal_authority=False),
++        leader_reap=dict(status="not_created",wait_status=None,raw_returncode=None),
+         further_group_signals_closed=False,first_TERM_ns=None,TERM_until_ns=None,
+         first_KILL_ns=None,KILL_until_ns=None,TERM_decided=False,KILL_decided=False)
+     samples = []
+@@ -646,21 +599,18 @@
+     writable = False
+     signal.signal(signal.SIGTERM,latch_signal)
+     signal.signal(signal.SIGINT,latch_signal)
+-    previous_chld = signal.getsignal(signal.SIGCHLD)
++    previous_chld = signal.signal(signal.SIGCHLD,signal.SIG_DFL)
+ 
+     def request_term(exc=None):
+         global _NORMAL
+         _NORMAL = False
+         if exc is not None and not _ERRORS:
+             note_error(exc,"owner-query-refusal")
+-        if handle is not None and not can_signal(state["leader_reap"]):
+-            state["further_group_signals_closed"] = True
+-            raise ChildRelationshipError("Lost/unknown leader; no TERM authority")
+         if state["TERM_decided"] or state["further_group_signals_closed"]:
+             return
+         state["TERM_decided"] = True
+         require(handle is not None and state["certificate"] is not None
+-                and state["continuation_attempted"] and can_signal(state["leader_reap"]),
++                and state["continuation_attempted"] and state["leader_reap"]["status"] != "reaped",
+                 "No retained certified group for TERM")
+         now = guard(START_NS+105_000_000_000,"first-group-TERM",False)
+         state["first_TERM_ns"] = str(now)
+@@ -669,8 +619,6 @@
+                       attempted_ns=str(now),until_ns=state["TERM_until_ns"])
+         actions.append(action)
+         try:
+-            require(can_signal(state["leader_reap"]) and not state["further_group_signals_closed"],
+-                    "Closed leader relationship before TERM")
+             os.killpg(handle.pid,signal.SIGTERM)
+             action["returned"] = True
+         except BaseException as exc:
+@@ -707,9 +655,6 @@
+         _NORMAL = False
+         if handle is None or state["leader_reap"]["status"] == "reaped":
+             return
+-        if not can_signal(state["leader_reap"]):
+-            state["further_group_signals_closed"] = True
+-            raise ChildRelationshipError("Lost/unknown leader; no numeric cleanup or wait")
+         if state["certificate"] is None or not state["continuation_attempted"]:
+             _PHASE = "KILL_reap110/preCONT-direct-PID-only"
+             now = guard(START_NS+110_000_000_000,"preCONT-abort",False)
+@@ -720,7 +665,6 @@
+                               signal=int(signal.SIGKILL),attempted_ns=str(now),until_ns=str(until))
+                 actions.append(action)
+                 try:
+-                    require(can_signal(state["leader_reap"]),"Closed direct relationship before preCONT KILL")
+                     os.kill(handle.pid,signal.SIGKILL)
+                     action["returned"] = True
+                 except BaseException as exc:
+@@ -756,8 +700,6 @@
+                           attempted_ns=str(now),until_ns=str(until))
+             actions.append(action)
+             try:
+-                require(can_signal(state["leader_reap"]) and not state["further_group_signals_closed"],
+-                        "Closed leader relationship before group KILL")
+                 os.killpg(handle.pid,signal.SIGKILL)
+                 action["returned"] = True
+             except BaseException as exc:
+@@ -768,7 +710,6 @@
+ 
+     event_rows = []
+     try:
+-        require(previous_chld == signal.SIG_DFL,"Already-default SIGCHLD required; no reset")
+         require(len(sys.argv) == 2 and re.fullmatch("[0-9a-f]{64}",sys.argv[1]),
+                 "HELD: separate exact root admission digest required")
+         authorization = ROOT_EXECUTION/"authorization.json"
+@@ -872,41 +813,28 @@
+         try:
+             guard(label="one-wrapper-constructor")
+             state["leader_constructor_attempted"] = True
+-            state["leader_reap"].update(status="unknown",direct_child_relationship="unknown",numeric_signal_authority=False)
++            state["leader_reap"]["status"] = "unknown"
+             handle = _RetainedPopen(argv,cwd=ROOT,env=actual["outer_environment"],
+                 stdin=subprocess.DEVNULL,stdout=out,stderr=err,start_new_session=True)
+             _RETAINED.append(handle)
+             state.update(leader_handle_returned=True,leader_PID=handle.pid)
+-            state["leader_reap"].update(status="unreaped",direct_child_relationship="retained_unreaped",numeric_signal_authority=True)
++            state["leader_reap"]["status"] = "unreaped"
+             guard(label="wrapper-constructor/full-return")
+             handshake_until = min(time.monotonic_ns()+5_000_000_000,START_NS+95_000_000_000)
+             while True:
+                 guard(handshake_until,"stopped-certificate")
+-                try:
+-                    if not retained_unreaped(state["leader_reap"]):
+-                        raise ChildRelationshipError("Unknown relationship before stopped wait")
+-                    pid,status = os.waitpid(handle.pid,os.WUNTRACED|os.WNOHANG)
+-                    if pid:
+-                        if pid != handle.pid:
+-                            raise ChildRelationshipError("Wrong direct-child wait status")
+-                        if os.WIFEXITED(status) or os.WIFSIGNALED(status):
+-                            raw = os.waitstatus_to_exitcode(status)
+-                            handle.returncode = raw
+-                            state["leader_reap"].update(status="reaped",wait_status=status,raw_returncode=raw,
+-                                direct_child_relationship="reaped",numeric_signal_authority=False)
+-                            state["further_group_signals_closed"] = True
+-                            raise ValueError("Early actual terminal reap before wrapper certification")
+-                        if not os.WIFSTOPPED(status):
+-                            raise ChildRelationshipError("Untrustworthy stopped-wait status")
+-                except BaseException as exc:
+-                    if isinstance(exc,(ChildProcessError,ChildRelationshipError)) or (
+-                            isinstance(exc,OSError) and exc.errno == errno.ECHILD):
+-                        lose_relationship(state["leader_reap"],exc)
++                pid,status = os.waitpid(handle.pid,os.WUNTRACED|os.WNOHANG)
++                if pid:
++                    if pid != handle.pid:
++                        raise ValueError("Wrong direct-child wait status")
++                    if os.WIFEXITED(status) or os.WIFSIGNALED(status):
++                        raw = os.waitstatus_to_exitcode(status)
++                        handle.returncode = raw
++                        state["leader_reap"].update(status="reaped",wait_status=status,raw_returncode=raw)
+                         state["further_group_signals_closed"] = True
+-                    raise
+-                if pid:
++                        raise ValueError("Early actual terminal reap before wrapper certification")
+                     guard(handshake_until,"stopped-status/full-return")
+-                    require(os.WSTOPSIG(status) == signal.SIGSTOP,
++                    require(os.WIFSTOPPED(status) and os.WSTOPSIG(status) == signal.SIGSTOP,
+                             "Exact stopped-before-exec handshake required")
+                     break
+                 guard(handshake_until,"stopped-wait/full-return")
+@@ -933,9 +861,6 @@
+             event_rows.extend(event_record(event) for event in events)
+             require(not events,"Unexpected registration event before CONT")
+             guard(label="CONT-intent")
+-            if not can_signal(state["leader_reap"]):
+-                state["further_group_signals_closed"] = True
+-                raise ChildRelationshipError("Lost/unknown relationship before CONT")
+             state["continuation_attempted"] = True
+             os.kill(handle.pid,signal.SIGCONT)
+             state["SIGCONT_acknowledged"] = True
+@@ -974,9 +899,7 @@
+             cleanup()
+         except BaseException as exc:
+             note_error(exc,"anchored-cleanup")
+-        if (handle is not None and state["leader_reap"]["status"] == "reaped"
+-                and state["leader_reap"]["direct_child_relationship"] == "reaped"
+-                and state["leader_reap"]["wait_status"] is not None):
++        if handle is not None and state["leader_reap"]["status"] == "reaped":
+             if state["certificate"] is None:
+                 absence = dict(status="not_applicable_uncertified",error=None)
+             else:
+@@ -1089,19 +1012,6 @@
+                 data = encode(closed)
+                 budgets(_EXTERNAL,_BASELINE,pending=len(data))
+                 write_full(ROOT_EXECUTION/"closed-result.json",data)
+-                require(auth is not None and actual is not None and bool(before),
+-                        "Postwrite finite identity set unavailable")
+-                postwrite = dict(authorization=capture(lambda:rec(ROOT_EXECUTION/"authorization.json")),
+-                    direct=capture(lambda:direct_map(auth)),
+-                    staged_inputs=capture(lambda:{name:rec(OUTPUT/name) for name in actual["staged_inputs"]}),
+-                    inputs=capture(lambda:input_map(actual)),runtime=capture(lambda:runtime_map(actual)),
+-                    selected_host_records=capture(lambda:check(actual["expected_host_records"])),
+-                    provider_paths=capture(lambda:provider_links(actual["expected_provider_paths"])),
+-                    python=capture(lambda:python_record(actual)))
+-                if not (set(before) == set(postwrite) and all(postwrite[key]["error"] is None
+-                        and postwrite[key]["observed"] == value for key,value in before.items())):
+-                    raise ValueError("Postwrite finite identities refused; prefinal receipt unchanged: "+repr(postwrite))
+-                guard(label="postwrite-finite-identity-full-return",honor_stop=False)
+                 budgets(_EXTERNAL,_BASELINE)
+                 guard(label="full-postreceipt-owner-return",honor_stop=False)
+             except BaseException as exc:
+--- work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native-measurement-prep-005/run_native_capture.py
++++ work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native-measurement-prep-004/run_native_capture.py
+@@ -1,7 +1,6 @@
+ """HELD/UNRUN fixed RICH2 caller. No operation without a separate reviewed v2 admission."""
+ import time
+ START_NS = time.monotonic_ns()
+-import errno
+ import argparse, hashlib, json, math, os, re, select, shutil, signal, subprocess, sys, traceback
+ from pathlib import Path
+ 
+@@ -47,27 +46,6 @@
+         pass
+ 
+ 
+-class ChildRelationshipError(ValueError):
+-    """An exact wait returned an untrustworthy direct-child relationship."""
+-
+-
+-def retained_unreaped(record):
+-    return (record.get("status") == "unreaped"
+-            and record.get("direct_child_relationship") == "retained_unreaped")
+-
+-
+-def can_signal(record):
+-    return retained_unreaped(record) and record.get("numeric_signal_authority") is True
+-
+-
+-def lose_relationship(record, exc):
+-    # Permanent per-handle barrier; no later numeric query/wait restores ownership.
+-    record.update(status="unknown",direct_child_relationship="lost",
+-                  numeric_signal_authority=False)
+-    if record.get("relationship_error") is None:
+-        record["relationship_error"] = note_error(exc,"lost-direct-child-relationship")
+-
+-
+ _RETAINED = []
+ _QUERY_RECORDS = []
+ _STOP_REQUESTS = []
+@@ -250,28 +228,18 @@
+ 
+ 
+ def exact_reap(handle, record, until):
+-    # A consumed terminal status is stored before the full-return deadline check.
+-    if record.get("direct_child_relationship") == "lost":
+-        raise ChildRelationshipError("Lost relationship; no numeric wait or signal authority")
++    # A consumed exact terminal status is the sole recorded reap for this handle.
+     if record["status"] == "reaped":
+         return True
+-    if not retained_unreaped(record):
+-        raise ChildRelationshipError("Unknown direct-child relationship; no numeric wait")
+     guard(until, "exact-WNOHANG-reap", False)
+-    try:
+-        pid, status = os.waitpid(handle.pid, os.WNOHANG)
+-        if pid:
+-            if pid != handle.pid or not (os.WIFEXITED(status) or os.WIFSIGNALED(status)):
+-                raise ChildRelationshipError("Unexpected exact terminal wait status")
+-            raw = os.waitstatus_to_exitcode(status)
+-            handle.returncode = raw
+-            record.update(status="reaped",wait_status=status,raw_returncode=raw,
+-                          direct_child_relationship="reaped",numeric_signal_authority=False)
+-    except BaseException as exc:
+-        if isinstance(exc,(ChildProcessError,ChildRelationshipError)) or (
+-                isinstance(exc,OSError) and exc.errno == errno.ECHILD):
+-            lose_relationship(record,exc)
+-        raise
++    pid, status = os.waitpid(handle.pid, os.WNOHANG)
++    if pid:
++        if pid != handle.pid or not (os.WIFEXITED(status) or os.WIFSIGNALED(status)):
++            raise ValueError("Unexpected exact terminal wait status")
++        raw = os.waitstatus_to_exitcode(status)
++        handle.returncode = raw
++        record.update(status="reaped", wait_status=status, raw_returncode=raw)
++    # Preserve a consumed status even when the syscall itself returned late.
+     guard(until, "exact-WNOHANG-reap/full-return", False)
+     return pid != 0
+ 
+@@ -297,21 +265,16 @@
+                                time_ns=str(time.monotonic_ns())))
+ 
+ 
+-def positive_ns(value, maximum):
+-    """Canonical positive ASCII integer, bounded by its declared clock role."""
+-    if type(value) is not str or not re.fullmatch(r"[1-9][0-9]*",value,flags=re.ASCII):
+-        raise ValueError("Canonical positive ASCII nanoseconds required")
+-    if len(value) > len(str(maximum)):
+-        raise ValueError("Nanosecond value exceeds declared clock bound")
+-    result = int(value,10)
+-    if str(result) != value or not 0 < result <= maximum:
+-        raise ValueError("Nanosecond value exceeds declared clock bound")
+-    return result
+-
+-
+ def clock_token(token):
+-    # Observed times, unlike future deadlines, must not exceed the current clock.
+-    return positive_ns(token,time.monotonic_ns())
++    now = time.monotonic_ns()
++    if type(token) is not str or not re.fullmatch(r"[1-9][0-9]*", token, flags=re.ASCII):
++        raise ValueError("Canonical positive ASCII owner-start token required")
++    if len(token) > len(str(now)):
++        raise ValueError("Future/oversize owner-start token")
++    value = int(token, 10)
++    if str(value) != token or not 0 < value <= now:
++        raise ValueError("Future/noncanonical owner-start token")
++    return value
+ 
+ def need(condition, message):
+     if not condition:
+@@ -515,8 +478,7 @@
+     until = min(query_started + 2_000_000_000, _UNTIL_NS)
+     row = dict(role=QUERY_ROLE, purpose=purpose, started_ns=str(query_started),
+                until_ns=str(until), PID=None, constructor_attempted=False,
+-               exit=dict(status="not_created", wait_status=None, raw_returncode=None,
+-                         direct_child_relationship="not_created",numeric_signal_authority=False),
++               exit=dict(status="not_created", wait_status=None, raw_returncode=None),
+                stop_actions=[], error=None, stdout_complete=False, stderr_complete=False)
+     _QUERY_RECORDS.append(row)
+     number = len(_QUERY_RECORDS)
+@@ -534,13 +496,13 @@
+         streams.append(call(until, "query-stderr-open", errpath.open, "xb"))
+         guard(until, "query-constructor")
+         row["constructor_attempted"] = True
+-        row["exit"].update(status="unknown",direct_child_relationship="unknown",numeric_signal_authority=False)
++        row["exit"]["status"] = "unknown"
+         handle = _RetainedPopen(["/bin/ps", "-o", "pid=,ppid=,pgid=", "-p", str(pid)], stdin=subprocess.DEVNULL,
+                                stdout=subprocess.PIPE, stderr=subprocess.PIPE,
+                                start_new_session=False, env={"PATH":"/usr/bin:/bin","LC_ALL":"C"})
+         _RETAINED.append(handle)
+         row["PID"] = handle.pid
+-        row["exit"].update(status="unreaped",direct_child_relationship="retained_unreaped",numeric_signal_authority=True)
++        row["exit"]["status"] = "unreaped"
+         guard(until, "query-constructor/full-return")
+         pending = {handle.stdout.fileno(): 0, handle.stderr.fileno(): 1}
+         for fd in pending:
+@@ -587,7 +549,7 @@
+         except BaseException as callback_error:
+             row["parent_error_callback"] = note_error(callback_error, "query-parent-refusal")
+     finally:
+-        if handle is not None and can_signal(row["exit"]):
++        if handle is not None and row["exit"]["status"] != "reaped":
+             try:
+                 kill_started = guard(_OWNER_START_NS + 110_000_000_000,
+                                      "query-own-PID-KILL", False)
+@@ -598,8 +560,6 @@
+                                                 signal=int(signal.SIGKILL),
+                                                 attempted_ns=str(kill_started)))
+                 try:
+-                    if not can_signal(row["exit"]):
+-                        raise ChildRelationshipError("Query relationship lost before own-PID KILL")
+                     os.kill(handle.pid, signal.SIGKILL)
+                     row["stop_actions"][-1]["returned"] = True
+                 except BaseException as kill_error:
+@@ -609,8 +569,6 @@
+             except BaseException as cleanup_error:
+                 row["cleanup_error"] = note_error(cleanup_error, "query-cleanup")
+                 error = error or cleanup_error
+-        if handle is not None and row["exit"]["status"] != "reaped" and not retained_unreaped(row["exit"]):
+-            row["cleanup_signal_and_wait_skipped"] = "Lost or unknown direct-child relationship; no numeric authority"
+         close_streams = streams + ([handle.stdout, handle.stderr] if handle is not None else [])
+         for stream in close_streams:
+             if stream is not None:
+@@ -646,21 +604,19 @@
+     guard(label="caller-entry")
+     signals = {number: signal.signal(number, latch_signal)
+                for number in (signal.SIGTERM, signal.SIGINT)}
+-    old_chld = signal.getsignal(signal.SIGCHLD)
++    old_chld = signal.signal(signal.SIGCHLD, signal.SIG_DFL)
+     handle = None
+     receipt = None
+     can_preserve = False
+     caller_identity = None
+     native = dict(spawn_attempted=False, PID=None, start_new_session=False, preexec_fn_used=False,
+                   identity_observation=None,
+-                  exit=dict(status="not_created", wait_status=None, raw_returncode=None,
+-                            direct_child_relationship="not_created",numeric_signal_authority=False))
++                  exit=dict(status="not_created", wait_status=None, raw_returncode=None))
+     candidate = False
+     receipt_pin = None
+     saved_ns = hashed_ns = None
+     failure = None
+     try:
+-        need(old_chld == signal.SIG_DFL,"Already-default SIGCHLD required; no reset")
+         c, output, auth, _EXTERNAL = checked_contract(stage, contract, expected, admission_sha)
+         caller_identity = dict(PID=os.getpid(), PGID=call(None, "caller-PGID", os.getpgrp),
+                                SID=call(None, "caller-SID", os.getsid, 0))
+@@ -711,14 +667,14 @@
+         log = call(None, "native-log-open", (output/"native.log").open, "xb")
+         try:
+             native["spawn_attempted"] = True
+-            native["exit"].update(status="unknown",direct_child_relationship="unknown",numeric_signal_authority=False)
++            native["exit"]["status"] = "unknown"
+             receipt["clock"]["native_spawn_ns"] = str(time.monotonic_ns())
+             handle = _RetainedPopen(c["argv"], cwd=output, env=c["environment"],
+                 stdin=subprocess.DEVNULL, stdout=log, stderr=subprocess.STDOUT,
+                 start_new_session=False)
+             _RETAINED.append(handle)
+             native["PID"] = handle.pid
+-            native["exit"].update(status="unreaped",direct_child_relationship="retained_unreaped",numeric_signal_authority=False)
++            native["exit"]["status"] = "unreaped"
+             guard(label="native-constructor/full-return")
+             def identity_error(exc):
+                 global _NORMAL
+@@ -770,7 +726,7 @@
+     finally:
+         _NORMAL = False
+         # Refusal has no native signal authority and no replacement invocation.
+-        if handle is not None and retained_unreaped(native["exit"]):
++        if handle is not None and native["exit"]["status"] != "reaped":
+             try:
+                 exact_reap(handle,native["exit"],_OWNER_START_NS+110_000_000_000)
+             except BaseException as exc:
+@@ -820,7 +776,7 @@
+             note_error(exc,"caller-terminal")
+         for number, previous in signals.items():
+             signal.signal(number,previous)
+-        # SIGCHLD was required already default; do not reset or restore it.
++        signal.signal(signal.SIGCHLD,old_chld)
+     return 0 if candidate and not _ERRORS and not _STOP_REQUESTS else 2
+ 
+ 
+--- work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native-measurement-prep-005/stopped_exec_wrapper.py
++++ work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native-measurement-prep-004/stopped_exec_wrapper.py
+@@ -6,7 +6,7 @@
+ 
+ ROOT = Path("/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993")
+ E = ROOT/"work/962-engineering"
+-S = E/"cp1-oneway-cooling-release-richardson2-observer004-native-measurement-prep-005"
++S = E/"cp1-oneway-cooling-release-richardson2-observer004-native-measurement-prep-004"
+ P = E/"cp1-oneway-cooling-release-richardson2-observer004-native-measurement-execution-prep-004"
+ D = E/"cp1-oneway-cooling-release-richardson2-observer004-native-measurement-root-execution-004"
+ PY = "/Users/maxime/.codex/worktrees/962-watercooled-head/3dprinting993/work/962-head/check-venv/bin/python"
