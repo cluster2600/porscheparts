@@ -75,6 +75,8 @@ flowchart TB
     CODE --> PICO["PicoGK + ShapeKernel / LatticeLibrary<br/>new M64 geometry; VDB and mesh exports"]
     INPUT --> EXISTING["Existing build123d / FreeCAD / STEP masters"]
     PICO --> GEO["Geometry and assembly checks<br/>dimensions, interfaces, topology and clearances"]
+    PICO -. optional mesh queries .-> WARP["NVIDIA Warp<br/>batched point-to-surface queries; isolated synthetic pilot"]
+    WARP -->|measurement report| GEO
     EXISTING --> GEO
     GEO --> CAE["Case preparation and meshing: Gmsh / OpenFOAM tools<br/>Solvers: OpenFOAM / CalculiX; Cantera when needed"]
     CAE --> REVIEW["Convergence, balances and comparison with measurements"]
@@ -92,6 +94,8 @@ flowchart TB
 | **[Our qwen-picogk](https://github.com/cluster2600/qwen-picogk)** | Our trained Qwen adapters and guarded toolchains. The released planner proposes JSON parameters for trusted PicoGK recipes; the scan demonstration has a separate adapter. | After explicit requirements or independently extracted scan features; outputs are checked before native geometry. |
 | **Codex** | Assist with authoring, repository changes and review. | Throughout development, alongside the local Qwen project. |
 | **C# / PicoGK** | Generate new M64 geometry from reviewed rules; ShapeKernel and LatticeLibrary provide geometric building blocks. OpenVDB stores volumes and fields. | Before geometric inspection and simulation, then again when the design changes. Existing CAD masters remain authoritative for their own zones. |
+| **[NVIDIA Warp](docs/WARP_GEOMETRY_VAST_PILOT.md)** | Batched geometric queries after PicoGK. The isolated Docker pilot checks synthetic point-to-surface distances against an analytic oracle. | Optional geometry screening; a CPU image check does not establish CUDA execution or application performance. |
+| **[Our cluster_compilot](docs/WARP_GEOMETRY_VAST_PILOT.md#where-cluster_compilot-can-help)** | Optimize regular C/OpenMP CPU loops through model proposals, dependence checks and numerical verification. | Optional, after profiling identifies a costly CPU loop; a separate environment and experiment from Warp. |
 | **Gmsh / OpenFOAM / CalculiX** | Prepare calculation meshes and solve fluid, thermal or structural cases; ParaView/PyVista inspect results. | After geometry, materials, loads and boundary conditions are sufficient for the declared study. |
 | **Adamantine / AdditiveFOAM** | Study additive manufacturing: global thermomechanics or the local melt pool. | With a defined process case, including material, orientation and heat-source history. These are research tools, not a qualified machine job. |
 | **OpenUSD / Omniverse** | Compose and inspect the assembly, contacts, motion and visual results. | A branch from checked geometry; rendering is not required to run CFD/FEA or prepare fabrication. |
