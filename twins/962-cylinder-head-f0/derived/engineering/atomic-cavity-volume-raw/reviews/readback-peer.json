@@ -1,0 +1,95 @@
+{
+  "schema": "962-atomic-saved-volume-readback-peer-result/v1",
+  "reviewed_on": "2026-10-17T01:04:15.075866+00:00",
+  "verdict": "clear_completed_actual_readback_and_confirmed_quality_rejection",
+  "method": "Read-only standard-library source/JSON/hash/arithmetic review of retained execution; no scientific imports, USD/Gmsh/NumPy replay, MSH parsing, native worker, process inspection, network, Git or geometry changes.",
+  "bindings": {
+    "root_result_review_sha256": "647879cb95528c617d6d66a769f3227d7922156c3fc082aaf5ef7a68342d79c9",
+    "authorization_sha256": "4c79f55a13671af20043084d4ea8314bf0aa4443a855e9aa05ad84bce1b9377b",
+    "contract_sha256": "bda41dc782dbaed4df9110dac90e7424606bead42f3ef18d73b8777fd7f4aa80",
+    "execution_receipt_sha256": "c463e5464f5d808925c30bac23f9fdb8d47ea06241c2df4adfed40e58c5458f7",
+    "readback_report_sha256": "9a69b299db6965039fe2414050aee8ba25bf4bd7727f1104934cce3bde3df12d",
+    "prior_source_peer_sha256": "44d97fc53c63535f0039f39799b17a9a95798828d3c0905dd4c89b818269ce6d",
+    "prior_contract_peer_sha256": "51e05ab0038dd6f37e1af7ac8c2bd6c6c78f208c5fdbf186637696b6e20bae28",
+    "all173_relative_and3_external_runtime_pins_unchanged": true,
+    "actual_MSH_sha256": "5092c22174f7dd085058cf414478a9600e5022653e609a6bf385df09e12c3fa7",
+    "actual_MSH_bytes": 211385374,
+    "six_artifacts": {
+      "execution-receipt.json": {
+        "bytes": 3850,
+        "sha256": "c463e5464f5d808925c30bac23f9fdb8d47ea06241c2df4adfed40e58c5458f7"
+      },
+      "frozen-contract.json": {
+        "bytes": 34355,
+        "sha256": "bda41dc782dbaed4df9110dac90e7424606bead42f3ef18d73b8777fd7f4aa80"
+      },
+      "native.log": {
+        "bytes": 232,
+        "sha256": "b1b3142c48f8219af43828d2d4346b5965542ee61c8f738eea18214c14ec71f1"
+      },
+      "readback-report.json": {
+        "bytes": 2818,
+        "sha256": "9a69b299db6965039fe2414050aee8ba25bf4bd7727f1104934cce3bde3df12d"
+      },
+      "reader.py": {
+        "bytes": 8463,
+        "sha256": "40f1d220453c114f49e5eea3d6ea5ad55ace50fa51819e9f3c291887596d6f56"
+      },
+      "run_readback.py": {
+        "bytes": 4062,
+        "sha256": "e0e63b01708584d0296757df8aaea89c5238bc352109a716a7abed49defa3d97"
+      }
+    },
+    "all_output_and_input_hashes_checked_again_after_review": true
+  },
+  "lifecycle": {
+    "reader_returncode": 0,
+    "stop_reason": null,
+    "controller_wall_seconds": 17.535397958010435,
+    "reader_query_wall_seconds": 16.525676916819066,
+    "resource_samples": 35,
+    "max_sampled_RSS_bytes": 1764589568,
+    "deadline_seconds": 120,
+    "sampled_RSS_stop_bytes": 4294967296,
+    "software_threads": 2,
+    "resources_are_not_hard_OS_RSS_or_CPU_quotas": true,
+    "finally_wait_reaping_attribution": "Exact pinned runner calls wait in protected finally; controllerRC0 and parent-reported outer-session closure establish that path completed. The frozen runner records no PID.",
+    "independent_OS_PID_absence_check_performed": false,
+    "native_generate_optimize_geometry_write_solve_calls": 0
+  },
+  "actual_readback_findings": {
+    "all_complete_tagged_array_digests_match_worker": true,
+    "exact_source_explicit_boundary_coordinates_and_connectivity": true,
+    "tetrahedra": 3058267,
+    "mesh_nodes": 979076,
+    "referenced_interior_nodes": 77349,
+    "unreferenced_nodes": 0,
+    "all_metric_counts_equal_actual_tetrahedron_count": true,
+    "all_native_minima_maxima_and_nonpositive_counts_match_worker": true,
+    "all_nonpositive_metric_counts": 0,
+    "positive_tetrahedra_below_SICN_point1": 283853,
+    "minimum_SICN": 1.234770950435885e-10,
+    "required_minimum_SICN": 0.1,
+    "SICN_point1_gate_passed": false,
+    "independent_signed_volume_sum_mm3": 915458.1131756522,
+    "relative_volume_error": 0.0,
+    "runtime": {
+      "gmsh": "4.15.2",
+      "numpy": "2.0.2",
+      "machine": "arm64",
+      "executable_sha256": "72956ad35cff7691dfed9e04c9593de825ffd5b2fa7e8bc9ae96ce9a1af65621",
+      "gmsh_module_sha256": "f4b0935cebde899750293d87a643090e5ea33c9b18d249267f507db68a0e01c3",
+      "libgmsh_sha256": "def0f5c10988a986e5e879b3db9669d8fe016a81e2d994bbaf2b8497c6b8a58a"
+    }
+  },
+  "permanent_scope": [
+    "ReaderRC0 means the read-only inspection completed; it confirms rejection at the unchanged0.1 minimum SICN gate.",
+    "Full tetrahedral exterior incidence and opposite internal-face orientation are retained worker-only evidence. Exact explicit boundary arrays are independently reread but do not repeat that incidence sort.",
+    "Empty nonpositive-SICN list makes fixed_boundary_only_nonpositive_cells=True vacuously. It gives no location or fixed-node classification for the283853 strictly positive cells below0.1.",
+    "No mesh convergence, wall resolution, thermal, strength, material, LPBF process, Omniverse computed field, PhysicsNeMo dataset or manufacturing qualification follows."
+  ],
+  "new_binding_or_execution_blockers": [],
+  "volume_mesh_accepted": false,
+  "head_physics_executed": false,
+  "manufacturing_authorized": false
+}

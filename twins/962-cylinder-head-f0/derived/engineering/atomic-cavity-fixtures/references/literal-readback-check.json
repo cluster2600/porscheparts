@@ -1,0 +1,74 @@
+{
+  "schema": "962-atomic-fixture-binary-readback/v1",
+  "status": "all_three_complete_literal_inputs_verified",
+  "preparer_sha256": "89a2af8ee73d0fc6ca78253dac6f72cc70251462e3e032d3bd88c25167a33d38",
+  "reference_sha256": "2a6993b704a007da882fa8d48bbe9aa6c04a42831b520e77d7e3dd26246baa1e",
+  "verifier_sha256": "b0e0bca0f6b3887f20e4bb78284ca4392dac5aa6314c6dd6abf2368de082f32d",
+  "input_sha256": {
+    "work/962-engineering/remaining266-native-probe-prep-001/known-collapse.bin": "366abee8edbfae85e54da1621a17ba35a6d298a8e4c66261ac83a1ec02cdf558",
+    "work/962-engineering/remaining266-native-probe-prep-001/known-collapse-origins.u64": "23c379d6c0f22ef64cdef873fd530df1f1419b4a3935e9323d5f1d82ca697b6a",
+    "work/962-engineering/remaining266-native-probe-prep-001/known-collapse-targets.u64": "5ec0616dd54ea5b98086a5ed5157fba570faf2b9e40c02b2cb1f91d38228803f",
+    "work/962-engineering/atomic-cavity-fixtures-prep-001/keepers-8.u64": "8cac5763ca6ad14dd045d38421651e0c080b1118ba4ee6ec5a6dfe71ce552e60",
+    "work/962-engineering/remaining266-native-probe-prep-001/all-fixed.bin": "69988b1e25cb06cdb41d8d9ef3ff8431ded95030f4497a4dc702fc590a285a35",
+    "work/962-engineering/remaining266-native-probe-prep-001/all-fixed-origins.u64": "23c379d6c0f22ef64cdef873fd530df1f1419b4a3935e9323d5f1d82ca697b6a",
+    "work/962-engineering/remaining266-native-probe-prep-001/all-fixed-targets.u64": "5ec0616dd54ea5b98086a5ed5157fba570faf2b9e40c02b2cb1f91d38228803f",
+    "work/962-engineering/atomic-cavity-fixtures-prep-001/four-vertex-disk.bin": "27cd181d4acf5b6919c00293008702cdd9f887db06eb61f20cd6ee9b10df8cd0",
+    "work/962-engineering/atomic-cavity-fixtures-prep-001/four-vertex-disk-origins.u64": "700a4498438a801b5781533040bce85a20ae4bfe08866f7552ff33e172923b0a",
+    "work/962-engineering/atomic-cavity-fixtures-prep-001/four-vertex-disk-targets.u64": "64a56557d013dc1237e848c217363cb64cb1d7188510b8dbcc34c9829af4e509"
+  },
+  "all_inputs_unchanged": true,
+  "cases": [
+    {
+      "case": "known-collapse",
+      "input_vertices": 10,
+      "input_faces": 16,
+      "identity_origins_exact": true,
+      "selected_edges_are_actual": true,
+      "component_current_IDs": [
+        8,
+        9
+      ],
+      "keeper_row": [
+        8,
+        8
+      ],
+      "full_literal_arrays_and_reference_topology_exact": true
+    },
+    {
+      "case": "all-fixed",
+      "input_vertices": 10,
+      "input_faces": 16,
+      "identity_origins_exact": true,
+      "selected_edges_are_actual": true,
+      "component_current_IDs": [
+        8,
+        9
+      ],
+      "keeper_row": [
+        8,
+        8
+      ],
+      "full_literal_arrays_and_reference_topology_exact": true
+    },
+    {
+      "case": "four-vertex-disk",
+      "input_vertices": 12,
+      "input_faces": 20,
+      "identity_origins_exact": true,
+      "selected_edges_are_actual": true,
+      "component_current_IDs": [
+        8,
+        9,
+        10,
+        11
+      ],
+      "keeper_row": [
+        8,
+        8
+      ],
+      "full_literal_arrays_and_reference_topology_exact": true
+    }
+  ],
+  "native_compiler_SSH_Git_calls": 0,
+  "execution_authorized": false
+}

@@ -1,0 +1,20 @@
+--- work/962-engineering/quality-volume-hxt-sized-readback-001/reader.py
++++ work/962-engineering/atomic-cavity-volume-readback-prep-002/reader.py
+@@ -8,7 +8,7 @@
+ contract=json.loads((OUT/'frozen-contract.json').read_text())
+ for name,h in contract['input_hashes'].items():
+  if sha(ROOT/name)!=h:raise ValueError('Bound saved-readback input drift: '+name)
+-w=ROOT/'work/962-engineering/quality-volume-hxt-sized-001';worker=json.loads((w/'worker-report.json').read_text());receipt=json.loads((w/'receipt.json').read_text());admission=json.loads((w/'surface-admission.json').read_text())
++w=ROOT/'work/962-engineering/atomic-cavity-volume-hxt-001';worker=json.loads((w/'worker-report.json').read_text());receipt=json.loads((w/'receipt.json').read_text());admission=json.loads((w/'surface-admission.json').read_text())
+ for name,h in admission['input_hashes'].items():
+  if sha(ROOT/name)!=h:raise ValueError('Surface-admission evidence changed: '+name)
+ for name,h in receipt['source_sha256s'].items():
+@@ -69,7 +69,7 @@
+  total=math.fsum(volumes);report.update(independent_signed_volume_mm3=dict(count=len(volumes),minimum=float(volumes.min()),maximum=float(volumes.max()),nonpositive_count=int(np.count_nonzero(volumes<=0)),sum=total,relative_error_to_candidate=abs(total/worker['candidate_volume_reference_mm3']-1)),actual_tetra_referenced_nodes=int(np.count_nonzero(referenced)),actual_unreferenced_mesh_nodes=int(np.count_nonzero(~referenced)),actual_referenced_interior_nodes=int(np.count_nonzero(referenced & ((tags<1)|(tags>nv)))))
+  for bad in bad_tetrahedra:bad['independent_signed_volume_mm3']=float(volumes[bad['native_array_index']])
+  report.update(nonpositive_SICN_tetrahedra=bad_tetrahedra,fixed_boundary_only_nonpositive_cells=all(bad['all_nodes_original_boundary_tags'] for bad in bad_tetrahedra))
+- report.update(retained_only_not_repeated=dict(tetra_exterior_incidence=worker['actual_tetra_boundary'],internal_face_orientation=worker['internal_tetra_face_orientation']),SICN_point1_gate_passed=native['SICN']['minimum']>=.1 and native['SICN']['nonpositive_count']==0,thermal_resolution_established=False,status='direct_saved_file_readback_completed_quality_rejection_confirmed')
++ report.update(retained_only_not_repeated=dict(tetra_exterior_incidence=worker['actual_tetra_boundary'],internal_face_orientation=worker['internal_tetra_face_orientation']),SICN_point1_gate_passed=native['SICN']['minimum']>=.1 and native['SICN']['nonpositive_count']==0,thermal_resolution_established=False,status='direct_saved_file_readback_completed')
+ finally:
+  if initialized:gmsh.finalize()
+ for name,h in contract['input_hashes'].items():

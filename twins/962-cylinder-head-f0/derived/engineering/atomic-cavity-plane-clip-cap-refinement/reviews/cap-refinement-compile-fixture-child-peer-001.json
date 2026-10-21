@@ -1,0 +1,118 @@
+{
+  "schema": "962-cap-refinement-compile-and-fixture-child-independent-review/v1",
+  "status": "clear_closed_compile_and_separate_fixture_child_metadata_only",
+  "review_method": "Source, JSON, standard-library hashing and ELF-header reading only. No imports or execution of prepared sources, no compiler/native/container/API/Git or geometry replay.",
+  "reviewed": {
+    "work/962-engineering/atomic-cavity-plane-clip-cap-refinement-prep-001/compile-execution-contract-001.json": {
+      "sha256": "037c591bb295fd7a65f72ab8f5cde817e33f0302435c8af45e9e004d16f23678",
+      "bytes": 9159
+    },
+    "work/962-engineering/atomic-cavity-plane-clip-cap-refinement-compile-001/phase-summary.json": {
+      "sha256": "295428dfed9de7d51340bedab3e521002ec2ccb32cad9bba75d2e55b363c7095",
+      "bytes": 16753
+    },
+    "work/962-engineering/atomic-cavity-plane-clip-cap-refinement-compile-001/compile-cap-refine001.execution.json": {
+      "sha256": "2461da73bfc12258fd7b963f9f0b209e5db7cdab6c2174a1be8f2bb0d2c1b1b9",
+      "bytes": 9701
+    },
+    "work/962-engineering/atomic-cavity-plane-clip-cap-refinement-prep-001/fixtures-execution-contract-001.json": {
+      "sha256": "292e664a89bacb8c492d67c54a9e3f9a910146cbc9c4b4a42c4e0082b9e77790",
+      "bytes": 12612
+    },
+    "work/962-engineering/atomic-cavity-plane-clip-cap-refinement-source-peer-001/review.json": {
+      "sha256": "8345584d1afff7d33886165291ad566569c397a0b095c66ef43fb689feff929a",
+      "bytes": 10207
+    },
+    "work/962-engineering/atomic-cavity-plane-clip-cap-refinement-compile-root-001/review.json": {
+      "sha256": "8796c04bfb6627e47aa9ce5e305872b34d3059ff0379ddfa8ad52ab663b087b7",
+      "bytes": 653
+    }
+  },
+  "compile": {
+    "input_pins": 45,
+    "all_before_after_and_current_exact": true,
+    "files_in_complete_directory": 8,
+    "artifact_map_entries": 7,
+    "all_artifact_bytes_and_closure_exact": true,
+    "artifact_sha256": {
+      "phase-summary.json": "295428dfed9de7d51340bedab3e521002ec2ccb32cad9bba75d2e55b363c7095",
+      "run_finest_patch_phase.py": "c2191896dba65d38cf41222f51dcab29c7896624481d1beb4b1b097c0546a440",
+      "frozen-execution-contract.json": "037c591bb295fd7a65f72ab8f5cde817e33f0302435c8af45e9e004d16f23678",
+      "cap-refine001": "bd9f8cb825b13de868334dfef273f7ea33cc8ed00ebcf3e0ba7a1ffcb259164f",
+      "run_finest_endpoint_metadata.py": "a88477c47d406cea3761c324e1f6eb82dcb1c2b962698d7f328261c6cef2929b",
+      "compile-cap-refine001.native.log": "c980b2642caef3ade35ba4e5db60e60897f2a9d9500fc8462b9d4793ddacd41d",
+      "run_finest_endpoint_preflight.py": "b214e1cece8dbf66be6071199cbdf1a8e22a2a59328888011de17492f923c86b",
+      "compile-cap-refine001.execution.json": "2461da73bfc12258fd7b963f9f0b209e5db7cdab6c2174a1be8f2bb0d2c1b1b9"
+    },
+    "returncode": 0,
+    "wall_seconds": 36.234049999853596,
+    "binary_bytes": 737752,
+    "binary_sha256": "bd9f8cb825b13de868334dfef273f7ea33cc8ed00ebcf3e0ba7a1ffcb259164f",
+    "binary_header": "ELF64 little-endian, e_machine=183 AArch64; header inspection only",
+    "actual_command_and_both_source_readonly_mounts_exact": true,
+    "immutable_image_id": "sha256:57c6b17ed0bd093a61a3d3cecb7563e912caeb3832fd59e8cec2d4d9d4d1e2f8",
+    "initial_and_final_controls_exact": {
+      "NanoCpus": 2000000000,
+      "Memory": 4294967296,
+      "MemorySwap": 4294967296,
+      "NetworkMode": "none",
+      "ReadonlyRootfs": true,
+      "Tmpfs": {
+        "/tmp": "rw,size=1073741824"
+      }
+    },
+    "metadata_inspect_snapshots": 3,
+    "recorded_initial_created_final_exited_rc0_no_OOM_pid0": true,
+    "attach_started_and_reaped": true,
+    "owned_removal_recorded_RC0": true,
+    "cleanup_errors": [],
+    "native_log": "GCC C++17 ABI notes; no error or warning diagnostics observed.",
+    "source_peer_timing": "Compile child explicitly used the trusted source-clear message while the final inventory receipt was pending. The final 8345584d review is not retroactively in that child."
+  },
+  "fixture_child": {
+    "input_pins": 50,
+    "all_current_hashes_exact": true,
+    "four_fixed_small_jobs_and_mounts_exact": true,
+    "expected_returncodes": [
+      [
+        0
+      ],
+      [
+        0,
+        3
+      ],
+      [
+        3
+      ],
+      [
+        3
+      ]
+    ],
+    "source_peer_bound_as_late_prerequisite": true,
+    "compiled_binary_exactly_the_closed_compile_artifact": true,
+    "limits": {
+      "cpus": 2,
+      "memory_bytes": 536870912,
+      "swap_bytes": 0,
+      "hard_wall_seconds_each": 60,
+      "tmpfs_bytes": 0,
+      "network": "none"
+    },
+    "controller_sources": {
+      "work/962-engineering/atomic-cavity-plane-clip-cap-aware-phase-prep-001/run_finest_patch_phase.py": "c2191896dba65d38cf41222f51dcab29c7896624481d1beb4b1b097c0546a440",
+      "work/962-engineering/atomic-cavity-plane-clip-cap-aware-phase-prep-001/run_finest_endpoint_metadata.py": "a88477c47d406cea3761c324e1f6eb82dcb1c2b962698d7f328261c6cef2929b",
+      "work/962-engineering/atomic-cavity-plane-clip-cap-aware-phase-prep-001/run_finest_endpoint_preflight.py": "b214e1cece8dbf66be6071199cbdf1a8e22a2a59328888011de17492f923c86b"
+    },
+    "controller_review": "Exact c219 phase controller permits only one fixed phase, fresh contained output, current pins before output/between jobs/after, fixed controls, readonly bound input mounts, unchanged prior artifacts, no automatic retry. It calls exact owned-ID execute core; metadata wrapper changes only optional Tmpfs lookup and phase restores it in finally. Core enforces per-attach wall bound with owned kill/reap/removal on failure; actual compile needed no kill.",
+    "native_fixture_outcome_reviewed_here": false
+  },
+  "limits": [
+    "Recorded container controls and owned cleanup are checked against saved observations; independent process absence, resource peaks and CPU consumption are not measured.",
+    "This review does not establish native fixture numerical acceptance, successful Steiner insertion, cap quality, a complete head candidate, solver admission or physical/manufacturing qualification."
+  ],
+  "findings": [],
+  "native_fixture_acceptance_established": false,
+  "head_surface_admitted": false,
+  "solver_admission_established": false,
+  "manufacturing_authorized": false
+}

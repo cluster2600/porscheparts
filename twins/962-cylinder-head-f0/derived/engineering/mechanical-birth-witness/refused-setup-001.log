@@ -1,0 +1,40 @@
+
+[33m
+*** Deprecation Warning ***
+/tmp/work/mechanical-birth.i:288.5:
+Outputs/console/output_postprocessors: The parameter 'output_postprocessors' is deprecated.
+'execute_postprocessors_on' has replaced this parameter
+
+[39m
+
+[31m
+*** ERROR ***
+The 'block' parameter of the object 'inactive_placeholder' must be a subset of the 'block' parameter of the variable 'disp_x':
+    Object 'inactive_placeholder': 1
+    Variable 'disp_x': 2[39m
+
+Stack frames: 15
+0: libMesh::print_trace(std::ostream&)
+1: moose::internal::mooseErrorRaw(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, hit::Node const*, bool)
+2: void mooseError<char const (&) [38], std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, char const (&) [62], std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, char const (&) [16], std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, char const (&) [4], std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&, char const (&) [16], std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, char const (&) [4], std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&>(char const (&) [38], std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, char const (&) [62], std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, char const (&) [16], std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, char const (&) [4], std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&, char const (&) [16], std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, char const (&) [4], std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&)
+3: BlockRestrictable::checkVariable(MooseVariableFieldBase const&) const
+4: MooseObjectWarehouseBase<KernelBase>::addObject(std::shared_ptr<KernelBase>, unsigned int, bool)
+5: MooseObjectWarehouse<KernelBase>::addObject(std::shared_ptr<KernelBase>, unsigned int, bool)
+6: NonlinearSystemBase::addKernel(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, InputParameters&)
+7: Action::timedAct()
+8: ActionWarehouse::executeActionsWithAction(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&)
+9: ActionWarehouse::executeAllActions()
+10: MooseApp::runInputFile()
+11: MooseApp::run()
+12: moose-opt() [0x407409]
+13: __libc_start_main
+14: moose-opt() [0x40765e]
+--------------------------------------------------------------------------
+MPI_ABORT was invoked on rank 0 in communicator MPI_COMM_WORLD
+  Proc: [[9298,0],0]
+  Errorcode: 1
+
+NOTE: invoking MPI_ABORT causes Open MPI to kill all MPI processes.
+You may or may not see output from other processes, depending on
+exactly when Open MPI kills them.
+--------------------------------------------------------------------------

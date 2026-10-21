@@ -1,0 +1,129 @@
+--- work/962-engineering/atomic-cavity-volume-default-postexport-prep-002/mesh_atomic_postexport_002.py
++++ work/962-engineering/atomic-cavity-plane-clip-cap-assembly-delaunay-default-postexport-prep-001/mesh_delaunay_postexport.py
+@@ -1,4 +1,4 @@
+-"""One bounded default optimizer on the exact saved atomic head; no generation.
++"""One bounded default optimizer on the saved Delaunay head; no generation.
+ 
+ The frozen controller supplies admission, claims, source capture and kill/reap.
+ The cube is software evidence only. Native head execution needs separate authority.
+@@ -15,33 +15,19 @@
+ 
+ WRAPPER_PATH = Path(__file__).resolve()
+ ROOT = WRAPPER_PATH.parents[3]
+-CORE_PATH = ROOT / "work/962-engineering/atomic-cavity-volume-prep-002/mesh_atomic_volume.py"
+-CORE_SHA256 = "61542a339b03cfab600ac869d12a0ae4d72768bcc5db5838efa3bb72a0ccfada"
++CORE_PATH = ROOT / "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-delaunay-prep-001/mesh_assembled_delaunay.py"
++CORE_SHA256 = "a3268687edc90b0149775cf5d80a89df82175cc982bbf5d7184b6ea8935be8a4"
+ PYTHON_SHA256 = "72956ad35cff7691dfed9e04c9593de825ffd5b2fa7e8bc9ae96ce9a1af65621"
+ DEADLINE = 1200
+-INPUT = ROOT / "work/962-engineering/atomic-cavity-volume-hxt-001/head-volume.msh"
+-INPUT_WORKER = "work/962-engineering/atomic-cavity-volume-hxt-001/worker-report.json"
+-INPUT_READBACK = "work/962-engineering/atomic-cavity-volume-readback-001/readback-report.json"
+-ADMISSION = ROOT / "work/962-engineering/atomic-cavity-volume-launch-001/surface-admission.json"
+-ADMISSION_SHA256 = "4480611f2e293fcb3127ade025d64a31962939446890b9e79978ed4b0dcb3b6d"
+-OUTPUT = ROOT / "work/962-engineering/atomic-cavity-volume-default-postexport-001"
++INPUT = ROOT / "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-volume-delaunay-001/head-volume.msh"
++INPUT_READBACK = "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-delaunay-readback-001/readback-report.json"
++ADMISSION = ROOT / "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-surface-admission-001/surface-admission.json"
++ADMISSION_SHA256 = "035c45d02357c9b7375a8e7795f7c1915d7e015ee2b63b576cf181965c96d962"
++OUTPUT = ROOT / "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-volume-delaunay-default-postexport-001"
+ OPTIONS = {"General.NumThreads":2, "Mesh.MaxNumThreads3D":2, "Mesh.Renumber":0,
+     "Mesh.Optimize":0, "Mesh.OptimizeNetgen":0, "Mesh.OptimizeThreshold":.3,
+     "Mesh.Binary":1, "Mesh.SaveAll":1, "Mesh.MshFileVersion":4.1}
+ INPUT_HASHES = {
+-    'work/962-engineering/atomic-cavity-volume-hxt-001/head-volume.msh': '5092c22174f7dd085058cf414478a9600e5022653e609a6bf385df09e12c3fa7',
+-    'work/962-engineering/atomic-cavity-volume-hxt-001/receipt.json': 'cc319bc713a47f6863292ebdc3ac8534388baf65d324f81be060f5cedb86ac7f',
+-    'work/962-engineering/atomic-cavity-volume-hxt-001/worker-report.json': '23ce6d425a89a2cdf62505c4f77d655ff5fcc420ae8ff4239f5b89056555d3fd',
+-    'work/962-engineering/atomic-cavity-head-001/head-atomic002/candidate.bin': '1f9dbd4cda61c7b58084479ebb165fb01280fa831752dc0da18517e548131b1a',
+-    'work/962-engineering/atomic-cavity-volume-launch-001/surface-admission.json': '4480611f2e293fcb3127ade025d64a31962939446890b9e79978ed4b0dcb3b6d',
+-    'work/962-engineering/atomic-cavity-volume-readback-001/readback-report.json': '9a69b299db6965039fe2414050aee8ba25bf4bd7727f1104934cce3bde3df12d',
+-    'work/962-engineering/atomic-cavity-volume-readback-001/reader.py': '40f1d220453c114f49e5eea3d6ea5ad55ace50fa51819e9f3c291887596d6f56',
+-    'work/962-engineering/atomic-cavity-volume-readback-001/run_readback.py': 'e0e63b01708584d0296757df8aaea89c5238bc352109a716a7abed49defa3d97',
+-    'work/962-engineering/atomic-cavity-volume-readback-001/frozen-contract.json': 'bda41dc782dbaed4df9110dac90e7424606bead42f3ef18d73b8777fd7f4aa80',
+-    'work/962-engineering/atomic-cavity-volume-readback-001/execution-receipt.json': 'c463e5464f5d808925c30bac23f9fdb8d47ea06241c2df4adfed40e58c5458f7',
+-    'work/962-engineering/atomic-cavity-volume-readback-001/native.log': 'b1b3142c48f8219af43828d2d4346b5965542ee61c8f738eea18214c14ec71f1',
+-    'work/962-engineering/atomic-cavity-volume-readback-result-root-001/review.json': '647879cb95528c617d6d66a769f3227d7922156c3fc082aaf5ef7a68342d79c9',
+-    'work/962-engineering/atomic-cavity-volume-readback-peer-result-001/review.json': 'cc00c64f53f5fdfc6fef8a76aa7fe31d205b49db95e0b28db110331bf95d9bb7',
+     "twins/962-cylinder-head-f0/source/check_saved_cube_default.py": "c8a87cc7bc312fae4bdb414c2a6c6e77b920382f5bd00ca7ae2d04e4d3de20a6",
+     "tests/test_962_saved_cube_default.py": "c1f41f709123bbfc93e02cae313ae837d52e35fc2146c4bf2c9e2d4d533a142e",
+     "work/962-engineering/saved-cube-default-preflight-001/frozen-contract.json": "4d4bdba83f15ca26ab80a48d7967beca63978c928dcbe51003214c85261dae81",
+@@ -54,7 +40,24 @@
+     "work/962-engineering/saved-cube-default-readback-001/reader.py": "c493da25ff2e675db533f9261a4040358b46ae98c822d04e4ec68e59d1f4116e",
+     "work/962-engineering/saved-cube-default-readback-001/frozen-contract.json": "7485cd3d1a64b0f047439d26baf3efea6a02c652e3e72e1c5e236675321a841b",
+     "work/962-engineering/saved-cube-default-readback-001/execution-receipt.json": "6f3754722cb644a2b62fe17b5dc9493770455e7f233af4914c7fd112b1a909e7",
+-    "work/962-engineering/saved-cube-default-root-review-001/review.json": "88b9426578d99b36089a34beb7447ae3efc9cdfbc662ccdce28d1e9bfd62ce5e"
++    "work/962-engineering/saved-cube-default-root-review-001/review.json": "88b9426578d99b36089a34beb7447ae3efc9cdfbc662ccdce28d1e9bfd62ce5e",
++    "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-delaunay-prep-001/mesh_assembled_delaunay.py": "a3268687edc90b0149775cf5d80a89df82175cc982bbf5d7184b6ea8935be8a4",
++    "work/962-engineering/atomic-cavity-volume-default-postexport-prep-002/mesh_atomic_postexport_002.py": "28746e14a041db464c3a41b732f1fc3e9ad9fd6ce96e886f728e5409d6ea0e36",
++    "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-surface-admission-001/surface-admission.json": "035c45d02357c9b7375a8e7795f7c1915d7e015ee2b63b576cf181965c96d962",
++    "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-volume-delaunay-001/receipt.json": "a880d1c331bbce2774cb6563246c9e194eaac498a2a39b999bdba66d5a76f2be",
++    "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-volume-delaunay-001/worker-report.json": "ddd89a9f1da6f17e7974205a8ced234c18d47a0e7c02db10d21fa3a3bb22199b",
++    "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-delaunay-result-peer-001/review.json": "c3a1a9f2cffca676be7577cc28ed3de09329d5893084f49bd617e0107afdaf1d",
++    "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-delaunay-root-execution-001/execution.json": "32d9b4e0fd401f6fb95cfc934646f98a7b7e4f5b1bc761e8219efdc9b12dc49f",
++    "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-delaunay-readback-001/frozen-contract.json": "89670cc7777337e5cbb999c1005d8bb0fa77fedba30074d81b679f5fa588d58a",
++    "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-delaunay-readback-001/execution-receipt.json": "cb0d6ae9583e9ccf431b5df1e72cf395a8107db5edc2df89d51462c67d77165a",
++    "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-delaunay-readback-001/reader.py": "ec5a45297a8d6ad73fb2fac5b087589e42a9553bc3d434a9d1dc7fb53122db30",
++    "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-delaunay-readback-001/native.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
++    "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-delaunay-readback-001/readback-report.json": "1888c07cbf09931790a400e86a72d5d0cdc2ac35df4d54031380e02f0e7614eb",
++    "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-delaunay-readback-001/run_readback.py": "4fb37080e1f3847b8b1d14d5df467799d8e9f7bf81b0a09170e5850857de3943",
++    "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-delaunay-readback-root-execution-001/execution.json": "fd14eb79e5259d46a8355bdc36d6ee75ffdbe903893699b2286d0b015dd4956f",
++    "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-delaunay-readback-result-peer-001/review.json": "0124b1fdf9098947391b20c8cfb2ed033883117766e368cb1d59a9e7cf193929",
++    "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-volume-delaunay-001/head-volume.msh": "3dd7939f34c8246a813334b2f570b2408b590965734bdf3761866569290e3593",
++    "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-001/candidate.bin": "9d62eac6e2cd7b6a9ecb4a7ea5b632685820369b5c4ede379acc34238f50d7b4"
+ }
+ 
+ 
+@@ -130,17 +133,31 @@
+ 
+ def load_before(core,gmsh,points,faces):
+     q,_,nt,et,en=core.tagged_volume(gmsh);state=(q,nt,et,en)
+-    retained=json.loads((ROOT/INPUT_WORKER).read_text());readback=json.loads((ROOT/INPUT_READBACK).read_text())
++    retained=json.loads((ROOT/INPUT_READBACK).read_text());audit=retained["audit"]
++    if (retained.get("status")!="reading_saved_mesh"
++            or retained.get("stage")!="reopening_saved_file_for_tagged_array_identity"
++            or retained.get("direct_full_tetra_face_incidence_completed") is not True
++            or retained.get("direct_internal_face_orientation_completed") is not True
++            or retained.get("exact_source_boundary_coordinate_bits") is not True
++            or retained.get("mesh_sha256")!=INPUT_HASHES[str(INPUT.relative_to(ROOT))]
++            or retained.get("candidate_sha256")!=core.CANDIDATE_SHA
++            or audit["tetrahedra"]!=len(et) or audit["total_mesh_nodes"]!=len(nt)):
++        raise ValueError("Complete first-pass audit of this exact saved input required")
+     actual=array_identity(core,state)
+-    if any(actual[key]!=retained.get(key) or actual[key]!=readback.get(key) for key in actual):
+-        raise ValueError("Loaded input tagged arrays differ from retained sized-mesh proof")
++    if actual!=audit["array_sha256s"]:
++        raise ValueError("Loaded tagged arrays differ from the single retained first-pass audit")
++    classification=classifications(core,gmsh,nt,len(points))
++    if classification!=audit["classifications"]:
++        raise ValueError("Loaded input classifications differ from the retained first-pass audit")
+     report=dict(loaded_array_sha256s=actual,
+         current_surface=core.surface_roundtrip(gmsh,points,faces,exact_tagged_order=False),
+-        classifications=classifications(core,gmsh,nt,len(points)),
+-        retained_proof_path=INPUT_WORKER,retained_proof_sha256=INPUT_HASHES[INPUT_WORKER],
+-        retained_independent_quality_path=INPUT_READBACK,retained_independent_quality_sha256=INPUT_HASHES[INPUT_READBACK],
+-        retained_independent_quality_not_recomputed=readback["direct_native_quality_extrema"],
+-        retained_not_recomputed={key:retained[key] for key in ["quality","tetrahedra","total_mesh_nodes",
++        classifications=classification,
++        retained_proof_path=INPUT_READBACK,retained_proof_sha256=INPUT_HASHES[INPUT_READBACK],
++        retained_proof_scope="one_completed_first_pass_before_interrupted_optional_reopen",
++        prior_optional_reopen_completed=False,prior_reader_terminal_completion=False,
++        input_array_identity_freshly_closed_before_optimizer=True,
++        missing_worker_array_proof_not_claimed=True,
++        retained_not_recomputed={key:audit[key] for key in ["quality","tetrahedra","total_mesh_nodes",
+             "tetra_referenced_nodes","tetra_referenced_interior_nodes","unreferenced_mesh_nodes",
+             "summed_tetra_volume_mm3","volume_relative_error","actual_tetra_boundary","internal_tetra_face_orientation"]},
+         fresh_native_quality_queries=False,fresh_tetra_face_incidence_audit=False)
+@@ -217,11 +234,11 @@
+             raise ValueError("Exact observed native Python/NumPy/Gmsh runtime required")
+         points,faces=core.audit_quality_head.read(core.CANDIDATE)
+         points,faces=core.np.asarray(points,dtype=core.np.float64),core.np.asarray(faces,dtype=core.np.int64)
+-        if (len(points),len(faces))!=(901727,1803870):raise ValueError("Admitted candidate counts changed")
++        if (len(points),len(faces))!=(871731,1743878):raise ValueError("Admitted candidate counts changed")
+         gmsh.initialize([],readConfigFiles=False,run=False);initialized=True
+         gmsh.option.setNumber("General.Terminal",1);gmsh.logger.start()
+         for key,value in OPTIONS.items():gmsh.option.setNumber(key,value)
+-        report.update(stage="loading_exact_saved_sized_mesh");checkpoint()
++        report.update(stage="loading_exact_saved_Delaunay_mesh");checkpoint()
+         gmsh.open(str(INPUT));before,report["before"]=load_before(core,gmsh,points,faces)
+         if any(gmsh.option.getNumber(k)!=v for k,v in OPTIONS.items()):raise ValueError("Fixed optimizer options changed")
+         optimize_and_refresh(gmsh,report,checkpoint)

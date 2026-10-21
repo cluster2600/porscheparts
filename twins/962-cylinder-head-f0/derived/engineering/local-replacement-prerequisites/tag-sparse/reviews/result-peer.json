@@ -1,0 +1,187 @@
+{
+  "blockers": [],
+  "complete_saved_state_results": {
+    "after": {
+      "TET4": 51,
+      "TRI3": 40,
+      "connected_cell_components": [
+        12,
+        39
+      ],
+      "exact_point1_poor_tags": [],
+      "exact_positive_determinants": 51,
+      "exact_volume_mm3": {
+        "denominator": 522673715590561479879743397015195972796416,
+        "numerator": 5632345904182658243084841541981513926225635
+      },
+      "max_abs_native_SICN_difference": 7.965850201685498e-14,
+      "minimum_SICN_approx": 0.10137702267838446,
+      "nodes": 28,
+      "opposite_internal_faces": 82,
+      "oriented_boundary_faces": 40,
+      "typed_sha256": {
+        "coordinates": "3a7afc51063a53910215d1e0fab6a4f7d5f95ec2e59b43ade05736a46b05033d",
+        "node_tags": "1dd08ce61244ff917a504b46edad00ff96f27a2a6b61d804cf401820e460519e",
+        "tetra_nodes": "3294263cdb1e1aadb92140d45ec7b065986b005cb685fd563bd118429a283f1c",
+        "tetra_tags": "57f0ee2fb80c1853663deddc8f38ae0cbb6b97692b7f559651aa048ae522b85c"
+      }
+    },
+    "before": {
+      "TET4": 40,
+      "TRI3": 40,
+      "connected_cell_components": [
+        12,
+        28
+      ],
+      "exact_point1_poor_tags": [
+        28946957,
+        31225364
+      ],
+      "exact_positive_determinants": 40,
+      "exact_volume_mm3": {
+        "denominator": 522673715590561479879743397015195972796416,
+        "numerator": 5632345904182658243084841541981513926225635
+      },
+      "max_abs_native_SICN_difference": 3.68594044175552e-14,
+      "minimum_SICN_approx": 0.07280553582811998,
+      "nodes": 26,
+      "opposite_internal_faces": 60,
+      "oriented_boundary_faces": 40,
+      "typed_sha256": {
+        "coordinates": "f0fc0ed633949c124884adecf06bca738dbf35013c83231a441c0541cea7454c",
+        "node_tags": "47619340e2ac3018ab0c6792641afad4d75471715034142419085602afab9805",
+        "tetra_nodes": "f3dc9857750a1a89779ea9b9dc3ad915d0b90a92cc4b477dab93322d7fd45a8f",
+        "tetra_tags": "aff5e562609b9a5b3cf74410a964d0bbe15ce4655008b4b98ffe773f70487010"
+      }
+    },
+    "saved_reopen": {
+      "TET4": 51,
+      "TRI3": 40,
+      "connected_cell_components": [
+        12,
+        39
+      ],
+      "exact_point1_poor_tags": [],
+      "exact_positive_determinants": 51,
+      "exact_volume_mm3": {
+        "denominator": 522673715590561479879743397015195972796416,
+        "numerator": 5632345904182658243084841541981513926225635
+      },
+      "max_abs_native_SICN_difference": 7.965850201685498e-14,
+      "minimum_SICN_approx": 0.10137702267838446,
+      "nodes": 28,
+      "opposite_internal_faces": 82,
+      "oriented_boundary_faces": 40,
+      "typed_sha256": {
+        "coordinates": "3a7afc51063a53910215d1e0fab6a4f7d5f95ec2e59b43ade05736a46b05033d",
+        "node_tags": "1dd08ce61244ff917a504b46edad00ff96f27a2a6b61d804cf401820e460519e",
+        "tetra_nodes": "3294263cdb1e1aadb92140d45ec7b065986b005cb685fd563bd118429a283f1c",
+        "tetra_tags": "57f0ee2fb80c1853663deddc8f38ae0cbb6b97692b7f559651aa048ae522b85c"
+      }
+    }
+  },
+  "decision": "CLEAR_STOPPED_DISCONNECTED_CAPABILITY_FIXTURE_ONLY",
+  "editing_and_outside_checks": [
+    "Reconstructed original28cell/17node star from frozen observation, exact16shell map and candidate19coordinate/39ordered-row inputs. Original apex complete28incidence holds within this fully enumerated disconnected fixture.",
+    "Before global max node9000809; complete all-dimensional max element90001178 belongs to lower-dimensional TRI and exceeds every TET tag. Two new nodes9000810/9000811 and eleven fresh TET tags90001179..90001189 are exact; all28freed tags reused in increasing order.",
+    "Local27 maps to1435493 as a storage slot; local28/29 map to fresh global tags. Every mapped39 ordered row and coordinate word matches fixed candidate. No ancestry claim follows from reused identifiers.",
+    "All16shell and9cube coordinate words remain exact. All12cube TET rows/tags, all40TRI rows/tags, entity boundaries, physical groups and all existing fixture classifications are unchanged. New two nodes have volume11 class.",
+    "Complete before/after/reopen four typed hashes recomputed;142total saved TET row determinants, SICN squared, Jacobian, native/signed volume comparisons and thresholds checked. Exact total volume is identical across all three states.",
+    "Full incidence has40oriented boundary faces and60before/82after opposite internal pairs; no orphan, duplicate node coordinate or duplicate tetrahedron. Exactly two connected cell components persist:28+12 before,39+12 after."
+  ],
+  "engineering_accepted": false,
+  "gate_and_operations": {
+    "all51_after_and_saved_exact_point1_gate_pass": true,
+    "before_two_poor_tags": [
+      28946957,
+      31225364
+    ],
+    "counter_limit": "Worker counters are recorded attempts interpreted with reviewed source; receipt operation counts are explicitly declarations, not independent syscall instrumentation.",
+    "full_after_equals_saved_reopen": true,
+    "generation_optimizer_createGeometry_reclassify_solve_counts_zero": true,
+    "native_minimum_SICN_after": 0.10137702267840872,
+    "observed_worker_API_attempt_counts_equal_contract": {
+      "addElementsByType": 5,
+      "addNodes": 5,
+      "createGeometry_dim3": 0,
+      "generate": 0,
+      "optimize_Netgen": 0,
+      "rebuildElementCache": 1,
+      "rebuildNodeCache": 1,
+      "reclassifyNodes": 0,
+      "removeElements": 1,
+      "setNode": 1,
+      "solve": 0,
+      "write_mesh": 1
+    }
+  },
+  "head_execution_authorized": false,
+  "independent_evidence": {
+    "check_source": {
+      "path": "work/962-engineering/tag-sparse-star-edit-cube-result-peer-001/check_saved.py",
+      "sha256": "e29e193a9cb3ba795c66fef84fdc806cdfc94d44ebec4abd07b0cc35ac8e3a0b"
+    },
+    "full_arithmetic": {
+      "bytes": 96699,
+      "path": "work/962-engineering/tag-sparse-star-edit-cube-result-peer-001/independent-check.json",
+      "sha256": "47933159818b2b24015845b9531b68cad384f812c65fc5464e9578e59398832c"
+    },
+    "method": "New stdlib decoder and Fraction arithmetic; no prepared source functions imported or called. Exact SICN squared is18det(E)^2/(ideal-map squared Frobenius norm times squared cofactor norm), with positive exact native-corner determinant. Gate is Q squared >=1/100 without float relaxation. Native calibration uses combined rel_tol1e-11/abs_tol1e-14."
+  },
+  "input_and_output_join": {
+    "actual_contract_sha256": "a2a19f8dc330a5d713061c722b8e653ac8d3eee89941c0b01371fd4f1fcf8440",
+    "all27_current_small_input_bodies_match_actual_contract": true,
+    "all_output_inventory_sizes_and_hashes_independently_current": true,
+    "child_peer_sha256": "640ae21bea61d5ef838824da7d54379aa958bc020b03025ede45c7bca1f72870",
+    "complete_actual_output_bytes": 119826,
+    "complete_actual_output_count": 7,
+    "fixture_report": {
+      "bytes": 76065,
+      "sha256": "579608f4a3d19876802d68e513f06a9fedeb61f335b9f5149765543e24a1765e"
+    },
+    "root_closed_result": {
+      "bytes": 2021,
+      "sha256": "3584f9779f84b7739ae872dbb9ac17e3363d019be05042128e0c1b9cd9f04a36"
+    },
+    "selected3runtime_and_NumPy_before_after": "Unchanged root observations joined to closed record and contract; no runtime bodies re-read by peer.",
+    "source_peer_sha256": "24b66143abaa4aba7a50db30acb7be4b3319f6b314f0f7efb50c79a0eba177d6"
+  },
+  "lifecycle_and_limits": {
+    "RSS_sample_count": 1,
+    "controller_returncode": 0,
+    "controller_seconds": 0.3369074580259621,
+    "limits": "30seconds, sampled1GiB RSS,16MiB output, requested2threads; no hard OS CPU/address-space quota.",
+    "max_observed_RSS_bytes": 32768,
+    "owned_pair_parent_and_own_group_rows_consistent": true,
+    "root_returncode": 0,
+    "root_seconds": 0.49330275,
+    "root_stop_reason": null,
+    "root_wait_and_individual_observed_process_absence_true": true,
+    "sampled_RSS_is_not_peak_or_hard_OS_quota": true,
+    "stop_reason": null,
+    "universal_process_absence_claimed": false
+  },
+  "manufacturing_authorized": false,
+  "physics_qualified": false,
+  "qualification_limits": [
+    "This proves the recorded disconnected sparse-tag editing capability case and its stored quality gates only.",
+    "All16shell nodes were deliberately fixture-only diagnostic surface401 nodes. This is not evidence that the original parent nine-boundary/seven-interior classifications are preserved by a head edit.",
+    "The unchanged unrelated cube is disconnected. No connected outside-neighbor cancellation, replacement-domain equality, head embedding/non-overlap/containment, head stitching or head acceptance was tested.",
+    "The independent arithmetic checks neither rerun the creator code nor perform native generation/optimization/PDE. Only this explicitly authorized4858B MSH was decoded; no full-head geometry, runtime bodies, network or Git was read or used."
+  ],
+  "raw_saved_MSH": {
+    "TET4": 51,
+    "TRI3": 40,
+    "all_binary64_coordinate_words_ordered_cells_entities_classes_lower_rows_equal_after_and_reopen": true,
+    "bytes": 4858,
+    "complete_sections_and_cursor_consumed": true,
+    "mapped39_on_volume11_unchanged12_on_volume701": true,
+    "native_saved_reopen": "Worker observation; independent raw-file parsing verifies the same stored state and does not execute native reopen.",
+    "node_blocks": 4,
+    "nodes": 28,
+    "sha256": "06585ab593238cc3d8e4c9d6038ac86c40cf3fb23476e16e06ace7051132d239",
+    "version": "4.1 binary little-endian size_t8"
+  },
+  "schema": "962-tag-sparse-star-edit-result-peer/v1",
+  "stitching_authorized": false
+}

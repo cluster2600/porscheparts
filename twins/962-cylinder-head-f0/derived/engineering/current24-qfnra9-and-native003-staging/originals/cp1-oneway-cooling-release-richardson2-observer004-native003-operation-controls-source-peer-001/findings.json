@@ -1,0 +1,148 @@
+{
+  "schema": "962-native003-operation-owner-source-findings/v1",
+  "decision": "HOLD_BOTH001_UNRUN_THREE_CLOSURE_SOURCE_GAPS",
+  "blocker_count": 3,
+  "blockers": [
+    {
+      "ID": "B01",
+      "priority": "P1",
+      "source_line": 164,
+      "title": "Normal final reap has no source-level deadline/stop bound",
+      "finding": "After NOTE_EXIT and a positive helper receipt, both identical main definitions call os.waitpid(proc.pid,0). Unlike the stop handshake and cleanup reap, this call has no WNOHANG/deadline loop or stop-latch check. The signal handlers append a request rather than raise. A retained process-exit notification is source-design evidence, not an observed guarantee that this blocking call returns inside the reserved whole60-second closure. A future external late-refusal gate does not replace the owner's required bounded cleanup control.",
+      "recommendation": "In a new immutable successor only, use exact-PID WNOHANG reaping under the existing original deadline/reserved closure and stop policy; preserve raw status and assign Popen.returncode only after the deliberate successful terminal reap. Do not add a wait allowance, process query, fallback or synthetic exit0.",
+      "scope": "Static missing-bound finding, not an observed hang, syscall timing measurement or installed-kernel diagnosis."
+    },
+    {
+      "ID": "B02",
+      "priority": "P2",
+      "source_line": 204,
+      "other_lines": [
+        206,
+        208,
+        209
+      ],
+      "title": "Final handled-stop snapshot precedes handler cutoff",
+      "finding": "handled_stop_requests copies the latch before restoring SIGCHLD/INT/TERM dispositions. A handled TERM/INT arriving between that copy and restoration is present in controller_stop_requests, so complete_candidate/final return correctly refuse, but it can be absent from the saved handled_stop_requests list. The receipt then loses a known stop observation in the interval it claims to cover.",
+      "recommendation": "In the successor, finalize the saved latch after the documented handler restoration/cutoff, retain every request received before that cutoff and record an explicit refusal reason when latched. Preserve the honest post-cutoff default-signal/partial-or-nonzero refusal limit; no all-lifetime signal claim or new signal framework.",
+      "scope": "Evidence-retention gap; this does not claim the source accepts a latched stop."
+    },
+    {
+      "ID": "B03",
+      "priority": "P1",
+      "source_lines": [
+        182,
+        183,
+        184,
+        185,
+        186,
+        187,
+        188,
+        189,
+        190,
+        191
+      ],
+      "title": "Pre-certificate direct-signal error skips the bounded reap attempt",
+      "finding": "The pre-certificate/not-continued os.kill(proc.pid,SIGKILL) and stop-action append share the broad try with the subsequent WNOHANG reap loop. If the own-PID kill raises, including ESRCH, control jumps to the outer except and never attempts the still-required explicit wait on the retained direct child. A signal error does not itself consume or invalidate the known parent-child wait relationship.",
+      "recommendation": "Catch and retain the direct-signal error locally, then always attempt the existing bounded exact-PID explicit terminal reap. Keep unknown cleanup/nonzero/permission errors as refusal and do not reinterpret ESRCH from a signal call as completed reap or group absence. Never introduce guessed group cleanup before a valid certificate.",
+      "attribution": "Root independently identified this exact path during its concurrent complete source read; reviewer traced and confirmed the source path. Author agrees; no patch/run followed."
+    }
+  ],
+  "source_line_scope": "Line numbers refer to both siblings' identical owner function definitions; globals/wrapper operation literals differ only as recorded.",
+  "verified_source_design": [
+    {
+      "ID": "P01",
+      "lines": [
+        131,
+        139,
+        147,
+        149,
+        152,
+        155
+      ],
+      "detail": "One new-session wrapper stops itself with SIGSTOP after selected3.12/-B-I-S and PID=PGID=SID assertions, before execv of exactly the original helper with the sole external authorization digest. The owner holds the Popen object, uses exact-PID WUNTRACED|WNOHANG and a five-second/min40-second stop-handshake bound, records the direct-child stop status, verifies SID/PGID and registers the known PID's one-shot NOTE_EXIT before SIGCONT. No helper/query executes before that source route continues."
+    },
+    {
+      "ID": "P02",
+      "detail": "The owner contains one Popen and no Popen.poll/wait/communicate/context/destructor invocation or Popen signal-method call. SIGCHLD is set to SIG_DFL before launch. No unrelated owner Popen/competing waiter appears. The source uses bounded kqueue monitoring and retains the direct child unreaped while certified-group TERM/KILL may be issued. Pre-certificate/not-continued cleanup targets only the own direct PID, subject to B03. No ps, waitid, FFI/raw syscall, NOTE_TRACK or EV_RECEIPT fallback exists. kqueue notification is not treated as terminal raw status or reap."
+    },
+    {
+      "ID": "P03",
+      "detail": "Original stage/freshness helpers615400e6/a577 and selected original3.12 route remain exact. Stage permits only four opaque staged copies totaling1213802B and verifies its exact staging schema/copy map/no_execution/error/authorization. Freshness requires a separate root-accepted stage receipt reaching its unchanged helper and verifies a complete metadata-only receipt: one query attempt, raw0, reaped/no-error/no-stop-actions and elapsed-through-cleanup<=5. That helper's internal query child wait is separate from the external stopped-wrapper anchor. No native or scientific authority is granted."
+    },
+    {
+      "ID": "P04",
+      "detail": "Each held actual has33 explicitly protected source/control records; stage adds9 future direct roles (42 total), freshness adds11 (44 total) including accepted-stage receipt/root acceptance. Actual/controller/wrapper/helper authorization and index/peer/root roles are captured before/after. Root must independently verify future peer/root semantic approvals and exact late descriptors; the current boolean admission fields and held metadata supply no operation authority. Role paths are canonical/fixed and source/control/selected-Python freshness is only a future behavior, not observed here."
+    },
+    {
+      "ID": "P05",
+      "detail": "Whole60s includes startup, helper/query, cleanup, serialization and outer return. Internal40s monitoring reserves cleanup; five-second stop/query and TERM8 bounds remain. Inclusive32MiB covers C/H/O and separate stage H for freshness, all staged bytes, receipts and declared controls; independent root must add complete outer streams/new controls and require raw outer0/final census. The source honestly records sampled_RSS_bytes=None and no hard quota/RSS pass. These claims do not cure B01/B02/B03."
+    },
+    {
+      "ID": "P06",
+      "detail": "Six complete literal owner substitutions and two wrapper substitutions reverse sibling bytes exactly. All ten owner definitions are text/AST identical, so all three blockers apply to both. Four reused definitions (need,rec,record_controller_stop,group_exists) match their exact named donors. Both complete diff records were reproduced, including the freshness diff's additional stage-to-freshness section. All46 unique explicitly named first-party source/metadata hashes/bytes match; no recursive257/runtime19/13/22/89 body dereference occurred."
+    },
+    {
+      "ID": "P07",
+      "detail": "New select API/origin/provider behavior is explicitly unobserved and not covered by a claimed full installed ABI closure. Named capability checks occur only in a future admitted run before child creation. Public pinned CPython and Apple documentation support the source design, not the selected interpreter/kernel implementation or current security/process behavior. All held execution/admission/result fields remain false/null. Physical/native controls and the existing12 mechanical aggregate failures remain unchanged."
+    }
+  ],
+  "primary_source_support": [
+    {
+      "url": "https://raw.githubusercontent.com/python/cpython/v3.12.11/Doc/library/select.rst",
+      "location": "kqueue/kevent documented API and process event notification"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/python/cpython/v3.12.11/Lib/subprocess.py",
+      "location": "Popen context/destructor/poll/wait/signal paths motivate no implicit reap before ownership cleanup"
+    },
+    {
+      "url": "https://developer.apple.com/library/archive/documentation/System/Conceptual/ManPages_iPhoneOS/man2/kqueue.2.html",
+      "location": "Change registration before event retrieval; NOTE_EXIT and NOTE_REAP are distinct"
+    },
+    {
+      "url": "https://developer.apple.com/library/archive/documentation/System/Conceptual/ManPages_iPhoneOS/man2/wait.2.html",
+      "location": "Specific positive PID, stopped WUNTRACED status, and WNOHANG return semantics"
+    }
+  ],
+  "primary_support_limit": "Pinned/public/archived text only; no installed binary/provider/ABI/kernel equivalence, timing or probe observation.",
+  "static_check_summary": {
+    "unique_named_inputs": 46,
+    "named_bytes": 765358,
+    "sibling_six_plus_two_inverse": true,
+    "all_ten_definitions_text_AST_equal": true,
+    "four_donor_definitions_exact": true,
+    "both_full_diffs_reproduced": true,
+    "sibling_counts": [
+      {
+        "operation": "stage",
+        "protected": 33,
+        "late": 9,
+        "complete": 42,
+        "all_authorities_false": true
+      },
+      {
+        "operation": "freshness",
+        "protected": 33,
+        "late": 11,
+        "complete": 44,
+        "all_authorities_false": true
+      }
+    ]
+  },
+  "preparation_history": {
+    "author_event": "Original packet source-reuse/index retains the authoring H=E/ versus STAGE_H assertion and corrected whole-line static writer; no target source execution.",
+    "reviewer_event": {
+      "exit_code": 1,
+      "error": "AssertionError in full diff equality before the fresh source.diff appended sibling section was included",
+      "scope": "Host text/AST metadata check only; no target execution or source mutation",
+      "correction": "Included the exact third stage-to-freshness diff section; both complete diffs then match"
+    },
+    "peer_root_exchange": "Root independently concurred B01/B02 and supplied B03; author acknowledged all three and preserved both packets pending a separate source002 authority."
+  },
+  "proposed_successor_scope": "Only bounded exact-PID final reap, final stop-latch accounting at documented cutoff, and locally retained direct-signal error followed by unconditional bounded reap attempt. Keep wrappers/helpers, selected runtime route, deadlines/caps and all failure/unknown refusal policies exact. No patch or execution authorized by this review.",
+  "original_source_edited": false,
+  "target_source_import_compile_or_execute": false,
+  "process_API_or_runtime_operation": false,
+  "raw_or_scientific_body_access": false,
+  "reviewer_affiliation": "head_mesh_next reviewed original stage615400/capturea577 helper sources and earlier project/control lineages, and authored the QF_NRA producer/protocol/current synthetic controls. defect_gate_refresh separately authored these two new operation owners/wrappers and earlier native helpers/bd866 donor. This is independent current software-source/control review with those affiliations disclosed; no physical/scientific or installed-runtime independence is claimed."
+}

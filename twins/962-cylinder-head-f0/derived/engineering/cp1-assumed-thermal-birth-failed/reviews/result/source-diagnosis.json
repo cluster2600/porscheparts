@@ -1,0 +1,125 @@
+{
+  "arithmetic_scale_only": {
+    "capacity_ratio_at400K": 810000.0,
+    "current_time0_power_W": 29.75378418971,
+    "first_dt_s": 0.0025,
+    "first_printed_nonlinear_relative_norm": 1.4864483958665294e-07,
+    "first_step_endpoint_power_times_dt_J_not_actual_PDE_heat": 0.07438446047427501,
+    "new_constant_rho_cp_J_m3K": 2430000.0,
+    "old_active_volume_m3": 1.0,
+    "old_toy_rho_cp_at400K_J_m3K": 3.0,
+    "old_volume_one_uniform_ULP_energy_J": 1.3812950783176348e-07,
+    "scope": "Simple source/capacity/representability estimates, not the transient solution, residual reconstruction or a global impossibility/quantization bound. Weighted nodal energy sums have finer increments than a uniform one-ULP shift.",
+    "ulp_at400K_K": 5.684341886080802e-14,
+    "uniform_average_temperature_increment_scale_K": 3.061088908406379e-08
+  },
+  "classification": "SOURCE_GROUNDED_HYPOTHESES_NOT_IDENTIFIED_CAUSE_OR_RERUN_AUTHORITY",
+  "diagnostic_inference": [
+    "The original toy has temperature-dependent cp/k and rho*cp\u22483 at400K. The frozen CP1 hypothesis has constant rho*cp=2.43e6,810000 times larger at that temperature. With the same meter-scale volume/source/time, expected initial temperature increments are much smaller relative to the400K baseline. This supports investigating update representability/residual scaling.",
+    "The observed residual after the firstLU correction is far above declared nl_abs_tol1e-10 and nl_rel_tol1e-11 times the initial norm. At smaller dt the reported recomputed residual generally grows, which is compatible with a storage/update rounding floor. It does not prove that mechanism or exclude scaling/assembly/line-search effects.",
+    "Do not describe the current ImplicitEuler helper as independently forming two huge heat inventories: root-provided current primary context says it differences the states before dividing bydt. Nearby stored binary64 subtraction may be exact while the state/update itself is quantized. No unique cancellation location is established.",
+    "For the declared constant-cp/constant-k/time-only-source model, the within-step temperature operator is mathematically linear once activation is fixed. That supports a LINEAR-mode hypothesis, but the native implementation and convergence semantics must be pinned and reviewed; current test usage is not proof for this coupon."
+  ],
+  "engineering_accepted": false,
+  "established_observations": [
+    "The native job was launched once under the exact4eabad child and failedRC1 naturally; no sampled resource stop. The adapter recorded one native job and waited it. Root independently observed its controller, not a native child PID.",
+    "MOOSE printed Transient/ConstantDT/ImplicitEuler/NEWTON with preonly+lu. It attempted only step1,33 times at dt0.0025 through1e-12; every attempt printed DIVERGED_LINE_SEARCH.32 subdomain restoration messages and no Solve Converged! occur. The dtmin error closes that same process.",
+    "At the firstdt, printed nonlinear norms are3.167411 then4.708193e-7; the first printed linear norm afterLU is8.695134e-16. These are log observations, not an independent algebraic residual or accepted field.",
+    "Only time0 thermal/source/property CSVs exist. The unchanged0548 energy/field assessor was not invoked because the native history failed."
+  ],
+  "local_primary_source_limits": {
+    "ConstantDT_fixture": "The installed constant_dt_cutback.i declares a transient failure fixture and cutback_factor_at_failure=0.8. The current log independently shows internal cutbacks; this fixture does not establish an exact default value.",
+    "LINEAR_fixture_requirement": "The solve_type_linear test requires correct coupled Jacobian evaluation with LINEAR. Its displayed input is a coupled steady linear system, not this transient/birth witness.",
+    "PETSc_source_scope": "Frozen ls.c/linesearchbt.c are primary v3.25.2 source captures; current native reportsPETSc3.25.4. They explain residual-reduction line-search failure generally. No exact3.25.4 implementation equivalence is asserted.",
+    "installed_package_fixture_scope": "Read only the named public MOOSE test input/requirement files installed with the pinned package, not compiled executables/libraries. They demonstrate declared LINEAR usage and explicit ConstantDT cutback configuration, not installed implementation semantics or a successful new trial.",
+    "thermal_integrator_implementation_gap": "Narrow local searches did not locate ADHeatConductionTimeDerivative.C, ADTimeDerivative.C, ImplicitEuler.C or TimeStepper.C bodies in the retained engineering/source tree or installed include/share. No exact native7c06bdcefd source-build attestation is available from this review."
+  },
+  "manufacturing_authorized": false,
+  "material_qualified": false,
+  "minimal_next_hypothesis_for_root_choice": {
+    "more_intrusive_alternative_if_needed": "A centered unknown theta=T-400 could expose small initial increments directly while reconstructing physical temperature=T everywhere in outputs/material/birth mappings (initialtheta0,birththeta-50). This needs an explicit new field-association/birth/reference/source review, keeps physical Kelvin fields and all gates unchanged, and does not solve exported-temperature quantization automatically. It is not implemented or recommended as an automatic follow-up.",
+    "not_recommended_now": [
+      "Relaxing nl or energy tolerances",
+      "Blind line-search/scaling/dt experiments",
+      "Internal-cutback repetition presented as a new successful external launch",
+      "Automatic rerun or assessor invocation on the failed initial-only history"
+    ],
+    "preferred_smallest_source_delta_to_assess": "A separately frozen one-line solve_type NEWTON\u2192LINEAR case variant, only after checking exact supported semantics/field outputs; retain all numerical tolerance values, material card/source/birth/history/deck associations and the independent0548 energy/field acceptance thresholds.",
+    "required_honest_limit": "Changing solver mode changes the convergence path; it must not be called proof that the old Newton residual passed, or a harmless tolerance-equivalent operation. A linear solve can still leave quantized physical fields and fail the unchanged independent energy/history assessor. No success is promised."
+  },
+  "native_log_sha256": "fb398030a91cc8570a2dfebd84486a8cfb92e9eb9f6f536b29a0683229b7daae",
+  "new_native_or_assessment_authority": false,
+  "no_prepared_function_test_solver_or_runtime_body_executed": true,
+  "no_source_deck_card_tolerance_or_frozen_evidence_changed": true,
+  "physics_qualified": false,
+  "process_calibrated": false,
+  "records": {
+    "twins/962-cylinder-head-f0/source/physics_witness/thermal_birth/card.json": {
+      "bytes": 2272,
+      "sha256": "20e541f44359e4fe85c94fa2add15f5cc79285d849bfcb0c604e54b294f576ad"
+    },
+    "twins/962-cylinder-head-f0/source/physics_witness/thermal_birth/thermal-birth.i": {
+      "bytes": 4122,
+      "sha256": "ec8b79d2f67a5e7bf49401685ff0f809ff4ae31b4a819ab9d728193fc0fbd73b"
+    },
+    "work/962-engineering/cp1-assumed-thermal-birth-prep-001/assess.py": {
+      "bytes": 13380,
+      "sha256": "0548fcbf6eba737aaaf816abbfbfd0511b5b8fb266aa10c34a1f5817eef0e338"
+    },
+    "work/962-engineering/cp1-assumed-thermal-birth-prep-001/card.json": {
+      "bytes": 4572,
+      "sha256": "4e07cbb997c831bac2c0abd43092148c5518b6c7aa04d7b3d287779f9e700986"
+    },
+    "work/962-engineering/cp1-assumed-thermal-birth-prep-001/thermal-birth.i": {
+      "bytes": 4154,
+      "sha256": "62527f4e88d9cc55e506cc11c97c48de5ea56e2fd7218231143fc3aa88e92b20"
+    },
+    "work/962-engineering/head-imported-cube-newton-source-001/linesearchbt.c": {
+      "bytes": 20602,
+      "sha256": "1b35095d67ddf7c5d536b4b0cd2dd0e34d5a20d20490a2efa2b3d7dc8aef1fb3"
+    },
+    "work/962-engineering/head-imported-cube-newton-source-001/ls.c": {
+      "bytes": 14700,
+      "sha256": "e6004ddbdce23245f053bc38d8642664c6f18ddb70650071780430d0e5ae6980"
+    },
+    "work/962-engineering/head-imported-cube-newton-source-001/sources.json": {
+      "bytes": 879,
+      "sha256": "0adfb84d67cf2de82b999ccaf8d37ce9841cb7e4e54f968413e1a412a796c54f"
+    },
+    "work/962-engineering/moose-local-installed-002/share/moose_test/tests/executioners/solve_type_linear/linear_with_full_smp.i": {
+      "bytes": 556,
+      "sha256": "5647bb6a520eb4ee098b4d8393b87633662d23bad06d2d63be8f977ba0616b7d"
+    },
+    "work/962-engineering/moose-local-installed-002/share/moose_test/tests/executioners/solve_type_linear/tests": {
+      "bytes": 324,
+      "sha256": "a3519687e2716032276407c8241bad91b1b70a71fcce696db7fc8f643e53ee21"
+    },
+    "work/962-engineering/moose-local-installed-002/share/moose_test/tests/time_steppers/cutback_factor_at_failure/constant_dt_cutback.i": {
+      "bytes": 797,
+      "sha256": "7839881fdf9e447cdbd0264c846acd3a94d15fcf82b801a22260d06a20a4f052"
+    }
+  },
+  "root_provided_current_official_context": [
+    {
+      "body_sha256": null,
+      "independently_fetched_here": false,
+      "root_reported_content": "Repeated timestep cutbacks can terminate atdtmin; automatic_scaling and line_search are diagnostic alternatives, not an identified cause.",
+      "url": "https://mooseframework.inl.gov/application_usage/failed_solves.html"
+    },
+    {
+      "body_sha256": null,
+      "independently_fetched_here": false,
+      "root_reported_content": "Current helper lines47-51 subtracts u_old from u_dot then multiplies by1/dt; AD uses the helper.",
+      "url": "https://mooseframework.inl.gov/docs/doxygen/moose/classImplicitEuler.html"
+    },
+    {
+      "body_sha256": null,
+      "independently_fetched_here": false,
+      "root_reported_content": "Default backward Euler and linear-system diagonal/RHS contributions are documented.",
+      "url": "https://mooseframework.inl.gov/source/timeintegrators/ImplicitEuler.html"
+    }
+  ],
+  "schema": "962-cp1-thermal-birth-failed-solve-source-diagnosis/v1",
+  "stopped_check_sha256": "0b3bdea746a78c6a7f3bfe1e0523e8b067b97156d5e1e2e7efb2795eef0d1c41",
+  "stopped_result_peer_sha256": "d5b1e72dcb0609384893ea12c9123aae53c920ca336e14f495ed0e653e1610c5"
+}

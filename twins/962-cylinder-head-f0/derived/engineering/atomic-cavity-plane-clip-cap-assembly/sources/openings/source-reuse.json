@@ -1,0 +1,98 @@
+{
+  "adapted_sources": [
+    {
+      "complete_reverse_byte_exact": true,
+      "destination": "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-openings-prep-001/audit_openings.py",
+      "destination_sha256": "c8546f7363deb8f0511b87b1ef8d9fc03d48d95016eab30d78f558047a49d506",
+      "diff": "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-openings-prep-001/audit_openings.py.diff",
+      "diff_sha256": "2205e9e78cc15b4b3311b637b956385c825795129cee9f1c846a7a355abfb97c",
+      "literal_substitutions": [
+        {
+          "new": "CANDIDATE = 'work/962-engineering/atomic-cavity-plane-clip-cap-assembly-001/candidate.bin'",
+          "occurrences": 1,
+          "old": "CANDIDATE = 'work/962-engineering/atomic-cavity-head-001/head-atomic002/candidate.bin'"
+        },
+        {
+          "new": "OUTPUT = ROOT/'work/962-engineering/atomic-cavity-plane-clip-cap-assembly-openings-001'",
+          "occurrences": 1,
+          "old": "OUTPUT = ROOT/'work/962-engineering/atomic-cavity-openings-001'"
+        },
+        {
+          "new": "CANDIDATE: '9d62eac6e2cd7b6a9ecb4a7ea5b632685820369b5c4ede379acc34238f50d7b4'",
+          "occurrences": 1,
+          "old": "CANDIDATE: '1f9dbd4cda61c7b58084479ebb165fb01280fa831752dc0da18517e548131b1a'"
+        },
+        {
+          "new": "ORDERED_ARRAY_SHA256 = {'original': ['f6aee40320646d34212929551866b111093ab25d81d78d68e48b95e1f8f78ad7', '9318ffffd6b46c1daa3f35169071eb3ad815171848fc3d48778b8373a2ea5341'], 'candidate': ['e0009dc6c5481cb77383b91a6e72ee4f223f207917b345e74f0b5b8e65ca6786', '152dc93bc9d5ea98aa2ec88271b0385471c466a29259c0f874ccfcf81c5ea9bd']}\nFIXED = {\n    'work/962-engineering/atomic-cavity-plane-clip-cap-assembly-001/manifest.json': '53f94089eea095020ff9c9692a2a530b43ba37a96b2a6e30e2e23ee21d690a84',\n    'work/962-engineering/atomic-cavity-plane-clip-cap-assembly-result-peer-001/review.json': '4498c149823907ddd46830f7dc582dc65b935d39f25b2b5053393eb34770c0ca',\n    'work/962-engineering/atomic-cavity-plane-clip-cap-census-001/readback-report.json': 'f246f1ef38a7657bd9eefc2349391cb31ab4a2147656743bb99c790c12d52a7d',\n    'work/962-engineering/atomic-cavity-plane-clip-cap-census-result-peer-001/review.json': 'fa5b363375236fb24ba8c9382bcf61da44ca39b63549a96ab0bd7b559a1b57c3',\n    'work/962-engineering/atomic-cavity-plane-clip-readback-prep-001/run_readback.py': 'e0e63b01708584d0296757df8aaea89c5238bc352109a716a7abed49defa3d97',\n",
+          "occurrences": 1,
+          "old": "FIXED = {\n"
+        },
+        {
+          "new": "for p in (HERE, PREP/'run_openings.py', PREP/'METHOD.md', PREP/'source-reuse.json',\n              PREP/'array-byte-bindings.json', PREP/'preparation-checks.json'):",
+          "occurrences": 1,
+          "old": "for p in (HERE, PREP/'run_openings.py', PREP/'METHOD.md'):"
+        },
+        {
+          "new": "'candidate': [871731, 1743878]}\n            or c.get('ordered_array_sha256') != ORDERED_ARRAY_SHA256",
+          "occurrences": 1,
+          "old": "'candidate': [901727, 1803870]}"
+        },
+        {
+          "new": "p, f = read(ROOT/name); hashes = [array_sha(p), array_sha(f)]\n            if hashes != c['ordered_array_sha256'][label]:\n                raise ValueError('Complete ordered surface arrays changed')",
+          "occurrences": 1,
+          "old": "p, f = read(ROOT/name); hashes = [array_sha(p), array_sha(f)]"
+        }
+      ],
+      "source": "work/962-engineering/atomic-cavity-openings-prep-001/audit_openings.py",
+      "source_sha256": "d6f942005f90567134aa9f9a77c344e52d7a7e7e838ecd87ef583bd8516d3fd6"
+    },
+    {
+      "complete_reverse_byte_exact": true,
+      "destination": "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-openings-prep-001/run_openings.py",
+      "destination_sha256": "4a0cb41f61c583716117b5fa8b17b31c908c3bf3f9d3d7a40fc39f306d58d08f",
+      "diff": "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-openings-prep-001/run_openings.py.diff",
+      "diff_sha256": "ebc5bdbb6d4ffe42147155f24ace0bafad2d66e2bff4129959f6efcbbcfe48fc",
+      "literal_substitutions": [
+        {
+          "new": "import json\nimport os\n",
+          "occurrences": 1,
+          "old": "import json\n"
+        },
+        {
+          "new": "import subprocess\nimport threading\n",
+          "occurrences": 1,
+          "old": "import subprocess\n"
+        },
+        {
+          "new": "    # The old monitor stays hash-bound as provenance; the reviewed e0e stop-flag pattern is local.\n",
+          "occurrences": 1,
+          "old": "    monitor = load(monitor_path, 'frozen_read_only_process_monitor')\n"
+        },
+        {
+          "new": "    started = time.monotonic(); process = timer = None; observation = None; error = None\n    stopped = {'reason': None}; lock = threading.Lock(); samples = []\n    cleanup_error = None; reaped = False; sigterm_requested = False\n    def stop(reason):\n        with lock:\n            if stopped['reason'] is None:\n                stopped['reason'] = reason\n                if process is not None:\n                    try:\n                        os.killpg(process.pid, signal.SIGKILL)\n                    except ProcessLookupError:\n                        pass\n    def request_sigterm(*_):\n        nonlocal sigterm_requested\n        sigterm_requested = True\n    previous_sigterm = signal.getsignal(signal.SIGTERM)\n    try:\n        with (output/'native.log').open('x') as log:\n            try:\n                signal.signal(signal.SIGTERM, request_sigterm)\n                process = subprocess.Popen(command, stdout=log, stderr=subprocess.STDOUT, env=env,\n                                           cwd=w.ROOT, start_new_session=True)\n                timer = threading.Timer(w.RESOURCES['process_group_deadline_seconds'],\n                    lambda: stop('process_group_wall_deadline'))\n                timer.daemon = True; timer.start()\n                while process.poll() is None and not sigterm_requested:\n                    try:\n                        observed = subprocess.run(['/bin/ps', '-o', 'rss=', '-p', str(process.pid)],\n                            capture_output=True, text=True, timeout=2)\n                        if process.poll() is not None:\n                            break\n                        if observed.returncode != 0 or not observed.stdout.strip().isdigit():\n                            raise ValueError('RSS observation unavailable')\n                        rss = int(observed.stdout.strip())*1024; samples.append(rss)\n                        if rss >= w.RESOURCES['rss_stop_bytes']:\n                            stop('observed_worker_RSS_exceeded_4GiB')\n                    except (OSError, ValueError, subprocess.SubprocessError):\n                        if process.poll() is None:\n                            stop('RSS_observation_unavailable')\n                    try:\n                        process.wait(timeout=w.RESOURCES['rss_poll_seconds'])\n                    except subprocess.TimeoutExpired:\n                        pass\n            finally:\n                try:\n                    if timer is not None:\n                        timer.cancel()\n                    if process is not None:\n                        if process.poll() is None:\n                            stop('controller_SIGTERM' if sigterm_requested else 'controller_interrupted')\n                        process.wait(); reaped = True\n                except BaseException as exc:\n                    cleanup_error = type(exc).__name__+': '+str(exc)\n                finally:\n                    if sigterm_requested and stopped['reason'] is None:\n                        stopped['reason'] = 'controller_SIGTERM'\n                    signal.signal(signal.SIGTERM, previous_sigterm)\n    except BaseException as exc:\n        error = type(exc).__name__+': '+str(exc)\n    finally:\n        observation = dict(maximum_observed_worker_RSS_bytes=max(samples, default=0),\n            RSS_samples=len(samples), stopped_by_watchdog=stopped['reason'], monitor_error=error,\n            cleanup_error=cleanup_error, worker_reaped=reaped,\n            worker_running_after_monitor=process.poll() is None if process is not None else False,\n            SIGTERM_requested=sigterm_requested,\n            SIGTERM_handler_restored=signal.getsignal(signal.SIGTERM) == previous_sigterm)\n",
+          "occurrences": 1,
+          "old": "    started = time.monotonic(); process = None; observation = None; error = None\n    try:\n        with (output/'native.log').open('x') as log:\n            process = subprocess.Popen(command, stdout=log, stderr=subprocess.STDOUT, env=env,\n                                       cwd=w.ROOT, start_new_session=True)\n            observation = monitor.monitor(process, started, w.RESOURCES)\n    except BaseException as exc:\n        error = type(exc).__name__+': '+str(exc)\n    finally:\n        if process is not None and observation is None:\n            # Reuse the same owned monitor for the Popen-to-monitor interruption gap.\n            observation = monitor.monitor(process, started, dict(w.RESOURCES, process_group_deadline_seconds=0))\n"
+        },
+        {
+          "new": "and not observation['worker_running_after_monitor'] and observation['SIGTERM_handler_restored'] and unchanged",
+          "occurrences": 1,
+          "old": "and not observation['worker_running_after_monitor'] and unchanged"
+        },
+        {
+          "new": "",
+          "occurrences": 1,
+          "old": "    signal.signal(signal.SIGTERM, lambda *_: (_ for _ in ()).throw(InterruptedError('Opening controller terminated')))\n"
+        }
+      ],
+      "source": "work/962-engineering/atomic-cavity-openings-prep-001/run_openings.py",
+      "source_sha256": "a8320239d94c4e5777e721430288f488f13e1082402ec88b02e29bf8cff1ba4e"
+    }
+  ],
+  "lifecycle_adaptation": "Nonraising SIGTERM flag installed before Popen; owned timer/RSS polling, cancel+kill+wait in nested finally, restore previous handler. Same120s/4GiB/two-thread controls; no hard OS quota.",
+  "lifecycle_pattern_sha256": "e0e63b01708584d0296757df8aaea89c5238bc352109a716a7abed49defa3d97",
+  "lifecycle_pattern_source": "work/962-engineering/atomic-cavity-plane-clip-readback-prep-001/run_readback.py",
+  "new_sources_imported_or_executed": false,
+  "old_sources_modified": false,
+  "schema": "962-assembled-opening-probes-minimal-reuse/v1",
+  "worker_fixture_points_VTK_roundtrip_distance_predicate_unchanged": true
+}

@@ -1,0 +1,124 @@
+{
+  "schema": "962-observer004-owned-native-control-choices-clarification/v1",
+  "status": "ADDITIVE_SOURCE_DESIGN_ONLY_UNIMPLEMENTED",
+  "author": "/root/lpbf_linear_refinement",
+  "authority_scope": "Trusted root task authorizes only this immutable clarification of two independent reviewer findings; roota36c remains source-design-only. No implementation, actual, admission or operation.",
+  "frozen_001_preserved": true,
+  "input_bindings": [
+    {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native003-owned-control-choices-001/CONTROL-CHOICES.md",
+      "sha256": "ee1f3001f21048c4d67dc31067e387cd9aa847ba9e47f7e7e764b48a5c85f742",
+      "bytes": 7963
+    },
+    {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native003-owned-control-choices-001/control-contract.json",
+      "sha256": "10aaa53acc3fbe15f07aeadd75f33c0edb886d8d79d4fe824f898907cb12a819",
+      "bytes": 39675
+    },
+    {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native003-owned-control-choices-001/index.json",
+      "sha256": "38d71b7c0ff6dbb9e11ee66594848fa1287ff150b10088e13185ea7b5180d06b",
+      "bytes": 3901
+    },
+    {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native003-owned-control-proposal-root-review-001/review.json",
+      "sha256": "a36c4772c348d88a321b4b83fc79750fa24e4705f08250c4b3386fd1e694fbac",
+      "bytes": 4446
+    },
+    {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native003-owned-control-proposal-peer-001/REUSE-COUNT-CLARIFICATION-001.json",
+      "sha256": "6921cea77fa894fe8dc4cbc42dae6440f212eb6511aecbc11606b4934234c028",
+      "bytes": 1721
+    }
+  ],
+  "supersession": [
+    "Replace only the leader-only destructor scope in001 prose/U1 and contract ownership_invariants with the all-owned-handle rule below. Constructor and no-hard-preemption caveats remain.",
+    "Insert exactly one successful caller edge after NATIVE_IDENTITY, before NATIVE_RUNNING. All existing failure/stop transitions still take precedence.",
+    "001 index counts are its historical inventory. Effective caller transition count is11, not10; owner transitions remain21. Additional guard obligations below are design cases, not methods/results."
+  ],
+  "owned_handle_lifetime": {
+    "scope": [
+      "outer retained caller/wrapper leader",
+      "caller retained native direct child",
+      "each owner/caller retained direct child for the two fixed ps forms"
+    ],
+    "private_class": "Future owner/caller code uses its private retained-Popen subclass for EVERY owned construction in these three roles. The subclass overrides only __del__ with a no-op that does not invoke its base destructor, poll, wait, signal, register cleanup or inspect child state. This is a fixed local control obligation, not a general process framework.",
+    "partial_construction": "The same override applies to partially initialized instances when construction raises. No returned reliable PID remains ownership-unknown/refusal. The no-op cannot undo constructor-internal work or prove that no child exists.",
+    "retain": "Keep strong references to every returned owned handle and its exact typed state through complete receipt preservation and return. Do not deliberately drop an unreaped handle during normal work. Reaped handles also use the same override.",
+    "explicit_reap": "Only the previously specified exact-PID waitpid path consumes a terminal status, within its original deadline and before110. Record that actual status once and assign the decoded return code once. Missing/late/unconsumed status remains unknown/unreaped; never synthesize returncode to silence cleanup.",
+    "forbidden": "No inherited Popen __del__, poll, wait, communicate, send_signal, terminate, kill or context-manager exit; no weakref/atexit/timer cleanup callback that touches child state. No owned default-destructor insertion into subprocess._active and no explicit invocation or mutation of subprocess private cleanup machinery.",
+    "constructor_obligation": "Popen constructor semantics remain unchanged. Later source review must account for constructor internal cleanup and any process-wide active-list behavior, and show that this fixed program has no owned handles on a default-cleanup path. If this cannot be established, refuse rather than use an implicit fallback.",
+    "cutoff": "After110 deliberately initiate no owned child-status/reap/wait/signal API, including from destructors, finalizers or release paths. Releasing a handle or interpreter finalization invokes only its no-op override. Ordinary file/stream evidence preservation remains governed by the separate115 closure deadline; closing an FD is not an observed child reap or group-absence proof.",
+    "late_call": "An already-started constructor, syscall or close returning late still latches refusal/unknown. The override and deadlines are not hard preemption, successful cleanup, containment or SDK/runtime-equivalence proof.",
+    "teardown": "OS/interpreter termination is never counted as a recorded reap, clean group or completed receipt. Pending native/query children remain explicitly unreaped/unknown if their owning caller was killed. Outer cannot reap a grandchild."
+  },
+  "inserted_caller_transition": {
+    "from": "NATIVE_IDENTITY",
+    "event": "The one complete timely identity query succeeded with native PID equal to the retained direct-child PID, PPID equal to caller PID and PGID equal to the certified caller group; token/deadline/identity joins valid; no latched stop/error and current integer time strictly before caller_normal.",
+    "to": "NATIVE_RUNNING",
+    "actions": "Record successful identity evidence and enter the existing bounded exact-PID WNOHANG observation of that same native child. No new spawn/query, group change, timer, signal or alternative native invocation.",
+    "precedence": "Stop/error/late or incomplete/mismatched identity takes the existing refusal/partial-preservation edge instead. Recheck these predicates immediately before the first NATIVE_RUNNING operation; a stop racing that check is retained and handled by the existing stop path."
+  },
+  "guard_design_additions": [
+    [
+      "H1",
+      "All three owned roles use the private class; fake base destructor/poll/wait/signal record or raise if reached.",
+      "Normal, unreaped and partial-constructor destruction must make zero child-state calls."
+    ],
+    [
+      "H2",
+      "Unknown native/query status at110 followed by preservation and handle release.",
+      "Status stays unknown; no implicit wait/reap or default active-list registration."
+    ],
+    [
+      "H3",
+      "Exact terminal status consumed once, then handle release/finalizer path.",
+      "One recorded explicit reap and no additional child API or PID signal."
+    ],
+    [
+      "H4",
+      "Positive identity evidence plus strictly positive normal time and no stop.",
+      "Exactly the inserted NATIVE_IDENTITY to NATIVE_RUNNING edge; no second spawn/query."
+    ],
+    [
+      "H5",
+      "Stop, equality/late deadline, missing identity or wrong PID/PPID/PGID at the same seam.",
+      "Existing refusal edge only; no normal observation or changed group authority."
+    ],
+    [
+      "H6",
+      "Constructor internal work returns late or without a reliable PID.",
+      "Late/ownership-unknown refusal retained; no substitute cleanup/absence or renewed deadline."
+    ]
+  ],
+  "preserved": {
+    "outer_start_ceilings_seconds": [
+      95,
+      105,
+      110,
+      115
+    ],
+    "native_upper_seconds": 100,
+    "TERM_upper_seconds": 10,
+    "RSS_bytes": 2147483648,
+    "inclusive_bytes": 536870912,
+    "growth_bytes": 33554432,
+    "thread_environment": 1,
+    "conditional_exact_reuse_definitions": 6,
+    "readonly_ps_forms": 2,
+    "receipt_schemas": 4,
+    "numerical_inputs_and_solver_unchanged": true,
+    "native003_hold": true,
+    "head_poor_cells": 24,
+    "aggregate_mechanical_failures": 12
+  },
+  "lineage": "Same author as001/proposal and earlier control/freshness work; independent reviewer identified both omissions. This authored clarification is not their review or a runtime result.",
+  "review_status": "Independent clarification review pending; source/API/guards/runtime implementation gates remain unproved.",
+  "future_implementation": null,
+  "future_actual": null,
+  "future_admission": null,
+  "future_operation": null,
+  "future_result": null,
+  "authorized_execution": false,
+  "physical_manufacturing_qualification": false
+}

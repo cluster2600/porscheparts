@@ -1,0 +1,115 @@
+{
+  "schema": "962-parser003-nine-case-root-acceptance/v1",
+  "decision": "ACCEPT_NINE_SYNTHETIC_GRAMMAR_CASES_ONLY",
+  "root_result": {
+    "path": "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-saved-measurement-parser003-synthetic-root-execution-001/result.json",
+    "sha256": "58e435bc5b223b637ace8d470faf5da61dba06d390a9acc16512102f56790b78",
+    "bytes": 171
+  },
+  "complete_preacceptance_census": [
+    {
+      "path": "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-saved-measurement-parser003-synthetic-root-execution-001/authorization.json",
+      "sha256": "2ac99badcb11a6f39f8707194de198b183a9fd82f3ae7ccfdba2b81ddeaca940",
+      "bytes": 3348
+    },
+    {
+      "path": "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-saved-measurement-parser003-synthetic-root-execution-001/result.json",
+      "sha256": "58e435bc5b223b637ace8d470faf5da61dba06d390a9acc16512102f56790b78",
+      "bytes": 171
+    },
+    {
+      "path": "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-saved-measurement-parser003-synthetic-root-execution-001/stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-saved-measurement-parser003-synthetic-root-execution-001/stdout.json",
+      "sha256": "f212af45f0d3f75116612d8bdf8897d00ff1f4997cd04af242f3e31b45b72d9f",
+      "bytes": 1969
+    }
+  ],
+  "source_and_selected_python_postpins_exact": true,
+  "cases": [
+    {
+      "case": "startup_without_dt",
+      "detail": {
+        "events": 364,
+        "solves": 182,
+        "startup_blocks": 1,
+        "startup_dt_token": null
+      },
+      "status": "PASS"
+    },
+    {
+      "case": "legacy_startup_with_dt",
+      "detail": {
+        "events": 364,
+        "solves": 182,
+        "startup_blocks": 1,
+        "startup_dt_token": "0.25"
+      },
+      "status": "PASS"
+    },
+    {
+      "case": "no_startup",
+      "detail": {
+        "events": 364,
+        "solves": 182,
+        "startup_blocks": 0,
+        "startup_dt_token": null
+      },
+      "status": "PASS"
+    },
+    {
+      "case": "solve1_without_dt",
+      "detail": {
+        "exception_type": "ValueError",
+        "message": "Unsupported monitor/time grammar; preserve, do not guess"
+      },
+      "status": "PASS"
+    },
+    {
+      "case": "duplicate_startup",
+      "detail": {
+        "exception_type": "ValueError",
+        "message": "Initial step is not an invented solve"
+      },
+      "status": "PASS"
+    },
+    {
+      "case": "nonzero_startup_without_dt",
+      "detail": {
+        "exception_type": "ValueError",
+        "message": "Unsupported monitor/time grammar; preserve, do not guess"
+      },
+      "status": "PASS"
+    },
+    {
+      "case": "monitor_on_startup",
+      "detail": {
+        "exception_type": "ValueError",
+        "message": "Initial step is not an invented solve"
+      },
+      "status": "PASS"
+    },
+    {
+      "case": "malformed_monitor",
+      "detail": {
+        "exception_type": "ValueError",
+        "message": "Unsupported monitor/time grammar; preserve, do not guess"
+      },
+      "status": "PASS"
+    },
+    {
+      "case": "missing_monitor_event",
+      "detail": {
+        "exception_type": "ValueError",
+        "message": "Exactly182 solves with one monitor0/1 pair each required"
+      },
+      "status": "PASS"
+    }
+  ],
+  "actual_native_log_or_data_decoded": false,
+  "dt_scaling_field_physics_material_manufacturing_qualified": false,
+  "automatic_retry": false
+}

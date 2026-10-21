@@ -1,0 +1,332 @@
+{
+  "schema": "962-owned-native005-enumerated-source-changes/v1",
+  "scope": "B01–B04 and source-preparation namespace only; future operational004 literals unchanged",
+  "literal_group_count": 46,
+  "forward_and_reverse_group_projection_exact": true,
+  "groups": [
+    {
+      "file": "run_root_once.py",
+      "label": "B02 explicit errno dependency after original early timestamp",
+      "occurrences": 1,
+      "before": "START_NS = time.monotonic_ns()\n",
+      "after": "START_NS = time.monotonic_ns()\nimport errno\n"
+    },
+    {
+      "file": "run_root_once.py",
+      "label": "B02 per-handle closed relationship helpers",
+      "occurrences": 1,
+      "before": "_RETAINED = []\n",
+      "after": "class ChildRelationshipError(ValueError):\n    \"\"\"An exact wait returned an untrustworthy direct-child relationship.\"\"\"\n\n\ndef retained_unreaped(record):\n    return (record.get(\"status\") == \"unreaped\"\n            and record.get(\"direct_child_relationship\") == \"retained_unreaped\")\n\n\ndef can_signal(record):\n    return retained_unreaped(record) and record.get(\"numeric_signal_authority\") is True\n\n\ndef lose_relationship(record, exc):\n    # Permanent per-handle barrier; no later numeric query/wait restores ownership.\n    record.update(status=\"unknown\",direct_child_relationship=\"lost\",\n                  numeric_signal_authority=False)\n    if record.get(\"relationship_error\") is None:\n        record[\"relationship_error\"] = note_error(exc,\"lost-direct-child-relationship\")\n\n\n_RETAINED = []\n"
+    },
+    {
+      "file": "run_root_once.py",
+      "label": "B02 exact wait preserves terminal result and permanently latches ECHILD",
+      "occurrences": 1,
+      "before": "def exact_reap(handle, record, until):\n    # A consumed exact terminal status is the sole recorded reap for this handle.\n    if record[\"status\"] == \"reaped\":\n        return True\n    guard(until, \"exact-WNOHANG-reap\", False)\n    pid, status = os.waitpid(handle.pid, os.WNOHANG)\n    if pid:\n        if pid != handle.pid or not (os.WIFEXITED(status) or os.WIFSIGNALED(status)):\n            raise ValueError(\"Unexpected exact terminal wait status\")\n        raw = os.waitstatus_to_exitcode(status)\n        handle.returncode = raw\n        record.update(status=\"reaped\", wait_status=status, raw_returncode=raw)\n    # Preserve a consumed status even when the syscall itself returned late.\n    guard(until, \"exact-WNOHANG-reap/full-return\", False)\n    return pid != 0\n\n\n",
+      "after": "def exact_reap(handle, record, until):\n    # A consumed terminal status is stored before the full-return deadline check.\n    if record.get(\"direct_child_relationship\") == \"lost\":\n        raise ChildRelationshipError(\"Lost relationship; no numeric wait or signal authority\")\n    if record[\"status\"] == \"reaped\":\n        return True\n    if not retained_unreaped(record):\n        raise ChildRelationshipError(\"Unknown direct-child relationship; no numeric wait\")\n    guard(until, \"exact-WNOHANG-reap\", False)\n    try:\n        pid, status = os.waitpid(handle.pid, os.WNOHANG)\n        if pid:\n            if pid != handle.pid or not (os.WIFEXITED(status) or os.WIFSIGNALED(status)):\n                raise ChildRelationshipError(\"Unexpected exact terminal wait status\")\n            raw = os.waitstatus_to_exitcode(status)\n            handle.returncode = raw\n            record.update(status=\"reaped\",wait_status=status,raw_returncode=raw,\n                          direct_child_relationship=\"reaped\",numeric_signal_authority=False)\n    except BaseException as exc:\n        if isinstance(exc,(ChildProcessError,ChildRelationshipError)) or (\n                isinstance(exc,OSError) and exc.errno == errno.ECHILD):\n            lose_relationship(record,exc)\n        raise\n    guard(until, \"exact-WNOHANG-reap/full-return\", False)\n    return pid != 0\n\n\n"
+    },
+    {
+      "file": "run_root_once.py",
+      "label": "B03 canonical positive parse separated from observed-time validation",
+      "occurrences": 1,
+      "before": "def clock_token(token):\n    now = time.monotonic_ns()\n    if type(token) is not str or not re.fullmatch(r\"[1-9][0-9]*\", token, flags=re.ASCII):\n        raise ValueError(\"Canonical positive ASCII owner-start token required\")\n    if len(token) > len(str(now)):\n        raise ValueError(\"Future/oversize owner-start token\")\n    value = int(token, 10)\n    if str(value) != token or not 0 < value <= now:\n        raise ValueError(\"Future/noncanonical owner-start token\")\n    return value",
+      "after": "def positive_ns(value, maximum):\n    \"\"\"Canonical positive ASCII integer, bounded by its declared clock role.\"\"\"\n    if type(value) is not str or not re.fullmatch(r\"[1-9][0-9]*\",value,flags=re.ASCII):\n        raise ValueError(\"Canonical positive ASCII nanoseconds required\")\n    if len(value) > len(str(maximum)):\n        raise ValueError(\"Nanosecond value exceeds declared clock bound\")\n    result = int(value,10)\n    if str(result) != value or not 0 < result <= maximum:\n        raise ValueError(\"Nanosecond value exceeds declared clock bound\")\n    return result\n\n\ndef clock_token(token):\n    # Observed times, unlike future deadlines, must not exceed the current clock.\n    return positive_ns(token,time.monotonic_ns())"
+    },
+    {
+      "file": "run_root_once.py",
+      "label": "B02 fixed-query initial relationship and role signal authority",
+      "occurrences": 1,
+      "before": "exit=dict(status=\"not_created\", wait_status=None, raw_returncode=None),",
+      "after": "exit=dict(status=\"not_created\", wait_status=None, raw_returncode=None,\n                         direct_child_relationship=\"not_created\",numeric_signal_authority=False),"
+    },
+    {
+      "file": "run_root_once.py",
+      "label": "B02 fixed-query constructor attempt stays unknown until returned",
+      "occurrences": 1,
+      "before": "        row[\"exit\"][\"status\"] = \"unknown\"\n",
+      "after": "        row[\"exit\"].update(status=\"unknown\",direct_child_relationship=\"unknown\",numeric_signal_authority=False)\n"
+    },
+    {
+      "file": "run_root_once.py",
+      "label": "B02 fixed-query returned handle grants only its direct-PID role",
+      "occurrences": 1,
+      "before": "        row[\"exit\"][\"status\"] = \"unreaped\"\n",
+      "after": "        row[\"exit\"].update(status=\"unreaped\",direct_child_relationship=\"retained_unreaped\",numeric_signal_authority=True)\n"
+    },
+    {
+      "file": "run_root_once.py",
+      "label": "B02 query cleanup requires positive retained relationship",
+      "occurrences": 1,
+      "before": "        if handle is not None and row[\"exit\"][\"status\"] != \"reaped\":\n",
+      "after": "        if handle is not None and can_signal(row[\"exit\"]):\n"
+    },
+    {
+      "file": "run_root_once.py",
+      "label": "B02 query signal seam checks the permanent per-handle barrier",
+      "occurrences": 1,
+      "before": "                    os.kill(handle.pid, signal.SIGKILL)\n",
+      "after": "                    if not can_signal(row[\"exit\"]):\n                        raise ChildRelationshipError(\"Query relationship lost before own-PID KILL\")\n                    os.kill(handle.pid, signal.SIGKILL)\n"
+    },
+    {
+      "file": "run_root_once.py",
+      "label": "B02 lost/unknown query cleanup is explicitly skipped without a numeric wait",
+      "occurrences": 1,
+      "before": "        close_streams = streams + ([handle.stdout, handle.stderr] if handle is not None else [])\n",
+      "after": "        if handle is not None and row[\"exit\"][\"status\"] != \"reaped\" and not retained_unreaped(row[\"exit\"]):\n            row[\"cleanup_signal_and_wait_skipped\"] = \"Lost or unknown direct-child relationship; no numeric authority\"\n        close_streams = streams + ([handle.stdout, handle.stderr] if handle is not None else [])\n"
+    },
+    {
+      "file": "run_native_capture.py",
+      "label": "B02 explicit errno dependency after original early timestamp",
+      "occurrences": 1,
+      "before": "START_NS = time.monotonic_ns()\n",
+      "after": "START_NS = time.monotonic_ns()\nimport errno\n"
+    },
+    {
+      "file": "run_native_capture.py",
+      "label": "B02 per-handle closed relationship helpers",
+      "occurrences": 1,
+      "before": "_RETAINED = []\n",
+      "after": "class ChildRelationshipError(ValueError):\n    \"\"\"An exact wait returned an untrustworthy direct-child relationship.\"\"\"\n\n\ndef retained_unreaped(record):\n    return (record.get(\"status\") == \"unreaped\"\n            and record.get(\"direct_child_relationship\") == \"retained_unreaped\")\n\n\ndef can_signal(record):\n    return retained_unreaped(record) and record.get(\"numeric_signal_authority\") is True\n\n\ndef lose_relationship(record, exc):\n    # Permanent per-handle barrier; no later numeric query/wait restores ownership.\n    record.update(status=\"unknown\",direct_child_relationship=\"lost\",\n                  numeric_signal_authority=False)\n    if record.get(\"relationship_error\") is None:\n        record[\"relationship_error\"] = note_error(exc,\"lost-direct-child-relationship\")\n\n\n_RETAINED = []\n"
+    },
+    {
+      "file": "run_native_capture.py",
+      "label": "B02 exact wait preserves terminal result and permanently latches ECHILD",
+      "occurrences": 1,
+      "before": "def exact_reap(handle, record, until):\n    # A consumed exact terminal status is the sole recorded reap for this handle.\n    if record[\"status\"] == \"reaped\":\n        return True\n    guard(until, \"exact-WNOHANG-reap\", False)\n    pid, status = os.waitpid(handle.pid, os.WNOHANG)\n    if pid:\n        if pid != handle.pid or not (os.WIFEXITED(status) or os.WIFSIGNALED(status)):\n            raise ValueError(\"Unexpected exact terminal wait status\")\n        raw = os.waitstatus_to_exitcode(status)\n        handle.returncode = raw\n        record.update(status=\"reaped\", wait_status=status, raw_returncode=raw)\n    # Preserve a consumed status even when the syscall itself returned late.\n    guard(until, \"exact-WNOHANG-reap/full-return\", False)\n    return pid != 0\n\n\n",
+      "after": "def exact_reap(handle, record, until):\n    # A consumed terminal status is stored before the full-return deadline check.\n    if record.get(\"direct_child_relationship\") == \"lost\":\n        raise ChildRelationshipError(\"Lost relationship; no numeric wait or signal authority\")\n    if record[\"status\"] == \"reaped\":\n        return True\n    if not retained_unreaped(record):\n        raise ChildRelationshipError(\"Unknown direct-child relationship; no numeric wait\")\n    guard(until, \"exact-WNOHANG-reap\", False)\n    try:\n        pid, status = os.waitpid(handle.pid, os.WNOHANG)\n        if pid:\n            if pid != handle.pid or not (os.WIFEXITED(status) or os.WIFSIGNALED(status)):\n                raise ChildRelationshipError(\"Unexpected exact terminal wait status\")\n            raw = os.waitstatus_to_exitcode(status)\n            handle.returncode = raw\n            record.update(status=\"reaped\",wait_status=status,raw_returncode=raw,\n                          direct_child_relationship=\"reaped\",numeric_signal_authority=False)\n    except BaseException as exc:\n        if isinstance(exc,(ChildProcessError,ChildRelationshipError)) or (\n                isinstance(exc,OSError) and exc.errno == errno.ECHILD):\n            lose_relationship(record,exc)\n        raise\n    guard(until, \"exact-WNOHANG-reap/full-return\", False)\n    return pid != 0\n\n\n"
+    },
+    {
+      "file": "run_native_capture.py",
+      "label": "B03 canonical positive parse separated from observed-time validation",
+      "occurrences": 1,
+      "before": "def clock_token(token):\n    now = time.monotonic_ns()\n    if type(token) is not str or not re.fullmatch(r\"[1-9][0-9]*\", token, flags=re.ASCII):\n        raise ValueError(\"Canonical positive ASCII owner-start token required\")\n    if len(token) > len(str(now)):\n        raise ValueError(\"Future/oversize owner-start token\")\n    value = int(token, 10)\n    if str(value) != token or not 0 < value <= now:\n        raise ValueError(\"Future/noncanonical owner-start token\")\n    return value",
+      "after": "def positive_ns(value, maximum):\n    \"\"\"Canonical positive ASCII integer, bounded by its declared clock role.\"\"\"\n    if type(value) is not str or not re.fullmatch(r\"[1-9][0-9]*\",value,flags=re.ASCII):\n        raise ValueError(\"Canonical positive ASCII nanoseconds required\")\n    if len(value) > len(str(maximum)):\n        raise ValueError(\"Nanosecond value exceeds declared clock bound\")\n    result = int(value,10)\n    if str(result) != value or not 0 < result <= maximum:\n        raise ValueError(\"Nanosecond value exceeds declared clock bound\")\n    return result\n\n\ndef clock_token(token):\n    # Observed times, unlike future deadlines, must not exceed the current clock.\n    return positive_ns(token,time.monotonic_ns())"
+    },
+    {
+      "file": "run_native_capture.py",
+      "label": "B02 fixed-query initial relationship and role signal authority",
+      "occurrences": 1,
+      "before": "exit=dict(status=\"not_created\", wait_status=None, raw_returncode=None),",
+      "after": "exit=dict(status=\"not_created\", wait_status=None, raw_returncode=None,\n                         direct_child_relationship=\"not_created\",numeric_signal_authority=False),"
+    },
+    {
+      "file": "run_native_capture.py",
+      "label": "B02 fixed-query constructor attempt stays unknown until returned",
+      "occurrences": 1,
+      "before": "        row[\"exit\"][\"status\"] = \"unknown\"\n",
+      "after": "        row[\"exit\"].update(status=\"unknown\",direct_child_relationship=\"unknown\",numeric_signal_authority=False)\n"
+    },
+    {
+      "file": "run_native_capture.py",
+      "label": "B02 fixed-query returned handle grants only its direct-PID role",
+      "occurrences": 1,
+      "before": "        row[\"exit\"][\"status\"] = \"unreaped\"\n",
+      "after": "        row[\"exit\"].update(status=\"unreaped\",direct_child_relationship=\"retained_unreaped\",numeric_signal_authority=True)\n"
+    },
+    {
+      "file": "run_native_capture.py",
+      "label": "B02 query cleanup requires positive retained relationship",
+      "occurrences": 1,
+      "before": "        if handle is not None and row[\"exit\"][\"status\"] != \"reaped\":\n",
+      "after": "        if handle is not None and can_signal(row[\"exit\"]):\n"
+    },
+    {
+      "file": "run_native_capture.py",
+      "label": "B02 query signal seam checks the permanent per-handle barrier",
+      "occurrences": 1,
+      "before": "                    os.kill(handle.pid, signal.SIGKILL)\n",
+      "after": "                    if not can_signal(row[\"exit\"]):\n                        raise ChildRelationshipError(\"Query relationship lost before own-PID KILL\")\n                    os.kill(handle.pid, signal.SIGKILL)\n"
+    },
+    {
+      "file": "run_native_capture.py",
+      "label": "B02 lost/unknown query cleanup is explicitly skipped without a numeric wait",
+      "occurrences": 1,
+      "before": "        close_streams = streams + ([handle.stdout, handle.stderr] if handle is not None else [])\n",
+      "after": "        if handle is not None and row[\"exit\"][\"status\"] != \"reaped\" and not retained_unreaped(row[\"exit\"]):\n            row[\"cleanup_signal_and_wait_skipped\"] = \"Lost or unknown direct-child relationship; no numeric authority\"\n        close_streams = streams + ([handle.stdout, handle.stderr] if handle is not None else [])\n"
+    },
+    {
+      "file": "run_root_once.py",
+      "label": "Source preparation namespace only; P004/O004/D004 unchanged",
+      "occurrences": 1,
+      "before": "S = E/\"cp1-oneway-cooling-release-richardson2-observer004-native-measurement-prep-004\"",
+      "after": "S = E/\"cp1-oneway-cooling-release-richardson2-observer004-native-measurement-prep-005\""
+    },
+    {
+      "file": "stopped_exec_wrapper.py",
+      "label": "Source preparation namespace only; P004/D004 unchanged",
+      "occurrences": 1,
+      "before": "S = E/\"cp1-oneway-cooling-release-richardson2-observer004-native-measurement-prep-004\"",
+      "after": "S = E/\"cp1-oneway-cooling-release-richardson2-observer004-native-measurement-prep-005\""
+    },
+    {
+      "file": "run_root_once.py",
+      "label": "B01 observe already-default SIGCHLD; never reset",
+      "occurrences": 1,
+      "before": "    previous_chld = signal.signal(signal.SIGCHLD,signal.SIG_DFL)",
+      "after": "    previous_chld = signal.getsignal(signal.SIGCHLD)"
+    },
+    {
+      "file": "run_root_once.py",
+      "label": "B01 require default before any owned construction",
+      "occurrences": 1,
+      "before": "    try:\n        require(len(sys.argv)",
+      "after": "    try:\n        require(previous_chld == signal.SIG_DFL,\"Already-default SIGCHLD required; no reset\")\n        require(len(sys.argv)"
+    },
+    {
+      "file": "run_native_capture.py",
+      "label": "B01 observe already-default SIGCHLD; never reset",
+      "occurrences": 1,
+      "before": "    old_chld = signal.signal(signal.SIGCHLD, signal.SIG_DFL)",
+      "after": "    old_chld = signal.getsignal(signal.SIGCHLD)"
+    },
+    {
+      "file": "run_native_capture.py",
+      "label": "B01 require default before any owned construction",
+      "occurrences": 1,
+      "before": "    try:\n        c, output, auth, _EXTERNAL",
+      "after": "    try:\n        need(old_chld == signal.SIG_DFL,\"Already-default SIGCHLD required; no reset\")\n        c, output, auth, _EXTERNAL"
+    },
+    {
+      "file": "run_native_capture.py",
+      "label": "B01 no unsupported SIGCHLD restore",
+      "occurrences": 1,
+      "before": "        signal.signal(signal.SIGCHLD,old_chld)\n",
+      "after": "        # SIGCHLD was required already default; do not reset or restore it.\n"
+    },
+    {
+      "file": "run_root_once.py",
+      "label": "B02 leader initial relationship has no numeric authority",
+      "occurrences": 1,
+      "before": "leader_reap=dict(status=\"not_created\",wait_status=None,raw_returncode=None),",
+      "after": "leader_reap=dict(status=\"not_created\",wait_status=None,raw_returncode=None,\n            direct_child_relationship=\"not_created\",numeric_signal_authority=False),"
+    },
+    {
+      "file": "run_root_once.py",
+      "label": "B02 leader constructor attempt remains relationship-unknown",
+      "occurrences": 1,
+      "before": "            state[\"leader_reap\"][\"status\"] = \"unknown\"",
+      "after": "            state[\"leader_reap\"].update(status=\"unknown\",direct_child_relationship=\"unknown\",numeric_signal_authority=False)"
+    },
+    {
+      "file": "run_root_once.py",
+      "label": "B02 returned leader grants only positively retained relationship",
+      "occurrences": 1,
+      "before": "            state[\"leader_reap\"][\"status\"] = \"unreaped\"",
+      "after": "            state[\"leader_reap\"].update(status=\"unreaped\",direct_child_relationship=\"retained_unreaped\",numeric_signal_authority=True)"
+    },
+    {
+      "file": "run_native_capture.py",
+      "label": "B02 native relationship initial state; native signals remain forbidden",
+      "occurrences": 1,
+      "before": "exit=dict(status=\"not_created\", wait_status=None, raw_returncode=None))",
+      "after": "exit=dict(status=\"not_created\", wait_status=None, raw_returncode=None,\n                            direct_child_relationship=\"not_created\",numeric_signal_authority=False))"
+    },
+    {
+      "file": "run_native_capture.py",
+      "label": "B02 native constructor unknown; no signal authority",
+      "occurrences": 1,
+      "before": "            native[\"exit\"][\"status\"] = \"unknown\"",
+      "after": "            native[\"exit\"].update(status=\"unknown\",direct_child_relationship=\"unknown\",numeric_signal_authority=False)"
+    },
+    {
+      "file": "run_native_capture.py",
+      "label": "B02 returned native relationship permits exact reap only",
+      "occurrences": 1,
+      "before": "            native[\"exit\"][\"status\"] = \"unreaped\"",
+      "after": "            native[\"exit\"].update(status=\"unreaped\",direct_child_relationship=\"retained_unreaped\",numeric_signal_authority=False)"
+    },
+    {
+      "file": "run_native_capture.py",
+      "label": "B02 no refusal wait after lost native relationship",
+      "occurrences": 1,
+      "before": "        if handle is not None and native[\"exit\"][\"status\"] != \"reaped\":",
+      "after": "        if handle is not None and retained_unreaped(native[\"exit\"]):"
+    },
+    {
+      "file": "run_root_once.py",
+      "label": "B02 TERM decision refuses lost/unknown anchor before numeric authority",
+      "occurrences": 1,
+      "before": "        if state[\"TERM_decided\"] or state[\"further_group_signals_closed\"]:\n",
+      "after": "        if handle is not None and not can_signal(state[\"leader_reap\"]):\n            state[\"further_group_signals_closed\"] = True\n            raise ChildRelationshipError(\"Lost/unknown leader; no TERM authority\")\n        if state[\"TERM_decided\"] or state[\"further_group_signals_closed\"]:\n"
+    },
+    {
+      "file": "run_root_once.py",
+      "label": "B02 TERM scoped requirement uses positive retained ownership",
+      "occurrences": 1,
+      "before": "and state[\"continuation_attempted\"] and state[\"leader_reap\"][\"status\"] != \"reaped\",",
+      "after": "and state[\"continuation_attempted\"] and can_signal(state[\"leader_reap\"]),"
+    },
+    {
+      "file": "run_root_once.py",
+      "label": "B02 TERM syscall seam checks closed signal state",
+      "occurrences": 1,
+      "before": "            os.killpg(handle.pid,signal.SIGTERM)",
+      "after": "            require(can_signal(state[\"leader_reap\"]) and not state[\"further_group_signals_closed\"],\n                    \"Closed leader relationship before TERM\")\n            os.killpg(handle.pid,signal.SIGTERM)"
+    },
+    {
+      "file": "run_root_once.py",
+      "label": "B02 cleanup closes all leader numeric authority when relationship unavailable",
+      "occurrences": 1,
+      "before": "        if handle is None or state[\"leader_reap\"][\"status\"] == \"reaped\":\n            return\n",
+      "after": "        if handle is None or state[\"leader_reap\"][\"status\"] == \"reaped\":\n            return\n        if not can_signal(state[\"leader_reap\"]):\n            state[\"further_group_signals_closed\"] = True\n            raise ChildRelationshipError(\"Lost/unknown leader; no numeric cleanup or wait\")\n"
+    },
+    {
+      "file": "run_root_once.py",
+      "label": "B02 preCONT own-PID KILL seam checks retained relationship",
+      "occurrences": 1,
+      "before": "                    os.kill(handle.pid,signal.SIGKILL)",
+      "after": "                    require(can_signal(state[\"leader_reap\"]),\"Closed direct relationship before preCONT KILL\")\n                    os.kill(handle.pid,signal.SIGKILL)"
+    },
+    {
+      "file": "run_root_once.py",
+      "label": "B02 group KILL seam checks retained relationship and closed signal state",
+      "occurrences": 1,
+      "before": "                os.killpg(handle.pid,signal.SIGKILL)",
+      "after": "                require(can_signal(state[\"leader_reap\"]) and not state[\"further_group_signals_closed\"],\n                        \"Closed leader relationship before group KILL\")\n                os.killpg(handle.pid,signal.SIGKILL)"
+    },
+    {
+      "file": "run_root_once.py",
+      "label": "B02 CONT seam never restores lost relationship",
+      "occurrences": 1,
+      "before": "            state[\"continuation_attempted\"] = True\n",
+      "after": "            if not can_signal(state[\"leader_reap\"]):\n                state[\"further_group_signals_closed\"] = True\n                raise ChildRelationshipError(\"Lost/unknown relationship before CONT\")\n            state[\"continuation_attempted\"] = True\n"
+    },
+    {
+      "file": "run_root_once.py",
+      "label": "B02 stopped handshake latches ECHILD/untrustworthy relation before cleanup",
+      "occurrences": 1,
+      "before": "                pid,status = os.waitpid(handle.pid,os.WUNTRACED|os.WNOHANG)\n                if pid:\n                    if pid != handle.pid:\n                        raise ValueError(\"Wrong direct-child wait status\")\n                    if os.WIFEXITED(status) or os.WIFSIGNALED(status):\n                        raw = os.waitstatus_to_exitcode(status)\n                        handle.returncode = raw\n                        state[\"leader_reap\"].update(status=\"reaped\",wait_status=status,raw_returncode=raw)\n                        state[\"further_group_signals_closed\"] = True\n                        raise ValueError(\"Early actual terminal reap before wrapper certification\")\n                    guard(handshake_until,\"stopped-status/full-return\")\n                    require(os.WIFSTOPPED(status) and os.WSTOPSIG(status) == signal.SIGSTOP,\n                            \"Exact stopped-before-exec handshake required\")\n                    break",
+      "after": "                try:\n                    if not retained_unreaped(state[\"leader_reap\"]):\n                        raise ChildRelationshipError(\"Unknown relationship before stopped wait\")\n                    pid,status = os.waitpid(handle.pid,os.WUNTRACED|os.WNOHANG)\n                    if pid:\n                        if pid != handle.pid:\n                            raise ChildRelationshipError(\"Wrong direct-child wait status\")\n                        if os.WIFEXITED(status) or os.WIFSIGNALED(status):\n                            raw = os.waitstatus_to_exitcode(status)\n                            handle.returncode = raw\n                            state[\"leader_reap\"].update(status=\"reaped\",wait_status=status,raw_returncode=raw,\n                                direct_child_relationship=\"reaped\",numeric_signal_authority=False)\n                            state[\"further_group_signals_closed\"] = True\n                            raise ValueError(\"Early actual terminal reap before wrapper certification\")\n                        if not os.WIFSTOPPED(status):\n                            raise ChildRelationshipError(\"Untrustworthy stopped-wait status\")\n                except BaseException as exc:\n                    if isinstance(exc,(ChildProcessError,ChildRelationshipError)) or (\n                            isinstance(exc,OSError) and exc.errno == errno.ECHILD):\n                        lose_relationship(state[\"leader_reap\"],exc)\n                        state[\"further_group_signals_closed\"] = True\n                    raise\n                if pid:\n                    guard(handshake_until,\"stopped-status/full-return\")\n                    require(os.WSTOPSIG(status) == signal.SIGSTOP,\n                            \"Exact stopped-before-exec handshake required\")\n                    break"
+    },
+    {
+      "file": "run_root_once.py",
+      "label": "B02 absence only follows a confirmed actual terminal reap",
+      "occurrences": 1,
+      "before": "        if handle is not None and state[\"leader_reap\"][\"status\"] == \"reaped\":",
+      "after": "        if (handle is not None and state[\"leader_reap\"][\"status\"] == \"reaped\"\n                and state[\"leader_reap\"][\"direct_child_relationship\"] == \"reaped\"\n                and state[\"leader_reap\"][\"wait_status\"] is not None):"
+    },
+    {
+      "file": "run_root_once.py",
+      "label": "B03 observed fields stay <=now; future normal deadline uses its fixed role bound",
+      "occurrences": 1,
+      "before": "        if stamp is not None:\n            clock_token(stamp)",
+      "after": "        if stamp is not None:\n            if key == \"normal_until_ns\":\n                positive_ns(stamp,START_NS+95_000_000_000)\n            else:\n                clock_token(stamp)"
+    },
+    {
+      "file": "run_root_once.py",
+      "label": "B04 explicit postwrite snapshot storage",
+      "occurrences": 1,
+      "before": "    after = {}\n",
+      "after": "    after = {}\n    postwrite = {}\n"
+    },
+    {
+      "file": "run_root_once.py",
+      "label": "B04 same finite identity set after immutable receipt save",
+      "occurrences": 1,
+      "before": "                write_full(ROOT_EXECUTION/\"closed-result.json\",data)\n                budgets(_EXTERNAL,_BASELINE)",
+      "after": "                write_full(ROOT_EXECUTION/\"closed-result.json\",data)\n                require(auth is not None and actual is not None and bool(before),\n                        \"Postwrite finite identity set unavailable\")\n                postwrite = dict(authorization=capture(lambda:rec(ROOT_EXECUTION/\"authorization.json\")),\n                    direct=capture(lambda:direct_map(auth)),\n                    staged_inputs=capture(lambda:{name:rec(OUTPUT/name) for name in actual[\"staged_inputs\"]}),\n                    inputs=capture(lambda:input_map(actual)),runtime=capture(lambda:runtime_map(actual)),\n                    selected_host_records=capture(lambda:check(actual[\"expected_host_records\"])),\n                    provider_paths=capture(lambda:provider_links(actual[\"expected_provider_paths\"])),\n                    python=capture(lambda:python_record(actual)))\n                if not (set(before) == set(postwrite) and all(postwrite[key][\"error\"] is None\n                        and postwrite[key][\"observed\"] == value for key,value in before.items())):\n                    raise ValueError(\"Postwrite finite identities refused; prefinal receipt unchanged: \"+repr(postwrite))\n                guard(label=\"postwrite-finite-identity-full-return\",honor_stop=False)\n                budgets(_EXTERNAL,_BASELINE)"
+    }
+  ],
+  "projection_uses_full_file_text_including_terminal_LF": true,
+  "target_or_fragment_execution": false
+}

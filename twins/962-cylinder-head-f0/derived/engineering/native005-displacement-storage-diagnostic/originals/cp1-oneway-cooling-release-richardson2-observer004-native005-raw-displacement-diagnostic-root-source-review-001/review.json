@@ -1,0 +1,23 @@
+{
+  "schema": "962-raw-displacement-diagnostic-root-source-review/v1",
+  "decision": "HOLD_001_UNDEFINED_PARSER_NAMES_GLOBAL",
+  "source": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native005-raw-displacement-diagnostic-prep-001/diagnose_raw_displacements.py",
+    "sha256": "f47ebb2794cf126cbd6f2e5ecdedd55724590fdfeaab865ffb5b183a5660d784",
+    "bytes": 15152
+  },
+  "finding": {
+    "id": "R01",
+    "line": 45,
+    "symbol": "NAMES",
+    "source_fact": "The adapted standalone function references NAMES[slot], but the new module has no binding. Original parser.validate_map resolved this name in its own module. A valid map reaches NameError.",
+    "independent_discovery": "Root and material source peer independently identified this via source text/AST; no target code or scientific body was executed."
+  },
+  "authorized_correction": "Separate preserved successor002: bind local NAMES=parser.NAMES in the alias header and update exact source attribution/inverse/index/METHOD only. Frozen001/parser/assessor/strictcollector/POLICY unchanged.",
+  "needed_verification": "Independent source review plus one separately admitted synthetic full425x4 valid/permuted map and targeted rejection checks, before real12-body diagnostic.",
+  "source_import_compile_eval_execute": false,
+  "scientific_body_read_hash_stat_decode": false,
+  "data_intake_authorized": false,
+  "engineering_or_physical_acceptance": false,
+  "self_hash_claim": false
+}

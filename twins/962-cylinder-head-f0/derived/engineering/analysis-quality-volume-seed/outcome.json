@@ -1,0 +1,44 @@
+{
+  "schema": "962-quality-volume-seed-outcome/v1",
+  "status": "saved_raw_volume_mesh_rejected_by_actual_SICN_gate",
+  "candidate_sha256": "7f0d96988684f7d36dab8f65c5b63b1919c2c2121768cf9caec466867a5c2b43",
+  "mesh": {
+    "sha256": "7bfb96b55af3fadd81ea1409f633882f6a0249f961ef4f2a7f549a0fd2da2e67",
+    "bytes": 210476070,
+    "format": "Gmsh 4.1 binary",
+    "length_unit": "mm",
+    "nodes": 902148,
+    "tetrahedra": 3096408,
+    "explicit_source_boundary_triangles": 1804706,
+    "referenced_interior_nodes": 3
+  },
+  "actual_minimum_SICN_gate": 0.1,
+  "actual_minimum_SICN": -1.2793193015693403e-14,
+  "nonpositive_SICN_count": 2,
+  "tetrahedra_below_point1": 1478281,
+  "SICN_gate_passed": false,
+  "positive_native_Jacobians_and_volumes": true,
+  "independent_signed_volume_sum_mm3": 915458.4757034747,
+  "candidate_relative_volume_error": 0.0,
+  "direct_readback_checks": [
+    "All tagged node/tetra array hashes match native worker.",
+    "Exact candidate boundary coordinates and explicit surface connectivity.",
+    "Native quality extrema/counts for every saved tetrahedron.",
+    "Independent signed tetra volume and referenced-node mask."
+  ],
+  "native_worker_checks_retained_not_repeated_by_reader": [
+    "Actual tetra exterior oriented incidence.",
+    "Opposite orientation of every count-two internal tetra face."
+  ],
+  "qualification": {
+    "geometric_volume_gate_passed": false,
+    "mesh_convergence_established": false,
+    "thermal_resolution_established": false,
+    "engineering_accepted": false,
+    "thermal_performance_validated": false,
+    "strength_validated": false,
+    "manufacturing_authorized": false
+  },
+  "head_thermal_or_stress_result_credited": false,
+  "LPBF_result_credited": false
+}

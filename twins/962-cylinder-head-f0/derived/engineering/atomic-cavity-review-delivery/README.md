@@ -1,0 +1,17 @@
+# Atomic bore95 surface review download
+
+The [existing draft release](https://github.com/cluster2600/porscheparts/releases/tag/untagged-3dc4679a17c16edf0fb4) provides the exact numerical bore95 surface review package and its two metadata files. GitHub reports each asset uploaded with the exact expected digest and size. All 33 preceding asset records are preserved (36 total); no complete second archive download was performed. This is not a new geometry or physics run.
+
+- [962-head-atomic002-surface-review-en.zip](https://github.com/cluster2600/porscheparts/releases/download/untagged-3dc4679a17c16edf0fb4/962-head-atomic002-surface-review-en.zip)
+- [962-head-atomic002-surface-review-en-members.json](https://github.com/cluster2600/porscheparts/releases/download/untagged-3dc4679a17c16edf0fb4/962-head-atomic002-surface-review-en-members.json)
+- [962-head-atomic002-surface-review-en-SHA256SUMS.txt](https://github.com/cluster2600/porscheparts/releases/download/untagged-3dc4679a17c16edf0fb4/962-head-atomic002-surface-review-en-SHA256SUMS.txt)
+
+The ZIP is **29,440,842 bytes**, with SHA-256 `3c5625c9adfd889db6831608e33385e208f5addba889076695c0628fc150b9d7` and **143 unique members**. The external [member manifest](archive-members.json) records every member's size, SHA-256, CRC32 and compressed byte count; it is not embedded in the ZIP. [SHA256SUMS](SHA256SUMS.txt) supplies the archive digest.
+
+The exact [package review at build time](package-review-at-build.json) says independent ZIP readback pending and upload false. Those fields remain immutable packaging-time observations. The later [completed archive peer review](reviews/completed-archive-peer-review.json) verifies every fully decompressed member byte against its frozen source, all CRC32/digests, safe closure and all five nested capsule seals. The separate [publication readback](publication-readback.json) records the later uploaded assets; no pending build field is rewritten to claim it.
+
+The archive includes canonical BIN, coordinate-origin map and lossless binary64 PLY, plus five separately scoped evidence capsules and exact sources. Candidate counts are 901,727 vertices and 1,803,870 oriented triangles. [PLY export](format/PLY-export.json) remains an at-export pending snapshot; [independent full readback](format/PLY-independent-readback.json) later verifies every coordinate byte, ordered face and bound. The [exact bundle README](bundle-README-002.md) explains millimetre import and standard PLY's lack of unit metadata. Disable automatic welding, simplification or repair when reviewing correspondence. Source001 was preserved but never compiled; source002 is the actual compiled helper.
+
+This capsule repeats only compact delivery records; it contains no geometry, runtime binaries, raw machine metadata or third-party API. Its source snapshots are for inspection and expect their original separately retained lookup structure. Running `python3 -B verify.py` checks sealed bytes and closure only. It does not import a scientific module, reopen or rebuild the archive, replay format conversion or confer engineering acceptance.
+
+The surface passes triangle-level local/global and limited disk/opening screens in its separate evidence. There is no accepted tetrahedral mesh, head thermal/strength solution, selected qualified material, LPBF process simulation, Omniverse solver field, PhysicsNeMo dataset, complete OEM interface map or manufacturing release. Publication preserves those limits.

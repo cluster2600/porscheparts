@@ -1,0 +1,45 @@
+{
+  "schema": "962-row-first-mock10-exact-control-source-peer/v1",
+  "decision": "PASS_HELD_EXACT_CONTROL_SOURCE_ONLY_SEPARATE_ROOT_ADMISSION_REQUIRED",
+  "blocker_count": 0,
+  "owner": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-row-first-mock-guards-execution-prep-001/run_root_once.py",
+    "sha256": "bd86647db9f11bcf098a034094a722fa0972c9f3fb393fe6684c915bfffc71e3",
+    "bytes": 15061
+  },
+  "actual": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-row-first-mock-guards-execution-prep-001/actual-contract.json",
+    "sha256": "b8ff2b628dc90e4797daca2ccb33ceb23d515337042de2b6a7205bca0e0d4e34",
+    "bytes": 20144
+  },
+  "findings": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-row-first-mock-guards-exact-child-peer-001/findings.json",
+    "sha256": "4fe79d44fe4cfcfc6bb79630a457804aaa8e19a6a2ca73f00c3a76976b0fce42",
+    "bytes": 6649
+  },
+  "bindings": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-row-first-mock-guards-exact-child-peer-001/bindings.json",
+    "sha256": "686a4982de049d8bdc645629dcc0a19e265f836b2dbca9678012a013d78fb595",
+    "bytes": 3812
+  },
+  "verified": {
+    "inverse_groups": 17,
+    "inverse_occurrences": 29,
+    "exact_helpers": 9,
+    "direct_fixture_methods": 10,
+    "protected_records": 31,
+    "historical_runtime_files": 91,
+    "historical_origins": 117,
+    "future_direct_records": 9,
+    "future_total_records": 131,
+    "whole_donor_inverse_and_full_diff_exact": true,
+    "no_site_and_fake_only_route": true
+  },
+  "known_late_source_gate": "Guard peer60625d, bindingsce3b08 and root2ed604 are now frozen source-only records available for separate admission. The held actual remains unchanged with pending roles null.",
+  "required_terminal_scope": "One admitted synthetic invocation only. Complete10 names/Ran10/finalOK, raw child/outer0, no stop/failure,131identities/91paths/OS unchanged and owned group absent. Postreceipt inner time/byte gate supplements, but does not replace, root conservative startup/preflight/fullreturn<=60s and complete receipt/outerstreams/controls<=32MiB.",
+  "lineage": "Reviewer lpbf_linear_refinement authored target3-literal correction and prior related peers; Defect authored this owner/fixture and donor control; Head independently source-reviewed fake seam. No native or causal validation claimed.",
+  "guard_or_owner_execution_authorized": false,
+  "native_retry_or_process_probe_authorized": false,
+  "physical_or_scientific_acceptance": false,
+  "PUB_or_Git_mutation": false
+}

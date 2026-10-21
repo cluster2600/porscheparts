@@ -1,0 +1,159 @@
+{
+  "schema": "962-observer004-saved-measurement-parser002-held-source/v1",
+  "status": "HELD_UNRUN_NO_DATA_OR_EXECUTION_AUTHORITY",
+  "parser_source": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-saved-measurement-parser-prep-002/parse_saved_measurement.py",
+    "sha256": "dfce01d6cd8d7618e0dee794d35a7bb0a56e34ae998facf2dd3f7b9335d4bede",
+    "bytes": 13042
+  },
+  "analytic_fixture_source": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-saved-measurement-parser-prep-002/test_parser_synthetic.py",
+    "sha256": "31eba18f4a9cf24db0e09e6fc50da9cbb3c95980371424b6a5ecea498b15ce60",
+    "bytes": 8086
+  },
+  "plan": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-saved-measurement-parser-prep-001/PLAN.md",
+    "sha256": "59cfa6277eda201b33eef76c59f2bd3f48673c3f7c6f764b979acf2776c6de76",
+    "bytes": 9185
+  },
+  "primary_sources": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-saved-measurement-parser-prep-001/primary-sources.json",
+    "sha256": "07a5e5200b3a654968228710417d813fe82c3d21455b6af6c0bd5d838a94fb08",
+    "bytes": 2316
+  },
+  "bindings": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-saved-measurement-parser-prep-002/bindings.json",
+    "sha256": "ce4f4937cb7c0a1922a2938699fe4f59b6d2bfa6f8e10d4fa56fb353281b1b9f",
+    "bytes": 4740
+  },
+  "source_functions": [
+    "need",
+    "strict_json",
+    "word_is_finite",
+    "scan_vectors",
+    "vector_words",
+    "validate_map",
+    "parse_monitor_trace",
+    "bind_stream_headers"
+  ],
+  "analytic_TestCase_count": 1,
+  "unrun_test_method_count": 11,
+  "unrun_test_methods": [
+    "test_both_integer_widths_variable_N_full_EOF_and_info",
+    "test_class_signed_length_payload_and_trailing_bytes_refused",
+    "test_duplicate_and_nonfinite_JSON_tokens_refused",
+    "test_wrong_width_endian_oversize_or_missing_info_refused",
+    "test_nonfinite_Y0_payload_and_signed_zero_are_preserved_uninterpreted",
+    "test_map_has_actual_permuted_full_global_range_and_expected_six_labels",
+    "test_map_missing_range_mask_coordinates_scaling_and_time_refused",
+    "test_map_duplicate_index_and_absent_physical_DOF_refused",
+    "test_full_trace_gives_conditional_ordinals_not_times",
+    "test_missing_extra_or_unrecognized_trace_monitor_refused",
+    "test_header_join_keeps_earlier_N_independent_of_END181"
+  ],
+  "parser_scope": [
+    "pure complete standard Vec byte framing",
+    "full actual observer map/internal range and separately supplied expected-word comparison",
+    "strict complete0/1/time trace",
+    "full stream-header to monitor-event association",
+    "exact raw-word extraction only"
+  ],
+  "unsupported_unimplemented_scope": [
+    "automatic same-run CSV/node-ID/doublet collector",
+    "automatic END181 X1-to-current-nodal-word join",
+    "rounded X1-X0 construction and independent rounding proof",
+    "Y0 interpretation",
+    "Y1 equality with rounded difference",
+    "F1 physical SI/reaction/unscaling",
+    "causal floor/mechanics/full assessor acceptance"
+  ],
+  "future_input_requirements": {
+    "own_stopped_native_actual_and_full_root_capture": true,
+    "independent_capture_acceptance": true,
+    "streams": [
+      "physical-X.petsc",
+      "physical-F.petsc",
+      "physical-Y.petsc"
+    ],
+    "info_sidecars": [
+      "physical-X.petsc.info",
+      "physical-F.petsc.info",
+      "physical-Y.petsc.info"
+    ],
+    "all_other_info_sidecars_retained_opaque": true,
+    "map": "rich2-END181-dof-map.json",
+    "complete_native_log": true,
+    "own_END181_nodal_capture_and_ID_coordinate_time_word_provenance": true
+  },
+  "bounded_source_format": {
+    "objects_per_stream_max": 364,
+    "entries_per_object_max": 1700,
+    "stream_bytes_max": 4956224,
+    "info_bytes_per_file_max": 1048576,
+    "map_bytes_max": 1048576,
+    "log_bytes_max": 33554432,
+    "byte_order": "big",
+    "integer_bytes": [
+      4,
+      8
+    ],
+    "scalar_bytes": 8,
+    "real8_requires_external_observer_runtime_precondition": true,
+    "expected_solves": 182,
+    "expected_monitors_per_solve": [
+      0,
+      1
+    ],
+    "ordinal360_361_conditional_only": true,
+    "N_of_each_object_read_independently": true
+  },
+  "future_source_peer": null,
+  "future_synthetic_guard_admission": null,
+  "future_synthetic_guard_result": null,
+  "future_stopped_capture_input_map": null,
+  "future_saved_operation_actual": null,
+  "future_saved_result": null,
+  "authorities": {
+    "source_execution_authorized": false,
+    "synthetic_execution_authorized": false,
+    "saved_data_read_execution_authorized": false,
+    "native_probe_or_solve_authorized": false,
+    "runtime_query_authorized": false,
+    "field_association_accepted": false,
+    "live_BC_accepted": false,
+    "SI_force_reaction_or_unscaling_accepted": false,
+    "causal_explanation_accepted": false,
+    "full_assessor_accepted": false,
+    "physics_material_LPBF_or_manufacturing_qualified": false,
+    "automatic_retry": false
+  },
+  "author_lineage": "head_mesh_next authored this parser/fixtures and prior affiliated engineering sources; no independent source/guard/scientific acceptance.",
+  "method": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-saved-measurement-parser-prep-002/METHOD.md",
+    "sha256": "6d48e1b54c090c033c644e3edb7a6efbc646e1b1f62fbd613558bd894d0e84db",
+    "bytes": 2837
+  },
+  "correction_reuse": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-saved-measurement-parser-prep-002/reuse-proof.json",
+    "sha256": "6b43d74923c5d825ceef7821d2c00495c0de886163e501e229df0c331494361a",
+    "bytes": 6681
+  },
+  "correction_source_diff": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-saved-measurement-parser-prep-002/source.diff",
+    "sha256": "3dee5b0348890822adc0a81c1098adf026e2a3b5bd3a078ff8d05542d658e8cf",
+    "bytes": 2279
+  },
+  "predecessor_source_peer": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-saved-measurement-parser-source-peer-001/review.json",
+    "sha256": "83d63ce8d2f21e61817e659f2afe2f050ee0394f451a7010365c8e2173f546f3",
+    "bytes": 3212
+  },
+  "failed_measurement_refusal_peer": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native-measurement-result-peer-001/review.json",
+    "sha256": "9de5ba56960f44cdf60536efcde471a1909971f168ba592fd2c3c2c72b346f88",
+    "bytes": 4772
+  },
+  "failed_measurement_remains_refused": true,
+  "failed_capture_accepted_as_parser_inputs": false,
+  "no_new_runtime_or_execution_actual": true
+}

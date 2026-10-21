@@ -1,0 +1,53 @@
+--- work/962-engineering/cp1-oneway-thermoelastic-assessor-prep-001/assess.py
++++ work/962-engineering/cp1-oneway-thermoelastic-assessor-prep-002/assess.py
+@@ -13,8 +13,8 @@
+ 
+ PREP = Path(__file__).resolve().parent
+ ROOT = PREP.parents[2]
+-CASE = ROOT / 'work/962-engineering/cp1-oneway-thermoelastic-transfer-prep-001'
+-OUTPUT = 'work/962-engineering/cp1-oneway-thermoelastic-assessment-001'
++CASE = ROOT / 'work/962-engineering/cp1-oneway-thermoelastic-transfer-prep-002'
++OUTPUT = 'work/962-engineering/cp1-oneway-thermoelastic-assessment-002'
+ DISP = ('disp_x', 'disp_y', 'disp_z')
+ FORCE = ('rx', 'ry', 'rz')
+ TENSORS = ('stress', 'elastic_strain', 'mechanical_strain', 'total_strain', 'thermal_eigenstrain')
+@@ -415,7 +415,7 @@
+         need(sha(contract_path) == digest, 'Assessment actual drift')
+     checked()
+     policy = json.loads((PREP / 'POLICY.json').read_text())['absolute_SI_limits']
+-    need(c.get('native_directory') == 'work/962-engineering/cp1-oneway-thermoelastic-transfer-001', 'Only the fixed future native coupon may be assessed')
++    need(c.get('native_directory') == 'work/962-engineering/cp1-oneway-thermoelastic-transfer-002', 'Only the fixed future native coupon may be assessed')
+     native = ROOT / c['native_directory']; receipt = json.loads((native / 'native-execution.json').read_text())
+     need(receipt.get('native_execution_completed') is True and receipt.get('returncode') == 0 and receipt.get('inputs_unchanged') is True and receipt.get('binary_and_runtime_unchanged') is True, 'Stopped completed immutable native receipt required')
+     need(receipt.get('process_reaped') is True and receipt.get('physics_contract_sha256') == sha(CASE / 'case-contract.json')
+--- work/962-engineering/cp1-oneway-thermoelastic-assessor-prep-001/selfcheck.py
++++ work/962-engineering/cp1-oneway-thermoelastic-assessor-prep-002/selfcheck.py
+@@ -9,7 +9,7 @@
+ import unittest
+ 
+ SOURCE = Path(__file__).with_name('assess.py')
+-SOURCE_SHA = '7f2d5fbb873ed82df80d133314edc98cf57aa353057d8b9db08ea92358657af1'
++SOURCE_SHA = '6dfb8aaa2be8575eaf99c5e49a5f28e345cd12a185e22d5aab5467b632509d03'
+ assert hashlib.sha256(SOURCE.read_bytes()).hexdigest() == SOURCE_SHA
+ spec = importlib.util.spec_from_file_location('fixed_coupon_assessor_guard', SOURCE)
+ a = importlib.util.module_from_spec(spec)
+--- work/962-engineering/cp1-oneway-thermoelastic-assessor-prep-001/METHOD.md
++++ work/962-engineering/cp1-oneway-thermoelastic-assessor-prep-002/METHOD.md
+@@ -1,3 +1,17 @@
++# Binding-only assessor successor002, HELD and UNRUN
++
++This successor changes only CASE to the separately frozen explicit-IC source002, native_directory to the fresh transfer-002 output, OUTPUT to assessment-002, and the guard SOURCE_SHA. All20 mathematical/decoder/saved-field helper functions, all seven manufactured test methods, POLICY.json and primary-sources.json are exact from source001. The assess wrapper differs only in its fixed native_directory string; its completion, inventory, ID-family, runtime, policy and false-qualification gates remain exact. The entire code reverses byte-for-byte by those four literal substitutions.
++
++Original native001 stopped during initialization because its temperature IC scopes overlapped. Its22-file failed capture, independent peer50eca and root acceptance577bcc are immutable historical evidence. No CSV/Exodus field capture exists for001 and no assessment was run. Source002 removes the variable-wide IC and introduces old400/block2 while preserving bornBEGIN80/block3; deckcbead6d0 and physicscf56e131 are directly bound. This source adjustment does not establish runtime initialization success, reference-reset behavior, convergence or a constitutive result.
++
++The same completed transfer-inputs-001 tables/manifest and original thermal history are retained. Known data-preparation identities are distinct from the future002 native actual, complete output inventory, Exodus family, stopped peer/root acceptance and assessment actual, which remain NULL. All original assessor342 pins and current case400 identities are preserved as a finite union, with source/review/failure lineage additions;322 original thermal CSV identities are inherited metadata for this source preparation, not freshly reread bodies. The new held preparation itself is never self-pinned. Runtime258 decoder identities are selected metadata only; no runtime body/import/ABI claim is made.
++
++Author also wrote assessor001 and the independent stopped failure review; this is binding maintenance, not a new independent mathematical derivation or native result. Independent successor source review and root source/guard checks remain required. The original seven guard methods have not been rerun by this author. Any native002 trial and subsequent assessor invocation each require their own exact actual/child/root gates and immutable stopped evidence; no actual, native output or assessment output is created here. All SI limits, field roles, helper mathematics, material hypotheses and qualification flags are unchanged. Native receipt passed=false is never rewritten by the later assessor.
++
++## Preserved historical source001 method
++
++The following frozen method is retained verbatim as source001 history; its original source-phase statements do not assert a completed source002 trial.
++
+ # Fixed SI three-dimensional saved-field assessment
+ 
+ This is a held source gate for the frozen one-way thermoelastic coupon, not an execution result. The author has not imported or called this source, run its guards, converted temperature CSVs, read live native outputs, or used a scientific/native runtime. No actual contract or output exists here. The author did not author the thermoelastic deck. Earlier thermal/elastic source and publication work is disclosed as lineage, not new independent physical validation.

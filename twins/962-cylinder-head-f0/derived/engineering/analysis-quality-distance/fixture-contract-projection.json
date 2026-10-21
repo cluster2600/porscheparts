@@ -1,0 +1,45 @@
+{
+  "projection": "Public whitelisted metadata, not the byte-identical original execution contract.",
+  "original_frozen_contract_sha256": "8932578770c8ba02a61f55be1bfeacc5a5def31990ae51abe7ebb3b88c27bb36",
+  "pre_native_assessment_binding_sha256": "80caaeff6cae7e134eb298b7f8e416c879a8342242dfe262323415b9c135ce8d",
+  "original_reference_definition_sha256": "9e1a8e9da24a9b3103e86fce729d7b84afa0a06f3f4b2a83bdb1c23db166e319",
+  "kind": "fixtures",
+  "resources": {
+    "rss_stop_bytes": 4294967296,
+    "rss_poll_seconds": 0.1,
+    "process_group_deadline_seconds": 300,
+    "native_library_serial": true,
+    "thread_environment_limit": 2,
+    "hard_address_space_quota": false,
+    "OS_CPU_quota": false
+  },
+  "absolute_gap_tolerance_mm": 0.0001,
+  "unchanged_allocation_rule": "max(1,min(1e6,2000000/max(compacted_source_vertices,source_faces))) unchanged from retained run_bounded_chamfer.py",
+  "expected_analytic_mm": {
+    "asymmetric-containment-A_to_B-full": 0.0,
+    "asymmetric-containment-A_to_B-reduced": 0.0,
+    "asymmetric-containment-B_to_A-full": 1.0,
+    "asymmetric-containment-B_to_A-reduced": 1.0,
+    "shared-target-is-nearest-A_to_B-full": 0.125,
+    "shared-target-is-nearest-A_to_B-reduced": 0.125,
+    "shared-target-is-nearest-B_to_A-full": 0.125,
+    "shared-target-is-nearest-B_to_A-reduced": 0.125
+  },
+  "analytic_references": [
+    {
+      "id": "asymmetric-containment",
+      "expected_A_to_B": 0.0,
+      "expected_B_to_A": 1.0,
+      "independent_reference": "Unit right triangle contained in the double-scale triangle gives h(A,B)=0. Distance to a convex triangle is convex, maximised at a source vertex; doubled axis endpoints have distance1 to the unit triangle. Shared triangle is distant and contributes exactly0."
+    },
+    {
+      "id": "shared-target-is-nearest",
+      "expected_A_to_B": 0.125,
+      "expected_B_to_A": 0.125,
+      "independent_reference": "Both changed triangles project inside the shared z=0 triangle, at constant perpendicular distance0.125; their mutual distance0.25 would be wrong if the shared TARGET were removed."
+    }
+  ],
+  "fixture_acceptance": "Every full/reduced directed interval must contain its independently frozen analytic value, be finite nonnegative and have gap<=1e-4mm. Both corresponding intervals must overlap. Full opposite targets retain2faces; reduced sources have1face. No head query authorised by this fixture freeze.",
+  "original_controller_sha256": "ffcc6e2c04dc7826001172f5694fe42962aa7eb73851f73413899b701b6622df",
+  "source_arrays_and_access_commands_published": false
+}

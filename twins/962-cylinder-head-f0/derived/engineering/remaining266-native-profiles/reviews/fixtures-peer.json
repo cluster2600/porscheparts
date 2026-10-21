@@ -1,0 +1,180 @@
+{
+  "schema": "962-three-final-profile-fixtures-independent-actual-review/v1",
+  "status": "all_three_complete_literal_native_references_clear",
+  "phase_summary_sha256": "b22c43c804226d90c9cab9313cee19fd50e65d10d388a8a7057c4135b09424c6",
+  "child_sha256": "a9ac826da84321702fe1beb9a881043dc4ba4d6652312fc94c6f87dc11a87c76",
+  "root_result_sha256": "6214b7e61700f39a6b03946ef30cb579f3c9645fb9c0721ad7e9ee79a9b4e375",
+  "input_pins_checked": 46,
+  "all_before_after_current_pins_exact": true,
+  "all_14_artifacts_exact_closed_inventory": {
+    "frozen-execution-contract.json": {
+      "bytes": 10771,
+      "sha256": "a9ac826da84321702fe1beb9a881043dc4ba4d6652312fc94c6f87dc11a87c76"
+    },
+    "phase-summary.json": {
+      "bytes": 17445,
+      "sha256": "b22c43c804226d90c9cab9313cee19fd50e65d10d388a8a7057c4135b09424c6"
+    },
+    "probe-all-fixed.execution.json": {
+      "bytes": 12090,
+      "sha256": "6f2fcad67169e0197ce2bca798e47aa4a3509034fd31f701af07e63940dfdd1b"
+    },
+    "probe-all-fixed.native.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "probe-all-fixed/events.jsonl": {
+      "bytes": 979,
+      "sha256": "e572503fe13e9541f96552419efc1a410b67bd6429fc3b9ab0df23ba91b6dd62"
+    },
+    "probe-known-collapse.execution.json": {
+      "bytes": 12194,
+      "sha256": "fc393d9522eeaecc8ed5cbb07ca571e1e5d66211b78c455867cc19b11f04e217"
+    },
+    "probe-known-collapse.native.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "probe-known-collapse/events.jsonl": {
+      "bytes": 5674,
+      "sha256": "7aaa4740cc92dfc4da70514c90b0d0e2631ecab0cfabc7fc933d970385c75b2e"
+    },
+    "probe-ratio-obstruction.execution.json": {
+      "bytes": 12255,
+      "sha256": "2b1c7accc3052d0bf369b75023108e91e18cee100f68b708daafd018a812316c"
+    },
+    "probe-ratio-obstruction.native.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "probe-ratio-obstruction/events.jsonl": {
+      "bytes": 2830,
+      "sha256": "03ee1b323aadde0ae97f3348c8c2ef95781245d2120fed3cdd85544bad770fc6"
+    },
+    "run_finest_endpoint_metadata.py": {
+      "bytes": 5472,
+      "sha256": "a88477c47d406cea3761c324e1f6eb82dcb1c2b962698d7f328261c6cef2929b"
+    },
+    "run_finest_endpoint_preflight.py": {
+      "bytes": 18116,
+      "sha256": "b214e1cece8dbf66be6071199cbdf1a8e22a2a59328888011de17492f923c86b"
+    },
+    "run_finest_patch_phase.py": {
+      "bytes": 8199,
+      "sha256": "05390ea80e96728186ae5652356ccb5d762d4e013bc5f1a86c03faf6934154e4"
+    }
+  },
+  "cases": [
+    {
+      "case": "known-collapse",
+      "events": 28,
+      "events_sha256": "7aaa4740cc92dfc4da70514c90b0d0e2631ecab0cfabc7fc933d970385c75b2e",
+      "execution_sha256": "fc393d9522eeaecc8ed5cbb07ca571e1e5d66211b78c455867cc19b11f04e217",
+      "core_checker_result_sha256": "e63c66457c58517a52ea4092ebf7df808f89af46a1ba9d531cd3210163bdbd75",
+      "native_returncode": 0,
+      "reported_controller_wall_seconds": 6.54266483290121,
+      "quality_telemetry": [
+        {
+          "endpoint_original_id": 8,
+          "before_bad": 2,
+          "after_bad": 0,
+          "before_minimum": 2.2255998243252707e-05,
+          "after_minimum": 0.8660254037844386
+        },
+        {
+          "endpoint_original_id": 9,
+          "before_bad": 2,
+          "after_bad": 0,
+          "before_minimum": 2.2255998243252707e-05,
+          "after_minimum": 0.8660198396776346
+        }
+      ],
+      "complete_event_sequence_matches": true,
+      "oriented_pair_face_membership_and_source_body_grouping_checked": true,
+      "exact_pair_norms_checked": 12,
+      "normal_dot_classes": {
+        "positive": 4,
+        "zero": 8
+      },
+      "exact_obstruction_ratio": null,
+      "reaped_removed_noOOM": true
+    },
+    {
+      "case": "all-fixed",
+      "events": 6,
+      "events_sha256": "e572503fe13e9541f96552419efc1a410b67bd6429fc3b9ab0df23ba91b6dd62",
+      "execution_sha256": "6f2fcad67169e0197ce2bca798e47aa4a3509034fd31f701af07e63940dfdd1b",
+      "core_checker_result_sha256": "32d28dc21ba4cc21a61205efe588e9fca161a09e823107585159639bb5902e97",
+      "native_returncode": 0,
+      "reported_controller_wall_seconds": 1.330002416856587,
+      "quality_telemetry": [],
+      "complete_event_sequence_matches": true,
+      "oriented_pair_face_membership_and_source_body_grouping_checked": true,
+      "exact_pair_norms_checked": 0,
+      "normal_dot_classes": {},
+      "exact_obstruction_ratio": null,
+      "reaped_removed_noOOM": true
+    },
+    {
+      "case": "ratio-obstruction",
+      "events": 18,
+      "events_sha256": "03ee1b323aadde0ae97f3348c8c2ef95781245d2120fed3cdd85544bad770fc6",
+      "execution_sha256": "2b1c7accc3052d0bf369b75023108e91e18cee100f68b708daafd018a812316c",
+      "core_checker_result_sha256": "eb17b9b48313741f862d1600e1ad391ce7a88454c2d7d5cacb533b53f1abadcf",
+      "native_returncode": 0,
+      "reported_controller_wall_seconds": 1.363042167155072,
+      "quality_telemetry": [
+        {
+          "endpoint_original_id": 8,
+          "before_bad": 4,
+          "after_bad": 2,
+          "before_minimum": 2.2255998235903337e-05,
+          "after_minimum": 4.451199646445731e-05
+        },
+        {
+          "endpoint_original_id": 9,
+          "before_bad": 4,
+          "after_bad": 2,
+          "before_minimum": 2.2255998235903337e-05,
+          "after_minimum": 2.2255998235903337e-05
+        }
+      ],
+      "complete_event_sequence_matches": true,
+      "oriented_pair_face_membership_and_source_body_grouping_checked": true,
+      "exact_pair_norms_checked": 1,
+      "normal_dot_classes": {
+        "positive": 1
+      },
+      "exact_obstruction_ratio": "1514143744",
+      "reaped_removed_noOOM": true
+    }
+  ],
+  "total_events": 52,
+  "total_exact_pair_norms": 13,
+  "all_exact_normal_dot_classes": {
+    "positive": 5,
+    "zero": 8
+  },
+  "full_quality_values_and_complete_sequence_independently_verified_beyond_partial_checker": true,
+  "all_exact_pair_faces_match_literal_postplacement_mesh": true,
+  "known_case_four_complete_three_pair_source_loop_groups": true,
+  "ratio_case_first_fan_pair_obstruction_exact": true,
+  "actual_controls": {
+    "NanoCpus": 2000000000,
+    "Memory": 536870912,
+    "MemorySwap": 536870912,
+    "NetworkMode": "none",
+    "ReadonlyRootfs": true,
+    "Tmpfs": null
+  },
+  "three_distinct_owned_workers_all_stopped_reaped_removed": true,
+  "actual_logs_empty": true,
+  "actual_peak_RSS_or_CPU_measured": false,
+  "software_scope": "Three literal final-profile guard queries only. This verifies pass, fixed refusal and area-ratio refusal; it does not reconstruct original queue history or generalize to all CGAL inputs.",
+  "original_equals_final_inputs": true,
+  "head_query_executed": false,
+  "geometry_exported_or_changed": false,
+  "head_or_solver_admitted": false,
+  "manufacturing_authorized": false,
+  "independent_target_import_native_Docker_SSH_Git_calls": 0
+}

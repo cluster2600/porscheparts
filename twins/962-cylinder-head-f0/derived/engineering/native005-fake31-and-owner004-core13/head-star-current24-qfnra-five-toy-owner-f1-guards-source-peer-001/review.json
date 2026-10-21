@@ -1,0 +1,97 @@
+{
+  "schema": "962-F1-nine-guard-independent-source-review/v1",
+  "date": "2026-10-21",
+  "reviewer": "material_publication",
+  "decision": "ACCEPT_FOCUSED_F1_GUARD_SOURCE_ONLY_FOR_SEPARATE_EXECUTION_CONTROL_REVIEW",
+  "independence": "Reviewer did not author owner002 or the guard fixture. Static source/contract review only; no experimental/runtime qualification.",
+  "source_scope": {
+    "named_files": 6,
+    "bytes": 70430,
+    "strict_JSON_files": 3,
+    "AST_parsed_Python_files": 2,
+    "owner_read": "Whole pinned bytes hashed; seven exact selected function bodies and full main inspected. No owner import/top-level evaluation.",
+    "fixture_read": "Full fixture text/AST inspected; no import/compile/evaluation/execution.",
+    "Serena": "Manual read; worktree rejected outside active project. Bounded fixed-file text/AST fallback used."
+  },
+  "checks": [
+    {
+      "topic": "Actual main, not a copied gate",
+      "result": "PASS_SOURCE",
+      "fixture_lines": [
+        111,
+        210
+      ],
+      "detail": "Whole-source hash/size gate precedes AST parsing. Seven unmodified FunctionDef nodes are selected. Future compile/exec receives those exact nodes and a fake namespace. Final Boolean conjunctions remain solely in pinned main lines385/409. Fixture assertions observe the saved receipt and actual RC."
+    },
+    {
+      "topic": "Exact required scenarios",
+      "result": "PASS_SOURCE",
+      "fixture_lines": [
+        279,
+        315
+      ],
+      "detail": "One direct TestCase and nine direct methods: one normal, four final rec exceptions, four absent descriptors; each pair of streams/reports covered exactly. No inherited alternate suite."
+    },
+    {
+      "topic": "Late focused injection",
+      "result": "PASS_SOURCE",
+      "fixture_lines": [
+        24,
+        36
+      ],
+      "detail": "Faults activate after actual main completes both earlier empty-stream reads. Synthetic normal_reports/resource/identity providers keep earlier prerequisites positive. Each fault/missing target must be hit once."
+    },
+    {
+      "topic": "Saved report, return and error/unknown preservation",
+      "result": "PASS_SOURCE",
+      "fixture_lines": [
+        213,
+        315
+      ],
+      "detail": "Actual main RC and serialized in-memory closed-result JSON are checked. Common assertions require failure None, raw0, reaped/absent, clean cleanup/receipt, unchanged controls, valid synthetic RSS and exact fake calls. An earlier setup failure cannot satisfy refusal tests. Exceptions require exact error text and absent/null affected evidence. Missing cases require absent/null evidence without invented errors. Normal control requires RC0, complete candidate/status and all four descriptors."
+    },
+    {
+      "topic": "Fake provider completeness",
+      "result": "PASS_SOURCE",
+      "detail": "Selected process/session/group/signal/kqueue/clock/filesystem/metadata/resource/identity operations resolve to explicit in-memory facades or pure JSON serialization. No real process module, kernel API, target path/open, traceback/linecache provider or real fallback is supplied. Unexpected fake killpg/_exit raises. Twelve target builtins and selected free globals are accounted for."
+    },
+    {
+      "topic": "Finite real-operation boundary",
+      "result": "PASS_SOURCE_WITH_SCOPE_BOUNDARY",
+      "detail": "Nine explicit pinned-owner reads,32207 each/289863 total, are proposed. Fake normal-path call counts are asserted. Ordinary fixture/stdlib loading and unittest diagnostics remain separate future runtime admission; nine is not a hard total-OS-open count. No real target writes/process/API queries are introduced."
+    },
+    {
+      "topic": "Untested seams",
+      "result": "PASS_SOURCE",
+      "detail": "Admission and normal_reports acceptance are stubbed. No real adapter/helper content or sixteen-file acceptance, identities/limits/RSS/ABI, native ownership, cleanup branches, signals/kqueue, model/solver/physical semantics or elapsed bound is established. METHOD/bindings disclose these and separately require reviewed retained-anchor controls/current runtime/input admission."
+    }
+  ],
+  "concrete_source_blocker_count": 0,
+  "guard_tests_executed": 0,
+  "reviewer_preparation_observation": {
+    "initial_span_check": "Reviewer first included each FunctionDef trailing newline and its pin assertion refused before artifact writes. ast.get_source_segment without trailing newline matches all seven documented hashes/bytes. No target or fixture execution occurred.",
+    "source_changed": false
+  },
+  "authority": {
+    "fixture_or_target_execution": false,
+    "actual_admission_output_creation": false,
+    "process_API_runtime_query": false,
+    "runtime_provider_alias_scientific_body_access": false,
+    "PUB_Git_changes": false,
+    "real_head_Z3_native_execution": false,
+    "physical_manufacturing_acceptance": false
+  },
+  "next_permitted_review": "Root may review this source decision and prepare/review exact one-shot guard controls. This record authorizes no invocation. Any later admitted run must preserve complete stdout/stderr/status/timing and refusal/unknown evidence. Broader owner/adapter/runtime acceptance remains open.",
+  "artifacts": {
+    "bindings": {
+      "path": "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/head-star-current24-qfnra-five-toy-owner-f1-guards-source-peer-001/bindings.json",
+      "sha256": "05496115fee2eca30f0d518eae10827b2c309e5b36d59bc734dafac4e0d05fc9",
+      "bytes": 7048
+    },
+    "findings": {
+      "path": "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/head-star-current24-qfnra-five-toy-owner-f1-guards-source-peer-001/findings.json",
+      "sha256": "d46e3debe179a47d7a0b7c55855af019f511a553b75051ae0a990d4d9040c490",
+      "bytes": 773
+    }
+  }
+}

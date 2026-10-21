@@ -1,0 +1,72 @@
+{
+  "schema_version": "1.0.0",
+  "classification": "HYPOTHETICAL_SOFTWARE_VERIFICATION_ONLY",
+  "units": {
+    "length": "mm",
+    "stress": "MPa",
+    "force": "N",
+    "temperature": "K"
+  },
+  "bounds_mm": [
+    [
+      0,
+      0,
+      0
+    ],
+    [
+      1,
+      1,
+      20
+    ]
+  ],
+  "mesh_intervals": [
+    1,
+    1,
+    4
+  ],
+  "segment_boundary_z_mm": 10,
+  "E_MPa": 1000.0,
+  "nu": 0.0,
+  "yield_MPa": 1.0,
+  "hardening_MPa": 0.0,
+  "alpha_per_K": 1e-05,
+  "initial_T_K": 300.0,
+  "cold_T_K": 260.0,
+  "birth_time_s": 3.0,
+  "release_time_s": 5.0,
+  "times_s": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6
+  ],
+  "preload_strain": 0.003,
+  "birth_strain": 0.0025,
+  "native_binary_sha256": "c49e2c368799d80edf9ff858dd8960bd22f5430f48229ab49dcc0afd27afcc5b",
+  "native_source_revision": "167ee97da204df5e8643695e18b9b28910f0014b",
+  "tolerances": {
+    "displacement_mm": 1e-09,
+    "strain": 1e-10,
+    "stress_MPa": 1e-07,
+    "force_N": 1e-07,
+    "temperature_K": 1e-10
+  },
+  "birth_rule": "A retains all displacement and plastic/material history. B receives affine displacement ux=-.001x,uy=-.001y,uz=.0025z with shared values restored; new incremental material strain/stress/plastic history is zero. No reference reset on A.",
+  "event_order": "Each ending-time-labelled step: controls toggle internal/top axial BCs; TIMESTEP_BEGIN birth modifier group-100 reinitializes only changed B; temperature update; begin nodal sampling group100; equilibrium; end full nodal/cell fields. Birth at3, cooldown4, release5.",
+  "assumptions": [
+    "Prescribed uniform temperature, no heat equation, latent heat, annealing or physical process.",
+    "Small strain, isotropic elasticity, nu=0, perfect J2. No physical alloy.",
+    "Two equal serial segments share nodes and traction at z10; same active physics block2, logical segment identity determined by immutable z coordinate.",
+    "Support release is quasi-static boundary removal; elastic energy decrease is not a dynamic energy-conservation claim."
+  ],
+  "qualification": {
+    "whole_head_lpbf_complete": false,
+    "material_calibrated": false,
+    "process_calibrated": false,
+    "manufacturing_authorized": false
+  },
+  "tensor_sampling": "All6 symmetric components of4 tensors at every2x2x2Gauss point, via a value-only AD-to-real conversion and scalar component materials; no cell averages."
+}

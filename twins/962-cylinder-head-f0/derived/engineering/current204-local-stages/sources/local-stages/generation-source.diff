@@ -1,0 +1,286 @@
+--- work/962-engineering/fixed-shell-generation-apex1474426-prep-001/reader.py
++++ work/962-engineering/head-star-current204-local-stages-prep-001/generate_case.py
+@@ -1,12 +1,17 @@
+-"""HELD single fixed-shell apex1474426 cavity generation; no head stitching."""
++"""HELD one selected current204 fixed-shell case generation; no head stitching."""
+ from pathlib import Path
+ from fractions import Fraction
+ import ast,hashlib,importlib.util,json,math,platform,struct,sys,time
+ 
+ ROOT=Path(__file__).resolve().parents[3]
+ OUT=Path(__file__).resolve().parent
+-SHELL='work/962-engineering/direct-sicn-apex1474426-cavity-study-001/local-shell-input-001.json'
+-SHELL_SHA='6ad00be791b8b752106b5324b9f80df314f7458d8d0475b1ffc1a053bc04d12a'
++MANIFEST='work/962-engineering/head-star-current204-local-stages-prep-001/case-manifest.json'
++MANIFEST_SHA='3a558ede04cbc52c59e401befb36b8983ebd9b7f57d4266de0bea38fb1a963c5'
++BATCH='work/962-engineering/head-star-current204-batch-shells-001/report.json'
++BATCH_SHA='4f9fc0354918a907083006484d534c34c3b2621dfcc83b00cc4a4b731f009e86'
++BATCH_EVIDENCE={'work/962-engineering/head-star-current204-batch-shells-001/receipt.json': '78e215c5c85f01ca614e44e4e443fd4181086f63e2edc5d5aee81fbef77dbedb', 'work/962-engineering/head-star-current204-batch-shells-root-execution-001/closed-result.json': '67d9b2763fcd5ac887eddca79010d8a21dc6365b19f56224512acbaf7a3150e2', 'work/962-engineering/head-star-current204-batch-shells-root-execution-001/result-review.json': '5a80128a5e4dd3ea685449c1124fd1fad4c07a3bb1c586f9f80a2e26caacf913', 'work/962-engineering/head-star-current204-batch-shells-result-peer-001/review.json': '3fd325b3e4e18b942bda26d9292127d1dc1c2b8ecc5841d11257dc61884030da', 'work/962-engineering/head-star-current204-batch-shells-root-execution-001/result-peer-acceptance.json': '47a98aad883748178b7b25a1a5957ca01c0780eb0274f778567e6c5fb22fe538'}
++NV=NF=NB=APEX=None
++SHELL_SHA=VOLUME=None
+ HELPER='twins/962-cylinder-head-f0/source/mesh_head.py'
+ HELPER_SHA='69c8012e99057e384d44d6971d41f0e2cc7197a978120a7c566b0ad5a6477da5'
+ ORIENTATION='work/962-engineering/atomic-cavity-plane-clip-cap-assembly-delaunay-prep-001/mesh_assembled_delaunay.py'
+@@ -20,17 +25,72 @@
+ RUNTIME={'python':'3.10.11','numpy':'2.0.2','gmsh':'4.15.2','machine':'arm64'}
+ COUNTS={'generate':1,'createGeometry_dim3':0,'optimize_Netgen':0,
+  'rebuildElementCache':0,'write_mesh':1,'solve':0}
+-VOLUME=Fraction(1281283350616062628588199592621260646860363813,1070435769529469910793714477087121352287059968)
+ sha=lambda p:hashlib.sha256(Path(p).read_bytes()).hexdigest()
+ 
+ def save(path,value):
+  with Path(path).open('x') as stream:json.dump(value,stream,indent=2,allow_nan=False);stream.write('\n')
+ 
++def encoded(value):
++ return (json.dumps(value,indent=2,allow_nan=False)+'\n').encode()
++
++def select_case(manifest,batch,apex):
++ cases=manifest['cases_in_increasing_apex_order'];tags=[r['apex'] for r in cases]
++ if (manifest.get('schema')!='962-current204-finite-local-stage-manifest/v1' or manifest.get('selected_count')!=116
++     or tags!=sorted(set(tags)) or len(tags)!=116 or set(tags)!=set(batch['selected_apex_tags'])
++     or type(apex) is not int or apex not in tags or batch.get('source_current_positive_poor_cells')!=204
++     or batch.get('source_MSH_sha256')!=manifest['source_parent_MSH_sha256']):
++  raise ValueError('Exactly the frozen selected116 cases required; no backfill or new case')
++ original={r['apex']:r for r in batch['all_candidate_star_records']};used=set()
++ for row in cases:
++  record=original[row['apex']]
++  if (record.get('eligible') is not True or set(record['all_vertex_tags'])&used
++      or hashlib.sha256(encoded(record)).hexdigest()!=row['source_record_sha256']):
++   raise ValueError('Complete selected record identity or whole-vertex disjointness changed')
++  used.update(record['all_vertex_tags'])
++ row=cases[tags.index(apex)];record=original[apex];shell=record['shell']
++ if (hashlib.sha256(encoded(shell)).hexdigest()!=row['shell_serialized_sha256']
++     or hashlib.sha256(encoded(record['observation'])).hexdigest()!=row['observation_serialized_sha256']
++     or hashlib.sha256(encoded(record['necessary_face_screen'])).hexdigest()!=row['screen_serialized_sha256']
++     or row['old_tetrahedra']!=record['source_complete_incident_cell_count']
++     or row['old_vertex_tags']!=record['all_vertex_tags'] or row['old_tetrahedron_tags']!=record['source_tetrahedron_tags']
++     or row['old_poor_tags']!=record['poor_tetrahedron_tags']
++     or (row['shell_nodes'],row['shell_faces'])!=(shell['vertices'],shell['oriented_triangles'])
++     or row['exact_volume_mm3']!=shell['exact_enclosed_volume_mm3']
++     or row['original_boundary_shell_nodes']!=len(shell['original_source_classifications']['boundary_global_node_tags'])
++     or row['other_interior_shell_nodes']!=len(shell['original_source_classifications']['other_interior_global_node_tags'])):
++  raise ValueError('All explicit case shell/observation/screen/count/class/volume associations required')
++ return row,record
++
++def configure_case(c,stage='generation'):
++ global NV,NF,NB,APEX,VOLUME,SHELL_SHA
++ if (c.get('case_manifest')!=MANIFEST or c.get('case_manifest_sha256')!=MANIFEST_SHA
++     or c['input_hashes'].get(MANIFEST)!=MANIFEST_SHA or c['input_hashes'].get(BATCH)!=BATCH_SHA
++     or sha(ROOT/MANIFEST)!=MANIFEST_SHA or sha(ROOT/BATCH)!=BATCH_SHA):
++  raise ValueError('Frozen finite manifest and complete batch report must be direct current pins')
++ case,record=select_case(json.loads((ROOT/MANIFEST).read_text()),json.loads((ROOT/BATCH).read_text()),c.get('case_apex'))
++ if (c.get('case_key')!=case['case_key'] or c.get('case_record_sha256')!=case['source_record_sha256']
++     or c.get('output_directory')!=case['stage_paths'][stage]):raise ValueError('Exact selected case/stage/output binding required')
++ NV,NF,NB,APEX=case['shell_nodes'],case['shell_faces'],case['original_boundary_shell_nodes'],case['apex']
++ value=case['exact_volume_mm3'];VOLUME=Fraction(value['numerator'],value['denominator']);SHELL_SHA=case['shell_serialized_sha256']
++ if type(NV) is not int or NV<4 or type(NF) is not int or NF<4 or type(NB) is not int or not 0<=NB<=NV or VOLUME<=0:
++  raise ValueError('Positive frozen shell dimensions/volume required')
++ return case,record['shell']
++
++def candidate_storage_admission(report,case):
++ return (type(report.get('referenced_interior_nodes')) is int and report['referenced_interior_nodes']>=1
++  and type(report.get('tetrahedra')) is int and report['tetrahedra']>=case['old_tetrahedra'])
++
++def case_route(procedural,quality,storage):
++ if type(procedural) is not bool or type(quality) is not bool or type(storage) is not bool:raise ValueError('Explicit terminal booleans required')
++ if not procedural:return 'stop_case'
++ if quality:return 'domain' if storage else 'hold_mapping_incompatible_no_Netgen'
++ return 'one_Netgen'
++
+ def validate_shell(points,faces):
+- if (len(points)!=32 or any(len(p)!=3 or any(not math.isfinite(float(x)) for x in p) for p in points)
+-     or len(faces)!=60 or any(len(f)!=3 or len(set(f))!=3 or any(type(t) is not int or not 1<=t<=32 for t in f) for f in faces)):
+-  raise ValueError('Exact finite thirty-two-node/sixty-triangle cavity shell required')
+- if len({struct.pack('<3d',*p) for p in points})!=32:raise ValueError('Duplicate shell coordinate bits')
++ if (len(points)!=NV or any(len(p)!=3 or any(not math.isfinite(float(x)) for x in p) for p in points)
++     or len(faces)!=NF or any(len(f)!=3 or len(set(f))!=3 or any(type(t) is not int or not 1<=t<=NV for t in f) for f in faces)):
++  raise ValueError('Exact finite selected-case shell required')
++ if len({struct.pack('<3d',*p) for p in points})!=NV:raise ValueError('Duplicate shell coordinate bits')
+  edges={};keys=set();referenced=set()
+  p=[[Fraction.from_float(float(v)) for v in row] for row in points]
+  cross=lambda a,b:[a[1]*b[2]-a[2]*b[1],a[2]*b[0]-a[0]*b[2],a[0]*b[1]-a[1]*b[0]]
+@@ -41,22 +101,22 @@
+   a,b,c=[p[t-1] for t in face]
+   if not any(cross([y-x for x,y in zip(a,b)],[y-x for x,y in zip(a,c)])):raise ValueError('Degenerate shell triangle')
+   for i in range(3):edges.setdefault(tuple(sorted((face[i],face[(i+1)%3]))),[]).append((face[i],face[(i+1)%3]))
+- if referenced!=set(range(1,33)) or any(len(v)!=2 or v[0]!=v[1][::-1] for v in edges.values()):
++ if referenced!=set(range(1,NV+1)) or any(len(v)!=2 or v[0]!=v[1][::-1] for v in edges.values()):
+   raise ValueError('Complete closed oppositely oriented shell required before meshing')
+  volume=sum((sum(x*y for x,y in zip(p[f[0]-1],cross(p[f[1]-1],p[f[2]-1])))/6 for f in faces),Fraction(0))
+  if volume!=VOLUME:raise ValueError('Exact old cavity oriented volume changed')
+- return dict(vertices=32,faces=60,edges=len(edges),exact_volume_mm3={'numerator':str(volume.numerator),'denominator':str(volume.denominator)})
++ return dict(vertices=NV,faces=NF,edges=len(edges),exact_volume_mm3={'numerator':str(volume.numerator),'denominator':str(volume.denominator)})
+ 
+ def shell_rows(data):
+- if (data.get('schema')!='962-fixed-cavity-local-shell-input/v1' or data.get('vertices')!=32
+-     or data.get('oriented_triangles')!=60 or data.get('excluded_source_apex_tag')!=1474426
++ if (data.get('schema')!='962-fixed-cavity-local-shell-input/v1' or data.get('vertices')!=NV
++     or data.get('oriented_triangles')!=NF or data.get('excluded_source_apex_tag')!=APEX
+      or data.get('apex_not_in_shell_input') is not True
+      or data.get('status')!='DATA_ONLY_HELD' or data.get('necessary_face_quality_passed') is not True
+      or data.get('generation_input_rejected_by_necessary_face_quality') is not False):raise ValueError('Specific frozen cavity identity required')
+  mapping=data['local_to_global_node_tags'];rows=data['vertex_rows'];triangles=data['oriented_triangle_rows']
+- if (len(mapping)!=32 or any(type(t) is not int or t<=0 for t in mapping) or mapping!=sorted(set(mapping))
+-     or 1474426 in mapping or data['global_to_local_node_tags']!={str(t):i+1 for i,t in enumerate(mapping)}
+-     or len(rows)!=32 or len(triangles)!=60):raise ValueError('Complete exact local/global shell mapping required')
++ if (len(mapping)!=NV or any(type(t) is not int or t<=0 for t in mapping) or mapping!=sorted(set(mapping))
++     or APEX in mapping or data['global_to_local_node_tags']!={str(t):i+1 for i,t in enumerate(mapping)}
++     or len(rows)!=NV or len(triangles)!=NF):raise ValueError('Complete exact local/global shell mapping required')
+  points=[];faces=[]
+  for i,row in enumerate(rows):
+   xyz=row['coordinates_mm']
+@@ -65,13 +125,13 @@
+       or [float(v).hex() for v in xyz]!=row['binary64_hex']
+       or struct.pack('<3d',*xyz).hex()!=row['binary64_little_endian_bytes_hex']
+       or row['prospective_cavity_fixed'] is not True
+-      or row['original_source_boundary_node'] is not (i<27)
+-      or row['original_source_classification']!=('below_dim3' if i<27 else 'dim3')):
++      or row['original_source_boundary_node'] is not (i<NB)
++      or row['original_source_classification']!=('below_dim3' if i<NB else 'dim3')):
+    raise ValueError('Exact shell coordinate bits or original classification changed')
+   points.append(xyz)
+- expected=dict(boundary_global_node_tags=mapping[:27],other_interior_global_node_tags=mapping[27:],
+-  boundary_local_node_tags=list(range(1,28)),other_interior_local_node_tags=list(range(28,33)))
+- if data['original_source_classifications']!=expected:raise ValueError('Original twenty-seven-boundary/five-interior distinction changed')
++ expected=dict(boundary_global_node_tags=mapping[:NB],other_interior_global_node_tags=mapping[NB:],
++  boundary_local_node_tags=list(range(1,NB+1)),other_interior_local_node_tags=list(range(NB+1,NV+1)))
++ if data['original_source_classifications']!=expected:raise ValueError('Original per-case boundary/interior shell distinction changed')
+  for i,row in enumerate(triangles):
+   if row['local_face_id']!=i+1 or type(row['source_owner_tetrahedron_tag']) is not int or row['source_owner_tetrahedron_tag']<=0:
+    raise ValueError('Frozen local face/old owner association changed')
+@@ -84,17 +144,19 @@
+  if (c.get('native_execution_authorized') is not True or c.get('root_and_peer_review_complete') is not True
+      or c.get('selected_runtime_review_complete') is not True or c.get('head_execution_authorized') is not False
+      or c.get('cavity_generation_authorized') is not True or c.get('stitching_authorized') is not False
+-     or c.get('native_head_application_authorized') is not False or c.get('manufacturing_authorized') is not False):
++     or c.get('native_head_application_authorized') is not False or c.get('manufacturing_authorized') is not False
++     or any(c.get(k) is not False for k in ['engineering_accepted','physics_qualified'])):
+   raise ValueError('Reviewed single specific cavity generation-only authority required')
+  if (not isinstance(c.get('output_directory'),str) or OUT.parent!=ROOT/'work/962-engineering'
+      or (ROOT/c['output_directory']).resolve()!=OUT):raise ValueError('Exact fresh actual output binding required')
+  if (c.get('options')!=OPTIONS or c.get('expected_runtime')!=RUNTIME or c.get('declared_operation_counts')!=COUNTS
+-     or c.get('automatic_retry') is not False or c.get('local_shell_input')!=SHELL
+-     or c.get('local_shell_input_sha256')!=SHELL_SHA):raise ValueError('Fixed shell, options and operation policy required')
++     or c.get('automatic_retry') is not False or c.get('case_manifest')!=MANIFEST
++     or c.get('case_manifest_sha256')!=MANIFEST_SHA):raise ValueError('Fixed shell, options and operation policy required')
+ 
+ def require_contract(c):
+  require_authority(c)
+- for name,digest in [(SHELL,SHELL_SHA),(HELPER,HELPER_SHA),(ORIENTATION,ORIENTATION_SHA),(CUBE,CUBE_SHA)]:
++ case,data=configure_case(c)
++ for name,digest in [(MANIFEST,MANIFEST_SHA),(BATCH,BATCH_SHA),(HELPER,HELPER_SHA),(ORIENTATION,ORIENTATION_SHA),(CUBE,CUBE_SHA)]+list(BATCH_EVIDENCE.items()):
+   if c['input_hashes'].get(name)!=digest:raise ValueError('Exact shell/helper must be a direct pin')
+  for name,digest in c['input_hashes'].items():
+   if Path(name).is_absolute() or not (ROOT/name).resolve().is_relative_to(ROOT):raise ValueError('Project-relative input pin required')
+@@ -105,6 +167,7 @@
+  if (sha(OUT/'reader.py')!=c['reader_sha256'] or sha(OUT/'run_readback.py')!=c['runner_sha256']
+      or sha(Path(sys.executable).resolve())!=c['runtime']['python_executable_sha256']):
+   raise ValueError('Materialized source or selected Python changed')
++ return case,data
+ 
+ def load_audit_helper(c):
+  import numpy as np
+@@ -128,32 +191,32 @@
+ def construct_shell(gmsh,helper,data):
+  points,faces,proof=shell_rows(data)
+  helper.P=helper.np.asarray(points,dtype='<f8');helper.F=helper.np.asarray(faces,dtype=helper.np.int64)
+- gmsh.model.add('fixed_shell_apex1474426_cavity')
++ gmsh.model.add('fixed_shell_current204_apex_'+str(APEX))
+  gmsh.model.addDiscreteEntity(2,1)
+- gmsh.model.mesh.addNodes(2,1,list(range(1,33)),helper.P.ravel())
+- gmsh.model.mesh.addElementsByType(1,2,list(range(1,61)),helper.F.ravel())
++ gmsh.model.mesh.addNodes(2,1,list(range(1,NV+1)),helper.P.ravel())
++ gmsh.model.mesh.addElementsByType(1,2,list(range(1,NF+1)),helper.F.ravel())
+  gmsh.model.geo.addSurfaceLoop([1],1);gmsh.model.geo.addVolume([1],1)
+  gmsh.model.geo.synchronize()
+  return proof
+ 
+ def boundary_snapshot(gmsh,helper):
+  np=helper.np;tags,xyz,_=gmsh.model.mesh.getNodes();order=np.argsort(tags)
+- tags=np.asarray(tags)[order];xyz=np.asarray(xyz).reshape(-1,3)[order];ix=np.searchsorted(tags,np.arange(1,33))
+- if np.any(ix>=len(tags)) or not np.array_equal(tags[ix],np.arange(1,33)):raise ValueError('Boundary tags missing')
++ tags=np.asarray(tags)[order];xyz=np.asarray(xyz).reshape(-1,3)[order];ix=np.searchsorted(tags,np.arange(1,NV+1))
++ if np.any(ix>=len(tags)) or not np.array_equal(tags[ix],np.arange(1,NV+1)):raise ValueError('Boundary tags missing')
+  bits=xyz[ix].astype('<f8',copy=False).tobytes()
+  if bits!=helper.P.astype('<f8',copy=False).tobytes():raise ValueError('Boundary coordinate bits changed')
+  types,element_tags,element_nodes=gmsh.model.mesh.getElements(2)
+- if list(types)!=[2] or len(element_tags[0])!=60:raise ValueError('Exactly sixty TRI3 elements required')
++ if list(types)!=[2] or len(element_tags[0])!=NF:raise ValueError('Exactly the selected case TRI3 elements required')
+  faces=sorted((int(t),helper.canonical(row)) for t,row in zip(element_tags[0],np.asarray(element_nodes[0]).reshape(-1,3)))
+  expected=sorted((i+1,helper.canonical(row)) for i,row in enumerate(helper.F))
+  if faces!=expected:raise ValueError('Tagged oriented shell triangles changed')
+  classes={}
+  for dim,entity in gmsh.model.getEntities():
+   for tag in gmsh.model.mesh.getNodes(dim,entity,False,False)[0]:
+-   if int(tag)<=32:
++   if int(tag)<=NV:
+     if int(tag) in classes:raise ValueError('Boundary node classified twice')
+     classes[int(tag)]=(dim,entity)
+- if set(classes)!=set(range(1,33)) or any(dim>=3 for dim,entity in classes.values()):raise ValueError('Boundary classification missing')
++ if set(classes)!=set(range(1,NV+1)) or any(dim>=3 for dim,entity in classes.values()):raise ValueError('Boundary classification missing')
+  return {'coordinate_bytes':bits,'tagged_oriented_triangles':faces,'classifications':sorted(classes.items())}
+ 
+ def require_boundary_same(before,after):
+@@ -186,7 +249,7 @@
+    tag=int(tag)
+    if tag in dims:raise ValueError('Node classified twice')
+    dims[tag]=dim;entities[tag]=[dim,entity]
+- if set(dims)!=set(map(int,tags)) or any(dims[n]>=3 for n in range(1,33)) or any(dims[int(n)]!=3 for n in tags if n>32):
++ if set(dims)!=set(map(int,tags)) or any(dims[n]>=3 for n in range(1,NV+1)) or any(dims[int(n)]!=3 for n in tags if n>NV):
+   raise ValueError('Complete cavity-shell/interior native classifications required')
+  source_indices=np.searchsorted(tags,helper.F)
+  exterior=helper.tetra_boundary(cells,source_indices);internal=helper.internal_face_orientation(cells)
+@@ -197,7 +260,7 @@
+  for label,values in qualities.items():check_metric_rows(values,len(et),label)
+  native_total=math.fsum(qualities['native_volume_mm3'])
+  if abs(native_total/float(VOLUME)-1)>1e-6:raise ValueError('Native volume bookkeeping bound failed')
+- report=dict(nodes=len(tags),tetrahedra=len(et),referenced_nodes=len(referenced),referenced_interior_nodes=int(np.count_nonzero(tags>32)),
++ report=dict(nodes=len(tags),tetrahedra=len(et),referenced_nodes=len(referenced),referenced_interior_nodes=int(np.count_nonzero(tags>NV)),
+   unreferenced_nodes=0,duplicate_tetrahedra=0,**exterior,**internal,
+   node_classifications=[[n,dims[n]] for n in sorted(dims)],node_entity_classifications=[[n,*entities[n]] for n in sorted(entities)],
+   node_counts_by_classification_dimension={str(d):sum(v==d for v in dims.values()) for d in range(4)},
+@@ -215,20 +278,20 @@
+  gmsh.model.mesh.generate(3)
+ 
+ def main():
+- c=json.loads((OUT/'frozen-contract.json').read_text());require_contract(c)
++ c=json.loads((OUT/'frozen-contract.json').read_text());case,data=require_contract(c)
+  if {p.name for p in OUT.iterdir()}!={'reader.py','run_readback.py','frozen-contract.json','native.log'}:
+   raise ValueError('Only fresh materialized inputs and owned native.log are permitted')
+  started=time.monotonic();gmsh=None;initialized=False;live={}
+- report=dict(schema='962-fixed-shell-generation-apex1474426/v1',status='running',stage='imports',
++ report=dict(next_stage='stop_case',later_head_storage_compatible=False,schema='962-finite-selected-current204-generation/v1',status='running',stage='imports',
+   fixture_procedural_checks_passed=False,actual_SICN_gate_passed=False,actual_SICN_threshold=.1,
+   native_operation_counts={k:0 for k in COUNTS},call_counts_are_attempts=True,options=OPTIONS,
+-  frozen_contract_sha256=sha(OUT/'frozen-contract.json'),local_shell_sha256=SHELL_SHA,input_MSH_read=False,full_head_geometry_read=False,
++  frozen_contract_sha256=sha(OUT/'frozen-contract.json'),local_shell_serialized_sha256=SHELL_SHA,case_key=case['case_key'],case_apex=APEX,case_record_sha256=case['source_record_sha256'],case_manifest_sha256=MANIFEST_SHA,source_batch_sha256=BATCH_SHA,input_MSH_read=False,full_head_geometry_read=False,
+   head_execution_authorized=False,stitching_authorized=False,native_head_application_authorized=False,
+   global_self_intersection_checked=False,geometric_tetrahedron_overlap_checked=False,
+   new_interior_node_point_in_cavity_containment_checked=False,
+   engineering_accepted=False,physics_qualified=False,manufacturing_authorized=False)
+  try:
+-  data=json.loads((ROOT/SHELL).read_text());shell_rows(data)
++  shell_rows(data)
+   helper,gmsh,observed,actual=load_audit_helper(c);report.update(runtime=observed,runtime_sha256s=actual)
+   gmsh.initialize([],readConfigFiles=False,run=False);initialized=True
+   gmsh.option.setNumber('General.Terminal',1);gmsh.logger.start()
+@@ -236,7 +299,7 @@
+   report['stage']='constructing_frozen_cavity_shell';report['shell']=construct_shell(gmsh,helper,data)
+   report['original_source_classifications']=data['original_source_classifications']
+   report['local_to_global_shell_node_tags']=data['local_to_global_node_tags']
+-  report['all32_shell_nodes_fixed_only_for_this_cavity_generation']=True
++  report['all_shell_nodes_fixed_only_for_this_cavity_generation']=True
+   before=boundary_snapshot(gmsh,helper)
+   report['stage']='generating_once';generate_once(gmsh,report['native_operation_counts'])
+   report['stage']='complete_generated_audit';live['after_generation']=inspect_cavity(gmsh,helper)
+@@ -251,7 +314,9 @@
+   if sha(path)!=digest:raise ValueError('Saved mesh changed during reopen')
+   report.update(mesh_sha256=digest,mesh_bytes=path.stat().st_size,saved_mesh_identity_exact=True,
+    exact_boundary_bits_faces_classifications=True,fixture_procedural_checks_passed=True,
+-   actual_SICN_gate_passed=helper.quality_gate(live['after_generation'][0]),stage='completed_all_local_checks',status='completed_specific_cavity_generation_only')
++   actual_SICN_gate_passed=helper.quality_gate(live['after_generation'][0]),stage='completed_all_local_checks',status='completed_finite_selected_cavity_generation_only')
++  storage=candidate_storage_admission(live['after_generation'][0],case)
++  report.update(later_head_storage_compatible=storage,next_stage=case_route(True,report['actual_SICN_gate_passed'],storage))
+  except Exception as exc:report.update(status='failed_outputs_preserved',error=type(exc).__name__+': '+str(exc))
+  finally:
+   if initialized:

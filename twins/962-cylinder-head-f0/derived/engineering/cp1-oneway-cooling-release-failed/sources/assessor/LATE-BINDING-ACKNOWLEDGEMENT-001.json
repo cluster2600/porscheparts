@@ -1,0 +1,135 @@
+{
+  "schema": "962-cooling-release-assessor-additive-late-binding-acknowledgement/v1",
+  "decision": "REQUIRE_EXACT_ORIGINAL_CORRECTED_DOCUMENTARY_COMPANION_AND_RECEIPT_IN_FUTURE_ACTUAL_NO_EXECUTABLE_CHANGE",
+  "source": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-assessor-prep-001/assess.py",
+    "sha256": "a366dfc43f7bdba5d2c60b8a911098c883723b23f946d8a89fb4d42b3e3d4b5b",
+    "bytes": 46553
+  },
+  "held370_historical": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-assessor-prep-001/held-preparation.json",
+    "sha256": "bfb5bf99044136a9e9b00b726d524a3ed3ab6b0ecd4ca618589f1905069e6216",
+    "bytes": 216816
+  },
+  "source_reuse": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-assessor-prep-001/source-reuse.json",
+    "sha256": "c469d5abacffbc8e9bc7b77ddafdf93b8238fc73ca3df60d1909e85cfd02f010",
+    "bytes": 30384
+  },
+  "guards_UNRUN": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-assessor-prep-001/selfcheck.py",
+    "sha256": "5f6fe4ed411e1df521d7388a8a9bca7ef19fbafedb69447fcdde7439778f8bc4",
+    "bytes": 9630
+  },
+  "method_historical": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-assessor-prep-001/METHOD.md",
+    "sha256": "8cf7199b83562620e9fb908ac90ef6314bd529a6ee1bc3f42015a29b296a1489",
+    "bytes": 7798
+  },
+  "case_contract_original": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-prep-001/case-contract.json",
+    "sha256": "0cb6b9a16de29d503df0d2fe02a1ec4be5ed2e5a51ee2b610b3c4892846ece63",
+    "bytes": 13800
+  },
+  "case_contract_corrected_documentary_companion": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-contract-clarification-001/case-contract.corrected.json",
+    "sha256": "1dc7eefae6f6666a91fdb0adde2261aa9efc7f3424a713d21b6f60e6091dfb66",
+    "bytes": 13800
+  },
+  "correction_receipt": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-contract-clarification-001/correction.json",
+    "sha256": "3971d0f27293a04f051206a2b2afef3304c56aa3814b12e586c4f5fe0229ed46",
+    "bytes": 2652
+  },
+  "exact_correction": {
+    "pointer": "/capture/quadrature_fields/rule",
+    "one_descriptive_string_token_only": true,
+    "old_fragment": "256cells step80..160",
+    "new_fragment": "256cells step80..182",
+    "all_other_bytes_exact": true,
+    "all_numeric_steps_counts_types_and_values_unchanged": true,
+    "authoritative_last_step": 182,
+    "authoritative_QP_rows_each_phase": 292864,
+    "authoritative_QP_rows_both_phases": 585728
+  },
+  "future_actual_mandatory_requirements": {
+    "original_corrected_and_receipt_all_direct_pinned": [
+      {
+        "path": "work/962-engineering/cp1-oneway-cooling-release-prep-001/case-contract.json",
+        "sha256": "0cb6b9a16de29d503df0d2fe02a1ec4be5ed2e5a51ee2b610b3c4892846ece63",
+        "bytes": 13800
+      },
+      {
+        "path": "work/962-engineering/cp1-oneway-cooling-release-contract-clarification-001/case-contract.corrected.json",
+        "sha256": "1dc7eefae6f6666a91fdb0adde2261aa9efc7f3424a713d21b6f60e6091dfb66",
+        "bytes": 13800
+      },
+      {
+        "path": "work/962-engineering/cp1-oneway-cooling-release-contract-clarification-001/correction.json",
+        "sha256": "3971d0f27293a04f051206a2b2afef3304c56aa3814b12e586c4f5fe0229ed46",
+        "bytes": 2652
+      }
+    ],
+    "this_acknowledgement_must_itself_be_direct_pinned": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-assessor-prep-001/LATE-BINDING-ACKNOWLEDGEMENT-001.json",
+      "sha256": "Computed externally from frozen complete acknowledgement bytes; no self-hash embedded"
+    },
+    "explicit_acknowledgement_of_documentary_only_correction_required": true,
+    "exact_external_child_and_root_admission_required": true,
+    "original_source_and_native_physics_snapshots_preserved": true,
+    "no_substitution_of_corrected_view_for_historical_original": true
+  },
+  "existing_evaluator_enforcement": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-assessor-prep-001/assess.py",
+    "function": "assess",
+    "nested_function": "checked",
+    "operation": "For every c[input_sha256] name/expected pair: require relative current regular project path, no symlink, sha(p)==expected; repeat after assessment.",
+    "present_body_validation": true,
+    "late_companion_absence_enforced_by": "Separate exact root/child actual-admission gate, which MUST reject an actual omitting original, corrected companion, correction receipt or this acknowledgement.",
+    "new_runtime_parser_or_executable_consumer_added": false,
+    "acknowledgement_not_claimed_as_an_existing_literal_c_consumer": true
+  },
+  "fresh_TimePeriod_metadata": {
+    "parameter_observation": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-TimePeriod-parameters-001/parameter-observation.json",
+      "sha256": "de61262c7cdbc0bd6aaea5b9a6c468fc5d91b06b097dcc42ccb0e02c988dc165",
+      "bytes": 6649
+    },
+    "native_registry_presence": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-registry-001/required-object-presence.json",
+      "sha256": "2b17abc721cb28053306c3b190561d3bf1f738d7c285b446ad374ead0018764a",
+      "bytes": 5123
+    },
+    "native_registry_closed": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-registry-001/closed-result.json",
+      "sha256": "29eb7f020803b0cca35a76abd77f7144190046ba33d96576100c4e3e173f9369",
+      "bytes": 2420
+    },
+    "parameter_query_closed": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-TimePeriod-parameters-001/closed-result.json",
+      "sha256": "fd55d00b767af7a17d6ace09f76ec95a83f9c1572d56b21f1dbabb485a1e221a",
+      "bytes": 6089
+    },
+    "required_in_future_actual_input_map": true,
+    "presence_and_parameter_availability_only": true,
+    "source_version_or_ABI_equivalence": false,
+    "functional_TimePeriod_switch_observed": false,
+    "simulation_completed": false,
+    "source_future_role_bindings": {
+      "TimePeriod24_presence": "work/962-engineering/cp1-oneway-cooling-release-registry-001/required-object-presence.json",
+      "TimePeriod24_root_closed": "work/962-engineering/cp1-oneway-cooling-release-registry-001/closed-result.json"
+    }
+  },
+  "historical_370_input_map_and_all8_source_files_unchanged": true,
+  "all_guards_functions_modules_scientific_native_unrun_by_author": true,
+  "assessment_execution_authorized": false,
+  "native_execution_authorized": false,
+  "guard_execution_authorized": false,
+  "head_execution_authorized": false,
+  "engineering_accepted": false,
+  "physics_qualified": false,
+  "material_qualified": false,
+  "process_calibrated": false,
+  "manufacturing_authorized": false,
+  "automatic_retry": false
+}

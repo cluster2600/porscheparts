@@ -1,0 +1,759 @@
+{
+  "schema": "962-current127-alternative-star-batch-read-only-plan/v1",
+  "status": "PLANNING_OBSERVATION_ONLY_NO_SUBSET_OR_EXECUTION_AUTHORITY",
+  "baseline": "Accepted current127 census34e3; root pending apex1613031 application outcome is not observed here.",
+  "inputs": {
+    "current127_census": {
+      "path": "work/962-engineering/head-star-current127-full-stars-002/readback-report.json",
+      "sha256": "34e3e29a23cedeb155485156cb40b4e92b6d0017eefd852f30383927eaaa7ef7",
+      "bytes": 2103518,
+      "pointers": [
+        "/complete_seed_star_census/movable_node_tags",
+        "/complete_seed_star_census/complete_incident_tetrahedra",
+        "/complete_seed_star_census/positive_poor_tetrahedron_tags",
+        "/positive_poor_SICN_cells/complete_tagged_cells",
+        "/direct_native_quality_extrema/SICN"
+      ]
+    },
+    "prior116_manifest": {
+      "path": "work/962-engineering/head-star-current204-local-stages-prep-001/case-manifest.json",
+      "sha256": "3a558ede04cbc52c59e401befb36b8983ebd9b7f57d4266de0bea38fb1a963c5",
+      "bytes": 270626,
+      "pointers": [
+        "/cases_in_increasing_apex_order",
+        "/selected_vertex_sets_disjoint"
+      ]
+    },
+    "prior115_public_outcomes": {
+      "path": "twins/962-cylinder-head-f0/derived/engineering/current204-local-stages/results/cases.json",
+      "sha256": "90ab64991bd6461c2daba0bc3119a86380c1af59d541c0960649d8632df90721",
+      "bytes": 93834,
+      "location": "designated publisher checkout",
+      "pointers": [
+        "/cases",
+        "/held_apex",
+        "/rejections",
+        "/provisional_passes"
+      ]
+    },
+    "current_actual": {
+      "path": "work/962-engineering/head-star-current127-full-stars-execution-prep-002/actual-contract.json",
+      "sha256": "54ad12959a10bb153afec2f2541bec2d22ec3f6e22ee0302c581062265c8fc95",
+      "bytes": 25659
+    },
+    "current_census_root_acceptance": {
+      "path": "work/962-engineering/head-star-current127-full-stars-root-execution-001/result-peer-acceptance.json",
+      "sha256": "bac2ff58db7e1f33556e8460e23d35cdd0cb7089c64afa6921ac7640b1bf0444",
+      "bytes": 2357
+    },
+    "current_census_peer": {
+      "path": "work/962-engineering/head-star-current127-full-stars-result-peer-001/review.json",
+      "sha256": "e3f53c5b7280138296e4ffd8399149a61b9ecaf3bf796e4f780c74806a20b68b",
+      "bytes": 4119
+    },
+    "current_census_peer_bindings": {
+      "path": "work/962-engineering/head-star-current127-full-stars-result-peer-001/bindings.json",
+      "sha256": "968353193fa36fb96ec9dc85b4268ad3d37f011b19acff745c0a250dcf4fc2ac",
+      "bytes": 30939
+    }
+  },
+  "input_parent_identity_metadata_only": {
+    "path": "work/962-engineering/apex1613790-head-application-001/head-volume.msh",
+    "sha256": "8b16732d63cc69e48af113f6b618cc6378aaf121dbe1c63920dd6dd5eab8d07a",
+    "bytes": 235786462,
+    "body_read_or_hashed": false
+  },
+  "saved_baseline_counts": {
+    "positive_poor": 127,
+    "minimum_native_SICN": 0.039074265058645995,
+    "poor_boundary_bins": {
+      "0": 0,
+      "1": 0,
+      "2": 5,
+      "3": 122,
+      "4": 0
+    },
+    "seeds": 101,
+    "coordinate_variables": 303,
+    "full_star_cell_union": 3137,
+    "initially_poor_cells": 127,
+    "initially_good_cells": 3010,
+    "shared_by_multiple_seeds_cells": 99,
+    "coordinate_rows": 1791,
+    "boundary_rows": 1120,
+    "other_interior_rows": 570,
+    "full_star_cell_count_range": [
+      8,
+      78
+    ]
+  },
+  "saved_tag_dependency_graph": {
+    "method": "Two stars conflict when their complete original vertex-tag sets intersect, including apex and every prospective shell node. Cell-only overlap is insufficient.",
+    "cell_overlap_pairs": 15,
+    "whole_vertex_overlap_pairs": 16,
+    "whole_vertex_components": {
+      "two_seed_components": 16,
+      "singleton_components": 69
+    },
+    "all_pair_witnesses": [
+      {
+        "apices": [
+          1393275,
+          1393281
+        ],
+        "shared_full_star_vertex_tags": [
+          424924,
+          424958,
+          427881,
+          1393275,
+          1393281,
+          1406377,
+          1448963,
+          1482623
+        ],
+        "shared_full_star_tetrahedron_tags": [
+          28546275,
+          29775399,
+          29775403,
+          30629901,
+          31700622,
+          31856802
+        ]
+      },
+      {
+        "apices": [
+          1409441,
+          1433071
+        ],
+        "shared_full_star_vertex_tags": [
+          785897,
+          786449,
+          788235,
+          791873,
+          1409441,
+          1433071,
+          1469826,
+          1489203,
+          1496044,
+          1590345,
+          1596126
+        ],
+        "shared_full_star_tetrahedron_tags": [
+          30106567,
+          30106569,
+          30991373,
+          31298915,
+          31390401,
+          31614281,
+          31676730,
+          31722234,
+          31888622
+        ]
+      },
+      {
+        "apices": [
+          1436404,
+          1613783
+        ],
+        "shared_full_star_vertex_tags": [
+          734977,
+          866095,
+          868201,
+          870846,
+          1436404,
+          1613035,
+          1613783
+        ],
+        "shared_full_star_tetrahedron_tags": [
+          29664429,
+          29664787,
+          31249751,
+          31251573,
+          31253593
+        ]
+      },
+      {
+        "apices": [
+          1436405,
+          1613757
+        ],
+        "shared_full_star_vertex_tags": [
+          522093,
+          866047,
+          866059,
+          866062,
+          870364,
+          870367,
+          870372,
+          1436405,
+          1613757
+        ],
+        "shared_full_star_tetrahedron_tags": [
+          28538947,
+          29366492,
+          29366619,
+          29366761,
+          29367113,
+          29367523,
+          29672430
+        ]
+      },
+      {
+        "apices": [
+          1436406,
+          1613784
+        ],
+        "shared_full_star_vertex_tags": [
+          124629,
+          866966,
+          868245,
+          868450,
+          869525,
+          869526,
+          869527,
+          1436406,
+          1613784
+        ],
+        "shared_full_star_tetrahedron_tags": [
+          28543991,
+          29365610,
+          29365626,
+          29365921,
+          29366095,
+          29366395,
+          29664311
+        ]
+      },
+      {
+        "apices": [
+          1436407,
+          1613756
+        ],
+        "shared_full_star_vertex_tags": [
+          327790,
+          866364,
+          866366,
+          868478,
+          870001,
+          870005,
+          870008,
+          1436407,
+          1613756
+        ],
+        "shared_full_star_tetrahedron_tags": [
+          28538945,
+          29367534,
+          29367717,
+          29367754,
+          29367875,
+          29368075,
+          29672516
+        ]
+      },
+      {
+        "apices": [
+          1442335,
+          1535650
+        ],
+        "shared_full_star_vertex_tags": [
+          424925,
+          424957,
+          1426375,
+          1436066,
+          1442335,
+          1485687,
+          1513138,
+          1535650
+        ],
+        "shared_full_star_tetrahedron_tags": [
+          30966405,
+          31185110,
+          31397642,
+          31546484,
+          31606137,
+          31612499
+        ]
+      },
+      {
+        "apices": [
+          1459592,
+          1534574
+        ],
+        "shared_full_star_vertex_tags": [
+          490066,
+          493261,
+          493263,
+          1427807,
+          1438073,
+          1459592,
+          1475821,
+          1534574,
+          1543023
+        ],
+        "shared_full_star_tetrahedron_tags": [
+          30668184,
+          31507524,
+          31542614,
+          31614844,
+          31901785,
+          32030061,
+          32030062
+        ]
+      },
+      {
+        "apices": [
+          1459657,
+          1534323
+        ],
+        "shared_full_star_vertex_tags": [
+          356626,
+          356627,
+          359828,
+          1427473,
+          1437992,
+          1459657,
+          1480619,
+          1534323,
+          1546650
+        ],
+        "shared_full_star_tetrahedron_tags": [
+          31124601,
+          31164318,
+          31509940,
+          31546917,
+          31610312,
+          32030752,
+          32030753
+        ]
+      },
+      {
+        "apices": [
+          1468585,
+          1613803
+        ],
+        "shared_full_star_vertex_tags": [
+          735832,
+          867594,
+          868317,
+          870811,
+          870812,
+          870816,
+          870822,
+          1468585,
+          1497541,
+          1613803
+        ],
+        "shared_full_star_tetrahedron_tags": [
+          29713492,
+          29714821,
+          29715573,
+          29812850,
+          29819038,
+          31186158,
+          31186607,
+          31386006
+        ]
+      },
+      {
+        "apices": [
+          1481549,
+          1613801
+        ],
+        "shared_full_star_vertex_tags": [
+          109619,
+          111042,
+          867809,
+          867811,
+          869329,
+          869339,
+          869340,
+          1464439,
+          1481549,
+          1613801
+        ],
+        "shared_full_star_tetrahedron_tags": [
+          28801732,
+          28802284,
+          28803953,
+          28983187,
+          28985024,
+          28985633,
+          29823706,
+          31187847
+        ]
+      },
+      {
+        "apices": [
+          1502469,
+          1570037
+        ],
+        "shared_full_star_vertex_tags": [
+          23178,
+          24101,
+          24102,
+          1405494,
+          1424048,
+          1425870,
+          1502469,
+          1570037
+        ],
+        "shared_full_star_tetrahedron_tags": [
+          30223173,
+          30223175,
+          30804525,
+          31115111,
+          31136636,
+          31151206
+        ]
+      },
+      {
+        "apices": [
+          1506129,
+          1538046
+        ],
+        "shared_full_star_vertex_tags": [
+          764218,
+          764225,
+          1419994,
+          1506129,
+          1528653,
+          1538046
+        ],
+        "shared_full_star_tetrahedron_tags": [
+          30072800,
+          30659378,
+          31289184,
+          31911109
+        ]
+      },
+      {
+        "apices": [
+          1527816,
+          1528968
+        ],
+        "shared_full_star_vertex_tags": [
+          1444344
+        ],
+        "shared_full_star_tetrahedron_tags": []
+      },
+      {
+        "apices": [
+          1555697,
+          1558090
+        ],
+        "shared_full_star_vertex_tags": [
+          799738,
+          799888,
+          1403834,
+          1420477,
+          1474249,
+          1545754,
+          1555697,
+          1558090
+        ],
+        "shared_full_star_tetrahedron_tags": [
+          29950660,
+          31138932,
+          31659322,
+          31743733,
+          31830661,
+          32149419
+        ]
+      },
+      {
+        "apices": [
+          1555743,
+          1558088
+        ],
+        "shared_full_star_vertex_tags": [
+          799740,
+          799889,
+          801468,
+          1420478,
+          1535061,
+          1545752,
+          1555743,
+          1558088
+        ],
+        "shared_full_star_tetrahedron_tags": [
+          31138757,
+          31166385,
+          31659286,
+          31743726,
+          32149413,
+          32149414
+        ]
+      }
+    ],
+    "vertex_only_pair": {
+      "apices": [
+        1527816,
+        1528968
+      ],
+      "shared_full_star_vertex_tags": [
+        1444344
+      ],
+      "shared_full_star_tetrahedron_tags": []
+    },
+    "isolated_star_count": 69,
+    "isolated_poor_coverage_union": 90,
+    "isolated_cell_total": 2118,
+    "geometric_nonintersection_or_feasibility_proved": false
+  },
+  "prior_history": {
+    "current_apices_with_prior_local_quality_rejection_count": 68,
+    "current_apices_with_prior_local_quality_rejection": [
+      1393392,
+      1409441,
+      1421336,
+      1424314,
+      1432342,
+      1433502,
+      1441004,
+      1441011,
+      1441012,
+      1441013,
+      1442335,
+      1450443,
+      1458419,
+      1459063,
+      1459064,
+      1459940,
+      1459941,
+      1460612,
+      1470654,
+      1474771,
+      1481857,
+      1485102,
+      1487573,
+      1502469,
+      1504163,
+      1506129,
+      1512157,
+      1512642,
+      1514912,
+      1520064,
+      1527816,
+      1534323,
+      1534574,
+      1548247,
+      1549365,
+      1549366,
+      1549537,
+      1552068,
+      1555697,
+      1555743,
+      1555744,
+      1560546,
+      1573898,
+      1585373,
+      1585374,
+      1585378,
+      1596472,
+      1606005,
+      1608113,
+      1610627,
+      1610628,
+      1611139,
+      1611467,
+      1611657,
+      1611658,
+      1611659,
+      1611943,
+      1612414,
+      1612796,
+      1612957,
+      1613513,
+      1613514,
+      1613588,
+      1613756,
+      1613757,
+      1613783,
+      1613784,
+      1613798
+    ],
+    "held_apex1393275_no_retry": true,
+    "all69_prior_selected_current_star_vertex_and_cell_tag_sets_equal_prior_manifest": true,
+    "coordinate_or_shell_word_identity_recertified": false,
+    "retired1613790_and1474426_in_current_seed_set": false,
+    "same_rejected_trial_must_not_be_automatically_repeated": true
+  },
+  "prospective_alternative_pool": {
+    "definition": "Current seed tags outside the prior116-case native manifest, excluding already-studied/pending1613031. This does not claim absence from every historical research study.",
+    "apex_tags": [
+      1393281,
+      1433071,
+      1436404,
+      1436405,
+      1436406,
+      1436407,
+      1459592,
+      1459657,
+      1460416,
+      1468585,
+      1476316,
+      1481549,
+      1488093,
+      1506140,
+      1508641,
+      1515013,
+      1528968,
+      1535650,
+      1538046,
+      1541053,
+      1558088,
+      1558090,
+      1570037,
+      1611558,
+      1611564,
+      1613030,
+      1613791,
+      1613794,
+      1613795,
+      1613801,
+      1613803
+    ],
+    "count": 31,
+    "full_cell_union": 1120,
+    "full_vertex_union": 641,
+    "poor_coverage_union": 32,
+    "poor_outside_pool": 95,
+    "internal_whole_vertex_conflicts": [
+      {
+        "apices": [
+          1468585,
+          1613803
+        ],
+        "shared_full_star_vertex_tags": [
+          735832,
+          867594,
+          868317,
+          870811,
+          870812,
+          870816,
+          870822,
+          1468585,
+          1497541,
+          1613803
+        ],
+        "shared_full_star_tetrahedron_tags": [
+          29713492,
+          29714821,
+          29715573,
+          29812850,
+          29819038,
+          31186158,
+          31186607,
+          31386006
+        ]
+      },
+      {
+        "apices": [
+          1481549,
+          1613801
+        ],
+        "shared_full_star_vertex_tags": [
+          109619,
+          111042,
+          867809,
+          867811,
+          869329,
+          869339,
+          869340,
+          1464439,
+          1481549,
+          1613801
+        ],
+        "shared_full_star_tetrahedron_tags": [
+          28801732,
+          28802284,
+          28803953,
+          28983187,
+          28985024,
+          28985633,
+          29823706,
+          31187847
+        ]
+      }
+    ],
+    "structural_disjoint_star_ceiling": 29,
+    "ceiling_is_not_selected_eligible_feasible_or_accepted_batch": true,
+    "overlap_with_pending1613031_apices": [],
+    "pending1613031_saved_star": {
+      "cells": 14,
+      "vertices": 10,
+      "poor_tags": [
+        28684936
+      ],
+      "post_trial_outcome": null
+    },
+    "eligibility_counts": null,
+    "selected_apices": null,
+    "candidate_qualities": null,
+    "feasibility": null
+  },
+  "minimum_reuse": {
+    "donors": {
+      "saved_batch_selector": {
+        "path": "work/962-engineering/head-star-current204-batch-shells-prep-001/select_batch.py",
+        "sha256": "af388dd1a3ba5027c5c0b7a62295a2d8950b4789e0568e68f5451ab52a708350",
+        "bytes": 27996
+      },
+      "batch_method": {
+        "path": "work/962-engineering/head-star-current204-batch-shells-prep-001/METHOD.md",
+        "sha256": "20df61af74b23631ee3fe22d0eeef00c5457951473402932f62f40d4d6f76bc5",
+        "bytes": 5705
+      },
+      "per_case_generation": {
+        "path": "work/962-engineering/head-star-current204-local-stages-prep-001/generate_case.py",
+        "sha256": "fc1aba0a0ae93995f8fc4eea86d3fe693ce0360ac3f98d158ba5f01ae8983e3d",
+        "bytes": 25299
+      },
+      "per_case_Netgen": {
+        "path": "work/962-engineering/head-star-current204-local-stages-prep-001/netgen_case.py",
+        "sha256": "38af98145aa8c4aa1798b5e5901a9837b962e8841d5b5d504674d6cefa922924",
+        "bytes": 15603
+      },
+      "per_case_domain": {
+        "path": "work/962-engineering/head-star-current204-case-domains-prep-002/certify_domain.py",
+        "sha256": "7060580b7aa2743dec511bb9fc5e8cfb40ef86ea3332b068c5de9c845422efc8",
+        "bytes": 25203
+      },
+      "combined_application": {
+        "path": "work/962-engineering/head-star-current204-combined-application-prep-001/reader.py",
+        "sha256": "c66da821a1d98794ed78f403067e02c349c11a59d6c22de72e587b05e5fc82f5",
+        "bytes": 107135
+      }
+    },
+    "next_source_step": "After the pending trial is closed and accepted as appropriate, require a fresh parent census before any actual selection. Rebind the existing saved-data batch selector to that exact new parent/proof/census and explicit alternative cohort; retain complete negative records, exact original-star joins, topology/volume/tight4over841 necessary face screens, and deterministic whole-vertex-disjoint ranking. No source is authored by this plan.",
+    "mandatory_before_native": [
+      "Fresh authoritative parent/census, typed saved arrays, seed/classification/coordinate-word/native-index joins; do not decrement127 or101 by assumption.",
+      "Retain prior68 rejection records and held1393275; exact unchanged rejected inputs need a distinct reviewed hypothesis rather than automatic retry.",
+      "Complete shell topology/orientation/positive exact volume and tight face bound q_triangle_squared>=4/841 with negative retention.",
+      "Separately reviewed local generation/Netgen actuals and stopped audits; strict native SICN0.1 and fixed-shell bits/classes/save-reopen identity.",
+      "Exact local-domain admission, fresh subset parent outside-owner/classification/parameter masks and allocator constraints before any combined edit.",
+      "Fresh full whole-head native quality/incidence/metadata/after-save-reopen gates; historical414 Mesh2 surface failures and all physical qualification gates remain open."
+    ]
+  },
+  "inspection_provenance": {
+    "path": "work/962-engineering/current127-alternative-star-batch-plan-001/inspection-provenance.txt",
+    "sha256": "2d04fb4b1dbc3dc1dbc284d57d44e8b38ae6fd9be0962b76d9a9089fb0ab3645",
+    "bytes": 1246
+  },
+  "observations_are_saved_tag_combinatorics_not_geometry_or_feasibility": true,
+  "selected_subset": null,
+  "output_mesh": null,
+  "native_execution_authorized": false,
+  "saved_query_execution_authorized": false,
+  "generation_authorized": false,
+  "optimization_authorized": false,
+  "head_edit_authorized": false,
+  "head_execution_authorized": false,
+  "engineering_accepted": false,
+  "physics_qualified": false,
+  "material_qualified": false,
+  "process_calibrated": false,
+  "manufacturing_authorized": false,
+  "automatic_retry": false,
+  "author": "replica_metrology; historical source/helper lineage disclosed. This is read-only planning and saved-tag arithmetic, not a new scientific/native experiment."
+}

@@ -1,0 +1,134 @@
+{
+  "schema": "962-current24-independent-verifier-static-source-proof/v1",
+  "source": {
+    "path": "work/962-engineering/head-star-current24-interior-flip-independent-verifier-prep-001/verify_saved_flips.py",
+    "sha256": "952efdaf22de7c8922a0f4377049d5018e941a665bd60b9a9116cf27fad7790b",
+    "bytes": 30355
+  },
+  "AST_parse_only": true,
+  "imports": [
+    "from pathlib import Path",
+    "from fractions import Fraction as F",
+    "from itertools import combinations, permutations",
+    "import hashlib",
+    "import json",
+    "import math",
+    "import struct",
+    "import sys"
+  ],
+  "no_worker_or_driver_import": true,
+  "functions": [
+    {
+      "name": "require",
+      "first_line": 26,
+      "last_line": 28,
+      "AST_sha256": "cf8e290e773c696f5a0b3fa0bab85b748e3b785724fa96f342a15ab894d5cca4"
+    },
+    {
+      "name": "decode",
+      "first_line": 31,
+      "last_line": 40,
+      "AST_sha256": "15b69825fd644ee3447511e74d97f604fd636861f5a0d7a7f6e9324cbd933a4c"
+    },
+    {
+      "name": "descriptor",
+      "first_line": 43,
+      "last_line": 45,
+      "AST_sha256": "fcfb118b9dc33979b669a467b6271f5bccd3ecb42aa7a568e7d9b379c053ed16"
+    },
+    {
+      "name": "canonical",
+      "first_line": 48,
+      "last_line": 49,
+      "AST_sha256": "47e5ce171a1afb404a726abc68e0e459778606304e493ea52b2ff40c7713015c"
+    },
+    {
+      "name": "rational",
+      "first_line": 52,
+      "last_line": 53,
+      "AST_sha256": "e8d260a3097116e4bc5b957e357009ba38052d127e7faee4ea2cc582c1c218d1"
+    },
+    {
+      "name": "sign_permutation",
+      "first_line": 56,
+      "last_line": 58,
+      "AST_sha256": "b1148982ab1efdfc523594bd0e0293d436a7be9de3512e6a5b9280003bb1098b"
+    },
+    {
+      "name": "squared_distance",
+      "first_line": 61,
+      "last_line": 62,
+      "AST_sha256": "cfe3e4262ad35927d46c96cfcf534ea88862efedc2708758d6552239883da8a3"
+    },
+    {
+      "name": "cartesian_determinant",
+      "first_line": 65,
+      "last_line": 69,
+      "AST_sha256": "8bfa998d42966a017b2164774fbdc9e72e03cfc80ae5b3b1e644357153bf20ef"
+    },
+    {
+      "name": "face_gram_quality",
+      "first_line": 72,
+      "last_line": 90,
+      "AST_sha256": "49d5e7ce2277db33f1534f9a601966a9c6497902c16e22aed70da555d9d1bcfd"
+    },
+    {
+      "name": "quality_gate",
+      "first_line": 93,
+      "last_line": 94,
+      "AST_sha256": "a4b14017034b158aa270b903ef4c7b3aa39701df4841555bb111f09d5971ca44"
+    },
+    {
+      "name": "oriented_faces",
+      "first_line": 97,
+      "last_line": 111,
+      "AST_sha256": "97c7b85e4a4515293f67c27ee06fb17dbc36e378f405831999be25ff9f1b96cf"
+    },
+    {
+      "name": "rebuild_family",
+      "first_line": 114,
+      "last_line": 151,
+      "AST_sha256": "106ed73e384cd8349eb73107e08a9c60d6102147675750ffcd9f3a6b8d106bed"
+    },
+    {
+      "name": "expected_disposition",
+      "first_line": 154,
+      "last_line": 237,
+      "AST_sha256": "b3d3bb6cf136a91521f37c5d6d0571b83f35cdb98c9feb6af378819deb9c8e75"
+    },
+    {
+      "name": "expected_conflicts",
+      "first_line": 240,
+      "last_line": 252,
+      "AST_sha256": "e8f449c5850420b5846b8126357a8eb51307d1f1315e4fb9a99d7497e65ba84f"
+    },
+    {
+      "name": "typed_hash",
+      "first_line": 255,
+      "last_line": 256,
+      "AST_sha256": "ab96245f36e19f89cbe3c649943ed8322e27a68c69563b1aee4ca1506bed7fd7"
+    },
+    {
+      "name": "parent_context",
+      "first_line": 259,
+      "last_line": 371,
+      "AST_sha256": "8aecf1651a500a9d0421448357a31ad4b26734f9b534dbbbd4edede810855766"
+    },
+    {
+      "name": "guards",
+      "first_line": 374,
+      "last_line": 387,
+      "AST_sha256": "da2c9594ec8add4b9810586d37ca43ee3c778e9d54fbf40f7c1d2887d456f802"
+    },
+    {
+      "name": "verify_saved",
+      "first_line": 390,
+      "last_line": 443,
+      "AST_sha256": "492fbe7c967cc3fb379f6df7d17fe1a20d5793f777335b856fd77c0a6ff13300"
+    }
+  ],
+  "main_contract": "Exactly guards() then verify_saved() in one --verify operation; source inspected/parsed only, neither called.",
+  "metric_independence": "Six-term Cartesian determinant; six-edge/four-face Gram Q2, not worker transformed vectors/cofactors. Alternating simplicial boundary, poor-feature\u2192allowners reconstruction.",
+  "expected_analytic_guard_count": 5,
+  "guard_or_real_checker_executed": false
+}

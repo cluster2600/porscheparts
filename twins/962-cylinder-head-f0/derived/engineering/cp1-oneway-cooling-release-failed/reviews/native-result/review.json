@@ -1,0 +1,102 @@
+{
+  "schema": "962-cooling-release-independent-failed-native-capture-peer/v1",
+  "decision": "CLEAR_PRESERVED_FAILED_NATIVE_CAPTURE_ONLY_NO_COMPLETED_FIELDS_OR_ASSESSMENT_ADMISSION",
+  "bindings": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-native-result-peer-001/bindings.json",
+    "sha256": "747e647f3f1c33cda062391a4e397a95ca41ce6538c0e125fdd11871be98d54f",
+    "bytes": 360859
+  },
+  "root_closed": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-native-root-execution-001/closed-result.json",
+    "sha256": "297c34d2bffe7b4ecf07bb81466e5bc710dee7719b1c3458c7ca25202ab77807",
+    "bytes": 414720
+  },
+  "native_receipt": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-001/native-execution.json",
+    "sha256": "d8a716c90681d4ba9d043977150661033b88ed198e87cfb0a7023c8372873757",
+    "bytes": 339226
+  },
+  "checked": {
+    "all105_actual_plus4_external_records_current": true,
+    "all109_root_before_after_records_match_current": true,
+    "all1116_output_hashes_and_420336314_bytes_exact": true,
+    "receipt1115_recursive_and1104_flat_maps_exact": true,
+    "all19_materialized_input_copies_and11_snapshot_aliases_exact": true,
+    "actual_source_data_correction_assessor_registry_guard_child_and_root_metadata_joins": true,
+    "source_runtime19_raw13_before_after_association_only": true,
+    "root_RC1_no_root_signals_inner_RCminus9_stage_deadline_distinguished": true,
+    "failed_partial_history_and_false_pass_flags_preserved": true
+  },
+  "observed_failure": {
+    "outer": {
+      "returncode": 1,
+      "wall_seconds": 100.46200558310375,
+      "stop_reason": null,
+      "signals": [],
+      "error": null,
+      "owned_adapter_group_absent": true,
+      "waited_reaped": true,
+      "max_observed_adapter_RSS_bytes": 30343168
+    },
+    "inner": {
+      "status": "native_stopped_outputs_preserved",
+      "passed": false,
+      "returncode": -9,
+      "wall_seconds": 100.11908745812252,
+      "stop_reason": "stage_deadline",
+      "controller_error": "ValueError: Native command incomplete; preserve outputs without retry",
+      "controller_SIGTERM_requested": false,
+      "process_reaped": true,
+      "jobs": [
+        {
+          "name": "native",
+          "returncode": -9,
+          "process_reaped": true
+        }
+      ],
+      "native_execution_completed": false,
+      "max_observed_RSS_bytes": 207978496,
+      "final_output_bytes_before_receipt": 419997088
+    },
+    "diagnostic": "Saved native log records 181 converged solves, then 20 DIVERGED_MAX_IT iterations 30 failures during step 182 internal cutbacks; final incomplete attempt was stopped at the inner stage deadline. No completed 183-state field capture is established.",
+    "CSV_filename_metadata": "Six families each contain ordinals 0 through 181 only; filenames do not prove row or field completeness.",
+    "native_process_cleanup": "Inner owned-group kill and wait/reap are attributed to exact adapter source plus receipt; root signal-free lifecycle describes its adapter only."
+  },
+  "source_role_disclosure": "This reviewer authored the separate continuation assessor and earlier HXT/mesh adapters, and performed the exact native-child/data reviews. existing_study_audit authored this cooling case/preparer/native adapter; root authored current actual and sole native execution. This review independently checks saved byte identities/control associations, not mechanics or numerical methods.",
+  "inspection_history": {
+    "own_inline_metadata_inspection_001": {
+      "result": "TypeError: unhashable type: dict",
+      "location": "line 54 of own inline audit",
+      "cause": "Treated actual.original_physics_contract descriptor as an input-map key instead of reading its path/sha256 members.",
+      "scope": "After successful 109-input/1116-output opaque hashes and materialization/control joins, before diagnostic summary or any peer files were written. No prepared functions or producer were executed.",
+      "correction": "Use descriptor.sha256 and descriptor.path for the same original physics binding; no author/capture/control changes."
+    },
+    "own_inline_metadata_inspection_002": {
+      "result": "PASS",
+      "prepared_or_native_execution": false
+    },
+    "root_prefreeze_exploratory_history": "An earlier own AST metadata lookup assumed a main function and raised StopIteration before source execution or actual freeze. Inline __main__ was then directly read; actual freeze succeeded without mutation or execution of source."
+  },
+  "limits": [
+    "Only preservation and binding of a failed native capture are accepted by this peer.",
+    "CSV, grid and Exodus bodies were hashed opaquely; no values, rows, tensors, magic, geometry or complete storage were decoded.",
+    "No complete 183-state history, functional TimePeriod switch, equilibrium, reactions, release work or energy acceptance is established.",
+    "Native process SIGKILL/wait/reap is attributed to exact adapter source and saved receipt; root observed only its adapter group. No native PID or universal descendant absence is independently claimed.",
+    "No native reattempt, assessor invocation, new dataset acceptance, physical/material/process/LPBF/head/strength qualification."
+  ],
+  "blockers_for_failed_capture_preservation": [],
+  "blockers_for_completed_native_or_assessment_admission": [
+    "Native stage_deadline with native returncode -9 and adapter returncode 1.",
+    "Original passed=false/native_execution_completed=false and incomplete terminal field history."
+  ],
+  "own_review_wall_seconds": 0.5805759998038411,
+  "own_metadata_python_version": "3.10.11",
+  "prepared_source_functions_guards_native_or_assessor_executed": false,
+  "native_or_assessment_execution_authorized_by_peer": false,
+  "engineering_accepted": false,
+  "physics_qualified": false,
+  "material_qualified": false,
+  "process_calibrated": false,
+  "manufacturing_authorized": false,
+  "automatic_retry": false
+}

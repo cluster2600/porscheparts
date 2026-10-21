@@ -1,0 +1,113 @@
+{
+  "schema": "962-cgal-envelope-runtime/v1",
+  "status": "native_ARM64_helper_and_known_result_envelope_queries_observed",
+  "base_image_id": "sha256:586639782387349737869b383c9f98ec03614221255a9609009c395279835e07",
+  "toolchain_image_id": "sha256:57c6b17ed0bd093a61a3d3cecb7563e912caeb3832fd59e8cec2d4d9d4d1e2f8",
+  "helper_image_id": "sha256:7bc37bea12439e8b6fe91394af0c721e0ad680d05de8c479e754085cd17bc10d",
+  "architecture": "arm64",
+  "CGAL_package": "libcgal-dev=5.6-1build3",
+  "packages": [
+    "g++=4:13.2.0-7ubuntu1",
+    "g++-13=13.3.0-6ubuntu2~24.04.1",
+    "gcc=4:13.2.0-7ubuntu1",
+    "gcc-13=13.3.0-6ubuntu2~24.04.1",
+    "libboost-dev:arm64=1.83.0.1ubuntu2",
+    "libboost1.83-dev:arm64=1.83.0-2.1ubuntu3.2",
+    "libc6:arm64=2.39-0ubuntu8.9",
+    "libcgal-dev:arm64=5.6-1build3",
+    "libgmp-dev:arm64=2:6.3.0+dfsg-2ubuntu6.1",
+    "libgmp10:arm64=2:6.3.0+dfsg-2ubuntu6.1",
+    "libmpfr-dev:arm64=4.2.1-1build1.1",
+    "libmpfr6:arm64=4.2.1-1build1.1",
+    "libstdc++6:arm64=14.2.0-4ubuntu2~24.04.1"
+  ],
+  "files": {
+    "/opt/cgal-envelope": {
+      "sha256": "083e4f59b8d5f7aa808c0a52d0dd80d86ba47acdf2adf2d2983e84ab86457e6b"
+    },
+    "/usr/include/CGAL/Surface_mesh_simplification/Policies/Edge_collapse/Polyhedral_envelope_filter.h": {
+      "sha256": "2cca247a9e10fc15a1a3c4bca1fd80c01096bab3e91151db319ddf74413fc3ef",
+      "bytes": 4961,
+      "SPDX": [
+        "// SPDX-License-Identifier: GPL-3.0-or-later OR LicenseRef-Commercial"
+      ]
+    },
+    "/usr/include/CGAL/Surface_mesh_simplification/Policies/Edge_collapse/Bounded_normal_change_filter.h": {
+      "sha256": "e8b77724a2202fc71421bdb65dd7d7078a3ad35938aa00d5e0d55e43607936be",
+      "bytes": 3575,
+      "SPDX": [
+        "// SPDX-License-Identifier: GPL-3.0-or-later OR LicenseRef-Commercial"
+      ]
+    },
+    "/usr/include/CGAL/Surface_mesh_simplification/Policies/Edge_collapse/LindstromTurk_cost.h": {
+      "sha256": "3f7f1e398926bd8cdebd47213a956c73a5ae5e3dcb6b60cc87780df422eea2a7",
+      "bytes": 1914,
+      "SPDX": [
+        "// SPDX-License-Identifier: GPL-3.0-or-later OR LicenseRef-Commercial"
+      ]
+    },
+    "/usr/include/CGAL/Surface_mesh_simplification/Policies/Edge_collapse/LindstromTurk_placement.h": {
+      "sha256": "cd399383e9a4ab4f57edc000e268abd870ab3e630cb70665841262ac4b0a3891",
+      "bytes": 1766,
+      "SPDX": [
+        "// SPDX-License-Identifier: GPL-3.0-or-later OR LicenseRef-Commercial"
+      ]
+    },
+    "/usr/include/CGAL/Polyhedral_envelope.h": {
+      "sha256": "a76fc09d3ce383059444fc3f3a9838cc3a7de80bac80af2a4a026d385d7441c5",
+      "bytes": 80082,
+      "SPDX": [
+        "// SPDX-License-Identifier: ( GPL-3.0-or-later OR LicenseRef-Commercial ) AND MIT"
+      ]
+    },
+    "/usr/include/CGAL/Exact_predicates_inexact_constructions_kernel.h": {
+      "sha256": "592202e89ef50bc8ee9279b5577106bd967e56ee03b5875ddc33046bf5c79550",
+      "bytes": 2988,
+      "SPDX": [
+        "// SPDX-License-Identifier: LGPL-3.0-or-later OR LicenseRef-Commercial"
+      ]
+    },
+    "/usr/share/doc/libcgal-dev/copyright": {
+      "sha256": "16fb8b939a0a56fa74a98e197c34cddfd8f8ec535b1d7d07470cd987e01e5804",
+      "bytes": 15692,
+      "SPDX": []
+    },
+    "/usr/bin/g++-13": {
+      "sha256": "fc02363794280f404c6ca6f5da1c8fe469be902e9de140d35d8573bb3393f53b"
+    }
+  },
+  "self_test": {
+    "status": "known_result_envelope_queries_passed",
+    "query_count": 5,
+    "epsilon_mm": 0.25,
+    "CGAL": "5.6"
+  },
+  "helper_binary_sha256": "083e4f59b8d5f7aa808c0a52d0dd80d86ba47acdf2adf2d2983e84ab86457e6b",
+  "helper_source_sha256": "103860c69018e44969cde6d43c6b1c22c92fb812d9a8a9549f9274470ed27cd6",
+  "source_compile_receipt": "work/962-engineering/cgal-envelope-runtime-001/compile-receipt.json",
+  "source_binary_byte_identity_reconfirmed_by_second_compile": true,
+  "compile_receipt_sha256": "95c27ab7441769e98d932b8443762b2ee033ae2e3961b05749594ef36025e3cf",
+  "package_install_receipt": {
+    "strategy": "Owned local container installed only requested libcgal-dev plus apt dependencies; stopped container committed into dedicated toolchain image. No shared runtime edited.",
+    "container_name": "962-cgal-toolchain-install-001",
+    "StartedAt": "2026-10-16T17:01:57.536527922Z",
+    "FinishedAt": "2026-10-16T17:02:10.284471428Z",
+    "cpus": 2,
+    "memory_bytes": 4294967296,
+    "swap_bytes": 0,
+    "log_sha256": "0452130f27deb10bb4f634a64741f89d8753030f3d1b5f738e0036f112a7e061"
+  },
+  "licence": {
+    "CGAL_SMS_and_envelope": "GPL-3.0-or-later OR LicenseRef-Commercial, as declared by installed policy headers.",
+    "commercial_licence_claimed": false,
+    "own_helper_source": "Original project code follows repository proprietary LICENSE; no upstream example code copied. CGAL headers keep their own licences.",
+    "binary_or_runtime_in_public_source_delivery": false,
+    "upstream_primary_sources": [
+      "https://github.com/CGAL/cgal/tree/v5.6",
+      "https://doc.cgal.org/5.6/Surface_mesh_simplification/index.html",
+      "https://doc.cgal.org/5.6/Surface_mesh_simplification/classCGAL_1_1Surface__mesh__simplification_1_1Polyhedral__envelope__filter.html",
+      "https://www.cgal.org/license.html"
+    ]
+  },
+  "engineering_accepted": false
+}

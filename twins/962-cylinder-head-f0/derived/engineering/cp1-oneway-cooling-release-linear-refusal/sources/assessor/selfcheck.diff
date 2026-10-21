@@ -1,0 +1,11 @@
+--- work/962-engineering/cp1-oneway-cooling-release-assessor-prep-001/selfcheck.py
++++ work/962-engineering/cp1-oneway-cooling-release-linear-assessor-prep-001/selfcheck.py
+@@ -9,7 +9,7 @@
+ import json
+ import unittest
+ SOURCE = Path(__file__).with_name('assess.py')
+-SOURCE_SHA = 'a366dfc43f7bdba5d2c60b8a911098c883723b23f946d8a89fb4d42b3e3d4b5b'
++SOURCE_SHA = 'b7c5c7c82c5a7fee11aa63032f9a136d46517b8163c3c880b8b39a06d083930f'
+ assert hashlib.sha256(SOURCE.read_bytes()).hexdigest() == SOURCE_SHA
+ spec = importlib.util.spec_from_file_location('cooling_release_assessor_guard', SOURCE)
+ a = importlib.util.module_from_spec(spec)

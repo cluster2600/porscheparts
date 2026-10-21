@@ -1,0 +1,275 @@
+{
+  "schema": "962-F1-nine-guard-independent-source-bindings/v1",
+  "read_scope": "Exactly four preparation files, pinned owner002 source and root source review002. No descriptor recursion or runtime/provider/scientific bodies.",
+  "named_first_party_inputs": [
+    {
+      "path": "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/head-star-current24-qfnra-five-toy-owner-f1-guards-prep-001/index.json",
+      "sha256": "42448c88fc7b60166250bf5525c6713dc5d496914e110a8d0c3fe876ba44a87f",
+      "bytes": 2508
+    },
+    {
+      "path": "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/head-star-current24-qfnra-five-toy-owner-f1-guards-prep-001/test_final_evidence_guards.py",
+      "sha256": "1a81cdcd45aee1aeb917478763c9169b6be5e858c5b41b9226574ae0c70ed5fb",
+      "bytes": 14566
+    },
+    {
+      "path": "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/head-star-current24-qfnra-five-toy-owner-f1-guards-prep-001/bindings.json",
+      "sha256": "3f1e80dda286909dd4c9482bfd1ceb47ab023bb8fff87eb352ff5e9d4e079374",
+      "bytes": 12195
+    },
+    {
+      "path": "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/head-star-current24-qfnra-five-toy-owner-f1-guards-prep-001/METHOD.md",
+      "sha256": "1ce871393d929c38776f4eb9106885b50264084b61034babed7661dfa89a7c03",
+      "bytes": 5499
+    },
+    {
+      "path": "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/head-star-current24-qfnra-five-toy-owner-prep-002/run_owner_once.py",
+      "sha256": "f3a27f43c1ea794a552f697d556c9b6a51668d829b86f438debf03a0cd6892e2",
+      "bytes": 32207
+    },
+    {
+      "path": "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/head-star-current24-qfnra-five-toy-owner-root-source-review-002/review.json",
+      "sha256": "2b998f3bc1a895e9035a890ab1f67cb99872b77a647952239b220c80d7554b46",
+      "bytes": 3455
+    }
+  ],
+  "input_count": 6,
+  "input_bytes": 70430,
+  "reverified_joins": [
+    "index -> fixture, bindings, METHOD",
+    "index -> owner002 and rootreview002",
+    "seven exact source spans -> owner002",
+    "fixture direct TestCase and nine test methods -> bindings",
+    "selected source free globals -> explicit namespace/builtin list"
+  ],
+  "descriptor_only_not_opened": [
+    "owner_index",
+    "source_peer",
+    "source_findings",
+    "source_bindings",
+    "F1_source_decision",
+    "original_F1_findings"
+  ],
+  "selected_definitions": {
+    "need": {
+      "sha256": "098b7ab9ef05c6267cec7bb1127e289155ed079b6b4e97dcc21dae0b9f8d9fb3",
+      "bytes": 85,
+      "lines": [
+        27,
+        29
+      ]
+    },
+    "record_controller_stop": {
+      "sha256": "9305909782fcb5d8b5c1e9e8681f771ccd248c6a1377259389aec3720cbb7aba",
+      "bytes": 169,
+      "lines": [
+        42,
+        43
+      ]
+    },
+    "event_record": {
+      "sha256": "f04ae616da6285faee940b3123ac7077f8ecb1ae6041ea55e848990c75338d84",
+      "bytes": 151,
+      "lines": [
+        67,
+        68
+      ]
+    },
+    "left": {
+      "sha256": "cb0044346f0b00190c1fbb77046252d563725f51b1003f8e4a9726c1fc91a7fd",
+      "bytes": 62,
+      "lines": [
+        79,
+        80
+      ]
+    },
+    "gate": {
+      "sha256": "03b47ac259d1be2e30ad0da1164722eb3f1e9aeb1b5001d867e40c201134d627",
+      "bytes": 93,
+      "lines": [
+        83,
+        84
+      ]
+    },
+    "exit_events": {
+      "sha256": "acc4650e8532123994c4c11c0eebeac6e94dd86675b92b550b1f607559eb91d6",
+      "bytes": 353,
+      "lines": [
+        143,
+        148
+      ]
+    },
+    "main": {
+      "sha256": "546fa1a92f56f1ed4204b909d3fe8697a3f0fca66f4419cae3056ccdf5ba8814",
+      "bytes": 15355,
+      "lines": [
+        233,
+        416
+      ]
+    }
+  },
+  "exact_cases": [
+    {
+      "method": "test_01_complete_normal_control",
+      "driver": "scenario",
+      "args": [],
+      "lines": [
+        279,
+        291
+      ]
+    },
+    {
+      "method": "test_02_final_stdout_rec_failure",
+      "driver": "assert_rec_error",
+      "args": [
+        "adapter.stdout",
+        "stream_read_errors"
+      ],
+      "lines": [
+        293,
+        294
+      ]
+    },
+    {
+      "method": "test_03_final_stderr_rec_failure",
+      "driver": "assert_rec_error",
+      "args": [
+        "adapter.stderr",
+        "stream_read_errors"
+      ],
+      "lines": [
+        296,
+        297
+      ]
+    },
+    {
+      "method": "test_04_final_adapter_report_rec_failure",
+      "driver": "assert_rec_error",
+      "args": [
+        "adapter-report.json",
+        "available_evidence_errors",
+        "available_adapter_report"
+      ],
+      "lines": [
+        299,
+        300
+      ]
+    },
+    {
+      "method": "test_05_final_helper_report_rec_failure",
+      "driver": "assert_rec_error",
+      "args": [
+        "toys/report.json",
+        "available_evidence_errors",
+        "available_helper_report"
+      ],
+      "lines": [
+        302,
+        303
+      ]
+    },
+    {
+      "method": "test_06_missing_final_stdout_descriptor",
+      "driver": "assert_missing",
+      "args": [
+        "adapter.stdout"
+      ],
+      "lines": [
+        305,
+        306
+      ]
+    },
+    {
+      "method": "test_07_missing_final_stderr_descriptor",
+      "driver": "assert_missing",
+      "args": [
+        "adapter.stderr"
+      ],
+      "lines": [
+        308,
+        309
+      ]
+    },
+    {
+      "method": "test_08_missing_final_adapter_descriptor",
+      "driver": "assert_missing",
+      "args": [
+        "adapter-report.json",
+        "available_adapter_report"
+      ],
+      "lines": [
+        311,
+        312
+      ]
+    },
+    {
+      "method": "test_09_missing_final_helper_descriptor",
+      "driver": "assert_missing",
+      "args": [
+        "toys/report.json",
+        "available_helper_report"
+      ],
+      "lines": [
+        314,
+        315
+      ]
+    }
+  ],
+  "imports": [
+    "import ast",
+    "import builtins",
+    "import hashlib",
+    "import json",
+    "from pathlib import Path",
+    "from types import SimpleNamespace",
+    "import unittest"
+  ],
+  "static_free_global_names": [
+    "BaseException",
+    "CAP",
+    "ChildProcessError",
+    "D",
+    "ENV",
+    "HELD_LEADERS",
+    "RSS_CAP",
+    "ValueError",
+    "admit",
+    "bool",
+    "controller_stop_requests",
+    "dict",
+    "event_record",
+    "exit_events",
+    "gate",
+    "group_exists",
+    "identities",
+    "inclusive_bytes",
+    "int",
+    "isinstance",
+    "json",
+    "left",
+    "len",
+    "limits",
+    "list",
+    "max",
+    "min",
+    "need",
+    "normal_reports",
+    "os",
+    "print",
+    "provider_links",
+    "rec",
+    "record_controller_stop",
+    "sample",
+    "select",
+    "signal",
+    "started",
+    "subprocess",
+    "sys",
+    "time",
+    "traceback"
+  ],
+  "unbound_selected_global_names": [],
+  "AST_only": true,
+  "fixture_or_target_import_compile_eval_execute": false,
+  "provider_runtime_query_or_body_access": false
+}

@@ -1,0 +1,40 @@
+{
+  "scope": "Source preparation only; no native authority. Declaration-only successor, cleanup/resource/process logic unchanged.",
+  "parent": "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-netgen-cube-prep-002/run_readback.py",
+  "parent_sha256": "f7165620ac95b9095969b21ae912e87d491019e295a62155abbf33c2eb3b2944",
+  "runner_sha256": "5b9c10be3b09f4f72f2e4dcedb4588a5fee3e61d98eed9b4797498410795fae5",
+  "tests_sha256": "aab036ea95957ba82d5bf6ba0ecb2db44712c10251d46f94c2c2621f7708f108",
+  "reversible_substitutions": [
+    {
+      "old": "One fresh, source-bound Netgen cube optimizer fixture; reviewed pins required.",
+      "new": "One fresh, source-bound direct-SICN cube optimizer witness; reviewed pins required.",
+      "count": 1
+    },
+    {
+      "old": "One fresh Netgen cube fixture only; preserve previous outputs",
+      "new": "One fresh direct-SICN cube witness only; preserve previous outputs",
+      "count": 1
+    },
+    {
+      "old": "netgen_fixture_deadline",
+      "new": "direct_sicn_cube_deadline",
+      "count": 2
+    },
+    {
+      "old": "one_saved_cube_Netgen_optimizer_fixture",
+      "new": "one_saved_cube_direct_SICN_SLSQP_witness",
+      "count": 1
+    },
+    {
+      "old": "{'generate':0,'createGeometry_dim3':1,'optimize_Netgen':1,'rebuildElementCache':1,'write_mesh':1,'solve':0}",
+      "new": "{'gmsh_generate':0,'gmsh_createGeometry':0,'gmsh_optimize':0,'SLSQP_minimize_invocations':1,'gmsh_write_mesh':1,'solve':0}",
+      "count": 1
+    }
+  ],
+  "byte_exact_reverse_to_parent": true,
+  "reused_lifecycle_test_logic_unchanged_except_source_pin_and_refusal_wording": false,
+  "native_launch_authorized": false,
+  "reused_lifecycle_test_logic_unchanged_except_source_pin_refusal_and_expected_deadline_label": true,
+  "supersedes_test_label_mismatch_at": "work/962-engineering/direct-sicn-cube-controller-prep-001",
+  "root_failed_test_review_sha256": "bd4c15a6559582b6f03d558a687680c96a7084e4a1f46df48987f3f4cc38e62d"
+}

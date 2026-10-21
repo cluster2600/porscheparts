@@ -1,0 +1,63 @@
+{
+  "schema": "962-current24-qfnra-one-model-word-proposal-source-schema/v1",
+  "proposal_schema": "962-current24-qfnra-one-model-word-proposal/v1",
+  "pure_validator_API": "validate_proposal(proposal, saved_payloads, input_records)",
+  "input_records_count": 23,
+  "input_records_canonical_sha256": "61a9482457279b33b43ae53aae18c5a7ebc6717e21a72ede8bab0e22e8cdc0e5",
+  "top_fields": [
+    "schema",
+    "input_records",
+    "context_before",
+    "original_cell_rows",
+    "components",
+    "proposed_coordinate_rows",
+    "coordinate_mapping_records",
+    "mapping_evidence",
+    "normalization",
+    "complete_application_eligibility",
+    "application_authorized",
+    "global_embedding_accepted",
+    "physical_accepted",
+    "manufacturing_authorized"
+  ],
+  "original_cell_rows_count": 499,
+  "components_count": 11,
+  "components_fields": [
+    "component_ID",
+    "movable_node_tags",
+    "tetrahedron_tags"
+  ],
+  "proposed_coordinate_rows_count": 271,
+  "coordinate_row_fields": [
+    "node_tag",
+    "coordinates_mm",
+    "binary64_hex",
+    "words_le_hex"
+  ],
+  "coordinate_words_format": "48 lowercase hex characters, contiguous little-endian <3d, preserving fixed signed-zero bits",
+  "mapping_records_count": 48,
+  "mapping_record_exact_fields": [
+    "component_ID",
+    "node_tag",
+    "axis",
+    "symbol",
+    "word_u64",
+    "word_le_hex",
+    "model_ID",
+    "events"
+  ],
+  "mapping_order": "Increasing fixed11 component IDs, increasing seed tags, x/y/z",
+  "mapping_axis_type": "string x/y/z; pure mapper input axis is integer0..2",
+  "word_u64": "exact int in finite IEEE binary64 range after decoding; word_le_hex is exact16 lowercase hex characters",
+  "model_ID": "one nonempty retained model identity per component, producer uses64 lowercase SHA256 hex",
+  "evidence_scope": "mapping_evidence, normalization, model_ID and events are source-attributed evidence only; independent word validator does not prove solver/model/oracle truth",
+  "required_unavailable_and_false": {
+    "complete_application_eligibility": null,
+    "application_authorized": false,
+    "global_embedding_accepted": false,
+    "physical_accepted": false,
+    "manufacturing_authorized": false
+  },
+  "future_validator_source_owned_by": "/root/lpbf_linear_refinement; separate frozen packet and independent source review required",
+  "no_generated_proposal": true
+}

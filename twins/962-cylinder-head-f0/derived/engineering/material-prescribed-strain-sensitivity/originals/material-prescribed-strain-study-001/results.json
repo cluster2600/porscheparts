@@ -1,0 +1,444 @@
+{
+  "schema": "962-assumed-reference-prescribed-strain-study/v1",
+  "status": "COMPLETE_25_POINT_ASSUMED_REFERENCE_ARITHMETIC_ONLY",
+  "qualification": false,
+  "production_alloy": null,
+  "qualified_material_card": null,
+  "head_strength_acceptance": false,
+  "phase5_complete": false,
+  "input": {
+    "path": "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/material-assumed-reference-proposal-001/proposal.json",
+    "sha256": "e3f8aee9be38df911b489101fe5e3361df142e1bd70a434326dafba91b04c1eb",
+    "bytes": 7545
+  },
+  "reference_source": {
+    "doi": "10.3390/cryst12091309",
+    "publisher_url": "https://www.mdpi.com/2073-4352/12/9/1309",
+    "locations": [
+      "Experimental procedure",
+      "Tables2-3",
+      "Data availability"
+    ]
+  },
+  "reference_classification": "Inputs published for an inverse heat-treatment model; property measurement provenance is not established here.",
+  "assumptions": {
+    "temperature_C": [
+      20,
+      100,
+      200,
+      300,
+      400
+    ],
+    "mechanical_strains": [
+      "0",
+      "0.0005",
+      "0.001",
+      "0.002",
+      "0.004"
+    ],
+    "idealization": "Uniform temperature; homogeneous one-dimensional uniaxial small-strain elastic trial; free lateral contraction and zero transverse stress.",
+    "strain_origin": "Declared independent mechanical-strain demand; not a measured or computed head strain, thermal expansion, pressure or restraint load.",
+    "formula_MPa": "elastic_trial_stress = E_GPa * 1000 * assumed_mechanical_strain",
+    "crossing_formula": "published_scalar_parameter_MPa / reference_E_MPa",
+    "interpretation": "Scalar reference-parameter comparison only. Exceedance does not predict yield, failure, plastic flow, post-yield stress, life or a validated material law.",
+    "interpolation_extrapolation_fitting": false,
+    "arithmetic": "Fractions are exact; decimal ratios are rounded to 50 significant digits with Decimal ROUND_HALF_EVEN. Exact fractions are authoritative."
+  },
+  "property_table_heat_state": null,
+  "property_table_orientation": null,
+  "missing_constitutive_and_measurement_data": {
+    "expansion_definition_mean_or_instantaneous": null,
+    "expansion_reference_temperature_C": null,
+    "yield_criterion": null,
+    "true_stress_plastic_strain_curves": null,
+    "strain_rate_and_dwell_association": null,
+    "property_scatter": null
+  },
+  "missing_lifetime_and_LPBF_properties": {
+    "hot_fatigue": null,
+    "TMF": null,
+    "cyclic_hardening_softening": null,
+    "creep_relaxation": null,
+    "statistical_life_basis": null,
+    "powder_liquid_phase_change_absorptivity_and_calibration": null
+  },
+  "thermal_strain": null,
+  "plastic_response": null,
+  "Materials_2023": "Separate measured thermal lead; no observations used or blended here.",
+  "crossings": [
+    {
+      "temperature_C": 20,
+      "elastic_trial_parameter_crossing_strain": {
+        "numerator": 13,
+        "denominator": 4600,
+        "decimal_50_significant_digits": "0.0028260869565217391304347826086956521739130434782609"
+      }
+    },
+    {
+      "temperature_C": 100,
+      "elastic_trial_parameter_crossing_strain": {
+        "numerator": 3,
+        "denominator": 1340,
+        "decimal_50_significant_digits": "0.0022388059701492537313432835820895522388059701492537"
+      }
+    },
+    {
+      "temperature_C": 200,
+      "elastic_trial_parameter_crossing_strain": {
+        "numerator": 21,
+        "denominator": 12400,
+        "decimal_50_significant_digits": "0.0016935483870967741935483870967741935483870967741935"
+      }
+    },
+    {
+      "temperature_C": 300,
+      "elastic_trial_parameter_crossing_strain": {
+        "numerator": 7,
+        "denominator": 5300,
+        "decimal_50_significant_digits": "0.0013207547169811320754716981132075471698113207547170"
+      }
+    },
+    {
+      "temperature_C": 400,
+      "elastic_trial_parameter_crossing_strain": {
+        "numerator": 3,
+        "denominator": 4100,
+        "decimal_50_significant_digits": "0.00073170731707317073170731707317073170731707317073171"
+      }
+    }
+  ],
+  "points": [
+    {
+      "temperature_C": 20,
+      "reference_E_MPa": 69000,
+      "published_scalar_parameter_MPa": 195,
+      "assumed_mechanical_strain": "0",
+      "elastic_trial_stress_MPa": "0",
+      "trial_to_scalar_parameter_ratio": {
+        "numerator": 0,
+        "denominator": 1,
+        "decimal_50_significant_digits": "0"
+      },
+      "elastic_trial_exceeds_scalar_parameter": false
+    },
+    {
+      "temperature_C": 20,
+      "reference_E_MPa": 69000,
+      "published_scalar_parameter_MPa": 195,
+      "assumed_mechanical_strain": "0.0005",
+      "elastic_trial_stress_MPa": "34.5",
+      "trial_to_scalar_parameter_ratio": {
+        "numerator": 23,
+        "denominator": 130,
+        "decimal_50_significant_digits": "0.17692307692307692307692307692307692307692307692308"
+      },
+      "elastic_trial_exceeds_scalar_parameter": false
+    },
+    {
+      "temperature_C": 20,
+      "reference_E_MPa": 69000,
+      "published_scalar_parameter_MPa": 195,
+      "assumed_mechanical_strain": "0.001",
+      "elastic_trial_stress_MPa": "69",
+      "trial_to_scalar_parameter_ratio": {
+        "numerator": 23,
+        "denominator": 65,
+        "decimal_50_significant_digits": "0.35384615384615384615384615384615384615384615384615"
+      },
+      "elastic_trial_exceeds_scalar_parameter": false
+    },
+    {
+      "temperature_C": 20,
+      "reference_E_MPa": 69000,
+      "published_scalar_parameter_MPa": 195,
+      "assumed_mechanical_strain": "0.002",
+      "elastic_trial_stress_MPa": "138",
+      "trial_to_scalar_parameter_ratio": {
+        "numerator": 46,
+        "denominator": 65,
+        "decimal_50_significant_digits": "0.70769230769230769230769230769230769230769230769231"
+      },
+      "elastic_trial_exceeds_scalar_parameter": false
+    },
+    {
+      "temperature_C": 20,
+      "reference_E_MPa": 69000,
+      "published_scalar_parameter_MPa": 195,
+      "assumed_mechanical_strain": "0.004",
+      "elastic_trial_stress_MPa": "276",
+      "trial_to_scalar_parameter_ratio": {
+        "numerator": 92,
+        "denominator": 65,
+        "decimal_50_significant_digits": "1.4153846153846153846153846153846153846153846153846"
+      },
+      "elastic_trial_exceeds_scalar_parameter": true
+    },
+    {
+      "temperature_C": 100,
+      "reference_E_MPa": 67000,
+      "published_scalar_parameter_MPa": 150,
+      "assumed_mechanical_strain": "0",
+      "elastic_trial_stress_MPa": "0",
+      "trial_to_scalar_parameter_ratio": {
+        "numerator": 0,
+        "denominator": 1,
+        "decimal_50_significant_digits": "0"
+      },
+      "elastic_trial_exceeds_scalar_parameter": false
+    },
+    {
+      "temperature_C": 100,
+      "reference_E_MPa": 67000,
+      "published_scalar_parameter_MPa": 150,
+      "assumed_mechanical_strain": "0.0005",
+      "elastic_trial_stress_MPa": "33.5",
+      "trial_to_scalar_parameter_ratio": {
+        "numerator": 67,
+        "denominator": 300,
+        "decimal_50_significant_digits": "0.22333333333333333333333333333333333333333333333333"
+      },
+      "elastic_trial_exceeds_scalar_parameter": false
+    },
+    {
+      "temperature_C": 100,
+      "reference_E_MPa": 67000,
+      "published_scalar_parameter_MPa": 150,
+      "assumed_mechanical_strain": "0.001",
+      "elastic_trial_stress_MPa": "67",
+      "trial_to_scalar_parameter_ratio": {
+        "numerator": 67,
+        "denominator": 150,
+        "decimal_50_significant_digits": "0.44666666666666666666666666666666666666666666666667"
+      },
+      "elastic_trial_exceeds_scalar_parameter": false
+    },
+    {
+      "temperature_C": 100,
+      "reference_E_MPa": 67000,
+      "published_scalar_parameter_MPa": 150,
+      "assumed_mechanical_strain": "0.002",
+      "elastic_trial_stress_MPa": "134",
+      "trial_to_scalar_parameter_ratio": {
+        "numerator": 67,
+        "denominator": 75,
+        "decimal_50_significant_digits": "0.89333333333333333333333333333333333333333333333333"
+      },
+      "elastic_trial_exceeds_scalar_parameter": false
+    },
+    {
+      "temperature_C": 100,
+      "reference_E_MPa": 67000,
+      "published_scalar_parameter_MPa": 150,
+      "assumed_mechanical_strain": "0.004",
+      "elastic_trial_stress_MPa": "268",
+      "trial_to_scalar_parameter_ratio": {
+        "numerator": 134,
+        "denominator": 75,
+        "decimal_50_significant_digits": "1.7866666666666666666666666666666666666666666666667"
+      },
+      "elastic_trial_exceeds_scalar_parameter": true
+    },
+    {
+      "temperature_C": 200,
+      "reference_E_MPa": 62000,
+      "published_scalar_parameter_MPa": 105,
+      "assumed_mechanical_strain": "0",
+      "elastic_trial_stress_MPa": "0",
+      "trial_to_scalar_parameter_ratio": {
+        "numerator": 0,
+        "denominator": 1,
+        "decimal_50_significant_digits": "0"
+      },
+      "elastic_trial_exceeds_scalar_parameter": false
+    },
+    {
+      "temperature_C": 200,
+      "reference_E_MPa": 62000,
+      "published_scalar_parameter_MPa": 105,
+      "assumed_mechanical_strain": "0.0005",
+      "elastic_trial_stress_MPa": "31",
+      "trial_to_scalar_parameter_ratio": {
+        "numerator": 31,
+        "denominator": 105,
+        "decimal_50_significant_digits": "0.29523809523809523809523809523809523809523809523810"
+      },
+      "elastic_trial_exceeds_scalar_parameter": false
+    },
+    {
+      "temperature_C": 200,
+      "reference_E_MPa": 62000,
+      "published_scalar_parameter_MPa": 105,
+      "assumed_mechanical_strain": "0.001",
+      "elastic_trial_stress_MPa": "62",
+      "trial_to_scalar_parameter_ratio": {
+        "numerator": 62,
+        "denominator": 105,
+        "decimal_50_significant_digits": "0.59047619047619047619047619047619047619047619047619"
+      },
+      "elastic_trial_exceeds_scalar_parameter": false
+    },
+    {
+      "temperature_C": 200,
+      "reference_E_MPa": 62000,
+      "published_scalar_parameter_MPa": 105,
+      "assumed_mechanical_strain": "0.002",
+      "elastic_trial_stress_MPa": "124",
+      "trial_to_scalar_parameter_ratio": {
+        "numerator": 124,
+        "denominator": 105,
+        "decimal_50_significant_digits": "1.1809523809523809523809523809523809523809523809524"
+      },
+      "elastic_trial_exceeds_scalar_parameter": true
+    },
+    {
+      "temperature_C": 200,
+      "reference_E_MPa": 62000,
+      "published_scalar_parameter_MPa": 105,
+      "assumed_mechanical_strain": "0.004",
+      "elastic_trial_stress_MPa": "248",
+      "trial_to_scalar_parameter_ratio": {
+        "numerator": 248,
+        "denominator": 105,
+        "decimal_50_significant_digits": "2.3619047619047619047619047619047619047619047619048"
+      },
+      "elastic_trial_exceeds_scalar_parameter": true
+    },
+    {
+      "temperature_C": 300,
+      "reference_E_MPa": 53000,
+      "published_scalar_parameter_MPa": 70,
+      "assumed_mechanical_strain": "0",
+      "elastic_trial_stress_MPa": "0",
+      "trial_to_scalar_parameter_ratio": {
+        "numerator": 0,
+        "denominator": 1,
+        "decimal_50_significant_digits": "0"
+      },
+      "elastic_trial_exceeds_scalar_parameter": false
+    },
+    {
+      "temperature_C": 300,
+      "reference_E_MPa": 53000,
+      "published_scalar_parameter_MPa": 70,
+      "assumed_mechanical_strain": "0.0005",
+      "elastic_trial_stress_MPa": "26.5",
+      "trial_to_scalar_parameter_ratio": {
+        "numerator": 53,
+        "denominator": 140,
+        "decimal_50_significant_digits": "0.37857142857142857142857142857142857142857142857143"
+      },
+      "elastic_trial_exceeds_scalar_parameter": false
+    },
+    {
+      "temperature_C": 300,
+      "reference_E_MPa": 53000,
+      "published_scalar_parameter_MPa": 70,
+      "assumed_mechanical_strain": "0.001",
+      "elastic_trial_stress_MPa": "53",
+      "trial_to_scalar_parameter_ratio": {
+        "numerator": 53,
+        "denominator": 70,
+        "decimal_50_significant_digits": "0.75714285714285714285714285714285714285714285714286"
+      },
+      "elastic_trial_exceeds_scalar_parameter": false
+    },
+    {
+      "temperature_C": 300,
+      "reference_E_MPa": 53000,
+      "published_scalar_parameter_MPa": 70,
+      "assumed_mechanical_strain": "0.002",
+      "elastic_trial_stress_MPa": "106",
+      "trial_to_scalar_parameter_ratio": {
+        "numerator": 53,
+        "denominator": 35,
+        "decimal_50_significant_digits": "1.5142857142857142857142857142857142857142857142857"
+      },
+      "elastic_trial_exceeds_scalar_parameter": true
+    },
+    {
+      "temperature_C": 300,
+      "reference_E_MPa": 53000,
+      "published_scalar_parameter_MPa": 70,
+      "assumed_mechanical_strain": "0.004",
+      "elastic_trial_stress_MPa": "212",
+      "trial_to_scalar_parameter_ratio": {
+        "numerator": 106,
+        "denominator": 35,
+        "decimal_50_significant_digits": "3.0285714285714285714285714285714285714285714285714"
+      },
+      "elastic_trial_exceeds_scalar_parameter": true
+    },
+    {
+      "temperature_C": 400,
+      "reference_E_MPa": 41000,
+      "published_scalar_parameter_MPa": 30,
+      "assumed_mechanical_strain": "0",
+      "elastic_trial_stress_MPa": "0",
+      "trial_to_scalar_parameter_ratio": {
+        "numerator": 0,
+        "denominator": 1,
+        "decimal_50_significant_digits": "0"
+      },
+      "elastic_trial_exceeds_scalar_parameter": false
+    },
+    {
+      "temperature_C": 400,
+      "reference_E_MPa": 41000,
+      "published_scalar_parameter_MPa": 30,
+      "assumed_mechanical_strain": "0.0005",
+      "elastic_trial_stress_MPa": "20.5",
+      "trial_to_scalar_parameter_ratio": {
+        "numerator": 41,
+        "denominator": 60,
+        "decimal_50_significant_digits": "0.68333333333333333333333333333333333333333333333333"
+      },
+      "elastic_trial_exceeds_scalar_parameter": false
+    },
+    {
+      "temperature_C": 400,
+      "reference_E_MPa": 41000,
+      "published_scalar_parameter_MPa": 30,
+      "assumed_mechanical_strain": "0.001",
+      "elastic_trial_stress_MPa": "41",
+      "trial_to_scalar_parameter_ratio": {
+        "numerator": 41,
+        "denominator": 30,
+        "decimal_50_significant_digits": "1.3666666666666666666666666666666666666666666666667"
+      },
+      "elastic_trial_exceeds_scalar_parameter": true
+    },
+    {
+      "temperature_C": 400,
+      "reference_E_MPa": 41000,
+      "published_scalar_parameter_MPa": 30,
+      "assumed_mechanical_strain": "0.002",
+      "elastic_trial_stress_MPa": "82",
+      "trial_to_scalar_parameter_ratio": {
+        "numerator": 41,
+        "denominator": 15,
+        "decimal_50_significant_digits": "2.7333333333333333333333333333333333333333333333333"
+      },
+      "elastic_trial_exceeds_scalar_parameter": true
+    },
+    {
+      "temperature_C": 400,
+      "reference_E_MPa": 41000,
+      "published_scalar_parameter_MPa": 30,
+      "assumed_mechanical_strain": "0.004",
+      "elastic_trial_stress_MPa": "164",
+      "trial_to_scalar_parameter_ratio": {
+        "numerator": 82,
+        "denominator": 15,
+        "decimal_50_significant_digits": "5.4666666666666666666666666666666666666666666666667"
+      },
+      "elastic_trial_exceeds_scalar_parameter": true
+    }
+  ],
+  "operations": {
+    "solver": false,
+    "child_process": false,
+    "geometry_or_scientific_body_read": false,
+    "card_change": false,
+    "PUB_Git_change": false
+  }
+}

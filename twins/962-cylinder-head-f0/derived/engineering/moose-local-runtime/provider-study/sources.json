@@ -1,0 +1,183 @@
+{
+  "input_sha256": {
+    "work/962-engineering/moose-local-install-state-002/pkgs/libfabric1-2.6.0-h84a0fba_0/info/recipe/parent/build.sh": "75f61144bcc2fbf3147da27abaed247338208a29128e70f02e111d470e8b3608",
+    "work/962-engineering/moose-local-install-state-002/pkgs/mpich-5.0.1-h7c78743_4/info/recipe/build-mpi.sh": "8e398290b388c56c41120e63318a8f6800b694ad2f81703bc8a891c6b6f49c59",
+    "work/962-engineering/moose-local-installed-002/conda-meta/libfabric-2.6.0-hce30654_0.json": "656d1051d2ec5caab26049923621b0d9107e03602b1460ed543bbfb0f0b9fba9",
+    "work/962-engineering/moose-local-installed-002/conda-meta/libfabric1-2.6.0-h84a0fba_0.json": "fb59df80bddb1a313ba7445427cfc20806095591abf504a58d430720cf1664fa",
+    "work/962-engineering/moose-local-installed-002/conda-meta/mpich-5.0.1-h7c78743_4.json": "508413dc424298bfefa9e9b68d3049de82249a8303eac7ce3842a43800613e4b",
+    "work/962-engineering/moose-local-installed-002/etc/conda/activate.d/libfabric_activate.sh": "294e3669024ce60b276f3f155cc0efb2ad86af2c1baad5e60f97b876f22d0847",
+    "work/962-engineering/moose-local-macos-readiness-root-execution-002/closed-result.json": "b11e6f806a114a9c627757175b060801dfae2d7d11827173b14c97e3938ce850",
+    "work/962-engineering/moose-local-macos-readiness-root-execution-002/diagnosis/help-process.sample.txt": "de520ceccc61e33b9b2b8253b30ebe473db95d21719908e0226df5f92041b9bc"
+  },
+  "limits": [
+    "The root sample observes one interval in finalization through libfabric socket progress; it does not establish a root cause, a full timing trace or which exact progress loop stalled.",
+    "Sockets and tcp are distinct providers; both use socket transport. A generic socket stack is not alone a selected-provider certificate.",
+    "Package recipe and activation text support trying tcp but do not prove installed provider availability, application selection, ABI or a successful remedy. No fi_info, MPI, MOOSE, package/library import, native command or test was run here.",
+    "No semantic/tolerance/material/head/manufacturing acceptance is granted. Existing stopped001/002 and frozen sources remain unchanged."
+  ],
+  "local_references": {
+    "work/962-engineering/moose-local-install-state-002/pkgs/libfabric1-2.6.0-h84a0fba_0/info/recipe/parent/build.sh": {
+      "bytes": 1107,
+      "role": "retained package build script; read, not run",
+      "sha256": "75f61144bcc2fbf3147da27abaed247338208a29128e70f02e111d470e8b3608"
+    },
+    "work/962-engineering/moose-local-install-state-002/pkgs/mpich-5.0.1-h7c78743_4/info/recipe/build-mpi.sh": {
+      "bytes": 3587,
+      "role": "retained generic ch4:ofi Mac build branch; read, not run",
+      "sha256": "8e398290b388c56c41120e63318a8f6800b694ad2f81703bc8a891c6b6f49c59"
+    },
+    "work/962-engineering/moose-local-installed-002/conda-meta/libfabric-2.6.0-hce30654_0.json": {
+      "bytes": 1316,
+      "role": "installed dependency metapackage",
+      "sha256": "656d1051d2ec5caab26049923621b0d9107e03602b1460ed543bbfb0f0b9fba9"
+    },
+    "work/962-engineering/moose-local-installed-002/conda-meta/libfabric1-2.6.0-h84a0fba_0.json": {
+      "bytes": 2343,
+      "role": "installed libfabric regular-library owner",
+      "sha256": "fb59df80bddb1a313ba7445427cfc20806095591abf504a58d430720cf1664fa"
+    },
+    "work/962-engineering/moose-local-installed-002/conda-meta/mpich-5.0.1-h7c78743_4.json": {
+      "bytes": 21685,
+      "role": "installed MPICH owner",
+      "sha256": "508413dc424298bfefa9e9b68d3049de82249a8303eac7ce3842a43800613e4b"
+    },
+    "work/962-engineering/moose-local-installed-002/etc/conda/activate.d/libfabric_activate.sh": {
+      "bytes": 500,
+      "role": "public build-only tcp selector script; read, not run",
+      "sha256": "294e3669024ce60b276f3f155cc0efb2ad86af2c1baad5e60f97b876f22d0847"
+    },
+    "work/962-engineering/moose-local-macos-readiness-root-execution-002/closed-result.json": {
+      "bytes": 7291,
+      "role": "root-owned stopped diagnostic002 closure",
+      "sha256": "b11e6f806a114a9c627757175b060801dfae2d7d11827173b14c97e3938ce850"
+    },
+    "work/962-engineering/moose-local-macos-readiness-root-execution-002/diagnosis/help-process.sample.txt": {
+      "bytes": 107358,
+      "role": "root-owned completed one-second diagnostic sample",
+      "sha256": "de520ceccc61e33b9b2b8253b30ebe473db95d21719908e0226df5f92041b9bc"
+    }
+  },
+  "observed_installed_state": {
+    "MPICH": "5.0.1 h7c78743_4 osx-arm64",
+    "activation_executed_here": false,
+    "activation_sets_tcp_only_for_conda_build_or_PKG_NAME": true,
+    "compiled_usable_tcp_provider_confirmed": false,
+    "fi_info_or_provider_man_pages_in_these_package_records": false,
+    "libfabric": "2.6.0 hce30654_0 metapackage",
+    "libfabric1": "2.6.0 h84a0fba_0 osx-arm64",
+    "libfabric1_installed_files": [
+      "etc/conda/activate.d/libfabric_activate.sh",
+      "lib/libfabric.1.dylib"
+    ],
+    "retained_Mac_MPICH_build_branch": "--with-device=ch4:ofi --with-libfabric=$PREFIX",
+    "retained_libfabric_config_does_not_disable_tcp": true
+  },
+  "primary_acquisition": {
+    "complete_upstream_bodies_copied": false,
+    "direct_TLS_verified_urllib_body_capture_attempt": "URLError for five explicit raw URLs; no relaxed TLS, credentials, native downloader or fallback used. Official web reads above succeeded.",
+    "official_web_source_read": true,
+    "upstream_SHA256_claimed": false
+  },
+  "primary_sources": [
+    {
+      "finding": "FI_PROVIDER supports runtime inclusion/exclusion; available providers depend on build and runtime discovery.",
+      "lines": [
+        [
+          103,
+          109
+        ],
+        [
+          134,
+          137
+        ]
+      ],
+      "url": "https://ofiwg.github.io/libfabric/v2.6.0/man/fabric.7.html",
+      "version": "2.6.0"
+    },
+    {
+      "finding": "TCP supports MSG/RDM directly; RDM direct since1.18, compatibility RxM layering remains possible.",
+      "lines": [
+        [
+          8,
+          17
+        ],
+        [
+          49,
+          51
+        ]
+      ],
+      "url": "https://ofiwg.github.io/libfabric/v2.6.0/man/fi_tcp.7.html",
+      "version": "2.6.0"
+    },
+    {
+      "finding": "Positive core filtering does not exclude utility providers; tcp alone does not prove absence of tcp;ofi_rxm.",
+      "lines": [
+        [
+          351,
+          362
+        ],
+        [
+          599,
+          618
+        ],
+        [
+          1157,
+          1174
+        ]
+      ],
+      "url": "https://raw.githubusercontent.com/ofiwg/libfabric/v2.6.0/src/fabric.c",
+      "version": "v2.6.0"
+    },
+    {
+      "finding": "TCP configure hook permits TCP unless explicitly disabled; not a readback of the installed compiled provider inventory.",
+      "lines": [
+        [
+          9,
+          15
+        ]
+      ],
+      "url": "https://raw.githubusercontent.com/ofiwg/libfabric/v2.6.0/prov/tcp/configure.m4",
+      "version": "v2.6.0"
+    },
+    {
+      "finding": "Runtime-configurable ch4:ofi allows FI_PROVIDER selection; compile-time provider-specific capability constants cannot be changed by runtime environment.",
+      "lines": [
+        [
+          751,
+          788
+        ]
+      ],
+      "url": "https://www.mpich.org/static/downloads/5.0.1/mpich-5.0.1-README.txt",
+      "version": "5.0.1"
+    },
+    {
+      "finding": "Exact sockets finalize branch flushes self messages and progresses; NO_COLLECTIVE_FINALIZE is checked after that branch, not a suitable bypass.",
+      "lines": [
+        [
+          738,
+          756
+        ],
+        [
+          765,
+          800
+        ]
+      ],
+      "url": "https://raw.githubusercontent.com/pmodels/mpich/v5.0.1/src/mpid/ch4/netmod/ofi/ofi_init.c",
+      "version": "v5.0.1"
+    }
+  ],
+  "proposal": {
+    "future_actual_source_peer_root_guards_runtime_refresh_and_stopped002_peer_required": true,
+    "no_activation_install_vendor_or_binary_change": true,
+    "no_automatic_retry_or_fallback": true,
+    "no_finalize_bypass": true,
+    "no_other_MPI_PETSc_or_solver_option_change": true,
+    "one_source_ENV_delta": {
+      "FI_PROVIDER": "tcp"
+    },
+    "prior_six_explicit_child_variables_unchanged": true,
+    "readiness_metadata_commands_then_separate_cube_authorization": true
+  },
+  "schema": "962-source-only-MPI-provider-diagnostic-note/v1",
+  "status": "SOURCE_BACKED_ENVIRONMENT_ONLY_DIAGNOSTIC_OPTION_NOT_EXECUTED"
+}

@@ -1,0 +1,501 @@
+{
+  "schema_version": "1.0.0",
+  "status": "native_CPU_full_validation_executed_with_findings_no_asset_authoring",
+  "representation": "Assembled whitelist projection of retained private evidence; not the full native records or a standalone numerical reproduction package.",
+  "checked_on": "2026-10-16",
+  "scope": "One unchanged source-exact bore95 solid. Static USD diagnostics and one formal profile; no geometry conversion, repair, stamping, material/physics assignment, rendering or head simulation.",
+  "asset": {
+    "sha256": "eb73024ebb1e207ef5f77edec5438f4098e0e12cb73cd1181d6845dcf10cc0d8",
+    "original_name": "solid-exact.usdc",
+    "bytes": 17370409,
+    "original_unchanged": true,
+    "diagnostic_copy_name": "solid-exact.usd",
+    "diagnostic_copy_sha256": "eb73024ebb1e207ef5f77edec5438f4098e0e12cb73cd1181d6845dcf10cc0d8",
+    "copy_unchanged": true,
+    "copy_is_byte_identical_not_serialization": true,
+    "copy_reason": "SimReady2026.4.8 validate_asset rejects the.usdc suffix, accepting only.usd/.usda. Its original empty report is retained separately.",
+    "suffix_filter_source_sha256": "6d367a2d8fc2e247b6f7e101f2641610dacc36db95b1707e9aa37e767502beb0",
+    "suffix_filter_locator": "simready/validate/api.py:395-397"
+  },
+  "runtime": {
+    "architecture": "native_linux_x86_64",
+    "CPython": "3.12.13",
+    "OpenUSD": [
+      0,
+      25,
+      5
+    ],
+    "provider": "usd-exchange2.3.0 in a fresh owned validation venv",
+    "old_base_interpreter_bytes_unchanged": true,
+    "old_USD_venv_received_no_package_installation": true,
+    "Kit_GPU_Content_Agents_or_paid_compute_used": false,
+    "packages": [
+      {
+        "name": "usd-exchange",
+        "version": "2.3.0",
+        "wheel": "usd_exchange-2.3.0-cp312-cp312-manylinux_2_35_x86_64.whl",
+        "wheel_bytes": 20891027,
+        "wheel_sha256": "358c858fafebc0ca37a0e62608e595d894ff732eb723ed871292755f5882e8b4",
+        "declared_licence": "Apache-2.0",
+        "licence_file_sha256s": {
+          "usd_exchange-2.3.0.dist-info/licenses/hwloc-COPYING.txt": "d79a936a42f3c6cb7c8375a023d43f4435f4664d3a5a2ea6b4623cff83c7fc06",
+          "usd_exchange-2.3.0.dist-info/licenses/pybind11-LICENSE.txt": "83965b843b98f670d3a85bd041ed4b372c8ec50d7b4a5995a83ac697ba675dcb",
+          "usd_exchange-2.3.0.dist-info/licenses/pyboost11-LICENSE.txt": "ae21ed7368cadf34b8e1e5d403c648e128fcc270397a52c5660d6b3cb5deed51",
+          "usd_exchange-2.3.0.dist-info/licenses/tbb-LICENSE": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+          "usd_exchange-2.3.0.dist-info/licenses/usd-exchange-LICENSE.md": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+          "usd_exchange-2.3.0.dist-info/licenses/usd-license.txt": "96ab8f00d1f73b78e20a4aa950818db1e8b36809e4553f322773cf4a9df15b2d",
+          "usd_exchange-2.3.0.dist-info/licenses/zlib-LICENSE": "cd71bb78391bd288dfcce9b381e3bd847eaa18ecff0fe93aff33510e21c4b65d"
+        },
+        "primary_metadata": "https://pypi.org/pypi/usd-exchange/2.3.0/json"
+      },
+      {
+        "name": "omniverse-asset-validator",
+        "version": "1.18.0",
+        "wheel": "omniverse_asset_validator-1.18.0-py3-none-any.whl",
+        "wheel_bytes": 261106,
+        "wheel_sha256": "9dd0e5043ff9728b28003f96aedce00b50d503ff8e33d804fb231e981a47f8c5",
+        "declared_licence": "Apache-2.0",
+        "licence_file_sha256s": {},
+        "primary_metadata": "https://pypi.org/pypi/omniverse-asset-validator/1.18.0/json"
+      },
+      {
+        "name": "omniverse-usd-profiles",
+        "version": "1.10.22",
+        "wheel": "omniverse_usd_profiles-1.10.22-py3-none-any.whl",
+        "wheel_bytes": 72649,
+        "wheel_sha256": "409939f3a2acd3bbeda603d66da4fafb7ff9a3834cdbf315d39a368fb2bbce30",
+        "declared_licence": "Apache-2.0",
+        "licence_file_sha256s": {
+          "omniverse_usd_profiles-1.10.22.dist-info/licenses/LICENSE": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4"
+        },
+        "primary_metadata": "https://pypi.org/pypi/omniverse-usd-profiles/1.10.22/json"
+      },
+      {
+        "name": "numpy",
+        "version": "1.26.4",
+        "wheel": "numpy-1.26.4-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl",
+        "wheel_bytes": 17950613,
+        "wheel_sha256": "675d61ffbfa78604709862923189bad94014bef562cc35cf61d3a07bba02a7ed",
+        "declared_licence": "BSD family; bundled third-party notices retained",
+        "licence_file_sha256s": {
+          "numpy/random/LICENSE.md": "103166b62b80443afb9eb3488e052ea06be0cff566b908f199e561fde49af19f",
+          "numpy/core/include/numpy/random/LICENSE.txt": "fbc539f47d0cf83bc61378080fb873d5c14630126cacbfe754035c3926daa5ec",
+          "numpy/ma/LICENSE": "05f3b88351988ecfad10abe92c0c50e5875c6452d5009a0084cc291551ffcca6",
+          "numpy-1.26.4.dist-info/LICENSE.txt": "1107b0c831e918d4f1dbc28a33190c77215ef278d4a4c4009572088770d4334a"
+        },
+        "primary_metadata": "https://pypi.org/pypi/numpy/1.26.4/json"
+      },
+      {
+        "name": "jinja2",
+        "version": "3.1.6",
+        "wheel": "jinja2-3.1.6-py3-none-any.whl",
+        "wheel_bytes": 134899,
+        "wheel_sha256": "85ece4451f492d0c13c5dd7c13a64681a86afae63a5f347908daf103ce6d2f67",
+        "declared_licence": "BSD family",
+        "licence_file_sha256s": {
+          "jinja2-3.1.6.dist-info/licenses/LICENSE.txt": "3b49dcee4105eb37bac10faf1be260408fe85d252b8e9df2e0979fc1e094437b"
+        },
+        "primary_metadata": "https://pypi.org/pypi/jinja2/3.1.6/json"
+      },
+      {
+        "name": "markdown-it-py",
+        "version": "4.2.0",
+        "wheel": "markdown_it_py-4.2.0-py3-none-any.whl",
+        "wheel_bytes": 91687,
+        "wheel_sha256": "9f7ebbcd14fe59494226453aed97c1070d83f8d24b6fc3a3bcf9a38092641c4a",
+        "declared_licence": "MIT",
+        "licence_file_sha256s": {
+          "markdown_it_py-4.2.0.dist-info/licenses/LICENSE": "4a2260d6e2cd0f5a151a1e86dbfe7d3ed552b1e2beabf9941c1ba5c49cbce484",
+          "markdown_it_py-4.2.0.dist-info/licenses/LICENSE.markdown-it": "792c48c5a849a15fdf9e37e8bcf9e6d1dd13b32b46c642a748a0a46a9919d473"
+        },
+        "primary_metadata": "https://pypi.org/pypi/markdown-it-py/4.2.0/json"
+      },
+      {
+        "name": "markupsafe",
+        "version": "3.0.3",
+        "wheel": "markupsafe-3.0.3-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl",
+        "wheel_bytes": 22947,
+        "wheel_sha256": "d6dd0be5b5b189d31db7cda48b91d7e0a9795f31430b7f271219ab30f1d3ac9d",
+        "declared_licence": "BSD-3-Clause",
+        "licence_file_sha256s": {
+          "markupsafe-3.0.3.dist-info/licenses/LICENSE.txt": "489a8e1108509ed98a37bb983e11e0f7e1d31f0bd8f99a79c8448e7ff37d07ea"
+        },
+        "primary_metadata": "https://pypi.org/pypi/markupsafe/3.0.3/json"
+      },
+      {
+        "name": "mdurl",
+        "version": "0.1.2",
+        "wheel": "mdurl-0.1.2-py3-none-any.whl",
+        "wheel_bytes": 9979,
+        "wheel_sha256": "84008a41e51615a49fc9966191ff91509e3c40b939176e643fd50a5c2196b8f8",
+        "declared_licence": "MIT",
+        "licence_file_sha256s": {
+          "mdurl-0.1.2.dist-info/LICENSE": "7c605df6e28667a9603118e98274f64a49ce3eed0d26fccce9534a345e0ef955"
+        },
+        "primary_metadata": "https://pypi.org/pypi/mdurl/0.1.2/json"
+      },
+      {
+        "name": "simready-validate",
+        "version": "2026.4.8",
+        "wheel": "simready_validate-2026.4.8-py3-none-any.whl",
+        "wheel_bytes": 28855,
+        "wheel_sha256": "7af2c52a44d8194e5a6b6d942dc58a7373bb4d74c9ec8c130d1e13874e19bfda",
+        "declared_licence": "Apache-2.0",
+        "licence_file_sha256s": {
+          "simready_validate-2026.4.8.dist-info/licenses/LICENSE.txt": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30"
+        },
+        "primary_metadata": "https://pypi.org/pypi/simready-validate/2026.4.8/json"
+      }
+    ],
+    "extra_preflight_dependency": {
+      "name": "PyYAML",
+      "version": "6.0.3",
+      "declared_licence": "MIT",
+      "wheel": "pyyaml-6.0.3-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl",
+      "wheel_sha256": "ba1cc08a7ccde2d2ec775841541641e4548226580ab850948cbfda66a1befcdc",
+      "licence_file_sha256s": {
+        "pyyaml-6.0.3.dist-info/licenses/LICENSE": "8d3928f9dc4490fd635707cb88eb26bd764102a7282954307d3e5167a577e8a4"
+      },
+      "reason": "Unmodified preflight imports yaml; this additional preflight dependency was absent from the9-package SimReady runtime lock."
+    },
+    "installed_source_binary_file_count": 193,
+    "installed_source_binary_manifest_sha256": "50bd0457f4272a76bdd938b850294ae62b135a9c6ae7fad045b1ddea430b1f37"
+  },
+  "foundation": {
+    "tag": "v2026.04.1",
+    "commit": "a1e9dd68ee2d107f74dc6cd6da875b54ad3f8fd3",
+    "primary_source": "https://github.com/NVIDIA/simready-foundation/tree/a1e9dd68ee2d107f74dc6cd6da875b54ad3f8fd3",
+    "declared_licence": "Apache-2.0",
+    "licence_file_sha256": "5d3c30d3dbce415a760a6d10dc6976d6e02a38b861ade08b13850a2d860a5b38",
+    "sample_assets_materialized": false,
+    "all_bound_spec_sources_unchanged": true,
+    "private_spec_hash_manifest_sha256": "bc9649b025abf8c581fb24756aa8cbb347177a9fd0358b93fc6a687db2922429",
+    "bound_spec_source_count": 393
+  },
+  "real_preflight": {
+    "original_USDC_request": "ready",
+    "original_USDC_manifest_sha256": "84220d18c8a94a18aaacd8201ead1a519e7b390f2c700d92caedb906521aecdb",
+    "byte_identical_USD_copy_request": "ready",
+    "copy_manifest_sha256": "48ad36e1090345a0aa0e7d19ab1873e347c7b2a16db57384418e5578f560c70a",
+    "Content_Agents_and_deployment_skipped": true,
+    "check_only_pin_verification": true,
+    "skill_lock_sha256": "4c5e6352db786fc744d914d398b2f7e63b9eb9dffea1cac5bceb0e572cb3a924",
+    "guard_required": true
+  },
+  "resource_limits_each_validator": {
+    "CPU_affinity_count": 2,
+    "address_space_bytes": 4294967296,
+    "wall_seconds": 120,
+    "generic_geometry_physics_inner_timeout_seconds": 105
+  },
+  "diagnostics": {
+    "generic": {
+      "status": "FAIL",
+      "passed": false,
+      "categories": [],
+      "issue_counts": {
+        "ERROR": 0,
+        "FAILURE": 1,
+        "INFO": 0,
+        "WARNING": 0
+      },
+      "issues": [
+        {
+          "location": "/Head/Solid",
+          "message": "Either normals should be authored or subdivision should be set to Catmull-Clark or Loop ",
+          "requirement": "VG.027@1.0.0",
+          "rule": "NormalsExistChecker",
+          "severity": "FAILURE",
+          "suggestion": null
+        }
+      ],
+      "private_report_sha256": "beb5462047fb23422f87e817956122002d51cd6b3d910b5e8f1b559ca2caf676",
+      "private_execution_receipt_sha256": "c9f6ada3f0ce2a726c837b13f6f18cc7df1d85c438f67126d8cedb8786fb7258",
+      "returncode": 1,
+      "wall_seconds": 7.200448025017977,
+      "timed_out": false
+    },
+    "geometry": {
+      "status": "FAIL",
+      "passed": false,
+      "categories": [
+        "Geometry"
+      ],
+      "issue_counts": {
+        "ERROR": 0,
+        "FAILURE": 1,
+        "INFO": 0,
+        "WARNING": 0
+      },
+      "issues": [
+        {
+          "location": "/Head/Solid",
+          "message": "Either normals should be authored or subdivision should be set to Catmull-Clark or Loop ",
+          "requirement": "VG.027@1.0.0",
+          "rule": "NormalsExistChecker",
+          "severity": "FAILURE",
+          "suggestion": null
+        }
+      ],
+      "private_report_sha256": "a28e056a8815fa2827537e971b0d1fe808feb65e166126b85b25a908d3b1f73f",
+      "private_execution_receipt_sha256": "943893fac558e2284159ecd92d5e1e2f10c9581cd9310fe2b80e73ff29227e4e",
+      "returncode": 1,
+      "wall_seconds": 7.008180022938177,
+      "timed_out": false
+    },
+    "physics": {
+      "status": "PASS",
+      "passed": true,
+      "categories": [
+        "Physics"
+      ],
+      "issue_counts": {
+        "ERROR": 0,
+        "FAILURE": 0,
+        "INFO": 0,
+        "WARNING": 0
+      },
+      "issues": [],
+      "private_report_sha256": "7f1b599a672895f9f62463d6a610978d7072f58ef9cd3645bbcdfbe5917c1a99",
+      "private_execution_receipt_sha256": "30bdcda14ca7e361bc636c548e442bab704779aaeb9ff86d7cc1659ef83ecc7c",
+      "returncode": 0,
+      "wall_seconds": 0.28283948404714465,
+      "timed_out": false
+    },
+    "formal_profile": {
+      "status": "FAIL",
+      "passed": false,
+      "profile_name": "Prop-Robotics-Neutral",
+      "profile_target": {
+        "name": "Prop-Robotics-Neutral",
+        "version": "1.0.0"
+      },
+      "issue_counts": {
+        "ERROR": 0,
+        "FAILURE": 6,
+        "WARNING": 0,
+        "INFO": 0
+      },
+      "requirement_counts": {
+        "NP.006": 1,
+        "UN.007": 1,
+        "RB.001": 2,
+        "GSP.001": 1,
+        "VM.MAT.001": 1
+      },
+      "issues": [
+        {
+          "severity": "FAILURE",
+          "feature_id": "FET000_CORE",
+          "requirement_id": "NP.006",
+          "message": "FET000_CORE failed requirement NP.006"
+        },
+        {
+          "severity": "FAILURE",
+          "feature_id": "FET001_BASE_NEUTRAL",
+          "requirement_id": "UN.007",
+          "message": "FET001_BASE_NEUTRAL failed requirement UN.007"
+        },
+        {
+          "severity": "FAILURE",
+          "feature_id": "FET003_BASE_NEUTRAL",
+          "requirement_id": "RB.001",
+          "message": "FET003_BASE_NEUTRAL failed requirement RB.001"
+        },
+        {
+          "severity": "FAILURE",
+          "feature_id": "FET004_BASE_NEUTRAL",
+          "requirement_id": "RB.001",
+          "message": "FET004_BASE_NEUTRAL failed requirement RB.001"
+        },
+        {
+          "severity": "FAILURE",
+          "feature_id": "FET005_BASE_NEUTRAL",
+          "requirement_id": "GSP.001",
+          "message": "FET005_BASE_NEUTRAL failed requirement GSP.001"
+        },
+        {
+          "severity": "FAILURE",
+          "feature_id": "FET006_BASE_MDL",
+          "requirement_id": "VM.MAT.001",
+          "message": "FET006_BASE_MDL failed requirement VM.MAT.001"
+        }
+      ],
+      "feature_results": [
+        {
+          "feature_id": "FET000_CORE",
+          "version": "0.1.0",
+          "passed": false,
+          "failing_requirements": [
+            "NP.006"
+          ],
+          "dependencies": "[]"
+        },
+        {
+          "feature_id": "FET001_BASE_NEUTRAL",
+          "version": "0.1.0",
+          "passed": false,
+          "failing_requirements": [
+            "UN.007"
+          ],
+          "dependencies": "[]"
+        },
+        {
+          "feature_id": "FET003_BASE_NEUTRAL",
+          "version": "0.1.0",
+          "passed": false,
+          "failing_requirements": [
+            "RB.001"
+          ],
+          "dependencies": "[]"
+        },
+        {
+          "feature_id": "FET004_BASE_NEUTRAL",
+          "version": "0.1.0",
+          "passed": false,
+          "failing_requirements": [
+            "RB.001"
+          ],
+          "dependencies": "[{'FET003_BASE_NEUTRAL': {'version': '0.1.0'}}]",
+          "ignored_requirements": [
+            "RB.MB.001"
+          ]
+        },
+        {
+          "feature_id": "FET005_BASE_NEUTRAL",
+          "version": "0.1.0",
+          "passed": false,
+          "failing_requirements": [
+            "GSP.001"
+          ],
+          "dependencies": "[]"
+        },
+        {
+          "feature_id": "FET006_BASE_MDL",
+          "version": "0.1.0",
+          "passed": false,
+          "failing_requirements": [
+            "VM.MAT.001"
+          ],
+          "dependencies": "[]"
+        }
+      ],
+      "ignored_issues": [
+        {
+          "severity": "FAILURE",
+          "feature_id": "FET004_BASE_NEUTRAL",
+          "requirement_id": "RB.MB.001",
+          "message": "FET004_BASE_NEUTRAL failed requirement RB.MB.001",
+          "nonblocking_reason": "RB.MB.001 is non-blocking for assets with a single mesh component or a single GeomSubset component."
+        }
+      ],
+      "validation_policy": {
+        "single_component_rb_mb_001_nonblocking": true,
+        "ignored_requirements": [
+          "RB.MB.001"
+        ]
+      },
+      "private_normalized_report_sha256": "1fb3117fdaf557412109798046363593ac61d2e26e65e0fccbc6989acff8f61b",
+      "private_raw_report_sha256": "cbc782cde1607a0e03230a77f4599d73f758403d1e9622db6339b635ba625cc7",
+      "private_execution_receipt_sha256": "699a19edd396efa4351a8360e03e05b7d199fcd9fd91e1d49e79f80d3638f0b6",
+      "returncode": 1,
+      "wall_seconds": 0.5786453310865909,
+      "timed_out": false,
+      "input_payload_sha256": "eb73024ebb1e207ef5f77edec5438f4098e0e12cb73cd1181d6845dcf10cc0d8"
+    }
+  },
+  "read_only_stage": {
+    "metersPerUnit": 0.001,
+    "upAxis": "Z",
+    "defaultPrim": "/Head",
+    "physics_schema_prim_paths": [],
+    "material_paths": [],
+    "meshes": [
+      {
+        "path": "/Head/Solid",
+        "normals_authored": false,
+        "subdivision": "none"
+      }
+    ]
+  },
+  "retained_failures": [
+    {
+      "kind": "bootstrap_controller_JSON_parse",
+      "meaning": "All locked imports succeeded, but validator startup logs precede the final JSON line; original bootstrap parse failure preserved. Separate finalization verified the exact versions."
+    },
+    {
+      "kind": "first_real_preflight_missing_PyYAML",
+      "meaning": "Unmodified preflight required yaml in addition to the9-package SimReady lock. PyYAML6.0.3 was installed in the new venv before a fresh genuine preflight."
+    },
+    {
+      "kind": "original_USDC_profile_skipped",
+      "raw_report": {},
+      "private_raw_report_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "meaning": "SimReady2026.4.8 suffix filter evaluated no asset on.usdc input. It is not credited as a compliance result; a byte-identical.usd copy produced the substantive report."
+    }
+  ],
+  "FET005_repair_assessment": {
+    "status": "blocked_outside_validation_only_authorization",
+    "requirement": "GSP.001",
+    "missing_or_unreviewed_inputs": [
+      "intended robotic handling and gripper constraints",
+      "visually reviewed local-space grasp points"
+    ],
+    "earlier_minimal_and_rigid_body_profile_gates_passed": false,
+    "grasp_line_authored": false,
+    "skill_source_sha256": "6bf989f46bf40ab5f38fcb6c5a44ac90600b898822dafadd1f658dd34aaf0d9d"
+  },
+  "provenance": {
+    "transport_artifact_count": 62,
+    "transport_sha256": "c5f57489948b1a7a003c5c073121553546e1392faf5dd42e8fe95efcaf3175ea",
+    "controller_sha256s": {
+      "bootstrap.py": "fd57c41156809d0e62efd4398f9b647282c6ab060b75a5955f3726d8b362068e",
+      "validate.py": "c3ecef25d1399a8de4424cafb7680a9fffc18e58b099c7ef38a847266ce3281b",
+      "validate2.py": "e651668c605332096a7c31e282a5bc75ea2b776e57143708f9295081838766c3",
+      "raw-profile-controller.py": "c74d8723607d75ec786aff38a70335861658be5f65f2e85d935101ec8821f779",
+      "profile_alias.py": "a04cb4ce348d407b56844cbc88c2135cfa9597ca1e34732a56cbd49a0d93c71d"
+    },
+    "installed_reference_source_sha256s": {
+      "skill/SKILL.md": "a7f60b0452e3324d31c3992eb93cf1972aea5be95c41cd3cfa83ce895ddb6ad5",
+      "skill/upstream-versions.lock.json": "4c5e6352db786fc744d914d398b2f7e63b9eb9dffea1cac5bceb0e572cb3a924",
+      "skill/shared/simready_package.py": "f24572704f0e7753377443304f2f975dab3b1b3e325feaf9162354af84fdaccd",
+      "skill/shared/simready_package_report_schema.json": "779a5f6b1390f512540d53f13167cf5cd02711edc003abff89c532c062debf07",
+      "skill/shared/simready_package_check_dependencies.py": "20fa30e9bf1de4a76315d5573a253b977e885b781dd0bd313bc0e7fcd2cbb21c",
+      "skill/shared/upstream_versions.py": "ad255cb8ecd231cabaed70b13a68d44ae75e9e5d405804d9a0eca4475ef7de9b",
+      "skill/shared/script_utils.py": "972a1b01f0a79991bffb811bd2028f7f98c87a01a32db51e5667dae3792aef72",
+      "skill/shared/preflight_manifest.py": "5d1a54b058d9fab2ba529d059fe08d111aa014672c73190fa6825dae49f09e09",
+      "skill/references/omni-asset-validate-geometry/scripts/report_schema.json": "fdafe20bd82e03505dda039019e2657c2fe66b84063f6a29e84f9fb3a680fc27",
+      "skill/references/omni-asset-validate-geometry/scripts/check_dependencies.py": "7948aaa111e8aa29d0d1322e60df4015c4de0ff3d99ef2df7d766ebc788be748",
+      "skill/references/omni-asset-validate-geometry/scripts/run.py": "6dfdf088820875207013b31325474985314d3c4ff7565a6957a4e2ec715bc520",
+      "skill/references/simready-validate/scripts/report_schema.json": "a56bf390a1467ea530a0fb09a2b401cd6048facc88181e11134145c8dcfc5246",
+      "skill/references/simready-validate/scripts/check_dependencies.py": "551a295a18ee7e7ed80803d86255c27f8ea579ff1c0a9716f46ea2d8f639a6ae",
+      "skill/references/simready-validate/scripts/run.py": "bede82810a3afebf23ba54ce638f8f3cb522df1c14f02ccb482ca6e61e1f2510",
+      "skill/references/preflight/scripts/preflight.sh": "0b069b7a66b9d3ca4b1eafedb9f34a28318704a03e525939ae6107fbf6aa2c1c",
+      "skill/references/preflight/scripts/preflight.py": "96686a068236c47c1a702d2334b6761c2c5c3117e66dd08b0ec4efc65656ff80",
+      "skill/references/omni-asset-validate/scripts/report_schema.json": "c52bd1078e651fea940348b9dcbe0867f4a16a63c3033decfdce2b1c2b0563f9",
+      "skill/references/omni-asset-validate/scripts/check_dependencies.py": "c2401dedfd9ce9e0b9812a40d44b72896b397ae099143ccfff25872148580c7b",
+      "skill/references/omni-asset-validate/scripts/run.py": "eb4efa6a32583b4908cd3c279cfc157c3eeebd1fd5988db63be6c09b8c6ec50c",
+      "skill/references/omni-asset-validate-physics/scripts/report_schema.json": "e6a0916d5b40513c2275241d52521bdac556c4273f080d1f7436a45e067e7424",
+      "skill/references/omni-asset-validate-physics/scripts/check_dependencies.py": "43057f62e39efe1a44418450a6287511182eaf5f194d3baa1a43f0851773df61",
+      "skill/references/omni-asset-validate-physics/scripts/run.py": "425daec9b1b75ced40a73bf51a71f2b99fc7eedca6395d8e0378c9156c64a724",
+      "validate2.py": "e651668c605332096a7c31e282a5bc75ea2b776e57143708f9295081838766c3"
+    },
+    "private_summary_sha256": "5b2f9d32590fd0aa15bce43abf1758cda6aacd897ff15a2cb3199aeb8eecef88",
+    "private_final_readback_sha256": "eeea31f0b7cc25fae5c66ce47d339e116915213f0b61eef17866c0f491b3cb30",
+    "private_profile_copy_summary_sha256": "f362c8086b6618abbf847cf6e426da09d4397fcc0c401024835ba6068779d7ec"
+  },
+  "qualification": {
+    "software_dependency_readiness_established": true,
+    "generic_validation_passed": false,
+    "geometry_validation_passed": false,
+    "formal_profile_validation_passed": false,
+    "physics_category_no_findings_on_schema_free_asset": true,
+    "physical_material_assigned": false,
+    "physics_schema_authored": false,
+    "solver_fields_imported": false,
+    "head_simulation_executed": false,
+    "historical_fidelity_validated": false,
+    "manufacturing_authorized": false
+  },
+  "publication_limits": "Only source/version/licence hashes and diagnostic findings are published here. No wheel, runtime, upstream sample geometry, private host/path/command, raw log, original/copy USD or private transport receipt is included."
+}

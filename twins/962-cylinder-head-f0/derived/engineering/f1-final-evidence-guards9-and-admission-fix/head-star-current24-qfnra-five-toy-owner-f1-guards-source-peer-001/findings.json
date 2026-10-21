@@ -1,0 +1,11 @@
+{
+  "schema": "962-F1-nine-guard-independent-source-findings/v1",
+  "decision": "NO_CONCRETE_SOURCE_BLOCKER_FOUND_FOR_FOCUSED_F1_INTEGRATION",
+  "blocking_findings": [],
+  "nonblocking_scope_clarification": {
+    "topic": "Explicit source reads versus ordinary framework failure formatting",
+    "assessment": "The nine/289863 figures describe fixture logic explicit owner reads, as bindings expressly states. They are not a hard count of every filesystem read by Python/unittest. Future runtime admission/output capture must include ordinary framework loading and failure diagnostics, including possible source-line reads for tracebacks. No framework/runtime body was inspected here.",
+    "requires_fixture_source_change": false
+  },
+  "not_execution_acceptance": true
+}

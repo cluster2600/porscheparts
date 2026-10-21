@@ -1,0 +1,50 @@
+{
+  "schema": "962-richardson3-independent-input-source-review/v1",
+  "decision": "ACCEPT_EXACT_ONE_BYTE_INPUT_SOURCE_DELTA_ONLY",
+  "reviewer": "/root/defect_gate_refresh",
+  "bindings": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson3-input-source-peer-001/bindings.json",
+    "sha256": "1f95a401448de265d3ebd8aa4fd591281d8b46eb75848b8c80c5786fba80e55d",
+    "bytes": 1478
+  },
+  "donor": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native-measurement-004/thermoelastic-birth-observer-registration.i",
+    "sha256": "190296e6c2ad1627feca4b374efd2c49739e0c2628764cd92388392a78fd2682",
+    "bytes": 15537
+  },
+  "successor": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson3-prep-001/thermoelastic-birth-observer-registration.i",
+    "sha256": "e351ee1be793120084464edab51fc96d36e5677e6bb8d2e05caccc1fa85cdbbd",
+    "bytes": 15537
+  },
+  "proof": {
+    "both_decks_bytes": 15537,
+    "changed_byte_count": 1,
+    "offset_zero_based": 14954,
+    "line_one_based": 590,
+    "old_ASCII": 50,
+    "new_ASCII": 51,
+    "old_value": "2",
+    "new_value": "3",
+    "option": "-ksp_max_it",
+    "option_index_zero_based": 7,
+    "complete_options_and_values_count": 11,
+    "whole_forward_buffer_exact": true,
+    "whole_inverse_buffer_exact": true,
+    "complete_unified_diff_exact": true,
+    "all_other_source_bytes_identical": true
+  },
+  "source_semantics": "Independent text token association of petsc_options_iname line589 and petsc_options_value line590 identifies only-ksp_max_it. Richardson/LU/always/scale1/self-scalefalse/unpreconditioned/skip and three passive SNES binary append monitors remain unchanged. All other material,geometry-relativegridnames,birth/reference/transfer/time/load/output/plugin/observer settings and tolerance literals remain identical by complete byte proof. This is no MOOSE/parser/native execution or installed-API equivalence proof.",
+  "limits": "Inputsource HELD/unrun. No current native capture,iteration count,convergence or residual improvement is observed. One additional requested correction preserves every original1e-7assessment/POLICY criterion; those external criterion bodies were not changed or reopened. Existing failures,24headcells and material/LPBF/twin/PhysicsNeMo/physical/manufacturing gates remain open. Separate root staging/currentruntime/control/admission and actual output review are required.",
+  "lineage": "Reviewer previously reviewed native005 control/source/saved diagnostic and arithmetic evidence, but did not author this RICH3 deckdelta/proposal and did not execute any current native/source/helper/solver.",
+  "source_blockers": [],
+  "authority": {
+    "source_text_hash_and_byte_only": true,
+    "source_runtime_solver_or_test_execution": false,
+    "grid_CSV_Vec_derived_scientific_body_access": false,
+    "actual_admission_or_operationalroot_creation": false,
+    "PUB_Git_or_frozen_original_changes": false,
+    "physical_qualification": false
+  },
+  "self_hash_claim": false
+}

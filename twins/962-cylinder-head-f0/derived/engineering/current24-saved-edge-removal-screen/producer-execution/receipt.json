@@ -1,0 +1,2499 @@
+{
+  "schema": "962-current24-fixed23-saved-edge-removal-once-receipt/v1",
+  "actual": {
+    "path": "work/962-engineering/head-star-current24-edge-removal-saved-execution-prep-001/actual-contract.json",
+    "sha256": "10deb4c9f691f9301a25c63b649e29718848da9ed7e6bc0112cd3bb48cabc3e4",
+    "bytes": 43787
+  },
+  "admission": {
+    "path": "work/962-engineering/head-star-current24-edge-removal-saved-root-execution-001/admission.json",
+    "sha256": "7d2d99854233c9a0b361c7d28732d177410ae831a772445847cebe901056eb52",
+    "bytes": 3459
+  },
+  "controller": {
+    "path": "work/962-engineering/head-star-current24-edge-removal-saved-execution-prep-001/run_root_once.py",
+    "sha256": "66f0f5e36182898cb2d8d84bf52e25d4fd65b9250c10259a0489e8c30e6073d3",
+    "bytes": 20845
+  },
+  "runtime_preflight": {
+    "path": "work/962-engineering/head-star-current24-edge-removal-guards-execution-prep-001/runtime-preflight.json",
+    "sha256": "3b4f731ff16ec475b5de2d567292b25169a7c9c8618d38c1c8cd363d4f8c9169",
+    "bytes": 78434
+  },
+  "accepted16_evidence": {
+    "accepted16_result": {
+      "path": "work/962-engineering/head-star-current24-edge-removal-guards-root-execution-001/receipt.json",
+      "sha256": "63f8febb8fe188dcf89d22110a3103e246f9873abd7bff266ed86a1d02d5eaf4",
+      "bytes": 52094
+    },
+    "accepted16_review": {
+      "path": "work/962-engineering/head-star-current24-edge-removal-guards-result-peer-001/review.json",
+      "sha256": "1d7fdd3d095e3e633bf21298b632997abbcd7cb228604d892d2eec18cdc1f946",
+      "bytes": 3720
+    },
+    "accepted16_acceptance": {
+      "path": "work/962-engineering/head-star-current24-edge-removal-guards-root-review-001/result-peer-acceptance.json",
+      "sha256": "e286344e8cf97e65c64780b99742d62f82719208612ba4fe2d7c5f8ab2de9f77",
+      "bytes": 2709
+    }
+  },
+  "before": {
+    "count": 175,
+    "observed_sha256": "f4ceed863c33847a34ce1031857bbc883593859cd2870c0d893a6f6ed81140e0",
+    "changed": {}
+  },
+  "runtime_paths_before": {
+    "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/lib-dynload/_blake2.cpython-310-darwin.so": {
+      "is_symlink": false,
+      "raw_target": null,
+      "resolved": "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/lib-dynload/_blake2.cpython-310-darwin.so"
+    },
+    "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/_collections_abc.py": {
+      "is_symlink": false,
+      "raw_target": null,
+      "resolved": "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/_collections_abc.py"
+    },
+    "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/lib-dynload/_ctypes.cpython-310-darwin.so": {
+      "is_symlink": false,
+      "raw_target": null,
+      "resolved": "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/lib-dynload/_ctypes.cpython-310-darwin.so"
+    },
+    "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/lib-dynload/_decimal.cpython-310-darwin.so": {
+      "is_symlink": false,
+      "raw_target": null,
+      "resolved": "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/lib-dynload/_decimal.cpython-310-darwin.so"
+    },
+    "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/lib-dynload/_hashlib.cpython-310-darwin.so": {
+      "is_symlink": false,
+      "raw_target": null,
+      "resolved": "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/lib-dynload/_hashlib.cpython-310-darwin.so"
+    },
+    "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/lib-dynload/_heapq.cpython-310-darwin.so": {
+      "is_symlink": false,
+      "raw_target": null,
+      "resolved": "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/lib-dynload/_heapq.cpython-310-darwin.so"
+    },
+    "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/lib-dynload/_json.cpython-310-darwin.so": {
+      "is_symlink": false,
+      "raw_target": null,
+      "resolved": "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/lib-dynload/_json.cpython-310-darwin.so"
+    },
+    "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/lib-dynload/_opcode.cpython-310-darwin.so": {
+      "is_symlink": false,
+      "raw_target": null,
+      "resolved": "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/lib-dynload/_opcode.cpython-310-darwin.so"
+    },
+    "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/lib-dynload/_posixsubprocess.cpython-310-darwin.so": {
+      "is_symlink": false,
+      "raw_target": null,
+      "resolved": "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/lib-dynload/_posixsubprocess.cpython-310-darwin.so"
+    },
+    "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/lib-dynload/_struct.cpython-310-darwin.so": {
+      "is_symlink": false,
+      "raw_target": null,
+      "resolved": "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/lib-dynload/_struct.cpython-310-darwin.so"
+    },
+    "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/_weakrefset.py": {
+      "is_symlink": false,
+      "raw_target": null,
+      "resolved": "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/_weakrefset.py"
+    },
+    "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/abc.py": {
+      "is_symlink": false,
+      "raw_target": null,
+      "resolved": "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/abc.py"
+    },
+    "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/argparse.py": {
+      "is_symlink": false,
+      "raw_target": null,
+      "resolved": "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/argparse.py"
+    },
+    "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/ast.py": {
+      "is_symlink": false,
+      "raw_target": null,
+      "resolved": "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/ast.py"
+    },
+    "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/codecs.py": {
+      "is_symlink": false,
+      "raw_target": null,
+      "resolved": "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/codecs.py"
+    },
+    "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/collections/__init__.py": {
+      "is_symlink": false,
+      "raw_target": null,
+      "resolved": "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/collections/__init__.py"
+    },
+    "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/collections/abc.py": {
+      "is_symlink": false,
+      "raw_target": null,
+      "resolved": "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/collections/abc.py"
+    },
+    "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/contextlib.py": {
+      "is_symlink": false,
+      "raw_target": null,
+      "resolved": "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/contextlib.py"
+    },
+    "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/copy.py": {
+      "is_symlink": false,
+      "raw_target": null,
+      "resolved": "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/copy.py"
+    },
+    "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/copyreg.py": {
+      "is_symlink": false,
+      "raw_target": null,
+      "resolved": "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/copyreg.py"
+    },
+    "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/ctypes/__init__.py": {
+      "is_symlink": false,
+      "raw_target": null,
+      "resolved": "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/ctypes/__init__.py"
+    },
+    "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/ctypes/_endian.py": {
+      "is_symlink": false,
+      "raw_target": null,
+      "resolved": "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/ctypes/_endian.py"
+    },
+    "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/dataclasses.py": {
+      "is_symlink": false,
+      "raw_target": null,
+      "resolved": "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/dataclasses.py"
+    },
+    "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/decimal.py": {
+      "is_symlink": false,
+      "raw_target": null,
+      "resolved": "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/decimal.py"
+    },
+    "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/difflib.py": {
+      "is_symlink": false,
+      "raw_target": null,
+      "resolved": "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/difflib.py"
+    },
+    "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/dis.py": {
+      "is_symlink": false,
+      "raw_target": null,
+      "resolved": "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/dis.py"
+    },
+    "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/encodings/__init__.py": {
+      "is_symlink": false,
+      "raw_target": null,
+      "resolved": "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/encodings/__init__.py"
+    },
+    "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/encodings/aliases.py": {
+      "is_symlink": false,
+      "raw_target": null,
+      "resolved": "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/encodings/aliases.py"
+    },
+    "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/encodings/utf_8.py": {
+      "is_symlink": false,
+      "raw_target": null,
+      "resolved": "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/encodings/utf_8.py"
+    },
+    "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/enum.py": {
+      "is_symlink": false,
+      "raw_target": null,
+      "resolved": "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/enum.py"
+    },
+    "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/lib-dynload/fcntl.cpython-310-darwin.so": {
+      "is_symlink": false,
+      "raw_target": null,
+      "resolved": "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/lib-dynload/fcntl.cpython-310-darwin.so"
+    },
+    "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/fnmatch.py": {
+      "is_symlink": false,
+      "raw_target": null,
+      "resolved": "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/fnmatch.py"
+    },
+    "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/fractions.py": {
+      "is_symlink": false,
+      "raw_target": null,
+      "resolved": "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/fractions.py"
+    },
+    "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/functools.py": {
+      "is_symlink": false,
+      "raw_target": null,
+      "resolved": "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/functools.py"
+    },
+    "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/genericpath.py": {
+      "is_symlink": false,
+      "raw_target": null,
+      "resolved": "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/genericpath.py"
+    },
+    "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/gettext.py": {
+      "is_symlink": false,
+      "raw_target": null,
+      "resolved": "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/gettext.py"
+    },
+    "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/hashlib.py": {
+      "is_symlink": false,
+      "raw_target": null,
+      "resolved": "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/hashlib.py"
+    },
+    "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/heapq.py": {
+      "is_symlink": false,
+      "raw_target": null,
+      "resolved": "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/heapq.py"
+    },
+    "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/importlib/__init__.py": {
+      "is_symlink": false,
+      "raw_target": null,
+      "resolved": "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/importlib/__init__.py"
+    },
+    "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/importlib/_abc.py": {
+      "is_symlink": false,
+      "raw_target": null,
+      "resolved": "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/importlib/_abc.py"
+    },
+    "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/importlib/machinery.py": {
+      "is_symlink": false,
+      "raw_target": null,
+      "resolved": "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/importlib/machinery.py"
+    },
+    "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/importlib/util.py": {
+      "is_symlink": false,
+      "raw_target": null,
+      "resolved": "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/importlib/util.py"
+    },
+    "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/inspect.py": {
+      "is_symlink": false,
+      "raw_target": null,
+      "resolved": "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/inspect.py"
+    },
+    "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/io.py": {
+      "is_symlink": false,
+      "raw_target": null,
+      "resolved": "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/io.py"
+    },
+    "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/json/__init__.py": {
+      "is_symlink": false,
+      "raw_target": null,
+      "resolved": "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/json/__init__.py"
+    },
+    "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/json/decoder.py": {
+      "is_symlink": false,
+      "raw_target": null,
+      "resolved": "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/json/decoder.py"
+    },
+    "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/json/encoder.py": {
+      "is_symlink": false,
+      "raw_target": null,
+      "resolved": "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/json/encoder.py"
+    },
+    "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/json/scanner.py": {
+      "is_symlink": false,
+      "raw_target": null,
+      "resolved": "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/json/scanner.py"
+    },
+    "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/keyword.py": {
+      "is_symlink": false,
+      "raw_target": null,
+      "resolved": "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/keyword.py"
+    },
+    "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/linecache.py": {
+      "is_symlink": false,
+      "raw_target": null,
+      "resolved": "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/linecache.py"
+    },
+    "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/lib-dynload/math.cpython-310-darwin.so": {
+      "is_symlink": false,
+      "raw_target": null,
+      "resolved": "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/lib-dynload/math.cpython-310-darwin.so"
+    },
+    "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/ntpath.py": {
+      "is_symlink": false,
+      "raw_target": null,
+      "resolved": "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/ntpath.py"
+    },
+    "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/numbers.py": {
+      "is_symlink": false,
+      "raw_target": null,
+      "resolved": "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/numbers.py"
+    },
+    "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/opcode.py": {
+      "is_symlink": false,
+      "raw_target": null,
+      "resolved": "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/opcode.py"
+    },
+    "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/operator.py": {
+      "is_symlink": false,
+      "raw_target": null,
+      "resolved": "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/operator.py"
+    },
+    "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/os.py": {
+      "is_symlink": false,
+      "raw_target": null,
+      "resolved": "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/os.py"
+    },
+    "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/posixpath.py": {
+      "is_symlink": false,
+      "raw_target": null,
+      "resolved": "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/posixpath.py"
+    },
+    "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/pathlib.py": {
+      "is_symlink": false,
+      "raw_target": null,
+      "resolved": "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/pathlib.py"
+    },
+    "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/pprint.py": {
+      "is_symlink": false,
+      "raw_target": null,
+      "resolved": "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/pprint.py"
+    },
+    "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/re.py": {
+      "is_symlink": false,
+      "raw_target": null,
+      "resolved": "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/re.py"
+    },
+    "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/reprlib.py": {
+      "is_symlink": false,
+      "raw_target": null,
+      "resolved": "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/reprlib.py"
+    },
+    "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/lib-dynload/resource.cpython-310-darwin.so": {
+      "is_symlink": false,
+      "raw_target": null,
+      "resolved": "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/lib-dynload/resource.cpython-310-darwin.so"
+    },
+    "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/lib-dynload/select.cpython-310-darwin.so": {
+      "is_symlink": false,
+      "raw_target": null,
+      "resolved": "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/lib-dynload/select.cpython-310-darwin.so"
+    },
+    "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/selectors.py": {
+      "is_symlink": false,
+      "raw_target": null,
+      "resolved": "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/selectors.py"
+    },
+    "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/signal.py": {
+      "is_symlink": false,
+      "raw_target": null,
+      "resolved": "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/signal.py"
+    },
+    "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/sre_compile.py": {
+      "is_symlink": false,
+      "raw_target": null,
+      "resolved": "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/sre_compile.py"
+    },
+    "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/sre_constants.py": {
+      "is_symlink": false,
+      "raw_target": null,
+      "resolved": "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/sre_constants.py"
+    },
+    "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/sre_parse.py": {
+      "is_symlink": false,
+      "raw_target": null,
+      "resolved": "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/sre_parse.py"
+    },
+    "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/stat.py": {
+      "is_symlink": false,
+      "raw_target": null,
+      "resolved": "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/stat.py"
+    },
+    "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/struct.py": {
+      "is_symlink": false,
+      "raw_target": null,
+      "resolved": "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/struct.py"
+    },
+    "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/subprocess.py": {
+      "is_symlink": false,
+      "raw_target": null,
+      "resolved": "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/subprocess.py"
+    },
+    "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/threading.py": {
+      "is_symlink": false,
+      "raw_target": null,
+      "resolved": "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/threading.py"
+    },
+    "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/token.py": {
+      "is_symlink": false,
+      "raw_target": null,
+      "resolved": "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/token.py"
+    },
+    "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/tokenize.py": {
+      "is_symlink": false,
+      "raw_target": null,
+      "resolved": "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/tokenize.py"
+    },
+    "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/traceback.py": {
+      "is_symlink": false,
+      "raw_target": null,
+      "resolved": "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/traceback.py"
+    },
+    "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/types.py": {
+      "is_symlink": false,
+      "raw_target": null,
+      "resolved": "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/types.py"
+    },
+    "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/unittest/__init__.py": {
+      "is_symlink": false,
+      "raw_target": null,
+      "resolved": "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/unittest/__init__.py"
+    },
+    "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/unittest/case.py": {
+      "is_symlink": false,
+      "raw_target": null,
+      "resolved": "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/unittest/case.py"
+    },
+    "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/unittest/loader.py": {
+      "is_symlink": false,
+      "raw_target": null,
+      "resolved": "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/unittest/loader.py"
+    },
+    "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/unittest/main.py": {
+      "is_symlink": false,
+      "raw_target": null,
+      "resolved": "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/unittest/main.py"
+    },
+    "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/unittest/result.py": {
+      "is_symlink": false,
+      "raw_target": null,
+      "resolved": "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/unittest/result.py"
+    },
+    "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/unittest/runner.py": {
+      "is_symlink": false,
+      "raw_target": null,
+      "resolved": "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/unittest/runner.py"
+    },
+    "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/unittest/signals.py": {
+      "is_symlink": false,
+      "raw_target": null,
+      "resolved": "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/unittest/signals.py"
+    },
+    "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/unittest/suite.py": {
+      "is_symlink": false,
+      "raw_target": null,
+      "resolved": "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/unittest/suite.py"
+    },
+    "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/unittest/util.py": {
+      "is_symlink": false,
+      "raw_target": null,
+      "resolved": "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/unittest/util.py"
+    },
+    "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/urllib/__init__.py": {
+      "is_symlink": false,
+      "raw_target": null,
+      "resolved": "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/urllib/__init__.py"
+    },
+    "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/urllib/parse.py": {
+      "is_symlink": false,
+      "raw_target": null,
+      "resolved": "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/urllib/parse.py"
+    },
+    "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/warnings.py": {
+      "is_symlink": false,
+      "raw_target": null,
+      "resolved": "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/warnings.py"
+    },
+    "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/weakref.py": {
+      "is_symlink": false,
+      "raw_target": null,
+      "resolved": "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/weakref.py"
+    },
+    "/Library/Frameworks/Python.framework/Versions/3.10/bin/python3.10": {
+      "is_symlink": false,
+      "raw_target": null,
+      "resolved": "/Library/Frameworks/Python.framework/Versions/3.10/bin/python3.10"
+    },
+    "/Library/Frameworks/Python.framework/Versions/3.10/Python": {
+      "is_symlink": false,
+      "raw_target": null,
+      "resolved": "/Library/Frameworks/Python.framework/Versions/3.10/Python"
+    }
+  },
+  "OS_build_before": "26B5091g",
+  "resource_samples": [
+    {
+      "RSS_bytes": 4374528,
+      "processes": 1,
+      "raw_owned_rows": [
+        {
+          "raw": "39101 39101   4272 Rs  ",
+          "pid": 39101,
+          "pgid": 39101,
+          "reported_RSS_KiB": 4272,
+          "RSS_bytes": 4374528,
+          "state": "Rs"
+        }
+      ],
+      "threads": 1,
+      "thread_observation": {
+        "observed_counts": {
+          "39101": 1
+        },
+        "unobserved_pids": [],
+        "returncode": 0,
+        "error": null
+      },
+      "zombie_pids": [],
+      "elapsed_seconds": 0.03817133395932615
+    },
+    {
+      "RSS_bytes": 45940736,
+      "processes": 1,
+      "raw_owned_rows": [
+        {
+          "raw": "39101 39101  44864 Rs  ",
+          "pid": 39101,
+          "pgid": 39101,
+          "reported_RSS_KiB": 44864,
+          "RSS_bytes": 45940736,
+          "state": "Rs"
+        }
+      ],
+      "threads": 1,
+      "thread_observation": {
+        "observed_counts": {
+          "39101": 1
+        },
+        "unobserved_pids": [],
+        "returncode": 0,
+        "error": null
+      },
+      "zombie_pids": [],
+      "elapsed_seconds": 0.13364874990656972
+    },
+    {
+      "RSS_bytes": 46415872,
+      "processes": 1,
+      "raw_owned_rows": [
+        {
+          "raw": "39101 39101  45328 Rs  ",
+          "pid": 39101,
+          "pgid": 39101,
+          "reported_RSS_KiB": 45328,
+          "RSS_bytes": 46415872,
+          "state": "Rs"
+        }
+      ],
+      "threads": 1,
+      "thread_observation": {
+        "observed_counts": {
+          "39101": 1
+        },
+        "unobserved_pids": [],
+        "returncode": 0,
+        "error": null
+      },
+      "zombie_pids": [],
+      "elapsed_seconds": 0.2283915418665856
+    },
+    {
+      "RSS_bytes": 47136768,
+      "processes": 1,
+      "raw_owned_rows": [
+        {
+          "raw": "39101 39101  46032 Rs  ",
+          "pid": 39101,
+          "pgid": 39101,
+          "reported_RSS_KiB": 46032,
+          "RSS_bytes": 47136768,
+          "state": "Rs"
+        }
+      ],
+      "threads": 1,
+      "thread_observation": {
+        "observed_counts": {
+          "39101": 1
+        },
+        "unobserved_pids": [],
+        "returncode": 0,
+        "error": null
+      },
+      "zombie_pids": [],
+      "elapsed_seconds": 0.31959724985063076
+    },
+    {
+      "RSS_bytes": 47726592,
+      "processes": 1,
+      "raw_owned_rows": [
+        {
+          "raw": "39101 39101  46608 Rs  ",
+          "pid": 39101,
+          "pgid": 39101,
+          "reported_RSS_KiB": 46608,
+          "RSS_bytes": 47726592,
+          "state": "Rs"
+        }
+      ],
+      "threads": 1,
+      "thread_observation": {
+        "observed_counts": {
+          "39101": 1
+        },
+        "unobserved_pids": [],
+        "returncode": 0,
+        "error": null
+      },
+      "zombie_pids": [],
+      "elapsed_seconds": 0.41495379200205207
+    },
+    {
+      "RSS_bytes": 48365568,
+      "processes": 1,
+      "raw_owned_rows": [
+        {
+          "raw": "39101 39101  47232 Rs  ",
+          "pid": 39101,
+          "pgid": 39101,
+          "reported_RSS_KiB": 47232,
+          "RSS_bytes": 48365568,
+          "state": "Rs"
+        }
+      ],
+      "threads": 1,
+      "thread_observation": {
+        "observed_counts": {
+          "39101": 1
+        },
+        "unobserved_pids": [],
+        "returncode": 0,
+        "error": null
+      },
+      "zombie_pids": [],
+      "elapsed_seconds": 0.5063994589727372
+    },
+    {
+      "RSS_bytes": 48971776,
+      "processes": 1,
+      "raw_owned_rows": [
+        {
+          "raw": "39101 39101  47824 Rs  ",
+          "pid": 39101,
+          "pgid": 39101,
+          "reported_RSS_KiB": 47824,
+          "RSS_bytes": 48971776,
+          "state": "Rs"
+        }
+      ],
+      "threads": 1,
+      "thread_observation": {
+        "observed_counts": {
+          "39101": 1
+        },
+        "unobserved_pids": [],
+        "returncode": 0,
+        "error": null
+      },
+      "zombie_pids": [],
+      "elapsed_seconds": 0.5979830420110375
+    },
+    {
+      "RSS_bytes": 49594368,
+      "processes": 1,
+      "raw_owned_rows": [
+        {
+          "raw": "39101 39101  48432 Rs  ",
+          "pid": 39101,
+          "pgid": 39101,
+          "reported_RSS_KiB": 48432,
+          "RSS_bytes": 49594368,
+          "state": "Rs"
+        }
+      ],
+      "threads": 1,
+      "thread_observation": {
+        "observed_counts": {
+          "39101": 1
+        },
+        "unobserved_pids": [],
+        "returncode": 0,
+        "error": null
+      },
+      "zombie_pids": [],
+      "elapsed_seconds": 0.6936340418178588
+    },
+    {
+      "RSS_bytes": 50135040,
+      "processes": 1,
+      "raw_owned_rows": [
+        {
+          "raw": "39101 39101  48960 Rs  ",
+          "pid": 39101,
+          "pgid": 39101,
+          "reported_RSS_KiB": 48960,
+          "RSS_bytes": 50135040,
+          "state": "Rs"
+        }
+      ],
+      "threads": 1,
+      "thread_observation": {
+        "observed_counts": {
+          "39101": 1
+        },
+        "unobserved_pids": [],
+        "returncode": 0,
+        "error": null
+      },
+      "zombie_pids": [],
+      "elapsed_seconds": 0.7899569999426603
+    },
+    {
+      "RSS_bytes": 50675712,
+      "processes": 1,
+      "raw_owned_rows": [
+        {
+          "raw": "39101 39101  49488 Rs  ",
+          "pid": 39101,
+          "pgid": 39101,
+          "reported_RSS_KiB": 49488,
+          "RSS_bytes": 50675712,
+          "state": "Rs"
+        }
+      ],
+      "threads": 1,
+      "thread_observation": {
+        "observed_counts": {
+          "39101": 1
+        },
+        "unobserved_pids": [],
+        "returncode": 0,
+        "error": null
+      },
+      "zombie_pids": [],
+      "elapsed_seconds": 0.8862626668997109
+    },
+    {
+      "RSS_bytes": 51150848,
+      "processes": 1,
+      "raw_owned_rows": [
+        {
+          "raw": "39101 39101  49952 Rs  ",
+          "pid": 39101,
+          "pgid": 39101,
+          "reported_RSS_KiB": 49952,
+          "RSS_bytes": 51150848,
+          "state": "Rs"
+        }
+      ],
+      "threads": 1,
+      "thread_observation": {
+        "observed_counts": {
+          "39101": 1
+        },
+        "unobserved_pids": [],
+        "returncode": 0,
+        "error": null
+      },
+      "zombie_pids": [],
+      "elapsed_seconds": 0.9817710840143263
+    },
+    {
+      "RSS_bytes": 51789824,
+      "processes": 1,
+      "raw_owned_rows": [
+        {
+          "raw": "39101 39101  50576 Rs  ",
+          "pid": 39101,
+          "pgid": 39101,
+          "reported_RSS_KiB": 50576,
+          "RSS_bytes": 51789824,
+          "state": "Rs"
+        }
+      ],
+      "threads": 1,
+      "thread_observation": {
+        "observed_counts": {
+          "39101": 1
+        },
+        "unobserved_pids": [],
+        "returncode": 0,
+        "error": null
+      },
+      "zombie_pids": [],
+      "elapsed_seconds": 1.074802750023082
+    },
+    {
+      "RSS_bytes": 52346880,
+      "processes": 1,
+      "raw_owned_rows": [
+        {
+          "raw": "39101 39101  51120 Rs  ",
+          "pid": 39101,
+          "pgid": 39101,
+          "reported_RSS_KiB": 51120,
+          "RSS_bytes": 52346880,
+          "state": "Rs"
+        }
+      ],
+      "threads": 1,
+      "thread_observation": {
+        "observed_counts": {
+          "39101": 1
+        },
+        "unobserved_pids": [],
+        "returncode": 0,
+        "error": null
+      },
+      "zombie_pids": [],
+      "elapsed_seconds": 1.1700347918085754
+    },
+    {
+      "RSS_bytes": 52838400,
+      "processes": 1,
+      "raw_owned_rows": [
+        {
+          "raw": "39101 39101  51600 Rs  ",
+          "pid": 39101,
+          "pgid": 39101,
+          "reported_RSS_KiB": 51600,
+          "RSS_bytes": 52838400,
+          "state": "Rs"
+        }
+      ],
+      "threads": 1,
+      "thread_observation": {
+        "observed_counts": {
+          "39101": 1
+        },
+        "unobserved_pids": [],
+        "returncode": 0,
+        "error": null
+      },
+      "zombie_pids": [],
+      "elapsed_seconds": 1.2573762089014053
+    },
+    {
+      "RSS_bytes": 53428224,
+      "processes": 1,
+      "raw_owned_rows": [
+        {
+          "raw": "39101 39101  52176 Rs  ",
+          "pid": 39101,
+          "pgid": 39101,
+          "reported_RSS_KiB": 52176,
+          "RSS_bytes": 53428224,
+          "state": "Rs"
+        }
+      ],
+      "threads": 1,
+      "thread_observation": {
+        "observed_counts": {
+          "39101": 1
+        },
+        "unobserved_pids": [],
+        "returncode": 0,
+        "error": null
+      },
+      "zombie_pids": [],
+      "elapsed_seconds": 1.3577052089385688
+    },
+    {
+      "RSS_bytes": 54001664,
+      "processes": 1,
+      "raw_owned_rows": [
+        {
+          "raw": "39101 39101  52736 Rs  ",
+          "pid": 39101,
+          "pgid": 39101,
+          "reported_RSS_KiB": 52736,
+          "RSS_bytes": 54001664,
+          "state": "Rs"
+        }
+      ],
+      "threads": 1,
+      "thread_observation": {
+        "observed_counts": {
+          "39101": 1
+        },
+        "unobserved_pids": [],
+        "returncode": 0,
+        "error": null
+      },
+      "zombie_pids": [],
+      "elapsed_seconds": 1.4556291669141501
+    },
+    {
+      "RSS_bytes": 54607872,
+      "processes": 1,
+      "raw_owned_rows": [
+        {
+          "raw": "39101 39101  53328 Rs  ",
+          "pid": 39101,
+          "pgid": 39101,
+          "reported_RSS_KiB": 53328,
+          "RSS_bytes": 54607872,
+          "state": "Rs"
+        }
+      ],
+      "threads": 1,
+      "thread_observation": {
+        "observed_counts": {
+          "39101": 1
+        },
+        "unobserved_pids": [],
+        "returncode": 0,
+        "error": null
+      },
+      "zombie_pids": [],
+      "elapsed_seconds": 1.5508672499563545
+    },
+    {
+      "RSS_bytes": 55132160,
+      "processes": 1,
+      "raw_owned_rows": [
+        {
+          "raw": "39101 39101  53840 Rs  ",
+          "pid": 39101,
+          "pgid": 39101,
+          "reported_RSS_KiB": 53840,
+          "RSS_bytes": 55132160,
+          "state": "Rs"
+        }
+      ],
+      "threads": 1,
+      "thread_observation": {
+        "observed_counts": {
+          "39101": 1
+        },
+        "unobserved_pids": [],
+        "returncode": 0,
+        "error": null
+      },
+      "zombie_pids": [],
+      "elapsed_seconds": 1.6394251249730587
+    },
+    {
+      "RSS_bytes": 55623680,
+      "processes": 1,
+      "raw_owned_rows": [
+        {
+          "raw": "39101 39101  54320 Rs  ",
+          "pid": 39101,
+          "pgid": 39101,
+          "reported_RSS_KiB": 54320,
+          "RSS_bytes": 55623680,
+          "state": "Rs"
+        }
+      ],
+      "threads": 1,
+      "thread_observation": {
+        "observed_counts": {
+          "39101": 1
+        },
+        "unobserved_pids": [],
+        "returncode": 0,
+        "error": null
+      },
+      "zombie_pids": [],
+      "elapsed_seconds": 1.7279567918740213
+    },
+    {
+      "RSS_bytes": 56147968,
+      "processes": 1,
+      "raw_owned_rows": [
+        {
+          "raw": "39101 39101  54832 Rs  ",
+          "pid": 39101,
+          "pgid": 39101,
+          "reported_RSS_KiB": 54832,
+          "RSS_bytes": 56147968,
+          "state": "Rs"
+        }
+      ],
+      "threads": 1,
+      "thread_observation": {
+        "observed_counts": {
+          "39101": 1
+        },
+        "unobserved_pids": [],
+        "returncode": 0,
+        "error": null
+      },
+      "zombie_pids": [],
+      "elapsed_seconds": 1.8132224588189274
+    },
+    {
+      "RSS_bytes": 56721408,
+      "processes": 1,
+      "raw_owned_rows": [
+        {
+          "raw": "39101 39101  55392 Rs  ",
+          "pid": 39101,
+          "pgid": 39101,
+          "reported_RSS_KiB": 55392,
+          "RSS_bytes": 56721408,
+          "state": "Rs"
+        }
+      ],
+      "threads": 1,
+      "thread_observation": {
+        "observed_counts": {
+          "39101": 1
+        },
+        "unobserved_pids": [],
+        "returncode": 0,
+        "error": null
+      },
+      "zombie_pids": [],
+      "elapsed_seconds": 1.9041839588899165
+    },
+    {
+      "RSS_bytes": 57245696,
+      "processes": 1,
+      "raw_owned_rows": [
+        {
+          "raw": "39101 39101  55904 Rs  ",
+          "pid": 39101,
+          "pgid": 39101,
+          "reported_RSS_KiB": 55904,
+          "RSS_bytes": 57245696,
+          "state": "Rs"
+        }
+      ],
+      "threads": 1,
+      "thread_observation": {
+        "observed_counts": {
+          "39101": 1
+        },
+        "unobserved_pids": [],
+        "returncode": 0,
+        "error": null
+      },
+      "zombie_pids": [],
+      "elapsed_seconds": 1.9939642089884728
+    },
+    {
+      "RSS_bytes": 57835520,
+      "processes": 1,
+      "raw_owned_rows": [
+        {
+          "raw": "39101 39101  56480 Rs  ",
+          "pid": 39101,
+          "pgid": 39101,
+          "reported_RSS_KiB": 56480,
+          "RSS_bytes": 57835520,
+          "state": "Rs"
+        }
+      ],
+      "threads": 1,
+      "thread_observation": {
+        "observed_counts": {
+          "39101": 1
+        },
+        "unobserved_pids": [],
+        "returncode": 0,
+        "error": null
+      },
+      "zombie_pids": [],
+      "elapsed_seconds": 2.08921283390373
+    },
+    {
+      "RSS_bytes": 58425344,
+      "processes": 1,
+      "raw_owned_rows": [
+        {
+          "raw": "39101 39101  57056 Rs  ",
+          "pid": 39101,
+          "pgid": 39101,
+          "reported_RSS_KiB": 57056,
+          "RSS_bytes": 58425344,
+          "state": "Rs"
+        }
+      ],
+      "threads": 1,
+      "thread_observation": {
+        "observed_counts": {
+          "39101": 1
+        },
+        "unobserved_pids": [],
+        "returncode": 0,
+        "error": null
+      },
+      "zombie_pids": [],
+      "elapsed_seconds": 2.1838297499343753
+    },
+    {
+      "RSS_bytes": 58884096,
+      "processes": 1,
+      "raw_owned_rows": [
+        {
+          "raw": "39101 39101  57504 Rs  ",
+          "pid": 39101,
+          "pgid": 39101,
+          "reported_RSS_KiB": 57504,
+          "RSS_bytes": 58884096,
+          "state": "Rs"
+        }
+      ],
+      "threads": 1,
+      "thread_observation": {
+        "observed_counts": {
+          "39101": 1
+        },
+        "unobserved_pids": [],
+        "returncode": 0,
+        "error": null
+      },
+      "zombie_pids": [],
+      "elapsed_seconds": 2.34632037486881
+    },
+    {
+      "RSS_bytes": 59457536,
+      "processes": 1,
+      "raw_owned_rows": [
+        {
+          "raw": "39101 39101  58064 Rs  ",
+          "pid": 39101,
+          "pgid": 39101,
+          "reported_RSS_KiB": 58064,
+          "RSS_bytes": 59457536,
+          "state": "Rs"
+        }
+      ],
+      "threads": 1,
+      "thread_observation": {
+        "observed_counts": {
+          "39101": 1
+        },
+        "unobserved_pids": [],
+        "returncode": 0,
+        "error": null
+      },
+      "zombie_pids": [],
+      "elapsed_seconds": 2.4416159589309245
+    },
+    {
+      "RSS_bytes": 60047360,
+      "processes": 1,
+      "raw_owned_rows": [
+        {
+          "raw": "39101 39101  58640 Rs  ",
+          "pid": 39101,
+          "pgid": 39101,
+          "reported_RSS_KiB": 58640,
+          "RSS_bytes": 60047360,
+          "state": "Rs"
+        }
+      ],
+      "threads": 1,
+      "thread_observation": {
+        "observed_counts": {
+          "39101": 1
+        },
+        "unobserved_pids": [],
+        "returncode": 0,
+        "error": null
+      },
+      "zombie_pids": [],
+      "elapsed_seconds": 2.5379567919299006
+    },
+    {
+      "RSS_bytes": 60604416,
+      "processes": 1,
+      "raw_owned_rows": [
+        {
+          "raw": "39101 39101  59184 Rs  ",
+          "pid": 39101,
+          "pgid": 39101,
+          "reported_RSS_KiB": 59184,
+          "RSS_bytes": 60604416,
+          "state": "Rs"
+        }
+      ],
+      "threads": 1,
+      "thread_observation": {
+        "observed_counts": {
+          "39101": 1
+        },
+        "unobserved_pids": [],
+        "returncode": 0,
+        "error": null
+      },
+      "zombie_pids": [],
+      "elapsed_seconds": 2.633679041871801
+    },
+    {
+      "RSS_bytes": 61161472,
+      "processes": 1,
+      "raw_owned_rows": [
+        {
+          "raw": "39101 39101  59728 Rs  ",
+          "pid": 39101,
+          "pgid": 39101,
+          "reported_RSS_KiB": 59728,
+          "RSS_bytes": 61161472,
+          "state": "Rs"
+        }
+      ],
+      "threads": 1,
+      "thread_observation": {
+        "observed_counts": {
+          "39101": 1
+        },
+        "unobserved_pids": [],
+        "returncode": 0,
+        "error": null
+      },
+      "zombie_pids": [],
+      "elapsed_seconds": 2.7429270839784294
+    },
+    {
+      "RSS_bytes": 61800448,
+      "processes": 1,
+      "raw_owned_rows": [
+        {
+          "raw": "39101 39101  60352 Rs  ",
+          "pid": 39101,
+          "pgid": 39101,
+          "reported_RSS_KiB": 60352,
+          "RSS_bytes": 61800448,
+          "state": "Rs"
+        }
+      ],
+      "threads": 1,
+      "thread_observation": {
+        "observed_counts": {
+          "39101": 1
+        },
+        "unobserved_pids": [],
+        "returncode": 0,
+        "error": null
+      },
+      "zombie_pids": [],
+      "elapsed_seconds": 2.843533624894917
+    },
+    {
+      "RSS_bytes": 62357504,
+      "processes": 1,
+      "raw_owned_rows": [
+        {
+          "raw": "39101 39101  60896 Rs  ",
+          "pid": 39101,
+          "pgid": 39101,
+          "reported_RSS_KiB": 60896,
+          "RSS_bytes": 62357504,
+          "state": "Rs"
+        }
+      ],
+      "threads": 1,
+      "thread_observation": {
+        "observed_counts": {
+          "39101": 1
+        },
+        "unobserved_pids": [],
+        "returncode": 0,
+        "error": null
+      },
+      "zombie_pids": [],
+      "elapsed_seconds": 2.9425998339429498
+    },
+    {
+      "RSS_bytes": 62881792,
+      "processes": 1,
+      "raw_owned_rows": [
+        {
+          "raw": "39101 39101  61408 Rs  ",
+          "pid": 39101,
+          "pgid": 39101,
+          "reported_RSS_KiB": 61408,
+          "RSS_bytes": 62881792,
+          "state": "Rs"
+        }
+      ],
+      "threads": 1,
+      "thread_observation": {
+        "observed_counts": {
+          "39101": 1
+        },
+        "unobserved_pids": [],
+        "returncode": 0,
+        "error": null
+      },
+      "zombie_pids": [],
+      "elapsed_seconds": 3.0405614168848842
+    },
+    {
+      "RSS_bytes": 63340544,
+      "processes": 1,
+      "raw_owned_rows": [
+        {
+          "raw": "39101 39101  61856 Rs  ",
+          "pid": 39101,
+          "pgid": 39101,
+          "reported_RSS_KiB": 61856,
+          "RSS_bytes": 63340544,
+          "state": "Rs"
+        }
+      ],
+      "threads": 1,
+      "thread_observation": {
+        "observed_counts": {
+          "39101": 1
+        },
+        "unobserved_pids": [],
+        "returncode": 0,
+        "error": null
+      },
+      "zombie_pids": [],
+      "elapsed_seconds": 3.130789167014882
+    },
+    {
+      "RSS_bytes": 63848448,
+      "processes": 1,
+      "raw_owned_rows": [
+        {
+          "raw": "39101 39101  62352 Rs  ",
+          "pid": 39101,
+          "pgid": 39101,
+          "reported_RSS_KiB": 62352,
+          "RSS_bytes": 63848448,
+          "state": "Rs"
+        }
+      ],
+      "threads": 1,
+      "thread_observation": {
+        "observed_counts": {
+          "39101": 1
+        },
+        "unobserved_pids": [],
+        "returncode": 0,
+        "error": null
+      },
+      "zombie_pids": [],
+      "elapsed_seconds": 3.2231483748182654
+    },
+    {
+      "RSS_bytes": 64405504,
+      "processes": 1,
+      "raw_owned_rows": [
+        {
+          "raw": "39101 39101  62896 Rs  ",
+          "pid": 39101,
+          "pgid": 39101,
+          "reported_RSS_KiB": 62896,
+          "RSS_bytes": 64405504,
+          "state": "Rs"
+        }
+      ],
+      "threads": 1,
+      "thread_observation": {
+        "observed_counts": {
+          "39101": 1
+        },
+        "unobserved_pids": [],
+        "returncode": 0,
+        "error": null
+      },
+      "zombie_pids": [],
+      "elapsed_seconds": 3.3180038339924067
+    },
+    {
+      "RSS_bytes": 64978944,
+      "processes": 1,
+      "raw_owned_rows": [
+        {
+          "raw": "39101 39101  63456 Rs  ",
+          "pid": 39101,
+          "pgid": 39101,
+          "reported_RSS_KiB": 63456,
+          "RSS_bytes": 64978944,
+          "state": "Rs"
+        }
+      ],
+      "threads": 1,
+      "thread_observation": {
+        "observed_counts": {
+          "39101": 1
+        },
+        "unobserved_pids": [],
+        "returncode": 0,
+        "error": null
+      },
+      "zombie_pids": [],
+      "elapsed_seconds": 3.4086691248230636
+    },
+    {
+      "RSS_bytes": 65536000,
+      "processes": 1,
+      "raw_owned_rows": [
+        {
+          "raw": "39101 39101  64000 Rs  ",
+          "pid": 39101,
+          "pgid": 39101,
+          "reported_RSS_KiB": 64000,
+          "RSS_bytes": 65536000,
+          "state": "Rs"
+        }
+      ],
+      "threads": 1,
+      "thread_observation": {
+        "observed_counts": {
+          "39101": 1
+        },
+        "unobserved_pids": [],
+        "returncode": 0,
+        "error": null
+      },
+      "zombie_pids": [],
+      "elapsed_seconds": 3.506513916887343
+    },
+    {
+      "RSS_bytes": 66125824,
+      "processes": 1,
+      "raw_owned_rows": [
+        {
+          "raw": "39101 39101  64576 Rs  ",
+          "pid": 39101,
+          "pgid": 39101,
+          "reported_RSS_KiB": 64576,
+          "RSS_bytes": 66125824,
+          "state": "Rs"
+        }
+      ],
+      "threads": 1,
+      "thread_observation": {
+        "observed_counts": {
+          "39101": 1
+        },
+        "unobserved_pids": [],
+        "returncode": 0,
+        "error": null
+      },
+      "zombie_pids": [],
+      "elapsed_seconds": 3.6043009588029236
+    },
+    {
+      "RSS_bytes": 66600960,
+      "processes": 1,
+      "raw_owned_rows": [
+        {
+          "raw": "39101 39101  65040 Rs  ",
+          "pid": 39101,
+          "pgid": 39101,
+          "reported_RSS_KiB": 65040,
+          "RSS_bytes": 66600960,
+          "state": "Rs"
+        }
+      ],
+      "threads": 1,
+      "thread_observation": {
+        "observed_counts": {
+          "39101": 1
+        },
+        "unobserved_pids": [],
+        "returncode": 0,
+        "error": null
+      },
+      "zombie_pids": [],
+      "elapsed_seconds": 3.6915790839120746
+    },
+    {
+      "RSS_bytes": 67190784,
+      "processes": 1,
+      "raw_owned_rows": [
+        {
+          "raw": "39101 39101  65616 Rs  ",
+          "pid": 39101,
+          "pgid": 39101,
+          "reported_RSS_KiB": 65616,
+          "RSS_bytes": 67190784,
+          "state": "Rs"
+        }
+      ],
+      "threads": 1,
+      "thread_observation": {
+        "observed_counts": {
+          "39101": 1
+        },
+        "unobserved_pids": [],
+        "returncode": 0,
+        "error": null
+      },
+      "zombie_pids": [],
+      "elapsed_seconds": 3.795210833894089
+    },
+    {
+      "RSS_bytes": 67747840,
+      "processes": 1,
+      "raw_owned_rows": [
+        {
+          "raw": "39101 39101  66160 Rs  ",
+          "pid": 39101,
+          "pgid": 39101,
+          "reported_RSS_KiB": 66160,
+          "RSS_bytes": 67747840,
+          "state": "Rs"
+        }
+      ],
+      "threads": 1,
+      "thread_observation": {
+        "observed_counts": {
+          "39101": 1
+        },
+        "unobserved_pids": [],
+        "returncode": 0,
+        "error": null
+      },
+      "zombie_pids": [],
+      "elapsed_seconds": 3.890453874832019
+    },
+    {
+      "RSS_bytes": 68206592,
+      "processes": 1,
+      "raw_owned_rows": [
+        {
+          "raw": "39101 39101  66608 Rs  ",
+          "pid": 39101,
+          "pgid": 39101,
+          "reported_RSS_KiB": 66608,
+          "RSS_bytes": 68206592,
+          "state": "Rs"
+        }
+      ],
+      "threads": 1,
+      "thread_observation": {
+        "observed_counts": {
+          "39101": 1
+        },
+        "unobserved_pids": [],
+        "returncode": 0,
+        "error": null
+      },
+      "zombie_pids": [],
+      "elapsed_seconds": 3.979030666872859
+    },
+    {
+      "RSS_bytes": 68681728,
+      "processes": 1,
+      "raw_owned_rows": [
+        {
+          "raw": "39101 39101  67072 Rs  ",
+          "pid": 39101,
+          "pgid": 39101,
+          "reported_RSS_KiB": 67072,
+          "RSS_bytes": 68681728,
+          "state": "Rs"
+        }
+      ],
+      "threads": 1,
+      "thread_observation": {
+        "observed_counts": {
+          "39101": 1
+        },
+        "unobserved_pids": [],
+        "returncode": 0,
+        "error": null
+      },
+      "zombie_pids": [],
+      "elapsed_seconds": 4.072773874970153
+    },
+    {
+      "RSS_bytes": 69255168,
+      "processes": 1,
+      "raw_owned_rows": [
+        {
+          "raw": "39101 39101  67632 Rs  ",
+          "pid": 39101,
+          "pgid": 39101,
+          "reported_RSS_KiB": 67632,
+          "RSS_bytes": 69255168,
+          "state": "Rs"
+        }
+      ],
+      "threads": 1,
+      "thread_observation": {
+        "observed_counts": {
+          "39101": 1
+        },
+        "unobserved_pids": [],
+        "returncode": 0,
+        "error": null
+      },
+      "zombie_pids": [],
+      "elapsed_seconds": 4.164120625006035
+    },
+    {
+      "RSS_bytes": 69910528,
+      "processes": 1,
+      "raw_owned_rows": [
+        {
+          "raw": "39101 39101  68272 Rs  ",
+          "pid": 39101,
+          "pgid": 39101,
+          "reported_RSS_KiB": 68272,
+          "RSS_bytes": 69910528,
+          "state": "Rs"
+        }
+      ],
+      "threads": 1,
+      "thread_observation": {
+        "observed_counts": {
+          "39101": 1
+        },
+        "unobserved_pids": [],
+        "returncode": 0,
+        "error": null
+      },
+      "zombie_pids": [],
+      "elapsed_seconds": 4.2566483749542385
+    },
+    {
+      "RSS_bytes": 70500352,
+      "processes": 1,
+      "raw_owned_rows": [
+        {
+          "raw": "39101 39101  68848 Rs  ",
+          "pid": 39101,
+          "pgid": 39101,
+          "reported_RSS_KiB": 68848,
+          "RSS_bytes": 70500352,
+          "state": "Rs"
+        }
+      ],
+      "threads": 1,
+      "thread_observation": {
+        "observed_counts": {
+          "39101": 1
+        },
+        "unobserved_pids": [],
+        "returncode": 0,
+        "error": null
+      },
+      "zombie_pids": [],
+      "elapsed_seconds": 4.3443249999545515
+    },
+    {
+      "RSS_bytes": 71057408,
+      "processes": 1,
+      "raw_owned_rows": [
+        {
+          "raw": "39101 39101  69392 Rs  ",
+          "pid": 39101,
+          "pgid": 39101,
+          "reported_RSS_KiB": 69392,
+          "RSS_bytes": 71057408,
+          "state": "Rs"
+        }
+      ],
+      "threads": 1,
+      "thread_observation": {
+        "observed_counts": {
+          "39101": 1
+        },
+        "unobserved_pids": [],
+        "returncode": 0,
+        "error": null
+      },
+      "zombie_pids": [],
+      "elapsed_seconds": 4.4399711668957025
+    },
+    {
+      "RSS_bytes": 71630848,
+      "processes": 1,
+      "raw_owned_rows": [
+        {
+          "raw": "39101 39101  69952 Rs  ",
+          "pid": 39101,
+          "pgid": 39101,
+          "reported_RSS_KiB": 69952,
+          "RSS_bytes": 71630848,
+          "state": "Rs"
+        }
+      ],
+      "threads": 1,
+      "thread_observation": {
+        "observed_counts": {
+          "39101": 1
+        },
+        "unobserved_pids": [],
+        "returncode": 0,
+        "error": null
+      },
+      "zombie_pids": [],
+      "elapsed_seconds": 4.526530916802585
+    },
+    {
+      "RSS_bytes": 72237056,
+      "processes": 1,
+      "raw_owned_rows": [
+        {
+          "raw": "39101 39101  70544 Rs  ",
+          "pid": 39101,
+          "pgid": 39101,
+          "reported_RSS_KiB": 70544,
+          "RSS_bytes": 72237056,
+          "state": "Rs"
+        }
+      ],
+      "threads": 1,
+      "thread_observation": {
+        "observed_counts": {
+          "39101": 1
+        },
+        "unobserved_pids": [],
+        "returncode": 0,
+        "error": null
+      },
+      "zombie_pids": [],
+      "elapsed_seconds": 4.6223973338492215
+    },
+    {
+      "RSS_bytes": 72794112,
+      "processes": 1,
+      "raw_owned_rows": [
+        {
+          "raw": "39101 39101  71088 Rs  ",
+          "pid": 39101,
+          "pgid": 39101,
+          "reported_RSS_KiB": 71088,
+          "RSS_bytes": 72794112,
+          "state": "Rs"
+        }
+      ],
+      "threads": 1,
+      "thread_observation": {
+        "observed_counts": {
+          "39101": 1
+        },
+        "unobserved_pids": [],
+        "returncode": 0,
+        "error": null
+      },
+      "zombie_pids": [],
+      "elapsed_seconds": 4.707787958905101
+    },
+    {
+      "RSS_bytes": 73433088,
+      "processes": 1,
+      "raw_owned_rows": [
+        {
+          "raw": "39101 39101  71712 Rs  ",
+          "pid": 39101,
+          "pgid": 39101,
+          "reported_RSS_KiB": 71712,
+          "RSS_bytes": 73433088,
+          "state": "Rs"
+        }
+      ],
+      "threads": 1,
+      "thread_observation": {
+        "observed_counts": {
+          "39101": 1
+        },
+        "unobserved_pids": [],
+        "returncode": 0,
+        "error": null
+      },
+      "zombie_pids": [],
+      "elapsed_seconds": 4.812531624920666
+    },
+    {
+      "RSS_bytes": 74137600,
+      "processes": 1,
+      "raw_owned_rows": [
+        {
+          "raw": "39101 39101  72400 Rs  ",
+          "pid": 39101,
+          "pgid": 39101,
+          "reported_RSS_KiB": 72400,
+          "RSS_bytes": 74137600,
+          "state": "Rs"
+        }
+      ],
+      "threads": 1,
+      "thread_observation": {
+        "observed_counts": {
+          "39101": 1
+        },
+        "unobserved_pids": [],
+        "returncode": 0,
+        "error": null
+      },
+      "zombie_pids": [],
+      "elapsed_seconds": 5.017555166967213
+    },
+    {
+      "RSS_bytes": 75399168,
+      "processes": 1,
+      "raw_owned_rows": [
+        {
+          "raw": "39101 39101  73632 Rs  ",
+          "pid": 39101,
+          "pgid": 39101,
+          "reported_RSS_KiB": 73632,
+          "RSS_bytes": 75399168,
+          "state": "Rs"
+        }
+      ],
+      "threads": 1,
+      "thread_observation": {
+        "observed_counts": {
+          "39101": 1
+        },
+        "unobserved_pids": [],
+        "returncode": 0,
+        "error": null
+      },
+      "zombie_pids": [],
+      "elapsed_seconds": 5.110646749846637
+    },
+    {
+      "RSS_bytes": 75972608,
+      "processes": 1,
+      "raw_owned_rows": [
+        {
+          "raw": "39101 39101  74192 Rs  ",
+          "pid": 39101,
+          "pgid": 39101,
+          "reported_RSS_KiB": 74192,
+          "RSS_bytes": 75972608,
+          "state": "Rs"
+        }
+      ],
+      "threads": 1,
+      "thread_observation": {
+        "observed_counts": {
+          "39101": 1
+        },
+        "unobserved_pids": [],
+        "returncode": 0,
+        "error": null
+      },
+      "zombie_pids": [],
+      "elapsed_seconds": 5.206669416977093
+    },
+    {
+      "RSS_bytes": 76660736,
+      "processes": 1,
+      "raw_owned_rows": [
+        {
+          "raw": "39101 39101  74864 Rs  ",
+          "pid": 39101,
+          "pgid": 39101,
+          "reported_RSS_KiB": 74864,
+          "RSS_bytes": 76660736,
+          "state": "Rs"
+        }
+      ],
+      "threads": 1,
+      "thread_observation": {
+        "observed_counts": {
+          "39101": 1
+        },
+        "unobserved_pids": [],
+        "returncode": 0,
+        "error": null
+      },
+      "zombie_pids": [],
+      "elapsed_seconds": 5.302487500011921
+    },
+    {
+      "RSS_bytes": 77217792,
+      "processes": 1,
+      "raw_owned_rows": [
+        {
+          "raw": "39101 39101  75408 Rs  ",
+          "pid": 39101,
+          "pgid": 39101,
+          "reported_RSS_KiB": 75408,
+          "RSS_bytes": 77217792,
+          "state": "Rs"
+        }
+      ],
+      "threads": 1,
+      "thread_observation": {
+        "observed_counts": {
+          "39101": 1
+        },
+        "unobserved_pids": [],
+        "returncode": 0,
+        "error": null
+      },
+      "zombie_pids": [],
+      "elapsed_seconds": 5.393822708865628
+    },
+    {
+      "RSS_bytes": 84738048,
+      "processes": 1,
+      "raw_owned_rows": [
+        {
+          "raw": "39101 39101  82752 Rs  ",
+          "pid": 39101,
+          "pgid": 39101,
+          "reported_RSS_KiB": 82752,
+          "RSS_bytes": 84738048,
+          "state": "Rs"
+        }
+      ],
+      "threads": 1,
+      "thread_observation": {
+        "observed_counts": {
+          "39101": 1
+        },
+        "unobserved_pids": [],
+        "returncode": 0,
+        "error": null
+      },
+      "zombie_pids": [],
+      "elapsed_seconds": 5.484206958906725
+    },
+    {
+      "RSS_bytes": 114884608,
+      "processes": 1,
+      "raw_owned_rows": [
+        {
+          "raw": "39101 39101 112192 Rs  ",
+          "pid": 39101,
+          "pgid": 39101,
+          "reported_RSS_KiB": 112192,
+          "RSS_bytes": 114884608,
+          "state": "Rs"
+        }
+      ],
+      "threads": 1,
+      "thread_observation": {
+        "observed_counts": {
+          "39101": 1
+        },
+        "unobserved_pids": [],
+        "returncode": 0,
+        "error": null
+      },
+      "zombie_pids": [],
+      "elapsed_seconds": 5.580020208843052
+    },
+    {
+      "RSS_bytes": 138297344,
+      "processes": 1,
+      "raw_owned_rows": [
+        {
+          "raw": "39101 39101 135056 Rs  ",
+          "pid": 39101,
+          "pgid": 39101,
+          "reported_RSS_KiB": 135056,
+          "RSS_bytes": 138297344,
+          "state": "Rs"
+        }
+      ],
+      "threads": null,
+      "thread_observation": {
+        "observed_counts": {},
+        "unobserved_pids": [
+          39101
+        ],
+        "returncode": 0,
+        "error": null
+      },
+      "zombie_pids": [],
+      "elapsed_seconds": 5.675672541838139
+    }
+  ],
+  "resource_observation_exit_races": [],
+  "process_started": true,
+  "returncode": 0,
+  "termination": null,
+  "complete_saved_diagnostic": true,
+  "independent_arithmetic_acceptance": false,
+  "complete_application_eligibility": null,
+  "mesh_application_authorized": false,
+  "native_executed": false,
+  "physical_acceptance": false,
+  "automatic_retry": false,
+  "pid": 39101,
+  "owned_group_absent": true,
+  "report": {
+    "path": "work/962-engineering/head-star-current24-edge-removal-saved-root-execution-001/report.json",
+    "sha256": "4c6c9e8756cf9c9d1a90ef865e18308706308bc3796cdb1f369c98fa04048aa0",
+    "bytes": 12083696
+  },
+  "selected_case_count": 55,
+  "candidate_count": 1033,
+  "local_finite_pass_count": 0,
+  "distinct_conflicting_candidate_pair_count": 53971,
+  "elapsed_seconds": 5.812154583865777,
+  "after": {
+    "count": 175,
+    "observed_sha256": "f4ceed863c33847a34ce1031857bbc883593859cd2870c0d893a6f6ed81140e0",
+    "changed": {}
+  },
+  "runtime_paths_after": {
+    "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/lib-dynload/_blake2.cpython-310-darwin.so": {
+      "is_symlink": false,
+      "raw_target": null,
+      "resolved": "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/lib-dynload/_blake2.cpython-310-darwin.so"
+    },
+    "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/_collections_abc.py": {
+      "is_symlink": false,
+      "raw_target": null,
+      "resolved": "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/_collections_abc.py"
+    },
+    "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/lib-dynload/_ctypes.cpython-310-darwin.so": {
+      "is_symlink": false,
+      "raw_target": null,
+      "resolved": "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/lib-dynload/_ctypes.cpython-310-darwin.so"
+    },
+    "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/lib-dynload/_decimal.cpython-310-darwin.so": {
+      "is_symlink": false,
+      "raw_target": null,
+      "resolved": "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/lib-dynload/_decimal.cpython-310-darwin.so"
+    },
+    "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/lib-dynload/_hashlib.cpython-310-darwin.so": {
+      "is_symlink": false,
+      "raw_target": null,
+      "resolved": "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/lib-dynload/_hashlib.cpython-310-darwin.so"
+    },
+    "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/lib-dynload/_heapq.cpython-310-darwin.so": {
+      "is_symlink": false,
+      "raw_target": null,
+      "resolved": "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/lib-dynload/_heapq.cpython-310-darwin.so"
+    },
+    "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/lib-dynload/_json.cpython-310-darwin.so": {
+      "is_symlink": false,
+      "raw_target": null,
+      "resolved": "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/lib-dynload/_json.cpython-310-darwin.so"
+    },
+    "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/lib-dynload/_opcode.cpython-310-darwin.so": {
+      "is_symlink": false,
+      "raw_target": null,
+      "resolved": "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/lib-dynload/_opcode.cpython-310-darwin.so"
+    },
+    "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/lib-dynload/_posixsubprocess.cpython-310-darwin.so": {
+      "is_symlink": false,
+      "raw_target": null,
+      "resolved": "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/lib-dynload/_posixsubprocess.cpython-310-darwin.so"
+    },
+    "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/lib-dynload/_struct.cpython-310-darwin.so": {
+      "is_symlink": false,
+      "raw_target": null,
+      "resolved": "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/lib-dynload/_struct.cpython-310-darwin.so"
+    },
+    "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/_weakrefset.py": {
+      "is_symlink": false,
+      "raw_target": null,
+      "resolved": "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/_weakrefset.py"
+    },
+    "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/abc.py": {
+      "is_symlink": false,
+      "raw_target": null,
+      "resolved": "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/abc.py"
+    },
+    "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/argparse.py": {
+      "is_symlink": false,
+      "raw_target": null,
+      "resolved": "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/argparse.py"
+    },
+    "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/ast.py": {
+      "is_symlink": false,
+      "raw_target": null,
+      "resolved": "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/ast.py"
+    },
+    "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/codecs.py": {
+      "is_symlink": false,
+      "raw_target": null,
+      "resolved": "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/codecs.py"
+    },
+    "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/collections/__init__.py": {
+      "is_symlink": false,
+      "raw_target": null,
+      "resolved": "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/collections/__init__.py"
+    },
+    "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/collections/abc.py": {
+      "is_symlink": false,
+      "raw_target": null,
+      "resolved": "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/collections/abc.py"
+    },
+    "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/contextlib.py": {
+      "is_symlink": false,
+      "raw_target": null,
+      "resolved": "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/contextlib.py"
+    },
+    "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/copy.py": {
+      "is_symlink": false,
+      "raw_target": null,
+      "resolved": "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/copy.py"
+    },
+    "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/copyreg.py": {
+      "is_symlink": false,
+      "raw_target": null,
+      "resolved": "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/copyreg.py"
+    },
+    "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/ctypes/__init__.py": {
+      "is_symlink": false,
+      "raw_target": null,
+      "resolved": "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/ctypes/__init__.py"
+    },
+    "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/ctypes/_endian.py": {
+      "is_symlink": false,
+      "raw_target": null,
+      "resolved": "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/ctypes/_endian.py"
+    },
+    "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/dataclasses.py": {
+      "is_symlink": false,
+      "raw_target": null,
+      "resolved": "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/dataclasses.py"
+    },
+    "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/decimal.py": {
+      "is_symlink": false,
+      "raw_target": null,
+      "resolved": "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/decimal.py"
+    },
+    "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/difflib.py": {
+      "is_symlink": false,
+      "raw_target": null,
+      "resolved": "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/difflib.py"
+    },
+    "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/dis.py": {
+      "is_symlink": false,
+      "raw_target": null,
+      "resolved": "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/dis.py"
+    },
+    "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/encodings/__init__.py": {
+      "is_symlink": false,
+      "raw_target": null,
+      "resolved": "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/encodings/__init__.py"
+    },
+    "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/encodings/aliases.py": {
+      "is_symlink": false,
+      "raw_target": null,
+      "resolved": "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/encodings/aliases.py"
+    },
+    "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/encodings/utf_8.py": {
+      "is_symlink": false,
+      "raw_target": null,
+      "resolved": "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/encodings/utf_8.py"
+    },
+    "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/enum.py": {
+      "is_symlink": false,
+      "raw_target": null,
+      "resolved": "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/enum.py"
+    },
+    "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/lib-dynload/fcntl.cpython-310-darwin.so": {
+      "is_symlink": false,
+      "raw_target": null,
+      "resolved": "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/lib-dynload/fcntl.cpython-310-darwin.so"
+    },
+    "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/fnmatch.py": {
+      "is_symlink": false,
+      "raw_target": null,
+      "resolved": "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/fnmatch.py"
+    },
+    "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/fractions.py": {
+      "is_symlink": false,
+      "raw_target": null,
+      "resolved": "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/fractions.py"
+    },
+    "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/functools.py": {
+      "is_symlink": false,
+      "raw_target": null,
+      "resolved": "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/functools.py"
+    },
+    "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/genericpath.py": {
+      "is_symlink": false,
+      "raw_target": null,
+      "resolved": "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/genericpath.py"
+    },
+    "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/gettext.py": {
+      "is_symlink": false,
+      "raw_target": null,
+      "resolved": "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/gettext.py"
+    },
+    "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/hashlib.py": {
+      "is_symlink": false,
+      "raw_target": null,
+      "resolved": "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/hashlib.py"
+    },
+    "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/heapq.py": {
+      "is_symlink": false,
+      "raw_target": null,
+      "resolved": "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/heapq.py"
+    },
+    "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/importlib/__init__.py": {
+      "is_symlink": false,
+      "raw_target": null,
+      "resolved": "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/importlib/__init__.py"
+    },
+    "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/importlib/_abc.py": {
+      "is_symlink": false,
+      "raw_target": null,
+      "resolved": "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/importlib/_abc.py"
+    },
+    "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/importlib/machinery.py": {
+      "is_symlink": false,
+      "raw_target": null,
+      "resolved": "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/importlib/machinery.py"
+    },
+    "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/importlib/util.py": {
+      "is_symlink": false,
+      "raw_target": null,
+      "resolved": "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/importlib/util.py"
+    },
+    "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/inspect.py": {
+      "is_symlink": false,
+      "raw_target": null,
+      "resolved": "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/inspect.py"
+    },
+    "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/io.py": {
+      "is_symlink": false,
+      "raw_target": null,
+      "resolved": "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/io.py"
+    },
+    "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/json/__init__.py": {
+      "is_symlink": false,
+      "raw_target": null,
+      "resolved": "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/json/__init__.py"
+    },
+    "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/json/decoder.py": {
+      "is_symlink": false,
+      "raw_target": null,
+      "resolved": "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/json/decoder.py"
+    },
+    "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/json/encoder.py": {
+      "is_symlink": false,
+      "raw_target": null,
+      "resolved": "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/json/encoder.py"
+    },
+    "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/json/scanner.py": {
+      "is_symlink": false,
+      "raw_target": null,
+      "resolved": "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/json/scanner.py"
+    },
+    "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/keyword.py": {
+      "is_symlink": false,
+      "raw_target": null,
+      "resolved": "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/keyword.py"
+    },
+    "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/linecache.py": {
+      "is_symlink": false,
+      "raw_target": null,
+      "resolved": "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/linecache.py"
+    },
+    "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/lib-dynload/math.cpython-310-darwin.so": {
+      "is_symlink": false,
+      "raw_target": null,
+      "resolved": "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/lib-dynload/math.cpython-310-darwin.so"
+    },
+    "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/ntpath.py": {
+      "is_symlink": false,
+      "raw_target": null,
+      "resolved": "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/ntpath.py"
+    },
+    "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/numbers.py": {
+      "is_symlink": false,
+      "raw_target": null,
+      "resolved": "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/numbers.py"
+    },
+    "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/opcode.py": {
+      "is_symlink": false,
+      "raw_target": null,
+      "resolved": "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/opcode.py"
+    },
+    "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/operator.py": {
+      "is_symlink": false,
+      "raw_target": null,
+      "resolved": "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/operator.py"
+    },
+    "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/os.py": {
+      "is_symlink": false,
+      "raw_target": null,
+      "resolved": "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/os.py"
+    },
+    "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/posixpath.py": {
+      "is_symlink": false,
+      "raw_target": null,
+      "resolved": "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/posixpath.py"
+    },
+    "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/pathlib.py": {
+      "is_symlink": false,
+      "raw_target": null,
+      "resolved": "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/pathlib.py"
+    },
+    "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/pprint.py": {
+      "is_symlink": false,
+      "raw_target": null,
+      "resolved": "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/pprint.py"
+    },
+    "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/re.py": {
+      "is_symlink": false,
+      "raw_target": null,
+      "resolved": "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/re.py"
+    },
+    "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/reprlib.py": {
+      "is_symlink": false,
+      "raw_target": null,
+      "resolved": "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/reprlib.py"
+    },
+    "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/lib-dynload/resource.cpython-310-darwin.so": {
+      "is_symlink": false,
+      "raw_target": null,
+      "resolved": "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/lib-dynload/resource.cpython-310-darwin.so"
+    },
+    "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/lib-dynload/select.cpython-310-darwin.so": {
+      "is_symlink": false,
+      "raw_target": null,
+      "resolved": "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/lib-dynload/select.cpython-310-darwin.so"
+    },
+    "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/selectors.py": {
+      "is_symlink": false,
+      "raw_target": null,
+      "resolved": "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/selectors.py"
+    },
+    "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/signal.py": {
+      "is_symlink": false,
+      "raw_target": null,
+      "resolved": "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/signal.py"
+    },
+    "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/sre_compile.py": {
+      "is_symlink": false,
+      "raw_target": null,
+      "resolved": "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/sre_compile.py"
+    },
+    "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/sre_constants.py": {
+      "is_symlink": false,
+      "raw_target": null,
+      "resolved": "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/sre_constants.py"
+    },
+    "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/sre_parse.py": {
+      "is_symlink": false,
+      "raw_target": null,
+      "resolved": "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/sre_parse.py"
+    },
+    "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/stat.py": {
+      "is_symlink": false,
+      "raw_target": null,
+      "resolved": "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/stat.py"
+    },
+    "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/struct.py": {
+      "is_symlink": false,
+      "raw_target": null,
+      "resolved": "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/struct.py"
+    },
+    "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/subprocess.py": {
+      "is_symlink": false,
+      "raw_target": null,
+      "resolved": "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/subprocess.py"
+    },
+    "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/threading.py": {
+      "is_symlink": false,
+      "raw_target": null,
+      "resolved": "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/threading.py"
+    },
+    "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/token.py": {
+      "is_symlink": false,
+      "raw_target": null,
+      "resolved": "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/token.py"
+    },
+    "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/tokenize.py": {
+      "is_symlink": false,
+      "raw_target": null,
+      "resolved": "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/tokenize.py"
+    },
+    "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/traceback.py": {
+      "is_symlink": false,
+      "raw_target": null,
+      "resolved": "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/traceback.py"
+    },
+    "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/types.py": {
+      "is_symlink": false,
+      "raw_target": null,
+      "resolved": "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/types.py"
+    },
+    "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/unittest/__init__.py": {
+      "is_symlink": false,
+      "raw_target": null,
+      "resolved": "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/unittest/__init__.py"
+    },
+    "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/unittest/case.py": {
+      "is_symlink": false,
+      "raw_target": null,
+      "resolved": "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/unittest/case.py"
+    },
+    "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/unittest/loader.py": {
+      "is_symlink": false,
+      "raw_target": null,
+      "resolved": "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/unittest/loader.py"
+    },
+    "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/unittest/main.py": {
+      "is_symlink": false,
+      "raw_target": null,
+      "resolved": "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/unittest/main.py"
+    },
+    "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/unittest/result.py": {
+      "is_symlink": false,
+      "raw_target": null,
+      "resolved": "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/unittest/result.py"
+    },
+    "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/unittest/runner.py": {
+      "is_symlink": false,
+      "raw_target": null,
+      "resolved": "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/unittest/runner.py"
+    },
+    "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/unittest/signals.py": {
+      "is_symlink": false,
+      "raw_target": null,
+      "resolved": "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/unittest/signals.py"
+    },
+    "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/unittest/suite.py": {
+      "is_symlink": false,
+      "raw_target": null,
+      "resolved": "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/unittest/suite.py"
+    },
+    "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/unittest/util.py": {
+      "is_symlink": false,
+      "raw_target": null,
+      "resolved": "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/unittest/util.py"
+    },
+    "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/urllib/__init__.py": {
+      "is_symlink": false,
+      "raw_target": null,
+      "resolved": "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/urllib/__init__.py"
+    },
+    "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/urllib/parse.py": {
+      "is_symlink": false,
+      "raw_target": null,
+      "resolved": "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/urllib/parse.py"
+    },
+    "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/warnings.py": {
+      "is_symlink": false,
+      "raw_target": null,
+      "resolved": "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/warnings.py"
+    },
+    "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/weakref.py": {
+      "is_symlink": false,
+      "raw_target": null,
+      "resolved": "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/weakref.py"
+    },
+    "/Library/Frameworks/Python.framework/Versions/3.10/bin/python3.10": {
+      "is_symlink": false,
+      "raw_target": null,
+      "resolved": "/Library/Frameworks/Python.framework/Versions/3.10/bin/python3.10"
+    },
+    "/Library/Frameworks/Python.framework/Versions/3.10/Python": {
+      "is_symlink": false,
+      "raw_target": null,
+      "resolved": "/Library/Frameworks/Python.framework/Versions/3.10/Python"
+    }
+  },
+  "OS_build_after": "26B5091g",
+  "all_bound_files_unchanged": true,
+  "all_runtime_paths_unchanged": true,
+  "OS_build_unchanged": true,
+  "stop_handler_cutoff_elapsed_seconds": 5.850343874888495,
+  "controller_stop_requests": [],
+  "controller_interruption_requested": false,
+  "stop_scope": "Handled requests before restoring original handlers only; postcutoff nonzero/partial/absent owner completion remains incomplete.",
+  "failure": null,
+  "peak_sampled_owned_RSS_bytes": 138297344,
+  "RSS_scope": "Sampled only; numericzero retained, absent/nonnumeric not fabricated; not hardquota/truepeak.",
+  "owned_outputs": {
+    "caller.stdout": {
+      "path": "work/962-engineering/head-star-current24-edge-removal-saved-root-execution-001/caller.stdout",
+      "sha256": "b57dad18ebb84bdb8fe464bd9a9dbcaf634590cac2c91464d7b9d5529981abac",
+      "bytes": 443
+    },
+    "caller.stderr": {
+      "path": "work/962-engineering/head-star-current24-edge-removal-saved-root-execution-001/caller.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "report.json": {
+      "path": "work/962-engineering/head-star-current24-edge-removal-saved-root-execution-001/report.json",
+      "sha256": "4c6c9e8756cf9c9d1a90ef865e18308706308bc3796cdb1f369c98fa04048aa0",
+      "bytes": 12083696
+    },
+    "run-started.json": {
+      "path": "work/962-engineering/head-star-current24-edge-removal-saved-root-execution-001/run-started.json",
+      "sha256": "d5ddca87d201a44f931d24e62886c1d0cee8020bf565b598d60d0baf079cfd93",
+      "bytes": 994
+    }
+  },
+  "owned_output_bytes_before_receipt": 12088592
+}

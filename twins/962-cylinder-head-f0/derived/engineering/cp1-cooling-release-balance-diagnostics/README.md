@@ -1,0 +1,15 @@
+# Cooling/release balance diagnostics
+
+These two completed diagnostics locate the failure preserved by the [primary LINEAR checkpoint](../cp1-oneway-cooling-release-linear-refusal/README.md). They do not replace its refused assessment or change its original unknown-step fields.
+
+The [183-END native-balance result](localization/results/diagnostic.json) retains every force and moment sum. Constrained reactions and all-node sums at END0–180 and END182 meet the original limits. At END181, constrained reaction X is **−1.965162169881296e−6 N**; reaction moments Y and Z also exceed the unchanged **1e−7 N m** gate. END181 all-node resultants pass. See its [acceptance](localization/root/result-peer-acceptance.json) and [independent review](localization/reviews/result/review.json).
+
+The [single-phase END181 result](equilibrium/results/diagnostic.json) covers 425 nodes, 256 HEX8 cells, 2,048 quadrature points, 1,275 native-versus-assembled force components and 1,269 free components. Its collector records **66,590 scalar observations and zero exceedances**. Global constrained reaction X remains **−1.9662863053326873e−6 N** in the independently assembled vector; moments Y/Z still fail for both vectors. Passing individual scalar observations therefore does not clear the global force/moment refusal. See its [acceptance](equilibrium/root/result-peer-acceptance.json) and [independent saved-arithmetic review](equilibrium/reviews/result/review.json).
+
+The pinned single-phase source performed the raw geometry/reference/QP extraction and elastic assembly under root execution. Independent peer review reconstructed the saved component errors and resultants; it did not independently rerun FEM. The earlier localization peer separately checked one original END181 nodal CSV. Source and root attribution, own BEGIN80 references, duplicate-row provenance, controls and all limitations remain in the complete records.
+
+This is a prescribed-temperature, assumed-elastic software study. No numerical cause, solver defect or floating-point floor is proved. The complete trajectory, seven-SI field assessment, release-energy and final-hold checks remain unaccepted. No calibrated material, LPBF process, head-strength, manufacturing, convergence or training-dataset claim follows.
+
+Both complete sources and their metadata are readable under [localization](localization/sources/METHOD.md) and [equilibrium](equilibrium/sources/METHOD.md). [Original identities and path projections](original-records.json) preserve numerical values, types, binary64 words, order and historical false/null fields. Projected source views are evidence, not ready-to-run commands. Raw CSV/CDF/QP/grid data, installed runtimes, archives and third-party code bodies are not distributed here; this packet is not a standalone rerun environment.
+
+[Project evidence rights](LICENSE.project) cover the project-owned material. The unchanged [byte verifier](verify.py) checks the later sealed file closure, not mechanics or physical validity.

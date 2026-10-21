@@ -1,0 +1,47 @@
+{
+  "schema_version": "1.0.0",
+  "status": "postrun_refinement_guard_hardened_without_native_rerun",
+  "native_solves_repeated": false,
+  "original_public_receipt_sha256": "96db1d48f7fab8ede388eb2cf949b40b075d6e453b48c9a032547e05fa172c60",
+  "original_native_output_manifest_sha256": "70b22736a10efc45fa74bf58c5da11f9a75189304543e036c67109d1fec162e0",
+  "original_refinement_assessment_sha256": "a5de35cd7e9c3ee08352d80b8470bff1db4734d7df1974b25bd33a1fbff86cd3",
+  "original_refinement_checker_snapshot": {
+    "path": "source-snapshots/postrun-assess-refinement.py",
+    "sha256": "caf5a71ae59e0b71b89676333f6afd76584fc9539e631ed070712c80a462171d"
+  },
+  "hardened_refinement_checker_snapshot": {
+    "path": "source-snapshots/hardened-assess-refinement-002.py",
+    "sha256": "b035bc052c13cf9440ed0b82ccdf4749d5fd4905ab9c641757f970c44c134752"
+  },
+  "hardened_refinement_assessment": {
+    "path": "refinement-assessment-002.json",
+    "sha256": "4b4fdecd0090f4cda9029ed8bd168e6247e60f47de417b5776cf53254330d4fb",
+    "passed": true
+  },
+  "original_11_test_source": {
+    "path": "source-snapshots/original-test-001.py",
+    "sha256": "c5257425f89f2dcc30e3fca4703bca48d2318402eb0521573ff15bbf6cb47f3e",
+    "snapshot_reconstructed_after_review_and_matched_original_recorded_digest": true
+  },
+  "later_13_test_source": {
+    "path": "source-snapshots/hardened-test-002.py",
+    "sha256": "f8687daab62b38270ec26ab401f864a0eeabf0671fac7b0a5c583500a9876d60",
+    "passed": 13,
+    "failed": 0
+  },
+  "guard_changes": [
+    "Reject boolean, nonnumeric, nonfinite and negative declared errors.",
+    "Reject zero ratio denominators and finite-input ratio overflow.",
+    "Bind the new refinement assessment to its own later checker source."
+  ],
+  "result_values_identical_to_original_refinement_report": true,
+  "frozen_field_assessor_sha256": "41cf5f8f027b8ce44dab9808b52ef6b6432ccaaa9b50e3136da54cbef0d55c88",
+  "frozen_contract_sha256": "099ca030b523d43ca8a666c3e7f3a23cdc139077fe6d2e3531c051372d5a0ee2",
+  "independent_review_scope": "Separate reviewer verified source semantics, frozen laws/levels/field assessor,867 native artifact hashes and870 original captured byte strings; hardened the later refinement input guard. This is software/evidence review, not physical qualification.",
+  "qualification": {
+    "whole_head_lpbf_complete": false,
+    "physical_material_calibrated": false,
+    "physical_process_calibrated": false,
+    "manufacturing_authorized": false
+  }
+}

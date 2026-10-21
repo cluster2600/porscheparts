@@ -1,120 +1,130 @@
-# Vérification F0 — 12 octobre 2026
+<a id="vérification-f0--12-octobre-2026"></a>
 
-## Vérifications locales
+# F0 verification — October 12, 2026
 
-- Compilation du projet C# existant : réussite, zéro erreur. Deux avertissements
-  SourceLink concernent l'archive locale PicoGK sans métadonnées Git.
-- Trois générations natives PicoGK 2.3.0 / runtime 26.2, voxel de 0,75 mm.
-  Le solide final mesure 160 × 160 × 90 mm et contient environ 353,19 cm³.
-  Ce volume géométrique ne constitue pas une masse de pièce qualifiée.
-- Inspection indépendante des trois STL : surfaces fermées, orientations
-  cohérentes, une composante par volume. Suppression limitée aux triangles
-  exactement dégénérés, avec nombre conservé dans le rapport.
-- 197 322 sondes sur le volume d'eau, écart signé minimal aux volumes secs
-  **3,598 mm**. Ce minimum échantillonné ne certifie pas une paroi minimale
-  ni l'étanchéité. Six sondes vérifient les quatre réservations de guides et
-  les deux réservations de bougies.
-- Quatre tests ciblés passent dans l'environnement VTK ; dans le Python
-  système, trois passent et le témoin VTK est ignoré faute de bibliothèque.
-- Cinq entrées invalides rejetées sans STL : statut qualifié, cote déclarée
-  publiée, mode d'export fractionnaire, peau trop fine et voxel non fini.
-- Liens Markdown stricts : zéro lien cassé.
-- Aperçu final inspecté visuellement : volumes visibles sans coupe du cadre ;
-  la réservation de chambre située sous le plan de feu est masquée dans
-  l'aperçu. Les meshes d'inspection conservent le volume sec complet.
+<a id="vérifications-locales"></a>
 
-Le premier candidat est rejeté pour intersection du collecteur de retour et
-des passages de gaz, avec un écart signé de −7,858 mm. Il reste local sous
-`work/962-head/native/`. Le retour final est surélevé et les prolongements
-inutiles de la distribution supprimés. Les STL finaux sont dans
-`work/962-head/delivery/` ; les empreintes et mesures sont versionnées dans
+## Local checks
+
+- Existing C# project build: successful, zero errors. Two SourceLink warnings
+  concern the local PicoGK archive without Git metadata.
+- Three native generations with PicoGK 2.3.0 / runtime 26.2, 0.75 mm voxel.
+  The final solid measures 160 × 160 × 90 mm and contains approximately
+  353.19 cm³. This geometric volume is not a qualified part mass.
+- Independent inspection of the three STL files: closed surfaces, consistent
+  orientations, one component per volume. Removal limited to exactly
+  degenerate triangles, with counts retained in the report.
+- 197,322 probes on the water volume, minimum signed distance to dry volumes
+  **3.598 mm**. This sampled minimum certifies neither minimum wall thickness
+  nor sealing. Six probes check the four guide and two spark-plug reservations.
+- Four targeted tests pass in the VTK environment; in system Python, three
+  pass and the VTK witness is skipped because the library is unavailable.
+- Five invalid inputs rejected without STL: qualified status, dimension
+  declared published, fractional export mode, skin too thin and non-finite voxel.
+- Strict Markdown links: zero broken links.
+- Final preview visually inspected: visible volumes without cutting the frame;
+  the chamber reservation below the combustion deck is hidden in the preview.
+  Inspection meshes retain the complete dry volume.
+
+The first candidate is rejected for an intersection between the return
+manifold and gas passages, with −7.858 mm signed distance.
+It remains local under `work/962-head/native/`. The final return is raised
+and unnecessary distribution extensions removed. Final STL files are in
+`work/962-head/delivery/`; digests and measurements are versioned in
 [study-report.json](derived/study-report.json).
 
-Le [registre runtime](derived/runtime-provenance.json) garde les empreintes
-des binaires réellement utilisés. L'archive PicoGK locale n'a pas de Git :
-son rattachement au commit déclaré dans `sources.lock` n'a pas été revérifié
-indépendamment pendant cette livraison. La licence Apache-2.0 a été lue.
+The [runtime register](derived/runtime-provenance.json) retains digests of
+binaries actually used. The local PicoGK archive has no Git metadata:
+its relationship to the commit declared in `sources.lock` was not
+independently rechecked during this delivery. The Apache-2.0 license was read.
 
-## Vérifications du dépôt
+<a id="vérifications-du-dépôt"></a>
 
-`make check` a été exécuté sur la livraison finale : **3 764 tests**,
-**2 échecs, 26 erreurs et 223 ignorés**, en 242,6 s. Les trois tests F0
-compatibles avec le Python système passent ; son témoin VTK est ignoré et
-passe séparément dans l'environnement VTK. Les problèmes globaux concernent
-des modules non modifiés : incompatibilité NumPy/SciPy, Python 3.10 sans
-`hashlib.file_digest` pour Qwen, et égalités de flottants trop strictes des
-études d'impeller/stator sur ce Mac. Le journal local est
-`work/962-head/make-check-final.log`. Les cibles après `test` ne sont pas
-considérées exécutées ; le statut global reste en échec.
+## Repository checks
 
-[PR brouillon 184](https://github.com/cluster2600/porscheparts/pull/184) créée et
-branche distante vérifiée. La validation GitHub du commit
-`4c76e0efbc3c220bcaddb2ca94189135c6a6fc1f` a réussi :
+`make check` ran on the final delivery: **3,764 tests**, **2 failures,
+26 errors and 223 skipped**, in 242.6 s. The three F0 tests compatible with
+system Python pass; its VTK witness is skipped and passes separately in the
+VTK environment. Global problems concern unmodified modules: NumPy/SciPy
+incompatibility, Python 3.10 without `hashlib.file_digest` for Qwen, and overly
+strict floating-point equalities in the impeller/stator studies on this Mac.
+The local log is `work/962-head/make-check-final.log`.
+Targets after `test` are not considered executed; overall status remains failed.
+
+[Draft PR 184](https://github.com/cluster2600/porscheparts/pull/184) was created
+and the remote branch checked. GitHub validation of commit
+`4c76e0efbc3c220bcaddb2ca94189135c6a6fc1f` passed:
 [run 664](https://github.com/cluster2600/porscheparts/actions/runs/38283253271).
-Cette preuve appartient à ce commit, pas aux ajouts produit ultérieurs.
+This evidence belongs to that commit, not the later product additions.
 
-La PR reste un brouillon de recherche et de géométrie. Aucun merge ou
-déploiement n'est autorisé par ces contrôles locaux.
+The PR remains a research and geometry draft. These local checks authorize
+no merge or deployment.
 
-## Extension au programme kit 1 000 ch
+<a id="extension-au-programme-kit-1-000-ch"></a>
 
-Le [programme produit](KIT_962_PROGRAMME.md) et son
-[registre](kit-program.json) ajoutent la cible commerciale et la qualification
-par variante. Ils ne modifient ni le générateur C#, ni les paramètres de
-géométrie, ni les sources et contrats dont les empreintes sont enregistrées.
-Deux tests supplémentaires vérifient les unités des calculs de cadrage et
-la séparation entre objectif de puissance, compatibilité et autorisation de
-fabrication. Les six tests ciblés passent avec VTK ; dans le Python système,
-cinq passent et le témoin VTK reste ignoré. Les liens Markdown et le diff
-sont vérifiés. La validation globale Mac ci-dessus est celle du dossier
-géométrique précédent ; elle n'est pas présentée comme une exécution du
-nouveau programme produit. La CI de la nouvelle révision reste à observer.
+## Extension to the 1,000 metric-horsepower kit program
 
-## Extension au module thermique
+The [product program](KIT_962_PROGRAMME.md) and its [register](kit-program.json)
+add the commercial target and per-variant qualification. They modify neither
+the C# generator, geometry parameters nor sources and contracts with recorded
+digests. Two additional tests check scoping-calculation units and separation
+between power target, compatibility and manufacturing authorization.
+The six targeted tests pass with VTK; in system Python, five pass and the
+VTK witness remains skipped. Markdown links and the diff are checked.
+The global Mac validation above belongs to the previous geometry dossier;
+it is not presented as execution of the new product program.
+CI for the new revision remains to be observed.
 
-L'[étude thermique](THERMAL_MODULE.md) ajoute un bilan algébrique TEC et un
-schéma fonctionnel SVG/PNG inspecté visuellement. Le code distingue Qfroid,
-Pélectrique aux TEC, Qchaud, pertes de conversion, auxiliaires et consommation
-au bus. Six tests supplémentaires vérifient conservation de l'énergie,
-séparation des pertes, rejet des entrées invalides/non finies et des
-dépassements numériques, CLI et liaison des exemples à la source du calcul.
-Les douze tests ciblés passent avec VTK ; onze passent dans le Python système
-avec un témoin VTK ignoré. Ni COP réel, charge moteur, radiateur, bus véhicule,
-boîtier, commande embarquée ou bénéfice automobile ne sont qualifiés.
-La référence de refroidissement indépendante des TEC reste exigée.
+<a id="extension-au-module-thermique"></a>
 
-## Confirmation de la cible produit
+## Extension to the thermal module
 
-Le propriétaire confirme 1 000 ch métriques au vilebrequin et une qualification
-sur banc puis sur piste. Le registre et son test distinguent cette décision
-des exigences encore inconnues et des autorisations conservées à `false`.
-Les douze tests ciblés passent avec VTK ; les liens Markdown et le diff sont
-vérifiés. Aucun nouveau calcul géométrique ou essai physique n'est effectué.
-Le `make check` Mac global n'est pas réexécuté pour cette clarification.
+The [thermal study](THERMAL_MODULE.md) adds an algebraic TEC balance and a
+visually inspected SVG/PNG functional diagram. The code distinguishes cold
+heat load, electrical power at the TECs, hot-side heat, conversion losses,
+auxiliaries and bus consumption. Six additional tests check energy conservation,
+loss separation, rejection of invalid/non-finite inputs and numerical overflow,
+the CLI and links between examples and the calculation source.
+The twelve targeted tests pass with VTK; eleven pass in system Python with
+one skipped VTK witness. Actual COP, engine load, radiator, vehicle bus,
+enclosure, embedded control and automotive benefit are not qualified.
+Reference cooling independent of the TECs remains required.
 
-## Fusion du programme et préparation G1
+<a id="confirmation-de-la-cible-produit"></a>
 
-La CI du commit `e033e041f6a3d11e6905f108b2f73c3837a69c32` a réussi :
+## Product-target confirmation
+
+The owner confirms 1,000 metric horsepower at the crankshaft and qualification
+on the bench then on the track. The register and its test distinguish this
+decision from unknown requirements and authorizations retained at `false`.
+The twelve targeted tests pass with VTK; Markdown links and the diff are
+checked. No new geometry calculation or physical test is performed.
+The global Mac `make check` is not rerun for this clarification.
+
+<a id="fusion-du-programme-et-préparation-g1"></a>
+
+## Program merge and G1 preparation
+
+CI for commit `e033e041f6a3d11e6905f108b2f73c3837a69c32` passed:
 [run 672](https://github.com/cluster2600/porscheparts/actions/runs/38286252107),
-y compris l'étape `make check` Linux. La PR 184 a été fusionnée sur demande
-du propriétaire ; le commit de fusion est
-`a2f066864a765e9ece59c960c87e60a4d9b93a9d`.
-Cela ne qualifie aucune pièce physique.
+including Linux `make check`. PR 184 was merged at the owner's request;
+the merge commit is `a2f066864a765e9ece59c960c87e60a4d9b93a9d`.
+This qualifies no physical part.
 
-La suite ajoute le dossier G1 et la qualification matière, sans modification
-de géométrie. Un contrôle CSV vérifie vingt identifiants uniques, couverture
-des huit interfaces du contrat M64 et champs d'observation tous vides.
-Le validateur M64 existant confirme ses interfaces incomplètes et conserve
-la fabrication à `false`. Les douze tests 962 passent avec VTK ; aucun lien
-Markdown cassé dans les 878 fichiers examinés, diff sans erreur.
+The follow-up adds the G1 dossier and material qualification without changing
+geometry. A CSV check verifies twenty unique identifiers, coverage of the
+eight M64 contract interfaces and entirely blank observation fields.
+The existing M64 validator confirms incomplete interfaces and retains
+manufacturing at `false`. The twelve 962 tests pass with VTK; no broken
+Markdown links in the 878 files examined, and no diff errors.
 
-`make check` Mac est réexécuté pour cette étape : 3 794 tests en 232,037 s,
-2 échecs, 26 erreurs et 229 ignorés, puis arrêt à la cible `test`. Les erreurs
-restent dans SciPy/NumPy et Python 3.10 sans `hashlib.file_digest` ; les deux
-échecs sont les égalités de flottants impeller/stator des modules non modifiés.
-Le journal reste local : `work/962-head/make-check-metrology.log`.
-Les cibles globales suivantes ne sont pas considérées exécutées. La CI de
-la nouvelle révision G1 doit être observée séparément.
+Mac `make check` is rerun for this stage: 3,794 tests in 232.037 s,
+2 failures, 26 errors and 229 skipped, then it stops at the `test` target.
+Errors remain in SciPy/NumPy and Python 3.10 without `hashlib.file_digest`;
+the two failures are impeller/stator floating-point equalities in unmodified
+modules. The log remains local: `work/962-head/make-check-metrology.log`.
+Subsequent global targets are not considered executed.
+CI for the new G1 revision must be observed separately.
 
 ## G1 merge and coolant boundary diagnostic
 
@@ -250,12 +260,14 @@ from the current documentation needs a new native packaging run on the
 owner's machine; until then, neither the receipt nor its pinned documentation
 copies are edited here.
 
-## Vérifications physiques absentes
+<a id="vérifications-physiques-absentes"></a>
 
-Pas de scan/CT d'un donneur 962, de métrologie, de CFD/CHT, de calcul mécanique,
-de matériau qualifié, de contrôle de dépowdering, d'épreuve de pression, de
-maintien des sièges/guides, de fatigue thermique ou d'essai moteur.
-L'[interface-contract.json](interface-contract.json) conserve ces entrées
-inconnues et les autorisations à `false`. Toute fabrication nécessite la
-revue professionnelle et le plan de validation décrits dans le
+## Physical checks absent
+
+No 962 donor scan/CT, metrology, CFD/CHT, mechanical analysis, qualified material,
+depowdering inspection, pressure proof test, seat/guide retention, thermal
+fatigue or engine test has been performed.
+The [interface-contract.json](interface-contract.json) retains these unknown
+inputs and authorizations at `false`. Any manufacturing requires the
+professional review and validation plan described in the
 [dossier](README.md#feuille-de-route-vers-un-jumeau-exploitable).

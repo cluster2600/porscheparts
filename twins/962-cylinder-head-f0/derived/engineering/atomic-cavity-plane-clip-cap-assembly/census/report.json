@@ -1,0 +1,104 @@
+{
+  "status": "complete_assembled_array_census_only",
+  "candidate": {
+    "vertices": 871731,
+    "faces": 1743878,
+    "bounds_mm": [
+      [
+        -76.0,
+        -75.0,
+        0.0
+      ],
+      [
+        76.0,
+        75.0,
+        90.00059509277344
+      ]
+    ],
+    "minimum_quality": 0.0691345219919303,
+    "faces_below_2_over_29": 0,
+    "quality_formula": "unchanged retained audit_quality_head.qualities; NumPy arithmetic distinct from native CGAL",
+    "signed_volume_mm3": 915453.1236217883,
+    "signed_volume_sum_method": "math.fsum per 65536-face chunk, then math.fsum of chunk totals",
+    "cap_area_mm2": 8678.450609229063,
+    "cap_nonnegative_Z_normals": 0,
+    "plane_classes": {
+      "cap_all_z0": {
+        "faces": 8976,
+        "poor_faces": 0,
+        "minimum_quality": 0.0691345219919303,
+        "poor_face_ids": [],
+        "poor_vertex_ids_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "poor_vertices": 0
+      },
+      "noncap_mixed_plane_vertices": {
+        "faces": 4544,
+        "poor_faces": 0,
+        "minimum_quality": 0.07498909515443009,
+        "poor_face_ids": [],
+        "poor_vertex_ids_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "poor_vertices": 0
+      },
+      "noncap_no_plane_vertices": {
+        "faces": 1730358,
+        "poor_faces": 0,
+        "minimum_quality": 0.06923322066867299,
+        "poor_face_ids": [],
+        "poor_vertex_ids_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "poor_vertices": 0
+      }
+    },
+    "zero_orphan_vertices": true,
+    "zero_duplicate_numeric_coordinates": true,
+    "zero_duplicate_unoriented_faces": true,
+    "all_triangles_finite_nondegenerate": true,
+    "poor_seed_vertices": 0,
+    "poor_seed_vertex_ids_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "exact_incident_patch_faces": 0,
+    "exact_incident_patch_mask_sha256": "8a50b96d610a5bdf1a997f2948124523627c78480d85f6e279fcb5e450b7c725",
+    "exterior_fixed_plus_original_x_clip_vertices": 871731,
+    "fixed_mask_sha256": "a43f4afa4cf9daa34800210f91edda879300307b5ef4518e26bb743ce1bb016a",
+    "patch_component_or_disk_census_computed": false
+  },
+  "necessary_quality_gate_passed": true,
+  "full_array_sha256": {
+    "candidate_points": "e0009dc6c5481cb77383b91a6e72ee4f223f207917b345e74f0b5b8e65ca6786",
+    "candidate_faces": "152dc93bc9d5ea98aa2ec88271b0385471c466a29259c0f874ccfcf81c5ea9bd"
+  },
+  "input_hashes": {
+    "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-001/candidate.bin": "9d62eac6e2cd7b6a9ecb4a7ea5b632685820369b5c4ede379acc34238f50d7b4",
+    "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-001/cap-to-head-faces.u64": "86c1a3ea6d3bb7af010bcc46cd89c72087c45d6e3b3f6d90d34fd5c1821c00d8",
+    "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-001/cap-to-head-vertices.u64": "b04c3b4d3f459d2ed73146878dc65278db15159f516d24993ab68636e5282b3d",
+    "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-001/face-source-ids.u64": "92f7c3234230e75a93d19709de82e297e1780fdd8d895ba8d740bcf77883c204",
+    "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-001/manifest.json": "53f94089eea095020ff9c9692a2a530b43ba37a96b2a6e30e2e23ee21d690a84",
+    "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-001/new-point-cap-vertex-ids.u64": "e88299784f44f8e9626ea1fff9999785204c2dccd6e321606e182fe9c0bcd0c9",
+    "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-001/old-to-new-faces.u64": "afa1846a146554ecc2a9151d155bb4e35b28db31ec0a1a1f479aee3c2414e264",
+    "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-001/old-to-new-vertices.u64": "faa0b0e3db2015935cf4b3a426bd98a2448fc2dc57be1fbfe61c78a156260f0d",
+    "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-001/vertex-coordinate-origins.u64": "0f0e3acc566abf4a6ab0d2327b2a824d467869ebfb076f67b86f8e6eb8b33969",
+    "work/962-engineering/atomic-cavity-plane-clip-cap-census-prep-001/reader.py": "95daf44a6f933f01906ff036566ca7bdf88238d2df9cf790060ec25ca99724d5",
+    "work/962-engineering/atomic-cavity-plane-clip-cap-census-prep-001/run_readback.py": "e0e63b01708584d0296757df8aaea89c5238bc352109a716a7abed49defa3d97",
+    "twins/962-cylinder-head-f0/source/audit_quality_head.py": "a298270aa00b1536314a07629b935500c68883ca0d3bd1a179d71b49a8e73991",
+    "work/962-engineering/atomic-cavity-plane-clip-readback-prep-001/reader.py": "9f49a0b7005efc946e5106675bc593fff3f8ea0a3dcf06be1db7876338a96e21",
+    "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-launch-001/execution-receipt.json": "e6607d8d1a28c31ccfac80bb189906de847ecfa14dad80bec9b12148b325a701",
+    "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-prep-001/actual-execution-contract-001.json": "4a699847771250d762eb0615b2a6e146a9c45cce32b7a06ad5649391470d35b1",
+    "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-result-peer-001/review.json": "4498c149823907ddd46830f7dc582dc65b935d39f25b2b5053393eb34770c0ca",
+    "work/962-engineering/atomic-cavity-plane-clip-cap-census-source-peer-001/review.json": "ad12ff4a355ee4484a7542336e8f2ba8c21277296ec871a255a81d315ffd2ba6",
+    "work/962-engineering/atomic-cavity-plane-clip-cap-census-prep-001/tiny-tests-result.json": "802427653c51ee71c320d969862763bb93c32a79152a30db9e0998b238c8273e",
+    "work/962-engineering/atomic-cavity-plane-clip-cap-census-prep-001/held-contract.json": "ea96a8f9fa9fec5bb4e6743ff302f743c9a729c595f34c4aa5863e8b8bd67ab4",
+    "work/962-engineering/atomic-cavity-plane-clip-cap-census-prep-001/test_retained_helpers.py": "796317502cb8acfb5d098b4d1ac3844366da71a836411bfa66514a97b5132e90",
+    "work/962-engineering/atomic-cavity-plane-clip-cap-census-prep-001/tiny-tests.log": "c1a177eda682d3615c29cf3a675fd8c36d76097d8683603e43e910545d7d838a",
+    "work/962-engineering/atomic-cavity-plane-clip-cap-census-001/reader.py": "95daf44a6f933f01906ff036566ca7bdf88238d2df9cf790060ec25ca99724d5",
+    "work/962-engineering/atomic-cavity-plane-clip-cap-census-001/run_readback.py": "e0e63b01708584d0296757df8aaea89c5238bc352109a716a7abed49defa3d97"
+  },
+  "contract_sha256": "41f32d82d53304c46935acbbab5837f5134b59338496d9689a4e53dd72bf77c0",
+  "reader_sha256": "95daf44a6f933f01906ff036566ca7bdf88238d2df9cf790060ec25ca99724d5",
+  "unchanged_AST_helpers": true,
+  "seed_patch_fixed_masks_are_quality_diagnostics_not_feature_contracts": true,
+  "global_topology_intersections_neighbors_distance_features_checked": false,
+  "head_surface_or_solver_admitted": false,
+  "manufacturing_authorized": false,
+  "native_generate_optimize_meshwrite_solve_calls": 0,
+  "numpy_version": "2.0.2",
+  "readback_wall_seconds": 5.246170582948253,
+  "all_bound_inputs_unchanged": true
+}

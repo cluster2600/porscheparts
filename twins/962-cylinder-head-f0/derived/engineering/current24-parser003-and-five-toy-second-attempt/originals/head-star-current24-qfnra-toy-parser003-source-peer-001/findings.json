@@ -1,0 +1,58 @@
+{
+  "schema": "962-toy-parser003-source-peer-findings/v1",
+  "source_blockers": [],
+  "delta_proof": {
+    "complete_predecessor_inverse_exact": true,
+    "complete_forward_reverse_saved_diff_hunks": 3,
+    "unchanged_text_AST_definitions": [
+      "ToyRefusal",
+      "need",
+      "encoded",
+      "load_protocol",
+      "fixed_toys",
+      "Frame",
+      "Capture",
+      "Session"
+    ],
+    "run_fixed_toys_AST_changes": "Exactly the existing aliases Name argument added to the initial/final one_model calls; removing those two added AST arguments restores complete donor function AST.",
+    "all_other_imports_globals_lifecycle_and_transport_bytes": "Whole text inversion proves unchanged outside one_model and two calls. Protocol full bytes unchanged."
+  },
+  "strict_model_schema": {
+    "source_lines": "277\u2013298",
+    "review": "Requires unique string expected aliases, target distinct, one complete parsed model response with optional model framing, exact definition count, five-item define-fun rows, string names, zero arguments, exact whitelist Real/Bool sorts, no duplicate/extra/missing/foreign definitions. Target body alone passes unchanged protocol.model_value; it does not ignore arbitrary Bool rows or choose first Real.",
+    "bool_body_scope": "Known Bool bodies remain solver-owned parsed syntax. Semantic original-formula truth is still checked separately via same-session get-value(alias)==true before/after; no new independent Bool evaluator is claimed.",
+    "unchanged_math_guards": "Initial and final model/projection equality, original alias predicates, solver model_id/request association, nearest_binary64 exact expected words, original formulas/fiveIDs/QF_NRA/check parameters, exactly onecheck, no retry, all runtime/lifecycle/error/cleanup/report gates remain unchanged."
+  },
+  "fixture_source": {
+    "status": "UNRUN",
+    "methods": [
+      "test_captured_rational_model",
+      "test_model_prefix_and_reordered_definitions",
+      "test_two_exact_known_aliases",
+      "test_extra_definition",
+      "test_missing_definition",
+      "test_duplicate_definition",
+      "test_unknown_name_at_exact_count",
+      "test_wrong_sort",
+      "test_wrong_arity"
+    ],
+    "method_count": 9,
+    "positive_model_inputs": 3,
+    "negative_model_inputs": 12,
+    "total_model_inputs": 15,
+    "source_lines": "load_exact_source26\u201336; setUpClass44\u201347; tests58\u201398",
+    "positive_coverage": "Exact captured rational Q0002 model; optional model framing with definitions reordered; two exact declared aliases. The last is parser-schema coverage, not executed algebraic solver evidence.",
+    "negative_coverage": "Each of extra,missing,duplicate,foreignname-at-exactcount,wrongsort,nonzeroarity has target/alias variants. Exact-count foreign tests exercise whitelist beyond merely count rejection; duplicate tests retain exact count and exercise uniqueness.",
+    "exact_source_buffer": "Both frozen T003 and protocol complete bytes/SHA/sizes checked before compile/exec into separate fresh ModuleType namespaces. This future directentry uses no target importlib or cachedpyc and invokes actualone_model. Review did not import/compile/eval/execute either buffer.",
+    "no_other_target_calls": "Ordinary top imports/constants/class definitions only; setUpClass loads buffers; tests call one_model plus existing protocol.parse_sexpr/model_value. No Session construction/start,run_fixed_toys,load_protocol,Popen,Z3,owner,datahelper or outputdirectory path is called. No realhead/scientific body in fixture.",
+    "captured_reproducer": "Embedded CAPTURED_MODEL equals the complete model response in the exact2024B JSONL and occurs byteexact in302B stdout. Both captures hashed/read only.",
+    "limits": "Malformed expected-alias metadata refusal is source-audited but no additional fixture family. Fifteen is concrete schema input count, not scalar assertions or whole lifecycle proof."
+  },
+  "remaining_separate_gates": [
+    "Root source disposition and independently authorized bounded stdlib fixture invocation; allnine methods remainUNRUN here.",
+    "Any fullfivecase successor requires separately reviewed T003 integration, freshactual/control/latebinding/admission. Existingowner004 pinsT002 and this packet changes none of those.",
+    "Preserved failedactual rationalINCOMPLETE/fourunattempted remain; process-groupTERM/KILL EPERM is not fixed or qualified by parser correction.",
+    "No head candidate/word/quality/geometry/strength/material/LPBF/twin/PhysicsNeMo/physical/manufacturing acceptance."
+  ],
+  "self_hash_claim": false
+}

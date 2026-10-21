@@ -1,0 +1,566 @@
+{
+  "schema": "962-observer004-once-six-static-query-receipt/v1",
+  "actual": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-static-metadata-execution-prep-001/actual-contract.json",
+    "sha256": "fbc88e88c1846119906fbfd73aaf213606471f8755710dffd1da118e1aaed07d",
+    "bytes": 9114
+  },
+  "admission": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-static-metadata-root-admission-001/admission.json",
+    "sha256": "bf33d79227ec9e9b0d9c7b31d4552b2f9725c84df607eccfa314724a4eeaa4c5",
+    "bytes": 4184
+  },
+  "controller": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-static-metadata-owner-prep-001/run_static_once.py",
+    "sha256": "031d2bc5e2c182e6b697b497501ee58cf45c89aae4d753dea828ab7c5bc10b95",
+    "bytes": 19607
+  },
+  "preflight": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-static-metadata-execution-prep-001/selected-input-preflight.json",
+    "sha256": "2bb36ff42337f94dae54798e859b054bf7da2acf52d5f8a8b0a5114774e5553c",
+    "bytes": 17289
+  },
+  "initial": {
+    "count": 31,
+    "observed_sha256": "8799a694357d4d0d4832ba9a7466df4f06e3353af48b41e7298c2e3a8a64b6de",
+    "changed": {}
+  },
+  "steps": [
+    {
+      "ordinal": 1,
+      "name": "query1",
+      "argv": [
+        "/usr/bin/otool",
+        "-L",
+        "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/cp1-oneway-cooling-release-richardson2-END181-dof-map-observer-prep-004/build-001/libcoupon_end181_observer-opt.dylib"
+      ],
+      "before": {
+        "count": 31,
+        "observed_sha256": "8799a694357d4d0d4832ba9a7466df4f06e3353af48b41e7298c2e3a8a64b6de",
+        "changed": {}
+      },
+      "resource_samples": [
+        {
+          "RSS_bytes": 4145152,
+          "processes": 1,
+          "raw_owned_rows": [
+            {
+              "raw": "29180 29180   4048 Rs  ",
+              "pid": 29180,
+              "pgid": 29180,
+              "reported_RSS_KiB": 4048,
+              "RSS_bytes": 4145152,
+              "state": "Rs"
+            }
+          ],
+          "threads": null,
+          "thread_observation": {
+            "observed_counts": {},
+            "unobserved_pids": [
+              29180
+            ],
+            "returncode": 0,
+            "error": null
+          },
+          "zombie_pids": [],
+          "elapsed_seconds": 0.08348462521098554
+        }
+      ],
+      "resource_observation_exit_races": [],
+      "peak_RSS_bytes": 4145152,
+      "returncode": 0,
+      "termination": {
+        "actions": [],
+        "returncode": 0,
+        "group_absent": true
+      },
+      "pid": 29180,
+      "after": {
+        "count": 31,
+        "observed_sha256": "8799a694357d4d0d4832ba9a7466df4f06e3353af48b41e7298c2e3a8a64b6de",
+        "changed": {}
+      },
+      "elapsed_seconds": 0.1150369590613991,
+      "stdout": {
+        "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-static-metadata-root-execution-001/step1.stdout",
+        "sha256": "dfd2f3ac240d03733b3d8798f65f99310106fe453d2ad5a08cdb0e83779fd9c0",
+        "bytes": 952
+      },
+      "stderr": {
+        "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-static-metadata-root-execution-001/step1.stderr",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      }
+    },
+    {
+      "ordinal": 2,
+      "name": "query2",
+      "argv": [
+        "/usr/bin/otool",
+        "-l",
+        "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/cp1-oneway-cooling-release-richardson2-END181-dof-map-observer-prep-004/build-001/libcoupon_end181_observer-opt.dylib"
+      ],
+      "before": {
+        "count": 31,
+        "observed_sha256": "8799a694357d4d0d4832ba9a7466df4f06e3353af48b41e7298c2e3a8a64b6de",
+        "changed": {}
+      },
+      "resource_samples": [
+        {
+          "RSS_bytes": 4161536,
+          "processes": 1,
+          "raw_owned_rows": [
+            {
+              "raw": "29184 29184   4064 Ss  ",
+              "pid": 29184,
+              "pgid": 29184,
+              "reported_RSS_KiB": 4064,
+              "RSS_bytes": 4161536,
+              "state": "Ss"
+            }
+          ],
+          "threads": null,
+          "thread_observation": {
+            "observed_counts": {},
+            "unobserved_pids": [
+              29184
+            ],
+            "returncode": 0,
+            "error": null
+          },
+          "zombie_pids": [],
+          "elapsed_seconds": 0.32192208315245807
+        }
+      ],
+      "resource_observation_exit_races": [],
+      "peak_RSS_bytes": 4161536,
+      "returncode": 0,
+      "termination": {
+        "actions": [],
+        "returncode": 0,
+        "group_absent": true
+      },
+      "pid": 29184,
+      "after": {
+        "count": 31,
+        "observed_sha256": "8799a694357d4d0d4832ba9a7466df4f06e3353af48b41e7298c2e3a8a64b6de",
+        "changed": {}
+      },
+      "elapsed_seconds": 0.20607704110443592,
+      "stdout": {
+        "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-static-metadata-root-execution-001/step2.stdout",
+        "sha256": "d0263eb3635e04cc3e0543c14e44dbe67afe9a6cded69217e1153f2491b02c82",
+        "bytes": 7300
+      },
+      "stderr": {
+        "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-static-metadata-root-execution-001/step2.stderr",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      }
+    },
+    {
+      "ordinal": 3,
+      "name": "query3",
+      "argv": [
+        "/usr/bin/nm",
+        "-gU",
+        "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/cp1-oneway-cooling-release-richardson2-END181-dof-map-observer-prep-004/build-001/libcoupon_end181_observer-opt.dylib"
+      ],
+      "before": {
+        "count": 31,
+        "observed_sha256": "8799a694357d4d0d4832ba9a7466df4f06e3353af48b41e7298c2e3a8a64b6de",
+        "changed": {}
+      },
+      "resource_samples": [
+        {
+          "RSS_bytes": 4243456,
+          "processes": 1,
+          "raw_owned_rows": [
+            {
+              "raw": "29190 29190   4144 Rs  ",
+              "pid": 29190,
+              "pgid": 29190,
+              "reported_RSS_KiB": 4144,
+              "RSS_bytes": 4243456,
+              "state": "Rs"
+            }
+          ],
+          "threads": null,
+          "thread_observation": {
+            "observed_counts": {},
+            "unobserved_pids": [
+              29190
+            ],
+            "returncode": 0,
+            "error": null
+          },
+          "zombie_pids": [],
+          "elapsed_seconds": 0.48717170814052224
+        }
+      ],
+      "resource_observation_exit_races": [],
+      "peak_RSS_bytes": 4243456,
+      "returncode": 0,
+      "termination": {
+        "actions": [],
+        "returncode": 0,
+        "group_absent": true
+      },
+      "pid": 29190,
+      "after": {
+        "count": 31,
+        "observed_sha256": "8799a694357d4d0d4832ba9a7466df4f06e3353af48b41e7298c2e3a8a64b6de",
+        "changed": {}
+      },
+      "elapsed_seconds": 0.1244221250526607,
+      "stdout": {
+        "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-static-metadata-root-execution-001/step3.stdout",
+        "sha256": "e8ab0e4cb43d6858d57b1385a09b393594b63c1f97666b2c5db111750c364510",
+        "bytes": 919
+      },
+      "stderr": {
+        "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-static-metadata-root-execution-001/step3.stderr",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      }
+    },
+    {
+      "ordinal": 4,
+      "name": "query4",
+      "argv": [
+        "/usr/bin/nm",
+        "-u",
+        "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/cp1-oneway-cooling-release-richardson2-END181-dof-map-observer-prep-004/build-001/libcoupon_end181_observer-opt.dylib"
+      ],
+      "before": {
+        "count": 31,
+        "observed_sha256": "8799a694357d4d0d4832ba9a7466df4f06e3353af48b41e7298c2e3a8a64b6de",
+        "changed": {}
+      },
+      "resource_samples": [
+        {
+          "RSS_bytes": 4210688,
+          "processes": 1,
+          "raw_owned_rows": [
+            {
+              "raw": "29194 29194   4112 Ss  ",
+              "pid": 29194,
+              "pgid": 29194,
+              "reported_RSS_KiB": 4112,
+              "RSS_bytes": 4210688,
+              "state": "Ss"
+            }
+          ],
+          "threads": null,
+          "thread_observation": {
+            "observed_counts": {},
+            "unobserved_pids": [
+              29194
+            ],
+            "returncode": 0,
+            "error": null
+          },
+          "zombie_pids": [],
+          "elapsed_seconds": 0.6550573331769556
+        }
+      ],
+      "resource_observation_exit_races": [],
+      "peak_RSS_bytes": 4210688,
+      "returncode": 0,
+      "termination": {
+        "actions": [],
+        "returncode": 0,
+        "group_absent": true
+      },
+      "pid": 29194,
+      "after": {
+        "count": 31,
+        "observed_sha256": "8799a694357d4d0d4832ba9a7466df4f06e3353af48b41e7298c2e3a8a64b6de",
+        "changed": {}
+      },
+      "elapsed_seconds": 0.12495416682213545,
+      "stdout": {
+        "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-static-metadata-root-execution-001/step4.stdout",
+        "sha256": "3ce77cf9934db373c61ae45e1af452a90a289669b4cac7859e7dd87ce69b3e08",
+        "bytes": 6111
+      },
+      "stderr": {
+        "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-static-metadata-root-execution-001/step4.stderr",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      }
+    },
+    {
+      "ordinal": 5,
+      "name": "query5",
+      "argv": [
+        "/usr/bin/nm",
+        "-gU",
+        "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/cp1-oneway-cooling-release-richardson2-END181-dof-map-observer-prep-004/build-001/CouponEnd181ObserverRegistration.o"
+      ],
+      "before": {
+        "count": 31,
+        "observed_sha256": "8799a694357d4d0d4832ba9a7466df4f06e3353af48b41e7298c2e3a8a64b6de",
+        "changed": {}
+      },
+      "resource_samples": [
+        {
+          "RSS_bytes": 4177920,
+          "processes": 1,
+          "raw_owned_rows": [
+            {
+              "raw": "29198 29198   4080 Rs  ",
+              "pid": 29198,
+              "pgid": 29198,
+              "reported_RSS_KiB": 4080,
+              "RSS_bytes": 4177920,
+              "state": "Rs"
+            }
+          ],
+          "threads": null,
+          "thread_observation": {
+            "observed_counts": {},
+            "unobserved_pids": [
+              29198
+            ],
+            "returncode": 0,
+            "error": null
+          },
+          "zombie_pids": [],
+          "elapsed_seconds": 0.8188594582024962
+        }
+      ],
+      "resource_observation_exit_races": [],
+      "peak_RSS_bytes": 4177920,
+      "returncode": 0,
+      "termination": {
+        "actions": [],
+        "returncode": 0,
+        "group_absent": true
+      },
+      "pid": 29198,
+      "after": {
+        "count": 31,
+        "observed_sha256": "8799a694357d4d0d4832ba9a7466df4f06e3353af48b41e7298c2e3a8a64b6de",
+        "changed": {}
+      },
+      "elapsed_seconds": 0.12537583289667964,
+      "stdout": {
+        "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-static-metadata-root-execution-001/step5.stdout",
+        "sha256": "403a7f42e2ae3ef03c2bdd41f5e1f1a8ac523bb9855629ec4e98c432b5f6493b",
+        "bytes": 1932
+      },
+      "stderr": {
+        "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-static-metadata-root-execution-001/step5.stderr",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      }
+    },
+    {
+      "ordinal": 6,
+      "name": "query6",
+      "argv": [
+        "/usr/bin/nm",
+        "-u",
+        "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/cp1-oneway-cooling-release-richardson2-END181-dof-map-observer-prep-004/build-001/CouponEnd181ObserverRegistration.o"
+      ],
+      "before": {
+        "count": 31,
+        "observed_sha256": "8799a694357d4d0d4832ba9a7466df4f06e3353af48b41e7298c2e3a8a64b6de",
+        "changed": {}
+      },
+      "resource_samples": [
+        {
+          "RSS_bytes": 4161536,
+          "processes": 1,
+          "raw_owned_rows": [
+            {
+              "raw": "29201 29201   4064 Rs  ",
+              "pid": 29201,
+              "pgid": 29201,
+              "reported_RSS_KiB": 4064,
+              "RSS_bytes": 4161536,
+              "state": "Rs"
+            }
+          ],
+          "threads": null,
+          "thread_observation": {
+            "observed_counts": {},
+            "unobserved_pids": [
+              29201
+            ],
+            "returncode": 0,
+            "error": null
+          },
+          "zombie_pids": [],
+          "elapsed_seconds": 0.9879017500206828
+        }
+      ],
+      "resource_observation_exit_races": [],
+      "peak_RSS_bytes": 4161536,
+      "returncode": 0,
+      "termination": {
+        "actions": [],
+        "returncode": 0,
+        "group_absent": true
+      },
+      "pid": 29201,
+      "after": {
+        "count": 31,
+        "observed_sha256": "8799a694357d4d0d4832ba9a7466df4f06e3353af48b41e7298c2e3a8a64b6de",
+        "changed": {}
+      },
+      "elapsed_seconds": 0.12174579105339944,
+      "stdout": {
+        "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-static-metadata-root-execution-001/step6.stdout",
+        "sha256": "9e8f5379e2078dd93a873a15f99bc3e70f3029f172a0dc9bd5ff9f315412a416",
+        "bytes": 811
+      },
+      "stderr": {
+        "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-static-metadata-root-execution-001/step6.stderr",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      }
+    }
+  ],
+  "requests": [],
+  "completed_six_queries": true,
+  "guards_executed": false,
+  "plugin_or_host_loaded": false,
+  "native_or_helper_executed": false,
+  "scientific_or_ABI_acceptance": false,
+  "automatic_retry": false,
+  "controls": {
+    "overall_wall_seconds": 60,
+    "wall_seconds_per_query": 60,
+    "TERM_grace_seconds": 8,
+    "KILL_wait_seconds": 8,
+    "sampled_owned_group_RSS_stop_bytes": 2147483648,
+    "owned_output_stop_bytes": 33554432,
+    "OMP_BLAS_environment_threads": 1,
+    "retry": 0
+  },
+  "scope": "Only six fixed read-only nm/otool queries on exact new object/plugin; no target load or native physics",
+  "failure": null,
+  "final_snapshot": {
+    "count": 31,
+    "observed_sha256": "8799a694357d4d0d4832ba9a7466df4f06e3353af48b41e7298c2e3a8a64b6de",
+    "changed": {}
+  },
+  "path_metadata_after": {
+    "/usr/bin/nm": {
+      "path": "/usr/bin/nm",
+      "resolved": "/usr/bin/nm",
+      "link": null
+    },
+    "/usr/bin/otool": {
+      "path": "/usr/bin/otool",
+      "resolved": "/usr/bin/otool",
+      "link": null
+    },
+    "/Library/Developer/CommandLineTools/usr/bin/nm": {
+      "path": "/Library/Developer/CommandLineTools/usr/bin/nm",
+      "resolved": "/Library/Developer/CommandLineTools/usr/bin/llvm-nm",
+      "link": "llvm-nm"
+    },
+    "/Library/Developer/CommandLineTools/usr/bin/otool": {
+      "path": "/Library/Developer/CommandLineTools/usr/bin/otool",
+      "resolved": "/Library/Developer/CommandLineTools/usr/bin/llvm-otool",
+      "link": "llvm-otool"
+    },
+    "/usr/local/bin/python3": {
+      "path": "/usr/local/bin/python3",
+      "resolved": "/Library/Frameworks/Python.framework/Versions/3.10/bin/python3.10",
+      "link": "../../../Library/Frameworks/Python.framework/Versions/3.10/bin/python3"
+    },
+    "/Library/Developer/CommandLineTools": {
+      "path": "/Library/Developer/CommandLineTools",
+      "resolved": "/Library/Developer/CommandLineTools",
+      "link": null
+    },
+    "/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk": {
+      "path": "/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk",
+      "resolved": "/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk",
+      "link": null
+    }
+  },
+  "path_metadata_unchanged": true,
+  "owned_query_outputs": {
+    "step6.stderr": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-static-metadata-root-execution-001/step6.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "step2.stdout": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-static-metadata-root-execution-001/step2.stdout",
+      "sha256": "d0263eb3635e04cc3e0543c14e44dbe67afe9a6cded69217e1153f2491b02c82",
+      "bytes": 7300
+    },
+    "step4.stderr": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-static-metadata-root-execution-001/step4.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "step4.stdout": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-static-metadata-root-execution-001/step4.stdout",
+      "sha256": "3ce77cf9934db373c61ae45e1af452a90a289669b4cac7859e7dd87ce69b3e08",
+      "bytes": 6111
+    },
+    "step2.stderr": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-static-metadata-root-execution-001/step2.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "run-started.json": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-static-metadata-root-execution-001/run-started.json",
+      "sha256": "d4772f9097b6f03e055a158b7f76c70c2843c9f76b5bd0b782195d809f1326ef",
+      "bytes": 831
+    },
+    "step6.stdout": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-static-metadata-root-execution-001/step6.stdout",
+      "sha256": "9e8f5379e2078dd93a873a15f99bc3e70f3029f172a0dc9bd5ff9f315412a416",
+      "bytes": 811
+    },
+    "step3.stdout": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-static-metadata-root-execution-001/step3.stdout",
+      "sha256": "e8ab0e4cb43d6858d57b1385a09b393594b63c1f97666b2c5db111750c364510",
+      "bytes": 919
+    },
+    "step5.stderr": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-static-metadata-root-execution-001/step5.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "step1.stdout": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-static-metadata-root-execution-001/step1.stdout",
+      "sha256": "dfd2f3ac240d03733b3d8798f65f99310106fe453d2ad5a08cdb0e83779fd9c0",
+      "bytes": 952
+    },
+    "step1.stderr": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-static-metadata-root-execution-001/step1.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "step5.stdout": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-static-metadata-root-execution-001/step5.stdout",
+      "sha256": "403a7f42e2ae3ef03c2bdd41f5e1f1a8ac523bb9855629ec4e98c432b5f6493b",
+      "bytes": 1932
+    },
+    "step3.stderr": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-static-metadata-root-execution-001/step3.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    }
+  },
+  "unexpected_result_files": [],
+  "owned_output_bytes_excluding_receipt": 18856,
+  "handler_restoration_cutoff_seconds": 1.1081091661471874,
+  "signal_capture_scope": "Received SIGTERM/INT until handler restoration above; later signals are outside this receipt. Outer nonzero/absent/partial receipt cannot establish acceptance.",
+  "completion_scope": "complete is a pre-final-write candidate, not a final acceptance result. Outer returncode0 after the end-of-closure wall check is separately required; later interpreter teardown is outside the receipt timing/signal scope.",
+  "requests_at_cutoff": [],
+  "stop_requested_at_cutoff": false,
+  "overall_elapsed_seconds": 1.1081125410273671,
+  "complete": true,
+  "receipt_bytes": 20983,
+  "combined_owned_output_bytes": 39839
+}

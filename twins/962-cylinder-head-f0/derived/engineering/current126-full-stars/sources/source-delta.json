@@ -1,0 +1,167 @@
+{
+  "schema": "962-current126-census-reader-exact-delta/v1",
+  "preserved_reader": "work/962-engineering/head-star-current127-full-stars-prep-001/reader.py",
+  "preserved_reader_sha256": "11ad364b54b6b8f264f1727027659351ab38c9144b4c98c64e5265203fcb8a63",
+  "selected_reader_sha256": "2348c032ecbbb694563978cb333aff1a7e4d37a5052c3ed841a7128bf797409c",
+  "exact_replacements": [
+    {
+      "label": "Current selected partial-worker result schema",
+      "old": "worker.get('schema')!='962-apex1613790-head-application-result/v1'",
+      "new": "worker.get('schema')!='962-apex1613031-head-application-result/v1'",
+      "count": 1
+    },
+    {
+      "label": "Exact current79-input root closure and whole-actual mirror; no legacy alias transfer",
+      "old": "     or closed.get('schema')!='962-apex1613790-head-root-closed/v1'\n     or closed.get('returncode')!=2 or closed.get('stop_reason') is not None\n     or any(closed.get(k) is not True for k in ['waited_and_reaped','owned_controller_group_observed_absent','all58inputs_and_selected_runtime_before_after_exact','operation_observed_stopped'])\n     or closed.get('automatic_retry') is not False\n     or closed.get('actual',{}).get('sha256')!=contract['partial_contract_sha256']\n     or closed.get('output_files')!=contract['partial_output_inventory']",
+      "new": "     or closed.get('schema')!='962-apex1613031-head-application-root-closed/v1'\n     or closed.get('returncode')!=2 or closed.get('error') is not None or closed.get('signals')!=[] or closed.get('outer_fallback_used') is not False\n     or any(closed.get(k) is not True for k in ['controller_waited_reaped','controller_owned_group_absent','all79_inputs_unchanged','runtime5_unchanged','static4_unchanged'])\n     or closed.get('automatic_retry') is not False\n     or closed.get('whole_actual_mirror_sha256')!=contract['partial_contract_sha256']\n     or closed.get('outputs')!=contract['partial_output_inventory']",
+      "count": 1
+    },
+    {
+      "label": "Current accepted saved parent directory",
+      "old": "w=ROOT/'work/962-engineering/apex1613790-head-application-001'",
+      "new": "w=ROOT/'work/962-engineering/apex1613031-head-application-001'",
+      "count": 1
+    }
+  ],
+  "full_reverse_byte_exact": true,
+  "modified_function": "partial_after_proof",
+  "modified_top_level_statements": [
+    "Exact accepted saved-parent directory"
+  ],
+  "unchanged_function_ASTs": [
+    "classify_positive_poor_chunk",
+    "require_after_match",
+    "classifications",
+    "movable_from_poor_rows",
+    "incident_positions"
+  ],
+  "unchanged_function_AST_and_source_sha256s": {
+    "classify_positive_poor_chunk": {
+      "AST_sha256": "c728054aa6ca13ad802830b224901a19a9a9ada05d66f3bced378427bb33696c",
+      "source_sha256": "4bb8be4117266e419e46be7bacd59fd88e5ae17240abbb8a5ad390aab898ec08"
+    },
+    "require_after_match": {
+      "AST_sha256": "33dc5e680b6054085236c311946b4ccc767f161d1710cb03299b5603725f13ec",
+      "source_sha256": "8a0c7a50fb3b9d001a32fb61ea0655497297fb5e2093408e8fdad4aa288966ba"
+    },
+    "classifications": {
+      "AST_sha256": "87bfc0b508dc42457890c04e41288e8b2319ce3ee62fb4b63d54f99ea6ef6b5b",
+      "source_sha256": "aa89243db84b92dc79d24a0b4a703ccad64952cbba77fb8210dbb24e2fdfe733"
+    },
+    "movable_from_poor_rows": {
+      "AST_sha256": "a24c18066b0b817c5dd38cc54a2943f96a03bcae97ac5176ec5f00112d50f2f4",
+      "source_sha256": "c853c6923f35d0371c9da6a61e530cdc53088c86bd9d655df481b9a507ae9bf6"
+    },
+    "incident_positions": {
+      "AST_sha256": "4240d653e75dcd01116e68c43fe2b26dc114a036251d93b22da793e7ab24ae80",
+      "source_sha256": "10d65aaad1043e36290762b9c60e14f2d31a2f066cbbe3f0968dcde993a7cef7"
+    }
+  },
+  "comparison_donor": "work/962-engineering/head-star-current129-full-stars-prep-001/reader.py",
+  "comparison_donor_sha256": "186f3a52ac2f227afc56dfc7ec1cf9ab7a85e0303c04a2ad7dea32b74aa6d108",
+  "AST_serialization": "ast.dump(node,include_attributes=False).encode UTF-8 without added newline",
+  "AST_interpreter": "3.9.6",
+  "AST_context_is_not_cross_version_equivalence": true,
+  "reader_algorithm_or_quality_gate_changed": false,
+  "runner_byte_exact_sha256": "4fb37080e1f3847b8b1d14d5df467799d8e9f7bf81b0a09170e5850857de3943",
+  "guard_donor": "work/962-engineering/head-star-current127-full-stars-prep-001/test_guards.py",
+  "guard_donor_sha256": "98e666256f015c3889b78e3630506724daec2524849a562bc0c1ee756a6838c5",
+  "guard_selected_sha256": "17b69bd7d5b69c6ed8efc6a330133d73dec5b11f0f922506db5129e3092b8f45",
+  "guard_exact_replacements": [
+    {
+      "label": "Selected current126 reader hash",
+      "old": "SOURCE_SHA='11ad364b54b6b8f264f1727027659351ab38c9144b4c98c64e5265203fcb8a63'",
+      "new": "SOURCE_SHA='2348c032ecbbb694563978cb333aff1a7e4d37a5052c3ed841a7128bf797409c'",
+      "count": 1
+    },
+    {
+      "label": "Current schema79-input root fixture, zero addNodes and all four dynamic proof-key refusal cases",
+      "old": "def test_partial_saved_proof_join_and_refusals(self):\n  from copy import deepcopy\n  select=functions()['partial_after_proof']\n  proof={'tetrahedra':4,'total_mesh_nodes':7,'source_boundary_identity':{'boundary':3},'array_sha256s':{k:'a'*64 for k in ['sorted_node_tags_sha256','sorted_coordinates_sha256','sorted_tetra_tags_sha256','tagged_tetra_connectivity_sha256']},'quality':{k:{'count':4,'nonpositive_count':0} for k in ['minimum_jacobian','native_volume_mm3','minimum_SICN','independent_signed_volume_mm3']}}\n  proof['quality']['minimum_SICN'].update(minimum=.05,below_point1_count=2)\n  bindings={'local_candidate_report_sha256':'localreport','local_candidate_arrays_sha256':'localarrays','current_local_domain_report_sha256':'domainreport','current_local_domain_peer_sha256':'domainpeer'}\n  attempts={'removeElements':1,'setNode':1,'addNodes':1,'addElementsByType':1,'rebuildNodeCache':1,'rebuildElementCache':1,'write_mesh':1,'generate':0,'optimize':0,'createGeometry':0,'reclassifyNodes':0,'solve':0}\n  contract={'MSH_sha256':'m','MSH_bytes':10,**bindings,'expected_partial_operation_counts':deepcopy(attempts),'upstream_census_launch_deviation_sha256':'d60','declared_controller_command_conformant':False,'original_parent_MSH_sha256':'parent','partial_report_sha256':'report','partial_contract_sha256':'actual','partial_reader_sha256':'reader','partial_runner_sha256':'runner','partial_native_log_sha256':'log','partial_output_inventory':{'frozen':'identity'},'expected_saved_counts':{'tetrahedra':4,'total_mesh_nodes':7},'expected_positive_poor_total':2,'diagnostic_maximum_nonpositive_cells':0,'expected_source_boundary_identity':{'boundary':3}}\n  worker={'schema':'962-apex1613790-head-application-result/v1','status':'completed_partial_head_replacement_whole_head_quality_gate_applied','stage':'completed_partial_repair_audits','procedural_checks_passed':True,'partial_replacement_completed':True,'saved_mesh_identity_exact':True,'bound_inputs_unchanged':True,'after':deepcopy(proof),'saved_reopen':deepcopy(proof),'mesh_sha256':'m','mesh_bytes':10,**bindings,'native_operation_counts':deepcopy(attempts),'call_counts_are_attempts':True,'upstream_census_launch_deviation_sha256':'d60','declared_controller_command_conformant':False,'original_parent_MSH_sha256':'parent','actual_whole_head_positive_poor_count':2,'actual_whole_head_SICN_gate_passed':False}\n  receipt={'returncode':2,'stop_reason':None,'readback_report_sha256':'report','contract_sha256':'actual','reader_sha256':'reader','runner_sha256':'runner','native_log_sha256':'log','native_generate_optimize_solve_calls_declared':0,'mesh_write_calls_declared':1,'counters_are_declarations':True}\n  closed={'schema':'962-apex1613790-head-root-closed/v1','returncode':2,'stop_reason':None,'waited_and_reaped':True,'owned_controller_group_observed_absent':True,'all58inputs_and_selected_runtime_before_after_exact':True,'operation_observed_stopped':True,'automatic_retry':False,'actual':{'sha256':'actual'},'output_files':{'frozen':'identity'}}\n  self.assertEqual(select(worker,receipt,closed,contract),proof)\n  def reject(w=worker,r=receipt,z=closed,c=contract):\n   with self.assertRaises((ValueError,KeyError)):select(w,r,z,c)\n  for field,value in [('schema','962-apex1474426-head-application-result/v1'),*[(k,'other') for k in bindings],('mesh_sha256','other'),('procedural_checks_passed',False),('actual_whole_head_positive_poor_count',3),('actual_whole_head_SICN_gate_passed',True),('call_counts_are_attempts',False),('upstream_census_launch_deviation_sha256','other'),('declared_controller_command_conformant',True)]:\n   w=deepcopy(worker);w[field]=value;reject(w=w)\n  for name,value in [('setNode',2),('write_mesh',0),('optimize',1)]:\n   w=deepcopy(worker);w['native_operation_counts'][name]=value;reject(w=w)\n  w=deepcopy(worker);w['saved_reopen']['quality']['minimum_SICN']['minimum']=.06;reject(w=w)\n  w=deepcopy(worker)\n  for field in ['after','saved_reopen']:w[field]['quality']['minimum_SICN']['count']=3\n  reject(w=w)\n  for field,value in [('reader_sha256','other'),('readback_report_sha256','other'),('stop_reason','deadline'),('mesh_write_calls_declared',0),('native_generate_optimize_solve_calls_declared',1),('counters_are_declarations',False)]:\n   r=deepcopy(receipt);r[field]=value;reject(r=r)\n  for field,value in [('schema','old'),('waited_and_reaped',False),('all58inputs_and_selected_runtime_before_after_exact',False),('owned_controller_group_observed_absent',False),('operation_observed_stopped',False),('automatic_retry',True),('actual',{'sha256':'other'}),('output_files',{})]:\n   z=deepcopy(closed);z[field]=value;reject(z=z)\n  for newkey,oldkey in [('waited_and_reaped','wait_reaped'),('all58inputs_and_selected_runtime_before_after_exact','all56_inputs_unchanged'),('output_files','outputs')]:\n   z=deepcopy(closed);z[oldkey]=z.pop(newkey);reject(z=z)\n  z=deepcopy(closed);z['actual_sha256']=z.pop('actual')['sha256'];reject(z=z)\n  c=deepcopy(contract);c['declared_controller_command_conformant']=True;reject(c=c)",
+      "new": "def test_partial_saved_proof_join_and_refusals(self):\n  from copy import deepcopy\n  select=functions()['partial_after_proof']\n  proof={'tetrahedra':4,'total_mesh_nodes':7,'source_boundary_identity':{'boundary':3},'array_sha256s':{k:'a'*64 for k in ['sorted_node_tags_sha256','sorted_coordinates_sha256','sorted_tetra_tags_sha256','tagged_tetra_connectivity_sha256']},'quality':{k:{'count':4,'nonpositive_count':0} for k in ['minimum_jacobian','native_volume_mm3','minimum_SICN','independent_signed_volume_mm3']}}\n  proof['quality']['minimum_SICN'].update(minimum=.05,below_point1_count=2)\n  bindings={'local_candidate_report_sha256':'localreport','local_candidate_arrays_sha256':'localarrays','current_local_domain_report_sha256':'domainreport','current_local_domain_peer_sha256':'domainpeer'}\n  attempts={'removeElements':1,'setNode':1,'addNodes':0,'addElementsByType':1,'rebuildNodeCache':1,'rebuildElementCache':1,'write_mesh':1,'generate':0,'optimize':0,'createGeometry':0,'reclassifyNodes':0,'solve':0}\n  contract={'MSH_sha256':'m','MSH_bytes':10,**bindings,'expected_partial_operation_counts':deepcopy(attempts),'upstream_census_launch_deviation_sha256':'d60','declared_controller_command_conformant':False,'original_parent_MSH_sha256':'parent','partial_report_sha256':'report','partial_contract_sha256':'actual','partial_reader_sha256':'reader','partial_runner_sha256':'runner','partial_native_log_sha256':'log','partial_output_inventory':{'frozen':'identity'},'expected_saved_counts':{'tetrahedra':4,'total_mesh_nodes':7},'expected_positive_poor_total':2,'diagnostic_maximum_nonpositive_cells':0,'expected_source_boundary_identity':{'boundary':3}}\n  worker={'schema':'962-apex1613031-head-application-result/v1','status':'completed_partial_head_replacement_whole_head_quality_gate_applied','stage':'completed_partial_repair_audits','procedural_checks_passed':True,'partial_replacement_completed':True,'saved_mesh_identity_exact':True,'bound_inputs_unchanged':True,'after':deepcopy(proof),'saved_reopen':deepcopy(proof),'mesh_sha256':'m','mesh_bytes':10,**bindings,'native_operation_counts':deepcopy(attempts),'call_counts_are_attempts':True,'upstream_census_launch_deviation_sha256':'d60','declared_controller_command_conformant':False,'original_parent_MSH_sha256':'parent','actual_whole_head_positive_poor_count':2,'actual_whole_head_SICN_gate_passed':False}\n  receipt={'returncode':2,'stop_reason':None,'readback_report_sha256':'report','contract_sha256':'actual','reader_sha256':'reader','runner_sha256':'runner','native_log_sha256':'log','native_generate_optimize_solve_calls_declared':0,'mesh_write_calls_declared':1,'counters_are_declarations':True}\n  closed={'schema':'962-apex1613031-head-application-root-closed/v1','returncode':2,'error':None,'signals':[],'outer_fallback_used':False,'controller_waited_reaped':True,'controller_owned_group_absent':True,'all79_inputs_unchanged':True,'runtime5_unchanged':True,'static4_unchanged':True,'automatic_retry':False,'whole_actual_mirror_sha256':'actual','outputs':{'frozen':'identity'}}\n  self.assertEqual(select(worker,receipt,closed,contract),proof)\n  def reject(w=worker,r=receipt,z=closed,c=contract):\n   with self.assertRaises((ValueError,KeyError)):select(w,r,z,c)\n  for field,value in [('schema','962-apex1613790-head-application-result/v1'),*[(k,'other') for k in bindings],('mesh_sha256','other'),('procedural_checks_passed',False),('actual_whole_head_positive_poor_count',3),('actual_whole_head_SICN_gate_passed',True),('call_counts_are_attempts',False),('upstream_census_launch_deviation_sha256','other'),('declared_controller_command_conformant',True)]:\n   w=deepcopy(worker);w[field]=value;reject(w=w)\n  for name,value in [('setNode',2),('addNodes',1),('write_mesh',0),('optimize',1)]:\n   w=deepcopy(worker);w['native_operation_counts'][name]=value;reject(w=w)\n  w=deepcopy(worker);w['saved_reopen']['quality']['minimum_SICN']['minimum']=.06;reject(w=w)\n  w=deepcopy(worker)\n  for field in ['after','saved_reopen']:w[field]['quality']['minimum_SICN']['count']=3\n  reject(w=w)\n  for field,value in [('reader_sha256','other'),('readback_report_sha256','other'),('stop_reason','deadline'),('mesh_write_calls_declared',0),('native_generate_optimize_solve_calls_declared',1),('counters_are_declarations',False)]:\n   r=deepcopy(receipt);r[field]=value;reject(r=r)\n  for field,value in [('schema','old'),('returncode',0),('error','failure'),('signals',['TERM']),('outer_fallback_used',True),('controller_waited_reaped',False),('controller_owned_group_absent',False),('all79_inputs_unchanged',False),('runtime5_unchanged',False),('static4_unchanged',False),('automatic_retry',True),('whole_actual_mirror_sha256','other'),('outputs',{})]:\n   z=deepcopy(closed);z[field]=value;reject(z=z)\n  for newkey,oldkey in [('controller_waited_reaped','waited_and_reaped'),('controller_owned_group_absent','owned_controller_group_observed_absent'),('all79_inputs_unchanged','all58inputs_and_selected_runtime_before_after_exact'),('outputs','output_files')]:\n   z=deepcopy(closed);z[oldkey]=z.pop(newkey);reject(z=z)\n  z=deepcopy(closed);z['actual']={'sha256':z.pop('whole_actual_mirror_sha256')};reject(z=z)\n  for missing in bindings:\n   c=deepcopy(contract);del c[missing];reject(c=c)\n  c=deepcopy(contract);c['declared_controller_command_conformant']=True;reject(c=c)",
+      "count": 1
+    }
+  ],
+  "guard_full_reverse_byte_exact": true,
+  "five_old_guard_method_ASTs_exact": [
+    "test_complete_union_includes_initially_good_and_shared_rows",
+    "test_empty_and_all_boundary_seed_cases",
+    "test_exact_reuse_reverse_and_read_only_call_scope",
+    "test_input_row_order_does_not_change_movable_membership",
+    "test_invalid_boundary_classification_and_connectivity_refuse"
+  ],
+  "reader_literal_contract_keys": [
+    "MSH_bytes",
+    "MSH_sha256",
+    "candidate",
+    "candidate_oriented_triangles",
+    "candidate_vertices",
+    "candidate_volume_mm3",
+    "declared_controller_command_conformant",
+    "diagnostic_maximum_nonpositive_cells",
+    "expected_partial_operation_counts",
+    "expected_positive_poor_total",
+    "expected_saved_counts",
+    "expected_source_boundary_identity",
+    "external_runtime_hashes",
+    "input_hashes",
+    "original_parent_MSH_sha256",
+    "partial_contract_sha256",
+    "partial_native_log_sha256",
+    "partial_output_inventory",
+    "partial_reader_sha256",
+    "partial_report_sha256",
+    "partial_root_closed_result",
+    "partial_runner_sha256",
+    "runtime",
+    "surface_admission",
+    "upstream_census_launch_deviation_sha256"
+  ],
+  "dynamic_candidate_domain_proof_keys": [
+    "local_candidate_report_sha256",
+    "local_candidate_arrays_sha256",
+    "current_local_domain_report_sha256",
+    "current_local_domain_peer_sha256"
+  ],
+  "controller_literal_contract_keys": [
+    "native_python",
+    "reader_sha256",
+    "runner_sha256",
+    "runtime"
+  ],
+  "effective_consumed_contract_keys": [
+    "MSH_bytes",
+    "MSH_sha256",
+    "candidate",
+    "candidate_oriented_triangles",
+    "candidate_vertices",
+    "candidate_volume_mm3",
+    "current_local_domain_peer_sha256",
+    "current_local_domain_report_sha256",
+    "declared_controller_command_conformant",
+    "diagnostic_maximum_nonpositive_cells",
+    "expected_partial_operation_counts",
+    "expected_positive_poor_total",
+    "expected_saved_counts",
+    "expected_source_boundary_identity",
+    "external_runtime_hashes",
+    "input_hashes",
+    "local_candidate_arrays_sha256",
+    "local_candidate_report_sha256",
+    "native_python",
+    "original_parent_MSH_sha256",
+    "partial_contract_sha256",
+    "partial_native_log_sha256",
+    "partial_output_inventory",
+    "partial_reader_sha256",
+    "partial_report_sha256",
+    "partial_root_closed_result",
+    "partial_runner_sha256",
+    "reader_sha256",
+    "runner_sha256",
+    "runtime",
+    "surface_admission",
+    "upstream_census_launch_deviation_sha256"
+  ],
+  "prepared_functions_or_tests_executed": false,
+  "author_role": "clip_source_review authored this held adapter; earlier donor/helper/census/source-peer lineage is reused, not independent mathematical derivation."
+}

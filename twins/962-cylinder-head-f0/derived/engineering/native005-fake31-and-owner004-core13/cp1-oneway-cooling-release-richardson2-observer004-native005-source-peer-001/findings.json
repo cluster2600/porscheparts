@@ -1,0 +1,168 @@
+{
+  "schema": "962-native005-independent-source-findings/v1",
+  "scope": "Complete fixed source005 integration reviewed as text/AST, including every changed block and exact reconstruction from the previously reviewed complete source004. No target or fragment was imported, compiled, evaluated or executed.",
+  "source_blockers": [],
+  "resolved_predecessor_findings": [
+    {
+      "id": "B01",
+      "disposition": "RESOLVED_AT_SOURCE_LEVEL",
+      "sources": [
+        "run_root_once.py:649",
+        "run_root_once.py:771",
+        "run_native_capture.py:649",
+        "run_native_capture.py:663",
+        "run_native_capture.py:823"
+      ],
+      "evidence": "Both owner and caller require the already-observed Python SIGCHLD disposition to equal SIG_DFL before construction. Neither resets or restores SIGCHLD. AST inspection finds no SIGCHLD mutation call. Existing TERM/INT handling remains unchanged.",
+      "limit": "No installed kernel SA_NOCLDWAIT, competing-waiter, API or constructor/destructor behavior was observed."
+    },
+    {
+      "id": "B02",
+      "disposition": "RESOLVED_AT_SOURCE_LEVEL",
+      "sources": [
+        "run_root_once.py:40",
+        "run_root_once.py:238",
+        "run_root_once.py:486",
+        "run_root_once.py:651",
+        "run_root_once.py:695",
+        "run_root_once.py:705",
+        "run_root_once.py:885",
+        "run_root_once.py:935",
+        "run_root_once.py:977",
+        "run_native_capture.py:50",
+        "run_native_capture.py:252",
+        "run_native_capture.py:512",
+        "run_native_capture.py:590",
+        "run_native_capture.py:773"
+      ],
+      "evidence": "Per-handle relationship state and numeric authority are explicit. ECHILD/ChildProcessError and untrustworthy exact statuses latch permanent lost/unknown state before propagation. A consumed terminal status is stored, including raw status/returncode and numeric-authority revocation, before the full-return deadline check. Query handles cannot use numeric cleanup or another wait after relationship loss. Still-valid leader authority is separate from query authority. The stopped handshake, cleanup entry, preCONT direct-PID kill, CONT intent, TERM/KILL and final reap use the leader barrier; CONT intent remains before its syscall. Lost leader relationships close group signals; only a real recorded reap admits the one final absence observation. Native caller retains exact-wait authority but never gains numeric native signaling authority. Signal errors do not masquerade as absence or skip the separate bounded wait while ownership is still retained.",
+      "limit": "Source guards and live OS behavior remain untested. Unknown/partial construction or relationship loss refuses completion and may leave an explicitly unresolved process; source does not create ownership or a hard cleanup guarantee."
+    },
+    {
+      "id": "B03",
+      "disposition": "RESOLVED_AT_SOURCE_LEVEL",
+      "sources": [
+        "run_root_once.py:286",
+        "run_root_once.py:298",
+        "run_root_once.py:421",
+        "run_native_capture.py:300",
+        "run_native_capture.py:312",
+        "run_native_capture.py:642",
+        "run_native_capture.py:675"
+      ],
+      "evidence": "Canonical positive decimal parsing is separated from observed-time parsing. Future normal_until_ns uses positive_ns with the original owner-start +95s bound; observed timestamps still require clock_token <= the observation clock. The exact equation min(original owner start +95s, caller entry +100s) and start<=entry<=spawn<=encoding<=saved<=hashed<normal_until ordering are retained. There is no deadline extension or replacement clock.",
+      "limit": "No future real receipt or timing result is accepted here."
+    },
+    {
+      "id": "B04",
+      "disposition": "RESOLVED_AT_SOURCE_LEVEL",
+      "sources": [
+        "run_root_once.py:1003",
+        "run_root_once.py:1091",
+        "run_root_once.py:1094",
+        "run_root_once.py:1101",
+        "run_root_once.py:1107",
+        "run_root_once.py:1110"
+      ],
+      "evidence": "After the complete closed-result write, owner repeats the same eight finite identity expressions as the prewrite after set: authorization, direct, staged_inputs, inputs, runtime, selected_host_records, provider_paths and python. Their expression ASTs are equal. Key-set, capture-error and exact before equality are checked again, then full-return clock/budget gates run. Mismatch/error forces candidate false and raw return2 with a retained outer error; the prefinal receipt is not rewritten or promoted. Mutable stop/error lists still participate in the final raw status.",
+      "limit": "The saved prefinal candidate is not a standalone success receipt. Actual outer0, complete outer streams, full return, inclusive final census and an independent saved-result review remain mandatory."
+    }
+  ],
+  "complete_static_accounting": {
+    "input_metadata_records": 38,
+    "packet_files": 11,
+    "packet_bytes": 364489,
+    "unique_bound_originals_including_index": 49,
+    "unique_bound_bytes": 1221525,
+    "source_units": 3,
+    "source_unit_bytes": 112668,
+    "literal_group_forward_and_reverse_exact": 46,
+    "complete_forward_unified_diff_bytes": 31795,
+    "complete_inverse_unified_diff_bytes": 31750,
+    "terminal_LF_bytes_preserved": true,
+    "immediate004_definition_dispositions": 100,
+    "predecessor_definition_paths": 90,
+    "byte_and_AST_exact_existing_definitions": 79,
+    "corrected_existing_definitions": 11,
+    "new_definition_paths": 10,
+    "old004_nonfunction_top_level_nodes_including_classes": 76,
+    "explicit_added_or_replaced005_nodes": 6,
+    "original003_definition_dispositions": 35,
+    "original003_top_level_definitions": 31,
+    "original003_nested_definitions": 4,
+    "original003_nonfunction_top_level_nodes": 41,
+    "six_conditional_definition_text_and_AST_reuses": [
+      "owner.group_exists",
+      "owner.capture",
+      "caller.need",
+      "caller.same",
+      "caller.registry_features",
+      "caller.commands"
+    ],
+    "unchanged_scientific_global_value_AST": [
+      "PREFIX",
+      "EXECUTABLE",
+      "CASE",
+      "PREP",
+      "TRANSFER",
+      "CARD",
+      "PHYSICS",
+      "PRIMARY_API",
+      "HELD",
+      "TRANSFER_FILES",
+      "FEATURES"
+    ],
+    "unchanged_retained_constructor_call_AST": true,
+    "unchanged_future_operational004_namespace_AST": true,
+    "native_command_definition_exact": true,
+    "full_three_unit_forward_inverse_exact": true,
+    "new_dependency_and_logic": "errno in owner/caller after the original early timestamp; ChildRelationshipError and per-handle predicates/latch; positive_ns; repeated existing eight-role postwrite capture. No new provider or query form."
+  },
+  "admission_and_receipt_DAG": {
+    "disposition": "NO_NEW_REQUIRED_SELF_HASH_CYCLE_FOUND_IN_SOURCE",
+    "sources": [
+      "run_root_once.py:772",
+      "run_root_once.py:800",
+      "run_root_once.py:803",
+      "run_root_once.py:807",
+      "run_root_once.py:865",
+      "run_native_capture.py:364",
+      "run_native_capture.py:383",
+      "stopped_exec_wrapper.py:78",
+      "stopped_exec_wrapper.py:85",
+      "stopped_exec_wrapper.py:97"
+    ],
+    "evidence": "Stable argv_prefix is stored; admission SHA is supplied externally and checked against admission file bytes. Actual/input maps exclude actual and admission self pins, and admission direct roles exclude its own file. The owner adds authorization_sha256 only to its in-memory object after file validation. Source/actual precede authorization, which precedes wrapper hello and caller receipt/terminal. A terminal may hash an already-written earlier receipt; no receipt requires its own hash. No concrete future map or issuance is accepted by this inspection.",
+    "future_actual_role_counts_runtime_staging_admission_launch_results": null
+  },
+  "unchanged_boundaries": {
+    "phases_seconds": {
+      "normal": 95,
+      "TERM": 105,
+      "KILL_reap": 110,
+      "full_closure": 115
+    },
+    "native_upper_seconds": 100,
+    "TERM_upper_seconds": 10,
+    "sampled_aggregate_RSS_bytes": 2147483648,
+    "inclusive_total_output_bytes": 536870912,
+    "positive_growth_bytes": 33554432,
+    "requested_threads": 1,
+    "automatic_retry": false,
+    "science": "No geometry, material, force, solver options/tolerances, native command or measurement interpretation change. The twelve mechanical failures and twenty-four poor head cells are not resolved by this source review.",
+    "limits": "No hard preemption, quota, true RSS peak, full ABI/loader closure, opaque native containment, measurement completeness, strength/material/LPBF, digital twin, PhysicsNeMo or manufacturing acceptance."
+  },
+  "remaining_separate_gates": [
+    "Root independent full source decision; no review artifact is launch authority.",
+    "Meaningful real-source fake-provider guards for all corrected ownership/clock/postwrite seams, with independent source review and separately admitted execution. Earlier F1nine is limited synthetic evidence and does not cover this full native005 source.",
+    "Current selected CPython3.12/API/runtime/origin/alias and no-competing-waiter/default-child semantics, without mistaking source/API names for runtime success.",
+    "Concrete finite actual/direct-role/count maps, source bindings, staged input receipts and freshness; exact independent control peer and root issuance.",
+    "If separately admitted later: raw owner/caller/native status, complete bytes/EOF, all finite before/after plus postwrite identities, 115s whole return, inclusive bytes/growth, retained anchor/reap/group absence and independent saved-result review."
+  ],
+  "reviewer_static_script_events": [
+    "An initial own static accounting assertion treated all100 disposition rows as predecessor rows; ten explicitly added definitions have donor=null. Corrected only the reviewer assertion; target files unchanged.",
+    "A later own postwrite-shape assertion expected AST Dict nodes; actual code uses dict(keyword=...) calls. Corrected reviewer AST selection and checked all eight keyword expression ASTs. Neither event executed target code or changed its source."
+  ],
+  "independence": "Reviewer did not author source005. Prior donor/control/mock/evidence authorship and source004 HOLD review, plus text-only B02 interpretation supplied to the author, are disclosed in review.json. A subordinate read-only source auditor checked receipt/admission/clock/science boundaries; no target execution or extra artifact framework.",
+  "target_execution_or_operation": false
+}

@@ -1,0 +1,174 @@
+{
+  "schema": "962-optimized-Delaunay-poorcell-stopped-result-independent-peer/v1",
+  "decision": "CLEAR_COMPLETED_READBACK_AND_DIAGNOSIS_OF_REJECTED_VOLUME",
+  "blockers": [],
+  "contract_sha256": "b37c3923fd90f9627c2c3238b9bad2a7dac1327febde5ba9315277781925ed16",
+  "readback_report_sha256": "7025fa9460b566d01dfa197e887e133c24cd494fd2bc2ad789ddd0a372041822",
+  "execution_receipt_sha256": "34f889f05dba39c4e77156da2c5a79503849c8c5d8b79bfd24e6492634935c59",
+  "root_evidence_sha256": {
+    "preexec.json": "db714fb183bbea0bba8479509dbdd708a6572cbb7eefd682f02ddf827ed1c78c",
+    "launch-guard.json": "4c3641c18337cc9175a6666c772aa043cf895730d3169a3006aed9e45d1a5040",
+    "execution.json": "2d4c66a3c50255e29220748f784737304600346822618e35915675781a6b740a",
+    "controller.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "closed_six_file_inventory": {
+    "execution-receipt.json": {
+      "sha256": "34f889f05dba39c4e77156da2c5a79503849c8c5d8b79bfd24e6492634935c59",
+      "bytes": 5220
+    },
+    "frozen-contract.json": {
+      "sha256": "b37c3923fd90f9627c2c3238b9bad2a7dac1327febde5ba9315277781925ed16",
+      "bytes": 34877
+    },
+    "native.log": {
+      "sha256": "90bc6202574bbd58919c90adb0c9c97c47d0cb6a026c2ab4649e13a19eb9c8a1",
+      "bytes": 233
+    },
+    "readback-report.json": {
+      "sha256": "7025fa9460b566d01dfa197e887e133c24cd494fd2bc2ad789ddd0a372041822",
+      "bytes": 10109
+    },
+    "reader.py": {
+      "sha256": "c44eed3f69c83d6f774300634e27f3df90c4a4f699d5787519639e4c3b1fe891",
+      "bytes": 16239
+    },
+    "run_readback.py": {
+      "sha256": "4fb37080e1f3847b8b1d14d5df467799d8e9f7bf81b0a09170e5850857de3943",
+      "bytes": 4560
+    }
+  },
+  "input_associations": {
+    "flat_pin_count": 159,
+    "current_non_geometry_hashes_independently_verified": 154,
+    "five_geometry_size_and_digest_bindings_only_no_reads_or_hashes": {
+      "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-001/candidate.bin": {
+        "sha256": "9d62eac6e2cd7b6a9ecb4a7ea5b632685820369b5c4ede379acc34238f50d7b4",
+        "bytes": 62774640
+      },
+      "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-volume-delaunay-001/head-volume.msh": {
+        "sha256": "3dd7939f34c8246a813334b2f570b2408b590965734bdf3761866569290e3593",
+        "bytes": 249628334
+      },
+      "work/962-engineering/hxt-size-cap-fixture-001/capped-1p75/cube.msh": {
+        "sha256": "e773cc4a2f68187c623e984eb9f58441f3fa5eed2733295e7eb26bd7b3910ac1",
+        "bytes": 9790
+      },
+      "work/962-engineering/saved-cube-default-fixture-001/default-force/cube.msh": {
+        "sha256": "3676ea044e2e10ea91435271687cac7f2181704014dc4e0daf8ae5c9ede26613",
+        "bytes": 9430
+      },
+      "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-volume-delaunay-default-postexport-001/head-volume.msh": {
+        "sha256": "e32ef35be1171ec55477e921dd75def0066f9f1e21bd2821dfbe363270354522",
+        "bytes": 243246094
+      }
+    },
+    "root_before_after_all159_map_equality_verified": true,
+    "root_before_after_three_runtime_map_equality_verified": true,
+    "runtime_identity_metadata_equals_held_and_actual_worker": true,
+    "two_materialized_source_copies_current_exact_to_known_hashes": true,
+    "source_and_runner_known_identity": {
+      "reader": "c44eed3f69c83d6f774300634e27f3df90c4a4f699d5787519639e4c3b1fe891",
+      "runner": "4fb37080e1f3847b8b1d14d5df467799d8e9f7bf81b0a09170e5850857de3943"
+    }
+  },
+  "lifecycle": {
+    "controller_returncode": 0,
+    "worker_returncode": 0,
+    "stop_reason": null,
+    "controller_wall_seconds": 25.64162008301355,
+    "reader_wall_seconds": 24.28837462514639,
+    "root_outer_wall_seconds": 25.829979541013017,
+    "RSS_sample_count": 50,
+    "max_observed_RSS_bytes": 2325315584,
+    "sampled_RSS_is_not_OS_peak_or_hard_RAM_quota": true,
+    "owned_wait_and_handler_restoration_supported_by_reviewed_finally_path_and_closed_root_return": true,
+    "independent_PID_absence_probe_performed": false,
+    "automatic_retry": false,
+    "native_generate_optimize_meshwrite_solve_calls": 0
+  },
+  "direct_completed_checks": {
+    "tetrahedra": 3802217,
+    "mesh_nodes": 1104778,
+    "referenced_interior_nodes": 233047,
+    "orphans": 0,
+    "all_four_tagged_array_hashes_equal_sole_worker_after": true,
+    "all_three_native_metric_hashes_and_complete_distributions_equal_worker_after": true,
+    "independent_signed_volume_distribution_sum_and_relative_error_equal_worker_after": true,
+    "exact_explicit_source_surface_rows_checked": true,
+    "positive_poor_total": 3438,
+    "bins_by_source_boundary_node_count": {
+      "0": 8,
+      "1": 12,
+      "2": 708,
+      "3": 1275,
+      "4": 1435
+    },
+    "all_boundary_cells": 1435,
+    "some_interior_cells": 2003,
+    "nonpositive_SICN": 0,
+    "minimum_SICN": 2.5872861583260695e-05,
+    "minimum_gate_point1_passed": false
+  },
+  "bounded_saved_JSON_witness_checks": [
+    {
+      "bin": "0",
+      "tetrahedron_tag": 26137416,
+      "native_array_index": 239275,
+      "SICN": 0.030863574632757306,
+      "exact_binary64_coordinate_determinant_volume_as_float_mm3": 0.05894745508869594,
+      "saved_signed_volume_mm3": 0.0589474550886959,
+      "absolute_display_delta_mm3": 4.163336342344337e-17
+    },
+    {
+      "bin": "1",
+      "tetrahedron_tag": 28432352,
+      "native_array_index": 3701275,
+      "SICN": 0.007305228629295344,
+      "exact_binary64_coordinate_determinant_volume_as_float_mm3": 0.03350530232986408,
+      "saved_signed_volume_mm3": 0.03350530232986408,
+      "absolute_display_delta_mm3": 0.0
+    },
+    {
+      "bin": "2",
+      "tetrahedron_tag": 27178320,
+      "native_array_index": 2928320,
+      "SICN": 0.000981688091928836,
+      "exact_binary64_coordinate_determinant_volume_as_float_mm3": 9.038577875893338e-05,
+      "saved_signed_volume_mm3": 9.038577875893188e-05,
+      "absolute_display_delta_mm3": 1.5043305143236374e-18
+    },
+    {
+      "bin": "3",
+      "tetrahedron_tag": 26731961,
+      "native_array_index": 3251640,
+      "SICN": 8.924279088443911e-05,
+      "exact_binary64_coordinate_determinant_volume_as_float_mm3": 0.003681246659343038,
+      "saved_signed_volume_mm3": 0.0036812466593430376,
+      "absolute_display_delta_mm3": 4.336808689942018e-19
+    },
+    {
+      "bin": "4",
+      "tetrahedron_tag": 9402953,
+      "native_array_index": 3125722,
+      "SICN": 2.5872861583260695e-05,
+      "exact_binary64_coordinate_determinant_volume_as_float_mm3": 2.3869506549090147e-07,
+      "saved_signed_volume_mm3": 2.3869506549090147e-07,
+      "absolute_display_delta_mm3": 0.0
+    }
+  ],
+  "scope_limits": [
+    "Full3.8million-row completeness and deterministic per-bin minima are attributed to the reviewed completed reader and bound report, not independently replayed here. This peer checked all saved partitions/counts and five witness metadata rows; exact Fraction determinants used only their saved coordinate values, with displayed arithmetic deltas, not a new quality tolerance or SICN evaluation.",
+    "Full tetra exterior/incidence, internal orientation and entity classifications are exactly retained worker.after observations. This independent readback did not repeat those audits.",
+    "all([]) fixed-boundary-only nonpositive flag is vacuously true because the nonpositive list is empty. It is not the evidence for1435positive-poor all-boundary cells; the complete separate partition supplies that count.",
+    "With tetrahedral connectivity and all source-boundary coordinates fixed, interior-node motion alone cannot change the1435all-boundary positive-poor cells. Connectivity changes remain possible; boundary-coordinate changes are not proven necessary. No global failure mechanism is inferred from five witnesses.",
+    "No new native query, geometry/runtime byte read or hash, scientific import, solver, optimizer, Git or network action by this peer. All154small currentpins were rehashed; root saved records attest geometry/runtime before and after.",
+    "This rejected volume remains below SICN0.1; no accepted mesh, convergence, thermal resolution, head PDE, strength/material/LPBF/manufacturing qualification or downstream Netgen launch authority follows."
+  ],
+  "qualification": {
+    "accepted_volume": false,
+    "engineering_accepted": false,
+    "head_PDE_executed": false,
+    "Netgen_head_trial_authorized": false,
+    "manufacturing_authorized": false
+  }
+}

@@ -1,0 +1,62 @@
+{
+  "schema": "962-oneway-thermoelastic-assessor-binding-only-successor/v1",
+  "status": "HELD_SOURCE_ONLY_UNRUN",
+  "source_donor": {
+    "path": "work/962-engineering/cp1-oneway-thermoelastic-assessor-prep-001/assess.py",
+    "sha256": "7f2d5fbb873ed82df80d133314edc98cf57aa353057d8b9db08ea92358657af1"
+  },
+  "selected_source": {
+    "path": "work/962-engineering/cp1-oneway-thermoelastic-assessor-prep-002/assess.py",
+    "sha256": "6dfb8aaa2be8575eaf99c5e49a5f28e345cd12a185e22d5aab5467b632509d03"
+  },
+  "whole_source_replacements": [
+    {
+      "old": "CASE = ROOT / 'work/962-engineering/cp1-oneway-thermoelastic-transfer-prep-001'",
+      "selected": "CASE = ROOT / 'work/962-engineering/cp1-oneway-thermoelastic-transfer-prep-002'"
+    },
+    {
+      "old": "OUTPUT = 'work/962-engineering/cp1-oneway-thermoelastic-assessment-001'",
+      "selected": "OUTPUT = 'work/962-engineering/cp1-oneway-thermoelastic-assessment-002'"
+    },
+    {
+      "old": "c.get('native_directory') == 'work/962-engineering/cp1-oneway-thermoelastic-transfer-001'",
+      "selected": "c.get('native_directory') == 'work/962-engineering/cp1-oneway-thermoelastic-transfer-002'"
+    }
+  ],
+  "guard_replacement": {
+    "old": "7f2d5fbb873ed82df80d133314edc98cf57aa353057d8b9db08ea92358657af1",
+    "selected": "6dfb8aaa2be8575eaf99c5e49a5f28e345cd12a185e22d5aab5467b632509d03",
+    "occurrences": 1
+  },
+  "entire_source_and_guard_reverse_byte_exact": true,
+  "exact_function_ASTs": [
+    "need",
+    "sha",
+    "bits",
+    "number",
+    "integer",
+    "rows",
+    "tensor",
+    "symgrad",
+    "hooke",
+    "hex_rule",
+    "ordered_hex",
+    "mechanical_state",
+    "accumulate",
+    "node_sample",
+    "cdf_magic",
+    "read_exodus",
+    "geometry_family",
+    "quadrature_sample",
+    "field_phase",
+    "assess_data"
+  ],
+  "changed_function_AST": "assess: fixed native_directory literal only",
+  "seven_guard_method_and_whole_class_AST_exact": true,
+  "exact_body_copies": [
+    "POLICY.json",
+    "primary-sources.json"
+  ],
+  "historical_METHOD_prefix_added_only": true,
+  "no_functions_tests_modules_scientific_or_native_executed": true
+}

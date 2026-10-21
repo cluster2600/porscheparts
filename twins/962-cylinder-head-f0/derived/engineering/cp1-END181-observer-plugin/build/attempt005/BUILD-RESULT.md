@@ -1,0 +1,9 @@
+# Observer003 successful bounded build005
+
+The plugin and standalone guard executable are now built. The3 fixed commands returned0: direct CLT plugin link, separate unchanged guard-main compile, direct CLT guard link. Both production object files from003 stayed byte-exact. Only the captured linker library path and fresh output associations changed. The plugin and executable now contain a libSystem load command; the SDK stub warning from003 is absent. Both successful links retain the duplicate-rpath warning verbatim.
+
+The plugin exports CouponEnd181ObserverApp__registerAll. Static metadata still shows the guard executable's inherited absolute /opt/civet0/.../libmoose-opt.0.dylib dependency. Those bytes are preserved; a future admitted loader environment or other supported loading solution must account for that path. Direct dependency names, rpaths, exports and unresolved-symbol metadata are frozen in compiled-link-metadata.json. No loader-resolution, transitive-runtime-closure or ABI acceptance follows from link success.
+
+The root-owned run preserved all67 protected input/control records and the clean pinned MOOSE source commit/tree before and after every command. Peak sampled owned aggregate RSS was450002944 bytes; total owned build/log output was568154 bytes. Wall times were0.104s,4.549s,0.103s. Observed linker threads reached11; the admitted T8 is an8-second termination grace, not a thread cap. No resource stop occurred. The guard compilation emitted1411 dependency path records with0 read errors; these are actual after-compilation associations, not a full SDK identity before compilation.
+
+Guard execution, plugin/host loading, native simulation and physical fields remain unrun. All prior stopped attempts, SDK diagnostics, objects and failed-link outputs remain immutable. This is the source/build author's factual accounting, not independent source review, runtime acceptance, or mechanical/material/LPBF qualification.

@@ -1,0 +1,192 @@
+{
+  "schema": "962-selected-public-record-projection/v1",
+  "original_record": {
+    "relative_path": "work/962-engineering/fixed-shell-generation-cube-execution-prep-001/actual-contract-001.json",
+    "sha256": "549724af21ace36037e974161606eade0e259eb1b3a8e6a7c870d2e2dd593abc",
+    "bytes": 9835
+  },
+  "projection": {
+    "schema": "962-fixed-shell-generation-cube-actual-child/v1",
+    "status": "actual_single_cube_child_external_review_required",
+    "scope": "Literal seven-mm cube shell generation software witness only",
+    "native_execution_authorized": true,
+    "root_and_peer_review_complete": true,
+    "selected_runtime_review_complete": true,
+    "head_execution_authorized": false,
+    "cavity_execution_authorized": false,
+    "engineering_accepted": false,
+    "manufacturing_authorized": false,
+    "output_directory": "work/962-engineering/fixed-shell-generation-cube-001",
+    "actual_child_sha256": null,
+    "native_python": "runtime:python",
+    "runtime": {
+      "python_executable_sha256": "72956ad35cff7691dfed9e04c9593de825ffd5b2fa7e8bc9ae96ce9a1af65621"
+    },
+    "runtime_sha256s": {
+      "gmsh_library": "def0f5c10988a986e5e879b3db9669d8fe016a81e2d994bbaf2b8497c6b8a58a",
+      "gmsh_module": "f4b0935cebde899750293d87a643090e5ea33c9b18d249267f507db68a0e01c3",
+      "python": "72956ad35cff7691dfed9e04c9593de825ffd5b2fa7e8bc9ae96ce9a1af65621"
+    },
+    "external_runtime_hashes": {
+      "runtime:python": "72956ad35cff7691dfed9e04c9593de825ffd5b2fa7e8bc9ae96ce9a1af65621",
+      "runtime:gmsh-library": "def0f5c10988a986e5e879b3db9669d8fe016a81e2d994bbaf2b8497c6b8a58a",
+      "runtime:gmsh-module": "f4b0935cebde899750293d87a643090e5ea33c9b18d249267f507db68a0e01c3"
+    },
+    "expected_runtime": {
+      "python": "3.10.11",
+      "numpy": "2.0.2",
+      "gmsh": "4.15.2",
+      "machine": "arm64"
+    },
+    "numpy_init": "runtime:numpy-init",
+    "numpy_origin_provenance": {
+      "path": "work/962-engineering/direct-sicn-cube-prep-001/held-contract.json",
+      "sha256": "db6def5bf8909387b6ba4be4dc68769360dd396eca55e35b88718b6ff558e5cd",
+      "selection": "Existing registered expected origin only; no module/runtime bodies read or fresh probe.",
+      "fresh_exact_origin_and_module_byte_check_required_before_actual_child": true,
+      "complete_package_import_OS_ABI_or_source_build_closure": false
+    },
+    "reader_sha256": "28b892c1d4ce000e48b10c42b679aed66a72f9edccb6ab6c614790e05f252c63",
+    "runner_sha256": "9733e94c44fc12bf8f1a3382006511981cd78abdb72f709c4630be437404121c",
+    "audit_helper_source": "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-netgen-cube-prep-002/reader.py",
+    "audit_helper_sha256": "97b7e9fc7d17defa84594c50dac1d4e09cd39bb47ef2059e00b6ac07fe8c029b",
+    "options": {
+      "General.NumThreads": 2,
+      "Mesh.MaxNumThreads3D": 2,
+      "Mesh.Algorithm3D": 1,
+      "Mesh.MeshOnlyEmpty": 1,
+      "Mesh.Renumber": 0,
+      "Mesh.ElementOrder": 1,
+      "Mesh.Optimize": 0,
+      "Mesh.OptimizeNetgen": 0,
+      "Mesh.MeshSizeExtendFromBoundary": 0,
+      "Mesh.RandomSeed": 1,
+      "Mesh.Binary": 1,
+      "Mesh.SaveAll": 1,
+      "Mesh.MshFileVersion": 4.1
+    },
+    "declared_operation_counts": {
+      "generate": 1,
+      "createGeometry_dim3": 0,
+      "optimize_Netgen": 0,
+      "rebuildElementCache": 0,
+      "write_mesh": 1,
+      "solve": 0
+    },
+    "automatic_retry": false,
+    "scientific_scope": {
+      "boundary_nodes": 8,
+      "oriented_tagged_surface_triangles": 12,
+      "volume_mm3": 343,
+      "relative_volume_numerical_bookkeeping_bound": 1e-06,
+      "minimum_SICN": 0.1,
+      "dynamic_interior_counts": true,
+      "all_native_metric_lengths_equal_actual_tets": true,
+      "full_tet_incidence_opposite_faces_no_duplicates_or_orphans": true,
+      "boundary_bits_tagged_faces_classifications_exact": true,
+      "saved_reopen_all_arrays_classifications_quality_exact": true,
+      "no_input_MSH_read": true,
+      "no_Netgen_createGeometry_or_solve": true
+    },
+    "controls": {
+      "wall_seconds": 30,
+      "sampled_RSS_stop_bytes": 1073741824,
+      "sampled_output_stop_bytes": 16777216,
+      "threads": 2,
+      "hard_OS_CPU_quota_applied": false,
+      "hard_address_space_limit_applied": false,
+      "environment": {
+        "PATH": "/usr/bin:/bin",
+        "LANG": "C",
+        "PYTHONUTF8": "1",
+        "OMP_NUM_THREADS": "2",
+        "OPENBLAS_NUM_THREADS": "2",
+        "VECLIB_MAXIMUM_THREADS": "2",
+        "PYTHONDONTWRITEBYTECODE": "1"
+      }
+    },
+    "input_hashes": {
+      "work/962-engineering/fixed-shell-generation-cube-prep-001/reader.py": "28b892c1d4ce000e48b10c42b679aed66a72f9edccb6ab6c614790e05f252c63",
+      "work/962-engineering/fixed-shell-generation-cube-prep-001/run_readback.py": "9733e94c44fc12bf8f1a3382006511981cd78abdb72f709c4630be437404121c",
+      "work/962-engineering/fixed-shell-generation-cube-prep-001/test_shell_guards.py": "ef47b2b19764a9fed2599e7c585fc9209ef498b678df39de933aff958f8ed9c1",
+      "work/962-engineering/fixed-shell-generation-cube-prep-001/test_runner_guards.py": "1df00eb9b56be226bc6f50d8f08e3055515dade7abaef5750430bb4d21745ccc",
+      "work/962-engineering/fixed-shell-generation-cube-prep-001/METHOD.md": "cfe1173b21ac2bdb6bf7e837d5503a7a8099b4105edbb13e1d6189b83c0af3b7",
+      "work/962-engineering/fixed-shell-generation-cube-prep-001/runner.diff": "39340c282016683267ad7b087d0096e5064704b06ba45ebb57befd23fe833e93",
+      "work/962-engineering/fixed-shell-generation-cube-prep-001/source-reuse.json": "1cf113c96349a9d6ec01173dd20e5242c6995f8d66793433fa64a7995a2dfb39",
+      "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-netgen-cube-prep-002/reader.py": "97b7e9fc7d17defa84594c50dac1d4e09cd39bb47ef2059e00b6ac07fe8c029b",
+      "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-netgen-cube-prep-002/run_readback.py": "f7165620ac95b9095969b21ae912e87d491019e295a62155abbf33c2eb3b2944",
+      "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-netgen-cube-prep-002/test_runner_guards.py": "da7af8d29cd24a092b5f33bd4ccc402b1e57a8334738a4c917cdd72fe494140b",
+      "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-netgen-cube-prep-002/held-contract.json": "d3abc4ee9cda1d978b02ce7713aee2cd9a391616f67ea3f997f512a48b3ba570",
+      "twins/962-cylinder-head-f0/source/mesh_head.py": "69c8012e99057e384d44d6971d41f0e2cc7197a978120a7c566b0ad5a6477da5",
+      "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-delaunay-prep-001/mesh_assembled_delaunay.py": "a3268687edc90b0149775cf5d80a89df82175cc982bbf5d7184b6ea8935be8a4",
+      "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-netgen-capability-002/capability.json": "1bd1b8da7a059c33b63ca2c9f17331203266956ba63f3d0950cd497619dcfec5",
+      "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-hxt-runtime-preflight-001/preflight.json": "eb6998bb376b1c3e7f214e29b14a26170c3284727bd73e36d6e7ba5b5aa2a0ed",
+      "work/962-engineering/direct-sicn-cube-prep-001/held-contract.json": "db6def5bf8909387b6ba4be4dc68769360dd396eca55e35b88718b6ff558e5cd",
+      "work/962-engineering/fixed-shell-generation-cube-prep-001/held-contract.json": "f835c048247887a31be9686be6007f15eedf2c6ab4843977545187b5d63d2cb1",
+      "work/962-engineering/fixed-shell-generation-cube-root-source-001/review.json": "f08b91ab83bb8551d509136ee968e129a807099a5cd94703c473e72cd94b90ee",
+      "work/962-engineering/fixed-shell-generation-cube-root-source-001/runtime-current.json": "5a9631297a9c2e394272be85ee4ceedb8ea82d4741b1300034f0835d310257ee",
+      "work/962-engineering/fixed-shell-generation-cube-source-peer-001/review.json": "fc4d63f1494d3709b92e5664173519a7ada854a43a87beb11b9411a0daa23b1e",
+      "work/962-engineering/fixed-shell-generation-cube-root-preflight-001/preflight.json": "1af0e0d5aaa13570402546a3d51f9e3fc593c7b2289db6636278a78dce66ef4e",
+      "work/962-engineering/fixed-shell-generation-cube-001/reader.py": "28b892c1d4ce000e48b10c42b679aed66a72f9edccb6ab6c614790e05f252c63",
+      "work/962-engineering/fixed-shell-generation-cube-001/run_readback.py": "9733e94c44fc12bf8f1a3382006511981cd78abdb72f709c4630be437404121c"
+    },
+    "materialization": {
+      "mode": "root copies exact three files only after external actual-child review",
+      "copies_made": false,
+      "output_reserved": true,
+      "actual_digest_external": true
+    },
+    "prepared_tests": {
+      "shell_stdlib_AST": 5,
+      "runner_stdlib_mocked": 14,
+      "executed": false
+    },
+    "required_before_execution": [
+      "External peer review of this exact child digest",
+      "Root materializes three byte-identical files, checks all23 input pins/three runtime identities/NumPy module and fresh resources",
+      "One owned bounded controller/worker pair only; stopped result assessed separately"
+    ],
+    "no_head_cavity_stitch_or_physical_authority": true,
+    "actual_contract_digest_is_external": true,
+    "source_preparation_sha256": "f835c048247887a31be9686be6007f15eedf2c6ab4843977545187b5d63d2cb1",
+    "source_peer_sha256": "fc4d63f1494d3709b92e5664173519a7ada854a43a87beb11b9411a0daa23b1e",
+    "preflight_sha256": "1af0e0d5aaa13570402546a3d51f9e3fc593c7b2289db6636278a78dce66ef4e",
+    "numpy_init_sha256": "c09e25b58f6b2f8e2cb3c158168f902d447f8171e5ea6513c0aca41ecbda7c2b",
+    "future_materializations": {
+      "work/962-engineering/fixed-shell-generation-cube-001/reader.py": {
+        "source": "work/962-engineering/fixed-shell-generation-cube-prep-001/reader.py",
+        "sha256": "28b892c1d4ce000e48b10c42b679aed66a72f9edccb6ab6c614790e05f252c63",
+        "exists_before_materialization": false
+      },
+      "work/962-engineering/fixed-shell-generation-cube-001/run_readback.py": {
+        "source": "work/962-engineering/fixed-shell-generation-cube-prep-001/run_readback.py",
+        "sha256": "9733e94c44fc12bf8f1a3382006511981cd78abdb72f709c4630be437404121c",
+        "exists_before_materialization": false
+      }
+    }
+  },
+  "omitted_field_paths": [],
+  "path_role_rules": [
+    {
+      "role": "runtime:python",
+      "meaning": "selected Python executable locator"
+    },
+    {
+      "role": "runtime:gmsh-module",
+      "meaning": "selected Gmsh Python wrapper locator"
+    },
+    {
+      "role": "runtime:gmsh-library",
+      "meaning": "selected native Gmsh library locator"
+    },
+    {
+      "role": "runtime:numpy-init",
+      "meaning": "selected NumPy __init__.py locator"
+    },
+    {
+      "role": "project-relative",
+      "meaning": "the exact private project-root prefix is removed; relative paths and all digest values remain"
+    }
+  ],
+  "derived_observations": null
+}

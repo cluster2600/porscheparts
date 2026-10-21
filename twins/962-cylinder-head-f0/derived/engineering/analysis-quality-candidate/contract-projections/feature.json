@@ -1,0 +1,132 @@
+{
+  "schema": "962-original-bionic-feature-continuity/v1",
+  "status": "frozen_before_one_scoped_float64_opening_and_exact_patch_audit",
+  "scope": "Numerical continuity relative to the original assumed bionic source only; no complete OEM feature map, conformal fluid partition, CHT, tetrahedral or strength admission.",
+  "original": "work/962-engineering/analysis-envelope-025-003/exact-input.bin",
+  "candidate": "work/962-engineering/quality-patch-head-001/native/quality-candidate.bin",
+  "retained_inspection": "twins/962-cylinder-head-f0/derived/family/bore-95-report.json",
+  "fluid_meshes": {
+    "coolant": "work/962-family/bore-95-run-001/inspected-bound-002/coolant.stl",
+    "dry-passages": "work/962-family/bore-95-run-001/inspected-bound-002/dry-passages.stl"
+  },
+  "opening_points_mm": [
+    [
+      -19,
+      -28.16,
+      58
+    ],
+    [
+      -19,
+      28.16,
+      58
+    ],
+    [
+      19,
+      -28.16,
+      58
+    ],
+    [
+      19,
+      28.16,
+      58
+    ],
+    [
+      0,
+      0,
+      58
+    ],
+    [
+      38,
+      0,
+      58
+    ],
+    [
+      0,
+      -74,
+      43
+    ],
+    [
+      0,
+      74,
+      43
+    ]
+  ],
+  "input_hashes": {
+    "twins/962-cylinder-head-f0/source/analysis-cgal/quality_patch.cpp": "6a56acf7a1d7a4882251044f9331ff0e4590042a4d1d15f0b4599e0ab241d9ee",
+    "twins/962-cylinder-head-f0/source/audit_quality_patch.py": "3532a172b2bce3a8ead7c8b11b712a2b55891377726fa1b6d847e84f0eed3912",
+    "twins/962-cylinder-head-f0/source/audit_quality_head.py": "a298270aa00b1536314a07629b935500c68883ca0d3bd1a179d71b49a8e73991",
+    "twins/962-cylinder-head-f0/source/run_head_quality_patch.py": "762b1260ef77e0c7833fb360410c89462d4aa319ef15d0070ff066f9e8c44689",
+    "twins/962-cylinder-head-f0/engineering/analysis-quality-patch-contract.json": "0b22eb77560f4e48f75aede82b21a4b423de969b727dbe6b2b13b2cb9ddec50d",
+    "twins/962-cylinder-head-f0/source/mesh_head.py": "69c8012e99057e384d44d6971d41f0e2cc7197a978120a7c566b0ad5a6477da5",
+    "tests/test_962_quality_patch.py": "e4087266a9f22247fd8e608d968b138e8878f431606c9dbd8c0121a40e8fcc12",
+    "work/962-family/bore-95-run-001/inspected-bound-002/solid.stl": "ba7a0e28dade659550705e9737177c64c7f6fecd8d86d01e31732d7e739cd906",
+    "work/962-family/bore-95-run-001/inspected-bound-002/coolant.stl": "457f4f64b8ea89ff6bee67857fa2381d4ba5c7fee8a17d255bb18c4a68b33bb2",
+    "work/962-family/bore-95-run-001/inspected-bound-002/dry-passages.stl": "60e35b06c3af912ff44d55f707064d5c54bea386b47313208ac16e9199a60873",
+    "work/962-engineering/analysis-envelope-025-003/exact-input.bin": "894ece6e63d99684fd7c8710caf73132cd73731ac8bc667548c21c85962d4c95",
+    "work/962-engineering/cgal-quality-patch-runtime-001/quality-patch": "9310411d93e63c51b0e763d72e25403b1bc355c938b5018b9359afda075547c1",
+    "work/962-engineering/cgal-quality-patch-runtime-001/compile-source.cpp": "6a56acf7a1d7a4882251044f9331ff0e4590042a4d1d15f0b4599e0ab241d9ee",
+    "work/962-engineering/cgal-quality-patch-runtime-001/compile-receipt.json": "7596eecbc245af90aa769f18d6f65c63ff125420ea816e9c3f1011497bb53995",
+    "work/962-engineering/quality-patch-fixtures-001/frozen-contract.json": "0b22eb77560f4e48f75aede82b21a4b423de969b727dbe6b2b13b2cb9ddec50d",
+    "work/962-engineering/quality-patch-fixtures-001/fixture-assessment.json": "3adbcf66b2bfe8029b2fc16abe02131c15a9f42167b50f71f72e495e665422d8",
+    "work/962-engineering/quality-patch-fixtures-001/run_fixtures.py": "424302ba63f2acfc69db57af5a49def81a5e65a0c4dac6b21bce0af4711ccc09",
+    "work/962-engineering/quality-patch-fixtures-001/original-indexed-identity.json": "c0b6744764da5b3a451029ecbb28eb9f58ad600cd2ca42174b280266589a733a",
+    "work/962-engineering/quality-patch-fixtures-001/verify_original_indexed_input.py": "74f86054d266874466dd7683118a4302cc5ce7e271cff37883521919116566c4",
+    "work/962-engineering/quality-patch-fixtures-001/movable-sliver-result/report.json": "6da26f69f6cf0af367b318f3c9e737e9531c8d8319ec383883eaa40b9d5471fd",
+    "work/962-engineering/quality-patch-fixtures-001/movable-sliver-result/proposed-surface.bin": "5a6af3a333b700be6c5216d41e1f872058b78b6ca1a6ad8c8ea304c8fb8f7191",
+    "work/962-engineering/quality-patch-fixtures-001/constrained-thin-box-result/report.json": "1225956d85034991c3a40f03d6338f3eb4962ee3723673dbe6827d3f24d400c9",
+    "work/962-engineering/quality-patch-fixtures-001/constrained-thin-box-result/proposed-surface.bin": "4c67510e577113cfa3936baf85592411df7c9bddc9dade47d14ef01debe8369e",
+    "work/962-engineering/quality-patch-fixtures-001/movable-sliver-execution.json": "45ff773b98bd59111cf3e31af2164620b46ae52575b63ca91ffdb331ff566cf5",
+    "work/962-engineering/quality-patch-fixtures-001/constrained-thin-box-execution.json": "d735df30453b6638dc0259c90e7ec1c87d3966438ae00c112914c82a59002e00",
+    "work/962-engineering/quality-patch-fixtures-001/existing-output-refusal-execution.json": "7a17ed2e5336b98dac11de348dfd1e0e446ff7d29aee953a14469c9976876f48",
+    "twins/962-cylinder-head-f0/source/audit_quality_features.py": "4e6eb1358c1687fabe78ca95958fb9e4c1724537abe2718414bfe46834f4ceb4",
+    "tests/test_962_quality_features.py": "bb0ce9edc8e5d00e46e7dc1806e8d36452f07f01133417a41121bfbc652805d2",
+    "twins/962-cylinder-head-f0/source/prepare_head_analysis.py": "cda8f7155a8c22ab66898f07d1ad452ba5384ad7f75a1f012606685cd8a12dc3",
+    "twins/962-cylinder-head-f0/derived/family/bore-95-report.json": "5dc2c44ec6978cee9ea9bbd80c392227b68c3e13c0915e7f20e562cb489c7efb",
+    "twins/962-cylinder-head-f0/engineering/analysis-quality-head-contract.json": "07c3c8705ea7d5051fdf0317cd0a93ce08a951b347236ae55256360b7115778a",
+    "twins/962-cylinder-head-f0/source/family/HeadFamilyStudy.cs": "21212bbe60d78c495d705441fe5ed1599aa9a5b244dfadad4d2e4727f71d23fe",
+    "twins/962-cylinder-head-f0/source/family/HeadFamilyRunner.cs": "9abc2a2ae0ad3e6c476c033d5c68d11c712db81590af8d9ed40cca73a5964c50",
+    "twins/962-cylinder-head-f0/source/family/configs/bore-95.json": "2d1b4eafb6e331436cd6b29ce47092090a449c7f3991ec7e6208a980ca589efa",
+    "work/962-engineering/quality-patch-head-001/native/quality-candidate.bin": "7f0d96988684f7d36dab8f65c5b63b1919c2c2121768cf9caec466867a5c2b43",
+    "work/962-engineering/quality-patch-head-001/independent-array-assessment.json": "74541db59f9e321569b244dda68d22d539201693e7a4233e402e29294d6e235a",
+    "work/962-engineering/quality-patch-head-001/final-receipt.json": "2d6bef1a212bd85d9eebd1d266bff1aa1878c9800efc432eb8c219fa6df29295",
+    "work/962-engineering/quality-patch-topology-002/receipt.json": "ff19c18ca37407d21eb841d28bed61f2504ea968b75999ef92ba4946aed7c7ca",
+    "work/962-engineering/quality-patch-topology-002/worker-report.json": "c54d8b50f84286fb276f01b6fa6bae79d93b84e7330b08eedd71cab93613c3dd"
+  },
+  "interpreter_sha256": "72956ad35cff7691dfed9e04c9593de825ffd5b2fa7e8bc9ae96ce9a1af65621",
+  "runtime": {
+    "vtk_version": "9.7.1",
+    "module_hashes": {
+      "vtkmodules.vtkCommonCore": "3d5c9da311af37a8bb44d64d8aaf544e06a1457dc6770a878c8a35ababe97de9",
+      "vtkmodules.vtkCommonDataModel": "32fde0161b09947d8bf5a039c60547c64f955d96443453102f9bbc8d8dcfe89e",
+      "vtkmodules.vtkFiltersCore": "63886069fd4761a325c5d797bf26e4e53661dd106f59a605d5f4a0487ad8d613",
+      "vtkmodules.util.numpy_support": "2a17195f420dad039e7ec744a6175819c2fcb0fa4e0996eb0b4cd0c3569eb11d"
+    }
+  },
+  "controls": {
+    "exact_incidence_source_bad_triangle_bound": "2/29",
+    "bad_faces": 744,
+    "seed_vertices": 1284,
+    "incident_faces": 4704,
+    "edge_connected_patch_components": 228,
+    "boundary_coordinate_tolerance_mm": null,
+    "coordinate_welding": false,
+    "complete_original_and_candidate_float64_VTK_roundtrip": true,
+    "opening_test": "All eight retained points strictly positive signed distance from original and candidate metal; zero/nonfinite rejects.",
+    "patch_gate": "Each original edge-connected patch and its same-index candidate faces remain connected oriented edge/vertex manifold surfaces with identical Euler, boundary-loop/count signature and exact oriented boundary indices/coordinates. Count disks explicitly, do not require a fabricated genus.",
+    "distance_fixture": "Unit outward tetrahedron: inside centroid -0.25/sqrt3; outside(2,2,2) +5/sqrt3; fixture-only absolute error bound1e-12mm.",
+    "maximum_workers": 1,
+    "OMP_OpenBLAS_MKL_threads": 2,
+    "VTK_global_maximum_threads": 2,
+    "hard_wall_seconds": 120,
+    "hard_OS_CPU_or_memory_quota_claimed": false
+  },
+  "qualification": {
+    "complete_semantic_feature_map": false,
+    "feature_channel_BCC_review_complete": false,
+    "candidate_metal_wall_clearance_qualified": false,
+    "conformal_metal_fluid_interface_validated": false,
+    "solver_admission_established": false,
+    "engineering_accepted": false,
+    "manufacturing_authorized": false
+  }
+}

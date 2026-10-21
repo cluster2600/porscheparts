@@ -1,0 +1,21 @@
+{
+  "schema": "962-toy-deadline-fixture-root-correction-decision/v2",
+  "decision": "AUTHORIZE_TWO_EXACT_FIXTURE_NAMESPACE_CORRECTIONS_SOURCE_ONLY",
+  "prior_decision": {
+    "path": "work/962-engineering/head-star-current24-qfnra-toy-deadline-correction-root-source-decision-001/decision.json",
+    "sha256": "35c7230e042aafa84d719cdf34df773046c632f37eb8da11403740487a3ee177",
+    "bytes": 1720
+  },
+  "additional_static_finding": "Root read the complete exchange/close source and confirmed exchange line217 references selectors.EVENT_WRITE. The isolated ns lacks selectors; this is statically identified, not an observed second execution failure.",
+  "authorized_changes": [
+    "Add dict to the existing isolated permitted builtin allowlist.",
+    "Add only a fake selectors facade containing EVENT_WRITE=object() to the isolated namespace. It is a sentinel for the existing fake register callable, with no real selectors import, selector, pipe or event operation."
+  ],
+  "unchanged_requirements": "All four tests, assertions, fake clock/process behavior and transport helper bytes remain exact. Record both literal deltas/inverse and global dependency coverage for exercised model/close paths; explicitly exclude unexercised bootstrap dependencies. Preserve failed operation and original sources. No intentionally incomplete dict-only successor is needed.",
+  "source_preparation_authorized": true,
+  "execution_authorized": false,
+  "automatic_retry": false,
+  "solver_authorized": false,
+  "native_authorized": false,
+  "physical_acceptance": false
+}

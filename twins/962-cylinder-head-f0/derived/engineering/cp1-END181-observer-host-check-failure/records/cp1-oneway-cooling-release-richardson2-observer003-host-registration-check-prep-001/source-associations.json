@@ -1,0 +1,143 @@
+{
+  "schema": "962-observer003-host-check-pinned-source-associations/v1",
+  "public_commit": "7c06bdcefd02f9f31f4508839f21f410561309a4",
+  "public_tree": "4106bbd47b9387bda37cff0d679735c57c5391bc",
+  "records": [
+    {
+      "source": {
+        "path": "work/962-engineering/moose-public-source-001/moose/framework/src/base/MooseApp.C",
+        "sha256": "33c8983522fac6c99cb0b8a5051235f59dd2b4126c5ef3038d2dcb0c21463542",
+        "bytes": 129325
+      },
+      "line_ranges": [
+        [
+          371,
+          374
+        ],
+        [
+          393,
+          396
+        ],
+        [
+          1563,
+          1603
+        ],
+        [
+          1643,
+          1666
+        ],
+        [
+          2070,
+          2102
+        ],
+        [
+          2644,
+          2663
+        ],
+        [
+          2672,
+          2804
+        ]
+      ],
+      "association": "CLI check/list flags; full setup actions and constructed-type framing; check-input skips executioner init/execute; exact all-registration loader/entry signature"
+    },
+    {
+      "source": {
+        "path": "work/962-engineering/moose-public-source-001/moose/framework/src/actions/DynamicObjectRegistrationAction.C",
+        "sha256": "f8cfe6aadb542bfd180f051a3697adbe3f304cc1705973b487792ad305bea1fc",
+        "bytes": 2692
+      },
+      "line_ranges": [
+        [
+          19,
+          66
+        ]
+      ],
+      "association": "Problem keys, no object_names restriction, registration in action constructor before object parameter parsing"
+    },
+    {
+      "source": {
+        "path": "work/962-engineering/moose-public-source-001/moose/framework/src/actions/AddOutputAction.C",
+        "sha256": "90b51438ac942d851002ecf989587b62c870c6aa619376d0e8bf1d369ca0ab1b",
+        "bytes": 1362
+      },
+      "line_ranges": [
+        [
+          41,
+          45
+        ]
+      ],
+      "association": "Output action dispatch"
+    },
+    {
+      "source": {
+        "path": "work/962-engineering/moose-public-source-001/moose/framework/src/problems/FEProblemBase.C",
+        "sha256": "454e25cca26cf2b3111a1819248ea0e0bd6e4d0461912a6dee5790182e01ff48",
+        "bytes": 363835
+      },
+      "line_ranges": [
+        [
+          6880,
+          6890
+        ],
+        [
+          9645,
+          9697
+        ]
+      ],
+      "association": "Input setup may initialize the problem; output Factory creation"
+    },
+    {
+      "source": {
+        "path": "work/962-engineering/moose-public-source-001/moose/framework/src/base/Factory.C",
+        "sha256": "7bd10f8d777817dc1ab4af1744a51b86f4e40d5a2ad63d8e2c4154e99683c7ef",
+        "bytes": 12883
+      },
+      "line_ranges": [
+        [
+          88,
+          124
+        ],
+        [
+          269,
+          274
+        ],
+        [
+          336,
+          340
+        ]
+      ],
+      "association": "Factory construction and constructed-type inventory"
+    },
+    {
+      "source": {
+        "path": "work/962-engineering/moose-public-source-001/moose/framework/src/outputs/Output.C",
+        "sha256": "4611aede36aba9a43eaf43b9480f9e5ca315bdcbaaff727ea31af2f327580b92",
+        "bytes": 13993
+      },
+      "line_ranges": [
+        [
+          229,
+          280
+        ]
+      ],
+      "association": "Callback dispatch guarded by requested execution flag/interval"
+    },
+    {
+      "source": {
+        "path": "work/962-engineering/moose-public-source-001/moose/framework/src/executioners/Transient.C",
+        "sha256": "a9238a5bd8368ca3873d5f863e5beca53c6d9309c81b043026f875b4203a4543",
+        "bytes": 1928
+      },
+      "line_ranges": [
+        [
+          32,
+          41
+        ]
+      ],
+      "association": "Transient constructor separate from init/initialSetup"
+    }
+  ],
+  "public_source_installed_binary_ABI_equivalence_proven": false,
+  "primary_source_runtime_semantics_are_hypotheses_to_check_with_saved_host_result": true
+}

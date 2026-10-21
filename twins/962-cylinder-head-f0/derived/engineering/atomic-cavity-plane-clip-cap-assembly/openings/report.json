@@ -1,0 +1,143 @@
+{
+  "status": "eight_retained_opening_subgate_passed_only",
+  "opening_subgate_passed": true,
+  "qualification": {
+    "complete_semantic_feature_map": false,
+    "feature_channel_BCC_review_complete": false,
+    "candidate_metal_wall_clearance_qualified": false,
+    "conformal_metal_fluid_interface_validated": false,
+    "solver_admission_established": false,
+    "engineering_accepted": false,
+    "manufacturing_authorized": false
+  },
+  "source_sha256": "c8546f7363deb8f0511b87b1ef8d9fc03d48d95016eab30d78f558047a49d506",
+  "contract_sha256": "980907d95f9e5eaa0452228a16b6887275962f3b155dd9f4cccce147923c0078",
+  "runtime": {
+    "vtk_version": "9.7.1",
+    "module_hashes": {
+      "vtkmodules.util.numpy_support": "2a17195f420dad039e7ec744a6175819c2fcb0fa4e0996eb0b4cd0c3569eb11d",
+      "vtkmodules.vtkCommonCore": "3d5c9da311af37a8bb44d64d8aaf544e06a1457dc6770a878c8a35ababe97de9",
+      "vtkmodules.vtkCommonDataModel": "32fde0161b09947d8bf5a039c60547c64f955d96443453102f9bbc8d8dcfe89e",
+      "vtkmodules.vtkFiltersCore": "63886069fd4761a325c5d797bf26e4e53661dd106f59a605d5f4a0487ad8d613"
+    }
+  },
+  "opening_points_mm": [
+    [
+      -19,
+      -28.16,
+      58
+    ],
+    [
+      -19,
+      28.16,
+      58
+    ],
+    [
+      19,
+      -28.16,
+      58
+    ],
+    [
+      19,
+      28.16,
+      58
+    ],
+    [
+      0,
+      0,
+      58
+    ],
+    [
+      38,
+      0,
+      58
+    ],
+    [
+      0,
+      -74,
+      43
+    ],
+    [
+      0,
+      74,
+      43
+    ]
+  ],
+  "surfaces": [
+    {
+      "surface": "original",
+      "vertices": 902145,
+      "triangles": 1804706,
+      "signed_distances_mm": [
+        3.4754207005011772,
+        3.4754207005011772,
+        3.4754207005011772,
+        3.4754207005011772,
+        5.9885781541088345,
+        4.985823952155206,
+        13.61514587502377,
+        13.6151461356278
+      ],
+      "all_eight_strictly_outside_metal": true,
+      "exact_indexed_float64_roundtrip": true,
+      "array_sha256": [
+        "f6aee40320646d34212929551866b111093ab25d81d78d68e48b95e1f8f78ad7",
+        "9318ffffd6b46c1daa3f35169071eb3ad815171848fc3d48778b8373a2ea5341"
+      ],
+      "source_sha256": "894ece6e63d99684fd7c8710caf73132cd73731ac8bc667548c21c85962d4c95"
+    },
+    {
+      "surface": "candidate",
+      "vertices": 871731,
+      "triangles": 1743878,
+      "signed_distances_mm": [
+        3.4754207005011772,
+        3.4754207005011772,
+        3.4754207005011772,
+        3.4754207005011772,
+        5.9885781541088345,
+        4.985823952155206,
+        13.61514587502377,
+        13.6151461356278
+      ],
+      "all_eight_strictly_outside_metal": true,
+      "exact_indexed_float64_roundtrip": true,
+      "array_sha256": [
+        "e0009dc6c5481cb77383b91a6e72ee4f223f207917b345e74f0b5b8e65ca6786",
+        "152dc93bc9d5ea98aa2ec88271b0385471c466a29259c0f874ccfcf81c5ea9bd"
+      ],
+      "source_sha256": "9d62eac6e2cd7b6a9ecb4a7ea5b632685820369b5c4ede379acc34238f50d7b4"
+    }
+  ],
+  "tetra_fixture": {
+    "observed": [
+      -0.1443375672974064,
+      2.886751345948129
+    ],
+    "expected": [
+      -0.14433756729740646,
+      2.886751345948129
+    ],
+    "absolute_error_bound_mm": 1e-12
+  },
+  "prior_retained_unit_tetra_fixture": {
+    "expected": [
+      -0.14433756729740646,
+      2.886751345948129
+    ],
+    "fixture_only_absolute_error_bound_mm": 1e-12,
+    "observed": [
+      -0.1443375672974064,
+      2.886751345948129
+    ]
+  },
+  "vtk_thread_controls": {
+    "global_maximum": 2,
+    "SMP_estimate": 1,
+    "hard_CPU_quota": false
+  },
+  "no_equal_surface_count_assumption": true,
+  "candidate_metal_fluid_wall_clearance_proved": false,
+  "bound_inputs_unchanged": true,
+  "worker_wall_seconds": 8.421508458908647
+}

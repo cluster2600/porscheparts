@@ -1,0 +1,153 @@
+{
+  "schema": "962-native003-operation-source-reuse/v1",
+  "operation": "stage",
+  "source_only": true,
+  "author": "defect_gate_refresh",
+  "authorship_lineage": "I authored the accepted native003 helpers and earlier bd86647 donor controls. These new operation owners/wrappers require another agent source/control review and a separate root decision.",
+  "exact_reused_top_level_definitions": [
+    {
+      "name": "need",
+      "donor": {
+        "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native-measurement-prep-003/run_native_capture.py",
+        "sha256": "7190f22f4d17869f6524743bc0de6f7eebc03393c17a4ed57984f282d0036a80",
+        "bytes": 22990
+      },
+      "text_exact": true,
+      "AST_exact": true
+    },
+    {
+      "name": "rec",
+      "donor": {
+        "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native-measurement-prep-003/run_root_once.py",
+        "sha256": "6d91abc5bfb8970908d41406448e9091291736ab9bb910a72b58f0243e7d754f",
+        "bytes": 18849
+      },
+      "text_exact": true,
+      "AST_exact": true
+    },
+    {
+      "name": "record_controller_stop",
+      "donor": {
+        "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-row-first-mock-guards-execution-prep-001/run_root_once.py",
+        "sha256": "bd86647db9f11bcf098a034094a722fa0972c9f3fb393fe6684c915bfffc71e3",
+        "bytes": 15061
+      },
+      "text_exact": true,
+      "AST_exact": true
+    },
+    {
+      "name": "group_exists",
+      "donor": {
+        "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-row-first-mock-guards-execution-prep-001/run_root_once.py",
+        "sha256": "bd86647db9f11bcf098a034094a722fa0972c9f3fb393fe6684c915bfffc71e3",
+        "bytes": 15061
+      },
+      "text_exact": true,
+      "AST_exact": true
+    }
+  ],
+  "top_level_definitions": [
+    "need",
+    "rec",
+    "record_controller_stop",
+    "group_exists",
+    "selected",
+    "identities",
+    "inclusive_bytes",
+    "event_record",
+    "normal_helper_receipt",
+    "main"
+  ],
+  "new_or_changed_definitions": [
+    "selected",
+    "identities",
+    "inclusive_bytes",
+    "event_record",
+    "normal_helper_receipt",
+    "main"
+  ],
+  "new_same_PID_wrapper": true,
+  "main_and_kqueue_ownership_logic_new": true,
+  "no_nine_helper_reuse_claim": true,
+  "donor": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-row-first-mock-guards-execution-prep-001/run_root_once.py",
+    "sha256": "bd86647db9f11bcf098a034094a722fa0972c9f3fb393fe6684c915bfffc71e3",
+    "bytes": 15061
+  },
+  "source": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native003-stage-operation-controls-prep-001/run_operation_once.py",
+    "sha256": "ac6603e0d996f691cd7bd26fee418cf625831e3bb266613bf58af44e09a14d62",
+    "bytes": 18167
+  },
+  "wrapper": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native003-stage-operation-controls-prep-001/stopped_exec_wrapper.py",
+    "sha256": "3b65720d054fcfeb99fd1e26516726c34841d566853c9c461acd17307ca42aed",
+    "bytes": 972
+  },
+  "sibling": {
+    "direction": "freshness to complete stage bytes",
+    "owner_replacement_groups": [
+      {
+        "old": "finite stage owner",
+        "new": "finite freshness owner",
+        "occurrences": 1
+      },
+      {
+        "old": "native003-stage-operation-controls-prep-001",
+        "new": "native003-freshness-operation-controls-prep-001",
+        "occurrences": 1
+      },
+      {
+        "old": "native003-stage-operation-root-execution-001",
+        "new": "native003-freshness-operation-root-execution-001",
+        "occurrences": 1
+      },
+      {
+        "old": "\nH=E/'cp1-oneway-cooling-release-richardson2-observer004-native003-four-input-staging-root-execution-001'",
+        "new": "\nH=E/'cp1-oneway-cooling-release-richardson2-observer004-native003-freshness-root-execution-001'",
+        "occurrences": 1
+      },
+      {
+        "old": "OP='stage'",
+        "new": "OP='freshness'",
+        "occurrences": 1
+      },
+      {
+        "old": "HELPER_REPORT='staging-receipt.json'",
+        "new": "HELPER_REPORT='fresh-preflight.json'",
+        "occurrences": 1
+      }
+    ],
+    "wrapper_replacement_groups": [
+      {
+        "old": "stage wrapper",
+        "new": "freshness wrapper",
+        "occurrences": 1
+      },
+      {
+        "old": "/stage_four_inputs.py",
+        "new": "/capture_freshness.py",
+        "occurrences": 1
+      }
+    ],
+    "full_inverse_exact": true,
+    "all_ten_function_text_and_AST_equal": true
+  },
+  "source_authoring_event": {
+    "action": "Static sibling source writer only",
+    "result": "AssertionError before successor source writes",
+    "reason": "Unanchored H=E/ literal also occurred inside STAGE_H=E/; no target source or helper was imported, compiled or executed.",
+    "preserved_state": "An empty freshness source directory existed; the two stage drafts were unchanged.",
+    "correction": "Use one whole-line newline-prefixed H assignment replacement; six exact owner substitutions and two exact wrapper substitutions reverse to the complete sibling bytes."
+  },
+  "static_checks": {
+    "AST_parse_only": true,
+    "owner_Popen_sites": 1,
+    "owner_Popen_poll_wait_signal_methods": [],
+    "wrapper_execv_sites": 1,
+    "wrapper_fork_or_Popen_sites": 0,
+    "target_source_imported": false,
+    "target_source_compiled": false,
+    "target_source_executed": false
+  }
+}

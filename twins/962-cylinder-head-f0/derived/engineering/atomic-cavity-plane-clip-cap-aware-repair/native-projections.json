@@ -1,0 +1,1784 @@
+{
+  "measured_peak_RSS_actual_CPU_usage_or_independent_PID_absence": false,
+  "omissions": [
+    "Invocation commands, job entrypoints/arguments, host mount sources, container and ownership identifiers, numeric PIDs, metadata timestamps, raw control stdout/stderr.",
+    "Complete original input and artifact maps are in original-records.json; no complete public native-output-byte closure is claimed."
+  ],
+  "phases": {
+    "compile-source002": {
+      "contract": {
+        "automatic_retry": false,
+        "image_id": "sha256:57c6b17ed0bd093a61a3d3cecb7563e912caeb3832fd59e8cec2d4d9d4d1e2f8",
+        "jobs": [
+          {
+            "expected_returncodes": [
+              0
+            ],
+            "label": "compile-cap-aware",
+            "read_only_mounts": {
+              "work/962-engineering/atomic-cavity-plane-clip-cap-aware-repair-prep-002/atomic_policy.hpp": "/src/atomic_policy.hpp",
+              "work/962-engineering/atomic-cavity-plane-clip-cap-aware-repair-prep-002/cap_aware_002.cpp": "/src/cap_aware.cpp",
+              "work/962-engineering/atomic-cavity-plane-clip-cap-aware-repair-prep-002/head_binding.hpp": "/src/head_binding.hpp",
+              "work/962-engineering/atomic-cavity-plane-clip-cap-aware-repair-prep-002/quality_patch.cpp": "/src/quality_patch.cpp"
+            }
+          }
+        ],
+        "limits": {
+          "cpus": 2,
+          "hard_wall_seconds_each": 300,
+          "memory_bytes": 4294967296,
+          "network": "none",
+          "swap_bytes": 0,
+          "tmpfs_bytes": 1073741824
+        },
+        "phase": "compile",
+        "preparation": {
+          "path": "work/962-engineering/atomic-cavity-plane-clip-cap-aware-repair-prep-002/held-preparation-002.json",
+          "sha256": "906a20b00a2002f883e7f76840066a839b98c0d9ffa56e0550142b5636328b1b"
+        },
+        "root_and_peer_review_complete": true,
+        "root_authorized": true,
+        "schema": "962-cap-aware-compile-child/v1",
+        "scope": "One source002 compile only. Separate literal fixture and head children required; no physics or manufacturing admission."
+      },
+      "executions": {
+        "compile-cap-aware.execution.json": {
+          "attach_process_started": true,
+          "attach_reaped": true,
+          "attach_returncode": 0,
+          "cleanup_errors": [],
+          "control_calls": [
+            {
+              "operation": "create",
+              "returncode": 0
+            },
+            {
+              "operation": "inspect",
+              "returncode": 0
+            },
+            {
+              "operation": "inspect",
+              "returncode": 0
+            },
+            {
+              "operation": "inspect",
+              "returncode": 0
+            },
+            {
+              "operation": "remove_stopped_owned",
+              "returncode": 0
+            }
+          ],
+          "error": null,
+          "final_metadata": {
+            "controls": {
+              "Memory": 4294967296,
+              "MemorySwap": 4294967296,
+              "NanoCpus": 2000000000,
+              "NetworkMode": "none",
+              "ReadonlyRootfs": true,
+              "Tmpfs": {
+                "/tmp": "rw,size=1073741824"
+              }
+            },
+            "image_id": "sha256:57c6b17ed0bd093a61a3d3cecb7563e912caeb3832fd59e8cec2d4d9d4d1e2f8",
+            "mounts": [
+              {
+                "Destination": "/out",
+                "RW": true,
+                "Type": "bind"
+              },
+              {
+                "Destination": "/src/atomic_policy.hpp",
+                "RW": false,
+                "Type": "bind"
+              },
+              {
+                "Destination": "/src/cap_aware.cpp",
+                "RW": false,
+                "Type": "bind"
+              },
+              {
+                "Destination": "/src/head_binding.hpp",
+                "RW": false,
+                "Type": "bind"
+              },
+              {
+                "Destination": "/src/quality_patch.cpp",
+                "RW": false,
+                "Type": "bind"
+              }
+            ],
+            "process_identity_is_zero": true,
+            "state": {
+              "Dead": false,
+              "Error": "",
+              "ExitCode": 0,
+              "OOMKilled": false,
+              "Paused": false,
+              "Restarting": false,
+              "Running": false,
+              "Status": "exited"
+            }
+          },
+          "initial_metadata": {
+            "controls": {
+              "Memory": 4294967296,
+              "MemorySwap": 4294967296,
+              "NanoCpus": 2000000000,
+              "NetworkMode": "none",
+              "ReadonlyRootfs": true,
+              "Tmpfs": {
+                "/tmp": "rw,size=1073741824"
+              }
+            },
+            "image_id": "sha256:57c6b17ed0bd093a61a3d3cecb7563e912caeb3832fd59e8cec2d4d9d4d1e2f8",
+            "mounts": [
+              {
+                "Destination": "/out",
+                "RW": true,
+                "Type": "bind"
+              },
+              {
+                "Destination": "/src/atomic_policy.hpp",
+                "RW": false,
+                "Type": "bind"
+              },
+              {
+                "Destination": "/src/cap_aware.cpp",
+                "RW": false,
+                "Type": "bind"
+              },
+              {
+                "Destination": "/src/head_binding.hpp",
+                "RW": false,
+                "Type": "bind"
+              },
+              {
+                "Destination": "/src/quality_patch.cpp",
+                "RW": false,
+                "Type": "bind"
+              }
+            ],
+            "process_identity_is_zero": true,
+            "state": {
+              "Dead": false,
+              "Error": "",
+              "ExitCode": 0,
+              "OOMKilled": false,
+              "Paused": false,
+              "Restarting": false,
+              "Running": false,
+              "Status": "created"
+            }
+          },
+          "label": "compile-cap-aware",
+          "native_log_sha256": "7c0b4f0edc4dac514f7fcfbbd11e955bfbecde884e4b3ffa716c8f73ca06dbbb",
+          "owned_container_removed": true,
+          "wall_seconds": 98.0218453751877
+        }
+      },
+      "phase_summary": {
+        "all_inputs_unchanged": true,
+        "automatic_retry": false,
+        "cleanup_source_sha256": "b214e1cece8dbf66be6071199cbdf1a8e22a2a59328888011de17492f923c86b",
+        "controller_sha256": "c2191896dba65d38cf41222f51dcab29c7896624481d1beb4b1b097c0546a440",
+        "error": null,
+        "execution_contract_sha256": "8aaa56420d6ec57a37b068f02ffd28b98bc44737bd238ea87686a78949c0b593",
+        "head_surface_admitted": false,
+        "jobs": [
+          {
+            "execution_passed": true,
+            "label": "compile-cap-aware",
+            "previous_artifacts_unchanged": true,
+            "returncode": 0
+          }
+        ],
+        "manufacturing_authorized": false,
+        "metadata_source_sha256": "a88477c47d406cea3761c324e1f6eb82dcb1c2b962698d7f328261c6cef2929b",
+        "numerical_fixture_acceptance_established": false,
+        "phase": "compile",
+        "procedural_phase_finished": true,
+        "schema": "962-endpoint003-bounded-phase/v1",
+        "solver_admission_established": false
+      }
+    },
+    "compile-source003": {
+      "contract": {
+        "automatic_retry": false,
+        "image_id": "sha256:57c6b17ed0bd093a61a3d3cecb7563e912caeb3832fd59e8cec2d4d9d4d1e2f8",
+        "jobs": [
+          {
+            "expected_returncodes": [
+              0
+            ],
+            "label": "compile-cap-aware003",
+            "read_only_mounts": {
+              "work/962-engineering/atomic-cavity-plane-clip-cap-aware-repair-prep-002/atomic_policy.hpp": "/src/atomic_policy.hpp",
+              "work/962-engineering/atomic-cavity-plane-clip-cap-aware-repair-prep-002/head_binding.hpp": "/src/head_binding.hpp",
+              "work/962-engineering/atomic-cavity-plane-clip-cap-aware-repair-prep-002/quality_patch.cpp": "/src/quality_patch.cpp",
+              "work/962-engineering/atomic-cavity-plane-clip-cap-aware-repair-prep-003/cap_aware_003.cpp": "/src/cap_aware.cpp"
+            }
+          }
+        ],
+        "limits": {
+          "cpus": 2,
+          "hard_wall_seconds_each": 300,
+          "memory_bytes": 4294967296,
+          "network": "none",
+          "swap_bytes": 0,
+          "tmpfs_bytes": 1073741824
+        },
+        "phase": "compile",
+        "preparation": {
+          "path": "work/962-engineering/atomic-cavity-plane-clip-cap-aware-repair-prep-003/held-preparation-003.json",
+          "sha256": "7c96fb9d9e59b9b05794ab6f68dd49d50591ba9aa4e6a86067f416bc583a448e"
+        },
+        "root_and_peer_review_complete": true,
+        "root_authorized": true,
+        "schema": "962-cap-aware-compile003-child/v1",
+        "scope": "Compile source003 count-only boundary-target revision; no automatic fixture/head execution or engineering admission."
+      },
+      "executions": {
+        "compile-cap-aware003.execution.json": {
+          "attach_process_started": true,
+          "attach_reaped": true,
+          "attach_returncode": 0,
+          "cleanup_errors": [],
+          "control_calls": [
+            {
+              "operation": "create",
+              "returncode": 0
+            },
+            {
+              "operation": "inspect",
+              "returncode": 0
+            },
+            {
+              "operation": "inspect",
+              "returncode": 0
+            },
+            {
+              "operation": "inspect",
+              "returncode": 0
+            },
+            {
+              "operation": "remove_stopped_owned",
+              "returncode": 0
+            }
+          ],
+          "error": null,
+          "final_metadata": {
+            "controls": {
+              "Memory": 4294967296,
+              "MemorySwap": 4294967296,
+              "NanoCpus": 2000000000,
+              "NetworkMode": "none",
+              "ReadonlyRootfs": true,
+              "Tmpfs": {
+                "/tmp": "rw,size=1073741824"
+              }
+            },
+            "image_id": "sha256:57c6b17ed0bd093a61a3d3cecb7563e912caeb3832fd59e8cec2d4d9d4d1e2f8",
+            "mounts": [
+              {
+                "Destination": "/out",
+                "RW": true,
+                "Type": "bind"
+              },
+              {
+                "Destination": "/src/atomic_policy.hpp",
+                "RW": false,
+                "Type": "bind"
+              },
+              {
+                "Destination": "/src/cap_aware.cpp",
+                "RW": false,
+                "Type": "bind"
+              },
+              {
+                "Destination": "/src/head_binding.hpp",
+                "RW": false,
+                "Type": "bind"
+              },
+              {
+                "Destination": "/src/quality_patch.cpp",
+                "RW": false,
+                "Type": "bind"
+              }
+            ],
+            "process_identity_is_zero": true,
+            "state": {
+              "Dead": false,
+              "Error": "",
+              "ExitCode": 0,
+              "OOMKilled": false,
+              "Paused": false,
+              "Restarting": false,
+              "Running": false,
+              "Status": "exited"
+            }
+          },
+          "initial_metadata": {
+            "controls": {
+              "Memory": 4294967296,
+              "MemorySwap": 4294967296,
+              "NanoCpus": 2000000000,
+              "NetworkMode": "none",
+              "ReadonlyRootfs": true,
+              "Tmpfs": {
+                "/tmp": "rw,size=1073741824"
+              }
+            },
+            "image_id": "sha256:57c6b17ed0bd093a61a3d3cecb7563e912caeb3832fd59e8cec2d4d9d4d1e2f8",
+            "mounts": [
+              {
+                "Destination": "/out",
+                "RW": true,
+                "Type": "bind"
+              },
+              {
+                "Destination": "/src/atomic_policy.hpp",
+                "RW": false,
+                "Type": "bind"
+              },
+              {
+                "Destination": "/src/cap_aware.cpp",
+                "RW": false,
+                "Type": "bind"
+              },
+              {
+                "Destination": "/src/head_binding.hpp",
+                "RW": false,
+                "Type": "bind"
+              },
+              {
+                "Destination": "/src/quality_patch.cpp",
+                "RW": false,
+                "Type": "bind"
+              }
+            ],
+            "process_identity_is_zero": true,
+            "state": {
+              "Dead": false,
+              "Error": "",
+              "ExitCode": 0,
+              "OOMKilled": false,
+              "Paused": false,
+              "Restarting": false,
+              "Running": false,
+              "Status": "created"
+            }
+          },
+          "label": "compile-cap-aware003",
+          "native_log_sha256": "7c0b4f0edc4dac514f7fcfbbd11e955bfbecde884e4b3ffa716c8f73ca06dbbb",
+          "owned_container_removed": true,
+          "wall_seconds": 70.84344995906577
+        }
+      },
+      "phase_summary": {
+        "all_inputs_unchanged": true,
+        "automatic_retry": false,
+        "cleanup_source_sha256": "b214e1cece8dbf66be6071199cbdf1a8e22a2a59328888011de17492f923c86b",
+        "controller_sha256": "c2191896dba65d38cf41222f51dcab29c7896624481d1beb4b1b097c0546a440",
+        "error": null,
+        "execution_contract_sha256": "ee450f0402985fac6885c9ef7210bf643c982f4301c37680edc24d2f2b15edb8",
+        "head_surface_admitted": false,
+        "jobs": [
+          {
+            "execution_passed": true,
+            "label": "compile-cap-aware003",
+            "previous_artifacts_unchanged": true,
+            "returncode": 0
+          }
+        ],
+        "manufacturing_authorized": false,
+        "metadata_source_sha256": "a88477c47d406cea3761c324e1f6eb82dcb1c2b962698d7f328261c6cef2929b",
+        "numerical_fixture_acceptance_established": false,
+        "phase": "compile",
+        "procedural_phase_finished": true,
+        "schema": "962-endpoint003-bounded-phase/v1",
+        "solver_admission_established": false
+      }
+    },
+    "fixtures-source002": {
+      "contract": {
+        "automatic_retry": false,
+        "image_id": "sha256:57c6b17ed0bd093a61a3d3cecb7563e912caeb3832fd59e8cec2d4d9d4d1e2f8",
+        "jobs": [
+          {
+            "expected_returncodes": [
+              0
+            ],
+            "label": "cap-pair",
+            "read_only_mounts": {
+              "work/962-engineering/atomic-cavity-plane-clip-cap-aware-compile-001/cap-aware": "/finest-endpoint",
+              "work/962-engineering/cap-aware-repair-fixtures-prep-001/fixtures/pair.bin": "/fixture-input.bin",
+              "work/962-engineering/cap-aware-repair-fixtures-prep-001/fixtures/pair.targets.u64": "/targets.u64"
+            }
+          },
+          {
+            "expected_returncodes": [
+              0
+            ],
+            "label": "cap-triple",
+            "read_only_mounts": {
+              "work/962-engineering/atomic-cavity-plane-clip-cap-aware-compile-001/cap-aware": "/finest-endpoint",
+              "work/962-engineering/cap-aware-repair-fixtures-prep-001/fixtures/triple.bin": "/fixture-input.bin",
+              "work/962-engineering/cap-aware-repair-fixtures-prep-001/fixtures/triple.targets.u64": "/targets.u64"
+            }
+          },
+          {
+            "expected_returncodes": [
+              3
+            ],
+            "label": "cap-fixed-refusal",
+            "read_only_mounts": {
+              "work/962-engineering/atomic-cavity-plane-clip-cap-aware-compile-001/cap-aware": "/finest-endpoint",
+              "work/962-engineering/cap-aware-repair-fixtures-prep-001/fixtures/fixed-refusal.bin": "/fixture-input.bin",
+              "work/962-engineering/cap-aware-repair-fixtures-prep-001/fixtures/fixed-refusal.targets.u64": "/targets.u64"
+            }
+          },
+          {
+            "expected_returncodes": [
+              3
+            ],
+            "label": "cap-cross-loop-refusal",
+            "read_only_mounts": {
+              "work/962-engineering/atomic-cavity-plane-clip-cap-aware-compile-001/cap-aware": "/finest-endpoint",
+              "work/962-engineering/cap-aware-repair-fixtures-prep-001/fixtures/cross-loop-refusal.bin": "/fixture-input.bin",
+              "work/962-engineering/cap-aware-repair-fixtures-prep-001/fixtures/cross-loop-refusal.targets.u64": "/targets.u64"
+            }
+          }
+        ],
+        "limits": {
+          "cpus": 2,
+          "hard_wall_seconds_each": 60,
+          "memory_bytes": 536870912,
+          "network": "none",
+          "swap_bytes": 0,
+          "tmpfs_bytes": 0
+        },
+        "phase": "fixtures",
+        "preparation": {
+          "path": "work/962-engineering/cap-aware-repair-fixtures-prep-001/held-preparation-003.json",
+          "sha256": "c0b8a75cd79f32cf7c2e7f59bbbe585e6f913fae946912c212987580bbe2ac76"
+        },
+        "root_and_peer_review_complete": true,
+        "root_authorized": true,
+        "schema": "962-cap-aware-four-fixture-child/v1",
+        "scope": "Exactly two synthetic annulus successes and two declared eligibility refusals. Procedural completion requires independent saved-array oracle assessment; no head/physics/manufacturing admission."
+      },
+      "executions": {
+        "cap-cross-loop-refusal.execution.json": {
+          "attach_process_started": true,
+          "attach_reaped": true,
+          "attach_returncode": 3,
+          "cleanup_errors": [],
+          "control_calls": [
+            {
+              "operation": "create",
+              "returncode": 0
+            },
+            {
+              "operation": "inspect",
+              "returncode": 0
+            },
+            {
+              "operation": "inspect",
+              "returncode": 0
+            },
+            {
+              "operation": "inspect",
+              "returncode": 0
+            },
+            {
+              "operation": "remove_stopped_owned",
+              "returncode": 0
+            }
+          ],
+          "error": null,
+          "final_metadata": {
+            "controls": {
+              "Memory": 536870912,
+              "MemorySwap": 536870912,
+              "NanoCpus": 2000000000,
+              "NetworkMode": "none",
+              "ReadonlyRootfs": true,
+              "Tmpfs": null
+            },
+            "image_id": "sha256:57c6b17ed0bd093a61a3d3cecb7563e912caeb3832fd59e8cec2d4d9d4d1e2f8",
+            "mounts": [
+              {
+                "Destination": "/finest-endpoint",
+                "RW": false,
+                "Type": "bind"
+              },
+              {
+                "Destination": "/fixture-input.bin",
+                "RW": false,
+                "Type": "bind"
+              },
+              {
+                "Destination": "/out",
+                "RW": true,
+                "Type": "bind"
+              },
+              {
+                "Destination": "/targets.u64",
+                "RW": false,
+                "Type": "bind"
+              }
+            ],
+            "process_identity_is_zero": true,
+            "state": {
+              "Dead": false,
+              "Error": "",
+              "ExitCode": 3,
+              "OOMKilled": false,
+              "Paused": false,
+              "Restarting": false,
+              "Running": false,
+              "Status": "exited"
+            }
+          },
+          "initial_metadata": {
+            "controls": {
+              "Memory": 536870912,
+              "MemorySwap": 536870912,
+              "NanoCpus": 2000000000,
+              "NetworkMode": "none",
+              "ReadonlyRootfs": true,
+              "Tmpfs": null
+            },
+            "image_id": "sha256:57c6b17ed0bd093a61a3d3cecb7563e912caeb3832fd59e8cec2d4d9d4d1e2f8",
+            "mounts": [
+              {
+                "Destination": "/finest-endpoint",
+                "RW": false,
+                "Type": "bind"
+              },
+              {
+                "Destination": "/fixture-input.bin",
+                "RW": false,
+                "Type": "bind"
+              },
+              {
+                "Destination": "/out",
+                "RW": true,
+                "Type": "bind"
+              },
+              {
+                "Destination": "/targets.u64",
+                "RW": false,
+                "Type": "bind"
+              }
+            ],
+            "process_identity_is_zero": true,
+            "state": {
+              "Dead": false,
+              "Error": "",
+              "ExitCode": 0,
+              "OOMKilled": false,
+              "Paused": false,
+              "Restarting": false,
+              "Running": false,
+              "Status": "created"
+            }
+          },
+          "label": "cap-cross-loop-refusal",
+          "native_log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "owned_container_removed": true,
+          "wall_seconds": 1.4623032500967383
+        },
+        "cap-fixed-refusal.execution.json": {
+          "attach_process_started": true,
+          "attach_reaped": true,
+          "attach_returncode": 3,
+          "cleanup_errors": [],
+          "control_calls": [
+            {
+              "operation": "create",
+              "returncode": 0
+            },
+            {
+              "operation": "inspect",
+              "returncode": 0
+            },
+            {
+              "operation": "inspect",
+              "returncode": 0
+            },
+            {
+              "operation": "inspect",
+              "returncode": 0
+            },
+            {
+              "operation": "remove_stopped_owned",
+              "returncode": 0
+            }
+          ],
+          "error": null,
+          "final_metadata": {
+            "controls": {
+              "Memory": 536870912,
+              "MemorySwap": 536870912,
+              "NanoCpus": 2000000000,
+              "NetworkMode": "none",
+              "ReadonlyRootfs": true,
+              "Tmpfs": null
+            },
+            "image_id": "sha256:57c6b17ed0bd093a61a3d3cecb7563e912caeb3832fd59e8cec2d4d9d4d1e2f8",
+            "mounts": [
+              {
+                "Destination": "/finest-endpoint",
+                "RW": false,
+                "Type": "bind"
+              },
+              {
+                "Destination": "/fixture-input.bin",
+                "RW": false,
+                "Type": "bind"
+              },
+              {
+                "Destination": "/out",
+                "RW": true,
+                "Type": "bind"
+              },
+              {
+                "Destination": "/targets.u64",
+                "RW": false,
+                "Type": "bind"
+              }
+            ],
+            "process_identity_is_zero": true,
+            "state": {
+              "Dead": false,
+              "Error": "",
+              "ExitCode": 3,
+              "OOMKilled": false,
+              "Paused": false,
+              "Restarting": false,
+              "Running": false,
+              "Status": "exited"
+            }
+          },
+          "initial_metadata": {
+            "controls": {
+              "Memory": 536870912,
+              "MemorySwap": 536870912,
+              "NanoCpus": 2000000000,
+              "NetworkMode": "none",
+              "ReadonlyRootfs": true,
+              "Tmpfs": null
+            },
+            "image_id": "sha256:57c6b17ed0bd093a61a3d3cecb7563e912caeb3832fd59e8cec2d4d9d4d1e2f8",
+            "mounts": [
+              {
+                "Destination": "/finest-endpoint",
+                "RW": false,
+                "Type": "bind"
+              },
+              {
+                "Destination": "/fixture-input.bin",
+                "RW": false,
+                "Type": "bind"
+              },
+              {
+                "Destination": "/out",
+                "RW": true,
+                "Type": "bind"
+              },
+              {
+                "Destination": "/targets.u64",
+                "RW": false,
+                "Type": "bind"
+              }
+            ],
+            "process_identity_is_zero": true,
+            "state": {
+              "Dead": false,
+              "Error": "",
+              "ExitCode": 0,
+              "OOMKilled": false,
+              "Paused": false,
+              "Restarting": false,
+              "Running": false,
+              "Status": "created"
+            }
+          },
+          "label": "cap-fixed-refusal",
+          "native_log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "owned_container_removed": true,
+          "wall_seconds": 2.3567017919849604
+        },
+        "cap-pair.execution.json": {
+          "attach_process_started": true,
+          "attach_reaped": true,
+          "attach_returncode": 0,
+          "cleanup_errors": [],
+          "control_calls": [
+            {
+              "operation": "create",
+              "returncode": 0
+            },
+            {
+              "operation": "inspect",
+              "returncode": 0
+            },
+            {
+              "operation": "inspect",
+              "returncode": 0
+            },
+            {
+              "operation": "inspect",
+              "returncode": 0
+            },
+            {
+              "operation": "remove_stopped_owned",
+              "returncode": 0
+            }
+          ],
+          "error": null,
+          "final_metadata": {
+            "controls": {
+              "Memory": 536870912,
+              "MemorySwap": 536870912,
+              "NanoCpus": 2000000000,
+              "NetworkMode": "none",
+              "ReadonlyRootfs": true,
+              "Tmpfs": null
+            },
+            "image_id": "sha256:57c6b17ed0bd093a61a3d3cecb7563e912caeb3832fd59e8cec2d4d9d4d1e2f8",
+            "mounts": [
+              {
+                "Destination": "/finest-endpoint",
+                "RW": false,
+                "Type": "bind"
+              },
+              {
+                "Destination": "/fixture-input.bin",
+                "RW": false,
+                "Type": "bind"
+              },
+              {
+                "Destination": "/out",
+                "RW": true,
+                "Type": "bind"
+              },
+              {
+                "Destination": "/targets.u64",
+                "RW": false,
+                "Type": "bind"
+              }
+            ],
+            "process_identity_is_zero": true,
+            "state": {
+              "Dead": false,
+              "Error": "",
+              "ExitCode": 0,
+              "OOMKilled": false,
+              "Paused": false,
+              "Restarting": false,
+              "Running": false,
+              "Status": "exited"
+            }
+          },
+          "initial_metadata": {
+            "controls": {
+              "Memory": 536870912,
+              "MemorySwap": 536870912,
+              "NanoCpus": 2000000000,
+              "NetworkMode": "none",
+              "ReadonlyRootfs": true,
+              "Tmpfs": null
+            },
+            "image_id": "sha256:57c6b17ed0bd093a61a3d3cecb7563e912caeb3832fd59e8cec2d4d9d4d1e2f8",
+            "mounts": [
+              {
+                "Destination": "/finest-endpoint",
+                "RW": false,
+                "Type": "bind"
+              },
+              {
+                "Destination": "/fixture-input.bin",
+                "RW": false,
+                "Type": "bind"
+              },
+              {
+                "Destination": "/out",
+                "RW": true,
+                "Type": "bind"
+              },
+              {
+                "Destination": "/targets.u64",
+                "RW": false,
+                "Type": "bind"
+              }
+            ],
+            "process_identity_is_zero": true,
+            "state": {
+              "Dead": false,
+              "Error": "",
+              "ExitCode": 0,
+              "OOMKilled": false,
+              "Paused": false,
+              "Restarting": false,
+              "Running": false,
+              "Status": "created"
+            }
+          },
+          "label": "cap-pair",
+          "native_log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "owned_container_removed": true,
+          "wall_seconds": 1.6687695828732103
+        },
+        "cap-triple.execution.json": {
+          "attach_process_started": true,
+          "attach_reaped": true,
+          "attach_returncode": 0,
+          "cleanup_errors": [],
+          "control_calls": [
+            {
+              "operation": "create",
+              "returncode": 0
+            },
+            {
+              "operation": "inspect",
+              "returncode": 0
+            },
+            {
+              "operation": "inspect",
+              "returncode": 0
+            },
+            {
+              "operation": "inspect",
+              "returncode": 0
+            },
+            {
+              "operation": "remove_stopped_owned",
+              "returncode": 0
+            }
+          ],
+          "error": null,
+          "final_metadata": {
+            "controls": {
+              "Memory": 536870912,
+              "MemorySwap": 536870912,
+              "NanoCpus": 2000000000,
+              "NetworkMode": "none",
+              "ReadonlyRootfs": true,
+              "Tmpfs": null
+            },
+            "image_id": "sha256:57c6b17ed0bd093a61a3d3cecb7563e912caeb3832fd59e8cec2d4d9d4d1e2f8",
+            "mounts": [
+              {
+                "Destination": "/finest-endpoint",
+                "RW": false,
+                "Type": "bind"
+              },
+              {
+                "Destination": "/fixture-input.bin",
+                "RW": false,
+                "Type": "bind"
+              },
+              {
+                "Destination": "/out",
+                "RW": true,
+                "Type": "bind"
+              },
+              {
+                "Destination": "/targets.u64",
+                "RW": false,
+                "Type": "bind"
+              }
+            ],
+            "process_identity_is_zero": true,
+            "state": {
+              "Dead": false,
+              "Error": "",
+              "ExitCode": 0,
+              "OOMKilled": false,
+              "Paused": false,
+              "Restarting": false,
+              "Running": false,
+              "Status": "exited"
+            }
+          },
+          "initial_metadata": {
+            "controls": {
+              "Memory": 536870912,
+              "MemorySwap": 536870912,
+              "NanoCpus": 2000000000,
+              "NetworkMode": "none",
+              "ReadonlyRootfs": true,
+              "Tmpfs": null
+            },
+            "image_id": "sha256:57c6b17ed0bd093a61a3d3cecb7563e912caeb3832fd59e8cec2d4d9d4d1e2f8",
+            "mounts": [
+              {
+                "Destination": "/finest-endpoint",
+                "RW": false,
+                "Type": "bind"
+              },
+              {
+                "Destination": "/fixture-input.bin",
+                "RW": false,
+                "Type": "bind"
+              },
+              {
+                "Destination": "/out",
+                "RW": true,
+                "Type": "bind"
+              },
+              {
+                "Destination": "/targets.u64",
+                "RW": false,
+                "Type": "bind"
+              }
+            ],
+            "process_identity_is_zero": true,
+            "state": {
+              "Dead": false,
+              "Error": "",
+              "ExitCode": 0,
+              "OOMKilled": false,
+              "Paused": false,
+              "Restarting": false,
+              "Running": false,
+              "Status": "created"
+            }
+          },
+          "label": "cap-triple",
+          "native_log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "owned_container_removed": true,
+          "wall_seconds": 1.8397277919575572
+        }
+      },
+      "phase_summary": {
+        "all_inputs_unchanged": true,
+        "automatic_retry": false,
+        "cleanup_source_sha256": "b214e1cece8dbf66be6071199cbdf1a8e22a2a59328888011de17492f923c86b",
+        "controller_sha256": "c2191896dba65d38cf41222f51dcab29c7896624481d1beb4b1b097c0546a440",
+        "error": null,
+        "execution_contract_sha256": "5ac80c2ae3707e48eae696c4fe6b3fcf2417cad4132a7aebb04797eaea005f1d",
+        "head_surface_admitted": false,
+        "jobs": [
+          {
+            "execution_passed": true,
+            "label": "cap-pair",
+            "previous_artifacts_unchanged": true,
+            "returncode": 0
+          },
+          {
+            "execution_passed": true,
+            "label": "cap-triple",
+            "previous_artifacts_unchanged": true,
+            "returncode": 0
+          },
+          {
+            "execution_passed": true,
+            "label": "cap-fixed-refusal",
+            "previous_artifacts_unchanged": true,
+            "returncode": 3
+          },
+          {
+            "execution_passed": true,
+            "label": "cap-cross-loop-refusal",
+            "previous_artifacts_unchanged": true,
+            "returncode": 3
+          }
+        ],
+        "manufacturing_authorized": false,
+        "metadata_source_sha256": "a88477c47d406cea3761c324e1f6eb82dcb1c2b962698d7f328261c6cef2929b",
+        "numerical_fixture_acceptance_established": false,
+        "phase": "fixtures",
+        "procedural_phase_finished": true,
+        "schema": "962-endpoint003-bounded-phase/v1",
+        "solver_admission_established": false
+      }
+    },
+    "fixtures-source003": {
+      "contract": {
+        "automatic_retry": false,
+        "image_id": "sha256:57c6b17ed0bd093a61a3d3cecb7563e912caeb3832fd59e8cec2d4d9d4d1e2f8",
+        "jobs": [
+          {
+            "expected_returncodes": [
+              0
+            ],
+            "label": "cap-pair",
+            "read_only_mounts": {
+              "work/962-engineering/atomic-cavity-plane-clip-cap-aware-compile-003/cap-aware003": "/finest-endpoint",
+              "work/962-engineering/cap-aware-repair-fixtures-prep-001/fixtures/pair.bin": "/fixture-input.bin",
+              "work/962-engineering/cap-aware-repair-fixtures-prep-001/fixtures/pair.targets.u64": "/targets.u64"
+            }
+          },
+          {
+            "expected_returncodes": [
+              0
+            ],
+            "label": "cap-triple",
+            "read_only_mounts": {
+              "work/962-engineering/atomic-cavity-plane-clip-cap-aware-compile-003/cap-aware003": "/finest-endpoint",
+              "work/962-engineering/cap-aware-repair-fixtures-prep-001/fixtures/triple.bin": "/fixture-input.bin",
+              "work/962-engineering/cap-aware-repair-fixtures-prep-001/fixtures/triple.targets.u64": "/targets.u64"
+            }
+          },
+          {
+            "expected_returncodes": [
+              3
+            ],
+            "label": "cap-fixed-refusal",
+            "read_only_mounts": {
+              "work/962-engineering/atomic-cavity-plane-clip-cap-aware-compile-003/cap-aware003": "/finest-endpoint",
+              "work/962-engineering/cap-aware-repair-fixtures-prep-001/fixtures/fixed-refusal.bin": "/fixture-input.bin",
+              "work/962-engineering/cap-aware-repair-fixtures-prep-001/fixtures/fixed-refusal.targets.u64": "/targets.u64"
+            }
+          },
+          {
+            "expected_returncodes": [
+              3
+            ],
+            "label": "cap-cross-loop-refusal",
+            "read_only_mounts": {
+              "work/962-engineering/atomic-cavity-plane-clip-cap-aware-compile-003/cap-aware003": "/finest-endpoint",
+              "work/962-engineering/cap-aware-repair-fixtures-prep-001/fixtures/cross-loop-refusal.bin": "/fixture-input.bin",
+              "work/962-engineering/cap-aware-repair-fixtures-prep-001/fixtures/cross-loop-refusal.targets.u64": "/targets.u64"
+            }
+          }
+        ],
+        "limits": {
+          "cpus": 2,
+          "hard_wall_seconds_each": 60,
+          "memory_bytes": 536870912,
+          "network": "none",
+          "swap_bytes": 0,
+          "tmpfs_bytes": 0
+        },
+        "phase": "fixtures",
+        "preparation": {
+          "path": "work/962-engineering/cap-aware-repair-fixtures-prep-001/held-preparation-003.json",
+          "sha256": "c0b8a75cd79f32cf7c2e7f59bbbe585e6f913fae946912c212987580bbe2ac76"
+        },
+        "root_and_peer_review_complete": true,
+        "root_authorized": true,
+        "schema": "962-cap-aware-source003-four-fixture-child/v1",
+        "scope": "Same two synthetic annulus successes and two declared eligibility refusals, using freshly compiled source003. Only the head target and group count literals changed; no head or physical admission."
+      },
+      "executions": {
+        "cap-cross-loop-refusal.execution.json": {
+          "attach_process_started": true,
+          "attach_reaped": true,
+          "attach_returncode": 3,
+          "cleanup_errors": [],
+          "control_calls": [
+            {
+              "operation": "create",
+              "returncode": 0
+            },
+            {
+              "operation": "inspect",
+              "returncode": 0
+            },
+            {
+              "operation": "inspect",
+              "returncode": 0
+            },
+            {
+              "operation": "inspect",
+              "returncode": 0
+            },
+            {
+              "operation": "remove_stopped_owned",
+              "returncode": 0
+            }
+          ],
+          "error": null,
+          "final_metadata": {
+            "controls": {
+              "Memory": 536870912,
+              "MemorySwap": 536870912,
+              "NanoCpus": 2000000000,
+              "NetworkMode": "none",
+              "ReadonlyRootfs": true,
+              "Tmpfs": null
+            },
+            "image_id": "sha256:57c6b17ed0bd093a61a3d3cecb7563e912caeb3832fd59e8cec2d4d9d4d1e2f8",
+            "mounts": [
+              {
+                "Destination": "/finest-endpoint",
+                "RW": false,
+                "Type": "bind"
+              },
+              {
+                "Destination": "/fixture-input.bin",
+                "RW": false,
+                "Type": "bind"
+              },
+              {
+                "Destination": "/out",
+                "RW": true,
+                "Type": "bind"
+              },
+              {
+                "Destination": "/targets.u64",
+                "RW": false,
+                "Type": "bind"
+              }
+            ],
+            "process_identity_is_zero": true,
+            "state": {
+              "Dead": false,
+              "Error": "",
+              "ExitCode": 3,
+              "OOMKilled": false,
+              "Paused": false,
+              "Restarting": false,
+              "Running": false,
+              "Status": "exited"
+            }
+          },
+          "initial_metadata": {
+            "controls": {
+              "Memory": 536870912,
+              "MemorySwap": 536870912,
+              "NanoCpus": 2000000000,
+              "NetworkMode": "none",
+              "ReadonlyRootfs": true,
+              "Tmpfs": null
+            },
+            "image_id": "sha256:57c6b17ed0bd093a61a3d3cecb7563e912caeb3832fd59e8cec2d4d9d4d1e2f8",
+            "mounts": [
+              {
+                "Destination": "/finest-endpoint",
+                "RW": false,
+                "Type": "bind"
+              },
+              {
+                "Destination": "/fixture-input.bin",
+                "RW": false,
+                "Type": "bind"
+              },
+              {
+                "Destination": "/out",
+                "RW": true,
+                "Type": "bind"
+              },
+              {
+                "Destination": "/targets.u64",
+                "RW": false,
+                "Type": "bind"
+              }
+            ],
+            "process_identity_is_zero": true,
+            "state": {
+              "Dead": false,
+              "Error": "",
+              "ExitCode": 0,
+              "OOMKilled": false,
+              "Paused": false,
+              "Restarting": false,
+              "Running": false,
+              "Status": "created"
+            }
+          },
+          "label": "cap-cross-loop-refusal",
+          "native_log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "owned_container_removed": true,
+          "wall_seconds": 4.226337916916236
+        },
+        "cap-fixed-refusal.execution.json": {
+          "attach_process_started": true,
+          "attach_reaped": true,
+          "attach_returncode": 3,
+          "cleanup_errors": [],
+          "control_calls": [
+            {
+              "operation": "create",
+              "returncode": 0
+            },
+            {
+              "operation": "inspect",
+              "returncode": 0
+            },
+            {
+              "operation": "inspect",
+              "returncode": 0
+            },
+            {
+              "operation": "inspect",
+              "returncode": 0
+            },
+            {
+              "operation": "remove_stopped_owned",
+              "returncode": 0
+            }
+          ],
+          "error": null,
+          "final_metadata": {
+            "controls": {
+              "Memory": 536870912,
+              "MemorySwap": 536870912,
+              "NanoCpus": 2000000000,
+              "NetworkMode": "none",
+              "ReadonlyRootfs": true,
+              "Tmpfs": null
+            },
+            "image_id": "sha256:57c6b17ed0bd093a61a3d3cecb7563e912caeb3832fd59e8cec2d4d9d4d1e2f8",
+            "mounts": [
+              {
+                "Destination": "/finest-endpoint",
+                "RW": false,
+                "Type": "bind"
+              },
+              {
+                "Destination": "/fixture-input.bin",
+                "RW": false,
+                "Type": "bind"
+              },
+              {
+                "Destination": "/out",
+                "RW": true,
+                "Type": "bind"
+              },
+              {
+                "Destination": "/targets.u64",
+                "RW": false,
+                "Type": "bind"
+              }
+            ],
+            "process_identity_is_zero": true,
+            "state": {
+              "Dead": false,
+              "Error": "",
+              "ExitCode": 3,
+              "OOMKilled": false,
+              "Paused": false,
+              "Restarting": false,
+              "Running": false,
+              "Status": "exited"
+            }
+          },
+          "initial_metadata": {
+            "controls": {
+              "Memory": 536870912,
+              "MemorySwap": 536870912,
+              "NanoCpus": 2000000000,
+              "NetworkMode": "none",
+              "ReadonlyRootfs": true,
+              "Tmpfs": null
+            },
+            "image_id": "sha256:57c6b17ed0bd093a61a3d3cecb7563e912caeb3832fd59e8cec2d4d9d4d1e2f8",
+            "mounts": [
+              {
+                "Destination": "/finest-endpoint",
+                "RW": false,
+                "Type": "bind"
+              },
+              {
+                "Destination": "/fixture-input.bin",
+                "RW": false,
+                "Type": "bind"
+              },
+              {
+                "Destination": "/out",
+                "RW": true,
+                "Type": "bind"
+              },
+              {
+                "Destination": "/targets.u64",
+                "RW": false,
+                "Type": "bind"
+              }
+            ],
+            "process_identity_is_zero": true,
+            "state": {
+              "Dead": false,
+              "Error": "",
+              "ExitCode": 0,
+              "OOMKilled": false,
+              "Paused": false,
+              "Restarting": false,
+              "Running": false,
+              "Status": "created"
+            }
+          },
+          "label": "cap-fixed-refusal",
+          "native_log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "owned_container_removed": true,
+          "wall_seconds": 3.3557002088055015
+        },
+        "cap-pair.execution.json": {
+          "attach_process_started": true,
+          "attach_reaped": true,
+          "attach_returncode": 0,
+          "cleanup_errors": [],
+          "control_calls": [
+            {
+              "operation": "create",
+              "returncode": 0
+            },
+            {
+              "operation": "inspect",
+              "returncode": 0
+            },
+            {
+              "operation": "inspect",
+              "returncode": 0
+            },
+            {
+              "operation": "inspect",
+              "returncode": 0
+            },
+            {
+              "operation": "remove_stopped_owned",
+              "returncode": 0
+            }
+          ],
+          "error": null,
+          "final_metadata": {
+            "controls": {
+              "Memory": 536870912,
+              "MemorySwap": 536870912,
+              "NanoCpus": 2000000000,
+              "NetworkMode": "none",
+              "ReadonlyRootfs": true,
+              "Tmpfs": null
+            },
+            "image_id": "sha256:57c6b17ed0bd093a61a3d3cecb7563e912caeb3832fd59e8cec2d4d9d4d1e2f8",
+            "mounts": [
+              {
+                "Destination": "/finest-endpoint",
+                "RW": false,
+                "Type": "bind"
+              },
+              {
+                "Destination": "/fixture-input.bin",
+                "RW": false,
+                "Type": "bind"
+              },
+              {
+                "Destination": "/out",
+                "RW": true,
+                "Type": "bind"
+              },
+              {
+                "Destination": "/targets.u64",
+                "RW": false,
+                "Type": "bind"
+              }
+            ],
+            "process_identity_is_zero": true,
+            "state": {
+              "Dead": false,
+              "Error": "",
+              "ExitCode": 0,
+              "OOMKilled": false,
+              "Paused": false,
+              "Restarting": false,
+              "Running": false,
+              "Status": "exited"
+            }
+          },
+          "initial_metadata": {
+            "controls": {
+              "Memory": 536870912,
+              "MemorySwap": 536870912,
+              "NanoCpus": 2000000000,
+              "NetworkMode": "none",
+              "ReadonlyRootfs": true,
+              "Tmpfs": null
+            },
+            "image_id": "sha256:57c6b17ed0bd093a61a3d3cecb7563e912caeb3832fd59e8cec2d4d9d4d1e2f8",
+            "mounts": [
+              {
+                "Destination": "/finest-endpoint",
+                "RW": false,
+                "Type": "bind"
+              },
+              {
+                "Destination": "/fixture-input.bin",
+                "RW": false,
+                "Type": "bind"
+              },
+              {
+                "Destination": "/out",
+                "RW": true,
+                "Type": "bind"
+              },
+              {
+                "Destination": "/targets.u64",
+                "RW": false,
+                "Type": "bind"
+              }
+            ],
+            "process_identity_is_zero": true,
+            "state": {
+              "Dead": false,
+              "Error": "",
+              "ExitCode": 0,
+              "OOMKilled": false,
+              "Paused": false,
+              "Restarting": false,
+              "Running": false,
+              "Status": "created"
+            }
+          },
+          "label": "cap-pair",
+          "native_log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "owned_container_removed": true,
+          "wall_seconds": 1.4995907498523593
+        },
+        "cap-triple.execution.json": {
+          "attach_process_started": true,
+          "attach_reaped": true,
+          "attach_returncode": 0,
+          "cleanup_errors": [],
+          "control_calls": [
+            {
+              "operation": "create",
+              "returncode": 0
+            },
+            {
+              "operation": "inspect",
+              "returncode": 0
+            },
+            {
+              "operation": "inspect",
+              "returncode": 0
+            },
+            {
+              "operation": "inspect",
+              "returncode": 0
+            },
+            {
+              "operation": "remove_stopped_owned",
+              "returncode": 0
+            }
+          ],
+          "error": null,
+          "final_metadata": {
+            "controls": {
+              "Memory": 536870912,
+              "MemorySwap": 536870912,
+              "NanoCpus": 2000000000,
+              "NetworkMode": "none",
+              "ReadonlyRootfs": true,
+              "Tmpfs": null
+            },
+            "image_id": "sha256:57c6b17ed0bd093a61a3d3cecb7563e912caeb3832fd59e8cec2d4d9d4d1e2f8",
+            "mounts": [
+              {
+                "Destination": "/finest-endpoint",
+                "RW": false,
+                "Type": "bind"
+              },
+              {
+                "Destination": "/fixture-input.bin",
+                "RW": false,
+                "Type": "bind"
+              },
+              {
+                "Destination": "/out",
+                "RW": true,
+                "Type": "bind"
+              },
+              {
+                "Destination": "/targets.u64",
+                "RW": false,
+                "Type": "bind"
+              }
+            ],
+            "process_identity_is_zero": true,
+            "state": {
+              "Dead": false,
+              "Error": "",
+              "ExitCode": 0,
+              "OOMKilled": false,
+              "Paused": false,
+              "Restarting": false,
+              "Running": false,
+              "Status": "exited"
+            }
+          },
+          "initial_metadata": {
+            "controls": {
+              "Memory": 536870912,
+              "MemorySwap": 536870912,
+              "NanoCpus": 2000000000,
+              "NetworkMode": "none",
+              "ReadonlyRootfs": true,
+              "Tmpfs": null
+            },
+            "image_id": "sha256:57c6b17ed0bd093a61a3d3cecb7563e912caeb3832fd59e8cec2d4d9d4d1e2f8",
+            "mounts": [
+              {
+                "Destination": "/finest-endpoint",
+                "RW": false,
+                "Type": "bind"
+              },
+              {
+                "Destination": "/fixture-input.bin",
+                "RW": false,
+                "Type": "bind"
+              },
+              {
+                "Destination": "/out",
+                "RW": true,
+                "Type": "bind"
+              },
+              {
+                "Destination": "/targets.u64",
+                "RW": false,
+                "Type": "bind"
+              }
+            ],
+            "process_identity_is_zero": true,
+            "state": {
+              "Dead": false,
+              "Error": "",
+              "ExitCode": 0,
+              "OOMKilled": false,
+              "Paused": false,
+              "Restarting": false,
+              "Running": false,
+              "Status": "created"
+            }
+          },
+          "label": "cap-triple",
+          "native_log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "owned_container_removed": true,
+          "wall_seconds": 1.782104582991451
+        }
+      },
+      "phase_summary": {
+        "all_inputs_unchanged": true,
+        "automatic_retry": false,
+        "cleanup_source_sha256": "b214e1cece8dbf66be6071199cbdf1a8e22a2a59328888011de17492f923c86b",
+        "controller_sha256": "c2191896dba65d38cf41222f51dcab29c7896624481d1beb4b1b097c0546a440",
+        "error": null,
+        "execution_contract_sha256": "ffd0d6078607fe14de048b8d64bafd30e5bc7f93d2064e564144051743a6dd3f",
+        "head_surface_admitted": false,
+        "jobs": [
+          {
+            "execution_passed": true,
+            "label": "cap-pair",
+            "previous_artifacts_unchanged": true,
+            "returncode": 0
+          },
+          {
+            "execution_passed": true,
+            "label": "cap-triple",
+            "previous_artifacts_unchanged": true,
+            "returncode": 0
+          },
+          {
+            "execution_passed": true,
+            "label": "cap-fixed-refusal",
+            "previous_artifacts_unchanged": true,
+            "returncode": 3
+          },
+          {
+            "execution_passed": true,
+            "label": "cap-cross-loop-refusal",
+            "previous_artifacts_unchanged": true,
+            "returncode": 3
+          }
+        ],
+        "manufacturing_authorized": false,
+        "metadata_source_sha256": "a88477c47d406cea3761c324e1f6eb82dcb1c2b962698d7f328261c6cef2929b",
+        "numerical_fixture_acceptance_established": false,
+        "phase": "fixtures",
+        "procedural_phase_finished": true,
+        "schema": "962-endpoint003-bounded-phase/v1",
+        "solver_admission_established": false
+      }
+    },
+    "head-source003": {
+      "contract": {
+        "automatic_retry": false,
+        "image_id": "sha256:57c6b17ed0bd093a61a3d3cecb7563e912caeb3832fd59e8cec2d4d9d4d1e2f8",
+        "jobs": [
+          {
+            "expected_returncodes": [
+              0,
+              3
+            ],
+            "label": "cap-boundary-head003",
+            "read_only_mounts": {
+              "work/962-engineering/atomic-cavity-plane-clip-cap-aware-boundary-targets-prep-001/prepared/targets.u64": "/targets.u64",
+              "work/962-engineering/atomic-cavity-plane-clip-cap-aware-compile-003/cap-aware003": "/finest-endpoint",
+              "work/962-engineering/atomic-cavity-plane-clip-exact-head-001/head-plane0/candidate.bin": "/head-input.bin"
+            }
+          }
+        ],
+        "limits": {
+          "cpus": 2,
+          "hard_wall_seconds_each": 300,
+          "memory_bytes": 4294967296,
+          "network": "none",
+          "swap_bytes": 0,
+          "tmpfs_bytes": 0
+        },
+        "phase": "head",
+        "preparation": {
+          "path": "work/962-engineering/atomic-cavity-plane-clip-cap-aware-boundary-head-prep-001/held-preparation.json",
+          "sha256": "19d561e2036488c95c6e10c8216df3632a8212cacab6281a35fa5c105b348011"
+        },
+        "root_and_peer_review_complete": true,
+        "root_authorized": true,
+        "schema": "962-cap-aware-boundary-head-source003-child/v1",
+        "scope": "One boundary-only bionic finishing proposal on exact d2af, 2212 edges / 510 groups. A declared refusal remains a refusal; procedural completion is not head acceptance. Independent saved arrays, global intersection, cap/feature continuity, two-sided distance, volume and PDE admission remain separate; no automatic retry or physical/manufacturing qualification."
+      },
+      "executions": {
+        "cap-boundary-head003.execution.json": {
+          "attach_process_started": true,
+          "attach_reaped": true,
+          "attach_returncode": 3,
+          "cleanup_errors": [],
+          "control_calls": [
+            {
+              "operation": "create",
+              "returncode": 0
+            },
+            {
+              "operation": "inspect",
+              "returncode": 0
+            },
+            {
+              "operation": "inspect",
+              "returncode": 0
+            },
+            {
+              "operation": "inspect",
+              "returncode": 0
+            },
+            {
+              "operation": "remove_stopped_owned",
+              "returncode": 0
+            }
+          ],
+          "error": null,
+          "final_metadata": {
+            "controls": {
+              "Memory": 4294967296,
+              "MemorySwap": 4294967296,
+              "NanoCpus": 2000000000,
+              "NetworkMode": "none",
+              "ReadonlyRootfs": true,
+              "Tmpfs": null
+            },
+            "image_id": "sha256:57c6b17ed0bd093a61a3d3cecb7563e912caeb3832fd59e8cec2d4d9d4d1e2f8",
+            "mounts": [
+              {
+                "Destination": "/finest-endpoint",
+                "RW": false,
+                "Type": "bind"
+              },
+              {
+                "Destination": "/head-input.bin",
+                "RW": false,
+                "Type": "bind"
+              },
+              {
+                "Destination": "/out",
+                "RW": true,
+                "Type": "bind"
+              },
+              {
+                "Destination": "/targets.u64",
+                "RW": false,
+                "Type": "bind"
+              }
+            ],
+            "process_identity_is_zero": true,
+            "state": {
+              "Dead": false,
+              "Error": "",
+              "ExitCode": 3,
+              "OOMKilled": false,
+              "Paused": false,
+              "Restarting": false,
+              "Running": false,
+              "Status": "exited"
+            }
+          },
+          "initial_metadata": {
+            "controls": {
+              "Memory": 4294967296,
+              "MemorySwap": 4294967296,
+              "NanoCpus": 2000000000,
+              "NetworkMode": "none",
+              "ReadonlyRootfs": true,
+              "Tmpfs": null
+            },
+            "image_id": "sha256:57c6b17ed0bd093a61a3d3cecb7563e912caeb3832fd59e8cec2d4d9d4d1e2f8",
+            "mounts": [
+              {
+                "Destination": "/finest-endpoint",
+                "RW": false,
+                "Type": "bind"
+              },
+              {
+                "Destination": "/head-input.bin",
+                "RW": false,
+                "Type": "bind"
+              },
+              {
+                "Destination": "/out",
+                "RW": true,
+                "Type": "bind"
+              },
+              {
+                "Destination": "/targets.u64",
+                "RW": false,
+                "Type": "bind"
+              }
+            ],
+            "process_identity_is_zero": true,
+            "state": {
+              "Dead": false,
+              "Error": "",
+              "ExitCode": 0,
+              "OOMKilled": false,
+              "Paused": false,
+              "Restarting": false,
+              "Running": false,
+              "Status": "created"
+            }
+          },
+          "label": "cap-boundary-head003",
+          "native_log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "owned_container_removed": true,
+          "wall_seconds": 2.81646112492308
+        }
+      },
+      "phase_summary": {
+        "all_inputs_unchanged": true,
+        "automatic_retry": false,
+        "cleanup_source_sha256": "b214e1cece8dbf66be6071199cbdf1a8e22a2a59328888011de17492f923c86b",
+        "controller_sha256": "c2191896dba65d38cf41222f51dcab29c7896624481d1beb4b1b097c0546a440",
+        "error": null,
+        "execution_contract_sha256": "55931ee4fe8401776e5f7d98180ec5b722e15fb99daf67a351f57fd2b13098fc",
+        "head_surface_admitted": false,
+        "jobs": [
+          {
+            "execution_passed": true,
+            "label": "cap-boundary-head003",
+            "previous_artifacts_unchanged": true,
+            "returncode": 3
+          }
+        ],
+        "manufacturing_authorized": false,
+        "metadata_source_sha256": "a88477c47d406cea3761c324e1f6eb82dcb1c2b962698d7f328261c6cef2929b",
+        "numerical_fixture_acceptance_established": false,
+        "phase": "head",
+        "procedural_phase_finished": true,
+        "schema": "962-endpoint003-bounded-phase/v1",
+        "solver_admission_established": false
+      }
+    }
+  },
+  "schema": "962-cap-aware-native-allowlisted-projections/v1"
+}

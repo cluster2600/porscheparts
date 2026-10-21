@@ -1,0 +1,100 @@
+{
+  "schema": "962-owner004-core-guard-coverage-source/v1",
+  "status": "THIRTEEN_NAMED_METHODS_UNRUN",
+  "methods": [
+    {
+      "method": "Owner004CoreGuards.test_01_complete_normal_control",
+      "basis": "Exact retained F1 method body, rebound to004 actual main/class; strengthened shared normal prerequisites and private-class policy checks.",
+      "case": "positive normal complete receipt/raw0",
+      "execution": "UNRUN"
+    },
+    {
+      "method": "Owner004CoreGuards.test_02_final_stdout_rec_failure",
+      "basis": "Exact retained F1 method body, rebound to004 actual main/class; strengthened shared normal prerequisites and private-class policy checks.",
+      "case": "one injected final descriptor error or missing descriptor, every prior normal prerequisite positive; exact hit/raw2/incomplete receipt",
+      "execution": "UNRUN"
+    },
+    {
+      "method": "Owner004CoreGuards.test_03_final_stderr_rec_failure",
+      "basis": "Exact retained F1 method body, rebound to004 actual main/class; strengthened shared normal prerequisites and private-class policy checks.",
+      "case": "one injected final descriptor error or missing descriptor, every prior normal prerequisite positive; exact hit/raw2/incomplete receipt",
+      "execution": "UNRUN"
+    },
+    {
+      "method": "Owner004CoreGuards.test_04_final_adapter_report_rec_failure",
+      "basis": "Exact retained F1 method body, rebound to004 actual main/class; strengthened shared normal prerequisites and private-class policy checks.",
+      "case": "one injected final descriptor error or missing descriptor, every prior normal prerequisite positive; exact hit/raw2/incomplete receipt",
+      "execution": "UNRUN"
+    },
+    {
+      "method": "Owner004CoreGuards.test_05_final_helper_report_rec_failure",
+      "basis": "Exact retained F1 method body, rebound to004 actual main/class; strengthened shared normal prerequisites and private-class policy checks.",
+      "case": "one injected final descriptor error or missing descriptor, every prior normal prerequisite positive; exact hit/raw2/incomplete receipt",
+      "execution": "UNRUN"
+    },
+    {
+      "method": "Owner004CoreGuards.test_06_missing_final_stdout_descriptor",
+      "basis": "Exact retained F1 method body, rebound to004 actual main/class; strengthened shared normal prerequisites and private-class policy checks.",
+      "case": "one injected final descriptor error or missing descriptor, every prior normal prerequisite positive; exact hit/raw2/incomplete receipt",
+      "execution": "UNRUN"
+    },
+    {
+      "method": "Owner004CoreGuards.test_07_missing_final_stderr_descriptor",
+      "basis": "Exact retained F1 method body, rebound to004 actual main/class; strengthened shared normal prerequisites and private-class policy checks.",
+      "case": "one injected final descriptor error or missing descriptor, every prior normal prerequisite positive; exact hit/raw2/incomplete receipt",
+      "execution": "UNRUN"
+    },
+    {
+      "method": "Owner004CoreGuards.test_08_missing_final_adapter_descriptor",
+      "basis": "Exact retained F1 method body, rebound to004 actual main/class; strengthened shared normal prerequisites and private-class policy checks.",
+      "case": "one injected final descriptor error or missing descriptor, every prior normal prerequisite positive; exact hit/raw2/incomplete receipt",
+      "execution": "UNRUN"
+    },
+    {
+      "method": "Owner004CoreGuards.test_09_missing_final_helper_descriptor",
+      "basis": "Exact retained F1 method body, rebound to004 actual main/class; strengthened shared normal prerequisites and private-class policy checks.",
+      "case": "one injected final descriptor error or missing descriptor, every prior normal prerequisite positive; exact hit/raw2/incomplete receipt",
+      "execution": "UNRUN"
+    },
+    {
+      "method": "Owner004CoreGuards.test_10_delivered_raising_CONT_keeps_group_cleanup",
+      "basis": "C01 actual main and serialized receipt",
+      "case": "Fake CONT delivery is recorded then raises. Intent true, acknowledgement false, actual injected trace retained; certified group TERM/KILL, no direct-PID fallback, exact fake reap/absence and raw2.",
+      "execution": "UNRUN"
+    },
+    {
+      "method": "Owner004CoreGuards.test_11_preCONT_error_uses_only_own_direct_PID",
+      "basis": "C01 preCONT boundary",
+      "case": "Preregistration raises after the stopped certificate. Intent/ack false, only own direct PID KILL, no group signal, exact fake reap/absence and raw2.",
+      "execution": "UNRUN"
+    },
+    {
+      "method": "Owner004CoreGuards.test_12_partial_constructor_unknown_raw_exit2_no_guessed_APIs",
+      "basis": "C02 actual private class plus actual main unknown/refusal",
+      "case": "Fake base constructor retains its own synthetic partial object and raises; owner has no returned handle. Attempt/error/unknown fields and serialized receipt checked; no PID/PGID/SID/wait/signal/absence guessed, no HELD_LEADERS entry, raw_exit2 intercepted.",
+      "execution": "UNRUN"
+    },
+    {
+      "method": "Owner004CoreGuards.test_13_returned_unreaped_private_policy_raw_exit2",
+      "basis": "C02 actual returned private object/main cleanup failure",
+      "case": "Returned handle is strongly retained; preCONT failure, own PID KILL, only exact fake WNOHANG zero statuses until bounded fake reap ceiling. Unreaped flag and receipt/raw_exit2, no false reap/absence, no group fallback.",
+      "execution": "UNRUN"
+    }
+  ],
+  "method_count": 13,
+  "private_destructor_checks": "Every scenario uses the unchanged real004 class over FakePopenBase. Normal F1, returned-unreaped and partial-object modes explicitly call the actual override and require no base destructor trace. Base poll/wait/communicate/context/signal methods trap; retained returned handles and absent owner partial handle are checked.",
+  "controlled_provider_limits": [
+    "Admission, earlier normal-report acceptance, identities, aliases, RSS, process/kernel APIs, all clock observations and file I/O are fake.",
+    "The injected constructor allocates only a Python fake object. It proves source branch selection and class override policy, not installed Popen construction, _active or partial process cleanup.",
+    "No Z3, adapter, transport/protocol, current runtime/provider, real group, resource peak, time guarantee or engineering result.",
+    "The fake raw_exit raises FakeRawExit(code); no real os._exit, signal, wait, ps or process is called."
+  ],
+  "source_read_scope": "A future complete13-test invocation performs13 explicit reads of the one33525B source004 owner. This is not total filesystem/module-import accounting; ordinary unittest/stdlib loading is separately scoped by future controls.",
+  "not_covered": [
+    "Full actual/admission/canonical-map validation (admit is fake).",
+    "Five actual Z3 sessions, report-content/16-file validation (normal_reports is fake).",
+    "Current installed constructor/destructor/_active/defaultSIGCHLD/no-competing-waiter/API/OS/alias behavior.",
+    "All possible error/stop/deadline schedules; this is a finite targeted set, not an exhaustive ownership proof.",
+    "External controller startup/full return/inclusive resource closure; later reviewed controls required."
+  ]
+}

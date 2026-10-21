@@ -1,0 +1,98 @@
+
+
+*** Info ***
+Merging inputs conductivity-z.i, conductivity-xy.i
+
+
+*** Info ***
+/tmp/work/conductivity-xy.i:3.3:  Parameter 'Functions/k_T/y' overrides the same parameter in /tmp/work/conductivity-z.i:31, /tmp/work/conductivity-xy.i:6.3:  Parameter 'Outputs/file_base' overrides the same parameter in /tmp/work/conductivity-z.i:138
+
+
+[33m
+*** Deprecation Warning ***
+/tmp/work/conductivity-z.i:146.5:
+Outputs/console/output_postprocessors: The parameter 'output_postprocessors' is deprecated.
+'execute_postprocessors_on' has replaced this parameter
+
+[39m
+Framework Information:
+MOOSE Version:           git commit 167ee97da2 on 2026-08-12
+LibMesh Version:         ab36c007ae608290e097bdfbc2766a46d8192b70
+PETSc Version:           3.25.2
+SLEPc Version:           3.25.0
+Libtorch Version:        2.12.0
+MFEM Version:            4.9.1
+Current Time:            Sat Oct 17 02:08:42 2026
+Executable Timestamp:    Thu Aug 13 06:36:59 2026
+
+Input File(s):
+  /tmp/work/conductivity-z.i
+  /tmp/work/conductivity-xy.i
+
+Command Line Argument(s):
+  --n-threads=1
+
+Checkpoint:
+  Wall Time Interval:      Every 3600 s
+  Checkpoint:              Outputs/checkpoint
+  # Checkpoints Kept:      2
+  Execute On:              TIMESTEP_END 
+
+Parallelism:
+  Num Processors:          1
+  Num Threads:             1
+
+Mesh: 
+  Parallel Type:           replicated
+  Mesh Dimension:          3
+  Spatial Dimension:       3
+  Nodes:                   68
+  Elems:                   16
+  Num Subdomains:          1
+
+Nonlinear System:
+  Num DOFs:                68
+  Num Local DOFs:          68
+  Variables:               "temperature" 
+  Finite Element Types:    "LAGRANGE" 
+  Approximation Orders:    "FIRST" 
+
+Auxiliary System:
+  Num DOFs:                16
+  Num Local DOFs:          16
+  Variables:               "k_seen" 
+  Finite Element Types:    "MONOMIAL" 
+  Approximation Orders:    "CONSTANT" 
+
+Execution Information:
+  Executioner:             Steady
+  Solver Mode:             NEWTON 
+  PETSc Preconditioner:    lu 
+  MOOSE Preconditioner:    SMP 
+
+
+Postprocessor Values:
++----------------+----------------+----------------+
+| time           | cold_outward_W | hot_outward_W  |
++----------------+----------------+----------------+
+|   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |
++----------------+----------------+----------------+
+
+ 0 Nonlinear |R| = [32m2.907137e-02[39m
+      0 Linear |R| = [32m2.907137e-02[39m
+      1 Linear |R| = [32m3.549301e-17[39m
+ 1 Nonlinear |R| = [32m1.578199e-06[39m
+      0 Linear |R| = [32m1.578199e-06[39m
+      1 Linear |R| = [32m1.367107e-21[39m
+ 2 Nonlinear |R| = [32m2.193864e-14[39m
+[32m Solve Converged![39m
+
+
+Postprocessor Values:
++----------------+----------------+----------------+
+| time           | cold_outward_W | hot_outward_W  |
++----------------+----------------+----------------+
+|   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |
+|   1.000000e+00 |   0.000000e+00 |   0.000000e+00 |
++----------------+----------------+----------------+
+

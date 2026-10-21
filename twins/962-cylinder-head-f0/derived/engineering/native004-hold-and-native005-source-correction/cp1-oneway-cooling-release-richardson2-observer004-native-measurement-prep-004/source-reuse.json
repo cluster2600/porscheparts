@@ -1,0 +1,122 @@
+{
+  "schema": "962-owned-native004-source-reuse/v1",
+  "six_exact_definition_reuses": [
+    {
+      "unit": "run_root_once.py",
+      "name": "group_exists",
+      "text_bytes": 96,
+      "text_sha256": "34640570e5eacbb1cdc37b61bf5963cc713013e7394d7b29f52865b626e56c9f",
+      "AST_sha256": "562fb8e5337856805496224ebed60639e444fd984da9617ceca59d8b7f5c1857",
+      "text_equal": true,
+      "AST_equal": true
+    },
+    {
+      "unit": "run_root_once.py",
+      "name": "capture",
+      "text_bytes": 139,
+      "text_sha256": "1ebeda51d3031c69a7b0e7bbe738fbf659130570b84f7599ca37a23bb30ad1c2",
+      "AST_sha256": "5ccbd911756f0acb3d711dd7289feefcf5516173a64579c8ab897fc57a9553a0",
+      "text_equal": true,
+      "AST_equal": true
+    },
+    {
+      "unit": "run_native_capture.py",
+      "name": "need",
+      "text_bytes": 85,
+      "text_sha256": "098b7ab9ef05c6267cec7bb1127e289155ed079b6b4e97dcc21dae0b9f8d9fb3",
+      "AST_sha256": "acd835d407017ae4ddfcb4f79fa2adbd3bd71ca44738278a4cf2c5e31a8c754a",
+      "text_equal": true,
+      "AST_equal": true
+    },
+    {
+      "unit": "run_native_capture.py",
+      "name": "same",
+      "text_bytes": 112,
+      "text_sha256": "79197ac31c1381bab0d66eafce52edf7fe1f633c1016349735740e378de1f9d8",
+      "AST_sha256": "50e214cf861c1d2178b652e717a350fd1e1770daf477296e6531f5ae0825bdad",
+      "text_equal": true,
+      "AST_equal": true
+    },
+    {
+      "unit": "run_native_capture.py",
+      "name": "registry_features",
+      "text_bytes": 397,
+      "text_sha256": "6e96a3af4e5f6485a1786e130d786cd182b63ca2e1424bad9bc605f7353b9eeb",
+      "AST_sha256": "97ad9ffd14baeb187000b31b2738afcbca3279fc3a298eda4154890aacbebe14",
+      "text_equal": true,
+      "AST_equal": true
+    },
+    {
+      "unit": "run_native_capture.py",
+      "name": "commands",
+      "text_bytes": 232,
+      "text_sha256": "e10ab856381711be600de55497e952608a97220c27ec1afca50a219c70b9e466",
+      "AST_sha256": "d6266f51b93523bdc3adef761df85dda4e611a2e7672879ba921b7969471d481",
+      "text_equal": true,
+      "AST_equal": true
+    }
+  ],
+  "complete_text_projections": [
+    {
+      "donor": {
+        "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native-measurement-prep-003/run_root_once.py",
+        "sha256": "6d91abc5bfb8970908d41406448e9091291736ab9bb910a72b58f0243e7d754f",
+        "bytes": 18849
+      },
+      "successor": {
+        "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native-measurement-prep-004/run_root_once.py",
+        "sha256": "67a17c367498fbbd7107bcda33713db5e208fd2d52c29856dc42a3e28833f1b1",
+        "bytes": 55621
+      },
+      "full_forward_opcode_reconstruction_exact": true,
+      "full_inverse_opcode_reconstruction_exact": true,
+      "unified_diff_is_complete_text_not_applied_or_executed": true
+    },
+    {
+      "donor": {
+        "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native-measurement-prep-003/run_native_capture.py",
+        "sha256": "7190f22f4d17869f6524743bc0de6f7eebc03393c17a4ed57984f282d0036a80",
+        "bytes": 22990
+      },
+      "successor": {
+        "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native-measurement-prep-004/run_native_capture.py",
+        "sha256": "4565ce0df19c631c2bb25518b367c83c195516a7f9023bc91ded895aeca64a67",
+        "bytes": 43239
+      },
+      "full_forward_opcode_reconstruction_exact": true,
+      "full_inverse_opcode_reconstruction_exact": true,
+      "unified_diff_is_complete_text_not_applied_or_executed": true
+    },
+    {
+      "donor": {
+        "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native003-freshness-operation-controls-prep-002/stopped_exec_wrapper.py",
+        "sha256": "94a3e73fbc4784050f65520914809f7cb9ec2eabedb2b036f6edbb6dc2c55297",
+        "bytes": 976
+      },
+      "successor": {
+        "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native-measurement-prep-004/stopped_exec_wrapper.py",
+        "sha256": "41d7083478b01dcbd97e4b226fca49ffb1f71f4190a89ca70edb6a34513305a0",
+        "bytes": 5295
+      },
+      "full_forward_opcode_reconstruction_exact": true,
+      "full_inverse_opcode_reconstruction_exact": true,
+      "unified_diff_is_complete_text_not_applied_or_executed": true
+    }
+  ],
+  "unchanged_scientific_global_value_AST": [
+    "PREFIX",
+    "EXECUTABLE",
+    "CASE",
+    "PREP",
+    "TRANSFER",
+    "CARD",
+    "PHYSICS",
+    "PRIMARY_API",
+    "HELD",
+    "TRANSFER_FILES",
+    "FEATURES"
+  ],
+  "limits": "Text/AST identities only; no behavior, SDK, installed-source, API, guard or runtime proof",
+  "target_or_fragment_executed": false,
+  "no_unused_added_identity_freeze_or_size_wrappers": true
+}

@@ -1,0 +1,192 @@
+{
+  "schema": "962-observer004-native-measurement-source-reuse/v1",
+  "donors": {
+    "caller": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-prep-001/run_mac.py",
+      "sha256": "c484dd4af5166e2eacebb7e8753339e7540602f60133374eddc5529a106843b8",
+      "bytes": 19619
+    },
+    "owner": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-native-execution-prep-001/run_root_once.py",
+      "sha256": "ae2aa71fc1b2e229532d9d2f519a9e15d18191fff69f8219b169f532aad74a45",
+      "bytes": 7750
+    },
+    "host_helpers": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-host-registration-owner-prep-001/run_host_check_once.py",
+      "sha256": "d3153618034c24a472fc5a9582467f1207964781f14ab4b7c3a79afb77adc9c1",
+      "bytes": 16384
+    }
+  },
+  "prepared_sources": {
+    "caller": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native-measurement-prep-001/run_native_capture.py",
+      "sha256": "a7d4657688dc66a5fd5e7b2e73c88b307e9c4c188301d27a4fd56a76949e5723",
+      "bytes": 22990
+    },
+    "owner": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native-measurement-prep-001/run_root_once.py",
+      "sha256": "c09c6d24cc9024bf5e7b36daad9348fa3c2db89d8eaf1423590122a5df5ec344",
+      "bytes": 18051
+    }
+  },
+  "helper_execution_import_or_tests": false,
+  "new_synthetic_tests": null,
+  "new_math_or_physics_source": false,
+  "definitions": {
+    "caller:need": {
+      "donor": "old_caller",
+      "text_equal": true,
+      "AST_equal": true
+    },
+    "caller:sha": {
+      "donor": "old_caller",
+      "text_equal": true,
+      "AST_equal": true
+    },
+    "caller:same": {
+      "donor": "old_caller",
+      "text_equal": true,
+      "AST_equal": true
+    },
+    "caller:check_pins": {
+      "donor": "old_caller",
+      "text_equal": true,
+      "AST_equal": true
+    },
+    "caller:runtime_unchanged": {
+      "donor": "old_caller",
+      "text_equal": true,
+      "AST_equal": true
+    },
+    "caller:registry_features": {
+      "donor": "old_caller",
+      "text_equal": true,
+      "AST_equal": true
+    },
+    "owner:ident": {
+      "donor": "old_owner",
+      "text_equal": true,
+      "AST_equal": true
+    },
+    "owner:freeze": {
+      "donor": "old_owner",
+      "text_equal": true,
+      "AST_equal": true
+    },
+    "owner:input_map": {
+      "donor": "old_owner",
+      "text_equal": true,
+      "AST_equal": true
+    },
+    "owner:runtime_map": {
+      "donor": "old_owner",
+      "text_equal": true,
+      "AST_equal": true
+    },
+    "owner:group_exists": {
+      "donor": "old_owner",
+      "text_equal": true,
+      "AST_equal": true
+    },
+    "owner:rec": {
+      "donor": "old_host_helpers",
+      "text_equal": true,
+      "AST_equal": true
+    },
+    "owner:check": {
+      "donor": "old_host_helpers",
+      "text_equal": true,
+      "AST_equal": true
+    },
+    "owner:output_size": {
+      "donor": "old_host_helpers",
+      "text_equal": true,
+      "AST_equal": true
+    },
+    "owner:provider_links": {
+      "donor": "old_host_helpers",
+      "text_equal": true,
+      "AST_equal": true
+    },
+    "owner:loaded_trace": {
+      "donor": "old_host_helpers",
+      "text_equal": true,
+      "AST_equal": true
+    }
+  },
+  "shared_growth_bytes_function": {
+    "caller_owner_text_and_AST_equal": true,
+    "scope": "Positive per-file size growth above immutable historical native output sizes plus all root-execution files; reductions never offset growth."
+  },
+  "top_level_definition_counts": {
+    "old_caller": 9,
+    "old_owner": 8,
+    "old_host_helpers": 13,
+    "caller": 12,
+    "owner": 19
+  },
+  "imports": {
+    "old_caller": [
+      "argparse",
+      "hashlib",
+      "json",
+      "os",
+      "pathlib",
+      "re",
+      "shutil",
+      "signal",
+      "subprocess",
+      "threading",
+      "time"
+    ],
+    "old_owner": [
+      "datetime",
+      "hashlib",
+      "json",
+      "os",
+      "pathlib",
+      "signal",
+      "subprocess",
+      "time",
+      "traceback"
+    ],
+    "caller": [
+      "argparse",
+      "hashlib",
+      "json",
+      "os",
+      "pathlib",
+      "re",
+      "shutil",
+      "signal",
+      "subprocess",
+      "threading",
+      "time"
+    ],
+    "owner": [
+      "datetime",
+      "hashlib",
+      "json",
+      "os",
+      "pathlib",
+      "re",
+      "signal",
+      "subprocess",
+      "sys",
+      "time",
+      "traceback"
+    ]
+  },
+  "new_imports_vs_own_donor": {
+    "caller": [],
+    "owner": [
+      "re",
+      "sys"
+    ]
+  },
+  "new_import_runtime_scope": {
+    "caller": "No added imports. All original imports are stdlib.",
+    "owner": "Only sys builtin and re stdlib added; no third-party/scientific package. Root retains existing pathlib/datetime/hashlib/json/os/signal/subprocess/time/traceback.",
+    "external_executables": "Existing /bin/ps and /usr/bin/pgrep only; a new owned-group ps column format reuses /bin/ps. No native runtime/version/registry query is prepared."
+  }
+}

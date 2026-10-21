@@ -1,0 +1,108 @@
+{
+  "status": "topology_and_global_intersection_subgates_passed",
+  "gate_passed": true,
+  "topology_gate_passed": true,
+  "candidate_sha256": "9d62eac6e2cd7b6a9ecb4a7ea5b632685820369b5c4ede379acc34238f50d7b4",
+  "expected_counts": {
+    "vertices": 871731,
+    "triangles": 1743878
+  },
+  "qualification": {
+    "conformal_metal_fluid_interface_validated": false,
+    "feature_channel_BCC_review_completed": false,
+    "head_solver_executed": false,
+    "head_surface_admitted": false,
+    "independent_distance_completed": false,
+    "manufacturing_authorized": false,
+    "repair_region_or_targets_approved": false,
+    "solver_admission_established": false,
+    "strength_validated": false,
+    "surface_quality_admitted": false,
+    "thermal_performance_validated": false,
+    "volume_mesh_admitted": false
+  },
+  "runtime": {
+    "libigl_version": "2.6.3",
+    "cgal_wrapper_sha256": "677e9b1ec585722d78685ad5e00e091ceb5ecef2ba2eecb877c5c8eb153fa1b5",
+    "igl_binary_modules": {
+      "pyigl_core.cpython-311-aarch64-linux-gnu.so": "a5d6530964954bee7cf162e8f2ff3f8e9e63fed5697e1ed937bca055216330de",
+      "embree/pyigl_embree.cpython-311-aarch64-linux-gnu.so": "646ab93f02fa8b531f4ed09af43cd72e64053d4c3a674750a27994a8da79d4b6",
+      "predicates/pyigl_predicates.cpython-311-aarch64-linux-gnu.so": "5164d261d6c91d43116c4037062aa2b9af49af54ef44f8ef774d07dbce45658d",
+      "cycodebase/pyigl_cycodebase.cpython-311-aarch64-linux-gnu.so": "ae8027b6b9461937a0f4a06775710091093d870336c1d48bff75f54c2661e009",
+      "copyleft/pyigl_copyleft_core.cpython-311-aarch64-linux-gnu.so": "a1d855c3c782254997fc6c20177111848541c1ff67b2828701ead40d6a8463e3",
+      "copyleft/cgal/pyigl_copyleft_cgal.cpython-311-aarch64-linux-gnu.so": "8bcb60e12cec4e072a14b7d8c3e74f3b90db87db419091419804673918aa5c68",
+      "copyleft/tetgen/pyigl_copyleft_tetgen.cpython-311-aarch64-linux-gnu.so": "e687d45575d4deeb6ab1dc507905534b5ff01a4fcbc649ec961229401866352d",
+      "triangle/pyigl_restricted_triangle.cpython-311-aarch64-linux-gnu.so": "c1fd30bd0fe56a60a26424637a0a89bf75b132b3d825c9fbd4c6215cd25cc0ad",
+      "spectra/pyigl_spectra.cpython-311-aarch64-linux-gnu.so": "5aca1cd0a437cfbf8a747e9f5f11323d358f1568a4a01111ffc873d6dd92e55a"
+    },
+    "python": "3.11.15 (main, Aug  5 2026, 01:17:38) [GCC 12.2.0]",
+    "numpy": "2.2.6",
+    "machine": "aarch64"
+  },
+  "assembled_candidate_topology_audit_only": true,
+  "whole_surface_faces_below_2_over_29": null,
+  "surface_quality_admitted": false,
+  "exact_source_attribution": "Unmodified 002 components and envelope audit_intersections; local generic guard adapted from preserved require_topology with its old Euler equality removed. No retained legacy entrypoint called.",
+  "surface": {
+    "unique_edges": 2615817,
+    "boundary_edges": 0,
+    "nonmanifold_edges": 0,
+    "orientation_imbalanced_edges": 0,
+    "vertices": 871731,
+    "triangles": 1743878,
+    "euler_characteristic": -208,
+    "signed_volume_mm3": 915453.1236217883,
+    "points_sha256": "e0009dc6c5481cb77383b91a6e72ee4f223f207917b345e74f0b5b8e65ca6786",
+    "faces_sha256": "152dc93bc9d5ea98aa2ec88271b0385471c466a29259c0f874ccfcf81c5ea9bd"
+  },
+  "connected_components": 1,
+  "component_fixture_results": [
+    1,
+    2
+  ],
+  "known_result_fixtures": [
+    {
+      "name": "separate",
+      "expected_pairs": 0,
+      "observed_pairs": 0,
+      "input_arrays_unchanged": true
+    },
+    {
+      "name": "crossing",
+      "expected_pairs": 1,
+      "observed_pairs": 1,
+      "input_arrays_unchanged": true
+    },
+    {
+      "name": "coplanar_contained",
+      "expected_pairs": 1,
+      "observed_pairs": 1,
+      "input_arrays_unchanged": true
+    },
+    {
+      "name": "coplanar_shared_vertex_overlap",
+      "expected_pairs": 1,
+      "observed_pairs": 1,
+      "input_arrays_unchanged": true
+    },
+    {
+      "name": "manifold_tetrahedron",
+      "expected_pairs": 0,
+      "observed_pairs": 0,
+      "input_arrays_unchanged": true
+    }
+  ],
+  "nonmanifold_vertex_count": 0,
+  "intersections": {
+    "pair_count": 0,
+    "pair_cap": 100001,
+    "complete": true,
+    "detect_only": true,
+    "first_only": false,
+    "stitch_all": false,
+    "pairs": []
+  },
+  "bound_inputs_unchanged": true,
+  "candidate_arrays_unchanged": true,
+  "wall_seconds": 29.938233389
+}

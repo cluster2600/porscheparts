@@ -1,0 +1,127 @@
+{
+  "schema": "962-native004-full-source-peer-findings/v1",
+  "decision": "HOLD",
+  "blockers": [
+    {
+      "id": "B01",
+      "priority": "P1",
+      "title": "SIGCHLD is reset rather than required already default",
+      "locations": [
+        {
+          "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native-measurement-prep-004/run_root_once.py",
+          "line": 602
+        },
+        {
+          "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native-measurement-prep-004/run_native_capture.py",
+          "line": 607
+        },
+        {
+          "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native-measurement-prep-004/run_native_capture.py",
+          "line": 779
+        }
+      ],
+      "evidence": "Root previous_chld=signal.signal(SIGCHLD,SIG_DFL) and caller old_chld=signal.signal(SIGCHLD,SIG_DFL) mutate the disposition; neither first requires the prior disposition be default. Caller later restores the previous value. This contradicts the accepted already-default/no-reset/no-competing-waiter source contract and can accept startup after silently changing an unsupported ownership assumption.",
+      "bounded_correction": "Before any owned construction require signal.getsignal(SIGCHLD)==SIG_DFL and refuse otherwise without resetting it. Preserve the default/no competing waiter assumption and pending installed-runtime/SA_NOCLDWAIT proof; do not infer it from a reset or restore an unsupported value during finalization."
+    },
+    {
+      "id": "B02",
+      "priority": "P1",
+      "title": "ECHILD does not revoke numeric PID signal authority",
+      "locations": [
+        {
+          "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native-measurement-prep-004/run_root_once.py",
+          "line": 216,
+          "end": 230
+        },
+        {
+          "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native-measurement-prep-004/run_root_once.py",
+          "line": 826
+        },
+        {
+          "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native-measurement-prep-004/run_root_once.py",
+          "line": 532,
+          "end": 548
+        },
+        {
+          "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native-measurement-prep-004/run_root_once.py",
+          "line": 658,
+          "end": 673
+        },
+        {
+          "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native-measurement-prep-004/run_native_capture.py",
+          "line": 230,
+          "end": 244
+        },
+        {
+          "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native-measurement-prep-004/run_native_capture.py",
+          "line": 552,
+          "end": 568
+        }
+      ],
+      "evidence": "Exact waitpid and stopped-handshake paths do not latch ChildProcessError/lost direct-child relationship. If waitpid raises ECHILD, the record can remain unreaped; generic error handling then reaches query own-PID SIGKILL or preCONT own-PID SIGKILL. A returned historical handle/PID is insufficient once the direct-child relationship is unavailable; that numeric PID may no longer be owned.",
+      "bounded_correction": "Record a distinct lost/unknown direct-child relationship at the exact failing wait, preserve the exception and close all numeric PID/group signal authority for that handle. Signal only a positively retained unreaped relationship. Keep ESRCH from a kill distinct: it is not a reap or absence and must not skip a separately bounded explicit wait while direct ownership remains valid. No guessed cleanup/absence, default polling or replacement child."
+    },
+    {
+      "id": "B03",
+      "priority": "P1",
+      "title": "A timely normal receipt deadline is necessarily rejected as future",
+      "locations": [
+        {
+          "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native-measurement-prep-004/run_root_once.py",
+          "line": 254,
+          "end": 263
+        },
+        {
+          "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native-measurement-prep-004/run_root_once.py",
+          "line": 384,
+          "end": 396
+        },
+        {
+          "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native-measurement-prep-004/run_native_capture.py",
+          "line": 631,
+          "end": 633
+        }
+      ],
+      "evidence": "caller_evidence calls clock_token on every clock value, including normal_until_ns. clock_token rejects integers greater than current monotonic_ns. A timely candidate must still be before normal_until_ns, so the deadline is necessarily future; waiting until it ceases to be future violates the same normal95 gate. The normal success path is therefore infeasible.",
+      "bounded_correction": "Separate canonical positive-ASCII integer parsing from observed-timestamp<=now validation. Keep the latter for original start and actual observed entry/spawn/encoding/saved/hash timestamps; validate normal_until_ns by the exact min(originalStart+95s,callerEntry+100s) equation and all original ordering/boundary constraints. Do not remove observed-time validation or relax any deadline."
+    },
+    {
+      "id": "B04",
+      "priority": "P2",
+      "title": "Final receipt write has no required postwrite finite identity join",
+      "locations": [
+        {
+          "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native-measurement-prep-004/run_root_once.py",
+          "line": 940,
+          "end": 950
+        },
+        {
+          "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native-measurement-prep-004/run_root_once.py",
+          "line": 1012,
+          "end": 1020
+        }
+      ],
+      "evidence": "The identity equality/candidate is calculated before final encoding/write. After write_full the owner checks budgets and time only. The accepted control-contract receipt_write_policy.owner_final explicitly requires postwrite identity checks as well; an admitted input/source/actual changed during final serialization/write need not be detected by the owner before raw0.",
+      "bounded_correction": "After the complete receipt write recheck the same finite identity set within the original115 bound. Mismatch/error/late return must force raw refusal and preserve the prefinal receipt unchanged; no rewritten positive artifact or renewed deadline. Independent root full-return/status/census/identity observations remain additional requirements."
+    }
+  ],
+  "verified_definition_reuses": {
+    "run_root_once.py": [
+      "group_exists",
+      "capture"
+    ],
+    "run_native_capture.py": [
+      "need",
+      "same",
+      "registry_features",
+      "commands"
+    ],
+    "meaning": "Complete source segments and ASTs match donor. Changed caller contexts and all rewritten control paths still require correction/review; these identities do not qualify behavior."
+  },
+  "global_import_disposition": "All41 donor nonfunction top-level nodes are accounted. Old import-time caller resolve is removed; early monotonic timestamp precedes remaining imports. datetime/threading/pgrep/native timer/lock/detached-group discovery are removed; new math/select/sys/traceback/time-ns source dependencies and private class creation are explicit, not runtime-qualified.",
+  "receipt_and_cycle_review": "Full source-only receipt/admission/clock subaudit returned B03/B04 and found no additional required self-hash cycle. Current sources reject admission argv/authorization_sha256 fields, construct late argv from external validated digest and original token, and use later receipt/terminal hashes. Concrete maps/counts/direct roles remain null and were not invented.",
+  "resource_EOF_scope": "Two exact ps forms retain query handles, raw log files, EOF completeness flags and partial/error status. Valid0 RSS is distinct from unavailable; every query error refuses. Lifetime loss must additionally close signal authority per B02. Polled deadline/byte checks are not hard kernel quotas or preemption. No measured RSS, full EOF runtime result, ABI/provider closure or scientific result exists.",
+  "postwrite_disposition": "B04 correction must change final raw success gating, preserving already written prefinal receipt and failures. It must not rewrite positive evidence or replace required independent root after-return checks.",
+  "guard_status": "The30 accepted G plus6 H cases and listed source integration seams are future design obligations, not methods/results. Prior nine F1 tests exercised a separate fake-owner fixture; they do not test this new004 implementation.",
+  "no_operation_scope": "No source/function/fragment/fixture import, compile, eval or execution; no runtime/provider/alias/stat/hash/query, process/kernel API, future operational-root inspection/create, scientific arrays/bodies or PUB/Git operation. Only named first-party source/text evidence and AST/static reconstruction were handled."
+}

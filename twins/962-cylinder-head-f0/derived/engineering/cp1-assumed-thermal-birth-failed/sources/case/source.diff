@@ -1,0 +1,286 @@
+--- donor/assess.py
++++ successor/assess.py
+@@ -103,11 +103,24 @@
+     return total
+ 
+ 
++def centered_enthalpy_increment(card, end, begin, xmax):
++    """Exact HEX8 integral form for constant cp; avoid subtracting inventories."""
++    if card['cp_slope_J_kgK2'] != 0:
++        raise ValueError('This centered successor requires constant cp')
++    capacity = card['density_kg_m3']*card['cp_at_300K_J_kgK']
++    return capacity*math.fsum(math.prod(h)/8*math.fsum(end[p]-begin[p] for p in corners)
++                              for lo,h,corners in grid(card,xmax))
++
++
+ def assess(directory, contract_path):
+     directory=Path(directory)
+     contract=json.loads(Path(contract_path).read_text())
+     card=json.loads((directory/'card.json').read_text())
+     receipt=json.loads((directory/'native-execution.json').read_text())
++    if (card.get('id')!='cp1-assumed-thermal-birth-sensitivity-001' or card['cp_slope_J_kgK2']!=0
++            or card['density_kg_m3']!=2700 or card['cp_at_300K_J_kgK']!=900
++            or card['k_at_300K_W_mK']!=187 or card['k_slope_W_mK2']!=0):
++        raise ValueError('Only the separately frozen assumed constant thermal card is supported')
+     if card['classification']!='HYPOTHETICAL_SOFTWARE_VERIFICATION_ONLY':
+         raise ValueError('Physical material claims are prohibited for this witness')
+     if sha(contract_path)!=receipt['input_sha256']['frozen-contract.json'] or sha(directory/'card.json')!=contract['card_sha256']:
+@@ -148,6 +161,7 @@
+     previous=initial
+     birth_energy=0.0
+     continuous=[]
++    thermal_increments=[]
+     traces=[]
+     birth_step=round(card['birth_time_s']/dt)
+     for step in range(1,count+1):
+@@ -186,15 +200,18 @@
+             qh += q*math.prod(h)
+         power=box_power(card,time,xmax)
+         check('finite_box_gaussian_power',(qh-power)/power,tol['finite_box_power_relative'],step)
+-        eb=integrals(card,begin,xmax)
+-        ee=integrals(card,end,xmax)
++        delta_h=centered_enthalpy_increment(card,end,begin,xmax)
++        thermal_increments.append(delta_h)
++        cumulative_heat=math.fsum(thermal_increments)
++        ee=e0+birth_energy+cumulative_heat  # reported inventory only; not subtracted in acceptance
+         correction=0.5*card['density_kg_m3']*card['cp_slope_J_kgK2']*integrals(card,end,xmax,begin)
+-        check('nonlinear_BE_enthalpy_identity',ee-eb-dt*qh+correction,tol['corrected_step_energy_absolute_J'],step)
++        check('nonlinear_BE_enthalpy_identity',delta_h-dt*qh+correction,tol['corrected_step_energy_absolute_J'],step)
+         incoming=incoming_energy(card,time)
+-        defect=ee-e0-birth_energy-incoming
+-        relative=defect/max(abs(birth_energy)+abs(incoming),1e-12)
++        defect=cumulative_heat-incoming
++        relative=defect/max(abs(incoming),1e-12)
+         continuous.append(abs(relative))
+         traces.append({'step':step,'time_s':time,'active_volume_m3':xmax,'enthalpy_J':ee,'birth_enthalpy_J':birth_energy,
++                       'centered_step_enthalpy_increment_J':delta_h,'cumulative_centered_heat_response_J':cumulative_heat,
+                        'continuous_source_energy_J':incoming,'continuous_energy_error_J':defect,'relative_continuous_energy_error':relative,
+                        'finite_box_power_W':power,'quadrature_power_W':qh,'BE_capacity_correction_J':correction,
+                        'temperature_min_K':min(end.values()),'temperature_max_K':max(end.values())})
+@@ -207,7 +224,8 @@
+             'checks_count':len(checks),'failed_checks':failed,'max_error_by_check':{name:max(abs(c['error']) for c in checks if c['name']==name) for name in {c['name'] for c in checks}},
+             'max_continuous_relative_energy_error':max(continuous),'traces':traces,
+             'native_receipt_sha256':sha(directory/'native-execution.json'),'frozen_contract_sha256':sha(contract_path),
+-            'assessor_sha256':sha(__file__),'scope':'Hypothetical thermal/source/activation integration; no head geometry, calibration, mechanics or LPBF qualification.'}
++            'assessor_sha256':sha(__file__),'energy_normalization':'Centered constant-cp increments; continuous error relative to integrated source energy, excluding initial/birth inventory.',
++            'scope':'Assumed CP1-like synthetic thermal/source/activation sensitivity only; no matched material/process, head, mechanics, LPBF or manufacturing qualification.'}
+ 
+ 
+ if __name__=='__main__':
+--- donor/thermal-birth.i
++++ successor/thermal-birth.i
+@@ -42,11 +42,11 @@
+ [Functions]
+   [cp_T]
+     type = ParsedFunction
+-    expression = '2+0.01*(t-300)'
++    expression = '900+0*(t-300)'
+   []
+   [k_T]
+     type = ParsedFunction
+-    expression = '0.2+0.001*(t-300)'
++    expression = '187+0*(t-300)'
+   []
+   [beam_x]
+     type = ParsedFunction
+@@ -89,7 +89,7 @@
+   [density]
+     type = ADGenericConstantMaterial
+     prop_names = density
+-    prop_values = 1
++    prop_values = 2700
+     block = 2
+   []
+   [source]
+@@ -214,7 +214,10 @@
+ []
+ [Outputs]
+   file_base = thermal
+-  csv = true
++  [csv]
++    type = CSV
++    precision = 17
++  []
+   [console]
+     type = Console
+     output_postprocessors = false
+--- donor/card.json
++++ successor/card.json
+@@ -1,7 +1,53 @@
+ {
+-  "schema_version": "1.0.0",
+-  "classification": "HYPOTHETICAL_SOFTWARE_VERIFICATION_ONLY",
+-  "units": "m, kg, s, K, J, W; no physical material",
++  "assumed_material": {
++    "basis": "Explicit root-selected research hypotheses; no matched M291 thermal measurements",
++    "cp_J_kgK": {
++      "assumed": true,
++      "temperature_dependence": "constant over declared numerical300-500K interval",
++      "value": 900
++    },
++    "density_kg_m3": {
++      "assumed": true,
++      "value": 2700
++    },
++    "enthalpy_reference_K": {
++      "assumed": true,
++      "meaning": "Caloric bookkeeping reference, not stress-free temperature",
++      "value": 300
++    },
++    "k_W_mK": {
++      "assumed": true,
++      "basis": "Unverified transfer of related Constellium CP1 scalar; source column test temperature unspecified",
++      "value": 187
++    },
++    "measured_matched": {
++      "absorbed_power_or_scan_calibration": null,
++      "build_directions": null,
++      "cp_T": null,
++      "k_T": null,
++      "rho_kg_m3": null,
++      "scatter": null,
++      "test_temperatures": null
++    },
++    "mechanical_isothermal_card_is_separate": true,
++    "nominal_process_reference_only": {
++      "gas": "argon",
++      "layer_um": 60,
++      "machine": "EOS M290",
++      "parameter_set": "AlCP1_060_M291",
++      "physical_recipe_selected_or_qualified": false,
++      "plate_C": 125,
++      "treatment_C": 400,
++      "treatment_h": 4
++    },
++    "thermal_symmetry": {
++      "assumed": true,
++      "value": "isotropic"
++    }
++  },
++  "birth_rule": "Preserve all existing nodal values, including shared interface nodes. Initialise genuinely new nodes to 350K. Integrate birth enthalpy from this predeclared interpolated field; do not assume shared nodes are 350K.",
++  "birth_temperature_K": 350.0,
++  "birth_time_s": 0.2,
+   "bounds_m": [
+     [
+       0,
+@@ -14,63 +60,78 @@
+       1
+     ]
+   ],
++  "classification": "HYPOTHETICAL_SOFTWARE_VERIFICATION_ONLY",
++  "cp_at_300K_J_kgK": 900.0,
++  "cp_slope_J_kgK2": 0.0,
++  "density_kg_m3": 2700.0,
++  "efficiency": 0.5,
++  "end_time_s": 0.4,
++  "energy_normalization": "Constant-cp centered step increments with math.fsum; continuous defect divided by integrated heat input, not initial/birth inventory. All numerical thresholds unchanged.",
++  "enthalpy_reference_K": 300.0,
++  "factor": 0.5,
++  "id": "cp1-assumed-thermal-birth-sensitivity-001",
++  "initial_temperature_K": 400.0,
++  "k_at_300K_W_mK": 187.0,
++  "k_slope_W_mK2": 0.0,
++  "laser_power_W": 80.0,
++  "max_native_runtime_seconds": 100,
+   "mesh_intervals": [
+     16,
+     4,
+     4
+   ],
++  "native_binary_sha256": "b11b7c481e502e0ae5dc61eba18e3e096c9ebf0dfee3f29b005353c9a1455547",
++  "native_execution_authorized": false,
++  "native_source_revision": "7c06bdcefd (abbreviated revision in existing native version output; source/build equivalence not independently attested)",
+   "old_region_xmax_m": 1.0,
+-  "birth_time_s": 0.2,
+-  "end_time_s": 0.4,
++  "predeclared_tolerances": {
++    "corrected_step_energy_absolute_J": 1e-07,
++    "finest_continuous_energy_relative": 0.01,
++    "finite_box_power_relative": 0.0005,
++    "material_property_absolute": 1e-09,
++    "minimum_final_temperature_range_K": 1.0,
++    "minimum_refinement_error_ratio": 1.4,
++    "node_history_K": 1e-10,
++    "source_cell_average_relative": 1e-09,
++    "temperature_lower_K": 300.0,
++    "temperature_upper_K": 500.0
++  },
++  "quadrature": "2x2x2 Gauss, exact for quadratic enthalpy of trilinear HEX8 temperature",
++  "qualification": {
++    "engineering_accepted": false,
++    "head_execution_authorized": false,
++    "manufacturing_authorized": false,
++    "material_qualified": false,
++    "physics_qualified": false,
++    "process_calibrated": false
++  },
++  "radii_m": [
++    0.5,
++    0.8,
++    0.8
++  ],
++  "schema_version": "1.0.0",
++  "scope": "One synthetic2x1x1m256HEX8 moving-source/birth calculation; all geometry/source/history values are numerical hypotheses. Not LPBF scale, powder/melting/scan calibration, head, stress or manufacturing.",
++  "selected_time_level": 2,
++  "solver_not_run": true,
++  "source_normalization": "Full-space integral = 2*factor*efficiency*power; finite box integral uses product of error-function fractions.",
++  "source_start_m": [
++    0.4,
++    0.5,
++    0.5
++  ],
++  "status": "HELD_RESEARCH_HYPOTHESIS_NOT_QUALIFIED_MATERIAL_OR_PROCESS",
++  "time_method": "Backward Euler: Delta H = dt*integral(Q_h) - rho*cp_slope/2*integral((T_end-T_begin)^2), with adiabatic exterior. Birth is applied at the beginning of the ending-time-labelled step. Continuous-time error must decrease under frozen time refinement.",
+   "time_steps_s": [
+     0.01,
+     0.005,
+     0.0025
+   ],
+-  "initial_temperature_K": 400.0,
+-  "birth_temperature_K": 350.0,
+-  "enthalpy_reference_K": 300.0,
+-  "density_kg_m3": 1.0,
+-  "cp_at_300K_J_kgK": 2.0,
+-  "cp_slope_J_kgK2": 0.01,
+-  "k_at_300K_W_mK": 0.2,
+-  "k_slope_W_mK2": 0.001,
+-  "laser_power_W": 80.0,
+-  "efficiency": 0.5,
+-  "factor": 0.5,
+-  "radii_m": [
+-    0.5,
+-    0.8,
+-    0.8
+-  ],
+-  "source_start_m": [
+-    0.4,
+-    0.5,
+-    0.5
+-  ],
++  "units": "m, kg, s, K, J, W; no physical material",
+   "velocity_m_s": [
+     3.0,
+     0,
+     0
+   ],
+-  "quadrature": "2x2x2 Gauss, exact for quadratic enthalpy of trilinear HEX8 temperature",
+-  "birth_rule": "Preserve all existing nodal values, including shared interface nodes. Initialise genuinely new nodes to 350K. Integrate birth enthalpy from this predeclared interpolated field; do not assume shared nodes are 350K.",
+-  "source_normalization": "Full-space integral = 2*factor*efficiency*power; finite box integral uses product of error-function fractions.",
+-  "time_method": "Backward Euler: Delta H = dt*integral(Q_h) - rho*cp_slope/2*integral((T_end-T_begin)^2), with adiabatic exterior. Birth is applied at the beginning of the ending-time-labelled step. Continuous-time error must decrease under frozen time refinement.",
+-  "predeclared_tolerances": {
+-    "node_history_K": 1e-10,
+-    "material_property_absolute": 1e-09,
+-    "source_cell_average_relative": 1e-09,
+-    "finite_box_power_relative": 0.0005,
+-    "corrected_step_energy_absolute_J": 1e-07,
+-    "finest_continuous_energy_relative": 0.01,
+-    "minimum_refinement_error_ratio": 1.4,
+-    "temperature_lower_K": 300.0,
+-    "temperature_upper_K": 500.0,
+-    "minimum_final_temperature_range_K": 1.0
+-  },
+-  "native_binary_sha256": "c49e2c368799d80edf9ff858dd8960bd22f5430f48229ab49dcc0afd27afcc5b",
+-  "native_source_revision": "167ee97da204df5e8643695e18b9b28910f0014b",
+-  "max_native_runtime_seconds": 100,
+   "whole_head_lpbf_complete": false
+ }

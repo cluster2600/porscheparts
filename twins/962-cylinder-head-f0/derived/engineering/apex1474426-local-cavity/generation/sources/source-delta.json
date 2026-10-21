@@ -1,0 +1,107 @@
+{
+  "schema": "962-specific32node60face-generator-source-delta/v1",
+  "preserved_source": "work/962-engineering/fixed-shell-generation-apex1435493-prep-001/reader.py",
+  "preserved_source_sha256": "d5f23d2512d0cdc53c3f648eaca6b3c5aba3105b4b3d14470ceab5761afd5879",
+  "selected_source_sha256": "2d3529956d03dd256be5a5786812ebe3a3ec3d2bd5b2d923a458a9b8b08f82ff",
+  "exact_replacements": [
+    {
+      "old": "1435493",
+      "new": "1474426",
+      "count": 6
+    },
+    {
+      "old": "a6f15db60967807b057e357b8f159fa510c4a8cf6e3cb44c4327323c070398c8",
+      "new": "6ad00be791b8b752106b5324b9f80df314f7458d8d0475b1ffc1a053bc04d12a",
+      "count": 1
+    },
+    {
+      "old": "VOLUME=Fraction(1450956179458166404046894365859946143854307,522673715590561479879743397015195972796416)",
+      "new": "VOLUME=Fraction(1281283350616062628588199592621260646860363813,1070435769529469910793714477087121352287059968)",
+      "count": 1
+    },
+    {
+      "kind": "NUMBER_token_substitutions",
+      "mapping": {
+        "16": "32",
+        "17": "33",
+        "28": "60",
+        "29": "61",
+        "9": "27",
+        "10": "28"
+      },
+      "count": 29
+    },
+    {
+      "old": "sixteen-node/twenty-eight-triangle",
+      "new": "thirty-two-node/sixty-triangle",
+      "count": 1
+    },
+    {
+      "old": "Original nine-boundary/seven-interior",
+      "new": "Original twenty-seven-boundary/five-interior",
+      "count": 1
+    },
+    {
+      "old": "Exactly twenty-eight TRI3",
+      "new": "Exactly sixty TRI3",
+      "count": 1
+    },
+    {
+      "old": "all16_shell_nodes_fixed_only_for_this_cavity_generation",
+      "new": "all32_shell_nodes_fixed_only_for_this_cavity_generation",
+      "count": 1
+    },
+    {
+      "old": "or data.get('apex_not_in_shell_input') is not True):raise ValueError('Specific frozen cavity identity required')",
+      "new": "or data.get('apex_not_in_shell_input') is not True\n     or data.get('status')!='DATA_ONLY_HELD' or data.get('necessary_face_quality_passed') is not True\n     or data.get('generation_input_rejected_by_necessary_face_quality') is not False):raise ValueError('Specific frozen cavity identity required')",
+      "count": 1
+    }
+  ],
+  "whole_byte_reverse_verified": true,
+  "unchanged_function_ASTs": [
+    "save",
+    "require_authority",
+    "require_contract",
+    "load_audit_helper",
+    "require_boundary_same",
+    "check_metric_rows",
+    "generate_once"
+  ],
+  "changed_functions": "Case shell size/volume/apex/27+5/data paths and one complete-positive tight-screen input gate only. Generic audit math/options and operation policy unchanged.",
+  "NUMBER_changes": 29,
+  "runner_byte_exact_sha256": "4963f5c66fa9e73797e76a8643f24bfb6b4ea8f1b9962063618504fc10e338ed",
+  "guard_literal_replacements": [
+    {
+      "old": "1435493",
+      "new": "1474426",
+      "count": 1
+    },
+    {
+      "old": "VOLUME=Fraction(1450956179458166404046894365859946143854307,522673715590561479879743397015195972796416)",
+      "new": "VOLUME=Fraction(1281283350616062628588199592621260646860363813,1070435769529469910793714477087121352287059968)",
+      "count": 1
+    },
+    {
+      "old": "(16,28,42)",
+      "new": "(32,60,90)",
+      "count": 1
+    },
+    {
+      "old": "['vertex_rows'][9]",
+      "new": "['vertex_rows'][27]",
+      "count": 2
+    }
+  ],
+  "new_guard": "test_complete_positive_tight_screen_required_before_mesher",
+  "prepared_guards_executed": false,
+  "no_prepared_functions_imports_tests_native_or_meshing_by_author": true,
+  "unchanged_guard_method_ASTs": [
+    "test_missing_and_reversed_faces_refuse_before_mesher",
+    "test_every_boundary_bit_face_and_classification_is_fixed",
+    "test_complete_metric_cardinality_finiteness_and_positive_volumes",
+    "test_held_authority_and_single_generation_source_scope"
+  ],
+  "six_guard_methods_logic_retained_case_literals_only": true,
+  "generic_options_runtime_and_operation_declarations_AST_equal": true,
+  "negative_quality_retention_save_reopen_and_minimum_point1_policy_unchanged": true
+}

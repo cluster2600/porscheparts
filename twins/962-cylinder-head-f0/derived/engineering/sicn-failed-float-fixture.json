@@ -1,0 +1,48 @@
+{
+  "schema": "962-failed-native-SICN-fixture/v1",
+  "status": "strict_extreme_floating_fixture_failed_preserved_not_relabelled_as_pass",
+  "failed_executed_source_sha256": "eac2c0a8eb5295a8833aab9b35e2997bcfe78c36d5dc575e2d15fd6c8592b7b6",
+  "failed_source_snapshot": "twins/962-cylinder-head-f0/derived/engineering/analysis-envelope-sources/failed-sicn-float-fixture.py",
+  "observed_error": "ValueError: Native minSICN does not match the declared normalized inverse-Frobenius metric",
+  "completion_receipt_was_written": false,
+  "subsequent_live_diagnostic": {
+    "status": "analytic_native_fixture_assertion_failed_diagnostic_only",
+    "rows": [
+      {
+        "name": "regular",
+        "q2": 1.0,
+        "q3": 1.0,
+        "a2": 0.9999999999999998,
+        "a3": 1.0000000000000002
+      },
+      {
+        "name": "sliver",
+        "q2": 1.0,
+        "q3": 0.002121317691913124,
+        "a2": 0.9999999999999998,
+        "a3": 0.002121317691913124
+      },
+      {
+        "name": "optimal",
+        "q2": 0.00019999999739225293,
+        "q3": 0.00029997000000030004,
+        "a2": 0.000199999998,
+        "a3": 0.0002999700000003
+      },
+      {
+        "name": "skew",
+        "q2": 0.00019999999739225293,
+        "q3": 1.7319353259696384e-06,
+        "a2": 0.000199999998,
+        "a3": 1.7319353259694472e-06
+      }
+    ],
+    "no_head_quality_acceptance": true
+  },
+  "diagnostic_sha256": "598bc2eade05ccbf8cd4d72846d87dfa809af4552a0aab51c0bffd080c35d1bd",
+  "diagnostic_execution_source_was_not_retained_as_a_file": true,
+  "physical_head_quality_threshold_unchanged": 0.1,
+  "failed_comparison_tolerances_not_relaxed": true,
+  "exact_head_rejection_uses_separate_rational_certificate": true,
+  "engineering_accepted": false
+}

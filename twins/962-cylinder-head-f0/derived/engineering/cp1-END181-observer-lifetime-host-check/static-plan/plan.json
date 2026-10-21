@@ -1,0 +1,165 @@
+{
+  "schema": "962-observer004-six-readonly-static-metadata-plan/v1",
+  "created_utc": "2026-10-20T18:10:31.720291+00:00",
+  "status": "SOURCE_ONLY_PLAN_NO_QUERY_AUTHORITY",
+  "build_terminal": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-build-root-review-002/observed-terminal.json",
+    "sha256": "d62e0192c7866fb72859df2121729d3eb5fcabb08cff7ef066f994db7ef35b67",
+    "bytes": 4428
+  },
+  "build_terminal_scope": "Root-observed outerRC0 and both childRC0; saved build-result peer acceptance was pending in this frozen terminal. This plan adds no independent build-result acceptance.",
+  "target_identities_root_attributed_only": {
+    "new_plugin": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-END181-dof-map-observer-prep-004/build-001/libcoupon_end181_observer-opt.dylib",
+      "sha256": "29539701e9436234fdbc52ba8f5ccbef3c489b1b4d6f504e0b1eb0218b70c2bd",
+      "bytes": 167504
+    },
+    "new_shim_object": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-END181-dof-map-observer-prep-004/build-001/CouponEnd181ObserverRegistration.o",
+      "sha256": "daf8648bc4bfe0d77a33c9986a192ca20db67cf1e2e21ef067d22b4f6fb1137b",
+      "bytes": 11952
+    }
+  },
+  "target_binary_read_hash_stat_or_query_by_this_plan": false,
+  "baseline_route_metadata": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer003-build-root-execution-005/compiled-link-metadata.json",
+    "sha256": "4951a4f23eeef384dfb98583759829d26f7d9933c4931acc07209ae95ac385fc",
+    "bytes": 36957
+  },
+  "ordered_queries": [
+    {
+      "ordinal": 1,
+      "argv": [
+        "/usr/bin/otool",
+        "-L",
+        "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/cp1-oneway-cooling-release-richardson2-END181-dof-map-observer-prep-004/build-001/libcoupon_end181_observer-opt.dylib"
+      ],
+      "route": "Exact005 command options; only new plugin operand changes"
+    },
+    {
+      "ordinal": 2,
+      "argv": [
+        "/usr/bin/otool",
+        "-l",
+        "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/cp1-oneway-cooling-release-richardson2-END181-dof-map-observer-prep-004/build-001/libcoupon_end181_observer-opt.dylib"
+      ],
+      "route": "Exact005 command options; only new plugin operand changes"
+    },
+    {
+      "ordinal": 3,
+      "argv": [
+        "/usr/bin/nm",
+        "-gU",
+        "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/cp1-oneway-cooling-release-richardson2-END181-dof-map-observer-prep-004/build-001/libcoupon_end181_observer-opt.dylib"
+      ],
+      "route": "Exact005 command options; only new plugin operand changes"
+    },
+    {
+      "ordinal": 4,
+      "argv": [
+        "/usr/bin/nm",
+        "-u",
+        "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/cp1-oneway-cooling-release-richardson2-END181-dof-map-observer-prep-004/build-001/libcoupon_end181_observer-opt.dylib"
+      ],
+      "route": "Exact005 command options; only new plugin operand changes"
+    },
+    {
+      "ordinal": 5,
+      "argv": [
+        "/usr/bin/nm",
+        "-gU",
+        "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/cp1-oneway-cooling-release-richardson2-END181-dof-map-observer-prep-004/build-001/CouponEnd181ObserverRegistration.o"
+      ],
+      "route": "Same005 nm option on the exact new shim object only"
+    },
+    {
+      "ordinal": 6,
+      "argv": [
+        "/usr/bin/nm",
+        "-u",
+        "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/cp1-oneway-cooling-release-richardson2-END181-dof-map-observer-prep-004/build-001/CouponEnd181ObserverRegistration.o"
+      ],
+      "route": "Same005 nm option on the exact new shim object only"
+    }
+  ],
+  "query_count": 6,
+  "strict_scope": [
+    "Only those two fixed new Mach-O files are query operands",
+    "No old005plugin, guard executable, original production object, host, dependency library, mesh/grid/field or directory operand",
+    "No recursive discovery, demangling variants, disassembly, SDK/library scans, symbol load probe or target execution",
+    "No plugin dlopen, guard18 assertion replay, host --check-input, callback or solver invocation"
+  ],
+  "tools": {
+    "fixed_frontends": [
+      "/usr/bin/otool",
+      "/usr/bin/nm"
+    ],
+    "existing_005_route_returncodes": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "tool_identities": null,
+    "requirement_before_separate_query_admission": "Reuse an already captured exact selected tool identity when available; otherwise root may authorize a narrow named frontend/provider byte identity capture first. Record actual selected developer-tool provider/alias environment, without assuming a dispatcher path proves its provider. No tool/version/provider query or tool body scan performed here.",
+    "tool_or_provider_ABI_equivalence": false
+  },
+  "proposed_controls": {
+    "overall_wall_seconds": 60,
+    "TERM_grace_seconds": 8,
+    "KILL_wait_seconds": 8,
+    "sampled_owned_group_RSS_stop_bytes": 2147483648,
+    "total_owned_output_including_receipt_stop_bytes": 33554432,
+    "OMP_BLAS_environment_threads": 1,
+    "retry": 0,
+    "execution": "Six sequential read-only commands, each once, stop at first failure; owned wait/reap/group-absence, original controls/target/tool pins before and after, full argv/RC/stdout/stderr retained."
+  },
+  "minimal_capture_and_assessment": [
+    {
+      "source": "plugin nm -gU and shim nm -gU",
+      "need": "Exactly one global defined _CouponEnd181ObserverApp__registerAll in each target; preserve full symbol rows. Compare plugin operational observer exports to saved005 symbols by name/type without treating changed addresses as a fault."
+    },
+    {
+      "source": "shim/plugin nm -u",
+      "need": "Preserve full undefined-symbol sets and their delta versus saved005. Expect new loader references _dladdr/_dlopen/_dlsym/_dlclose and observe once-initialization support; associate them with the existing system/C++ link route. Static undefined rows do not establish successful runtime resolution."
+    },
+    {
+      "source": "plugin otool -L",
+      "need": "Compare ordered dependency install names/versions with saved005. Expected same mpicxx/mpi/pmpi/omp/libc++/libSystem route, with only this plugin own ID/path changed. Preserve any extra/missing dependency as a review issue, no automatic linking correction."
+    },
+    {
+      "source": "plugin otool -l",
+      "need": "Preserve all load commands; inspect LC_ID_DYLIB new owned path, unchanged declared RPATHs and platform/deployment/SDK controls, and record identity/layout differences. Exact architecture remains build/argument attributed unless an independently admitted header capture is later needed."
+    },
+    {
+      "source": "saved root terminal and future static closure",
+      "need": "Join new object/plugin hashes to the exact admitted shim source/build commands and original reused observer object; verify new descriptor identity/dlname association through already captured build metadata. Do not query or copy another binary to reproduce it."
+    }
+  ],
+  "before_separate_host004_input_check": [
+    "Root acceptance of the complete saved build result and this separate static metadata closure",
+    "Exact new plugin export/dependency/load-command review with all failures and scope limits retained",
+    "Fresh distinct host actual/owner/root admission: unchanged native --check-input --list-constructed-objects argv, original three grid identities and coupon/physics controls, only held new library-directory change",
+    "Expected new plugin path plus one complete observer type frame/SyntaxOK/rawhostRC0/outerRC0/control+cleanup+inclusive-output gates as a conjunction",
+    "No callback/live DOF map, executioner solve, full ABI, crash-cause, residency or physical qualification inferred from static metadata or prior successful setup markers"
+  ],
+  "remaining_gates": [
+    "No query tool identities are established by this plan",
+    "No query actual/controller/admission is created",
+    "No static export/dependency success is claimed",
+    "No host or plugin load authorization"
+  ],
+  "authorities": {
+    "static_query": false,
+    "tool_identity_body_capture": false,
+    "guard": false,
+    "plugin_load": false,
+    "host_check": false,
+    "callback": false,
+    "solve": false,
+    "ABI_acceptance": false,
+    "scientific_acceptance": false,
+    "manufacturing": false,
+    "publication": false
+  }
+}

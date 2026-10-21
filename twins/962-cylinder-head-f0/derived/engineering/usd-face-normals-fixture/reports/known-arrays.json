@@ -1,0 +1,47 @@
+{
+  "status": "known_five_face_arrays_and_frame_pass",
+  "input_sha256": [
+    "146cf436b5f42f2d53faae169e0aaedfbd8872b45af08501fb29b8785c73c55e",
+    "d7c33155a9efd091dd1cc4fa7b6cd86811ed7d7f2c8c3896848350c524499f51",
+    "af7a013f56b9b3bb6dc07a74f12e5ccd0e101d6d269211c3efe5255c47fe6d21"
+  ],
+  "reader_sha256": "c99226ea0323965691f80595c39d8411dfd19b0cac69c57ccd03cdd25d604114",
+  "stages": [
+    {
+      "role": "source",
+      "point_count": 5,
+      "face_count": 5,
+      "full_expected_bytes_equal": true,
+      "array_sha256": {
+        "points": "4a79c6a5f5c05bea0bcac110bb8fc8f87598953a93b553061e84214990394e92",
+        "face_counts": "bf629d9e89a0dae59780b1185d561b8e13c037688e18684f58fa287a6f336fd9",
+        "face_indices": "5425c6d8eb3d649146d805df924d851c174692e984a73efd2e88802276d14641"
+      }
+    },
+    {
+      "role": "derivative",
+      "point_count": 5,
+      "face_count": 5,
+      "full_expected_bytes_equal": true,
+      "array_sha256": {
+        "points": "4a79c6a5f5c05bea0bcac110bb8fc8f87598953a93b553061e84214990394e92",
+        "face_counts": "bf629d9e89a0dae59780b1185d561b8e13c037688e18684f58fa287a6f336fd9",
+        "face_indices": "5425c6d8eb3d649146d805df924d851c174692e984a73efd2e88802276d14641",
+        "expected_normals": "6e18c408ad27e793a3bf02422f5877148ebd86f29a15cf0c77aaaca1cb01a407"
+      }
+    }
+  ],
+  "full_layer_property_invariance": "separate frozen author checker required",
+  "CLI_controls": {
+    "cpu_affinity": [
+      0,
+      1
+    ],
+    "RLIMIT_AS_bytes": 4294967296,
+    "SIGALRM_seconds": 30,
+    "outer_deadline_cleanup_required": true
+  },
+  "official_minimum_or_full_validator_run": false,
+  "head_geometry_or_physics_acceptance": false,
+  "manufacturing_authorized": false
+}

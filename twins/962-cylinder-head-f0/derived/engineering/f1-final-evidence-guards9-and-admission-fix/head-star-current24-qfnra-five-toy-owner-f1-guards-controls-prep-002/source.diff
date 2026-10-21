@@ -1,0 +1,20 @@
+--- source001/run_guards_once.py
++++ source002/run_guards_once.py
+@@ -6,7 +6,7 @@
+ 
+ R=Path('/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993')
+ E=R/'work/962-engineering'
+-X=E/'head-star-current24-qfnra-five-toy-owner-f1-guards-controls-prep-001'
++X=E/'head-star-current24-qfnra-five-toy-owner-f1-guards-controls-prep-002'
+ D=E/'head-star-current24-qfnra-five-toy-owner-f1-guards-root-execution-001'
+ W=E/'head-star-current24-qfnra-five-toy-owner-f1-guards-root-terminal-review-001'
+ WRAPPER=X/'stopped_exec_wrapper.py'
+@@ -266,7 +266,7 @@
+     try:
+         kq=select.kqueue()
+         argv=[PYTHON['path'],'-B','-I','-S',str(WRAPPER),ap['sha256']]
+-        need(auth['argv']==argv and auth['cwd']==str(D),'Fixed stopped-wrapper invocation required')
++        need(auth['argv_prefix']==argv[:-1] and auth['cwd']==str(D),'Fixed stopped-wrapper invocation required')
+         with (D/'fixture.stdout').open('xb') as out,(D/'fixture.stderr').open('xb') as err:
+             gate(40,'Stopped before fixed wrapper launch')
+             proc=_RetainedPopen(argv,cwd=D,env=ENV,stdin=subprocess.DEVNULL,stdout=out,stderr=err,start_new_session=True)

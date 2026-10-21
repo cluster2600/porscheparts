@@ -1,0 +1,82 @@
+{
+  "schema": "962-coupled-cavity-native-application-reuse/v1",
+  "source_sha256": "20a7d00f0b1f8a05a5ff09eefd86a647886556b9ce327a922beb8647f1b8cd0c",
+  "copied_exact_helpers": {
+    "source": "work/962-engineering/fixed-shell-netgen-apex1435493-prep-001/reader.py",
+    "sha256": "3cd669f484a2c8ecfd8388a5fde7b4911faf1c84dcda77230a414cbb87983bdd",
+    "unchanged_function_AST_sha256s": {
+      "load_cavity_module": "7244adb54e33153b6b20a316927078ed88992a2fe9ec2333b383d1c6e3472ddb",
+      "expected_live": "3ef831162cc5ab8c741f8282a5d7b0583b69000bb809becc0d41fc56fa906213",
+      "require_before": "ec7336bd422007264065a6d4dd60b4d2ad013e16797a4d26019553b2f07ca4fd"
+    }
+  },
+  "bound_unchanged_module_helpers": {
+    "source": "work/962-engineering/fixed-shell-generation-apex1435493-prep-001/reader.py",
+    "sha256": "d5f23d2512d0cdc53c3f648eaca6b3c5aba3105b4b3d14470ceab5761afd5879",
+    "functions": [
+      "shell_rows",
+      "load_audit_helper",
+      "inspect_cavity",
+      "boundary_snapshot",
+      "require_boundary_same"
+    ],
+    "module_main_or_generate_not_called": true,
+    "module_top_level_stdlib_only": true
+  },
+  "setter_API_reference": {
+    "source": "work/962-engineering/direct-sicn-cube-prep-002/direct_sicn_cube.py",
+    "sha256": "8351733aa0cd3dff2c86bcedd6c5cf931fde7306d0870738f9794448fbe8d12e",
+    "pattern": "gmsh.model.mesh.setNode(existing_tag,existing_binary64_coordinates,[])",
+    "attempt_counter_increment_before_each_call": true,
+    "one_existing_rebuildElementCache_False_after_all_requested_rows": true
+  },
+  "controller": {
+    "source": "work/962-engineering/fixed-shell-netgen-apex1435493-prep-001/run_readback.py",
+    "sha256": "ee558f1520b9a8d4ba1d458c1055ad0d6addc68d97d25ad6aae6e7305fb610c0",
+    "successor_sha256": "be03bd5227731a2835e89c6b23c632895e96298c68c8b3e5f130dac9a483da1d",
+    "substitutions": [
+      {
+        "old": "One fresh, source-bound specific saved-cavity Netgen operation; reviewed pins required.",
+        "new": "One fresh, source-bound local coupled-candidate native readback; reviewed pins required.",
+        "occurrences": 1
+      },
+      {
+        "old": "One fresh specific saved-cavity Netgen operation only; preserve previous outputs",
+        "new": "One fresh local coupled-candidate native readback only; preserve previous outputs",
+        "occurrences": 1
+      },
+      {
+        "old": "fixed_shell_generation_deadline",
+        "new": "fixed_shell_coordinate_apply_deadline",
+        "occurrences": 2
+      },
+      {
+        "old": "scope='one_specific_saved_apex1435493_cavity_Netgen_witness'",
+        "new": "scope='one_specific_coupled_cavity_coordinate_application'",
+        "occurrences": 1
+      },
+      {
+        "old": "'createGeometry_dim3':1,'optimize_Netgen':1,'rebuildElementCache':1",
+        "new": "'createGeometry_dim3':0,'optimize_Netgen':0,'setNode':3,'rebuildElementCache':1",
+        "occurrences": 1
+      }
+    ],
+    "complete_byte_reverse": true,
+    "resource_cleanup_control_flow_unchanged": true,
+    "new_mock_execution": false
+  },
+  "new_pure_guards": [
+    "candidate_rows",
+    "require_applied_state",
+    "apply_once",
+    "require_authority",
+    "require_saved_baseline"
+  ],
+  "compact_selfcheck": {
+    "path": "selfcheck.py",
+    "sha256": "510fd644117f2497f026d0e9ccbf5dc662e6eb56321cd1a5af09f32cd728f446",
+    "prepared_unrun": true,
+    "metadata_fixture_not_a_quality_oracle": true
+  },
+  "preparer_operations": "Source/metadata read/write, AST comparison and small project evidence byte hashes only; no prepared functions/tests/native/scientific imports or runtime/MSH body reads."
+}

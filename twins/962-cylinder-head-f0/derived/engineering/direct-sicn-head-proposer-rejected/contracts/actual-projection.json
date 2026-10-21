@@ -1,0 +1,253 @@
+{
+  "original_record": {
+    "relative_path": "work/962-engineering/direct-sicn-head-proposer-execution-prep-001/actual-contract-001.json",
+    "sha256": "eaa89d3ca0aa7d360cd44b9daa8e62dc4299a5ab9ab5c046a167f5a2b72b898e",
+    "bytes": 20418
+  },
+  "projection": {
+    "schema": "962-direct-sicn-head-proposer/v1",
+    "status": "REVIEWED_ONE_BOUNDED_ANALYTIC_COORDINATE_PROPOSAL",
+    "scope": "analytic_coordinate_proposal_only",
+    "proposal_execution_authorized": true,
+    "root_and_peer_review_complete": true,
+    "selected_runtime_review_complete": true,
+    "output": "work/962-engineering/direct-sicn-head-proposal-001",
+    "native_python": "runtime:check-environment/bin/python",
+    "reader_sha256": "e7d61ca130623389f2b5e3a7807477ef45090bedcfcd87f3941c35ca6d2d7b02",
+    "runner_sha256": "aefd13ddd8344cb4e46eeb17126383ba2afbf8763ae40a99eb55a9bcb2779407",
+    "runtime": {
+      "python_executable_sha256": "1699bf8aa705a8bb71613bef5cdd7d7c8c9d9a188a841f41679aa9b5830b8f60"
+    },
+    "numpy_init": "runtime:numpy/__init__.py",
+    "scipy_directory": "runtime:scipy",
+    "runtime_files": {
+      "runtime:python-executable": "1699bf8aa705a8bb71613bef5cdd7d7c8c9d9a188a841f41679aa9b5830b8f60",
+      "runtime:check-environment/pyvenv.cfg": "3c8db224b99000e0d1e07a7135ba83bc60337c191f248b89430b17cc0f4154d5",
+      "runtime:numpy/__init__.py": "6ae17b070c0f70a8e3cad89a510a256942e5a1f37ea5feb120cec167ed2a6236",
+      "runtime:numpy/version.py": "a7fcfa08bc3d730a77a7d31ec027bf53a9695812c353a526dd077dc1451b7d7a",
+      "runtime:numpy/_core/_multiarray_umath.cpython-312-darwin.so": "cbf15cd30e2672b47a1cfc9aa82449d4eb0597a0d853e8697953568c1dc1468b",
+      "runtime:scipy/optimize/_slsqplib.cpython-312-darwin.so": "87a06d3b2baa758c805edf7aed9a25e7dbc67c0ce78a5441b7bf2d4607484a01",
+      "runtime:scipy/_lib/_ccallback_c.cpython-312-darwin.so": "c2a75e8b8e99ddc1ded49d67eba1b22b2fc2459da4fea343bbed4dab043943cc",
+      "runtime:numpy-2.2.6.dist-info/METADATA": "91d66d0d60ad467c679555c0e12ac739bb395940dc22bc5a39d45780aba129ad",
+      "runtime:numpy-2.2.6.dist-info/WHEEL": "c9205a833e45c2523ee63f7e23ee099ae0a8f4ce52f5bd09a07208776c4a19eb",
+      "runtime:numpy-2.2.6.dist-info/RECORD": "0c706e9ab694d81fc86909956ba643e556a44510abf72a3e42015096618f92c9",
+      "runtime:scipy-1.17.1.dist-info/METADATA": "b1cd2c784f6e003c6c71af4c5ee57f6370ee467d17b656250d9fd38cf579d7d0",
+      "runtime:scipy-1.17.1.dist-info/WHEEL": "26726246f91715a154e07973ca8a82029674ee3cba86914a77f2e47c1a566739",
+      "runtime:scipy-1.17.1.dist-info/RECORD": "40854b0a6f26fddac2fff00eac8f44df588809b8904e2ddf8ae6df6b351c3c46",
+      "runtime:scipy/__init__.py": "335bc6e0a9909dc7534f9569a3685a92dc8001cb8c63a6da4c239849ff02d4d0",
+      "runtime:scipy/__config__.py": "e6816202bf28fa5b88330c38bf0144960fcbb4951abbee25bb0f630d62a2fbe2",
+      "runtime:scipy/version.py": "cc9497153bb7ec9181b86b367e5ebd1bff8dc02a60092d549052f19c9d70bf06",
+      "runtime:scipy/_distributor_init.py": "cc94e137716fa1fd3d876e3cd38a4d0cf77688dfa5087577c8f959ca549e7e04",
+      "runtime:scipy/_lib/__init__.py": "097ac7fd806967e1c89871eba9722142dfef7afa783f93570a5a7b86714c54b3",
+      "runtime:scipy/_lib/_ccallback.py": "37d08eee4258ce4e885904792c77ff600d7e3aae3c477f142212452252764327",
+      "runtime:scipy/_lib/_util.py": "a9fefbc04d605f88abb7b905a72a2e510ad42223fdcfe049a4ea12c9455b89a2",
+      "runtime:scipy/_lib/_array_api.py": "e7b6d08f877456b9d26af808267263f41f2870261951a19d9ff133301d15e1e2",
+      "runtime:scipy/optimize/__init__.py": "ed9cde3ea145d57d77efb7ffb3776955d7a0e7523763031a9ee87c3e5e0cd661",
+      "runtime:scipy/optimize/_minimize.py": "5afd3ecbeaba6606c27f5f9f298782c0dae80dd0e3e01d98d4249922ede6b7ea",
+      "runtime:scipy/optimize/_slsqp_py.py": "c8362e8d36440f3de97b58562aadb86661271ea7f66160505f51a601aff71609",
+      "runtime:scipy/optimize/_optimize.py": "041a1807ccaa68115c93b07bed497d25c294a7d730ce5a7cb1f21fc5a185fa61",
+      "runtime:scipy/optimize/_numdiff.py": "ab92e82d0f93f2c7a35eba0a2800b70cf8015d97ccf094abf556206211beb00b",
+      "runtime:scipy/optimize/_constraints.py": "8e5d37213a974e7e78cb4cf8966073fa14e523157e797d6382c978c59e338fd2",
+      "runtime:scipy/optimize/_differentiable_functions.py": "a2bd7ec5b4c1781e02052fbb23220cbfdd5094fae28cb230fc653c03198546e0",
+      "runtime:scipy/.dylibs/libgcc_s.1.1.dylib": "6781ce1f79dc10e211ba532b766b0a844265767d3343f029a08112802450a730",
+      "runtime:scipy/.dylibs/libgfortran.5.dylib": "869a6555a787fd5590e2c440ccb4d82d963586168659fbf3354e1570e3f10bcc",
+      "runtime:scipy/.dylibs/libquadmath.0.dylib": "676d86e51a3950f75b41945a758bdb02be1c11fef4f4a45b1994d483228e2504",
+      "runtime:scipy/optimize/_group_columns.cpython-312-darwin.so": "b9b8b001c4995194612ef37f0f6d87a531f473e1202155844bd4a63f7944b809"
+    },
+    "runtime_scope": "32 selected inherited root values, no Gmsh; supplementary loaded-file inventory; not complete import/package/OS/ABI closure",
+    "input_hashes": {
+      "work/962-engineering/direct-sicn-head-proposer-prep-001/propose_coordinates.py": "e7d61ca130623389f2b5e3a7807477ef45090bedcfcd87f3941c35ca6d2d7b02",
+      "work/962-engineering/direct-sicn-head-proposer-prep-001/test_guards.py": "20b7440fb7476e7bdd217db514d418074df408feddb2086076398b693dc4837a",
+      "work/962-engineering/direct-sicn-head-proposer-prep-001/run_readback.py": "aefd13ddd8344cb4e46eeb17126383ba2afbf8763ae40a99eb55a9bcb2779407",
+      "work/962-engineering/direct-sicn-head-proposer-prep-001/controller.diff": "267dfc69f54ed55c063b9b1f8c88546a04c74fa587ccc08ffac9371fd6de25f3",
+      "work/962-engineering/direct-sicn-head-proposer-prep-001/METHOD.md": "26a47b8afd4136dd18ad82fd5b0e52ee72399824beb2b32ed70af52decf0c311",
+      "work/962-engineering/direct-sicn-cube-alternative-runtime-selected-001/selected-pins.json": "881687f62d2cdc254902cc3654767f3448247f2d7d340fb85b271dd98cfa3677",
+      "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-netgen-full-stars-001/readback-report.json": "5946ffbd9f2f127306673d967b583b11d8906793e2079971bc0430d65ae65f88",
+      "work/962-engineering/direct-sicn-cube-prep-002/direct_sicn_cube.py": "8351733aa0cd3dff2c86bcedd6c5cf931fde7306d0870738f9794448fbe8d12e",
+      "work/962-engineering/direct-sicn-cube-002/fixture-report.json": "0512708595378fe0d316de08305c35f98138b082a2deb83bdb60717783cd8058",
+      "work/962-engineering/direct-sicn-cube-controller-prep-002/run_readback.py": "5b9c10be3b09f4f72f2e4dcedb4588a5fee3e61d98eed9b4797498410795fae5",
+      "work/962-engineering/direct-sicn-cube-controller-root-source-002/review.json": "99125a06af6199857ed8804e027ef54e2efdf7828a75d073f00cb7c38b217dfb",
+      "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-netgen-full-stars-result-peer-001/review.json": "85cdb3c17f363ce9483eb788d832b2b46b53f1cd7e09e732632d5e334fe772d2",
+      "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-netgen-full-stars-result-peer-001/saved-row-checks.json": "5c563382a9026620a978c6eb2351444ec227a73c6d1dcc142d05a9b8c327124c",
+      "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-netgen-full-stars-root-execution-001/closed-result.json": "c011eb1605da620ec7a397f5e4f028ae8a6ff758cbfff441f67cca5915152315",
+      "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-direct-sicn-head-plan-001/NOTE.md": "a0f150f793bc8850496b057b59566d8d9232298f6aa30d8d269bc7446ff0bca0",
+      "work/962-engineering/direct-sicn-head-proposer-prep-001/held-contract.json": "cf379d58a324899bc99d6994064ff4e5297fb569221fe25dcbf183b9b0da57ba",
+      "work/962-engineering/direct-sicn-head-proposer-source-peer-001/review.json": "82166ababa5af50b9af0ec30d0a491aad6ec325ede24bc56a4679bafdf199242",
+      "work/962-engineering/direct-sicn-head-proposer-root-source-001/review.json": "cd035885a02881901b1a28b377bf028116d15c06a681f1ed0652c1d84c866670",
+      "work/962-engineering/direct-sicn-head-proposer-root-source-001/guards.log": "b3dcfd15092c9f141783d98d027d1a0c0940e9baef0bd07e76f660f8d439281e",
+      "work/962-engineering/direct-sicn-head-proposer-preflight-001/preflight.json": "25de7798799e413a966be58f90dcc5cfcd7e0e531a90699f5f9b17758c86b6f6",
+      "work/962-engineering/direct-sicn-head-proposal-001/reader.py": "e7d61ca130623389f2b5e3a7807477ef45090bedcfcd87f3941c35ca6d2d7b02",
+      "work/962-engineering/direct-sicn-head-proposal-001/run_readback.py": "aefd13ddd8344cb4e46eeb17126383ba2afbf8763ae40a99eb55a9bcb2779407"
+    },
+    "limits": {
+      "wall_seconds": 300,
+      "sampled_RSS_bytes": 1073741824,
+      "sampled_output_bytes": 16777216,
+      "threads": 2
+    },
+    "solver": {
+      "method": "SLSQP",
+      "maxiter": 100,
+      "ftol": 1e-10,
+      "eps": 1.4901161193847656e-08
+    },
+    "sicn_gate": 0.1,
+    "qualification": {
+      "head_optimization_authorized": false,
+      "engineering_accepted": false,
+      "physics_qualified": false,
+      "manufacturing_authorized": false
+    },
+    "input_counts": {
+      "movable_nodes": 156,
+      "coordinate_variables": 468,
+      "variables_with_epigraph": 469,
+      "constraints": 5355,
+      "context_nodes": 2955
+    },
+    "source_census": "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-netgen-full-stars-001/readback-report.json",
+    "source_census_sha256": "5946ffbd9f2f127306673d967b583b11d8906793e2079971bc0430d65ae65f88",
+    "source_mesh_sha256": "4b983f4ab0134d01573059aecb8f4ba512dabbdfe54fbce6abaa0a06af29fe1d",
+    "source_worker_report_sha256": "16f6ecc580d766c3c541517f0f89bd80d5cd0f660f40b157a04c5362c2245e6a",
+    "source_tagged_array_sha256s": {
+      "sorted_coordinates_sha256": "03649e2fa2691ae76b999212c96ffad9befcababd1f0286e1e23970787213a4b",
+      "sorted_node_tags_sha256": "fc85403ddc2bb85f76b1c985e7641d73dfa933a2c5dcacb26a4f9265167173df",
+      "sorted_tetra_tags_sha256": "7735f715e563ff3c325bd6557b9651d1182ca00f11a9df8d212fd78c6039c46a",
+      "tagged_tetra_connectivity_sha256": "a7f3eb516ef22dce6402051a9bfe28f93b2f5f92ffdfdc3abefce6d94e325be0"
+    },
+    "census_typed_section_sha256s": {
+      "movable_node_tags_u64": "f112209d794a29e0cfec58629d8b9044295e59526127de731ee00ca2380ed365",
+      "selected_tetrahedron_tags_u64": "0b8bde41805d68c504e5437215f5c2d871c3eeae8c7ce45362532b6433a43d52",
+      "selected_tetrahedron_connectivity_u64": "b43a45db3901565bdb32e02ca852618d5ec0e63f6513b3a31b7f8acc6d996925",
+      "union_node_tags_u64": "cd6ce773c0d805d02c7daf63f99d9071f2a35915b25a36ac9cc446634df1ef0c",
+      "union_coordinates_f64": "41deb4faa01878fdcaa1b66f82d6218c301d679005dd7493114eb4607daed80e",
+      "selected_initial_SICN_f64": "8ecf61337ac8c04273d3aae3786b545fec2a771ccbfff6aef05fc08807710e83"
+    },
+    "tiny_scalar_source": "work/962-engineering/direct-sicn-cube-prep-002/direct_sicn_cube.py",
+    "tiny_native_report": "work/962-engineering/direct-sicn-cube-002/fixture-report.json",
+    "intended_operations": {
+      "SLSQP_minimize_invocations": 1,
+      "Gmsh_imports": 0,
+      "Gmsh_generate": 0,
+      "Gmsh_optimize": 0,
+      "write_MSH": 0,
+      "coordinate_proposal_only": true
+    },
+    "materialization": {
+      "reader": {
+        "source": "work/962-engineering/direct-sicn-head-proposer-prep-001/propose_coordinates.py",
+        "name": "reader.py",
+        "sha256": "e7d61ca130623389f2b5e3a7807477ef45090bedcfcd87f3941c35ca6d2d7b02"
+      },
+      "runner": {
+        "source": "work/962-engineering/direct-sicn-head-proposer-prep-001/run_readback.py",
+        "name": "run_readback.py",
+        "sha256": "aefd13ddd8344cb4e46eeb17126383ba2afbf8763ae40a99eb55a9bcb2779407"
+      },
+      "frozen_contract": "fresh exact actual child bound externally without a self-hash cycle"
+    },
+    "controller_reverse": {
+      "reference": "work/962-engineering/direct-sicn-cube-controller-prep-002/run_readback.py",
+      "reference_sha256": "5b9c10be3b09f4f72f2e4dcedb4588a5fee3e61d98eed9b4797498410795fae5",
+      "substitutions": [
+        [
+          "One fresh, source-bound direct-SICN cube optimizer witness; reviewed pins required.",
+          "One fresh, source-bound analytic head coordinate proposal; reviewed pins required."
+        ],
+        [
+          "One fresh direct-SICN cube witness only; preserve previous outputs",
+          "One fresh analytic coordinate proposal only; preserve previous outputs"
+        ],
+        [
+          "'OPENBLAS_NUM_THREADS':'2','PYTHONDONTWRITEBYTECODE'",
+          "'OPENBLAS_NUM_THREADS':'2','VECLIB_MAXIMUM_THREADS':'2','PYTHONDONTWRITEBYTECODE'"
+        ],
+        [
+          "max(0.,30-",
+          "max(0.,300-"
+        ],
+        [
+          "direct_sicn_cube_deadline",
+          "direct_sicn_head_proposal_deadline"
+        ],
+        [
+          "if elapsed>=30:",
+          "if elapsed>=300:"
+        ],
+        [
+          "scope='one_saved_cube_direct_SICN_SLSQP_witness'",
+          "scope='one_analytic_head_coordinate_proposal'"
+        ],
+        [
+          "hard_wall_seconds=30,",
+          "hard_wall_seconds=300,"
+        ],
+        [
+          "'gmsh_write_mesh':1",
+          "'gmsh_write_mesh':0"
+        ]
+      ],
+      "exact_reverse_proved": true,
+      "process_cleanup_control_flow_unchanged": true
+    },
+    "pending": {
+      "source_peer": {
+        "path": "work/962-engineering/direct-sicn-head-proposer-source-peer-001/review.json",
+        "sha256": "82166ababa5af50b9af0ec30d0a491aad6ec325ede24bc56a4679bafdf199242"
+      },
+      "root_numpy_only_guard_result": {
+        "path": "work/962-engineering/direct-sicn-head-proposer-root-source-001/review.json",
+        "sha256": "cd035885a02881901b1a28b377bf028116d15c06a681f1ed0652c1d84c866670",
+        "guards": 6,
+        "returncode": 0
+      },
+      "selected_runtime_fresh_preflight": {
+        "path": "work/962-engineering/direct-sicn-head-proposer-preflight-001/preflight.json",
+        "sha256": "25de7798799e413a966be58f90dcc5cfcd7e0e531a90699f5f9b17758c86b6f6"
+      },
+      "actual_child": null,
+      "external_child_peer": null,
+      "materialization_and_sole_process_guard": null,
+      "proposal_result": null,
+      "native_application_and_full_audits": null
+    },
+    "prepared_sources_and_guards_executed": false,
+    "no_automatic_retry_or_sweep": true,
+    "global_incidence_completeness_scope": "inherited reviewed full-reader attestation; serialized subset alone cannot prove no omitted cells",
+    "root_source_review": {
+      "path": "work/962-engineering/direct-sicn-head-proposer-root-source-001/review.json",
+      "sha256": "cd035885a02881901b1a28b377bf028116d15c06a681f1ed0652c1d84c866670",
+      "guards": 6,
+      "returncode": 0
+    },
+    "source_peer": {
+      "path": "work/962-engineering/direct-sicn-head-proposer-source-peer-001/review.json",
+      "sha256": "82166ababa5af50b9af0ec30d0a491aad6ec325ede24bc56a4679bafdf199242"
+    },
+    "actual_contract_binding": "Exact actual child SHA is supplied externally to the owned controller; this object does not hash itself."
+  },
+  "omitted_field_paths": [],
+  "path_role_rules": [
+    {
+      "role": "runtime:scipy",
+      "operation": "exact prefix substitution in keys and string values; all digest values unchanged"
+    },
+    {
+      "role": "runtime:numpy",
+      "operation": "exact prefix substitution in keys and string values; all digest values unchanged"
+    },
+    {
+      "role": "runtime:check-environment",
+      "operation": "exact prefix substitution in keys and string values; all digest values unchanged"
+    },
+    {
+      "role": "runtime:python-executable",
+      "operation": "exact prefix substitution in keys and string values; all digest values unchanged"
+    },
+    {
+      "role": "project-relative path",
+      "operation": "exact prefix substitution in keys and string values; all digest values unchanged"
+    }
+  ],
+  "derived_observations": null
+}

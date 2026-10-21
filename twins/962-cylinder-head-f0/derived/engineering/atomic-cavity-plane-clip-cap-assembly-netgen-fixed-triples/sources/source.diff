@@ -1,0 +1,133 @@
+--- reader65fe.py
++++ reader-fixed-triples.py
+@@ -1,6 +1,7 @@
+ """Read the existing saved MSH only; never generate, optimize or write geometry."""
+ from pathlib import Path
+-import hashlib,json,math,platform,sys,time
++import hashlib,json,math,platform,struct,sys,time
++from fractions import Fraction
+ import numpy as np
+ ROOT=Path(__file__).resolve().parents[3];OUT=Path(__file__).parent
+ sha=lambda p:hashlib.sha256(p.read_bytes()).hexdigest()
+@@ -64,6 +65,84 @@
+  if (any(observed[k]!=expected[k] for k in fields) or observed['sum']!=proof['summed_tetra_volume_mm3'] or observed['relative_error_to_candidate']!=proof['volume_relative_error']):
+   raise ValueError('Independent saved signed-volume distribution/sum differs from worker.after')
+  if report['positive_poor_SICN_cells']['total']!=expected_positive_poor_total:raise ValueError('Exact current positive-poor partition required')
++
++
++def rational(value):
++    return dict(numerator=str(value.numerator),denominator=str(value.denominator))
++
++def certificate(coordinates):
++    if len(coordinates)!=3 or any(len(row)!=3 for row in coordinates):
++        raise ValueError("Exactly three 3D binary64 coordinates required")
++    if not all(math.isfinite(float(x)) for row in coordinates for x in row):
++        raise ValueError("Finite binary64 coordinates required")
++    p=[[Fraction.from_float(float(x)) for x in row] for row in coordinates]
++    u=[p[1][k]-p[0][k] for k in range(3)]
++    v=[p[2][k]-p[0][k] for k in range(3)]
++    cross=[u[1]*v[2]-u[2]*v[1],u[2]*v[0]-u[0]*v[2],u[0]*v[1]-u[1]*v[0]]
++    cross_squared=sum(x*x for x in cross)
++    edge_sum=sum((p[a][k]-p[b][k])**2 for a,b in [(0,1),(1,2),(2,0)] for k in range(3))
++    if cross_squared<=0 or edge_sum<=0:
++        raise ValueError("Nondegenerate linear triangle required")
++    left,right=2700*cross_squared,edge_sum**2
++    return dict(arithmetic="Fraction.from_float preserves each input binary64 value exactly; all following operations are rational.",
++        cross_squared_mm4=rational(cross_squared),sum_squared_edge_lengths_mm2=rational(edge_sum),
++        exact_triangle_SICN_squared=rational(12*cross_squared/right),
++        exact_loose_tetra_SICN_squared_upper_bound=rational(27*cross_squared/right),
++        inequality_left_2700_cross_squared=rational(left),inequality_right_edge_sum_squared=rational(right),
++        exact_strict_inequality_2700_cross_squared_lt_edge_sum_squared=bool(left<right),
++        no_positive_linear_tetrahedron_with_this_fixed_face_can_reach_SICN_point1=bool(left<right),
++        no_square_root_or_floating_tolerance_used=True)
++
++
++def tight_fixed_face_ceiling(proof):
++ """Exact isolated-apex decision; decimal values are informative, not intervals."""
++ squared=proof['exact_triangle_SICN_squared']
++ q2=Fraction(int(squared['numerator']),int(squared['denominator']))
++ if not 0<q2<=1:raise ValueError('Positive nondegenerate normalized fixed-face quality required')
++ q=math.sqrt(float(q2))
++ return dict(exact_triangle_SICN_squared=squared,
++  exact_isolated_apex_ceiling_expression='3*sqrt(numerator/denominator)/(2+sqrt(numerator/denominator))',
++  exact_threshold_q_squared=rational(Fraction(4,841)),
++  exact_isolated_apex_maximum_below_SICN_point1=bool(q2<Fraction(4,841)),
++  exact_isolated_apex_maximum_equals_SICN_point1=bool(q2==Fraction(4,841)),
++  triangle_SICN_approximate=q,tetra_SICN_ceiling_approximate=3*q/(2+q),
++  decimal_values_are_not_interval_or_native_metric_certificates=True,
++  exact_scope='Real-arithmetic ideal-reference linear tetrahedron, unrestricted apex, these stored binary64 fixed coordinates only.')
++
++
++def fixed_triple_record(index,tetra_tag,SICN,node_tags,coordinates,boundary_count):
++ """Preserve source-local order; three boundary tags need not be an exterior face."""
++ if (type(index) is not int or index<0 or type(tetra_tag) is not int or tetra_tag<=0
++     or type(boundary_count) is not int or boundary_count<=0
++     or len(node_tags)!=4 or any(type(t) is not int or t<=0 for t in node_tags) or len(set(node_tags))!=4
++     or isinstance(SICN,bool) or not isinstance(SICN,(int,float)) or not math.isfinite(SICN) or not 0<SICN<.1
++     or len(coordinates)!=4 or any(len(row)!=3 for row in coordinates)
++     or not all(math.isfinite(float(x)) for row in coordinates for x in row)):
++  raise ValueError('One positive-poor tagged TET4 and finite four-node coordinates required')
++ fixed=[i for i,t in enumerate(node_tags) if 1<=t<=boundary_count]
++ if len(fixed)!=3:raise ValueError('Exactly three source-boundary nodes and one interior apex required')
++ free=next(i for i in range(4) if i not in fixed);xyz=[[float(x) for x in coordinates[i]] for i in fixed]
++ proof=certificate(xyz)
++ return dict(native_array_index=index,tetrahedron_tag=tetra_tag,native_SICN=float(SICN),
++  full_source_tetrahedron_node_tags=node_tags,fixed_node_local_positions=fixed,
++  fixed_triple_node_tags=[node_tags[i] for i in fixed],fixed_triple_coordinates_mm=xyz,
++  fixed_triple_binary64_hex=[[x.hex() for x in row] for row in xyz],
++  fixed_triple_coordinate_bits_sha256=hashlib.sha256(struct.pack('<9d',*[x for row in xyz for x in row])).hexdigest(),
++  interior_apex_local_position=free,interior_apex_node_tag=node_tags[free],
++  exterior_surface_face_membership=None,exterior_surface_membership_computed=False,
++  exact_fixed_face_certificate=proof,tight_isolated_apex_ceiling=tight_fixed_face_ceiling(proof))
++
++
++def require_complete_fixed_triples(rows,counts,prior,expected):
++ if (type(expected) is not int or expected!=195
++     or prior.get('status')!='direct_saved_file_readback_completed' or prior.get('bound_inputs_unchanged') is not True
++     or prior['positive_poor_SICN_cells']['total']!=210
++     or prior['positive_poor_SICN_cells']['by_original_boundary_node_count']!={'0':0,'1':0,'2':15,'3':195,'4':0}
++     or counts!=prior['positive_poor_SICN_cells']['by_original_boundary_node_count'] or len(rows)!=expected):
++  raise ValueError('Complete current Netgen195 fixed triples and unchanged210 partition required')
++ tags=[row['tetrahedron_tag'] for row in rows]
++ if any(type(t) is not int or t<=0 for t in tags) or tags!=sorted(set(tags)):
++  raise ValueError('Every selected tetrahedron must occur exactly once in increasing tag order')
+ 
+ 
+ contract=json.loads((OUT/'frozen-contract.json').read_text())
+@@ -104,7 +183,7 @@
+  report.update(actual_explicit_surface_triangles=len(actual_faces),exact_source_boundary_coordinates=True,exact_sorted_explicit_surface_connectivity=True,explicit_surface_elements_are_not_an_independent_tetra_boundary_incidence_audit=True)
+  del actual_faces,face_nodes,face_tags,face_order
+  native={};bad_tetrahedra=[]
+- positive_poor_counts={str(k):0 for k in range(5)};positive_poor_representatives={}
++ positive_poor_counts={str(k):0 for k in range(5)};positive_poor_representatives={};fixed_triples=[]
+  for name,measure in [('SICN','minSICN'),('Jacobian','minDetJac'),('native_volume_mm3','volume')]:
+   row=dict(count=0,minimum=None,maximum=None,nonpositive_count=0,below_point1_count=0 if name=='SICN' else None)
+   metric_values=np.empty(len(tet_tags),dtype=np.float64)
+@@ -116,6 +195,11 @@
+    if name=='SICN':
+     row['below_point1_count']+=int(np.count_nonzero(q<.1))
+     classify_positive_poor_chunk(q,tet_tags[offset:offset+len(q)],tet_nodes[offset:offset+len(q)],offset,nv,positive_poor_counts,positive_poor_representatives)
++    connections=tet_nodes[offset:offset+len(q)];boundary_counts=np.count_nonzero((connections>=1)&(connections<=nv),axis=1)
++    for local in np.flatnonzero((q>0)&(q<.1)&(boundary_counts==3)):
++     index=offset+int(local);conn=tet_nodes[index];ids=np.searchsorted(tags,conn)
++     if np.any(ids>=len(tags)) or not np.array_equal(tags[ids],conn):raise ValueError('Fixed triple references missing saved node')
++     fixed_triples.append(fixed_triple_record(index,int(tet_tags[index]),float(q[local]),conn.tolist(),xyz[ids].tolist(),nv))
+     for local in np.flatnonzero(q<=0):
+      index=offset+int(local);conn=tet_nodes[index];ids=np.searchsorted(tags,conn)
+      if np.any(ids>=len(tags)) or not np.array_equal(tags[ids],conn):raise ValueError('Nonpositive-SICN cell references missing node')
+@@ -154,6 +238,15 @@
+   original_boundary_definition='Exact admitted source surface tags1..nv; distinct from the surface-repair fixed-vertex mask.',
+   positive_poor_feature_or_OEM_classification_computed=False)
+  require_after_match(report,proof,contract['expected_positive_poor_total'])
++ prior=json.loads((ROOT/contract['completed_saved_diagnosis']).read_text())
++ fixed_triples.sort(key=lambda row:row['tetrahedron_tag'])
++ require_complete_fixed_triples(fixed_triples,positive_poor_counts,prior,contract['expected_three_boundary_poor_cells'])
++ report['fixed_boundary_triple_ceiling_analysis']=dict(count=len(fixed_triples),rows=fixed_triples,
++  exact_isolated_apex_obstruction_count=sum(row['tight_isolated_apex_ceiling']['exact_isolated_apex_maximum_below_SICN_point1'] for row in fixed_triples),
++  source_proof=contract['fixed_face_metric_proof'],completed_prior_diagnosis_sha256=sha(ROOT/contract['completed_saved_diagnosis']),
++  all_current_class3_positive_poor_cells_included=True,source_boundary_tags_definition='Exact9d62 surface node tags1..nv, not a repair mask or OEM classification.',
++  exterior_surface_membership_computed=False,shared_star_feasibility_computed=False,geometry_or_optimizer_proposal_written=False,
++  no_isolated_obstruction_is_not_common_feasibility=True)
+  report['direct_counts_metrics_and_positive_poor_total_match_single_worker_after']=True
+  report['single_optimized_worker_proof']=dict(worker_report_sha256=sha(w/'worker-report.json'),field='after',independent_prior_reader_alias_used=False)
+  report.update(retained_only_not_repeated=dict(tetra_exterior_incidence=proof['actual_tetra_boundary'],internal_face_orientation=proof['internal_tetra_face_orientation'],classifications=proof['classifications']),SICN_point1_gate_passed=native['SICN']['minimum']>=.1 and native['SICN']['nonpositive_count']==0,thermal_resolution_established=False,status='direct_saved_file_readback_completed')

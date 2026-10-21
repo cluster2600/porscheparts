@@ -1,0 +1,132 @@
+{
+  "schema": "962-clipped-repair-reference-result-peer/v1",
+  "status": "clear_saved_records_and_complete_selected_row_checks_no_admission",
+  "findings": [],
+  "scope": "Independent standard-library saved-record/hash inspection plus bounded original BIN row reads. No prepared reader/helper import, NumPy, scientific replay, full geometry array loading or native query.",
+  "original_records_sha256": {
+    "frozen-contract.json": "7357dbb30f75dfbb2e583a8db8970effe92276973361e9a52920112ba9a24038",
+    "readback-report.json": "ebf9dd540d32ff6dd2d47267a94d8500b498b30e783288a91eba5c556d21b108",
+    "execution-receipt.json": "be8c444d475985ebf4d1547133dc98d466e7e9102d91d95c3957bf8c0cd5bc57"
+  },
+  "closed_result_file_count": 8,
+  "artifact_sha256": {
+    "frozen-contract.json": "7357dbb30f75dfbb2e583a8db8970effe92276973361e9a52920112ba9a24038",
+    "execution-receipt.json": "be8c444d475985ebf4d1547133dc98d466e7e9102d91d95c3957bf8c0cd5bc57",
+    "reference_kernels.py": "67d7488de085804fcd64a12cb3057518236f141599df3862ac4f4b412bf84b57",
+    "reader.py": "c64782cc8e3021b195f5def538ece0d6491cd223877ab8bc27282b82ef72d5b3",
+    "native.log": "e3656b3f9839449a79237b83b404e537c45abbc29f74473e6461e782c1613f2d",
+    "readback-report.json": "ebf9dd540d32ff6dd2d47267a94d8500b498b30e783288a91eba5c556d21b108",
+    "patch_kernels.py": "856a39e7772a6245e9750a1282756de6338983e3412bfcbc32e4c493eab81dc2",
+    "run_readback.py": "e0e63b01708584d0296757df8aaea89c5238bc352109a716a7abed49defa3d97"
+  },
+  "all_32_input_pins_current_before_and_after": true,
+  "four_executed_source_copies_exact": true,
+  "controls": {
+    "returncode": 0,
+    "stop_reason": null,
+    "wall_seconds": 1.3323424169793725,
+    "hard_wall_seconds": 120,
+    "sampled_RSS_stop_bytes": 4294967296,
+    "library_threads": 2,
+    "RSS_sample_count": 3,
+    "RSS_samples": [
+      {
+        "wall_seconds": 0.005447041941806674,
+        "RSS_bytes": 1409024
+      },
+      {
+        "wall_seconds": 0.5112630419898778,
+        "RSS_bytes": 181354496
+      },
+      {
+        "wall_seconds": 1.0197961670346558,
+        "RSS_bytes": 294338560
+      }
+    ],
+    "max_observed_RSS_bytes": 294338560,
+    "hard_OS_memory_CPU_quotas": false,
+    "native_geometry_or_solver_calls": 0
+  },
+  "independent_saved_row_checks": {
+    "unique_face_rows_read": 11736,
+    "unique_point_rows_read": 7168,
+    "candidate_SHA256_verified_streaming_before_after": true,
+    "incident_region_face_rows_checked": 9872,
+    "all_3112_poor_triangles_three_exact_Fraction_squared_lengths_and_every_tie_checked": true,
+    "all_3508_listed_cap_triangles_exact_negative_z_winding_checked": true,
+    "cap_boundary_vertex_links_checked": 3508,
+    "reported_full_incidence_rim_rows_checked": 5520,
+    "both_reported_faces_orientation_and_cap_patch_poor_classifications_checked": true,
+    "cap_topology_reconstructed_without_prepared_kernel": true,
+    "all_both_UF_group_memberships_and_necessary_eligibility_lists_reconstructed": true
+  },
+  "masks": {
+    "exterior_only_fixed_vertices": 865429,
+    "legacy_fixed_vertices": 865429,
+    "fixed_mask_sha256": "c06b8f991e6e35b671fe97df941189c7a15bad1be93404525d298318d3dc7277",
+    "exact_masks_equal": true,
+    "free_interior_vertices": 3926,
+    "free_set_equals_5938_patch_vertices_minus_2012_boundary": true,
+    "no_free_point_x_equals_plusminus76": true,
+    "mask_is_not_approved_repair_constraint": true
+  },
+  "cap_observations": {
+    "listed_faces": 3508,
+    "vertices": 3508,
+    "edges": 7016,
+    "Euler": 0,
+    "edge_components": 1,
+    "abstract_boundary_cycle_lengths": [
+      1482,
+      2026
+    ],
+    "local_manifold_with_boundary": true,
+    "abstract_annulus": true,
+    "geometric_void_identity_proved": false,
+    "inside_incident_region_faces": 3470,
+    "exterior_faces": 38,
+    "poor_faces": 2396,
+    "all_exact_rational_windings_negative": true,
+    "point_contacts": {}
+  },
+  "shortest_edge_observations": {
+    "poor_faces": 3112,
+    "tied_minimum_faces": 4,
+    "all_tied_edges": 2700,
+    "exploratory_lex_first_edges": 2696,
+    "UF_groups_each": 476,
+    "size_histogram": {
+      "22": 2,
+      "329": 2,
+      "2": 248,
+      "7": 4,
+      "12": 6,
+      "3": 180,
+      "9": 4,
+      "410": 2,
+      "5": 14,
+      "47": 2,
+      "43": 2,
+      "15": 2,
+      "4": 8
+    },
+    "two_graph_group_memberships_equal": true,
+    "fixed_conflict_groups": 0,
+    "keepers_selected": false
+  },
+  "attribution_limits": [
+    "Complete cap membership among all 1739126 faces, complete selected-edge incidence absence of extra faces, negative-z absence and absence of z0 vertices outside cap retain the source-bound full-reader/global-baseline attribution; this review independently verified every listed cap face and every reported rim incidence rather than rescanning the entire geometry.",
+    "Mask equivalence was additionally checked by its full constructed bitmap digest, prior frozen mask association, exact patch-minus-boundary free IDs and all free x coordinates; no mask is approved.",
+    "The cap is an abstract oriented annulus in the reported complex. No geometric void coverage, feature/OEM interface identity, cap alteration permission or repair viability is established.",
+    "The existing runner finally waits for its worker and the returned receipt is RC0/no stop; no independent OS PID absence probe is recorded or asserted.",
+    "Necessary keeper lists use only the explicitly conditional exterior-fixed and cap-plane rules; no keeper, target policy, quotient/link/normal/quality/envelope validity, CUB, accepted surface/volume mesh or head physics/manufacturing qualification is established."
+  ],
+  "qualification": {
+    "geometric_or_topological_keeper_admissibility_proved": false,
+    "manufacturing_authorized": false,
+    "repair_constraints_or_target_policy_or_keepers_approved": false,
+    "surface_volume_or_physics_admitted": false
+  },
+  "original_frozen_records_modified": false,
+  "scientific_imports_native_Docker_SSH_API_Git_or_network_calls": 0
+}

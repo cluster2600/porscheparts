@@ -1,0 +1,11 @@
+--- check_saved.py
++++ check_saved002.py
+@@ -187,7 +187,7 @@
+         assert all(type(x) is float and math.isfinite(x) for x in params)
+         assert row['parametric_binary64_hex'] == [x.hex() for x in params]
+     faces = report['all_selected_shell_face_records']
+-    assert [tuple(x['shell_face_key']) for x in faces] == sorted(expected_faces)
++    assert [tuple(x['shell_face_key']) for x in faces] == list(expected_faces)
+     outside = {}; partition = Counter(); exterior = {}; owner_count = 0
+     for face in faces:
+         key = tuple(face['shell_face_key']); frozen = expected_faces[key]

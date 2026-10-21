@@ -1,0 +1,158 @@
+{
+  "schema": "962-current24-toy-guard-owner-reuse/v1",
+  "operation": "framing5",
+  "donor": {
+    "path": "work/962-engineering/head-star-current24-coupled-qfnra-guards-execution-prep-001/run_root_once.py",
+    "sha256": "46525eb39e8cf1b44b82fb81558d54a5ec91a88b7a661b08a756f18556fa0ec4",
+    "bytes": 15897
+  },
+  "accepted_nine_helper_ancestor": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-row-first-mock-guards-execution-prep-001/run_root_once.py",
+    "sha256": "bd86647db9f11bcf098a034094a722fa0972c9f3fb393fe6684c915bfffc71e3",
+    "bytes": 15061
+  },
+  "original_control_index": {
+    "path": "work/962-engineering/head-star-current24-coupled-qfnra-guards-execution-prep-001/index.json",
+    "sha256": "3581b0aa58a74620acc423bddbe6e864168aa76345c6972e54ace086918b2690",
+    "bytes": 6683
+  },
+  "original_control_actual": {
+    "path": "work/962-engineering/head-star-current24-coupled-qfnra-guards-execution-prep-001/actual-contract.json",
+    "sha256": "bb9c481ed8e16c51e65a33c62668ceb59e8ae4fa02ee557e22345e87fea7862c",
+    "bytes": 21396
+  },
+  "owner": {
+    "path": "work/962-engineering/head-star-current24-qfnra-toy-framing-guards-execution-prep-001/run_root_once.py",
+    "sha256": "b003b523c0a52c25fde706d87ed7020ff7fd399f9c82605e961170235f1b1508",
+    "bytes": 16347
+  },
+  "diff": {
+    "path": "work/962-engineering/head-star-current24-qfnra-toy-framing-guards-execution-prep-001/source.diff",
+    "sha256": "a8e300babbb2fa2938c7e028d4eb48ab847337cbb42c8f95bfd83fec4f57f4a3",
+    "bytes": 10776
+  },
+  "replacement_groups": [
+    {
+      "old": "HELD ONE14-test pure QF_NRA synthetic owner",
+      "new": "HELD ONE5-test fake-only toy framing guard owner",
+      "occurrences": 1
+    },
+    {
+      "old": "head-star-current24-coupled-qfnra-guards-execution-prep-001",
+      "new": "head-star-current24-qfnra-toy-framing-guards-execution-prep-001",
+      "occurrences": 1
+    },
+    {
+      "old": "head-star-current24-coupled-qfnra-guards-root-execution-001",
+      "new": "head-star-current24-qfnra-toy-framing-guards-root-execution-001",
+      "occurrences": 1
+    },
+    {
+      "old": "962-current24-qfnra14-root-synthetic-admission/v1",
+      "new": "962-current24-toy-framing5-root-synthetic-admission/v1",
+      "occurrences": 1
+    },
+    {
+      "old": "962-current24-qfnra14-held-synthetic-actual/v1",
+      "new": "962-current24-toy-framing5-held-synthetic-actual/v1",
+      "occurrences": 1
+    },
+    {
+      "old": "962-current24-qfnra14-once-synthetic-result/v1",
+      "new": "962-current24-toy-framing5-once-synthetic-result/v1",
+      "occurrences": 1
+    },
+    {
+      "old": "auth['expected_tests']==14",
+      "new": "auth['expected_tests']==5",
+      "occurrences": 1
+    },
+    {
+      "old": "actual['expected_tests']==14 and len(actual['test_methods'])==14",
+      "new": "actual['expected_tests']==5 and len(actual['test_methods'])==5",
+      "occurrences": 1
+    },
+    {
+      "old": "expected_tests=14",
+      "new": "expected_tests=5",
+      "occurrences": 2
+    },
+    {
+      "old": "all14_tests_completed",
+      "new": "all5_tests_completed",
+      "occurrences": 6
+    },
+    {
+      "old": "__main__\\.QFNRASyntheticGuards",
+      "new": "__main__\\.ToyFramingExpectations",
+      "occurrences": 1
+    },
+    {
+      "old": "counts[0][0]!='14'",
+      "new": "counts[0][0]!='5'",
+      "occurrences": 1
+    },
+    {
+      "old": "Complete14 named unittest successes",
+      "new": "Complete5 named unittest successes",
+      "occurrences": 1
+    },
+    {
+      "old": "'real_word_validator_execution_authorized'])",
+      "new": "'real_word_validator_execution_authorized','full_transport_helper_execution_authorized','solver_process_execution_authorized','installed_solver_runtime_query_authorized'])",
+      "occurrences": 2
+    },
+    {
+      "old": "assert auth['automatic_retry'] is False and auth['controls']==actual['controls']",
+      "new": "assert auth['automatic_retry'] is False and auth['controls']==actual['controls']\nassert auth['guard_scope']==actual['guard_scope']=='pinned_fake_extracted_fragments_only'",
+      "occurrences": 1
+    },
+    {
+      "old": "source_or_descriptor_metadata_read=True,native_executed=False",
+      "new": "source_or_descriptor_metadata_read=True,full_transport_helper_executed=False,Z3_executed=False,guard_scope=actual['guard_scope'],native_executed=False",
+      "occurrences": 1
+    }
+  ],
+  "replacement_group_count": 16,
+  "literal_occurrences": 23,
+  "full_inverse_exact": true,
+  "nine_helper_names": [
+    "rec",
+    "group_exists",
+    "check",
+    "output_size",
+    "stop_wait",
+    "limits",
+    "sample",
+    "provider_links",
+    "record_controller_stop"
+  ],
+  "nine_helpers_text_AST_exact_to_both_donors": true,
+  "imports_exact": true,
+  "resource_lifecycle_sample_stop_wait_handler_cutoff_and_final_receipt_logic_unchanged": true,
+  "semantic_changes": [
+    "Fixed namespace/schema/direct fixture/count/class",
+    "Three explicit false transport-helper/solver-process/installed-solver-query authorities",
+    "Exact external admission scope pinned_fake_extracted_fragments_only",
+    "Precise complete-transport/Z3 false receipt scope"
+  ],
+  "fixture": {
+    "path": "work/962-engineering/head-star-current24-qfnra-toy-transport-prep-002/test_framing_expectations.py",
+    "sha256": "f01782ee9738c3b39b182dcb0b1d25f81225768189e4a96176d9270a43d0bb25",
+    "bytes": 3998
+  },
+  "TestCase": "ToyFramingExpectations",
+  "test_methods": [
+    "test_01_raw_and_quoted_echo_forms_are_complete_and_retained",
+    "test_02_split_markers_and_multiline_body_do_not_lose_bytes",
+    "test_03_noise_duplicate_wrong_form_and_EOF_refuse",
+    "test_04_ceiling_refuses_without_replacing_partial_bytes",
+    "test_05_child_group_and_fixed_once_only_source_boundary"
+  ],
+  "expected_tests": 5,
+  "fixture_edited": false,
+  "new_driver": false,
+  "source_or_fragment_import_compile_execute": false,
+  "new_runtime_query_or_body_access": false,
+  "author_affiliation": "head_mesh_next authored pure producer/protocol,prior guard donors/controls and these controls. LPBF authored transport002 and four deadline expectations; independent control peer/root admission remain separate."
+}

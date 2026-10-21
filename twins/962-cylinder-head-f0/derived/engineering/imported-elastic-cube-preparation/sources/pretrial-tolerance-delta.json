@@ -1,0 +1,38 @@
+{
+  "change_declared_before_any_adapter_or_native_trial": true,
+  "complete_reverse_byte_exact": true,
+  "exact_replacements": [
+    {
+      "new": "  nl_rel_tol = 1e-11\n",
+      "old": "  nl_rel_tol = 1e-12\n"
+    },
+    {
+      "new": "  nl_abs_tol = 1e-10\n",
+      "old": "  nl_abs_tol = 1e-12\n"
+    },
+    {
+      "new": "  l_tol = 1e-11\n",
+      "old": "  l_tol = 1e-12\n"
+    },
+    {
+      "new": "  l_abs_tol = 1e-12\n",
+      "old": "  l_abs_tol = 1e-13\n"
+    }
+  ],
+  "independent_card_gates_unchanged": true,
+  "linear_tolerance_reason": "Predeclare relative1e-11/absolute1e-12 to avoid demanding1e-13 absolute on this mixed-unit45-row identity-Dirichlet/stiffness system. These are solver stops, not field acceptance bounds.",
+  "native_calls": 0,
+  "nl_tolerance_provenance": {
+    "nl_abs_tol": "1e-10",
+    "nl_rel_tol": "1e-11",
+    "sha256": "df2a23db9281f8c12b3afc6b002aeaf352040592a440f2bae31f1cfb6e89f99f",
+    "source": "work/962-engineering/moose-mechanical-birth-001/attempt-002/mechanical-birth.i"
+  },
+  "old_deck_sha256": "ff4867beb11a290680525a2ec3aff9de6a3620881aa175617165786cbc5f77ee",
+  "old_original_deck_preserved_unrun": true,
+  "prepared_guard_methods": 6,
+  "schema": "962-imported-elastic-cube-pretrial-tolerance-delta/v1",
+  "selected_deck_sha256": "93f09e35790d3a90d98bbf2579c5baae56e5fc6ffddfaa660ea3664d98e8c049",
+  "selected_main_guard_sha256": "d31e4483f31c6eb032f996ea8f3831ca97eeb7fe80821c0736a8db84f599b7f1",
+  "tests_executed": false
+}

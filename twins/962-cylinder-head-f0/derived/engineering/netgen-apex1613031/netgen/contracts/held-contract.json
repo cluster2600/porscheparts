@@ -1,0 +1,596 @@
+{
+  "native_python": "runtime-role://registered-native/geometry/bin/python",
+  "runtime": {
+    "python_executable_sha256": "72956ad35cff7691dfed9e04c9593de825ffd5b2fa7e8bc9ae96ce9a1af65621"
+  },
+  "runtime_sha256s": {
+    "gmsh_library": "def0f5c10988a986e5e879b3db9669d8fe016a81e2d994bbaf2b8497c6b8a58a",
+    "gmsh_module": "f4b0935cebde899750293d87a643090e5ea33c9b18d249267f507db68a0e01c3",
+    "python": "72956ad35cff7691dfed9e04c9593de825ffd5b2fa7e8bc9ae96ce9a1af65621"
+  },
+  "external_runtime_hashes": {
+    "runtime-role://registered-native/geometry/bin/python": "72956ad35cff7691dfed9e04c9593de825ffd5b2fa7e8bc9ae96ce9a1af65621",
+    "runtime-role://registered-native/geometry/lib/libgmsh.4.15.dylib": "def0f5c10988a986e5e879b3db9669d8fe016a81e2d994bbaf2b8497c6b8a58a",
+    "runtime-role://registered-native/geometry/lib/python3.10/site-packages/gmsh.py": "f4b0935cebde899750293d87a643090e5ea33c9b18d249267f507db68a0e01c3"
+  },
+  "expected_runtime": {
+    "python": "3.10.11",
+    "numpy": "2.0.2",
+    "gmsh": "4.15.2",
+    "machine": "arm64"
+  },
+  "numpy_init": "runtime-role://registered-native/numpy-environment/lib/python3.10/site-packages/numpy/__init__.py",
+  "numpy_origin_provenance": {
+    "path": "work/962-engineering/direct-sicn-cube-prep-001/held-contract.json",
+    "sha256": "db6def5bf8909387b6ba4be4dc68769360dd396eca55e35b88718b6ff558e5cd",
+    "selection": "Existing registered expected origin only; no module/runtime bodies read or fresh probe.",
+    "fresh_exact_origin_and_module_byte_check_required_before_actual_child": true,
+    "complete_package_import_OS_ABI_or_source_build_closure": false
+  },
+  "controls": {
+    "wall_seconds": 30,
+    "sampled_RSS_stop_bytes": 1073741824,
+    "sampled_output_stop_bytes": 16777216,
+    "threads": 2,
+    "hard_OS_CPU_quota_applied": false,
+    "hard_address_space_limit_applied": false,
+    "environment": {
+      "PATH": "/usr/bin:/bin",
+      "LANG": "C",
+      "PYTHONUTF8": "1",
+      "OMP_NUM_THREADS": "2",
+      "OPENBLAS_NUM_THREADS": "2",
+      "VECLIB_MAXIMUM_THREADS": "2",
+      "PYTHONDONTWRITEBYTECODE": "1"
+    }
+  },
+  "audit_helper_source": "twins/962-cylinder-head-f0/source/mesh_head.py",
+  "audit_helper_sha256": "69c8012e99057e384d44d6971d41f0e2cc7197a978120a7c566b0ad5a6477da5",
+  "schema": "962-specific-apex1613031-saved-cavity-Netgen-held/v1",
+  "status": "HELD_SOURCE_ONLY_UNRUN",
+  "scope": "One future saved9-node9-cell apex1613031 cavity Netgen operation only; current zero interior baseline legitimate; no generation/head/domain/application authority.",
+  "native_execution_authorized": false,
+  "root_and_peer_review_complete": false,
+  "selected_runtime_review_complete": false,
+  "cavity_Netgen_optimizer_authorized": false,
+  "generation_authorized": false,
+  "cavity_generation_authorized": false,
+  "head_execution_authorized": false,
+  "stitching_authorized": false,
+  "native_head_application_authorized": false,
+  "engineering_accepted": false,
+  "physics_qualified": false,
+  "manufacturing_authorized": false,
+  "material_qualified": false,
+  "process_calibrated": false,
+  "feasibility_accepted": false,
+  "automatic_retry": false,
+  "output_directory": null,
+  "planned_output_directory": "work/962-engineering/fixed-shell-netgen-apex1613031-001",
+  "actual_child_sha256": null,
+  "reader_sha256": "6e0acb7b325178caee5fd799919e9003a690ef6cd15318f2235095ea7255abf0",
+  "runner_sha256": "ee558f1520b9a8d4ba1d458c1055ad0d6addc68d97d25ad6aae6e7305fb610c0",
+  "input_hashes": {
+    "twins/962-cylinder-head-f0/source/mesh_head.py": "69c8012e99057e384d44d6971d41f0e2cc7197a978120a7c566b0ad5a6477da5",
+    "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-delaunay-prep-001/mesh_assembled_delaunay.py": "a3268687edc90b0149775cf5d80a89df82175cc982bbf5d7184b6ea8935be8a4",
+    "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-netgen-cube-prep-002/reader.py": "97b7e9fc7d17defa84594c50dac1d4e09cd39bb47ef2059e00b6ac07fe8c029b",
+    "work/962-engineering/direct-sicn-cube-prep-001/held-contract.json": "db6def5bf8909387b6ba4be4dc68769360dd396eca55e35b88718b6ff558e5cd",
+    "work/962-engineering/head-star-current129-full-stars-root-execution-001/launch-deviation-001.json": "d60fff297c6c45dc92e117262e36ffde36e2169d53fcd32ce2b79fabde5eebc3",
+    "work/962-engineering/fixed-shell-netgen-apex1613790-prep-001/reader.py": "59780a39524966f335bb9df5f55dbc7775b43ef7776d20dc8801445988c7ac63",
+    "work/962-engineering/fixed-shell-netgen-apex1613790-prep-001/run_readback.py": "ee558f1520b9a8d4ba1d458c1055ad0d6addc68d97d25ad6aae6e7305fb610c0",
+    "work/962-engineering/fixed-shell-netgen-apex1613790-prep-001/held-contract.json": "fa9b153e4523d1b4a1010496e43bbf9f40f70826c09911a147c948b8a65c0029",
+    "work/962-engineering/fixed-shell-netgen-apex1613790-prep-001/source-delta.json": "d7f9414b41ed1789e39cc416986b563c48d7175117c02a1b602bab36f62a4c9b",
+    "work/962-engineering/fixed-shell-netgen-apex1613790-prep-001/METHOD.md": "3cbc84a788df19bb8bea0b73f3dcdd084f96e91f6763929ece2729d7c921f521",
+    "work/962-engineering/fixed-shell-netgen-apex1613790-prep-001/test_source_guards.py": "f6feb92f30985fad0c678aedf9f3499f861bc3d9c0e0d3f3be69552186e29c28",
+    "work/962-engineering/fixed-shell-netgen-apex1613790-prep-001/test_runner_guards.py": "f75f344d85179f71d2370ddbab798fd8d459c537cc05028aa214aac0c1e956c5",
+    "work/962-engineering/fixed-shell-netgen-apex1435493-root-source-001/review.json": "74effbcef14a2480b2f25f4a3ca19e1746d93c4ea135a8b45170aa4dd5bb29b1",
+    "work/962-engineering/fixed-shell-netgen-apex1435493-root-source-001/test_runner_guards.py.log": "11f347ee11ed006f949a2b3bab1bf82a33059276bac3fdb5aee3c64ee4294648",
+    "work/962-engineering/fixed-shell-generation-apex1613031-prep-001/reader.py": "d3842f573f8a41d3d579d2276e0bf5ea6080362bb6a6bf44eda2174db60f3c6a",
+    "work/962-engineering/fixed-shell-generation-apex1613031-prep-001/held-contract.json": "e26d71cc4615a4f84de81c271bdfc420b469aa3a90eed555fdfcfb146fb69e3a",
+    "work/962-engineering/fixed-shell-generation-apex1613031-prep-001/source-delta.json": "8e15655888a438773b61aa63393f220003caec99b5fe13da50dda2266ef25308",
+    "work/962-engineering/fixed-shell-generation-apex1613031-source-peer-001/review.json": "eae782748f9a3eaae1a9e6b1bbab327642ce04a2c65f89133c4767efc33c8139",
+    "work/962-engineering/fixed-shell-generation-apex1613031-source-peer-001/bindings.json": "98a7b80d711f87603b301ce6fa51bf6bbeabe048c09cfb389c12943a936ed968",
+    "work/962-engineering/fixed-shell-generation-apex1613031-root-source-001/review.json": "c392310b10841153104c7d32847e6c7cd62fdc05dfe64f61f1cbf70feceb1888",
+    "work/962-engineering/fixed-shell-generation-apex1613031-root-source-001/source.stdout.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "work/962-engineering/fixed-shell-generation-apex1613031-root-source-001/source.stderr.log": "86c967a00f06ad033ecab8fdfd48f0dfe4f7c54ecd2a5af426df39e10af79aa8",
+    "work/962-engineering/fixed-shell-generation-apex1613031-runtime-root-001/review.json": "f654d0aab3d72855ff40769c6643489b2844cabf1a6c30d26c31a7b87fd257f3",
+    "work/962-engineering/fixed-shell-generation-apex1613031-execution-prep-001/actual-contract-001.json": "c16705187c69546643e06aa333ed9080b2f74b880c02f2fbb196571f4635d9d8",
+    "work/962-engineering/fixed-shell-generation-apex1613031-execution-prep-001/index.json": "b58e748d2efca628bfaa0620fe70bf31fe16d7dbe24ca228f5b0fcc31925adb3",
+    "work/962-engineering/fixed-shell-generation-apex1613031-child-peer-001/review.json": "a797dd3374d837cfad79b228ce727cb51c039cc8e0710ecd2833a80f0a7bdca2",
+    "work/962-engineering/fixed-shell-generation-apex1613031-child-peer-001/bindings.json": "d8be591b05a33fcabebfbbdb0fa064a5565a3ed09b898050f73dcef44e0d1b6c",
+    "work/962-engineering/fixed-shell-generation-apex1613031-001/fixture-report.json": "7cd2b6107d3055644a48f603b076348f627f3c58ff9c7de742f49825e53d2911",
+    "work/962-engineering/fixed-shell-generation-apex1613031-001/arrays.json": "91c6f039022035a298c79c8aa311298e785f925cbc0f389b9a0117982145e19a",
+    "work/962-engineering/fixed-shell-generation-apex1613031-001/execution-receipt.json": "5f5839dcfe1eb6a15a5d764af125a61ed351edd1460889d5d135aec77c424ec3",
+    "work/962-engineering/fixed-shell-generation-apex1613031-001/native.log": "f6c6dcf4e4d91d391ff444654ef494d35b6c620c58a99677b0244061d406eb61",
+    "work/962-engineering/fixed-shell-generation-apex1613031-root-execution-001/closed.json": "cc0dabf3e6db3ac90a1b072c7418ced1a57fb8d38206475f860b1068e056cd85",
+    "work/962-engineering/direct-sicn-apex1613031-cavity-study-001/local-shell-input-001.json": "6529ffc5a5ca738c4bfe3041d858f2d40cc50efc6ee0e1dc5bcc626fd720d92d",
+    "work/962-engineering/direct-sicn-apex1613031-cavity-study-001/fixed-shell-tight-face-screen-001.json": "998208d59c5067ea60e62d2cb00d22b914118e0edd8fd1ab5866ebbcd8c6570e",
+    "work/962-engineering/direct-sicn-apex1613031-cavity-study-001/receipt.json": "7b5fad28cdc8529e1bbbbc179d2d24b4b96bbab6771ae435ede82e251f977707",
+    "work/962-engineering/direct-sicn-apex1613031-cavity-study-001/saved-star-observation.json": "89689ac5ce5f12c8922be4cbe45e36565f60eed080633aaffa79539c8e12c8d3",
+    "work/962-engineering/direct-sicn-apex1613031-cavity-extract-root-execution-001/result-peer-acceptance.json": "18a4c51a085cb70ec28e2eaade18f621c7f450a22eba2f4102956cb9c6910e74",
+    "work/962-engineering/direct-sicn-apex1613031-cavity-extract-result-peer-001/review.json": "a49de0ebf1915641e613b2ec7cc456c87876bbbdfd3452919551a889850a5cef",
+    "work/962-engineering/fixed-shell-netgen-apex1613031-prep-001/reader.py": "6e0acb7b325178caee5fd799919e9003a690ef6cd15318f2235095ea7255abf0",
+    "work/962-engineering/fixed-shell-netgen-apex1613031-prep-001/run_readback.py": "ee558f1520b9a8d4ba1d458c1055ad0d6addc68d97d25ad6aae6e7305fb610c0",
+    "work/962-engineering/fixed-shell-netgen-apex1613031-prep-001/test_source_guards.py": "a3fe451305d13ecb3e0619766ed4b091bdb00c1310a5911405ddd5fedb21e6fd",
+    "work/962-engineering/fixed-shell-netgen-apex1613031-prep-001/test_runner_guards.py": "f75f344d85179f71d2370ddbab798fd8d459c537cc05028aa214aac0c1e956c5",
+    "work/962-engineering/fixed-shell-netgen-apex1613031-prep-001/source.diff": "fb7e069d8c732dedcc30e44383327275b5fd821b225c6fd495bacdb0c40f8231",
+    "work/962-engineering/fixed-shell-netgen-apex1613031-prep-001/test-source.diff": "2f5cd068e50afc52f54725511f23095c7a013876103ab479afaec1bb76497047",
+    "work/962-engineering/fixed-shell-netgen-apex1613031-prep-001/source-delta.json": "206f541253c5cdf9a3450ee54f28be18aef449ec0f1e9b4ef472219f8705ca91",
+    "work/962-engineering/fixed-shell-netgen-apex1613031-prep-001/METHOD.md": "a41ddb7c3dc9cac1e99c3b8d8b23807cae05e3aa9906afe692cd6982bb24adbd",
+    "work/962-engineering/fixed-shell-generation-apex1613031-001/cavity.msh": "23bbb0a2800b468b1b2ee9e22c6d83fad0238c4989bb83b4de6aaa1309d3b140"
+  },
+  "options": {
+    "General.NumThreads": 2,
+    "Mesh.MaxNumThreads3D": 2,
+    "Mesh.Renumber": 0,
+    "Mesh.Optimize": 0,
+    "Mesh.OptimizeNetgen": 0,
+    "Mesh.OptimizeThreshold": 0.3,
+    "Mesh.Binary": 1,
+    "Mesh.SaveAll": 1,
+    "Mesh.MshFileVersion": 4.1
+  },
+  "declared_operation_counts": {
+    "generate": 0,
+    "createGeometry_dim3": 1,
+    "optimize_Netgen": 1,
+    "rebuildElementCache": 1,
+    "write_mesh": 1,
+    "solve": 0
+  },
+  "input_mesh": "work/962-engineering/fixed-shell-generation-apex1613031-001/cavity.msh",
+  "input_mesh_sha256": "23bbb0a2800b468b1b2ee9e22c6d83fad0238c4989bb83b4de6aaa1309d3b140",
+  "input_mesh_bytes": 1518,
+  "local_shell_input": "work/962-engineering/direct-sicn-apex1613031-cavity-study-001/local-shell-input-001.json",
+  "local_shell_input_sha256": "6529ffc5a5ca738c4bfe3041d858f2d40cc50efc6ee0e1dc5bcc626fd720d92d",
+  "optimization": {
+    "method": "Netgen",
+    "force": true
+  },
+  "geometry_creation_dim_tags": [
+    [
+      3,
+      1
+    ]
+  ],
+  "upstream_census_launch_deviation_sha256": "d60fff297c6c45dc92e117262e36ffde36e2169d53fcd32ce2b79fabde5eebc3",
+  "declared_controller_command_conformant": false,
+  "scientific_scope": {
+    "boundary_nodes": 9,
+    "oriented_tagged_surface_triangles": 14,
+    "excluded_original_apex": 1613031,
+    "original_source_boundary_nodes": 5,
+    "original_source_interior_shell_nodes": 4,
+    "exact_reference_volume_mm3": {
+      "numerator": "104308130846515511471660941377843352992235",
+      "denominator": "1045347431181122959759486794030391945592832"
+    },
+    "relative_volume_numerical_bookkeeping_bound": 1e-06,
+    "minimum_SICN": 0.1,
+    "single_before_state_worker_sha256": "7cd2b6107d3055644a48f603b076348f627f3c58ff9c7de742f49825e53d2911",
+    "single_before_arrays_sha256": "91c6f039022035a298c79c8aa311298e785f925cbc0f389b9a0117982145e19a",
+    "expected_before_nodes": 9,
+    "expected_before_tetrahedra": 9,
+    "expected_before_interior_nodes": 0,
+    "expected_before_positive_poor_cells": 1,
+    "expected_before_minimum_native_SICN": 0.05102133753836959,
+    "new_candidate_nodes": null,
+    "new_candidate_TET4": null,
+    "new_candidate_interior_nodes": null,
+    "new_candidate_interior_tags": null,
+    "before4arrays3native_metrics_signed_volumes_classifications_periodic_and_complete_report_exact": true,
+    "single_dim3_geometry_flag_full_state_noop": true,
+    "single_Netgen_and_cache_refresh": true,
+    "interior_counts_and_retagging_may_change": true,
+    "interior_ancestry_claim": false,
+    "all_native_metric_lengths_equal_actual_tets": true,
+    "full_tet_incidence_opposite_faces_no_duplicates_or_orphans": true,
+    "boundary_bits_tagged_faces_classifications_exact": true,
+    "saved_reopen_all_arrays_classifications_quality_and_report_exact": true,
+    "procedural_pass_with_SICN_failure_preserves_MSH_and_arrays": true,
+    "global_self_intersection_checked": false,
+    "tetrahedron_overlap_checked": false,
+    "new_node_point_containment_checked": false,
+    "domain_equality_checked": false,
+    "full_head_MSH_read_or_hashed": false,
+    "all9_prospectively_fixed_only_for_this_local_operation": true,
+    "original_dim3_shell_nodes_are_not_new_OEM_head_boundary": true
+  },
+  "stopped_input_prerequisite": {
+    "peer_path": "work/962-engineering/fixed-shell-generation-apex1613031-result-peer-001/review.json",
+    "peer_sha256": null,
+    "root_acceptance_path": "work/962-engineering/fixed-shell-generation-apex1613031-root-execution-001/result-peer-acceptance.json",
+    "root_acceptance_sha256": null,
+    "decision": null,
+    "accepted_scope": "PENDING external root/peer acceptance of this new stopped procedural quality-negative baseline; must be direct-pinned by any future actual.",
+    "no_input_quality_acceptance": true,
+    "no_domain_or_head_authority": true,
+    "required_complete_before_actual": true,
+    "pending_records_are_not_input_hashes": true
+  },
+  "prepared_tests": {
+    "current_caller_stdlib_AST": 5,
+    "current_runner_stdlib_mock": 14,
+    "executed_by_source_author": false,
+    "runner14_whole_bytes_exact_to_donor": true,
+    "historical_controller_root_record": "work/962-engineering/fixed-shell-netgen-apex1435493-root-source-001/review.json",
+    "historical_PASS_is_not_new_case_execution": true,
+    "source_and_runner_files_sha256": {
+      "test_source_guards.py": "a3fe451305d13ecb3e0619766ed4b091bdb00c1310a5911405ddd5fedb21e6fd",
+      "test_runner_guards.py": "f75f344d85179f71d2370ddbab798fd8d459c537cc05028aa214aac0c1e956c5"
+    }
+  },
+  "controller_label_scope": "Byte-exactee558 retains historical apex1435493 and generation-deadline labels. Current reader/input/future actual bind9/9 apex1613031; exact contract/reader/report hashes carry upstreamd60false; no new direct receipt deviation field.",
+  "runtime_binding_scope": "Selected native3/expected origin metadata only; new runtime-body/origin/module/resource/selected-job freshness remains root-owned. No complete package/OS/ABI/source-build closure.",
+  "source_provenance_not_read_by_preparation": {
+    "tiny_input_MSH": {
+      "path": "work/962-engineering/fixed-shell-generation-apex1613031-001/cavity.msh",
+      "sha256": "23bbb0a2800b468b1b2ee9e22c6d83fad0238c4989bb83b4de6aaa1309d3b140",
+      "bytes": 1518,
+      "source": "Frozen source report and root closure; root-provided original byte identity only",
+      "body_read_or_hashed_by_author": false,
+      "current_body_hash_deferred_to_root": true
+    },
+    "runtime_bodies_read_or_hashed": false,
+    "full_head_MSH_read_or_hashed": false
+  },
+  "materialization": {
+    "copies_made": false,
+    "output_reserved": false,
+    "files": [
+      "reader.py",
+      "run_readback.py",
+      "frozen-contract.json"
+    ],
+    "actual_child_requires_external_digest_not_self_hash": true,
+    "future_source_copies": [
+      {
+        "path": "work/962-engineering/fixed-shell-netgen-apex1613031-001/reader.py",
+        "sha256": "6e0acb7b325178caee5fd799919e9003a690ef6cd15318f2235095ea7255abf0"
+      },
+      {
+        "path": "work/962-engineering/fixed-shell-netgen-apex1613031-001/run_readback.py",
+        "sha256": "ee558f1520b9a8d4ba1d458c1055ad0d6addc68d97d25ad6aae6e7305fb610c0"
+      }
+    ]
+  },
+  "source_preparation_operations": {
+    "prepared_functions_executed": false,
+    "tests_executed_by_author": false,
+    "scientific_native_imports": false,
+    "meshing_or_optimizer_executed": false,
+    "runtime_bodies_read_or_hashed": false,
+    "MSH_bodies_read_or_hashed": false,
+    "source_author_is_independent_reviewer": false
+  },
+  "source_preparer": "replica_metrology: inherited generation/helper/extractor/Netgen lineage author/reviewer; no independent kernel rederivation",
+  "planned_root_controller_command": {
+    "interpreter": "runtime-role://controller/python",
+    "interpreter_sha256_metadata": "1699bf8aa705a8bb71613bef5cdd7d7c8c9d9a188a841f41679aa9b5830b8f60",
+    "flags": [
+      "-I",
+      "-B"
+    ],
+    "script": "work/962-engineering/fixed-shell-netgen-apex1613031-001/run_readback.py",
+    "arguments": [
+      "--contract-sha256",
+      null
+    ],
+    "actual_child_sha256": null,
+    "conformance_observed": null,
+    "fresh_hash_and_exact_child_review_required": true
+  },
+  "required_before_execution": [
+    "Completed current generator stopped peer/root acceptance must be direct-pinned in the separate future actual; held pending slots grant no authority.",
+    "Root full frozen source/held/pin review and independent source peer",
+    "Separately authorized five caller and14mock guards; no actual operation in guards",
+    "Fresh root selected native3+exact NumPy origin/module+saved tinyMSH/resources and selected-worker checks",
+    "Separate exact optimizer-only actual, fresh output and independent child review",
+    "Only then one bounded local operation and stopped saved-result review; no automatic retry"
+  ],
+  "planned_root_outer_controls": {
+    "wall_seconds": 40,
+    "TERM_grace_seconds": 8,
+    "verified_owned_process_group_KILL_if_needed": true,
+    "wait_and_reap": true,
+    "root_observes_owned_controller_only": true,
+    "valid_closed_controller_receipt_required": true,
+    "no_automatic_continuation_after_fallback_or_missing_receipt": true,
+    "authority": false
+  },
+  "input_records": [
+    {
+      "path": "twins/962-cylinder-head-f0/source/mesh_head.py",
+      "sha256": "69c8012e99057e384d44d6971d41f0e2cc7197a978120a7c566b0ad5a6477da5",
+      "bytes": 20584
+    },
+    {
+      "path": "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-delaunay-prep-001/mesh_assembled_delaunay.py",
+      "sha256": "a3268687edc90b0149775cf5d80a89df82175cc982bbf5d7184b6ea8935be8a4",
+      "bytes": 21422
+    },
+    {
+      "path": "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-netgen-cube-prep-002/reader.py",
+      "sha256": "97b7e9fc7d17defa84594c50dac1d4e09cd39bb47ef2059e00b6ac07fe8c029b",
+      "bytes": 13064
+    },
+    {
+      "path": "work/962-engineering/direct-sicn-cube-prep-001/held-contract.json",
+      "sha256": "db6def5bf8909387b6ba4be4dc68769360dd396eca55e35b88718b6ff558e5cd",
+      "bytes": 14622
+    },
+    {
+      "path": "work/962-engineering/head-star-current129-full-stars-root-execution-001/launch-deviation-001.json",
+      "sha256": "d60fff297c6c45dc92e117262e36ffde36e2169d53fcd32ce2b79fabde5eebc3",
+      "bytes": 3140
+    },
+    {
+      "path": "work/962-engineering/fixed-shell-netgen-apex1613790-prep-001/reader.py",
+      "sha256": "59780a39524966f335bb9df5f55dbc7775b43ef7776d20dc8801445988c7ac63",
+      "bytes": 12549
+    },
+    {
+      "path": "work/962-engineering/fixed-shell-netgen-apex1613790-prep-001/run_readback.py",
+      "sha256": "ee558f1520b9a8d4ba1d458c1055ad0d6addc68d97d25ad6aae6e7305fb610c0",
+      "bytes": 4807
+    },
+    {
+      "path": "work/962-engineering/fixed-shell-netgen-apex1613790-prep-001/held-contract.json",
+      "sha256": "fa9b153e4523d1b4a1010496e43bbf9f40f70826c09911a147c948b8a65c0029",
+      "bytes": 19375
+    },
+    {
+      "path": "work/962-engineering/fixed-shell-netgen-apex1613790-prep-001/source-delta.json",
+      "sha256": "d7f9414b41ed1789e39cc416986b563c48d7175117c02a1b602bab36f62a4c9b",
+      "bytes": 9808
+    },
+    {
+      "path": "work/962-engineering/fixed-shell-netgen-apex1613790-prep-001/METHOD.md",
+      "sha256": "3cbc84a788df19bb8bea0b73f3dcdd084f96e91f6763929ece2729d7c921f521",
+      "bytes": 4646
+    },
+    {
+      "path": "work/962-engineering/fixed-shell-netgen-apex1613790-prep-001/test_source_guards.py",
+      "sha256": "f6feb92f30985fad0c678aedf9f3499f861bc3d9c0e0d3f3be69552186e29c28",
+      "bytes": 5688
+    },
+    {
+      "path": "work/962-engineering/fixed-shell-netgen-apex1613790-prep-001/test_runner_guards.py",
+      "sha256": "f75f344d85179f71d2370ddbab798fd8d459c537cc05028aa214aac0c1e956c5",
+      "bytes": 11669
+    },
+    {
+      "path": "work/962-engineering/fixed-shell-netgen-apex1435493-root-source-001/review.json",
+      "sha256": "74effbcef14a2480b2f25f4a3ca19e1746d93c4ea135a8b45170aa4dd5bb29b1",
+      "bytes": 1105
+    },
+    {
+      "path": "work/962-engineering/fixed-shell-netgen-apex1435493-root-source-001/test_runner_guards.py.log",
+      "sha256": "11f347ee11ed006f949a2b3bab1bf82a33059276bac3fdb5aee3c64ee4294648",
+      "bytes": 113
+    },
+    {
+      "path": "work/962-engineering/fixed-shell-generation-apex1613031-prep-001/reader.py",
+      "sha256": "d3842f573f8a41d3d579d2276e0bf5ea6080362bb6a6bf44eda2174db60f3c6a",
+      "bytes": 20434
+    },
+    {
+      "path": "work/962-engineering/fixed-shell-generation-apex1613031-prep-001/held-contract.json",
+      "sha256": "e26d71cc4615a4f84de81c271bdfc420b469aa3a90eed555fdfcfb146fb69e3a",
+      "bytes": 28554
+    },
+    {
+      "path": "work/962-engineering/fixed-shell-generation-apex1613031-prep-001/source-delta.json",
+      "sha256": "8e15655888a438773b61aa63393f220003caec99b5fe13da50dda2266ef25308",
+      "bytes": 45083
+    },
+    {
+      "path": "work/962-engineering/fixed-shell-generation-apex1613031-source-peer-001/review.json",
+      "sha256": "eae782748f9a3eaae1a9e6b1bbab327642ce04a2c65f89133c4767efc33c8139",
+      "bytes": 5733
+    },
+    {
+      "path": "work/962-engineering/fixed-shell-generation-apex1613031-source-peer-001/bindings.json",
+      "sha256": "98a7b80d711f87603b301ce6fa51bf6bbeabe048c09cfb389c12943a936ed968",
+      "bytes": 19750
+    },
+    {
+      "path": "work/962-engineering/fixed-shell-generation-apex1613031-root-source-001/review.json",
+      "sha256": "c392310b10841153104c7d32847e6c7cd62fdc05dfe64f61f1cbf70feceb1888",
+      "bytes": 14477
+    },
+    {
+      "path": "work/962-engineering/fixed-shell-generation-apex1613031-root-source-001/source.stdout.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "work/962-engineering/fixed-shell-generation-apex1613031-root-source-001/source.stderr.log",
+      "sha256": "86c967a00f06ad033ecab8fdfd48f0dfe4f7c54ecd2a5af426df39e10af79aa8",
+      "bytes": 105
+    },
+    {
+      "path": "work/962-engineering/fixed-shell-generation-apex1613031-runtime-root-001/review.json",
+      "sha256": "f654d0aab3d72855ff40769c6643489b2844cabf1a6c30d26c31a7b87fd257f3",
+      "bytes": 4736
+    },
+    {
+      "path": "work/962-engineering/fixed-shell-generation-apex1613031-execution-prep-001/actual-contract-001.json",
+      "sha256": "c16705187c69546643e06aa333ed9080b2f74b880c02f2fbb196571f4635d9d8",
+      "bytes": 26074
+    },
+    {
+      "path": "work/962-engineering/fixed-shell-generation-apex1613031-execution-prep-001/index.json",
+      "sha256": "b58e748d2efca628bfaa0620fe70bf31fe16d7dbe24ca228f5b0fcc31925adb3",
+      "bytes": 23870
+    },
+    {
+      "path": "work/962-engineering/fixed-shell-generation-apex1613031-child-peer-001/review.json",
+      "sha256": "a797dd3374d837cfad79b228ce727cb51c039cc8e0710ecd2833a80f0a7bdca2",
+      "bytes": 3430
+    },
+    {
+      "path": "work/962-engineering/fixed-shell-generation-apex1613031-child-peer-001/bindings.json",
+      "sha256": "d8be591b05a33fcabebfbbdb0fa064a5565a3ed09b898050f73dcef44e0d1b6c",
+      "bytes": 21400
+    },
+    {
+      "path": "work/962-engineering/fixed-shell-generation-apex1613031-001/fixture-report.json",
+      "sha256": "7cd2b6107d3055644a48f603b076348f627f3c58ff9c7de742f49825e53d2911",
+      "bytes": 10036
+    },
+    {
+      "path": "work/962-engineering/fixed-shell-generation-apex1613031-001/arrays.json",
+      "sha256": "91c6f039022035a298c79c8aa311298e785f925cbc0f389b9a0117982145e19a",
+      "bytes": 5887
+    },
+    {
+      "path": "work/962-engineering/fixed-shell-generation-apex1613031-001/execution-receipt.json",
+      "sha256": "5f5839dcfe1eb6a15a5d764af125a61ed351edd1460889d5d135aec77c424ec3",
+      "bytes": 1266
+    },
+    {
+      "path": "work/962-engineering/fixed-shell-generation-apex1613031-001/native.log",
+      "sha256": "f6c6dcf4e4d91d391ff444654ef494d35b6c620c58a99677b0244061d406eb61",
+      "bytes": 1839
+    },
+    {
+      "path": "work/962-engineering/fixed-shell-generation-apex1613031-root-execution-001/closed.json",
+      "sha256": "cc0dabf3e6db3ac90a1b072c7418ced1a57fb8d38206475f860b1068e056cd85",
+      "bytes": 15712
+    },
+    {
+      "path": "work/962-engineering/direct-sicn-apex1613031-cavity-study-001/local-shell-input-001.json",
+      "sha256": "6529ffc5a5ca738c4bfe3041d858f2d40cc50efc6ee0e1dc5bcc626fd720d92d",
+      "bytes": 17793
+    },
+    {
+      "path": "work/962-engineering/direct-sicn-apex1613031-cavity-study-001/fixed-shell-tight-face-screen-001.json",
+      "sha256": "998208d59c5067ea60e62d2cb00d22b914118e0edd8fd1ab5866ebbcd8c6570e",
+      "bytes": 47893
+    },
+    {
+      "path": "work/962-engineering/direct-sicn-apex1613031-cavity-study-001/receipt.json",
+      "sha256": "7b5fad28cdc8529e1bbbbc179d2d24b4b96bbab6771ae435ede82e251f977707",
+      "bytes": 7099
+    },
+    {
+      "path": "work/962-engineering/direct-sicn-apex1613031-cavity-study-001/saved-star-observation.json",
+      "sha256": "89689ac5ce5f12c8922be4cbe45e36565f60eed080633aaffa79539c8e12c8d3",
+      "bytes": 30665
+    },
+    {
+      "path": "work/962-engineering/direct-sicn-apex1613031-cavity-extract-root-execution-001/result-peer-acceptance.json",
+      "sha256": "18a4c51a085cb70ec28e2eaade18f621c7f450a22eba2f4102956cb9c6910e74",
+      "bytes": 3678
+    },
+    {
+      "path": "work/962-engineering/direct-sicn-apex1613031-cavity-extract-result-peer-001/review.json",
+      "sha256": "a49de0ebf1915641e613b2ec7cc456c87876bbbdfd3452919551a889850a5cef",
+      "bytes": 3420
+    },
+    {
+      "path": "work/962-engineering/fixed-shell-netgen-apex1613031-prep-001/reader.py",
+      "sha256": "6e0acb7b325178caee5fd799919e9003a690ef6cd15318f2235095ea7255abf0",
+      "bytes": 12545
+    },
+    {
+      "path": "work/962-engineering/fixed-shell-netgen-apex1613031-prep-001/run_readback.py",
+      "sha256": "ee558f1520b9a8d4ba1d458c1055ad0d6addc68d97d25ad6aae6e7305fb610c0",
+      "bytes": 4807
+    },
+    {
+      "path": "work/962-engineering/fixed-shell-netgen-apex1613031-prep-001/test_source_guards.py",
+      "sha256": "a3fe451305d13ecb3e0619766ed4b091bdb00c1310a5911405ddd5fedb21e6fd",
+      "bytes": 5681
+    },
+    {
+      "path": "work/962-engineering/fixed-shell-netgen-apex1613031-prep-001/test_runner_guards.py",
+      "sha256": "f75f344d85179f71d2370ddbab798fd8d459c537cc05028aa214aac0c1e956c5",
+      "bytes": 11669
+    },
+    {
+      "path": "work/962-engineering/fixed-shell-netgen-apex1613031-prep-001/source.diff",
+      "sha256": "fb7e069d8c732dedcc30e44383327275b5fd821b225c6fd495bacdb0c40f8231",
+      "bytes": 4663
+    },
+    {
+      "path": "work/962-engineering/fixed-shell-netgen-apex1613031-prep-001/test-source.diff",
+      "sha256": "2f5cd068e50afc52f54725511f23095c7a013876103ab479afaec1bb76497047",
+      "bytes": 2570
+    },
+    {
+      "path": "work/962-engineering/fixed-shell-netgen-apex1613031-prep-001/source-delta.json",
+      "sha256": "206f541253c5cdf9a3450ee54f28be18aef449ec0f1e9b4ef472219f8705ca91",
+      "bytes": 29901
+    },
+    {
+      "path": "work/962-engineering/fixed-shell-netgen-apex1613031-prep-001/METHOD.md",
+      "sha256": "a41ddb7c3dc9cac1e99c3b8d8b23807cae05e3aa9906afe692cd6982bb24adbd",
+      "bytes": 4192
+    },
+    {
+      "path": "work/962-engineering/fixed-shell-generation-apex1613031-001/cavity.msh",
+      "sha256": "23bbb0a2800b468b1b2ee9e22c6d83fad0238c4989bb83b4de6aaa1309d3b140",
+      "bytes": 1518,
+      "binding_scope": "Original MSH identity from frozen report/root closure; no author body read/hash"
+    }
+  ],
+  "input_binding_counts": {
+    "total": 47,
+    "current_small_author_hashed": 46,
+    "tiny_MSH_metadata_only": 1,
+    "external_native_runtime_metadata": 3,
+    "NumPy_origin_separate": true,
+    "self_pins": 0
+  },
+  "head_PDE_authorized": false,
+  "head_edit_authorized": false,
+  "domain_query_authorized": false,
+  "outside_owner_context_query_authorized": false,
+  "source_consumed_contract_fields": [
+    "automatic_retry",
+    "cavity_Netgen_optimizer_authorized",
+    "declared_operation_counts",
+    "engineering_accepted",
+    "expected_runtime",
+    "external_runtime_hashes",
+    "generation_authorized",
+    "geometry_creation_dim_tags",
+    "head_execution_authorized",
+    "input_hashes",
+    "input_mesh",
+    "input_mesh_sha256",
+    "manufacturing_authorized",
+    "native_execution_authorized",
+    "native_head_application_authorized",
+    "native_python",
+    "numpy_init",
+    "optimization",
+    "options",
+    "output_directory",
+    "physics_qualified",
+    "reader_sha256",
+    "root_and_peer_review_complete",
+    "runner_sha256",
+    "runtime",
+    "runtime_sha256s",
+    "selected_runtime_review_complete",
+    "stitching_authorized"
+  ],
+  "source_consumed_false_comprehension_fields": [
+    "generation_authorized",
+    "head_execution_authorized",
+    "stitching_authorized",
+    "native_head_application_authorized",
+    "engineering_accepted",
+    "physics_qualified",
+    "manufacturing_authorized"
+  ],
+  "dynamic_contract_maps": {
+    "input_hashes": "Complete finite roles plus tiny MSH; source direct pins all present; MSH freshness root-owned",
+    "external_runtime_hashes": "Exactly three native identities, NumPy init separate",
+    "runtime": "python_executable_sha256",
+    "runtime_sha256s": "python,gmsh_module,gmsh_library"
+  }
+}

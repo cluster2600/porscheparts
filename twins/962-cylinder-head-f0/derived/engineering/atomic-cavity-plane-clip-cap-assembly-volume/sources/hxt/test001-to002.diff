@@ -1,0 +1,11 @@
+--- work/962-engineering/atomic-cavity-plane-clip-cap-assembly-hxt-prep-001/test_hxt_guards.py
++++ work/962-engineering/atomic-cavity-plane-clip-cap-assembly-hxt-prep-002/test_hxt_guards.py
+@@ -66,7 +66,7 @@
+                 getsignal=Mock(return_value=previous), signal=register),
+             threading=SimpleNamespace(Lock=threading.Lock, Timer=Mock(return_value=timer)),
+             subprocess=sp)
+-        args = SimpleNamespace(output=root/'output', admission=admission, admission_sha256='a'*64)
++        args = SimpleNamespace(output=root/'output', admission=admission, admission_sha256=hashlib.sha256(admission.read_bytes()).hexdigest())
+         return SimpleNamespace(root=root, namespace=namespace, run=extracted_run(namespace),
+             args=args, state=state, process=process, timer=timer, sp=sp,
+             previous=previous, registrations=registrations)

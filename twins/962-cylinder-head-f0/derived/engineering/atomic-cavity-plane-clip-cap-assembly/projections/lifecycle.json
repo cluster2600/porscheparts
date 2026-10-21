@@ -1,0 +1,806 @@
+{
+  "topology": {
+    "original_record_sha256": "7f0fa1ed4c20c84bbdf6bcbdf7338a1b0dd63c65af3d16c05763cd57ad591227",
+    "label": "atomic-topology",
+    "error": null,
+    "cleanup_errors": [],
+    "attach_returncode": 0,
+    "attach_process_started": true,
+    "attach_reaped": true,
+    "owned_container_removed": true,
+    "wall_seconds": 38.18760945904069,
+    "native_log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "observed_metadata": {
+      "initial_metadata": {
+        "image": "sha256:3ccaf5701c7c9add59eda6e8db918106fc8d51f4c2ef5b148d8079262861c7e1",
+        "controls": {
+          "NanoCpus": 2000000000,
+          "Memory": 4294967296,
+          "MemorySwap": 4294967296,
+          "NetworkMode": "none",
+          "ReadonlyRootfs": true,
+          "Tmpfs": null
+        },
+        "state": {
+          "Dead": false,
+          "Error": "",
+          "ExitCode": 0,
+          "OOMKilled": false,
+          "Paused": false,
+          "Restarting": false,
+          "Running": false,
+          "Status": "created"
+        },
+        "mount_targets": [
+          {
+            "target": "/out",
+            "writable": true,
+            "type": "bind"
+          },
+          {
+            "target": "/bound/candidate.bin",
+            "writable": false,
+            "type": "bind"
+          },
+          {
+            "target": "/bound/contract.json",
+            "writable": false,
+            "type": "bind"
+          },
+          {
+            "target": "/bound/worker.py",
+            "writable": false,
+            "type": "bind"
+          },
+          {
+            "target": "/bound/twins/962-cylinder-head-f0/source",
+            "writable": false,
+            "type": "bind"
+          }
+        ]
+      },
+      "final_metadata": {
+        "image": "sha256:3ccaf5701c7c9add59eda6e8db918106fc8d51f4c2ef5b148d8079262861c7e1",
+        "controls": {
+          "NanoCpus": 2000000000,
+          "Memory": 4294967296,
+          "MemorySwap": 4294967296,
+          "NetworkMode": "none",
+          "ReadonlyRootfs": true,
+          "Tmpfs": null
+        },
+        "state": {
+          "Dead": false,
+          "Error": "",
+          "ExitCode": 0,
+          "OOMKilled": false,
+          "Paused": false,
+          "Restarting": false,
+          "Running": false,
+          "Status": "exited"
+        },
+        "mount_targets": [
+          {
+            "target": "/out",
+            "writable": true,
+            "type": "bind"
+          },
+          {
+            "target": "/bound/candidate.bin",
+            "writable": false,
+            "type": "bind"
+          },
+          {
+            "target": "/bound/contract.json",
+            "writable": false,
+            "type": "bind"
+          },
+          {
+            "target": "/bound/worker.py",
+            "writable": false,
+            "type": "bind"
+          },
+          {
+            "target": "/bound/twins/962-cylinder-head-f0/source",
+            "writable": false,
+            "type": "bind"
+          }
+        ]
+      }
+    }
+  },
+  "compile": {
+    "original_record_sha256": "228a74aac36c8b4e9ab4521451994c691d528620f0e073408e9cb24243d1b743",
+    "label": "compile-cap-native-quality",
+    "error": null,
+    "cleanup_errors": [],
+    "attach_returncode": 0,
+    "attach_process_started": true,
+    "attach_reaped": true,
+    "owned_container_removed": true,
+    "wall_seconds": 15.701086832908913,
+    "native_log_sha256": "06b70f30b2179a26c4c5e4511fef2cb65514d96c361f05e7ed80b924c26cc2dd",
+    "observed_metadata": {
+      "initial_metadata": {
+        "image": "sha256:57c6b17ed0bd093a61a3d3cecb7563e912caeb3832fd59e8cec2d4d9d4d1e2f8",
+        "controls": {
+          "NanoCpus": 2000000000,
+          "Memory": 4294967296,
+          "MemorySwap": 4294967296,
+          "NetworkMode": "none",
+          "ReadonlyRootfs": true,
+          "Tmpfs": {
+            "/tmp": "rw,size=1073741824"
+          }
+        },
+        "state": {
+          "Dead": false,
+          "Error": "",
+          "ExitCode": 0,
+          "OOMKilled": false,
+          "Paused": false,
+          "Restarting": false,
+          "Running": false,
+          "Status": "created"
+        },
+        "mount_targets": [
+          {
+            "target": "/out",
+            "writable": true,
+            "type": "bind"
+          },
+          {
+            "target": "/src/audit_native.cpp",
+            "writable": false,
+            "type": "bind"
+          },
+          {
+            "target": "/src/native_prefix.hpp",
+            "writable": false,
+            "type": "bind"
+          }
+        ]
+      },
+      "final_metadata": {
+        "image": "sha256:57c6b17ed0bd093a61a3d3cecb7563e912caeb3832fd59e8cec2d4d9d4d1e2f8",
+        "controls": {
+          "NanoCpus": 2000000000,
+          "Memory": 4294967296,
+          "MemorySwap": 4294967296,
+          "NetworkMode": "none",
+          "ReadonlyRootfs": true,
+          "Tmpfs": {
+            "/tmp": "rw,size=1073741824"
+          }
+        },
+        "state": {
+          "Dead": false,
+          "Error": "",
+          "ExitCode": 0,
+          "OOMKilled": false,
+          "Paused": false,
+          "Restarting": false,
+          "Running": false,
+          "Status": "exited"
+        },
+        "mount_targets": [
+          {
+            "target": "/out",
+            "writable": true,
+            "type": "bind"
+          },
+          {
+            "target": "/src/audit_native.cpp",
+            "writable": false,
+            "type": "bind"
+          },
+          {
+            "target": "/src/native_prefix.hpp",
+            "writable": false,
+            "type": "bind"
+          }
+        ]
+      }
+    }
+  },
+  "head": {
+    "original_record_sha256": "eaeccadb580f3aea3c57ffb55e6418935a5999bdca13a1b09ab7ebde7cfd26fd",
+    "label": "assembled-head-native-quality",
+    "error": null,
+    "cleanup_errors": [],
+    "attach_returncode": 0,
+    "attach_process_started": true,
+    "attach_reaped": true,
+    "owned_container_removed": true,
+    "wall_seconds": 4.5255742080044,
+    "native_log_sha256": "a1bbcf29bff3b4a0cbbaa6c5e750de76f4afdce4f8903e582ca382adc13fc1b2",
+    "observed_metadata": {
+      "initial_metadata": {
+        "image": "sha256:57c6b17ed0bd093a61a3d3cecb7563e912caeb3832fd59e8cec2d4d9d4d1e2f8",
+        "controls": {
+          "NanoCpus": 2000000000,
+          "Memory": 4294967296,
+          "MemorySwap": 4294967296,
+          "NetworkMode": "none",
+          "ReadonlyRootfs": true,
+          "Tmpfs": null
+        },
+        "state": {
+          "Dead": false,
+          "Error": "",
+          "ExitCode": 0,
+          "OOMKilled": false,
+          "Paused": false,
+          "Restarting": false,
+          "Running": false,
+          "Status": "created"
+        },
+        "mount_targets": [
+          {
+            "target": "/candidate.bin",
+            "writable": false,
+            "type": "bind"
+          },
+          {
+            "target": "/face-source.u64",
+            "writable": false,
+            "type": "bind"
+          },
+          {
+            "target": "/original.bin",
+            "writable": false,
+            "type": "bind"
+          },
+          {
+            "target": "/origins.u64",
+            "writable": false,
+            "type": "bind"
+          },
+          {
+            "target": "/out",
+            "writable": true,
+            "type": "bind"
+          },
+          {
+            "target": "/subset-witness",
+            "writable": false,
+            "type": "bind"
+          }
+        ]
+      },
+      "final_metadata": {
+        "image": "sha256:57c6b17ed0bd093a61a3d3cecb7563e912caeb3832fd59e8cec2d4d9d4d1e2f8",
+        "controls": {
+          "NanoCpus": 2000000000,
+          "Memory": 4294967296,
+          "MemorySwap": 4294967296,
+          "NetworkMode": "none",
+          "ReadonlyRootfs": true,
+          "Tmpfs": null
+        },
+        "state": {
+          "Dead": false,
+          "Error": "",
+          "ExitCode": 0,
+          "OOMKilled": false,
+          "Paused": false,
+          "Restarting": false,
+          "Running": false,
+          "Status": "exited"
+        },
+        "mount_targets": [
+          {
+            "target": "/candidate.bin",
+            "writable": false,
+            "type": "bind"
+          },
+          {
+            "target": "/face-source.u64",
+            "writable": false,
+            "type": "bind"
+          },
+          {
+            "target": "/original.bin",
+            "writable": false,
+            "type": "bind"
+          },
+          {
+            "target": "/origins.u64",
+            "writable": false,
+            "type": "bind"
+          },
+          {
+            "target": "/out",
+            "writable": true,
+            "type": "bind"
+          },
+          {
+            "target": "/subset-witness",
+            "writable": false,
+            "type": "bind"
+          }
+        ]
+      }
+    }
+  },
+  "fixture-unchanged-tetra": {
+    "original_record_sha256": "be93c4f3a2e5fabb7554cfa5b7cdc34fedca6516feb092145c73e5e9643501af",
+    "label": "native-quality-unchanged-tetra",
+    "error": null,
+    "cleanup_errors": [],
+    "attach_returncode": 0,
+    "attach_process_started": true,
+    "attach_reaped": true,
+    "owned_container_removed": true,
+    "wall_seconds": 1.2057354170829058,
+    "native_log_sha256": "a1bbcf29bff3b4a0cbbaa6c5e750de76f4afdce4f8903e582ca382adc13fc1b2",
+    "observed_metadata": {
+      "initial_metadata": {
+        "image": "sha256:57c6b17ed0bd093a61a3d3cecb7563e912caeb3832fd59e8cec2d4d9d4d1e2f8",
+        "controls": {
+          "NanoCpus": 2000000000,
+          "Memory": 536870912,
+          "MemorySwap": 536870912,
+          "NetworkMode": "none",
+          "ReadonlyRootfs": true,
+          "Tmpfs": null
+        },
+        "state": {
+          "Dead": false,
+          "Error": "",
+          "ExitCode": 0,
+          "OOMKilled": false,
+          "Paused": false,
+          "Restarting": false,
+          "Running": false,
+          "Status": "created"
+        },
+        "mount_targets": [
+          {
+            "target": "/candidate.bin",
+            "writable": false,
+            "type": "bind"
+          },
+          {
+            "target": "/face-source.u64",
+            "writable": false,
+            "type": "bind"
+          },
+          {
+            "target": "/original.bin",
+            "writable": false,
+            "type": "bind"
+          },
+          {
+            "target": "/origins.u64",
+            "writable": false,
+            "type": "bind"
+          },
+          {
+            "target": "/out",
+            "writable": true,
+            "type": "bind"
+          },
+          {
+            "target": "/subset-witness",
+            "writable": false,
+            "type": "bind"
+          }
+        ]
+      },
+      "final_metadata": {
+        "image": "sha256:57c6b17ed0bd093a61a3d3cecb7563e912caeb3832fd59e8cec2d4d9d4d1e2f8",
+        "controls": {
+          "NanoCpus": 2000000000,
+          "Memory": 536870912,
+          "MemorySwap": 536870912,
+          "NetworkMode": "none",
+          "ReadonlyRootfs": true,
+          "Tmpfs": null
+        },
+        "state": {
+          "Dead": false,
+          "Error": "",
+          "ExitCode": 0,
+          "OOMKilled": false,
+          "Paused": false,
+          "Restarting": false,
+          "Running": false,
+          "Status": "exited"
+        },
+        "mount_targets": [
+          {
+            "target": "/candidate.bin",
+            "writable": false,
+            "type": "bind"
+          },
+          {
+            "target": "/face-source.u64",
+            "writable": false,
+            "type": "bind"
+          },
+          {
+            "target": "/original.bin",
+            "writable": false,
+            "type": "bind"
+          },
+          {
+            "target": "/origins.u64",
+            "writable": false,
+            "type": "bind"
+          },
+          {
+            "target": "/out",
+            "writable": true,
+            "type": "bind"
+          },
+          {
+            "target": "/subset-witness",
+            "writable": false,
+            "type": "bind"
+          }
+        ]
+      }
+    }
+  },
+  "fixture-new-face-label-tetra": {
+    "original_record_sha256": "73f2528505dabc39f2750afa32369c7af0b770152cee1638e00547a81c4c6c79",
+    "label": "native-quality-new-face-label-tetra",
+    "error": null,
+    "cleanup_errors": [],
+    "attach_returncode": 0,
+    "attach_process_started": true,
+    "attach_reaped": true,
+    "owned_container_removed": true,
+    "wall_seconds": 0.9963087500073016,
+    "native_log_sha256": "a1bbcf29bff3b4a0cbbaa6c5e750de76f4afdce4f8903e582ca382adc13fc1b2",
+    "observed_metadata": {
+      "initial_metadata": {
+        "image": "sha256:57c6b17ed0bd093a61a3d3cecb7563e912caeb3832fd59e8cec2d4d9d4d1e2f8",
+        "controls": {
+          "NanoCpus": 2000000000,
+          "Memory": 536870912,
+          "MemorySwap": 536870912,
+          "NetworkMode": "none",
+          "ReadonlyRootfs": true,
+          "Tmpfs": null
+        },
+        "state": {
+          "Dead": false,
+          "Error": "",
+          "ExitCode": 0,
+          "OOMKilled": false,
+          "Paused": false,
+          "Restarting": false,
+          "Running": false,
+          "Status": "created"
+        },
+        "mount_targets": [
+          {
+            "target": "/candidate.bin",
+            "writable": false,
+            "type": "bind"
+          },
+          {
+            "target": "/face-source.u64",
+            "writable": false,
+            "type": "bind"
+          },
+          {
+            "target": "/original.bin",
+            "writable": false,
+            "type": "bind"
+          },
+          {
+            "target": "/origins.u64",
+            "writable": false,
+            "type": "bind"
+          },
+          {
+            "target": "/out",
+            "writable": true,
+            "type": "bind"
+          },
+          {
+            "target": "/subset-witness",
+            "writable": false,
+            "type": "bind"
+          }
+        ]
+      },
+      "final_metadata": {
+        "image": "sha256:57c6b17ed0bd093a61a3d3cecb7563e912caeb3832fd59e8cec2d4d9d4d1e2f8",
+        "controls": {
+          "NanoCpus": 2000000000,
+          "Memory": 536870912,
+          "MemorySwap": 536870912,
+          "NetworkMode": "none",
+          "ReadonlyRootfs": true,
+          "Tmpfs": null
+        },
+        "state": {
+          "Dead": false,
+          "Error": "",
+          "ExitCode": 0,
+          "OOMKilled": false,
+          "Paused": false,
+          "Restarting": false,
+          "Running": false,
+          "Status": "exited"
+        },
+        "mount_targets": [
+          {
+            "target": "/candidate.bin",
+            "writable": false,
+            "type": "bind"
+          },
+          {
+            "target": "/face-source.u64",
+            "writable": false,
+            "type": "bind"
+          },
+          {
+            "target": "/original.bin",
+            "writable": false,
+            "type": "bind"
+          },
+          {
+            "target": "/origins.u64",
+            "writable": false,
+            "type": "bind"
+          },
+          {
+            "target": "/out",
+            "writable": true,
+            "type": "bind"
+          },
+          {
+            "target": "/subset-witness",
+            "writable": false,
+            "type": "bind"
+          }
+        ]
+      }
+    }
+  },
+  "fixture-area-ratio-sliver": {
+    "original_record_sha256": "bc24393da3516ee9217cfeb5ef9261d434cff4cbf9e49bf31b28cbba9303b087",
+    "label": "native-quality-area-ratio-sliver",
+    "error": null,
+    "cleanup_errors": [],
+    "attach_returncode": 3,
+    "attach_process_started": true,
+    "attach_reaped": true,
+    "owned_container_removed": true,
+    "wall_seconds": 1.2282544579356909,
+    "native_log_sha256": "a1bbcf29bff3b4a0cbbaa6c5e750de76f4afdce4f8903e582ca382adc13fc1b2",
+    "observed_metadata": {
+      "initial_metadata": {
+        "image": "sha256:57c6b17ed0bd093a61a3d3cecb7563e912caeb3832fd59e8cec2d4d9d4d1e2f8",
+        "controls": {
+          "NanoCpus": 2000000000,
+          "Memory": 536870912,
+          "MemorySwap": 536870912,
+          "NetworkMode": "none",
+          "ReadonlyRootfs": true,
+          "Tmpfs": null
+        },
+        "state": {
+          "Dead": false,
+          "Error": "",
+          "ExitCode": 0,
+          "OOMKilled": false,
+          "Paused": false,
+          "Restarting": false,
+          "Running": false,
+          "Status": "created"
+        },
+        "mount_targets": [
+          {
+            "target": "/candidate.bin",
+            "writable": false,
+            "type": "bind"
+          },
+          {
+            "target": "/face-source.u64",
+            "writable": false,
+            "type": "bind"
+          },
+          {
+            "target": "/original.bin",
+            "writable": false,
+            "type": "bind"
+          },
+          {
+            "target": "/origins.u64",
+            "writable": false,
+            "type": "bind"
+          },
+          {
+            "target": "/out",
+            "writable": true,
+            "type": "bind"
+          },
+          {
+            "target": "/subset-witness",
+            "writable": false,
+            "type": "bind"
+          }
+        ]
+      },
+      "final_metadata": {
+        "image": "sha256:57c6b17ed0bd093a61a3d3cecb7563e912caeb3832fd59e8cec2d4d9d4d1e2f8",
+        "controls": {
+          "NanoCpus": 2000000000,
+          "Memory": 536870912,
+          "MemorySwap": 536870912,
+          "NetworkMode": "none",
+          "ReadonlyRootfs": true,
+          "Tmpfs": null
+        },
+        "state": {
+          "Dead": false,
+          "Error": "",
+          "ExitCode": 3,
+          "OOMKilled": false,
+          "Paused": false,
+          "Restarting": false,
+          "Running": false,
+          "Status": "exited"
+        },
+        "mount_targets": [
+          {
+            "target": "/candidate.bin",
+            "writable": false,
+            "type": "bind"
+          },
+          {
+            "target": "/face-source.u64",
+            "writable": false,
+            "type": "bind"
+          },
+          {
+            "target": "/original.bin",
+            "writable": false,
+            "type": "bind"
+          },
+          {
+            "target": "/origins.u64",
+            "writable": false,
+            "type": "bind"
+          },
+          {
+            "target": "/out",
+            "writable": true,
+            "type": "bind"
+          },
+          {
+            "target": "/subset-witness",
+            "writable": false,
+            "type": "bind"
+          }
+        ]
+      }
+    }
+  },
+  "fixture-dihedral-sliver": {
+    "original_record_sha256": "3fefd22fc35f4dab422d7d53ae185b3f07380ac46c5e0edea1a58fbf96f3da91",
+    "label": "native-quality-dihedral-sliver",
+    "error": null,
+    "cleanup_errors": [],
+    "attach_returncode": 3,
+    "attach_process_started": true,
+    "attach_reaped": true,
+    "owned_container_removed": true,
+    "wall_seconds": 1.2866436671465635,
+    "native_log_sha256": "a1bbcf29bff3b4a0cbbaa6c5e750de76f4afdce4f8903e582ca382adc13fc1b2",
+    "observed_metadata": {
+      "initial_metadata": {
+        "image": "sha256:57c6b17ed0bd093a61a3d3cecb7563e912caeb3832fd59e8cec2d4d9d4d1e2f8",
+        "controls": {
+          "NanoCpus": 2000000000,
+          "Memory": 536870912,
+          "MemorySwap": 536870912,
+          "NetworkMode": "none",
+          "ReadonlyRootfs": true,
+          "Tmpfs": null
+        },
+        "state": {
+          "Dead": false,
+          "Error": "",
+          "ExitCode": 0,
+          "OOMKilled": false,
+          "Paused": false,
+          "Restarting": false,
+          "Running": false,
+          "Status": "created"
+        },
+        "mount_targets": [
+          {
+            "target": "/candidate.bin",
+            "writable": false,
+            "type": "bind"
+          },
+          {
+            "target": "/face-source.u64",
+            "writable": false,
+            "type": "bind"
+          },
+          {
+            "target": "/original.bin",
+            "writable": false,
+            "type": "bind"
+          },
+          {
+            "target": "/origins.u64",
+            "writable": false,
+            "type": "bind"
+          },
+          {
+            "target": "/out",
+            "writable": true,
+            "type": "bind"
+          },
+          {
+            "target": "/subset-witness",
+            "writable": false,
+            "type": "bind"
+          }
+        ]
+      },
+      "final_metadata": {
+        "image": "sha256:57c6b17ed0bd093a61a3d3cecb7563e912caeb3832fd59e8cec2d4d9d4d1e2f8",
+        "controls": {
+          "NanoCpus": 2000000000,
+          "Memory": 536870912,
+          "MemorySwap": 536870912,
+          "NetworkMode": "none",
+          "ReadonlyRootfs": true,
+          "Tmpfs": null
+        },
+        "state": {
+          "Dead": false,
+          "Error": "",
+          "ExitCode": 3,
+          "OOMKilled": false,
+          "Paused": false,
+          "Restarting": false,
+          "Running": false,
+          "Status": "exited"
+        },
+        "mount_targets": [
+          {
+            "target": "/candidate.bin",
+            "writable": false,
+            "type": "bind"
+          },
+          {
+            "target": "/face-source.u64",
+            "writable": false,
+            "type": "bind"
+          },
+          {
+            "target": "/original.bin",
+            "writable": false,
+            "type": "bind"
+          },
+          {
+            "target": "/origins.u64",
+            "writable": false,
+            "type": "bind"
+          },
+          {
+            "target": "/out",
+            "writable": true,
+            "type": "bind"
+          },
+          {
+            "target": "/subset-witness",
+            "writable": false,
+            "type": "bind"
+          }
+        ]
+      }
+    }
+  }
+}

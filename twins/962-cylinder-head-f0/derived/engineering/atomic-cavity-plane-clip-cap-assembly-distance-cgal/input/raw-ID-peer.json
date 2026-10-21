@@ -1,0 +1,36 @@
+{
+  "schema": "962-CGAL-source-ID-input-independent-peer/v1",
+  "decision": "CLEAR_EXACT_INPUT_EXTRACTION_ONLY",
+  "selection_proof_sha256": "64d6ae69813fcbb310f29ce5c062cc1f913126ffcba29fc101edc2c8c5883576",
+  "completed_split_result_peer_sha256": "bc0246e22c4f33eb54f234c7df88a32810c821e111b52456d76b3beec3456bb7",
+  "method": "Standard-library ZipFile CRC/member reads, bounded NPY-header ast.literal_eval, struct u64 decoding and complete byte/ID/mask comparisons; no NumPy, geometry arrays, source execution or native query.",
+  "checks": {
+    "three_file_regular_non_symlink_closure": true,
+    "all_six_input_hashes_current": true,
+    "cap_raw_rows": 8976,
+    "cap_raw_bytes": 71808,
+    "noncap_raw_rows": 5426,
+    "noncap_raw_bytes": 43408,
+    "both_raw_files_equal_every_NPY_u64_payload_byte": true,
+    "NPY_headers_exact_little_endian_u64_1D_C_order_and_lengths": true,
+    "all_IDs_sorted_unique_in_range": true,
+    "both_complete1743878_bool_masks_and_ordered_complements_match": true,
+    "cap_file_exact_full8976_cap_to_head_map": true,
+    "two_files_disjoint_complete_union_equals_every_old14402_changed_ID": true,
+    "old_NPZ_and_completed_split_proof_associations_exact": true,
+    "source9d62_and_complete894_hash_header_counts_lengths_exact": true,
+    "coordinate_arrays_not_decoded": true
+  },
+  "selection_sha256": {
+    "cap": "86c1a3ea6d3bb7af010bcc46cd89c72087c45d6e3b3f6d90d34fd5c1821c00d8",
+    "noncap": "ce4ac6dbf443d5b3c74c2078e2e3f9471355e5e21d1299d6e855cc6a907b7829"
+  },
+  "original_geometry_or_masks_modified": false,
+  "native_or_distance_calls": 0,
+  "engineering_or_surface_distance_acceptance": false,
+  "blockers": [],
+  "limits": [
+    "These are exact ordered source selections for a future complete-target query, not a distance bound.",
+    "Any new CGAL scalar query and its +/-e, e=GAP/4 interpretation require separate source/runtime/fixture/child review. No rounding-error certificate or engineering acceptance follows."
+  ]
+}

@@ -1,0 +1,79 @@
+{
+  "schema": "962-direct-SICN-vectorized-head-proposer-source-peer/v1",
+  "decision": "CLEAR_SOURCE_ONLY_PENDING_EXACT_ACTUAL_CHILD_AND_FRESH_LAUNCH_GUARDS",
+  "created_utc": "2026-10-17T11:32:37.903745+00:00",
+  "held_sha256": "cf379d58a324899bc99d6994064ff4e5297fb569221fe25dcbf183b9b0da57ba",
+  "selected_source_sha256": "e7d61ca130623389f2b5e3a7807477ef45090bedcfcd87f3941c35ca6d2d7b02",
+  "runner_sha256": "aefd13ddd8344cb4e46eeb17126383ba2afbf8763ae40a99eb55a9bcb2779407",
+  "test_source_sha256": "20b7440fb7476e7bdd217db514d418074df408feddb2086076398b693dc4837a",
+  "METHOD_sha256": "26a47b8afd4136dd18ad82fd5b0e52ee72399824beb2b32ed70af52decf0c311",
+  "controller_diff_sha256": "267dfc69f54ed55c063b9b1f8c88546a04c74fa587ccc08ffac9371fd6de25f3",
+  "source_inspection": "Full worker, runner changes, six guard bodies and held/METHOD read; AST/stdlib/hash/arithmetic only. No prepared helper execution, NumPy/SciPy/Gmsh imports, optimizer/test/native run, raw head/runtime binary reads or Git/public edits.",
+  "binding_checks": {
+    "held_input_pins": 15,
+    "independently_current_hashed_small_source_and_result_records": 14,
+    "fullstar_census_current_body_hash_deferred_to_root": "5946ffbd9f2f127306673d967b583b11d8906793e2079971bc0430d65ae65f88",
+    "selected_runtime_values": 32,
+    "exact_root34_subset_excluding_Gmsh_wrapper_and_library": true,
+    "runtime_current_binary_hashes_deferred_to_root": true,
+    "future_output_absent_at_review": true,
+    "HELD_authority_and_physical_flags_false_historical_unrun_flags_unchanged": true
+  },
+  "math_and_mapping": {
+    "vector_kernel": "For(n,4,3) coordinates, edge coordinate axis stays last; columns a=e1,b=(2e2-e1)/sqrt3,c=sqrt(3/2)*(e3-(e1+e2)/3), cross products and per-row dot products equal calibrated scalar. Signed3det/sqrt(normF\u00b2 normcofF\u00b2), no inverse/absolute determinant/regularizer. Negative trials stay negative; degenerate/nonfinite/overflow values refuse.",
+    "complete_source_census": "Exact file SHA, four full source-array identities and six typed-section hashes, all5355 rows, 210poor+5145good,223shared cells,2955 node bit records and156 seed/member partitions are enforced.",
+    "variables": "Sorted actual node-tag dictionary maps156 seeds to468 flattened coordinates plus t; each evaluation starts from immutable2955-node context and overwrites only156 positions. All2799 remaining context nodes must remain bitwise fixed, including signed zero. Shared cells are counted once and gathered completely.",
+    "initial_calibration": "All5355 vectorized initial Q values must match saved native values at rel1e-11/abs1e-14; this is a calibration guard, not relaxation of final0.1.",
+    "solver": "One public SLSQP call,469 variables,5355 Q-t inequalities, t bounded from initial min to1; coordinates unbounded by this analytic hypothesis. maxiter100/ftol1e-10/eps2^-26. No retry/sweep/analytic Jacobian selected.",
+    "final_gate": "Finite successful solver result plus all5355 actual analytic Q>=0.1 and zero nonpositive; epigraph t/ftol alone cannot pass. No global optimum or native head acceptance inferred.",
+    "output": "Only156 sorted tagged coordinates/hex plus source/solver/quality metadata; no Gmsh import, MSH write or application. Exact output schema joins the separately reviewed native apply protocol.",
+    "global_completeness_limit": "Subset serialization does not independently establish no omitted incident cells; inherits controlled full-reader attestation, with native apply required to reselect full fresh incident union."
+  },
+  "installed_primary_source_arithmetic": {
+    "held_plan_sha256": "a0f150f793bc8850496b057b59566d8d9232298f6aa30d8d269bc7446ff0bca0",
+    "SciPy_slsqp_py_sha256": "c8362e8d36440f3de97b58562aadb86661271ea7f66160505f51a601aff71609",
+    "SciPy_numdiff_py_sha256": "ab92e82d0f93f2c7a35eba0a2800b70cf8015d97ccf094abf556206211beb00b",
+    "n": 469,
+    "m": 5355,
+    "meq": 0,
+    "mieq": 5355,
+    "buffer_float64_count": 9469026,
+    "listed_allocations_total_bytes": 95962548,
+    "listed_allocations_MiB": 91.51701736450195,
+    "additional_returned_dense_constraint_Jacobian_bytes": 20091960,
+    "FD_constraint_Jacobian_shape": [
+      5355,
+      469
+    ],
+    "typical_two_point_full_vector_evaluations_per_constraint_Jacobian": 470,
+    "cell_quality_values_per_constraint_Jacobian": 2516850,
+    "interpretation": "Installed1.17.1 source has no mieq==0 top-up here. Storage arithmetic excludes other vectors/copies/BLAS/backend/package/allocator overhead and is not peak RSS or a time/feasibility bound. Source finite differences may adjust steps to bounds; no sparse solver is implied. Optional derivative in plan is algebraically coherent but unused."
+  },
+  "controller": {
+    "nine_declared_substitution_kinds_reverse_byte_exact_to": "5b9c10be3b09f4f72f2e4dcedb4588a5fee3e61d98eed9b4797498410795fae5",
+    "same_owned_group_SIGTERM_stopflag_finally_wait_and_handler_restoration": true,
+    "remaining300s_timer_and_synchronous_postwait_elapsed_refusal": true,
+    "sampled_RSS_bytes": 1073741824,
+    "sampled_output_bytes": 16777216,
+    "requested_OMP_OpenBLAS_Accelerate_threads": 2,
+    "hard_OS_CPU_address_space_or_peak_RSS_claim": false,
+    "solver_start_checkpoint": "Pre-call attempt marker survives timeout; not independent call-entry telemetry, a completed proposal or acceptance. A killed/refused call may leave only checkpoint/log/receipt.",
+    "one_fresh_output_no_automatic_retry": true
+  },
+  "root_guard_evidence": {
+    "root_source_review_sha256": "cd035885a02881901b1a28b377bf028116d15c06a681f1ed0652c1d84c866670",
+    "root_guard_log_sha256": "b3dcfd15092c9f141783d98d027d1a0c0940e9baef0bd07e76f660f8d439281e",
+    "guard_methods": 6,
+    "root_returncode": 0,
+    "root_outer_wall_seconds": 0.21372250001877546,
+    "scope": "Root-selected NumPy-only isolated AST kernel/mapping/literal/tiny-row guards; no SciPy/Gmsh/optimizer/head-MSH. Independently source-read, not executed by this peer.",
+    "historical_prepared_unrun_fields_not_rewritten": true
+  },
+  "required_before_execution": [
+    "Separate exact actual child with own selected worker/controller/interpreter pins and current census/all consumed prerequisite hashes; external child peer/root launch guard bind exact child without self-referential hashes.",
+    "Fresh root15+32 identity/resource/process/materialization checks; controller alone does not authorize native head application.",
+    "Any emitted analytic proposal requires independent stopped-result review and separately bound original-runtime native apply with complete full-head quality/incidence/boundary/volume/saved identity gates."
+  ],
+  "authority": "No execution, proposal feasibility, accepted head volume,414Mesh2 pass, OEM/material/strength/PDE/LPBF/manufacturing qualification follows from this source review.",
+  "blockers": []
+}

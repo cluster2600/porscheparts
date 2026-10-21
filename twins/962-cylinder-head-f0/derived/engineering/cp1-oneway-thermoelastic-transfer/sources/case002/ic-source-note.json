@@ -1,0 +1,27 @@
+{
+  "schema": "962-explicit-IC-source-correction-primary-context/v1",
+  "status": "SOURCE_CONTEXT_ONLY_NOT_NATIVE_SUCCESS",
+  "MOOSE_revision": "7c06bdcefd02f9f31f4508839f21f410561309a4",
+  "sources": [
+    {
+      "url": "https://raw.githubusercontent.com/idaholab/moose/7c06bdcefd02f9f31f4508839f21f410561309a4/framework/src/actions/AddVariableAction.C",
+      "lines": "40-41,148-153,161-187,203-224",
+      "finding": "An explicitly valid initial_condition creates a separate varname_moose ConstantIC action. Absence of the optional initial_condition parameter does not enter that action path."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/idaholab/moose/7c06bdcefd02f9f31f4508839f21f410561309a4/framework/src/actions/AddAuxVariableAction.C",
+      "lines": "14-23,41-52",
+      "finding": "Aux variable action inherits AddVariableAction parameters and init behavior."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/idaholab/moose/7c06bdcefd02f9f31f4508839f21f410561309a4/modules/solid_mechanics/src/actions/CommonSolidMechanicsAction.C",
+      "lines": "88-114",
+      "finding": "Normal common SolidMechanics displacement creation calls problem.addVariable with FE/block/scaling parameters; it does not create a displacement IC action here."
+    }
+  ],
+  "case_scan": "Only remaining inline initial_condition is inactive_placeholder0 on block1, with no explicit IC on that variable. Explicit displacement ICs and born-reference IC have no matching inline IC declaration. Two temperature ICs are block2 and block3, respectively; initially empty block3 and shared-DOF restore policy unchanged.",
+  "failed_source_IC_overlap": "Original AuxVariables/temperature initial_condition400 combines the generated temperature_moose action with explicit born_temperature block3; native001 refused before timestepping.",
+  "no_installed_source_build_or_ABI_equivalence_claimed": true,
+  "source_bodies_copied": false,
+  "prepared_functions_guards_or_native_executed": false
+}

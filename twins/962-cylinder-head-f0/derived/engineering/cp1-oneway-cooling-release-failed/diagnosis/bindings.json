@@ -1,0 +1,448 @@
+{
+  "schema": "962-cooling-release-failed-log-source-diagnosis-bindings/v1",
+  "records_before": {
+    "work/962-engineering/cp1-oneway-cooling-release-native-root-execution-001/closed-result.json": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-native-root-execution-001/closed-result.json",
+      "sha256": "297c34d2bffe7b4ecf07bb81466e5bc710dee7719b1c3458c7ca25202ab77807",
+      "bytes": 414720
+    },
+    "work/962-engineering/cp1-oneway-cooling-release-001/native-execution.json": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-001/native-execution.json",
+      "sha256": "d8a716c90681d4ba9d043977150661033b88ed198e87cfb0a7023c8372873757",
+      "bytes": 339226
+    },
+    "work/962-engineering/cp1-oneway-cooling-release-001/native.log": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-001/native.log",
+      "sha256": "ac82192ec5397ebf4d5e0f387240674b898721a7ca908fe28bd71f5ee2f55bd4",
+      "bytes": 141435
+    },
+    "work/962-engineering/cp1-oneway-cooling-release-prep-001/thermoelastic-birth.i": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-prep-001/thermoelastic-birth.i",
+      "sha256": "08708c82f0f38568d9b87c301c6f478c19febc8902097681188b0be60713be07",
+      "bytes": 14635
+    },
+    "work/962-engineering/cp1-oneway-cooling-release-prep-001/run_mac.py": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-prep-001/run_mac.py",
+      "sha256": "104fcd61eb1441f05f7ff3a40eb60a10c80d83f03123d9c402b8a6972f722659",
+      "bytes": 19595
+    },
+    "work/962-engineering/cp1-oneway-cooling-release-native-execution-prep-001/actual-contract.json": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-native-execution-prep-001/actual-contract.json",
+      "sha256": "c31b589899910f82420d30691b0880c237ce6746119915fffeafce723f98ac19",
+      "bytes": 24823
+    },
+    "work/962-engineering/cp1-oneway-cooling-release-native-storage-audit-prep-001/held-preparation.json": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-native-storage-audit-prep-001/held-preparation.json",
+      "sha256": "5cef78a1961691cb7ebb6421f947e2283ca5fd3ac46a8a9c6ce7cb7a3223c4e0",
+      "bytes": 9430
+    },
+    "work/962-engineering/cp1-assumed-thermal-birth-root-primary-context-001/sources.json": {
+      "path": "work/962-engineering/cp1-assumed-thermal-birth-root-primary-context-001/sources.json",
+      "sha256": "107f9bdd0229296e5980205bc48d99309e183a4aa804c045259793da58441c50",
+      "bytes": 1623
+    },
+    "work/962-engineering/cp1-assumed-thermal-birth-root-primary-context-002/sources.json": {
+      "path": "work/962-engineering/cp1-assumed-thermal-birth-root-primary-context-002/sources.json",
+      "sha256": "f59807f9155c22ff0171ad652c3c0c8d3880f53ef2c5299d6981a3dd1bd87141",
+      "bytes": 3346
+    }
+  },
+  "records_after_equal_before": true,
+  "scope": "Stopped root/receipt/log and immutable deck/adapter text only; no raw field/CSV/grid/CDF/runtime access, native/math/assessor/audit execution or full1116-body validation.",
+  "text_log_summary": {
+    "header_count": 203,
+    "converged": 181,
+    "failed": 20,
+    "last_23": [
+      {
+        "step": 180,
+        "time": "0.45",
+        "dt": "0.0025",
+        "converged": true,
+        "failed": false,
+        "last_nonlinear": [
+          "1",
+          "3.154898e-08"
+        ],
+        "reason": []
+      },
+      {
+        "step": 181,
+        "time": "0.4525",
+        "dt": "0.0025",
+        "converged": true,
+        "failed": false,
+        "last_nonlinear": [
+          "1",
+          "3.857055e-07"
+        ],
+        "reason": []
+      },
+      {
+        "step": 182,
+        "time": "0.455",
+        "dt": "0.0025",
+        "converged": false,
+        "failed": true,
+        "last_nonlinear": [
+          "30",
+          "5.682588e-08"
+        ],
+        "reason": [
+          "DIVERGED_MAX_IT iterations 30"
+        ]
+      },
+      {
+        "step": 182,
+        "time": "0.45375",
+        "dt": "0.00125",
+        "converged": false,
+        "failed": true,
+        "last_nonlinear": [
+          "30",
+          "5.682588e-08"
+        ],
+        "reason": [
+          "DIVERGED_MAX_IT iterations 30"
+        ]
+      },
+      {
+        "step": 182,
+        "time": "0.453125",
+        "dt": "0.000625",
+        "converged": false,
+        "failed": true,
+        "last_nonlinear": [
+          "30",
+          "6.036741e-08"
+        ],
+        "reason": [
+          "DIVERGED_MAX_IT iterations 30"
+        ]
+      },
+      {
+        "step": 182,
+        "time": "0.452813",
+        "dt": "0.0003125",
+        "converged": false,
+        "failed": true,
+        "last_nonlinear": [
+          "30",
+          "6.036741e-08"
+        ],
+        "reason": [
+          "DIVERGED_MAX_IT iterations 30"
+        ]
+      },
+      {
+        "step": 182,
+        "time": "0.452656",
+        "dt": "0.00015625",
+        "converged": false,
+        "failed": true,
+        "last_nonlinear": [
+          "30",
+          "5.980362e-08"
+        ],
+        "reason": [
+          "DIVERGED_MAX_IT iterations 30"
+        ]
+      },
+      {
+        "step": 182,
+        "time": "0.452578",
+        "dt": "7.8125e-05",
+        "converged": false,
+        "failed": true,
+        "last_nonlinear": [
+          "30",
+          "6.036741e-08"
+        ],
+        "reason": [
+          "DIVERGED_MAX_IT iterations 30"
+        ]
+      },
+      {
+        "step": 182,
+        "time": "0.452539",
+        "dt": "3.90625e-05",
+        "converged": false,
+        "failed": true,
+        "last_nonlinear": [
+          "30",
+          "6.036741e-08"
+        ],
+        "reason": [
+          "DIVERGED_MAX_IT iterations 30"
+        ]
+      },
+      {
+        "step": 182,
+        "time": "0.45252",
+        "dt": "1.95313e-05",
+        "converged": false,
+        "failed": true,
+        "last_nonlinear": [
+          "30",
+          "6.050642e-08"
+        ],
+        "reason": [
+          "DIVERGED_MAX_IT iterations 30"
+        ]
+      },
+      {
+        "step": 182,
+        "time": "0.45251",
+        "dt": "9.76563e-06",
+        "converged": false,
+        "failed": true,
+        "last_nonlinear": [
+          "30",
+          "6.050642e-08"
+        ],
+        "reason": [
+          "DIVERGED_MAX_IT iterations 30"
+        ]
+      },
+      {
+        "step": 182,
+        "time": "0.452505",
+        "dt": "4.88281e-06",
+        "converged": false,
+        "failed": true,
+        "last_nonlinear": [
+          "30",
+          "6.311586e-08"
+        ],
+        "reason": [
+          "DIVERGED_MAX_IT iterations 30"
+        ]
+      },
+      {
+        "step": 182,
+        "time": "0.452502",
+        "dt": "2.44141e-06",
+        "converged": false,
+        "failed": true,
+        "last_nonlinear": [
+          "30",
+          "5.980362e-08"
+        ],
+        "reason": [
+          "DIVERGED_MAX_IT iterations 30"
+        ]
+      },
+      {
+        "step": 182,
+        "time": "0.452501",
+        "dt": "1.2207e-06",
+        "converged": false,
+        "failed": true,
+        "last_nonlinear": [
+          "30",
+          "6.050642e-08"
+        ],
+        "reason": [
+          "DIVERGED_MAX_IT iterations 30"
+        ]
+      },
+      {
+        "step": 182,
+        "time": "0.452501",
+        "dt": "6.10352e-07",
+        "converged": false,
+        "failed": true,
+        "last_nonlinear": [
+          "30",
+          "6.311586e-08"
+        ],
+        "reason": [
+          "DIVERGED_MAX_IT iterations 30"
+        ]
+      },
+      {
+        "step": 182,
+        "time": "0.4525",
+        "dt": "3.05176e-07",
+        "converged": false,
+        "failed": true,
+        "last_nonlinear": [
+          "30",
+          "5.980362e-08"
+        ],
+        "reason": [
+          "DIVERGED_MAX_IT iterations 30"
+        ]
+      },
+      {
+        "step": 182,
+        "time": "0.4525",
+        "dt": "1.52588e-07",
+        "converged": false,
+        "failed": true,
+        "last_nonlinear": [
+          "30",
+          "6.036741e-08"
+        ],
+        "reason": [
+          "DIVERGED_MAX_IT iterations 30"
+        ]
+      },
+      {
+        "step": 182,
+        "time": "0.4525",
+        "dt": "7.62939e-08",
+        "converged": false,
+        "failed": true,
+        "last_nonlinear": [
+          "30",
+          "5.980362e-08"
+        ],
+        "reason": [
+          "DIVERGED_MAX_IT iterations 30"
+        ]
+      },
+      {
+        "step": 182,
+        "time": "0.4525",
+        "dt": "3.8147e-08",
+        "converged": false,
+        "failed": true,
+        "last_nonlinear": [
+          "30",
+          "5.980362e-08"
+        ],
+        "reason": [
+          "DIVERGED_MAX_IT iterations 30"
+        ]
+      },
+      {
+        "step": 182,
+        "time": "0.4525",
+        "dt": "1.90735e-08",
+        "converged": false,
+        "failed": true,
+        "last_nonlinear": [
+          "30",
+          "6.050642e-08"
+        ],
+        "reason": [
+          "DIVERGED_MAX_IT iterations 30"
+        ]
+      },
+      {
+        "step": 182,
+        "time": "0.4525",
+        "dt": "9.53674e-09",
+        "converged": false,
+        "failed": true,
+        "last_nonlinear": [
+          "30",
+          "6.050642e-08"
+        ],
+        "reason": [
+          "DIVERGED_MAX_IT iterations 30"
+        ]
+      },
+      {
+        "step": 182,
+        "time": "0.4525",
+        "dt": "4.76837e-09",
+        "converged": false,
+        "failed": true,
+        "last_nonlinear": [
+          "30",
+          "6.036741e-08"
+        ],
+        "reason": [
+          "DIVERGED_MAX_IT iterations 30"
+        ]
+      },
+      {
+        "step": 182,
+        "time": "0.4525",
+        "dt": "2.38419e-09",
+        "converged": false,
+        "failed": false,
+        "last_nonlinear": [
+          "4",
+          "6.177464e-08"
+        ],
+        "reason": []
+      }
+    ],
+    "first_failure": {
+      "step": 182,
+      "time": "0.455",
+      "dt": "0.0025",
+      "converged": false,
+      "failed": true,
+      "last_nonlinear": [
+        "30",
+        "5.682588e-08"
+      ],
+      "reason": [
+        "DIVERGED_MAX_IT iterations 30"
+      ]
+    },
+    "attempt_headers_with_dt": 202,
+    "initial_step0_header_excluded_from_attempts": true
+  },
+  "root_closed_outcome": {
+    "returncode": 1,
+    "wall_seconds": 100.46200558310375,
+    "signals": [],
+    "error": null,
+    "stop_reason": null,
+    "waited_reaped": true,
+    "owned_adapter_group_absent": true,
+    "native_capture_completed": false
+  },
+  "inner_receipt_outcome": {
+    "returncode": -9,
+    "wall_seconds": 100.11908745812252,
+    "stop_reason": "stage_deadline",
+    "controller_error": "ValueError: Native command incomplete; preserve outputs without retry",
+    "controller_SIGTERM_requested": false,
+    "process_reaped": true,
+    "native_execution_completed": false,
+    "passed": false,
+    "automatic_retry": false,
+    "resources": {
+      "wall_seconds": 100,
+      "sampled_RSS_stop_bytes": 2147483648,
+      "sampled_output_stop_bytes": 536870912
+    },
+    "max_observed_RSS_bytes": 207978496
+  },
+  "all1116_output_bodies_and_runtime_freshness": "Root-attributed capture inventory only; this diagnosis freshly reads/hash-joins log and receipt, not original fields/runtime.",
+  "primary_source_context": [
+    {
+      "url": "https://mooseframework.inl.gov/application_usage/failed_solves.html",
+      "retrieved_UTC": "2026-10-18 10:29 UTC",
+      "kind": "official current documentation",
+      "observation": "Documents failed nonlinear iterations causing timestep cuts, and discusses near-steady small initial residual versus relative/absolute stopping criteria. Diagnostic consistency only; no unique cause or tolerance-change authorization."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/idaholab/moose/7c06bdcefd02f9f31f4508839f21f410561309a4/framework/src/timesteppers/TimeStepper.C",
+      "retrieved_UTC": "2026-10-18 10:29 UTC",
+      "kind": "version-associated original source",
+      "observation": "validParams declares default failure cutback0.5. computeStep dispatches failed solves to computeFailedDT; rejectStep restores solutions; computeFailedDT multiplies dt by cutback, bounded by dtmin. Source context, not installed binary equivalence."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/idaholab/moose/7c06bdcefd02f9f31f4508839f21f410561309a4/framework/src/timesteppers/ConstantDT.C",
+      "retrieved_UTC": "2026-10-18 10:29 UTC",
+      "kind": "version-associated original source",
+      "observation": "ConstantDT inherits TimeStepper and can grow a previously cut step back toward requested constant dt. Constant dt declaration does not imply failed steps cannot be internally retried."
+    },
+    {
+      "url": "https://mooseframework.inl.gov/source/executioners/Transient.html",
+      "retrieved_UTC": "2026-10-18 10:29 UTC",
+      "kind": "unsuccessful optional documentation lookup",
+      "observation": "Web tool refused response above4MiB; no contents relied upon and no retry. Frozen deck and fetched failed-solves/TimeStepper sources suffice for the bounded observation."
+    }
+  ],
+  "installed_source_or_ABI_equivalence_proved": false,
+  "IEEE754_floor_proved": false,
+  "complete183_dataset_accepted": false
+}

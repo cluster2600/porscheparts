@@ -1,0 +1,94 @@
+{
+  "schema": "962-two-apex-optimum-independent-source-peer/v1",
+  "decision": "CLEAR_SOURCE_MATH_WITH_SEPARATE_ACTUAL_CHILD_AND_RAW_OUTPUT_PATH_GUARD_REQUIRED",
+  "blockers": [],
+  "scope": "Full frozen source/selfcheck/METHOD/reuse/held read plus AST and mathematical review. No prepared function, selfcheck, query, scientific import or native execution.",
+  "bindings": {
+    "held": {
+      "path": "work/962-engineering/fixed-shell-apex-optimum-prep-001/held-contract.json",
+      "sha256": "2bf9b1fa14d15e1bb5cdd24aa82903b63d0d6ecebf449f9c0279d63a58727651"
+    },
+    "source": {
+      "path": "work/962-engineering/fixed-shell-apex-optimum-prep-001/propose.py",
+      "sha256": "88e7166f2181d5db5ecee11e1cc6f8c2c1c5b18c8cbce5765fca4a3b607e882d"
+    },
+    "selfcheck": {
+      "path": "work/962-engineering/fixed-shell-apex-optimum-prep-001/selfcheck.py",
+      "sha256": "8b4b7b9ed35ea7c8fb9b837836bbbfc081944ee40fdb7040e9eb7dddcd4e2cc5"
+    },
+    "METHOD_sha256": "e832486574595f98550d7bebc52bd34f8a51669633c0151146e98ebe310faf9f",
+    "source_reuse_sha256": "62f44108f0d2e9a01a0916fc4f7f79a5813a89d7c769c881f62fe1ea686eb8c9",
+    "root_selfcheck_receipt": {
+      "path": "work/962-engineering/fixed-shell-apex-optimum-root-001/source-review.json",
+      "sha256": "87987e602e49dc7e7c187ecc26ea12765f153b368a2d819ebed0b39f543f30cd",
+      "reported_RC": 0,
+      "reported_seconds": 0.08406225009821355,
+      "peer_did_not_execute_selfcheck": true
+    }
+  },
+  "closure": {
+    "frozen_preparation_files": 5,
+    "all14_input_hash_values_current_by_independent_byte_hash": true,
+    "three_saved_data_JSON_bodies_hashed_only_not_decoded_for_geometry": true,
+    "selected_interpreter_freshness_deferred_to_root_actual_guard": true,
+    "runtime_bodies_read_by_peer": false,
+    "all_five_declared_reused_function_ASTs_byte_serialization_exact": true,
+    "reused_functions": [
+      "rational",
+      "certificate",
+      "subtract",
+      "dot",
+      "cross"
+    ]
+  },
+  "mathematics": {
+    "exact_squared_metric_lines": [
+      54,
+      65
+    ],
+    "metric_columns": "a=e1, b=2e2-e1, c=3e3-e1-e2; ideal columns are a,b/sqrt(3),c/sqrt(6). Their determinant is sqrt(2)*det(e1,e2,e3).",
+    "norm_and_cofactor": "N=|a|^2+|b|^2/3+|c|^2/6; K=|b cross c|^2/18+|c cross a|^2/6+|a cross b|^2/3; signed Q^2=18*det^2/(N*K), with determinant sign stored separately.",
+    "isolated_face_derivation": "For face invariants S=|a|^2+|b|^2>0 and T=|a cross b|^2=4*|rawcross|^2/3>0, tangential apex displacement increases both nonnegative denominator factors without changing normal determinant. The optimum is on the centroid normal. At w=z^2>0, Q^2=9*T*w/((S+w)*(T+S*w)); its derivative has sign T-w^2, so the unique positive real maximum has w=sqrt(T).",
+    "physical_height_and_ceiling": "h=sqrt(2/3)*T^(1/4), and Qmax=3*sqrt(T)/(S+sqrt(T))=3*q_triangle/(2+q_triangle). Units are mm for h, with T in mm^4.",
+    "native_corner_sign": "Using the remaining three vertices in their existing order, dot(rawcross,old_apex-centroid)=(-1)^(3-free)*old_native_order_determinant for free=0,1,2,3. The code checks that exact identity and chooses the old side; both selected targets use free=0.",
+    "floating_construction_scope": "The centroid/normal/height expression uses ordinary sequential binary64 operations. One proposal construction is not a correctly-rounded exact-real optimum or an interval certificate. Each resulting binary64 coordinate is then evaluated exactly with Fraction in every cell.",
+    "strict_gate": "Every one of the 39 unchanged ordered cells is checked after simultaneous replacement: determinant>0 and defined Q^2>=1/100. Undefined, zero or negative orientation fails. Signed decimal square roots are informational only.",
+    "shared_star_scope": "Separate isolated optima need not improve or satisfy other/shared cells. The complete simultaneous 39-cell gate is necessary; neither formula nor future pass proves global optimum, embedding or repair feasibility."
+  },
+  "source_association_and_output": {
+    "single_known_saved_state": "Exact arrays ace411, worker8529 and shell a6f15 are fixed in INPUTS and required as direct actual pins. Before-state checks bind 19 nodes/39 unique ordered cells, tags1..16+27/28/29, exact targets198=[29,4,5,6] and204=[28,7,9,8], exactly two native poor rows, saved-after typed state and complete worker-report equality.",
+    "changes_only_selected_two": "Only tags28 and29 receive finite binary64 rows. Node27 and all sixteen shell coordinate byte strings, including signed zeros, remain exact. Connectivity is never rewritten.",
+    "integer_and_volume_guards": "All39 cells are included in face-incidence/oriented-shell diagnostics and exact before/proposed signed-volume sums against the frozen shell fraction. A quality-rejected finite proposal still retains all19 coordinates/hex rows and all39 exact quality rows in diagnostic.json.",
+    "scope_no_native": "Only standard-library imports and JSON output; no Gmsh, NumPy, SciPy, source MSH read/write, native apply, iteration, grid, optimizer or retry.",
+    "source_qualification": "Held execution, root/peer completion and all native/head/stitch/physical/engineering/manufacturing authorities remain false. Actual child and output digest fields remain null; a future analytic RC0 does not authorize native application."
+  },
+  "selfcheck_source_review": {
+    "read_not_executed": true,
+    "covers": [
+      "unit right tetra exact Q^2=2/3 and reversed determinant",
+      "undefined degenerate case",
+      "regular face optimum at native corners3 and0",
+      "thin-face isolated quality cap below threshold",
+      "old-side sign and negative original refusal",
+      "two-tag-only replacement and unselected signed-zero preservation",
+      "missing/changed required before pins",
+      "absence of gmsh/numpy/scipy import nodes"
+    ],
+    "ordinary_assertions_require_root_nonoptimized_python_execution": true,
+    "root_reported_one_completed_pass_bound_separately_from_historical_unrun_flags": true
+  },
+  "required_actual_launch_guard": [
+    "Freeze a separately reviewed exact diagnostic-only child with all14 current held pins, own source pin, held/source/root reviews, exact interpreter identity and bounded ordinary process controls; keep every native/physical qualification false.",
+    "The source resolves output before checking is_symlink. Root must reject existence or symlink on the raw requested output path before resolve, require a canonical fresh relative output directly under work/962-engineering, and preserve that absence/identity through launch. Root explicitly committed this external guard; no source mutation is requested.",
+    "Require the selected selfcheck under Python without -O, then one query only. Bound output and actual-child identity externally without self-referential hashes.",
+    "Review stopped input/source/contract closure and all retained rows before considering any later native apply; source review is not actual-child or result approval."
+  ],
+  "limits": [
+    "No saved geometry coordinates or candidate optimum were computed in this review; saved input JSON was byte-hashed only.",
+    "No self-intersection, tetrahedron overlap, point containment, native floating-quality replay, full-head stitch or physical/material qualification is established.",
+    "All prior local/head quality rejections remain unchanged."
+  ],
+  "engineering_accepted": false,
+  "physics_qualified": false,
+  "manufacturing_authorized": false
+}

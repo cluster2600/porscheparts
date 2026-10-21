@@ -1,0 +1,1730 @@
+{
+  "schema": "962-atomic-cavity-three-literal-references/v1",
+  "cases": [
+    {
+      "name": "known-collapse",
+      "original_and_current_same_input": "work/962-engineering/remaining266-native-probe-prep-001/known-collapse.bin",
+      "origins_input": "work/962-engineering/remaining266-native-probe-prep-001/known-collapse-origins.u64",
+      "shortedges_input": "work/962-engineering/remaining266-native-probe-prep-001/known-collapse-targets.u64",
+      "keepers_input": "work/962-engineering/atomic-cavity-fixtures-prep-001/keepers-8.u64",
+      "group_current_IDs": [
+        8,
+        9
+      ],
+      "keeper_row": [
+        8,
+        8
+      ],
+      "expected_outcome": "atomic_quotient_reference",
+      "expected_returncode": "bind_after_source_review_not_predicted_here",
+      "input_points": [
+        [
+          -76.0,
+          -76.0,
+          -76.0
+        ],
+        [
+          76.0,
+          -76.0,
+          -76.0
+        ],
+        [
+          76.0,
+          76.0,
+          -76.0
+        ],
+        [
+          -76.0,
+          76.0,
+          -76.0
+        ],
+        [
+          -76.0,
+          -76.0,
+          76.0
+        ],
+        [
+          76.0,
+          -76.0,
+          76.0
+        ],
+        [
+          76.0,
+          76.0,
+          76.0
+        ],
+        [
+          -76.0,
+          76.0,
+          76.0
+        ],
+        [
+          0.0,
+          0.0,
+          76.0
+        ],
+        [
+          0.0009765625,
+          0.0009765625,
+          76.0
+        ]
+      ],
+      "input_oriented_faces": [
+        [
+          0,
+          2,
+          1
+        ],
+        [
+          0,
+          3,
+          2
+        ],
+        [
+          8,
+          4,
+          5
+        ],
+        [
+          8,
+          5,
+          9
+        ],
+        [
+          9,
+          5,
+          6
+        ],
+        [
+          8,
+          9,
+          7
+        ],
+        [
+          9,
+          6,
+          7
+        ],
+        [
+          8,
+          7,
+          4
+        ],
+        [
+          0,
+          1,
+          5
+        ],
+        [
+          0,
+          5,
+          4
+        ],
+        [
+          1,
+          2,
+          6
+        ],
+        [
+          1,
+          6,
+          5
+        ],
+        [
+          2,
+          3,
+          7
+        ],
+        [
+          2,
+          7,
+          6
+        ],
+        [
+          3,
+          0,
+          4
+        ],
+        [
+          3,
+          4,
+          7
+        ]
+      ],
+      "before": {
+        "poor_face_rows": [
+          3,
+          5
+        ],
+        "poor_faces": 2,
+        "minimum_triangle_SICN": 2.2255998243252707e-05,
+        "signed_volume_mm3": "3511808",
+        "outward_unnormalized_face_normals_exact": [
+          [
+            "0",
+            "0",
+            "-23104"
+          ],
+          [
+            "0",
+            "0",
+            "-23104"
+          ],
+          [
+            "0",
+            "0",
+            "11552"
+          ],
+          [
+            "0",
+            "0",
+            "19/128"
+          ],
+          [
+            "0",
+            "0",
+            "1478637/128"
+          ],
+          [
+            "0",
+            "0",
+            "19/128"
+          ],
+          [
+            "0",
+            "0",
+            "1478637/128"
+          ],
+          [
+            "0",
+            "0",
+            "11552"
+          ],
+          [
+            "0",
+            "-23104",
+            "0"
+          ],
+          [
+            "0",
+            "-23104",
+            "0"
+          ],
+          [
+            "23104",
+            "0",
+            "0"
+          ],
+          [
+            "23104",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "23104",
+            "0"
+          ],
+          [
+            "0",
+            "23104",
+            "0"
+          ],
+          [
+            "-23104",
+            "0",
+            "0"
+          ],
+          [
+            "-23104",
+            "0",
+            "0"
+          ]
+        ],
+        "all_faces_outward_on_unchanged_cube_planes": true
+      },
+      "before_topology": {
+        "vertices": 10,
+        "edges": 24,
+        "faces": 16,
+        "Euler": 2,
+        "oriented_boundary_edges": [],
+        "edge_and_vertex_manifold": true,
+        "no_duplicate_or_orphan_faces": true
+      },
+      "actual_source_policy_mask": {
+        "original_seed_vertices": [
+          5,
+          7,
+          8,
+          9
+        ],
+        "original_patch_face_rows": [
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          11,
+          12,
+          13,
+          15
+        ],
+        "fixed_original_IDs": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ]
+      },
+      "group_star_rows": [
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "group_star_disk": {
+        "vertices": 6,
+        "edges": 11,
+        "faces": 6,
+        "Euler": 1,
+        "oriented_boundary_edges": [
+          [
+            4,
+            5
+          ],
+          [
+            5,
+            6
+          ],
+          [
+            6,
+            7
+          ],
+          [
+            7,
+            4
+          ]
+        ],
+        "edge_and_vertex_manifold": true,
+        "no_duplicate_or_orphan_faces": true
+      },
+      "expected_points": [
+        [
+          -76.0,
+          -76.0,
+          -76.0
+        ],
+        [
+          76.0,
+          -76.0,
+          -76.0
+        ],
+        [
+          76.0,
+          76.0,
+          -76.0
+        ],
+        [
+          -76.0,
+          76.0,
+          -76.0
+        ],
+        [
+          -76.0,
+          -76.0,
+          76.0
+        ],
+        [
+          76.0,
+          -76.0,
+          76.0
+        ],
+        [
+          76.0,
+          76.0,
+          76.0
+        ],
+        [
+          -76.0,
+          76.0,
+          76.0
+        ],
+        [
+          0.0,
+          0.0,
+          76.0
+        ]
+      ],
+      "expected_oriented_faces": [
+        [
+          0,
+          2,
+          1
+        ],
+        [
+          0,
+          3,
+          2
+        ],
+        [
+          8,
+          4,
+          5
+        ],
+        [
+          8,
+          5,
+          6
+        ],
+        [
+          8,
+          6,
+          7
+        ],
+        [
+          8,
+          7,
+          4
+        ],
+        [
+          0,
+          1,
+          5
+        ],
+        [
+          0,
+          5,
+          4
+        ],
+        [
+          1,
+          2,
+          6
+        ],
+        [
+          1,
+          6,
+          5
+        ],
+        [
+          2,
+          3,
+          7
+        ],
+        [
+          2,
+          7,
+          6
+        ],
+        [
+          3,
+          0,
+          4
+        ],
+        [
+          3,
+          4,
+          7
+        ]
+      ],
+      "expected_origins": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "expected_after": {
+        "poor_face_rows": [],
+        "poor_faces": 0,
+        "minimum_triangle_SICN": 0.8660254037844386,
+        "signed_volume_mm3": "3511808",
+        "outward_unnormalized_face_normals_exact": [
+          [
+            "0",
+            "0",
+            "-23104"
+          ],
+          [
+            "0",
+            "0",
+            "-23104"
+          ],
+          [
+            "0",
+            "0",
+            "11552"
+          ],
+          [
+            "0",
+            "0",
+            "11552"
+          ],
+          [
+            "0",
+            "0",
+            "11552"
+          ],
+          [
+            "0",
+            "0",
+            "11552"
+          ],
+          [
+            "0",
+            "-23104",
+            "0"
+          ],
+          [
+            "0",
+            "-23104",
+            "0"
+          ],
+          [
+            "23104",
+            "0",
+            "0"
+          ],
+          [
+            "23104",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "23104",
+            "0"
+          ],
+          [
+            "0",
+            "23104",
+            "0"
+          ],
+          [
+            "-23104",
+            "0",
+            "0"
+          ],
+          [
+            "-23104",
+            "0",
+            "0"
+          ]
+        ],
+        "all_faces_outward_on_unchanged_cube_planes": true
+      },
+      "expected_after_topology": {
+        "vertices": 9,
+        "edges": 21,
+        "faces": 14,
+        "Euler": 2,
+        "oriented_boundary_edges": [],
+        "edge_and_vertex_manifold": true,
+        "no_duplicate_or_orphan_faces": true
+      },
+      "expected_removed_faces": 2,
+      "expected_all_fixed_and_exterior_exact": true,
+      "native_fixture_result_credited": false,
+      "head_geometry_used": false
+    },
+    {
+      "name": "all-fixed",
+      "original_and_current_same_input": "work/962-engineering/remaining266-native-probe-prep-001/all-fixed.bin",
+      "origins_input": "work/962-engineering/remaining266-native-probe-prep-001/all-fixed-origins.u64",
+      "shortedges_input": "work/962-engineering/remaining266-native-probe-prep-001/all-fixed-targets.u64",
+      "keepers_input": "work/962-engineering/atomic-cavity-fixtures-prep-001/keepers-8.u64",
+      "group_current_IDs": [
+        8,
+        9
+      ],
+      "keeper_row": [
+        8,
+        8
+      ],
+      "expected_outcome": "fixed_group_refusal_no_mutation",
+      "expected_returncode": "bind_after_source_review_not_predicted_here",
+      "input_points": [
+        [
+          -76.0,
+          -76.0,
+          76.0
+        ],
+        [
+          -76.0,
+          -76.0,
+          -76.0
+        ],
+        [
+          -76.0,
+          76.0,
+          -76.0
+        ],
+        [
+          -76.0,
+          76.0,
+          76.0
+        ],
+        [
+          76.0,
+          -76.0,
+          76.0
+        ],
+        [
+          76.0,
+          -76.0,
+          -76.0
+        ],
+        [
+          76.0,
+          76.0,
+          -76.0
+        ],
+        [
+          76.0,
+          76.0,
+          76.0
+        ],
+        [
+          76.0,
+          0.0,
+          -0.0
+        ],
+        [
+          76.0,
+          0.0009765625,
+          -0.0009765625
+        ]
+      ],
+      "input_oriented_faces": [
+        [
+          0,
+          2,
+          1
+        ],
+        [
+          0,
+          3,
+          2
+        ],
+        [
+          8,
+          4,
+          5
+        ],
+        [
+          8,
+          5,
+          9
+        ],
+        [
+          9,
+          5,
+          6
+        ],
+        [
+          8,
+          9,
+          7
+        ],
+        [
+          9,
+          6,
+          7
+        ],
+        [
+          8,
+          7,
+          4
+        ],
+        [
+          0,
+          1,
+          5
+        ],
+        [
+          0,
+          5,
+          4
+        ],
+        [
+          1,
+          2,
+          6
+        ],
+        [
+          1,
+          6,
+          5
+        ],
+        [
+          2,
+          3,
+          7
+        ],
+        [
+          2,
+          7,
+          6
+        ],
+        [
+          3,
+          0,
+          4
+        ],
+        [
+          3,
+          4,
+          7
+        ]
+      ],
+      "before": {
+        "poor_face_rows": [
+          3,
+          5
+        ],
+        "poor_faces": 2,
+        "minimum_triangle_SICN": 2.2255998243252707e-05,
+        "signed_volume_mm3": "3511808",
+        "outward_unnormalized_face_normals_exact": [
+          [
+            "-23104",
+            "0",
+            "0"
+          ],
+          [
+            "-23104",
+            "0",
+            "0"
+          ],
+          [
+            "11552",
+            "0",
+            "0"
+          ],
+          [
+            "19/128",
+            "0",
+            "0"
+          ],
+          [
+            "1478637/128",
+            "0",
+            "0"
+          ],
+          [
+            "19/128",
+            "0",
+            "0"
+          ],
+          [
+            "1478637/128",
+            "0",
+            "0"
+          ],
+          [
+            "11552",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "-23104",
+            "0"
+          ],
+          [
+            "0",
+            "-23104",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "-23104"
+          ],
+          [
+            "0",
+            "0",
+            "-23104"
+          ],
+          [
+            "0",
+            "23104",
+            "0"
+          ],
+          [
+            "0",
+            "23104",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "23104"
+          ],
+          [
+            "0",
+            "0",
+            "23104"
+          ]
+        ],
+        "all_faces_outward_on_unchanged_cube_planes": true
+      },
+      "before_topology": {
+        "vertices": 10,
+        "edges": 24,
+        "faces": 16,
+        "Euler": 2,
+        "oriented_boundary_edges": [],
+        "edge_and_vertex_manifold": true,
+        "no_duplicate_or_orphan_faces": true
+      },
+      "actual_source_policy_mask": {
+        "original_seed_vertices": [
+          5,
+          7,
+          8,
+          9
+        ],
+        "original_patch_face_rows": [
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          11,
+          12,
+          13,
+          15
+        ],
+        "fixed_original_IDs": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9
+        ]
+      },
+      "group_star_rows": [
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "group_star_disk": {
+        "vertices": 6,
+        "edges": 11,
+        "faces": 6,
+        "Euler": 1,
+        "oriented_boundary_edges": [
+          [
+            4,
+            5
+          ],
+          [
+            5,
+            6
+          ],
+          [
+            6,
+            7
+          ],
+          [
+            7,
+            4
+          ]
+        ],
+        "edge_and_vertex_manifold": true,
+        "no_duplicate_or_orphan_faces": true
+      },
+      "expected_points": [
+        [
+          -76.0,
+          -76.0,
+          76.0
+        ],
+        [
+          -76.0,
+          -76.0,
+          -76.0
+        ],
+        [
+          -76.0,
+          76.0,
+          -76.0
+        ],
+        [
+          -76.0,
+          76.0,
+          76.0
+        ],
+        [
+          76.0,
+          -76.0,
+          76.0
+        ],
+        [
+          76.0,
+          -76.0,
+          -76.0
+        ],
+        [
+          76.0,
+          76.0,
+          -76.0
+        ],
+        [
+          76.0,
+          76.0,
+          76.0
+        ],
+        [
+          76.0,
+          0.0,
+          -0.0
+        ],
+        [
+          76.0,
+          0.0009765625,
+          -0.0009765625
+        ]
+      ],
+      "expected_oriented_faces": [
+        [
+          0,
+          2,
+          1
+        ],
+        [
+          0,
+          3,
+          2
+        ],
+        [
+          8,
+          4,
+          5
+        ],
+        [
+          8,
+          5,
+          9
+        ],
+        [
+          9,
+          5,
+          6
+        ],
+        [
+          8,
+          9,
+          7
+        ],
+        [
+          9,
+          6,
+          7
+        ],
+        [
+          8,
+          7,
+          4
+        ],
+        [
+          0,
+          1,
+          5
+        ],
+        [
+          0,
+          5,
+          4
+        ],
+        [
+          1,
+          2,
+          6
+        ],
+        [
+          1,
+          6,
+          5
+        ],
+        [
+          2,
+          3,
+          7
+        ],
+        [
+          2,
+          7,
+          6
+        ],
+        [
+          3,
+          0,
+          4
+        ],
+        [
+          3,
+          4,
+          7
+        ]
+      ],
+      "expected_origins": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "expected_after": {
+        "poor_face_rows": [
+          3,
+          5
+        ],
+        "poor_faces": 2,
+        "minimum_triangle_SICN": 2.2255998243252707e-05,
+        "signed_volume_mm3": "3511808",
+        "outward_unnormalized_face_normals_exact": [
+          [
+            "-23104",
+            "0",
+            "0"
+          ],
+          [
+            "-23104",
+            "0",
+            "0"
+          ],
+          [
+            "11552",
+            "0",
+            "0"
+          ],
+          [
+            "19/128",
+            "0",
+            "0"
+          ],
+          [
+            "1478637/128",
+            "0",
+            "0"
+          ],
+          [
+            "19/128",
+            "0",
+            "0"
+          ],
+          [
+            "1478637/128",
+            "0",
+            "0"
+          ],
+          [
+            "11552",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "-23104",
+            "0"
+          ],
+          [
+            "0",
+            "-23104",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "-23104"
+          ],
+          [
+            "0",
+            "0",
+            "-23104"
+          ],
+          [
+            "0",
+            "23104",
+            "0"
+          ],
+          [
+            "0",
+            "23104",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "23104"
+          ],
+          [
+            "0",
+            "0",
+            "23104"
+          ]
+        ],
+        "all_faces_outward_on_unchanged_cube_planes": true
+      },
+      "expected_after_topology": {
+        "vertices": 10,
+        "edges": 24,
+        "faces": 16,
+        "Euler": 2,
+        "oriented_boundary_edges": [],
+        "edge_and_vertex_manifold": true,
+        "no_duplicate_or_orphan_faces": true
+      },
+      "expected_removed_faces": 0,
+      "expected_all_fixed_and_exterior_exact": true,
+      "native_fixture_result_credited": false,
+      "head_geometry_used": false
+    },
+    {
+      "name": "four-vertex-disk",
+      "original_and_current_same_input": "work/962-engineering/atomic-cavity-fixtures-prep-001/four-vertex-disk.bin",
+      "origins_input": "work/962-engineering/atomic-cavity-fixtures-prep-001/four-vertex-disk-origins.u64",
+      "shortedges_input": "work/962-engineering/atomic-cavity-fixtures-prep-001/four-vertex-disk-targets.u64",
+      "keepers_input": "work/962-engineering/atomic-cavity-fixtures-prep-001/keepers-8.u64",
+      "group_current_IDs": [
+        8,
+        9,
+        10,
+        11
+      ],
+      "keeper_row": [
+        8,
+        8
+      ],
+      "expected_outcome": "atomic_quotient_reference",
+      "expected_returncode": "bind_after_source_review_not_predicted_here",
+      "input_points": [
+        [
+          -76.0,
+          -76.0,
+          -76.0
+        ],
+        [
+          76.0,
+          -76.0,
+          -76.0
+        ],
+        [
+          76.0,
+          76.0,
+          -76.0
+        ],
+        [
+          -76.0,
+          76.0,
+          -76.0
+        ],
+        [
+          -76.0,
+          -76.0,
+          76.0
+        ],
+        [
+          76.0,
+          -76.0,
+          76.0
+        ],
+        [
+          76.0,
+          76.0,
+          76.0
+        ],
+        [
+          -76.0,
+          76.0,
+          76.0
+        ],
+        [
+          -1.52587890625e-05,
+          -3.0517578125e-05,
+          76.0
+        ],
+        [
+          1.52587890625e-05,
+          -3.0517578125e-05,
+          76.0
+        ],
+        [
+          1.52587890625e-05,
+          3.0517578125e-05,
+          76.0
+        ],
+        [
+          -1.52587890625e-05,
+          3.0517578125e-05,
+          76.0
+        ]
+      ],
+      "input_oriented_faces": [
+        [
+          0,
+          2,
+          1
+        ],
+        [
+          0,
+          3,
+          2
+        ],
+        [
+          4,
+          5,
+          9
+        ],
+        [
+          4,
+          9,
+          8
+        ],
+        [
+          5,
+          6,
+          10
+        ],
+        [
+          5,
+          10,
+          9
+        ],
+        [
+          6,
+          7,
+          11
+        ],
+        [
+          6,
+          11,
+          10
+        ],
+        [
+          7,
+          4,
+          8
+        ],
+        [
+          7,
+          8,
+          11
+        ],
+        [
+          8,
+          9,
+          10
+        ],
+        [
+          8,
+          10,
+          11
+        ],
+        [
+          0,
+          1,
+          5
+        ],
+        [
+          0,
+          5,
+          4
+        ],
+        [
+          1,
+          2,
+          6
+        ],
+        [
+          1,
+          6,
+          5
+        ],
+        [
+          2,
+          3,
+          7
+        ],
+        [
+          2,
+          7,
+          6
+        ],
+        [
+          3,
+          0,
+          4
+        ],
+        [
+          3,
+          4,
+          7
+        ]
+      ],
+      "before": {
+        "poor_face_rows": [
+          3,
+          5,
+          7,
+          9
+        ],
+        "poor_faces": 4,
+        "minimum_triangle_SICN": 3.4774997260819145e-07,
+        "signed_volume_mm3": "3511808",
+        "outward_unnormalized_face_normals_exact": [
+          [
+            "0",
+            "0",
+            "-23104"
+          ],
+          [
+            "0",
+            "0",
+            "-23104"
+          ],
+          [
+            "0",
+            "0",
+            "47316973/4096"
+          ],
+          [
+            "0",
+            "0",
+            "2490367/1073741824"
+          ],
+          [
+            "0",
+            "0",
+            "94633965/8192"
+          ],
+          [
+            "0",
+            "0",
+            "4980735/1073741824"
+          ],
+          [
+            "0",
+            "0",
+            "47316973/4096"
+          ],
+          [
+            "0",
+            "0",
+            "2490367/1073741824"
+          ],
+          [
+            "0",
+            "0",
+            "94633965/8192"
+          ],
+          [
+            "0",
+            "0",
+            "4980735/1073741824"
+          ],
+          [
+            "0",
+            "0",
+            "1/536870912"
+          ],
+          [
+            "0",
+            "0",
+            "1/536870912"
+          ],
+          [
+            "0",
+            "-23104",
+            "0"
+          ],
+          [
+            "0",
+            "-23104",
+            "0"
+          ],
+          [
+            "23104",
+            "0",
+            "0"
+          ],
+          [
+            "23104",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "23104",
+            "0"
+          ],
+          [
+            "0",
+            "23104",
+            "0"
+          ],
+          [
+            "-23104",
+            "0",
+            "0"
+          ],
+          [
+            "-23104",
+            "0",
+            "0"
+          ]
+        ],
+        "all_faces_outward_on_unchanged_cube_planes": true
+      },
+      "before_topology": {
+        "vertices": 12,
+        "edges": 30,
+        "faces": 20,
+        "Euler": 2,
+        "oriented_boundary_edges": [],
+        "edge_and_vertex_manifold": true,
+        "no_duplicate_or_orphan_faces": true
+      },
+      "actual_source_policy_mask": {
+        "original_seed_vertices": [
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11
+        ],
+        "original_patch_face_rows": [
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19
+        ],
+        "fixed_original_IDs": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ]
+      },
+      "group_star_rows": [
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "group_star_disk": {
+        "vertices": 8,
+        "edges": 17,
+        "faces": 10,
+        "Euler": 1,
+        "oriented_boundary_edges": [
+          [
+            4,
+            5
+          ],
+          [
+            5,
+            6
+          ],
+          [
+            6,
+            7
+          ],
+          [
+            7,
+            4
+          ]
+        ],
+        "edge_and_vertex_manifold": true,
+        "no_duplicate_or_orphan_faces": true
+      },
+      "expected_points": [
+        [
+          -76.0,
+          -76.0,
+          -76.0
+        ],
+        [
+          76.0,
+          -76.0,
+          -76.0
+        ],
+        [
+          76.0,
+          76.0,
+          -76.0
+        ],
+        [
+          -76.0,
+          76.0,
+          -76.0
+        ],
+        [
+          -76.0,
+          -76.0,
+          76.0
+        ],
+        [
+          76.0,
+          -76.0,
+          76.0
+        ],
+        [
+          76.0,
+          76.0,
+          76.0
+        ],
+        [
+          -76.0,
+          76.0,
+          76.0
+        ],
+        [
+          -1.52587890625e-05,
+          -3.0517578125e-05,
+          76.0
+        ]
+      ],
+      "expected_oriented_faces": [
+        [
+          0,
+          2,
+          1
+        ],
+        [
+          0,
+          3,
+          2
+        ],
+        [
+          4,
+          5,
+          8
+        ],
+        [
+          5,
+          6,
+          8
+        ],
+        [
+          6,
+          7,
+          8
+        ],
+        [
+          7,
+          4,
+          8
+        ],
+        [
+          0,
+          1,
+          5
+        ],
+        [
+          0,
+          5,
+          4
+        ],
+        [
+          1,
+          2,
+          6
+        ],
+        [
+          1,
+          6,
+          5
+        ],
+        [
+          2,
+          3,
+          7
+        ],
+        [
+          2,
+          7,
+          6
+        ],
+        [
+          3,
+          0,
+          4
+        ],
+        [
+          3,
+          4,
+          7
+        ]
+      ],
+      "expected_origins": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "expected_after": {
+        "poor_face_rows": [],
+        "poor_faces": 0,
+        "minimum_triangle_SICN": 0.8660252299093737,
+        "signed_volume_mm3": "3511808",
+        "outward_unnormalized_face_normals_exact": [
+          [
+            "0",
+            "0",
+            "-23104"
+          ],
+          [
+            "0",
+            "0",
+            "-23104"
+          ],
+          [
+            "0",
+            "0",
+            "47316973/4096"
+          ],
+          [
+            "0",
+            "0",
+            "94634003/8192"
+          ],
+          [
+            "0",
+            "0",
+            "47317011/4096"
+          ],
+          [
+            "0",
+            "0",
+            "94633965/8192"
+          ],
+          [
+            "0",
+            "-23104",
+            "0"
+          ],
+          [
+            "0",
+            "-23104",
+            "0"
+          ],
+          [
+            "23104",
+            "0",
+            "0"
+          ],
+          [
+            "23104",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "23104",
+            "0"
+          ],
+          [
+            "0",
+            "23104",
+            "0"
+          ],
+          [
+            "-23104",
+            "0",
+            "0"
+          ],
+          [
+            "-23104",
+            "0",
+            "0"
+          ]
+        ],
+        "all_faces_outward_on_unchanged_cube_planes": true
+      },
+      "expected_after_topology": {
+        "vertices": 9,
+        "edges": 21,
+        "faces": 14,
+        "Euler": 2,
+        "oriented_boundary_edges": [],
+        "edge_and_vertex_manifold": true,
+        "no_duplicate_or_orphan_faces": true
+      },
+      "expected_removed_faces": 6,
+      "expected_all_fixed_and_exterior_exact": true,
+      "native_fixture_result_credited": false,
+      "head_geometry_used": false
+    }
+  ],
+  "mask_policy": "Existing original bad-seed incidence and exact x==+-76 clip, unchanged.",
+  "normal_reference": "Every face lies on an original cube plane with exact outward rational normal; listed per face.",
+  "native_or_compile_or_SSH_calls": 0,
+  "head_mutation": false,
+  "execution_authorized": false,
+  "manufacturing_authorized": false
+}

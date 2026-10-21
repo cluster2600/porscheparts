@@ -1,0 +1,79 @@
+{
+  "schema": "962-expanded-sparse-returned-diagnostic-stopped-result-independent-review/v1",
+  "decision": "CLEAR_PRESERVED_FINITE_DIAGNOSTIC_STRICT_QUALITY_REJECTION",
+  "blockers": [],
+  "bindings": {
+    "actual_child_sha256": "1900f85138001495353c467efa4c124926be89ab8c6a212960eb7bfdad841f3c",
+    "external_child_peer_sha256": "0bfdc38ddfc06b1b6f3f29f4208c3bfe79cdbbab5b798df3754f04e899afd6f6",
+    "source_delta_peer002_sha256": "b862a30a3f78cd72f9c5bfe8919077e641d554cb3bda97cd7993a4d34cfc3a09",
+    "worker_sha256": "20b76607821b83caf342e9741c80e2e02fa41568fa2d5ca413b1d1ab6caa3325",
+    "runner_sha256": "4157ed19007560a9cbb4ab5609c4908d9be929396c1f15048cfc2ae83c2d0cc5",
+    "diagnostic_sha256": "e9ad52bd0848d770fabd6ea99c07f859d60b2cc3ee992fbf76a92b2f6c9f40cc",
+    "report_sha256": "9655720443577c0c901c72c9392a59c2da465dd571e265d179fb1abcf275569f",
+    "receipt_sha256": "82417b6fc7e60d74734c69c76c35caccb8b2f8318ea7d98a1fc3cbe1f308e1fa",
+    "checkpoint_sha256": "6253567f1bcfe5310b867217faab12839b50b09093b06d0a3aefffa04f413af0",
+    "root_execution_sha256": "e3b16bb5273379229148f8f5e4ebe5b2d62e3f703dadd619f6d5b3e2f647d17f",
+    "root_closed_sha256": "c3dc54847859e56788567140b3901d5652b9ebe11974fb8f8af9c7dd079ec7d6",
+    "root_full_returned_scalar_check_sha256": "3f9eb5f4fac70f27142f6f58fa4b82a6cf0d64ccdb5d66a7f0498fdd56c3c68b"
+  },
+  "closure_controls": {
+    "files": 8,
+    "bytes": 1791807,
+    "all_file_hashes_sizes_equal_complete_root_inventory": true,
+    "source_runner_and_frozen_actual_child_exact": true,
+    "all52_input54_runtime_before_child_after_map_values_equal": true,
+    "current_small_input_hashes_checked": 49,
+    "source_census_saved_JSON_also_read_and_hashed": true,
+    "other_two_saved_geometry_JSON_bodies_and_runtime_binary_current_hashes_deferred_to_root": true,
+    "controller_and_worker_returncode": 2,
+    "stop_reason": null,
+    "controller_wall_seconds": 119.75050162500702,
+    "root_outer_wall_seconds": 119.89283416606486,
+    "RSS_samples": 234,
+    "maximum_sampled_RSS_bytes": 4706353152,
+    "limits": "300s/sample8GiB RSS/sample16MiB output/requested2threads; no hardOSquota or measured unsampled peak. No root timeout/SIGTERM requested.",
+    "owned_lifecycle": "Full argv/parent/owned-group joins checked across live002..005; root controller waited/reaped and both individual postwait absence observations match. Worker reaping attributed to reviewed finalizer."
+  },
+  "saved_diagnostic_checks": {
+    "all1098_sorted_coordinate_tags_and_hex_rows_join_frozen_seed_set": true,
+    "all29473_quality_values_and_ordered_tetrahedron_tags_join_source_census": true,
+    "all_source_global_and_six_typed_section_identities_match": true,
+    "all_quality_values_positive_finite_and_array_hash_reproduced": true,
+    "below_point1": 315,
+    "reported_minimum": 0.030664711969087315,
+    "quality_array_sha256": "b83d540fcd189eed134aed21a1e9d934cd47d651e8abcbfea796e36d30df7f56",
+    "fixed_context_reconstruction_rows": 10969,
+    "fixed_context_bits_in_reconstructed_point_exact_and_worker_flag_true": true,
+    "scope_fixedness": "Only selected1098 rows are exported; the other10969 reconstructed rows use frozen source bits. Full worker post-solve context array is not exported; actual fixedness flag is retained, while success-only enforcement/postchecks were not reached.",
+    "bounded_independent_Fraction_witness": {
+      "returned_worst_tetrahedron_tag": 29803043,
+      "positive_exact_determinant": true,
+      "independent_signed_quality": 0.030664711969087297,
+      "baseline_worst_independent_quality": 0.039074265058639826,
+      "lower_bound_violation_from_witness": 0.03542270064187747
+    },
+    "root_full_scalar_check": "Separately bound3f9 verifies all29473 returned scalar qualities/positive signed determinants against saved values, maximum absolute error4.440892098500626e-16. Reviewer independently checked full rows/hashes/counts/joins and bounded exact Fraction witnesses; did not repeat all scalar calculations or native queries."
+  },
+  "solver_and_constraints": {
+    "method": "trust-constr",
+    "calls": 1,
+    "success": false,
+    "status": 0,
+    "nit": 100,
+    "reported_nfev": 100,
+    "reported_njev": 67,
+    "quality_target_stop": false,
+    "message": "The maximum number of function evaluations is exceeded.",
+    "epigraph_t": 0.003651564416762356,
+    "reported_constraint_violation": 0.035422700641877476,
+    "minimum_Q_minus_t": 0.027013147552324958,
+    "interpretation": "Positive Q-t values do not establish all-constraint feasibility. The old initial-minimum lower bound on t is violated by the amount matching reported constraint violation; strict all-Q0.1 and allowed solver-status conditions both fail. Evaluation telemetry is not total constraint-quality calls or an independent convergence/global-optimum result."
+  },
+  "limits": [
+    "Diagnostic is explicitly not a coordinate proposal and grants no native application authority; coordinate-proposal.json is absent. The returned analytic point is worse by315poor/min0.03066 versus prior210poor/min0.03907 and must not replace the original mesh.",
+    "465loaded scientific identities are pre-call only, matching checkpoint/report. No after-loaded inventory or success-only worker source/runtime/original/fixedness enforcement is credited; root52+54after checks are separate.",
+    "No SVD warning appears in the127-byte log; no backend-factorization/allocation cause is inferred. This natural quality rejection remains distinct from001sampledmemory stop.",
+    "No nativeGmsh apply/fullhead audit, geometric feasibility/infeasibility, physical/material/strength/PDE/LPBF/manufacturing proof or new execution authority follows. Strict0.1, surface0.0625analysis budget and stronger414Mesh_2 remain unchanged."
+  ],
+  "review_operations": "Standard-library stopped JSON/source/receipt/lifecycle/hash and all saved row associations; bounded Fraction determinant/quality-squared witnesses only. No prepared source/tests/scientific imports/native/optimizer replay, rawMSH/BIN/runtime binary reads, Git/public mutation or external action. Only this separate frozen review written."
+}

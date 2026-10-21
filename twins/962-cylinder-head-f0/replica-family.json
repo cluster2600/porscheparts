@@ -1,0 +1,90 @@
+{
+  "schema_version": "1.0.0",
+  "program_id": "962-C-REPLICA-FAMILY-0001",
+  "status": "reference_definition_and_displacement_sizing_only",
+  "owner_decision_date": "2026-10-16",
+  "reference": {
+    "family": "Porsche_962_C_3l_water_cooled_4v",
+    "published_displacement_cm3": 2994,
+    "engine_type_candidates": ["935/79", "935/82", "935/83"],
+    "selected_engine_type": null,
+    "selected_year": null,
+    "part_reference": null,
+    "physical_access_confirmed": false,
+    "bore_mm": null,
+    "stroke_mm": null,
+    "spark_plugs_per_cylinder": null,
+    "cylinder_head_joint_for_selected_variant": null,
+    "alloy_and_heat_treatment": null,
+    "source_id": "porsche-group-c-2022",
+    "source_pages": [8, 18, 19, 20]
+  },
+  "architecture": {
+    "cylinder_count": 6,
+    "layout": "flat_six",
+    "valves_per_cylinder": 4,
+    "camshafts_per_bank": 2,
+    "cam_drive": "gears",
+    "valve_actuation": "direct_tappets_with_shims",
+    "cooling": "water_cooled_heads_and_cylinders",
+    "independent_coolant_bank_circuits": 2,
+    "pumps_per_bank": 1,
+    "documented_construction": "aluminium_electron_beam_welded_head_and_cylinder_blind_unit_nikasil_bore",
+    "construction_applicability": "confirm_on_selected_reference_before_reconstruction",
+    "source_id": "porsche-group-c-2022"
+  },
+  "envelope": {"min_cm3": 2994, "max_cm3": 4000},
+  "variants": [
+    {"id": "962-c-3l-reference", "nominal_l": 3.0, "target_displacement_cm3": 2994, "basis": "published", "source_id": "porsche-group-c-2022", "bore_mm": null, "stroke_mm": null},
+    {"id": "962-c-3l2-period-context", "nominal_l": 3.2, "target_displacement_cm3": 3164, "basis": "published", "source_id": "porsche-group-c-2022", "bore_mm": null, "stroke_mm": null},
+    {"id": "962-derived-3l4-target", "nominal_l": 3.4, "target_displacement_cm3": 3400, "basis": "proposed_target", "source_id": null, "bore_mm": null, "stroke_mm": null},
+    {"id": "962-derived-3l6-target", "nominal_l": 3.6, "target_displacement_cm3": 3600, "basis": "proposed_target", "source_id": null, "bore_mm": null, "stroke_mm": null},
+    {"id": "962-derived-3l8-target", "nominal_l": 3.8, "target_displacement_cm3": 3800, "basis": "proposed_target", "source_id": null, "bore_mm": null, "stroke_mm": null},
+    {"id": "962-derived-4l-target", "nominal_l": 4.0, "target_displacement_cm3": 4000, "basis": "proposed_target", "source_id": null, "bore_mm": null, "stroke_mm": null}
+  ],
+  "design_policy": {
+    "uniform_head_scaling_allowed": false,
+    "historical_master_available": false,
+    "measured_interfaces_shared_between_variants": false,
+    "interchangeability_requires_per_variant_evidence": true,
+    "modern_twin_ignition_bcc_and_conformal_jackets": "separate_derivative_studies_not_historical_reference",
+    "original_power_fuel_and_compression_ratio": "not_inferred_from_previous_1000ps_sp95_study"
+  },
+  "required_measured_inputs": {
+    "exact_reference_variant_and_condition": null,
+    "exterior_surface_and_cylinder_pitch": null,
+    "datums_and_mating_planes": null,
+    "head_cylinder_joint_and_register": null,
+    "fastener_pattern_and_load_path": null,
+    "chamber_surface_volume_and_squish": null,
+    "valve_seat_guide_axes_and_lift": null,
+    "spark_count_axis_thread_and_seat": null,
+    "cam_carrier_bearings_and_gear_drive": null,
+    "intake_exhaust_ports_and_flanges": null,
+    "water_gallery_topology_and_wall_thickness": null,
+    "coolant_couplings_and_installed_orientation": null,
+    "oil_feed_and_drains": null,
+    "alloy_coating_and_heat_treatment": null,
+    "dimensional_tolerances_and_surface_finish": null
+  },
+  "qualification": {
+    "historical_fidelity_validated": false,
+    "fitment_validated": false,
+    "interchangeability_validated": false,
+    "strength_validated": false,
+    "material_process_qualified": false,
+    "hydraulic_thermal_performance_validated": false,
+    "manufacturing_authorized": false,
+    "commercial_release_authorized": false
+  },
+  "sources": [
+    {
+      "id": "porsche-group-c-2022",
+      "url": "https://newsroom.porsche.com/dam/jcr:a6f33b52-c47d-47b4-98c1-7e963661f587/40%2520Years%2520Group%2520C.pdf",
+      "accessed_on": "2026-10-16",
+      "printed_pages": [8, 18, 19, 20],
+      "rights": "copyright_reference_only_no_geometry_reuse_or_redistribution",
+      "limits": "No dimensioned head drawing, exact 3l bore/stroke, spark count, donor interfaces or material grade established. Page 18 lists 3164 cm3 types 935/79 and 935/86; it does not prove interchangeable heads."
+    }
+  ]
+}

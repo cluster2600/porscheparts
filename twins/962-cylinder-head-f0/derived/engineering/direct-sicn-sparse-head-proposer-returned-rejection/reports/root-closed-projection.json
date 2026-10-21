@@ -1,0 +1,117 @@
+{
+  "original_record": {
+    "relative_path": "work/962-engineering/direct-sicn-sparse-head-proposer-root-execution-002/closed-result.json",
+    "sha256": "c3dc54847859e56788567140b3901d5652b9ebe11974fb8f8af9c7dd079ec7d6",
+    "bytes": 2946
+  },
+  "projection": {
+    "schema": "962-expanded-sparse-returned-point-root-closure/v1",
+    "status": "closed_returned_finite_diagnostic_quality_rejected",
+    "actual_child_sha256": "1900f85138001495353c467efa4c124926be89ab8c6a212960eb7bfdad841f3c",
+    "controller_and_worker_returncode": 2,
+    "stop_reason": null,
+    "controller_wall_seconds": 119.75050162500702,
+    "root_outer_wall_seconds": 119.89283416606486,
+    "RSS_samples": 234,
+    "sampled_RSS_max_bytes": 4706353152,
+    "all52_input54_runtime_hashes_unchanged": true,
+    "worker_reaping_attributed_to_reviewed_controller_finalizer": true,
+    "solver": {
+      "method": "trust-constr",
+      "calls": 1,
+      "success": false,
+      "status": 0,
+      "nit": 100,
+      "nfev": 100,
+      "njev": 67,
+      "message": "The maximum number of function evaluations is exceeded.",
+      "quality_target_stop": false,
+      "global_optimum_or_epigraph_feasibility_claimed": false,
+      "fun": -0.003651564416762356,
+      "optimality": 0.06188548795695744,
+      "constr_violation": 0.035422700641877476,
+      "nonfinite_reported_metrics": {}
+    },
+    "analytic_quality": {
+      "count": 29473,
+      "minimum": 0.030664711969087315,
+      "below_point1_count": 315,
+      "nonpositive_count": 0,
+      "array_sha256": "b83d540fcd189eed134aed21a1e9d934cd47d651e8abcbfea796e36d30df7f56"
+    },
+    "precall_loaded_file_inventory_entries": 465,
+    "no_after_loaded_map_or_success_branch_postchecks": true,
+    "diagnostic_sha256": "e9ad52bd0848d770fabd6ea99c07f859d60b2cc3ee992fbf76a92b2f6c9f40cc",
+    "independent_returned_point_check_sha256": "3f9eb5f4fac70f27142f6f58fa4b82a6cf0d64ccdb5d66a7f0498fdd56c3c68b",
+    "no_coordinate_proposal_or_native_head_apply": true,
+    "output_inventory": {
+      "frozen-contract.json": {
+        "sha256": "1900f85138001495353c467efa4c124926be89ab8c6a212960eb7bfdad841f3c",
+        "bytes": 36195
+      },
+      "solver-final-state.json": {
+        "sha256": "e9ad52bd0848d770fabd6ea99c07f859d60b2cc3ee992fbf76a92b2f6c9f40cc",
+        "bytes": 1435116
+      },
+      "execution-receipt.json": {
+        "sha256": "82417b6fc7e60d74734c69c76c35caccb8b2f8318ea7d98a1fc3cbe1f308e1fa",
+        "bytes": 20852
+      },
+      "reader.py": {
+        "sha256": "20b76607821b83caf342e9741c80e2e02fa41568fa2d5ca413b1d1ab6caa3325",
+        "bytes": 25921
+      },
+      "native.log": {
+        "sha256": "ea1f4f6deb8ed98001346ea39dc8545ee9fd432433c43c239e6a401800ec9904",
+        "bytes": 127
+      },
+      "solver-start-checkpoint.json": {
+        "sha256": "6253567f1bcfe5310b867217faab12839b50b09093b06d0a3aefffa04f413af0",
+        "bytes": 133889
+      },
+      "fixture-report.json": {
+        "sha256": "9655720443577c0c901c72c9392a59c2da465dd571e265d179fb1abcf275569f",
+        "bytes": 134908
+      },
+      "run_readback.py": {
+        "sha256": "4157ed19007560a9cbb4ab5609c4908d9be929396c1f15048cfc2ae83c2d0cc5",
+        "bytes": 4799
+      }
+    },
+    "manufacturing_authorized": false
+  },
+  "omitted_field_paths": [
+    [
+      "owned_controller_and_worker_observed_then_waited_and_individually_absent"
+    ]
+  ],
+  "path_role_rules": [
+    {
+      "role": "runtime:scipy",
+      "operation": "exact prefix substitution in keys and string values; digest values unchanged"
+    },
+    {
+      "role": "runtime:numpy",
+      "operation": "exact prefix substitution in keys and string values; digest values unchanged"
+    },
+    {
+      "role": "runtime:check-environment",
+      "operation": "exact prefix substitution in keys and string values; digest values unchanged"
+    },
+    {
+      "role": "runtime:python-executable",
+      "operation": "exact prefix substitution in keys and string values; digest values unchanged"
+    },
+    {
+      "role": "project-relative path",
+      "operation": "exact prefix substitution in keys and string values; digest values unchanged"
+    }
+  ],
+  "derived_observations": {
+    "owned_controller_and_worker_full_argv_parent_and_group_observed": true,
+    "controller_waited": true,
+    "both_individual_absence_results_recorded": true,
+    "worker_reaping_attributed_to_reviewed_controller_finalizer": true,
+    "actual_PID_and_argv_values_omitted": true
+  }
+}

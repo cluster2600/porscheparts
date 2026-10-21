@@ -1,0 +1,15 @@
+--- observer003-host-owner001/run_host_check_once.py
++++ observer004-host-owner001/run_host_check_once.py
+@@ -3,9 +3,9 @@
+ import hashlib,json,os,re,resource,signal,stat,subprocess,sys,time,traceback
+ R=Path('/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993')
+ E=R/'work/962-engineering'
+-H=E/'cp1-oneway-cooling-release-richardson2-observer003-host-registration-check-prep-001'
+-X=E/'cp1-oneway-cooling-release-richardson2-observer003-host-registration-execution-prep-001'
+-D=E/'cp1-oneway-cooling-release-richardson2-observer003-host-registration-root-execution-001'
++H=E/'cp1-oneway-cooling-release-richardson2-observer004-host-registration-check-prep-001'
++X=E/'cp1-oneway-cooling-release-richardson2-observer004-host-registration-execution-prep-001'
++D=E/'cp1-oneway-cooling-release-richardson2-observer004-host-registration-root-execution-001'
+ CAP=32*1024**2
+ def rec(p):
+  h=hashlib.sha256();size=0

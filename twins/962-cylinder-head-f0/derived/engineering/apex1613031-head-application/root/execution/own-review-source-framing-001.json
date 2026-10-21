@@ -1,0 +1,17 @@
+{
+  "schema": "962-root-own-review-inline-source-framing/v1",
+  "saved_source": {
+    "path": "work/962-engineering/apex1613031-head-application-root-execution-001/own-review-source.py",
+    "sha256": "255ee91d81ed5e4511e5a9fdb821c56bc69edf4a8f36d08ed63c87f722f650bc",
+    "bytes": 10204
+  },
+  "executed_inline_source": {
+    "sha256": "a20195e89ca3b6ff18a97e139d716f37207328667cfc3885b5d550def5009464",
+    "bytes": 10203
+  },
+  "difference": "Saved source view has exactly one additional terminal newline; all prior inline statements are unchanged and AST equal.",
+  "reconstruction": "Drop exactly the last newline byte from the saved source to recover the original inline10203 bytes.",
+  "history": "The source-save tool output incorrectly called the10204-byte view exact to the inline code. Immediate byte comparison detected the one-byte framing difference; this additive record corrects that label. Original view and execution result retained; no verification/native rerun.",
+  "saved_source_executed_after_creation": false,
+  "original_own_review_unchanged": true
+}

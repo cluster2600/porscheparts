@@ -1,0 +1,273 @@
+{
+  "schema": "962-cap-refinement-held-source-preparation/v1",
+  "scope": "Cap-only interior-point/no-edge-refinement experiment; synthetic preparation only",
+  "root_authorized": false,
+  "compile_execution_authorized": false,
+  "fixture_execution_authorized": false,
+  "head_execution_authorized": false,
+  "root_and_peer_review_complete": false,
+  "prepared_source_cpp": "bac6102f804025b8f9133fe94094e4a3ee3533fe962a83ecee2a76f0ae9e4a63",
+  "prepared_source_helper": "0583a28d01a7b3cf0d1f4e4c95af03d5bc5338748366ffb66c292644f8fbce89",
+  "compiled_binary_sha256": null,
+  "actual_native_results": null,
+  "actual_head_cap_input_bundle": null,
+  "image_id": "sha256:57c6b17ed0bd093a61a3d3cecb7563e912caeb3832fd59e8cec2d4d9d4d1e2f8",
+  "CLI": [
+    "cap-refine",
+    "cap.bin",
+    "old-to-keeper.u64",
+    "fixed-face-ids.u64",
+    "fresh-output-directory"
+  ],
+  "input_codec": {
+    "surface": "962SURF1 little-endian binary64 XYZ/uint64 counts and triangle IDs",
+    "map": "raw little-endian <QQ source-local-ID,keeper-local-ID sorted unique by source; identity rows valid; omitted rows identity; final map idempotent",
+    "fixed": "raw sorted unique little-endian <Q original local face IDs"
+  },
+  "immutable_numerical_policy": {
+    "CGAL_mesh2_aspect_bound": 0.125,
+    "CGAL_mesh2_size_bound": 0,
+    "final_triangle_quality_bound": "2/29",
+    "exact_stored_coordinate_quality_predicate": "2523*det^2 >= (sum_squared_edge_lengths)^2",
+    "constraint_splitting_allowed": false,
+    "fixed_cell_change_allowed": false,
+    "old_coordinate_bit_changes_allowed": false,
+    "new_points": "interior only, sentinel UINT64_MAX; approximate binary64 embedding rechecked"
+  },
+  "proposed_owned_controller_reuse_only": {
+    "phase_controller_role": "future-owned-controller/run_finest_patch_phase.py",
+    "metadata_role": "future-owned-controller/run_finest_endpoint_metadata.py",
+    "lifecycle_role": "future-owned-controller/run_finest_endpoint_preflight.py",
+    "no_new_runner_prepared": true,
+    "separate_fresh_compile_and_fixture_children_required": true,
+    "future_children_must_pin_actual_compiled_binary": true,
+    "proposed_compile_limits": {
+      "cpus": 2,
+      "memory_bytes": 4294967296,
+      "memory_swap_bytes": 4294967296,
+      "wall_seconds": 300,
+      "network": "none",
+      "read_only_root": true,
+      "tmpfs_bytes": 1073741824
+    },
+    "fixture_caps_and_fresh_outputs": "Root must freeze separately before any native call; no native outputs reserved or created here",
+    "automatic_retry": false
+  },
+  "fixture_labels": [
+    "ordinary",
+    "interior-attempt",
+    "invalid-fixed-association",
+    "mapped-loop-refusal"
+  ],
+  "no_claimed_Steiner_success": true,
+  "prepared_unit_tests_executed": false,
+  "native_or_compiler_calls": 0,
+  "scientific_imports": false,
+  "head_geometry_loaded": false,
+  "input_sha256": {
+    "preparation/METHOD.md": {
+      "path": "work/962-engineering/atomic-cavity-plane-clip-cap-refinement-prep-001/METHOD.md",
+      "sha256": "d535bcdcd930e32e26a88142a20530d1ef2083e90e4bd9e371838ba09ed7b347",
+      "bytes": 7394
+    },
+    "preparation/cap_common.hpp": {
+      "path": "work/962-engineering/atomic-cavity-plane-clip-cap-refinement-prep-001/cap_common.hpp",
+      "sha256": "0583a28d01a7b3cf0d1f4e4c95af03d5bc5338748366ffb66c292644f8fbce89",
+      "bytes": 9598
+    },
+    "preparation/cap_refine.cpp": {
+      "path": "work/962-engineering/atomic-cavity-plane-clip-cap-refinement-prep-001/cap_refine.cpp",
+      "sha256": "bac6102f804025b8f9133fe94094e4a3ee3533fe962a83ecee2a76f0ae9e4a63",
+      "bytes": 18420
+    },
+    "preparation/fixture-expectations.json": {
+      "path": "work/962-engineering/atomic-cavity-plane-clip-cap-refinement-prep-001/fixture-expectations.json",
+      "sha256": "ef67420ebabdbe207f38333e98cdebad2a8a31a79382abd5f43a6081d4648603",
+      "bytes": 12784
+    },
+    "preparation/installed-headers.json": {
+      "path": "work/962-engineering/atomic-cavity-plane-clip-cap-refinement-prep-001/installed-headers.json",
+      "sha256": "ef46423507c6762005d487aa226b70ede9c63d73373cbca1463547bfe533d019",
+      "bytes": 3942
+    },
+    "preparation/preparation-checks.json": {
+      "path": "work/962-engineering/atomic-cavity-plane-clip-cap-refinement-prep-001/preparation-checks.json",
+      "sha256": "70608767d7c3c40f753e666e6c8bf0155b20ae306c77511244a69e595fb1db5e",
+      "bytes": 1106
+    },
+    "preparation/prepare_fixtures.py": {
+      "path": "work/962-engineering/atomic-cavity-plane-clip-cap-refinement-prep-001/prepare_fixtures.py",
+      "sha256": "2c726d9a1eeee48fb7c225ee8702d68c70420bc9c3aa175eda56f2a1daa162c8",
+      "bytes": 4536
+    },
+    "preparation/source-reuse.json": {
+      "path": "work/962-engineering/atomic-cavity-plane-clip-cap-refinement-prep-001/source-reuse.json",
+      "sha256": "af24a2a1d1c8a2bcde3024cd521a770f9c2b4f3fcf602465c8e64549d7002a26",
+      "bytes": 3337
+    },
+    "preparation/test_literal_contract.py": {
+      "path": "work/962-engineering/atomic-cavity-plane-clip-cap-refinement-prep-001/test_literal_contract.py",
+      "sha256": "6f199cfccd92943d5e63e1cef8e7fc42e95ecf1f6328f9b074877abf14cf015b",
+      "bytes": 2589
+    },
+    "literal-input/interior-attempt.bin": {
+      "path": "work/962-engineering/atomic-cavity-plane-clip-cap-refinement-prep-001/fixtures/interior-attempt.bin",
+      "sha256": "1de0be211cbf3f2200274d5fc633e77748a1f81feb94d140a44a7eb76eedd3e5",
+      "bytes": 600
+    },
+    "literal-input/interior-attempt.fixed.u64": {
+      "path": "work/962-engineering/atomic-cavity-plane-clip-cap-refinement-prep-001/fixtures/interior-attempt.fixed.u64",
+      "sha256": "23d7f42b1cdc1f0d492ebd756ed0fe8003995dda554d99418d47a81813650207",
+      "bytes": 8
+    },
+    "literal-input/interior-attempt.map.u64": {
+      "path": "work/962-engineering/atomic-cavity-plane-clip-cap-refinement-prep-001/fixtures/interior-attempt.map.u64",
+      "sha256": "374708fff7719dd5979ec875d56cd2286f6d3cf7ec317a3b25632aab28ec37bb",
+      "bytes": 16
+    },
+    "literal-input/invalid-fixed-association.bin": {
+      "path": "work/962-engineering/atomic-cavity-plane-clip-cap-refinement-prep-001/fixtures/invalid-fixed-association.bin",
+      "sha256": "06d4873b6f58cf2d164431f2509093210bee45a1c90ee59407613f1c8952eeb4",
+      "bytes": 408
+    },
+    "literal-input/invalid-fixed-association.fixed.u64": {
+      "path": "work/962-engineering/atomic-cavity-plane-clip-cap-refinement-prep-001/fixtures/invalid-fixed-association.fixed.u64",
+      "sha256": "6cc16abd70eefb90dc0ba0d14fb088630873b2c6ad943f7442356735984c35a3",
+      "bytes": 8
+    },
+    "literal-input/invalid-fixed-association.map.u64": {
+      "path": "work/962-engineering/atomic-cavity-plane-clip-cap-refinement-prep-001/fixtures/invalid-fixed-association.map.u64",
+      "sha256": "374708fff7719dd5979ec875d56cd2286f6d3cf7ec317a3b25632aab28ec37bb",
+      "bytes": 16
+    },
+    "literal-input/mapped-loop-refusal.bin": {
+      "path": "work/962-engineering/atomic-cavity-plane-clip-cap-refinement-prep-001/fixtures/mapped-loop-refusal.bin",
+      "sha256": "06d4873b6f58cf2d164431f2509093210bee45a1c90ee59407613f1c8952eeb4",
+      "bytes": 408
+    },
+    "literal-input/mapped-loop-refusal.fixed.u64": {
+      "path": "work/962-engineering/atomic-cavity-plane-clip-cap-refinement-prep-001/fixtures/mapped-loop-refusal.fixed.u64",
+      "sha256": "f13ee6ed54ea2aae9fc49a9faeb5da6e8ddef0e12ed5d30d35a624ae813e0485",
+      "bytes": 8
+    },
+    "literal-input/mapped-loop-refusal.map.u64": {
+      "path": "work/962-engineering/atomic-cavity-plane-clip-cap-refinement-prep-001/fixtures/mapped-loop-refusal.map.u64",
+      "sha256": "00e1569e9dd797fe34c6e25e16f07fc2a4185350626fd711718332b850467d1c",
+      "bytes": 48
+    },
+    "literal-input/ordinary.bin": {
+      "path": "work/962-engineering/atomic-cavity-plane-clip-cap-refinement-prep-001/fixtures/ordinary.bin",
+      "sha256": "06d4873b6f58cf2d164431f2509093210bee45a1c90ee59407613f1c8952eeb4",
+      "bytes": 408
+    },
+    "literal-input/ordinary.fixed.u64": {
+      "path": "work/962-engineering/atomic-cavity-plane-clip-cap-refinement-prep-001/fixtures/ordinary.fixed.u64",
+      "sha256": "f13ee6ed54ea2aae9fc49a9faeb5da6e8ddef0e12ed5d30d35a624ae813e0485",
+      "bytes": 8
+    },
+    "literal-input/ordinary.map.u64": {
+      "path": "work/962-engineering/atomic-cavity-plane-clip-cap-refinement-prep-001/fixtures/ordinary.map.u64",
+      "sha256": "374708fff7719dd5979ec875d56cd2286f6d3cf7ec317a3b25632aab28ec37bb",
+      "bytes": 16
+    },
+    "retained-project/quality_patch.cpp": {
+      "path": "work/962-engineering/atomic-cavity-plane-clip-cap-aware-repair-prep-002/quality_patch.cpp",
+      "sha256": "6a56acf7a1d7a4882251044f9331ff0e4590042a4d1d15f0b4599e0ab241d9ee",
+      "bytes": 10360
+    },
+    "retained-project/atomic_policy.hpp": {
+      "path": "work/962-engineering/atomic-cavity-plane-clip-cap-aware-repair-prep-002/atomic_policy.hpp",
+      "sha256": "7ffb32ad2923f2e7ddbe2e78f56655aa0b80e40e01e237e331ffccf6395af825",
+      "bytes": 3716
+    },
+    "retained-project/cap_aware_002.cpp": {
+      "path": "work/962-engineering/atomic-cavity-plane-clip-cap-aware-repair-prep-002/cap_aware_002.cpp",
+      "sha256": "ac5a70abb560b1868188ca78d69e26cfabeedafe47ae5302b6bb2fa4654dfc3f",
+      "bytes": 25126
+    },
+    "retained-project/cap_aware_003.cpp": {
+      "path": "work/962-engineering/atomic-cavity-plane-clip-cap-aware-repair-prep-003/cap_aware_003.cpp",
+      "sha256": "1eb5bd303901cf7e4bc5c9aae1716fe301a3529eb727cc4117c8e3b3332cb290",
+      "bytes": 25126
+    },
+    "installed-header/Delaunay_mesh_criteria_2.h": {
+      "path": "work/962-engineering/cap-refinement-mesh2-header-capture-001/headers/Delaunay_mesh_criteria_2.h",
+      "sha256": "2774e0b470b73f0778c11cb59aa37342ec11966e4d11918894ce659559055d1e",
+      "bytes": 2956
+    },
+    "installed-header/Delaunay_mesh_face_base_2.h": {
+      "path": "work/962-engineering/cap-refinement-mesh2-header-capture-001/headers/Delaunay_mesh_face_base_2.h",
+      "sha256": "31e25a45088157a35edf0724567a45e8b62621cb0a90bd37fae562565e39c00d",
+      "bytes": 2231
+    },
+    "installed-header/Delaunay_mesh_size_criteria_2.h": {
+      "path": "work/962-engineering/cap-refinement-mesh2-header-capture-001/headers/Delaunay_mesh_size_criteria_2.h",
+      "sha256": "c5ea422d9e10e985374cea235b9d4ba50120657f1a4fa04e11c205032d0870de",
+      "bytes": 5309
+    },
+    "installed-header/Delaunay_mesh_vertex_base_2.h": {
+      "path": "work/962-engineering/cap-refinement-mesh2-header-capture-001/headers/Delaunay_mesh_vertex_base_2.h",
+      "sha256": "4ce665905442399266bd1605a67e52fd3dd93623d182eab1d3f0baddbc072410",
+      "bytes": 1797
+    },
+    "installed-header/Delaunay_mesher_no_edge_refinement_2.h": {
+      "path": "work/962-engineering/cap-refinement-mesh2-header-capture-001/headers/Delaunay_mesher_no_edge_refinement_2.h",
+      "sha256": "b72ccb3560bf40cc14a0a6c71f8fe8c636b266abb6ffa614368f673fdf1a5cb7",
+      "bytes": 9148
+    },
+    "installed-header/Mesh_2/Do_not_refine_edges.h": {
+      "path": "work/962-engineering/cap-refinement-mesh2-header-capture-001/headers/Mesh_2/Do_not_refine_edges.h",
+      "sha256": "b95bb8fe917167c299bfe8f17e3050d182728020c6d6ecac3e6218764385fecc",
+      "bytes": 2670
+    },
+    "installed-header/Mesh_2/Refine_edges.h": {
+      "path": "work/962-engineering/cap-refinement-mesh2-header-capture-001/headers/Mesh_2/Refine_edges.h",
+      "sha256": "dd594786507a1a48482d7dafcd0c853a2b040f00767e8269b5e0d705d998a493",
+      "bytes": 22054
+    },
+    "installed-header/Mesh_2/Refine_faces.h": {
+      "path": "work/962-engineering/cap-refinement-mesh2-header-capture-001/headers/Mesh_2/Refine_faces.h",
+      "sha256": "d33adbea785adea162146de2df3efd8d92e7729d0fb1b61e1b66271da949edaf",
+      "bytes": 14010
+    },
+    "installed-header/Mesher_level.h": {
+      "path": "work/962-engineering/cap-refinement-mesh2-header-capture-001/headers/Mesher_level.h",
+      "sha256": "58a1ea0bfa60e8283691397bc627e2a45d6b3df1c0d8d95f600589c6c5dd7beb",
+      "bytes": 10966
+    },
+    "installed-header/capture-receipt": {
+      "path": "work/962-engineering/cap-refinement-mesh2-header-capture-001/receipt.json",
+      "sha256": "e02a76b5b5f650ad28791267ee0ff4903e95e2490878c44cfdd147f5246acd33",
+      "bytes": 6603
+    },
+    "installed-version/probe-output": {
+      "path": "work/962-engineering/atomic-cavity-plane-clip-header-probe-002/stdout.txt",
+      "sha256": "2d218ef7a14e823fd16a31a0159c482b7187646a705f2bae57549dcb9336a599",
+      "bytes": 14915
+    },
+    "future-owned-controller/run_finest_patch_phase.py": {
+      "path": "work/962-engineering/atomic-cavity-plane-clip-cap-aware-phase-prep-001/run_finest_patch_phase.py",
+      "sha256": "c2191896dba65d38cf41222f51dcab29c7896624481d1beb4b1b097c0546a440",
+      "bytes": 8199
+    },
+    "future-owned-controller/run_finest_endpoint_metadata.py": {
+      "path": "work/962-engineering/atomic-cavity-plane-clip-cap-aware-phase-prep-001/run_finest_endpoint_metadata.py",
+      "sha256": "a88477c47d406cea3761c324e1f6eb82dcb1c2b962698d7f328261c6cef2929b",
+      "bytes": 5472
+    },
+    "future-owned-controller/run_finest_endpoint_preflight.py": {
+      "path": "work/962-engineering/atomic-cavity-plane-clip-cap-aware-phase-prep-001/run_finest_endpoint_preflight.py",
+      "sha256": "b214e1cece8dbf66be6071199cbdf1a8e22a2a59328888011de17492f923c86b",
+      "bytes": 18116
+    },
+    "project-licence": {
+      "path": "LICENSE",
+      "sha256": "518ff42b02bb3263adbc938cd0863c565e389589876fe8b93db2ef624d316b53",
+      "bytes": 3905
+    }
+  },
+  "all_input_hashes_current": true,
+  "head_surface_admitted": false,
+  "solver_mesh_admitted": false,
+  "manufacturing_authorized": false
+}

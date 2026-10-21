@@ -1,0 +1,197 @@
+{
+  "schema": "962-observer004-held-same-protocol-host-check-plan/v1",
+  "status": "HELD_STATIC_ASSOCIATIONS_ACCEPTED_FRESHNESS_STAGING_PEER_ROOT_ADMISSION_PENDING",
+  "one_check": {
+    "host_historical_identity": {
+      "path": "work/962-engineering/moose-local-installed-002/bin/combined-opt",
+      "sha256": "b11b7c481e502e0ae5dc61eba18e3e096c9ebf0dfee3f29b005353c9a1455547",
+      "bytes": 216704
+    },
+    "host_fresh_identity": null,
+    "argv": [
+      "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-local-installed-002/bin/combined-opt",
+      "-skip_petscrc",
+      "--n-threads=1",
+      "--check-input",
+      "--list-constructed-objects",
+      "-i",
+      "thermoelastic-birth-observer-registration.i"
+    ],
+    "cwd": "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-host-registration-root-execution-001",
+    "environment": {
+      "PATH": "/usr/bin:/bin",
+      "LANG": "C",
+      "LC_ALL": "C",
+      "OMP_NUM_THREADS": "1",
+      "OPENBLAS_NUM_THREADS": "1",
+      "MKL_NUM_THREADS": "1",
+      "VECLIB_MAXIMUM_THREADS": "1",
+      "FI_PROVIDER": "tcp",
+      "DYLD_LIBRARY_PATH": "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-local-installed-002/lib/combined:/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-local-installed-002/lib",
+      "DYLD_PRINT_LIBRARIES": "1",
+      "TMPDIR": "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-host-registration-root-execution-001/tmp"
+    },
+    "direct_Popen_no_shell_or_usr_bin_env": true,
+    "invocations": 1
+  },
+  "minimal_positive_result_contract": {
+    "returncode": 0,
+    "stderr_required_text": "Syntax OK",
+    "stdout_start_marker": "**START OBJECT DATA**",
+    "stdout_end_marker": "**END OBJECT DATA**",
+    "required_exact_line_inside_constructed_type_frame": "CouponEnd181DofMap",
+    "plugin_load_trace_expected_path": "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/cp1-oneway-cooling-release-richardson2-END181-dof-map-observer-prep-004/build-001/libcoupon_end181_observer-opt.dylib",
+    "type_claim_scope": "Host parser/Factory registration and completed input setup with the observer type constructed; no output callback or live node/DOF/map proof",
+    "no_solve_source_basis": "MooseApp::run check_input branch calls errorCheck/SyntaxOK instead of executeExecutioner; list constructed types happens after input actions.",
+    "expected_outputs": "Full stdout/stderr/loader trace, status/lifecycle and fresh declared input identities; preserve unexpected files without decoding them."
+  },
+  "input": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-host-registration-check-prep-001/thermoelastic-birth-observer-registration.i",
+    "sha256": "190296e6c2ad1627feca4b374efd2c49739e0c2628764cd92388392a78fd2682",
+    "bytes": 15537
+  },
+  "unchanged_plugin_registration_inputs": {
+    "plugin": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-END181-dof-map-observer-prep-004/build-001/libcoupon_end181_observer-opt.dylib",
+      "sha256": "29539701e9436234fdbc52ba8f5ccbef3c489b1b4d6f504e0b1eb0218b70c2bd",
+      "bytes": 167504
+    },
+    "descriptor": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-END181-dof-map-observer-prep-004/build-001/libcoupon_end181_observer-opt.la",
+      "sha256": "b4b32aa0a5ebd176bba5040c1bd4fb116f567bc198c015c06a06d816aa523c21",
+      "bytes": 214
+    },
+    "shim_source": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-END181-dof-map-observer-prep-004/src/CouponEnd181ObserverRegistration.C",
+      "sha256": "0950b07525d867ede0c89e3e58e8465df8bc67b8d435033b60ef5182ca3bec10",
+      "bytes": 2291
+    },
+    "observer_source": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-END181-dof-map-observer-prep-003/src/CouponEnd181DofMap.C",
+      "sha256": "e4c9d98f9fff50fc4ec41299eaed0afe34f23befcf459a21ebbfaaceeff473d9",
+      "bytes": 10989
+    },
+    "observer_header": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-END181-dof-map-observer-prep-003/include/CouponEnd181DofMap.h",
+      "sha256": "04594fb8360acd807994c4c99b073ff8ac5c380da6c500c44fed14e5ccfb538b",
+      "bytes": 1182
+    },
+    "held_input_fragment": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-END181-dof-map-observer-prep-003/plugin-input.i.fragment",
+      "sha256": "c0b11d2b00a6042ce61ec4f4706104eeac8194a3b27f173fd8bcb2afdd339290",
+      "bytes": 1088
+    },
+    "plugin_source_or_binary_rewritten": false,
+    "object_names_restriction_added": false
+  },
+  "loader_scope": {
+    "mapping": "DYLD_LIBRARY_PATH=isolatedprefix/lib/combined:isolatedprefix/lib; same explicit leaf mapping as successful standalone guard, with DYLD_PRINT_LIBRARIES=1",
+    "proven_prior_scope": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer003-guard-root-execution-002/receipt.json",
+      "sha256": "71df7770f7474d7d12242a8d67111a7f64839ea1a1b1685ca34fae4d16da94c5",
+      "bytes": 356858
+    },
+    "guard_helper_success_is_not_host_or_full_ABI_acceptance": true,
+    "original_native_host_runtime_reference": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-registry-001/runtime-bindings.json",
+      "sha256": "3200d21dae8e1d09968faa089ef0ac04cb51ffc60b25fcdc95432b950a705e3e",
+      "bytes": 6886
+    },
+    "full_transitive_runtime_closure_exercise_required": false,
+    "fresh_host_plugin_declared_provider_and_input_pins_deferred_to_root_admission": true
+  },
+  "proposed_resources": {
+    "wall_seconds": 60,
+    "TERM_grace_seconds": 8,
+    "KILL_wait_seconds": 8,
+    "sampled_owned_group_RSS_stop_bytes": 2147483648,
+    "owned_output_stop_bytes": 33554432,
+    "OMP_BLAS_environment_threads": 1,
+    "thread_observations_nongating": true,
+    "numeric_reported_RSS_zero_allowed": true,
+    "missing_or_nonnumeric_RSS_not_zero_filled": true,
+    "retry": 0,
+    "core_bytes": 0
+  },
+  "source_associations": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer003-host-registration-check-prep-001/source-associations.json",
+    "sha256": "dac7133110cfc00dce8285013df1dffdcc6f9c42c6b33ac72219d7974a667557",
+    "bytes": 3883
+  },
+  "factory_registration_accepted": false,
+  "output_callback_execution_authorized": false,
+  "live_node_DOF_or_XFY_capture_authorized": false,
+  "host_check_execution_authorized": false,
+  "plugin_load_authorized": false,
+  "native_solve_authorized": false,
+  "guard_or_runtime_probe_executed": false,
+  "future_actual": null,
+  "future_root_admission": null,
+  "future_runtime_preflight": null,
+  "future_host_result": null,
+  "physics_or_manufacturing_acceptance": false,
+  "accepted_guard_scope_root_record": null,
+  "plugin_preservation_scope": "This host preparation does not rewrite the already built/static-reviewed004 artifact. The earlier self-retain shim change from003 and failedhost001 are explicitly preserved, not concealed by the legacy unchanged_plugin_registration_inputs key.",
+  "accepted_build_root_record": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-build-root-review-002/result-peer-acceptance.json",
+    "sha256": "23d077496ac300ccb469e9b9a4519fb0947578c3465e31d03f51336b0125d582",
+    "bytes": 2344
+  },
+  "accepted_static_root_record": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-static-metadata-root-review-001/result-peer-acceptance.json",
+    "sha256": "721a6b9dba716ad1ca3e1ed11a57f57e6dc695c0ee1bf15247a0d28f2c300649",
+    "bytes": 2793
+  },
+  "static_result_peer_review": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-static-metadata-result-peer-001/review.json",
+    "sha256": "f32db944991ec494cc7f6de37d1b9b8febcdc0bc97fe9e1a5f86efffc970df07",
+    "bytes": 7930
+  },
+  "static_result_peer_bindings": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-static-metadata-result-peer-001/bindings.json",
+    "sha256": "9b2cc330dd4ca243eec8d99a00ec9161b0b63142ff9d3ae60033d41c0925d44a",
+    "bytes": 34324
+  },
+  "static_result_peer_accounting": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-static-metadata-result-peer-001/accounting.json",
+    "sha256": "bba011bb898d4628526be3c2ff17cf8fee451e7b09deb3c8a885339e975738e9",
+    "bytes": 42613
+  },
+  "accepted_static_scope": "Saved six-query export/dependency/load-command associations only. Host/callback/retention/crashcause/ABI/physics acceptance remainsfalse.",
+  "source_owner": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-host-registration-owner-prep-001/run_host_check_once.py",
+    "sha256": "d3153618034c24a472fc5a9582467f1207964781f14ab4b7c3a79afb77adc9c1",
+    "bytes": 16384
+  },
+  "source_owner_index": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-host-registration-owner-prep-001/preparation-index.json",
+    "sha256": "76d24804af780650035b9f83ce570c0965e4bc67a6ccc7f5a71147cd48a13e32",
+    "bytes": 1377
+  },
+  "preserved_failed_host_refusal": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer003-host-registration-root-review-001/terminal-refusal.json",
+    "sha256": "e82521d09b382c1b68fbd3a3767fe82873c6074962877c71ae553760ff318757",
+    "bytes": 4027
+  },
+  "preserved_failed_host_result_peer": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer003-host-registration-result-peer-001/review.json",
+    "sha256": "294d23aed262ca20c6cd014f114a1821799dd1a682b2af9f4d7e9298b33e5dbf",
+    "bytes": 8220
+  },
+  "source_delta_scope": "Exactly one candidate plugin-directory replacement and fresh H/X/D namespaces. Same15537Binput semantics and16384Bowner with13functions/main exact; admission schema is deliberately the compatible003 protocol family.",
+  "mandatory_root_acceptance_conjunction": [
+    "Raw hostRC0 and independently observed outerRC0",
+    "Exactly one complete constructed-object frame with observer type exactly once and SyntaxOK",
+    "Expected new29539701plugin path observed, irrespective of separate owner positive-check flag",
+    "All declared input/control identities and22known provider-path associations unchanged",
+    "No stop/request/failure; owned child waited/reaped/groupabsent; unexpected outputs preserved and reviewed",
+    "Full net post-receipt output<=32MiB excluding only identity-matched4inputs; root observed inclusive wall/resource closure",
+    "No callback/liveDOF/solve/retention/cause/ABI/physics inference"
+  ],
+  "staging_and_freshness": {
+    "performed": false,
+    "expected_only": true,
+    "grid_body_read_hash_stat_or_copy_now": false,
+    "required_before_admission": "Explicit later root-authorized exact4-file staging, named input/provider freshness and completed independent/source/actual root reviews. Current metadata is not a fresh staging receipt."
+  }
+}

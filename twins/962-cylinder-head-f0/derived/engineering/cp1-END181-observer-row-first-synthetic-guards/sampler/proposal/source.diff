@@ -1,0 +1,22 @@
+--- work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native-measurement-prep-002/run_root_once.py
++++ work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native-row-first-sampler-prep-001/run_root_once_row_first_proposed.py
+@@ -101,7 +101,7 @@
+    if len(v)!=4 or not all(x.isdigit() for x in v[:3]):raise ValueError('Missing/nonnumeric owned RSS row: '+repr(line))
+    if int(v[1]) not in groups:raise ValueError('Owned direct group changed: '+repr(line))
+    rows.append(dict(raw=line,pid=int(v[0]),pgid=int(v[1]),RSS_bytes=int(v[2])*1024,state=v[3]))
+- missing=[g for g in groups if group_exists(g) and not any(x['pgid']==g for x in rows)]
++ missing=[g for g in groups if not any(x['pgid']==g for x in rows) and group_exists(g)]
+  if missing:raise ValueError('Live owned group has unavailable RSS: '+repr(missing))
+  if not rows:raise ValueError('No owned RSS rows observed')
+  return dict(RSS_bytes=sum(x['RSS_bytes'] for x in rows),owned_rows=rows)
+@@ -198,8 +198,8 @@
+       if v==(pid,proc.pid,pid):owned.add(pid)
+      elapsed=time.monotonic()-started
+      if elapsed-last_sample>=.5:
+-      observation_operation='sample_owned({proc.pid}|{g for g in owned if group_exists(g)})';observation_target_PID=None
+-      observed=sample_owned({proc.pid}|{g for g in owned if group_exists(g)})
++      observation_operation='sample_owned({proc.pid}|owned)';observation_target_PID=None
++      observed=sample_owned({proc.pid}|owned)
+       samples.append(dict(wall_seconds=elapsed,**observed));last_sample=elapsed
+       if observed['RSS_bytes']>=2147483648:stop=stop or 'sampled_owned_group_RSS_stop'
+      observation_operation='inclusive_bytes()';observation_target_PID=None

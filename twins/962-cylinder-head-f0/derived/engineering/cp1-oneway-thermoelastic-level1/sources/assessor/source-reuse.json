@@ -1,0 +1,311 @@
+{
+  "schema": "962-fixed-level1-thermoelastic-assessor-source-reuse/v1",
+  "status": "HELD_SOURCE_ONLY_TEN_GUARDS_UNRUN",
+  "files": {
+    "assess.py": {
+      "donor": {
+        "path": "work/962-engineering/cp1-oneway-thermoelastic-assessor-prep-003/assess.py",
+        "sha256": "55f5f9ca281f9752a6dcac28afca8d18f2c12b4759cf06f8c639a1bb3b8a81bd",
+        "bytes": 35907
+      },
+      "selected": {
+        "path": "work/962-engineering/cp1-oneway-thermoelastic-level1-assessor-prep-001/assess.py",
+        "sha256": "52a705a13cc46aa3fce2a485611129668624ae258134fc26991d3cca080135cb",
+        "bytes": 35926
+      },
+      "reverse_chunks": [
+        {
+          "donor_start_line_index": 15,
+          "selected_start_line_index": 15,
+          "old": "CASE = ROOT / 'work/962-engineering/cp1-oneway-thermoelastic-transfer-prep-002'\nOUTPUT = 'work/962-engineering/cp1-oneway-thermoelastic-assessment-002'\n",
+          "selected": "CASE = ROOT / 'work/962-engineering/cp1-oneway-thermoelastic-level1-prep-001'\nOUTPUT = 'work/962-engineering/cp1-oneway-thermoelastic-level1-assessment-001'\n"
+        },
+        {
+          "donor_start_line_index": 268,
+          "selected_start_line_index": 268,
+          "old": "            step = round(time * 400)\n            need(0 <= step <= 160 and abs(time - step / 400) <= 5e-13 and step not in frames, 'One unambiguous native END frame per exact fixed time required')\n",
+          "selected": "            step = round(time * 200)\n            need(0 <= step <= 80 and abs(time - step / 200) <= 5e-13 and step not in frames, 'One unambiguous native END frame per exact fixed time required')\n"
+        },
+        {
+          "donor_start_line_index": 272,
+          "selected_start_line_index": 272,
+          "old": "                need(data['blocks'][tag] == (2 if old else 1 if step < 80 else 3), 'Native per-element block transition must match old/inactive/born geometry')\n",
+          "selected": "                need(data['blocks'][tag] == (2 if old else 1 if step < 40 else 3), 'Native per-element block transition must match old/inactive/born geometry')\n"
+        },
+        {
+          "donor_start_line_index": 276,
+          "selected_start_line_index": 276,
+          "old": "    need(set(frames) == set(range(161)), 'Complete161 END Exodus frames required')\n",
+          "selected": "    need(set(frames) == set(range(81)), 'Complete81 END Exodus frames required')\n"
+        },
+        {
+          "donor_start_line_index": 335,
+          "selected_start_line_index": 335,
+          "old": "    need(len(source) == 321, 'Complete original321 thermal source associations required')\n",
+          "selected": "    need(len(source) == 161, 'Complete original161 thermal source associations required')\n"
+        },
+        {
+          "donor_start_line_index": 340,
+          "selected_start_line_index": 340,
+          "old": "    birth_T = {tag: value['temperature'] for tag, value in thermal(80, 'begin', set(geometry)).items() if tag in born_nodes}\n",
+          "selected": "    birth_T = {tag: value['temperature'] for tag, value in thermal(40, 'begin', set(geometry)).items() if tag in born_nodes}\n"
+        },
+        {
+          "donor_start_line_index": 342,
+          "selected_start_line_index": 342,
+          "old": "    for step in range(161):\n        active_nodes = old_nodes if step < 80 else set(geometry); active_cells = old_cells if step < 80 else set(cells)\n",
+          "selected": "    for step in range(81):\n        active_nodes = old_nodes if step < 40 else set(geometry); active_cells = old_cells if step < 40 else set(cells)\n"
+        },
+        {
+          "donor_start_line_index": 348,
+          "selected_start_line_index": 348,
+          "old": "                                               shared_nodes if step >= 80 else ())\n",
+          "selected": "                                               shared_nodes if step >= 40 else ())\n"
+        },
+        {
+          "donor_start_line_index": 359,
+          "selected_start_line_index": 359,
+          "old": "            if phase == 'begin' and step == 80:\n",
+          "selected": "            if phase == 'begin' and step == 40:\n"
+        },
+        {
+          "donor_start_line_index": 366,
+          "selected_start_line_index": 366,
+          "old": "            if step >= 80:\n",
+          "selected": "            if step >= 40:\n"
+        },
+        {
+          "donor_start_line_index": 379,
+          "selected_start_line_index": 379,
+          "old": "            for subset, ru, rt in [(old_cells, {n: ZERO[0] for n in old_nodes}, {n: 400. for n in old_nodes})] + ([(set(cells) - old_cells, born_u, birth_T)] if step >= 80 else []):\n",
+          "selected": "            for subset, ru, rt in [(old_cells, {n: ZERO[0] for n in old_nodes}, {n: 400. for n in old_nodes})] + ([(set(cells) - old_cells, born_u, birth_T)] if step >= 40 else []):\n"
+        },
+        {
+          "donor_start_line_index": 397,
+          "selected_start_line_index": 397,
+          "old": "                        need(step == 80 and key[0] not in old_cells, 'Only newborn material rows may appear')\n",
+          "selected": "                        need(step == 40 and key[0] not in old_cells, 'Only newborn material rows may appear')\n"
+        },
+        {
+          "donor_start_line_index": 412,
+          "selected_start_line_index": 412,
+          "old": "                if step >= 80:\n",
+          "selected": "                if step >= 40:\n"
+        },
+        {
+          "donor_start_line_index": 425,
+          "selected_start_line_index": 425,
+          "old": "    need(total_qp == dict(begin=247808, end=247808) and len(qcoords) == 2048, 'Complete fixed161-phase/8-GP coverage required')\n",
+          "selected": "    need(total_qp == dict(begin=124928, end=124928) and len(qcoords) == 2048, 'Complete fixed81-phase/8-GP coverage required')\n"
+        },
+        {
+          "donor_start_line_index": 438,
+          "selected_start_line_index": 438,
+          "old": "    need(c.get('schema') == '962-cp1-oneway-thermoelastic-assessment-actual/v1' and c.get('assessment_authorized') is True\n",
+          "selected": "    need(c.get('schema') == '962-cp1-oneway-thermoelastic-level1-assessment-actual/v1' and c.get('assessment_authorized') is True\n"
+        },
+        {
+          "donor_start_line_index": 453,
+          "selected_start_line_index": 453,
+          "old": "    need(c.get('native_directory') == 'work/962-engineering/cp1-oneway-thermoelastic-transfer-002', 'Only the fixed future native coupon may be assessed')\n",
+          "selected": "    need(c.get('native_directory') == 'work/962-engineering/cp1-oneway-thermoelastic-level1-001', 'Only the fixed future native coupon may be assessed')\n"
+        },
+        {
+          "donor_start_line_index": 481,
+          "selected_start_line_index": 481,
+          "old": "    transfer = json.loads((ROOT / c['transfer_manifest']).read_text()); need(transfer.get('schema') == '962-oneway-thermoelastic-prepared-transfer/v1' and transfer.get('birth_reference_phase') == 'BEGIN80_all225_born_DOFs_including25shared', 'Exact completed original transfer associations required')\n",
+          "selected": "    transfer = json.loads((ROOT / c['transfer_manifest']).read_text()); need(transfer.get('schema') == '962-oneway-thermoelastic-prepared-transfer/v1' and transfer.get('birth_reference_phase') == 'BEGIN40_all225_born_DOFs_including25shared', 'Exact completed original transfer associations required')\n"
+        },
+        {
+          "donor_start_line_index": 483,
+          "selected_start_line_index": 483,
+          "old": "    result = assess_data(native, transfer, ROOT / 'work/962-engineering/cp1-assumed-thermal-birth-linear-001', json.loads((CASE / 'thermal-input-index.json').read_text()), c['exodus_family'], policy)\n",
+          "selected": "    result = assess_data(native, transfer, ROOT / 'work/962-engineering/cp1-assumed-thermal-birth-linear-level1-001', json.loads((CASE / 'thermal-input-index.json').read_text()), c['exodus_family'], policy)\n"
+        },
+        {
+          "donor_start_line_index": 488,
+          "selected_start_line_index": 488,
+          "old": "    result.update(schema='962-cp1-oneway-thermoelastic-saved-field-assessment/v1', actual_sha256=digest, input_sha256=pins,\n",
+          "selected": "    result.update(schema='962-cp1-oneway-thermoelastic-level1-saved-field-assessment/v1', actual_sha256=digest, input_sha256=pins,\n"
+        }
+      ],
+      "whole_byte_reverse_exact": true
+    },
+    "selfcheck.py": {
+      "donor": {
+        "path": "work/962-engineering/cp1-oneway-thermoelastic-assessor-prep-003/selfcheck.py",
+        "sha256": "faedfbd030dc03fb6bcb9220a9a9b3c0b070296fa64974fc84df6c2094321341",
+        "bytes": 14633
+      },
+      "selected": {
+        "path": "work/962-engineering/cp1-oneway-thermoelastic-level1-assessor-prep-001/selfcheck.py",
+        "sha256": "2325750c039e514fb7b2c9bef07386f211dd9f361e1346db09cd000b2034f6ea",
+        "bytes": 14631
+      },
+      "reverse_chunks": [
+        {
+          "donor_start_line_index": 11,
+          "selected_start_line_index": 11,
+          "old": "SOURCE_SHA = '55f5f9ca281f9752a6dcac28afca8d18f2c12b4759cf06f8c639a1bb3b8a81bd'\n",
+          "selected": "SOURCE_SHA = '52a705a13cc46aa3fce2a485611129668624ae258134fc26991d3cca080135cb'\n"
+        },
+        {
+          "donor_start_line_index": 34,
+          "selected_start_line_index": 34,
+          "old": "        times = [i / 400 for i in range(first, last + 1)]\n",
+          "selected": "        times = [i / 200 for i in range(first, last + 1)]\n"
+        },
+        {
+          "donor_start_line_index": 36,
+          "selected_start_line_index": 36,
+          "old": "                    blocks={tag: 2 if max(geometry[n][0] for n in conn) <= 1. else 1 if first < 80 else 3 for tag, conn in cells.items()},\n",
+          "selected": "                    blocks={tag: 2 if max(geometry[n][0] for n in conn) <= 1. else 1 if first < 40 else 3 for tag, conn in cells.items()},\n"
+        },
+        {
+          "donor_start_line_index": 38,
+          "selected_start_line_index": 38,
+          "old": "                    fields={name: [[0.] * 425 for _ in times] for name in names}, block_ids=[1, 2] if first < 80 else [2, 3], block_status=[1, 1])\n    return geometry, member(0, 79), member(80, 160)\n",
+          "selected": "                    fields={name: [[0.] * 425 for _ in times] for name in names}, block_ids=[1, 2] if first < 40 else [2, 3], block_status=[1, 1])\n    return geometry, member(0, 39), member(40, 80)\n"
+        },
+        {
+          "donor_start_line_index": 104,
+          "selected_start_line_index": 104,
+          "old": "                self.assertEqual(len(got[0]), 425); self.assertEqual(len(got[1]), 256); self.assertEqual(len(got[2]), 161)\n",
+          "selected": "                self.assertEqual(len(got[0]), 425); self.assertEqual(len(got[1]), 256); self.assertEqual(len(got[2]), 81)\n"
+        },
+        {
+          "donor_start_line_index": 158,
+          "selected_start_line_index": 158,
+          "old": "            path = Path(name) / 'thermoelastic_begin_0080.csv'\n",
+          "selected": "            path = Path(name) / 'thermoelastic_begin_0040.csv'\n"
+        },
+        {
+          "donor_start_line_index": 186,
+          "selected_start_line_index": 186,
+          "old": "            path = Path(name) / 'thermoelastic_end_0080.csv'\n",
+          "selected": "            path = Path(name) / 'thermoelastic_end_0040.csv'\n"
+        }
+      ],
+      "whole_byte_reverse_exact": true
+    },
+    "POLICY.json": {
+      "donor": {
+        "path": "work/962-engineering/cp1-oneway-thermoelastic-assessor-prep-003/POLICY.json",
+        "sha256": "b9d50d29ff349b7dc9de54445a9b4bea4d16fbfa177bf3b533bbc1c01f0a832f",
+        "bytes": 3826
+      },
+      "selected": {
+        "path": "work/962-engineering/cp1-oneway-thermoelastic-level1-assessor-prep-001/POLICY.json",
+        "sha256": "9b884eee617e6c4570f5b60119f57bea0aa873379d93f04f56ffbf2191644d2c",
+        "bytes": 3826
+      },
+      "reverse_chunks": [
+        {
+          "donor_start_line_index": 27,
+          "selected_start_line_index": 27,
+          "old": "    \"born3\": \"total_strain=symgrad(u-u_BEGIN80), thermal_eigenstrain=alpha*(T-Treference_BEGIN80)*I, all 225bornDOFs including 25shared\",\n",
+          "selected": "    \"born3\": \"total_strain=symgrad(u-u_BEGIN40), thermal_eigenstrain=alpha*(T-Treference_BEGIN40)*I, all 225bornDOFs including 25shared\",\n"
+        }
+      ],
+      "whole_byte_reverse_exact": true
+    },
+    "primary-sources.json": {
+      "donor": {
+        "path": "work/962-engineering/cp1-oneway-thermoelastic-assessor-prep-003/primary-sources.json",
+        "sha256": "a892194d4ef96e80430def61d2752f9eab04afdd343f21bf1b006022ebc742ce",
+        "bytes": 4466
+      },
+      "selected": {
+        "path": "work/962-engineering/cp1-oneway-thermoelastic-level1-assessor-prep-001/primary-sources.json",
+        "sha256": "a892194d4ef96e80430def61d2752f9eab04afdd343f21bf1b006022ebc742ce",
+        "bytes": 4466
+      },
+      "reverse_chunks": [],
+      "whole_byte_reverse_exact": true
+    }
+  },
+  "source_diff_sha256": "61c0d7160e0a2e60453d8de2b7f65a4bf37b85212a9d2424f8e7e742e1a23b73",
+  "unchanged_18_functions_and_Audit_AST_sha256s": {
+    "need": "aae74b0660a28298fa3afc89620d9862819d272cbdefcad2de9c9847fff0cc10",
+    "sha": "09b9afb10f2a7fcb2932dff46af625b5cd92015f6a43673bb3da6c5cfdd334ff",
+    "bits": "200e4fcea6b06ae7b759f4bc788e2b0a9a241a84eebc4ddf5f26de22e49d5242",
+    "number": "eb9b71f19933c83e4dd918000f2b68cfe6aa650c19f7e570b3d5bdcb36e17ae6",
+    "integer": "60ca116aba9fba2854149b25cefcf87dd25d1a1d6647de0deed7b1faef6ddbdf",
+    "rows": "b788ef0d973f7b87bfe688def5cd6e71b842826801ebda1501a953edc947f804",
+    "tensor": "42585fb9e92022fd8ceabee3696718c76a06ee0b990fc45529b50fbd26607d3e",
+    "symgrad": "4123c83741ad5340fca655b4bba6daa30b7772d03638f772465a91ac6960c996",
+    "hooke": "781ed7ecf73486b6cdb0854ab9e81216b35a421711ec87f13f68ef1900b1992b",
+    "hex_rule": "3742646c7bae285dfd6189699a35210de40778d80871dfbde579753380a3cfe7",
+    "ordered_hex": "c17d529130bc74ef2b23a64892716a4a54b83496ae60830fcfd68104efd360ff",
+    "mechanical_state": "78daaef208ec108f49bdcb08ce461a00d794438671446aebb1ad35fe31e3e874",
+    "accumulate": "df31215377f83d31a7dc385740bb2c9a5b0252450c0705b2eed42595e278b18b",
+    "Audit": "be43d21a06f0f05fae024b81b0f47132ddb2e1a2c3c6cfd0a954e99ed42a5d81",
+    "node_sample": "e9f06a79b1091dd2c993304163d6883b23f671a0afeadce2c6fce1399d427341",
+    "cdf_magic": "44cd015c32019487a0108b062c05dd58cc0578e5cb966847503b41ebb4201f54",
+    "read_exodus": "38dc396988aaa72cb3083d6f04b451e442dadb6aa68d60ac68b4f48628a1434f",
+    "quadrature_sample": "04e91b2a67b8817e8a81de4182c250899a22092d00fc146719b6c9332cef8a42",
+    "field_phase": "6e6960c2f0820b317f0a693c44ec771f5e331d57accc7cbddad0e8f448b86577"
+  },
+  "changed_functions_literal_case_time_count_bindings_only": [
+    "geometry_family",
+    "assess_data",
+    "assess"
+  ],
+  "guard_method_count": 10,
+  "unchanged_seven_guard_method_AST_sha256s": {
+    "test_Q1_affine_all_eight_points_and_rigid_rotation": "8f2436138ca18a85e6173414bf0b25141b64fb23d771056f5a6c6c1fb18f48e8",
+    "test_isotropic_three_dimensional_shear_and_thermal_reference": "d0a356fe76e50571cd1a692ec431a57468c5e159db3e6bbf20f31e706bfe046f",
+    "test_born_nonzero_displacement_and_nonuniform_T_reference": "169ce30776dbac228ea7e8aeb8b8509342161a31408f1378702ee1917f976820",
+    "test_consistent_Q1_force_and_moment_constant_symmetric_stress": "205a1c26a67ece0ce705802206ed82e2601c7630b0a5295271f0e2677c7da8f9",
+    "test_manufactured_free_expansion_full_tensor_and_free_residual": "728683ca8615f539564ce8787bdfdc5dca6f312961d0d12b5eb6097fa4705851",
+    "test_format_missing_node_duplicate_QP_and_nonfinite_refusals": "db2c90a845428aa31607f9f1532da6be5926f855fd49211ab30016ff2c359ffe",
+    "test_original_thermal_and_reference_callers_retain_strict_uniqueness": "e425c40d7f2960997965580d6222a10634fd2e814e984d7dc7587381a50ca6f8"
+  },
+  "all_guard_methods_read_UNRUN": [
+    "test_Q1_affine_all_eight_points_and_rigid_rotation",
+    "test_isotropic_three_dimensional_shear_and_thermal_reference",
+    "test_born_nonzero_displacement_and_nonuniform_T_reference",
+    "test_consistent_Q1_force_and_moment_constant_symmetric_stress",
+    "test_manufactured_free_expansion_full_tensor_and_free_residual",
+    "test_observed_external_IDs_full_mesh_family_and_transition",
+    "test_format_missing_node_duplicate_QP_and_nonfinite_refusals",
+    "test_complete_native425_IDs_shared25_doublets_and_prebirth_singletons",
+    "test_missing_extra_triple_nonshared_and_unequal_complete_tokens_refused",
+    "test_original_thermal_and_reference_callers_retain_strict_uniqueness"
+  ],
+  "affine_and_native_storage_fixture_AST_exact": true,
+  "fake_family_time_split_only": {
+    "donor_steps": [
+      0,
+      79,
+      80,
+      160
+    ],
+    "selected_steps": [
+      0,
+      39,
+      40,
+      80
+    ],
+    "donor_time_denominator": 400,
+    "selected_time_denominator": 200
+  },
+  "AST_context": {
+    "version": "3.12.11 (main, Aug 18 2025, 19:02:39) [Clang 20.1.4 ]",
+    "serialization": "sha256(ast.dump(node, include_attributes=False).encode()), no newline; same interpreter comparisons only"
+  },
+  "absolute_SI_limits_exact_donor_b9d": {
+    "temperature_K": 1e-10,
+    "displacement_m": 1e-12,
+    "QP_coordinate_m": 2e-13,
+    "strain": 1e-10,
+    "stress_Pa": 0.1,
+    "force_N": 1e-07,
+    "moment_Nm": 1e-07
+  },
+  "POLICY_label_only_BEGIN80_to_BEGIN40": true,
+  "primary_source_body_exact": true,
+  "default_parser_node_sample_Exodus_decoder_and_spatial_kernels_AST_exact": true,
+  "source_functions_guards_scientific_or_native_execution": false,
+  "raw_CSV_Exodus_runtime_body_reads": false
+}

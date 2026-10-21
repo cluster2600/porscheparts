@@ -1,0 +1,180 @@
+--- domain-equivalence-prep-001/certify_domain.py
++++ apex1474426-domain-equivalence-prep-001/certify_domain.py
+@@ -1,20 +1,20 @@
+-"""HELD old28 exact pair certificate and common-shell local domain equality; no head action."""
++"""HELD exact old60/new101 pair embedding and common-shell local-domain query; no head action."""
+ from pathlib import Path
+ from fractions import Fraction
+ from itertools import combinations
+ import hashlib,importlib.util,json,math,re,struct,sys,time
+ ROOT=Path(__file__).resolve().parents[3]
+-OUTPUT='work/962-engineering/domain-equivalence-001'
++OUTPUT='work/962-engineering/apex1474426-domain-equivalence-001'
+ QUALIFICATION=dict(native_application_authorized=False,head_execution_authorized=False,stitching_authorized=False,
+  engineering_accepted=False,physics_qualified=False,manufacturing_authorized=False)
+ HELPER='work/962-engineering/fixed-shell-coupled-embedding-prep-001/check_embedding.py'
+-OBSERVATION='work/962-engineering/direct-sicn-apex1435493-cavity-study-001/saved-star-observation.json'
+-SHELL='work/962-engineering/direct-sicn-apex1435493-cavity-study-001/local-shell-input-001.json'
+-DIAGNOSTIC='work/962-engineering/fixed-shell-coupled-sicn-001/diagnostic.json'
+-ARRAYS='work/962-engineering/fixed-shell-netgen-apex1435493-001/arrays.json'
+-PRIOR='work/962-engineering/fixed-shell-coupled-embedding-001/report.json'
+-PEER='work/962-engineering/fixed-shell-coupled-embedding-result-peer-001/review.json'
+-INPUTS={'work/962-engineering/fixed-shell-coupled-embedding-prep-001/check_embedding.py': '1b489cc8149f4b5db8f90c594e32fe4c09b5db00151df6b1cfc88362d1018134', 'work/962-engineering/direct-sicn-apex1435493-cavity-study-001/saved-star-observation.json': '53a1fb5696d46c8773eea0ffd3a971706946b380a0b3a5f5ba41d1d6a121d15a', 'work/962-engineering/direct-sicn-apex1435493-cavity-study-001/local-shell-input-001.json': 'a6f15db60967807b057e357b8f159fa510c4a8cf6e3cb44c4327323c070398c8', 'work/962-engineering/fixed-shell-coupled-sicn-001/diagnostic.json': 'e9184514108a194e9f483c5bfb20ffef9d8334cddd01f60806d97b96f84f532a', 'work/962-engineering/fixed-shell-netgen-apex1435493-001/arrays.json': 'ace411a27a13332129f515ac456ab453cbede0920fe115bdb82057092e665e5f', 'work/962-engineering/fixed-shell-coupled-embedding-001/report.json': '478a6e42824772b181ed0d8f9d3523f6fe4e0c07043a9cdc0afe1916f7fe7240', 'work/962-engineering/fixed-shell-coupled-embedding-result-peer-001/review.json': '24ba3917b38c238b9d9e8faa4af0e254c2d6578125e25294fc8ab61678a2589c'}
++CHAIN_SOURCE='work/962-engineering/domain-equivalence-prep-001/certify_domain.py'
++OBSERVATION='work/962-engineering/direct-sicn-apex1474426-cavity-study-001/saved-star-observation.json'
++SHELL='work/962-engineering/direct-sicn-apex1474426-cavity-study-001/local-shell-input-001.json'
++WORKER='work/962-engineering/fixed-shell-netgen-apex1474426-001/fixture-report.json'
++ARRAYS='work/962-engineering/fixed-shell-netgen-apex1474426-001/arrays.json'
++PEER='work/962-engineering/fixed-shell-netgen-apex1474426-result-peer-001/review.json'
++INPUTS={'work/962-engineering/fixed-shell-coupled-embedding-prep-001/check_embedding.py': '1b489cc8149f4b5db8f90c594e32fe4c09b5db00151df6b1cfc88362d1018134', 'work/962-engineering/domain-equivalence-prep-001/certify_domain.py': '0fe593d385e5a0ab4944528fa1b869ddf2c41c28d050576afe9be18213462296', 'work/962-engineering/direct-sicn-apex1474426-cavity-study-001/saved-star-observation.json': '3d80523e2ebd2a92584546f89dc71d35f401696338f99f45480d196a25f840f6', 'work/962-engineering/direct-sicn-apex1474426-cavity-study-001/local-shell-input-001.json': '6ad00be791b8b752106b5324b9f80df314f7458d8d0475b1ffc1a053bc04d12a', 'work/962-engineering/fixed-shell-netgen-apex1474426-001/fixture-report.json': '043c06613ce159acdc4432e0d155dcddc02fa909b02fe955c5f78e6d1b38f076', 'work/962-engineering/fixed-shell-netgen-apex1474426-001/arrays.json': 'ea3c5864a6b607afaf8428a806f65d8e3a81a6e4548e1588dd17b72ea44553b5', 'work/962-engineering/fixed-shell-netgen-apex1474426-result-peer-001/review.json': '12e4829d9a8a02e382c326ea5ef05f58c81f98c1b8b8b8df842846654ba60bd1'}
+ sha=lambda p:hashlib.sha256(Path(p).read_bytes()).hexdigest()
+ FACES=((0,2,1),(0,1,3),(1,2,3),(2,0,3))
+ 
+@@ -48,10 +48,10 @@
+ 
+ 
+ def original(observation,shell):
+- if observation.get('apex')!=1435493 or len(observation['native_ordered_cell_rows'])!=28 or len(observation['selected_node_rows'])!=17:
+-  raise ValueError('Exact frozen28cell/17node source star required')
+- mapping={t:i+1 for i,t in enumerate(shell['local_to_global_node_tags'])};mapping[1435493]=17
+- if len(mapping)!=17 or shell['global_to_local_node_tags']!={str(t):i+1 for i,t in enumerate(shell['local_to_global_node_tags'])}:
++ if observation.get('apex')!=1474426 or len(observation['native_ordered_cell_rows'])!=60 or len(observation['selected_node_rows'])!=33:
++  raise ValueError('Exact frozen60cell/33node source star required')
++ mapping={t:i+1 for i,t in enumerate(shell['local_to_global_node_tags'])};mapping[1474426]=33
++ if len(mapping)!=33 or shell['global_to_local_node_tags']!={str(t):i+1 for i,t in enumerate(shell['local_to_global_node_tags'])}:
+   raise ValueError('Specific exact shell inverse mapping required')
+  points={};words={}
+  for row in observation['selected_node_rows']:
+@@ -59,38 +59,56 @@
+   if tag not in mapping or len(xyz)!=3 or any(type(x) not in (int,float) or not math.isfinite(x) for x in xyz) or [float(x).hex() for x in xyz]!=row['binary64_hex']:
+    raise ValueError('Exact source coordinate/hex association required')
+   points[mapping[tag]]=tuple(Fraction.from_float(float(x)) for x in xyz);words[tag]=xyz
+- if set(points)!=set(range(1,18)):raise ValueError('All17 original coordinate rows required')
++ if set(points)!=set(range(1,34)):raise ValueError('All33 original coordinate rows required')
+  for row in shell['vertex_rows']:
+   t=row['source_global_node_tag'];xyz=words[t]
+   if mapping[t]!=row['local_node_tag'] or struct.pack('<3d',*xyz).hex()!=row['binary64_little_endian_bytes_hex']:
+-   raise ValueError('All16 fixed source coordinate words must match the common shell')
++   raise ValueError('All32 fixed source coordinate words must match the common shell')
+  cells={r['tetrahedron_tag']:[mapping[t] for t in r['node_tags']] for r in observation['native_ordered_cell_rows']}
+- if len(cells)!=28 or any(17 not in row for row in cells.values()):raise ValueError('Complete original cone rows required')
++ if len(cells)!=60 or any(33 not in row for row in cells.values()):raise ValueError('Complete original cone rows required')
+  return points,cells,mapping
+ 
+ 
+-def prior_candidate_proof(prior,peer,cells):
+- expected=list(combinations(sorted(cells),2))
+- if (prior.get('status')!='complete_exact_pair_intersection_pass' or prior.get('source_diagnostic_sha256')!=INPUTS[DIAGNOSTIC]
+-     or prior.get('source_sha256')!=INPUTS[HELPER] or prior.get('nodes')!=19 or prior.get('tetrahedra')!=39
+-     or prior.get('complete_unordered_pairs')!=741 or prior.get('pair_failures')!=0
+-     or prior.get('exact_pairwise_tagged_complex_embedding') is not True
+-     or prior.get('all39_exact_positive_quality_prerequisite') is not True or prior.get('bound_inputs_unchanged') is not True
+-     or peer.get('decision')!='CLEAR_COMPLETE_EXACT_SAVED_LOCAL_PAIRWISE_EMBEDDING'):
+-  raise ValueError('Exact completed candidate741 report and independent peer required')
+- rows=prior['pair_results']
+- if len(rows)!=741 or [tuple(r['tetrahedron_tags']) for r in rows]!=expected or any(r['intersection_equals_tagged_shared_simplex'] is not True or r['illegal_intersection_vertices']!=0 for r in rows):
+-  raise ValueError('Complete saved candidate741 verdict coverage required; never rerun or relabel it')
++def saved_candidate(worker,arrays,shell,peer):
++ a=arrays['saved_reopen'];state=worker['saved_reopen'];quality=state['quality']['SICN']
++ if (worker.get('status')!='completed_specific_cavity_Netgen_only'
++     or any(worker.get(k) is not True for k in ['fixture_procedural_checks_passed','actual_SICN_gate_passed','saved_mesh_identity_exact','bound_inputs_unchanged','geometry_flag_full_state_unchanged','exact_boundary_bits_faces_classifications'])
++     or any(worker.get(k) is not False for k in ['head_execution_authorized','stitching_authorized','native_head_application_authorized','engineering_accepted','physics_qualified','manufacturing_authorized'])
++     or worker.get('full_tiny_arrays_sha256')!=INPUTS[ARRAYS] or worker['after']!=state or arrays['after']!=a
++     or (state.get('nodes'),state.get('tetrahedra'),state.get('referenced_interior_nodes'),state.get('unreferenced_nodes'))!=(40,101,8,0)
++     or (quality.get('count'),quality.get('below_point1_count'),quality.get('nonpositive_count'))!=(101,0,0)
++     or a['node_tags']!=list(range(1,41)) or len(a['coordinates_mm'])!=40
++     or len(a['tetra_tags'])!=101 or a['tetra_tags']!=sorted(set(a['tetra_tags'])) or len(a['tetra_node_tags'])!=101
++     or peer.get('decision')!='CLEAR_COMPLETED_LOCAL_SICN_GATE_PASS_ONLY'
++     or peer.get('bindings',{}).get('report_sha256')!=INPUTS[WORKER] or peer['bindings'].get('arrays_sha256')!=INPUTS[ARRAYS]):
++  raise ValueError('Exact completed40-node101-cell saved Netgen candidate and stopped peer required')
++ points={};words={}
++ for tag,xyz in zip(a['node_tags'],a['coordinates_mm']):
++  if len(xyz)!=3 or any(type(x) is not float or not math.isfinite(x) for x in xyz):
++   raise ValueError('Complete finite binary64 candidate coordinate rows required')
++  points[tag]=tuple(Fraction.from_float(x) for x in xyz);words[tag]=xyz
++ if len(shell['vertex_rows'])!=32 or [row['local_node_tag'] for row in shell['vertex_rows']]!=list(range(1,33)):
++  raise ValueError('Exact32 ordered fixed shell rows required')
++ for row in shell['vertex_rows']:
++  xyz=words[row['local_node_tag']]
++  if struct.pack('<3d',*xyz).hex()!=row['binary64_little_endian_bytes_hex']:
++   raise ValueError('All32 source shell binary64 words must remain fixed')
++ cells=dict(zip(a['tetra_tags'],a['tetra_node_tags']))
++ if (any(type(t) is not int or t<=0 for t in cells)
++     or any(len(row)!=4 or len(set(row))!=4 or any(type(t) is not int for t in row) or not set(row)<=set(points) for row in cells.values())
++     or set().union(*(set(row) for row in cells.values()))!=set(points)):
++  raise ValueError('Complete ordered TET4 membership and no orphan node required')
++ return points,cells
+ 
+ 
+ def main(contract_path,digest):
+  start=time.monotonic();path=Path(contract_path)
+  if not re.fullmatch('[0-9a-f]{64}',digest) or path.is_symlink() or sha(path)!=digest:raise ValueError('Exact external actual contract required')
+  c=json.loads(path.read_text())
+- if (c.get('schema')!='962-old28-domain-equivalence-actual/v1' or c.get('diagnostic_execution_authorized') is not True
++ if (c.get('schema')!='962-apex1474426-old60-new101-domain-actual/v1' or c.get('diagnostic_execution_authorized') is not True
+      or c.get('root_and_peer_review_complete') is not True or c.get('native_execution_authorized') is not False
+      or c.get('qualification')!=QUALIFICATION or c.get('automatic_retry') is not False
+-     or c.get('method')!='all378_old_pairs_and_exact_common_oriented_shell' or c.get('output_directory')!=OUTPUT
++     or c.get('method')!='all1770_old_and5050_new_exact_pairs_and_common_shell' or c.get('output_directory')!=OUTPUT
+      or c.get('source_sha256')!=sha(__file__) or c.get('python_sha256')!=sha(Path(sys.executable).resolve())):
+   raise ValueError('One reviewed stdlib-only local domain diagnostic required')
+  pins=c['input_hashes']
+@@ -101,33 +119,38 @@
+  out=ROOT/OUTPUT
+  if out.exists() or out.is_symlink() or out.resolve()!=out:raise ValueError('Fresh raw canonical output required')
+  spec=importlib.util.spec_from_file_location('frozen_exact_local_pair_helper',ROOT/HELPER)
+- helper=importlib.util.module_from_spec(spec);spec.loader.exec_module(helper) # stdlib-only top level; never main()
++ helper=importlib.util.module_from_spec(spec);spec.loader.exec_module(helper) # stdlib-only definitions; never main().
+  observation=json.loads((ROOT/OBSERVATION).read_text());shell=json.loads((ROOT/SHELL).read_text())
+- diagnostic=json.loads((ROOT/DIAGNOSTIC).read_text());arrays=json.loads((ROOT/ARRAYS).read_text())
+- new_points,new_cells=helper.candidate(diagnostic,arrays,shell)
+- old_points,old_cells,mapping=original(observation,shell)
+- expected=[r['local_node_tags'] for r in shell['oriented_triangle_rows']]
+- if len(expected)!=28 or len({tuple(sorted(f)) for f in expected})!=28:raise ValueError('Exactly28 unique frozen shell faces required')
++ worker=json.loads((ROOT/WORKER).read_text());arrays=json.loads((ROOT/ARRAYS).read_text());peer=json.loads((ROOT/PEER).read_text())
++ new_points,new_cells=saved_candidate(worker,arrays,shell,peer);old_points,old_cells,mapping=original(observation,shell)
++ expected=[row['local_node_tags'] for row in shell['oriented_triangle_rows']]
++ if len(expected)!=60 or len({tuple(sorted(f)) for f in expected})!=60:raise ValueError('Exactly60 unique frozen shell faces required')
+  old,old_volume=complex_rows(helper,old_points,old_cells,expected);new,new_volume=complex_rows(helper,new_points,new_cells,expected)
+- if old['internal_face_pairs']!=42 or new['internal_face_pairs']!=64:raise ValueError('Exact42/64 complete internal pair counts required')
+- if any(old_points[t]!=new_points[t] for t in range(1,17)):raise ValueError('Common16 exact coordinates differ')
++ if old['internal_face_pairs']!=90 or new['internal_face_pairs']!=172:raise ValueError('Exact90/172 complete opposite internal pair counts required')
++ if any(row['exact_point1_gate_passed'] is not True for row in new['quality_rows']):raise ValueError('All101 exact SICN squared at least1/100 required')
++ if any(old_points[t]!=new_points[t] for t in range(1,33)):raise ValueError('Common32 exact shell coordinates differ')
+  if old_volume!=new_volume or helper.rational(old_volume)!={k:str(v) for k,v in shell['exact_enclosed_volume_mm3'].items()}:
+   raise ValueError('Exact common-shell signed-volume bookkeeping differs')
+- prior=json.loads((ROOT/PRIOR).read_text());peer=json.loads((ROOT/PEER).read_text());prior_candidate_proof(prior,peer,new_cells)
+- pairs=[]
+- for first,second in combinations(sorted(old_cells),2):
+-  row=helper.pair_check(old_points,old_cells[first],old_cells[second]);row['tetrahedron_tags']=[first,second];pairs.append(row)
+- if len(pairs)!=378:raise ValueError('Complete28choose2 result required')
+- failures=sum(not r['intersection_equals_tagged_shared_simplex'] for r in pairs)
++ pair_results={};pair_failures={}
++ for name,points,cells,count in [('old',old_points,old_cells,1770),('candidate',new_points,new_cells,5050)]:
++  pairs=[]
++  for first,second in combinations(sorted(cells),2):
++   row=helper.pair_check(points,cells[first],cells[second]);row['tetrahedron_tags']=[first,second];pairs.append(row)
++  if len(pairs)!=count:raise ValueError('Complete fixed-case unordered pair enumeration required')
++  pair_results[name]=pairs;pair_failures[name]=sum(not row['intersection_equals_tagged_shared_simplex'] for row in pairs)
++ failures=sum(pair_failures.values())
+  if any(sha(ROOT/k)!=v for k,v in pins.items()) or sha(path)!=digest:raise ValueError('After input/contract drift')
+- report=dict(schema='962-exact-old28-candidate39-domain-equivalence/v1',status='same_compact_oriented_local_domain' if failures==0 else 'old_pair_embedding_failed_no_domain_certificate',
++ report=dict(schema='962-exact-apex1474426-old60-new101-domain-result/v1',
++  status='same_compact_oriented_local_domain' if failures==0 else 'pair_embedding_failed_no_domain_certificate',
+   source_sha256=c['source_sha256'],contract_sha256=digest,input_hashes=pins,old=old,candidate=new,
+-  original_global_to_comparison_node_tags=mapping,old_complete_unordered_pairs=378,old_pair_failures=failures,old_pair_results=pairs,
+-  candidate741_proof_sha256=INPUTS[PRIOR],candidate_independent_peer_sha256=INPUTS[PEER],candidate_pair_predicates_reexecuted=False,
+-  exact_common16_coordinate_words=True,exact_identical_oriented28_boundary=True,exact_signed_volume_identity=True,
+-  exact_old_pair_embedding=failures==0,local_domain_equivalence_proved=failures==0,
++  original_global_to_comparison_node_tags=mapping,old_complete_unordered_pairs=1770,candidate_complete_unordered_pairs=5050,
++  complete_unordered_pairs=6820,plane_triples_enumerated=6820*56,pair_failures=pair_failures,pair_results=pair_results,
++  exact_common32_coordinate_words=True,exact_identical_oriented60_boundary=True,exact_signed_volume_identity=True,
++  exact_old_pair_embedding=pair_failures['old']==0,exact_candidate_pair_embedding=pair_failures['candidate']==0,
++  local_domain_equivalence_proved=failures==0,
+   argument='Finite exact positive embedded3-chains in R3 have the same geometric oriented boundary. Their compact difference has zero boundary; its integer multiplicity is constant and zero outside bounded support, hence zero. Multiplicity-one interiors imply identical closed tetrahedral unions.',
+-  assumptions_checked=['exact stored binary64 coordinates','positive nondegenerate old28 and candidate39 cells','complete42/64 opposite internal-face pairs','exact identical oriented28 shell and fixed16 coordinates','old378 embedding plus immutable independently reviewed candidate741 embedding'],
++  assumptions_checked=['exact stored binary64 coordinates','positive nondegenerate old60 and candidate101 cells','complete90/172 opposite internal-face pairs','exact identical oriented60 shell and fixed32 coordinate words','complete1770 old and5050 candidate exact pair embeddings'],
++  source_candidate_report_sha256=INPUTS[WORKER],source_candidate_arrays_sha256=INPUTS[ARRAYS],source_candidate_independent_peer_sha256=INPUTS[PEER],
+   scope='Relative local occupied-domain equality only; no new proof of original full-head embedding, outside non-overlap, connected-neighbor join, head edit or physical validity.',
+   qualification=QUALIFICATION,native_optimizer_or_meshwrite_calls=0,coordinates_changed=False,bound_inputs_unchanged=True,wall_seconds=time.monotonic()-start)
+  out.mkdir()

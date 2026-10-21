@@ -1,0 +1,94 @@
+{
+  "schema": "962-mixed-CUB-CGAL-assessment-independent-stopped-result-peer/v1",
+  "decision": "CLEAR_SCOPED_SAVED_POLYGON_DISTANCE_GATE",
+  "method": "Independent stdlib byte/JSON/integer-ID and scalar endpoint calculations only; no assessor/helper/project import, tests, scientific/native query, geometry replay, Git or network.",
+  "actual_result_inventory": {
+    "assessment.json": {
+      "sha256": "c6efca4861fe60774ad0a2421ebc4ea087474554181144a9f91ed2f92d9d9a46",
+      "bytes": 1518
+    },
+    "assessment.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "execution.json": {
+      "sha256": "0531952f508dce0577e5842f5e59fc67638c00ebbb29c3d1a7b8fd436d3372d4",
+      "bytes": 744
+    }
+  },
+  "actual_child_sha256": "d0e3f4de54a1822e76495286b926ae0d2dd8bf294dae0b32034e08092e12600a",
+  "external_child_peer_sha256": "05f6b1ef6022166e393903275ca2e829533a9695049d3436f20b5a532b3dd92d",
+  "selected_assessor_sha256": "6d5d2216d57a8431710f822aae50d573ce1e9b714adedca7d53836ce4b13675e",
+  "all280_inputs_current_before_after": true,
+  "execution": {
+    "returncode": 0,
+    "wall_seconds": 3.761039791861549,
+    "all280_inputs_unchanged_before_after": true,
+    "empty_log_bound": true,
+    "selected_python_sha256": "72956ad35cff7691dfed9e04c9593de825ffd5b2fa7e8bc9ae96ce9a1af65621",
+    "new_native_or_scientific_calls": 0
+  },
+  "endpoint_checks": {
+    "all_three_rows_exact_original_report_values_and_hashes": true,
+    "rows": [
+      {
+        "role": "forward_CUB",
+        "lower_mm": 0.03193591661872411,
+        "upper_mm": 0.031970337358431314,
+        "report_sha256": "d89d132bc66889456aee27b399314ad3ac25bf862669272b8fd27c2b0b56cf77"
+      },
+      {
+        "role": "cap_CGAL",
+        "lower_mm": 0.006338983259280657,
+        "upper_mm": 0.0063889832592806586,
+        "report_sha256": "44171f8cd47576405cf252746a609ebf234cc08aadeae00e1ba98e1265852610"
+      },
+      {
+        "role": "noncap_CGAL",
+        "lower_mm": 0.03283858206618785,
+        "upper_mm": 0.03288858206618786,
+        "report_sha256": "a41b6a2eb07ebcea8356da7034a2bf6126cd768fc8b643689e7ca6a38d601e02"
+      }
+    ],
+    "reverse_interval_mm": [
+      0.03283858206618785,
+      0.03288858206618786
+    ],
+    "combined_two_way_interval_mm": [
+      0.03283858206618785,
+      0.03288858206618786
+    ],
+    "combined_gap_mm": 5.000000000000837e-05,
+    "unchanged_gap_limit_mm": 0.0001,
+    "unchanged_polygon_budget_mm": 0.0625,
+    "polygon_distance_gate_passed": true
+  },
+  "source_selection_checks": {
+    "assembled_sha256": "9d62eac6e2cd7b6a9ecb4a7ea5b632685820369b5c4ede379acc34238f50d7b4",
+    "complete_original_sha256": "894ece6e63d99684fd7c8710caf73132cd73731ac8bc667548c21c85962d4c95",
+    "forward_selected_source_faces": 75230,
+    "forward_complete_target_faces": 1743878,
+    "reverse_cap_selected_faces": 8976,
+    "reverse_noncap_selected_faces": 5426,
+    "reverse_sources_disjoint_complete14402": true,
+    "each_reverse_complete_target_faces": 1804706,
+    "full_mask_complement_and_cancellation_authority": "Source/child and prior stopped partition peers; no geometric reconstruction in this result review"
+  },
+  "limits": [
+    "Result is the retained numerical polygon-distance enclosure relative to the original analysis surface; no OEM/CAD accuracy or independently certified inner roundoff.",
+    "The two CGAL reverse pieces are joined by max and combined with the retained valid CUB forward interval. Earlier reverse CUB allocation failures remain uncredited.",
+    "The414 stronger Mesh2 shape failures remain separate; this result does not issue numerical surface admission, accepted volume mesh, PDE, strength or manufacturing qualification.",
+    "Root execution before/after and actual RC0 are checked from the saved ledger; this peer adds no process/resource probe."
+  ],
+  "false_qualification_fields_preserved": [
+    "roundoff_certificate",
+    "native_CAD_deviation_certified",
+    "stronger_Mesh2_admission",
+    "head_volume_or_PDE_admitted",
+    "engineering_accepted",
+    "manufacturing_authorized"
+  ],
+  "findings": [],
+  "blocking_findings": 0,
+  "assessment_or_native_reexecuted_by_peer": false
+}

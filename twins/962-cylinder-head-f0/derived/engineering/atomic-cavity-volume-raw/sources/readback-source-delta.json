@@ -1,0 +1,33 @@
+{
+  "schema": "962-atomic-saved-volume-readback-delta/v1",
+  "status": "source_only_actual_file_bound_unrun",
+  "sources": {
+    "reader.py": {
+      "preserved_source_path": "work/962-engineering/quality-volume-hxt-sized-readback-001/reader.py",
+      "preserved_source_sha256": "2ccda48d6cd0fa5be9b033f33f5ac0b6b62bf81efebeb51b197ad634efd51045",
+      "new_source_sha256": "40f1d220453c114f49e5eea3d6ea5ad55ace50fa51819e9f3c291887596d6f56",
+      "literal_replacements": {
+        "work/962-engineering/quality-volume-hxt-sized-001": "work/962-engineering/atomic-cavity-volume-hxt-001",
+        "direct_saved_file_readback_completed_quality_rejection_confirmed": "direct_saved_file_readback_completed"
+      },
+      "exact_reverse_restores_entire_preserved_source": true,
+      "diff_sha256": "094aa0e590cb6914a59732466dd68f7102bf2f747253e14d4cf1e3e2088ec811"
+    },
+    "run_readback.py": {
+      "preserved_source_path": "work/962-engineering/quality-volume-default-postexport-readback-001/run_readback.py",
+      "preserved_source_sha256": "c5e99365b5cf1cba6b3bb0c8c7b127d7066e944e7cbd6137fd9f0bcb1886a3ff",
+      "new_source_sha256": "e0e63b01708584d0296757df8aaea89c5238bc352109a716a7abed49defa3d97",
+      "literal_replacements": {
+        " try:\n  with (OUT/'native.log').open('x') as log:\n": " sigterm_requested=False\n def request_sigterm(*_):\n  nonlocal sigterm_requested\n  sigterm_requested=True\n previous_sigterm=signal.getsignal(signal.SIGTERM)\n try:\n  with (OUT/'native.log').open('x') as log:\n",
+        "   try:\n    process=subprocess.Popen": "   try:\n    signal.signal(signal.SIGTERM,request_sigterm)\n    process=subprocess.Popen",
+        "    while process.poll() is None:\n": "    while process.poll() is None and not sigterm_requested:\n",
+        "   finally:\n    if timer is not None:timer.cancel()\n    if process is not None:\n     if process.poll() is None:stop('controller_interrupted')\n     process.wait()\n": "   finally:\n    try:\n     if timer is not None:timer.cancel()\n     if process is not None:\n      if process.poll() is None:stop('controller_SIGTERM' if sigterm_requested else 'controller_interrupted')\n      process.wait()\n    finally:\n     if sigterm_requested and stopped['reason'] is None:stopped['reason']='controller_SIGTERM'\n     signal.signal(signal.SIGTERM,previous_sigterm)\n",
+        "one_stopped_postexport_mesh_read_only": "one_stopped_atomic_mesh_read_only"
+      },
+      "exact_reverse_restores_entire_preserved_source": true,
+      "diff_sha256": "546587f0fc82d543a88e7511571130e3a062b10714535f5792c531942484f630"
+    }
+  },
+  "lifecycle_pattern_source_sha256": "61542a339b03cfab600ac869d12a0ae4d72768bcc5db5838efa3bb72a0ccfada",
+  "native_or_scientific_imports_performed": false
+}

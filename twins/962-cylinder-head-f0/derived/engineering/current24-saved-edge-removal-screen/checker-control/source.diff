@@ -1,0 +1,100 @@
+--- work/962-engineering/head-star-current24-interior-flip-independent-verifier-execution-prep-001/run_root_once.py
++++ work/962-engineering/head-star-current24-edge-removal-independent-verifier-execution-prep-001/run_root_once.py
+@@ -1,10 +1,10 @@
+-"""HELD ONE independent saved-flip verification; root admission required."""
++"""HELD ONE independent saved55 edge-removal verification; root admission required."""
+ from pathlib import Path
+ import hashlib,json,os,re,resource,signal,subprocess,sys,time,traceback
+ R=Path('/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993')
+ E=R/'work/962-engineering'
+-X=E/'head-star-current24-interior-flip-independent-verifier-execution-prep-001'
+-D=E/'head-star-current24-interior-flip-independent-verifier-root-execution-001'
++X=E/'head-star-current24-edge-removal-independent-verifier-execution-prep-001'
++D=E/'head-star-current24-edge-removal-independent-verifier-root-execution-001'
+ CAP=32*1024**2
+ def rec(p):
+  h=hashlib.sha256();size=0
+@@ -95,15 +95,15 @@
+ auth=json.loads(A.read_text());actual_path=X/'actual-contract.json';case_path=X/'preflight.json'
+ runtime_path=E/'head-star-current24-interior-flip-guards-execution-prep-002/runtime-preflight.json'
+ actual=json.loads(actual_path.read_text());case=json.loads(case_path.read_text());runtime=json.loads(runtime_path.read_text())
+-assert auth['schema']=='962-current24-independent-saved-flip-verifier-root-admission/v1'
++assert auth['schema']=='962-current24-independent-saved55-edge-verifier-root-admission/v1'
+ assert auth['actual']==rec(actual_path) and auth['controller']==rec(Path(__file__)) and auth['preflight']==rec(case_path) and auth['runtime_preflight']==rec(runtime_path)
+ assert auth['verification_execution_authorized'] is True and type(auth['invocations']) is int and auth['invocations']==1
+-assert auth['checker_source_peer_reviewed_and_accepted'] is True and auth['automatic_retry'] is False
+-assert auth['analytic_guard_groups']==5 and auth['controls']==actual['controls']
+-assert all(auth[k] is False for k in ['native_execution_authorized','geometry_write_authorized','physical_acceptance'])
+-assert actual['schema']=='962-current24-independent-saved-flip-verifier-held-actual/v1'
++assert auth['checker_source_peer_reviewed_and_accepted'] is True and auth['exact_child_peer_reviewed_and_accepted'] is True and auth['automatic_retry'] is False
++assert auth['analytic_guard_groups']==9 and auth['controls']==actual['controls']
++assert all(auth[k] is False for k in ['native_execution_authorized','geometry_write_authorized','global_embedding_or_infeasibility_authorized','physical_acceptance'])
++assert actual['schema']=='962-current24-independent-saved55-edge-verifier-held-actual/v1'
+ assert actual['controller']==rec(Path(__file__)) and actual['preflight']==rec(case_path) and actual['runtime_preflight']==rec(runtime_path)
+-assert all(actual[k] is False for k in ['verification_execution_authorized','native_execution_authorized','geometry_write_authorized','physical_acceptance','automatic_retry'])
++assert all(actual[k] is False for k in ['verification_execution_authorized','native_execution_authorized','geometry_write_authorized','global_embedding_or_infeasibility_authorized','physical_acceptance','automatic_retry'])
+ assert actual['selected_interpreter']==runtime['selected_interpreter']
+ assert str(Path(sys.executable).resolve())==runtime['observed']['resolved_executable'] and sys.version==runtime['observed']['version']
+ assert sys.flags.isolated==1 and sys.flags.dont_write_bytecode==1 and sys.flags.no_site==1 and sys.flags.optimize==0
+@@ -112,21 +112,21 @@
+ assert actual['cwd']==str(D) and actual['checker_source']==rec(R/actual['checker_source']['path'])
+ assert actual['controls']==dict(wall_seconds=60,TERM_grace_seconds=8,KILL_wait_seconds=8,sampled_owned_RSS_bytes=2147483648,total_owned_output_bytes=33554432,sample_seconds=.05,thread_environment=1,retries=0)
+ assert actual['environment']==dict(PATH='/usr/bin:/bin',LC_ALL='C',OMP_NUM_THREADS='1',OPENBLAS_NUM_THREADS='1',VECLIB_MAXIMUM_THREADS='1',MKL_NUM_THREADS='1',NUMEXPR_NUM_THREADS='1',TMPDIR=str(D/'tmp'))
+-records=actual['protected_records'];assert len(records)==actual['protected_record_count']==36 and case['protected_records']==records
++records=actual['protected_records'];assert len(records)==actual['protected_record_count']==50 and case['protected_records']==records
+ assert case['controller']==rec(Path(__file__)) and case['runtime_preflight']==rec(runtime_path)
+ runtime_records=runtime['runtime_files'];assert len(runtime_records)==91 and not set(records)&set(runtime_records)
+ direct={str(p):rec(p) for p in [actual_path,case_path,runtime_path,Path(__file__),A]}
+-for role in ['checker_source_peer','checker_source_bindings']:
++for role in ['exact_child_peer','exact_child_bindings']:
+  pin=auth[role];path=Path(pin['path']) if Path(pin['path']).is_absolute() else R/pin['path']
+  assert rec(path)==pin and str(path) not in direct;direct[str(path)]=pin
+ assert len(direct)==7 and not set(records)&set(direct) and not set(runtime_records)&set(direct)
+-pins={**records,**runtime_records,**direct};assert len(pins)==actual['expected_total_records']==134
++pins={**records,**runtime_records,**direct};assert len(pins)==actual['expected_total_records']==148
+ before=check(pins);links_before=provider_links(runtime_records)
+ assert not before['changed'] and links_before==runtime['runtime_path_metadata']
+ os_before=subprocess.run(['/usr/bin/sw_vers','-buildVersion'],capture_output=True,text=True,check=True,timeout=5).stdout.strip();assert os_before==runtime['OS_build']
+ assert set(p.name for p in D.iterdir())=={'admission.json'}, 'Fresh owned directory with admission only required'
+-(D/'tmp').mkdir();(D/'run-started.json').write_text(json.dumps(dict(actual=rec(actual_path),admission=rec(A),argv=actual['argv'],checker_source_peer=auth['checker_source_peer']))+'\n')
+-receipt=dict(schema='962-current24-independent-saved-flip-verification-once-receipt/v1',actual=rec(actual_path),admission=rec(A),controller=rec(Path(__file__)),preflight=rec(case_path),runtime_preflight=rec(runtime_path),checker_source_peer=auth['checker_source_peer'],checker_source_bindings=auth['checker_source_bindings'],before=before,runtime_paths_before=links_before,OS_build_before=os_before,resource_samples=[],resource_observation_exit_races=[],process_started=False,returncode=None,termination=None,complete_independent_verification=False,independent_result_acceptance=False,complete_flip_eligibility=None,mesh_application_authorized=False,native_executed=False,physical_acceptance=False,automatic_retry=False)
++(D/'tmp').mkdir();(D/'run-started.json').write_text(json.dumps(dict(actual=rec(actual_path),admission=rec(A),argv=actual['argv'],exact_child_peer=auth['exact_child_peer']))+'\n')
++receipt=dict(schema='962-current24-independent-saved55-edge-verification-once-receipt/v1',actual=rec(actual_path),admission=rec(A),controller=rec(Path(__file__)),preflight=rec(case_path),runtime_preflight=rec(runtime_path),exact_child_peer=auth['exact_child_peer'],exact_child_bindings=auth['exact_child_bindings'],before=before,runtime_paths_before=links_before,OS_build_before=os_before,resource_samples=[],resource_observation_exit_races=[],process_started=False,returncode=None,termination=None,complete_independent_verification=False,independent_result_acceptance=False,complete_application_eligibility=None,mesh_application_authorized=False,native_executed=False,physical_acceptance=False,automatic_retry=False)
+ proc=None;failure=None;started=time.monotonic();controller_stop_requests=[]
+ old_TERM=signal.signal(signal.SIGTERM,record_controller_stop);old_INT=signal.signal(signal.SIGINT,record_controller_stop)
+ try:
+@@ -153,16 +153,25 @@
+  if output_size(D)>CAP:raise ValueError('32MiB completion output cap')
+  if (D/'verifier.stderr').read_bytes()!=b'':raise ValueError('Unexpected verifier stderr; preserve all output')
+  result_raw=(D/'verifier.stdout.json').read_bytes();result=json.loads(result_raw)
+- if result['schema']!='962-current24-independent-saved-flip-exact-verification/v1' or result['complete_finite_family_verified'] is not True:raise ValueError('Complete exact verification output required')
++ if result['schema']!='962-current24-independent-saved55-edge-removal-exact-verification/v1' or result['complete_finite_family_verified'] is not True:raise ValueError('Complete exact saved55 verification output required')
+  guards=result['analytic_guards']
+- expected_names=['right_D1_Q2_2over3','regular_D2_Q2_1','orientation_sign_quality_invariant','coincident_refusal','boundary_and_exact_threshold']
+- if guards!=dict(guard_count=5,names=expected_names,all_passed=True):raise ValueError('Five exact analytic guard groups required')
+- if result['complete_association_count']!=204 or result['independent_local_status_counts']!={'refused_observed_incidence_not_2_or_3_five_point_pattern':139,'failed_exact_local_screen':65} or result['observed_pair_conflicts']!=89:raise ValueError('Complete204/139+65/89 current report parity required')
+- if result['inputs_before']!=actual['checker_input_records'] or result['inputs_after']!=actual['checker_input_records']:raise ValueError('All32 verifier inputs beforeafter exact required')
+- if result['full271_words_and499_cells_parent_associated'] is not True or result['prior1983_66_86_protected'] is not True:raise ValueError('Complete parent/protected scope required')
+- if result['complete_flip_eligibility'] is not None or any(result[k] is not False for k in ['mesh_application_authorized','global_embedding_accepted','native_or_physical_or_manufacturing_accepted']):raise ValueError('No embedding/application/physical qualification')
+- receipt['verification_output']=rec(D/'verifier.stdout.json');receipt['analytic_guards']=guards;receipt['complete_association_count']=result['complete_association_count'];receipt['independent_local_status_counts']=result['independent_local_status_counts'];receipt['observed_pair_conflicts']=result['observed_pair_conflicts']
+- receipt['original_cell_witnesses']=result['original_cell_witnesses'];receipt['replacement_cell_witnesses']=result['replacement_cell_witnesses'];receipt['support_determinant_witnesses']=result['support_determinant_witnesses']
++ expected_names=['right_D1_Q2_2over3','regular_D2_Q2_1','orientation_sign_quality_invariant','coincident_refusal','boundary_and_exact_threshold','maximal_diagonal_Catalan_complete','missing_duplicate_extra_candidate_refusal','disjoint_removal_duplicate_conflict','disconnected_link_no_subset_refusal']
++ if guards!=dict(guard_count=9,names=expected_names,all_passed=True):raise ValueError('Nine exact analytic guard groups required')
++ if any(type(result[k]) is not int or result[k]!=v for k,v in actual['expected_saved_summary_counts'].items()):raise ValueError('Complete55/1033/current row and conflict metadata parity required')
++ if result['inputs_before']!=actual['checker_input_records'] or result['inputs_after']!=actual['checker_input_records']:raise ValueError('All30 fixed verifier inputs beforeafter exact required')
++ if result['full271_words499_cells_and_six_typed_hashes_parent_associated'] is not True or result['prior1983_cells66_nodes86_poor_protected'] is not True:raise ValueError('Complete saved context/six hashes/protected history required')
++ if result['complete_application_eligibility'] is not None or any(result[k] is not False for k in ['mesh_application_authorized','global_embedding_accepted','global_infeasibility_or_topology_necessity_proved','native_or_physical_or_manufacturing_accepted']):raise ValueError('No global/application/physical qualification')
++ for key,pin in actual['expected_report_projection_sha256s'].items():
++  if result[key]!=pin:raise ValueError('Full fixed report row projection changed: '+key)
++ failed=result['full_candidate_quality_failure_IDs']
++ if not isinstance(failed,list) or len(failed)!=1033 or len(set(failed))!=len(failed) or hashlib.sha256(json.dumps(failed,sort_keys=True,separators=(',',':'),allow_nan=False).encode()).hexdigest()!=actual['expected_quality_failed_IDs_sha256']:raise ValueError('Every reported quality failure ID must remain, exact order/no subset')
++ if result['full_local_finite_pass_IDs']!=[]:raise ValueError('Original all-failed finite result changed; refuse parity')
++ if not re.fullmatch('[0-9a-f]{64}',result['exact_conflicting_pair_union_sha256']):raise ValueError('Complete exact pair-union digest required')
++ receipt['verification_output']=rec(D/'verifier.stdout.json');receipt['analytic_guards']=guards
++ receipt['confirmed_saved_summary_counts']={k:result[k] for k in actual['expected_saved_summary_counts']}
++ receipt['confirmed_complete_report_projection_sha256s']={k:result[k] for k in actual['expected_report_projection_sha256s']}
++ receipt['quality_failed_candidate_ID_count']=len(failed);receipt['quality_failed_candidate_IDs_sha256']=actual['expected_quality_failed_IDs_sha256']
++ receipt['exact_conflicting_pair_union_sha256']=result['exact_conflicting_pair_union_sha256'];receipt['complete_application_eligibility']=None
+  receipt['complete_independent_verification']=True
+ except Exception:
+  failure=traceback.format_exc()

@@ -1,0 +1,78 @@
+{
+  "schema": "962-assembled-CUB-source-peer/v1",
+  "decision": "BLOCKED_one_start_budget_race_source_only",
+  "bindings": {
+    "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-distance-prep-001/METHOD.md": "eb1b3206e3fcb9f01a3634696c4fe08cc694034e77b794cef9d47dd4bedb013e",
+    "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-distance-prep-001/assess_quality_distance.py": "015eec745e964c1d13c096a39afe706bbda4c29ac804efdf69deafdd841d8be5",
+    "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-distance-prep-001/audit_quality_distance.py": "58a23c788cd0d9053b64c0bab3acff68a5ea33427e79a19f56516d05cb090f0d",
+    "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-distance-prep-001/held-contract.json": "2365199e0abd2a0e2c7f63359a0bb5b8c5abe90f46d61c40a2a0ce748d4c0623",
+    "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-distance-prep-001/preparation-checks.json": "72100ee9ae0f42a10b437cf0e0ba0bc783115f21db85d14f8aa5cdf3307d12e6",
+    "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-distance-prep-001/run_quality_distance_002.py": "7b7cc6da9c5322be5e6ebc74730b9838379bd67b6f5c7aaf2a03fdec71d6238d",
+    "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-distance-prep-001/run_quality_distance_002.py.diff": "c2fb15acc080c2ed5ba22f3d289d9ade91b58a92128e65d1bf992754d0d86d53",
+    "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-distance-prep-001/source-reuse.json": "2caafc89b731aa6a9a324dffb6422db0a6ca26088774423a7125c8ed5a50026a",
+    "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-distance-runner-tests-prep-001/METHOD.md": "3a5e286879eef65ecaca4fb508b20684a9066c2abe85bf1e5d7a343acd2e23a8",
+    "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-distance-runner-tests-prep-001/held-tests.json": "f63404cb1866dbda00dac9d1b478d3224869d3d22c348c5bc39837e74a1acc3a",
+    "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-distance-runner-tests-prep-001/test_runner.py": "1a4d81b1f703c87cc20fc62c9e5a5052b18b96e92d4d401adf3d5f316302a6dd"
+  },
+  "source_runtime_pin_count": 31,
+  "query_config_pin_count": 2,
+  "all33_current_byte_hashes_checked": true,
+  "five_lifecycle_replacements_reverse_byte_exact_to_6aeb": true,
+  "worker_58a23_and_assessor_015eec_exact_copies": true,
+  "mathematical_and_input_review": {
+    "numerical_algorithm": "Unchanged directed continuous CUB worker and interval assessor. Absolute gap1e-4mm and upper-bound budget.0625mm retained.",
+    "queries": "Exactly two held configs; original changed source to complete assembled target, then assembled changed source to complete original target. Own-length masks remain bound; no opposing target restriction.",
+    "source_counts": "Held scheduled source counts75230/14402 and full target counts1743878/1804706 are prior saved mask observations; no NPZ or arrays reread by this source review.",
+    "late_mask_peer": {
+      "path": "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-distance-mask-result-peer-001/review.json",
+      "sha256": "b091ee17d162434f7258064aaf191f332371e4fd5ca40603a169f17ab718f39f",
+      "current_identity_verified": true,
+      "in_frozen31_pin_map": false,
+      "actual_child_must_bind_separately": true
+    }
+  },
+  "lifecycle_review": {
+    "SIGTERM": "Nonraising flag before Popen closes the earlier assignment-gap interruption. Owned new-session process is killed/waited in protected finally, previous handler restored.",
+    "observer": "ps error/timeout/invalid output stops;>=4GiB sampled RSS refuses. No OS-hard CPU or memory quota claimed.",
+    "timer": "Remaining interval is300 minus elapsed query-start time, clamped at0. Timer construction/start are protected, but an explicit elapsed-budget rejection is absent.",
+    "serial": "Second query follows completed first receipt; first nonzero/stop/monitor/cleanup/restoration/drift refuses further execution. Native completion remains separate from interval acceptance.",
+    "scope_limit": "No arbitrary SIGKILL or scheduler deadline guarantee asserted."
+  },
+  "findings": [
+    {
+      "id": "elapsed_budget_can_pass_without_timer_callback",
+      "severity": "must_fix_before_launch",
+      "source": "run_quality_distance_002.py run(): Popen;Timer(max(0,300-elapsed));poll loop;timer.cancel;completion predicate",
+      "counterexample_without_execution": "Popen returns an already-exited RC0 process after elapsed301s. Timer(0).start is asynchronous: the main thread can see poll()==0 and cancel before the callback executes. No stop reason is recorded, so the query can be marked complete and the second query started despite exceeding the start budget.",
+      "why_mock_missing": "Current normal tests advance Popen only7s; deadline test always calls the timer callback synchronously after17s. Neither covers already-exited and over-budget without callback.",
+      "minimum_correction": "Preserve frozen001. In a separately named successor, explicitly mark elapsed>=300s as a stop/refusal before timer or at final completion, then add one mock with already-exited over-budget Popen and no timer callback. No numerical/controller framework change required."
+    }
+  ],
+  "mock_source_review": {
+    "methods": 6,
+    "AST_syntax_parsed_only": true,
+    "no_tests_executed": true,
+    "temporary_root_resolved": true,
+    "original_source_hash_boundary_preserved": true,
+    "all_process_ps_kill_timer_signal_calls_fake": true,
+    "coverage": [
+      "two normal serial queries, first reaped before second",
+      "nonraising SIGTERM inside Popen before assignment",
+      "observer timeout stop",
+      "Timer.start exception cleanup",
+      "remaining283s deadline callback",
+      "initial pin drift before output/Popen"
+    ],
+    "known_missing_case": "already-exited worker after exhausted start budget with asynchronous callback not executed"
+  },
+  "remaining_prerequisites": [
+    "Resolve the one concrete source race in a fresh preserved successor plus focused test.",
+    "Root actual mocked tests and fresh interpreter/NumPy/CUB module/binary/resource preflight.",
+    "Separate root-authorized exact child binding late mask peer and closed actual mask child/execution.",
+    "Unchanged stopped interval assessor after any authorized queries; no automatic retry."
+  ],
+  "prepared_sources_imported": false,
+  "tests_or_native_or_scientific_queries_executed": false,
+  "head_surface_or_solver_admitted": false,
+  "manufacturing_authorized": false
+}

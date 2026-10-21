@@ -1,0 +1,224 @@
+{
+  "schema": "962-observer003-plugin-lifetime-remedy-proposal/v1",
+  "created_utc": "2026-10-20T17:39:43.403120+00:00",
+  "decision": "SOURCE_SUPPORTED_MINIMAL_CANDIDATE_ONLY_IMPLEMENTATION_BUILD_AND_CHECK_UNAUTHORIZED",
+  "scope": {
+    "performed": [
+      "Named first-party saved result metadata and pinned public MOOSE source text read/hash",
+      "Exact local SDK public dlfcn.h text read/hash",
+      "Official Apple public documentation and upstream source browsing",
+      "Source-level lifetime reasoning"
+    ],
+    "not_performed": [
+      "No shim/source mutation or preparation",
+      "No build/compiler/host/plugin/loader/helper/guard/native/debugger invocation",
+      "No runtime or native binary body read/hash/stat",
+      "No raw grid/mesh/field or original private OS crash report access"
+    ],
+    "independence": "This agent authored the prior saved failure result peer and earlier host source/exact-child reviews; the present packet is a source-supported remedy proposal, not independent new runtime evidence. LPBF agent supplied parallel primary-source challenges; exact local associations were independently inspected."
+  },
+  "preserved_failure": {
+    "peer_sha256": "294d23aed262ca20c6cd014f114a1821799dd1a682b2af9f4d7e9298b33e5dbf",
+    "raw_host_returncode": -11,
+    "outer_returncode": 2,
+    "positive_setup_observations": [
+      "One complete constructed-object frame with observer type exactly once",
+      "Syntax OK",
+      "Expected build005 plugin path observed"
+    ],
+    "normal_exit_accepted": false,
+    "crash_selected_extract_sha256": "60f9a02302acd3f3c8d0e781f11d083875c07bf98ed82bf9d96c44c842b00b10",
+    "observed_faulting_chain": [
+      "OutputWarehouse::~OutputWarehouse()+460",
+      "MooseApp::~MooseApp()+1508",
+      "CombinedTestApp::~CombinedTestApp()+12",
+      "Moose::main<CombinedTestApp>+184"
+    ],
+    "established": "The failure occurs in framework teardown; setup markers do not establish a successful check.",
+    "exact_cause_established": false
+  },
+  "conditional_lifetime_hypothesis": {
+    "pinned_moose_revision": "7c06bdcefd02f9f31f4508839f21f410561309a4",
+    "associations": [
+      {
+        "file": "framework/src/base/MooseApp.C",
+        "lines": [
+          972,
+          1005
+        ],
+        "fact": "MooseApp destructor body releases selected warehouses then closes every recorded dynamic library handle at 1001-1004."
+      },
+      {
+        "file": "framework/include/base/MooseApp.h",
+        "lines": [
+          1331,
+          1475
+        ],
+        "fact": "OutputWarehouse is an automatic MooseApp member. C++ member destruction follows completion of the destructor body."
+      },
+      {
+        "file": "framework/src/outputs/OutputWarehouse.C",
+        "lines": [
+          41,
+          46,
+          102,
+          109
+        ],
+        "fact": "Destructor body may flush console; addOutput retains shared ownership in _all_ptrs."
+      },
+      {
+        "file": "framework/include/outputs/OutputWarehouse.h",
+        "lines": [
+          263,
+          266
+        ],
+        "fact": "_all_ptrs is vector<shared_ptr<Output>>."
+      },
+      {
+        "file": "framework/src/base/MooseApp.C",
+        "lines": [
+          2743,
+          2804
+        ],
+        "fact": "Dynamic registration uses RTLD_LAZY then a handle-specific registerAll entry; its handle is tracked for later dlclose."
+      }
+    ],
+    "inference": "A plugin reference reaching zero inside the app destructor could finalize/unload plugin-owned code or registration state before later warehouse/object destruction. This is a concrete candidate, not a proved fault instruction, object, or ABI cause. Console flushing, unrelated invalid state, or ABI mismatch remain possible.",
+    "installed_binary_equals_pinned_source": null
+  },
+  "primary_loader_evidence": [
+    {
+      "source": "Exact local SDK dlfcn.h",
+      "identity": {
+        "path": "/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk/usr/include/dlfcn.h",
+        "sha256": "01b3575f40973f5549655b9d44fb845b67c663fa201bdb1f3a0b0266e5ec046b",
+        "bytes": 14871
+      },
+      "lines": [
+        74,
+        100,
+        115,
+        123,
+        158,
+        162,
+        214,
+        222
+      ],
+      "finding": "dladdr identifies the image containing a data address. Reopening the same resolved path increments its reference count. RTLD_NOLOAD refuses an absent image and acquires a counted handle for an existing image; NODELETE promises mapping retention."
+    },
+    {
+      "url": "https://github.com/apple-oss-distributions/dyld/blob/main/doc/man/man3/dlopen.3",
+      "document_date": "2024-02-08",
+      "lines": [
+        25,
+        28,
+        83,
+        99,
+        118,
+        123,
+        148,
+        159
+      ],
+      "finding": "A NOLOAD handle is reference counted. Search overrides may affect even full paths, so a self-path request still needs a same-image check. NODELETE is documented as address-space retention, not a C++ lifetime certificate."
+    },
+    {
+      "url": "https://github.com/apple-oss-distributions/dyld/blob/main/dyld/DyldAPIs.cpp",
+      "lines": [
+        1336,
+        1353,
+        1600,
+        1626
+      ],
+      "finding": "Current upstream NOLOAD increments the count and returns before later NODELETE marking; combining flags must not be assumed to apply both effects."
+    },
+    {
+      "url": "https://github.com/apple-oss-distributions/dyld/blob/main/dyld/DyldRuntimeState.cpp",
+      "lines": [
+        1268,
+        1288,
+        1320,
+        1331,
+        1396,
+        1448,
+        1482,
+        1518,
+        1949,
+        1965
+      ],
+      "finding": "Current upstream positive dlopen counts root an image and dependencies. Dead-image finalizers run before the later leaveMapped unmap exclusion. Mapping retention alone therefore does not establish live C++ registration state."
+    },
+    {
+      "url": "https://github.com/apple-oss-distributions/dyld/blob/main/doc/man/man1/dyld.1",
+      "lines": [
+        43,
+        49,
+        131,
+        138
+      ],
+      "finding": "DYLD_INSERT_LIBRARIES is a supported preload route but changes startup loading/initializer order and can be ignored for protected processes."
+    }
+  ],
+  "public_source_limit": "Apple main URLs are moving public sources inspected on 2026-10-20, not a pinned installed-dyld implementation or full ABI match. The exact local SDK header is separately hashed. No installed dyld/libSystem body inspection occurred.",
+  "chosen_minimal_candidate": {
+    "name": "Registration-shim-only process-lifetime self-retain of already-loaded observer image",
+    "future_delta": [
+      "Preserve unique label, pointer arguments and Registry::registerObjectsTo call; add a small fail-closed self-retain before object registration.",
+      "Use dladdr on a private nonconst POD data anchor in this shim to obtain current image path and base; this avoids function/data pointer conversion and global symbol-address assumptions.",
+      "Acquire one handle with dlopen(self image path, RTLD_LAZY | RTLD_NOLOAD). Never request a fresh image, NULL/default handle, fallback path, NODELETE combination or preload.",
+      "Resolve the unique CouponEnd181ObserverApp__registerAll on that handle and use dladdr to require the same image base as the private anchor. Refuse registration if path/base/symbol/handle association is unavailable or mismatched; balance only a rejected newly acquired handle while the original host handle still exists.",
+      "After successful identity confirmation retain exactly one private trivial raw handle for this bounded process lifetime. No RAII deleter, atexit callback or later dlclose; repeated registration must not acquire more references. Then perform unchanged registration."
+    ],
+    "why": "MOOSE still owns and closes its original handle. The additional counted reference remains during app/warehouse destruction, so the same plugin is not eligible for reference-count-zero collection at that point. This is targeted lifetime retention, not a promise to bypass all process-exit termination.",
+    "explicit_cost": "One intentional process-lifetime library reference and associated dependency lifetime extension. This is acceptable only as an explicit capability-check candidate; it changes unload semantics and is not yet a production policy.",
+    "unsupported_claims": [
+      "No guarantee of exact crash cause",
+      "No complete host/framework C++ ABI equivalence",
+      "No live observer output callback or DOF map",
+      "No physics, strength, material, LPBF, head-PDE, manufacturing or release qualification"
+    ]
+  },
+  "alternatives_not_selected": [
+    {
+      "route": "RTLD_NODELETE alone or RTLD_NOLOAD|RTLD_NODELETE",
+      "reason": "Does not establish preservation of C++ state; current upstream NOLOAD early-return also bypasses later NODELETE marking."
+    },
+    {
+      "route": "DYLD_INSERT_LIBRARIES same plugin",
+      "reason": "Could preserve plugin bytes but changes startup initialization and lookup context and may be filtered; wider behavioral delta than self-retaining an image already constructed by the supported registration route."
+    },
+    {
+      "route": "Clear outputs before dlclose or change MooseApp loader flags in framework",
+      "reason": "Broader framework rebuild and behavior change, with no need established before testing the narrow lifetime candidate."
+    }
+  ],
+  "future_falsifiable_check_plan": {
+    "authorization": "Root must first explicitly authorize new immutable source preparation; later build/source review, exact-child review and a distinct once-only launch admission remain separate. This proposal grants none.",
+    "invariants": [
+      "Keep failed001 sources, binary identities, logs, receipts, refusal and peer unchanged.",
+      "New shim/object/plugin/libtool descriptor and fresh staged/check/result namespaces only; reuse byte-identical operational observer/header and its production object where link controls permit.",
+      "Keep host/runtime/provider route, coupon parameters, passivity, three exact grid identities, native flags --check-input --list-constructed-objects, serial/thread settings and outer -B -I -S unchanged. The candidate input may change only the explicit plugin-library location to its new frozen descriptor.",
+      "Do not call observer output(), initialize/solve executioner, run 18 validator assertions again, or modify PDE/material/process/head controls.",
+      "Preserve 60s wall/T8/2GiB sampled-RSS/32MiB output/T1/no retry; review owned process cleanup, original controls and named pre/post input/provider identities."
+    ],
+    "acceptance_conjunction": [
+      "Raw native returncode exactly 0 and outer owner returncode exactly 0",
+      "Exactly one complete expected type frame, observer type exactly once, Syntax OK, and expected newly frozen plugin path observed",
+      "Source-enforced successful same-image self-retain preceding registration and no fallback",
+      "No stop/request/error, owned group reaped/absent, unchanged protected inputs/provider paths, full net output including receipt within cap",
+      "No unexpected output callback/data artifacts"
+    ],
+    "outcomes": {
+      "if_normal_exit_passes": "Supports this process-lifetime retention workaround for this exact check-only capability; does not prove original cause, production safety, whole ABI compatibility or physics.",
+      "if_same_crash_or_other_failure": "Preserve terminal evidence and refuse check acceptance. No automatic retry, threshold relaxation, solver execution or framework rewrite."
+    }
+  },
+  "authority": {
+    "source_implementation": false,
+    "build": false,
+    "host_or_plugin_execution": false,
+    "normal_exit_capability_accepted": false,
+    "physics": false,
+    "manufacturing": false,
+    "publication": false
+  }
+}

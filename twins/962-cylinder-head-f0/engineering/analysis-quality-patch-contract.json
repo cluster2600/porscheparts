@@ -1,0 +1,137 @@
+{
+  "schema": "962-original-local-quality-contract/v1",
+  "status": "source_and_synthetic_fixtures_frozen_before_native_execution_head_on_hold",
+  "scope": "One original-source local quality candidate; not source master repair, CFD/FEA or engineering admission. Only compile and synthetic fixture execution currently authorised.",
+  "original_source_STL_sha256": "ba7a0e28dade659550705e9737177c64c7f6fecd8d86d01e31732d7e739cd906",
+  "original_indexed_source_sha256": "894ece6e63d99684fd7c8710caf73132cd73731ac8bc667548c21c85962d4c95",
+  "collapsed_surface_permitted_as_input": false,
+  "source_sha256": {
+    "twins/962-cylinder-head-f0/source/analysis-cgal/quality_patch.cpp": "6a56acf7a1d7a4882251044f9331ff0e4590042a4d1d15f0b4599e0ab241d9ee",
+    "twins/962-cylinder-head-f0/source/audit_quality_patch.py": "3532a172b2bce3a8ead7c8b11b712a2b55891377726fa1b6d847e84f0eed3912",
+    "tests/test_962_quality_patch.py": "e4087266a9f22247fd8e608d968b138e8878f431606c9dbd8c0121a40e8fcc12"
+  },
+  "patch": {
+    "seed_condition": "Full original-source triangle SICN <2/29, the necessary fixed-face bound for tetrahedron SICN0.1. Floating selection is diagnostic, not solver admission.",
+    "source_bad_faces": 744,
+    "seed_vertices": 1284,
+    "incident_patch_faces": 4704,
+    "patch_vertices": 3858,
+    "exterior_incidence_fixed_patch_vertices": 2556,
+    "clip_plane_patch_vertices": 12,
+    "selection": "All original faces incident to any vertex of a bad face. Fix any vertex incident to any exterior face and every original vertex with x exactly\u221276 or+76mm. Constrain edges whose endpoints are both fixed; patch borders remain constrained.",
+    "crease_angle_or_coordinate_weld_tolerance": null,
+    "semantic_feature_map_complete": false,
+    "feature_boundary": "Explicit assumption for analysis only. Full port/opening/channel/BCC review remains an independent required gate; this is not a Porsche interface map."
+  },
+  "controls": {
+    "target_edge_length_mm": 0,
+    "do_split": false,
+    "do_collapse": false,
+    "do_flip": true,
+    "do_project": true,
+    "relax_constraints": false,
+    "protect_constraints": false,
+    "atomic_iterations": 1,
+    "relaxation_steps": 1,
+    "projection_reference": "immutable_original_surface"
+  },
+  "quality_objective": {
+    "full_surface_metric": "triangle SICN =2sqrt(3)|u cross v|/(|u|\u00b2+|v|\u00b2+|v-u|\u00b2)",
+    "necessary_triangle_bound_exact": "2/29",
+    "required_tetra_SICN": 0.1,
+    "accept_quality_update_only_if": "Full-surface count below2/29 strictly decreases AND the full-surface minimum triangle SICN does not decrease; fixed/exterior geometry, closed validity and vertex/face counts also unchanged. No epsilon relaxation.",
+    "rollback": "Always retain proposed-surface.bin. Write quality-candidate.bin only when objective/invariants pass; otherwise preserve original and stop.",
+    "stop": "One default atomic pass, then root review; no automatic loop, face quota, extra pass or increased resource trial."
+  },
+  "independent_gates": {
+    "finite_nondegenerate_triangles": true,
+    "positive_signed_volume": true,
+    "closed_oriented_edge_manifold": true,
+    "vertex_link_manifold": true,
+    "connected_components": 1,
+    "euler_characteristic": -208,
+    "global_self_intersection_pairs": 0,
+    "two_sided_continuous_distance_upper_bound_mm": 0.25,
+    "each_distance_interval_absolute_gap_mm": 0.0001,
+    "both_distance_intervals_completed": true,
+    "rounding_error_certificate": false,
+    "sampled_vertex_distances_sufficient": false,
+    "unchanged_fluid_domain_hashes_required": true,
+    "dry_opening_probe_count": 8,
+    "dry_opening_probes_unblocked": true,
+    "feature_channel_BCC_connectivity_review_required": true,
+    "sampled_water_dry_clearance_minimum_mm": 4.0,
+    "conformal_metal_fluid_interface_validated": false,
+    "arbitrary_volume_change_percentage_gate": null,
+    "global_self_intersection_audit_completed": true
+  },
+  "volume_mesh_gates": {
+    "finite_positive_jacobian_and_signed_volume": true,
+    "minimum_SICN": 0.1,
+    "actual_oriented_tetra_boundary_equals_analysis_surface": true,
+    "volume_relative_bookkeeping_bound": 1e-06,
+    "bookkeeping_bound_is_manufacturing_tolerance": false,
+    "volume_bookkeeping_reference": "The accepted derivative analysis surface, never the different original source surface."
+  },
+  "runtime": {
+    "toolchain_image_id": "sha256:57c6b17ed0bd093a61a3d3cecb7563e912caeb3832fd59e8cec2d4d9d4d1e2f8",
+    "CGAL": "5.6-1build3",
+    "architecture": "arm64",
+    "compile": {
+      "cpus": 2,
+      "memory_bytes": 4294967296,
+      "memory_swap_bytes": 4294967296,
+      "hard_wall_seconds": 300
+    },
+    "fixtures": {
+      "cpus": 2,
+      "memory_bytes": 536870912,
+      "memory_swap_bytes": 536870912,
+      "hard_wall_seconds_each": 60
+    },
+    "possible_head_run": {
+      "authorised_now": false,
+      "requires": "Root source/contract/fixture review before any head execution",
+      "cpus": 2,
+      "memory_bytes": 4294967296,
+      "memory_swap_bytes": 4294967296,
+      "swap_bytes": 0,
+      "hard_wall_seconds": 300,
+      "network": "none"
+    }
+  },
+  "fixtures": {
+    "movable-sliver": {
+      "input_sha256": "7396304805c5dbb53026acb6c0e89889e7f301625dc55ddc36c586f7d44e0a9f",
+      "vertices": 9,
+      "triangles": 14,
+      "expected": {
+        "returncode": 0,
+        "before_bad": 1,
+        "after_bad": 0,
+        "fixed_corners": 8,
+        "candidate_written": true
+      }
+    },
+    "constrained-thin-box": {
+      "input_sha256": "806819b538099060aafc334da9b8d09609e2f60f8de863f4412447dac017c470",
+      "vertices": 8,
+      "triangles": 12,
+      "expected": {
+        "returncode": 3,
+        "before_bad": 8,
+        "after_bad": 8,
+        "all_vertices_fixed": true,
+        "candidate_written": false,
+        "source_oriented_surface_exact": true
+      }
+    }
+  },
+  "existing_output_refusal_required": true,
+  "qualification": {
+    "solver_admission_established": false,
+    "complete_semantic_constraint_map": false,
+    "strength_validated": false,
+    "manufacturing_authorized": false
+  }
+}

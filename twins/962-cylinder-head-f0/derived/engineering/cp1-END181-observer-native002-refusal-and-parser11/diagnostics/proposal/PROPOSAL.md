@@ -1,0 +1,13 @@
+# Native observation diagnostics — held source proposal
+
+The original native004 capture remains refused: native exit 0, caller exit 1 and outer exit 2. Its resource catch saved `PermissionError: [Errno 1] Operation not permitted` without the attempted operation or traceback. This proposal adds that missing diagnostic context; it establishes no cause and authorizes no retry.
+
+The proposed owner adds five literal operation labels immediately before the existing child-list, child-identity, aggregate RSS/live-group-filter, inclusive-byte and incremental-growth observations. Both existing exception branches retain phase, target PID, owner-relative monotonic elapsed time, existing adapter/verified-native group IDs and the full original traceback. The aggregate RSS label deliberately names its complete expression: a traceback distinguishes argument-filter `group_exists` failure from `sample_owned` or its nested `ps`/group operations. The PID fields record existing attribution only; no additional process query runs.
+
+The original `proc.poll()` ordering and live-child refusal/terminated-child exit-race distinction remain. No helper definition, dependency, native/caller command, deck, physics parameter, resource limit, signal/kill/wait behavior, byte accounting, admission condition or completion predicate changes. EPERM remains fatal. Diagnostic bytes consume the same receipt and output budgets. The existing native100s / outer115s / TERM10s / sampled2GiB / inclusive512MiB / positive-growth32MiB / thread1 controls remain.
+
+`source-reuse.json` records seven exact replacements, their complete inverse, unchanged imports and every unchanged top-level helper text/AST identity. `source.diff` is the complete narrow diff. Only source text was parsed: neither owner, caller, helper, fixture, native process nor runtime module was imported or executed.
+
+The proposed source intentionally retains the original fixed P/S/D/O constants and original protocol. It is an editable review artifact, not a launchable successor. The original namespace, source bytes and failed receipts are unchanged. No new actual, staging, admission or synthetic fixture exists in this proposal. The three grid descriptors and staged deck descriptor are inherited metadata; their bodies were not opened, hashed or statted.
+
+Before execution can be considered, preserve and review the saved failed-capture peer/root refusal decision, then independently review this exact source delta. Any future synthetic check, concrete namespace/actual or native invocation needs separate explicit authorization. The twelve mechanical failures and all measurement-completeness/physical gates remain open.

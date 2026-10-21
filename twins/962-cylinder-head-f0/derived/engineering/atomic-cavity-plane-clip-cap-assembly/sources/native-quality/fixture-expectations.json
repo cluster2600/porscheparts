@@ -1,0 +1,318 @@
+{
+  "schema": "962-read-only-quality-literal-fixtures/v1",
+  "source_only_unrun": true,
+  "face_quality_formula": "2*sqrt(3)*|cross| / sum(squared edge lengths)",
+  "area_predicate_is_squared_normal_ratio": true,
+  "derivation": "For epsilon<1, exactly two face normals have squared length epsilon^2, one has1 and one1+2epsilon^2. Four large/small pairs exceed1e8 iff epsilon2^-20; epsilon2^-10 stays below. Only the two large faces have nearly opposed outward normals and fail the1degree rule. Unit tetra passes. Sentinel face labels conservatively exercise affected selection even with unchanged coordinates.",
+  "expectations_are_analytic_not_native_observations": true,
+  "cases": [
+    {
+      "id": "unchanged-tetra",
+      "expected_native_returncode": 0,
+      "points": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "ordered_outward_faces": [
+        [
+          0,
+          2,
+          1
+        ],
+        [
+          0,
+          1,
+          3
+        ],
+        [
+          0,
+          3,
+          2
+        ],
+        [
+          1,
+          2,
+          3
+        ]
+      ],
+      "coordinate_origins": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "face_source_IDs": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "vertices": 4,
+      "triangles": 4,
+      "retained_coordinate_origins": 4,
+      "new_coordinate_sentinels": 0,
+      "affected_faces": 0,
+      "affected_neighbor_pairs": 0,
+      "area_ratio_failures": 0,
+      "dihedral_failures": 0,
+      "below_necessary_bound": 0,
+      "analytic_minimum": "sqrt(3)/2",
+      "signed_volume": "epsilon/6",
+      "expected_files": [
+        "report.json"
+      ],
+      "native_executed": false,
+      "old_face_preimages": 4,
+      "new_face_sentinels": 0
+    },
+    {
+      "id": "new-face-label-tetra",
+      "expected_native_returncode": 0,
+      "points": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "ordered_outward_faces": [
+        [
+          0,
+          2,
+          1
+        ],
+        [
+          0,
+          1,
+          3
+        ],
+        [
+          0,
+          3,
+          2
+        ],
+        [
+          1,
+          2,
+          3
+        ]
+      ],
+      "coordinate_origins": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "face_source_IDs": [
+        18446744073709551615,
+        1,
+        2,
+        3
+      ],
+      "vertices": 4,
+      "triangles": 4,
+      "retained_coordinate_origins": 4,
+      "new_coordinate_sentinels": 0,
+      "affected_faces": 1,
+      "affected_neighbor_pairs": 3,
+      "area_ratio_failures": 0,
+      "dihedral_failures": 0,
+      "below_necessary_bound": 0,
+      "analytic_minimum": "sqrt(3)/2",
+      "signed_volume": "epsilon/6",
+      "expected_files": [
+        "report.json"
+      ],
+      "native_executed": false,
+      "old_face_preimages": 3,
+      "new_face_sentinels": 1
+    },
+    {
+      "id": "area-ratio-sliver",
+      "expected_native_returncode": 3,
+      "points": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          9.5367431640625e-07,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "ordered_outward_faces": [
+        [
+          0,
+          2,
+          1
+        ],
+        [
+          0,
+          1,
+          3
+        ],
+        [
+          0,
+          3,
+          2
+        ],
+        [
+          1,
+          2,
+          3
+        ]
+      ],
+      "coordinate_origins": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "face_source_IDs": [
+        18446744073709551615,
+        18446744073709551615,
+        18446744073709551615,
+        18446744073709551615
+      ],
+      "vertices": 4,
+      "triangles": 4,
+      "retained_coordinate_origins": 4,
+      "new_coordinate_sentinels": 0,
+      "affected_faces": 4,
+      "affected_neighbor_pairs": 6,
+      "area_ratio_failures": 4,
+      "dihedral_failures": 1,
+      "below_necessary_bound": 2,
+      "analytic_minimum": "sqrt(3)*epsilon/(1+epsilon^2)",
+      "signed_volume": "epsilon/6",
+      "expected_files": [
+        "report.json"
+      ],
+      "native_executed": false,
+      "old_face_preimages": 0,
+      "new_face_sentinels": 4
+    },
+    {
+      "id": "dihedral-sliver",
+      "expected_native_returncode": 3,
+      "points": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0009765625,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "ordered_outward_faces": [
+        [
+          0,
+          2,
+          1
+        ],
+        [
+          0,
+          1,
+          3
+        ],
+        [
+          0,
+          3,
+          2
+        ],
+        [
+          1,
+          2,
+          3
+        ]
+      ],
+      "coordinate_origins": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "face_source_IDs": [
+        18446744073709551615,
+        18446744073709551615,
+        18446744073709551615,
+        18446744073709551615
+      ],
+      "vertices": 4,
+      "triangles": 4,
+      "retained_coordinate_origins": 4,
+      "new_coordinate_sentinels": 0,
+      "affected_faces": 4,
+      "affected_neighbor_pairs": 6,
+      "area_ratio_failures": 0,
+      "dihedral_failures": 1,
+      "below_necessary_bound": 2,
+      "analytic_minimum": "sqrt(3)*epsilon/(1+epsilon^2)",
+      "signed_volume": "epsilon/6",
+      "expected_files": [
+        "report.json"
+      ],
+      "native_executed": false,
+      "old_face_preimages": 0,
+      "new_face_sentinels": 4
+    }
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "schema": "962-cp1-failed-thermal-root-primary-web-context/v1",
+  "retrieved_UTC_date": "2026-10-17",
+  "scope": "Current primary documentation only. No correspondence to native7c06bdcefd source/build is established; no parameter change or native execution.",
+  "sources": [
+    {
+      "url": "https://mooseframework.inl.gov/application_usage/failed_solves.html",
+      "observation": "Documents failed solves cutting the time step until dtmin. Identifies nonlinear and linear residual histories, scaling and line search as diagnostic considerations.",
+      "inference": "Consistent with observed33 first-step failures; does not establish unique cause or a remedy."
+    },
+    {
+      "url": "https://mooseframework.inl.gov/source/timeintegrators/ImplicitEuler.html",
+      "observation": "Documents default backward Euler and separate contributions for linear systems.",
+      "inference": "A linear constant-property formulation may be studied separately; no success is predicted."
+    },
+    {
+      "url": "https://mooseframework.inl.gov/docs/doxygen/moose/classImplicitEuler.html",
+      "observation": "Current ImplicitEuler helper subtracts the old solution and multiplies by reciprocaldt. AD follows the same helper.",
+      "inference": "At400K, very small thermal changes may encounter floating-point representability limits; no assembled-residual replay or exact-native equivalence is asserted."
+    }
+  ],
+  "qualifications": {
+    "engineering_accepted": false,
+    "physics_qualified": false,
+    "material_qualified": false,
+    "process_calibrated": false,
+    "manufacturing_authorized": false
+  }
+}

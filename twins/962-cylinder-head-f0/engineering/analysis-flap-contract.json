@@ -1,0 +1,118 @@
+{
+  "schema": "962-analysis-flap-contract/v2",
+  "status": "predeclared_exact_decimator_flap_cancellation",
+  "length_unit": "mm",
+  "bore_mm": 95,
+  "input_hashes": {
+    "twins/962-cylinder-head-f0/derived/family/delivery-report.json": "90e5b91d4682b0a2a99a6c2966e2916c0302952d8ef42712dfa95d6cd771c904",
+    "twins/962-cylinder-head-f0/derived/family/bore-95-report.json": "5dc2c44ec6978cee9ea9bbd80c392227b68c3e13c0915e7f20e562cb489c7efb",
+    "twins/962-cylinder-head-f0/source/family/configs/bore-95.json": "2d1b4eafb6e331436cd6b29ce47092090a449c7f3991ec7e6208a980ca589efa",
+    "twins/962-cylinder-head-f0/source/family/HeadFamilyRunner.cs": "9abc2a2ae0ad3e6c476c033d5c68d11c712db81590af8d9ed40cca73a5964c50",
+    "twins/962-cylinder-head-f0/source/mesh_head.py": "69c8012e99057e384d44d6971d41f0e2cc7197a978120a7c566b0ad5a6477da5",
+    "work/962-family/bore-95-run-001/inspected-bound-002/solid.stl": "ba7a0e28dade659550705e9737177c64c7f6fecd8d86d01e31732d7e739cd906",
+    "work/962-family/bore-95-run-001/inspected-bound-002/coolant.stl": "457f4f64b8ea89ff6bee67857fa2381d4ba5c7fee8a17d255bb18c4a68b33bb2",
+    "work/962-family/bore-95-run-001/inspected-bound-002/dry-passages.stl": "60e35b06c3af912ff44d55f707064d5c54bea386b47313208ac16e9199a60873",
+    "twins/962-cylinder-head-f0/engineering/analysis-mesh-contract.json": "254a4fce59676e88a02931dc330cfe4d3396dab741c62534363425ca7e3cb7a2",
+    "work/962-engineering/analysis-surface-025-002/analysis-surface.npz": "4b1a0312769dd17137ff6e6b54a38348f66de65d9738969cd4415de1c12cae33",
+    "work/962-engineering/analysis-surface-025-002/worker-report.json": "22bcb9bf6b7b65e18d4db692cb0e8ac364c03bf0f46e38627c8f35514c5a4662",
+    "work/962-engineering/analysis-surface-025-002/receipt.json": "8c5517e4e2c16b834ea7455a78bd4fe35c1ab78ff2ef52e04ef81dda1371ba73",
+    "work/962-engineering/analysis-surface-025-002/duplicate-pair-diagnostic.py": "b21c1d838c3125812ab5c51cf6035ac8019467f96c50452020ef6df61c8b794f",
+    "work/962-engineering/analysis-surface-025-002/duplicate-pair-diagnostic.json": "93478012f24a7c4700e723daed921c8442dc999447a7b3785ec8e6b5aadc5d60",
+    "twins/962-cylinder-head-f0/source/prepare_head_analysis.py": "cda8f7155a8c22ab66898f07d1ad452ba5384ad7f75a1f012606685cd8a12dc3",
+    "twins/962-cylinder-head-f0/source/family/HeadFamilyStudy.cs": "21212bbe60d78c495d705441fe5ed1599aa9a5b244dfadad4d2e4727f71d23fe"
+  },
+  "immutable_master": "work/962-family/bore-95-run-001/inspected-bound-002/solid.stl",
+  "source_voxel_size_mm": 0.5,
+  "representation_deviation_budget_mm": 0.25,
+  "representation_refinement_budgets_mm": [
+    0.25,
+    0.125,
+    0.0625
+  ],
+  "deviation_meaning": "Numerical analysis discretization budget relative to the retained polygon surface; not a Porsche dimensional accuracy or manufacturing tolerance.",
+  "preparation": {
+    "method": "Consume the preserved rejected VTK candidate, cancel only exact opposite oriented duplicate-pair fins, compact newly unused vertices, then independently audit against the immutable original.",
+    "new_decimation_run": false,
+    "expected_exact_opposite_pairs": 8,
+    "required_faces_per_pair": 2,
+    "required_unique_tip_vertices_per_pair": 1,
+    "tip_incident_face_count": 2,
+    "attachment_edge_incident_face_count_before": 4,
+    "expected_removed_faces": 16,
+    "expected_unused_vertices_removed": 8,
+    "coordinate_tolerance_or_welding": false,
+    "hole_filling": false,
+    "source_geometry_repair": false,
+    "derivative_artifact_pair_cancellation": true,
+    "preserve_before_after_index_maps": true,
+    "preserve_original_candidate_unchanged": true,
+    "restored_Euler_sufficient_for_admission": false
+  },
+  "surface_gates": {
+    "finite_nondegenerate_triangles": true,
+    "positive_signed_volume": true,
+    "closed_oriented_edge_manifold": true,
+    "vertex_link_manifold": true,
+    "connected_components": 1,
+    "euler_characteristic": -208,
+    "global_self_intersection_pairs": 0,
+    "two_sided_continuous_distance_upper_bound_mm": 0.25,
+    "each_distance_interval_absolute_gap_mm": 0.0001,
+    "both_distance_intervals_completed": true,
+    "rounding_error_certificate": false,
+    "sampled_vertex_distances_sufficient": false,
+    "unchanged_fluid_domain_hashes_required": true,
+    "dry_opening_probe_count": 8,
+    "dry_opening_probes_unblocked": true,
+    "feature_channel_BCC_connectivity_review_required": true,
+    "sampled_water_dry_clearance_minimum_mm": 4.0,
+    "conformal_metal_fluid_interface_validated": false,
+    "arbitrary_volume_change_percentage_gate": null,
+    "global_self_intersection_audit_completed": true
+  },
+  "volume_mesh_gates": {
+    "finite_positive_jacobian_and_signed_volume": true,
+    "minimum_SICN": 0.1,
+    "actual_oriented_tetra_boundary_equals_analysis_surface": true,
+    "volume_relative_bookkeeping_bound": 1e-06,
+    "bookkeeping_bound_is_manufacturing_tolerance": false,
+    "volume_bookkeeping_reference": "The accepted derivative analysis surface, never the different original source surface."
+  },
+  "convergence": {
+    "established": false,
+    "required_representation_budgets_mm": [
+      0.25,
+      0.125,
+      0.0625
+    ],
+    "required_volume_size_progression": [
+      "h",
+      "h/2",
+      "h/4"
+    ],
+    "field_observable_tolerances": "Must be declared with the actual thermal/structural case before solving.",
+    "required_observables": [
+      "thermal energy balance",
+      "maximum temperature",
+      "displacement",
+      "stress away from declared singular regions"
+    ]
+  },
+  "resource_limits": {
+    "preparation_deadline_s": 300,
+    "audit_deadline_s": 300,
+    "maximum_threads": 4,
+    "cloud_or_install_authorized": false
+  },
+  "qualification": {
+    "solver_admission_established": false,
+    "engineering_accepted": false,
+    "thermal_performance_validated": false,
+    "strength_validated": false,
+    "manufacturing_authorized": false
+  },
+  "parent_contract": {
+    "path": "twins/962-cylinder-head-f0/engineering/analysis-mesh-contract.json",
+    "sha256": "254a4fce59676e88a02931dc330cfe4d3396dab741c62534363425ca7e3cb7a2"
+  }
+}

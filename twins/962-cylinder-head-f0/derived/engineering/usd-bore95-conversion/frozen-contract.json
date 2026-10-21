@@ -1,0 +1,44 @@
+{
+  "schema_version": "1.0.0",
+  "scope": "one original inspected bore95 bionic-study solid STL to USD; geometry preparation only",
+  "source_sha256": "ba7a0e28dade659550705e9737177c64c7f6fecd8d86d01e31732d7e739cd906",
+  "source_bytes": 90235384,
+  "source_triangles": 1804706,
+  "source_coordinate_unit": "millimeter per existing generator/report; STL does not encode units",
+  "expected_physical_frame": "identity mapping of source X,Y,Z in millimeters to USD world meters; no fitted or corrective transform",
+  "expected_bounds_mm": [
+    [
+      -76.0,
+      -75.0,
+      -0.0005928563768975437
+    ],
+    [
+      76.0,
+      75.0,
+      90.00059509277344
+    ]
+  ],
+  "conversion_runs_allowed": 1,
+  "wall_deadline_seconds": 90,
+  "address_space_limit_bytes": 6442450944,
+  "cpu_affinity_count": 2,
+  "cpu_seconds_limit_per_process": 150,
+  "converter_route": "unmodified installed convert-to-usd router delegates to pinned NVIDIA wheel; default options, no physical-property conversion enabled",
+  "mapping_checks": [
+    "source hashes before/after and remote copy exact",
+    "actual vendor wrapper exit/output path and USD hash",
+    "authored stage unit/up-axis/defaultPrim plus complete world transforms",
+    "aggregate mesh faces/triangles/points and finite valid indices",
+    "USD world-space bounds in source millimeters versus original bounds",
+    "exact oriented triangle multiset equality after world-unit conversion to source IEEEfloat32, signed-zero normalized; cyclic face vertex order allowed, winding reversal forbidden"
+  ],
+  "numeric_policy": "Report exact bound deltas without manufacturing tolerances. Full coordinate mapping acceptance uses the frozen exact float32 triangle multiset comparison, not a fitted or relaxed tolerance.",
+  "formal_minimum_policy": "Run actual documented validation preflight check-only. Never invent component readiness or disable guards. Preserve reference refusal if bundled runtime discovery is not accepted.",
+  "qualification": {
+    "historical_fidelity_validated": false,
+    "physics_twin_created": false,
+    "solver_fields_imported": false,
+    "material_calibrated": false,
+    "manufacturing_authorized": false
+  }
+}

@@ -1,104 +1,113 @@
-# Kit 962 : campagne d'interfaces du donneur, gate G1
+<a id="kit-962--campagne-dinterfaces-du-donneur-gate-g1"></a>
 
-**Cible confirmée : 1 000 ch métriques au vilebrequin, banc puis piste.**
-Le donneur reste à identifier ; le M64/60 est un candidat, pas une sélection.
-Ce dossier prépare la mesure. Il ne contient aucune nouvelle cote Porsche.
+# 962 kit: donor-interface campaign, gate G1
 
-Le [contrat M64 existant](../m64-cylinder-head/interface-contract.json) et son
-[validateur documentaire](../m64-cylinder-head/validate_interface_contract.py)
-restent les références pour les interfaces M64. Leur vérification le
-12 octobre 2026 laisse huit interfaces critiques incomplètes, la variante
-non sélectionnée et quatre preuves de qualification absentes. Le
-[contrat 962 F0](interface-contract.json) décrit une autre référence : ses
-cotes hypothétiques ne doivent pas être transférées au donneur.
+**Confirmed target: 1,000 metric horsepower at the crankshaft, bench then track.**
+The donor remains to be identified; the M64/60 is a candidate, not a selection.
+This dossier prepares measurement. It contains no new Porsche dimensions.
 
-## Pièces et repères avant la mesure
+The [existing M64 contract](../m64-cylinder-head/interface-contract.json) and its
+[documentary validator](../m64-cylinder-head/validate_interface_contract.py)
+remain the references for M64 interfaces. Their October 12, 2026 check leaves
+eight critical interfaces incomplete, the variant unselected and four
+qualification evidence items absent. The [962 F0 contract](interface-contract.json)
+describes another reference: its hypothetical dimensions must not be
+transferred to the donor.
 
-Identifier type moteur exact, millésime, banc, position cylindre, références
-de carter/cylindre/culasse/porte-arbres et modifications déjà présentes.
-Conserver les identifiants personnels et numéros du véhicule hors Git.
-Rapprocher les références du [registre documentaire M64](../../docs/reports/M64_INTERFACE_SOURCE_REGISTER.md).
-Une 964 Turbo 3.3 ne doit pas être assimilée à un M64 de Turbo 3.6.
+<a id="pièces-et-repères-avant-la-mesure"></a>
 
-Présenter un ensemble apparié carter–cylindre–culasse–porte-arbres, plus les
-joints et pièces de distribution correspondants. Documenter état, usure,
-réparations et démontage ; une mesure sur une pièce usée n'est pas une
-tolérance de fabrication. Relever chaque pièce/banc avant de conclure à une
-symétrie ou à l'interchangeabilité.
+## Parts and datums before measurement
 
-Le métrologue doit définir un repère reproductible : surface de référence,
-axe de registre/cylindre et orientation donnée par une caractéristique
-identifiée. Ce sont des **repères à établir**, pas des datums OEM connus.
-Consigner transformation vers le repère d'assemblage et température de mesure.
-Ne pas aligner le scan à l'œil sur le F0.
+Identify the exact engine type, model year, bank, cylinder position,
+case/cylinder/head/camshaft-carrier part numbers and existing modifications.
+Keep personal identifiers and vehicle numbers out of Git.
+Cross-check the part numbers with the [M64 documentary register](../../docs/reports/M64_INTERFACE_SOURCE_REGISTER.md).
+A 964 Turbo 3.3 must not be treated as a Turbo 3.6 M64.
 
-## Feuille de mesure et méthode
+Provide a matched case/cylinder/head/camshaft-carrier assembly, plus the
+corresponding seals and valvetrain parts. Document condition, wear, repairs
+and disassembly; a worn-part measurement is not a manufacturing tolerance.
+Measure each part/bank before concluding symmetry or interchangeability.
 
-La [feuille CSV](donor-measurements.template.csv) est un index des contrôles,
-à copier sous `work/` pour chaque pièce/session. Les champs de résultat sont
-vides. Dupliquer chaque ligne pour chaque goujon, axe, port, cylindre ou
-point réellement contrôlé ; `feature_instance` doit lever toute ambiguïté.
-Enregistrer les répétitions brutes dans `raw_evidence_ref`, pas seulement une
-moyenne. Déclarer unité, instrument, étalonnage, méthode, incertitude et état
-de revue. Une cellule vide reste une inconnue, jamais zéro.
+The metrologist must define a repeatable frame: reference surface,
+register/cylinder axis and orientation defined by an identified feature.
+These are **datums to establish**, not known OEM datums.
+Record the transformation to the assembly frame and measurement temperature.
+Do not visually align the scan to F0.
 
-| Famille d'interface | Acquisition proposée | Livrable à obtenir |
+<a id="feuille-de-mesure-et-méthode"></a>
+
+## Measurement sheet and method
+
+The [CSV sheet](donor-measurements.template.csv) indexes inspections and is
+to be copied under `work/` for each part/session. Result fields are blank.
+Duplicate each row for every stud, axis, port, cylinder or point actually
+inspected; `feature_instance` must remove ambiguity.
+Record raw repetitions in `raw_evidence_ref`, not only an average.
+Declare unit, instrument, calibration, method, uncertainty and review status.
+A blank cell remains unknown, never zero.
+
+| Interface family | Proposed acquisition | Required deliverable |
 |---|---|---|
-| Goujons et fixation | MMT sur carter, cylindre et culasse appariés | Chaque axe et position dans le repère, filet/engagement, faces d'appui ; référence du goujon |
-| Registre et plan de feu | Alésomètre/MMT, profondeur et profil | Diamètres, profondeur, portée, rainure/joint, forme et état de surface |
-| Porte-arbres/distribution | MMT et relevé de l'ensemble | Axes, entraxes, paliers, plans, arrivée chaîne/engrenages, chemin d'huile et enveloppe |
-| Huile | Relevé externe puis CT si intérieur inaccessible | Positions, sections et connexions alimentation/retours ; aucun débit déduit d'un diamètre |
-| Admission/échappement | MMT, joints et scan référencé | Axes, faces, fixations, enveloppes et sections des ports |
-| Sièges/guides/bougies | Métrologie de la référence puis dessin fournisseur | Axes et emmanchements de la pièce 2V ; nouveaux axes 4V/double allumage à concevoir séparément |
+| Studs and mounting | CMM on matched case, cylinder and head | Every axis and position in the frame, thread/engagement, bearing faces; stud part number |
+| Register and combustion deck | Bore gauge/CMM, depth and profile | Diameters, depth, seat, groove/seal, form and surface finish |
+| Camshaft carrier/valvetrain | CMM and assembly measurements | Axes, center distances, bearings, planes, chain/gear entry, oil path and envelope |
+| Oil | External measurements, then CT if the interior is inaccessible | Supply/return positions, sections and connections; no flow inferred from a diameter |
+| Intake/exhaust | CMM, seals and referenced scan | Axes, faces, fasteners, envelopes and port sections |
+| Seats/guides/spark plugs | Reference metrology, then supplier drawing | Axes and interference fits of the 2V part; new 4V/twin-ignition axes to design separately |
 
-MMT signifie machine à mesurer tridimensionnelle. Le choix des instruments
-et leur incertitude doivent convenir aux tolérances recherchées. Un pied à
-coulisse peut contrôler une échelle ; il ne remplace pas une mesure d'axes.
-Trois reprises indépendantes au minimum par dimension critique constituent
-un premier contrôle de répétabilité, sans fixer à elles seules l'incertitude.
+CMM means coordinate measuring machine. Instrument selection and uncertainty
+must suit the required tolerances. A caliper can check scale; it does not
+replace axis measurements. At least three independent setups per critical
+dimension provide an initial repeatability check, without determining
+uncertainty on their own.
 
-La cotation fonctionnelle et les tolérances du nouveau dessin doivent être
-établies par le motoriste/concepteur : ne pas utiliser l'incertitude de mesure
-comme tolérance, ni reconstruire une tolérance à partir d'un seul donneur.
+The engine builder/designer must establish functional dimensioning and the
+new drawing's tolerances: do not use measurement uncertainty as a tolerance
+or reconstruct a tolerance from a single donor.
 
-## CT et raccordement au jumeau
+<a id="ct-et-raccordement-au-jumeau"></a>
 
-Si un CT est nécessaire, demander couverture, résolution et incertitude
-évaluée, segmentation, données natives et surfaces, avec droits de réemploi
-précisés. Comparer au moins trois caractéristiques accessibles mesurées
-indépendamment, réparties dans le volume ; une taille de voxel ne prouve pas
-l'exactitude. Tracer artefacts, surfaces non résolues et orientation montée.
-Le CT d'une culasse 2V renseigne ses interfaces et passages d'origine, pas
-la faisabilité d'une nouvelle chambre 4V et de son circuit d'eau.
+## CT and connection to the twin
 
-Conserver scans et rapports bruts dans un espace privé autorisé. Publier
-uniquement les résultats partageables, locateurs, empreintes et décisions.
-Le [modèle de fiche de mesure existant](../../catalog/templates/measurement-record.json)
-peut servir aux dimensions scalaires, après remplacement de **tous** ses
-exemples. Les coordonnées, axes, profils et incertitudes de recalage demandent
-un rapport métrologique propre ; le CSV seul ne les valide pas.
+If CT is necessary, request assessed coverage, resolution and uncertainty,
+segmentation, native data and surfaces, with explicit reuse rights.
+Compare at least three independently measured accessible features distributed
+through the volume; voxel size does not prove accuracy.
+Record artifacts, unresolved surfaces and installed orientation.
+CT of a 2V head documents its original interfaces and passages, not the
+feasibility of a new 4V chamber and its coolant circuit.
 
-Pour le bas moteur, compléter la hauteur d'empilage, la position du piston au
-PMH, les registres du carter et l'entraxe des cylindres. La revue de conservation
-du carter exige aussi paliers, sections porteuses, fixation des goujons,
-vilebrequin/bielles/pistons exacts et état après inspection. La feuille culasse
-ne constitue pas à elle seule un dossier de résistance du bas moteur.
+Keep raw scans and reports in an authorized private location. Publish only
+shareable results, locators, digests and decisions.
+The [existing measurement-record template](../../catalog/templates/measurement-record.json)
+can serve scalar dimensions after replacing **all** its examples.
+Coordinates, axes, profiles and registration uncertainties require a specific
+metrology report; the CSV alone does not validate them.
 
-Une acquisition acceptée alimente le contrat du **donneur exact**, puis un
-nouveau modèle contraint, inspecté indépendamment. Le générateur F0 et ses
-empreintes restent conservés. Le chemin d'effort à vérifier est chambre/plan
-de feu → cylindre et fixation → carter, avec effets de la précharge et de la
-dilatation ; un couple de serrage ne suffit pas à connaître la précharge.
+For the bottom end, complete stack height, piston position at TDC,
+crankcase registers and cylinder pitch. The review of crankcase retention
+also requires bearings, load-bearing sections, stud attachments, the exact
+crankshaft/rods/pistons and inspected condition. The head sheet alone is not
+a bottom-end strength dossier.
 
-## Sortie de G1
+An accepted acquisition feeds the **exact donor's** contract, then a new
+constrained model inspected independently. The F0 generator and its digests
+remain preserved. The load path to verify is chamber/combustion deck →
+cylinder and mounting → case, including preload and expansion effects;
+tightening torque alone does not establish preload.
 
-G1 exige identité du donneur, interfaces revues avec sources et tolérances,
-repère commun, incompatibilités explicites et décision de conservation du
-bas moteur. Les charges de combustion, températures, précharge et durée de
-vie doivent être fournies pour la revue mécanique ; 1 000 ch ne les définit
-pas. Réussir une fiche ou le validateur documentaire n'autorise ni fabrication
-ni essai moteur. La [qualification matière](MATERIAL_QUALIFICATION.md) et
-les gates suivantes du [programme](KIT_962_PROGRAMME.md) restent ouvertes.
+<a id="sortie-de-g1"></a>
 
-Ce dossier n'envoie aucune demande à un laboratoire et ne commande ni pièce
-ni CT. La sélection et l'accès au donneur restent à confirmer.
+## G1 output
+
+G1 requires donor identity, reviewed interfaces with sources and tolerances,
+a common frame, explicit incompatibilities and a bottom-end retention decision.
+Combustion loads, temperatures, preload and service life must be supplied
+for mechanical review; 1,000 metric horsepower does not define them.
+Completing a sheet or passing the documentary validator authorizes neither
+manufacturing nor engine testing. [Material qualification](MATERIAL_QUALIFICATION.md)
+and the subsequent [program](KIT_962_PROGRAMME.md) gates remain open.
+
+This dossier sends no request to a laboratory and orders no part or CT.
+Donor selection and access remain to be confirmed.

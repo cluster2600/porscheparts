@@ -1,0 +1,11 @@
+--- assessor001/assess_cube.py
++++ assessor002/assess_cube.py
+@@ -265,7 +265,7 @@
+     for name,h in native['artifact_sha256'].items():
+         rel=Path(name);need(not rel.is_absolute() and '..' not in rel.parts and not (directory/rel).is_symlink() and sha(directory/rel)==h,'Exact safe native artifact: '+name)
+     need(sha(c['card'])==CARD_SHA,'Exact fictitious affine card');card=json.loads(Path(c['card']).read_text());reference=json.loads(Path(c['reference']).read_text())
+-    required=[__file__,c['card'],c['reference'],c['primary_side_source'],str(directory/'native-execution.json')]
++    required=[__file__,c['card'],c['reference'],c['primary_side_source'],str(directory/'native-execution.json'),str(directory/'native.log'),str(directory/'frozen-contract.json')]
+     for field in ['Exodus_file','nodal_CSV','fields_CSV','operator','preconditioner','rhs','correction','ksp']:
+         path=Path(c[field]);need(path.parent.resolve()==directory.resolve() and path.name in native['artifact_sha256'],'Consumed field must be original native artifact: '+field)
+         required.append(str(path))

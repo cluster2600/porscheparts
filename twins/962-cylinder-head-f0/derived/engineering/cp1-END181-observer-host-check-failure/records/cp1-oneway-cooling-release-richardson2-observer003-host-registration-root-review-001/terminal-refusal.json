@@ -1,0 +1,87 @@
+{
+  "schema": "962-observer003-root-host-check-terminal-refusal/v1",
+  "decision": "REFUSED_HOST_SIGSEGV_DESPITE_POSITIVE_INPUT_MARKERS",
+  "receipt": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer003-host-registration-root-execution-001/receipt.json",
+    "sha256": "40f4897bcea42a240a92e6700b39b91e9083d1b2dc550fb246ee79b322dd57c6",
+    "bytes": 447727
+  },
+  "admission": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer003-host-registration-root-execution-001/admission.json",
+    "sha256": "c281695c488bc5c2904735e142f6f8079ba57a8c228d78ef2cc0dbab5c4ed8b8",
+    "bytes": 3722
+  },
+  "outer_owner_returncode": 2,
+  "outer_owner_session": 88704,
+  "outer_argv": [
+    "/Library/Frameworks/Python.framework/Versions/3.10/bin/python3.10",
+    "-B",
+    "-I",
+    "-S",
+    "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/cp1-oneway-cooling-release-richardson2-observer003-host-registration-owner-prep-001/run_host_check_once.py",
+    "c281695c488bc5c2904735e142f6f8079ba57a8c228d78ef2cc0dbab5c4ed8b8"
+  ],
+  "outer_observation": "Root exec first yieldedsession88704, write_stdin then reported exit_code2; no rerun.",
+  "raw_host_returncode": -11,
+  "signal": "SIGSEGV",
+  "single_complete_type_frame": true,
+  "observer_type_count": 1,
+  "Syntax_OK": true,
+  "plugin_path_observed": true,
+  "all63_selected_records_unchanged": true,
+  "all22_provider_paths_unchanged": true,
+  "root_peer_and_control_records_after": {
+    "actual": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer003-host-registration-execution-prep-001/actual-contract.json",
+      "sha256": "18a8e43248b97fe4e810e606124eb6e291a401248bd6c63efa4733cbca56aa2c",
+      "bytes": 5876
+    },
+    "controller": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer003-host-registration-owner-prep-001/run_host_check_once.py",
+      "sha256": "c868be7615b080cf4d0437835e5b30329aea16496321ec131672754783346317",
+      "bytes": 16384
+    },
+    "preflight": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer003-host-registration-execution-prep-001/input-runtime-preflight.002.json",
+      "sha256": "46aaa402d7bc73f2a14f04a07228a5922c4b4ee22fc2888af5cf717042614991",
+      "bytes": 40546
+    },
+    "exact_child_peer": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer003-host-registration-exact-child-peer-001/review.json",
+      "sha256": "e8fd801e12851dcdf6bc395db0fe23f0de1623303d71b163d52e3eec282f3d3a",
+      "bytes": 8119
+    },
+    "exact_child_bindings": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer003-host-registration-exact-child-peer-001/bindings.json",
+      "sha256": "c513e4e5322f4b63f0a982e200f6d15fa901fc798b6309324e1ab1acef4212ca",
+      "bytes": 41244
+    },
+    "outer_no_site_peer": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer003-host-registration-outer-no-site-peer-001/review.json",
+      "sha256": "9a068565713e9989149f6fd60e998015e0b538782d2b57b5134c40a98682ecd5",
+      "bytes": 4101
+    },
+    "outer_no_site_bindings": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer003-host-registration-outer-no-site-peer-001/bindings.json",
+      "sha256": "fbbe9d8d150452d15f210ab229fd31052c6bfb1ed9a1b2e117d95619d903f321",
+      "bytes": 1766
+    }
+  },
+  "complete_directory_bytes": 1780337,
+  "pinned_input_bytes": 1213802,
+  "complete_owned_bytes_including_receipt": 566535,
+  "within32MiB": true,
+  "owned_group_absent": true,
+  "controller_stop_requests": [],
+  "termination": {
+    "actions": [],
+    "returncode": -11,
+    "group_absent": true
+  },
+  "registration_checkpoint_accepted": false,
+  "cause_established": false,
+  "native_solve_requested": false,
+  "callback_or_live_map_requested": false,
+  "physical_acceptance": false,
+  "automatic_retry": false
+}

@@ -1,0 +1,157 @@
+{
+  "schema": "962-endpoint003-execution-child/v1",
+  "status": "one_reviewed_original_head003_execution_authorized",
+  "phase": "head",
+  "root_authorized": true,
+  "root_and_peer_review_complete": true,
+  "automatic_retry": false,
+  "maximum_passes": 1,
+  "image_id": "sha256:57c6b17ed0bd093a61a3d3cecb7563e912caeb3832fd59e8cec2d4d9d4d1e2f8",
+  "limits": {
+    "cpus": 2,
+    "memory_bytes": 4294967296,
+    "swap_bytes": 0,
+    "hard_wall_seconds_each": 300,
+    "tmpfs_bytes": 0,
+    "network": "none"
+  },
+  "scope": "Exactly one bounded endpoint003 pass on the immutable original head; no automatic follow-up or retry",
+  "held_recipe_sha256": "1b9f390bd28e76b0eaea28bb2cdca13a5f12c9bcd1761af81173bfb0413c58ef",
+  "authorized_UTC": "2026-10-16T21:45:23.301647+00:00",
+  "geometry_policy": {
+    "epsilon_mm": 0.0625,
+    "reference": "Exactly original immutable in_patch faces, in original face order; CGAL face_range constructor.",
+    "patch_seed_rule": "Unchanged triangle_SICN < 2/29, then original faces incident to any original seed vertex; no recursive expansion, halo, boxes, transforms or candidate reference.",
+    "proof": "P subset S implies distance(x,S) <= distance(x,P); patch-envelope containment is a stricter sufficient candidate-to-original screen, not original-to-candidate coverage.",
+    "unchanged_policy": "All endpoint-only, fixed/exterior, zero-length, whole-fan normal/positive-quality/local-improvement, topology and postconditions preserved.",
+    "remaining_storage": "Full original and candidate Surface_mesh graphs plus global SMS queue remain. Memory success and previous OOM allocation stage are unknown."
+  },
+  "report_expectations": {
+    "flushed_stage_order": [
+      "original_import_begin",
+      "original_import_complete",
+      "candidate_copy_begin",
+      "candidate_copy_complete",
+      "original_quality_scan_begin",
+      "original_quality_scan_complete",
+      "patch_reference_exported",
+      "patch_envelope_build_begin",
+      "patch_envelope_build_complete",
+      "SMS_begin",
+      "SMS_returned",
+      "result_export_begin",
+      "result_export_complete"
+    ],
+    "native_log_format": "JSONL progress records followed by a final JSON report. Consume head-endpoint003/report.json separately; the complete native log is not a single report.",
+    "ordered_reference_ID_bytes_required": true,
+    "source_coordinate_origins": "Every output vertex coordinate must equal its recorded original indexed coordinate; the map is not full ancestry for removed vertices.",
+    "report_and_candidate_are_proposals_only": true,
+    "absent_later_stage_or_report_establishes_success": false
+  },
+  "stop_and_failure": "One bounded request, no retry, escalation, fallback, smoothing, transform, added patch or geometry regeneration. Preserve partial, stagnated, OOM, deadline, setup and cleanup outcomes. The frozen helper kills/reaps verified owned processes and removes only stopped owned containers. Uncertain cleanup is a refusal.",
+  "resource_scope": {
+    "full_original_and_candidate_graphs_and_global_SMS_queue_remain": true,
+    "memory_success_established": false,
+    "prior_OOM_allocation_stage_established": false,
+    "source_soft_alarm_seconds": 285,
+    "source_soft_alarm_scope": "Starts immediately before SMS; the external controller bounds the whole invocation to 300 seconds."
+  },
+  "after_pass_required": {
+    "full_actual_surface_arrays_and_source_coordinate_origin_map": true,
+    "all_fixed_original_coordinates_and_exterior_oriented_faces_exact": true,
+    "count_below_triangle_SICN_2_over29": 0,
+    "global_minimum_triangle_quality_nonworsening": true,
+    "finite_nondegenerate_closed_oriented_edge_and_vertex_manifold": true,
+    "components": 1,
+    "euler_characteristic": -208,
+    "global_self_intersection_pairs": 0,
+    "independent_whole_surface_two_directed_distance_upper_mm": 0.0625,
+    "each_distance_interval_gap_mm": 0.0001,
+    "recompute_exact_shared_facet_reduction_if_used": true,
+    "full_opposite_distance_targets_required": true,
+    "vertex_sampling_sufficient": false,
+    "unchanged_fluid_hashes_required": true,
+    "eight_dry_opening_probes_unblocked": true,
+    "original_sampled_water_dry_clearance_minimum_mm": 4.0,
+    "independent_feature_channel_BCC_review_required": true,
+    "complete_Porsche_semantic_interface_map_claimed": false
+  },
+  "independent_distance_scope": "The unchanged 0.0625 mm original-patch envelope is only a conservative local candidate-to-original screen. Both completed full-original directed CUB intervals remain required at upper <=0.0625 mm and gap <=0.0001 mm, with recomputed exact shared-facet reduction and complete opposite distance targets. ID exports or vertex sampling do not establish that gate.",
+  "later_volume_gates": {
+    "separate_authorization_required": true,
+    "actual_tetra_minimum_SICN": 0.1,
+    "all_finite_positive_Jacobians_and_volumes": true,
+    "exact_oriented_tetra_boundary_and_opposite_internal_pairs": true,
+    "saved_mesh_exact_readback": true,
+    "relative_volume_bookkeeping_maximum": 1e-06
+  },
+  "automatic_followup_authorized": {
+    "CUB": false,
+    "global_intersection_audit": false,
+    "tetrahedralisation": false,
+    "head_thermal_or_strength": false,
+    "LPBF": false
+  },
+  "qualification": {
+    "candidate_surface_admitted": false,
+    "solver_admission_established": false,
+    "head_physics_executed": false,
+    "manufacturing_authorized": false
+  },
+  "fixture_evidence_scope": "Four completed synthetic software fixtures and both retained-output reviews are bound exactly; they do not establish head memory success, head distance, accepted head surface, volume quality or physics.",
+  "projection": "Original allowlisted authorization, controls, assumptions and future acceptance requirements. These are pre-run requirements, not completed gates. Commands, arguments, native mount paths and preparation path omitted.",
+  "original_sha256": "00c604b9e415a6541ab4c2ca3cf4b198c88beb89ed920e2da717ff95dfeca832",
+  "preparation_sha256": "a6b979eb8be44db584c7f7ef1ab7fb1f3f8fb1acdcbda2f6c20ab1ccc04669cc",
+  "source_attribution": {
+    "phase_controller_sha256": "424c77954b669f6eee2256bb2c304101cad1107324d2a79e6aa55c6f47b36799",
+    "phase_test_sha256": "3173d5967f585f4d41478b4c65e895c61e70ce5a9e20fa0c1853b84add5cd740",
+    "endpoint003_cpp_sha256": "e80bb80f39f25f3c30cb02b7096df06c093de9343dab9afffc33720797e8256b",
+    "metadata_source_sha256": "a88477c47d406cea3761c324e1f6eb82dcb1c2b962698d7f328261c6cef2929b",
+    "cleanup_source_sha256": "b214e1cece8dbf66be6071199cbdf1a8e22a2a59328888011de17492f923c86b",
+    "historical_head002_source_is_active": false,
+    "scope": "The phase controller captures itself, the frozen metadata companion and the frozen cleanup core. Old head002 controller/source pins retain historical failed evidence and are not the active controller."
+  },
+  "input_surface": {
+    "sha256": "894ece6e63d99684fd7c8710caf73132cd73731ac8bc667548c21c85962d4c95",
+    "vertices": 902145,
+    "faces": 1804706,
+    "frame": "Original coordinates in millimetres; no transform."
+  },
+  "binary_sha256": "ae6afd3bddf99775c3b38c11b40fb98a90a05ed222256e53ab99a419552f6eae",
+  "expected_head_reference": {
+    "source_sha256": "894ece6e63d99684fd7c8710caf73132cd73731ac8bc667548c21c85962d4c95",
+    "original_vertices": 902145,
+    "original_triangles": 1804706,
+    "seed_faces": 744,
+    "seed_vertices": 1284,
+    "patch_faces": 4704,
+    "patch_vertices": 3858,
+    "expected_exports": {
+      "patch-reference-face-ids.u64": {
+        "count": 4704,
+        "bytes": 37632,
+        "sha256": "c93dcc98059fed493f2d50d64cbdd4a6ca4b3d79199af390442cea4506175763"
+      },
+      "patch-reference-vertex-ids.u64": {
+        "count": 3858,
+        "bytes": 30864,
+        "sha256": "b237730abc73107f5e0663eaeae516555a5db4db748a0eb4a18be135f71e30e9"
+      }
+    }
+  },
+  "reviews": {
+    "actual_software_fixtures_root_and_peer_clear": true,
+    "head_recipe_root_review": "CLEAR: full exact recipe and all142 current pins",
+    "head_recipe_independent_review": "CLEAR: historical_reference exact held recipe, source, controls and all142 current pins",
+    "fresh_child_authorization_required": true
+  },
+  "jobs": [
+    {
+      "label": "head-endpoint003",
+      "expected_returncodes": [
+        0,
+        3
+      ]
+    }
+  ]
+}

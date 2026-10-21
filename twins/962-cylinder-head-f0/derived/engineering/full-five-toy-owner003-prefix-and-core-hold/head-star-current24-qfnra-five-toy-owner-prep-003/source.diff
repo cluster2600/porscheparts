@@ -1,0 +1,42 @@
+--- source002/run_owner_once.py
++++ source003/run_owner_once.py
+@@ -6,7 +6,7 @@
+ 
+ R=Path('/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993')
+ E=R/'work/962-engineering'
+-P=E/'head-star-current24-qfnra-five-toy-owner-prep-002'
++P=E/'head-star-current24-qfnra-five-toy-owner-prep-003'
+ D=E/'head-star-current24-qfnra-five-toy-root-execution-001'
+ PY='/Library/Frameworks/Python.framework/Versions/3.10/bin/python3.10'
+ CAP=33554432
+@@ -205,7 +205,7 @@
+     need(inclusive_bytes(records)<=CAP,'Preflight inclusive cap exceeded')
+     gate(40,'Preflight exhausted normal reservation')
+     argv=[PY,'-B','-I','-S',str(R/actual['wrapper']['path']),rec(A)['sha256']]
+-    need(auth['argv']==argv,'Fixed single stopped-wrapper argv required')
++    need(auth['argv_prefix']==argv[:-1],'Fixed single stopped-wrapper argv required')
+     return auth,actual,records,before,aliases,argv
+ 
+ 
+--- source002/stopped_exec_wrapper.py
++++ source003/stopped_exec_wrapper.py
+@@ -2,7 +2,7 @@
+ import os,re,signal,sys
+ 
+ PY='/Library/Frameworks/Python.framework/Versions/3.10/bin/python3.10'
+-ADAPTER='/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/head-star-current24-qfnra-five-toy-owner-prep-002/run_fixed_adapter.py'
++ADAPTER='/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/head-star-current24-qfnra-five-toy-owner-prep-003/run_fixed_adapter.py'
+ 
+ def main():
+     if not (len(sys.argv)==2 and re.fullmatch('[0-9a-f]{64}',sys.argv[1])):
+--- source002/run_fixed_adapter.py
++++ source003/run_fixed_adapter.py
+@@ -6,7 +6,7 @@
+ 
+ R=Path('/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993')
+ E=R/'work/962-engineering'
+-P=E/'head-star-current24-qfnra-five-toy-owner-prep-002'
++P=E/'head-star-current24-qfnra-five-toy-owner-prep-003'
+ D=E/'head-star-current24-qfnra-five-toy-root-execution-001'
+ TOYS=D/'toys'
+ PY='/Library/Frameworks/Python.framework/Versions/3.10/bin/python3.10'

@@ -1,0 +1,360 @@
+{
+  "schema": "962-apex1613031-fixed-shell-generation-source-delta/v1",
+  "donor": {
+    "path": "work/962-engineering/fixed-shell-generation-apex1613790-prep-001/reader.py",
+    "sha256": "21fca7c9dbdc1944b27f4c91f1aeba2cf251a059b0808dbc71356e2ff10b9239",
+    "bytes": 20471
+  },
+  "selected_source_sha256": "d3842f573f8a41d3d579d2276e0bf5ea6080362bb6a6bf44eda2174db60f3c6a",
+  "exact_whole_source_groups": [
+    {
+      "label": "case_label_shell_path_SHA_and_accepted_exact_volume",
+      "old": "\"\"\"HELD single fixed-shell apex1613790 cavity generation; no head stitching.\"\"\"\nfrom pathlib import Path\nfrom fractions import Fraction\nimport ast,hashlib,importlib.util,json,math,platform,struct,sys,time\n\nROOT=Path(__file__).resolve().parents[3]\nOUT=Path(__file__).resolve().parent\nSHELL='work/962-engineering/direct-sicn-apex1613790-cavity-study-001/local-shell-input-001.json'\nSHELL_SHA='f31dfcd760db5c8765fcd0665ea3a9b17d5cf81d35d91467b924d3c660d0bcb9'\nHELPER='twins/962-cylinder-head-f0/source/mesh_head.py'\nHELPER_SHA='69c8012e99057e384d44d6971d41f0e2cc7197a978120a7c566b0ad5a6477da5'\nORIENTATION='work/962-engineering/atomic-cavity-plane-clip-cap-assembly-delaunay-prep-001/mesh_assembled_delaunay.py'\nORIENTATION_SHA='a3268687edc90b0149775cf5d80a89df82175cc982bbf5d7184b6ea8935be8a4'\nCUBE='work/962-engineering/atomic-cavity-plane-clip-cap-assembly-netgen-cube-prep-002/reader.py'\nCUBE_SHA='97b7e9fc7d17defa84594c50dac1d4e09cd39bb47ef2059e00b6ac07fe8c029b'\nOPTIONS={'General.NumThreads':2,'Mesh.MaxNumThreads3D':2,'Mesh.Algorithm3D':1,\n 'Mesh.MeshOnlyEmpty':1,'Mesh.Renumber':0,'Mesh.ElementOrder':1,'Mesh.Optimize':0,\n 'Mesh.OptimizeNetgen':0,'Mesh.MeshSizeExtendFromBoundary':0,'Mesh.RandomSeed':1,\n 'Mesh.Binary':1,'Mesh.SaveAll':1,'Mesh.MshFileVersion':4.1}\nRUNTIME={'python':'3.10.11','numpy':'2.0.2','gmsh':'4.15.2','machine':'arm64'}\nCOUNTS={'generate':1,'createGeometry_dim3':0,'optimize_Netgen':0,\n 'rebuildElementCache':0,'write_mesh':1,'solve':0}\nVOLUME=Fraction(47257467722750481679110908714287440688631841,713623846352979940529142984724747568191373312)\nsha=lambda p:hashlib.sha256(Path(p).read_bytes()).hexdigest()\n\n",
+      "new": "\"\"\"HELD single fixed-shell apex1613031 cavity generation; no head stitching.\"\"\"\nfrom pathlib import Path\nfrom fractions import Fraction\nimport ast,hashlib,importlib.util,json,math,platform,struct,sys,time\n\nROOT=Path(__file__).resolve().parents[3]\nOUT=Path(__file__).resolve().parent\nSHELL='work/962-engineering/direct-sicn-apex1613031-cavity-study-001/local-shell-input-001.json'\nSHELL_SHA='6529ffc5a5ca738c4bfe3041d858f2d40cc50efc6ee0e1dc5bcc626fd720d92d'\nHELPER='twins/962-cylinder-head-f0/source/mesh_head.py'\nHELPER_SHA='69c8012e99057e384d44d6971d41f0e2cc7197a978120a7c566b0ad5a6477da5'\nORIENTATION='work/962-engineering/atomic-cavity-plane-clip-cap-assembly-delaunay-prep-001/mesh_assembled_delaunay.py'\nORIENTATION_SHA='a3268687edc90b0149775cf5d80a89df82175cc982bbf5d7184b6ea8935be8a4'\nCUBE='work/962-engineering/atomic-cavity-plane-clip-cap-assembly-netgen-cube-prep-002/reader.py'\nCUBE_SHA='97b7e9fc7d17defa84594c50dac1d4e09cd39bb47ef2059e00b6ac07fe8c029b'\nOPTIONS={'General.NumThreads':2,'Mesh.MaxNumThreads3D':2,'Mesh.Algorithm3D':1,\n 'Mesh.MeshOnlyEmpty':1,'Mesh.Renumber':0,'Mesh.ElementOrder':1,'Mesh.Optimize':0,\n 'Mesh.OptimizeNetgen':0,'Mesh.MeshSizeExtendFromBoundary':0,'Mesh.RandomSeed':1,\n 'Mesh.Binary':1,'Mesh.SaveAll':1,'Mesh.MshFileVersion':4.1}\nRUNTIME={'python':'3.10.11','numpy':'2.0.2','gmsh':'4.15.2','machine':'arm64'}\nCOUNTS={'generate':1,'createGeometry_dim3':0,'optimize_Netgen':0,\n 'rebuildElementCache':0,'write_mesh':1,'solve':0}\nVOLUME=Fraction(104308130846515511471660941377843352992235,1045347431181122959759486794030391945592832)\nsha=lambda p:hashlib.sha256(Path(p).read_bytes()).hexdigest()\n\n",
+      "count": 1,
+      "details": [
+        [
+          "1613790",
+          "1613031",
+          2
+        ],
+        [
+          "f31dfcd760db5c8765fcd0665ea3a9b17d5cf81d35d91467b924d3c660d0bcb9",
+          "6529ffc5a5ca738c4bfe3041d858f2d40cc50efc6ee0e1dc5bcc626fd720d92d",
+          1
+        ],
+        [
+          "VOLUME=Fraction(47257467722750481679110908714287440688631841,713623846352979940529142984724747568191373312)",
+          "VOLUME=Fraction(104308130846515511471660941377843352992235,1045347431181122959759486794030391945592832)",
+          1
+        ]
+      ]
+    },
+    {
+      "label": "validate_shell_case_literals",
+      "old": "def validate_shell(points,faces):\n if (len(points)!=16 or any(len(p)!=3 or any(not math.isfinite(float(x)) for x in p) for p in points)\n     or len(faces)!=28 or any(len(f)!=3 or len(set(f))!=3 or any(type(t) is not int or not 1<=t<=16 for t in f) for f in faces)):\n  raise ValueError('Exact finite sixteen-node/twenty-eight-triangle cavity shell required')\n if len({struct.pack('<3d',*p) for p in points})!=16:raise ValueError('Duplicate shell coordinate bits')\n edges={};keys=set();referenced=set()\n p=[[Fraction.from_float(float(v)) for v in row] for row in points]\n cross=lambda a,b:[a[1]*b[2]-a[2]*b[1],a[2]*b[0]-a[0]*b[2],a[0]*b[1]-a[1]*b[0]]\n for face in faces:\n  key=tuple(sorted(face))\n  if key in keys:raise ValueError('Duplicate shell face')\n  keys.add(key);referenced.update(face)\n  a,b,c=[p[t-1] for t in face]\n  if not any(cross([y-x for x,y in zip(a,b)],[y-x for x,y in zip(a,c)])):raise ValueError('Degenerate shell triangle')\n  for i in range(3):edges.setdefault(tuple(sorted((face[i],face[(i+1)%3]))),[]).append((face[i],face[(i+1)%3]))\n if referenced!=set(range(1,17)) or any(len(v)!=2 or v[0]!=v[1][::-1] for v in edges.values()):\n  raise ValueError('Complete closed oppositely oriented shell required before meshing')\n volume=sum((sum(x*y for x,y in zip(p[f[0]-1],cross(p[f[1]-1],p[f[2]-1])))/6 for f in faces),Fraction(0))\n if volume!=VOLUME:raise ValueError('Exact old cavity oriented volume changed')\n return dict(vertices=16,faces=28,edges=len(edges),exact_volume_mm3={'numerator':str(volume.numerator),'denominator':str(volume.denominator)})",
+      "new": "def validate_shell(points,faces):\n if (len(points)!=9 or any(len(p)!=3 or any(not math.isfinite(float(x)) for x in p) for p in points)\n     or len(faces)!=14 or any(len(f)!=3 or len(set(f))!=3 or any(type(t) is not int or not 1<=t<=9 for t in f) for f in faces)):\n  raise ValueError('Exact finite nine-node/fourteen-triangle cavity shell required')\n if len({struct.pack('<3d',*p) for p in points})!=9:raise ValueError('Duplicate shell coordinate bits')\n edges={};keys=set();referenced=set()\n p=[[Fraction.from_float(float(v)) for v in row] for row in points]\n cross=lambda a,b:[a[1]*b[2]-a[2]*b[1],a[2]*b[0]-a[0]*b[2],a[0]*b[1]-a[1]*b[0]]\n for face in faces:\n  key=tuple(sorted(face))\n  if key in keys:raise ValueError('Duplicate shell face')\n  keys.add(key);referenced.update(face)\n  a,b,c=[p[t-1] for t in face]\n  if not any(cross([y-x for x,y in zip(a,b)],[y-x for x,y in zip(a,c)])):raise ValueError('Degenerate shell triangle')\n  for i in range(3):edges.setdefault(tuple(sorted((face[i],face[(i+1)%3]))),[]).append((face[i],face[(i+1)%3]))\n if referenced!=set(range(1,10)) or any(len(v)!=2 or v[0]!=v[1][::-1] for v in edges.values()):\n  raise ValueError('Complete closed oppositely oriented shell required before meshing')\n volume=sum((sum(x*y for x,y in zip(p[f[0]-1],cross(p[f[1]-1],p[f[2]-1])))/6 for f in faces),Fraction(0))\n if volume!=VOLUME:raise ValueError('Exact old cavity oriented volume changed')\n return dict(vertices=9,faces=14,edges=len(edges),exact_volume_mm3={'numerator':str(volume.numerator),'denominator':str(volume.denominator)})",
+      "count": 1,
+      "details": [
+        [
+          "!=16",
+          "!=9",
+          2
+        ],
+        [
+          "!=28",
+          "!=14",
+          1
+        ],
+        [
+          "<=16",
+          "<=9",
+          1
+        ],
+        [
+          "sixteen-node/twenty-eight-triangle",
+          "nine-node/fourteen-triangle",
+          1
+        ],
+        [
+          "range(1,17)",
+          "range(1,10)",
+          1
+        ],
+        [
+          "vertices=16,faces=28",
+          "vertices=9,faces=14",
+          1
+        ]
+      ]
+    },
+    {
+      "label": "shell_rows_case_literals",
+      "old": "def shell_rows(data):\n if (data.get('schema')!='962-fixed-cavity-local-shell-input/v1' or data.get('vertices')!=16\n     or data.get('oriented_triangles')!=28 or data.get('excluded_source_apex_tag')!=1613790\n     or data.get('apex_not_in_shell_input') is not True\n     or data.get('status')!='DATA_ONLY_HELD' or data.get('necessary_face_quality_passed') is not True\n     or data.get('generation_input_rejected_by_necessary_face_quality') is not False\n     or data.get('upstream_census_launch_deviation_sha256')!='d60fff297c6c45dc92e117262e36ffde36e2169d53fcd32ce2b79fabde5eebc3'\n     or data.get('declared_controller_command_conformant') is not False):raise ValueError('Specific frozen cavity identity and upstream deviation required')\n mapping=data['local_to_global_node_tags'];rows=data['vertex_rows'];triangles=data['oriented_triangle_rows']\n if (len(mapping)!=16 or any(type(t) is not int or t<=0 for t in mapping) or mapping!=sorted(set(mapping))\n     or 1613790 in mapping or data['global_to_local_node_tags']!={str(t):i+1 for i,t in enumerate(mapping)}\n     or len(rows)!=16 or len(triangles)!=28):raise ValueError('Complete exact local/global shell mapping required')\n points=[];faces=[]\n for i,row in enumerate(rows):\n  xyz=row['coordinates_mm']\n  if (row['local_node_tag']!=i+1 or row['source_global_node_tag']!=mapping[i]\n      or len(xyz)!=3 or any(type(v) not in (int,float) or not math.isfinite(v) for v in xyz)\n      or [float(v).hex() for v in xyz]!=row['binary64_hex']\n      or struct.pack('<3d',*xyz).hex()!=row['binary64_little_endian_bytes_hex']\n      or row['prospective_cavity_fixed'] is not True\n      or row['original_source_boundary_node'] is not (i<13)\n      or row['original_source_classification']!=('below_dim3' if i<13 else 'dim3')):\n   raise ValueError('Exact shell coordinate bits or original classification changed')\n  points.append(xyz)\n expected=dict(boundary_global_node_tags=mapping[:13],other_interior_global_node_tags=mapping[13:],\n  boundary_local_node_tags=list(range(1,14)),other_interior_local_node_tags=list(range(14,17)))\n if data['original_source_classifications']!=expected:raise ValueError('Original thirteen-boundary/three-interior distinction changed')\n for i,row in enumerate(triangles):\n  if row['local_face_id']!=i+1 or type(row['source_owner_tetrahedron_tag']) is not int or row['source_owner_tetrahedron_tag']<=0:\n   raise ValueError('Frozen local face/old owner association changed')\n  faces.append(row['local_node_tags'])\n if data['exact_enclosed_volume_mm3']!={'numerator':VOLUME.numerator,'denominator':VOLUME.denominator}:\n  raise ValueError('Exact saved cavity volume identity changed')\n return points,faces,validate_shell(points,faces)",
+      "new": "def shell_rows(data):\n if (data.get('schema')!='962-fixed-cavity-local-shell-input/v1' or data.get('vertices')!=9\n     or data.get('oriented_triangles')!=14 or data.get('excluded_source_apex_tag')!=1613031\n     or data.get('apex_not_in_shell_input') is not True\n     or data.get('status')!='DATA_ONLY_HELD' or data.get('necessary_face_quality_passed') is not True\n     or data.get('generation_input_rejected_by_necessary_face_quality') is not False\n     or data.get('upstream_census_launch_deviation_sha256')!='d60fff297c6c45dc92e117262e36ffde36e2169d53fcd32ce2b79fabde5eebc3'\n     or data.get('declared_controller_command_conformant') is not False):raise ValueError('Specific frozen cavity identity and upstream deviation required')\n mapping=data['local_to_global_node_tags'];rows=data['vertex_rows'];triangles=data['oriented_triangle_rows']\n if (len(mapping)!=9 or any(type(t) is not int or t<=0 for t in mapping) or mapping!=sorted(set(mapping))\n     or 1613031 in mapping or data['global_to_local_node_tags']!={str(t):i+1 for i,t in enumerate(mapping)}\n     or len(rows)!=9 or len(triangles)!=14):raise ValueError('Complete exact local/global shell mapping required')\n points=[];faces=[]\n for i,row in enumerate(rows):\n  xyz=row['coordinates_mm']\n  if (row['local_node_tag']!=i+1 or row['source_global_node_tag']!=mapping[i]\n      or len(xyz)!=3 or any(type(v) not in (int,float) or not math.isfinite(v) for v in xyz)\n      or [float(v).hex() for v in xyz]!=row['binary64_hex']\n      or struct.pack('<3d',*xyz).hex()!=row['binary64_little_endian_bytes_hex']\n      or row['prospective_cavity_fixed'] is not True\n      or row['original_source_boundary_node'] is not (i<5)\n      or row['original_source_classification']!=('below_dim3' if i<5 else 'dim3')):\n   raise ValueError('Exact shell coordinate bits or original classification changed')\n  points.append(xyz)\n expected=dict(boundary_global_node_tags=mapping[:5],other_interior_global_node_tags=mapping[5:],\n  boundary_local_node_tags=list(range(1,6)),other_interior_local_node_tags=list(range(6,10)))\n if data['original_source_classifications']!=expected:raise ValueError('Original five-boundary/four-interior distinction changed')\n for i,row in enumerate(triangles):\n  if row['local_face_id']!=i+1 or type(row['source_owner_tetrahedron_tag']) is not int or row['source_owner_tetrahedron_tag']<=0:\n   raise ValueError('Frozen local face/old owner association changed')\n  faces.append(row['local_node_tags'])\n if data['exact_enclosed_volume_mm3']!={'numerator':VOLUME.numerator,'denominator':VOLUME.denominator}:\n  raise ValueError('Exact saved cavity volume identity changed')\n return points,faces,validate_shell(points,faces)",
+      "count": 1,
+      "details": [
+        [
+          "data.get('vertices')!=16",
+          "data.get('vertices')!=9",
+          1
+        ],
+        [
+          "len(mapping)!=16",
+          "len(mapping)!=9",
+          1
+        ],
+        [
+          "len(rows)!=16",
+          "len(rows)!=9",
+          1
+        ],
+        [
+          "!=28",
+          "!=14",
+          2
+        ],
+        [
+          "1613790",
+          "1613031",
+          2
+        ],
+        [
+          "i<13",
+          "i<5",
+          2
+        ],
+        [
+          "mapping[:13],other_interior_global_node_tags=mapping[13:]",
+          "mapping[:5],other_interior_global_node_tags=mapping[5:]",
+          1
+        ],
+        [
+          "boundary_local_node_tags=list(range(1,14)),other_interior_local_node_tags=list(range(14,17))",
+          "boundary_local_node_tags=list(range(1,6)),other_interior_local_node_tags=list(range(6,10))",
+          1
+        ],
+        [
+          "thirteen-boundary/three-interior",
+          "five-boundary/four-interior",
+          1
+        ]
+      ]
+    },
+    {
+      "label": "construct_shell_case_literals",
+      "old": "def construct_shell(gmsh,helper,data):\n points,faces,proof=shell_rows(data)\n helper.P=helper.np.asarray(points,dtype='<f8');helper.F=helper.np.asarray(faces,dtype=helper.np.int64)\n gmsh.model.add('fixed_shell_apex1613790_cavity')\n gmsh.model.addDiscreteEntity(2,1)\n gmsh.model.mesh.addNodes(2,1,list(range(1,17)),helper.P.ravel())\n gmsh.model.mesh.addElementsByType(1,2,list(range(1,29)),helper.F.ravel())\n gmsh.model.geo.addSurfaceLoop([1],1);gmsh.model.geo.addVolume([1],1)\n gmsh.model.geo.synchronize()\n return proof",
+      "new": "def construct_shell(gmsh,helper,data):\n points,faces,proof=shell_rows(data)\n helper.P=helper.np.asarray(points,dtype='<f8');helper.F=helper.np.asarray(faces,dtype=helper.np.int64)\n gmsh.model.add('fixed_shell_apex1613031_cavity')\n gmsh.model.addDiscreteEntity(2,1)\n gmsh.model.mesh.addNodes(2,1,list(range(1,10)),helper.P.ravel())\n gmsh.model.mesh.addElementsByType(1,2,list(range(1,15)),helper.F.ravel())\n gmsh.model.geo.addSurfaceLoop([1],1);gmsh.model.geo.addVolume([1],1)\n gmsh.model.geo.synchronize()\n return proof",
+      "count": 1,
+      "details": [
+        [
+          "1613790",
+          "1613031",
+          1
+        ],
+        [
+          "range(1,17)",
+          "range(1,10)",
+          1
+        ],
+        [
+          "range(1,29)",
+          "range(1,15)",
+          1
+        ]
+      ]
+    },
+    {
+      "label": "boundary_snapshot_case_literals",
+      "old": "def boundary_snapshot(gmsh,helper):\n np=helper.np;tags,xyz,_=gmsh.model.mesh.getNodes();order=np.argsort(tags)\n tags=np.asarray(tags)[order];xyz=np.asarray(xyz).reshape(-1,3)[order];ix=np.searchsorted(tags,np.arange(1,17))\n if np.any(ix>=len(tags)) or not np.array_equal(tags[ix],np.arange(1,17)):raise ValueError('Boundary tags missing')\n bits=xyz[ix].astype('<f8',copy=False).tobytes()\n if bits!=helper.P.astype('<f8',copy=False).tobytes():raise ValueError('Boundary coordinate bits changed')\n types,element_tags,element_nodes=gmsh.model.mesh.getElements(2)\n if list(types)!=[2] or len(element_tags[0])!=28:raise ValueError('Exactly twenty-eight TRI3 elements required')\n faces=sorted((int(t),helper.canonical(row)) for t,row in zip(element_tags[0],np.asarray(element_nodes[0]).reshape(-1,3)))\n expected=sorted((i+1,helper.canonical(row)) for i,row in enumerate(helper.F))\n if faces!=expected:raise ValueError('Tagged oriented shell triangles changed')\n classes={}\n for dim,entity in gmsh.model.getEntities():\n  for tag in gmsh.model.mesh.getNodes(dim,entity,False,False)[0]:\n   if int(tag)<=16:\n    if int(tag) in classes:raise ValueError('Boundary node classified twice')\n    classes[int(tag)]=(dim,entity)\n if set(classes)!=set(range(1,17)) or any(dim>=3 for dim,entity in classes.values()):raise ValueError('Boundary classification missing')\n return {'coordinate_bytes':bits,'tagged_oriented_triangles':faces,'classifications':sorted(classes.items())}",
+      "new": "def boundary_snapshot(gmsh,helper):\n np=helper.np;tags,xyz,_=gmsh.model.mesh.getNodes();order=np.argsort(tags)\n tags=np.asarray(tags)[order];xyz=np.asarray(xyz).reshape(-1,3)[order];ix=np.searchsorted(tags,np.arange(1,10))\n if np.any(ix>=len(tags)) or not np.array_equal(tags[ix],np.arange(1,10)):raise ValueError('Boundary tags missing')\n bits=xyz[ix].astype('<f8',copy=False).tobytes()\n if bits!=helper.P.astype('<f8',copy=False).tobytes():raise ValueError('Boundary coordinate bits changed')\n types,element_tags,element_nodes=gmsh.model.mesh.getElements(2)\n if list(types)!=[2] or len(element_tags[0])!=14:raise ValueError('Exactly fourteen TRI3 elements required')\n faces=sorted((int(t),helper.canonical(row)) for t,row in zip(element_tags[0],np.asarray(element_nodes[0]).reshape(-1,3)))\n expected=sorted((i+1,helper.canonical(row)) for i,row in enumerate(helper.F))\n if faces!=expected:raise ValueError('Tagged oriented shell triangles changed')\n classes={}\n for dim,entity in gmsh.model.getEntities():\n  for tag in gmsh.model.mesh.getNodes(dim,entity,False,False)[0]:\n   if int(tag)<=9:\n    if int(tag) in classes:raise ValueError('Boundary node classified twice')\n    classes[int(tag)]=(dim,entity)\n if set(classes)!=set(range(1,10)) or any(dim>=3 for dim,entity in classes.values()):raise ValueError('Boundary classification missing')\n return {'coordinate_bytes':bits,'tagged_oriented_triangles':faces,'classifications':sorted(classes.items())}",
+      "count": 1,
+      "details": [
+        [
+          "np.arange(1,17)",
+          "np.arange(1,10)",
+          2
+        ],
+        [
+          "!=28",
+          "!=14",
+          1
+        ],
+        [
+          "twenty-eight",
+          "fourteen",
+          1
+        ],
+        [
+          "<=16",
+          "<=9",
+          1
+        ],
+        [
+          "range(1,17)",
+          "range(1,10)",
+          1
+        ]
+      ]
+    },
+    {
+      "label": "inspect_cavity_case_literals",
+      "old": "def inspect_cavity(gmsh,helper):\n np=helper.np;coords,cells,et,en=helper.volume_arrays(gmsh)\n tags=np.sort(np.asarray(gmsh.model.mesh.getNodes()[0]));et=np.asarray(et);en=np.asarray(en)\n order=np.argsort(et);et,en,cells=et[order],en[order],cells[order]\n if (not np.isfinite(coords).all() or len(tags)!=len(np.unique(tags)) or np.any(tags<=0)\n     or len(et)!=len(np.unique(et)) or np.any(et<=0) or len(np.unique(coords,axis=0))!=len(coords)):\n  raise ValueError('Finite unique positive tags and distinct node coordinates required')\n referenced=np.unique(en)\n if not np.array_equal(referenced,tags):raise ValueError('Unreferenced nodes prohibited')\n canonical_tets=np.sort(en,axis=1);canonical_tets=canonical_tets[np.lexsort(canonical_tets.T[::-1])]\n if len(np.unique(canonical_tets,axis=0))!=len(et):raise ValueError('Duplicate tetrahedra prohibited')\n boundary_snapshot(gmsh,helper)\n dims={};entities={};periodic=[]\n for dim,entity in gmsh.model.getEntities():\n  if dim in [1,2]:\n   masters=gmsh.model.mesh.getPeriodic(dim,[entity]);master,nodes,node_masters,transform=gmsh.model.mesh.getPeriodicNodes(dim,entity,True)\n   if list(masters)!=[entity] or master!=entity or len(nodes) or len(node_masters) or len(transform):raise ValueError('Periodic mapping prohibited')\n   periodic.append([dim,entity])\n  for tag in gmsh.model.mesh.getNodes(dim,entity,False,False)[0]:\n   tag=int(tag)\n   if tag in dims:raise ValueError('Node classified twice')\n   dims[tag]=dim;entities[tag]=[dim,entity]\n if set(dims)!=set(map(int,tags)) or any(dims[n]>=3 for n in range(1,17)) or any(dims[int(n)]!=3 for n in tags if n>16):\n  raise ValueError('Complete cavity-shell/interior native classifications required')\n source_indices=np.searchsorted(tags,helper.F)\n exterior=helper.tetra_boundary(cells,source_indices);internal=helper.internal_face_orientation(cells)\n signed=helper.tetra_volumes(coords,cells);check_metric_rows(signed,len(et),'independent_signed_volume_mm3')\n total=math.fsum(signed);relative=abs(total/float(VOLUME)-1)\n if relative>1e-6:raise ValueError('Exact old cavity volume numerical bookkeeping bound failed')\n qualities={label:np.asarray(gmsh.model.mesh.getElementQualities(et,name)) for label,name in [('SICN','minSICN'),('Jacobian','minDetJac'),('native_volume_mm3','volume')]}\n for label,values in qualities.items():check_metric_rows(values,len(et),label)\n native_total=math.fsum(qualities['native_volume_mm3'])\n if abs(native_total/float(VOLUME)-1)>1e-6:raise ValueError('Native volume bookkeeping bound failed')\n report=dict(nodes=len(tags),tetrahedra=len(et),referenced_nodes=len(referenced),referenced_interior_nodes=int(np.count_nonzero(tags>16)),\n  unreferenced_nodes=0,duplicate_tetrahedra=0,**exterior,**internal,\n  node_classifications=[[n,dims[n]] for n in sorted(dims)],node_entity_classifications=[[n,*entities[n]] for n in sorted(entities)],\n  node_counts_by_classification_dimension={str(d):sum(v==d for v in dims.values()) for d in range(4)},\n  no_curve_or_surface_periodic_mapping=True,periodic_entities_checked=periodic,\n  quality={k:helper.distribution(v) for k,v in qualities.items()},\n  independent_signed_volume_mm3={'sum':total,'relative_error':relative,**helper.distribution(signed)},native_volume_sum_mm3=native_total,\n  sorted_node_tags_sha256=helper.array_sha(tags),sorted_coordinates_sha256=helper.array_sha(coords),tetra_tags_sha256=helper.array_sha(et),\n  tagged_tetra_connectivity_sha256=helper.array_sha(en),canonical_cells_sha256=helper.array_sha(canonical_tets),software_geometric_invariants_passed=True)\n arrays=dict(node_tags=tags.tolist(),coordinates_mm=coords.tolist(),tetra_tags=et.tolist(),tetra_node_tags=en.tolist(),\n  native_qualities={k:v.tolist() for k,v in qualities.items()},independent_signed_volume_mm3=signed.tolist())\n return report,arrays,(tags,coords,et,en,canonical_tets),(*qualities.values(),signed)",
+      "new": "def inspect_cavity(gmsh,helper):\n np=helper.np;coords,cells,et,en=helper.volume_arrays(gmsh)\n tags=np.sort(np.asarray(gmsh.model.mesh.getNodes()[0]));et=np.asarray(et);en=np.asarray(en)\n order=np.argsort(et);et,en,cells=et[order],en[order],cells[order]\n if (not np.isfinite(coords).all() or len(tags)!=len(np.unique(tags)) or np.any(tags<=0)\n     or len(et)!=len(np.unique(et)) or np.any(et<=0) or len(np.unique(coords,axis=0))!=len(coords)):\n  raise ValueError('Finite unique positive tags and distinct node coordinates required')\n referenced=np.unique(en)\n if not np.array_equal(referenced,tags):raise ValueError('Unreferenced nodes prohibited')\n canonical_tets=np.sort(en,axis=1);canonical_tets=canonical_tets[np.lexsort(canonical_tets.T[::-1])]\n if len(np.unique(canonical_tets,axis=0))!=len(et):raise ValueError('Duplicate tetrahedra prohibited')\n boundary_snapshot(gmsh,helper)\n dims={};entities={};periodic=[]\n for dim,entity in gmsh.model.getEntities():\n  if dim in [1,2]:\n   masters=gmsh.model.mesh.getPeriodic(dim,[entity]);master,nodes,node_masters,transform=gmsh.model.mesh.getPeriodicNodes(dim,entity,True)\n   if list(masters)!=[entity] or master!=entity or len(nodes) or len(node_masters) or len(transform):raise ValueError('Periodic mapping prohibited')\n   periodic.append([dim,entity])\n  for tag in gmsh.model.mesh.getNodes(dim,entity,False,False)[0]:\n   tag=int(tag)\n   if tag in dims:raise ValueError('Node classified twice')\n   dims[tag]=dim;entities[tag]=[dim,entity]\n if set(dims)!=set(map(int,tags)) or any(dims[n]>=3 for n in range(1,10)) or any(dims[int(n)]!=3 for n in tags if n>9):\n  raise ValueError('Complete cavity-shell/interior native classifications required')\n source_indices=np.searchsorted(tags,helper.F)\n exterior=helper.tetra_boundary(cells,source_indices);internal=helper.internal_face_orientation(cells)\n signed=helper.tetra_volumes(coords,cells);check_metric_rows(signed,len(et),'independent_signed_volume_mm3')\n total=math.fsum(signed);relative=abs(total/float(VOLUME)-1)\n if relative>1e-6:raise ValueError('Exact old cavity volume numerical bookkeeping bound failed')\n qualities={label:np.asarray(gmsh.model.mesh.getElementQualities(et,name)) for label,name in [('SICN','minSICN'),('Jacobian','minDetJac'),('native_volume_mm3','volume')]}\n for label,values in qualities.items():check_metric_rows(values,len(et),label)\n native_total=math.fsum(qualities['native_volume_mm3'])\n if abs(native_total/float(VOLUME)-1)>1e-6:raise ValueError('Native volume bookkeeping bound failed')\n report=dict(nodes=len(tags),tetrahedra=len(et),referenced_nodes=len(referenced),referenced_interior_nodes=int(np.count_nonzero(tags>9)),\n  unreferenced_nodes=0,duplicate_tetrahedra=0,**exterior,**internal,\n  node_classifications=[[n,dims[n]] for n in sorted(dims)],node_entity_classifications=[[n,*entities[n]] for n in sorted(entities)],\n  node_counts_by_classification_dimension={str(d):sum(v==d for v in dims.values()) for d in range(4)},\n  no_curve_or_surface_periodic_mapping=True,periodic_entities_checked=periodic,\n  quality={k:helper.distribution(v) for k,v in qualities.items()},\n  independent_signed_volume_mm3={'sum':total,'relative_error':relative,**helper.distribution(signed)},native_volume_sum_mm3=native_total,\n  sorted_node_tags_sha256=helper.array_sha(tags),sorted_coordinates_sha256=helper.array_sha(coords),tetra_tags_sha256=helper.array_sha(et),\n  tagged_tetra_connectivity_sha256=helper.array_sha(en),canonical_cells_sha256=helper.array_sha(canonical_tets),software_geometric_invariants_passed=True)\n arrays=dict(node_tags=tags.tolist(),coordinates_mm=coords.tolist(),tetra_tags=et.tolist(),tetra_node_tags=en.tolist(),\n  native_qualities={k:v.tolist() for k,v in qualities.items()},independent_signed_volume_mm3=signed.tolist())\n return report,arrays,(tags,coords,et,en,canonical_tets),(*qualities.values(),signed)",
+      "count": 1,
+      "details": [
+        [
+          "range(1,17)",
+          "range(1,10)",
+          1
+        ],
+        [
+          ">16",
+          ">9",
+          2
+        ]
+      ]
+    },
+    {
+      "label": "main_case_literals",
+      "old": "def main():\n c=json.loads((OUT/'frozen-contract.json').read_text());require_contract(c)\n if {p.name for p in OUT.iterdir()}!={'reader.py','run_readback.py','frozen-contract.json','native.log'}:\n  raise ValueError('Only fresh materialized inputs and owned native.log are permitted')\n started=time.monotonic();gmsh=None;initialized=False;live={}\n report=dict(schema='962-fixed-shell-generation-apex1613790/v1',status='running',stage='imports',\n  fixture_procedural_checks_passed=False,actual_SICN_gate_passed=False,actual_SICN_threshold=.1,\n  upstream_census_launch_deviation_sha256='d60fff297c6c45dc92e117262e36ffde36e2169d53fcd32ce2b79fabde5eebc3',declared_controller_command_conformant=False,\n  native_operation_counts={k:0 for k in COUNTS},call_counts_are_attempts=True,options=OPTIONS,\n  frozen_contract_sha256=sha(OUT/'frozen-contract.json'),local_shell_sha256=SHELL_SHA,input_MSH_read=False,full_head_geometry_read=False,\n  head_execution_authorized=False,stitching_authorized=False,native_head_application_authorized=False,\n  global_self_intersection_checked=False,geometric_tetrahedron_overlap_checked=False,\n  new_interior_node_point_in_cavity_containment_checked=False,\n  engineering_accepted=False,physics_qualified=False,manufacturing_authorized=False)\n try:\n  data=json.loads((ROOT/SHELL).read_text());shell_rows(data)\n  helper,gmsh,observed,actual=load_audit_helper(c);report.update(runtime=observed,runtime_sha256s=actual)\n  gmsh.initialize([],readConfigFiles=False,run=False);initialized=True\n  gmsh.option.setNumber('General.Terminal',1);gmsh.logger.start()\n  for key,value in OPTIONS.items():gmsh.option.setNumber(key,value)\n  report['stage']='constructing_frozen_cavity_shell';report['shell']=construct_shell(gmsh,helper,data)\n  report['original_source_classifications']=data['original_source_classifications']\n  report['local_to_global_shell_node_tags']=data['local_to_global_node_tags']\n  report['all16_shell_nodes_fixed_only_for_this_cavity_generation']=True\n  before=boundary_snapshot(gmsh,helper)\n  report['stage']='generating_once';generate_once(gmsh,report['native_operation_counts'])\n  report['stage']='complete_generated_audit';live['after_generation']=inspect_cavity(gmsh,helper)\n  require_boundary_same(before,boundary_snapshot(gmsh,helper))\n  if any(gmsh.option.getNumber(k)!=v for k,v in OPTIONS.items()):raise ValueError('Fixed generation options changed')\n  path=OUT/'cavity.msh';report['stage']='saving';report['native_operation_counts']['write_mesh']+=1\n  gmsh.write(str(path));digest=sha(path)\n  gmsh.clear();gmsh.open(str(path));report['stage']='complete_saved_reopen_audit'\n  live['saved_reopen']=inspect_cavity(gmsh,helper)\n  helper.require_same(live['after_generation'],live['saved_reopen'],'saved reopen')\n  require_boundary_same(before,boundary_snapshot(gmsh,helper))\n  if sha(path)!=digest:raise ValueError('Saved mesh changed during reopen')\n  report.update(mesh_sha256=digest,mesh_bytes=path.stat().st_size,saved_mesh_identity_exact=True,\n   exact_boundary_bits_faces_classifications=True,fixture_procedural_checks_passed=True,\n   actual_SICN_gate_passed=helper.quality_gate(live['after_generation'][0]),stage='completed_all_local_checks',status='completed_specific_cavity_generation_only')\n except Exception as exc:report.update(status='failed_outputs_preserved',error=type(exc).__name__+': '+str(exc))\n finally:\n  if initialized:\n   report['gmsh_warnings_errors']=[s for s in gmsh.logger.get() if s.startswith(('Warning','Error'))]\n   gmsh.logger.stop();gmsh.finalize()\n  try:require_contract(c);report['bound_inputs_unchanged']=sha(OUT/'frozen-contract.json')==report['frozen_contract_sha256']\n  except Exception:report['bound_inputs_unchanged']=False\n  if live:\n   save(OUT/'arrays.json',{name:item[1] for name,item in live.items()});report['full_tiny_arrays_sha256']=sha(OUT/'arrays.json')\n  for name,item in live.items():report[name]=item[0]\n  report['wall_seconds']=time.monotonic()-started;save(OUT/'fixture-report.json',report)\n return 0 if report['fixture_procedural_checks_passed'] and report['actual_SICN_gate_passed'] and report['bound_inputs_unchanged'] else 2",
+      "new": "def main():\n c=json.loads((OUT/'frozen-contract.json').read_text());require_contract(c)\n if {p.name for p in OUT.iterdir()}!={'reader.py','run_readback.py','frozen-contract.json','native.log'}:\n  raise ValueError('Only fresh materialized inputs and owned native.log are permitted')\n started=time.monotonic();gmsh=None;initialized=False;live={}\n report=dict(schema='962-fixed-shell-generation-apex1613031/v1',status='running',stage='imports',\n  fixture_procedural_checks_passed=False,actual_SICN_gate_passed=False,actual_SICN_threshold=.1,\n  upstream_census_launch_deviation_sha256='d60fff297c6c45dc92e117262e36ffde36e2169d53fcd32ce2b79fabde5eebc3',declared_controller_command_conformant=False,\n  native_operation_counts={k:0 for k in COUNTS},call_counts_are_attempts=True,options=OPTIONS,\n  frozen_contract_sha256=sha(OUT/'frozen-contract.json'),local_shell_sha256=SHELL_SHA,input_MSH_read=False,full_head_geometry_read=False,\n  head_execution_authorized=False,stitching_authorized=False,native_head_application_authorized=False,\n  global_self_intersection_checked=False,geometric_tetrahedron_overlap_checked=False,\n  new_interior_node_point_in_cavity_containment_checked=False,\n  engineering_accepted=False,physics_qualified=False,manufacturing_authorized=False)\n try:\n  data=json.loads((ROOT/SHELL).read_text());shell_rows(data)\n  helper,gmsh,observed,actual=load_audit_helper(c);report.update(runtime=observed,runtime_sha256s=actual)\n  gmsh.initialize([],readConfigFiles=False,run=False);initialized=True\n  gmsh.option.setNumber('General.Terminal',1);gmsh.logger.start()\n  for key,value in OPTIONS.items():gmsh.option.setNumber(key,value)\n  report['stage']='constructing_frozen_cavity_shell';report['shell']=construct_shell(gmsh,helper,data)\n  report['original_source_classifications']=data['original_source_classifications']\n  report['local_to_global_shell_node_tags']=data['local_to_global_node_tags']\n  report['all9_shell_nodes_fixed_only_for_this_cavity_generation']=True\n  before=boundary_snapshot(gmsh,helper)\n  report['stage']='generating_once';generate_once(gmsh,report['native_operation_counts'])\n  report['stage']='complete_generated_audit';live['after_generation']=inspect_cavity(gmsh,helper)\n  require_boundary_same(before,boundary_snapshot(gmsh,helper))\n  if any(gmsh.option.getNumber(k)!=v for k,v in OPTIONS.items()):raise ValueError('Fixed generation options changed')\n  path=OUT/'cavity.msh';report['stage']='saving';report['native_operation_counts']['write_mesh']+=1\n  gmsh.write(str(path));digest=sha(path)\n  gmsh.clear();gmsh.open(str(path));report['stage']='complete_saved_reopen_audit'\n  live['saved_reopen']=inspect_cavity(gmsh,helper)\n  helper.require_same(live['after_generation'],live['saved_reopen'],'saved reopen')\n  require_boundary_same(before,boundary_snapshot(gmsh,helper))\n  if sha(path)!=digest:raise ValueError('Saved mesh changed during reopen')\n  report.update(mesh_sha256=digest,mesh_bytes=path.stat().st_size,saved_mesh_identity_exact=True,\n   exact_boundary_bits_faces_classifications=True,fixture_procedural_checks_passed=True,\n   actual_SICN_gate_passed=helper.quality_gate(live['after_generation'][0]),stage='completed_all_local_checks',status='completed_specific_cavity_generation_only')\n except Exception as exc:report.update(status='failed_outputs_preserved',error=type(exc).__name__+': '+str(exc))\n finally:\n  if initialized:\n   report['gmsh_warnings_errors']=[s for s in gmsh.logger.get() if s.startswith(('Warning','Error'))]\n   gmsh.logger.stop();gmsh.finalize()\n  try:require_contract(c);report['bound_inputs_unchanged']=sha(OUT/'frozen-contract.json')==report['frozen_contract_sha256']\n  except Exception:report['bound_inputs_unchanged']=False\n  if live:\n   save(OUT/'arrays.json',{name:item[1] for name,item in live.items()});report['full_tiny_arrays_sha256']=sha(OUT/'arrays.json')\n  for name,item in live.items():report[name]=item[0]\n  report['wall_seconds']=time.monotonic()-started;save(OUT/'fixture-report.json',report)\n return 0 if report['fixture_procedural_checks_passed'] and report['actual_SICN_gate_passed'] and report['bound_inputs_unchanged'] else 2",
+      "count": 1,
+      "details": [
+        [
+          "apex1613790",
+          "apex1613031",
+          1
+        ],
+        [
+          "all16_shell_nodes_fixed_only_for_this_cavity_generation",
+          "all9_shell_nodes_fixed_only_for_this_cavity_generation",
+          1
+        ]
+      ]
+    }
+  ],
+  "whole_byte_reverse_verified": true,
+  "unchanged_function_ASTs": {
+    "save": "bbef8a25d7b41ee944bdae1f6a8b37b50db2e7ace8fe830097ce00077ab997a1",
+    "require_authority": "611521cac5dce4d2a75603777fe53db9ee727637f3637b5061d7015fd85bba66",
+    "require_contract": "e403a6e6fa6e1448989136aaed8aa744f1b42fa4f650d6c67365bd6724c064ad",
+    "load_audit_helper": "2718abb2db09808c2ca574bccbf3ff7a89d5fbae08dc0829e042ed4d7e1f0d47",
+    "require_boundary_same": "4530ef80515da92b47f05101b6705cbe0e575243a473567b15edc43c00f8f0ea",
+    "check_metric_rows": "9642310dbf4ea00243cbd68d9ddd3fe0f423d5581574ca61923f32d849b00413",
+    "generate_once": "47c84afc9700eb623ac3c13448d094c8bd90dfd3188dfcdaac2c2cb4b3852acc"
+  },
+  "unchanged_OPTIONS_RUNTIME_COUNTS_AST": true,
+  "changed_functions": [
+    "validate_shell",
+    "shell_rows",
+    "construct_shell",
+    "boundary_snapshot",
+    "inspect_cavity",
+    "main"
+  ],
+  "selected_helper_sources_and_ASTs": [
+    {
+      "source": "twins/962-cylinder-head-f0/source/mesh_head.py",
+      "source_sha256": "69c8012e99057e384d44d6971d41f0e2cc7197a978120a7c566b0ad5a6477da5",
+      "selected_function_ASTs": {
+        "volume_arrays": "3fc76d4e3b049e043f43d30c49c061ace7f0d8bb04eb2bb7baf8026c84259fba",
+        "tetra_boundary": "5f9283089d54b0e6415d266bc95448b55eaad3c8e666e4cb8dc3be9d8d519e5c",
+        "tetra_volumes": "90dcfb3af58c464450377f47d70ca8596a12b217e972fcc493be1dc6c998bd42"
+      },
+      "scope": "Existing exact source definitions, lazily reused; no execution or independent mathematical derivation"
+    },
+    {
+      "source": "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-delaunay-prep-001/mesh_assembled_delaunay.py",
+      "source_sha256": "a3268687edc90b0149775cf5d80a89df82175cc982bbf5d7184b6ea8935be8a4",
+      "selected_function_ASTs": {
+        "internal_face_orientation": "23d1af8a3ef5f2f1a4c1e9a563e0d4422d2ea463820334ac03658ea9453643c9"
+      },
+      "scope": "Existing exact source definitions, lazily reused; no execution or independent mathematical derivation"
+    },
+    {
+      "source": "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-netgen-cube-prep-002/reader.py",
+      "source_sha256": "97b7e9fc7d17defa84594c50dac1d4e09cd39bb47ef2059e00b6ac07fe8c029b",
+      "selected_function_ASTs": {
+        "canonical": "a5af90241f5d4994e32c7e979f923dfc2adf270a58a0761352674fab75e7ade6",
+        "distribution": "e388ab521c64fbb115ae01355d8b0d76503c772782e99806bd277d8f39705c67",
+        "snapshot": "bf2c7303f2805fceebf564f741aa77df67311fad00064a5f6b20eb5e2b358dfa",
+        "require_same": "501eca77f7d0ae09143ed5cf45afd06f96bcfc1af03f256ac775daa339d455ce",
+        "quality_gate": "fa864701cad046fdfe5b022d45c177473bc8df9a20a1e567acee9dc6f4b35a5e"
+      },
+      "scope": "Existing exact source definitions, lazily reused; no execution or independent mathematical derivation"
+    }
+  ],
+  "exact_runner": {
+    "path": "work/962-engineering/fixed-shell-generation-apex1613790-prep-001/run_readback.py",
+    "sha256": "4963f5c66fa9e73797e76a8643f24bfb6b4ea8f1b9962063618504fc10e338ed",
+    "bytes": 4805
+  },
+  "controller_ASTs_byte_identity": true,
+  "guard_donor": {
+    "path": "work/962-engineering/fixed-shell-generation-apex1613790-prep-001/test_shell_guards.py",
+    "sha256": "41c7286300b1fb2c44f7217ebccd0c01747b4920d12fed600bda7904ad0e2d0c",
+    "bytes": 5387
+  },
+  "guard_reversible_groups": [
+    {
+      "label": "current_shell_path_and_volume",
+      "old": "\"\"\"Prepared stdlib/AST guards only; no worker/scientific module import.\"\"\"\nfrom pathlib import Path\nfrom fractions import Fraction\nimport ast,copy,json,math,struct,unittest\nfrom unittest.mock import Mock\n\nHERE=Path(__file__).resolve().parent\nROOT=HERE.parents[2]\nSOURCE=HERE/'reader.py'\nTREE=ast.parse(SOURCE.read_text())\nSHELL=ROOT/'work/962-engineering/direct-sicn-apex1613790-cavity-study-001/local-shell-input-001.json'\nVOLUME=Fraction(47257467722750481679110908714287440688631841,713623846352979940529142984724747568191373312)\n\n",
+      "new": "\"\"\"Prepared stdlib/AST guards only; no worker/scientific module import.\"\"\"\nfrom pathlib import Path\nfrom fractions import Fraction\nimport ast,copy,json,math,struct,unittest\nfrom unittest.mock import Mock\n\nHERE=Path(__file__).resolve().parent\nROOT=HERE.parents[2]\nSOURCE=HERE/'reader.py'\nTREE=ast.parse(SOURCE.read_text())\nSHELL=ROOT/'work/962-engineering/direct-sicn-apex1613031-cavity-study-001/local-shell-input-001.json'\nVOLUME=Fraction(104308130846515511471660941377843352992235,1045347431181122959759486794030391945592832)\n\n",
+      "count": 1
+    },
+    {
+      "label": "accepted9_14_21_cardinality",
+      "old": "  self.assertEqual((len(points),len(faces),result['edges']),(16,28,42))",
+      "new": "  self.assertEqual((len(points),len(faces),result['edges']),(9,14,21))",
+      "count": 1
+    },
+    {
+      "label": "first_original_dim3_is_local6",
+      "old": "           lambda d:d['vertex_rows'][13].__setitem__('original_source_boundary_node',True),\n           lambda d:d['vertex_rows'][13].__setitem__('original_source_classification','below_dim3'),",
+      "new": "           lambda d:d['vertex_rows'][5].__setitem__('original_source_boundary_node',True),\n           lambda d:d['vertex_rows'][5].__setitem__('original_source_classification','below_dim3'),",
+      "count": 1
+    }
+  ],
+  "guard_whole_byte_reverse_verified": true,
+  "unchanged_guard_method_ASTs": {
+    "test_missing_and_reversed_faces_refuse_before_mesher": "0b5db6941b8c0295d752e860e4e3735e40c7f9302c10076b0ca15e69703780b8",
+    "test_every_boundary_bit_face_and_classification_is_fixed": "d0df0719db35de3708aec49d50021694c36a7e05273679d6efadcc7069c77344",
+    "test_complete_metric_cardinality_finiteness_and_positive_volumes": "fdbaa2b89454c4147a9c32bfad100cbad759dcd7c736b775f3d02b3ebf84a5d9",
+    "test_held_authority_and_single_generation_source_scope": "8dfe83c602b3aa35c85b0fd803309054ed4be6fd3909856a2994422c0e2ab4df",
+    "test_complete_positive_tight_screen_required_before_mesher": "e713c339a0738851259cec8cee7d35cf161ff689280d05b027cfa4d89185a05d"
+  },
+  "exact_runner_guard": {
+    "path": "work/962-engineering/fixed-shell-generation-apex1613790-prep-001/test_runner_guards.py",
+    "sha256": "5d14d39fb69f22ec019feeae20c5fbbedc473e6561583d7eeedcd94c3ea3a441",
+    "bytes": 11663
+  },
+  "all14_runner_method_ASTs_exact": true,
+  "runner_guard_source_locator": "same-directory run_readback.py; no locator/SOURCE_SHA edit needed",
+  "AST_serialization": {
+    "interpreter": "/Library/Developer/CommandLineTools/usr/bin/python3",
+    "python": "3.9.6",
+    "serialization": "UTF-8 ast.dump(node, include_attributes=False), default annotate_fields=True; no terminal newline; same interpreter for donor and selected",
+    "cross_interpreter_equivalence_claim": false
+  },
+  "metadata_join_before_source_assertions": {
+    "root_acceptance": {
+      "path": "work/962-engineering/direct-sicn-apex1613031-cavity-extract-root-execution-001/result-peer-acceptance.json",
+      "sha256": "18a4c51a085cb70ec28e2eaade18f621c7f450a22eba2f4102956cb9c6910e74",
+      "bytes": 3678
+    },
+    "peer": {
+      "path": "work/962-engineering/direct-sicn-apex1613031-cavity-extract-result-peer-001/review.json",
+      "sha256": "a49de0ebf1915641e613b2ec7cc456c87876bbbdfd3452919551a889850a5cef",
+      "bytes": 3420
+    },
+    "shell": {
+      "path": "work/962-engineering/direct-sicn-apex1613031-cavity-study-001/local-shell-input-001.json",
+      "sha256": "6529ffc5a5ca738c4bfe3041d858f2d40cc50efc6ee0e1dc5bcc626fd720d92d",
+      "bytes": 17793
+    },
+    "vertices": 9,
+    "faces": 14,
+    "original_boundary": 5,
+    "original_dim3": 4,
+    "source_cells": 14,
+    "source_nodes": 10,
+    "source_positive_poor": 1,
+    "exact_volume_mm3": {
+      "numerator": "104308130846515511471660941377843352992235",
+      "denominator": "1045347431181122959759486794030391945592832"
+    }
+  },
+  "authoring_history": [
+    {
+      "scope": "Own in-memory source-text replacement before any file write",
+      "initial_expected_occurrence_count": 3,
+      "observed_occurrence_count": 4,
+      "token": "!=16 substring inside shell_rows",
+      "correction": "Fourth substring was the start of !=1613790; use the three full cardinality expressions explicitly and retain the separate apex replacement",
+      "prepared_functions_or_guards_executed": false
+    }
+  ],
+  "prepared_functions_or_guards_executed": false,
+  "native_or_scientific_imports": false
+}

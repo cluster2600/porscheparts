@@ -1,0 +1,33 @@
+{
+  "schema": "962-fixed-cube-saved-algebra-diagnosis/v1",
+  "status": "UNCHANGED_SAVED_RESIDUAL_GATE_FAILED_A_EQUALS_P_PASSED",
+  "input_sha256": {
+    "work/962-engineering/moose-local-macos-imported-elastic-cube-001/operator.m": "23330d597174d7b83cc0b47c0d4f1a62a6a76b2618a4d4b5f304d30343a829dc",
+    "work/962-engineering/moose-local-macos-imported-elastic-cube-001/preconditioner.m": "db5e4dd3d4003c279e25f4ae3ceb10ccf2c82d35bc8f39d25c27a590eeeab782",
+    "work/962-engineering/moose-local-macos-imported-elastic-cube-001/rhs.m": "4f039c69456f33d0e511e216d1f7c09f9168e3f7a9413a3fe3d9796b334e3998",
+    "work/962-engineering/moose-local-macos-imported-elastic-cube-001/correction.m": "2948983ae065f9e9f7538ac38e8284c4c2b839686831e141bea864e71c6ac432",
+    "work/962-engineering/moose-local-macos-imported-elastic-cube-001/affine-card.json": "63783fe610ad80b8b430e44b4b47a5c5636130202b65d592beb2920399217a4a"
+  },
+  "rhs_L2_norm": 0.021688706738761533,
+  "matrix_Frobenius_norm": 15279485.36375748,
+  "correction_L2_norm": 0.026693165099742042,
+  "residual_L2_norm_using_fsum_products": 9.64240616281515e-12,
+  "relative_Jy_minus_F_same_arithmetic_as_assessor": 4.4458188673751004e-10,
+  "relative_A_minus_P": 0.0,
+  "unchanged_acceptance_tolerance": 1e-10,
+  "residual_gate_passed": false,
+  "A_equals_P_gate_passed": true,
+  "maximum_absolute_residual_entry": 6.4661002247001775e-12,
+  "normalized_backward_error_diagnostic_only": 2.3641585494478417e-17,
+  "sixty_decimal_digit_matvec_on_exact_saved_float_values_relative_residual": "4.47421487729792324546834774254050994581651413643388275468659E-10",
+  "identity_row_count": 24,
+  "no_native_solver_or_assessor_import_or_reexecution": true,
+  "inputs_unchanged": true,
+  "qualification": false,
+  "limits": [
+    "Small independent saved ASCII arithmetic. This is a failure diagnosis, not an alternative acceptance test.",
+    "Decimal replay uses exact saved binary64 values and does not recover hidden internal solver precision.",
+    "Changing acceptance tolerance or retroactively accepting this attempt is not authorized by this diagnosis.",
+    "The solver estimate differs from the saved true residual; the large matrix norm and tiny relative backward error motivate examining equation scaling, but do not establish a unique root cause."
+  ]
+}

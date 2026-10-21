@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0.0",
+  "status": "published_hypothetical_software_witness_evidence",
+  "classification": "HYPOTHETICAL_SOFTWARE_VERIFICATION_ONLY",
+  "native_solves_repeated_for_publication": false,
+  "frozen_contract_sha256": "2b1b331b291337a1af9358a56e753956e9502d6472581ac36418e9cb55979ecb",
+  "original_local_summary_sha256": "1f50f0bdaa3230573473ba95c7d0ce2ab17b1c46e0880a902e4a640c2cac9855",
+  "hardened_local_verification_sha256": "7f31a8bd1ed13ce1e38f3edbec5ab66ab989ea6b93da08982d9ae43b53e834a4",
+  "checker_source_sha256": "ccd73479ed1dc274a915f97f012a6d61d98bfbe6327e136bc564630a99f895c7",
+  "checker_test_source_sha256": "45dbdf66ba6d70d0b8e1aeeaa24d4083337e434ca61fb381ea3cee59363e6703",
+  "checker_tests_passed": 17,
+  "runtime": {
+    "native_binary_sha256": "c49e2c368799d80edf9ff858dd8960bd22f5430f48229ab49dcc0afd27afcc5b",
+    "native_source_revision": "167ee97da204df5e8643695e18b9b28910f0014b",
+    "distribution": "idaholab/moose@sha256:47fc6c5bff5e86869e7c467f999e9585ece13af9ffd1f580fef5369728a93452"
+  },
+  "runs": {
+    "elastic": {
+      "directory": "elastic-001",
+      "native_csv_sha256": "1b578e81af66237840f413e1571086c027954d3612f021b99f2875ac6c4ebc4c",
+      "native_log_sha256": "3d48d54e238b7c7496bbd5a4a0df53a0643915950acc39d38ac44867ce94db7e",
+      "retained_exodus_sha256": "9685be0c46bef0bf1b1e6d7a64b59b46311872e63b0ae002364dcc97fde86e2a",
+      "retained_exodus_bytes": 141440,
+      "hardened_assessment_sha256": "565f89b1fb354a9984a11e39ebf5aa86daa64d91c9257945bdfbf39f0fb8e804",
+      "runtime_projection_sha256": "d794451bbbfedf26566ad43598eb975f22781fd9d3785484d439418b5f1a64b7",
+      "field_checks": 140,
+      "native_execution_checks": 19,
+      "native_times": 7,
+      "native_wall_seconds": 3.2263566278852522,
+      "passed": true
+    },
+    "plastic": {
+      "directory": "plastic-001",
+      "native_csv_sha256": "0b3e0cb6e404f3cec421bdb39a687a90a49909d616fb0860506c5046fa753753",
+      "native_log_sha256": "a4cbb184205972c30965d55d14fa33c998c9fb762dd94e60a5be5aa4014ab36b",
+      "retained_exodus_sha256": "f072e79bfdb2dd89f8ca156ab41e505936380a32255c30f0697bafdacd06cfea",
+      "retained_exodus_bytes": 155400,
+      "hardened_assessment_sha256": "c0f02d3aee4f117446810d56c3e8ce70618f945fd806de1d4e003f5d43bea5eb",
+      "runtime_projection_sha256": "e7119996c382cc47cf009c5b3ab0bcfba7c53e33a44d79658e78df963be03c6c",
+      "field_checks": 154,
+      "native_execution_checks": 19,
+      "native_times": 7,
+      "native_wall_seconds": 2.9759129718877375,
+      "passed": true
+    }
+  },
+  "public_verification_scope": [
+    "Verify packaged file hashes and compare native CSV field extrema to both frozen analytical histories and tolerances.",
+    "Native logs contain six converged equilibrium solves per case and the reported runtime revision.",
+    "Runtime metadata is a whitelisted projection; raw native/command receipts contain host paths and remain local. Original hashes are opaque provenance anchors in the public bundle.",
+    "The complete original SSH JSON capture was reconstructed locally and matched its original stdout SHA-256. Public projections cannot independently reconstruct private receipt bytes.",
+    "Exodus files remain local; original captured hashes are published. No pointwise or quadrature-field audit, mesh convergence, heat equation, cylinder-head result, physical material calibration or LPBF qualification is claimed."
+  ],
+  "qualification": {
+    "head_simulation": false,
+    "physical_material_calibration": false,
+    "heat_equation_solved": false,
+    "strength_validated": false,
+    "manufacturing_authorized": false
+  }
+}

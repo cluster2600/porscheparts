@@ -1,0 +1,150 @@
+{
+  "schema": "962-independent-sparse-tiny-contract-delta-review/v1",
+  "decision": "CLEAR_EXACT_TINY_CHILD_DELTA",
+  "review_scope": "Actual contract delta/bindings only; reviewer authored worker and does not independently re-review its source/math.",
+  "actual_child": {
+    "path": "work/962-engineering/direct-sicn-sparse-cube-execution-prep-001/actual-contract-001.json",
+    "sha256": "8991bd4272746f5589ffc5da0e6f0b26cc8bcdbab545d9e8d101c08ae7283011"
+  },
+  "held": {
+    "path": "work/962-engineering/direct-sicn-sparse-cube-prep-001/held-contract.json",
+    "sha256": "707116c7c5ef64ee3aa8d8685a97495d22ed8ddacfa479685452e6b2150881ed"
+  },
+  "delta": {
+    "changed_existing_fields": [
+      "execution_authorized",
+      "input_hashes",
+      "root_and_peer_review_complete",
+      "selected_runtime_review_complete",
+      "status"
+    ],
+    "added_fields": [
+      "actual_child_binding",
+      "external_source_peer",
+      "root_current_runtime_verification",
+      "root_source_review"
+    ],
+    "removed_null_self_hash_field": "actual_child_sha256",
+    "held20pins_preserved_exact": true,
+    "added_evidence_pins": 7,
+    "added_future_execution_copies": 2,
+    "total_input_pins": 29,
+    "selected_runtime54_and_additional22_exactly_unchanged": true
+  },
+  "current_small_pin_check": {
+    "count": 26,
+    "pins": {
+      "work/962-engineering/direct-sicn-head-proposer-prep-001/propose_coordinates.py": "e7d61ca130623389f2b5e3a7807477ef45090bedcfcd87f3941c35ca6d2d7b02",
+      "work/962-engineering/direct-sicn-head-proposer-prep-001/run_readback.py": "aefd13ddd8344cb4e46eeb17126383ba2afbf8763ae40a99eb55a9bcb2779407",
+      "work/962-engineering/direct-sicn-head-proposer-source-peer-001/review.json": "82166ababa5af50b9af0ec30d0a491aad6ec325ede24bc56a4679bafdf199242",
+      "work/962-engineering/direct-sicn-head-proposer-root-source-001/review.json": "cd035885a02881901b1a28b377bf028116d15c06a681f1ed0652c1d84c866670",
+      "work/962-engineering/direct-sicn-cube-prep-002/direct_sicn_cube.py": "8351733aa0cd3dff2c86bcedd6c5cf931fde7306d0870738f9794448fbe8d12e",
+      "work/962-engineering/direct-sicn-cube-result-peer-002/review.json": "a829d46917fba545ccfed90bc855acd81bd66aa754e56729fb1c0f4822048544",
+      "work/962-engineering/direct-sicn-cube-controller-prep-002/test_runner_guards.py": "aab036ea95957ba82d5bf6ba0ecb2db44712c10251d46f94c2c2621f7708f108",
+      "work/962-engineering/direct-sicn-cube-controller-root-source-002/review.json": "99125a06af6199857ed8804e027ef54e2efdf7828a75d073f00cb7c38b217dfb",
+      "work/962-engineering/direct-sicn-head-expanded-policy-note-001/NOTE.md": "a4791fd625cd2c7e0ae6157b659a29720f6d7807a722d55a8049c198e0b521af",
+      "work/962-engineering/direct-sicn-sparse-cube-prep-001/METHOD.md": "9ceaa7f66f627ea16a8086d8db11109a234ae2cd051bc9f16e9857378a1a7dfd",
+      "work/962-engineering/direct-sicn-sparse-cube-prep-001/sparse_cube.py": "2ef99ee727f74ca7cc672f8e106f804d89cb5c41eb86b643b423913841ea4ed7",
+      "work/962-engineering/direct-sicn-sparse-cube-prep-001/runtime-candidates-from-record.json": "eeaa91f4deebfab4fafaf9ddcd4c871e0fdbf23d1cf8a53729fe8c6560d7628b",
+      "work/962-engineering/direct-sicn-sparse-cube-prep-001/controller-delta.json": "bb6501d21b5937690d57490d052da3eabfb3f43c7e549c7b886f31c61e79e385",
+      "work/962-engineering/direct-sicn-sparse-cube-prep-001/controller.diff": "24803bda7f74e3210036fdd5242ca1655841cab70943ebb5168d820c2fe0d09b",
+      "work/962-engineering/direct-sicn-sparse-cube-prep-001/test_runner_guards.py": "14e4403450616720994df4fbe5a3367af2414a9d66128b7a8928e0d6e91dd819",
+      "work/962-engineering/direct-sicn-sparse-cube-prep-001/source-reuse.json": "c6ba0343885a115a3de62568a2289adfca9f1d1373e515fd682684b972b60f5b",
+      "work/962-engineering/direct-sicn-sparse-cube-prep-001/test_guards.py": "fa66151e32fb2b4a810ba43aac5f6ad48e5ac9eebff216e69c5a2d4979dc6d11",
+      "work/962-engineering/direct-sicn-sparse-cube-prep-001/run_readback.py": "0596905302a167cd4b871e6880e9fa67bcfaebf462c95b5f21ab0181e1d2d5d7",
+      "work/962-engineering/direct-sicn-sparse-cube-prep-001/preparation-checks.json": "6138492b2ebf1e5993ce5ed231a27aba2420b39e82b40d3ed3e9ce04d9d9d2c0",
+      "work/962-engineering/direct-sicn-sparse-cube-prep-001/held-contract.json": "707116c7c5ef64ee3aa8d8685a97495d22ed8ddacfa479685452e6b2150881ed",
+      "work/962-engineering/direct-sicn-sparse-cube-source-peer-001/review.json": "7e466440a699cac6ff7692c06483478b5d203270a5311e31a385655dd663c662",
+      "work/962-engineering/direct-sicn-sparse-cube-root-source-001/review.json": "802392f0a30a0ddef5a980561146ba9dda3c9227503cf51a235ba3011abb9996",
+      "work/962-engineering/direct-sicn-sparse-cube-root-source-001/numpy-guards.log": "40c48c57f3a970d22448774d83e6e048c2dc9079a49e7bc84eec9b1820339231",
+      "work/962-engineering/direct-sicn-sparse-cube-root-source-001/controller-guards.log": "c5bd8d7dbe03504278cd0b793a7e31f11f098941ada9f69dba7a75e715b45605",
+      "work/962-engineering/direct-sicn-sparse-cube-root-source-001/selected-runtime-current.json": "fe02eb507f2600367d991ba610754943d2a0d2bd3a2d663eb02cb26f958b7f0f",
+      "work/962-engineering/direct-sicn-sparse-cube-preflight-001/preflight.json": "fb844d8fb32e58217ebdb6069229325d92b25a766501f7756e2a8a049cc0c819"
+    }
+  },
+  "deferred_reference": {
+    "path": "work/962-engineering/direct-sicn-cube-002/fixture-report.json",
+    "sha256": "0512708595378fe0d316de08305c35f98138b082a2deb83bdb60717783cd8058",
+    "scope": "Tiny native JSON body/geometry not read or rehashed; exact current identity and all20before/after metadata are root-attributed802392/fb844."
+  },
+  "future_copies": [
+    {
+      "path": "work/962-engineering/direct-sicn-sparse-cube-001/reader.py",
+      "sha256": "2ef99ee727f74ca7cc672f8e106f804d89cb5c41eb86b643b423913841ea4ed7",
+      "absent_at_review": true
+    },
+    {
+      "path": "work/962-engineering/direct-sicn-sparse-cube-001/run_readback.py",
+      "sha256": "0596905302a167cd4b871e6880e9fa67bcfaebf462c95b5f21ab0181e1d2d5d7",
+      "absent_at_review": true
+    }
+  ],
+  "unchanged": {
+    "reader_sha256": "2ef99ee727f74ca7cc672f8e106f804d89cb5c41eb86b643b423913841ea4ed7",
+    "runner_sha256": "0596905302a167cd4b871e6880e9fa67bcfaebf462c95b5f21ab0181e1d2d5d7",
+    "literal_counts": {
+      "nodes": 9,
+      "TET4": 12,
+      "movable_nodes": 1,
+      "coordinate_variables": 3,
+      "variables_with_epigraph": 4,
+      "constraints": 12,
+      "fixed_boundary_nodes": 8
+    },
+    "solver": {
+      "method": "trust-constr",
+      "maxiter": 100,
+      "gtol": 1e-08,
+      "xtol": 1e-10,
+      "barrier_tol": 1e-10,
+      "finite_diff_rel_step": 1.4901161193847656e-08,
+      "sparse_jacobian": true,
+      "factorization_method": "AugmentedSystem"
+    },
+    "limits": {
+      "wall_seconds": 30,
+      "sampled_RSS_bytes": 1073741824,
+      "sampled_output_bytes": 16777216,
+      "threads": 2
+    },
+    "minimum_analytic_SICN": 0.1,
+    "output_path": "work/962-engineering/direct-sicn-sparse-cube-001",
+    "output_absent_at_review": true,
+    "automatic_retry": false,
+    "all_head_engineering_physics_manufacturing_flags_false": true
+  },
+  "root_and_external_evidence": {
+    "source_peer_sha256": "7e466440a699cac6ff7692c06483478b5d203270a5311e31a385655dd663c662",
+    "root_source_sha256": "802392f0a30a0ddef5a980561146ba9dda3c9227503cf51a235ba3011abb9996",
+    "selected_runtime_current_sha256": "fe02eb507f2600367d991ba610754943d2a0d2bd3a2d663eb02cb26f958b7f0f",
+    "preflight_sha256": "fb844d8fb32e58217ebdb6069229325d92b25a766501f7756e2a8a049cc0c819",
+    "guards": {
+      "numpy-guards": {
+        "methods": 9,
+        "reported_test_seconds": 0.188,
+        "root_outer_seconds": 0.3593754169996828,
+        "returncode": 0,
+        "sha256": "40c48c57f3a970d22448774d83e6e048c2dc9079a49e7bc84eec9b1820339231"
+      },
+      "controller-guards": {
+        "methods": 14,
+        "reported_test_seconds": 0.093,
+        "root_outer_seconds": 0.27181491698138416,
+        "returncode": 0,
+        "sha256": "c5bd8d7dbe03504278cd0b793a7e31f11f098941ada9f69dba7a75e715b45605"
+      }
+    },
+    "runtime_bodies_not_read_by_this_reviewer": true,
+    "preflight_scope": "Root observed selected casefolded known jobs only, not universal processabsence; root refreshes source/runtime/resources/fresh output before sole launch."
+  },
+  "trust_boundary": {
+    "no_input_self_hash_or_review_cycle": true,
+    "actual_contract_SHA_supplied_externally_to_owned_controller": true,
+    "future_copies_must_be_exactly_materialized_then_all29_and54_rechecked": true,
+    "authorization_scope": "one tiny analytic trust-constr software trial only; no head proposal/native geometry application/PDE or physical qualification"
+  },
+  "review_operations": {
+    "JSON_stdlib_source_pin_hashes_only": true,
+    "prepared_source_or_scientific_imports_tests_solver_native_geometry_runtime_bodies_or_Git": false
+  }
+}

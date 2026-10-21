@@ -1,0 +1,569 @@
+--- work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native005-freshness-prep-001/capture_freshness.py
++++ work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native003-staging-freshness-prep-001/capture_freshness.py
+@@ -1,13 +1,13 @@
+-"""HELD/UNRUN native005 finite identities plus one separately admitted metadata query."""
++"""HELD/UNRUN finite identities plus one separately admitted metadata query."""
+ import hashlib,json,os,subprocess,sys,time,traceback
+ from pathlib import Path
+ 
+ R=Path('/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993')
+ E=R/'work/962-engineering'
+-P=E/'cp1-oneway-cooling-release-richardson2-observer004-native005-freshness-prep-001'
+-H=E/'cp1-oneway-cooling-release-richardson2-observer004-native005-freshness-helper-root-execution-001'
+-O=E/'cp1-oneway-cooling-release-richardson2-observer004-native-measurement-004'
+-D=E/'cp1-oneway-cooling-release-richardson2-observer004-native-measurement-root-execution-004'
++P=E/'cp1-oneway-cooling-release-richardson2-observer004-native003-staging-freshness-prep-001'
++H=E/'cp1-oneway-cooling-release-richardson2-observer004-native003-freshness-root-execution-001'
++O=E/'cp1-oneway-cooling-release-richardson2-observer004-native-measurement-003'
++D=E/'cp1-oneway-cooling-release-richardson2-observer004-native-measurement-root-execution-003'
+ PREFIX=E/'moose-local-installed-002'
+ CAP=32*1024**2
+ START=time.monotonic()
+@@ -51,31 +51,18 @@
+     need(H.is_dir() and not H.is_symlink() and set(p.name for p in H.iterdir())=={'authorization.json'},'Fresh helper root with authorization only required')
+     need(A.is_file() and not A.is_symlink() and rec(A)['sha256']==sys.argv[1],'Changed root authorization')
+     auth=json.loads(A.read_text());plan_path=P/'held-plan.json';plan=json.loads(plan_path.read_text())
+-    need(auth.get('schema')=='962-native005-finite-helper-root-admission/v1' and auth.get('root_issued') is True and auth.get('operation')=='freshness' and auth.get('operation_authorized') is True,'No freshness authority')
++    need(auth.get('schema')=='962-native003-finite-helper-root-admission/v1' and auth.get('operation')=='freshness' and auth.get('operation_authorized') is True,'No freshness authority')
+     need(type(auth.get('invocations')) is int and auth['invocations']==1 and auth.get('automatic_retry') is False,'One operation and no retry required')
+     need(auth.get('independent_source_review_complete') is True and auth.get('root_source_review_complete') is True,'Pending helper source reviews')
+-    need(auth.get('runtime_metadata_query_authorized') is True and all(auth.get(k) is False for k in ['staging_authorized','native_execution_authorized','fixture_execution_authorized','field_parsing_authorized','manufacturing_authorized']),'Metadata query only; no staging/native/scientific authority')
++    need(auth.get('runtime_metadata_query_authorized') is True and all(auth.get(k) is False for k in ['native_execution_authorized','fixture_execution_authorized','field_parsing_authorized','manufacturing_authorized']),'Metadata query only; no native/scientific authority')
+     need(auth['helper']==rec(Path(__file__)) and auth['plan']==rec(plan_path),'Exact helper/plan required')
+     need(auth['limits']==plan['operation_limits'] and auth['limits']==dict(whole_seconds=60,TERM_grace_seconds=8,stream_buffer_bytes=1048576,query_seconds=5,total_inclusive_bytes=33554432,thread_environment=1,retries=0),'Fixed helper limits required')
+     need(plan['operation_source_authority_only'] is True and plan['native_execution_authorized'] is False,'Exact held plan required')
+-    need(set(plan['known_native_roles'])==set(plan['native_final_role_names'])-{'staging_receipt','fresh_preflight'} and len(plan['known_native_roles'])==12 and len(plan['native_final_role_names'])==14,'Exact twelve known/fourteen final native roles required')
+     before={name:selected(pin)[1] for name,pin in plan['known_native_roles'].items()}
+     for name,pin in plan['source_plan_bindings'].items():before[name]=selected(pin)[1]
+-    late=('helper_source_peer','helper_source_findings','helper_source_bindings','helper_root_review','helper_preparation_index','staging_receipt','stage_root_acceptance')
+-    for name in late:before[name]=selected(auth[name])[1]
+-    need(auth['staging_receipt']==plan['accepted_staging_receipt'] and auth['stage_root_acceptance']==plan['accepted_stage_root'] and auth['helper_preparation_index']['path']==str((P/'index.json').relative_to(R)),'Fixed current staging/index bindings required')
+-    packet=json.loads((P/'index.json').read_bytes())
+-    expected={'capture_freshness.py','run_operation_once.py','stopped_exec_wrapper.py','held-plan.json','held-actual.json','METHOD.md','bindings.json','source-reuse.json','source.diff','source.inverse.diff'}
+-    need(set(packet['files'])==expected and packet['file_count_including_this_index']==11,'Exact eleven-file source packet required')
+-    protected=auth['protected_records']
+-    need(all(pin in protected.values() for pin in packet['files'].values()) and auth['helper_preparation_index'] in protected.values(),'All eleven source/proof files must be externally protected')
+-    for name,pin in protected.items():before['protected_'+name]=selected(pin)[1]
++    for name in ['helper_source_peer','helper_source_bindings','helper_root_review','helper_preparation_index','staging_receipt']:before[name]=selected(auth[name])[1]
++    need(auth['staging_receipt']['path']==plan['future_staging_receipt'],'Fixed separate staging receipt required')
+     before.update(helper=rec(Path(__file__)),plan=rec(plan_path),authorization=rec(A))
+-    unique={}
+-    for pin in before.values():
+-        need(pin['path'] not in unique or unique[pin['path']]==pin,'Conflicting helper control descriptor')
+-        unique[pin['path']]=pin
+-    need(type(auth['expected_canonical_input_count']) is int and len(unique)==auth['expected_canonical_input_count'],'Exact late helper control count required')
+     return auth,plan,before
+ 
+ 
+@@ -85,7 +72,7 @@
+ 
+ def observe(actual,plan,out):
+     time_check()
+-    need(len(actual['input_sha256'])==348 and len(actual['runtime_sha256s'])==19 and len(actual['runtime_symlinks'])==13 and len(actual['expected_provider_paths'])==22 and len(actual['expected_host_records'])==89,'Exact finite scope required')
++    need(len(actual['input_sha256'])==257 and len(actual['runtime_sha256s'])==19 and len(actual['runtime_symlinks'])==13 and len(actual['expected_provider_paths'])==22 and len(actual['expected_host_records'])==89,'Exact finite scope required')
+     out.update(inputs={},runtime_files={},runtime_links={},providers={},host_records={},staged_inputs={})
+     for name,digest in actual['input_sha256'].items():
+         p=R/name
+@@ -178,31 +165,29 @@
+ 
+ def main():
+     auth,plan,before=admit()
+-    report=dict(schema='962-observer004-native005-fresh-preflight/v1',status='INCOMPLETE',metadata_query_only=True,native_execution=False,fixture_execution=False,field_parsing=False,helper=before['helper'],held_plan=before['plan'],authorization=before['authorization'],controls_before=before,controls_after=None,observations_before=None,observations_after=None,query=None,error=None,all_declared_identities_unchanged=False)
++    report=dict(schema='962-observer004-native003-fresh-preflight/v1',status='INCOMPLETE',metadata_query_only=True,native_execution=False,fixture_execution=False,field_parsing=False,helper=before['helper'],held_plan=before['plan'],authorization=before['authorization'],controls_before=before,controls_after=None,observations_before=None,observations_after=None,query=None,error=None,all_declared_identities_unchanged=False)
+     try:
+         actual=json.loads(selected(plan['known_native_roles']['actual'])[0].read_text())
+         need(actual['schema']=='962-observer004-native-measurement-actual/v1' and actual['native_execution_authorized'] is False,'Exact held native actual required')
+         stage=json.loads(selected(auth['staging_receipt'])[0].read_text())
+         need(stage['schema']=='962-observer004-native-measurement-four-input-staging/v1' and stage['all_four_copies_byte_exact'] is True and stage['no_execution'] is True and stage['staged_inputs']==actual['staged_inputs']==plan['expected_staged_inputs'],'Exact separate successful no-execution staging receipt required')
+-        prior_pin=plan['parent003_actual'];prior=json.loads(selected(prior_pin)[0].read_text())
+-        added=sorted(set(actual['input_sha256'])-set(prior['input_sha256']))
+-        need(len(prior['input_sha256'])==257 and len(actual['input_sha256'])==348 and len(added)==91 and all(actual['input_sha256'].get(k)==v for k,v in prior['input_sha256'].items()),'Explicit257-to348 unchanged ancestry required')
+-        report['ancestry']=dict(prior_actual=prior_pin,preserved257=257,new_records=91,total348=348,new_record_paths=added,older_ancestry_reestablished=False,older_ancestry_scope='Historical expected lineage only; this operation rechecks the complete current348 identities.')
++        prior_pin=actual['native002_actual_preserved'];prior=json.loads(selected(prior_pin)[0].read_text())
++        need(len(prior['input_sha256'])==222 and len(actual['input_sha256'])==257 and all(actual['input_sha256'].get(k)==v for k,v in prior['input_sha256'].items()),'Explicit222-to257 unchanged ancestry required')
++        report['ancestry']=dict(prior_actual=prior_pin,preserved222=222,new_records=35,total257=257,original197_reestablished=False,original197_scope='Historical lineage only; no separate197-map reconstruction is performed here.')
+         report['observations_before']={};observe(actual,plan,report['observations_before'])
+         report['query']=metadata_query(actual)
+         need(report['query'].get('validation_error') is None and report['query']['error'] is None,'Metadata query refused')
+         report['observations_after']={};observe(actual,plan,report['observations_after'])
+         after={name:selected(pin)[1] for name,pin in plan['known_native_roles'].items()}
+         for name,pin in plan['source_plan_bindings'].items():after[name]=selected(pin)[1]
+-        for name in ['helper_source_peer','helper_source_findings','helper_source_bindings','helper_root_review','helper_preparation_index','staging_receipt','stage_root_acceptance']:after[name]=selected(auth[name])[1]
+-        for name,pin in auth['protected_records'].items():after['protected_'+name]=selected(pin)[1]
++        for name in ['helper_source_peer','helper_source_bindings','helper_root_review','helper_preparation_index','staging_receipt']:after[name]=selected(auth[name])[1]
+         after.update(helper=rec(Path(__file__)),plan=rec(P/'held-plan.json'),authorization=rec(H/'authorization.json'))
+         report['controls_after']=after
+         need(before==after and report['observations_before']==report['observations_after'],'Finite identities changed across query')
+         report['all_declared_identities_unchanged']=True;report['status']='COMPLETE_METADATA_ONLY'
+     except BaseException:report['error']=traceback.format_exc()
+     report['elapsed_before_receipt']=time.monotonic()-START
+-    report['late_native_roles']=dict(known_twelve=plan['known_native_roles'],native_final_role_names=plan['native_final_role_names'],staging_receipt=auth['staging_receipt'],fresh_preflight='Externally compute this complete receipt identity; no embedded self hash or native admission.')
++    report['late_native_roles']=dict(known_seven=plan['known_native_roles'],staging_receipt=auth['staging_receipt'],fresh_preflight='Externally compute this complete receipt identity; no embedded self hash or native admission.')
+     report['scope_limits']=dict(full_ABI_or_runtime_closure=False,native_callback_or_solve=False,physical_acceptance=False,sampled_RSS_pass=False,hard_quota=False,whole_return_external_clock_and_group_and_inclusive_postchecks_required=True)
+     encoded=(json.dumps(report,indent=2,allow_nan=False)+'\n').encode()
+     need(owned_bytes()+len(encoded)<=CAP,'Complete freshness streams/receipt exceeds32MiB; no truncation')
+--- work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native005-freshness-prep-001/run_operation_once.py
++++ work/962-engineering/head-star-current24-qfnra-five-toy-owner-f1-guards-controls-prep-002/run_guards_once.py
+@@ -1,4 +1,4 @@
+-"""HELD/UNRUN retained-anchor owner for one fixed native005 freshness operation."""
++"""HELD/UNRUN retained-anchor owner for one fixed nine-method F1 fixture."""
+ import time
+ started=time.monotonic();controller_stop_requests=[]
+ import hashlib,json,os,re,select,signal,subprocess,sys,traceback
+@@ -6,144 +6,106 @@
+ 
+ R=Path('/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993')
+ E=R/'work/962-engineering'
+-X=E/'cp1-oneway-cooling-release-richardson2-observer004-native005-freshness-prep-001'
+-D=E/'cp1-oneway-cooling-release-richardson2-observer004-native005-freshness-owner-root-execution-001'
+-H=E/'cp1-oneway-cooling-release-richardson2-observer004-native005-freshness-helper-root-execution-001'
+-O=E/'cp1-oneway-cooling-release-richardson2-observer004-native-measurement-004'
+-N=E/'cp1-oneway-cooling-release-richardson2-observer004-native-measurement-root-execution-004'
+-W=E/'cp1-oneway-cooling-release-richardson2-observer004-native005-freshness-root-terminal-review-001'
++X=E/'head-star-current24-qfnra-five-toy-owner-f1-guards-controls-prep-002'
++D=E/'head-star-current24-qfnra-five-toy-owner-f1-guards-root-execution-001'
++W=E/'head-star-current24-qfnra-five-toy-owner-f1-guards-root-terminal-review-001'
+ WRAPPER=X/'stopped_exec_wrapper.py'
+ CAP=33554432
+ 
+ PYTHON={"path":"/Users/maxime/.codex/worktrees/962-watercooled-head/3dprinting993/work/962-head/check-venv/bin/python","resolved_path":"/Users/maxime/.local/share/uv/python/cpython-3.12.11-macos-aarch64-none/bin/python3.12","sha256":"1699bf8aa705a8bb71613bef5cdd7d7c8c9d9a188a841f41679aa9b5830b8f60","bytes":49968,"is_symlink":True,"raw_target":"python3.12"}
+ ENV={"PATH":"/usr/bin:/bin","LANG":"C","LC_ALL":"C","OMP_NUM_THREADS":"1","OPENBLAS_NUM_THREADS":"1","MKL_NUM_THREADS":"1","VECLIB_MAXIMUM_THREADS":"1","FI_PROVIDER":"tcp"}
+ REQUIRED_PROTECTED={
+-  "native_actual": {
+-    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native-measurement-execution-prep-004/actual-contract.json",
+-    "sha256": "a5e35548cacd4f2abfd4f0d29e5aeb738ce16bdc814f642e016851c3450f1986",
+-    "bytes": 273368
+-  },
+-  "native_caller": {
+-    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native-measurement-prep-005/run_native_capture.py",
+-    "sha256": "a04276da60fe09d9af26d32c7661fb421105b7c93724d43c728025dd1fd51aa5",
+-    "bytes": 45810
+-  },
+-  "native_root_controller": {
+-    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native-measurement-prep-005/run_root_once.py",
+-    "sha256": "34826ad993e4d874455adb40777df545f76cf611a6f23ae021a49302dc0dd649",
+-    "bytes": 61563
+-  },
+-  "native_wrapper": {
+-    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native-measurement-prep-005/stopped_exec_wrapper.py",
+-    "sha256": "a81328f9e07bded2120d8f908f8831bdafead07132ae09a1af4ccfcc4bf50e17",
+-    "bytes": 5295
+-  },
+-  "native_source_index": {
+-    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native-measurement-prep-005/index.json",
+-    "sha256": "acb06644ef2df3ed06273b4d936ecab8a76cd7760b1ddcc6e911bca0d1c554c3",
+-    "bytes": 6734
+-  },
+-  "native_exact_child_peer": {
+-    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native005-source-peer-001/review.json",
+-    "sha256": "777233540d91a59b70df3ae0947eddb32a07a3a7b1cc715de4906873d4fc946f",
+-    "bytes": 5291
+-  },
+-  "native_exact_child_bindings": {
+-    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native005-source-peer-001/bindings.json",
+-    "sha256": "29a29c02987c67782cd5a1ab8654bc43f3309995e49a6bad25fd4e04b9546691",
+-    "bytes": 14116
+-  },
+-  "native_root_source_review": {
+-    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native005-root-source-review-001/review.json",
+-    "sha256": "a8f8dd842abdc4a309b8bd4dc7c420af65ef1e9bb5b80826eb71ea93f9cd76f8",
+-    "bytes": 3969
+-  },
+-  "native_binding_candidate": {
+-    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native005-execution-binding-prep-001/actual-contract.candidate.json",
+-    "sha256": "a5e35548cacd4f2abfd4f0d29e5aeb738ce16bdc814f642e016851c3450f1986",
+-    "bytes": 273368
+-  },
+-  "native_binding_method": {
+-    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native005-execution-binding-prep-001/METHOD.md",
+-    "sha256": "3e06b15581208a893da4f145079a117e202ac6c54316bf886c18dcfae88ef188",
+-    "bytes": 6452
+-  },
+-  "native_binding_inputs": {
+-    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native005-execution-binding-prep-001/bindings.json",
+-    "sha256": "451d80933d3ce589032fe82189af060b90e27a913b719ca924b6ff9f96515b43",
+-    "bytes": 58253
+-  },
+-  "native_binding_change_map": {
+-    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native005-execution-binding-prep-001/change-map.json",
+-    "sha256": "b857a0c7486833aa8de671f7aaf1307d83353003e8ff01886746ccab25af763e",
+-    "bytes": 115691
+-  },
+-  "helper": {
+-    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native005-freshness-prep-001/capture_freshness.py",
+-    "sha256": "e3f1c980ead8f7952eb82a1996db7fc167ca829c294afdccf4b9c83d65fe2dac",
+-    "bytes": 17737
+-  },
+-  "wrapper": {
+-    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native005-freshness-prep-001/stopped_exec_wrapper.py",
+-    "sha256": "9839a4b3837115e13e331a07296daa0a95f77915be78f6e6c63afb732ad9a3a2",
+-    "bytes": 1588
+-  },
+-  "source_adaptation_authority": {
+-    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native005-freshness-adaptation-root-authority-001/review.json",
+-    "sha256": "c777a995b439c8329f0aee20c432a5361416a12cee1a5c4d2f882fcf38a5d276",
+-    "bytes": 7936
+-  },
+-  "current_contract_root": {
+-    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native005-execution-binding-root-review-001/review.json",
+-    "sha256": "3f030491c886a450d6be43f3f5d2f198ec1fc4bd4ae0b2ce9588c876b094a5d2",
+-    "bytes": 10112
+-  },
+-  "accepted_staging_receipt": {
+-    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native005-four-input-staging-root-001/staging-receipt.json",
+-    "sha256": "3ec1f62e359414c02eda78ed6e285beed3e9774c61366816560e22cfe6bddfa9",
+-    "bytes": 5897
+-  },
+-  "stage_root_acceptance": {
+-    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native005-four-input-staging-root-001/postreturn-acceptance.json",
+-    "sha256": "44b4efd5a9fada59392979b628f9a12c87ce5f86293b8397d5713936e251d087",
+-    "bytes": 3920
+-  },
+-  "parent003_actual": {
+-    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native-measurement-execution-prep-003/actual-contract.json",
+-    "sha256": "85a9195ed1a217eef6bad44518390f1b2dfdb879c9cdfc072b6e1465461a5198",
+-    "bytes": 116306
+-  },
+-  "historical_freshness_acceptance": {
+-    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native003-freshness-root-result-acceptance-001/acceptance.json",
+-    "sha256": "ac5477484c620b2fd3d0b67a9d4c73945bc14e8e5564d1bf9559bc9b12fc2984",
+-    "bytes": 3866
+-  },
+-  "donor_freshness_helper": {
+-    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native003-staging-freshness-prep-001/capture_freshness.py",
+-    "sha256": "a577e2b3499aa3571d2f08e0b7e5f54d687464654e8de7af523f7d112a1edd7d",
+-    "bytes": 15798
+-  },
+-  "donor_legacy_owner_semantic_receipt_only": {
+-    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native003-freshness-operation-controls-prep-002/run_operation_once.py",
+-    "sha256": "0555062736bd2b63dbd8da4cddfc5ef56d158eca0878be188a2cf32fcbe4fded",
+-    "bytes": 18764
+-  },
+-  "donor_modern_retained_owner": {
+-    "path": "work/962-engineering/head-star-current24-qfnra-five-toy-owner-f1-guards-controls-prep-002/run_guards_once.py",
+-    "sha256": "42aec198fb911c43f7658544911e0af23cdc76222ce25e917ceb932c2473088a",
+-    "bytes": 27767
+-  },
+-  "donor_modern_stopped_wrapper": {
+-    "path": "work/962-engineering/head-star-current24-qfnra-five-toy-owner-f1-guards-controls-prep-002/stopped_exec_wrapper.py",
+-    "sha256": "ab0ebf6bc3110680ce0f03022da2d66452175877a07612b6657ecb66c02afdf4",
+-    "bytes": 1536
++  "owner": {
++    "path": "work/962-engineering/head-star-current24-qfnra-five-toy-owner-prep-002/run_owner_once.py",
++    "sha256": "f3a27f43c1ea794a552f697d556c9b6a51668d829b86f438debf03a0cd6892e2",
++    "bytes": 32207
++  },
++  "owner_index": {
++    "path": "work/962-engineering/head-star-current24-qfnra-five-toy-owner-prep-002/index.json",
++    "sha256": "2dbcb8b744677ecd01506447cd86c742b70472a1e4c3c2e867813835f1abebf0",
++    "bytes": 7297
++  },
++  "source_peer": {
++    "path": "work/962-engineering/head-star-current24-qfnra-five-toy-owner-source-peer-002/review.json",
++    "sha256": "38140b44382931e1554443a240b1c886e9cc74e2f0d2918eea2d5b59c91b8003",
++    "bytes": 5080
++  },
++  "source_findings": {
++    "path": "work/962-engineering/head-star-current24-qfnra-five-toy-owner-source-peer-002/findings.json",
++    "sha256": "75dc7b38f01bad3cc63576b99a699d24963dfcdb2873eac7dd4645825d50d0b3",
++    "bytes": 2055
++  },
++  "source_bindings": {
++    "path": "work/962-engineering/head-star-current24-qfnra-five-toy-owner-source-peer-002/bindings.json",
++    "sha256": "6eb138364cae041dc96ab01fff288b5abdd26751262674de38bcfb2e1de4f1ca",
++    "bytes": 19790
++  },
++  "root_guard_source_grant": {
++    "path": "work/962-engineering/head-star-current24-qfnra-five-toy-owner-root-source-review-002/review.json",
++    "sha256": "2b998f3bc1a895e9035a890ab1f67cb99872b77a647952239b220c80d7554b46",
++    "bytes": 3455
++  },
++  "F1_source_decision": {
++    "path": "work/962-engineering/head-star-current24-qfnra-five-toy-owner-root-source-decision-001/decision.json",
++    "sha256": "f3800b137892918d7532ed07267664f9043541e3082b739c66df04b57d84e7bf",
++    "bytes": 2944
++  },
++  "original_F1_findings": {
++    "path": "work/962-engineering/head-star-current24-qfnra-five-toy-owner-source-peer-001/findings.json",
++    "sha256": "3630255f9c2d786d11bb66663860407dcfc247a135efaa89d2d81c015d5606c9",
++    "bytes": 3048
++  },
++  "fixture": {
++    "path": "work/962-engineering/head-star-current24-qfnra-five-toy-owner-f1-guards-prep-001/test_final_evidence_guards.py",
++    "sha256": "1a81cdcd45aee1aeb917478763c9169b6be5e858c5b41b9226574ae0c70ed5fb",
++    "bytes": 14566
++  },
++  "fixture_bindings_json": {
++    "path": "work/962-engineering/head-star-current24-qfnra-five-toy-owner-f1-guards-prep-001/bindings.json",
++    "sha256": "3f1e80dda286909dd4c9482bfd1ceb47ab023bb8fff87eb352ff5e9d4e079374",
++    "bytes": 12195
++  },
++  "fixture_METHOD_md": {
++    "path": "work/962-engineering/head-star-current24-qfnra-five-toy-owner-f1-guards-prep-001/METHOD.md",
++    "sha256": "1ce871393d929c38776f4eb9106885b50264084b61034babed7661dfa89a7c03",
++    "bytes": 5499
++  },
++  "fixture_index_json": {
++    "path": "work/962-engineering/head-star-current24-qfnra-five-toy-owner-f1-guards-prep-001/index.json",
++    "sha256": "42448c88fc7b60166250bf5525c6713dc5d496914e110a8d0c3fe876ba44a87f",
++    "bytes": 2508
++  },
++  "fixture_root_review": {
++    "path": "work/962-engineering/head-star-current24-qfnra-five-toy-owner-f1-guards-root-source-review-001/review.json",
++    "sha256": "8efb54f578bc8d08a1eebedc90de083e0c4642207800229ca95eb5877f093954",
++    "bytes": 2038
++  },
++  "fixture_peer_0": {
++    "path": "work/962-engineering/head-star-current24-qfnra-five-toy-owner-f1-guards-source-peer-001/review.json",
++    "sha256": "0b98fd3173a016db569a15c41eaa7a044b2c950d066143ea703d60efe4d23100",
++    "bytes": 5871
++  },
++  "fixture_peer_1": {
++    "path": "work/962-engineering/head-star-current24-qfnra-five-toy-owner-f1-guards-source-peer-001/findings.json",
++    "sha256": "d46e3debe179a47d7a0b7c55855af019f511a553b75051ae0a990d4d9040c490",
++    "bytes": 773
++  },
++  "fixture_peer_2": {
++    "path": "work/962-engineering/head-star-current24-qfnra-five-toy-owner-f1-guards-source-peer-001/bindings.json",
++    "sha256": "05496115fee2eca30f0d518eae10827b2c309e5b36d59bc734dafac4e0d05fc9",
++    "bytes": 7048
+   }
+ }
+ 
+ CONTROLS=dict(normal_seconds=40,TERM_absolute_seconds=48,KILL_reap_absolute_seconds=56,whole_seconds=60,
+     TERM_grace_seconds=8,KILL_reap_grace_seconds=8,total_inclusive_bytes=33554432,thread_environment=1,retries=0,RSS_sampler=False)
+-HELPER_LIMITS=dict(whole_seconds=60,TERM_grace_seconds=8,stream_buffer_bytes=1048576,query_seconds=5,total_inclusive_bytes=33554432,thread_environment=1,retries=0)
+-DIRECT_ROLES=('controller','wrapper','helper','held_plan','held_actual','control_preparation_index','helper_authorization','helper_source_peer','helper_source_findings','helper_source_bindings','helper_root_review','root_control_review','staging_receipt','stage_root_acceptance',)
++RUNTIME_SELECTION=dict(path='work/962-engineering/head-star-current24-qfnra-five-toy-owner-f1-guard-runtime-selection-root-001/runtime-identity.json',sha256='ec373001917f5fb80fae1c507186e0505f3ba699abc550ea31585c6c8c144269',bytes=1624)
++DIRECT_ROLES=('controller','wrapper','control_preparation_index','fixture_source_peer','fixture_source_bindings',
++    'root_fixture_source_review','exact_control_peer','exact_control_bindings','root_control_review','runtime_selection')
++METHODS=('test_01_complete_normal_control','test_02_final_stdout_rec_failure','test_03_final_stderr_rec_failure',
++    'test_04_final_adapter_report_rec_failure','test_05_final_helper_report_rec_failure',
++    'test_06_missing_final_stdout_descriptor','test_07_missing_final_stderr_descriptor',
++    'test_08_missing_final_adapter_descriptor','test_09_missing_final_helper_descriptor')
+ HELD_LEADERS=[]
+ 
+ 
+@@ -202,13 +164,11 @@
+ 
+ 
+ def inclusive_census(first_party):
+-    # Installed runtime/provider bodies are excluded unless copied into an owned root.
++    # Installed runtime/provider bodies are excluded unless copied into owned D.
+     files={}
+-    for owned in (D,H,O):
+-        need(owned.is_dir() and not owned.is_symlink(),'Changed fixed owned directory')
+-        for p in owned.rglob('*'):
+-            need(not p.is_symlink(),'Unexpected owned symlink')
+-            if p.is_file():files[str(p)]=p.stat().st_size
++    for p in D.rglob('*'):
++        need(not p.is_symlink(),'Unexpected owned symlink')
++        if p.is_file():files[str(p)]=p.stat().st_size
+     for pin in first_party.values():
+         p=Path(pin['path']);p=p if p.is_absolute() else R/p
+         need(p.is_file() and not p.is_symlink(),'Missing first-party census input')
+@@ -239,28 +199,16 @@
+     raise ValueError('Exact direct-child reap incomplete at bounded deadline')
+ 
+ 
+-def diagnostics(auth):
+-    need(all((D/name).stat().st_size<=CAP for name in ('helper.stdout','helper.stderr')),'Full helper stream exceeds cap; retained without parsing')
+-    with (D/'helper.stdout').open('rb') as f:out=f.read(CAP+1)
+-    with (D/'helper.stderr').open('rb') as f:err=f.read(CAP+1)
+-    need(out==err==b'','Positive helper closure requires complete empty helper streams')
+-    path=H/'fresh-preflight.json'
+-    need(path.is_file() and not path.is_symlink() and path.stat().st_size<=CAP,'Complete fixed helper receipt required before leader reap')
+-    value=json.loads(path.read_bytes());q=value['query']
+-    need(value['schema']=='962-observer004-native005-fresh-preflight/v1' and value['status']=='COMPLETE_METADATA_ONLY' and value['all_declared_identities_unchanged'] is True and value['error'] is None,'Finite freshness refused')
+-    need(value['metadata_query_only'] is True and value['native_execution'] is False and value['fixture_execution'] is False and value['field_parsing'] is False,'Only fixed metadata operation permitted')
+-    need(value['helper']==REQUIRED_PROTECTED['helper'] and value['held_plan']==auth['held_plan'] and value['authorization']==auth['helper_authorization']==rec(H/'authorization.json'),'Helper receipt source/authority associations changed')
+-    need(value['controls_before']==value['controls_after'] and value['observations_before']==value['observations_after'],'Complete before/after helper identity maps required')
+-    observations=value['observations_before']
+-    need(all(len(observations[key])==count for key,count in [('inputs',348),('runtime_files',19),('runtime_links',13),('providers',22),('host_records',89),('staged_inputs',4)]),'Complete finite observation counts required')
+-    need(type(q['attempts']) is int and q['attempts']==1 and q['started'] is True and type(q['returncode']) is int and q['returncode']==0 and q['reaped'] is True and q['new_session'] is False,'One normally reaped inherited-group query required')
+-    need(q['error'] is None and q.get('validation_error') is None and q['stop_actions']==[] and type(q['elapsed_through_cleanup']) in (int,float) and 0<=q['elapsed_through_cleanup']<=5,'Query cleanup failed/unknown/late; retain group anchor')
+-    need(q.get('cleanup_TERM_error') is None and q.get('cleanup_KILL_error') is None,'No query cleanup error may release the helper leader')
+-    need(q['stdout']==rec(H/'query.stdout') and 0<q['stdout']['bytes']<=65536 and q['stderr']==rec(H/'query.stderr') and q['stderr']['bytes']==0,'Complete exact query streams required')
+-    meta=q['metadata']
+-    need(meta['version_info']==[3,12,11] and meta['executable']==PYTHON['path'] and meta['resolved_executable']==PYTHON['resolved_path'],'Exact selected query identity required')
+-    need(meta['flags']==dict(isolated=1,no_site=1,dont_write_bytecode=1,no_user_site=1,optimize=0) and meta['site_loaded'] is False and meta['distutils_hack_loaded'] is False,'Exact query startup flags required')
+-    return dict(helper_receipt=rec(path),query_reaped=True,query_returncode=0,query_elapsed_through_cleanup=q['elapsed_through_cleanup'],complete_metadata_only=True)
++def diagnostics():
++    need(all((D/name).stat().st_size<=CAP for name in ('fixture.stdout','fixture.stderr')),'Full stream exceeds cap; retained without parsing')
++    with (D/'fixture.stdout').open('rb') as f:out=f.read(CAP+1)
++    with (D/'fixture.stderr').open('rb') as f:err=f.read(CAP+1)
++    need(len(out)+len(err)<=CAP and out==b'','Unexpected/oversize full diagnostics retained')
++    text=err.decode('utf-8','strict')
++    prefix=''.join(name+' (__main__.FinalEvidenceF1Guards.'+name+') ... ok\n' for name in METHODS)
++    need(text.startswith(prefix),'Exact ordered nine method rows required')
++    need(re.fullmatch(r'\n-{70}\nRan 9 tests in [0-9]+(?:\.[0-9]+)?s\n\nOK\n',text[len(prefix):]) is not None,'Complete Ran9/finalOK diagnostics required')
++    return dict(methods=list(METHODS),method_count=9,all_nine_completed=True,F1_synthetic_only=True)
+ 
+ 
+ def admit():
+@@ -268,45 +216,28 @@
+     A=D/'admission.json';ap=rec(A)
+     need(ap['sha256']==sys.argv[1] and ap['bytes']<=CAP,'Changed/oversize root admission')
+     auth=json.loads(A.read_bytes())
+-    need(auth['schema']=='962-native005-freshness-owner-root-admission/v1' and auth['root_issued'] is True and auth['metadata_freshness_authorized'] is True,'No metadata freshness authority')
++    need(auth['schema']=='962-five-toy-F1-nine-guard-root-admission/v1' and auth['root_issued'] is True and auth['guard_execution_authorized'] is True,'No guard authority')
+     need(type(auth['invocations']) is int and auth['invocations']==1 and auth['automatic_retry'] is False and auth['controls']==CONTROLS,'One fixed bounded invocation required')
+-    need(all(auth[k] is True for k in ('independent_source_review_complete','independent_control_source_review_complete','root_control_review_complete','selected_operation_identity_accepted_by_root','opaque_declared_identity_reads_authorized')),'Pending source/control/fixed-operation admission')
+-    need(all(auth[k] is False for k in ('staging_authorized','fixture_execution_authorized','Z3_authorized','native_execution_authorized','field_parsing_authorized','physical_acceptance','manufacturing_authorized')),'No staging/scientific/native authority')
+-    need(auth['selected_python']==PYTHON and auth['environment']==ENV and all(os.environ.get(k)==v for k,v in ENV.items()),'Exact3.12/thread-one route required; no environment dump')
++    need(all(auth[k] is True for k in ('independent_fixture_source_review_complete','independent_control_source_review_complete','root_control_review_complete','selected_runtime_and_inputs_accepted_by_root')),'Pending source/control/fixed-runtime admission')
++    need(all(auth[k] is False for k in ('real_head_input_authorized','Z3_authorized','native_execution_authorized','physical_acceptance','manufacturing_authorized')),'No scientific/native authority')
++    need(auth['selected_python']==PYTHON and auth['runtime_selection']==RUNTIME_SELECTION and auth['environment']==ENV and all(os.environ.get(k)==v for k,v in ENV.items()),'Exact3.12/thread-one route required; no environment dump')
+     need(str(Path(sys.executable).resolve(strict=True))==PYTHON['resolved_path'] and sys.version_info[:3]==(3,12,11),'Selected3.12.11 owner required')
+     need(Path(PYTHON['path']).is_symlink() is PYTHON['is_symlink'] and os.readlink(PYTHON['path'])==PYTHON['raw_target'],'Changed selected alias metadata')
+     need(sys.flags.isolated==sys.flags.dont_write_bytecode==sys.flags.no_site==1 and sys.flags.optimize==0 and 'site' not in sys.modules and '_distutils_hack' not in sys.modules,'Exact -B-I-S startup required')
+     need(signal.getsignal(signal.SIGCHLD)==signal.SIG_DFL,'Already-default SIGCHLD and no competing waiter required')
+     need(all(hasattr(select,k) for k in ('kqueue','kevent','KQ_FILTER_PROC','KQ_NOTE_EXIT','KQ_EV_ADD','KQ_EV_ENABLE','KQ_EV_ONESHOT','KQ_EV_ERROR')) and all(hasattr(os,k) for k in ('waitpid','WUNTRACED','WNOHANG','WIFSTOPPED','WSTOPSIG','WIFEXITED','WIFSIGNALED','waitstatus_to_exitcode','getpgid','getsid','killpg','kill')),'Named APIs unavailable; no launch')
+-    need(not D.is_symlink() and D.resolve(strict=True)==D and set(p.name for p in D.iterdir())=={'admission.json'},'Fresh fixed owner root required')
+-    need(H.is_dir() and not H.is_symlink() and H.resolve(strict=True)==H and set(p.name for p in H.iterdir())=={'authorization.json'} and not N.exists(),'Fresh helper authorization only and no native root required')
+-    need(selected(auth['controller'])==X/'run_operation_once.py' and auth['controller']==rec(Path(__file__)) and selected(auth['wrapper'])==WRAPPER and selected(auth['control_preparation_index'])==X/'index.json','Fixed executed controller and source preparation paths required')
+-    need(auth['helper']==REQUIRED_PROTECTED['helper'] and selected(auth['held_plan'])==X/'held-plan.json' and selected(auth['held_actual'])==X/'held-actual.json','Fixed helper/held context required')
+-    need(auth['helper_authorization']==rec(H/'authorization.json') and auth['staging_receipt']==REQUIRED_PROTECTED['accepted_staging_receipt'] and auth['stage_root_acceptance']==REQUIRED_PROTECTED['stage_root_acceptance'],'Exact helper authorization/current staging required')
++    need(not D.is_symlink() and D.resolve(strict=True)==D and set(p.name for p in D.iterdir())=={'admission.json'},'Fresh fixed owned root required')
++    need(auth['fixture']==REQUIRED_PROTECTED['fixture'] and auth['owner_source']==REQUIRED_PROTECTED['owner'],'Pinned fixture and selected owner source required')
++    need(auth['root_fixture_source_review']==REQUIRED_PROTECTED['fixture_root_review'],'Exact root focused fixture source decision required')
++    need(auth['fixture_source_peer']==REQUIRED_PROTECTED['fixture_peer_0'] and auth['fixture_source_bindings']==REQUIRED_PROTECTED['fixture_peer_2'],'Exact independent fixture source peer required')
++    need(selected(auth['controller'])==X/'run_guards_once.py' and auth['controller']==rec(Path(__file__)) and selected(auth['wrapper'])==WRAPPER and selected(auth['control_preparation_index'])==X/'index.json','Fixed executed controller and source preparation paths required')
+     need(auth['outer_stream_paths']==[str(W/'outer.stdout'),str(W/'outer.stderr')],'Fixed external streams required')
+-    held=json.loads((X/'held-actual.json').read_bytes());plan=json.loads((X/'held-plan.json').read_bytes())
+-    need(held['status']=='HELD_UNRUN_SOURCE_ONLY' and held['operation_authorized'] is False and held['controller']==auth['controller'] and held['wrapper']==auth['wrapper'] and held['helper']==auth['helper'] and held['helper_plan']==auth['held_plan'] and held['controls']==CONTROLS and held['helper_limits']==HELPER_LIMITS,'Exact immutable held operation context required')
+-    need(plan['known_native_roles']==held['known_native_roles'] and plan['native_final_role_names']==held['native_final_role_names'] and len(plan['known_native_roles'])==12 and set(plan['known_native_roles'])==set(plan['native_final_role_names'])-{'staging_receipt','fresh_preflight'} and len(plan['native_final_role_names'])==14,'Exact12 known/14 final native roles required')
+-    helper_auth=json.loads((H/'authorization.json').read_bytes())
+-    need(helper_auth['schema']=='962-native005-finite-helper-root-admission/v1' and helper_auth['helper']==auth['helper'] and helper_auth['plan']==auth['held_plan'] and helper_auth['limits']==HELPER_LIMITS,'Fixed helper source/plan/limits required')
+-    for key in ('helper_source_peer','helper_source_findings','helper_source_bindings','helper_root_review','staging_receipt','stage_root_acceptance'):
+-        need(helper_auth[key]==auth[key],'Exact shared late helper/control roles required')
+-    need(helper_auth['helper_preparation_index']==auth['control_preparation_index'],'Shared packet index required')
+     first=dict(auth['protected_records'])
+     need(all(first.get(k)==v for k,v in REQUIRED_PROTECTED.items()),'All known finite provenance must be protected')
+     for k in DIRECT_ROLES:first['direct_'+k]=auth[k]
+-    for k,pin in helper_auth['protected_records'].items():
+-        need(pin in first.values(),'Every helper-protected record must also be owner-protected')
+     packet=json.loads(selected(auth['control_preparation_index']).read_bytes())
+-    expected={'capture_freshness.py','run_operation_once.py','stopped_exec_wrapper.py','held-plan.json','held-actual.json','METHOD.md','bindings.json','source-reuse.json','source.diff','source.inverse.diff'}
+-    need(set(packet['files'])==expected and packet['file_count_including_this_index']==11,'Fixed eleven-file freshness source packet required')
+-    need(all(pin in first.values() for pin in packet['files'].values()),'All finite source/proof files must be admitted and protected')
+-    actual=json.loads(selected(REQUIRED_PROTECTED['native_actual']).read_bytes())
+-    need(len(actual['input_sha256'])==348 and len(actual['inclusive_external_records'])==348,'Exact current348 input scope required')
+-    expected_inputs={pin['path']:pin for pin in actual['inclusive_external_records'].values()}
+-    need(len(expected_inputs)==348 and set(expected_inputs)==set(actual['input_sha256']) and all(pin['sha256']==actual['input_sha256'][name] for name,pin in expected_inputs.items()),'Complete348 input descriptor association required')
+-    for i,(name,pin) in enumerate(sorted(expected_inputs.items())):first['native_input_'+str(i)]=pin
+-    need(O.is_dir() and not O.is_symlink() and set(p.name for p in O.iterdir())==set(actual['staged_inputs']) and len(actual['staged_inputs'])==4,'Exactly four existing staged inputs required')
++    need(set(packet['files'])=={'run_guards_once.py','stopped_exec_wrapper.py','METHOD.md','source-reuse.json','source.diff'} and packet['file_count_including_this_index']==6,'Fixed six-file control source packet required')
++    need(all(pin in first.values() for pin in packet['files'].values()),'All finite control source/proof files must be admitted and protected')
+     first['root_admission']=ap
+     records={}
+     for pin in first.values():
+@@ -322,23 +253,23 @@
+ 
+ def main():
+     auth,first,records,before,ap=admit()
+-    report=dict(schema='962-native005-freshness-owner-result/v1',status='INCOMPLETE',admission=ap,before=before,after=None,
++    report=dict(schema='962-five-toy-F1-nine-guard-owner-result/v1',status='INCOMPLETE',admission=ap,before=before,after=None,
+         PID=None,ownership_certificate=None,process_started=False,continuation_intent=False,normal_NOTE_EXIT=False,
+         group_signal_intent_ended=False,reaped=False,raw_returncode=None,direct_relationship_unknown=False,events=[],
+         stop_actions=[],cleanup_errors=[],failure=None,group_absent=None,postreap_absence_observations=0,
+-        diagnostics=None,pre_reap_helper_diagnostics=None,helper_query_cleanup_confirmed=False,owned_streams={},stream_read_errors=[],finalization_errors=[],receipt_write_error=None,
++        diagnostics=None,owned_streams={},stream_read_errors=[],finalization_errors=[],receipt_write_error=None,
+         complete_candidate=False,last_resort_unreaped_exit=False,sampled_RSS_bytes=None,sampled_RSS_observation_pass=None,
+         RSS_scope='No RSS sampler, query, hard quota or pass claim.',source_descriptor_reads=True,
+-        scientific_body_decode=False,opaque_declared_identity_reads=True,Z3_executed=False,native_execution=False,physical_acceptance=False,automatic_retry=False)
++        scientific_body_read=False,Z3_executed=False,native_execution=False,physical_acceptance=False,automatic_retry=False)
+     proc=None;kq=None;certificate=None
+     old_TERM=signal.signal(signal.SIGTERM,record_controller_stop);old_INT=signal.signal(signal.SIGINT,record_controller_stop)
+     try:
+         kq=select.kqueue()
+-        argv=[PYTHON['path'],'-B','-I','-S',str(WRAPPER),auth['helper_authorization']['sha256']]
+-        need(auth['argv_prefix']==argv[:-1] and auth['cwd']==str(H),'Fixed stopped-wrapper invocation required')
+-        with (D/'helper.stdout').open('xb') as out,(D/'helper.stderr').open('xb') as err:
++        argv=[PYTHON['path'],'-B','-I','-S',str(WRAPPER),ap['sha256']]
++        need(auth['argv_prefix']==argv[:-1] and auth['cwd']==str(D),'Fixed stopped-wrapper invocation required')
++        with (D/'fixture.stdout').open('xb') as out,(D/'fixture.stderr').open('xb') as err:
+             gate(40,'Stopped before fixed wrapper launch')
+-            proc=_RetainedPopen(argv,cwd=H,env=ENV,stdin=subprocess.DEVNULL,stdout=out,stderr=err,start_new_session=True)
++            proc=_RetainedPopen(argv,cwd=D,env=ENV,stdin=subprocess.DEVNULL,stdout=out,stderr=err,start_new_session=True)
+             HELD_LEADERS.append(proc);report.update(process_started=True,PID=proc.pid)
+             handshake=min(started+40,time.monotonic()+5)
+             while True:
+@@ -369,16 +300,12 @@
+                 need(inclusive_census(first)['total_bytes']<=CAP,'Inclusive cap exceeded')
+                 seen=exit_events(kq,proc.pid,report,min(.05,max(0,started+40-time.monotonic())))
+                 if seen:
+-                    report['normal_NOTE_EXIT']=True
++                    report['normal_NOTE_EXIT']=True;report['group_signal_intent_ended']=True
+                 gate(40,'Exit query returned late/stopped')
+                 if seen:
+-                    report['pre_reap_helper_diagnostics']=diagnostics(auth)
+-                    gate(40,'Positive helper query-cleanup validation returned late/stopped')
+-                    report['helper_query_cleanup_confirmed']=True
+-                    report['group_signal_intent_ended']=True
+                     break
+             reap(proc,report,started+56)
+-            need(report['raw_returncode']==0,'Helper raw nonzero; full diagnostics retained')
++            need(report['raw_returncode']==0,'Fixture raw nonzero; full diagnostics retained')
+         gate(60,'Stopped/late normal stream closure')
+     except BaseException as exc:
+         if isinstance(exc,ChildProcessError):report['direct_relationship_unknown']=True
+@@ -431,16 +358,13 @@
+             report['after']=identities(records,PYTHON);gate(60,'Identity closure returned late/stopped')
+         except BaseException:report['finalization_errors'].append(traceback.format_exc())
+         report['all_controls_unchanged']=report['after']==before
+-        for name in ('helper.stdout','helper.stderr'):
++        for name in ('fixture.stdout','fixture.stderr'):
+             try:
+                 p=D/name;need(p.is_file() and not p.is_symlink(),'Missing final fixed stream')
+                 report['owned_streams'][name]=rec(p)
+             except BaseException:report['stream_read_errors'].append(traceback.format_exc())
+         if report['reaped'] and report['group_absent'] is True and report['raw_returncode']==0:
+-            try:
+-                report['diagnostics']=diagnostics(auth)
+-                need(report['diagnostics']==report['pre_reap_helper_diagnostics'],'Helper receipt changed after deliberate reap')
+-                gate(60,'Diagnostics returned late/stopped')
++            try:report['diagnostics']=diagnostics();gate(60,'Diagnostics returned late/stopped')
+             except BaseException:report['finalization_errors'].append(traceback.format_exc())
+         try:
+             report['inclusive_before_receipt']=inclusive_census(first)
+@@ -453,8 +377,8 @@
+         report['handled_stop_requests']=list(controller_stop_requests)
+         report['post_cutoff_scope']='Signals after restoration may terminate owner/leave missing receipt; no all-lifetime capture claim.'
+         report['last_resort_unreaped_exit']=proc is not None and not report['reaped']
+-        report['complete_candidate']=bool(report['normal_NOTE_EXIT'] and report['reaped'] and report['raw_returncode']==0 and report['group_absent'] is True and report['postreap_absence_observations']==1 and report['failure'] is None and not report['cleanup_errors'] and not report['finalization_errors'] and not report['stream_read_errors'] and set(report['owned_streams'])=={'helper.stdout','helper.stderr'} and report['helper_query_cleanup_confirmed'] is True and report['diagnostics'] is not None and report['diagnostics']==report['pre_reap_helper_diagnostics'] and report['all_controls_unchanged'] and not controller_stop_requests and time.monotonic()<started+60)
+-        report['status']='COMPLETE_NATIVE005_METADATA_FRESHNESS_CANDIDATE_ONLY' if report['complete_candidate'] else 'INCOMPLETE'
++        report['complete_candidate']=bool(report['normal_NOTE_EXIT'] and report['reaped'] and report['raw_returncode']==0 and report['group_absent'] is True and report['postreap_absence_observations']==1 and report['failure'] is None and not report['cleanup_errors'] and not report['finalization_errors'] and not report['stream_read_errors'] and set(report['owned_streams'])=={'fixture.stdout','fixture.stderr'} and report['diagnostics'] is not None and report['all_controls_unchanged'] and not controller_stop_requests and time.monotonic()<started+60)
++        report['status']='COMPLETE_NINE_F1_SYNTHETIC_GUARDS_CANDIDATE_ONLY' if report['complete_candidate'] else 'INCOMPLETE'
+         report['root_full_startup_return_clock_outer0_final_census_and_independent_absence_required']=True
+         try:
+             gate(60,'No full receipt serialization time',stop=False)
+--- work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native005-freshness-prep-001/stopped_exec_wrapper.py
++++ work/962-engineering/head-star-current24-qfnra-five-toy-owner-f1-guards-controls-prep-002/stopped_exec_wrapper.py
+@@ -1,11 +1,11 @@
+-"""HELD/UNRUN fixed same-PID stopped-exec wrapper for native005 freshness."""
++"""HELD/UNRUN fixed same-PID stopped-exec wrapper for nine F1 fake tests."""
+ import hashlib,os,re,signal,sys
+ from pathlib import Path
+ 
+ PY='/Users/maxime/.codex/worktrees/962-watercooled-head/3dprinting993/work/962-head/check-venv/bin/python'
+ RESOLVED='/Users/maxime/.local/share/uv/python/cpython-3.12.11-macos-aarch64-none/bin/python3.12'
+-A=Path('/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native005-freshness-helper-root-execution-001/authorization.json')
+-HELPER=Path('/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native005-freshness-prep-001/capture_freshness.py')
++A=Path('/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/head-star-current24-qfnra-five-toy-owner-f1-guards-root-execution-001/admission.json')
++FIXTURE=Path('/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/head-star-current24-qfnra-five-toy-owner-f1-guards-prep-001/test_final_evidence_guards.py')
+ 
+ assert len(sys.argv)==2 and re.fullmatch('[0-9a-f]{64}',sys.argv[1])
+ assert os.path.realpath(sys.executable)==RESOLVED and sys.version_info[:3]==(3,12,11)
+@@ -15,8 +15,8 @@
+ assert os.getpid()==os.getpgrp()==os.getsid(0)
+ assert A.is_file() and not A.is_symlink() and A.stat().st_size<=33554432
+ assert hashlib.sha256(A.read_bytes()).hexdigest()==sys.argv[1]
+-raw=HELPER.read_bytes()
+-assert len(raw)==17737 and hashlib.sha256(raw).hexdigest()=='e3f1c980ead8f7952eb82a1996db7fc167ca829c294afdccf4b9c83d65fe2dac'
++raw=FIXTURE.read_bytes()
++assert len(raw)==14566 and hashlib.sha256(raw).hexdigest()=='1a81cdcd45aee1aeb917478763c9169b6be5e858c5b41b9226574ae0c70ed5fb'
+ os.kill(os.getpid(),signal.SIGSTOP)
+-os.execv(PY,[PY,'-B','-I','-S',str(HELPER),sys.argv[1]])
++os.execv(PY,[PY,'-B','-I','-S',str(FIXTURE)])
+ 

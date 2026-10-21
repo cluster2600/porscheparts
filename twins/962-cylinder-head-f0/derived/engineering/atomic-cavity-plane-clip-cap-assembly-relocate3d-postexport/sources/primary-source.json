@@ -1,0 +1,54 @@
+{
+  "official_archive": {
+    "bytes": 18496049,
+    "full_archive_hash_reobserved_in_this_preparation": false,
+    "path": "work/962-engineering/gmsh-4152-optimizer-source-002/gmsh-4.15.2-source.tgz",
+    "sha256": "be3f66f225d27ba9fa014f07e83169285da8a051b0e8ab7103d88066b39bdd3e",
+    "url": "https://gmsh.info/src/gmsh-4.15.2-source.tgz"
+  },
+  "preexisting_untracked_fixture_not_modified_or_promoted": {
+    "bytes": 13809,
+    "completed_proof_claimed": false,
+    "path": "twins/962-cylinder-head-f0/source/check_saved_cube_relocate.py",
+    "sha256": "9a97958bc95ba9e1166c2a40e3fb0010e134acc632986159bd0f3c4a223705f6"
+  },
+  "schema": "962-Relocate3D-exact-4152-primary-source-bindings/v1",
+  "selected_member_bodies_read_in_preceding_source_only_study_without_extraction": {
+    "src/common/gmsh.cpp": {
+      "bytes": 297790,
+      "lines": "1414-1424",
+      "sha256": "375f8ba655c0c2c5c7e0f52a5460e17e0bcf49a363449f2df1b287f6b38a2cb8"
+    },
+    "src/geo/GModel.cpp": {
+      "bytes": 120632,
+      "lines": "1531-1540",
+      "sha256": "96df731cf16e58be3f1fbc502ecffc2037a160935c48a16a731c590d328fd691"
+    },
+    "src/mesh/Generator.cpp": {
+      "bytes": 53980,
+      "lines": "1015-1019",
+      "sha256": "e134b862c66275fc24b900636ad0d24435644d9f1782d00ac8fcccf3489faafa"
+    },
+    "src/mesh/meshRelocateVertex.cpp": {
+      "bytes": 27044,
+      "lines": {
+        "classification_and_coordinate_updates": "327-362",
+        "golden_section": "141-179",
+        "objective": "48-80",
+        "sweeps": "459-475"
+      },
+      "sha256": "4f436f52850ae3326b68810c2329705b49edb4cd981bd82ef2752c8202b0c708"
+    },
+    "src/mesh/meshRelocateVertex.h": {
+      "lines": "15-17",
+      "sha256": "b644b28708c802ce561bdf90a0664b2c5dd774df2735a0f63856d70c47bce428"
+    },
+    "src/mesh/qualityMeasures.cpp": {
+      "bytes": 32359,
+      "lines": "678-730",
+      "sha256": "8c351471294d3d00a63c7062695938a35657cd8ee2d5bcd6ac40f90ddb5270c9"
+    }
+  },
+  "source_matches_installed_binary_build_attested": false,
+  "upstream_source_bodies_redistributed": false
+}

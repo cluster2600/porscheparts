@@ -1,0 +1,126 @@
+{
+  "schema": "962-current32node57cell-saved-cavity-Netgen-source-delta/v1",
+  "preserved_source": "work/962-engineering/fixed-shell-netgen-apex1435493-prep-001/reader.py",
+  "preserved_source_sha256": "3cd669f484a2c8ecfd8388a5fde7b4911faf1c84dcda77230a414cbb87983bdd",
+  "selected_source_sha256": "ad2d3e73014491f8b958d804097df3d88e971ca3cee6c744d6a942b997b2f38d",
+  "exact_replacements": [
+    {
+      "old": "1435493",
+      "new": "1474426",
+      "count": 5
+    },
+    {
+      "old": "d5f23d2512d0cdc53c3f648eaca6b3c5aba3105b4b3d14470ceab5761afd5879",
+      "new": "2d3529956d03dd256be5a5786812ebe3a3ec3d2bd5b2d923a458a9b8b08f82ff",
+      "count": 1
+    },
+    {
+      "old": "f870b32ecaac6458215771c6045be0b011f8afc96a2ae831bd8124cbf1f75e11",
+      "new": "0db979263849d4189f56ec34f319b4fd24cb85fb00d1bc167b5c4f2ba9ea5a9f",
+      "count": 1
+    },
+    {
+      "old": "d5754a6e0b0cdcc2fa04842ff13376ca2918081c108ab776ab9b585186d65eb0",
+      "new": "d85681c2c65b93c3b29930c4a1956bfd1e1ce75eab6c1ae72fc08f57df099a04",
+      "count": 1
+    },
+    {
+      "old": "e342367ca3ac38d83131f8b5cc52d36f983e905582e46441c9d285cc8ec94e8a",
+      "new": "78487e63fac0e207efd1422d1964837664c07f6789051ddeba9e1bcf7f895cf7",
+      "count": 1
+    },
+    {
+      "old": "a6f15db60967807b057e357b8f159fa510c4a8cf6e3cb44c4327323c070398c8",
+      "new": "6ad00be791b8b752106b5324b9f80df314f7458d8d0475b1ffc1a053bc04d12a",
+      "count": 1
+    },
+    {
+      "old": "worker.get('mesh_bytes')!=3222",
+      "new": "worker.get('mesh_bytes')!=5646",
+      "count": 1
+    },
+    {
+      "old": "!=(17,34,1,0)",
+      "new": "!=(32,57,0,0)",
+      "count": 1
+    },
+    {
+      "old": "!=(34,10,0,.019921779104111692)",
+      "new": "!=(57,11,0,.009188807754622056)",
+      "count": 1
+    },
+    {
+      "old": "all16_shell_nodes_fixed_only_for_this_cavity_operation",
+      "new": "all32_shell_nodes_fixed_only_for_this_cavity_operation",
+      "count": 1
+    }
+  ],
+  "whole_byte_reverse_verified": true,
+  "unchanged_function_ASTs": [
+    "require_authority",
+    "require_contract",
+    "load_cavity_module",
+    "expected_live",
+    "require_before"
+  ],
+  "only_changed_functions": [
+    "require_saved_baseline",
+    "main"
+  ],
+  "guard_literal_replacements": [
+    {
+      "old": "mesh_bytes=3222",
+      "new": "mesh_bytes=5646",
+      "count": 1
+    },
+    {
+      "old": "saved_reopen=dict(nodes=17,tetrahedra=34,referenced_interior_nodes=1",
+      "new": "saved_reopen=dict(nodes=32,tetrahedra=57,referenced_interior_nodes=0",
+      "count": 1
+    },
+    {
+      "old": "dict(count=34,below_point1_count=10,nonpositive_count=0,minimum=.019921779104111692)",
+      "new": "dict(count=57,below_point1_count=11,nonpositive_count=0,minimum=.009188807754622056)",
+      "count": 1
+    },
+    {
+      "old": "changed['saved_reopen']['tetrahedra']=33",
+      "new": "changed['saved_reopen']['tetrahedra']=56",
+      "count": 1
+    }
+  ],
+  "unchanged_guard_method_ASTs": [
+    "test_full_before_array_bits_classification_periodic_and_report_match",
+    "test_held_authority_refuses_before_runtime_or_paths",
+    "test_exact_old_Netgen_policy_and_no_generation_or_old_main"
+  ],
+  "guard_method_count": 4,
+  "guard_logic_unchanged_case_fixture_only": true,
+  "controller_byte_exact_sha256": "ee558f1520b9a8d4ba1d458c1055ad0d6addc68d97d25ad6aae6e7305fb610c0",
+  "OPTIONS_and_COUNTS_unchanged": true,
+  "prepared_tests_executed": false,
+  "no_prepared_functions_imports_tests_MSHandruntime_bodies_native_or_meshing_by_author": true,
+  "unchanged_imported_helpers": {
+    "work/962-engineering/fixed-shell-generation-apex1474426-prep-001/reader.py": {
+      "whole_file_sha256": "2d3529956d03dd256be5a5786812ebe3a3ec3d2bd5b2d923a458a9b8b08f82ff",
+      "unchanged_function_AST_sha256s": {
+        "shell_rows": "354f481bed98f8e512a8e227fe7bd5ea2218456247abc2393c49ebe903e49168",
+        "load_audit_helper": "2718abb2db09808c2ca574bccbf3ff7a89d5fbae08dc0829e042ed4d7e1f0d47",
+        "inspect_cavity": "fc5493626034bd88457d17d408452aed40e6a6265f7031818d334cd597691922",
+        "boundary_snapshot": "54bf44883dca8f58525a5df0b00ffc2c5df605d925e882a2e97038ed03a048fc",
+        "require_boundary_same": "4530ef80515da92b47f05101b6705cbe0e575243a473567b15edc43c00f8f0ea"
+      }
+    },
+    "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-netgen-cube-prep-002/reader.py": {
+      "whole_file_sha256": "97b7e9fc7d17defa84594c50dac1d4e09cd39bb47ef2059e00b6ac07fe8c029b",
+      "unchanged_function_AST_sha256s": {
+        "geometry_flag_only": "07b1bd20adf8554abfe45b27672891967d7c2b26d85a81105b6180f98f1b5715",
+        "optimize_once": "acd8cc02f01a9f4fdd4e7cb95dbcbb868c487fec311bf2e19fc615c0d54dd0a3",
+        "snapshot": "bf2c7303f2805fceebf564f741aa77df67311fad00064a5f6b20eb5e2b358dfa",
+        "require_same": "501eca77f7d0ae09143ed5cf45afd06f96bcfc1af03f256ac775daa339d455ce",
+        "quality_gate": "fa864701cad046fdfe5b022d45c177473bc8df9a20a1e567acee9dc6f4b35a5e"
+      }
+    }
+  },
+  "same_OPTIONS_COUNT_AST_values_confirmed": true
+}
