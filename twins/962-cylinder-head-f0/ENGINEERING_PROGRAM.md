@@ -31,6 +31,11 @@ The [assumed material reference proposal](derived/engineering/material-assumed-r
 preserves two separate research states and their missing properties for review.
 It selects no alloy and changes no material card or solver input.
 
+The [PhysicsNeMo planning handoff](derived/engineering/physicsnemo-planning/README.md)
+records current model/data alternatives and ingestion limits at a pinned NVIDIA
+source revision. It defines the later training and inference work; no head
+labels or trained surrogate are accepted.
+
 | Workstream | Next concrete work | Acceptance before the next phase |
 |---|---|---|
 | Strength and material | Resolve the 24 remaining head-mesh quality failures; establish operating loads and a documented material/process/heat-treatment state. Review hot-property references separately from the existing hypothetical cards. | Admitted meshes, equilibrium and convergence; temperature-dependent constitutive data and stated allowable stresses. Fatigue, creep and physical correlation need their own evidence. |
