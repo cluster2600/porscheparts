@@ -52,12 +52,14 @@ models. A later phase cannot turn a failed upstream result into an accepted labe
 The [native005 contract, staging and current metadata checkpoint](derived/engineering/native005-contract-staging-and-freshness/README.md)
 publishes the exact HELD input contract, four opaque input-copy receipts and
 one accepted current freshness operation with owner/helper/query exits 0/0/0.
-Its frozen scope leaves native execution unissued. A later separately admitted
-coupon capture has now completed locally with outer/caller/native exits 0/0/0;
-saved-result review remains pending outside that published checkpoint. Field
-association and assessment against the unchanged mechanical criteria follow
-separately. No production alloy, qualified build recipe, accepted head-field
-dataset or trained head surrogate is claimed at this milestone.
+Its frozen scope leaves native execution unissued. The later separately admitted
+[fixed coupon capture](derived/engineering/native005-operational-capture/README.md)
+completed once with outer/caller/native exits 0/0/0 and passed operational
+saved-result review. Its complete selected receipts and independent/root
+decisions are now published. Field association and assessment against the
+unchanged mechanical criteria follow separately. No production alloy,
+qualified build recipe, accepted head-field dataset or trained head surrogate
+is claimed at this milestone.
 
 The [full five-toy owner003 checkpoint](derived/engineering/full-five-toy-owner003-prefix-and-core-hold/README.md)
 accepts only the four-line admission-prefix repair. Operation remains on HOLD

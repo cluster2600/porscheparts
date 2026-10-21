@@ -19,10 +19,12 @@ no production material or constitutive law is selected.
 
 The [native005 contract, staging and metadata checkpoint](derived/engineering/native005-contract-staging-and-freshness/README.md)
 publishes the exact HELD contract, four input-copy receipts and one accepted
-current metadata operation with owner/helper/query exits 0/0/0. A later native
-coupon capture has completed locally with outer/caller/native exits 0/0/0;
-its saved-result review is pending and outside that checkpoint. Field association,
-the 24 poor head cells and the 12 mechanical failures remain open.
+current metadata operation with owner/helper/query exits 0/0/0. The later
+[native coupon capture](derived/engineering/native005-operational-capture/README.md)
+completed once with outer/caller/native exits 0/0/0 and passed separate
+operational saved-result review. Its records and limited resource observations
+are now inspectable. Field association, the 24 poor head cells and the
+12 mechanical failures remain open.
 
 The [full five-toy owner003 checkpoint](derived/engineering/full-five-toy-owner003-prefix-and-core-hold/README.md)
 accepts only the four-line admission-prefix repair. Operation remains on HOLD
