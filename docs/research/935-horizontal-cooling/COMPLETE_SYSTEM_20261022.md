@@ -125,23 +125,33 @@ closing the batch. No paid instance belonging to this batch remains running.
 Key commands, from the repository root, with new private output names:
 
 ```bash
-python bending_witness.py prepare work/NEW-witness
-python prepare_formulation_comparison.py PARENT PINS.json work/NEW-prepared
-timeout --signal=TERM --kill-after=15s 1200s bash run_candidate_fea.sh \
+source_dir=twins/935-horizontal-cooling-system-f0/source
+python "$source_dir/bending_witness.py" prepare work/NEW-witness
+python "$source_dir/prepare_formulation_comparison.py" PARENT PINS.json work/NEW-prepared
+timeout --signal=TERM --kill-after=15s 1200s bash "$source_dir/run_candidate_fea.sh" \
   work/NEW-prepared/rotor.inp DECK_SHA256 work/NEW-solved
-python assess_mac_fea.py work/NEW-prepared work/NEW-solved work/NEW-assessed
-python mesh_review.py CASE.json --device cpu --repeats 3 --output work/NEW.json
+cp work/NEW-solved/ccx.log work/NEW-solved/log.rotor
+python "$source_dir/assess_mac_fea.py" work/NEW-prepared work/NEW-solved work/NEW-assessed
+python benchmarks/warp-geometry/mesh_review.py CASE.json --device cpu --repeats 3 --output work/NEW.json
 dotnet run --project twins/935-horizontal-cooling-system-f0/source/picogk-assembly-refresh \
   -p:PicoGKAssembly=PINNED_DLL -- CASE.json CASE_SHA256 work/NEW-native
-python review_refreshed_assembly.py review work/NEW-native RECEIPT_SHA256 work/NEW-exports
-python review_surface_contacts.py work/NEW-native RECEIPT_SHA256 work/NEW-surfaces.json
+python "$source_dir/review_refreshed_assembly.py" review work/NEW-native RECEIPT_SHA256 work/NEW-exports
+python "$source_dir/review_surface_contacts.py" work/NEW-native RECEIPT_SHA256 work/NEW-surfaces.json
 ```
 
-Python filenames above refer to the linked source folders; prepend those paths
-or put the matching folder on `PYTHONPATH`. The solver log alias `log.rotor` must
-be an identical copy of `ccx.log` before the unchanged full-output audit. Linux
-solver/test execution uses a native file system, not a WSL shared mount.
-Exact versions, wheel/package identities, cases, logs and hashes are retained.
+The solver log alias `log.rotor` must be an identical copy of `ccx.log` before
+the unchanged full-output audit. Linux solver/test execution uses a native file
+system, not a WSL shared mount. Exact versions, wheel/package identities,
+cases, logs and hashes are retained. Keep the native PicoGK library directory
+on the platform's loader path when running the C# composition.
+
+The first Linux test snapshot lacked a Git index and inherited a group-writable
+umask. Its failures are retained. The snapshot was initialized as a local Git
+repository, its own permissions corrected, and subsequent tests use `umask 022`.
+Kali1's system .NET SDK was 6.0; a later build test correctly refused a net9.0
+target. SDK **9.0.317** was installed in an isolated study folder after checking
+the downloaded tarball against Microsoft's official release SHA-512. These are
+environment corrections; no test or engineering threshold was relaxed.
 
 ## Completion audit for the original objective
 
