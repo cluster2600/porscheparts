@@ -75,6 +75,8 @@ flowchart TB
     CODE --> PICO["PicoGK + ShapeKernel / LatticeLibrary<br/>new M64 geometry; VDB and mesh exports"]
     INPUT --> EXISTING["Existing build123d / FreeCAD / STEP masters"]
     PICO --> GEO["Geometry and assembly checks<br/>dimensions, interfaces, topology and clearances"]
+    PICO -. optional mesh queries .-> WARP["NVIDIA Warp<br/>batched point-to-surface queries; isolated synthetic pilot"]
+    WARP -->|measurement report| GEO
     EXISTING --> GEO
     GEO --> CAE["Case preparation and meshing: Gmsh / OpenFOAM tools<br/>Solvers: OpenFOAM / CalculiX; Cantera when needed"]
     CAE --> REVIEW["Convergence, balances and comparison with measurements"]
