@@ -13,6 +13,7 @@
 [![Active phase](https://img.shields.io/badge/active%20phase-manufactures%20nothing-critical)](SAFETY.md)
 [![Docs](https://img.shields.io/badge/docs-English-brightgreen)](docs/TRANSLATION.md)
 
+[**Software chain: Qwen and PicoGK**](#software-chain-qwen-and-picogk) ·
 [**Parts**](#2-993-parts-for-additive-manufacturing) ·
 [**964 structure and monocoque**](#1-the-964-body-shell-and-the-carbon-monocoque-programme) ·
 [**Engine cooling**](#3-engine-cooling) ·
@@ -35,6 +36,67 @@ The repository has withdrawn several, listed
 > [!IMPORTANT]
 > **No part is validated.** All 43 part records are at status `concept`, and 25
 > of them are `prohibited_pending_engineering`. Read [SAFETY.md](SAFETY.md).
+
+## Software chain: Qwen and PicoGK
+
+**Qwen proposes a plan; PicoGK builds geometry; OpenFOAM and CalculiX calculate
+its behaviour.** The engineering order starts with the part's requirements,
+measured interfaces, material/process assumptions and loads. Missing physical
+inputs keep a result at study level. The diagram describes dependencies, not
+an autonomous system or a claim that every step has run on every part.
+
+```mermaid
+flowchart TB
+    INPUT["Requirements, measurements and interfaces"] -->|manual authoring| CODE["Reviewed C# recipes and parameters"]
+    INPUT -. optional assistance .-> QWEN["Qwen: bounded JSON proposal"]
+    QWEN --> CHECK["Independent schema, units and intent checks"]
+    CHECK -->|accepted parameters| CODE
+    CODE --> PICO["PicoGK + ShapeKernel / LatticeLibrary<br/>new M64 geometry; VDB and mesh exports"]
+    INPUT --> EXISTING["Existing build123d / FreeCAD / STEP masters"]
+    PICO --> GEO["Geometry and assembly checks<br/>dimensions, interfaces, topology and clearances"]
+    EXISTING --> GEO
+    GEO --> CAE["Case preparation and meshing: Gmsh / OpenFOAM tools<br/>Solvers: OpenFOAM / CalculiX; Cantera when needed"]
+    CAE --> REVIEW["Convergence, balances and comparison with measurements"]
+    REVIEW -->|revise the design| CODE
+    REVIEW --> PREP["Engineering and process review<br/>DfAM, supplier preparation; Adamantine if applicable"]
+    PREP --> PHYSICAL["Authorised prototypes, metrology and physical tests"]
+    PHYSICAL -->|measured discrepancies| INPUT
+    GEO -. visual inspection .-> USD["OpenUSD / Omniverse<br/>assembly, contacts and rendering"]
+    REVIEW -. optional reference dataset .-> PN["PhysicsNeMo<br/>train and validate a fast surrogate"]
+```
+
+| Tool or layer | What it does here | When it enters |
+|---|---|---|
+| **Qwen / Codex** | Assist with plans, scripts and review. The documented Qwen planner proposes JSON parameters for trusted recipes. | After requirements and dimensions are explicit; assistance is optional. |
+| **C# / PicoGK** | Generate new M64 geometry from reviewed rules; ShapeKernel and LatticeLibrary provide geometric building blocks. OpenVDB stores volumes and fields. | Before geometric inspection and simulation, then again when the design changes. Existing CAD masters remain authoritative for their own zones. |
+| **Gmsh / OpenFOAM / CalculiX** | Prepare calculation meshes and solve fluid, thermal or structural cases; ParaView/PyVista inspect results. | After geometry, materials, loads and boundary conditions are sufficient for the declared study. |
+| **Adamantine / AdditiveFOAM** | Study additive manufacturing: global thermomechanics or the local melt pool. | With a defined process case, including material, orientation and heat-source history. These are research tools, not a qualified machine job. |
+| **OpenUSD / Omniverse** | Compose and inspect the assembly, contacts, motion and visual results. | A branch from checked geometry; rendering is not required to run CFD/FEA or prepare fabrication. |
+| **PhysicsNeMo** | Learn a fast approximation of reference behaviour. | Optional, after suitable solver/measurement references exist, with separate validation. |
+| **PrusaSlicer / supplier tools** | Prepare polymer prototypes or an industrial machine job. | After the relevant design and process review; an LPBF job requires the supplier's qualified workflow. |
+
+**Where Qwen fits.** The bounded planner path is **request → Qwen → JSON →
+independent checks → trusted C# recipe → PicoGK**. The planner command itself
+neither writes C# nor executes geometry. Direct C# generation is a separate
+experimental path with its own code and native-geometry checks; it is not a
+general engineering approval. The recorded Mac inference uses MLX; the
+vLLM/CUDA serving route is documented separately. Training and evaluating an
+adapter is a parallel software activity, not a prerequisite for designing a
+part. See [PicoGK and Qwen on the Mac](docs/PICOGK_MAC_SETUP.md),
+[Qwen training evidence](docs/QWEN_TRAINING.md) and the
+[separate Qwen/PicoGK project](https://github.com/cluster2600/qwen-picogk).
+
+**Where it runs.** Mac and Kali provide local authoring, Qwen assistance and
+versioned geometry and solver runs. Docker packages runtimes; Git, Make and CI
+preserve versions and check outputs. A final Vast/Omniverse review is a
+separate, explicitly approved GPU job. These machines and containers are
+execution environments, not additional design stages.
+
+Read the [engineering workflow](docs/architecture/engineering-workflow.md),
+[PicoGK decision](docs/decisions/0004-picogk-new-geometry.md),
+[software inventory and dated execution evidence](docs/SOFTWARE_STACK.md), and
+[per-part workflow](docs/WORKFLOW.md) for the detailed contracts. Passing code,
+mesh or USD checks does not close physical qualification.
 
 <table>
 <tr>
