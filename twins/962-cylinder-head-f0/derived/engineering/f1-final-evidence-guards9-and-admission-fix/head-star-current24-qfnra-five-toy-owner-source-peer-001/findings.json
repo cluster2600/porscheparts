@@ -1,0 +1,51 @@
+{
+  "schema": "962-five-toy-owner-independent-source-findings/v1",
+  "decision": "HOLD_ONE_FINAL_EVIDENCE_REFUSAL_GATE_BLOCKER",
+  "bindings": {
+    "path": "work/962-engineering/head-star-current24-qfnra-five-toy-owner-source-peer-001/bindings.json",
+    "sha256": "f2f87e7b6f6c3824ffbfd062a103a61667ab7ff11ca027969fa87607533e86c0",
+    "bytes": 10787
+  },
+  "blocking_findings": [
+    {
+      "id": "F1",
+      "priority": "P2",
+      "title": "Final evidence-read failures can still return a positive owner candidate and RC0",
+      "file": "work/962-engineering/head-star-current24-qfnra-five-toy-owner-prep-001/run_owner_once.py",
+      "locations": [
+        {
+          "lines": [
+            367,
+            375
+          ],
+          "role": "Records stream_read_errors / available_evidence_errors; absent final available reports become None."
+        },
+        {
+          "lines": [
+            383,
+            386
+          ],
+          "role": "complete_candidate ignores those final evidence fields."
+        },
+        {
+          "lines": [
+            409,
+            416
+          ],
+          "role": "Final rc can remain0 when complete_candidate is true and receipt write succeeds."
+        }
+      ],
+      "static_failure_path": "After normal reports, raw0, deliberate reap, group absence and empty stream check succeed, a final rec(adapter.stdout) or rec(adapter.stderr) can fail at370. The exception is saved under stream_read_errors371 without changing normal, failure, cleanup_errors or all_controls_unchanged. Line385 can still set complete_candidate=true; line409 can return0. The same omission applies to errors at374-375. This is source reasoning, not an injected or executed test.",
+      "why_blocking": "The source promises complete final streams/evidence and refusal on read failures. A success-shaped candidate/RC0 despite an explicitly retained final evidence error weakens that gate. Separate root accounting may still reject it; that later safeguard does not make this owner completion path error-free.",
+      "smallest_correction_direction": "In a fresh immutable successor, make every final stream/evidence read error and unexpected missing required descriptor refuse the owner candidate/RC. Route them into an existing failure gate or explicitly require empty error lists plus required final stream/helper descriptors. Preserve the failed001 packet and its exact diff/reuse records. Add later source guards for each failing final rec() and missing-evidence branch; do not run them under this review.",
+      "execution_authority": false
+    }
+  ],
+  "unexecuted_source_guard_followups": [
+    "final stream rec failure with otherwise positive normal state must return refused",
+    "available adapter/helper rec failure or unexpected missing final evidence must return refused",
+    "final evidence errors must remain recorded after refusal; no synthetic helper fields",
+    "receipt flush/close/cap/late errors and unreaped last-resort exit remain refused"
+  ],
+  "other_concrete_blockers_found": 0
+}

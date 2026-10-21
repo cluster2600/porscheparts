@@ -21,6 +21,12 @@ runtime preparations remain evidence for their stated software scope. They do
 not complete head strength, calibrated LPBF or a physically correlated twin.
 Each completed checkpoint is published in the existing GitHub draft review.
 
+The [F1 final-evidence checkpoint](derived/engineering/f1-final-evidence-guards9-and-admission-fix/README.md)
+records all nine fake-provider integration cases passing in one accepted run,
+with child/outer exit statuses 0/0. The pre-issuance admission self-hash refusal
+and minimal controller correction remain inspectable. The separate full
+five-toy owner's admission gap stays open; engineering qualification remains open.
+
 The [freshness and native launch review](derived/engineering/native003-freshness-and-launch-hold/README.md)
 accepts one finite metadata check, with owner/helper/query exit statuses 0/0/0
 and unchanged before/after identity maps. It also records three unresolved
