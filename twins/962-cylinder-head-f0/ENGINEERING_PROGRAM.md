@@ -21,6 +21,35 @@ runtime preparations remain evidence for their stated software scope. They do
 not complete head strength, calibrated LPBF or a physically correlated twin.
 Each completed checkpoint is published in the existing GitHub draft review.
 
+## Next milestone and phase handoffs — 21 October 2026
+
+Keep the 3.0 L historical reference and the assumed bionic variants through
+4.0 L traceable to their own inputs. Unmeasured OEM interfaces remain unknown.
+All new documents, figures, code comments and reports remain in English.
+
+The [assumed material reference proposal](derived/engineering/material-assumed-reference-proposal/README.md)
+preserves two separate research states and their missing properties for review.
+It selects no alloy and changes no material card or solver input.
+
+| Workstream | Next concrete work | Acceptance before the next phase |
+|---|---|---|
+| Strength and material | Resolve the 24 remaining head-mesh quality failures; establish operating loads and a documented material/process/heat-treatment state. Review hot-property references separately from the existing hypothetical cards. | Admitted meshes, equilibrium and convergence; temperature-dependent constitutive data and stated allowable stresses. Fatigue, creep and physical correlation need their own evidence. |
+| LPBF | Complete the current finite runtime/input check, then capture the fixed numerical coupon once. Assess its saved fields separately, resolve the 12 aggregate mechanical failures, and verify deposition, cooling and release before a head calculation. | Numerical witnesses plus machine/material-specific calibration against measured temperature, distortion and residual stress. A coupon capture or successful process exit alone does not qualify LPBF. |
+| Omniverse | After accepted strength and LPBF results exist, assemble the family in OpenUSD and attach those fields. Track native mesh/field identities, units, frames, associations and time. | Preflight, required service readiness, asset/conformance checks, native-field mapping checks and measurement correlation. Preserve the six current substantive USD profile failures until their repairs are verified. |
+| PhysicsNeMo | Build a dataset from accepted solver cases; split whole geometries, builds and load cases before normalization. Compare suitable model families and simple baselines, then train, evaluate and connect checked inference to the twin. | Independent-case field and hotspot errors, conservation checks, uncertainty and out-of-domain limits, reproducible training and end-to-end inference timings. Recheck proposed designs with the reference solvers. |
+
+Strength and material data are coupled: early calculations may use declared
+assumptions, while qualification requires the matching measured material state.
+Planning and data preparation can proceed in parallel. Scientific acceptance
+passes from strength/material to calibrated LPBF, then to the twin and learned
+models. A later phase cannot turn a failed upstream result into an accepted label.
+
+The current native005 input contract and four staged inputs are local
+preparation beyond the published fake31/core13 checkpoint below. The current
+freshness operation and native coupon launch have not completed. No production
+alloy, qualified build recipe, accepted head-field dataset or trained head
+surrogate is claimed at this milestone.
+
 The [full five-toy owner003 checkpoint](derived/engineering/full-five-toy-owner003-prefix-and-core-hold/README.md)
 accepts only the four-line admission-prefix repair. Operation remains on HOLD
 for C01 continuation-intent and C02 process-handle lifetime source gaps.

@@ -12,6 +12,11 @@ with explicit assumptions for unavailable dimensions.
 The [engineering execution programme](ENGINEERING_PROGRAM.md) continues through
 material/strength assessment, LPBF simulation, an Omniverse twin and PhysicsNeMo.
 
+The programme's [current phase handoffs](ENGINEERING_PROGRAM.md#next-milestone-and-phase-handoffs--21-october-2026)
+set the next work and acceptance criteria. The [assumed material reference proposal](derived/engineering/material-assumed-reference-proposal/README.md)
+keeps measured thermal observations separate from published model parameters;
+no production material or constitutive law is selected.
+
 The [full five-toy owner003 checkpoint](derived/engineering/full-five-toy-owner003-prefix-and-core-hold/README.md)
 accepts only the four-line admission-prefix repair. Operation remains on HOLD
 for C01 continuation-intent and C02 process-handle lifetime source gaps.
