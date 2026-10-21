@@ -31,6 +31,12 @@ The [assumed material reference proposal](derived/engineering/material-assumed-r
 preserves two separate research states and their missing properties for review.
 It selects no alloy and changes no material card or solver input.
 
+The completed [prescribed-strain sensitivity study](derived/engineering/material-prescribed-strain-sensitivity/README.md)
+adds 25 exact reference calculations and five parameter crossings, independently
+recomputed by root. Nine elastic trials exceed the published scalar parameter;
+this is not a prediction of yielding, failure or head strength. Matching hot
+coupon data, the production alloy and the qualified material card remain open.
+
 The [PhysicsNeMo planning handoff](derived/engineering/physicsnemo-planning/README.md)
 records current model/data alternatives and ingestion limits at a pinned NVIDIA
 source revision. It defines the later training and inference work; no head
@@ -39,7 +45,7 @@ labels or trained surrogate are accepted.
 | Workstream | Next concrete work | Acceptance before the next phase |
 |---|---|---|
 | Strength and material | Resolve the 24 remaining head-mesh quality failures; establish operating loads and a documented material/process/heat-treatment state. Review hot-property references separately from the existing hypothetical cards. | Admitted meshes, equilibrium and convergence; temperature-dependent constitutive data and stated allowable stresses. Fatigue, creep and physical correlation need their own evidence. |
-| LPBF | Investigate the 192 Exodus word differences and establish actual timestep/scaling provenance, then assess against the unchanged mechanical criteria. Resolve the 12 aggregate mechanical failures and verify deposition, cooling and release before a head calculation. | Numerical witnesses plus machine/material-specific calibration against measured temperature, distortion and residual stress. A coupon capture or successful process exit alone does not qualify LPBF. |
+| LPBF | Assess the captured END181 native CSV/QP/reference data against unchanged equilibrium criteria. Keep exporter-transformed CDF fields separate, and retain the observer's targeted timestep/scaling instrument lineage. Resolve the 12 aggregate mechanical failures and verify deposition, cooling and release before a head calculation. | Numerical verification plus machine/material-specific calibration against measured temperature, distortion and residual stress. A coupon capture or successful process exit alone does not qualify LPBF. |
 | Omniverse | After accepted strength and LPBF results exist, assemble the family in OpenUSD and attach those fields. Track native mesh/field identities, units, frames, associations and time. | Preflight, required service readiness, asset/conformance checks, native-field mapping checks and measurement correlation. Preserve the six current substantive USD profile failures until their repairs are verified. |
 | PhysicsNeMo | Build a dataset from accepted solver cases; split whole geometries, builds and load cases before normalization. Compare suitable model families and simple baselines, then train, evaluate and connect checked inference to the twin. | Independent-case field and hotspot errors, conservation checks, uncertainty and out-of-domain limits, reproducible training and end-to-end inference timings. Recheck proposed designs with the reference solvers. |
 
@@ -66,11 +72,28 @@ now records six structural and nine parser cases passing once, the preserved
 first failed intake, and a corrected complete offline diagnostic. All 1,275
 PETSc X1 words match CSV; Exodus differs in 192 entries (173 by one ULP and
 19 by two). Every differing row and its exact arithmetic are retained.
-The saved-result peer accepts reporting completeness only. Actual timestep/
-scaling, field/force and mechanical acceptance remain open. A separate Python
-3.10 read-only readiness check passed; the real owner004 five-toy Z3 and
-current head repair remain unrun. These results change neither the 24 poor
-head cells nor the 12 aggregate mechanical failures.
+The saved-result peer accepts reporting completeness only. A later
+[conditional averaging reconstruction](derived/engineering/native005-exodus-averaging/README.md)
+reproduces all 1,275 Exodus words exactly, including the 192 previous differences.
+Independent exact arithmetic verifies the full result. No original word or
+threshold was changed; installed exporter/source equivalence and unique cause
+remain unproved. The observer source/build/load audit supports treating its
+time/dt/scaling words as instrument measurements, without inventing independent
+nominal expectations or passing the frozen strict collector.
+
+The smallest next LPBF calculation is the existing rate-independent END181
+equilibrium assessment using native CSV displacements, QP tensors and its own
+BEGIN80 references. Timestep/scaling are not arguments to that field kernel.
+Preserve CDF export words separately. Keep all 12 native aggregate force/moment
+checks and all 36 diagnostic resultants, including previously failed results,
+against unchanged limits; whole-trajectory and process calibration work follows.
+
+The [first real owner004 five-toy attempt](derived/engineering/current24-five-toy-first-real-attempt/README.md)
+returned 2: the rational model parser rejected a declared Bool assertion alias
+alongside the Real variable, and the other four cases were unattempted. TERM/KILL
+process-group calls also returned EPERM; saved reap/group-absence observations
+do not erase those errors. No retry or head repair occurred. These results change
+neither the 24 poor head cells nor the 12 aggregate mechanical failures.
 
 The [full five-toy owner003 checkpoint](derived/engineering/full-five-toy-owner003-prefix-and-core-hold/README.md)
 accepts only the four-line admission-prefix repair. Operation remains on HOLD

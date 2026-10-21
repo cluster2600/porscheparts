@@ -1,0 +1,212 @@
+{
+  "schema": "962-material-assumed-reference-proposal/v1",
+  "status": "PROVENANCE_ONLY_PROPOSAL_NO_STUDY_EXECUTION_OR_MATERIAL_SELECTION",
+  "qualification": false,
+  "inputs": [
+    {
+      "path": "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/material-hot-properties-two-new-leads-001/report.md",
+      "sha256": "42839799cb32918d32b7a7792e976621608c5063721f775bd4acc435b0736a0c",
+      "bytes": 4698
+    },
+    {
+      "path": "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/material-hot-properties-two-new-leads-001/bindings.json",
+      "sha256": "5c6bcff168a5e9a2e0cab3ab43d789dc2adbec743f72b6f428e92d75588e34d3",
+      "bytes": 6245
+    }
+  ],
+  "evidence_access": "Previously acquired official publisher-indexed observations only. Direct publisher opens returned429; no new browse/retry/contact/download in this proposal. No source scientific bodies are copied.",
+  "measured_thermal_lead": {
+    "source": {
+      "doi": "10.3390/ma16144920",
+      "publisher_url": "https://www.mdpi.com/1996-1944/16/14/4920",
+      "locations": [
+        "Methods",
+        "Table3",
+        "Figure2 caption",
+        "Conclusion",
+        "Data availability"
+      ]
+    },
+    "classification": "Measured thermal research lead; no complete arrays acquired.",
+    "alloy_label": "AlSi10Mg; separate from all retained CP1/HT1/CuCrZr recipes",
+    "reported_process": {
+      "machine": "Concept-Laser Mlab-cusing-R",
+      "atmosphere": "argon",
+      "laser_power_W": [
+        50,
+        75,
+        100
+      ],
+      "scan_speed_m_per_s": [
+        0.2,
+        0.4,
+        0.6
+      ],
+      "hatch_um": 100,
+      "layer_um": 30
+    },
+    "reported_test_range_C": [
+      100,
+      400
+    ],
+    "post_build_heat_treatment": null,
+    "heat_state_limit": "As-fabricated in the inspected methods; no separate post-build schedule established. This does not identify a retained coupon treatment.",
+    "build_to_heat_flow_orientation": null,
+    "available_observations": {
+      "density": {
+        "sample": "Al-100-0.2",
+        "value": 2.696,
+        "reported_plus_minus": 0.005,
+        "unit": "g/cm^3",
+        "reference_temperature_C": null,
+        "uncertainty_convention": null
+      },
+      "conductivity_prose": {
+        "sample_process": {
+          "laser_power_W": 100,
+          "scan_speed_mm_per_s": 200
+        },
+        "unit": "W/(m K)",
+        "observations": [
+          {
+            "value": 118.2,
+            "temperature_C": null
+          },
+          {
+            "value": 172.0,
+            "temperature_C": null
+          }
+        ],
+        "limit": "Reported rise only. Temperature coordinates are not inferred from test-range endpoints or inaccessible Figure2 values."
+      }
+    },
+    "missing_properties": {
+      "conductivity_temperature_pairs": null,
+      "specific_heat_temperature_pairs": null,
+      "thermal_expansion": null,
+      "elastic_modulus": null,
+      "poisson_ratio": null,
+      "true_stress_plastic_strain_curves": null
+    }
+  },
+  "published_model_input_reference": {
+    "source": {
+      "doi": "10.3390/cryst12091309",
+      "publisher_url": "https://www.mdpi.com/2073-4352/12/9/1309",
+      "locations": [
+        "Experimental procedure",
+        "Tables2-3",
+        "Data availability"
+      ]
+    },
+    "classification": "Inputs published for an inverse heat-treatment model; property measurement provenance is not established here.",
+    "alloy_label": "AlSi10Mg; no commercial-recipe equivalence",
+    "experiment_process_context": {
+      "machine": "Space M200 SLM",
+      "laser_power_W": 400,
+      "scan_speed_mm_per_s": 200,
+      "layer_um": 50,
+      "reported_scan_interval_um": 150,
+      "preheat_C": 80
+    },
+    "property_table_heat_state": null,
+    "property_table_orientation": null,
+    "metadata_limit": "Heating/quenching/air-cooling studied, but a matched property-table treatment/orientation is unresolved; inspected text also gives inconsistent specimen sizes.",
+    "units": {
+      "temperature": "degC",
+      "conductivity": "W/(m K)",
+      "specific_heat": "J/(kg K)",
+      "elastic_modulus": "GPa",
+      "yield_parameter": "MPa",
+      "expansion": "1e-6/degC"
+    },
+    "published_rows": [
+      {
+        "temperature": 20,
+        "conductivity": 147,
+        "specific_heat": 739,
+        "elastic_modulus": 69,
+        "yield_parameter": 195,
+        "expansion": 21.7
+      },
+      {
+        "temperature": 100,
+        "conductivity": 155,
+        "specific_heat": 755,
+        "elastic_modulus": 67,
+        "yield_parameter": 150,
+        "expansion": 22.5
+      },
+      {
+        "temperature": 200,
+        "conductivity": 159,
+        "specific_heat": 797,
+        "elastic_modulus": 62,
+        "yield_parameter": 105,
+        "expansion": 23.5
+      },
+      {
+        "temperature": 300,
+        "conductivity": 159,
+        "specific_heat": 838,
+        "elastic_modulus": 53,
+        "yield_parameter": 70,
+        "expansion": 23.3
+      },
+      {
+        "temperature": 400,
+        "conductivity": 155,
+        "specific_heat": 922,
+        "elastic_modulus": 41,
+        "yield_parameter": 30,
+        "expansion": 25.5
+      }
+    ],
+    "published_scalars": {
+      "density": {
+        "value": 2650,
+        "unit": "kg/m^3",
+        "reference_temperature_C": null
+      },
+      "poisson_ratio": {
+        "value": 0.33,
+        "unit": "1",
+        "temperature_scope_C": null
+      }
+    },
+    "missing_properties": {
+      "expansion_definition_mean_or_instantaneous": null,
+      "expansion_reference_temperature_C": null,
+      "yield_criterion": null,
+      "true_stress_plastic_strain_curves": null,
+      "strain_rate_and_dwell_association": null,
+      "property_scatter": null
+    }
+  },
+  "missing_lifetime_and_LPBF_properties": {
+    "hot_fatigue": null,
+    "TMF": null,
+    "cyclic_hardening_softening": null,
+    "creep_relaxation": null,
+    "statistical_life_basis": null,
+    "powder_liquid_phase_change_absorptivity_and_calibration": null
+  },
+  "proposed_future_use_only": {
+    "authority": "Separate explicitly assumed sensitivity proposal and review required; no run authorized here.",
+    "thermal": "The model-input rows could support a hypothetical solid AlSi10Mg thermal sensitivity, only within their20-400degC range and with heat-state/orientation uncertainty declared.",
+    "elastic": "E and Poisson scalar could be considered only as explicit unvalidated assumptions. Expansion requires an explicit definition/reference-temperature assumption before thermal-strain use; none is supplied here.",
+    "yield": "Scalar threshold sensitivity only if separately reviewed; no plastic flow, hardening, life or allowable can be inferred.",
+    "measured_lead": "Density/prose observations may remain comparison metadata; no k(T) law from unpaired points.",
+    "study_temperature_envelope_C": null,
+    "interpolation_or_extrapolation_policy": null
+  },
+  "non_transfer": "Do not splice the two states, substitute into CP1/HT1/CuCrZr/EOS/Nikon cards, identify a production alloy, fit curves or infer missing coordinates. Existing HT1 access/prototype composition limits and selected coupon inputs remain unchanged.",
+  "operations": {
+    "new_browse_contact_download": false,
+    "curve_fitting_or_digitization": false,
+    "material_candidate_selection": false,
+    "coupon_card_solver_change": false,
+    "scientific_execution": false,
+    "PUB_Git_change": false
+  }
+}

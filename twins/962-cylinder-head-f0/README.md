@@ -17,6 +17,15 @@ set the next work and acceptance criteria. The [assumed material reference propo
 keeps measured thermal observations separate from published model parameters;
 no production material or constitutive law is selected.
 
+The completed [25-point material sensitivity](derived/engineering/material-prescribed-strain-sensitivity/README.md)
+and [conditional Exodus averaging reconstruction](derived/engineering/native005-exodus-averaging/README.md)
+now have independent arithmetic reviews. The reconstruction reproduces all 1,275
+saved displacement words, including the 192 previous differences. The
+[first real mesh-route toy attempt](derived/engineering/current24-five-toy-first-real-attempt/README.md)
+remains incomplete after a model-parser refusal. Head strength and calibrated
+LPBF remain open; the next calculation is the unchanged END181 equilibrium
+assessment described in the programme.
+
 The [native005 contract, staging and metadata checkpoint](derived/engineering/native005-contract-staging-and-freshness/README.md)
 publishes the exact HELD contract, four input-copy receipts and one accepted
 current metadata operation with owner/helper/query exits 0/0/0. The later

@@ -1,0 +1,80 @@
+{
+  "schema": "962-exodus-averaging-independent-saved-accounting/v1",
+  "status": "PASS_SAVED_FINITE_CHECKS",
+  "recomputed_rows": 1275,
+  "saved_cells": 256,
+  "saved_nodes": 425,
+  "saved_incidence_count": 2048,
+  "addition_roundings_checked": 6144,
+  "final_division_roundings_checked": 1275,
+  "incidence_histogram_nodes": {
+    "1": 8,
+    "2": 84,
+    "4": 198,
+    "8": 135
+  },
+  "disposition_counts": {
+    "previous_match_predicted_match": 1083,
+    "previous_mismatch_predicted_match": 192
+  },
+  "strata_by_incidence_count": [
+    {
+      "active_incident_count": 1,
+      "prior_word_match": true,
+      "rows": 24
+    },
+    {
+      "active_incident_count": 2,
+      "prior_word_match": true,
+      "rows": 252
+    },
+    {
+      "active_incident_count": 4,
+      "prior_word_match": true,
+      "rows": 594
+    },
+    {
+      "active_incident_count": 8,
+      "prior_word_match": false,
+      "rows": 192
+    },
+    {
+      "active_incident_count": 8,
+      "prior_word_match": true,
+      "rows": 213
+    }
+  ],
+  "previous_mismatch_unique_nodes": 117,
+  "previous_mismatch_ULP_delta_histogram": {
+    "-2": 12,
+    "-1": 89,
+    "1": 84,
+    "2": 7
+  },
+  "zero_source_words": 6,
+  "negative_zero_source_words": 0,
+  "complete_recomputed_row_digest": "51f9a5e110d11721dc626a30f84d77ea70cb3749c8ae7120dda0c34cc068328e",
+  "method": "Independent exact Fraction decoder; integer quotient/remainder nearest-ties-even IEEE754 encoding after every addition, followed by separately rounded exact quotient. No float addition/division, numpy/scipy/import of producer/assessor, raw CDF or source-helper replay. Incidences independently rebuilt from saved256cell rows, then joined all425node tables/all1275row fields against diagnostic source.",
+  "receipt": {
+    "raw_returncode": 0,
+    "elapsed_seconds_owner_attributed": 0.4457239171024412,
+    "parent_timeout_seconds": 20,
+    "wait_reap_owner_attributed": true,
+    "before_after_records": 27,
+    "before_after_runtime22_unchanged": true,
+    "RSS_observation": null,
+    "pre_receipt_union_records": 31,
+    "pre_receipt_union_bytes": 16828891,
+    "final_union_records_excluding_accounting": 35,
+    "final_union_bytes_excluding_accounting": 16884974,
+    "final_inclusive_bytes_with_accounting": 16901981,
+    "cap": 33554432,
+    "metadata_omission_correction_bytes": 11355,
+    "receipt_bytes_added": 29110,
+    "separate_source_audit_metadata_bytes_added": 15618,
+    "final_accounting_bytes_added": 17007,
+    "external_bodies_rehashed": false
+  },
+  "source_equivalence_or_unique_cause_or_physics_acceptance": false,
+  "self_hash_claim": false
+}
