@@ -20,15 +20,11 @@ Statuses used:
   path;
 - **blocked**: missing input, GPU, license, measurement or correlation.
 
-```mermaid
-flowchart LR
-    PET["PET / PorscheFanatics<br/>JSON and provenance"] --> CAD["CAD<br/>build123d / OCCT / STEP"]
-    CAD --> MESH["Scan and meshing<br/>trimesh / pymeshlab / Gmsh"]
-    MESH --> CAE["Physical reference<br/>CalculiX / OpenFOAM / Cantera / FluidX3D"]
-    CAE --> PN["Surrogates<br/>PhysicsNeMo"]
-    PN --> USD["OpenUSD<br/>SimReady / OVRTX"]
-    USD --> MFG["Manufacturing<br/>STEP / 3MF / PrusaSlicer"]
-```
+For the current execution order and the roles of **Qwen and PicoGK**, start
+with the [README software-chain diagram](../README.md#software-chain-qwen-and-picogk)
+and [engineering workflow](architecture/engineering-workflow.md). Visualization
+and PhysicsNeMo are optional branches, not prerequisites for fabrication.
+The dated execution statuses below remain attached to their original evidence.
 
 ## Full chain and where it runs
 
