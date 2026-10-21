@@ -106,7 +106,7 @@ publication option defaults to false and is a separate operation. A recipe or
 successful build is not a published image; record the registry digest after
 publication before preparing a rental.
 
-For a local CPU smoke check:
+On a native x86 Docker host, run the CPU smoke check:
 
 ```bash
 mkdir -p work/warp-geometry-cpu
@@ -140,6 +140,15 @@ All [15 tests passed in that image](../benchmarks/warp-geometry/observed/2026102
 with the same generic CPU wrapper. This is not a native CPU performance result.
 [Warp's CPU compiler configuration](https://github.com/NVIDIA/warp/blob/v1.18.0/warp/config.py)
 defines this option.
+
+Kali1 was reached over Thunderbolt and reported `x86_64`. The same pilot and
+kernel sources then passed the [native CPU check](../benchmarks/warp-geometry/observed/20261021-kali1/report.json)
+and [all 15 tests](../benchmarks/warp-geometry/observed/20261021-kali1/tests.log),
+without the generic-target override. This used an isolated Python 3.13 venv
+with [hash-pinned wheels](../benchmarks/warp-geometry/observed/20261021-kali1/python313.requirements.txt).
+The [runtime receipt](../benchmarks/warp-geometry/observed/20261021-kali1/runtime.json)
+records its scope: the SSH account could not access the Docker socket, so this
+is native runtime evidence, separate from the Python 3.12 image test in CI.
 
 A [CUDA request on the CPU-only host](../benchmarks/warp-geometry/observed/20261021-local/cuda-unavailable.json)
 correctly returned exit code 1 and `gpu_validated=false`. Native x86 image
