@@ -29,8 +29,13 @@ closure remains unverified. The [current END181 equilibrium calculation](derived
 records 66,590 scalar comparisons with zero exceedances, while 12 of 36 aggregate
 checks still fail. The [complete quadrature arithmetic audit](derived/engineering/native005-END181-QP-arithmetic/README.md)
 retains all operands and confirms that the tested rounding corrections do not
-clear the failures. Head strength and calibrated LPBF remain open; the next
-native experiment adds one solver correction with unchanged physical limits.
+clear the failures. The later
+[three-update coupon experiment](derived/engineering/rich3-coupon-and-head499-held/README.md)
+has now run once: failed residuals decrease modestly, but the same 12 aggregate
+checks still fail. Its corrected artifact census passes the original byte caps;
+the full external execution interval remains unproved. The proposed HEAD499
+adapter is source preparation and remains unrun. Head strength and calibrated
+LPBF remain open.
 
 The [native005 contract, staging and metadata checkpoint](derived/engineering/native005-contract-staging-and-freshness/README.md)
 publishes the exact HELD contract, four input-copy receipts and one accepted

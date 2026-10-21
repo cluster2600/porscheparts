@@ -45,7 +45,7 @@ labels or trained surrogate are accepted.
 | Workstream | Next concrete work | Acceptance before the next phase |
 |---|---|---|
 | Strength and material | Resolve the 24 remaining head-mesh quality failures; establish operating loads and a documented material/process/heat-treatment state. Review hot-property references separately from the existing hypothetical cards. | Admitted meshes, equilibrium and convergence; temperature-dependent constitutive data and stated allowable stresses. Fatigue, creep and physical correlation need their own evidence. |
-| LPBF | Test one additional Richardson correction in a fresh native coupon case. The complete quadrature audit shows that the tested rounding corrections do not clear the three failed native support components. Keep every original limit and verify whole-trajectory deposition, cooling and release before a head calculation. | Numerical verification plus machine/material-specific calibration against measured temperature, distortion and residual stress. A complete diagnostic alone does not qualify LPBF. |
+| LPBF | Inspect the captured residual/correction vectors after the additional-update trial retained all 12 aggregate failures. Keep every original limit and verify whole-trajectory deposition, cooling and release before a head calculation. | Numerical verification plus machine/material-specific calibration against measured temperature, distortion and residual stress. A complete diagnostic alone does not qualify LPBF. |
 | Omniverse | After accepted strength and LPBF results exist, assemble the family in OpenUSD and attach those fields. Track native mesh/field identities, units, frames, associations and time. | Preflight, required service readiness, asset/conformance checks, native-field mapping checks and measurement correlation. Preserve the six current substantive USD profile failures until their repairs are verified. |
 | PhysicsNeMo | Build a dataset from accepted solver cases; split whole geometries, builds and load cases before normalization. Compare suitable model families and simple baselines, then train, evaluate and connect checked inference to the twin. | Independent-case field and hotspot errors, conservation checks, uncertainty and out-of-domain limits, reproducible training and end-to-end inference timings. Recheck proposed designs with the reference solvers. |
 
@@ -96,10 +96,17 @@ now retains all 2,048 operand seeds, 900 regional merge records and 1,275
 component rows. Original binary64 assembly, exact sums of rounded contributions
 and exact products/sums of the same operand words all retain six derived failures
 per stress channel and variant. The tested rounding corrections are too small to
-clear the three native support witnesses. A fresh native trial changing only
-the Richardson update count from two to three is next; count completion remains
-distinct from residual accuracy. Whole-trajectory and process calibration work
-follows.
+clear the three native support witnesses. The later
+[three-update coupon trial and comparison](derived/engineering/rich3-coupon-and-head499-held/README.md)
+has now completed once. Its unchanged-kernel diagnostic reports 66,590 scalar
+comparisons with zero exceedances, but the same 12 of 36 aggregate checks and
+three of 12 native criteria still fail. Failed magnitudes decrease by about
+0.31%–6.09%; no failed identity is resolved. Both saved reports' component rows
+and all 36 resultants were independently recomputed. The corrected artifact
+census passes the original byte caps; the full external 115-second interval
+remains unproved. Count completion remains distinct from residual accuracy.
+Inspect the captured residual/correction vectors before selecting another
+experiment. Whole-trajectory and process calibration work follows.
 
 The [first real owner004 five-toy attempt](derived/engineering/current24-five-toy-first-real-attempt/README.md)
 returned 2: the rational model parser rejected a declared Bool assertion alias
@@ -118,6 +125,11 @@ including negative zero, and the fifth returns solver-attributed UNSAT. All
 sessions return zero and are reaped. Full external startup-through-final-census
 timing remains unverified, so complete resource acceptance and head authority
 remain withheld. The old EPERM errors and failed attempt remain unchanged.
+
+The [proposed HEAD499 adapter](derived/engineering/rich3-coupon-and-head499-held/README.md#head-mesh-work-remains-unrun)
+connects the existing emitter, transport, mapper and 499-cell validator at
+source level. It remains unrun, with no accepted word proposal or head repair.
+All 24 poor head cells remain.
 
 The [full five-toy owner003 checkpoint](derived/engineering/full-five-toy-owner003-prefix-and-core-hold/README.md)
 accepts only the four-line admission-prefix repair. Operation remains on HOLD

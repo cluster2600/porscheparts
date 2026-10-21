@@ -1,0 +1,76 @@
+{
+  "schema": "962-richardson3-held-one-extra-correction-input-source/v1",
+  "status": "HELD_UNRUN_SOURCE_ONLY",
+  "donor": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native-measurement-004/thermoelastic-birth-observer-registration.i",
+    "sha256": "190296e6c2ad1627feca4b374efd2c49739e0c2628764cd92388392a78fd2682",
+    "bytes": 15537
+  },
+  "source": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson3-prep-001/thermoelastic-birth-observer-registration.i",
+    "sha256": "e351ee1be793120084464edab51fc96d36e5677e6bb8d2e05caccc1fa85cdbbd",
+    "bytes": 15537
+  },
+  "records": [
+    {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson3-prep-001/thermoelastic-birth-observer-registration.i",
+      "sha256": "e351ee1be793120084464edab51fc96d36e5677e6bb8d2e05caccc1fa85cdbbd",
+      "bytes": 15537
+    },
+    {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson3-prep-001/source.diff",
+      "sha256": "39b9f77cfc5f140f1ec94c2d5a647570f6d8040926373d4348f573c3a821841c",
+      "bytes": 898
+    },
+    {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson3-prep-001/METHOD.md",
+      "sha256": "264502341da74f4d84b0c2ec89da4586a0be87a43a0dd5a3c8164f5bd4e5adc1",
+      "bytes": 1823
+    }
+  ],
+  "records_excluding_this_manifest": 3,
+  "complete_packet_files": 4,
+  "single_change": {
+    "option": "-ksp_max_it",
+    "old_value": "2",
+    "new_value": "3",
+    "line_1_based": 590,
+    "byte_offset_0_based": 14954,
+    "changed_bytes": 1,
+    "old_ASCII_decimal": 50,
+    "new_ASCII_decimal": 51,
+    "all_other_bytes_identical": true,
+    "old_line": "  petsc_options_value = 'richardson lu always 1 false unpreconditioned skip 2 binary:physical-X.petsc::append binary:physical-F.petsc::append binary:physical-Y.petsc::append'\n",
+    "new_line": "  petsc_options_value = 'richardson lu always 1 false unpreconditioned skip 3 binary:physical-X.petsc::append binary:physical-F.petsc::append binary:physical-Y.petsc::append'\n"
+  },
+  "whole_buffer_proof": {
+    "old_bytes": 15537,
+    "new_bytes": 15537,
+    "forward": "donor[:14954] + ASCII3 + donor[14955:]",
+    "inverse": "source[:14954] + ASCII2 + source[14955:]",
+    "forward_full_bytes_equal": true,
+    "inverse_full_bytes_equal": true,
+    "forward_sha256": "e351ee1be793120084464edab51fc96d36e5677e6bb8d2e05caccc1fa85cdbbd",
+    "inverse_sha256": "190296e6c2ad1627feca4b374efd2c49739e0c2628764cd92388392a78fd2682",
+    "unified_diff_exactly_matches_verified_buffers": true
+  },
+  "unchanged": {
+    "fixed_output_bases": true,
+    "relative_grid_names": true,
+    "all_other_physics_material_observer_time_settings": true,
+    "assessor_POLICY_and_1e_minus_7_gates": true,
+    "nonlinear_tolerance_literals": true,
+    "existing_native_route_or_resource_code": true
+  },
+  "limits": "Count completion remains separate from accuracy. No convergence, strength, material, LPBF or manufacturing acceptance follows.",
+  "preparation": {
+    "named_source_read_hash_and_byte_comparison_only": true,
+    "target_parse_import_compile_execute": false,
+    "solver_or_native_run": false,
+    "raw_grid_CSV_vector_or_runtime_body_read_or_copy": false,
+    "caller_controller_or_guard_framework_created": false,
+    "actual_admission_or_operational_output_created": false,
+    "PUB_or_Git_changed": false
+  },
+  "lineage": "Author produced the prior QP arithmetic audit and controlled-experiment proposal. Source authoring only; independent review and root staging/operational admission remain separate."
+}

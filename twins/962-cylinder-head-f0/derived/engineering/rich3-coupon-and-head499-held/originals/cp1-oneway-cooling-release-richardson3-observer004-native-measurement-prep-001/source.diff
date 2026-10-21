@@ -1,0 +1,226 @@
+--- work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native-measurement-prep-005/run_native_capture.py
++++ work/962-engineering/cp1-oneway-cooling-release-richardson3-observer004-native-measurement-prep-001/run_native_capture.py
+@@ -17,8 +17,8 @@
+ PHYSICS = CASE / "case-contract.json"
+ PRIMARY_API = CASE / "source-evidence.json"
+ HELD = CASE / "held-preparation.json"
+-ROOT_EXECUTION = ENGINEERING / "cp1-oneway-cooling-release-richardson2-observer004-native-measurement-root-execution-004"
+-OUTPUT = ENGINEERING / "cp1-oneway-cooling-release-richardson2-observer004-native-measurement-004"
++ROOT_EXECUTION = ENGINEERING / "cp1-oneway-cooling-release-richardson3-observer004-native-measurement-root-execution-001"
++OUTPUT = ENGINEERING / "cp1-oneway-cooling-release-richardson3-observer004-native-measurement-001"
+ TRANSFER_FILES = ("old-end.grid", "born-end.grid", "born-begin80.grid", "transfer-manifest.json")
+ FEATURES = ("GeneratedMeshGenerator", "SubdomainBoundingBoxGenerator", "BoundingBoxNodeSetGenerator",
+             "ADTimeDerivative", "FunctionIC", "PiecewiseMultilinear", "FunctionAux", "TimedSubdomainModifier",
+@@ -330,6 +330,48 @@
+     need(set(FEATURES) <= objects, "Required explicit deck object is not registered")
+     return {name: True for name in FEATURES}
+ 
++def validate_rich3_profile(current, baseline):
++    need(len(baseline["petsc_options_iname"]) == 8
++          and baseline["petsc_options_iname"][7] == "-ksp_max_it"
++          and len(baseline["petsc_options_value"]) == 8
++          and baseline["petsc_options_value"][7] == "2"
++          and type(baseline["linear_updates_per_regular_solve"]) is int
++          and baseline["linear_updates_per_regular_solve"] == 2
++          and baseline["linear_stopping"] ==
++              "KSPConvergedSkip count completion after exactly2 updates, not residual-accuracy acceptance",
++          "Exact frozen RICH2 profile baseline required")
++    expected = dict(baseline)
++    expected["petsc_options_value"] = list(baseline["petsc_options_value"])
++    expected["petsc_options_value"][7] = "3"
++    expected["linear_updates_per_regular_solve"] = 3
++    expected["linear_stopping"] = "KSPConvergedSkip count completion after exactly3 updates, not residual-accuracy acceptance"
++    need(type(current["linear_updates_per_regular_solve"]) is int and current == expected,
++          "Only the three fixed RICH3 profile fields may change")
++    return True
++
++
++def validate_rich3_staged(current, baseline):
++    name = "thermoelastic-birth-observer-registration.i"
++    expected = {n:(p["sha256"],p["bytes"]) for n,p in baseline.items()}
++    need(set(expected) == {name,"old-end.grid","born-end.grid","born-begin80.grid"}
++          and expected[name] == ("190296e6c2ad1627feca4b374efd2c49739e0c2628764cd92388392a78fd2682",15537),
++          "Exact four-input frozen RICH2 baseline required")
++    expected[name] = ("e351ee1be793120084464edab51fc96d36e5677e6bb8d2e05caccc1fa85cdbbd",15537)
++    need({n:(p["sha256"],p["bytes"]) for n,p in current.items()} == expected,
++          "Only the fixed RICH3 deck SHA may change; three grids remain exact")
++    baseline_pin = dict(path="work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-host-registration-check-prep-001/thermoelastic-birth-observer-registration.i",
++                        sha256="190296e6c2ad1627feca4b374efd2c49739e0c2628764cd92388392a78fd2682",bytes=15537)
++    before = call(None,"rich3-baseline-deck-buffer",selected(baseline_pin).read_bytes)
++    after = call(None,"rich3-current-deck-buffer",selected(current[name]).read_bytes)
++    need(len(before) == len(after) == 15537
++          and hashlib.sha256(before).hexdigest() == "190296e6c2ad1627feca4b374efd2c49739e0c2628764cd92388392a78fd2682"
++          and hashlib.sha256(after).hexdigest() == "e351ee1be793120084464edab51fc96d36e5677e6bb8d2e05caccc1fa85cdbbd"
++          and before[14954:14955] == b"2"
++          and after == before[:14954] + b"3" + before[14955:],
++          "Whole fixed deck must differ only at max_it byte14954:2-to3")
++    return True
++
++
+ def commands(stage):
+     need(stage == "coupon", "Only the unchanged fixed RICH2 coupon is available")
+     return [("native", [str(EXECUTABLE), "-skip_petscrc", "--n-threads=1", "-i", "thermoelastic-birth-observer-registration.i"])]
+@@ -373,9 +415,13 @@
+          and a.get("freshness_and_staging_complete") is True,
+          "Held source has no native authority")
+     need(all(a.get(k) is False for k in ("automatic_retry", "assessment_execution_authorized",
+-         "solver_change_authorized", "head_execution_authorized", "engineering_accepted",
++         "head_execution_authorized", "engineering_accepted",
+          "physics_qualified", "material_qualified", "process_calibrated", "manufacturing_authorized")),
+          "No additional scientific authority")
++    need(a.get("solver_change_authorized") is True
++         and a.get("fixed_solver_variant") == c.get("fixed_solver_variant") == dict(name="RICH2_TO_RICH3_ONE_ADDITIONAL_CORRECTION",
++             scientific_basis="One additional correction after captured RICH2 and QP arithmetic; no convergence acceptance."),
++         "Only the explicitly authorized fixed RICH2-to3 solver variant is available")
+     need(set(a["direct_roles"]) == set(c["future_root_direct_roles"]),
+          "Exact future independently reviewed finite role set required")
+     need({"actual", "caller", "root_controller", "wrapper", "staging_receipt"} <= set(a["direct_roles"]),
+@@ -430,7 +476,7 @@
+     need(all(c.get(k) is False for k in ("head_authorized", "engineering_accepted", "physics_qualified", "material_qualified", "process_calibrated", "manufacturing_authorized", "automatic_retry", "assessment_execution_authorized")), "No additional authority")
+     a, external = root_admission(c, path, expected, admission_sha)
+     original = read_json(ROOT / c["original_native_actual"]["path"])
+-    need(all(c["input_sha256"].get(k) == v for k,v in original["input_sha256"].items()) and c["runtime_sha256s"] == original["runtime_sha256s"] and c["runtime_symlinks"] == original["runtime_symlinks"] and c["solver_profile"] == original["solver_profile"], "All original168 pins/runtime19/13/solver controls must be retained")
++    need(all(c["input_sha256"].get(k) == v for k,v in original["input_sha256"].items()) and c["runtime_sha256s"] == original["runtime_sha256s"] and c["runtime_symlinks"] == original["runtime_symlinks"] and validate_rich3_profile(c["solver_profile"], original["solver_profile"]), "All original168 pins/runtime19/13/solver controls must be retained")
+     pins = c["input_sha256"]
+     need(pins.get(str(HELD.relative_to(ROOT))) == sha(HELD), "Held preparation is not directly bound")
+     held = read_json(HELD)
+@@ -497,15 +543,15 @@
+     need(sha(parent_path) == "85a9195ed1a217eef6bad44518390f1b2dfdb879c9cdfc072b6e1465461a5198", "Preserved003 actual ancestry changed")
+     parent = read_json(parent_path)
+     need(all(c["input_sha256"].get(k) == v for k,v in parent["input_sha256"].items())
+-         and c["solver_profile"] == parent["solver_profile"]
++         and validate_rich3_profile(c["solver_profile"], parent["solver_profile"])
+          and c["runtime_sha256s"] == parent["runtime_sha256s"]
+          and c["runtime_symlinks"] == parent["runtime_symlinks"]
+          and c["outer_python"] == parent["outer_python"]
+          and c["outer_environment"] == parent["outer_environment"], "No003 science/runtime/outer-selection mutation")
+     need({k:v for k,v in c["environment"].items() if k != "TMPDIR"} ==
+          {k:v for k,v in parent["environment"].items() if k != "TMPDIR"}, "Only native TMPDIR namespace may differ")
+-    need({n:(p["sha256"],p["bytes"]) for n,p in c["staged_inputs"].items()} ==
+-         {n:(p["sha256"],p["bytes"]) for n,p in parent["staged_inputs"].items()}, "Four staged source bodies must remain exact")
++    need(validate_rich3_staged(c["staged_inputs"], parent["staged_inputs"]),
++         "Exact single-byte RICH3 deck variant required")
+     guard(label="complete-original-and003-contract")
+     return c, output, a, external
+ 
+--- work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native-measurement-prep-005/run_root_once.py
++++ work/962-engineering/cp1-oneway-cooling-release-richardson3-observer004-native-measurement-prep-001/run_root_once.py
+@@ -8,10 +8,10 @@
+ ROOT = Path("/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993")
+ R = ROOT
+ E = ROOT/"work/962-engineering"
+-S = E/"cp1-oneway-cooling-release-richardson2-observer004-native-measurement-prep-005"
+-P = E/"cp1-oneway-cooling-release-richardson2-observer004-native-measurement-execution-prep-004"
+-ROOT_EXECUTION = E/"cp1-oneway-cooling-release-richardson2-observer004-native-measurement-root-execution-004"
+-OUTPUT = E/"cp1-oneway-cooling-release-richardson2-observer004-native-measurement-004"
++S = E/"cp1-oneway-cooling-release-richardson3-observer004-native-measurement-prep-001"
++P = E/"cp1-oneway-cooling-release-richardson3-observer004-native-measurement-execution-prep-001"
++ROOT_EXECUTION = E/"cp1-oneway-cooling-release-richardson3-observer004-native-measurement-root-execution-001"
++OUTPUT = E/"cp1-oneway-cooling-release-richardson3-observer004-native-measurement-001"
+ QUERY_ROLE = "GROUP_ROWS"
+ QUERY_ROOT = ROOT_EXECUTION
+ _EXTERNAL = {}
+@@ -620,6 +620,48 @@
+     raise error
+ 
+ 
++def validate_rich3_profile(current, baseline):
++    require(len(baseline["petsc_options_iname"]) == 8
++          and baseline["petsc_options_iname"][7] == "-ksp_max_it"
++          and len(baseline["petsc_options_value"]) == 8
++          and baseline["petsc_options_value"][7] == "2"
++          and type(baseline["linear_updates_per_regular_solve"]) is int
++          and baseline["linear_updates_per_regular_solve"] == 2
++          and baseline["linear_stopping"] ==
++              "KSPConvergedSkip count completion after exactly2 updates, not residual-accuracy acceptance",
++          "Exact frozen RICH2 profile baseline required")
++    expected = dict(baseline)
++    expected["petsc_options_value"] = list(baseline["petsc_options_value"])
++    expected["petsc_options_value"][7] = "3"
++    expected["linear_updates_per_regular_solve"] = 3
++    expected["linear_stopping"] = "KSPConvergedSkip count completion after exactly3 updates, not residual-accuracy acceptance"
++    require(type(current["linear_updates_per_regular_solve"]) is int and current == expected,
++          "Only the three fixed RICH3 profile fields may change")
++    return True
++
++
++def validate_rich3_staged(current, baseline):
++    name = "thermoelastic-birth-observer-registration.i"
++    expected = {n:(p["sha256"],p["bytes"]) for n,p in baseline.items()}
++    require(set(expected) == {name,"old-end.grid","born-end.grid","born-begin80.grid"}
++          and expected[name] == ("190296e6c2ad1627feca4b374efd2c49739e0c2628764cd92388392a78fd2682",15537),
++          "Exact four-input frozen RICH2 baseline required")
++    expected[name] = ("e351ee1be793120084464edab51fc96d36e5677e6bb8d2e05caccc1fa85cdbbd",15537)
++    require({n:(p["sha256"],p["bytes"]) for n,p in current.items()} == expected,
++          "Only the fixed RICH3 deck SHA may change; three grids remain exact")
++    baseline_pin = dict(path="work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-host-registration-check-prep-001/thermoelastic-birth-observer-registration.i",
++                        sha256="190296e6c2ad1627feca4b374efd2c49739e0c2628764cd92388392a78fd2682",bytes=15537)
++    before = call(None,"rich3-baseline-deck-buffer",selected(baseline_pin).read_bytes)
++    after = call(None,"rich3-current-deck-buffer",selected(current[name]).read_bytes)
++    require(len(before) == len(after) == 15537
++          and hashlib.sha256(before).hexdigest() == "190296e6c2ad1627feca4b374efd2c49739e0c2628764cd92388392a78fd2682"
++          and hashlib.sha256(after).hexdigest() == "e351ee1be793120084464edab51fc96d36e5677e6bb8d2e05caccc1fa85cdbbd"
++          and before[14954:14955] == b"2"
++          and after == before[:14954] + b"3" + before[14955:],
++          "Whole fixed deck must differ only at max_it byte14954:2-to3")
++    return True
++
++
+ def main():
+     global _PHASE, _UNTIL_NS, _NORMAL, _EXTERNAL, _BASELINE
+     handle = None
+@@ -786,9 +828,13 @@
+                  "root_source_review_complete","freshness_and_staging_complete")),
+                 "No reviewed once-only owned native authority")
+         require(all(auth.get(key) is False for key in ("automatic_retry","assessment_execution_authorized",
+-                "solver_change_authorized","head_execution_authorized","engineering_accepted",
++                "head_execution_authorized","engineering_accepted",
+                 "physics_qualified","material_qualified","process_calibrated","manufacturing_authorized")),
+                 "No added scientific authority")
++        require(auth.get("solver_change_authorized") is True
++                and auth.get("fixed_solver_variant") == actual.get("fixed_solver_variant") == dict(name="RICH2_TO_RICH3_ONE_ADDITIONAL_CORRECTION",
++             scientific_basis="One additional correction after captured RICH2 and QP arithmetic; no convergence acceptance."),
++                "Only the explicitly authorized fixed RICH2-to3 solver variant is available")
+         require(actual.get("schema") == "962-observer004-native-measurement-actual/v1"
+                 and actual.get("authority_at_freeze") == "HELD_ROOT_ADMISSION_REQUIRED"
+                 and actual.get("native_execution_authorized") is False,"Exact immutable held actual required")
+@@ -821,8 +867,10 @@
+                 "Preserved003 actual ancestry changed")
+         parent = read_json(parent_path)
+         for key in ("outer_python","outer_environment","expected_host_records","expected_provider_paths",
+-                    "outer_python_observed_metadata","runtime_sha256s","runtime_symlinks","solver_profile"):
++                    "outer_python_observed_metadata","runtime_sha256s","runtime_symlinks"):
+             require(actual[key] == parent[key],"No preserved runtime/solver/provider selection mutation")
++        require(validate_rich3_profile(actual["solver_profile"], parent["solver_profile"]),
++                "Exact three-field RICH3 solver profile required")
+         require(all(actual["input_sha256"].get(key) == value
+                 for key,value in parent["input_sha256"].items()),"All003 ancestry pins retained")
+         require(call(None,"staged-output-directory",OUTPUT.is_dir)
+@@ -830,10 +878,8 @@
+                 and set(path.name for path in call(None,"staged-output-list",
+                     lambda:list(OUTPUT.iterdir()))) == set(actual["staged_inputs"]),
+                 "Exactly four separately staged inputs required")
+-        require(len(actual["staged_inputs"]) == 4
+-                and {name:(pin["sha256"],pin["bytes"]) for name,pin in actual["staged_inputs"].items()} ==
+-                    {name:(pin["sha256"],pin["bytes"]) for name,pin in parent["staged_inputs"].items()},
+-                "Only namespace may change four staged descriptors")
++        require(validate_rich3_staged(actual["staged_inputs"], parent["staged_inputs"]),
++                "Exact single-byte RICH3 deck variant required")
+         for name,pin in actual["staged_inputs"].items():
+             require(selected(pin) == OUTPUT/name,"Changed staged identity/path")
+         historical = read_json(ROOT/actual["historical_native_closed"]["path"])
+--- work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native-measurement-prep-005/stopped_exec_wrapper.py
++++ work/962-engineering/cp1-oneway-cooling-release-richardson3-observer004-native-measurement-prep-001/stopped_exec_wrapper.py
+@@ -6,9 +6,9 @@
+ 
+ ROOT = Path("/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993")
+ E = ROOT/"work/962-engineering"
+-S = E/"cp1-oneway-cooling-release-richardson2-observer004-native-measurement-prep-005"
+-P = E/"cp1-oneway-cooling-release-richardson2-observer004-native-measurement-execution-prep-004"
+-D = E/"cp1-oneway-cooling-release-richardson2-observer004-native-measurement-root-execution-004"
++S = E/"cp1-oneway-cooling-release-richardson3-observer004-native-measurement-prep-001"
++P = E/"cp1-oneway-cooling-release-richardson3-observer004-native-measurement-execution-prep-001"
++D = E/"cp1-oneway-cooling-release-richardson3-observer004-native-measurement-root-execution-001"
+ PY = "/Users/maxime/.codex/worktrees/962-watercooled-head/3dprinting993/work/962-head/check-venv/bin/python"
+ RESOLVED = "/Users/maxime/.local/share/uv/python/cpython-3.12.11-macos-aarch64-none/bin/python3.12"
+ 
