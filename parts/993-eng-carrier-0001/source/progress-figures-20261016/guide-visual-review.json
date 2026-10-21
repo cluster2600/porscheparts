@@ -1,0 +1,61 @@
+{
+  "status": "visual_provenance_guards_corrected_waiting_complete_process",
+  "final_guide_exported": false,
+  "changed_files_sha256": {
+    "scripts/build_carrier_workshop_guide_v2.py": "d58ad891085b2ad63ca964496a3dfefbb390db44a363ca70e0c4447513bb0213",
+    "tests/test_carrier_workshop_guide_v2.py": "1be6bc9e43f0c24c202c37ee09b71e97e1b0e3147e78f94716dea07c6cc9311e"
+  },
+  "tests": [
+    {
+      "module": "tests/test_carrier_workshop_guide_v2.py",
+      "count": 16,
+      "status": "passed"
+    },
+    {
+      "module": "tests/test_carrier_workflow_assembly.py",
+      "count": 8,
+      "status": "passed"
+    }
+  ],
+  "images": [
+    {
+      "path": "dimensions/carrier-dimensions.png",
+      "origin": "Verified dimensions prefix stage + drawing.json STL/study identities"
+    },
+    {
+      "path": "surface-figure/carrier-remesh-comparison.png",
+      "origin": "Verified surface-figure prefix stage"
+    },
+    {
+      "path": "fields/combined.png",
+      "origin": "Verified fields prefix stage + mesh7 combined-rigid raw/deck/result hashes"
+    },
+    {
+      "path": "process/build-supports.png",
+      "origin": "Exact final process report hash in figures.json, partial_witness=false and image SHA"
+    },
+    {
+      "path": "process/support-teeth.png",
+      "origin": "Same full-process figure receipt; separate linked closeup"
+    },
+    {
+      "path": "process/layer-contours-hatches.png",
+      "origin": "Same full-process figure receipt + retained layer NPZ identity and nonempty CSV row"
+    }
+  ],
+  "process_render_command": "AM_PYTHON -B parts/993-eng-carrier-0001/source/process-coverage-20261016/render_pyslm.py PROCESS --layer AUDITED_NONEMPTY_LAYER",
+  "process_render_order": "Only after complete process admissions and both full audits; render in the fresh actual PROCESS directory before assembly, then package the assembled directory.",
+  "guide_command": "PDF_PYTHON -B scripts/build_carrier_workshop_guide_v2.py ASSEMBLED_RUN",
+  "known_pending_recipe_files": [
+    "manufacturing/workflows/993-carrier-lpbf-v2.json",
+    "work/part-workflow/runtime-v2.json"
+  ],
+  "known_pending_recipe_scope": "Parent owns finalization after backend/admission freeze; no placeholder created.",
+  "display_runtime_inspection": {
+    "runtime": "pyslm-coverage-011",
+    "vispy_present": true,
+    "PyQt5_present": true,
+    "real_OpenGL_render_executed_in_this_audit": false
+  },
+  "frozen_process_generators_modified": false
+}

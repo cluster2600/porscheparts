@@ -13,10 +13,14 @@
 [![Active phase](https://img.shields.io/badge/active%20phase-manufactures%20nothing-critical)](SAFETY.md)
 [![Docs](https://img.shields.io/badge/docs-English-brightgreen)](docs/TRANSLATION.md)
 
+[**Our Porsche information catalogue**](https://porschefanatics.com/) ·
+[**Our Qwen: qwen-picogk**](#our-qwen-qwen-picogk) ·
+[**Software chain: Qwen and PicoGK**](#software-chain-qwen-and-picogk) ·
 [**Parts**](#2-993-parts-for-additive-manufacturing) ·
 [**964 structure and monocoque**](#1-the-964-body-shell-and-the-carbon-monocoque-programme) ·
 [**Engine cooling**](#3-engine-cooling) ·
 [**Gallery**](docs/GALLERY.md) ·
+[**993 carrier workflow**](docs/manufacturing/993_CARRIER_PROJECT_EN.md) ·
 [**Run the checks**](#quick-start) ·
 [**Safety first**](SAFETY.md)
 
@@ -34,6 +38,117 @@ The repository has withdrawn several, listed
 > [!IMPORTANT]
 > **No part is validated.** All 43 part records are at status `concept`, and 25
 > of them are `prohibited_pending_engineering`. Read [SAFETY.md](SAFETY.md).
+
+## Software chain: Qwen and PicoGK
+
+**[PorscheFanatics.com](https://porschefanatics.com/) is our Porsche information
+catalogue.** It brings together [parts and suppliers](https://porschefanatics.com/parts/),
+[factory references](https://porschefanatics.com/oem/), a
+[research library](https://porschefanatics.com/library/) and
+[technical guides](https://porschefanatics.com/knowledge/), with links to their
+sources. We use it upstream to identify parts, applications and documentary
+evidence. Each reused fact retains its source and evidence level; physical
+interface measurements are recorded separately in this engineering repository.
+
+**[qwen-picogk](https://github.com/cluster2600/qwen-picogk) is our locally trained
+Qwen project.** We develop task-specific adapters, authored training data,
+independent request checks and trusted native PicoGK hosts there. The released
+planner is our MLX LoRA adaptation of **Qwen2.5-Coder-1.5B-Instruct**, used with
+a 4-bit base on Apple Silicon. Its documented tasks cover English, French,
+German, Japanese and Chinese. See [our Qwen's role and supported paths](#our-qwen-qwen-picogk).
+
+**Our qwen-picogk adapter proposes a checked plan; PicoGK builds geometry;
+OpenFOAM and CalculiX calculate its behaviour.** This repository, `porscheparts`,
+holds the part records, design sources and engineering evidence. The
+engineering order starts with the part's requirements,
+measured interfaces, material/process assumptions and loads. Missing physical
+inputs keep a result at study level. The diagram describes dependencies, not
+an autonomous system or a claim that every step has run on every part.
+
+```mermaid
+flowchart TB
+    CATALOG["PorscheFanatics.com<br/>our Porsche information catalogue"] -->|sourced part references and documentation| INPUT
+    INPUT["Requirements, measurements and interfaces"] -->|manual authoring| CODE["Reviewed C# recipes and parameters"]
+    INPUT -. optional assistance .-> QWEN["qwen-picogk<br/>our trained Qwen adapter; bounded JSON proposal"]
+    QWEN --> CHECK["Independent schema, units and intent checks"]
+    CHECK -->|accepted parameters| CODE
+    CODE --> PICO["PicoGK + ShapeKernel / LatticeLibrary<br/>new M64 geometry; VDB and mesh exports"]
+    INPUT --> EXISTING["Existing build123d / FreeCAD / STEP masters"]
+    PICO --> GEO["Geometry and assembly checks<br/>dimensions, interfaces, topology and clearances"]
+    PICO -. optional mesh queries .-> WARP["NVIDIA Warp<br/>batched point-to-surface queries; isolated synthetic pilot"]
+    WARP -->|measurement report| GEO
+    EXISTING --> GEO
+    GEO --> CAE["Case preparation and meshing: Gmsh / OpenFOAM tools<br/>Solvers: OpenFOAM / CalculiX; Cantera when needed"]
+    CAE --> REVIEW["Convergence, balances and comparison with measurements"]
+    REVIEW -->|revise the design| CODE
+    REVIEW --> PREP["Engineering and process review<br/>DfAM, supplier preparation; Adamantine if applicable"]
+    PREP --> PHYSICAL["Authorised prototypes, metrology and physical tests"]
+    PHYSICAL -->|measured discrepancies| INPUT
+    GEO -. visual inspection .-> USD["OpenUSD / Omniverse<br/>assembly, contacts and rendering"]
+    REVIEW -. optional reference dataset .-> PN["PhysicsNeMo<br/>train and validate a fast surrogate"]
+```
+
+| Tool or layer | What it does here | When it enters |
+|---|---|---|
+| **[PorscheFanatics.com](https://porschefanatics.com/)** | Our information catalogue: part listings, factory references, library and technical guides with sources. | Research and identification, before defining the engineering inputs. |
+| **[Our qwen-picogk](https://github.com/cluster2600/qwen-picogk)** | Our trained Qwen adapters and guarded toolchains. The released planner proposes JSON parameters for trusted PicoGK recipes; the scan demonstration has a separate adapter. | After explicit requirements or independently extracted scan features; outputs are checked before native geometry. |
+| **Codex** | Assist with authoring, repository changes and review. | Throughout development, alongside the local Qwen project. |
+| **C# / PicoGK** | Generate new M64 geometry from reviewed rules; ShapeKernel and LatticeLibrary provide geometric building blocks. OpenVDB stores volumes and fields. | Before geometric inspection and simulation, then again when the design changes. Existing CAD masters remain authoritative for their own zones. |
+| **[NVIDIA Warp](docs/WARP_GEOMETRY_VAST_PILOT.md)** | Batched geometric queries after PicoGK. The isolated Docker pilot checks synthetic point-to-surface distances against an analytic oracle. | Optional geometry screening; a CPU image check does not establish CUDA execution or application performance. |
+| **[Our cluster_compilot](docs/WARP_GEOMETRY_VAST_PILOT.md#where-cluster_compilot-can-help)** | Optimize regular C/OpenMP CPU loops through model proposals, dependence checks and numerical verification. | Optional, after profiling identifies a costly CPU loop; a separate environment and experiment from Warp. |
+| **Gmsh / OpenFOAM / CalculiX** | Prepare calculation meshes and solve fluid, thermal or structural cases; ParaView/PyVista inspect results. | After geometry, materials, loads and boundary conditions are sufficient for the declared study. |
+| **Adamantine / AdditiveFOAM** | Study additive manufacturing: global thermomechanics or the local melt pool. | With a defined process case, including material, orientation and heat-source history. These are research tools, not a qualified machine job. |
+| **OpenUSD / Omniverse** | Compose and inspect the assembly, contacts, motion and visual results. | A branch from checked geometry; rendering is not required to run CFD/FEA or prepare fabrication. |
+| **PhysicsNeMo** | Learn a fast approximation of reference behaviour. | Optional, after suitable solver/measurement references exist, with separate validation. |
+| **PrusaSlicer / supplier tools** | Prepare polymer prototypes or an industrial machine job. | After the relevant design and process review; an LPBF job requires the supplier's qualified workflow. |
+
+### Our Qwen: qwen-picogk
+
+The [qwen-picogk repository](https://github.com/cluster2600/qwen-picogk) contains
+our adapters, training configuration, datasets, evaluation records and native
+C# hosts. Its role is visible in three separately documented paths:
+
+- **Published multilingual planner:** request → our pinned MLX LoRA adapter →
+  JSON → independent unit and intent checks → trusted C# recipe → PicoGK →
+  native geometry checks. It covers bounded synthetic cylinders, pipes,
+  washers, BCC cells and thread cutters, plus missing-interface refusal.
+  [Architecture and evidence](https://github.com/cluster2600/qwen-picogk/blob/main/docs/ARCHITECTURE.md).
+- **Scan demonstration:** scan → independent feature extraction → our
+  dedicated scan-demo adapter → checked tool plan → reconstruction tools and
+  trusted PicoGK host → geometry checks. PyMesh cleanup and intersection
+  auditing surround this path. The model plans from typed features; geometric
+  tools process the actual vertices and triangles.
+  [OBJ-to-STL demonstration](https://github.com/cluster2600/qwen-picogk/blob/main/docs/OBJ_TO_STL_DEMO.md)
+  and [PyMesh integration](https://github.com/cluster2600/qwen-picogk/blob/main/docs/PYMESH_SCAN_RECONSTRUCTION.md).
+- **Direct C# research:** our adapter produced six restricted C# beam statements,
+  admitted into a trusted wrapper after code checks and run through native PicoGK.
+  Broader AM program generation
+  remains experimental, with rejected trials preserved and no qualified AM C#
+  adapter. [Bounded C# probe](https://github.com/cluster2600/qwen-picogk/blob/main/docs/SCAN_TO_PICOGK.md)
+  and [AM training study](https://github.com/cluster2600/qwen-picogk/blob/main/am-code/README.md).
+
+The planner command itself neither writes C# nor executes geometry. Model
+training, code generation, native geometry and physical validation have
+separate evidence. The recorded Mac inference uses MLX; the generic
+vLLM/CUDA serving route is documented separately. Training another adapter is
+a parallel software activity, not a prerequisite for designing a part.
+See [PicoGK and Qwen on the Mac](docs/PICOGK_MAC_SETUP.md),
+[local training evidence](docs/QWEN_TRAINING.md) and
+[our published model's training record](https://github.com/cluster2600/qwen-picogk/blob/main/docs/TRAINING.md).
+
+### Execution and detailed contracts
+
+**Where it runs.** Mac and Kali provide local authoring, Qwen assistance and
+versioned geometry and solver runs. Docker packages runtimes; Git, Make and CI
+preserve versions and check outputs. A final Vast/Omniverse review is a
+separate, explicitly approved GPU job. These machines and containers are
+execution environments, not additional design stages.
+
+Read the [engineering workflow](docs/architecture/engineering-workflow.md),
+[PicoGK decision](docs/decisions/0004-picogk-new-geometry.md),
+[software inventory and dated execution evidence](docs/SOFTWARE_STACK.md), and
+[per-part workflow](docs/WORKFLOW.md) for the detailed contracts. Passing code,
+mesh or USD checks does not close physical qualification.
 
 <table>
 <tr>

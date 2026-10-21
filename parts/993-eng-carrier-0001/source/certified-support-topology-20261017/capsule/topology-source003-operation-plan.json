@@ -1,0 +1,2651 @@
+{
+  "schema": "source003009-finite-certified-flip-plan-1",
+  "status": "purely_certified_plan_not_applied",
+  "source_index": 3,
+  "original_surface": "work/carrier-process-20261016/real-support-v5-regions-001/source-003/support.npz",
+  "original_surface_sha256": "cba69543b45d599f4d5298e66889872f1c78f6bf2a6788899af4ebacdb93dd35",
+  "metadata": "work/carrier-process-20261016/real-support-v5-regions-001/source-003/geometry-assessment.json",
+  "trace_receipt": "work/carrier-process-20261017/source003-remap-trace-experiment-001/trace-001/assessment.json",
+  "trace_receipt_sha256": "9978b0312ede7f65be981d65188070726629441ee6684f0644714042a99781bd",
+  "trace_npz": "work/carrier-process-20261017/source003-remap-trace-experiment-001/trace-001/skin-parameters.npz",
+  "trace_npz_sha256": "e46ef868b7c287a990242c47e86838fcc006b2ebefec114dd6eec39f03348831",
+  "preparation_source_sha256": "2989e3f6bfcae3865d4af6aafd2d435b8933df4cd1c1aaf38a4076dd1c867797",
+  "preparation_plan_sha256": "b3b51d8e9afe44e76f46bcafd2f71a9895c1f2b49ed88f8cd580119befd07e2d",
+  "certifier_v3_source_sha256": "f02b133ab42723d45d5733257546f0872c55c9d18a0ffc1a890011a20613ab8e",
+  "inputs_sha256_before": {
+    "parts/993-eng-carrier-0001/source/process-scanpath-audit-20261016/audit_support_scanpaths.py": "4ace9f24b61fa8f2d514f18d2e3eb6e9794983d6dee41fad4a8f44dc1f4c53ef",
+    "parts/993-eng-carrier-0001/source/process-scanpath-audit-20261016/exact_support_section.py": "7a6416ca48322b0be9210117c660d830e1f14183a7e49a58d755ae674f81aef4",
+    "parts/993-eng-carrier-0001/source/process-scanpath-audit-20261016/exact_zero_face_coverage.py": "910151f42cd028e780619bb3e863d6fec2672331e753ffd9b26b6220f8f5fec3",
+    "parts/993-eng-carrier-0001/source/process-skins-20261016/peripheral_skins.py": "92f5dbf81fa868e29d13769094e66ae234a4ce09103fb8d2d234ad9c898fb5d7",
+    "parts/993-eng-carrier-0001/source/process-skins-20261016/region_checkpoints.py": "943c8f9193f3ea8a4d1654fec91482e4167c4c4ce351a65c9fd8623ddb9ac589",
+    "parts/993-eng-carrier-0001/source/process-skins-20261016/zero_area_faces.py": "96a985e869fba6a6c9183fe4d9fae7ccf55d34a2ba20f28d8e547f769ea8f658",
+    "parts/993-eng-carrier-0001/source/process-support-slicing-20261016/parallel_support_sections.py": "608cc638ee6f2e9228802442290547a792463fec807066398e95c075287483af",
+    "work/carrier-process-20261016/real-support-v5-regions-001/source-003/geometry-assessment.json": "064bbe4b384491653c958d859e9db2445243d537216af0e16807c8f28f623ffd",
+    "work/carrier-process-20261016/real-support-v5-regions-001/source-003/region-checkpoint.json": "f968a52e955fd621bc457d0c615d6d9039bb5dcc43cb242342308a5a4713cb74",
+    "work/carrier-process-20261016/real-support-v5-regions-001/source-003/support.npz": "cba69543b45d599f4d5298e66889872f1c78f6bf2a6788899af4ebacdb93dd35",
+    "work/carrier-process-20261016/real-support-v5-regions-001/source-009/geometry-assessment.json": "fc8ef47f12f387dcc3fb1c862bc83a2f05564031582da851210c3a1a50d8bd22",
+    "work/carrier-process-20261016/real-support-v5-regions-001/source-009/region-checkpoint.json": "c8cb26890e206dbdba7950c5ddc4ab98eadb5c1cc99baa9c01d87b178a4c5464",
+    "work/carrier-process-20261016/real-support-v5-regions-001/source-009/support.npz": "607dfadf95edff7738ae11e6e3c1560f13e73a416844bebd01d49034e1a6c943",
+    "work/carrier-process-20261017/source003-all-collapsed-cuts-001/execution-001/execution-receipt.json": "d1d9c24d3b110bdd186db15a95c6e51be4fc8a034b082ed4a222909e2df22f65",
+    "work/carrier-process-20261017/source003-all-collapsed-cuts-001/output-001/assessment.json": "a9b0a5c00703a4d172f18099a9f06242f75720ae0e61c35b6b9f7fdc1cca895c",
+    "work/carrier-process-20261017/source003-all-collapsed-cuts-001/output-001/layers.jsonl": "9700cf63bcd81d7aae3c25a63e968421c8a43e550ab523344368eb48c91f489b",
+    "work/carrier-process-20261017/source003-all-collapsed-cuts-001/plan.json": "2079cc16aa45a0f1a4247a9791cda14a9042398f5d32b1301c9b9247dbf9e755",
+    "work/carrier-process-20261017/source003-remap-trace-experiment-001/README.md": "3682d47855aebbabfa67417f80c0030e3ad835decaea27d13bc9475a2e4919c3",
+    "work/carrier-process-20261017/source003-remap-trace-experiment-001/plan.json": "0bead389c8f611eb22addedcd2e253e8ba2a48e3230d84c179b87b88722d5f30",
+    "work/carrier-process-20261017/source003-remap-trace-experiment-001/preflight.json": "738c41c0ed98c80a933728b6a0ae88a938030f10d9d26cff641e483351616bfd",
+    "work/carrier-process-20261017/source003-remap-trace-experiment-001/selfcheck.py": "38c9d78a3898cc7d7b568f638bba24920530cd96a4ac820eb6ea9579a5df3da6",
+    "work/carrier-process-20261017/source003-remap-trace-experiment-001/trace-001/assessment.json": "9978b0312ede7f65be981d65188070726629441ee6684f0644714042a99781bd",
+    "work/carrier-process-20261017/source003-remap-trace-experiment-001/trace-001/skin-parameters.npz": "e46ef868b7c287a990242c47e86838fcc006b2ebefec114dd6eec39f03348831",
+    "work/carrier-process-20261017/source003-remap-trace-experiment-001/trace-from-source010.diff": "0b2bd97b3d3dfb0e1c60c50f4f762a34e61b353f36ef6b8201579a8d59bb2cf0",
+    "work/carrier-process-20261017/source003-remap-trace-experiment-001/trace.py": "0f1e06afd7e9c385f9307e149ef499c025ea36d84aad874aef73769268a04add",
+    "work/carrier-process-20261017/source003009-SKIN-flip-inventory-001/README.md": "57ff84c3ae46a082686bce93572c1e3e3ab3f90ed8239d3a36c8f8a8cd7eb859",
+    "work/carrier-process-20261017/source003009-SKIN-flip-inventory-001/inventory.py": "e47ef15ab260d1dc1ff55106e8e98e621f5f2bb5a29721ca42d619cb5be57489",
+    "work/carrier-process-20261017/source003009-SKIN-flip-inventory-001/output-001/assessment.json": "ea19e7481ac7d348007ad3c0ea695b98193e75a047e286ecfd162d0fb8e381c7",
+    "work/carrier-process-20261017/source003009-SKIN-flip-inventory-001/selfcheck-assessment.json": "e716b76314f139f6aac24056a718e45ef58d065bd3f23e6b4865e664b27b4902",
+    "work/carrier-process-20261017/source003009-SKIN-flip-inventory-001/selfcheck.py": "e7844b3092700ce8ebe4d54a5a5c4b7ec30ff747820d5dee0832e70dc9b20420",
+    "work/carrier-process-20261017/source003009-SKIN-flip-inventory-001/trace003-binding-readonly.json": "f194debbdc542c1b027f574fc0a55430a2645f80b59de5998a3e282ebe510ba7",
+    "work/carrier-process-20261017/source003009-SKIN-flip-inventory-001/trace009-binding-readonly.json": "54d1da86a89943f5bf69310a55da1908377301045a216fc168dc6e8077a4825b",
+    "work/carrier-process-20261017/source003009-certified-flip-repair-001/GRID-operation-plans.json": "d225493bc84e4d3f4e037dafe66325ce3233508fab68f885ad101f7585169f76",
+    "work/carrier-process-20261017/source003009-certified-flip-repair-001/certify_flips_v3.py": "f02b133ab42723d45d5733257546f0872c55c9d18a0ffc1a890011a20613ab8e",
+    "work/carrier-process-20261017/source003009-certified-flip-repair-001/prepare_GRID_plans.py": "4f63321ce831d5f9c72f2f35b76e42f6cc0e194240ca638d2b07513232da6d81",
+    "work/carrier-process-20261017/source003009-certified-flip-repair-001/selfcheck-assessment.json": "0e39e4e32a3120121c3b3d2d33805321fb13ff235a556250308a1a342551b802",
+    "work/carrier-process-20261017/source003009-certified-flip-repair-001/selfcheck.py": "c35c4d8e526d6d157332435926bd98a538dd551dd9b5dcd45780441a20287775",
+    "work/carrier-process-20261017/source003009-combined-flip-packets-001/README.md": "0b8c84611d25bdf27feee6329622656c24f6128ea1d15696a1f230ed2897b008",
+    "work/carrier-process-20261017/source003009-combined-flip-packets-001/prepare_packets.py": "2989e3f6bfcae3865d4af6aafd2d435b8933df4cd1c1aaf38a4076dd1c867797",
+    "work/carrier-process-20261017/source003009-combined-flip-packets-001/selfcheck-assessment.json": "b14110592efacec83e0678750bcf92991f5e155b97a0290bf29c1df024aeb589",
+    "work/carrier-process-20261017/source003009-combined-flip-packets-001/selfcheck.py": "4cab85be702eecec9bf2d32b03649bece4720072f0939eb0d45bffa96d658740",
+    "work/carrier-process-20261017/source003009-flip-feasibility-001/assessment.json": "0a8c1fa0c960e4bd0f12c050ab1fbc72605627c94ec9af664f2d3e0de15b31f5",
+    "work/carrier-process-20261017/source003009-flip-feasibility-001/audit_neighbours.py": "270513da028f32d0bfa5107b78bc889bc2cd2aae7f1d06eda36ffc783b4addca",
+    "work/carrier-process-20261017/source003009-flip-feasibility-002/assessment.json": "8a250f5142a56830c3717677e64b274b5922d29c0af158e24af7f51ea45a9956",
+    "work/carrier-process-20261017/source003009-flip-feasibility-002/composites.py": "e21977f521875af4378a6e8940d497260975d6079c7a31d1f45f63eb7c235eed",
+    "work/carrier-process-20261017/source003009-flip-feasibility-003/assessment.json": "f6882f5cdcfe424cd854c231c63efbdb9f5dc6642f66fcc562c1b74c9b05d355",
+    "work/carrier-process-20261017/source003009-flip-feasibility-003/sequential.py": "1feeede794453991cd97dfd85dae35876dd4b280eb25df202cdb192fd682064a",
+    "work/carrier-process-20261017/source009-all-collapsed-cuts-001/execution-001/execution-receipt.json": "d06179edf3c573ad4968a0eaac9258349bfc7e1d4b6c39e85922cc7b7dcabf22",
+    "work/carrier-process-20261017/source009-all-collapsed-cuts-001/output-001/assessment.json": "157e01c4c7448435062fd3501b11a7deecf2fc63bab3c335e716ed6da0ec72f3",
+    "work/carrier-process-20261017/source009-all-collapsed-cuts-001/output-001/layers.jsonl": "0631fab808869b91fd7ddaaebdc764b9f85734bbfba463569306e872abc4e7d9",
+    "work/carrier-process-20261017/source009-all-collapsed-cuts-001/plan.json": "bd89826ca5620fb4f66af17eb2ce6559eb26605abf7d1f7df0b25de66b25557a",
+    "work/carrier-process-20261017/source009-remap-trace-experiment-001/README.md": "76fa6edf07ceb9aef01c98c318b86934029d31f51c5130ddb4d4e4bd34c2215e",
+    "work/carrier-process-20261017/source009-remap-trace-experiment-001/plan.json": "360a37c71f018d35ee49adb8d8ff8233c906227b0ce1e630bd4ade42c996ad82",
+    "work/carrier-process-20261017/source009-remap-trace-experiment-001/preflight.json": "9b74fc6ff62a24356bc9eb2b3f7c6d5c97dac7a39fea74b0e812a555f5f559f4",
+    "work/carrier-process-20261017/source009-remap-trace-experiment-001/selfcheck.py": "38c9d78a3898cc7d7b568f638bba24920530cd96a4ac820eb6ea9579a5df3da6",
+    "work/carrier-process-20261017/source009-remap-trace-experiment-001/trace-001/assessment.json": "4b315d6f8be146b47709d01c9b980d57e40e6faec1e6cb5c4fb8bc3c436f1c33",
+    "work/carrier-process-20261017/source009-remap-trace-experiment-001/trace-001/skin-parameters.npz": "c0f3e8fcb3e71659f5e665bf943b08d4883b5ac36d1044b4a22e4cd30aa39167",
+    "work/carrier-process-20261017/source009-remap-trace-experiment-001/trace-from-source010.diff": "61905c0725472bd3d3716c6dcd9ef6cbc05bd426efec0c0a64dec133c1bb7001",
+    "work/carrier-process-20261017/source009-remap-trace-experiment-001/trace.py": "b6e349b0bcc5dc047eef650e741e36f37dc12f08d46bb4b7b9cd8e432519a58f",
+    "work/carrier-process-20261017/source010-certified-flip-repair-001/certify_flips_v2.py": "9647fd31520111064181058a9b7ce2dc3111e8e3e83160a278fa655c7d02d506",
+    "work/carrier-process-20261017/source010-certified-flip-repair-001/prepare_inventory.py": "4e2836e74c48c2a9823340292fbd4af96398c93aca382de7e04ac2528fc315e5",
+    "work/carrier-process-20261017/source010-remap-trace-experiment-001/plan.json": "66500268f0370ba692b1c887abce4a498628a59246ba889399b7a33f18f1094a",
+    "work/carrier-process-20261017/source010-remap-trace-experiment-001/trace.py": "e75f19ca1545e090ef8237069f2d05df7a967d2335d41cff171fee3e5d1cbc47",
+    "work/part-workflow/runtimes/pyslm-coverage-011/env/lib/python3.11/site-packages/pyslm/support/support.py": "68db985051d252619d80dc96558c1db6d3d20b60b5965c4825d5aab51e228744",
+    "work/part-workflow/runtimes/pyslm-coverage-011/source/pyslm/support/support.py": "68db985051d252619d80dc96558c1db6d3d20b60b5965c4825d5aab51e228744"
+  },
+  "inputs_sha256_after": {
+    "parts/993-eng-carrier-0001/source/process-scanpath-audit-20261016/audit_support_scanpaths.py": "4ace9f24b61fa8f2d514f18d2e3eb6e9794983d6dee41fad4a8f44dc1f4c53ef",
+    "parts/993-eng-carrier-0001/source/process-scanpath-audit-20261016/exact_support_section.py": "7a6416ca48322b0be9210117c660d830e1f14183a7e49a58d755ae674f81aef4",
+    "parts/993-eng-carrier-0001/source/process-scanpath-audit-20261016/exact_zero_face_coverage.py": "910151f42cd028e780619bb3e863d6fec2672331e753ffd9b26b6220f8f5fec3",
+    "parts/993-eng-carrier-0001/source/process-skins-20261016/peripheral_skins.py": "92f5dbf81fa868e29d13769094e66ae234a4ce09103fb8d2d234ad9c898fb5d7",
+    "parts/993-eng-carrier-0001/source/process-skins-20261016/region_checkpoints.py": "943c8f9193f3ea8a4d1654fec91482e4167c4c4ce351a65c9fd8623ddb9ac589",
+    "parts/993-eng-carrier-0001/source/process-skins-20261016/zero_area_faces.py": "96a985e869fba6a6c9183fe4d9fae7ccf55d34a2ba20f28d8e547f769ea8f658",
+    "parts/993-eng-carrier-0001/source/process-support-slicing-20261016/parallel_support_sections.py": "608cc638ee6f2e9228802442290547a792463fec807066398e95c075287483af",
+    "work/carrier-process-20261016/real-support-v5-regions-001/source-003/geometry-assessment.json": "064bbe4b384491653c958d859e9db2445243d537216af0e16807c8f28f623ffd",
+    "work/carrier-process-20261016/real-support-v5-regions-001/source-003/region-checkpoint.json": "f968a52e955fd621bc457d0c615d6d9039bb5dcc43cb242342308a5a4713cb74",
+    "work/carrier-process-20261016/real-support-v5-regions-001/source-003/support.npz": "cba69543b45d599f4d5298e66889872f1c78f6bf2a6788899af4ebacdb93dd35",
+    "work/carrier-process-20261016/real-support-v5-regions-001/source-009/geometry-assessment.json": "fc8ef47f12f387dcc3fb1c862bc83a2f05564031582da851210c3a1a50d8bd22",
+    "work/carrier-process-20261016/real-support-v5-regions-001/source-009/region-checkpoint.json": "c8cb26890e206dbdba7950c5ddc4ab98eadb5c1cc99baa9c01d87b178a4c5464",
+    "work/carrier-process-20261016/real-support-v5-regions-001/source-009/support.npz": "607dfadf95edff7738ae11e6e3c1560f13e73a416844bebd01d49034e1a6c943",
+    "work/carrier-process-20261017/source003-all-collapsed-cuts-001/execution-001/execution-receipt.json": "d1d9c24d3b110bdd186db15a95c6e51be4fc8a034b082ed4a222909e2df22f65",
+    "work/carrier-process-20261017/source003-all-collapsed-cuts-001/output-001/assessment.json": "a9b0a5c00703a4d172f18099a9f06242f75720ae0e61c35b6b9f7fdc1cca895c",
+    "work/carrier-process-20261017/source003-all-collapsed-cuts-001/output-001/layers.jsonl": "9700cf63bcd81d7aae3c25a63e968421c8a43e550ab523344368eb48c91f489b",
+    "work/carrier-process-20261017/source003-all-collapsed-cuts-001/plan.json": "2079cc16aa45a0f1a4247a9791cda14a9042398f5d32b1301c9b9247dbf9e755",
+    "work/carrier-process-20261017/source003-remap-trace-experiment-001/README.md": "3682d47855aebbabfa67417f80c0030e3ad835decaea27d13bc9475a2e4919c3",
+    "work/carrier-process-20261017/source003-remap-trace-experiment-001/plan.json": "0bead389c8f611eb22addedcd2e253e8ba2a48e3230d84c179b87b88722d5f30",
+    "work/carrier-process-20261017/source003-remap-trace-experiment-001/preflight.json": "738c41c0ed98c80a933728b6a0ae88a938030f10d9d26cff641e483351616bfd",
+    "work/carrier-process-20261017/source003-remap-trace-experiment-001/selfcheck.py": "38c9d78a3898cc7d7b568f638bba24920530cd96a4ac820eb6ea9579a5df3da6",
+    "work/carrier-process-20261017/source003-remap-trace-experiment-001/trace-001/assessment.json": "9978b0312ede7f65be981d65188070726629441ee6684f0644714042a99781bd",
+    "work/carrier-process-20261017/source003-remap-trace-experiment-001/trace-001/skin-parameters.npz": "e46ef868b7c287a990242c47e86838fcc006b2ebefec114dd6eec39f03348831",
+    "work/carrier-process-20261017/source003-remap-trace-experiment-001/trace-from-source010.diff": "0b2bd97b3d3dfb0e1c60c50f4f762a34e61b353f36ef6b8201579a8d59bb2cf0",
+    "work/carrier-process-20261017/source003-remap-trace-experiment-001/trace.py": "0f1e06afd7e9c385f9307e149ef499c025ea36d84aad874aef73769268a04add",
+    "work/carrier-process-20261017/source003009-SKIN-flip-inventory-001/README.md": "57ff84c3ae46a082686bce93572c1e3e3ab3f90ed8239d3a36c8f8a8cd7eb859",
+    "work/carrier-process-20261017/source003009-SKIN-flip-inventory-001/inventory.py": "e47ef15ab260d1dc1ff55106e8e98e621f5f2bb5a29721ca42d619cb5be57489",
+    "work/carrier-process-20261017/source003009-SKIN-flip-inventory-001/output-001/assessment.json": "ea19e7481ac7d348007ad3c0ea695b98193e75a047e286ecfd162d0fb8e381c7",
+    "work/carrier-process-20261017/source003009-SKIN-flip-inventory-001/selfcheck-assessment.json": "e716b76314f139f6aac24056a718e45ef58d065bd3f23e6b4865e664b27b4902",
+    "work/carrier-process-20261017/source003009-SKIN-flip-inventory-001/selfcheck.py": "e7844b3092700ce8ebe4d54a5a5c4b7ec30ff747820d5dee0832e70dc9b20420",
+    "work/carrier-process-20261017/source003009-SKIN-flip-inventory-001/trace003-binding-readonly.json": "f194debbdc542c1b027f574fc0a55430a2645f80b59de5998a3e282ebe510ba7",
+    "work/carrier-process-20261017/source003009-SKIN-flip-inventory-001/trace009-binding-readonly.json": "54d1da86a89943f5bf69310a55da1908377301045a216fc168dc6e8077a4825b",
+    "work/carrier-process-20261017/source003009-certified-flip-repair-001/GRID-operation-plans.json": "d225493bc84e4d3f4e037dafe66325ce3233508fab68f885ad101f7585169f76",
+    "work/carrier-process-20261017/source003009-certified-flip-repair-001/certify_flips_v3.py": "f02b133ab42723d45d5733257546f0872c55c9d18a0ffc1a890011a20613ab8e",
+    "work/carrier-process-20261017/source003009-certified-flip-repair-001/prepare_GRID_plans.py": "4f63321ce831d5f9c72f2f35b76e42f6cc0e194240ca638d2b07513232da6d81",
+    "work/carrier-process-20261017/source003009-certified-flip-repair-001/selfcheck-assessment.json": "0e39e4e32a3120121c3b3d2d33805321fb13ff235a556250308a1a342551b802",
+    "work/carrier-process-20261017/source003009-certified-flip-repair-001/selfcheck.py": "c35c4d8e526d6d157332435926bd98a538dd551dd9b5dcd45780441a20287775",
+    "work/carrier-process-20261017/source003009-combined-flip-packets-001/README.md": "0b8c84611d25bdf27feee6329622656c24f6128ea1d15696a1f230ed2897b008",
+    "work/carrier-process-20261017/source003009-combined-flip-packets-001/prepare_packets.py": "2989e3f6bfcae3865d4af6aafd2d435b8933df4cd1c1aaf38a4076dd1c867797",
+    "work/carrier-process-20261017/source003009-combined-flip-packets-001/selfcheck-assessment.json": "b14110592efacec83e0678750bcf92991f5e155b97a0290bf29c1df024aeb589",
+    "work/carrier-process-20261017/source003009-combined-flip-packets-001/selfcheck.py": "4cab85be702eecec9bf2d32b03649bece4720072f0939eb0d45bffa96d658740",
+    "work/carrier-process-20261017/source003009-flip-feasibility-001/assessment.json": "0a8c1fa0c960e4bd0f12c050ab1fbc72605627c94ec9af664f2d3e0de15b31f5",
+    "work/carrier-process-20261017/source003009-flip-feasibility-001/audit_neighbours.py": "270513da028f32d0bfa5107b78bc889bc2cd2aae7f1d06eda36ffc783b4addca",
+    "work/carrier-process-20261017/source003009-flip-feasibility-002/assessment.json": "8a250f5142a56830c3717677e64b274b5922d29c0af158e24af7f51ea45a9956",
+    "work/carrier-process-20261017/source003009-flip-feasibility-002/composites.py": "e21977f521875af4378a6e8940d497260975d6079c7a31d1f45f63eb7c235eed",
+    "work/carrier-process-20261017/source003009-flip-feasibility-003/assessment.json": "f6882f5cdcfe424cd854c231c63efbdb9f5dc6642f66fcc562c1b74c9b05d355",
+    "work/carrier-process-20261017/source003009-flip-feasibility-003/sequential.py": "1feeede794453991cd97dfd85dae35876dd4b280eb25df202cdb192fd682064a",
+    "work/carrier-process-20261017/source009-all-collapsed-cuts-001/execution-001/execution-receipt.json": "d06179edf3c573ad4968a0eaac9258349bfc7e1d4b6c39e85922cc7b7dcabf22",
+    "work/carrier-process-20261017/source009-all-collapsed-cuts-001/output-001/assessment.json": "157e01c4c7448435062fd3501b11a7deecf2fc63bab3c335e716ed6da0ec72f3",
+    "work/carrier-process-20261017/source009-all-collapsed-cuts-001/output-001/layers.jsonl": "0631fab808869b91fd7ddaaebdc764b9f85734bbfba463569306e872abc4e7d9",
+    "work/carrier-process-20261017/source009-all-collapsed-cuts-001/plan.json": "bd89826ca5620fb4f66af17eb2ce6559eb26605abf7d1f7df0b25de66b25557a",
+    "work/carrier-process-20261017/source009-remap-trace-experiment-001/README.md": "76fa6edf07ceb9aef01c98c318b86934029d31f51c5130ddb4d4e4bd34c2215e",
+    "work/carrier-process-20261017/source009-remap-trace-experiment-001/plan.json": "360a37c71f018d35ee49adb8d8ff8233c906227b0ce1e630bd4ade42c996ad82",
+    "work/carrier-process-20261017/source009-remap-trace-experiment-001/preflight.json": "9b74fc6ff62a24356bc9eb2b3f7c6d5c97dac7a39fea74b0e812a555f5f559f4",
+    "work/carrier-process-20261017/source009-remap-trace-experiment-001/selfcheck.py": "38c9d78a3898cc7d7b568f638bba24920530cd96a4ac820eb6ea9579a5df3da6",
+    "work/carrier-process-20261017/source009-remap-trace-experiment-001/trace-001/assessment.json": "4b315d6f8be146b47709d01c9b980d57e40e6faec1e6cb5c4fb8bc3c436f1c33",
+    "work/carrier-process-20261017/source009-remap-trace-experiment-001/trace-001/skin-parameters.npz": "c0f3e8fcb3e71659f5e665bf943b08d4883b5ac36d1044b4a22e4cd30aa39167",
+    "work/carrier-process-20261017/source009-remap-trace-experiment-001/trace-from-source010.diff": "61905c0725472bd3d3716c6dcd9ef6cbc05bd426efec0c0a64dec133c1bb7001",
+    "work/carrier-process-20261017/source009-remap-trace-experiment-001/trace.py": "b6e349b0bcc5dc047eef650e741e36f37dc12f08d46bb4b7b9cd8e432519a58f",
+    "work/carrier-process-20261017/source010-certified-flip-repair-001/certify_flips_v2.py": "9647fd31520111064181058a9b7ce2dc3111e8e3e83160a278fa655c7d02d506",
+    "work/carrier-process-20261017/source010-certified-flip-repair-001/prepare_inventory.py": "4e2836e74c48c2a9823340292fbd4af96398c93aca382de7e04ac2528fc315e5",
+    "work/carrier-process-20261017/source010-remap-trace-experiment-001/plan.json": "66500268f0370ba692b1c887abce4a498628a59246ba889399b7a33f18f1094a",
+    "work/carrier-process-20261017/source010-remap-trace-experiment-001/trace.py": "e75f19ca1545e090ef8237069f2d05df7a967d2335d41cff171fee3e5d1cbc47",
+    "work/part-workflow/runtimes/pyslm-coverage-011/env/lib/python3.11/site-packages/pyslm/support/support.py": "68db985051d252619d80dc96558c1db6d3d20b60b5965c4825d5aab51e228744",
+    "work/part-workflow/runtimes/pyslm-coverage-011/source/pyslm/support/support.py": "68db985051d252619d80dc96558c1db6d3d20b60b5965c4825d5aab51e228744"
+  },
+  "initial_global_collapsed_events": 205,
+  "initial_counts_by_face": {
+    "525": 23,
+    "412": 15,
+    "99": 16,
+    "318": 21,
+    "221": 10,
+    "705": 1,
+    "898": 1,
+    "2402": 1,
+    "2102": 1,
+    "2680": 2,
+    "2691": 1,
+    "2315": 1,
+    "2711": 2,
+    "2830": 1,
+    "2445": 1,
+    "183": 2,
+    "1579": 1,
+    "591": 59,
+    "181": 4,
+    "590": 42
+  },
+  "operations": [
+    {
+      "name": "source003-GRID-000",
+      "face_ids": [
+        590,
+        591,
+        615
+      ],
+      "expected_before": [
+        [
+          611,
+          610,
+          614
+        ],
+        [
+          611,
+          614,
+          619
+        ],
+        [
+          623,
+          611,
+          619
+        ]
+      ],
+      "steps": [
+        {
+          "face_pair": [
+            591,
+            615
+          ],
+          "new_triangles": [
+            [
+              611,
+              614,
+              623
+            ],
+            [
+              614,
+              619,
+              623
+            ]
+          ]
+        },
+        {
+          "face_pair": [
+            590,
+            591
+          ],
+          "new_triangles": [
+            [
+              610,
+              614,
+              623
+            ],
+            [
+              610,
+              623,
+              611
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "name": "source003-GRID-001",
+      "face_ids": [
+        99,
+        178
+      ],
+      "expected_before": [
+        [
+          126,
+          103,
+          125
+        ],
+        [
+          155,
+          126,
+          125
+        ]
+      ],
+      "steps": [
+        {
+          "face_pair": [
+            99,
+            178
+          ],
+          "new_triangles": [
+            [
+              103,
+              125,
+              155
+            ],
+            [
+              103,
+              155,
+              126
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "name": "source003-GRID-002",
+      "face_ids": [
+        181,
+        211
+      ],
+      "expected_before": [
+        [
+          193,
+          187,
+          204
+        ],
+        [
+          213,
+          193,
+          204
+        ]
+      ],
+      "steps": [
+        {
+          "face_pair": [
+            181,
+            211
+          ],
+          "new_triangles": [
+            [
+              187,
+              204,
+              213
+            ],
+            [
+              187,
+              213,
+              193
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "name": "source003-GRID-003",
+      "face_ids": [
+        183,
+        184
+      ],
+      "expected_before": [
+        [
+          195,
+          191,
+          190
+        ],
+        [
+          195,
+          190,
+          214
+        ]
+      ],
+      "steps": [
+        {
+          "face_pair": [
+            183,
+            184
+          ],
+          "new_triangles": [
+            [
+              190,
+              214,
+              191
+            ],
+            [
+              214,
+              195,
+              191
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "name": "source003-GRID-004",
+      "face_ids": [
+        221,
+        286
+      ],
+      "expected_before": [
+        [
+          230,
+          229,
+          245
+        ],
+        [
+          255,
+          230,
+          245
+        ]
+      ],
+      "steps": [
+        {
+          "face_pair": [
+            221,
+            286
+          ],
+          "new_triangles": [
+            [
+              229,
+              245,
+              255
+            ],
+            [
+              229,
+              255,
+              230
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "name": "source003-GRID-005",
+      "face_ids": [
+        318,
+        377
+      ],
+      "expected_before": [
+        [
+          338,
+          330,
+          347
+        ],
+        [
+          353,
+          338,
+          347
+        ]
+      ],
+      "steps": [
+        {
+          "face_pair": [
+            318,
+            377
+          ],
+          "new_triangles": [
+            [
+              330,
+              347,
+              353
+            ],
+            [
+              330,
+              353,
+              338
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "name": "source003-GRID-006",
+      "face_ids": [
+        412,
+        488
+      ],
+      "expected_before": [
+        [
+          450,
+          427,
+          449
+        ],
+        [
+          473,
+          450,
+          449
+        ]
+      ],
+      "steps": [
+        {
+          "face_pair": [
+            412,
+            488
+          ],
+          "new_triangles": [
+            [
+              427,
+              449,
+              473
+            ],
+            [
+              427,
+              473,
+              450
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "name": "source003-GRID-007",
+      "face_ids": [
+        525,
+        526
+      ],
+      "expected_before": [
+        [
+          544,
+          543,
+          555
+        ],
+        [
+          544,
+          555,
+          564
+        ]
+      ],
+      "steps": [
+        {
+          "face_pair": [
+            525,
+            526
+          ],
+          "new_triangles": [
+            [
+              543,
+              555,
+              564
+            ],
+            [
+              543,
+              564,
+              544
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "name": "source003-SKIN-704-705",
+      "face_ids": [
+        704,
+        705
+      ],
+      "expected_before": [
+        [
+          750,
+          754,
+          752
+        ],
+        [
+          750,
+          752,
+          751
+        ]
+      ],
+      "steps": [
+        {
+          "face_pair": [
+            704,
+            705
+          ],
+          "new_triangles": [
+            [
+              750,
+              754,
+              751
+            ],
+            [
+              754,
+              752,
+              751
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "name": "source003-SKIN-897-898",
+      "face_ids": [
+        897,
+        898
+      ],
+      "expected_before": [
+        [
+          1013,
+          1015,
+          1016
+        ],
+        [
+          1013,
+          1016,
+          1014
+        ]
+      ],
+      "steps": [
+        {
+          "face_pair": [
+            897,
+            898
+          ],
+          "new_triangles": [
+            [
+              1013,
+              1015,
+              1014
+            ],
+            [
+              1015,
+              1016,
+              1014
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "name": "source003-SKIN-1579-1580",
+      "face_ids": [
+        1579,
+        1580
+      ],
+      "expected_before": [
+        [
+          1737,
+          1795,
+          1796
+        ],
+        [
+          1737,
+          1796,
+          1799
+        ]
+      ],
+      "steps": [
+        {
+          "face_pair": [
+            1579,
+            1580
+          ],
+          "new_triangles": [
+            [
+              1737,
+              1795,
+              1799
+            ],
+            [
+              1795,
+              1796,
+              1799
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "name": "source003-SKIN-2101-2102",
+      "face_ids": [
+        2101,
+        2102
+      ],
+      "expected_before": [
+        [
+          2443,
+          2439,
+          2438
+        ],
+        [
+          2443,
+          2438,
+          2441
+        ]
+      ],
+      "steps": [
+        {
+          "face_pair": [
+            2101,
+            2102
+          ],
+          "new_triangles": [
+            [
+              2438,
+              2441,
+              2439
+            ],
+            [
+              2441,
+              2443,
+              2439
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "name": "source003-SKIN-2315-2316",
+      "face_ids": [
+        2315,
+        2316
+      ],
+      "expected_before": [
+        [
+          2706,
+          2711,
+          2712
+        ],
+        [
+          2706,
+          2712,
+          2713
+        ]
+      ],
+      "steps": [
+        {
+          "face_pair": [
+            2315,
+            2316
+          ],
+          "new_triangles": [
+            [
+              2706,
+              2711,
+              2713
+            ],
+            [
+              2711,
+              2712,
+              2713
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "name": "source003-SKIN-2402-2403",
+      "face_ids": [
+        2402,
+        2403
+      ],
+      "expected_before": [
+        [
+          2821,
+          2823,
+          2824
+        ],
+        [
+          2821,
+          2824,
+          2825
+        ]
+      ],
+      "steps": [
+        {
+          "face_pair": [
+            2402,
+            2403
+          ],
+          "new_triangles": [
+            [
+              2821,
+              2823,
+              2825
+            ],
+            [
+              2823,
+              2824,
+              2825
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "name": "source003-SKIN-2445-2446",
+      "face_ids": [
+        2445,
+        2446
+      ],
+      "expected_before": [
+        [
+          2864,
+          2869,
+          2870
+        ],
+        [
+          2864,
+          2870,
+          2871
+        ]
+      ],
+      "steps": [
+        {
+          "face_pair": [
+            2445,
+            2446
+          ],
+          "new_triangles": [
+            [
+              2864,
+              2869,
+              2871
+            ],
+            [
+              2869,
+              2870,
+              2871
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "name": "source003-SKIN-2680-2681",
+      "face_ids": [
+        2680,
+        2681
+      ],
+      "expected_before": [
+        [
+          3160,
+          3161,
+          3164
+        ],
+        [
+          3160,
+          3164,
+          3165
+        ]
+      ],
+      "steps": [
+        {
+          "face_pair": [
+            2680,
+            2681
+          ],
+          "new_triangles": [
+            [
+              3160,
+              3161,
+              3165
+            ],
+            [
+              3161,
+              3164,
+              3165
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "name": "source003-SKIN-2691-2692",
+      "face_ids": [
+        2691,
+        2692
+      ],
+      "expected_before": [
+        [
+          3168,
+          3173,
+          3176
+        ],
+        [
+          3168,
+          3176,
+          3177
+        ]
+      ],
+      "steps": [
+        {
+          "face_pair": [
+            2691,
+            2692
+          ],
+          "new_triangles": [
+            [
+              3168,
+              3173,
+              3177
+            ],
+            [
+              3173,
+              3176,
+              3177
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "name": "source003-SKIN-2710-2711",
+      "face_ids": [
+        2710,
+        2711
+      ],
+      "expected_before": [
+        [
+          3187,
+          3181,
+          3180
+        ],
+        [
+          3187,
+          3180,
+          3186
+        ]
+      ],
+      "steps": [
+        {
+          "face_pair": [
+            2710,
+            2711
+          ],
+          "new_triangles": [
+            [
+              3180,
+              3186,
+              3181
+            ],
+            [
+              3186,
+              3187,
+              3181
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "name": "source003-SKIN-2830-2831",
+      "face_ids": [
+        2830,
+        2831
+      ],
+      "expected_before": [
+        [
+          3337,
+          3342,
+          3343
+        ],
+        [
+          3337,
+          3343,
+          3344
+        ]
+      ],
+      "steps": [
+        {
+          "face_pair": [
+            2830,
+            2831
+          ],
+          "new_triangles": [
+            [
+              3337,
+              3342,
+              3344
+            ],
+            [
+              3342,
+              3343,
+              3344
+            ]
+          ]
+        }
+      ]
+    }
+  ],
+  "exact_certificate": {
+    "status": "local_flip_operations_certified_no_global_admission",
+    "operation_policy": "sequential_current_state_strict_ledger_v3",
+    "initial_collapsed_cuts": 205,
+    "final_collapsed_cuts": 0,
+    "operations": [
+      {
+        "name": "source003-GRID-000",
+        "face_ids": [
+          590,
+          591,
+          615
+        ],
+        "steps": [
+          {
+            "kind": "GRID",
+            "same_closed_3D_point_set": true,
+            "boundary_vertex_ids": [
+              611,
+              614,
+              619,
+              623
+            ],
+            "exact_turns_fraction": [
+              "290852475203341/9903520314283042199192993792",
+              "5775808713625500010101051/4951760157141521099596496896",
+              "31033723420489318413067993/9903520314283042199192993792",
+              "1217631624595573179254327/618970019642690137449562112"
+            ],
+            "old_twice_areas_fraction": [
+              "290852475203341/9903520314283042199192993792",
+              "31033723420489318413067993/9903520314283042199192993792"
+            ],
+            "new_twice_areas_fraction": [
+              "1217631624595573179254327/618970019642690137449562112",
+              "5775808713625500010101051/4951760157141521099596496896"
+            ],
+            "same_vertices_and_directed_boundary": true,
+            "face_pair": [
+              591,
+              615
+            ],
+            "old_triangles": [
+              [
+                611,
+                614,
+                619
+              ],
+              [
+                623,
+                611,
+                619
+              ]
+            ],
+            "new_triangles": [
+              [
+                611,
+                614,
+                623
+              ],
+              [
+                614,
+                619,
+                623
+              ]
+            ]
+          },
+          {
+            "kind": "GRID",
+            "same_closed_3D_point_set": true,
+            "boundary_vertex_ids": [
+              610,
+              614,
+              623,
+              611
+            ],
+            "exact_turns_fraction": [
+              "4870360527744567923487763/2475880078570760549798248448",
+              "1217631624595573179254327/618970019642690137449562112",
+              "331941275461761081003/4951760157141521099596496896",
+              "12174021913/4951760157141521099596496896"
+            ],
+            "old_twice_areas_fraction": [
+              "12174021913/4951760157141521099596496896",
+              "1217631624595573179254327/618970019642690137449562112"
+            ],
+            "new_twice_areas_fraction": [
+              "4870360527744567923487763/2475880078570760549798248448",
+              "331941275461761081003/4951760157141521099596496896"
+            ],
+            "same_vertices_and_directed_boundary": true,
+            "face_pair": [
+              590,
+              591
+            ],
+            "old_triangles": [
+              [
+                611,
+                610,
+                614
+              ],
+              [
+                611,
+                614,
+                623
+              ]
+            ],
+            "new_triangles": [
+              [
+                610,
+                614,
+                623
+              ],
+              [
+                610,
+                623,
+                611
+              ]
+            ]
+          }
+        ],
+        "local_before": 101,
+        "local_after": 0,
+        "global_before": 205,
+        "global_after": 104,
+        "declared_planes": 1034
+      },
+      {
+        "name": "source003-GRID-001",
+        "face_ids": [
+          99,
+          178
+        ],
+        "steps": [
+          {
+            "kind": "GRID",
+            "same_closed_3D_point_set": true,
+            "boundary_vertex_ids": [
+              103,
+              125,
+              155,
+              126
+            ],
+            "exact_turns_fraction": [
+              "24326078528028694230940367343/316912650057057350374175801344",
+              "200953340772197183057940873615/316912650057057350374175801344",
+              "88313631122117763292702197801/158456325028528675187087900672",
+              "33518879201944665/158456325028528675187087900672"
+            ],
+            "old_twice_areas_fraction": [
+              "33518879201944665/158456325028528675187087900672",
+              "200953340772197183057940873615/316912650057057350374175801344"
+            ],
+            "new_twice_areas_fraction": [
+              "24326078528028694230940367343/316912650057057350374175801344",
+              "88313631122117763292702197801/158456325028528675187087900672"
+            ],
+            "same_vertices_and_directed_boundary": true,
+            "face_pair": [
+              99,
+              178
+            ],
+            "old_triangles": [
+              [
+                126,
+                103,
+                125
+              ],
+              [
+                155,
+                126,
+                125
+              ]
+            ],
+            "new_triangles": [
+              [
+                103,
+                125,
+                155
+              ],
+              [
+                103,
+                155,
+                126
+              ]
+            ]
+          }
+        ],
+        "local_before": 16,
+        "local_after": 0,
+        "global_before": 104,
+        "global_after": 88,
+        "declared_planes": 1034
+      },
+      {
+        "name": "source003-GRID-002",
+        "face_ids": [
+          181,
+          211
+        ],
+        "steps": [
+          {
+            "kind": "GRID",
+            "same_closed_3D_point_set": true,
+            "boundary_vertex_ids": [
+              187,
+              204,
+              213,
+              193
+            ],
+            "exact_turns_fraction": [
+              "4751858772382845826422079/9903520314283042199192993792",
+              "5294064819133896711731423/9903520314283042199192993792",
+              "542206046935327335001417/9903520314283042199192993792",
+              "184276449692073/9903520314283042199192993792"
+            ],
+            "old_twice_areas_fraction": [
+              "184276449692073/9903520314283042199192993792",
+              "5294064819133896711731423/9903520314283042199192993792"
+            ],
+            "new_twice_areas_fraction": [
+              "4751858772382845826422079/9903520314283042199192993792",
+              "542206046935327335001417/9903520314283042199192993792"
+            ],
+            "same_vertices_and_directed_boundary": true,
+            "face_pair": [
+              181,
+              211
+            ],
+            "old_triangles": [
+              [
+                193,
+                187,
+                204
+              ],
+              [
+                213,
+                193,
+                204
+              ]
+            ],
+            "new_triangles": [
+              [
+                187,
+                204,
+                213
+              ],
+              [
+                187,
+                213,
+                193
+              ]
+            ]
+          }
+        ],
+        "local_before": 4,
+        "local_after": 0,
+        "global_before": 88,
+        "global_after": 84,
+        "declared_planes": 1034
+      },
+      {
+        "name": "source003-GRID-003",
+        "face_ids": [
+          183,
+          184
+        ],
+        "steps": [
+          {
+            "kind": "GRID",
+            "same_closed_3D_point_set": true,
+            "boundary_vertex_ids": [
+              190,
+              214,
+              195,
+              191
+            ],
+            "exact_turns_fraction": [
+              "16105147936492039567290313/4951760157141521099596496896",
+              "7639563222958767241289/9903520314283042199192993792",
+              "56294995342131/9903520314283042199192993792",
+              "8050664077454353840670367/2475880078570760549798248448"
+            ],
+            "old_twice_areas_fraction": [
+              "56294995342131/9903520314283042199192993792",
+              "16105147936492039567290313/4951760157141521099596496896"
+            ],
+            "new_twice_areas_fraction": [
+              "8050664077454353840670367/2475880078570760549798248448",
+              "7639563222958767241289/9903520314283042199192993792"
+            ],
+            "same_vertices_and_directed_boundary": true,
+            "face_pair": [
+              183,
+              184
+            ],
+            "old_triangles": [
+              [
+                195,
+                191,
+                190
+              ],
+              [
+                195,
+                190,
+                214
+              ]
+            ],
+            "new_triangles": [
+              [
+                190,
+                214,
+                191
+              ],
+              [
+                214,
+                195,
+                191
+              ]
+            ]
+          }
+        ],
+        "local_before": 2,
+        "local_after": 0,
+        "global_before": 84,
+        "global_after": 82,
+        "declared_planes": 1034
+      },
+      {
+        "name": "source003-GRID-004",
+        "face_ids": [
+          221,
+          286
+        ],
+        "steps": [
+          {
+            "kind": "GRID",
+            "same_closed_3D_point_set": true,
+            "boundary_vertex_ids": [
+              229,
+              245,
+              255,
+              230
+            ],
+            "exact_turns_fraction": [
+              "24427060284825035441177207/9903520314283042199192993792",
+              "647976056285022440354046217/9903520314283042199192993792",
+              "311774498000768088664312515/4951760157141521099596496896",
+              "334693103939005/2475880078570760549798248448"
+            ],
+            "old_twice_areas_fraction": [
+              "334693103939005/2475880078570760549798248448",
+              "647976056285022440354046217/9903520314283042199192993792"
+            ],
+            "new_twice_areas_fraction": [
+              "24427060284825035441177207/9903520314283042199192993792",
+              "311774498000768088664312515/4951760157141521099596496896"
+            ],
+            "same_vertices_and_directed_boundary": true,
+            "face_pair": [
+              221,
+              286
+            ],
+            "old_triangles": [
+              [
+                230,
+                229,
+                245
+              ],
+              [
+                255,
+                230,
+                245
+              ]
+            ],
+            "new_triangles": [
+              [
+                229,
+                245,
+                255
+              ],
+              [
+                229,
+                255,
+                230
+              ]
+            ]
+          }
+        ],
+        "local_before": 10,
+        "local_after": 0,
+        "global_before": 82,
+        "global_after": 72,
+        "declared_planes": 1034
+      },
+      {
+        "name": "source003-GRID-005",
+        "face_ids": [
+          318,
+          377
+        ],
+        "steps": [
+          {
+            "kind": "GRID",
+            "same_closed_3D_point_set": true,
+            "boundary_vertex_ids": [
+              330,
+              347,
+              353,
+              338
+            ],
+            "exact_turns_fraction": [
+              "119537225825322510087419/1237940039285380274899124224",
+              "6341922319599257468639575/2475880078570760549798248448",
+              "24411391473143656251438701/9903520314283042199192993792",
+              "1349206457579753/9903520314283042199192993792"
+            ],
+            "old_twice_areas_fraction": [
+              "1349206457579753/9903520314283042199192993792",
+              "6341922319599257468639575/2475880078570760549798248448"
+            ],
+            "new_twice_areas_fraction": [
+              "119537225825322510087419/1237940039285380274899124224",
+              "24411391473143656251438701/9903520314283042199192993792"
+            ],
+            "same_vertices_and_directed_boundary": true,
+            "face_pair": [
+              318,
+              377
+            ],
+            "old_triangles": [
+              [
+                338,
+                330,
+                347
+              ],
+              [
+                353,
+                338,
+                347
+              ]
+            ],
+            "new_triangles": [
+              [
+                330,
+                347,
+                353
+              ],
+              [
+                330,
+                353,
+                338
+              ]
+            ]
+          }
+        ],
+        "local_before": 21,
+        "local_after": 0,
+        "global_before": 72,
+        "global_after": 51,
+        "declared_planes": 1034
+      },
+      {
+        "name": "source003-GRID-006",
+        "face_ids": [
+          412,
+          488
+        ],
+        "steps": [
+          {
+            "kind": "GRID",
+            "same_closed_3D_point_set": true,
+            "boundary_vertex_ids": [
+              427,
+              449,
+              473,
+              450
+            ],
+            "exact_turns_fraction": [
+              "323751477800812098013561299/9903520314283042199192993792",
+              "41788319996664570654476865/154742504910672534362390528",
+              "2350701001987849749220301157/9903520314283042199192993792",
+              "266165668417887/1237940039285380274899124224"
+            ],
+            "old_twice_areas_fraction": [
+              "266165668417887/1237940039285380274899124224",
+              "41788319996664570654476865/154742504910672534362390528"
+            ],
+            "new_twice_areas_fraction": [
+              "323751477800812098013561299/9903520314283042199192993792",
+              "2350701001987849749220301157/9903520314283042199192993792"
+            ],
+            "same_vertices_and_directed_boundary": true,
+            "face_pair": [
+              412,
+              488
+            ],
+            "old_triangles": [
+              [
+                450,
+                427,
+                449
+              ],
+              [
+                473,
+                450,
+                449
+              ]
+            ],
+            "new_triangles": [
+              [
+                427,
+                449,
+                473
+              ],
+              [
+                427,
+                473,
+                450
+              ]
+            ]
+          }
+        ],
+        "local_before": 15,
+        "local_after": 0,
+        "global_before": 51,
+        "global_after": 36,
+        "declared_planes": 1034
+      },
+      {
+        "name": "source003-GRID-007",
+        "face_ids": [
+          525,
+          526
+        ],
+        "steps": [
+          {
+            "kind": "GRID",
+            "same_closed_3D_point_set": true,
+            "boundary_vertex_ids": [
+              543,
+              555,
+              564,
+              544
+            ],
+            "exact_turns_fraction": [
+              "2268085670214232572016310703/158456325028528675187087900672",
+              "585768832473025118494545225/39614081257132168796771975168",
+              "74989659678275858526817471/158456325028528675187087900672",
+              "203978282473637/79228162514264337593543950336"
+            ],
+            "old_twice_areas_fraction": [
+              "203978282473637/79228162514264337593543950336",
+              "585768832473025118494545225/39614081257132168796771975168"
+            ],
+            "new_twice_areas_fraction": [
+              "2268085670214232572016310703/158456325028528675187087900672",
+              "74989659678275858526817471/158456325028528675187087900672"
+            ],
+            "same_vertices_and_directed_boundary": true,
+            "face_pair": [
+              525,
+              526
+            ],
+            "old_triangles": [
+              [
+                544,
+                543,
+                555
+              ],
+              [
+                544,
+                555,
+                564
+              ]
+            ],
+            "new_triangles": [
+              [
+                543,
+                555,
+                564
+              ],
+              [
+                543,
+                564,
+                544
+              ]
+            ]
+          }
+        ],
+        "local_before": 23,
+        "local_after": 0,
+        "global_before": 36,
+        "global_after": 13,
+        "declared_planes": 1034
+      },
+      {
+        "name": "source003-SKIN-704-705",
+        "face_ids": [
+          704,
+          705
+        ],
+        "steps": [
+          {
+            "kind": "SKIN",
+            "same_closed_3D_point_set": false,
+            "same_closed_TZ_point_set": true,
+            "affine_mapping_branch": 15,
+            "vertex_error_bound_xyz_fraction_mm": [
+              "639890600247/58518247714296021949349888",
+              "1232833940781/117036495428592043898699776",
+              "0"
+            ],
+            "old_new_correspondence_Linf_fraction_mm": "639890600247/29259123857148010974674944",
+            "old_new_correspondence_L1_upper_fraction_mm": "2512615141275/58518247714296021949349888",
+            "bound_authority": "Fixed vertices interpolate their original affine-map errors convexly; old/new matching TZ points differ by at most twice the vertex bound.",
+            "boundary_vertex_ids": [
+              750,
+              754,
+              752,
+              751
+            ],
+            "exact_turns_fraction": [
+              "13388619081047695871197/9903520314283042199192993792",
+              "31940825575333879956469/79228162514264337593543950336",
+              "471945459161/39614081257132168796771975168",
+              "75168127073991577931429/79228162514264337593543950336"
+            ],
+            "old_twice_areas_fraction": [
+              "13388619081047695871197/9903520314283042199192993792",
+              "471945459161/39614081257132168796771975168"
+            ],
+            "new_twice_areas_fraction": [
+              "75168127073991577931429/79228162514264337593543950336",
+              "31940825575333879956469/79228162514264337593543950336"
+            ],
+            "same_vertices_and_directed_boundary": true,
+            "face_pair": [
+              704,
+              705
+            ],
+            "old_triangles": [
+              [
+                750,
+                754,
+                752
+              ],
+              [
+                750,
+                752,
+                751
+              ]
+            ],
+            "new_triangles": [
+              [
+                750,
+                754,
+                751
+              ],
+              [
+                754,
+                752,
+                751
+              ]
+            ]
+          }
+        ],
+        "local_before": 1,
+        "local_after": 0,
+        "global_before": 13,
+        "global_after": 12,
+        "declared_planes": 1034
+      },
+      {
+        "name": "source003-SKIN-897-898",
+        "face_ids": [
+          897,
+          898
+        ],
+        "steps": [
+          {
+            "kind": "SKIN",
+            "same_closed_3D_point_set": false,
+            "same_closed_TZ_point_set": true,
+            "affine_mapping_branch": 50,
+            "vertex_error_bound_xyz_fraction_mm": [
+              "544200951077/93921828442465182257512448",
+              "601947917533/46960914221232591128756224",
+              "0"
+            ],
+            "old_new_correspondence_Linf_fraction_mm": "601947917533/23480457110616295564378112",
+            "old_new_correspondence_L1_upper_fraction_mm": "1748096786143/46960914221232591128756224",
+            "bound_authority": "Fixed vertices interpolate their original affine-map errors convexly; old/new matching TZ points differ by at most twice the vertex bound.",
+            "boundary_vertex_ids": [
+              1013,
+              1015,
+              1016,
+              1014
+            ],
+            "exact_turns_fraction": [
+              "19138434864154417292102316605/19807040628566084398385987584",
+              "49778862538166614434871006355/158456325028528675187087900672",
+              "5576767939695/79228162514264337593543950336",
+              "103328616375068735055483405875/158456325028528675187087900672"
+            ],
+            "old_twice_areas_fraction": [
+              "19138434864154417292102316605/19807040628566084398385987584",
+              "5576767939695/79228162514264337593543950336"
+            ],
+            "new_twice_areas_fraction": [
+              "103328616375068735055483405875/158456325028528675187087900672",
+              "49778862538166614434871006355/158456325028528675187087900672"
+            ],
+            "same_vertices_and_directed_boundary": true,
+            "face_pair": [
+              897,
+              898
+            ],
+            "old_triangles": [
+              [
+                1013,
+                1015,
+                1016
+              ],
+              [
+                1013,
+                1016,
+                1014
+              ]
+            ],
+            "new_triangles": [
+              [
+                1013,
+                1015,
+                1014
+              ],
+              [
+                1015,
+                1016,
+                1014
+              ]
+            ]
+          }
+        ],
+        "local_before": 1,
+        "local_after": 0,
+        "global_before": 12,
+        "global_after": 11,
+        "declared_planes": 1034
+      },
+      {
+        "name": "source003-SKIN-1579-1580",
+        "face_ids": [
+          1579,
+          1580
+        ],
+        "steps": [
+          {
+            "kind": "SKIN",
+            "same_closed_3D_point_set": false,
+            "same_closed_TZ_point_set": true,
+            "affine_mapping_branch": 0,
+            "vertex_error_bound_xyz_fraction_mm": [
+              "556824450408675/40526758130984572112871620608",
+              "556824450408675/40526758130984572112871620608",
+              "0"
+            ],
+            "old_new_correspondence_Linf_fraction_mm": "556824450408675/20263379065492286056435810304",
+            "old_new_correspondence_L1_upper_fraction_mm": "556824450408675/10131689532746143028217905152",
+            "bound_authority": "Fixed vertices interpolate their original affine-map errors convexly; old/new matching TZ points differ by at most twice the vertex bound.",
+            "boundary_vertex_ids": [
+              1737,
+              1795,
+              1796,
+              1799
+            ],
+            "exact_turns_fraction": [
+              "94756997772399771/633825300114114700748351602688",
+              "215801377541919/39614081257132168796771975168",
+              "30042680133824154491713922027/158456325028528675187087900672",
+              "120170720535387922142587417175/633825300114114700748351602688"
+            ],
+            "old_twice_areas_fraction": [
+              "94756997772399771/633825300114114700748351602688",
+              "30042680133824154491713922027/158456325028528675187087900672"
+            ],
+            "new_twice_areas_fraction": [
+              "120170720535387922142587417175/633825300114114700748351602688",
+              "215801377541919/39614081257132168796771975168"
+            ],
+            "same_vertices_and_directed_boundary": true,
+            "face_pair": [
+              1579,
+              1580
+            ],
+            "old_triangles": [
+              [
+                1737,
+                1795,
+                1796
+              ],
+              [
+                1737,
+                1796,
+                1799
+              ]
+            ],
+            "new_triangles": [
+              [
+                1737,
+                1795,
+                1799
+              ],
+              [
+                1795,
+                1796,
+                1799
+              ]
+            ]
+          }
+        ],
+        "local_before": 1,
+        "local_after": 0,
+        "global_before": 11,
+        "global_after": 10,
+        "declared_planes": 1034
+      },
+      {
+        "name": "source003-SKIN-2101-2102",
+        "face_ids": [
+          2101,
+          2102
+        ],
+        "steps": [
+          {
+            "kind": "SKIN",
+            "same_closed_3D_point_set": false,
+            "same_closed_TZ_point_set": true,
+            "affine_mapping_branch": 0,
+            "vertex_error_bound_xyz_fraction_mm": [
+              "207113940004341643/38718121707373071823252005847040",
+              "82570764152204561/7743624341474614364650401169408",
+              "0"
+            ],
+            "old_new_correspondence_Linf_fraction_mm": "82570764152204561/3871812170737307182325200584704",
+            "old_new_correspondence_L1_upper_fraction_mm": "19373992523917639/604970651677704247238312591360",
+            "bound_authority": "Fixed vertices interpolate their original affine-map errors convexly; old/new matching TZ points differ by at most twice the vertex bound.",
+            "boundary_vertex_ids": [
+              2438,
+              2441,
+              2443,
+              2439
+            ],
+            "exact_turns_fraction": [
+              "26523636846221/5070602400912917605986812821504",
+              "148295517652198882605629439661/10141204801825835211973625643008",
+              "305385036932592612835683759279/5070602400912917605986812821504",
+              "462474556212986396113011771339/10141204801825835211973625643008"
+            ],
+            "old_twice_areas_fraction": [
+              "305385036932592612835683759279/5070602400912917605986812821504",
+              "26523636846221/5070602400912917605986812821504"
+            ],
+            "new_twice_areas_fraction": [
+              "462474556212986396113011771339/10141204801825835211973625643008",
+              "148295517652198882605629439661/10141204801825835211973625643008"
+            ],
+            "same_vertices_and_directed_boundary": true,
+            "face_pair": [
+              2101,
+              2102
+            ],
+            "old_triangles": [
+              [
+                2443,
+                2439,
+                2438
+              ],
+              [
+                2443,
+                2438,
+                2441
+              ]
+            ],
+            "new_triangles": [
+              [
+                2438,
+                2441,
+                2439
+              ],
+              [
+                2441,
+                2443,
+                2439
+              ]
+            ]
+          }
+        ],
+        "local_before": 1,
+        "local_after": 0,
+        "global_before": 10,
+        "global_after": 9,
+        "declared_planes": 1034
+      },
+      {
+        "name": "source003-SKIN-2315-2316",
+        "face_ids": [
+          2315,
+          2316
+        ],
+        "steps": [
+          {
+            "kind": "SKIN",
+            "same_closed_3D_point_set": false,
+            "same_closed_TZ_point_set": true,
+            "affine_mapping_branch": 0,
+            "vertex_error_bound_xyz_fraction_mm": [
+              "308675139573921/60433266980371050497646264320",
+              "6282835959948687/483466135842968403981170114560",
+              "0"
+            ],
+            "old_new_correspondence_Linf_fraction_mm": "6282835959948687/241733067921484201990585057280",
+            "old_new_correspondence_L1_upper_fraction_mm": "1750447415308011/48346613584296840398117011456",
+            "bound_authority": "Fixed vertices interpolate their original affine-map errors convexly; old/new matching TZ points differ by at most twice the vertex bound.",
+            "boundary_vertex_ids": [
+              2706,
+              2711,
+              2712,
+              2713
+            ],
+            "exact_turns_fraction": [
+              "2846281856328837/40564819207303340847894502572032",
+              "370858806849480736443700689009/81129638414606681695789005144064",
+              "96693227168593337272883213685/10141204801825835211973625643008",
+              "402687010499271654303077678145/81129638414606681695789005144064"
+            ],
+            "old_twice_areas_fraction": [
+              "2846281856328837/40564819207303340847894502572032",
+              "96693227168593337272883213685/10141204801825835211973625643008"
+            ],
+            "new_twice_areas_fraction": [
+              "402687010499271654303077678145/81129638414606681695789005144064",
+              "370858806849480736443700689009/81129638414606681695789005144064"
+            ],
+            "same_vertices_and_directed_boundary": true,
+            "face_pair": [
+              2315,
+              2316
+            ],
+            "old_triangles": [
+              [
+                2706,
+                2711,
+                2712
+              ],
+              [
+                2706,
+                2712,
+                2713
+              ]
+            ],
+            "new_triangles": [
+              [
+                2706,
+                2711,
+                2713
+              ],
+              [
+                2711,
+                2712,
+                2713
+              ]
+            ]
+          }
+        ],
+        "local_before": 1,
+        "local_after": 0,
+        "global_before": 9,
+        "global_after": 8,
+        "declared_planes": 1034
+      },
+      {
+        "name": "source003-SKIN-2402-2403",
+        "face_ids": [
+          2402,
+          2403
+        ],
+        "steps": [
+          {
+            "kind": "SKIN",
+            "same_closed_3D_point_set": false,
+            "same_closed_TZ_point_set": true,
+            "affine_mapping_branch": 0,
+            "vertex_error_bound_xyz_fraction_mm": [
+              "176422964147625517/12682096164619888694009306021888",
+              "11281156064403245/1585262020577486086751163252736",
+              "0"
+            ],
+            "old_new_correspondence_Linf_fraction_mm": "176422964147625517/6341048082309944347004653010944",
+            "old_new_correspondence_L1_upper_fraction_mm": "266672212662851477/6341048082309944347004653010944",
+            "bound_authority": "Fixed vertices interpolate their original affine-map errors convexly; old/new matching TZ points differ by at most twice the vertex bound.",
+            "boundary_vertex_ids": [
+              2821,
+              2823,
+              2824,
+              2825
+            ],
+            "exact_turns_fraction": [
+              "120112275339534051/81129638414606681695789005144064",
+              "1204792275406200875735323701537/40564819207303340847894502572032",
+              "11630506330660570805447761930983/324518553658426726783156020576256",
+              "1992168127411444248666530454891/324518553658426726783156020576256"
+            ],
+            "old_twice_areas_fraction": [
+              "120112275339534051/81129638414606681695789005144064",
+              "11630506330660570805447761930983/324518553658426726783156020576256"
+            ],
+            "new_twice_areas_fraction": [
+              "1992168127411444248666530454891/324518553658426726783156020576256",
+              "1204792275406200875735323701537/40564819207303340847894502572032"
+            ],
+            "same_vertices_and_directed_boundary": true,
+            "face_pair": [
+              2402,
+              2403
+            ],
+            "old_triangles": [
+              [
+                2821,
+                2823,
+                2824
+              ],
+              [
+                2821,
+                2824,
+                2825
+              ]
+            ],
+            "new_triangles": [
+              [
+                2821,
+                2823,
+                2825
+              ],
+              [
+                2823,
+                2824,
+                2825
+              ]
+            ]
+          }
+        ],
+        "local_before": 1,
+        "local_after": 0,
+        "global_before": 8,
+        "global_after": 7,
+        "declared_planes": 1034
+      },
+      {
+        "name": "source003-SKIN-2445-2446",
+        "face_ids": [
+          2445,
+          2446
+        ],
+        "steps": [
+          {
+            "kind": "SKIN",
+            "same_closed_3D_point_set": false,
+            "same_closed_TZ_point_set": true,
+            "affine_mapping_branch": 0,
+            "vertex_error_bound_xyz_fraction_mm": [
+              "3226998043923565/244745467880124232602564427776",
+              "53796837670217/7648295871253882268830138368",
+              "0"
+            ],
+            "old_new_correspondence_Linf_fraction_mm": "3226998043923565/122372733940062116301282213888",
+            "old_new_correspondence_L1_upper_fraction_mm": "4948496849370509/122372733940062116301282213888",
+            "bound_authority": "Fixed vertices interpolate their original affine-map errors convexly; old/new matching TZ points differ by at most twice the vertex bound.",
+            "boundary_vertex_ids": [
+              2864,
+              2869,
+              2870,
+              2871
+            ],
+            "exact_turns_fraction": [
+              "1043983823728221/10141204801825835211973625643008",
+              "188844559955580177969623734977/40564819207303340847894502572032",
+              "24474546788012336309199286563/2535301200456458802993406410752",
+              "202748188652621378912859762915/40564819207303340847894502572032"
+            ],
+            "old_twice_areas_fraction": [
+              "1043983823728221/10141204801825835211973625643008",
+              "24474546788012336309199286563/2535301200456458802993406410752"
+            ],
+            "new_twice_areas_fraction": [
+              "202748188652621378912859762915/40564819207303340847894502572032",
+              "188844559955580177969623734977/40564819207303340847894502572032"
+            ],
+            "same_vertices_and_directed_boundary": true,
+            "face_pair": [
+              2445,
+              2446
+            ],
+            "old_triangles": [
+              [
+                2864,
+                2869,
+                2870
+              ],
+              [
+                2864,
+                2870,
+                2871
+              ]
+            ],
+            "new_triangles": [
+              [
+                2864,
+                2869,
+                2871
+              ],
+              [
+                2869,
+                2870,
+                2871
+              ]
+            ]
+          }
+        ],
+        "local_before": 1,
+        "local_after": 0,
+        "global_before": 7,
+        "global_after": 6,
+        "declared_planes": 1034
+      },
+      {
+        "name": "source003-SKIN-2680-2681",
+        "face_ids": [
+          2680,
+          2681
+        ],
+        "steps": [
+          {
+            "kind": "SKIN",
+            "same_closed_3D_point_set": false,
+            "same_closed_TZ_point_set": true,
+            "affine_mapping_branch": 0,
+            "vertex_error_bound_xyz_fraction_mm": [
+              "10520002783853359/1508871431229897867672273551360",
+              "11023526890261339/1508871431229897867672273551360",
+              "0"
+            ],
+            "old_new_correspondence_Linf_fraction_mm": "11023526890261339/754435715614948933836136775680",
+            "old_new_correspondence_L1_upper_fraction_mm": "10771764837057349/377217857807474466918068387840",
+            "bound_authority": "Fixed vertices interpolate their original affine-map errors convexly; old/new matching TZ points differ by at most twice the vertex bound.",
+            "boundary_vertex_ids": [
+              3160,
+              3161,
+              3164,
+              3165
+            ],
+            "exact_turns_fraction": [
+              "64776338634642691/20282409603651670423947251286016",
+              "2520803695286678568692742857313/40564819207303340847894502572032",
+              "1532557970742175968994153586199/20282409603651670423947251286016",
+              "544312246197802921972833600467/40564819207303340847894502572032"
+            ],
+            "old_twice_areas_fraction": [
+              "64776338634642691/20282409603651670423947251286016",
+              "1532557970742175968994153586199/20282409603651670423947251286016"
+            ],
+            "new_twice_areas_fraction": [
+              "544312246197802921972833600467/40564819207303340847894502572032",
+              "2520803695286678568692742857313/40564819207303340847894502572032"
+            ],
+            "same_vertices_and_directed_boundary": true,
+            "face_pair": [
+              2680,
+              2681
+            ],
+            "old_triangles": [
+              [
+                3160,
+                3161,
+                3164
+              ],
+              [
+                3160,
+                3164,
+                3165
+              ]
+            ],
+            "new_triangles": [
+              [
+                3160,
+                3161,
+                3165
+              ],
+              [
+                3161,
+                3164,
+                3165
+              ]
+            ]
+          }
+        ],
+        "local_before": 2,
+        "local_after": 0,
+        "global_before": 6,
+        "global_after": 4,
+        "declared_planes": 1034
+      },
+      {
+        "name": "source003-SKIN-2691-2692",
+        "face_ids": [
+          2691,
+          2692
+        ],
+        "steps": [
+          {
+            "kind": "SKIN",
+            "same_closed_3D_point_set": false,
+            "same_closed_TZ_point_set": true,
+            "affine_mapping_branch": 0,
+            "vertex_error_bound_xyz_fraction_mm": [
+              "2157331308125671/550973646466629102766949138432",
+              "1086915090935109/550973646466629102766949138432",
+              "0"
+            ],
+            "old_new_correspondence_Linf_fraction_mm": "2157331308125671/275486823233314551383474569216",
+            "old_new_correspondence_L1_upper_fraction_mm": "811061599765195/68871705808328637845868642304",
+            "bound_authority": "Fixed vertices interpolate their original affine-map errors convexly; old/new matching TZ points differ by at most twice the vertex bound.",
+            "boundary_vertex_ids": [
+              3168,
+              3173,
+              3176,
+              3177
+            ],
+            "exact_turns_fraction": [
+              "15892599828196293/5070602400912917605986812821504",
+              "420505319121356447717953407921/10141204801825835211973625643008",
+              "220389458586650858126135471139/2535301200456458802993406410752",
+              "461052515225278769986244869221/10141204801825835211973625643008"
+            ],
+            "old_twice_areas_fraction": [
+              "15892599828196293/5070602400912917605986812821504",
+              "220389458586650858126135471139/2535301200456458802993406410752"
+            ],
+            "new_twice_areas_fraction": [
+              "461052515225278769986244869221/10141204801825835211973625643008",
+              "420505319121356447717953407921/10141204801825835211973625643008"
+            ],
+            "same_vertices_and_directed_boundary": true,
+            "face_pair": [
+              2691,
+              2692
+            ],
+            "old_triangles": [
+              [
+                3168,
+                3173,
+                3176
+              ],
+              [
+                3168,
+                3176,
+                3177
+              ]
+            ],
+            "new_triangles": [
+              [
+                3168,
+                3173,
+                3177
+              ],
+              [
+                3173,
+                3176,
+                3177
+              ]
+            ]
+          }
+        ],
+        "local_before": 1,
+        "local_after": 0,
+        "global_before": 4,
+        "global_after": 3,
+        "declared_planes": 1034
+      },
+      {
+        "name": "source003-SKIN-2710-2711",
+        "face_ids": [
+          2710,
+          2711
+        ],
+        "steps": [
+          {
+            "kind": "SKIN",
+            "same_closed_3D_point_set": false,
+            "same_closed_TZ_point_set": true,
+            "affine_mapping_branch": 0,
+            "vertex_error_bound_xyz_fraction_mm": [
+              "38341361874340671/3187016823704947345535057002496",
+              "7721675528586167/1593508411852473672767528501248",
+              "0"
+            ],
+            "old_new_correspondence_Linf_fraction_mm": "38341361874340671/1593508411852473672767528501248",
+            "old_new_correspondence_L1_upper_fraction_mm": "53784712931513005/1593508411852473672767528501248",
+            "bound_authority": "Fixed vertices interpolate their original affine-map errors convexly; old/new matching TZ points differ by at most twice the vertex bound.",
+            "boundary_vertex_ids": [
+              3180,
+              3186,
+              3187,
+              3181
+            ],
+            "exact_turns_fraction": [
+              "32202336389669395/10141204801825835211973625643008",
+              "371251263462511249252439932087/40564819207303340847894502572032",
+              "3023748024588287390581603292331/40564819207303340847894502572032",
+              "41445261892592264854292531841/633825300114114700748351602688"
+            ],
+            "old_twice_areas_fraction": [
+              "3023748024588287390581603292331/40564819207303340847894502572032",
+              "32202336389669395/10141204801825835211973625643008"
+            ],
+            "new_twice_areas_fraction": [
+              "41445261892592264854292531841/633825300114114700748351602688",
+              "371251263462511249252439932087/40564819207303340847894502572032"
+            ],
+            "same_vertices_and_directed_boundary": true,
+            "face_pair": [
+              2710,
+              2711
+            ],
+            "old_triangles": [
+              [
+                3187,
+                3181,
+                3180
+              ],
+              [
+                3187,
+                3180,
+                3186
+              ]
+            ],
+            "new_triangles": [
+              [
+                3180,
+                3186,
+                3181
+              ],
+              [
+                3186,
+                3187,
+                3181
+              ]
+            ]
+          }
+        ],
+        "local_before": 2,
+        "local_after": 0,
+        "global_before": 3,
+        "global_after": 1,
+        "declared_planes": 1034
+      },
+      {
+        "name": "source003-SKIN-2830-2831",
+        "face_ids": [
+          2830,
+          2831
+        ],
+        "steps": [
+          {
+            "kind": "SKIN",
+            "same_closed_3D_point_set": false,
+            "same_closed_TZ_point_set": true,
+            "affine_mapping_branch": 0,
+            "vertex_error_bound_xyz_fraction_mm": [
+              "5846030185746069/568455225366045298513758126080",
+              "321228431205123/56845522536604529851375812608",
+              "0"
+            ],
+            "old_new_correspondence_Linf_fraction_mm": "5846030185746069/284227612683022649256879063040",
+            "old_new_correspondence_L1_upper_fraction_mm": "9058314497797299/284227612683022649256879063040",
+            "bound_authority": "Fixed vertices interpolate their original affine-map errors convexly; old/new matching TZ points differ by at most twice the vertex bound.",
+            "boundary_vertex_ids": [
+              3337,
+              3342,
+              3343,
+              3344
+            ],
+            "exact_turns_fraction": [
+              "26735458051176361/40564819207303340847894502572032",
+              "218962260221681152743451653951/40564819207303340847894502572032",
+              "909528360585669246328165092015/81129638414606681695789005144064",
+              "471603840142360411757364136835/81129638414606681695789005144064"
+            ],
+            "old_twice_areas_fraction": [
+              "26735458051176361/40564819207303340847894502572032",
+              "909528360585669246328165092015/81129638414606681695789005144064"
+            ],
+            "new_twice_areas_fraction": [
+              "471603840142360411757364136835/81129638414606681695789005144064",
+              "218962260221681152743451653951/40564819207303340847894502572032"
+            ],
+            "same_vertices_and_directed_boundary": true,
+            "face_pair": [
+              2830,
+              2831
+            ],
+            "old_triangles": [
+              [
+                3337,
+                3342,
+                3343
+              ],
+              [
+                3337,
+                3343,
+                3344
+              ]
+            ],
+            "new_triangles": [
+              [
+                3337,
+                3342,
+                3344
+              ],
+              [
+                3342,
+                3343,
+                3344
+              ]
+            ]
+          }
+        ],
+        "local_before": 1,
+        "local_after": 0,
+        "global_before": 1,
+        "global_after": 0,
+        "declared_planes": 1034
+      }
+    ],
+    "changed_face_ids": [
+      99,
+      178,
+      181,
+      183,
+      184,
+      211,
+      221,
+      286,
+      318,
+      377,
+      412,
+      488,
+      525,
+      526,
+      590,
+      591,
+      615,
+      704,
+      705,
+      897,
+      898,
+      1579,
+      1580,
+      2101,
+      2102,
+      2315,
+      2316,
+      2402,
+      2403,
+      2445,
+      2446,
+      2680,
+      2681,
+      2691,
+      2692,
+      2710,
+      2711,
+      2830,
+      2831
+    ],
+    "vertices_attributes_ranges_unchanged": true,
+    "complete_calendar_hook_run": false,
+    "material_graph_recomputed": false,
+    "global_admission": false
+  },
+  "topology_state_hashes": [
+    {
+      "name": "source003-GRID-000",
+      "face_ids": [
+        590,
+        591,
+        615
+      ],
+      "before_faces_array_sha256": "035f4000143898bcee7676f40144189ed054a5733a090e61dbf1bca869b43b78",
+      "after_faces_array_sha256": "2815ecf0980ec414a71e9b1871b8bb2833b976eecc19032f39cf609f76af5220"
+    },
+    {
+      "name": "source003-GRID-001",
+      "face_ids": [
+        99,
+        178
+      ],
+      "before_faces_array_sha256": "2815ecf0980ec414a71e9b1871b8bb2833b976eecc19032f39cf609f76af5220",
+      "after_faces_array_sha256": "cef36823847223b3ee0e1122e563bfc07cfcf1ca75d00844a8d5c9358cd49aaa"
+    },
+    {
+      "name": "source003-GRID-002",
+      "face_ids": [
+        181,
+        211
+      ],
+      "before_faces_array_sha256": "cef36823847223b3ee0e1122e563bfc07cfcf1ca75d00844a8d5c9358cd49aaa",
+      "after_faces_array_sha256": "86f59f894aeb77f0597c51b5afde7621c17963e84ede62b7fca3d6e43a76a737"
+    },
+    {
+      "name": "source003-GRID-003",
+      "face_ids": [
+        183,
+        184
+      ],
+      "before_faces_array_sha256": "86f59f894aeb77f0597c51b5afde7621c17963e84ede62b7fca3d6e43a76a737",
+      "after_faces_array_sha256": "55baa980216b5890da9ee491f1cb27458709f03bfb0a9e474a5dad5069fa9767"
+    },
+    {
+      "name": "source003-GRID-004",
+      "face_ids": [
+        221,
+        286
+      ],
+      "before_faces_array_sha256": "55baa980216b5890da9ee491f1cb27458709f03bfb0a9e474a5dad5069fa9767",
+      "after_faces_array_sha256": "0b46d3c86aba645e3829dcef44f239370b25acb9425908be99b3d711d5e0e5ef"
+    },
+    {
+      "name": "source003-GRID-005",
+      "face_ids": [
+        318,
+        377
+      ],
+      "before_faces_array_sha256": "0b46d3c86aba645e3829dcef44f239370b25acb9425908be99b3d711d5e0e5ef",
+      "after_faces_array_sha256": "9e03889d18fcaddf046182fd0f764e53942094094f1afe8bde7cb2efb9b7f936"
+    },
+    {
+      "name": "source003-GRID-006",
+      "face_ids": [
+        412,
+        488
+      ],
+      "before_faces_array_sha256": "9e03889d18fcaddf046182fd0f764e53942094094f1afe8bde7cb2efb9b7f936",
+      "after_faces_array_sha256": "da70433203b12882804c61f4f81a5930b31e4c864f3217a7e411dcc49bca3e00"
+    },
+    {
+      "name": "source003-GRID-007",
+      "face_ids": [
+        525,
+        526
+      ],
+      "before_faces_array_sha256": "da70433203b12882804c61f4f81a5930b31e4c864f3217a7e411dcc49bca3e00",
+      "after_faces_array_sha256": "3f70136b7d7b04001aa21e46e795ee8c806c4cfd92e561182073f09ab5d07c82"
+    },
+    {
+      "name": "source003-SKIN-704-705",
+      "face_ids": [
+        704,
+        705
+      ],
+      "before_faces_array_sha256": "3f70136b7d7b04001aa21e46e795ee8c806c4cfd92e561182073f09ab5d07c82",
+      "after_faces_array_sha256": "7eb0a651e8e7e60874a1035d6997dec7bb67cb77a825b641e75ab9f5e984f9c0"
+    },
+    {
+      "name": "source003-SKIN-897-898",
+      "face_ids": [
+        897,
+        898
+      ],
+      "before_faces_array_sha256": "7eb0a651e8e7e60874a1035d6997dec7bb67cb77a825b641e75ab9f5e984f9c0",
+      "after_faces_array_sha256": "35702e2adad000c39aa6071cc1921c8ade3d3d269717e328d06e2b6f4e25dec5"
+    },
+    {
+      "name": "source003-SKIN-1579-1580",
+      "face_ids": [
+        1579,
+        1580
+      ],
+      "before_faces_array_sha256": "35702e2adad000c39aa6071cc1921c8ade3d3d269717e328d06e2b6f4e25dec5",
+      "after_faces_array_sha256": "337c18911cb06afecd5e83fd85f73109d725c154381e04cbfb297841232b1b8f"
+    },
+    {
+      "name": "source003-SKIN-2101-2102",
+      "face_ids": [
+        2101,
+        2102
+      ],
+      "before_faces_array_sha256": "337c18911cb06afecd5e83fd85f73109d725c154381e04cbfb297841232b1b8f",
+      "after_faces_array_sha256": "a8be02fde79a119b636db88121ec0bafa1d9c41a291ef78a0dde8dba077911bf"
+    },
+    {
+      "name": "source003-SKIN-2315-2316",
+      "face_ids": [
+        2315,
+        2316
+      ],
+      "before_faces_array_sha256": "a8be02fde79a119b636db88121ec0bafa1d9c41a291ef78a0dde8dba077911bf",
+      "after_faces_array_sha256": "b3af2b271b718dda5a0aaef0f95b1413ccf51addf57b3c77231095efa1d4200b"
+    },
+    {
+      "name": "source003-SKIN-2402-2403",
+      "face_ids": [
+        2402,
+        2403
+      ],
+      "before_faces_array_sha256": "b3af2b271b718dda5a0aaef0f95b1413ccf51addf57b3c77231095efa1d4200b",
+      "after_faces_array_sha256": "ab096b9ab3a2b9de4a91e178d08d6730980adeaa9fde028f7376e9ca61ce8d4e"
+    },
+    {
+      "name": "source003-SKIN-2445-2446",
+      "face_ids": [
+        2445,
+        2446
+      ],
+      "before_faces_array_sha256": "ab096b9ab3a2b9de4a91e178d08d6730980adeaa9fde028f7376e9ca61ce8d4e",
+      "after_faces_array_sha256": "2f8a74f1b5db8bff6c6388b5ae25b0b6683f4950e94a54951069dc365ad02fa1"
+    },
+    {
+      "name": "source003-SKIN-2680-2681",
+      "face_ids": [
+        2680,
+        2681
+      ],
+      "before_faces_array_sha256": "2f8a74f1b5db8bff6c6388b5ae25b0b6683f4950e94a54951069dc365ad02fa1",
+      "after_faces_array_sha256": "8e708517a04a10a5319e0ba12760ed7b8031e6e5d515c7e246772b393dd75a65"
+    },
+    {
+      "name": "source003-SKIN-2691-2692",
+      "face_ids": [
+        2691,
+        2692
+      ],
+      "before_faces_array_sha256": "8e708517a04a10a5319e0ba12760ed7b8031e6e5d515c7e246772b393dd75a65",
+      "after_faces_array_sha256": "cd7509744f5afaf9dbf816803c00b9b1be3a0e7d79fefcb6eb8240ec02b9e735"
+    },
+    {
+      "name": "source003-SKIN-2710-2711",
+      "face_ids": [
+        2710,
+        2711
+      ],
+      "before_faces_array_sha256": "cd7509744f5afaf9dbf816803c00b9b1be3a0e7d79fefcb6eb8240ec02b9e735",
+      "after_faces_array_sha256": "703b31dd54f2192259d3cb849f0155f1aaaf35bd6a3d5519a051d37dda1f5ae0"
+    },
+    {
+      "name": "source003-SKIN-2830-2831",
+      "face_ids": [
+        2830,
+        2831
+      ],
+      "before_faces_array_sha256": "703b31dd54f2192259d3cb849f0155f1aaaf35bd6a3d5519a051d37dda1f5ae0",
+      "after_faces_array_sha256": "af9ddb9725870ace81961179385c1e23dfce0522827fa903aff5022a528ddf31"
+    }
+  ],
+  "original_faces_array_sha256": "035f4000143898bcee7676f40144189ed054a5733a090e61dbf1bca869b43b78",
+  "hypothetical_final_faces_array_sha256": "af9ddb9725870ace81961179385c1e23dfce0522827fa903aff5022a528ddf31",
+  "hypothetical_changed_face_ids": [
+    99,
+    178,
+    181,
+    183,
+    184,
+    211,
+    221,
+    286,
+    318,
+    377,
+    412,
+    488,
+    525,
+    526,
+    590,
+    591,
+    615,
+    704,
+    705,
+    897,
+    898,
+    1579,
+    1580,
+    2101,
+    2102,
+    2315,
+    2316,
+    2402,
+    2403,
+    2445,
+    2446,
+    2680,
+    2681,
+    2691,
+    2692,
+    2710,
+    2711,
+    2830,
+    2831
+  ],
+  "no_mesh_written": true,
+  "global_admission": false,
+  "native_quad_selection_executed": false,
+  "complete_calendar_hook_run": false,
+  "material_graph_recomputed": false
+}

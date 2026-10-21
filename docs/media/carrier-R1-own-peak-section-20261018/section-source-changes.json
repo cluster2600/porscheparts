@@ -1,0 +1,36 @@
+{
+  "original_source": "work/carrier-C1-taper-section-preparation-001/extract.py",
+  "original_sha256": "4a987fc275fb60039e8237241b27e1e2012c62df11f03eb17e723e1f6756ac4e",
+  "original_function": "native_section",
+  "whole_function_literal_inverse": true,
+  "replacements": [
+    {
+      "before": "def native_section(body, role):",
+      "after": "def native_section(body, role, plane_record, section_path):",
+      "occurrences": 1
+    },
+    {
+      "before": "    from OCP.BRep import BRep_Tool",
+      "after": "    from OCP.BRep import BRep_Tool\n    from OCP.BRepTools import BRepTools",
+      "occurrences": 1
+    },
+    {
+      "before": "operation = BRepAlgoAPI_Section(body, gp_Pln(gp_Pnt(*FOOT), gp_Dir(*plane()['normal_raw'])), False)",
+      "after": "operation = BRepAlgoAPI_Section(body, gp_Pln(gp_Pnt(*plane_record['origin_mm']), gp_Dir(*plane_record['normal_raw'])), False)",
+      "occurrences": 1
+    },
+    {
+      "before": "    require(operation.IsDone(), 'Native section failed')",
+      "after": "    require(operation.IsDone(), 'Native section failed')\n    raw = operation.Shape()\n    require(not raw.IsNull() and BRepTools.Write_s(raw, str(section_path)) is True, 'Raw native section preservation failed')\n    write(section_path.with_suffix('.json'), dict(path=section_path.name, sha256=sha(section_path), raw_native_curves_preserved=True, plane=plane_record, Approximation=False, RunParallel=False))",
+      "occurrences": 1
+    },
+    {
+      "before": "edges.append(dict(edge_index=len(edges), curve_type=str(curve.GetType()), points_xyz_mm=points))",
+      "after": "edges.append(dict(edge_index=len(edges), curve_type=str(curve.GetType()), parameter_domain=[float(curve.FirstParameter()),float(curve.LastParameter())], sampled_parameters=[float(sampler.Parameter(i)) for i in range(1, sampler.NbPoints() + 1)], points_xyz_mm=points))",
+      "occurrences": 1
+    }
+  ],
+  "coordinate_sha_and_require_literal_source": "work/carrier-C1-junction-section-figure-003/figure.py",
+  "coordinate_sha_and_require_source_sha256": "284ebdcb1ef0a94c8fddbc1e51ebd38245c00c50649c2d4a9d5de44e3354d2f9",
+  "sampler_api_deflection_and_point_formula_unchanged": true
+}

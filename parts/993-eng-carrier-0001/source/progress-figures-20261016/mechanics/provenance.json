@@ -1,0 +1,33 @@
+{
+  "status": "copied_verified_actual_solver_figure",
+  "inputs_sha256": {
+    "work/part-workflow/run-001/workflow.json": "6ae5ac96c8b7684a1b8ac0d773da17b828005fddb39ba2e2269122fe542d690f",
+    "work/part-workflow/run-001/fields/combined.png": "acdf75334be2978b37a68f4e75e75a2aaa02e3f27e731e1c56a07bfa5d1ae482",
+    "work/part-workflow/run-001/fields/combined.svg": "8bdeb5ed01d12bf53953dc7e4d4af96e2a6fb143bc3358668118281437071378",
+    "work/part-workflow/run-001/fields/combined.json": "1087ba115efb02940e1adadca9dc6e6c08cccb4573b82a62f37a91a2c90c0dac",
+    "work/part-workflow/run-001/cad/mesh-7/mesh.inp": "295fdfa65e2b8deb39cab646ba3b5f867f03711994faa04507b0392a85311ccd",
+    "work/part-workflow/run-001/cad/mesh-7/mesh.npz": "b89c47fec8b993b02ab57a6ab6306dee0f781fc01e3b71b5d888ecd805fb9c85",
+    "work/part-workflow/run-001/cad/mesh-7/combined-rigid-static.inp": "467f8b9d3ca1396fb20c82953afc90a000d2932d7d4e4aebc2df005f36ccc956",
+    "work/part-workflow/run-001/cad/mesh-7/combined-rigid-static.npz": "e1c2cbdf2fdb094ed99e085b8d080b7e723390dcd6a9aa71213d63687b4d8cef",
+    "work/part-workflow/run-001/cad/mesh-7/combined-rigid-static.json": "763780d45cb96898ba7eec33106cb8f694417bb5c52c01a569bb2bbe85d36d58",
+    "scripts/render_carrier_fields.py": "9e89a43e95836cfac6d451c22148f9269d5b30099297b1222c711db5a3d5cd78"
+  },
+  "files_sha256": {
+    "combined.json": "1087ba115efb02940e1adadca9dc6e6c08cccb4573b82a62f37a91a2c90c0dac",
+    "combined.svg": "8bdeb5ed01d12bf53953dc7e4d4af96e2a6fb143bc3358668118281437071378",
+    "combined.png": "acdf75334be2978b37a68f4e75e75a2aaa02e3f27e731e1c56a07bfa5d1ae482"
+  },
+  "case": "combined-rigid-static",
+  "mesh_size_mm": 7,
+  "maximum_integration_point_VM_MPa": 617.7164972717483,
+  "deformation_amplification": 10,
+  "load_scope": "Assumed study case Fz=-4000 N, My=850000 Nmm, rigid eye constraints; comparison case only.",
+  "full_support_preparation_admitted": false,
+  "all_inputs_unchanged": true,
+  "visual_review": {
+    "all_geometry_visible": true,
+    "colourbars_and_labels_legible": true,
+    "displacement_amplification_explicit": true
+  },
+  "reproduce": "AM_PYTHON -B scripts/render_carrier_fields.py RUN/cad/mesh-7 combined-rigid-static NEW_OUTPUT.png --context \"Révision du présent run — comparaison numérique admise, maillage 7 mm\""
+}

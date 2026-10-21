@@ -1,0 +1,205 @@
+{
+  "numeric_field_width_limit": 20,
+  "complete_coordinate_transport_L1_bound_mm": "1/144115188075855872",
+  "complete_coordinate_transport_L1_bound_mm_float": 6.938893903907228e-18,
+  "source_derivation": {
+    "parent_source_sha256": "9c741913e44bdb180539eda1b5cbe049d5af231c0b590fca3cea8388ed2a0987",
+    "changes": [
+      "Select SPOOLES after affine-control comparison",
+      "Serialize every numeric value within 20 characters; quantify complete coordinate transport displacement"
+    ]
+  },
+  "status": "nominal_C3D4_mechanical_inputs_prepared_not_solved",
+  "nodes": 351600,
+  "C3D4_elements": 1163760,
+  "bore_groups": {
+    "bolt0": {
+      "triangles": 5050,
+      "nodes": 2621,
+      "radial_deviation_max_mm": 2.0923480557044627e-06,
+      "bounds_mm": [
+        [
+          -55.5,
+          -25.5,
+          -4.0
+        ],
+        [
+          -44.5,
+          -14.5,
+          4.0
+        ]
+      ]
+    },
+    "bolt1": {
+      "triangles": 5040,
+      "nodes": 2616,
+      "radial_deviation_max_mm": 2.02329395282419e-06,
+      "bounds_mm": [
+        [
+          -55.5,
+          14.5,
+          -4.0
+        ],
+        [
+          -44.5,
+          25.5,
+          4.0
+        ]
+      ]
+    },
+    "bolt2": {
+      "triangles": 5052,
+      "nodes": 2622,
+      "radial_deviation_max_mm": 2.003786786275441e-06,
+      "bounds_mm": [
+        [
+          44.5,
+          -25.5,
+          -4.0
+        ],
+        [
+          55.5,
+          -14.5,
+          4.0
+        ]
+      ]
+    },
+    "bolt3": {
+      "triangles": 5040,
+      "nodes": 2616,
+      "radial_deviation_max_mm": 2.02329395282419e-06,
+      "bounds_mm": [
+        [
+          44.5,
+          14.5,
+          -4.0
+        ],
+        [
+          55.5,
+          25.5,
+          4.0
+        ]
+      ]
+    },
+    "end0": {
+      "triangles": 23400,
+      "nodes": 11796,
+      "radial_deviation_max_mm": 1.5227460628430833e-05,
+      "bounds_mm": [
+        [
+          -286.75,
+          -23.0,
+          -6.75
+        ],
+        [
+          -273.25,
+          23.0,
+          6.75
+        ]
+      ]
+    },
+    "end1": {
+      "triangles": 23400,
+      "nodes": 11796,
+      "radial_deviation_max_mm": 1.5227460628430833e-05,
+      "bounds_mm": [
+        [
+          273.25,
+          -23.0,
+          -6.75
+        ],
+        [
+          286.75,
+          23.0,
+          6.75
+        ]
+      ]
+    }
+  },
+  "node_selection_tolerance_mm": 0.0001,
+  "selection_tolerance_is_dimensional_acceptance": false,
+  "support_model": "All translations fixed on both nominal end-bore groups",
+  "load_distribution": "Unchanged retained weighted minimum-norm six-component distributor; no contact or bolt preload",
+  "loads": {
+    "gravity": {
+      "force_N": [
+        -1.0288231583940183e-16,
+        -7.54494597766768e-17,
+        -1999.999999999844
+      ],
+      "moment_Nmm": [
+        -6.191536172650558e-11,
+        -3.339195586704591e-11,
+        7.35089072945172e-17
+      ],
+      "requested": {
+        "force_N": [
+          0,
+          0,
+          -2000
+        ],
+        "moment_Nmm": [
+          0,
+          0,
+          0
+        ]
+      },
+      "deck_sha256": "f923f7c3806974e8d51c0914d112e9b74f3649fc9f332c89fb64c6d81ae8f4fe"
+    },
+    "combined": {
+      "force_N": [
+        9.500733533229777e-13,
+        -1.7105457675303803e-15,
+        -3999.9999999996658
+      ],
+      "moment_Nmm": [
+        -6.206590796864475e-12,
+        849999.9999999971,
+        -1.3224976669334865e-12
+      ],
+      "requested": {
+        "force_N": [
+          0,
+          0,
+          -4000
+        ],
+        "moment_Nmm": [
+          0,
+          850000,
+          0
+        ]
+      },
+      "deck_sha256": "19af6e1c6943c44f9deb773266aee4ee081c3b5427e35f5cbdbfbfe7f7c93989"
+    }
+  },
+  "material": {
+    "name": "Ti-6Al-4V dense elastic reference only",
+    "source": "https://www.timet.com/documents/datasheets/alpha-and-beta-alloys/timetal-6-4.pdf",
+    "E_MPa": 107000.0,
+    "nu": 0.31,
+    "density_tonne_mm3": 4.42e-09,
+    "expansion_per_K": 9e-06,
+    "strength_allowable_MPa": null,
+    "fatigue_curve": null,
+    "manufactured_state_qualified": false
+  },
+  "solver_requested": "CalculiX SPOOLES",
+  "source_sha256": {
+    "parts/993-eng-carrier-0001/source/design-20261016/resume-20261020/tetgen-volume-refined-outward.npz": "994989dc2b19e56057ae940266e1b95de3ac556ee968584eef24929c4d275ddf",
+    "/Users/maxime/.codex/worktrees/993-carrier-revalidation/3dprinting993/parts/993-eng-carrier-0001/source/design-20261016/bounded-webs.json": "8637fa166fbb1853c118a84a4952c5c15f049f3599c27c6a39078c440adc6614",
+    "/Users/maxime/.codex/worktrees/993-carrier-revalidation/3dprinting993/parts/993-eng-carrier-0001/source/bionic-20261011/simulate.py": "87be70c955e2532255fdee37cf3a686d970cb421bc9bf6094ca867f1f3098e77",
+    "/Users/maxime/.codex/worktrees/993-carrier-revalidation/3dprinting993/docs/reports/carrier-resume-20261020/evidence/tetgen-refined-outward-boundary-001/assessment.json": "6e31c62b572a5715eeb645e8370a833ba246c670246be961b6bc541291d0174b",
+    "/Users/maxime/.codex/worktrees/993-carrier-revalidation/3dprinting993/parts/993-eng-carrier-0001/source/design-20261016/resume-20261020/prepare_tetgen_mechanics_ccx.py": "ab4408343a741084013889a89fa3abe259fd1db47cfaa8ed0aefe085ed707d86"
+  },
+  "output_sha256": {
+    "combined.inp": "19af6e1c6943c44f9deb773266aee4ee081c3b5427e35f5cbdbfbfe7f7c93989",
+    "distribute-source.py": "d1a45a3993f9234e54e023037f21d88a81dc3efecbae3e1f9bff63a87d5cb493",
+    "gravity.inp": "f923f7c3806974e8d51c0914d112e9b74f3649fc9f332c89fb64c6d81ae8f4fe",
+    "gravity-loads.npz": "7f4dfd65db272ab7e746df712028bfa7503fec41d114b42ca932787bfc0fb797",
+    "transport.npz": "c3ccc810ed4d1e88d2307de036544cf3570eddddbe0905d2eb10ec456be46daa",
+    "combined-loads.npz": "c63676aed152ec05e18bdafa9024bb163b9a6763fd717a7364c8de0a6120d43e",
+    "mesh.inp": "91f47b49b54efd169b2ce66286cc19369e49e45815393a2c56eea666dbdc1126",
+    "groups.npz": "3acffb64cb1df3498423c26a98e0f5a7a2cf00c4294dbe10f6731ae6bd47b3a3"
+  },
+  "mechanical_mesh_admitted": false
+}

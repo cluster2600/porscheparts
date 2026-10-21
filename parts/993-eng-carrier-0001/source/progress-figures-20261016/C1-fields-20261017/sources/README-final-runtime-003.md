@@ -1,0 +1,9 @@
+# Rejeu final non armé — dépendance et runtime
+
+Les fichiers finaux à relire sont `replay_v3.py`, `manifest-003.json`, `pending-plan-003.json` et `pending-launch-plan-003.json`. Les premiers brouillons non exécutés sont préservés dans ce répertoire de travail mais exclus du petit ensemble final du manifeste003. Le README principal décrit les dépendances, le rebase et les bornes.
+
+Le renderer48532686 et ses211pins demeurent octet pour octet identiques. Son set `runtime_imported_files` est historiquement capturé avant `savefig` ; il ne prouve pas à lui seul l’absence d’import tardif. Une observation réelle d’import uniquement (`PIL.Image.preinit()`, chunk7178bc, code0,0,152230458s, sans ouverture/sauvegarde d’image) a identifié8autres fichiers installés : BMP, GIF, JPEG, JpegPresets, PPM, ImageMath, ImageOps et `_imagingmath.so`. Version et empreintes sont consignées dans les reçus et `supplemental-runtime.json`. Aucun runtime n’est installé ou copié, aucun rendu n’a été effectué pour cette observation.
+
+Le nouveau wrapper vérifie ces8fichiers avant/après, séparément des211du plan figé. Après le retour du vrai main de dessin, il recapture tous les fichiers NumPy/Matplotlib/Pillow chargés et exige leur appartenance à l’autorité211+8. Un fichier supplémentaire inconnu sera refusé, jamais ignoré ou déclaré épinglé rétroactivement. Cette fermeture concerne les trois espaces de noms scientifiques explicités ; elle ne prétend pas inventorier tous les fichiers ouverts par macOS ou Python.
+
+Les trois formats doivent toujours être octet pour octet égaux au rendu002 vu par la racine. Aucun calcul mécanique, CAO, maillage ni restauration n’a encore été lancé dans cette préparation. Il faut le GO racine avant toute restauration ou dessin. Aucun fichier de `parts/` ou de la galerie n’est écrit ici.

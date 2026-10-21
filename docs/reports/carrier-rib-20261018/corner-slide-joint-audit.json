@@ -1,0 +1,168 @@
+{
+  "candidate_STL_sha256": "b4026f66dc77b8022e82c358553e8e93ce0cbc2ea0fd31da19ac39a9f891a803",
+  "BRep_receipt_sha256": "c167043f9fe6603248668bb85cfc5269abb67686bb455c2b70ea565c79541e87",
+  "exact_CAD_surface_samples_sha256": "945d0efc4bb2e02dfe5264b4f42c2acc889ce647c4e48800ccc6cf196f52ad7e",
+  "CAD_source": {
+    "format": "brep",
+    "sha256": "24af058467fd82a9f0c1d391bf947d427dffd311371cf8f73dafa492d204f4fd",
+    "path": "/Users/maxime/.codex/worktrees/993-carrier-revalidation/3dprinting993/work/carrier-process-20261017/bounded-webs-first-window-corner-slide-preparation-001/output-001/candidate-native.brep"
+  },
+  "audit_source_sha256": "dab646715efcf6e9eb23776344c3ebd33248a23fbf5a5c2ffa387c97c1636eb5",
+  "libigl_version": "2.6.3",
+  "numpy_version": "2.2.6",
+  "CAD_sampling": "7x7 UV grid per trimmed face, IN/ON classified",
+  "distance_limit_mm": 0.06,
+  "scope": "sampled bidirectional distances, not a continuous bound",
+  "mesh_to_exact_CAD": {
+    "sha256": "b4026f66dc77b8022e82c358553e8e93ce0cbc2ea0fd31da19ac39a9f891a803",
+    "samples": 3072,
+    "maximum_distance_to_BREP_shell_mm": 0.014916915793648703,
+    "p99_distance_mm": 0.007715143886698062,
+    "worst_sample_mm": [
+      -79.83417622894726,
+      9.609411616927357,
+      14.212188223361013
+    ],
+    "wall_seconds": 21.99045370798558
+  },
+  "exact_CAD_to_mesh": {
+    "samples": 8159,
+    "maximum_mm": 0.047388128068578256,
+    "p99_mm": 0.013146334257752764,
+    "mean_mm": 0.0011140620749756334
+  },
+  "topology": {
+    "vertices": 299144,
+    "triangles": 598372,
+    "boundary_edges": 0,
+    "nonmanifold_edges": 0,
+    "inconsistent_orientation_edges": 0,
+    "degenerate_triangles": 0,
+    "needle_triangles": 0,
+    "connected_components": 1,
+    "volume_mm3": 288680.67105497717
+  },
+  "self_intersection_pairs": 0,
+  "interface_dimensions": {
+    "bores": [
+      {
+        "axis": 2,
+        "centre_mm": [
+          -50,
+          -20
+        ],
+        "samples": 247,
+        "fitted_centre_mm": [
+          -49.999960413935504,
+          -20.000183380965964
+        ],
+        "fitted_radius_mm": 5.49961506011074,
+        "maximum_expected_cylinder_error_mm": 0.0006301467026172958
+      },
+      {
+        "axis": 2,
+        "centre_mm": [
+          -50,
+          20
+        ],
+        "samples": 235,
+        "fitted_centre_mm": [
+          -49.9999306988048,
+          19.99982032548443
+        ],
+        "fitted_radius_mm": 5.499626256719261,
+        "maximum_expected_cylinder_error_mm": 0.0008716052985491274
+      },
+      {
+        "axis": 2,
+        "centre_mm": [
+          50,
+          -20
+        ],
+        "samples": 242,
+        "fitted_centre_mm": [
+          50.000034584467755,
+          -20.00018357359226
+        ],
+        "fitted_radius_mm": 5.4996095347873135,
+        "maximum_expected_cylinder_error_mm": 0.0006291942437215425
+      },
+      {
+        "axis": 2,
+        "centre_mm": [
+          50,
+          20
+        ],
+        "samples": 235,
+        "fitted_centre_mm": [
+          50.000069301195204,
+          19.9998203254845
+        ],
+        "fitted_radius_mm": 5.499626256719354,
+        "maximum_expected_cylinder_error_mm": 0.0008716052985491274
+      },
+      {
+        "axis": 1,
+        "centre_mm": [
+          -280,
+          0
+        ],
+        "samples": 247,
+        "fitted_centre_mm": [
+          -279.9998560459263,
+          -8.340898784808815e-05
+        ],
+        "fitted_radius_mm": 6.749262336320912,
+        "maximum_expected_cylinder_error_mm": 0.0014963514296058023
+      },
+      {
+        "axis": 1,
+        "centre_mm": [
+          280,
+          0
+        ],
+        "samples": 247,
+        "fitted_centre_mm": [
+          280.00014395407277,
+          -8.340898784808815e-05
+        ],
+        "fitted_radius_mm": 6.749262336331692,
+        "maximum_expected_cylinder_error_mm": 0.0014963514296058023
+      }
+    ],
+    "seat_planes": [
+      {
+        "axis": 2,
+        "coordinate_mm": -4,
+        "triangles": 25122,
+        "maximum_plane_error_mm": 0.0
+      },
+      {
+        "axis": 2,
+        "coordinate_mm": 4,
+        "triangles": 14284,
+        "maximum_plane_error_mm": 0.0
+      },
+      {
+        "axis": 1,
+        "coordinate_mm": -23,
+        "triangles": 5900,
+        "maximum_plane_error_mm": 0.0
+      },
+      {
+        "axis": 1,
+        "coordinate_mm": 23,
+        "triangles": 5884,
+        "maximum_plane_error_mm": 0.0
+      }
+    ]
+  },
+  "relative_mesh_volume_error_to_exact_CAD": 1.8109749989059232e-05,
+  "relative_volume_error_limit": 0.002,
+  "mesh_bounds_error_to_exact_CAD_mm": 1.0519313775603223e-07,
+  "bounds_error_limit_mm": 0.06,
+  "historical_receipt_missing_volume_or_bounds": false,
+  "failures": [],
+  "status": "passed",
+  "manufacturing_authorized": false
+}

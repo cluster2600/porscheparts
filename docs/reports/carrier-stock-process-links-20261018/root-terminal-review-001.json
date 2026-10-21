@@ -1,0 +1,984 @@
+{
+  "schema": "root-exact-stock-fan-input-stage-terminal-review-1",
+  "status": "closed_actual_RC0_exact_identity_fan_normalization_original_input_geometry_guards_PASS",
+  "owner_terminal_sha256": "611d40ddd6e53665103c02a665778cc5aa4e51854d14c03b7ceda4ada0e89484",
+  "collector_sha256": "3618a816aef566be6624dd0b0998070a9a62ab3412976c638e81397f0032244f",
+  "whole_collector_object_and_stored_bytes_recomputed_equal": true,
+  "all54_outputs_stableFD_current_equal": true,
+  "all2583_current_merged_pins_before_after_equal": true,
+  "three_whole_pending_control_object_and_stored_byte_inverses": true,
+  "actual_handle": 49963,
+  "actual_outer_returncode": 0,
+  "actual_child_returncode": 0,
+  "input_manifest_path": "work/carrier-stock-prism-fan-correction-preparation-001/output-001/input-manifest.json",
+  "input_manifest_sha256": "d1d86a1f4924379e8256a7f17fd6ceaa02098fce9ac24a18b586b2a33e55c8be",
+  "actual_region_count": 7,
+  "actual_region_roster": [
+    {
+      "index": 0,
+      "source_index": 0,
+      "source_polygon_index": 0,
+      "source_triangles": 81323,
+      "projected_area_mm2": 26890.938072373905,
+      "bounds_xy_mm": [
+        -221.66020549420028,
+        -221.66015053010014,
+        221.42833756294803,
+        221.3703107548268
+      ],
+      "source_projected_area_mm2": 28058.377668790206,
+      "edge_gap_excluded_area_mm2": 1167.4395964163898,
+      "chain": "source-000-chain.npz",
+      "chain_sha256": "46c1dce554a19da353bd7631230a38e8102c898d38ae6d619301049a0ac1b231",
+      "mask": "source-000-mask-000.npz",
+      "mask_sha256": "6efadc6584f6f9cf91666dfb96b48d5ef557ebc37f42c30358f4fabd9efbe658",
+      "mask_triangles": 16144,
+      "mask_symmetric_difference_area_mm2": 0.0,
+      "chain_receipt": {
+        "source_triangles": 43205,
+        "boundary_chain_triangles": 90900,
+        "internal_side_quads_cancelled": 63685,
+        "boundary_side_quads": 2245,
+        "sum_prism_volumes_mm3": 494983.27464944567,
+        "boundary_chain_signed_volume_mm3": 494983.27464944567,
+        "numerical_volume_tolerance_mm3": 0.0006078196401298698,
+        "coordinate_displacement_mm": 0.0,
+        "interpretation": "oriented boundary chain for exact winding Boolean; not an embedded volume",
+        "explicit_prism_chain_policy": "original_exact_prism_chain_after_vertex_fan_identity_separation_v1",
+        "vertex_fan_normalization": {
+          "path": "vertex-fan-normalizations/call-0000.json",
+          "sha256": "599a8e74e433077985da0a89b45ea01c3f4bc66dec2ae62fb6e1b587d66cb9a6"
+        }
+      },
+      "horizontal_reduction": {
+        "source_triangles": 81323,
+        "replacement_triangles": 43205,
+        "exact_horizontal_faces": 40010,
+        "coordinate_displacement_mm": 0.0,
+        "all_new_vertices_from_source": true,
+        "algorithm": "strict_constant_Z_patch_constrained_Delaunay_original_boundary_edges",
+        "patches": [
+          {
+            "height_mm": 10.0,
+            "source_triangles": 14888,
+            "replacement_triangles": 1054,
+            "boundary_edges": 1046,
+            "boundary_edges_exactly_equal": true,
+            "symmetric_difference_area_mm2": 0.0,
+            "source_area_mm2": 11464.430821278027,
+            "replacement_area_mm2": 11464.430821278027,
+            "numerical_area_tolerance_mm2": 4.8510868869922e-06
+          },
+          {
+            "height_mm": 28.0,
+            "source_triangles": 25122,
+            "replacement_triangles": 838,
+            "boundary_edges": 828,
+            "boundary_edges_exactly_equal": true,
+            "symmetric_difference_area_mm2": 0.0,
+            "source_area_mm2": 7999.091721069825,
+            "replacement_area_mm2": 7999.091721069824,
+            "numerical_area_tolerance_mm2": 5.711432954078536e-06
+          }
+        ]
+      },
+      "roofs": "source-000-roofs.npz",
+      "roofs_sha256": "9d5340b6496a9f2624d764c968fe93964534086116fb24b5c166e81addea2fe3",
+      "positive_prism_roof_faces": 81323,
+      "roof_source": "Original getOverhangMesh component, before chain-only horizontal reduction; source_face_ids are its exact local face indices."
+    },
+    {
+      "index": 1,
+      "source_index": 1,
+      "source_polygon_index": 0,
+      "source_triangles": 5805,
+      "projected_area_mm2": 380.09750471300987,
+      "bounds_xy_mm": [
+        -216.81932899130175,
+        -216.8193523429969,
+        -179.16045486689683,
+        -179.1604158924941
+      ],
+      "source_projected_area_mm2": 437.5463393915113,
+      "edge_gap_excluded_area_mm2": 57.44883467850133,
+      "chain": "source-001-chain.npz",
+      "chain_sha256": "21e5c6c2fa382d760b296db0736b4d48e82c27ced19a26de27021a67e70157f9",
+      "mask": "source-001-mask-000.npz",
+      "mask_sha256": "349c0b85d93ed233e58f4b647ebdb308981a8d2547c30d712a134010ec7b8f80",
+      "mask_triangles": 4788,
+      "mask_symmetric_difference_area_mm2": 0.0,
+      "chain_receipt": {
+        "source_triangles": 5805,
+        "boundary_chain_triangles": 12192,
+        "internal_side_quads_cancelled": 8562,
+        "boundary_side_quads": 291,
+        "sum_prism_volumes_mm3": 16687.007442072238,
+        "boundary_chain_signed_volume_mm3": 16687.007442072234,
+        "numerical_volume_tolerance_mm3": 2.7531563717169926e-06,
+        "coordinate_displacement_mm": 0.0,
+        "interpretation": "oriented boundary chain for exact winding Boolean; not an embedded volume",
+        "explicit_prism_chain_policy": "original_exact_prism_chain_after_vertex_fan_identity_separation_v1",
+        "vertex_fan_normalization": {
+          "path": "vertex-fan-normalizations/call-0001.json",
+          "sha256": "263c28f770f54eaf767d9749ea63fb57d1e8865767f131e493e24cabdda5bfa0"
+        }
+      },
+      "horizontal_reduction": {
+        "source_triangles": 5805,
+        "replacement_triangles": 5805,
+        "exact_horizontal_faces": 0,
+        "coordinate_displacement_mm": 0.0,
+        "all_new_vertices_from_source": true,
+        "algorithm": "strict_constant_Z_patch_constrained_Delaunay_original_boundary_edges",
+        "patches": []
+      },
+      "roofs": "source-001-roofs.npz",
+      "roofs_sha256": "9a91335bc6fa8c4c00d4d2de7df0dab450a77f95ceb4299f4a5db3ee08b970cc",
+      "positive_prism_roof_faces": 5805,
+      "roof_source": "Original getOverhangMesh component, before chain-only horizontal reduction; source_face_ids are its exact local face indices."
+    },
+    {
+      "index": 2,
+      "source_index": 2,
+      "source_polygon_index": 0,
+      "source_triangles": 15122,
+      "projected_area_mm2": 6764.648855834775,
+      "bounds_xy_mm": [
+        -192.53681005787925,
+        -192.4570602102188,
+        -22.35271788490987,
+        -22.352717873562746
+      ],
+      "source_projected_area_mm2": 7326.954855256168,
+      "edge_gap_excluded_area_mm2": 562.3059994213982,
+      "chain": "source-002-chain.npz",
+      "chain_sha256": "509541747012ca5715cba433dd25a5017ecca13363bf195954b0e14cf3097303",
+      "mask": "source-002-mask-000.npz",
+      "mask_sha256": "e8ee67f714ce587e2ff0bd6610040c748df5a1ff8c8f3c55932838d9ce55ef82",
+      "mask_triangles": 16808,
+      "mask_symmetric_difference_area_mm2": 0.0,
+      "chain_receipt": {
+        "source_triangles": 7886,
+        "boundary_chain_triangles": 17976,
+        "internal_side_quads_cancelled": 11278,
+        "boundary_side_quads": 1102,
+        "sum_prism_volumes_mm3": 363823.8894193774,
+        "boundary_chain_signed_volume_mm3": 363823.8894193773,
+        "numerical_volume_tolerance_mm3": 8.154515830827932e-05,
+        "coordinate_displacement_mm": 0.0,
+        "interpretation": "oriented boundary chain for exact winding Boolean; not an embedded volume",
+        "explicit_prism_chain_policy": "original_exact_prism_chain_after_vertex_fan_identity_separation_v1",
+        "vertex_fan_normalization": {
+          "path": "vertex-fan-normalizations/call-0002.json",
+          "sha256": "a0b0f98ef84a12a101db4b594eb5665235a5ea8ea42be1722f26e6530d0e09d4"
+        }
+      },
+      "horizontal_reduction": {
+        "source_triangles": 15122,
+        "replacement_triangles": 7886,
+        "exact_horizontal_faces": 7906,
+        "coordinate_displacement_mm": 0.0,
+        "all_new_vertices_from_source": true,
+        "algorithm": "strict_constant_Z_patch_constrained_Delaunay_original_boundary_edges",
+        "patches": [
+          {
+            "height_mm": 35.99000000953674,
+            "source_triangles": 132,
+            "replacement_triangles": 72,
+            "boundary_edges": 76,
+            "boundary_edges_exactly_equal": true,
+            "symmetric_difference_area_mm2": 0.0,
+            "source_area_mm2": 166.60688375672174,
+            "replacement_area_mm2": 166.60688375672174,
+            "numerical_area_tolerance_mm2": 6.250533219795008e-10
+          },
+          {
+            "height_mm": 52.5,
+            "source_triangles": 7774,
+            "replacement_triangles": 598,
+            "boundary_edges": 596,
+            "boundary_edges_exactly_equal": true,
+            "symmetric_difference_area_mm2": 0.0,
+            "source_area_mm2": 5188.930765962929,
+            "replacement_area_mm2": 5188.93076596293,
+            "numerical_area_tolerance_mm2": 1.1464961680359185e-06
+          }
+        ]
+      },
+      "roofs": "source-002-roofs.npz",
+      "roofs_sha256": "4a6982dfef2106049687f1d25679c174e643368868bfa2ba24046cb4ed1c1bb5",
+      "positive_prism_roof_faces": 15122,
+      "roof_source": "Original getOverhangMesh component, before chain-only horizontal reduction; source_face_ids are its exact local face indices."
+    },
+    {
+      "index": 3,
+      "source_index": 3,
+      "source_polygon_index": 1,
+      "source_triangles": 255,
+      "projected_area_mm2": 5.775338266494984,
+      "bounds_xy_mm": [
+        -192.18220004893774,
+        -195.04501406139326,
+        -177.71424088668059,
+        -180.50919454193416
+      ],
+      "source_projected_area_mm2": 53.14191423353148,
+      "edge_gap_excluded_area_mm2": 42.90887924167414,
+      "chain": "source-003-chain.npz",
+      "chain_sha256": "1dac25537e1bf87d55c188291a7a29aa5bd39a6ed9537386799b2c3e5c851682",
+      "mask": "source-003-mask-001.npz",
+      "mask_sha256": "db05f07e9347d34fe781a6b90ac7988fe8404def329b6372f4e54137d544833d",
+      "mask_triangles": 532,
+      "mask_symmetric_difference_area_mm2": 0.0,
+      "chain_receipt": {
+        "source_triangles": 255,
+        "boundary_chain_triangles": 728,
+        "internal_side_quads_cancelled": 328,
+        "boundary_side_quads": 109,
+        "sum_prism_volumes_mm3": 1816.623990815293,
+        "boundary_chain_signed_volume_mm3": 1816.6239908152784,
+        "numerical_volume_tolerance_mm3": 1.3166047598869559e-08,
+        "coordinate_displacement_mm": 0.0,
+        "interpretation": "oriented boundary chain for exact winding Boolean; not an embedded volume",
+        "explicit_prism_chain_policy": "original_exact_prism_chain_after_vertex_fan_identity_separation_v1",
+        "vertex_fan_normalization": {
+          "path": "vertex-fan-normalizations/call-0003.json",
+          "sha256": "bb45d3faa01867ca763840708b0163a02eabc790798e6d4371ea719c697be2ff"
+        }
+      },
+      "horizontal_reduction": {
+        "source_triangles": 255,
+        "replacement_triangles": 255,
+        "exact_horizontal_faces": 0,
+        "coordinate_displacement_mm": 0.0,
+        "all_new_vertices_from_source": true,
+        "algorithm": "strict_constant_Z_patch_constrained_Delaunay_original_boundary_edges",
+        "patches": []
+      },
+      "roofs": "source-003-roofs.npz",
+      "roofs_sha256": "8c6c642cb062fac62f9c5e26c71dc351bbdc088ff7fa4d1101654fafbc75958d",
+      "positive_prism_roof_faces": 255,
+      "roof_source": "Original getOverhangMesh component, before chain-only horizontal reduction; source_face_ids are its exact local face indices."
+    },
+    {
+      "index": 4,
+      "source_index": 8,
+      "source_polygon_index": 0,
+      "source_triangles": 13409,
+      "projected_area_mm2": 6851.865163195742,
+      "bounds_xy_mm": [
+        22.35271788490987,
+        22.352717873562746,
+        192.53681005787925,
+        192.53684150300924
+      ],
+      "source_projected_area_mm2": 7402.76141293694,
+      "edge_gap_excluded_area_mm2": 550.8962497411861,
+      "chain": "source-008-chain.npz",
+      "chain_sha256": "31797b35a9622ab725d6acd81cd14044ece69209c7605faf1c061aa40ab000de",
+      "mask": "source-008-mask-000.npz",
+      "mask_sha256": "9b8090cf693e863b730b6238b224464682f7fb6e369a85863d440ad27c6131f8",
+      "mask_triangles": 15616,
+      "mask_symmetric_difference_area_mm2": 0.0,
+      "chain_receipt": {
+        "source_triangles": 7797,
+        "boundary_chain_triangles": 17532,
+        "internal_side_quads_cancelled": 11211,
+        "boundary_side_quads": 969,
+        "sum_prism_volumes_mm3": 367789.65382838476,
+        "boundary_chain_signed_volume_mm3": 367789.65382838465,
+        "numerical_volume_tolerance_mm3": 8.150368361441213e-05,
+        "coordinate_displacement_mm": 0.0,
+        "interpretation": "oriented boundary chain for exact winding Boolean; not an embedded volume",
+        "explicit_prism_chain_policy": "original_exact_prism_chain_after_vertex_fan_identity_separation_v1",
+        "vertex_fan_normalization": {
+          "path": "vertex-fan-normalizations/call-0004.json",
+          "sha256": "075ac67e67b6d294967555f8eb1c8ca4cbab73ee0132dfa8dacf01357034536d"
+        }
+      },
+      "horizontal_reduction": {
+        "source_triangles": 13409,
+        "replacement_triangles": 7797,
+        "exact_horizontal_faces": 6158,
+        "coordinate_displacement_mm": 0.0,
+        "all_new_vertices_from_source": true,
+        "algorithm": "strict_constant_Z_patch_constrained_Delaunay_original_boundary_edges",
+        "patches": [
+          {
+            "height_mm": 35.99000000953674,
+            "source_triangles": 136,
+            "replacement_triangles": 72,
+            "boundary_edges": 76,
+            "boundary_edges_exactly_equal": true,
+            "symmetric_difference_area_mm2": 0.0,
+            "source_area_mm2": 166.60687699582553,
+            "replacement_area_mm2": 166.60687699582553,
+            "numerical_area_tolerance_mm2": 6.439943056032084e-10
+          },
+          {
+            "height_mm": 52.5,
+            "source_triangles": 6022,
+            "replacement_triangles": 474,
+            "boundary_edges": 472,
+            "boundary_edges_exactly_equal": true,
+            "symmetric_difference_area_mm2": 0.0,
+            "source_area_mm2": 5262.433009973842,
+            "replacement_area_mm2": 5262.433009973842,
+            "numerical_area_tolerance_mm2": 9.006945329605991e-07
+          }
+        ]
+      },
+      "roofs": "source-008-roofs.npz",
+      "roofs_sha256": "16e449aa23b58077a938698e19428700a707c5a179a40a030eb3c029d5651c41",
+      "positive_prism_roof_faces": 13409,
+      "roof_source": "Original getOverhangMesh component, before chain-only horizontal reduction; source_face_ids are its exact local face indices."
+    },
+    {
+      "index": 5,
+      "source_index": 9,
+      "source_polygon_index": 0,
+      "source_triangles": 245,
+      "projected_area_mm2": 9.347959528896116,
+      "bounds_xy_mm": [
+        172.25288877621006,
+        174.31678595385702,
+        198.44246899421682,
+        200.33268332399462
+      ],
+      "source_projected_area_mm2": 52.242209434412366,
+      "edge_gap_excluded_area_mm2": 42.26665117944763,
+      "chain": "source-009-chain.npz",
+      "chain_sha256": "49d5b7e10d32556ffe6c580961b3ea8db2e5c992468a30dc23c60c3d934d2685",
+      "mask": "source-009-mask-000.npz",
+      "mask_sha256": "fd026f72212100581d7d0737f31e1140d1bab6c7fd78c2e82b881bed5f402d50",
+      "mask_triangles": 540,
+      "mask_symmetric_difference_area_mm2": 0.0,
+      "chain_receipt": {
+        "source_triangles": 245,
+        "boundary_chain_triangles": 704,
+        "internal_side_quads_cancelled": 314,
+        "boundary_side_quads": 107,
+        "sum_prism_volumes_mm3": 1785.373360886803,
+        "boundary_chain_signed_volume_mm3": 1785.373360886806,
+        "numerical_volume_tolerance_mm3": 1.2432123907537594e-08,
+        "coordinate_displacement_mm": 0.0,
+        "interpretation": "oriented boundary chain for exact winding Boolean; not an embedded volume",
+        "explicit_prism_chain_policy": "original_exact_prism_chain_after_vertex_fan_identity_separation_v1",
+        "vertex_fan_normalization": {
+          "path": "vertex-fan-normalizations/call-0005.json",
+          "sha256": "3c918a76bc5694ad59b2f418f4d773bc7db7c857862a92d0e481a8ad02795f28"
+        }
+      },
+      "horizontal_reduction": {
+        "source_triangles": 245,
+        "replacement_triangles": 245,
+        "exact_horizontal_faces": 0,
+        "coordinate_displacement_mm": 0.0,
+        "all_new_vertices_from_source": true,
+        "algorithm": "strict_constant_Z_patch_constrained_Delaunay_original_boundary_edges",
+        "patches": []
+      },
+      "roofs": "source-009-roofs.npz",
+      "roofs_sha256": "674615cbaa8072cdf15e68b1676d57f15621cba2219d10466e4d7ab2ef58429a",
+      "positive_prism_roof_faces": 245,
+      "roof_source": "Original getOverhangMesh component, before chain-only horizontal reduction; source_face_ids are its exact local face indices."
+    },
+    {
+      "index": 6,
+      "source_index": 10,
+      "source_polygon_index": 0,
+      "source_triangles": 5805,
+      "projected_area_mm2": 380.0975047130106,
+      "bounds_xy_mm": [
+        179.16046847316488,
+        179.1604451214697,
+        216.81934259756983,
+        216.81938157197249
+      ],
+      "source_projected_area_mm2": 437.54633939151165,
+      "edge_gap_excluded_area_mm2": 57.44883467850184,
+      "chain": "source-010-chain.npz",
+      "chain_sha256": "2d49aef848aa752b9bb66abee2a8ed019fd963f9b19a6c621a8624b0b766a1cd",
+      "mask": "source-010-mask-000.npz",
+      "mask_sha256": "77fbb0ad6dd073e46c4ad846768a0261c21dc8a820227ee217c856287aca9c71",
+      "mask_triangles": 4788,
+      "mask_symmetric_difference_area_mm2": 0.0,
+      "chain_receipt": {
+        "source_triangles": 5805,
+        "boundary_chain_triangles": 12192,
+        "internal_side_quads_cancelled": 8562,
+        "boundary_side_quads": 291,
+        "sum_prism_volumes_mm3": 16687.00744207224,
+        "boundary_chain_signed_volume_mm3": 16687.007442072245,
+        "numerical_volume_tolerance_mm3": 2.7531563717169935e-06,
+        "coordinate_displacement_mm": 0.0,
+        "interpretation": "oriented boundary chain for exact winding Boolean; not an embedded volume",
+        "explicit_prism_chain_policy": "original_exact_prism_chain_after_vertex_fan_identity_separation_v1",
+        "vertex_fan_normalization": {
+          "path": "vertex-fan-normalizations/call-0006.json",
+          "sha256": "3737837ccbc926cefc5fb5e4ff46d0f84b27d0bce457c9d7578231e451f6d67e"
+        }
+      },
+      "horizontal_reduction": {
+        "source_triangles": 5805,
+        "replacement_triangles": 5805,
+        "exact_horizontal_faces": 0,
+        "coordinate_displacement_mm": 0.0,
+        "all_new_vertices_from_source": true,
+        "algorithm": "strict_constant_Z_patch_constrained_Delaunay_original_boundary_edges",
+        "patches": []
+      },
+      "roofs": "source-010-roofs.npz",
+      "roofs_sha256": "3f22ea1dc2923a5438278ce9ddf50f5838d9d16a4dfed4b6ccb3a85964d946a1",
+      "positive_prism_roof_faces": 5805,
+      "roof_source": "Original getOverhangMesh component, before chain-only horizontal reduction; source_face_ids are its exact local face indices."
+    }
+  ],
+  "actual_calendar_array": {
+    "dtype": "<f8",
+    "shape": [
+      1034
+    ],
+    "sha256": "309850fedfbf6ea1aec4641a6bc0288b398b4939393efe278de03e2a82d8b14e"
+  },
+  "actual_pose": {
+    "rotation_degrees_xyz": [
+      0.0,
+      0.0,
+      45.0
+    ],
+    "origin_mm": [
+      0.0,
+      0.0,
+      32.0
+    ],
+    "scale_factor": [
+      1.0,
+      1.0,
+      1.0
+    ],
+    "transform": [
+      [
+        0.7071067811865476,
+        -0.7071067811865475,
+        0.0,
+        0.0
+      ],
+      [
+        0.7071067811865475,
+        0.7071067811865476,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        1.0,
+        32.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "bounds_mm": [
+      [
+        -225.56706319850866,
+        -225.56706319850863,
+        10.0
+      ],
+      [
+        225.56706319850866,
+        225.56706319850863,
+        62.0
+      ]
+    ],
+    "vertices": {
+      "dtype": "<f8",
+      "shape": [
+        291431,
+        3
+      ],
+      "sha256": "6da839b7282a2cbac132f30f854d01676ea5f11d7262476e19104a6f8a601844"
+    },
+    "faces": {
+      "dtype": "<i8",
+      "shape": [
+        582946,
+        3
+      ],
+      "sha256": "45f9f79477243b766fa2fb3fbe7176219e4b0ee714dbe3ba103293ab6c364998"
+    }
+  },
+  "explicit_fan_normalizations": [
+    {
+      "schema": "exact-boundary-vertex-fan-separation-1",
+      "method": "duplicate_vertex_identity_per_disconnected_incident_face_fan",
+      "source_vertices": 41770,
+      "source_faces": 43205,
+      "ordered_oriented_triangle_coordinate_sha256": "6ead706bd8bb5360319308a0534cdb14e7c5ee9122e54ccd54ca910912149f2a",
+      "coordinate_displacement_mm": 0.0,
+      "face_order_and_orientations_unchanged": true,
+      "duplicates": [
+        {
+          "original_vertex": 41769,
+          "new_vertex": 41770,
+          "incident_face_indices": [
+            2241
+          ]
+        }
+      ],
+      "changed": true,
+      "delegated_original_edge_or_winding_guard": false,
+      "result_vertices": 41771,
+      "result_faces": 43205,
+      "result_ordered_oriented_triangle_coordinate_sha256": "6ead706bd8bb5360319308a0534cdb14e7c5ee9122e54ccd54ca910912149f2a",
+      "whole_ordered_oriented_triangle_coordinate_bytes_equal": true,
+      "helper_sha256": "dabe11b53a27a1a49e5bb2177f5f6c093eee90fcd337f638659855cbf0f6c231",
+      "original_prism_source_sha256": "cf1ca6f378b6b2415712a62dfd124e4d57a4da8e343f99ca69f03df720009a34",
+      "call_index": 0,
+      "input_vertices": {
+        "dtype": "<f8",
+        "shape": [
+          41770,
+          3
+        ],
+        "sha256": "1dcadeeae093c222b3ca0bd47cc9f9840dc96157e4565fe54111eaa9fe42b077"
+      },
+      "input_faces": {
+        "dtype": "<i8",
+        "shape": [
+          43205,
+          3
+        ],
+        "sha256": "596c7e6a32da4ea42070612d2e2188d9e302fbcd2e38568a5f43c9fc86242f4f"
+      },
+      "output_vertices": {
+        "dtype": "<f8",
+        "shape": [
+          41771,
+          3
+        ],
+        "sha256": "f217d962eb5e9704e45ad1c8100a113ab1841e34627433bfd04745f91760be1a"
+      },
+      "output_faces": {
+        "dtype": "<i8",
+        "shape": [
+          43205,
+          3
+        ],
+        "sha256": "dc12dd871759fbc89324279762054413398e960e82a7029bca5919cf87636a57"
+      }
+    },
+    {
+      "schema": "exact-boundary-vertex-fan-separation-1",
+      "method": "duplicate_vertex_identity_per_disconnected_incident_face_fan",
+      "source_vertices": 3049,
+      "source_faces": 5805,
+      "ordered_oriented_triangle_coordinate_sha256": "ad3224699266d79ddfcfb025b25fc782c45f3308802a8ba44ed296e2baab2803",
+      "coordinate_displacement_mm": 0.0,
+      "face_order_and_orientations_unchanged": true,
+      "duplicates": [],
+      "changed": false,
+      "delegated_original_edge_or_winding_guard": false,
+      "helper_sha256": "dabe11b53a27a1a49e5bb2177f5f6c093eee90fcd337f638659855cbf0f6c231",
+      "original_prism_source_sha256": "cf1ca6f378b6b2415712a62dfd124e4d57a4da8e343f99ca69f03df720009a34",
+      "call_index": 1,
+      "input_vertices": {
+        "dtype": "<f8",
+        "shape": [
+          3049,
+          3
+        ],
+        "sha256": "a0d5f1ec23b4ed557cf628fab801b03e880ecbd24f6d8f72ee96da5a6cf8b8a9"
+      },
+      "input_faces": {
+        "dtype": "<i8",
+        "shape": [
+          5805,
+          3
+        ],
+        "sha256": "cacbcc9b49a24eb0112e9bfc222ca9b51cb2f1ab9ad19a22ecd77b8686b54923"
+      },
+      "output_vertices": {
+        "dtype": "<f8",
+        "shape": [
+          3049,
+          3
+        ],
+        "sha256": "a0d5f1ec23b4ed557cf628fab801b03e880ecbd24f6d8f72ee96da5a6cf8b8a9"
+      },
+      "output_faces": {
+        "dtype": "<i8",
+        "shape": [
+          5805,
+          3
+        ],
+        "sha256": "cacbcc9b49a24eb0112e9bfc222ca9b51cb2f1ab9ad19a22ecd77b8686b54923"
+      }
+    },
+    {
+      "schema": "exact-boundary-vertex-fan-separation-1",
+      "method": "duplicate_vertex_identity_per_disconnected_incident_face_fan",
+      "source_vertices": 8109,
+      "source_faces": 7886,
+      "ordered_oriented_triangle_coordinate_sha256": "0086134250acaf472848222911667d88c81692504969d73a8797f3c9ac6acbff",
+      "coordinate_displacement_mm": 0.0,
+      "face_order_and_orientations_unchanged": true,
+      "duplicates": [],
+      "changed": false,
+      "delegated_original_edge_or_winding_guard": false,
+      "helper_sha256": "dabe11b53a27a1a49e5bb2177f5f6c093eee90fcd337f638659855cbf0f6c231",
+      "original_prism_source_sha256": "cf1ca6f378b6b2415712a62dfd124e4d57a4da8e343f99ca69f03df720009a34",
+      "call_index": 2,
+      "input_vertices": {
+        "dtype": "<f8",
+        "shape": [
+          8109,
+          3
+        ],
+        "sha256": "344b485e1a85fe0de1ea3f2b09f50ff5e4b00fb0f55979faf42a828371de7765"
+      },
+      "input_faces": {
+        "dtype": "<i8",
+        "shape": [
+          7886,
+          3
+        ],
+        "sha256": "8ed746807e957211cd16ce84f2f5cd3a540ead48aee59e03beb4eaa484c0ac9a"
+      },
+      "output_vertices": {
+        "dtype": "<f8",
+        "shape": [
+          8109,
+          3
+        ],
+        "sha256": "344b485e1a85fe0de1ea3f2b09f50ff5e4b00fb0f55979faf42a828371de7765"
+      },
+      "output_faces": {
+        "dtype": "<i8",
+        "shape": [
+          7886,
+          3
+        ],
+        "sha256": "8ed746807e957211cd16ce84f2f5cd3a540ead48aee59e03beb4eaa484c0ac9a"
+      }
+    },
+    {
+      "schema": "exact-boundary-vertex-fan-separation-1",
+      "method": "duplicate_vertex_identity_per_disconnected_incident_face_fan",
+      "source_vertices": 183,
+      "source_faces": 255,
+      "ordered_oriented_triangle_coordinate_sha256": "f6f1761da2706128527340799cfb627c7581741d26a20a906f67d13a196e7f9e",
+      "coordinate_displacement_mm": 0.0,
+      "face_order_and_orientations_unchanged": true,
+      "duplicates": [],
+      "changed": false,
+      "delegated_original_edge_or_winding_guard": false,
+      "helper_sha256": "dabe11b53a27a1a49e5bb2177f5f6c093eee90fcd337f638659855cbf0f6c231",
+      "original_prism_source_sha256": "cf1ca6f378b6b2415712a62dfd124e4d57a4da8e343f99ca69f03df720009a34",
+      "call_index": 3,
+      "input_vertices": {
+        "dtype": "<f8",
+        "shape": [
+          183,
+          3
+        ],
+        "sha256": "60bb84d3b09cb53f62e6b318f5ee406f5c760272b6c2c0be49a26945f67b5659"
+      },
+      "input_faces": {
+        "dtype": "<i8",
+        "shape": [
+          255,
+          3
+        ],
+        "sha256": "046087e539dc83408ff355e58a2ff9f6f3abf3a6e8156da8a8d321c27f9f86e1"
+      },
+      "output_vertices": {
+        "dtype": "<f8",
+        "shape": [
+          183,
+          3
+        ],
+        "sha256": "60bb84d3b09cb53f62e6b318f5ee406f5c760272b6c2c0be49a26945f67b5659"
+      },
+      "output_faces": {
+        "dtype": "<i8",
+        "shape": [
+          255,
+          3
+        ],
+        "sha256": "046087e539dc83408ff355e58a2ff9f6f3abf3a6e8156da8a8d321c27f9f86e1"
+      }
+    },
+    {
+      "schema": "exact-boundary-vertex-fan-separation-1",
+      "method": "duplicate_vertex_identity_per_disconnected_incident_face_fan",
+      "source_vertices": 7186,
+      "source_faces": 7797,
+      "ordered_oriented_triangle_coordinate_sha256": "27161bd0783c0c9247aeb6bcfe94a6098f7a25a12a2e9e959384e8313060d37e",
+      "coordinate_displacement_mm": 0.0,
+      "face_order_and_orientations_unchanged": true,
+      "duplicates": [],
+      "changed": false,
+      "delegated_original_edge_or_winding_guard": false,
+      "helper_sha256": "dabe11b53a27a1a49e5bb2177f5f6c093eee90fcd337f638659855cbf0f6c231",
+      "original_prism_source_sha256": "cf1ca6f378b6b2415712a62dfd124e4d57a4da8e343f99ca69f03df720009a34",
+      "call_index": 4,
+      "input_vertices": {
+        "dtype": "<f8",
+        "shape": [
+          7186,
+          3
+        ],
+        "sha256": "cf473a4c7c887e512ca329a4d907e2cbdc04dd045c53085e067337a5e6f4a438"
+      },
+      "input_faces": {
+        "dtype": "<i8",
+        "shape": [
+          7797,
+          3
+        ],
+        "sha256": "ee3822806b3d3eae13856349e1bda548c306af2976ea9e5a628529336854d341"
+      },
+      "output_vertices": {
+        "dtype": "<f8",
+        "shape": [
+          7186,
+          3
+        ],
+        "sha256": "cf473a4c7c887e512ca329a4d907e2cbdc04dd045c53085e067337a5e6f4a438"
+      },
+      "output_faces": {
+        "dtype": "<i8",
+        "shape": [
+          7797,
+          3
+        ],
+        "sha256": "ee3822806b3d3eae13856349e1bda548c306af2976ea9e5a628529336854d341"
+      }
+    },
+    {
+      "schema": "exact-boundary-vertex-fan-separation-1",
+      "method": "duplicate_vertex_identity_per_disconnected_incident_face_fan",
+      "source_vertices": 177,
+      "source_faces": 245,
+      "ordered_oriented_triangle_coordinate_sha256": "e8b01ba1aa16b4d1e61a443ba691cad39c1d26121414ef0d89381afe24d8fb89",
+      "coordinate_displacement_mm": 0.0,
+      "face_order_and_orientations_unchanged": true,
+      "duplicates": [],
+      "changed": false,
+      "delegated_original_edge_or_winding_guard": false,
+      "helper_sha256": "dabe11b53a27a1a49e5bb2177f5f6c093eee90fcd337f638659855cbf0f6c231",
+      "original_prism_source_sha256": "cf1ca6f378b6b2415712a62dfd124e4d57a4da8e343f99ca69f03df720009a34",
+      "call_index": 5,
+      "input_vertices": {
+        "dtype": "<f8",
+        "shape": [
+          177,
+          3
+        ],
+        "sha256": "b284f4c7514a3feb9129bbf814213abcd70c9640a1dfcb2ce3c878f69df2dd4d"
+      },
+      "input_faces": {
+        "dtype": "<i8",
+        "shape": [
+          245,
+          3
+        ],
+        "sha256": "8d984865e3e8fa8a966b3ceb8cc3b9cfd247ce7be93810a5766f8ab76e6b9c30"
+      },
+      "output_vertices": {
+        "dtype": "<f8",
+        "shape": [
+          177,
+          3
+        ],
+        "sha256": "b284f4c7514a3feb9129bbf814213abcd70c9640a1dfcb2ce3c878f69df2dd4d"
+      },
+      "output_faces": {
+        "dtype": "<i8",
+        "shape": [
+          245,
+          3
+        ],
+        "sha256": "8d984865e3e8fa8a966b3ceb8cc3b9cfd247ce7be93810a5766f8ab76e6b9c30"
+      }
+    },
+    {
+      "schema": "exact-boundary-vertex-fan-separation-1",
+      "method": "duplicate_vertex_identity_per_disconnected_incident_face_fan",
+      "source_vertices": 3049,
+      "source_faces": 5805,
+      "ordered_oriented_triangle_coordinate_sha256": "28d6aa05d5a7d06103403fd686c9ccb753c0abc477defcc3caf02e09c2841e56",
+      "coordinate_displacement_mm": 0.0,
+      "face_order_and_orientations_unchanged": true,
+      "duplicates": [],
+      "changed": false,
+      "delegated_original_edge_or_winding_guard": false,
+      "helper_sha256": "dabe11b53a27a1a49e5bb2177f5f6c093eee90fcd337f638659855cbf0f6c231",
+      "original_prism_source_sha256": "cf1ca6f378b6b2415712a62dfd124e4d57a4da8e343f99ca69f03df720009a34",
+      "call_index": 6,
+      "input_vertices": {
+        "dtype": "<f8",
+        "shape": [
+          3049,
+          3
+        ],
+        "sha256": "d30b0739b12fe2acff80a3bb3f13b0504f93b6af2b895b411ac5ed0c68ce8eea"
+      },
+      "input_faces": {
+        "dtype": "<i8",
+        "shape": [
+          5805,
+          3
+        ],
+        "sha256": "452f689d7d7ac61bc91c97b5f3cd0bcd415d29c442e79fdbd0bc4fc72f870bec"
+      },
+      "output_vertices": {
+        "dtype": "<f8",
+        "shape": [
+          3049,
+          3
+        ],
+        "sha256": "d30b0739b12fe2acff80a3bb3f13b0504f93b6af2b895b411ac5ed0c68ce8eea"
+      },
+      "output_faces": {
+        "dtype": "<i8",
+        "shape": [
+          5805,
+          3
+        ],
+        "sha256": "452f689d7d7ac61bc91c97b5f3cd0bcd415d29c442e79fdbd0bc4fc72f870bec"
+      }
+    }
+  ],
+  "all7_original_chain_topology_and_winding_proofs": [
+    {
+      "path": "source-000-chain.npz",
+      "source_index": 0,
+      "normalization_call": 0,
+      "every_edge_incidence_two": true,
+      "every_oriented_edge_pair_opposite": true,
+      "ordered_source_triangle_coordinate_sha256": "6ead706bd8bb5360319308a0534cdb14e7c5ee9122e54ccd54ca910912149f2a"
+    },
+    {
+      "path": "source-001-chain.npz",
+      "source_index": 1,
+      "normalization_call": 1,
+      "every_edge_incidence_two": true,
+      "every_oriented_edge_pair_opposite": true,
+      "ordered_source_triangle_coordinate_sha256": "ad3224699266d79ddfcfb025b25fc782c45f3308802a8ba44ed296e2baab2803"
+    },
+    {
+      "path": "source-002-chain.npz",
+      "source_index": 2,
+      "normalization_call": 2,
+      "every_edge_incidence_two": true,
+      "every_oriented_edge_pair_opposite": true,
+      "ordered_source_triangle_coordinate_sha256": "0086134250acaf472848222911667d88c81692504969d73a8797f3c9ac6acbff"
+    },
+    {
+      "path": "source-003-chain.npz",
+      "source_index": 3,
+      "normalization_call": 3,
+      "every_edge_incidence_two": true,
+      "every_oriented_edge_pair_opposite": true,
+      "ordered_source_triangle_coordinate_sha256": "f6f1761da2706128527340799cfb627c7581741d26a20a906f67d13a196e7f9e"
+    },
+    {
+      "path": "source-008-chain.npz",
+      "source_index": 8,
+      "normalization_call": 4,
+      "every_edge_incidence_two": true,
+      "every_oriented_edge_pair_opposite": true,
+      "ordered_source_triangle_coordinate_sha256": "27161bd0783c0c9247aeb6bcfe94a6098f7a25a12a2e9e959384e8313060d37e"
+    },
+    {
+      "path": "source-009-chain.npz",
+      "source_index": 9,
+      "normalization_call": 5,
+      "every_edge_incidence_two": true,
+      "every_oriented_edge_pair_opposite": true,
+      "ordered_source_triangle_coordinate_sha256": "e8b01ba1aa16b4d1e61a443ba691cad39c1d26121414ef0d89381afe24d8fb89"
+    },
+    {
+      "path": "source-010-chain.npz",
+      "source_index": 10,
+      "normalization_call": 6,
+      "every_edge_incidence_two": true,
+      "every_oriented_edge_pair_opposite": true,
+      "ordered_source_triangle_coordinate_sha256": "28d6aa05d5a7d06103403fd686c9ccb753c0abc477defcc3caf02e09c2841e56"
+    }
+  ],
+  "whole_actual_first_chain_ordered_oriented_triangle_coordinate_bytes_equal_closed_before_correction": true,
+  "all_source_triangle_coordinates_order_and_orientations_preserved": true,
+  "only_first_call_one_duplicate_ID_other6_noop": true,
+  "all_original_prism_sum_volume_guards_and_exact_tolerance_preserved": true,
+  "whole_posed_arrays_equal_original_closed_failed_predecessor": true,
+  "whole_actual_calendar_array_verified": true,
+  "C22_and_sources_before_after_unchanged": true,
+  "owned_child_reaped_and_ROOT_fresh_PID_PGID_absent": true,
+  "master": {
+    "path": "work/carrier-process-20261017/bounded-webs-first-window-parameter-trial-preparation-003/output-001/regenerated-stock/native-body.brep",
+    "sha256": "42da92ccbcf08783e69edba68bbeb56d3963746538d48682a3e495310a88e776",
+    "format": "brep"
+  },
+  "surface": {
+    "path": "work/carrier-process-20261017/bounded-webs-first-window-stock-surface-preparation-001/output-001/surface/carrier-remeshed.stl",
+    "sha256": "433c85bfbffb53b443fa1a9f478fdffb1bae38e1f1960833ad3a30dc8581db77",
+    "format": "stl"
+  },
+  "joint_ROOT": {
+    "path": "work/carrier-process-20261017/bounded-webs-first-window-stock-libigl-preparation-001/root-terminal-review-001.json",
+    "sha256": "16c2711f6f877aa4d0a4d661d62b52538391ff7da7ca783bf58a81d59cf44c7e"
+  },
+  "candidate_version": "first-window-stock-alone-v1",
+  "explicit_prism_chain_producer": {
+    "method": "original_exact_prism_chain_after_vertex_fan_identity_separation_v1",
+    "driver_sha256": "846b40d878f8dbed094ba0ac07c726a3a29e948beeba52d82db76b4eaf3e6e17",
+    "helper": {
+      "path": "work/carrier-stock-prism-fan-correction-preparation-001/fans.py",
+      "sha256": "dabe11b53a27a1a49e5bb2177f5f6c093eee90fcd337f638659855cbf0f6c231"
+    },
+    "observation_ROOT": {
+      "path": "work/carrier-stock-prism-chain-diagnosis-preparation-001/root-terminal-review-001.json",
+      "sha256": "5744a6f2081699ca02f298cdce7445073fea1c0d719f8f83de9f368eb62c3a86"
+    },
+    "normalization_records": [
+      {
+        "path": "vertex-fan-normalizations/call-0000.json",
+        "sha256": "599a8e74e433077985da0a89b45ea01c3f4bc66dec2ae62fb6e1b587d66cb9a6"
+      },
+      {
+        "path": "vertex-fan-normalizations/call-0001.json",
+        "sha256": "263c28f770f54eaf767d9749ea63fb57d1e8865767f131e493e24cabdda5bfa0"
+      },
+      {
+        "path": "vertex-fan-normalizations/call-0002.json",
+        "sha256": "a0b0f98ef84a12a101db4b594eb5665235a5ea8ea42be1722f26e6530d0e09d4"
+      },
+      {
+        "path": "vertex-fan-normalizations/call-0003.json",
+        "sha256": "bb45d3faa01867ca763840708b0163a02eabc790798e6d4371ea719c697be2ff"
+      },
+      {
+        "path": "vertex-fan-normalizations/call-0004.json",
+        "sha256": "075ac67e67b6d294967555f8eb1c8ca4cbab73ee0132dfa8dacf01357034536d"
+      },
+      {
+        "path": "vertex-fan-normalizations/call-0005.json",
+        "sha256": "3c918a76bc5694ad59b2f418f4d773bc7db7c857862a92d0e481a8ad02795f28"
+      },
+      {
+        "path": "vertex-fan-normalizations/call-0006.json",
+        "sha256": "3737837ccbc926cefc5fb5e4ff46d0f84b27d0bce457c9d7578231e451f6d67e"
+      }
+    ],
+    "original_prism_guard_and_tolerance_unchanged": true
+  },
+  "no_native_CSG_support_vectors_or_admission": true,
+  "strength_or_manufacturing_claimed": false
+}

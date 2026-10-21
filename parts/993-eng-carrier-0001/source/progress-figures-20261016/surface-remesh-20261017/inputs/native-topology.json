@@ -1,0 +1,57 @@
+{
+  "schema": "C1-existing-STL-topology-only-1",
+  "status": "rejected_topology",
+  "STL_sha256": "9f816e28300396bb074f7cd5587fc277bb27410074f0efced32dbce9ab867e1e",
+  "audit_source_sha256": "086c8ef3b4f72fd29c2b8c5945e4b8faaf6dcdb03b50da3a0f0c51ff0a350975",
+  "CAD_fidelity_checked": false,
+  "full_audit": false,
+  "geometry_modified": false,
+  "manufacturing_admission": false,
+  "array_identities": {
+    "vertices": {
+      "dtype": "<f8",
+      "shape": [
+        22044,
+        3
+      ],
+      "sha256": "973dd6043e22900a5b8fb58a795904a8e99f7b68fab3220d6e184431d7b12518"
+    },
+    "faces": {
+      "dtype": "<i8",
+      "shape": [
+        44172,
+        3
+      ],
+      "sha256": "fd32f1bcc95b651618f976ae4ff70d4cb1afc811f958aae0390fa7bc9825f83f"
+    }
+  },
+  "topology": {
+    "vertices": 22044,
+    "triangles": 44172,
+    "boundary_edges": 0,
+    "nonmanifold_edges": 0,
+    "inconsistent_orientation_edges": 0,
+    "degenerate_triangles": 0,
+    "needle_triangles": 463,
+    "connected_components": 1,
+    "volume_mm3": 285677.5186770355
+  },
+  "self_intersections_seconds": 0.3748491670000007,
+  "self_intersections": {
+    "found": false,
+    "pairs": 0,
+    "all_pair_indices_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "first_at_most_32_pairs": [],
+    "witness_scope": "At most32 indices displayed; count and SHA cover the complete returned pair array.",
+    "operator": "igl.predicates.find_self_intersections(vertices,faces,False)"
+  },
+  "failures": [
+    "needle_triangles"
+  ],
+  "needle_criterion": "Unchanged audit.topology: twice_area / longest_edge_squared <0.001",
+  "runtime_unchanged": true,
+  "input_sources_unchanged": true,
+  "wall_seconds": 2.0256912509999996,
+  "CPU_seconds": 1.796341516,
+  "maxRSS_bytes": 105918464
+}

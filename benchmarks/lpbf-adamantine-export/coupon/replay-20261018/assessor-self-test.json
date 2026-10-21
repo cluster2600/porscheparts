@@ -1,0 +1,28 @@
+{
+  "scope": "synthetic assessor self-tests only; no native Adamantine result",
+  "passed": true,
+  "valid_float32_fixture": true,
+  "xml_vtu_read_back_passed": true,
+  "float32_quantization_probe": {
+    "reference_Pa": 1199966.340575,
+    "stored_Pa": 1199966.375,
+    "positive_error_Pa": 0.03442499996162951
+  },
+  "invalid_fixtures_rejected": [
+    "missing frame",
+    "nonfinite temperature",
+    "wrong VM",
+    "wrong U",
+    "duplicate reference node",
+    "nonfinite time",
+    "path ../secret",
+    "path /etc/passwd",
+    "path a/file.vtu",
+    "path /work/common-coupon/adamantine-native-001/output/../secret",
+    "path ./file.vtu",
+    "output file symlink"
+  ],
+  "protocol_sha256": "5a9b6f26298c111843507065728e8e52004cd5223b1d9f5d6ae80016cc1f0dfd",
+  "assessor_sha256": "43818051fb2c16731d56b50fe4f19440bafe64b639dfb732025ffa48ec014363",
+  "physical_validation": false
+}

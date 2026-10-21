@@ -1,0 +1,131 @@
+{
+  "schema": "ener-increment-convergence-preparation-1",
+  "status": "prepared_not_executed",
+  "execution_authorized": false,
+  "choice": "Complete two-step cycle; nominal 16 loading and 16 unloading states; no amplitude card or force scaling added.",
+  "baseline_folder": "/Users/maxime/.codex/worktrees/993-carrier-revalidation/3dprinting993/work/carrier-design-20261016/luo-flat1-verified-nlgeom-unload-mesh9",
+  "baseline_runtime_sha256": "4d89f06abf5804d932957fc7f66f2f0b182d191e26c799df07009060ff87cde0",
+  "baseline_plan_sha256": "943d8a8478cda785101c22ed7bdda92c5225272a9c5cd2c5da692e112121a0a6",
+  "retained_version": "CalculiX 2.21 / Debian package calculix-ccx 2.21-1",
+  "retained_runner": {
+    "path": "/Users/maxime/.codex/worktrees/993-carrier-revalidation/3dprinting993/parts/993-eng-carrier-0001/source/design-20261016/run_plastic900.py",
+    "sha256": "6e7c65681a774cffbbc251a5f2b50fa275802ab42d4b0f0b40027dd01d3c0c38"
+  },
+  "retained_execution_helper": {
+    "path": "/Users/maxime/.codex/worktrees/993-carrier-revalidation/3dprinting993/parts/993-eng-carrier-0001/source/bionic-20261011/simulate.py",
+    "sha256": "87be70c955e2532255fdee37cf3a686d970cb421bc9bf6094ca867f1f3098e77"
+  },
+  "image": "sha256:c9772ae9223a4f800a3ceda77d2494e67e34c8526eb0f204b3c8e052266641b4",
+  "ccx_binary_sha256": "271f8411371b978d7a8d31a7a13d0765e6e1f872e8a8b1d6aac6d0856c71ec6c",
+  "retained_container": "carrier-plastic900-8dd063157e6c",
+  "retained_owned_container_removed": true,
+  "retained_solver_seconds": 1130.8001999580301,
+  "retained_coupon_seconds": 0.3953245000448078,
+  "retained_execution_host": {
+    "kind": "local Docker controlled through /usr/local/bin/docker",
+    "documented_host_platform": "macOS-27.2-arm64-arm-64bit",
+    "documented_host_architecture": "arm64",
+    "image_operating_system": "Linux",
+    "image_architecture": null,
+    "image_architecture_scope": "Not recorded in retained receipts; not inspected or guessed during this preparation."
+  },
+  "proposed_execution_host": {
+    "preferred": "Kali1 native CCX",
+    "status": "unverified_no_retained_CCX_runtime_attestation",
+    "native_binary_path": null,
+    "local_Docker_fallback": "prepared only; not selected and not launched"
+  },
+  "resources": {
+    "cpus": 1,
+    "memory_GiB": 6,
+    "swap_GiB": 0,
+    "network": "none",
+    "pids_limit": 128,
+    "timeout_seconds": 3600,
+    "threads": {
+      "OMP_NUM_THREADS": "1",
+      "CCX_NPROC_RESULTS": "1",
+      "OPENBLAS_NUM_THREADS": "1"
+    }
+  },
+  "prepared_case": "/Users/maxime/.codex/worktrees/993-carrier-revalidation/3dprinting993/work/carrier-process-20261017/ener-increment-convergence-001/case",
+  "prepared_deck_sha256": "d1dc2403a42b53aa467763e9896b0cabcb95c64bec52eb65e349495fef73885e",
+  "prepared_plan_sha256": "49062a6728a22a2ac6f2569e8d7b9ee6d982fba60659e79e7e068bf29e0ea9b8",
+  "expected_thresholds": {
+    "ENER_relative_to_gross": 0.001,
+    "Piola_relative_to_gross": 0.0001,
+    "maximum_measured_PEEQ": 0.04698042567140203
+  },
+  "parser_scope": {
+    "analyze_plastic900": "Loops over all sorted states; load factor t for loading and 2-t for unloading; no fixed sixteen-state limit.",
+    "audit_finite_work": "Loops over all sorted states with the same force-factor convention; no fixed sixteen-state limit.",
+    "historical_bind_carrier_constitutive_evidence": "Hard-coded sixteen-state binding remains unchanged and must not be used to promote this experiment."
+  },
+  "proposed_new_Docker_container_name": "carrier-ener-convergence-ce83ee772094",
+  "historical_container_creation_argv": [
+    "/usr/local/bin/docker",
+    "run",
+    "-d",
+    "--name",
+    "carrier-plastic900-8dd063157e6c",
+    "--network",
+    "none",
+    "--cpus",
+    "1",
+    "--memory",
+    "6g",
+    "--memory-swap",
+    "6g",
+    "--pids-limit",
+    "128",
+    "--tmpfs",
+    "/tmp:rw,size=512m",
+    "--entrypoint",
+    "/bin/sleep",
+    "sha256:c9772ae9223a4f800a3ceda77d2494e67e34c8526eb0f204b3c8e052266641b4",
+    "infinity"
+  ],
+  "historical_solver_argv": [
+    "/usr/local/bin/docker",
+    "exec",
+    "-w",
+    "/study/carrier-design-20261016/luo-flat1-verified-nlgeom-unload-mesh9",
+    "-e",
+    "OMP_NUM_THREADS=1",
+    "-e",
+    "CCX_NPROC_RESULTS=1",
+    "-e",
+    "OPENBLAS_NUM_THREADS=1",
+    "carrier-plastic900-8dd063157e6c",
+    "timeout",
+    "1800",
+    "ccx",
+    "-i",
+    "combined-spring-1000-luo-flat1-NLGEOM"
+  ],
+  "proposed_Docker_solver_argv_if_fallback_later_approved": [
+    "/usr/local/bin/docker",
+    "exec",
+    "-w",
+    "/study/ener-increment-convergence-001/case",
+    "-e",
+    "OMP_NUM_THREADS=1",
+    "-e",
+    "CCX_NPROC_RESULTS=1",
+    "-e",
+    "OPENBLAS_NUM_THREADS=1",
+    "carrier-ener-convergence-ce83ee772094",
+    "timeout",
+    "3600",
+    "ccx",
+    "-i",
+    "combined-spring-1000-luo-flat1-NLGEOM"
+  ],
+  "future_runtime_preconditions": [
+    "Root review and explicit execution decision.",
+    "Choose and attest host, architecture, binary, libraries and isolation before execution.",
+    "For Docker fallback: new owned container, pinned image and binary SHA; use isolated execute_3600 helper, never the old helper with a 3600 argument.",
+    "Do not use the removed historical container or any current regional generator/watchers."
+  ],
+  "numerical_interpretation": "Refinement may improve the ENER diagnostic; success is not presumed. Keep all failed states and compare like load factors, residual displacement and PEEQ. No material allowable or global admission follows."
+}

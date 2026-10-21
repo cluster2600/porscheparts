@@ -1,0 +1,279 @@
+"""Prepared source010-only trace of the unchanged private skin remapper."""
+import argparse
+from fractions import Fraction as Q
+import hashlib
+import importlib.util
+import inspect
+import json
+import math
+from pathlib import Path
+import sys
+
+HERE = Path(__file__).resolve().parent
+ROOT = HERE.parents[2]
+
+
+def sha(path):
+    h = hashlib.sha256()
+    with Path(path).open('rb') as stream:
+        for block in iter(lambda: stream.read(1048576), b''):
+            h.update(block)
+    return h.hexdigest()
+
+
+def canonical(value):
+    return hashlib.sha256(json.dumps(value, sort_keys=True, separators=(',', ':'), allow_nan=False).encode()).hexdigest()
+
+
+def write(path, value):
+    with Path(path).open('x') as stream:
+        json.dump(value, stream, indent=2, allow_nan=False)
+        stream.write('\n')
+
+
+def identity(array):
+    return dict(dtype=array.dtype.str, shape=list(array.shape), sha256=hashlib.sha256(array.tobytes()).hexdigest())
+
+
+def branch_for_points(points, mapping):
+    """Use the actual closed call extent; never invert or pick a nearest branch."""
+    points = [tuple(float(c) for c in row) for row in points]
+    mapping = [tuple(float(c) for c in row) for row in mapping]
+    if (not points or any(len(p) != 2 or not all(math.isfinite(c) for c in p) for p in points) or
+            len(mapping) < 2 or any(len(row) != 3 or not all(math.isfinite(c) for c in row) for row in mapping) or
+            any(a[0] >= b[0] for a, b in zip(mapping, mapping[1:]))):
+        raise ValueError('Finite points and a strictly increasing original mapping are required')
+    low, high = min(p[0] for p in points), max(p[0] for p in points)
+    if low >= high:
+        raise ValueError('A positive-width triangulator call is required')
+    matches = [i for i, (a, b) in enumerate(zip(mapping, mapping[1:])) if a[0] <= low and high <= b[0]]
+    if len(matches) != 1:
+        raise ValueError('A triangulator call does not belong to exactly one original affine branch')
+    return matches[0]
+
+
+def capture_remap(module, skin, mapping):
+    """Intercept one private global only; return every original object unchanged."""
+    original = module._triangulate_exact_projected_domain
+    captures = []
+
+    def triangulate(*args, **kwargs):
+        result = original(*args, **kwargs)
+        (points, triangles), _ = result
+        captures.append(dict(points=points.copy(), triangles=triangles.copy(),
+            branch=branch_for_points(points, mapping)))
+        return result
+
+    module._triangulate_exact_projected_domain = triangulate
+    try:
+        mesh, receipt = module.remap(skin, mapping)
+    finally:
+        module._triangulate_exact_projected_domain = original
+    return mesh, receipt, captures
+
+
+def trace_remap(module, skin, mapping, np):
+    """Check the captured parameter provenance against the unchanged result."""
+    mesh, receipt, captures = capture_remap(module, skin, mapping)
+    if not captures:
+        raise ValueError('The original remapper returned no triangulator calls')
+    points, branches, faces, worlds, calls = [], [], [], [], []
+    vertex_cursor = face_cursor = 0
+    maximum_error_squared = Q(0)
+    for call_index, call in enumerate(captures):
+        tz, triangles, branch = call['points'], call['triangles'], call['branch']
+        if (tz.dtype != np.float64 or tz.ndim != 2 or tz.shape[1] != 2 or not np.isfinite(tz).all() or
+                triangles.dtype.kind not in 'iu' or triangles.ndim != 2 or triangles.shape[1] != 3 or
+                np.any(triangles < 0) or np.any(triangles >= len(tz))):
+            raise ValueError('A captured triangulation has invalid retained arrays')
+        left, right = mapping[branch, 0], mapping[branch+1, 0]
+        fraction = (tz[:, 0]-left)/(right-left)
+        xy = mapping[branch, 1:]+fraction[:, None]*(mapping[branch+1, 1:]-mapping[branch, 1:])
+        first, last = tz[:, 0] == left, tz[:, 0] == right
+        xy[first] = mapping[branch, 1:]
+        xy[last] = mapping[branch+1, 1:]
+        world = np.column_stack([xy, tz[:, 1]])
+        # Reproduce the existing bound, without enlarging it or treating its
+        # floating evaluation as an exact mapping. Actual errors are rational.
+        u = np.finfo(float).eps/2
+        gamma8 = 8*u/(1-8*u)
+        errors = gamma8*np.linalg.norm(abs(mapping[branch, 1:])+abs(fraction[:, None])*
+            (abs(mapping[branch, 1:])+abs(mapping[branch+1, 1:])), axis=1)
+        errors[first | last] = 0.
+        a, b = [tuple(Q(float(c)) for c in row) for row in mapping[branch:branch+2]]
+        for param, actual, inherited_bound in zip(tz, world, errors):
+            t, z = (Q(float(c)) for c in param)
+            f = (t-a[0])/(b[0]-a[0])
+            ideal = tuple(a[k]+f*(b[k]-a[k]) for k in (1, 2))+(z,)
+            squared = sum((Q(float(c))-q)**2 for c, q in zip(actual, ideal))
+            if not math.isfinite(float(inherited_bound)) or squared > Q(float(inherited_bound))**2:
+                raise ValueError('An actual rational mapping error exceeds the unchanged inherited gamma8 bound')
+            maximum_error_squared = max(maximum_error_squared, squared)
+        points.append(tz)
+        branches.append(np.full(len(tz), branch, dtype=np.int64))
+        faces.append(triangles+vertex_cursor)
+        worlds.append(world)
+        calls.append(dict(call_index=call_index, branch_index=branch,
+            original_mapping_rows=mapping[branch:branch+2].tolist(),
+            vertex_range=[vertex_cursor, vertex_cursor+len(tz)],
+            raw_face_range=[face_cursor, face_cursor+len(triangles)],
+            points_tz=identity(tz), triangles=identity(triangles)))
+        vertex_cursor += len(tz)
+        face_cursor += len(triangles)
+    parameters, vertex_branches = np.vstack(points), np.concatenate(branches)
+    rebuilt_world, raw_faces = np.vstack(worlds), np.vstack(faces)
+    if (mesh.vertices.dtype != np.float64 or mesh.vertices.shape != rebuilt_world.shape or
+            mesh.vertices.tobytes() != rebuilt_world.tobytes()):
+        raise ValueError('Captured parameter forward mapping is not byte-identical to original vertices')
+    cleanup = receipt['exact_zero_area_cleanup']
+    removed = cleanup['exact_zero_area_removed_faces']
+    if (cleanup['input_faces'] != len(raw_faces) or cleanup['output_faces'] != len(mesh.faces) or
+            removed != sorted(set(removed)) or any(type(i) is not int or not 0 <= i < len(raw_faces) for i in removed)):
+        raise ValueError('The original exact-zero-area face selection is not bound')
+    keep = np.ones(len(raw_faces), dtype=bool)
+    keep[removed] = False
+    if not np.array_equal(raw_faces[keep], mesh.faces):
+        raise ValueError('The original kept face order does not match the captured triangulations')
+    face_branches = vertex_branches[mesh.faces]
+    if not np.all(face_branches == face_branches[:, :1]):
+        raise ValueError('A retained triangle crosses different original affine calls')
+    proof = dict(schema='unchanged-remap-parameter-trace-1',
+        triangulator_calls=len(calls), vertices=len(parameters), raw_faces=len(raw_faces), kept_faces=len(mesh.faces),
+        original_function_return_objects_preserved=True, private_callback_restored=True,
+        parameter_vertices_in_original_call_order=True, forward_XYZ_bytes_identical=True,
+        raw_to_kept_faces_identical=True, all_retained_faces_have_one_affine_branch=True,
+        exact_zero_area_cleanup=cleanup, maximum_exact_mapping_error_squared_mm2=str(maximum_error_squared),
+        every_actual_error_within_unchanged_original_gamma8_bound=True,
+        gamma8_scope='Existing peripheral_skins.remap bound, reproduced unchanged; measured rational errors checked without a new epsilon.',
+        vertex_parameters_tz=identity(parameters), vertex_mapping_branch=identity(vertex_branches), calls=calls)
+    return mesh, receipt, parameters, vertex_branches, proof
+
+
+def verify(plan):
+    if (plan['schema'] != 'source010-original-remap-trace-plan-1' or plan['source_index'] != 10 or
+            plan['skin_component_indices'] != [0, 1] or plan['total_wall_budget_seconds'] != 300 or
+            plan['runtime_expected_sha256'] != 'c22f488f62a19b23d68452db4d3ce09f08cc26f70ca8502e9518e50493d2a64b'):
+        raise ValueError('Only the two retained source010 skin charts may be traced')
+    if any(sha(ROOT/p) != digest for p, digest in plan['files_sha256'].items()):
+        raise ValueError('A frozen trace input or source changed')
+    output = ROOT/plan['output_directory']
+    if output.exists() or any(p.is_symlink() for p in [output, *output.parents]):
+        raise ValueError('The trace destination must be fresh without symlink parents')
+    return dict(status='trace_preflight_passed_no_remap_called', plan_sha256=sha(HERE/'plan.json'),
+        files_sha256=plan['files_sha256'], source_sha256=sha(__file__), AM_imported=False)
+
+
+def private_module(path, name):
+    spec = importlib.util.spec_from_file_location(name, path)
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return module
+
+
+def run(plan, expected):
+    if sha(HERE/'preflight.json') != expected or json.loads((HERE/'preflight.json').read_text()) != verify(plan):
+        raise ValueError('The reviewed trace preflight differs')
+    import numpy as np
+    import shapely
+    source = ROOT/plan['skins_source_directory']
+    saved_path = list(sys.path)
+    try:
+        sys.path.insert(0, str(source))
+        module = private_module(source/'peripheral_skins.py', '_private_original_remap_for_trace')
+        checkpoints = private_module(source/'region_checkpoints.py', '_private_remap_trace_runtime')
+        import zero_area_faces
+        if (Path(inspect.getfile(zero_area_faces.retained_faces)).resolve() != source/'zero_area_faces.py' or
+                Path(inspect.getfile(module._triangulate_exact_projected_domain)).resolve() != ROOT/plan['runtime_triangulator_source']):
+            raise ValueError('A remapping dependency was imported from another source location')
+        runtime_before = checkpoints.runtime_identity()
+        if canonical(runtime_before) != plan['runtime_expected_sha256']:
+            raise ValueError('The retained runtime identity differs')
+        with np.load(ROOT/plan['original_surface'], allow_pickle=False) as data:
+            original = {n:data[n].copy() for n in data.files}
+        with np.load(ROOT/plan['base_surface'], allow_pickle=False) as data:
+            base = {n:data[n].copy() for n in data.files}
+        metadata = json.loads((ROOT/plan['metadata']).read_text())
+        groups = metadata['peripheral_skin']['support_surface_face_groups']
+        pieces, rows = [], []
+        for index in plan['skin_component_indices']:
+            component = metadata['peripheral_skin']['components'][index]
+            selected = [g for g in groups if g['id'] == f'skin-{index}-0']
+            if len(selected) != 1 or len(component['remapping']['material_component_face_ranges']) != 1:
+                raise ValueError('Exactly one retained material group per source010 skin chart is required')
+            group = selected[0]
+            if group['kind'] != 'skin' or group['order'] != 14+index or group['type'] != 0:
+                raise ValueError('The retained skin owner/order/type differs')
+            mapping = np.asarray(group['mapping_t_xy_mm'], dtype=np.float64)
+            if group['mapping_t_xy_mm'] != component['remapping']['mapping_t_xy_mm']:
+                raise ValueError('Retained chart and group mappings differ')
+            wkb = bytes.fromhex(group['component_geometry_wkb_hex'])
+            if hashlib.sha256(wkb).hexdigest() != group['component_geometry_sha256']:
+                raise ValueError('Retained material WKB identity differs')
+            skin = shapely.from_wkb(wkb)
+            if skin.is_empty or not skin.is_valid or skin.area <= 0:
+                raise ValueError('The original skin material must be valid and nonempty')
+            mesh, receipt, tz, branches, proof = trace_remap(module, skin, mapping, np)
+            if receipt != component['remapping']:
+                raise ValueError('The original remapping receipt is not exactly reproduced')
+            first, last = group['face_range']
+            if last-first != len(mesh.faces):
+                raise ValueError('Retained owner and original remap face counts differ')
+            # An integer index translation, checked on every face and every
+            # vertex, establishes ancestry. No coordinate nearest lookup/weld.
+            differences = original['faces'][first:last]-mesh.faces
+            offset = int(differences.flat[0])
+            if offset < 0 or not np.all(differences == offset):
+                raise ValueError('The retained chart does not have one exact global vertex offset')
+            ids = np.arange(offset, offset+len(mesh.vertices), dtype=np.int64)
+            if (ids[-1] >= len(original['vertices']) or
+                    original['vertices'][ids].tobytes() != mesh.vertices.tobytes() or
+                    not np.array_equal(original['faces'][first:last], base['faces'][first:last]) or
+                    original['vertices'].tobytes() != base['vertices'].tobytes() or
+                    original['order'][first:last].tobytes() != base['order'][first:last].tobytes() or
+                    original['type'][first:last].tobytes() != base['type'][first:last].tobytes()):
+                raise ValueError('The retained/candidate skin arrays are not byte-identical to the traced original')
+            if not np.all(original['order'][first:last] == group['order']) or not np.all(original['type'][first:last] == group['type']):
+                raise ValueError('The original face attributes differ from their retained owner')
+            pieces.append(dict(global_vertex_ids=ids, vertex_parameters_tz=tz, vertex_mapping_branch=branches,
+                skin_component_index=np.full(len(ids), index, dtype=np.int64)))
+            rows.append(dict(skin_component_index=index, owner=group['id'], global_face_range=[first,last],
+                global_vertex_offset=offset, whole_material_wkb_hex=skin.wkb_hex,
+                whole_material_sha256=group['component_geometry_sha256'], mapping_t_xy_mm=mapping.tolist(),
+                remapping_receipt=receipt, trace_proof=proof))
+        arrays = {key:np.concatenate([piece[key] for piece in pieces]) for key in pieces[0]}
+        if len(np.unique(arrays['global_vertex_ids'])) != len(arrays['global_vertex_ids']):
+            raise ValueError('Skin vertex IDs are not globally unique')
+        runtime_after = checkpoints.runtime_identity()
+        if runtime_before != runtime_after or any(sha(ROOT/p) != digest for p,digest in plan['files_sha256'].items()):
+            raise ValueError('A trace input, source or runtime changed')
+        output = ROOT/plan['output_directory']
+        output.mkdir(exist_ok=False)
+        np.savez_compressed(output/'skin-parameters.npz', **arrays)
+        with np.load(output/'skin-parameters.npz', allow_pickle=False) as data:
+            if set(data.files) != set(arrays) or any(identity(data[key]) != identity(value) for key,value in arrays.items()):
+                raise ValueError('The parameter trace NPZ roundtrip differs')
+        assessment = dict(status='original_skin_parameter_trace_verified_no_repair', source_index=10,
+            source_sha256=sha(__file__), plan_sha256=sha(HERE/'plan.json'), preflight_sha256=expected,
+            original_surface_sha256=sha(ROOT/plan['original_surface']), base_surface_sha256=sha(ROOT/plan['base_surface']),
+            metadata_sha256=sha(ROOT/plan['metadata']), trace_npz_sha256=sha(output/'skin-parameters.npz'),
+            arrays={key:identity(value) for key,value in arrays.items()}, rows=rows,
+            runtime_before_sha256=canonical(runtime_before), runtime_after_sha256=canonical(runtime_after),
+            files_sha256_before=plan['files_sha256'], files_sha256_after={p:sha(ROOT/p) for p in plan['files_sha256']},
+            geometry_modified=False, remap_algorithm_modified=False, global_admission=False)
+        write(output/'assessment.json', assessment)
+        return assessment
+    finally:
+        sys.path[:] = saved_path
+
+
+if __name__ == '__main__':
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('mode', choices=('preflight', 'run'))
+    parser.add_argument('--preflight-sha256')
+    args = parser.parse_args()
+    plan = json.loads((HERE/'plan.json').read_text())
+    if args.mode == 'preflight':
+        write(HERE/'preflight.json', verify(plan))
+    else:
+        result = run(plan, args.preflight_sha256)
+        print(json.dumps({key:result[key] for key in ('status','trace_npz_sha256','geometry_modified','global_admission')}))

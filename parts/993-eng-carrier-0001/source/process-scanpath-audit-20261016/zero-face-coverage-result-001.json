@@ -1,0 +1,6784 @@
+{
+  "status": "passed",
+  "scope": "Exact set coverage of the retained IEEE degenerate face geometry by nondegenerate triangles of the same material group. No face removed and no coordinate moved.",
+  "interpretation": "Removing just these zero-area faces would preserve the encoded surface point set; this does not establish preservation of intrinsic chart area, mesh topology, contacts or exposure admission.",
+  "input_sha256": {
+    "work/carrier-process-20261016/real-support-source-008-012/support.npz": "c1a498896bb5183fdfe499ca8fb95d626ebf615a1912b234448c5b00284def4c",
+    "work/carrier-process-20261016/real-support-source-008-012/geometry-assessment.json": "e9508e876386866f34dfb3a407b3833828b1a66f28be77c8835c6bee547f61db",
+    "work/carrier-support-zeroarea-20261016/source008-012/diagnosis.json": "1d56986fefbf9b4fb577c55d81d243fe194b1c7078b9327f6e1e85a3433eaae0",
+    "parts/993-eng-carrier-0001/source/process-scanpath-audit-20261016/exact_zero_face_coverage.py": "910151f42cd028e780619bb3e863d6fec2672331e753ffd9b26b6220f8f5fec3",
+    "tests/test_carrier_zero_face_coverage.py": "ff17be239a0884a041e2209dfdef8cedd29699809cf765a3b9c2ab0f41c3e60c",
+    "work/carrier-support-zeroarea-20261016/source008-012/coverage_probe.py": "a83d627ba97e87508ed52b58dbedfeced2ea317fd0448f1ce1b435bf08b45814"
+  },
+  "candidate_filter": "Closed AABB overlap of exact IEEE coordinate minima/maxima only.",
+  "exact_predicate": "Rational plane intersection followed by three closed projected half-planes; exact union of all closed parameter intervals on each entire segment, or exact point containment.",
+  "zero_faces": 44,
+  "covered_zero_faces": 44,
+  "uncovered_zero_faces": 0,
+  "covered_by_kind": {
+    "grid": 18,
+    "skin": 26
+  },
+  "uncovered_global_face_indices": [],
+  "all_inputs_and_sources_unchanged": true,
+  "groups": [
+    {
+      "status": "passed",
+      "scope": "Encoded IEEE surface point-set coverage within this supplied group only; no change to geometry or admission.",
+      "method": "Exact rational segment/triangle intersections, closed half-plane clipping and full interval union; AABB candidates only.",
+      "source_sha256": "910151f42cd028e780619bb3e863d6fec2672331e753ffd9b26b6220f8f5fec3",
+      "input_arrays_sha256": "20283b90bdac911bb93ea6a7161a2af87f2befcb70b7d20a03973d92037dab4d",
+      "faces": 197,
+      "degenerate_faces": 1,
+      "all_degenerate_face_geometry_covered": true,
+      "per_face": [
+        {
+          "face_index": 127,
+          "geometry": "closed_segment",
+          "endpoints_exact_ratios": [
+            [
+              [
+                "1317470508348037",
+                "35184372088832"
+              ],
+              [
+                "1086106382010155",
+                "17592186044416"
+              ],
+              [
+                "85",
+                "4"
+              ]
+            ],
+            [
+              [
+                "1317470508348037",
+                "35184372088832"
+              ],
+              [
+                "1130086847121195",
+                "17592186044416"
+              ],
+              [
+                "75",
+                "4"
+              ]
+            ]
+          ],
+          "candidate_triangles": 15,
+          "nonzero_covering_triangle_intersections": [
+            {
+              "face_index": 6,
+              "closed_parameter_interval": [
+                [
+                  "0",
+                  "1"
+                ],
+                [
+                  "0",
+                  "1"
+                ]
+              ],
+              "global_face_index": 304
+            },
+            {
+              "face_index": 7,
+              "closed_parameter_interval": [
+                [
+                  "0",
+                  "1"
+                ],
+                [
+                  "0",
+                  "1"
+                ]
+              ],
+              "global_face_index": 305
+            },
+            {
+              "face_index": 108,
+              "closed_parameter_interval": [
+                [
+                  "99501404267217",
+                  "351843720888320"
+                ],
+                [
+                  "99501404267217",
+                  "351843720888320"
+                ]
+              ],
+              "global_face_index": 406
+            },
+            {
+              "face_index": 126,
+              "closed_parameter_interval": [
+                [
+                  "0",
+                  "1"
+                ],
+                [
+                  "99501404267217",
+                  "351843720888320"
+                ]
+              ],
+              "global_face_index": 424
+            },
+            {
+              "face_index": 140,
+              "closed_parameter_interval": [
+                [
+                  "0",
+                  "1"
+                ],
+                [
+                  "1",
+                  "1"
+                ]
+              ],
+              "global_face_index": 438
+            },
+            {
+              "face_index": 141,
+              "closed_parameter_interval": [
+                [
+                  "1",
+                  "1"
+                ],
+                [
+                  "1",
+                  "1"
+                ]
+              ],
+              "global_face_index": 439
+            },
+            {
+              "face_index": 152,
+              "closed_parameter_interval": [
+                [
+                  "1",
+                  "1"
+                ],
+                [
+                  "1",
+                  "1"
+                ]
+              ],
+              "global_face_index": 450
+            }
+          ],
+          "union_closed_parameter_intervals": [
+            [
+              [
+                "0",
+                "1"
+              ],
+              [
+                "1",
+                "1"
+              ]
+            ]
+          ],
+          "entire_encoded_geometry_covered": true,
+          "global_face_index": 425
+        }
+      ],
+      "group_id": "grid-0-3-1",
+      "kind": "grid",
+      "face_range": [
+        298,
+        495
+      ]
+    },
+    {
+      "status": "passed",
+      "scope": "Encoded IEEE surface point-set coverage within this supplied group only; no change to geometry or admission.",
+      "method": "Exact rational segment/triangle intersections, closed half-plane clipping and full interval union; AABB candidates only.",
+      "source_sha256": "910151f42cd028e780619bb3e863d6fec2672331e753ffd9b26b6220f8f5fec3",
+      "input_arrays_sha256": "c72f4d627dce02b41529da2c1d9dbe1eb754ec751a7b3df26aa942c7ea1e1fe5",
+      "faces": 221,
+      "degenerate_faces": 1,
+      "all_degenerate_face_geometry_covered": true,
+      "per_face": [
+        {
+          "face_index": 116,
+          "geometry": "closed_segment",
+          "endpoints_exact_ratios": [
+            [
+              [
+                "2021157950124677",
+                "35184372088832"
+              ],
+              [
+                "734262661121835",
+                "17592186044416"
+              ],
+              [
+                "85",
+                "4"
+              ]
+            ],
+            [
+              [
+                "2021157950124677",
+                "35184372088832"
+              ],
+              [
+                "778243126232875",
+                "17592186044416"
+              ],
+              [
+                "75",
+                "4"
+              ]
+            ]
+          ],
+          "candidate_triangles": 14,
+          "nonzero_covering_triangle_intersections": [
+            {
+              "face_index": 26,
+              "closed_parameter_interval": [
+                [
+                  "0",
+                  "1"
+                ],
+                [
+                  "0",
+                  "1"
+                ]
+              ],
+              "global_face_index": 4663
+            },
+            {
+              "face_index": 29,
+              "closed_parameter_interval": [
+                [
+                  "0",
+                  "1"
+                ],
+                [
+                  "0",
+                  "1"
+                ]
+              ],
+              "global_face_index": 4666
+            },
+            {
+              "face_index": 100,
+              "closed_parameter_interval": [
+                [
+                  "99501404267217",
+                  "351843720888320"
+                ],
+                [
+                  "99501404267217",
+                  "351843720888320"
+                ]
+              ],
+              "global_face_index": 4737
+            },
+            {
+              "face_index": 115,
+              "closed_parameter_interval": [
+                [
+                  "0",
+                  "1"
+                ],
+                [
+                  "99501404267217",
+                  "351843720888320"
+                ]
+              ],
+              "global_face_index": 4752
+            },
+            {
+              "face_index": 117,
+              "closed_parameter_interval": [
+                [
+                  "1",
+                  "1"
+                ],
+                [
+                  "1",
+                  "1"
+                ]
+              ],
+              "global_face_index": 4754
+            },
+            {
+              "face_index": 118,
+              "closed_parameter_interval": [
+                [
+                  "1",
+                  "1"
+                ],
+                [
+                  "1",
+                  "1"
+                ]
+              ],
+              "global_face_index": 4755
+            },
+            {
+              "face_index": 128,
+              "closed_parameter_interval": [
+                [
+                  "0",
+                  "1"
+                ],
+                [
+                  "1",
+                  "1"
+                ]
+              ],
+              "global_face_index": 4765
+            },
+            {
+              "face_index": 129,
+              "closed_parameter_interval": [
+                [
+                  "1",
+                  "1"
+                ],
+                [
+                  "1",
+                  "1"
+                ]
+              ],
+              "global_face_index": 4766
+            }
+          ],
+          "union_closed_parameter_intervals": [
+            [
+              [
+                "0",
+                "1"
+              ],
+              [
+                "1",
+                "1"
+              ]
+            ]
+          ],
+          "entire_encoded_geometry_covered": true,
+          "global_face_index": 4753
+        }
+      ],
+      "group_id": "grid-0-7-2",
+      "kind": "grid",
+      "face_range": [
+        4637,
+        4858
+      ]
+    },
+    {
+      "status": "passed",
+      "scope": "Encoded IEEE surface point-set coverage within this supplied group only; no change to geometry or admission.",
+      "method": "Exact rational segment/triangle intersections, closed half-plane clipping and full interval union; AABB candidates only.",
+      "source_sha256": "910151f42cd028e780619bb3e863d6fec2672331e753ffd9b26b6220f8f5fec3",
+      "input_arrays_sha256": "b93787313046038c1b4d061712860fd24fabd6a7cc9e2a9a1e7529664ff9f435",
+      "faces": 263,
+      "degenerate_faces": 7,
+      "all_degenerate_face_geometry_covered": true,
+      "per_face": [
+        {
+          "face_index": 29,
+          "geometry": "closed_segment",
+          "endpoints_exact_ratios": [
+            [
+              [
+                "3076689112789637",
+                "35184372088832"
+              ],
+              [
+                "6251277757766959",
+                "140737488355328"
+              ],
+              [
+                "5983595054915125",
+                "140737488355328"
+              ]
+            ],
+            [
+              [
+                "3076689112789637",
+                "35184372088832"
+              ],
+              [
+                "3212473909198717",
+                "70368744177664"
+              ],
+              [
+                "175",
+                "4"
+              ]
+            ]
+          ],
+          "candidate_triangles": 9,
+          "nonzero_covering_triangle_intersections": [
+            {
+              "face_index": 28,
+              "closed_parameter_interval": [
+                [
+                  "0",
+                  "1"
+                ],
+                [
+                  "0",
+                  "1"
+                ]
+              ],
+              "global_face_index": 12727
+            },
+            {
+              "face_index": 31,
+              "closed_parameter_interval": [
+                [
+                  "74168656363258",
+                  "173670060630475"
+                ],
+                [
+                  "1",
+                  "1"
+                ]
+              ],
+              "global_face_index": 12730
+            },
+            {
+              "face_index": 32,
+              "closed_parameter_interval": [
+                [
+                  "74168656363258",
+                  "173670060630475"
+                ],
+                [
+                  "74168656363258",
+                  "173670060630475"
+                ]
+              ],
+              "global_face_index": 12731
+            },
+            {
+              "face_index": 105,
+              "closed_parameter_interval": [
+                [
+                  "0",
+                  "1"
+                ],
+                [
+                  "0",
+                  "1"
+                ]
+              ],
+              "global_face_index": 12804
+            },
+            {
+              "face_index": 124,
+              "closed_parameter_interval": [
+                [
+                  "0",
+                  "1"
+                ],
+                [
+                  "0",
+                  "1"
+                ]
+              ],
+              "global_face_index": 12823
+            },
+            {
+              "face_index": 125,
+              "closed_parameter_interval": [
+                [
+                  "0",
+                  "1"
+                ],
+                [
+                  "1",
+                  "1"
+                ]
+              ],
+              "global_face_index": 12824
+            }
+          ],
+          "union_closed_parameter_intervals": [
+            [
+              [
+                "0",
+                "1"
+              ],
+              [
+                "1",
+                "1"
+              ]
+            ]
+          ],
+          "entire_encoded_geometry_covered": true,
+          "global_face_index": 12728
+        },
+        {
+          "face_index": 30,
+          "geometry": "closed_segment",
+          "endpoints_exact_ratios": [
+            [
+              [
+                "3076689112789637",
+                "35184372088832"
+              ],
+              [
+                "6251277757766959",
+                "140737488355328"
+              ],
+              [
+                "5983595054915125",
+                "140737488355328"
+              ]
+            ],
+            [
+              [
+                "3076689112789637",
+                "35184372088832"
+              ],
+              [
+                "6677290135018537",
+                "140737488355328"
+              ],
+              [
+                "6409607432166703",
+                "140737488355328"
+              ]
+            ]
+          ],
+          "candidate_triangles": 15,
+          "nonzero_covering_triangle_intersections": [
+            {
+              "face_index": 28,
+              "closed_parameter_interval": [
+                [
+                  "0",
+                  "1"
+                ],
+                [
+                  "0",
+                  "1"
+                ]
+              ],
+              "global_face_index": 12727
+            },
+            {
+              "face_index": 31,
+              "closed_parameter_interval": [
+                [
+                  "37084328181629",
+                  "213006188625789"
+                ],
+                [
+                  "173670060630475",
+                  "426012377251578"
+                ]
+              ],
+              "global_face_index": 12730
+            },
+            {
+              "face_index": 32,
+              "closed_parameter_interval": [
+                [
+                  "37084328181629",
+                  "213006188625789"
+                ],
+                [
+                  "37084328181629",
+                  "213006188625789"
+                ]
+              ],
+              "global_face_index": 12731
+            },
+            {
+              "face_index": 105,
+              "closed_parameter_interval": [
+                [
+                  "0",
+                  "1"
+                ],
+                [
+                  "0",
+                  "1"
+                ]
+              ],
+              "global_face_index": 12804
+            },
+            {
+              "face_index": 124,
+              "closed_parameter_interval": [
+                [
+                  "0",
+                  "1"
+                ],
+                [
+                  "0",
+                  "1"
+                ]
+              ],
+              "global_face_index": 12823
+            },
+            {
+              "face_index": 125,
+              "closed_parameter_interval": [
+                [
+                  "0",
+                  "1"
+                ],
+                [
+                  "1",
+                  "1"
+                ]
+              ],
+              "global_face_index": 12824
+            },
+            {
+              "face_index": 136,
+              "closed_parameter_interval": [
+                [
+                  "1",
+                  "1"
+                ],
+                [
+                  "1",
+                  "1"
+                ]
+              ],
+              "global_face_index": 12835
+            },
+            {
+              "face_index": 137,
+              "closed_parameter_interval": [
+                [
+                  "1",
+                  "1"
+                ],
+                [
+                  "1",
+                  "1"
+                ]
+              ],
+              "global_face_index": 12836
+            }
+          ],
+          "union_closed_parameter_intervals": [
+            [
+              [
+                "0",
+                "1"
+              ],
+              [
+                "1",
+                "1"
+              ]
+            ]
+          ],
+          "entire_encoded_geometry_covered": true,
+          "global_face_index": 12729
+        },
+        {
+          "face_index": 39,
+          "geometry": "closed_segment",
+          "endpoints_exact_ratios": [
+            [
+              [
+                "3076689112789637",
+                "35184372088832"
+              ],
+              [
+                "6251277757766959",
+                "140737488355328"
+              ],
+              [
+                "5279907613138485",
+                "140737488355328"
+              ]
+            ],
+            [
+              [
+                "3076689112789637",
+                "35184372088832"
+              ],
+              [
+                "3212473909198717",
+                "70368744177664"
+              ],
+              [
+                "155",
+                "4"
+              ]
+            ]
+          ],
+          "candidate_triangles": 10,
+          "nonzero_covering_triangle_intersections": [
+            {
+              "face_index": 38,
+              "closed_parameter_interval": [
+                [
+                  "0",
+                  "1"
+                ],
+                [
+                  "0",
+                  "1"
+                ]
+              ],
+              "global_face_index": 12737
+            },
+            {
+              "face_index": 41,
+              "closed_parameter_interval": [
+                [
+                  "74168656363258",
+                  "173670060630475"
+                ],
+                [
+                  "1",
+                  "1"
+                ]
+              ],
+              "global_face_index": 12740
+            },
+            {
+              "face_index": 42,
+              "closed_parameter_interval": [
+                [
+                  "74168656363258",
+                  "173670060630475"
+                ],
+                [
+                  "74168656363258",
+                  "173670060630475"
+                ]
+              ],
+              "global_face_index": 12741
+            },
+            {
+              "face_index": 107,
+              "closed_parameter_interval": [
+                [
+                  "0",
+                  "1"
+                ],
+                [
+                  "0",
+                  "1"
+                ]
+              ],
+              "global_face_index": 12806
+            },
+            {
+              "face_index": 108,
+              "closed_parameter_interval": [
+                [
+                  "0",
+                  "1"
+                ],
+                [
+                  "1",
+                  "1"
+                ]
+              ],
+              "global_face_index": 12807
+            }
+          ],
+          "union_closed_parameter_intervals": [
+            [
+              [
+                "0",
+                "1"
+              ],
+              [
+                "1",
+                "1"
+              ]
+            ]
+          ],
+          "entire_encoded_geometry_covered": true,
+          "global_face_index": 12738
+        },
+        {
+          "face_index": 40,
+          "geometry": "closed_segment",
+          "endpoints_exact_ratios": [
+            [
+              [
+                "3076689112789637",
+                "35184372088832"
+              ],
+              [
+                "6251277757766959",
+                "140737488355328"
+              ],
+              [
+                "5279907613138485",
+                "140737488355328"
+              ]
+            ],
+            [
+              [
+                "3076689112789637",
+                "35184372088832"
+              ],
+              [
+                "6677290135018537",
+                "140737488355328"
+              ],
+              [
+                "5705919990390063",
+                "140737488355328"
+              ]
+            ]
+          ],
+          "candidate_triangles": 14,
+          "nonzero_covering_triangle_intersections": [
+            {
+              "face_index": 38,
+              "closed_parameter_interval": [
+                [
+                  "0",
+                  "1"
+                ],
+                [
+                  "0",
+                  "1"
+                ]
+              ],
+              "global_face_index": 12737
+            },
+            {
+              "face_index": 41,
+              "closed_parameter_interval": [
+                [
+                  "37084328181629",
+                  "213006188625789"
+                ],
+                [
+                  "173670060630475",
+                  "426012377251578"
+                ]
+              ],
+              "global_face_index": 12740
+            },
+            {
+              "face_index": 42,
+              "closed_parameter_interval": [
+                [
+                  "37084328181629",
+                  "213006188625789"
+                ],
+                [
+                  "37084328181629",
+                  "213006188625789"
+                ]
+              ],
+              "global_face_index": 12741
+            },
+            {
+              "face_index": 107,
+              "closed_parameter_interval": [
+                [
+                  "0",
+                  "1"
+                ],
+                [
+                  "0",
+                  "1"
+                ]
+              ],
+              "global_face_index": 12806
+            },
+            {
+              "face_index": 108,
+              "closed_parameter_interval": [
+                [
+                  "0",
+                  "1"
+                ],
+                [
+                  "1",
+                  "1"
+                ]
+              ],
+              "global_face_index": 12807
+            },
+            {
+              "face_index": 126,
+              "closed_parameter_interval": [
+                [
+                  "1",
+                  "1"
+                ],
+                [
+                  "1",
+                  "1"
+                ]
+              ],
+              "global_face_index": 12825
+            },
+            {
+              "face_index": 127,
+              "closed_parameter_interval": [
+                [
+                  "1",
+                  "1"
+                ],
+                [
+                  "1",
+                  "1"
+                ]
+              ],
+              "global_face_index": 12826
+            }
+          ],
+          "union_closed_parameter_intervals": [
+            [
+              [
+                "0",
+                "1"
+              ],
+              [
+                "1",
+                "1"
+              ]
+            ]
+          ],
+          "entire_encoded_geometry_covered": true,
+          "global_face_index": 12739
+        },
+        {
+          "face_index": 49,
+          "geometry": "closed_segment",
+          "endpoints_exact_ratios": [
+            [
+              [
+                "3076689112789637",
+                "35184372088832"
+              ],
+              [
+                "6251277757766959",
+                "140737488355328"
+              ],
+              [
+                "4576220171361845",
+                "140737488355328"
+              ]
+            ],
+            [
+              [
+                "3076689112789637",
+                "35184372088832"
+              ],
+              [
+                "3212473909198717",
+                "70368744177664"
+              ],
+              [
+                "135",
+                "4"
+              ]
+            ]
+          ],
+          "candidate_triangles": 12,
+          "nonzero_covering_triangle_intersections": [
+            {
+              "face_index": 48,
+              "closed_parameter_interval": [
+                [
+                  "0",
+                  "1"
+                ],
+                [
+                  "0",
+                  "1"
+                ]
+              ],
+              "global_face_index": 12747
+            },
+            {
+              "face_index": 51,
+              "closed_parameter_interval": [
+                [
+                  "74168656363258",
+                  "173670060630475"
+                ],
+                [
+                  "1",
+                  "1"
+                ]
+              ],
+              "global_face_index": 12750
+            },
+            {
+              "face_index": 52,
+              "closed_parameter_interval": [
+                [
+                  "74168656363258",
+                  "173670060630475"
+                ],
+                [
+                  "74168656363258",
+                  "173670060630475"
+                ]
+              ],
+              "global_face_index": 12751
+            },
+            {
+              "face_index": 110,
+              "closed_parameter_interval": [
+                [
+                  "0",
+                  "1"
+                ],
+                [
+                  "0",
+                  "1"
+                ]
+              ],
+              "global_face_index": 12809
+            },
+            {
+              "face_index": 111,
+              "closed_parameter_interval": [
+                [
+                  "0",
+                  "1"
+                ],
+                [
+                  "1",
+                  "1"
+                ]
+              ],
+              "global_face_index": 12810
+            }
+          ],
+          "union_closed_parameter_intervals": [
+            [
+              [
+                "0",
+                "1"
+              ],
+              [
+                "1",
+                "1"
+              ]
+            ]
+          ],
+          "entire_encoded_geometry_covered": true,
+          "global_face_index": 12748
+        },
+        {
+          "face_index": 50,
+          "geometry": "closed_segment",
+          "endpoints_exact_ratios": [
+            [
+              [
+                "3076689112789637",
+                "35184372088832"
+              ],
+              [
+                "6251277757766959",
+                "140737488355328"
+              ],
+              [
+                "4576220171361845",
+                "140737488355328"
+              ]
+            ],
+            [
+              [
+                "3076689112789637",
+                "35184372088832"
+              ],
+              [
+                "6677290135018537",
+                "140737488355328"
+              ],
+              [
+                "5002232548613423",
+                "140737488355328"
+              ]
+            ]
+          ],
+          "candidate_triangles": 16,
+          "nonzero_covering_triangle_intersections": [
+            {
+              "face_index": 48,
+              "closed_parameter_interval": [
+                [
+                  "0",
+                  "1"
+                ],
+                [
+                  "0",
+                  "1"
+                ]
+              ],
+              "global_face_index": 12747
+            },
+            {
+              "face_index": 51,
+              "closed_parameter_interval": [
+                [
+                  "37084328181629",
+                  "213006188625789"
+                ],
+                [
+                  "173670060630475",
+                  "426012377251578"
+                ]
+              ],
+              "global_face_index": 12750
+            },
+            {
+              "face_index": 52,
+              "closed_parameter_interval": [
+                [
+                  "37084328181629",
+                  "213006188625789"
+                ],
+                [
+                  "37084328181629",
+                  "213006188625789"
+                ]
+              ],
+              "global_face_index": 12751
+            },
+            {
+              "face_index": 110,
+              "closed_parameter_interval": [
+                [
+                  "0",
+                  "1"
+                ],
+                [
+                  "0",
+                  "1"
+                ]
+              ],
+              "global_face_index": 12809
+            },
+            {
+              "face_index": 111,
+              "closed_parameter_interval": [
+                [
+                  "0",
+                  "1"
+                ],
+                [
+                  "1",
+                  "1"
+                ]
+              ],
+              "global_face_index": 12810
+            },
+            {
+              "face_index": 128,
+              "closed_parameter_interval": [
+                [
+                  "1",
+                  "1"
+                ],
+                [
+                  "1",
+                  "1"
+                ]
+              ],
+              "global_face_index": 12827
+            },
+            {
+              "face_index": 129,
+              "closed_parameter_interval": [
+                [
+                  "1",
+                  "1"
+                ],
+                [
+                  "1",
+                  "1"
+                ]
+              ],
+              "global_face_index": 12828
+            }
+          ],
+          "union_closed_parameter_intervals": [
+            [
+              [
+                "0",
+                "1"
+              ],
+              [
+                "1",
+                "1"
+              ]
+            ]
+          ],
+          "entire_encoded_geometry_covered": true,
+          "global_face_index": 12749
+        },
+        {
+          "face_index": 65,
+          "geometry": "closed_segment",
+          "endpoints_exact_ratios": [
+            [
+              [
+                "3076689112789637",
+                "35184372088832"
+              ],
+              [
+                "6325446414130217",
+                "140737488355328"
+              ],
+              [
+                "3442016752706257",
+                "140737488355328"
+              ]
+            ],
+            [
+              [
+                "3076689112789637",
+                "35184372088832"
+              ],
+              [
+                "6677290135018537",
+                "140737488355328"
+              ],
+              [
+                "3090173031817937",
+                "140737488355328"
+              ]
+            ]
+          ],
+          "candidate_triangles": 11,
+          "nonzero_covering_triangle_intersections": [
+            {
+              "face_index": 64,
+              "closed_parameter_interval": [
+                [
+                  "0",
+                  "1"
+                ],
+                [
+                  "99501404267217",
+                  "351843720888320"
+                ]
+              ],
+              "global_face_index": 12763
+            },
+            {
+              "face_index": 140,
+              "closed_parameter_interval": [
+                [
+                  "0",
+                  "1"
+                ],
+                [
+                  "0",
+                  "1"
+                ]
+              ],
+              "global_face_index": 12839
+            },
+            {
+              "face_index": 157,
+              "closed_parameter_interval": [
+                [
+                  "0",
+                  "1"
+                ],
+                [
+                  "0",
+                  "1"
+                ]
+              ],
+              "global_face_index": 12856
+            },
+            {
+              "face_index": 158,
+              "closed_parameter_interval": [
+                [
+                  "0",
+                  "1"
+                ],
+                [
+                  "0",
+                  "1"
+                ]
+              ],
+              "global_face_index": 12857
+            },
+            {
+              "face_index": 160,
+              "closed_parameter_interval": [
+                [
+                  "0",
+                  "1"
+                ],
+                [
+                  "1",
+                  "1"
+                ]
+              ],
+              "global_face_index": 12859
+            },
+            {
+              "face_index": 161,
+              "closed_parameter_interval": [
+                [
+                  "1",
+                  "1"
+                ],
+                [
+                  "1",
+                  "1"
+                ]
+              ],
+              "global_face_index": 12860
+            },
+            {
+              "face_index": 165,
+              "closed_parameter_interval": [
+                [
+                  "1",
+                  "1"
+                ],
+                [
+                  "1",
+                  "1"
+                ]
+              ],
+              "global_face_index": 12864
+            }
+          ],
+          "union_closed_parameter_intervals": [
+            [
+              [
+                "0",
+                "1"
+              ],
+              [
+                "1",
+                "1"
+              ]
+            ]
+          ],
+          "entire_encoded_geometry_covered": true,
+          "global_face_index": 12764
+        }
+      ],
+      "group_id": "grid-0-13-6",
+      "kind": "grid",
+      "face_range": [
+        12699,
+        12962
+      ]
+    },
+    {
+      "status": "passed",
+      "scope": "Encoded IEEE surface point-set coverage within this supplied group only; no change to geometry or admission.",
+      "method": "Exact rational segment/triangle intersections, closed half-plane clipping and full interval union; AABB candidates only.",
+      "source_sha256": "910151f42cd028e780619bb3e863d6fec2672331e753ffd9b26b6220f8f5fec3",
+      "input_arrays_sha256": "76104f0b495c6e747d7ca1057115921d9627ab596b032a323837e871395c0998",
+      "faces": 394,
+      "degenerate_faces": 1,
+      "all_degenerate_face_geometry_covered": true,
+      "per_face": [
+        {
+          "face_index": 66,
+          "geometry": "closed_segment",
+          "endpoints_exact_ratios": [
+            [
+              [
+                "3604454694122117",
+                "35184372088832"
+              ],
+              [
+                "8751057025934295",
+                "140737488355328"
+              ],
+              [
+                "2853874788869341",
+                "140737488355328"
+              ]
+            ],
+            [
+              [
+                "3604454694122117",
+                "35184372088832"
+              ],
+              [
+                "4443926932307837",
+                "70368744177664"
+              ],
+              [
+                "85",
+                "4"
+              ]
+            ]
+          ],
+          "candidate_triangles": 12,
+          "nonzero_covering_triangle_intersections": [
+            {
+              "face_index": 69,
+              "closed_parameter_interval": [
+                [
+                  "37295434414162",
+                  "136796838681379"
+                ],
+                [
+                  "1",
+                  "1"
+                ]
+              ],
+              "global_face_index": 16662
+            },
+            {
+              "face_index": 70,
+              "closed_parameter_interval": [
+                [
+                  "1",
+                  "1"
+                ],
+                [
+                  "1",
+                  "1"
+                ]
+              ],
+              "global_face_index": 16663
+            },
+            {
+              "face_index": 148,
+              "closed_parameter_interval": [
+                [
+                  "0",
+                  "1"
+                ],
+                [
+                  "0",
+                  "1"
+                ]
+              ],
+              "global_face_index": 16741
+            },
+            {
+              "face_index": 149,
+              "closed_parameter_interval": [
+                [
+                  "0",
+                  "1"
+                ],
+                [
+                  "1",
+                  "1"
+                ]
+              ],
+              "global_face_index": 16742
+            },
+            {
+              "face_index": 150,
+              "closed_parameter_interval": [
+                [
+                  "1",
+                  "1"
+                ],
+                [
+                  "1",
+                  "1"
+                ]
+              ],
+              "global_face_index": 16743
+            },
+            {
+              "face_index": 151,
+              "closed_parameter_interval": [
+                [
+                  "1",
+                  "1"
+                ],
+                [
+                  "1",
+                  "1"
+                ]
+              ],
+              "global_face_index": 16744
+            },
+            {
+              "face_index": 326,
+              "closed_parameter_interval": [
+                [
+                  "0",
+                  "1"
+                ],
+                [
+                  "0",
+                  "1"
+                ]
+              ],
+              "global_face_index": 16919
+            },
+            {
+              "face_index": 327,
+              "closed_parameter_interval": [
+                [
+                  "0",
+                  "1"
+                ],
+                [
+                  "0",
+                  "1"
+                ]
+              ],
+              "global_face_index": 16920
+            }
+          ],
+          "union_closed_parameter_intervals": [
+            [
+              [
+                "0",
+                "1"
+              ],
+              [
+                "1",
+                "1"
+              ]
+            ]
+          ],
+          "entire_encoded_geometry_covered": true,
+          "global_face_index": 16659
+        }
+      ],
+      "group_id": "grid-0-16-3",
+      "kind": "grid",
+      "face_range": [
+        16593,
+        16987
+      ]
+    },
+    {
+      "status": "passed",
+      "scope": "Encoded IEEE surface point-set coverage within this supplied group only; no change to geometry or admission.",
+      "method": "Exact rational segment/triangle intersections, closed half-plane clipping and full interval union; AABB candidates only.",
+      "source_sha256": "910151f42cd028e780619bb3e863d6fec2672331e753ffd9b26b6220f8f5fec3",
+      "input_arrays_sha256": "2f8142601e78b5b24a5b6c3e1ca3a0007ed6aac55babeb3d28b7911a4a9a44fc",
+      "faces": 216,
+      "degenerate_faces": 1,
+      "all_degenerate_face_geometry_covered": true,
+      "per_face": [
+        {
+          "face_index": 134,
+          "geometry": "closed_segment",
+          "endpoints_exact_ratios": [
+            [
+              [
+                "1086106382010155",
+                "17592186044416"
+              ],
+              [
+                "1317471061336993",
+                "35184372088832"
+              ],
+              [
+                "85",
+                "4"
+              ]
+            ],
+            [
+              [
+                "1130086847121195",
+                "17592186044416"
+              ],
+              [
+                "1317471061336993",
+                "35184372088832"
+              ],
+              [
+                "75",
+                "4"
+              ]
+            ]
+          ],
+          "candidate_triangles": 12,
+          "nonzero_covering_triangle_intersections": [
+            {
+              "face_index": 22,
+              "closed_parameter_interval": [
+                [
+                  "0",
+                  "1"
+                ],
+                [
+                  "0",
+                  "1"
+                ]
+              ],
+              "global_face_index": 41860
+            },
+            {
+              "face_index": 25,
+              "closed_parameter_interval": [
+                [
+                  "0",
+                  "1"
+                ],
+                [
+                  "0",
+                  "1"
+                ]
+              ],
+              "global_face_index": 41863
+            },
+            {
+              "face_index": 114,
+              "closed_parameter_interval": [
+                [
+                  "99501404267217",
+                  "351843720888320"
+                ],
+                [
+                  "99501404267217",
+                  "351843720888320"
+                ]
+              ],
+              "global_face_index": 41952
+            },
+            {
+              "face_index": 133,
+              "closed_parameter_interval": [
+                [
+                  "0",
+                  "1"
+                ],
+                [
+                  "99501404267217",
+                  "351843720888320"
+                ]
+              ],
+              "global_face_index": 41971
+            },
+            {
+              "face_index": 143,
+              "closed_parameter_interval": [
+                [
+                  "0",
+                  "1"
+                ],
+                [
+                  "1",
+                  "1"
+                ]
+              ],
+              "global_face_index": 41981
+            },
+            {
+              "face_index": 144,
+              "closed_parameter_interval": [
+                [
+                  "1",
+                  "1"
+                ],
+                [
+                  "1",
+                  "1"
+                ]
+              ],
+              "global_face_index": 41982
+            },
+            {
+              "face_index": 154,
+              "closed_parameter_interval": [
+                [
+                  "1",
+                  "1"
+                ],
+                [
+                  "1",
+                  "1"
+                ]
+              ],
+              "global_face_index": 41992
+            }
+          ],
+          "union_closed_parameter_intervals": [
+            [
+              [
+                "0",
+                "1"
+              ],
+              [
+                "1",
+                "1"
+              ]
+            ]
+          ],
+          "entire_encoded_geometry_covered": true,
+          "global_face_index": 41972
+        }
+      ],
+      "group_id": "grid-1-38-1",
+      "kind": "grid",
+      "face_range": [
+        41838,
+        42054
+      ]
+    },
+    {
+      "status": "passed",
+      "scope": "Encoded IEEE surface point-set coverage within this supplied group only; no change to geometry or admission.",
+      "method": "Exact rational segment/triangle intersections, closed half-plane clipping and full interval union; AABB candidates only.",
+      "source_sha256": "910151f42cd028e780619bb3e863d6fec2672331e753ffd9b26b6220f8f5fec3",
+      "input_arrays_sha256": "e67cdd0e96374104ff94e17a8c34ea0cca7ae3906aa4da6dfca794e45281f84e",
+      "faces": 225,
+      "degenerate_faces": 1,
+      "all_degenerate_face_geometry_covered": true,
+      "per_face": [
+        {
+          "face_index": 146,
+          "geometry": "closed_segment",
+          "endpoints_exact_ratios": [
+            [
+              [
+                "734262661121835",
+                "17592186044416"
+              ],
+              [
+                "2021158503113633",
+                "35184372088832"
+              ],
+              [
+                "85",
+                "4"
+              ]
+            ],
+            [
+              [
+                "778243126232875",
+                "17592186044416"
+              ],
+              [
+                "2021158503113633",
+                "35184372088832"
+              ],
+              [
+                "75",
+                "4"
+              ]
+            ]
+          ],
+          "candidate_triangles": 14,
+          "nonzero_covering_triangle_intersections": [
+            {
+              "face_index": 2,
+              "closed_parameter_interval": [
+                [
+                  "0",
+                  "1"
+                ],
+                [
+                  "0",
+                  "1"
+                ]
+              ],
+              "global_face_index": 45364
+            },
+            {
+              "face_index": 5,
+              "closed_parameter_interval": [
+                [
+                  "0",
+                  "1"
+                ],
+                [
+                  "0",
+                  "1"
+                ]
+              ],
+              "global_face_index": 45367
+            },
+            {
+              "face_index": 133,
+              "closed_parameter_interval": [
+                [
+                  "99501404267217",
+                  "351843720888320"
+                ],
+                [
+                  "99501404267217",
+                  "351843720888320"
+                ]
+              ],
+              "global_face_index": 45495
+            },
+            {
+              "face_index": 134,
+              "closed_parameter_interval": [
+                [
+                  "1",
+                  "1"
+                ],
+                [
+                  "1",
+                  "1"
+                ]
+              ],
+              "global_face_index": 45496
+            },
+            {
+              "face_index": 135,
+              "closed_parameter_interval": [
+                [
+                  "1",
+                  "1"
+                ],
+                [
+                  "1",
+                  "1"
+                ]
+              ],
+              "global_face_index": 45497
+            },
+            {
+              "face_index": 145,
+              "closed_parameter_interval": [
+                [
+                  "0",
+                  "1"
+                ],
+                [
+                  "99501404267217",
+                  "351843720888320"
+                ]
+              ],
+              "global_face_index": 45507
+            },
+            {
+              "face_index": 147,
+              "closed_parameter_interval": [
+                [
+                  "0",
+                  "1"
+                ],
+                [
+                  "1",
+                  "1"
+                ]
+              ],
+              "global_face_index": 45509
+            },
+            {
+              "face_index": 155,
+              "closed_parameter_interval": [
+                [
+                  "0",
+                  "1"
+                ],
+                [
+                  "0",
+                  "1"
+                ]
+              ],
+              "global_face_index": 45517
+            }
+          ],
+          "union_closed_parameter_intervals": [
+            [
+              [
+                "0",
+                "1"
+              ],
+              [
+                "1",
+                "1"
+              ]
+            ]
+          ],
+          "entire_encoded_geometry_covered": true,
+          "global_face_index": 45508
+        }
+      ],
+      "group_id": "grid-1-42-2",
+      "kind": "grid",
+      "face_range": [
+        45362,
+        45587
+      ]
+    },
+    {
+      "status": "passed",
+      "scope": "Encoded IEEE surface point-set coverage within this supplied group only; no change to geometry or admission.",
+      "method": "Exact rational segment/triangle intersections, closed half-plane clipping and full interval union; AABB candidates only.",
+      "source_sha256": "910151f42cd028e780619bb3e863d6fec2672331e753ffd9b26b6220f8f5fec3",
+      "input_arrays_sha256": "0e4bbe91727e367c071619e822c14f9d0b75f7d53c2b9547a51d622ee5670860",
+      "faces": 253,
+      "degenerate_faces": 3,
+      "all_degenerate_face_geometry_covered": true,
+      "per_face": [
+        {
+          "face_index": 76,
+          "geometry": "closed_segment",
+          "endpoints_exact_ratios": [
+            [
+              [
+                "6325446414130217",
+                "140737488355328"
+              ],
+              [
+                "3076689665778593",
+                "35184372088832"
+              ],
+              [
+                "6256766519812817",
+                "140737488355328"
+              ]
+            ],
+            [
+              [
+                "6677290135018537",
+                "140737488355328"
+              ],
+              [
+                "3076689665778593",
+                "35184372088832"
+              ],
+              [
+                "5904922798924497",
+                "140737488355328"
+              ]
+            ]
+          ],
+          "candidate_triangles": 11,
+          "nonzero_covering_triangle_intersections": [
+            {
+              "face_index": 75,
+              "closed_parameter_interval": [
+                [
+                  "0",
+                  "1"
+                ],
+                [
+                  "99501404267217",
+                  "351843720888320"
+                ]
+              ],
+              "global_face_index": 55287
+            },
+            {
+              "face_index": 128,
+              "closed_parameter_interval": [
+                [
+                  "0",
+                  "1"
+                ],
+                [
+                  "0",
+                  "1"
+                ]
+              ],
+              "global_face_index": 55340
+            },
+            {
+              "face_index": 129,
+              "closed_parameter_interval": [
+                [
+                  "0",
+                  "1"
+                ],
+                [
+                  "0",
+                  "1"
+                ]
+              ],
+              "global_face_index": 55341
+            },
+            {
+              "face_index": 148,
+              "closed_parameter_interval": [
+                [
+                  "0",
+                  "1"
+                ],
+                [
+                  "0",
+                  "1"
+                ]
+              ],
+              "global_face_index": 55360
+            },
+            {
+              "face_index": 149,
+              "closed_parameter_interval": [
+                [
+                  "0",
+                  "1"
+                ],
+                [
+                  "0",
+                  "1"
+                ]
+              ],
+              "global_face_index": 55361
+            },
+            {
+              "face_index": 151,
+              "closed_parameter_interval": [
+                [
+                  "0",
+                  "1"
+                ],
+                [
+                  "1",
+                  "1"
+                ]
+              ],
+              "global_face_index": 55363
+            },
+            {
+              "face_index": 152,
+              "closed_parameter_interval": [
+                [
+                  "1",
+                  "1"
+                ],
+                [
+                  "1",
+                  "1"
+                ]
+              ],
+              "global_face_index": 55364
+            },
+            {
+              "face_index": 161,
+              "closed_parameter_interval": [
+                [
+                  "1",
+                  "1"
+                ],
+                [
+                  "1",
+                  "1"
+                ]
+              ],
+              "global_face_index": 55373
+            }
+          ],
+          "union_closed_parameter_intervals": [
+            [
+              [
+                "0",
+                "1"
+              ],
+              [
+                "1",
+                "1"
+              ]
+            ]
+          ],
+          "entire_encoded_geometry_covered": true,
+          "global_face_index": 55288
+        },
+        {
+          "face_index": 96,
+          "geometry": "closed_segment",
+          "endpoints_exact_ratios": [
+            [
+              [
+                "6251277757766959",
+                "140737488355328"
+              ],
+              [
+                "3076689665778593",
+                "35184372088832"
+              ],
+              [
+                "4576220171361845",
+                "140737488355328"
+              ]
+            ],
+            [
+              [
+                "3212473909198717",
+                "70368744177664"
+              ],
+              [
+                "3076689665778593",
+                "35184372088832"
+              ],
+              [
+                "135",
+                "4"
+              ]
+            ]
+          ],
+          "candidate_triangles": 9,
+          "nonzero_covering_triangle_intersections": [
+            {
+              "face_index": 95,
+              "closed_parameter_interval": [
+                [
+                  "0",
+                  "1"
+                ],
+                [
+                  "0",
+                  "1"
+                ]
+              ],
+              "global_face_index": 55307
+            },
+            {
+              "face_index": 98,
+              "closed_parameter_interval": [
+                [
+                  "74168656363258",
+                  "173670060630475"
+                ],
+                [
+                  "1",
+                  "1"
+                ]
+              ],
+              "global_face_index": 55310
+            },
+            {
+              "face_index": 99,
+              "closed_parameter_interval": [
+                [
+                  "74168656363258",
+                  "173670060630475"
+                ],
+                [
+                  "74168656363258",
+                  "173670060630475"
+                ]
+              ],
+              "global_face_index": 55311
+            },
+            {
+              "face_index": 133,
+              "closed_parameter_interval": [
+                [
+                  "0",
+                  "1"
+                ],
+                [
+                  "0",
+                  "1"
+                ]
+              ],
+              "global_face_index": 55345
+            },
+            {
+              "face_index": 134,
+              "closed_parameter_interval": [
+                [
+                  "0",
+                  "1"
+                ],
+                [
+                  "1",
+                  "1"
+                ]
+              ],
+              "global_face_index": 55346
+            }
+          ],
+          "union_closed_parameter_intervals": [
+            [
+              [
+                "0",
+                "1"
+              ],
+              [
+                "1",
+                "1"
+              ]
+            ]
+          ],
+          "entire_encoded_geometry_covered": true,
+          "global_face_index": 55308
+        },
+        {
+          "face_index": 97,
+          "geometry": "closed_segment",
+          "endpoints_exact_ratios": [
+            [
+              [
+                "6251277757766959",
+                "140737488355328"
+              ],
+              [
+                "3076689665778593",
+                "35184372088832"
+              ],
+              [
+                "4576220171361845",
+                "140737488355328"
+              ]
+            ],
+            [
+              [
+                "6677290135018537",
+                "140737488355328"
+              ],
+              [
+                "3076689665778593",
+                "35184372088832"
+              ],
+              [
+                "5002232548613423",
+                "140737488355328"
+              ]
+            ]
+          ],
+          "candidate_triangles": 15,
+          "nonzero_covering_triangle_intersections": [
+            {
+              "face_index": 95,
+              "closed_parameter_interval": [
+                [
+                  "0",
+                  "1"
+                ],
+                [
+                  "0",
+                  "1"
+                ]
+              ],
+              "global_face_index": 55307
+            },
+            {
+              "face_index": 98,
+              "closed_parameter_interval": [
+                [
+                  "37084328181629",
+                  "213006188625789"
+                ],
+                [
+                  "173670060630475",
+                  "426012377251578"
+                ]
+              ],
+              "global_face_index": 55310
+            },
+            {
+              "face_index": 99,
+              "closed_parameter_interval": [
+                [
+                  "37084328181629",
+                  "213006188625789"
+                ],
+                [
+                  "37084328181629",
+                  "213006188625789"
+                ]
+              ],
+              "global_face_index": 55311
+            },
+            {
+              "face_index": 133,
+              "closed_parameter_interval": [
+                [
+                  "0",
+                  "1"
+                ],
+                [
+                  "0",
+                  "1"
+                ]
+              ],
+              "global_face_index": 55345
+            },
+            {
+              "face_index": 134,
+              "closed_parameter_interval": [
+                [
+                  "0",
+                  "1"
+                ],
+                [
+                  "1",
+                  "1"
+                ]
+              ],
+              "global_face_index": 55346
+            },
+            {
+              "face_index": 155,
+              "closed_parameter_interval": [
+                [
+                  "1",
+                  "1"
+                ],
+                [
+                  "1",
+                  "1"
+                ]
+              ],
+              "global_face_index": 55367
+            },
+            {
+              "face_index": 156,
+              "closed_parameter_interval": [
+                [
+                  "1",
+                  "1"
+                ],
+                [
+                  "1",
+                  "1"
+                ]
+              ],
+              "global_face_index": 55368
+            }
+          ],
+          "union_closed_parameter_intervals": [
+            [
+              [
+                "0",
+                "1"
+              ],
+              [
+                "1",
+                "1"
+              ]
+            ]
+          ],
+          "entire_encoded_geometry_covered": true,
+          "global_face_index": 55309
+        }
+      ],
+      "group_id": "grid-1-48-5",
+      "kind": "grid",
+      "face_range": [
+        55212,
+        55465
+      ]
+    },
+    {
+      "status": "passed",
+      "scope": "Encoded IEEE surface point-set coverage within this supplied group only; no change to geometry or admission.",
+      "method": "Exact rational segment/triangle intersections, closed half-plane clipping and full interval union; AABB candidates only.",
+      "source_sha256": "910151f42cd028e780619bb3e863d6fec2672331e753ffd9b26b6220f8f5fec3",
+      "input_arrays_sha256": "853f4794f606d84d487411464ce202c39b408d3a1d465dda2d23f2376385f5f4",
+      "faces": 1718,
+      "degenerate_faces": 3,
+      "all_degenerate_face_geometry_covered": true,
+      "per_face": [
+        {
+          "face_index": 89,
+          "geometry": "closed_segment",
+          "endpoints_exact_ratios": [
+            [
+              [
+                "8398509617604199",
+                "140737488355328"
+              ],
+              [
+                "3252611526222753",
+                "35184372088832"
+              ],
+              [
+                "6019764589422445",
+                "140737488355328"
+              ]
+            ],
+            [
+              [
+                "4268005071863677",
+                "70368744177664"
+              ],
+              [
+                "3252611526222753",
+                "35184372088832"
+              ],
+              [
+                "175",
+                "4"
+              ]
+            ]
+          ],
+          "candidate_triangles": 14,
+          "nonzero_covering_triangle_intersections": [
+            {
+              "face_index": 116,
+              "closed_parameter_interval": [
+                [
+                  "37999121855938",
+                  "137500526123155"
+                ],
+                [
+                  "1",
+                  "1"
+                ]
+              ],
+              "global_face_index": 56407
+            },
+            {
+              "face_index": 652,
+              "closed_parameter_interval": [
+                [
+                  "0",
+                  "1"
+                ],
+                [
+                  "0",
+                  "1"
+                ]
+              ],
+              "global_face_index": 56943
+            },
+            {
+              "face_index": 719,
+              "closed_parameter_interval": [
+                [
+                  "0",
+                  "1"
+                ],
+                [
+                  "0",
+                  "1"
+                ]
+              ],
+              "global_face_index": 57010
+            },
+            {
+              "face_index": 720,
+              "closed_parameter_interval": [
+                [
+                  "0",
+                  "1"
+                ],
+                [
+                  "1",
+                  "1"
+                ]
+              ],
+              "global_face_index": 57011
+            },
+            {
+              "face_index": 721,
+              "closed_parameter_interval": [
+                [
+                  "1",
+                  "1"
+                ],
+                [
+                  "1",
+                  "1"
+                ]
+              ],
+              "global_face_index": 57012
+            },
+            {
+              "face_index": 722,
+              "closed_parameter_interval": [
+                [
+                  "1",
+                  "1"
+                ],
+                [
+                  "1",
+                  "1"
+                ]
+              ],
+              "global_face_index": 57013
+            },
+            {
+              "face_index": 1548,
+              "closed_parameter_interval": [
+                [
+                  "0",
+                  "1"
+                ],
+                [
+                  "0",
+                  "1"
+                ]
+              ],
+              "global_face_index": 57839
+            },
+            {
+              "face_index": 1549,
+              "closed_parameter_interval": [
+                [
+                  "0",
+                  "1"
+                ],
+                [
+                  "0",
+                  "1"
+                ]
+              ],
+              "global_face_index": 57840
+            }
+          ],
+          "union_closed_parameter_intervals": [
+            [
+              [
+                "0",
+                "1"
+              ],
+              [
+                "1",
+                "1"
+              ]
+            ]
+          ],
+          "entire_encoded_geometry_covered": true,
+          "global_face_index": 56380
+        },
+        {
+          "face_index": 143,
+          "geometry": "closed_segment",
+          "endpoints_exact_ratios": [
+            [
+              [
+                "8398509617604199",
+                "140737488355328"
+              ],
+              [
+                "3252611526222753",
+                "35184372088832"
+              ],
+              [
+                "5316077147645805",
+                "140737488355328"
+              ]
+            ],
+            [
+              [
+                "4268005071863677",
+                "70368744177664"
+              ],
+              [
+                "3252611526222753",
+                "35184372088832"
+              ],
+              [
+                "155",
+                "4"
+              ]
+            ]
+          ],
+          "candidate_triangles": 17,
+          "nonzero_covering_triangle_intersections": [
+            {
+              "face_index": 170,
+              "closed_parameter_interval": [
+                [
+                  "37999121855938",
+                  "137500526123155"
+                ],
+                [
+                  "1",
+                  "1"
+                ]
+              ],
+              "global_face_index": 56461
+            },
+            {
+              "face_index": 653,
+              "closed_parameter_interval": [
+                [
+                  "0",
+                  "1"
+                ],
+                [
+                  "0",
+                  "1"
+                ]
+              ],
+              "global_face_index": 56944
+            },
+            {
+              "face_index": 724,
+              "closed_parameter_interval": [
+                [
+                  "0",
+                  "1"
+                ],
+                [
+                  "0",
+                  "1"
+                ]
+              ],
+              "global_face_index": 57015
+            },
+            {
+              "face_index": 725,
+              "closed_parameter_interval": [
+                [
+                  "0",
+                  "1"
+                ],
+                [
+                  "1",
+                  "1"
+                ]
+              ],
+              "global_face_index": 57016
+            },
+            {
+              "face_index": 726,
+              "closed_parameter_interval": [
+                [
+                  "1",
+                  "1"
+                ],
+                [
+                  "1",
+                  "1"
+                ]
+              ],
+              "global_face_index": 57017
+            },
+            {
+              "face_index": 727,
+              "closed_parameter_interval": [
+                [
+                  "1",
+                  "1"
+                ],
+                [
+                  "1",
+                  "1"
+                ]
+              ],
+              "global_face_index": 57018
+            },
+            {
+              "face_index": 1551,
+              "closed_parameter_interval": [
+                [
+                  "0",
+                  "1"
+                ],
+                [
+                  "0",
+                  "1"
+                ]
+              ],
+              "global_face_index": 57842
+            },
+            {
+              "face_index": 1552,
+              "closed_parameter_interval": [
+                [
+                  "0",
+                  "1"
+                ],
+                [
+                  "0",
+                  "1"
+                ]
+              ],
+              "global_face_index": 57843
+            }
+          ],
+          "union_closed_parameter_intervals": [
+            [
+              [
+                "0",
+                "1"
+              ],
+              [
+                "1",
+                "1"
+              ]
+            ]
+          ],
+          "entire_encoded_geometry_covered": true,
+          "global_face_index": 56434
+        },
+        {
+          "face_index": 197,
+          "geometry": "closed_segment",
+          "endpoints_exact_ratios": [
+            [
+              [
+                "8398509617604199",
+                "140737488355328"
+              ],
+              [
+                "3252611526222753",
+                "35184372088832"
+              ],
+              [
+                "4612389705869165",
+                "140737488355328"
+              ]
+            ],
+            [
+              [
+                "4268005071863677",
+                "70368744177664"
+              ],
+              [
+                "3252611526222753",
+                "35184372088832"
+              ],
+              [
+                "135",
+                "4"
+              ]
+            ]
+          ],
+          "candidate_triangles": 19,
+          "nonzero_covering_triangle_intersections": [
+            {
+              "face_index": 224,
+              "closed_parameter_interval": [
+                [
+                  "37999121855938",
+                  "137500526123155"
+                ],
+                [
+                  "1",
+                  "1"
+                ]
+              ],
+              "global_face_index": 56515
+            },
+            {
+              "face_index": 654,
+              "closed_parameter_interval": [
+                [
+                  "0",
+                  "1"
+                ],
+                [
+                  "0",
+                  "1"
+                ]
+              ],
+              "global_face_index": 56945
+            },
+            {
+              "face_index": 729,
+              "closed_parameter_interval": [
+                [
+                  "0",
+                  "1"
+                ],
+                [
+                  "0",
+                  "1"
+                ]
+              ],
+              "global_face_index": 57020
+            },
+            {
+              "face_index": 730,
+              "closed_parameter_interval": [
+                [
+                  "0",
+                  "1"
+                ],
+                [
+                  "1",
+                  "1"
+                ]
+              ],
+              "global_face_index": 57021
+            },
+            {
+              "face_index": 731,
+              "closed_parameter_interval": [
+                [
+                  "1",
+                  "1"
+                ],
+                [
+                  "1",
+                  "1"
+                ]
+              ],
+              "global_face_index": 57022
+            },
+            {
+              "face_index": 732,
+              "closed_parameter_interval": [
+                [
+                  "1",
+                  "1"
+                ],
+                [
+                  "1",
+                  "1"
+                ]
+              ],
+              "global_face_index": 57023
+            },
+            {
+              "face_index": 1554,
+              "closed_parameter_interval": [
+                [
+                  "0",
+                  "1"
+                ],
+                [
+                  "0",
+                  "1"
+                ]
+              ],
+              "global_face_index": 57845
+            },
+            {
+              "face_index": 1555,
+              "closed_parameter_interval": [
+                [
+                  "0",
+                  "1"
+                ],
+                [
+                  "0",
+                  "1"
+                ]
+              ],
+              "global_face_index": 57846
+            }
+          ],
+          "union_closed_parameter_intervals": [
+            [
+              [
+                "0",
+                "1"
+              ],
+              [
+                "1",
+                "1"
+              ]
+            ]
+          ],
+          "entire_encoded_geometry_covered": true,
+          "global_face_index": 56488
+        }
+      ],
+      "group_id": "grid-1-49-3",
+      "kind": "grid",
+      "face_range": [
+        56291,
+        58009
+      ]
+    },
+    {
+      "status": "passed",
+      "scope": "Encoded IEEE surface point-set coverage within this supplied group only; no change to geometry or admission.",
+      "method": "Exact rational segment/triangle intersections, closed half-plane clipping and full interval union; AABB candidates only.",
+      "source_sha256": "910151f42cd028e780619bb3e863d6fec2672331e753ffd9b26b6220f8f5fec3",
+      "input_arrays_sha256": "a3a47e44da4ab8bf84e0e3c651ab8b22d6bb478cbacd323927509639b155d105",
+      "faces": 1465,
+      "degenerate_faces": 1,
+      "all_degenerate_face_geometry_covered": true,
+      "per_face": [
+        {
+          "face_index": 19,
+          "geometry": "closed_segment",
+          "endpoints_exact_ratios": [
+            [
+              [
+                "7081963325015855",
+                "140737488355328"
+              ],
+              [
+                "2538795083739335",
+                "35184372088832"
+              ],
+              [
+                "4481901727125701",
+                "281474976710656"
+              ]
+            ],
+            [
+              [
+                "3541353388175887",
+                "70368744177664"
+              ],
+              [
+                "2539040933046501",
+                "35184372088832"
+              ],
+              [
+                "2240023493246489",
+                "140737488355328"
+              ]
+            ]
+          ],
+          "candidate_triangles": 7,
+          "nonzero_covering_triangle_intersections": [
+            {
+              "face_index": 18,
+              "closed_parameter_interval": [
+                [
+                  "0",
+                  "1"
+                ],
+                [
+                  "0",
+                  "1"
+                ]
+              ],
+              "global_face_index": 124514
+            },
+            {
+              "face_index": 20,
+              "closed_parameter_interval": [
+                [
+                  "0",
+                  "1"
+                ],
+                [
+                  "1",
+                  "1"
+                ]
+              ],
+              "global_face_index": 124516
+            },
+            {
+              "face_index": 21,
+              "closed_parameter_interval": [
+                [
+                  "1",
+                  "1"
+                ],
+                [
+                  "1",
+                  "1"
+                ]
+              ],
+              "global_face_index": 124517
+            },
+            {
+              "face_index": 22,
+              "closed_parameter_interval": [
+                [
+                  "1",
+                  "1"
+                ],
+                [
+                  "1",
+                  "1"
+                ]
+              ],
+              "global_face_index": 124518
+            },
+            {
+              "face_index": 23,
+              "closed_parameter_interval": [
+                [
+                  "1",
+                  "1"
+                ],
+                [
+                  "1",
+                  "1"
+                ]
+              ],
+              "global_face_index": 124519
+            },
+            {
+              "face_index": 24,
+              "closed_parameter_interval": [
+                [
+                  "1",
+                  "1"
+                ],
+                [
+                  "1",
+                  "1"
+                ]
+              ],
+              "global_face_index": 124520
+            }
+          ],
+          "union_closed_parameter_intervals": [
+            [
+              [
+                "0",
+                "1"
+              ],
+              [
+                "1",
+                "1"
+              ]
+            ]
+          ],
+          "entire_encoded_geometry_covered": true,
+          "global_face_index": 124515
+        }
+      ],
+      "group_id": "skin-29-0",
+      "kind": "skin",
+      "face_range": [
+        124496,
+        125961
+      ]
+    },
+    {
+      "status": "passed",
+      "scope": "Encoded IEEE surface point-set coverage within this supplied group only; no change to geometry or admission.",
+      "method": "Exact rational segment/triangle intersections, closed half-plane clipping and full interval union; AABB candidates only.",
+      "source_sha256": "910151f42cd028e780619bb3e863d6fec2672331e753ffd9b26b6220f8f5fec3",
+      "input_arrays_sha256": "ecfd7321c36146fc10e17350671216808d769dddfe523baf1774e6c0844d4d2c",
+      "faces": 227,
+      "degenerate_faces": 2,
+      "all_degenerate_face_geometry_covered": true,
+      "per_face": [
+        {
+          "face_index": 94,
+          "geometry": "closed_segment",
+          "endpoints_exact_ratios": [
+            [
+              [
+                "3775719448043727",
+                "70368744177664"
+              ],
+              [
+                "5892493650920901",
+                "70368744177664"
+              ],
+              [
+                "7342415504985817",
+                "140737488355328"
+              ]
+            ],
+            [
+              [
+                "7551661642137987",
+                "140737488355328"
+              ],
+              [
+                "5893045473989737",
+                "70368744177664"
+              ],
+              [
+                "7342556242474173",
+                "140737488355328"
+              ]
+            ]
+          ],
+          "candidate_triangles": 9,
+          "nonzero_covering_triangle_intersections": [
+            {
+              "face_index": 92,
+              "closed_parameter_interval": [
+                [
+                  "1",
+                  "1"
+                ],
+                [
+                  "1",
+                  "1"
+                ]
+              ],
+              "global_face_index": 134247
+            },
+            {
+              "face_index": 93,
+              "closed_parameter_interval": [
+                [
+                  "1",
+                  "1"
+                ],
+                [
+                  "1",
+                  "1"
+                ]
+              ],
+              "global_face_index": 134248
+            },
+            {
+              "face_index": 95,
+              "closed_parameter_interval": [
+                [
+                  "0",
+                  "1"
+                ],
+                [
+                  "1",
+                  "1"
+                ]
+              ],
+              "global_face_index": 134250
+            },
+            {
+              "face_index": 97,
+              "closed_parameter_interval": [
+                [
+                  "0",
+                  "1"
+                ],
+                [
+                  "0",
+                  "1"
+                ]
+              ],
+              "global_face_index": 134252
+            },
+            {
+              "face_index": 98,
+              "closed_parameter_interval": [
+                [
+                  "0",
+                  "1"
+                ],
+                [
+                  "0",
+                  "1"
+                ]
+              ],
+              "global_face_index": 134253
+            },
+            {
+              "face_index": 99,
+              "closed_parameter_interval": [
+                [
+                  "0",
+                  "1"
+                ],
+                [
+                  "0",
+                  "1"
+                ]
+              ],
+              "global_face_index": 134254
+            },
+            {
+              "face_index": 100,
+              "closed_parameter_interval": [
+                [
+                  "0",
+                  "1"
+                ],
+                [
+                  "0",
+                  "1"
+                ]
+              ],
+              "global_face_index": 134255
+            },
+            {
+              "face_index": 101,
+              "closed_parameter_interval": [
+                [
+                  "0",
+                  "1"
+                ],
+                [
+                  "0",
+                  "1"
+                ]
+              ],
+              "global_face_index": 134256
+            }
+          ],
+          "union_closed_parameter_intervals": [
+            [
+              [
+                "0",
+                "1"
+              ],
+              [
+                "1",
+                "1"
+              ]
+            ]
+          ],
+          "entire_encoded_geometry_covered": true,
+          "global_face_index": 134249
+        },
+        {
+          "face_index": 96,
+          "geometry": "closed_segment",
+          "endpoints_exact_ratios": [
+            [
+              [
+                "3775719448043727",
+                "70368744177664"
+              ],
+              [
+                "5892493650920901",
+                "70368744177664"
+              ],
+              [
+                "7342415504985817",
+                "140737488355328"
+              ]
+            ],
+            [
+              [
+                "7551661642137987",
+                "140737488355328"
+              ],
+              [
+                "5893045473989737",
+                "70368744177664"
+              ],
+              [
+                "1664361537290109",
+                "140737488355328"
+              ]
+            ]
+          ],
+          "candidate_triangles": 8,
+          "nonzero_covering_triangle_intersections": [
+            {
+              "face_index": 91,
+              "closed_parameter_interval": [
+                [
+                  "1",
+                  "1"
+                ],
+                [
+                  "1",
+                  "1"
+                ]
+              ],
+              "global_face_index": 134246
+            },
+            {
+              "face_index": 92,
+              "closed_parameter_interval": [
+                [
+                  "1",
+                  "1"
+                ],
+                [
+                  "1",
+                  "1"
+                ]
+              ],
+              "global_face_index": 134247
+            },
+            {
+              "face_index": 95,
+              "closed_parameter_interval": [
+                [
+                  "0",
+                  "1"
+                ],
+                [
+                  "1",
+                  "1"
+                ]
+              ],
+              "global_face_index": 134250
+            },
+            {
+              "face_index": 97,
+              "closed_parameter_interval": [
+                [
+                  "0",
+                  "1"
+                ],
+                [
+                  "1",
+                  "1"
+                ]
+              ],
+              "global_face_index": 134252
+            },
+            {
+              "face_index": 98,
+              "closed_parameter_interval": [
+                [
+                  "0",
+                  "1"
+                ],
+                [
+                  "0",
+                  "1"
+                ]
+              ],
+              "global_face_index": 134253
+            },
+            {
+              "face_index": 99,
+              "closed_parameter_interval": [
+                [
+                  "0",
+                  "1"
+                ],
+                [
+                  "0",
+                  "1"
+                ]
+              ],
+              "global_face_index": 134254
+            },
+            {
+              "face_index": 100,
+              "closed_parameter_interval": [
+                [
+                  "0",
+                  "1"
+                ],
+                [
+                  "0",
+                  "1"
+                ]
+              ],
+              "global_face_index": 134255
+            },
+            {
+              "face_index": 101,
+              "closed_parameter_interval": [
+                [
+                  "0",
+                  "1"
+                ],
+                [
+                  "0",
+                  "1"
+                ]
+              ],
+              "global_face_index": 134256
+            }
+          ],
+          "union_closed_parameter_intervals": [
+            [
+              [
+                "0",
+                "1"
+              ],
+              [
+                "1",
+                "1"
+              ]
+            ]
+          ],
+          "entire_encoded_geometry_covered": true,
+          "global_face_index": 134251
+        }
+      ],
+      "group_id": "skin-106-0",
+      "kind": "skin",
+      "face_range": [
+        134155,
+        134382
+      ]
+    },
+    {
+      "status": "passed",
+      "scope": "Encoded IEEE surface point-set coverage within this supplied group only; no change to geometry or admission.",
+      "method": "Exact rational segment/triangle intersections, closed half-plane clipping and full interval union; AABB candidates only.",
+      "source_sha256": "910151f42cd028e780619bb3e863d6fec2672331e753ffd9b26b6220f8f5fec3",
+      "input_arrays_sha256": "32cf6d1571f1838a998f624b5f2dd5a1b302f8e7a9113c6ba738a6ba5b0cffd2",
+      "faces": 17,
+      "degenerate_faces": 1,
+      "all_degenerate_face_geometry_covered": true,
+      "per_face": [
+        {
+          "face_index": 4,
+          "geometry": "closed_segment",
+          "endpoints_exact_ratios": [
+            [
+              [
+                "1881186619646057",
+                "35184372088832"
+              ],
+              [
+                "5953119779144255",
+                "70368744177664"
+              ],
+              [
+                "3084846823548395",
+                "70368744177664"
+              ]
+            ],
+            [
+              [
+                "1881186619646057",
+                "35184372088832"
+              ],
+              [
+                "5953119779144255",
+                "70368744177664"
+              ],
+              [
+                "6361501805487391",
+                "140737488355328"
+              ]
+            ]
+          ],
+          "candidate_triangles": 4,
+          "nonzero_covering_triangle_intersections": [
+            {
+              "face_index": 0,
+              "closed_parameter_interval": [
+                [
+                  "0",
+                  "1"
+                ],
+                [
+                  "0",
+                  "1"
+                ]
+              ],
+              "global_face_index": 135005
+            },
+            {
+              "face_index": 1,
+              "closed_parameter_interval": [
+                [
+                  "0",
+                  "1"
+                ],
+                [
+                  "0",
+                  "1"
+                ]
+              ],
+              "global_face_index": 135006
+            },
+            {
+              "face_index": 2,
+              "closed_parameter_interval": [
+                [
+                  "0",
+                  "1"
+                ],
+                [
+                  "0",
+                  "1"
+                ]
+              ],
+              "global_face_index": 135007
+            },
+            {
+              "face_index": 3,
+              "closed_parameter_interval": [
+                [
+                  "0",
+                  "1"
+                ],
+                [
+                  "1",
+                  "1"
+                ]
+              ],
+              "global_face_index": 135008
+            }
+          ],
+          "union_closed_parameter_intervals": [
+            [
+              [
+                "0",
+                "1"
+              ],
+              [
+                "1",
+                "1"
+              ]
+            ]
+          ],
+          "entire_encoded_geometry_covered": true,
+          "global_face_index": 135009
+        }
+      ],
+      "group_id": "skin-112-0",
+      "kind": "skin",
+      "face_range": [
+        135005,
+        135022
+      ]
+    },
+    {
+      "status": "passed",
+      "scope": "Encoded IEEE surface point-set coverage within this supplied group only; no change to geometry or admission.",
+      "method": "Exact rational segment/triangle intersections, closed half-plane clipping and full interval union; AABB candidates only.",
+      "source_sha256": "910151f42cd028e780619bb3e863d6fec2672331e753ffd9b26b6220f8f5fec3",
+      "input_arrays_sha256": "3980284ab13d00d5bcbfe3f07977d0b7844d7435184ca13f2957195c5fc62fb0",
+      "faces": 588,
+      "degenerate_faces": 1,
+      "all_degenerate_face_geometry_covered": true,
+      "per_face": [
+        {
+          "face_index": 301,
+          "geometry": "closed_segment",
+          "endpoints_exact_ratios": [
+            [
+              [
+                "495343506791533",
+                "8796093022208"
+              ],
+              [
+                "6242545538758251",
+                "70368744177664"
+              ],
+              [
+                "5854679515581645",
+                "4503599627370496"
+              ]
+            ],
+            [
+              [
+                "495343506791533",
+                "8796093022208"
+              ],
+              [
+                "6242545538758251",
+                "70368744177664"
+              ],
+              [
+                "2871044762448691",
+                "281474976710656"
+              ]
+            ]
+          ],
+          "candidate_triangles": 7,
+          "nonzero_covering_triangle_intersections": [
+            {
+              "face_index": 296,
+              "closed_parameter_interval": [
+                [
+                  "0",
+                  "1"
+                ],
+                [
+                  "0",
+                  "1"
+                ]
+              ],
+              "global_face_index": 136327
+            },
+            {
+              "face_index": 297,
+              "closed_parameter_interval": [
+                [
+                  "0",
+                  "1"
+                ],
+                [
+                  "1",
+                  "1"
+                ]
+              ],
+              "global_face_index": 136328
+            },
+            {
+              "face_index": 298,
+              "closed_parameter_interval": [
+                [
+                  "1",
+                  "1"
+                ],
+                [
+                  "1",
+                  "1"
+                ]
+              ],
+              "global_face_index": 136329
+            },
+            {
+              "face_index": 302,
+              "closed_parameter_interval": [
+                [
+                  "0",
+                  "1"
+                ],
+                [
+                  "1",
+                  "1"
+                ]
+              ],
+              "global_face_index": 136333
+            },
+            {
+              "face_index": 303,
+              "closed_parameter_interval": [
+                [
+                  "1",
+                  "1"
+                ],
+                [
+                  "1",
+                  "1"
+                ]
+              ],
+              "global_face_index": 136334
+            },
+            {
+              "face_index": 304,
+              "closed_parameter_interval": [
+                [
+                  "1",
+                  "1"
+                ],
+                [
+                  "1",
+                  "1"
+                ]
+              ],
+              "global_face_index": 136335
+            },
+            {
+              "face_index": 305,
+              "closed_parameter_interval": [
+                [
+                  "1",
+                  "1"
+                ],
+                [
+                  "1",
+                  "1"
+                ]
+              ],
+              "global_face_index": 136336
+            }
+          ],
+          "union_closed_parameter_intervals": [
+            [
+              [
+                "0",
+                "1"
+              ],
+              [
+                "1",
+                "1"
+              ]
+            ]
+          ],
+          "entire_encoded_geometry_covered": true,
+          "global_face_index": 136332
+        }
+      ],
+      "group_id": "skin-135-0",
+      "kind": "skin",
+      "face_range": [
+        136031,
+        136619
+      ]
+    },
+    {
+      "status": "passed",
+      "scope": "Encoded IEEE surface point-set coverage within this supplied group only; no change to geometry or admission.",
+      "method": "Exact rational segment/triangle intersections, closed half-plane clipping and full interval union; AABB candidates only.",
+      "source_sha256": "910151f42cd028e780619bb3e863d6fec2672331e753ffd9b26b6220f8f5fec3",
+      "input_arrays_sha256": "e0f64465415fa07d3907d416cadb7cb6ff8535a54932149c77f2e051c00de608",
+      "faces": 225,
+      "degenerate_faces": 1,
+      "all_degenerate_face_geometry_covered": true,
+      "per_face": [
+        {
+          "face_index": 184,
+          "geometry": "closed_segment",
+          "endpoints_exact_ratios": [
+            [
+              [
+                "7945175300404811",
+                "140737488355328"
+              ],
+              [
+                "795933073481919",
+                "8796093022208"
+              ],
+              [
+                "3180667236830413",
+                "281474976710656"
+              ]
+            ],
+            [
+              [
+                "7945175300404811",
+                "140737488355328"
+              ],
+              [
+                "795933073481919",
+                "8796093022208"
+              ],
+              [
+                "610272933880791",
+                "17592186044416"
+              ]
+            ]
+          ],
+          "candidate_triangles": 6,
+          "nonzero_covering_triangle_intersections": [
+            {
+              "face_index": 181,
+              "closed_parameter_interval": [
+                [
+                  "0",
+                  "1"
+                ],
+                [
+                  "0",
+                  "1"
+                ]
+              ],
+              "global_face_index": 136800
+            },
+            {
+              "face_index": 182,
+              "closed_parameter_interval": [
+                [
+                  "0",
+                  "1"
+                ],
+                [
+                  "1",
+                  "1"
+                ]
+              ],
+              "global_face_index": 136801
+            },
+            {
+              "face_index": 183,
+              "closed_parameter_interval": [
+                [
+                  "1",
+                  "1"
+                ],
+                [
+                  "1",
+                  "1"
+                ]
+              ],
+              "global_face_index": 136802
+            },
+            {
+              "face_index": 185,
+              "closed_parameter_interval": [
+                [
+                  "0",
+                  "1"
+                ],
+                [
+                  "1",
+                  "1"
+                ]
+              ],
+              "global_face_index": 136804
+            },
+            {
+              "face_index": 186,
+              "closed_parameter_interval": [
+                [
+                  "1",
+                  "1"
+                ],
+                [
+                  "1",
+                  "1"
+                ]
+              ],
+              "global_face_index": 136805
+            },
+            {
+              "face_index": 187,
+              "closed_parameter_interval": [
+                [
+                  "1",
+                  "1"
+                ],
+                [
+                  "1",
+                  "1"
+                ]
+              ],
+              "global_face_index": 136806
+            }
+          ],
+          "union_closed_parameter_intervals": [
+            [
+              [
+                "0",
+                "1"
+              ],
+              [
+                "1",
+                "1"
+              ]
+            ]
+          ],
+          "entire_encoded_geometry_covered": true,
+          "global_face_index": 136803
+        }
+      ],
+      "group_id": "skin-136-0",
+      "kind": "skin",
+      "face_range": [
+        136619,
+        136844
+      ]
+    },
+    {
+      "status": "passed",
+      "scope": "Encoded IEEE surface point-set coverage within this supplied group only; no change to geometry or admission.",
+      "method": "Exact rational segment/triangle intersections, closed half-plane clipping and full interval union; AABB candidates only.",
+      "source_sha256": "910151f42cd028e780619bb3e863d6fec2672331e753ffd9b26b6220f8f5fec3",
+      "input_arrays_sha256": "078e66c70f171fdd1bf2ca8beaf2f84ee7d8806a86be9f00b96cb35688b1e99f",
+      "faces": 218,
+      "degenerate_faces": 1,
+      "all_degenerate_face_geometry_covered": true,
+      "per_face": [
+        {
+          "face_index": 155,
+          "geometry": "closed_segment",
+          "endpoints_exact_ratios": [
+            [
+              [
+                "7791465516784797",
+                "140737488355328"
+              ],
+              [
+                "3086835675478991",
+                "35184372088832"
+              ],
+              [
+                "3534149078045061",
+                "281474976710656"
+              ]
+            ],
+            [
+              [
+                "7791465516784797",
+                "140737488355328"
+              ],
+              [
+                "3086835675478991",
+                "35184372088832"
+              ],
+              [
+                "3708432818162893",
+                "70368744177664"
+              ]
+            ]
+          ],
+          "candidate_triangles": 5,
+          "nonzero_covering_triangle_intersections": [
+            {
+              "face_index": 153,
+              "closed_parameter_interval": [
+                [
+                  "0",
+                  "1"
+                ],
+                [
+                  "0",
+                  "1"
+                ]
+              ],
+              "global_face_index": 137182
+            },
+            {
+              "face_index": 154,
+              "closed_parameter_interval": [
+                [
+                  "0",
+                  "1"
+                ],
+                [
+                  "1",
+                  "1"
+                ]
+              ],
+              "global_face_index": 137183
+            },
+            {
+              "face_index": 156,
+              "closed_parameter_interval": [
+                [
+                  "0",
+                  "1"
+                ],
+                [
+                  "1",
+                  "1"
+                ]
+              ],
+              "global_face_index": 137185
+            },
+            {
+              "face_index": 157,
+              "closed_parameter_interval": [
+                [
+                  "1",
+                  "1"
+                ],
+                [
+                  "1",
+                  "1"
+                ]
+              ],
+              "global_face_index": 137186
+            },
+            {
+              "face_index": 158,
+              "closed_parameter_interval": [
+                [
+                  "1",
+                  "1"
+                ],
+                [
+                  "1",
+                  "1"
+                ]
+              ],
+              "global_face_index": 137187
+            }
+          ],
+          "union_closed_parameter_intervals": [
+            [
+              [
+                "0",
+                "1"
+              ],
+              [
+                "1",
+                "1"
+              ]
+            ]
+          ],
+          "entire_encoded_geometry_covered": true,
+          "global_face_index": 137184
+        }
+      ],
+      "group_id": "skin-150-0",
+      "kind": "skin",
+      "face_range": [
+        137029,
+        137247
+      ]
+    },
+    {
+      "status": "passed",
+      "scope": "Encoded IEEE surface point-set coverage within this supplied group only; no change to geometry or admission.",
+      "method": "Exact rational segment/triangle intersections, closed half-plane clipping and full interval union; AABB candidates only.",
+      "source_sha256": "910151f42cd028e780619bb3e863d6fec2672331e753ffd9b26b6220f8f5fec3",
+      "input_arrays_sha256": "b16d8579511f0d019b9cd6e9aa88da948e412443db36e01a1d3d998f2d86c5e2",
+      "faces": 11,
+      "degenerate_faces": 4,
+      "all_degenerate_face_geometry_covered": true,
+      "per_face": [
+        {
+          "face_index": 1,
+          "geometry": "closed_segment",
+          "endpoints_exact_ratios": [
+            [
+              [
+                "3979470761795555",
+                "70368744177664"
+              ],
+              [
+                "808719329805255",
+                "8796093022208"
+              ],
+              [
+                "1269220850371855",
+                "35184372088832"
+              ]
+            ],
+            [
+              [
+                "3979470761795555",
+                "70368744177664"
+              ],
+              [
+                "808719329805255",
+                "8796093022208"
+              ],
+              [
+                "105",
+                "2"
+              ]
+            ]
+          ],
+          "candidate_triangles": 6,
+          "nonzero_covering_triangle_intersections": [
+            {
+              "face_index": 0,
+              "closed_parameter_interval": [
+                [
+                  "0",
+                  "1"
+                ],
+                [
+                  "0",
+                  "1"
+                ]
+              ],
+              "global_face_index": 137258
+            },
+            {
+              "face_index": 5,
+              "closed_parameter_interval": [
+                [
+                  "0",
+                  "1"
+                ],
+                [
+                  "0",
+                  "1"
+                ]
+              ],
+              "global_face_index": 137263
+            },
+            {
+              "face_index": 7,
+              "closed_parameter_interval": [
+                [
+                  "0",
+                  "1"
+                ],
+                [
+                  "0",
+                  "1"
+                ]
+              ],
+              "global_face_index": 137265
+            },
+            {
+              "face_index": 8,
+              "closed_parameter_interval": [
+                [
+                  "0",
+                  "1"
+                ],
+                [
+                  "0",
+                  "1"
+                ]
+              ],
+              "global_face_index": 137266
+            },
+            {
+              "face_index": 9,
+              "closed_parameter_interval": [
+                [
+                  "1",
+                  "1"
+                ],
+                [
+                  "1",
+                  "1"
+                ]
+              ],
+              "global_face_index": 137267
+            },
+            {
+              "face_index": 10,
+              "closed_parameter_interval": [
+                [
+                  "0",
+                  "1"
+                ],
+                [
+                  "1",
+                  "1"
+                ]
+              ],
+              "global_face_index": 137268
+            }
+          ],
+          "union_closed_parameter_intervals": [
+            [
+              [
+                "0",
+                "1"
+              ],
+              [
+                "1",
+                "1"
+              ]
+            ]
+          ],
+          "entire_encoded_geometry_covered": true,
+          "global_face_index": 137259
+        },
+        {
+          "face_index": 2,
+          "geometry": "closed_segment",
+          "endpoints_exact_ratios": [
+            [
+              [
+                "3979470761795555",
+                "70368744177664"
+              ],
+              [
+                "808719329805255",
+                "8796093022208"
+              ],
+              [
+                "1269220850371855",
+                "35184372088832"
+              ]
+            ],
+            [
+              [
+                "3979470761795555",
+                "70368744177664"
+              ],
+              [
+                "808719329805255",
+                "8796093022208"
+              ],
+              [
+                "461061060106159",
+                "8796093022208"
+              ]
+            ]
+          ],
+          "candidate_triangles": 6,
+          "nonzero_covering_triangle_intersections": [
+            {
+              "face_index": 0,
+              "closed_parameter_interval": [
+                [
+                  "0",
+                  "1"
+                ],
+                [
+                  "0",
+                  "1"
+                ]
+              ],
+              "global_face_index": 137258
+            },
+            {
+              "face_index": 5,
+              "closed_parameter_interval": [
+                [
+                  "0",
+                  "1"
+                ],
+                [
+                  "0",
+                  "1"
+                ]
+              ],
+              "global_face_index": 137263
+            },
+            {
+              "face_index": 7,
+              "closed_parameter_interval": [
+                [
+                  "0",
+                  "1"
+                ],
+                [
+                  "0",
+                  "1"
+                ]
+              ],
+              "global_face_index": 137265
+            },
+            {
+              "face_index": 8,
+              "closed_parameter_interval": [
+                [
+                  "0",
+                  "1"
+                ],
+                [
+                  "0",
+                  "1"
+                ]
+              ],
+              "global_face_index": 137266
+            },
+            {
+              "face_index": 10,
+              "closed_parameter_interval": [
+                [
+                  "0",
+                  "1"
+                ],
+                [
+                  "1",
+                  "1"
+                ]
+              ],
+              "global_face_index": 137268
+            }
+          ],
+          "union_closed_parameter_intervals": [
+            [
+              [
+                "0",
+                "1"
+              ],
+              [
+                "1",
+                "1"
+              ]
+            ]
+          ],
+          "entire_encoded_geometry_covered": true,
+          "global_face_index": 137260
+        },
+        {
+          "face_index": 3,
+          "geometry": "closed_segment",
+          "endpoints_exact_ratios": [
+            [
+              [
+                "3979470761795555",
+                "70368744177664"
+              ],
+              [
+                "808719329805255",
+                "8796093022208"
+              ],
+              [
+                "1269220850371855",
+                "35184372088832"
+              ]
+            ],
+            [
+              [
+                "3979470761795555",
+                "70368744177664"
+              ],
+              [
+                "808719329805255",
+                "8796093022208"
+              ],
+              [
+                "1830170491589103",
+                "35184372088832"
+              ]
+            ]
+          ],
+          "candidate_triangles": 6,
+          "nonzero_covering_triangle_intersections": [
+            {
+              "face_index": 0,
+              "closed_parameter_interval": [
+                [
+                  "0",
+                  "1"
+                ],
+                [
+                  "0",
+                  "1"
+                ]
+              ],
+              "global_face_index": 137258
+            },
+            {
+              "face_index": 5,
+              "closed_parameter_interval": [
+                [
+                  "0",
+                  "1"
+                ],
+                [
+                  "0",
+                  "1"
+                ]
+              ],
+              "global_face_index": 137263
+            },
+            {
+              "face_index": 7,
+              "closed_parameter_interval": [
+                [
+                  "0",
+                  "1"
+                ],
+                [
+                  "0",
+                  "1"
+                ]
+              ],
+              "global_face_index": 137265
+            },
+            {
+              "face_index": 8,
+              "closed_parameter_interval": [
+                [
+                  "0",
+                  "1"
+                ],
+                [
+                  "0",
+                  "1"
+                ]
+              ],
+              "global_face_index": 137266
+            },
+            {
+              "face_index": 10,
+              "closed_parameter_interval": [
+                [
+                  "0",
+                  "1"
+                ],
+                [
+                  "1",
+                  "1"
+                ]
+              ],
+              "global_face_index": 137268
+            }
+          ],
+          "union_closed_parameter_intervals": [
+            [
+              [
+                "0",
+                "1"
+              ],
+              [
+                "1",
+                "1"
+              ]
+            ]
+          ],
+          "entire_encoded_geometry_covered": true,
+          "global_face_index": 137261
+        },
+        {
+          "face_index": 4,
+          "geometry": "closed_segment",
+          "endpoints_exact_ratios": [
+            [
+              [
+                "3979470761795555",
+                "70368744177664"
+              ],
+              [
+                "808719329805255",
+                "8796093022208"
+              ],
+              [
+                "1269220850371855",
+                "35184372088832"
+              ]
+            ],
+            [
+              [
+                "3979470761795555",
+                "70368744177664"
+              ],
+              [
+                "808719329805255",
+                "8796093022208"
+              ],
+              [
+                "1374305862746921",
+                "35184372088832"
+              ]
+            ]
+          ],
+          "candidate_triangles": 5,
+          "nonzero_covering_triangle_intersections": [
+            {
+              "face_index": 0,
+              "closed_parameter_interval": [
+                [
+                  "0",
+                  "1"
+                ],
+                [
+                  "0",
+                  "1"
+                ]
+              ],
+              "global_face_index": 137258
+            },
+            {
+              "face_index": 5,
+              "closed_parameter_interval": [
+                [
+                  "0",
+                  "1"
+                ],
+                [
+                  "0",
+                  "1"
+                ]
+              ],
+              "global_face_index": 137263
+            },
+            {
+              "face_index": 7,
+              "closed_parameter_interval": [
+                [
+                  "0",
+                  "1"
+                ],
+                [
+                  "0",
+                  "1"
+                ]
+              ],
+              "global_face_index": 137265
+            },
+            {
+              "face_index": 8,
+              "closed_parameter_interval": [
+                [
+                  "0",
+                  "1"
+                ],
+                [
+                  "0",
+                  "1"
+                ]
+              ],
+              "global_face_index": 137266
+            },
+            {
+              "face_index": 10,
+              "closed_parameter_interval": [
+                [
+                  "0",
+                  "1"
+                ],
+                [
+                  "1",
+                  "1"
+                ]
+              ],
+              "global_face_index": 137268
+            }
+          ],
+          "union_closed_parameter_intervals": [
+            [
+              [
+                "0",
+                "1"
+              ],
+              [
+                "1",
+                "1"
+              ]
+            ]
+          ],
+          "entire_encoded_geometry_covered": true,
+          "global_face_index": 137262
+        }
+      ],
+      "group_id": "skin-152-0",
+      "kind": "skin",
+      "face_range": [
+        137258,
+        137269
+      ]
+    },
+    {
+      "status": "passed",
+      "scope": "Encoded IEEE surface point-set coverage within this supplied group only; no change to geometry or admission.",
+      "method": "Exact rational segment/triangle intersections, closed half-plane clipping and full interval union; AABB candidates only.",
+      "source_sha256": "910151f42cd028e780619bb3e863d6fec2672331e753ffd9b26b6220f8f5fec3",
+      "input_arrays_sha256": "0357cbb5f086b5b055a2d686f205b676080261b86ba7aafd7b4ffbfa3814878f",
+      "faces": 20,
+      "degenerate_faces": 2,
+      "all_degenerate_face_geometry_covered": true,
+      "per_face": [
+        {
+          "face_index": 0,
+          "geometry": "closed_segment",
+          "endpoints_exact_ratios": [
+            [
+              [
+                "62875015007281",
+                "1099511627776"
+              ],
+              [
+                "3185458095099365",
+                "35184372088832"
+              ],
+              [
+                "5068097693163717",
+                "140737488355328"
+              ]
+            ],
+            [
+              [
+                "62875015007281",
+                "1099511627776"
+              ],
+              [
+                "3185458095099365",
+                "35184372088832"
+              ],
+              [
+                "2546644852460749",
+                "70368744177664"
+              ]
+            ]
+          ],
+          "candidate_triangles": 5,
+          "nonzero_covering_triangle_intersections": [
+            {
+              "face_index": 16,
+              "closed_parameter_interval": [
+                [
+                  "1",
+                  "1"
+                ],
+                [
+                  "1",
+                  "1"
+                ]
+              ],
+              "global_face_index": 137285
+            },
+            {
+              "face_index": 17,
+              "closed_parameter_interval": [
+                [
+                  "0",
+                  "1"
+                ],
+                [
+                  "1",
+                  "1"
+                ]
+              ],
+              "global_face_index": 137286
+            }
+          ],
+          "union_closed_parameter_intervals": [
+            [
+              [
+                "0",
+                "1"
+              ],
+              [
+                "1",
+                "1"
+              ]
+            ]
+          ],
+          "entire_encoded_geometry_covered": true,
+          "global_face_index": 137269
+        },
+        {
+          "face_index": 1,
+          "geometry": "closed_segment",
+          "endpoints_exact_ratios": [
+            [
+              [
+                "62875015007281",
+                "1099511627776"
+              ],
+              [
+                "3185458095099365",
+                "35184372088832"
+              ],
+              [
+                "150953001",
+                "4194304"
+              ]
+            ],
+            [
+              [
+                "62875015007281",
+                "1099511627776"
+              ],
+              [
+                "3185458095099365",
+                "35184372088832"
+              ],
+              [
+                "2546644852460749",
+                "70368744177664"
+              ]
+            ]
+          ],
+          "candidate_triangles": 9,
+          "nonzero_covering_triangle_intersections": [
+            {
+              "face_index": 2,
+              "closed_parameter_interval": [
+                [
+                  "0",
+                  "1"
+                ],
+                [
+                  "0",
+                  "1"
+                ]
+              ],
+              "global_face_index": 137271
+            },
+            {
+              "face_index": 3,
+              "closed_parameter_interval": [
+                [
+                  "0",
+                  "1"
+                ],
+                [
+                  "0",
+                  "1"
+                ]
+              ],
+              "global_face_index": 137272
+            },
+            {
+              "face_index": 4,
+              "closed_parameter_interval": [
+                [
+                  "0",
+                  "1"
+                ],
+                [
+                  "0",
+                  "1"
+                ]
+              ],
+              "global_face_index": 137273
+            },
+            {
+              "face_index": 5,
+              "closed_parameter_interval": [
+                [
+                  "0",
+                  "1"
+                ],
+                [
+                  "0",
+                  "1"
+                ]
+              ],
+              "global_face_index": 137274
+            },
+            {
+              "face_index": 6,
+              "closed_parameter_interval": [
+                [
+                  "0",
+                  "1"
+                ],
+                [
+                  "0",
+                  "1"
+                ]
+              ],
+              "global_face_index": 137275
+            },
+            {
+              "face_index": 7,
+              "closed_parameter_interval": [
+                [
+                  "0",
+                  "1"
+                ],
+                [
+                  "0",
+                  "1"
+                ]
+              ],
+              "global_face_index": 137276
+            },
+            {
+              "face_index": 16,
+              "closed_parameter_interval": [
+                [
+                  "1",
+                  "1"
+                ],
+                [
+                  "1",
+                  "1"
+                ]
+              ],
+              "global_face_index": 137285
+            },
+            {
+              "face_index": 17,
+              "closed_parameter_interval": [
+                [
+                  "0",
+                  "1"
+                ],
+                [
+                  "1",
+                  "1"
+                ]
+              ],
+              "global_face_index": 137286
+            },
+            {
+              "face_index": 18,
+              "closed_parameter_interval": [
+                [
+                  "0",
+                  "1"
+                ],
+                [
+                  "0",
+                  "1"
+                ]
+              ],
+              "global_face_index": 137287
+            }
+          ],
+          "union_closed_parameter_intervals": [
+            [
+              [
+                "0",
+                "1"
+              ],
+              [
+                "1",
+                "1"
+              ]
+            ]
+          ],
+          "entire_encoded_geometry_covered": true,
+          "global_face_index": 137270
+        }
+      ],
+      "group_id": "skin-153-0",
+      "kind": "skin",
+      "face_range": [
+        137269,
+        137289
+      ]
+    },
+    {
+      "status": "passed",
+      "scope": "Encoded IEEE surface point-set coverage within this supplied group only; no change to geometry or admission.",
+      "method": "Exact rational segment/triangle intersections, closed half-plane clipping and full interval union; AABB candidates only.",
+      "source_sha256": "910151f42cd028e780619bb3e863d6fec2672331e753ffd9b26b6220f8f5fec3",
+      "input_arrays_sha256": "86bbcd94eeecc57e229482c800e465bfe9e0e8819784ce2fb728d7f8d067ef69",
+      "faces": 4,
+      "degenerate_faces": 1,
+      "all_degenerate_face_geometry_covered": true,
+      "per_face": [
+        {
+          "face_index": 3,
+          "geometry": "closed_segment",
+          "endpoints_exact_ratios": [
+            [
+              [
+                "1576974667848661",
+                "17592186044416"
+              ],
+              [
+                "1845023628432781",
+                "35184372088832"
+              ],
+              [
+                "0",
+                "1"
+              ]
+            ],
+            [
+              [
+                "1576974667848661",
+                "17592186044416"
+              ],
+              [
+                "1845023628432781",
+                "35184372088832"
+              ],
+              [
+                "10",
+                "1"
+              ]
+            ]
+          ],
+          "candidate_triangles": 3,
+          "nonzero_covering_triangle_intersections": [
+            {
+              "face_index": 0,
+              "closed_parameter_interval": [
+                [
+                  "0",
+                  "1"
+                ],
+                [
+                  "0",
+                  "1"
+                ]
+              ],
+              "global_face_index": 139793
+            },
+            {
+              "face_index": 1,
+              "closed_parameter_interval": [
+                [
+                  "0",
+                  "1"
+                ],
+                [
+                  "0",
+                  "1"
+                ]
+              ],
+              "global_face_index": 139794
+            },
+            {
+              "face_index": 2,
+              "closed_parameter_interval": [
+                [
+                  "0",
+                  "1"
+                ],
+                [
+                  "1",
+                  "1"
+                ]
+              ],
+              "global_face_index": 139795
+            }
+          ],
+          "union_closed_parameter_intervals": [
+            [
+              [
+                "0",
+                "1"
+              ],
+              [
+                "1",
+                "1"
+              ]
+            ]
+          ],
+          "entire_encoded_geometry_covered": true,
+          "global_face_index": 139796
+        }
+      ],
+      "group_id": "skin-415-0",
+      "kind": "skin",
+      "face_range": [
+        139793,
+        139797
+      ]
+    },
+    {
+      "status": "passed",
+      "scope": "Encoded IEEE surface point-set coverage within this supplied group only; no change to geometry or admission.",
+      "method": "Exact rational segment/triangle intersections, closed half-plane clipping and full interval union; AABB candidates only.",
+      "source_sha256": "910151f42cd028e780619bb3e863d6fec2672331e753ffd9b26b6220f8f5fec3",
+      "input_arrays_sha256": "dca4de79a9310e374639d363a650d71f71673ec93af47a7768e97ec09335e391",
+      "faces": 4,
+      "degenerate_faces": 1,
+      "all_degenerate_face_geometry_covered": true,
+      "per_face": [
+        {
+          "face_index": 3,
+          "geometry": "closed_segment",
+          "endpoints_exact_ratios": [
+            [
+              [
+                "6438609765022143",
+                "70368744177664"
+              ],
+              [
+                "7559331954443443",
+                "140737488355328"
+              ],
+              [
+                "0",
+                "1"
+              ]
+            ],
+            [
+              [
+                "6438609765022143",
+                "70368744177664"
+              ],
+              [
+                "7559331954443443",
+                "140737488355328"
+              ],
+              [
+                "10",
+                "1"
+              ]
+            ]
+          ],
+          "candidate_triangles": 3,
+          "nonzero_covering_triangle_intersections": [
+            {
+              "face_index": 0,
+              "closed_parameter_interval": [
+                [
+                  "0",
+                  "1"
+                ],
+                [
+                  "0",
+                  "1"
+                ]
+              ],
+              "global_face_index": 139938
+            },
+            {
+              "face_index": 1,
+              "closed_parameter_interval": [
+                [
+                  "0",
+                  "1"
+                ],
+                [
+                  "0",
+                  "1"
+                ]
+              ],
+              "global_face_index": 139939
+            },
+            {
+              "face_index": 2,
+              "closed_parameter_interval": [
+                [
+                  "0",
+                  "1"
+                ],
+                [
+                  "1",
+                  "1"
+                ]
+              ],
+              "global_face_index": 139940
+            }
+          ],
+          "union_closed_parameter_intervals": [
+            [
+              [
+                "0",
+                "1"
+              ],
+              [
+                "1",
+                "1"
+              ]
+            ]
+          ],
+          "entire_encoded_geometry_covered": true,
+          "global_face_index": 139941
+        }
+      ],
+      "group_id": "skin-455-0",
+      "kind": "skin",
+      "face_range": [
+        139938,
+        139942
+      ]
+    },
+    {
+      "status": "passed",
+      "scope": "Encoded IEEE surface point-set coverage within this supplied group only; no change to geometry or admission.",
+      "method": "Exact rational segment/triangle intersections, closed half-plane clipping and full interval union; AABB candidates only.",
+      "source_sha256": "910151f42cd028e780619bb3e863d6fec2672331e753ffd9b26b6220f8f5fec3",
+      "input_arrays_sha256": "4c8ae1728211d29d317bf8ea5e7e94a01ef62bd8396d71abc35569807880ba09",
+      "faces": 4,
+      "degenerate_faces": 1,
+      "all_degenerate_face_geometry_covered": true,
+      "per_face": [
+        {
+          "face_index": 3,
+          "geometry": "closed_segment",
+          "endpoints_exact_ratios": [
+            [
+              [
+                "6504290575019675",
+                "70368744177664"
+              ],
+              [
+                "3831446510455259",
+                "70368744177664"
+              ],
+              [
+                "0",
+                "1"
+              ]
+            ],
+            [
+              [
+                "6504290575019675",
+                "70368744177664"
+              ],
+              [
+                "3831446510455259",
+                "70368744177664"
+              ],
+              [
+                "10",
+                "1"
+              ]
+            ]
+          ],
+          "candidate_triangles": 3,
+          "nonzero_covering_triangle_intersections": [
+            {
+              "face_index": 0,
+              "closed_parameter_interval": [
+                [
+                  "0",
+                  "1"
+                ],
+                [
+                  "0",
+                  "1"
+                ]
+              ],
+              "global_face_index": 140017
+            },
+            {
+              "face_index": 1,
+              "closed_parameter_interval": [
+                [
+                  "0",
+                  "1"
+                ],
+                [
+                  "0",
+                  "1"
+                ]
+              ],
+              "global_face_index": 140018
+            },
+            {
+              "face_index": 2,
+              "closed_parameter_interval": [
+                [
+                  "0",
+                  "1"
+                ],
+                [
+                  "1",
+                  "1"
+                ]
+              ],
+              "global_face_index": 140019
+            }
+          ],
+          "union_closed_parameter_intervals": [
+            [
+              [
+                "0",
+                "1"
+              ],
+              [
+                "1",
+                "1"
+              ]
+            ]
+          ],
+          "entire_encoded_geometry_covered": true,
+          "global_face_index": 140020
+        }
+      ],
+      "group_id": "skin-476-0",
+      "kind": "skin",
+      "face_range": [
+        140017,
+        140021
+      ]
+    },
+    {
+      "status": "passed",
+      "scope": "Encoded IEEE surface point-set coverage within this supplied group only; no change to geometry or admission.",
+      "method": "Exact rational segment/triangle intersections, closed half-plane clipping and full interval union; AABB candidates only.",
+      "source_sha256": "910151f42cd028e780619bb3e863d6fec2672331e753ffd9b26b6220f8f5fec3",
+      "input_arrays_sha256": "ef16652339d727edc10508cbfcdead34094dc9ea8e3a2c946431d68a8e4ed7c8",
+      "faces": 2454,
+      "degenerate_faces": 1,
+      "all_degenerate_face_geometry_covered": true,
+      "per_face": [
+        {
+          "face_index": 369,
+          "geometry": "closed_segment",
+          "endpoints_exact_ratios": [
+            [
+              [
+                "5260766573179793",
+                "70368744177664"
+              ],
+              [
+                "3613315572108967",
+                "35184372088832"
+              ],
+              [
+                "-3602879701896397",
+                "18014398509481984"
+              ]
+            ],
+            [
+              [
+                "5260766573179793",
+                "70368744177664"
+              ],
+              [
+                "3613315572108967",
+                "35184372088832"
+              ],
+              [
+                "4994571678768633",
+                "1125899906842624"
+              ]
+            ]
+          ],
+          "candidate_triangles": 4,
+          "nonzero_covering_triangle_intersections": [
+            {
+              "face_index": 358,
+              "closed_parameter_interval": [
+                [
+                  "0",
+                  "1"
+                ],
+                [
+                  "1",
+                  "1"
+                ]
+              ],
+              "global_face_index": 142119
+            },
+            {
+              "face_index": 359,
+              "closed_parameter_interval": [
+                [
+                  "1",
+                  "1"
+                ],
+                [
+                  "1",
+                  "1"
+                ]
+              ],
+              "global_face_index": 142120
+            },
+            {
+              "face_index": 368,
+              "closed_parameter_interval": [
+                [
+                  "1",
+                  "1"
+                ],
+                [
+                  "1",
+                  "1"
+                ]
+              ],
+              "global_face_index": 142129
+            },
+            {
+              "face_index": 370,
+              "closed_parameter_interval": [
+                [
+                  "0",
+                  "1"
+                ],
+                [
+                  "1",
+                  "1"
+                ]
+              ],
+              "global_face_index": 142131
+            }
+          ],
+          "union_closed_parameter_intervals": [
+            [
+              [
+                "0",
+                "1"
+              ],
+              [
+                "1",
+                "1"
+              ]
+            ]
+          ],
+          "entire_encoded_geometry_covered": true,
+          "global_face_index": 142130
+        }
+      ],
+      "group_id": "skin-520-0",
+      "kind": "skin",
+      "face_range": [
+        141761,
+        144215
+      ]
+    },
+    {
+      "status": "passed",
+      "scope": "Encoded IEEE surface point-set coverage within this supplied group only; no change to geometry or admission.",
+      "method": "Exact rational segment/triangle intersections, closed half-plane clipping and full interval union; AABB candidates only.",
+      "source_sha256": "910151f42cd028e780619bb3e863d6fec2672331e753ffd9b26b6220f8f5fec3",
+      "input_arrays_sha256": "13584e92075b98af6dca381da8f17f8f8b93243b299f2ff939e2a91e44fb9029",
+      "faces": 17,
+      "degenerate_faces": 2,
+      "all_degenerate_face_geometry_covered": true,
+      "per_face": [
+        {
+          "face_index": 3,
+          "geometry": "closed_segment",
+          "endpoints_exact_ratios": [
+            [
+              [
+                "2966401743530839",
+                "35184372088832"
+              ],
+              [
+                "3754144529261547",
+                "70368744177664"
+              ],
+              [
+                "2612228521363243",
+                "70368744177664"
+              ]
+            ],
+            [
+              [
+                "2966401743530839",
+                "35184372088832"
+              ],
+              [
+                "3754144529261547",
+                "70368744177664"
+              ],
+              [
+                "2649101743312339",
+                "70368744177664"
+              ]
+            ]
+          ],
+          "candidate_triangles": 13,
+          "nonzero_covering_triangle_intersections": [
+            {
+              "face_index": 0,
+              "closed_parameter_interval": [
+                [
+                  "0",
+                  "1"
+                ],
+                [
+                  "0",
+                  "1"
+                ]
+              ],
+              "global_face_index": 158220
+            },
+            {
+              "face_index": 1,
+              "closed_parameter_interval": [
+                [
+                  "0",
+                  "1"
+                ],
+                [
+                  "1",
+                  "1"
+                ]
+              ],
+              "global_face_index": 158221
+            },
+            {
+              "face_index": 2,
+              "closed_parameter_interval": [
+                [
+                  "1",
+                  "1"
+                ],
+                [
+                  "1",
+                  "1"
+                ]
+              ],
+              "global_face_index": 158222
+            },
+            {
+              "face_index": 5,
+              "closed_parameter_interval": [
+                [
+                  "0",
+                  "1"
+                ],
+                [
+                  "1",
+                  "1"
+                ]
+              ],
+              "global_face_index": 158225
+            },
+            {
+              "face_index": 6,
+              "closed_parameter_interval": [
+                [
+                  "1",
+                  "1"
+                ],
+                [
+                  "1",
+                  "1"
+                ]
+              ],
+              "global_face_index": 158226
+            },
+            {
+              "face_index": 7,
+              "closed_parameter_interval": [
+                [
+                  "1",
+                  "1"
+                ],
+                [
+                  "1",
+                  "1"
+                ]
+              ],
+              "global_face_index": 158227
+            },
+            {
+              "face_index": 8,
+              "closed_parameter_interval": [
+                [
+                  "1",
+                  "1"
+                ],
+                [
+                  "1",
+                  "1"
+                ]
+              ],
+              "global_face_index": 158228
+            },
+            {
+              "face_index": 9,
+              "closed_parameter_interval": [
+                [
+                  "1",
+                  "1"
+                ],
+                [
+                  "1",
+                  "1"
+                ]
+              ],
+              "global_face_index": 158229
+            },
+            {
+              "face_index": 10,
+              "closed_parameter_interval": [
+                [
+                  "1",
+                  "1"
+                ],
+                [
+                  "1",
+                  "1"
+                ]
+              ],
+              "global_face_index": 158230
+            },
+            {
+              "face_index": 11,
+              "closed_parameter_interval": [
+                [
+                  "1",
+                  "1"
+                ],
+                [
+                  "1",
+                  "1"
+                ]
+              ],
+              "global_face_index": 158231
+            },
+            {
+              "face_index": 12,
+              "closed_parameter_interval": [
+                [
+                  "1",
+                  "1"
+                ],
+                [
+                  "1",
+                  "1"
+                ]
+              ],
+              "global_face_index": 158232
+            },
+            {
+              "face_index": 13,
+              "closed_parameter_interval": [
+                [
+                  "1",
+                  "1"
+                ],
+                [
+                  "1",
+                  "1"
+                ]
+              ],
+              "global_face_index": 158233
+            },
+            {
+              "face_index": 16,
+              "closed_parameter_interval": [
+                [
+                  "1",
+                  "1"
+                ],
+                [
+                  "1",
+                  "1"
+                ]
+              ],
+              "global_face_index": 158236
+            }
+          ],
+          "union_closed_parameter_intervals": [
+            [
+              [
+                "0",
+                "1"
+              ],
+              [
+                "1",
+                "1"
+              ]
+            ]
+          ],
+          "entire_encoded_geometry_covered": true,
+          "global_face_index": 158223
+        },
+        {
+          "face_index": 4,
+          "geometry": "closed_segment",
+          "endpoints_exact_ratios": [
+            [
+              [
+                "2966401743530839",
+                "35184372088832"
+              ],
+              [
+                "3754144529261547",
+                "70368744177664"
+              ],
+              [
+                "2612228521363243",
+                "70368744177664"
+              ]
+            ],
+            [
+              [
+                "2966401743530839",
+                "35184372088832"
+              ],
+              [
+                "3754144529261547",
+                "70368744177664"
+              ],
+              [
+                "2649101743312339",
+                "70368744177664"
+              ]
+            ]
+          ],
+          "candidate_triangles": 13,
+          "nonzero_covering_triangle_intersections": [
+            {
+              "face_index": 0,
+              "closed_parameter_interval": [
+                [
+                  "0",
+                  "1"
+                ],
+                [
+                  "0",
+                  "1"
+                ]
+              ],
+              "global_face_index": 158220
+            },
+            {
+              "face_index": 1,
+              "closed_parameter_interval": [
+                [
+                  "0",
+                  "1"
+                ],
+                [
+                  "1",
+                  "1"
+                ]
+              ],
+              "global_face_index": 158221
+            },
+            {
+              "face_index": 2,
+              "closed_parameter_interval": [
+                [
+                  "1",
+                  "1"
+                ],
+                [
+                  "1",
+                  "1"
+                ]
+              ],
+              "global_face_index": 158222
+            },
+            {
+              "face_index": 5,
+              "closed_parameter_interval": [
+                [
+                  "0",
+                  "1"
+                ],
+                [
+                  "1",
+                  "1"
+                ]
+              ],
+              "global_face_index": 158225
+            },
+            {
+              "face_index": 6,
+              "closed_parameter_interval": [
+                [
+                  "1",
+                  "1"
+                ],
+                [
+                  "1",
+                  "1"
+                ]
+              ],
+              "global_face_index": 158226
+            },
+            {
+              "face_index": 7,
+              "closed_parameter_interval": [
+                [
+                  "1",
+                  "1"
+                ],
+                [
+                  "1",
+                  "1"
+                ]
+              ],
+              "global_face_index": 158227
+            },
+            {
+              "face_index": 8,
+              "closed_parameter_interval": [
+                [
+                  "1",
+                  "1"
+                ],
+                [
+                  "1",
+                  "1"
+                ]
+              ],
+              "global_face_index": 158228
+            },
+            {
+              "face_index": 9,
+              "closed_parameter_interval": [
+                [
+                  "1",
+                  "1"
+                ],
+                [
+                  "1",
+                  "1"
+                ]
+              ],
+              "global_face_index": 158229
+            },
+            {
+              "face_index": 10,
+              "closed_parameter_interval": [
+                [
+                  "1",
+                  "1"
+                ],
+                [
+                  "1",
+                  "1"
+                ]
+              ],
+              "global_face_index": 158230
+            },
+            {
+              "face_index": 11,
+              "closed_parameter_interval": [
+                [
+                  "1",
+                  "1"
+                ],
+                [
+                  "1",
+                  "1"
+                ]
+              ],
+              "global_face_index": 158231
+            },
+            {
+              "face_index": 12,
+              "closed_parameter_interval": [
+                [
+                  "1",
+                  "1"
+                ],
+                [
+                  "1",
+                  "1"
+                ]
+              ],
+              "global_face_index": 158232
+            },
+            {
+              "face_index": 13,
+              "closed_parameter_interval": [
+                [
+                  "1",
+                  "1"
+                ],
+                [
+                  "1",
+                  "1"
+                ]
+              ],
+              "global_face_index": 158233
+            },
+            {
+              "face_index": 16,
+              "closed_parameter_interval": [
+                [
+                  "1",
+                  "1"
+                ],
+                [
+                  "1",
+                  "1"
+                ]
+              ],
+              "global_face_index": 158236
+            }
+          ],
+          "union_closed_parameter_intervals": [
+            [
+              [
+                "0",
+                "1"
+              ],
+              [
+                "1",
+                "1"
+              ]
+            ]
+          ],
+          "entire_encoded_geometry_covered": true,
+          "global_face_index": 158224
+        }
+      ],
+      "group_id": "skin-542-0",
+      "kind": "skin",
+      "face_range": [
+        158220,
+        158237
+      ]
+    },
+    {
+      "status": "passed",
+      "scope": "Encoded IEEE surface point-set coverage within this supplied group only; no change to geometry or admission.",
+      "method": "Exact rational segment/triangle intersections, closed half-plane clipping and full interval union; AABB candidates only.",
+      "source_sha256": "910151f42cd028e780619bb3e863d6fec2672331e753ffd9b26b6220f8f5fec3",
+      "input_arrays_sha256": "c54a232ee1f46cb939a95653c4708476ebf30679e100e18c87d5fd9f3f96f811",
+      "faces": 36,
+      "degenerate_faces": 3,
+      "all_degenerate_face_geometry_covered": true,
+      "per_face": [
+        {
+          "face_index": 20,
+          "geometry": "closed_segment",
+          "endpoints_exact_ratios": [
+            [
+              [
+                "188506097838509",
+                "2199023255552"
+              ],
+              [
+                "3796887352985741",
+                "70368744177664"
+              ],
+              [
+                "7123428450170589",
+                "140737488355328"
+              ]
+            ],
+            [
+              [
+                "188506097838509",
+                "2199023255552"
+              ],
+              [
+                "3796887352985741",
+                "70368744177664"
+              ],
+              [
+                "7292337756596957",
+                "140737488355328"
+              ]
+            ]
+          ],
+          "candidate_triangles": 11,
+          "nonzero_covering_triangle_intersections": [
+            {
+              "face_index": 2,
+              "closed_parameter_interval": [
+                [
+                  "0",
+                  "1"
+                ],
+                [
+                  "1",
+                  "1"
+                ]
+              ],
+              "global_face_index": 159012
+            },
+            {
+              "face_index": 3,
+              "closed_parameter_interval": [
+                [
+                  "1",
+                  "1"
+                ],
+                [
+                  "1",
+                  "1"
+                ]
+              ],
+              "global_face_index": 159013
+            },
+            {
+              "face_index": 19,
+              "closed_parameter_interval": [
+                [
+                  "168909306426367",
+                  "168909306426368"
+                ],
+                [
+                  "168909306426367",
+                  "168909306426368"
+                ]
+              ],
+              "global_face_index": 159029
+            },
+            {
+              "face_index": 22,
+              "closed_parameter_interval": [
+                [
+                  "1",
+                  "168909306426368"
+                ],
+                [
+                  "168909306426367",
+                  "168909306426368"
+                ]
+              ],
+              "global_face_index": 159032
+            },
+            {
+              "face_index": 32,
+              "closed_parameter_interval": [
+                [
+                  "168909306426367",
+                  "168909306426368"
+                ],
+                [
+                  "168909306426367",
+                  "168909306426368"
+                ]
+              ],
+              "global_face_index": 159042
+            },
+            {
+              "face_index": 34,
+              "closed_parameter_interval": [
+                [
+                  "168909306426367",
+                  "168909306426368"
+                ],
+                [
+                  "168909306426367",
+                  "168909306426368"
+                ]
+              ],
+              "global_face_index": 159044
+            },
+            {
+              "face_index": 35,
+              "closed_parameter_interval": [
+                [
+                  "168909306426367",
+                  "168909306426368"
+                ],
+                [
+                  "168909306426367",
+                  "168909306426368"
+                ]
+              ],
+              "global_face_index": 159045
+            }
+          ],
+          "union_closed_parameter_intervals": [
+            [
+              [
+                "0",
+                "1"
+              ],
+              [
+                "1",
+                "1"
+              ]
+            ]
+          ],
+          "entire_encoded_geometry_covered": true,
+          "global_face_index": 159030
+        },
+        {
+          "face_index": 21,
+          "geometry": "closed_segment",
+          "endpoints_exact_ratios": [
+            [
+              [
+                "188506097838509",
+                "2199023255552"
+              ],
+              [
+                "3796887352985741",
+                "70368744177664"
+              ],
+              [
+                "7123428450170589",
+                "140737488355328"
+              ]
+            ],
+            [
+              [
+                "188506097838509",
+                "2199023255552"
+              ],
+              [
+                "3796887352985741",
+                "70368744177664"
+              ],
+              [
+                "1823084439149239",
+                "35184372088832"
+              ]
+            ]
+          ],
+          "candidate_triangles": 11,
+          "nonzero_covering_triangle_intersections": [
+            {
+              "face_index": 2,
+              "closed_parameter_interval": [
+                [
+                  "0",
+                  "1"
+                ],
+                [
+                  "1",
+                  "1"
+                ]
+              ],
+              "global_face_index": 159012
+            },
+            {
+              "face_index": 19,
+              "closed_parameter_interval": [
+                [
+                  "1",
+                  "1"
+                ],
+                [
+                  "1",
+                  "1"
+                ]
+              ],
+              "global_face_index": 159029
+            },
+            {
+              "face_index": 22,
+              "closed_parameter_interval": [
+                [
+                  "1",
+                  "168909306426367"
+                ],
+                [
+                  "1",
+                  "1"
+                ]
+              ],
+              "global_face_index": 159032
+            },
+            {
+              "face_index": 32,
+              "closed_parameter_interval": [
+                [
+                  "1",
+                  "1"
+                ],
+                [
+                  "1",
+                  "1"
+                ]
+              ],
+              "global_face_index": 159042
+            },
+            {
+              "face_index": 34,
+              "closed_parameter_interval": [
+                [
+                  "1",
+                  "1"
+                ],
+                [
+                  "1",
+                  "1"
+                ]
+              ],
+              "global_face_index": 159044
+            },
+            {
+              "face_index": 35,
+              "closed_parameter_interval": [
+                [
+                  "1",
+                  "1"
+                ],
+                [
+                  "1",
+                  "1"
+                ]
+              ],
+              "global_face_index": 159045
+            }
+          ],
+          "union_closed_parameter_intervals": [
+            [
+              [
+                "0",
+                "1"
+              ],
+              [
+                "1",
+                "1"
+              ]
+            ]
+          ],
+          "entire_encoded_geometry_covered": true,
+          "global_face_index": 159031
+        },
+        {
+          "face_index": 23,
+          "geometry": "closed_segment",
+          "endpoints_exact_ratios": [
+            [
+              [
+                "188506097838509",
+                "2199023255552"
+              ],
+              [
+                "3796887352985741",
+                "70368744177664"
+              ],
+              [
+                "6895751042050083",
+                "140737488355328"
+              ]
+            ],
+            [
+              [
+                "188506097838509",
+                "2199023255552"
+              ],
+              [
+                "3796887352985741",
+                "70368744177664"
+              ],
+              [
+                "3557029581951047",
+                "70368744177664"
+              ]
+            ]
+          ],
+          "candidate_triangles": 9,
+          "nonzero_covering_triangle_intersections": [
+            {
+              "face_index": 0,
+              "closed_parameter_interval": [
+                [
+                  "0",
+                  "1"
+                ],
+                [
+                  "1",
+                  "1"
+                ]
+              ],
+              "global_face_index": 159010
+            },
+            {
+              "face_index": 1,
+              "closed_parameter_interval": [
+                [
+                  "1",
+                  "1"
+                ],
+                [
+                  "1",
+                  "1"
+                ]
+              ],
+              "global_face_index": 159011
+            },
+            {
+              "face_index": 24,
+              "closed_parameter_interval": [
+                [
+                  "0",
+                  "1"
+                ],
+                [
+                  "218308121852007",
+                  "218308121852011"
+                ]
+              ],
+              "global_face_index": 159034
+            },
+            {
+              "face_index": 25,
+              "closed_parameter_interval": [
+                [
+                  "218308121852007",
+                  "218308121852011"
+                ],
+                [
+                  "218308121852007",
+                  "218308121852011"
+                ]
+              ],
+              "global_face_index": 159035
+            },
+            {
+              "face_index": 26,
+              "closed_parameter_interval": [
+                [
+                  "218308121852007",
+                  "218308121852011"
+                ],
+                [
+                  "218308121852007",
+                  "218308121852011"
+                ]
+              ],
+              "global_face_index": 159036
+            },
+            {
+              "face_index": 27,
+              "closed_parameter_interval": [
+                [
+                  "218308121852007",
+                  "218308121852011"
+                ],
+                [
+                  "218308121852007",
+                  "218308121852011"
+                ]
+              ],
+              "global_face_index": 159037
+            },
+            {
+              "face_index": 28,
+              "closed_parameter_interval": [
+                [
+                  "218308121852007",
+                  "218308121852011"
+                ],
+                [
+                  "218308121852007",
+                  "218308121852011"
+                ]
+              ],
+              "global_face_index": 159038
+            },
+            {
+              "face_index": 29,
+              "closed_parameter_interval": [
+                [
+                  "218308121852007",
+                  "218308121852011"
+                ],
+                [
+                  "218308121852007",
+                  "218308121852011"
+                ]
+              ],
+              "global_face_index": 159039
+            },
+            {
+              "face_index": 33,
+              "closed_parameter_interval": [
+                [
+                  "218308121852007",
+                  "218308121852011"
+                ],
+                [
+                  "218308121852007",
+                  "218308121852011"
+                ]
+              ],
+              "global_face_index": 159043
+            }
+          ],
+          "union_closed_parameter_intervals": [
+            [
+              [
+                "0",
+                "1"
+              ],
+              [
+                "1",
+                "1"
+              ]
+            ]
+          ],
+          "entire_encoded_geometry_covered": true,
+          "global_face_index": 159033
+        }
+      ],
+      "group_id": "skin-561-0",
+      "kind": "skin",
+      "face_range": [
+        159010,
+        159046
+      ]
+    },
+    {
+      "status": "passed",
+      "scope": "Encoded IEEE surface point-set coverage within this supplied group only; no change to geometry or admission.",
+      "method": "Exact rational segment/triangle intersections, closed half-plane clipping and full interval union; AABB candidates only.",
+      "source_sha256": "910151f42cd028e780619bb3e863d6fec2672331e753ffd9b26b6220f8f5fec3",
+      "input_arrays_sha256": "ddf8045e3e277dd57ccc52b511c69b6f2e5490de4a89fcca70a8062a5bccb376",
+      "faces": 213,
+      "degenerate_faces": 1,
+      "all_degenerate_face_geometry_covered": true,
+      "per_face": [
+        {
+          "face_index": 155,
+          "geometry": "closed_segment",
+          "endpoints_exact_ratios": [
+            [
+              [
+                "6291769757791111",
+                "70368744177664"
+              ],
+              [
+                "7981703045291723",
+                "140737488355328"
+              ],
+              [
+                "1783007210094307",
+                "140737488355328"
+              ]
+            ],
+            [
+              [
+                "6291769757791111",
+                "70368744177664"
+              ],
+              [
+                "7981703045291723",
+                "140737488355328"
+              ],
+              [
+                "3708432818162893",
+                "70368744177664"
+              ]
+            ]
+          ],
+          "candidate_triangles": 4,
+          "nonzero_covering_triangle_intersections": [
+            {
+              "face_index": 153,
+              "closed_parameter_interval": [
+                [
+                  "0",
+                  "1"
+                ],
+                [
+                  "0",
+                  "1"
+                ]
+              ],
+              "global_face_index": 160554
+            },
+            {
+              "face_index": 154,
+              "closed_parameter_interval": [
+                [
+                  "0",
+                  "1"
+                ],
+                [
+                  "1",
+                  "1"
+                ]
+              ],
+              "global_face_index": 160555
+            },
+            {
+              "face_index": 156,
+              "closed_parameter_interval": [
+                [
+                  "0",
+                  "1"
+                ],
+                [
+                  "1",
+                  "1"
+                ]
+              ],
+              "global_face_index": 160557
+            },
+            {
+              "face_index": 158,
+              "closed_parameter_interval": [
+                [
+                  "1",
+                  "1"
+                ],
+                [
+                  "1",
+                  "1"
+                ]
+              ],
+              "global_face_index": 160559
+            }
+          ],
+          "union_closed_parameter_intervals": [
+            [
+              [
+                "0",
+                "1"
+              ],
+              [
+                "1",
+                "1"
+              ]
+            ]
+          ],
+          "entire_encoded_geometry_covered": true,
+          "global_face_index": 160556
+        }
+      ],
+      "group_id": "skin-570-0",
+      "kind": "skin",
+      "face_range": [
+        160401,
+        160614
+      ]
+    },
+    {
+      "status": "passed",
+      "scope": "Encoded IEEE surface point-set coverage within this supplied group only; no change to geometry or admission.",
+      "method": "Exact rational segment/triangle intersections, closed half-plane clipping and full interval union; AABB candidates only.",
+      "source_sha256": "910151f42cd028e780619bb3e863d6fec2672331e753ffd9b26b6220f8f5fec3",
+      "input_arrays_sha256": "a499ddeaca0ee5222260ff7dd5931af1ded5f80eb6e663b934de91ffd0ca5268",
+      "faces": 17,
+      "degenerate_faces": 2,
+      "all_degenerate_face_geometry_covered": true,
+      "per_face": [
+        {
+          "face_index": 0,
+          "geometry": "closed_segment",
+          "endpoints_exact_ratios": [
+            [
+              [
+                "3185458095099359",
+                "35184372088832"
+              ],
+              [
+                "2012000480232985",
+                "35184372088832"
+              ],
+              [
+                "1624008234544507",
+                "35184372088832"
+              ]
+            ],
+            [
+              [
+                "3185458095099359",
+                "35184372088832"
+              ],
+              [
+                "2012000480232985",
+                "35184372088832"
+              ],
+              [
+                "881849390280867",
+                "17592186044416"
+              ]
+            ]
+          ],
+          "candidate_triangles": 4,
+          "nonzero_covering_triangle_intersections": [
+            {
+              "face_index": 1,
+              "closed_parameter_interval": [
+                [
+                  "1",
+                  "1"
+                ],
+                [
+                  "1",
+                  "1"
+                ]
+              ],
+              "global_face_index": 161023
+            },
+            {
+              "face_index": 2,
+              "closed_parameter_interval": [
+                [
+                  "1",
+                  "1"
+                ],
+                [
+                  "1",
+                  "1"
+                ]
+              ],
+              "global_face_index": 161024
+            },
+            {
+              "face_index": 14,
+              "closed_parameter_interval": [
+                [
+                  "0",
+                  "1"
+                ],
+                [
+                  "1",
+                  "1"
+                ]
+              ],
+              "global_face_index": 161036
+            },
+            {
+              "face_index": 15,
+              "closed_parameter_interval": [
+                [
+                  "1",
+                  "1"
+                ],
+                [
+                  "1",
+                  "1"
+                ]
+              ],
+              "global_face_index": 161037
+            }
+          ],
+          "union_closed_parameter_intervals": [
+            [
+              [
+                "0",
+                "1"
+              ],
+              [
+                "1",
+                "1"
+              ]
+            ]
+          ],
+          "entire_encoded_geometry_covered": true,
+          "global_face_index": 161022
+        },
+        {
+          "face_index": 10,
+          "geometry": "closed_segment",
+          "endpoints_exact_ratios": [
+            [
+              [
+                "6370464116708159",
+                "70368744177664"
+              ],
+              [
+                "8049025210358549",
+                "140737488355328"
+              ],
+              [
+                "3293257227514675",
+                "281474976710656"
+              ]
+            ],
+            [
+              [
+                "3185458095099359",
+                "35184372088832"
+              ],
+              [
+                "2012000480232985",
+                "35184372088832"
+              ],
+              [
+                "2546644852460749",
+                "70368744177664"
+              ]
+            ]
+          ],
+          "candidate_triangles": 11,
+          "nonzero_covering_triangle_intersections": [
+            {
+              "face_index": 3,
+              "closed_parameter_interval": [
+                [
+                  "0",
+                  "1"
+                ],
+                [
+                  "0",
+                  "1"
+                ]
+              ],
+              "global_face_index": 161025
+            },
+            {
+              "face_index": 4,
+              "closed_parameter_interval": [
+                [
+                  "0",
+                  "1"
+                ],
+                [
+                  "0",
+                  "1"
+                ]
+              ],
+              "global_face_index": 161026
+            },
+            {
+              "face_index": 5,
+              "closed_parameter_interval": [
+                [
+                  "0",
+                  "1"
+                ],
+                [
+                  "0",
+                  "1"
+                ]
+              ],
+              "global_face_index": 161027
+            },
+            {
+              "face_index": 6,
+              "closed_parameter_interval": [
+                [
+                  "0",
+                  "1"
+                ],
+                [
+                  "0",
+                  "1"
+                ]
+              ],
+              "global_face_index": 161028
+            },
+            {
+              "face_index": 7,
+              "closed_parameter_interval": [
+                [
+                  "0",
+                  "1"
+                ],
+                [
+                  "0",
+                  "1"
+                ]
+              ],
+              "global_face_index": 161029
+            },
+            {
+              "face_index": 8,
+              "closed_parameter_interval": [
+                [
+                  "0",
+                  "1"
+                ],
+                [
+                  "0",
+                  "1"
+                ]
+              ],
+              "global_face_index": 161030
+            },
+            {
+              "face_index": 9,
+              "closed_parameter_interval": [
+                [
+                  "0",
+                  "1"
+                ],
+                [
+                  "1",
+                  "1"
+                ]
+              ],
+              "global_face_index": 161031
+            },
+            {
+              "face_index": 11,
+              "closed_parameter_interval": [
+                [
+                  "0",
+                  "1"
+                ],
+                [
+                  "1",
+                  "1"
+                ]
+              ],
+              "global_face_index": 161033
+            },
+            {
+              "face_index": 12,
+              "closed_parameter_interval": [
+                [
+                  "0",
+                  "1"
+                ],
+                [
+                  "0",
+                  "1"
+                ]
+              ],
+              "global_face_index": 161034
+            },
+            {
+              "face_index": 13,
+              "closed_parameter_interval": [
+                [
+                  "0",
+                  "1"
+                ],
+                [
+                  "0",
+                  "1"
+                ]
+              ],
+              "global_face_index": 161035
+            },
+            {
+              "face_index": 16,
+              "closed_parameter_interval": [
+                [
+                  "0",
+                  "1"
+                ],
+                [
+                  "0",
+                  "1"
+                ]
+              ],
+              "global_face_index": 161038
+            }
+          ],
+          "union_closed_parameter_intervals": [
+            [
+              [
+                "0",
+                "1"
+              ],
+              [
+                "1",
+                "1"
+              ]
+            ]
+          ],
+          "entire_encoded_geometry_covered": true,
+          "global_face_index": 161032
+        }
+      ],
+      "group_id": "skin-585-0",
+      "kind": "skin",
+      "face_range": [
+        161022,
+        161039
+      ]
+    },
+    {
+      "status": "passed",
+      "scope": "Encoded IEEE surface point-set coverage within this supplied group only; no change to geometry or admission.",
+      "method": "Exact rational segment/triangle intersections, closed half-plane clipping and full interval union; AABB candidates only.",
+      "source_sha256": "910151f42cd028e780619bb3e863d6fec2672331e753ffd9b26b6220f8f5fec3",
+      "input_arrays_sha256": "73299f02d846709908c9764b28e8380affc50545adfde3cd846b133513176f87",
+      "faces": 3124,
+      "degenerate_faces": 1,
+      "all_degenerate_face_geometry_covered": true,
+      "per_face": [
+        {
+          "face_index": 1643,
+          "geometry": "closed_segment",
+          "endpoints_exact_ratios": [
+            [
+              [
+                "2751218846327835",
+                "17592186044416"
+              ],
+              [
+                "320222865166969",
+                "2199023255552"
+              ],
+              [
+                "1699075268256299",
+                "35184372088832"
+              ]
+            ],
+            [
+              [
+                "2751218846327835",
+                "17592186044416"
+              ],
+              [
+                "320222865166969",
+                "2199023255552"
+              ],
+              [
+                "3708432818162893",
+                "70368744177664"
+              ]
+            ]
+          ],
+          "candidate_triangles": 7,
+          "nonzero_covering_triangle_intersections": [
+            {
+              "face_index": 1595,
+              "closed_parameter_interval": [
+                [
+                  "0",
+                  "1"
+                ],
+                [
+                  "0",
+                  "1"
+                ]
+              ],
+              "global_face_index": 163539
+            },
+            {
+              "face_index": 1596,
+              "closed_parameter_interval": [
+                [
+                  "0",
+                  "1"
+                ],
+                [
+                  "1",
+                  "1"
+                ]
+              ],
+              "global_face_index": 163540
+            },
+            {
+              "face_index": 1597,
+              "closed_parameter_interval": [
+                [
+                  "1",
+                  "1"
+                ],
+                [
+                  "1",
+                  "1"
+                ]
+              ],
+              "global_face_index": 163541
+            },
+            {
+              "face_index": 1644,
+              "closed_parameter_interval": [
+                [
+                  "0",
+                  "1"
+                ],
+                [
+                  "1",
+                  "1"
+                ]
+              ],
+              "global_face_index": 163588
+            },
+            {
+              "face_index": 1645,
+              "closed_parameter_interval": [
+                [
+                  "1",
+                  "1"
+                ],
+                [
+                  "1",
+                  "1"
+                ]
+              ],
+              "global_face_index": 163589
+            },
+            {
+              "face_index": 1665,
+              "closed_parameter_interval": [
+                [
+                  "1",
+                  "1"
+                ],
+                [
+                  "1",
+                  "1"
+                ]
+              ],
+              "global_face_index": 163609
+            },
+            {
+              "face_index": 1666,
+              "closed_parameter_interval": [
+                [
+                  "1",
+                  "1"
+                ],
+                [
+                  "1",
+                  "1"
+                ]
+              ],
+              "global_face_index": 163610
+            }
+          ],
+          "union_closed_parameter_intervals": [
+            [
+              [
+                "0",
+                "1"
+              ],
+              [
+                "1",
+                "1"
+              ]
+            ]
+          ],
+          "entire_encoded_geometry_covered": true,
+          "global_face_index": 163587
+        }
+      ],
+      "group_id": "skin-591-0",
+      "kind": "skin",
+      "face_range": [
+        161944,
+        165068
+      ]
+    }
+  ],
+  "targeted_tests": {
+    "passed": 6,
+    "module": "tests/test_carrier_zero_face_coverage.py"
+  }
+}

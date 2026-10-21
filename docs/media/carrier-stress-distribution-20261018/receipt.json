@@ -1,0 +1,183 @@
+{
+  "schema": "whole-current-d64-IP-stress-distribution-1",
+  "language": "English",
+  "inputs_sha256": {
+    "work/carrier-process-20261017/bounded-webs-stock-rib-static-preparation-001/root-solver-terminal-review-001.json": "c64f9d0ab71cfce7ddb4d000e73ff53019e44d05c1f994ac98960dc4fc64a1eb",
+    "work/carrier-d64-stress-distribution-001/render.py": "d51bab44163b5785d403e1a1e65e4d3c769cf8b342a54af4d90f6ecebef2d8dc",
+    "work/carrier-process-20261017/bounded-webs-stock-rib-static-preparation-001/postprocess/audit_energy_brep.py": "b71603069518e6aa8820a7c5fec02115ab82a585e6fe9c160452f1ca2025b186",
+    "work/carrier-process-20261017/bounded-webs-stock-rib-static-preparation-001/rigid-001/cad/mesh-7/combined-rigid-static.npz": "7afe6763f7a06486afb858f5463e7b1ed374634e71972e1d0ce4d2d6fe27773f",
+    "work/carrier-process-20261017/bounded-webs-stock-rib-static-preparation-001/rigid-001/cad/mesh-7/mesh.inp": "1cc01513ddb60e57268fb0f45daf4eaf958c827ecccffe21bc1fc034f2437064",
+    "work/carrier-process-20261017/bounded-webs-stock-rib-static-preparation-001/spring-001/cad/mesh-7/combined-spring-1000-static.npz": "d96d4a4b2f9dd75ac879427e7f4daffd23939ab0d30d2beb72fdcc4eb0c2e7c1",
+    "work/carrier-process-20261017/bounded-webs-stock-rib-static-preparation-001/spring-001/cad/mesh-7/mesh.inp": "1cc01513ddb60e57268fb0f45daf4eaf958c827ecccffe21bc1fc034f2437064"
+  },
+  "same_mesh_all_cases": true,
+  "original_INP_reader_reused": true,
+  "all_T10_straight_midsides_guard_passed": true,
+  "all_IP_rows_plotted": 686136,
+  "no_stress_sample_excluded": true,
+  "plotting_window_contains_all_points": true,
+  "cases": {
+    "rigid": {
+      "integration_points": 343068,
+      "maximum_VM_MPa": 600.6594929208287,
+      "all_maximum_ties": [
+        {
+          "DAT_row_zero_based": 141521,
+          "element_index_zero_based": 35380,
+          "element_id": 35381,
+          "IP_one_based": 2,
+          "reference_undeformed_IP_xyz_mm": [
+            264.01520879155095,
+            21.485040329392003,
+            -11.309999511128929
+          ],
+          "VM_MPa": 600.6594929208287,
+          "element_corner_centroid_mm": [
+            263.8928327064225,
+            21.199557910901753,
+            -11.1613373970365
+          ],
+          "nearest_prescribed_displacement_node": {
+            "node_id": 88880,
+            "undeformed_xyz_mm": [
+              274.42288827337,
+              21.259127485281,
+              -3.8024103919294
+            ],
+            "distance_mm": 12.834902539253461,
+            "scope": "Euclidean distance to the retained discrete node set only; not distance to a BC/load surface"
+          },
+          "nearest_grounded_spring_node": null,
+          "nearest_applied_load_node": {
+            "node_id": 171,
+            "undeformed_xyz_mm": [
+              55.5,
+              20.0,
+              -4.0
+            ],
+            "distance_mm": 208.64858910382478,
+            "scope": "Euclidean distance to the retained discrete node set only; not distance to a BC/load surface"
+          },
+          "corner_measure": {
+            "bounds_mm": [
+              [
+                262.71509057776,
+                20.497762126228,
+                -11.639483600432
+              ],
+              [
+                264.88884952199,
+                21.850730505332,
+                -10.22904385359
+              ]
+            ],
+            "six_corner_edge_lengths_mm": [
+              1.1504959586854397,
+              1.2877005187878041,
+              1.5369544868275544,
+              1.925142773092625,
+              2.1686979038230607,
+              2.7688832354912423
+            ],
+            "measured_h_mm": 2.7688832354912423,
+            "proposed_half_h_mm": 1.3844416177456211,
+            "h_definition": "Maximum of the six actual corner edges of this peak element; not global mesh label"
+          }
+        }
+      ],
+      "coordinate_band_maxima_MPa": {
+        "absX_le105_mm": 584.4742933060384,
+        "absX_105to260_mm": 548.4876771110501,
+        "absX_ge260_mm": 600.6594929208287
+      },
+      "coordinate_bands_are": "Explicit design-coordinate summaries only; no feature identity, excluded peak or acceptance criterion"
+    },
+    "spring": {
+      "integration_points": 343068,
+      "maximum_VM_MPa": 1548.1519838594716,
+      "all_maximum_ties": [
+        {
+          "DAT_row_zero_based": 324030,
+          "element_index_zero_based": 81007,
+          "element_id": 81008,
+          "IP_one_based": 3,
+          "reference_undeformed_IP_xyz_mm": [
+            83.30875649072183,
+            -15.653914962673937,
+            13.52606064977423
+          ],
+          "VM_MPa": 1548.1519838594716,
+          "element_corner_centroid_mm": [
+            83.18376024233775,
+            -16.04224943821375,
+            13.3149039980675
+          ],
+          "nearest_prescribed_displacement_node": null,
+          "nearest_grounded_spring_node": {
+            "node_id": 90352,
+            "undeformed_xyz_mm": [
+              273.25884065702,
+              -16.065002318257,
+              0.3452821010344
+            ],
+            "distance_mm": 190.4072908025021,
+            "scope": "Euclidean distance to the retained discrete node set only; not distance to a BC/load surface"
+          },
+          "nearest_applied_load_node": {
+            "node_id": 210,
+            "undeformed_xyz_mm": [
+              55.5,
+              -20.0,
+              4.0
+            ],
+            "distance_mm": 29.71466345451535,
+            "scope": "Euclidean distance to the retained discrete node set only; not distance to a BC/load surface"
+          },
+          "corner_measure": {
+            "bounds_mm": [
+              [
+                82.431386523478,
+                -16.537174444708,
+                12.779370290015
+              ],
+              [
+                83.463260350657,
+                -15.1739071529,
+                13.787064625185
+              ]
+            ],
+            "six_corner_edge_lengths_mm": [
+              0.9829387400568983,
+              1.077782869245644,
+              1.1361933504213704,
+              1.2932028741447161,
+              1.4030663275439266,
+              1.9063713779133775
+            ],
+            "measured_h_mm": 1.9063713779133775,
+            "proposed_half_h_mm": 0.9531856889566888,
+            "h_definition": "Maximum of the six actual corner edges of this peak element; not global mesh label"
+          }
+        }
+      ],
+      "coordinate_band_maxima_MPa": {
+        "absX_le105_mm": 1548.1519838594716,
+        "absX_105to260_mm": 891.1455404127315,
+        "absX_ge260_mm": 39.34901804069682
+      },
+      "coordinate_bands_are": "Explicit design-coordinate summaries only; no feature identity, excluded peak or acceptance criterion"
+    }
+  },
+  "coordinate_mapping": "Affine original four-point barycentric rule, vectorized; complete maximum ties crosschecked at original1e-10 coordinate bound",
+  "FEA_or_CAD_executed": false,
+  "outputs": {
+    "carrier-stress-distribution.png": {
+      "bytes": 592166,
+      "sha256": "96e8f19f1bf82997814d49bb1c9384db556cd76eae763bae38ccb5196ba5350a"
+    },
+    "carrier-stress-distribution.svg": {
+      "bytes": 385003,
+      "sha256": "66bd559c2892776938c114c6e7fa362e3957b790848d0e9bcfaa476af89ac412"
+    }
+  }
+}

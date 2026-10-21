@@ -1,0 +1,148 @@
+{
+  "status": "complete_native_quad_batch_verified_no_carrier_admission",
+  "events": [
+    {
+      "stage": "preflight",
+      "returncode": 0,
+      "wall_seconds": 0.3854675830807537,
+      "timeout_seconds": 45
+    },
+    {
+      "stage": "upload",
+      "returncode": 0,
+      "wall_seconds": 0.26265299995429814,
+      "timeout_seconds": 60
+    },
+    {
+      "stage": "uploaded",
+      "returncode": 0,
+      "wall_seconds": 0.3100874579977244,
+      "timeout_seconds": 30
+    },
+    {
+      "stage": "compile",
+      "returncode": 0,
+      "wall_seconds": 6.300868665799499,
+      "timeout_seconds": 300
+    },
+    {
+      "stage": "postcompile",
+      "returncode": 0,
+      "wall_seconds": 0.32908879104070365,
+      "timeout_seconds": 30
+    },
+    {
+      "stage": "test",
+      "returncode": 0,
+      "wall_seconds": 0.2616167499218136,
+      "timeout_seconds": 30
+    },
+    {
+      "stage": "postflight",
+      "returncode": 0,
+      "wall_seconds": 0.380055540939793,
+      "timeout_seconds": 30
+    },
+    {
+      "stage": "cleanup",
+      "returncode": 0,
+      "wall_seconds": 0.2568807499483228,
+      "timeout_seconds": 45
+    }
+  ],
+  "method": "constrained_Euler_split_face",
+  "PMP_selected_diagonal": false,
+  "actual_foreground_native_test_exit_code": 0,
+  "test_transport_exit_code": 0,
+  "cases": [
+    {
+      "case": "source003-SKIN-1579-1580-step-0",
+      "method": "constrained_Euler_split_face",
+      "diagonal_constraint_applied": true,
+      "exactly_convex_coplanar_quad": true,
+      "PMP_selected_diagonal": false,
+      "CGAL_version": "6.1.3",
+      "exactly_coplanar": true,
+      "vertices": 4,
+      "faces": 2,
+      "coordinates_exactly_unchanged": true,
+      "directed_boundary_preserved": true,
+      "topology_valid": true,
+      "all_triangles_exactly_noncollinear": true,
+      "kept_source_diagonal": false,
+      "source_diagonal_original_vertex_ids": [
+        1737,
+        1796
+      ],
+      "chosen_diagonal_original_vertex_ids": [
+        1795,
+        1799
+      ],
+      "triangles_original_vertex_ids": [
+        [
+          1799,
+          1737,
+          1795
+        ],
+        [
+          1795,
+          1796,
+          1799
+        ]
+      ],
+      "carrier_mesh_written": false,
+      "global_admission": false
+    }
+  ],
+  "binary_sha256": "fa088409d3ab916176f19936b771f6dcad5872a9dc68e4ffacc44af4d4f653b9",
+  "owned_scope_cleanup": {
+    "scopes": {
+      "carrier-quadbatch-cb711dea60c3842c-compile.scope": {
+        "ActiveState": "inactive",
+        "ControlGroup": "",
+        "LoadState": "not-found",
+        "absent": true
+      },
+      "carrier-quadbatch-cb711dea60c3842c-test.scope": {
+        "ActiveState": "inactive",
+        "ControlGroup": "",
+        "LoadState": "not-found",
+        "absent": true
+      }
+    },
+    "status": "owned_scopes_inactive_or_absent_verified"
+  },
+  "owned_scopes_inactive": true,
+  "local_frozen_files_unchanged": true,
+  "wall_seconds": 8.67378708301112,
+  "reviewed_plan_sha256": "10e36ced64dc54c1a6f80aa9907e2db85bb8e82d4df9986f57566deafe2d6177",
+  "caller_sha256": "c2409d646541c6786b9b4bdf000bc1f2c23f666e8db90ae0b336218fee7b3ac9",
+  "attempted_exact_scopes": [
+    "carrier-quadbatch-cb711dea60c3842c-compile.scope",
+    "carrier-quadbatch-cb711dea60c3842c-test.scope"
+  ],
+  "carrier_mesh_written": false,
+  "global_admission": false,
+  "execution_files_sha256": {
+    "compile.stdout.log": "3e49a2a797beabc253c15ebf8636983a16fc810c4e443024ef4867e820b4e9a1",
+    "uploaded.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "cleanup.stdout.log": "48dd9b361c388bb032f9e99f4a159302e02b041604ab3723d7e458b2a88e6d31",
+    "upload.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "preflight.stdout.log": "9c06bba5b84186e5b52d4445945c844e853ef83191f20aded37483b6cef68783",
+    "postflight.json": "f058dd6555b6d088c9ff2b2ea64bac76521f3130a701436f4a0802a4487e825a",
+    "postflight.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "test.stdout.log": "5a55dc3739c0f2fb5f758a182a97a3323f85b155e2df348c3be4bc7a95f30a8b",
+    "postcompile.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "compile.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "uploaded.stdout.log": "1b21cc2b48fe1d01544917dd687c4719566514f314f4868deadf94d206179ee0",
+    "execution-plan.json": "cbff3dd9d77f17f09375868c3bb711556c333fef3d04cbaa0682637dee941d87",
+    "postcompile.json": "f058dd6555b6d088c9ff2b2ea64bac76521f3130a701436f4a0802a4487e825a",
+    "cleanup.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "upload.stdout.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "preflight.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "postflight.stdout.log": "c1a4ce65a36182fabf4d3181f2bf9b1746ebb4108fc45c935c5f23c48f77782e",
+    "preflight.json": "d908eb3fd6d9f956b3946ba1d8249e7e3a8fc6fd685bf446fbde93622f58ec35",
+    "postcompile.stdout.log": "c1a4ce65a36182fabf4d3181f2bf9b1746ebb4108fc45c935c5f23c48f77782e",
+    "test.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  }
+}

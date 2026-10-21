@@ -1,0 +1,38 @@
+{
+  "schema_version": "warp-geometry-local-build/v1",
+  "date": "2026-10-21",
+  "tag": "porscheparts-warp-geometry:20261021",
+  "local_image_id": "sha256:d2e532ee8b10b5fb2a841a0ca0c282d572839884bce5d2c330a3ddad3c94b9fe",
+  "platform": "linux/amd64",
+  "container_user": "9179:9179",
+  "expanded_image_bytes": 841852738,
+  "published_digest": null,
+  "host": "Apple Silicon Docker linux/amd64 emulation",
+  "source_sha256": {
+    "containers/warp-geometry.Dockerfile": "e5af4a454283ba4ed908245d0f3277b09185b214e4a1177e81c2c303f693ac08",
+    "containers/warp-geometry.requirements.txt": "5c5c2ec8b3d6f564b358d7f870970a6bd9552c2a2e0deb17ac02c804959b7604",
+    "benchmarks/warp-geometry/pilot.py": "6561e3348689f31973991f30876e65dd73c723a35cc8f2aa2cc4c8268fe16c36",
+    "benchmarks/warp-geometry/kernels.py": "356d1debf790790887882e7d0a15d91232451113613f4a43e3e909fcb7540baa"
+  },
+  "cpu_emulation_default": {
+    "exit_code": 1,
+    "status": "error",
+    "cause": "Warp native CPU detection selected unsupported athlon-xp under emulation"
+  },
+  "cpu_emulation_generic": {
+    "exit_code": 0,
+    "status": "passed",
+    "wrapper": "wp.config.cpu_compiler_flags = \"\" before runpy.run_path(pilot, run_name=\"__main__\")",
+    "tests_passed": 15,
+    "tests_skipped": 0,
+    "performance_baseline": false
+  },
+  "cuda_unavailable": {
+    "exit_code": 1,
+    "expected_failure": true,
+    "cpu_fallback": false
+  },
+  "cuda_tested": false,
+  "vast_instance_created": false,
+  "manufacturing_authorized": false
+}

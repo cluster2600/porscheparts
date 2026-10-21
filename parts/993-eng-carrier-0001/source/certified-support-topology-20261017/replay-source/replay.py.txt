@@ -1,0 +1,160 @@
+"""Replay 14 real charts; no sections, mesh output or global admission.
+
+The complete loader requires a genuine six-gate assembly and is not invoked.
+Its source and strict triangle-array comparison remain unmodified and pinned.
+"""
+import argparse
+import ast
+from copy import deepcopy
+from fractions import Fraction as Q
+import hashlib
+import importlib.util
+import inspect
+import json
+from pathlib import Path
+import sys
+import traceback
+
+HERE=Path(__file__).resolve().parent
+ROOT=HERE.parents[2]
+RUNTIME='c22f488f62a19b23d68452db4d3ce09f08cc26f70ca8502e9518e50493d2a64b'
+MANIFEST='233d331592792eb2d667385db49b61d53fbe5416d162b71e2a11cf6c252cd544'
+INDEX='1e40dfd58d1ac0339c7502be149044d222bba59c7e91a778bf91578940a97d37'
+sha=lambda p:hashlib.sha256(Path(p).read_bytes()).hexdigest()
+canonical=lambda v:hashlib.sha256(json.dumps(v,sort_keys=True,separators=(',',':'),allow_nan=False).encode()).hexdigest()
+
+def write(path,value):
+    with Path(path).open('x')as out:json.dump(value,out,indent=2,allow_nan=False);out.write('\n')
+
+def private_module(path,name):
+    spec=importlib.util.spec_from_file_location(name,path)
+    module=importlib.util.module_from_spec(spec);spec.loader.exec_module(module);return module
+
+def local(path):
+    p=Path(path)
+    if p.is_absolute()or '..'in p.parts:raise ValueError('Only pinned workspace-relative paths are allowed')
+    return ROOT/p
+
+def verify(plan):
+    if (plan['schema']!='portable-real-SKIN-remap-replay-plan-1'or plan['source_indices']!=[3,9,10]or
+            plan['charts']!=14 or plan['changed_SKIN_rows']!={'3':22,'9':22,'10':276}or plan['runtime_expected_sha256']!=RUNTIME or
+            plan['manifest_sha256']!=MANIFEST or plan['index_sha256']!=INDEX or plan['total_wall_budget_seconds']!=120 or
+            plan['section_workers']!=0 or plan['threads']!=1 or plan['nice']!=10):
+        raise ValueError('Only the three real 14-chart replay is authorised')
+    for name,digest in plan['files_sha256'].items():
+        p=local(name)
+        interpreter=name==plan['runtime_interpreter']
+        if (interpreter and str(p.resolve())!=plan['runtime_interpreter_resolved'])or(p.is_symlink()and not interpreter)or not p.is_file()or sha(p)!=digest:
+            raise ValueError('A reviewed replay input differs: '+name)
+    output=local(plan['output_directory'])
+    if output.exists()or any(p.is_symlink()for p in (output,*output.parents)):raise ValueError('Replay output must be fresh without symlinks')
+    if sha(local(plan['manifest']))!=MANIFEST or sha(local(plan['index']))!=INDEX:raise ValueError('The real capsule binding differs')
+    loader=ast.parse(local(plan['strict_loader_source']).read_text())
+    fn=next(n for n in loader.body if isinstance(n,ast.FunctionDef)and n.name=='load_supports')
+    guard=next((n for n in ast.walk(fn)if isinstance(n,ast.If)and ast.unparse(n.test)=="not np.array_equal(triangles, rebuilt_skins[group['order']][group['id']])"),None)
+    if guard is None or not any(isinstance(n,ast.Raise)for n in guard.body):raise ValueError('The strict original loader guard differs')
+    return dict(status='portable_remap_replay_preflight_passed_no_AM',source_sha256=sha(__file__),plan_sha256=sha(HERE/'plan.json'),
+        files_sha256=plan['files_sha256'],charts=14,strict_loader_executed=False,AM_imported=False,global_admission=False)
+
+def check_receipt(receipt,row,entry,case,hook_sha,index_sha,old_area,new_area):
+    historical=deepcopy(receipt);supplement=historical.pop('certified_topology_supplement')
+    if historical!=row['remapping_receipt']:raise ValueError('A historical remapping receipt changed')
+    bound=Q(row['trace_proof']['maximum_exact_mapping_error_squared_mm2'])
+    expected=dict(schema='portable-certified-SKIN-native-topology-remap-1',source_index=case['source_index'],owner=entry['owner'],
+        hook_source_sha256=hook_sha,index_sha256=index_sha,candidate_npz_sha256=case['candidate_npz_sha256'],candidate_receipt_sha256=case['candidate_receipt_sha256'],
+        historical_remapping_receipt_sha256=canonical(historical),historical_measurements_retained=True,current_original_surface_area_mm2=old_area,
+        current_candidate_surface_area_mm2=new_area,areas_are_float_diagnostics_only=True,original_local_faces_identity=entry['original_local_faces_identity'],
+        candidate_local_faces_identity=entry['candidate_local_faces_identity'],vertices_byte_identical=True,changed_local_face_ids=entry['changed_local_face_ids'],
+        only_native_SKIN_rows_changed=True,same_closed_TZ_point_set=True,same_closed_3D_point_set_claimed=False,
+        maximum_original_vertex_error_squared_fraction_mm2=str(bound),old_new_Euclidean_squared_upper_fraction_mm2=str(4*bound),graph_or_exposure_or_global_admission=False)
+    if supplement!=expected:raise ValueError('A portable remap supplement differs')
+    return historical,supplement
+
+def run(plan,expected_preflight):
+    if sha(HERE/'preflight.json')!=expected_preflight or json.loads((HERE/'preflight.json').read_text())!=verify(plan):
+        raise ValueError('The reviewed replay preflight differs')
+    output=local(plan['output_directory']);output.mkdir(exist_ok=False)
+    saved_path=list(sys.path);runtime_before=runtime_after=None;checkpoints=None
+    result=dict(status='failed_local_portable_remap_replay',global_admission=False,source_sha256=sha(__file__),plan_sha256=sha(HERE/'plan.json'),
+        preflight_sha256=expected_preflight,files_sha256_before=plan['files_sha256'],section_workers=0,strict_loader_executed=False,
+        original_surfaces_modified=False,candidate_mesh_written=False,six_admissions_synthesized=False)
+    try:
+        import numpy as np
+        import shapely
+        import trimesh
+        source=local(plan['skins_source_directory']);sys.path.insert(0,str(source))
+        original=private_module(source/'peripheral_skins.py','_portable_replay_original_remap')
+        checkpoints=private_module(source/'region_checkpoints.py','_portable_replay_runtime')
+        hook=private_module(local(plan['hook_source']),'_portable_replay_certified_remap')
+        import zero_area_faces
+        if (Path(inspect.getsourcefile(original.remap)).resolve()!=source/'peripheral_skins.py'or
+                Path(inspect.getfile(zero_area_faces.retained_faces)).resolve()!=source/'zero_area_faces.py'or
+                Path(inspect.getfile(original._triangulate_exact_projected_domain)).resolve()!=local(plan['runtime_triangulator_source'])):
+            raise ValueError('An original remapping dependency comes from another location')
+        runtime_before=checkpoints.runtime_identity()
+        if canonical(runtime_before)!=RUNTIME:raise ValueError('The original c22 runtime differs')
+        capsule=local(plan['manifest']).parent
+        consumer=private_module(local(plan['consumer_source']),'_portable_replay_consumer_evidence')
+        authority=consumer.Capsule(local(plan['manifest']),MANIFEST)
+        index,cases,file,verify_inputs=hook.read_index(capsule,local(plan['index']),INDEX)
+        callback=hook.make_remap(capsule,local(plan['index']),original.remap,expected_sha256=INDEX)
+        def identity(a):return dict(dtype=a.dtype.str,shape=list(a.shape),sha256=hashlib.sha256(a.tobytes()).hexdigest())
+        def arrays(name):
+            with np.load(file(name),allow_pickle=False)as data:return {n:data[n].copy()for n in data.files}
+        rows=[];summaries=[]
+        for case in cases:
+            n=case['source_index'];trace=json.loads(file(case['trace_receipt']).read_text())
+            authority.evidence(authority.rows[n],np)
+            old,new,parameters=(arrays(case[k])for k in ('original_npz','candidate_npz','trace_npz'))
+            if {k:identity(a)for k,a in parameters.items()}!=trace['arrays']or not np.isfinite(parameters['vertex_parameters_tz']).all():
+                raise ValueError('The authentic parameter NPZ differs')
+            traced={row['owner']:row for row in trace['rows']};rebuilt_faces=old['faces'].copy();skin_ids=set()
+            for entry in case['entries']:
+                row=traced[entry['owner']];lo,hi=entry['global_face_range'];offset=entry['global_vertex_offset']
+                material=shapely.from_wkb(bytes.fromhex(row['whole_material_wkb_hex']));mapping=np.asarray(row['mapping_t_xy_mm'],dtype=np.float64)
+                if material.is_empty or not material.is_valid or material.area<=0:raise ValueError('The actual material is invalid')
+                mesh,receipt=callback(material,mapping)
+                old_mesh=trimesh.Trimesh(old['vertices'][offset:offset+entry['vertices']].copy(),old['faces'][lo:hi]-offset,process=False)
+                historical,supplement=check_receipt(receipt,row,entry,case,sha(local(plan['hook_source'])),INDEX,float(old_mesh.area),float(mesh.area))
+                # This is exactly the unchanged loader4ace strict XYZ equality,
+                # evaluated on the real chart block without inventing admissions.
+                if (mesh.vertices.tobytes()!=old_mesh.vertices.tobytes()or
+                        not np.array_equal(mesh.triangles,new['vertices'][new['faces'][lo:hi]])):
+                    raise ValueError('Real reconstructed XYZ triangles differ from the candidate')
+                rebuilt_faces[lo:hi]=mesh.faces+offset;skin_ids.update(range(lo,hi))
+                name=f'source-{n:03d}-{entry["owner"]}-remapping-receipt.json';write(output/name,receipt)
+                rows.append(dict(source_index=n,owner=entry['owner'],global_face_range=[lo,hi],changed_rows=len(entry['changes']),
+                    vertices=identity(mesh.vertices),faces=identity(mesh.faces),strict_XYZ_array_equal=True,historical_remapping_receipt_sha256=canonical(historical),
+                    supplement=supplement,receipt_file=name,receipt_sha256=sha(output/name)))
+            expected=sorted(e['global_face_range'][0]+i for e in case['entries']for i in e['changed_local_face_ids'])
+            actual=np.flatnonzero(np.any(rebuilt_faces!=old['faces'],axis=1)).tolist()
+            outside=[i for i in range(len(old['faces']))if i not in skin_ids]
+            if actual!=expected or len(actual)!=plan['changed_SKIN_rows'][str(n)]or not np.array_equal(rebuilt_faces[outside],old['faces'][outside]):
+                raise ValueError('The chart replay changes unbound or non-SKIN rows')
+            summaries.append(dict(source_index=n,charts=len(case['entries']),SKIN_changed_rows=len(actual),GRID_or_other_rows_changed=0))
+        if len(rows)!=14 or callback.supplement_receipts!=[row['supplement']for row in rows]:raise ValueError('The complete ordered chart replay differs')
+        verify_inputs()
+        result.update(status='fourteen_real_SKIN_charts_replayed_no_global_admission',rows=rows,cases=summaries,charts=14,
+            real_consumer_evidence_checked=True,consumer_factory_or_six_gates_executed=False,
+            historical_receipts_preserved=True,strict_XYZ_array_equal_for_every_chart=True,strict_loader_source_and_guard_preserved=True,
+            versions=dict(numpy=np.__version__,shapely=shapely.__version__,trimesh=trimesh.__version__))
+    except Exception as error:
+        result.update(error_type=type(error).__name__,error=str(error),traceback=traceback.format_exc())
+    finally:
+        if checkpoints is not None and runtime_before is not None:runtime_after=checkpoints.runtime_identity()
+        result['runtime_before_sha256']=canonical(runtime_before)if runtime_before is not None else None
+        result['runtime_after_sha256']=canonical(runtime_after)if runtime_after is not None else None
+        result['files_sha256_after']={n:sha(local(n))for n in plan['files_sha256']}
+        result['sources_and_inputs_unchanged']=result['files_sha256_after']==plan['files_sha256']
+        result['runtime_unchanged']=runtime_before is not None and runtime_before==runtime_after
+        if not result['sources_and_inputs_unchanged']or not result['runtime_unchanged']:result['status']='failed_portable_replay_integrity'
+        write(output/'assessment.json',result);sys.path[:]=saved_path
+    return result
+
+if __name__=='__main__':
+    parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('mode',choices=('preflight','run'));parser.add_argument('--preflight-sha256')
+    args=parser.parse_args();plan=json.loads((HERE/'plan.json').read_text())
+    if args.mode=='preflight':write(HERE/'preflight.json',verify(plan))
+    else:
+        result=run(plan,args.preflight_sha256);print(json.dumps({k:result[k]for k in ('status','global_admission')}))
+        raise SystemExit(0 if result['status']=='fourteen_real_SKIN_charts_replayed_no_global_admission'else 1)

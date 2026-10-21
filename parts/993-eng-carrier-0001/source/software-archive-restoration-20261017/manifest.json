@@ -1,0 +1,991 @@
+{
+  "schema": "carrier-software-archive-restoration-evidence-capsule-1",
+  "scope": "Three actual finite restoration experiments; no complete cold carrier workflow or stable6.1.3 offline install.",
+  "copied_from": {
+    "preparation/plan.json": {
+      "source": "work/software-archive-restoration-preparation-001/plan.json",
+      "source_sha256": "bd8e2350b4002d52cec5406ed88a7f65b6b0f47c5abb930cf25d09153d5493ba",
+      "bytes": 13495
+    },
+    "preparation/inventory.json": {
+      "source": "work/software-archive-restoration-preparation-001/inventory.json",
+      "source_sha256": "2389e6c50702c35a268f30356e75eb360b3062541d978914623a10c7886c99c9",
+      "bytes": 3178
+    },
+    "preparation/root-review-GO.json": {
+      "source": "work/software-archive-restoration-preparation-001/root-review-GO.json",
+      "source_sha256": "08c17d3d0622f7505365ac12dc90e6eb0fd65795f2e30563d642c7779f821816",
+      "bytes": 690
+    },
+    "preparation/fixture/contract.json": {
+      "source": "work/software-archive-restoration-preparation-001/fixture/contract.json",
+      "source_sha256": "544067c4823a0c727410e30d161430bada00cda9763aeb681f82654656339676",
+      "bytes": 10985
+    },
+    "preparation/fixture/observed-results.json": {
+      "source": "work/software-archive-restoration-preparation-001/fixture/observed-results.json",
+      "source_sha256": "259a85fd4c904b24d28fd703a1c9c48793ec271fefc2ffe9ec02fef5b9840c23",
+      "bytes": 7173
+    },
+    "preparation/fixture/common.inp": {
+      "source": "work/software-archive-restoration-preparation-001/fixture/common.inp",
+      "source_sha256": "9a7b15a80cecae10dadd891e35f932b76b448c5685439c9823e259f9d54041a0",
+      "bytes": 798
+    },
+    "preparation/ccx-pymesh-completion.json": {
+      "source": "work/software-archive-restoration-execution-001/completion.json",
+      "source_sha256": "8eea2d7d5fdfaafda44c47e9b79ff927ca479423919990bc10c302d1c77c2246",
+      "bytes": 1799
+    },
+    "ccx/execution-receipt.json": {
+      "source": "work/software-archive-restoration-execution-001/ccx/execution-receipt.json",
+      "source_sha256": "3320d268dc39bd479c1e4a335ba3eba69a2963da913292f33a66288017602ed1",
+      "bytes": 28827
+    },
+    "ccx/load.log": {
+      "source": "work/software-archive-restoration-execution-001/ccx/load.log",
+      "source_sha256": "15c64cf6d447d513f5d9eb6a5ebb534915a16db7e05352b927301a3a444dd24d",
+      "bytes": 89
+    },
+    "ccx/load.log.stderr": {
+      "source": "work/software-archive-restoration-execution-001/ccx/load.log.stderr",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "ccx/plan.json": {
+      "source": "work/software-archive-restoration-execution-001/ccx/plan.json",
+      "source_sha256": "8eaa2f82d548fecce4aa25e22655342e36920b36ee4acd3ad6c15cb9acd50899",
+      "bytes": 8678
+    },
+    "ccx/run.py": {
+      "source": "work/software-archive-restoration-execution-001/ccx/run.py",
+      "source_sha256": "7682fa48db01df86db294c7c6b8e3c524a15bc68345d9e772ca1cb923205c64e",
+      "bytes": 11621
+    },
+    "ccx/selfcheck.json": {
+      "source": "work/software-archive-restoration-execution-001/ccx/selfcheck.json",
+      "source_sha256": "da78357bf7e488a7886ee69a9ffd5f969198db565e758dd158c0ca5381cba318",
+      "bytes": 152
+    },
+    "ccx/solve/common.12d": {
+      "source": "work/software-archive-restoration-execution-001/ccx/solve/common.12d",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "ccx/solve/common.cvg": {
+      "source": "work/software-archive-restoration-execution-001/ccx/solve/common.cvg",
+      "source_sha256": "c18a85967549b6693c764721081978b328c7638a648bfa7e1df276bfad684586",
+      "bytes": 930
+    },
+    "ccx/solve/common.dat": {
+      "source": "work/software-archive-restoration-execution-001/ccx/solve/common.dat",
+      "source_sha256": "26f2e116f36b9d09414fe29825f2cd539d9ddef49a8f373fe54c63775f99edf4",
+      "bytes": 4356
+    },
+    "ccx/solve/common.frd": {
+      "source": "work/software-archive-restoration-execution-001/ccx/solve/common.frd",
+      "source_sha256": "34e13f2ec49326614719621eaabbc85d695dc6c74b6af2501ee33203d00f7bdb",
+      "bytes": 6721
+    },
+    "ccx/solve/common.inp": {
+      "source": "work/software-archive-restoration-execution-001/ccx/solve/common.inp",
+      "source_sha256": "9a7b15a80cecae10dadd891e35f932b76b448c5685439c9823e259f9d54041a0",
+      "bytes": 798
+    },
+    "ccx/solve/common.sta": {
+      "source": "work/software-archive-restoration-execution-001/ccx/solve/common.sta",
+      "source_sha256": "9dd0872b66485b95bf9800d7a88f9915157966680b891861f31892eeeb078bb2",
+      "bytes": 386
+    },
+    "ccx/solve/native.log": {
+      "source": "work/software-archive-restoration-execution-001/ccx/solve/native.log",
+      "source_sha256": "9815b0bcae1e0e980690d6d1db7722942dad0ab41a571d59e57eace6aa4dc168",
+      "bytes": 7315
+    },
+    "ccx/solve/native.log.stderr": {
+      "source": "work/software-archive-restoration-execution-001/ccx/solve/native.log.stderr",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "ccx/solve/spooles.out": {
+      "source": "work/software-archive-restoration-execution-001/ccx/solve/spooles.out",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "ccx/version/native.log": {
+      "source": "work/software-archive-restoration-execution-001/ccx/version/native.log",
+      "source_sha256": "2f722d9641eb6ea729c12d2acb53cf4c93c5308aa0171704e8fcd1b91fb336a4",
+      "bytes": 23
+    },
+    "ccx/version/native.log.stderr": {
+      "source": "work/software-archive-restoration-execution-001/ccx/version/native.log.stderr",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "pymesh/cleanup.stderr.log": {
+      "source": "work/software-archive-restoration-execution-001/pymesh/cleanup.stderr.log",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "pymesh/cleanup.stdout.log": {
+      "source": "work/software-archive-restoration-execution-001/pymesh/cleanup.stdout.log",
+      "source_sha256": "3189a82eae6c3da7d1d175ef51c05bd93079dc70c66c10a82f5c5df2c7757c74",
+      "bytes": 365
+    },
+    "pymesh/collect-installation-receipt.json.stderr.log": {
+      "source": "work/software-archive-restoration-execution-001/pymesh/collect-installation-receipt.json.stderr.log",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "pymesh/collect-installation-receipt.json.stdout.log": {
+      "source": "work/software-archive-restoration-execution-001/pymesh/collect-installation-receipt.json.stdout.log",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "pymesh/collect-result.npz.stderr.log": {
+      "source": "work/software-archive-restoration-execution-001/pymesh/collect-result.npz.stderr.log",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "pymesh/collect-result.npz.stdout.log": {
+      "source": "work/software-archive-restoration-execution-001/pymesh/collect-result.npz.stdout.log",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "pymesh/collect-smoke-receipt.json.stderr.log": {
+      "source": "work/software-archive-restoration-execution-001/pymesh/collect-smoke-receipt.json.stderr.log",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "pymesh/collect-smoke-receipt.json.stdout.log": {
+      "source": "work/software-archive-restoration-execution-001/pymesh/collect-smoke-receipt.json.stdout.log",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "pymesh/collected/installation-receipt.json": {
+      "source": "work/software-archive-restoration-execution-001/pymesh/collected/installation-receipt.json",
+      "source_sha256": "fb4e89c6d57040698b6171e515a3e6160a7cbf714d4b7f3d6717eb78afd55341",
+      "bytes": 1346931
+    },
+    "pymesh/collected/result.npz": {
+      "source": "work/software-archive-restoration-execution-001/pymesh/collected/result.npz",
+      "source_sha256": "581c9da239b0ca8e27dd59b12245475a5958f9fd3b63e2ab97e238e8f47c5add",
+      "bytes": 518
+    },
+    "pymesh/collected/smoke-receipt.json": {
+      "source": "work/software-archive-restoration-execution-001/pymesh/collected/smoke-receipt.json",
+      "source_sha256": "f97aa9b009c19d2325097d7802a7d219ec918cd18a8481137a979b951bc2f98d",
+      "bytes": 781
+    },
+    "pymesh/execution-receipt.json": {
+      "source": "work/software-archive-restoration-execution-001/pymesh/execution-receipt.json",
+      "source_sha256": "390d92d81d5a752466cbad50f265764f4fedf46638ef949ccc0a1c63a4b86be1",
+      "bytes": 9810
+    },
+    "pymesh/plan.json": {
+      "source": "work/software-archive-restoration-execution-001/pymesh/plan.json",
+      "source_sha256": "18e5c63d7e16c7315d6df5d72e05669ec24395a3d636acf6dd8e81e2902fa21a",
+      "bytes": 13924
+    },
+    "pymesh/postflight.json": {
+      "source": "work/software-archive-restoration-execution-001/pymesh/postflight.json",
+      "source_sha256": "61c063f73f1fe08b984bbdf852ca3ca399dd6ad79efef05452faeac331521c6f",
+      "bytes": 1590
+    },
+    "pymesh/postflight.stderr.log": {
+      "source": "work/software-archive-restoration-execution-001/pymesh/postflight.stderr.log",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "pymesh/postflight.stdout.log": {
+      "source": "work/software-archive-restoration-execution-001/pymesh/postflight.stdout.log",
+      "source_sha256": "756bec347c78d1df9926632a16dcec313bd843d527d00d4dd38d537fdd49c623",
+      "bytes": 1474
+    },
+    "pymesh/preflight.json": {
+      "source": "work/software-archive-restoration-execution-001/pymesh/preflight.json",
+      "source_sha256": "c29a56a0a9c0e9a34ad3ff92e8f0bfd51e3b1750791d7d7505fd8bce664cde7e",
+      "bytes": 501
+    },
+    "pymesh/preflight.stderr.log": {
+      "source": "work/software-archive-restoration-execution-001/pymesh/preflight.stderr.log",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "pymesh/preflight.stdout.log": {
+      "source": "work/software-archive-restoration-execution-001/pymesh/preflight.stdout.log",
+      "source_sha256": "df0db9c93b0bfe9d1d2eced34957c3798937b8b46176dae0602f0b433b0029a1",
+      "bytes": 457
+    },
+    "pymesh/remote_check.py": {
+      "source": "work/software-archive-restoration-execution-001/pymesh/remote_check.py",
+      "source_sha256": "29c6b4efdf31d1d59b07b0f0f945bbbba03b649ce505758c34f24dba2f0cf43e",
+      "bytes": 5143
+    },
+    "pymesh/restore.stderr.log": {
+      "source": "work/software-archive-restoration-execution-001/pymesh/restore.stderr.log",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "pymesh/restore.stdout.log": {
+      "source": "work/software-archive-restoration-execution-001/pymesh/restore.stdout.log",
+      "source_sha256": "a1c41fc0f2350c80b4f872187f5230408957d317f868d20ef40ec8010f07c459",
+      "bytes": 197
+    },
+    "pymesh/restored.json": {
+      "source": "work/software-archive-restoration-execution-001/pymesh/restored.json",
+      "source_sha256": "081c5c00d36675cfd507610245a7d3b95d2dfb131a5d298280483a8c84c99cbd",
+      "bytes": 665
+    },
+    "pymesh/restored.stderr.log": {
+      "source": "work/software-archive-restoration-execution-001/pymesh/restored.stderr.log",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "pymesh/restored.stdout.log": {
+      "source": "work/software-archive-restoration-execution-001/pymesh/restored.stdout.log",
+      "source_sha256": "0de5faa79fe61f09acc8bcdcb7810ce6e2db717d8e91ab16ff1da318abdd3afd",
+      "bytes": 629
+    },
+    "pymesh/run.py": {
+      "source": "work/software-archive-restoration-execution-001/pymesh/run.py",
+      "source_sha256": "4877b8dd57e173867e18a745390846b423bcb63eae29e9fce29042271d871ad2",
+      "bytes": 7130
+    },
+    "pymesh/selfcheck.json": {
+      "source": "work/software-archive-restoration-execution-001/pymesh/selfcheck.json",
+      "source_sha256": "8dc8c7e7f6e2c7fcc81f5d2c12d4385fb52e47d63d6c98c8212978031efc554e",
+      "bytes": 625
+    },
+    "pymesh/smoke.py": {
+      "source": "work/software-archive-restoration-execution-001/pymesh/smoke.py",
+      "source_sha256": "72b720bd7de235d738905886e98a6b70f31f0de8925f8343dccf7814fd15fc6e",
+      "bytes": 1950
+    },
+    "pymesh/smoke.stderr.log": {
+      "source": "work/software-archive-restoration-execution-001/pymesh/smoke.stderr.log",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "pymesh/smoke.stdout.log": {
+      "source": "work/software-archive-restoration-execution-001/pymesh/smoke.stdout.log",
+      "source_sha256": "c7ffdc4c323141484e5ae89886303a387e01d4bdcd80fd82ee885cc4a6e54b76",
+      "bytes": 743
+    },
+    "pymesh/upload.stderr.log": {
+      "source": "work/software-archive-restoration-execution-001/pymesh/upload.stderr.log",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "pymesh/upload.stdout.log": {
+      "source": "work/software-archive-restoration-execution-001/pymesh/upload.stdout.log",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "pymesh/uploaded.stderr.log": {
+      "source": "work/software-archive-restoration-execution-001/pymesh/uploaded.stderr.log",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "pymesh/uploaded.stdout.log": {
+      "source": "work/software-archive-restoration-execution-001/pymesh/uploaded.stdout.log",
+      "source_sha256": "6f40aeac1d57d528905c03933868d05feaa42e3e0096f2e5e2df1c28c17f3e37",
+      "bytes": 471
+    },
+    "cgal-b4e8/README.md": {
+      "source": "work/software-archive-restoration-execution-001/cgal-b4e8/README.md",
+      "source_sha256": "c5d005a3a77b087eda582176cc126c7d4093c27afd05f2001a4cb9aaf771b136",
+      "bytes": 4333
+    },
+    "cgal-b4e8/cleanup.stderr.log": {
+      "source": "work/software-archive-restoration-execution-001/cgal-b4e8/cleanup.stderr.log",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "cgal-b4e8/cleanup.stdout.log": {
+      "source": "work/software-archive-restoration-execution-001/cgal-b4e8/cleanup.stdout.log",
+      "source_sha256": "70057966ae2dfb4967033ae9206a3228a4c30b9f487125725eca68ed5989ab5e",
+      "bytes": 687
+    },
+    "cgal-b4e8/collect-difference-prism-gap-audit.json.stderr.log": {
+      "source": "work/software-archive-restoration-execution-001/cgal-b4e8/collect-difference-prism-gap-audit.json.stderr.log",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "cgal-b4e8/collect-difference-prism-gap-audit.json.stdout.log": {
+      "source": "work/software-archive-restoration-execution-001/cgal-b4e8/collect-difference-prism-gap-audit.json.stdout.log",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "cgal-b4e8/collect-difference-prism-gap-native.json.stderr.log": {
+      "source": "work/software-archive-restoration-execution-001/cgal-b4e8/collect-difference-prism-gap-native.json.stderr.log",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "cgal-b4e8/collect-difference-prism-gap-native.json.stdout.log": {
+      "source": "work/software-archive-restoration-execution-001/cgal-b4e8/collect-difference-prism-gap-native.json.stdout.log",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "cgal-b4e8/collect-difference-prism-gap-result.mesh64.exact.stderr.log": {
+      "source": "work/software-archive-restoration-execution-001/cgal-b4e8/collect-difference-prism-gap-result.mesh64.exact.stderr.log",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "cgal-b4e8/collect-difference-prism-gap-result.mesh64.exact.stdout.log": {
+      "source": "work/software-archive-restoration-execution-001/cgal-b4e8/collect-difference-prism-gap-result.mesh64.exact.stdout.log",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "cgal-b4e8/collect-difference-prism-gap-result.npz.stderr.log": {
+      "source": "work/software-archive-restoration-execution-001/cgal-b4e8/collect-difference-prism-gap-result.npz.stderr.log",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "cgal-b4e8/collect-difference-prism-gap-result.npz.stdout.log": {
+      "source": "work/software-archive-restoration-execution-001/cgal-b4e8/collect-difference-prism-gap-result.npz.stdout.log",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "cgal-b4e8/collect-intersection-prisms-audit.json.stderr.log": {
+      "source": "work/software-archive-restoration-execution-001/cgal-b4e8/collect-intersection-prisms-audit.json.stderr.log",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "cgal-b4e8/collect-intersection-prisms-audit.json.stdout.log": {
+      "source": "work/software-archive-restoration-execution-001/cgal-b4e8/collect-intersection-prisms-audit.json.stdout.log",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "cgal-b4e8/collect-intersection-prisms-native.json.stderr.log": {
+      "source": "work/software-archive-restoration-execution-001/cgal-b4e8/collect-intersection-prisms-native.json.stderr.log",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "cgal-b4e8/collect-intersection-prisms-native.json.stdout.log": {
+      "source": "work/software-archive-restoration-execution-001/cgal-b4e8/collect-intersection-prisms-native.json.stdout.log",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "cgal-b4e8/collect-intersection-prisms-result.mesh64.exact.stderr.log": {
+      "source": "work/software-archive-restoration-execution-001/cgal-b4e8/collect-intersection-prisms-result.mesh64.exact.stderr.log",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "cgal-b4e8/collect-intersection-prisms-result.mesh64.exact.stdout.log": {
+      "source": "work/software-archive-restoration-execution-001/cgal-b4e8/collect-intersection-prisms-result.mesh64.exact.stdout.log",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "cgal-b4e8/collect-intersection-prisms-result.npz.stderr.log": {
+      "source": "work/software-archive-restoration-execution-001/cgal-b4e8/collect-intersection-prisms-result.npz.stderr.log",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "cgal-b4e8/collect-intersection-prisms-result.npz.stdout.log": {
+      "source": "work/software-archive-restoration-execution-001/cgal-b4e8/collect-intersection-prisms-result.npz.stdout.log",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "cgal-b4e8/collect-smoke-receipt.json.stderr.log": {
+      "source": "work/software-archive-restoration-execution-001/cgal-b4e8/collect-smoke-receipt.json.stderr.log",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "cgal-b4e8/collect-smoke-receipt.json.stdout.log": {
+      "source": "work/software-archive-restoration-execution-001/cgal-b4e8/collect-smoke-receipt.json.stdout.log",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "cgal-b4e8/collect-source-restoration.json.stderr.log": {
+      "source": "work/software-archive-restoration-execution-001/cgal-b4e8/collect-source-restoration.json.stderr.log",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "cgal-b4e8/collect-source-restoration.json.stdout.log": {
+      "source": "work/software-archive-restoration-execution-001/cgal-b4e8/collect-source-restoration.json.stdout.log",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "cgal-b4e8/collect-union-prisms-audit.json.stderr.log": {
+      "source": "work/software-archive-restoration-execution-001/cgal-b4e8/collect-union-prisms-audit.json.stderr.log",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "cgal-b4e8/collect-union-prisms-audit.json.stdout.log": {
+      "source": "work/software-archive-restoration-execution-001/cgal-b4e8/collect-union-prisms-audit.json.stdout.log",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "cgal-b4e8/collect-union-prisms-native.json.stderr.log": {
+      "source": "work/software-archive-restoration-execution-001/cgal-b4e8/collect-union-prisms-native.json.stderr.log",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "cgal-b4e8/collect-union-prisms-native.json.stdout.log": {
+      "source": "work/software-archive-restoration-execution-001/cgal-b4e8/collect-union-prisms-native.json.stdout.log",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "cgal-b4e8/collect-union-prisms-result.mesh64.exact.stderr.log": {
+      "source": "work/software-archive-restoration-execution-001/cgal-b4e8/collect-union-prisms-result.mesh64.exact.stderr.log",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "cgal-b4e8/collect-union-prisms-result.mesh64.exact.stdout.log": {
+      "source": "work/software-archive-restoration-execution-001/cgal-b4e8/collect-union-prisms-result.mesh64.exact.stdout.log",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "cgal-b4e8/collect-union-prisms-result.npz.stderr.log": {
+      "source": "work/software-archive-restoration-execution-001/cgal-b4e8/collect-union-prisms-result.npz.stderr.log",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "cgal-b4e8/collect-union-prisms-result.npz.stdout.log": {
+      "source": "work/software-archive-restoration-execution-001/cgal-b4e8/collect-union-prisms-result.npz.stdout.log",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "cgal-b4e8/collected/difference-prism-gap-audit.json": {
+      "source": "work/software-archive-restoration-execution-001/cgal-b4e8/collected/difference-prism-gap-audit.json",
+      "source_sha256": "de54806107fe39cfff457cd2fc4526b01f0db7a7106557f8d7f953c085f9e5f6",
+      "bytes": 2197
+    },
+    "cgal-b4e8/collected/difference-prism-gap-native.json": {
+      "source": "work/software-archive-restoration-execution-001/cgal-b4e8/collected/difference-prism-gap-native.json",
+      "source_sha256": "a4d37cbf85fb9a8cdbf7ffa4da011aa9f716337d19f4ea5ab0fee878d644cb36",
+      "bytes": 992
+    },
+    "cgal-b4e8/collected/difference-prism-gap-result.mesh64.exact": {
+      "source": "work/software-archive-restoration-execution-001/cgal-b4e8/collected/difference-prism-gap-result.mesh64.exact",
+      "source_sha256": "18212c19c83c0ff75e5fad2d138f3ad10dd09f2f9fd77f1385efedd704b480ed",
+      "bytes": 391
+    },
+    "cgal-b4e8/collected/difference-prism-gap-result.npz": {
+      "source": "work/software-archive-restoration-execution-001/cgal-b4e8/collected/difference-prism-gap-result.npz",
+      "source_sha256": "4bf5e479688a5151b579738b458007e5e3d7a7b35e8417857be7a4b218cf17e2",
+      "bytes": 1098
+    },
+    "cgal-b4e8/collected/intersection-prisms-audit.json": {
+      "source": "work/software-archive-restoration-execution-001/cgal-b4e8/collected/intersection-prisms-audit.json",
+      "source_sha256": "aa01ecb20304b555979361c9e3d190b03c29e56338c4a394bda0f01c2d69893e",
+      "bytes": 2199
+    },
+    "cgal-b4e8/collected/intersection-prisms-native.json": {
+      "source": "work/software-archive-restoration-execution-001/cgal-b4e8/collected/intersection-prisms-native.json",
+      "source_sha256": "0ee4de19f595f02f80577a100d29a0fc0d434fc58dfe459b17ca1543f035a8ec",
+      "bytes": 993
+    },
+    "cgal-b4e8/collected/intersection-prisms-result.mesh64.exact": {
+      "source": "work/software-archive-restoration-execution-001/cgal-b4e8/collected/intersection-prisms-result.mesh64.exact",
+      "source_sha256": "b4822a5a84ea739a28d324c415a70bad6707833d5ccda319aeed70a2b5e227a1",
+      "bytes": 157
+    },
+    "cgal-b4e8/collected/intersection-prisms-result.npz": {
+      "source": "work/software-archive-restoration-execution-001/cgal-b4e8/collected/intersection-prisms-result.npz",
+      "source_sha256": "896f4c43af02124c3d4a4b783857736fe019d3a2ed92c021feeb0f1cdf5cf8a5",
+      "bytes": 953
+    },
+    "cgal-b4e8/collected/smoke-receipt.json": {
+      "source": "work/software-archive-restoration-execution-001/cgal-b4e8/collected/smoke-receipt.json",
+      "source_sha256": "50c3e4035dc36143858121093a20a114c4b309174df7ee8426ad73722c2deb8c",
+      "bytes": 3696
+    },
+    "cgal-b4e8/collected/union-prisms-audit.json": {
+      "source": "work/software-archive-restoration-execution-001/cgal-b4e8/collected/union-prisms-audit.json",
+      "source_sha256": "6b23e7ba5621c064032b540e91053682a591030ef7836e9a9753ea010f7f0b8d",
+      "bytes": 2186
+    },
+    "cgal-b4e8/collected/union-prisms-native.json": {
+      "source": "work/software-archive-restoration-execution-001/cgal-b4e8/collected/union-prisms-native.json",
+      "source_sha256": "50a72284f19eb48662d2272e57ae1c26479010b8aced77c1b60e234909a838af",
+      "bytes": 976
+    },
+    "cgal-b4e8/collected/union-prisms-result.mesh64.exact": {
+      "source": "work/software-archive-restoration-execution-001/cgal-b4e8/collected/union-prisms-result.mesh64.exact",
+      "source_sha256": "7f855a8134dacd1082a016307360b9bfddeaca7ec428b3d1e9fdb62b489fa28c",
+      "bytes": 227
+    },
+    "cgal-b4e8/collected/union-prisms-result.npz": {
+      "source": "work/software-archive-restoration-execution-001/cgal-b4e8/collected/union-prisms-result.npz",
+      "source_sha256": "c95c43823c554c5da41faa7e71607941e7e5140aed94291e4c5b8ed8d65a4a21",
+      "bytes": 1003
+    },
+    "cgal-b4e8/compile.stderr.log": {
+      "source": "work/software-archive-restoration-execution-001/cgal-b4e8/compile.stderr.log",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "cgal-b4e8/compile.stdout.log": {
+      "source": "work/software-archive-restoration-execution-001/cgal-b4e8/compile.stdout.log",
+      "source_sha256": "7d3e5aeeab7461bbec3df37adea5d5b59ce1aa4f937578fc10e557bcfe52b50c",
+      "bytes": 174
+    },
+    "cgal-b4e8/completion.json": {
+      "source": "work/software-archive-restoration-execution-001/cgal-b4e8/completion.json",
+      "source_sha256": "a273678a9c844602506efe8a9dcf193019d04db9fea086aa557d53ba9ccd551f",
+      "bytes": 1474
+    },
+    "cgal-b4e8/configure.stderr.log": {
+      "source": "work/software-archive-restoration-execution-001/cgal-b4e8/configure.stderr.log",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "cgal-b4e8/configure.stdout.log": {
+      "source": "work/software-archive-restoration-execution-001/cgal-b4e8/configure.stdout.log",
+      "source_sha256": "cdf1139f0ac15bb7dae80e053d7ca7f6360066eedd9dedee536e11563069f7bb",
+      "bytes": 721
+    },
+    "cgal-b4e8/execution-receipt.json": {
+      "source": "work/software-archive-restoration-execution-001/cgal-b4e8/execution-receipt.json",
+      "source_sha256": "513bac7e11d9bcbc22306a5d33bfab66527e9b48ec2eaaf1d111e261e9e506b1",
+      "bytes": 490328
+    },
+    "cgal-b4e8/plan.json": {
+      "source": "work/software-archive-restoration-execution-001/cgal-b4e8/plan.json",
+      "source_sha256": "f14464d8bd684ebe1020da33506f678d24e1934ad7a99de6fe9c1863cd6a215f",
+      "bytes": 22354
+    },
+    "cgal-b4e8/postcompile.json": {
+      "source": "work/software-archive-restoration-execution-001/cgal-b4e8/postcompile.json",
+      "source_sha256": "dc6f7ef952816c767ee2dd33e11695500f6e8fd1f8b5da58d5eb7027c735861b",
+      "bytes": 465603
+    },
+    "cgal-b4e8/postcompile.stderr.log": {
+      "source": "work/software-archive-restoration-execution-001/cgal-b4e8/postcompile.stderr.log",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "cgal-b4e8/postflight.json": {
+      "source": "work/software-archive-restoration-execution-001/cgal-b4e8/postflight.json",
+      "source_sha256": "b4a0336df8b9fa730864c400d5cf850a9b0321e505592ec7a86344c534b70e69",
+      "bytes": 469581
+    },
+    "cgal-b4e8/postflight.stderr.log": {
+      "source": "work/software-archive-restoration-execution-001/cgal-b4e8/postflight.stderr.log",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "cgal-b4e8/preflight.json": {
+      "source": "work/software-archive-restoration-execution-001/cgal-b4e8/preflight.json",
+      "source_sha256": "f02f4c9e033684bed6b27f04cfb2eda3fe43c3d2c5aea0f3a16d556674b15082",
+      "bytes": 3183
+    },
+    "cgal-b4e8/preflight.stderr.log": {
+      "source": "work/software-archive-restoration-execution-001/cgal-b4e8/preflight.stderr.log",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "cgal-b4e8/preflight.stdout.log": {
+      "source": "work/software-archive-restoration-execution-001/cgal-b4e8/preflight.stdout.log",
+      "source_sha256": "1e11215bf4de4ad932bde49748fba8b613195abe783ec9a9433dd6d158372b62",
+      "bytes": 3047
+    },
+    "cgal-b4e8/remote_check.py": {
+      "source": "work/software-archive-restoration-execution-001/cgal-b4e8/remote_check.py",
+      "source_sha256": "b32486b409932dccfea50cb88c5e9d870c0a0398d37dffd67e0572180e8a17ec",
+      "bytes": 6466
+    },
+    "cgal-b4e8/restore.stderr.log": {
+      "source": "work/software-archive-restoration-execution-001/cgal-b4e8/restore.stderr.log",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "cgal-b4e8/restore.stdout.log": {
+      "source": "work/software-archive-restoration-execution-001/cgal-b4e8/restore.stdout.log",
+      "source_sha256": "0c31930395bc017d416145edc1c66a73e98e8e614650a4753bc2848b1aa20bf3",
+      "bytes": 81
+    },
+    "cgal-b4e8/restore_source.py": {
+      "source": "work/software-archive-restoration-execution-001/cgal-b4e8/restore_source.py",
+      "source_sha256": "5b22c86157bea938bdbab5c937841989ecd3749d67b0787c417e118e97e4cc8b",
+      "bytes": 1528
+    },
+    "cgal-b4e8/restored.json": {
+      "source": "work/software-archive-restoration-execution-001/cgal-b4e8/restored.json",
+      "source_sha256": "cc12fd5f4160346da1e3f7a21cd8162a7d94cd28c9c28578d4dfc8cca2e1e990",
+      "bytes": 3551
+    },
+    "cgal-b4e8/restored.stderr.log": {
+      "source": "work/software-archive-restoration-execution-001/cgal-b4e8/restored.stderr.log",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "cgal-b4e8/restored.stdout.log": {
+      "source": "work/software-archive-restoration-execution-001/cgal-b4e8/restored.stdout.log",
+      "source_sha256": "9036cdf55acfa0e22a39c0a35b978407f83caa2a086d80d1baefd90f1184108a",
+      "bytes": 3421
+    },
+    "cgal-b4e8/run.py": {
+      "source": "work/software-archive-restoration-execution-001/cgal-b4e8/run.py",
+      "source_sha256": "7587c4ff1c5d3a5bd37bbbb290f4723638a39e1e755ca5353218f01d419b9601",
+      "bytes": 9354
+    },
+    "cgal-b4e8/selfcheck.py": {
+      "source": "work/software-archive-restoration-execution-001/cgal-b4e8/selfcheck.py",
+      "source_sha256": "bedaf11ded670969f586cb1cd790bdc7a85a124ac95efcc28cc31b70a7d90881",
+      "bytes": 4090
+    },
+    "cgal-b4e8/smoke.py": {
+      "source": "work/software-archive-restoration-execution-001/cgal-b4e8/smoke.py",
+      "source_sha256": "c5c51fe5f05798f4e88f6bdfc5c22bd525f694e2cdc06d2e5e2274acc33c1457",
+      "bytes": 3640
+    },
+    "cgal-b4e8/smoke.stderr.log": {
+      "source": "work/software-archive-restoration-execution-001/cgal-b4e8/smoke.stderr.log",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "cgal-b4e8/smoke.stdout.log": {
+      "source": "work/software-archive-restoration-execution-001/cgal-b4e8/smoke.stdout.log",
+      "source_sha256": "bdd5caa90c57052cb1261508aa38908352c42ac82b85e34eb52f41dec4bb885d",
+      "bytes": 96
+    },
+    "cgal-b4e8/upload.stderr.log": {
+      "source": "work/software-archive-restoration-execution-001/cgal-b4e8/upload.stderr.log",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "cgal-b4e8/upload.stdout.log": {
+      "source": "work/software-archive-restoration-execution-001/cgal-b4e8/upload.stdout.log",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "cgal-b4e8/uploaded.stderr.log": {
+      "source": "work/software-archive-restoration-execution-001/cgal-b4e8/uploaded.stderr.log",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "cgal-b4e8/uploaded.stdout.log": {
+      "source": "work/software-archive-restoration-execution-001/cgal-b4e8/uploaded.stdout.log",
+      "source_sha256": "a74b568dd797bbd9b2ea9537ce75bb2fb4dcf6460b3dc0831916ec1491c044d9",
+      "bytes": 3261
+    },
+    "historical-protocol/ener-supervisor.py": {
+      "source": "work/carrier-process-20261017/ener-increment-convergence-001/supervision-001/run.py",
+      "source_sha256": "cbba58f0f6dd6333dc1063386eb61fe6f85652a4709e82032294c4c2c7726b0c",
+      "bytes": 14286
+    }
+  },
+  "external_repository_dependencies_sha256": {
+    "../native-pymesh-20261016/setup.py": "91f7b8ea3e2b8a2f259990429a69c8cf3abc758111373994a6d6e2ece1d717cd",
+    "../native-pymesh-20261016/run.py": "af35ff444be8b5624d620252f592e7ceb18dff6e282215a3338f708010d0a714",
+    "../native-pymesh-20261016/original_v4.py": "40d7c2d11586abc84c500ec010561f867fac59cbb1c523b367ae282b649d5901",
+    "../native-cgal-self-union-20261016/setup.py": "48f79530302c1d336d008a62206943ec03e37af53701505ed05ec57533539af3",
+    "../native-cgal-self-union-20261016/run.py": "14546545f3ef9082f0c9a94c7455306b002b32a95120fb2a163558589fc7457d",
+    "../native-cgal-self-union-20261016/worker.py": "7db19546583c141ab9eaf08bf50128c3890807b5529b9fc157d08ff8ab7c615c",
+    "../native-cgal-self-union-20261016/witnesses.py": "8eaec0bf0d785c1573b125f37f4e6d1fc94646b954144bc15ce00c1842108a5a",
+    "../native-cgal-self-union-20261016/soup_boolean.cpp": "6b0705944752e90023a1df17d34a77a37561b9b83168d6f88ca93bbfa350579a",
+    "../native-cgal-self-union-20261016/CMakeLists.txt": "4342603ba0609289edcf834b8e8251b76e327379118263feb02943578acc501e",
+    "../native-cgal-20261016/setup.py": "d371d83e955aa73cb5d6586244ea291d0303f85b3a24567b378776cbbca4c15d"
+  },
+  "excluded_originals": [
+    {
+      "source": "work/software-archive-restoration-execution-001/ccx/solve-ccx.prestart",
+      "sha256": "271f8411371b978d7a8d31a7a13d0765e6e1f872e8a8b1d6aac6d0856c71ec6c",
+      "bytes": 4338224,
+      "reason": "Executable/cache or redundant historical source/large duplicate metadata; original preserved"
+    },
+    {
+      "source": "work/software-archive-restoration-execution-001/ccx/version-ccx.prestart",
+      "sha256": "271f8411371b978d7a8d31a7a13d0765e6e1f872e8a8b1d6aac6d0856c71ec6c",
+      "bytes": 4338224,
+      "reason": "Executable/cache or redundant historical source/large duplicate metadata; original preserved"
+    },
+    {
+      "source": "work/software-archive-restoration-execution-001/pymesh/draft-before-root-caps-001/plan.json",
+      "sha256": "a8ab1611371bba6f61d6f0f68ec0495916680b7a12436ddad3b939b117f5ac4d",
+      "bytes": 13824,
+      "reason": "Executable/cache or redundant historical source/large duplicate metadata; original preserved"
+    },
+    {
+      "source": "work/software-archive-restoration-execution-001/pymesh/draft-before-root-caps-001/selfcheck.json",
+      "sha256": "9aa0bc9f0cb9628d11770cb6e53f892df7f1624d94c4bcdd3b27610eee988c84",
+      "bytes": 625,
+      "reason": "Executable/cache or redundant historical source/large duplicate metadata; original preserved"
+    },
+    {
+      "source": "work/software-archive-restoration-execution-001/pymesh/installer/original_v4.py",
+      "sha256": "40d7c2d11586abc84c500ec010561f867fac59cbb1c523b367ae282b649d5901",
+      "bytes": 6916,
+      "reason": "Executable/cache or redundant historical source/large duplicate metadata; original preserved"
+    },
+    {
+      "source": "work/software-archive-restoration-execution-001/pymesh/installer/run.py",
+      "sha256": "af35ff444be8b5624d620252f592e7ceb18dff6e282215a3338f708010d0a714",
+      "bytes": 8256,
+      "reason": "Executable/cache or redundant historical source/large duplicate metadata; original preserved"
+    },
+    {
+      "source": "work/software-archive-restoration-execution-001/pymesh/installer/setup.py",
+      "sha256": "91f7b8ea3e2b8a2f259990429a69c8cf3abc758111373994a6d6e2ece1d717cd",
+      "bytes": 3406,
+      "reason": "Executable/cache or redundant historical source/large duplicate metadata; original preserved"
+    },
+    {
+      "source": "work/software-archive-restoration-execution-001/pymesh/native-run.py",
+      "sha256": "af35ff444be8b5624d620252f592e7ceb18dff6e282215a3338f708010d0a714",
+      "bytes": 8256,
+      "reason": "Executable/cache or redundant historical source/large duplicate metadata; original preserved"
+    },
+    {
+      "source": "work/software-archive-restoration-execution-001/pymesh/original_v4.py",
+      "sha256": "40d7c2d11586abc84c500ec010561f867fac59cbb1c523b367ae282b649d5901",
+      "bytes": 6916,
+      "reason": "Executable/cache or redundant historical source/large duplicate metadata; original preserved"
+    },
+    {
+      "source": "work/software-archive-restoration-execution-001/pymesh/setup.py",
+      "sha256": "91f7b8ea3e2b8a2f259990429a69c8cf3abc758111373994a6d6e2ece1d717cd",
+      "bytes": 3406,
+      "reason": "Executable/cache or redundant historical source/large duplicate metadata; original preserved"
+    },
+    {
+      "source": "work/software-archive-restoration-execution-001/pymesh/upload/original_v4.py",
+      "sha256": "40d7c2d11586abc84c500ec010561f867fac59cbb1c523b367ae282b649d5901",
+      "bytes": 6916,
+      "reason": "Executable/cache or redundant historical source/large duplicate metadata; original preserved"
+    },
+    {
+      "source": "work/software-archive-restoration-execution-001/pymesh/upload/run.py",
+      "sha256": "af35ff444be8b5624d620252f592e7ceb18dff6e282215a3338f708010d0a714",
+      "bytes": 8256,
+      "reason": "Executable/cache or redundant historical source/large duplicate metadata; original preserved"
+    },
+    {
+      "source": "work/software-archive-restoration-execution-001/pymesh/upload/setup.py",
+      "sha256": "91f7b8ea3e2b8a2f259990429a69c8cf3abc758111373994a6d6e2ece1d717cd",
+      "bytes": 3406,
+      "reason": "Executable/cache or redundant historical source/large duplicate metadata; original preserved"
+    },
+    {
+      "source": "work/software-archive-restoration-execution-001/pymesh/upload/smoke.py",
+      "sha256": "72b720bd7de235d738905886e98a6b70f31f0de8925f8343dccf7814fd15fc6e",
+      "bytes": 1950,
+      "reason": "Executable/cache or redundant historical source/large duplicate metadata; original preserved"
+    },
+    {
+      "source": "work/software-archive-restoration-execution-001/pymesh/upload/witnesses.py",
+      "sha256": "8eaec0bf0d785c1573b125f37f4e6d1fc94646b954144bc15ce00c1842108a5a",
+      "bytes": 4826,
+      "reason": "Executable/cache or redundant historical source/large duplicate metadata; original preserved"
+    },
+    {
+      "source": "work/software-archive-restoration-execution-001/pymesh/witnesses.py",
+      "sha256": "8eaec0bf0d785c1573b125f37f4e6d1fc94646b954144bc15ce00c1842108a5a",
+      "bytes": 4826,
+      "reason": "Executable/cache or redundant historical source/large duplicate metadata; original preserved"
+    },
+    {
+      "source": "work/software-archive-restoration-execution-001/cgal-b4e8/collected/source-restoration.json",
+      "sha256": "674085adf0e2a4d7e5f7ae2a2888cb8c0c04c237f08ca32467c9af30597d5373",
+      "bytes": 3294007,
+      "reason": "Executable/cache or redundant historical source/large duplicate metadata; original preserved"
+    },
+    {
+      "source": "work/software-archive-restoration-execution-001/cgal-b4e8/manifest.json",
+      "sha256": "01d9cdae79855b36fe6430dc3294f716f983df1524b3ff2a00a7046bc0c9100b",
+      "bytes": 9179,
+      "reason": "Executable/cache or redundant historical source/large duplicate metadata; original preserved"
+    },
+    {
+      "source": "work/software-archive-restoration-execution-001/cgal-b4e8/postcompile.stdout.log",
+      "sha256": "471d1ae499950478c02499670fad354ccb29cff9e0ae82525ed6db3fdd96d99c",
+      "bytes": 453699,
+      "reason": "Executable/cache or redundant historical source/large duplicate metadata; original preserved"
+    },
+    {
+      "source": "work/software-archive-restoration-execution-001/cgal-b4e8/postflight.stdout.log",
+      "sha256": "2224e622db39be8399bb7b4ab02a888f4d9a78a9a903bec1e878308e31af0986",
+      "bytes": 456977,
+      "reason": "Executable/cache or redundant historical source/large duplicate metadata; original preserved"
+    },
+    {
+      "source": "work/software-archive-restoration-execution-001/cgal-b4e8/upload/CMakeLists.txt",
+      "sha256": "4342603ba0609289edcf834b8e8251b76e327379118263feb02943578acc501e",
+      "bytes": 364,
+      "reason": "Executable/cache or redundant historical source/large duplicate metadata; original preserved"
+    },
+    {
+      "source": "work/software-archive-restoration-execution-001/cgal-b4e8/upload/restore_source.py",
+      "sha256": "5b22c86157bea938bdbab5c937841989ecd3749d67b0787c417e118e97e4cc8b",
+      "bytes": 1528,
+      "reason": "Executable/cache or redundant historical source/large duplicate metadata; original preserved"
+    },
+    {
+      "source": "work/software-archive-restoration-execution-001/cgal-b4e8/upload/run.py",
+      "sha256": "14546545f3ef9082f0c9a94c7455306b002b32a95120fb2a163558589fc7457d",
+      "bytes": 4470,
+      "reason": "Executable/cache or redundant historical source/large duplicate metadata; original preserved"
+    },
+    {
+      "source": "work/software-archive-restoration-execution-001/cgal-b4e8/upload/setup.py",
+      "sha256": "48f79530302c1d336d008a62206943ec03e37af53701505ed05ec57533539af3",
+      "bytes": 6370,
+      "reason": "Executable/cache or redundant historical source/large duplicate metadata; original preserved"
+    },
+    {
+      "source": "work/software-archive-restoration-execution-001/cgal-b4e8/upload/smoke.py",
+      "sha256": "c5c51fe5f05798f4e88f6bdfc5c22bd525f694e2cdc06d2e5e2274acc33c1457",
+      "bytes": 3640,
+      "reason": "Executable/cache or redundant historical source/large duplicate metadata; original preserved"
+    },
+    {
+      "source": "work/software-archive-restoration-execution-001/cgal-b4e8/upload/soup_boolean.cpp",
+      "sha256": "6b0705944752e90023a1df17d34a77a37561b9b83168d6f88ca93bbfa350579a",
+      "bytes": 8299,
+      "reason": "Executable/cache or redundant historical source/large duplicate metadata; original preserved"
+    },
+    {
+      "source": "work/software-archive-restoration-execution-001/cgal-b4e8/upload/witnesses.py",
+      "sha256": "8eaec0bf0d785c1573b125f37f4e6d1fc94646b954144bc15ce00c1842108a5a",
+      "bytes": 4826,
+      "reason": "Executable/cache or redundant historical source/large duplicate metadata; original preserved"
+    },
+    {
+      "source": "work/software-archive-restoration-execution-001/cgal-b4e8/upload/worker.py",
+      "sha256": "7db19546583c141ab9eaf08bf50128c3890807b5529b9fc157d08ff8ab7c615c",
+      "bytes": 5572,
+      "reason": "Executable/cache or redundant historical source/large duplicate metadata; original preserved"
+    }
+  ],
+  "files_sha256": {
+    "README.md": "22d4ab5ee8d086f14e950c9c17efc0aa59adadc5b079b92f8b7c5b350fe153b4",
+    "ccx/execution-receipt.json": "3320d268dc39bd479c1e4a335ba3eba69a2963da913292f33a66288017602ed1",
+    "ccx/load.log": "15c64cf6d447d513f5d9eb6a5ebb534915a16db7e05352b927301a3a444dd24d",
+    "ccx/load.log.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "ccx/plan.json": "8eaa2f82d548fecce4aa25e22655342e36920b36ee4acd3ad6c15cb9acd50899",
+    "ccx/run.py": "7682fa48db01df86db294c7c6b8e3c524a15bc68345d9e772ca1cb923205c64e",
+    "ccx/selfcheck.json": "da78357bf7e488a7886ee69a9ffd5f969198db565e758dd158c0ca5381cba318",
+    "ccx/solve/common.12d": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "ccx/solve/common.cvg": "c18a85967549b6693c764721081978b328c7638a648bfa7e1df276bfad684586",
+    "ccx/solve/common.dat": "26f2e116f36b9d09414fe29825f2cd539d9ddef49a8f373fe54c63775f99edf4",
+    "ccx/solve/common.frd": "34e13f2ec49326614719621eaabbc85d695dc6c74b6af2501ee33203d00f7bdb",
+    "ccx/solve/common.inp": "9a7b15a80cecae10dadd891e35f932b76b448c5685439c9823e259f9d54041a0",
+    "ccx/solve/common.sta": "9dd0872b66485b95bf9800d7a88f9915157966680b891861f31892eeeb078bb2",
+    "ccx/solve/native.log": "9815b0bcae1e0e980690d6d1db7722942dad0ab41a571d59e57eace6aa4dc168",
+    "ccx/solve/native.log.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "ccx/solve/spooles.out": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "ccx/version/native.log": "2f722d9641eb6ea729c12d2acb53cf4c93c5308aa0171704e8fcd1b91fb336a4",
+    "ccx/version/native.log.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "cgal-b4e8/README.md": "c5d005a3a77b087eda582176cc126c7d4093c27afd05f2001a4cb9aaf771b136",
+    "cgal-b4e8/cleanup.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "cgal-b4e8/cleanup.stdout.log": "70057966ae2dfb4967033ae9206a3228a4c30b9f487125725eca68ed5989ab5e",
+    "cgal-b4e8/collect-difference-prism-gap-audit.json.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "cgal-b4e8/collect-difference-prism-gap-audit.json.stdout.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "cgal-b4e8/collect-difference-prism-gap-native.json.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "cgal-b4e8/collect-difference-prism-gap-native.json.stdout.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "cgal-b4e8/collect-difference-prism-gap-result.mesh64.exact.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "cgal-b4e8/collect-difference-prism-gap-result.mesh64.exact.stdout.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "cgal-b4e8/collect-difference-prism-gap-result.npz.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "cgal-b4e8/collect-difference-prism-gap-result.npz.stdout.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "cgal-b4e8/collect-intersection-prisms-audit.json.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "cgal-b4e8/collect-intersection-prisms-audit.json.stdout.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "cgal-b4e8/collect-intersection-prisms-native.json.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "cgal-b4e8/collect-intersection-prisms-native.json.stdout.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "cgal-b4e8/collect-intersection-prisms-result.mesh64.exact.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "cgal-b4e8/collect-intersection-prisms-result.mesh64.exact.stdout.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "cgal-b4e8/collect-intersection-prisms-result.npz.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "cgal-b4e8/collect-intersection-prisms-result.npz.stdout.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "cgal-b4e8/collect-smoke-receipt.json.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "cgal-b4e8/collect-smoke-receipt.json.stdout.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "cgal-b4e8/collect-source-restoration.json.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "cgal-b4e8/collect-source-restoration.json.stdout.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "cgal-b4e8/collect-union-prisms-audit.json.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "cgal-b4e8/collect-union-prisms-audit.json.stdout.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "cgal-b4e8/collect-union-prisms-native.json.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "cgal-b4e8/collect-union-prisms-native.json.stdout.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "cgal-b4e8/collect-union-prisms-result.mesh64.exact.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "cgal-b4e8/collect-union-prisms-result.mesh64.exact.stdout.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "cgal-b4e8/collect-union-prisms-result.npz.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "cgal-b4e8/collect-union-prisms-result.npz.stdout.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "cgal-b4e8/collected/difference-prism-gap-audit.json": "de54806107fe39cfff457cd2fc4526b01f0db7a7106557f8d7f953c085f9e5f6",
+    "cgal-b4e8/collected/difference-prism-gap-native.json": "a4d37cbf85fb9a8cdbf7ffa4da011aa9f716337d19f4ea5ab0fee878d644cb36",
+    "cgal-b4e8/collected/difference-prism-gap-result.mesh64.exact": "18212c19c83c0ff75e5fad2d138f3ad10dd09f2f9fd77f1385efedd704b480ed",
+    "cgal-b4e8/collected/difference-prism-gap-result.npz": "4bf5e479688a5151b579738b458007e5e3d7a7b35e8417857be7a4b218cf17e2",
+    "cgal-b4e8/collected/intersection-prisms-audit.json": "aa01ecb20304b555979361c9e3d190b03c29e56338c4a394bda0f01c2d69893e",
+    "cgal-b4e8/collected/intersection-prisms-native.json": "0ee4de19f595f02f80577a100d29a0fc0d434fc58dfe459b17ca1543f035a8ec",
+    "cgal-b4e8/collected/intersection-prisms-result.mesh64.exact": "b4822a5a84ea739a28d324c415a70bad6707833d5ccda319aeed70a2b5e227a1",
+    "cgal-b4e8/collected/intersection-prisms-result.npz": "896f4c43af02124c3d4a4b783857736fe019d3a2ed92c021feeb0f1cdf5cf8a5",
+    "cgal-b4e8/collected/smoke-receipt.json": "50c3e4035dc36143858121093a20a114c4b309174df7ee8426ad73722c2deb8c",
+    "cgal-b4e8/collected/union-prisms-audit.json": "6b23e7ba5621c064032b540e91053682a591030ef7836e9a9753ea010f7f0b8d",
+    "cgal-b4e8/collected/union-prisms-native.json": "50a72284f19eb48662d2272e57ae1c26479010b8aced77c1b60e234909a838af",
+    "cgal-b4e8/collected/union-prisms-result.mesh64.exact": "7f855a8134dacd1082a016307360b9bfddeaca7ec428b3d1e9fdb62b489fa28c",
+    "cgal-b4e8/collected/union-prisms-result.npz": "c95c43823c554c5da41faa7e71607941e7e5140aed94291e4c5b8ed8d65a4a21",
+    "cgal-b4e8/compile.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "cgal-b4e8/compile.stdout.log": "7d3e5aeeab7461bbec3df37adea5d5b59ce1aa4f937578fc10e557bcfe52b50c",
+    "cgal-b4e8/completion.json": "a273678a9c844602506efe8a9dcf193019d04db9fea086aa557d53ba9ccd551f",
+    "cgal-b4e8/configure.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "cgal-b4e8/configure.stdout.log": "cdf1139f0ac15bb7dae80e053d7ca7f6360066eedd9dedee536e11563069f7bb",
+    "cgal-b4e8/execution-receipt.json": "513bac7e11d9bcbc22306a5d33bfab66527e9b48ec2eaaf1d111e261e9e506b1",
+    "cgal-b4e8/plan.json": "f14464d8bd684ebe1020da33506f678d24e1934ad7a99de6fe9c1863cd6a215f",
+    "cgal-b4e8/postcompile.json": "dc6f7ef952816c767ee2dd33e11695500f6e8fd1f8b5da58d5eb7027c735861b",
+    "cgal-b4e8/postcompile.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "cgal-b4e8/postflight.json": "b4a0336df8b9fa730864c400d5cf850a9b0321e505592ec7a86344c534b70e69",
+    "cgal-b4e8/postflight.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "cgal-b4e8/preflight.json": "f02f4c9e033684bed6b27f04cfb2eda3fe43c3d2c5aea0f3a16d556674b15082",
+    "cgal-b4e8/preflight.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "cgal-b4e8/preflight.stdout.log": "1e11215bf4de4ad932bde49748fba8b613195abe783ec9a9433dd6d158372b62",
+    "cgal-b4e8/remote_check.py": "b32486b409932dccfea50cb88c5e9d870c0a0398d37dffd67e0572180e8a17ec",
+    "cgal-b4e8/restore.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "cgal-b4e8/restore.stdout.log": "0c31930395bc017d416145edc1c66a73e98e8e614650a4753bc2848b1aa20bf3",
+    "cgal-b4e8/restore_source.py": "5b22c86157bea938bdbab5c937841989ecd3749d67b0787c417e118e97e4cc8b",
+    "cgal-b4e8/restored.json": "cc12fd5f4160346da1e3f7a21cd8162a7d94cd28c9c28578d4dfc8cca2e1e990",
+    "cgal-b4e8/restored.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "cgal-b4e8/restored.stdout.log": "9036cdf55acfa0e22a39c0a35b978407f83caa2a086d80d1baefd90f1184108a",
+    "cgal-b4e8/run.py": "7587c4ff1c5d3a5bd37bbbb290f4723638a39e1e755ca5353218f01d419b9601",
+    "cgal-b4e8/selfcheck.py": "bedaf11ded670969f586cb1cd790bdc7a85a124ac95efcc28cc31b70a7d90881",
+    "cgal-b4e8/smoke.py": "c5c51fe5f05798f4e88f6bdfc5c22bd525f694e2cdc06d2e5e2274acc33c1457",
+    "cgal-b4e8/smoke.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "cgal-b4e8/smoke.stdout.log": "bdd5caa90c57052cb1261508aa38908352c42ac82b85e34eb52f41dec4bb885d",
+    "cgal-b4e8/source-restoration-selection.json": "2f82768ba53410bf48089e76f7aa794ea502b2a65b6b261e7bd9c1e8f4bd0b94",
+    "cgal-b4e8/upload.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "cgal-b4e8/upload.stdout.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "cgal-b4e8/uploaded.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "cgal-b4e8/uploaded.stdout.log": "a74b568dd797bbd9b2ea9537ce75bb2fb4dcf6460b3dc0831916ec1491c044d9",
+    "historical-protocol/ener-supervisor.py": "cbba58f0f6dd6333dc1063386eb61fe6f85652a4709e82032294c4c2c7726b0c",
+    "preparation/ccx-pymesh-completion.json": "8eea2d7d5fdfaafda44c47e9b79ff927ca479423919990bc10c302d1c77c2246",
+    "preparation/fixture/common.inp": "9a7b15a80cecae10dadd891e35f932b76b448c5685439c9823e259f9d54041a0",
+    "preparation/fixture/contract.json": "544067c4823a0c727410e30d161430bada00cda9763aeb681f82654656339676",
+    "preparation/fixture/observed-results.json": "259a85fd4c904b24d28fd703a1c9c48793ec271fefc2ffe9ec02fef5b9840c23",
+    "preparation/inventory.json": "2389e6c50702c35a268f30356e75eb360b3062541d978914623a10c7886c99c9",
+    "preparation/plan.json": "bd8e2350b4002d52cec5406ed88a7f65b6b0f47c5abb930cf25d09153d5493ba",
+    "preparation/root-review-GO.json": "08c17d3d0622f7505365ac12dc90e6eb0fd65795f2e30563d642c7779f821816",
+    "pymesh/cleanup.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "pymesh/cleanup.stdout.log": "3189a82eae6c3da7d1d175ef51c05bd93079dc70c66c10a82f5c5df2c7757c74",
+    "pymesh/collect-installation-receipt.json.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "pymesh/collect-installation-receipt.json.stdout.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "pymesh/collect-result.npz.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "pymesh/collect-result.npz.stdout.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "pymesh/collect-smoke-receipt.json.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "pymesh/collect-smoke-receipt.json.stdout.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "pymesh/collected/installation-receipt.json": "fb4e89c6d57040698b6171e515a3e6160a7cbf714d4b7f3d6717eb78afd55341",
+    "pymesh/collected/result.npz": "581c9da239b0ca8e27dd59b12245475a5958f9fd3b63e2ab97e238e8f47c5add",
+    "pymesh/collected/smoke-receipt.json": "f97aa9b009c19d2325097d7802a7d219ec918cd18a8481137a979b951bc2f98d",
+    "pymesh/execution-receipt.json": "390d92d81d5a752466cbad50f265764f4fedf46638ef949ccc0a1c63a4b86be1",
+    "pymesh/plan.json": "18e5c63d7e16c7315d6df5d72e05669ec24395a3d636acf6dd8e81e2902fa21a",
+    "pymesh/postflight.json": "61c063f73f1fe08b984bbdf852ca3ca399dd6ad79efef05452faeac331521c6f",
+    "pymesh/postflight.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "pymesh/postflight.stdout.log": "756bec347c78d1df9926632a16dcec313bd843d527d00d4dd38d537fdd49c623",
+    "pymesh/preflight.json": "c29a56a0a9c0e9a34ad3ff92e8f0bfd51e3b1750791d7d7505fd8bce664cde7e",
+    "pymesh/preflight.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "pymesh/preflight.stdout.log": "df0db9c93b0bfe9d1d2eced34957c3798937b8b46176dae0602f0b433b0029a1",
+    "pymesh/remote_check.py": "29c6b4efdf31d1d59b07b0f0f945bbbba03b649ce505758c34f24dba2f0cf43e",
+    "pymesh/restore.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "pymesh/restore.stdout.log": "a1c41fc0f2350c80b4f872187f5230408957d317f868d20ef40ec8010f07c459",
+    "pymesh/restored.json": "081c5c00d36675cfd507610245a7d3b95d2dfb131a5d298280483a8c84c99cbd",
+    "pymesh/restored.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "pymesh/restored.stdout.log": "0de5faa79fe61f09acc8bcdcb7810ce6e2db717d8e91ab16ff1da318abdd3afd",
+    "pymesh/run.py": "4877b8dd57e173867e18a745390846b423bcb63eae29e9fce29042271d871ad2",
+    "pymesh/selfcheck.json": "8dc8c7e7f6e2c7fcc81f5d2c12d4385fb52e47d63d6c98c8212978031efc554e",
+    "pymesh/smoke.py": "72b720bd7de235d738905886e98a6b70f31f0de8925f8343dccf7814fd15fc6e",
+    "pymesh/smoke.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "pymesh/smoke.stdout.log": "c7ffdc4c323141484e5ae89886303a387e01d4bdcd80fd82ee885cc4a6e54b76",
+    "pymesh/upload.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "pymesh/upload.stdout.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "pymesh/uploaded.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "pymesh/uploaded.stdout.log": "6f40aeac1d57d528905c03933868d05feaa42e3e0096f2e5e2df1c28c17f3e37",
+    "verify.py": "beb619d42c6910afc43708e2f4053dc0b6fd86733672db27c7003dbd66504e8a"
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "schema": "root-C1-STL-topology-closure-1",
+  "utc": "2026-10-17T14:51:28.229565+00:00",
+  "actual_tool_session": 98033,
+  "actual_terminal_chunk": "3f1a6a",
+  "actual_caller_and_container_RC": 1,
+  "execution_receipt_sha256": "76bb7408f1471892e85e7ec648a95c4ce1daff656df0bf0043ef4770f6958d56",
+  "output_files_sha256": {
+    "assessment.json": "c7f4ed7178829083ba2742018681d4969359f2f67d919f39dee92b78a2e47f87",
+    "runtime-before.json": "560fc3b543f222c718fd31e44b7f70b387d217b547cdb315c9af2a0f4caabcab",
+    "runtime-after.json": "560fc3b543f222c718fd31e44b7f70b387d217b547cdb315c9af2a0f4caabcab"
+  },
+  "fresh_input_pins": 19,
+  "runtime_artifacts": 161,
+  "runtime_before_after_equal": true,
+  "topology": {
+    "vertices": 22044,
+    "triangles": 44172,
+    "boundary_edges": 0,
+    "nonmanifold_edges": 0,
+    "inconsistent_orientation_edges": 0,
+    "degenerate_triangles": 0,
+    "needle_triangles": 463,
+    "connected_components": 1,
+    "volume_mm3": 285677.5186770355
+  },
+  "self_intersections": {
+    "found": false,
+    "pairs": 0,
+    "all_pair_indices_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "first_at_most_32_pairs": [],
+    "witness_scope": "At most32 indices displayed; count and SHA cover the complete returned pair array.",
+    "operator": "igl.predicates.find_self_intersections(vertices,faces,False)"
+  },
+  "rejection_reason": "463 needle triangles under unchanged twice_area/longest_edge_squared<0.001",
+  "actual_container_id": "4fc60e0a428200fbf2b15942cae8e023b7af13d0075e6ddbdfbdfbaee757cdfd",
+  "container_removed": true,
+  "independent_successful_Docker_ID_filter_empty": true,
+  "CAD_fidelity_checked": false,
+  "geometry_modified": false,
+  "scope": "Whole44172triangle topology-only native audit; expected scientific rejection, no crash. Remesh from native master next, no threshold relaxation."
+}

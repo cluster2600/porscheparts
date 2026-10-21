@@ -1,0 +1,47 @@
+{
+  "status": "complete_surface_distance_not_certified",
+  "fixed_distance_limit_mm": 0.06,
+  "interval_arithmetic": "Each binary64 scalar multiply/add/subtract/divide/square is separately widened with nextafter; source subdivision coordinates enclosed recursively",
+  "convex_weight_denominator": 16777216,
+  "libigl_role": "Candidate triangle heuristic only; never an admission distance",
+  "whole_triangle_argument": "All three true source vertices are within the admitted distance of points in one convex target triangle; affine convex combinations cover each whole source leaf",
+  "source_sha256": {
+    "/input/first.mesh64": "396161993b35f708fdd1e527f875aff60daf8c79031dc9a39c42891a9c1ae1a0",
+    "/input/second.mesh64": "03993cf571fb5de4d7bebbdffe46bea081b863752596e0b337e72877ee4df7b7",
+    "/source/worker.py": "3c74ee9efc8df2a7fe3888102a5af66ab38c0ef59ae57ced4572d87c3205a6bb"
+  },
+  "analytic_controls": {
+    "identity": {
+      "passed": true,
+      "source_triangles": 2,
+      "target_triangles": 2,
+      "leaves": 2,
+      "deepest_level": 0,
+      "exact_quadtree_coverage": true,
+      "maximum_outward_squared_distance_mm2": 2.366582715663038e-30,
+      "certified_distance_upper_mm": 1.538370149106852e-15,
+      "elapsed_seconds": 0.0008088330000006749
+    },
+    "same_vertices_different_interior": {
+      "passed": false,
+      "reason": "unresolved_cover_at_resource_bound",
+      "depth": 4,
+      "accepted_leaves": 62,
+      "unresolved": 450,
+      "elapsed_seconds": 0.003466957999997078
+    }
+  },
+  "directions": {
+    "first-to-second": {
+      "passed": false,
+      "reason": "unresolved_cover_at_resource_bound",
+      "depth": 1,
+      "accepted_leaves": 2065199,
+      "unresolved": 1088164,
+      "elapsed_seconds": 18.418817132999997
+    }
+  },
+  "output_sha256": {},
+  "geometry_adopted": false,
+  "elapsed_seconds": 19.962954593
+}

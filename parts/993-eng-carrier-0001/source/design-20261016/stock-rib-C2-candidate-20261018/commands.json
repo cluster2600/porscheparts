@@ -1,0 +1,45 @@
+{
+  "actual_reproduction": {
+    "entire_manual_four_step_recipe_replayed": false,
+    "executed_steps": [
+      "delivered_original_build",
+      "original_import_brep_export_brep"
+    ],
+    "root_review_sha256": "e92d5654578ad7124f2d939e593ce8766564cae8a7c9f3249c8b2e746932440d",
+    "summary": "evidence/reproduction/summary.json"
+  },
+  "all_four_recipe_steps_executed_from_handover": false,
+  "build_code": "import runpy,sys;sys.path.insert(0,sys.argv[1]);sys.argv=sys.argv[2:];runpy.run_path(sys.argv[0],run_name='__main__')",
+  "canonicalize_code": "import sys;from pathlib import Path;sys.path.insert(0,sys.argv[1]);from OCP.OSD import OSD_ThreadPool;OSD_ThreadPool.DefaultPool_s().Init(1);from build123d import import_brep,export_brep;out=Path(sys.argv[2]);candidate=import_brep(out/'regenerated-stock/native-body.brep');raw=out/'candidate-native.brep';assert not raw.exists();export_brep(candidate,raw)",
+  "common_python_arguments": [
+    "-I",
+    "-B"
+  ],
+  "default_STEP_code": "import sys;from pathlib import Path;sys.path.insert(0,sys.argv[1]);from OCP.OSD import OSD_ThreadPool;OSD_ThreadPool.DefaultPool_s().Init(1);from build123d import import_brep,export_step;out=Path(sys.argv[2]);target=out/'candidate-default.step';assert not target.exists();body=import_brep(out/'candidate-native.brep');export_step(body,target)",
+  "environment": {
+    "MKL_NUM_THREADS": "1",
+    "NUMEXPR_NUM_THREADS": "1",
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "VECLIB_MAXIMUM_THREADS": "1"
+  },
+  "example_fresh_output": "work/carrier-stock-rib-C2-reproduced-001",
+  "interpreter": "work/part-workflow/runtimes/design-standalone/bin/python",
+  "native_site": "work/part-workflow/runtimes/cad-base/lib/python3.10/site-packages",
+  "numerical_equivalence_if_hashes_differ": "requires_a_separate_reviewed_native_comparison_no_silent_acceptance",
+  "repository": "/Users/maxime/.codex/worktrees/993-carrier-revalidation/3dprinting993",
+  "schema": "current_rib_candidate_explicit_CLI_recipe-1",
+  "source_status": "first_two_steps_actually_reproduced_with_b95_and_d64_bytes_equal",
+  "surface": {
+    "arguments": [
+      "NEW_MASTER_BREP",
+      "FRESH_SURFACE_OUTPUT",
+      "--expected-brep-sha256",
+      "ACTUAL_NEW_MASTER_SHA256",
+      "--minimum-size-mm",
+      "0.25"
+    ],
+    "interpreter": "work/part-workflow/runtimes/geometry-standalone/bin/python",
+    "script": "recipe/gmsh_brep_remesh.py"
+  }
+}

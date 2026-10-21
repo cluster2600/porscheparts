@@ -5,6 +5,11 @@
 
 ## Ordre d'implémentation retenu et état actuel
 
+La [reprise du 21 octobre par la chaîne du README](README_CHAIN_20261021.md)
+conserve le rotor corrigé et isole la sensibilité du calcul à la bande de
+fixation de l'alésage. Les études analytiques R0/V2/S1 restent identifiées
+séparément ; leurs résultats ne sont pas transférés au rotor scanné.
+
 La [chaîne native 935 et l'essai local Qwen](NATIVE_935_PIPELINE.md) constituent
 la continuation active : neuf pales reconstruites individuellement, rotor et
 carénage créés dans PicoGK, enveloppes moteur à six cylindres et contrôle des

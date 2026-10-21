@@ -1,0 +1,52 @@
+{
+  "frozen_at_UTC": "2026-10-16T12:45:25.669065+00:00",
+  "scope": "Constitutive sensitivity after comparative linear selection, not a material allowable",
+  "geometry_STEP_sha256": "ad12b8e0a382d8cc8b585254bb4b6fcfafab99fbcedf40691752271d04947a3e",
+  "linear_reference_case": "combined-spring-1000-static",
+  "mesh": "mesh-9",
+  "mesh_inp_sha256": "80dab86242b2433bccb9dfe3ed3d1321a21f638c8da245586fb5c4c3f10c765a",
+  "reference_deck_sha256": "903956e464014c32f674869d55c62ca635edce42dfa01a4125938053dc3d8caf",
+  "plasticity": {
+    "type": "J2 elastic perfectly plastic isotropic reference",
+    "E_MPa": 107000,
+    "nu": 0.31,
+    "true_VM_yield_MPa": 900,
+    "equivalent_plastic_strain_table": [
+      [
+        900,
+        0
+      ],
+      [
+        900,
+        1
+      ]
+    ],
+    "source": "Explicit diagnostic idealization authorized by parent; not a measured or fitted Ti64 LPBF law",
+    "geometric_nonlinearity": false,
+    "reason_for_geometric_linearity": "Isolate material redistribution against exact frozen linear reference; finite rotation effects require a distinct study"
+  },
+  "step": {
+    "initial_increment": 0.25,
+    "end_time": 1,
+    "minimum_increment": 0.001,
+    "maximum_increment": 0.25,
+    "maximum_increments": 100,
+    "timeout_seconds": 1800
+  },
+  "fixture": "CLOAD and all support/node/section blocks copied byte-for-byte from reference; no softening or recalculation of nodal forces",
+  "outputs": [
+    "U",
+    "RF",
+    "S",
+    "PEEQ",
+    "ENER"
+  ],
+  "interpretation": "At load factor1 report equilibrium, displacement, plastic integration-point volume and PEEQ. If solver fails, retain last converged increment and failure reason; do not call nonconvergence alone a collapse proof. No elastic energy equality applied to plastic work.",
+  "solver_reference": "https://www.dhondt.de/ccx_2.21.pdf sections6.8.9,7.105,7.52",
+  "resources": {
+    "cpus": 1,
+    "memory_GiB": 6,
+    "swap_GiB": 0,
+    "network": "none"
+  }
+}

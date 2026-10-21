@@ -1,0 +1,137 @@
+{
+  "status": "component_surface_screen_refused",
+  "archive_sha256": "e6a15ea907cf3ceddc0898deda41ecce2cfcf726f153d7fc53f40baa9edc45a0",
+  "versions": {
+    "libigl": "2.6.3",
+    "numpy": "2.2.6",
+    "scipy": "1.15.3"
+  },
+  "components": [
+    {
+      "index": 0,
+      "source_mesh_identity_exact": true,
+      "topology": {
+        "vertices": 299144,
+        "triangles": 598372,
+        "boundary_edges": 0,
+        "nonmanifold_edges": 0,
+        "inconsistent_orientation_edges": 0,
+        "degenerate_triangles": 0,
+        "needle_triangles": 0,
+        "connected_components": 1,
+        "volume_mm3": 288680.67105497717
+      },
+      "self_intersection_pairs": 0,
+      "self_intersection_pair_file": "component-0-self-intersection-pairs.json",
+      "full_needle_triangle_indices": [],
+      "failures": [],
+      "status": "passed"
+    },
+    {
+      "index": 1,
+      "source_mesh_identity_exact": true,
+      "topology": {
+        "vertices": 9696,
+        "triangles": 19388,
+        "boundary_edges": 0,
+        "nonmanifold_edges": 0,
+        "inconsistent_orientation_edges": 0,
+        "degenerate_triangles": 0,
+        "needle_triangles": 30,
+        "connected_components": 1,
+        "volume_mm3": 4.179099794662893
+      },
+      "self_intersection_pairs": 141,
+      "self_intersection_pair_file": "component-1-self-intersection-pairs.json",
+      "full_needle_triangle_indices": [
+        0,
+        1,
+        68,
+        70,
+        466,
+        467,
+        470,
+        471,
+        474,
+        475,
+        481,
+        482,
+        485,
+        486,
+        3336,
+        3344,
+        3347,
+        3348,
+        3351,
+        3353,
+        3354,
+        3358,
+        3360,
+        3362,
+        3365,
+        3367,
+        3368,
+        10578,
+        10583,
+        10598
+      ],
+      "failures": [
+        "needle_triangles",
+        "self_intersections"
+      ],
+      "status": "refused"
+    },
+    {
+      "index": 2,
+      "source_mesh_identity_exact": true,
+      "topology": {
+        "vertices": 9696,
+        "triangles": 19388,
+        "boundary_edges": 0,
+        "nonmanifold_edges": 0,
+        "inconsistent_orientation_edges": 0,
+        "degenerate_triangles": 0,
+        "needle_triangles": 26,
+        "connected_components": 1,
+        "volume_mm3": 4.1786134841146385
+      },
+      "self_intersection_pairs": 136,
+      "self_intersection_pair_file": "component-2-self-intersection-pairs.json",
+      "full_needle_triangle_indices": [
+        0,
+        1,
+        63,
+        588,
+        590,
+        591,
+        592,
+        596,
+        597,
+        603,
+        604,
+        3692,
+        3707,
+        3710,
+        3711,
+        3713,
+        3718,
+        3719,
+        3725,
+        3727,
+        10760,
+        10765,
+        10766,
+        10771,
+        15892,
+        15896
+      ],
+      "failures": [
+        "needle_triangles",
+        "self_intersections"
+      ],
+      "status": "refused"
+    }
+  ],
+  "scope": "Full intracomponent topology and self intersections; intentional intercomponent overlap is a separate source-union stage",
+  "retained_needle_ratio_threshold": 0.001
+}

@@ -1,0 +1,67 @@
+{
+  "restore.py": {
+    "reference": "parts/993-eng-carrier-0001/source/design-20261016/native-C1-20261017/restore.py",
+    "reference_sha256": "909caf964dd03d05b287f740a28a09e48baa132d1154f348f7053d81bd189a1b",
+    "source_sha256": "0f5fd4df9727ab9473cd5341aa3740bbadb57ee87c17456bc019caafdf4c106c",
+    "replacements": [
+      {
+        "before": "'actual-C1-BREP-native-capsule-1'",
+        "after": "'actual-preserved-taper-native-capsule-1'"
+      },
+      {
+        "before": "{'c1-native-common.zip', 'c1-native-rigid.zip', 'c1-native-spring.zip'}",
+        "after": "{'taper-common.zip', 'taper-rigid.zip', 'taper-spring.zip'}"
+      }
+    ],
+    "whole_inverse_byte_equal": true
+  },
+  "replay_analysis.py": {
+    "reference": "parts/993-eng-carrier-0001/source/design-20261016/native-C1-20261017/replay_analysis.py",
+    "reference_sha256": "436d4d8e4387792d171533dc18596190060fc6f01b575a3592b9616302d0b9b0",
+    "source_sha256": "c0c38c6f1666ea744383a56146b002f49c086c46fc56464430cc3099fc13b491",
+    "replacements": [
+      {
+        "before": "Restore and reanalyse the two closed h2 cases; no solver, mesher or CAD import.",
+        "after": "Restore and reanalyse two closed preserved-taper cases; no solver, mesher or CAD import."
+      },
+      {
+        "before": "'Actual C1 global7 mesh identity differs'",
+        "after": "'Actual new taper global7 mesh identity differs'"
+      },
+      {
+        "before": "    output.mkdir(); results = []; code = 1; runtime_before = None",
+        "after": "    required = sum(row['bytes'] for item in report['archives'].values() for row in item['members'].values()) + 72*1024**2\n    archive.require(os.statvfs(output.parent).f_bavail*os.statvfs(output.parent).f_frsize >= required, 'Space for one restoration and reports required')\n    output.mkdir(); results = []; code = 1; runtime_before = None"
+      },
+      {
+        "before": "report['C1_mesh_sha256']",
+        "after": "report['taper_mesh_sha256']"
+      },
+      {
+        "before": "== 84037",
+        "after": "== case['expected_element_id']"
+      },
+      {
+        "before": "== 1, 'Complete peak/IP result differs'",
+        "after": "== case['expected_IP_one_based'], 'Complete peak/IP result differs'"
+      },
+      {
+        "before": "element_id=84037, IP_one_based=1",
+        "after": "element_id=case['expected_element_id'], IP_one_based=case['expected_IP_one_based']"
+      },
+      {
+        "before": "'two_actual_C1_BREP_cases_reanalysed_entire_results_equal'",
+        "after": "'two_preserved_taper_cases_reanalysed_entire_results_and_bytes_equal'"
+      },
+      {
+        "before": "                    json.dump(value, stream, indent=2, allow_nan=False); stream.write('\\n')",
+        "after": "                    json.dump(value, stream, indent=2, allow_nan=False); stream.write('\\n')\n                retained_path = case_root / ('energy-audit.json' if label == 'energy' else 'global-peaks.json')\n                archive.require(archive.sha(output / (case['key'] + '-' + label + '.json')) == archive.sha(retained_path),\n                                'Entire replayed report bytes differ')"
+      }
+    ],
+    "whole_inverse_byte_equal": true
+  },
+  "package.py": {
+    "reference": "parts/993-eng-carrier-0001/source/design-20261016/local-refinement-20261017/sources/package.py",
+    "source_sha256": "697277ea5c4ccc10cec323f6815409e4d948726f55b52045c17d1be99bfa1a9a",
+    "byte_identical": true
+  }
+}

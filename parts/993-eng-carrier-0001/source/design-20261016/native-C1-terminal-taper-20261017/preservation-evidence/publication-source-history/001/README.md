@@ -1,0 +1,13 @@
+# Standalone terminal-taper capsule: durable-copy proposal
+
+This is a source-only proposal. No file has been copied to `parts/`, staged or committed. The final target is `parts/993-eng-carrier-0001/source/design-20261016/native-C1-terminal-taper-20261017/`.
+
+Copy the actual capsule's 23 files byte-exactly, with one explicit relocation: preserve its initial `archive.json` under `preservation-evidence/initial-capsule-archive.json`. The unchanged manifest remains 17d285db… and the three actual ZIP identities remain unchanged. Preserve the enduring English README and all captured utility sources byte for byte. The final root `archive.json` is a new complete inventory, excluding itself, generated only after the actual companion and all bounded proofs are present. This avoids changing a captured source or misrepresenting an incomplete final file inventory.
+
+The proposed companion `ACTUAL_REPRODUCTION.md` records native calculations, stored-byte verification and analysis replay as separate actual results. The pack and first stored-byte verification are closed with RC0. The independent verification ROOT review and numerical replay proofs remain pending in this proposal. Their SHA values are explicitly null until the real files exist. No analysis success is asserted here.
+
+The proof copy is bounded to small controls, actual receipts, logs and the unchanged owned supervisor. Include the original archive-size refusal and its metadata-only central-directory inspection; do not duplicate the 110 MB rejected ZIP. Its complete recorded SHA and actual refusal remain in the copied evidence. The 495-body restored analysis tree, runtime installations, future refinement outputs and figure payloads are excluded. Only the four fresh analysis reports and reanalysis receipt are candidates for the numerical-replay proof copy.
+
+The native law and strict STEP refusals, unqualified candidate state, lack of stress convergence and physical/manufacturing limits remain unchanged. Figure 26 is a linked independent dependency, and Figure 27 has its own dependent publication. This main capsule does not recreate or duplicate either figure.
+
+A later reviewed copy must use exclusive writes, verify each full destination SHA from bytes against this explicit source list, preserve the original source files, and regenerate the final inventory. A separately authorized relocated stored-byte verification can test the durable copy; numerical replay has its own GO and receipt. Catalogue and guide edits and Git actions belong to the root publication decision. No copy or replay is authorized by this proposal.

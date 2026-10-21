@@ -1,0 +1,92 @@
+{
+  "status": "native_wholepart_four_state_solve_completed_numeric_serialization_gate_refused",
+  "actual_solver_returncode": 0,
+  "actual_pilot_returncode": 1,
+  "native_seconds": 251.50040695816278,
+  "pilot_seconds": 266.66340837511234,
+  "all_four_native_states_completed": true,
+  "actual_container_removed": true,
+  "OOMKilled": false,
+  "all25_source_inputs_unchanged": true,
+  "nodes": 103534,
+  "C3D10": 54149,
+  "total_mechanical_DOF": 310602,
+  "active_equations_by_state": [
+    310596,
+    310596,
+    299067,
+    310596
+  ],
+  "CPUs": 1,
+  "memory_limit_GiB": 6,
+  "maximum_observed_memory_GiB": 1.287,
+  "memory_observation_is_not_peak": true,
+  "zero_control": {
+    "displacement_max_mm": 0.0,
+    "maximum_stress_component_MPa": 0.0,
+    "passed": true
+  },
+  "uniform_control": {
+    "nodal_error_mm": 5.000316889713918e-09,
+    "maximum_stress_component_MPa": 1.875589e-09,
+    "printed_strain_error": 4.0822246405447515e-07,
+    "predeclared_strain_limit": 1e-07,
+    "original_strain_gate_passed": false
+  },
+  "serialization_diagnostic": {
+    "forward_serialized_analytic_field_error": 4.0822246411092143e-07,
+    "worst_element": 28544,
+    "worst_Gauss": 4,
+    "worst_propagated_bound": 1.2044320510298263e-06,
+    "coherence_with_decimal_format": true,
+    "old_threshold_not_relabelled": true
+  },
+  "diagnostic_release": {
+    "reference_fixture": "Exact original zmin plane,3845 nodes. Provisional numerical fixture, not physical print supports.",
+    "eigenstrain_target": "-1e-4*((Z-Zmin)/H)^2 I, nodal equivalent-temperature samples",
+    "attached_max_u_mm": 0.009866625282465428,
+    "released_max_u_mm": 0.05809006121029987,
+    "release_increment_max_u_mm": 0.05747104118296738,
+    "released_projected_bore_diameter_changes_mm": {
+      "bolt0": -0.00019053752638242827,
+      "bolt1": -0.00019355606896276356,
+      "bolt2": -0.000199902535431562,
+      "bolt3": -0.0002059196754640169,
+      "end0": -0.00027441913488779335,
+      "end1": -0.0002750189300115835
+    },
+    "released_center_distances": {
+      "bolt0__bolt1": {
+        "original_mm": 39.99988960165897,
+        "deformed_mm": 39.999166982537865,
+        "change_mm": -0.0007226191211060495
+      },
+      "bolt2__bolt3": {
+        "original_mm": 39.99926639816674,
+        "deformed_mm": 39.998546350694106,
+        "change_mm": -0.0007200474726332118
+      },
+      "end0__end1": {
+        "original_mm": 559.999601612906,
+        "deformed_mm": 559.9864145010744,
+        "change_mm": -0.013187111831598486
+      }
+    },
+    "attached_max_stress_component_MPa": 15.98341,
+    "released_max_stress_component_MPa": 3.394341,
+    "reference_volume_mm3": 285403.5077847362,
+    "released_deformed_volume_mm3": 285381.3330295556,
+    "material_mass_kg": 1.2614835044085342,
+    "mass_change_by_Lagrangian_definition_kg": 0.0,
+    "all_frame_equilibria_pass": true,
+    "all_frame_Gauss_detF_positive": true,
+    "numeric_admission": false
+  },
+  "execution_receipt_sha256": "468494f3547ded879329fa74b003d76268761738b7f06dbec4d7f6168427e480",
+  "solver_receipt_sha256": "b01669f2abc081da232c67bf43465d35b78404336d8236c16c608ecbd629dac7",
+  "terminal_collection_sha256": "592034ef293ae4cede8b8bef93f343c2e5f61699478d75871320dd3098787ada",
+  "source_plan_sha256": "3cc856de5a6de87721ed382b93d15ac6c65cd2472d62084c8359b0020cd44cc7",
+  "physical_print_prediction": false,
+  "seven_support_release_simulated": false,
+  "global_admission": false
+}

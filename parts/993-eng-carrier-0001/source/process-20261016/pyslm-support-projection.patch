@@ -1,0 +1,26 @@
+diff --git a/pyslm/support/support.py b/pyslm/support/support.py
+index 8566f94..9f148a5 100644
+--- a/pyslm/support/support.py
++++ b/pyslm/support/support.py
+@@ -793,17 +793,10 @@ class BlockSupportGenerator(BaseSupportGenerator):
+             """
+             Create an extrusion at the vertical extent of the part and perform self-intersection test
+             """
+-            extruMesh2Flat = subregion.copy()
+-            extruMesh2Flat.vertices[:, 2] = 0.0
+-
+-            extruMesh2 = trimesh.creation.extrude_triangulation(extruMesh2Flat.vertices[:, :2], extruMesh2Flat.faces, 100)
+-
+-            # Position the upper-surface of the mesh just below the upper surface (1e-2) to avoid self-intersection
+-            eMesh2Idx = extruMesh2.vertices[:, 2] > 1.0
+-            extruMesh2.vertices[eMesh2Idx, 2] = subregion.vertices[:, 2] - 0.01
+-            extruMesh = extruMesh2
+-            #extruMesh = extrudeFace(subregion, 0.0)
+-            #extruMesh.vertices[:, 2] = extruMesh.vertices[:, 2] - 0.01
++            # Preserve the 3D vertex correspondence when projected XY vertices coincide.
++            supportFace = subregion.copy()
++            supportFace.vertices[:, 2] -= 0.01
++            extruMesh = geometry.extrudeFace(supportFace, height=0.0)
+ 
+             timeIntersect = time.time()
+ 

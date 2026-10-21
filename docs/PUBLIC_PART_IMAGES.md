@@ -29,11 +29,15 @@ finish are illustrative and generated details may differ; the original CAD
 preview and orthographic views remain available. Each image carries a visible
 `DIGITAL CONCEPT — NOT A PHOTOGRAPH` label.
 
-`photo.json` keeps the exact prompt, generator, input preview and record hashes,
-output hash, date, caption and publication terms. The check validates these
-assets when present, rejects orphan images, stale references, corrupt PNGs and
-photograph labels, and prevents a status card from acquiring invented geometry.
-After changing a referenced CAD preview, regenerate and review its studio
+`photo.json` keeps the exact prompt, generator, the CAD sources the illustration
+depicts (path and SHA-256, as in `preview.json`), the record and input-preview
+hashes it was generated from, output hash, date, caption and publication terms.
+The check validates these assets when present, rejects orphan images, corrupt
+PNGs and photograph labels, and prevents a status card from acquiring invented
+geometry. An illustration goes stale only when one of its CAD sources changes:
+editing a record's prose or re-rendering its technical preview leaves it valid,
+and its record and preview hashes stay as provenance rather than being
+re-pinned. After a CAD source changes, regenerate and review the studio
 illustration or remove both presentation files. `make part-previews` only
 regenerates the deterministic technical views; it never calls a paid image API.
 

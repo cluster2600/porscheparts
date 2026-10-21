@@ -1,0 +1,1195 @@
+{
+  "schema": "actual24af-original-source0-native-case-own-terminal-1",
+  "status": "closed_actual_RC0_current24af_original_source0_native_geometric_envelope_only",
+  "actual_handle": 82223,
+  "actual_outer_returncode": 0,
+  "actual_child_returncode": 0,
+  "tool_chunks": [
+    "6c52c5",
+    "15964b",
+    "c53c1f",
+    "0e2d4f",
+    "866897",
+    "24b799",
+    "2716bd",
+    "6c37bb",
+    "a8b986"
+  ],
+  "supervision_sha256": "34a83919d9668975a02708d832568c9e44773e88a6fddf8711964eb28345f6c0",
+  "assessment_sha256": "718ddd1cc81be9c3f7a033325234abfcc6ba18a5a2d9640293a9d941b017a476",
+  "GO_sha256": "c09e948cc79d6f8b76aee7cdd59c84265c8456642aad62e76c0045e1c20dd889",
+  "active_sha256": {
+    "plan.json": "9a66e188d3baba0f205060a4d3f346f4a52814d211708c7d2e03ed2f78bcd71b",
+    "launch.json": "76d250acd9a8059613f41fda7a4a9ec795e1415f8a6ce4402d0da5790305d3aa",
+    "root-command.json": "f9c9f3d442b6f2bdb7370bdfb9c1a71fc1fbe7a28163549c4675374505254daa"
+  },
+  "whole_three_pending_object_and_stored_byte_inverses": true,
+  "actual_merged_pin_count": 2661,
+  "all_current_source_runtime_input_pins_equal": true,
+  "source_index": 0,
+  "input_ROOT": {
+    "path": "work/carrier-corner-slide-AM-inputs-preparation-001/root-terminal-review-001.json",
+    "sha256": "41b7a40148b7acb3f9c7fc0b557cc2392ead99433de66b2b0b9884b837290599"
+  },
+  "input_manifest": {
+    "path": "work/carrier-corner-slide-AM-inputs-preparation-001/output-001/input-manifest.json",
+    "sha256": "3d888e49de6f1fb7e447dac25a90d8d6b23cb91ecbf25aa7ecd09929b7ea56e3"
+  },
+  "explicit_prism_chain_producer": {
+    "method": "original_exact_prism_chain_after_vertex_fan_identity_separation_v1",
+    "driver_sha256": "dba696f8be7aa56402959b3e09962f42e51b12a537298cf0b5f2c40fa3a69b8c",
+    "helper": {
+      "path": "work/carrier-corner-slide-AM-inputs-preparation-001/fans.py",
+      "sha256": "dabe11b53a27a1a49e5bb2177f5f6c093eee90fcd337f638659855cbf0f6c231"
+    },
+    "policy_scope": "cause_neutral_exact_identity_only_no_assumed_fan_changes",
+    "normalization_records": [
+      {
+        "path": "vertex-fan-normalizations/call-0000.json",
+        "sha256": "f00712d5914062eab477772eae2bdc86845cd502efa887a76dcb352003c0d088"
+      },
+      {
+        "path": "vertex-fan-normalizations/call-0001.json",
+        "sha256": "0624b311a1641d5a8ae1dc427cfdf20f7c4ce5a4619aac016cb5e43947f5bd16"
+      },
+      {
+        "path": "vertex-fan-normalizations/call-0002.json",
+        "sha256": "116ca20186038822f8c7b4e98246850e3f6ef77739110f2b3d9e61cbdf8ec90c"
+      },
+      {
+        "path": "vertex-fan-normalizations/call-0003.json",
+        "sha256": "ce89e78ef626e95cef80e6d7a293a8afb081cebcf4bc9ab66e4a536625074e9d"
+      },
+      {
+        "path": "vertex-fan-normalizations/call-0004.json",
+        "sha256": "adc5dca1ca0d4dc6decfbe39b3afed18e0b561767c3ce8053b778d219e2ae9dd"
+      },
+      {
+        "path": "vertex-fan-normalizations/call-0005.json",
+        "sha256": "2a7fa151f69a6e4bc950e2f44778797e372757a4cbea2d1faf4255ca787e8cd0"
+      },
+      {
+        "path": "vertex-fan-normalizations/call-0006.json",
+        "sha256": "50390506b2623146c2fc04ccd3c725e7f3123ece8e66cbefb24b85430a5f9592"
+      }
+    ],
+    "original_prism_guard_and_tolerance_unchanged": true
+  },
+  "case_roles": {
+    "roofs": {
+      "path": "/Users/maxime/.codex/worktrees/993-carrier-revalidation/3dprinting993/work/carrier-corner-slide-AM-inputs-preparation-001/output-001/envelope-inputs/source-000-roofs.npz",
+      "sha256": "427bdb54ccbd19998cf3c61c450e4431891d0794740faeac0ce11b670e702b48"
+    },
+    "mask": {
+      "path": "/Users/maxime/.codex/worktrees/993-carrier-revalidation/3dprinting993/work/carrier-corner-slide-AM-inputs-preparation-001/output-001/envelope-inputs/source-000-mask-000.npz",
+      "sha256": "eca8ff490e8343352ed54bcc6a63616bee51e2564cd565f027ebcf15f4432343"
+    },
+    "part": {
+      "path": "/Users/maxime/.codex/worktrees/993-carrier-revalidation/3dprinting993/work/carrier-corner-slide-AM-inputs-preparation-001/output-001/envelope-inputs/part.npz",
+      "sha256": "30487ce8c5683c6b988f2cf3d2f6e71fbfe4b7669bb567cfc80554bbc05e6a4f"
+    }
+  },
+  "remote_job": "/home/lolman/carrier-native-cold-cases-20261016/native-case-169fa9cc672746e7",
+  "remote_controller_status": "executed",
+  "remote_steps": [
+    {
+      "name": "csg",
+      "command": [
+        "/usr/bin/python3",
+        "/home/lolman/carrier-cgal-prism-free-v4-20261016/run.py",
+        "prism_free",
+        "/home/lolman/carrier-native-cold-cases-20261016/native-case-169fa9cc672746e7/inputs/source-000-roofs.npz",
+        "/home/lolman/carrier-cgal-prism-free-v4-20261016/jobs/native-case-169fa9cc672746e7-csg",
+        "--second-input",
+        "/home/lolman/carrier-native-cold-cases-20261016/native-case-169fa9cc672746e7/inputs/source-000-mask-000.npz",
+        "--part-input",
+        "/home/lolman/carrier-native-cold-cases-20261016/native-case-169fa9cc672746e7/inputs/part.npz",
+        "--timeout-seconds",
+        "1200"
+      ],
+      "timeout_seconds": 1200,
+      "status": "executed",
+      "returncode": 0,
+      "seconds": 601.5761470799334
+    },
+    {
+      "name": "first-snap",
+      "command": [
+        "/usr/bin/python3",
+        "/home/lolman/carrier-cgal-autorefine-reproduction-20261016/run.py",
+        "/home/lolman/carrier-cgal-prism-free-v4-20261016/jobs/native-case-169fa9cc672746e7-csg/result.npz",
+        "/home/lolman/carrier-cgal-autorefine-reproduction-20261016/jobs/native-case-169fa9cc672746e7-first-snap",
+        "--grid-bits",
+        "51",
+        "--iterations",
+        "5",
+        "--cumulative-grid-bound"
+      ],
+      "timeout_seconds": 600,
+      "status": "retained_refusal",
+      "returncode": 1,
+      "seconds": 26.779214255977422
+    },
+    {
+      "name": "exact-distance",
+      "command": [
+        "/usr/bin/python3",
+        "/home/lolman/carrier-cgal-distance-v3-20261016/run.py",
+        "/home/lolman/carrier-cgal-prism-free-v4-20261016/jobs/native-case-169fa9cc672746e7-csg/result.npz",
+        "/home/lolman/carrier-cgal-autorefine-reproduction-20261016/jobs/native-case-169fa9cc672746e7-first-snap",
+        "/home/lolman/carrier-cgal-distance-v3-20261016/jobs/native-case-169fa9cc672746e7-distance"
+      ],
+      "timeout_seconds": 600,
+      "status": "executed",
+      "returncode": 0,
+      "seconds": 20.52393656806089
+    },
+    {
+      "name": "composed",
+      "command": [
+        "systemd-run",
+        "--user",
+        "--scope",
+        "--quiet",
+        "--unit",
+        "carrier-case-030e2b0c3877.scope",
+        "-p",
+        "CPUQuota=200%",
+        "-p",
+        "MemoryMax=4G",
+        "-p",
+        "MemorySwapMax=0",
+        "-p",
+        "TasksMax=128",
+        "-p",
+        "RuntimeMaxSec=130",
+        "timeout",
+        "--kill-after=10s",
+        "120",
+        "bwrap",
+        "--ro-bind",
+        "/",
+        "/",
+        "--unshare-net",
+        "--unshare-pid",
+        "--die-with-parent",
+        "--proc",
+        "/proc",
+        "--dev",
+        "/dev",
+        "--bind",
+        "/home/lolman/carrier-native-cold-cases-20261016/native-case-169fa9cc672746e7/output",
+        "/home/lolman/carrier-native-cold-cases-20261016/native-case-169fa9cc672746e7/output",
+        "--tmpfs",
+        "/tmp",
+        "--clearenv",
+        "--setenv",
+        "PATH",
+        "/usr/bin:/bin",
+        "--setenv",
+        "OMP_NUM_THREADS",
+        "1",
+        "--setenv",
+        "OPENBLAS_NUM_THREADS",
+        "1",
+        "--setenv",
+        "PYTHONDONTWRITEBYTECODE",
+        "1",
+        "/home/lolman/carrier-native-cold-reproduction-20261016/audit/venv/bin/python",
+        "/home/lolman/carrier-native-cold-cases-20261016/native-case-169fa9cc672746e7/source/native-cgal-prism-free-20261016-v4/audit_composed_drift_initial.py",
+        "/home/lolman/carrier-cgal-prism-free-v4-20261016/jobs/native-case-169fa9cc672746e7-csg",
+        "/home/lolman/carrier-cgal-autorefine-reproduction-20261016/jobs/native-case-169fa9cc672746e7-first-snap",
+        "/home/lolman/carrier-cgal-distance-v3-20261016/jobs/native-case-169fa9cc672746e7-distance",
+        "/home/lolman/carrier-cgal-autorefine-reproduction-20261016/jobs/native-case-169fa9cc672746e7-first-snap",
+        "/home/lolman/carrier-native-cold-cases-20261016/native-case-169fa9cc672746e7/output/composed",
+        "--plan",
+        "/home/lolman/carrier-native-cold-cases-20261016/native-case-169fa9cc672746e7/output/frozen-plan.json"
+      ],
+      "timeout_seconds": 120,
+      "status": "executed",
+      "unit": "carrier-case-030e2b0c3877.scope",
+      "returncode": 0,
+      "scope_cleanup": {
+        "unit": "carrier-case-030e2b0c3877.scope",
+        "kill_returncode": null,
+        "stop_returncode": null,
+        "state_returncode": 4,
+        "state": "inactive",
+        "inactive": true,
+        "already_inactive": true
+      },
+      "owned_scope_inactive": true,
+      "seconds": 5.767555142985657
+    },
+    {
+      "name": "independent",
+      "command": [
+        "systemd-run",
+        "--user",
+        "--scope",
+        "--quiet",
+        "--unit",
+        "carrier-case-d6d7b5163d19.scope",
+        "-p",
+        "CPUQuota=200%",
+        "-p",
+        "MemoryMax=4G",
+        "-p",
+        "MemorySwapMax=0",
+        "-p",
+        "TasksMax=128",
+        "-p",
+        "RuntimeMaxSec=130",
+        "timeout",
+        "--kill-after=10s",
+        "120",
+        "bwrap",
+        "--ro-bind",
+        "/",
+        "/",
+        "--unshare-net",
+        "--unshare-pid",
+        "--die-with-parent",
+        "--proc",
+        "/proc",
+        "--dev",
+        "/dev",
+        "--bind",
+        "/home/lolman/carrier-native-cold-cases-20261016/native-case-169fa9cc672746e7/output",
+        "/home/lolman/carrier-native-cold-cases-20261016/native-case-169fa9cc672746e7/output",
+        "--tmpfs",
+        "/tmp",
+        "--clearenv",
+        "--setenv",
+        "PATH",
+        "/usr/bin:/bin",
+        "--setenv",
+        "OMP_NUM_THREADS",
+        "1",
+        "--setenv",
+        "OPENBLAS_NUM_THREADS",
+        "1",
+        "--setenv",
+        "PYTHONDONTWRITEBYTECODE",
+        "1",
+        "/home/lolman/carrier-native-cold-reproduction-20261016/audit/venv/bin/python",
+        "/home/lolman/carrier-native-cold-cases-20261016/native-case-169fa9cc672746e7/source/process-skins-20261016/audit_envelope_case.py",
+        "/home/lolman/carrier-cgal-autorefine-reproduction-20261016/jobs/native-case-169fa9cc672746e7-first-snap/result.npz",
+        "/home/lolman/carrier-native-cold-cases-20261016/native-case-169fa9cc672746e7/output/independent",
+        "--audit-python",
+        "/home/lolman/carrier-native-cold-reproduction-20261016/audit/venv/bin/python"
+      ],
+      "timeout_seconds": 120,
+      "status": "executed",
+      "unit": "carrier-case-d6d7b5163d19.scope",
+      "returncode": 0,
+      "scope_cleanup": {
+        "unit": "carrier-case-d6d7b5163d19.scope",
+        "kill_returncode": null,
+        "stop_returncode": null,
+        "state_returncode": 4,
+        "state": "inactive",
+        "inactive": true,
+        "already_inactive": true
+      },
+      "owned_scope_inactive": true,
+      "seconds": 3.768344656098634
+    },
+    {
+      "name": "seal-prism",
+      "command": [
+        "systemd-run",
+        "--user",
+        "--scope",
+        "--quiet",
+        "--unit",
+        "carrier-case-08e527de41da.scope",
+        "-p",
+        "CPUQuota=200%",
+        "-p",
+        "MemoryMax=4G",
+        "-p",
+        "MemorySwapMax=0",
+        "-p",
+        "TasksMax=128",
+        "-p",
+        "RuntimeMaxSec=130",
+        "timeout",
+        "--kill-after=10s",
+        "120",
+        "bwrap",
+        "--ro-bind",
+        "/",
+        "/",
+        "--unshare-net",
+        "--unshare-pid",
+        "--die-with-parent",
+        "--proc",
+        "/proc",
+        "--dev",
+        "/dev",
+        "--bind",
+        "/home/lolman/carrier-native-cold-cases-20261016/native-case-169fa9cc672746e7/output",
+        "/home/lolman/carrier-native-cold-cases-20261016/native-case-169fa9cc672746e7/output",
+        "--tmpfs",
+        "/tmp",
+        "--clearenv",
+        "--setenv",
+        "PATH",
+        "/usr/bin:/bin",
+        "--setenv",
+        "OMP_NUM_THREADS",
+        "1",
+        "--setenv",
+        "OPENBLAS_NUM_THREADS",
+        "1",
+        "--setenv",
+        "PYTHONDONTWRITEBYTECODE",
+        "1",
+        "/home/lolman/carrier-native-cold-reproduction-20261016/audit/venv/bin/python",
+        "/home/lolman/carrier-native-cold-cases-20261016/native-case-169fa9cc672746e7/source/process-skins-20261016/seal_prism_native_case.py",
+        "--original-native-job",
+        "/home/lolman/carrier-cgal-prism-free-v4-20261016/jobs/native-case-169fa9cc672746e7-csg",
+        "--final-snap-job",
+        "/home/lolman/carrier-cgal-autorefine-reproduction-20261016/jobs/native-case-169fa9cc672746e7-first-snap",
+        "--distance-job",
+        "/home/lolman/carrier-cgal-distance-v3-20261016/jobs/native-case-169fa9cc672746e7-distance",
+        "--composed",
+        "/home/lolman/carrier-native-cold-cases-20261016/native-case-169fa9cc672746e7/output/composed/composed-drift.json",
+        "--contacts",
+        "/home/lolman/carrier-native-cold-cases-20261016/native-case-169fa9cc672746e7/output/independent/exact-contacts.json",
+        "--pairs",
+        "/home/lolman/carrier-native-cold-cases-20261016/native-case-169fa9cc672746e7/output/independent/topology/pairs.npz",
+        "--frozen-plan",
+        "/home/lolman/carrier-native-cold-cases-20261016/native-case-169fa9cc672746e7/output/frozen-plan.json",
+        "--schema",
+        "/home/lolman/carrier-native-cold-cases-20261016/native-case-169fa9cc672746e7/source/native-cgal-prism-free-20261016-v4/prism-face-schema.json",
+        "--output",
+        "/home/lolman/carrier-native-cold-cases-20261016/native-case-169fa9cc672746e7/output/sealed",
+        "--source-index",
+        "0"
+      ],
+      "timeout_seconds": 120,
+      "status": "executed",
+      "unit": "carrier-case-08e527de41da.scope",
+      "returncode": 0,
+      "scope_cleanup": {
+        "unit": "carrier-case-08e527de41da.scope",
+        "kill_returncode": null,
+        "stop_returncode": null,
+        "state_returncode": 4,
+        "state": "inactive",
+        "inactive": true,
+        "already_inactive": true
+      },
+      "owned_scope_inactive": true,
+      "seconds": 1.0128135201521218
+    }
+  ],
+  "native_jobs": {
+    "csg": {
+      "status": "executed",
+      "actual_returncode": 0,
+      "seconds": 601.3427420898806,
+      "unit": "carrier-experimental-soup-c34b4b55f8ff.scope",
+      "files": 23,
+      "execution_receipt_sha256": "b6f4a1032964fde38dd14e23ad723f833b21d5590f1031e251c3a81075a3e0da"
+    },
+    "first-snap": {
+      "status": "rejected_or_failed",
+      "actual_returncode": 2,
+      "seconds": 26.627365537919104,
+      "unit": "carrier-cgal-snap-d98ef42df415.scope",
+      "files": 14,
+      "execution_receipt_sha256": "0144c2ac3aa8fa9c3fca2e7f9a4f684eed3fa8122b2f77068cbf2bc6812f6289"
+    },
+    "distance": {
+      "status": "executed",
+      "actual_returncode": 0,
+      "seconds": 20.235479533905163,
+      "unit": "carrier-exact-distance-3339d1920f70.scope",
+      "files": 17,
+      "execution_receipt_sha256": "0ac5aa5abc2813271d830798caeddc9736ae35ef09d865a0848709d910d5f620"
+    }
+  },
+  "all_remote_partial_native_job_outputs_retained": true,
+  "remote_current_pin_count": 3013,
+  "remote_preservation_receipt_sha256": "e0deecfdc23670dacda61b3e7a1fd48e599b1efe35165ee4a0bc0b901facb765",
+  "fresh_exact_remote_scope_queries": [
+    {
+      "command": [
+        "systemctl",
+        "--user",
+        "show",
+        "carrier-case-030e2b0c3877.scope",
+        "-p",
+        "LoadState",
+        "-p",
+        "ActiveState",
+        "-p",
+        "ControlGroup"
+      ],
+      "actual_returncode": 0,
+      "stdout": "LoadState=not-found\nActiveState=inactive\nControlGroup=\n",
+      "stderr": "",
+      "fields": {
+        "LoadState": "not-found",
+        "ActiveState": "inactive",
+        "ControlGroup": ""
+      },
+      "exact_scope_absent": true
+    },
+    {
+      "command": [
+        "systemctl",
+        "--user",
+        "show",
+        "carrier-case-08e527de41da.scope",
+        "-p",
+        "LoadState",
+        "-p",
+        "ActiveState",
+        "-p",
+        "ControlGroup"
+      ],
+      "actual_returncode": 0,
+      "stdout": "LoadState=not-found\nActiveState=inactive\nControlGroup=\n",
+      "stderr": "",
+      "fields": {
+        "LoadState": "not-found",
+        "ActiveState": "inactive",
+        "ControlGroup": ""
+      },
+      "exact_scope_absent": true
+    },
+    {
+      "command": [
+        "systemctl",
+        "--user",
+        "show",
+        "carrier-case-d6d7b5163d19.scope",
+        "-p",
+        "LoadState",
+        "-p",
+        "ActiveState",
+        "-p",
+        "ControlGroup"
+      ],
+      "actual_returncode": 0,
+      "stdout": "LoadState=not-found\nActiveState=inactive\nControlGroup=\n",
+      "stderr": "",
+      "fields": {
+        "LoadState": "not-found",
+        "ActiveState": "inactive",
+        "ControlGroup": ""
+      },
+      "exact_scope_absent": true
+    },
+    {
+      "command": [
+        "systemctl",
+        "--user",
+        "show",
+        "carrier-cgal-snap-d98ef42df415.scope",
+        "-p",
+        "LoadState",
+        "-p",
+        "ActiveState",
+        "-p",
+        "ControlGroup"
+      ],
+      "actual_returncode": 0,
+      "stdout": "LoadState=not-found\nActiveState=inactive\nControlGroup=\n",
+      "stderr": "",
+      "fields": {
+        "LoadState": "not-found",
+        "ActiveState": "inactive",
+        "ControlGroup": ""
+      },
+      "exact_scope_absent": true
+    },
+    {
+      "command": [
+        "systemctl",
+        "--user",
+        "show",
+        "carrier-exact-distance-3339d1920f70.scope",
+        "-p",
+        "LoadState",
+        "-p",
+        "ActiveState",
+        "-p",
+        "ControlGroup"
+      ],
+      "actual_returncode": 0,
+      "stdout": "LoadState=not-found\nActiveState=inactive\nControlGroup=\n",
+      "stderr": "",
+      "fields": {
+        "LoadState": "not-found",
+        "ActiveState": "inactive",
+        "ControlGroup": ""
+      },
+      "exact_scope_absent": true
+    },
+    {
+      "command": [
+        "systemctl",
+        "--user",
+        "show",
+        "carrier-experimental-soup-c34b4b55f8ff.scope",
+        "-p",
+        "LoadState",
+        "-p",
+        "ActiveState",
+        "-p",
+        "ControlGroup"
+      ],
+      "actual_returncode": 0,
+      "stdout": "LoadState=not-found\nActiveState=inactive\nControlGroup=\n",
+      "stderr": "",
+      "fields": {
+        "LoadState": "not-found",
+        "ActiveState": "inactive",
+        "ControlGroup": ""
+      },
+      "exact_scope_absent": true
+    }
+  ],
+  "all_fresh_exact_remote_scopes_absent": true,
+  "C22_unchanged": true,
+  "source_runtime_plan_unchanged": true,
+  "owned_pid": 25277,
+  "direct_child_reaped": true,
+  "fresh_local_PID_PGID_absent": true,
+  "fresh_local_process_queries": {
+    "PID": {
+      "argv": [
+        "/bin/ps",
+        "-p",
+        "25277",
+        "-o",
+        "pid=,ppid=,pgid=,stat="
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": ""
+    },
+    "PGID": {
+      "argv": [
+        "/bin/ps",
+        "-g",
+        "25277",
+        "-o",
+        "pid=,ppid=,pgid=,stat="
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": ""
+    }
+  },
+  "actual_failure": null,
+  "original_strict_sealer": {
+    "status": "passed",
+    "native_audit_sha256": "1163b8720c8b16a6f76eaaea6a1ee84cf5bce5c6584682a4096ff5f5a805ea7c",
+    "local_evidence_map_sha256": "19f25ee3ff20351f416aeb5ddd293adad1285673841434fd2cd05b0154e74ffd",
+    "source_index": 0,
+    "final_mesh_sha256": "04a6d50ab4640344655a7edde067bbc176e557b6a47b40d5ba00b59d29dbaa80",
+    "unknown_final_faces": 0,
+    "payloads": 16,
+    "all_evidence_map_paths_relative": true,
+    "strict_reader_verified": true,
+    "native_calculation_executed_by_sealer": false,
+    "sealer_source_sha256": "687a5a42b413b76817f2ec82d4789bc0759563acd14ea5518479981c428944b7",
+    "strict_reader_source_sha256": "d4c8131feb365fbbfe8a92a39398bd89d9728916062ed1a2d9c67a19015f9259"
+  },
+  "other_six_cases_executed": false,
+  "envelope_store_sealed": false,
+  "support_geometry_or_vectors_or_unit_global_admission": false,
+  "strength_or_manufacturing_claimed": false,
+  "outputs": {
+    "output-001/assessment.json": {
+      "bytes": 16337,
+      "sha256": "718ddd1cc81be9c3f7a033325234abfcc6ba18a5a2d9640293a9d941b017a476"
+    },
+    "output-001/returned-case.json": {
+      "bytes": 11841,
+      "sha256": "8bbc3bbb0ea2a7f4d89e5267e1f62a6f285d203a9fc9d0618e0fc6a20ab934ac"
+    },
+    "output-001/runtime-after.json": {
+      "bytes": 296204,
+      "sha256": "57f4ee2a89b15c65d46bfc034f3433e651320e05505518d593aaacb2ed63d119"
+    },
+    "output-001/runtime-before.json": {
+      "bytes": 296204,
+      "sha256": "57f4ee2a89b15c65d46bfc034f3433e651320e05505518d593aaacb2ed63d119"
+    },
+    "output-001/source-000/case.json": {
+      "bytes": 11841,
+      "sha256": "8bbc3bbb0ea2a7f4d89e5267e1f62a6f285d203a9fc9d0618e0fc6a20ab934ac"
+    },
+    "output-001/source-000/execution-receipt.json": {
+      "bytes": 10931,
+      "sha256": "b9e89b8e7d0089d42d0344eefebf735cd0dbdd46d7368bf655a131c9189d0e45"
+    },
+    "output-001/source-000/input-manifest.json": {
+      "bytes": 22891,
+      "sha256": "97a4c2057812db626196f764a6527e737eee427ca6c220156d49a64cd9d03116"
+    },
+    "output-001/source-000/inputs/part.npz": {
+      "bytes": 8781492,
+      "sha256": "30487ce8c5683c6b988f2cf3d2f6e71fbfe4b7669bb567cfc80554bbc05e6a4f"
+    },
+    "output-001/source-000/inputs/source-000-mask-000.npz": {
+      "bytes": 137154,
+      "sha256": "eca8ff490e8343352ed54bcc6a63616bee51e2564cd565f027ebcf15f4432343"
+    },
+    "output-001/source-000/inputs/source-000-roofs.npz": {
+      "bytes": 1365370,
+      "sha256": "427bdb54ccbd19998cf3c61c450e4431891d0794740faeac0ce11b670e702b48"
+    },
+    "output-001/source-000/plan.json": {
+      "bytes": 2880,
+      "sha256": "5941ceb717aff4299c870179acb303f220c065ce208aecab3195195afdbc700c"
+    },
+    "output-001/source-000/remote-controller.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "output-001/source-000/result/case.json": {
+      "bytes": 8606,
+      "sha256": "68053291bf8d1f7d4688a10033e69f3d9674d87927b22a83dadcde4cf1fe41ce"
+    },
+    "output-001/source-000/result/composed/composed-drift.json": {
+      "bytes": 4847,
+      "sha256": "4e742fb9e5cf123383b38f6e1529f47fcf0671e93f5928167b266bad80f1c7da"
+    },
+    "output-001/source-000/result/composed/distance-audit.json": {
+      "bytes": 3671,
+      "sha256": "0028fdde2b220a86521d2bd627a81a8995d57a0270e8cbeeecd4d813538cf56e"
+    },
+    "output-001/source-000/result/composed/distance-execution-receipt.json": {
+      "bytes": 7514,
+      "sha256": "0ac5aa5abc2813271d830798caeddc9736ae35ef09d865a0848709d910d5f620"
+    },
+    "output-001/source-000/result/composed/native-audit.json": {
+      "bytes": 94714,
+      "sha256": "b400ee2fbe51369c771672961d2df6971dd3b436b35b5b7ded5163a5ab999989"
+    },
+    "output-001/source-000/result/composed/native-execution-receipt.json": {
+      "bytes": 451735,
+      "sha256": "b6f4a1032964fde38dd14e23ad723f833b21d5590f1031e251c3a81075a3e0da"
+    },
+    "output-001/source-000/result/composed/native-native.json": {
+      "bytes": 92936,
+      "sha256": "ea4178455fa8a992faad503799e8c8afa7a246b02bdf752a5740c3a92cfc388d"
+    },
+    "output-001/source-000/result/composed/snap-audit.json": {
+      "bytes": 3618,
+      "sha256": "a00cbe5056c4c3c32614c9aadda1b86f3622d9a48038635bb36fe2c4d41bf107"
+    },
+    "output-001/source-000/result/composed/snap-execution-receipt.json": {
+      "bytes": 5306,
+      "sha256": "0144c2ac3aa8fa9c3fca2e7f9a4f684eed3fa8122b2f77068cbf2bc6812f6289"
+    },
+    "output-001/source-000/result/composed/snap-native.json": {
+      "bytes": 951,
+      "sha256": "76488988d8cd4c31f62e3414694f8b4a31ad612ee10d94978de3d5e6aee9eb3e"
+    },
+    "output-001/source-000/result/composed.log": {
+      "bytes": 844,
+      "sha256": "c0ad08c9d214c87e940f3cd5c0abd9bcb9194b02b3f005088b0ab54e28dc0154"
+    },
+    "output-001/source-000/result/csg.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "output-001/source-000/result/exact-distance.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "output-001/source-000/result/execution-receipt.json": {
+      "bytes": 16349,
+      "sha256": "9b15d6006000096af860721692b9832d88c435d2f5406435d91ed3f017443ba0"
+    },
+    "output-001/source-000/result/first-snap.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "output-001/source-000/result/frozen-plan.json": {
+      "bytes": 1310,
+      "sha256": "524cf8b1ee37c75c6028c3b2c283083ed9639331106d3742b8b5245a5781a93c"
+    },
+    "output-001/source-000/result/independent/assessment.json": {
+      "bytes": 2357,
+      "sha256": "687302fafd9c3825e8fcaf1e3529025c58de99dedb4bf4e27dea8df6b35d1602"
+    },
+    "output-001/source-000/result/independent/command-0.log": {
+      "bytes": 795,
+      "sha256": "94c2f4bc0c2b00156a0fbc8cb977cd776462511c7fb82da10691841596a8ae16"
+    },
+    "output-001/source-000/result/independent/command-1.log": {
+      "bytes": 651,
+      "sha256": "d666e71788ebfad0bb459078d08a934910f686a81c19dba8e16d8a01e71ac471"
+    },
+    "output-001/source-000/result/independent/exact-contacts.json": {
+      "bytes": 2388,
+      "sha256": "543c92ea38b755868a542aa663584bf4faae138355d6ba15f3cf39382be3b0f7"
+    },
+    "output-001/source-000/result/independent/source/audit_envelope_case.py": {
+      "bytes": 2788,
+      "sha256": "bd5d61e65390337de8c9528044b175d12492cc581c409eb7efb5fdab49dfc0c6"
+    },
+    "output-001/source-000/result/independent/source/audit_exact_volume.py": {
+      "bytes": 2965,
+      "sha256": "32c96b6589a0071c59f75c8e83c17cea5704312f4f9561a31aafef32f0de0df6"
+    },
+    "output-001/source-000/result/independent/source/classify_mesh_contacts.py": {
+      "bytes": 7000,
+      "sha256": "906a413033b58d34cd28e705ac148f25e5a4dc3326298a6ff00c123b29d69f97"
+    },
+    "output-001/source-000/result/independent/topology/assessment.json": {
+      "bytes": 849,
+      "sha256": "1b30b5409b8537f9b561f7eec4cc0615e7649c80838e4d1a0673f183a70a9e90"
+    },
+    "output-001/source-000/result/independent/topology/audit_exact_volume.py": {
+      "bytes": 2965,
+      "sha256": "32c96b6589a0071c59f75c8e83c17cea5704312f4f9561a31aafef32f0de0df6"
+    },
+    "output-001/source-000/result/independent/topology/pairs.npz": {
+      "bytes": 224,
+      "sha256": "645f5b9ec76c737b636e6dc1c68d71d24920b1eec39b4c62dc6bd5cc5cd182e3"
+    },
+    "output-001/source-000/result/independent.log": {
+      "bytes": 69,
+      "sha256": "228d23922adc33216e9a3e705f8d773b8300d01a9e866a019a57b851751e9f13"
+    },
+    "output-001/source-000/result/seal-prism.log": {
+      "bytes": 100,
+      "sha256": "74c8cfb27778ef884e39d006fab93422b9ddc5e8b03bb920cc327a1587636993"
+    },
+    "output-001/source-000/result/sealed/evidence/0028fdde2b220a86521d2bd627a81a8995d57a0270e8cbeeecd4d813538cf56e-audit.json": {
+      "bytes": 3671,
+      "sha256": "0028fdde2b220a86521d2bd627a81a8995d57a0270e8cbeeecd4d813538cf56e"
+    },
+    "output-001/source-000/result/sealed/evidence/0144c2ac3aa8fa9c3fca2e7f9a4f684eed3fa8122b2f77068cbf2bc6812f6289-execution-receipt.json": {
+      "bytes": 5306,
+      "sha256": "0144c2ac3aa8fa9c3fca2e7f9a4f684eed3fa8122b2f77068cbf2bc6812f6289"
+    },
+    "output-001/source-000/result/sealed/evidence/04a6d50ab4640344655a7edde067bbc176e557b6a47b40d5ba00b59d29dbaa80-result.npz": {
+      "bytes": 7656452,
+      "sha256": "04a6d50ab4640344655a7edde067bbc176e557b6a47b40d5ba00b59d29dbaa80"
+    },
+    "output-001/source-000/result/sealed/evidence/0ac5aa5abc2813271d830798caeddc9736ae35ef09d865a0848709d910d5f620-execution-receipt.json": {
+      "bytes": 7514,
+      "sha256": "0ac5aa5abc2813271d830798caeddc9736ae35ef09d865a0848709d910d5f620"
+    },
+    "output-001/source-000/result/sealed/evidence/4e742fb9e5cf123383b38f6e1529f47fcf0671e93f5928167b266bad80f1c7da-composed-drift.json": {
+      "bytes": 4847,
+      "sha256": "4e742fb9e5cf123383b38f6e1529f47fcf0671e93f5928167b266bad80f1c7da"
+    },
+    "output-001/source-000/result/sealed/evidence/524cf8b1ee37c75c6028c3b2c283083ed9639331106d3742b8b5245a5781a93c-frozen-plan.json": {
+      "bytes": 1310,
+      "sha256": "524cf8b1ee37c75c6028c3b2c283083ed9639331106d3742b8b5245a5781a93c"
+    },
+    "output-001/source-000/result/sealed/evidence/543c92ea38b755868a542aa663584bf4faae138355d6ba15f3cf39382be3b0f7-exact-contacts.json": {
+      "bytes": 2388,
+      "sha256": "543c92ea38b755868a542aa663584bf4faae138355d6ba15f3cf39382be3b0f7"
+    },
+    "output-001/source-000/result/sealed/evidence/5795da4caeb9f6154b866f2fa34b6268d87807c4a57efd950f6cbd764777f648-prism-face-schema.json": {
+      "bytes": 1934,
+      "sha256": "5795da4caeb9f6154b866f2fa34b6268d87807c4a57efd950f6cbd764777f648"
+    },
+    "output-001/source-000/result/sealed/evidence/645f5b9ec76c737b636e6dc1c68d71d24920b1eec39b4c62dc6bd5cc5cd182e3-pairs.npz": {
+      "bytes": 224,
+      "sha256": "645f5b9ec76c737b636e6dc1c68d71d24920b1eec39b4c62dc6bd5cc5cd182e3"
+    },
+    "output-001/source-000/result/sealed/evidence/76488988d8cd4c31f62e3414694f8b4a31ad612ee10d94978de3d5e6aee9eb3e-native.json": {
+      "bytes": 951,
+      "sha256": "76488988d8cd4c31f62e3414694f8b4a31ad612ee10d94978de3d5e6aee9eb3e"
+    },
+    "output-001/source-000/result/sealed/evidence/94990c86c537071ef2690866b5726ce710015d9e36b17ba53509c664b6fcf135-result.mesh64.exact": {
+      "bytes": 49386770,
+      "sha256": "94990c86c537071ef2690866b5726ce710015d9e36b17ba53509c664b6fcf135"
+    },
+    "output-001/source-000/result/sealed/evidence/a00cbe5056c4c3c32614c9aadda1b86f3622d9a48038635bb36fe2c4d41bf107-audit.json": {
+      "bytes": 3618,
+      "sha256": "a00cbe5056c4c3c32614c9aadda1b86f3622d9a48038635bb36fe2c4d41bf107"
+    },
+    "output-001/source-000/result/sealed/evidence/b400ee2fbe51369c771672961d2df6971dd3b436b35b5b7ded5163a5ab999989-audit.json": {
+      "bytes": 94714,
+      "sha256": "b400ee2fbe51369c771672961d2df6971dd3b436b35b5b7ded5163a5ab999989"
+    },
+    "output-001/source-000/result/sealed/evidence/b6f4a1032964fde38dd14e23ad723f833b21d5590f1031e251c3a81075a3e0da-execution-receipt.json": {
+      "bytes": 451735,
+      "sha256": "b6f4a1032964fde38dd14e23ad723f833b21d5590f1031e251c3a81075a3e0da"
+    },
+    "output-001/source-000/result/sealed/evidence/ea4178455fa8a992faad503799e8c8afa7a246b02bdf752a5740c3a92cfc388d-native.json": {
+      "bytes": 92936,
+      "sha256": "ea4178455fa8a992faad503799e8c8afa7a246b02bdf752a5740c3a92cfc388d"
+    },
+    "output-001/source-000/result/sealed/evidence/f6d73dbe7a41f0c0eab556dba31ba5dd12505fa1787bbe92c0d08e29774ca9c4-result.npz": {
+      "bytes": 10020602,
+      "sha256": "f6d73dbe7a41f0c0eab556dba31ba5dd12505fa1787bbe92c0d08e29774ca9c4"
+    },
+    "output-001/source-000/result/sealed/local-evidence-map.json": {
+      "bytes": 5230,
+      "sha256": "19f25ee3ff20351f416aeb5ddd293adad1285673841434fd2cd05b0154e74ffd"
+    },
+    "output-001/source-000/result/sealed/native_audit.json": {
+      "bytes": 5982,
+      "sha256": "1163b8720c8b16a6f76eaaea6a1ee84cf5bce5c6584682a4096ff5f5a805ea7c"
+    },
+    "output-001/source-000/result/sealed/native_prism_case.py": {
+      "bytes": 15077,
+      "sha256": "d4c8131feb365fbbfe8a92a39398bd89d9728916062ed1a2d9c67a19015f9259"
+    },
+    "output-001/source-000/result/sealed/seal-assessment.json": {
+      "bytes": 697,
+      "sha256": "a0beb6d89af01fbc7e7ded08052f9b474069f39a62222241b50c636da78a8386"
+    },
+    "output-001/source-000/result/sealed/seal_prism_native_case.py": {
+      "bytes": 11814,
+      "sha256": "687a5a42b413b76817f2ec82d4789bc0759563acd14ea5518479981c428944b7"
+    },
+    "output-001/source-000/runtime.json": {
+      "bytes": 550,
+      "sha256": "27b131cb62892f7979ecf60ce903c8e7f2176871a7f5ada23f5989e777376ea4"
+    },
+    "output-001/source-000/source/design-20261016/classify_mesh_contacts.py": {
+      "bytes": 7000,
+      "sha256": "906a413033b58d34cd28e705ac148f25e5a4dc3326298a6ff00c123b29d69f97"
+    },
+    "output-001/source-000/source/native-cgal-mesh-remeasure-20261016/audit_composed_repair.py": {
+      "bytes": 5585,
+      "sha256": "6a5b2d99b72b7ca75ef4edcc70f0c9bb3cbb20f4c9b586249b5f9440fead8388"
+    },
+    "output-001/source-000/source/native-cgal-mesh-remeasure-20261016/run.py": {
+      "bytes": 3718,
+      "sha256": "0c4c67d11b8f92ca8834af427ad417257d5decc9177420557e4dd630536471d5"
+    },
+    "output-001/source-000/source/native-cgal-mesh-remeasure-20261016/worker.py": {
+      "bytes": 4220,
+      "sha256": "11b4f1deca51634f177006683b4079e49a7014a845b11db5a1d1132c0bb5df24"
+    },
+    "output-001/source-000/source/native-cgal-prism-free-20261016-v4/audit_composed_drift_initial.py": {
+      "bytes": 9644,
+      "sha256": "56d6ef4aef136ea3c8cb29ca91a69e563abb69a2afec55d903a9b3d3220580a9"
+    },
+    "output-001/source-000/source/native-cgal-prism-free-20261016-v4/prism-face-schema.json": {
+      "bytes": 1934,
+      "sha256": "5795da4caeb9f6154b866f2fa34b6268d87807c4a57efd950f6cbd764777f648"
+    },
+    "output-001/source-000/source/process-skins-20261016/audit_envelope_case.py": {
+      "bytes": 2788,
+      "sha256": "bd5d61e65390337de8c9528044b175d12492cc581c409eb7efb5fdab49dfc0c6"
+    },
+    "output-001/source-000/source/process-skins-20261016/audit_exact_volume.py": {
+      "bytes": 2965,
+      "sha256": "32c96b6589a0071c59f75c8e83c17cea5704312f4f9561a31aafef32f0de0df6"
+    },
+    "output-001/source-000/source/process-skins-20261016/left-repair-template-v2.json": {
+      "bytes": 4307,
+      "sha256": "1119dd42a038a550ae652f4a1d1db87bff5a24b3bea71281c9dd8936a72803b0"
+    },
+    "output-001/source-000/source/process-skins-20261016/native_case_contract.py": {
+      "bytes": 6558,
+      "sha256": "2735a217ee36d57d30697c811d33ea8d9de35f6c70ea356398e2326c65cd9c82"
+    },
+    "output-001/source-000/source/process-skins-20261016/native_case_remote.py": {
+      "bytes": 14963,
+      "sha256": "0fdf95ea1add055c6fbe858d940180a1b81839f9eb2a6effde5ba79728b767f1"
+    },
+    "output-001/source-000/source/process-skins-20261016/native_prism_case.py": {
+      "bytes": 15077,
+      "sha256": "d4c8131feb365fbbfe8a92a39398bd89d9728916062ed1a2d9c67a19015f9259"
+    },
+    "output-001/source-000/source/process-skins-20261016/repair_ancestral_line_sheet.py": {
+      "bytes": 5201,
+      "sha256": "267a57f261dab35b25b6aa7d0b78feee32fcfd7f6ff602a120376610d51f3601"
+    },
+    "output-001/source-000/source/process-skins-20261016/run_native_envelope_case.py": {
+      "bytes": 8942,
+      "sha256": "f64b476899a3c90b2eb87b829304b7609e39841c37e731457da09305a746f4de"
+    },
+    "output-001/source-000/source/process-skins-20261016/seal_prism_native_case.py": {
+      "bytes": 11814,
+      "sha256": "687a5a42b413b76817f2ec82d4789bc0759563acd14ea5518479981c428944b7"
+    },
+    "output-001/started-case.json": {
+      "bytes": 3614,
+      "sha256": "397e00ac7b3c9866e7eee763d123fa4afcd55947dcb3d919dcad786be91e7e7e"
+    },
+    "execution-001/execution-receipt.json": {
+      "bytes": 1009489,
+      "sha256": "34a83919d9668975a02708d832568c9e44773e88a6fddf8711964eb28345f6c0"
+    },
+    "execution-001/started.json": {
+      "bytes": 236,
+      "sha256": "872f320ffdb987f88550db150ab11ac2b7f074f0c27385e5aead884899be86ad"
+    },
+    "execution-001/stderr.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "execution-001/stdout.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "remote-collection-001/attestation.json": {
+      "bytes": 615841,
+      "sha256": "3e94a7db89b862dc76aed8d6ba0b89ccc392184230d2728caa8228e83063bdc0"
+    },
+    "remote-collection-001/collection-receipt.json": {
+      "bytes": 2329,
+      "sha256": "e0deecfdc23670dacda61b3e7a1fd48e599b1efe35165ee4a0bc0b901facb765"
+    },
+    "remote-collection-001/command.json": {
+      "bytes": 8050,
+      "sha256": "7bb6cd84e44a986a800242c7b8897cffde02c1422faea24bda70833f2e7085cc"
+    },
+    "remote-collection-001/csg/audit.json": {
+      "bytes": 94714,
+      "sha256": "b400ee2fbe51369c771672961d2df6971dd3b436b35b5b7ded5163a5ab999989"
+    },
+    "remote-collection-001/csg/execution-plan.json": {
+      "bytes": 450920,
+      "sha256": "0fba506d505336599a01927491f7a9a471fdfea5794a71c18047e6a5b21a60c4"
+    },
+    "remote-collection-001/csg/execution-receipt.json": {
+      "bytes": 451735,
+      "sha256": "b6f4a1032964fde38dd14e23ad723f833b21d5590f1031e251c3a81075a3e0da"
+    },
+    "remote-collection-001/csg/input-A.mesh64": {
+      "bytes": 3495934,
+      "sha256": "e29966a6358cbd22a8e9ab22f02f1b980666dd5f4f7d81c69012cc1d5eeb6fdc"
+    },
+    "remote-collection-001/csg/input-B.mesh64": {
+      "bytes": 631761,
+      "sha256": "dceadf1eb680d505b1ecdae5c01708d5ca68f8137ab5b735e13dcc1009b06a5a"
+    },
+    "remote-collection-001/csg/input-part.mesh64": {
+      "bytes": 28341864,
+      "sha256": "b0c94e2e43fdf85e1b20040e4aabb51d655e4b1d5004f97a1d403cb6ece269d4"
+    },
+    "remote-collection-001/csg/installation-receipt.json": {
+      "bytes": 451290,
+      "sha256": "62d9201fb50d663f4d243bd6471b13399163a93a1d47550580e9040de384acfb"
+    },
+    "remote-collection-001/csg/native-invocation.json": {
+      "bytes": 311,
+      "sha256": "59b88795fc3ea9b6ea834157081c02ae9110ad30df9dd1d4c79bdebda923002e"
+    },
+    "remote-collection-001/csg/native.json": {
+      "bytes": 92936,
+      "sha256": "ea4178455fa8a992faad503799e8c8afa7a246b02bdf752a5740c3a92cfc388d"
+    },
+    "remote-collection-001/csg/native.json.bbox.json": {
+      "bytes": 300,
+      "sha256": "4b8c1c4b001c0274296134b62a33f7bca6742a6766487af7370b15631e1e140e"
+    },
+    "remote-collection-001/csg/native.log": {
+      "bytes": 14825071,
+      "sha256": "f32250d18dce1b729b13945fddc36de7eb91b3bcbbdc70903930a624fdab67da"
+    },
+    "remote-collection-001/csg/result.mesh64": {
+      "bytes": 21818580,
+      "sha256": "238a30a254dcaa97a1824508db2df5a85f49a916893125f791685681548b45fb"
+    },
+    "remote-collection-001/csg/result.mesh64.all_source_faces": {
+      "bytes": 8312897,
+      "sha256": "7501b09b4f0c402b211e11c2e03ab0cad63507b298dea97c5cfc5a21dd75b749"
+    },
+    "remote-collection-001/csg/result.mesh64.exact": {
+      "bytes": 49386770,
+      "sha256": "94990c86c537071ef2690866b5726ce710015d9e36b17ba53509c664b6fcf135"
+    },
+    "remote-collection-001/csg/result.mesh64.source_faces": {
+      "bytes": 3646876,
+      "sha256": "f304a7d12d2e124c515f3e6b1f8ffc28f64ad48620cc27dd0487e0443341f9d7"
+    },
+    "remote-collection-001/csg/result.mesh64.unadmitted.exact": {
+      "bytes": 49386770,
+      "sha256": "94990c86c537071ef2690866b5726ce710015d9e36b17ba53509c664b6fcf135"
+    },
+    "remote-collection-001/csg/result.mesh64.unadmitted.json": {
+      "bytes": 105,
+      "sha256": "0ca9e6ac010bb6aba6e47167d6bc61c7660b648b1a80ad49c5de743ff0985eb9"
+    },
+    "remote-collection-001/csg/result.mesh64.unadmitted.mesh64": {
+      "bytes": 21818580,
+      "sha256": "238a30a254dcaa97a1824508db2df5a85f49a916893125f791685681548b45fb"
+    },
+    "remote-collection-001/csg/result.npz": {
+      "bytes": 10020602,
+      "sha256": "f6d73dbe7a41f0c0eab556dba31ba5dd12505fa1787bbe92c0d08e29774ca9c4"
+    },
+    "remote-collection-001/csg/run.py": {
+      "bytes": 5535,
+      "sha256": "a6009f47499701f80694829db9c6da4c2f71106f56334a0dbc6ae7540ec5262f"
+    },
+    "remote-collection-001/csg/soup_boolean.cpp": {
+      "bytes": 18206,
+      "sha256": "7db2c1e81f091fa23b2b89014376fc4cdf4d078112264612eb321c3bc20ef59f"
+    },
+    "remote-collection-001/csg/stdout.log": {
+      "bytes": 101,
+      "sha256": "a4267b6220d8fb9722c1764302493f51c1a50b0cd4ef198838257cae155662d6"
+    },
+    "remote-collection-001/csg/worker.py": {
+      "bytes": 7652,
+      "sha256": "1618e847a6f01fc80e358db4454d22ea4109aba7cad8a82cfd1b7aa1cea216a6"
+    },
+    "remote-collection-001/csg-copy.json": {
+      "bytes": 435,
+      "sha256": "1d143a4b70e64e2d5642a8e6cb129e803243574aa00a93916aec1dd5e8721976"
+    },
+    "remote-collection-001/distance/audit.json": {
+      "bytes": 3671,
+      "sha256": "0028fdde2b220a86521d2bd627a81a8995d57a0270e8cbeeecd4d813538cf56e"
+    },
+    "remote-collection-001/distance/distance.cpp": {
+      "bytes": 9504,
+      "sha256": "ea4029186361e5d51d12cb1104f0ca0501fa4c04d266061a71b73c1bb7d1ee79"
+    },
+    "remote-collection-001/distance/exact-distance.json": {
+      "bytes": 1653,
+      "sha256": "09e82f4e61077a3d82f0d57aba504d6a42a3d7d713dfe9b419a1480bbc7cfe5b"
+    },
+    "remote-collection-001/distance/execution-plan.json": {
+      "bytes": 7374,
+      "sha256": "7fa27792ce0113e5150b1436981ff29afcc48f21e066d96f999f9ab500875c9a"
+    },
+    "remote-collection-001/distance/execution-receipt.json": {
+      "bytes": 7514,
+      "sha256": "0ac5aa5abc2813271d830798caeddc9736ae35ef09d865a0848709d910d5f620"
+    },
+    "remote-collection-001/distance/input.mesh64": {
+      "bytes": 21818580,
+      "sha256": "238a30a254dcaa97a1824508db2df5a85f49a916893125f791685681548b45fb"
+    },
+    "remote-collection-001/distance/installation-receipt.json": {
+      "bytes": 4408,
+      "sha256": "0b576ba49ba6811e8f03de1dd5981a7f174af15879b297d7fd23a0367e406a60"
+    },
+    "remote-collection-001/distance/native-distance.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "remote-collection-001/distance/origin-audit.json": {
+      "bytes": 3618,
+      "sha256": "a00cbe5056c4c3c32614c9aadda1b86f3622d9a48038635bb36fe2c4d41bf107"
+    },
+    "remote-collection-001/distance/origin-execution-plan.json": {
+      "bytes": 5156,
+      "sha256": "e6aee37597407175cfe4ae287a3fc8c09626fb2315e8dc639ebd625fbb0ef910"
+    },
+    "remote-collection-001/distance/origin-execution-receipt.json": {
+      "bytes": 5306,
+      "sha256": "0144c2ac3aa8fa9c3fca2e7f9a4f684eed3fa8122b2f77068cbf2bc6812f6289"
+    },
+    "remote-collection-001/distance/origin-native.json": {
+      "bytes": 951,
+      "sha256": "76488988d8cd4c31f62e3414694f8b4a31ad612ee10d94978de3d5e6aee9eb3e"
+    },
+    "remote-collection-001/distance/origin-source-faces.txt": {
+      "bytes": 3617048,
+      "sha256": "5751c86ae3c158c290b9147653de33cd8aa58fc040829816cf54047d0ab26837"
+    },
+    "remote-collection-001/distance/result.mesh64": {
+      "bytes": 21818580,
+      "sha256": "238a30a254dcaa97a1824508db2df5a85f49a916893125f791685681548b45fb"
+    },
+    "remote-collection-001/distance/run.py": {
+      "bytes": 4620,
+      "sha256": "e3bda53e652744d482cb3abc5e84195c4defed2a59be912571db1fa28c9c1f64"
+    },
+    "remote-collection-001/distance/stdout.log": {
+      "bytes": 3223,
+      "sha256": "ae049615da035c2f29182e2aa702394797fc4e3747027f83c6a291232eb14f55"
+    },
+    "remote-collection-001/distance/worker.py": {
+      "bytes": 5700,
+      "sha256": "fbe63202be923a24ae18a57952b7eb375fc0f41437a26f73ddf10ec6e72f9504"
+    },
+    "remote-collection-001/distance-copy.json": {
+      "bytes": 448,
+      "sha256": "a4b41aa5b1e70cba2678392f75ca0785b83a86f8a94dce930067818d48db8daa"
+    },
+    "remote-collection-001/first-snap/adapter.cpp": {
+      "bytes": 7010,
+      "sha256": "34a610292dc8c1f51c74367fee7cc08967316f29792d1bd3b2ec8858542509b2"
+    },
+    "remote-collection-001/first-snap/audit.json": {
+      "bytes": 3618,
+      "sha256": "a00cbe5056c4c3c32614c9aadda1b86f3622d9a48038635bb36fe2c4d41bf107"
+    },
+    "remote-collection-001/first-snap/execution-plan.json": {
+      "bytes": 5156,
+      "sha256": "e6aee37597407175cfe4ae287a3fc8c09626fb2315e8dc639ebd625fbb0ef910"
+    },
+    "remote-collection-001/first-snap/execution-receipt.json": {
+      "bytes": 5306,
+      "sha256": "0144c2ac3aa8fa9c3fca2e7f9a4f684eed3fa8122b2f77068cbf2bc6812f6289"
+    },
+    "remote-collection-001/first-snap/input.mesh64": {
+      "bytes": 21818580,
+      "sha256": "238a30a254dcaa97a1824508db2df5a85f49a916893125f791685681548b45fb"
+    },
+    "remote-collection-001/first-snap/installation-receipt.json": {
+      "bytes": 5284,
+      "sha256": "f2678ffa04c027241665b9caa9851131f97c46791594531c7b5eb66951c24ed2"
+    },
+    "remote-collection-001/first-snap/native.json": {
+      "bytes": 951,
+      "sha256": "76488988d8cd4c31f62e3414694f8b4a31ad612ee10d94978de3d5e6aee9eb3e"
+    },
+    "remote-collection-001/first-snap/native.log": {
+      "bytes": 184,
+      "sha256": "cff4cce51539273c2a03d3654dcc4875db5ef27d58f19bd167adff6a11ef55a3"
+    },
+    "remote-collection-001/first-snap/result.mesh64": {
+      "bytes": 21818580,
+      "sha256": "238a30a254dcaa97a1824508db2df5a85f49a916893125f791685681548b45fb"
+    },
+    "remote-collection-001/first-snap/result.mesh64.source_faces": {
+      "bytes": 3617048,
+      "sha256": "5751c86ae3c158c290b9147653de33cd8aa58fc040829816cf54047d0ab26837"
+    },
+    "remote-collection-001/first-snap/result.npz": {
+      "bytes": 7656452,
+      "sha256": "04a6d50ab4640344655a7edde067bbc176e557b6a47b40d5ba00b59d29dbaa80"
+    },
+    "remote-collection-001/first-snap/runner.py": {
+      "bytes": 4737,
+      "sha256": "2cebda65552af2e3f29de95edb990891e397ca1933e5f3219bb60ea03e27f1ab"
+    },
+    "remote-collection-001/first-snap/stdout.log": {
+      "bytes": 3006,
+      "sha256": "16584e2336c0bd4590e9acedea6eaa735ca06c5b5056044636c990b2120001f4"
+    },
+    "remote-collection-001/first-snap/worker.py": {
+      "bytes": 7271,
+      "sha256": "19f4bbd2d61d3e5888cdc901f7c14b31a8538ff941fa626a6019a66743a63e15"
+    },
+    "remote-collection-001/first-snap-copy.json": {
+      "bytes": 466,
+      "sha256": "37f48f22735e3187934dff756e0d5122f134e1afecbec4f3d1779f73b4b2d714"
+    },
+    "remote-collection-001/metadata-tool-receipt.json": {
+      "bytes": 419,
+      "sha256": "722163d475a77c956aad3b5fe38086b064788a29d2ef3cb1fe13763353a9e786"
+    },
+    "remote-collection-001/stderr.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "remote-collection-001/stdout.log": {
+      "bytes": 615841,
+      "sha256": "3e94a7db89b862dc76aed8d6ba0b89ccc392184230d2728caa8228e83063bdc0"
+    }
+  },
+  "output_count": 145,
+  "output_bytes": 397334502,
+  "supervision_elapsed_seconds": 665.2869662910234,
+  "producer_elapsed_seconds": 664.2179305839818
+}

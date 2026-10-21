@@ -1,0 +1,23 @@
+{
+  "argv": [
+    "docker",
+    "run",
+    "--rm",
+    "--pull=never",
+    "--network=none",
+    "--cpus=1",
+    "--memory=6g",
+    "--memory-swap=6g",
+    "--pids-limit=128",
+    "--read-only",
+    "--cap-drop=ALL",
+    "--security-opt=no-new-privileges",
+    "--entrypoint",
+    "/usr/bin/sha256sum",
+    "sha256:c9772ae9223a4f800a3ceda77d2494e67e34c8526eb0f204b3c8e052266641b4",
+    "/usr/bin/ccx"
+  ],
+  "returncode": 0,
+  "stdout": "271f8411371b978d7a8d31a7a13d0765e6e1f872e8a8b1d6aac6d0856c71ec6c  /usr/bin/ccx\n",
+  "stderr": ""
+}

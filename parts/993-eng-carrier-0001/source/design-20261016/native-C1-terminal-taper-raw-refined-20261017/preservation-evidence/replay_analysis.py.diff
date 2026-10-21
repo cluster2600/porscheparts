@@ -1,0 +1,52 @@
+--- parts/993-eng-carrier-0001/source/design-20261016/native-C1-h2-20261017/replay_analysis.py
++++ work/carrier-terminal-taper-raw-refined-delivery-preparation-001/capsule-source/replay_analysis.py
+@@ -1,4 +1,4 @@
+-"""Restore and reanalyse the two closed h2 cases; no solver, mesher or CAD import."""
++"""Restore and reanalyse the two closed raw-refined diagnostic cases; no solver, mesher or CAD import."""
+ import argparse
+ import importlib.util
+ import json
+@@ -24,11 +24,12 @@
+ 
+ def checked_case(case, retained, expected_mesh):
+     archive.require(retained['procedure'] == 'static' and retained['name'] == case['name'], 'Case label differs')
+-    archive.require(retained['mesh_sha256'] == expected_mesh, 'Actual qualified C1 local-h2 mesh identity differs')
++    archive.require(retained['mesh_sha256'] == expected_mesh, 'Actual raw-refined diagnostic taper mesh identity differs')
+ 
+ 
+ def replay(output, expected, numpy_site, base_capsule=None):
+     started = time.monotonic(); cpu = time.process_time(); report = archive.manifest(expected, base_capsule)
++    archive.require(report['h2_qualified'] is False and report['candidate_qualified'] is False and report['strict_H2_volume_refusal_preserved'] is True and report['law_original_RC1_preserved'] is True and report['fine_ROOT_sha256'] == '9e0dd41305bf77c7b957c59172582da079f1806fb814290aaf1564cdfa7fb5d3', 'Closed raw diagnostic refusal scope required')
+     output = Path(output).absolute()
+     archive.require(not output.exists() and not output.is_symlink() and not any(p.is_symlink() for p in output.parents),
+                     'Fresh output without symlinks required')
+@@ -60,7 +61,7 @@
+         for case in report['cases']:
+             case_root = restored / case['root']; folder = case_root / 'cad/mesh-7'
+             native = json.loads((folder / (case['name'] + '.json')).read_text())
+-            checked_case(case, native, report['C1_h2_mesh_sha256'])
++            checked_case(case, native, report['raw_refined_mesh_sha256'])
+             actual_energy = energy.audit(folder, case['name'])
+             historical_energy = json.loads((case_root / 'energy-audit.json').read_text())
+             archive.require(actual_energy == historical_energy and actual_energy['energy_closure_pass']
+@@ -68,7 +69,7 @@
+             actual_peak = peak.locate_case(folder, case['name'], energy, simulation, np)
+             historical_peak = json.loads((case_root / 'global-peaks.json').read_text())
+             archive.require(actual_peak == historical_peak and actual_peak['maximum_VM_MPa'] == case['expected_VM_MPa']
+-                            and actual_peak['maximum_ties'] == 1 and actual_peak['all_global_maximum_ties'][0]['element_id'] == 90371
++                            and actual_peak['maximum_ties'] == 1 and actual_peak['all_global_maximum_ties'][0]['element_id'] == 89539
+                             and actual_peak['all_global_maximum_ties'][0]['IP_one_based'] == 2, 'Complete peak/IP result differs')
+             for label, value in [('energy', actual_energy), ('peak', actual_peak)]:
+                 with (output / (case['key'] + '-' + label + '.json')).open('x') as stream:
+@@ -78,9 +79,9 @@
+                                 'Entire replayed report bytes differ')
+             results.append(dict(case=case['name'], energy_result_entirely_equal=True, peak_result_entirely_equal=True,
+                                 relative_energy_error=actual_energy['relative_energy_closure_error'], tolerance=1e-4,
+-                                VM_MPa=actual_peak['maximum_VM_MPa'], element_id=90371, IP_one_based=2))
++                                VM_MPa=actual_peak['maximum_VM_MPa'], element_id=89539, IP_one_based=2))
+         archive.require(all(archive.sha(restored / p) == row['sha256'] for p, row in archive.all_members(report).items()), 'Restored original changed during analysis')
+-        receipt.update(status='two_actual_C1_h2_BREP_cases_reanalysed_entire_results_and_bytes_equal', restored_inputs_unchanged=True); code = 0
++        receipt.update(status='two_actual_raw_refined_taper_cases_reanalysed_entire_results_and_bytes_equal', restored_inputs_unchanged=True); code = 0
+     except BaseException as error:
+         receipt['error'] = dict(type=type(error).__name__, message=str(error))
+     finally:

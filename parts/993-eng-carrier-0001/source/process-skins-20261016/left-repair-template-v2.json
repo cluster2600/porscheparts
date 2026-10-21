@@ -1,0 +1,126 @@
+{
+  "schema": "left-local-repair-packaging-identity-template-v2",
+  "canonical_arrays_sha256": {
+    "first_snap": "23fb98b8e6245ac5455a9994483a7ce182e4bdc5e80600e9b72b4b1b2c680fa2",
+    "original_raw": "c2c25b8a297a25bc15fa236724fcd244ac6380111eb669542299f03de330bdca"
+  },
+  "plan": {
+    "schema": "explicit-ancestral-line-branch-repair-plan-v1",
+    "operation": "Explicit local reattachment of five branch nodes to two original edge events; no radius/nearest-neighbor weld",
+    "input_sha256": "7b6fff1a4561d49efb3c6a5b46cd50df6ce51e985e164380f225d7d8ac04688f",
+    "original_float_sha256": "745e1aec69b255b97427b2865fa7b7b96b835eeecc0c9657d3dfd6e59ddb260d",
+    "vertex_maps": [
+      {
+        "source": 127161,
+        "target": 123066,
+        "source_coordinates": [
+          -57.36361158188292,
+          -91.12881246729194,
+          35.99000000953674
+        ],
+        "target_coordinates": [
+          -57.363611581883106,
+          -91.12881246729194,
+          35.99000000953674
+        ]
+      },
+      {
+        "source": 127162,
+        "target": 123067,
+        "source_coordinates": [
+          -56.93879412972068,
+          -91.55362991945427,
+          35.99000000953674
+        ],
+        "target_coordinates": [
+          -56.93879412972228,
+          -91.55362991945276,
+          35.99000000953674
+        ]
+      },
+      {
+        "source": 127163,
+        "target": 123067,
+        "source_coordinates": [
+          -56.938794129721686,
+          -91.55362991945327,
+          35.99000000953674
+        ],
+        "target_coordinates": [
+          -56.93879412972228,
+          -91.55362991945276,
+          35.99000000953674
+        ]
+      },
+      {
+        "source": 127164,
+        "target": 123067,
+        "source_coordinates": [
+          -56.93879412972224,
+          -91.5536299194527,
+          35.99000000953674
+        ],
+        "target_coordinates": [
+          -56.93879412972228,
+          -91.55362991945276,
+          35.99000000953674
+        ]
+      },
+      {
+        "source": 127165,
+        "target": 123067,
+        "source_coordinates": [
+          -56.938794129721714,
+          -91.55362991945324,
+          35.99000000953674
+        ],
+        "target_coordinates": [
+          -56.93879412972228,
+          -91.55362991945276,
+          35.99000000953674
+        ]
+      }
+    ],
+    "diagnostic_sha256": "8298cc0244d5d8f1127d3e1de2733513f4fff6995552db2aca399d6f7c17a760",
+    "ancestral_parents": {
+      "horizontal_roof": 40889,
+      "horizontal_part": 379997,
+      "part_side": 380094
+    },
+    "support_context": "Long branches share the intersection of a horizontal roof and a part side. New branch nodes differ chiefly along that line; repeated-node faces are replaced by incident triangles through the two existing events.",
+    "frozen_shape_drift_limit_mm": 8.163514517232825e-13,
+    "admission": [
+      "All original exact-to-float conversions independently checked unchanged (E).",
+      "Direct exact finite raw-float-to-final triangle distances all vertices and exact centroids (D), in BOTH directions.",
+      "Exact rational sqrt(E2)+sqrt(D2) <= frozen old5delta.",
+      "Global exact native intersection-free, no collinear and strict manifold/orientation/positive volume/no-unused gates.",
+      "All changed faces lose inherited positive parent/anchor attribution until independently reclassified."
+    ],
+    "continuous_scope": "No continuous Hausdorff claim, no bound on longitudinal node displacement. Finite geometric distances under original frozen bound are mandatory.",
+    "preview_only": {
+      "boundary_edges": 0,
+      "nonmanifold_edges": 0,
+      "nonmanifold_vertices": 0,
+      "orientation_edges": 0,
+      "dropped_microtriangle_ids": [
+        254481,
+        254483,
+        254484,
+        254485,
+        254486,
+        254487,
+        254488,
+        254489,
+        254490,
+        254492,
+        254493,
+        254498,
+        254501
+      ],
+      "positive_area_deletion_is_not_claimed_zero": true
+    },
+    "status": "planned_not_admitted"
+  },
+  "historical_native_audit_sha256": "7ce16e57a5ed186140da2c0f9be7f2d6e207eca5dc73f9fccce7e3c25311efce",
+  "scope": "Fixed geometry and indices; packaging/path rebinding only after identity of all arrays. No geometry-dependent heuristic."
+}

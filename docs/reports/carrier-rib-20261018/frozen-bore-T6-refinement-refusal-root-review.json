@@ -1,0 +1,226 @@
+{
+  "schema": "root-current-d64-raw-preserved-bore-refinement-terminal-review-1",
+  "status": "closed_actual_RC1_strict_volume_nonregression_refusal_full_bore_T6_preserved_h2_not_attained",
+  "owner_terminal": "work/carrier-process-20261017/bounded-webs-stock-rib-bore-freeze-refinement-preparation-003/terminal-collection-001.json",
+  "owner_terminal_sha256": "342157b35394d25b2caf18c4ef620d20ecf5d7519107bea17c3650fa1bf91e53",
+  "collector_sha256": "29c91d8f700778c936740aa21805e63f9b3c0ce10bd5a6bb631a52cb42d73d6f",
+  "whole_owner_object_and_stored_bytes_equal": true,
+  "only_normalized_field": "collector_seconds",
+  "all_outputs": 29,
+  "all_current_merged_pins": 812,
+  "all3pending_object_and_byte_inverses": true,
+  "whole_raw_arrays_decoded_and_complete_normalization_T6_bijections_rederived": true,
+  "all_raw_native_T10_to_INP_rows_checked": 86820,
+  "all_current_NPZ_to_INP_coordinates_checked": 161547,
+  "current_mesh_metadata": {
+    "nodes": 161547,
+    "C3D10_elements": 86820,
+    "minimum_sampled_Jacobian": 0.008331803460845208,
+    "bore_node_counts": {
+      "bolt0": 528,
+      "bolt1": 528,
+      "bolt2": 528,
+      "bolt3": 528,
+      "end0": 2278,
+      "end1": 2274
+    },
+    "gmsh_version": "4.15.2",
+    "element_order": 2,
+    "straight_midsides": true,
+    "global_mesh_size_factor": 0.875,
+    "mesh_volume_mm3": 288346.0397910386,
+    "volume_relative_error": -0.00024200045433819817,
+    "CAD_source_format": "BREP",
+    "CAD_source_file": "carrier.brep",
+    "BREP_sha256": "d64a7faf8455735e05198661be823ead7037c23b58d36522e1cca60056aea624",
+    "CAD_master_receipt_sha256": "079d7427669433c0c5344ce537ade1ea0a347befdd1db23a08d3dc82fe676305",
+    "CAD_volume_receipt_sha256": "5562ed7334316d9d80224ccd5bc48a5953a5f869e0b0ae0e023ac39236426d4b",
+    "CAD_adaptive_master_volume_mm3": 288415.83655452315,
+    "CAD_volume_operator": {
+      "api": "BRepGProp.VolumeProperties_s",
+      "arguments": [
+        1e-10,
+        true,
+        false
+      ],
+      "scope": "Separate adaptive native reference for material mass and mesh volume error"
+    },
+    "OCC_import_check_reference_mm3": 288415.8744573265,
+    "OCC_import_check_operator": {
+      "api": "BRepGProp.VolumeProperties_s",
+      "arguments": [
+        false,
+        false,
+        false
+      ],
+      "scope": "Same nonadaptive overload used by Gmsh getMass; only the future import comparison reference"
+    },
+    "OCC_import_reference_receipt_sha256": "5562ed7334316d9d80224ccd5bc48a5953a5f869e0b0ae0e023ac39236426d4b",
+    "OCC_imported_volume_mm3": 288415.8744573265,
+    "OCC_import_relative_volume_difference": 0.0
+  },
+  "actual_regional_edge_measurements": [
+    {
+      "region_id": "combined-rigid-static",
+      "bounds_mm": [
+        [
+          262.71509057776,
+          20.497762126228,
+          -11.639483600432
+        ],
+        [
+          264.88884952199,
+          21.850730505332,
+          -10.22904385359
+        ]
+      ],
+      "target_h_mm": 1.3844416177456211,
+      "source_measured_h_mm": 2.7688832354912423,
+      "centroid_selected_element_count": 30,
+      "centroid_selected_element_ids": [
+        3146,
+        3241,
+        3816,
+        4596,
+        5260,
+        5861,
+        6313,
+        7993,
+        8442,
+        8853,
+        9419,
+        11176,
+        14552,
+        14571,
+        14730,
+        14770,
+        15653,
+        21558,
+        24195,
+        30596,
+        32249,
+        33972,
+        34436,
+        35633,
+        36441,
+        38373,
+        42313,
+        42645,
+        51538,
+        57224
+      ],
+      "centroid_selected_six_edges_min_max_mm": [
+        0.6148462910231909,
+        1.5598270773157905
+      ],
+      "all_mesh_whole_edge_incidences_with_both_endpoints_in_box_count": 71,
+      "all_mesh_whole_edges_with_both_endpoints_in_box_min_max_mm": [
+        0.7160829652818271,
+        1.551224559644159
+      ],
+      "measured_h_mm": 1.5598270773157905,
+      "measured_to_target_ratio": 1.1266831748786643,
+      "measured_to_reference_ratio": 0.5633415874393322,
+      "target_attained": false,
+      "measurement": "Maximum whole corner-edge length across centroid-selected T10 elements and all whole edges fully inside the box; no edge clipping, no distance-based peak omission",
+      "qualification": "target_not_attained_no_h2_claim"
+    },
+    {
+      "region_id": "combined-spring-1000-static",
+      "bounds_mm": [
+        [
+          82.431386523478,
+          -16.537174444708,
+          12.779370290015
+        ],
+        [
+          83.463260350657,
+          -15.1739071529,
+          13.787064625185
+        ]
+      ],
+      "target_h_mm": 0.9531856889566888,
+      "source_measured_h_mm": 1.9063713779133775,
+      "centroid_selected_element_count": 29,
+      "centroid_selected_element_ids": [
+        28851,
+        30455,
+        30689,
+        33716,
+        37398,
+        38771,
+        38869,
+        42120,
+        43798,
+        45809,
+        46113,
+        46473,
+        48288,
+        54444,
+        56869,
+        57645,
+        59484,
+        61391,
+        66801,
+        68931,
+        70815,
+        73530,
+        77246,
+        84587,
+        84588,
+        84598,
+        84599,
+        84875,
+        84876
+      ],
+      "centroid_selected_six_edges_min_max_mm": [
+        0.38170450446607174,
+        1.015801709738697
+      ],
+      "all_mesh_whole_edge_incidences_with_both_endpoints_in_box_count": 125,
+      "all_mesh_whole_edges_with_both_endpoints_in_box_min_max_mm": [
+        0.38170450446607174,
+        0.992002169597058
+      ],
+      "measured_h_mm": 1.015801709738697,
+      "measured_to_target_ratio": 1.0656913144075262,
+      "measured_to_reference_ratio": 0.5328456572037631,
+      "target_attained": false,
+      "measurement": "Maximum whole corner-edge length across centroid-selected T10 elements and all whole edges fully inside the box; no edge clipping, no distance-based peak omission",
+      "qualification": "target_not_attained_no_h2_claim"
+    }
+  ],
+  "raw_bore_row_counts": {
+    "bolt0": 537,
+    "bolt1": 537,
+    "bolt2": 537,
+    "bolt3": 537,
+    "end0": 2323,
+    "end1": 2319
+  },
+  "original_quality_summary": {
+    "minimum_Jacobian": 0.008331803460845208,
+    "nonpositive_elements": 0,
+    "finite": true,
+    "elements": 86820
+  },
+  "raw_final_mesh_preserved": true,
+  "full_raw_six_bore_enumerations_preserved": true,
+  "final_T6_preservation_proved": true,
+  "both_actual_h2_targets_attained": false,
+  "volume_error_nonregression_passed": false,
+  "volume_reference_relative_error": -0.0002328116815183412,
+  "volume_refined_relative_error": -0.00024200045433819817,
+  "actual_failure": {
+    "type": "AssertionError",
+    "message": "Refinement increased original volume approximation error",
+    "traceback": "Traceback (most recent call last):\n  File \"/Users/maxime/.codex/worktrees/993-carrier-revalidation/3dprinting993/work/carrier-process-20261017/bounded-webs-stock-rib-bore-freeze-refinement-preparation-003/run.py\", line 181, in run\n    assert refinement_result['volume_error_non_regression'],'Refinement increased original volume approximation error'\nAssertionError: Refinement increased original volume approximation error\n"
+  },
+  "fresh_PID_and_PGID_absent": true,
+  "actual_PID": 65127,
+  "candidate_BREP_sha256": "d64a7faf8455735e05198661be823ead7037c23b58d36522e1cca60056aea624",
+  "target_h2_qualified": false,
+  "candidate_qualified": false,
+  "FEA_executed": false,
+  "prior_raw_preservation_gap_refusal_unchanged": true
+}

@@ -1,0 +1,46 @@
+{
+  "decided_at_UTC": "2026-10-16T13:44:56.933606+00:00",
+  "frozen_plan_sha256": "766145ae83127c5af3896cb17271835b7d162f1f54cb078aff61d7832f9b8965",
+  "candidate_STEP_sha256": "fd080c7d033db9447a3a364644406f8beca44fdd5d11ecc3b9819b2b88a333bd",
+  "execution_status": "not_executed",
+  "bound_execution_plan_created": false,
+  "reason": "Predeclared mechanical admission failed: peak vonMises increased in the four mesh9/mesh7 rigid/K1000 combined cases. No published-law carrier cycle is authorized by this conditional plan.",
+  "admission_reports": {
+    "work/carrier-reinforcement-20261016/contour-2-comparison-ad12/comparison.json": "4e68f3d685c946869108bde52c75752839b4eb6dc2a9d6c14d01a273005a6858",
+    "work/carrier-reinforcement-20261016/contour-2-comparison-V6f/comparison.json": "016390aebc4771775f2c38023be43e05d883004df1034b93c5c259a914befc9f"
+  },
+  "ad12_selection": {
+    "comparative_non_regression_pass": false,
+    "reinforcement_objectives_pass": false,
+    "failures": [
+      "Independent V6f comparison failed",
+      "mesh-9/combined-rigid-static: integration_point_VM_max_MPa regressed versus ad12",
+      "mesh-9/combined-spring-1000-static: integration_point_VM_max_MPa regressed versus ad12",
+      "mesh-7/combined-rigid-static: integration_point_VM_max_MPa regressed versus ad12",
+      "mesh-7/combined-spring-1000-static: integration_point_VM_max_MPa regressed versus ad12"
+    ],
+    "objective_failures": [
+      "mesh-9: integration_point_VM_max_MPa did not reach ratio 0.9",
+      "mesh-7: integration_point_VM_max_MPa did not reach ratio 0.9"
+    ]
+  },
+  "V6f_selection": {
+    "selection_pass": false,
+    "failures": [
+      "mesh-9/combined-rigid-static: integration_point_VM_max_MPa exceeds V6f",
+      "mesh-9/combined-spring-1000-static: integration_point_VM_max_MPa exceeds V6f",
+      "mesh-7/combined-rigid-static: integration_point_VM_max_MPa exceeds V6f",
+      "mesh-7/combined-spring-1000-static: integration_point_VM_max_MPa exceeds V6f"
+    ],
+    "nominal_mass_kg": 1.292875790174124,
+    "declared_mass_ceiling_kg": 1.3,
+    "original_mass_ceiling_kg": 1.2,
+    "original_mass_ceiling_pass": false,
+    "scope": "Explicit comparative numerical selection; not a material allowable",
+    "manufacturing_authorized": false,
+    "criteria_sha256": "14ffcb2209d9824581e0ee036eece1bd4e59deea3101cd03f677efd26233c90c",
+    "criteria_file": "normal-webs-selection-criteria.json"
+  },
+  "linear_energy_and_superposition_pass": true,
+  "completed_linear_runtime_sha256": "66c6b1566e7202ca8b9c3575f2fed11b34a174924f5bc602239e69d0bc93617d"
+}

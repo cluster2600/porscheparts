@@ -1,0 +1,57 @@
+{
+  "original_path": "/Users/maxime/.codex/worktrees/993-carrier-revalidation/3dprinting993/work/carrier-R1-actual-surface-comparison-001/render.py",
+  "original_sha256": "2be2a7d252422596ac655107eb4a53962c37600e5dc73580f8a75e03c886e3a4",
+  "replacements": [
+    {
+      "before": "plan['section_Y_mm'] == -15.653914962673937 and plan['detail_XZ_mm'] == [[80.,11.],[87.,17.]]",
+      "after": "plan['section_X_mm'] == 50. and plan['detail_YZ_mm'] == [[-8.5,3.],[-5.5,6.]]",
+      "count": 1
+    },
+    {
+      "before": "crossing = (tri[:,:,1].min(1)<=plan['section_Y_mm']) & (tri[:,:,1].max(1)>=plan['section_Y_mm'])",
+      "after": "crossing = (tri[:,:,0].min(1)<=plan['section_X_mm']) & (tri[:,:,0].max(1)>=plan['section_X_mm'])",
+      "count": 1
+    },
+    {
+      "before": "section(tri[crossing][:,:,[1,0,2]],plan['section_Y_mm'])",
+      "after": "section(tri[crossing],plan['section_X_mm'])",
+      "count": 1
+    },
+    {
+      "before": "ax.set(xlim=(80,87),ylim=(11,17),xlabel='X (mm)',ylabel='Z (mm)',aspect='equal')",
+      "after": "ax.set(xlim=(-8.5,-5.5),ylim=(3,6),xlabel='Y (mm)',ylabel='Z (mm)',aspect='equal')",
+      "count": 1
+    },
+    {
+      "before": "Junction detail: tessellated STL section",
+      "after": "R1 foot: STL section at X = 50 mm",
+      "count": 1
+    },
+    {
+      "before": "Same section Y = \u221215.653915 mm; all intersecting facets are retained. Axes crop the display only.",
+      "after": "Same section X = 50 mm; all intersecting facets are retained. Axes crop the display only.",
+      "count": 1
+    },
+    {
+      "before": "R1 surface audits are pending. This preview shows no stress field, native chord, wall-thickness or strength result.",
+      "after": "Actual STL geometry. Surface audits pending.",
+      "count": 1
+    },
+    {
+      "before": "'R1-actual-surface-comparison-001'",
+      "after": "'R1-actual-surface-comparison-002'",
+      "count": 1
+    },
+    {
+      "before": "schema='d64-and-R1-complete-STL-preview-1'",
+      "after": "schema='d64-and-R1-complete-STL-preview-2'",
+      "count": 1
+    },
+    {
+      "before": "section_Y_mm=plan['section_Y_mm'],detail_XZ_mm=plan['detail_XZ_mm']",
+      "after": "section_X_mm=plan['section_X_mm'],detail_YZ_mm=plan['detail_YZ_mm']",
+      "count": 1
+    }
+  ],
+  "scope": "Only selected section plane/display axes/title/footer and version identity; no geometry/helper/raster/overview/FEA change"
+}

@@ -1,0 +1,1876 @@
+{
+  "date": "2026-10-16",
+  "scope": "Geometry remeshing and mathematical mesh/CAD checks; preserved design trials have separate mechanics decisions",
+  "baseline_V6f": {
+    "STEP_sha256": "834cc01a69c8205d854c611f7a8b7c2b6192687d547191deabbd25fe5c74049f",
+    "original_STL_sha256": "39a57b6aadc6930d2b922f23f6b451d71a530326f13befb02cb839f25e46d558",
+    "Gmsh_STL_sha256": "8fe38c5069bc20831257dced425d91770ad76cfd4109276998a21cf60b7ecfb2",
+    "old_needles": 74,
+    "new_needles": 0,
+    "triangles": 348208,
+    "BRep_sampled_comparison": {
+      "method": "OCP BRepExtrema_DistShapeShape against exact source shell, not solid occupancy",
+      "STEP_sha256": "834cc01a69c8205d854c611f7a8b7c2b6192687d547191deabbd25fe5c74049f",
+      "random_seed": 9931016,
+      "sampling": "512 vertices, 512 face centroids and 2048 area-weighted points per STL",
+      "documented_source_STL_requested_chord_tolerance_mm": 0.06,
+      "results": {
+        "original_STL": {
+          "sha256": "39a57b6aadc6930d2b922f23f6b451d71a530326f13befb02cb839f25e46d558",
+          "samples": 3072,
+          "maximum_distance_to_STEP_shell_mm": 0.35963871359574007,
+          "p99_distance_mm": 0.17963455916714827,
+          "worst_sample_mm": [
+            -211.05404417730102,
+            -24.642099203541783,
+            -21.582921307713903
+          ],
+          "wall_seconds": 34.94623095798306
+        },
+        "candidate_STL": {
+          "sha256": "8fe38c5069bc20831257dced425d91770ad76cfd4109276998a21cf60b7ecfb2",
+          "samples": 3072,
+          "maximum_distance_to_STEP_shell_mm": 0.018049313331237885,
+          "p99_distance_mm": 0.008892119479614902,
+          "worst_sample_mm": [
+            75.74841763390344,
+            9.707428545597743,
+            11.474699388879365
+          ],
+          "wall_seconds": 39.17221216694452
+        }
+      },
+      "candidate_sampled_chord_screen_pass": true,
+      "manufacturing_authorized": false
+    },
+    "maximum_discrepancy_point_BRep_checks": [
+      {
+        "direction": "old_to_new",
+        "point_mm": [
+          207.54384712028343,
+          -24.907495748303937,
+          21.94566388009001
+        ],
+        "closest_point_mm": [
+          207.5169772052,
+          -24.53762476234143,
+          21.945757198639306
+        ],
+        "distance_mm": 0.37084571900160823,
+        "point_mm_distance_to_exact_STEP_shell_mm": 0.37097281870911025,
+        "closest_point_mm_distance_to_exact_STEP_shell_mm": 0.0001272199418583972
+      },
+      {
+        "direction": "new_to_old",
+        "point_mm": [
+          -208.967697084268,
+          24.432144217782625,
+          -21.587060501427285
+        ],
+        "closest_point_mm": [
+          -208.99398239216436,
+          24.792315145393022,
+          -21.57790384449223
+        ],
+        "distance_mm": 0.361244873836525,
+        "point_mm_distance_to_exact_STEP_shell_mm": 0.0005329713906181046,
+        "closest_point_mm_distance_to_exact_STEP_shell_mm": 0.36166174572564996
+      }
+    ],
+    "old_to_new_mesh_equivalence": "rejected_at_requested_0p06_mm_limit"
+  },
+  "PyMesh_trials": [
+    {
+      "id": "exact-cleanup",
+      "merged_vertices": 0,
+      "removed_faces": 0,
+      "needles": 74,
+      "status": "insufficient"
+    },
+    {
+      "id": "candidate-001-coplanar-diagonals",
+      "status": "rejected_geometric_patch_area_gate"
+    },
+    {
+      "id": "candidate-002-PSLG",
+      "needle_triangles": 11,
+      "boundary_edges": 439,
+      "status": "rejected"
+    },
+    {
+      "id": "candidate-003-source-triangle-refinement",
+      "needle_triangles": 17,
+      "boundary_edges": 0,
+      "relative_volume_change": 1.5543122344752192e-15,
+      "status": "rejected"
+    }
+  ],
+  "last_design_trial": {
+    "artifact_id": "final-design-gmsh-008",
+    "role": "retained_trial_not_selected_final_design",
+    "STEP_sha256": "e2abb447e337f45138716649bdeaf575df8fc78c074a31f24745046c021649ab",
+    "STL_sha256": "222205e9d2e28b585398828b950a0637eb41b37dd03e13bd75ffac858314c79a",
+    "precise_STEP_volume_mm3": 270284.5594487123,
+    "precise_STEP_mass_kg": 1.1946577527633082,
+    "native_topology": {
+      "vertices": 174899,
+      "triangles": 349898,
+      "boundary_edges": 0,
+      "nonmanifold_edges": 0,
+      "inconsistent_orientation_edges": 0,
+      "degenerate_triangles": 0,
+      "needle_triangles": 0,
+      "connected_components": 1,
+      "volume_mm3": 270283.3417006123
+    },
+    "self_intersection_pairs": 0,
+    "interface_dimensions": {
+      "bores": [
+        {
+          "axis": 2,
+          "centre_mm": [
+            -50,
+            -20
+          ],
+          "samples": 164,
+          "fitted_centre_mm": [
+            -49.99989292244681,
+            -20.000438976500522
+          ],
+          "fitted_radius_mm": 5.498657489085348,
+          "maximum_expected_cylinder_error_mm": 0.003899211045243156
+        },
+        {
+          "axis": 2,
+          "centre_mm": [
+            -50,
+            20
+          ],
+          "samples": 163,
+          "fitted_centre_mm": [
+            -49.99990562013224,
+            19.99957316941119
+          ],
+          "fitted_radius_mm": 5.498666339540516,
+          "maximum_expected_cylinder_error_mm": 0.00389974538540816
+        },
+        {
+          "axis": 2,
+          "centre_mm": [
+            50,
+            -20
+          ],
+          "samples": 163,
+          "fitted_centre_mm": [
+            50.00003125546928,
+            -20.000427013024655
+          ],
+          "fitted_radius_mm": 5.4986556621951035,
+          "maximum_expected_cylinder_error_mm": 0.004568378602387568
+        },
+        {
+          "axis": 2,
+          "centre_mm": [
+            50,
+            20
+          ],
+          "samples": 164,
+          "fitted_centre_mm": [
+            50.000037866867665,
+            19.999587013820737
+          ],
+          "fitted_radius_mm": 5.498647902321492,
+          "maximum_expected_cylinder_error_mm": 0.004568378602387568
+        },
+        {
+          "axis": 1,
+          "centre_mm": [
+            -280,
+            0
+          ],
+          "samples": 204,
+          "fitted_centre_mm": [
+            -279.99998314053215,
+            -9.631876309867948e-05
+          ],
+          "fitted_radius_mm": 6.7492099900378815,
+          "maximum_expected_cylinder_error_mm": 0.0019462060699124706
+        },
+        {
+          "axis": 1,
+          "centre_mm": [
+            280,
+            0
+          ],
+          "samples": 204,
+          "fitted_centre_mm": [
+            280.000016859467,
+            -9.631876309867948e-05
+          ],
+          "fitted_radius_mm": 6.749209990041115,
+          "maximum_expected_cylinder_error_mm": 0.0019462060699124706
+        }
+      ],
+      "seat_planes": [
+        {
+          "axis": 2,
+          "coordinate_mm": -4,
+          "triangles": 20944,
+          "maximum_plane_error_mm": 0.0
+        },
+        {
+          "axis": 2,
+          "coordinate_mm": 4,
+          "triangles": 11692,
+          "maximum_plane_error_mm": 0.0
+        },
+        {
+          "axis": 1,
+          "coordinate_mm": -23,
+          "triangles": 5354,
+          "maximum_plane_error_mm": 0.0
+        },
+        {
+          "axis": 1,
+          "coordinate_mm": 23,
+          "triangles": 5354,
+          "maximum_plane_error_mm": 0.0
+        }
+      ]
+    },
+    "old_coarse_STL_equivalence_status": "rejected",
+    "old_coarse_STL_equivalence_failures": [
+      "surface_distance"
+    ],
+    "mesh_to_exact_CAD": {
+      "method": "OCP BRepExtrema_DistShapeShape against exact source shell, not solid occupancy",
+      "STEP_sha256": "e2abb447e337f45138716649bdeaf575df8fc78c074a31f24745046c021649ab",
+      "random_seed": 9931016,
+      "exact_CAD_surface_samples": 8108,
+      "CAD_sampling": "7x7 UV grid per trimmed face, IN/ON classified",
+      "sampling": "512 vertices, 512 face centroids and 2048 area-weighted points per STL",
+      "documented_source_STL_requested_chord_tolerance_mm": 0.06,
+      "results": {
+        "original_STL": {
+          "sha256": "73449ea83ac8112bc6b9789cb7ac7a195732fbc9975d83e086aefae4ec242877",
+          "samples": 3072,
+          "maximum_distance_to_STEP_shell_mm": 0.35963871359574007,
+          "p99_distance_mm": 0.22214337492890487,
+          "worst_sample_mm": [
+            -211.05404417730102,
+            -24.642099203541783,
+            -21.582921307713903
+          ],
+          "wall_seconds": 34.786951707908884
+        },
+        "candidate_STL": {
+          "sha256": "222205e9d2e28b585398828b950a0637eb41b37dd03e13bd75ffac858314c79a",
+          "samples": 3072,
+          "maximum_distance_to_STEP_shell_mm": 0.015242059767756064,
+          "p99_distance_mm": 0.00841322204653841,
+          "worst_sample_mm": [
+            -89.12296732661001,
+            33.11811427537535,
+            16.02157878765882
+          ],
+          "wall_seconds": 37.42707179184072
+        }
+      },
+      "candidate_sampled_chord_screen_pass": true,
+      "manufacturing_authorized": false
+    },
+    "exact_CAD_to_mesh": {
+      "source_STEP_sha256": "e2abb447e337f45138716649bdeaf575df8fc78c074a31f24745046c021649ab",
+      "candidate_STL_sha256": "222205e9d2e28b585398828b950a0637eb41b37dd03e13bd75ffac858314c79a",
+      "exact_CAD_samples_sha256": "34bc6d5d32fc663f1d63437b39fb6810a7920f0d4869fd5c1dbdcbbd9131813c",
+      "samples": 8108,
+      "maximum_CAD_to_mesh_sampled_distance_mm": 0.043730563987065416,
+      "p99_mm": 0.013075915937394789,
+      "worst_CAD_sample_mm": [
+        -74.04594878930988,
+        -35.97047597628,
+        -6.766260983689589
+      ],
+      "threshold_mm": 0.06,
+      "passed": true
+    },
+    "geometry_screen_status": "passed_against_exact_CAD_with_sampling",
+    "strict_wall_metrics": {
+      "bbox_max": [
+        296,
+        36.5,
+        30
+      ],
+      "bbox_min": [
+        -296,
+        -36.499996,
+        -22
+      ],
+      "boundary_edges": 0,
+      "degenerate_triangles": 0,
+      "enclosed_void_largest_mm3": 0,
+      "enclosed_void_mm3": 0,
+      "enclosed_void_regions": 0,
+      "inconsistent_orientation_edges": 0,
+      "largest_component_fraction": 1,
+      "mesh_volume_mm3": 270282.87,
+      "min_wall_mm": 1.5,
+      "needle_triangles": 0,
+      "nonmanifold_edges": 0,
+      "overhang_area_mm2": 31648.68,
+      "overhang_fraction": 0.1703,
+      "parity_volume_mm3": 271264.22,
+      "solid_components": 1,
+      "surface_area_mm2": 185894.37,
+      "thin_fraction": 0.2673,
+      "thin_wall_area_fraction": 0.31677,
+      "triangles": 349898,
+      "volume_mm3": 270877.28,
+      "volume_ratio_to_fixture": 1.0022,
+      "wall_thickness_cap_mm": 6,
+      "wall_thickness_p01_mm": 1.3499,
+      "wall_thickness_p05_mm": 1.4937,
+      "self_intersecting_coplanar_pairs": 0,
+      "self_intersecting_pairs": 0,
+      "self_intersecting_triangles": 0,
+      "selfcheck_collapsed_triangles": 0,
+      "selfcheck_engine": "libigl 2.6.3 find_self_intersections",
+      "selfcheck_seconds": 1.54,
+      "selfcheck_triangles": 349898
+    },
+    "uniform_1p5_mm_wall_screen_status": "rejected",
+    "mechanics_status": "rejected_by_separate_design_study",
+    "selected_as_final_part": false,
+    "strict_checker_volume_ratio_reference": {
+      "legacy_metric_name": "volume_ratio_to_fixture",
+      "actual_denominator": "precise restored STEP volume, not a corpus fixture",
+      "reference_volume_mm3": 270284.5594487123
+    }
+  },
+  "toolchain": {
+    "Gmsh": "4.15.2 native arm64, GPLv2+ external wheel",
+    "PyMesh": "0.3 external image",
+    "PyMesh_image": "pymesh/pymesh@sha256:ecf699d33793efe612b66c36b2a7d3954085af55999cc3f631748fcf1671eb4e",
+    "libigl": "2.6.3",
+    "dotnet_sdk": "9.0.319",
+    "PicoGK": "2.3.0",
+    "PicoGK_native_sha256": "155ba9ed788d415fe72c07604d2718a2baa305a1bef21b760e4c61cdaabe6e88"
+  },
+  "raw_root": "work/carrier-remesh-20261016",
+  "comparison_figure": "work/carrier-remesh-20261016/comparison-figure-v3/carrier-remesh-comparison.png",
+  "manufacturing_authorized": false,
+  "retained_evidence_sha256": {
+    "work/carrier-remesh-20261016/frozen-criteria.json": "903684af059b5866de3e79b933756d937b330628ea540aac1a674cbce0fdf6a4",
+    "work/carrier-remesh-20261016/frozen-criteria-v2.json": "8169a29d7c929cedcc8892b60b6c3b366ab6f60328851a03aa13c069a8a8460e",
+    "work/carrier-remesh-20261016/frozen-criteria-v3.json": "771b53a42375d41faae431d7fb791a2e63704d1d2248857563fa97516dd4ce61",
+    "work/carrier-remesh-20261016/frozen-criteria-v4.json": "8e47efab6d25a6a482bc7952899a67d6c9342b4c093f76e91d02ddd05af29e90",
+    "work/carrier-remesh-20261016/frozen-criteria-v5.json": "57b4eaa82cb6176e321d0ae341aa4334abb729ac1605ea0b4b49e286d1fcc6f6",
+    "work/carrier-remesh-20261016/final-design-frozen-criteria.json": "9c0edacd904b927f28aee770b891b1686775f928bbcaea0f59ebe94fa598a53d",
+    "work/carrier-remesh-20261016/native-gmsh-provenance.json": "ed4ed912ba865fbca1a010bc1ccf4ec9d1ba2313865ca1369835a318cc0cd358",
+    "work/carrier-remesh-20261016/final-design-gmsh-008/meshing.json": "fc83ed15b939776c4cdb819933a17eddf61cd77eeea154f7b21a3f8d45d8aa5a",
+    "work/carrier-remesh-20261016/final-design-gmsh-008/topology-audit/audit.json": "d3ebd9937af2da883934bc6ace91d726dcd0fc0792fc7270d78ec6dab0f008fd",
+    "work/carrier-remesh-20261016/final-design-gmsh-008/brep-audit/brep-audit.json": "35559b0dc0dfc492cd0259fd0d27b486dd404c8dce2a454c6c504969c7658e88",
+    "work/carrier-remesh-20261016/final-design-gmsh-008/brep-audit/CAD-to-mesh.json": "4ce0310cd97573dd0ea2052d1a8369ea4a71743d9022fb9e9be8401356cd12e6",
+    "work/carrier-remesh-20261016/final-design-gmsh-008/strict-audit/metrics.json": "255126685963668cb2a081b8abdaf405ff9d47494fc898b097731cdac26a4bac",
+    "work/carrier-remesh-20261016/final-design-gmsh-008/strict-audit/runtime-recheck.json": "8c8452dd3563181b0b296f00f88937030e8651158b5d422dbecdbd3badf02086",
+    "work/carrier-remesh-20261016/final-design-gmsh-008/strict-audit/strict-checker.stdout.log": "2219101cd778d8d0c9f578c6e77a2b7143b8a9f437afc586b70464003693b991",
+    "work/carrier-remesh-20261016/final-design-gmsh-008/strict-audit/strict-sidecar.stdout.log": "6f0147e6217210fb3353fd5f9a2621512c58290bb5de56ab1400f9f6a99cecb1",
+    "work/carrier-remesh-20261016/final-design-gmsh-008/worker-snapshot.py": "33d3ca41ec837142b6fd223be799c6c994f74103badfa8e00464bf63412d42f6",
+    "work/carrier-remesh-20261016/comparison-figure-v3/carrier-remesh-comparison.png": "69b2d51eddbc206bfc42030b9920e023aad3d99e548555511097a8daecca7130",
+    "work/carrier-remesh-20261016/comparison-figure-v3/carrier-remesh-comparison.svg": "d1c12ccfee3e502fcefc064065fa2228c0321262d5b0c2a5968f702abef45c88",
+    "work/carrier-remesh-20261016/tall-tangent-gmsh-009/meshing.json": "5622b75a6aabfb1960cf6708e090ef940eb1d34f6af350eb522ed79140546c6d",
+    "work/carrier-remesh-20261016/tall-tangent-gmsh-009/brep-audit/brep-audit.json": "e15ba608e84d3d096ba026e8bc953cbd94486207a70d7bef6c2f5fd3448fa2ae",
+    "work/carrier-remesh-20261016/tall-tangent-gmsh-009/cad-mesh-cli/result/cad-mesh-audit.json": "56eb82c8c5883c37c76089bcd84fbc7b43142cafe3b698de67fcf620ef2b4452",
+    "work/carrier-remesh-20261016/tall-tangent-gmsh-009/strict-audit/metrics.json": "f73e897337de7ea17fcbbdfb98dfaa95235f1199ee2ddca626aab3c2d4704d1e",
+    "work/carrier-remesh-20261016/thickness-localisation-008/thickness-localisation.json": "925ac99fb1346573003dc824711c9270ecb92206d6ea707724910b768caac83d",
+    "work/carrier-remesh-20261016/thickness-localisation-008/exact-CAD-face-probes.json": "f8625b88f0a2cf0f9aaa072437f685ce60e87c4edcc36348f71f02b62e21e766",
+    "work/carrier-remesh-20261016/thickness-localisation-008/thick-skins-exact-transition-probes.json": "6c9d9ea22f9008e03f45225975f3bd59730ee44b657b61258068a7a0fb9cfa9b",
+    "work/carrier-remesh-20261016/thickness-figure-008/carrier-thickness-008.png": "b9ff29a4498c1a85b9612bdd7cfb01208c4cbfd2bd4f99021c76d2f69a78ebfe",
+    "work/carrier-remesh-20261016/thickness-figure-008/carrier-thickness-008.svg": "ff4d42b945882068e5a454a4bef233816df2656eef4e04028bb9acf8c8bf9775",
+    "work/part-workflow/runtimes/geometry/provenance.json": "2d846f8cde5f993c404ad307c06fbf8bea390f9cc393c46a7771a79a755f3842",
+    "work/part-workflow/runtimes/mesh-audit/provenance.json": "4d9937bfb4f164f19b6006f4a28c83a356ec38c6f019766b28bf46158ac08c05",
+    "work/carrier-remesh-20261016/thin-exact-sections/carrier-exact-thin-regions.svg": "6d8c0079751938a1da6fea6d4b1953a2a3a18e5a507e90d40ff0bf17018393f5",
+    "work/carrier-remesh-20261016/thin-exact-sections/carrier-exact-thin-regions.png": "6c1b8149a7238a7605711f0683f479e01f89e6f117bb99436a512db43e1a8079",
+    "work/carrier-remesh-20261016/thin-exact-sections/transition-sections.json": "3966f024f0351f47a5af4c06c6752afddeb9439f136b5a902d4af62ce0849461",
+    "work/carrier-remesh-20261016/tall-tangent-reference.json": "ffbf01674c9e86d8940060e63c39f2ae3745313410f611c3ae4dcf31c2fbfbc4"
+  },
+  "source_sha256": {
+    "README.md": "9856904c79a729e278b70d2e8a420f0f3b16423f4dbd6ca0923dcba7d5fabb1e",
+    "analyze_thickness.py": "e598a662f99c10f771d7586d60e3a5ac0cf81fb487a66f2a31a38ba698ae397a",
+    "audit.py": "086c8ef3b4f72fd29c2b8c5945e4b8faaf6dcdb03b50da3a0f0c51ff0a350975",
+    "brep_audit.py": "db60e7719359cb7ff4e3545707445405f3a842319726fdd5923a6df620f81b83",
+    "cad_mesh_audit.py": "ed664d303f118adc5fbf892ca0f9eee3789fb0a586985de26a148caf5d26d4f0",
+    "criteria.json": "771b53a42375d41faae431d7fb791a2e63704d1d2248857563fa97516dd4ce61",
+    "geometry-runtime-requirements.txt": "3c954e30db71ede4e79d7c964fcb96d51e442144b9726be496bd14d46084c8a5",
+    "gmsh-criteria.json": "8e47efab6d25a6a482bc7952899a67d6c9342b4c093f76e91d02ddd05af29e90",
+    "gmsh_remesh.py": "3dd4162f6ba79074faf0395273e2de1657e3e4d44113e88ae918c80a638d7964",
+    "mesh-audit-requirements.txt": "606deb487a3e6be6fc5d42d109ebc5f166047f7e2a6597e2194e40c228b02bba",
+    "probe_thickness_brep.py": "15e6b3bf4778bedfe2f5147575a133571b2f7fdf75ea9ed8b886a82e98b9193b",
+    "remesh.py": "46757dec1555896460075d665bdfb1b601a4279b3abc667cceb77c360f677958",
+    "render_comparison.py": "cece198031ff1c1ba9797e76372762e13f06f891426c3dd9451c8bb3fd0f5e26",
+    "render_thickness.py": "8e800137c2485b16c351d7eb7b008497ab980c19808232f130ab3ef0e04c6936",
+    "render_transition_sections.py": "19fef555e72f904149398f33982cac945e0882369f99097f8d08e8cfccc2299c",
+    "setup_mesh_audit.py": "17ca167f77adc9a6c110bfa337b2d25f555e0d630c40433e9570daddebb3f919",
+    "setup_runtime.py": "5c1528a532fa5e093407a7afcfd0132f87e012e59f005f8cb8debe612594f852"
+  },
+  "runtime_setup": {
+    "installer": "setup_runtime.py",
+    "requirements": "geometry-runtime-requirements.txt",
+    "default_directory": "work/part-workflow/runtimes/geometry",
+    "runtime_mapping": "work/part-workflow/runtimes/geometry/runtime.json",
+    "borrowed_CAD_versions": {
+      "build123d": "0.11.1",
+      "OCP": "7.9.3.1",
+      "numpy": "2.0.2"
+    },
+    "installed_Gmsh_version": "4.15.2",
+    "old_CAD_environment_modified": false
+  },
+  "additional_design_trials": [
+    {
+      "artifact_id": "tall-tangent-gmsh-009",
+      "selected_as_final_part": false,
+      "separate_mechanics_status": "rejected",
+      "geometry_representation_audit": {
+        "candidate_STL_sha256": "063cb337b81a8a50cd1af4a26cb5d6dbf65bf8b05e44ceac7e1df9f61dc7c0b3",
+        "BRep_receipt_sha256": "e15ba608e84d3d096ba026e8bc953cbd94486207a70d7bef6c2f5fd3448fa2ae",
+        "exact_CAD_surface_samples_sha256": "e7b7d22f2080be234205bddf94ea92339c103f31b28d481505bc920507fad732",
+        "STEP_sha256": "418b8082c30aed3454102a97cb6978bc5e031dd22f16d416eb361cc9e6acc959",
+        "audit_source_sha256": "0d55abb9792f62f77758ced7677830931a4afac8c70974c2f3b9496532609839",
+        "libigl_version": "2.6.3",
+        "numpy_version": "2.2.6",
+        "CAD_sampling": "7x7 UV grid per trimmed face, IN/ON classified",
+        "distance_limit_mm": 0.06,
+        "scope": "sampled bidirectional distances, not a continuous bound",
+        "mesh_to_exact_CAD": {
+          "sha256": "063cb337b81a8a50cd1af4a26cb5d6dbf65bf8b05e44ceac7e1df9f61dc7c0b3",
+          "samples": 3072,
+          "maximum_distance_to_STEP_shell_mm": 0.019454358401050413,
+          "p99_distance_mm": 0.007229415347475123,
+          "worst_sample_mm": [
+            74.27193163255812,
+            -4.02014999226925,
+            -3.3254702735960633
+          ],
+          "wall_seconds": 30.223472374957055
+        },
+        "exact_CAD_to_mesh": {
+          "samples": 10044,
+          "maximum_mm": 0.043730563987065416,
+          "p99_mm": 0.01225096165552576,
+          "mean_mm": 0.001281223922297776
+        },
+        "topology": {
+          "vertices": 219574,
+          "triangles": 439248,
+          "boundary_edges": 0,
+          "nonmanifold_edges": 0,
+          "inconsistent_orientation_edges": 0,
+          "degenerate_triangles": 0,
+          "needle_triangles": 0,
+          "connected_components": 1,
+          "volume_mm3": 270480.8645433862
+        },
+        "self_intersection_pairs": 0,
+        "interface_dimensions": {
+          "bores": [
+            {
+              "axis": 2,
+              "centre_mm": [
+                -50,
+                -20
+              ],
+              "samples": 161,
+              "fitted_centre_mm": [
+                -49.99991043657504,
+                -20.000446767971255
+              ],
+              "fitted_radius_mm": 5.498677730506676,
+              "maximum_expected_cylinder_error_mm": 0.0038865068134370517
+            },
+            {
+              "axis": 2,
+              "centre_mm": [
+                -50,
+                20
+              ],
+              "samples": 164,
+              "fitted_centre_mm": [
+                -49.99996785052728,
+                19.999538276527698
+              ],
+              "fitted_radius_mm": 5.49862357221501,
+              "maximum_expected_cylinder_error_mm": 0.0045693309256717995
+            },
+            {
+              "axis": 2,
+              "centre_mm": [
+                50,
+                -20
+              ],
+              "samples": 165,
+              "fitted_centre_mm": [
+                50.00010068614098,
+                -20.000431087936544
+              ],
+              "fitted_radius_mm": 5.498657638147202,
+              "maximum_expected_cylinder_error_mm": 0.003903144226644173
+            },
+            {
+              "axis": 2,
+              "centre_mm": [
+                50,
+                20
+              ],
+              "samples": 163,
+              "fitted_centre_mm": [
+                50.00012479200747,
+                19.999565092181005
+              ],
+              "fitted_radius_mm": 5.4986586997130775,
+              "maximum_expected_cylinder_error_mm": 0.003899374455267335
+            },
+            {
+              "axis": 1,
+              "centre_mm": [
+                -280,
+                0
+              ],
+              "samples": 201,
+              "fitted_centre_mm": [
+                -279.999868670274,
+                -0.00012009794590994716
+              ],
+              "fitted_radius_mm": 6.749357085441877,
+              "maximum_expected_cylinder_error_mm": 0.0017312264859912219
+            },
+            {
+              "axis": 1,
+              "centre_mm": [
+                280,
+                0
+              ],
+              "samples": 201,
+              "fitted_centre_mm": [
+                280.00013132972634,
+                -0.00012009793135803193
+              ],
+              "fitted_radius_mm": 6.749357085444033,
+              "maximum_expected_cylinder_error_mm": 0.0017312264859912219
+            }
+          ],
+          "seat_planes": [
+            {
+              "axis": 2,
+              "coordinate_mm": -4,
+              "triangles": 20944,
+              "maximum_plane_error_mm": 0.0
+            },
+            {
+              "axis": 2,
+              "coordinate_mm": 4,
+              "triangles": 29513,
+              "maximum_plane_error_mm": 0.0
+            },
+            {
+              "axis": 1,
+              "coordinate_mm": -23,
+              "triangles": 5354,
+              "maximum_plane_error_mm": 0.0
+            },
+            {
+              "axis": 1,
+              "coordinate_mm": 23,
+              "triangles": 5354,
+              "maximum_plane_error_mm": 0.0
+            }
+          ]
+        },
+        "failures": [],
+        "status": "passed",
+        "manufacturing_authorized": false
+      },
+      "strict_wall_metrics": {
+        "bbox_max": [
+          296,
+          36.5,
+          34
+        ],
+        "bbox_min": [
+          -296,
+          -36.499996,
+          -22
+        ],
+        "boundary_edges": 0,
+        "degenerate_triangles": 0,
+        "enclosed_void_largest_mm3": 0,
+        "enclosed_void_mm3": 0,
+        "enclosed_void_regions": 0,
+        "inconsistent_orientation_edges": 0,
+        "largest_component_fraction": 1,
+        "mesh_volume_mm3": 270480.53,
+        "min_wall_mm": 1.5,
+        "needle_triangles": 0,
+        "nonmanifold_edges": 0,
+        "overhang_area_mm2": 31739.29,
+        "overhang_fraction": 0.1682,
+        "parity_volume_mm3": 270693.31,
+        "solid_components": 1,
+        "surface_area_mm2": 188717.93,
+        "thin_fraction": 0.2735,
+        "thin_wall_area_fraction": 0.32262,
+        "triangles": 439248,
+        "volume_mm3": 271076.09,
+        "volume_ratio_to_fixture": 1.0022,
+        "wall_thickness_cap_mm": 6,
+        "wall_thickness_p01_mm": 1.1718,
+        "wall_thickness_p05_mm": 1.4936
+      },
+      "uniform_1p5_mm_wall_screen_status": "rejected",
+      "strict_execution": {
+        "returncode": 0,
+        "wall_seconds": 57.74686001194641,
+        "deadline_seconds": 600,
+        "timed_out": false,
+        "resource_limits": {
+          "MemoryMax": "4G",
+          "MemorySwapMax": 0,
+          "CPUQuota": "200%",
+          "TasksMax": 128
+        }
+      },
+      "strict_volume_reference": {
+        "legacy_metric_name": "volume_ratio_to_fixture",
+        "actual_denominator": "precise tall-tangent STEP volume, not a corpus fixture",
+        "reference": {
+          "volume_mm3": 270482.3776762463,
+          "reference_kind": "precise_tall_tangent_STEP_volume",
+          "STEP_sha256": "418b8082c30aed3454102a97cb6978bc5e031dd22f16d416eb361cc9e6acc959"
+        }
+      }
+    }
+  ],
+  "wall_localisation_008": {
+    "checker_rerun": false,
+    "original_threshold_mm": 1.5,
+    "original_status": "rejected",
+    "total_area_below_mm2": {
+      "1.5": 58886.50750638686,
+      "1.49": 2452.680249627692,
+      "1.4": 2104.378170899947,
+      "1.3": 1554.7352025063765
+    },
+    "regions": {
+      "centre_and_mount_regions": {
+        "area_mm2": 32569.546059425447,
+        "area_below_mm2": {
+          "1.5": 178.9296468964754,
+          "1.49": 4.425621965017399,
+          "1.4": 4.425621965017399,
+          "1.3": 4.425621965017399
+        },
+        "area_1p49_to_1p5_mm2": 174.50402493145796,
+        "worst_face": 43855,
+        "minimum_ray_mm": 0.009999990463256836,
+        "worst_centroid_mm": [
+          27.85603141784668,
+          9.596726735432943,
+          4.0
+        ]
+      },
+      "edges_and_transitions": {
+        "area_mm2": 23641.04574320133,
+        "area_below_mm2": {
+          "1.5": 525.4618066103092,
+          "1.49": 160.11602663256684,
+          "1.4": 152.2170056031004,
+          "1.3": 140.9508048175294
+        },
+        "area_1p49_to_1p5_mm2": 365.34577997774227,
+        "worst_face": 43952,
+        "minimum_ray_mm": 0.009999990463256836,
+        "worst_centroid_mm": [
+          27.91647211710612,
+          9.545681635538736,
+          3.990000009536743
+        ]
+      },
+      "plane_caps": {
+        "area_mm2": 39708.35964701422,
+        "area_below_mm2": {
+          "1.5": 0.0,
+          "1.49": 0.0,
+          "1.4": 0.0,
+          "1.3": 0.0
+        },
+        "area_1p49_to_1p5_mm2": 0.0,
+        "worst_face": 136204,
+        "minimum_ray_mm": 1.5,
+        "worst_centroid_mm": [
+          239.06920369466147,
+          12.314205169677734,
+          -20.5
+        ]
+      },
+      "ribs_and_feet": {
+        "area_mm2": 33033.45950812977,
+        "area_below_mm2": {
+          "1.5": 5210.122865182115,
+          "1.49": 1925.4163252624535,
+          "1.4": 1601.995160052196,
+          "1.3": 1090.8156866207348
+        },
+        "area_1p49_to_1p5_mm2": 3284.7065399196617,
+        "worst_face": 283894,
+        "minimum_ray_mm": 0.08450575172901154,
+        "worst_centroid_mm": [
+          -104.33094533284505,
+          26.075109481811523,
+          22.003912607828777
+        ]
+      },
+      "webs": {
+        "area_mm2": 56941.95507152402,
+        "area_below_mm2": {
+          "1.5": 52971.99318769796,
+          "1.49": 362.72227576765414,
+          "1.4": 345.7403832796332,
+          "1.3": 318.5430891030948
+        },
+        "area_1p49_to_1p5_mm2": 52609.2709119303,
+        "worst_face": 169041,
+        "minimum_ray_mm": 0.2780614495277405,
+        "worst_centroid_mm": [
+          83.31327311197917,
+          14.882338205973307,
+          -13.501729329427084
+        ]
+      }
+    },
+    "selected_exact_CAD_probes": {
+      "STEP_sha256": "e2abb447e337f45138716649bdeaf575df8fc78c074a31f24745046c021649ab",
+      "localisation_sha256": "925ac99fb1346573003dc824711c9270ecb92206d6ea707724910b768caac83d",
+      "method": "nearest exact shell face; inward analytic surface normal; next shell intersection in (1e-5, 6] mm",
+      "scope": "Selected diagnostic probes, not a global minimum-thickness certificate",
+      "probes": [
+        {
+          "region": "centre_and_mount_regions",
+          "face": 43855,
+          "centroid_mm": [
+            27.85603141784668,
+            9.596726735432943,
+            4.0
+          ],
+          "outward_normal": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "checker_ray_mm": 0.009999990463256836,
+          "mesh_centroid_distance_to_exact_shell_mm": 0.0,
+          "normal_alignment_to_mesh": 1.0,
+          "exact_surface_point_mm": [
+            27.85603141784668,
+            9.596726735432943,
+            4.0
+          ],
+          "exact_outward_normal": [
+            -0.0,
+            -0.0,
+            1.0
+          ],
+          "exact_inward_normal_ray_mm": 0.009999999999999787,
+          "source_exact_face": {
+            "STEP_face_index_zero_based": 32,
+            "surface_type": "GeomAbs_SurfaceType.GeomAbs_Plane",
+            "surface_area_mm2": 1284.3891030169398,
+            "bounds_mm": [
+              [
+                -65.0000001,
+                -14.905000099999999,
+                3.9999999
+              ],
+              [
+                65.0000001,
+                14.905000099999999,
+                4.0000001
+              ]
+            ]
+          },
+          "status": "measured",
+          "opposite_exact_point_mm": [
+            27.85603141784668,
+            9.596726735432943,
+            3.99
+          ],
+          "opposite_exact_face": {
+            "STEP_face_index_zero_based": 34,
+            "surface_type": "GeomAbs_SurfaceType.GeomAbs_Plane",
+            "surface_area_mm2": 2.5091690924053296,
+            "bounds_mm": [
+              [
+                27.52521118556493,
+                5.06081369181228,
+                3.9899999000000004
+              ],
+              [
+                31.42970542273701,
+                9.981041884684055,
+                3.9900001
+              ]
+            ]
+          }
+        },
+        {
+          "region": "edges_and_transitions",
+          "face": 43952,
+          "centroid_mm": [
+            27.91647211710612,
+            9.545681635538736,
+            3.990000009536743
+          ],
+          "outward_normal": [
+            -0.0,
+            0.0,
+            -1.0
+          ],
+          "checker_ray_mm": 0.009999990463256836,
+          "mesh_centroid_distance_to_exact_shell_mm": 9.53674295089968e-09,
+          "normal_alignment_to_mesh": 1.0,
+          "exact_surface_point_mm": [
+            27.91647211710612,
+            9.545681635538736,
+            3.99
+          ],
+          "exact_outward_normal": [
+            -0.0,
+            -0.0,
+            -1.0
+          ],
+          "exact_inward_normal_ray_mm": 0.009999999999999787,
+          "source_exact_face": {
+            "STEP_face_index_zero_based": 34,
+            "surface_type": "GeomAbs_SurfaceType.GeomAbs_Plane",
+            "surface_area_mm2": 2.5091690924053296,
+            "bounds_mm": [
+              [
+                27.52521118556493,
+                5.06081369181228,
+                3.9899999000000004
+              ],
+              [
+                31.42970542273701,
+                9.981041884684055,
+                3.9900001
+              ]
+            ]
+          },
+          "status": "measured",
+          "opposite_exact_point_mm": [
+            27.91647211710612,
+            9.545681635538736,
+            4.0
+          ],
+          "opposite_exact_face": {
+            "STEP_face_index_zero_based": 32,
+            "surface_type": "GeomAbs_SurfaceType.GeomAbs_Plane",
+            "surface_area_mm2": 1284.3891030169398,
+            "bounds_mm": [
+              [
+                -65.0000001,
+                -14.905000099999999,
+                3.9999999
+              ],
+              [
+                65.0000001,
+                14.905000099999999,
+                4.0000001
+              ]
+            ]
+          }
+        },
+        {
+          "region": "plane_caps",
+          "face": 136204,
+          "centroid_mm": [
+            239.06920369466147,
+            12.314205169677734,
+            -20.5
+          ],
+          "outward_normal": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "checker_ray_mm": 1.5,
+          "mesh_centroid_distance_to_exact_shell_mm": 0.0,
+          "normal_alignment_to_mesh": 1.0,
+          "exact_surface_point_mm": [
+            239.06920369466147,
+            12.314205169677734,
+            -20.5
+          ],
+          "exact_outward_normal": [
+            -0.0,
+            -0.0,
+            1.0
+          ],
+          "exact_inward_normal_ray_mm": 1.5,
+          "source_exact_face": {
+            "STEP_face_index_zero_based": 59,
+            "surface_type": "GeomAbs_SurfaceType.GeomAbs_Plane",
+            "surface_area_mm2": 4776.001149758129,
+            "bounds_mm": [
+              [
+                99.99999989999318,
+                -32.44561590704001,
+                -20.5000001
+              ],
+              [
+                240.00000010000008,
+                32.445615907045,
+                -20.4999999
+              ]
+            ]
+          },
+          "status": "measured",
+          "opposite_exact_point_mm": [
+            239.06920369466147,
+            12.314205169677734,
+            -22.0
+          ],
+          "opposite_exact_face": {
+            "STEP_face_index_zero_based": 89,
+            "surface_type": "GeomAbs_SurfaceType.GeomAbs_Plane",
+            "surface_area_mm2": 5196.00114020943,
+            "bounds_mm": [
+              [
+                99.99999989999395,
+                -33.94561590704477,
+                -22.0000001
+              ],
+              [
+                240.0000001000004,
+                33.94561590704601,
+                -21.9999999
+              ]
+            ]
+          }
+        },
+        {
+          "region": "ribs_and_feet",
+          "face": 283894,
+          "centroid_mm": [
+            -104.33094533284505,
+            26.075109481811523,
+            22.003912607828777
+          ],
+          "outward_normal": [
+            0.029931240152380703,
+            0.9986969904344137,
+            -0.04133330570115223
+          ],
+          "checker_ray_mm": 0.08450575172901154,
+          "mesh_centroid_distance_to_exact_shell_mm": 0.0013918489382873994,
+          "normal_alignment_to_mesh": 0.04180259930662395,
+          "exact_surface_point_mm": [
+            -104.33096739724984,
+            26.075109481811523,
+            22.00530428186714
+          ],
+          "exact_outward_normal": [
+            0.015852585853573853,
+            0.0,
+            -0.9998743398656429
+          ],
+          "exact_inward_normal_ray_mm": null,
+          "source_exact_face": {
+            "STEP_face_index_zero_based": 112,
+            "surface_type": "GeomAbs_SurfaceType.GeomAbs_SurfaceOfExtrusion",
+            "surface_area_mm2": 89.74310678771758,
+            "bounds_mm": [
+              [
+                -105.0000001,
+                3.9049998999999995,
+                21.9999999
+              ],
+              [
+                -64.9999998999999,
+                26.0950001,
+                30.0000001
+              ]
+            ]
+          },
+          "status": "no_intersection_within_6_mm"
+        },
+        {
+          "region": "webs",
+          "face": 169041,
+          "centroid_mm": [
+            83.31327311197917,
+            14.882338205973307,
+            -13.501729329427084
+          ],
+          "outward_normal": [
+            0.7177473055662261,
+            -0.6963036216702704,
+            0.0002679576221032459
+          ],
+          "checker_ray_mm": 0.2780614495277405,
+          "mesh_centroid_distance_to_exact_shell_mm": 0.0037213914789023385,
+          "normal_alignment_to_mesh": 0.9999138140848487,
+          "exact_surface_point_mm": [
+            83.31063633569092,
+            14.884964261065063,
+            -13.501729329427086
+          ],
+          "exact_outward_normal": [
+            0.7085457961644607,
+            -0.7056648317279746,
+            -0.0
+          ],
+          "exact_inward_normal_ray_mm": 0.27814358151145063,
+          "source_exact_face": {
+            "STEP_face_index_zero_based": 87,
+            "surface_type": "GeomAbs_SurfaceType.GeomAbs_Cylinder",
+            "surface_area_mm2": 28.194127327405376,
+            "bounds_mm": [
+              [
+                81.741276048236,
+                11.294598865111986,
+                -18.73764492548
+              ],
+              [
+                90.132164794595,
+                16.47437426845505,
+                -9.543595896862
+              ]
+            ]
+          },
+          "status": "measured",
+          "opposite_exact_point_mm": [
+            83.11355887028085,
+            15.081240404708558,
+            -13.501729329427086
+          ],
+          "opposite_exact_face": {
+            "STEP_face_index_zero_based": 43,
+            "surface_type": "GeomAbs_SurfaceType.GeomAbs_SurfaceOfExtrusion",
+            "surface_area_mm2": 2038.701402155701,
+            "bounds_mm": [
+              [
+                64.9999999,
+                -36.0000001,
+                -22.0000001
+              ],
+              [
+                100.0000001,
+                36.0000001,
+                -3.9999999
+              ]
+            ]
+          }
+        },
+        {
+          "region": "web_1p49_to_1p5_area_quartile",
+          "quartile": 0.25,
+          "face": 155220,
+          "centroid_mm": [
+            159.53739420572916,
+            -27.051855087280273,
+            6.557429313659668
+          ],
+          "outward_normal": [
+            -0.09025857462399199,
+            0.9959183649341408,
+            9.682594795055976e-06
+          ],
+          "checker_ray_mm": 1.4938671588897705,
+          "mesh_centroid_distance_to_exact_shell_mm": 0.00012407195923975833,
+          "normal_alignment_to_mesh": 0.9999999972364841,
+          "exact_surface_point_mm": [
+            159.5373829980629,
+            -27.051731522563276,
+            6.557429313659668
+          ],
+          "exact_outward_normal": [
+            -0.09033198430181247,
+            0.9959117092454015,
+            0.0
+          ],
+          "exact_inward_normal_ray_mm": 1.4938691200270529,
+          "source_exact_face": {
+            "STEP_face_index_zero_based": 79,
+            "surface_type": "GeomAbs_SurfaceType.GeomAbs_SurfaceOfExtrusion",
+            "surface_area_mm2": 7020.366720027793,
+            "bounds_mm": [
+              [
+                81.74494277072593,
+                -33.821372457751686,
+                -20.5000001
+              ],
+              [
+                264.0806080851604,
+                -20.338542210393104,
+                20.5000001
+              ]
+            ]
+          },
+          "status": "measured",
+          "opposite_exact_point_mm": [
+            159.67232715996215,
+            -28.539493271278342,
+            6.557429313659668
+          ],
+          "opposite_exact_face": {
+            "STEP_face_index_zero_based": 47,
+            "surface_type": "GeomAbs_SurfaceType.GeomAbs_SurfaceOfExtrusion",
+            "surface_area_mm2": 7804.121114163969,
+            "bounds_mm": [
+              [
+                79.84383436040842,
+                -35.440103875620004,
+                -22.0000001
+              ],
+              [
+                269.9667879852,
+                -21.826989519027943,
+                22.0000001
+              ]
+            ]
+          }
+        },
+        {
+          "region": "web_1p49_to_1p5_area_quartile",
+          "quartile": 0.5,
+          "face": 238730,
+          "centroid_mm": [
+            -188.22257486979166,
+            -24.549807866414387,
+            -18.842658360799152
+          ],
+          "outward_normal": [
+            0.08242149888268546,
+            0.9965975484854023,
+            0.00015124423188578738
+          ],
+          "checker_ray_mm": 1.4947457313537598,
+          "mesh_centroid_distance_to_exact_shell_mm": 0.00025206803998980524,
+          "normal_alignment_to_mesh": 0.9999999885368974,
+          "exact_surface_point_mm": [
+            -188.22255409216496,
+            -24.549556656169745,
+            -18.842658360799152
+          ],
+          "exact_outward_normal": [
+            0.08242864390971386,
+            0.996596969021683,
+            -0.0
+          ],
+          "exact_inward_normal_ray_mm": 1.4948984178335498,
+          "source_exact_face": {
+            "STEP_face_index_zero_based": 169,
+            "surface_type": "GeomAbs_SurfaceType.GeomAbs_SurfaceOfExtrusion",
+            "surface_area_mm2": 3870.864075562082,
+            "bounds_mm": [
+              [
+                -264.0806080823152,
+                -26.84584510436167,
+                -20.50000010000001
+              ],
+              [
+                -161.81233161040024,
+                -20.33854221012,
+                20.500000100000015
+              ]
+            ]
+          },
+          "status": "measured",
+          "opposite_exact_point_mm": [
+            -188.34577654152974,
+            -26.03936788837797,
+            -18.842658360799152
+          ],
+          "opposite_exact_face": {
+            "STEP_face_index_zero_based": 0,
+            "surface_type": "GeomAbs_SurfaceType.GeomAbs_SurfaceOfExtrusion",
+            "surface_area_mm2": 7804.115788007108,
+            "bounds_mm": [
+              [
+                -269.9667879852,
+                -35.440103875620004,
+                -22.000000100000005
+              ],
+              [
+                -79.8438343603878,
+                -21.826989519027943,
+                22.0000001
+              ]
+            ]
+          }
+        },
+        {
+          "region": "web_1p49_to_1p5_area_quartile",
+          "quartile": 0.75,
+          "face": 232612,
+          "centroid_mm": [
+            -222.89130147298178,
+            21.985680262247723,
+            -4.401366233825684
+          ],
+          "outward_normal": [
+            0.06249568724250186,
+            -0.9980452337202783,
+            2.2898090547199824e-05
+          ],
+          "checker_ray_mm": 1.4965543746948242,
+          "mesh_centroid_distance_to_exact_shell_mm": 0.0004987171868465673,
+          "normal_alignment_to_mesh": 0.9999999498171654,
+          "exact_surface_point_mm": [
+            -222.89127014803495,
+            21.985182529809396,
+            -4.401366233825684
+          ],
+          "exact_outward_normal": [
+            0.06281104328797978,
+            -0.9980254369709599,
+            -0.0
+          ],
+          "exact_inward_normal_ray_mm": 1.4970416610991992,
+          "source_exact_face": {
+            "STEP_face_index_zero_based": 166,
+            "surface_type": "GeomAbs_SurfaceType.GeomAbs_SurfaceOfExtrusion",
+            "surface_area_mm2": 7020.358799950974,
+            "bounds_mm": [
+              [
+                -264.080608085095,
+                20.338542210107,
+                -20.5000001
+              ],
+              [
+                -81.74494277072046,
+                33.82137245775835,
+                20.5000001
+              ]
+            ]
+          },
+          "status": "measured",
+          "opposite_exact_point_mm": [
+            -222.98530089661415,
+            23.479268187791657,
+            -4.401366233825684
+          ],
+          "opposite_exact_face": {
+            "STEP_face_index_zero_based": 2,
+            "surface_type": "GeomAbs_SurfaceType.GeomAbs_SurfaceOfExtrusion",
+            "surface_area_mm2": 7804.118987219062,
+            "bounds_mm": [
+              [
+                -269.9667879852,
+                21.82698951903316,
+                -22.0000001
+              ],
+              [
+                -79.84383436042,
+                35.440103876457144,
+                22.0000001
+              ]
+            ]
+          }
+        }
+      ]
+    },
+    "thick_skins_same_locations_exact_probes": {
+      "STEP_sha256": "9de8f6c30e8b7388689579850b497f43ed02feb5b59894ea8af856fd7683e563",
+      "localisation_sha256": "468dc4e985a3772d950c3a46d0bd51075faa3dee657fd1c61012bc5d32e45062",
+      "method": "nearest exact shell face; inward analytic surface normal; next shell intersection in (1e-5, 6] mm",
+      "scope": "Selected diagnostic probes, not a global minimum-thickness certificate",
+      "probes": [
+        {
+          "region": "webs",
+          "face": 169041,
+          "centroid_mm": [
+            83.31327311197917,
+            14.882338205973307,
+            -13.501729329427084
+          ],
+          "outward_normal": [
+            0.7177473055662261,
+            -0.6963036216702704,
+            0.0002679576221032459
+          ],
+          "checker_ray_mm": 0.2780614495277405,
+          "mesh_centroid_distance_to_exact_shell_mm": 0.0037213914789023385,
+          "normal_alignment_to_mesh": 0.9999138140848487,
+          "exact_surface_point_mm": [
+            83.31063633569092,
+            14.884964261065063,
+            -13.501729329427086
+          ],
+          "exact_outward_normal": [
+            0.7085457961644607,
+            -0.7056648317279746,
+            -0.0
+          ],
+          "exact_inward_normal_ray_mm": 0.27814358151145063,
+          "source_exact_face": {
+            "STEP_face_index_zero_based": 127,
+            "surface_type": "GeomAbs_SurfaceType.GeomAbs_Cylinder",
+            "surface_area_mm2": 28.194127327369443,
+            "bounds_mm": [
+              [
+                81.741276048236,
+                11.294598865111984,
+                -18.73764492548
+              ],
+              [
+                90.132164794595,
+                16.474374268454618,
+                -9.543595896862
+              ]
+            ]
+          },
+          "status": "measured",
+          "opposite_exact_point_mm": [
+            83.11355887028085,
+            15.081240404708558,
+            -13.501729329427086
+          ],
+          "opposite_exact_face": {
+            "STEP_face_index_zero_based": 80,
+            "surface_type": "GeomAbs_SurfaceType.GeomAbs_SurfaceOfExtrusion",
+            "surface_area_mm2": 2038.7014484494598,
+            "bounds_mm": [
+              [
+                64.9999999,
+                -36.0000001,
+                -22.0000001
+              ],
+              [
+                100.0000001000001,
+                36.0000001,
+                -3.9999999
+              ]
+            ]
+          }
+        },
+        {
+          "region": "web_1p49_to_1p5_area_quartile",
+          "quartile": 0.25,
+          "face": 155220,
+          "centroid_mm": [
+            159.53739420572916,
+            -27.051855087280273,
+            6.557429313659668
+          ],
+          "outward_normal": [
+            -0.09025857462399199,
+            0.9959183649341408,
+            9.682594795055976e-06
+          ],
+          "checker_ray_mm": 1.4938671588897705,
+          "mesh_centroid_distance_to_exact_shell_mm": 0.00012407195923975833,
+          "normal_alignment_to_mesh": 0.9999999972364841,
+          "exact_surface_point_mm": [
+            159.5373829980629,
+            -27.051731522563276,
+            6.557429313659668
+          ],
+          "exact_outward_normal": [
+            -0.09033198430181247,
+            0.9959117092454015,
+            0.0
+          ],
+          "exact_inward_normal_ray_mm": 1.4938691200270529,
+          "source_exact_face": {
+            "STEP_face_index_zero_based": 214,
+            "surface_type": "GeomAbs_SurfaceType.GeomAbs_SurfaceOfExtrusion",
+            "surface_area_mm2": 7020.366720027003,
+            "bounds_mm": [
+              [
+                81.74494277072593,
+                -33.821372457751686,
+                -20.5000001
+              ],
+              [
+                264.0806080851602,
+                -20.338542210393104,
+                20.5000001
+              ]
+            ]
+          },
+          "status": "measured",
+          "opposite_exact_point_mm": [
+            159.67232715996215,
+            -28.539493271278342,
+            6.557429313659668
+          ],
+          "opposite_exact_face": {
+            "STEP_face_index_zero_based": 131,
+            "surface_type": "GeomAbs_SurfaceType.GeomAbs_SurfaceOfExtrusion",
+            "surface_area_mm2": 7804.121022262642,
+            "bounds_mm": [
+              [
+                79.84383436040865,
+                -35.440103875620004,
+                -22.0000001
+              ],
+              [
+                269.9667879852,
+                -21.826989519031606,
+                22.0000001
+              ]
+            ]
+          }
+        },
+        {
+          "region": "web_1p49_to_1p5_area_quartile",
+          "quartile": 0.5,
+          "face": 238730,
+          "centroid_mm": [
+            -188.22257486979166,
+            -24.549807866414387,
+            -18.842658360799152
+          ],
+          "outward_normal": [
+            0.08242149888268546,
+            0.9965975484854023,
+            0.00015124423188578738
+          ],
+          "checker_ray_mm": 1.4947457313537598,
+          "mesh_centroid_distance_to_exact_shell_mm": 0.00025206803998980524,
+          "normal_alignment_to_mesh": 0.9999999885368974,
+          "exact_surface_point_mm": [
+            -188.22255409216496,
+            -24.549556656169745,
+            -18.842658360799152
+          ],
+          "exact_outward_normal": [
+            0.08242864390971386,
+            0.996596969021683,
+            -0.0
+          ],
+          "exact_inward_normal_ray_mm": 1.4948984178335487,
+          "source_exact_face": {
+            "STEP_face_index_zero_based": 77,
+            "surface_type": "GeomAbs_SurfaceType.GeomAbs_SurfaceOfExtrusion",
+            "surface_area_mm2": 3870.8640755617707,
+            "bounds_mm": [
+              [
+                -264.08060808231807,
+                -26.84584510436166,
+                -20.50000010000001
+              ],
+              [
+                -161.81233161040032,
+                -20.33854221012,
+                20.500000100000015
+              ]
+            ]
+          },
+          "status": "measured",
+          "opposite_exact_point_mm": [
+            -188.34577654152974,
+            -26.03936788837797,
+            -18.842658360799152
+          ],
+          "opposite_exact_face": {
+            "STEP_face_index_zero_based": 0,
+            "surface_type": "GeomAbs_SurfaceType.GeomAbs_SurfaceOfExtrusion",
+            "surface_area_mm2": 7804.115771475096,
+            "bounds_mm": [
+              [
+                -269.9667879852,
+                -35.440103875620004,
+                -22.0000001
+              ],
+              [
+                -79.84383436038779,
+                -21.826989519027943,
+                22.0000001
+              ]
+            ]
+          }
+        },
+        {
+          "region": "web_1p49_to_1p5_area_quartile",
+          "quartile": 0.75,
+          "face": 232612,
+          "centroid_mm": [
+            -222.89130147298178,
+            21.985680262247723,
+            -4.401366233825684
+          ],
+          "outward_normal": [
+            0.06249568724250186,
+            -0.9980452337202783,
+            2.2898090547199824e-05
+          ],
+          "checker_ray_mm": 1.4965543746948242,
+          "mesh_centroid_distance_to_exact_shell_mm": 0.0004987171868465673,
+          "normal_alignment_to_mesh": 0.9999999498171654,
+          "exact_surface_point_mm": [
+            -222.89127014803495,
+            21.985182529809396,
+            -4.401366233825684
+          ],
+          "exact_outward_normal": [
+            0.06281104328797978,
+            -0.9980254369709599,
+            -0.0
+          ],
+          "exact_inward_normal_ray_mm": 1.4970416610991992,
+          "source_exact_face": {
+            "STEP_face_index_zero_based": 114,
+            "surface_type": "GeomAbs_SurfaceType.GeomAbs_SurfaceOfExtrusion",
+            "surface_area_mm2": 7020.358799951001,
+            "bounds_mm": [
+              [
+                -264.08060808509504,
+                20.338542210107,
+                -20.5000001
+              ],
+              [
+                -81.74494277072034,
+                33.821372457758365,
+                20.5000001
+              ]
+            ]
+          },
+          "status": "measured",
+          "opposite_exact_point_mm": [
+            -222.98530089661415,
+            23.479268187791657,
+            -4.401366233825684
+          ],
+          "opposite_exact_face": {
+            "STEP_face_index_zero_based": 12,
+            "surface_type": "GeomAbs_SurfaceType.GeomAbs_SurfaceOfExtrusion",
+            "surface_area_mm2": 7804.118988433918,
+            "bounds_mm": [
+              [
+                -269.9667879852,
+                21.82698951903316,
+                -22.0000001
+              ],
+              [
+                -79.84383436042,
+                35.44010387645713,
+                22.0000001
+              ]
+            ]
+          }
+        },
+        {
+          "region": "junction_X160_Y-1",
+          "face": 1896,
+          "centroid_mm": [
+            -160.33462524414062,
+            -28.479602177937824,
+            -20.298153559366863
+          ],
+          "outward_normal": [
+            -0.09019158748690387,
+            -0.9959244308940643,
+            -7.412776970111856e-05
+          ],
+          "checker_ray_mm": 0.5030055642127991,
+          "mesh_centroid_distance_to_exact_shell_mm": 0.00012718519930410041,
+          "normal_alignment_to_mesh": 0.9999999972473963,
+          "exact_surface_point_mm": [
+            -160.33461377269944,
+            -28.47947551112702,
+            -20.298153559366863
+          ],
+          "exact_outward_normal": [
+            -0.09019478106458007,
+            -0.995924144435063,
+            0.0
+          ],
+          "exact_inward_normal_ray_mm": 0.5025560195174562,
+          "source_exact_face": {
+            "STEP_face_index_zero_based": 0,
+            "surface_type": "GeomAbs_SurfaceType.GeomAbs_SurfaceOfExtrusion",
+            "surface_area_mm2": 7804.115771475096,
+            "bounds_mm": [
+              [
+                -269.9667879852,
+                -35.440103875620004,
+                -22.0000001
+              ],
+              [
+                -79.84383436038779,
+                -21.826989519027943,
+                22.0000001
+              ]
+            ]
+          },
+          "status": "measured",
+          "opposite_exact_point_mm": [
+            -160.28928584254638,
+            -27.978967837358407,
+            -20.298153559366863
+          ],
+          "opposite_exact_face": {
+            "STEP_face_index_zero_based": 26,
+            "surface_type": "GeomAbs_SurfaceType.GeomAbs_Cylinder",
+            "surface_area_mm2": 208.87768055777968,
+            "bounds_mm": [
+              [
+                -162.0000001,
+                -28.0000001,
+                -22.0000001
+              ],
+              [
+                -157.9999999,
+                -23.9999999,
+                22.0000001
+              ]
+            ]
+          }
+        },
+        {
+          "region": "junction_X160_Y1",
+          "face": 232134,
+          "centroid_mm": [
+            -155.32542928059897,
+            27.435295740763348,
+            -16.065351804097492
+          ],
+          "outward_normal": [
+            0.09099158451726852,
+            -0.9958516604167469,
+            4.463457125652902e-05
+          ],
+          "checker_ray_mm": 1.4936840534210205,
+          "mesh_centroid_distance_to_exact_shell_mm": 0.00010074379650810645,
+          "normal_alignment_to_mesh": 0.9999999989307599,
+          "exact_surface_point_mm": [
+            -155.32542011497452,
+            27.43519541477537,
+            -16.065351804097492
+          ],
+          "exact_outward_normal": [
+            0.09097954199441434,
+            -0.9958527616763868,
+            -0.0
+          ],
+          "exact_inward_normal_ray_mm": 1.4937804326691284,
+          "source_exact_face": {
+            "STEP_face_index_zero_based": 114,
+            "surface_type": "GeomAbs_SurfaceType.GeomAbs_SurfaceOfExtrusion",
+            "surface_area_mm2": 7020.358799951001,
+            "bounds_mm": [
+              [
+                -264.08060808509504,
+                20.338542210107,
+                -20.5000001
+              ],
+              [
+                -81.74494277072034,
+                33.821372457758365,
+                20.5000001
+              ]
+            ]
+          },
+          "status": "measured",
+          "opposite_exact_point_mm": [
+            -155.46132357457898,
+            28.922780783987072,
+            -16.065351804097492
+          ],
+          "opposite_exact_face": {
+            "STEP_face_index_zero_based": 12,
+            "surface_type": "GeomAbs_SurfaceType.GeomAbs_SurfaceOfExtrusion",
+            "surface_area_mm2": 7804.118988433918,
+            "bounds_mm": [
+              [
+                -269.9667879852,
+                21.82698951903316,
+                -22.0000001
+              ],
+              [
+                -79.84383436042,
+                35.44010387645713,
+                22.0000001
+              ]
+            ]
+          }
+        },
+        {
+          "region": "junction_X160_Y-1",
+          "face": 154615,
+          "centroid_mm": [
+            155.7293904622396,
+            -27.39840571085612,
+            19.640008290608723
+          ],
+          "outward_normal": [
+            -0.09092060530591783,
+            0.9958581424571287,
+            6.027140873949629e-05
+          ],
+          "checker_ray_mm": 1.4936940670013428,
+          "mesh_centroid_distance_to_exact_shell_mm": 0.00010445564958694348,
+          "normal_alignment_to_mesh": 0.9999999981805299,
+          "exact_surface_point_mm": [
+            155.72938096480763,
+            -27.3983016878706,
+            19.64000829060872
+          ],
+          "exact_outward_normal": [
+            -0.09092310458556827,
+            0.99585791609673,
+            0.0
+          ],
+          "exact_inward_normal_ray_mm": 1.4937881905406873,
+          "source_exact_face": {
+            "STEP_face_index_zero_based": 214,
+            "surface_type": "GeomAbs_SurfaceType.GeomAbs_SurfaceOfExtrusion",
+            "surface_area_mm2": 7020.366720027003,
+            "bounds_mm": [
+              [
+                81.74494277072593,
+                -33.821372457751686,
+                -20.5000001
+              ],
+              [
+                264.0806080851602,
+                -20.338542210393104,
+                20.5000001
+              ]
+            ]
+          },
+          "status": "measured",
+          "opposite_exact_point_mm": [
+            155.86520082468485,
+            -28.885902482392353,
+            19.64000829060872
+          ],
+          "opposite_exact_face": {
+            "STEP_face_index_zero_based": 131,
+            "surface_type": "GeomAbs_SurfaceType.GeomAbs_SurfaceOfExtrusion",
+            "surface_area_mm2": 7804.121022262642,
+            "bounds_mm": [
+              [
+                79.84383436040865,
+                -35.440103875620004,
+                -22.0000001
+              ],
+              [
+                269.9667879852,
+                -21.826989519031606,
+                22.0000001
+              ]
+            ]
+          }
+        },
+        {
+          "region": "junction_X160_Y1",
+          "face": 144198,
+          "centroid_mm": [
+            155.74207051595053,
+            27.39724858601888,
+            19.639949798583984
+          ],
+          "outward_normal": [
+            -0.09091855743598067,
+            -0.9958583294008782,
+            6.063540367684003e-05
+          ],
+          "checker_ray_mm": 1.4936960935592651,
+          "mesh_centroid_distance_to_exact_shell_mm": 0.00010502212126585173,
+          "normal_alignment_to_mesh": 0.9999999981578448,
+          "exact_surface_point_mm": [
+            155.7420609672013,
+            27.39714399889088,
+            19.639949798583984
+          ],
+          "exact_outward_normal": [
+            -0.09092131348757493,
+            -0.9958580796246492,
+            0.0
+          ],
+          "exact_inward_normal_ray_mm": 1.4937884366536909,
+          "source_exact_face": {
+            "STEP_face_index_zero_based": 215,
+            "surface_type": "GeomAbs_SurfaceType.GeomAbs_SurfaceOfExtrusion",
+            "surface_area_mm2": 7020.3566995981,
+            "bounds_mm": [
+              [
+                81.74494277034793,
+                20.33854221041648,
+                -20.5000001
+              ],
+              [
+                264.08060808237036,
+                33.82137245820241,
+                20.5000001
+              ]
+            ]
+          },
+          "status": "measured",
+          "opposite_exact_point_mm": [
+            155.8778781739344,
+            28.88474528278233,
+            19.639949798583984
+          ],
+          "opposite_exact_face": {
+            "STEP_face_index_zero_based": 124,
+            "surface_type": "GeomAbs_SurfaceType.GeomAbs_SurfaceOfExtrusion",
+            "surface_area_mm2": 7804.122875190132,
+            "bounds_mm": [
+              [
+                79.843834360429,
+                21.82698951903338,
+                -22.0000001
+              ],
+              [
+                269.9667879852001,
+                35.440103876453286,
+                22.0000001
+              ]
+            ]
+          }
+        }
+      ]
+    },
+    "figure": "work/carrier-remesh-20261016/thickness-figure-008/carrier-thickness-008.png",
+    "exact_transition_figure": "work/carrier-remesh-20261016/thin-exact-sections/carrier-exact-thin-regions.png"
+  },
+  "mesh_audit_runtime": {
+    "schema": "porscheparts.mesh-audit-runtime@1",
+    "base_image": "python:3.11.15-slim-bookworm@sha256:ecb0ac954790dd64a0d518d699b9c61a91780c42b0d877c802dbaffd04db66f9",
+    "image_id": "sha256:3ccaf5701c7c9add59eda6e8db918106fc8d51f4c2ef5b148d8079262861c7e1",
+    "backend": "local Docker Linux ARM64",
+    "limits": {
+      "cpus": 2,
+      "memory_GiB": 4,
+      "swap_GiB": 0,
+      "network": "none"
+    },
+    "sources": {
+      "numpy": "https://pypi.org/project/numpy/2.2.6/",
+      "scipy": "https://pypi.org/project/scipy/1.15.3/",
+      "libigl": "https://pypi.org/project/libigl/2.6.3/",
+      "trimesh": "https://pypi.org/project/trimesh/4.8.3/",
+      "rtree": "https://pypi.org/project/rtree/1.4.1/"
+    },
+    "licenses": {
+      "numpy": "BSD-3-Clause",
+      "scipy": "BSD-3-Clause",
+      "libigl": "MPL-2.0 (see included component licenses)",
+      "trimesh": "MIT",
+      "rtree": "MIT; bundled libspatialindex license included in wheel"
+    },
+    "installed_versions": {
+      "numpy": "2.2.6",
+      "scipy": "1.15.3",
+      "libigl": "2.6.3",
+      "trimesh": "4.8.3",
+      "rtree": "1.4.1"
+    },
+    "native_macOS_libigl_attempt": "failed_std_bad_cast_retained_separately",
+    "runtime_mapping": "work/part-workflow/runtimes/mesh-audit/runtime.json"
+  }
+}

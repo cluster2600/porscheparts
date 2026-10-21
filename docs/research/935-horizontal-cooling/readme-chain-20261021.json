@@ -1,0 +1,136 @@
+{
+  "schema": "935-readme-chain-study-v1",
+  "reference_main_commit": "e3cd41df1a7bdc6848a58a16eb77bae8cfd2a07b",
+  "readme_sha256": "566a3ff7de54fd5517b476f88f52a4b055aac71b6db84d67cb42a171191a2f28",
+  "interface_contract_sha256": "b3030d7aceeab62ad0a38e97685187e98e0a120fbd7867a77faee0c5548f1c12",
+  "source_sha256": {
+    "twins/935-horizontal-cooling-system-f0/source/prepare_bore_sensitivity.py": "61c92c7035d04dcebb2c5daac6ab43b554a3405264be2475e678aebbcb3f6005",
+    "twins/935-horizontal-cooling-system-f0/source/assess_mac_fea.py": "203a7275751dcf5c8bc4091ee739f24a57a69403438e58a49c933f2b6bc1737c",
+    "twins/935-horizontal-cooling-system-f0/source/run_candidate_fea.sh": "1eaaa32fcffcec4f7f0b7c686ef6e39d760dd2884ad2795ba336dd3d2c5abf74",
+    "twins/935-horizontal-cooling-system-f0/source/picogk-935-assembly/Program.cs": "1be2d71fad739f681b828e5597332765a6e6d8156a012423879afd3648e15d6a",
+    "twins/935-horizontal-cooling-system-f0/source/picogk-section-loft/Program.cs": "f1b19bd41fdd185e75a284886b8eff631f44e730ab9a1be023f5e3fc52d77417"
+  },
+  "geometry": {
+    "conditional_volume_mm3": 430665.5705673645,
+    "centroid_mm": [
+      -0.05878786592645979,
+      -1.6829986495691172,
+      -5.141468359493335
+    ],
+    "volume_inertia_about_origin_mm5": [
+      [
+        1876816006.004362,
+        7235337.080448799,
+        -2817603.415641241
+      ],
+      [
+        7235337.080448963,
+        1912444662.6311607,
+        14814653.733595252
+      ],
+      [
+        -2817603.41564125,
+        14814653.733595263,
+        3583158496.3050175
+      ]
+    ],
+    "principal_volume_inertias_mm5": [
+      1875384286.147466,
+      1913740584.9274457,
+      3583294293.8656287
+    ],
+    "triangles": 1322970,
+    "topology_checked_by_this_function": false,
+    "geometry_sha256": "f32bbabab3e5f7d9ca7c5283d18703cfe7cedbd3eb2c72a57a1c222c0a9df1e5",
+    "source_geometry_unchanged": true,
+    "topology_retested": false,
+    "prior_topology_reference": "docs/research/935-horizontal-cooling/tip-correction-20261013.json",
+    "scale_verified": false,
+    "physical_validation": false,
+    "manufacturing_authorized": false
+  },
+  "material_id": "alsi10mg",
+  "rotor_rpm": 6000,
+  "units": "N_mm_tonne_s_MPa",
+  "solver": "CalculiX2.21, Linux aarch64, local Docker on Mac",
+  "new_native_solves": 2,
+  "identical_deck_reused": 1,
+  "cases": [
+    {
+      "label": "fixed15-h135",
+      "pitch_mm": 1.35,
+      "radial_band_assumed_mm": 1.5,
+      "clamped_bore_nodes": 3848,
+      "selected_radius_range_assumed_mm": [
+        10.543837062473983,
+        12.807224523681937
+      ],
+      "maximum_displacement_mm": 0.6036184253619852,
+      "von_mises_max_MPa": 188.37136923885373,
+      "element_peak_p95_outside_r25_MPa": 33.59687425973622,
+      "relative_force_balance_error": 1.2468025938887297e-09,
+      "relative_moment_balance_error": 2.2054354665221423e-09,
+      "reaction_balance_pass": true,
+      "reused_identical_deck": true,
+      "prepared_receipt_sha256": "ec03236137ac27e5a0bb2693aeabf31f146bea0aae74dce5d36700649ea78d44",
+      "unchanged_non_bore_text_sha256": "f87504e82096a6026bbd17f7de2240c9d04b39885bf56ded2ec211f50062bcc3",
+      "relative_displacement_change_from_matching_parent": 0.0
+    },
+    {
+      "label": "fixed15-h120",
+      "pitch_mm": 1.2,
+      "radial_band_assumed_mm": 1.5,
+      "clamped_bore_nodes": 4920,
+      "selected_radius_range_assumed_mm": [
+        10.73312629199899,
+        12.924395537122809
+      ],
+      "maximum_displacement_mm": 0.7596168908236056,
+      "von_mises_max_MPa": 197.46117058644865,
+      "element_peak_p95_outside_r25_MPa": 34.54151918086832,
+      "relative_force_balance_error": 2.540652523704802e-10,
+      "relative_moment_balance_error": 6.450495237787343e-10,
+      "reaction_balance_pass": true,
+      "reused_identical_deck": false,
+      "prepared_receipt_sha256": "386c9179c8c029f825fa3aafefaa8ce6379ffb1e0d508b3f451752bc31143616",
+      "unchanged_non_bore_text_sha256": "b5f6dc5583d7b59addbeac11fc25fe6e574d588f676e84707d6362ba24aa3cbe",
+      "relative_displacement_change_from_matching_parent": -0.00028522222025373356
+    },
+    {
+      "label": "fixed06-h120",
+      "pitch_mm": 1.2,
+      "radial_band_assumed_mm": 0.6,
+      "clamped_bore_nodes": 2952,
+      "selected_radius_range_assumed_mm": [
+        10.8664621657649,
+        12.059850745345068
+      ],
+      "maximum_displacement_mm": 0.760113830675799,
+      "von_mises_max_MPa": 197.4516739249343,
+      "element_peak_p95_outside_r25_MPa": 34.540939642699755,
+      "relative_force_balance_error": 1.231093872512886e-10,
+      "relative_moment_balance_error": 3.8864755187147193e-10,
+      "reaction_balance_pass": true,
+      "reused_identical_deck": false,
+      "prepared_receipt_sha256": "733a6ca116194e15a4e76a69ebeb91f71da80109c30c2f09cc071f05b16a6f91",
+      "unchanged_non_bore_text_sha256": "b5f6dc5583d7b59addbeac11fc25fe6e574d588f676e84707d6362ba24aa3cbe",
+      "relative_displacement_change_from_matching_parent": 0.00036878918984895037
+    }
+  ],
+  "original_fine_displacement_mm": 0.759833612253516,
+  "fixed15_last_pair_displacement_relative_change": 0.25843887281616595,
+  "geometry_mesh_material_and_loads_unchanged": true,
+  "radial_band_is_measured": false,
+  "bending_locking_demonstrated_on_rotor": false,
+  "source_lineages_mixed": false,
+  "Qwen_inference_performed": false,
+  "CFD_recomputed": false,
+  "FEA_mesh_convergence_established": false,
+  "historical_interfaces_verified": false,
+  "scale_verified": false,
+  "material_process_qualified": false,
+  "physical_validation": false,
+  "manufacturing_authorized": false,
+  "vast_rental_used": false,
+  "private_archive": "https://github.com/cluster2600/porscheparts-935-private/releases/tag/readme-chain-20261021"
+}

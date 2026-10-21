@@ -1,0 +1,25 @@
+"""Collect the one closed successful pack; no decompression or numerical replay."""
+from pathlib import Path
+import hashlib,json,os,subprocess
+H=Path(__file__).resolve().parent;R=H.parents[1]
+def sha(p):
+ h=hashlib.sha256()
+ with p.open('rb')as f:
+  for b in iter(lambda:f.read(1024**2),b''):h.update(b)
+ return h.hexdigest()
+def read(p):return json.loads(p.read_text())
+def enc(v):return(json.dumps(v,indent=2)+'\n').encode()
+s=read(H/'pack-execution-001/execution-receipt.json');p=read(H/'pack-plan.json');l=read(H/'pack-launch.json');pins={**l['inputs_sha256'],**l['source_sha256']};assert s['actual_returncode']==0 and s['direct_child_reaped']and s['final_group_members']==[]and s['no_non_zombie_group_members']and not s['timeout']and not s['interrupted']and not s['cleanup_error']and not s['failure']and s['sources_and_plan_unchanged'];assert s['plan_sha256']==sha(H/'pack-launch.json')and pins==s['sources_before']==s['sources_after']=={n:sha(R/n)for n in pins}
+a=read(H/'packaging.json');m=read(H/'capsule-001/manifest.json');inventory=read(R/p['inventory']);assert a['status']=='three_deterministic_archives_created_no_solver'and a['originals_unchanged']and a['original_bytes']==598766939 and a['plan_sha256']==sha(H/'actual-pack-plan.json')and a['source_sha256']=='697277ea5c4ccc10cec323f6815409e4d948726f55b52045c17d1be99bfa1a9a';assert m['archives']==a['archives']and m['candidate_qualified']is False
+members={n:row for slot in a['archives'].values()for n,row in slot['members'].items()};assert len(members)==495 and len(members)==sum(len(x['members'])for x in a['archives'].values())and members=={n:dict(bytes=x['bytes'],sha256=x['sha256'])for n,x in inventory['members'].items()}
+for name,row in a['archives'].items():
+ q=H/'capsule-001'/name;assert q.stat().st_size==row['bytes']<100000000 and sha(q)==row['sha256']
+assert all(sha(H/'capsule-001'/n)==v for n,v in m['files_sha256'].items());final=read(H/'capsule-001/archive.json')['files_sha256'];actual={str(q.relative_to(H/'capsule-001'))for q in(H/'capsule-001').rglob('*')if q.is_file()and q.name!='archive.json'};assert actual==set(final)and all(sha(H/'capsule-001'/n)==v for n,v in final.items())
+op=read(H/'pending-pack-plan.json');x=read(H/'pack-plan.json');x.update(status=op['status'],launch_ready=False,root_GO=None,root_GO_sha256=None);x['files_sha256'].pop(p['root_GO']);assert enc(x)==(H/'pending-pack-plan.json').read_bytes()
+ol=read(H/'pending-pack-launch.json');x=read(H/'pack-launch.json');x.update(status=ol['status'],launch_ready=False,root_GO=None,root_GO_sha256=None);x['command']=ol['command'];x['inputs_sha256']=ol['inputs_sha256'];assert enc(x)==(H/'pending-pack-launch.json').read_bytes()
+oc=read(H/'pending-pack-command.json');x=read(H/'pack-command.json');x.pop('argv');x.update(status=oc['status'],launch_ready=False,actual_launch_sha256=None);assert enc(x)==(H/'pending-pack-command.json').read_bytes()
+q=subprocess.run(['/bin/ps','-g',str(s['pid']),'-o','pid=,ppid=,pgid=,stat='],capture_output=True,text=True,timeout=2);assert q.returncode==1 and not q.stdout.strip()and not q.stderr.strip()
+files=[H/'actual-pack-plan.json',H/'packaging.json',*[x for x in(H/'pack-execution-001').iterdir()if x.is_file()],*[x for x in(H/'capsule-001').rglob('*')if x.is_file()]];whole={str(x.relative_to(H)):dict(bytes=x.stat().st_size,sha256=sha(x))for x in sorted(files)}
+v=dict(status='closed_actual_RC0_three_fixed_archives_created_no_verify_or_reanalysis',actual_tool_handle=31261,actual_initial_chunk='e5a5d1',actual_terminal_chunk='6b240b',actual_tool_returncode=0,actual_child_returncode=0,supervision_sha256=sha(H/'pack-execution-001/execution-receipt.json'),packaging_receipt_sha256=sha(H/'packaging.json'),manifest_sha256=sha(H/'capsule-001/manifest.json'),archive_inventory_sha256=sha(H/'capsule-001/archive.json'),current_pin_map_entries=len(pins),all_current_small_pins_equal=True,three_whole_pending_inverses_original_bytes=True,owned_pid=s['pid'],direct_child_reaped=True,final_group_empty=True,fresh_group_query=dict(returncode=q.returncode,stdout=q.stdout,stderr=q.stderr),outer_elapsed_seconds=s['elapsed_seconds'],packer_elapsed_seconds=a['wall_seconds'],packer_CPU_seconds=a['CPU_seconds'],packer_maxRSS_bytes=a['maxRSS_bytes'],archives={n:dict(bytes=row['bytes'],sha256=row['sha256'],members=len(row['members']))for n,row in a['archives'].items()},total_archive_bytes=sum(x['bytes']for x in a['archives'].values()),original_members=495,original_bytes=598766939,original_packer_fresh_stream_hashes_counts_and_final_all_original_posthash_passed=True,capsule_file_inventory_whole_hashes_equal=True,archive_decompression_executed=False,stored_evidence_decompressed_member_verification_executed=False,analysis_replay_executed=False,new_scientific_runs=0,candidate_qualified=False,whole_files=whole,whole_files_count=len(whole),collector_source_sha256=sha(Path(__file__)))
+with(H/'terminal-collection-001.json').open('x')as f:json.dump(v,f,indent=2);f.write('\n');f.flush();os.fsync(f.fileno())
+print(json.dumps({k:x for k,x in v.items()if k not in ['whole_files','fresh_group_query']}));print('terminal_sha256='+sha(H/'terminal-collection-001.json'))
