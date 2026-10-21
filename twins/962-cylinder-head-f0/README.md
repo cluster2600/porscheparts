@@ -17,6 +17,13 @@ accepts only the four-line admission-prefix repair. Operation remains on HOLD
 for C01 continuation-intent and C02 process-handle lifetime source gaps.
 No owner003 actual, admission, runtime/toy or native result is accepted.
 
+The [native004 HOLD and native005 source correction](derived/engineering/native004-hold-and-native005-source-correction/README.md)
+preserves the four source blockers and accepts their 005 corrections at source level only,
+with independent source review and a separate root disposition. This checkpoint supplies
+no 005 guard result, current runtime/API acceptance, actual or pin counts, staging,
+admission, launch, native result or physical qualification. The separate five-toy003
+C01/C02 HOLD and all 24 head-mesh and 12 aggregate mechanical failures remain.
+
 The [F1 final-evidence checkpoint](derived/engineering/f1-final-evidence-guards9-and-admission-fix/README.md)
 records all nine fake-provider integration cases passing in one accepted run,
 with child/outer exit statuses 0/0. The pre-issuance admission self-hash refusal

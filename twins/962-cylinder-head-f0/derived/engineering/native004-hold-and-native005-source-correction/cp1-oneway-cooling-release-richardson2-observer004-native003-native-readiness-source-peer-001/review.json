@@ -1,0 +1,248 @@
+{
+  "schema": "962-native003-independent-ownership-lifetime-readiness-source-audit/v1",
+  "decision": "HOLD_NATIVE003_UNISSUED_OWNERSHIP_AND_ABSOLUTE_LIFETIME_SOURCE_GAPS",
+  "reviewer": "publication_byte_review",
+  "independence": "Reviewer did not author these owner/caller sources or the earlier namespace peer/root review. Full two-source reasoning and byte/AST checks are independent; no target, process, runtime, API or scientific observation was made.",
+  "sources": [
+    {
+      "record": {
+        "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native-measurement-prep-003/run_root_once.py",
+        "sha256": "6d91abc5bfb8970908d41406448e9091291736ab9bb910a72b58f0243e7d754f",
+        "bytes": 18849
+      },
+      "full_text_read": true,
+      "lines": 258,
+      "top_level_functions": 19,
+      "all_functions_including_nested": 21,
+      "syntax_scope": "AST_only_no_import_compile_or_execute"
+    },
+    {
+      "record": {
+        "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native-measurement-prep-003/run_native_capture.py",
+        "sha256": "7190f22f4d17869f6524743bc0de6f7eebc03393c17a4ed57984f282d0036a80",
+        "bytes": 22990
+      },
+      "full_text_read": true,
+      "lines": 318,
+      "top_level_functions": 12,
+      "all_functions_including_nested": 14,
+      "syntax_scope": "AST_only_no_import_compile_or_execute"
+    }
+  ],
+  "finite_control_metadata": [
+    {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native003-native-readiness-root-observation-001/observation.json",
+      "sha256": "3b82870927ad02c87702d28806a3a12fa4534c7f86573de2f4fbba838bb81b9d",
+      "bytes": 2509
+    },
+    {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native003-root-source-control-review-001/review.json",
+      "sha256": "010e08cb4cb8dfc803f28f3f83fc4a0cea2fd0a312b675f2eb5f5becb1519478",
+      "bytes": 3583
+    },
+    {
+      "role": "source_index",
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native-measurement-execution-prep-003/preparation-index.json",
+      "sha256": "a3dcf85a1711afe03f6988ef27a8f1d6199bad8e080c5652608e450aea4bf4c6",
+      "bytes": 6117
+    },
+    {
+      "role": "peer",
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native003-exact-source-control-peer-001/review.json",
+      "sha256": "1cc78efbbee900a96801f6bc19541cb4cf34acd52bc861abc1c04e947ebb1263",
+      "bytes": 2881
+    },
+    {
+      "role": "peer_findings",
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native003-exact-source-control-peer-001/findings.json",
+      "sha256": "cc7cca72e7d2027d97aac69049fbd8fe9715a7829185bf6e9b3ae134e2862d62",
+      "bytes": 7172
+    },
+    {
+      "role": "peer_bindings",
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native003-exact-source-control-peer-001/bindings.json",
+      "sha256": "e14d0c87c877b8d9a2f721536e3bd842c6bc682ba36ad672805400b5f5583b27",
+      "bytes": 4675
+    },
+    {
+      "role": "actual",
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native-measurement-execution-prep-003/actual-contract.json",
+      "sha256": "85a9195ed1a217eef6bad44518390f1b2dfdb879c9cdfc072b6e1465461a5198",
+      "bytes": 116306
+    }
+  ],
+  "verified_read_set": {
+    "files": 9,
+    "bytes": 185082,
+    "strict_JSON_files": 7,
+    "AST_only_Python_files": 2,
+    "all_descriptors_exact": true,
+    "no_recursive_input_or_runtime_pin_refresh": true
+  },
+  "prior_acceptance_scope": {
+    "decision": "ACCEPT_EXACT_SOURCE_HELD_CONTROLS_AND_AUTHORIZE_FINITE_STAGING_FRESHNESS_CONTROLLER_SOURCE_PREPARATION_ONLY",
+    "scope": "Namespaces only relative to reviewed row-first owner52879 and caller997a; every numerical/material/load/profile/threshold and inherited100/115/T10/2GiB/inclusive512MiB/growth32MiB control is unchanged. Existing222 raw-input/runtime expectations remain metadata, not new observations.",
+    "meaning": "The earlier peer/root review verified exact namespace/source transport and held metadata, then permitted staging/freshness controller source preparation only. It did not accept present native ownership behavior or grant launch. This audit preserves that historical acceptance and adds a current readiness HOLD.",
+    "freshness_is_separate": "Staging acceptance and any separately reviewed freshness saved result do not correct these native control paths or license a native003 launch."
+  },
+  "findings": [
+    {
+      "id": "N1",
+      "priority": "P1",
+      "title": "Leader reaping precedes later raw numeric process-group signals",
+      "locations": [
+        {
+          "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native-measurement-prep-003/run_root_once.py",
+          "lines": [
+            148,
+            160
+          ]
+        },
+        {
+          "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native-measurement-prep-003/run_root_once.py",
+          "lines": [
+            190,
+            230
+          ]
+        },
+        {
+          "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native-measurement-prep-003/run_native_capture.py",
+          "lines": [
+            230,
+            283
+          ]
+        }
+      ],
+      "source_evidence": [
+        "Owner stop_wait starts with proc.poll(), then proc.wait(timeout=10); main also polls at192/210 and waits at216/218. Finally224-230 tests and signals numeric adapter/native group IDs after these paths may have reaped the adapter.",
+        "Caller polls at233/244/247/258/263/271 and waits at261/264/272, then killpg(process.pid,0) and SIGKILL at275/277 use the reaped native leader number.",
+        "The caller timer stop function polls and then raw-signals at233-235 while main-thread polls/waits are outside that lock. cancel at269 supplies no source-level callback-quiescence proof before further wait/group operations."
+      ],
+      "impact": "A prior PID/PGID observation or killpg(g,0) liveness test does not retain an unreaped ownership anchor. After leader reaping and numeric ID reuse, a later raw killpg can address a group that is no longer the admitted group. This is a source race, not an observed mis-signal.",
+      "correction_direction": "Retain one strong unreaped certified leader through the final authorized group signals. Use nonreaping exit observation, then exact-PID bounded deliberate reap after no further group signals are intended. Remove every post-reap raw group signal and serialize timer/stop/ownership transitions."
+    },
+    {
+      "id": "N2",
+      "priority": "P1",
+      "title": "Separate native session has only a polled numeric discovery map at root",
+      "locations": [
+        {
+          "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native-measurement-prep-003/run_root_once.py",
+          "lines": [
+            81,
+            107
+          ]
+        },
+        {
+          "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native-measurement-prep-003/run_root_once.py",
+          "lines": [
+            190,
+            224
+          ]
+        },
+        {
+          "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native-measurement-prep-003/run_native_capture.py",
+          "lines": [
+            239,
+            243
+          ]
+        }
+      ],
+      "source_evidence": [
+        "Root launches adapter with start_new_session=True at190; caller launches native with start_new_session=True at242. Native is outside the adapter process group.",
+        "Root pgrep/ps at195-198 adds a native PID to owned only when one transient tuple equals(pid,adapterPID,pid). No stopped-before-exec certificate, retained native-leader handle or complete ownership handoff accompanies the set entry.",
+        "Root initially signals only adapter group at150-151; separate native groups are killed from previously discovered owned IDs at155-157/224-226. Receipt native_PID membership at247 is a final candidate join, not an ownership anchor."
+      ],
+      "impact": "A separate native session can be missed between discovery and adapter stop, and root has no retained anchor for discovered groups after the caller reaps them. Final membership/absence checks can refuse acceptance but cannot make earlier signaling safe or establish cleanup of an undiscovered group.",
+      "correction_direction": "Prefer one certified inherited group for adapter and native, with the outer owner retaining its unreaped leader and holding sole raw group-signaling authority. Native should not detach into a second session under this design. Keeping separate groups would require a separately specified, failure-safe ownership handoff and wider review."
+    },
+    {
+      "id": "N3",
+      "priority": "P1",
+      "title": "Native100/outer115 checks do not bound complete cleanup and return",
+      "locations": [
+        {
+          "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native-measurement-prep-003/run_root_once.py",
+          "lines": [
+            142,
+            160
+          ]
+        },
+        {
+          "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native-measurement-prep-003/run_root_once.py",
+          "lines": [
+            188,
+            230
+          ]
+        },
+        {
+          "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native-measurement-prep-003/run_root_once.py",
+          "lines": [
+            233,
+            255
+          ]
+        },
+        {
+          "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native-measurement-prep-003/run_native_capture.py",
+          "lines": [
+            208,
+            237
+          ]
+        },
+        {
+          "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native-measurement-prep-003/run_native_capture.py",
+          "lines": [
+            261,
+            305
+          ]
+        }
+      ],
+      "source_evidence": [
+        "Root stop condition at214 is reached at outer115, after which stop_wait starts new10-second waits at153/159/160. It can be called once at215 and again at223, restarting cleanup allowances; lingering cleanup starts another time.monotonic()+10 at229.",
+        "Caller Timer100 invokes stop but supplies no bounded reap. process.wait() at264 and272 has no timeout, and post-reap lingering cleanup starts a fresh+10 at279.",
+        "Root before/after identity hashes, complete output hashes and receipt serialization at234-251 have no shared remaining-time deadline; caller similarly performs identity/output hashes and receipt work at285-302. Their final115/100 tests occur after this work.",
+        "Root clock starts in main142 after imports; caller clock starts in run209 after imports. Caller100 starts later than outer115 and receives no shared absolute outer deadline."
+      ],
+      "impact": "The final elapsed gates reject a late positive candidate, but do not keep cleanup or receipt completion within the declared total lifetime. Fresh timeout resets and unbounded reap paths can outlive115; an external wait duration or timer notification is not proof of completed return.",
+      "correction_direction": "Choose one shared absolute lifetime reference and explicit work/TERM/KILL-reap/identity-receipt closure ceilings whose total remains within115, preserving native100 and TERM10 as upper bounds. Reserve cleanup before the outer deadline, clamp each observation/wait to remaining phase time, use only bounded nonblocking reap loops, and never restart a grace on a repeated cleanup path. Retain independent external startup-through-full-return<=115 and raw outer0/postreceipt accounting as acceptance conditions; do not claim hard real-time preemption."
+    }
+  ],
+  "smallest_bounded_correction_direction": [
+    "Keep both current source files and all prior failures/reviews immutable. Prepare a fresh source/control successor restricted to ownership/lifecycle/deadline logic; preserve scientific inputs, solver/material controls and resource maxima.",
+    "Use one certified adapter/native group with a stopped same-PID wrapper or equally explicit pre-exec certificate. Outer owner keeps the strong unreaped group leader, uses nonreaping exit observation and performs all raw group signaling before final exact-PID reap.",
+    "Remove polled child-group discovery as an authority source and remove caller post-reap killpg cleanup. Define timer/stop handling so callbacks cannot signal a reaped or unanchored leader; incomplete forced-stop evidence remains refusal.",
+    "Have root choose tighter absolute phase reservations within115 without raising native100, TERM10,2GiB,inclusive512MiB or growth32MiB. Bound cleanup and full closure with remaining-time gates.",
+    "Require new full source/diff/reuse review and fake ownership/deadline/error/interruption guards before considering any separate exact held contract/admission. Separately accepted freshness supplies identity evidence only."
+  ],
+  "required_source_guard_topics": [
+    "early adapter/native exit before ownership certificate",
+    "PID/PGID/SID mismatch and registration failure",
+    "normal exit observed without reaping before cleanup decision",
+    "native start racing outer stop and no undiscovered detached group",
+    "RSS error versus nonreaping exit race; valid zero versus missing observation",
+    "timer callback concurrent with stop/reap and callback quiescence",
+    "TERM/KILL/EPERM/ESRCH/unknown errors retained with bounded cleanup",
+    "late observation/read/write/reap/receipt after original absolute phase deadline",
+    "post-reap surviving or unknown group state refuses without further numeric group signaling",
+    "no replacement,retry,resource extension or prefinal success override"
+  ],
+  "physical_and_authority_limits": {
+    "head_poor_cells": 24,
+    "LPBF_aggregate_mechanical_failures": 12,
+    "unchanged": true,
+    "field_association_material_strength_LPBF_or_native_physics_accepted": false,
+    "source_change_authorized_by_this_audit": false,
+    "native_actual_or_admission_created": false,
+    "native_execution_authorized": false,
+    "publication_authorized": false,
+    "physical_or_manufacturing_acceptance": false
+  },
+  "operations_not_performed": [
+    "target/source/fixture/fragment import,compilation or execution",
+    "process or group API invocation,ps/pgrep/runtime query,probe or native call",
+    "runtime/interpreter/provider/library/alias body read/hash/stat or broad discovery",
+    "opaque scientific source,grid,field,map,Vec,CSV,CDF body access or calculation",
+    "implementation,actual/admission generation,staging/freshness repetition",
+    "PUB or Git mutation,secrets,Keychain or environment dump"
+  ]
+}
