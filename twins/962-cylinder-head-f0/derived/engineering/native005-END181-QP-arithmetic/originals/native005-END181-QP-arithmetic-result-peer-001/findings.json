@@ -1,0 +1,74 @@
+{
+  "schema": "962-native005-END181-QP-arithmetic-saved-result-findings/v1",
+  "disposition": "COMPLETE_SAVED_ARITHMETIC_RECOMPUTATION_MATCHES_NO_EQUILIBRIUM_PASS",
+  "concrete_result_defects": [],
+  "verified_counts": {
+    "QP_seeds": 2048,
+    "rounded_scalar_products": 294912,
+    "rounded_dot_sums": 98304,
+    "weighted_contributions": 98304,
+    "regional_additions": 98304,
+    "regional_merge_rows": 900,
+    "regional_scalar_merges": 2700,
+    "full_component_rows": 1275,
+    "witness_records": {
+      "0:0": 16,
+      "32:1": 32,
+      "32:2": 32
+    },
+    "original_checks": 36,
+    "original_native_checks": 12,
+    "derived_checks": 108,
+    "derived_failures": 36,
+    "original_failures": 12,
+    "failures_by_channel_variant": {
+      "computed": {
+        "A": 6,
+        "B": 6,
+        "C": 6
+      },
+      "stored_QP": {
+        "A": 6,
+        "B": 6,
+        "C": 6
+      }
+    },
+    "census_paths": 21,
+    "census_bytes": 10118460
+  },
+  "checks": [
+    {
+      "id": "R01_COMPLETE_SAVED_OPERANDS_AND_JOINS",
+      "status": "PASS",
+      "detail": "All2048region/cell/nativeQP seed rows match recorded sourcecell/connectivity traversal,physical-rule index permutations and finite binary64 operand shapes;native/rule coordinate differences satisfy original2e-13binary64 threshold. Saved geometry,orderedcells,regionorders,6DOFmasks and36/12originalcheckobjects equal the pinned prior END181 report. No rawCSV or upstreamconstitutive/gradient generation independently replayed."
+    },
+    {
+      "id": "R02_INDEPENDENT_BINARY64_A",
+      "status": "PASS",
+      "detail": "Independent integer quotient/remainder nearest-ties-even and IEEE signedzero operation rules reproduce all294912rounded products,98304exact-product-sum-rounded dots,98304weighted contributions,98304regional additions and2700scalarregional merges. No target function,originalaccumulate,math.fsum or target source buffer was executed by this review. Every one of900saved merge rows and1275computedA prior-forcewords agrees."
+    },
+    {
+      "id": "R03_B_C_COMPONENTS_AND_WITNESSES",
+      "status": "PASS",
+      "detail": "Both stress channels independently exact-summed: B uses saved/reverified rounded contribution words;C exact-products/sums frozenstress,gradient,weight binary64 operands. Full1275two-channel objects match,including allB/Cnormalizedfractions,integer-rounded displays,A-B/B-C/A-C,CSV-minusA andcomputed-minusstoredQP. Three complete witness lists match in order and every field:16node0/x,32node32/y,32node32/z records,total80."
+    },
+    {
+      "id": "R04_RESULTANTS_MASKS_AND_GATES",
+      "status": "PASS",
+      "detail": "All six A/B/C channel-variant force/moment/L1/max objects and exactpostprocessingofAwordobjects match. Per-DOF masks and original roundednodecrossproduct/subtraction/fsum are checked separately from exactrational B/C moments. All108derivedgateobjects match;36exceedances remain,sixpervariant/channel. Original36/12objects unchanged and12prioraggregatefailures preserved. No failure limit reclassification."
+    },
+    {
+      "id": "R05_RETURN_PINS_AND_CENSUS",
+      "status": "PASS_SAVED_METADATA_ONLY",
+      "detail": "Saved parent raw0,PID10832,explicitwaitreap,timeoutfalse,parenterrornull,1.817782667s<20s;complete271Bstdoutandemptystderr plusrawtool0agree. All13admissionbefore/parentafterdescriptors equal;selectedaliasbefore/afterequal is savedrootobservation,not peer rehash/probe. Report/receipt/sourcepacketand6pinmaps join. Census has20listedrecords10112442B+6018Bself=21paths10118460B<33554432;laterpeer/rootreviews separate. NoRSS/truepeak/hardquota/fullABIclaim."
+    }
+  ],
+  "substantive_result": "For these fixed saved operands, replacing regional/global float accumulation by exact sums (B), and additionally replacing local rounded products/dot/weight arithmetic by exact products/sums (C), leaves six derived aggregate exceedances in every stress-channel variant. This limited arithmetic observation does not identify a native solver/assembly/constitutive cause, replace any force field, qualify equilibrium or validate the original raw data.",
+  "local_reviewer_check_history": "Initial independent verifier passed all saved arithmetic before refusing its own census shape assumption(21listed). Corrected only reviewer checker to the original documented20listed+1self accounting;second independent checker invocation returned0. First complete empty stdout and494Bstderr are preserved;targetaudit was never rerun.",
+  "scope_limits": [
+    "Derived operand seeds are the mathematical inputs;no independent rawQP/nodalCSV,referenceCSV,CDF,Vec,mesh or scientific-original body/hash/stat access.",
+    "No upstream constitutive stress or Gaussian-gradient-generation replay;the source peer reviewed those operations,while this result peer verifies arithmetic over captured words.",
+    "No installedPython/runtime/library/aliasbody access or API/process query;runtimeidentity stability is root saved metadata.",
+    "No physical,material,head-strength,field/forceunscaling,solverconvergence,cause,LPBF,twin,PhysicsNeMo ormanufacturing qualification;24headcells and12mechanicalfailures remain open."
+  ]
+}

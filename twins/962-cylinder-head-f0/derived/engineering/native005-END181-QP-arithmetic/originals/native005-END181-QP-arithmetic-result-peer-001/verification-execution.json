@@ -1,0 +1,48 @@
+{
+  "schema": "962-QP-arithmetic-independent-saved-verifier-execution/v1",
+  "scope": "Independent reviewer arithmetic over saved report operands only; target audit, frozen assessor and raw scientific inputs were never imported, executed or replayed.",
+  "verifier_invocations": 2,
+  "first_start": {
+    "chunk_id": "d57f07",
+    "wall_time_seconds": 1.002305084,
+    "session_id": 56363,
+    "original_token_count": 0,
+    "output": ""
+  },
+  "first_completion": {
+    "chunk_id": "bf02c3",
+    "wall_time_seconds": 0.000015084,
+    "exit_code": 1,
+    "original_token_count": 0,
+    "output": ""
+  },
+  "first_disposition": "Every saved arithmetic comparison passed before a final reviewer census-shape assertion. Reviewer initially expected 21 listed records; original correctly lists20 and counts its6018B self separately.",
+  "first_streams": [
+    "verification-first.stdout.log",
+    "verification-first.stderr.log"
+  ],
+  "correction": "Changed only reviewer checker census handling to20listed+1self; no original/result/target/code/input mutation.",
+  "final_start": {
+    "chunk_id": "77f880",
+    "wall_time_seconds": 1.000624041,
+    "session_id": 51302,
+    "original_token_count": 0,
+    "output": ""
+  },
+  "final_completion": {
+    "chunk_id": "2f0c99",
+    "wall_time_seconds": 0.000042083,
+    "exit_code": 0,
+    "original_token_count": 0,
+    "output": ""
+  },
+  "final_streams": [
+    "verification.stdout.log",
+    "verification.stderr.log"
+  ],
+  "final_status": "PASS_ALL_SAVED_OPERAND_ARITHMETIC_AND_METADATA_CHECKS",
+  "target_invocations_in_this_review": 0,
+  "scientific_runtime_or_API_body_access": false,
+  "timing": "Tool wait scopes only; no verifier or target benchmark claim.",
+  "qualification": false
+}

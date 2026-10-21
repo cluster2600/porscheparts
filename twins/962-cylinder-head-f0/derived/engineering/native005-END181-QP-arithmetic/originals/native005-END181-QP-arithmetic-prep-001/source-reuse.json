@@ -1,0 +1,114 @@
+{
+  "schema": "962-native005-END181-QP-arithmetic-source-reuse/v1",
+  "status": "SOURCE_TEXT_AND_AST_ONLY",
+  "source": {
+    "path": "work/962-engineering/native005-END181-QP-arithmetic-prep-001/audit_qp_arithmetic.py",
+    "sha256": "6658873c7f03ecac79c9140251319fa3892a41f950f60d303893af50fe18158d",
+    "bytes": 25526
+  },
+  "formatter_donor": {
+    "path": "work/962-engineering/native005-END181-equilibrium-prep-001/calculate_END181.py",
+    "sha256": "50160c285028764ee9f77d4a72b7d0823b33b4c5d3b8412174ca9efd03508f4a",
+    "bytes": 21807
+  },
+  "retained_definitions": {
+    "need": {
+      "text_exact": true,
+      "AST_exact": true,
+      "source_segment_sha256": "4b3a697e0d6c229d054eb933137631f3eec63797433cf8a40cb5f41231911d04"
+    },
+    "checked_bytes": {
+      "text_exact": true,
+      "AST_exact": true,
+      "source_segment_sha256": "76f8d85f2f74780926baf64986a4bf201c29f8210bbfc10f9b3c75d18a461c3d"
+    },
+    "vector_rows": {
+      "text_exact": true,
+      "AST_exact": true,
+      "source_segment_sha256": "232d5a12c8af5f3c169413ab069a315aa38847568b251684d3c7e708b45248ae"
+    },
+    "resultants": {
+      "text_exact": true,
+      "AST_exact": true,
+      "source_segment_sha256": "7bf16a6a11071365a81ea9b3aeb8cf1a541257e98f7980ff8350829355634342"
+    }
+  },
+  "unchanged_whole_assessor": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-assessor-prep-001/assess.py",
+    "sha256": "aa7ee403a0a3078df58410815f2b613aaeb9634bd14bc9c90517ce00cec7f2d5",
+    "bytes": 46645
+  },
+  "selected_unchanged_kernel_segments": {
+    "hex_rule": {
+      "source_segment_sha256": "e4c183e3a42f9a7c8fc6b8234cae5d786df20e5ab4d6422257090c0c285fa5cb",
+      "bytes": 1087,
+      "loaded_from_unchanged_whole_assessor": true
+    },
+    "symgrad": {
+      "source_segment_sha256": "9ffb54f0118e96a0a30d70e83851e47e13fb0798d382868c2653fced33b43c05",
+      "bytes": 226,
+      "loaded_from_unchanged_whole_assessor": true
+    },
+    "hooke": {
+      "source_segment_sha256": "2dd0d810e21e441186a7fdbb212e00e0d1a48d11f8893e9abf0181a9ab74617c",
+      "bytes": 182,
+      "loaded_from_unchanged_whole_assessor": true
+    },
+    "mechanical_state": {
+      "source_segment_sha256": "00fbc78b49006d28e9d84b93ad53d5a9b2d991c79dcea1029612724786ef3780",
+      "bytes": 764,
+      "loaded_from_unchanged_whole_assessor": true
+    },
+    "accumulate": {
+      "source_segment_sha256": "6016851cf7beb200f508d96bd8c1194395c2450326b424b715f399b8c20bd2c8",
+      "bytes": 217,
+      "loaded_from_unchanged_whole_assessor": true
+    },
+    "node_sample": {
+      "source_segment_sha256": "ef65acf09b041d0efeefd45fd54921812e67207677a07dbeb103f59a4216bfb6",
+      "bytes": 2444,
+      "loaded_from_unchanged_whole_assessor": true
+    },
+    "quadrature_sample": {
+      "source_segment_sha256": "ec5b405374213621d5d680e5a11b85bf537497abdd49e65889e9480a34769c56",
+      "bytes": 1383,
+      "loaded_from_unchanged_whole_assessor": true
+    },
+    "support_masks": {
+      "source_segment_sha256": "d1924af96d93484dbff25bcb660705f9e3de6f3ae0d2bb35288ba86f51149022",
+      "bytes": 1443,
+      "loaded_from_unchanged_whole_assessor": true
+    }
+  },
+  "new_definitions": [
+    "descriptor",
+    "word",
+    "exact",
+    "ratio",
+    "display",
+    "exact_resultants",
+    "fixed_context",
+    "arithmetic",
+    "main"
+  ],
+  "source_delta": "A new fixed arithmetic audit, not a numerical-kernel edit. Four definitions are exact donor copies; nine definitions are new. Entire frozen assessor is verified and loaded in a fresh ordinary module namespace only in a separately admitted future call; none of its main/assessment/CDF paths is called.",
+  "ordering_proof_obligations": [
+    "Read the exact saved old2 then born3 cell_iteration_order and node_iteration_order, verify complete/disjoint cell coverage, and preserve those orders.",
+    "For each cell, call unchanged mechanical_state with the same CSV displacement/temperature and saved own-BEGIN80 references; native q0..7 selects the unchanged quadrature_sample physical-rule index.",
+    "Both manual A channels preserve each rounded stress*gradient product, actual math.fsum, rounded weight multiplication, per-region in-place addition and final old2/born3 regional merge.",
+    "Call original accumulate separately on identical operands and require word identity to the manual regional trace and final force rows.",
+    "Additionally require A_computed word identity to all1275 prior constitutively assembled component words; no such equality is forced onto A_stored_QP.",
+    "B exact-sums the exact binary64 words of the already-rounded weighted contributions globally, removing regional and global merge rounding.",
+    "C exact-sums stressword*gradientword*weightword rational products; geometry, quadrature and constitutive upstream words remain frozen binary64.",
+    "Preserve original36/12 checks verbatim; six channel/variant combinations independently contribute18 checks each, yielding108 derived checks.",
+    "Original A floating resultants retain donor operations. Exact postprocessing of A words is saved separately; B/C resultants use their exact rationals without force rounding before moments."
+  ],
+  "negative_scope": [
+    "No parser, assessor, policy, source history or threshold changed.",
+    "No exact native solver/constitutive solution, convergence, residual cause, force unscaling or qualification is asserted.",
+    "Only QP and END181 nodal CSV bodies are proposed future intake; no CDF/Vec/map/other raw scientific body.",
+    "No target/source fragment was imported, compiled or executed during preparation."
+  ],
+  "static_checks_only": true,
+  "no_test_or_calculation_observation": true
+}

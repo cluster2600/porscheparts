@@ -22,12 +22,15 @@ and [conditional Exodus averaging reconstruction](derived/engineering/native005-
 now have independent arithmetic reviews. The reconstruction reproduces all 1,275
 saved displacement words, including the 192 previous differences. The
 [first real mesh-route toy attempt](derived/engineering/current24-five-toy-first-real-attempt/README.md)
-remains incomplete after a model-parser refusal; a separate
-[source correction and unrun fixtures](derived/engineering/current24-toy-model-parser003-held/README.md)
-are ready for review. The [current END181 equilibrium calculation](derived/engineering/native005-END181-equilibrium/README.md)
+remains preserved after a model-parser refusal. The later
+[parser fixtures and second solver attempt](derived/engineering/current24-parser003-and-five-toy-second-attempt/README.md)
+pass nine fixture methods and all five solver cases; full external resource
+closure remains unverified. The [current END181 equilibrium calculation](derived/engineering/native005-END181-equilibrium/README.md)
 records 66,590 scalar comparisons with zero exceedances, while 12 of 36 aggregate
-checks still fail. Head strength and calibrated LPBF remain open; the programme
-now targets per-QP assembly arithmetic and controlled solver convergence.
+checks still fail. The [complete quadrature arithmetic audit](derived/engineering/native005-END181-QP-arithmetic/README.md)
+retains all operands and confirms that the tested rounding corrections do not
+clear the failures. Head strength and calibrated LPBF remain open; the next
+native experiment adds one solver correction with unchanged physical limits.
 
 The [native005 contract, staging and metadata checkpoint](derived/engineering/native005-contract-staging-and-freshness/README.md)
 publishes the exact HELD contract, four input-copy receipts and one accepted

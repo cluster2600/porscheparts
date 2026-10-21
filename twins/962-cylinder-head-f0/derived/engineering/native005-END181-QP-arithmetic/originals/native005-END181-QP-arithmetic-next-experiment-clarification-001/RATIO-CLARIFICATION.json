@@ -1,0 +1,250 @@
+{
+  "schema": "962-native005-QP-arithmetic-next-experiment-ratio-clarification/v1",
+  "status": "ADDITIVE_EXACT_RATIO_CORRECTION",
+  "preserved_originals": {
+    "proposal": {
+      "path": "work/962-engineering/native005-END181-QP-arithmetic-next-experiment-001/proposal.json",
+      "sha256": "fc3c253948213c3d78c2bb186a11d8f27b1feb4b27255636f3f2df53e3a6381c",
+      "bytes": 12055
+    },
+    "reader": {
+      "path": "work/962-engineering/native005-END181-QP-arithmetic-next-experiment-001/NEXT_EXPERIMENT.md",
+      "sha256": "1ee4fb0dadb2633e4f3c7c8554f981a59b91f520b9a1ca84c113442267c9166e",
+      "bytes": 4165
+    },
+    "index": {
+      "path": "work/962-engineering/native005-END181-QP-arithmetic-next-experiment-001/index.json",
+      "sha256": "bb20b012bde9ace201f481ba3f855db340487d3560147f609ecf1f9a48122376",
+      "bytes": 1157
+    }
+  },
+  "finding": "The proposal's numeric summary passed through a binary64 JavaScript JSON value before serialization. Large numerator/denominator integers in evidence.maxima lost integer precision; they are approximate summaries and must not be used as exact saved-ratio evidence.",
+  "supersession": "This companion supersedes only the exactness interpretation of evidence.maxima[*][*].ratio. All prior numeric summary values and displayed comparisons are approximate; the independently reviewed full saved report remains authoritative. The original three files and their inventory are unchanged.",
+  "exact_ratio_encoding": "Every numerator/denominator is a decimal STRING representing an arbitrary-precision signed integer and positive integer denominator. Python json integer parsing and Fraction exact comparisons selected all tied maxima across all1275 saved component rows; no target source or raw scientific input was executed/read.",
+  "source_report": {
+    "path": "work/962-engineering/native005-END181-QP-arithmetic-execution-001/report.json",
+    "sha256": "dc1d3bae0834bfe76838cb966290f4c6b43df07e601764bef4e7afffddfcbc99",
+    "bytes": 7473602
+  },
+  "exact_maxima": [
+    {
+      "channel": "computed",
+      "metric": "A_minus_B",
+      "absolute_maximum_ratio_decimal_strings": [
+        "1353",
+        "8796093022208"
+      ],
+      "all_equal_maximum_witnesses": [
+        {
+          "report_row_index_0_based": 644,
+          "source_ID": 214,
+          "component": 2,
+          "constrained": false,
+          "JSON_pointer": "/all1275_component_comparisons/644/channels/computed/A_minus_B",
+          "saved_signed_ratio_decimal_strings": [
+            "-1353",
+            "8796093022208"
+          ],
+          "reduced_signed_ratio_decimal_strings": [
+            "-1353",
+            "8796093022208"
+          ]
+        }
+      ],
+      "witness_count": 1
+    },
+    {
+      "channel": "computed",
+      "metric": "B_minus_C",
+      "absolute_maximum_ratio_decimal_strings": [
+        "422389165005976677217",
+        "10141204801825835211973625643008"
+      ],
+      "all_equal_maximum_witnesses": [
+        {
+          "report_row_index_0_based": 567,
+          "source_ID": 189,
+          "component": 0,
+          "constrained": false,
+          "JSON_pointer": "/all1275_component_comparisons/567/channels/computed/B_minus_C",
+          "saved_signed_ratio_decimal_strings": [
+            "422389165005976677217",
+            "10141204801825835211973625643008"
+          ],
+          "reduced_signed_ratio_decimal_strings": [
+            "422389165005976677217",
+            "10141204801825835211973625643008"
+          ]
+        }
+      ],
+      "witness_count": 1
+    },
+    {
+      "channel": "computed",
+      "metric": "A_minus_C",
+      "absolute_maximum_ratio_decimal_strings": [
+        "52827138308046315763",
+        "316912650057057350374175801344"
+      ],
+      "all_equal_maximum_witnesses": [
+        {
+          "report_row_index_0_based": 644,
+          "source_ID": 214,
+          "component": 2,
+          "constrained": false,
+          "JSON_pointer": "/all1275_component_comparisons/644/channels/computed/A_minus_C",
+          "saved_signed_ratio_decimal_strings": [
+            "-52827138308046315763",
+            "316912650057057350374175801344"
+          ],
+          "reduced_signed_ratio_decimal_strings": [
+            "-52827138308046315763",
+            "316912650057057350374175801344"
+          ]
+        }
+      ],
+      "witness_count": 1
+    },
+    {
+      "channel": "computed",
+      "metric": "native_CSV_minus_A_word",
+      "absolute_maximum_ratio_decimal_strings": [
+        "734335",
+        "70368744177664"
+      ],
+      "all_equal_maximum_witnesses": [
+        {
+          "report_row_index_0_based": 912,
+          "source_ID": 304,
+          "component": 0,
+          "constrained": false,
+          "JSON_pointer": "/all1275_component_comparisons/912/channels/computed/native_CSV_minus_A_word",
+          "saved_signed_ratio_decimal_strings": [
+            "734335",
+            "70368744177664"
+          ],
+          "reduced_signed_ratio_decimal_strings": [
+            "734335",
+            "70368744177664"
+          ]
+        }
+      ],
+      "witness_count": 1
+    },
+    {
+      "channel": "stored_QP",
+      "metric": "A_minus_B",
+      "absolute_maximum_ratio_decimal_strings": [
+        "3911",
+        "17592186044416"
+      ],
+      "all_equal_maximum_witnesses": [
+        {
+          "report_row_index_0_based": 686,
+          "source_ID": 228,
+          "component": 2,
+          "constrained": false,
+          "JSON_pointer": "/all1275_component_comparisons/686/channels/stored_QP/A_minus_B",
+          "saved_signed_ratio_decimal_strings": [
+            "3911",
+            "17592186044416"
+          ],
+          "reduced_signed_ratio_decimal_strings": [
+            "3911",
+            "17592186044416"
+          ]
+        }
+      ],
+      "witness_count": 1
+    },
+    {
+      "channel": "stored_QP",
+      "metric": "B_minus_C",
+      "absolute_maximum_ratio_decimal_strings": [
+        "374253995546203485659",
+        "10141204801825835211973625643008"
+      ],
+      "all_equal_maximum_witnesses": [
+        {
+          "report_row_index_0_based": 822,
+          "source_ID": 274,
+          "component": 0,
+          "constrained": false,
+          "JSON_pointer": "/all1275_component_comparisons/822/channels/stored_QP/B_minus_C",
+          "saved_signed_ratio_decimal_strings": [
+            "374253995546203485659",
+            "10141204801825835211973625643008"
+          ],
+          "reduced_signed_ratio_decimal_strings": [
+            "374253995546203485659",
+            "10141204801825835211973625643008"
+          ]
+        }
+      ],
+      "witness_count": 1
+    },
+    {
+      "channel": "stored_QP",
+      "metric": "A_minus_C",
+      "absolute_maximum_ratio_decimal_strings": [
+        "73755937366401162873",
+        "316912650057057350374175801344"
+      ],
+      "all_equal_maximum_witnesses": [
+        {
+          "report_row_index_0_based": 686,
+          "source_ID": 228,
+          "component": 2,
+          "constrained": false,
+          "JSON_pointer": "/all1275_component_comparisons/686/channels/stored_QP/A_minus_C",
+          "saved_signed_ratio_decimal_strings": [
+            "73755937366401162873",
+            "316912650057057350374175801344"
+          ],
+          "reduced_signed_ratio_decimal_strings": [
+            "73755937366401162873",
+            "316912650057057350374175801344"
+          ]
+        }
+      ],
+      "witness_count": 1
+    },
+    {
+      "channel": "stored_QP",
+      "metric": "native_CSV_minus_A_word",
+      "absolute_maximum_ratio_decimal_strings": [
+        "211",
+        "274877906944"
+      ],
+      "all_equal_maximum_witnesses": [
+        {
+          "report_row_index_0_based": 686,
+          "source_ID": 228,
+          "component": 2,
+          "constrained": false,
+          "JSON_pointer": "/all1275_component_comparisons/686/channels/stored_QP/native_CSV_minus_A_word",
+          "saved_signed_ratio_decimal_strings": [
+            "-211",
+            "274877906944"
+          ],
+          "reduced_signed_ratio_decimal_strings": [
+            "-211",
+            "274877906944"
+          ]
+        }
+      ],
+      "witness_count": 1
+    }
+  ],
+  "selection_scope": {
+    "stress_channels": 2,
+    "metrics_per_channel": 4,
+    "component_rows_per_metric": 1275,
+    "all_equal_maximum_ties_retained": true
+  },
+  "interpretation_or_experiment_change": false,
+  "old_three_file_packet_unchanged": true,
+  "target_solver_or_native_execution": false,
+  "raw_scientific_or_runtime_body_access": false,
+  "PUB_or_Git_changes": false
+}
