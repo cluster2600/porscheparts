@@ -167,6 +167,12 @@ nominal **1.5 mm caps and 1.61 mm webs**, while the central plate is **8 mm**
 thick. Putting a lattice into an existing void adds material; reducing weight
 requires replacing material that is currently solid.
 
+![Actual R2 arm and central material sections](../../media/carrier-convergence-20261022/carrier-cellular-material-sections.png)
+
+These are intersections of the complete retained R2 surface with two planes,
+not an illustration of a generated cellular design. The arm section is already
+open and thin-walled; the centre section shows the plate and standing ribs.
+
 The first comparison should preserve the end eyes, bore interfaces, tool access
 and the main loaded junctions, then examine sufficiently thick, lightly loaded
 regions. A graded lattice or continuous cellular surface can be generated with

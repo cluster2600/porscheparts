@@ -8,7 +8,7 @@ CalculiX binary. Large working artifacts stay under `work/`.
 
 ## Retained inputs
 
-- R2 reference: `../resume-20261020/picogk-R2-study/surface.mesh64.gz`, SHA-256
+- R2 reference: `../resume-20261020/picogk-R2-study/surface.mesh64.gz`, decompressed SHA-256
   `396161993b35f708fdd1e527f875aff60daf8c79031dc9a39c42891a9c1ae1a0`.
 - Existing coarse geometry, mapping proof, consistent bore loads and material:
   `work/carrier-resume-20261020/meshlib-R2-{quadratic-geometry,quadratic-mapping-audit,matched-traction}-001/`.

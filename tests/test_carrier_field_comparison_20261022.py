@@ -9,6 +9,13 @@ spec=importlib.util.spec_from_file_location('_carrier_comparison',SOURCE);module
 
 
 class ComparisonTests(unittest.TestCase):
+    def test_alternative_solver_changes_one_directive_and_preserves_physics(self):
+        path=SOURCE.with_name('prepare_iterative_solver.py');spec=importlib.util.spec_from_file_location('_carrier_solver',path);solver=importlib.util.module_from_spec(spec);spec.loader.exec_module(solver)
+        deck='*STATIC,SOLVER=SPOOLES\n*BOUNDARY\nFIXED,1,3\n*CLOAD\n1,3,-4000\n';changed=solver.iterative_deck(deck)
+        self.assertEqual(changed.replace('ITERATIVE CHOLESKY','SPOOLES'),deck)
+        for bad in ['',deck+deck,'** *STATIC,SOLVER=SPOOLES\n']:
+            with self.assertRaises(ValueError):solver.iterative_deck(bad)
+
     def test_volume_weighting_does_not_count_small_elements_as_equal_material(self):
         self.assertEqual(module.weighted_quantile(np.array([10.,100.]),np.array([99.,1.]),.95),10.)
         with self.assertRaises(ValueError):module.weighted_quantile(np.array([10.]),np.array([-1.]),.95)
