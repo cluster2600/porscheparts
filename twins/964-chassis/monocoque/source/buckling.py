@@ -138,8 +138,10 @@ def buckle_repeated(pts, all_tri, secs, fixed, loads):
     """Factors and modes of two *BUCKLE solves that agree within 0.01%."""
     f1, modes = s6.run(pts, all_tri, secs, fixed, loads, buckle=N_MODES)
     f2, _ = s6.run(pts, all_tri, secs, fixed, loads, buckle=N_MODES)
-    if len(f1) != N_MODES or len(f2) != N_MODES or np.max(np.abs(f1 - f2) / np.abs(f1)) > 1e-4:
-        sys.exit(f"buckling factors do not repeat: {f1.round(3).tolist()} against {f2.round(3).tolist()}")
+    if (len(f1) != N_MODES or len(f2) != N_MODES or not np.isfinite(f1).all()
+            or not np.isfinite(f2).all() or np.any(f1 == 0) or not np.isfinite(modes).all()
+            or np.max(np.abs(f1 - f2) / np.abs(f1)) > 1e-4):
+        sys.exit(f"buckling results are invalid or do not repeat: {f1.round(3).tolist()} against {f2.round(3).tolist()}")
     return f1, modes
 
 

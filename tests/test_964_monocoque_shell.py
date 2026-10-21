@@ -4,6 +4,7 @@ import json
 import sys
 import unittest
 from pathlib import Path
+from unittest import mock
 
 try:
     import numpy as np
@@ -201,6 +202,31 @@ class MonocoqueShellTests(unittest.TestCase):
         torsion_pruned = json.loads((SHELL / "derived/torsion-members.json").read_text(encoding="utf-8"))["pruned"]
         self.assertGreater(min(torsion_pruned["K_cabin_lost_fraction"]), 5 * max(m["pruned"]["K_cabin_lost_fraction"]))
 
+
+    @unittest.skipIf(np is None, "numpy not installed")
+    def test_buckling_repeat_check_rejects_nonfinite_or_zero_factors_and_modes(self) -> None:
+        sys.path.insert(0, str(SHELL / "source"))
+        try:
+            import buckling
+        finally:
+            sys.path.remove(str(SHELL / "source"))
+        factors = np.arange(1.0, buckling.N_MODES + 1)
+        modes = np.zeros((buckling.N_MODES, 3, 3))
+        with mock.patch.object(buckling.s6, "run", return_value=(factors, modes)):
+            actual, _ = buckling.buckle_repeated(None, None, None, None, None)
+            np.testing.assert_array_equal(actual, factors)
+        for bad in (float("nan"), float("inf"), -float("inf"), 0.0):
+            invalid = factors.copy()
+            invalid[0] = bad
+            for first, second in ((invalid, factors), (factors, invalid)):
+                with self.subTest(factor=bad), mock.patch.object(buckling.s6, "run",
+                                                               side_effect=[(first, modes), (second, modes)]):
+                    with self.assertRaises(SystemExit):
+                        buckling.buckle_repeated(None, None, None, None, None)
+        modes[0, 0, 0] = float("nan")
+        with mock.patch.object(buckling.s6, "run", return_value=(factors, modes)):
+            with self.assertRaises(SystemExit):
+                buckling.buckle_repeated(None, None, None, None, None)
 
     def test_buckling_is_a_labelled_linear_screen(self) -> None:
         r = load("buckling.json")
