@@ -27,6 +27,11 @@ and [engineering workflow](architecture/engineering-workflow.md). Visualization
 and PhysicsNeMo are optional branches, not prerequisites for fabrication.
 The dated execution statuses below remain attached to their original evidence.
 
+The separate [Warp geometry Docker pilot](WARP_GEOMETRY_VAST_PILOT.md) prepares
+point-to-surface checks for a future bounded CUDA test on Vast. It contains
+synthetic fixtures only. Its local CPU smoke and any later CUDA run have
+separate evidence; it does not resume the stopped fan experiment.
+
 ## Full chain and where it runs
 
 | Step | Authoritative tool | Normal location | Input → output | Current status |
