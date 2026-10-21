@@ -39,7 +39,7 @@ labels or trained surrogate are accepted.
 | Workstream | Next concrete work | Acceptance before the next phase |
 |---|---|---|
 | Strength and material | Resolve the 24 remaining head-mesh quality failures; establish operating loads and a documented material/process/heat-treatment state. Review hot-property references separately from the existing hypothetical cards. | Admitted meshes, equilibrium and convergence; temperature-dependent constitutive data and stated allowable stresses. Fatigue, creep and physical correlation need their own evidence. |
-| LPBF | Complete the current finite runtime/input check, then capture the fixed numerical coupon once. Assess its saved fields separately, resolve the 12 aggregate mechanical failures, and verify deposition, cooling and release before a head calculation. | Numerical witnesses plus machine/material-specific calibration against measured temperature, distortion and residual stress. A coupon capture or successful process exit alone does not qualify LPBF. |
+| LPBF | Review the completed fixed coupon capture, associate its saved fields with current IDs, coordinates and time, then assess against the unchanged mechanical criteria. Resolve the 12 aggregate mechanical failures and verify deposition, cooling and release before a head calculation. | Numerical witnesses plus machine/material-specific calibration against measured temperature, distortion and residual stress. A coupon capture or successful process exit alone does not qualify LPBF. |
 | Omniverse | After accepted strength and LPBF results exist, assemble the family in OpenUSD and attach those fields. Track native mesh/field identities, units, frames, associations and time. | Preflight, required service readiness, asset/conformance checks, native-field mapping checks and measurement correlation. Preserve the six current substantive USD profile failures until their repairs are verified. |
 | PhysicsNeMo | Build a dataset from accepted solver cases; split whole geometries, builds and load cases before normalization. Compare suitable model families and simple baselines, then train, evaluate and connect checked inference to the twin. | Independent-case field and hotspot errors, conservation checks, uncertainty and out-of-domain limits, reproducible training and end-to-end inference timings. Recheck proposed designs with the reference solvers. |
 
@@ -49,11 +49,15 @@ Planning and data preparation can proceed in parallel. Scientific acceptance
 passes from strength/material to calibrated LPBF, then to the twin and learned
 models. A later phase cannot turn a failed upstream result into an accepted label.
 
-The current native005 input contract and four staged inputs are local
-preparation beyond the published fake31/core13 checkpoint below. The current
-freshness operation and native coupon launch have not completed. No production
-alloy, qualified build recipe, accepted head-field dataset or trained head
-surrogate is claimed at this milestone.
+The [native005 contract, staging and current metadata checkpoint](derived/engineering/native005-contract-staging-and-freshness/README.md)
+publishes the exact HELD input contract, four opaque input-copy receipts and
+one accepted current freshness operation with owner/helper/query exits 0/0/0.
+Its frozen scope leaves native execution unissued. A later separately admitted
+coupon capture has now completed locally with outer/caller/native exits 0/0/0;
+saved-result review remains pending outside that published checkpoint. Field
+association and assessment against the unchanged mechanical criteria follow
+separately. No production alloy, qualified build recipe, accepted head-field
+dataset or trained head surrogate is claimed at this milestone.
 
 The [full five-toy owner003 checkpoint](derived/engineering/full-five-toy-owner003-prefix-and-core-hold/README.md)
 accepts only the four-line admission-prefix repair. Operation remains on HOLD
