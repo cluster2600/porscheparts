@@ -20,7 +20,8 @@ Statuses used:
   path;
 - **blocked**: missing input, GPU, license, measurement or correlation.
 
-For the current execution order and the roles of **Qwen and PicoGK**, start
+For the current execution order and the roles of **our qwen-picogk project,
+PicoGK and our PorscheFanatics.com information catalogue**, start
 with the [README software-chain diagram](../README.md#software-chain-qwen-and-picogk)
 and [engineering workflow](architecture/engineering-workflow.md). Visualization
 and PhysicsNeMo are optional branches, not prerequisites for fabrication.
