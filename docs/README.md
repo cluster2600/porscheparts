@@ -68,6 +68,7 @@ The [local Qwen pilot](../training/m64-qwen/README.md) implements the first AI i
 |---|---|
 | [DIGITAL_TWIN.md](DIGITAL_TWIN.md) | the 993 digital twin, its zones and levels |
 | [SOFTWARE_STACK.md](SOFTWARE_STACK.md) | the twin's software stack |
+| [WARP_GEOMETRY_VAST_PILOT.md](WARP_GEOMETRY_VAST_PILOT.md) | isolated Warp geometry image, synthetic CPU/CUDA checks and preparation for a bounded Vast test |
 | [AI_DIGITAL_TWIN_STACK.md](AI_DIGITAL_TWIN_STACK.md) | the open-source suite for building the twin |
 | [QWEN_TRAINING.md](QWEN_TRAINING.md) | how Qwen was trained, the actual datasets and results, and the next experiments for the 993 project |
 | [TOOLCHAIN.md](TOOLCHAIN.md) | the local CAD and analysis toolchain |

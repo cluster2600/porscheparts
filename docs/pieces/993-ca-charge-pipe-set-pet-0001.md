@@ -73,6 +73,12 @@ Catalogue record: [`catalog/parts/993-ca-charge-pipe-set-pet-0001.json`](../../c
 
 - none
 
+## Images
+
+![preview](../../parts/993-ca-charge-pipe-set-pet-0001/media/preview.png)
+
+*`parts/993-ca-charge-pipe-set-pet-0001/media/preview.png` — Catalogue study only. No CAD geometry is available for this record. Status card; no part geometry depicted. Not a print file or evidence of fit..*
+
 ## Provenance and sources
 
 | field | value |

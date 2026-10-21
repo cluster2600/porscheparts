@@ -1,0 +1,100 @@
+{
+  "schema": "current24af-exact-P2-CAD-reference-nonregression-1",
+  "metric": "abs(refined exact signed P2 volume minus original closed CAD binary64 reference) <= abs(coarse exact signed P2 volume minus the same reference)",
+  "reference": {
+    "original_binary64_mm3": 288685.89908443496,
+    "float_hex": "0x1.19eb798a99712p+18",
+    "binary64_big_endian_hex": "41119eb798a99712",
+    "exact_ratio_of_observation": {
+      "numerator": "2479792990768009",
+      "denominator": "8589934592",
+      "binary64_observation": 288685.89908443496
+    },
+    "mathematically_exact_true_CAD_volume_claimed": false
+  },
+  "coordinate_representations": {
+    "INP": {
+      "coarse_exact_P2_mm3": {
+        "numerator": "183583195107974568561988652520896994880708260893500537394887969918729809414195473",
+        "denominator": "636064943320218358649987100267450665697894202875222824923778232465343119360",
+        "binary64_observation": 288623.3505492097
+      },
+      "refined_exact_P2_mm3": {
+        "numerator": "183583195107974581135920938654558869087033276862275175470141832111547450547112209",
+        "denominator": "636064943320218358649987100267450665697894202875222824923778232465343119360",
+        "binary64_observation": 288623.3505492097
+      },
+      "coarse_signed_error_to_closed_CAD_reference_mm3": {
+        "numerator": "-39784930512831844047111650154475316304389463545328547600868036910153841899247",
+        "denominator": "636064943320218358649987100267450665697894202875222824923778232465343119360",
+        "binary64_observation": -62.548535225282265
+      },
+      "refined_signed_error_to_closed_CAD_reference_mm3": {
+        "numerator": "-39784930512819270114825516492601109979373494770690472347005844092512708982511",
+        "denominator": "636064943320218358649987100267450665697894202875222824923778232465343119360",
+        "binary64_observation": -62.5485352252625
+      },
+      "coarse_absolute_error_mm3": {
+        "numerator": "39784930512831844047111650154475316304389463545328547600868036910153841899247",
+        "denominator": "636064943320218358649987100267450665697894202875222824923778232465343119360",
+        "binary64_observation": 62.548535225282265
+      },
+      "refined_absolute_error_mm3": {
+        "numerator": "39784930512819270114825516492601109979373494770690472347005844092512708982511",
+        "denominator": "636064943320218358649987100267450665697894202875222824923778232465343119360",
+        "binary64_observation": 62.5485352252625
+      },
+      "change_in_absolute_error_mm3": {
+        "numerator": "-5078570805978678749559614408208387457",
+        "denominator": "256904584687072778590491474500909124548894392320",
+        "binary64_observation": -1.9768315198285474e-11
+      },
+      "exact_P2_CAD_nonregression_passed": true
+    },
+    "NPZ": {
+      "coarse_exact_P2_mm3": {
+        "numerator": "5217748227664024222043421812353842204973543359340797334004316471181",
+        "denominator": "18078052997913640599847073538838079278374783680056419397140480",
+        "binary64_observation": 288623.3505492099
+      },
+      "refined_exact_P2_mm3": {
+        "numerator": "1739249409221341546851879084132749858079597834990796726083863434543",
+        "denominator": "6026017665971213533282357846279359759458261226685473132380160",
+        "binary64_observation": 288623.35054921
+      },
+      "coarse_signed_error_to_closed_CAD_reference_mm3": {
+        "numerator": "-1130755734739938156929249536189104017772134843078619875058417779",
+        "denominator": "18078052997913640599847073538838079278374783680056419397140480",
+        "binary64_observation": -62.548535225028765
+      },
+      "refined_signed_error_to_closed_CAD_reference_mm3": {
+        "numerator": "-376918578246506548237936497260578250840663070495258542594861777",
+        "denominator": "6026017665971213533282357846279359759458261226685473132380160",
+        "binary64_observation": -62.54853522500561
+      },
+      "coarse_absolute_error_mm3": {
+        "numerator": "1130755734739938156929249536189104017772134843078619875058417779",
+        "denominator": "18078052997913640599847073538838079278374783680056419397140480",
+        "binary64_observation": 62.548535225028765
+      },
+      "refined_absolute_error_mm3": {
+        "numerator": "376918578246506548237936497260578250840663070495258542594861777",
+        "denominator": "6026017665971213533282357846279359759458261226685473132380160",
+        "binary64_observation": 62.54853522500561
+      },
+      "change_in_absolute_error_mm3": {
+        "numerator": "-46464189766842124137332131777537069",
+        "denominator": "2007067067867756082738214644538352535538237440",
+        "binary64_observation": -2.3150292539154756e-11
+      },
+      "exact_P2_CAD_nonregression_passed": true
+    }
+  },
+  "both_exact_P2_CAD_nonregression_passed": true,
+  "epsilon": null,
+  "original_generated_and_saved_zero_refusals_unchanged": true,
+  "exact_geometry_invariance_claimed": false,
+  "compiler_error_bound_claimed": false,
+  "physical_injectivity_claimed": false,
+  "qualification_by_volume_alone": false
+}

@@ -1,0 +1,18 @@
+{
+  "status": "incomplete",
+  "candidate_adopted": false,
+  "patches_regenerated": false,
+  "booleans": [],
+  "input_hashes": {
+    "work/carrier-process-20261017/bounded-webs-first-window-corner-slide-preparation-001/output-001/candidate-native.brep": "24af058467fd82a9f0c1d391bf947d427dffd311371cf8f73dafa492d204f4fd",
+    "work/carrier-resume-20261020/nurbs-root-patch-001/output/assessment.json": "020beeb02481535502ca95419166071fb6ccf2394967a7d967e07b611ff7cc24",
+    "work/carrier-resume-20261020/nurbs-root-patch-001/output/patch-0.brep": "9b2dae417fb2c9ffc76d40dd80978be7eb6c019c73b6f5b3a4f51372cd861771",
+    "work/carrier-resume-20261020/nurbs-root-patch-001/output/patch-1.brep": "397571f0c8b601da97a72abde026f9e146f346a7a760604efc12b827095681eb"
+  },
+  "failure": {
+    "type": "AttributeError",
+    "message": "'OCP.OCP.BRepAlgoAPI.BRepAlgoAPI_Fuse' object has no attribute 'HasErrors'",
+    "traceback": "Traceback (most recent call last):\n  File \"/Users/maxime/.codex/worktrees/993-carrier-revalidation/3dprinting993/parts/993-eng-carrier-0001/source/design-20261016/resume-20261020/assemble_nurbs_patches_together.py\", line 76, in main\n    candidate,row=boolean(BRepAlgoAPI_Fuse,body,patches,'fuse-all')\n  File \"/Users/maxime/.codex/worktrees/993-carrier-revalidation/3dprinting993/parts/993-eng-carrier-0001/source/design-20261016/resume-20261020/assemble_nurbs_patches_together.py\", line 72, in boolean\n    row=dict(name=name,sha256=sha(path),HasErrors=op.HasErrors(),HasWarnings=op.HasWarnings(),**summary(shape));report['booleans'].append(row)\nAttributeError: 'OCP.OCP.BRepAlgoAPI.BRepAlgoAPI_Fuse' object has no attribute 'HasErrors'\n"
+  },
+  "elapsed_seconds": 9.484829124994576
+}

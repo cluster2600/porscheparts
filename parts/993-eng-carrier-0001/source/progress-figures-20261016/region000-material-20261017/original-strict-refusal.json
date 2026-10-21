@@ -1,0 +1,185 @@
+{
+  "status": "strict_original_sections_failed_incomplete",
+  "source_index": 0,
+  "declared_layers": 1034,
+  "completed_layers": 0,
+  "first_refusal": {
+    "layer": 0,
+    "z_mm": 0.03,
+    "error_type": "ValueError",
+    "error": "A nonzero exact support cut collapses in float64",
+    "direct_original_hook_diagnostic": {
+      "error": "A nonzero exact support cut collapses in float64",
+      "reproduced": true,
+      "face_ids": [
+        5468
+      ],
+      "vertex_ids": [
+        4741,
+        4730,
+        4740
+      ],
+      "triangle_xyz_mm": [
+        [
+          -175.14524052761857,
+          -206.96504568101312,
+          2.8372790885689567
+        ],
+        [
+          -175.14524052761857,
+          -206.96504568101318,
+          1.233370496018914
+        ],
+        [
+          -175.14524052761857,
+          -206.96504568101312,
+          0.0
+        ]
+      ],
+      "triangle_xyz_exact": [
+        [
+          {
+            "numerator": "-3081187656155855",
+            "denominator": "17592186044416",
+            "nearest_float": -175.14524052761857
+          },
+          {
+            "numerator": "-3640967588311439",
+            "denominator": "17592186044416",
+            "nearest_float": -206.96504568101312
+          },
+          {
+            "numerator": "6388984523012627",
+            "denominator": "2251799813685248",
+            "nearest_float": 2.8372790885689567
+          }
+        ],
+        [
+          {
+            "numerator": "-3081187656155855",
+            "denominator": "17592186044416",
+            "nearest_float": -175.14524052761857
+          },
+          {
+            "numerator": "-227560474269465",
+            "denominator": "1099511627776",
+            "nearest_float": -206.96504568101318
+          },
+          {
+            "numerator": "5554606906280545",
+            "denominator": "4503599627370496",
+            "nearest_float": 1.233370496018914
+          }
+        ],
+        [
+          {
+            "numerator": "-3081187656155855",
+            "denominator": "17592186044416",
+            "nearest_float": -175.14524052761857
+          },
+          {
+            "numerator": "-3640967588311439",
+            "denominator": "17592186044416",
+            "nearest_float": -206.96504568101312
+          },
+          {
+            "numerator": "0",
+            "denominator": "1",
+            "nearest_float": 0.0
+          }
+        ]
+      ],
+      "owner": null,
+      "owner_status": "unknown_large_metadata_not_opened",
+      "scan_attributes": [
+        {
+          "face_id": 5468,
+          "order": {
+            "dtype": "<f8",
+            "value": 9.0
+          },
+          "type": {
+            "dtype": "<f8",
+            "value": 1.0
+          }
+        }
+      ],
+      "exact_cut_xyz_mm": [
+        [
+          {
+            "numerator": "-3081187656155855",
+            "denominator": "17592186044416",
+            "nearest_float": -175.14524052761857
+          },
+          {
+            "numerator": "-161793149692626714682948443802959",
+            "denominator": "781741424791082689365813493760",
+            "nearest_float": -206.96504568101312
+          },
+          {
+            "numerator": "1080863910568919",
+            "denominator": "36028797018963968",
+            "nearest_float": 0.03
+          }
+        ],
+        [
+          {
+            "numerator": "-3081187656155855",
+            "denominator": "17592186044416",
+            "nearest_float": -175.14524052761857
+          },
+          {
+            "numerator": "-3640967588311439",
+            "denominator": "17592186044416",
+            "nearest_float": -206.96504568101312
+          },
+          {
+            "numerator": "1080863910568919",
+            "denominator": "36028797018963968",
+            "nearest_float": 0.03
+          }
+        ]
+      ],
+      "encoded_cut_xyz_mm": [
+        [
+          -175.14524052761857,
+          -206.96504568101312,
+          0.03
+        ],
+        [
+          -175.14524052761857,
+          -206.96504568101312,
+          0.03
+        ]
+      ]
+    }
+  },
+  "source_sha256": "7ca6cdca8f97bd9b342e24a8276dc3faec50e38dc2c3571946ecb87083ff0c95",
+  "plan_sha256": "9486832afc2b20dd86cbb45a6e2c82dbf7e91f9f1bd77629c097ecb97f982d03",
+  "preflight_sha256": "23fc2212631dc51879e30996507a053dcb8cc6684fe5e5335d8d367292e4d028",
+  "global_admission": false,
+  "geometry_modified": false,
+  "final_process_audited": false,
+  "large_metadata_opened": false,
+  "scope": "Original strict hook on original000 only; no mesh, census, contacts or global admission",
+  "parallel_sections": {
+    "workers": 1,
+    "maximum_pending_layers": 2,
+    "completed_layers": 0,
+    "declared_layers": 1034,
+    "completed_surfaces_in_current_layer": 0,
+    "worker_group_closed": true,
+    "maximum_individual_worker_ru_maxrss_native_units": 0,
+    "ru_maxrss_units": "bytes on macOS; KiB on Linux",
+    "sources_and_inputs_sha256": {
+      "/Users/maxime/.codex/worktrees/993-carrier-revalidation/3dprinting993/parts/993-eng-carrier-0001/source/process-scanpath-audit-20261016/exact_support_section.py": "7a6416ca48322b0be9210117c660d830e1f14183a7e49a58d755ae674f81aef4",
+      "/Users/maxime/.codex/worktrees/993-carrier-revalidation/3dprinting993/parts/993-eng-carrier-0001/source/process-support-slicing-20261016/parallel_support_sections.py": "608cc638ee6f2e9228802442290547a792463fec807066398e95c075287483af",
+      "/Users/maxime/.codex/worktrees/993-carrier-revalidation/3dprinting993/work/carrier-process-20261016/real-support-v5-regions-001/source-000/support.npz": "c351989c2191382d51aec2d8941d08ec1ccaaba30197bdc6121dd92e351bba6b"
+    },
+    "elapsed_seconds": 0.8436200830619782,
+    "method": "Unchanged exact rational section hook; parent preserves original surface and layer order."
+  },
+  "runtime_unchanged": true,
+  "files_unchanged": true,
+  "elapsed_seconds": 3.0304189161397517
+}

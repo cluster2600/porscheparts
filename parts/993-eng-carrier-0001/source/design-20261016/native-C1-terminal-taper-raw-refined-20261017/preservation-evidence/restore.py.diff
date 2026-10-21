@@ -1,0 +1,37 @@
+--- parts/993-eng-carrier-0001/source/design-20261016/native-C1-h2-20261017/restore.py
++++ work/carrier-terminal-taper-raw-refined-delivery-preparation-001/capsule-source/restore.py
+@@ -31,7 +31,7 @@
+ 
+ 
+ def dependency(report, base_capsule=None):
+-    root = Path(base_capsule).absolute() if base_capsule is not None else HERE.parent / 'native-C1-20261017'
++    root = Path(base_capsule).absolute() if base_capsule is not None else HERE.parent / 'native-C1-terminal-taper-20261017'
+     require(root.is_dir() and not any(p.is_symlink() for p in [root, *root.parents]), 'Regular closed C1 dependency required')
+     row = report['dependency']
+     for name, key in [('manifest.json', 'manifest_sha256'), ('archive.json', 'inventory_sha256'), ('restore.py', 'restore_source_sha256')]:
+@@ -40,7 +40,7 @@
+     base = importlib.util.module_from_spec(spec); spec.loader.exec_module(base)
+     inherited = base.manifest(row['manifest_sha256'])
+     actual = {p: item for archive in inherited['archives'].values() for p, item in archive['members'].items()}
+-    require(actual == row['members'] and len(actual) == 186, 'Exact 186 C1 dependency members required')
++    require(actual == row['members'] and len(actual) == 495, 'Exact 495 C1 dependency members required')
+     inventory = json.loads((root / 'archive.json').read_text())['files_sha256']
+     files = {str(p.relative_to(root)) for p in root.rglob('*') if p.is_file() and p.name != 'archive.json'}
+     require(files == set(inventory) and all(not (root / p).is_symlink() and sha(root / p) == h for p, h in inventory.items()),
+@@ -60,8 +60,8 @@
+ def manifest(expected, base_capsule=None):
+     require(sha(HERE / 'manifest.json') == expected, 'Reviewed manifest changed')
+     report = json.loads((HERE / 'manifest.json').read_text())
+-    require(report['schema'] == 'actual-C1-h2-dependent-native-capsule-1', 'Different capsule schema')
+-    require(set(report['archives']) == {'c1-h2-common.zip', 'c1-h2-rigid.zip', 'c1-h2-spring.zip'}, 'Three fixed H2 archives required')
++    require(report['schema'] == 'actual-taper-raw-refined-dependent-native-capsule-1', 'Different capsule schema')
++    require(set(report['archives']) == {'taper-raw-refined-common.zip', 'taper-raw-refined-rigid.zip', 'taper-raw-refined-spring.zip'}, 'Three fixed H2 archives required')
+     require(all(not (HERE / relative(p)).is_symlink() and sha(HERE / p) == h
+                 for p, h in report['files_sha256'].items()), 'Capsule utility/source differs')
+     dependency(report, base_capsule)
+@@ -134,4 +134,4 @@
+     if (a.mode == 'restore') != (a.output is not None): p.error('Only restore requires a fresh output')
+     report = restore(a.output, a.manifest_sha256, a.base_capsule) if a.mode == 'restore' else verify(a.manifest_sha256, a.base_capsule)
+     print(json.dumps(dict(status='all_archived_original_bytes_verified', archives=len(report['archives']),
+-                         files=len(all_members(report)), inherited_C1_members=186, new_solver_run=False)))
++                         files=len(all_members(report)), inherited_C1_members=495, new_solver_run=False)))

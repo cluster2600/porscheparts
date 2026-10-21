@@ -1,0 +1,21 @@
+{
+  "schema": "installed-build123d-original-reference-independence-source-note-1",
+  "files_sha256": {
+    "work/part-workflow/runtimes/cad-base/lib/python3.10/site-packages/build123d/topology/shape_core.py": "f3a8c231bd67016e29b5c12727305792f167f0254206f91cb44420b2e2d2fa03",
+    "work/part-workflow/runtimes/cad-base/lib/python3.10/site-packages/build123d/importers.py": "354b3a26290421574528de8f2979a521c13a7a9236c7d71509a6dc61e5603cf8"
+  },
+  "bool_op_lines": [
+    2474,
+    2577
+  ],
+  "observed_calls": [
+    "SetRunParallel(True)",
+    "Build()",
+    "ShapeUpgrade_UnifySameDomain(...).Build()"
+  ],
+  "SetNonDestructive_not_present_in_bool_op": true,
+  "mutation_proved": false,
+  "import_brep_source_observation": "Every call creates a new TopoDS_Shape and BRep_Builder then reads the pinned BREP with BRepTools.Read_s; no geometry cache is used by this function.",
+  "runtime_imported": false,
+  "native_executed": false
+}

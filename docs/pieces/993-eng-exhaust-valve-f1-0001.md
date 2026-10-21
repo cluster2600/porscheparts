@@ -91,6 +91,10 @@ Catalogue record: [`catalog/parts/993-eng-exhaust-valve-f1-0001.json`](../../cat
 
 ## Images
 
+![photo-concept](../../parts/993-eng-exhaust-valve-f1-0001/media/photo-concept.png)
+
+*`parts/993-eng-exhaust-valve-f1-0001/media/photo-concept.png` — AI-generated studio illustration based on the concept CAD preview. Material and finish are illustrative; generated details may differ. Not a photograph or evidence of fit, function or manufacturing.*
+
 ![preview](../../parts/993-eng-exhaust-valve-f1-0001/media/preview.png)
 
 *`parts/993-eng-exhaust-valve-f1-0001/media/preview.png` — concept CAD block, **not** the original part, not a print file.*

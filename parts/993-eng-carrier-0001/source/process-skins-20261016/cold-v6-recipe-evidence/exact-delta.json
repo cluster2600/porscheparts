@@ -1,0 +1,541 @@
+{
+  "schema": "carrier-v6-recipe-exact-delta-1",
+  "previous_recipe_sha256": "fcbeedb53ab5308c45b35bcbdcacac86ef765575021d482b56b6bbd4ce2b21be",
+  "recipe_sha256": "54d777d2bbb43a35a23450591514e9ea1b5245f621f57ca914b43780322b58ae",
+  "added_pins": {
+    "parts/993-eng-carrier-0001/source/process-skins-20261016/generate_prism_region_v7.py": "e108af7d934293a1471a90daf51b97e77e0de3f86178ae416d136138b68d4249",
+    "parts/993-eng-carrier-0001/source/process-skins-20261016/generate_legacy_region_v7.py": "c07de6615c59debdaa426a81dfdc58e82efb9ccc2c5e266cd1bc51c3cf65bcb6",
+    "parts/993-eng-carrier-0001/source/process-skins-20261016/continuous_area_redundant_interfaces.py": "a9e6121b9b5ba8c572a5258cb1f7a5b6baca7e0c165dbbba4019c74dbd477ca7",
+    "parts/993-eng-carrier-0001/source/process-skins-20261016/incremental_combinatorial_interfaces_area.py": "2230847e5862b3d6668a900c2774ebb82cb3f12555486747fb06dfe8d5a90341",
+    "parts/993-eng-carrier-0001/source/process-skins-20261016/build_cached_v6.py": "6a6d3720e4a9c98c05393ea6446b33f6596ba3addcd73184ccaec5c8b64b9343",
+    "parts/993-eng-carrier-0001/source/process-skins-20261016/parallel_exact_admissions.py": "c21938ed27aa973596dc603f758ab3c6bc6796ee8c92dfd48ffe83c8ba2fe5bf",
+    "scripts/build_carrier_workshop_guide_v6.py": "e08f443d24773876abb4d0651677ccb2d0455d54702f7396050e6654b78711aa",
+    "scripts/run_part_workflow_v2.py": "caeee30d5768926bc924b5ce253b0fac5a06caa6b552828bcf33a57dd07d3bba"
+  },
+  "removed_or_changed_pins": {},
+  "first_12_stages_identical": true,
+  "unchanged_stage_count": 27,
+  "changed_stage_count": 10,
+  "resource_caps_14400": 9,
+  "changes": [
+    {
+      "id": "support-region-000",
+      "changed_fields": [
+        "argv",
+        "timeout_seconds"
+      ],
+      "before": {
+        "id": "support-region-000",
+        "argv": [
+          "{am_python}",
+          "-B",
+          "{repo}/parts/993-eng-carrier-0001/source/process-skins-20261016/generate_prism_region_v6.py",
+          "{run}/envelope-inputs/part.npz",
+          "{run}/native-envelopes/source-000/result/sealed/native_audit.json",
+          "{run}/envelope-inputs/source-000-roofs.npz",
+          "{run}/envelope-inputs/inputs-v2.json",
+          "{run}/support-regions/source-000",
+          "--source-index",
+          "0"
+        ],
+        "timeout_seconds": 3600,
+        "outputs": [
+          "support-regions/source-000",
+          "support-regions/source-000/region-checkpoint.json"
+        ]
+      },
+      "after": {
+        "id": "support-region-000",
+        "argv": [
+          "{am_python}",
+          "-B",
+          "{repo}/parts/993-eng-carrier-0001/source/process-skins-20261016/generate_prism_region_v7.py",
+          "{run}/envelope-inputs/part.npz",
+          "{run}/native-envelopes/source-000/result/sealed/native_audit.json",
+          "{run}/envelope-inputs/source-000-roofs.npz",
+          "{run}/envelope-inputs/inputs-v2.json",
+          "{run}/support-regions/source-000",
+          "--source-index",
+          "0"
+        ],
+        "timeout_seconds": 14400,
+        "outputs": [
+          "support-regions/source-000",
+          "support-regions/source-000/region-checkpoint.json"
+        ]
+      }
+    },
+    {
+      "id": "support-region-001",
+      "changed_fields": [
+        "argv",
+        "timeout_seconds"
+      ],
+      "before": {
+        "id": "support-region-001",
+        "argv": [
+          "{am_python}",
+          "-B",
+          "{repo}/parts/993-eng-carrier-0001/source/process-skins-20261016/generate_legacy_region_v6.py",
+          "{run}/envelope-inputs/part.npz",
+          "{run}/native-envelopes/source-001/result/legacy/snap/result.npz",
+          "{run}/envelope-inputs/inputs-v2.json",
+          "{run}/support-regions/source-001",
+          "--source-index",
+          "1",
+          "--solid-sheets",
+          "--continuous-interfaces"
+        ],
+        "timeout_seconds": 3600,
+        "outputs": [
+          "support-regions/source-001",
+          "support-regions/source-001/region-checkpoint.json"
+        ]
+      },
+      "after": {
+        "id": "support-region-001",
+        "argv": [
+          "{am_python}",
+          "-B",
+          "{repo}/parts/993-eng-carrier-0001/source/process-skins-20261016/generate_legacy_region_v7.py",
+          "{run}/envelope-inputs/part.npz",
+          "{run}/native-envelopes/source-001/result/legacy/snap/result.npz",
+          "{run}/envelope-inputs/inputs-v2.json",
+          "{run}/support-regions/source-001",
+          "--source-index",
+          "1",
+          "--solid-sheets",
+          "--continuous-interfaces"
+        ],
+        "timeout_seconds": 14400,
+        "outputs": [
+          "support-regions/source-001",
+          "support-regions/source-001/region-checkpoint.json"
+        ]
+      }
+    },
+    {
+      "id": "support-region-002",
+      "changed_fields": [
+        "argv",
+        "timeout_seconds"
+      ],
+      "before": {
+        "id": "support-region-002",
+        "argv": [
+          "{am_python}",
+          "-B",
+          "{repo}/parts/993-eng-carrier-0001/source/process-skins-20261016/generate_prism_region_v6.py",
+          "{run}/envelope-inputs/part.npz",
+          "{run}/native-envelopes/source-002/result/sealed/native_audit.json",
+          "{run}/envelope-inputs/source-002-roofs.npz",
+          "{run}/envelope-inputs/inputs-v2.json",
+          "{run}/support-regions/source-002",
+          "--source-index",
+          "2"
+        ],
+        "timeout_seconds": 3600,
+        "outputs": [
+          "support-regions/source-002",
+          "support-regions/source-002/region-checkpoint.json"
+        ]
+      },
+      "after": {
+        "id": "support-region-002",
+        "argv": [
+          "{am_python}",
+          "-B",
+          "{repo}/parts/993-eng-carrier-0001/source/process-skins-20261016/generate_prism_region_v7.py",
+          "{run}/envelope-inputs/part.npz",
+          "{run}/native-envelopes/source-002/result/sealed/native_audit.json",
+          "{run}/envelope-inputs/source-002-roofs.npz",
+          "{run}/envelope-inputs/inputs-v2.json",
+          "{run}/support-regions/source-002",
+          "--source-index",
+          "2"
+        ],
+        "timeout_seconds": 14400,
+        "outputs": [
+          "support-regions/source-002",
+          "support-regions/source-002/region-checkpoint.json"
+        ]
+      }
+    },
+    {
+      "id": "support-region-003",
+      "changed_fields": [
+        "argv",
+        "timeout_seconds"
+      ],
+      "before": {
+        "id": "support-region-003",
+        "argv": [
+          "{am_python}",
+          "-B",
+          "{repo}/parts/993-eng-carrier-0001/source/process-skins-20261016/generate_legacy_region_v6.py",
+          "{run}/envelope-inputs/part.npz",
+          "{run}/native-envelopes/source-003/result/legacy/snap/result.npz",
+          "{run}/envelope-inputs/inputs-v2.json",
+          "{run}/support-regions/source-003",
+          "--source-index",
+          "3",
+          "--solid-sheets",
+          "--continuous-interfaces"
+        ],
+        "timeout_seconds": 3600,
+        "outputs": [
+          "support-regions/source-003",
+          "support-regions/source-003/region-checkpoint.json"
+        ]
+      },
+      "after": {
+        "id": "support-region-003",
+        "argv": [
+          "{am_python}",
+          "-B",
+          "{repo}/parts/993-eng-carrier-0001/source/process-skins-20261016/generate_legacy_region_v7.py",
+          "{run}/envelope-inputs/part.npz",
+          "{run}/native-envelopes/source-003/result/legacy/snap/result.npz",
+          "{run}/envelope-inputs/inputs-v2.json",
+          "{run}/support-regions/source-003",
+          "--source-index",
+          "3",
+          "--solid-sheets",
+          "--continuous-interfaces"
+        ],
+        "timeout_seconds": 14400,
+        "outputs": [
+          "support-regions/source-003",
+          "support-regions/source-003/region-checkpoint.json"
+        ]
+      }
+    },
+    {
+      "id": "support-region-008",
+      "changed_fields": [
+        "argv",
+        "timeout_seconds"
+      ],
+      "before": {
+        "id": "support-region-008",
+        "argv": [
+          "{am_python}",
+          "-B",
+          "{repo}/parts/993-eng-carrier-0001/source/process-skins-20261016/generate_legacy_region_v6.py",
+          "{run}/envelope-inputs/part.npz",
+          "{run}/native-envelopes/source-008/result/legacy/snap/result.npz",
+          "{run}/envelope-inputs/inputs-v2.json",
+          "{run}/support-regions/source-008",
+          "--source-index",
+          "8",
+          "--solid-sheets",
+          "--continuous-interfaces"
+        ],
+        "timeout_seconds": 3600,
+        "outputs": [
+          "support-regions/source-008",
+          "support-regions/source-008/region-checkpoint.json"
+        ]
+      },
+      "after": {
+        "id": "support-region-008",
+        "argv": [
+          "{am_python}",
+          "-B",
+          "{repo}/parts/993-eng-carrier-0001/source/process-skins-20261016/generate_legacy_region_v7.py",
+          "{run}/envelope-inputs/part.npz",
+          "{run}/native-envelopes/source-008/result/legacy/snap/result.npz",
+          "{run}/envelope-inputs/inputs-v2.json",
+          "{run}/support-regions/source-008",
+          "--source-index",
+          "8",
+          "--solid-sheets",
+          "--continuous-interfaces"
+        ],
+        "timeout_seconds": 14400,
+        "outputs": [
+          "support-regions/source-008",
+          "support-regions/source-008/region-checkpoint.json"
+        ]
+      }
+    },
+    {
+      "id": "support-region-009",
+      "changed_fields": [
+        "argv",
+        "timeout_seconds"
+      ],
+      "before": {
+        "id": "support-region-009",
+        "argv": [
+          "{am_python}",
+          "-B",
+          "{repo}/parts/993-eng-carrier-0001/source/process-skins-20261016/generate_legacy_region_v6.py",
+          "{run}/envelope-inputs/part.npz",
+          "{run}/native-envelopes/source-009/result/legacy/snap/result.npz",
+          "{run}/envelope-inputs/inputs-v2.json",
+          "{run}/support-regions/source-009",
+          "--source-index",
+          "9",
+          "--solid-sheets",
+          "--continuous-interfaces"
+        ],
+        "timeout_seconds": 3600,
+        "outputs": [
+          "support-regions/source-009",
+          "support-regions/source-009/region-checkpoint.json"
+        ]
+      },
+      "after": {
+        "id": "support-region-009",
+        "argv": [
+          "{am_python}",
+          "-B",
+          "{repo}/parts/993-eng-carrier-0001/source/process-skins-20261016/generate_legacy_region_v7.py",
+          "{run}/envelope-inputs/part.npz",
+          "{run}/native-envelopes/source-009/result/legacy/snap/result.npz",
+          "{run}/envelope-inputs/inputs-v2.json",
+          "{run}/support-regions/source-009",
+          "--source-index",
+          "9",
+          "--solid-sheets",
+          "--continuous-interfaces"
+        ],
+        "timeout_seconds": 14400,
+        "outputs": [
+          "support-regions/source-009",
+          "support-regions/source-009/region-checkpoint.json"
+        ]
+      }
+    },
+    {
+      "id": "support-region-010",
+      "changed_fields": [
+        "argv",
+        "timeout_seconds"
+      ],
+      "before": {
+        "id": "support-region-010",
+        "argv": [
+          "{am_python}",
+          "-B",
+          "{repo}/parts/993-eng-carrier-0001/source/process-skins-20261016/generate_legacy_region_v6.py",
+          "{run}/envelope-inputs/part.npz",
+          "{run}/native-envelopes/source-010/result/legacy/snap/result.npz",
+          "{run}/envelope-inputs/inputs-v2.json",
+          "{run}/support-regions/source-010",
+          "--source-index",
+          "10",
+          "--solid-sheets",
+          "--continuous-interfaces"
+        ],
+        "timeout_seconds": 3600,
+        "outputs": [
+          "support-regions/source-010",
+          "support-regions/source-010/region-checkpoint.json"
+        ]
+      },
+      "after": {
+        "id": "support-region-010",
+        "argv": [
+          "{am_python}",
+          "-B",
+          "{repo}/parts/993-eng-carrier-0001/source/process-skins-20261016/generate_legacy_region_v7.py",
+          "{run}/envelope-inputs/part.npz",
+          "{run}/native-envelopes/source-010/result/legacy/snap/result.npz",
+          "{run}/envelope-inputs/inputs-v2.json",
+          "{run}/support-regions/source-010",
+          "--source-index",
+          "10",
+          "--solid-sheets",
+          "--continuous-interfaces"
+        ],
+        "timeout_seconds": 14400,
+        "outputs": [
+          "support-regions/source-010",
+          "support-regions/source-010/region-checkpoint.json"
+        ]
+      }
+    },
+    {
+      "id": "support-assembly",
+      "changed_fields": [
+        "argv",
+        "timeout_seconds"
+      ],
+      "before": {
+        "id": "support-assembly",
+        "argv": [
+          "{am_python}",
+          "-B",
+          "{repo}/parts/993-eng-carrier-0001/source/process-skins-20261016/build_cached_v5.py",
+          "{run}/surface/carrier-remeshed.stl",
+          "{run}/supports",
+          "--identity-receipt",
+          "{run}/surface/meshing.json",
+          "--envelopes",
+          "{run}/envelopes",
+          "--part-cache",
+          "{run}/part-cache",
+          "--region-checkpoints",
+          "{run}/support-regions/regions.json",
+          "--solid-sheets",
+          "--continuous-interfaces",
+          "--supports-only"
+        ],
+        "timeout_seconds": 3600,
+        "outputs": [
+          "supports"
+        ]
+      },
+      "after": {
+        "id": "support-assembly",
+        "argv": [
+          "{am_python}",
+          "-B",
+          "{repo}/parts/993-eng-carrier-0001/source/process-skins-20261016/build_cached_v6.py",
+          "{run}/surface/carrier-remeshed.stl",
+          "{run}/supports",
+          "--identity-receipt",
+          "{run}/surface/meshing.json",
+          "--envelopes",
+          "{run}/envelopes",
+          "--part-cache",
+          "{run}/part-cache",
+          "--region-checkpoints",
+          "{run}/support-regions/regions.json",
+          "--solid-sheets",
+          "--continuous-interfaces",
+          "--supports-only"
+        ],
+        "timeout_seconds": 14400,
+        "outputs": [
+          "supports"
+        ]
+      }
+    },
+    {
+      "id": "process",
+      "changed_fields": [
+        "argv",
+        "timeout_seconds",
+        "outputs"
+      ],
+      "before": {
+        "id": "process",
+        "argv": [
+          "{am_python}",
+          "-B",
+          "{repo}/parts/993-eng-carrier-0001/source/process-skins-20261016/build_cached_v5.py",
+          "{run}/surface/carrier-remeshed.stl",
+          "{run}/process",
+          "--identity-receipt",
+          "{run}/surface/meshing.json",
+          "--envelopes",
+          "{run}/envelopes",
+          "--part-cache",
+          "{run}/part-cache",
+          "--region-checkpoints",
+          "{run}/support-regions/regions.json",
+          "--solid-sheets",
+          "--continuous-interfaces",
+          "--reuse-support-stage",
+          "{run}/supports"
+        ],
+        "timeout_seconds": 3600,
+        "outputs": [
+          "process/report.json",
+          "process/support-stage.json",
+          "process/layers.csv",
+          "process/part-build.stl",
+          "process/plate.stl",
+          "process/build.glb",
+          "process/layers",
+          "process/source"
+        ]
+      },
+      "after": {
+        "id": "process",
+        "argv": [
+          "{am_python}",
+          "-B",
+          "{repo}/parts/993-eng-carrier-0001/source/process-skins-20261016/build_cached_v6.py",
+          "{run}/surface/carrier-remeshed.stl",
+          "{run}/process",
+          "--identity-receipt",
+          "{run}/surface/meshing.json",
+          "--envelopes",
+          "{run}/envelopes",
+          "--part-cache",
+          "{run}/part-cache",
+          "--region-checkpoints",
+          "{run}/support-regions/regions.json",
+          "--solid-sheets",
+          "--continuous-interfaces",
+          "--reuse-support-stage",
+          "{run}/supports"
+        ],
+        "timeout_seconds": 14400,
+        "outputs": [
+          "process/report.json",
+          "process/support-stage.json",
+          "process/layers.csv",
+          "process/part-build.stl",
+          "process/plate.stl",
+          "process/build.glb",
+          "process/layers",
+          "process/source",
+          "process/exact-admission-replays.json"
+        ]
+      }
+    },
+    {
+      "id": "guide",
+      "changed_fields": [
+        "argv"
+      ],
+      "before": {
+        "id": "guide",
+        "argv": [
+          "{pdf_python}",
+          "-B",
+          "{repo}/scripts/build_carrier_workshop_guide_v5.py",
+          "{run}"
+        ],
+        "timeout_seconds": 300,
+        "outputs": [
+          "guide-description.json",
+          "delivery-assets/supports.zip",
+          "delivery-assets/scanpaths.zip",
+          "delivery-assets/source-workflow.json",
+          "guide/index.html",
+          "guide/guide-atelier.pdf",
+          "guide/manifest.json",
+          "guide/files",
+          "constitutive-reference"
+        ]
+      },
+      "after": {
+        "id": "guide",
+        "argv": [
+          "{pdf_python}",
+          "-B",
+          "{repo}/scripts/build_carrier_workshop_guide_v6.py",
+          "{run}"
+        ],
+        "timeout_seconds": 300,
+        "outputs": [
+          "guide-description.json",
+          "delivery-assets/supports.zip",
+          "delivery-assets/scanpaths.zip",
+          "delivery-assets/source-workflow.json",
+          "guide/index.html",
+          "guide/guide-atelier.pdf",
+          "guide/manifest.json",
+          "guide/files",
+          "constitutive-reference"
+        ]
+      }
+    }
+  ]
+}

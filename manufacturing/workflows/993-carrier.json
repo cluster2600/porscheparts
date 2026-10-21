@@ -1,0 +1,388 @@
+{
+  "schema": "porscheparts.part-workflow@1",
+  "part_id": "993-ENG-CARRIER-0001",
+  "title": "Support moteur 993 — CAO, surface, comparaison mécanique et préparation LPBF",
+  "source": {
+    "kind": "editable_cad",
+    "units": "mm",
+    "path": "parts/993-eng-carrier-0001/derived/correction-20261013/carrier.step",
+    "baseline_STEP_sha256": "834cc01a69c8205d854c611f7a8b7c2b6192687d547191deabbd25fe5c74049f",
+    "provenance": "Référence V6f conservée pour les régions protégées et les comparaisons ; nouvelle géométrie pilotée par bounded-webs.json et bounded-webs-plan.json."
+  },
+  "scope": "Une nouvelle exécution reconstruit ses géométries, ses maillages, ses champs et toutes ses couches ; aucune reprise de résultats d’un autre run. La comparaison numérique 1,30 kg doit passer avant la préparation complète.",
+  "inputs_sha256": {
+    "manufacturing/workflows/993-carrier-guide.json": "061727e498f0f235f6215a51443ef9cc3da8504526f08d79643dc6f24399bbb0",
+    "parts/993-eng-carrier-0001/derived/bionic-flat-20261012/carrier-flat.step": "a076925a40396acb192af8bf9a19c813b97bd885366d3446d000f330517089a4",
+    "parts/993-eng-carrier-0001/derived/correction-20261013/carrier.step": "834cc01a69c8205d854c611f7a8b7c2b6192687d547191deabbd25fe5c74049f",
+    "parts/993-eng-carrier-0001/source/bionic-20261011/cad.py": "3c7afe3916020f715fbb6889b46b288254873367ed7a3e5da7c5b4e6953c7c4e",
+    "parts/993-eng-carrier-0001/source/bionic-20261011/correction-20261013/corrected_cad.py": "c39a62028e2728a36595b5799429f743e9afa4b12439663fb4794f69ca8f1b11",
+    "parts/993-eng-carrier-0001/source/bionic-20261011/correction-20261013/inspect_candidate.py": "d804399f1268690c5f9833b4a6619a1173ea8229d6c849fd13df8f9589b416f2",
+    "parts/993-eng-carrier-0001/source/bionic-20261011/correction-20261013/interface-study.json": "20540b94ca8c57ba5a97afd50cb8570b1c79dcfa89cec33b5b59b6af092c242a",
+    "parts/993-eng-carrier-0001/source/bionic-20261011/correction-20261013/results.json": "2a60fd66dcee22af3fa3597d4a6af389ecb1e3096e231351f7db30a636e10ae2",
+    "parts/993-eng-carrier-0001/source/bionic-20261011/correction-20261013/selected-study.json": "58f6af75436e1172fb21d8579ba0b1e4280fbd168c4838c27499f50dbc3009a0",
+    "parts/993-eng-carrier-0001/source/bionic-20261011/flat-results.json": "fc9a9227f142473d7526eee62199879e7ab8add089d5db9cccbc100f48fbbaae",
+    "parts/993-eng-carrier-0001/source/bionic-20261011/simulate.py": "87be70c955e2532255fdee37cf3a686d970cb421bc9bf6094ca867f1f3098e77",
+    "parts/993-eng-carrier-0001/source/bionic-20261011/study-v5.json": "39efa894b369da7af551177894b3b3b4461dbb959f9abdbb000b3aacf2fc8a48",
+    "parts/993-eng-carrier-0001/source/design-20261016/bounded-webs-plan.json": "21cbfe8b74d401a5d97ba61453a433af494ae8d728b3e400e3c51f112f798172",
+    "parts/993-eng-carrier-0001/source/design-20261016/bounded-webs-wall-proof.json": "6ee632e2a5f70945ca8e4552bef142121f58645c3e80a1a94f50f811edc63921",
+    "parts/993-eng-carrier-0001/source/design-20261016/bounded-webs.json": "8637fa166fbb1853c118a84a4952c5c15f049f3599c27c6a39078c440adc6614",
+    "parts/993-eng-carrier-0001/source/design-20261016/build_bounded_webs.py": "4f36dad629625a9a23425499d779756c61004e6cdc58271382b7e06f136dccab",
+    "parts/993-eng-carrier-0001/source/design-20261016/compare.py": "96f1b15d6e9ffeaaa01fb3ebb76d0c0a2a05fd699005a2d9cadf7d3ce2a2db01",
+    "parts/993-eng-carrier-0001/source/design-20261016/comparison-plan.json": "a71d4f6542886b834938dc98c6f40d0b7f24d81a4aef1b3356b15a3e541c1b0d",
+    "parts/993-eng-carrier-0001/source/design-20261016/inspect_protected.py": "eeb0aa39ce2ebfea5e033ccaeb1bd4dfb95a260736caa8ed5944a766aca66832",
+    "parts/993-eng-carrier-0001/source/design-20261016/normal-builder/cad.py": "8e02f468bafc6e363117b4698e3405cc3b8ba4c88e2d25f4af72cbe8412ce7ca",
+    "parts/993-eng-carrier-0001/source/design-20261016/normal-webs-selection-criteria.json": "14ffcb2209d9824581e0ee036eece1bd4e59deea3101cd03f677efd26233c90c",
+    "parts/993-eng-carrier-0001/source/design-20261016/plan.json": "ef7dddd3c4e66f6d2f3a3954d4eaadb1c03bdb7bd5a96212551b52d63d81f241",
+    "parts/993-eng-carrier-0001/source/process-20261016/build_pyslm.py": "fdec5cf793fc2b9d9932a5720d2c9a0f9c777eb29671882d516da4dc13681c84",
+    "parts/993-eng-carrier-0001/source/process-20261016/pyslm-support-projection.patch": "56e07ffe6c64ac4b5b44dac5bcd481b34e911a003d9148a58cbb2fcfb8c08102",
+    "parts/993-eng-carrier-0001/source/process-20261016/render_pyslm.py": "ae60796790f414a33201aff53a4e7b4033babc60ceff7da9bea3bde25c8ed6d9",
+    "parts/993-eng-carrier-0001/source/process-20261016/requirements-macos-arm64-python311.lock.txt": "e80904ff5f60f4755b89f7e6d46d802fbe4865b771f3d2ce481f3f02662affdc",
+    "parts/993-eng-carrier-0001/source/process-20261016/upstream.json": "5b899071fb45b7915bf1f4fec2f4950fc1e25bdd8f35eabbb87a5835e9b12392",
+    "parts/993-eng-carrier-0001/source/remesh-20261016/audit.py": "086c8ef3b4f72fd29c2b8c5945e4b8faaf6dcdb03b50da3a0f0c51ff0a350975",
+    "parts/993-eng-carrier-0001/source/remesh-20261016/brep_audit.py": "8c123439b0d4df2ce5d2db34917702ed025c5a9a6baee190876f42ebac5c9da0",
+    "parts/993-eng-carrier-0001/source/remesh-20261016/cad_mesh_audit.py": "ed664d303f118adc5fbf892ca0f9eee3789fb0a586985de26a148caf5d26d4f0",
+    "parts/993-eng-carrier-0001/source/remesh-20261016/gmsh-criteria.json": "8e47efab6d25a6a482bc7952899a67d6c9342b4c093f76e91d02ddd05af29e90",
+    "parts/993-eng-carrier-0001/source/remesh-20261016/gmsh_remesh.py": "f935d0fa4cb38725d1d55246c05a541fa32772117bc531dfed8da1f7489739fb",
+    "parts/993-eng-carrier-0001/source/remesh-20261016/remesh.py": "46757dec1555896460075d665bdfb1b601a4279b3abc667cceb77c360f677958",
+    "parts/993-eng-carrier-0001/source/remesh-20261016/render_comparison.py": "d67ed3a17382dde61516e5d525d9b637b713ae743568fac4daf30d0950fbd36f",
+    "parts/993-eng-carrier-0001/source/revalidation-20261016/audit_energy.py": "eca4f9adc81e3511553a713d3f52d7ad604fac7fe36fc4e40eddfe9d9fbea4e8",
+    "scripts/build_carrier_workshop_guide.py": "98588414ad909fa5ff0e6c4043580df9ad9f492f8ac266cf738efd801ff36cea",
+    "scripts/build_part_workflow_guide.py": "796a5bb2690b5f71dbac01737b64393fe40984b2ebe779cc386ed19cb5e379bc",
+    "scripts/render_carrier_fields.py": "9e89a43e95836cfac6d451c22148f9269d5b30099297b1222c711db5a3d5cd78",
+    "scripts/render_carrier_workshop_drawing.py": "ab53a703de094786c312415ae45ec0ddd12fa063471a31d469dc7cae9647c00a",
+    "scripts/run_carrier_calculations.py": "1c697a08e4b2365b99cd2df808bf59bf682ea8ea6616d38b4c84106d286e5184",
+    "scripts/run_part_workflow.py": "80d46feac620f95259cc51e26bcbbbe100a63af45c40e82f5c86a06c6ec713b7",
+    "scripts/templates/part-workflow.html.in": "a897f5b8ebe74f113c2ef340d680603f8a64f9daff67343d50033d76a2b951bc",
+    "twins/993-engine-mount-system-f0/derived/993-ENG-BRACKET-0001.stl": "53e3194c0f5be1e36bc8db389a9ed404a8fff489e7ef5325a9df1827a3c6a9c7",
+    "twins/993-engine-mount-system-f0/interface-contract.json": "b2974142e7053df6d63875f7968630158c97c130eb84cda56b9f17491ad0ca30",
+    "twins/993-engine-mount-system-f0/source/engine-bracket.json": "b3c6c1293c6acbb40183a49db2345f67e462caaa2aeef8593d8e5b052990b3a4"
+  },
+  "stages": [
+    {
+      "id": "cad",
+      "argv": [
+        "{cad_python}",
+        "-B",
+        "{repo}/parts/993-eng-carrier-0001/source/design-20261016/build_bounded_webs.py",
+        "{run}/cad"
+      ],
+      "timeout_seconds": 1800,
+      "outputs": [
+        "cad/carrier.step",
+        "cad/carrier.stl",
+        "cad/study.json",
+        "cad/geometry.json",
+        "cad/volume-integration.json",
+        "cad/native-construction.json",
+        "cad/native-body.brep",
+        "cad/construction-plan.json",
+        "cad/source-snapshot.py",
+        "cad-without-sleeves/carrier.step",
+        "cad-without-sleeves/geometry.json",
+        "cad-without-sleeves/base-without-ribs/carrier.step",
+        "cad-without-sleeves/outer-window-stock/carrier.step"
+      ]
+    },
+    {
+      "id": "inspect-protected",
+      "argv": [
+        "{cad_python}",
+        "-B",
+        "{repo}/parts/993-eng-carrier-0001/source/design-20261016/inspect_protected.py",
+        "{run}/cad"
+      ],
+      "timeout_seconds": 900,
+      "outputs": [
+        "cad/protected-interfaces.json",
+        "cad/inspection.json",
+        "cad/carrier-normalized.stl"
+      ]
+    },
+    {
+      "id": "surface",
+      "argv": [
+        "{geometry_python}",
+        "-B",
+        "{repo}/parts/993-eng-carrier-0001/source/remesh-20261016/gmsh_remesh.py",
+        "{run}/cad/carrier.step",
+        "{run}/surface",
+        "--identity-receipt",
+        "{run}/cad/geometry.json",
+        "--minimum-size-mm",
+        "0.25"
+      ],
+      "timeout_seconds": 600,
+      "outputs": [
+        "surface/carrier-remeshed.stl",
+        "surface/carrier-remeshed.msh",
+        "surface/meshing.json"
+      ]
+    },
+    {
+      "id": "surface-brep",
+      "argv": [
+        "{geometry_python}",
+        "-B",
+        "{repo}/parts/993-eng-carrier-0001/source/remesh-20261016/brep_audit.py",
+        "{run}/cad/carrier.step",
+        "{run}/cad/carrier.stl",
+        "{run}/surface/carrier-remeshed.stl",
+        "{run}/surface-brep",
+        "--identity-receipt",
+        "{run}/cad/geometry.json"
+      ],
+      "timeout_seconds": 600,
+      "outputs": [
+        "surface-brep/brep-audit.json",
+        "surface-brep/exact-CAD-surface-samples.npz",
+        "surface-brep/original_STL-samples.npz",
+        "surface-brep/candidate_STL-samples.npz"
+      ]
+    },
+    {
+      "id": "surface-audit",
+      "argv": [
+        "{mesh_audit_python}",
+        "-B",
+        "{repo}/parts/993-eng-carrier-0001/source/remesh-20261016/cad_mesh_audit.py",
+        "{run}/surface/carrier-remeshed.stl",
+        "{run}/surface-brep/brep-audit.json",
+        "{run}/surface-brep/exact-CAD-surface-samples.npz",
+        "{run}/surface-audit"
+      ],
+      "timeout_seconds": 600,
+      "outputs": [
+        "surface-audit/cad-mesh-audit.json"
+      ]
+    },
+    {
+      "id": "mesh-9",
+      "argv": [
+        "{cad_python}",
+        "-B",
+        "{repo}/parts/993-eng-carrier-0001/source/bionic-20261011/simulate.py",
+        "{run}/cad",
+        "--mesh",
+        "9"
+      ],
+      "timeout_seconds": 1800,
+      "outputs": [
+        "cad/mesh-9/mesh.inp",
+        "cad/mesh-9/mesh.npz",
+        "cad/mesh-9/mesh.json",
+        "cad/mesh-9/quality.json"
+      ]
+    },
+    {
+      "id": "mesh-7",
+      "argv": [
+        "{cad_python}",
+        "-B",
+        "{repo}/parts/993-eng-carrier-0001/source/bionic-20261011/simulate.py",
+        "{run}/cad",
+        "--mesh",
+        "7"
+      ],
+      "timeout_seconds": 1800,
+      "outputs": [
+        "cad/mesh-7/mesh.inp",
+        "cad/mesh-7/mesh.npz",
+        "cad/mesh-7/mesh.json",
+        "cad/mesh-7/quality.json"
+      ]
+    },
+    {
+      "id": "mechanics",
+      "argv": [
+        "{cad_python}",
+        "-B",
+        "{repo}/scripts/run_carrier_calculations.py",
+        "{run}/cad"
+      ],
+      "timeout_seconds": 3600,
+      "outputs": [
+        "cad/simulation-runtime.json",
+        "cad/mesh-9/combined-rigid-static.inp",
+        "cad/mesh-9/combined-rigid-static.dat",
+        "cad/mesh-9/combined-rigid-static.frd",
+        "cad/mesh-9/combined-rigid-static.npz",
+        "cad/mesh-9/combined-rigid-static.json",
+        "cad/mesh-9/combined-rigid-static.log",
+        "cad/mesh-9/combined-spring-1000-static.inp",
+        "cad/mesh-9/combined-spring-1000-static.dat",
+        "cad/mesh-9/combined-spring-1000-static.frd",
+        "cad/mesh-9/combined-spring-1000-static.npz",
+        "cad/mesh-9/combined-spring-1000-static.json",
+        "cad/mesh-9/combined-spring-1000-static.log",
+        "cad/mesh-9/gravity-rigid-static.inp",
+        "cad/mesh-9/gravity-rigid-static.dat",
+        "cad/mesh-9/gravity-rigid-static.frd",
+        "cad/mesh-9/gravity-rigid-static.npz",
+        "cad/mesh-9/gravity-rigid-static.json",
+        "cad/mesh-9/gravity-rigid-static.log",
+        "cad/mesh-9/pitch-rigid-static.inp",
+        "cad/mesh-9/pitch-rigid-static.dat",
+        "cad/mesh-9/pitch-rigid-static.frd",
+        "cad/mesh-9/pitch-rigid-static.npz",
+        "cad/mesh-9/pitch-rigid-static.json",
+        "cad/mesh-9/pitch-rigid-static.log",
+        "cad/mesh-7/combined-rigid-static.inp",
+        "cad/mesh-7/combined-rigid-static.dat",
+        "cad/mesh-7/combined-rigid-static.frd",
+        "cad/mesh-7/combined-rigid-static.npz",
+        "cad/mesh-7/combined-rigid-static.json",
+        "cad/mesh-7/combined-rigid-static.log",
+        "cad/mesh-7/combined-spring-1000-static.inp",
+        "cad/mesh-7/combined-spring-1000-static.dat",
+        "cad/mesh-7/combined-spring-1000-static.frd",
+        "cad/mesh-7/combined-spring-1000-static.npz",
+        "cad/mesh-7/combined-spring-1000-static.json",
+        "cad/mesh-7/combined-spring-1000-static.log",
+        "cad/simulation-launcher.py",
+        "cad/simulation-engine.py"
+      ]
+    },
+    {
+      "id": "comparison",
+      "argv": [
+        "{cad_python}",
+        "-B",
+        "{repo}/parts/993-eng-carrier-0001/source/design-20261016/compare.py",
+        "{run}/cad",
+        "{run}/comparison",
+        "--criteria",
+        "{repo}/parts/993-eng-carrier-0001/source/design-20261016/normal-webs-selection-criteria.json"
+      ],
+      "timeout_seconds": 600,
+      "outputs": [
+        "comparison/comparison.json",
+        "comparison/selection.json",
+        "comparison/source-snapshot.py"
+      ]
+    },
+    {
+      "id": "fields",
+      "argv": [
+        "{am_python}",
+        "-B",
+        "{repo}/scripts/render_carrier_fields.py",
+        "{run}/cad/mesh-7",
+        "combined-rigid-static",
+        "{run}/fields/combined.png",
+        "--context",
+        "Révision du présent run — comparaison numérique admise, maillage 7 mm"
+      ],
+      "timeout_seconds": 300,
+      "outputs": [
+        "fields/combined.png",
+        "fields/combined.svg",
+        "fields/combined.json"
+      ]
+    },
+    {
+      "id": "dimensions",
+      "argv": [
+        "{am_python}",
+        "-B",
+        "{repo}/scripts/render_carrier_workshop_drawing.py",
+        "{run}/surface/carrier-remeshed.stl",
+        "{run}/cad/study.json",
+        "{run}/dimensions",
+        "--identity-receipt",
+        "{run}/surface/meshing.json"
+      ],
+      "timeout_seconds": 300,
+      "outputs": [
+        "dimensions/carrier-dimensions.png",
+        "dimensions/carrier-dimensions.svg",
+        "dimensions/drawing.json"
+      ]
+    },
+    {
+      "id": "surface-figure",
+      "argv": [
+        "{cad_python}",
+        "-B",
+        "{repo}/parts/993-eng-carrier-0001/source/remesh-20261016/render_comparison.py",
+        "{run}/cad/carrier.step",
+        "{run}/cad/carrier.stl",
+        "{run}/surface/carrier-remeshed.stl",
+        "{run}/surface-figure",
+        "--audit",
+        "{run}/surface-audit/cad-mesh-audit.json"
+      ],
+      "timeout_seconds": 600,
+      "outputs": [
+        "surface-figure/carrier-remesh-comparison.png",
+        "surface-figure/carrier-remesh-comparison.svg"
+      ]
+    },
+    {
+      "id": "process",
+      "argv": [
+        "{am_python}",
+        "-B",
+        "{repo}/parts/993-eng-carrier-0001/source/process-20261016/build_pyslm.py",
+        "{run}/surface/carrier-remeshed.stl",
+        "{run}/process",
+        "--identity-receipt",
+        "{run}/surface/meshing.json"
+      ],
+      "timeout_seconds": 3600,
+      "outputs": [
+        "process/report.json",
+        "process/support-stage.json",
+        "process/layers.csv",
+        "process/part-build.stl",
+        "process/plate.stl",
+        "process/build.glb",
+        "process/layers",
+        "process/source"
+      ]
+    },
+    {
+      "id": "process-figures",
+      "argv": [
+        "{am_python}",
+        "-B",
+        "{repo}/parts/993-eng-carrier-0001/source/process-20261016/render_pyslm.py",
+        "{run}/process"
+      ],
+      "timeout_seconds": 600,
+      "outputs": [
+        "process/build-supports.png",
+        "process/support-teeth.png",
+        "process/layer-contours-hatches.png",
+        "process/layer-contours-hatches.svg",
+        "process/figures.json",
+        "process"
+      ]
+    },
+    {
+      "id": "guide",
+      "argv": [
+        "{pdf_python}",
+        "-B",
+        "{repo}/scripts/build_carrier_workshop_guide.py",
+        "{run}"
+      ],
+      "timeout_seconds": 300,
+      "outputs": [
+        "guide-description.json",
+        "delivery-assets/supports.zip",
+        "delivery-assets/scanpaths.zip",
+        "guide/index.html",
+        "guide/guide-atelier.pdf",
+        "guide/manifest.json",
+        "guide/files"
+      ]
+    }
+  ],
+  "surface_parameters": {
+    "MeshSizeMin_mm": 0.25,
+    "MeshSizeMax_mm": 3,
+    "MeshSizeFromCurvature": 96,
+    "distance_limit_mm": 0.06,
+    "refinement_reason": "R0.5 mm inset-window arcs: initial0.53006 mm mesh edge exceeded exact0.47497 mm circular chord bound for0.06 mm distance limit; retained failed trial010."
+  }
+}

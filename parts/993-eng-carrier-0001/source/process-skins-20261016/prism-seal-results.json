@@ -1,0 +1,56 @@
+{
+  "schema": "carrier-native-prism-seal-software-evidence-v1",
+  "status": "software_checks_passed",
+  "native_jobs_executed": 0,
+  "complete_process_admitted": false,
+  "targeted_tests": {
+    "tests": 6,
+    "passed": true,
+    "log_label": "native-prism-seal-002/targeted-tests.log",
+    "log_sha256": "19936c26fd3805415c6cd31b7715be4b0db0ae936e83614b56b9f992c4f2376a"
+  },
+  "real_repackaging": {
+    "status": "passed",
+    "receipt_label": "native-prism-seal-002/assessment.json",
+    "receipt_sha256": "68d2af94f72072eca78f27ce3cd103d782a8102d95e369b9a4a76688bc10a5db",
+    "cases": [
+      {
+        "name": "central",
+        "status": "passed",
+        "source_index": 0,
+        "original_native_audit_sha256": "f53c16786f16ce56f8053de31982daa679da6edcb765ad13ee3fb8a580834c81",
+        "new_native_audit_sha256": "22f75e9de1e2098695ca7f08bc65d2e71169e05f523b906ea43a951b5361b794",
+        "final_mesh_sha256": "7c1e6b51dae5cab1eac4bd156a09acaafc8411340241516445995d47328fe804",
+        "final_mesh_unchanged": true,
+        "unknown_final_faces": 0,
+        "final_to_raw_map_unchanged": true,
+        "relocated_package_reader_verified": true,
+        "flat_snapshot_isolated_python_verified": true,
+        "flat_reader_stdout": "0 0",
+        "seal_assessment_sha256": "8379cd158c14b66f5380bca2ef19bb1005042bfbf75f12afb7b4e3f184cc31b9"
+      },
+      {
+        "name": "left",
+        "status": "passed",
+        "source_index": 2,
+        "original_native_audit_sha256": "7ce16e57a5ed186140da2c0f9be7f2d6e207eca5dc73f9fccce7e3c25311efce",
+        "new_native_audit_sha256": "e1906fc48369a2fda736d8bcf59efa01e9090026693740e97e75b4c372cc6a99",
+        "final_mesh_sha256": "ef54aaa16cce786947f2df40a460d8bf1c7ae5d44defd589eea368cb2cf6cc89",
+        "final_mesh_unchanged": true,
+        "unknown_final_faces": 9,
+        "final_to_raw_map_unchanged": true,
+        "relocated_package_reader_verified": true,
+        "flat_snapshot_isolated_python_verified": true,
+        "flat_reader_stdout": "2 9",
+        "seal_assessment_sha256": "3d2ba927143f036d23541274c053e3187d3ca4990f8e5d853a18da4bda503498"
+      }
+    ]
+  },
+  "sources_sha256": {
+    "parts/993-eng-carrier-0001/source/process-skins-20261016/seal_prism_native_case.py": "687a5a42b413b76817f2ec82d4789bc0759563acd14ea5518479981c428944b7",
+    "tests/test_carrier_native_prism_seal.py": "bda27e12e9a7f0fb329f4ab35d9863255742c569db6305d7cba3f8a259cf5e37",
+    "parts/993-eng-carrier-0001/source/process-skins-20261016/README-prism-seal.md": "2aaf9e86da456a7c02b980f96dcdf4e078a94067273710a27faa5a8c812075eb"
+  },
+  "strict_reader_source_sha256": "d4c8131feb365fbbfe8a92a39398bd89d9728916062ed1a2d9c67a19015f9259",
+  "scope": "Existing native proof packaging and strict moved-package readback; no native calculation, contact or complete exposure admission."
+}

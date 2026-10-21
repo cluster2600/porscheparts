@@ -1,0 +1,22 @@
+--- render_v2.py
++++ render_v3.py
+@@ -22,8 +22,8 @@
+     os.environ['MPLBACKEND']='Agg'
+     output=Path(output).absolute()
+     if output.exists()or any(p.is_symlink()for p in [output,*output.parents]):raise ValueError('A fresh output without symlinks is required')
+-    plan=json.loads((HERE/'render-plan-v2.json').read_text());pins={str(HERE/n):h for n,h in plan['files_sha256'].items()}
+-    pins[str(HERE/'render-plan-v2.json')]=sha(HERE/'render-plan-v2.json')
++    plan=json.loads((HERE/'render-plan-v3.json').read_text());pins={str(HERE/n):h for n,h in plan['files_sha256'].items()}
++    pins[str(HERE/'render-plan-v3.json')]=sha(HERE/'render-plan-v3.json')
+     def verify():
+         if any(sha(p)!=h for p,h in pins.items()):raise ValueError('A source or data file changed')
+     verify();data=json.loads((HERE/'data/figure-data.json').read_text())
+@@ -88,7 +88,7 @@
+     axes_checks['XY']=dict(xlim=list(xy.get_xlim()),ylim=list(xy.get_ylim()),aspect=xy.get_aspect())
+     xy.legend(handles=[Rectangle((0,0),1,1,fc=blue,label='Projection de toutes les faces'),
+         Rectangle((0,0),1,1,fc='#E9EEF1',ec=grey,label='Plaque d’étude 500 × 500'),
+-        Line2D([],[],ls=':',color=blue,label='Boîte d’encombrement pièce')],loc='upper left',bbox_to_anchor=(.02,.92),frameon=True,facecolor='white',edgecolor='white',framealpha=.96,fontsize=8.5)
++        Line2D([],[],ls=':',color=blue,label='Boîte d’encombrement pièce')],loc='upper left',bbox_to_anchor=(.23,.755),frameon=True,facecolor='white',edgecolor='white',framealpha=.96,fontsize=8.5)
+     side=fig.add_axes([.56,.657,.39,.145],facecolor='white')
+     side.add_patch(Rectangle((-250,-20),500,20,fc='#A9B6BE',ec=grey,lw=1,zorder=1))
+     side.add_collection(PolyCollection(vertices[faces][:,:,[0,2]],facecolors=blue,edgecolors='none',rasterized=True,zorder=3))

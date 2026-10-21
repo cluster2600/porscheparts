@@ -1,0 +1,38 @@
+--- retained/plan.json
++++ prepared/plan.json
+@@ -1,5 +1,5 @@
+ {
+-  "frozen_at_UTC": "2026-10-16T13:10:03.267437+00:00",
++  "frozen_at_UTC": "2026-10-17T03:03:16.458239+00:00",
+   "scope": "Published ambient Ti Grade23 ELI Z stress-relieved reference sensitivity, not Grade5 carrier material law or design allowable",
+   "geometry_STEP_sha256": "ad12b8e0a382d8cc8b585254bb4b6fcfafab99fbcedf40691752271d04947a3e",
+   "linear_reference_case": "combined-spring-1000-static",
+@@ -25,12 +25,12 @@
+     "case_selection": "First published process set, first flat specimen, fixed by data agent independently of carrier outcome"
+   },
+   "step": {
+-    "initial_increment": 0.125,
++    "initial_increment": 0.0625,
+     "end_time": 1,
+     "minimum_increment": 0.001,
+-    "maximum_increment": 0.125,
++    "maximum_increment": 0.0625,
+     "maximum_increments": 100,
+-    "timeout_seconds": 1800
++    "timeout_seconds": 3600
+   },
+   "fixture": "CLOAD and all support/node/section blocks copied byte-for-byte from reference; no softening or recalculation of nodal forces",
+   "outputs": [
+@@ -51,10 +51,10 @@
+   "case_name": "combined-spring-1000-luo-flat1-NLGEOM",
+   "unload_to_zero": true,
+   "unload_step": {
+-    "initial_increment": 0.125,
++    "initial_increment": 0.0625,
+     "end_time": 1,
+     "minimum_increment": 0.001,
+-    "maximum_increment": 0.125,
++    "maximum_increment": 0.0625,
+     "maximum_increments": 100
+   },
+   "unload_scope": "Second NLGEOM step ramps exactly the same nodal force pattern from full load to zero; unchanged eye springs/material. Report residual displacement/location, stress, plastic volume and incremental work. Monotonic measured curve supplies isotropic hardening; unloading is a constitutive-model prediction, not measured cyclic data.",

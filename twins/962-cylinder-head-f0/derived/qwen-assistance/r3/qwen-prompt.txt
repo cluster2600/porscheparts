@@ -1,0 +1,7 @@
+Write ONLY one C# method, no Markdown. Use these supplied real APIs from Leap71.ShapeKernel:
+BaseCylinder(LocalFrame frame, float fLength, float fRadius); void SetRadius(SurfaceModulation modulation); void SetLengthSteps(uint); void SetPolarSteps(uint); Voxels voxConstruct().
+LocalFrame(Vector3 position, Vector3 localZ, Vector3 localX).
+SurfaceModulation accepts delegate (float phi, float lengthRatio) => float radius. phi is radians; ratio is 0..1.
+Task: public static Voxels OvalLoft(Vector3 origin, Vector3 axis, Vector3 localX, float length, float a0, float b0, float a1, float b1).
+Construct a native closed elliptical loft. a,b are semi-axes interpolated linearly with lengthRatio. At each phi use a*b / sqrt((b*cos(phi))^2+(a*sin(phi))^2). Set 24 length steps, 96 polar steps AFTER SetRadius. Do not invent API calls. All inputs are explicit synthetic study values, no Porsche dimensions or fitment claim. Caller validates positive bounded inputs.
+Namespaces already imported: System, System.Numerics, PicoGK, Leap71.ShapeKernel.

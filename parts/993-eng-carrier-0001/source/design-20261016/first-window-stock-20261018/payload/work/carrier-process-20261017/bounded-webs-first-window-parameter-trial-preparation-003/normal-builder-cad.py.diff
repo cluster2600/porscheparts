@@ -1,0 +1,26 @@
+--- parts/993-eng-carrier-0001/source/design-20261016/normal-builder/cad.py
++++ work/carrier-process-20261017/bounded-webs-first-window-parameter-trial-preparation-003/normal-builder/cad.py
+@@ -60,8 +60,9 @@
+     windows = [([(78, -25), (146, -20), (80, 24)], 6),
+                ([(105, 24), (217, 18), (156, -22)], 7),
+                ([(172, -20), (255, -14), (243, 15)], 5)]
++    import os
+     for side in (-1, 1):
+-        for points, radius in windows:
++        for window_index, (points, radius) in enumerate(windows):
+             scale = g.get('window_scale', 1)
+             assert 0 < scale <= 1
+             cx, cy = [sum(p[i] for p in points)/len(points) for i in (0, 1)]
+@@ -70,7 +71,11 @@
+             face = fillet(face.vertices(), radius*scale)
+             # New: inset the rounded cutter before any solid Boolean.
+             original_face = face.faces()[0]
+-            face = Face(original_face.outer_wire().offset_2d(-g['window_edge_inset_mm']))
++            inset = 2.8 if window_index == 0 and scale == 0.9 else g['window_edge_inset_mm']
++            with (output/'window-branch-ledger.jsonl').open('a') as ledger:
++                ledger.write(json.dumps(dict(X_side=side, scale=scale, window_index=window_index, inset_mm=inset, rounded_radius_before_offset_mm=radius*scale, nominal_radius_after_offset_mm=radius*scale-inset, scaled_triangle_points_mm=points), allow_nan=False)+'\n')
++                ledger.flush(); os.fsync(ledger.fileno())
++            face = Face(original_face.outer_wire().offset_2d(-inset))
+             assert 0 < face.area < original_face.area
+             cut = Pos(0, 0, -stock) * extrude(face, amount=2 * stock, dir=(0, 0, 1))
+             body = body - cut

@@ -7,6 +7,35 @@
 > [!CAUTION]
 > **Not ready to print. Safety-critical concept; no manufacturing release.** Catalogue status: `concept`; not a print file. The organic geometry is a design study, not an OEM reconstruction or evidence of fit, strength or fatigue life. See [SAFETY.md](../../SAFETY.md).
 
+## Reprise avec le plafond de 1,30 kg — 16 octobre 2026
+
+Le nouveau candidat paramétrique pèse **1,262 kg** et conserve les interfaces
+de V6f. Le remaillage depuis le STEP donne zéro aiguille et zéro intersection ;
+les distances échantillonnées dans les deux sens restent sous 0,06 mm. Les
+quatre comparaisons mécaniques à V6f passent sous les mêmes charges et appuis.
+
+![Vues et cotes du modèle d'étude actuel, extraites du STL retenu.](../../parts/993-eng-carrier-0001/source/progress-figures-20261016/carrier-dimensions.png)
+
+La [galerie des calculs et des supports](../../parts/993-eng-carrier-0001/source/progress-figures-20261016/index.html)
+réunit les vues du modèle, du remaillage, des couches et des champs mécaniques.
+La [capsule du calcul natif sur la pièce entière](../../parts/993-eng-carrier-0001/source/design-20261016/wholepart-native64-20261017/README.md)
+fournit les fichiers comprimés et les commandes de restauration et de réanalyse.
+
+Le [STEP du candidat retenu](../../parts/993-eng-carrier-0001/derived/workflow-20261016/carrier.step)
+est conservé avec son [reçu d'identité](../../parts/993-eng-carrier-0001/derived/workflow-20261016/export.json).
+Ses [paramètres éditables](../../parts/993-eng-carrier-0001/source/design-20261016/bounded-webs.json)
+permettent de le reconstruire ; le maître F0 et ses anciennes images restent archivés.
+
+Le [dossier de reprise et ses résultats](../../docs/reports/993_CARRIER_WORKFLOW_20261016.md)
+conserve les décisions de géométrie, de mécanique et de préparation LPBF.
+La [chaîne à suivre](../../docs/manufacturing/PART_WORKFLOW.md) relie une image,
+un scan ou un plan de mesures à la CAO, puis aux calculs, aux supports, aux
+couches et au guide d'atelier HTML/PDF. Le statut du catalogue reste `concept`.
+
+## Contrôle initial de V6f — même journée
+
+Le [nouveau dossier de contrôle V6f](../../docs/reports/993_CARRIER_REVALIDATION_20261016.md) conserve la géométrie : bilan énergétique indépendant réussi sur 12 cas linéaires archivés, mais criblage DfAM strict rejeté pour 74 triangles effilés et 54,994 % de surface sous le seuil exploratoire de 1,5 mm. Ce seuil n'est pas un admissible fournisseur. Interfaces réelles, convergence mécanique et procédé complet restent à établir ; aucune autorisation de fabrication.
+
 ## Current design study — R9
 
 R9 explores an organic engine carrier using **Ti-6Al-4V as an unqualified material candidate**, with density **4,420 kg/m³**, nominal **1.5 mm ribs** and a **4.0 mm center section**. These are modeling assumptions, not measured Porsche dimensions or a qualified manufacturing specification.

@@ -1,0 +1,864 @@
+{
+  "status": "conditional_fully_developed_laminar_hydraulic_proxy",
+  "fillet_radii_are_assumptions": true,
+  "image_id_declared_by_runner": "sha256:7fd9720bb13ced8dcff55cf36f0a54fadc628b73806787cdefbf4289e5dbd970",
+  "python": "3.12.3",
+  "numpy": "2.5.2",
+  "scipy": "1.18.1",
+  "rib_count": 4,
+  "channel_height_mm": 3.0,
+  "channel_length_m": 0.024,
+  "assumed_entry_k": 2.0,
+  "temperature_k": 506.46954,
+  "pressure_pa": 303975.0,
+  "element_sizes_mm": [
+    0.2,
+    0.1,
+    0.05,
+    0.025
+  ],
+  "clear_widths_mm": [
+    1.8,
+    5.2,
+    5.2,
+    5.2,
+    1.8
+  ],
+  "sections": [
+    {
+      "width_mm": 1.8,
+      "height_mm": 3.0,
+      "fillet_radius_mm": 0.0,
+      "fillet_radius_is_assumption": true,
+      "element_size_mm": 0.2,
+      "nodes": 717,
+      "elements": 334,
+      "fe_area_mm2": 5.399999999999995,
+      "cad_area_mm2": 5.3999999999999995,
+      "analytic_area_mm2": 5.4,
+      "cad_perimeter_mm": 9.6,
+      "analytic_perimeter_mm": 9.6,
+      "w_integral_mm4": 0.9124255533118886,
+      "maximum_w_mm2": 0.3440302500940484,
+      "gmsh_version": "4.15.2"
+    },
+    {
+      "width_mm": 1.8,
+      "height_mm": 3.0,
+      "fillet_radius_mm": 0.0,
+      "fillet_radius_is_assumption": true,
+      "element_size_mm": 0.1,
+      "nodes": 2669,
+      "elements": 1286,
+      "fe_area_mm2": 5.399999999999995,
+      "cad_area_mm2": 5.3999999999999995,
+      "analytic_area_mm2": 5.4,
+      "cad_perimeter_mm": 9.6,
+      "analytic_perimeter_mm": 9.6,
+      "w_integral_mm4": 0.9124656378306221,
+      "maximum_w_mm2": 0.34425916055203504,
+      "gmsh_version": "4.15.2"
+    },
+    {
+      "width_mm": 1.8,
+      "height_mm": 3.0,
+      "fillet_radius_mm": 0.0,
+      "fillet_radius_is_assumption": true,
+      "element_size_mm": 0.05,
+      "nodes": 10321,
+      "elements": 5064,
+      "fe_area_mm2": 5.399999999999994,
+      "cad_area_mm2": 5.3999999999999995,
+      "analytic_area_mm2": 5.4,
+      "cad_perimeter_mm": 9.6,
+      "analytic_perimeter_mm": 9.6,
+      "w_integral_mm4": 0.912468693231866,
+      "maximum_w_mm2": 0.3443168554767662,
+      "gmsh_version": "4.15.2"
+    },
+    {
+      "width_mm": 1.8,
+      "height_mm": 3.0,
+      "fillet_radius_mm": 0.0,
+      "fillet_radius_is_assumption": true,
+      "element_size_mm": 0.025,
+      "nodes": 40381,
+      "elements": 19998,
+      "fe_area_mm2": 5.399999999999994,
+      "cad_area_mm2": 5.3999999999999995,
+      "analytic_area_mm2": 5.4,
+      "cad_perimeter_mm": 9.6,
+      "analytic_perimeter_mm": 9.6,
+      "w_integral_mm4": 0.9124689200785634,
+      "maximum_w_mm2": 0.344347811085979,
+      "gmsh_version": "4.15.2"
+    },
+    {
+      "width_mm": 5.2,
+      "height_mm": 3.0,
+      "fillet_radius_mm": 0.0,
+      "fillet_radius_is_assumption": true,
+      "element_size_mm": 0.2,
+      "nodes": 1963,
+      "elements": 940,
+      "fe_area_mm2": 15.599999999999985,
+      "cad_area_mm2": 15.599999999999998,
+      "analytic_area_mm2": 15.600000000000001,
+      "cad_perimeter_mm": 16.4,
+      "analytic_perimeter_mm": 16.4,
+      "w_integral_mm4": 7.482169054282073,
+      "maximum_w_mm2": 0.9725966924260111,
+      "gmsh_version": "4.15.2"
+    },
+    {
+      "width_mm": 5.2,
+      "height_mm": 3.0,
+      "fillet_radius_mm": 0.0,
+      "fillet_radius_is_assumption": true,
+      "element_size_mm": 0.1,
+      "nodes": 7509,
+      "elements": 3672,
+      "fe_area_mm2": 15.599999999999985,
+      "cad_area_mm2": 15.599999999999998,
+      "analytic_area_mm2": 15.600000000000001,
+      "cad_perimeter_mm": 16.4,
+      "analytic_perimeter_mm": 16.4,
+      "w_integral_mm4": 7.4822159573468445,
+      "maximum_w_mm2": 0.9729733250553365,
+      "gmsh_version": "4.15.2"
+    },
+    {
+      "width_mm": 5.2,
+      "height_mm": 3.0,
+      "fillet_radius_mm": 0.0,
+      "fillet_radius_is_assumption": true,
+      "element_size_mm": 0.05,
+      "nodes": 29485,
+      "elements": 14578,
+      "fe_area_mm2": 15.599999999999982,
+      "cad_area_mm2": 15.599999999999998,
+      "analytic_area_mm2": 15.600000000000001,
+      "cad_perimeter_mm": 16.4,
+      "analytic_perimeter_mm": 16.4,
+      "w_integral_mm4": 7.4822193827845584,
+      "maximum_w_mm2": 0.973097498335512,
+      "gmsh_version": "4.15.2"
+    },
+    {
+      "width_mm": 5.2,
+      "height_mm": 3.0,
+      "fillet_radius_mm": 0.0,
+      "fillet_radius_is_assumption": true,
+      "element_size_mm": 0.025,
+      "nodes": 116497,
+      "elements": 57920,
+      "fe_area_mm2": 15.599999999999984,
+      "cad_area_mm2": 15.599999999999998,
+      "analytic_area_mm2": 15.600000000000001,
+      "cad_perimeter_mm": 16.4,
+      "analytic_perimeter_mm": 16.4,
+      "w_integral_mm4": 7.482219637664102,
+      "maximum_w_mm2": 0.9731135040734354,
+      "gmsh_version": "4.15.2"
+    },
+    {
+      "width_mm": 1.8,
+      "height_mm": 3.0,
+      "fillet_radius_mm": 0.2,
+      "fillet_radius_is_assumption": true,
+      "element_size_mm": 0.2,
+      "nodes": 709,
+      "elements": 330,
+      "fe_area_mm2": 5.365565902812484,
+      "cad_area_mm2": 5.36566370614359,
+      "analytic_area_mm2": 5.365663706143592,
+      "cad_perimeter_mm": 9.256637061435917,
+      "analytic_perimeter_mm": 9.256637061435917,
+      "w_integral_mm4": 0.9112449694521777,
+      "maximum_w_mm2": 0.3441520176136942,
+      "gmsh_version": "4.15.2"
+    },
+    {
+      "width_mm": 1.8,
+      "height_mm": 3.0,
+      "fillet_radius_mm": 0.2,
+      "fillet_radius_is_assumption": true,
+      "element_size_mm": 0.1,
+      "nodes": 2641,
+      "elements": 1272,
+      "fe_area_mm2": 5.365657508668148,
+      "cad_area_mm2": 5.36566370614359,
+      "analytic_area_mm2": 5.365663706143592,
+      "cad_perimeter_mm": 9.256637061435917,
+      "analytic_perimeter_mm": 9.256637061435917,
+      "w_integral_mm4": 0.9112761288757409,
+      "maximum_w_mm2": 0.34422067971372566,
+      "gmsh_version": "4.15.2"
+    },
+    {
+      "width_mm": 1.8,
+      "height_mm": 3.0,
+      "fillet_radius_mm": 0.2,
+      "fillet_radius_is_assumption": true,
+      "element_size_mm": 0.05,
+      "nodes": 10289,
+      "elements": 5050,
+      "fe_area_mm2": 5.365663043309089,
+      "cad_area_mm2": 5.36566370614359,
+      "analytic_area_mm2": 5.365663706143592,
+      "cad_perimeter_mm": 9.256637061435917,
+      "analytic_perimeter_mm": 9.256637061435917,
+      "w_integral_mm4": 0.9112788816070682,
+      "maximum_w_mm2": 0.34423606932021955,
+      "gmsh_version": "4.15.2"
+    },
+    {
+      "width_mm": 1.8,
+      "height_mm": 3.0,
+      "fillet_radius_mm": 0.2,
+      "fillet_radius_is_assumption": true,
+      "element_size_mm": 0.025,
+      "nodes": 40341,
+      "elements": 19984,
+      "fe_area_mm2": 5.365663650362623,
+      "cad_area_mm2": 5.36566370614359,
+      "analytic_area_mm2": 5.365663706143592,
+      "cad_perimeter_mm": 9.256637061435917,
+      "analytic_perimeter_mm": 9.256637061435917,
+      "w_integral_mm4": 0.9112791224782895,
+      "maximum_w_mm2": 0.34426856434643843,
+      "gmsh_version": "4.15.2"
+    },
+    {
+      "width_mm": 5.2,
+      "height_mm": 3.0,
+      "fillet_radius_mm": 0.2,
+      "fillet_radius_is_assumption": true,
+      "element_size_mm": 0.2,
+      "nodes": 1963,
+      "elements": 940,
+      "fe_area_mm2": 15.565565902812473,
+      "cad_area_mm2": 15.56566370614359,
+      "analytic_area_mm2": 15.565663706143592,
+      "cad_perimeter_mm": 16.056637061435918,
+      "analytic_perimeter_mm": 16.056637061435914,
+      "w_integral_mm4": 7.480572023922342,
+      "maximum_w_mm2": 0.9730272711523354,
+      "gmsh_version": "4.15.2"
+    },
+    {
+      "width_mm": 5.2,
+      "height_mm": 3.0,
+      "fillet_radius_mm": 0.2,
+      "fillet_radius_is_assumption": true,
+      "element_size_mm": 0.1,
+      "nodes": 7481,
+      "elements": 3658,
+      "fe_area_mm2": 15.565657508668135,
+      "cad_area_mm2": 15.56566370614359,
+      "analytic_area_mm2": 15.565663706143592,
+      "cad_perimeter_mm": 16.056637061435918,
+      "analytic_perimeter_mm": 16.056637061435914,
+      "w_integral_mm4": 7.48061487600657,
+      "maximum_w_mm2": 0.9729864374926439,
+      "gmsh_version": "4.15.2"
+    },
+    {
+      "width_mm": 5.2,
+      "height_mm": 3.0,
+      "fillet_radius_mm": 0.2,
+      "fillet_radius_is_assumption": true,
+      "element_size_mm": 0.05,
+      "nodes": 29413,
+      "elements": 14544,
+      "fe_area_mm2": 15.56566304330908,
+      "cad_area_mm2": 15.56566370614359,
+      "analytic_area_mm2": 15.565663706143592,
+      "cad_perimeter_mm": 16.056637061435918,
+      "analytic_perimeter_mm": 16.056637061435914,
+      "w_integral_mm4": 7.480618652605914,
+      "maximum_w_mm2": 0.973076033311112,
+      "gmsh_version": "4.15.2"
+    },
+    {
+      "width_mm": 5.2,
+      "height_mm": 3.0,
+      "fillet_radius_mm": 0.2,
+      "fillet_radius_is_assumption": true,
+      "element_size_mm": 0.025,
+      "nodes": 116177,
+      "elements": 57766,
+      "fe_area_mm2": 15.565663650362614,
+      "cad_area_mm2": 15.56566370614359,
+      "analytic_area_mm2": 15.565663706143592,
+      "cad_perimeter_mm": 16.056637061435918,
+      "analytic_perimeter_mm": 16.056637061435914,
+      "w_integral_mm4": 7.480618986850937,
+      "maximum_w_mm2": 0.973094232454233,
+      "gmsh_version": "4.15.2"
+    },
+    {
+      "width_mm": 1.8,
+      "height_mm": 3.0,
+      "fillet_radius_mm": 0.4,
+      "fillet_radius_is_assumption": true,
+      "element_size_mm": 0.2,
+      "nodes": 701,
+      "elements": 326,
+      "fe_area_mm2": 5.262630034672608,
+      "cad_area_mm2": 5.2626548245743665,
+      "analytic_area_mm2": 5.262654824574367,
+      "cad_perimeter_mm": 8.913274122871835,
+      "analytic_perimeter_mm": 8.913274122871833,
+      "w_integral_mm4": 0.9007196341238509,
+      "maximum_w_mm2": 0.34312464176155233,
+      "gmsh_version": "4.15.2"
+    },
+    {
+      "width_mm": 1.8,
+      "height_mm": 3.0,
+      "fillet_radius_mm": 0.4,
+      "fillet_radius_is_assumption": true,
+      "element_size_mm": 0.1,
+      "nodes": 2613,
+      "elements": 1260,
+      "fe_area_mm2": 5.262652173236373,
+      "cad_area_mm2": 5.2626548245743665,
+      "analytic_area_mm2": 5.262654824574367,
+      "cad_perimeter_mm": 8.913274122871835,
+      "analytic_perimeter_mm": 8.913274122871833,
+      "w_integral_mm4": 0.9007436626952241,
+      "maximum_w_mm2": 0.34327400517185586,
+      "gmsh_version": "4.15.2"
+    },
+    {
+      "width_mm": 1.8,
+      "height_mm": 3.0,
+      "fillet_radius_mm": 0.4,
+      "fillet_radius_is_assumption": true,
+      "element_size_mm": 0.05,
+      "nodes": 10045,
+      "elements": 4932,
+      "fe_area_mm2": 5.262654601450508,
+      "cad_area_mm2": 5.2626548245743665,
+      "analytic_area_mm2": 5.262654824574367,
+      "cad_perimeter_mm": 8.913274122871835,
+      "analytic_perimeter_mm": 8.913274122871833,
+      "w_integral_mm4": 0.9007457012886639,
+      "maximum_w_mm2": 0.3433149703411836,
+      "gmsh_version": "4.15.2"
+    },
+    {
+      "width_mm": 1.8,
+      "height_mm": 3.0,
+      "fillet_radius_mm": 0.4,
+      "fillet_radius_is_assumption": true,
+      "element_size_mm": 0.025,
+      "nodes": 39593,
+      "elements": 19616,
+      "fe_area_mm2": 5.262654810624575,
+      "cad_area_mm2": 5.2626548245743665,
+      "analytic_area_mm2": 5.262654824574367,
+      "cad_perimeter_mm": 8.913274122871835,
+      "analytic_perimeter_mm": 8.913274122871833,
+      "w_integral_mm4": 0.9007458908187229,
+      "maximum_w_mm2": 0.34334218041892034,
+      "gmsh_version": "4.15.2"
+    },
+    {
+      "width_mm": 5.2,
+      "height_mm": 3.0,
+      "fillet_radius_mm": 0.4,
+      "fillet_radius_is_assumption": true,
+      "element_size_mm": 0.2,
+      "nodes": 1959,
+      "elements": 938,
+      "fe_area_mm2": 15.462630034672594,
+      "cad_area_mm2": 15.462654824574372,
+      "analytic_area_mm2": 15.462654824574368,
+      "cad_perimeter_mm": 15.713274122871834,
+      "analytic_perimeter_mm": 15.713274122871834,
+      "w_integral_mm4": 7.465192992012098,
+      "maximum_w_mm2": 0.9726279405752271,
+      "gmsh_version": "4.15.2"
+    },
+    {
+      "width_mm": 5.2,
+      "height_mm": 3.0,
+      "fillet_radius_mm": 0.4,
+      "fillet_radius_is_assumption": true,
+      "element_size_mm": 0.1,
+      "nodes": 7461,
+      "elements": 3650,
+      "fe_area_mm2": 15.462652173236364,
+      "cad_area_mm2": 15.462654824574372,
+      "analytic_area_mm2": 15.462654824574368,
+      "cad_perimeter_mm": 15.713274122871834,
+      "analytic_perimeter_mm": 15.713274122871834,
+      "w_integral_mm4": 7.465229055175491,
+      "maximum_w_mm2": 0.9725501611872963,
+      "gmsh_version": "4.15.2"
+    },
+    {
+      "width_mm": 5.2,
+      "height_mm": 3.0,
+      "fillet_radius_mm": 0.4,
+      "fillet_radius_is_assumption": true,
+      "element_size_mm": 0.05,
+      "nodes": 29049,
+      "elements": 14366,
+      "fe_area_mm2": 15.462654601450497,
+      "cad_area_mm2": 15.462654824574372,
+      "analytic_area_mm2": 15.462654824574368,
+      "cad_perimeter_mm": 15.713274122871834,
+      "analytic_perimeter_mm": 15.713274122871834,
+      "w_integral_mm4": 7.465232180555344,
+      "maximum_w_mm2": 0.9727307114566532,
+      "gmsh_version": "4.15.2"
+    },
+    {
+      "width_mm": 5.2,
+      "height_mm": 3.0,
+      "fillet_radius_mm": 0.4,
+      "fillet_radius_is_assumption": true,
+      "element_size_mm": 0.025,
+      "nodes": 115189,
+      "elements": 57278,
+      "fe_area_mm2": 15.462654810624567,
+      "cad_area_mm2": 15.462654824574372,
+      "analytic_area_mm2": 15.462654824574368,
+      "cad_perimeter_mm": 15.713274122871834,
+      "analytic_perimeter_mm": 15.713274122871834,
+      "w_integral_mm4": 7.465232481183003,
+      "maximum_w_mm2": 0.9727307206600724,
+      "gmsh_version": "4.15.2"
+    }
+  ],
+  "variants": {
+    "0.0": {
+      "fillet_radius_mm": 0.0,
+      "open_area_mm2": 57.59999999999994,
+      "w_integral_convergence": {
+        "1.8": {
+          "monotone_convergence": true,
+          "successive_difference_ratio": 0.07424448683434559,
+          "observed_order": 3.751572289949601,
+          "extrapolated": 0.9124689382713976,
+          "gci_fine": 2.492253966929989e-08,
+          "converged_within_gci": true
+        },
+        "5.2": {
+          "monotone_convergence": true,
+          "successive_difference_ratio": 0.07440787558710202,
+          "observed_order": 3.7484008605229433,
+          "extrapolated": 7.4822196581537375,
+          "gci_fine": 3.4230543529478672e-09,
+          "converged_within_gci": true
+        }
+      },
+      "channel_sections": [
+        {
+          "width_mm": 1.8,
+          "area_m2": 5.399999999999994e-06,
+          "perimeter_m": 0.0096,
+          "w_integral_m4": 9.124689200785634e-13,
+          "friction_re": 59.919849100495746
+        },
+        {
+          "width_mm": 5.2,
+          "area_m2": 1.5599999999999983e-05,
+          "perimeter_m": 0.016399999999999998,
+          "w_integral_m4": 7.482219637664102e-12,
+          "friction_re": 60.36783831743679
+        },
+        {
+          "width_mm": 5.2,
+          "area_m2": 1.5599999999999983e-05,
+          "perimeter_m": 0.016399999999999998,
+          "w_integral_m4": 7.482219637664102e-12,
+          "friction_re": 60.36783831743679
+        },
+        {
+          "width_mm": 5.2,
+          "area_m2": 1.5599999999999983e-05,
+          "perimeter_m": 0.016399999999999998,
+          "w_integral_m4": 7.482219637664102e-12,
+          "friction_re": 60.36783831743679
+        },
+        {
+          "width_mm": 1.8,
+          "area_m2": 5.399999999999994e-06,
+          "perimeter_m": 0.0096,
+          "w_integral_m4": 9.124689200785634e-13,
+          "friction_re": 59.919849100495746
+        }
+      ],
+      "split": {
+        "pressure_drop_pa": 4.865291482787472,
+        "total_mass_flow_kg_s": 0.00014050644890540917,
+        "mass_flow_closure": 2.220446049250313e-16,
+        "channels": [
+          {
+            "mass_flow_kg_s": 9.750192367934587e-06,
+            "velocity_m_s": 0.863559845050907,
+            "re": 150.7200989301904,
+            "dh_m": 0.0022499999999999977,
+            "friction_pressure_drop_pa": 3.306055443811521,
+            "entry_pressure_drop_pa": 1.5592360389759516,
+            "pressure_drop_pa": 4.865291482787473,
+            "hydrodynamic_entry_length_over_length": 0.7065004637352669
+          },
+          {
+            "mass_flow_kg_s": 4.033535472318001e-05,
+            "velocity_m_s": 1.236614394731844,
+            "re": 364.9818362961999,
+            "dh_m": 0.0038048780487804842,
+            "friction_pressure_drop_pa": 1.667901722063145,
+            "entry_pressure_drop_pa": 3.1973897607243282,
+            "pressure_drop_pa": 4.865291482787473,
+            "hydrodynamic_entry_length_over_length": 2.893148702347924
+          },
+          {
+            "mass_flow_kg_s": 4.033535472318001e-05,
+            "velocity_m_s": 1.236614394731844,
+            "re": 364.9818362961999,
+            "dh_m": 0.0038048780487804842,
+            "friction_pressure_drop_pa": 1.667901722063145,
+            "entry_pressure_drop_pa": 3.1973897607243282,
+            "pressure_drop_pa": 4.865291482787473,
+            "hydrodynamic_entry_length_over_length": 2.893148702347924
+          },
+          {
+            "mass_flow_kg_s": 4.033535472318001e-05,
+            "velocity_m_s": 1.236614394731844,
+            "re": 364.9818362961999,
+            "dh_m": 0.0038048780487804842,
+            "friction_pressure_drop_pa": 1.667901722063145,
+            "entry_pressure_drop_pa": 3.1973897607243282,
+            "pressure_drop_pa": 4.865291482787473,
+            "hydrodynamic_entry_length_over_length": 2.893148702347924
+          },
+          {
+            "mass_flow_kg_s": 9.750192367934587e-06,
+            "velocity_m_s": 0.863559845050907,
+            "re": 150.7200989301904,
+            "dh_m": 0.0022499999999999977,
+            "friction_pressure_drop_pa": 3.306055443811521,
+            "entry_pressure_drop_pa": 1.5592360389759516,
+            "pressure_drop_pa": 4.865291482787473,
+            "hydrodynamic_entry_length_over_length": 0.7065004637352669
+          }
+        ]
+      }
+    },
+    "0.2": {
+      "fillet_radius_mm": 0.2,
+      "open_area_mm2": 57.428318251813096,
+      "w_integral_convergence": {
+        "1.8": {
+          "monotone_convergence": true,
+          "successive_difference_ratio": 0.08750262654424622,
+          "observed_order": 3.514529867167051,
+          "extrapolated": 0.9112791455762896,
+          "gci_fine": 3.1683487033919924e-08,
+          "converged_within_gci": true
+        },
+        "5.2": {
+          "monotone_convergence": true,
+          "successive_difference_ratio": 0.08850423153027588,
+          "observed_order": 3.498109755349692,
+          "extrapolated": 7.480619019305392,
+          "gci_fine": 5.423089918519455e-09,
+          "converged_within_gci": true
+        }
+      },
+      "channel_sections": [
+        {
+          "width_mm": 1.8,
+          "area_m2": 5.365663650362623e-06,
+          "perimeter_m": 0.009256637061435917,
+          "w_integral_m4": 9.112791224782894e-13,
+          "friction_re": 63.308557943785814
+        },
+        {
+          "width_mm": 5.2,
+          "area_m2": 1.5565663650362615e-05,
+          "perimeter_m": 0.016056637061435917,
+          "w_integral_m4": 7.480618986850937e-12,
+          "friction_re": 62.5757677574863
+        },
+        {
+          "width_mm": 5.2,
+          "area_m2": 1.5565663650362615e-05,
+          "perimeter_m": 0.016056637061435917,
+          "w_integral_m4": 7.480618986850937e-12,
+          "friction_re": 62.5757677574863
+        },
+        {
+          "width_mm": 5.2,
+          "area_m2": 1.5565663650362615e-05,
+          "perimeter_m": 0.016056637061435917,
+          "w_integral_m4": 7.480618986850937e-12,
+          "friction_re": 62.5757677574863
+        },
+        {
+          "width_mm": 1.8,
+          "area_m2": 5.365663650362623e-06,
+          "perimeter_m": 0.009256637061435917,
+          "w_integral_m4": 9.112791224782894e-13,
+          "friction_re": 63.308557943785814
+        }
+      ],
+      "split": {
+        "pressure_drop_pa": 4.881424391521144,
+        "total_mass_flow_kg_s": 0.00014050644890540917,
+        "mass_flow_closure": 0.0,
+        "channels": [
+          {
+            "mass_flow_kg_s": 9.737824004772376e-06,
+            "velocity_m_s": 0.8679835433984121,
+            "re": 156.1125811492525,
+            "dh_m": 0.0023186233249725295,
+            "friction_pressure_drop_pa": 3.3061726546588788,
+            "entry_pressure_drop_pa": 1.5752517368622652,
+            "pressure_drop_pa": 4.8814243915211435,
+            "hydrodynamic_entry_length_over_length": 0.7540963999465076
+          },
+          {
+            "mass_flow_kg_s": 4.034360029862147e-05,
+            "velocity_m_s": 1.239595599741741,
+            "re": 372.86299257779314,
+            "dh_m": 0.003877689603571473,
+            "friction_pressure_drop_pa": 1.668599642687147,
+            "entry_pressure_drop_pa": 3.2128247488339983,
+            "pressure_drop_pa": 4.881424391521145,
+            "hydrodynamic_entry_length_over_length": 3.012181145573866
+          },
+          {
+            "mass_flow_kg_s": 4.034360029862147e-05,
+            "velocity_m_s": 1.239595599741741,
+            "re": 372.86299257779314,
+            "dh_m": 0.003877689603571473,
+            "friction_pressure_drop_pa": 1.668599642687147,
+            "entry_pressure_drop_pa": 3.2128247488339983,
+            "pressure_drop_pa": 4.881424391521145,
+            "hydrodynamic_entry_length_over_length": 3.012181145573866
+          },
+          {
+            "mass_flow_kg_s": 4.034360029862147e-05,
+            "velocity_m_s": 1.239595599741741,
+            "re": 372.86299257779314,
+            "dh_m": 0.003877689603571473,
+            "friction_pressure_drop_pa": 1.668599642687147,
+            "entry_pressure_drop_pa": 3.2128247488339983,
+            "pressure_drop_pa": 4.881424391521145,
+            "hydrodynamic_entry_length_over_length": 3.012181145573866
+          },
+          {
+            "mass_flow_kg_s": 9.737824004772376e-06,
+            "velocity_m_s": 0.8679835433984121,
+            "re": 156.1125811492525,
+            "dh_m": 0.0023186233249725295,
+            "friction_pressure_drop_pa": 3.3061726546588788,
+            "entry_pressure_drop_pa": 1.5752517368622652,
+            "pressure_drop_pa": 4.8814243915211435,
+            "hydrodynamic_entry_length_over_length": 0.7540963999465076
+          }
+        ]
+      }
+    },
+    "0.4": {
+      "fillet_radius_mm": 0.4,
+      "open_area_mm2": 56.91327405312285,
+      "w_integral_convergence": {
+        "1.8": {
+          "monotone_convergence": true,
+          "successive_difference_ratio": 0.0929709942536841,
+          "observed_order": 3.427075505526778,
+          "extrapolated": 0.9007459102456629,
+          "gci_fine": 2.695951786253811e-08,
+          "converged_within_gci": true
+        },
+        "5.2": {
+          "monotone_convergence": true,
+          "successive_difference_ratio": 0.09618915871042626,
+          "observed_order": 3.3779818899175207,
+          "extrapolated": 7.465232513177664,
+          "gci_fine": 5.357278088574635e-09,
+          "converged_within_gci": true
+        }
+      },
+      "channel_sections": [
+        {
+          "width_mm": 1.8,
+          "area_m2": 5.262654810624575e-06,
+          "perimeter_m": 0.008913274122871835,
+          "w_integral_m4": 9.007458908187229e-13,
+          "friction_re": 65.17601693121036
+        },
+        {
+          "width_mm": 5.2,
+          "area_m2": 1.5462654810624565e-05,
+          "perimeter_m": 0.015713274122871834,
+          "w_integral_m4": 7.465232481183003e-12,
+          "friction_re": 64.18380351420278
+        },
+        {
+          "width_mm": 5.2,
+          "area_m2": 1.5462654810624565e-05,
+          "perimeter_m": 0.015713274122871834,
+          "w_integral_m4": 7.465232481183003e-12,
+          "friction_re": 64.18380351420278
+        },
+        {
+          "width_mm": 5.2,
+          "area_m2": 1.5462654810624565e-05,
+          "perimeter_m": 0.015713274122871834,
+          "w_integral_m4": 7.465232481183003e-12,
+          "friction_re": 64.18380351420278
+        },
+        {
+          "width_mm": 1.8,
+          "area_m2": 5.262654810624575e-06,
+          "perimeter_m": 0.008913274122871835,
+          "w_integral_m4": 9.007458908187229e-13,
+          "friction_re": 65.17601693121036
+        }
+      ],
+      "split": {
+        "pressure_drop_pa": 4.936878516083446,
+        "total_mass_flow_kg_s": 0.00014050644890540917,
+        "mass_flow_closure": 0.0,
+        "channels": [
+          {
+            "mass_flow_kg_s": 9.67081193918366e-06,
+            "velocity_m_s": 0.8788830092356253,
+            "re": 161.0107578098381,
+            "dh_m": 0.0023617156784712283,
+            "friction_pressure_drop_pa": 3.3218168020409053,
+            "entry_pressure_drop_pa": 1.6150617140425405,
+            "pressure_drop_pa": 4.936878516083446,
+            "hydrodynamic_entry_length_over_length": 0.792211731504226
+          },
+          {
+            "mass_flow_kg_s": 4.038827500901395e-05,
+            "velocity_m_s": 1.2492353332736914,
+            "re": 381.4326253172928,
+            "dh_m": 0.003936201886306438,
+            "friction_pressure_drop_pa": 1.6738903158574938,
+            "entry_pressure_drop_pa": 3.262988200225953,
+            "pressure_drop_pa": 4.936878516083447,
+            "hydrodynamic_entry_length_over_length": 3.127907956818218
+          },
+          {
+            "mass_flow_kg_s": 4.038827500901395e-05,
+            "velocity_m_s": 1.2492353332736914,
+            "re": 381.4326253172928,
+            "dh_m": 0.003936201886306438,
+            "friction_pressure_drop_pa": 1.6738903158574938,
+            "entry_pressure_drop_pa": 3.262988200225953,
+            "pressure_drop_pa": 4.936878516083447,
+            "hydrodynamic_entry_length_over_length": 3.127907956818218
+          },
+          {
+            "mass_flow_kg_s": 4.038827500901395e-05,
+            "velocity_m_s": 1.2492353332736914,
+            "re": 381.4326253172928,
+            "dh_m": 0.003936201886306438,
+            "friction_pressure_drop_pa": 1.6738903158574938,
+            "entry_pressure_drop_pa": 3.262988200225953,
+            "pressure_drop_pa": 4.936878516083447,
+            "hydrodynamic_entry_length_over_length": 3.127907956818218
+          },
+          {
+            "mass_flow_kg_s": 9.67081193918366e-06,
+            "velocity_m_s": 0.8788830092356253,
+            "re": 161.0107578098381,
+            "dh_m": 0.0023617156784712283,
+            "friction_pressure_drop_pa": 3.3218168020409053,
+            "entry_pressure_drop_pa": 1.6150617140425405,
+            "pressure_drop_pa": 4.936878516083446,
+            "hydrodynamic_entry_length_over_length": 0.792211731504226
+          }
+        ]
+      }
+    }
+  },
+  "sharp_exact_series_split": {
+    "pressure_drop_pa": 4.865291468229694,
+    "total_mass_flow_kg_s": 0.00014050644890540917,
+    "mass_flow_closure": 0.0,
+    "channels": [
+      {
+        "mass_flow_kg_s": 9.75019244506551e-06,
+        "velocity_m_s": 0.8635598518822758,
+        "re": 150.72010012249305,
+        "dh_m": 0.0022500000000000003,
+        "friction_pressure_drop_pa": 3.306055404584425,
+        "entry_pressure_drop_pa": 1.5592360636452696,
+        "pressure_drop_pa": 4.865291468229694,
+        "hydrodynamic_entry_length_over_length": 0.7065004693241862
+      },
+      {
+        "mass_flow_kg_s": 4.033535467175938e-05,
+        "velocity_m_s": 1.2366143931553724,
+        "re": 364.98183583091094,
+        "dh_m": 0.003804878048780488,
+        "friction_pressure_drop_pa": 1.667901715657614,
+        "entry_pressure_drop_pa": 3.19738975257208,
+        "pressure_drop_pa": 4.865291468229694,
+        "hydrodynamic_entry_length_over_length": 2.893148698659661
+      },
+      {
+        "mass_flow_kg_s": 4.033535467175938e-05,
+        "velocity_m_s": 1.2366143931553724,
+        "re": 364.98183583091094,
+        "dh_m": 0.003804878048780488,
+        "friction_pressure_drop_pa": 1.667901715657614,
+        "entry_pressure_drop_pa": 3.19738975257208,
+        "pressure_drop_pa": 4.865291468229694,
+        "hydrodynamic_entry_length_over_length": 2.893148698659661
+      },
+      {
+        "mass_flow_kg_s": 4.033535467175938e-05,
+        "velocity_m_s": 1.2366143931553724,
+        "re": 364.98183583091094,
+        "dh_m": 0.003804878048780488,
+        "friction_pressure_drop_pa": 1.667901715657614,
+        "entry_pressure_drop_pa": 3.19738975257208,
+        "pressure_drop_pa": 4.865291468229694,
+        "hydrodynamic_entry_length_over_length": 2.893148698659661
+      },
+      {
+        "mass_flow_kg_s": 9.75019244506551e-06,
+        "velocity_m_s": 0.8635598518822758,
+        "re": 150.72010012249305,
+        "dh_m": 0.0022500000000000003,
+        "friction_pressure_drop_pa": 3.306055404584425,
+        "entry_pressure_drop_pa": 1.5592360636452696,
+        "pressure_drop_pa": 4.865291468229694,
+        "hydrodynamic_entry_length_over_length": 0.7065004693241862
+      }
+    ]
+  },
+  "study_rectangular_proxy": {
+    "pressure_drop_pa": 4.866097013793637,
+    "total_mass_flow_kg_s": 0.00014050644890540917
+  },
+  "not_resolved": [
+    "developing flow at the channel entrances (entry lengths exceed the 24 mm channel)",
+    "LPBF roughness",
+    "headers and real flow distribution",
+    "compressibility and heat transfer"
+  ],
+  "hydraulic_performance_accepted": false,
+  "thermal_gain_claimed": false,
+  "manufacturing_authorized": false,
+  "resolved_thermal_or_flow_simulation": false,
+  "source_sha256": "44f5ee33034acab638d160ec3330b37f584dc67bef9f81ed1cf198eba013001f",
+  "dependency_hashes": {
+    "twins/993-intercooler/750-hp/pressure-coupon/source/study.py": "cb99ef2a1585607099da14d7fc3714a8c44f43438e98ad55a0724d05b163b6ba",
+    "twins/993-intercooler/750-hp/pressure-coupon/source/fillet_convergence.py": "b7e6de2697d13d4b0eb4d32785f3afa545818dd2603b763ce1fc1948b9cdc1c2",
+    "twins/993-intercooler/750-hp/source/size_core.py": "ea29086d320afe9c831b0a28530ff1426f381f13af5548b3e8b95db1728eb8fb"
+  }
+}

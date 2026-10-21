@@ -1,4 +1,10 @@
-# 911–917 — packaging and driveline studies F0–F15
+# 911–917 — packaging and driveline studies F0–F16
+
+## F16 installed LEAP stack
+
+The [ShapeKernel, LatticeLibrary and VDB field study](LEAP_STACK.md) adds smooth
+ducts and an open tail-insert trial to the public F15 context. It retains native
+collision results and bidirectional field roundtrip checks, not physical approval.
 
 ## F15 integrated vehicle
 

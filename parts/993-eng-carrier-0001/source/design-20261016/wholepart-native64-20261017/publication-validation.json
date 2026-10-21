@@ -1,0 +1,47 @@
+{
+  "status": "root_verified_and_replayed_from_relocated_capsule_via_native_Samba_storage",
+  "source_archive_sha256": "a53ccc4365e927c5d56af0120f2b4764a73c913280d98b2b6defc54b07be0456",
+  "source_manifest_sha256": "d7c4e32f905b0e607aca6a5a3f196659530fb0cc4c25e563dd9bfdcb48dcaeb5",
+  "payloads_verified": 48,
+  "archive_files_verified": 62,
+  "stages": [
+    {
+      "stage": "restore",
+      "actual_returncode": 0,
+      "elapsed_seconds": 29.726215415867046,
+      "command": [
+        "/Users/maxime/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "-I",
+        "-B",
+        "/private/var/folders/94/7s390fs10pb50yj156bfxsmr0000gq/T/carrier-native64-capsule-root-rob0cy1j/capsule/restore.py",
+        "restore",
+        "/Users/maxime/.codex/worktrees/993-carrier-revalidation/3dprinting993/work/carrier-native-samba-storage-mount-001/native64-root-replay-001",
+        "--manifest-sha256",
+        "d7c4e32f905b0e607aca6a5a3f196659530fb0cc4c25e563dd9bfdcb48dcaeb5"
+      ],
+      "cwd": "/"
+    },
+    {
+      "stage": "reanalysis",
+      "actual_returncode": 0,
+      "elapsed_seconds": 74.65535462507978,
+      "command": [
+        "/Users/maxime/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "-I",
+        "-B",
+        "/private/var/folders/94/7s390fs10pb50yj156bfxsmr0000gq/T/carrier-native64-capsule-root-rob0cy1j/capsule/replay_analysis.py",
+        "/Users/maxime/.codex/worktrees/993-carrier-revalidation/3dprinting993/work/carrier-native-samba-storage-mount-001/native64-root-replay-001",
+        "--manifest-sha256",
+        "d7c4e32f905b0e607aca6a5a3f196659530fb0cc4c25e563dd9bfdcb48dcaeb5"
+      ],
+      "cwd": "/"
+    }
+  ],
+  "actual_analysis_sha256": "9982186046f1e975f38a5189e69bc923897372c7705892e842832ed90f7c591d",
+  "entire_numerical_JSON_byte_identical": true,
+  "original_inputs_unchanged": true,
+  "scientific_runtime_changed": false,
+  "new_solver_run": false,
+  "global_admission": false,
+  "restored_output": "/Users/maxime/.codex/worktrees/993-carrier-revalidation/3dprinting993/work/carrier-native-samba-storage-mount-001/native64-root-replay-001"
+}

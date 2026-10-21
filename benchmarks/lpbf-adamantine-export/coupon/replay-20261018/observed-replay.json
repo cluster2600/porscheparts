@@ -1,0 +1,128 @@
+{
+  "schema": "corrected-Adamantine-original-software-control-replay-summary-1",
+  "date": "2026-10-18",
+  "status": "passed_original32_export_checks_and_three_frame_corrected_coupled_control",
+  "native_replay_ROOT": {
+    "path": "work/carrier-adamantine-corrected-runtime-replay-preparation-003/root-terminal-review-001.json",
+    "sha256": "2201d22979eafafd0b6cdfb0af8a395daf4123b72689791bf7f06b2fc1298e5b"
+  },
+  "local_assessment_ROOT": {
+    "path": "work/carrier-adamantine-corrected-runtime-replay-preparation-004/root-terminal-review-001.json",
+    "sha256": "7cfe3233dd8fa939971177b23b1e4f49bca333295cbc8bc3801574a68d445d72"
+  },
+  "local_assessment_owner": {
+    "path": "work/carrier-adamantine-corrected-runtime-replay-preparation-004/terminal-collection-001.json",
+    "sha256": "b84ec891a3f524680c25a38d2e45cc6f5ec132a1337e410823b4c4153fb68d20"
+  },
+  "actual_native_stages_returncodes": [
+    0,
+    0,
+    0
+  ],
+  "local_assessment_returncode": 0,
+  "local_assessment_repeated_native_work": false,
+  "export_check_counts": {
+    "direct": 16,
+    "CTest": 16,
+    "total": 32
+  },
+  "export_relative_tolerance": 2e-07,
+  "export_absolute_tolerance": 2e-07,
+  "frame_times_s": [
+    0,
+    0.005,
+    0.01
+  ],
+  "maximum_error_metrics": [
+    {
+      "metric": "Temperature",
+      "unit": "K",
+      "maximum_observed": 0.0,
+      "original_absolute_limit": 0.0001,
+      "passed": true
+    },
+    {
+      "metric": "Node coordinate",
+      "unit": "m",
+      "maximum_observed": 1.899898051382909e-10,
+      "original_absolute_limit": 1e-09,
+      "passed": true
+    },
+    {
+      "metric": "Displacement component",
+      "unit": "m",
+      "maximum_observed": 3.4047304054702742e-15,
+      "original_absolute_limit": 1e-12,
+      "passed": true
+    },
+    {
+      "metric": "Stored von Mises scalar",
+      "unit": "Pa",
+      "maximum_observed": 0.03442472661845386,
+      "original_absolute_limit": 2.0,
+      "passed": true
+    },
+    {
+      "metric": "Adamantine\u2013CalculiX mean von Mises",
+      "unit": "Pa",
+      "maximum_observed": 0.050189509289339185,
+      "original_absolute_limit": 4.0,
+      "passed": true
+    }
+  ],
+  "original_complete_absolute_limits": {
+    "time_s": 1e-12,
+    "point_coordinate_m": 1e-09,
+    "temperature_K": 0.0001,
+    "displacement_component_m": 1e-12,
+    "cell_mean_von_mises_Pa": 2.0,
+    "intersolver_cell_mean_von_mises_Pa": 4.0
+  },
+  "stored_field_dtypes": {
+    "temperature": "float32",
+    "displacement": "float32",
+    "stress": "float32"
+  },
+  "original_assessor_selftest": {
+    "passed": true,
+    "invalid_fixtures_rejected": 12,
+    "Float32_quantization_probe": {
+      "reference_Pa": 1199966.340575,
+      "stored_Pa": 1199966.375,
+      "positive_error_Pa": 0.03442499996162951
+    },
+    "XML_VTU_roundtrip_passed": true
+  },
+  "original_protocol_sha256": "5a9b6f26298c111843507065728e8e52004cd5223b1d9f5d6ae80016cc1f0dfd",
+  "original_assessor_sha256": "43818051fb2c16731d56b50fe4f19440bafe64b639dfb732025ffa48ec014363",
+  "source_revision": "3990489a10902912889617856f6e2e097d52a412",
+  "native_binary_sha256": "e7637a1a3729f82c0b11a9a1864fd96b7fbdee9408ede0aad5b59e573699b959",
+  "profile_manifest_sha256": "642a7f8c7928a2bf8171162f4928a02c093fc0677956c3c7023d37a12a1b128f",
+  "copied_reports": {
+    "export-direct-assessment.json": {
+      "bytes": 4646,
+      "sha256": "cc99d69ff15d7784ec977d961360d4c1bfaf6d649b9764641f615e73283d6b86"
+    },
+    "export-CTest-assessment.json": {
+      "bytes": 4646,
+      "sha256": "b2f1321086ef321c5dce769301b802aaef3cf1db57de8405e25b900488526089"
+    },
+    "coupon-assessment.json": {
+      "bytes": 3799,
+      "sha256": "6fa744ef79047cc46479c17cb4c47bd391172b1502426c9d522e34ee54c09840"
+    },
+    "assessor-self-test.json": {
+      "bytes": 890,
+      "sha256": "7917dabe325ab93bdec260998ce10a7644f9810ced41895a2fd2ab1118289c08"
+    }
+  },
+  "scope": "predeclared one-element Q1 thermoelastic comparison against exact discrete FE reference and native CCX",
+  "model_difference": "CCX uses uncoupled transient displacement; agreement with exact static FE reference is checked at every output; Adamantine mechanical solve is quasistatic",
+  "full_stress_tensor_exported": false,
+  "carrier_print_or_distortion_simulation": false,
+  "physical_validation": false,
+  "manufacturing_authorized": false,
+  "portable_full_replay_claim": false,
+  "raw_current_fields_and_full_runtime": "Retained in the linked local work evidence; not duplicated in this small report folder.",
+  "previous_failures": "The replay002 mount-setup failure and replay003 local-assessor OCI mount refusal remain unchanged in their original work directories."
+}

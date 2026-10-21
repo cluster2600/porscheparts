@@ -1,0 +1,51 @@
+{
+  "actual_returncode": 0,
+  "cwd": "/",
+  "seconds": 4.682816541055217,
+  "render_timeout_seconds": 60,
+  "all_local_inputs_copied_byte_identical": true,
+  "outputs": {
+    "carrier-wholepart-release-native64.png": {
+      "original_sha256": "7035366fc70ca2d6e67d33bce02f6f61fbcab1349e8933150334f9528c645441",
+      "replay_sha256": "7035366fc70ca2d6e67d33bce02f6f61fbcab1349e8933150334f9528c645441",
+      "byte_identical": true
+    },
+    "carrier-wholepart-release-native64.svg": {
+      "original_sha256": "7c79d32326ffe2fb6e647f8d8443d9873d104b7d5dde1514e6d595c2c62bbc5d",
+      "replay_sha256": "7c79d32326ffe2fb6e647f8d8443d9873d104b7d5dde1514e6d595c2c62bbc5d",
+      "byte_identical": true
+    },
+    "carrier-wholepart-release-native64.pdf": {
+      "original_sha256": "c81386800d8a2ce098be85bb1626479f05ead7ffff536983ec43ede0d50cb9cc",
+      "replay_sha256": "c81386800d8a2ce098be85bb1626479f05ead7ffff536983ec43ede0d50cb9cc",
+      "byte_identical": true
+    }
+  },
+  "guards": [
+    {
+      "case": "existing",
+      "actual_returncode": 1,
+      "FileExistsError": true,
+      "existing_exports_unchanged": true,
+      "dangling_target_absent": true
+    },
+    {
+      "case": "dangling",
+      "actual_returncode": 1,
+      "FileExistsError": true,
+      "existing_exports_unchanged": true,
+      "dangling_target_absent": true
+    }
+  ],
+  "source_inputs_sha256": {
+    "render.py": "fb106ea96fa1c5b0872c620d2028a0ddfd97ba55514b3097225460e5d349a70b",
+    "raster_unlit.py": "262e766aee94a0244037f89194453726953ddc4016c7bdccda63ff9ac866f6e0",
+    "raster_ghost.py": "f35f6f0affa3564d566d1809521521a293c3639e9474639f9aca8ee336eeb42a",
+    "plot-data.npz": "5fbc06eac4069651afe232d8413b0cc4b19284065b9383d688bda13853cda390",
+    "evidence.json": "909539f0e18227e21027a73a2bbb859c2a19912d0b60efe721a51c12fb9dfa4d",
+    "extract_plot_data.py": "40f87d55e15f396743c083f4371bf9aa9a109f91bfdd8e2b62a6e592c24ea3c2",
+    "inputs.json": "7787ae0c899306281a4a533c1ad270abc1552266637dc545c585bef370b6e503"
+  },
+  "no_solver_run": true,
+  "section_workers": 0
+}

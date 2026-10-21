@@ -1,0 +1,79 @@
+{
+  "current_sha256": "861f370298411449607c14c04d2ee8c3ac9731b17939466a4935390f9b91aff8",
+  "no_fields_or_arrays_read": true,
+  "original_path": "work/carrier-terminal-taper-four-case-figure-preparation-001/collect_render.py",
+  "original_sha256": "948e0c09010efc661fb2eb5cbb9519252d8163b8a193ee1fb909f2e3109f0cdf",
+  "replacements": [
+    {
+      "after": "actual current07b two-case coarse render",
+      "before": "actual four-case render",
+      "count": 1
+    },
+    {
+      "after": "json.dumps(v,indent=2,allow_nan=False)",
+      "before": "json.dumps(v,indent=2,sort_keys=True)",
+      "count": 1
+    },
+    {
+      "after": "H/'launch.json'",
+      "before": "H/'launch-plan.json'",
+      "count": 2
+    },
+    {
+      "after": "p0=read(H/'pending-plan.json');l0=read(H/'pending-launch.json');c0=read(H/'pending-command.json')\ninverse=copy.deepcopy(p);inverse['files_sha256'].pop(go);inverse['launch_ready']=p0['launch_ready'];inverse['root_GO_sha256']=p0['root_GO_sha256'];assert inverse==p0 and enc(inverse)==(H/'pending-plan.json').read_bytes()\ninverse=copy.deepcopy(l);inverse['inputs_sha256'].pop(go);pending_plan=str((H/'pending-plan.json').relative_to(R));inverse['inputs_sha256']={pending_plan if k==armed_plan else k:l0['inputs_sha256'][pending_plan]if k==armed_plan else v for k,v in inverse['inputs_sha256'].items()};inverse['launch_ready']=l0['launch_ready'];inverse['root_GO_sha256']=l0['root_GO_sha256'];inverse['command'][4]=l0['command'][4];inverse['command'][5]=l0['command'][5];assert inverse==l0 and enc(inverse)==(H/'pending-launch.json').read_bytes()\ninverse=read(H/'command.json');inverse['launch_ready']=c0['launch_ready'];inverse['argv'][4]=c0['argv'][4];inverse['argv'][6]=c0['argv'][6];assert inverse==c0 and enc(inverse)==(H/'pending-command.json').read_bytes()\n",
+      "before": "inverse=copy.deepcopy(p);inverse['files_sha256'].pop(go);inverse.update(launch_ready=False,root_GO=None,root_GO_sha256=None);assert enc(inverse)==(H/'pending-plan.json').read_bytes()\ninverse=copy.deepcopy(l);inverse['inputs_sha256'].pop(go);inverse['inputs_sha256'].pop(armed_plan);inverse.update(launch_ready=False,root_GO=None,root_GO_sha256=None);inverse['command'][5]=None;assert enc(inverse)==(H/'pending-launch.json').read_bytes()\ninverse=read(H/'command.json');inverse.update(status='NOT_ARMED',launch_ready=False);inverse['argv_template'][6]=None;assert enc(inverse)==(H/'pending-command.json').read_bytes()\n",
+      "count": 1
+    },
+    {
+      "after": "actual_closed_current07b_coarse_fields_rendered_no_new_FEA",
+      "before": "actual_closed_coarse_refined_diagnostic_fields_rendered_no_new_FEA",
+      "count": 1
+    },
+    {
+      "after": "and p['new_complete_function_contract_passed']is True and a['cwd']=='/'",
+      "before": "and a['h2_qualified']is False and a['strict_refined_volume_refusal_preserved']and a['law_original_RC1_preserved']and a['cwd']=='/'",
+      "count": 1
+    },
+    {
+      "after": "len(p['cases'])==len(a['global_maxima'])==2 and len(a['checks'])==4",
+      "before": "len(p['cases'])==len(a['global_maxima'])==4 and len(a['checks'])==8",
+      "count": 1
+    },
+    {
+      "after": "review=read(R/p['root_review']);root_case=review['cases'][row['role']]",
+      "before": "context=p['closed_contexts'][row['mesh_variant']];review=read(R/context['root_review']);root_case=review['cases'][row['role']]",
+      "count": 1
+    },
+    {
+      "after": "root_case['all_global_peak_ties']",
+      "before": "root_case['all_global_maximum_ties']",
+      "count": 1
+    },
+    {
+      "after": "case_records.append(dict(role=row['role'],mesh_variant='current07b_coarse',case=row['case'],global_maxima=summary))",
+      "before": "case_records.append(dict(case_key=row['case_key'],mesh_variant=row['mesh_variant'],case=row['case'],global_maxima=summary))",
+      "count": 1
+    },
+    {
+      "after": "carrier-complete-function-stress-displacement.",
+      "before": "carrier-terminal-taper-four-case-comparison.",
+      "count": 3
+    },
+    {
+      "after": "dimensions==[3060,2232]",
+      "before": "dimensions==[4320,2232]",
+      "count": 1
+    },
+    {
+      "after": "tool=read(H/'actual-tool-terminal-001.json');assert tool['actual_tool_returncode']==0 and tool['actual_tool_handle']==59482\nv=dict(schema='actual-current07b-coarse-field-render-terminal-1',status='closed_actual_RC0_two_current07b_cases_four_panels_no_new_science',actual_tool_handle=tool['actual_tool_handle'],actual_initial_chunk=tool['actual_initial_chunk'],actual_terminal_chunk=tool['actual_terminal_chunk'],actual_tool_returncode=0,actual_child_returncode=0,actual_tool_terminal_sha256=sha(H/'actual-tool-terminal-001.json'),owned_pid=s['pid'],direct_child_reaped=True,owned_group_empty=True,fresh_owned_group_query=dict(returncode=q.returncode,stdout=q.stdout,stderr=q.stderr),supervision_sha256=sha(H/'execution-001/execution-receipt.json'),render_receipt_sha256=sha(render/'render-receipt.json'),all8_whole_outputs=whole,actual_launch_map_entries=len(pins),all_current_pins_and_before_after_maps_equal=True,whole_three_pending_inverses_original_bytes=True,original_child_SYSTEM_B_no_I=True,actual_runtime_files=len(a['runtime_sha256']),actual_postexport_imported_files=len(a['runtime_imported_files']),all_imported_plot_runtime_files_attested=True,PNG_dimensions=dimensions,SVG_XML_parsed=True,ROOT_visual_review=None,PDF_raster_visual_review=False,all4_field_checks=a['checks'],two_actual_case_global_maxima=case_records,elapsed_seconds=s['elapsed_seconds'],render_wall_seconds=a['wall_seconds'],render_CPU_seconds=a['CPU_seconds'],render_maxRSS_bytes=a['maxRSS_bytes'],candidate_qualified=False,complete_native_function_passed=True,all_original_stock_and_candidate_refusals_preserved=True,current_coarse_FEA_ROOT_sha256=p['root_review_sha256'],current_BREP_sha256=p['actual_BREP_sha256'],stress_convergence_or_strength_admission=False,new_solver_or_mesh_or_CAD_run=False,publication_stage_or_commit=False,collector_source_sha256=sha(Path(__file__)))",
+      "before": "v=dict(schema='actual-four-case-field-render-terminal-1',status='closed_actual_RC0_four_actual_cases_eight_panels_no_new_science',actual_tool_handle=59013,actual_initial_chunk='64d3a7',actual_terminal_chunk='599d96',actual_tool_returncode=0,actual_child_returncode=0,owned_pid=s['pid'],direct_child_reaped=True,owned_group_empty=True,fresh_owned_group_query=dict(returncode=q.returncode,stdout=q.stdout,stderr=q.stderr),supervision_sha256=sha(H/'execution-001/execution-receipt.json'),render_receipt_sha256=sha(render/'render-receipt.json'),all8_whole_outputs=whole,actual_launch_map_entries=len(pins),all_current_pins_and_before_after_maps_equal=True,whole_three_pending_inverses_original_bytes=True,original_child_SYSTEM_B_no_I=True,actual_runtime_files=len(a['runtime_sha256']),actual_postexport_imported_files=len(a['runtime_imported_files']),all_imported_plot_runtime_files_attested=True,PNG_dimensions=dimensions,SVG_XML_parsed=True,ROOT_visual_review=None,PDF_raster_visual_review=False,all8_field_checks=a['checks'],four_actual_case_global_maxima=case_records,elapsed_seconds=s['elapsed_seconds'],render_wall_seconds=a['wall_seconds'],render_CPU_seconds=a['CPU_seconds'],render_maxRSS_bytes=a['maxRSS_bytes'],candidate_qualified=False,h2_qualified=False,strict_refined_volume_refusal_preserved=True,law_original_RC1_preserved=True,STEP_exchange_qualified=False,stress_convergence_or_strength_admission=False,new_solver_or_mesh_or_CAD_run=False,publication_stage_or_commit=False,collector_source_sha256=sha(Path(__file__)))",
+      "count": 1
+    },
+    {
+      "after": "'all4_field_checks','two_actual_case_global_maxima'",
+      "before": "'all8_field_checks','four_actual_case_global_maxima'",
+      "count": 1
+    }
+  ],
+  "whole_forward_and_inverse_byte_equal": true
+}

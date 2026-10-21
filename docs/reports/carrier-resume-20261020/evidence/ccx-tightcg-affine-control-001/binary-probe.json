@@ -1,0 +1,23 @@
+{
+  "argv": [
+    "docker",
+    "run",
+    "--rm",
+    "--pull=never",
+    "--network=none",
+    "--cpus=1",
+    "--memory=6g",
+    "--memory-swap=6g",
+    "--pids-limit=128",
+    "--read-only",
+    "--cap-drop=ALL",
+    "--security-opt=no-new-privileges",
+    "--entrypoint",
+    "/usr/bin/sha256sum",
+    "sha256:c25cbbcb40d7bf3dce44199d58198db8df7bb1db8013d3b5af3d9980d64a9e1d",
+    "/usr/local/bin/ccx-tightcg"
+  ],
+  "returncode": 0,
+  "stdout": "d7f33fdf2ce664b60b48c2267b14fa98556f3548bb2ffb8b57bdbc8efb1e2625  /usr/local/bin/ccx-tightcg\n",
+  "stderr": ""
+}

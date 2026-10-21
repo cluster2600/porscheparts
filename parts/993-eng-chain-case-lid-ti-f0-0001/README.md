@@ -26,8 +26,9 @@ The original part is documented — pictures, catalogue entries or published dat
 ↗ <a href="https://lnengineering.com/porsche-964-993-chain-box-covers.html">Commercial reproducers of the lid: LN Engineering and Auto-Service Schefter</a><br>
 </td>
 <td width="50%" valign="top" align="center">
-<b>This repository's concept model</b><br><br>
-<i>No CAD geometry to show.</i>
+<b>Catalogue study status</b><br><br>
+<img src="media/preview.png" alt="Status card: geometry not created" width="340"><br>
+<sub>No CAD geometry to show. This is a status card, <b>not</b> a part rendering or a print file.</sub>
 </td>
 </tr></table>
 
@@ -84,6 +85,7 @@ flowchart LR
 | folder | what it holds | files |
 |---|---|---|
 | `evidence/` | screens, reports and manifests — **pinned by SHA-256, never edited by hand** | [`evidence/parametric-screen.json`](evidence/parametric-screen.json) |
+| `media/` | concept-model views rendered from the CAD by `scripts/render_part_previews.py` — not pictures of the original | [`media/preview.json`](media/preview.json), [`media/preview.png`](media/preview.png) |
 | `source/` | parametric source — the editable master that generates the geometry | [`source/chain_case_lid_screen.py`](source/chain_case_lid_screen.py) |
 
 ## Read more

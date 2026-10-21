@@ -1,0 +1,58 @@
+{
+  "experimental": true,
+  "operation": "difference",
+  "native_returncode": 0,
+  "input_sha256": [
+    "e9a1607bcd9160b6e071cda4b2012399b8a49efaa410712d0ec85e400747d9f6",
+    "4d43309a230d57e736f56e465e5213ef3fc0b5cb5e771a36d0eb1039111fc6fc"
+  ],
+  "numpy_version": "2.2.6",
+  "libigl_version": "2.6.3",
+  "admitted": false,
+  "scope": "Experimental computation. Native completion does not replace independent shape/contact/volume admission.",
+  "status": "computed",
+  "native": {
+    "CGAL_commit": "b4e8c1887ce6a0abeb618634125e5cfcd301ce16",
+    "CGAL_version": "6.3-dev",
+    "experimental": true,
+    "operation": "difference",
+    "operation_completed": true,
+    "public_return_type": "void",
+    "input_faces": 20,
+    "input_A_faces": 8,
+    "input_B_faces": 12,
+    "input_degenerate_faces_excluded_from_parent_AABB": 0,
+    "output_vertices": 20,
+    "output_faces": 32,
+    "exact_collinear_output_triangles": 0,
+    "exact_output_self_intersection_free": true,
+    "rounded_collinear_output_triangles": 0,
+    "rounded_output_self_intersection_free": true,
+    "source_face_lineage_complete": true,
+    "unclassified_output_faces": 0,
+    "lineage_method": "all three exact child vertices contained in one actual nondegenerate original triangle; AABB candidate search only",
+    "exact_signed_volume_mm3": "3200",
+    "signed_volume_mm3": 3200,
+    "maximum_coordinate_rounding_squared_mm2_exact": "0",
+    "all_output_coordinates_exactly_double": true,
+    "kernel": "Epeck from IEEE doubles; exact throughout operation and parent classification; one final conversion",
+    "seconds": 0.001201039
+  },
+  "output_topology": {
+    "boundary_edges": 0,
+    "nonmanifold_edges": 0,
+    "nonmanifold_vertices": 0,
+    "inconsistent_orientation_edges": 0,
+    "unused_vertices": 0,
+    "signed_volume_mm3": 3200.0,
+    "pass": true
+  },
+  "retained_face_attributes": [
+    "source_face"
+  ],
+  "native_exact_gate_pass": true,
+  "rounded_exact_contact_gate_pass": true,
+  "local_geometry_gates_pass": true,
+  "result_sha256": "4bf5e479688a5151b579738b458007e5e3d7a7b35e8417857be7a4b218cf17e2",
+  "exact_result_sha256": "18212c19c83c0ff75e5fad2d138f3ad10dd09f2f9fd77f1385efedd704b480ed"
+}

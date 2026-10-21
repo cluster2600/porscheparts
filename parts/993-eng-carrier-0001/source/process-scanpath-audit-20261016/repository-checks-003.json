@@ -1,0 +1,74 @@
+{
+  "status": "failed_with_classified_baseline_and_runtime_mismatches",
+  "make_exit_code": 2,
+  "tests": 4337,
+  "seconds": 395.167,
+  "failures": 4,
+  "errors": 1,
+  "skipped": 177,
+  "log": {
+    "path": "work/part-workflow/make-check-final-v3-002-20261016.log",
+    "sha256": "031806ae87f997656db549df6574fe31a2fc1409a18638dbb34b6531bd6641af"
+  },
+  "comparison_baseline": {
+    "path": "parts/993-eng-carrier-0001/source/process-scanpath-audit-20261016/repository-checks-002.json",
+    "sha256": "1a23efd2045793d3c918a0ec4e2fd9cb1ca1820e42bb557b4a94e46ddbce664f"
+  },
+  "runtime": {
+    "python": "3.11.15",
+    "numpy": "1.26.4",
+    "environment": "work/part-workflow/runtimes/pyslm-coverage-011/env",
+    "support_source_sha256": "68db985051d252619d80dc96558c1db6d3d20b60b5965c4825d5aab51e228744",
+    "historic_process_expected_support_source_sha256": "fea7275ce46ad8d4f9c9471457c260111e7a1278b2dce315d126c8341e957c52"
+  },
+  "preexisting": [
+    {
+      "test": "test_917_bionic_head.BionicHeadTests.setUpClass",
+      "reason": "NumPy1.26.4 has no np.trapezoid; same error in prior Python3.11 log"
+    },
+    {
+      "test": "test_993_cooling_impeller_we43_f1.CoolingImpellerWE43F1Tests.test_committed_step_sources_and_catalogue_are_fail_closed",
+      "reason": "Exact floating dictionary mismatch; same values/error in baseline log"
+    },
+    {
+      "test": "test_993_fan_stator_alsi10mg_f1.FanStatorAlSi10MgF1Tests.test_committed_step_and_catalogue_are_fail_closed",
+      "reason": "Exact floating dictionary mismatch; same values/error in baseline log"
+    }
+  ],
+  "new_code_failures_identified": [],
+  "scope": "Full make check invocation after the frozen v5 region generators, incremental point-ID constructor, v4 cached adapter and v3 recipe. All five failure identities match the prior classified AM011 check. Make stops at failing unit tests, so dependent later check targets are not claimed. The non-versioned historical primitive coverage test was also discoverable in this working tree.",
+  "known_runtime_mismatches": [
+    {
+      "test": "test_carrier_process_20261016.NativeBuildPreparationTests.test_meshing_identity_receipt_is_strict_and_mutually_exclusive",
+      "reason": "Historical builder rejects installed coverage-runtime support SHA before reaching the input identity guard expected by this test"
+    },
+    {
+      "test": "test_carrier_process_20261016.NativeBuildPreparationTests.test_wrong_input_hash_cannot_create_output",
+      "reason": "Historical builder rejects installed coverage-runtime support SHA before reaching the input identity guard expected by this test"
+    }
+  ],
+  "historical_runtime_control": {
+    "path": "parts/993-eng-carrier-0001/source/process-scanpath-audit-20261016/historical-runtime-checks-001.json",
+    "status": "passed",
+    "rerun_this_invocation": false
+  },
+  "failure_identity_comparison": {
+    "equal": true,
+    "new": [],
+    "missing": [],
+    "additional_tests_discovered": 78
+  },
+  "superseded_wrong_runtime_attempt": {
+    "path": "work/part-workflow/make-check-final-v3-20261016.log",
+    "sha256": "880f07e67e691fb854da9edd6c3196bc37bab23c02e6dc539974fd7217e002a7",
+    "python": "3.10.11",
+    "numpy": "2.2.6",
+    "tests": 4224,
+    "seconds": 406.799,
+    "failures": 2,
+    "errors": 28,
+    "skipped": 386,
+    "status": "wrong_interpreter_not_comparable_to_AM011_baseline",
+    "correction": "An explicit AM011 PATH was used for the classified invocation above. The new v4 test imported its v3 baseline by exact path after an unrelated global tests package collision; eight adapter tests passed in discovery and module modes."
+  }
+}

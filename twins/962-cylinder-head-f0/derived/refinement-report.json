@@ -1,0 +1,302 @@
+{
+  "status": "same_geometry_refinement_and_views_not_physical_qualification",
+  "manufacturing_authorized": false,
+  "is_fitment_validated": false,
+  "hydraulic_performance_validated": false,
+  "thermal_improvement_validated": false,
+  "interface_conformity_validated": false,
+  "wall_thickness_qualified": false,
+  "reference_voxel_mm": 0.75,
+  "refined_voxel_mm": 0.5,
+  "execution_inputs": {
+    "solid": {
+      "reference": "twins/962-cylinder-head-f0/source/solid.json",
+      "reference_sha256": "5b18617cd8d88cbdb7b0d40d2cf89d30ffa565a4a8bf0ecbb917c5801113d6af",
+      "input_sha256": "b47071bfdc704afc6fe51d4bd75938259b8e0628cfb5343d64b5f2b11376e78e",
+      "changed_fields": {
+        "voxel_mm": 0.5
+      }
+    },
+    "coolant": {
+      "reference": "twins/962-cylinder-head-f0/source/coolant.json",
+      "reference_sha256": "dbe64fdf244905ce1e272fdcf5a93af2480401d84ef418456c351b494f23771f",
+      "input_sha256": "d7e77d76954a36dc8bf0d88b420f7a46fe690a60e290152c843b8dca127be1dc",
+      "changed_fields": {
+        "voxel_mm": 0.5
+      }
+    },
+    "dry-passages": {
+      "reference": "twins/962-cylinder-head-f0/source/dry-passages.json",
+      "reference_sha256": "fc14b133f52bf89ca5de6a8a29be3334c90c8de6dc2d08f456af757d37468a05",
+      "input_sha256": "9c22e5fda50800afea18634a61393c0706b966520f78fc5623c15a3b28d48804",
+      "changed_fields": {
+        "voxel_mm": 0.5
+      }
+    }
+  },
+  "geometry_reference_source_hashes": {
+    "parts/picogk-catalog/engine/Head962Study.cs": "3ccde471be567a6d6a544ce6215bc08c62424c6ac922c61c2f7b603eff047178",
+    "twins/962-cylinder-head-f0/source/inspect_study.py": "78046397ae000bc5516c1237478053ce1453150a473db145d342bfe6996b235f",
+    "twins/962-cylinder-head-f0/interface-contract.json": "ded379ea9d930ca074c792aa76b17faead85cc18a167bf173653c2498e43c647",
+    "twins/962-cylinder-head-f0/research.json": "73fb6d03ff4648bd26ffbc8fa57582d3cc24f4b605917722b18b5a2189f34c12",
+    "twins/962-cylinder-head-f0/source/solid.json": "5b18617cd8d88cbdb7b0d40d2cf89d30ffa565a4a8bf0ecbb917c5801113d6af",
+    "twins/962-cylinder-head-f0/source/coolant.json": "dbe64fdf244905ce1e272fdcf5a93af2480401d84ef418456c351b494f23771f",
+    "twins/962-cylinder-head-f0/source/dry-passages.json": "fc14b133f52bf89ca5de6a8a29be3334c90c8de6dc2d08f456af757d37468a05"
+  },
+  "source_hashes": {
+    "twins/962-cylinder-head-f0/source/refine_and_render.py": "18b8d87e7f0201285103489c88026987e1c6b1b791665908d8b1af78977179bc",
+    "twins/962-cylinder-head-f0/derived/study-report.json": "159c7dd288dc19bf56e7880ed506d23b9e027d8a16f9edfab68470557a0df3f3",
+    "twins/962-cylinder-head-f0/source/audit_coolant_boundaries.py": "eb0efd293e783386ff6b9f94b3d2b334853edfe251216c2201825c035634da84",
+    "twins/962-cylinder-head-f0/derived/runtime-provenance.json": "4b2ec700788d634dbaee4e55b656a52734a7f5d81a4d16a5d9de0596a1353fdf",
+    "parts/picogk-catalog/tools/run_part.py": "b47d4e9a1f4f32e175e7053b92ea5f6f5c569f36750e835ed23f29f37064504d"
+  },
+  "reference_runtime_provenance": {
+    "dotnet_version": "9.0.318",
+    "managed_kernel": "PicoGK 2.3.0",
+    "native_runtime": "26.2",
+    "upstream_license": "Apache-2.0",
+    "declared_source_lock": "containers/m64-leap71/sources.lock",
+    "source_checkout": "existing_local_archive_without_git_metadata",
+    "source_commit_independently_verified": false,
+    "artifacts": {
+      "Engine.dll": "26c8a0d5762d6d5598fabb8a99e904277823f37b6179d20e6b483bfe696e4642",
+      "PicoGK.dll": "eae49e730d059c9313e7c3689be610a7bff139d2d073993ee4c81baafd95d43c",
+      "picogk.26.2.dylib": "5c1cd3fc12766a85bc5c1441a95f065fb274338d1333c3ae2d3396b59d0e18e7"
+    },
+    "local_generation_command": "Existing PicoGKCatalog.Runner, machine-wide run_part.py lock, sequential exports",
+    "rejected_trial": {
+      "reason": "return manifold crossed gas outlets",
+      "sampled_signed_clearance_mm": -7.857759898626148,
+      "local_native_dir": "work/962-head/native",
+      "local_inspection_dir": "work/962-head/inspected"
+    },
+    "raw_original_sources_committed": false
+  },
+  "executed_dotnet_version": "9.0.317",
+  "native_reports": {
+    "solid": {
+      "part_id": "962-HEAD-STUDY-SOLID",
+      "generator": "962_4v_twin_plug_water_head_study",
+      "status": "shape_study_only_unmeasured_interfaces_no_manufacturing",
+      "kernel": "PicoGK Core Library 26.2.0",
+      "voxel_mm": 0.5,
+      "triangles": 1748240,
+      "volume_cm3": 352.98,
+      "mass_estimate_g": 0,
+      "bbox_mm": [
+        160,
+        160,
+        90
+      ],
+      "parameter_basis_counts": {
+        "assumption": 12
+      },
+      "seconds": 124.5
+    },
+    "coolant": {
+      "part_id": "962-HEAD-STUDY-COOLANT",
+      "generator": "962_4v_twin_plug_water_head_study",
+      "status": "shape_study_only_unmeasured_interfaces_no_manufacturing",
+      "kernel": "PicoGK Core Library 26.2.0",
+      "voxel_mm": 0.5,
+      "triangles": 298200,
+      "volume_cm3": 46.74,
+      "mass_estimate_g": 0,
+      "bbox_mm": [
+        167.9,
+        144,
+        55.6
+      ],
+      "parameter_basis_counts": {
+        "assumption": 12
+      },
+      "seconds": 57.3
+    },
+    "dry-passages": {
+      "part_id": "962-HEAD-STUDY-DRY-PASSAGES",
+      "generator": "962_4v_twin_plug_water_head_study",
+      "status": "shape_study_only_unmeasured_interfaces_no_manufacturing",
+      "kernel": "PicoGK Core Library 26.2.0",
+      "voxel_mm": 0.5,
+      "triangles": 618572,
+      "volume_cm3": 540.68,
+      "mass_estimate_g": 0,
+      "bbox_mm": [
+        95,
+        176,
+        170.5
+      ],
+      "parameter_basis_counts": {
+        "assumption": 12
+      },
+      "seconds": 27.4
+    }
+  },
+  "mesh_metrics": {
+    "solid": {
+      "triangles": 1729312,
+      "connected_components": 1,
+      "watertight": true,
+      "consistent_winding": true,
+      "volume_mm3": 352984.78137973155,
+      "bounds_mm": [
+        [
+          -80.0,
+          -80.0,
+          0.0
+        ],
+        [
+          80.0,
+          80.0,
+          90.0
+        ]
+      ],
+      "removed_zero_area_faces": 18928,
+      "sha256": "5dd41758898386a9b8e9a7656d6a388edcf37d414a965a95bca720b028f67e0c"
+    },
+    "coolant": {
+      "triangles": 298200,
+      "connected_components": 1,
+      "watertight": true,
+      "consistent_winding": true,
+      "volume_mm3": 46741.30475123722,
+      "bounds_mm": [
+        [
+          -83.96852111816406,
+          -71.98429870605469,
+          20.015703201293945
+        ],
+        [
+          83.96852111816406,
+          71.98429870605469,
+          75.57843017578125
+        ]
+      ],
+      "removed_zero_area_faces": 0,
+      "sha256": "f1d469c44d9a4be9af30b6005cd91ca4b2c1f8bc7c045b790b0aaba798485927"
+    },
+    "dry-passages": {
+      "triangles": 618564,
+      "connected_components": 1,
+      "watertight": true,
+      "consistent_winding": true,
+      "volume_mm3": 540680.0008049366,
+      "bounds_mm": [
+        [
+          -47.49736785888672,
+          -87.9843521118164,
+          -72.49736785888672
+        ],
+        [
+          47.49736785888672,
+          87.9843521118164,
+          98.0
+        ]
+      ],
+      "removed_zero_area_faces": 8,
+      "sha256": "e3644c2493802506f7b3e73d3e4b3491e8c3d11f818bf9d05aa3f31e72ad66f5"
+    }
+  },
+  "sampled_water_dry_clearance_mm": 3.57477244685147,
+  "clearance_samples": 447288,
+  "dry_opening_probes_mm": [
+    [
+      -22,
+      -32,
+      88
+    ],
+    [
+      -22,
+      32,
+      88
+    ],
+    [
+      22,
+      -32,
+      88
+    ],
+    [
+      22,
+      32,
+      88
+    ],
+    [
+      -9,
+      0,
+      88
+    ],
+    [
+      9,
+      0,
+      88
+    ]
+  ],
+  "boundary_probes": [
+    {
+      "offset_mm": 0.25,
+      "samples": 294924,
+      "metal_only": 294852,
+      "water_only": 12,
+      "overlap": 0,
+      "unassigned": 60
+    },
+    {
+      "offset_mm": 0.5,
+      "samples": 294924,
+      "metal_only": 294880,
+      "water_only": 36,
+      "overlap": 0,
+      "unassigned": 8
+    },
+    {
+      "offset_mm": 0.75,
+      "samples": 294924,
+      "metal_only": 294864,
+      "water_only": 60,
+      "overlap": 0,
+      "unassigned": 0
+    },
+    {
+      "offset_mm": 1.5,
+      "samples": 294924,
+      "metal_only": 294764,
+      "water_only": 160,
+      "overlap": 0,
+      "unassigned": 0
+    }
+  ],
+  "excluded_terminal_face_samples": 3276,
+  "ports": {
+    "inlet": {
+      "plane_x_mm": -80,
+      "closed_loops": 1,
+      "area_mm2": 53.17846728524455,
+      "perimeter_mm": 26.675766144240633,
+      "hydraulic_diameter_mm": 7.974049104749094
+    },
+    "outlet": {
+      "plane_x_mm": 80,
+      "closed_loops": 1,
+      "area_mm2": 53.17848772869911,
+      "perimeter_mm": 26.675771748495187,
+      "hydraulic_diameter_mm": 7.974050494970062
+    }
+  },
+  "images": {
+    "exterior": {
+      "sha256": "82eaf8d0d21f223c694afae315d666e56935686b46d1642d4e1af13e673dc28d",
+      "width": 1600,
+      "height": 1200
+    },
+    "cutaway": {
+      "sha256": "90c72e0f4b60bc58112cf5fb41f51c4ad853d6d6a9527be422b65814fdfafb7b",
+      "width": 1600,
+      "height": 1200
+    },
+    "coolant": {
+      "sha256": "3f89e92ed0e30d5efdd2ce4be0077663efc31ea8d09bf2a9de4f7a5ba8509f94",
+      "width": 1600,
+      "height": 1200
+    }
+  }
+}

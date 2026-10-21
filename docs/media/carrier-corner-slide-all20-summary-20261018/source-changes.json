@@ -1,0 +1,16 @@
+{
+  "schema": "all20-scalar-layout-revision002-source-derivation-1",
+  "original_source": "work/carrier-corner-slide-twenty-case-summary-preparation-001/render.py",
+  "original_sha256": "46f5f874ad91d45e74532fbf527b7012973643ea593e430ca84f54b545db7cd7",
+  "current_sha256": "a537dc0901dd1f5ab7114b9a600e31c649f342c60c1f8fd9021f4812a282d459",
+  "replacements": [
+    {
+      "before": "ax.set_yticks(range(10),labels);ax.set_title",
+      "after": "ax.set_yticks(range(10),labels);ax.tick_params(axis='y', labelleft=(ax is axes[0]));ax.set_title"
+    }
+  ],
+  "whole_original_source_and_encoded_bytes_inverse": true,
+  "only_visual_change": "Duplicate aligned Y tick labels hidden on right axes; row labels retained on left",
+  "all20_values_fields_matrices_color_limits_figuresize_margins_unchanged": true,
+  "original_render_and_visual_refusal_preserved": true
+}

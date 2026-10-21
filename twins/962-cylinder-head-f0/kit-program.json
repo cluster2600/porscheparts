@@ -16,14 +16,26 @@
     "spark_plugs_per_cylinder": 2,
     "cylinder_count": 6,
     "cooling": "water_cooled_heads_cylinder_strategy_pending",
-    "forced_induction": "turbo_configuration_unselected",
+    "forced_induction": "twin_turbo",
     "manufacturing": "qualified_mix_of_additive_forged_machined_and_purchased_parts"
   },
   "donor": {
+    "requested_engine_family": "Mezger",
     "selected_engine_type": null,
     "selected_model_year": null,
     "physical_access_confirmed": false,
-    "prototype_candidate": "993_Turbo_M64_60_proposed_not_selected"
+    "prototype_candidate": "Mezger_exact_variant_pending"
+  },
+  "confirmed_requirements": {
+    "fuel": "SP95",
+    "fuel_ron": 95,
+    "displacement_l": 4,
+    "turbo_count": 2
+  },
+  "active_sizing": {
+    "document": "twins/962-cylinder-head-f0/MEZGER_4L_SP95.md",
+    "report": "twins/962-cylinder-head-f0/derived/mezger-sp95-budget.json",
+    "status": "assumption_only_not_a_validated_sp95_operating_point"
   },
   "variants": [
     {
@@ -48,10 +60,10 @@
     }
   ],
   "unknown_requirements": {
-    "fuel": null,
+    "fuel_ethanol_volume_fraction": null,
     "duty_cycle": null,
     "power_rpm": null,
-    "displacement_cm3": null,
+    "measured_bore_and_stroke": null,
     "torque_curve": null,
     "cylinder_pressure_cycle": null,
     "dyno_correction_standard": null,
@@ -119,7 +131,7 @@
     "catalog/sources/src-swindon-m64-24v-head-kit.json"
   ],
   "screening": {
-    "status": "algebra_only_not_engine_simulation",
+    "status": "historical_3_6l_algebra_superseded_by_active_sizing",
     "metric_hp_to_w": 735.49875,
     "power_w": 735498.75,
     "assumed_displacement_l": 3.6,

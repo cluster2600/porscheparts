@@ -1,0 +1,34 @@
+{
+  "schema": "proposed-guide-refinement-attachment-1",
+  "status": "proposal_not_integrated",
+  "extend": "Private future wrapper of frozen build_carrier_workshop_guide_v6; call all existing16-state guards unchanged first",
+  "output_subdirectory": "constitutive-reference/refinement-32",
+  "new_receipt": "current-refinement-reference-binding.json",
+  "required_bindings": {
+    "current_mesh_npz_sha256": "b156b03ab99f65e534a024a63f9cec12529ce9eb6392b0579bf2c20f857a5119",
+    "current_linear_reference_deck_sha256": "903956e464014c32f674869d55c62ca635edce42dfa01a4125938053dc3d8caf",
+    "historical_constitutive_binding_sha256": "f7b5ae477bd014d8f0556f98ccb6a72bf0d625edb00b0e5534efe1afaa02525f",
+    "new_capsule_binding_sha256": "b5b3ac192e4b88c828d1cc17daad37dd1183139da8cf5cd2f5d070fd5b7bd3a9",
+    "comparison_sha256": "31a9b7a7c78cb54ebc6b74ff36f2965f9e09bf30048105a089559e6ca6849561",
+    "ENER32_audit_sha256": "d7dd1deedbd9c7f447a8ffedb0e0c3a8cbebf38f14a07b10016471161cbeabb9",
+    "Piola32_audit_sha256": "fbe517c33cae6cc1da61ae56a18682dcf4740ea5898803ef9c857ec98f781a95",
+    "solver_execution_receipt_sha256": "34bc498c01a47fe89b4938af00a1842b2f449eb14dc96f1f10a5bc85ce16b2af",
+    "ENER32_execution_receipt_sha256": "dde1663fe8d53f342bb3a636cc67b918eabde9cbd425627f65dadc00e4374ca5",
+    "Piola32_execution_receipt_sha256": "cbf8ffd1207ffdf76872aa535e803c52255bf35f16e69a22ef419109aa2d9674"
+  },
+  "new_checks": [
+    "Verify capsule manifest and every copied payload SHA before/after packaging",
+    "Rehash actual current mesh NPZ and linear reference deck; require equality to historical16 binding and new32 plan",
+    "Require solver actual exit0, confirmed container removal and unchanged inputs; both audit returncodes0",
+    "Require all32 exact load/unload times and factors; recompute per-state maxima and fixed thresholds1e-3/1e-4, positive detF and measured-domain gates",
+    "Require only two STATIC lines changed and identical old/new material curve and mesh.inp",
+    "Copy payloads as a supplement and bind capsule manifest+actual current-reference-binding SHA in a new receipt"
+  ],
+  "historical_guards_16_unchanged": true,
+  "historical_ENER16_rejection_visible": true,
+  "residual_acceptance_threshold": null,
+  "guide_text": "32 états passent les bilans aux seuils inchangés ; Piola augmente tout en restant sous1e-4 ; résidu mesuré sans seuil ; un seul raffinement ne prouve pas une convergence de maillage.",
+  "large_payload_copy_required": false,
+  "solver_or_audit_rerun_required": false,
+  "geometry_or_global_admission_added": false
+}
