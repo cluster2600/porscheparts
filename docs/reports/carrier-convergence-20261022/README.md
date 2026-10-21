@@ -6,7 +6,9 @@ spaces, checks every completed field and tests the new Warp layer from PR #274
 on a rented NVIDIA GPU. The mass ceiling remains **1.30 kg**.
 
 [Previous matched-order study](../carrier-resume-20261020/CONVERGENCE.md) ·
-[Declared numerical criteria](convergence-contract.json)
+[Declared numerical criteria](convergence-contract.json) ·
+[Full English part workflow](../../manufacturing/PART_WORKFLOW_EN.md) ·
+[Exact retained material and load assumptions](evidence/material-and-load-study.json)
 
 ```mermaid
 flowchart TD
@@ -138,6 +140,25 @@ to the convergence comparison. See the [complete refused assessment](evidence/fa
 Successful process exit alone is never used as convergence evidence. The separate
 original R2 manufacturing-study surface stays unchanged; these are analysis meshes.
 
+### Shape quality is a separate diagnostic
+
+The existing complete-cell quality evaluator was reused, without an invented
+admission threshold. Positive Jacobians do not establish good conditioning.
+
+| Complete corner-mesh diagnostic | Coarse | Interior fan |
+| --- | ---: | ---: |
+| Minimum mean-ratio quality, regular tetrahedron = 1 | 0.003477 | 0.001501 |
+| Maximum local Jacobian 2-norm condition | 2,206.7 | 11,088.1 |
+| Minimum altitude, mm | 0.001217 | 0.0003043 |
+
+The fan worsens the worst shape measures. This is a possible contributor to
+numerical sensitivity, **not an established cause** of its failed reaction check.
+The condition measure uses the stored local corner ordering. Exact source-bound
+reports are retained for the [coarse mesh](evidence/coarse-quality-001/assessment.json)
+and [fan mesh](evidence/fan-quality-001/assessment.json). A full serial repeat
+and the built-in iterative Cholesky solver are distinct diagnostics; changing
+the linear solver alone must preserve all geometry, material, loads and supports.
+
 ## Toolchain coverage in this continuation
 
 | Layer | Actual evidence and scope |
@@ -182,6 +203,15 @@ local buckling and powder escape remain explicit design variables. No universal
 micrometre-scale cell dimension is assumed. Primary LPBF research also identifies
 [powder evacuation from small-pore lattices](https://link.springer.com/article/10.1007/s00170-026-17457-3)
 as a geometry-dependent problem.
+
+Making cells smaller is not itself a mass reduction. In the ideal geometric
+scaling argument, reducing every cell dimension and its wall/strut thickness by
+the same factor preserves relative density. At a fixed minimum thickness,
+shrinking the pitch instead increases the amount of solid per occupied volume.
+Topology and relative density must be compared together; the classical
+[octet-truss study](https://doi.org/10.1016/S0022-5096(01)00010-2)
+provides analytical and finite-element treatment of elasticity and strut buckling.
+This scaling argument is not a carrier-specific stiffness prediction.
 
 The earlier [BCC trial](../../../parts/993-eng-carrier-0001/source/bionic-20261011/native-leap71/README.md)
 **added** 16 mm cells with 2 mm beams to the older V5 carrier. It did not replace

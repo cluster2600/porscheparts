@@ -37,6 +37,11 @@ Always use a fresh output directory. Reports bind their actual inputs by SHA-256
    `run_native_ccx_serial_results.py`: parallel assembly/factorization with
    `CCX_NPROC_RESULTS=1`. The original `run_native_ccx.py` is retained to reproduce
    the refused full-size parallel-recovery case, not as the production profile.
+   For a fully serial diagnostic, pass `--threads 1`. The distinct
+   `prepare_iterative_solver.py --preparation <verified-preparation> --output <fresh>`
+   changes only the static linear solver to built-in iterative Cholesky.
+   Its analytic controls and reference-field repeat must pass before using it
+   for a finer production solve; no alternative-backend success is implied.
 6. `assess_native_P1.py` / `assess_native_P2.py` require an actual completion
    receipt, input/output identities, complete rows and equilibrium. P2 includes
    independent stress-energy integration. P1 also requires the preceding
