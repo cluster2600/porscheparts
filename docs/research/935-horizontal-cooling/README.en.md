@@ -14,6 +14,10 @@ is a separate project.
 
 [October 12, 2026 assessment and remaining work](STATUS_20261012.md) (French).
 
+[October 22 complete-system continuation and completion audit](COMPLETE_SYSTEM_20261022.md)
+follows the root README/PR #274 software chain and retains all unresolved
+historical interfaces and numerical acceptance gates.
+
 ## Reconstruction from the scans — October 5, 2026
 
 The [executed campaign](IMPLEMENTATION.md) fits observed cylindrical surfaces

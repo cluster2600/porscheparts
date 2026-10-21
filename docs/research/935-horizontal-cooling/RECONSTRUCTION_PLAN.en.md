@@ -5,6 +5,14 @@
 
 ## Selected implementation order and current state
 
+The [October 22 complete-system continuation](COMPLETE_SYSTEM_20261022.md)
+is the current execution index: corrected-rotor PicoGK assembly, full-mesh Warp
+CPU checks, native formulation experiments and complete-surface pair checks.
+Its completion audit covers the entire original objective. The authorized Vast
+attempt was destroyed by its guard before workload execution; CUDA and the
+physical twin remain unvalidated. Earlier dated no-rental statements below
+describe their historical work packages.
+
 Qualified Linux/Python/.NET environment → surfaces from the scans with
 SciPy/PicoGK → assembly and BRep/FreeCAD interfaces → OpenFOAM →
 Gmsh/CalculiX → SciPy optimization then OpenMDAO coordination → PhysicsNeMo
