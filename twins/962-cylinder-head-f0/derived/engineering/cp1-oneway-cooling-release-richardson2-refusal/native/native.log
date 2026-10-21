@@ -1,0 +1,3347 @@
+
+[33m
+*** Deprecation Warning ***
+work/962-engineering/cp1-oneway-cooling-release-richardson2-001/thermoelastic-birth.i:604.5:
+Outputs/console/output_postprocessors: The parameter 'output_postprocessors' is deprecated.
+'execute_postprocessors_on' has replaced this parameter
+
+[39m
+Framework Information:
+MOOSE Version:           git commit 7c06bdcefd on 2026-09-13
+LibMesh Version:         
+PETSc Version:           3.25.4
+SLEPc Version:           3.25.1
+Current Time:            Tue Oct 20 14:12:40 2026
+Executable Timestamp:    Sat Oct 17 18:50:48 2026
+
+Input File(s):
+  work/962-engineering/cp1-oneway-cooling-release-richardson2-001/thermoelastic-birth.i
+
+Command Line Argument(s):
+  -skip_petscrc
+  --n-threads=1
+
+Checkpoint:
+  Wall Time Interval:      Every 3600 s
+  Checkpoint:              Outputs/checkpoint
+  # Checkpoints Kept:      2
+  Execute On:              TIMESTEP_END 
+
+Parallelism:
+  Num Processors:          1
+  Num Threads:             1
+
+Mesh: 
+  Parallel Type:           replicated
+  Mesh Dimension:          3
+  Spatial Dimension:       3
+  Nodes:                   425
+  Elems:                   256
+  Num Subdomains:          2
+
+Nonlinear System:
+  Num DOFs:                900
+  Num Local DOFs:          900
+  Variables:               "inactive_placeholder" { "disp_x" "disp_y" "disp_z" } 
+  Finite Element Types:    "LAGRANGE" "LAGRANGE" 
+  Approximation Orders:    "FIRST" "FIRST" 
+
+Auxiliary System:
+  Num DOFs:                900
+  Num Local DOFs:          900
+  Variables:               "temperature" "born_reference_temperature" { "rx" "ry" "rz" } 
+  Finite Element Types:    "LAGRANGE" "LAGRANGE" "LAGRANGE" 
+  Approximation Orders:    "FIRST" "FIRST" "FIRST" 
+
+Execution Information:
+  Executioner:             Transient
+  TimeStepper:             ConstantDT
+  TimeIntegrator(s):       ImplicitEuler
+  Solver Mode:             Linear 
+  PETSc Preconditioner:    lu 
+  MOOSE Preconditioner:    SMP 
+
+
+Time Step 0, time = 0
+
+Time Step 1, time = 0.0025, dt = 0.0025
+  0 SNES Function norm 3.215304397902e-02
+      0 Linear |R| = [32m3.215304e-02[39m
+    0 KSP unpreconditioned resid norm 3.215304397902e-02 true resid norm 3.215304397902e-02 ||r(i)||/||b|| 1.000000000000e+00
+      1 Linear |R| = [32m5.096727e-17[39m
+    1 KSP unpreconditioned resid norm 5.096727048490e-17 true resid norm 5.096727048490e-17 ||r(i)||/||b|| 1.585146044591e-15
+      2 Linear |R| = [32m1.858148e-17[39m
+    2 KSP unpreconditioned resid norm 1.858147509695e-17 true resid norm 1.858147509695e-17 ||r(i)||/||b|| 5.779071838136e-16
+    Linear solve converged due to CONVERGED_ITS iterations 2
+  1 SNES Function norm 2.355519201224e-17
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m2.011134e-17[39m
+  disp_y: [31m6.104977e-18[39m
+  disp_z: [31m1.063533e-17[39m
+
+Time Step 2, time = 0.005, dt = 0.0025
+  0 SNES Function norm 3.210163600865e-02
+      0 Linear |R| = [32m3.210164e-02[39m
+    0 KSP unpreconditioned resid norm 3.210163600865e-02 true resid norm 3.210163600865e-02 ||r(i)||/||b|| 1.000000000000e+00
+      1 Linear |R| = [32m4.895858e-17[39m
+    1 KSP unpreconditioned resid norm 4.895858040898e-17 true resid norm 4.895858040898e-17 ||r(i)||/||b|| 1.525111691996e-15
+      2 Linear |R| = [32m1.955026e-17[39m
+    2 KSP unpreconditioned resid norm 1.955026340010e-17 true resid norm 1.955026340010e-17 ||r(i)||/||b|| 6.090114346457e-16
+    Linear solve converged due to CONVERGED_ITS iterations 2
+  1 SNES Function norm 2.782901721066e-17
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m2.276787e-17[39m
+  disp_y: [31m9.499676e-18[39m
+  disp_z: [31m1.287767e-17[39m
+
+Time Step 3, time = 0.0075, dt = 0.0025
+  0 SNES Function norm 3.205623854839e-02
+      0 Linear |R| = [32m3.205624e-02[39m
+    0 KSP unpreconditioned resid norm 3.205623854839e-02 true resid norm 3.205623854839e-02 ||r(i)||/||b|| 1.000000000000e+00
+      1 Linear |R| = [32m5.008005e-17[39m
+    1 KSP unpreconditioned resid norm 5.008004640893e-17 true resid norm 5.008004640893e-17 ||r(i)||/||b|| 1.562255856480e-15
+      2 Linear |R| = [32m1.894502e-17[39m
+    2 KSP unpreconditioned resid norm 1.894501621893e-17 true resid norm 1.894501621893e-17 ||r(i)||/||b|| 5.909931132542e-16
+    Linear solve converged due to CONVERGED_ITS iterations 2
+  1 SNES Function norm 3.446687543296e-17
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m2.702657e-17[39m
+  disp_y: [31m1.065484e-17[39m
+  disp_z: [31m1.854736e-17[39m
+
+Time Step 4, time = 0.01, dt = 0.0025
+  0 SNES Function norm 3.201655804285e-02
+      0 Linear |R| = [32m3.201656e-02[39m
+    0 KSP unpreconditioned resid norm 3.201655804285e-02 true resid norm 3.201655804285e-02 ||r(i)||/||b|| 1.000000000000e+00
+      1 Linear |R| = [32m5.218284e-17[39m
+    1 KSP unpreconditioned resid norm 5.218283819624e-17 true resid norm 5.218283819624e-17 ||r(i)||/||b|| 1.629870335418e-15
+      2 Linear |R| = [32m1.848721e-17[39m
+    2 KSP unpreconditioned resid norm 1.848720562199e-17 true resid norm 1.848720562199e-17 ||r(i)||/||b|| 5.774263928449e-16
+    Linear solve converged due to CONVERGED_ITS iterations 2
+  1 SNES Function norm 3.795251786369e-17
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m2.995996e-17[39m
+  disp_y: [31m1.263677e-17[39m
+  disp_z: [31m1.957311e-17[39m
+
+Time Step 5, time = 0.0125, dt = 0.0025
+  0 SNES Function norm 3.198199553606e-02
+      0 Linear |R| = [32m3.198200e-02[39m
+    0 KSP unpreconditioned resid norm 3.198199553606e-02 true resid norm 3.198199553606e-02 ||r(i)||/||b|| 1.000000000000e+00
+      1 Linear |R| = [32m5.536962e-17[39m
+    1 KSP unpreconditioned resid norm 5.536961752970e-17 true resid norm 5.536961752970e-17 ||r(i)||/||b|| 1.731274631293e-15
+      2 Linear |R| = [32m1.716921e-17[39m
+    2 KSP unpreconditioned resid norm 1.716920888313e-17 true resid norm 1.716920888313e-17 ||r(i)||/||b|| 5.368398248875e-16
+    Linear solve converged due to CONVERGED_ITS iterations 2
+  1 SNES Function norm 4.230465663175e-17
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m3.187976e-17[39m
+  disp_y: [31m1.626441e-17[39m
+  disp_z: [31m2.255735e-17[39m
+
+Time Step 6, time = 0.015, dt = 0.0025
+  0 SNES Function norm 3.195224176294e-02
+      0 Linear |R| = [32m3.195224e-02[39m
+    0 KSP unpreconditioned resid norm 3.195224176294e-02 true resid norm 3.195224176294e-02 ||r(i)||/||b|| 1.000000000000e+00
+      1 Linear |R| = [32m5.124969e-17[39m
+    1 KSP unpreconditioned resid norm 5.124969363337e-17 true resid norm 5.124969363337e-17 ||r(i)||/||b|| 1.603946728170e-15
+      2 Linear |R| = [32m1.755876e-17[39m
+    2 KSP unpreconditioned resid norm 1.755876449686e-17 true resid norm 1.755876449686e-17 ||r(i)||/||b|| 5.495315360697e-16
+    Linear solve converged due to CONVERGED_ITS iterations 2
+  1 SNES Function norm 5.172619170622e-17
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m3.895438e-17[39m
+  disp_y: [31m1.539121e-17[39m
+  disp_z: [31m3.035236e-17[39m
+
+Time Step 7, time = 0.0175, dt = 0.0025
+  0 SNES Function norm 3.192729430192e-02
+      0 Linear |R| = [32m3.192729e-02[39m
+    0 KSP unpreconditioned resid norm 3.192729430192e-02 true resid norm 3.192729430192e-02 ||r(i)||/||b|| 1.000000000000e+00
+      1 Linear |R| = [32m5.407094e-17[39m
+    1 KSP unpreconditioned resid norm 5.407093881784e-17 true resid norm 5.407093881784e-17 ||r(i)||/||b|| 1.693564706941e-15
+      2 Linear |R| = [32m1.625586e-17[39m
+    2 KSP unpreconditioned resid norm 1.625585754359e-17 true resid norm 1.625585754359e-17 ||r(i)||/||b|| 5.091523694386e-16
+    Linear solve converged due to CONVERGED_ITS iterations 2
+  1 SNES Function norm 6.309167839953e-17
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m5.202666e-17[39m
+  disp_y: [31m1.949915e-17[39m
+  disp_z: [31m2.989264e-17[39m
+
+Time Step 8, time = 0.02, dt = 0.0025
+  0 SNES Function norm 3.190620983123e-02
+      0 Linear |R| = [32m3.190621e-02[39m
+    0 KSP unpreconditioned resid norm 3.190620983123e-02 true resid norm 3.190620983123e-02 ||r(i)||/||b|| 1.000000000000e+00
+      1 Linear |R| = [32m4.999323e-17[39m
+    1 KSP unpreconditioned resid norm 4.999323497314e-17 true resid norm 4.999323497314e-17 ||r(i)||/||b|| 1.566881031548e-15
+      2 Linear |R| = [32m1.737213e-17[39m
+    2 KSP unpreconditioned resid norm 1.737212688746e-17 true resid norm 1.737212688746e-17 ||r(i)||/||b|| 5.444747896836e-16
+    Linear solve converged due to CONVERGED_ITS iterations 2
+  1 SNES Function norm 7.283976688198e-17
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m5.703473e-17[39m
+  disp_y: [31m2.557720e-17[39m
+  disp_z: [31m3.739622e-17[39m
+
+Time Step 9, time = 0.0225, dt = 0.0025
+  0 SNES Function norm 3.188919463886e-02
+      0 Linear |R| = [32m3.188919e-02[39m
+    0 KSP unpreconditioned resid norm 3.188919463886e-02 true resid norm 3.188919463886e-02 ||r(i)||/||b|| 1.000000000000e+00
+      1 Linear |R| = [32m5.199737e-17[39m
+    1 KSP unpreconditioned resid norm 5.199737091220e-17 true resid norm 5.199737091220e-17 ||r(i)||/||b|| 1.630563941832e-15
+      2 Linear |R| = [32m1.510946e-17[39m
+    2 KSP unpreconditioned resid norm 1.510945550191e-17 true resid norm 1.510945550191e-17 ||r(i)||/||b|| 4.738111348694e-16
+    Linear solve converged due to CONVERGED_ITS iterations 2
+  1 SNES Function norm 7.933494132694e-17
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m5.983339e-17[39m
+  disp_y: [31m2.919889e-17[39m
+  disp_z: [31m4.314421e-17[39m
+
+Time Step 10, time = 0.025, dt = 0.0025
+  0 SNES Function norm 3.187591556421e-02
+      0 Linear |R| = [32m3.187592e-02[39m
+    0 KSP unpreconditioned resid norm 3.187591556421e-02 true resid norm 3.187591556421e-02 ||r(i)||/||b|| 1.000000000000e+00
+      1 Linear |R| = [32m4.977022e-17[39m
+    1 KSP unpreconditioned resid norm 4.977021984230e-17 true resid norm 4.977021984230e-17 ||r(i)||/||b|| 1.561373813469e-15
+      2 Linear |R| = [32m1.690197e-17[39m
+    2 KSP unpreconditioned resid norm 1.690197281651e-17 true resid norm 1.690197281651e-17 ||r(i)||/||b|| 5.302427402425e-16
+    Linear solve converged due to CONVERGED_ITS iterations 2
+  1 SNES Function norm 9.224065876352e-17
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m7.674804e-17[39m
+  disp_y: [31m2.801719e-17[39m
+  disp_z: [31m4.281488e-17[39m
+
+Time Step 11, time = 0.0275, dt = 0.0025
+  0 SNES Function norm 3.186619874904e-02
+      0 Linear |R| = [32m3.186620e-02[39m
+    0 KSP unpreconditioned resid norm 3.186619874904e-02 true resid norm 3.186619874904e-02 ||r(i)||/||b|| 1.000000000000e+00
+      1 Linear |R| = [32m5.166439e-17[39m
+    1 KSP unpreconditioned resid norm 5.166438872655e-17 true resid norm 5.166438872655e-17 ||r(i)||/||b|| 1.621291235062e-15
+      2 Linear |R| = [32m1.541734e-17[39m
+    2 KSP unpreconditioned resid norm 1.541734038200e-17 true resid norm 1.541734038200e-17 ||r(i)||/||b|| 4.838148567207e-16
+    Linear solve converged due to CONVERGED_ITS iterations 2
+  1 SNES Function norm 9.469615957470e-17
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m7.261228e-17[39m
+  disp_y: [31m3.278873e-17[39m
+  disp_z: [31m5.118318e-17[39m
+
+Time Step 12, time = 0.03, dt = 0.0025
+  0 SNES Function norm 3.185990344724e-02
+      0 Linear |R| = [32m3.185990e-02[39m
+    0 KSP unpreconditioned resid norm 3.185990344724e-02 true resid norm 3.185990344724e-02 ||r(i)||/||b|| 1.000000000000e+00
+      1 Linear |R| = [32m4.899844e-17[39m
+    1 KSP unpreconditioned resid norm 4.899843926885e-17 true resid norm 4.899843926885e-17 ||r(i)||/||b|| 1.537934330215e-15
+      2 Linear |R| = [32m1.935773e-17[39m
+    2 KSP unpreconditioned resid norm 1.935773387381e-17 true resid norm 1.935773387381e-17 ||r(i)||/||b|| 6.075892196556e-16
+    Linear solve converged due to CONVERGED_ITS iterations 2
+  1 SNES Function norm 9.818523633412e-17
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m7.143373e-17[39m
+  disp_y: [31m3.148096e-17[39m
+  disp_z: [31m5.955260e-17[39m
+
+Time Step 13, time = 0.0325, dt = 0.0025
+  0 SNES Function norm 3.185696086846e-02
+      0 Linear |R| = [32m3.185696e-02[39m
+    0 KSP unpreconditioned resid norm 3.185696086846e-02 true resid norm 3.185696086846e-02 ||r(i)||/||b|| 1.000000000000e+00
+      1 Linear |R| = [32m5.173802e-17[39m
+    1 KSP unpreconditioned resid norm 5.173801574430e-17 true resid norm 5.173801574430e-17 ||r(i)||/||b|| 1.624072552242e-15
+      2 Linear |R| = [32m1.816936e-17[39m
+    2 KSP unpreconditioned resid norm 1.816936129702e-17 true resid norm 1.816936129702e-17 ||r(i)||/||b|| 5.703419535856e-16
+    Linear solve converged due to CONVERGED_ITS iterations 2
+  1 SNES Function norm 1.130629099936e-16
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m9.251095e-17[39m
+  disp_y: [31m3.973200e-17[39m
+  disp_z: [31m5.144233e-17[39m
+
+Time Step 14, time = 0.035, dt = 0.0025
+  0 SNES Function norm 3.185734233851e-02
+      0 Linear |R| = [32m3.185734e-02[39m
+    0 KSP unpreconditioned resid norm 3.185734233851e-02 true resid norm 3.185734233851e-02 ||r(i)||/||b|| 1.000000000000e+00
+      1 Linear |R| = [32m4.768728e-17[39m
+    1 KSP unpreconditioned resid norm 4.768728049644e-17 true resid norm 4.768728049644e-17 ||r(i)||/||b|| 1.496900776899e-15
+      2 Linear |R| = [32m1.698552e-17[39m
+    2 KSP unpreconditioned resid norm 1.698551916333e-17 true resid norm 1.698551916333e-17 ||r(i)||/||b|| 5.331743929814e-16
+    Linear solve converged due to CONVERGED_ITS iterations 2
+  1 SNES Function norm 1.237963950402e-16
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m9.901654e-17[39m
+  disp_y: [31m3.819717e-17[39m
+  disp_z: [31m6.373577e-17[39m
+
+Time Step 15, time = 0.0375, dt = 0.0025
+  0 SNES Function norm 3.186100653178e-02
+      0 Linear |R| = [32m3.186101e-02[39m
+    0 KSP unpreconditioned resid norm 3.186100653178e-02 true resid norm 3.186100653178e-02 ||r(i)||/||b|| 1.000000000000e+00
+      1 Linear |R| = [32m4.920071e-17[39m
+    1 KSP unpreconditioned resid norm 4.920070718491e-17 true resid norm 4.920070718491e-17 ||r(i)||/||b|| 1.544229531350e-15
+      2 Linear |R| = [32m1.685327e-17[39m
+    2 KSP unpreconditioned resid norm 1.685327278401e-17 true resid norm 1.685327278401e-17 ||r(i)||/||b|| 5.289623467232e-16
+    Linear solve converged due to CONVERGED_ITS iterations 2
+  1 SNES Function norm 1.165373401657e-16
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m9.389166e-17[39m
+  disp_y: [31m4.417422e-17[39m
+  disp_z: [31m5.304663e-17[39m
+
+Time Step 16, time = 0.04, dt = 0.0025
+  0 SNES Function norm 3.186809300447e-02
+      0 Linear |R| = [32m3.186809e-02[39m
+    0 KSP unpreconditioned resid norm 3.186809300447e-02 true resid norm 3.186809300447e-02 ||r(i)||/||b|| 1.000000000000e+00
+      1 Linear |R| = [32m4.947386e-17[39m
+    1 KSP unpreconditioned resid norm 4.947386219334e-17 true resid norm 4.947386219334e-17 ||r(i)||/||b|| 1.552457568967e-15
+      2 Linear |R| = [32m1.831589e-17[39m
+    2 KSP unpreconditioned resid norm 1.831588532310e-17 true resid norm 1.831588532310e-17 ||r(i)||/||b|| 5.747405506986e-16
+    Linear solve converged due to CONVERGED_ITS iterations 2
+  1 SNES Function norm 1.265145297535e-16
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m1.002062e-16[39m
+  disp_y: [31m4.535284e-17[39m
+  disp_z: [31m6.251218e-17[39m
+
+Time Step 17, time = 0.0425, dt = 0.0025
+  0 SNES Function norm 3.187859531653e-02
+      0 Linear |R| = [32m3.187860e-02[39m
+    0 KSP unpreconditioned resid norm 3.187859531653e-02 true resid norm 3.187859531653e-02 ||r(i)||/||b|| 1.000000000000e+00
+      1 Linear |R| = [32m4.967864e-17[39m
+    1 KSP unpreconditioned resid norm 4.967863795792e-17 true resid norm 4.967863795792e-17 ||r(i)||/||b|| 1.558369729427e-15
+      2 Linear |R| = [32m1.724792e-17[39m
+    2 KSP unpreconditioned resid norm 1.724791825862e-17 true resid norm 1.724791825862e-17 ||r(i)||/||b|| 5.410501337140e-16
+    Linear solve converged due to CONVERGED_ITS iterations 2
+  1 SNES Function norm 1.485504999423e-16
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m1.185181e-16[39m
+  disp_y: [31m4.090189e-17[39m
+  disp_z: [31m7.967278e-17[39m
+
+Time Step 18, time = 0.045, dt = 0.0025
+  0 SNES Function norm 3.189285820725e-02
+      0 Linear |R| = [32m3.189286e-02[39m
+    0 KSP unpreconditioned resid norm 3.189285820725e-02 true resid norm 3.189285820725e-02 ||r(i)||/||b|| 1.000000000000e+00
+      1 Linear |R| = [32m5.529236e-17[39m
+    1 KSP unpreconditioned resid norm 5.529236332831e-17 true resid norm 5.529236332831e-17 ||r(i)||/||b|| 1.733691065536e-15
+      2 Linear |R| = [32m1.785488e-17[39m
+    2 KSP unpreconditioned resid norm 1.785487650458e-17 true resid norm 1.785487650458e-17 ||r(i)||/||b|| 5.598393342031e-16
+    Linear solve converged due to CONVERGED_ITS iterations 2
+  1 SNES Function norm 1.615647121430e-16
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m1.273586e-16[39m
+  disp_y: [31m4.117929e-17[39m
+  disp_z: [31m9.048317e-17[39m
+
+Time Step 19, time = 0.0475, dt = 0.0025
+  0 SNES Function norm 3.191069902182e-02
+      0 Linear |R| = [32m3.191070e-02[39m
+    0 KSP unpreconditioned resid norm 3.191069902182e-02 true resid norm 3.191069902182e-02 ||r(i)||/||b|| 1.000000000000e+00
+      1 Linear |R| = [32m5.456995e-17[39m
+    1 KSP unpreconditioned resid norm 5.456995338636e-17 true resid norm 5.456995338636e-17 ||r(i)||/||b|| 1.710083296798e-15
+      2 Linear |R| = [32m1.808643e-17[39m
+    2 KSP unpreconditioned resid norm 1.808642533588e-17 true resid norm 1.808642533588e-17 ||r(i)||/||b|| 5.667824864478e-16
+    Linear solve converged due to CONVERGED_ITS iterations 2
+  1 SNES Function norm 1.695488761030e-16
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m1.373052e-16[39m
+  disp_y: [31m5.213679e-17[39m
+  disp_z: [31m8.471038e-17[39m
+
+Time Step 20, time = 0.05, dt = 0.0025
+  0 SNES Function norm 3.193268028065e-02
+      0 Linear |R| = [32m3.193268e-02[39m
+    0 KSP unpreconditioned resid norm 3.193268028065e-02 true resid norm 3.193268028065e-02 ||r(i)||/||b|| 1.000000000000e+00
+      1 Linear |R| = [32m4.889046e-17[39m
+    1 KSP unpreconditioned resid norm 4.889046432550e-17 true resid norm 4.889046432550e-17 ||r(i)||/||b|| 1.531047938845e-15
+      2 Linear |R| = [32m1.720245e-17[39m
+    2 KSP unpreconditioned resid norm 1.720244908425e-17 true resid norm 1.720244908425e-17 ||r(i)||/||b|| 5.387098399841e-16
+    Linear solve converged due to CONVERGED_ITS iterations 2
+  1 SNES Function norm 1.706009242872e-16
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m1.285597e-16[39m
+  disp_y: [31m5.133082e-17[39m
+  disp_z: [31m9.971066e-17[39m
+
+Time Step 21, time = 0.0525, dt = 0.0025
+  0 SNES Function norm 3.195884170897e-02
+      0 Linear |R| = [32m3.195884e-02[39m
+    0 KSP unpreconditioned resid norm 3.195884170897e-02 true resid norm 3.195884170897e-02 ||r(i)||/||b|| 1.000000000000e+00
+      1 Linear |R| = [32m5.203888e-17[39m
+    1 KSP unpreconditioned resid norm 5.203888363383e-17 true resid norm 5.203888363383e-17 ||r(i)||/||b|| 1.628309439613e-15
+      2 Linear |R| = [32m1.664033e-17[39m
+    2 KSP unpreconditioned resid norm 1.664032898297e-17 true resid norm 1.664032898297e-17 ||r(i)||/||b|| 5.206799775318e-16
+    Linear solve converged due to CONVERGED_ITS iterations 2
+  1 SNES Function norm 1.710331178381e-16
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m1.245968e-16[39m
+  disp_y: [31m5.975050e-17[39m
+  disp_z: [31m1.007861e-16[39m
+
+Time Step 22, time = 0.055, dt = 0.0025
+  0 SNES Function norm 3.198990803783e-02
+      0 Linear |R| = [32m3.198991e-02[39m
+    0 KSP unpreconditioned resid norm 3.198990803783e-02 true resid norm 3.198990803783e-02 ||r(i)||/||b|| 1.000000000000e+00
+      1 Linear |R| = [32m4.946760e-17[39m
+    1 KSP unpreconditioned resid norm 4.946759501067e-17 true resid norm 4.946759501067e-17 ||r(i)||/||b|| 1.546350022394e-15
+      2 Linear |R| = [32m1.614285e-17[39m
+    2 KSP unpreconditioned resid norm 1.614284595709e-17 true resid norm 1.614284595709e-17 ||r(i)||/||b|| 5.046230810666e-16
+    Linear solve converged due to CONVERGED_ITS iterations 2
+  1 SNES Function norm 2.057934634612e-16
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m1.531683e-16[39m
+  disp_y: [31m7.069101e-17[39m
+  disp_z: [31m1.178694e-16[39m
+
+Time Step 23, time = 0.0575, dt = 0.0025
+  0 SNES Function norm 3.202579542969e-02
+      0 Linear |R| = [32m3.202580e-02[39m
+    0 KSP unpreconditioned resid norm 3.202579542969e-02 true resid norm 3.202579542969e-02 ||r(i)||/||b|| 1.000000000000e+00
+      1 Linear |R| = [32m4.962468e-17[39m
+    1 KSP unpreconditioned resid norm 4.962468182721e-17 true resid norm 4.962468182721e-17 ||r(i)||/||b|| 1.549522226111e-15
+      2 Linear |R| = [32m1.719570e-17[39m
+    2 KSP unpreconditioned resid norm 1.719570300515e-17 true resid norm 1.719570300515e-17 ||r(i)||/||b|| 5.369328934514e-16
+    Linear solve converged due to CONVERGED_ITS iterations 2
+  1 SNES Function norm 1.975074667064e-16
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m1.503187e-16[39m
+  disp_y: [31m6.412499e-17[39m
+  disp_z: [31m1.109120e-16[39m
+
+Time Step 24, time = 0.06, dt = 0.0025
+  0 SNES Function norm 3.206716482563e-02
+      0 Linear |R| = [32m3.206716e-02[39m
+    0 KSP unpreconditioned resid norm 3.206716482563e-02 true resid norm 3.206716482563e-02 ||r(i)||/||b|| 1.000000000000e+00
+      1 Linear |R| = [32m5.625045e-17[39m
+    1 KSP unpreconditioned resid norm 5.625044596952e-17 true resid norm 5.625044596952e-17 ||r(i)||/||b|| 1.754144660914e-15
+      2 Linear |R| = [32m1.907760e-17[39m
+    2 KSP unpreconditioned resid norm 1.907759791828e-17 true resid norm 1.907759791828e-17 ||r(i)||/||b|| 5.949262437769e-16
+    Linear solve converged due to CONVERGED_ITS iterations 2
+  1 SNES Function norm 2.038584211296e-16
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m1.536040e-16[39m
+  disp_y: [31m5.669682e-17[39m
+  disp_z: [31m1.214476e-16[39m
+
+Time Step 25, time = 0.0625, dt = 0.0025
+  0 SNES Function norm 3.211394861196e-02
+      0 Linear |R| = [32m3.211395e-02[39m
+    0 KSP unpreconditioned resid norm 3.211394861196e-02 true resid norm 3.211394861196e-02 ||r(i)||/||b|| 1.000000000000e+00
+      1 Linear |R| = [32m5.625475e-17[39m
+    1 KSP unpreconditioned resid norm 5.625475073064e-17 true resid norm 5.625475073064e-17 ||r(i)||/||b|| 1.751723259272e-15
+      2 Linear |R| = [32m1.630013e-17[39m
+    2 KSP unpreconditioned resid norm 1.630012809237e-17 true resid norm 1.630012809237e-17 ||r(i)||/||b|| 5.075715941794e-16
+    Linear solve converged due to CONVERGED_ITS iterations 2
+  1 SNES Function norm 2.120271190637e-16
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m1.713135e-16[39m
+  disp_y: [31m6.598458e-17[39m
+  disp_z: [31m1.060813e-16[39m
+
+Time Step 26, time = 0.065, dt = 0.0025
+  0 SNES Function norm 3.216734591725e-02
+      0 Linear |R| = [32m3.216735e-02[39m
+    0 KSP unpreconditioned resid norm 3.216734591725e-02 true resid norm 3.216734591725e-02 ||r(i)||/||b|| 1.000000000000e+00
+      1 Linear |R| = [32m5.265523e-17[39m
+    1 KSP unpreconditioned resid norm 5.265523368324e-17 true resid norm 5.265523368324e-17 ||r(i)||/||b|| 1.636915703854e-15
+      2 Linear |R| = [32m1.798426e-17[39m
+    2 KSP unpreconditioned resid norm 1.798425678860e-17 true resid norm 1.798425678860e-17 ||r(i)||/||b|| 5.590842600092e-16
+    Linear solve converged due to CONVERGED_ITS iterations 2
+  1 SNES Function norm 2.231121211979e-16
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m1.783667e-16[39m
+  disp_y: [31m6.513815e-17[39m
+  disp_z: [31m1.171383e-16[39m
+
+Time Step 27, time = 0.0675, dt = 0.0025
+  0 SNES Function norm 3.222724223005e-02
+      0 Linear |R| = [32m3.222724e-02[39m
+    0 KSP unpreconditioned resid norm 3.222724223005e-02 true resid norm 3.222724223005e-02 ||r(i)||/||b|| 1.000000000000e+00
+      1 Linear |R| = [32m5.020349e-17[39m
+    1 KSP unpreconditioned resid norm 5.020349394246e-17 true resid norm 5.020349394246e-17 ||r(i)||/||b|| 1.557796772807e-15
+      2 Linear |R| = [32m1.804688e-17[39m
+    2 KSP unpreconditioned resid norm 1.804688117440e-17 true resid norm 1.804688117440e-17 ||r(i)||/||b|| 5.599883801900e-16
+    Linear solve converged due to CONVERGED_ITS iterations 2
+  1 SNES Function norm 2.198555491581e-16
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m1.762578e-16[39m
+  disp_y: [31m6.224046e-17[39m
+  disp_z: [31m1.157401e-16[39m
+
+Time Step 28, time = 0.07, dt = 0.0025
+  0 SNES Function norm 3.229438165733e-02
+      0 Linear |R| = [32m3.229438e-02[39m
+    0 KSP unpreconditioned resid norm 3.229438165733e-02 true resid norm 3.229438165733e-02 ||r(i)||/||b|| 1.000000000000e+00
+      1 Linear |R| = [32m5.365009e-17[39m
+    1 KSP unpreconditioned resid norm 5.365008538570e-17 true resid norm 5.365008538570e-17 ||r(i)||/||b|| 1.661282323190e-15
+      2 Linear |R| = [32m1.878876e-17[39m
+    2 KSP unpreconditioned resid norm 1.878876296600e-17 true resid norm 1.878876296600e-17 ||r(i)||/||b|| 5.817966470257e-16
+    Linear solve converged due to CONVERGED_ITS iterations 2
+  1 SNES Function norm 2.504787613258e-16
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m2.031840e-16[39m
+  disp_y: [31m8.681017e-17[39m
+  disp_z: [31m1.179824e-16[39m
+
+Time Step 29, time = 0.0725, dt = 0.0025
+  0 SNES Function norm 3.236910487455e-02
+      0 Linear |R| = [32m3.236910e-02[39m
+    0 KSP unpreconditioned resid norm 3.236910487455e-02 true resid norm 3.236910487455e-02 ||r(i)||/||b|| 1.000000000000e+00
+      1 Linear |R| = [32m5.495509e-17[39m
+    1 KSP unpreconditioned resid norm 5.495509265523e-17 true resid norm 5.495509265523e-17 ||r(i)||/||b|| 1.697763743181e-15
+      2 Linear |R| = [32m1.727262e-17[39m
+    2 KSP unpreconditioned resid norm 1.727262056486e-17 true resid norm 1.727262056486e-17 ||r(i)||/||b|| 5.336144027401e-16
+    Linear solve converged due to CONVERGED_ITS iterations 2
+  1 SNES Function norm 2.070117071779e-16
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m1.441046e-16[39m
+  disp_y: [31m8.318729e-17[39m
+  disp_z: [31m1.231568e-16[39m
+
+Time Step 30, time = 0.075, dt = 0.0025
+  0 SNES Function norm 3.245205336213e-02
+      0 Linear |R| = [32m3.245205e-02[39m
+    0 KSP unpreconditioned resid norm 3.245205336213e-02 true resid norm 3.245205336213e-02 ||r(i)||/||b|| 1.000000000000e+00
+      1 Linear |R| = [32m5.684970e-17[39m
+    1 KSP unpreconditioned resid norm 5.684969585431e-17 true resid norm 5.684969585431e-17 ||r(i)||/||b|| 1.751805817029e-15
+      2 Linear |R| = [32m1.731308e-17[39m
+    2 KSP unpreconditioned resid norm 1.731307794932e-17 true resid norm 1.731307794932e-17 ||r(i)||/||b|| 5.334971490441e-16
+    Linear solve converged due to CONVERGED_ITS iterations 2
+  1 SNES Function norm 2.627027695591e-16
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m2.097475e-16[39m
+  disp_y: [31m7.640725e-17[39m
+  disp_z: [31m1.384943e-16[39m
+
+Time Step 31, time = 0.0775, dt = 0.0025
+  0 SNES Function norm 3.254363313969e-02
+      0 Linear |R| = [32m3.254363e-02[39m
+    0 KSP unpreconditioned resid norm 3.254363313969e-02 true resid norm 3.254363313969e-02 ||r(i)||/||b|| 1.000000000000e+00
+      1 Linear |R| = [32m5.887351e-17[39m
+    1 KSP unpreconditioned resid norm 5.887350762074e-17 true resid norm 5.887350762074e-17 ||r(i)||/||b|| 1.809063768880e-15
+      2 Linear |R| = [32m1.983589e-17[39m
+    2 KSP unpreconditioned resid norm 1.983588965966e-17 true resid norm 1.983588965966e-17 ||r(i)||/||b|| 6.095167547680e-16
+    Linear solve converged due to CONVERGED_ITS iterations 2
+  1 SNES Function norm 2.282645128824e-16
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m1.718564e-16[39m
+  disp_y: [31m7.745542e-17[39m
+  disp_z: [31m1.287273e-16[39m
+
+Time Step 32, time = 0.08, dt = 0.0025
+  0 SNES Function norm 3.264432185080e-02
+      0 Linear |R| = [32m3.264432e-02[39m
+    0 KSP unpreconditioned resid norm 3.264432185080e-02 true resid norm 3.264432185080e-02 ||r(i)||/||b|| 1.000000000000e+00
+      1 Linear |R| = [32m5.055813e-17[39m
+    1 KSP unpreconditioned resid norm 5.055812529686e-17 true resid norm 5.055812529686e-17 ||r(i)||/||b|| 1.548757101708e-15
+      2 Linear |R| = [32m1.887359e-17[39m
+    2 KSP unpreconditioned resid norm 1.887359242912e-17 true resid norm 1.887359242912e-17 ||r(i)||/||b|| 5.781585084040e-16
+    Linear solve converged due to CONVERGED_ITS iterations 2
+  1 SNES Function norm 2.647011610830e-16
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m2.025498e-16[39m
+  disp_y: [31m8.339651e-17[39m
+  disp_z: [31m1.486112e-16[39m
+
+Time Step 33, time = 0.0825, dt = 0.0025
+  0 SNES Function norm 3.275457884750e-02
+      0 Linear |R| = [32m3.275458e-02[39m
+    0 KSP unpreconditioned resid norm 3.275457884750e-02 true resid norm 3.275457884750e-02 ||r(i)||/||b|| 1.000000000000e+00
+      1 Linear |R| = [32m5.424225e-17[39m
+    1 KSP unpreconditioned resid norm 5.424225431765e-17 true resid norm 5.424225431765e-17 ||r(i)||/||b|| 1.656020508467e-15
+      2 Linear |R| = [32m1.878948e-17[39m
+    2 KSP unpreconditioned resid norm 1.878947512774e-17 true resid norm 1.878947512774e-17 ||r(i)||/||b|| 5.736442289555e-16
+    Linear solve converged due to CONVERGED_ITS iterations 2
+  1 SNES Function norm 2.802987248669e-16
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m2.319312e-16[39m
+  disp_y: [31m8.670198e-17[39m
+  disp_z: [31m1.313699e-16[39m
+
+Time Step 34, time = 0.085, dt = 0.0025
+  0 SNES Function norm 3.287482498648e-02
+      0 Linear |R| = [32m3.287482e-02[39m
+    0 KSP unpreconditioned resid norm 3.287482498648e-02 true resid norm 3.287482498648e-02 ||r(i)||/||b|| 1.000000000000e+00
+      1 Linear |R| = [32m5.353979e-17[39m
+    1 KSP unpreconditioned resid norm 5.353978690200e-17 true resid norm 5.353978690200e-17 ||r(i)||/||b|| 1.628595343824e-15
+      2 Linear |R| = [32m1.917136e-17[39m
+    2 KSP unpreconditioned resid norm 1.917136430329e-17 true resid norm 1.917136430329e-17 ||r(i)||/||b|| 5.831624749689e-16
+    Linear solve converged due to CONVERGED_ITS iterations 2
+  1 SNES Function norm 3.186715290126e-16
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m2.776094e-16[39m
+  disp_y: [31m8.580635e-17[39m
+  disp_z: [31m1.308503e-16[39m
+
+Time Step 35, time = 0.0875, dt = 0.0025
+  0 SNES Function norm 3.300540598229e-02
+      0 Linear |R| = [32m3.300541e-02[39m
+    0 KSP unpreconditioned resid norm 3.300540598229e-02 true resid norm 3.300540598229e-02 ||r(i)||/||b|| 1.000000000000e+00
+      1 Linear |R| = [32m5.735246e-17[39m
+    1 KSP unpreconditioned resid norm 5.735246306839e-17 true resid norm 5.735246306839e-17 ||r(i)||/||b|| 1.737668765510e-15
+      2 Linear |R| = [32m1.816261e-17[39m
+    2 KSP unpreconditioned resid norm 1.816260888238e-17 true resid norm 1.816260888238e-17 ||r(i)||/||b|| 5.502919398150e-16
+    Linear solve converged due to CONVERGED_ITS iterations 2
+  1 SNES Function norm 3.242092970374e-16
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m2.600270e-16[39m
+  disp_y: [31m1.047137e-16[39m
+  disp_z: [31m1.628886e-16[39m
+
+Time Step 36, time = 0.09, dt = 0.0025
+  0 SNES Function norm 3.314672737491e-02
+      0 Linear |R| = [32m3.314673e-02[39m
+    0 KSP unpreconditioned resid norm 3.314672737491e-02 true resid norm 3.314672737491e-02 ||r(i)||/||b|| 1.000000000000e+00
+      1 Linear |R| = [32m5.204935e-17[39m
+    1 KSP unpreconditioned resid norm 5.204935295512e-17 true resid norm 5.204935295512e-17 ||r(i)||/||b|| 1.570271247789e-15
+      2 Linear |R| = [32m2.080950e-17[39m
+    2 KSP unpreconditioned resid norm 2.080949938723e-17 true resid norm 2.080949938723e-17 ||r(i)||/||b|| 6.277995155255e-16
+    Linear solve converged due to CONVERGED_ITS iterations 2
+  1 SNES Function norm 2.937225904451e-16
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m2.130747e-16[39m
+  disp_y: [31m9.683687e-17[39m
+  disp_z: [31m1.774676e-16[39m
+
+Time Step 37, time = 0.0925, dt = 0.0025
+  0 SNES Function norm 3.329893121098e-02
+      0 Linear |R| = [32m3.329893e-02[39m
+    0 KSP unpreconditioned resid norm 3.329893121098e-02 true resid norm 3.329893121098e-02 ||r(i)||/||b|| 1.000000000000e+00
+      1 Linear |R| = [32m5.679720e-17[39m
+    1 KSP unpreconditioned resid norm 5.679719868889e-17 true resid norm 5.679719868889e-17 ||r(i)||/||b|| 1.705676327238e-15
+      2 Linear |R| = [32m1.730777e-17[39m
+    2 KSP unpreconditioned resid norm 1.730776558249e-17 true resid norm 1.730776558249e-17 ||r(i)||/||b|| 5.197694025921e-16
+    Linear solve converged due to CONVERGED_ITS iterations 2
+  1 SNES Function norm 3.617137368163e-16
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m3.084520e-16[39m
+  disp_y: [31m9.316132e-17[39m
+  disp_z: [31m1.643630e-16[39m
+
+Time Step 38, time = 0.095, dt = 0.0025
+  0 SNES Function norm 3.346219537881e-02
+      0 Linear |R| = [32m3.346220e-02[39m
+    0 KSP unpreconditioned resid norm 3.346219537881e-02 true resid norm 3.346219537881e-02 ||r(i)||/||b|| 1.000000000000e+00
+      1 Linear |R| = [32m5.086132e-17[39m
+    1 KSP unpreconditioned resid norm 5.086131541032e-17 true resid norm 5.086131541032e-17 ||r(i)||/||b|| 1.519963494162e-15
+      2 Linear |R| = [32m1.901857e-17[39m
+    2 KSP unpreconditioned resid norm 1.901857235438e-17 true resid norm 1.901857235438e-17 ||r(i)||/||b|| 5.683599697832e-16
+    Linear solve converged due to CONVERGED_ITS iterations 2
+  1 SNES Function norm 3.240012290628e-16
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m2.631192e-16[39m
+  disp_y: [31m9.878236e-17[39m
+  disp_z: [31m1.612053e-16[39m
+
+Time Step 39, time = 0.0975, dt = 0.0025
+  0 SNES Function norm 3.363662683009e-02
+      0 Linear |R| = [32m3.363663e-02[39m
+    0 KSP unpreconditioned resid norm 3.363662683009e-02 true resid norm 3.363662683009e-02 ||r(i)||/||b|| 1.000000000000e+00
+      1 Linear |R| = [32m5.629420e-17[39m
+    1 KSP unpreconditioned resid norm 5.629420086841e-17 true resid norm 5.629420086841e-17 ||r(i)||/||b|| 1.673598281801e-15
+      2 Linear |R| = [32m2.103110e-17[39m
+    2 KSP unpreconditioned resid norm 2.103110485945e-17 true resid norm 2.103110485945e-17 ||r(i)||/||b|| 6.252441710546e-16
+    Linear solve converged due to CONVERGED_ITS iterations 2
+  1 SNES Function norm 3.467852212043e-16
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m2.314806e-16[39m
+  disp_y: [31m1.062548e-16[39m
+  disp_z: [31m2.353436e-16[39m
+
+Time Step 40, time = 0.1, dt = 0.0025
+  0 SNES Function norm 3.382220393125e-02
+      0 Linear |R| = [32m3.382220e-02[39m
+    0 KSP unpreconditioned resid norm 3.382220393125e-02 true resid norm 3.382220393125e-02 ||r(i)||/||b|| 1.000000000000e+00
+      1 Linear |R| = [32m5.543939e-17[39m
+    1 KSP unpreconditioned resid norm 5.543938676697e-17 true resid norm 5.543938676697e-17 ||r(i)||/||b|| 1.639141756689e-15
+      2 Linear |R| = [32m1.803566e-17[39m
+    2 KSP unpreconditioned resid norm 1.803566480949e-17 true resid norm 1.803566480949e-17 ||r(i)||/||b|| 5.332492479245e-16
+    Linear solve converged due to CONVERGED_ITS iterations 2
+  1 SNES Function norm 3.331541554264e-16
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m2.602265e-16[39m
+  disp_y: [31m1.181568e-16[39m
+  disp_z: [31m1.712099e-16[39m
+
+Time Step 41, time = 0.1025, dt = 0.0025
+  0 SNES Function norm 3.401899877428e-02
+      0 Linear |R| = [32m3.401900e-02[39m
+    0 KSP unpreconditioned resid norm 3.401899877428e-02 true resid norm 3.401899877428e-02 ||r(i)||/||b|| 1.000000000000e+00
+      1 Linear |R| = [32m5.994375e-17[39m
+    1 KSP unpreconditioned resid norm 5.994375298472e-17 true resid norm 5.994375298472e-17 ||r(i)||/||b|| 1.762066937433e-15
+      2 Linear |R| = [32m1.966112e-17[39m
+    2 KSP unpreconditioned resid norm 1.966111612941e-17 true resid norm 1.966111612941e-17 ||r(i)||/||b|| 5.779451729273e-16
+    Linear solve converged due to CONVERGED_ITS iterations 2
+  1 SNES Function norm 3.756242566533e-16
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m3.050218e-16[39m
+  disp_y: [31m1.035870e-16[39m
+  disp_z: [31m1.931969e-16[39m
+
+Time Step 42, time = 0.105, dt = 0.0025
+  0 SNES Function norm 3.422599196906e-02
+      0 Linear |R| = [32m3.422599e-02[39m
+    0 KSP unpreconditioned resid norm 3.422599196906e-02 true resid norm 3.422599196906e-02 ||r(i)||/||b|| 1.000000000000e+00
+      1 Linear |R| = [32m5.846078e-17[39m
+    1 KSP unpreconditioned resid norm 5.846077887360e-17 true resid norm 5.846077887360e-17 ||r(i)||/||b|| 1.708081358941e-15
+      2 Linear |R| = [32m1.993612e-17[39m
+    2 KSP unpreconditioned resid norm 1.993612262125e-17 true resid norm 1.993612262125e-17 ||r(i)||/||b|| 5.824848740477e-16
+    Linear solve converged due to CONVERGED_ITS iterations 2
+  1 SNES Function norm 4.019235061501e-16
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m3.346506e-16[39m
+  disp_y: [31m1.001855e-16[39m
+  disp_z: [31m1.987821e-16[39m
+
+Time Step 43, time = 0.1075, dt = 0.0025
+  0 SNES Function norm 3.444358965666e-02
+      0 Linear |R| = [32m3.444359e-02[39m
+    0 KSP unpreconditioned resid norm 3.444358965666e-02 true resid norm 3.444358965666e-02 ||r(i)||/||b|| 1.000000000000e+00
+      1 Linear |R| = [32m5.496944e-17[39m
+    1 KSP unpreconditioned resid norm 5.496944111544e-17 true resid norm 5.496944111544e-17 ||r(i)||/||b|| 1.595926605310e-15
+      2 Linear |R| = [32m1.985139e-17[39m
+    2 KSP unpreconditioned resid norm 1.985138500842e-17 true resid norm 1.985138500842e-17 ||r(i)||/||b|| 5.763448353179e-16
+    Linear solve converged due to CONVERGED_ITS iterations 2
+  1 SNES Function norm 3.563451132485e-16
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m2.791671e-16[39m
+  disp_y: [31m1.051820e-16[39m
+  disp_z: [31m1.948956e-16[39m
+
+Time Step 44, time = 0.11, dt = 0.0025
+  0 SNES Function norm 3.467099750922e-02
+      0 Linear |R| = [32m3.467100e-02[39m
+    0 KSP unpreconditioned resid norm 3.467099750922e-02 true resid norm 3.467099750922e-02 ||r(i)||/||b|| 1.000000000000e+00
+      1 Linear |R| = [32m5.477875e-17[39m
+    1 KSP unpreconditioned resid norm 5.477875144593e-17 true resid norm 5.477875144593e-17 ||r(i)||/||b|| 1.579958910365e-15
+      2 Linear |R| = [32m1.777893e-17[39m
+    2 KSP unpreconditioned resid norm 1.777892857450e-17 true resid norm 1.777892857450e-17 ||r(i)||/||b|| 5.127896470175e-16
+    Linear solve converged due to CONVERGED_ITS iterations 2
+  1 SNES Function norm 3.629130819148e-16
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m3.035008e-16[39m
+  disp_y: [31m1.059349e-16[39m
+  disp_z: [31m1.684369e-16[39m
+
+Time Step 45, time = 0.1125, dt = 0.0025
+  0 SNES Function norm 3.490754242870e-02
+      0 Linear |R| = [32m3.490754e-02[39m
+    0 KSP unpreconditioned resid norm 3.490754242870e-02 true resid norm 3.490754242870e-02 ||r(i)||/||b|| 1.000000000000e+00
+      1 Linear |R| = [32m5.703346e-17[39m
+    1 KSP unpreconditioned resid norm 5.703345602114e-17 true resid norm 5.703345602114e-17 ||r(i)||/||b|| 1.633843348830e-15
+      2 Linear |R| = [32m1.873019e-17[39m
+    2 KSP unpreconditioned resid norm 1.873019337529e-17 true resid norm 1.873019337529e-17 ||r(i)||/||b|| 5.365657984530e-16
+    Linear solve converged due to CONVERGED_ITS iterations 2
+  1 SNES Function norm 3.805860929829e-16
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m3.144565e-16[39m
+  disp_y: [31m1.086107e-16[39m
+  disp_z: [31m1.848421e-16[39m
+
+Time Step 46, time = 0.115, dt = 0.0025
+  0 SNES Function norm 3.515244745768e-02
+      0 Linear |R| = [32m3.515245e-02[39m
+    0 KSP unpreconditioned resid norm 3.515244745768e-02 true resid norm 3.515244745768e-02 ||r(i)||/||b|| 1.000000000000e+00
+      1 Linear |R| = [32m5.815995e-17[39m
+    1 KSP unpreconditioned resid norm 5.815994748683e-17 true resid norm 5.815994748683e-17 ||r(i)||/||b|| 1.654506348579e-15
+      2 Linear |R| = [32m1.863528e-17[39m
+    2 KSP unpreconditioned resid norm 1.863527850585e-17 true resid norm 1.863527850585e-17 ||r(i)||/||b|| 5.301274833933e-16
+    Linear solve converged due to CONVERGED_ITS iterations 2
+  1 SNES Function norm 3.787414047019e-16
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m3.014671e-16[39m
+  disp_y: [31m1.016865e-16[39m
+  disp_z: [31m2.054810e-16[39m
+
+Time Step 47, time = 0.1175, dt = 0.0025
+  0 SNES Function norm 3.540463099846e-02
+      0 Linear |R| = [32m3.540463e-02[39m
+    0 KSP unpreconditioned resid norm 3.540463099846e-02 true resid norm 3.540463099846e-02 ||r(i)||/||b|| 1.000000000000e+00
+      1 Linear |R| = [32m6.368309e-17[39m
+    1 KSP unpreconditioned resid norm 6.368309081605e-17 true resid norm 6.368309081605e-17 ||r(i)||/||b|| 1.798722060366e-15
+      2 Linear |R| = [32m1.918042e-17[39m
+    2 KSP unpreconditioned resid norm 1.918041585058e-17 true resid norm 1.918041585058e-17 ||r(i)||/||b|| 5.417487856719e-16
+    Linear solve converged due to CONVERGED_ITS iterations 2
+  1 SNES Function norm 3.935009851428e-16
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m3.001825e-16[39m
+  disp_y: [31m1.126500e-16[39m
+  disp_z: [31m2.281304e-16[39m
+
+Time Step 48, time = 0.12, dt = 0.0025
+  0 SNES Function norm 3.566324026915e-02
+      0 Linear |R| = [32m3.566324e-02[39m
+    0 KSP unpreconditioned resid norm 3.566324026915e-02 true resid norm 3.566324026915e-02 ||r(i)||/||b|| 1.000000000000e+00
+      1 Linear |R| = [32m5.729338e-17[39m
+    1 KSP unpreconditioned resid norm 5.729337650036e-17 true resid norm 5.729337650036e-17 ||r(i)||/||b|| 1.606510683493e-15
+      2 Linear |R| = [32m1.914501e-17[39m
+    2 KSP unpreconditioned resid norm 1.914501488189e-17 true resid norm 1.914501488189e-17 ||r(i)||/||b|| 5.368276897277e-16
+    Linear solve converged due to CONVERGED_ITS iterations 2
+  1 SNES Function norm 3.756213742141e-16
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m2.980847e-16[39m
+  disp_y: [31m1.297585e-16[39m
+  disp_z: [31m1.881479e-16[39m
+
+Time Step 49, time = 0.1225, dt = 0.0025
+  0 SNES Function norm 3.592689434675e-02
+      0 Linear |R| = [32m3.592689e-02[39m
+    0 KSP unpreconditioned resid norm 3.592689434675e-02 true resid norm 3.592689434675e-02 ||r(i)||/||b|| 1.000000000000e+00
+      1 Linear |R| = [32m5.936704e-17[39m
+    1 KSP unpreconditioned resid norm 5.936703978191e-17 true resid norm 5.936703978191e-17 ||r(i)||/||b|| 1.652440069240e-15
+      2 Linear |R| = [32m2.034984e-17[39m
+    2 KSP unpreconditioned resid norm 2.034984306792e-17 true resid norm 2.034984306792e-17 ||r(i)||/||b|| 5.664236622156e-16
+    Linear solve converged due to CONVERGED_ITS iterations 2
+  1 SNES Function norm 3.684390060398e-16
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m2.894543e-16[39m
+  disp_y: [31m1.153635e-16[39m
+  disp_z: [31m1.966082e-16[39m
+
+Time Step 50, time = 0.125, dt = 0.0025
+  0 SNES Function norm 3.619423807002e-02
+      0 Linear |R| = [32m3.619424e-02[39m
+    0 KSP unpreconditioned resid norm 3.619423807002e-02 true resid norm 3.619423807002e-02 ||r(i)||/||b|| 1.000000000000e+00
+      1 Linear |R| = [32m5.247378e-17[39m
+    1 KSP unpreconditioned resid norm 5.247378105919e-17 true resid norm 5.247378105919e-17 ||r(i)||/||b|| 1.449782723915e-15
+      2 Linear |R| = [32m2.167482e-17[39m
+    2 KSP unpreconditioned resid norm 2.167481570725e-17 true resid norm 2.167481570725e-17 ||r(i)||/||b|| 5.988471332182e-16
+    Linear solve converged due to CONVERGED_ITS iterations 2
+  1 SNES Function norm 3.888956816776e-16
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m3.042125e-16[39m
+  disp_y: [31m1.398499e-16[39m
+  disp_z: [31m1.978298e-16[39m
+
+Time Step 51, time = 0.1275, dt = 0.0025
+  0 SNES Function norm 3.646369097041e-02
+      0 Linear |R| = [32m3.646369e-02[39m
+    0 KSP unpreconditioned resid norm 3.646369097041e-02 true resid norm 3.646369097041e-02 ||r(i)||/||b|| 1.000000000000e+00
+      1 Linear |R| = [32m5.585343e-17[39m
+    1 KSP unpreconditioned resid norm 5.585343104301e-17 true resid norm 5.585343104301e-17 ||r(i)||/||b|| 1.531754727966e-15
+      2 Linear |R| = [32m1.929956e-17[39m
+    2 KSP unpreconditioned resid norm 1.929956049736e-17 true resid norm 1.929956049736e-17 ||r(i)||/||b|| 5.292815944778e-16
+    Linear solve converged due to CONVERGED_ITS iterations 2
+  1 SNES Function norm 4.103916831194e-16
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m3.289787e-16[39m
+  disp_y: [31m1.280314e-16[39m
+  disp_z: [31m2.092899e-16[39m
+
+Time Step 52, time = 0.13, dt = 0.0025
+  0 SNES Function norm 3.673383653790e-02
+      0 Linear |R| = [32m3.673384e-02[39m
+    0 KSP unpreconditioned resid norm 3.673383653790e-02 true resid norm 3.673383653790e-02 ||r(i)||/||b|| 1.000000000000e+00
+      1 Linear |R| = [32m5.665874e-17[39m
+    1 KSP unpreconditioned resid norm 5.665873786399e-17 true resid norm 5.665873786399e-17 ||r(i)||/||b|| 1.542412750858e-15
+      2 Linear |R| = [32m2.116758e-17[39m
+    2 KSP unpreconditioned resid norm 2.116758234873e-17 true resid norm 2.116758234873e-17 ||r(i)||/||b|| 5.762420793399e-16
+    Linear solve converged due to CONVERGED_ITS iterations 2
+  1 SNES Function norm 3.612163351844e-16
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m2.680711e-16[39m
+  disp_y: [31m1.415469e-16[39m
+  disp_z: [31m1.964168e-16[39m
+
+Time Step 53, time = 0.1325, dt = 0.0025
+  0 SNES Function norm 3.700280828531e-02
+      0 Linear |R| = [32m3.700281e-02[39m
+    0 KSP unpreconditioned resid norm 3.700280828531e-02 true resid norm 3.700280828531e-02 ||r(i)||/||b|| 1.000000000000e+00
+      1 Linear |R| = [32m6.108552e-17[39m
+    1 KSP unpreconditioned resid norm 6.108551622824e-17 true resid norm 6.108551622824e-17 ||r(i)||/||b|| 1.650834600370e-15
+      2 Linear |R| = [32m1.896833e-17[39m
+    2 KSP unpreconditioned resid norm 1.896832621265e-17 true resid norm 1.896832621265e-17 ||r(i)||/||b|| 5.126185576616e-16
+    Linear solve converged due to CONVERGED_ITS iterations 2
+  1 SNES Function norm 3.976741025232e-16
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m3.240745e-16[39m
+  disp_y: [31m1.268023e-16[39m
+  disp_z: [31m1.924620e-16[39m
+
+Time Step 54, time = 0.135, dt = 0.0025
+  0 SNES Function norm 3.726882020279e-02
+      0 Linear |R| = [32m3.726882e-02[39m
+    0 KSP unpreconditioned resid norm 3.726882020279e-02 true resid norm 3.726882020279e-02 ||r(i)||/||b|| 1.000000000000e+00
+      1 Linear |R| = [32m5.623207e-17[39m
+    1 KSP unpreconditioned resid norm 5.623206998127e-17 true resid norm 5.623206998127e-17 ||r(i)||/||b|| 1.508823452830e-15
+      2 Linear |R| = [32m2.023891e-17[39m
+    2 KSP unpreconditioned resid norm 2.023891372411e-17 true resid norm 2.023891372411e-17 ||r(i)||/||b|| 5.430521710637e-16
+    Linear solve converged due to CONVERGED_ITS iterations 2
+  1 SNES Function norm 4.261825989209e-16
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m3.297799e-16[39m
+  disp_y: [31m1.281162e-16[39m
+  disp_z: [31m2.376197e-16[39m
+
+Time Step 55, time = 0.1375, dt = 0.0025
+  0 SNES Function norm 3.753003706193e-02
+      0 Linear |R| = [32m3.753004e-02[39m
+    0 KSP unpreconditioned resid norm 3.753003706193e-02 true resid norm 3.753003706193e-02 ||r(i)||/||b|| 1.000000000000e+00
+      1 Linear |R| = [32m5.814067e-17[39m
+    1 KSP unpreconditioned resid norm 5.814067390369e-17 true resid norm 5.814067390369e-17 ||r(i)||/||b|| 1.549177098007e-15
+      2 Linear |R| = [32m1.924761e-17[39m
+    2 KSP unpreconditioned resid norm 1.924760587769e-17 true resid norm 1.924760587769e-17 ||r(i)||/||b|| 5.128586962473e-16
+    Linear solve converged due to CONVERGED_ITS iterations 2
+  1 SNES Function norm 4.204885538022e-16
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m3.396549e-16[39m
+  disp_y: [31m1.361593e-16[39m
+  disp_z: [31m2.071372e-16[39m
+
+Time Step 56, time = 0.14, dt = 0.0025
+  0 SNES Function norm 3.778440493032e-02
+      0 Linear |R| = [32m3.778440e-02[39m
+    0 KSP unpreconditioned resid norm 3.778440493032e-02 true resid norm 3.778440493032e-02 ||r(i)||/||b|| 1.000000000000e+00
+      1 Linear |R| = [32m6.074353e-17[39m
+    1 KSP unpreconditioned resid norm 6.074353252691e-17 true resid norm 6.074353252691e-17 ||r(i)||/||b|| 1.607635018705e-15
+      2 Linear |R| = [32m2.107661e-17[39m
+    2 KSP unpreconditioned resid norm 2.107661002519e-17 true resid norm 2.107661002519e-17 ||r(i)||/||b|| 5.578124113388e-16
+    Linear solve converged due to CONVERGED_ITS iterations 2
+  1 SNES Function norm 5.104170992451e-16
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m4.322939e-16[39m
+  disp_y: [31m1.447528e-16[39m
+  disp_z: [31m2.295522e-16[39m
+
+Time Step 57, time = 0.1425, dt = 0.0025
+  0 SNES Function norm 3.802989895795e-02
+      0 Linear |R| = [32m3.802990e-02[39m
+    0 KSP unpreconditioned resid norm 3.802989895795e-02 true resid norm 3.802989895795e-02 ||r(i)||/||b|| 1.000000000000e+00
+      1 Linear |R| = [32m5.776439e-17[39m
+    1 KSP unpreconditioned resid norm 5.776438863458e-17 true resid norm 5.776438863458e-17 ||r(i)||/||b|| 1.518920381525e-15
+      2 Linear |R| = [32m1.998121e-17[39m
+    2 KSP unpreconditioned resid norm 1.998121254194e-17 true resid norm 1.998121254194e-17 ||r(i)||/||b|| 5.254079839663e-16
+    Linear solve converged due to CONVERGED_ITS iterations 2
+  1 SNES Function norm 4.786781330734e-16
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m3.976001e-16[39m
+  disp_y: [31m1.199761e-16[39m
+  disp_z: [31m2.380182e-16[39m
+
+Time Step 58, time = 0.145, dt = 0.0025
+  0 SNES Function norm 3.826466075941e-02
+      0 Linear |R| = [32m3.826466e-02[39m
+    0 KSP unpreconditioned resid norm 3.826466075941e-02 true resid norm 3.826466075941e-02 ||r(i)||/||b|| 1.000000000000e+00
+      1 Linear |R| = [32m5.706228e-17[39m
+    1 KSP unpreconditioned resid norm 5.706228344057e-17 true resid norm 5.706228344057e-17 ||r(i)||/||b|| 1.491252824619e-15
+      2 Linear |R| = [32m1.898143e-17[39m
+    2 KSP unpreconditioned resid norm 1.898143126078e-17 true resid norm 1.898143126078e-17 ||r(i)||/||b|| 4.960564365153e-16
+    Linear solve converged due to CONVERGED_ITS iterations 2
+  1 SNES Function norm 5.145934677998e-16
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m4.291487e-16[39m
+  disp_y: [31m1.657017e-16[39m
+  disp_z: [31m2.306097e-16[39m
+
+Time Step 59, time = 0.1475, dt = 0.0025
+  0 SNES Function norm 3.848634842775e-02
+      0 Linear |R| = [32m3.848635e-02[39m
+    0 KSP unpreconditioned resid norm 3.848634842775e-02 true resid norm 3.848634842775e-02 ||r(i)||/||b|| 1.000000000000e+00
+      1 Linear |R| = [32m5.976693e-17[39m
+    1 KSP unpreconditioned resid norm 5.976693217484e-17 true resid norm 5.976693217484e-17 ||r(i)||/||b|| 1.552938499402e-15
+      2 Linear |R| = [32m2.156145e-17[39m
+    2 KSP unpreconditioned resid norm 2.156144508873e-17 true resid norm 2.156144508873e-17 ||r(i)||/||b|| 5.602361868444e-16
+    Linear solve converged due to CONVERGED_ITS iterations 2
+  1 SNES Function norm 4.726156013138e-16
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m3.966937e-16[39m
+  disp_y: [31m1.386381e-16[39m
+  disp_z: [31m2.162848e-16[39m
+
+Time Step 60, time = 0.15, dt = 0.0025
+  0 SNES Function norm 3.869303763530e-02
+      0 Linear |R| = [32m3.869304e-02[39m
+    0 KSP unpreconditioned resid norm 3.869303763530e-02 true resid norm 3.869303763530e-02 ||r(i)||/||b|| 1.000000000000e+00
+      1 Linear |R| = [32m5.567740e-17[39m
+    1 KSP unpreconditioned resid norm 5.567739691843e-17 true resid norm 5.567739691843e-17 ||r(i)||/||b|| 1.438951302899e-15
+      2 Linear |R| = [32m1.777819e-17[39m
+    2 KSP unpreconditioned resid norm 1.777818884025e-17 true resid norm 1.777818884025e-17 ||r(i)||/||b|| 4.594673855235e-16
+    Linear solve converged due to CONVERGED_ITS iterations 2
+  1 SNES Function norm 5.152837845409e-16
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m4.030554e-16[39m
+  disp_y: [31m1.587161e-16[39m
+  disp_z: [31m2.790572e-16[39m
+
+Time Step 61, time = 0.1525, dt = 0.0025
+  0 SNES Function norm 3.888254686969e-02
+      0 Linear |R| = [32m3.888255e-02[39m
+    0 KSP unpreconditioned resid norm 3.888254686969e-02 true resid norm 3.888254686969e-02 ||r(i)||/||b|| 1.000000000000e+00
+      1 Linear |R| = [32m5.696274e-17[39m
+    1 KSP unpreconditioned resid norm 5.696274299361e-17 true resid norm 5.696274299361e-17 ||r(i)||/||b|| 1.464995160541e-15
+      2 Linear |R| = [32m2.253512e-17[39m
+    2 KSP unpreconditioned resid norm 2.253511717638e-17 true resid norm 2.253511717638e-17 ||r(i)||/||b|| 5.795689580700e-16
+    Linear solve converged due to CONVERGED_ITS iterations 2
+  1 SNES Function norm 5.191687569195e-16
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m4.334105e-16[39m
+  disp_y: [31m1.459729e-16[39m
+  disp_z: [31m2.457304e-16[39m
+
+Time Step 62, time = 0.155, dt = 0.0025
+  0 SNES Function norm 3.905298595234e-02
+      0 Linear |R| = [32m3.905299e-02[39m
+    0 KSP unpreconditioned resid norm 3.905298595234e-02 true resid norm 3.905298595234e-02 ||r(i)||/||b|| 1.000000000000e+00
+      1 Linear |R| = [32m5.642077e-17[39m
+    1 KSP unpreconditioned resid norm 5.642076567141e-17 true resid norm 5.642076567141e-17 ||r(i)||/||b|| 1.444723477489e-15
+      2 Linear |R| = [32m1.925112e-17[39m
+    2 KSP unpreconditioned resid norm 1.925111861775e-17 true resid norm 1.925111861775e-17 ||r(i)||/||b|| 4.929486990123e-16
+    Linear solve converged due to CONVERGED_ITS iterations 2
+  1 SNES Function norm 5.649531673105e-16
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m4.534293e-16[39m
+  disp_y: [31m1.742098e-16[39m
+  disp_z: [31m2.884873e-16[39m
+
+Time Step 63, time = 0.1575, dt = 0.0025
+  0 SNES Function norm 3.920218255766e-02
+      0 Linear |R| = [32m3.920218e-02[39m
+    0 KSP unpreconditioned resid norm 3.920218255766e-02 true resid norm 3.920218255766e-02 ||r(i)||/||b|| 1.000000000000e+00
+      1 Linear |R| = [32m5.513338e-17[39m
+    1 KSP unpreconditioned resid norm 5.513337794406e-17 true resid norm 5.513337794406e-17 ||r(i)||/||b|| 1.406385419051e-15
+      2 Linear |R| = [32m1.992284e-17[39m
+    2 KSP unpreconditioned resid norm 1.992284484202e-17 true resid norm 1.992284484202e-17 ||r(i)||/||b|| 5.082075420857e-16
+    Linear solve converged due to CONVERGED_ITS iterations 2
+  1 SNES Function norm 5.900619976860e-16
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m5.033598e-16[39m
+  disp_y: [31m1.565708e-16[39m
+  disp_z: [31m2.651183e-16[39m
+
+Time Step 64, time = 0.16, dt = 0.0025
+  0 SNES Function norm 3.932838307044e-02
+      0 Linear |R| = [32m3.932838e-02[39m
+    0 KSP unpreconditioned resid norm 3.932838307044e-02 true resid norm 3.932838307044e-02 ||r(i)||/||b|| 1.000000000000e+00
+      1 Linear |R| = [32m5.688889e-17[39m
+    1 KSP unpreconditioned resid norm 5.688889247452e-17 true resid norm 5.688889247452e-17 ||r(i)||/||b|| 1.446509824028e-15
+      2 Linear |R| = [32m1.886548e-17[39m
+    2 KSP unpreconditioned resid norm 1.886547835934e-17 true resid norm 1.886547835934e-17 ||r(i)||/||b|| 4.796911768672e-16
+    Linear solve converged due to CONVERGED_ITS iterations 2
+  1 SNES Function norm 4.777748199497e-16
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m3.736365e-16[39m
+  disp_y: [31m1.610160e-16[39m
+  disp_z: [31m2.504764e-16[39m
+
+Time Step 65, time = 0.1625, dt = 0.0025
+  0 SNES Function norm 3.942959827437e-02
+      0 Linear |R| = [32m3.942960e-02[39m
+    0 KSP unpreconditioned resid norm 3.942959827437e-02 true resid norm 3.942959827437e-02 ||r(i)||/||b|| 1.000000000000e+00
+      1 Linear |R| = [32m5.512461e-17[39m
+    1 KSP unpreconditioned resid norm 5.512460851520e-17 true resid norm 5.512460851520e-17 ||r(i)||/||b|| 1.398051487403e-15
+      2 Linear |R| = [32m1.925049e-17[39m
+    2 KSP unpreconditioned resid norm 1.925049042176e-17 true resid norm 1.925049042176e-17 ||r(i)||/||b|| 4.882243609941e-16
+    Linear solve converged due to CONVERGED_ITS iterations 2
+  1 SNES Function norm 5.259823774156e-16
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m4.353797e-16[39m
+  disp_y: [31m1.523613e-16[39m
+  disp_z: [31m2.527608e-16[39m
+
+Time Step 66, time = 0.165, dt = 0.0025
+  0 SNES Function norm 3.950413951029e-02
+      0 Linear |R| = [32m3.950414e-02[39m
+    0 KSP unpreconditioned resid norm 3.950413951029e-02 true resid norm 3.950413951029e-02 ||r(i)||/||b|| 1.000000000000e+00
+      1 Linear |R| = [32m5.553441e-17[39m
+    1 KSP unpreconditioned resid norm 5.553440912882e-17 true resid norm 5.553440912882e-17 ||r(i)||/||b|| 1.405787085031e-15
+      2 Linear |R| = [32m1.770829e-17[39m
+    2 KSP unpreconditioned resid norm 1.770828553378e-17 true resid norm 1.770828553378e-17 ||r(i)||/||b|| 4.482640491174e-16
+    Linear solve converged due to CONVERGED_ITS iterations 2
+  1 SNES Function norm 7.763319061519e-16
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m7.137778e-16[39m
+  disp_y: [31m1.540720e-16[39m
+  disp_z: [31m2.635797e-16[39m
+
+Time Step 67, time = 0.1675, dt = 0.0025
+  0 SNES Function norm 3.955033482605e-02
+      0 Linear |R| = [32m3.955033e-02[39m
+    0 KSP unpreconditioned resid norm 3.955033482605e-02 true resid norm 3.955033482605e-02 ||r(i)||/||b|| 1.000000000000e+00
+      1 Linear |R| = [32m5.196946e-17[39m
+    1 KSP unpreconditioned resid norm 5.196946211724e-17 true resid norm 5.196946211724e-17 ||r(i)||/||b|| 1.314008145464e-15
+      2 Linear |R| = [32m1.695612e-17[39m
+    2 KSP unpreconditioned resid norm 1.695612252026e-17 true resid norm 1.695612252026e-17 ||r(i)||/||b|| 4.287226036097e-16
+    Linear solve converged due to CONVERGED_ITS iterations 2
+  1 SNES Function norm 6.422646621864e-16
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m5.436089e-16[39m
+  disp_y: [31m1.741876e-16[39m
+  disp_z: [31m2.943669e-16[39m
+
+Time Step 68, time = 0.17, dt = 0.0025
+  0 SNES Function norm 3.956665249312e-02
+      0 Linear |R| = [32m3.956665e-02[39m
+    0 KSP unpreconditioned resid norm 3.956665249312e-02 true resid norm 3.956665249312e-02 ||r(i)||/||b|| 1.000000000000e+00
+      1 Linear |R| = [32m5.163709e-17[39m
+    1 KSP unpreconditioned resid norm 5.163708862263e-17 true resid norm 5.163708862263e-17 ||r(i)||/||b|| 1.305065891829e-15
+      2 Linear |R| = [32m1.797505e-17[39m
+    2 KSP unpreconditioned resid norm 1.797504888564e-17 true resid norm 1.797504888564e-17 ||r(i)||/||b|| 4.542979441783e-16
+    Linear solve converged due to CONVERGED_ITS iterations 2
+  1 SNES Function norm 6.051235080586e-16
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m5.058010e-16[39m
+  disp_y: [31m1.589409e-16[39m
+  disp_z: [31m2.916807e-16[39m
+
+Time Step 69, time = 0.1725, dt = 0.0025
+  0 SNES Function norm 3.955156302746e-02
+      0 Linear |R| = [32m3.955156e-02[39m
+    0 KSP unpreconditioned resid norm 3.955156302746e-02 true resid norm 3.955156302746e-02 ||r(i)||/||b|| 1.000000000000e+00
+      1 Linear |R| = [32m5.207862e-17[39m
+    1 KSP unpreconditioned resid norm 5.207862220097e-17 true resid norm 5.207862220097e-17 ||r(i)||/||b|| 1.316727284957e-15
+      2 Linear |R| = [32m1.923626e-17[39m
+    2 KSP unpreconditioned resid norm 1.923626240147e-17 true resid norm 1.923626240147e-17 ||r(i)||/||b|| 4.863590950404e-16
+    Linear solve converged due to CONVERGED_ITS iterations 2
+  1 SNES Function norm 5.668978613317e-16
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m4.518509e-16[39m
+  disp_y: [31m1.811033e-16[39m
+  disp_z: [31m2.905264e-16[39m
+
+Time Step 70, time = 0.175, dt = 0.0025
+  0 SNES Function norm 3.950412929514e-02
+      0 Linear |R| = [32m3.950413e-02[39m
+    0 KSP unpreconditioned resid norm 3.950412929514e-02 true resid norm 3.950412929514e-02 ||r(i)||/||b|| 1.000000000000e+00
+      1 Linear |R| = [32m5.362147e-17[39m
+    1 KSP unpreconditioned resid norm 5.362147386275e-17 true resid norm 5.362147386275e-17 ||r(i)||/||b|| 1.357363769801e-15
+      2 Linear |R| = [32m1.714052e-17[39m
+    2 KSP unpreconditioned resid norm 1.714052103667e-17 true resid norm 1.714052103667e-17 ||r(i)||/||b|| 4.338918827602e-16
+    Linear solve converged due to CONVERGED_ITS iterations 2
+  1 SNES Function norm 5.900323570393e-16
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m4.808259e-16[39m
+  disp_y: [31m1.599502e-16[39m
+  disp_z: [31m3.022591e-16[39m
+
+Time Step 71, time = 0.1775, dt = 0.0025
+  0 SNES Function norm 3.942297700170e-02
+      0 Linear |R| = [32m3.942298e-02[39m
+    0 KSP unpreconditioned resid norm 3.942297700170e-02 true resid norm 3.942297700170e-02 ||r(i)||/||b|| 1.000000000000e+00
+      1 Linear |R| = [32m5.021065e-17[39m
+    1 KSP unpreconditioned resid norm 5.021064759810e-17 true resid norm 5.021064759810e-17 ||r(i)||/||b|| 1.273639167228e-15
+      2 Linear |R| = [32m1.685074e-17[39m
+    2 KSP unpreconditioned resid norm 1.685073605112e-17 true resid norm 1.685073605112e-17 ||r(i)||/||b|| 4.274343880827e-16
+    Linear solve converged due to CONVERGED_ITS iterations 2
+  1 SNES Function norm 5.462734904809e-16
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m3.948218e-16[39m
+  disp_y: [31m1.597550e-16[39m
+  disp_z: [31m3.420655e-16[39m
+
+Time Step 72, time = 0.18, dt = 0.0025
+  0 SNES Function norm 3.930714336775e-02
+      0 Linear |R| = [32m3.930714e-02[39m
+    0 KSP unpreconditioned resid norm 3.930714336775e-02 true resid norm 3.930714336775e-02 ||r(i)||/||b|| 1.000000000000e+00
+      1 Linear |R| = [32m4.893876e-17[39m
+    1 KSP unpreconditioned resid norm 4.893876458256e-17 true resid norm 4.893876458256e-17 ||r(i)||/||b|| 1.245034881439e-15
+      2 Linear |R| = [32m1.712582e-17[39m
+    2 KSP unpreconditioned resid norm 1.712581540788e-17 true resid norm 1.712581540788e-17 ||r(i)||/||b|| 4.356921907972e-16
+    Linear solve converged due to CONVERGED_ITS iterations 2
+  1 SNES Function norm 6.164017473688e-16
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m5.083421e-16[39m
+  disp_y: [31m1.504870e-16[39m
+  disp_z: [31m3.144726e-16[39m
+
+Time Step 73, time = 0.1825, dt = 0.0025
+  0 SNES Function norm 3.915595424539e-02
+      0 Linear |R| = [32m3.915595e-02[39m
+    0 KSP unpreconditioned resid norm 3.915595424539e-02 true resid norm 3.915595424539e-02 ||r(i)||/||b|| 1.000000000000e+00
+      1 Linear |R| = [32m4.626789e-17[39m
+    1 KSP unpreconditioned resid norm 4.626789114626e-17 true resid norm 4.626789114626e-17 ||r(i)||/||b|| 1.181631045340e-15
+      2 Linear |R| = [32m1.723062e-17[39m
+    2 KSP unpreconditioned resid norm 1.723061619935e-17 true resid norm 1.723061619935e-17 ||r(i)||/||b|| 4.400509841075e-16
+    Linear solve converged due to CONVERGED_ITS iterations 2
+  1 SNES Function norm 6.149893557466e-16
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m4.824180e-16[39m
+  disp_y: [31m1.565741e-16[39m
+  disp_z: [31m3.478064e-16[39m
+
+Time Step 74, time = 0.185, dt = 0.0025
+  0 SNES Function norm 3.896872874511e-02
+      0 Linear |R| = [32m3.896873e-02[39m
+    0 KSP unpreconditioned resid norm 3.896872874511e-02 true resid norm 3.896872874511e-02 ||r(i)||/||b|| 1.000000000000e+00
+      1 Linear |R| = [32m4.875897e-17[39m
+    1 KSP unpreconditioned resid norm 4.875896877839e-17 true resid norm 4.875896877839e-17 ||r(i)||/||b|| 1.251233241333e-15
+      2 Linear |R| = [32m1.617160e-17[39m
+    2 KSP unpreconditioned resid norm 1.617159543141e-17 true resid norm 1.617159543141e-17 ||r(i)||/||b|| 4.149890425521e-16
+    Linear solve converged due to CONVERGED_ITS iterations 2
+  1 SNES Function norm 6.024368672412e-16
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m4.693651e-16[39m
+  disp_y: [31m1.829557e-16[39m
+  disp_z: [31m3.303843e-16[39m
+
+Time Step 75, time = 0.1875, dt = 0.0025
+  0 SNES Function norm 3.874508162881e-02
+      0 Linear |R| = [32m3.874508e-02[39m
+    0 KSP unpreconditioned resid norm 3.874508162881e-02 true resid norm 3.874508162881e-02 ||r(i)||/||b|| 1.000000000000e+00
+      1 Linear |R| = [32m4.899831e-17[39m
+    1 KSP unpreconditioned resid norm 4.899830963313e-17 true resid norm 4.899830963313e-17 ||r(i)||/||b|| 1.264633021103e-15
+      2 Linear |R| = [32m1.719587e-17[39m
+    2 KSP unpreconditioned resid norm 1.719586965516e-17 true resid norm 1.719586965516e-17 ||r(i)||/||b|| 4.438207104557e-16
+    Linear solve converged due to CONVERGED_ITS iterations 2
+  1 SNES Function norm 5.983479130899e-16
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m5.008616e-16[39m
+  disp_y: [31m1.692092e-16[39m
+  disp_z: [31m2.802252e-16[39m
+
+Time Step 76, time = 0.19, dt = 0.0025
+  0 SNES Function norm 3.848471163629e-02
+      0 Linear |R| = [32m3.848471e-02[39m
+    0 KSP unpreconditioned resid norm 3.848471163629e-02 true resid norm 3.848471163629e-02 ||r(i)||/||b|| 1.000000000000e+00
+      1 Linear |R| = [32m4.498097e-17[39m
+    1 KSP unpreconditioned resid norm 4.498097147990e-17 true resid norm 4.498097147990e-17 ||r(i)||/||b|| 1.168801052870e-15
+      2 Linear |R| = [32m1.753778e-17[39m
+    2 KSP unpreconditioned resid norm 1.753777933657e-17 true resid norm 1.753777933657e-17 ||r(i)||/||b|| 4.557076977038e-16
+    Linear solve converged due to CONVERGED_ITS iterations 2
+  1 SNES Function norm 6.697879311000e-16
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m5.280188e-16[39m
+  disp_y: [31m1.893909e-16[39m
+  disp_z: [31m3.659824e-16[39m
+
+Time Step 77, time = 0.1925, dt = 0.0025
+  0 SNES Function norm 3.818755626616e-02
+      0 Linear |R| = [32m3.818756e-02[39m
+    0 KSP unpreconditioned resid norm 3.818755626616e-02 true resid norm 3.818755626616e-02 ||r(i)||/||b|| 1.000000000000e+00
+      1 Linear |R| = [32m4.146840e-17[39m
+    1 KSP unpreconditioned resid norm 4.146839957966e-17 true resid norm 4.146839957966e-17 ||r(i)||/||b|| 1.085913937269e-15
+      2 Linear |R| = [32m1.711859e-17[39m
+    2 KSP unpreconditioned resid norm 1.711859022395e-17 true resid norm 1.711859022395e-17 ||r(i)||/||b|| 4.482766612410e-16
+    Linear solve converged due to CONVERGED_ITS iterations 2
+  1 SNES Function norm 5.935117466133e-16
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m4.734363e-16[39m
+  disp_y: [31m1.872425e-16[39m
+  disp_z: [31m3.050484e-16[39m
+
+Time Step 78, time = 0.195, dt = 0.0025
+  0 SNES Function norm 3.785372318406e-02
+      0 Linear |R| = [32m3.785372e-02[39m
+    0 KSP unpreconditioned resid norm 3.785372318406e-02 true resid norm 3.785372318406e-02 ||r(i)||/||b|| 1.000000000000e+00
+      1 Linear |R| = [32m4.600054e-17[39m
+    1 KSP unpreconditioned resid norm 4.600053819523e-17 true resid norm 4.600053819523e-17 ||r(i)||/||b|| 1.215218327972e-15
+      2 Linear |R| = [32m1.636756e-17[39m
+    2 KSP unpreconditioned resid norm 1.636755962255e-17 true resid norm 1.636755962255e-17 ||r(i)||/||b|| 4.323896897266e-16
+    Linear solve converged due to CONVERGED_ITS iterations 2
+  1 SNES Function norm 6.254481900848e-16
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m5.170169e-16[39m
+  disp_y: [31m1.753841e-16[39m
+  disp_z: [31m3.051547e-16[39m
+
+Time Step 79, time = 0.1975, dt = 0.0025
+  0 SNES Function norm 3.748353039125e-02
+      0 Linear |R| = [32m3.748353e-02[39m
+    0 KSP unpreconditioned resid norm 3.748353039125e-02 true resid norm 3.748353039125e-02 ||r(i)||/||b|| 1.000000000000e+00
+      1 Linear |R| = [32m4.490549e-17[39m
+    1 KSP unpreconditioned resid norm 4.490549273611e-17 true resid norm 4.490549273611e-17 ||r(i)||/||b|| 1.198005958014e-15
+      2 Linear |R| = [32m1.631419e-17[39m
+    2 KSP unpreconditioned resid norm 1.631418923306e-17 true resid norm 1.631418923306e-17 ||r(i)||/||b|| 4.352361974120e-16
+    Linear solve converged due to CONVERGED_ITS iterations 2
+  1 SNES Function norm 6.032305536419e-16
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m5.094363e-16[39m
+  disp_y: [31m1.770933e-16[39m
+  disp_z: [31m2.701846e-16[39m
+
+Time Step 80, time = 0.2, dt = 0.0025
+  0 SNES Function norm 5.399281095157e+02
+      0 Linear |R| = [32m5.399281e+02[39m
+    0 KSP unpreconditioned resid norm 5.399281095157e+02 true resid norm 5.399281095157e+02 ||r(i)||/||b|| 1.000000000000e+00
+      1 Linear |R| = [32m2.158608e-13[39m
+    1 KSP unpreconditioned resid norm 2.158607783438e-13 true resid norm 2.158607783438e-13 ||r(i)||/||b|| 3.997954070912e-16
+      2 Linear |R| = [32m1.507330e-13[39m
+    2 KSP unpreconditioned resid norm 1.507329601054e-13 true resid norm 1.507329601054e-13 ||r(i)||/||b|| 2.791722776586e-16
+    Linear solve converged due to CONVERGED_ITS iterations 2
+  1 SNES Function norm 1.302607346048e-13
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m1.157492e-13[39m
+  disp_y: [31m4.880184e-14[39m
+  disp_z: [31m3.447278e-14[39m
+
+Time Step 81, time = 0.2025, dt = 0.0025
+  0 SNES Function norm 5.398859071080e+02
+      0 Linear |R| = [32m5.398859e+02[39m
+    0 KSP unpreconditioned resid norm 5.398859071080e+02 true resid norm 5.398859071080e+02 ||r(i)||/||b|| 1.000000000000e+00
+      1 Linear |R| = [32m2.523442e-13[39m
+    1 KSP unpreconditioned resid norm 2.523441817760e-13 true resid norm 2.523441817760e-13 ||r(i)||/||b|| 4.674027946530e-16
+      2 Linear |R| = [32m1.497036e-13[39m
+    2 KSP unpreconditioned resid norm 1.497035724364e-13 true resid norm 1.497035724364e-13 ||r(i)||/||b|| 2.772874240010e-16
+    Linear solve converged due to CONVERGED_ITS iterations 2
+  1 SNES Function norm 1.869398213578e-13
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m1.633280e-13[39m
+  disp_y: [31m6.223587e-14[39m
+  disp_z: [31m6.631096e-14[39m
+
+Time Step 82, time = 0.205, dt = 0.0025
+  0 SNES Function norm 5.398437224275e+02
+      0 Linear |R| = [32m5.398437e+02[39m
+    0 KSP unpreconditioned resid norm 5.398437224275e+02 true resid norm 5.398437224275e+02 ||r(i)||/||b|| 1.000000000000e+00
+      1 Linear |R| = [32m2.231959e-13[39m
+    1 KSP unpreconditioned resid norm 2.231959300114e-13 true resid norm 2.231959300114e-13 ||r(i)||/||b|| 4.134454486342e-16
+      2 Linear |R| = [32m1.325382e-13[39m
+    2 KSP unpreconditioned resid norm 1.325381617277e-13 true resid norm 1.325381617277e-13 ||r(i)||/||b|| 2.455120921509e-16
+    Linear solve converged due to CONVERGED_ITS iterations 2
+  1 SNES Function norm 1.990814584500e-13
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m1.767999e-13[39m
+  disp_y: [31m6.805253e-14[39m
+  disp_z: [31m6.118876e-14[39m
+
+Time Step 83, time = 0.2075, dt = 0.0025
+  0 SNES Function norm 5.398015537660e+02
+      0 Linear |R| = [32m5.398016e+02[39m
+    0 KSP unpreconditioned resid norm 5.398015537660e+02 true resid norm 5.398015537660e+02 ||r(i)||/||b|| 1.000000000000e+00
+      1 Linear |R| = [32m2.072422e-13[39m
+    1 KSP unpreconditioned resid norm 2.072422375224e-13 true resid norm 2.072422375224e-13 ||r(i)||/||b|| 3.839230103666e-16
+      2 Linear |R| = [32m1.242222e-13[39m
+    2 KSP unpreconditioned resid norm 1.242222152835e-13 true resid norm 1.242222152835e-13 ||r(i)||/||b|| 2.301257090071e-16
+    Linear solve converged due to CONVERGED_ITS iterations 2
+  1 SNES Function norm 2.390775239098e-13
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m1.852378e-13[39m
+  disp_y: [31m1.069720e-13[39m
+  disp_z: [31m1.067803e-13[39m
+
+Time Step 84, time = 0.21, dt = 0.0025
+  0 SNES Function norm 5.397593996294e+02
+      0 Linear |R| = [32m5.397594e+02[39m
+    0 KSP unpreconditioned resid norm 5.397593996294e+02 true resid norm 5.397593996294e+02 ||r(i)||/||b|| 1.000000000000e+00
+      1 Linear |R| = [32m2.235587e-13[39m
+    1 KSP unpreconditioned resid norm 2.235587131438e-13 true resid norm 2.235587131438e-13 ||r(i)||/||b|| 4.141821583789e-16
+      2 Linear |R| = [32m1.294324e-13[39m
+    2 KSP unpreconditioned resid norm 1.294323948424e-13 true resid norm 1.294323948424e-13 ||r(i)||/||b|| 2.397964628893e-16
+    Linear solve converged due to CONVERGED_ITS iterations 2
+  1 SNES Function norm 2.763569711745e-13
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m2.061228e-13[39m
+  disp_y: [31m1.287922e-13[39m
+  disp_z: [31m1.315261e-13[39m
+
+Time Step 85, time = 0.2125, dt = 0.0025
+  0 SNES Function norm 5.397172582298e+02
+      0 Linear |R| = [32m5.397173e+02[39m
+    0 KSP unpreconditioned resid norm 5.397172582298e+02 true resid norm 5.397172582298e+02 ||r(i)||/||b|| 1.000000000000e+00
+      1 Linear |R| = [32m2.333050e-13[39m
+    1 KSP unpreconditioned resid norm 2.333050229987e-13 true resid norm 2.333050229987e-13 ||r(i)||/||b|| 4.322726750741e-16
+      2 Linear |R| = [32m1.124623e-13[39m
+    2 KSP unpreconditioned resid norm 1.124623377030e-13 true resid norm 1.124623377030e-13 ||r(i)||/||b|| 2.083726914198e-16
+    Linear solve converged due to CONVERGED_ITS iterations 2
+  1 SNES Function norm 3.377814796397e-13
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m2.837955e-13[39m
+  disp_y: [31m1.256586e-13[39m
+  disp_z: [31m1.332906e-13[39m
+
+Time Step 86, time = 0.215, dt = 0.0025
+  0 SNES Function norm 5.396751278233e+02
+      0 Linear |R| = [32m5.396751e+02[39m
+    0 KSP unpreconditioned resid norm 5.396751278233e+02 true resid norm 5.396751278233e+02 ||r(i)||/||b|| 1.000000000000e+00
+      1 Linear |R| = [32m2.367062e-13[39m
+    1 KSP unpreconditioned resid norm 2.367062203214e-13 true resid norm 2.367062203214e-13 ||r(i)||/||b|| 4.386087260981e-16
+      2 Linear |R| = [32m1.350061e-13[39m
+    2 KSP unpreconditioned resid norm 1.350060514396e-13 true resid norm 1.350060514396e-13 ||r(i)||/||b|| 2.501617074408e-16
+    Linear solve converged due to CONVERGED_ITS iterations 2
+  1 SNES Function norm 4.015629421076e-13
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m3.129710e-13[39m
+  disp_y: [31m1.567063e-13[39m
+  disp_z: [31m1.968377e-13[39m
+
+Time Step 87, time = 0.2175, dt = 0.0025
+  0 SNES Function norm 5.396330065137e+02
+      0 Linear |R| = [32m5.396330e+02[39m
+    0 KSP unpreconditioned resid norm 5.396330065137e+02 true resid norm 5.396330065137e+02 ||r(i)||/||b|| 1.000000000000e+00
+      1 Linear |R| = [32m2.155964e-13[39m
+    1 KSP unpreconditioned resid norm 2.155964238654e-13 true resid norm 2.155964238654e-13 ||r(i)||/||b|| 3.995241604258e-16
+      2 Linear |R| = [32m1.236106e-13[39m
+    2 KSP unpreconditioned resid norm 1.236105830561e-13 true resid norm 1.236105830561e-13 ||r(i)||/||b|| 2.290641631703e-16
+    Linear solve converged due to CONVERGED_ITS iterations 2
+  1 SNES Function norm 4.045863942432e-13
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m3.214408e-13[39m
+  disp_y: [31m1.602942e-13[39m
+  disp_z: [31m1.862035e-13[39m
+
+Time Step 88, time = 0.22, dt = 0.0025
+  0 SNES Function norm 5.395908925067e+02
+      0 Linear |R| = [32m5.395909e+02[39m
+    0 KSP unpreconditioned resid norm 5.395908925067e+02 true resid norm 5.395908925067e+02 ||r(i)||/||b|| 1.000000000000e+00
+      1 Linear |R| = [32m2.103269e-13[39m
+    1 KSP unpreconditioned resid norm 2.103268918759e-13 true resid norm 2.103268918759e-13 ||r(i)||/||b|| 3.897895513002e-16
+      2 Linear |R| = [32m1.148505e-13[39m
+    2 KSP unpreconditioned resid norm 1.148505467114e-13 true resid norm 1.148505467114e-13 ||r(i)||/||b|| 2.128474522204e-16
+    Linear solve converged due to CONVERGED_ITS iterations 2
+  1 SNES Function norm 5.299818165812e-13
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m3.913726e-13[39m
+  disp_y: [31m2.456999e-13[39m
+  disp_z: [31m2.594991e-13[39m
+
+Time Step 89, time = 0.2225, dt = 0.0025
+  0 SNES Function norm 5.395487838671e+02
+      0 Linear |R| = [32m5.395488e+02[39m
+    0 KSP unpreconditioned resid norm 5.395487838671e+02 true resid norm 5.395487838671e+02 ||r(i)||/||b|| 1.000000000000e+00
+      1 Linear |R| = [32m1.851442e-13[39m
+    1 KSP unpreconditioned resid norm 1.851441632231e-13 true resid norm 1.851441632231e-13 ||r(i)||/||b|| 3.431462895646e-16
+      2 Linear |R| = [32m1.093802e-13[39m
+    2 KSP unpreconditioned resid norm 1.093801985019e-13 true resid norm 1.093801985019e-13 ||r(i)||/||b|| 2.027253174735e-16
+    Linear solve converged due to CONVERGED_ITS iterations 2
+  1 SNES Function norm 4.668529941563e-13
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m3.269469e-13[39m
+  disp_y: [31m2.506782e-13[39m
+  disp_z: [31m2.195856e-13[39m
+
+Time Step 90, time = 0.225, dt = 0.0025
+  0 SNES Function norm 5.395066787547e+02
+      0 Linear |R| = [32m5.395067e+02[39m
+    0 KSP unpreconditioned resid norm 5.395066787547e+02 true resid norm 5.395066787547e+02 ||r(i)||/||b|| 1.000000000000e+00
+      1 Linear |R| = [32m2.039158e-13[39m
+    1 KSP unpreconditioned resid norm 2.039157732602e-13 true resid norm 2.039157732602e-13 ||r(i)||/||b|| 3.779670971468e-16
+      2 Linear |R| = [32m1.045637e-13[39m
+    2 KSP unpreconditioned resid norm 1.045636816676e-13 true resid norm 1.045636816676e-13 ||r(i)||/||b|| 1.938135073859e-16
+    Linear solve converged due to CONVERGED_ITS iterations 2
+  1 SNES Function norm 5.497578909511e-13
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m4.129282e-13[39m
+  disp_y: [31m2.321190e-13[39m
+  disp_z: [31m2.790068e-13[39m
+
+Time Step 91, time = 0.2275, dt = 0.0025
+  0 SNES Function norm 5.394645752299e+02
+      0 Linear |R| = [32m5.394646e+02[39m
+    0 KSP unpreconditioned resid norm 5.394645752299e+02 true resid norm 5.394645752299e+02 ||r(i)||/||b|| 1.000000000000e+00
+      1 Linear |R| = [32m2.147801e-13[39m
+    1 KSP unpreconditioned resid norm 2.147801399165e-13 true resid norm 2.147801399165e-13 ||r(i)||/||b|| 3.981357623436e-16
+      2 Linear |R| = [32m1.342157e-13[39m
+    2 KSP unpreconditioned resid norm 1.342156982813e-13 true resid norm 1.342156982813e-13 ||r(i)||/||b|| 2.487942757392e-16
+    Linear solve converged due to CONVERGED_ITS iterations 2
+  1 SNES Function norm 6.377094844279e-13
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m4.973449e-13[39m
+  disp_y: [31m2.702369e-13[39m
+  disp_z: [31m2.937576e-13[39m
+
+Time Step 92, time = 0.23, dt = 0.0025
+  0 SNES Function norm 5.394224714830e+02
+      0 Linear |R| = [32m5.394225e+02[39m
+    0 KSP unpreconditioned resid norm 5.394224714830e+02 true resid norm 5.394224714830e+02 ||r(i)||/||b|| 1.000000000000e+00
+      1 Linear |R| = [32m2.098277e-13[39m
+    1 KSP unpreconditioned resid norm 2.098277426329e-13 true resid norm 2.098277426329e-13 ||r(i)||/||b|| 3.889859131305e-16
+      2 Linear |R| = [32m1.333018e-13[39m
+    2 KSP unpreconditioned resid norm 1.333017808570e-13 true resid norm 1.333017808570e-13 ||r(i)||/||b|| 2.471194433012e-16
+    Linear solve converged due to CONVERGED_ITS iterations 2
+  1 SNES Function norm 7.134264146322e-13
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m5.245175e-13[39m
+  disp_y: [31m3.119084e-13[39m
+  disp_z: [31m3.695562e-13[39m
+
+Time Step 93, time = 0.2325, dt = 0.0025
+  0 SNES Function norm 5.393803657284e+02
+      0 Linear |R| = [32m5.393804e+02[39m
+    0 KSP unpreconditioned resid norm 5.393803657284e+02 true resid norm 5.393803657284e+02 ||r(i)||/||b|| 1.000000000000e+00
+      1 Linear |R| = [32m1.975503e-13[39m
+    1 KSP unpreconditioned resid norm 1.975502969240e-13 true resid norm 1.975502969240e-13 ||r(i)||/||b|| 3.662541491610e-16
+      2 Linear |R| = [32m1.269619e-13[39m
+    2 KSP unpreconditioned resid norm 1.269618627253e-13 true resid norm 1.269618627253e-13 ||r(i)||/||b|| 2.353846576411e-16
+    Linear solve converged due to CONVERGED_ITS iterations 2
+  1 SNES Function norm 6.326845064015e-13
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m4.308140e-13[39m
+  disp_y: [31m2.970638e-13[39m
+  disp_z: [31m3.555870e-13[39m
+
+Time Step 94, time = 0.235, dt = 0.0025
+  0 SNES Function norm 5.393382560048e+02
+      0 Linear |R| = [32m5.393383e+02[39m
+    0 KSP unpreconditioned resid norm 5.393382560048e+02 true resid norm 5.393382560048e+02 ||r(i)||/||b|| 1.000000000000e+00
+      1 Linear |R| = [32m2.003483e-13[39m
+    1 KSP unpreconditioned resid norm 2.003483043765e-13 true resid norm 2.003483043765e-13 ||r(i)||/||b|| 3.714705978037e-16
+      2 Linear |R| = [32m1.153381e-13[39m
+    2 KSP unpreconditioned resid norm 1.153381100199e-13 true resid norm 1.153381100199e-13 ||r(i)||/||b|| 2.138511569238e-16
+    Linear solve converged due to CONVERGED_ITS iterations 2
+  1 SNES Function norm 7.536980645219e-13
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m5.724211e-13[39m
+  disp_y: [31m3.281133e-13[39m
+  disp_z: [31m3.643303e-13[39m
+
+Time Step 95, time = 0.2375, dt = 0.0025
+  0 SNES Function norm 5.392961409836e+02
+      0 Linear |R| = [32m5.392961e+02[39m
+    0 KSP unpreconditioned resid norm 5.392961409836e+02 true resid norm 5.392961409836e+02 ||r(i)||/||b|| 1.000000000000e+00
+      1 Linear |R| = [32m2.032761e-13[39m
+    1 KSP unpreconditioned resid norm 2.032760750233e-13 true resid norm 2.032760750233e-13 ||r(i)||/||b|| 3.769284806165e-16
+      2 Linear |R| = [32m1.224574e-13[39m
+    2 KSP unpreconditioned resid norm 1.224574069319e-13 true resid norm 1.224574069319e-13 ||r(i)||/||b|| 2.270689471439e-16
+    Linear solve converged due to CONVERGED_ITS iterations 2
+  1 SNES Function norm 8.785513125709e-13
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m6.584043e-13[39m
+  disp_y: [31m3.977924e-13[39m
+  disp_z: [31m4.244024e-13[39m
+
+Time Step 96, time = 0.24, dt = 0.0025
+  0 SNES Function norm 5.392540187255e+02
+      0 Linear |R| = [32m5.392540e+02[39m
+    0 KSP unpreconditioned resid norm 5.392540187255e+02 true resid norm 5.392540187255e+02 ||r(i)||/||b|| 1.000000000000e+00
+      1 Linear |R| = [32m1.878381e-13[39m
+    1 KSP unpreconditioned resid norm 1.878381384766e-13 true resid norm 1.878381384766e-13 ||r(i)||/||b|| 3.483296034039e-16
+      2 Linear |R| = [32m1.135633e-13[39m
+    2 KSP unpreconditioned resid norm 1.135632575718e-13 true resid norm 1.135632575718e-13 ||r(i)||/||b|| 2.105932522120e-16
+    Linear solve converged due to CONVERGED_ITS iterations 2
+  1 SNES Function norm 8.842998165407e-13
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m6.396033e-13[39m
+  disp_y: [31m4.310243e-13[39m
+  disp_z: [31m4.325643e-13[39m
+
+Time Step 97, time = 0.2425, dt = 0.0025
+  0 SNES Function norm 5.392118877888e+02
+      0 Linear |R| = [32m5.392119e+02[39m
+    0 KSP unpreconditioned resid norm 5.392118877888e+02 true resid norm 5.392118877888e+02 ||r(i)||/||b|| 1.000000000000e+00
+      1 Linear |R| = [32m2.366257e-13[39m
+    1 KSP unpreconditioned resid norm 2.366256610222e-13 true resid norm 2.366256610222e-13 ||r(i)||/||b|| 4.388361354430e-16
+      2 Linear |R| = [32m1.380026e-13[39m
+    2 KSP unpreconditioned resid norm 1.380025661420e-13 true resid norm 1.380025661420e-13 ||r(i)||/||b|| 2.559338346710e-16
+    Linear solve converged due to CONVERGED_ITS iterations 2
+  1 SNES Function norm 8.719900826396e-13
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m5.588212e-13[39m
+  disp_y: [31m4.984967e-13[39m
+  disp_z: [31m4.467511e-13[39m
+
+Time Step 98, time = 0.245, dt = 0.0025
+  0 SNES Function norm 5.391697468168e+02
+      0 Linear |R| = [32m5.391697e+02[39m
+    0 KSP unpreconditioned resid norm 5.391697468168e+02 true resid norm 5.391697468168e+02 ||r(i)||/||b|| 1.000000000000e+00
+      1 Linear |R| = [32m2.055671e-13[39m
+    1 KSP unpreconditioned resid norm 2.055671099385e-13 true resid norm 2.055671099385e-13 ||r(i)||/||b|| 3.812660319911e-16
+      2 Linear |R| = [32m1.213465e-13[39m
+    2 KSP unpreconditioned resid norm 1.213464873381e-13 true resid norm 1.213464873381e-13 ||r(i)||/||b|| 2.250617510618e-16
+    Linear solve converged due to CONVERGED_ITS iterations 2
+  1 SNES Function norm 1.055834642695e-12
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m7.371554e-13[39m
+  disp_y: [31m4.464269e-13[39m
+  disp_z: [31m6.099932e-13[39m
+
+Time Step 99, time = 0.2475, dt = 0.0025
+  0 SNES Function norm 5.391275943808e+02
+      0 Linear |R| = [32m5.391276e+02[39m
+    0 KSP unpreconditioned resid norm 5.391275943808e+02 true resid norm 5.391275943808e+02 ||r(i)||/||b|| 1.000000000000e+00
+      1 Linear |R| = [32m2.142684e-13[39m
+    1 KSP unpreconditioned resid norm 2.142684118154e-13 true resid norm 2.142684118154e-13 ||r(i)||/||b|| 3.974354383798e-16
+      2 Linear |R| = [32m1.515439e-13[39m
+    2 KSP unpreconditioned resid norm 1.515439488141e-13 true resid norm 1.515439488141e-13 ||r(i)||/||b|| 2.810910634024e-16
+    Linear solve converged due to CONVERGED_ITS iterations 2
+  1 SNES Function norm 1.131477153472e-12
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m7.649019e-13[39m
+  disp_y: [31m4.749627e-13[39m
+  disp_z: [31m6.852562e-13[39m
+
+Time Step 100, time = 0.25, dt = 0.0025
+  0 SNES Function norm 5.390854294286e+02
+      0 Linear |R| = [32m5.390854e+02[39m
+    0 KSP unpreconditioned resid norm 5.390854294286e+02 true resid norm 5.390854294286e+02 ||r(i)||/||b|| 1.000000000000e+00
+      1 Linear |R| = [32m1.999420e-13[39m
+    1 KSP unpreconditioned resid norm 1.999420296903e-13 true resid norm 1.999420296903e-13 ||r(i)||/||b|| 3.708911774933e-16
+      2 Linear |R| = [32m1.402203e-13[39m
+    2 KSP unpreconditioned resid norm 1.402202520477e-13 true resid norm 1.402202520477e-13 ||r(i)||/||b|| 2.601076645613e-16
+    Linear solve converged due to CONVERGED_ITS iterations 2
+  1 SNES Function norm 1.196272915291e-12
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m8.754469e-13[39m
+  disp_y: [31m5.021555e-13[39m
+  disp_z: [31m6.422627e-13[39m
+
+Time Step 101, time = 0.2525, dt = 0.0025
+  0 SNES Function norm 5.390432507578e+02
+      0 Linear |R| = [32m5.390433e+02[39m
+    0 KSP unpreconditioned resid norm 5.390432507578e+02 true resid norm 5.390432507578e+02 ||r(i)||/||b|| 1.000000000000e+00
+      1 Linear |R| = [32m2.052128e-13[39m
+    1 KSP unpreconditioned resid norm 2.052127912818e-13 true resid norm 2.052127912818e-13 ||r(i)||/||b|| 3.806981925723e-16
+      2 Linear |R| = [32m1.418038e-13[39m
+    2 KSP unpreconditioned resid norm 1.418037768840e-13 true resid norm 1.418037768840e-13 ||r(i)||/||b|| 2.630656754994e-16
+    Linear solve converged due to CONVERGED_ITS iterations 2
+  1 SNES Function norm 1.215841452078e-12
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m8.796354e-13[39m
+  disp_y: [31m5.424837e-13[39m
+  disp_z: [31m6.404869e-13[39m
+
+Time Step 102, time = 0.255, dt = 0.0025
+  0 SNES Function norm 5.390010575236e+02
+      0 Linear |R| = [32m5.390011e+02[39m
+    0 KSP unpreconditioned resid norm 5.390010575236e+02 true resid norm 5.390010575236e+02 ||r(i)||/||b|| 1.000000000000e+00
+      1 Linear |R| = [32m2.211837e-13[39m
+    1 KSP unpreconditioned resid norm 2.211836718262e-13 true resid norm 2.211836718262e-13 ||r(i)||/||b|| 4.103585118041e-16
+      2 Linear |R| = [32m1.282376e-13[39m
+    2 KSP unpreconditioned resid norm 1.282376026012e-13 true resid norm 1.282376026012e-13 ||r(i)||/||b|| 2.379171632619e-16
+    Linear solve converged due to CONVERGED_ITS iterations 2
+  1 SNES Function norm 1.208660487139e-12
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m8.814344e-13[39m
+  disp_y: [31m5.788697e-13[39m
+  disp_z: [31m5.906297e-13[39m
+
+Time Step 103, time = 0.2575, dt = 0.0025
+  0 SNES Function norm 5.389588489327e+02
+      0 Linear |R| = [32m5.389588e+02[39m
+    0 KSP unpreconditioned resid norm 5.389588489327e+02 true resid norm 5.389588489327e+02 ||r(i)||/||b|| 1.000000000000e+00
+      1 Linear |R| = [32m1.950758e-13[39m
+    1 KSP unpreconditioned resid norm 1.950758464807e-13 true resid norm 1.950758464807e-13 ||r(i)||/||b|| 3.619494268755e-16
+      2 Linear |R| = [32m1.353702e-13[39m
+    2 KSP unpreconditioned resid norm 1.353702482260e-13 true resid norm 1.353702482260e-13 ||r(i)||/||b|| 2.511699149092e-16
+    Linear solve converged due to CONVERGED_ITS iterations 2
+  1 SNES Function norm 1.197787032438e-12
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m9.258602e-13[39m
+  disp_y: [31m5.527584e-13[39m
+  disp_z: [31m5.214738e-13[39m
+
+Time Step 104, time = 0.26, dt = 0.0025
+  0 SNES Function norm 5.389166243294e+02
+      0 Linear |R| = [32m5.389166e+02[39m
+    0 KSP unpreconditioned resid norm 5.389166243294e+02 true resid norm 5.389166243294e+02 ||r(i)||/||b|| 1.000000000000e+00
+      1 Linear |R| = [32m2.109744e-13[39m
+    1 KSP unpreconditioned resid norm 2.109744122773e-13 true resid norm 2.109744122773e-13 ||r(i)||/||b|| 3.914787608192e-16
+      2 Linear |R| = [32m1.444178e-13[39m
+    2 KSP unpreconditioned resid norm 1.444178432903e-13 true resid norm 1.444178432903e-13 ||r(i)||/||b|| 2.679780818972e-16
+    Linear solve converged due to CONVERGED_ITS iterations 2
+  1 SNES Function norm 1.225950074076e-12
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m9.746822e-13[39m
+  disp_y: [31m5.088430e-13[39m
+  disp_z: [31m5.422426e-13[39m
+
+Time Step 105, time = 0.2625, dt = 0.0025
+  0 SNES Function norm 5.388743832097e+02
+      0 Linear |R| = [32m5.388744e+02[39m
+    0 KSP unpreconditioned resid norm 5.388743832097e+02 true resid norm 5.388743832097e+02 ||r(i)||/||b|| 1.000000000000e+00
+      1 Linear |R| = [32m2.107020e-13[39m
+    1 KSP unpreconditioned resid norm 2.107019617678e-13 true resid norm 2.107019617678e-13 ||r(i)||/||b|| 3.910038560615e-16
+      2 Linear |R| = [32m1.215392e-13[39m
+    2 KSP unpreconditioned resid norm 1.215392372335e-13 true resid norm 1.215392372335e-13 ||r(i)||/||b|| 2.255427999928e-16
+    Linear solve converged due to CONVERGED_ITS iterations 2
+  1 SNES Function norm 1.331416183401e-12
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m1.061805e-12[39m
+  disp_y: [31m5.919595e-13[39m
+  disp_z: [31m5.429766e-13[39m
+
+Time Step 106, time = 0.265, dt = 0.0025
+  0 SNES Function norm 5.388321252942e+02
+      0 Linear |R| = [32m5.388321e+02[39m
+    0 KSP unpreconditioned resid norm 5.388321252942e+02 true resid norm 5.388321252942e+02 ||r(i)||/||b|| 1.000000000000e+00
+      1 Linear |R| = [32m2.288846e-13[39m
+    1 KSP unpreconditioned resid norm 2.288845547785e-13 true resid norm 2.288845547785e-13 ||r(i)||/||b|| 4.247789692450e-16
+      2 Linear |R| = [32m1.499651e-13[39m
+    2 KSP unpreconditioned resid norm 1.499650716556e-13 true resid norm 1.499650716556e-13 ||r(i)||/||b|| 2.783150161541e-16
+    Linear solve converged due to CONVERGED_ITS iterations 2
+  1 SNES Function norm 1.244198406104e-12
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m7.972467e-13[39m
+  disp_y: [31m5.616975e-13[39m
+  disp_z: [31m7.726081e-13[39m
+
+Time Step 107, time = 0.2675, dt = 0.0025
+  0 SNES Function norm 5.387898503486e+02
+      0 Linear |R| = [32m5.387899e+02[39m
+    0 KSP unpreconditioned resid norm 5.387898503486e+02 true resid norm 5.387898503486e+02 ||r(i)||/||b|| 1.000000000000e+00
+      1 Linear |R| = [32m2.160282e-13[39m
+    1 KSP unpreconditioned resid norm 2.160281729424e-13 true resid norm 2.160281729424e-13 ||r(i)||/||b|| 4.009507098225e-16
+      2 Linear |R| = [32m1.323295e-13[39m
+    2 KSP unpreconditioned resid norm 1.323294644077e-13 true resid norm 1.323294644077e-13 ||r(i)||/||b|| 2.456049688427e-16
+    Linear solve converged due to CONVERGED_ITS iterations 2
+  1 SNES Function norm 1.501504720131e-12
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m1.178704e-12[39m
+  disp_y: [31m7.433393e-13[39m
+  disp_z: [31m5.591248e-13[39m
+
+Time Step 108, time = 0.27, dt = 0.0025
+  0 SNES Function norm 5.387475582633e+02
+      0 Linear |R| = [32m5.387476e+02[39m
+    0 KSP unpreconditioned resid norm 5.387475582633e+02 true resid norm 5.387475582633e+02 ||r(i)||/||b|| 1.000000000000e+00
+      1 Linear |R| = [32m2.361767e-13[39m
+    1 KSP unpreconditioned resid norm 2.361766581682e-13 true resid norm 2.361766581682e-13 ||r(i)||/||b|| 4.383809347175e-16
+      2 Linear |R| = [32m1.167351e-13[39m
+    2 KSP unpreconditioned resid norm 1.167351109881e-13 true resid norm 1.167351109881e-13 ||r(i)||/||b|| 2.166786822467e-16
+    Linear solve converged due to CONVERGED_ITS iterations 2
+  1 SNES Function norm 1.323748619742e-12
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m9.380697e-13[39m
+  disp_y: [31m6.063997e-13[39m
+  disp_z: [31m7.103626e-13[39m
+
+Time Step 109, time = 0.2725, dt = 0.0025
+  0 SNES Function norm 5.387052493072e+02
+      0 Linear |R| = [32m5.387052e+02[39m
+    0 KSP unpreconditioned resid norm 5.387052493072e+02 true resid norm 5.387052493072e+02 ||r(i)||/||b|| 1.000000000000e+00
+      1 Linear |R| = [32m2.406823e-13[39m
+    1 KSP unpreconditioned resid norm 2.406822844556e-13 true resid norm 2.406822844556e-13 ||r(i)||/||b|| 4.467791705485e-16
+      2 Linear |R| = [32m1.374777e-13[39m
+    2 KSP unpreconditioned resid norm 1.374776665036e-13 true resid norm 1.374776665036e-13 ||r(i)||/||b|| 2.552001612764e-16
+    Linear solve converged due to CONVERGED_ITS iterations 2
+  1 SNES Function norm 1.913610356329e-12
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m1.541201e-12[39m
+  disp_y: [31m7.309039e-13[39m
+  disp_z: [31m8.674006e-13[39m
+
+Time Step 110, time = 0.275, dt = 0.0025
+  0 SNES Function norm 5.386629235523e+02
+      0 Linear |R| = [32m5.386629e+02[39m
+    0 KSP unpreconditioned resid norm 5.386629235523e+02 true resid norm 5.386629235523e+02 ||r(i)||/||b|| 1.000000000000e+00
+      1 Linear |R| = [32m2.020412e-13[39m
+    1 KSP unpreconditioned resid norm 2.020412461816e-13 true resid norm 2.020412461816e-13 ||r(i)||/||b|| 3.750791772510e-16
+      2 Linear |R| = [32m1.188877e-13[39m
+    2 KSP unpreconditioned resid norm 1.188876558556e-13 true resid norm 1.188876558556e-13 ||r(i)||/||b|| 2.207088155827e-16
+    Linear solve converged due to CONVERGED_ITS iterations 2
+  1 SNES Function norm 1.570290790753e-12
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m1.225842e-12[39m
+  disp_y: [31m6.753918e-13[39m
+  disp_z: [31m7.120182e-13[39m
+
+Time Step 111, time = 0.2775, dt = 0.0025
+  0 SNES Function norm 5.386205815174e+02
+      0 Linear |R| = [32m5.386206e+02[39m
+    0 KSP unpreconditioned resid norm 5.386205815174e+02 true resid norm 5.386205815174e+02 ||r(i)||/||b|| 1.000000000000e+00
+      1 Linear |R| = [32m1.827931e-13[39m
+    1 KSP unpreconditioned resid norm 1.827931130359e-13 true resid norm 1.827931130359e-13 ||r(i)||/||b|| 3.393726851672e-16
+      2 Linear |R| = [32m1.385946e-13[39m
+    2 KSP unpreconditioned resid norm 1.385945610681e-13 true resid norm 1.385945610681e-13 ||r(i)||/||b|| 2.573138974334e-16
+    Linear solve converged due to CONVERGED_ITS iterations 2
+  1 SNES Function norm 1.780954782563e-12
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m1.142801e-12[39m
+  disp_y: [31m9.330233e-13[39m
+  disp_z: [31m9.976337e-13[39m
+
+Time Step 112, time = 0.28, dt = 0.0025
+  0 SNES Function norm 5.385782236160e+02
+      0 Linear |R| = [32m5.385782e+02[39m
+    0 KSP unpreconditioned resid norm 5.385782236160e+02 true resid norm 5.385782236160e+02 ||r(i)||/||b|| 1.000000000000e+00
+      1 Linear |R| = [32m2.150055e-13[39m
+    1 KSP unpreconditioned resid norm 2.150054533320e-13 true resid norm 2.150054533320e-13 ||r(i)||/||b|| 3.992093328402e-16
+      2 Linear |R| = [32m1.247798e-13[39m
+    2 KSP unpreconditioned resid norm 1.247798166296e-13 true resid norm 1.247798166296e-13 ||r(i)||/||b|| 2.316837390711e-16
+    Linear solve converged due to CONVERGED_ITS iterations 2
+  1 SNES Function norm 1.733901194423e-12
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m1.202207e-12[39m
+  disp_y: [31m7.073449e-13[39m
+  disp_z: [31m1.029940e-12[39m
+
+Time Step 113, time = 0.2825, dt = 0.0025
+  0 SNES Function norm 5.385358505771e+02
+      0 Linear |R| = [32m5.385359e+02[39m
+    0 KSP unpreconditioned resid norm 5.385358505771e+02 true resid norm 5.385358505771e+02 ||r(i)||/||b|| 1.000000000000e+00
+      1 Linear |R| = [32m2.292384e-13[39m
+    1 KSP unpreconditioned resid norm 2.292383774140e-13 true resid norm 2.292383774140e-13 ||r(i)||/||b|| 4.256696692864e-16
+      2 Linear |R| = [32m1.383020e-13[39m
+    2 KSP unpreconditioned resid norm 1.383019557092e-13 true resid norm 1.383019557092e-13 ||r(i)||/||b|| 2.568110471401e-16
+    Linear solve converged due to CONVERGED_ITS iterations 2
+  1 SNES Function norm 1.837225545224e-12
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m1.291396e-12[39m
+  disp_y: [31m9.747917e-13[39m
+  disp_z: [31m8.703303e-13[39m
+
+Time Step 114, time = 0.285, dt = 0.0025
+  0 SNES Function norm 5.384934630774e+02
+      0 Linear |R| = [32m5.384935e+02[39m
+    0 KSP unpreconditioned resid norm 5.384934630774e+02 true resid norm 5.384934630774e+02 ||r(i)||/||b|| 1.000000000000e+00
+      1 Linear |R| = [32m1.994790e-13[39m
+    1 KSP unpreconditioned resid norm 1.994790210802e-13 true resid norm 1.994790210802e-13 ||r(i)||/||b|| 3.704390763449e-16
+      2 Linear |R| = [32m1.406300e-13[39m
+    2 KSP unpreconditioned resid norm 1.406299801737e-13 true resid norm 1.406299801737e-13 ||r(i)||/||b|| 2.611544797035e-16
+    Linear solve converged due to CONVERGED_ITS iterations 2
+  1 SNES Function norm 1.961880106431e-12
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m1.412834e-12[39m
+  disp_y: [31m9.008465e-13[39m
+  disp_z: [31m1.020466e-12[39m
+
+Time Step 115, time = 0.2875, dt = 0.0025
+  0 SNES Function norm 5.384510620498e+02
+      0 Linear |R| = [32m5.384511e+02[39m
+    0 KSP unpreconditioned resid norm 5.384510620498e+02 true resid norm 5.384510620498e+02 ||r(i)||/||b|| 1.000000000000e+00
+      1 Linear |R| = [32m2.010866e-13[39m
+    1 KSP unpreconditioned resid norm 2.010865911750e-13 true resid norm 2.010865911750e-13 ||r(i)||/||b|| 3.734537924569e-16
+      2 Linear |R| = [32m1.108061e-13[39m
+    2 KSP unpreconditioned resid norm 1.108060877113e-13 true resid norm 1.108060877113e-13 ||r(i)||/||b|| 2.057867381476e-16
+    Linear solve converged due to CONVERGED_ITS iterations 2
+  1 SNES Function norm 1.709307032915e-12
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m1.264517e-12[39m
+  disp_y: [31m8.344852e-13[39m
+  disp_z: [31m7.914310e-13[39m
+
+Time Step 116, time = 0.29, dt = 0.0025
+  0 SNES Function norm 5.384086483692e+02
+      0 Linear |R| = [32m5.384086e+02[39m
+    0 KSP unpreconditioned resid norm 5.384086483692e+02 true resid norm 5.384086483692e+02 ||r(i)||/||b|| 1.000000000000e+00
+      1 Linear |R| = [32m2.059576e-13[39m
+    1 KSP unpreconditioned resid norm 2.059576417705e-13 true resid norm 2.059576417705e-13 ||r(i)||/||b|| 3.825303371227e-16
+      2 Linear |R| = [32m1.498844e-13[39m
+    2 KSP unpreconditioned resid norm 1.498843747721e-13 true resid norm 1.498843747721e-13 ||r(i)||/||b|| 2.783840401266e-16
+    Linear solve converged due to CONVERGED_ITS iterations 2
+  1 SNES Function norm 1.937827276941e-12
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m1.358162e-12[39m
+  disp_y: [31m9.401691e-13[39m
+  disp_z: [31m1.013238e-12[39m
+
+Time Step 117, time = 0.2925, dt = 0.0025
+  0 SNES Function norm 5.383662231575e+02
+      0 Linear |R| = [32m5.383662e+02[39m
+    0 KSP unpreconditioned resid norm 5.383662231575e+02 true resid norm 5.383662231575e+02 ||r(i)||/||b|| 1.000000000000e+00
+      1 Linear |R| = [32m1.880816e-13[39m
+    1 KSP unpreconditioned resid norm 1.880815770390e-13 true resid norm 1.880815770390e-13 ||r(i)||/||b|| 3.493561983437e-16
+      2 Linear |R| = [32m1.268985e-13[39m
+    2 KSP unpreconditioned resid norm 1.268984949638e-13 true resid norm 1.268984949638e-13 ||r(i)||/||b|| 2.357103575695e-16
+    Linear solve converged due to CONVERGED_ITS iterations 2
+  1 SNES Function norm 1.978677262609e-12
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m1.425363e-12[39m
+  disp_y: [31m1.015173e-12[39m
+  disp_z: [31m9.235411e-13[39m
+
+Time Step 118, time = 0.295, dt = 0.0025
+  0 SNES Function norm 5.383237875710e+02
+      0 Linear |R| = [32m5.383238e+02[39m
+    0 KSP unpreconditioned resid norm 5.383237875710e+02 true resid norm 5.383237875710e+02 ||r(i)||/||b|| 1.000000000000e+00
+      1 Linear |R| = [32m2.020201e-13[39m
+    1 KSP unpreconditioned resid norm 2.020201023070e-13 true resid norm 2.020201023070e-13 ||r(i)||/||b|| 3.752761943116e-16
+      2 Linear |R| = [32m1.507194e-13[39m
+    2 KSP unpreconditioned resid norm 1.507194246983e-13 true resid norm 1.507194246983e-13 ||r(i)||/||b|| 2.799791281347e-16
+    Linear solve converged due to CONVERGED_ITS iterations 2
+  1 SNES Function norm 1.822874759960e-12
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m1.351687e-12[39m
+  disp_y: [31m7.325776e-13[39m
+  disp_z: [31m9.793598e-13[39m
+
+Time Step 119, time = 0.2975, dt = 0.0025
+  0 SNES Function norm 5.382813426579e+02
+      0 Linear |R| = [32m5.382813e+02[39m
+    0 KSP unpreconditioned resid norm 5.382813426579e+02 true resid norm 5.382813426579e+02 ||r(i)||/||b|| 1.000000000000e+00
+      1 Linear |R| = [32m2.201560e-13[39m
+    1 KSP unpreconditioned resid norm 2.201560017026e-13 true resid norm 2.201560017026e-13 ||r(i)||/||b|| 4.089980169395e-16
+      2 Linear |R| = [32m1.172206e-13[39m
+    2 KSP unpreconditioned resid norm 1.172206311886e-13 true resid norm 1.172206311886e-13 ||r(i)||/||b|| 2.177683339530e-16
+    Linear solve converged due to CONVERGED_ITS iterations 2
+  1 SNES Function norm 1.947349878307e-12
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m1.357934e-12[39m
+  disp_y: [31m1.026872e-12[39m
+  disp_z: [31m9.453682e-13[39m
+
+Time Step 120, time = 0.3, dt = 0.0025
+  0 SNES Function norm 5.382388897918e+02
+      0 Linear |R| = [32m5.382389e+02[39m
+    0 KSP unpreconditioned resid norm 5.382388897918e+02 true resid norm 5.382388897918e+02 ||r(i)||/||b|| 1.000000000000e+00
+      1 Linear |R| = [32m2.361341e-13[39m
+    1 KSP unpreconditioned resid norm 2.361341212845e-13 true resid norm 2.361341212845e-13 ||r(i)||/||b|| 4.387162016030e-16
+      2 Linear |R| = [32m1.151701e-13[39m
+    2 KSP unpreconditioned resid norm 1.151700722378e-13 true resid norm 1.151700722378e-13 ||r(i)||/||b|| 2.139757539303e-16
+    Linear solve converged due to CONVERGED_ITS iterations 2
+  1 SNES Function norm 2.006891797931e-12
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m1.514238e-12[39m
+  disp_y: [31m7.258746e-13[39m
+  disp_z: [31m1.099001e-12[39m
+
+Time Step 121, time = 0.3025, dt = 0.0025
+  0 SNES Function norm 5.381964302644e+02
+      0 Linear |R| = [32m5.381964e+02[39m
+    0 KSP unpreconditioned resid norm 5.381964302644e+02 true resid norm 5.381964302644e+02 ||r(i)||/||b|| 1.000000000000e+00
+      1 Linear |R| = [32m2.174098e-13[39m
+    1 KSP unpreconditioned resid norm 2.174097550965e-13 true resid norm 2.174097550965e-13 ||r(i)||/||b|| 4.039598608814e-16
+      2 Linear |R| = [32m1.174472e-13[39m
+    2 KSP unpreconditioned resid norm 1.174471676131e-13 true resid norm 1.174471676131e-13 ||r(i)||/||b|| 2.182236094642e-16
+    Linear solve converged due to CONVERGED_ITS iterations 2
+  1 SNES Function norm 2.121701696610e-12
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m1.590183e-12[39m
+  disp_y: [31m9.918540e-13[39m
+  disp_z: [31m9.945667e-13[39m
+
+Time Step 122, time = 0.305, dt = 0.0025
+  0 SNES Function norm 5.381539652901e+02
+      0 Linear |R| = [32m5.381540e+02[39m
+    0 KSP unpreconditioned resid norm 5.381539652901e+02 true resid norm 5.381539652901e+02 ||r(i)||/||b|| 1.000000000000e+00
+      1 Linear |R| = [32m2.238382e-13[39m
+    1 KSP unpreconditioned resid norm 2.238381953533e-13 true resid norm 2.238381953533e-13 ||r(i)||/||b|| 4.159370919671e-16
+      2 Linear |R| = [32m1.205389e-13[39m
+    2 KSP unpreconditioned resid norm 1.205389373034e-13 true resid norm 1.205389373034e-13 ||r(i)||/||b|| 2.239859688452e-16
+    Linear solve converged due to CONVERGED_ITS iterations 2
+  1 SNES Function norm 2.206384020973e-12
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m1.669860e-12[39m
+  disp_y: [31m9.108702e-13[39m
+  disp_z: [31m1.118041e-12[39m
+
+Time Step 123, time = 0.3075, dt = 0.0025
+  0 SNES Function norm 5.381114963085e+02
+      0 Linear |R| = [32m5.381115e+02[39m
+    0 KSP unpreconditioned resid norm 5.381114963085e+02 true resid norm 5.381114963085e+02 ||r(i)||/||b|| 1.000000000000e+00
+      1 Linear |R| = [32m2.145039e-13[39m
+    1 KSP unpreconditioned resid norm 2.145039223743e-13 true resid norm 2.145039223743e-13 ||r(i)||/||b|| 3.986235637889e-16
+      2 Linear |R| = [32m1.190497e-13[39m
+    2 KSP unpreconditioned resid norm 1.190496889217e-13 true resid norm 1.190496889217e-13 ||r(i)||/||b|| 2.212361002104e-16
+    Linear solve converged due to CONVERGED_ITS iterations 2
+  1 SNES Function norm 1.931065288772e-12
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m1.392302e-12[39m
+  disp_y: [31m9.979389e-13[39m
+  disp_z: [31m8.914177e-13[39m
+
+Time Step 124, time = 0.31, dt = 0.0025
+  0 SNES Function norm 5.380690246291e+02
+      0 Linear |R| = [32m5.380690e+02[39m
+    0 KSP unpreconditioned resid norm 5.380690246291e+02 true resid norm 5.380690246291e+02 ||r(i)||/||b|| 1.000000000000e+00
+      1 Linear |R| = [32m2.162649e-13[39m
+    1 KSP unpreconditioned resid norm 2.162648890985e-13 true resid norm 2.162648890985e-13 ||r(i)||/||b|| 4.019277810083e-16
+      2 Linear |R| = [32m1.326650e-13[39m
+    2 KSP unpreconditioned resid norm 1.326650157598e-13 true resid norm 1.326650157598e-13 ||r(i)||/||b|| 2.465576156354e-16
+    Linear solve converged due to CONVERGED_ITS iterations 2
+  1 SNES Function norm 2.252523170167e-12
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m1.449615e-12[39m
+  disp_y: [31m1.023165e-12[39m
+  disp_z: [31m1.387663e-12[39m
+
+Time Step 125, time = 0.3125, dt = 0.0025
+  0 SNES Function norm 5.380265515808e+02
+      0 Linear |R| = [32m5.380266e+02[39m
+    0 KSP unpreconditioned resid norm 5.380265515808e+02 true resid norm 5.380265515808e+02 ||r(i)||/||b|| 1.000000000000e+00
+      1 Linear |R| = [32m2.255679e-13[39m
+    1 KSP unpreconditioned resid norm 2.255679170411e-13 true resid norm 2.255679170411e-13 ||r(i)||/||b|| 4.192505302542e-16
+      2 Linear |R| = [32m1.439466e-13[39m
+    2 KSP unpreconditioned resid norm 1.439466231625e-13 true resid norm 1.439466231625e-13 ||r(i)||/||b|| 2.675455751013e-16
+    Linear solve converged due to CONVERGED_ITS iterations 2
+  1 SNES Function norm 2.352478971533e-12
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m1.522865e-12[39m
+  disp_y: [31m1.202756e-12[39m
+  disp_z: [31m1.329818e-12[39m
+
+Time Step 126, time = 0.315, dt = 0.0025
+  0 SNES Function norm 5.379840785585e+02
+      0 Linear |R| = [32m5.379841e+02[39m
+    0 KSP unpreconditioned resid norm 5.379840785585e+02 true resid norm 5.379840785585e+02 ||r(i)||/||b|| 1.000000000000e+00
+      1 Linear |R| = [32m2.150993e-13[39m
+    1 KSP unpreconditioned resid norm 2.150993196733e-13 true resid norm 2.150993196733e-13 ||r(i)||/||b|| 3.998246941613e-16
+      2 Linear |R| = [32m1.320561e-13[39m
+    2 KSP unpreconditioned resid norm 1.320561472898e-13 true resid norm 1.320561472898e-13 ||r(i)||/||b|| 2.454647870689e-16
+    Linear solve converged due to CONVERGED_ITS iterations 2
+  1 SNES Function norm 2.210065350767e-12
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m1.577793e-12[39m
+  disp_y: [31m8.873138e-13[39m
+  disp_z: [31m1.267925e-12[39m
+
+Time Step 127, time = 0.3175, dt = 0.0025
+  0 SNES Function norm 5.379416068039e+02
+      0 Linear |R| = [32m5.379416e+02[39m
+    0 KSP unpreconditioned resid norm 5.379416068039e+02 true resid norm 5.379416068039e+02 ||r(i)||/||b|| 1.000000000000e+00
+      1 Linear |R| = [32m1.966563e-13[39m
+    1 KSP unpreconditioned resid norm 1.966563290520e-13 true resid norm 1.966563290520e-13 ||r(i)||/||b|| 3.655718884070e-16
+      2 Linear |R| = [32m1.529190e-13[39m
+    2 KSP unpreconditioned resid norm 1.529189601870e-13 true resid norm 1.529189601870e-13 ||r(i)||/||b|| 2.842668391009e-16
+    Linear solve converged due to CONVERGED_ITS iterations 2
+  1 SNES Function norm 2.723652876243e-12
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m2.203782e-12[39m
+  disp_y: [31m1.138679e-12[39m
+  disp_z: [31m1.124740e-12[39m
+
+Time Step 128, time = 0.32, dt = 0.0025
+  0 SNES Function norm 5.378991376388e+02
+      0 Linear |R| = [32m5.378991e+02[39m
+    0 KSP unpreconditioned resid norm 5.378991376388e+02 true resid norm 5.378991376388e+02 ||r(i)||/||b|| 1.000000000000e+00
+      1 Linear |R| = [32m1.915731e-13[39m
+    1 KSP unpreconditioned resid norm 1.915731049043e-13 true resid norm 1.915731049043e-13 ||r(i)||/||b|| 3.561506079844e-16
+      2 Linear |R| = [32m1.075691e-13[39m
+    2 KSP unpreconditioned resid norm 1.075690897037e-13 true resid norm 1.075690897037e-13 ||r(i)||/||b|| 1.999800374768e-16
+    Linear solve converged due to CONVERGED_ITS iterations 2
+  1 SNES Function norm 2.714785920954e-12
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m2.251875e-12[39m
+  disp_y: [31m9.994268e-13[39m
+  disp_z: [31m1.140293e-12[39m
+
+Time Step 129, time = 0.3225, dt = 0.0025
+  0 SNES Function norm 5.378566723133e+02
+      0 Linear |R| = [32m5.378567e+02[39m
+    0 KSP unpreconditioned resid norm 5.378566723133e+02 true resid norm 5.378566723133e+02 ||r(i)||/||b|| 1.000000000000e+00
+      1 Linear |R| = [32m2.137017e-13[39m
+    1 KSP unpreconditioned resid norm 2.137017205372e-13 true resid norm 2.137017205372e-13 ||r(i)||/||b|| 3.973209435481e-16
+      2 Linear |R| = [32m1.417856e-13[39m
+    2 KSP unpreconditioned resid norm 1.417856226810e-13 true resid norm 1.417856226810e-13 ||r(i)||/||b|| 2.636122781022e-16
+    Linear solve converged due to CONVERGED_ITS iterations 2
+  1 SNES Function norm 2.455316982673e-12
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m1.790298e-12[39m
+  disp_y: [31m1.206336e-12[39m
+  disp_z: [31m1.169687e-12[39m
+
+Time Step 130, time = 0.325, dt = 0.0025
+  0 SNES Function norm 5.378142119496e+02
+      0 Linear |R| = [32m5.378142e+02[39m
+    0 KSP unpreconditioned resid norm 5.378142119496e+02 true resid norm 5.378142119496e+02 ||r(i)||/||b|| 1.000000000000e+00
+      1 Linear |R| = [32m2.268978e-13[39m
+    1 KSP unpreconditioned resid norm 2.268978401953e-13 true resid norm 2.268978401953e-13 ||r(i)||/||b|| 4.218888886791e-16
+      2 Linear |R| = [32m1.307833e-13[39m
+    2 KSP unpreconditioned resid norm 1.307832514180e-13 true resid norm 1.307832514180e-13 ||r(i)||/||b|| 2.431755214200e-16
+    Linear solve converged due to CONVERGED_ITS iterations 2
+  1 SNES Function norm 2.552802104172e-12
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m1.767264e-12[39m
+  disp_y: [31m1.429845e-12[39m
+  disp_z: [31m1.161516e-12[39m
+
+Time Step 131, time = 0.3275, dt = 0.0025
+  0 SNES Function norm 5.377717577975e+02
+      0 Linear |R| = [32m5.377718e+02[39m
+    0 KSP unpreconditioned resid norm 5.377717577975e+02 true resid norm 5.377717577975e+02 ||r(i)||/||b|| 1.000000000000e+00
+      1 Linear |R| = [32m2.005252e-13[39m
+    1 KSP unpreconditioned resid norm 2.005252310773e-13 true resid norm 2.005252310773e-13 ||r(i)||/||b|| 3.728816699088e-16
+      2 Linear |R| = [32m1.280797e-13[39m
+    2 KSP unpreconditioned resid norm 1.280797055238e-13 true resid norm 1.280797055238e-13 ||r(i)||/||b|| 2.381674077649e-16
+    Linear solve converged due to CONVERGED_ITS iterations 2
+  1 SNES Function norm 2.395899892883e-12
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m1.446927e-12[39m
+  disp_y: [31m1.198624e-12[39m
+  disp_z: [31m1.486621e-12[39m
+
+Time Step 132, time = 0.33, dt = 0.0025
+  0 SNES Function norm 5.377293108291e+02
+      0 Linear |R| = [32m5.377293e+02[39m
+    0 KSP unpreconditioned resid norm 5.377293108291e+02 true resid norm 5.377293108291e+02 ||r(i)||/||b|| 1.000000000000e+00
+      1 Linear |R| = [32m2.325440e-13[39m
+    1 KSP unpreconditioned resid norm 2.325440087359e-13 true resid norm 2.325440087359e-13 ||r(i)||/||b|| 4.324555200037e-16
+      2 Linear |R| = [32m1.245401e-13[39m
+    2 KSP unpreconditioned resid norm 1.245400612507e-13 true resid norm 1.245400612507e-13 ||r(i)||/||b|| 2.316036316836e-16
+    Linear solve converged due to CONVERGED_ITS iterations 2
+  1 SNES Function norm 2.377381937967e-12
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m1.518558e-12[39m
+  disp_y: [31m1.116633e-12[39m
+  disp_z: [31m1.448812e-12[39m
+
+Time Step 133, time = 0.3325, dt = 0.0025
+  0 SNES Function norm 5.376868720719e+02
+      0 Linear |R| = [32m5.376869e+02[39m
+    0 KSP unpreconditioned resid norm 5.376868720719e+02 true resid norm 5.376868720719e+02 ||r(i)||/||b|| 1.000000000000e+00
+      1 Linear |R| = [32m2.448735e-13[39m
+    1 KSP unpreconditioned resid norm 2.448735476270e-13 true resid norm 2.448735476270e-13 ||r(i)||/||b|| 4.554203577323e-16
+      2 Linear |R| = [32m1.466033e-13[39m
+    2 KSP unpreconditioned resid norm 1.466033487949e-13 true resid norm 1.466033487949e-13 ||r(i)||/||b|| 2.726556224629e-16
+    Linear solve converged due to CONVERGED_ITS iterations 2
+  1 SNES Function norm 2.794414342342e-12
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m2.066424e-12[39m
+  disp_y: [31m1.089178e-12[39m
+  disp_z: [31m1.533732e-12[39m
+
+Time Step 134, time = 0.335, dt = 0.0025
+  0 SNES Function norm 5.376444425100e+02
+      0 Linear |R| = [32m5.376444e+02[39m
+    0 KSP unpreconditioned resid norm 5.376444425100e+02 true resid norm 5.376444425100e+02 ||r(i)||/||b|| 1.000000000000e+00
+      1 Linear |R| = [32m2.181888e-13[39m
+    1 KSP unpreconditioned resid norm 2.181887795632e-13 true resid norm 2.181887795632e-13 ||r(i)||/||b|| 4.058235560747e-16
+      2 Linear |R| = [32m1.322873e-13[39m
+    2 KSP unpreconditioned resid norm 1.322873481615e-13 true resid norm 1.322873481615e-13 ||r(i)||/||b|| 2.460498755347e-16
+    Linear solve converged due to CONVERGED_ITS iterations 2
+  1 SNES Function norm 3.252474656430e-12
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m2.663785e-12[39m
+  disp_y: [31m1.246143e-12[39m
+  disp_z: [31m1.389232e-12[39m
+
+Time Step 135, time = 0.3375, dt = 0.0025
+  0 SNES Function norm 5.376020229143e+02
+      0 Linear |R| = [32m5.376020e+02[39m
+    0 KSP unpreconditioned resid norm 5.376020229143e+02 true resid norm 5.376020229143e+02 ||r(i)||/||b|| 1.000000000000e+00
+      1 Linear |R| = [32m2.360990e-13[39m
+    1 KSP unpreconditioned resid norm 2.360990371973e-13 true resid norm 2.360990371973e-13 ||r(i)||/||b|| 4.391706636769e-16
+      2 Linear |R| = [32m1.302500e-13[39m
+    2 KSP unpreconditioned resid norm 1.302500044894e-13 true resid norm 1.302500044894e-13 ||r(i)||/||b|| 2.422796026387e-16
+    Linear solve converged due to CONVERGED_ITS iterations 2
+  1 SNES Function norm 3.335935704213e-12
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m2.668255e-12[39m
+  disp_y: [31m1.418824e-12[39m
+  disp_z: [31m1.412735e-12[39m
+
+Time Step 136, time = 0.34, dt = 0.0025
+  0 SNES Function norm 5.375596141345e+02
+      0 Linear |R| = [32m5.375596e+02[39m
+    0 KSP unpreconditioned resid norm 5.375596141345e+02 true resid norm 5.375596141345e+02 ||r(i)||/||b|| 1.000000000000e+00
+      1 Linear |R| = [32m2.344909e-13[39m
+    1 KSP unpreconditioned resid norm 2.344909455803e-13 true resid norm 2.344909455803e-13 ||r(i)||/||b|| 4.362138438504e-16
+      2 Linear |R| = [32m1.459390e-13[39m
+    2 KSP unpreconditioned resid norm 1.459390442653e-13 true resid norm 1.459390442653e-13 ||r(i)||/||b|| 2.714843906202e-16
+    Linear solve converged due to CONVERGED_ITS iterations 2
+  1 SNES Function norm 3.063654633211e-12
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m2.552882e-12[39m
+  disp_y: [31m1.048753e-12[39m
+  disp_z: [31m1.329996e-12[39m
+
+Time Step 137, time = 0.3425, dt = 0.0025
+  0 SNES Function norm 5.375172168077e+02
+      0 Linear |R| = [32m5.375172e+02[39m
+    0 KSP unpreconditioned resid norm 5.375172168077e+02 true resid norm 5.375172168077e+02 ||r(i)||/||b|| 1.000000000000e+00
+      1 Linear |R| = [32m2.350232e-13[39m
+    1 KSP unpreconditioned resid norm 2.350231557348e-13 true resid norm 2.350231557348e-13 ||r(i)||/||b|| 4.372383774619e-16
+      2 Linear |R| = [32m1.502740e-13[39m
+    2 KSP unpreconditioned resid norm 1.502739611539e-13 true resid norm 1.502739611539e-13 ||r(i)||/||b|| 2.795705076135e-16
+    Linear solve converged due to CONVERGED_ITS iterations 2
+  1 SNES Function norm 2.736689168831e-12
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m2.258537e-12[39m
+  disp_y: [31m1.188172e-12[39m
+  disp_z: [31m9.882950e-13[39m
+
+Time Step 138, time = 0.345, dt = 0.0025
+  0 SNES Function norm 5.374748315408e+02
+      0 Linear |R| = [32m5.374748e+02[39m
+    0 KSP unpreconditioned resid norm 5.374748315408e+02 true resid norm 5.374748315408e+02 ||r(i)||/||b|| 1.000000000000e+00
+      1 Linear |R| = [32m1.903172e-13[39m
+    1 KSP unpreconditioned resid norm 1.903171548202e-13 true resid norm 1.903171548202e-13 ||r(i)||/||b|| 3.540950080855e-16
+      2 Linear |R| = [32m1.091121e-13[39m
+    2 KSP unpreconditioned resid norm 1.091121145630e-13 true resid norm 1.091121145630e-13 ||r(i)||/||b|| 2.030087888027e-16
+    Linear solve converged due to CONVERGED_ITS iterations 2
+  1 SNES Function norm 2.843669194724e-12
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m2.184758e-12[39m
+  disp_y: [31m1.200375e-12[39m
+  disp_z: [31m1.368352e-12[39m
+
+Time Step 139, time = 0.3475, dt = 0.0025
+  0 SNES Function norm 5.374324590085e+02
+      0 Linear |R| = [32m5.374325e+02[39m
+    0 KSP unpreconditioned resid norm 5.374324590085e+02 true resid norm 5.374324590085e+02 ||r(i)||/||b|| 1.000000000000e+00
+      1 Linear |R| = [32m2.225902e-13[39m
+    1 KSP unpreconditioned resid norm 2.225902364711e-13 true resid norm 2.225902364711e-13 ||r(i)||/||b|| 4.141734142404e-16
+      2 Linear |R| = [32m1.339082e-13[39m
+    2 KSP unpreconditioned resid norm 1.339081617833e-13 true resid norm 1.339081617833e-13 ||r(i)||/||b|| 2.491627729936e-16
+    Linear solve converged due to CONVERGED_ITS iterations 2
+  1 SNES Function norm 2.569312363676e-12
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m1.666373e-12[39m
+  disp_y: [31m1.242199e-12[39m
+  disp_z: [31m1.510466e-12[39m
+
+Time Step 140, time = 0.35, dt = 0.0025
+  0 SNES Function norm 5.373900994480e+02
+      0 Linear |R| = [32m5.373901e+02[39m
+    0 KSP unpreconditioned resid norm 5.373900994480e+02 true resid norm 5.373900994480e+02 ||r(i)||/||b|| 1.000000000000e+00
+      1 Linear |R| = [32m2.340824e-13[39m
+    1 KSP unpreconditioned resid norm 2.340823772248e-13 true resid norm 2.340823772248e-13 ||r(i)||/||b|| 4.355911608070e-16
+      2 Linear |R| = [32m1.508482e-13[39m
+    2 KSP unpreconditioned resid norm 1.508482261339e-13 true resid norm 1.508482261339e-13 ||r(i)||/||b|| 2.807052572960e-16
+    Linear solve converged due to CONVERGED_ITS iterations 2
+  1 SNES Function norm 3.142344805129e-12
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m2.122318e-12[39m
+  disp_y: [31m1.427811e-12[39m
+  disp_z: [31m1.825226e-12[39m
+
+Time Step 141, time = 0.3525, dt = 0.0025
+  0 SNES Function norm 5.373477533084e+02
+      0 Linear |R| = [32m5.373478e+02[39m
+    0 KSP unpreconditioned resid norm 5.373477533084e+02 true resid norm 5.373477533084e+02 ||r(i)||/||b|| 1.000000000000e+00
+      1 Linear |R| = [32m2.377698e-13[39m
+    1 KSP unpreconditioned resid norm 2.377698110844e-13 true resid norm 2.377698110844e-13 ||r(i)||/||b|| 4.424877737376e-16
+      2 Linear |R| = [32m1.234922e-13[39m
+    2 KSP unpreconditioned resid norm 1.234921708307e-13 true resid norm 1.234921708307e-13 ||r(i)||/||b|| 2.298179718262e-16
+    Linear solve converged due to CONVERGED_ITS iterations 2
+  1 SNES Function norm 3.443064299596e-12
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m2.771961e-12[39m
+  disp_y: [31m1.212241e-12[39m
+  disp_z: [31m1.643592e-12[39m
+
+Time Step 142, time = 0.355, dt = 0.0025
+  0 SNES Function norm 5.373054208945e+02
+      0 Linear |R| = [32m5.373054e+02[39m
+    0 KSP unpreconditioned resid norm 5.373054208945e+02 true resid norm 5.373054208945e+02 ||r(i)||/||b|| 1.000000000000e+00
+      1 Linear |R| = [32m2.338491e-13[39m
+    1 KSP unpreconditioned resid norm 2.338491007908e-13 true resid norm 2.338491007908e-13 ||r(i)||/||b|| 4.352256495039e-16
+      2 Linear |R| = [32m1.195442e-13[39m
+    2 KSP unpreconditioned resid norm 1.195441655906e-13 true resid norm 1.195441655906e-13 ||r(i)||/||b|| 2.224882923973e-16
+    Linear solve converged due to CONVERGED_ITS iterations 2
+  1 SNES Function norm 3.051361860476e-12
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m2.146295e-12[39m
+  disp_y: [31m1.354493e-12[39m
+  disp_z: [31m1.693983e-12[39m
+
+Time Step 143, time = 0.3575, dt = 0.0025
+  0 SNES Function norm 5.372631023390e+02
+      0 Linear |R| = [32m5.372631e+02[39m
+    0 KSP unpreconditioned resid norm 5.372631023390e+02 true resid norm 5.372631023390e+02 ||r(i)||/||b|| 1.000000000000e+00
+      1 Linear |R| = [32m2.159869e-13[39m
+    1 KSP unpreconditioned resid norm 2.159868857634e-13 true resid norm 2.159868857634e-13 ||r(i)||/||b|| 4.020132497898e-16
+      2 Linear |R| = [32m1.560211e-13[39m
+    2 KSP unpreconditioned resid norm 1.560210675236e-13 true resid norm 1.560210675236e-13 ||r(i)||/||b|| 2.903997442675e-16
+    Linear solve converged due to CONVERGED_ITS iterations 2
+  1 SNES Function norm 3.034893284651e-12
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m2.327061e-12[39m
+  disp_y: [31m1.350999e-12[39m
+  disp_z: [31m1.403626e-12[39m
+
+Time Step 144, time = 0.36, dt = 0.0025
+  0 SNES Function norm 5.372207978175e+02
+      0 Linear |R| = [32m5.372208e+02[39m
+    0 KSP unpreconditioned resid norm 5.372207978175e+02 true resid norm 5.372207978175e+02 ||r(i)||/||b|| 1.000000000000e+00
+      1 Linear |R| = [32m1.886373e-13[39m
+    1 KSP unpreconditioned resid norm 1.886373200150e-13 true resid norm 1.886373200150e-13 ||r(i)||/||b|| 3.511355494452e-16
+      2 Linear |R| = [32m1.180143e-13[39m
+    2 KSP unpreconditioned resid norm 1.180142779273e-13 true resid norm 1.180142779273e-13 ||r(i)||/||b|| 2.196755568786e-16
+    Linear solve converged due to CONVERGED_ITS iterations 2
+  1 SNES Function norm 3.543182406833e-12
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m2.344734e-12[39m
+  disp_y: [31m1.566427e-12[39m
+  disp_z: [31m2.145384e-12[39m
+
+Time Step 145, time = 0.3625, dt = 0.0025
+  0 SNES Function norm 5.371785073891e+02
+      0 Linear |R| = [32m5.371785e+02[39m
+    0 KSP unpreconditioned resid norm 5.371785073891e+02 true resid norm 5.371785073891e+02 ||r(i)||/||b|| 1.000000000000e+00
+      1 Linear |R| = [32m2.042653e-13[39m
+    1 KSP unpreconditioned resid norm 2.042653301718e-13 true resid norm 2.042653301718e-13 ||r(i)||/||b|| 3.802559621468e-16
+      2 Linear |R| = [32m1.443978e-13[39m
+    2 KSP unpreconditioned resid norm 1.443977521108e-13 true resid norm 1.443977521108e-13 ||r(i)||/||b|| 2.688077615253e-16
+    Linear solve converged due to CONVERGED_ITS iterations 2
+  1 SNES Function norm 3.134194016614e-12
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m2.162504e-12[39m
+  disp_y: [31m1.475375e-12[39m
+  disp_z: [31m1.723374e-12[39m
+
+Time Step 146, time = 0.365, dt = 0.0025
+  0 SNES Function norm 5.371362310407e+02
+      0 Linear |R| = [32m5.371362e+02[39m
+    0 KSP unpreconditioned resid norm 5.371362310407e+02 true resid norm 5.371362310407e+02 ||r(i)||/||b|| 1.000000000000e+00
+      1 Linear |R| = [32m2.278811e-13[39m
+    1 KSP unpreconditioned resid norm 2.278810629418e-13 true resid norm 2.278810629418e-13 ||r(i)||/||b|| 4.242518932307e-16
+      2 Linear |R| = [32m1.219682e-13[39m
+    2 KSP unpreconditioned resid norm 1.219682403382e-13 true resid norm 1.219682403382e-13 ||r(i)||/||b|| 2.270713336576e-16
+    Linear solve converged due to CONVERGED_ITS iterations 2
+  1 SNES Function norm 3.010542578237e-12
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m2.282066e-12[39m
+  disp_y: [31m1.296001e-12[39m
+  disp_z: [31m1.475101e-12[39m
+
+Time Step 147, time = 0.3675, dt = 0.0025
+  0 SNES Function norm 5.370939685973e+02
+      0 Linear |R| = [32m5.370940e+02[39m
+    0 KSP unpreconditioned resid norm 5.370939685973e+02 true resid norm 5.370939685973e+02 ||r(i)||/||b|| 1.000000000000e+00
+      1 Linear |R| = [32m2.340705e-13[39m
+    1 KSP unpreconditioned resid norm 2.340705205366e-13 true resid norm 2.340705205366e-13 ||r(i)||/||b|| 4.358092516807e-16
+      2 Linear |R| = [32m1.322809e-13[39m
+    2 KSP unpreconditioned resid norm 1.322809234244e-13 true resid norm 1.322809234244e-13 ||r(i)||/||b|| 2.462900929048e-16
+    Linear solve converged due to CONVERGED_ITS iterations 2
+  1 SNES Function norm 3.861789792917e-12
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m3.035535e-12[39m
+  disp_y: [31m1.931061e-12[39m
+  disp_z: [31m1.403549e-12[39m
+
+Time Step 148, time = 0.37, dt = 0.0025
+  0 SNES Function norm 5.370517200431e+02
+      0 Linear |R| = [32m5.370517e+02[39m
+    0 KSP unpreconditioned resid norm 5.370517200431e+02 true resid norm 5.370517200431e+02 ||r(i)||/||b|| 1.000000000000e+00
+      1 Linear |R| = [32m2.366065e-13[39m
+    1 KSP unpreconditioned resid norm 2.366064994255e-13 true resid norm 2.366064994255e-13 ||r(i)||/||b|| 4.405655742180e-16
+      2 Linear |R| = [32m1.340307e-13[39m
+    2 KSP unpreconditioned resid norm 1.340307410690e-13 true resid norm 1.340307410690e-13 ||r(i)||/||b|| 2.495676599980e-16
+    Linear solve converged due to CONVERGED_ITS iterations 2
+  1 SNES Function norm 3.361513605078e-12
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m2.319422e-12[39m
+  disp_y: [31m1.507820e-12[39m
+  disp_z: [31m1.909590e-12[39m
+
+Time Step 149, time = 0.3725, dt = 0.0025
+  0 SNES Function norm 5.370094851318e+02
+      0 Linear |R| = [32m5.370095e+02[39m
+    0 KSP unpreconditioned resid norm 5.370094851318e+02 true resid norm 5.370094851318e+02 ||r(i)||/||b|| 1.000000000000e+00
+      1 Linear |R| = [32m1.944699e-13[39m
+    1 KSP unpreconditioned resid norm 1.944698936973e-13 true resid norm 1.944698936973e-13 ||r(i)||/||b|| 3.621349325879e-16
+      2 Linear |R| = [32m1.472606e-13[39m
+    2 KSP unpreconditioned resid norm 1.472605736062e-13 true resid norm 1.472605736062e-13 ||r(i)||/||b|| 2.742234125904e-16
+    Linear solve converged due to CONVERGED_ITS iterations 2
+  1 SNES Function norm 3.347917439044e-12
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m2.677174e-12[39m
+  disp_y: [31m1.474976e-12[39m
+  disp_z: [31m1.365920e-12[39m
+
+Time Step 150, time = 0.375, dt = 0.0025
+  0 SNES Function norm 5.369672636124e+02
+      0 Linear |R| = [32m5.369673e+02[39m
+    0 KSP unpreconditioned resid norm 5.369672636124e+02 true resid norm 5.369672636124e+02 ||r(i)||/||b|| 1.000000000000e+00
+      1 Linear |R| = [32m2.211980e-13[39m
+    1 KSP unpreconditioned resid norm 2.211980021452e-13 true resid norm 2.211980021452e-13 ||r(i)||/||b|| 4.119394554094e-16
+      2 Linear |R| = [32m1.352630e-13[39m
+    2 KSP unpreconditioned resid norm 1.352629910603e-13 true resid norm 1.352629910603e-13 ||r(i)||/||b|| 2.519017456489e-16
+    Linear solve converged due to CONVERGED_ITS iterations 2
+  1 SNES Function norm 3.434433480781e-12
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m2.594411e-12[39m
+  disp_y: [31m1.381557e-12[39m
+  disp_z: [31m1.776418e-12[39m
+
+Time Step 151, time = 0.3775, dt = 0.0025
+  0 SNES Function norm 5.369250552090e+02
+      0 Linear |R| = [32m5.369251e+02[39m
+    0 KSP unpreconditioned resid norm 5.369250552090e+02 true resid norm 5.369250552090e+02 ||r(i)||/||b|| 1.000000000000e+00
+      1 Linear |R| = [32m2.263148e-13[39m
+    1 KSP unpreconditioned resid norm 2.263147830647e-13 true resid norm 2.263147830647e-13 ||r(i)||/||b|| 4.215016246106e-16
+      2 Linear |R| = [32m1.047372e-13[39m
+    2 KSP unpreconditioned resid norm 1.047372035383e-13 true resid norm 1.047372035383e-13 ||r(i)||/||b|| 1.950685715300e-16
+    Linear solve converged due to CONVERGED_ITS iterations 2
+  1 SNES Function norm 4.122054422772e-12
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m3.031182e-12[39m
+  disp_y: [31m1.915733e-12[39m
+  disp_z: [31m2.033035e-12[39m
+
+Time Step 152, time = 0.38, dt = 0.0025
+  0 SNES Function norm 5.368828596083e+02
+      0 Linear |R| = [32m5.368829e+02[39m
+    0 KSP unpreconditioned resid norm 5.368828596083e+02 true resid norm 5.368828596083e+02 ||r(i)||/||b|| 1.000000000000e+00
+      1 Linear |R| = [32m2.219861e-13[39m
+    1 KSP unpreconditioned resid norm 2.219860984747e-13 true resid norm 2.219860984747e-13 ||r(i)||/||b|| 4.134721280480e-16
+      2 Linear |R| = [32m1.276660e-13[39m
+    2 KSP unpreconditioned resid norm 1.276659802734e-13 true resid norm 1.276659802734e-13 ||r(i)||/||b|| 2.377911270375e-16
+    Linear solve converged due to CONVERGED_ITS iterations 2
+  1 SNES Function norm 3.730741711452e-12
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m2.717090e-12[39m
+  disp_y: [31m2.033656e-12[39m
+  disp_z: [31m1.549226e-12[39m
+
+Time Step 153, time = 0.3825, dt = 0.0025
+  0 SNES Function norm 5.368406764179e+02
+      0 Linear |R| = [32m5.368407e+02[39m
+    0 KSP unpreconditioned resid norm 5.368406764179e+02 true resid norm 5.368406764179e+02 ||r(i)||/||b|| 1.000000000000e+00
+      1 Linear |R| = [32m2.151678e-13[39m
+    1 KSP unpreconditioned resid norm 2.151678457372e-13 true resid norm 2.151678457372e-13 ||r(i)||/||b|| 4.008039166720e-16
+      2 Linear |R| = [32m1.171061e-13[39m
+    2 KSP unpreconditioned resid norm 1.171061430066e-13 true resid norm 1.171061430066e-13 ||r(i)||/||b|| 2.181394744303e-16
+    Linear solve converged due to CONVERGED_ITS iterations 2
+  1 SNES Function norm 4.125017848579e-12
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m3.080785e-12[39m
+  disp_y: [31m1.918961e-12[39m
+  disp_z: [31m1.960134e-12[39m
+
+Time Step 154, time = 0.385, dt = 0.0025
+  0 SNES Function norm 5.367985052952e+02
+      0 Linear |R| = [32m5.367985e+02[39m
+    0 KSP unpreconditioned resid norm 5.367985052952e+02 true resid norm 5.367985052952e+02 ||r(i)||/||b|| 1.000000000000e+00
+      1 Linear |R| = [32m1.861459e-13[39m
+    1 KSP unpreconditioned resid norm 1.861459468933e-13 true resid norm 1.861459468933e-13 ||r(i)||/||b|| 3.467706132880e-16
+      2 Linear |R| = [32m1.274472e-13[39m
+    2 KSP unpreconditioned resid norm 1.274471819770e-13 true resid norm 1.274471819770e-13 ||r(i)||/||b|| 2.374208957734e-16
+    Linear solve converged due to CONVERGED_ITS iterations 2
+  1 SNES Function norm 3.864008283160e-12
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m2.959406e-12[39m
+  disp_y: [31m1.687710e-12[39m
+  disp_z: [31m1.823215e-12[39m
+
+Time Step 155, time = 0.3875, dt = 0.0025
+  0 SNES Function norm 5.367563457752e+02
+      0 Linear |R| = [32m5.367563e+02[39m
+    0 KSP unpreconditioned resid norm 5.367563457752e+02 true resid norm 5.367563457752e+02 ||r(i)||/||b|| 1.000000000000e+00
+      1 Linear |R| = [32m2.096538e-13[39m
+    1 KSP unpreconditioned resid norm 2.096538318202e-13 true resid norm 2.096538318202e-13 ||r(i)||/||b|| 3.905940441513e-16
+      2 Linear |R| = [32m1.137273e-13[39m
+    2 KSP unpreconditioned resid norm 1.137273190477e-13 true resid norm 1.137273190477e-13 ||r(i)||/||b|| 2.118788533062e-16
+    Linear solve converged due to CONVERGED_ITS iterations 2
+  1 SNES Function norm 3.897474885313e-12
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m2.923445e-12[39m
+  disp_y: [31m1.596549e-12[39m
+  disp_z: [31m2.023563e-12[39m
+
+Time Step 156, time = 0.39, dt = 0.0025
+  0 SNES Function norm 5.367141974579e+02
+      0 Linear |R| = [32m5.367142e+02[39m
+    0 KSP unpreconditioned resid norm 5.367141974579e+02 true resid norm 5.367141974579e+02 ||r(i)||/||b|| 1.000000000000e+00
+      1 Linear |R| = [32m2.459866e-13[39m
+    1 KSP unpreconditioned resid norm 2.459866440279e-13 true resid norm 2.459866440279e-13 ||r(i)||/||b|| 4.583196144112e-16
+      2 Linear |R| = [32m1.515441e-13[39m
+    2 KSP unpreconditioned resid norm 1.515441473064e-13 true resid norm 1.515441473064e-13 ||r(i)||/||b|| 2.823553914247e-16
+    Linear solve converged due to CONVERGED_ITS iterations 2
+  1 SNES Function norm 4.273665393669e-12
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m3.304512e-12[39m
+  disp_y: [31m1.703109e-12[39m
+  disp_z: [31m2.108040e-12[39m
+
+Time Step 157, time = 0.3925, dt = 0.0025
+  0 SNES Function norm 5.366720599309e+02
+      0 Linear |R| = [32m5.366721e+02[39m
+    0 KSP unpreconditioned resid norm 5.366720599309e+02 true resid norm 5.366720599309e+02 ||r(i)||/||b|| 1.000000000000e+00
+      1 Linear |R| = [32m2.132739e-13[39m
+    1 KSP unpreconditioned resid norm 2.132738608280e-13 true resid norm 2.132738608280e-13 ||r(i)||/||b|| 3.974007159147e-16
+      2 Linear |R| = [32m1.191361e-13[39m
+    2 KSP unpreconditioned resid norm 1.191360648517e-13 true resid norm 1.191360648517e-13 ||r(i)||/||b|| 2.219904365191e-16
+    Linear solve converged due to CONVERGED_ITS iterations 2
+  1 SNES Function norm 4.458325997887e-12
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m3.383335e-12[39m
+  disp_y: [31m1.839958e-12[39m
+  disp_z: [31m2.245946e-12[39m
+
+Time Step 158, time = 0.395, dt = 0.0025
+  0 SNES Function norm 5.366299326488e+02
+      0 Linear |R| = [32m5.366299e+02[39m
+    0 KSP unpreconditioned resid norm 5.366299326488e+02 true resid norm 5.366299326488e+02 ||r(i)||/||b|| 1.000000000000e+00
+      1 Linear |R| = [32m2.280729e-13[39m
+    1 KSP unpreconditioned resid norm 2.280728625376e-13 true resid norm 2.280728625376e-13 ||r(i)||/||b|| 4.250095804605e-16
+      2 Linear |R| = [32m1.250793e-13[39m
+    2 KSP unpreconditioned resid norm 1.250792855383e-13 true resid norm 1.250792855383e-13 ||r(i)||/||b|| 2.330829458597e-16
+    Linear solve converged due to CONVERGED_ITS iterations 2
+  1 SNES Function norm 3.930569488969e-12
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m2.953113e-12[39m
+  disp_y: [31m1.670991e-12[39m
+  disp_z: [31m1.984009e-12[39m
+
+Time Step 159, time = 0.3975, dt = 0.0025
+  0 SNES Function norm 5.365878152883e+02
+      0 Linear |R| = [32m5.365878e+02[39m
+    0 KSP unpreconditioned resid norm 5.365878152883e+02 true resid norm 5.365878152883e+02 ||r(i)||/||b|| 1.000000000000e+00
+      1 Linear |R| = [32m2.108522e-13[39m
+    1 KSP unpreconditioned resid norm 2.108521677775e-13 true resid norm 2.108521677775e-13 ||r(i)||/||b|| 3.929499734618e-16
+      2 Linear |R| = [32m1.237256e-13[39m
+    2 KSP unpreconditioned resid norm 1.237255823447e-13 true resid norm 1.237255823447e-13 ||r(i)||/||b|| 2.305784418124e-16
+    Linear solve converged due to CONVERGED_ITS iterations 2
+  1 SNES Function norm 4.422208964334e-12
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m3.382381e-12[39m
+  disp_y: [31m1.712919e-12[39m
+  disp_z: [31m2.276256e-12[39m
+
+Time Step 160, time = 0.4, dt = 0.0025
+  0 SNES Function norm 5.365457074152e+02
+      0 Linear |R| = [32m5.365457e+02[39m
+    0 KSP unpreconditioned resid norm 5.365457074152e+02 true resid norm 5.365457074152e+02 ||r(i)||/||b|| 1.000000000000e+00
+      1 Linear |R| = [32m1.838849e-13[39m
+    1 KSP unpreconditioned resid norm 1.838849467349e-13 true resid norm 1.838849467349e-13 ||r(i)||/||b|| 3.427200035218e-16
+      2 Linear |R| = [32m1.508834e-13[39m
+    2 KSP unpreconditioned resid norm 1.508833520736e-13 true resid norm 1.508833520736e-13 ||r(i)||/||b|| 2.812124856994e-16
+    Linear solve converged due to CONVERGED_ITS iterations 2
+  1 SNES Function norm 4.446290233933e-12
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m3.535966e-12[39m
+  disp_y: [31m1.956050e-12[39m
+  disp_z: [31m1.854807e-12[39m
+
+Time Step 161, time = 0.4025, dt = 0.0025
+  0 SNES Function norm 4.158992906785e+06
+      0 Linear |R| = [32m4.158993e+06[39m
+    0 KSP unpreconditioned resid norm 4.158992906785e+06 true resid norm 4.158992906785e+06 ||r(i)||/||b|| 1.000000000000e+00
+      1 Linear |R| = [32m8.377367e-09[39m
+    1 KSP unpreconditioned resid norm 8.377366576583e-09 true resid norm 8.377366576583e-09 ||r(i)||/||b|| 2.014277678357e-15
+      2 Linear |R| = [32m2.628592e-09[39m
+    2 KSP unpreconditioned resid norm 2.628592342644e-09 true resid norm 2.628592342644e-09 ||r(i)||/||b|| 6.320261663239e-16
+    Linear solve converged due to CONVERGED_ITS iterations 2
+  1 SNES Function norm 3.731306660548e-09
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m2.960295e-09[39m
+  disp_y: [31m8.627955e-10[39m
+  disp_z: [31m2.101163e-09[39m
+
+Time Step 162, time = 0.405, dt = 0.0025
+  0 SNES Function norm 4.158992906785e+06
+      0 Linear |R| = [32m4.158993e+06[39m
+    0 KSP unpreconditioned resid norm 4.158992906785e+06 true resid norm 4.158992906785e+06 ||r(i)||/||b|| 1.000000000000e+00
+      1 Linear |R| = [32m8.312396e-09[39m
+    1 KSP unpreconditioned resid norm 8.312396158356e-09 true resid norm 8.312396158356e-09 ||r(i)||/||b|| 1.998656007514e-15
+      2 Linear |R| = [32m3.042618e-09[39m
+    2 KSP unpreconditioned resid norm 3.042617695020e-09 true resid norm 3.042617695020e-09 ||r(i)||/||b|| 7.315755913062e-16
+    Linear solve converged due to CONVERGED_ITS iterations 2
+  1 SNES Function norm 4.775546600146e-09
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m3.870865e-09[39m
+  disp_y: [31m1.130286e-09[39m
+  disp_z: [31m2.558262e-09[39m
+
+Time Step 163, time = 0.4075, dt = 0.0025
+  0 SNES Function norm 4.158992906785e+06
+      0 Linear |R| = [32m4.158993e+06[39m
+    0 KSP unpreconditioned resid norm 4.158992906785e+06 true resid norm 4.158992906785e+06 ||r(i)||/||b|| 1.000000000000e+00
+      1 Linear |R| = [32m8.348166e-09[39m
+    1 KSP unpreconditioned resid norm 8.348165524094e-09 true resid norm 8.348165524094e-09 ||r(i)||/||b|| 2.007256494829e-15
+      2 Linear |R| = [32m2.773572e-09[39m
+    2 KSP unpreconditioned resid norm 2.773571516950e-09 true resid norm 2.773571516950e-09 ||r(i)||/||b|| 6.668853684327e-16
+    Linear solve converged due to CONVERGED_ITS iterations 2
+  1 SNES Function norm 5.529568919168e-09
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m4.245787e-09[39m
+  disp_y: [31m1.311790e-09[39m
+  disp_z: [31m3.290688e-09[39m
+
+Time Step 164, time = 0.41, dt = 0.0025
+  0 SNES Function norm 4.158992906785e+06
+      0 Linear |R| = [32m4.158993e+06[39m
+    0 KSP unpreconditioned resid norm 4.158992906785e+06 true resid norm 4.158992906785e+06 ||r(i)||/||b|| 1.000000000000e+00
+      1 Linear |R| = [32m8.446661e-09[39m
+    1 KSP unpreconditioned resid norm 8.446661120168e-09 true resid norm 8.446661120168e-09 ||r(i)||/||b|| 2.030939054113e-15
+      2 Linear |R| = [32m2.713395e-09[39m
+    2 KSP unpreconditioned resid norm 2.713395453931e-09 true resid norm 2.713395453931e-09 ||r(i)||/||b|| 6.524164658960e-16
+    Linear solve converged due to CONVERGED_ITS iterations 2
+  1 SNES Function norm 7.299693425396e-09
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m5.898528e-09[39m
+  disp_y: [31m1.577470e-09[39m
+  disp_z: [31m4.000560e-09[39m
+
+Time Step 165, time = 0.4125, dt = 0.0025
+  0 SNES Function norm 4.158992906785e+06
+      0 Linear |R| = [32m4.158993e+06[39m
+    0 KSP unpreconditioned resid norm 4.158992906785e+06 true resid norm 4.158992906785e+06 ||r(i)||/||b|| 1.000000000000e+00
+      1 Linear |R| = [32m8.313424e-09[39m
+    1 KSP unpreconditioned resid norm 8.313424242982e-09 true resid norm 8.313424242982e-09 ||r(i)||/||b|| 1.998903203085e-15
+      2 Linear |R| = [32m2.792006e-09[39m
+    2 KSP unpreconditioned resid norm 2.792006029667e-09 true resid norm 2.792006029667e-09 ||r(i)||/||b|| 6.713178147315e-16
+    Linear solve converged due to CONVERGED_ITS iterations 2
+  1 SNES Function norm 6.939216235221e-09
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m5.235235e-09[39m
+  disp_y: [31m2.034098e-09[39m
+  disp_z: [31m4.075227e-09[39m
+
+Time Step 166, time = 0.415, dt = 0.0025
+  0 SNES Function norm 4.158992906785e+06
+      0 Linear |R| = [32m4.158993e+06[39m
+    0 KSP unpreconditioned resid norm 4.158992906785e+06 true resid norm 4.158992906785e+06 ||r(i)||/||b|| 1.000000000000e+00
+      1 Linear |R| = [32m8.193656e-09[39m
+    1 KSP unpreconditioned resid norm 8.193656241903e-09 true resid norm 8.193656241903e-09 ||r(i)||/||b|| 1.970105846667e-15
+      2 Linear |R| = [32m2.896749e-09[39m
+    2 KSP unpreconditioned resid norm 2.896748969535e-09 true resid norm 2.896748969535e-09 ||r(i)||/||b|| 6.965025030000e-16
+    Linear solve converged due to CONVERGED_ITS iterations 2
+  1 SNES Function norm 9.153925572392e-09
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m6.819937e-09[39m
+  disp_y: [31m2.386214e-09[39m
+  disp_z: [31m5.620391e-09[39m
+
+Time Step 167, time = 0.4175, dt = 0.0025
+  0 SNES Function norm 4.158992906785e+06
+      0 Linear |R| = [32m4.158993e+06[39m
+    0 KSP unpreconditioned resid norm 4.158992906785e+06 true resid norm 4.158992906785e+06 ||r(i)||/||b|| 1.000000000000e+00
+      1 Linear |R| = [32m8.344196e-09[39m
+    1 KSP unpreconditioned resid norm 8.344196386459e-09 true resid norm 8.344196386459e-09 ||r(i)||/||b|| 2.006302144167e-15
+      2 Linear |R| = [32m2.949157e-09[39m
+    2 KSP unpreconditioned resid norm 2.949157205889e-09 true resid norm 2.949157205889e-09 ||r(i)||/||b|| 7.091036873560e-16
+    Linear solve converged due to CONVERGED_ITS iterations 2
+  1 SNES Function norm 1.069529548855e-08
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m8.702615e-09[39m
+  disp_y: [31m2.734035e-09[39m
+  disp_z: [31m5.583807e-09[39m
+
+Time Step 168, time = 0.42, dt = 0.0025
+  0 SNES Function norm 4.158992906785e+06
+      0 Linear |R| = [32m4.158993e+06[39m
+    0 KSP unpreconditioned resid norm 4.158992906785e+06 true resid norm 4.158992906785e+06 ||r(i)||/||b|| 1.000000000000e+00
+      1 Linear |R| = [32m8.331432e-09[39m
+    1 KSP unpreconditioned resid norm 8.331431825102e-09 true resid norm 8.331431825102e-09 ||r(i)||/||b|| 2.003232996986e-15
+      2 Linear |R| = [32m2.692181e-09[39m
+    2 KSP unpreconditioned resid norm 2.692180541811e-09 true resid norm 2.692180541811e-09 ||r(i)||/||b|| 6.473154925122e-16
+    Linear solve converged due to CONVERGED_ITS iterations 2
+  1 SNES Function norm 1.111895300655e-08
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m9.087194e-09[39m
+  disp_y: [31m2.670240e-09[39m
+  disp_z: [31m5.824418e-09[39m
+
+Time Step 169, time = 0.4225, dt = 0.0025
+  0 SNES Function norm 4.158992906785e+06
+      0 Linear |R| = [32m4.158993e+06[39m
+    0 KSP unpreconditioned resid norm 4.158992906785e+06 true resid norm 4.158992906785e+06 ||r(i)||/||b|| 1.000000000000e+00
+      1 Linear |R| = [32m8.529473e-09[39m
+    1 KSP unpreconditioned resid norm 8.529472997069e-09 true resid norm 8.529472997069e-09 ||r(i)||/||b|| 2.050850575665e-15
+      2 Linear |R| = [32m2.688815e-09[39m
+    2 KSP unpreconditioned resid norm 2.688814765525e-09 true resid norm 2.688814765525e-09 ||r(i)||/||b|| 6.465062157568e-16
+    Linear solve converged due to CONVERGED_ITS iterations 2
+  1 SNES Function norm 1.242436823965e-08
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m9.994335e-09[39m
+  disp_y: [31m3.105202e-09[39m
+  disp_z: [31m6.695963e-09[39m
+
+Time Step 170, time = 0.425, dt = 0.0025
+  0 SNES Function norm 4.158992906785e+06
+      0 Linear |R| = [32m4.158993e+06[39m
+    0 KSP unpreconditioned resid norm 4.158992906785e+06 true resid norm 4.158992906785e+06 ||r(i)||/||b|| 1.000000000000e+00
+      1 Linear |R| = [32m8.466930e-09[39m
+    1 KSP unpreconditioned resid norm 8.466929519479e-09 true resid norm 8.466929519479e-09 ||r(i)||/||b|| 2.035812445283e-15
+      2 Linear |R| = [32m2.776731e-09[39m
+    2 KSP unpreconditioned resid norm 2.776730877215e-09 true resid norm 2.776730877215e-09 ||r(i)||/||b|| 6.676450139370e-16
+    Linear solve converged due to CONVERGED_ITS iterations 2
+  1 SNES Function norm 1.541567452147e-08
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m1.289316e-08[39m
+  disp_y: [31m4.353006e-09[39m
+  disp_z: [31m7.242986e-09[39m
+
+Time Step 171, time = 0.4275, dt = 0.0025
+  0 SNES Function norm 4.158992906785e+06
+      0 Linear |R| = [32m4.158993e+06[39m
+    0 KSP unpreconditioned resid norm 4.158992906785e+06 true resid norm 4.158992906785e+06 ||r(i)||/||b|| 1.000000000000e+00
+      1 Linear |R| = [32m8.469465e-09[39m
+    1 KSP unpreconditioned resid norm 8.469464805545e-09 true resid norm 8.469464805545e-09 ||r(i)||/||b|| 2.036422036625e-15
+      2 Linear |R| = [32m2.752470e-09[39m
+    2 KSP unpreconditioned resid norm 2.752470451915e-09 true resid norm 2.752470451915e-09 ||r(i)||/||b|| 6.618117687636e-16
+    Linear solve converged due to CONVERGED_ITS iterations 2
+  1 SNES Function norm 1.654637439873e-08
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m1.283125e-08[39m
+  disp_y: [31m4.166336e-09[39m
+  disp_z: [31m9.580347e-09[39m
+
+Time Step 172, time = 0.43, dt = 0.0025
+  0 SNES Function norm 4.158992906785e+06
+      0 Linear |R| = [32m4.158993e+06[39m
+    0 KSP unpreconditioned resid norm 4.158992906785e+06 true resid norm 4.158992906785e+06 ||r(i)||/||b|| 1.000000000000e+00
+      1 Linear |R| = [32m8.510471e-09[39m
+    1 KSP unpreconditioned resid norm 8.510470533598e-09 true resid norm 8.510470533598e-09 ||r(i)||/||b|| 2.046281569683e-15
+      2 Linear |R| = [32m2.771251e-09[39m
+    2 KSP unpreconditioned resid norm 2.771251307237e-09 true resid norm 2.771251307237e-09 ||r(i)||/||b|| 6.663274906567e-16
+    Linear solve converged due to CONVERGED_ITS iterations 2
+  1 SNES Function norm 1.584597052571e-08
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m1.263148e-08[39m
+  disp_y: [31m4.326476e-09[39m
+  disp_z: [31m8.533582e-09[39m
+
+Time Step 173, time = 0.4325, dt = 0.0025
+  0 SNES Function norm 4.158992906785e+06
+      0 Linear |R| = [32m4.158993e+06[39m
+    0 KSP unpreconditioned resid norm 4.158992906785e+06 true resid norm 4.158992906785e+06 ||r(i)||/||b|| 1.000000000000e+00
+      1 Linear |R| = [32m8.150339e-09[39m
+    1 KSP unpreconditioned resid norm 8.150339182456e-09 true resid norm 8.150339182456e-09 ||r(i)||/||b|| 1.959690570561e-15
+      2 Linear |R| = [32m2.739754e-09[39m
+    2 KSP unpreconditioned resid norm 2.739753985995e-09 true resid norm 2.739753985995e-09 ||r(i)||/||b|| 6.587541857850e-16
+    Linear solve converged due to CONVERGED_ITS iterations 2
+  1 SNES Function norm 1.873239704216e-08
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m1.478063e-08[39m
+  disp_y: [31m4.636029e-09[39m
+  disp_z: [31m1.053294e-08[39m
+
+Time Step 174, time = 0.435, dt = 0.0025
+  0 SNES Function norm 4.158992906785e+06
+      0 Linear |R| = [32m4.158993e+06[39m
+    0 KSP unpreconditioned resid norm 4.158992906785e+06 true resid norm 4.158992906785e+06 ||r(i)||/||b|| 1.000000000000e+00
+      1 Linear |R| = [32m8.565615e-09[39m
+    1 KSP unpreconditioned resid norm 8.565615054633e-09 true resid norm 8.565615054633e-09 ||r(i)||/||b|| 2.059540674056e-15
+      2 Linear |R| = [32m2.880289e-09[39m
+    2 KSP unpreconditioned resid norm 2.880288755943e-09 true resid norm 2.880288755943e-09 ||r(i)||/||b|| 6.925447627582e-16
+    Linear solve converged due to CONVERGED_ITS iterations 2
+  1 SNES Function norm 1.865640509251e-08
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m1.461550e-08[39m
+  disp_y: [31m4.836378e-09[39m
+  disp_z: [31m1.053840e-08[39m
+
+Time Step 175, time = 0.4375, dt = 0.0025
+  0 SNES Function norm 4.158992906785e+06
+      0 Linear |R| = [32m4.158993e+06[39m
+    0 KSP unpreconditioned resid norm 4.158992906785e+06 true resid norm 4.158992906785e+06 ||r(i)||/||b|| 1.000000000000e+00
+      1 Linear |R| = [32m8.130844e-09[39m
+    1 KSP unpreconditioned resid norm 8.130843839293e-09 true resid norm 8.130843839293e-09 ||r(i)||/||b|| 1.955003055193e-15
+      2 Linear |R| = [32m2.702151e-09[39m
+    2 KSP unpreconditioned resid norm 2.702151083676e-09 true resid norm 2.702151083676e-09 ||r(i)||/||b|| 6.497128377563e-16
+    Linear solve converged due to CONVERGED_ITS iterations 2
+  1 SNES Function norm 2.023627536524e-08
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m1.629289e-08[39m
+  disp_y: [31m4.787158e-09[39m
+  disp_z: [31m1.100598e-08[39m
+
+Time Step 176, time = 0.44, dt = 0.0025
+  0 SNES Function norm 4.158992906785e+06
+      0 Linear |R| = [32m4.158993e+06[39m
+    0 KSP unpreconditioned resid norm 4.158992906785e+06 true resid norm 4.158992906785e+06 ||r(i)||/||b|| 1.000000000000e+00
+      1 Linear |R| = [32m8.566646e-09[39m
+    1 KSP unpreconditioned resid norm 8.566645551562e-09 true resid norm 8.566645551562e-09 ||r(i)||/||b|| 2.059788449647e-15
+      2 Linear |R| = [32m2.919832e-09[39m
+    2 KSP unpreconditioned resid norm 2.919831525300e-09 true resid norm 2.919831525300e-09 ||r(i)||/||b|| 7.020525378960e-16
+    Linear solve converged due to CONVERGED_ITS iterations 2
+  1 SNES Function norm 2.396939103851e-08
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m1.978157e-08[39m
+  disp_y: [31m5.730667e-09[39m
+  disp_z: [31m1.226298e-08[39m
+
+Time Step 177, time = 0.4425, dt = 0.0025
+  0 SNES Function norm 4.158992906785e+06
+      0 Linear |R| = [32m4.158993e+06[39m
+    0 KSP unpreconditioned resid norm 4.158992906785e+06 true resid norm 4.158992906785e+06 ||r(i)||/||b|| 1.000000000000e+00
+      1 Linear |R| = [32m8.431294e-09[39m
+    1 KSP unpreconditioned resid norm 8.431294188070e-09 true resid norm 8.431294188070e-09 ||r(i)||/||b|| 2.027244185561e-15
+      2 Linear |R| = [32m2.696149e-09[39m
+    2 KSP unpreconditioned resid norm 2.696149036146e-09 true resid norm 2.696149036146e-09 ||r(i)||/||b|| 6.482696884978e-16
+    Linear solve converged due to CONVERGED_ITS iterations 2
+  1 SNES Function norm 2.334127345643e-08
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m1.777523e-08[39m
+  disp_y: [31m5.969114e-09[39m
+  disp_z: [31m1.390057e-08[39m
+
+Time Step 178, time = 0.445, dt = 0.0025
+  0 SNES Function norm 4.158992906785e+06
+      0 Linear |R| = [32m4.158993e+06[39m
+    0 KSP unpreconditioned resid norm 4.158992906785e+06 true resid norm 4.158992906785e+06 ||r(i)||/||b|| 1.000000000000e+00
+      1 Linear |R| = [32m8.313808e-09[39m
+    1 KSP unpreconditioned resid norm 8.313807576239e-09 true resid norm 8.313807576239e-09 ||r(i)||/||b|| 1.998995372816e-15
+      2 Linear |R| = [32m2.960082e-09[39m
+    2 KSP unpreconditioned resid norm 2.960082070338e-09 true resid norm 2.960082070338e-09 ||r(i)||/||b|| 7.117304926172e-16
+    Linear solve converged due to CONVERGED_ITS iterations 2
+  1 SNES Function norm 2.597227654238e-08
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m2.191787e-08[39m
+  disp_y: [31m5.959515e-09[39m
+  disp_z: [31m1.259564e-08[39m
+
+Time Step 179, time = 0.4475, dt = 0.0025
+  0 SNES Function norm 4.158992906785e+06
+      0 Linear |R| = [32m4.158993e+06[39m
+    0 KSP unpreconditioned resid norm 4.158992906785e+06 true resid norm 4.158992906785e+06 ||r(i)||/||b|| 1.000000000000e+00
+      1 Linear |R| = [32m8.058569e-09[39m
+    1 KSP unpreconditioned resid norm 8.058568576691e-09 true resid norm 8.058568576691e-09 ||r(i)||/||b|| 1.937624986939e-15
+      2 Linear |R| = [32m2.852654e-09[39m
+    2 KSP unpreconditioned resid norm 2.852654024951e-09 true resid norm 2.852654024951e-09 ||r(i)||/||b|| 6.859001899947e-16
+    Linear solve converged due to CONVERGED_ITS iterations 2
+  1 SNES Function norm 2.689970169471e-08
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m2.088627e-08[39m
+  disp_y: [31m7.599210e-09[39m
+  disp_z: [31m1.515287e-08[39m
+
+Time Step 180, time = 0.45, dt = 0.0025
+  0 SNES Function norm 4.158992906785e+06
+      0 Linear |R| = [32m4.158993e+06[39m
+    0 KSP unpreconditioned resid norm 4.158992906785e+06 true resid norm 4.158992906785e+06 ||r(i)||/||b|| 1.000000000000e+00
+      1 Linear |R| = [32m8.279205e-09[39m
+    1 KSP unpreconditioned resid norm 8.279204958052e-09 true resid norm 8.279204958052e-09 ||r(i)||/||b|| 1.990675421578e-15
+      2 Linear |R| = [32m2.869821e-09[39m
+    2 KSP unpreconditioned resid norm 2.869821000788e-09 true resid norm 2.869821000788e-09 ||r(i)||/||b|| 6.900278661468e-16
+    Linear solve converged due to CONVERGED_ITS iterations 2
+  1 SNES Function norm 2.554606264133e-08
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m2.022269e-08[39m
+  disp_y: [31m7.587310e-09[39m
+  disp_z: [31m1.364100e-08[39m
+
+Time Step 181, time = 0.4525, dt = 0.0025
+  0 SNES Function norm 1.380381581056e+07
+      0 Linear |R| = [32m1.380382e+07[39m
+    0 KSP unpreconditioned resid norm 1.380381581056e+07 true resid norm 1.380381581056e+07 ||r(i)||/||b|| 1.000000000000e+00
+      1 Linear |R| = [32m3.557269e-07[39m
+    1 KSP unpreconditioned resid norm 3.557269155458e-07 true resid norm 3.557269155458e-07 ||r(i)||/||b|| 2.577018705753e-14
+      2 Linear |R| = [32m9.647267e-08[39m
+    2 KSP unpreconditioned resid norm 9.647266739931e-08 true resid norm 9.647266739931e-08 ||r(i)||/||b|| 6.988840529552e-15
+    Linear solve converged due to CONVERGED_ITS iterations 2
+  1 SNES Function norm 1.849841666336e-07
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m1.794809e-07[39m
+  disp_y: [31m3.664414e-08[39m
+  disp_z: [31m2.574761e-08[39m
+
+Time Step 182, time = 0.455, dt = 0.0025
+  0 SNES Function norm 1.902116163904e-07
+      0 Linear |R| = [32m1.902116e-07[39m
+    0 KSP unpreconditioned resid norm 1.902116163904e-07 true resid norm 1.902116163904e-07 ||r(i)||/||b|| 1.000000000000e+00
+      1 Linear |R| = [32m3.865571e-19[39m
+    1 KSP unpreconditioned resid norm 3.865570555336e-19 true resid norm 3.865570555336e-19 ||r(i)||/||b|| 2.032247361488e-12
+      2 Linear |R| = [32m9.453945e-20[39m
+    2 KSP unpreconditioned resid norm 9.453944744907e-20 true resid norm 9.453944744907e-20 ||r(i)||/||b|| 4.970224702525e-13
+    Linear solve converged due to CONVERGED_ITS iterations 2
+  1 SNES Function norm 6.406460380650e-08
+[32m Solve Converged![39m
+
+
+Outlier Variable Residual Norms:
+  disp_x: [31m6.004964e-08[39m
+  disp_y: [31m1.565845e-08[39m
+  disp_z: [31m1.590998e-08[39m
+Finished Executing                                                                       [[33m 44.01 s[39m] [[33m  208 MB[39m]
+WARNING! There are options you set that were not used!
+WARNING! could be spelling mistake, etc!
+There are 2 unused database options. They are:
+Option left: name:-skip_petscrc (no value) source: command line
+Option left: name:-snes_linesearch_type value: basic source: code

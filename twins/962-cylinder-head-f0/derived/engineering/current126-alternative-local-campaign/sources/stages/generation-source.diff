@@ -1,0 +1,75 @@
+--- work/962-engineering/head-star-current204-local-stages-prep-001/generate_case.py
++++ work/962-engineering/head-star-current126-alternative-local-stages-prep-001/generate_case.py
+@@ -1,15 +1,15 @@
+-"""HELD one selected current204 fixed-shell case generation; no head stitching."""
++"""HELD one selected current126_alternative fixed-shell case generation; no head stitching."""
+ from pathlib import Path
+ from fractions import Fraction
+ import ast,hashlib,importlib.util,json,math,platform,struct,sys,time
+ 
+ ROOT=Path(__file__).resolve().parents[3]
+ OUT=Path(__file__).resolve().parent
+-MANIFEST='work/962-engineering/head-star-current204-local-stages-prep-001/case-manifest.json'
+-MANIFEST_SHA='3a558ede04cbc52c59e401befb36b8983ebd9b7f57d4266de0bea38fb1a963c5'
+-BATCH='work/962-engineering/head-star-current204-batch-shells-001/report.json'
+-BATCH_SHA='4f9fc0354918a907083006484d534c34c3b2621dfcc83b00cc4a4b731f009e86'
+-BATCH_EVIDENCE={'work/962-engineering/head-star-current204-batch-shells-001/receipt.json': '78e215c5c85f01ca614e44e4e443fd4181086f63e2edc5d5aee81fbef77dbedb', 'work/962-engineering/head-star-current204-batch-shells-root-execution-001/closed-result.json': '67d9b2763fcd5ac887eddca79010d8a21dc6365b19f56224512acbaf7a3150e2', 'work/962-engineering/head-star-current204-batch-shells-root-execution-001/result-review.json': '5a80128a5e4dd3ea685449c1124fd1fad4c07a3bb1c586f9f80a2e26caacf913', 'work/962-engineering/head-star-current204-batch-shells-result-peer-001/review.json': '3fd325b3e4e18b942bda26d9292127d1dc1c2b8ecc5841d11257dc61884030da', 'work/962-engineering/head-star-current204-batch-shells-root-execution-001/result-peer-acceptance.json': '47a98aad883748178b7b25a1a5957ca01c0780eb0274f778567e6c5fb22fe538'}
++MANIFEST='work/962-engineering/head-star-current126-alternative-local-stages-prep-001/case-manifest.json'
++MANIFEST_SHA='e83b8824581d68c3b3ca29acbd9f50573833561298159cf7969bbd46eb722e4c'
++BATCH='work/962-engineering/head-star-current126-alternative-batch-shells-001/report.json'
++BATCH_SHA='721e05802e305a124b99f97c779426e3d7b8960cab30fbabc3d93ee318e3de73'
++BATCH_EVIDENCE={'work/962-engineering/head-star-current126-alternative-batch-shells-001/receipt.json': '16cae8b3a4947fc3dfef08c1cc98e753692b7463051cac9265b25bbf70124c9c', 'work/962-engineering/current126-alternative-batch-root-execution-001/closed-result.json': 'af3f7f3e5635b21050b57cc28e714df9d013b186b363197d38cac062261993d0', 'work/962-engineering/current126-alternative-batch-root-execution-001/own-review.json': 'bd7e2e4783bead180011c776d2e19b9954657783a7f29d278630179ae63344a7', 'work/962-engineering/current126-alternative-batch-result-peer-001/review.json': '288280962aaab1b3f5d94ea6eb6bc88f3d8be3d487df74d2e7a9dc5ea6fee8b0', 'work/962-engineering/current126-alternative-batch-result-peer-001/bindings.json': 'e80eb94d38c3bd4d1b9f39a007802619646eee8140ff77194b6989cfccdd665a', 'work/962-engineering/current126-alternative-batch-root-execution-001/result-peer-acceptance.json': 'a66ada6f5986f740f95f42ddf349ad15a564bedcbd0d2ccbc65017489719c248', 'work/962-engineering/head-star-current126-full-stars-prep-001/reader.py': '2348c032ecbbb694563978cb333aff1a7e4d37a5052c3ed841a7128bf797409c', 'work/962-engineering/head-star-current126-full-stars-001/readback-report.json': 'ac40521a4add15f1bb414d7d1a1c2cd231a0107278b6fe43ec38dad27c269e1a', 'work/962-engineering/head-star-current126-full-stars-root-execution-001/result-peer-acceptance.json': 'f66d5857a0fa75352c3880ab2cd7bbc0bcae73833254f39423fd48971ebd52d9', 'work/962-engineering/apex1613031-head-application-001/readback-report.json': '64caf59811e229628ea1be138ebcc48cdf940c4ca2724be0b9080e255951c9f5', 'work/962-engineering/apex1613031-head-application-root-execution-001/result-peer-acceptance.json': '19ef174a208868bf174909a1add690971fdf018b8cf438c5c26e3a2bca9bfada', 'work/962-engineering/head-star-current129-full-stars-root-execution-001/launch-deviation-001.json': 'd60fff297c6c45dc92e117262e36ffde36e2169d53fcd32ce2b79fabde5eebc3'}
+ NV=NF=NB=APEX=None
+ SHELL_SHA=VOLUME=None
+ HELPER='twins/962-cylinder-head-f0/source/mesh_head.py'
+@@ -35,11 +35,15 @@
+ 
+ def select_case(manifest,batch,apex):
+  cases=manifest['cases_in_increasing_apex_order'];tags=[r['apex'] for r in cases]
+- if (manifest.get('schema')!='962-current204-finite-local-stage-manifest/v1' or manifest.get('selected_count')!=116
+-     or tags!=sorted(set(tags)) or len(tags)!=116 or set(tags)!=set(batch['selected_apex_tags'])
+-     or type(apex) is not int or apex not in tags or batch.get('source_current_positive_poor_cells')!=204
+-     or batch.get('source_MSH_sha256')!=manifest['source_parent_MSH_sha256']):
+-  raise ValueError('Exactly the frozen selected116 cases required; no backfill or new case')
++ if (manifest.get('schema')!='962-current126-alternative-finite-local-stage-manifest/v1' or manifest.get('selected_count')!=29
++     or tags!=sorted(set(tags)) or len(tags)!=29 or set(tags)!=set(batch['selected_apex_tags'])
++     or type(apex) is not int or apex not in tags or batch.get('source_current_positive_poor_cells')!=126
++     or batch.get('source_MSH_sha256')!=manifest['source_parent_MSH_sha256']
++     or manifest.get('greedy_selected_apex_order')!=batch['selected_apex_tags']
++     or manifest.get('excluded_prior_quality_rejected_apices')!=batch['excluded_prior_quality_rejected_apices']
++     or manifest.get('held_prior_apex')!=batch['held_prior_apex']
++     or set(tags)&set(batch['excluded_prior_quality_rejected_apices']) or batch['held_prior_apex'] in tags):
++  raise ValueError('Exactly the frozen selected29 cases required; no backfill or new case')
+  original={r['apex']:r for r in batch['all_candidate_star_records']};used=set()
+  for row in cases:
+   record=original[row['apex']]
+@@ -70,6 +74,11 @@
+  case,record=select_case(json.loads((ROOT/MANIFEST).read_text()),json.loads((ROOT/BATCH).read_text()),c.get('case_apex'))
+  if (c.get('case_key')!=case['case_key'] or c.get('case_record_sha256')!=case['source_record_sha256']
+      or c.get('output_directory')!=case['stage_paths'][stage]):raise ValueError('Exact selected case/stage/output binding required')
++ if set(case['materialized_inputs'])!={'shell','observation','screen'}:raise ValueError('Exactly three fixed saved case inputs required')
++ for key,value in [('shell',record['shell']),('observation',record['observation']),('screen',record['necessary_face_screen'])]:
++  row=case['materialized_inputs'][key];raw=encoded(value)
++  if (c['input_hashes'].get(row['path'])!=row['sha256'] or sha(ROOT/row['path'])!=row['sha256']
++      or len(raw)!=row['bytes'] or (ROOT/row['path']).read_bytes()!=raw):raise ValueError('Exact saved case input bytes/direct pin required')
+  NV,NF,NB,APEX=case['shell_nodes'],case['shell_faces'],case['original_boundary_shell_nodes'],case['apex']
+  value=case['exact_volume_mm3'];VOLUME=Fraction(value['numerator'],value['denominator']);SHELL_SHA=case['shell_serialized_sha256']
+  if type(NV) is not int or NV<4 or type(NF) is not int or NF<4 or type(NB) is not int or not 0<=NB<=NV or VOLUME<=0:
+@@ -191,7 +200,7 @@
+ def construct_shell(gmsh,helper,data):
+  points,faces,proof=shell_rows(data)
+  helper.P=helper.np.asarray(points,dtype='<f8');helper.F=helper.np.asarray(faces,dtype=helper.np.int64)
+- gmsh.model.add('fixed_shell_current204_apex_'+str(APEX))
++ gmsh.model.add('fixed_shell_current126_alternative_apex_'+str(APEX))
+  gmsh.model.addDiscreteEntity(2,1)
+  gmsh.model.mesh.addNodes(2,1,list(range(1,NV+1)),helper.P.ravel())
+  gmsh.model.mesh.addElementsByType(1,2,list(range(1,NF+1)),helper.F.ravel())
+@@ -282,7 +291,7 @@
+  if {p.name for p in OUT.iterdir()}!={'reader.py','run_readback.py','frozen-contract.json','native.log'}:
+   raise ValueError('Only fresh materialized inputs and owned native.log are permitted')
+  started=time.monotonic();gmsh=None;initialized=False;live={}
+- report=dict(next_stage='stop_case',later_head_storage_compatible=False,schema='962-finite-selected-current204-generation/v1',status='running',stage='imports',
++ report=dict(next_stage='stop_case',later_head_storage_compatible=False,schema='962-finite-selected-current126_alternative-generation/v1',status='running',stage='imports',
+   fixture_procedural_checks_passed=False,actual_SICN_gate_passed=False,actual_SICN_threshold=.1,
+   native_operation_counts={k:0 for k in COUNTS},call_counts_are_attempts=True,options=OPTIONS,
+   frozen_contract_sha256=sha(OUT/'frozen-contract.json'),local_shell_serialized_sha256=SHELL_SHA,case_key=case['case_key'],case_apex=APEX,case_record_sha256=case['source_record_sha256'],case_manifest_sha256=MANIFEST_SHA,source_batch_sha256=BATCH_SHA,input_MSH_read=False,full_head_geometry_read=False,

@@ -1,0 +1,101 @@
+{
+  "schema": "962-analysis-mesh-contract/v1",
+  "status": "predeclared_research_representation_gates",
+  "length_unit": "mm",
+  "bore_mm": 95,
+  "input_hashes": {
+    "twins/962-cylinder-head-f0/derived/family/delivery-report.json": "90e5b91d4682b0a2a99a6c2966e2916c0302952d8ef42712dfa95d6cd771c904",
+    "twins/962-cylinder-head-f0/derived/family/bore-95-report.json": "5dc2c44ec6978cee9ea9bbd80c392227b68c3e13c0915e7f20e562cb489c7efb",
+    "twins/962-cylinder-head-f0/source/family/configs/bore-95.json": "2d1b4eafb6e331436cd6b29ce47092090a449c7f3991ec7e6208a980ca589efa",
+    "twins/962-cylinder-head-f0/source/family/HeadFamilyRunner.cs": "9abc2a2ae0ad3e6c476c033d5c68d11c712db81590af8d9ed40cca73a5964c50",
+    "twins/962-cylinder-head-f0/source/mesh_head.py": "69c8012e99057e384d44d6971d41f0e2cc7197a978120a7c566b0ad5a6477da5",
+    "work/962-family/bore-95-run-001/inspected-bound-002/solid.stl": "ba7a0e28dade659550705e9737177c64c7f6fecd8d86d01e31732d7e739cd906",
+    "work/962-family/bore-95-run-001/inspected-bound-002/coolant.stl": "457f4f64b8ea89ff6bee67857fa2381d4ba5c7fee8a17d255bb18c4a68b33bb2",
+    "work/962-family/bore-95-run-001/inspected-bound-002/dry-passages.stl": "60e35b06c3af912ff44d55f707064d5c54bea386b47313208ac16e9199a60873"
+  },
+  "immutable_master": "work/962-family/bore-95-run-001/inspected-bound-002/solid.stl",
+  "source_voxel_size_mm": 0.5,
+  "representation_deviation_budget_mm": 0.25,
+  "representation_refinement_budgets_mm": [
+    0.25,
+    0.125,
+    0.0625
+  ],
+  "deviation_meaning": "Numerical analysis discretization budget relative to the retained polygon surface; not a Porsche dimensional accuracy or manufacturing tolerance.",
+  "preparation": {
+    "method": "VTK vtkDecimatePro from exactly indexed points and oriented triangles; no STL reader welding",
+    "preserve_topology": true,
+    "splitting": false,
+    "boundary_vertex_deletion": false,
+    "error_is_absolute": true,
+    "absolute_error_mm": 0.25,
+    "accumulate_error": true,
+    "target_reduction": 1.0,
+    "target_reduction_meaning": "Attempt allowed collapses until topology/error constraints stop; no required triangle count or reduction fraction.",
+    "repair_or_hole_filling": false,
+    "original_geometry_replaced": false
+  },
+  "surface_gates": {
+    "finite_nondegenerate_triangles": true,
+    "positive_signed_volume": true,
+    "closed_oriented_edge_manifold": true,
+    "vertex_link_manifold": true,
+    "connected_components": 1,
+    "euler_characteristic": -208,
+    "global_self_intersection_pairs": 0,
+    "two_sided_continuous_distance_upper_bound_mm": 0.25,
+    "each_distance_interval_absolute_gap_mm": 0.0001,
+    "both_distance_intervals_completed": true,
+    "rounding_error_certificate": false,
+    "sampled_vertex_distances_sufficient": false,
+    "unchanged_fluid_domain_hashes_required": true,
+    "dry_opening_probe_count": 8,
+    "dry_opening_probes_unblocked": true,
+    "feature_channel_BCC_connectivity_review_required": true,
+    "sampled_water_dry_clearance_minimum_mm": 4.0,
+    "conformal_metal_fluid_interface_validated": false,
+    "arbitrary_volume_change_percentage_gate": null,
+    "global_self_intersection_audit_completed": true
+  },
+  "volume_mesh_gates": {
+    "finite_positive_jacobian_and_signed_volume": true,
+    "minimum_SICN": 0.1,
+    "actual_oriented_tetra_boundary_equals_analysis_surface": true,
+    "volume_relative_bookkeeping_bound": 1e-06,
+    "bookkeeping_bound_is_manufacturing_tolerance": false,
+    "volume_bookkeeping_reference": "The accepted derivative analysis surface, never the different original source surface."
+  },
+  "convergence": {
+    "established": false,
+    "required_representation_budgets_mm": [
+      0.25,
+      0.125,
+      0.0625
+    ],
+    "required_volume_size_progression": [
+      "h",
+      "h/2",
+      "h/4"
+    ],
+    "field_observable_tolerances": "Must be declared with the actual thermal/structural case before solving.",
+    "required_observables": [
+      "thermal energy balance",
+      "maximum temperature",
+      "displacement",
+      "stress away from declared singular regions"
+    ]
+  },
+  "resource_limits": {
+    "preparation_deadline_s": 300,
+    "audit_deadline_s": 300,
+    "maximum_threads": 4,
+    "cloud_or_install_authorized": false
+  },
+  "qualification": {
+    "solver_admission_established": false,
+    "engineering_accepted": false,
+    "thermal_performance_validated": false,
+    "strength_validated": false,
+    "manufacturing_authorized": false
+  }
+}

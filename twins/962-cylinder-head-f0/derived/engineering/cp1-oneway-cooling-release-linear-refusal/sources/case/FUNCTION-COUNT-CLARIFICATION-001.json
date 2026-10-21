@@ -1,0 +1,43 @@
+{
+  "schema": "962-LINEAR-source-function-count-clarification/v1",
+  "scope": "Two descriptive counts only; all source/contract/held bytes preserved. No prepared code execution.",
+  "original_METHOD": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-linear-prep-001/METHOD.md",
+    "sha256": "49dd686f85f2531016da2260b45f3f22775a62b0f2fff2c2bf32bc3ca3197df5",
+    "bytes": 5316
+  },
+  "original_contract": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-linear-prep-001/case-contract.json",
+    "sha256": "294f5bf97c6ca3e9fe052e90fc4fc611e740395d1bca24595988d57b4a85758e",
+    "bytes": 16830
+  },
+  "held": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-linear-prep-001/held-preparation.json",
+    "sha256": "438c32f9bd03d4932d331b5b34bfd21b14d64377afdc78f61e41c88fdc6d78da",
+    "bytes": 47081
+  },
+  "correct_count": {
+    "top_level_functions": 9,
+    "unchanged_total": 8,
+    "unchanged_run": true,
+    "unchanged_other_functions": 7,
+    "only_changed": "checked_contract: actual-schema and output-path literals"
+  },
+  "exact_unchanged_function_names": [
+    "need",
+    "sha",
+    "same",
+    "check_pins",
+    "runtime_unchanged",
+    "commands",
+    "registry_features",
+    "run"
+  ],
+  "METHOD_text": "Eight other top-level functions plus run() are AST-exact under the recorded CPython context.",
+  "METHOD_corrected_reading": "Eight top-level functions including run() are AST-exact; checked_contract alone differs in two literals.",
+  "contract_pointer": "/native_adapter",
+  "contract_corrected_reading": "run_mac.py: schema/output-only successor of104f; run() and seven other top-level functions unchanged",
+  "future_actual_must_directly_pin_this_clarification": true,
+  "native_guard_assessor_or_source_execution": false,
+  "native_authority": false
+}

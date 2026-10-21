@@ -1,0 +1,346 @@
+{
+  "schema": "962-oneway-cooling-release-source-reuse/v1",
+  "source_only": true,
+  "AST_context": {
+    "implementation": "CPython",
+    "version": "3.12.11",
+    "cross_version_claim": false
+  },
+  "sources": {
+    "thermoelastic-birth.i": {
+      "donor": {
+        "path": "work/962-engineering/cp1-oneway-thermoelastic-transfer-prep-002/thermoelastic-birth.i",
+        "sha256": "cbead6d0ec032a0cc1bb82dd2abc032aa3f94321340ddc06058f42c8a1ce6fdb",
+        "bytes": 13646
+      },
+      "reversible_groups": [
+        {
+          "old_line_start": 1,
+          "new_line_start": 1,
+          "old": "# Unqualified one-way prescribed-temperature research case; SI m,Pa,N,K,s.\n",
+          "new": "# Unqualified one-way prescribed cooling/build-clamp/release case; SI m,Pa,N,K,s.\n"
+        },
+        {
+          "old_line_start": 48,
+          "new_line_start": 48,
+          "old": "",
+          "new": "  []\n  [build_plane]\n    type = BoundingBoxNodeSetGenerator\n    input = axis_y\n    new_boundary = build_clamp\n    bottom_left = '-1e-12 -1e-12 -1e-12'\n    top_right = '2.000000000001 1.000000000001 1e-12'\n"
+        },
+        {
+          "old_line_start": 173,
+          "new_line_start": 180,
+          "old": "",
+          "new": "  [build_x]\n    type = ADDirichletBC\n    variable = disp_x\n    boundary = build_clamp\n    value = 0\n  []\n  [build_y]\n    type = ADDirichletBC\n    variable = disp_y\n    boundary = build_clamp\n    value = 0\n  []\n  [build_z]\n    type = ADDirichletBC\n    variable = disp_z\n    boundary = build_clamp\n    value = 0\n  []\n"
+        },
+        {
+          "old_line_start": 178,
+          "new_line_start": 203,
+          "old": "",
+          "new": "    enable = false\n"
+        },
+        {
+          "old_line_start": 184,
+          "new_line_start": 210,
+          "old": "",
+          "new": "    enable = false\n"
+        },
+        {
+          "old_line_start": 190,
+          "new_line_start": 217,
+          "old": "",
+          "new": "    enable = false\n"
+        },
+        {
+          "old_line_start": 196,
+          "new_line_start": 224,
+          "old": "",
+          "new": "    enable = false\n"
+        },
+        {
+          "old_line_start": 202,
+          "new_line_start": 231,
+          "old": "",
+          "new": "    enable = false\n"
+        },
+        {
+          "old_line_start": 208,
+          "new_line_start": 238,
+          "old": "",
+          "new": "    enable = false\n  []\n[]\n[Controls]\n  [release_build_clamp]\n    type = TimePeriod\n    enable_objects = 'BCs/origin_x BCs/origin_y BCs/origin_z BCs/axis_x_y BCs/axis_x_z BCs/axis_y_z'\n    disable_objects = 'BCs/build_x BCs/build_y BCs/build_z'\n    start_time = 0.4525\n    reverse_on_false = true\n    set_sync_times = true\n    execute_on = 'INITIAL TIMESTEP_BEGIN'\n"
+        },
+        {
+          "old_line_start": 547,
+          "new_line_start": 589,
+          "old": "  end_time = 0.4\n",
+          "new": "  end_time = 0.455\n"
+        }
+      ],
+      "whole_reverse_equals_donor": true
+    },
+    "prepare_continuation.py": {
+      "donor": {
+        "path": "work/962-engineering/cp1-oneway-thermoelastic-transfer-prep-002/prepare_transfer.py",
+        "sha256": "d40ae738d5e934611672418ff65a4c501734c1ae78b0fc062626e43dee7bc21c",
+        "bytes": 11441
+      },
+      "reversible_groups": [
+        {
+          "old_line_start": 1,
+          "new_line_start": 1,
+          "old": "\"\"\"Held fixed-coupon data preparation only; no solver or native module imports.\"\"\"\n\n",
+          "new": "\"\"\"HELD finite accepted-grid cooling extension; no solver imports or CSV re-conversion.\"\"\"\n"
+        },
+        {
+          "old_line_start": 4,
+          "new_line_start": 3,
+          "old": "import csv\nimport hashlib\nimport io\nimport json\nimport math\n",
+          "new": "from decimal import Decimal, localcontext\nimport hashlib,json,math\n"
+        },
+        {
+          "old_line_start": 10,
+          "new_line_start": 6,
+          "old": "\nPREP = Path(__file__).resolve().parent\nROOT = PREP.parent.parent.parent\nSOURCE = ROOT / \"work/962-engineering/cp1-assumed-thermal-birth-linear-001\"\nOUTPUT = ROOT / \"work/962-engineering/cp1-oneway-thermoelastic-transfer-inputs-001\"\nDT = 0.0025\nSTEPS = 160\nBIRTH_STEP = 80\nHISTORY_TOL_K = 1e-10\nAXES = (tuple(i / 8 for i in range(17)), tuple(i / 4 for i in range(5)),\n        tuple(i / 4 for i in range(5)))\nSUPPORTS = ((0, (0., 0., 0.), (0, 1, 2)),\n            (32, (1., 0., 0.), (1, 2)), (137, (0., 1., 0.), (2,)))\n",
+          "new": "PREP=Path(__file__).resolve().parent\nROOT=PREP.parent.parent.parent\nOUTPUT=ROOT/\"work/962-engineering/cp1-oneway-cooling-release-inputs-001\"\nSOURCE=ROOT/\"work/962-engineering/cp1-oneway-thermoelastic-transfer-inputs-001\"\n"
+        },
+        {
+          "old_line_start": 29,
+          "new_line_start": 16,
+          "old": "\n",
+          "new": ""
+        },
+        {
+          "old_line_start": 32,
+          "new_line_start": 18,
+          "old": "\n\ndef expected_files():\n    return [(0, \"end\", \"thermal_end_0000.csv\")] + [\n        (step, phase, f\"thermal_{phase}_{step:04d}.csv\")\n        for step in range(1, STEPS + 1) for phase in (\"begin\", \"end\")]\n\n\ndef parse_rows(text):\n    reader = csv.DictReader(io.StringIO(text))\n    need(reader.fieldnames == [\"id\", \"temperature\", \"x\", \"y\", \"z\"], \"Exact source CSV columns required\")\n    rows = {}\n    last = -1\n    for row in reader:\n        need(set(row) == set(reader.fieldnames) and all(isinstance(v, str) and v for v in row.values()),\n             \"Complete source row required\")\n        need(row[\"id\"].isascii() and row[\"id\"].isdigit(), \"Canonical nonnegative source ID required\")\n        tag = int(row[\"id\"])\n        need(str(tag) == row[\"id\"] and tag > last, \"Strict original source ID ordering required\")\n        values = tuple(float(row[k]) for k in (\"temperature\", \"x\", \"y\", \"z\"))\n        need(all(math.isfinite(v) for v in values), \"Finite source words required\")\n        need(all(not any(c.isspace() for c in row[k]) for k in (\"temperature\", \"x\", \"y\", \"z\")),\n             \"One numeric token per value required\")\n        rows[tag] = {\"position\": values[1:], \"temperature\": values[0], \"token\": row[\"temperature\"]}\n        last = tag\n    need(rows, \"Nonempty source sample required\")\n    return rows\n\n\ndef join_rows(rows, geometry, expected_ids):\n    need(set(rows) == set(expected_ids), \"Complete active source ID set required\")\n    for tag, row in rows.items():\n        need(tuple(v.hex() for v in row[\"position\"]) == tuple(v.hex() for v in geometry[tag]),\n             \"Source ID/coordinate binary64 association changed\")\n\n\ndef phase_join(step, begin, previous_end, old_ids, new_ids):\n    need(set(begin) == (set(old_ids) if step < BIRTH_STEP else set(old_ids) | set(new_ids)),\n         \"Begin-phase active membership changed\")\n    errors = [abs(begin[tag][\"temperature\"] - row[\"temperature\"])\n              for tag, row in previous_end.items()]\n    need(max(errors, default=0.) <= HISTORY_TOL_K, \"Begin does not preserve previous END\")\n    if step == BIRTH_STEP:\n        need(all(begin[tag][\"temperature\"] == 350. for tag in new_ids), \"New born nodes must use accepted BEGIN80\")\n    return max(errors, default=0.)\n\n",
+          "new": ""
+        },
+        {
+          "old_line_start": 93,
+          "new_line_start": 33,
+          "old": "\ndef spatial_tokens(rows, by_position, xs):\n    # MOOSE first axis varies fastest: x + y*Nx + z*Nx*Ny [+ time*Nx*Ny*Nz].\n    return [rows[by_position[(x, y, z)]][\"token\"] for z in AXES[2] for y in AXES[1] for x in xs]\n\n\ndef assemble(samples):\n    need(list(samples) == [(s, p) for s, p, _ in expected_files()], \"Exact321 step/phase order required\")\n    final = samples[(STEPS, \"end\")]\n    geometry = {tag: row[\"position\"] for tag, row in final.items()}\n    grid = {(x, y, z) for x in AXES[0] for y in AXES[1] for z in AXES[2]}\n    need(len(geometry) == 425 and set(geometry.values()) == grid, \"Exact425-node SI grid required\")\n    by_position = {position: tag for tag, position in geometry.items()}\n    old = {tag for tag, p in geometry.items() if p[0] <= 1.}\n    born = {tag for tag, p in geometry.items() if p[0] >= 1.}\n    shared = old & born\n    new = born - old\n    need((len(old), len(born), len(shared), len(new)) == (225, 225, 25, 200), \"Fixed birth partition required\")\n    for tag, position, _ in SUPPORTS:\n        need(geometry.get(tag) == position and tag in old, \"Accepted source support ID changed\")\n    initial = samples[(0, \"end\")]\n    join_rows(initial, geometry, old)\n    need(all(r[\"temperature\"] == 400. for r in initial.values()), \"Old material starts at400K\")\n    previous = initial\n    maximum = 0.\n    for step in range(1, STEPS + 1):\n        begin, end = samples[(step, \"begin\")], samples[(step, \"end\")]\n        active = old if step < BIRTH_STEP else set(geometry)\n        join_rows(begin, geometry, active)\n        join_rows(end, geometry, active)\n        maximum = max(maximum, phase_join(step, begin, previous, old, new))\n        previous = end\n    old_x, born_x = AXES[0][:9], AXES[0][8:]\n    old_values = [v for step in range(STEPS + 1)\n                  for v in spatial_tokens(samples[(step, \"end\")], by_position, old_x)]\n    born_values = [v for step in range(BIRTH_STEP, STEPS + 1)\n                   for v in spatial_tokens(samples[(step, \"end\")], by_position, born_x)]\n    birth_values = spatial_tokens(samples[(BIRTH_STEP, \"begin\")], by_position, born_x)\n    tables = {\n        \"old-end.grid\": table_text(((\"X\", old_x), (\"Y\", AXES[1]), (\"Z\", AXES[2]),\n                                    (\"T\", tuple(i / 400 for i in range(161)))), old_values),\n        \"born-end.grid\": table_text(((\"X\", born_x), (\"Y\", AXES[1]), (\"Z\", AXES[2]),\n                                     (\"T\", tuple(i / 400 for i in range(80, 161)))), born_values),\n        \"born-begin80.grid\": table_text(((\"X\", born_x), (\"Y\", AXES[1]), (\"Z\", AXES[2])), birth_values)}\n    mapping = [{\"source_node_id\": tag, \"coordinates_m\": list(p), \"binary64_hex\": [v.hex() for v in p],\n                \"old2\": tag in old, \"born3\": tag in born, \"shared\": tag in shared}\n               for tag, p in sorted(geometry.items())]\n    return tables, {\"node_rows\": mapping, \"old_node_count\": 225, \"born_reference_DOF_count\": 225,\n                    \"shared_node_count\": 25, \"genuinely_new_node_count\": 200,\n                    \"maximum_previous_END_to_BEGIN_error_K\": maximum,\n                    \"table_value_counts\": dict(zip(tables, (36225, 18225, 225))),\n                    \"native_connectivity_or_ID_bijection_proven\": False}\n\n\n",
+          "new": ""
+        },
+        {
+          "old_line_start": 154,
+          "new_line_start": 40,
+          "old": "",
+          "new": "def read_fixed_grid(text, expected_axes, expected_count):\n    lines=text.splitlines()\n    header=[]\n    for name,values in expected_axes:\n        header+=[\"AXIS \"+name,\" \".join(format(v,\".17g\") for v in values)]\n    need(lines[:len(header)]==header and lines[len(header)]==\"DATA\",\n         \"Exact original XYZ[T] header/axis order required; no inference or padding\")\n    tokens=lines[len(header)+1:]\n    need(len(tokens)==expected_count and all(t and not any(c.isspace() for c in t)\n         and math.isfinite(float(t)) for t in tokens),\"Complete finite original tokens required\")\n    return tokens\n\ndef extend_cooling(tokens, original_frames):\n    need(len(tokens)==original_frames*225 and original_frames in (161,81),\n         \"Only fixed old/born225-node histories may be extended\")\n    tail=tokens[-225:];addition=[]\n    with localcontext() as context:\n        context.prec=80\n        for j in range(1,21):\n            for token in tail:\n                value=Decimal(300)+(Decimal(token)-Decimal(300))*Decimal(20-j)/Decimal(20)\n                addition.append(\"300\" if j==20 else format(float(value),\".17g\"))\n    addition+=[\"300\"]*(2*225)\n    need(len(addition)==4950 and addition[-3*225:]==[\"300\"]*(3*225),\n         \"Cooling reaches300 before release; both release holds remain300\")\n    return tokens+addition\n"
+        },
+        {
+          "old_line_start": 156,
+          "new_line_start": 68,
+          "old": "    contract = Path(contract)\n    need(contract.is_file() and not contract.is_symlink() and contract.resolve() == contract\n         and sha(contract) == expected, \"Exact external data-preparation actual required\")\n    c = json.loads(contract.read_text())\n    need(c.get(\"schema\") == \"962-oneway-thermoelastic-data-preparation-actual/v1\"\n         and c.get(\"root_and_peer_review_complete\") is True and c.get(\"data_preparation_authorized\") is True\n         and all(c.get(k) is False for k in (\"native_execution_authorized\", \"head_execution_authorized\",\n                                            \"engineering_accepted\", \"physics_qualified\", \"material_qualified\",\n                                            \"process_calibrated\", \"manufacturing_authorized\", \"automatic_retry\")),\n         \"Data-only reviewed authority required\")\n    held = json.loads((PREP / \"held-preparation.json\").read_text())\n    pins = c[\"input_sha256\"]\n    need(pins.get(str((PREP / \"held-preparation.json\").relative_to(ROOT))) == sha(PREP / \"held-preparation.json\")\n         and all(pins.get(k) == v for k, v in held[\"input_sha256\"].items()), \"Held inputs must be directly bound\")\n",
+          "new": "    contract=Path(contract)\n    need(contract.is_absolute() and contract.resolve()==contract and contract.is_file()\n         and not contract.is_symlink() and sha(contract)==expected,\"Exact external data actual required\")\n    c=json.loads(contract.read_text())\n    need(c.get(\"schema\")==\"962-oneway-cooling-release-data-actual/v1\"\n         and c.get(\"data_preparation_authorized\") is True and c.get(\"root_and_peer_review_complete\") is True\n         and all(c.get(k) is False for k in (\"native_execution_authorized\",\"head_execution_authorized\",\n         \"engineering_accepted\",\"physics_qualified\",\"material_qualified\",\"process_calibrated\",\n         \"manufacturing_authorized\",\"automatic_retry\")),\"Reviewed finite data-only authority required\")\n    held=json.loads((PREP/\"held-preparation.json\").read_text());pins=c[\"input_sha256\"]\n    need(pins.get(str((PREP/\"held-preparation.json\").relative_to(ROOT)))==sha(PREP/\"held-preparation.json\")\n         and all(pins.get(k)==v for k,v in held[\"input_sha256\"].items()),\"Complete held closure required\")\n"
+        },
+        {
+          "old_line_start": 171,
+          "new_line_start": 81,
+          "old": "    index = json.loads((PREP / \"thermal-input-index.json\").read_text())\n    receipt = json.loads((SOURCE / \"native-execution.json\").read_text())\n    need(receipt.get(\"native_execution_completed\") is True and receipt.get(\"inputs_unchanged\") is True\n         and receipt.get(\"binary_and_runtime_unchanged\") is True and receipt.get(\"returncode\") == 0,\n         \"Accepted thermal source must remain completed\")\n    need(index[\"selected\"] == [{\"step\": s, \"phase\": p, \"filename\": n,\n                               \"sha256\": receipt[\"artifact_sha256\"][n]} for s, p, n in expected_files()],\n         \"Exact321 source artifact associations required\")\n    need(OUTPUT.parent.is_dir() and not OUTPUT.exists() and not OUTPUT.is_symlink()\n         and OUTPUT.resolve() == OUTPUT and c.get(\"output\") == str(OUTPUT), \"Fresh fixed raw output required\")\n    samples = {}\n    for item in index[\"selected\"]:\n        path = SOURCE / item[\"filename\"]\n        need(path.is_file() and not path.is_symlink() and sha(path) == item[\"sha256\"], \"Thermal CSV drift\")\n        samples[(item[\"step\"], item[\"phase\"])] = parse_rows(path.read_text())\n    tables, association = assemble(samples)\n    checked_pins(pins)\n    need(sha(contract) == expected and all(sha(SOURCE / i[\"filename\"]) == i[\"sha256\"]\n                                         for i in index[\"selected\"]), \"Input drift during preparation\")\n",
+          "new": "    index=json.loads((PREP/\"thermal-input-index.json\").read_text())\n    original=json.loads((ROOT/index[\"source_manifest\"][\"path\"]).read_text())\n    need(sha(ROOT/index[\"source_manifest\"][\"path\"])==index[\"source_manifest\"][\"sha256\"]\n         and original[\"table_sha256\"]=={n:d[\"sha256\"] for n,d in index[\"table_descriptors\"].items()},\n         \"Exact accepted original three-table manifest required\")\n    xs=tuple(i/8 for i in range(17));yz=tuple(i/4 for i in range(5))\n    old_axes=((\"X\",xs[:9]),(\"Y\",yz),(\"Z\",yz),(\"T\",tuple(i/400 for i in range(161))))\n    born_axes=((\"X\",xs[8:]),(\"Y\",yz),(\"Z\",yz),(\"T\",tuple(i/400 for i in range(80,161))))\n    old=read_fixed_grid((SOURCE/\"old-end.grid\").read_text(),old_axes,36225)\n    born=read_fixed_grid((SOURCE/\"born-end.grid\").read_text(),born_axes,18225)\n    reference=(SOURCE/\"born-begin80.grid\").read_bytes()\n    read_fixed_grid(reference.decode(),born_axes[:3],225)\n    tables={\n      \"old-end.grid\":table_text(old_axes[:3]+((\"T\",tuple(i/400 for i in range(183))),),extend_cooling(old,161)).encode(),\n      \"born-end.grid\":table_text(born_axes[:3]+((\"T\",tuple(i/400 for i in range(80,183))),),extend_cooling(born,81)).encode(),\n      \"born-begin80.grid\":reference}\n    need(c.get(\"output\")==str(OUTPUT) and not OUTPUT.exists() and not OUTPUT.is_symlink(),\n         \"One fresh fixed continuation input directory required\")\n    checked_pins(pins);need(sha(contract)==expected,\"Actual drift\")\n    result={\"schema\":\"962-oneway-cooling-release-prepared-transfer/v1\",\n      \"source_manifest_sha256\":index[\"source_manifest\"][\"sha256\"],\n      \"original_table_sha256\":original[\"table_sha256\"],\"data_actual_sha256\":expected,\n      \"node_rows\":original[\"node_rows\"],\"old_node_count\":225,\"born_reference_DOF_count\":225,\n      \"shared_node_count\":25,\"genuinely_new_node_count\":200,\n      \"original_tokens_preserved\":54675,\"new_assumed_cooling_hold_values\":9900,\n      \"table_value_counts\":{\"old-end.grid\":41175,\"born-end.grid\":23175,\"born-begin80.grid\":225},\n      \"cooling_card_sha256\":sha(PREP/\"card.json\"),\n      \"birth_reference_phase\":\"Original exact BEGIN80 temperature on225 born DOFs incl25shared\",\n      \"native_connectivity_or_ID_bijection_proven\":False,\n      \"prescribed_cooling_not_heat_equation_or_process_calibration\":True,\n      \"native_execution_authorized\":False,\"engineering_accepted\":False,\"physics_qualified\":False,\n      \"material_qualified\":False,\"process_calibrated\":False,\"manufacturing_authorized\":False}\n"
+        },
+        {
+          "old_line_start": 191,
+          "new_line_start": 114,
+          "old": "    for name, text in tables.items():\n        with (OUTPUT / name).open(\"x\") as stream:\n            stream.write(text)\n    manifest = {\"schema\": \"962-oneway-thermoelastic-prepared-transfer/v1\", \"source_receipt_sha256\": sha(SOURCE / \"native-execution.json\"),\n                \"data_actual_sha256\": expected, \"selected321\": index[\"selected\"], **association,\n                \"table_sha256\": {name: sha(OUTPUT / name) for name in tables},\n                \"same_native_geometry_association_still_required\": True,\n                \"birth_reference_phase\": \"BEGIN80_all225_born_DOFs_including25shared\",\n                \"history\": \"Current selected shared u/T restored; affected old/older vectors intentionally rebased\",\n                \"source_off_cooling_history_present\": False,\n                \"native_execution_authorized\": False, \"engineering_accepted\": False,\n                \"physics_qualified\": False, \"material_qualified\": False, \"process_calibrated\": False,\n                \"manufacturing_authorized\": False}\n    with (OUTPUT / \"transfer-manifest.json\").open(\"x\") as stream:\n        json.dump(manifest, stream, indent=2, allow_nan=False)\n        stream.write(\"\\n\")\n    return manifest\n",
+          "new": "    for name,body in tables.items():\n        with (OUTPUT/name).open(\"xb\") as stream:stream.write(body)\n    result[\"table_sha256\"]={name:sha(OUTPUT/name) for name in tables}\n    with (OUTPUT/\"transfer-manifest.json\").open(\"x\") as stream:\n        json.dump(result,stream,indent=2,allow_nan=False);stream.write(\"\\n\")\n    return result\n"
+        },
+        {
+          "old_line_start": 209,
+          "new_line_start": 121,
+          "old": "\nif __name__ == \"__main__\":\n    parser = argparse.ArgumentParser(description=__doc__)\n    parser.add_argument(\"contract\", type=Path)\n    parser.add_argument(\"contract_sha256\")\n    args = parser.parse_args()\n    prepare(args.contract, args.contract_sha256)\n",
+          "new": "if __name__==\"__main__\":\n    parser=argparse.ArgumentParser(description=__doc__)\n    parser.add_argument(\"contract\",type=Path);parser.add_argument(\"contract_sha256\")\n    args=parser.parse_args();prepare(args.contract,args.contract_sha256)\n"
+        }
+      ],
+      "whole_reverse_equals_donor": true
+    },
+    "run_mac.py": {
+      "donor": {
+        "path": "work/962-engineering/cp1-oneway-thermoelastic-transfer-prep-002/run_mac.py",
+        "sha256": "dcc8f5a26f3834dd195778536ba527a6179558a57b956a021ee3feae94f5d992",
+        "bytes": 18791
+      },
+      "reversible_groups": [
+        {
+          "old_line_start": 1,
+          "new_line_start": 1,
+          "old": "\"\"\"Held fixed SI one-way thermoelastic case; inherited Mac lifecycle, no automatic assessment.\"\"\"\n",
+          "new": "\"\"\"Held fixed SI prescribed cooling/clamp/release case; inherited Mac lifecycle, no automatic assessment.\"\"\"\n"
+        },
+        {
+          "old_line_start": 21,
+          "new_line_start": 21,
+          "old": "TRANSFER = ENGINEERING / \"cp1-oneway-thermoelastic-transfer-inputs-001\"\n",
+          "new": "TRANSFER = ENGINEERING / \"cp1-oneway-cooling-release-inputs-001\"\n"
+        },
+        {
+          "old_line_start": 24,
+          "new_line_start": 24,
+          "old": "PRIMARY_API = ENGINEERING / \"cp1-oneway-thermoelastic-transfer-source-peer-001/primary-sources.json\"\n",
+          "new": "PRIMARY_API = PREP / \"source-evidence.json\"\n"
+        },
+        {
+          "old_line_start": 35,
+          "new_line_start": 35,
+          "old": "            \"NodalValueSampler\", \"ElementMaterialSampler\", \"SMP\", \"Transient\", \"CSV\", \"Console\", \"Exodus\")\n",
+          "new": "            \"NodalValueSampler\", \"ElementMaterialSampler\", \"TimePeriod\", \"SMP\", \"Transient\", \"CSV\", \"Console\", \"Exodus\")\n"
+        },
+        {
+          "old_line_start": 98,
+          "new_line_start": 98,
+          "old": "    need(stage == \"coupon\" and c.get(\"schema\") == \"962-macos-oneway-thermoelastic-case-actual/v1\"\n",
+          "new": "    need(stage == \"coupon\" and c.get(\"schema\") == \"962-macos-oneway-cooling-release-case-actual/v1\"\n"
+        },
+        {
+          "old_line_start": 117,
+          "new_line_start": 117,
+          "old": "    registry = held[\"registry\"]\n",
+          "new": "    registry = c[\"registry\"]\n    need(set(registry)=={\"presence_record\",\"root_closed\",\"runtime_bindings\",\"stdout\"}\n         and all(isinstance(v,str) and v in pins for v in registry.values()),\n         \"Separate completed exact24-object registry closure required\")\n"
+        },
+        {
+          "old_line_start": 134,
+          "new_line_start": 137,
+          "old": "    need(manifest.get(\"schema\") == \"962-oneway-thermoelastic-prepared-transfer/v1\"\n         and manifest[\"source_receipt_sha256\"] == source_index[\"receipt_sha256\"]\n         and manifest[\"selected321\"] == source_index[\"selected\"]\n         and (manifest[\"old_node_count\"], manifest[\"born_reference_DOF_count\"], manifest[\"shared_node_count\"],\n              manifest[\"genuinely_new_node_count\"]) == (225, 225, 25, 200)\n",
+          "new": "    need(manifest.get(\"schema\") == \"962-oneway-cooling-release-prepared-transfer/v1\"\n         and manifest[\"source_manifest_sha256\"] == source_index[\"source_manifest\"][\"sha256\"]\n         and manifest[\"original_table_sha256\"] == {n:d[\"sha256\"] for n,d in source_index[\"table_descriptors\"].items()}\n         and (manifest[\"old_node_count\"],manifest[\"born_reference_DOF_count\"],manifest[\"shared_node_count\"],\n              manifest[\"genuinely_new_node_count\"]) == (225,225,25,200)\n         and manifest[\"table_value_counts\"] == {\"old-end.grid\":41175,\"born-end.grid\":23175,\"born-begin80.grid\":225}\n         and manifest[\"original_tokens_preserved\"] == 54675\n         and manifest[\"new_assumed_cooling_hold_values\"] == 9900\n         and manifest[\"cooling_card_sha256\"] == sha(CARD)\n"
+        },
+        {
+          "old_line_start": 140,
+          "new_line_start": 147,
+          "old": "         and manifest.get(\"native_execution_authorized\") is False, \"Complete same-case data preparation required\")\n",
+          "new": "         and manifest.get(\"native_execution_authorized\") is False\n         and manifest.get(\"prescribed_cooling_not_heat_equation_or_process_calibration\") is True,\n         \"Exact accepted-source/assumed-cooling transfer and unchanged birth-reference associations required\")\n"
+        },
+        {
+          "old_line_start": 151,
+          "new_line_start": 160,
+          "old": "    need(output == ENGINEERING / \"cp1-oneway-thermoelastic-transfer-002\" and output.resolve() == output\n",
+          "new": "    need(output == ENGINEERING / \"cp1-oneway-cooling-release-001\" and output.resolve() == output\n"
+        },
+        {
+          "old_line_start": 184,
+          "new_line_start": 193,
+          "old": "                   prescribed_temperature_and_born_reference=True, source_off_cooling_history_present=False, input_sha256=inputs,\n",
+          "new": "                   prescribed_temperature_and_born_reference=True, source_off_cooling_history_present=False,\n                   prescribed_cooling_extension_present=True, build_clamp_then_release=True, input_sha256=inputs,\n"
+        }
+      ],
+      "whole_reverse_equals_donor": true
+    },
+    "test_controls.py": {
+      "donor": {
+        "path": "work/962-engineering/cp1-oneway-thermoelastic-transfer-prep-002/test_controls.py",
+        "sha256": "555755bb1c738db1db8b8ff4c7c1dc250d8b75eff9cd39c4b3786e728dea3f17",
+        "bytes": 13674
+      },
+      "reversible_groups": [
+        {
+          "old_line_start": 13,
+          "new_line_start": 13,
+          "old": "SOURCE_SHA256 = \"dcc8f5a26f3834dd195778536ba527a6179558a57b956a021ee3feae94f5d992\"\n",
+          "new": "SOURCE_SHA256 = \"104fcd61eb1441f05f7ff3a40eb60a10c80d83f03123d9c402b8a6972f722659\"\n"
+        },
+        {
+          "old_line_start": 18,
+          "new_line_start": 18,
+          "old": "",
+          "new": "\n\ndef copy_json(value):\n    return json.loads(json.dumps(value))\n"
+        },
+        {
+          "old_line_start": 51,
+          "new_line_start": 55,
+          "old": "                c = dict(schema=\"962-macos-oneway-thermoelastic-case-actual/v1\", stage=stage,\n",
+          "new": "                c = dict(schema=\"962-macos-oneway-cooling-release-case-actual/v1\", stage=stage,\n"
+        },
+        {
+          "old_line_start": 163,
+          "new_line_start": 167,
+          "old": "            manifest = dict(schema=\"962-oneway-thermoelastic-prepared-transfer/v1\",\n                            source_receipt_sha256=source_index[\"receipt_sha256\"], selected321=source_index[\"selected\"],\n                            old_node_count=225, born_reference_DOF_count=225, shared_node_count=25,\n                            genuinely_new_node_count=200, native_connectivity_or_ID_bijection_proven=False,\n                            native_execution_authorized=False,\n                            table_sha256={n:module.sha(transfer / n) for n in module.TRANSFER_FILES[:-1]})\n",
+          "new": "            manifest = dict(schema=\"962-oneway-cooling-release-prepared-transfer/v1\",\n                source_manifest_sha256=source_index[\"source_manifest\"][\"sha256\"],\n                original_table_sha256={n:d[\"sha256\"] for n,d in source_index[\"table_descriptors\"].items()},\n                old_node_count=225,born_reference_DOF_count=225,shared_node_count=25,genuinely_new_node_count=200,\n                table_value_counts={\"old-end.grid\":41175,\"born-end.grid\":23175,\"born-begin80.grid\":225},\n                original_tokens_preserved=54675,new_assumed_cooling_hold_values=9900,\n                cooling_card_sha256=module.sha(case / \"card.json\"),\n                prescribed_cooling_not_heat_equation_or_process_calibration=True,\n                native_connectivity_or_ID_bijection_proven=False,native_execution_authorized=False,\n                table_sha256={n:module.sha(transfer/n) for n in module.TRANSFER_FILES[:-1]})\n"
+        },
+        {
+          "old_line_start": 170,
+          "new_line_start": 178,
+          "old": "            fake = base / \"synthetic-source-peer-root-installation.json\"\n            fake.write_text(\"{}\\n\")  # Declared source-contract stub only; not a physics approval.\n            held = base / \"held.json\"\n            selected = dict(input_sha256={}, runtime_sha256s=real_held[\"runtime_sha256s\"],\n                            runtime_symlinks=real_held[\"runtime_symlinks\"], coupon_resources=real_held[\"coupon_resources\"],\n                            registry=real_held[\"registry\"])\n            held.write_text(json.dumps(selected))\n            files = [held, fake] + list(case.iterdir()) + list(transfer.iterdir())\n            files += [module.ROOT / n for n in real_held[\"registry\"].values()]\n            pins = {str(p.relative_to(module.ROOT)):module.sha(p) for p in files}\n            relfake = str(fake.relative_to(module.ROOT))\n            c = dict(schema=\"962-macos-oneway-thermoelastic-case-actual/v1\", stage=\"coupon\",\n                     root_and_peer_review_complete=True, native_launch_authorized=True, coupon_solve_authorized=True,\n                     head_authorized=False, engineering_accepted=False, physics_qualified=False, material_qualified=False,\n                     process_calibrated=False, manufacturing_authorized=False, automatic_retry=False,\n                     input_sha256=pins, runtime_sha256s=selected[\"runtime_sha256s\"], runtime_symlinks=selected[\"runtime_symlinks\"],\n                     resources=selected[\"coupon_resources\"], installation_result_peer=relfake, installation_receipt=relfake,\n                     data_preparation_root_closed=relfake, data_preparation_result_peer=relfake,\n                     independent_assessment_source=relfake, independent_assessment_source_peer=relfake,\n                     independent_assessment_source_root_review=relfake,\n                     transfer_manifest=str((transfer / \"transfer-manifest.json\").relative_to(module.ROOT)),\n                     transfer_manifest_sha256=module.sha(transfer / \"transfer-manifest.json\"),\n                     output=str(base / \"cp1-oneway-thermoelastic-transfer-002\"))\n            path = base / \"actual.json\"\n            with mock.patch.object(module, \"HELD\", held), mock.patch.object(module, \"PREP\", case), \\\n                 mock.patch.object(module, \"CASE\", case), mock.patch.object(module, \"CARD\", case / \"card.json\"), \\\n                 mock.patch.object(module, \"PHYSICS\", case / \"case-contract.json\"), mock.patch.object(module, \"TRANSFER\", transfer), \\\n                 mock.patch.object(module, \"ENGINEERING\", base), mock.patch.object(module, \"runtime_unchanged\", return_value=True), \\\n                 mock.patch.object(module.os, \"access\", return_value=True):\n                path.write_text(json.dumps(c))\n                _, output = module.checked_contract(\"coupon\", path, module.sha(path))\n",
+          "new": "            fake = base / \"synthetic-source-peer-root-installation.json\"; fake.write_text(\"{}\\n\")\n            registry_log=base/\"registry.log\"\n            registry_log.write_text(\"Label\\tType\\tName\\tClass\\tFile\\n\"+\"\".join(\n                f\"mock\\tobject\\t{name}\\t{name}\\tproject.C\\n\" for name in module.FEATURES))\n            runtime_binding=base/\"runtime.json\";runtime_binding.write_text(\"{}\\n\")\n            registry_closed=base/\"registry-closed.json\"\n            registry_closed.write_text(json.dumps(dict(returncode=0,stop_reason=None,\n                selected19_files13_links_before_after_unchanged=True,\n                runtime_bindings_sha256=module.sha(runtime_binding),registry_sha256=module.sha(registry_log))))\n            presence=base/\"presence.json\"\n            presence.write_text(json.dumps(dict(registry_sha256=module.sha(registry_log),\n                root_closed_sha256=module.sha(registry_closed),all_present_once=True,\n                exact_rows={n:True for n in module.FEATURES})))\n            registry={k:str(p.relative_to(module.ROOT)) for k,p in\n                dict(presence_record=presence,root_closed=registry_closed,runtime_bindings=runtime_binding,stdout=registry_log).items()}\n            held=base/\"held.json\";held.write_text(json.dumps(dict(input_sha256={},\n                runtime_sha256s=real_held[\"runtime_sha256s\"],runtime_symlinks=real_held[\"runtime_symlinks\"],\n                coupon_resources=real_held[\"coupon_resources\"])))\n            files=[held,fake,registry_log,runtime_binding,registry_closed,presence]+list(case.iterdir())+list(transfer.iterdir())\n            pins={str(p.relative_to(module.ROOT)):module.sha(p) for p in files};relfake=str(fake.relative_to(module.ROOT))\n            c=dict(schema=\"962-macos-oneway-cooling-release-case-actual/v1\",stage=\"coupon\",\n                root_and_peer_review_complete=True,native_launch_authorized=True,coupon_solve_authorized=True,\n                head_authorized=False,engineering_accepted=False,physics_qualified=False,material_qualified=False,\n                process_calibrated=False,manufacturing_authorized=False,automatic_retry=False,\n                input_sha256=pins,runtime_sha256s=real_held[\"runtime_sha256s\"],runtime_symlinks=real_held[\"runtime_symlinks\"],\n                resources=real_held[\"coupon_resources\"],registry=registry,\n                installation_result_peer=relfake,installation_receipt=relfake,data_preparation_root_closed=relfake,\n                data_preparation_result_peer=relfake,independent_assessment_source=relfake,\n                independent_assessment_source_peer=relfake,independent_assessment_source_root_review=relfake,\n                transfer_manifest=str((transfer/\"transfer-manifest.json\").relative_to(module.ROOT)),\n                transfer_manifest_sha256=module.sha(transfer/\"transfer-manifest.json\"),\n                output=str(base/\"cp1-oneway-cooling-release-001\"))\n            path=base/\"actual.json\"\n            with mock.patch.object(module,\"HELD\",held),mock.patch.object(module,\"PREP\",case), \\\n                 mock.patch.object(module,\"CASE\",case),mock.patch.object(module,\"CARD\",case/\"card.json\"), \\\n                 mock.patch.object(module,\"PHYSICS\",case/\"case-contract.json\"),mock.patch.object(module,\"TRANSFER\",transfer), \\\n                 mock.patch.object(module,\"ENGINEERING\",base),mock.patch.object(module,\"runtime_unchanged\",return_value=True), \\\n                 mock.patch.object(module.os,\"access\",return_value=True):\n                path.write_text(json.dumps(c));_,output=module.checked_contract(\"coupon\",path,module.sha(path))\n"
+        },
+        {
+          "old_line_start": 202,
+          "new_line_start": 218,
+          "old": "                for mode in [\"missing_heat\", \"resource\", \"missing_assessor\", \"manifest_binding\", \"head\"]:\n                    bad = json.loads(json.dumps(c))\n                    if mode == \"missing_heat\": bad[\"runtime_sha256s\"].pop(\"lib/combined/libheat_transfer-opt.0.dylib\")\n                    if mode == \"resource\": bad[\"resources\"][\"wall_seconds\"] = 101\n                    if mode == \"missing_assessor\": bad[\"independent_assessment_source_peer\"] = None\n                    if mode == \"manifest_binding\": bad[\"transfer_manifest_sha256\"] = \"f\"*64\n                    if mode == \"head\": bad[\"head_authorized\"] = True\n",
+          "new": "                for mode in [\"missing_heat\",\"missing_TimePeriod\",\"cooling_count\",\"reference_hash\",\"resource\",\"assessor\",\"head\"]:\n                    bad=copy_json(c)\n                    if mode==\"missing_heat\":bad[\"runtime_sha256s\"].pop(\"lib/combined/libheat_transfer-opt.0.dylib\")\n                    if mode==\"missing_TimePeriod\":bad[\"registry\"].pop(\"presence_record\")\n                    if mode==\"cooling_count\":bad[\"transfer_manifest_sha256\"]=\"f\"*64\n                    if mode==\"reference_hash\":bad[\"input_sha256\"][str((transfer/\"born-begin80.grid\").relative_to(module.ROOT))]=\"f\"*64\n                    if mode==\"resource\":bad[\"resources\"][\"wall_seconds\"]=101\n                    if mode==\"assessor\":bad[\"independent_assessment_source_peer\"]=None\n                    if mode==\"head\":bad[\"head_authorized\"]=True\n"
+        },
+        {
+          "old_line_start": 210,
+          "new_line_start": 228,
+          "old": "                    with self.assertRaises(ValueError): module.checked_contract(\"coupon\", path, module.sha(path))\n",
+          "new": "                    with self.assertRaises((ValueError,KeyError)):module.checked_contract(\"coupon\",path,module.sha(path))\n"
+        }
+      ],
+      "whole_reverse_equals_donor": true
+    }
+  },
+  "same_interpreter_AST_reuse": {
+    "prepare_continuation.py": {
+      "exact_top_level_functions": [
+        "checked_pins",
+        "need",
+        "sha",
+        "table_text"
+      ],
+      "changed_or_removed": [
+        "assemble",
+        "expected_files",
+        "join_rows",
+        "parse_rows",
+        "phase_join",
+        "prepare",
+        "spatial_tokens"
+      ],
+      "new": [
+        "extend_cooling",
+        "read_fixed_grid"
+      ]
+    },
+    "run_mac.py": {
+      "exact_top_level_functions": [
+        "check_pins",
+        "commands",
+        "need",
+        "registry_features",
+        "runtime_unchanged",
+        "same",
+        "sha"
+      ],
+      "changed_or_removed": [
+        "checked_contract",
+        "run"
+      ],
+      "new": []
+    },
+    "test_controls.py": {
+      "exact_top_level_functions": [],
+      "changed_or_removed": [],
+      "new": [
+        "copy_json"
+      ]
+    }
+  },
+  "exact_deck_blocks": [
+    "ICs",
+    "AuxKernels",
+    "MeshModifiers/birth",
+    "Materials through VectorPostprocessors",
+    "Preconditioning/full"
+  ],
+  "new_fixed_guard_groups": 8,
+  "mock_control_groups": 6,
+  "prepared_code_or_guard_or_native_execution": false,
+  "authoring_history": [
+    {
+      "phase": "note transport",
+      "outcome": "JS template quoting refused before any command execution or writes; note corrected separately"
+    },
+    {
+      "phase": "source draft consistency review",
+      "outcome": "Updated copied card transfer/exterior labels and removed obsolete no-cooling acceptance wording before freeze; no prepared code execution."
+    }
+  ],
+  "limits": "No reused guard or numerical acceptance is transferred as completed for the new case."
+}

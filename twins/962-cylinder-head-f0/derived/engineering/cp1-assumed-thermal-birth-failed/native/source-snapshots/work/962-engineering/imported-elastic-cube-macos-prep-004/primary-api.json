@@ -1,0 +1,116 @@
+{
+  "installed_binary_source_build_equivalence_attested": false,
+  "provider_diagnostic_source_attribution": {
+    "no_finalization_or_MPI_PETSc_semantic_bypass": true,
+    "official_TCP_support": "https://ofiwg.github.io/libfabric/v2.6.0/man/fi_tcp.7.html",
+    "official_selector": "https://ofiwg.github.io/libfabric/v2.6.0/man/fabric.7.html",
+    "one_ENV_delta": {
+      "FI_PROVIDER": "tcp"
+    },
+    "positive_core_selector_does_not_prove_utility_provider_exclusion": true,
+    "research_note": {
+      "path": "work/962-engineering/moose-local-mpi-provider-source-note-001/NOTE.md",
+      "sha256": "b74d532beb58619419679da43e86dde57711eb8f8e5675497c121978b757484e"
+    },
+    "research_sources": {
+      "path": "work/962-engineering/moose-local-mpi-provider-source-note-001/sources.json",
+      "sha256": "b9ff07d7feb0a432ef90c4e50ec4019b89df1afec37eff9b2422cbbbc028e721"
+    },
+    "root_completed_one_second_sample_sha256": "de520ceccc61e33b9b2b8253b30ebe473db95d21719908e0226df5f92041b9bc",
+    "sample_observation_not_cause_or_whole_run_trace": true,
+    "tcp_provider_actual_compiled_usable_availability_unknown": true
+  },
+  "review_date": "2026-10-17",
+  "schema": "962-official-command-and-cube-scaling-API-findings/v1",
+  "sources": [
+    {
+      "findings": "Documents --help, --version, --registry, -i input and --n-threads. MOOSE applications can customize flags. The three readiness modes do not supply an input file; the separate cube command does.",
+      "page_lines": [
+        72,
+        106,
+        122,
+        130,
+        152,
+        160
+      ],
+      "role": "official MOOSE command-line documentation",
+      "url": "https://mooseframework.inl.gov/application_usage/command_line_usage.html"
+    },
+    {
+      "MooseApp_C_lines": [
+        [
+          1188,
+          1200
+        ],
+        [
+          1228,
+          1248
+        ]
+      ],
+      "findings": "Version/help and registry branches mark the application ready to exit. Registry source emits five tab-separated columns and separate object/action rows; the caller matches explicit object names rather than arbitrary prose occurrences.",
+      "registry_columns": [
+        "Label",
+        "Type",
+        "Name",
+        "Class",
+        "File"
+      ],
+      "role": "official rendered MooseApp.C primary source",
+      "url": "https://mooseframework.inl.gov/docs/doxygen/moose/classMooseApp.html"
+    },
+    {
+      "documented_page_version": "PETSc3.26.0; not a claim about the future installed library version",
+      "findings": "The command-line -skip_petscrc option suppresses user/current .petscrc and petscrc options files. The child environment supplies no PETSC_OPTIONS. This is not an OS filesystem sandbox or proof that no other application-specific configuration can exist.",
+      "page_lines": [
+        19,
+        22,
+        31
+      ],
+      "role": "official PETSc options documentation",
+      "url": "https://petsc.org/release/manualpages/Sys/PetscOptionsInsert/"
+    }
+  ],
+  "upstream_source_bodies_copied": false,
+  "version_scope": "The documented modes are source-backed; exact installed help/version/registry support remains a future native observation. A guessed release-tag raw MooseApp.C URL returned404, so no exact package-source revision match is claimed.",
+  "native_warning_limit": "The completed cube001 reports -skip_petscrc unused. Options-file suppression is not established.",
+  "scaling_trial_sources": [
+    {
+      "url": "https://mooseframework.inl.gov/source/systems/NonlinearSystemBase.html",
+      "lines": [
+        72,
+        104
+      ],
+      "findings": "Documents unit Dirichlet rows versus large kernel Jacobians as a scaling concern; automatic_scaling=true and grouped displacement variables. Default pure Jacobian scaling, computed once. A rationale for a separate trial, not proof of success."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/idaholab/moose/7c06bdcefd/framework/src/executioners/FEProblemSolve.C",
+      "lines": [
+        113,
+        138,
+        240,
+        301
+      ],
+      "findings": "The revision printed by native001 declares automatic_scaling and scaling_group_variables; transfers Jacobian-based scaling controls to nonlinear systems. The installed binary/source equivalence is not independently attested."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/idaholab/moose/7c06bdcefd/framework/src/kernels/ADKernel.C",
+      "lines": [
+        100,
+        120,
+        159,
+        165
+      ],
+      "findings": "AD residual/Jacobian assembly applies the variable scaling factor, while save_in copies unscaled residual entries. Native reaction outputs must still pass the unchanged independent field/reaction tests."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/idaholab/moose/7c06bdcefd/framework/src/bcs/NodalBC.C",
+      "lines": [
+        84,
+        103,
+        134,
+        138
+      ],
+      "findings": "Nodal BC Jacobian insertion explicitly uses scaling factor1 and default unit diagonal. The unchanged assessor still requires24 identity rows."
+    }
+  ]
+}

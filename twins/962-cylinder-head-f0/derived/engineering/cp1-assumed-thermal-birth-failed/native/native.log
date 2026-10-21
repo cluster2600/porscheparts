@@ -1,0 +1,598 @@
+
+
+*** Info ***
+Merging inputs thermal-birth.i, time-level.i
+
+
+*** Info ***
+work/962-engineering/cp1-assumed-thermal-birth-001/time-level.i:2.3:  Parameter 'Executioner/dt' overrides the same parameter in work/962-engineering/cp1-assumed-thermal-birth-001/thermal-birth.i:209
+
+
+[33m
+*** Deprecation Warning ***
+work/962-engineering/cp1-assumed-thermal-birth-001/thermal-birth.i:223.5:
+Outputs/console/output_postprocessors: The parameter 'output_postprocessors' is deprecated.
+'execute_postprocessors_on' has replaced this parameter
+
+[39m
+Framework Information:
+MOOSE Version:           git commit 7c06bdcefd on 2026-09-13
+LibMesh Version:         
+PETSc Version:           3.25.4
+SLEPc Version:           3.25.1
+Current Time:            Sat Oct 17 22:41:24 2026
+Executable Timestamp:    Sat Oct 17 18:50:48 2026
+
+Input File(s):
+  work/962-engineering/cp1-assumed-thermal-birth-001/thermal-birth.i
+  work/962-engineering/cp1-assumed-thermal-birth-001/time-level.i
+
+Command Line Argument(s):
+  -skip_petscrc
+  --n-threads=1
+
+Checkpoint:
+  Wall Time Interval:      Every 3600 s
+  Checkpoint:              Outputs/checkpoint
+  # Checkpoints Kept:      2
+  Execute On:              TIMESTEP_END 
+
+Parallelism:
+  Num Processors:          1
+  Num Threads:             1
+
+Mesh: 
+  Parallel Type:           replicated
+  Mesh Dimension:          3
+  Spatial Dimension:       3
+  Nodes:                   425
+  Elems:                   256
+  Num Subdomains:          2
+
+Nonlinear System:
+  Num DOFs:                450
+  Num Local DOFs:          450
+  Variables:               "inactive_placeholder" "temperature" 
+  Finite Element Types:    "LAGRANGE" "LAGRANGE" 
+  Approximation Orders:    "FIRST" "FIRST" 
+
+Auxiliary System:
+  Num DOFs:                384
+  Num Local DOFs:          384
+  Variables:               { "k_seen" "cp_seen" "q_seen" } 
+  Finite Element Types:    "MONOMIAL" 
+  Approximation Orders:    "CONSTANT" 
+
+Execution Information:
+  Executioner:             Transient
+  TimeStepper:             ConstantDT
+  TimeIntegrator(s):       ImplicitEuler
+  Solver Mode:             NEWTON 
+  PETSc Preconditioner:    lu 
+  MOOSE Preconditioner:    SMP 
+
+
+Time Step 0, time = 0
+
+Postprocessor Values:
++----------------+----------------+
+| time           | source_power   |
++----------------+----------------+
+|   0.000000e+00 |   2.975378e+01 |
++----------------+----------------+
+
+
+Time Step 1, time = 0.0025, dt = 0.0025
+ 0 Nonlinear |R| = [32m3.167411e+00[39m
+      0 Linear |R| = [32m3.167411e+00[39m
+      1 Linear |R| = [32m8.695134e-16[39m
+ 1 Nonlinear |R| = [32m4.708193e-07[39m
+      0 Linear |R| = [32m4.708193e-07[39m
+      1 Linear |R| = [32m1.213012e-22[39m
+  Nonlinear solve did not converge due to DIVERGED_LINE_SEARCH iterations 1
+[31m Solve Did NOT Converge![39m
+
+Aborting as solve did not converge
+
+[36m
+*** Info ***
+birth: Restoring element subdomain changes.[39m
+
+Time Step 1, time = 0.00125, dt = 0.00125
+ 0 Nonlinear |R| = [32m3.166836e+00[39m
+      0 Linear |R| = [32m3.166836e+00[39m
+      1 Linear |R| = [32m6.813964e-16[39m
+ 1 Nonlinear |R| = [32m9.872697e-07[39m
+      0 Linear |R| = [32m9.872697e-07[39m
+      1 Linear |R| = [32m2.921089e-22[39m
+  Nonlinear solve did not converge due to DIVERGED_LINE_SEARCH iterations 1
+[31m Solve Did NOT Converge![39m
+
+Aborting as solve did not converge
+
+[36m
+*** Info ***
+birth: Restoring element subdomain changes.[39m
+
+Time Step 1, time = 0.000625, dt = 0.000625
+ 0 Nonlinear |R| = [32m3.166533e+00[39m
+      0 Linear |R| = [32m3.166533e+00[39m
+      1 Linear |R| = [32m7.740907e-16[39m
+ 1 Nonlinear |R| = [32m2.102232e-06[39m
+      0 Linear |R| = [32m2.102232e-06[39m
+      1 Linear |R| = [32m6.953274e-22[39m
+  Nonlinear solve did not converge due to DIVERGED_LINE_SEARCH iterations 1
+[31m Solve Did NOT Converge![39m
+
+Aborting as solve did not converge
+
+[36m
+*** Info ***
+birth: Restoring element subdomain changes.[39m
+
+Time Step 1, time = 0.0003125, dt = 0.0003125
+ 0 Nonlinear |R| = [32m3.166378e+00[39m
+      0 Linear |R| = [32m3.166378e+00[39m
+      1 Linear |R| = [32m6.168487e-16[39m
+ 1 Nonlinear |R| = [32m4.338728e-06[39m
+      0 Linear |R| = [32m4.338728e-06[39m
+      1 Linear |R| = [32m1.075414e-21[39m
+  Nonlinear solve did not converge due to DIVERGED_LINE_SEARCH iterations 1
+[31m Solve Did NOT Converge![39m
+
+Aborting as solve did not converge
+
+[36m
+*** Info ***
+birth: Restoring element subdomain changes.[39m
+
+Time Step 1, time = 0.00015625, dt = 0.00015625
+ 0 Nonlinear |R| = [32m3.166300e+00[39m
+      0 Linear |R| = [32m3.166300e+00[39m
+      1 Linear |R| = [32m6.567301e-16[39m
+ 1 Nonlinear |R| = [32m1.142341e-05[39m
+      0 Linear |R| = [32m1.142341e-05[39m
+      1 Linear |R| = [32m2.575602e-21[39m
+  Nonlinear solve did not converge due to DIVERGED_LINE_SEARCH iterations 1
+[31m Solve Did NOT Converge![39m
+
+Aborting as solve did not converge
+
+[36m
+*** Info ***
+birth: Restoring element subdomain changes.[39m
+
+Time Step 1, time = 7.8125e-05, dt = 7.8125e-05
+ 0 Nonlinear |R| = [32m3.166260e+00[39m
+      0 Linear |R| = [32m3.166260e+00[39m
+      1 Linear |R| = [32m5.600217e-16[39m
+ 1 Nonlinear |R| = [32m1.789371e-05[39m
+      0 Linear |R| = [32m1.789371e-05[39m
+      1 Linear |R| = [32m4.206809e-21[39m
+  Nonlinear solve did not converge due to DIVERGED_LINE_SEARCH iterations 1
+[31m Solve Did NOT Converge![39m
+
+Aborting as solve did not converge
+
+[36m
+*** Info ***
+birth: Restoring element subdomain changes.[39m
+
+Time Step 1, time = 3.90625e-05, dt = 3.90625e-05
+ 0 Nonlinear |R| = [32m3.166240e+00[39m
+      0 Linear |R| = [32m3.166240e+00[39m
+      1 Linear |R| = [32m6.497219e-16[39m
+ 1 Nonlinear |R| = [32m3.742400e-05[39m
+      0 Linear |R| = [32m3.742400e-05[39m
+      1 Linear |R| = [32m9.449480e-21[39m
+  Nonlinear solve did not converge due to DIVERGED_LINE_SEARCH iterations 1
+[31m Solve Did NOT Converge![39m
+
+Aborting as solve did not converge
+
+[36m
+*** Info ***
+birth: Restoring element subdomain changes.[39m
+
+Time Step 1, time = 1.95313e-05, dt = 1.95313e-05
+ 0 Nonlinear |R| = [32m3.166230e+00[39m
+      0 Linear |R| = [32m3.166230e+00[39m
+      1 Linear |R| = [32m6.378781e-16[39m
+ 1 Nonlinear |R| = [32m5.782298e-05[39m
+      0 Linear |R| = [32m5.782298e-05[39m
+      1 Linear |R| = [32m2.080903e-20[39m
+  Nonlinear solve did not converge due to DIVERGED_LINE_SEARCH iterations 1
+[31m Solve Did NOT Converge![39m
+
+Aborting as solve did not converge
+
+[36m
+*** Info ***
+birth: Restoring element subdomain changes.[39m
+
+Time Step 1, time = 9.76563e-06, dt = 9.76563e-06
+ 0 Nonlinear |R| = [32m3.166225e+00[39m
+      0 Linear |R| = [32m3.166225e+00[39m
+      1 Linear |R| = [32m6.836694e-16[39m
+ 1 Nonlinear |R| = [32m1.174737e-04[39m
+      0 Linear |R| = [32m1.174737e-04[39m
+      1 Linear |R| = [32m3.908004e-20[39m
+  Nonlinear solve did not converge due to DIVERGED_LINE_SEARCH iterations 1
+[31m Solve Did NOT Converge![39m
+
+Aborting as solve did not converge
+
+[36m
+*** Info ***
+birth: Restoring element subdomain changes.[39m
+
+Time Step 1, time = 4.88281e-06, dt = 4.88281e-06
+ 0 Nonlinear |R| = [32m3.166223e+00[39m
+      0 Linear |R| = [32m3.166223e+00[39m
+      1 Linear |R| = [32m8.423778e-16[39m
+ 1 Nonlinear |R| = [32m2.212341e-04[39m
+      0 Linear |R| = [32m2.212341e-04[39m
+      1 Linear |R| = [32m5.877836e-20[39m
+  Nonlinear solve did not converge due to DIVERGED_LINE_SEARCH iterations 1
+[31m Solve Did NOT Converge![39m
+
+Aborting as solve did not converge
+
+[36m
+*** Info ***
+birth: Restoring element subdomain changes.[39m
+
+Time Step 1, time = 2.44141e-06, dt = 2.44141e-06
+ 0 Nonlinear |R| = [32m3.166221e+00[39m
+      0 Linear |R| = [32m3.166221e+00[39m
+      1 Linear |R| = [32m7.205160e-16[39m
+ 1 Nonlinear |R| = [32m4.175415e-04[39m
+      0 Linear |R| = [32m4.175415e-04[39m
+      1 Linear |R| = [32m1.040180e-19[39m
+  Nonlinear solve did not converge due to DIVERGED_LINE_SEARCH iterations 1
+[31m Solve Did NOT Converge![39m
+
+Aborting as solve did not converge
+
+[36m
+*** Info ***
+birth: Restoring element subdomain changes.[39m
+
+Time Step 1, time = 1.2207e-06, dt = 1.2207e-06
+ 0 Nonlinear |R| = [32m3.166221e+00[39m
+      0 Linear |R| = [32m3.166221e+00[39m
+      1 Linear |R| = [32m7.519541e-16[39m
+ 1 Nonlinear |R| = [32m1.222637e-03[39m
+      0 Linear |R| = [32m1.222637e-03[39m
+      1 Linear |R| = [32m3.345766e-19[39m
+  Nonlinear solve did not converge due to DIVERGED_LINE_SEARCH iterations 1
+[31m Solve Did NOT Converge![39m
+
+Aborting as solve did not converge
+
+[36m
+*** Info ***
+birth: Restoring element subdomain changes.[39m
+
+Time Step 1, time = 6.10352e-07, dt = 6.10352e-07
+ 0 Nonlinear |R| = [32m3.166221e+00[39m
+      0 Linear |R| = [32m3.166221e+00[39m
+      1 Linear |R| = [32m6.658445e-16[39m
+ 1 Nonlinear |R| = [32m2.436787e-03[39m
+      0 Linear |R| = [32m2.436787e-03[39m
+      1 Linear |R| = [32m5.569047e-19[39m
+  Nonlinear solve did not converge due to DIVERGED_LINE_SEARCH iterations 1
+[31m Solve Did NOT Converge![39m
+
+Aborting as solve did not converge
+
+[36m
+*** Info ***
+birth: Restoring element subdomain changes.[39m
+
+Time Step 1, time = 3.05176e-07, dt = 3.05176e-07
+ 0 Nonlinear |R| = [32m3.166220e+00[39m
+      0 Linear |R| = [32m3.166220e+00[39m
+      1 Linear |R| = [32m6.200224e-16[39m
+ 1 Nonlinear |R| = [32m4.328833e-03[39m
+      0 Linear |R| = [32m4.328833e-03[39m
+      1 Linear |R| = [32m1.075668e-18[39m
+  Nonlinear solve did not converge due to DIVERGED_LINE_SEARCH iterations 1
+[31m Solve Did NOT Converge![39m
+
+Aborting as solve did not converge
+
+[36m
+*** Info ***
+birth: Restoring element subdomain changes.[39m
+
+Time Step 1, time = 1.52588e-07, dt = 1.52588e-07
+ 0 Nonlinear |R| = [32m3.166220e+00[39m
+      0 Linear |R| = [32m3.166220e+00[39m
+      1 Linear |R| = [32m6.590034e-16[39m
+ 1 Nonlinear |R| = [32m6.551191e-03[39m
+      0 Linear |R| = [32m6.551191e-03[39m
+      1 Linear |R| = [32m1.833889e-18[39m
+  Nonlinear solve did not converge due to DIVERGED_LINE_SEARCH iterations 1
+[31m Solve Did NOT Converge![39m
+
+Aborting as solve did not converge
+
+[36m
+*** Info ***
+birth: Restoring element subdomain changes.[39m
+
+Time Step 1, time = 7.62939e-08, dt = 7.62939e-08
+ 0 Nonlinear |R| = [32m3.166220e+00[39m
+      0 Linear |R| = [32m3.166220e+00[39m
+      1 Linear |R| = [32m7.485383e-16[39m
+ 1 Nonlinear |R| = [32m1.476569e-02[39m
+      0 Linear |R| = [32m1.476569e-02[39m
+      1 Linear |R| = [32m3.074363e-18[39m
+  Nonlinear solve did not converge due to DIVERGED_LINE_SEARCH iterations 1
+[31m Solve Did NOT Converge![39m
+
+Aborting as solve did not converge
+
+[36m
+*** Info ***
+birth: Restoring element subdomain changes.[39m
+
+Time Step 1, time = 3.8147e-08, dt = 3.8147e-08
+ 0 Nonlinear |R| = [32m3.166220e+00[39m
+      0 Linear |R| = [32m3.166220e+00[39m
+      1 Linear |R| = [32m6.903921e-16[39m
+ 1 Nonlinear |R| = [32m4.344969e-02[39m
+      0 Linear |R| = [32m4.344969e-02[39m
+      1 Linear |R| = [32m8.711436e-18[39m
+  Nonlinear solve did not converge due to DIVERGED_LINE_SEARCH iterations 1
+[31m Solve Did NOT Converge![39m
+
+Aborting as solve did not converge
+
+[36m
+*** Info ***
+birth: Restoring element subdomain changes.[39m
+
+Time Step 1, time = 1.90735e-08, dt = 1.90735e-08
+ 0 Nonlinear |R| = [32m3.166220e+00[39m
+      0 Linear |R| = [32m3.166220e+00[39m
+      1 Linear |R| = [32m6.873284e-16[39m
+ 1 Nonlinear |R| = [32m4.509592e-02[39m
+      0 Linear |R| = [32m4.509592e-02[39m
+      1 Linear |R| = [32m1.176063e-17[39m
+  Nonlinear solve did not converge due to DIVERGED_LINE_SEARCH iterations 1
+[31m Solve Did NOT Converge![39m
+
+Aborting as solve did not converge
+
+[36m
+*** Info ***
+birth: Restoring element subdomain changes.[39m
+
+Time Step 1, time = 9.53674e-09, dt = 9.53674e-09
+ 0 Nonlinear |R| = [32m3.166220e+00[39m
+      0 Linear |R| = [32m3.166220e+00[39m
+      1 Linear |R| = [32m6.495433e-16[39m
+ 1 Nonlinear |R| = [32m1.527516e-01[39m
+      0 Linear |R| = [32m1.527516e-01[39m
+      1 Linear |R| = [32m3.423651e-17[39m
+  Nonlinear solve did not converge due to DIVERGED_LINE_SEARCH iterations 1
+[31m Solve Did NOT Converge![39m
+
+Aborting as solve did not converge
+
+[36m
+*** Info ***
+birth: Restoring element subdomain changes.[39m
+
+Time Step 1, time = 4.76837e-09, dt = 4.76837e-09
+ 0 Nonlinear |R| = [32m3.166220e+00[39m
+      0 Linear |R| = [32m3.166220e+00[39m
+      1 Linear |R| = [32m5.605503e-16[39m
+ 1 Nonlinear |R| = [32m2.609031e-01[39m
+      0 Linear |R| = [32m2.609031e-01[39m
+      1 Linear |R| = [32m5.651908e-17[39m
+  Nonlinear solve did not converge due to DIVERGED_LINE_SEARCH iterations 1
+[31m Solve Did NOT Converge![39m
+
+Aborting as solve did not converge
+
+[36m
+*** Info ***
+birth: Restoring element subdomain changes.[39m
+
+Time Step 1, time = 2.38419e-09, dt = 2.38419e-09
+ 0 Nonlinear |R| = [32m3.166220e+00[39m
+      0 Linear |R| = [32m3.166220e+00[39m
+      1 Linear |R| = [32m6.172850e-16[39m
+ 1 Nonlinear |R| = [32m5.427963e-01[39m
+      0 Linear |R| = [32m5.427963e-01[39m
+      1 Linear |R| = [32m1.208043e-16[39m
+  Nonlinear solve did not converge due to DIVERGED_LINE_SEARCH iterations 1
+[31m Solve Did NOT Converge![39m
+
+Aborting as solve did not converge
+
+[36m
+*** Info ***
+birth: Restoring element subdomain changes.[39m
+
+Time Step 1, time = 1.19209e-09, dt = 1.19209e-09
+ 0 Nonlinear |R| = [32m3.166220e+00[39m
+      0 Linear |R| = [32m3.166220e+00[39m
+      1 Linear |R| = [32m5.581246e-16[39m
+ 1 Nonlinear |R| = [32m1.051603e+00[39m
+      0 Linear |R| = [32m1.051603e+00[39m
+      1 Linear |R| = [32m2.688475e-16[39m
+  Nonlinear solve did not converge due to DIVERGED_LINE_SEARCH iterations 1
+[31m Solve Did NOT Converge![39m
+
+Aborting as solve did not converge
+
+[36m
+*** Info ***
+birth: Restoring element subdomain changes.[39m
+
+Time Step 1, time = 5.96046e-10, dt = 5.96046e-10
+ 0 Nonlinear |R| = [32m3.166220e+00[39m
+      0 Linear |R| = [32m3.166220e+00[39m
+      1 Linear |R| = [32m5.905442e-16[39m
+ 1 Nonlinear |R| = [32m2.599699e+00[39m
+      0 Linear |R| = [32m2.599699e+00[39m
+      1 Linear |R| = [32m5.881871e-16[39m
+  Nonlinear solve did not converge due to DIVERGED_LINE_SEARCH iterations 1
+[31m Solve Did NOT Converge![39m
+
+Aborting as solve did not converge
+
+[36m
+*** Info ***
+birth: Restoring element subdomain changes.[39m
+
+Time Step 1, time = 2.98023e-10, dt = 2.98023e-10
+ 0 Nonlinear |R| = [32m3.166220e+00[39m
+      0 Linear |R| = [32m3.166220e+00[39m
+      1 Linear |R| = [32m6.976000e-16[39m
+  Nonlinear solve did not converge due to DIVERGED_LINE_SEARCH iterations 0
+[31m Solve Did NOT Converge![39m
+
+Aborting as solve did not converge
+
+[36m
+*** Info ***
+birth: Restoring element subdomain changes.[39m
+
+Time Step 1, time = 1.49012e-10, dt = 1.49012e-10
+ 0 Nonlinear |R| = [32m3.166220e+00[39m
+      0 Linear |R| = [32m3.166220e+00[39m
+      1 Linear |R| = [32m7.191950e-16[39m
+  Nonlinear solve did not converge due to DIVERGED_LINE_SEARCH iterations 0
+[31m Solve Did NOT Converge![39m
+
+Aborting as solve did not converge
+
+[36m
+*** Info ***
+birth: Restoring element subdomain changes.[39m
+
+Time Step 1, time = 7.45058e-11, dt = 7.45058e-11
+ 0 Nonlinear |R| = [32m3.166220e+00[39m
+      0 Linear |R| = [32m3.166220e+00[39m
+      1 Linear |R| = [32m6.275189e-16[39m
+  Nonlinear solve did not converge due to DIVERGED_LINE_SEARCH iterations 0
+[31m Solve Did NOT Converge![39m
+
+Aborting as solve did not converge
+
+[36m
+*** Info ***
+birth: Restoring element subdomain changes.[39m
+
+Time Step 1, time = 3.72529e-11, dt = 3.72529e-11
+ 0 Nonlinear |R| = [32m3.166220e+00[39m
+      0 Linear |R| = [32m3.166220e+00[39m
+      1 Linear |R| = [32m6.303867e-16[39m
+  Nonlinear solve did not converge due to DIVERGED_LINE_SEARCH iterations 0
+[31m Solve Did NOT Converge![39m
+
+Aborting as solve did not converge
+
+[36m
+*** Info ***
+birth: Restoring element subdomain changes.[39m
+
+Time Step 1, time = 1.86265e-11, dt = 1.86265e-11
+ 0 Nonlinear |R| = [32m3.166220e+00[39m
+      0 Linear |R| = [32m3.166220e+00[39m
+      1 Linear |R| = [32m6.300088e-16[39m
+  Nonlinear solve did not converge due to DIVERGED_LINE_SEARCH iterations 0
+[31m Solve Did NOT Converge![39m
+
+Aborting as solve did not converge
+
+[36m
+*** Info ***
+birth: Restoring element subdomain changes.[39m
+
+Time Step 1, time = 9.31323e-12, dt = 9.31323e-12
+ 0 Nonlinear |R| = [32m3.166220e+00[39m
+      0 Linear |R| = [32m3.166220e+00[39m
+      1 Linear |R| = [32m5.697715e-16[39m
+  Nonlinear solve did not converge due to DIVERGED_LINE_SEARCH iterations 0
+[31m Solve Did NOT Converge![39m
+
+Aborting as solve did not converge
+
+[36m
+*** Info ***
+birth: Restoring element subdomain changes.[39m
+
+Time Step 1, time = 4.65661e-12, dt = 4.65661e-12
+ 0 Nonlinear |R| = [32m3.166220e+00[39m
+      0 Linear |R| = [32m3.166220e+00[39m
+      1 Linear |R| = [32m6.207730e-16[39m
+  Nonlinear solve did not converge due to DIVERGED_LINE_SEARCH iterations 0
+[31m Solve Did NOT Converge![39m
+
+Aborting as solve did not converge
+
+[36m
+*** Info ***
+birth: Restoring element subdomain changes.[39m
+
+Time Step 1, time = 2.32831e-12, dt = 2.32831e-12
+ 0 Nonlinear |R| = [32m3.166220e+00[39m
+      0 Linear |R| = [32m3.166220e+00[39m
+      1 Linear |R| = [32m7.062301e-16[39m
+  Nonlinear solve did not converge due to DIVERGED_LINE_SEARCH iterations 0
+[31m Solve Did NOT Converge![39m
+
+Aborting as solve did not converge
+
+[36m
+*** Info ***
+birth: Restoring element subdomain changes.[39m
+
+Time Step 1, time = 1.16415e-12, dt = 1.16415e-12
+ 0 Nonlinear |R| = [32m3.166220e+00[39m
+      0 Linear |R| = [32m3.166220e+00[39m
+      1 Linear |R| = [32m7.311186e-16[39m
+  Nonlinear solve did not converge due to DIVERGED_LINE_SEARCH iterations 0
+[31m Solve Did NOT Converge![39m
+
+Aborting as solve did not converge
+
+[36m
+*** Info ***
+birth: Restoring element subdomain changes.[39m
+
+Time Step 1, time = 1e-12, dt = 1e-12
+ 0 Nonlinear |R| = [32m3.166220e+00[39m
+      0 Linear |R| = [32m3.166220e+00[39m
+      1 Linear |R| = [32m7.333239e-16[39m
+  Nonlinear solve did not converge due to DIVERGED_LINE_SEARCH iterations 0
+[31m Solve Did NOT Converge![39m
+
+Aborting as solve did not converge
+
+[31m
+*** ERROR ***
+The following occurred in the TimeStepper 'ConstantDT' of type ConstantDT.
+
+Solve failed and timestep already at or below dtmin, cannot continue![39m
+
+Stack frames: 12
+0: 0   libmesh_opt.0.dylib                 0x000000011069a4cc libMesh::print_trace(std::__1::basic_ostream<char, std::__1::char_traits<char>>&) + 984
+1: 1   libmoose-opt.0.dylib                0x00000001043ea890 moose::internal::mooseErrorRaw(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char>>, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char>> const&, hit::Node const*, bool) + 272
+2: 2   libmoose-opt.0.dylib                0x00000001044cf0c0 MooseBase::callMooseError(MooseApp*, InputParameters const&, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char>>, bool, hit::Node const*, bool) + 324
+3: 3   libmoose-opt.0.dylib                0x00000001044829a0 MooseBase::callMooseError(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char>>, bool, hit::Node const*, bool) const + 132
+4: 4   libmoose-opt.0.dylib                0x0000000103093cc0 void MooseBase::mooseError<char const (&) [70]>(char const (&) [70]) const + 72
+5: 5   libmoose-opt.0.dylib                0x0000000103f78aa0 AB2PredictorCorrector::estimateTimeError(libMesh::NumericVector<double>&) + 0
+6: 6   libmoose-opt.0.dylib                0x0000000103f82fe4 TimeStepper::computeStep() + 160
+7: 7   libmoose-opt.0.dylib                0x0000000103253944 TransientBase::execute() + 280
+8: 8   libmoose-opt.0.dylib                0x00000001043e44a4 MooseApp::executeExecutioner() + 348
+9: 9   libmoose-opt.0.dylib                0x00000001043ded74 MooseApp::run() + 1980
+10: 10  combined-opt                        0x00000001001b7cd4 int Moose::main<CombinedTestApp>(int, char**) + 160
+11: 11  dyld                                0x0000000187fbfef0 start + 6688
+Abort(1) on node 0 (rank 0 in comm 0): application called MPI_Abort(MPI_COMM_WORLD, 1) - process 0

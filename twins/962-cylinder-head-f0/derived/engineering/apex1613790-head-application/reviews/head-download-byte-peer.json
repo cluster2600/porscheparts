@@ -1,0 +1,67 @@
+{
+  "schema": "962-current-head-gzip-independent-byte-review/v1",
+  "decision": "CLEAR_LOSSLESS_REVIEW_DOWNLOAD_BYTES_ONLY",
+  "blockers": [],
+  "original": {
+    "path": "work/962-engineering/apex1613790-head-application-001/head-volume.msh",
+    "sha256": "8b16732d63cc69e48af113f6b618cc6378aaf121dbe1c63920dd6dd5eab8d07a",
+    "bytes": 235786462
+  },
+  "lossless_gzip": {
+    "path": "work/962-engineering/apex1613790-head-application-review-delivery-001/head-volume.msh.gz",
+    "sha256": "0fbb26a76d9a78edc9b71a5bbe075b355a25fe752476b9d242e91ff294308775",
+    "bytes": 78888772
+  },
+  "delivery_receipt": {
+    "path": "work/962-engineering/apex1613790-head-application-review-delivery-001/receipt.json",
+    "sha256": "1ed25a3890b60ddcd53017f3cc5c90bcf7c71d7e02872f440cfd6d83623765e4",
+    "bytes": 998
+  },
+  "accepted_partial_head": {
+    "path": "work/962-engineering/apex1613790-head-application-root-execution-001/result-peer-acceptance.json",
+    "sha256": "e4bdec1ed7926231190f21a0b9986f47363bbbcf41daec2948e884459fef051c",
+    "bytes": 2794
+  },
+  "worker_report_metadata": {
+    "path": "work/962-engineering/apex1613790-head-application-001/readback-report.json",
+    "sha256": "bb1266ede7b8fd41f282a04c2363ba0eb684a94b6272956895bb7a30a09ffad0",
+    "bytes": 31393
+  },
+  "independent_byte_checks": {
+    "complete_decompressed_bytes": 235786462,
+    "decompressed_sha256": "8b16732d63cc69e48af113f6b618cc6378aaf121dbe1c63920dd6dd5eab8d07a",
+    "every_decompressed_byte_equals_current_original": true,
+    "original_gzip_receipt_acceptance_report_before_after_exact": true,
+    "stream_chunk_bytes": 1048576,
+    "stream_chunks": 225,
+    "gzip_mtime": 0,
+    "gzip_original_filename_field_absent": true,
+    "gzip_header_hex": "1f8b08000000000002ff",
+    "gzip_CRC32_and_ISIZE_trailer_checked": true,
+    "CRC32_hex": "61499aa3",
+    "elapsed_seconds": 0.841976833
+  },
+  "saved_quality_context_only": {
+    "positive_cells_below_SICN_point1": 127,
+    "minimum_native_SICN": 0.039074265058645995,
+    "whole_head_mesh_admitted": false,
+    "stronger_Mesh2_criterion_passed": false,
+    "historical_stronger_Mesh2_failure_active_surface_faces": 414,
+    "historical_criterion_rechecked": false,
+    "upstream_census_launch_deviation_sha256": "d60fff297c6c45dc92e117262e36ffde36e2169d53fcd32ce2b79fabde5eebc3",
+    "declared_controller_command_conformant": false,
+    "quality_recalculated_by_this_review": false
+  },
+  "scope": "Lossless generated research-mesh download for review only. Byte equality does not admit the globally rejected mesh, decode its format, prove geometry/connectivity or establish head physics/material/process/manufacturing qualification.",
+  "role_disclosure": "Reviewer previously authored the held1613790 head source and coarse mechanics/metadata lineage; delivery compression/receipt were authored by root. Independent scope here is complete gzip decompression and byte/hash equality plus saved acceptance associations.",
+  "no_mesh_format_decoder_geometry_native_science_or_prepared_source_functions_used": true,
+  "no_extra_checker_source_controller_or_output_mesh_created": true,
+  "receipt_privacy_marker_claim_not_extended_to_secret_or_content_certification": true,
+  "compression_level9_remains_receipt_declared_not_recompressed": true,
+  "head_execution_authorized": false,
+  "engineering_accepted": false,
+  "physics_qualified": false,
+  "material_qualified": false,
+  "process_calibrated": false,
+  "manufacturing_authorized": false
+}

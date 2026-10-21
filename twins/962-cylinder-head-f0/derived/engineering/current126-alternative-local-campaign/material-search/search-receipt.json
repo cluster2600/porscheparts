@@ -1,0 +1,180 @@
+{
+  "schema": "962-cp1-bounded-primary-source-search-receipt/v1",
+  "decision": "NO_NEW_PROCESS_MATCHED_TEMPERATURE_LAW_FATIGUE_OR_CREEP_DATA_LOCATED",
+  "access_date": "2026-10-18",
+  "search_completed_UTC": "2026-10-18 07:29:46 UTC",
+  "scope": "Continuation of the existing material-production gap audit only; no duplicated Nikon MDS5144 extraction or new material card. Primary sources evaluated for usable new matched laws; the six-query cap was reached and search stopped.",
+  "local_inputs_read_first": [
+    {
+      "root_role": "engineering",
+      "path": "work/962-engineering/material-production-gap-audit-001/NOTE.md",
+      "sha256": "f96d1db3fa3910280b28419ea805b25349759d802162ab85e1dad7e4f422dfc7",
+      "bytes": 8231
+    },
+    {
+      "root_role": "engineering",
+      "path": "work/962-engineering/material-production-gap-audit-001/bindings.json",
+      "sha256": "545ae82ba7bf6deacd10a96cfee2e2645ed64b5a0a5a13ccc0c7022bda80badc",
+      "bytes": 4388
+    },
+    {
+      "root_role": "engineering",
+      "path": "twins/962-cylinder-head-f0/engineering/materials.json",
+      "sha256": "ac960911794d23e12e05e07aa74d4db85a7d97d62faa2c0bf2df3e8c98550d1d",
+      "bytes": 13324
+    },
+    {
+      "root_role": "publisher_read_only",
+      "path": "twins/962-cylinder-head-f0/derived/engineering/material-mechanical-source-refresh/research/research.json",
+      "sha256": "4e23f72d6b7f018f6e82e52255d64f9725ae08f077779fdc58e62759aac84e29",
+      "bytes": 15242
+    }
+  ],
+  "target_states_kept_separate": [
+    "Nikon CP1_NXG600_PRIM_MBP3_V1 named state already retained by prior audit",
+    "EOS AlCP1_060_M291 named state retained in prior source refresh",
+    "Original seven-recipe register including unspecified-machine CP1 vertical400C4h row; no retrospective process identification"
+  ],
+  "searches": [
+    {
+      "ordinal": 1,
+      "query": "site:nikon-slm-solutions.com \"CP1\" fatigue creep temperature -mds5144",
+      "date": "2026-10-18",
+      "engine": "web search",
+      "search_result_is_not_full_source_or_universal_absence_proof": true
+    },
+    {
+      "ordinal": 2,
+      "query": "\"Aheadd CP1\" fatigue temperature",
+      "date": "2026-10-18",
+      "engine": "web search",
+      "search_result_is_not_full_source_or_universal_absence_proof": true
+    },
+    {
+      "ordinal": 3,
+      "query": "\"Al-1Fe-1Zr\" fatigue",
+      "date": "2026-10-18",
+      "engine": "web search",
+      "search_result_is_not_full_source_or_universal_absence_proof": true
+    },
+    {
+      "ordinal": 4,
+      "query": "\"CP1_NXG600_PRIM_MBP3_V1\" fatigue creep",
+      "date": "2026-10-18",
+      "engine": "web search",
+      "search_result_is_not_full_source_or_universal_absence_proof": true
+    },
+    {
+      "ordinal": 5,
+      "query": "\"Aheadd CP1\" fatigue creep Kitagawa temperature Constellium paper",
+      "date": "2026-10-18",
+      "engine": "web search",
+      "search_result_is_not_full_source_or_universal_absence_proof": true
+    },
+    {
+      "ordinal": 6,
+      "query": "\"Aheadd CP1\" \"heat capacity\" OR \"Poisson\" OR \"Young\" temperature",
+      "date": "2026-10-18",
+      "engine": "web search",
+      "search_result_is_not_full_source_or_universal_absence_proof": true
+    }
+  ],
+  "query_count": 6,
+  "further_queries_performed": false,
+  "primary_source_observations": [
+    {
+      "url": "https://publications.rwth-aachen.de/record/1012561/files/1012561.pdf",
+      "doi": "https://doi.org/10.1016/j.matchar.2025.115109",
+      "title": "Nanoscale3D characterization of an Al-1Fe-1Zr alloy for additive manufacturing",
+      "source_kind": "Original author paper in institutional repository",
+      "publication_date": "2025-05-02",
+      "read_scope": "Parsed original PDF text, methods2.1 and scoped text searches; no visual table certification, no local PDF body stored/distributed.",
+      "new_to_this_bounded_followup": true,
+      "process_compatibility": "Custom Paul Scherrer Institute MicroXAS miniaturized LPBF device, not the named Nikon NXG or EOS recipe.",
+      "why_no_gap_closed": "The inspected original work characterizes internal microstructure/element distributions. The methods do not establish the target process state, and no target-state temperature-dependent property, fatigue-life or creep law was located. Literature property mentions are not new matched measurements by this paper.",
+      "matched_property_values_extracted": null
+    },
+    {
+      "url": "https://addupsolutions.com/fr/company/news-press/addup-ajoute-lalliage-daluminium-aheadd-cp1-de-constellium-a-son-catalogue-de-materiaux/",
+      "title": "AddUp adds Constellium AheaddCP1 to its materials portfolio",
+      "source_kind": "Machine manufacturer original page",
+      "publication_date": "2023-08-07",
+      "read_scope": "Producer HTML, paragraphs on FormUp350 material state, fatigue and thermal stability.",
+      "process_compatibility": "Separate FormUp350 route; not matched to Nikon NXG or EOS AlCP1_060_M291.",
+      "why_no_gap_closed": "Qualitative fatigue comparison and a thermal-stability assertion do not provide test temperature/load ratio/cycle data, scatter, hot stress-strain or material-law arrays. The page does not identify a target-state numeric law.",
+      "matched_property_values_extracted": null
+    },
+    {
+      "url": "https://www.sciencedirect.com/science/article/abs/pii/S1359645423005293",
+      "doi": "https://doi.org/10.1016/j.actamat.2023.119199",
+      "title": "Direct ageing of LPBF Al-1Fe-1Zr for high conductivity and mechanical performance",
+      "source_kind": "Original paper publisher landing page",
+      "publication_date": "2023-10-01",
+      "read_scope": "Search abstract metadata; direct page open returned an internal access error.",
+      "already_identified_in_prior_audit": true,
+      "why_no_gap_closed": "No new complete target-state hot-law or fatigue/creep dataset could be inspected. Abstract conductivity units and alloy similarity cannot establish matching thermal data or process identity.",
+      "matched_property_values_extracted": null
+    },
+    {
+      "url": "https://www.constellium.com/products/aluminium-powders/",
+      "source_kind": "Alloy manufacturer original page",
+      "read_scope": "Search-returned producer page text only.",
+      "already_identified_in_prior_register": true,
+      "why_no_gap_closed": "Product-level CP1/HT1 identity and qualitative capabilities are not target-state numerical laws.",
+      "matched_property_values_extracted": null
+    }
+  ],
+  "known_duplicate_leads_not_reextracted": [
+    {
+      "url": "https://nikon-slm-solutions.com/wp-content/uploads/2024/11/mds5144.pdf",
+      "reason": "Already independently reviewed; not opened or restated in this continuation."
+    },
+    {
+      "url": "https://metal-ams.com/app/uploads/2025/05/Web_abstractbook_MAMS24.pdf",
+      "reason": "Prior audit already identifies the CP1 Kitagawa abstract; search rediscovery supplies no new numeric dataset."
+    },
+    {
+      "url": "https://assets.foleon.com/eu-central-1/de-uploads-7e3kk3/41170/product_sheet_aheadd_cp1_nov_2021docx.e81a7d073ebf.pdf",
+      "reason": "Already retained producer table; RT scalar/state is not a new matched temperature law."
+    }
+  ],
+  "rejected_search_hits": [
+    {
+      "url": "https://www.sciencedirect.com/science/article/pii/S0142112326000861",
+      "reason": "Original fatigue/modulus-temperature paper studies Al2618+TiB2, not CP1; no alloy/state transfer."
+    },
+    {
+      "url": "https://papers.ssrn.com/sol3/Delivery.cfm/f4bb8156-a45b-4547-847c-145bbb76e417-MECA.pdf?abstractid=7412259&mirid=1",
+      "reason": "Laser-DED CP1, not the target LPBF machine/process; prior audit already excludes this route."
+    },
+    {
+      "url": "https://www.rapidtech-3d.de/media/raw/32d3d1c264058e9e16d39d67d01edcfefe7450b323b9923f2ccef9240db39c26/Korda%C3%9F%2C%20EDAG.pdf",
+      "reason": "Search snippet marked confidential. Not opened, copied, quoted or used as property evidence."
+    }
+  ],
+  "matched_laws_still_null": {
+    "E_vs_temperature": null,
+    "nu_vs_temperature": null,
+    "k_vs_temperature": null,
+    "cp_vs_temperature": null,
+    "density_vs_temperature": null,
+    "instantaneous_alpha_vs_temperature_with_reference_convention": null,
+    "hot_yield_and_stress_strain": null,
+    "fatigue_SN_and_TMF": null,
+    "creep_and_relaxation": null
+  },
+  "shortest_supported_next_data_need": "Obtain an existing numeric dataset for one named target recipe with test temperatures, directions, ageing/exposure, specimen surface/defects, methods and scatter; fatigue additionally needs R/frequency/dwell/environment and life distributions. No supplier was contacted.",
+  "absence_is_universal_unavailability_claim": false,
+  "web_parse_not_visual_PDF_verification": true,
+  "third_party_document_bodies_downloaded_or_distributed": false,
+  "short_verbatim_quotations": [],
+  "material_or_process_register_changed": false,
+  "solver_card_or_source_changed": false,
+  "runnable_material_card_created": false,
+  "engineering_or_native_or_scientific_execution": false,
+  "publication_or_Git_action": false,
+  "qualified_material_selected": false,
+  "material_qualified": false,
+  "manufacturing_authorized": false,
+  "role_disclosure": "existing_study_audit has prior material-assumption/source-review and synthetic coupon lineage; this bounded public-source continuation supplies no measurement, calibration or qualification."
+}

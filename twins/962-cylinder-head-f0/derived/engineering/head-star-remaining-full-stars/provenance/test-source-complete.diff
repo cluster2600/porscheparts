@@ -1,0 +1,89 @@
+--- preserved-full-stars001/test_full_star_guards.py
++++ remaining-partial-head/test_guards.py
+@@ -7,14 +7,14 @@
+ 
+ ROOT=Path(__file__).resolve().parents[3]
+ SOURCE=Path(__file__).with_name('reader.py')
+-SOURCE_SHA='d978448ac685730c8ab1cf652dec23a00227eb5369869b89d6068017e678c5d5'
+-NAMES={'movable_from_poor_rows','incident_positions'}
++SOURCE_SHA='afcad55f5e716b90ff4bac39cee4268101a21c4bbd9078f950b9bf372948a05d'
++NAMES={'movable_from_poor_rows','incident_positions','partial_after_proof'}
+ 
+ def functions():
+  raw=SOURCE.read_bytes()
+  if hashlib.sha256(raw).hexdigest()!=SOURCE_SHA:raise ValueError('Exact selected full-star reader required')
+  selected=[n for n in ast.parse(raw).body if isinstance(n,ast.FunctionDef) and n.name in NAMES]
+- if {n.name for n in selected}!=NAMES:raise ValueError('Both actual pure selection functions required')
++ if {n.name for n in selected}!=NAMES:raise ValueError('All three actual pure functions required')
+  scope={}
+  exec(compile(ast.Module(body=selected,type_ignores=[]),'<actual-full-star-selection>','exec'),scope)
+  return scope
+@@ -42,7 +42,7 @@
+   self.assertEqual(f['incident_positions']([],[]),[])
+   self.assertEqual(f['movable_from_poor_rows']([[1,2,3,4]],[5],4),[])
+   self.assertEqual(f['incident_positions']([[1,2,3,4]],[]),[])
+-  # The real main separately refuses any current poor cell not covered by a seed star.
++  # The real main retains all current poor rows and explicitly reports any unseedable rows.
+ 
+  def test_invalid_boundary_classification_and_connectivity_refuse(self):
+   f=functions();m=f['movable_from_poor_rows'];s=f['incident_positions']
+@@ -59,25 +59,41 @@
+ 
+  def test_exact_reuse_reverse_and_read_only_call_scope(self):
+   raw=SOURCE.read_bytes();self.assertEqual(hashlib.sha256(raw).hexdigest(),SOURCE_SHA)
+-  delta=json.loads(SOURCE.with_name('source-delta.json').read_bytes())
+-  old=(ROOT/delta['preserved_reader']).read_bytes()
+-  restored=raw.decode()
++  delta=json.loads(SOURCE.with_name('source-delta.json').read_bytes());restored=raw.decode()
+   for row in reversed(delta['exact_replacements']):
+-   self.assertEqual(restored.count(row['new']),1);restored=restored.replace(row['new'],row['old'])
+-  self.assertEqual(restored.encode(),old)
+-  newtree=ast.parse(raw);new={n.name:ast.dump(n,include_attributes=False) for n in newtree.body if isinstance(n,ast.FunctionDef)}
+-  oldmap={n.name:ast.dump(n,include_attributes=False) for n in ast.parse(old).body if isinstance(n,ast.FunctionDef)}
+-  for name,body in oldmap.items():self.assertEqual(new[name],body)
+-  captured=(ROOT/delta['classification_helper']['path']).read_bytes()
+-  self.assertEqual(hashlib.sha256(captured).hexdigest(),delta['classification_helper']['source_sha256'])
+-  helper=next(n for n in ast.parse(captured).body if isinstance(n,ast.FunctionDef) and n.name=='classifications')
+-  self.assertEqual(new['classifications'],ast.dump(helper,include_attributes=False))
++   self.assertEqual(restored.count(row['new']),row['count']);restored=restored.replace(row['new'],row['old'])
++  original=(ROOT/delta['preserved_reader']).read_bytes();self.assertEqual(restored.encode(),original)
++  tree=ast.parse(raw);new={n.name:ast.dump(n,include_attributes=False) for n in tree.body if isinstance(n,ast.FunctionDef)}
++  old={n.name:ast.dump(n,include_attributes=False) for n in ast.parse(original).body if isinstance(n,ast.FunctionDef)}
++  for name in delta['unchanged_function_ASTs']:self.assertEqual(new[name],old[name])
+   self.assertEqual(hashlib.sha256(SOURCE.with_name('run_readback.py').read_bytes()).hexdigest(),'4fb37080e1f3847b8b1d14d5df467799d8e9f7bf81b0a09170e5850857de3943')
+-  calls=[n.func.attr for n in ast.walk(newtree) if isinstance(n,ast.Call) and isinstance(n.func,ast.Attribute)]
+-  for forbidden in ['generate','optimize','createGeometry','rebuildElementCache']:
+-   self.assertNotIn(forbidden,calls)
+-  native_calls=[ast.unparse(n.func) for n in ast.walk(newtree) if isinstance(n,ast.Call) and isinstance(n.func,ast.Attribute)]
+-  self.assertNotIn('gmsh.write',native_calls)
+-  self.assertIn('complete_seed_star_census',raw.decode())
++  calls=[ast.unparse(n.func) for n in ast.walk(tree) if isinstance(n,ast.Call)]
++  for forbidden in ['gmsh.write','gmsh.model.mesh.generate','gmsh.model.mesh.optimize','gmsh.model.mesh.createGeometry','gmsh.model.mesh.rebuildElementCache']:self.assertNotIn(forbidden,calls)
++  self.assertNotIn('expected_positive_poor_bins',raw.decode());self.assertNotIn('completed_saved_diagnosis',raw.decode())
++  self.assertIn('complete_tagged_cells',raw.decode());self.assertIn('unseedable_positive_poor_tetrahedron_tags',raw.decode())
++
++ def test_partial_saved_proof_join_and_refusals(self):
++  from copy import deepcopy
++  select=functions()['partial_after_proof']
++  proof={'tetrahedra':4,'total_mesh_nodes':7,'source_boundary_identity':{'boundary':3},'array_sha256s':{k:'a'*64 for k in ['sorted_node_tags_sha256','sorted_coordinates_sha256','sorted_tetra_tags_sha256','tagged_tetra_connectivity_sha256']},'quality':{k:{'count':4,'nonpositive_count':0} for k in ['minimum_jacobian','native_volume_mm3','minimum_SICN','independent_signed_volume_mm3']}}
++  proof['quality']['minimum_SICN'].update(minimum=.05,below_point1_count=2)
++  contract={'MSH_sha256':'m','MSH_bytes':10,'partial_coordinate_candidate_sha256':'local','original_parent_MSH_sha256':'parent','partial_report_sha256':'report','partial_contract_sha256':'actual','partial_reader_sha256':'reader','partial_runner_sha256':'runner','partial_native_log_sha256':'log','partial_output_inventory':{'frozen':'identity'},'expected_saved_counts':{'tetrahedra':4,'total_mesh_nodes':7},'expected_positive_poor_total':2,'diagnostic_maximum_nonpositive_cells':0,'expected_source_boundary_identity':{'boundary':3}}
++  worker={'schema':'962-one-head-star-partial-replacement/v1','status':'completed_partial_head_replacement_whole_head_quality_gate_applied','stage':'completed_partial_repair_audits','procedural_checks_passed':True,'partial_replacement_completed':True,'saved_mesh_identity_exact':True,'bound_inputs_unchanged':True,'after':deepcopy(proof),'saved_reopen':deepcopy(proof),'mesh_sha256':'m','mesh_bytes':10,'candidate_sha256':'local','original_parent_MSH_sha256':'parent','actual_whole_head_positive_poor_count':2,'actual_whole_head_SICN_gate_passed':False}
++  receipt={'returncode':2,'stop_reason':None,'readback_report_sha256':'report','contract_sha256':'actual','reader_sha256':'reader','runner_sha256':'runner','native_log_sha256':'log'}
++  closed={'returncode':2,'stop_reason':None,'wait_reaped':True,'all72_inputs_unchanged':True,'all3_selected_native_runtime_unchanged':True,'selected_NumPy_unchanged':True,'actual_unchanged':True,'actual_sha256':'actual','outputs':{'frozen':'identity'}}
++  self.assertEqual(select(worker,receipt,closed,contract),proof)
++  def reject(w=worker,r=receipt,z=closed,c=contract):
++   with self.assertRaises((ValueError,KeyError)):select(w,r,z,c)
++  for field,value in [('candidate_sha256','boundaryBIN'),('mesh_sha256','other'),('procedural_checks_passed',False),('actual_whole_head_positive_poor_count',3)]:
++   w=deepcopy(worker);w[field]=value;reject(w=w)
++  w=deepcopy(worker);w['saved_reopen']['quality']['minimum_SICN']['minimum']=.06;reject(w=w)
++  w=deepcopy(worker)
++  for field in ['after','saved_reopen']:w[field]['quality']['minimum_SICN']['count']=3
++  reject(w=w)
++  for field,value in [('reader_sha256','other'),('readback_report_sha256','other'),('stop_reason','deadline')]:
++   r=deepcopy(receipt);r[field]=value;reject(r=r)
++  for field,value in [('wait_reaped',False),('selected_NumPy_unchanged',False),('outputs',{})]:
++   z=deepcopy(closed);z[field]=value;reject(z=z)
++
+ 
+ if __name__=='__main__':unittest.main()

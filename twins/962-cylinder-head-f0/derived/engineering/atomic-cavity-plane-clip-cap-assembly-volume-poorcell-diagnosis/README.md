@@ -1,0 +1,28 @@
+# Rejected HXT volume: positive-poor-cell diagnosis
+
+The completed saved-file diagnosis partitions all **285,573 positive cells with SICN below 0.1**. Of these, **247,088 have four vertices on the admitted candidate boundary**, while **38,485 have at least one interior vertex**. This is a diagnostic classification of the same rejected mesh, with root and independent stopped-result review; it does not accept the volume or establish a repair. [Exact report](reports/readback-report.json), [result peer](reviews/result-peer.json).
+
+| Vertices on candidate boundary | Positive poor cells |
+|---:|---:|
+| 0 | 1,158 |
+| 1 | 272 |
+| 2 | 25,810 |
+| 3 | 11,245 |
+| 4 | 247,088 |
+| Total | 285,573 |
+
+Boundary means the current admitted source's node tags **1 through 871,731**, including its cap Steiner vertices. It is distinct from original-reference ancestry and the earlier surface-repair fixed-vertex mask. The definition is `0 < SICN < 0.1`, over all **2,989,608 tetrahedra**, with the quality threshold unchanged. The measured nonpositive count is zero. All five bins sum to 285,573 and agree with the prior complete saved-file audit; all prior tagged-array hashes, metric counts/extrema, explicit boundary and node/volume bookkeeping values are unchanged. The earlier `fixed_boundary_only_nonpositive_cells=true` is still vacuous for its empty nonpositive list and is not the basis for this positive-cell classification.
+
+With this tetrahedral connectivity and every boundary coordinate fixed, interior-node movement alone cannot alter the 247,088 poor cells whose four vertices are boundary vertices. **This does not prove that boundary coordinates must change:** connectivity changes remain possible and were not assessed here. No geometric mechanism, channel/OEM feature attribution or feasible repair is inferred from the bins.
+
+Exactly one deterministic representative is retained per nonempty class: minimum `(SICN, tetrahedron_tag)` over the complete class, including across query chunks. The five records are bounded diagnostic witnesses, not a statistical sample. They retain source-array index, tag, node tags, four coordinates and metric values. Full census and global representative selection are attributed to the reviewed completed reader. The result peer independently checked their integer/category associations and exact rational four-point determinant signs from those saved coordinates; it did not parse the MSH, recompute SICN or rescan all cells. The all-boundary witness has the complete global minimum SICN **3.784626658982107e-9**.
+
+The one read-only query completed RC0: query 10.42017495795153 s, controller 11.469808832975104 s, root outer 11.91511237504892 s. The closed six-file result and all **104** bound inputs (including the prior 80) were checked. Root and peer also enforced the explicit terminal requirement of 285,573 and agreement with the prior report; the unchanged worker itself checks the five-bin sum against its complete measured positive-poor count. There was no generate, optimize, mesh-write, solve or automatic retry. Tetra-exterior incidence and internal-face orientation remain retained native-worker findings, not new face-sorting proofs. Two software threads, a 120 s acceptance/watchdog budget and sampled 4 GiB RSS stop were retained; the observed 1,705,328,640-byte maximum from 23 samples is not a hard OS quota or certified peak.
+
+Reader `0674131e…` differs from previously executed `ffe066e6…` only in the stopped HXT directory locator; the complete classifier function AST is unchanged. The prior seven actual-function tests are retained by a small source-hash/outcome projection, without copying additional test/oracle bodies or rerunning them. The completed runner `5a93c61e…` is byte-reused; root guard evidence `d382320f…` / `70ad2406…` remains linked by exact safe records. Source, root, child and result reviews are included. Historical HELD null prerequisites, unrun/future-copy flags remain untouched; actual materialization and terminal outcomes are separately bound.
+
+[Previous volume rejection and saved-file audit](../atomic-cavity-plane-clip-cap-assembly-volume/README.md) and [polygon-distance evidence](../atomic-cavity-plane-clip-cap-assembly-distance-cgal/README.md) keep their separate scopes. The same MSH is SHA256 `4a17567e6394bcda8571b0ff07f74471338bc7f3be60b0153a20020f654c6b41`, 205,789,862 bytes, and the admitted candidate BIN remains `9d62eac6e2cd7b6a9ecb4a7ea5b632685820369b5c4ede379acc34238f50d7b4`. No MSH/BIN is included or reread for publication assembly. Reuse the existing [assembled research-model ZIP](https://github.com/cluster2600/porscheparts/releases/download/untagged-3dc4679a17c16edf0fb4/962-bore95-plane0-assembled-unadmitted-review.zip), SHA256 `8ba6fc5dca47f3a51bc6298f481aaa334ac1096608552a96159a1d4688f6a4d5`; no asset is duplicated.
+
+`original-records.json` distinguishes exact copies from explicit projections. The 100/104-pin contract maps preserve every original digest value; three approved runtime path keys become named roles, and the private executable locator is omitted. Projection schemas are not executable contracts. The public seal covers selected included bytes, not every private input/artifact. Run `python3 verify.py` here for hashes, byte counts and complete selected file closure; that standard-library check performs no scientific work.
+
+The volume remains rejected at SICN 0.1. All 414 stronger Mesh_2 failures remain separate. No boundary-change necessity, accepted volume, convergence, thermal resolution, head PDE, OEM/factory accuracy, material/strength, LPBF process or manufacturing qualification is established. No geometry, native query, Git operation or external action was performed to assemble this companion.

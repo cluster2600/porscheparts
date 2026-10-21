@@ -1,0 +1,203 @@
+{
+  "schema": "962-F1-nine-control-source002-admission-prefix-correction/v1",
+  "status": "HELD_UNRUN_SOURCE_ONLY",
+  "predecessor_packet": {
+    "METHOD.md": {
+      "path": "work/962-engineering/head-star-current24-qfnra-five-toy-owner-f1-guards-controls-prep-001/METHOD.md",
+      "sha256": "5a307246b90e03d75e1c84a5854b563580d1ffdf961d3f60048ce5b65eacace8",
+      "bytes": 6577
+    },
+    "index.json": {
+      "path": "work/962-engineering/head-star-current24-qfnra-five-toy-owner-f1-guards-controls-prep-001/index.json",
+      "sha256": "694594ac68379d223763a0aa8b51649cda559dc79bf183468ad890cff5cc314e",
+      "bytes": 3946
+    },
+    "run_guards_once.py": {
+      "path": "work/962-engineering/head-star-current24-qfnra-five-toy-owner-f1-guards-controls-prep-001/run_guards_once.py",
+      "sha256": "e7096b787d5b6ffa18a1dc16a46df6c6ade23e4076ad77f94282a46ab66fca65",
+      "bytes": 27755
+    },
+    "source-reuse.json": {
+      "path": "work/962-engineering/head-star-current24-qfnra-five-toy-owner-f1-guards-controls-prep-001/source-reuse.json",
+      "sha256": "368d8d716053bf8cef91dc8c338f3033af86ecb90d7b4c27d833c10d2cd79343",
+      "bytes": 11927
+    },
+    "source.diff": {
+      "path": "work/962-engineering/head-star-current24-qfnra-five-toy-owner-f1-guards-controls-prep-001/source.diff",
+      "sha256": "db89339cf88f5dabd9ddfb35b9b9a020a772d447366f0f3afc37ae6f5aafa76f",
+      "bytes": 44414
+    },
+    "stopped_exec_wrapper.py": {
+      "path": "work/962-engineering/head-star-current24-qfnra-five-toy-owner-f1-guards-controls-prep-001/stopped_exec_wrapper.py",
+      "sha256": "ab0ebf6bc3110680ce0f03022da2d66452175877a07612b6657ecb66c02afdf4",
+      "bytes": 1536
+    }
+  },
+  "predecessor_peer": {
+    "review.json": {
+      "path": "work/962-engineering/head-star-current24-qfnra-five-toy-owner-f1-guards-controls-source-peer-001/review.json",
+      "sha256": "a9b529b92b2f8e9b6a805e275afcc177d4f58633559ddd0cd2819fc6a1b37f08",
+      "bytes": 4880
+    },
+    "findings.json": {
+      "path": "work/962-engineering/head-star-current24-qfnra-five-toy-owner-f1-guards-controls-source-peer-001/findings.json",
+      "sha256": "3badaae4d4a67d3ae25a3ce41a365ae8e1282959618c9454c092260d7bb06368",
+      "bytes": 4180
+    },
+    "bindings.json": {
+      "path": "work/962-engineering/head-star-current24-qfnra-five-toy-owner-f1-guards-controls-source-peer-001/bindings.json",
+      "sha256": "d059af22c1c9eabf585c142badc9d540b4674fa5b30afb65f222c5f97c8b331b",
+      "bytes": 7047
+    }
+  },
+  "root_pre_issuance_refusal": {
+    "path": "work/962-engineering/head-star-current24-qfnra-five-toy-owner-f1-guards-root-control-review-001/ISSUANCE-REFUSAL-001.json",
+    "sha256": "dc078bdca425d2f993b0aacac2d54902874c241e1b8f7d608f6bb29afe04fe3f",
+    "bytes": 2643
+  },
+  "mandatory_line_clarification": {
+    "path": "work/962-engineering/head-star-current24-qfnra-five-toy-owner-f1-guards-root-control-review-001/LINE-LOCATION-CLARIFICATION-001.json",
+    "sha256": "b820bd72ac592515d5f780647561db669c341278afe126466cdf8b5ecb75acc9",
+    "bytes": 388
+  },
+  "root_fixture_source_review": {
+    "path": "work/962-engineering/head-star-current24-qfnra-five-toy-owner-f1-guards-root-source-review-001/review.json",
+    "sha256": "8efb54f578bc8d08a1eebedc90de083e0c4642207800229ca95eb5877f093954",
+    "bytes": 2038
+  },
+  "runtime_identity_selection": {
+    "path": "work/962-engineering/head-star-current24-qfnra-five-toy-owner-f1-guard-runtime-selection-root-001/runtime-identity.json",
+    "sha256": "ec373001917f5fb80fae1c507186e0505f3ba699abc550ea31585c6c8c144269",
+    "bytes": 1624
+  },
+  "scope": "Minimal source successor authorized by the current root task after source001 pre-issuance refused. No operational admission, D/W, wrapper/controller/fixture invocation occurred.",
+  "exact_source_replacements": [
+    {
+      "label": "fixed preparation namespace only",
+      "old": "X=E/'head-star-current24-qfnra-five-toy-owner-f1-guards-controls-prep-001'",
+      "next": "X=E/'head-star-current24-qfnra-five-toy-owner-f1-guards-controls-prep-002'"
+    },
+    {
+      "label": "stable admission prefix; external digest remains derived",
+      "old": "need(auth['argv']==argv and auth['cwd']==str(D),'Fixed stopped-wrapper invocation required')",
+      "next": "need(auth['argv_prefix']==argv[:-1] and auth['cwd']==str(D),'Fixed stopped-wrapper invocation required')"
+    }
+  ],
+  "source_replacement_count": 2,
+  "whole_forward_inverse_exact": true,
+  "new_sources": {
+    "owner": {
+      "path": "work/962-engineering/head-star-current24-qfnra-five-toy-owner-f1-guards-controls-prep-002/run_guards_once.py",
+      "sha256": "42aec198fb911c43f7658544911e0af23cdc76222ce25e917ceb932c2473088a",
+      "bytes": 27767
+    },
+    "wrapper": {
+      "path": "work/962-engineering/head-star-current24-qfnra-five-toy-owner-f1-guards-controls-prep-002/stopped_exec_wrapper.py",
+      "sha256": "ab0ebf6bc3110680ce0f03022da2d66452175877a07612b6657ecb66c02afdf4",
+      "bytes": 1536
+    },
+    "METHOD": {
+      "path": "work/962-engineering/head-star-current24-qfnra-five-toy-owner-f1-guards-controls-prep-002/METHOD.md",
+      "sha256": "2ec01246d8deedbb084a6a4a152fcb4d30ac60bb5553d64aeeab24fd52e06179",
+      "bytes": 3410
+    }
+  },
+  "unchanged_named_definitions": {
+    "_RetainedPopen": {
+      "sha256": "31cbe573548d65f90c01b8d4efc7fd40902483c89fa710b01c4b9337900032b2",
+      "bytes": 154
+    },
+    "need": {
+      "sha256": "098b7ab9ef05c6267cec7bb1127e289155ed079b6b4e97dcc21dae0b9f8d9fb3",
+      "bytes": 85
+    },
+    "rec": {
+      "sha256": "2495b3fe4e7c97b0b60041f78816b905953e91e59240db327877994de195cc18",
+      "bytes": 252
+    },
+    "record_controller_stop": {
+      "sha256": "9305909782fcb5d8b5c1e9e8681f771ccd248c6a1377259389aec3720cbb7aba",
+      "bytes": 169
+    },
+    "group_exists": {
+      "sha256": "34640570e5eacbb1cdc37b61bf5963cc713013e7394d7b29f52865b626e56c9f",
+      "bytes": 96
+    },
+    "selected": {
+      "sha256": "70e2c3c4ab90fe4507d249cc9b8c224f48e1270301b65cf95c2ed2d3d95b50ac",
+      "bytes": 292
+    },
+    "identities": {
+      "sha256": "bcfd5eb138de93359ca599c7a198a4e3a891d415d6c588c8a3993e51759b5702",
+      "bytes": 578
+    },
+    "event_record": {
+      "sha256": "f04ae616da6285faee940b3123ac7077f8ecb1ae6041ea55e848990c75338d84",
+      "bytes": 151
+    },
+    "gate": {
+      "sha256": "ca7d8702009aebfda504e1f205fa2ca714097d5083be80557c24989198f2a147",
+      "bytes": 134
+    },
+    "inclusive_census": {
+      "sha256": "a5406871d9d21546c581425849d312b5f3b5ecc45d8f2232e3bc62a832591ddc",
+      "bytes": 749
+    },
+    "exit_events": {
+      "sha256": "e70c335e5a650dd3b5cf1a039d184e31ba71c26ba16306c1939c6bfcfac1ff49",
+      "bytes": 332
+    },
+    "reap": {
+      "sha256": "3ef9e2e22f2c9dc2991f3637a9655b46ba4f56f053aad8689d8c6be1b49f11a7",
+      "bytes": 638
+    },
+    "diagnostics": {
+      "sha256": "7d234d8bb5596de36550e4ed3ba8cd66a302d9b7b431bf86cb9fafec1cac8aca",
+      "bytes": 854
+    },
+    "admit": {
+      "sha256": "01d6dd56d9497be85ea6ae84f56c2ebb5265c5d6b2382f44c775e0d84afb550f",
+      "bytes": 4710
+    }
+  },
+  "unchanged_named_definition_count": 14,
+  "imports_AST_exact": true,
+  "wrapper_bytes_exact": true,
+  "main_delta": "Only auth['argv']==argv changes to auth['argv_prefix']==argv[:-1]; the constructed argv's final digest is derived from rec(admission), validated against external sys.argv[1]. No selfdigest belongs in future admission.",
+  "historical_diff_note": "Immutable source001 source.diff has one additional terminal LF outside its computed unified hunks, already disclosed by source001 peer. This successor diff is the exact 1,166-byte two-hunk unified payload without that added presentation LF.",
+  "unchanged_semantics": [
+    "Same admission schema, controls, fixed nine-method fixture/owner source, environment, narrow selected3.12.11-B-I-S metadata and late root/peer roles.",
+    "Same retained anchor/private no-op destructor/default-SIGCHLD requirement, pre-SIGCONT intent, NOTE_EXIT signal cutoff, exact bounded wait, single postreap absence-only check and last-resort refusal.",
+    "Same40/48/56/60 absolute ceilings, TERM8/KILL-reap8,32MiB inclusive first-party/D/outer-stream cap,T1,no retry,null RSS.",
+    "Same complete diagnostics, identities, stream/error/receipt checks and mandatory full-return/rawouter/finalcensus/rootabsence gates."
+  ],
+  "separate_full_owner_gap": {
+    "owner_source_sha256": "f3a27f43c1ea794a552f697d556c9b6a51668d829b86f438debf03a0cd6892e2",
+    "correct_lines": [
+      207,
+      208
+    ],
+    "finding": "Same self-referential admission argv in pinned full five-toy owner remains open; F1 fixture stubs admit.",
+    "target_changed": false,
+    "full_toy_or_solver_authority": false
+  },
+  "source_only_checks": {
+    "named_first_party_bytes_JSON_AST": true,
+    "exact_two_seam_reverse": true,
+    "wrapper_exact": true,
+    "no_target_import_compile_evaluation_execution": true,
+    "no_runtime_provider_alias_body_or_process_API_query": true
+  },
+  "authority": {
+    "actual": false,
+    "operational_admission": false,
+    "execution_or_output_root": false,
+    "fixture_run": false,
+    "Z3_solver": false,
+    "native_or_head_science": false,
+    "physical_manufacturing_acceptance": false,
+    "PUB_Git": false
+  },
+  "future_independent_source_review": null,
+  "future_root_review_and_admission": null
+}

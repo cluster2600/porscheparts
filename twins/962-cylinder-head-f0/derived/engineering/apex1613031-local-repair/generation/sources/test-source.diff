@@ -1,0 +1,33 @@
+--- work/962-engineering/fixed-shell-generation-apex1613790-prep-001/test_shell_guards.py
++++ work/962-engineering/fixed-shell-generation-apex1613031-prep-001/test_shell_guards.py
+@@ -8,8 +8,8 @@
+ ROOT=HERE.parents[2]
+ SOURCE=HERE/'reader.py'
+ TREE=ast.parse(SOURCE.read_text())
+-SHELL=ROOT/'work/962-engineering/direct-sicn-apex1613790-cavity-study-001/local-shell-input-001.json'
+-VOLUME=Fraction(47257467722750481679110908714287440688631841,713623846352979940529142984724747568191373312)
++SHELL=ROOT/'work/962-engineering/direct-sicn-apex1613031-cavity-study-001/local-shell-input-001.json'
++VOLUME=Fraction(104308130846515511471660941377843352992235,1045347431181122959759486794030391945592832)
+ 
+ def function(name,**values):
+  node=next(n for n in TREE.body if isinstance(n,ast.FunctionDef) and n.name==name)
+@@ -24,7 +24,7 @@
+  def test_exact_mapping_bits_original_classes_and_volume(self):
+   validate=function('validate_shell');rows=function('shell_rows',validate_shell=validate)
+   points,faces,result=rows(shell())
+-  self.assertEqual((len(points),len(faces),result['edges']),(16,28,42))
++  self.assertEqual((len(points),len(faces),result['edges']),(9,14,21))
+   self.assertEqual(result['exact_volume_mm3'],dict(numerator=str(VOLUME.numerator),denominator=str(VOLUME.denominator)))
+ 
+  def test_missing_and_reversed_faces_refuse_before_mesher(self):
+@@ -42,8 +42,8 @@
+   rows=function('shell_rows',validate_shell=function('validate_shell'))
+   changes=[lambda d:d['vertex_rows'][0]['binary64_hex'].__setitem__(0,'0x0.0p+0'),
+            lambda d:d['global_to_local_node_tags'].__setitem__(str(d['local_to_global_node_tags'][0]),2),
+-           lambda d:d['vertex_rows'][13].__setitem__('original_source_boundary_node',True),
+-           lambda d:d['vertex_rows'][13].__setitem__('original_source_classification','below_dim3'),
++           lambda d:d['vertex_rows'][5].__setitem__('original_source_boundary_node',True),
++           lambda d:d['vertex_rows'][5].__setitem__('original_source_classification','below_dim3'),
+            lambda d:d['original_source_classifications']['other_interior_local_node_tags'].pop()]
+   for change in changes:
+    data=shell();change(data)

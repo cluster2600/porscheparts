@@ -1,0 +1,172 @@
+{
+  "schema": "962-owner005-root-postchecks/v1",
+  "status": "SAVED_PROTOCOL_CASES_PASS_FULL_RESOURCE_CLOSURE_NOT_ATTESTED",
+  "raw_tool_returncode": 0,
+  "tool_call_wall_seconds": 0.232378542,
+  "owner_elapsed_before_receipt": 0.350632666843012,
+  "time_metrics_are_distinct_scopes": true,
+  "full_tool_return_observed": true,
+  "tool_return_under60s": true,
+  "full_startup_through_final_census_bound_observed": false,
+  "limitation": "The root finalized the inclusive census in a later audit call. No single clock interval spanning startup, return and final census was retained. The full external60s closure criterion therefore remains unverified; no automatic retry.",
+  "canonical_pins": 132,
+  "control_map_entries_with_selected_runtime_metadata": 133,
+  "all_before_after_equal": true,
+  "all132_root_posthashes_equal": true,
+  "selected_Python_metadata_equal": true,
+  "aliases_equal": true,
+  "target_pycs_absent_before_after": true,
+  "concrete_controls_post": {
+    "concrete_peer": {
+      "path": "work/962-engineering/head-star-current24-qfnra-five-toy-owner005-concrete-control-peer-001/review.json",
+      "sha256": "875d88bb13acb6c8ffe8d7b6b74dd77cfe353557d5c6eb2a8c8ee28aaccdec1b",
+      "bytes": 6841
+    },
+    "concrete_bindings": {
+      "path": "work/962-engineering/head-star-current24-qfnra-five-toy-owner005-concrete-control-peer-001/bindings.json",
+      "sha256": "3f026666a2f0d6dec4907b2f2355b9c1e02d9c82e9952b58e2103966eb536978",
+      "bytes": 9472
+    },
+    "candidate": {
+      "path": "work/962-engineering/head-star-current24-qfnra-five-toy-owner005-control-root-001/admission-candidate.json",
+      "sha256": "a7da6434dbf21d584dc5e3670258ae7129dec1ec925324491f249c86d92fbd4f",
+      "bytes": 4180
+    }
+  },
+  "five_cases": [
+    {
+      "ID": "rational",
+      "status": "COMPLETE_TOY_ONLY",
+      "observed": "sat",
+      "check_count": 1,
+      "raw_returncode": 0,
+      "reaped": true,
+      "cleanup": [],
+      "word_u64": 4609434218613702656,
+      "word_hex": "0x3ff8000000000000",
+      "expected_word_matches": true,
+      "initial_final_full_model_equal": true,
+      "initial_final_projection_equal": true,
+      "predicates_initial": [
+        true
+      ],
+      "predicates_final": [
+        true
+      ],
+      "stderr_bytes": 0
+    },
+    {
+      "ID": "algebraic",
+      "status": "COMPLETE_TOY_ONLY",
+      "observed": "sat",
+      "check_count": 1,
+      "raw_returncode": 0,
+      "reaped": true,
+      "cleanup": [],
+      "word_u64": 4609047870845172685,
+      "word_hex": "0x3ff6a09e667f3bcd",
+      "expected_word_matches": true,
+      "initial_final_full_model_equal": true,
+      "initial_final_projection_equal": true,
+      "predicates_initial": [
+        true,
+        true
+      ],
+      "predicates_final": [
+        true,
+        true
+      ],
+      "stderr_bytes": 0
+    },
+    {
+      "ID": "maxfinite",
+      "status": "COMPLETE_TOY_ONLY",
+      "observed": "sat",
+      "check_count": 1,
+      "raw_returncode": 0,
+      "reaped": true,
+      "cleanup": [],
+      "word_u64": 9218868437227405311,
+      "word_hex": "0x7fefffffffffffff",
+      "expected_word_matches": true,
+      "initial_final_full_model_equal": true,
+      "initial_final_projection_equal": true,
+      "predicates_initial": [
+        true
+      ],
+      "predicates_final": [
+        true
+      ],
+      "stderr_bytes": 0
+    },
+    {
+      "ID": "negative_half_minsubnormal",
+      "status": "COMPLETE_TOY_ONLY",
+      "observed": "sat",
+      "check_count": 1,
+      "raw_returncode": 0,
+      "reaped": true,
+      "cleanup": [],
+      "word_u64": 9223372036854775808,
+      "word_hex": "0x8000000000000000",
+      "expected_word_matches": true,
+      "initial_final_full_model_equal": true,
+      "initial_final_projection_equal": true,
+      "predicates_initial": [
+        true
+      ],
+      "predicates_final": [
+        true
+      ],
+      "stderr_bytes": 0
+    },
+    {
+      "ID": "unsat",
+      "status": "COMPLETE_TOY_ONLY",
+      "observed": "unsat",
+      "check_count": 1,
+      "raw_returncode": 0,
+      "reaped": true,
+      "cleanup": [],
+      "word_u64": null,
+      "word_hex": null,
+      "expected_word_matches": true,
+      "initial_final_full_model_equal": true,
+      "initial_final_projection_equal": true,
+      "predicates_initial": null,
+      "predicates_final": null,
+      "stderr_bytes": 0
+    }
+  ],
+  "owner_status": "COMPLETE_FIVE_TOY_OWNER_CANDIDATE_ONLY",
+  "owner_complete_candidate": true,
+  "reaped": true,
+  "group_absent": true,
+  "events": [
+    {
+      "ident": 10964,
+      "filter": -5,
+      "flags": 32821,
+      "fflags": 2147483648,
+      "data": 0,
+      "udata": 0
+    }
+  ],
+  "ownership_certificate": {
+    "PID": 10964,
+    "PGID": 10964,
+    "SID": 10964,
+    "direct_child_unreaped": true,
+    "wait_status": 4479
+  },
+  "cleanup_errors": [],
+  "stop_actions": [],
+  "valid_live_RSS_samples": 3,
+  "observed_max_group_RSS_bytes": 27623424,
+  "RSS_not_true_peak": true,
+  "threads_observed": null,
+  "historical_EPERM_resolved": false,
+  "head_input_accepted": false,
+  "physical_manufacturing_acceptance": false,
+  "metadata_audit_correction": "The first postcheck attempt refused only an absolute-v-relative path representation comparison for the concrete peer, with matching body hash/size; no solver retry or files written. This audit compares hash/size and canonical path separately."
+}

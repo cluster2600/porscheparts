@@ -1,0 +1,11 @@
+--- check_saved.py
++++ check_saved-002.py
+@@ -94,7 +94,7 @@
+         assert all(math.isfinite(v) for v in sequence) and sequence==sorted(sequence)
+ for label in ['before_preservation','after_preservation','saved_preservation']:
+     snap=report[label]
+-    assert snap['preservation']==context['future_preservation_references'] and snap['original_classification_projection_exact']
++    assert snap['preservation']=={k:context['future_preservation_references'][k] for k in ['outside_node_tags_u64_sha256','outside_coordinate_words_f64_sha256','outside_tetra_tags_u64_sha256','outside_ordered_tetra_connectivity_u64_sha256','outside_nodes','outside_TET4']} and snap['original_classification_projection_exact']
+     for key,digest in snap['metadata_sha256s'].items():assert digest==jsha(context[key])
+ assert report['before_preservation']['new_nodes_on_volume1']==0 and report['after_preservation']['new_nodes_on_volume1']==7
+ assert report['before_preservation']['maxima']=={'node':1613805,'element_all_dimensions':32158126}

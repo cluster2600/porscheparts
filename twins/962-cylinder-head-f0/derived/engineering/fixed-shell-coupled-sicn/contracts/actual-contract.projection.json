@@ -1,0 +1,199 @@
+{
+  "schema": "962-fixed-shell-coupled-sicn/v1",
+  "status": "ACTUAL_SINGLE_COUPLED_ANALYTIC_CALL",
+  "scope": "specific_current_cavity_analytic_SLSQP_only",
+  "proposal_execution_authorized": true,
+  "root_and_peer_review_complete": true,
+  "selected_runtime_review_complete": true,
+  "native_mesh_application_authorized": false,
+  "qualification": {
+    "native_application_authorized": false,
+    "head_execution_authorized": false,
+    "stitching_authorized": false,
+    "engineering_accepted": false,
+    "physics_qualified": false,
+    "manufacturing_authorized": false
+  },
+  "output": "work/962-engineering/fixed-shell-coupled-sicn-001",
+  "planned_output_name": "fixed-shell-coupled-sicn-001",
+  "actual_child_sha256": null,
+  "native_python": "runtime-role:geometry_check_venv/bin/python",
+  "reader_sha256": "b63adff506061ac9212d17501ae4062e970b1edd943145a1e911d1914e18b1a6",
+  "runner_sha256": "8fc4918b6a0a6c07439eb57c77ea922e778207b59ed0e9f367a8f02c34946206",
+  "runtime": {
+    "python_executable_sha256": "1699bf8aa705a8bb71613bef5cdd7d7c8c9d9a188a841f41679aa9b5830b8f60"
+  },
+  "numpy_init": "runtime-role:geometry_check_venv/lib/python3.12/site-packages/numpy/__init__.py",
+  "scipy_directory": "runtime-role:geometry_check_venv/lib/python3.12/site-packages/scipy",
+  "runtime_files": {
+    "runtime-role:cpython_3_12_11/bin/python3.12": "1699bf8aa705a8bb71613bef5cdd7d7c8c9d9a188a841f41679aa9b5830b8f60",
+    "runtime-role:geometry_check_venv/pyvenv.cfg": "3c8db224b99000e0d1e07a7135ba83bc60337c191f248b89430b17cc0f4154d5",
+    "runtime-role:geometry_check_venv/lib/python3.12/site-packages/numpy/__init__.py": "6ae17b070c0f70a8e3cad89a510a256942e5a1f37ea5feb120cec167ed2a6236",
+    "runtime-role:geometry_check_venv/lib/python3.12/site-packages/numpy/version.py": "a7fcfa08bc3d730a77a7d31ec027bf53a9695812c353a526dd077dc1451b7d7a",
+    "runtime-role:geometry_check_venv/lib/python3.12/site-packages/numpy/_core/_multiarray_umath.cpython-312-darwin.so": "cbf15cd30e2672b47a1cfc9aa82449d4eb0597a0d853e8697953568c1dc1468b",
+    "runtime-role:geometry_check_venv/lib/python3.12/site-packages/scipy/optimize/_slsqplib.cpython-312-darwin.so": "87a06d3b2baa758c805edf7aed9a25e7dbc67c0ce78a5441b7bf2d4607484a01",
+    "runtime-role:geometry_check_venv/lib/python3.12/site-packages/scipy/_lib/_ccallback_c.cpython-312-darwin.so": "c2a75e8b8e99ddc1ded49d67eba1b22b2fc2459da4fea343bbed4dab043943cc",
+    "runtime-role:geometry_check_venv/lib/python3.12/site-packages/numpy-2.2.6.dist-info/METADATA": "91d66d0d60ad467c679555c0e12ac739bb395940dc22bc5a39d45780aba129ad",
+    "runtime-role:geometry_check_venv/lib/python3.12/site-packages/numpy-2.2.6.dist-info/WHEEL": "c9205a833e45c2523ee63f7e23ee099ae0a8f4ce52f5bd09a07208776c4a19eb",
+    "runtime-role:geometry_check_venv/lib/python3.12/site-packages/numpy-2.2.6.dist-info/RECORD": "0c706e9ab694d81fc86909956ba643e556a44510abf72a3e42015096618f92c9",
+    "runtime-role:geometry_check_venv/lib/python3.12/site-packages/scipy-1.17.1.dist-info/METADATA": "b1cd2c784f6e003c6c71af4c5ee57f6370ee467d17b656250d9fd38cf579d7d0",
+    "runtime-role:geometry_check_venv/lib/python3.12/site-packages/scipy-1.17.1.dist-info/WHEEL": "26726246f91715a154e07973ca8a82029674ee3cba86914a77f2e47c1a566739",
+    "runtime-role:geometry_check_venv/lib/python3.12/site-packages/scipy-1.17.1.dist-info/RECORD": "40854b0a6f26fddac2fff00eac8f44df588809b8904e2ddf8ae6df6b351c3c46",
+    "runtime-role:geometry_check_venv/lib/python3.12/site-packages/scipy/__init__.py": "335bc6e0a9909dc7534f9569a3685a92dc8001cb8c63a6da4c239849ff02d4d0",
+    "runtime-role:geometry_check_venv/lib/python3.12/site-packages/scipy/__config__.py": "e6816202bf28fa5b88330c38bf0144960fcbb4951abbee25bb0f630d62a2fbe2",
+    "runtime-role:geometry_check_venv/lib/python3.12/site-packages/scipy/version.py": "cc9497153bb7ec9181b86b367e5ebd1bff8dc02a60092d549052f19c9d70bf06",
+    "runtime-role:geometry_check_venv/lib/python3.12/site-packages/scipy/_distributor_init.py": "cc94e137716fa1fd3d876e3cd38a4d0cf77688dfa5087577c8f959ca549e7e04",
+    "runtime-role:geometry_check_venv/lib/python3.12/site-packages/scipy/_lib/__init__.py": "097ac7fd806967e1c89871eba9722142dfef7afa783f93570a5a7b86714c54b3",
+    "runtime-role:geometry_check_venv/lib/python3.12/site-packages/scipy/_lib/_ccallback.py": "37d08eee4258ce4e885904792c77ff600d7e3aae3c477f142212452252764327",
+    "runtime-role:geometry_check_venv/lib/python3.12/site-packages/scipy/_lib/_util.py": "a9fefbc04d605f88abb7b905a72a2e510ad42223fdcfe049a4ea12c9455b89a2",
+    "runtime-role:geometry_check_venv/lib/python3.12/site-packages/scipy/_lib/_array_api.py": "e7b6d08f877456b9d26af808267263f41f2870261951a19d9ff133301d15e1e2",
+    "runtime-role:geometry_check_venv/lib/python3.12/site-packages/scipy/optimize/__init__.py": "ed9cde3ea145d57d77efb7ffb3776955d7a0e7523763031a9ee87c3e5e0cd661",
+    "runtime-role:geometry_check_venv/lib/python3.12/site-packages/scipy/optimize/_minimize.py": "5afd3ecbeaba6606c27f5f9f298782c0dae80dd0e3e01d98d4249922ede6b7ea",
+    "runtime-role:geometry_check_venv/lib/python3.12/site-packages/scipy/optimize/_slsqp_py.py": "c8362e8d36440f3de97b58562aadb86661271ea7f66160505f51a601aff71609",
+    "runtime-role:geometry_check_venv/lib/python3.12/site-packages/scipy/optimize/_optimize.py": "041a1807ccaa68115c93b07bed497d25c294a7d730ce5a7cb1f21fc5a185fa61",
+    "runtime-role:geometry_check_venv/lib/python3.12/site-packages/scipy/optimize/_numdiff.py": "ab92e82d0f93f2c7a35eba0a2800b70cf8015d97ccf094abf556206211beb00b",
+    "runtime-role:geometry_check_venv/lib/python3.12/site-packages/scipy/optimize/_constraints.py": "8e5d37213a974e7e78cb4cf8966073fa14e523157e797d6382c978c59e338fd2",
+    "runtime-role:geometry_check_venv/lib/python3.12/site-packages/scipy/optimize/_differentiable_functions.py": "a2bd7ec5b4c1781e02052fbb23220cbfdd5094fae28cb230fc653c03198546e0",
+    "runtime-role:geometry_check_venv/lib/python3.12/site-packages/scipy/.dylibs/libgcc_s.1.1.dylib": "6781ce1f79dc10e211ba532b766b0a844265767d3343f029a08112802450a730",
+    "runtime-role:geometry_check_venv/lib/python3.12/site-packages/scipy/.dylibs/libgfortran.5.dylib": "869a6555a787fd5590e2c440ccb4d82d963586168659fbf3354e1570e3f10bcc",
+    "runtime-role:geometry_check_venv/lib/python3.12/site-packages/scipy/.dylibs/libquadmath.0.dylib": "676d86e51a3950f75b41945a758bdb02be1c11fef4f4a45b1994d483228e2504",
+    "runtime-role:geometry_check_venv/lib/python3.12/site-packages/scipy/optimize/_group_columns.cpython-312-darwin.so": "b9b8b001c4995194612ef37f0f6d87a531f473e1202155844bd4a63f7944b809"
+  },
+  "runtime_scope": "32 inherited selected Python3.12.11/NumPy2.2.6/SciPy1.17.1 identities, no Gmsh. Current byte verification deferred to root; supplementary loaded-file inventories are not complete package/OS/ABI closure.",
+  "input_hashes": {
+    "work/962-engineering/fixed-shell-coupled-sicn-prep-001/coupled.py": "b63adff506061ac9212d17501ae4062e970b1edd943145a1e911d1914e18b1a6",
+    "work/962-engineering/fixed-shell-coupled-sicn-prep-001/run_readback.py": "8fc4918b6a0a6c07439eb57c77ea922e778207b59ed0e9f367a8f02c34946206",
+    "work/962-engineering/fixed-shell-coupled-sicn-prep-001/selfcheck.py": "77c07008aeec16f8b474baffadcbbdde3e66e7d7b16d14ee2ca4c246a5538158",
+    "work/962-engineering/fixed-shell-coupled-sicn-prep-001/METHOD.md": "d342c8f7efef17cb3d655c7a20574cc0f819f42531269e61452392d2d7ede07c",
+    "work/962-engineering/fixed-shell-coupled-sicn-prep-001/source-reuse.json": "9d558883c12eb7415f8fc4622ab342fd05c000b1b693cff0cd118d3b8596532e",
+    "work/962-engineering/direct-sicn-head-proposer-prep-001/propose_coordinates.py": "e7d61ca130623389f2b5e3a7807477ef45090bedcfcd87f3941c35ca6d2d7b02",
+    "work/962-engineering/fixed-shell-apex-optimum-prep-001/propose.py": "88e7166f2181d5db5ecee11e1cc6f8c2c1c5b18c8cbce5765fca4a3b607e882d",
+    "work/962-engineering/direct-sicn-cube-prep-002/direct_sicn_cube.py": "8351733aa0cd3dff2c86bcedd6c5cf931fde7306d0870738f9794448fbe8d12e",
+    "work/962-engineering/direct-sicn-cube-controller-prep-002/run_readback.py": "5b9c10be3b09f4f72f2e4dcedb4588a5fee3e61d98eed9b4797498410795fae5",
+    "work/962-engineering/direct-sicn-cube-controller-root-source-002/review.json": "99125a06af6199857ed8804e027ef54e2efdf7828a75d073f00cb7c38b217dfb",
+    "work/962-engineering/direct-sicn-cube-alternative-runtime-selected-001/selected-pins.json": "881687f62d2cdc254902cc3654767f3448247f2d7d340fb85b271dd98cfa3677",
+    "work/962-engineering/fixed-shell-netgen-apex1435493-001/arrays.json": "ace411a27a13332129f515ac456ab453cbede0920fe115bdb82057092e665e5f",
+    "work/962-engineering/fixed-shell-netgen-apex1435493-001/fixture-report.json": "8529a8f8421dd989ae243b2a06b132b8a2952e9847aa31d34adb74289a16e6c7",
+    "work/962-engineering/direct-sicn-apex1435493-cavity-study-001/local-shell-input-001.json": "a6f15db60967807b057e357b8f159fa510c4a8cf6e3cb44c4327323c070398c8",
+    "work/962-engineering/fixed-shell-current-triples-001/report.json": "7ced0eae646f6bf3c12cb399e968142725751897cecc69360f2f0b19003b0c3a",
+    "work/962-engineering/fixed-shell-current-triples-prep-001/screen.py": "283b425b4f8e85f3bb9f87be4b1de8bbe1df164d3a33377f067912836245b296",
+    "work/962-engineering/fixed-shell-current-triples-source-peer-001/review.json": "93cc55aacb3fa0e4193bef61c54446fe7f29fc45f81ab99875a87421985ee8f7",
+    "work/962-engineering/fixed-shell-netgen-apex1435493-result-peer-001/review.json": "737cafa90b6f3ec7b82b6040e3968de01ae91ca912b887e5ece9cfdc2ace0551",
+    "work/962-engineering/fixed-shell-netgen-apex1435493-root-execution-001/closed-result.json": "373e923e584f3be946d5f5bea8c78285284533f78085c06296c544f19a18d0ea",
+    "twins/962-cylinder-head-f0/source/gmsh_sicn_reference.json": "28cf35720fa94611a17b219b60b2ead8c1153f6ae346e581d32fd1efe08f112d",
+    "work/962-engineering/fixed-shell-coupled-sicn-prep-001/held-contract.json": "5d55d648d65b76e4482210d7f02244dea44025332eea09b3566ae81cba247790",
+    "work/962-engineering/fixed-shell-coupled-sicn-root-source-001/review.json": "2947fe8b88ecf6d09811ce99d901ba748c5bcbcd63ac9b04a8bf8704b1e16af5",
+    "work/962-engineering/fixed-shell-coupled-sicn-source-peer-001/review.json": "30492308ae6c6ce0b7aa612980cf9187f846b3d2276fcbcce630bb836464d282",
+    "work/962-engineering/fixed-shell-coupled-sicn-root-preflight-001/preflight.json": "3ed8b4f1ad858d77d677faf16941b0ff0fbe5d67e7088d19e5e44f6667dec5f6",
+    "work/962-engineering/fixed-shell-coupled-sicn-001/reader.py": "b63adff506061ac9212d17501ae4062e970b1edd943145a1e911d1914e18b1a6",
+    "work/962-engineering/fixed-shell-coupled-sicn-001/run_readback.py": "8fc4918b6a0a6c07439eb57c77ea922e778207b59ed0e9f367a8f02c34946206"
+  },
+  "free_tags": [
+    27,
+    28,
+    29
+  ],
+  "fixed_shell_tags": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16
+  ],
+  "input_counts": {
+    "nodes": 19,
+    "cells": 39,
+    "movable_nodes": 3,
+    "coordinate_variables": 9,
+    "variables_with_epigraph": 10,
+    "constraints": 39
+  },
+  "limits": {
+    "wall_seconds": 30,
+    "sampled_RSS_bytes": 1073741824,
+    "sampled_output_bytes": 16777216,
+    "threads": 2
+  },
+  "solver": {
+    "method": "SLSQP",
+    "maxiter": 100,
+    "ftol": 1e-10,
+    "eps": 1.4901161193847656e-08
+  },
+  "sicn_gate": 0.1,
+  "epigraph_bounds": {
+    "lower": "initial calibrated vector minimum",
+    "upper": 1.0,
+    "coordinate_bounds": "none"
+  },
+  "initial_calibration": {
+    "full_cells": 39,
+    "relative_tolerance": 1e-11,
+    "absolute_tolerance": 1e-14
+  },
+  "final_gate": "Every stored binary64 cell has exact Fraction determinant>0 and Q_squared>=1/100; evaluated independently of solver.success.",
+  "finite_result_policy": "Always retain full finite10-vector/all19coordinate+hex/all39exact signed-quality rows. A feasible nonconverged point is labelled feasible_point_solver_not_converged; RC2 is optimizer status, not a redefinition of exact feasibility.",
+  "inconclusive_prerequisite": {
+    "path": "work/962-engineering/fixed-shell-current-triples-001/report.json",
+    "sha256": "7ced0eae646f6bf3c12cb399e968142725751897cecc69360f2f0b19003b0c3a",
+    "selected_cells": 28,
+    "support_counts_by_apex": {
+      "27": 12,
+      "28": 10,
+      "29": 6
+    },
+    "multi_free_exclusions": 11,
+    "pair_comparisons": 126,
+    "certified_disjoint_pairs": 0,
+    "not_a_feasibility_pass": true
+  },
+  "automatic_retry": false,
+  "materialization": {
+    "reader": {
+      "source": "work/962-engineering/fixed-shell-coupled-sicn-prep-001/coupled.py",
+      "name": "reader.py",
+      "sha256": "b63adff506061ac9212d17501ae4062e970b1edd943145a1e911d1914e18b1a6"
+    },
+    "runner": {
+      "source": "work/962-engineering/fixed-shell-coupled-sicn-prep-001/run_readback.py",
+      "name": "run_readback.py",
+      "sha256": "8fc4918b6a0a6c07439eb57c77ea922e778207b59ed0e9f367a8f02c34946206"
+    },
+    "frozen_contract": "Fresh separately reviewed actual child, no self-hash cycle"
+  },
+  "intended_operations": {
+    "SLSQP_minimize_invocations": 1,
+    "Gmsh_imports": 0,
+    "Gmsh_generate": 0,
+    "Gmsh_optimize": 0,
+    "write_MSH": 0,
+    "coordinate_geometry_JSON_diagnostic_only": true
+  },
+  "future_observations": {
+    "solver_result": null,
+    "finite_returned_point": null,
+    "all39_exact_quality_gate": null,
+    "diagnostic_sha256": null
+  },
+  "selfcheck_executed": true,
+  "source_functions_or_scientific_modules_imported_by_author": false,
+  "required_before_actual_execution": [
+    "Root and independent source/math/controller review",
+    "Root runs one selected-NumPy synthetic selfcheck, with current exact source/runtime hashes",
+    "Fresh root all20input/32selected-runtime and output/sole-job/resource observations",
+    "Separately reviewed exact actual child with two future source copies/current hashes, fresh materialization and owned launch guard",
+    "One bounded call, full stopped closure and independent saved-result review before any later native application discussion"
+  ],
+  "actual_child_review_scope": "Source/math peer covers held sources; exact child additionally reviewed by root before materialization. No native mesh authority."
+}

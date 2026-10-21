@@ -1,0 +1,38 @@
+{
+  "schema": "962-native005-saved-monitor-grammar-root-analysis/v1",
+  "scope": "Root saved-text investigation following preserved failed diagnostic001; not a native replay or binary64 timestep witness.",
+  "input": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native-measurement-004/native.log",
+    "sha256": "f53294d71d4f67a73c5af5d47b8ead7307a61e30c003bbe2eb77c997079b0d1d",
+    "bytes": 272166
+  },
+  "observations_from_completed_root_text_read": {
+    "startup_without_dt": {
+      "count": 1,
+      "line_1_based": 951,
+      "exact_text": "Time Step 0, time = 0"
+    },
+    "solve_headers_with_dt_count": 182,
+    "SNES_monitor_lines_count": 364,
+    "first_solve_header": {
+      "line_1_based": 953,
+      "exact_text": "Time Step 1, time = 0.0025, dt = 0.0025"
+    },
+    "first_monitor_lines": [
+      {
+        "line_1_based": 954,
+        "exact_text": "  0 SNES Function norm 3.215304397902e-02"
+      },
+      {
+        "line_1_based": 962,
+        "exact_text": "  1 SNES Function norm 2.355519201224e-17"
+      }
+    ]
+  },
+  "root_source_analysis": "Parser002 requires dt on all Time Step lines; exact startup line therefore reaches refusal at parser161. Parser003 adds only the exact observed startup form and retains dt_token=None. All solve grammar and semantic provenance gates remain unchanged.",
+  "numeric_pattern_grouping": "Printed numeric substrings replaced only for counting observed text shapes; no scientific value or time-word validation.",
+  "new_solver_run": false,
+  "actual_dt_scaling_word_verification": false,
+  "field_physics_material_LPBF_manufacturing_qualified": false,
+  "original_log_changed": false
+}

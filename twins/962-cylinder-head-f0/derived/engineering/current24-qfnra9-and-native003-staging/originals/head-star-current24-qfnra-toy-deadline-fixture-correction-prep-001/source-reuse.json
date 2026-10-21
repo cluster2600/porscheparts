@@ -1,0 +1,123 @@
+{
+  "schema": "962-toy-deadline-fixture-two-literal-reuse/v1",
+  "status": "CORRECTED_SOURCE_HELD_UNRUN",
+  "original_fixture": {
+    "path": "work/962-engineering/head-star-current24-qfnra-toy-transport-prep-002/test_deadline_expectations.py",
+    "sha256": "cd94a9dfabcbfb121363d2e11cadea294a8046762f2b5bdde64804053dc692aa",
+    "bytes": 9211
+  },
+  "fixture": {
+    "path": "work/962-engineering/head-star-current24-qfnra-toy-deadline-fixture-correction-prep-001/test_deadline_expectations.py",
+    "sha256": "ace4000e2f3ac770085fd9d2bd958e88089d68dc476f2aa9d395a6275ade8f8c",
+    "bytes": 9277
+  },
+  "helper_original": {
+    "path": "work/962-engineering/head-star-current24-qfnra-toy-transport-prep-002/check_toy_sessions.py",
+    "sha256": "76c13fe57d9598276b349e12dedd8bdfb1eff1ec3ad29d4c95a073abc8e6d49a",
+    "bytes": 21489
+  },
+  "helper_copy": {
+    "path": "work/962-engineering/head-star-current24-qfnra-toy-deadline-fixture-correction-prep-001/check_toy_sessions.py",
+    "sha256": "76c13fe57d9598276b349e12dedd8bdfb1eff1ec3ad29d4c95a073abc8e6d49a",
+    "bytes": 21489
+  },
+  "helper_copy_byte_exact": true,
+  "relocation_reason": "Fixture SOURCE uses Path(__file__).with_name(check_toy_sessions.py); exact helper copy preserves that existing binding without fixture path edits.",
+  "replacement_groups": [
+    {
+      "old": "'type','str','list','bytes','bytearray',",
+      "new": "'type','str','list','dict','bytes','bytearray',",
+      "occurrences": 1
+    },
+    {
+      "old": "        'traceback':SimpleNamespace(format_exc=lambda:'synthetic traceback'),\n",
+      "new": "        'traceback':SimpleNamespace(format_exc=lambda:'synthetic traceback'),\n        'selectors':SimpleNamespace(EVENT_WRITE=object()),\n",
+      "occurrences": 1
+    }
+  ],
+  "group_count": 2,
+  "literal_occurrences": 2,
+  "full_reverse_exact": true,
+  "changed_definitions": [
+    "isolated_session"
+  ],
+  "unchanged_definitions_text_AST": [
+    "source_tree",
+    "FakeProcess",
+    "FakeProcess.__init__",
+    "FakeProcess.poll",
+    "FakeProcess.wait",
+    "FakeProcess.terminate",
+    "FakeProcess.kill",
+    "ToyDeadlineExpectations",
+    "ToyDeadlineExpectations.test_01_query_full_response_and_serialization_are_inside_original_until",
+    "ToyDeadlineExpectations.test_02_normal_drain_retains_late_final_pump_or_wait_as_refusal",
+    "ToyDeadlineExpectations.test_03_cleanup_TERM_and_KILL_late_return_errors_are_retained",
+    "ToyDeadlineExpectations.test_04_final_checks_follow_complete_capture_or_wait_and_keep_original_until"
+  ],
+  "all_four_test_method_text_AST_exact": true,
+  "all_assertions_and_fake_clock_process_selector_callbacks_exact": true,
+  "imports_exact": true,
+  "only_namespace_dependency_changes": true,
+  "full_delta": {
+    "path": "work/962-engineering/head-star-current24-qfnra-toy-deadline-fixture-correction-prep-001/source.diff",
+    "sha256": "366c747c51b68015bf0a361c300a6060699352de690228dd433e818d2e05aae2",
+    "bytes": 1294
+  },
+  "provenance": [
+    {
+      "path": "work/962-engineering/head-star-current24-qfnra-toy-transport-prep-002/test_deadline_expectations.py",
+      "sha256": "cd94a9dfabcbfb121363d2e11cadea294a8046762f2b5bdde64804053dc692aa",
+      "bytes": 9211
+    },
+    {
+      "path": "work/962-engineering/head-star-current24-qfnra-toy-transport-prep-002/check_toy_sessions.py",
+      "sha256": "76c13fe57d9598276b349e12dedd8bdfb1eff1ec3ad29d4c95a073abc8e6d49a",
+      "bytes": 21489
+    },
+    {
+      "path": "work/962-engineering/head-star-current24-qfnra-toy-transport-prep-002/index.json",
+      "sha256": "6b395b0ba5a14210349a747c18daebca9f4c2627afc0e260bd96c65d83762450",
+      "bytes": 2735
+    },
+    {
+      "path": "work/962-engineering/head-star-current24-qfnra-toy-deadline-guards-root-execution-001/receipt.json",
+      "sha256": "bf7d882c26be4004ac2adb73d15837a14e5e4fc791a1b0f11e6343cca77b1744",
+      "bytes": 51058
+    },
+    {
+      "path": "work/962-engineering/head-star-current24-qfnra-toy-deadline-guards-root-execution-001/tests.stderr",
+      "sha256": "c885c5dab341f2f43ce0bc62d466387924007f832b76563eeeddd3f5bdde0d6e",
+      "bytes": 10055
+    },
+    {
+      "path": "work/962-engineering/head-star-current24-qfnra-toy-deadline-correction-root-source-decision-001/decision.json",
+      "sha256": "35c7230e042aafa84d719cdf34df773046c632f37eb8da11403740487a3ee177",
+      "bytes": 1720
+    },
+    {
+      "path": "work/962-engineering/head-star-current24-qfnra-toy-deadline-correction-root-source-decision-002/decision.json",
+      "sha256": "a4ee263fe96d16094f840309477a4062812952927d32e03342e2afbd2f037c5e",
+      "bytes": 1558
+    }
+  ],
+  "observed_failure": {
+    "child_returncode": 1,
+    "outer_returncode": 2,
+    "outer_attribution": "Root direct observation; not independently replayed here",
+    "Ran": 4,
+    "errors": 11,
+    "status": "FAILED",
+    "error": "Missing dict in original isolated builtin allowlist",
+    "selectors": "Additional namespace omission found statically before any successor run; not a second observed execution failure"
+  },
+  "source_line_precision": {
+    "actual_pinned_helper_line": 218,
+    "root_addendum_estimate": 217,
+    "explanation": "The root addendum used a one-line estimate, not an exact location claim or execution observation. Original decision remains unchanged."
+  },
+  "source_preparation_only": true,
+  "target_or_fixture_or_fragment_import_compile_execute": false,
+  "new_runtime_query_or_process": false,
+  "automatic_retry": false
+}

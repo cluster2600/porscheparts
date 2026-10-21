@@ -1,0 +1,142 @@
+{
+  "schema": "962-apex1613031-caller-inventory-clarification/v1",
+  "status": "ADDITIVE_METADATA_ONLY_FROZEN_SOURCE_UNCHANGED",
+  "bindings": {
+    "reader.py": {
+      "path": "work/962-engineering/apex1613031-head-application-prep-001/reader.py",
+      "sha256": "5f7df7d36b297100ac997979f2cdc5f66e6562c87601359d952ea6047e246b56",
+      "bytes": 55884
+    },
+    "held-contract.json": {
+      "path": "work/962-engineering/apex1613031-head-application-prep-001/held-contract.json",
+      "sha256": "cd545d6568245e879da3077454a5e5bf452d3dea1af729180e9e5404f6762aa9",
+      "bytes": 17870
+    },
+    "source-reuse.json": {
+      "path": "work/962-engineering/apex1613031-head-application-prep-001/source-reuse.json",
+      "sha256": "fb783a8ea4ba1377cb2d28cb8ae8e80345546b55a8cff4d89abe9c5ec5d6757e",
+      "bytes": 123879
+    }
+  },
+  "context_runtime_reference": {
+    "path": "work/962-engineering/current127-apex1613031-head-context-001/frozen-contract.json",
+    "sha256": "37db8019cbfe3db7e14e932ea337ff82fea599aec1f136ddf443b9659055b115",
+    "bytes": 32987
+  },
+  "confirmed_inventory_omission": "expected_runtime is consumed through require_contract runtime-field loop and was omitted from the literal-plus-FORBIDDEN union. The actual held field was already present and exactly equals the current context reference.",
+  "exact_runtime_loop_literal": [
+    "external_runtime_hashes",
+    "runtime_sha256s",
+    "runtime",
+    "native_python",
+    "numpy_init",
+    "numpy_init_sha256",
+    "expected_runtime"
+  ],
+  "runtime_loop_AST_source": "for key in ['external_runtime_hashes','runtime_sha256s','runtime','native_python','numpy_init','numpy_init_sha256','expected_runtime']:\n  if c[key]!=original[key]:raise ValueError('Selected original runtime scope changed: '+key)",
+  "all_seven_held_runtime_fields_present_and_equal_current_context": true,
+  "runtime_values": {
+    "external_runtime_hashes": {
+      "runtime-role://registered-native/geometry/bin/python": "72956ad35cff7691dfed9e04c9593de825ffd5b2fa7e8bc9ae96ce9a1af65621",
+      "runtime-role://registered-native/geometry/lib/libgmsh.4.15.dylib": "def0f5c10988a986e5e879b3db9669d8fe016a81e2d994bbaf2b8497c6b8a58a",
+      "runtime-role://registered-native/geometry/lib/python3.10/site-packages/gmsh.py": "f4b0935cebde899750293d87a643090e5ea33c9b18d249267f507db68a0e01c3"
+    },
+    "runtime_sha256s": {
+      "gmsh_library": "def0f5c10988a986e5e879b3db9669d8fe016a81e2d994bbaf2b8497c6b8a58a",
+      "gmsh_module": "f4b0935cebde899750293d87a643090e5ea33c9b18d249267f507db68a0e01c3",
+      "python": "72956ad35cff7691dfed9e04c9593de825ffd5b2fa7e8bc9ae96ce9a1af65621"
+    },
+    "runtime": {
+      "python_executable_sha256": "72956ad35cff7691dfed9e04c9593de825ffd5b2fa7e8bc9ae96ce9a1af65621"
+    },
+    "native_python": "runtime-role://registered-native/geometry/bin/python",
+    "numpy_init": "runtime-role://registered-native/numpy-environment/lib/python3.10/site-packages/numpy/__init__.py",
+    "numpy_init_sha256": "c09e25b58f6b2f8e2cb3c158168f902d447f8171e5ea6513c0aca41ecbda7c2b",
+    "expected_runtime": {
+      "gmsh": "4.15.2",
+      "machine": "arm64",
+      "numpy": "2.0.2",
+      "python": "3.10.11"
+    }
+  },
+  "original_union_preserved": [
+    "automatic_retry",
+    "controls",
+    "declared_controller_command_conformant",
+    "declared_operation_counts",
+    "engineering_accepted",
+    "external_runtime_hashes",
+    "generation_authorized",
+    "head_PDE_authorized",
+    "head_execution_authorized",
+    "input_hashes",
+    "manufacturing_authorized",
+    "native_execution_authorized",
+    "native_python",
+    "numpy_init",
+    "numpy_init_sha256",
+    "optimization_authorized",
+    "options",
+    "output_directory",
+    "partial_head_replacement_authorized",
+    "physics_qualified",
+    "reader_sha256",
+    "reclassification_authorized",
+    "renumbering_authorized",
+    "root_and_peer_review_complete",
+    "runner_sha256",
+    "runtime",
+    "runtime_sha256s",
+    "schema",
+    "selected_runtime_review_complete",
+    "stitching_authorized",
+    "surface_TRI_insertion_authorized",
+    "upstream_census_launch_deviation_sha256"
+  ],
+  "additional_effective_key": "expected_runtime",
+  "effective_consumed_contract_union": [
+    "automatic_retry",
+    "controls",
+    "declared_controller_command_conformant",
+    "declared_operation_counts",
+    "engineering_accepted",
+    "expected_runtime",
+    "external_runtime_hashes",
+    "generation_authorized",
+    "head_PDE_authorized",
+    "head_execution_authorized",
+    "input_hashes",
+    "manufacturing_authorized",
+    "native_execution_authorized",
+    "native_python",
+    "numpy_init",
+    "numpy_init_sha256",
+    "optimization_authorized",
+    "options",
+    "output_directory",
+    "partial_head_replacement_authorized",
+    "physics_qualified",
+    "reader_sha256",
+    "reclassification_authorized",
+    "renumbering_authorized",
+    "root_and_peer_review_complete",
+    "runner_sha256",
+    "runtime",
+    "runtime_sha256s",
+    "schema",
+    "selected_runtime_review_complete",
+    "stitching_authorized",
+    "surface_TRI_insertion_authorized",
+    "upstream_census_launch_deviation_sha256"
+  ],
+  "original_union_count": 32,
+  "effective_union_count": 33,
+  "scope": {
+    "code_or_guard_change": false,
+    "prepared_functions_compiled_or_invoked": false,
+    "guards_tests_native_or_scientific_execution": false,
+    "runtime_interpreter_or_MSH_bodies_read_or_hashed": false,
+    "authority_granted": false
+  },
+  "author": "replica_metrology, source author; metadata clarification only, no independent-source claim"
+}

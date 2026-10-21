@@ -1,0 +1,11 @@
+--- work/962-engineering/cp1-oneway-cooling-release-linear-native-storage-audit-prep-001/check_saved.py
++++ work/962-engineering/cp1-oneway-cooling-release-linear-native-storage-audit-prep-002/check_saved.py
+@@ -83,7 +83,7 @@
+             and actual['source']['path'] == str((PREP / 'run_mac.py').relative_to(ROOT))
+             and actual['source']['sha256'] == PIN[PREP / 'run_mac.py']
+             and actual['input_sha256'][str((PREP / 'thermoelastic-birth.i').relative_to(ROOT))] == PIN[PREP / 'thermoelastic-birth.i']
+-            and actual['original_physics_contract']['sha256'] == PIN[PREP / 'case-contract.json']
++            and actual['physics_contract']['sha256'] == PIN[PREP / 'case-contract.json']
+             and actual.get('documentary_correction_acknowledged') is True,
+             'Exact cooling source/deck/original physics and documentary correction required')
+     for name in ('cp1-oneway-cooling-release-contract-clarification-001/case-contract.corrected.json',

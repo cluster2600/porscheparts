@@ -1,0 +1,192 @@
+{
+  "status": "HELD_identical_production_corrected_mock_fixture_unrun_no_admission",
+  "root_and_peer_review_complete": false,
+  "native_launch_authorized": false,
+  "source": {
+    "path": "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-hxt-prep-002/mesh_assembled_hxt.py",
+    "sha256": "b7d3de89c6ed166bb5d0df5c5d41ddd77b8deee9c36775b4e40b205722a2587e",
+    "preserved_base_path": "work/962-engineering/atomic-cavity-volume-prep-002/mesh_atomic_volume.py",
+    "preserved_base_sha256": "61542a339b03cfab600ac869d12a0ae4d72768bcc5db5838efa3bb72a0ccfada"
+  },
+  "preparation_file_sha256": {
+    "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-hxt-prep-002/METHOD.md": "0a07f3520186a74e52e01273853e467facf54577ea7f61039265304c803a1e87",
+    "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-hxt-prep-002/base-to-assembled.diff": "f60646208eb63d1f4d56085799208e6e66fde076284ca2cdf1df21d44f6067f9",
+    "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-hxt-prep-002/mesh_assembled_hxt.py": "b7d3de89c6ed166bb5d0df5c5d41ddd77b8deee9c36775b4e40b205722a2587e",
+    "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-hxt-prep-002/preparation-checks.json": "96e32f5e3b6a71ddb365eef8b9fef8a3d9a9674ddc2fb002a0fa3511c19870d2",
+    "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-hxt-prep-002/source-delta.json": "220173bad5090f18337c8b4d736d25ed2745f9ec46fd62d49af1c6870e7fb672",
+    "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-hxt-prep-002/test-delta.json": "af2a8acc22d59782dea8703b714b6e9bd423ea11efc454fbe3ea50621c0827ae",
+    "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-hxt-prep-002/test001-to002.diff": "679419e81905de10d0ae6c52f90384be4452d7988529c71b1fe62911bd192f69",
+    "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-hxt-prep-002/test_hxt_guards.py": "6a6743e7c98579d8411b38505bf722cbb7f79e97d5e414bc588d4bc4b36d1b95"
+  },
+  "source_dependencies_sha256": {
+    "twins/962-cylinder-head-f0/source/mesh_head.py": "69c8012e99057e384d44d6971d41f0e2cc7197a978120a7c566b0ad5a6477da5",
+    "twins/962-cylinder-head-f0/source/audit_quality_head.py": "a298270aa00b1536314a07629b935500c68883ca0d3bd1a179d71b49a8e73991",
+    "twins/962-cylinder-head-f0/source/audit_quality_patch.py": "3532a172b2bce3a8ead7c8b11b712a2b55891377726fa1b6d847e84f0eed3912",
+    "twins/962-cylinder-head-f0/source/prepare_head_analysis.py": "cda8f7155a8c22ab66898f07d1ad452ba5384ad7f75a1f012606685cd8a12dc3"
+  },
+  "frozen_reuse_note": {
+    "path": "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-volume-path-review-001/NOTE.md",
+    "sha256": "e61e83e144c17ae73a4f758817ce01f115ef55b66c8a78d00949c74d994bcacd"
+  },
+  "candidate": {
+    "path": "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-001/candidate.bin",
+    "sha256": "9d62eac6e2cd7b6a9ecb4a7ea5b632685820369b5c4ede379acc34238f50d7b4",
+    "bytes": 62774640,
+    "vertices": 871731,
+    "oriented_triangles": 1743878,
+    "signed_boundary_volume_mm3": 915453.1236217883,
+    "length_unit": "mm",
+    "binding_source": "Root instruction and previously stopped source-bound metadata; candidate bytes not read or rehashed during this preparation"
+  },
+  "fresh_output": {
+    "path": "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-volume-hxt-001",
+    "currently_absent": true,
+    "MSH_name": "head-volume.msh",
+    "automatic_retry": false,
+    "post_optimizer": false
+  },
+  "surface_admission": {
+    "path": null,
+    "sha256": null,
+    "numerical_surface_admitted": false,
+    "pending_root_completed_mixed_saved_assessment": true,
+    "required_gate_names": [
+      "distance",
+      "features",
+      "fixed_face_necessary_quality",
+      "global_intersections",
+      "topology"
+    ],
+    "representation_budget_mm": 0.0625,
+    "kernel_does_not_parse_separate_budget_field": true
+  },
+  "options": {
+    "General.NumThreads": 2,
+    "Mesh.Algorithm3D": 10,
+    "Mesh.Binary": 1,
+    "Mesh.ElementOrder": 1,
+    "Mesh.MaxNumThreads3D": 2,
+    "Mesh.MeshOnlyEmpty": 1,
+    "Mesh.MeshSizeExtendFromBoundary": 0,
+    "Mesh.MeshSizeFactor": 1,
+    "Mesh.MeshSizeMax": 1.75,
+    "Mesh.MeshSizeMin": 0,
+    "Mesh.MshFileVersion": 4.1,
+    "Mesh.Optimize": 0,
+    "Mesh.OptimizeNetgen": 0,
+    "Mesh.RandomSeed": 1,
+    "Mesh.Renumber": 0,
+    "Mesh.SaveAll": 1
+  },
+  "runtime": {
+    "route": "Existing native macOS ARM64 Gmsh4.15.2, no container/install",
+    "invoke_selected_venv_not_resolved_framework": true,
+    "expected_files": [
+      {
+        "selected_path_is_symlink": true,
+        "sha256": "72956ad35cff7691dfed9e04c9593de825ffd5b2fa7e8bc9ae96ce9a1af65621",
+        "role": "runtime:python_executable"
+      },
+      {
+        "selected_path_is_symlink": false,
+        "sha256": "def0f5c10988a986e5e879b3db9669d8fe016a81e2d994bbaf2b8497c6b8a58a",
+        "role": "runtime:libgmsh"
+      },
+      {
+        "selected_path_is_symlink": false,
+        "sha256": "f4b0935cebde899750293d87a643090e5ea33c9b18d249267f507db68a0e01c3",
+        "role": "runtime:gmsh_python_module"
+      }
+    ],
+    "current_runtime_or_resource_preflight_performed": false,
+    "all_dependency_binary_build_attestation": false,
+    "prior_metadata_origin": {
+      "path": "work/962-engineering/atomic-cavity-volume-prep-002/held-contract.json",
+      "sha256": "319f1ef9575d55990fd893523c7a14f75eea77626ba004aa4ba9d87c22b8113c",
+      "current_observation": false
+    }
+  },
+  "resources": {
+    "native_process_window_deadline_s": 300,
+    "remaining_budget_timer_after_Popen": true,
+    "postwait_elapsed_greater_or_equal_deadline_refused": true,
+    "sampled_RSS_stop_bytes": 8589934592,
+    "sampled_output_stop_bytes": 1073741824,
+    "software_threads": 2,
+    "hard_OS_CPU_quota_applied": false,
+    "hard_address_space_limit_applied": false,
+    "sampled_output_excludes_atomic_report_temporaries": true,
+    "peak_memory_claimed": false,
+    "free_RAM_disk_and_serial_native_availability_required_before_launch": true
+  },
+  "required_volume_gates": {
+    "actual_minimum_SICN_at_least": 0.1,
+    "all_jacobians_and_volumes_positive_finite": true,
+    "all_metric_counts_equal_actual_tetrahedron_count": true,
+    "candidate_relative_volume_error_at_most": 1e-06,
+    "every_quality_minimum_at_least_gate_without_average_acceptance": true,
+    "exact_opposite_internal_faces": true,
+    "exact_oriented_candidate_boundary": true,
+    "exact_tagged_saved_coordinates_and_connectivity": true,
+    "nonempty_regular_saved_MSH_SHA_matches_worker": true,
+    "saved_mesh_readback_identity": true
+  },
+  "test_preparation": {
+    "path": "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-hxt-prep-002/test_hxt_guards.py",
+    "sha256": "6a6743e7c98579d8411b38505bf722cbb7f79e97d5e414bc588d4bc4b36d1b95",
+    "methods": 12,
+    "executed": false,
+    "scientific_imports": false,
+    "real_process_ps_kill_signal_or_Timer_calls": false
+  },
+  "qualification": {
+    "geometric_volume_gate_passed": false,
+    "mesh_convergence_established": false,
+    "thermal_resolution_established": false,
+    "head_physics_executed": false,
+    "strength_validated": false,
+    "material_qualified": false,
+    "LPBF_process_validated": false,
+    "OEM_fitment_established": false,
+    "manufacturing_authorized": false
+  },
+  "required_before_actual_child": [
+    "Root completed mixed saved-distance assessment and independent source/actual-result review",
+    "New exact SHA-bound9d62 numerical surface admission with five actual gates and explicit.0625mm scope",
+    "Root and independent review of this source/diff/test/held record",
+    "Root executes12 mocked guards with selected Python and binds actual result",
+    "Fresh runtime hash and free RAM/disk/serial preflight",
+    "Separate exact authorized single raw-HXT child to declared fresh output"
+  ],
+  "prohibited_actions_performed": {
+    "NumPy_Gmsh_or_project_import": false,
+    "geometry_BIN_MSH_read": false,
+    "source_or_tests_executed": false,
+    "mesh_generate_optimize_write_solve": false,
+    "Docker_SSH_network_Git_public_edits": false
+  },
+  "preserved_preparation_001": {
+    "held_path": "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-hxt-prep-001/held-contract.json",
+    "held_sha256": "c88445815aa49c9050b6eda035aaec2b5700d70825917d2e30f75e3c5e9df826",
+    "all_original_files_unchanged": true,
+    "source_delta_and_diff_copies_keep_original001_attribution": true
+  },
+  "test_only_correction": {
+    "record_path": "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-hxt-prep-002/test-delta.json",
+    "record_sha256": "af2a8acc22d59782dea8703b714b6e9bd423ea11efc454fbe3ea50621c0827ae",
+    "production_changed": false,
+    "root_original_mock_run": {
+      "path": "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-hxt-root-source-001/review.json",
+      "sha256": "c0bd1b591fedf8dd598b24967b2ca386ce2ccc05db5ec01b0910709669e06d97",
+      "log_path": "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-hxt-root-source-001/guard-tests.log",
+      "log_sha256": "f551220b2a48b108eb68714a87588a845c528b037dd7ac7ab991dc5ba5bab6ea",
+      "tests": 12,
+      "passed": 11,
+      "failed": 1
+    }
+  },
+  "original_schema": "962-assembled-raw-HXT-held-source-preparation/v1",
+  "schema": "962-assembled-HXT-held-public-projection/v1",
+  "original_preparation_sha256": "4109be3e882e626e6db4bcd90ee70a8b52e124f6a4454e44c0b21227b0aec210",
+  "projection_not_execution_contract": true
+}

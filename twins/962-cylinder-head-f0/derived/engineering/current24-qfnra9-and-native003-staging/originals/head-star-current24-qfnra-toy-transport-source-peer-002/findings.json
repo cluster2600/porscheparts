@@ -1,0 +1,159 @@
+{
+  "schema": "962-current24-qfnra-five-toy-transport-source-findings/v2",
+  "blocker_count": 0,
+  "findings": [
+    {
+      "ID": "S01",
+      "result": "PASS_SOURCE_ONLY",
+      "lines": [
+        194,
+        227,
+        228,
+        268
+      ],
+      "detail": "Exactly three strict original-until checks are added after complete framed-response recording, after normal EOF/drain/wait/RC0, and after each existing TERM/KILL drain/wait before break. Equality refuses. Query and normal bounds still use min(global_deadline,query_start+5); each cleanup stage retains its original8-second basis. A late response record is retained before refusal. Normal-drain errors are retained even when the direct process exited0; cleanup errors are never erased by the caller's no-cleanup-errors gate.",
+      "history": "Root gap94e806b3 and all original001 bytes remain immutable. Removing the three declared lines recovers21200-byte001 exactly; no relocated until assignment or mathematical/solver-policy change."
+    },
+    {
+      "ID": "S02",
+      "result": "PASS_SOURCE_DESIGN_CONDITIONAL_RUNTIME",
+      "lines": [
+        62,
+        71,
+        288,
+        398
+      ],
+      "detail": "Fixed ordered sessions are rational3/2, positive sqrt2, maximum finite binary64, negative half-minimum-subnormal, and x*x+1=0 UNSAT. Four SAT sessions use fixed expected words; the fifth accepts only solver-attributed UNSAT. Each attempted session constructs one declared Real variable, original Bool formula aliases and assertions before the single exact pinned check. UNKNOWN, unexpected status/word, protocol error or incomplete cleanup stops later toys; no solver replacement, alternative model candidate or repeated check exists. These constants and predicates were read as source, not evaluated in this review.",
+      "limitations": "One check per attempted session is established statically; no five-session completion or expected-word agreement has been observed."
+    },
+    {
+      "ID": "S03",
+      "result": "PASS_SOURCE_DESIGN_CONDITIONAL_RUNTIME",
+      "lines": [
+        194,
+        227,
+        277,
+        285,
+        314,
+        356
+      ],
+      "detail": "After SAT, exact parse_sexpr command validation admits only one get-model or get-value command with no embedded newline. The caller retains the same Session/proc, requests full initial/final models and ordered projections, compares parsed values, evaluates every original Bool alias initially/finally, and records all mapper request/Boolean response associations. Oracle callbacks require the retained snapshot ID and exact get-value term/command, and the unchanged protocol parser verifies the returned queried term. No post-SAT assertion, option, declare, push/pop, reset or check is emitted. nearest_binary64 is the unchanged pure callback algorithm at scale1. The report explicitly disclaims hash-alone model continuity proof.",
+      "limitations": "Actual installed Z3 semantics/output and all same-model replies remain unobserved. Snapshot/value equality is additional evidence, not an independent solver/model theorem."
+    },
+    {
+      "ID": "S04",
+      "result": "PASS_SOURCE_ONLY",
+      "lines": [
+        74,
+        193
+      ],
+      "detail": "Frame supports exactly matching raw or quoted line markers, rejects leading nonblank noise, duplicate/inconsistent markers, unexpected nonblank trailers and incomplete EOF; raw stdout/stderr are captured separately before frame parsing. The incremental selector pumps both child streams and pending nonblocking stdin writes; requests, complete responses, raw streams and traceback/failure records are retained. Unexpected stderr prevents normal completion. Output cap counts all helper writes including JSONL/report, but does not itself cover future external controls or outer streams.",
+      "limitations": "A write/read/selector failure still refuses; this review supplies no OS scheduling, pipe fairness, memory/RSS or full-output retention guarantee under disk/termination failure."
+    },
+    {
+      "ID": "S05",
+      "result": "PASS_WITH_REQUIRED_EXTERNAL_OWNER",
+      "lines": [
+        155,
+        167,
+        228,
+        274,
+        288,
+        398
+      ],
+      "detail": "A Session is assigned before start, which requires the caller's positive expected process group and launches one child with start_new_session=False, no preexec/setpgid handoff. Normal completion requires deliberate stdin EOF, both stream EOFs and direct wait/RC0. Abnormal paths retain stage tracebacks and use direct-child TERM then KILL cleanup, drain and wait; finalization closes selectors/streams. An exception after normal close can call close(False) again through the unchanged caller; this is inherited cleanup re-entry, not a replacement solver/check. If cleanup, capture or finalization cannot finish, the result cannot be treated as complete.",
+      "controls": {
+        "global_normal_seconds": 60,
+        "query_full_return_seconds": 5,
+        "normal_drain_full_return_seconds": 5,
+        "TERM_seconds": 8,
+        "KILL_seconds": 8,
+        "requested_environment_threads": 1,
+        "sampled_external_RSS_bytes": 2147483648,
+        "inclusive_external_output_bytes": 33554432,
+        "retries": 0
+      },
+      "limitations": "No owner, actual, runtime freshness or admission exists in this packet. Root must bound whole startup/preflight/full return and all outputs/controls/outer streams, handle interrupted/unreaped/unknown states, verify owned-group absence and refuse nonzero/late/incomplete observations. No hard wall-clock or hard quota claim."
+    },
+    {
+      "ID": "S06",
+      "result": "PASS_UNRUN_EXPECTATIONS_ONLY",
+      "detail": "Five retained Frame expectations are byte/AST exact after only expected helper SHA/length reversal. They cover raw/quoted echoes, split markers/multiline bytes, noise/duplicate/form/EOF refusal, cap preservation and AST launch/no-main/no-z3-import restrictions. Four new deadline methods extract only pinned ToyRefusal/need and exact Session.exchange/close AST definitions into a future restricted namespace. Clocks, Frame, process, selectors, capture, traceback and pump providers are fake. The harness imports no full transport/protocol/process/selector/time module and contains no real process operation.",
+      "expected_cases": "Query timely/equal/late final pump and serialization with original earlier global until; normal timely/equal/late final pump or wait despite exit0; late TERM/KILL errors and existing escalation; AST final-check ordering and unchanged until counts.",
+      "limitations": "Nine method names are not nine scalar assertions. These fixtures do not exercise real transport pipes, complete bootstrap/model/parser integration, installed parameter acceptance, resource supervision or signal handling; all remain UNRUN."
+    },
+    {
+      "ID": "S07",
+      "result": "PASS_METADATA_ASSOCIATIONS",
+      "detail": "Ten002 files total77047B; nine index records, index itself, all eight preserved001 records, eight explicitly named ancestor source/metadata records, two accepted prior pure-guard records and root gap record comprise29 unique independently hashed first-party inputs /215547B. Full helper inverse,289-byte delta,19 unchanged named definitions/imports/full caller, framing binding inverse and complete source.diff were reconstructed using host text/AST operations only. PROLOGUE/CHECK string literals are exactly the frozen producer literals. Historical runtime JSON identities are metadata attribution only; no binary, library/provider or runtime body was accessed.",
+      "history": "Accepted e143cf35/3d2ce163 proves only the separate14+9 pure synthetic operations. Historical001 pending fields were not rewritten and no later acceptance is projected backward."
+    },
+    {
+      "ID": "S08",
+      "result": "PRIMARY_SOURCE_SUPPORT_NOT_INSTALLED_EQUIVALENCE",
+      "detail": "SMT-LIB2.7 model inspection specifies responses from the retained SAT model until another check or exit from SAT mode, with closed-term get-value evaluations. Pinned Z3 5.1.0 shell source documents stdin/SMT2 options; its command source emits raw/quoted echo forms and obtains get-model from the latest check. The model display path uses declared-function interpretations, so strict one-declared-Real projection is a deliberate compatibility gate, not evidence of observed output. These sources support the planned protocol; they establish no identity or behavior of the installed binary.",
+      "primary_sources": [
+        {
+          "url": "https://smt-lib.org/papers/smt-lib-reference-v2.7-r2025-07-07.pdf",
+          "location": "Section4.2.6, pages70-72"
+        },
+        {
+          "url": "https://raw.githubusercontent.com/Z3Prover/z3/z3-5.1.0/src/cmd_context/basic_cmds.cpp",
+          "location": "get_model_cmd lines92-116; echo lines291-296"
+        },
+        {
+          "url": "https://raw.githubusercontent.com/Z3Prover/z3/z3-5.1.0/src/cmd_context/cmd_context.cpp",
+          "location": "display_model/add_declared_functions lines1862-1904"
+        },
+        {
+          "url": "https://raw.githubusercontent.com/Z3Prover/z3/z3-5.1.0/src/shell/main.cpp",
+          "location": "CLI descriptions lines74-84"
+        }
+      ],
+      "third_party_source_body_saved": false
+    }
+  ],
+  "static_check_summary": {
+    "source_AST_only": true,
+    "no_target_import_compile_or_execution": true,
+    "verified_002_records": 9,
+    "verified_original001_records": 8,
+    "helper_inverse": true,
+    "production_added_bytes": 289,
+    "unchanged_named_definitions": 19,
+    "imports_exact": true,
+    "run_fixed_toys_text_AST_exact": true,
+    "framing_fixture_inverse": true,
+    "diff_exact": true,
+    "prologue_and_check_exact_to_pure_emitter": true,
+    "fixture_methods": {
+      "test_framing_expectations.py": [
+        "test_01_raw_and_quoted_echo_forms_are_complete_and_retained",
+        "test_02_split_markers_and_multiline_body_do_not_lose_bytes",
+        "test_03_noise_duplicate_wrong_form_and_EOF_refuse",
+        "test_04_ceiling_refuses_without_replacing_partial_bytes",
+        "test_05_child_group_and_fixed_once_only_source_boundary"
+      ],
+      "test_deadline_expectations.py": [
+        "test_01_query_full_response_and_serialization_are_inside_original_until",
+        "test_02_normal_drain_retains_late_final_pump_or_wait_as_refusal",
+        "test_03_cleanup_TERM_and_KILL_late_return_errors_are_retained",
+        "test_04_final_checks_follow_complete_capture_or_wait_and_keep_original_until"
+      ]
+    },
+    "index": {
+      "sha256": "6b395b0ba5a14210349a747c18daebca9f4c2627afc0e260bd96c65d83762450",
+      "bytes": 2735
+    },
+    "packet_files": 10,
+    "packet_bytes": 77047
+  },
+  "reviewer_affiliation": "Reviewer authored the pure QF_NRA producer/protocol and earlier guard-control donors/current14+9 controls. Transport001/002 and its new timing fixture were authored separately by lpbf_linear_refinement. This is producer-affiliated independent transport-source review, not independent runtime, numerical or physical acceptance.",
+  "prohibited_operations_performed": false,
+  "scope_notes": [
+    "Serena source overview rejected the exact worktree file as outside its activated project. Review used explicitly named source text and host AST parsing; no source module/fragment compile or execution.",
+    "No tests, helper/program calls, source imports, process/ps/kill, installed solver query, runtime refresh, real input/coordinate/coefficient/model/word calculation, raw geometry/field body, publication or Git mutation.",
+    "Memory search supplied no transport-specific evidence; no conclusion in this packet depends on memory."
+  ],
+  "disposition": "No new source blocker found; independent root review and future bounded fixture controls/results/runtime/owner/actual/admission remain required. No operation authority is granted."
+}

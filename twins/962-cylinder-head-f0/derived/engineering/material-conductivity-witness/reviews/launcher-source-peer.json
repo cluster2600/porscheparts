@@ -1,0 +1,38 @@
+{
+  "schema": "962-measured-k-bar-launcher-independent-source-review/v1",
+  "reviewer": "clip_source_review",
+  "conclusion": "No source blocker found for a separately root-authorized, exactly bound two-case invocation. This source review does not verify mocked cleanup tests or native execution.",
+  "launcher_sha256": "6a13a21660a9f3ce230920a18e4d6a5333dc8aacfb2e85acbe8d4bd8d931e2cd",
+  "held_contract_sha256": "8f87f07d46d21d4fee20f8be5b94899fbca8123bd0aeab738ceffcdd848e137a",
+  "launch_preparation_sha256": "6b6428b21065692aadeaddb260b77e4dfd7c53e542cbe5f2d3fb2cccb55bbce5",
+  "original_test_sha256": "c7b28941017cb10c5e9ccaa3f1d7593a04fbdb490bc2f464c1b572870ccdff2a",
+  "source_checks": {
+    "all_15_source_pins_and_prepared_copy_sizes_match": true,
+    "same_exact_8_runtime_pins_and_required_rootfs_as_old_frozen_contract": true,
+    "old_controller_copy_matches_original": true,
+    "systemd_bwrap_argv_prefix_and_environment_AST_identical_to_old_controller": true,
+    "only_fixed_Z_XY_native_input_tails": true,
+    "explicit_execute_and_separate_true_launch_authority_required": true,
+    "resource_and_case_map_exact_equality_required": true,
+    "source_basename_regular_file_and_hash_checks_before_execution": true,
+    "fixed_runtime_and_output_paths_fresh_directory_refusal": true,
+    "before_after_source_input_contract_and_runtime_checks": true,
+    "serial_two_cases_stop_on_failure_no_retry": true,
+    "protected_Popen_new_session_finally_killpg_wait_and_SIGTERM_restore_present": true,
+    "stopped_receipt_and_case_summary_preserve_rejected_outputs": true,
+    "native_completion_separate_from_independent_assessment": true
+  },
+  "resource_scope": "Per case: 30s TERM timeout +5s kill grace; controller wait40s; systemd RuntimeMax45s, 2GiB/no swap, CPUQuota200%, TasksMax128, one native rank/thread; read-only rootfs and isolated network/PID.",
+  "test_status": "Prepared three mock tests were read only by this reviewer. Root reports original interruption test stopped before executor because macOS temporary /var path resolved to /private/var while mocked contract kept unresolved paths. Root plans a separately named test-only copy resolving that path; original source/test evidence stays frozen. Cleanup is not verified by that failed test; corrected tests require their own actual result.",
+  "blockers_from_source_review": [],
+  "limits": [
+    "Runtime hashes and remote path freshness were not independently checked live by this reviewer.",
+    "No outside-knots probe is authorized by this held contract; the two in-range bars cannot establish clamp/extrapolation or all-iterate range behavior.",
+    "A native returncode0 and reaped launcher establish procedural completion only; complete output and Kirchhoff assessments remain separate."
+  ],
+  "prepared_code_imported_or_executed": false,
+  "native_or_network_calls_performed": false,
+  "mock_tests_verified": false,
+  "native_execution_authorized_by_this_review": false,
+  "physics_or_manufacturing_admitted": false
+}

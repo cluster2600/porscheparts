@@ -1,0 +1,70 @@
+--- work/962-engineering/cp1-oneway-cooling-release-richardson2-observer003-guard-owner-prep-002/run_guards_once.py
++++ work/962-engineering/cp1-oneway-cooling-release-richardson2-observer003-guard-owner-prep-003/run_guards_once.py
+@@ -4,7 +4,7 @@
+ R=Path('/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993')
+ E=R/'work/962-engineering'
+ H=E/'cp1-oneway-cooling-release-richardson2-observer003-guard-runtime-prep-001'
+-X=E/'cp1-oneway-cooling-release-richardson2-observer003-guard-execution-prep-002'
++X=E/'cp1-oneway-cooling-release-richardson2-observer003-guard-execution-prep-003'
+ D=E/'cp1-oneway-cooling-release-richardson2-observer003-guard-root-execution-001'
+ CAP=32*1024**2
+ def rec(p):
+@@ -122,11 +122,16 @@
+ assert not any((D/n).exists() for n in ['receipt.json','run-started.json','guard.stdout','guard.stderr','tmp'])
+ (D/'tmp').mkdir();(D/'run-started.json').write_text(json.dumps(dict(actual=rec(actual_path),admission=rec(A)))+'\n')
+ receipt=dict(schema='962-observer003-once-standalone18-guard-receipt/v1',actual=rec(actual_path),admission=rec(A),controller=rec(Path(__file__)),preflight=rec(preflight_path),before=before,provider_paths_before=links_before,expected_assertions=18,resource_samples=[],resource_observation_exit_races=[],guard_process_started=False,returncode=None,termination=None,standalone18_guards_completed=False,plugin_loaded=False,host_executed=False,native_executed=False,ABI_acceptance=False,physical_acceptance=False,loaded_library_attribution_accepted=False,automatic_retry=False)
+-proc=None;failure=None;started=time.monotonic()
++proc=None;failure=None;started=time.monotonic();controller_stop_requests=[]
++def record_controller_stop(signum,frame):
++ controller_stop_requests.append(dict(signal=signum,name=signal.Signals(signum).name,elapsed_seconds=time.monotonic()-started))
++signal.signal(signal.SIGTERM,record_controller_stop);signal.signal(signal.SIGINT,record_controller_stop)
+ try:
++ if controller_stop_requests:raise ValueError('Controller stop requested before guard launch')
+  with (D/'guard.stdout').open('xb') as out,(D/'guard.stderr').open('xb') as err:
+   proc=subprocess.Popen(actual['argv'],cwd=D,env=actual['environment'],stdin=subprocess.DEVNULL,stdout=out,stderr=err,start_new_session=True,preexec_fn=limits);receipt['guard_process_started']=True;receipt['pid']=proc.pid
+   while proc.poll() is None:
++   if controller_stop_requests:raise ValueError('Controller interruption requested; stop owned guard with no retry')
+    if time.monotonic()-started>60:raise ValueError('60s one-guard wall cap')
+    if output_size(D)>CAP:raise ValueError('32MiB owned output cap')
+    try:s=sample(proc.pid)
+@@ -138,8 +143,10 @@
+    time.sleep(.05)
+   proc.wait(timeout=8)
+  receipt['returncode']=proc.returncode
++ receipt['raw_guard_RC0_indicates_18_assertion_completion']=proc.returncode==0
+  if group_exists(proc.pid):raise ValueError('Owned group remains after normal guard exit')
+  receipt['owned_group_absent']=True
++ if controller_stop_requests:raise ValueError('Controller interruption requested; preserve guard return status')
+  if proc.returncode:raise ValueError('Standalone guard failed; no retry')
+  if output_size(D)>CAP:raise ValueError('32MiB completion output cap')
+  if (D/'guard.stdout').read_bytes()!=b'':raise ValueError('Unexpected own guard stdout; preserve exact output')
+@@ -149,10 +156,17 @@
+ except Exception:
+  failure=traceback.format_exc()
+  if proc is not None:
+-  receipt['returncode']=proc.poll();receipt['termination']=stop_wait(proc);receipt['returncode']=proc.returncode;receipt['owned_group_absent']=receipt['termination']['group_absent']
++  try:receipt['termination']=stop_wait(proc)
++  except Exception:receipt['cleanup_error']=traceback.format_exc()
++  finally:receipt['returncode']=proc.poll();receipt['owned_group_absent']=not group_exists(proc.pid)
+ finally:
+  receipt['failure']=failure;receipt['elapsed_seconds']=time.monotonic()-started
+- receipt['after']=check(pins);receipt['provider_paths_after']=provider_links(preflight['declared_provider_records'])
++ receipt['controller_stop_requests']=controller_stop_requests;receipt['controller_interruption_requested']=bool(controller_stop_requests)
++ receipt['raw_guard_RC0_indicates_18_assertion_completion']=proc is not None and proc.poll()==0
++ if controller_stop_requests:receipt['standalone18_guards_completed']=False
++ receipt['after']=check(pins)
++ try:receipt['provider_paths_after']=provider_links(preflight['declared_provider_records'])
++ except Exception:receipt['provider_paths_after']=None;receipt['provider_paths_after_error']=traceback.format_exc()
+  receipt['all_declared_inputs_and_control_records_unchanged']=not receipt['after']['changed'] and before['observed_sha256']==receipt['after']['observed_sha256']
+  receipt['all_declared_provider_path_associations_unchanged']=receipt['provider_paths_after']==links_before
+  if not receipt['all_declared_inputs_and_control_records_unchanged'] or not receipt['all_declared_provider_path_associations_unchanged']:receipt['standalone18_guards_completed']=False
+@@ -163,6 +177,7 @@
+  receipt['RSS_peak_scope']='Sampled observations only; null means no successful sample, never an invented zero.'
+  receipt['peak_observed_threads_nongating']=max((x['threads'] for x in receipt['resource_samples'] if x['threads'] is not None),default=None)
+  receipt['owned_outputs']={n:rec(D/n) for n in ['guard.stdout','guard.stderr','run-started.json'] if (D/n).exists()}
+- receipt['owned_output_bytes_before_receipt']=output_size(D)
++ try:receipt['owned_output_bytes_before_receipt']=output_size(D)
++ except Exception:receipt['owned_output_census_error']=traceback.format_exc();receipt['standalone18_guards_completed']=False
+  (D/'receipt.json').write_text(json.dumps(receipt,indent=2)+'\n')
+-raise SystemExit(0 if receipt['standalone18_guards_completed'] and failure is None else 2)
++raise SystemExit(0 if receipt['standalone18_guards_completed'] and failure is None and not controller_stop_requests else 2)

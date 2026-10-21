@@ -1,0 +1,86 @@
+
+[33m
+*** Deprecation Warning ***
+/tmp/work/affine.i:133.5:
+Outputs/console/output_postprocessors: The parameter 'output_postprocessors' is deprecated.
+'execute_postprocessors_on' has replaced this parameter
+
+[39m
+Framework Information:
+MOOSE Version:           git commit 167ee97da2 on 2026-08-12
+LibMesh Version:         ab36c007ae608290e097bdfbc2766a46d8192b70
+PETSc Version:           3.25.2
+SLEPc Version:           3.25.0
+Libtorch Version:        2.12.0
+MFEM Version:            4.9.1
+Current Time:            Fri Oct 16 20:46:21 2026
+Executable Timestamp:    Thu Aug 13 06:36:59 2026
+
+Input File(s):
+  /tmp/work/affine.i
+
+Command Line Argument(s):
+  --n-threads=1
+
+Checkpoint:
+  Wall Time Interval:      Every 3600 s
+  Checkpoint:              Outputs/checkpoint
+  # Checkpoints Kept:      2
+  Execute On:              TIMESTEP_END 
+
+Parallelism:
+  Num Processors:          1
+  Num Threads:             1
+
+Mesh: 
+  Parallel Type:           replicated
+  Mesh Dimension:          3
+  Spatial Dimension:       3
+  Nodes:                   64
+  Elems:                   27
+  Num Subdomains:          1
+
+Nonlinear System:
+  Num DOFs:                64
+  Num Local DOFs:          64
+  Variables:               "w" 
+  Finite Element Types:    "LAGRANGE" 
+  Approximation Orders:    "FIRST" 
+
+Execution Information:
+  Executioner:             Steady
+  Solver Mode:             NEWTON 
+  PETSc Preconditioner:    hypre boomeramg strong_threshold: 0.7 (auto)
+  MOOSE Preconditioner:    SMP 
+
+
+Postprocessor Values:
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+| time           | flux_back      | flux_bottom    | flux_front     | flux_left      | flux_right     | flux_top       |
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+|   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+
+ 0 Nonlinear |R| = [32m6.824466e+01[39m
+      0 Linear |R| = [32m6.824466e+01[39m
+    0 KSP unpreconditioned resid norm 6.824465791059e+01 true resid norm 6.824465791059e+01 ||r(i)||/||b|| 1.000000000000e+00
+      1 Linear |R| = [32m1.555880e-02[39m
+    1 KSP unpreconditioned resid norm 1.555879619898e-02 true resid norm 1.555879619898e-02 ||r(i)||/||b|| 2.279855548454e-04
+      2 Linear |R| = [32m4.773170e-07[39m
+    2 KSP unpreconditioned resid norm 4.773170356693e-07 true resid norm 4.773170366539e-07 ||r(i)||/||b|| 6.994203667622e-09
+      3 Linear |R| = [32m2.795778e-11[39m
+    3 KSP unpreconditioned resid norm 2.795777963350e-11 true resid norm 2.795983625951e-11 ||r(i)||/||b|| 4.096999987331e-13
+    Linear solve converged due to CONVERGED_RTOL iterations 3
+ 1 Nonlinear |R| = [32m2.795762e-11[39m
+  Nonlinear solve converged due to CONVERGED_FNORM_ABS iterations 1
+[32m Solve Converged![39m
+
+
+Postprocessor Values:
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+| time           | flux_back      | flux_bottom    | flux_front     | flux_left      | flux_right     | flux_top       |
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+|   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |
+|   1.000000e+00 |   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+

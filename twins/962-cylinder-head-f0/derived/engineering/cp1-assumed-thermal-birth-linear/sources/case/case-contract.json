@@ -1,0 +1,159 @@
+{
+  "assessor_sha256": "0548fcbf6eba737aaaf816abbfbfd0511b5b8fb266aa10c34a1f5817eef0e338",
+  "card": {
+    "assumed_material": {
+      "basis": "Explicit root-selected research hypotheses; no matched M291 thermal measurements",
+      "cp_J_kgK": {
+        "assumed": true,
+        "temperature_dependence": "constant over declared numerical300-500K interval",
+        "value": 900
+      },
+      "density_kg_m3": {
+        "assumed": true,
+        "value": 2700
+      },
+      "enthalpy_reference_K": {
+        "assumed": true,
+        "meaning": "Caloric bookkeeping reference, not stress-free temperature",
+        "value": 300
+      },
+      "k_W_mK": {
+        "assumed": true,
+        "basis": "Unverified transfer of related Constellium CP1 scalar; source column test temperature unspecified",
+        "value": 187
+      },
+      "measured_matched": {
+        "absorbed_power_or_scan_calibration": null,
+        "build_directions": null,
+        "cp_T": null,
+        "k_T": null,
+        "rho_kg_m3": null,
+        "scatter": null,
+        "test_temperatures": null
+      },
+      "mechanical_isothermal_card_is_separate": true,
+      "nominal_process_reference_only": {
+        "gas": "argon",
+        "layer_um": 60,
+        "machine": "EOS M290",
+        "parameter_set": "AlCP1_060_M291",
+        "physical_recipe_selected_or_qualified": false,
+        "plate_C": 125,
+        "treatment_C": 400,
+        "treatment_h": 4
+      },
+      "thermal_symmetry": {
+        "assumed": true,
+        "value": "isotropic"
+      }
+    },
+    "birth_rule": "Preserve all existing nodal values, including shared interface nodes. Initialise genuinely new nodes to 350K. Integrate birth enthalpy from this predeclared interpolated field; do not assume shared nodes are 350K.",
+    "birth_temperature_K": 350.0,
+    "birth_time_s": 0.2,
+    "bounds_m": [
+      [
+        0,
+        0,
+        0
+      ],
+      [
+        2,
+        1,
+        1
+      ]
+    ],
+    "classification": "HYPOTHETICAL_SOFTWARE_VERIFICATION_ONLY",
+    "cp_at_300K_J_kgK": 900.0,
+    "cp_slope_J_kgK2": 0.0,
+    "density_kg_m3": 2700.0,
+    "efficiency": 0.5,
+    "end_time_s": 0.4,
+    "energy_normalization": "Constant-cp centered step increments with math.fsum; continuous defect divided by integrated heat input, not initial/birth inventory. All numerical thresholds unchanged.",
+    "enthalpy_reference_K": 300.0,
+    "factor": 0.5,
+    "id": "cp1-assumed-thermal-birth-sensitivity-001",
+    "initial_temperature_K": 400.0,
+    "k_at_300K_W_mK": 187.0,
+    "k_slope_W_mK2": 0.0,
+    "laser_power_W": 80.0,
+    "max_native_runtime_seconds": 100,
+    "mesh_intervals": [
+      16,
+      4,
+      4
+    ],
+    "native_binary_sha256": "b11b7c481e502e0ae5dc61eba18e3e096c9ebf0dfee3f29b005353c9a1455547",
+    "native_execution_authorized": false,
+    "native_source_revision": "7c06bdcefd (abbreviated revision in existing native version output; source/build equivalence not independently attested)",
+    "old_region_xmax_m": 1.0,
+    "predeclared_tolerances": {
+      "corrected_step_energy_absolute_J": 1e-07,
+      "finest_continuous_energy_relative": 0.01,
+      "finite_box_power_relative": 0.0005,
+      "material_property_absolute": 1e-09,
+      "minimum_final_temperature_range_K": 1.0,
+      "minimum_refinement_error_ratio": 1.4,
+      "node_history_K": 1e-10,
+      "source_cell_average_relative": 1e-09,
+      "temperature_lower_K": 300.0,
+      "temperature_upper_K": 500.0
+    },
+    "quadrature": "2x2x2 Gauss, exact for quadratic enthalpy of trilinear HEX8 temperature",
+    "qualification": {
+      "engineering_accepted": false,
+      "head_execution_authorized": false,
+      "manufacturing_authorized": false,
+      "material_qualified": false,
+      "physics_qualified": false,
+      "process_calibrated": false
+    },
+    "radii_m": [
+      0.5,
+      0.8,
+      0.8
+    ],
+    "schema_version": "1.0.0",
+    "scope": "One synthetic2x1x1m256HEX8 moving-source/birth calculation; all geometry/source/history values are numerical hypotheses. Not LPBF scale, powder/melting/scan calibration, head, stress or manufacturing.",
+    "selected_time_level": 2,
+    "solver_not_run": true,
+    "source_normalization": "Full-space integral = 2*factor*efficiency*power; finite box integral uses product of error-function fractions.",
+    "source_start_m": [
+      0.4,
+      0.5,
+      0.5
+    ],
+    "status": "HELD_RESEARCH_HYPOTHESIS_NOT_QUALIFIED_MATERIAL_OR_PROCESS",
+    "time_method": "Backward Euler: Delta H = dt*integral(Q_h) - rho*cp_slope/2*integral((T_end-T_begin)^2), with adiabatic exterior. Birth is applied at the beginning of the ending-time-labelled step. Continuous-time error must decrease under frozen time refinement.",
+    "time_steps_s": [
+      0.01,
+      0.005,
+      0.0025
+    ],
+    "units": "m, kg, s, K, J, W; no physical material",
+    "velocity_m_s": [
+      3.0,
+      0,
+      0
+    ],
+    "whole_head_lpbf_complete": false
+  },
+  "card_sha256": "4e07cbb997c831bac2c0abd43092148c5518b6c7aa04d7b3d287779f9e700986",
+  "classification": "HYPOTHETICAL_SOFTWARE_VERIFICATION_ONLY",
+  "frozen_before_native_runs": true,
+  "head_execution_authorized": false,
+  "input_sha256": {
+    "thermal-birth.i": "ffe9b19786d534a8b4ad60e78290c7d3698a2dcb6b7ddf183f100321b02df1aa"
+  },
+  "level_input_sha256": {
+    "2": "460a3332eac1ec0eddd1884657d2b8b0cdd96bd49443180d00651e44fb76a09a"
+  },
+  "manufacturing_authorized": false,
+  "native_execution_authorized": false,
+  "schema_version": "1.0.0",
+  "scope": "Source-frozen numerical reference for only level2; future output frozen-contract.json must be an exact copy. Root-owned native actual/authority is separate and external; no self hash. Separately frozen LINEAR solver-mode variant of the preserved Newton case c5b7e582 and failed native actual4eabadfa; only the deck solve_type keyword changes. All numeric tolerances, physical Kelvin/birth/source/geometry and unchanged0548 assessor gates remain exact. LINEAR bypasses the original nonlinear convergence test; unchanged tolerances remain literal inputs, and this variant does not establish that the old Newton residual passed. No native or assessment authority.",
+  "selected_level_only": 2,
+  "status": "HELD_PHYSICS_REFERENCE_CONTRACT_NOT_NATIVE_AUTHORITY",
+  "time_level_inputs": {
+    "2": "[Executioner]\n  dt = 0.0025\n[]\n"
+  }
+}

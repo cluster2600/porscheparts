@@ -1,0 +1,68 @@
+{
+  "hardened_controller_only": true,
+  "only_two_directed_head_queries_executed": true,
+  "controls": [
+    {
+      "query": "original-changed-to-complete-candidate",
+      "resources": {
+        "rss_stop_bytes": 4294967296,
+        "rss_poll_seconds": 0.1,
+        "process_group_deadline_seconds": 300,
+        "native_library_serial": true,
+        "thread_environment_limit": 2,
+        "hard_address_space_quota": false,
+        "OS_CPU_quota": false
+      },
+      "contract_sha256": "6b412f10756d4735d0e36cfb2e1505280641c2ff10ba7aaf0f796e711576d804",
+      "config_sha256": "4b82291a165a00763cfdf765e0a4ab9ace2f27d4e45ef5c0e082465498277813",
+      "status": "finished",
+      "returncode": 0,
+      "wall_seconds": 3.1346114999614656,
+      "stopped_by_watchdog": null,
+      "monitor_error": null,
+      "cleanup_error": null,
+      "worker_reaped": true,
+      "worker_running_after_monitor": false,
+      "maximum_observed_worker_RSS_bytes": 1062223872,
+      "RSS_samples": 28,
+      "all_bound_inputs_unchanged": true,
+      "hard_address_space_quota_established": false,
+      "OS_CPU_quota_established": false,
+      "original_private_execution_receipt_sha256": "d6e37ad7a5048d2e1c91c410be1e63d13bdec95eb430b860ecc314c2e770b814",
+      "native_report_sha256": "3b4c5a54d792ae35f1833f0e76b986786ba146d490347e851a6dc3987780ce73",
+      "native_log_sha256": "ef48383a9dd25da2578b917ef0c90bc98a205284e1c88be6177fd779770e61e5"
+    },
+    {
+      "query": "candidate-changed-to-complete-original",
+      "resources": {
+        "rss_stop_bytes": 4294967296,
+        "rss_poll_seconds": 0.1,
+        "process_group_deadline_seconds": 300,
+        "native_library_serial": true,
+        "thread_environment_limit": 2,
+        "hard_address_space_quota": false,
+        "OS_CPU_quota": false
+      },
+      "contract_sha256": "6b412f10756d4735d0e36cfb2e1505280641c2ff10ba7aaf0f796e711576d804",
+      "config_sha256": "54e3098225b2e821856354392b4f76542a8ef2452e75b4bf585bb8340ecdd8fa",
+      "status": "finished",
+      "returncode": 0,
+      "wall_seconds": 3.4148637920152396,
+      "stopped_by_watchdog": null,
+      "monitor_error": null,
+      "cleanup_error": null,
+      "worker_reaped": true,
+      "worker_running_after_monitor": false,
+      "maximum_observed_worker_RSS_bytes": 1056112640,
+      "RSS_samples": 30,
+      "all_bound_inputs_unchanged": true,
+      "hard_address_space_quota_established": false,
+      "OS_CPU_quota_established": false,
+      "original_private_execution_receipt_sha256": "af20f7e562a1ecb142833ed0c08725230d5c7d2b5d82eda8246345d469959fc5",
+      "native_report_sha256": "e472087caf18857b03f213d1c1c73bd96c2c22004d067615d90d65ba7b392e35",
+      "native_log_sha256": "4d54cf4a4875cbb5f5013f4fd96391aec7dffd87f4238ce46685009eb29e1396"
+    }
+  ],
+  "hard_AS_or_OS_CPU_quota_claimed": false,
+  "sampled_RSS_stop_limitation": "Single worker RSS is sampled every0.1s plus observer/scheduling latency. A threshold crossing triggers process-group kill; peak sampled RSS is not a proof of a hard memory cap."
+}

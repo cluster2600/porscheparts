@@ -1,0 +1,131 @@
+{
+  "schema": "962-observer004-held-check-only-lifetime-successor-plan/v1",
+  "status": "HELD_NO_STAGING_NO_ACTUAL_NO_OWNER_NO_LAUNCH",
+  "preserved_actual": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer003-host-registration-execution-prep-001/actual-contract.json",
+    "sha256": "18a8e43248b97fe4e810e606124eb6e291a401248bd6c63efa4733cbca56aa2c",
+    "bytes": 5876
+  },
+  "preserved_failure_peer": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer003-host-registration-result-peer-001/review.json",
+    "sha256": "294d23aed262ca20c6cd014f114a1821799dd1a682b2af9f4d7e9298b33e5dbf",
+    "bytes": 8220
+  },
+  "candidate": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-END181-dof-map-observer-prep-004/thermoelastic-birth-observer-registration.i",
+    "sha256": "190296e6c2ad1627feca4b374efd2c49739e0c2628764cd92388392a78fd2682",
+    "bytes": 15537
+  },
+  "exact_input_path_delta": {
+    "from": "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/cp1-oneway-cooling-release-richardson2-END181-dof-map-observer-prep-003/build-005",
+    "to": "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/cp1-oneway-cooling-release-richardson2-END181-dof-map-observer-prep-004/build-001",
+    "occurrences": 1,
+    "reversal_restores_original_bytes": true
+  },
+  "argv": [
+    "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-local-installed-002/bin/combined-opt",
+    "-skip_petscrc",
+    "--n-threads=1",
+    "--check-input",
+    "--list-constructed-objects",
+    "-i",
+    "thermoelastic-birth-observer-registration.i"
+  ],
+  "environment": {
+    "PATH": "/usr/bin:/bin",
+    "LANG": "C",
+    "LC_ALL": "C",
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "MKL_NUM_THREADS": "1",
+    "VECLIB_MAXIMUM_THREADS": "1",
+    "FI_PROVIDER": "tcp",
+    "DYLD_LIBRARY_PATH": "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-local-installed-002/lib/combined:/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-local-installed-002/lib",
+    "DYLD_PRINT_LIBRARIES": "1",
+    "TMPDIR": "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-host-registration-root-execution-001/tmp"
+  },
+  "future_cwd": "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-host-registration-root-execution-001",
+  "future_cwd_currently_absent": true,
+  "outer_python": {
+    "alias": "/usr/local/bin/python3",
+    "resolved": "/Library/Frameworks/Python.framework/Versions/3.10/bin/python3.10",
+    "record": {
+      "path": "/Library/Frameworks/Python.framework/Versions/3.10/bin/python3.10",
+      "sha256": "72956ad35cff7691dfed9e04c9593de825ffd5b2fa7e8bc9ae96ce9a1af65621",
+      "bytes": 152624
+    }
+  },
+  "outer_flags": [
+    "-B",
+    "-I",
+    "-S"
+  ],
+  "positive_contract": {
+    "returncode": 0,
+    "stderr_required_text": "Syntax OK",
+    "stdout_start_marker": "**START OBJECT DATA**",
+    "stdout_end_marker": "**END OBJECT DATA**",
+    "required_exact_line_inside_constructed_type_frame": "CouponEnd181DofMap",
+    "plugin_load_trace_expected_path": "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/cp1-oneway-cooling-release-richardson2-END181-dof-map-observer-prep-004/build-001/libcoupon_end181_observer-opt.dylib",
+    "type_claim_scope": "Host parser/Factory registration and completed input setup with the observer type constructed; no output callback or live node/DOF/map proof",
+    "no_solve_source_basis": "MooseApp::run check_input branch calls errorCheck/SyntaxOK instead of executeExecutioner; list constructed types happens after input actions.",
+    "expected_outputs": "Full stdout/stderr/loader trace, status/lifecycle and fresh declared input identities; preserve unexpected files without decoding them."
+  },
+  "controls": {
+    "wall_seconds": 60,
+    "TERM_grace_seconds": 8,
+    "KILL_wait_seconds": 8,
+    "sampled_owned_group_RSS_stop_bytes": 2147483648,
+    "owned_output_stop_bytes": 33554432,
+    "OMP_BLAS_environment_threads": 1,
+    "thread_observations_nongating": true,
+    "numeric_reported_RSS_zero_allowed": true,
+    "missing_or_nonnumeric_RSS_not_zero_filled": true,
+    "retry": 0,
+    "core_bytes": 0
+  },
+  "additional_root_acceptance": [
+    "Native and outer returncodes both exactly0",
+    "No signal/stop/request/error, owned group reaped/absent",
+    "Expected newly built plugin path observed as independent conjunction",
+    "All protected selected inputs/providers/path associations unchanged",
+    "Full net owned output including serialized receipt <=32MiB; four exact staged inputs excluded only by identity",
+    "No observer output callback/live map or executioner solve artifact"
+  ],
+  "grid_identity_source_metadata_only": {
+    "thermoelastic-birth-observer-registration.i": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer003-host-registration-root-execution-001/thermoelastic-birth-observer-registration.i",
+      "sha256": "af8e25dc6edfea8da24321b032dca6e46cf9ea59aa927b46a7c40de1b210fd1d",
+      "bytes": 15537
+    },
+    "old-end.grid": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer003-host-registration-root-execution-001/old-end.grid",
+      "sha256": "c64b252894a88730ad1f6ec0311cc5fe58a2cb3a8831f67e61db9d20be95823e",
+      "bytes": 767338
+    },
+    "born-end.grid": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer003-host-registration-root-execution-001/born-end.grid",
+      "sha256": "9caf52c69d0b14db442571b11d72252f3431d57b3991ab90ed849ddb6178b63f",
+      "bytes": 429552
+    },
+    "born-begin80.grid": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer003-host-registration-root-execution-001/born-begin80.grid",
+      "sha256": "cf4d9df9c8ab66aa37c40ef4e9cf3be44607229ff901201017eba0ba176cfbe4",
+      "bytes": 1375
+    }
+  },
+  "grid_scope": "Do not copy/read/hash/stat grids in preparation. Later explicit root admission must select the same three grid byte identities and stage them unchanged. The candidate input descriptor in this historical map remains ancestry, not the new candidate.",
+  "expected_type_frame_semantics_unchanged": true,
+  "factory_input_construction_only": true,
+  "no_host_or_solver_execution": true,
+  "future_root_admission": null,
+  "future_owner": null,
+  "future_actual": null,
+  "future_preflight": null,
+  "future_result": null,
+  "host_check_execution_authorized": false,
+  "plugin_load_authorized": false,
+  "native_solve_authorized": false,
+  "callback_or_live_map_authorized": false,
+  "physical_acceptance": false
+}

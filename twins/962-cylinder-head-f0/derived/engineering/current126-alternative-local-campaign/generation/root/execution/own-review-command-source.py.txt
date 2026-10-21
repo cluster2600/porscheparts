@@ -1,0 +1,92 @@
+import ast,hashlib,json,math,struct
+from collections import Counter
+from pathlib import Path
+R=Path('project-role://engineering-checkout');B=R/'work/962-engineering';A=B/'head-star-current126-alternative-generation-actuals-prep-001';P=B/'head-star-current126-alternative-local-stages-prep-001';O=B/'current126-alternative-generation-root-execution-001'
+donor=B/'head-star-current204-generation-result-peer-002/check_saved_001.py';raw=donor.read_bytes();assert hashlib.sha256(raw).hexdigest()=='9deda1c4e588baeaabda964cee15814129adc97530bdd067ed5d2c3d46282988'
+tree=ast.parse(raw);names=['digest','read','obj','u64','f64','distribution'];nodes=[n for n in tree.body if isinstance(n,ast.FunctionDef) and n.name in names]
+assert {n.name for n in nodes}==set(names)
+ns=dict(ROOT=R,inputs={},Path=Path,hashlib=hashlib,json=json,math=math,struct=struct)
+exec(compile(ast.Module(body=nodes,type_ignores=[]),str(donor),'exec'),ns)
+read,obj,u64,f64,distribution=[ns[n] for n in ['read','obj','u64','f64','distribution']]
+def equal(a,b):return json.dumps(a,allow_nan=False)==json.dumps(b,allow_nan=False)
+def rec(p):
+ raw=p.read_bytes();return dict(path=str(p.relative_to(R)),sha256=hashlib.sha256(raw).hexdigest(),bytes=len(raw))
+master=obj(str((O/'closed-result.json').relative_to(R)),'ef52c96a79db5b402796c9d8b559d86ddfc9ebe78fbb50ccf864c38899573c88')
+idx=obj(str((A/'index.json').relative_to(R)),'34db21ed7d5172a6e9c16ce15cdee340e7160397926bd3b6e32ec7a756966f4c')
+manifest=obj(str((P/'case-manifest.json').relative_to(R)),'e83b8824581d68c3b3ca29acbd9f50573833561298159cf7969bbd46eb722e4c')
+batch=obj(manifest['source_batch_report'],'721e05802e305a124b99f97c779426e3d7b8960cab30fbabc3d93ee318e3de73')
+assert master['halt'] is None and master['completed_cases']==29 and not master['remaining_unexecuted_apices']
+assert [r['apex'] for r in master['rows']]==[r['apex'] for r in idx['cases_in_increasing_apex_order']]==master['sorted_execution']
+assert master['selected29']==idx['greedy_selected_apex_order']==manifest['greedy_selected_apex_order']==batch['selected_apex_tags']
+auth=obj(master['authorization']['path'],master['authorization']['sha256']);assert hashlib.sha256(auth['exact_root_inline_text'].encode()).hexdigest()==auth['root_inline_sha256']
+assert master['common_inputs_after']==auth['inputs'] and master['finite_runtime_after']==auth['runtime_finite5']
+for rel,digest in idx['input_hashes'].items():read(rel,digest)
+for key in ['automatic_retry','backfill','Netgen_executed','head_mesh_read_or_changed','head_PDE_executed','engineering_accepted','physics_qualified','manufacturing_authorized']:assert master[key] is False
+cases={r['apex']:r for r in manifest['cases_in_increasing_apex_order']};records={r['apex']:r for r in batch['all_candidate_star_records']}
+rows=[];routes=Counter();totals=Counter()
+for position,(result,ix) in enumerate(zip(master['rows'],idx['cases_in_increasing_apex_order'])):
+ apex=ix['apex'];case=cases[apex];record=records[apex];shell=record['shell'];nv=case['shell_nodes'];nf=case['shell_faces']
+ rc=obj(result['closed']['path'],result['closed']['sha256']);rootdir=R/Path(result['closed']['path']).parent
+ launch=obj(str((rootdir/'launch.json').relative_to(R)))
+ actual_raw=read(ix['path'],ix['sha256']);c=json.loads(actual_raw);directory=R/c['output_directory']
+ assert len(actual_raw)==ix['bytes'] and rc['actual']['sha256']==ix['sha256'] and launch['actual']['sha256']==ix['sha256']
+ assert rc['case_apex']==apex and rc['position']==position and rc['argv']==launch['argv']
+ assert not rc['signals'] and rc['error'] is None and rc['root_halt'] is None and rc['waited_reaped'] and rc['owned_controller_group_absent'] and rc['valid_matching_closed_controller_receipt']
+ assert rc['inputs_before']==rc['inputs_after']==auth['inputs'] and rc['finite_runtime_before']==rc['finite_runtime_after']==auth['runtime_finite5'] and rc['all_inputs_runtime_and_actual_unchanged']
+ files={p.name for p in directory.iterdir() if p.is_file()};assert files==set(rc['outputs'])
+ for name,d in rc['outputs'].items():
+  raw=read(str((directory/name).relative_to(R)),d['sha256']);assert len(raw)==d['bytes']
+ assert read(str((directory/'frozen-contract.json').relative_to(R)))==actual_raw
+ assert rc['outputs']['reader.py']['sha256']=='fa1d46afa752728893a9e93b7e058a26d8f0af026880c726ee20328c0f038553'
+ assert rc['outputs']['run_readback.py']['sha256']=='05b4f8996f1f642120b70be755e6609f7b641041cad1a867ea8da9e56ecb423b'
+ receipt=obj(str((directory/'execution-receipt.json').relative_to(R)));worker=obj(str((directory/'fixture-report.json').relative_to(R))) if 'fixture-report.json' in files else None
+ assert receipt['reader_sha256']==c['reader_sha256'] and receipt['runner_sha256']==c['runner_sha256'] and receipt['contract_sha256']==ix['sha256']
+ assert receipt['fixture_report_sha256']==rc['outputs'].get('fixture-report.json',{}).get('sha256') and receipt['native_log_sha256']==rc['outputs']['native.log']['sha256']
+ assert receipt['stop_reason'] is None
+ if worker is None:
+  assert rc['procedural_pass'] is False and rc['next_stage']=='stop_case'
+  routes['stop_case']+=1;rows.append(dict(apex=apex,root_closed=result['closed'],procedural_pass=False,worker_report_present=False,next_stage='stop_case'))
+  for name in ['stdout.log','stderr.log']:read(str((rootdir/name).relative_to(R)))
+  continue
+ assert worker['schema']=='962-finite-selected-current126_alternative-generation/v1' and worker['case_apex']==apex and worker['case_key']==case['case_key'] and worker['case_record_sha256']==case['source_record_sha256']
+ assert worker['case_manifest_sha256']==c['case_manifest_sha256']=='e83b8824581d68c3b3ca29acbd9f50573833561298159cf7969bbd46eb722e4c'
+ assert worker['source_batch_sha256']==manifest['source_batch_report_sha256'] and worker['frozen_contract_sha256']==ix['sha256']
+ for key in ['head_execution_authorized','stitching_authorized','native_head_application_authorized','engineering_accepted','physics_qualified','manufacturing_authorized','global_self_intersection_checked','geometric_tetrahedron_overlap_checked','new_interior_node_point_in_cavity_containment_checked']:assert worker[key] is False
+ if rc['procedural_pass']:
+  assert files=={'arrays.json','cavity.msh','execution-receipt.json','fixture-report.json','frozen-contract.json','native.log','reader.py','run_readback.py'}
+  assert worker['status']=='completed_finite_selected_cavity_generation_only' and worker['stage']=='completed_all_local_checks' and 'error' not in worker
+  assert worker['fixture_procedural_checks_passed'] and worker['bound_inputs_unchanged'] and worker['saved_mesh_identity_exact'] and worker['exact_boundary_bits_faces_classifications']
+  assert worker['options']==c['options'] and worker['native_operation_counts']==c['declared_operation_counts'] and worker['runtime']==c['expected_runtime'] and worker['runtime_sha256s']==c['runtime_sha256s']
+  assert worker['mesh_sha256']==rc['outputs']['cavity.msh']['sha256'] and worker['mesh_bytes']==rc['outputs']['cavity.msh']['bytes'] and worker['full_tiny_arrays_sha256']==rc['outputs']['arrays.json']['sha256']
+  arrays=obj(str((directory/'arrays.json').relative_to(R)));assert set(arrays)=={'after_generation','saved_reopen'} and equal(arrays['after_generation'],arrays['saved_reopen']) and equal(worker['after_generation'],worker['saved_reopen'])
+  state=arrays['saved_reopen'];r=worker['saved_reopen'];nt=state['node_tags'];xyz=state['coordinates_mm'];et=state['tetra_tags'];en=state['tetra_node_tags'];n=len(nt);m=len(et)
+  assert nt==sorted(set(nt)) and et==sorted(set(et)) and all(t>0 for t in nt+et) and len(xyz)==n and len(en)==m and all(len(p)==3 for p in xyz)
+  assert all(len(t)==4 and len(set(t))==4 for t in en) and {t for row in en for t in row}==set(nt)
+  assert len({struct.pack('<3d',*p) for p in xyz})==n and len({tuple(sorted(row)) for row in en})==m
+  pos={t:i for i,t in enumerate(nt)}
+  for v in shell['vertex_rows']:
+   p=xyz[pos[v['local_node_tag']]];assert struct.pack('<3d',*p).hex()==v['binary64_little_endian_bytes_hex'] and [float(x).hex() for x in p]==v['binary64_hex']
+  assert r['nodes']==r['referenced_nodes']==n and r['tetrahedra']==m and r['referenced_interior_nodes']==sum(t>nv for t in nt) and r['unreferenced_nodes']==r['duplicate_tetrahedra']==0
+  assert r['sorted_node_tags_sha256']==u64(nt) and r['sorted_coordinates_sha256']==f64(xyz) and r['tetra_tags_sha256']==u64(et) and r['tagged_tetra_connectivity_sha256']==u64(en) and r['canonical_cells_sha256']==u64(sorted(sorted(row) for row in en))
+  for name,values in state['native_qualities'].items():assert len(values)==m and distribution(values)==r['quality'][name]
+  signed=state['independent_signed_volume_mm3'];assert len(signed)==m
+  for key,value in distribution(signed).items():assert r['independent_signed_volume_mm3'][key]==value
+  assert worker['original_source_classifications']==shell['original_source_classifications'] and worker['local_to_global_shell_node_tags']==shell['local_to_global_node_tags']
+  assert r['node_classifications']==[[t,2 if t<=nv else 3] for t in nt] and r['node_entity_classifications']==[[t,2 if t<=nv else 3,1] for t in nt]
+  assert r['node_counts_by_classification_dimension']=={'0':0,'1':0,'2':nv,'3':n-nv}
+  assert worker['shell']['vertices']==nv and worker['shell']['faces']==nf and worker['shell']['exact_volume_mm3']=={k:str(v) for k,v in case['exact_volume_mm3'].items()}
+  quality=all(v>=.1 for v in state['native_qualities']['SICN']) and all(v>0 for key in ['Jacobian','native_volume_mm3'] for v in state['native_qualities'][key]) and all(v>0 for v in signed)
+  storage=r['referenced_interior_nodes']>=1 and m>=case['old_tetrahedra'];route=('domain' if storage else 'hold_mapping_incompatible_no_Netgen') if quality else 'one_Netgen'
+  assert worker['actual_SICN_gate_passed'] is quality and worker['later_head_storage_compatible'] is storage and worker['next_stage']==route
+  assert rc['strict_quality_pass'] is quality and rc['next_stage']==route and result['next_stage']==route
+  assert receipt['returncode']==rc['returncode']==(0 if quality else 2)
+  routes[route]+=1;totals.update(nodes=n,tetrahedra=m,poor=r['quality']['SICN']['below_point1_count'])
+  rows.append(dict(apex=apex,root_closed=result['closed'],worker=rec(directory/'fixture-report.json'),arrays=rec(directory/'arrays.json'),mesh=rc['outputs']['cavity.msh'],actual=ix,nodes=n,tetrahedra=m,interior_nodes=r['referenced_interior_nodes'],poor=r['quality']['SICN']['below_point1_count'],minimum_SICN=r['quality']['SICN']['minimum'],strict_quality_pass=quality,storage_compatible=storage,next_stage=route))
+ else:
+  assert worker['next_stage']=='stop_case';routes['stop_case']+=1;rows.append(dict(apex=apex,root_closed=result['closed'],procedural_pass=False,worker_error=worker.get('error'),next_stage='stop_case'))
+ for name in ['stdout.log','stderr.log']:read(str((rootdir/name).relative_to(R)))
+for rel,sha in ns['inputs'].items():assert hashlib.sha256((R/rel).read_bytes()).hexdigest()==sha
+j=dict(schema='962-current126-alternative29-generation-root-saved-associations/v1',decision='SAVED29_CAPTURE_ASSOCIATIONS_REVIEWED_PENDING_STOPPED_PEER',master=rec(O/'closed-result.json'),actual_index=rec(A/'index.json'),helper_source=rec(donor),selected_helper_definitions_only=names,all29_rows=rows,route_counts=dict(routes),totals=dict(totals),fresh_read_records_sha256=ns['inputs'],complete_after_saved_arrays_and_native_metric_summaries_match=True,scope='Saved rows and typed hashes only. No geometry/quality/volume/topology/certification predicate replay, no raw mesh decoding or native runtime execution. Native acquisition/reopen/classification/geometry remain attributed to one reviewed worker and root capture.',no_geometry_recalculation=True,engineering_accepted=False,physics_qualified=False,manufacturing_authorized=False)
+f=O/'own-review.json'
+with f.open('x') as stream:json.dump(j,stream,indent=2,allow_nan=False);print(file=stream)
+f.chmod(0o444);print(json.dumps(dict(review=rec(f),routes=dict(routes),totals=dict(totals),cases=len(rows))))

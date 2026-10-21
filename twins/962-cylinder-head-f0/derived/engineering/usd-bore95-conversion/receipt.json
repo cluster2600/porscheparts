@@ -1,0 +1,137 @@
+{
+  "schema_version": "1.0.0",
+  "status": "vendor_geometry_derivative_rejected_strict_source_parity",
+  "scope": "One geometry-only conversion of the original inspected bore95 bionic-study solid; preparatory stage4 evidence only.",
+  "checked_on": "2026-10-16",
+  "source": {
+    "artifact": "bore-95 inspected solid STL",
+    "sha256": "ba7a0e28dade659550705e9737177c64c7f6fecd8d86d01e31732d7e739cd906",
+    "bytes": 90235384,
+    "triangles": 1804706,
+    "coordinate_unit": "millimeter per existing generator/report; STL itself is unitless",
+    "unchanged_before_after": true
+  },
+  "converted": {
+    "artifact": "solid.usd",
+    "sha256": "63496196c61d90a2e85b742c06b1c4b9904e7dbb886a5887c86fcda074b27cf2",
+    "bytes": 65290395,
+    "converter": "NVIDIA usd-convert-cad0.2.0 via unchanged installed convert-to-usd reference",
+    "converter_reference_report_errors": [],
+    "router_exit": 0,
+    "native_conversion_seconds": 5.431092406855896,
+    "native_converter_exit_evidence": "Unmodified vendor reference checks the actual child return code and reports any nonzero exit as an error; router returned0 and selected reference reports no errors. No separate raw child exit log is claimed.",
+    "conversion_runs": 1,
+    "unchanged_after_checks": true,
+    "raw_USD_delivery_accepted": false
+  },
+  "frozen_contract_sha256": "ca02240c2b21551d087b093daf9f7c2cf2052e232b0e5beec7e289919ea75520",
+  "readiness_receipt": "../usd-conversion-readiness/receipt.json",
+  "formal_minimum": {
+    "passed": true,
+    "checks": 8,
+    "errors": [],
+    "initial_discovery": "Direct pxr import failed in the dedicated interpreter; actual validation preflight and minimum-reference refusal preserved.",
+    "later_discovery": "Fresh unmodified validation preflight with the existing bundled module directory on CPython PYTHONPATH genuinely reports openusd_python ready. No manifest entry was synthesized or guard disabled.",
+    "PYTHONPATH_entry_relative_to_owned_runtime": "venv/lib/python3.12/site-packages/usd_convert_cad/_runtime",
+    "startup_LD_LIBRARY_PATH_entry_relative_to_owned_runtime": "venv/lib/python3.12/site-packages/omni/converter/hoops",
+    "preflight_overall_status": "blocked",
+    "remaining_validation_blockers": [
+      "Asset Validator CLI/module unavailable",
+      "SimReady Foundation pinned checkout absent",
+      "SimReady validation runtime unavailable"
+    ],
+    "full_validation_ready": false
+  },
+  "geometry_mapping": {
+    "source_triangles": 1804706,
+    "USD_triangles": 1804452,
+    "triangle_count_change": -254,
+    "USD_points": 4242278,
+    "non_triangular_faces": 0,
+    "meters_per_unit": 0.001,
+    "up_axis": "Z",
+    "authored_frame": {
+      "rotation_and_scale": "identity",
+      "mesh_translation_mm": [
+        0,
+        0,
+        45.00000111819827
+      ],
+      "transform_determinant": 1.0,
+      "orientation": "rightHanded"
+    },
+    "source_bounds_mm": [
+      [
+        -76.0,
+        -75.0,
+        -0.0005928563768975437
+      ],
+      [
+        76.0,
+        75.0,
+        90.00059509277344
+      ]
+    ],
+    "USD_world_bounds_mm": [
+      [
+        -76.0,
+        -75.0,
+        -0.0005939745751675218
+      ],
+      [
+        76.0,
+        75.0,
+        90.00059621097171
+      ]
+    ],
+    "maximum_absolute_bound_delta_mm": 1.1181982699781656e-06,
+    "exact_oriented_triangle_multiset_equal": false,
+    "matched_triangle_multiplicity": 1471156,
+    "missing_source_triangle_multiplicity_at_exact_precision": 333550,
+    "extra_USD_triangle_multiplicity_at_exact_precision": 333296,
+    "source_triangle_digest": "61bf5416da9f71067c33413c7e7c23f81cd87d30b4f97badbf0ddd8747463dbe",
+    "USD_triangle_digest": "82693bc97303abf845c73763cb8972e2d7ec600eaab19cd5857ea1a44dc1244f",
+    "policy": "Exact oriented triangle multiset equality at original STL IEEEfloat32 precision after world-unit conversion; signed-zero normalized, cyclic order allowed, winding preserved. No fitted transform or tolerance relaxation.",
+    "conclusion": "Strict parity failed. Near-equal bounds and a passing minimum validator do not establish identical source geometry. The causes of every changed or omitted triangle are not yet established. No tolerance was relaxed."
+  },
+  "privacy_review": {
+    "authored_private_path_findings": 0,
+    "nonempty_external_asset_references": [],
+    "empty_asset_reference_is_internal": true,
+    "composition_errors": [],
+    "physical_schemas": [],
+    "physical_attributes": [],
+    "visual_material_prim_count": 2,
+    "stage_kilograms_per_unit": 1.0,
+    "stage_mass_unit_is_not_assigned_density_or_mass": true,
+    "custom_layer_data": "Converter creator/version only; no private source path found.",
+    "runtime_layer_identifiers": "Private evidence locations were reviewed separately; they are not automatically authored source paths.",
+    "file_stripped_or_modified": false
+  },
+  "evidence_sha256": {
+    "native/conversion.json": "02cc09faaef7ce952a93b9aab59ccf071041feb79daeac9d190ef28f2ec6cc32",
+    "native/conversion-execution.json": "1a5db4680ca32592627aafb6c1132a6162f290ad9acbc529fd2206fd3f839cd6",
+    "native/validation-preflight.json": "898b22859a46b09ba9c77300145d813496268a77d3932e7ca638fa9dd516ef95",
+    "native/minimum-validation.json": "012d42145b7bc56e3659cc6f6419e9d9032b3733a71b0b2fa3a7f3103f0fb52f",
+    "validation-discovery-002/preflight.json": "dd8a107cb2733b39c4c319b365631472603075ae5eb4bb4dcdc87c9ac05d798c",
+    "validation-discovery-002/preflight-execution.json": "ea473b91685eb1e0635609b107af23e1a6ac337293283d4b06bc4beaf57a48fd",
+    "validation-discovery-002/minimum.json": "fabd9cccb83be98315963d61f486bc9e042ad25e6f42a540be8dfabcebdb312d",
+    "validation-discovery-002/minimum-execution.json": "c7dbc854255e3088c67a61737c4bbfe5985fc86ec9a601d9bd08d237e6dcfa1d",
+    "geometry-audit-001.json": "051f76d3255c661280f8f4b608608bc0db44a26920568e0761401ec1d6eb7546",
+    "geometry-audit-execution-001.json": "f78c524641963885ffef03e3f52189a137cda06a3cd55a00a9027f7779c32bce",
+    "audit_geometry.py": "99da97f7c518f1ecbae6402198e4ebd46951df2c72776e32c622cede1543a3da",
+    "skill-snapshot/references/convert-to-usd/scripts/run.py": "d1bb21b7d2981da6843debcb1d121b74b20ca98d38dfdc30328d777a25e9bca1",
+    "skill-snapshot/references/convert-to-usd/references/usd-convert-cad/scripts/run.py": "cf7ef39adfbd49829de71f800f5b932b031e73de868c5670e84b5dd3b5e9579b",
+    "skill-snapshot/references/validate-usd-minimum/scripts/run.py": "27814e60fee873212745f89cfe3703964dc62a6f730247b8c5d7e686224cd43f"
+  },
+  "qualification": {
+    "strict_geometry_preservation_accepted": false,
+    "historical_fidelity_validated": false,
+    "head_simulation_executed": false,
+    "physical_material_assigned": false,
+    "solver_fields_imported": false,
+    "rendering_checked": false,
+    "manufacturing_authorized": false
+  },
+  "rights": "Hash and safe numerical/metadata projection only. No proprietary runtime, private command/host/path or raw vendor derivative is published."
+}

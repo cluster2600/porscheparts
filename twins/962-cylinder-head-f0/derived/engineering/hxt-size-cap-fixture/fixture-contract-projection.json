@@ -1,0 +1,217 @@
+{
+  "cases": {
+    "capped-1p75": {
+      "General.NumThreads": 2,
+      "Mesh.Algorithm3D": 10,
+      "Mesh.Binary": 1,
+      "Mesh.ElementOrder": 1,
+      "Mesh.MaxNumThreads3D": 2,
+      "Mesh.MeshOnlyEmpty": 1,
+      "Mesh.MeshSizeExtendFromBoundary": 0,
+      "Mesh.MeshSizeFactor": 1,
+      "Mesh.MeshSizeMax": 1.75,
+      "Mesh.MeshSizeMin": 0,
+      "Mesh.MshFileVersion": 4.1,
+      "Mesh.Optimize": 0,
+      "Mesh.OptimizeNetgen": 0,
+      "Mesh.RandomSeed": 1,
+      "Mesh.Renumber": 0,
+      "Mesh.SaveAll": 1
+    },
+    "uncapped": {
+      "General.NumThreads": 2,
+      "Mesh.Algorithm3D": 10,
+      "Mesh.Binary": 1,
+      "Mesh.ElementOrder": 1,
+      "Mesh.MaxNumThreads3D": 2,
+      "Mesh.MeshOnlyEmpty": 1,
+      "Mesh.MeshSizeExtendFromBoundary": 0,
+      "Mesh.MeshSizeFactor": 1,
+      "Mesh.MeshSizeMax": 1e+22,
+      "Mesh.MeshSizeMin": 0,
+      "Mesh.MshFileVersion": 4.1,
+      "Mesh.Optimize": 0,
+      "Mesh.OptimizeNetgen": 0,
+      "Mesh.RandomSeed": 1,
+      "Mesh.Renumber": 0,
+      "Mesh.SaveAll": 1
+    }
+  },
+  "frozen_UTC": "2026-10-16T19:28:07.674620+00:00",
+  "geometry": {
+    "analytic_volume_mm3": 343,
+    "faces_sha256": "3e3812e973b97258e69a8b0dd7964d954d0c13a90ffa4f60d01852cec04be9a0",
+    "outward_triangles": [
+      [
+        0,
+        2,
+        1
+      ],
+      [
+        0,
+        3,
+        2
+      ],
+      [
+        4,
+        5,
+        6
+      ],
+      [
+        4,
+        6,
+        7
+      ],
+      [
+        0,
+        1,
+        5
+      ],
+      [
+        0,
+        5,
+        4
+      ],
+      [
+        1,
+        2,
+        6
+      ],
+      [
+        1,
+        6,
+        5
+      ],
+      [
+        2,
+        3,
+        7
+      ],
+      [
+        2,
+        7,
+        6
+      ],
+      [
+        3,
+        0,
+        4
+      ],
+      [
+        3,
+        4,
+        7
+      ]
+    ],
+    "points": [
+      [
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        7.0,
+        0.0,
+        0.0
+      ],
+      [
+        7.0,
+        7.0,
+        0.0
+      ],
+      [
+        0.0,
+        7.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        7.0
+      ],
+      [
+        7.0,
+        0.0,
+        7.0
+      ],
+      [
+        7.0,
+        7.0,
+        7.0
+      ],
+      [
+        0.0,
+        7.0,
+        7.0
+      ]
+    ],
+    "points_sha256": "2e4317d727b430001df5c0c2928366f74332fe2c6861d4136c16827ee743a63a"
+  },
+  "length_unit": "mm",
+  "native_execution_authorized_by_contract": false,
+  "native_fixture_calls_executed_at_preparation": 0,
+  "pass_conditions": {
+    "capped_referenced_interior_nodes_strictly_greater": true,
+    "exact_internal_face_orientation": true,
+    "exact_oriented_boundary": true,
+    "positive_finite_jacobians_and_volumes": true,
+    "saved_mesh_identity": true,
+    "volume_relative_error_at_most": 1e-06
+  },
+  "purpose": "Software insertion-sizing check, not a head dimension or engineering validation",
+  "quality_scope": {
+    "SICN_threshold_is_fixture_pass_condition": false,
+    "convergence_established": false,
+    "head_accepted": false,
+    "head_minimum_SICN_gate_unchanged": 0.1,
+    "manufacturing_authorized": false,
+    "record_actual_SICN": true,
+    "thermal_resolution_established": false
+  },
+  "resources": {
+    "automatic_retry": false,
+    "cases_at_most": 2,
+    "deadline_s_per_case": 30,
+    "hard_OS_CPU_quota_applied": false,
+    "hard_address_space_limit_applied": false,
+    "sampled_RSS_stop_bytes": 1073741824,
+    "sampled_total_output_stop_bytes": 16777216,
+    "threads": 2
+  },
+  "review_status": "separate_prefix_relative_revision_native_execution_held_for_root_review",
+  "runtime": {
+    "gmsh": "4.15.2",
+    "machine": "arm64",
+    "numpy": "2.0.2",
+    "python": "3.10.11"
+  },
+  "schema": "962-HXT-size-cap-software-fixture/v1",
+  "source_basis": {
+    "callback_locator": "src/mesh/meshGRegionHxt.cpp:49-85,597-598",
+    "clamp_locator": "contrib/hxt/tetMesh/include/hxt_tetNodalSize.h:39-44",
+    "release_archive_sha256": "be3f66f225d27ba9fa014f07e83169285da8a051b0e8ab7103d88066b39bdd3e",
+    "release_source_matches_installed_binary_build_attested": false,
+    "release_url": "https://gmsh.info/src/gmsh-4.15.2-source.tgz"
+  },
+  "source_sha256s": {
+    "twins/962-cylinder-head-f0/source/audit_quality_head.py": "a298270aa00b1536314a07629b935500c68883ca0d3bd1a179d71b49a8e73991",
+    "twins/962-cylinder-head-f0/source/audit_quality_patch.py": "3532a172b2bce3a8ead7c8b11b712a2b55891377726fa1b6d847e84f0eed3912",
+    "twins/962-cylinder-head-f0/source/check_hxt_size_cap_002.py": "0cac0c2662bab1efb47df427fa9d34b13a08f74655a43673fcd9fbdc4aaa504d",
+    "twins/962-cylinder-head-f0/source/mesh_head.py": "69c8012e99057e384d44d6971d41f0e2cc7197a978120a7c566b0ad5a6477da5",
+    "twins/962-cylinder-head-f0/source/mesh_quality_head.py": "6ba68df17ae41a55e98470c103c804c830b890256b936d3785ea8cc40cb55302",
+    "twins/962-cylinder-head-f0/source/prepare_head_analysis.py": "cda8f7155a8c22ab66898f07d1ad452ba5384ad7f75a1f012606685cd8a12dc3"
+  },
+  "test_sha256": "a3bff3d4b176f33de1ef28537cf4100105a14d2147794e7b1ec14ccf59829eaf",
+  "runtime_file_sha256s_by_role": {
+    "python": "72956ad35cff7691dfed9e04c9593de825ffd5b2fa7e8bc9ae96ce9a1af65621",
+    "gmsh_module": "f4b0935cebde899750293d87a643090e5ea33c9b18d249267f507db68a0e01c3",
+    "gmsh_library": "def0f5c10988a986e5e879b3db9669d8fe016a81e2d994bbaf2b8497c6b8a58a"
+  },
+  "public_projection": {
+    "original_sha256": "af201485b13f8f548854a5bd42777b1d3d3a7903988c31b254fc1cf3dad1ec27",
+    "omitted": [
+      "Absolute runtime file keys"
+    ],
+    "replacement": "The same observed file digests are labelled by interpreter/module/library role; original frozen contract is unchanged"
+  }
+}

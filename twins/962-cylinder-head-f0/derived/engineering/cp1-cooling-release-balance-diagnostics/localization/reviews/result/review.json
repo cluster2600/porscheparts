@@ -1,0 +1,97 @@
+{
+  "schema": "962-END-balance-produced-independent-review/v1",
+  "decision": "CLEAR_COMPLETE_SAVED_NATIVE_BALANCE_LOCALIZATION_ONLY",
+  "bindings": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-linear-END-native-balance-diagnostic-result-peer-001/bindings.json",
+    "sha256": "4a5a427b978c06ef8bd1c1969015f9ad7a8e7db7d61f36d1e2c5bdeeaf051879",
+    "bytes": 74632
+  },
+  "result": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-linear-END-native-balance-diagnostic-001/diagnostic.json",
+    "sha256": "c654e2898c44b60d768e831fafa188a8a37dd0dd6e7bbe6a47b65fcc54bf7b0d",
+    "bytes": 2919271
+  },
+  "closed": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-linear-END-native-balance-diagnostic-root-execution-001/closed-result.json",
+    "sha256": "ce1c7d4a2b92a08d543ec8cb593d2b0dc6a9bcf36e70049a01f56f79c24109d4",
+    "bytes": 235666
+  },
+  "source": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-linear-END-native-balance-diagnostic-prep-001/diagnose_END_balance.py",
+    "sha256": "efcbf6580dd5ad5ab4ec76c334ac4f5151c45a1bddbeb28095b2ecd178445e1a",
+    "bytes": 20316
+  },
+  "held": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-linear-END-native-balance-diagnostic-prep-001/held-preparation.json",
+    "sha256": "c42c2ba80caeb10b5709dd5fa5747c379534e27851a13a1d802353653dc90537",
+    "bytes": 153739
+  },
+  "checked": {
+    "all216_metadata_pins_and_root_control_result_hashes_current": true,
+    "complete183_END_evidence_and1098_force_1098_moment_order_and_reductions": true,
+    "END181_only_original450rows425IDs25complete_token_doublets": true,
+    "six_point_constraints_reconstructed_without_prepared_support_masks": true,
+    "all6_END181_native_force_moment_sums_and_term_binary64_hashes_exact": true,
+    "all425_contributors_in_both_maximum_witnesses_exact": true,
+    "first_force_absolute_error_matches_preserved_b7c_line520_refusal": true,
+    "strict_refusal_and_unchanged1e7minus_N_Nm_gates_preserved": true
+  },
+  "observed": {
+    "first_and_max_force": {
+      "step": 181,
+      "rowset": "reaction",
+      "component": 0,
+      "unit": "force_N",
+      "value": -1.965162169881296e-06,
+      "binary64_hex": "-0x1.07c2754000000p-19",
+      "absolute_error": 1.965162169881296e-06,
+      "unchanged_limit": 1e-07
+    },
+    "first_and_max_moment": {
+      "step": 181,
+      "rowset": "reaction",
+      "component": 1,
+      "unit": "moment_Nm",
+      "value": -8.405768312513828e-07,
+      "binary64_hex": "-0x1.c348000000000p-21",
+      "absolute_error": 8.405768312513828e-07,
+      "unchanged_limit": 1e-07
+    },
+    "counts": {
+      "files": 183,
+      "raw_rows": 64350,
+      "unique_node_phases": 61775,
+      "shared_doublet_groups": 2575
+    }
+  },
+  "root_attributed_lifecycle": {
+    "returncode": 0,
+    "wall_seconds": 3.084866999881342,
+    "stop_reason": null,
+    "signals": [],
+    "error": null,
+    "waited_reaped_owned_group_absent": true,
+    "sampled_leader_RSS_max_bytes": 78348288,
+    "ordinary_seconds": 60,
+    "TERM_grace_seconds": 8,
+    "own_process_probe": false
+  },
+  "limits": [
+    "Only END181 raw CSV was decoded independently here. Other182 END raw body/lexical validations remain root/producer attributed; all183 result/storage metadata joins and saved reductions were checked.",
+    "These are saved native rx/ry/rz force/moment balances under six point supports. No independently assembled FEM, QP/CDF/geometry, release energy, hold, full assessor or native rerun occurred.",
+    "Localization identifies the refused quantity and its contribution words. It proves no numerical or solver cause, IEEE floor, material accuracy, LPBF calibration, full seven-SI result or physical qualification."
+  ],
+  "lineage": "existing_study_audit authored current case/actual and earlier source/refusal reviews; replica_metrology authored this fixed diagnostic and original numerical assessor. Root executed once. This independent result review reconstructs native sums from one original witness CSV, not independent mechanics derivation.",
+  "own_inspection_history": [],
+  "numerical_or_solver_cause": null,
+  "full_field_dataset_accepted": false,
+  "native_execution_authorized": false,
+  "assessment_execution_authorized": false,
+  "head_execution_authorized": false,
+  "engineering_accepted": false,
+  "physics_qualified": false,
+  "material_qualified": false,
+  "process_calibrated": false,
+  "manufacturing_authorized": false,
+  "automatic_retry": false
+}

@@ -1,0 +1,59 @@
+{
+  "schema": "962-quality-volume-sized-outcome/v1",
+  "status": "saved_sized_raw_volume_mesh_independently_read_and_rejected",
+  "candidate_sha256": "7f0d96988684f7d36dab8f65c5b63b1919c2c2121768cf9caec466867a5c2b43",
+  "mesh": {
+    "sha256": "b142e05973f288f7fbee4f56b7fa7a4ed79adb2f4345aa6657764a2bf1a693f4",
+    "bytes": 211471998,
+    "format": "Gmsh 4.1 binary",
+    "length_unit": "mm",
+    "nodes": 979452,
+    "tetrahedra": 3059463,
+    "explicit_source_boundary_triangles": 1804706,
+    "referenced_interior_nodes": 77307,
+    "unreferenced_nodes": 0
+  },
+  "actual_minimum_SICN_gate": 0.1,
+  "actual_minimum_SICN": -1.2793193015693403e-14,
+  "nonpositive_SICN_count": 2,
+  "tetrahedra_below_point1": 284806,
+  "SICN_gate_passed": false,
+  "positive_native_Jacobians_and_volumes": true,
+  "worker_signed_volume_sum_mm3": 915458.4757034747,
+  "candidate_relative_volume_error": 0.0,
+  "worker_checks": {
+    "exact_oriented_tetra_boundary": true,
+    "exact_internal_face_orientation_balance": true,
+    "saved_mesh_identity_exact": true
+  },
+  "independent_readback_complete": true,
+  "final_root_review_complete": true,
+  "qualification": {
+    "geometric_volume_gate_passed": false,
+    "mesh_convergence_established": false,
+    "thermal_resolution_established": false,
+    "engineering_accepted": false,
+    "thermal_performance_validated": false,
+    "strength_validated": false,
+    "manufacturing_authorized": false
+  },
+  "head_thermal_or_stress_result_credited": false,
+  "LPBF_result_credited": false,
+  "independent_signed_volume_sum_mm3": 915458.4757034747,
+  "fixed_boundary_only_nonpositive_cells": true,
+  "nonpositive_tetrahedron_tags": [
+    4365900,
+    5927920
+  ],
+  "diagnostic_scope": "Two actual nonpositive-SICN cells use only original fixed-boundary nodes. Interior-only relocation with unchanged connectivity cannot change these cells; this does not authorize a connectivity or boundary change.",
+  "direct_readback_checks": [
+    "All tagged node and tetrahedron array hashes equal the native worker.",
+    "Every saved native SICN/Jacobian/volume and independent signed volume was inspected.",
+    "Exact original source boundary coordinates and explicit surface connectivity.",
+    "Actual referenced/interior/unreferenced node counts and fixed-boundary diagnostic coordinates."
+  ],
+  "native_worker_checks_retained_not_repeated_by_reader": [
+    "Actual exterior tetra-face incidence.",
+    "Opposite orientation of every count-two internal tetra face."
+  ]
+}

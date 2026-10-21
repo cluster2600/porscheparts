@@ -1,0 +1,81 @@
+{
+  "schema": "962-five-toy-fixed-adapter-result/v1",
+  "status": "INCOMPLETE",
+  "transport_calls": 1,
+  "transport_returned": false,
+  "helper_report": {
+    "path": "work/962-engineering/head-star-current24-qfnra-five-toy-root-execution-001/toys/report.json",
+    "sha256": "e47408084abd33c48b6cc408518143210922cc4a79396356d09966b731ee5ef9",
+    "bytes": 1995
+  },
+  "helper_complete": false,
+  "helper_failure": "ToyRefusal('Exactly one declared toy Real variable in full model')",
+  "unattempted_session_IDs": [
+    "algebraic",
+    "maxfinite",
+    "negative_half_minsubnormal",
+    "unsat"
+  ],
+  "traceback": "Traceback (most recent call last):\n  File \"/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/head-star-current24-qfnra-five-toy-owner-prep-004/run_fixed_adapter.py\", line 64, in main\n    returned=module.run_fixed_toys(TOYS,group)\n  File \"/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/head-star-current24-qfnra-toy-transport-prep-002/check_toy_sessions.py\", line 397, in run_fixed_toys\n    need(complete,'Incomplete toy gate; complete saved report retained, no retry')\n  File \"/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/head-star-current24-qfnra-toy-transport-prep-002/check_toy_sessions.py\", line 46, in need\n    raise ToyRefusal(message)\nfixed_held_five_toy_transport.ToyRefusal: Incomplete toy gate; complete saved report retained, no retry\n",
+  "controls_before": {
+    "transport": {
+      "path": "work/962-engineering/head-star-current24-qfnra-toy-transport-prep-002/check_toy_sessions.py",
+      "sha256": "76c13fe57d9598276b349e12dedd8bdfb1eff1ec3ad29d4c95a073abc8e6d49a",
+      "bytes": 21489
+    },
+    "protocol": {
+      "path": "work/962-engineering/head-star-current24-coupled-qfnra-prep-001/qfnra_protocol.py",
+      "sha256": "9b5885a35bfbc681c0354e937b9f57621b3d8137adc25b4e2ba455e86ce59785",
+      "bytes": 12459
+    },
+    "actual": {
+      "path": "work/962-engineering/head-star-current24-qfnra-five-toy-owner-prep-004/actual-contract.json",
+      "sha256": "276293be5bb79b4a6ad698ae68871eef8dd988a6d450d3ccd47f90dbfcb80580",
+      "bytes": 10517
+    },
+    "admission": {
+      "path": "work/962-engineering/head-star-current24-qfnra-five-toy-root-execution-001/admission.json",
+      "sha256": "6d62c2a4da278901cca93c9e750a63843fbbbd2adcc790f25e6874f7ee34387f",
+      "bytes": 4984
+    },
+    "adapter": {
+      "path": "work/962-engineering/head-star-current24-qfnra-five-toy-owner-prep-004/run_fixed_adapter.py",
+      "sha256": "2fad93368da0272bf1d5a4f2d51382f55b4f3ffb4d6842eeb21b6905153a14e5",
+      "bytes": 7332
+    }
+  },
+  "controls_after": {
+    "transport": {
+      "path": "work/962-engineering/head-star-current24-qfnra-toy-transport-prep-002/check_toy_sessions.py",
+      "sha256": "76c13fe57d9598276b349e12dedd8bdfb1eff1ec3ad29d4c95a073abc8e6d49a",
+      "bytes": 21489
+    },
+    "protocol": {
+      "path": "work/962-engineering/head-star-current24-coupled-qfnra-prep-001/qfnra_protocol.py",
+      "sha256": "9b5885a35bfbc681c0354e937b9f57621b3d8137adc25b4e2ba455e86ce59785",
+      "bytes": 12459
+    },
+    "actual": {
+      "path": "work/962-engineering/head-star-current24-qfnra-five-toy-owner-prep-004/actual-contract.json",
+      "sha256": "276293be5bb79b4a6ad698ae68871eef8dd988a6d450d3ccd47f90dbfcb80580",
+      "bytes": 10517
+    },
+    "admission": {
+      "path": "work/962-engineering/head-star-current24-qfnra-five-toy-root-execution-001/admission.json",
+      "sha256": "6d62c2a4da278901cca93c9e750a63843fbbbd2adcc790f25e6874f7ee34387f",
+      "bytes": 4984
+    },
+    "adapter": {
+      "path": "work/962-engineering/head-star-current24-qfnra-five-toy-owner-prep-004/run_fixed_adapter.py",
+      "sha256": "2fad93368da0272bf1d5a4f2d51382f55b4f3ffb4d6842eeb21b6905153a14e5",
+      "bytes": 7332
+    }
+  },
+  "owned_group": 5702,
+  "returned_report_agrees_with_saved": null,
+  "real_head_input_used": false,
+  "physical_acceptance": false,
+  "all_controls_unchanged": true,
+  "elapsed_before_receipt": 0.22958429111167789,
+  "forced_stop_scope": "Missing report/traceback/cleanup/unattempted IDs after outer TERM/KILL stay unknown. No signal handler or synthesized helper report."
+}

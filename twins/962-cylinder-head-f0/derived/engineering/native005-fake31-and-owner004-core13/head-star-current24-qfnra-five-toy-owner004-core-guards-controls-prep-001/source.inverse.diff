@@ -1,0 +1,313 @@
+--- work/962-engineering/head-star-current24-qfnra-five-toy-owner004-core-guards-controls-prep-001/run_guards_once.py
++++ work/962-engineering/head-star-current24-qfnra-five-toy-owner-f1-guards-controls-prep-002/run_guards_once.py
+@@ -1,4 +1,4 @@
+-"""HELD/UNRUN retained-anchor owner for one fixed13-method owner004 core fixture."""
++"""HELD/UNRUN retained-anchor owner for one fixed nine-method F1 fixture."""
+ import time
+ started=time.monotonic();controller_stop_requests=[]
+ import hashlib,json,os,re,select,signal,subprocess,sys,traceback
+@@ -6,153 +6,106 @@
+ 
+ R=Path('/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993')
+ E=R/'work/962-engineering'
+-X=E/'head-star-current24-qfnra-five-toy-owner004-core-guards-controls-prep-001'
+-D=E/'head-star-current24-qfnra-five-toy-owner004-core-guards-root-execution-001'
+-W=E/'head-star-current24-qfnra-five-toy-owner004-core-guards-root-terminal-review-001'
++X=E/'head-star-current24-qfnra-five-toy-owner-f1-guards-controls-prep-002'
++D=E/'head-star-current24-qfnra-five-toy-owner-f1-guards-root-execution-001'
++W=E/'head-star-current24-qfnra-five-toy-owner-f1-guards-root-terminal-review-001'
+ WRAPPER=X/'stopped_exec_wrapper.py'
+ CAP=33554432
+ 
+ PYTHON={"path":"/Users/maxime/.codex/worktrees/962-watercooled-head/3dprinting993/work/962-head/check-venv/bin/python","resolved_path":"/Users/maxime/.local/share/uv/python/cpython-3.12.11-macos-aarch64-none/bin/python3.12","sha256":"1699bf8aa705a8bb71613bef5cdd7d7c8c9d9a188a841f41679aa9b5830b8f60","bytes":49968,"is_symlink":True,"raw_target":"python3.12"}
+ ENV={"PATH":"/usr/bin:/bin","LANG":"C","LC_ALL":"C","OMP_NUM_THREADS":"1","OPENBLAS_NUM_THREADS":"1","MKL_NUM_THREADS":"1","VECLIB_MAXIMUM_THREADS":"1","FI_PROVIDER":"tcp"}
+ REQUIRED_PROTECTED={
+-  "fixture_source_authority": {
+-    "path": "work/962-engineering/head-star-current24-qfnra-five-toy-owner-root-source-review-004/review.json",
+-    "sha256": "4ee2ef1a60e15cf916d6d7eac254e1241bcc69c32e863f99e861232973ecfb63",
+-    "bytes": 3602
+-  },
+   "owner": {
+-    "path": "work/962-engineering/head-star-current24-qfnra-five-toy-owner-prep-004/run_owner_once.py",
+-    "sha256": "4b3025d547b758bb90e822b965517f0ac34a309ad12d5e02e534d6fc83533de5",
+-    "bytes": 33525
++    "path": "work/962-engineering/head-star-current24-qfnra-five-toy-owner-prep-002/run_owner_once.py",
++    "sha256": "f3a27f43c1ea794a552f697d556c9b6a51668d829b86f438debf03a0cd6892e2",
++    "bytes": 32207
+   },
+   "owner_index": {
+-    "path": "work/962-engineering/head-star-current24-qfnra-five-toy-owner-prep-004/index.json",
+-    "sha256": "c4e274091e87e22fe7cbc46935294205840e8e787a055afd23d9644f8d29ee5d",
+-    "bytes": 8241
+-  },
+-  "source004_METHOD": {
+-    "path": "work/962-engineering/head-star-current24-qfnra-five-toy-owner-prep-004/METHOD.md",
+-    "sha256": "3b208ee422baccba36f972f54c29adb9344275258366195f9ad5926033233f98",
+-    "bytes": 5031
+-  },
+-  "source004_peer_review": {
+-    "path": "work/962-engineering/head-star-current24-qfnra-five-toy-owner004-source-peer-001/review.json",
+-    "sha256": "aeb473cf59f387000fe5dd196149c023df847f966343f9f4fd18934e5e7b39dd",
+-    "bytes": 4732
+-  },
+-  "source004_peer_findings": {
+-    "path": "work/962-engineering/head-star-current24-qfnra-five-toy-owner004-source-peer-001/findings.json",
+-    "sha256": "6481ee0548c9430281db98375701c00b81ea1def2ccb009d800d99b2a264292b",
+-    "bytes": 9458
+-  },
+-  "source004_peer_bindings": {
+-    "path": "work/962-engineering/head-star-current24-qfnra-five-toy-owner004-source-peer-001/bindings.json",
+-    "sha256": "c5db05f4b3f26b694162eaea0c3a37407291ff9b1d98662d7f751947913231c4",
+-    "bytes": 5864
+-  },
+-  "source004_correction_authority": {
+-    "path": "work/962-engineering/head-star-current24-qfnra-five-toy-owner003-core-correction-root-authority-001/review.json",
+-    "sha256": "665c9b2abf06be390b5ecc5313933b50c26203cdec314b74ecb24dd3de9b3f45",
+-    "bytes": 2788
+-  },
+-  "F1_donor_fixture": {
++    "path": "work/962-engineering/head-star-current24-qfnra-five-toy-owner-prep-002/index.json",
++    "sha256": "2dbcb8b744677ecd01506447cd86c742b70472a1e4c3c2e867813835f1abebf0",
++    "bytes": 7297
++  },
++  "source_peer": {
++    "path": "work/962-engineering/head-star-current24-qfnra-five-toy-owner-source-peer-002/review.json",
++    "sha256": "38140b44382931e1554443a240b1c886e9cc74e2f0d2918eea2d5b59c91b8003",
++    "bytes": 5080
++  },
++  "source_findings": {
++    "path": "work/962-engineering/head-star-current24-qfnra-five-toy-owner-source-peer-002/findings.json",
++    "sha256": "75dc7b38f01bad3cc63576b99a699d24963dfcdb2873eac7dd4645825d50d0b3",
++    "bytes": 2055
++  },
++  "source_bindings": {
++    "path": "work/962-engineering/head-star-current24-qfnra-five-toy-owner-source-peer-002/bindings.json",
++    "sha256": "6eb138364cae041dc96ab01fff288b5abdd26751262674de38bcfb2e1de4f1ca",
++    "bytes": 19790
++  },
++  "root_guard_source_grant": {
++    "path": "work/962-engineering/head-star-current24-qfnra-five-toy-owner-root-source-review-002/review.json",
++    "sha256": "2b998f3bc1a895e9035a890ab1f67cb99872b77a647952239b220c80d7554b46",
++    "bytes": 3455
++  },
++  "F1_source_decision": {
++    "path": "work/962-engineering/head-star-current24-qfnra-five-toy-owner-root-source-decision-001/decision.json",
++    "sha256": "f3800b137892918d7532ed07267664f9043541e3082b739c66df04b57d84e7bf",
++    "bytes": 2944
++  },
++  "original_F1_findings": {
++    "path": "work/962-engineering/head-star-current24-qfnra-five-toy-owner-source-peer-001/findings.json",
++    "sha256": "3630255f9c2d786d11bb66663860407dcfc247a135efaa89d2d81c015d5606c9",
++    "bytes": 3048
++  },
++  "fixture": {
+     "path": "work/962-engineering/head-star-current24-qfnra-five-toy-owner-f1-guards-prep-001/test_final_evidence_guards.py",
+     "sha256": "1a81cdcd45aee1aeb917478763c9169b6be5e858c5b41b9226574ae0c70ed5fb",
+     "bytes": 14566
+   },
+-  "F1_donor_index": {
++  "fixture_bindings_json": {
++    "path": "work/962-engineering/head-star-current24-qfnra-five-toy-owner-f1-guards-prep-001/bindings.json",
++    "sha256": "3f1e80dda286909dd4c9482bfd1ceb47ab023bb8fff87eb352ff5e9d4e079374",
++    "bytes": 12195
++  },
++  "fixture_METHOD_md": {
++    "path": "work/962-engineering/head-star-current24-qfnra-five-toy-owner-f1-guards-prep-001/METHOD.md",
++    "sha256": "1ce871393d929c38776f4eb9106885b50264084b61034babed7661dfa89a7c03",
++    "bytes": 5499
++  },
++  "fixture_index_json": {
+     "path": "work/962-engineering/head-star-current24-qfnra-five-toy-owner-f1-guards-prep-001/index.json",
+     "sha256": "42448c88fc7b60166250bf5525c6713dc5d496914e110a8d0c3fe876ba44a87f",
+     "bytes": 2508
+   },
+-  "F1_donor_bindings": {
+-    "path": "work/962-engineering/head-star-current24-qfnra-five-toy-owner-f1-guards-prep-001/bindings.json",
+-    "sha256": "3f1e80dda286909dd4c9482bfd1ceb47ab023bb8fff87eb352ff5e9d4e079374",
+-    "bytes": 12195
+-  },
+-  "F1_donor_METHOD": {
+-    "path": "work/962-engineering/head-star-current24-qfnra-five-toy-owner-f1-guards-prep-001/METHOD.md",
+-    "sha256": "1ce871393d929c38776f4eb9106885b50264084b61034babed7661dfa89a7c03",
+-    "bytes": 5499
+-  },
+-  "F1_historical_source002_target": {
+-    "path": "work/962-engineering/head-star-current24-qfnra-five-toy-owner-prep-002/run_owner_once.py",
+-    "sha256": "f3a27f43c1ea794a552f697d556c9b6a51668d829b86f438debf03a0cd6892e2",
+-    "bytes": 32207
+-  },
+-  "F1_source_peer": {
++  "fixture_root_review": {
++    "path": "work/962-engineering/head-star-current24-qfnra-five-toy-owner-f1-guards-root-source-review-001/review.json",
++    "sha256": "8efb54f578bc8d08a1eebedc90de083e0c4642207800229ca95eb5877f093954",
++    "bytes": 2038
++  },
++  "fixture_peer_0": {
+     "path": "work/962-engineering/head-star-current24-qfnra-five-toy-owner-f1-guards-source-peer-001/review.json",
+     "sha256": "0b98fd3173a016db569a15c41eaa7a044b2c950d066143ea703d60efe4d23100",
+     "bytes": 5871
+   },
+-  "F1_root_source_review": {
+-    "path": "work/962-engineering/head-star-current24-qfnra-five-toy-owner-f1-guards-root-source-review-001/review.json",
+-    "sha256": "8efb54f578bc8d08a1eebedc90de083e0c4642207800229ca95eb5877f093954",
+-    "bytes": 2038
+-  },
+-  "fixture_bindings_json": {
+-    "path": "work/962-engineering/head-star-current24-qfnra-five-toy-owner004-core-guards-prep-001/bindings.json",
+-    "sha256": "c7f5cdbc3746bd1489827cc14296d86c9f5f507ce92ceb39443f2cc73270d272",
+-    "bytes": 6986
+-  },
+-  "fixture_METHOD_md": {
+-    "path": "work/962-engineering/head-star-current24-qfnra-five-toy-owner004-core-guards-prep-001/METHOD.md",
+-    "sha256": "6f6cc30434a7f2614aeb1d8c163f07e48602ced48b62c305e24ee75af9ad202d",
+-    "bytes": 4811
+-  },
+-  "fixture_source_reuse_json": {
+-    "path": "work/962-engineering/head-star-current24-qfnra-five-toy-owner004-core-guards-prep-001/source-reuse.json",
+-    "sha256": "b9c7103579af8e9e51250a056c21b698f6ec5f660cb2d702e06f3270c8589ab3",
+-    "bytes": 9670
+-  },
+-  "fixture_coverage_json": {
+-    "path": "work/962-engineering/head-star-current24-qfnra-five-toy-owner004-core-guards-prep-001/coverage.json",
+-    "sha256": "629795778c6bf7dfd7d6b032d0d58383ca8356408e10b7e502b218b893aa8a8a",
+-    "bytes": 7281
+-  },
+-  "fixture_source_diff": {
+-    "path": "work/962-engineering/head-star-current24-qfnra-five-toy-owner004-core-guards-prep-001/source.diff",
+-    "sha256": "3ecfc966159f288fea6994c24458c4f9a35c86bc14d08978846ef51fbe27f28b",
+-    "bytes": 19232
+-  },
+-  "fixture": {
+-    "path": "work/962-engineering/head-star-current24-qfnra-five-toy-owner004-core-guards-prep-001/test_owner004_core_guards.py",
+-    "sha256": "78440b33a0fcf5dc4d598b08227a07a16be129198e14665fb5c8c72e8b7cf279",
+-    "bytes": 25612
+-  },
+-  "fixture_index_json": {
+-    "path": "work/962-engineering/head-star-current24-qfnra-five-toy-owner004-core-guards-prep-001/index.json",
+-    "sha256": "fc650187fb830276f399cdbaf9950e282057725481bfe3e33ad37e40b631406b",
+-    "bytes": 4216
+-  },
+-  "fixture_peer_0": {
+-    "path": "work/962-engineering/head-star-current24-qfnra-five-toy-owner004-core-guards-source-peer-001/review.json",
+-    "sha256": "3c1ee62e92dbd21880e5d6e1cf8f2f381dba0eaaeaa6f06c1ac66e5dd74d705d",
+-    "bytes": 3256
+-  },
+   "fixture_peer_1": {
+-    "path": "work/962-engineering/head-star-current24-qfnra-five-toy-owner004-core-guards-source-peer-001/findings.json",
+-    "sha256": "64381589afeb5f6d85235d39eea4c23105c776e4f3361881d7c6f13b59cc415e",
+-    "bytes": 4008
++    "path": "work/962-engineering/head-star-current24-qfnra-five-toy-owner-f1-guards-source-peer-001/findings.json",
++    "sha256": "d46e3debe179a47d7a0b7c55855af019f511a553b75051ae0a990d4d9040c490",
++    "bytes": 773
+   },
+   "fixture_peer_2": {
+-    "path": "work/962-engineering/head-star-current24-qfnra-five-toy-owner004-core-guards-source-peer-001/bindings.json",
+-    "sha256": "2ef0c33e8a771478facfc8e6d69af4140c69406cee0a23f09be32ba29e83e8f6",
+-    "bytes": 18767
+-  },
+-  "fixture_root_review": {
+-    "path": "work/962-engineering/head-star-current24-qfnra-five-toy-owner004-core-guards-root-source-review-001/review.json",
+-    "sha256": "56b5ca830a6ef5657379807e0433b73afa5b8fdf6fd6e34acde3d5f8c3522d1d",
+-    "bytes": 5736
++    "path": "work/962-engineering/head-star-current24-qfnra-five-toy-owner-f1-guards-source-peer-001/bindings.json",
++    "sha256": "05496115fee2eca30f0d518eae10827b2c309e5b36d59bc734dafac4e0d05fc9",
++    "bytes": 7048
+   }
+ }
+ 
+ CONTROLS=dict(normal_seconds=40,TERM_absolute_seconds=48,KILL_reap_absolute_seconds=56,whole_seconds=60,
+     TERM_grace_seconds=8,KILL_reap_grace_seconds=8,total_inclusive_bytes=33554432,thread_environment=1,retries=0,RSS_sampler=False)
+-RUNTIME_SELECTION='work/962-engineering/head-star-current24-qfnra-five-toy-owner004-core-guard-runtime-selection-root-001/runtime-identity.json'
++RUNTIME_SELECTION=dict(path='work/962-engineering/head-star-current24-qfnra-five-toy-owner-f1-guard-runtime-selection-root-001/runtime-identity.json',sha256='ec373001917f5fb80fae1c507186e0505f3ba699abc550ea31585c6c8c144269',bytes=1624)
+ DIRECT_ROLES=('controller','wrapper','control_preparation_index','fixture_source_peer','fixture_source_bindings',
+     'root_fixture_source_review','exact_control_peer','exact_control_bindings','root_control_review','runtime_selection')
+-METHODS=('test_01_complete_normal_control','test_02_final_stdout_rec_failure','test_03_final_stderr_rec_failure','test_04_final_adapter_report_rec_failure','test_05_final_helper_report_rec_failure','test_06_missing_final_stdout_descriptor','test_07_missing_final_stderr_descriptor','test_08_missing_final_adapter_descriptor','test_09_missing_final_helper_descriptor','test_10_delivered_raising_CONT_keeps_group_cleanup','test_11_preCONT_error_uses_only_own_direct_PID','test_12_partial_constructor_unknown_raw_exit2_no_guessed_APIs','test_13_returned_unreaped_private_policy_raw_exit2')
++METHODS=('test_01_complete_normal_control','test_02_final_stdout_rec_failure','test_03_final_stderr_rec_failure',
++    'test_04_final_adapter_report_rec_failure','test_05_final_helper_report_rec_failure',
++    'test_06_missing_final_stdout_descriptor','test_07_missing_final_stderr_descriptor',
++    'test_08_missing_final_adapter_descriptor','test_09_missing_final_helper_descriptor')
+ HELD_LEADERS=[]
+ 
+ 
+@@ -252,10 +205,10 @@
+     with (D/'fixture.stderr').open('rb') as f:err=f.read(CAP+1)
+     need(len(out)+len(err)<=CAP and out==b'','Unexpected/oversize full diagnostics retained')
+     text=err.decode('utf-8','strict')
+-    prefix=''.join(name+' (__main__.Owner004CoreGuards.'+name+') ... ok\n' for name in METHODS)
+-    need(text.startswith(prefix),'Exact ordered thirteen method rows required')
+-    need(re.fullmatch(r'\n-{70}\nRan 13 tests in [0-9]+(?:\.[0-9]+)?s\n\nOK\n',text[len(prefix):]) is not None,'Complete Ran13/finalOK diagnostics required')
+-    return dict(methods=list(METHODS),method_count=13,all_thirteen_completed=True,owner004_core_synthetic_only=True)
++    prefix=''.join(name+' (__main__.FinalEvidenceF1Guards.'+name+') ... ok\n' for name in METHODS)
++    need(text.startswith(prefix),'Exact ordered nine method rows required')
++    need(re.fullmatch(r'\n-{70}\nRan 9 tests in [0-9]+(?:\.[0-9]+)?s\n\nOK\n',text[len(prefix):]) is not None,'Complete Ran9/finalOK diagnostics required')
++    return dict(methods=list(METHODS),method_count=9,all_nine_completed=True,F1_synthetic_only=True)
+ 
+ 
+ def admit():
+@@ -263,11 +216,11 @@
+     A=D/'admission.json';ap=rec(A)
+     need(ap['sha256']==sys.argv[1] and ap['bytes']<=CAP,'Changed/oversize root admission')
+     auth=json.loads(A.read_bytes())
+-    need(auth['schema']=='962-owner004-core-thirteen-guard-root-admission/v1' and auth['root_issued'] is True and auth['guard_execution_authorized'] is True,'No guard authority')
++    need(auth['schema']=='962-five-toy-F1-nine-guard-root-admission/v1' and auth['root_issued'] is True and auth['guard_execution_authorized'] is True,'No guard authority')
+     need(type(auth['invocations']) is int and auth['invocations']==1 and auth['automatic_retry'] is False and auth['controls']==CONTROLS,'One fixed bounded invocation required')
+     need(all(auth[k] is True for k in ('independent_fixture_source_review_complete','independent_control_source_review_complete','root_control_review_complete','selected_runtime_and_inputs_accepted_by_root')),'Pending source/control/fixed-runtime admission')
+     need(all(auth[k] is False for k in ('real_head_input_authorized','Z3_authorized','native_execution_authorized','physical_acceptance','manufacturing_authorized')),'No scientific/native authority')
+-    need(auth['selected_python']==PYTHON and auth['runtime_selection']['path']==RUNTIME_SELECTION and auth['environment']==ENV and all(os.environ.get(k)==v for k,v in ENV.items()),'Exact3.12/thread-one route required; no environment dump')
++    need(auth['selected_python']==PYTHON and auth['runtime_selection']==RUNTIME_SELECTION and auth['environment']==ENV and all(os.environ.get(k)==v for k,v in ENV.items()),'Exact3.12/thread-one route required; no environment dump')
+     need(str(Path(sys.executable).resolve(strict=True))==PYTHON['resolved_path'] and sys.version_info[:3]==(3,12,11),'Selected3.12.11 owner required')
+     need(Path(PYTHON['path']).is_symlink() is PYTHON['is_symlink'] and os.readlink(PYTHON['path'])==PYTHON['raw_target'],'Changed selected alias metadata')
+     need(sys.flags.isolated==sys.flags.dont_write_bytecode==sys.flags.no_site==1 and sys.flags.optimize==0 and 'site' not in sys.modules and '_distutils_hack' not in sys.modules,'Exact -B-I-S startup required')
+@@ -283,7 +236,7 @@
+     need(all(first.get(k)==v for k,v in REQUIRED_PROTECTED.items()),'All known finite provenance must be protected')
+     for k in DIRECT_ROLES:first['direct_'+k]=auth[k]
+     packet=json.loads(selected(auth['control_preparation_index']).read_bytes())
+-    need(set(packet['files'])=={'run_guards_once.py','stopped_exec_wrapper.py','METHOD.md','bindings.json','source-reuse.json','source.diff','source.inverse.diff'} and packet['file_count_including_this_index']==8,'Fixed eight-file control source packet required')
++    need(set(packet['files'])=={'run_guards_once.py','stopped_exec_wrapper.py','METHOD.md','source-reuse.json','source.diff'} and packet['file_count_including_this_index']==6,'Fixed six-file control source packet required')
+     need(all(pin in first.values() for pin in packet['files'].values()),'All finite control source/proof files must be admitted and protected')
+     first['root_admission']=ap
+     records={}
+@@ -300,7 +253,7 @@
+ 
+ def main():
+     auth,first,records,before,ap=admit()
+-    report=dict(schema='962-owner004-core-thirteen-guard-owner-result/v1',status='INCOMPLETE',admission=ap,before=before,after=None,
++    report=dict(schema='962-five-toy-F1-nine-guard-owner-result/v1',status='INCOMPLETE',admission=ap,before=before,after=None,
+         PID=None,ownership_certificate=None,process_started=False,continuation_intent=False,normal_NOTE_EXIT=False,
+         group_signal_intent_ended=False,reaped=False,raw_returncode=None,direct_relationship_unknown=False,events=[],
+         stop_actions=[],cleanup_errors=[],failure=None,group_absent=None,postreap_absence_observations=0,
+@@ -425,7 +378,7 @@
+         report['post_cutoff_scope']='Signals after restoration may terminate owner/leave missing receipt; no all-lifetime capture claim.'
+         report['last_resort_unreaped_exit']=proc is not None and not report['reaped']
+         report['complete_candidate']=bool(report['normal_NOTE_EXIT'] and report['reaped'] and report['raw_returncode']==0 and report['group_absent'] is True and report['postreap_absence_observations']==1 and report['failure'] is None and not report['cleanup_errors'] and not report['finalization_errors'] and not report['stream_read_errors'] and set(report['owned_streams'])=={'fixture.stdout','fixture.stderr'} and report['diagnostics'] is not None and report['all_controls_unchanged'] and not controller_stop_requests and time.monotonic()<started+60)
+-        report['status']='COMPLETE_THIRTEEN_OWNER004_CORE_SYNTHETIC_GUARDS_CANDIDATE_ONLY' if report['complete_candidate'] else 'INCOMPLETE'
++        report['status']='COMPLETE_NINE_F1_SYNTHETIC_GUARDS_CANDIDATE_ONLY' if report['complete_candidate'] else 'INCOMPLETE'
+         report['root_full_startup_return_clock_outer0_final_census_and_independent_absence_required']=True
+         try:
+             gate(60,'No full receipt serialization time',stop=False)
+--- work/962-engineering/head-star-current24-qfnra-five-toy-owner004-core-guards-controls-prep-001/stopped_exec_wrapper.py
++++ work/962-engineering/head-star-current24-qfnra-five-toy-owner-f1-guards-controls-prep-002/stopped_exec_wrapper.py
+@@ -1,11 +1,11 @@
+-"""HELD/UNRUN fixed same-PID stopped-exec wrapper for13 owner004 fake tests."""
++"""HELD/UNRUN fixed same-PID stopped-exec wrapper for nine F1 fake tests."""
+ import hashlib,os,re,signal,sys
+ from pathlib import Path
+ 
+ PY='/Users/maxime/.codex/worktrees/962-watercooled-head/3dprinting993/work/962-head/check-venv/bin/python'
+ RESOLVED='/Users/maxime/.local/share/uv/python/cpython-3.12.11-macos-aarch64-none/bin/python3.12'
+-A=Path('/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/head-star-current24-qfnra-five-toy-owner004-core-guards-root-execution-001/admission.json')
+-FIXTURE=Path('/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/head-star-current24-qfnra-five-toy-owner004-core-guards-prep-001/test_owner004_core_guards.py')
++A=Path('/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/head-star-current24-qfnra-five-toy-owner-f1-guards-root-execution-001/admission.json')
++FIXTURE=Path('/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/head-star-current24-qfnra-five-toy-owner-f1-guards-prep-001/test_final_evidence_guards.py')
+ 
+ assert len(sys.argv)==2 and re.fullmatch('[0-9a-f]{64}',sys.argv[1])
+ assert os.path.realpath(sys.executable)==RESOLVED and sys.version_info[:3]==(3,12,11)
+@@ -16,7 +16,7 @@
+ assert A.is_file() and not A.is_symlink() and A.stat().st_size<=33554432
+ assert hashlib.sha256(A.read_bytes()).hexdigest()==sys.argv[1]
+ raw=FIXTURE.read_bytes()
+-assert len(raw)==25612 and hashlib.sha256(raw).hexdigest()=='78440b33a0fcf5dc4d598b08227a07a16be129198e14665fb5c8c72e8b7cf279'
++assert len(raw)==14566 and hashlib.sha256(raw).hexdigest()=='1a81cdcd45aee1aeb917478763c9169b6be5e858c5b41b9226574ae0c70ed5fb'
+ os.kill(os.getpid(),signal.SIGSTOP)
+ os.execv(PY,[PY,'-B','-I','-S',str(FIXTURE)])
+ 

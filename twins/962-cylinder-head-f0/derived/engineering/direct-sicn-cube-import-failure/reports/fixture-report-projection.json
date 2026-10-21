@@ -1,0 +1,55 @@
+{
+  "original_record": {
+    "relative_path": "work/962-engineering/direct-sicn-cube-001/fixture-report.json",
+    "sha256": "cbb309e45583976b6b85a8db68b7a0829e1dbc5b13a3939cf6bde79a102bf59c",
+    "bytes": 1151
+  },
+  "projection": {
+    "status": "refused_or_failed",
+    "stage": "imports",
+    "qualification": {
+      "head_optimization_authorized": false,
+      "engineering_accepted": false,
+      "physics_qualified": false,
+      "manufacturing_authorized": false
+    },
+    "scipy_minimize_calls_attempted": 0,
+    "gmsh_generate_calls": 0,
+    "gmsh_optimize_calls": 0,
+    "error_type": "ImportError",
+    "error": "dlopen(runtime:scipy/sparse/linalg/_propack/_spropack.cpython-310-darwin.so, 0x0002): tried: 'runtime:scipy/sparse/linalg/_propack/_spropack.cpython-310-darwin.so' (section '__DATA/__thread_bss' has a zero-fill section type, but offset field is not zero), 'runtime:scipy-preboot-locator/sparse/linalg/_propack/_spropack.cpython-310-darwin.so' (no such file), 'runtime:scipy/sparse/linalg/_propack/_spropack.cpython-310-darwin.so' (section '__DATA/__thread_bss' has a zero-fill section type, but offset field is not zero)",
+    "cube_SICN_gate_passed": false
+  },
+  "omitted_field_paths": [],
+  "path_role_rules": [
+    {
+      "role": "runtime:geometry-environment",
+      "operation": "exact prefix substitution in keys and string values"
+    },
+    {
+      "role": "runtime:scipy-preboot-locator",
+      "operation": "exact prefix substitution in keys and string values"
+    },
+    {
+      "role": "runtime:numpy",
+      "operation": "exact prefix substitution in keys and string values"
+    },
+    {
+      "role": "project-relative path",
+      "operation": "exact prefix substitution in keys and string values"
+    },
+    {
+      "role": "runtime:python-executable",
+      "operation": "exact prefix substitution in keys and string values"
+    },
+    {
+      "role": "runtime:scipy",
+      "operation": "exact prefix substitution in keys and string values"
+    },
+    {
+      "role": "runtime:scipy-site/",
+      "operation": "exact prefix substitution in keys and string values"
+    }
+  ],
+  "derived_observations": null
+}

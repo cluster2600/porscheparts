@@ -1,0 +1,63 @@
+--- work/962-engineering/head-star-current204-union-context-prep-001/selfcheck.py
++++ work/962-engineering/head-star-current204-union-context-prep-002/selfcheck.py
+@@ -3,7 +3,7 @@
+ import ast,copy,hashlib,json,math,struct,unittest
+ 
+ HERE=Path(__file__).resolve().parent;ROOT=HERE.parents[2];SOURCE=HERE/'reader.py'
+-SOURCE_SHA='b07b02e7e4a00506d814a1937db97eb001f21c978b26a66436c2e2aeb5dd6264'
++SOURCE_SHA='c852a8a536a0ef2c58a37132fb51e42e525403d1f519375cc04a9860bfe53b29'
+ if hashlib.sha256(SOURCE.read_bytes()).hexdigest()!=SOURCE_SHA:raise ValueError('Frozen reader changed')
+ TREE=ast.parse(SOURCE.read_text());FACES=((0,2,1),(0,1,3),(1,2,3),(2,0,3))
+ encoded=lambda x:(json.dumps(x,indent=2,allow_nan=False)+'\n').encode()
+@@ -22,12 +22,14 @@
+  for i,face in enumerate(faces):cells.append(dict(tetrahedron_tag=100+offset+i,native_array_index=offset+i,node_tags=[apex,*[mapping[t-1] for t in face]],initially_positive_poor=i==0))
+  points=[dict(node_tag=t,coordinates_mm=p,binary64_hex=[float(v).hex() for v in p]) for t,p in zip(mapping,xyz)]
+  points.append(dict(node_tag=apex,coordinates_mm=[3*offset+.25,.25,.25],binary64_hex=[float(v).hex() for v in [3*offset+.25,.25,.25]]));points.sort(key=lambda r:r['node_tag'])
++ for row in points:row.update(in_movable_seed_set=row['node_tag']==apex,source_boundary_tag=row['node_tag']<=871731,freshly_proved_classification_scope='below_dim3' if row['node_tag']<=871731 else 'dim3')
++ observed_points=[dict(row,binary64_little_endian_bytes_hex=struct.pack('<3d',*row['coordinates_mm']).hex()) for row in points]
+  shell=dict(excluded_source_apex_tag=apex,apex_not_in_shell_input=True,necessary_face_quality_passed=True,generation_input_rejected_by_necessary_face_quality=False,
+   local_to_global_node_tags=mapping,global_to_local_node_tags={str(t):i+1 for i,t in enumerate(mapping)},
+   original_source_classifications=dict(boundary_global_node_tags=mapping[:2],other_interior_global_node_tags=mapping[2:]),
+   vertex_rows=[dict(local_node_tag=i+1,source_global_node_tag=t,coordinates_mm=p,binary64_hex=[float(v).hex() for v in p],binary64_little_endian_bytes_hex=struct.pack('<3d',*p).hex(),original_source_boundary_node=i<2) for i,(t,p) in enumerate(zip(mapping,xyz))],
+   oriented_triangle_rows=[dict(local_node_tags=f,source_owner_tetrahedron_tag=cells[i]['tetrahedron_tag'],native_corner_indices=[1,2,3],source_global_node_tags=[mapping[t-1] for t in f],source_native_array_index=cells[i]['native_array_index']) for i,f in enumerate(faces)])
+- obs=dict(apex=apex,native_ordered_cell_rows=cells,selected_node_rows=points)
++ obs=dict(apex=apex,native_ordered_cell_rows=cells,selected_node_rows=observed_points)
+  record=dict(apex=apex,eligible=True,all_vertex_tags=sorted(mapping+[apex]),observation=obs,shell=shell,necessary_face_screen={'all':True})
+  case=dict(apex=apex,case_key='apex-'+str(apex),shell_nodes=4,shell_faces=4,old_tetrahedra=4,original_boundary_shell_nodes=2,
+   source_record_sha256=digest(record),shell_serialized_sha256=digest(shell),observation_serialized_sha256=digest(obs),screen_serialized_sha256=digest(record['necessary_face_screen']),old_tetrahedron_tags=[r['tetrahedron_tag'] for r in cells],old_vertex_tags=record['all_vertex_tags'])
+@@ -38,7 +40,7 @@
+ 
+ class Guards(unittest.TestCase):
+  def test_two_disjoint_complete_cases_and_good_context(self):
+-  a,r,ac,an=fixture(0);b,s,bc,bn=fixture(100);ns=select(['encoded','one_case_records','merge_case_records'],dict(json=json,hashlib=hashlib,math=math,struct=struct,FACES=FACES,BOUNDARY=871731))
++  a,r,ac,an=fixture(0);b,s,bc,bn=fixture(100);ns=select(['encoded','observation_node_matches','one_case_records','merge_case_records'],dict(json=json,hashlib=hashlib,math=math,struct=struct,FACES=FACES,BOUNDARY=871731))
+   answer=ns['merge_case_records']([a,b],{a['apex']:r,b['apex']:s},ac+bc,{**an,**bn})
+   self.assertEqual([len(answer[i]) for i in [0,1,2,3,5]],[8,10,8,8,2]);self.assertEqual(set(answer[5]),{a['apex'],b['apex']})
+   self.assertEqual(sum(not row['initially_positive_poor'] for row in ac+bc),6)
+@@ -46,7 +48,7 @@
+   with self.assertRaises(ValueError):ns['merge_case_records']([a,altered],{a['apex']:r,b['apex']:changed},ac+bc,{**an,**bn})
+ 
+  def test_shared_vertex_or_face_refusal_and_raw_signed_zero(self):
+-  a,r,ac,an=fixture(0);b,s,bc,bn=fixture(100);ns=select(['encoded','one_case_records','merge_case_records'],dict(json=json,hashlib=hashlib,math=math,struct=struct,FACES=FACES,BOUNDARY=871731))
++  a,r,ac,an=fixture(0);b,s,bc,bn=fixture(100);ns=select(['encoded','observation_node_matches','one_case_records','merge_case_records'],dict(json=json,hashlib=hashlib,math=math,struct=struct,FACES=FACES,BOUNDARY=871731))
+   changed=copy.deepcopy(s);changed['all_vertex_tags'][0]=r['all_vertex_tags'][0];altered=copy.deepcopy(b);refresh(altered,changed)
+   with self.assertRaises(ValueError):ns['merge_case_records']([a,altered],{a['apex']:r,b['apex']:changed},ac+bc,{**an,**bn})
+   changed=copy.deepcopy(r['shell']);changed['oriented_triangle_rows'][1]=copy.deepcopy(changed['oriented_triangle_rows'][0])
+@@ -55,6 +57,17 @@
+   with self.assertRaises(ValueError):ns['one_case_records'](r['observation'],changed,a)
+   changed=copy.deepcopy(r['shell']);changed['vertex_rows'][2]['original_source_boundary_node']=True
+   with self.assertRaises(ValueError):ns['one_case_records'](r['observation'],changed,a)
++  original=an[r['observation']['selected_node_rows'][0]['node_tag']];observed=r['observation']['selected_node_rows'][0]
++  self.assertEqual(len(original),6);self.assertEqual(len(observed),7);check=ns['observation_node_matches'];self.assertTrue(check(original,observed))
++  replacements={'node_tag':original['node_tag']+1,'coordinates_mm':[0.,0.,0.],
++   'binary64_hex':[float(0.).hex(),float(0.).hex(),float(0.).hex()],
++   'in_movable_seed_set':True,'source_boundary_tag':False,'freshly_proved_classification_scope':'dim3',
++   'binary64_little_endian_bytes_hex':'00'*24,'unexpected_field':7}
++  for key,value in replacements.items():
++   changed=copy.deepcopy(observed);changed[key]=value
++   self.assertFalse(check(original,changed),key)
++  changed=copy.deepcopy(observed);changed.pop('binary64_little_endian_bytes_hex');self.assertFalse(check(original,changed))
++
+ 
+  def test_complete_all_owners_and_exterior_TRI_or_internal_opposite(self):
+   ns=select(['canonical','validate_interface'],{});f=ns['validate_interface'];key=(1,2,3);expected={key:[1,2,3]}

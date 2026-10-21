@@ -1,0 +1,105 @@
+{
+  "schema": "962-linear-cooling-lexical-storage-source-reuse/v1",
+  "donor": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-native-storage-audit-prep-001/check_saved.py",
+    "sha256": "e573aed1247c819323ace5214ddff6c72ee6595b0de2b7ab4a7254c0888b5f75",
+    "bytes": 15045
+  },
+  "donor_prior_reuse": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-native-storage-audit-prep-001/source-reuse.json",
+    "sha256": "b3be49c26e94c25466137b7ad24f32414eae89ed70ac78ccd426bca51db35ace",
+    "bytes": 10736
+  },
+  "donor_twelve_reverse_groups_recover_fine": {
+    "groups": 12,
+    "fine_donor": {
+      "path": "work/962-engineering/cp1-oneway-thermoelastic-transfer-native002-nodal-audit-001/check_saved.py",
+      "sha256": "8cac37206e35921e0988ee97359380fd3610ab228eab54543033f7e971981b84",
+      "bytes": 12633
+    },
+    "complete_fine_text_recovered_in_preparation_memory": true,
+    "fine_source_body_opened": false
+  },
+  "source": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-linear-native-storage-audit-prep-001/check_saved.py",
+    "sha256": "189164fb547a46ed8a1275f9b42ed66a905b9d91b3ace6e690285bb3fe41981e",
+    "bytes": 15469
+  },
+  "source_diff": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-linear-native-storage-audit-prep-001/source.diff",
+    "sha256": "11ead96535e9169c197118743db59c034f527e377cc13b8569dde0785da11d76",
+    "bytes": 6949
+  },
+  "exact_reversible_groups": [
+    {
+      "label": "fixed LINEAR output/root/case paths",
+      "old": "OUT = E / 'cp1-oneway-cooling-release-001'\nRUN = E / 'cp1-oneway-cooling-release-native-root-execution-001'\nPREP = E / 'cp1-oneway-cooling-release-prep-001'",
+      "new": "OUT = E / 'cp1-oneway-cooling-release-linear-001'\nRUN = E / 'cp1-oneway-cooling-release-linear-native-root-execution-001'\nPREP = E / 'cp1-oneway-cooling-release-linear-prep-001'",
+      "count": 1
+    },
+    {
+      "label": "current LINEAR source and companion pins; five future capture pins remain null",
+      "old": "PIN = {\n    RUN / 'closed-result.json': None,\n    OUT / 'native-execution.json': None,\n    OUT / 'actual-contract.json': None,\n    E / 'cp1-oneway-cooling-release-native-result-peer-001/review.json': None,\n    RUN / 'result-peer-acceptance.json': None,\n    OUT / 'transfer-manifest.json': 'c774e62c67e16c29dc024b8cc8e6641570e316265960e58cd7170827f8cecd06',\n    PREP / 'thermal-input-index.json': '9e4da9faf9a6ccb9a55c66b2c0d9eef44b88d99e09afff69bb4f504b0cfb7aec',\n    PREP / 'thermoelastic-birth.i': '08708c82f0f38568d9b87c301c6f478c19febc8902097681188b0be60713be07',\n    PREP / 'case-contract.json': '0cb6b9a16de29d503df0d2fe02a1ec4be5ed2e5a51ee2b610b3c4892846ece63',\n    PREP / 'run_mac.py': '104fcd61eb1441f05f7ff3a40eb60a10c80d83f03123d9c402b8a6972f722659',\n    E / 'cp1-oneway-cooling-release-assessor-prep-001/assess.py': 'a366dfc43f7bdba5d2c60b8a911098c883723b23f946d8a89fb4d42b3e3d4b5b',\n    E / 'cp1-oneway-cooling-release-contract-clarification-001/case-contract.corrected.json': '1dc7eefae6f6666a91fdb0adde2261aa9efc7f3424a713d21b6f60e6091dfb66',\n    E / 'cp1-oneway-cooling-release-contract-clarification-001/correction.json': '3971d0f27293a04f051206a2b2afef3304c56aa3814b12e586c4f5fe0229ed46',\n    E / 'cp1-oneway-cooling-release-assessor-prep-001/LATE-BINDING-ACKNOWLEDGEMENT-001.json': 'c0f93335a6d55fb00a6c4c9d30a658bfda22ad6b8b088b9e9181304c27353e25',\n}\n",
+      "new": "PIN = {\n    RUN / 'closed-result.json': None,\n    OUT / 'native-execution.json': None,\n    OUT / 'actual-contract.json': None,\n    E / 'cp1-oneway-cooling-release-linear-native-result-peer-001/review.json': None,\n    RUN / 'result-peer-acceptance.json': None,\n    OUT / 'transfer-manifest.json': 'c774e62c67e16c29dc024b8cc8e6641570e316265960e58cd7170827f8cecd06',\n    PREP / 'thermal-input-index.json': '9e4da9faf9a6ccb9a55c66b2c0d9eef44b88d99e09afff69bb4f504b0cfb7aec',\n    PREP / 'thermoelastic-birth.i': 'de5c9ea62050645fb546fc650c01023913478c230011faa5172b76ffb36a4f7c',\n    PREP / 'case-contract.json': '294f5bf97c6ca3e9fe052e90fc4fc611e740395d1bca24595988d57b4a85758e',\n    PREP / 'run_mac.py': '5ec0fe4684dd51dd7934ca3069e75497a481a08db5a9ee8a78646d81e3813f6c',\n    PREP / 'held-preparation.json': '438c32f9bd03d4932d331b5b34bfd21b14d64377afdc78f61e41c88fdc6d78da',\n    E / 'cp1-oneway-cooling-release-linear-assessor-prep-001/assess.py': 'b7c5c7c82c5a7fee11aa63032f9a136d46517b8163c3c880b8b39a06d083930f',\n    E / 'cp1-oneway-cooling-release-contract-clarification-001/case-contract.corrected.json': '1dc7eefae6f6666a91fdb0adde2261aa9efc7f3424a713d21b6f60e6091dfb66',\n    E / 'cp1-oneway-cooling-release-contract-clarification-001/correction.json': '3971d0f27293a04f051206a2b2afef3304c56aa3814b12e586c4f5fe0229ed46',\n    E / 'cp1-oneway-cooling-release-linear-assessor-prep-001/LATE-BINDING-ACKNOWLEDGEMENT-001.json': '3c2cbab689212aafd2c5def017e9626126c5003723f60831fee757f734f127ce',\n    PREP / 'FUNCTION-COUNT-CLARIFICATION-001.json': '8419d1fbbf3638736ac5cfd3d1287342bd787e3c560b95dc9eb9ecb3e930eaf4',\n    PREP / 'GRID-ROLE-AND-READ-SCOPE-CLARIFICATION-001.json': 'b505f5320760ddca2525f3db514948dbdec18c8e5a6396310b5e9b57d1ae4ce9',\n}\n",
+      "count": 1
+    },
+    {
+      "label": "root-confirmed LINEAR closed schema",
+      "old": "962-cooling-release-native-root-once-closed/v1",
+      "new": "962-cooling-release-linear-native-root-once-closed/v1",
+      "count": 1
+    },
+    {
+      "label": "exact LINEAR actual schema",
+      "old": "962-macos-oneway-cooling-release-case-actual/v1",
+      "new": "962-macos-oneway-cooling-release-linear-case-actual/v1",
+      "count": 1
+    },
+    {
+      "label": "existing late-ack direct-actual-pin identity only",
+      "old": "    for name in ('cp1-oneway-cooling-release-contract-clarification-001/case-contract.corrected.json',\n                 'cp1-oneway-cooling-release-contract-clarification-001/correction.json',\n                 'cp1-oneway-cooling-release-assessor-prep-001/LATE-BINDING-ACKNOWLEDGEMENT-001.json'):\n",
+      "new": "    for name in ('cp1-oneway-cooling-release-contract-clarification-001/case-contract.corrected.json',\n                 'cp1-oneway-cooling-release-contract-clarification-001/correction.json',\n                 'cp1-oneway-cooling-release-linear-assessor-prep-001/LATE-BINDING-ACKNOWLEDGEMENT-001.json'):\n",
+      "count": 1
+    },
+    {
+      "label": "new lexical-only result schema",
+      "old": "962-cooling-release-complete-nodal-lexical-storage-audit/v1",
+      "new": "962-cooling-release-linear-complete-nodal-lexical-storage-audit/v1",
+      "count": 1
+    }
+  ],
+  "complete_reverse_restores_entire_donor": true,
+  "exact_function_hashes": {
+    "raw_file": {
+      "text_sha256": "047c5036581980b9163b15d5fb3ae7aaaa2f7bc17cb16bfc860da83dd220fbe7",
+      "same_interpreter_AST_sha256": "ec2da1fd8bef48a5e371238cd8c65c1f55c01cc39c4597ba19eb5a8f27c46f93"
+    },
+    "require": {
+      "text_sha256": "64501835d64915debe0c2e3b87a4a8a7548abfc16f73d01adbeaf712482bba93",
+      "same_interpreter_AST_sha256": "81571e5d637e930cddf640c2cd70bdc1c5b0693dded0c70dfee4e73b2a3f8ca6"
+    }
+  },
+  "exact_fragments": {
+    "early_NULL_refusal": {
+      "bytes": 417,
+      "text_sha256": "5870e09cda9b1a50e52e53e08488cf4f73cbd1023312131c25d83762b590f34c",
+      "byte_exact_donor": true
+    },
+    "geometry_ID_words_and_complete_parser_lexical_loop": {
+      "bytes": 6790,
+      "text_sha256": "d151dcf4ab4f368c52be87f6a9698f6297e9da547e1e524873b8e4bbe6e95da1",
+      "byte_exact_donor": true
+    },
+    "full_inventory_and_receipt_joins": {
+      "bytes": 1468,
+      "text_sha256": "f036f43066d1d5a7bbec2cbbfc51d7e9b278328c24d4743931f68d62eeac2e55",
+      "byte_exact_donor": true
+    }
+  },
+  "all_numeric_literals_same_order_and_type": true,
+  "AST_context": "3.10.11 same-interpreter comparisons only; source-text hashes have no appended newline.",
+  "source_only_not_compiled_imported_or_called": true,
+  "guards_prepared": 0,
+  "guards_executed": false,
+  "scope": "Binding/path/schema/source-pin successor only; exact lexical/parser/criterion loop retained, no CDF/QP mechanics."
+}

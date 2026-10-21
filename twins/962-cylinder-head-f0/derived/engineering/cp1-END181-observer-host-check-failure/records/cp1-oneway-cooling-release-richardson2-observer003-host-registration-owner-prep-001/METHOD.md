@@ -1,0 +1,11 @@
+# Held one-shot host input/type check owner
+
+The sole future target is the literal held Combined --check-input --list-constructed-objects command. An exact root admission digest is required before Popen. The owner checks the4staged inputs, unchanged host/plugin/shim/source records and finite declared provider set before/after. Direct Popen receives only the held environment; no shell or env intermediary. All held execution flags remainfalse.
+
+Ten complete helper texts/ASTs are exact from root-read guard owner004, including signal requests, nonnegative-RSS sampling,TERM8/KILL/wait and observational loader parsing. Fixed60s/2GiB/32MiB/no retry are retained. Four pinned staged files are inputs, so their verified byte sizes are excluded from the output budget; changed input size/path refuses the census. Thread observations are non-gating, and missing/nonnumeric resource data is never filled with0. Exit races, rawstatus, cleanup and finalization errors remain recorded.
+
+Positive factory/input-check status requiresRC0, one exact framed constructed-type occurrence and an exactSyntaxOK stderr line. Frame alone is insufficient because inventory insertion precedes builder return. Loader attribution remains separate; unfamiliar rows/parser errors cannot erase host returnstatus or trigger a rerun. Root's exact-plugin registration acceptance additionally requires attribution to the pinned005 plugin, reviewed from saved trace. No callback/live-map/solve/physical acceptance follows.
+
+Unexpected files remain in place withlstat path/size/link metadata only; their bodies are not read, decoded or hashed. Known stdout/stderr and markers are captured exactly. Source grids and staged copies stay protected. Exactly3named grids were hashed/copied with no decoding/interpolation; no other scientific field/mesh body was accessed.
+
+Declared provider paths are the exact union of prior selected native-library records and the successful standalone11-provider set:22paths/21canonical providers. This is no broad search or fulltransitiveABI exercise. A source/input peer is pinned separately; owner/exact-child review and future root admission are still required. No host/plugin/controller/runtime/solver/callback execution occurred.

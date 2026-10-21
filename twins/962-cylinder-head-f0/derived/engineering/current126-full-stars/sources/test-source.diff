@@ -1,0 +1,51 @@
+--- work/962-engineering/head-star-current127-full-stars-prep-001/test_guards.py
++++ work/962-engineering/head-star-current126-full-stars-prep-001/test_guards.py
+@@ -7,7 +7,7 @@
+ 
+ ROOT=Path(__file__).resolve().parents[3]
+ SOURCE=Path(__file__).with_name('reader.py')
+-SOURCE_SHA='11ad364b54b6b8f264f1727027659351ab38c9144b4c98c64e5265203fcb8a63'
++SOURCE_SHA='2348c032ecbbb694563978cb333aff1a7e4d37a5052c3ed841a7128bf797409c'
+ NAMES={'movable_from_poor_rows','incident_positions','partial_after_proof'}
+ 
+ def functions():
+@@ -78,17 +78,17 @@
+   proof={'tetrahedra':4,'total_mesh_nodes':7,'source_boundary_identity':{'boundary':3},'array_sha256s':{k:'a'*64 for k in ['sorted_node_tags_sha256','sorted_coordinates_sha256','sorted_tetra_tags_sha256','tagged_tetra_connectivity_sha256']},'quality':{k:{'count':4,'nonpositive_count':0} for k in ['minimum_jacobian','native_volume_mm3','minimum_SICN','independent_signed_volume_mm3']}}
+   proof['quality']['minimum_SICN'].update(minimum=.05,below_point1_count=2)
+   bindings={'local_candidate_report_sha256':'localreport','local_candidate_arrays_sha256':'localarrays','current_local_domain_report_sha256':'domainreport','current_local_domain_peer_sha256':'domainpeer'}
+-  attempts={'removeElements':1,'setNode':1,'addNodes':1,'addElementsByType':1,'rebuildNodeCache':1,'rebuildElementCache':1,'write_mesh':1,'generate':0,'optimize':0,'createGeometry':0,'reclassifyNodes':0,'solve':0}
++  attempts={'removeElements':1,'setNode':1,'addNodes':0,'addElementsByType':1,'rebuildNodeCache':1,'rebuildElementCache':1,'write_mesh':1,'generate':0,'optimize':0,'createGeometry':0,'reclassifyNodes':0,'solve':0}
+   contract={'MSH_sha256':'m','MSH_bytes':10,**bindings,'expected_partial_operation_counts':deepcopy(attempts),'upstream_census_launch_deviation_sha256':'d60','declared_controller_command_conformant':False,'original_parent_MSH_sha256':'parent','partial_report_sha256':'report','partial_contract_sha256':'actual','partial_reader_sha256':'reader','partial_runner_sha256':'runner','partial_native_log_sha256':'log','partial_output_inventory':{'frozen':'identity'},'expected_saved_counts':{'tetrahedra':4,'total_mesh_nodes':7},'expected_positive_poor_total':2,'diagnostic_maximum_nonpositive_cells':0,'expected_source_boundary_identity':{'boundary':3}}
+-  worker={'schema':'962-apex1613790-head-application-result/v1','status':'completed_partial_head_replacement_whole_head_quality_gate_applied','stage':'completed_partial_repair_audits','procedural_checks_passed':True,'partial_replacement_completed':True,'saved_mesh_identity_exact':True,'bound_inputs_unchanged':True,'after':deepcopy(proof),'saved_reopen':deepcopy(proof),'mesh_sha256':'m','mesh_bytes':10,**bindings,'native_operation_counts':deepcopy(attempts),'call_counts_are_attempts':True,'upstream_census_launch_deviation_sha256':'d60','declared_controller_command_conformant':False,'original_parent_MSH_sha256':'parent','actual_whole_head_positive_poor_count':2,'actual_whole_head_SICN_gate_passed':False}
++  worker={'schema':'962-apex1613031-head-application-result/v1','status':'completed_partial_head_replacement_whole_head_quality_gate_applied','stage':'completed_partial_repair_audits','procedural_checks_passed':True,'partial_replacement_completed':True,'saved_mesh_identity_exact':True,'bound_inputs_unchanged':True,'after':deepcopy(proof),'saved_reopen':deepcopy(proof),'mesh_sha256':'m','mesh_bytes':10,**bindings,'native_operation_counts':deepcopy(attempts),'call_counts_are_attempts':True,'upstream_census_launch_deviation_sha256':'d60','declared_controller_command_conformant':False,'original_parent_MSH_sha256':'parent','actual_whole_head_positive_poor_count':2,'actual_whole_head_SICN_gate_passed':False}
+   receipt={'returncode':2,'stop_reason':None,'readback_report_sha256':'report','contract_sha256':'actual','reader_sha256':'reader','runner_sha256':'runner','native_log_sha256':'log','native_generate_optimize_solve_calls_declared':0,'mesh_write_calls_declared':1,'counters_are_declarations':True}
+-  closed={'schema':'962-apex1613790-head-root-closed/v1','returncode':2,'stop_reason':None,'waited_and_reaped':True,'owned_controller_group_observed_absent':True,'all58inputs_and_selected_runtime_before_after_exact':True,'operation_observed_stopped':True,'automatic_retry':False,'actual':{'sha256':'actual'},'output_files':{'frozen':'identity'}}
++  closed={'schema':'962-apex1613031-head-application-root-closed/v1','returncode':2,'error':None,'signals':[],'outer_fallback_used':False,'controller_waited_reaped':True,'controller_owned_group_absent':True,'all79_inputs_unchanged':True,'runtime5_unchanged':True,'static4_unchanged':True,'automatic_retry':False,'whole_actual_mirror_sha256':'actual','outputs':{'frozen':'identity'}}
+   self.assertEqual(select(worker,receipt,closed,contract),proof)
+   def reject(w=worker,r=receipt,z=closed,c=contract):
+    with self.assertRaises((ValueError,KeyError)):select(w,r,z,c)
+-  for field,value in [('schema','962-apex1474426-head-application-result/v1'),*[(k,'other') for k in bindings],('mesh_sha256','other'),('procedural_checks_passed',False),('actual_whole_head_positive_poor_count',3),('actual_whole_head_SICN_gate_passed',True),('call_counts_are_attempts',False),('upstream_census_launch_deviation_sha256','other'),('declared_controller_command_conformant',True)]:
++  for field,value in [('schema','962-apex1613790-head-application-result/v1'),*[(k,'other') for k in bindings],('mesh_sha256','other'),('procedural_checks_passed',False),('actual_whole_head_positive_poor_count',3),('actual_whole_head_SICN_gate_passed',True),('call_counts_are_attempts',False),('upstream_census_launch_deviation_sha256','other'),('declared_controller_command_conformant',True)]:
+    w=deepcopy(worker);w[field]=value;reject(w=w)
+-  for name,value in [('setNode',2),('write_mesh',0),('optimize',1)]:
++  for name,value in [('setNode',2),('addNodes',1),('write_mesh',0),('optimize',1)]:
+    w=deepcopy(worker);w['native_operation_counts'][name]=value;reject(w=w)
+   w=deepcopy(worker);w['saved_reopen']['quality']['minimum_SICN']['minimum']=.06;reject(w=w)
+   w=deepcopy(worker)
+@@ -96,11 +96,13 @@
+   reject(w=w)
+   for field,value in [('reader_sha256','other'),('readback_report_sha256','other'),('stop_reason','deadline'),('mesh_write_calls_declared',0),('native_generate_optimize_solve_calls_declared',1),('counters_are_declarations',False)]:
+    r=deepcopy(receipt);r[field]=value;reject(r=r)
+-  for field,value in [('schema','old'),('waited_and_reaped',False),('all58inputs_and_selected_runtime_before_after_exact',False),('owned_controller_group_observed_absent',False),('operation_observed_stopped',False),('automatic_retry',True),('actual',{'sha256':'other'}),('output_files',{})]:
++  for field,value in [('schema','old'),('returncode',0),('error','failure'),('signals',['TERM']),('outer_fallback_used',True),('controller_waited_reaped',False),('controller_owned_group_absent',False),('all79_inputs_unchanged',False),('runtime5_unchanged',False),('static4_unchanged',False),('automatic_retry',True),('whole_actual_mirror_sha256','other'),('outputs',{})]:
+    z=deepcopy(closed);z[field]=value;reject(z=z)
+-  for newkey,oldkey in [('waited_and_reaped','wait_reaped'),('all58inputs_and_selected_runtime_before_after_exact','all56_inputs_unchanged'),('output_files','outputs')]:
++  for newkey,oldkey in [('controller_waited_reaped','waited_and_reaped'),('controller_owned_group_absent','owned_controller_group_observed_absent'),('all79_inputs_unchanged','all58inputs_and_selected_runtime_before_after_exact'),('outputs','output_files')]:
+    z=deepcopy(closed);z[oldkey]=z.pop(newkey);reject(z=z)
+-  z=deepcopy(closed);z['actual_sha256']=z.pop('actual')['sha256'];reject(z=z)
++  z=deepcopy(closed);z['actual']={'sha256':z.pop('whole_actual_mirror_sha256')};reject(z=z)
++  for missing in bindings:
++   c=deepcopy(contract);del c[missing];reject(c=c)
+   c=deepcopy(contract);c['declared_controller_command_conformant']=True;reject(c=c)
+ 
+ 

@@ -1,0 +1,63 @@
+{
+  "schema": "962-native005-rawdiag002-six-case-fixture-source-index/v1",
+  "status": "HELD_UNRUN_SOURCE_ONLY",
+  "file_count_including_index": 3,
+  "index_excludes_own_hash": true,
+  "records": {
+    "test_raw_structural_map.py": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native005-raw-displacement-diagnostic002-synthetic-prep-001/test_raw_structural_map.py",
+      "sha256": "d8ad5f2b3d6ac7dff9dcbde87dc1f3d1cef45651b5afb04002e08f39203fd820",
+      "bytes": 10382
+    },
+    "METHOD.md": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native005-raw-displacement-diagnostic002-synthetic-prep-001/METHOD.md",
+      "sha256": "5ffbcf427af9bfd830e5b395747f2c7cd7be8a7c08d933dd127ffade1fb31ba2",
+      "bytes": 5660
+    }
+  },
+  "indexed_bytes": 16042,
+  "target_source": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native005-raw-displacement-diagnostic-prep-002/diagnose_raw_displacements.py",
+    "sha256": "57c38236c17d1744c0bb6003621ad99c43e6d4043957bf9e37827621f69a612a",
+    "bytes": 15171
+  },
+  "parser_source": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-saved-measurement-parser-prep-002/parse_saved_measurement.py",
+    "sha256": "dfce01d6cd8d7618e0dee794d35a7bb0a56e34ae998facf2dd3f7b9335d4bede",
+    "bytes": 13042
+  },
+  "target_source_peer": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native005-raw-displacement-diagnostic-source-peer-002/review.json",
+    "sha256": "fb8cfd454bc310300294408eac7dfdaf734b70c9d0063cceb2e7bb2e50bed2e6",
+    "bytes": 2987
+  },
+  "case_names": [
+    "valid_permuted_map",
+    "wrong_exact_time",
+    "wrong_coordinate",
+    "signed_zero_coordinate",
+    "duplicate_global_DOF",
+    "missing_physical_DOF"
+  ],
+  "synthetic_cases": 6,
+  "actual_target_structural_map_calls_in_future": 6,
+  "other_target_entrypoints_called": false,
+  "source_loading": "Exact SHA/bytes checked before compiling the same bytes into separate fresh ordinary module namespaces in a future admitted run only; no importlib/pyc cache or injected NAMES.",
+  "stdlib_only": true,
+  "expected_future_python": "3.12.11 -B -I -S",
+  "source_checks": {
+    "AST_parse_only": true,
+    "definitions": 8,
+    "synthetic_calls_run": 0,
+    "target_or_fixture_import_compile_eval_execute": false,
+    "scientific_runtime_API_process_access": false
+  },
+  "coverage": "Actual structural_map only; no fulldiagnostic/Vec/log/CSV/CDF/scientific/caller/lifecycle acceptance.",
+  "independent_fixture_source_review_pending": true,
+  "root_once_only_admission_pending": true,
+  "execution_authorized": false,
+  "real_data_authorized": false,
+  "qualification": false,
+  "lineage": "material_publication authored this fixture after independent target source review; not independent fixture review. head_mesh_next is target/parser producer. Root owns any one-run admission.",
+  "self_hash_claim": false
+}

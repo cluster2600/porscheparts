@@ -1,0 +1,50 @@
+{
+  "schema": "962-observer003-root-standalone18-guard-admission/v1",
+  "actual": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer003-guard-execution-prep-003/actual-contract.json",
+    "sha256": "266772d226f76bbd39ff4efa9b0142059312c7e583673e98265d78d02987a1bc",
+    "bytes": 5752
+  },
+  "controller": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer003-guard-owner-prep-003/run_guards_once.py",
+    "sha256": "088687d91504b85c1a34f95b7ca2cf8bfdb42debdf40739f07f646c52fa7a479",
+    "bytes": 13552
+  },
+  "preflight": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer003-guard-execution-prep-003/input-runtime-preflight.json",
+    "sha256": "74f32e62c50153e04388a888f26e00f4a688b7f1ce57eaa81d46fd5cea04dcf5",
+    "bytes": 18386
+  },
+  "guard_execution_authorized": true,
+  "invocations": 1,
+  "expected_assertions": 18,
+  "automatic_retry": false,
+  "controls": {
+    "invocations": 1,
+    "wall_seconds": 60,
+    "TERM_grace_seconds": 8,
+    "KILL_wait_seconds": 8,
+    "sampled_owned_group_RSS_stop_bytes": 2147483648,
+    "total_owned_output_stop_bytes": 33554432,
+    "sample_seconds": 0.05,
+    "numeric_reported_RSS_zero_allowed": true,
+    "missing_or_nonnumeric_RSS_not_zero_filled": true,
+    "wrapper_exit_race_checked_first": true,
+    "thread_observations_nongating": true,
+    "OMP_BLAS_environment_threads": 1,
+    "retries": 0,
+    "RLIMIT_CORE": 0
+  },
+  "plugin_load_authorized": false,
+  "host_execution_authorized": false,
+  "native_execution_authorized": false,
+  "physical_acceptance": false,
+  "root_review": "Complete held plan, standalone guard/header, source001 and corrected source003, actual and preflight record list, build005 independent peer and static exports/dependencies read. Owner003 interruption cleanup and separate raw guard/loader observations accepted for this single bounded standalone test. No scientific/native or full transitive ABI acceptance.",
+  "build_peer": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer003-build-result-peer-005/review.json",
+    "sha256": "20435eb54295b89c8e2bc27bc6cf8dbfe343e32ab3c5abfb956875dc3ef0a6c6",
+    "bytes": 7744
+  },
+  "loader_reference": "https://github.com/apple-oss-distributions/dyld/blob/main/doc/man/man1/dyld.1",
+  "execution_scope": "Exactly the compiled005 standalone18 synthetic validator, direct Popen and explicit held loader mapping. No plugin/host/case load. A failure remains preserved with no retry."
+}

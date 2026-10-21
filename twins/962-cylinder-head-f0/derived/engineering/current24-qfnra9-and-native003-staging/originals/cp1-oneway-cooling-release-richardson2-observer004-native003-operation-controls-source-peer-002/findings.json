@@ -1,0 +1,239 @@
+{
+  "schema": "962-native003-operation-owner002-source-findings/v1",
+  "disposition": "NO_SOURCE_BLOCKER_FOUND_AFTER_THREE_REVIEWED_CORRECTIONS_ROOT_REVIEW_AND_DISTINCT_ADMISSIONS_STILL_REQUIRED",
+  "findings": [
+    {
+      "ID": "B01",
+      "result": "CLOSED_SOURCE_ONLY",
+      "lines": [
+        164,
+        165,
+        166,
+        167,
+        168,
+        169,
+        170,
+        171,
+        172
+      ],
+      "detail": "The normal path retains NOTE_EXIT notification/positive helper receipt before the deliberate reap, but replaces waitpid(PID,0) with an exact-PID WNOHANG loop under the existing second58 bound and current stop latch. A reported status must belong to the exact PID and be exited/signaled before reaped=True. Raw returncode is derived from that terminal status and copied to Popen.returncode. All three waitpid sites now include WNOHANG; no wait allowance or kernel API is added.",
+      "limitation": "Source-level refusal/control, not an observed timing guarantee or hard preemption. A deadline-exhausted/incomplete reap remains failure and cannot imply cleanup success."
+    },
+    {
+      "ID": "B02",
+      "result": "CLOSED_SOURCE_ONLY",
+      "lines": [
+        212,
+        213,
+        214,
+        215,
+        216,
+        217
+      ],
+      "detail": "After restoring the handlers, the source records the cutoff, snapshots all handled requests and records an explicit reason when nonempty. complete_candidate and final return continue to consult the live latch. This closes the earlier snapshot-before-restoration omission. A restoration failure is retained in cleanup_errors, so it cannot qualify as complete; post-cutoff default-signal/nonzero/absent/partial outcomes remain refusal rather than an all-lifetime-signal claim."
+    },
+    {
+      "ID": "B03",
+      "result": "CLOSED_SOURCE_ONLY",
+      "lines": [
+        189,
+        190,
+        191,
+        192,
+        193,
+        194,
+        195,
+        196,
+        197
+      ],
+      "detail": "The own-direct-PID SIGKILL call now has a local BaseException capture, preserving the full error/traceback before proceeding to the existing bounded exact-PID WNOHANG reap loop. It no longer escapes to the broad outer handler before that attempt. The original deadline and failure policy remain; ESRCH from a signal is not group absence, successful reap or success. Certified group errors remain retained as before."
+    },
+    {
+      "ID": "R01",
+      "result": "PASS_STATIC_DELTA",
+      "detail": "Both002 complete forward changes and reverse reconstruction match their respective001 owner bytes exactly. Six text replacement groups represent two namespace changes and three semantic fixes (B02 spans two groups). Nine non-main definitions/imports, both wrapper copies and import-assumption files are exact. All ten definitions, including common corrected main, are identical between002 stage/freshness siblings. Each complete source.diff was independently reproduced; original001 complete diffs/HOLD/history remain protected."
+    },
+    {
+      "ID": "R02",
+      "result": "PASS_FINITE_METADATA",
+      "detail": "Each002 map retains all original33 protected records exactly, adds the four remaining predecessor001 records, all three001 HOLD records, root1198 and five002 support records:46 protected records. Stage keeps9 late roles (55 finite control roles); freshness keeps11 (57), including accepted-stage receipt/root acceptance. The owner identities() additionally records selected_python body/alias metadata; that is separate from the55/57 control-role count. Across both packets/protected maps,68 unique explicitly named first-party records /953317B were hashed; no recursive native257/runtime19/13/22/89 scientific/runtime body operation occurred.",
+      "changed_actual_topkeys": [
+        "argv_prefix",
+        "author_lineage",
+        "controller",
+        "future_complete_records_count",
+        "owner_argv_template",
+        "predecessor_index",
+        "protected_record_count",
+        "protected_records",
+        "source001_hold",
+        "source002_correction_authority",
+        "wrapper"
+      ],
+      "unchanged": "Selected interpreter/alias expected metadata, environment, all controls/helper/native limits, helper/plan/peer/root/index bindings, staged4 map/1213802B, stage-receipt path, finite freshness scope and late-role names are exact to001. Wrapper path changes namespace while wrapper bytes remain exact. All current authorities remain false/null."
+    },
+    {
+      "ID": "R03",
+      "result": "PRIOR_SOURCE_DESIGN_PRESERVED",
+      "detail": "The fixed new-session selected3.12 wrapper still self-stops before exec, exact PID WUNTRACED handshake/SID=PGID=PID certificate and kqueue NOTE_EXIT registration precede raw SIGCONT. The Popen handle remains strongly referenced with no explicit Popen.poll/wait/communicate/context/signaling path. SIGCHLD default and no competing owner waiter preserve the planned anchor; group TERM/KILL occur while unreaped, while pre-certificate cleanup is direct-PID only. The freshness helper's inherited-query wait is a separate child relationship. No waitid/FFI/ps/provider-discovery/fallback or new API is introduced."
+    },
+    {
+      "ID": "R04",
+      "result": "CONDITIONAL_ROOT_AND_RUNTIME_GATES",
+      "detail": "Source-only scope does not establish installed select-provider identity/API/security behavior, current Python/native identities, a successful handshake, signal behavior, exit/reap/absence, bounded full operation or complete streams. Root must review and seal concrete exact-control peer/bindings/root/index/admission/helper-auth roles, semantic helper/source decisions, and separate accepted stage before freshness. No stage/freshness/native admission or output result has been created by this review."
+    },
+    {
+      "ID": "R05",
+      "result": "UNCHANGED_RESOURCE_AND_FAILURE_LIMITS",
+      "detail": "Whole60/monitor40/handshake5/query5/TERM8/internal reap58/stream buffer1MiB/thread1/no-retry stay exact. Inclusive32MiB includes O/H/C and the separate staging directory for freshness, declared control bytes, full receipts and external outer streams/root controls; root must verify the final complete census and complete outer clock/raw0. A prefinal complete candidate cannot override nonzero/late/stop/error/unknown refusal. This owner has no RSS sampler or hard quota; null/unobserved remains explicit. Existing native resource/physics limits and twelve mechanical aggregate failures remain unchanged."
+    }
+  ],
+  "source_lines_refer_to": "Both siblings' common main; each has exactly the same function text/AST.",
+  "static_summary": {
+    "operations": [
+      {
+        "operation": "stage",
+        "protected": 46,
+        "late": 9,
+        "total": 55,
+        "old33_preserved": true,
+        "full_forward_inverse": true,
+        "nine_nonmain_exact": true,
+        "all_three_waitpid_nonblocking": true,
+        "changed_actual_topkeys": [
+          "argv_prefix",
+          "author_lineage",
+          "controller",
+          "future_complete_records_count",
+          "owner_argv_template",
+          "predecessor_index",
+          "protected_record_count",
+          "protected_records",
+          "source001_hold",
+          "source002_correction_authority",
+          "wrapper"
+        ],
+        "owner": {
+          "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native003-stage-operation-controls-prep-002/run_operation_once.py",
+          "sha256": "b3bc7b73c59f542bb95e63e19025d47abd5f12fedff652fa656b8c9047ff9422",
+          "bytes": 18757
+        },
+        "actual": {
+          "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native003-stage-operation-controls-prep-002/held-actual.json",
+          "sha256": "ffd2f9ee5925066fd9e8f98f9adfbde03e166adce42f88ca9128c6d1d454d6d4",
+          "bytes": 28554
+        },
+        "index": {
+          "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native003-stage-operation-controls-prep-002/index.json",
+          "sha256": "6f498df6c7daa6bcf5cefa8972e5765f8a8ed9e77351232e78d0acbb7f21105f",
+          "bytes": 4489
+        },
+        "source_lines": [
+          {
+            "line": 139,
+            "text": "                pid,status=os.waitpid(proc.pid,os.WUNTRACED|os.WNOHANG)"
+          },
+          {
+            "line": 167,
+            "text": "                pid,status=os.waitpid(proc.pid,os.WNOHANG)"
+          },
+          {
+            "line": 193,
+            "text": "                    pid,status=os.waitpid(proc.pid,os.WNOHANG)"
+          },
+          {
+            "line": 214,
+            "text": "        report['handler_cutoff_elapsed_seconds']=time.monotonic()-started"
+          },
+          {
+            "line": 215,
+            "text": "        report['handled_stop_requests']=list(controller_stop_requests)"
+          },
+          {
+            "line": 216,
+            "text": "        report['handled_stop_refusal_reason']='Controller stop request handled before recorded handler cutoff' if controller_stop_requests else None"
+          }
+        ]
+      },
+      {
+        "operation": "freshness",
+        "protected": 46,
+        "late": 11,
+        "total": 57,
+        "old33_preserved": true,
+        "full_forward_inverse": true,
+        "nine_nonmain_exact": true,
+        "all_three_waitpid_nonblocking": true,
+        "changed_actual_topkeys": [
+          "argv_prefix",
+          "author_lineage",
+          "controller",
+          "future_complete_records_count",
+          "owner_argv_template",
+          "predecessor_index",
+          "protected_record_count",
+          "protected_records",
+          "source001_hold",
+          "source002_correction_authority",
+          "wrapper"
+        ],
+        "owner": {
+          "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native003-freshness-operation-controls-prep-002/run_operation_once.py",
+          "sha256": "0555062736bd2b63dbd8da4cddfc5ef56d158eca0878be188a2cf32fcbe4fded",
+          "bytes": 18764
+        },
+        "actual": {
+          "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native003-freshness-operation-controls-prep-002/held-actual.json",
+          "sha256": "3abcfea57fd6bef6f00fb321e5e76a7166a15bd8f39a97aa92cfd763a53e5680",
+          "bytes": 28742
+        },
+        "index": {
+          "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native003-freshness-operation-controls-prep-002/index.json",
+          "sha256": "e024351ec982dad2312e46f960f31e1c5088234f7778bd2f71c567afbf7591dd",
+          "bytes": 4530
+        },
+        "source_lines": [
+          {
+            "line": 139,
+            "text": "                pid,status=os.waitpid(proc.pid,os.WUNTRACED|os.WNOHANG)"
+          },
+          {
+            "line": 167,
+            "text": "                pid,status=os.waitpid(proc.pid,os.WNOHANG)"
+          },
+          {
+            "line": 193,
+            "text": "                    pid,status=os.waitpid(proc.pid,os.WNOHANG)"
+          },
+          {
+            "line": 214,
+            "text": "        report['handler_cutoff_elapsed_seconds']=time.monotonic()-started"
+          },
+          {
+            "line": 215,
+            "text": "        report['handled_stop_requests']=list(controller_stop_requests)"
+          },
+          {
+            "line": 216,
+            "text": "        report['handled_stop_refusal_reason']='Controller stop request handled before recorded handler cutoff' if controller_stop_requests else None"
+          }
+        ]
+      }
+    ],
+    "both_main_definitions_identical": true,
+    "source_preparation_checks_only": true
+  },
+  "primary_support": "Unchanged source/API design inherits the pinned CPython3.12.11 and Apple references bound in the protected research NOTE/source-associations and prior001 review. No new kernel/runtime claim or source composition-to-installed equivalence is inferred.",
+  "author_and_review_lineage": "head_mesh_next authored the QF_NRA producer/protocol and several guard-control donors/successors, reviewed the original615400/a577 helpers and authored the three-gap001 HOLD peer. defect_gate_refresh separately authored the new operation owners/wrappers and their predecessor/native/helper controls. This is independent current software-source review with project/control/helper-peer lineage disclosed, not a runtime, scientific or physical acceptance.",
+  "no_operations": {
+    "target_or_fragment_module_import_compile": false,
+    "helper_owner_wrapper_fixture_execute": false,
+    "kernel_process_probe_query": false,
+    "Python_provider_runtime_body_stat_hash": false,
+    "grid_rawmesh_BIN_or_field_body": false,
+    "staging_freshness_native_science": false,
+    "PUB_Git": false
+  },
+  "historical001_HOLD_preserved": true,
+  "root_source_review_and_operation_admissions_pending": true
+}

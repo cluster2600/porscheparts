@@ -1,0 +1,13 @@
+{
+  "status": "REVIEW_FAILURE_RETAINED",
+  "phase": "component-0002-apex-01",
+  "checks": 1351,
+  "cases": [],
+  "logical_bytes": 35016403,
+  "error": {
+    "type": "AssertionError",
+    "message": "Complete determinant/quality constraint count",
+    "traceback": "Traceback (most recent call last):\n  File \"/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/head-star-current24-exact-segment-feasibility-result-peer-002/independent_saved_review.py\", line 469, in <module>\n    selftest() if synthetic else run_review()\n                                 ^^^^^^^^^^^^\n  File \"/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/head-star-current24-exact-segment-feasibility-result-peer-002/independent_saved_review.py\", line 443, in run_review\n    classified = check_classification(case, poly_constraints)\n                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/head-star-current24-exact-segment-feasibility-result-peer-002/independent_saved_review.py\", line 198, in check_classification\n    insist(len(constraints) == 2*len(polys), 'Complete determinant/quality constraint count')\n  File \"/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/head-star-current24-exact-segment-feasibility-result-peer-002/independent_saved_review.py\", line 21, in insist\n    raise AssertionError(message)\nAssertionError: Complete determinant/quality constraint count\n"
+  },
+  "wall_seconds": 0.22800375008955598
+}

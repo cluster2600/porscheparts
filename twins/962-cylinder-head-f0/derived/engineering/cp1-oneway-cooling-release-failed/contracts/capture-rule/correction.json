@@ -1,0 +1,61 @@
+{
+  "schema": "962-cooling-release-immutable-contract-descriptor-correction/v1",
+  "decision": "CORRECT_ONE_DESCRIPTIVE_RULE_ONLY_NO_DATA_OR_NATIVE_AUTHORITY",
+  "original": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-prep-001/case-contract.json",
+    "sha256": "0cb6b9a16de29d503df0d2fe02a1ec4be5ed2e5a51ee2b610b3c4892846ece63",
+    "bytes": 13800
+  },
+  "corrected_companion": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-contract-clarification-001/case-contract.corrected.json",
+    "sha256": "1dc7eefae6f6666a91fdb0adde2261aa9efc7f3424a713d21b6f60e6091dfb66",
+    "bytes": 13800
+  },
+  "pointer": "/capture/quadrature_fields/rule",
+  "original_value": "All8 Gauss points of every active HEX8, with elem_id/qp_id/coordinates;128cells throughstep79,256cells step80..160",
+  "corrected_value": "All8 Gauss points of every active HEX8, with elem_id/qp_id/coordinates;128cells throughstep79,256cells step80..182",
+  "one_JSON_string_token_replaced": true,
+  "all_other_bytes_identical": true,
+  "all_numeric_values_types_binary64_words_nulls_orders_and_fields_unchanged": true,
+  "authoritative_existing_capture_steps_and_counts": {
+    "patterns": [
+      "thermoelastic_begin_fields_NNNN.csv",
+      "thermoelastic_end_fields_NNNN.csv"
+    ],
+    "steps": [
+      0,
+      182
+    ],
+    "tensors": [
+      "stress",
+      "elastic_strain",
+      "mechanical_strain",
+      "total_strain",
+      "thermal_eigenstrain"
+    ],
+    "components": [
+      "xx",
+      "yy",
+      "zz",
+      "xy",
+      "xz",
+      "yz"
+    ],
+    "component_count": 30,
+    "rule": "All8 Gauss points of every active HEX8, with elem_id/qp_id/coordinates;128cells throughstep79,256cells step80..160",
+    "rows_per_phase_total": 292864,
+    "begin_phase": "PRE_AUX group-50 after birth modifier group-100; retained state must be observed",
+    "rows_both_phases_total": 585728
+  },
+  "scope": "Original frozen001 contract remains immutable. Pair this explicit corrected full companion with original in later exact actuals and assessor review. The rule is descriptive; numeric steps/counts, deck, physical card, prescribed histories and executable sources are unchanged. Native source snapshot may retain original as historical provenance only when this correction is directly pinned and acknowledged.",
+  "data_preparation_authorized": false,
+  "native_launch_authorized": false,
+  "coupon_solve_authorized": false,
+  "head_authorized": false,
+  "engineering_accepted": false,
+  "physics_qualified": false,
+  "material_qualified": false,
+  "process_calibrated": false,
+  "manufacturing_authorized": false,
+  "automatic_retry": false
+}

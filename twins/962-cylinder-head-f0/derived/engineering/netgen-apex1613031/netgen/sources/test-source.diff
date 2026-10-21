@@ -1,0 +1,30 @@
+--- work/962-engineering/fixed-shell-netgen-apex1613790-prep-001/test_source_guards.py
++++ work/962-engineering/fixed-shell-netgen-apex1613031-prep-001/test_source_guards.py
+@@ -35,20 +35,20 @@
+   baseline=dict(status='completed_specific_cavity_generation_only',fixture_procedural_checks_passed=True,
+    actual_SICN_gate_passed=False,saved_mesh_identity_exact=True,bound_inputs_unchanged=True,
+    upstream_census_launch_deviation_sha256='d60fff297c6c45dc92e117262e36ffde36e2169d53fcd32ce2b79fabde5eebc3',declared_controller_command_conformant=False,
+-   mesh_sha256=literal('INPUT_SHA'),mesh_bytes=2790,full_tiny_arrays_sha256=literal('ARRAYS_SHA'),
+-   saved_reopen=dict(nodes=16,tetrahedra=24,referenced_interior_nodes=0,unreferenced_nodes=0,
+-    quality={'SICN':dict(count=24,below_point1_count=2,nonpositive_count=0,minimum=.09212681714853574)}))
++   mesh_sha256=literal('INPUT_SHA'),mesh_bytes=1518,full_tiny_arrays_sha256=literal('ARRAYS_SHA'),
++   saved_reopen=dict(nodes=9,tetrahedra=9,referenced_interior_nodes=0,unreferenced_nodes=0,
++    quality={'SICN':dict(count=9,below_point1_count=1,nonpositive_count=0,minimum=.05102133753836959)}))
+   check(baseline)
+   for key,value in [('actual_SICN_gate_passed',True),('mesh_sha256','0'*64),('bound_inputs_unchanged',False),
+-                    ('mesh_bytes',3222),('upstream_census_launch_deviation_sha256','0'*64),('declared_controller_command_conformant',True)]:
++                    ('mesh_bytes',1519),('upstream_census_launch_deviation_sha256','0'*64),('declared_controller_command_conformant',True)]:
+    changed=copy.deepcopy(baseline);changed[key]=value
+    with self.assertRaises(ValueError):check(changed)
+-  changed=copy.deepcopy(baseline);changed['saved_reopen']['tetrahedra']=23
++  changed=copy.deepcopy(baseline);changed['saved_reopen']['tetrahedra']=8
+   with self.assertRaises(ValueError):check(changed)
+-  for key,value in [('nodes',17),('referenced_interior_nodes',1),('unreferenced_nodes',1)]:
++  for key,value in [('nodes',10),('referenced_interior_nodes',1),('unreferenced_nodes',1)]:
+    changed=copy.deepcopy(baseline);changed['saved_reopen'][key]=value
+    with self.assertRaises(ValueError):check(changed)
+-  for key,value in [('count',34),('below_point1_count',10),('nonpositive_count',1),('minimum',.019921779104111692)]:
++  for key,value in [('count',10),('below_point1_count',2),('nonpositive_count',1),('minimum',.0510213375383696)]:
+    changed=copy.deepcopy(baseline);changed['saved_reopen']['quality']['SICN'][key]=value
+    with self.assertRaises(ValueError):check(changed)
+ 

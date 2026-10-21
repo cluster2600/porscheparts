@@ -1,0 +1,148 @@
+--- work/962-engineering/cp1-assumed-thermal-birth-linear-prep-001/time-level.i
++++ work/962-engineering/cp1-assumed-thermal-birth-linear-level0-prep-001/time-level.i
+@@ -1,3 +1,3 @@
+ [Executioner]
+-  dt = 0.0025
++  dt = 0.01
+ []
+--- work/962-engineering/cp1-assumed-thermal-birth-linear-prep-001/case-contract.json
++++ work/962-engineering/cp1-assumed-thermal-birth-linear-level0-prep-001/case-contract.json
+@@ -141,19 +141,20 @@
+   "classification": "HYPOTHETICAL_SOFTWARE_VERIFICATION_ONLY",
+   "frozen_before_native_runs": true,
+   "head_execution_authorized": false,
++  "historical_card_selected_time_level": 2,
+   "input_sha256": {
+     "thermal-birth.i": "ffe9b19786d534a8b4ad60e78290c7d3698a2dcb6b7ddf183f100321b02df1aa"
+   },
+   "level_input_sha256": {
+-    "2": "460a3332eac1ec0eddd1884657d2b8b0cdd96bd49443180d00651e44fb76a09a"
++    "0": "efa207979d8df59060209e7d6673a7630bc3f9cf8fe7356700d7ed85de190ac6"
+   },
+   "manufacturing_authorized": false,
+   "native_execution_authorized": false,
+   "schema_version": "1.0.0",
+-  "scope": "Source-frozen numerical reference for only level2; future output frozen-contract.json must be an exact copy. Root-owned native actual/authority is separate and external; no self hash. Separately frozen LINEAR solver-mode variant of the preserved Newton case c5b7e582 and failed native actual4eabadfa; only the deck solve_type keyword changes. All numeric tolerances, physical Kelvin/birth/source/geometry and unchanged0548 assessor gates remain exact. LINEAR bypasses the original nonlinear convergence test; unchanged tolerances remain literal inputs, and this variant does not establish that the old Newton residual passed. No native or assessment authority.",
+-  "selected_level_only": 2,
++  "scope": "Source-frozen numerical reference only for level0, dt=0.01s. The exact4e07 card selected_time_level=2 is historical origin metadata; selected_level_only=0 and this reference level_input/time_level maps are the sole operative per-level selection. Exact ffe9 LINEAR deck,0548 assessor/card/geometry/source/birth/options/tolerances unchanged. Separate external actual and root/peer review are required; no native or assessment authority. Preserve accepted level2 contract13a12dc5/assessment198ae20f without rerun or reassociation. LINEAR bypasses the original nonlinear convergence test; no physical material/process/head/LPBF qualification. This per-level reference cannot satisfy the original common-contract refinement binding; refinement manifest/evaluator remain future work.",
++  "selected_level_only": 0,
+   "status": "HELD_PHYSICS_REFERENCE_CONTRACT_NOT_NATIVE_AUTHORITY",
+   "time_level_inputs": {
+-    "2": "[Executioner]\n  dt = 0.0025\n[]\n"
++    "0": "[Executioner]\n  dt = 0.01\n[]\n"
+   }
+ }
+--- work/962-engineering/cp1-assumed-thermal-birth-linear-macos-prep-001/run_mac.py
++++ work/962-engineering/cp1-assumed-thermal-birth-linear-level0-macos-prep-001/run_mac.py
+@@ -17,7 +17,7 @@
+ ROOT = ENGINEERING.parent.parent
+ PREFIX = ENGINEERING / "moose-local-installed-002"
+ EXECUTABLE = PREFIX / "bin/combined-opt"
+-CASE = ENGINEERING / "cp1-assumed-thermal-birth-linear-prep-001"
++CASE = ENGINEERING / "cp1-assumed-thermal-birth-linear-level0-prep-001"
+ CARD = CASE / "card.json"
+ PHYSICS = CASE / "case-contract.json"
+ PRIMARY_API = ENGINEERING / "imported-elastic-cube-macos-prep-004/primary-api.json"
+@@ -163,7 +163,7 @@
+                    command=commands(stage)[0][1] if stage == "coupon" else [argv for _, argv in commands(stage)],
+                    stage=stage, contract_sha256=expected, actual_contract_sha256=expected,
+                    physics_contract_sha256=sha(PHYSICS) if stage == "coupon" else None,
+-                   level=2 if stage == "coupon" else None, level_is_declared=True, input_sha256=inputs,
++                   level=0 if stage == "coupon" else None, level_is_declared=True, input_sha256=inputs,
+                    runtime_sha256s=c["runtime_sha256s"], runtime_symlinks=c["runtime_symlinks"],
+                    network="not_requested_not_OS_sandboxed", rootfs="installed_prefix_not_sandboxed",
+                    automatic_retry=False, head_input_read=False, independent_assessment_performed=False,
+--- work/962-engineering/cp1-assumed-thermal-birth-linear-macos-prep-001/selfcheck.py
++++ work/962-engineering/cp1-assumed-thermal-birth-linear-level0-macos-prep-001/selfcheck.py
+@@ -10,7 +10,7 @@
+ from unittest import TestCase, main, mock
+ 
+ SOURCE = Path(__file__).with_name("run_mac.py")
+-SOURCE_SHA256 = "fde48211a11066c8406076621b5cd1c2898e0353956a4e6ec879754e7452c9d3"
++SOURCE_SHA256 = "f9593bd23433485966e25eef2a3a4c1c0206ce6f0dcc02d6de151eb1fc8065d6"
+ assert hashlib.sha256(SOURCE.read_bytes()).hexdigest() == SOURCE_SHA256
+ spec = importlib.util.spec_from_file_location("mac_thermal_candidate", SOURCE)
+ module = importlib.util.module_from_spec(spec)
+@@ -109,7 +109,7 @@
+                     "controller_error", "inputs_unchanged", "binary_and_runtime_unchanged"):
+             self.assertIn(key, r)
+         self.assertTrue(r["native_execution_completed"] and r["process_reaped"])
+-        self.assertEqual(r["level"], 2)
++        self.assertEqual(r["level"], 0)
+         self.assertEqual(r["binary_sha256"], "0"*64)
+         self.assertTrue(r["binary_unchanged"])
+         self.assertNotEqual(r["physics_contract_sha256"], r["actual_contract_sha256"])
+--- work/962-engineering/cp1-assumed-thermal-birth-linear-prep-001/time-level.i
++++ work/962-engineering/cp1-assumed-thermal-birth-linear-level1-prep-001/time-level.i
+@@ -1,3 +1,3 @@
+ [Executioner]
+-  dt = 0.0025
++  dt = 0.005
+ []
+--- work/962-engineering/cp1-assumed-thermal-birth-linear-prep-001/case-contract.json
++++ work/962-engineering/cp1-assumed-thermal-birth-linear-level1-prep-001/case-contract.json
+@@ -141,19 +141,20 @@
+   "classification": "HYPOTHETICAL_SOFTWARE_VERIFICATION_ONLY",
+   "frozen_before_native_runs": true,
+   "head_execution_authorized": false,
++  "historical_card_selected_time_level": 2,
+   "input_sha256": {
+     "thermal-birth.i": "ffe9b19786d534a8b4ad60e78290c7d3698a2dcb6b7ddf183f100321b02df1aa"
+   },
+   "level_input_sha256": {
+-    "2": "460a3332eac1ec0eddd1884657d2b8b0cdd96bd49443180d00651e44fb76a09a"
++    "1": "65a7d5bf03d5f3cc7ae5620edab2bc591b597cdfd035de3de1c859b4944583cc"
+   },
+   "manufacturing_authorized": false,
+   "native_execution_authorized": false,
+   "schema_version": "1.0.0",
+-  "scope": "Source-frozen numerical reference for only level2; future output frozen-contract.json must be an exact copy. Root-owned native actual/authority is separate and external; no self hash. Separately frozen LINEAR solver-mode variant of the preserved Newton case c5b7e582 and failed native actual4eabadfa; only the deck solve_type keyword changes. All numeric tolerances, physical Kelvin/birth/source/geometry and unchanged0548 assessor gates remain exact. LINEAR bypasses the original nonlinear convergence test; unchanged tolerances remain literal inputs, and this variant does not establish that the old Newton residual passed. No native or assessment authority.",
+-  "selected_level_only": 2,
++  "scope": "Source-frozen numerical reference only for level1, dt=0.005s. The exact4e07 card selected_time_level=2 is historical origin metadata; selected_level_only=1 and this reference level_input/time_level maps are the sole operative per-level selection. Exact ffe9 LINEAR deck,0548 assessor/card/geometry/source/birth/options/tolerances unchanged. Separate external actual and root/peer review are required; no native or assessment authority. Preserve accepted level2 contract13a12dc5/assessment198ae20f without rerun or reassociation. LINEAR bypasses the original nonlinear convergence test; no physical material/process/head/LPBF qualification. This per-level reference cannot satisfy the original common-contract refinement binding; refinement manifest/evaluator remain future work.",
++  "selected_level_only": 1,
+   "status": "HELD_PHYSICS_REFERENCE_CONTRACT_NOT_NATIVE_AUTHORITY",
+   "time_level_inputs": {
+-    "2": "[Executioner]\n  dt = 0.0025\n[]\n"
++    "1": "[Executioner]\n  dt = 0.005\n[]\n"
+   }
+ }
+--- work/962-engineering/cp1-assumed-thermal-birth-linear-macos-prep-001/run_mac.py
++++ work/962-engineering/cp1-assumed-thermal-birth-linear-level1-macos-prep-001/run_mac.py
+@@ -17,7 +17,7 @@
+ ROOT = ENGINEERING.parent.parent
+ PREFIX = ENGINEERING / "moose-local-installed-002"
+ EXECUTABLE = PREFIX / "bin/combined-opt"
+-CASE = ENGINEERING / "cp1-assumed-thermal-birth-linear-prep-001"
++CASE = ENGINEERING / "cp1-assumed-thermal-birth-linear-level1-prep-001"
+ CARD = CASE / "card.json"
+ PHYSICS = CASE / "case-contract.json"
+ PRIMARY_API = ENGINEERING / "imported-elastic-cube-macos-prep-004/primary-api.json"
+@@ -163,7 +163,7 @@
+                    command=commands(stage)[0][1] if stage == "coupon" else [argv for _, argv in commands(stage)],
+                    stage=stage, contract_sha256=expected, actual_contract_sha256=expected,
+                    physics_contract_sha256=sha(PHYSICS) if stage == "coupon" else None,
+-                   level=2 if stage == "coupon" else None, level_is_declared=True, input_sha256=inputs,
++                   level=1 if stage == "coupon" else None, level_is_declared=True, input_sha256=inputs,
+                    runtime_sha256s=c["runtime_sha256s"], runtime_symlinks=c["runtime_symlinks"],
+                    network="not_requested_not_OS_sandboxed", rootfs="installed_prefix_not_sandboxed",
+                    automatic_retry=False, head_input_read=False, independent_assessment_performed=False,
+--- work/962-engineering/cp1-assumed-thermal-birth-linear-macos-prep-001/selfcheck.py
++++ work/962-engineering/cp1-assumed-thermal-birth-linear-level1-macos-prep-001/selfcheck.py
+@@ -10,7 +10,7 @@
+ from unittest import TestCase, main, mock
+ 
+ SOURCE = Path(__file__).with_name("run_mac.py")
+-SOURCE_SHA256 = "fde48211a11066c8406076621b5cd1c2898e0353956a4e6ec879754e7452c9d3"
++SOURCE_SHA256 = "7f6d51f52dd69373ca3dad5aad4390ed27900db8c8aad76fd02bece32a2c23c0"
+ assert hashlib.sha256(SOURCE.read_bytes()).hexdigest() == SOURCE_SHA256
+ spec = importlib.util.spec_from_file_location("mac_thermal_candidate", SOURCE)
+ module = importlib.util.module_from_spec(spec)
+@@ -109,7 +109,7 @@
+                     "controller_error", "inputs_unchanged", "binary_and_runtime_unchanged"):
+             self.assertIn(key, r)
+         self.assertTrue(r["native_execution_completed"] and r["process_reaped"])
+-        self.assertEqual(r["level"], 2)
++        self.assertEqual(r["level"], 1)
+         self.assertEqual(r["binary_sha256"], "0"*64)
+         self.assertTrue(r["binary_unchanged"])
+         self.assertNotEqual(r["physics_contract_sha256"], r["actual_contract_sha256"])

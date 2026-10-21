@@ -1,0 +1,480 @@
+{
+ "model": "linear buckling (*BUCKLE) of the CFRP monocoque shell model of torsion_monocoque.py, S6; sandwich by its faces only",
+ "classification": "values of this model under these loads, not of a vehicle; prohibited_pending_engineering",
+ "layup_mm": {
+  "skin": 2.0,
+  "section_walls": 2.5,
+  "sandwich_faces": 1.2,
+  "core": 22.6
+ },
+ "core": {
+  "E_MPa": 50.0,
+  "nu": 0.32,
+  "basis": "ASSUMED isotropic foam, no source; NOT the 22.6 mm aramid honeycomb (48 kg/m3) of the model and mass estimate: the crimping and wrinkling margins are those of a foam core, and honeycomb intracell dimpling is not checked"
+ },
+ "service_loads": {
+  "torsion": {
+   "value": 12000.0,
+   "unit": "N.m",
+   "basis": "ASSUMED: 2.85 kN front wheel load x 1.4 m track x 3"
+  },
+  "bending": {
+   "value": 40000.0,
+   "unit": "N",
+   "basis": "ASSUMED: 3 x 1,350 kg"
+  }
+ },
+ "sandwich_limits": {
+  "crimping_N_per_mm": 474.7,
+  "wrinkling_MPa": 183.7
+ },
+ "sandwich_stress": "99th percentile over the faces-only sandwich shells: 'mid_surface' is the nodal von Mises of OUTPUT=2D (membrane, no bending stress), 'integration_points' the largest principal stress magnitude at the integration points (with the faces-only plate's bending); neither is a CFRP failure criterion",
+ "repeat_check": "every *BUCKLE solved twice, factors agree within 0.01%; static base state excluded",
+ "meshes": [
+  {
+   "sections": 300,
+   "nodes": 21799,
+   "triangles": 44987
+  }
+ ],
+ "cases": {
+  "torsion": {
+   "reference_load": 1140.4567511571597,
+   "unit": "N.m",
+   "meshes": [
+    {
+     "sections": 300,
+     "modes": [
+      {
+       "factor": 25.71,
+       "critical": 29317,
+       "family": "floor",
+       "family_share_of_top_1pct": 1.0,
+       "members": [],
+       "free_edge": false,
+       "d_mm": 1209,
+       "y_mm": -105,
+       "z_mm": 141
+      },
+      {
+       "factor": 30.15,
+       "critical": 34383,
+       "family": "floor",
+       "family_share_of_top_1pct": 1.0,
+       "members": [],
+       "free_edge": false,
+       "d_mm": 918,
+       "y_mm": -105,
+       "z_mm": 143
+      },
+      {
+       "factor": 41.68,
+       "critical": 47538,
+       "family": "free skin",
+       "family_share_of_top_1pct": 1.0,
+       "members": [],
+       "free_edge": true,
+       "d_mm": -700,
+       "y_mm": -118,
+       "z_mm": 336
+      },
+      {
+       "factor": 52.77,
+       "critical": 60185,
+       "family": "floor",
+       "family_share_of_top_1pct": 1.0,
+       "members": [],
+       "free_edge": false,
+       "d_mm": 804,
+       "y_mm": -105,
+       "z_mm": 145
+      },
+      {
+       "factor": 61.15,
+       "critical": 69741,
+       "family": "floor",
+       "family_share_of_top_1pct": 0.99,
+       "members": [],
+       "free_edge": false,
+       "d_mm": 880,
+       "y_mm": 210,
+       "z_mm": 143
+      },
+      {
+       "factor": 62.21,
+       "critical": 70942,
+       "family": "free skin",
+       "family_share_of_top_1pct": 0.89,
+       "members": [],
+       "free_edge": true,
+       "d_mm": -700,
+       "y_mm": -119,
+       "z_mm": 401
+      },
+      {
+       "factor": 66.57,
+       "critical": 75918,
+       "family": "box inner walls",
+       "family_share_of_top_1pct": 0.63,
+       "members": [],
+       "free_edge": true,
+       "d_mm": 1980,
+       "y_mm": -220,
+       "z_mm": 333
+      },
+      {
+       "factor": 88.81,
+       "critical": 101286,
+       "family": "free skin",
+       "family_share_of_top_1pct": 0.58,
+       "members": [],
+       "free_edge": false,
+       "d_mm": -397,
+       "y_mm": 503,
+       "z_mm": 540
+      },
+      {
+       "factor": 89.82,
+       "critical": 102436,
+       "family": "box outer walls",
+       "family_share_of_top_1pct": 0.51,
+       "members": [
+        "door",
+        "windscreen"
+       ],
+       "free_edge": false,
+       "d_mm": 981,
+       "y_mm": 681,
+       "z_mm": 1125
+      },
+      {
+       "factor": 92.55,
+       "critical": 105546,
+       "family": "floor",
+       "family_share_of_top_1pct": 1.0,
+       "members": [],
+       "free_edge": false,
+       "d_mm": 741,
+       "y_mm": 211,
+       "z_mm": 145
+      },
+      {
+       "factor": 96.26,
+       "critical": 109778,
+       "family": "free skin",
+       "family_share_of_top_1pct": 0.82,
+       "members": [],
+       "free_edge": false,
+       "d_mm": 2094,
+       "y_mm": -848,
+       "z_mm": 781
+      },
+      {
+       "factor": 98.65,
+       "critical": 112507,
+       "family": "free skin",
+       "family_share_of_top_1pct": 0.78,
+       "members": [],
+       "free_edge": false,
+       "d_mm": 2423,
+       "y_mm": 836,
+       "z_mm": 781
+      },
+      {
+       "factor": 100.68,
+       "critical": 114827,
+       "family": "free skin",
+       "family_share_of_top_1pct": 0.93,
+       "members": [],
+       "free_edge": true,
+       "d_mm": -700,
+       "y_mm": -98,
+       "z_mm": 244
+      },
+      {
+       "factor": 104.76,
+       "critical": 119473,
+       "family": "floor",
+       "family_share_of_top_1pct": 0.89,
+       "members": [],
+       "free_edge": false,
+       "d_mm": 665,
+       "y_mm": 106,
+       "z_mm": 146
+      },
+      {
+       "factor": 108.11,
+       "critical": 123292,
+       "family": "free skin",
+       "family_share_of_top_1pct": 0.5,
+       "members": [],
+       "free_edge": false,
+       "d_mm": 2359,
+       "y_mm": -841,
+       "z_mm": 781
+      },
+      {
+       "factor": 109.66,
+       "critical": 125063,
+       "family": "floor",
+       "family_share_of_top_1pct": 1.0,
+       "members": [],
+       "free_edge": false,
+       "d_mm": 375,
+       "y_mm": 0,
+       "z_mm": 504
+      }
+     ],
+     "first_thin_wall_critical_over_service": 3.96,
+     "first_faces_only_sandwich_critical_over_service": 2.44,
+     "sandwich_face_stress_at_service_MPa_p99": {
+      "mid_surface": 20.2,
+      "integration_points": 14.8
+     },
+     "sandwich_integration_points": 31797,
+     "sandwich_crimping_margin": {
+      "mid_surface": 9.81,
+      "integration_points": 13.38
+     },
+     "sandwich_wrinkling_margin": {
+      "mid_surface": 9.11,
+      "integration_points": 12.43
+     }
+    }
+   ]
+  },
+  "bending": {
+   "reference_load": 2000.0,
+   "unit": "N",
+   "meshes": [
+    {
+     "sections": 300,
+     "modes": [
+      {
+       "factor": 62.27,
+       "critical": 124541,
+       "family": "box inner walls",
+       "family_share_of_top_1pct": 0.54,
+       "members": [],
+       "free_edge": true,
+       "d_mm": 1980,
+       "y_mm": 0,
+       "z_mm": 333
+      },
+      {
+       "factor": 82.41,
+       "critical": 164819,
+       "family": "free skin",
+       "family_share_of_top_1pct": 0.61,
+       "members": [],
+       "free_edge": false,
+       "d_mm": 2170,
+       "y_mm": 845,
+       "z_mm": 731
+      },
+      {
+       "factor": 83.32,
+       "critical": 166634,
+       "family": "free skin",
+       "family_share_of_top_1pct": 0.66,
+       "members": [],
+       "free_edge": false,
+       "d_mm": 2195,
+       "y_mm": -847,
+       "z_mm": 781
+      },
+      {
+       "factor": 101.72,
+       "critical": 203442,
+       "family": "box outer walls",
+       "family_share_of_top_1pct": 0.94,
+       "members": [
+        "sills"
+       ],
+       "free_edge": false,
+       "d_mm": 1512,
+       "y_mm": 782,
+       "z_mm": 290
+      },
+      {
+       "factor": 108.64,
+       "critical": 217280,
+       "family": "box outer walls",
+       "family_share_of_top_1pct": 0.81,
+       "members": [
+        "sills"
+       ],
+       "free_edge": false,
+       "d_mm": 1525,
+       "y_mm": -783,
+       "z_mm": 290
+      },
+      {
+       "factor": 111.82,
+       "critical": 223643,
+       "family": "free skin",
+       "family_share_of_top_1pct": 0.86,
+       "members": [],
+       "free_edge": true,
+       "d_mm": 1980,
+       "y_mm": 329,
+       "z_mm": 333
+      },
+      {
+       "factor": 132.18,
+       "critical": 264358,
+       "family": "free skin",
+       "family_share_of_top_1pct": 0.73,
+       "members": [],
+       "free_edge": false,
+       "d_mm": 2081,
+       "y_mm": 845,
+       "z_mm": 731
+      },
+      {
+       "factor": 138.0,
+       "critical": 275992,
+       "family": "box outer walls",
+       "family_share_of_top_1pct": 0.75,
+       "members": [
+        "door",
+        "sills"
+       ],
+       "free_edge": false,
+       "d_mm": 1234,
+       "y_mm": 780,
+       "z_mm": 291
+      },
+      {
+       "factor": 139.59,
+       "critical": 279171,
+       "family": "box outer walls",
+       "family_share_of_top_1pct": 0.72,
+       "members": [
+        "door",
+        "sills"
+       ],
+       "free_edge": false,
+       "d_mm": 1007,
+       "y_mm": -781,
+       "z_mm": 292
+      },
+      {
+       "factor": 143.39,
+       "critical": 286775,
+       "family": "box outer walls",
+       "family_share_of_top_1pct": 0.54,
+       "members": [
+        "door",
+        "sills"
+       ],
+       "free_edge": false,
+       "d_mm": 1146,
+       "y_mm": 781,
+       "z_mm": 292
+      },
+      {
+       "factor": 147.8,
+       "critical": 295600,
+       "family": "box outer walls",
+       "family_share_of_top_1pct": 0.76,
+       "members": [
+        "door",
+        "sills"
+       ],
+       "free_edge": false,
+       "d_mm": 981,
+       "y_mm": -781,
+       "z_mm": 293
+      },
+      {
+       "factor": 153.58,
+       "critical": 307166,
+       "family": "box outer walls",
+       "family_share_of_top_1pct": 0.73,
+       "members": [
+        "door",
+        "sills"
+       ],
+       "free_edge": false,
+       "d_mm": 1285,
+       "y_mm": 780,
+       "z_mm": 291
+      },
+      {
+       "factor": 162.58,
+       "critical": 325163,
+       "family": "box outer walls",
+       "family_share_of_top_1pct": 0.57,
+       "members": [
+        "rear_arch",
+        "sills"
+       ],
+       "free_edge": true,
+       "d_mm": 1980,
+       "y_mm": -678,
+       "z_mm": 336
+      },
+      {
+       "factor": 171.59,
+       "critical": 343187,
+       "family": "box outer walls",
+       "family_share_of_top_1pct": 0.7,
+       "members": [
+        "rear_arch",
+        "sills"
+       ],
+       "free_edge": true,
+       "d_mm": 1980,
+       "y_mm": -678,
+       "z_mm": 336
+      },
+      {
+       "factor": 183.42,
+       "critical": 366847,
+       "family": "box outer walls",
+       "family_share_of_top_1pct": 0.47,
+       "members": [
+        "rear_arch",
+        "sills"
+       ],
+       "free_edge": true,
+       "d_mm": 1980,
+       "y_mm": -678,
+       "z_mm": 336
+      },
+      {
+       "factor": 199.83,
+       "critical": 399658,
+       "family": "box outer walls",
+       "family_share_of_top_1pct": 0.75,
+       "members": [
+        "rear_arch",
+        "sills"
+       ],
+       "free_edge": true,
+       "d_mm": 1980,
+       "y_mm": -678,
+       "z_mm": 336
+      }
+     ],
+     "first_thin_wall_critical_over_service": 3.11,
+     "first_faces_only_sandwich_critical_over_service": null,
+     "sandwich_face_stress_at_service_MPa_p99": {
+      "mid_surface": 42.2,
+      "integration_points": 45.9
+     },
+     "sandwich_integration_points": 31797,
+     "sandwich_crimping_margin": {
+      "mid_surface": 4.69,
+      "integration_points": 4.31
+     },
+     "sandwich_wrinkling_margin": {
+      "mid_surface": 4.35,
+      "integration_points": 4.01
+     }
+    }
+   ]
+  }
+ }
+}

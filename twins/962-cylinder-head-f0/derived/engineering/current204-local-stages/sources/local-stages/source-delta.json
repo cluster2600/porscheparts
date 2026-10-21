@@ -1,0 +1,438 @@
+{
+  "schema": "962-current204-finite-local-stage-source-reuse/v1",
+  "source_only": true,
+  "pairs": {
+    "generation": {
+      "donor": "work/962-engineering/fixed-shell-generation-apex1474426-prep-001/reader.py",
+      "donor_sha256": "2d3529956d03dd256be5a5786812ebe3a3ec3d2bd5b2d923a458a9b8b08f82ff",
+      "selected_source": "work/962-engineering/head-star-current204-local-stages-prep-001/generate_case.py",
+      "selected_sha256": "fc1aba0a0ae93995f8fc4eea86d3fe693ce0360ac3f98d158ba5f01ae8983e3d",
+      "exact_reverse_chunks": [
+        {
+          "old_start": 0,
+          "old_stop": 1,
+          "new_start": 0,
+          "new_stop": 1,
+          "old": "\"\"\"HELD single fixed-shell apex1474426 cavity generation; no head stitching.\"\"\"\n",
+          "new": "\"\"\"HELD one selected current204 fixed-shell case generation; no head stitching.\"\"\"\n"
+        },
+        {
+          "old_start": 7,
+          "old_stop": 9,
+          "new_start": 7,
+          "new_stop": 14,
+          "old": "SHELL='work/962-engineering/direct-sicn-apex1474426-cavity-study-001/local-shell-input-001.json'\nSHELL_SHA='6ad00be791b8b752106b5324b9f80df314f7458d8d0475b1ffc1a053bc04d12a'\n",
+          "new": "MANIFEST='work/962-engineering/head-star-current204-local-stages-prep-001/case-manifest.json'\nMANIFEST_SHA='3a558ede04cbc52c59e401befb36b8983ebd9b7f57d4266de0bea38fb1a963c5'\nBATCH='work/962-engineering/head-star-current204-batch-shells-001/report.json'\nBATCH_SHA='4f9fc0354918a907083006484d534c34c3b2621dfcc83b00cc4a4b731f009e86'\nBATCH_EVIDENCE={'work/962-engineering/head-star-current204-batch-shells-001/receipt.json': '78e215c5c85f01ca614e44e4e443fd4181086f63e2edc5d5aee81fbef77dbedb', 'work/962-engineering/head-star-current204-batch-shells-root-execution-001/closed-result.json': '67d9b2763fcd5ac887eddca79010d8a21dc6365b19f56224512acbaf7a3150e2', 'work/962-engineering/head-star-current204-batch-shells-root-execution-001/result-review.json': '5a80128a5e4dd3ea685449c1124fd1fad4c07a3bb1c586f9f80a2e26caacf913', 'work/962-engineering/head-star-current204-batch-shells-result-peer-001/review.json': '3fd325b3e4e18b942bda26d9292127d1dc1c2b8ecc5841d11257dc61884030da', 'work/962-engineering/head-star-current204-batch-shells-root-execution-001/result-peer-acceptance.json': '47a98aad883748178b7b25a1a5957ca01c0780eb0274f778567e6c5fb22fe538'}\nNV=NF=NB=APEX=None\nSHELL_SHA=VOLUME=None\n"
+        },
+        {
+          "old_start": 22,
+          "old_stop": 23,
+          "new_start": 27,
+          "new_stop": 27,
+          "old": "VOLUME=Fraction(1281283350616062628588199592621260646860363813,1070435769529469910793714477087121352287059968)\n",
+          "new": ""
+        },
+        {
+          "old_start": 28,
+          "old_stop": 28,
+          "new_start": 32,
+          "new_stop": 88,
+          "old": "",
+          "new": "def encoded(value):\n return (json.dumps(value,indent=2,allow_nan=False)+'\\n').encode()\n\ndef select_case(manifest,batch,apex):\n cases=manifest['cases_in_increasing_apex_order'];tags=[r['apex'] for r in cases]\n if (manifest.get('schema')!='962-current204-finite-local-stage-manifest/v1' or manifest.get('selected_count')!=116\n     or tags!=sorted(set(tags)) or len(tags)!=116 or set(tags)!=set(batch['selected_apex_tags'])\n     or type(apex) is not int or apex not in tags or batch.get('source_current_positive_poor_cells')!=204\n     or batch.get('source_MSH_sha256')!=manifest['source_parent_MSH_sha256']):\n  raise ValueError('Exactly the frozen selected116 cases required; no backfill or new case')\n original={r['apex']:r for r in batch['all_candidate_star_records']};used=set()\n for row in cases:\n  record=original[row['apex']]\n  if (record.get('eligible') is not True or set(record['all_vertex_tags'])&used\n      or hashlib.sha256(encoded(record)).hexdigest()!=row['source_record_sha256']):\n   raise ValueError('Complete selected record identity or whole-vertex disjointness changed')\n  used.update(record['all_vertex_tags'])\n row=cases[tags.index(apex)];record=original[apex];shell=record['shell']\n if (hashlib.sha256(encoded(shell)).hexdigest()!=row['shell_serialized_sha256']\n     or hashlib.sha256(encoded(record['observation'])).hexdigest()!=row['observation_serialized_sha256']\n     or hashlib.sha256(encoded(record['necessary_face_screen'])).hexdigest()!=row['screen_serialized_sha256']\n     or row['old_tetrahedra']!=record['source_complete_incident_cell_count']\n     or row['old_vertex_tags']!=record['all_vertex_tags'] or row['old_tetrahedron_tags']!=record['source_tetrahedron_tags']\n     or row['old_poor_tags']!=record['poor_tetrahedron_tags']\n     or (row['shell_nodes'],row['shell_faces'])!=(shell['vertices'],shell['oriented_triangles'])\n     or row['exact_volume_mm3']!=shell['exact_enclosed_volume_mm3']\n     or row['original_boundary_shell_nodes']!=len(shell['original_source_classifications']['boundary_global_node_tags'])\n     or row['other_interior_shell_nodes']!=len(shell['original_source_classifications']['other_interior_global_node_tags'])):\n  raise ValueError('All explicit case shell/observation/screen/count/class/volume associations required')\n return row,record\n\ndef configure_case(c,stage='generation'):\n global NV,NF,NB,APEX,VOLUME,SHELL_SHA\n if (c.get('case_manifest')!=MANIFEST or c.get('case_manifest_sha256')!=MANIFEST_SHA\n     or c['input_hashes'].get(MANIFEST)!=MANIFEST_SHA or c['input_hashes'].get(BATCH)!=BATCH_SHA\n     or sha(ROOT/MANIFEST)!=MANIFEST_SHA or sha(ROOT/BATCH)!=BATCH_SHA):\n  raise ValueError('Frozen finite manifest and complete batch report must be direct current pins')\n case,record=select_case(json.loads((ROOT/MANIFEST).read_text()),json.loads((ROOT/BATCH).read_text()),c.get('case_apex'))\n if (c.get('case_key')!=case['case_key'] or c.get('case_record_sha256')!=case['source_record_sha256']\n     or c.get('output_directory')!=case['stage_paths'][stage]):raise ValueError('Exact selected case/stage/output binding required')\n NV,NF,NB,APEX=case['shell_nodes'],case['shell_faces'],case['original_boundary_shell_nodes'],case['apex']\n value=case['exact_volume_mm3'];VOLUME=Fraction(value['numerator'],value['denominator']);SHELL_SHA=case['shell_serialized_sha256']\n if type(NV) is not int or NV<4 or type(NF) is not int or NF<4 or type(NB) is not int or not 0<=NB<=NV or VOLUME<=0:\n  raise ValueError('Positive frozen shell dimensions/volume required')\n return case,record['shell']\n\ndef candidate_storage_admission(report,case):\n return (type(report.get('referenced_interior_nodes')) is int and report['referenced_interior_nodes']>=1\n  and type(report.get('tetrahedra')) is int and report['tetrahedra']>=case['old_tetrahedra'])\n\ndef case_route(procedural,quality,storage):\n if type(procedural) is not bool or type(quality) is not bool or type(storage) is not bool:raise ValueError('Explicit terminal booleans required')\n if not procedural:return 'stop_case'\n if quality:return 'domain' if storage else 'hold_mapping_incompatible_no_Netgen'\n return 'one_Netgen'\n\n"
+        },
+        {
+          "old_start": 29,
+          "old_stop": 33,
+          "new_start": 89,
+          "new_stop": 93,
+          "old": " if (len(points)!=32 or any(len(p)!=3 or any(not math.isfinite(float(x)) for x in p) for p in points)\n     or len(faces)!=60 or any(len(f)!=3 or len(set(f))!=3 or any(type(t) is not int or not 1<=t<=32 for t in f) for f in faces)):\n  raise ValueError('Exact finite thirty-two-node/sixty-triangle cavity shell required')\n if len({struct.pack('<3d',*p) for p in points})!=32:raise ValueError('Duplicate shell coordinate bits')\n",
+          "new": " if (len(points)!=NV or any(len(p)!=3 or any(not math.isfinite(float(x)) for x in p) for p in points)\n     or len(faces)!=NF or any(len(f)!=3 or len(set(f))!=3 or any(type(t) is not int or not 1<=t<=NV for t in f) for f in faces)):\n  raise ValueError('Exact finite selected-case shell required')\n if len({struct.pack('<3d',*p) for p in points})!=NV:raise ValueError('Duplicate shell coordinate bits')\n"
+        },
+        {
+          "old_start": 43,
+          "old_stop": 44,
+          "new_start": 103,
+          "new_stop": 104,
+          "old": " if referenced!=set(range(1,33)) or any(len(v)!=2 or v[0]!=v[1][::-1] for v in edges.values()):\n",
+          "new": " if referenced!=set(range(1,NV+1)) or any(len(v)!=2 or v[0]!=v[1][::-1] for v in edges.values()):\n"
+        },
+        {
+          "old_start": 47,
+          "old_stop": 48,
+          "new_start": 107,
+          "new_stop": 108,
+          "old": " return dict(vertices=32,faces=60,edges=len(edges),exact_volume_mm3={'numerator':str(volume.numerator),'denominator':str(volume.denominator)})\n",
+          "new": " return dict(vertices=NV,faces=NF,edges=len(edges),exact_volume_mm3={'numerator':str(volume.numerator),'denominator':str(volume.denominator)})\n"
+        },
+        {
+          "old_start": 50,
+          "old_stop": 52,
+          "new_start": 110,
+          "new_stop": 112,
+          "old": " if (data.get('schema')!='962-fixed-cavity-local-shell-input/v1' or data.get('vertices')!=32\n     or data.get('oriented_triangles')!=60 or data.get('excluded_source_apex_tag')!=1474426\n",
+          "new": " if (data.get('schema')!='962-fixed-cavity-local-shell-input/v1' or data.get('vertices')!=NV\n     or data.get('oriented_triangles')!=NF or data.get('excluded_source_apex_tag')!=APEX\n"
+        },
+        {
+          "old_start": 56,
+          "old_stop": 59,
+          "new_start": 116,
+          "new_stop": 119,
+          "old": " if (len(mapping)!=32 or any(type(t) is not int or t<=0 for t in mapping) or mapping!=sorted(set(mapping))\n     or 1474426 in mapping or data['global_to_local_node_tags']!={str(t):i+1 for i,t in enumerate(mapping)}\n     or len(rows)!=32 or len(triangles)!=60):raise ValueError('Complete exact local/global shell mapping required')\n",
+          "new": " if (len(mapping)!=NV or any(type(t) is not int or t<=0 for t in mapping) or mapping!=sorted(set(mapping))\n     or APEX in mapping or data['global_to_local_node_tags']!={str(t):i+1 for i,t in enumerate(mapping)}\n     or len(rows)!=NV or len(triangles)!=NF):raise ValueError('Complete exact local/global shell mapping required')\n"
+        },
+        {
+          "old_start": 67,
+          "old_stop": 69,
+          "new_start": 127,
+          "new_stop": 129,
+          "old": "      or row['original_source_boundary_node'] is not (i<27)\n      or row['original_source_classification']!=('below_dim3' if i<27 else 'dim3')):\n",
+          "new": "      or row['original_source_boundary_node'] is not (i<NB)\n      or row['original_source_classification']!=('below_dim3' if i<NB else 'dim3')):\n"
+        },
+        {
+          "old_start": 71,
+          "old_stop": 74,
+          "new_start": 131,
+          "new_stop": 134,
+          "old": " expected=dict(boundary_global_node_tags=mapping[:27],other_interior_global_node_tags=mapping[27:],\n  boundary_local_node_tags=list(range(1,28)),other_interior_local_node_tags=list(range(28,33)))\n if data['original_source_classifications']!=expected:raise ValueError('Original twenty-seven-boundary/five-interior distinction changed')\n",
+          "new": " expected=dict(boundary_global_node_tags=mapping[:NB],other_interior_global_node_tags=mapping[NB:],\n  boundary_local_node_tags=list(range(1,NB+1)),other_interior_local_node_tags=list(range(NB+1,NV+1)))\n if data['original_source_classifications']!=expected:raise ValueError('Original per-case boundary/interior shell distinction changed')\n"
+        },
+        {
+          "old_start": 86,
+          "old_stop": 87,
+          "new_start": 146,
+          "new_stop": 148,
+          "old": "     or c.get('native_head_application_authorized') is not False or c.get('manufacturing_authorized') is not False):\n",
+          "new": "     or c.get('native_head_application_authorized') is not False or c.get('manufacturing_authorized') is not False\n     or any(c.get(k) is not False for k in ['engineering_accepted','physics_qualified'])):\n"
+        },
+        {
+          "old_start": 91,
+          "old_stop": 93,
+          "new_start": 152,
+          "new_stop": 154,
+          "old": "     or c.get('automatic_retry') is not False or c.get('local_shell_input')!=SHELL\n     or c.get('local_shell_input_sha256')!=SHELL_SHA):raise ValueError('Fixed shell, options and operation policy required')\n",
+          "new": "     or c.get('automatic_retry') is not False or c.get('case_manifest')!=MANIFEST\n     or c.get('case_manifest_sha256')!=MANIFEST_SHA):raise ValueError('Fixed shell, options and operation policy required')\n"
+        },
+        {
+          "old_start": 96,
+          "old_stop": 97,
+          "new_start": 157,
+          "new_stop": 159,
+          "old": " for name,digest in [(SHELL,SHELL_SHA),(HELPER,HELPER_SHA),(ORIENTATION,ORIENTATION_SHA),(CUBE,CUBE_SHA)]:\n",
+          "new": " case,data=configure_case(c)\n for name,digest in [(MANIFEST,MANIFEST_SHA),(BATCH,BATCH_SHA),(HELPER,HELPER_SHA),(ORIENTATION,ORIENTATION_SHA),(CUBE,CUBE_SHA)]+list(BATCH_EVIDENCE.items()):\n"
+        },
+        {
+          "old_start": 107,
+          "old_stop": 107,
+          "new_start": 169,
+          "new_stop": 170,
+          "old": "",
+          "new": " return case,data\n"
+        },
+        {
+          "old_start": 130,
+          "old_stop": 131,
+          "new_start": 193,
+          "new_stop": 194,
+          "old": " gmsh.model.add('fixed_shell_apex1474426_cavity')\n",
+          "new": " gmsh.model.add('fixed_shell_current204_apex_'+str(APEX))\n"
+        },
+        {
+          "old_start": 132,
+          "old_stop": 134,
+          "new_start": 195,
+          "new_stop": 197,
+          "old": " gmsh.model.mesh.addNodes(2,1,list(range(1,33)),helper.P.ravel())\n gmsh.model.mesh.addElementsByType(1,2,list(range(1,61)),helper.F.ravel())\n",
+          "new": " gmsh.model.mesh.addNodes(2,1,list(range(1,NV+1)),helper.P.ravel())\n gmsh.model.mesh.addElementsByType(1,2,list(range(1,NF+1)),helper.F.ravel())\n"
+        },
+        {
+          "old_start": 140,
+          "old_stop": 142,
+          "new_start": 203,
+          "new_stop": 205,
+          "old": " tags=np.asarray(tags)[order];xyz=np.asarray(xyz).reshape(-1,3)[order];ix=np.searchsorted(tags,np.arange(1,33))\n if np.any(ix>=len(tags)) or not np.array_equal(tags[ix],np.arange(1,33)):raise ValueError('Boundary tags missing')\n",
+          "new": " tags=np.asarray(tags)[order];xyz=np.asarray(xyz).reshape(-1,3)[order];ix=np.searchsorted(tags,np.arange(1,NV+1))\n if np.any(ix>=len(tags)) or not np.array_equal(tags[ix],np.arange(1,NV+1)):raise ValueError('Boundary tags missing')\n"
+        },
+        {
+          "old_start": 145,
+          "old_stop": 146,
+          "new_start": 208,
+          "new_stop": 209,
+          "old": " if list(types)!=[2] or len(element_tags[0])!=60:raise ValueError('Exactly sixty TRI3 elements required')\n",
+          "new": " if list(types)!=[2] or len(element_tags[0])!=NF:raise ValueError('Exactly the selected case TRI3 elements required')\n"
+        },
+        {
+          "old_start": 152,
+          "old_stop": 153,
+          "new_start": 215,
+          "new_stop": 216,
+          "old": "   if int(tag)<=32:\n",
+          "new": "   if int(tag)<=NV:\n"
+        },
+        {
+          "old_start": 155,
+          "old_stop": 156,
+          "new_start": 218,
+          "new_stop": 219,
+          "old": " if set(classes)!=set(range(1,33)) or any(dim>=3 for dim,entity in classes.values()):raise ValueError('Boundary classification missing')\n",
+          "new": " if set(classes)!=set(range(1,NV+1)) or any(dim>=3 for dim,entity in classes.values()):raise ValueError('Boundary classification missing')\n"
+        },
+        {
+          "old_start": 188,
+          "old_stop": 189,
+          "new_start": 251,
+          "new_stop": 252,
+          "old": " if set(dims)!=set(map(int,tags)) or any(dims[n]>=3 for n in range(1,33)) or any(dims[int(n)]!=3 for n in tags if n>32):\n",
+          "new": " if set(dims)!=set(map(int,tags)) or any(dims[n]>=3 for n in range(1,NV+1)) or any(dims[int(n)]!=3 for n in tags if n>NV):\n"
+        },
+        {
+          "old_start": 199,
+          "old_stop": 200,
+          "new_start": 262,
+          "new_stop": 263,
+          "old": " report=dict(nodes=len(tags),tetrahedra=len(et),referenced_nodes=len(referenced),referenced_interior_nodes=int(np.count_nonzero(tags>32)),\n",
+          "new": " report=dict(nodes=len(tags),tetrahedra=len(et),referenced_nodes=len(referenced),referenced_interior_nodes=int(np.count_nonzero(tags>NV)),\n"
+        },
+        {
+          "old_start": 217,
+          "old_stop": 218,
+          "new_start": 280,
+          "new_stop": 281,
+          "old": " c=json.loads((OUT/'frozen-contract.json').read_text());require_contract(c)\n",
+          "new": " c=json.loads((OUT/'frozen-contract.json').read_text());case,data=require_contract(c)\n"
+        },
+        {
+          "old_start": 221,
+          "old_stop": 222,
+          "new_start": 284,
+          "new_stop": 285,
+          "old": " report=dict(schema='962-fixed-shell-generation-apex1474426/v1',status='running',stage='imports',\n",
+          "new": " report=dict(next_stage='stop_case',later_head_storage_compatible=False,schema='962-finite-selected-current204-generation/v1',status='running',stage='imports',\n"
+        },
+        {
+          "old_start": 224,
+          "old_stop": 225,
+          "new_start": 287,
+          "new_stop": 288,
+          "old": "  frozen_contract_sha256=sha(OUT/'frozen-contract.json'),local_shell_sha256=SHELL_SHA,input_MSH_read=False,full_head_geometry_read=False,\n",
+          "new": "  frozen_contract_sha256=sha(OUT/'frozen-contract.json'),local_shell_serialized_sha256=SHELL_SHA,case_key=case['case_key'],case_apex=APEX,case_record_sha256=case['source_record_sha256'],case_manifest_sha256=MANIFEST_SHA,source_batch_sha256=BATCH_SHA,input_MSH_read=False,full_head_geometry_read=False,\n"
+        },
+        {
+          "old_start": 230,
+          "old_stop": 231,
+          "new_start": 293,
+          "new_stop": 294,
+          "old": "  data=json.loads((ROOT/SHELL).read_text());shell_rows(data)\n",
+          "new": "  shell_rows(data)\n"
+        },
+        {
+          "old_start": 238,
+          "old_stop": 239,
+          "new_start": 301,
+          "new_stop": 302,
+          "old": "  report['all32_shell_nodes_fixed_only_for_this_cavity_generation']=True\n",
+          "new": "  report['all_shell_nodes_fixed_only_for_this_cavity_generation']=True\n"
+        },
+        {
+          "old_start": 253,
+          "old_stop": 254,
+          "new_start": 316,
+          "new_stop": 319,
+          "old": "   actual_SICN_gate_passed=helper.quality_gate(live['after_generation'][0]),stage='completed_all_local_checks',status='completed_specific_cavity_generation_only')\n",
+          "new": "   actual_SICN_gate_passed=helper.quality_gate(live['after_generation'][0]),stage='completed_all_local_checks',status='completed_finite_selected_cavity_generation_only')\n  storage=candidate_storage_admission(live['after_generation'][0],case)\n  report.update(later_head_storage_compatible=storage,next_stage=case_route(True,report['actual_SICN_gate_passed'],storage))\n"
+        }
+      ],
+      "whole_byte_reverse_verified": true,
+      "unchanged_top_level_function_ASTs": [
+        "save",
+        "load_audit_helper",
+        "require_boundary_same",
+        "check_metric_rows",
+        "generate_once"
+      ]
+    },
+    "Netgen": {
+      "donor": "work/962-engineering/fixed-shell-netgen-apex1474426-prep-001/reader.py",
+      "donor_sha256": "ad2d3e73014491f8b958d804097df3d88e971ca3cee6c744d6a942b997b2f38d",
+      "selected_source": "work/962-engineering/head-star-current204-local-stages-prep-001/netgen_case.py",
+      "selected_sha256": "38af98145aa8c4aa1798b5e5901a9837b962e8841d5b5d504674d6cefa922924",
+      "exact_reverse_chunks": [
+        {
+          "old_start": 0,
+          "old_stop": 1,
+          "new_start": 0,
+          "new_stop": 1,
+          "old": "\"\"\"HELD one saved-cavity Netgen operation; no generation, stitching or head apply.\"\"\"\n",
+          "new": "\"\"\"HELD one selected current204 saved-case Netgen operation; no generation, stitching or head apply.\"\"\"\n"
+        },
+        {
+          "old_start": 5,
+          "old_stop": 7,
+          "new_start": 5,
+          "new_stop": 7,
+          "old": "CAVITY='work/962-engineering/fixed-shell-generation-apex1474426-prep-001/reader.py'\nCAVITY_SHA='2d3529956d03dd256be5a5786812ebe3a3ec3d2bd5b2d923a458a9b8b08f82ff'\n",
+          "new": "CAVITY='work/962-engineering/head-star-current204-local-stages-prep-001/generate_case.py'\nCAVITY_SHA='fc1aba0a0ae93995f8fc4eea86d3fe693ce0360ac3f98d158ba5f01ae8983e3d'\n"
+        },
+        {
+          "old_start": 9,
+          "old_stop": 19,
+          "new_start": 9,
+          "new_stop": 20,
+          "old": "INPUT='work/962-engineering/fixed-shell-generation-apex1474426-001/cavity.msh'\nINPUT_SHA='0db979263849d4189f56ec34f319b4fd24cb85fb00d1bc167b5c4f2ba9ea5a9f'\nWORKER='work/962-engineering/fixed-shell-generation-apex1474426-001/fixture-report.json'\nWORKER_SHA='d85681c2c65b93c3b29930c4a1956bfd1e1ce75eab6c1ae72fc08f57df099a04'\nARRAYS='work/962-engineering/fixed-shell-generation-apex1474426-001/arrays.json'\nARRAYS_SHA='78487e63fac0e207efd1422d1964837664c07f6789051ddeba9e1bcf7f895cf7'\nAUDIT_INPUTS={\n 'twins/962-cylinder-head-f0/source/mesh_head.py':'69c8012e99057e384d44d6971d41f0e2cc7197a978120a7c566b0ad5a6477da5',\n 'work/962-engineering/atomic-cavity-plane-clip-cap-assembly-delaunay-prep-001/mesh_assembled_delaunay.py':'a3268687edc90b0149775cf5d80a89df82175cc982bbf5d7184b6ea8935be8a4',\n 'work/962-engineering/direct-sicn-apex1474426-cavity-study-001/local-shell-input-001.json':'6ad00be791b8b752106b5324b9f80df314f7458d8d0475b1ffc1a053bc04d12a'}\n",
+          "new": "MANIFEST='work/962-engineering/head-star-current204-local-stages-prep-001/case-manifest.json'\nMANIFEST_SHA='3a558ede04cbc52c59e401befb36b8983ebd9b7f57d4266de0bea38fb1a963c5'\nBATCH='work/962-engineering/head-star-current204-batch-shells-001/report.json'\nBATCH_SHA='4f9fc0354918a907083006484d534c34c3b2621dfcc83b00cc4a4b731f009e86'\nINPUT=INPUT_SHA=WORKER=WORKER_SHA=ARRAYS=ARRAYS_SHA=None\nAUDIT_INPUTS={'twins/962-cylinder-head-f0/source/mesh_head.py':'69c8012e99057e384d44d6971d41f0e2cc7197a978120a7c566b0ad5a6477da5','work/962-engineering/atomic-cavity-plane-clip-cap-assembly-delaunay-prep-001/mesh_assembled_delaunay.py':'a3268687edc90b0149775cf5d80a89df82175cc982bbf5d7184b6ea8935be8a4',MANIFEST:MANIFEST_SHA,BATCH:BATCH_SHA}\nBATCH_EVIDENCE={'work/962-engineering/head-star-current204-batch-shells-001/receipt.json': '78e215c5c85f01ca614e44e4e443fd4181086f63e2edc5d5aee81fbef77dbedb', 'work/962-engineering/head-star-current204-batch-shells-root-execution-001/closed-result.json': '67d9b2763fcd5ac887eddca79010d8a21dc6365b19f56224512acbaf7a3150e2', 'work/962-engineering/head-star-current204-batch-shells-root-execution-001/result-review.json': '5a80128a5e4dd3ea685449c1124fd1fad4c07a3bb1c586f9f80a2e26caacf913', 'work/962-engineering/head-star-current204-batch-shells-result-peer-001/review.json': '3fd325b3e4e18b942bda26d9292127d1dc1c2b8ecc5841d11257dc61884030da', 'work/962-engineering/head-star-current204-batch-shells-root-execution-001/result-peer-acceptance.json': '47a98aad883748178b7b25a1a5957ca01c0780eb0274f778567e6c5fb22fe538'}\nGENERATION_RUNNER='work/962-engineering/head-star-current204-local-stages-prep-001/run_generation.py'\nGENERATION_RUNNER_SHA='05b4f8996f1f642120b70be755e6609f7b641041cad1a867ea8da9e56ecb423b'\nAUDIT_INPUTS.update(BATCH_EVIDENCE)\nAUDIT_INPUTS[GENERATION_RUNNER]=GENERATION_RUNNER_SHA\n"
+        },
+        {
+          "old_start": 35,
+          "old_stop": 36,
+          "new_start": 36,
+          "new_stop": 36,
+          "old": "     or c.get('input_mesh')!=INPUT or c.get('input_mesh_sha256')!=INPUT_SHA\n",
+          "new": ""
+        },
+        {
+          "old_start": 41,
+          "old_stop": 41,
+          "new_start": 41,
+          "new_stop": 42,
+          "old": "",
+          "new": " configure_baseline(c)\n"
+        },
+        {
+          "old_start": 55,
+          "old_stop": 55,
+          "new_start": 56,
+          "new_stop": 65,
+          "old": "",
+          "new": "def configure_baseline(c):\n global INPUT,INPUT_SHA,WORKER,WORKER_SHA,ARRAYS,ARRAYS_SHA\n b=c['generation_baseline'];directory='work/962-engineering/head-star-current204-apex-'+str(c['case_apex'])+'-generation-001'\n expected={'mesh':directory+'/cavity.msh','worker':directory+'/fixture-report.json','arrays':directory+'/arrays.json','receipt':directory+'/execution-receipt.json','actual':directory+'/frozen-contract.json'}\n if set(b)!=set(expected)|{'root_closed','result_peer'} or any(b[k]['path']!=v for k,v in expected.items()):raise ValueError('Same-case generation plus root closure and stopped peer direct pins required')\n for row in b.values():\n  if not isinstance(row,dict) or c['input_hashes'].get(row['path'])!=row['sha256']:raise ValueError('All stopped generation/proof records must be direct pins')\n INPUT,INPUT_SHA=b['mesh']['path'],b['mesh']['sha256'];WORKER,WORKER_SHA=b['worker']['path'],b['worker']['sha256'];ARRAYS,ARRAYS_SHA=b['arrays']['path'],b['arrays']['sha256']\n\n"
+        },
+        {
+          "old_start": 60,
+          "old_stop": 69,
+          "new_start": 70,
+          "new_stop": 92,
+          "old": "def require_saved_baseline(worker):\n r=worker.get('saved_reopen',{});q=r.get('quality',{}).get('SICN',{})\n if (worker.get('status')!='completed_specific_cavity_generation_only' or worker.get('fixture_procedural_checks_passed') is not True\n     or worker.get('actual_SICN_gate_passed') is not False or worker.get('saved_mesh_identity_exact') is not True\n     or worker.get('bound_inputs_unchanged') is not True or worker.get('mesh_sha256')!=INPUT_SHA\n     or worker.get('mesh_bytes')!=5646 or worker.get('full_tiny_arrays_sha256')!=ARRAYS_SHA\n     or (r.get('nodes'),r.get('tetrahedra'),r.get('referenced_interior_nodes'),r.get('unreferenced_nodes'))!=(32,57,0,0)\n     or (q.get('count'),q.get('below_point1_count'),q.get('nonpositive_count'),q.get('minimum'))!=(57,11,0,.009188807754622056)):\n  raise ValueError('Exact single stopped saved-cavity baseline required; its quality rejection is preserved')\n",
+          "new": "def require_saved_baseline(worker,c,case):\n r=worker.get('saved_reopen',{});q=r.get('quality',{}).get('SICN',{});b=c['generation_baseline']\n if (worker.get('status')!='completed_finite_selected_cavity_generation_only' or worker.get('fixture_procedural_checks_passed') is not True\n     or worker.get('actual_SICN_gate_passed') is not False or worker.get('next_stage')!='one_Netgen'\n     or worker.get('saved_mesh_identity_exact') is not True or worker.get('bound_inputs_unchanged') is not True\n     or worker.get('case_apex')!=case['apex'] or worker.get('case_key')!=case['case_key']\n     or worker.get('case_record_sha256')!=case['source_record_sha256'] or worker.get('case_manifest_sha256')!=MANIFEST_SHA\n     or worker.get('local_shell_serialized_sha256')!=case['shell_serialized_sha256']\n     or worker.get('source_batch_sha256')!=BATCH_SHA or worker.get('mesh_sha256')!=INPUT_SHA\n     or worker.get('mesh_bytes')!=b['mesh']['bytes'] or worker.get('full_tiny_arrays_sha256')!=ARRAYS_SHA\n     or worker.get('after_generation')!=r or r.get('unreferenced_nodes')!=0\n     or type(r.get('tetrahedra')) is not int or r['tetrahedra']<=0 or q.get('count')!=r['tetrahedra']\n     or type(q.get('nonpositive_count')) is not int or not 0<=q['nonpositive_count']<=r['tetrahedra'] or type(q.get('minimum')) not in (int,float)\n     or q['minimum']>=.1 or q.get('below_point1_count',0)<=0):\n  raise ValueError('Same-case stopped procedural generation with actual strict-quality rejection required')\n receipt=json.loads((ROOT/b['receipt']['path']).read_text())\n if (receipt.get('returncode')!=2 or receipt.get('stop_reason') is not None\n     or receipt.get('fixture_report_sha256')!=WORKER_SHA or receipt.get('contract_sha256')!=b['actual']['sha256']\n     or receipt.get('reader_sha256')!=CAVITY_SHA or receipt.get('runner_sha256')!=GENERATION_RUNNER_SHA\n     or c.get('generation_runner_sha256')!=GENERATION_RUNNER_SHA):\n  raise ValueError('Natural procedural generation quality rejection receipt required; stopped/error runs are never retried')\n\n"
+        },
+        {
+          "old_start": 87,
+          "old_stop": 88,
+          "new_start": 110,
+          "new_stop": 111,
+          "old": " report=dict(schema='962-specific-saved-cavity-Netgen/v1',status='running',stage='imports',\n",
+          "new": " report=dict(next_stage='hold_case',later_head_storage_compatible=False,schema='962-finite-selected-current204-Netgen/v1',status='running',stage='imports',\n"
+        },
+        {
+          "old_start": 96,
+          "old_stop": 98,
+          "new_start": 119,
+          "new_stop": 122,
+          "old": "  worker=json.loads((ROOT/WORKER).read_text());require_saved_baseline(worker)\n  arrays=json.loads((ROOT/ARRAYS).read_text());cavity=load_cavity_module()\n",
+          "new": "  cavity=load_cavity_module();case,data=cavity.configure_case(c,stage='netgen')\n  worker=json.loads((ROOT/WORKER).read_text());require_saved_baseline(worker,c,case)\n  arrays=json.loads((ROOT/ARRAYS).read_text())\n"
+        },
+        {
+          "old_start": 100,
+          "old_stop": 101,
+          "new_start": 124,
+          "new_stop": 125,
+          "old": "  data=json.loads((ROOT/cavity.SHELL).read_text());points,faces,shell=cavity.shell_rows(data)\n",
+          "new": "  points,faces,shell=cavity.shell_rows(data)\n"
+        },
+        {
+          "old_start": 115,
+          "old_stop": 116,
+          "new_start": 139,
+          "new_stop": 140,
+          "old": "   local_to_global_shell_node_tags=data['local_to_global_node_tags'],all32_shell_nodes_fixed_only_for_this_cavity_operation=True)\n",
+          "new": "   local_to_global_shell_node_tags=data['local_to_global_node_tags'],all_shell_nodes_fixed_only_for_this_cavity_operation=True)\n"
+        },
+        {
+          "old_start": 136,
+          "old_stop": 137,
+          "new_start": 160,
+          "new_stop": 163,
+          "old": "   actual_SICN_gate_passed=helper.quality_gate(live['after'][0]),stage='completed_all_local_checks',status='completed_specific_cavity_Netgen_only')\n",
+          "new": "   actual_SICN_gate_passed=helper.quality_gate(live['after'][0]),stage='completed_all_local_checks',status='completed_finite_selected_cavity_Netgen_only')\n  storage=cavity.candidate_storage_admission(live['after'][0],case)\n  report.update(case_key=case['case_key'],case_apex=case['apex'],case_record_sha256=case['source_record_sha256'],case_manifest_sha256=MANIFEST_SHA,source_batch_sha256=BATCH_SHA,later_head_storage_compatible=storage,next_stage='domain' if report['actual_SICN_gate_passed'] and storage else 'hold_case')\n"
+        }
+      ],
+      "whole_byte_reverse_verified": true,
+      "unchanged_top_level_function_ASTs": [
+        "load_cavity_module",
+        "expected_live",
+        "require_before"
+      ]
+    },
+    "generation_controller": {
+      "donor": "work/962-engineering/fixed-shell-generation-apex1474426-prep-001/run_readback.py",
+      "donor_sha256": "4963f5c66fa9e73797e76a8643f24bfb6b4ea8f1b9962063618504fc10e338ed",
+      "selected_source": "work/962-engineering/head-star-current204-local-stages-prep-001/run_generation.py",
+      "selected_sha256": "05b4f8996f1f642120b70be755e6609f7b641041cad1a867ea8da9e56ecb423b",
+      "exact_reverse_chunks": [
+        {
+          "old_start": 0,
+          "old_stop": 1,
+          "new_start": 0,
+          "new_stop": 1,
+          "old": "\"\"\"One fresh, source-bound specific apex1435493 cavity generation; reviewed pins required.\"\"\"\n",
+          "new": "\"\"\"One fresh, source-bound selected current204 cavity generation; reviewed pins required.\"\"\"\n"
+        },
+        {
+          "old_start": 11,
+          "old_stop": 12,
+          "new_start": 11,
+          "new_stop": 12,
+          "old": " if any((OUT/n).exists() or (OUT/n).is_symlink() for n in ['native.log','execution-receipt.json','fixture-report.json']):raise ValueError('One fresh specific apex1435493 cavity generation only; preserve previous outputs')\n",
+          "new": " if any((OUT/n).exists() or (OUT/n).is_symlink() for n in ['native.log','execution-receipt.json','fixture-report.json']):raise ValueError('One fresh selected current204 cavity generation only; preserve previous outputs')\n"
+        },
+        {
+          "old_start": 56,
+          "old_stop": 57,
+          "new_start": 56,
+          "new_stop": 57,
+          "old": "  report=dict(scope='one_specific_apex1435493_cavity_generation_witness',returncode=process.returncode if process is not None else None,stop_reason=stopped['reason'],wall_seconds=elapsed,hard_wall_seconds=30,sampled_RSS_stop_bytes=1024**3,threads=2,sampled_output_stop_bytes=16*1024**2,final_output_bytes_before_receipt=output_bytes,hard_OS_CPU_quota_applied=False,hard_address_space_limit_applied=False,RSS_samples=samples,max_observed_RSS_bytes=max((s['RSS_bytes'] for s in samples),default=0),reader_sha256=sha(OUT/'reader.py'),runner_sha256=sha(Path(__file__).resolve()),contract_sha256=sha(path),native_log_sha256=sha(OUT/'native.log') if (OUT/'native.log').is_file() else None,fixture_report_sha256=sha(OUT/'fixture-report.json') if (OUT/'fixture-report.json').is_file() else None,declared_operation_counts={'generate':1,'createGeometry_dim3':0,'optimize_Netgen':0,'rebuildElementCache':0,'write_mesh':1,'solve':0},operation_counts_are_declarations_not_observed=True,manufacturing_authorized=False)\n",
+          "new": "  report=dict(scope='one_selected_current204_cavity_generation_witness',returncode=process.returncode if process is not None else None,stop_reason=stopped['reason'],wall_seconds=elapsed,hard_wall_seconds=30,sampled_RSS_stop_bytes=1024**3,threads=2,sampled_output_stop_bytes=16*1024**2,final_output_bytes_before_receipt=output_bytes,hard_OS_CPU_quota_applied=False,hard_address_space_limit_applied=False,RSS_samples=samples,max_observed_RSS_bytes=max((s['RSS_bytes'] for s in samples),default=0),reader_sha256=sha(OUT/'reader.py'),runner_sha256=sha(Path(__file__).resolve()),contract_sha256=sha(path),native_log_sha256=sha(OUT/'native.log') if (OUT/'native.log').is_file() else None,fixture_report_sha256=sha(OUT/'fixture-report.json') if (OUT/'fixture-report.json').is_file() else None,declared_operation_counts={'generate':1,'createGeometry_dim3':0,'optimize_Netgen':0,'rebuildElementCache':0,'write_mesh':1,'solve':0},operation_counts_are_declarations_not_observed=True,manufacturing_authorized=False)\n"
+        }
+      ],
+      "whole_byte_reverse_verified": true,
+      "unchanged_top_level_function_ASTs": [],
+      "owned_control_AST_sha256s": {
+        "stop": "93f147ab4c728d45ab6834632a3572a52e0623f5316bc16d15040508df6e9ba7",
+        "request_sigterm": "121b3ba82d8e1842452e5d95013b61fb0a77be05ac0e529fbeed56c665419302",
+        "whole_RSS_poll_wait_loop": "8d040645bcd974241611fcdc7669bcb3c9087a1efb80362078ae4a48fd9d92a5"
+      }
+    },
+    "Netgen_controller": {
+      "donor": "work/962-engineering/fixed-shell-netgen-apex1474426-prep-001/run_readback.py",
+      "donor_sha256": "ee558f1520b9a8d4ba1d458c1055ad0d6addc68d97d25ad6aae6e7305fb610c0",
+      "selected_source": "work/962-engineering/head-star-current204-local-stages-prep-001/run_netgen.py",
+      "selected_sha256": "1e6ffec8141da0682b94f00eb4f8c49e31b493f32fd10ea35be04a9829e1ca06",
+      "exact_reverse_chunks": [
+        {
+          "old_start": 56,
+          "old_stop": 57,
+          "new_start": 56,
+          "new_stop": 57,
+          "old": "  report=dict(scope='one_specific_saved_apex1435493_cavity_Netgen_witness',returncode=process.returncode if process is not None else None,stop_reason=stopped['reason'],wall_seconds=elapsed,hard_wall_seconds=30,sampled_RSS_stop_bytes=1024**3,threads=2,sampled_output_stop_bytes=16*1024**2,final_output_bytes_before_receipt=output_bytes,hard_OS_CPU_quota_applied=False,hard_address_space_limit_applied=False,RSS_samples=samples,max_observed_RSS_bytes=max((s['RSS_bytes'] for s in samples),default=0),reader_sha256=sha(OUT/'reader.py'),runner_sha256=sha(Path(__file__).resolve()),contract_sha256=sha(path),native_log_sha256=sha(OUT/'native.log') if (OUT/'native.log').is_file() else None,fixture_report_sha256=sha(OUT/'fixture-report.json') if (OUT/'fixture-report.json').is_file() else None,declared_operation_counts={'generate':0,'createGeometry_dim3':1,'optimize_Netgen':1,'rebuildElementCache':1,'write_mesh':1,'solve':0},operation_counts_are_declarations_not_observed=True,manufacturing_authorized=False)\n",
+          "new": "  report=dict(scope='one_selected_current204_cavity_netgen_witness',returncode=process.returncode if process is not None else None,stop_reason=stopped['reason'],wall_seconds=elapsed,hard_wall_seconds=30,sampled_RSS_stop_bytes=1024**3,threads=2,sampled_output_stop_bytes=16*1024**2,final_output_bytes_before_receipt=output_bytes,hard_OS_CPU_quota_applied=False,hard_address_space_limit_applied=False,RSS_samples=samples,max_observed_RSS_bytes=max((s['RSS_bytes'] for s in samples),default=0),reader_sha256=sha(OUT/'reader.py'),runner_sha256=sha(Path(__file__).resolve()),contract_sha256=sha(path),native_log_sha256=sha(OUT/'native.log') if (OUT/'native.log').is_file() else None,fixture_report_sha256=sha(OUT/'fixture-report.json') if (OUT/'fixture-report.json').is_file() else None,declared_operation_counts={'generate':0,'createGeometry_dim3':1,'optimize_Netgen':1,'rebuildElementCache':1,'write_mesh':1,'solve':0},operation_counts_are_declarations_not_observed=True,manufacturing_authorized=False)\n"
+        }
+      ],
+      "whole_byte_reverse_verified": true,
+      "unchanged_top_level_function_ASTs": [],
+      "owned_control_AST_sha256s": {
+        "stop": "93f147ab4c728d45ab6834632a3572a52e0623f5316bc16d15040508df6e9ba7",
+        "request_sigterm": "121b3ba82d8e1842452e5d95013b61fb0a77be05ac0e529fbeed56c665419302",
+        "whole_RSS_poll_wait_loop": "8d040645bcd974241611fcdc7669bcb3c9087a1efb80362078ae4a48fd9d92a5"
+      }
+    }
+  },
+  "controllers_change_only_declared_scope_strings": true,
+  "no_new_launcher_or_case_scheduler": true,
+  "new_case_policy_functions": [
+    "encoded",
+    "select_case",
+    "configure_case",
+    "candidate_storage_admission",
+    "case_route",
+    "configure_baseline"
+  ],
+  "new_mathematical_quality_or_incidence_predicate": false,
+  "source_functions_tests_imports_or_native_executed": false
+}

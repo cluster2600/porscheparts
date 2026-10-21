@@ -1,0 +1,100 @@
+{
+  "schema": "962-optimized-Delaunay-diagnosis-independent-source-peer/v1",
+  "decision": "CLEAR_FOR_ROOT_TINY_TESTS_AND_SEPARATELY_REVIEWED_ACTUAL_CHILD",
+  "blockers": [],
+  "review_method": "Source/AST, saved small metadata and hashes only. No prepared imports, tests, native/scientific calls, geometry parsing or geometry hashing.",
+  "selected_sha256": {
+    "held-contract.json": "a0275b0ce52dc8e13728c05bcd0dd82968a6ed46f694d1e264ae58f1b55e375c",
+    "reader.py": "c44eed3f69c83d6f774300634e27f3df90c4a4f699d5787519639e4c3b1fe891",
+    "run_readback.py": "4fb37080e1f3847b8b1d14d5df467799d8e9f7bf81b0a09170e5850857de3943",
+    "test_proof_guards.py": "116658499a040e17c24da502de57d7df559c65a35d82a3f2e76e59b9938461f3",
+    "source-delta.json": "2c90d8607d51b28764d167d649554d8f124d79b6cc08f3c93e77a29b7c1aed5a",
+    "METHOD.md": "2c37273d1e8bee23c82aae1e5c3aafc71171625945ee1762c95861a0f8e47501",
+    "preparation-checks.json": "b16c48f9be1e81b10b872db4ae70ac25c59fe7754e5f612a24df4e8dcce614b7",
+    "source.diff": "f14c1516f2669f4213a2c96f74dc05bd5316da8bd5773a00707d20c25ca4084c"
+  },
+  "exact_reuse": {
+    "eleven_declared_replacements_reverse_to_0674131e_bytes": true,
+    "classifier_function_AST_unchanged": true,
+    "runner_4fb37080_bytes_unchanged": true,
+    "five_guard_test_methods_read_not_executed": [
+      "test_valid_single_nested_after_and_complete_direct_match",
+      "test_saved_identity_and_optimized_after_baseline_are_required",
+      "test_every_native_metric_hash_count_and_distribution_must_match",
+      "test_signed_volume_reference_counts_and_partition_cannot_drift",
+      "test_exact_reverse_classifier_and_unchanged_runner"
+    ]
+  },
+  "input_closure": {
+    "held_input_bindings": 155,
+    "current_non_geometry_small_hashes_independently_verified": 150,
+    "geometry_bindings_stat_only_not_read_or_hashed": {
+      "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-001/candidate.bin": {
+        "sha256": "9d62eac6e2cd7b6a9ecb4a7ea5b632685820369b5c4ede379acc34238f50d7b4",
+        "bytes": 62774640
+      },
+      "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-volume-delaunay-001/head-volume.msh": {
+        "sha256": "3dd7939f34c8246a813334b2f570b2408b590965734bdf3761866569290e3593",
+        "bytes": 249628334
+      },
+      "work/962-engineering/hxt-size-cap-fixture-001/capped-1p75/cube.msh": {
+        "sha256": "e773cc4a2f68187c623e984eb9f58441f3fa5eed2733295e7eb26bd7b3910ac1",
+        "bytes": 9790
+      },
+      "work/962-engineering/saved-cube-default-fixture-001/default-force/cube.msh": {
+        "sha256": "3676ea044e2e10ea91435271687cac7f2181704014dc4e0daf8ae5c9ede26613",
+        "bytes": 9430
+      },
+      "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-volume-delaunay-default-postexport-001/head-volume.msh": {
+        "sha256": "e32ef35be1171ec55477e921dd75def0066f9f1e21bd2821dfbe363270354522",
+        "bytes": 243246094
+      }
+    },
+    "future_two_materialized_copies_outside_held_input_map_and_currently_absent": true,
+    "fresh_result_output_absent": true
+  },
+  "optimized_proof_association": {
+    "sole_worker_sha256": "655156e62ab6b7a13dca690a8c7523b09dbe81c591ebdef0e608e43bd769e7d9",
+    "receipt_sha256": "4f74e8688434df5032c1c5a050593e0f6d6e965010921a9f881a66b300e6f64d",
+    "stopped_result_peer_sha256": "3b9f1f3ccbc521b4c8dee2663e423f13da0b055a11a06cfb868caed95cda53d3",
+    "selected_field": "after",
+    "receipt_embedded_worker_exact": true,
+    "natural_quality_rejection_returncode": 2,
+    "stop_reason": null,
+    "optimizer_and_cache_returned_and_saved_identity_completed": true,
+    "actual_tetrahedra": 3802217,
+    "nodes": 1104778,
+    "referenced_interiors": 233047,
+    "positive_poor_baseline": 3438,
+    "nonpositive_SICN": 0,
+    "saved_mesh_sha256": "e32ef35be1171ec55477e921dd75def0066f9f1e21bd2821dfbe363270354522",
+    "prior_independent_reader_alias_or_before_projection_used": false
+  },
+  "findings": [
+    "All four saved tagged arrays are checked against this exact worker.after, with native metrics hashed after reordering to sorted tetra-tag order. All count/extrema/percentile/nonpositive fields and SICN below0.1 count must equal that after proof.",
+    "Independent signed-volume count/distribution/sum/reference error and complete node/tetra/reference/orphan counts must match exactly; no tolerance or inherited HXT count is substituted.",
+    "Unchanged classifier covers every positive0<SICN<0.1 row, partitions0..4 current source-boundary tags, requires total3438 and retains deterministic minimum(SICN,tetrahedron_tag) per nonempty class, at mostfive. No source-repair-mask/OEM/feature interpretation is assigned.",
+    "With zero nonpositive cells, all([]) fixed-boundary flag is vacuously true; it diagnoses no actual nonpositive cell. Positive-poor participation is unknown until the separately computed bins complete.",
+    "Explicit source boundary rows are checked directly. Full tetra exterior/internal orientation and entity-classification proof remain clearly retained worker-only; this reader does not falsely claim to recompute them.",
+    "Unchanged runner retains remaining120s timer, synchronous elapsed refusal, sampled8GiB/1GiB stops, two threads, owned kill/final wait and nonraising SIGTERM restoration. Sampled controls are not hard OS quotas or peak observations.",
+    "Five new stdlib AST guard methods cover valid exact-after selection, saved-identity/return/baseline refusals, all native hash/distribution changes, signed/reference/partition drift and exact reuse. Earlier classifier/runner test evidence is reused, not called a new run."
+  ],
+  "runtime_bindings": {
+    "gmsh_module_sha256": "f4b0935cebde899750293d87a643090e5ea33c9b18d249267f507db68a0e01c3",
+    "libgmsh_sha256": "def0f5c10988a986e5e879b3db9669d8fe016a81e2d994bbaf2b8497c6b8a58a",
+    "python_executable_sha256": "72956ad35cff7691dfed9e04c9593de825ffd5b2fa7e8bc9ae96ce9a1af65621"
+  },
+  "required_next": [
+    "Root runs the five tiny frozen guard methods and binds their actual result.",
+    "Root freshly verifies all155 inputs including the five geometry bytepins and three external runtime hashes, plus RAM/disk/sole-worker readiness. This peer did not refresh runtime bytes.",
+    "Root materializes exact reader/runner and a separately authorized current child including the sole actual worker655156after proof and source/test/review prerequisites. Exact-child review is an external noncyclic launch guard. The historical HELD false flags are not native launch authority.",
+    "One fresh read-only diagnostic only; no generation/optimizer/meshwrite/solver/retry. A complete diagnostic still concerns a mesh failing the unchanged0.1SICN gate."
+  ],
+  "qualification": {
+    "native_or_test_execution_by_peer": false,
+    "new_poorcell_locations_observed": false,
+    "volume_quality_accepted": false,
+    "thermal_or_strength_head_PDE_accepted": false,
+    "manufacturing_authorized": false
+  }
+}

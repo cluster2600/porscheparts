@@ -1,0 +1,83 @@
+{
+  "status": "native_stopped_outputs_preserved_no_admission",
+  "source_sha256": "eb9f41954df5c724c27fae008c22e942fbf585af3bd71090dc655fac4fbae84f",
+  "contract_sha256": "52f57ec4126202907cae045323b9643525b8816ce60792051fafe5c62caac6d4",
+  "length_unit": "mm",
+  "source_surface": {
+    "unique_edges": 2707059,
+    "boundary_edges": 0,
+    "nonmanifold_edges": 0,
+    "orientation_imbalanced_edges": 0,
+    "vertices": 902145,
+    "triangles": 1804706,
+    "euler_characteristic": -208,
+    "signed_volume_mm3": 915458.1053358029,
+    "points_sha256": "f6aee40320646d34212929551866b111093ab25d81d78d68e48b95e1f8f78ad7",
+    "faces_sha256": "9318ffffd6b46c1daa3f35169071eb3ad815171848fc3d48778b8373a2ea5341"
+  },
+  "exact_input_sha256": "894ece6e63d99684fd7c8710caf73132cd73731ac8bc667548c21c85962d4c95",
+  "hard_native_deadline_s": 300,
+  "native_returncode": 137,
+  "native_wall_s": 5.434965000022203,
+  "native_log_sha256": "a56dc8d90975b8ae3ab9e131f2a728574b91922152f4c352f55dfabf19e4137d",
+  "native_records": [
+    {
+      "stage": "source_imported_exact_indexed",
+      "vertices": 902145,
+      "faces": 1804706
+    }
+  ],
+  "source_import_exact": true,
+  "wall_s": 14.98553774994798,
+  "bound_inputs_unchanged": true,
+  "native_surface_hashes": {
+    "native/before-collapse.bin": "42b2f4026d5f3b09cd74b0b08cdee0bd9bb118aeff006d7f48c9eabf990186b7"
+  },
+  "qualification": {
+    "analysis_surface_geometric_gate_passed": false,
+    "solver_admission_established": false,
+    "mesh_convergence_established": false,
+    "engineering_accepted": false,
+    "thermal_performance_validated": false,
+    "strength_validated": false,
+    "manufacturing_authorized": false
+  },
+  "schema": "962-analysis-envelope-trial/v1",
+  "method": "Original0.25mm polyhedral-envelope-constrained CGAL5.6 collapse with bounded normal change; no face-count quota",
+  "private_receipt_sha256": "ec7590059f092b62795b58fb78719651043e836b23d4495d58fa84593799a7e6",
+  "container_state_audit": {
+    "status": "resource_failure_confirmed_not_geometric_admission",
+    "container_state": {
+      "Status": "exited",
+      "Running": false,
+      "Paused": false,
+      "Restarting": false,
+      "OOMKilled": true,
+      "Dead": false,
+      "Pid": 0,
+      "ExitCode": 137,
+      "Error": "",
+      "StartedAt": "2026-10-16T17:15:21.883109585Z",
+      "FinishedAt": "2026-10-16T17:15:27.178682963Z"
+    },
+    "original_receipt_sha256": "ec7590059f092b62795b58fb78719651043e836b23d4495d58fa84593799a7e6",
+    "observed_memory_bytes": 4294967296,
+    "observed_memory_swap_bytes": 4294967296,
+    "swap_allowance_bytes": 0,
+    "source_import_exact": true,
+    "native_initial_surface_sha256": "42b2f4026d5f3b09cd74b0b08cdee0bd9bb118aeff006d7f48c9eabf990186b7",
+    "candidate_produced": false,
+    "engineering_accepted": false
+  },
+  "container_state_audit_sha256": "27298af62114f736dbe56a088e9f97197a1b6cf6f4c2c828d94caa0ac5ef4375",
+  "runtime_metadata_path": "twins/962-cylinder-head-f0/derived/engineering/cgal-envelope-runtime.json",
+  "runtime_metadata_sha256": "da0f6fdd4ff9f2928ed80710c8e1ed10f2f800f088d1b7dfcdfbb722efccae48",
+  "contract_path": "twins/962-cylinder-head-f0/engineering/analysis-envelope-contract.json",
+  "source_snapshot_hashes": {
+    "twins/962-cylinder-head-f0/derived/engineering/analysis-envelope-sources/envelope-compiled.cpp": "103860c69018e44969cde6d43c6b1c22c92fb812d9a8a9549f9274470ed27cd6",
+    "twins/962-cylinder-head-f0/derived/engineering/analysis-envelope-sources/head-run-001.py": "eb9f41954df5c724c27fae008c22e942fbf585af3bd71090dc655fac4fbae84f"
+  },
+  "result": "Exact source import passed. Resource rejection:4GiB OOM killed before any candidate, no admission or solver mesh.",
+  "retained_source_replaced": false,
+  "public_binary_or_runtime_delivery": false
+}

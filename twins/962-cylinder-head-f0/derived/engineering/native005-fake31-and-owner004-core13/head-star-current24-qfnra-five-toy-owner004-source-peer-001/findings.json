@@ -1,0 +1,145 @@
+{
+  "schema": "962-five-toy-owner004-independent-source-findings/v1",
+  "source_blockers": [],
+  "disposition": "C01/C02 source correction acceptable. The inherited operational HOLD remains until separately accepted guards, current finite runtime/API/constructor evidence and exact actual/control/admission. No operation follows from this source peer.",
+  "resolved_source_findings": [
+    {
+      "id": "C01",
+      "predecessor": "source003 stored continued=True after SIGCONT returned, so a delivered-then-raised call could choose preCONT direct-PID cleanup.",
+      "status": "RESOLVED_AT_SOURCE_LEVEL",
+      "source_lines": [
+        "run_owner_once.py:252",
+        "run_owner_once.py:284",
+        "run_owner_once.py:287",
+        "run_owner_once.py:291",
+        "run_owner_once.py:293",
+        "run_owner_once.py:294",
+        "run_owner_once.py:295",
+        "run_owner_once.py:337"
+      ],
+      "evidence": "Local and reported continuation intent are latched before os.kill(SIGCONT). Acknowledgement is set only after return; a raised call stores the actual traceback and flows through the original outer failure. Cleanup uses a positive retained certificate plus attempted continuation, including unacknowledged/raised calls, so it does not infer no delivery. Existing unknown-direct-relationship checks, retained anchor, TERM/KILL/exact-reap/absence logic and absolute ceilings remain unchanged. Before certificate/intent, only the own direct PID is eligible. No new signal, child, retry, loop or clock is introduced.",
+      "limits": "A returned SIGCONT is acknowledgement only, not observed helper/solver execution. Current OS behavior, default child disposition and no competing waiter remain future gates."
+    },
+    {
+      "id": "C02",
+      "predecessor": "source003 used base subprocess.Popen; HELD_LEADERS retention alone did not suppress default destructor/active-list behavior, including partial construction.",
+      "status": "SOURCE_POLICY_CORRECTED_INSTALLED_BEHAVIOR_STILL_UNPROVED",
+      "source_lines": [
+        "run_owner_once.py:24",
+        "run_owner_once.py:27",
+        "run_owner_once.py:29",
+        "run_owner_once.py:262",
+        "run_owner_once.py:264",
+        "run_owner_once.py:265",
+        "run_owner_once.py:267",
+        "run_owner_once.py:269",
+        "run_owner_once.py:270",
+        "run_owner_once.py:335",
+        "run_owner_once.py:406",
+        "run_owner_once.py:407",
+        "run_owner_once.py:433"
+      ],
+      "evidence": "The sole new private class subclasses Popen and its sole __del__ method contains pass. The leader constructor uses it, while returned handles remain in both a local reference and HELD_LEADERS. Attempted construction, returned handle and real construction exception are distinct fields. A constructor exception marks partial_construction_unknown and direct_relationship_unknown without inventing a PID/group/returned object or authorizing guessed numeric cleanup, wait or absence. Failure keeps normal false, failure evidence present, reap/absence unknown and complete candidate false. The separately flagged partial-construction path takes the existing bounded-preservation raw_exit2 refusal; returned-unreaped and partial-unknown cases remain distinct.",
+      "limits": "The private destructor is source policy only. Installed base-constructor, partial-object disposal, subprocess._active and inherited stdlib cleanup behavior are not established by this review. No base internal mutation, fallback destructor, poll/wait/communicate/context/signal-method cleanup or retry was added. Preservation or _exit cannot be credited as cleanup, reap, group absence, hard preemption or success."
+    }
+  ],
+  "complete_static_proofs": {
+    "three_source_units_bytes": 42081,
+    "packet_files": 8,
+    "packet_bytes": 102751,
+    "unique_named_originals": 20,
+    "unique_named_bytes": 238592,
+    "full_forward_inverse_literal_groups": 11,
+    "owner_groups": 9,
+    "wrapper_adapter_groups": 2,
+    "complete_forward_unified_diff_bytes": 8325,
+    "complete_inverse_unified_diff_bytes": 8325,
+    "all_bytes_and_terminal_LFs_reconstructed": true,
+    "retained_function_bodies_text_AST_exact": 22,
+    "owner_nonmain_exact": 17,
+    "owner_top_level_functions_same": 18,
+    "wrapper_main_exact": 1,
+    "adapter_functions_exact": 4,
+    "imports_text_AST_unchanged": true,
+    "module_assignment_names_unchanged": true,
+    "module_value_AST_changed_only": [
+      "owner.P",
+      "wrapper.ADAPTER",
+      "adapter.P"
+    ],
+    "new_class": "_RetainedPopen",
+    "new_method": "__del__ with one Pass statement",
+    "new_top_level_functions": 0,
+    "new_imports": 0,
+    "new_mutable_module_globals": 0,
+    "new_report_fields": [
+      "continuation_acknowledged",
+      "continuation_error",
+      "continuation_intent",
+      "last_resort_partial_construction_exit",
+      "leader_construction_attempted",
+      "leader_construction_error",
+      "leader_construction_returned",
+      "partial_construction_unknown"
+    ],
+    "removed_report_fields": [],
+    "owner_line_diff": {
+      "blocks": 10,
+      "removed_lines": 7,
+      "added_lines": 31
+    },
+    "wrapper_line_diff": {
+      "blocks": 1,
+      "removed_lines": 1,
+      "added_lines": 1
+    },
+    "adapter_line_diff": {
+      "blocks": 1,
+      "removed_lines": 1,
+      "added_lines": 1
+    },
+    "complete_candidate_and_RC_predicates_byte_exact": true,
+    "stable_prefix_admit_definition_byte_AST_exact": true,
+    "F1_source002_target_hash_preserved": true,
+    "transport_and_protocol_source_hashes_preserved": true,
+    "future_D_and_toys_namespaces_unchanged": true
+  },
+  "preserved_controls_and_science": {
+    "normal_seconds": 40,
+    "TERM_absolute_seconds": 48,
+    "KILL_reap_absolute_seconds": 56,
+    "full_return_seconds": 60,
+    "TERM_grace_seconds": 8,
+    "KILL_reap_grace_seconds": 8,
+    "RSS_query_timeout": "min(5, remaining original normal40)",
+    "sampled_owned_RSS_bytes": 2147483648,
+    "inclusive_artifact_bytes": 33554432,
+    "requested_environment_threads": 1,
+    "observed_threads": null,
+    "retries": 0,
+    "fixed_toys": [
+      "rational",
+      "algebraic",
+      "maxfinite",
+      "negative_half_minsubnormal",
+      "unsat"
+    ],
+    "initial_checks_per_attempted_toy": 1,
+    "boundary": "No new formula/query/transport/protocol/solver or science acceptance predicate. Selected historical3.10.11 -B-I-S and declared runtime/provider/Z3 expectations stay unchanged. The existing transient RSS subprocess.run is unchanged; this leader-only correction does not qualify query implementation or lifetime."
+  },
+  "admission_receipt_and_closure": {
+    "source_only_result": "No new mandatory self-hash or impossible issuance requirement found in these changes. The already-corrected stable argv_prefix gate is preserved byte-exact inside admit(); admission digest stays a command argument. No future actual/admission/map was supplied or invented.",
+    "closure": "Cleanup error/unknown, missing/partial helper/adapter evidence, invalid RSS, stop requests, identity mismatch and late/oversize receipt remain refusals under byte-exact predicates. A prefinal positive receipt cannot substitute for raw owner0 and external full-return/inclusive-census checks. Handler restoration cutoff and post-cutoff uncertainty remain explicit. Partial-construction and unreaped last-resort flags mean raw refusal, never accepted cleanup.",
+    "no_current_result_claim": true
+  },
+  "required_future_gates": [
+    "Root independent source decision and meaningful source004 fake-provider guard preparation/review, with any execution separately admitted.",
+    "Current finite selected3.10/stdlib/provider/OS/Z3 identity and API evidence, already-default SIGCHLD/no competing waiter, and installed constructor/destructor/_active behavior. Source policy and old F1nine are not substitutes.",
+    "Exact new held actual, complete canonical/protected/direct maps, source/control/freshness and independent exact-child review, then trusted separate root admission.",
+    "Only if later admitted: raw outer/helper/solver status, all five complete finite toy records/streams, stop/error/partial evidence, actual reap/group absence, sampled resources, inclusive32MiB and whole60s through full outer return; independent saved-result review."
+  ],
+  "authority_clarification": "The named root authority665c9b2a permits C01/C02 only. The parent task separately permits a clearly flagged partial-unknown bounded_exit2 refusal after permitted preservation; the source binding records this conversation clarification. No separate clarification-file descriptor was supplied or invented.",
+  "additional_inherited_concrete_source_blockers_found": [],
+  "lineage": "Reviewer froze the source003 dual prefix-accepted/core-HOLD peer and reviewed the separately scoped F1 controls/result. Reviewer did not author this source004. Author head_mesh_next also authored predecessor, transport/protocol/producer/F1 work; these affiliations do not turn source policy into installed behavior or a test result.",
+  "review_operations": "Named first-party text/hash/JSON/AST only. No source/fragment import, compile, eval or execution; no current runtime/provider/alias/API/process/scientific body, future D/toys path inspection/creation, actual/admission, mutable native005 fixtures, PUB or Git. Subordinate delegation was unavailable at the thread limit; this review was completed directly."
+}

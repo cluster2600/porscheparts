@@ -1,0 +1,32 @@
+{
+  "schema": "962-apex1613031-head-review-byte-delivery-authorization/v1",
+  "decision": "ROOT_AUTHORIZES_ONE_BOUNDED_BYTE_ONLY_GZIP_DERIVATIVE",
+  "source": {
+    "path": "work/962-engineering/apex1613031-head-application-review-delivery-001/prepare_download.py",
+    "sha256": "cb808730a0e5cfcf4c3d2658d3ecb57baa6bd6752c3b32b91fc12d48ce5762b2",
+    "bytes": 3646
+  },
+  "accepted_result": {
+    "path": "work/962-engineering/apex1613031-head-application-root-execution-001/result-peer-acceptance.json",
+    "sha256": "19ef174a208868bf174909a1add690971fdf018b8cf438c5c26e3a2bca9bfada",
+    "bytes": 5753
+  },
+  "input_raw_sha256": "48b66aafbd9f1eb69e44305982186e966fe8f041d9b4a6a59be4b610b5d12e08",
+  "input_raw_bytes": 235786462,
+  "primitive": "Reuse prior head download gzip.GzipFile filename-empty mtime0 compresslevel9, followed by full decompressed hash/size verification.",
+  "prior_primitive_receipt": "work/962-engineering/apex1613790-head-application-review-delivery-001/receipt.json",
+  "privacy_scan_entire_raw_stream": true,
+  "outer_python_sha256": "1699bf8aa705a8bb71613bef5cdd7d7c8c9d9a188a841f41679aa9b5830b8f60",
+  "outer_flags": [
+    "-I",
+    "-B"
+  ],
+  "wall_seconds": 90,
+  "new_session_owned_group_KILL_on_timeout_then_wait": true,
+  "automatic_retry": false,
+  "GitHub_publication_user_authorized": true,
+  "no_native_import_or_mesh_decode": true,
+  "whole_head_admitted": false,
+  "head_physics_assessed": false,
+  "manufacturing_authorized": false
+}

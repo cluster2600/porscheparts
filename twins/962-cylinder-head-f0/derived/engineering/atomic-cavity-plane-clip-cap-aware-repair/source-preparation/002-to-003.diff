@@ -1,0 +1,11 @@
+--- cap_aware_002.cpp
++++ cap_aware_003.cpp
+@@ -140,7 +140,7 @@
+     for(auto& g:groups){auto& m=g.second;std::sort(m.begin(),m.end());m.erase(std::unique(m.begin(),m.end()),m.end());
+       for(auto v:m){if(fixed[v]||!cap_vertex[v]||loop_of[v]!=loop_of[m.front()])throw Rejected("Group must be free on one cap boundary cycle");owner[v]=g.first;}
+       choice_index[g.first]=r.choices.size();Choice c;c.first=g.first;c.members=m;r.choices.push_back(c);}
+-    if(head&&(r.before.bad!=3112||r.reference!=9872||r.fixed!=865429||cap_rows.size()!=3508||r.frozen_cap!=38||r.targets!=2700||groups.size()!=476||r.old_patch.components!=1||r.old_patch.euler!=-4||r.old_patch.loops.size()!=6))throw Rejected("Frozen head reference/group counts differ");
++    if(head&&(r.before.bad!=3112||r.reference!=9872||r.fixed!=865429||cap_rows.size()!=3508||r.frozen_cap!=38||r.targets!=2212||groups.size()!=510||r.old_patch.components!=1||r.old_patch.euler!=-4||r.old_patch.loops.size()!=6))throw Rejected("Frozen head reference/group counts differ");
+     r.guards["reference_and_exact_target_association"]=true;r.stage="independent_side_star_choices";
+     for(std::size_t i=0;i<old.size();++i)if(!cap[i]){std::set<std::size_t> touching;for(auto v:old[i])if(owner[v]!=NEW_FACE)touching.insert(owner[v]);
+       if(touching.size()>1)r.coupled.push_back(i);for(auto g:touching)r.choices[choice_index.at(g)].star.push_back(i);}

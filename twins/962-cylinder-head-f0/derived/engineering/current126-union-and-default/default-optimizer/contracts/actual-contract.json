@@ -1,0 +1,488 @@
+{
+  "schema": "962-apex1485102-default-optimizer-local-actual/v1",
+  "status": "EXACT_ACTUAL_READY_FOR_INDEPENDENT_CHILD_REVIEW",
+  "case_apex": 1485102,
+  "case_key": "apex-1485102",
+  "case_record_sha256": "8e2f69d8a44362cf946b6e98f3b6cf35bf1ae02c4b81cc6afdc87ce5334dc6c7",
+  "case_manifest": "work/962-engineering/head-star-current204-local-stages-prep-001/case-manifest.json",
+  "case_manifest_sha256": "3a558ede04cbc52c59e401befb36b8983ebd9b7f57d4266de0bea38fb1a963c5",
+  "output_directory": "work/962-engineering/apex1485102-default-optimizer-001",
+  "input_hashes": {
+    "twins/962-cylinder-head-f0/source/mesh_head.py": "69c8012e99057e384d44d6971d41f0e2cc7197a978120a7c566b0ad5a6477da5",
+    "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-delaunay-prep-001/mesh_assembled_delaunay.py": "a3268687edc90b0149775cf5d80a89df82175cc982bbf5d7184b6ea8935be8a4",
+    "work/962-engineering/head-star-current204-local-stages-prep-001/case-manifest.json": "3a558ede04cbc52c59e401befb36b8983ebd9b7f57d4266de0bea38fb1a963c5",
+    "work/962-engineering/head-star-current204-batch-shells-001/report.json": "4f9fc0354918a907083006484d534c34c3b2621dfcc83b00cc4a4b731f009e86",
+    "work/962-engineering/head-star-current204-batch-shells-001/receipt.json": "78e215c5c85f01ca614e44e4e443fd4181086f63e2edc5d5aee81fbef77dbedb",
+    "work/962-engineering/head-star-current204-batch-shells-root-execution-001/closed-result.json": "67d9b2763fcd5ac887eddca79010d8a21dc6365b19f56224512acbaf7a3150e2",
+    "work/962-engineering/head-star-current204-batch-shells-root-execution-001/result-review.json": "5a80128a5e4dd3ea685449c1124fd1fad4c07a3bb1c586f9f80a2e26caacf913",
+    "work/962-engineering/head-star-current204-batch-shells-result-peer-001/review.json": "3fd325b3e4e18b942bda26d9292127d1dc1c2b8ecc5841d11257dc61884030da",
+    "work/962-engineering/head-star-current204-batch-shells-root-execution-001/result-peer-acceptance.json": "47a98aad883748178b7b25a1a5957ca01c0780eb0274f778567e6c5fb22fe538",
+    "work/962-engineering/head-star-current204-local-stages-prep-001/run_generation.py": "05b4f8996f1f642120b70be755e6609f7b641041cad1a867ea8da9e56ecb423b",
+    "work/962-engineering/head-star-current204-local-stages-prep-001/netgen_case.py": "38af98145aa8c4aa1798b5e5901a9837b962e8841d5b5d504674d6cefa922924",
+    "work/962-engineering/head-star-current204-local-stages-prep-001/run_netgen.py": "1e6ffec8141da0682b94f00eb4f8c49e31b493f32fd10ea35be04a9829e1ca06",
+    "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-delaunay-default-postexport-prep-001/mesh_delaunay_postexport.py": "ebb1f1ba8e7c0b032a4eb0178bbf8c332c68070816e6626f4a3f4788ed638527",
+    "twins/962-cylinder-head-f0/source/check_saved_cube_default.py": "c8a87cc7bc312fae4bdb414c2a6c6e77b920382f5bd00ca7ae2d04e4d3de20a6",
+    "work/962-engineering/head-star-current204-Netgen-root-execution-001/result-review.json": "5d8943639eea7b7e246e51714c09a2ab39e43c0cb19a5374218e65d7095dd9fc",
+    "work/962-engineering/head-star-current204-generation-root-execution-002/apex-1485102/closed-result.json": "4d6a18fc675769119e12601851d61c3e9babf420f9131c11cf01daa2e0d96ca6",
+    "work/962-engineering/head-star-current204-apex-1485102-generation-001/fixture-report.json": "dca3d4cabd29d1325ab239e3ec981eb762fcddf355ceb5c2dd15f8f478828175",
+    "work/962-engineering/head-star-current204-apex-1485102-generation-001/execution-receipt.json": "2ceab59460c35b766f71c39ac00c04d9126fcebd22a749cef0bd0974a17838b1",
+    "work/962-engineering/head-star-current126-full-stars-001/readback-report.json": "ac40521a4add15f1bb414d7d1a1c2cd231a0107278b6fe43ec38dad27c269e1a",
+    "work/962-engineering/head-star-current126-full-stars-001/frozen-contract.json": "d579a794f18bc9f7c4e153cb2042f32cb32b2c6b2f2235cec2edbef8aba91317",
+    "work/962-engineering/head-star-current126-full-stars-root-execution-001/result-peer-acceptance.json": "f66d5857a0fa75352c3880ab2cd7bbc0bcae73833254f39423fd48971ebd52d9",
+    "work/962-engineering/head-star-current126-full-stars-root-execution-001/closed-result.json": "4ec76692bd1fb7bb592bf24c82b199830eb6a4828cf9726fc879fa387022fb99",
+    "work/962-engineering/apex1613031-head-application-001/readback-report.json": "64caf59811e229628ea1be138ebcc48cdf940c4ca2724be0b9080e255951c9f5",
+    "work/962-engineering/apex1613031-head-application-root-execution-001/result-peer-acceptance.json": "19ef174a208868bf174909a1add690971fdf018b8cf438c5c26e3a2bca9bfada",
+    "work/962-engineering/head-star-current126-full-stars-prep-001/reader.py": "2348c032ecbbb694563978cb333aff1a7e4d37a5052c3ed841a7128bf797409c",
+    "work/962-engineering/head-star-current126-full-stars-runtime-root-001/review.json": "28101a316a5070a9d33092f5afc08dd84a347f6b8e2b51bed88a4c00ab951e7c",
+    "work/962-engineering/head-star-current204-local-stages-prep-001/generate_case.py": "fc1aba0a0ae93995f8fc4eea86d3fe693ce0360ac3f98d158ba5f01ae8983e3d",
+    "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-netgen-cube-prep-002/reader.py": "97b7e9fc7d17defa84594c50dac1d4e09cd39bb47ef2059e00b6ac07fe8c029b",
+    "work/962-engineering/head-star-current204-apex-1485102-netgen-001/cavity.msh": "e7e75ce60dc81be1033442bf4b723a252538d4a6116e80ca578e53b8b04e2c95",
+    "work/962-engineering/head-star-current204-apex-1485102-netgen-001/fixture-report.json": "42a8a3127a46a44aff7e0f44ae18b7653a335013a5d71c2911ef901e2b734333",
+    "work/962-engineering/head-star-current204-apex-1485102-netgen-001/arrays.json": "db0975cc75c3f6402b4b369f079966adf007428e7a64774b9bf8f60575a19a56",
+    "work/962-engineering/head-star-current204-apex-1485102-netgen-001/execution-receipt.json": "48f40dc452b165cd2305a6eca52bc5a96b746134ad5f138e704abcc4c835746b",
+    "work/962-engineering/head-star-current204-apex-1485102-netgen-001/frozen-contract.json": "aaebaa96359ebeeee10c506b92f7e3a796d3f72b2c844769db96c5b4480d2d38",
+    "work/962-engineering/head-star-current204-Netgen-root-execution-001/apex-1485102/closed-result.json": "9504281904b21fc20381ca6a0093775d7ab9fe101666019f361085a640c1d4a4",
+    "work/962-engineering/head-star-current204-Netgen-result-peer-001/review.json": "5ff930c217e28203526fbda3489c316ce6b4c307319538eba33e09bc88ebc1c3",
+    "work/962-engineering/head-star-current204-Netgen-root-execution-001/result-peer-acceptance.json": "fc98600dfdf68e89ec78f442d4c8b32476ea829fe3697c0b2a1dfc95ce8d98ef",
+    "work/962-engineering/head-star-current204-local-stages-prep-001/selfcheck.py": "1c723d83536b4417ee225137b959241a1705eb2a381f76b2926729c875ba8d9a",
+    "work/962-engineering/apex1485102-default-optimizer-prep-001/reader.py": "eaa5f5d7fc14dc9653443d70a4801420bb5ecb42f4375f986ce187f33ba723f0",
+    "work/962-engineering/apex1485102-default-optimizer-prep-001/run_readback.py": "e8317782f1a1077b9d65bb016234892d8e8d60d120f055319d900fe5b7c38774",
+    "work/962-engineering/apex1485102-default-optimizer-prep-001/selfcheck.py": "9d4a958df8f61ffaad293513f131e8d0d205a4e07e6655f960a4d7179344e3da",
+    "work/962-engineering/apex1485102-default-optimizer-prep-001/source.diff": "7d11497624753935a66bce8703d15a32e09b67ff0a925e130fb36abf6a420914",
+    "work/962-engineering/apex1485102-default-optimizer-prep-001/controller.diff": "8ceaeb96c2d7986ba8d1627a8ecd3199b820485198ca92c02fd285456c53962b",
+    "work/962-engineering/apex1485102-default-optimizer-prep-001/selfcheck.diff": "9ffe2dbfbae672519e5d6ef885de52f614c8286150bf1cd366410adff8b3d41f",
+    "work/962-engineering/apex1485102-default-optimizer-prep-001/METHOD.md": "adb69aea5e8f98ee57fb7e9686d553f682d957399cab50300ba0e70f2807268c",
+    "work/962-engineering/apex1485102-default-optimizer-prep-001/source-reuse.json": "e161afa133287eaf2ba2dc9f942a244d1b16a54cc3c1edd30a8f8024ea30a934",
+    "work/962-engineering/apex1485102-default-optimizer-prep-001/held-contract.json": "5ac4faefe5c3a260f6ff7b76073d0b4bb9ff9729326ce281907668053cc3bb1a",
+    "work/962-engineering/apex1485102-default-optimizer-root-source-001/review.json": "acffd4c1954fc15d4eb99399178a6a78215d31a887b3d168c0a572dd8f2da2de",
+    "work/962-engineering/apex1485102-default-optimizer-root-source-001/static-review.json": "d30852b2280bd4b94bfd9af73eb38680990986f70ac0d3a05c0c29e72d6c9a20",
+    "work/962-engineering/apex1485102-default-optimizer-root-source-001/authorization.json": "22c569b97cd45f24a3b4a63cc0865b41c870a16eea770a6aab31a2f3b09ef0cd",
+    "work/962-engineering/apex1485102-default-optimizer-root-source-001/runtime-preflight.json": "c7b8118f8b6cb33ca0e7a05bd2e3156bf014a23e9490c838c6d645db33a3c8f6",
+    "work/962-engineering/apex1485102-default-optimizer-root-source-001/stdout.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "work/962-engineering/apex1485102-default-optimizer-root-source-001/stderr.log": "efc4152c2fb2ef07589fd1e650ba00a0811922144640805195535b26c378542d",
+    "work/962-engineering/apex1485102-default-optimizer-source-peer-001/review.json": "8b323a01ad0b56c015ee202d0719840c9886b0c244d719b76adcfc08ffd55868",
+    "work/962-engineering/apex1485102-default-optimizer-source-peer-001/bindings.json": "00116dfba62c8c67d2a6ee84dd49517e6ef69b8e97cf93b06747787e2a7b9dc9",
+    "work/962-engineering/apex1485102-default-optimizer-execution-prep-001/runtime-mesh-preflight.json": "0f327b96f34230cb5cddb85903203ba443614ff5d026758d0d63a0c111774c5b",
+    "work/962-engineering/apex1485102-default-optimizer-001/reader.py": "eaa5f5d7fc14dc9653443d70a4801420bb5ecb42f4375f986ce187f33ba723f0",
+    "work/962-engineering/apex1485102-default-optimizer-001/run_readback.py": "e8317782f1a1077b9d65bb016234892d8e8d60d120f055319d900fe5b7c38774"
+  },
+  "saved_Netgen_baseline": {
+    "mesh": {
+      "path": "work/962-engineering/head-star-current204-apex-1485102-netgen-001/cavity.msh",
+      "sha256": "e7e75ce60dc81be1033442bf4b723a252538d4a6116e80ca578e53b8b04e2c95",
+      "bytes": 5638
+    },
+    "worker": {
+      "path": "work/962-engineering/head-star-current204-apex-1485102-netgen-001/fixture-report.json",
+      "sha256": "42a8a3127a46a44aff7e0f44ae18b7653a335013a5d71c2911ef901e2b734333",
+      "bytes": 25499
+    },
+    "arrays": {
+      "path": "work/962-engineering/head-star-current204-apex-1485102-netgen-001/arrays.json",
+      "sha256": "db0975cc75c3f6402b4b369f079966adf007428e7a64774b9bf8f60575a19a56",
+      "bytes": 58301
+    },
+    "receipt": {
+      "path": "work/962-engineering/head-star-current204-apex-1485102-netgen-001/execution-receipt.json",
+      "sha256": "48f40dc452b165cd2305a6eca52bc5a96b746134ad5f138e704abcc4c835746b",
+      "bytes": 1432
+    },
+    "actual": {
+      "path": "work/962-engineering/head-star-current204-apex-1485102-netgen-001/frozen-contract.json",
+      "sha256": "aaebaa96359ebeeee10c506b92f7e3a796d3f72b2c844769db96c5b4480d2d38",
+      "bytes": 18664
+    },
+    "root_closed": {
+      "path": "work/962-engineering/head-star-current204-Netgen-root-execution-001/apex-1485102/closed-result.json",
+      "sha256": "9504281904b21fc20381ca6a0093775d7ab9fe101666019f361085a640c1d4a4",
+      "bytes": 2236
+    },
+    "result_peer": {
+      "path": "work/962-engineering/head-star-current204-Netgen-result-peer-001/review.json",
+      "sha256": "5ff930c217e28203526fbda3489c316ce6b4c307319538eba33e09bc88ebc1c3",
+      "bytes": 8732
+    },
+    "root_acceptance": {
+      "path": "work/962-engineering/head-star-current204-Netgen-root-execution-001/result-peer-acceptance.json",
+      "sha256": "fc98600dfdf68e89ec78f442d4c8b32476ea829fe3697c0b2a1dfc95ce8d98ef",
+      "bytes": 1921
+    }
+  },
+  "current_star_binding": {
+    "apex": 1485102,
+    "old_complete_cell_count": 52,
+    "old_complete_node_count": 29,
+    "original_shell_nodes": 28,
+    "original_shell_faces": 52,
+    "original_source_boundary_shell_nodes": 18,
+    "original_dim3_shell_nodes": 10,
+    "original_source_record_sha256": "8e2f69d8a44362cf946b6e98f3b6cf35bf1ae02c4b81cc6afdc87ce5334dc6c7",
+    "current_parent_MSH_sha256": "48b66aafbd9f1eb69e44305982186e966fe8f041d9b4a6a59be4b610b5d12e08",
+    "current_census_sha256": "ac40521a4add15f1bb414d7d1a1c2cd231a0107278b6fe43ec38dad27c269e1a",
+    "semantic_row_encoding": "UTF-8 json.dumps(list_of_rows_without_native_array_index, sort_keys=True, separators=(comma,colon), allow_nan=False).encode(); list order retained",
+    "semantic_rows_sha256": "06cdc93580d85db1ea8f796d5b2582221ce6741deef71543e62872a12eca6ac2",
+    "node_row_encoding": "Same compact sorted-key JSON encoding of ordered original six-field census node rows; exact coordinate words additionally compared using little-endian three-float64 bytes",
+    "node_rows_sha256": "dba6bc279e1a3bf26c340cb23e46de4da9dc4135f664f5355224a96a7a3fb918",
+    "native_index_translation": [
+      {
+        "tetrahedron_tag": 29103263,
+        "historical_native_array_index": 565937,
+        "current_native_array_index": 565697
+      },
+      {
+        "tetrahedron_tag": 29103307,
+        "historical_native_array_index": 565981,
+        "current_native_array_index": 565741
+      },
+      {
+        "tetrahedron_tag": 29103533,
+        "historical_native_array_index": 566207,
+        "current_native_array_index": 565967
+      },
+      {
+        "tetrahedron_tag": 29152834,
+        "historical_native_array_index": 615504,
+        "current_native_array_index": 615251
+      },
+      {
+        "tetrahedron_tag": 29246026,
+        "historical_native_array_index": 708695,
+        "current_native_array_index": 708408
+      },
+      {
+        "tetrahedron_tag": 29326157,
+        "historical_native_array_index": 788821,
+        "current_native_array_index": 788504
+      },
+      {
+        "tetrahedron_tag": 29346156,
+        "historical_native_array_index": 808820,
+        "current_native_array_index": 808498
+      },
+      {
+        "tetrahedron_tag": 29451801,
+        "historical_native_array_index": 914460,
+        "current_native_array_index": 914094
+      },
+      {
+        "tetrahedron_tag": 29459898,
+        "historical_native_array_index": 922557,
+        "current_native_array_index": 922188
+      },
+      {
+        "tetrahedron_tag": 29538506,
+        "historical_native_array_index": 1001164,
+        "current_native_array_index": 1000767
+      },
+      {
+        "tetrahedron_tag": 29585485,
+        "historical_native_array_index": 1048143,
+        "current_native_array_index": 1047736
+      },
+      {
+        "tetrahedron_tag": 29693268,
+        "historical_native_array_index": 1155923,
+        "current_native_array_index": 1155478
+      },
+      {
+        "tetrahedron_tag": 29801902,
+        "historical_native_array_index": 1264553,
+        "current_native_array_index": 1264067
+      },
+      {
+        "tetrahedron_tag": 29852874,
+        "historical_native_array_index": 1315524,
+        "current_native_array_index": 1315016
+      },
+      {
+        "tetrahedron_tag": 29879975,
+        "historical_native_array_index": 1342625,
+        "current_native_array_index": 1342106
+      },
+      {
+        "tetrahedron_tag": 29902225,
+        "historical_native_array_index": 1364875,
+        "current_native_array_index": 1364343
+      },
+      {
+        "tetrahedron_tag": 29978866,
+        "historical_native_array_index": 1441514,
+        "current_native_array_index": 1440953
+      },
+      {
+        "tetrahedron_tag": 29980895,
+        "historical_native_array_index": 1443543,
+        "current_native_array_index": 1442981
+      },
+      {
+        "tetrahedron_tag": 29997103,
+        "historical_native_array_index": 1459750,
+        "current_native_array_index": 1459173
+      },
+      {
+        "tetrahedron_tag": 30080552,
+        "historical_native_array_index": 1543198,
+        "current_native_array_index": 1542589
+      },
+      {
+        "tetrahedron_tag": 30103489,
+        "historical_native_array_index": 1566134,
+        "current_native_array_index": 1565511
+      },
+      {
+        "tetrahedron_tag": 30280356,
+        "historical_native_array_index": 1742996,
+        "current_native_array_index": 1742290
+      },
+      {
+        "tetrahedron_tag": 30312436,
+        "historical_native_array_index": 1775076,
+        "current_native_array_index": 1774363
+      },
+      {
+        "tetrahedron_tag": 30356258,
+        "historical_native_array_index": 1818897,
+        "current_native_array_index": 1818166
+      },
+      {
+        "tetrahedron_tag": 30437031,
+        "historical_native_array_index": 1899669,
+        "current_native_array_index": 1898887
+      },
+      {
+        "tetrahedron_tag": 30457460,
+        "historical_native_array_index": 1920097,
+        "current_native_array_index": 1919305
+      },
+      {
+        "tetrahedron_tag": 30562271,
+        "historical_native_array_index": 2024905,
+        "current_native_array_index": 2024057
+      },
+      {
+        "tetrahedron_tag": 30639694,
+        "historical_native_array_index": 2102325,
+        "current_native_array_index": 2101430
+      },
+      {
+        "tetrahedron_tag": 30649166,
+        "historical_native_array_index": 2111797,
+        "current_native_array_index": 2110898
+      },
+      {
+        "tetrahedron_tag": 30654600,
+        "historical_native_array_index": 2117231,
+        "current_native_array_index": 2116330
+      },
+      {
+        "tetrahedron_tag": 30659120,
+        "historical_native_array_index": 2121751,
+        "current_native_array_index": 2120846
+      },
+      {
+        "tetrahedron_tag": 30659937,
+        "historical_native_array_index": 2122568,
+        "current_native_array_index": 2121663
+      },
+      {
+        "tetrahedron_tag": 30682152,
+        "historical_native_array_index": 2144783,
+        "current_native_array_index": 2143863
+      },
+      {
+        "tetrahedron_tag": 30731018,
+        "historical_native_array_index": 2193649,
+        "current_native_array_index": 2192704
+      },
+      {
+        "tetrahedron_tag": 30736519,
+        "historical_native_array_index": 2199150,
+        "current_native_array_index": 2198203
+      },
+      {
+        "tetrahedron_tag": 30858401,
+        "historical_native_array_index": 2321027,
+        "current_native_array_index": 2319994
+      },
+      {
+        "tetrahedron_tag": 30863028,
+        "historical_native_array_index": 2325654,
+        "current_native_array_index": 2324621
+      },
+      {
+        "tetrahedron_tag": 30882083,
+        "historical_native_array_index": 2344709,
+        "current_native_array_index": 2343671
+      },
+      {
+        "tetrahedron_tag": 30936956,
+        "historical_native_array_index": 2399582,
+        "current_native_array_index": 2398503
+      },
+      {
+        "tetrahedron_tag": 30961789,
+        "historical_native_array_index": 2424413,
+        "current_native_array_index": 2423313
+      },
+      {
+        "tetrahedron_tag": 31054968,
+        "historical_native_array_index": 2517592,
+        "current_native_array_index": 2516432
+      },
+      {
+        "tetrahedron_tag": 31125981,
+        "historical_native_array_index": 2588604,
+        "current_native_array_index": 2587388
+      },
+      {
+        "tetrahedron_tag": 31166516,
+        "historical_native_array_index": 2629139,
+        "current_native_array_index": 2627898
+      },
+      {
+        "tetrahedron_tag": 31301471,
+        "historical_native_array_index": 2764093,
+        "current_native_array_index": 2762759
+      },
+      {
+        "tetrahedron_tag": 31337745,
+        "historical_native_array_index": 2800367,
+        "current_native_array_index": 2799018
+      },
+      {
+        "tetrahedron_tag": 31399674,
+        "historical_native_array_index": 2862294,
+        "current_native_array_index": 2860907
+      },
+      {
+        "tetrahedron_tag": 31408788,
+        "historical_native_array_index": 2871408,
+        "current_native_array_index": 2870020
+      },
+      {
+        "tetrahedron_tag": 31481175,
+        "historical_native_array_index": 2943792,
+        "current_native_array_index": 2942343
+      },
+      {
+        "tetrahedron_tag": 31601202,
+        "historical_native_array_index": 3063817,
+        "current_native_array_index": 3062239
+      },
+      {
+        "tetrahedron_tag": 31697906,
+        "historical_native_array_index": 3160519,
+        "current_native_array_index": 3158799
+      },
+      {
+        "tetrahedron_tag": 32088011,
+        "historical_native_array_index": 3550616,
+        "current_native_array_index": 3548586
+      },
+      {
+        "tetrahedron_tag": 32088012,
+        "historical_native_array_index": 3550617,
+        "current_native_array_index": 3548587
+      }
+    ],
+    "native_index_changes": 52,
+    "all52_semantic_rows_and_all29_coordinate_class_words_match": true,
+    "new_native_or_geometric_proof_claimed": false
+  },
+  "options": {
+    "General.NumThreads": 2,
+    "Mesh.MaxNumThreads3D": 2,
+    "Mesh.Renumber": 0,
+    "Mesh.Optimize": 0,
+    "Mesh.OptimizeNetgen": 0,
+    "Mesh.OptimizeThreshold": 0.3,
+    "Mesh.Binary": 1,
+    "Mesh.SaveAll": 1,
+    "Mesh.MshFileVersion": 4.1
+  },
+  "declared_operation_counts": {
+    "generate": 0,
+    "createGeometry_dim3": 0,
+    "optimize_default": 1,
+    "rebuildElementCache": 1,
+    "write_mesh": 1,
+    "solve": 0
+  },
+  "optimization": {
+    "method": "",
+    "force": true
+  },
+  "geometry_creation_dim_tags": [],
+  "reader_sha256": "eaa5f5d7fc14dc9653443d70a4801420bb5ecb42f4375f986ce187f33ba723f0",
+  "runner_sha256": "e8317782f1a1077b9d65bb016234892d8e8d60d120f055319d900fe5b7c38774",
+  "upstream_census_launch_deviation_sha256": "d60fff297c6c45dc92e117262e36ffde36e2169d53fcd32ce2b79fabde5eebc3",
+  "declared_controller_command_conformant": false,
+  "native_python": "runtime-role://registered-native/geometry/bin/python",
+  "external_runtime_hashes": {
+    "runtime-role://registered-native/geometry/bin/python": "72956ad35cff7691dfed9e04c9593de825ffd5b2fa7e8bc9ae96ce9a1af65621",
+    "runtime-role://registered-native/geometry/lib/libgmsh.4.15.dylib": "def0f5c10988a986e5e879b3db9669d8fe016a81e2d994bbaf2b8497c6b8a58a",
+    "runtime-role://registered-native/geometry/lib/python3.10/site-packages/gmsh.py": "f4b0935cebde899750293d87a643090e5ea33c9b18d249267f507db68a0e01c3"
+  },
+  "runtime": {
+    "python_executable_sha256": "72956ad35cff7691dfed9e04c9593de825ffd5b2fa7e8bc9ae96ce9a1af65621"
+  },
+  "runtime_sha256s": {
+    "gmsh_library": "def0f5c10988a986e5e879b3db9669d8fe016a81e2d994bbaf2b8497c6b8a58a",
+    "gmsh_module": "f4b0935cebde899750293d87a643090e5ea33c9b18d249267f507db68a0e01c3",
+    "python": "72956ad35cff7691dfed9e04c9593de825ffd5b2fa7e8bc9ae96ce9a1af65621"
+  },
+  "numpy_init": "runtime-role://registered-native/numpy-environment/lib/python3.10/site-packages/numpy/__init__.py",
+  "numpy_init_sha256": "c09e25b58f6b2f8e2cb3c158168f902d447f8171e5ea6513c0aca41ecbda7c2b",
+  "expected_runtime": {
+    "python": "3.10.11",
+    "numpy": "2.0.2",
+    "gmsh": "4.15.2",
+    "machine": "arm64"
+  },
+  "native_execution_authorized": true,
+  "root_and_peer_review_complete": true,
+  "selected_runtime_review_complete": true,
+  "cavity_default_optimizer_authorized": true,
+  "head_edit_authorized": false,
+  "head_PDE_authorized": false,
+  "native_head_application_authorized": false,
+  "manufacturing_authorized": false,
+  "domain_execution_authorized": false,
+  "engineering_accepted": false,
+  "PDE_solve_authorized": false,
+  "physics_qualified": false,
+  "material_qualified": false,
+  "head_execution_authorized": false,
+  "generation_authorized": false,
+  "stitching_authorized": false,
+  "outside_owner_query_authorized": false,
+  "cavity_Netgen_optimizer_authorized": false,
+  "process_calibrated": false,
+  "geometry_creation_authorized": false,
+  "automatic_retry": false,
+  "backfill": false,
+  "source_guard_review": {
+    "path": "work/962-engineering/apex1485102-default-optimizer-root-source-001/review.json",
+    "sha256": "acffd4c1954fc15d4eb99399178a6a78215d31a887b3d168c0a572dd8f2da2de",
+    "bytes": 32043
+  },
+  "runtime_mesh_preflight": {
+    "path": "work/962-engineering/apex1485102-default-optimizer-execution-prep-001/runtime-mesh-preflight.json",
+    "sha256": "0f327b96f34230cb5cddb85903203ba443614ff5d026758d0d63a0c111774c5b",
+    "bytes": 17062
+  },
+  "actual_child_review_complete_at_freeze": false,
+  "root_fresh_launch_gate_complete_at_freeze": false,
+  "future_exact_source_copies": {
+    "reader.py": {
+      "path": "work/962-engineering/apex1485102-default-optimizer-001/reader.py",
+      "sha256": "eaa5f5d7fc14dc9653443d70a4801420bb5ecb42f4375f986ce187f33ba723f0",
+      "bytes": 28766
+    },
+    "run_readback.py": {
+      "path": "work/962-engineering/apex1485102-default-optimizer-001/run_readback.py",
+      "sha256": "e8317782f1a1077b9d65bb016234892d8e8d60d120f055319d900fe5b7c38774",
+      "bytes": 4825
+    }
+  }
+}

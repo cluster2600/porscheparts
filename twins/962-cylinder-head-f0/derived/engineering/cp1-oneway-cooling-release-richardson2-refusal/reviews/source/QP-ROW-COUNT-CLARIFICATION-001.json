@@ -1,0 +1,67 @@
+{
+  "affected_json_pointer": "/unchanged_full_assessment_scope/full_geometry_and_fields",
+  "ambiguous_original_phrase": "292864 QProws per phase",
+  "assessment_execution_authorized": false,
+  "assessor_held": {
+    "bytes": 201828,
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-assessor-prep-001/held-preparation.json",
+    "sha256": "474d11d42ea1acb27948a57c4aab0c24dcf257e3b0f129aababaa5a6b900adea"
+  },
+  "assessor_source": {
+    "bytes": 46645,
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-assessor-prep-001/assess.py",
+    "sha256": "aa7ee403a0a3078df58410815f2b613aaeb9634bd14bc9c90517ce00cec7f2d5"
+  },
+  "automatic_retry": false,
+  "clarified_meaning": "292864 is the trajectory aggregate across all183 BEGIN records, and separately across all183 END records. It is not the row count in one timestep-phase record.",
+  "engineering_accepted": false,
+  "expected_protocol_arithmetic": {
+    "combined_BEGIN_and_END_trajectory_total": 585728,
+    "per_trajectory_BEGIN_total": 292864,
+    "per_trajectory_END_total": 292864,
+    "steps0_through79": {
+      "active_cells_per_record": 128,
+      "quadrature_rows_per_cell": 8,
+      "rows_per_one_timestep_phase_record": 1024,
+      "steps": 80,
+      "subtotal_per_BEGIN_or_END_label": 81920
+    },
+    "steps80_through182": {
+      "active_cells_per_record": 256,
+      "quadrature_rows_per_cell": 8,
+      "rows_per_one_timestep_phase_record": 2048,
+      "steps": 103,
+      "subtotal_per_BEGIN_or_END_label": 210944
+    },
+    "timestep_phase_records": 366,
+    "unique_element_QP_coordinate_associations": 2048
+  },
+  "guard_execution_authorized": false,
+  "head_execution_authorized": false,
+  "manufacturing_authorized": false,
+  "material_qualified": false,
+  "native_execution_authorized": false,
+  "new_field_observations": false,
+  "physics_qualified": false,
+  "preserved_bindings": {
+    "bytes": 110813,
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-source-peer-001/bindings.json",
+    "sha256": "80d960538f00799d7697ed8a4689832ebfce319523831fc1e278cc1353b7038f"
+  },
+  "preserved_review": {
+    "bytes": 10083,
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-source-peer-001/review.json",
+    "sha256": "fd689b72f5e690b4adc2db46631448074ad43455c549dacbaf61555b20e652c4"
+  },
+  "process_calibrated": false,
+  "schema": "962-richardson2-source-peer-QP-row-count-clarification/v1",
+  "source_line_anchors": {
+    "active_cell_selection": 455,
+    "eight_QP_coverage": 296,
+    "per_label_accumulation": 542,
+    "separate_BEGIN_END_trajectory_assertion_and_unique_coordinate_map": 547,
+    "step_and_phase_loops": 454
+  },
+  "status": "SOURCE_PROTOCOL_COUNT_CLARIFICATION_ONLY_NO_OBSERVED_DATA",
+  "verification_scope": "Source inspection and literal integer arithmetic only; delegated source-count read agrees. No assessor/helper/data/runtime/guard/scientific execution and no raw body reads. Frozen original review/bindings bytes are preserved."
+}

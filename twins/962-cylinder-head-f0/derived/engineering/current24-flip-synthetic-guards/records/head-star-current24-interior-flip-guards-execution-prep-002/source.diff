@@ -1,0 +1,27 @@
+--- flip17-execution-prep001/run_root_once.py
++++ flip17-execution-prep002/run_root_once.py
+@@ -3,7 +3,7 @@
+ import hashlib,json,os,re,resource,signal,subprocess,sys,time,traceback
+ R=Path('/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993')
+ E=R/'work/962-engineering'
+-X=E/'head-star-current24-interior-flip-guards-execution-prep-001'
++X=E/'head-star-current24-interior-flip-guards-execution-prep-002'
+ D=E/'head-star-current24-interior-flip-guards-root-execution-001'
+ CAP=32*1024**2
+ def rec(p):
+@@ -104,11 +104,13 @@
+ assert actual['controller']==rec(Path(__file__)) and actual['runtime_preflight']==rec(preflight_path)
+ assert all(actual[k] is False for k in ['synthetic_execution_authorized','real_head_data_execution_authorized','native_execution_authorized','geometry_write_authorized','physical_acceptance','automatic_retry'])
+ assert actual['expected_tests']==17 and len(actual['test_methods'])==17 and actual['test_methods']==sorted(set(actual['test_methods']))
+-assert actual['argv']==[preflight['observed']['resolved_executable'],'-B','-I',str(R/actual['fixture_source']['path'])]
++assert actual['argv']==[preflight['observed']['resolved_executable'],'-B','-I','-S',str(R/actual['fixture_source']['path'])]
+ assert actual['cwd']==str(D) and actual['fixture_source']==rec(R/actual['fixture_source']['path'])
+ assert actual['selected_interpreter']==preflight['selected_interpreter']
+ assert str(Path(sys.executable).resolve())==preflight['observed']['resolved_executable']
+-assert sys.version==preflight['observed']['version'] and sys.flags.isolated==1 and sys.flags.dont_write_bytecode==1 and sys.flags.optimize==0
++assert sys.version==preflight['observed']['version'] and sys.flags.isolated==1 and sys.flags.dont_write_bytecode==1 and sys.flags.optimize==0 and sys.flags.no_site==1
++assert 'site' not in sys.modules and '_distutils_hack' not in sys.modules
++assert preflight['observed']['flags']['no_site']==1
+ assert actual['controls']==dict(wall_seconds=60,TERM_grace_seconds=8,KILL_wait_seconds=8,sampled_owned_RSS_bytes=2147483648,total_owned_output_bytes=33554432,sample_seconds=.05,thread_environment=1,retries=0)
+ expected_environment=dict(PATH='/usr/bin:/bin',LC_ALL='C',OMP_NUM_THREADS='1',OPENBLAS_NUM_THREADS='1',VECLIB_MAXIMUM_THREADS='1',MKL_NUM_THREADS='1',NUMEXPR_NUM_THREADS='1',TMPDIR=str(D/'tmp'))
+ assert actual['environment']==expected_environment

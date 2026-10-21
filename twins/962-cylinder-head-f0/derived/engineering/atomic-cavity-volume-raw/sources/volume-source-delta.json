@@ -1,0 +1,21 @@
+{
+  "schema": "962-atomic-volume-surgical-hardening-delta/v1",
+  "status": "source_only_unrun",
+  "preserved_001_source_sha256": "da089adac87bb098467e687a0b0bdb72bbd296ba5a14d125343173b9abda63ef",
+  "new_002_source_sha256": "61542a339b03cfab600ac869d12a0ae4d72768bcc5db5838efa3bb72a0ccfada",
+  "diff_sha256": "601cb962cda8374eece88dbddeab607dafcab97a7863082509684f10a926f3cf",
+  "literal_replacements": {
+    "        quality[\"independent_signed_volume_mm3\"] = distribution(signed)\n": "        quality[\"independent_signed_volume_mm3\"] = distribution(signed)\n        if any(type(q.get(\"count\")) is not int or q[\"count\"] != len(cells) for q in quality.values()):\n            raise ValueError(\"Every metric distribution must cover every actual tetrahedron\")\n",
+    "        try:\n            process = subprocess.Popen(command, stdout=log, stderr=subprocess.STDOUT, env=env, start_new_session=True)\n": "        sigterm_requested = False\n        def request_sigterm(*_):\n            nonlocal sigterm_requested\n            sigterm_requested = True\n        previous_sigterm = signal.getsignal(signal.SIGTERM)\n        try:\n            signal.signal(signal.SIGTERM, request_sigterm)\n            process = subprocess.Popen(command, stdout=log, stderr=subprocess.STDOUT, env=env, start_new_session=True)\n",
+    "            while process.poll() is None:\n": "            while process.poll() is None and not sigterm_requested:\n",
+    "        finally:\n            if watchdog is not None: watchdog.cancel()\n            if process is not None:\n                if process.poll() is None: stop(\"controller_interrupted\")\n                process.wait()\n": "        finally:\n            try:\n                if watchdog is not None: watchdog.cancel()\n                if process is not None:\n                    if process.poll() is None:\n                        stop(\"controller_SIGTERM\" if sigterm_requested else \"controller_interrupted\")\n                    process.wait()\n            finally:\n                if sigterm_requested and stopped[\"reason\"] is None:\n                    stopped[\"reason\"] = \"controller_SIGTERM\"\n                signal.signal(signal.SIGTERM, previous_sigterm)\n"
+  },
+  "reverse_restores_entire_001_source": true,
+  "original_6ba68df_reverse_chain_remains_preserved": true,
+  "changes": [
+    "Require all four metric-distribution integer counts to equal the actual tetrahedron count before quality can pass.",
+    "SIGTERM handler sets a local flag without raising or locking; protected controller observes it after Popen assignment, kills/reaps only the assigned running process, records interruption and restores the old signal handler."
+  ],
+  "SIGKILL_or_arbitrary_external_kill_safety_claimed": false,
+  "imports_or_native_calls_performed": false
+}

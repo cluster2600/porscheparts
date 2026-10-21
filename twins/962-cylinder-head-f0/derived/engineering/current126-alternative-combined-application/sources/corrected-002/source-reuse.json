@@ -1,0 +1,273 @@
+{
+  "schema": "962-current126-alternative15-combined-source-correction/v1",
+  "status": "HELD_SOURCE_ONLY_UNRUN_CORRECTION_002",
+  "prior_preparation": {
+    "METHOD.md": {
+      "path": "work/962-engineering/head-star-current126-alternative-combined-application-prep-001/METHOD.md",
+      "sha256": "4273a4658af2b697fd40daa7910987ee81e36e59a225e1948d81bdb1c820e32c",
+      "bytes": 7990
+    },
+    "admitted-manifest.json": {
+      "path": "work/962-engineering/head-star-current126-alternative-combined-application-prep-001/admitted-manifest.json",
+      "sha256": "5270a56b18e1dbefc1dd117fb38a53e1fd8a1bcd5bbf9868943896a46b1c6773",
+      "bytes": 95862
+    },
+    "held-contract.json": {
+      "path": "work/962-engineering/head-star-current126-alternative-combined-application-prep-001/held-contract.json",
+      "sha256": "387a2c4918501f6f0c9264a0e5b4c8a9f860e3d3dfcc2afe1c80e5d0680c1856",
+      "bytes": 43489
+    },
+    "reader.py": {
+      "path": "work/962-engineering/head-star-current126-alternative-combined-application-prep-001/reader.py",
+      "sha256": "134ffa7de71d5117f34bffd3e724b9b982a6af1fcfdbb09fc4f5ad0cab543534",
+      "bytes": 86571
+    },
+    "run_readback.py": {
+      "path": "work/962-engineering/head-star-current126-alternative-combined-application-prep-001/run_readback.py",
+      "sha256": "5ab38b53e4019506772cc429b46699ac0e217141c87a0a043718d8123ecb159c",
+      "bytes": 4652
+    },
+    "selfcheck.diff": {
+      "path": "work/962-engineering/head-star-current126-alternative-combined-application-prep-001/selfcheck.diff",
+      "sha256": "cf677b09115c13f929c72b5a791fabb993b17dbb5f37c69a42c5a9e8801a18f3",
+      "bytes": 11915
+    },
+    "selfcheck.py": {
+      "path": "work/962-engineering/head-star-current126-alternative-combined-application-prep-001/selfcheck.py",
+      "sha256": "9b6a171d0d284b524b7f729a8262d4d451f66409fc71f14482d334fd39f64ed5",
+      "bytes": 14733
+    },
+    "source-reuse.json": {
+      "path": "work/962-engineering/head-star-current126-alternative-combined-application-prep-001/source-reuse.json",
+      "sha256": "58a3023d677ca92deda32014626de844db4d8a668db710bc823926243294dbcf",
+      "bytes": 158031
+    },
+    "source.diff": {
+      "path": "work/962-engineering/head-star-current126-alternative-combined-application-prep-001/source.diff",
+      "sha256": "69b369477ad7d81a268b09b307ac0d8f378c6ed7826d70af57a6b57955d42cb3",
+      "bytes": 139086
+    }
+  },
+  "blocked_source_peer": {
+    "path": "work/962-engineering/current126-alternative-combined-application-source-peer-001/review.json",
+    "sha256": "440863c09686b260690d6dbde916bf954b96f9d4c14706740404d1c9acaf1da1",
+    "bytes": 6025
+  },
+  "blocked_peer_bindings": {
+    "path": "work/962-engineering/current126-alternative-combined-application-source-peer-001/bindings.json",
+    "sha256": "7ecfb81277eaf16386461931a35e6a44151ed1cfc5de8731d7036ec75808d8b7",
+    "bytes": 96930
+  },
+  "sole_concrete_blocker": "001 compares numpy_init_sha256 against a real context contract that does not contain that key; its old null gate hides the admitted-schema failure.",
+  "correction_scope": [
+    "Compare only the five actual shared runtime fields.",
+    "Require exact c09e NumPy digest separately against the directly pinned approved b6d metadata descriptor and the normal later native-body freshness check.",
+    "Add one real 0ae718 admitted-metadata guard with mocked admissions/body SHA; refuse c digest, approved metadata digest and observed-body digest drift."
+  ],
+  "reversible_source_groups": [
+    {
+      "number": 1,
+      "donor_line_start": 41,
+      "successor_line_start": 41,
+      "old": "",
+      "new": "NUMPY_BINDING='work/962-engineering/head-star-current126-alternative-union-context-execution-prep-001/runtime-parent-preflight.json'\nNUMPY_SHA='c09e25b58f6b2f8e2cb3c158168f902d447f8171e5ea6513c0aca41ecbda7c2b'\n"
+    },
+    {
+      "number": 2,
+      "donor_line_start": 42,
+      "successor_line_start": 44,
+      "old": "",
+      "new": "FIXED_INPUTS[NUMPY_BINDING]='b6d197768a0cd72cee0b84b2ce3654428a0194b48f9919bbafaedc3c2203b16f'\n"
+    },
+    {
+      "number": 3,
+      "donor_line_start": 107,
+      "successor_line_start": 110,
+      "old": " for key in ['external_runtime_hashes','runtime_sha256s','runtime','native_python','numpy_init','numpy_init_sha256']:\n",
+      "new": " for key in ['external_runtime_hashes','runtime_sha256s','runtime','native_python','numpy_init']:\n"
+    },
+    {
+      "number": 4,
+      "donor_line_start": 109,
+      "successor_line_start": 112,
+      "old": "",
+      "new": " numpy_binding=json.loads((ROOT/NUMPY_BINDING).read_text())\n if (original.get('runtime_parent_preflight')!={'path':NUMPY_BINDING,'sha256':FIXED_INPUTS[NUMPY_BINDING],'bytes':14661}\n     or c['numpy_init_sha256']!=NUMPY_SHA\n     or numpy_binding['native3_NumPy_selected_outer5'][c['numpy_init']]['path']!=c['numpy_init']\n     or numpy_binding['native3_NumPy_selected_outer5'][c['numpy_init']]['sha256']!=NUMPY_SHA):\n  raise ValueError('Exact separately approved context NumPy finite binding required')\n"
+    }
+  ],
+  "complete_reverse_to_001_equal": true,
+  "complete_reverse_sha256": "134ffa7de71d5117f34bffd3e724b9b982a6af1fcfdbb09fc4f5ad0cab543534",
+  "source_diff_sha256": "90e6d70a263f604bf8571cfb2d417857a83c8984a9158bd7d35d3bac5ec4046a",
+  "selfcheck_diff_sha256": "5e0a5274da9cdd18918a4e5bc00d092463a511aa068761ea5abcf4f5cc76a95b",
+  "prior_40_group_c66_history": {
+    "path": "work/962-engineering/head-star-current126-alternative-combined-application-prep-001/source-reuse.json",
+    "sha256": "58a3023d677ca92deda32014626de844db4d8a668db710bc823926243294dbcf",
+    "bytes": 158031
+  },
+  "prior_full_c66_source_diff": {
+    "path": "work/962-engineering/head-star-current126-alternative-combined-application-prep-001/source.diff",
+    "sha256": "69b369477ad7d81a268b09b307ac0d8f378c6ed7826d70af57a6b57955d42cb3",
+    "bytes": 139086
+  },
+  "unchanged_reader_functions": [
+    {
+      "name": "sha",
+      "AST_sha256": "9b16db917487395350fbf76ef5bad61d5ad0ffe15258bbf93bbdecbb8428116d",
+      "text_sha256": "bd5b28e272e103b834cf93e1a70a79512977bfbc7c9c53e88521d78908f5aefa"
+    },
+    {
+      "name": "json_sha",
+      "AST_sha256": "e642b7346608f255d4a1581279dac8140ebbdb23c70bb2cc5d95d597b8d12643",
+      "text_sha256": "c8bf10602d95007037b7a60ef97753fbe725c00c591ffb721b903b9c48ed669f"
+    },
+    {
+      "name": "selected",
+      "AST_sha256": "38c637dd68de278735aabcb88b921d7a52ef4574cff38615191e3f8d32c33989",
+      "text_sha256": "fc233ba7d8a70aa4a6386956452a90a2bcfc9dc189a0b496d6ff855fa29ab5ff"
+    },
+    {
+      "name": "context_admission_records",
+      "AST_sha256": "8617ffdbc002a6e0cd32ef5b6196c86441923d8c39658a27b33850f4b38eae4d",
+      "text_sha256": "079fbe0278ac0e3fe4370a544174d009854290b85cc1b3797cdd97c5a9617da2"
+    },
+    {
+      "name": "require_domain",
+      "AST_sha256": "377b5fe3324864b3c25fec8b763d29b5eca26b8ecbe5ce0240474ee56eb9459e",
+      "text_sha256": "f9a0ed2dd1d4e9b997c6337dcb68303a87c0d485c33c196c89423ebecf8f414c"
+    },
+    {
+      "name": "allocate_case",
+      "AST_sha256": "f2580d6fc8a2e94bdc915e2de96d4e945a27933d996ff988426223871bacd723",
+      "text_sha256": "18459461c393693598492c3e907c16630385dcf7d168f91e5683cf0f18e325b6"
+    },
+    {
+      "name": "make_case",
+      "AST_sha256": "43a56eba704eace2ddc6dd58a43a7a28b5749ded257b162a86322c9f4329c521",
+      "text_sha256": "5e144331044ecc3ef96d8a6c89a29d299948dd91fe5bf5478542e059baf464af"
+    },
+    {
+      "name": "validate_interfaces",
+      "AST_sha256": "b0e2deba7e5bfa74d10bf6cb18d0ef5223c10e5c24d3d753fcbcf3a70e223bb7",
+      "text_sha256": "b84c3d1314e158269b84713a45efbaa58d9ebc78017cfbeb7d0958082b301a44"
+    },
+    {
+      "name": "edit_once",
+      "AST_sha256": "c1e7835ce688654728abe1ad2c4e929ecd83c1a19fd5b474d3e45075c45a4d6b",
+      "text_sha256": "8cd115e0185df8dad470468b5853aa0f8b7a58e94ee5493371dae95e06edb951"
+    },
+    {
+      "name": "source_reference",
+      "AST_sha256": "4188bc55d8ade84881c8078297e2a3a138169d35d3b7531f0706a7d93d6d03ae",
+      "text_sha256": "04f0cd59ed9538fda122a706ccc95d2c1360d3f3fbd2a1860d63bb0e027a5839"
+    },
+    {
+      "name": "outside_reference",
+      "AST_sha256": "313683bcff3fc3bf739d209566e47cc043ee5ea5e117e61861dbe79ea689f37e",
+      "text_sha256": "2ec77ca8eb0baa253ab503e8bd2677f0b959b37e6647aaa38eb4cd37e2cdf228"
+    },
+    {
+      "name": "parameter_projection",
+      "AST_sha256": "c21e9981125c2d48fe352d6462fac3bdff78e184551c3e32082649520772699d",
+      "text_sha256": "af2717acbc811f8b271bbdf81caf226bcd8450bbadd67377929e0f8255d69438"
+    },
+    {
+      "name": "retained_positions",
+      "AST_sha256": "b6c42acec7f0a056c4c9a3d2cec0bfada33fa018caa07edf6ebb832dcfed96a8",
+      "text_sha256": "0f915c94204097669f917d1a6cc3bd628a00f0dbb79635ce2b0db88b82dd832a"
+    },
+    {
+      "name": "parameter_record",
+      "AST_sha256": "c69115d1ab8fc96206751f0379d13fc7121b3c0178cf402418f4573796c82ad5",
+      "text_sha256": "7683475b952a514033f4320d0227ed580f5911b392926f418cdb68544f91c5ad"
+    },
+    {
+      "name": "metadata_snapshot",
+      "AST_sha256": "a7e5289c11c3fe5156180e82b59086aedb71c253a4605b4a764066168804025b",
+      "text_sha256": "1f1c4fafa2a5b30f1dcb7a88cb6e391c93133a79ebf7e63bc4a6f9e16f60bdb7"
+    },
+    {
+      "name": "require_snapshot",
+      "AST_sha256": "770e668ff7ccf66363fa9c7914115aaddd0b94c17d5b90455823c41502a6ea0e",
+      "text_sha256": "05cba5b6ef4b4d16c754325700b64528471ffe75f3f878bcf5586a36c710c633"
+    },
+    {
+      "name": "current_after_proof",
+      "AST_sha256": "288a99469d54434368b980144df514788720b72bba51742dc37f195ed93f4171",
+      "text_sha256": "45d136561d3f0fe42dbbc5d0cb8715fae0391b8e96416695f58e10f72e18d4e4"
+    },
+    {
+      "name": "require_original_records",
+      "AST_sha256": "8bd6f842591f44ce477f53764b5eba591941f8430bcff0361bca967c0af28b03",
+      "text_sha256": "049256f09e160f8d830d3fdc7e178cd510b344940dbc684898fb96b150772b9f"
+    },
+    {
+      "name": "valid_positive_volume",
+      "AST_sha256": "4808a641ac46c09bbbf8afa51a6e5edf59f94bb5d627a454233a281d6208286e",
+      "text_sha256": "313c35a8ec556ca49eb689eafe85a71aec22b055a7fb20158d779e7360b238c1"
+    },
+    {
+      "name": "main",
+      "AST_sha256": "2070662fa1132daec09955a85585bac35eb1e23967b90ee3920ccf57ab4b5bf8",
+      "text_sha256": "f90878802ee716d244affcab96a4d0a439f68d772c269e051d6af13de558cea7"
+    }
+  ],
+  "changed_reader_functions": [
+    "require_contract"
+  ],
+  "unchanged_guard_methods": {
+    "test_actual_noncontiguous_tag_lookup_and_fresh_offsets": "09aaf421c132b3af4ceaee82c4d85a35b72e806972dc1712953e39ec18db95e4",
+    "test_real_manifest15_root_acceptance_and_vertex_disjoint_source_guard": "5c820b34bdcd98758edb518b0ace1925d78538640ef8df43f7e47ffb456d86c0",
+    "test_subset_interface_ownership_not_superset_removed_flag": "0ce480ee1f216915db0833e474768d4979cd68b37624ba01275368b2a726a6eb",
+    "test_complete_union_api_order_conditional_add_and_attempt_failures": "3319e43d32a2dba30ed4cb6502283d7e79a85e50ee8bcf3f48774e20820ed74d",
+    "test_subset_outside_retains_unadmitted_apex_and_signed_zero": "a26898cb87eff7eb391ad13fcc3c96a1b7c819db6c2cf1212597ee6d3f73a4ce",
+    "test_retained_actual_parameters_full_before_and_multiple_apex_exclusion": "5768d4d623ff875ff31dcb79e2b447bc0f0c2e1be3cc09a12b5f6075267de9b4",
+    "test_one_write_full_reopen_and_strict_refusal_control": "aae729b28e90df644e4c20ead6132a76938d7f248360ff1eaa1536b5572ea3e2",
+    "test_pending_context_admission_is_fail_closed_before_native_imports": "de19023f017e1c967a4e365fbe82344aa1574c17fb03bf7d2474984231a3f95d"
+  },
+  "new_guard_methods": [
+    "test_real_admitted_context_runtime_schema_and_separate_NumPy_drift_refusal"
+  ],
+  "controller_exact": {
+    "path": "work/962-engineering/head-star-current126-alternative-combined-application-prep-002/run_readback.py",
+    "sha256": "5ab38b53e4019506772cc429b46699ac0e217141c87a0a043718d8123ecb159c",
+    "bytes": 4652
+  },
+  "manifest_alias": {
+    "original": {
+      "path": "work/962-engineering/head-star-current126-alternative-combined-application-prep-001/admitted-manifest.json",
+      "sha256": "5270a56b18e1dbefc1dd117fb38a53e1fd8a1bcd5bbf9868943896a46b1c6773",
+      "bytes": 95862
+    },
+    "selected": {
+      "path": "work/962-engineering/head-star-current126-alternative-combined-application-prep-002/admitted-manifest.json",
+      "sha256": "5270a56b18e1dbefc1dd117fb38a53e1fd8a1bcd5bbf9868943896a46b1c6773",
+      "bytes": 95862
+    },
+    "bytes_equal": true,
+    "runtime_consumed_path_remains_original_immutable_manifest": true
+  },
+  "real_context_schema_fixture": {
+    "path": "work/962-engineering/head-star-current126-alternative-union-context-001/frozen-contract.json",
+    "sha256": "0ae7184a29a62645e1c88cb905381cb759e90f1ed897305dc29a276c8029c5c3",
+    "bytes": 16757
+  },
+  "approved_separate_NumPy_binding": {
+    "path": "work/962-engineering/head-star-current126-alternative-union-context-execution-prep-001/runtime-parent-preflight.json",
+    "sha256": "b6d197768a0cd72cee0b84b2ce3654428a0194b48f9919bbafaedc3c2203b16f",
+    "bytes": 14661
+  },
+  "current_context_preparation_acceptance": {
+    "path": "work/962-engineering/current126-alternative-union-context-root-execution-001/result-peer-acceptance.json",
+    "sha256": "cf621556be8239ca566f0a5946271d9378baf9f2764d64c33b767db888022ced",
+    "bytes": 23730
+  },
+  "AST_context": {
+    "implementation": "CPython",
+    "version": "3.10.11",
+    "serialization": "ast.dump(node, include_attributes=False).encode()",
+    "cross_version_digest_equivalence_claimed": false
+  },
+  "guard_execution": false,
+  "prepared_source_helper_native_geometry_execution": false,
+  "source_author": "replica_metrology; original combined and parameter helper lineage retained and not independently rederived",
+  "all_001_negative_history_preserved": true
+}

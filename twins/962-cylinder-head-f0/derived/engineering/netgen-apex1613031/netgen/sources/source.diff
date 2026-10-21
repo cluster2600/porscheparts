@@ -1,0 +1,54 @@
+--- work/962-engineering/fixed-shell-netgen-apex1613790-prep-001/reader.py
++++ work/962-engineering/fixed-shell-netgen-apex1613031-prep-001/reader.py
+@@ -3,20 +3,20 @@
+ import ast,hashlib,importlib.util,json,sys,time
+ 
+ ROOT=Path(__file__).resolve().parents[3];OUT=Path(__file__).resolve().parent
+-CAVITY='work/962-engineering/fixed-shell-generation-apex1613790-prep-001/reader.py'
+-CAVITY_SHA='21fca7c9dbdc1944b27f4c91f1aeba2cf251a059b0808dbc71356e2ff10b9239'
++CAVITY='work/962-engineering/fixed-shell-generation-apex1613031-prep-001/reader.py'
++CAVITY_SHA='d3842f573f8a41d3d579d2276e0bf5ea6080362bb6a6bf44eda2174db60f3c6a'
+ CUBE='work/962-engineering/atomic-cavity-plane-clip-cap-assembly-netgen-cube-prep-002/reader.py'
+ CUBE_SHA='97b7e9fc7d17defa84594c50dac1d4e09cd39bb47ef2059e00b6ac07fe8c029b'
+-INPUT='work/962-engineering/fixed-shell-generation-apex1613790-001/cavity.msh'
+-INPUT_SHA='663849ba4bd014f0075474855bf08e49b90f7e961e04165a6f363712c81eacf6'
+-WORKER='work/962-engineering/fixed-shell-generation-apex1613790-001/fixture-report.json'
+-WORKER_SHA='d25b53b86c737e13acf1d646543b8bd44b832145d5db46daa72d48619bfb14f2'
+-ARRAYS='work/962-engineering/fixed-shell-generation-apex1613790-001/arrays.json'
+-ARRAYS_SHA='420c216e5ae4b3729bba738d93317b7e15342c0cf594710fe43a100b35aecacb'
++INPUT='work/962-engineering/fixed-shell-generation-apex1613031-001/cavity.msh'
++INPUT_SHA='23bbb0a2800b468b1b2ee9e22c6d83fad0238c4989bb83b4de6aaa1309d3b140'
++WORKER='work/962-engineering/fixed-shell-generation-apex1613031-001/fixture-report.json'
++WORKER_SHA='7cd2b6107d3055644a48f603b076348f627f3c58ff9c7de742f49825e53d2911'
++ARRAYS='work/962-engineering/fixed-shell-generation-apex1613031-001/arrays.json'
++ARRAYS_SHA='91c6f039022035a298c79c8aa311298e785f925cbc0f389b9a0117982145e19a'
+ AUDIT_INPUTS={
+  'twins/962-cylinder-head-f0/source/mesh_head.py':'69c8012e99057e384d44d6971d41f0e2cc7197a978120a7c566b0ad5a6477da5',
+  'work/962-engineering/atomic-cavity-plane-clip-cap-assembly-delaunay-prep-001/mesh_assembled_delaunay.py':'a3268687edc90b0149775cf5d80a89df82175cc982bbf5d7184b6ea8935be8a4',
+- 'work/962-engineering/direct-sicn-apex1613790-cavity-study-001/local-shell-input-001.json':'f31dfcd760db5c8765fcd0665ea3a9b17d5cf81d35d91467b924d3c660d0bcb9'}
++ 'work/962-engineering/direct-sicn-apex1613031-cavity-study-001/local-shell-input-001.json':'6529ffc5a5ca738c4bfe3041d858f2d40cc50efc6ee0e1dc5bcc626fd720d92d'}
+ OPTIONS={'General.NumThreads':2,'Mesh.MaxNumThreads3D':2,'Mesh.Renumber':0,
+  'Mesh.Optimize':0,'Mesh.OptimizeNetgen':0,'Mesh.OptimizeThreshold':.3,
+  'Mesh.Binary':1,'Mesh.SaveAll':1,'Mesh.MshFileVersion':4.1}
+@@ -65,9 +65,9 @@
+      or worker.get('bound_inputs_unchanged') is not True or worker.get('mesh_sha256')!=INPUT_SHA
+      or worker.get('upstream_census_launch_deviation_sha256')!='d60fff297c6c45dc92e117262e36ffde36e2169d53fcd32ce2b79fabde5eebc3'
+      or worker.get('declared_controller_command_conformant') is not False
+-     or worker.get('mesh_bytes')!=2790 or worker.get('full_tiny_arrays_sha256')!=ARRAYS_SHA
+-     or (r.get('nodes'),r.get('tetrahedra'),r.get('referenced_interior_nodes'),r.get('unreferenced_nodes'))!=(16,24,0,0)
+-     or (q.get('count'),q.get('below_point1_count'),q.get('nonpositive_count'),q.get('minimum'))!=(24,2,0,.09212681714853574)):
++     or worker.get('mesh_bytes')!=1518 or worker.get('full_tiny_arrays_sha256')!=ARRAYS_SHA
++     or (r.get('nodes'),r.get('tetrahedra'),r.get('referenced_interior_nodes'),r.get('unreferenced_nodes'))!=(9,9,0,0)
++     or (q.get('count'),q.get('below_point1_count'),q.get('nonpositive_count'),q.get('minimum'))!=(9,1,0,.05102133753836959)):
+   raise ValueError('Exact single stopped saved-cavity baseline required; its quality rejection is preserved')
+ 
+ def expected_live(helper,worker,arrays):
+@@ -116,7 +116,7 @@
+   require_before(helper,live['before'],expected);before=cavity.boundary_snapshot(gmsh,helper)
+   if any(gmsh.option.getNumber(k)!=v for k,v in OPTIONS.items()):raise ValueError('Fixed options changed before geometry/optimizer operations')
+   report.update(single_saved_before_state_exact=True,shell=shell,original_source_classifications=data['original_source_classifications'],
+-   local_to_global_shell_node_tags=data['local_to_global_node_tags'],all16_shell_nodes_fixed_only_for_this_cavity_operation=True)
++   local_to_global_shell_node_tags=data['local_to_global_node_tags'],all9_shell_nodes_fixed_only_for_this_cavity_operation=True)
+   report['stage']='volume_only_geometry_flag'
+   inspect=lambda:cavity.inspect_cavity(gmsh,helper)
+   live['after_geometry_flag']=helper.geometry_flag_only(gmsh,live['before'],inspect,report['native_operation_counts'])

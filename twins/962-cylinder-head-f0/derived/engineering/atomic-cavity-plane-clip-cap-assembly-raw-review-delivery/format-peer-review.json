@@ -1,0 +1,103 @@
+{
+  "schema": "962-assembled-PLY-stopped-format-peer/v1",
+  "status": "CLEAR_complete_lossless_format_only_unadmitted_geometry",
+  "method": "Independent stdlib stream/struct read of every source and PLY coordinate byte and ordered triangle index, plus exact ASCII header and saved source/receipt/log/hash associations. No prepared source execution/import, NumPy, geometry query, native/compiler/fixture or renderer call.",
+  "reviewed_files": {
+    "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-001/candidate.bin": {
+      "sha256": "9d62eac6e2cd7b6a9ecb4a7ea5b632685820369b5c4ede379acc34238f50d7b4",
+      "bytes": 62774640
+    },
+    "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-raw-review-prep-001/head-plane0-assembled-exact.ply": {
+      "sha256": "542d939a6c6826f116db18ea7f156a425c0bce368739c7e7a4e01b4d60638574",
+      "bytes": 43592418
+    },
+    "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-raw-review-prep-001/export_ply.py": {
+      "sha256": "01a8a3e648394df856bf88d552abf847f9cadf34cdffc469f9e31fb3928ec50e",
+      "bytes": 3714
+    },
+    "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-raw-review-prep-001/verify_ply.py": {
+      "sha256": "7c263d11cba0ce7fa9a0af7d034613b6b3c7f20fe1295acfef11b391595422db",
+      "bytes": 4452
+    },
+    "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-raw-review-prep-001/PLY-export.json": {
+      "sha256": "b669f37f24abc531eb227f6893da7c357eb104cb139bea907eb377d50d03f18e",
+      "bytes": 1237
+    },
+    "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-raw-review-prep-001/PLY-independent-readback.json": {
+      "sha256": "2ffc221ec5fae89b1af6d49443b70ea7bdc746de8bb76102a6e97efd82462194",
+      "bytes": 1558
+    },
+    "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-raw-review-prep-001/root-format-execution.json": {
+      "sha256": "32fbf4af6f574f43d709b1b18f7afdf690d6b1fb9c09e58ea07d65b5100181cf",
+      "bytes": 1331
+    },
+    "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-raw-review-source-peer-001/review.json": {
+      "sha256": "c97155cb99c6d56756c041ceaea507c5ad990be48530722de3f2d17394a5e7b2",
+      "bytes": 5507
+    },
+    "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-raw-review-prep-001/source-reuse.json": {
+      "sha256": "08d951cbc90ac4cd102e107487194a34980e98babc50ad3dcca4fe5156c2ce2e",
+      "bytes": 2709
+    },
+    "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-raw-review-prep-001/export-console.log": {
+      "sha256": "b669f37f24abc531eb227f6893da7c357eb104cb139bea907eb377d50d03f18e",
+      "bytes": 1237
+    },
+    "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-raw-review-prep-001/readback-console.log": {
+      "sha256": "2ffc221ec5fae89b1af6d49443b70ea7bdc746de8bb76102a6e97efd82462194",
+      "bytes": 1558
+    }
+  },
+  "source_sha256": "9d62eac6e2cd7b6a9ecb4a7ea5b632685820369b5c4ede379acc34238f50d7b4",
+  "PLY_sha256": "542d939a6c6826f116db18ea7f156a425c0bce368739c7e7a4e01b4d60638574",
+  "PLY_bytes": 43592418,
+  "full_readback": {
+    "vertices": 871731,
+    "oriented_triangles": 1743878,
+    "coordinate_bytes_exact": 20921544,
+    "all_face_list_counts_three": true,
+    "all_ordered_indices_exact_and_in_range": true,
+    "index_min": 0,
+    "index_max": 871730,
+    "bounds_mm": [
+      [
+        -76.0,
+        -75.0,
+        0.0
+      ],
+      [
+        76.0,
+        75.0,
+        90.00059509277344
+      ]
+    ],
+    "all_coordinates_finite": true,
+    "no_trailing_bytes": true,
+    "source_payload_bytes": 62774640,
+    "PLY_header_bytes": 460,
+    "PLY_header_sha256": "c8ff39ce7ac303b71b7a8e0719bda665f0abaf83b9ab9a9b78181f31baa64906",
+    "exact_header_ASCII": "ply\nformat binary_little_endian 1.0\ncomment UNADMITTED assembled surface; reverse distance incomplete; no OEM datum or physics qualification\ncomment Coordinates are millimetres; PLY has no standardized unit metadata\ncomment source_962SURF1_sha256 9d62eac6e2cd7b6a9ecb4a7ea5b632685820369b5c4ede379acc34238f50d7b4\nelement vertex 871731\nproperty double x\nproperty double y\nproperty double z\nelement face 1743878\nproperty list uchar uint vertex_indices\nend_header\n",
+    "coordinate_transform_rounding_or_geometry_generation": false
+  },
+  "saved_phase_association": {
+    "export_returncode": 0,
+    "independent_readback_returncode": 0,
+    "ordinary_timeout_seconds_each": 60,
+    "source_and_log_hashes_exact": true,
+    "export_receipt_historical_pending_readback_status_preserved": true,
+    "completed_readback_receipt_associated_by_export_hash": true,
+    "hard_CPU_or_RAM_quota_claimed": false
+  },
+  "original_exporter_verifier_sources_unchanged": true,
+  "reviewer_stream_read_seconds": 5.807705458020791,
+  "scope": [
+    "This proves complete format fidelity and header truth for current9d62 only. The exact PLY suffix refers to byte/index preservation, not Porsche/OEM dimensional accuracy.",
+    "Header explicitly retains UNADMITTED status, incomplete reverse distance and no OEM datum/physics qualification. There is no two-way distance pass.",
+    "No compiled fixture or native test belongs to this format conversion. Native geometry/quality/physics/LPBF/manufacturing acceptance is neither run nor implied.",
+    "Reviewed original format files are preserved. This is a format-result prerequisite, not a ZIP/archive/upload/download verification."
+  ],
+  "PLY_export_or_readback_rerun_by_peer": false,
+  "geometry_or_native_calls": 0,
+  "head_surface_or_solver_or_physical_or_manufacturing_admitted": false,
+  "findings": []
+}

@@ -1,0 +1,2417 @@
+{
+  "schema": "962-apex1613031-head-application-root-closed/v1",
+  "preflight": {
+    "path": "work/962-engineering/apex1613031-head-application-root-execution-001/preflight.json",
+    "sha256": "1109ec79169c22ca9354e8443b8df407e6057143ad3179a4125289293a562c5e",
+    "bytes": 36268
+  },
+  "materialization": {
+    "path": "work/962-engineering/apex1613031-head-application-root-execution-001/materialization.json",
+    "sha256": "d034b07e26b58e9ba27e3a354b6f4bad22da4fe664bb8afa9e503430a47f0203",
+    "bytes": 30762
+  },
+  "argv": [
+    "runtime-role://controller/python",
+    "-I",
+    "-B",
+    "work/962-engineering/apex1613031-head-application-001/run_readback.py",
+    "--contract-sha256",
+    "98c281e8e8633c7253a7e13e5a5979f1c31ab967ef1af798b0a0415fa07b26fb"
+  ],
+  "environment": {
+    "PATH": "/usr/bin:/bin",
+    "LANG": "C",
+    "PYTHONUTF8": "1",
+    "OMP_NUM_THREADS": "2",
+    "OPENBLAS_NUM_THREADS": "2",
+    "PYTHONDONTWRITEBYTECODE": "1"
+  },
+  "pid": 88353,
+  "returncode": 2,
+  "wall_seconds": 178.00057641696185,
+  "signals": [],
+  "outer_fallback_used": false,
+  "error": null,
+  "controller_waited_reaped": true,
+  "controller_owned_group_absent": true,
+  "inputs79_before": {
+    "twins/962-cylinder-head-f0/source/mesh_head.py": {
+      "path": "twins/962-cylinder-head-f0/source/mesh_head.py",
+      "sha256": "69c8012e99057e384d44d6971d41f0e2cc7197a978120a7c566b0ad5a6477da5",
+      "bytes": 20584
+    },
+    "work/962-engineering/apex1474426-head-application-prep-001/reader.py": {
+      "path": "work/962-engineering/apex1474426-head-application-prep-001/reader.py",
+      "sha256": "15443fe1c0adebb02a4abe8a4db1c8dbb2f5148ad37f992ae8e74df8cd28d7d1",
+      "bytes": 38527
+    },
+    "work/962-engineering/apex1613031-domain-equivalence-001/report.json": {
+      "path": "work/962-engineering/apex1613031-domain-equivalence-001/report.json",
+      "sha256": "6e12be8b4be563c49ebf0dd06ecf9d69b8fcb338d8cd777303899de509e610d9",
+      "bytes": 114273
+    },
+    "work/962-engineering/apex1613031-domain-equivalence-execution-prep-001/actual-contract.json": {
+      "path": "work/962-engineering/apex1613031-domain-equivalence-execution-prep-001/actual-contract.json",
+      "sha256": "9886958b431db631b2ad1d9591dabea299119210802d2abe64cf9e501f2ee61d",
+      "bytes": 13593
+    },
+    "work/962-engineering/apex1613031-domain-equivalence-prep-001/certify_domain.py": {
+      "path": "work/962-engineering/apex1613031-domain-equivalence-prep-001/certify_domain.py",
+      "sha256": "3cb92684b1d757617854d5ea1b0896e04db632648251810fc784289110330118",
+      "bytes": 17458
+    },
+    "work/962-engineering/apex1613031-domain-equivalence-result-peer-001/bindings.json": {
+      "path": "work/962-engineering/apex1613031-domain-equivalence-result-peer-001/bindings.json",
+      "sha256": "7c86ae0026c221ed92af3729e85d0a40fc8c069f845c4ce5de9f23e224d29893",
+      "bytes": 34622
+    },
+    "work/962-engineering/apex1613031-domain-equivalence-result-peer-001/review.json": {
+      "path": "work/962-engineering/apex1613031-domain-equivalence-result-peer-001/review.json",
+      "sha256": "431e33c21d3364d43b9036177575cf95f6551aba99f673c069f6ef11c7632079",
+      "bytes": 5415
+    },
+    "work/962-engineering/apex1613031-domain-equivalence-root-execution-001/result-peer-acceptance.json": {
+      "path": "work/962-engineering/apex1613031-domain-equivalence-root-execution-001/result-peer-acceptance.json",
+      "sha256": "53df7322ea94a9388d896978be4f50abeb3bb5bf65ae8338ad530836982afa13",
+      "bytes": 3558
+    },
+    "work/962-engineering/apex1613790-head-application-001/execution-receipt.json": {
+      "path": "work/962-engineering/apex1613790-head-application-001/execution-receipt.json",
+      "sha256": "28bb0647a28de19e2413c0066468946ac5eee77e4b2e24a8b5f570ca184150fa",
+      "bytes": 32324
+    },
+    "work/962-engineering/apex1613790-head-application-001/frozen-contract.json": {
+      "path": "work/962-engineering/apex1613790-head-application-001/frozen-contract.json",
+      "sha256": "d016fb42f6363995739193521db416741ff8609ef0ca12c22b3dc7e8fdfce272",
+      "bytes": 17424
+    },
+    "work/962-engineering/apex1613790-head-application-001/readback-report.json": {
+      "path": "work/962-engineering/apex1613790-head-application-001/readback-report.json",
+      "sha256": "bb1266ede7b8fd41f282a04c2363ba0eb684a94b6272956895bb7a30a09ffad0",
+      "bytes": 31393
+    },
+    "work/962-engineering/apex1613790-head-application-prep-001/held-contract.json": {
+      "path": "work/962-engineering/apex1613790-head-application-prep-001/held-contract.json",
+      "sha256": "0b15a69b86520b8e1a284f6b927ae39afcbf2a9b282740f861dba0d1b1cd53b6",
+      "bytes": 15382
+    },
+    "work/962-engineering/apex1613790-head-application-prep-001/reader.py": {
+      "path": "work/962-engineering/apex1613790-head-application-prep-001/reader.py",
+      "sha256": "0e3db83e33b1dec8b49e42401b313735c7c5fecfcd17cee5268f5ccc7a797a90",
+      "bytes": 51263
+    },
+    "work/962-engineering/apex1613790-head-application-prep-001/run_readback.py": {
+      "path": "work/962-engineering/apex1613790-head-application-prep-001/run_readback.py",
+      "sha256": "5ab38b53e4019506772cc429b46699ac0e217141c87a0a043718d8123ecb159c",
+      "bytes": 4652
+    },
+    "work/962-engineering/apex1613790-head-application-prep-001/selfcheck.py": {
+      "path": "work/962-engineering/apex1613790-head-application-prep-001/selfcheck.py",
+      "sha256": "46ef833a30cc15876a59e12a487740bb503e253204776ac7c2876f1971495eae",
+      "bytes": 16168
+    },
+    "work/962-engineering/apex1613790-head-application-root-execution-001/closed-result.json": {
+      "path": "work/962-engineering/apex1613790-head-application-root-execution-001/closed-result.json",
+      "sha256": "e6951a0c920f88dda87efce797c111b1da83bb81f33cc2cd2c8acb900867504f",
+      "bytes": 22835
+    },
+    "work/962-engineering/apex1613790-head-application-root-execution-001/result-peer-acceptance.json": {
+      "path": "work/962-engineering/apex1613790-head-application-root-execution-001/result-peer-acceptance.json",
+      "sha256": "e4bdec1ed7926231190f21a0b9986f47363bbbcf41daec2948e884459fef051c",
+      "bytes": 2794
+    },
+    "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-delaunay-netgen-postexport-prep-002/mesh_delaunay_netgen_postexport.py": {
+      "path": "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-delaunay-netgen-postexport-prep-002/mesh_delaunay_netgen_postexport.py",
+      "sha256": "0d1dd1f0625275343f16b713dae2d41143dda8da974bef42e59f6bfa3b0e388a",
+      "bytes": 43377
+    },
+    "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-delaunay-prep-001/mesh_assembled_delaunay.py": {
+      "path": "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-delaunay-prep-001/mesh_assembled_delaunay.py",
+      "sha256": "a3268687edc90b0149775cf5d80a89df82175cc982bbf5d7184b6ea8935be8a4",
+      "bytes": 21422
+    },
+    "work/962-engineering/current127-apex1613031-head-context-001/frozen-contract.json": {
+      "path": "work/962-engineering/current127-apex1613031-head-context-001/frozen-contract.json",
+      "sha256": "37db8019cbfe3db7e14e932ea337ff82fea599aec1f136ddf443b9659055b115",
+      "bytes": 32987
+    },
+    "work/962-engineering/current127-apex1613031-head-context-001/readback-report.json": {
+      "path": "work/962-engineering/current127-apex1613031-head-context-001/readback-report.json",
+      "sha256": "2a420ddbf8b88d648a30359ee2ecbe1441f2a7f3a8305b1d488b55ffb6dc9902",
+      "bytes": 40248
+    },
+    "work/962-engineering/current127-apex1613031-head-context-prep-001/reader.py": {
+      "path": "work/962-engineering/current127-apex1613031-head-context-prep-001/reader.py",
+      "sha256": "7b38ef1fd0928544126e3b4f9720049037ad47e82a48162863b3a103057c81dd",
+      "bytes": 37106
+    },
+    "work/962-engineering/current127-apex1613031-head-context-result-peer-001/ROOT-OWN-REVIEW-LINEAGE-COMPANION-001.json": {
+      "path": "work/962-engineering/current127-apex1613031-head-context-result-peer-001/ROOT-OWN-REVIEW-LINEAGE-COMPANION-001.json",
+      "sha256": "45312e2ac9cfe1a7eb258a2ee9d92f1c517264004bc91905265c705a25b99130",
+      "bytes": 1681
+    },
+    "work/962-engineering/current127-apex1613031-head-context-result-peer-001/bindings.json": {
+      "path": "work/962-engineering/current127-apex1613031-head-context-result-peer-001/bindings.json",
+      "sha256": "a1787e73ecbf7f80dfbb29d2881b7653410d87e0e98089ee4dcd6a95d5e9f536",
+      "bytes": 60081
+    },
+    "work/962-engineering/current127-apex1613031-head-context-result-peer-001/review.json": {
+      "path": "work/962-engineering/current127-apex1613031-head-context-result-peer-001/review.json",
+      "sha256": "9fd13ef8e7fb55c6d2756ca40e2b202bea6be5ac179173ccdf173e83f3ccff01",
+      "bytes": 4899
+    },
+    "work/962-engineering/current127-apex1613031-head-context-root-execution-001/closed-result.json": {
+      "path": "work/962-engineering/current127-apex1613031-head-context-root-execution-001/closed-result.json",
+      "sha256": "5083013cb604515bcde15f3328f72e20ef46b30e06f0fd5fa9cc5c17d86d87e8",
+      "bytes": 66388
+    },
+    "work/962-engineering/current127-apex1613031-head-context-root-execution-001/own-review-lineage-correction-001.json": {
+      "path": "work/962-engineering/current127-apex1613031-head-context-root-execution-001/own-review-lineage-correction-001.json",
+      "sha256": "8ff39b1bf07481d22d070935597f452850d23eab484086b1fb6e0dfdb6977e6c",
+      "bytes": 961
+    },
+    "work/962-engineering/current127-apex1613031-head-context-root-execution-001/own-review.json": {
+      "path": "work/962-engineering/current127-apex1613031-head-context-root-execution-001/own-review.json",
+      "sha256": "8671261afe1ec6b5fa68eeaf14c7e40f0bc016a9e464558ed4dd99038ff69135",
+      "bytes": 2729
+    },
+    "work/962-engineering/current127-apex1613031-head-context-root-execution-001/result-peer-acceptance.json": {
+      "path": "work/962-engineering/current127-apex1613031-head-context-root-execution-001/result-peer-acceptance.json",
+      "sha256": "49c9181cdba8650211754723ef6729efaa4b3b05b2d7d3a82a3ba7cc78d45859",
+      "bytes": 4463
+    },
+    "work/962-engineering/current127-apex1613031-head-context-source-peer-001/AUTHOR-LINEAGE-CORRECTION-001.json": {
+      "path": "work/962-engineering/current127-apex1613031-head-context-source-peer-001/AUTHOR-LINEAGE-CORRECTION-001.json",
+      "sha256": "ea8c38acd2d9ae09821d139ef0958516dc24d40aeea5f45960f0983b6e1d9804",
+      "bytes": 1314
+    },
+    "work/962-engineering/direct-sicn-apex1613031-cavity-study-001/local-shell-input-001.json": {
+      "path": "work/962-engineering/direct-sicn-apex1613031-cavity-study-001/local-shell-input-001.json",
+      "sha256": "6529ffc5a5ca738c4bfe3041d858f2d40cc50efc6ee0e1dc5bcc626fd720d92d",
+      "bytes": 17793
+    },
+    "work/962-engineering/direct-sicn-apex1613031-cavity-study-001/saved-star-observation.json": {
+      "path": "work/962-engineering/direct-sicn-apex1613031-cavity-study-001/saved-star-observation.json",
+      "sha256": "89689ac5ce5f12c8922be4cbe45e36565f60eed080633aaffa79539c8e12c8d3",
+      "bytes": 30665
+    },
+    "work/962-engineering/fixed-shell-netgen-apex1613031-001/arrays.json": {
+      "path": "work/962-engineering/fixed-shell-netgen-apex1613031-001/arrays.json",
+      "sha256": "84df4795b0e7499c45b56a0af800e2470a51b5333a881b8150ea735ed2d03954",
+      "bytes": 13885
+    },
+    "work/962-engineering/fixed-shell-netgen-apex1613031-001/fixture-report.json": {
+      "path": "work/962-engineering/fixed-shell-netgen-apex1613031-001/fixture-report.json",
+      "sha256": "a7f4aa89c415be333b03301575898c4f2fc7ea56a9664c22422bb81ad2092a8b",
+      "bytes": 17220
+    },
+    "work/962-engineering/fixed-shell-netgen-apex1613031-result-peer-001/bindings.json": {
+      "path": "work/962-engineering/fixed-shell-netgen-apex1613031-result-peer-001/bindings.json",
+      "sha256": "dc23febe02576eaa17aab53c697bef3d67e4d774090780e0f313527d2dab1f51",
+      "bytes": 61555
+    },
+    "work/962-engineering/fixed-shell-netgen-apex1613031-result-peer-001/review.json": {
+      "path": "work/962-engineering/fixed-shell-netgen-apex1613031-result-peer-001/review.json",
+      "sha256": "b92bf933b272e39d5362c1adaf4bac155e98258668456d29abf5d6d4cb0b6fbe",
+      "bytes": 4704
+    },
+    "work/962-engineering/fixed-shell-netgen-apex1613031-root-execution-001/result-peer-acceptance.json": {
+      "path": "work/962-engineering/fixed-shell-netgen-apex1613031-root-execution-001/result-peer-acceptance.json",
+      "sha256": "42ae8e27bc62f63c280c185c1d036223fbeea05f4452aec39cbfce4653c9813e",
+      "bytes": 3581
+    },
+    "work/962-engineering/head-star-current127-full-stars-002/frozen-contract.json": {
+      "path": "work/962-engineering/head-star-current127-full-stars-002/frozen-contract.json",
+      "sha256": "54ad12959a10bb153afec2f2541bec2d22ec3f6e22ee0302c581062265c8fc95",
+      "bytes": 25659
+    },
+    "work/962-engineering/head-star-current127-full-stars-002/readback-report.json": {
+      "path": "work/962-engineering/head-star-current127-full-stars-002/readback-report.json",
+      "sha256": "34e3e29a23cedeb155485156cb40b4e92b6d0017eefd852f30383927eaaa7ef7",
+      "bytes": 2103518
+    },
+    "work/962-engineering/head-star-current127-full-stars-execution-prep-002/actual-contract.json": {
+      "path": "work/962-engineering/head-star-current127-full-stars-execution-prep-002/actual-contract.json",
+      "sha256": "54ad12959a10bb153afec2f2541bec2d22ec3f6e22ee0302c581062265c8fc95",
+      "bytes": 25659
+    },
+    "work/962-engineering/head-star-current127-full-stars-prep-001/reader.py": {
+      "path": "work/962-engineering/head-star-current127-full-stars-prep-001/reader.py",
+      "sha256": "11ad364b54b6b8f264f1727027659351ab38c9144b4c98c64e5265203fcb8a63",
+      "bytes": 28027
+    },
+    "work/962-engineering/head-star-current127-full-stars-result-peer-001/bindings.json": {
+      "path": "work/962-engineering/head-star-current127-full-stars-result-peer-001/bindings.json",
+      "sha256": "968353193fa36fb96ec9dc85b4268ad3d37f011b19acff745c0a250dcf4fc2ac",
+      "bytes": 30939
+    },
+    "work/962-engineering/head-star-current127-full-stars-result-peer-001/review.json": {
+      "path": "work/962-engineering/head-star-current127-full-stars-result-peer-001/review.json",
+      "sha256": "e3f53c5b7280138296e4ffd8399149a61b9ecaf3bf796e4f780c74806a20b68b",
+      "bytes": 4119
+    },
+    "work/962-engineering/head-star-current127-full-stars-root-execution-001/result-peer-acceptance.json": {
+      "path": "work/962-engineering/head-star-current127-full-stars-root-execution-001/result-peer-acceptance.json",
+      "sha256": "bac2ff58db7e1f33556e8460e23d35cdd0cb7089c64afa6921ac7640b1bf0444",
+      "bytes": 2357
+    },
+    "work/962-engineering/head-star-current129-full-stars-root-execution-001/launch-deviation-001.json": {
+      "path": "work/962-engineering/head-star-current129-full-stars-root-execution-001/launch-deviation-001.json",
+      "sha256": "d60fff297c6c45dc92e117262e36ffde36e2169d53fcd32ce2b79fabde5eebc3",
+      "bytes": 3140
+    },
+    "work/962-engineering/head-star-current204-combined-application-001/reader.py": {
+      "path": "work/962-engineering/head-star-current204-combined-application-001/reader.py",
+      "sha256": "c66da821a1d98794ed78f403067e02c349c11a59d6c22de72e587b05e5fc82f5",
+      "bytes": 107135
+    },
+    "work/962-engineering/head-star-current204-union-context-prep-002/reader.py": {
+      "path": "work/962-engineering/head-star-current204-union-context-prep-002/reader.py",
+      "sha256": "c852a8a536a0ef2c58a37132fb51e42e525403d1f519375cc04a9860bfe53b29",
+      "bytes": 34933
+    },
+    "work/962-engineering/apex1613031-head-application-prep-001/reader.py": {
+      "path": "work/962-engineering/apex1613031-head-application-prep-001/reader.py",
+      "sha256": "5f7df7d36b297100ac997979f2cdc5f66e6562c87601359d952ea6047e246b56",
+      "bytes": 55884
+    },
+    "work/962-engineering/apex1613031-head-application-prep-001/run_readback.py": {
+      "path": "work/962-engineering/apex1613031-head-application-prep-001/run_readback.py",
+      "sha256": "5ab38b53e4019506772cc429b46699ac0e217141c87a0a043718d8123ecb159c",
+      "bytes": 4652
+    },
+    "work/962-engineering/apex1613031-head-application-prep-001/selfcheck.py": {
+      "path": "work/962-engineering/apex1613031-head-application-prep-001/selfcheck.py",
+      "sha256": "eaafd29bbedecb542b0cc392065e0850e34f4d66b476a64a23bb44338c4a48e7",
+      "bytes": 16832
+    },
+    "work/962-engineering/apex1613031-head-application-prep-001/source-reuse.json": {
+      "path": "work/962-engineering/apex1613031-head-application-prep-001/source-reuse.json",
+      "sha256": "fb783a8ea4ba1377cb2d28cb8ae8e80345546b55a8cff4d89abe9c5ec5d6757e",
+      "bytes": 123879
+    },
+    "work/962-engineering/apex1613031-head-application-prep-001/source.diff": {
+      "path": "work/962-engineering/apex1613031-head-application-prep-001/source.diff",
+      "sha256": "c4b14b097bccd7119c8e7e13dab56e7689956dc162f2ae9afdebf36b0a19d30a",
+      "bytes": 50426
+    },
+    "work/962-engineering/apex1613031-head-application-prep-001/selfcheck.diff": {
+      "path": "work/962-engineering/apex1613031-head-application-prep-001/selfcheck.diff",
+      "sha256": "3d80b89730aad57a81d6c891a9d39d85092066711c525d3f0e4c42e08d5fe8de",
+      "bytes": 14839
+    },
+    "work/962-engineering/apex1613031-head-application-prep-001/METHOD.md": {
+      "path": "work/962-engineering/apex1613031-head-application-prep-001/METHOD.md",
+      "sha256": "00a3064fec17dccc372ecea587c924c5b861e127ce1094e955bbfe41090286fe",
+      "bytes": 4765
+    },
+    "work/962-engineering/apex1613031-head-application-prep-001/CALLER-INVENTORY-CLARIFICATION-001.json": {
+      "path": "work/962-engineering/apex1613031-head-application-prep-001/CALLER-INVENTORY-CLARIFICATION-001.json",
+      "sha256": "db7bd0b1c8611b4a00ac9eaaaeeaf73ee42a4ab97a024eccf643b2446beaa44d",
+      "bytes": 5839
+    },
+    "work/962-engineering/apex1613031-head-application-prep-001/held-contract.json": {
+      "path": "work/962-engineering/apex1613031-head-application-prep-001/held-contract.json",
+      "sha256": "cd545d6568245e879da3077454a5e5bf452d3dea1af729180e9e5404f6762aa9",
+      "bytes": 17870
+    },
+    "work/962-engineering/apex1613031-head-application-prep-002/reader.py": {
+      "path": "work/962-engineering/apex1613031-head-application-prep-002/reader.py",
+      "sha256": "bd352d87c6fc3f4cfd8311ef169279725cf6a7c49e8cc0df2dca01b26d582361",
+      "bytes": 55884
+    },
+    "work/962-engineering/apex1613031-head-application-prep-002/run_readback.py": {
+      "path": "work/962-engineering/apex1613031-head-application-prep-002/run_readback.py",
+      "sha256": "5ab38b53e4019506772cc429b46699ac0e217141c87a0a043718d8123ecb159c",
+      "bytes": 4652
+    },
+    "work/962-engineering/apex1613031-head-application-prep-002/selfcheck.py": {
+      "path": "work/962-engineering/apex1613031-head-application-prep-002/selfcheck.py",
+      "sha256": "04b0c7f63eb97fdba2b6cd8c5546e883392ee2827c10ed3b7063ca4d754b4147",
+      "bytes": 16832
+    },
+    "work/962-engineering/apex1613031-head-application-prep-002/source-reuse.json": {
+      "path": "work/962-engineering/apex1613031-head-application-prep-002/source-reuse.json",
+      "sha256": "293bc3bc8268e5eb498226e4d3bf032b333868f5093e6cd4efb177cb011c1f5f",
+      "bytes": 6277
+    },
+    "work/962-engineering/apex1613031-head-application-prep-002/source.diff": {
+      "path": "work/962-engineering/apex1613031-head-application-prep-002/source.diff",
+      "sha256": "60f39951886adc757a71423eaf663626182b9ee38230353ef5230a086a2eec17",
+      "bytes": 1044
+    },
+    "work/962-engineering/apex1613031-head-application-prep-002/selfcheck.diff": {
+      "path": "work/962-engineering/apex1613031-head-application-prep-002/selfcheck.diff",
+      "sha256": "7b485cc36e31f4fca0022b49e735ed02be7f06decde3e9cb89ade358f9ee162c",
+      "bytes": 674
+    },
+    "work/962-engineering/apex1613031-head-application-prep-002/METHOD.md": {
+      "path": "work/962-engineering/apex1613031-head-application-prep-002/METHOD.md",
+      "sha256": "2c821f6d84afc1fb569b120eec0f9eac03b8c5c6dc1a7cdd3e77f7e6f6b5a168",
+      "bytes": 2598
+    },
+    "work/962-engineering/apex1613031-head-application-prep-002/held-contract.json": {
+      "path": "work/962-engineering/apex1613031-head-application-prep-002/held-contract.json",
+      "sha256": "981fe93e136c143f9379038cb7d2fa2955ef0b0ca7d4e3477050465daa6c7233",
+      "bytes": 20344
+    },
+    "work/962-engineering/apex1613031-head-application-source-peer-002/review.json": {
+      "path": "work/962-engineering/apex1613031-head-application-source-peer-002/review.json",
+      "sha256": "64d9731b247c3aee588037b1ec80f73a5c15713e97851c4eb77985ae131b2d04",
+      "bytes": 3906
+    },
+    "work/962-engineering/apex1613031-head-application-source-peer-002/bindings.json": {
+      "path": "work/962-engineering/apex1613031-head-application-source-peer-002/bindings.json",
+      "sha256": "ad784f131ee978d25e65fcb1c9fd0a45b4d4317a8be29060d04cb9842223f4fe",
+      "bytes": 29155
+    },
+    "work/962-engineering/apex1613031-head-application-source-peer-001/review.json": {
+      "path": "work/962-engineering/apex1613031-head-application-source-peer-001/review.json",
+      "sha256": "1d32e7d113e1f767a8f1af9c29cb08cec516f2a87b0b0f1615c86c45d1f00310",
+      "bytes": 4808
+    },
+    "work/962-engineering/apex1613031-head-application-source-peer-001/bindings.json": {
+      "path": "work/962-engineering/apex1613031-head-application-source-peer-001/bindings.json",
+      "sha256": "1116dc7155e44605181b2e52f484c782f54b4a973a0a27c5c6d20fb903c29546",
+      "bytes": 40484
+    },
+    "work/962-engineering/apex1613031-head-application-root-source-002/static-review.json": {
+      "path": "work/962-engineering/apex1613031-head-application-root-source-002/static-review.json",
+      "sha256": "5d9c67ff90742797318c0782d1f84561b6ee72f05d6b0ff039cc1cc2f3f03ac2",
+      "bytes": 25003
+    },
+    "work/962-engineering/apex1613031-head-application-root-source-002/authorization.json": {
+      "path": "work/962-engineering/apex1613031-head-application-root-source-002/authorization.json",
+      "sha256": "dbd8db7631486a69e43fb50f999ba26c2869de25151122495b91fca382544b86",
+      "bytes": 23954
+    },
+    "work/962-engineering/apex1613031-head-application-root-source-002/review.json": {
+      "path": "work/962-engineering/apex1613031-head-application-root-source-002/review.json",
+      "sha256": "948470906e274f9c83c1db1ab212ad1dbf84b2d44c6f4631bf19b2abf1ac4be2",
+      "bytes": 45833
+    },
+    "work/962-engineering/apex1613031-head-application-root-source-002/stdout.log": {
+      "path": "work/962-engineering/apex1613031-head-application-root-source-002/stdout.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "work/962-engineering/apex1613031-head-application-root-source-002/stderr.log": {
+      "path": "work/962-engineering/apex1613031-head-application-root-source-002/stderr.log",
+      "sha256": "7a10cf4c4326985375cc6ecd124c516babaca4661adc3a1b09fa57eb919eaeeb",
+      "bytes": 110
+    },
+    "work/962-engineering/apex1613031-head-application-root-source-001/static-blocker.json": {
+      "path": "work/962-engineering/apex1613031-head-application-root-source-001/static-blocker.json",
+      "sha256": "9e6222e4ee4440e5c1475fb56817bff83c8df76cc3dbdef0a075a5057f0de216",
+      "bytes": 20986
+    },
+    "work/962-engineering/apex1613031-head-application-runtime-root-002/review.json": {
+      "path": "work/962-engineering/apex1613031-head-application-runtime-root-002/review.json",
+      "sha256": "8338b61c07f58b0557dfef22d70277d78f61d84e87b7c00413290a7bd7a7e9f8",
+      "bytes": 9204
+    },
+    "work/962-engineering/fixed-shell-generation-apex1613790-runtime-origin-001/closed-result.json": {
+      "path": "work/962-engineering/fixed-shell-generation-apex1613790-runtime-origin-001/closed-result.json",
+      "sha256": "5af4f4182a39648008de2672d6874a3b202e091c77281940fd5976fab1ef7398",
+      "bytes": 2647
+    },
+    "work/962-engineering/apex1613790-head-application-001/head-volume.msh": {
+      "path": "work/962-engineering/apex1613790-head-application-001/head-volume.msh",
+      "sha256": "8b16732d63cc69e48af113f6b618cc6378aaf121dbe1c63920dd6dd5eab8d07a",
+      "bytes": 235786462
+    },
+    "work/962-engineering/apex1613031-head-application-001/reader.py": {
+      "path": "work/962-engineering/apex1613031-head-application-001/reader.py",
+      "sha256": "bd352d87c6fc3f4cfd8311ef169279725cf6a7c49e8cc0df2dca01b26d582361",
+      "bytes": 55884
+    },
+    "work/962-engineering/apex1613031-head-application-001/run_readback.py": {
+      "path": "work/962-engineering/apex1613031-head-application-001/run_readback.py",
+      "sha256": "5ab38b53e4019506772cc429b46699ac0e217141c87a0a043718d8123ecb159c",
+      "bytes": 4652
+    }
+  },
+  "inputs79_after": {
+    "twins/962-cylinder-head-f0/source/mesh_head.py": {
+      "path": "twins/962-cylinder-head-f0/source/mesh_head.py",
+      "sha256": "69c8012e99057e384d44d6971d41f0e2cc7197a978120a7c566b0ad5a6477da5",
+      "bytes": 20584
+    },
+    "work/962-engineering/apex1474426-head-application-prep-001/reader.py": {
+      "path": "work/962-engineering/apex1474426-head-application-prep-001/reader.py",
+      "sha256": "15443fe1c0adebb02a4abe8a4db1c8dbb2f5148ad37f992ae8e74df8cd28d7d1",
+      "bytes": 38527
+    },
+    "work/962-engineering/apex1613031-domain-equivalence-001/report.json": {
+      "path": "work/962-engineering/apex1613031-domain-equivalence-001/report.json",
+      "sha256": "6e12be8b4be563c49ebf0dd06ecf9d69b8fcb338d8cd777303899de509e610d9",
+      "bytes": 114273
+    },
+    "work/962-engineering/apex1613031-domain-equivalence-execution-prep-001/actual-contract.json": {
+      "path": "work/962-engineering/apex1613031-domain-equivalence-execution-prep-001/actual-contract.json",
+      "sha256": "9886958b431db631b2ad1d9591dabea299119210802d2abe64cf9e501f2ee61d",
+      "bytes": 13593
+    },
+    "work/962-engineering/apex1613031-domain-equivalence-prep-001/certify_domain.py": {
+      "path": "work/962-engineering/apex1613031-domain-equivalence-prep-001/certify_domain.py",
+      "sha256": "3cb92684b1d757617854d5ea1b0896e04db632648251810fc784289110330118",
+      "bytes": 17458
+    },
+    "work/962-engineering/apex1613031-domain-equivalence-result-peer-001/bindings.json": {
+      "path": "work/962-engineering/apex1613031-domain-equivalence-result-peer-001/bindings.json",
+      "sha256": "7c86ae0026c221ed92af3729e85d0a40fc8c069f845c4ce5de9f23e224d29893",
+      "bytes": 34622
+    },
+    "work/962-engineering/apex1613031-domain-equivalence-result-peer-001/review.json": {
+      "path": "work/962-engineering/apex1613031-domain-equivalence-result-peer-001/review.json",
+      "sha256": "431e33c21d3364d43b9036177575cf95f6551aba99f673c069f6ef11c7632079",
+      "bytes": 5415
+    },
+    "work/962-engineering/apex1613031-domain-equivalence-root-execution-001/result-peer-acceptance.json": {
+      "path": "work/962-engineering/apex1613031-domain-equivalence-root-execution-001/result-peer-acceptance.json",
+      "sha256": "53df7322ea94a9388d896978be4f50abeb3bb5bf65ae8338ad530836982afa13",
+      "bytes": 3558
+    },
+    "work/962-engineering/apex1613790-head-application-001/execution-receipt.json": {
+      "path": "work/962-engineering/apex1613790-head-application-001/execution-receipt.json",
+      "sha256": "28bb0647a28de19e2413c0066468946ac5eee77e4b2e24a8b5f570ca184150fa",
+      "bytes": 32324
+    },
+    "work/962-engineering/apex1613790-head-application-001/frozen-contract.json": {
+      "path": "work/962-engineering/apex1613790-head-application-001/frozen-contract.json",
+      "sha256": "d016fb42f6363995739193521db416741ff8609ef0ca12c22b3dc7e8fdfce272",
+      "bytes": 17424
+    },
+    "work/962-engineering/apex1613790-head-application-001/readback-report.json": {
+      "path": "work/962-engineering/apex1613790-head-application-001/readback-report.json",
+      "sha256": "bb1266ede7b8fd41f282a04c2363ba0eb684a94b6272956895bb7a30a09ffad0",
+      "bytes": 31393
+    },
+    "work/962-engineering/apex1613790-head-application-prep-001/held-contract.json": {
+      "path": "work/962-engineering/apex1613790-head-application-prep-001/held-contract.json",
+      "sha256": "0b15a69b86520b8e1a284f6b927ae39afcbf2a9b282740f861dba0d1b1cd53b6",
+      "bytes": 15382
+    },
+    "work/962-engineering/apex1613790-head-application-prep-001/reader.py": {
+      "path": "work/962-engineering/apex1613790-head-application-prep-001/reader.py",
+      "sha256": "0e3db83e33b1dec8b49e42401b313735c7c5fecfcd17cee5268f5ccc7a797a90",
+      "bytes": 51263
+    },
+    "work/962-engineering/apex1613790-head-application-prep-001/run_readback.py": {
+      "path": "work/962-engineering/apex1613790-head-application-prep-001/run_readback.py",
+      "sha256": "5ab38b53e4019506772cc429b46699ac0e217141c87a0a043718d8123ecb159c",
+      "bytes": 4652
+    },
+    "work/962-engineering/apex1613790-head-application-prep-001/selfcheck.py": {
+      "path": "work/962-engineering/apex1613790-head-application-prep-001/selfcheck.py",
+      "sha256": "46ef833a30cc15876a59e12a487740bb503e253204776ac7c2876f1971495eae",
+      "bytes": 16168
+    },
+    "work/962-engineering/apex1613790-head-application-root-execution-001/closed-result.json": {
+      "path": "work/962-engineering/apex1613790-head-application-root-execution-001/closed-result.json",
+      "sha256": "e6951a0c920f88dda87efce797c111b1da83bb81f33cc2cd2c8acb900867504f",
+      "bytes": 22835
+    },
+    "work/962-engineering/apex1613790-head-application-root-execution-001/result-peer-acceptance.json": {
+      "path": "work/962-engineering/apex1613790-head-application-root-execution-001/result-peer-acceptance.json",
+      "sha256": "e4bdec1ed7926231190f21a0b9986f47363bbbcf41daec2948e884459fef051c",
+      "bytes": 2794
+    },
+    "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-delaunay-netgen-postexport-prep-002/mesh_delaunay_netgen_postexport.py": {
+      "path": "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-delaunay-netgen-postexport-prep-002/mesh_delaunay_netgen_postexport.py",
+      "sha256": "0d1dd1f0625275343f16b713dae2d41143dda8da974bef42e59f6bfa3b0e388a",
+      "bytes": 43377
+    },
+    "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-delaunay-prep-001/mesh_assembled_delaunay.py": {
+      "path": "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-delaunay-prep-001/mesh_assembled_delaunay.py",
+      "sha256": "a3268687edc90b0149775cf5d80a89df82175cc982bbf5d7184b6ea8935be8a4",
+      "bytes": 21422
+    },
+    "work/962-engineering/current127-apex1613031-head-context-001/frozen-contract.json": {
+      "path": "work/962-engineering/current127-apex1613031-head-context-001/frozen-contract.json",
+      "sha256": "37db8019cbfe3db7e14e932ea337ff82fea599aec1f136ddf443b9659055b115",
+      "bytes": 32987
+    },
+    "work/962-engineering/current127-apex1613031-head-context-001/readback-report.json": {
+      "path": "work/962-engineering/current127-apex1613031-head-context-001/readback-report.json",
+      "sha256": "2a420ddbf8b88d648a30359ee2ecbe1441f2a7f3a8305b1d488b55ffb6dc9902",
+      "bytes": 40248
+    },
+    "work/962-engineering/current127-apex1613031-head-context-prep-001/reader.py": {
+      "path": "work/962-engineering/current127-apex1613031-head-context-prep-001/reader.py",
+      "sha256": "7b38ef1fd0928544126e3b4f9720049037ad47e82a48162863b3a103057c81dd",
+      "bytes": 37106
+    },
+    "work/962-engineering/current127-apex1613031-head-context-result-peer-001/ROOT-OWN-REVIEW-LINEAGE-COMPANION-001.json": {
+      "path": "work/962-engineering/current127-apex1613031-head-context-result-peer-001/ROOT-OWN-REVIEW-LINEAGE-COMPANION-001.json",
+      "sha256": "45312e2ac9cfe1a7eb258a2ee9d92f1c517264004bc91905265c705a25b99130",
+      "bytes": 1681
+    },
+    "work/962-engineering/current127-apex1613031-head-context-result-peer-001/bindings.json": {
+      "path": "work/962-engineering/current127-apex1613031-head-context-result-peer-001/bindings.json",
+      "sha256": "a1787e73ecbf7f80dfbb29d2881b7653410d87e0e98089ee4dcd6a95d5e9f536",
+      "bytes": 60081
+    },
+    "work/962-engineering/current127-apex1613031-head-context-result-peer-001/review.json": {
+      "path": "work/962-engineering/current127-apex1613031-head-context-result-peer-001/review.json",
+      "sha256": "9fd13ef8e7fb55c6d2756ca40e2b202bea6be5ac179173ccdf173e83f3ccff01",
+      "bytes": 4899
+    },
+    "work/962-engineering/current127-apex1613031-head-context-root-execution-001/closed-result.json": {
+      "path": "work/962-engineering/current127-apex1613031-head-context-root-execution-001/closed-result.json",
+      "sha256": "5083013cb604515bcde15f3328f72e20ef46b30e06f0fd5fa9cc5c17d86d87e8",
+      "bytes": 66388
+    },
+    "work/962-engineering/current127-apex1613031-head-context-root-execution-001/own-review-lineage-correction-001.json": {
+      "path": "work/962-engineering/current127-apex1613031-head-context-root-execution-001/own-review-lineage-correction-001.json",
+      "sha256": "8ff39b1bf07481d22d070935597f452850d23eab484086b1fb6e0dfdb6977e6c",
+      "bytes": 961
+    },
+    "work/962-engineering/current127-apex1613031-head-context-root-execution-001/own-review.json": {
+      "path": "work/962-engineering/current127-apex1613031-head-context-root-execution-001/own-review.json",
+      "sha256": "8671261afe1ec6b5fa68eeaf14c7e40f0bc016a9e464558ed4dd99038ff69135",
+      "bytes": 2729
+    },
+    "work/962-engineering/current127-apex1613031-head-context-root-execution-001/result-peer-acceptance.json": {
+      "path": "work/962-engineering/current127-apex1613031-head-context-root-execution-001/result-peer-acceptance.json",
+      "sha256": "49c9181cdba8650211754723ef6729efaa4b3b05b2d7d3a82a3ba7cc78d45859",
+      "bytes": 4463
+    },
+    "work/962-engineering/current127-apex1613031-head-context-source-peer-001/AUTHOR-LINEAGE-CORRECTION-001.json": {
+      "path": "work/962-engineering/current127-apex1613031-head-context-source-peer-001/AUTHOR-LINEAGE-CORRECTION-001.json",
+      "sha256": "ea8c38acd2d9ae09821d139ef0958516dc24d40aeea5f45960f0983b6e1d9804",
+      "bytes": 1314
+    },
+    "work/962-engineering/direct-sicn-apex1613031-cavity-study-001/local-shell-input-001.json": {
+      "path": "work/962-engineering/direct-sicn-apex1613031-cavity-study-001/local-shell-input-001.json",
+      "sha256": "6529ffc5a5ca738c4bfe3041d858f2d40cc50efc6ee0e1dc5bcc626fd720d92d",
+      "bytes": 17793
+    },
+    "work/962-engineering/direct-sicn-apex1613031-cavity-study-001/saved-star-observation.json": {
+      "path": "work/962-engineering/direct-sicn-apex1613031-cavity-study-001/saved-star-observation.json",
+      "sha256": "89689ac5ce5f12c8922be4cbe45e36565f60eed080633aaffa79539c8e12c8d3",
+      "bytes": 30665
+    },
+    "work/962-engineering/fixed-shell-netgen-apex1613031-001/arrays.json": {
+      "path": "work/962-engineering/fixed-shell-netgen-apex1613031-001/arrays.json",
+      "sha256": "84df4795b0e7499c45b56a0af800e2470a51b5333a881b8150ea735ed2d03954",
+      "bytes": 13885
+    },
+    "work/962-engineering/fixed-shell-netgen-apex1613031-001/fixture-report.json": {
+      "path": "work/962-engineering/fixed-shell-netgen-apex1613031-001/fixture-report.json",
+      "sha256": "a7f4aa89c415be333b03301575898c4f2fc7ea56a9664c22422bb81ad2092a8b",
+      "bytes": 17220
+    },
+    "work/962-engineering/fixed-shell-netgen-apex1613031-result-peer-001/bindings.json": {
+      "path": "work/962-engineering/fixed-shell-netgen-apex1613031-result-peer-001/bindings.json",
+      "sha256": "dc23febe02576eaa17aab53c697bef3d67e4d774090780e0f313527d2dab1f51",
+      "bytes": 61555
+    },
+    "work/962-engineering/fixed-shell-netgen-apex1613031-result-peer-001/review.json": {
+      "path": "work/962-engineering/fixed-shell-netgen-apex1613031-result-peer-001/review.json",
+      "sha256": "b92bf933b272e39d5362c1adaf4bac155e98258668456d29abf5d6d4cb0b6fbe",
+      "bytes": 4704
+    },
+    "work/962-engineering/fixed-shell-netgen-apex1613031-root-execution-001/result-peer-acceptance.json": {
+      "path": "work/962-engineering/fixed-shell-netgen-apex1613031-root-execution-001/result-peer-acceptance.json",
+      "sha256": "42ae8e27bc62f63c280c185c1d036223fbeea05f4452aec39cbfce4653c9813e",
+      "bytes": 3581
+    },
+    "work/962-engineering/head-star-current127-full-stars-002/frozen-contract.json": {
+      "path": "work/962-engineering/head-star-current127-full-stars-002/frozen-contract.json",
+      "sha256": "54ad12959a10bb153afec2f2541bec2d22ec3f6e22ee0302c581062265c8fc95",
+      "bytes": 25659
+    },
+    "work/962-engineering/head-star-current127-full-stars-002/readback-report.json": {
+      "path": "work/962-engineering/head-star-current127-full-stars-002/readback-report.json",
+      "sha256": "34e3e29a23cedeb155485156cb40b4e92b6d0017eefd852f30383927eaaa7ef7",
+      "bytes": 2103518
+    },
+    "work/962-engineering/head-star-current127-full-stars-execution-prep-002/actual-contract.json": {
+      "path": "work/962-engineering/head-star-current127-full-stars-execution-prep-002/actual-contract.json",
+      "sha256": "54ad12959a10bb153afec2f2541bec2d22ec3f6e22ee0302c581062265c8fc95",
+      "bytes": 25659
+    },
+    "work/962-engineering/head-star-current127-full-stars-prep-001/reader.py": {
+      "path": "work/962-engineering/head-star-current127-full-stars-prep-001/reader.py",
+      "sha256": "11ad364b54b6b8f264f1727027659351ab38c9144b4c98c64e5265203fcb8a63",
+      "bytes": 28027
+    },
+    "work/962-engineering/head-star-current127-full-stars-result-peer-001/bindings.json": {
+      "path": "work/962-engineering/head-star-current127-full-stars-result-peer-001/bindings.json",
+      "sha256": "968353193fa36fb96ec9dc85b4268ad3d37f011b19acff745c0a250dcf4fc2ac",
+      "bytes": 30939
+    },
+    "work/962-engineering/head-star-current127-full-stars-result-peer-001/review.json": {
+      "path": "work/962-engineering/head-star-current127-full-stars-result-peer-001/review.json",
+      "sha256": "e3f53c5b7280138296e4ffd8399149a61b9ecaf3bf796e4f780c74806a20b68b",
+      "bytes": 4119
+    },
+    "work/962-engineering/head-star-current127-full-stars-root-execution-001/result-peer-acceptance.json": {
+      "path": "work/962-engineering/head-star-current127-full-stars-root-execution-001/result-peer-acceptance.json",
+      "sha256": "bac2ff58db7e1f33556e8460e23d35cdd0cb7089c64afa6921ac7640b1bf0444",
+      "bytes": 2357
+    },
+    "work/962-engineering/head-star-current129-full-stars-root-execution-001/launch-deviation-001.json": {
+      "path": "work/962-engineering/head-star-current129-full-stars-root-execution-001/launch-deviation-001.json",
+      "sha256": "d60fff297c6c45dc92e117262e36ffde36e2169d53fcd32ce2b79fabde5eebc3",
+      "bytes": 3140
+    },
+    "work/962-engineering/head-star-current204-combined-application-001/reader.py": {
+      "path": "work/962-engineering/head-star-current204-combined-application-001/reader.py",
+      "sha256": "c66da821a1d98794ed78f403067e02c349c11a59d6c22de72e587b05e5fc82f5",
+      "bytes": 107135
+    },
+    "work/962-engineering/head-star-current204-union-context-prep-002/reader.py": {
+      "path": "work/962-engineering/head-star-current204-union-context-prep-002/reader.py",
+      "sha256": "c852a8a536a0ef2c58a37132fb51e42e525403d1f519375cc04a9860bfe53b29",
+      "bytes": 34933
+    },
+    "work/962-engineering/apex1613031-head-application-prep-001/reader.py": {
+      "path": "work/962-engineering/apex1613031-head-application-prep-001/reader.py",
+      "sha256": "5f7df7d36b297100ac997979f2cdc5f66e6562c87601359d952ea6047e246b56",
+      "bytes": 55884
+    },
+    "work/962-engineering/apex1613031-head-application-prep-001/run_readback.py": {
+      "path": "work/962-engineering/apex1613031-head-application-prep-001/run_readback.py",
+      "sha256": "5ab38b53e4019506772cc429b46699ac0e217141c87a0a043718d8123ecb159c",
+      "bytes": 4652
+    },
+    "work/962-engineering/apex1613031-head-application-prep-001/selfcheck.py": {
+      "path": "work/962-engineering/apex1613031-head-application-prep-001/selfcheck.py",
+      "sha256": "eaafd29bbedecb542b0cc392065e0850e34f4d66b476a64a23bb44338c4a48e7",
+      "bytes": 16832
+    },
+    "work/962-engineering/apex1613031-head-application-prep-001/source-reuse.json": {
+      "path": "work/962-engineering/apex1613031-head-application-prep-001/source-reuse.json",
+      "sha256": "fb783a8ea4ba1377cb2d28cb8ae8e80345546b55a8cff4d89abe9c5ec5d6757e",
+      "bytes": 123879
+    },
+    "work/962-engineering/apex1613031-head-application-prep-001/source.diff": {
+      "path": "work/962-engineering/apex1613031-head-application-prep-001/source.diff",
+      "sha256": "c4b14b097bccd7119c8e7e13dab56e7689956dc162f2ae9afdebf36b0a19d30a",
+      "bytes": 50426
+    },
+    "work/962-engineering/apex1613031-head-application-prep-001/selfcheck.diff": {
+      "path": "work/962-engineering/apex1613031-head-application-prep-001/selfcheck.diff",
+      "sha256": "3d80b89730aad57a81d6c891a9d39d85092066711c525d3f0e4c42e08d5fe8de",
+      "bytes": 14839
+    },
+    "work/962-engineering/apex1613031-head-application-prep-001/METHOD.md": {
+      "path": "work/962-engineering/apex1613031-head-application-prep-001/METHOD.md",
+      "sha256": "00a3064fec17dccc372ecea587c924c5b861e127ce1094e955bbfe41090286fe",
+      "bytes": 4765
+    },
+    "work/962-engineering/apex1613031-head-application-prep-001/CALLER-INVENTORY-CLARIFICATION-001.json": {
+      "path": "work/962-engineering/apex1613031-head-application-prep-001/CALLER-INVENTORY-CLARIFICATION-001.json",
+      "sha256": "db7bd0b1c8611b4a00ac9eaaaeeaf73ee42a4ab97a024eccf643b2446beaa44d",
+      "bytes": 5839
+    },
+    "work/962-engineering/apex1613031-head-application-prep-001/held-contract.json": {
+      "path": "work/962-engineering/apex1613031-head-application-prep-001/held-contract.json",
+      "sha256": "cd545d6568245e879da3077454a5e5bf452d3dea1af729180e9e5404f6762aa9",
+      "bytes": 17870
+    },
+    "work/962-engineering/apex1613031-head-application-prep-002/reader.py": {
+      "path": "work/962-engineering/apex1613031-head-application-prep-002/reader.py",
+      "sha256": "bd352d87c6fc3f4cfd8311ef169279725cf6a7c49e8cc0df2dca01b26d582361",
+      "bytes": 55884
+    },
+    "work/962-engineering/apex1613031-head-application-prep-002/run_readback.py": {
+      "path": "work/962-engineering/apex1613031-head-application-prep-002/run_readback.py",
+      "sha256": "5ab38b53e4019506772cc429b46699ac0e217141c87a0a043718d8123ecb159c",
+      "bytes": 4652
+    },
+    "work/962-engineering/apex1613031-head-application-prep-002/selfcheck.py": {
+      "path": "work/962-engineering/apex1613031-head-application-prep-002/selfcheck.py",
+      "sha256": "04b0c7f63eb97fdba2b6cd8c5546e883392ee2827c10ed3b7063ca4d754b4147",
+      "bytes": 16832
+    },
+    "work/962-engineering/apex1613031-head-application-prep-002/source-reuse.json": {
+      "path": "work/962-engineering/apex1613031-head-application-prep-002/source-reuse.json",
+      "sha256": "293bc3bc8268e5eb498226e4d3bf032b333868f5093e6cd4efb177cb011c1f5f",
+      "bytes": 6277
+    },
+    "work/962-engineering/apex1613031-head-application-prep-002/source.diff": {
+      "path": "work/962-engineering/apex1613031-head-application-prep-002/source.diff",
+      "sha256": "60f39951886adc757a71423eaf663626182b9ee38230353ef5230a086a2eec17",
+      "bytes": 1044
+    },
+    "work/962-engineering/apex1613031-head-application-prep-002/selfcheck.diff": {
+      "path": "work/962-engineering/apex1613031-head-application-prep-002/selfcheck.diff",
+      "sha256": "7b485cc36e31f4fca0022b49e735ed02be7f06decde3e9cb89ade358f9ee162c",
+      "bytes": 674
+    },
+    "work/962-engineering/apex1613031-head-application-prep-002/METHOD.md": {
+      "path": "work/962-engineering/apex1613031-head-application-prep-002/METHOD.md",
+      "sha256": "2c821f6d84afc1fb569b120eec0f9eac03b8c5c6dc1a7cdd3e77f7e6f6b5a168",
+      "bytes": 2598
+    },
+    "work/962-engineering/apex1613031-head-application-prep-002/held-contract.json": {
+      "path": "work/962-engineering/apex1613031-head-application-prep-002/held-contract.json",
+      "sha256": "981fe93e136c143f9379038cb7d2fa2955ef0b0ca7d4e3477050465daa6c7233",
+      "bytes": 20344
+    },
+    "work/962-engineering/apex1613031-head-application-source-peer-002/review.json": {
+      "path": "work/962-engineering/apex1613031-head-application-source-peer-002/review.json",
+      "sha256": "64d9731b247c3aee588037b1ec80f73a5c15713e97851c4eb77985ae131b2d04",
+      "bytes": 3906
+    },
+    "work/962-engineering/apex1613031-head-application-source-peer-002/bindings.json": {
+      "path": "work/962-engineering/apex1613031-head-application-source-peer-002/bindings.json",
+      "sha256": "ad784f131ee978d25e65fcb1c9fd0a45b4d4317a8be29060d04cb9842223f4fe",
+      "bytes": 29155
+    },
+    "work/962-engineering/apex1613031-head-application-source-peer-001/review.json": {
+      "path": "work/962-engineering/apex1613031-head-application-source-peer-001/review.json",
+      "sha256": "1d32e7d113e1f767a8f1af9c29cb08cec516f2a87b0b0f1615c86c45d1f00310",
+      "bytes": 4808
+    },
+    "work/962-engineering/apex1613031-head-application-source-peer-001/bindings.json": {
+      "path": "work/962-engineering/apex1613031-head-application-source-peer-001/bindings.json",
+      "sha256": "1116dc7155e44605181b2e52f484c782f54b4a973a0a27c5c6d20fb903c29546",
+      "bytes": 40484
+    },
+    "work/962-engineering/apex1613031-head-application-root-source-002/static-review.json": {
+      "path": "work/962-engineering/apex1613031-head-application-root-source-002/static-review.json",
+      "sha256": "5d9c67ff90742797318c0782d1f84561b6ee72f05d6b0ff039cc1cc2f3f03ac2",
+      "bytes": 25003
+    },
+    "work/962-engineering/apex1613031-head-application-root-source-002/authorization.json": {
+      "path": "work/962-engineering/apex1613031-head-application-root-source-002/authorization.json",
+      "sha256": "dbd8db7631486a69e43fb50f999ba26c2869de25151122495b91fca382544b86",
+      "bytes": 23954
+    },
+    "work/962-engineering/apex1613031-head-application-root-source-002/review.json": {
+      "path": "work/962-engineering/apex1613031-head-application-root-source-002/review.json",
+      "sha256": "948470906e274f9c83c1db1ab212ad1dbf84b2d44c6f4631bf19b2abf1ac4be2",
+      "bytes": 45833
+    },
+    "work/962-engineering/apex1613031-head-application-root-source-002/stdout.log": {
+      "path": "work/962-engineering/apex1613031-head-application-root-source-002/stdout.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "work/962-engineering/apex1613031-head-application-root-source-002/stderr.log": {
+      "path": "work/962-engineering/apex1613031-head-application-root-source-002/stderr.log",
+      "sha256": "7a10cf4c4326985375cc6ecd124c516babaca4661adc3a1b09fa57eb919eaeeb",
+      "bytes": 110
+    },
+    "work/962-engineering/apex1613031-head-application-root-source-001/static-blocker.json": {
+      "path": "work/962-engineering/apex1613031-head-application-root-source-001/static-blocker.json",
+      "sha256": "9e6222e4ee4440e5c1475fb56817bff83c8df76cc3dbdef0a075a5057f0de216",
+      "bytes": 20986
+    },
+    "work/962-engineering/apex1613031-head-application-runtime-root-002/review.json": {
+      "path": "work/962-engineering/apex1613031-head-application-runtime-root-002/review.json",
+      "sha256": "8338b61c07f58b0557dfef22d70277d78f61d84e87b7c00413290a7bd7a7e9f8",
+      "bytes": 9204
+    },
+    "work/962-engineering/fixed-shell-generation-apex1613790-runtime-origin-001/closed-result.json": {
+      "path": "work/962-engineering/fixed-shell-generation-apex1613790-runtime-origin-001/closed-result.json",
+      "sha256": "5af4f4182a39648008de2672d6874a3b202e091c77281940fd5976fab1ef7398",
+      "bytes": 2647
+    },
+    "work/962-engineering/apex1613790-head-application-001/head-volume.msh": {
+      "path": "work/962-engineering/apex1613790-head-application-001/head-volume.msh",
+      "sha256": "8b16732d63cc69e48af113f6b618cc6378aaf121dbe1c63920dd6dd5eab8d07a",
+      "bytes": 235786462
+    },
+    "work/962-engineering/apex1613031-head-application-001/reader.py": {
+      "path": "work/962-engineering/apex1613031-head-application-001/reader.py",
+      "sha256": "bd352d87c6fc3f4cfd8311ef169279725cf6a7c49e8cc0df2dca01b26d582361",
+      "bytes": 55884
+    },
+    "work/962-engineering/apex1613031-head-application-001/run_readback.py": {
+      "path": "work/962-engineering/apex1613031-head-application-001/run_readback.py",
+      "sha256": "5ab38b53e4019506772cc429b46699ac0e217141c87a0a043718d8123ecb159c",
+      "bytes": 4652
+    }
+  },
+  "all79_inputs_unchanged": true,
+  "runtime5_before": {
+    "runtime-role://registered-native/geometry/bin/python": {
+      "path": "runtime-role://registered-native/geometry/bin/python",
+      "sha256": "72956ad35cff7691dfed9e04c9593de825ffd5b2fa7e8bc9ae96ce9a1af65621",
+      "bytes": 152624,
+      "resolved": "runtime-role://registered-native/resolved-python3.10"
+    },
+    "runtime-role://registered-native/geometry/lib/libgmsh.4.15.dylib": {
+      "path": "runtime-role://registered-native/geometry/lib/libgmsh.4.15.dylib",
+      "sha256": "def0f5c10988a986e5e879b3db9669d8fe016a81e2d994bbaf2b8497c6b8a58a",
+      "bytes": 82659384,
+      "resolved": "runtime-role://registered-native/geometry/lib/libgmsh.4.15.dylib"
+    },
+    "runtime-role://registered-native/geometry/lib/python3.10/site-packages/gmsh.py": {
+      "path": "runtime-role://registered-native/geometry/lib/python3.10/site-packages/gmsh.py",
+      "sha256": "f4b0935cebde899750293d87a643090e5ea33c9b18d249267f507db68a0e01c3",
+      "bytes": 427222,
+      "resolved": "runtime-role://registered-native/geometry/lib/python3.10/site-packages/gmsh.py"
+    },
+    "runtime-role://registered-native/numpy-environment/lib/python3.10/site-packages/numpy/__init__.py": {
+      "path": "runtime-role://registered-native/numpy-environment/lib/python3.10/site-packages/numpy/__init__.py",
+      "sha256": "c09e25b58f6b2f8e2cb3c158168f902d447f8171e5ea6513c0aca41ecbda7c2b",
+      "bytes": 21817,
+      "resolved": "runtime-role://registered-native/numpy-environment/lib/python3.10/site-packages/numpy/__init__.py"
+    },
+    "runtime-role://controller/python": {
+      "path": "runtime-role://controller/python",
+      "sha256": "1699bf8aa705a8bb71613bef5cdd7d7c8c9d9a188a841f41679aa9b5830b8f60",
+      "bytes": 49968,
+      "resolved": "runtime-role://controller/resolved-python3.12"
+    }
+  },
+  "runtime5_after": {
+    "runtime-role://registered-native/geometry/bin/python": {
+      "path": "runtime-role://registered-native/geometry/bin/python",
+      "sha256": "72956ad35cff7691dfed9e04c9593de825ffd5b2fa7e8bc9ae96ce9a1af65621",
+      "bytes": 152624,
+      "resolved": "runtime-role://registered-native/resolved-python3.10"
+    },
+    "runtime-role://registered-native/geometry/lib/libgmsh.4.15.dylib": {
+      "path": "runtime-role://registered-native/geometry/lib/libgmsh.4.15.dylib",
+      "sha256": "def0f5c10988a986e5e879b3db9669d8fe016a81e2d994bbaf2b8497c6b8a58a",
+      "bytes": 82659384,
+      "resolved": "runtime-role://registered-native/geometry/lib/libgmsh.4.15.dylib"
+    },
+    "runtime-role://registered-native/geometry/lib/python3.10/site-packages/gmsh.py": {
+      "path": "runtime-role://registered-native/geometry/lib/python3.10/site-packages/gmsh.py",
+      "sha256": "f4b0935cebde899750293d87a643090e5ea33c9b18d249267f507db68a0e01c3",
+      "bytes": 427222,
+      "resolved": "runtime-role://registered-native/geometry/lib/python3.10/site-packages/gmsh.py"
+    },
+    "runtime-role://registered-native/numpy-environment/lib/python3.10/site-packages/numpy/__init__.py": {
+      "path": "runtime-role://registered-native/numpy-environment/lib/python3.10/site-packages/numpy/__init__.py",
+      "sha256": "c09e25b58f6b2f8e2cb3c158168f902d447f8171e5ea6513c0aca41ecbda7c2b",
+      "bytes": 21817,
+      "resolved": "runtime-role://registered-native/numpy-environment/lib/python3.10/site-packages/numpy/__init__.py"
+    },
+    "runtime-role://controller/python": {
+      "path": "runtime-role://controller/python",
+      "sha256": "1699bf8aa705a8bb71613bef5cdd7d7c8c9d9a188a841f41679aa9b5830b8f60",
+      "bytes": 49968,
+      "resolved": "runtime-role://controller/resolved-python3.12"
+    }
+  },
+  "runtime5_unchanged": true,
+  "static4_before": {
+    "work/962-engineering/apex1613031-head-application-execution-prep-001/actual-contract.json": {
+      "path": "work/962-engineering/apex1613031-head-application-execution-prep-001/actual-contract.json",
+      "sha256": "98c281e8e8633c7253a7e13e5a5979f1c31ab967ef1af798b0a0415fa07b26fb",
+      "bytes": 23791
+    },
+    "work/962-engineering/apex1613031-head-application-execution-prep-001/index.json": {
+      "path": "work/962-engineering/apex1613031-head-application-execution-prep-001/index.json",
+      "sha256": "7f73601402e90d3182783c42cc34ac99c21b42dabf42167750373ca80679f01b",
+      "bytes": 83286
+    },
+    "work/962-engineering/apex1613031-head-application-exact-child-peer-001/review.json": {
+      "path": "work/962-engineering/apex1613031-head-application-exact-child-peer-001/review.json",
+      "sha256": "ed5a82e9d171172b4132d6424bf5c2d66d0477c828b7f30f1c202bef63ab90cd",
+      "bytes": 4428
+    },
+    "work/962-engineering/apex1613031-head-application-exact-child-peer-001/bindings.json": {
+      "path": "work/962-engineering/apex1613031-head-application-exact-child-peer-001/bindings.json",
+      "sha256": "b7197e956cb77b9fe835ef1fa1fb6649a8516cee20edff4924e4a86063c954bc",
+      "bytes": 39512
+    }
+  },
+  "static4_after": {
+    "work/962-engineering/apex1613031-head-application-execution-prep-001/actual-contract.json": {
+      "path": "work/962-engineering/apex1613031-head-application-execution-prep-001/actual-contract.json",
+      "sha256": "98c281e8e8633c7253a7e13e5a5979f1c31ab967ef1af798b0a0415fa07b26fb",
+      "bytes": 23791
+    },
+    "work/962-engineering/apex1613031-head-application-execution-prep-001/index.json": {
+      "path": "work/962-engineering/apex1613031-head-application-execution-prep-001/index.json",
+      "sha256": "7f73601402e90d3182783c42cc34ac99c21b42dabf42167750373ca80679f01b",
+      "bytes": 83286
+    },
+    "work/962-engineering/apex1613031-head-application-exact-child-peer-001/review.json": {
+      "path": "work/962-engineering/apex1613031-head-application-exact-child-peer-001/review.json",
+      "sha256": "ed5a82e9d171172b4132d6424bf5c2d66d0477c828b7f30f1c202bef63ab90cd",
+      "bytes": 4428
+    },
+    "work/962-engineering/apex1613031-head-application-exact-child-peer-001/bindings.json": {
+      "path": "work/962-engineering/apex1613031-head-application-exact-child-peer-001/bindings.json",
+      "sha256": "b7197e956cb77b9fe835ef1fa1fb6649a8516cee20edff4924e4a86063c954bc",
+      "bytes": 39512
+    }
+  },
+  "static4_unchanged": true,
+  "whole_actual_mirror_sha256": "98c281e8e8633c7253a7e13e5a5979f1c31ab967ef1af798b0a0415fa07b26fb",
+  "outputs": {
+    "execution-receipt.json": {
+      "path": "work/962-engineering/apex1613031-head-application-001/execution-receipt.json",
+      "sha256": "496b0e01950b777acd1c1759177fe26fac5659e5ec6512bb19ff9cb56b5fd46d",
+      "bytes": 30540
+    },
+    "frozen-contract.json": {
+      "path": "work/962-engineering/apex1613031-head-application-001/frozen-contract.json",
+      "sha256": "98c281e8e8633c7253a7e13e5a5979f1c31ab967ef1af798b0a0415fa07b26fb",
+      "bytes": 23791
+    },
+    "head-volume.msh": {
+      "path": "work/962-engineering/apex1613031-head-application-001/head-volume.msh",
+      "sha256": "48b66aafbd9f1eb69e44305982186e966fe8f041d9b4a6a59be4b610b5d12e08",
+      "bytes": 235786462
+    },
+    "native.log": {
+      "path": "work/962-engineering/apex1613031-head-application-001/native.log",
+      "sha256": "8ee8245bc99ddad975acd76120ccdb33dfb1fffffed1cc746f942874af444d12",
+      "bytes": 1228
+    },
+    "readback-report.json": {
+      "path": "work/962-engineering/apex1613031-head-application-001/readback-report.json",
+      "sha256": "64caf59811e229628ea1be138ebcc48cdf940c4ca2724be0b9080e255951c9f5",
+      "bytes": 25890
+    },
+    "reader.py": {
+      "path": "work/962-engineering/apex1613031-head-application-001/reader.py",
+      "sha256": "bd352d87c6fc3f4cfd8311ef169279725cf6a7c49e8cc0df2dca01b26d582361",
+      "bytes": 55884
+    },
+    "run_readback.py": {
+      "path": "work/962-engineering/apex1613031-head-application-001/run_readback.py",
+      "sha256": "5ab38b53e4019506772cc429b46699ac0e217141c87a0a043718d8123ecb159c",
+      "bytes": 4652
+    }
+  },
+  "controller_stdout": {
+    "path": "work/962-engineering/apex1613031-head-application-root-execution-001/controller.stdout.log",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "bytes": 0
+  },
+  "controller_stderr": {
+    "path": "work/962-engineering/apex1613031-head-application-root-execution-001/controller.stderr.log",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "bytes": 0
+  },
+  "inner_receipt": {
+    "scope": "one_partial_head_star_replacement_no_mesher",
+    "returncode": 2,
+    "stop_reason": null,
+    "wall_seconds": 177.91006783302873,
+    "hard_wall_seconds": 1200,
+    "sampled_RSS_stop_bytes": 8589934592,
+    "threads": 2,
+    "sampled_output_stop_bytes": 1073741824,
+    "final_output_bytes_before_receipt": 235897907,
+    "hard_OS_CPU_quota_applied": false,
+    "hard_address_space_limit_applied": false,
+    "RSS_samples": [
+      {
+        "wall_seconds": 0.005187125178053975,
+        "RSS_bytes": 704512
+      },
+      {
+        "wall_seconds": 0.5192279580514878,
+        "RSS_bytes": 467222528
+      },
+      {
+        "wall_seconds": 1.0315221659839153,
+        "RSS_bytes": 1136836608
+      },
+      {
+        "wall_seconds": 1.542873749975115,
+        "RSS_bytes": 1758347264
+      },
+      {
+        "wall_seconds": 2.0569462080020458,
+        "RSS_bytes": 1758347264
+      },
+      {
+        "wall_seconds": 2.5691612910013646,
+        "RSS_bytes": 1758347264
+      },
+      {
+        "wall_seconds": 3.0758763330522925,
+        "RSS_bytes": 1758347264
+      },
+      {
+        "wall_seconds": 3.585663083009422,
+        "RSS_bytes": 1758347264
+      },
+      {
+        "wall_seconds": 4.090650875121355,
+        "RSS_bytes": 1758347264
+      },
+      {
+        "wall_seconds": 4.602509458083659,
+        "RSS_bytes": 1758347264
+      },
+      {
+        "wall_seconds": 5.113247166154906,
+        "RSS_bytes": 1758347264
+      },
+      {
+        "wall_seconds": 5.62420441606082,
+        "RSS_bytes": 1874296832
+      },
+      {
+        "wall_seconds": 6.128948375117034,
+        "RSS_bytes": 1874296832
+      },
+      {
+        "wall_seconds": 6.633934458019212,
+        "RSS_bytes": 1996832768
+      },
+      {
+        "wall_seconds": 7.147931708022952,
+        "RSS_bytes": 2139586560
+      },
+      {
+        "wall_seconds": 7.661336166085675,
+        "RSS_bytes": 2147647488
+      },
+      {
+        "wall_seconds": 8.167669583112001,
+        "RSS_bytes": 2147811328
+      },
+      {
+        "wall_seconds": 8.677982124965638,
+        "RSS_bytes": 2147811328
+      },
+      {
+        "wall_seconds": 9.185941375093535,
+        "RSS_bytes": 2147926016
+      },
+      {
+        "wall_seconds": 9.694653291022405,
+        "RSS_bytes": 2147926016
+      },
+      {
+        "wall_seconds": 10.206138666020706,
+        "RSS_bytes": 2147926016
+      },
+      {
+        "wall_seconds": 10.715813833056018,
+        "RSS_bytes": 2153611264
+      },
+      {
+        "wall_seconds": 11.227681208169088,
+        "RSS_bytes": 2158460928
+      },
+      {
+        "wall_seconds": 11.731826625065878,
+        "RSS_bytes": 2566881280
+      },
+      {
+        "wall_seconds": 12.244237333070487,
+        "RSS_bytes": 3810115584
+      },
+      {
+        "wall_seconds": 12.752157708164304,
+        "RSS_bytes": 3810115584
+      },
+      {
+        "wall_seconds": 13.265919875120744,
+        "RSS_bytes": 3810115584
+      },
+      {
+        "wall_seconds": 13.7733414999675,
+        "RSS_bytes": 3810115584
+      },
+      {
+        "wall_seconds": 14.287009333027527,
+        "RSS_bytes": 3810115584
+      },
+      {
+        "wall_seconds": 14.797217375133187,
+        "RSS_bytes": 3810115584
+      },
+      {
+        "wall_seconds": 15.30656833294779,
+        "RSS_bytes": 3810115584
+      },
+      {
+        "wall_seconds": 15.818227166077122,
+        "RSS_bytes": 3810115584
+      },
+      {
+        "wall_seconds": 16.326722166035324,
+        "RSS_bytes": 3810115584
+      },
+      {
+        "wall_seconds": 16.835480666020885,
+        "RSS_bytes": 3810115584
+      },
+      {
+        "wall_seconds": 17.341745916055515,
+        "RSS_bytes": 3810115584
+      },
+      {
+        "wall_seconds": 17.845993458060548,
+        "RSS_bytes": 3810115584
+      },
+      {
+        "wall_seconds": 18.351993249962106,
+        "RSS_bytes": 3810115584
+      },
+      {
+        "wall_seconds": 18.86136075016111,
+        "RSS_bytes": 3810115584
+      },
+      {
+        "wall_seconds": 19.36792479106225,
+        "RSS_bytes": 3810115584
+      },
+      {
+        "wall_seconds": 19.877587916096672,
+        "RSS_bytes": 3810115584
+      },
+      {
+        "wall_seconds": 20.389171875081956,
+        "RSS_bytes": 3810115584
+      },
+      {
+        "wall_seconds": 20.896415416151285,
+        "RSS_bytes": 3810115584
+      },
+      {
+        "wall_seconds": 21.406521541066468,
+        "RSS_bytes": 3810115584
+      },
+      {
+        "wall_seconds": 21.9117565411143,
+        "RSS_bytes": 3810115584
+      },
+      {
+        "wall_seconds": 22.41752850008197,
+        "RSS_bytes": 3810115584
+      },
+      {
+        "wall_seconds": 22.92810095800087,
+        "RSS_bytes": 3810115584
+      },
+      {
+        "wall_seconds": 23.439015500014648,
+        "RSS_bytes": 3810115584
+      },
+      {
+        "wall_seconds": 23.94465325004421,
+        "RSS_bytes": 3810115584
+      },
+      {
+        "wall_seconds": 24.451840333174914,
+        "RSS_bytes": 3810115584
+      },
+      {
+        "wall_seconds": 24.959031416103244,
+        "RSS_bytes": 3810115584
+      },
+      {
+        "wall_seconds": 25.472763624973595,
+        "RSS_bytes": 3810115584
+      },
+      {
+        "wall_seconds": 25.979940165998414,
+        "RSS_bytes": 3810115584
+      },
+      {
+        "wall_seconds": 26.490324791055173,
+        "RSS_bytes": 3810115584
+      },
+      {
+        "wall_seconds": 27.004013541154563,
+        "RSS_bytes": 3810115584
+      },
+      {
+        "wall_seconds": 27.51638499996625,
+        "RSS_bytes": 3810115584
+      },
+      {
+        "wall_seconds": 28.021336999954656,
+        "RSS_bytes": 3810115584
+      },
+      {
+        "wall_seconds": 28.532184540992603,
+        "RSS_bytes": 3822436352
+      },
+      {
+        "wall_seconds": 29.045820125145838,
+        "RSS_bytes": 3825434624
+      },
+      {
+        "wall_seconds": 29.551303500076756,
+        "RSS_bytes": 3825434624
+      },
+      {
+        "wall_seconds": 30.063990166177973,
+        "RSS_bytes": 3825434624
+      },
+      {
+        "wall_seconds": 30.57769012497738,
+        "RSS_bytes": 3825434624
+      },
+      {
+        "wall_seconds": 31.082265875069425,
+        "RSS_bytes": 3881238528
+      },
+      {
+        "wall_seconds": 31.58907916606404,
+        "RSS_bytes": 4031774720
+      },
+      {
+        "wall_seconds": 32.09866008302197,
+        "RSS_bytes": 4189519872
+      },
+      {
+        "wall_seconds": 32.61265391600318,
+        "RSS_bytes": 4382425088
+      },
+      {
+        "wall_seconds": 33.1187106249854,
+        "RSS_bytes": 4382457856
+      },
+      {
+        "wall_seconds": 33.63273283303715,
+        "RSS_bytes": 4382457856
+      },
+      {
+        "wall_seconds": 34.13719066604972,
+        "RSS_bytes": 4382457856
+      },
+      {
+        "wall_seconds": 34.65113283297978,
+        "RSS_bytes": 4382457856
+      },
+      {
+        "wall_seconds": 35.15686433296651,
+        "RSS_bytes": 4382457856
+      },
+      {
+        "wall_seconds": 35.66057995799929,
+        "RSS_bytes": 4382457856
+      },
+      {
+        "wall_seconds": 36.1711819160264,
+        "RSS_bytes": 4382457856
+      },
+      {
+        "wall_seconds": 36.67995666596107,
+        "RSS_bytes": 4382457856
+      },
+      {
+        "wall_seconds": 37.19078345806338,
+        "RSS_bytes": 4382457856
+      },
+      {
+        "wall_seconds": 37.697007375070825,
+        "RSS_bytes": 4382457856
+      },
+      {
+        "wall_seconds": 38.20498325000517,
+        "RSS_bytes": 4382457856
+      },
+      {
+        "wall_seconds": 38.7106475001201,
+        "RSS_bytes": 4382457856
+      },
+      {
+        "wall_seconds": 39.22292650002055,
+        "RSS_bytes": 4382457856
+      },
+      {
+        "wall_seconds": 39.72774170804769,
+        "RSS_bytes": 4382457856
+      },
+      {
+        "wall_seconds": 40.23737104097381,
+        "RSS_bytes": 4382457856
+      },
+      {
+        "wall_seconds": 40.74239520798437,
+        "RSS_bytes": 4382457856
+      },
+      {
+        "wall_seconds": 41.25012741610408,
+        "RSS_bytes": 4382457856
+      },
+      {
+        "wall_seconds": 41.7566671250388,
+        "RSS_bytes": 4382457856
+      },
+      {
+        "wall_seconds": 42.270112165948376,
+        "RSS_bytes": 4382457856
+      },
+      {
+        "wall_seconds": 42.77510616602376,
+        "RSS_bytes": 4382457856
+      },
+      {
+        "wall_seconds": 43.283545416081324,
+        "RSS_bytes": 4382457856
+      },
+      {
+        "wall_seconds": 43.79262562515214,
+        "RSS_bytes": 4382457856
+      },
+      {
+        "wall_seconds": 44.30732687516138,
+        "RSS_bytes": 4382457856
+      },
+      {
+        "wall_seconds": 44.81498675001785,
+        "RSS_bytes": 4382457856
+      },
+      {
+        "wall_seconds": 45.32521783304401,
+        "RSS_bytes": 4382457856
+      },
+      {
+        "wall_seconds": 45.83361308299936,
+        "RSS_bytes": 4382457856
+      },
+      {
+        "wall_seconds": 46.34009779104963,
+        "RSS_bytes": 4382457856
+      },
+      {
+        "wall_seconds": 46.85442995815538,
+        "RSS_bytes": 4382457856
+      },
+      {
+        "wall_seconds": 47.36417091614567,
+        "RSS_bytes": 4382457856
+      },
+      {
+        "wall_seconds": 47.874571040971205,
+        "RSS_bytes": 4382457856
+      },
+      {
+        "wall_seconds": 48.38143091602251,
+        "RSS_bytes": 4382457856
+      },
+      {
+        "wall_seconds": 48.89197037508711,
+        "RSS_bytes": 4382457856
+      },
+      {
+        "wall_seconds": 49.402257041074336,
+        "RSS_bytes": 4382457856
+      },
+      {
+        "wall_seconds": 49.907687375089154,
+        "RSS_bytes": 4382457856
+      },
+      {
+        "wall_seconds": 50.41412887512706,
+        "RSS_bytes": 4382457856
+      },
+      {
+        "wall_seconds": 50.92620008299127,
+        "RSS_bytes": 4382457856
+      },
+      {
+        "wall_seconds": 51.43077595811337,
+        "RSS_bytes": 4382457856
+      },
+      {
+        "wall_seconds": 51.94908520812169,
+        "RSS_bytes": 4382457856
+      },
+      {
+        "wall_seconds": 52.46545020816848,
+        "RSS_bytes": 4382457856
+      },
+      {
+        "wall_seconds": 52.97896908316761,
+        "RSS_bytes": 4544282624
+      },
+      {
+        "wall_seconds": 53.482789875008166,
+        "RSS_bytes": 4614258688
+      },
+      {
+        "wall_seconds": 53.997393290977925,
+        "RSS_bytes": 4720476160
+      },
+      {
+        "wall_seconds": 54.51020975015126,
+        "RSS_bytes": 4727488512
+      },
+      {
+        "wall_seconds": 55.019953625043854,
+        "RSS_bytes": 4763910144
+      },
+      {
+        "wall_seconds": 55.52758391597308,
+        "RSS_bytes": 4799348736
+      },
+      {
+        "wall_seconds": 56.04131695814431,
+        "RSS_bytes": 4799348736
+      },
+      {
+        "wall_seconds": 56.55178116611205,
+        "RSS_bytes": 4799348736
+      },
+      {
+        "wall_seconds": 57.058345625177026,
+        "RSS_bytes": 4799348736
+      },
+      {
+        "wall_seconds": 57.564565083011985,
+        "RSS_bytes": 4799348736
+      },
+      {
+        "wall_seconds": 58.07545495801605,
+        "RSS_bytes": 4799348736
+      },
+      {
+        "wall_seconds": 58.58476350014098,
+        "RSS_bytes": 4799348736
+      },
+      {
+        "wall_seconds": 59.09274779097177,
+        "RSS_bytes": 4799348736
+      },
+      {
+        "wall_seconds": 59.60536695807241,
+        "RSS_bytes": 4799348736
+      },
+      {
+        "wall_seconds": 60.11080908309668,
+        "RSS_bytes": 4799348736
+      },
+      {
+        "wall_seconds": 60.62231516605243,
+        "RSS_bytes": 4799348736
+      },
+      {
+        "wall_seconds": 61.13101566606201,
+        "RSS_bytes": 4799348736
+      },
+      {
+        "wall_seconds": 61.6395734581165,
+        "RSS_bytes": 4799348736
+      },
+      {
+        "wall_seconds": 62.14568233303726,
+        "RSS_bytes": 4799348736
+      },
+      {
+        "wall_seconds": 62.65599604113959,
+        "RSS_bytes": 4799365120
+      },
+      {
+        "wall_seconds": 63.16954837506637,
+        "RSS_bytes": 4799365120
+      },
+      {
+        "wall_seconds": 63.68321512499824,
+        "RSS_bytes": 4799381504
+      },
+      {
+        "wall_seconds": 64.19653166597709,
+        "RSS_bytes": 4799381504
+      },
+      {
+        "wall_seconds": 64.70351816597395,
+        "RSS_bytes": 4799381504
+      },
+      {
+        "wall_seconds": 65.21481258305721,
+        "RSS_bytes": 4799381504
+      },
+      {
+        "wall_seconds": 65.72109512495808,
+        "RSS_bytes": 4799381504
+      },
+      {
+        "wall_seconds": 66.22622108296491,
+        "RSS_bytes": 4799381504
+      },
+      {
+        "wall_seconds": 66.73932804097421,
+        "RSS_bytes": 4799397888
+      },
+      {
+        "wall_seconds": 67.2439725000877,
+        "RSS_bytes": 4799397888
+      },
+      {
+        "wall_seconds": 67.75531316595152,
+        "RSS_bytes": 4799397888
+      },
+      {
+        "wall_seconds": 68.26122383307666,
+        "RSS_bytes": 4799397888
+      },
+      {
+        "wall_seconds": 68.77314470801502,
+        "RSS_bytes": 4799397888
+      },
+      {
+        "wall_seconds": 69.27775391610339,
+        "RSS_bytes": 4799397888
+      },
+      {
+        "wall_seconds": 69.78721516602673,
+        "RSS_bytes": 4799397888
+      },
+      {
+        "wall_seconds": 70.29633949999698,
+        "RSS_bytes": 4799397888
+      },
+      {
+        "wall_seconds": 70.8096748329699,
+        "RSS_bytes": 4799397888
+      },
+      {
+        "wall_seconds": 71.31816629110835,
+        "RSS_bytes": 4799397888
+      },
+      {
+        "wall_seconds": 71.83079183311202,
+        "RSS_bytes": 4799397888
+      },
+      {
+        "wall_seconds": 72.33862758311443,
+        "RSS_bytes": 4799397888
+      },
+      {
+        "wall_seconds": 72.8508079580497,
+        "RSS_bytes": 4799397888
+      },
+      {
+        "wall_seconds": 73.36226212512702,
+        "RSS_bytes": 4799397888
+      },
+      {
+        "wall_seconds": 73.8674501250498,
+        "RSS_bytes": 4799397888
+      },
+      {
+        "wall_seconds": 74.37742316606455,
+        "RSS_bytes": 4799397888
+      },
+      {
+        "wall_seconds": 74.88355020806193,
+        "RSS_bytes": 4799397888
+      },
+      {
+        "wall_seconds": 75.38832158315927,
+        "RSS_bytes": 4799397888
+      },
+      {
+        "wall_seconds": 75.90117404097691,
+        "RSS_bytes": 4799397888
+      },
+      {
+        "wall_seconds": 76.4098147500772,
+        "RSS_bytes": 4799397888
+      },
+      {
+        "wall_seconds": 76.91890820814297,
+        "RSS_bytes": 4799397888
+      },
+      {
+        "wall_seconds": 77.43005262501538,
+        "RSS_bytes": 4799397888
+      },
+      {
+        "wall_seconds": 77.93586312513798,
+        "RSS_bytes": 4799397888
+      },
+      {
+        "wall_seconds": 78.44399920804426,
+        "RSS_bytes": 4799397888
+      },
+      {
+        "wall_seconds": 78.95337887504138,
+        "RSS_bytes": 4799397888
+      },
+      {
+        "wall_seconds": 79.46092262514867,
+        "RSS_bytes": 4799397888
+      },
+      {
+        "wall_seconds": 79.97143479110673,
+        "RSS_bytes": 4799397888
+      },
+      {
+        "wall_seconds": 80.4850668751169,
+        "RSS_bytes": 4799397888
+      },
+      {
+        "wall_seconds": 80.99866404104978,
+        "RSS_bytes": 4799397888
+      },
+      {
+        "wall_seconds": 81.51045866613276,
+        "RSS_bytes": 4799397888
+      },
+      {
+        "wall_seconds": 82.01624904107302,
+        "RSS_bytes": 4799397888
+      },
+      {
+        "wall_seconds": 82.5202990830876,
+        "RSS_bytes": 4799397888
+      },
+      {
+        "wall_seconds": 83.02641275012866,
+        "RSS_bytes": 4799397888
+      },
+      {
+        "wall_seconds": 83.53338883304968,
+        "RSS_bytes": 4799397888
+      },
+      {
+        "wall_seconds": 84.04671208304353,
+        "RSS_bytes": 4799397888
+      },
+      {
+        "wall_seconds": 84.55842012516223,
+        "RSS_bytes": 4799397888
+      },
+      {
+        "wall_seconds": 85.07032425003126,
+        "RSS_bytes": 4799397888
+      },
+      {
+        "wall_seconds": 85.58015241613612,
+        "RSS_bytes": 4799397888
+      },
+      {
+        "wall_seconds": 86.08805041597225,
+        "RSS_bytes": 4799397888
+      },
+      {
+        "wall_seconds": 86.59539499995299,
+        "RSS_bytes": 4799397888
+      },
+      {
+        "wall_seconds": 87.10263191605918,
+        "RSS_bytes": 4799397888
+      },
+      {
+        "wall_seconds": 87.60703308298253,
+        "RSS_bytes": 4799397888
+      },
+      {
+        "wall_seconds": 88.1175147080794,
+        "RSS_bytes": 4799397888
+      },
+      {
+        "wall_seconds": 88.62828466598876,
+        "RSS_bytes": 4799414272
+      },
+      {
+        "wall_seconds": 89.13504895800725,
+        "RSS_bytes": 4799414272
+      },
+      {
+        "wall_seconds": 89.64336512517184,
+        "RSS_bytes": 4799414272
+      },
+      {
+        "wall_seconds": 90.15718870796263,
+        "RSS_bytes": 4799414272
+      },
+      {
+        "wall_seconds": 90.6672490411438,
+        "RSS_bytes": 4799414272
+      },
+      {
+        "wall_seconds": 91.18023691605777,
+        "RSS_bytes": 4799414272
+      },
+      {
+        "wall_seconds": 91.69280400010757,
+        "RSS_bytes": 4799414272
+      },
+      {
+        "wall_seconds": 92.19822575012222,
+        "RSS_bytes": 4799414272
+      },
+      {
+        "wall_seconds": 92.70699875010177,
+        "RSS_bytes": 4799414272
+      },
+      {
+        "wall_seconds": 93.21444816607982,
+        "RSS_bytes": 4799414272
+      },
+      {
+        "wall_seconds": 93.72430033306591,
+        "RSS_bytes": 4799414272
+      },
+      {
+        "wall_seconds": 94.23301866604015,
+        "RSS_bytes": 4799414272
+      },
+      {
+        "wall_seconds": 94.74613333307207,
+        "RSS_bytes": 4799414272
+      },
+      {
+        "wall_seconds": 95.25023275008425,
+        "RSS_bytes": 4799414272
+      },
+      {
+        "wall_seconds": 95.75554312509485,
+        "RSS_bytes": 4799414272
+      },
+      {
+        "wall_seconds": 96.26902400003746,
+        "RSS_bytes": 4799414272
+      },
+      {
+        "wall_seconds": 96.77975733298808,
+        "RSS_bytes": 4799414272
+      },
+      {
+        "wall_seconds": 97.2861528750509,
+        "RSS_bytes": 4799414272
+      },
+      {
+        "wall_seconds": 97.79374766605906,
+        "RSS_bytes": 4799414272
+      },
+      {
+        "wall_seconds": 98.30348283308558,
+        "RSS_bytes": 4799414272
+      },
+      {
+        "wall_seconds": 98.81444937502965,
+        "RSS_bytes": 4799414272
+      },
+      {
+        "wall_seconds": 99.32373654097319,
+        "RSS_bytes": 4799414272
+      },
+      {
+        "wall_seconds": 99.83748179115355,
+        "RSS_bytes": 4799414272
+      },
+      {
+        "wall_seconds": 100.35120487515815,
+        "RSS_bytes": 4799414272
+      },
+      {
+        "wall_seconds": 100.8593515001703,
+        "RSS_bytes": 4799414272
+      },
+      {
+        "wall_seconds": 101.37611087504774,
+        "RSS_bytes": 4799414272
+      },
+      {
+        "wall_seconds": 101.89122716616839,
+        "RSS_bytes": 4799414272
+      },
+      {
+        "wall_seconds": 102.39707079110667,
+        "RSS_bytes": 4799414272
+      },
+      {
+        "wall_seconds": 102.90600312501192,
+        "RSS_bytes": 4799414272
+      },
+      {
+        "wall_seconds": 103.41908483300358,
+        "RSS_bytes": 4799414272
+      },
+      {
+        "wall_seconds": 103.92898545810021,
+        "RSS_bytes": 4799414272
+      },
+      {
+        "wall_seconds": 104.44125224999152,
+        "RSS_bytes": 4799414272
+      },
+      {
+        "wall_seconds": 104.94719075015746,
+        "RSS_bytes": 4799414272
+      },
+      {
+        "wall_seconds": 105.45884412503801,
+        "RSS_bytes": 4799414272
+      },
+      {
+        "wall_seconds": 105.96728704101406,
+        "RSS_bytes": 4799414272
+      },
+      {
+        "wall_seconds": 106.48145995801315,
+        "RSS_bytes": 4799414272
+      },
+      {
+        "wall_seconds": 106.99543558317237,
+        "RSS_bytes": 4799414272
+      },
+      {
+        "wall_seconds": 107.50172670814209,
+        "RSS_bytes": 4799414272
+      },
+      {
+        "wall_seconds": 108.0116950001102,
+        "RSS_bytes": 4799414272
+      },
+      {
+        "wall_seconds": 108.52599370805547,
+        "RSS_bytes": 4859052032
+      },
+      {
+        "wall_seconds": 109.04054025001824,
+        "RSS_bytes": 4848451584
+      },
+      {
+        "wall_seconds": 109.61127254110761,
+        "RSS_bytes": 4837261312
+      },
+      {
+        "wall_seconds": 110.11681045801379,
+        "RSS_bytes": 4829724672
+      },
+      {
+        "wall_seconds": 110.62962337513454,
+        "RSS_bytes": 4833067008
+      },
+      {
+        "wall_seconds": 111.13686254108325,
+        "RSS_bytes": 4853006336
+      },
+      {
+        "wall_seconds": 111.65171054098755,
+        "RSS_bytes": 4853317632
+      },
+      {
+        "wall_seconds": 112.15899670799263,
+        "RSS_bytes": 4853317632
+      },
+      {
+        "wall_seconds": 112.66484674997628,
+        "RSS_bytes": 4853317632
+      },
+      {
+        "wall_seconds": 113.17552704107948,
+        "RSS_bytes": 4853317632
+      },
+      {
+        "wall_seconds": 113.68937349994667,
+        "RSS_bytes": 4853317632
+      },
+      {
+        "wall_seconds": 114.19808216602542,
+        "RSS_bytes": 4853317632
+      },
+      {
+        "wall_seconds": 114.70460058306344,
+        "RSS_bytes": 4853317632
+      },
+      {
+        "wall_seconds": 115.21128095802851,
+        "RSS_bytes": 4853317632
+      },
+      {
+        "wall_seconds": 115.71688570803963,
+        "RSS_bytes": 4853317632
+      },
+      {
+        "wall_seconds": 116.22310950001702,
+        "RSS_bytes": 4853317632
+      },
+      {
+        "wall_seconds": 116.76600237516686,
+        "RSS_bytes": 4853317632
+      },
+      {
+        "wall_seconds": 117.2816350411158,
+        "RSS_bytes": 4853317632
+      },
+      {
+        "wall_seconds": 117.79091958305798,
+        "RSS_bytes": 4853317632
+      },
+      {
+        "wall_seconds": 118.29888400016353,
+        "RSS_bytes": 4853317632
+      },
+      {
+        "wall_seconds": 118.80404633306898,
+        "RSS_bytes": 4853317632
+      },
+      {
+        "wall_seconds": 119.31856437516399,
+        "RSS_bytes": 4853317632
+      },
+      {
+        "wall_seconds": 119.82896691607311,
+        "RSS_bytes": 4853710848
+      },
+      {
+        "wall_seconds": 120.34273320809007,
+        "RSS_bytes": 4853710848
+      },
+      {
+        "wall_seconds": 120.85316654108465,
+        "RSS_bytes": 4853710848
+      },
+      {
+        "wall_seconds": 121.35891466611065,
+        "RSS_bytes": 4853710848
+      },
+      {
+        "wall_seconds": 121.86664316616952,
+        "RSS_bytes": 4853710848
+      },
+      {
+        "wall_seconds": 122.37726237508468,
+        "RSS_bytes": 4853710848
+      },
+      {
+        "wall_seconds": 122.88825454097241,
+        "RSS_bytes": 4853710848
+      },
+      {
+        "wall_seconds": 123.39747816603631,
+        "RSS_bytes": 4853710848
+      },
+      {
+        "wall_seconds": 123.90883812517859,
+        "RSS_bytes": 4853710848
+      },
+      {
+        "wall_seconds": 124.42349304095842,
+        "RSS_bytes": 4853727232
+      },
+      {
+        "wall_seconds": 124.93852983298711,
+        "RSS_bytes": 4853727232
+      },
+      {
+        "wall_seconds": 125.44822899997234,
+        "RSS_bytes": 4853727232
+      },
+      {
+        "wall_seconds": 125.95959650003351,
+        "RSS_bytes": 4853743616
+      },
+      {
+        "wall_seconds": 126.46870912495069,
+        "RSS_bytes": 4853743616
+      },
+      {
+        "wall_seconds": 126.9765494579915,
+        "RSS_bytes": 4853743616
+      },
+      {
+        "wall_seconds": 127.49095745803788,
+        "RSS_bytes": 4853743616
+      },
+      {
+        "wall_seconds": 128.00410662498325,
+        "RSS_bytes": 4853743616
+      },
+      {
+        "wall_seconds": 128.51850041607395,
+        "RSS_bytes": 4853743616
+      },
+      {
+        "wall_seconds": 129.03287529107183,
+        "RSS_bytes": 4853743616
+      },
+      {
+        "wall_seconds": 129.5470950831659,
+        "RSS_bytes": 4853743616
+      },
+      {
+        "wall_seconds": 130.0612528331112,
+        "RSS_bytes": 4853743616
+      },
+      {
+        "wall_seconds": 130.57157262507826,
+        "RSS_bytes": 4853743616
+      },
+      {
+        "wall_seconds": 131.08177449996583,
+        "RSS_bytes": 4853743616
+      },
+      {
+        "wall_seconds": 131.5959099160973,
+        "RSS_bytes": 4853743616
+      },
+      {
+        "wall_seconds": 132.11163954110816,
+        "RSS_bytes": 4853743616
+      },
+      {
+        "wall_seconds": 132.61851541604847,
+        "RSS_bytes": 4853743616
+      },
+      {
+        "wall_seconds": 133.1284629581496,
+        "RSS_bytes": 4853743616
+      },
+      {
+        "wall_seconds": 133.63975175004452,
+        "RSS_bytes": 4853743616
+      },
+      {
+        "wall_seconds": 134.14791916613467,
+        "RSS_bytes": 4853743616
+      },
+      {
+        "wall_seconds": 134.6608569161035,
+        "RSS_bytes": 4853743616
+      },
+      {
+        "wall_seconds": 135.17085587512702,
+        "RSS_bytes": 4853743616
+      },
+      {
+        "wall_seconds": 135.6856912910007,
+        "RSS_bytes": 4853743616
+      },
+      {
+        "wall_seconds": 136.20292004104704,
+        "RSS_bytes": 4853743616
+      },
+      {
+        "wall_seconds": 136.77268775017,
+        "RSS_bytes": 4853743616
+      },
+      {
+        "wall_seconds": 137.28627220797352,
+        "RSS_bytes": 4853743616
+      },
+      {
+        "wall_seconds": 137.79380687512457,
+        "RSS_bytes": 4853743616
+      },
+      {
+        "wall_seconds": 138.30871504102834,
+        "RSS_bytes": 4853743616
+      },
+      {
+        "wall_seconds": 138.81547837494873,
+        "RSS_bytes": 4853743616
+      },
+      {
+        "wall_seconds": 139.32094529108144,
+        "RSS_bytes": 4853743616
+      },
+      {
+        "wall_seconds": 139.82766979117878,
+        "RSS_bytes": 4853743616
+      },
+      {
+        "wall_seconds": 140.33252041600645,
+        "RSS_bytes": 4853743616
+      },
+      {
+        "wall_seconds": 140.84511999995448,
+        "RSS_bytes": 4853743616
+      },
+      {
+        "wall_seconds": 141.35972287505865,
+        "RSS_bytes": 4853743616
+      },
+      {
+        "wall_seconds": 141.87078841612674,
+        "RSS_bytes": 4853743616
+      },
+      {
+        "wall_seconds": 142.38400058308616,
+        "RSS_bytes": 4853743616
+      },
+      {
+        "wall_seconds": 142.89589991606772,
+        "RSS_bytes": 4853743616
+      },
+      {
+        "wall_seconds": 143.4008636251092,
+        "RSS_bytes": 4853743616
+      },
+      {
+        "wall_seconds": 143.91050587501377,
+        "RSS_bytes": 4853743616
+      },
+      {
+        "wall_seconds": 144.41776504111476,
+        "RSS_bytes": 4853743616
+      },
+      {
+        "wall_seconds": 144.983496125089,
+        "RSS_bytes": 4853743616
+      },
+      {
+        "wall_seconds": 145.4940685410984,
+        "RSS_bytes": 4853743616
+      },
+      {
+        "wall_seconds": 146.055734958034,
+        "RSS_bytes": 4853743616
+      },
+      {
+        "wall_seconds": 146.56646591611207,
+        "RSS_bytes": 4853743616
+      },
+      {
+        "wall_seconds": 147.07162700011395,
+        "RSS_bytes": 4853743616
+      },
+      {
+        "wall_seconds": 147.57855829107575,
+        "RSS_bytes": 4853743616
+      },
+      {
+        "wall_seconds": 148.08586291596293,
+        "RSS_bytes": 4853743616
+      },
+      {
+        "wall_seconds": 148.59294479107484,
+        "RSS_bytes": 4853743616
+      },
+      {
+        "wall_seconds": 149.10530433314852,
+        "RSS_bytes": 4853743616
+      },
+      {
+        "wall_seconds": 149.6146435411647,
+        "RSS_bytes": 4853743616
+      },
+      {
+        "wall_seconds": 150.12934045796283,
+        "RSS_bytes": 4853743616
+      },
+      {
+        "wall_seconds": 150.63465183298104,
+        "RSS_bytes": 4853743616
+      },
+      {
+        "wall_seconds": 151.14797091600485,
+        "RSS_bytes": 4853743616
+      },
+      {
+        "wall_seconds": 151.66148629109375,
+        "RSS_bytes": 4853760000
+      },
+      {
+        "wall_seconds": 152.17349216598086,
+        "RSS_bytes": 4853760000
+      },
+      {
+        "wall_seconds": 152.68160370807163,
+        "RSS_bytes": 4853760000
+      },
+      {
+        "wall_seconds": 153.18706300016493,
+        "RSS_bytes": 4853760000
+      },
+      {
+        "wall_seconds": 153.69297758303583,
+        "RSS_bytes": 4853760000
+      },
+      {
+        "wall_seconds": 154.20673937513493,
+        "RSS_bytes": 4853760000
+      },
+      {
+        "wall_seconds": 154.71734266611747,
+        "RSS_bytes": 4853760000
+      },
+      {
+        "wall_seconds": 155.22741970815696,
+        "RSS_bytes": 4853760000
+      },
+      {
+        "wall_seconds": 155.7338103330694,
+        "RSS_bytes": 4853760000
+      },
+      {
+        "wall_seconds": 156.24188920808956,
+        "RSS_bytes": 4853760000
+      },
+      {
+        "wall_seconds": 156.7503279580269,
+        "RSS_bytes": 4853760000
+      },
+      {
+        "wall_seconds": 157.25808058306575,
+        "RSS_bytes": 4853760000
+      },
+      {
+        "wall_seconds": 157.7621519579552,
+        "RSS_bytes": 4853760000
+      },
+      {
+        "wall_seconds": 158.26760708307847,
+        "RSS_bytes": 4853760000
+      },
+      {
+        "wall_seconds": 158.78081920812838,
+        "RSS_bytes": 4853760000
+      },
+      {
+        "wall_seconds": 159.29005250008777,
+        "RSS_bytes": 4853760000
+      },
+      {
+        "wall_seconds": 159.79568625008687,
+        "RSS_bytes": 4853760000
+      },
+      {
+        "wall_seconds": 160.3043612500187,
+        "RSS_bytes": 4853760000
+      },
+      {
+        "wall_seconds": 160.81561416597106,
+        "RSS_bytes": 4853760000
+      },
+      {
+        "wall_seconds": 161.32058395817876,
+        "RSS_bytes": 4853760000
+      },
+      {
+        "wall_seconds": 161.82510058302432,
+        "RSS_bytes": 4853760000
+      },
+      {
+        "wall_seconds": 162.33085174998268,
+        "RSS_bytes": 4853760000
+      },
+      {
+        "wall_seconds": 162.84261787496507,
+        "RSS_bytes": 4853760000
+      },
+      {
+        "wall_seconds": 163.35494208312593,
+        "RSS_bytes": 4853760000
+      },
+      {
+        "wall_seconds": 163.86790354107507,
+        "RSS_bytes": 4853760000
+      },
+      {
+        "wall_seconds": 164.37239425000735,
+        "RSS_bytes": 4853760000
+      },
+      {
+        "wall_seconds": 164.88375954097137,
+        "RSS_bytes": 4853760000
+      },
+      {
+        "wall_seconds": 165.39274212508462,
+        "RSS_bytes": 4853760000
+      },
+      {
+        "wall_seconds": 165.9583282910753,
+        "RSS_bytes": 4853760000
+      },
+      {
+        "wall_seconds": 166.46810250007547,
+        "RSS_bytes": 4853760000
+      },
+      {
+        "wall_seconds": 166.97722820797935,
+        "RSS_bytes": 4853760000
+      },
+      {
+        "wall_seconds": 167.48643470811658,
+        "RSS_bytes": 4853760000
+      },
+      {
+        "wall_seconds": 167.9951911661774,
+        "RSS_bytes": 4853760000
+      },
+      {
+        "wall_seconds": 168.5056678331457,
+        "RSS_bytes": 4853760000
+      },
+      {
+        "wall_seconds": 169.01142833312042,
+        "RSS_bytes": 4853760000
+      },
+      {
+        "wall_seconds": 169.5184152079746,
+        "RSS_bytes": 4853760000
+      },
+      {
+        "wall_seconds": 170.02933583315462,
+        "RSS_bytes": 4853760000
+      },
+      {
+        "wall_seconds": 170.53931262507103,
+        "RSS_bytes": 4853760000
+      },
+      {
+        "wall_seconds": 171.04663741611876,
+        "RSS_bytes": 4853760000
+      },
+      {
+        "wall_seconds": 171.55587183311582,
+        "RSS_bytes": 4853760000
+      },
+      {
+        "wall_seconds": 172.06401070812717,
+        "RSS_bytes": 4853760000
+      },
+      {
+        "wall_seconds": 172.57829650002532,
+        "RSS_bytes": 4853760000
+      },
+      {
+        "wall_seconds": 173.0896757079754,
+        "RSS_bytes": 4853760000
+      },
+      {
+        "wall_seconds": 173.59780475008301,
+        "RSS_bytes": 4853760000
+      },
+      {
+        "wall_seconds": 174.11884162505157,
+        "RSS_bytes": 4853760000
+      },
+      {
+        "wall_seconds": 174.6453721250873,
+        "RSS_bytes": 4853760000
+      },
+      {
+        "wall_seconds": 175.21707775001414,
+        "RSS_bytes": 4867801088
+      },
+      {
+        "wall_seconds": 175.727312625153,
+        "RSS_bytes": 4943577088
+      },
+      {
+        "wall_seconds": 176.23470179107971,
+        "RSS_bytes": 4909137920
+      },
+      {
+        "wall_seconds": 176.74193395813927,
+        "RSS_bytes": 4896882688
+      },
+      {
+        "wall_seconds": 177.25072091608308,
+        "RSS_bytes": 4889264128
+      },
+      {
+        "wall_seconds": 177.7609809159767,
+        "RSS_bytes": 4889280512
+      }
+    ],
+    "max_observed_RSS_bytes": 4943577088,
+    "reader_sha256": "bd352d87c6fc3f4cfd8311ef169279725cf6a7c49e8cc0df2dca01b26d582361",
+    "runner_sha256": "5ab38b53e4019506772cc429b46699ac0e217141c87a0a043718d8123ecb159c",
+    "contract_sha256": "98c281e8e8633c7253a7e13e5a5979f1c31ab967ef1af798b0a0415fa07b26fb",
+    "native_log_sha256": "8ee8245bc99ddad975acd76120ccdb33dfb1fffffed1cc746f942874af444d12",
+    "readback_report_sha256": "64caf59811e229628ea1be138ebcc48cdf940c4ca2724be0b9080e255951c9f5",
+    "native_generate_optimize_solve_calls_declared": 0,
+    "mesh_write_calls_declared": 1,
+    "counters_are_declarations": true,
+    "manufacturing_authorized": false
+  },
+  "process_scope": "Root observes controller ownership and reaping only. Native worker lifecycle, loaded versions, sampled resources and cleanup are controller/source-attributed. No universal descendant absence or true peak.",
+  "returncode_scope": "Native RC2 can retain a completed partial diagnostic while the unchanged whole-head quality gate rejects; saved-result review remains necessary.",
+  "automatic_retry": false,
+  "engineering_accepted": false,
+  "physics_qualified": false,
+  "manufacturing_authorized": false
+}

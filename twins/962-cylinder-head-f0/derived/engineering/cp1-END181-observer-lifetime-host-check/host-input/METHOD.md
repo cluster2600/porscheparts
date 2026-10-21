@@ -1,0 +1,7 @@
+# Held host004 input-check correction
+
+The15537-byte candidate changes exactly one plugin-library directory from failedhost003 to the new frozen observer004 build. Its inverse restores the full original input; it is also byte-exact with the held candidate already in source004. Native command, physics, material, load, solver, passive output/viewer options and grid filenames remain unchanged. The original failedhost001, its raw SIGSEGV, selected destructor-phase evidence and refusal remain preserved; the correction does not establish that fault's cause.
+
+The new29539701plugin and214-byte descriptor inherit the accepted build capture. Static root acceptance must be separately bound in the final held actual. Recorded grid digests are reused only as expected input identities; no raw grid is read/hashed/statted/copied or staged here. FreshD must later contain only the exact candidate, three unchanged grid files and root admission before the preserved owner could run. No header/observer/18-assertion source is changed or rerun.
+
+Full acceptance requires nativeRC0, exactly one complete object frame with the observer once, SyntaxOK, expected new plugin-path trace, independently observed outerRC0, unchanged known input/provider controls, owned cleanup and full inclusive output/time checks. Frame/Syntax or source residency reasoning alone cannot pass. No output callback/live DOF/solver/ABI/physics/manufacturing qualification follows. Root source/actual review, independent peer, separate staging and a distinct once-only admission are pending.

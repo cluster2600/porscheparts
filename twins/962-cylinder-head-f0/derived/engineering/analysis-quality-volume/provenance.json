@@ -1,0 +1,35 @@
+{
+  "schema": "962-quality-volume-public-provenance/v1",
+  "scope": "One explicitly authorized numerical volume-quality trial only. No retries or numerical fields were generated for thermal, stress or LPBF analysis. This is a deadline-stop record, not a completed volume mesh.",
+  "original_records_sha256": {
+    "surface_admission": "f4c41e44afc15da373905e0d43e8b5607b5df1f80fae182eb51c331d4beefee2",
+    "preflight": "3d194f3b0f3f16306ba4ea3e8acacada1ba370eb9475dc3896e7e4fe657215ca",
+    "launch": "d6032b8ba2151159f3f25fba31f95e2a6d32de6eb6ac19165be5e5d15dd590e8",
+    "native_execution": "193e58fd81d4380af780bf04a5b2cea5a0675f881763ce63c25f949b56320229",
+    "last_worker_checkpoint": "df971b65ca43cb9832f32b69d5983149f8c72ad0a05e1614dffc0c6f6a1a7f7d",
+    "native_log": "4fecba22e63b67fae76658f7e2381d903066f2cf2a305429e6b76cba0699d71e",
+    "root_review": "52aaea96042e4bdd3eaac76105b9b19f34a0f7afb00139a0d13c13f93e180d60"
+  },
+  "public_representation": {
+    "root_independent_review": "exact_original_bytes",
+    "source_snapshots": "exact_preflight_source/test_bytes; five mesher dependencies also verified against actual stopped-trial captures",
+    "admission_preflight_launch_execution_checkpoint": "explicit_whitelist_projections_with_original_record_hashes",
+    "resource_samples": "complete_original_JSON_field_values_only",
+    "resource_summary_outcome_source_review": "separately_authored_summaries_not_native_outputs"
+  },
+  "private_omissions": [
+    "Native commands, host/interpreter paths and process identifiers.",
+    "Runtime interpreter/Gmsh binaries and complete original native log.",
+    "Original full admission path map; public entries are role labelled."
+  ],
+  "no_mesh_omission": "There is no saved MSH to omit or archive. Generation did not return before the deadline.",
+  "public_reproduction_scope": "Published hashes and scalar/sample aggregation can be checked with the standard library. Repeating native meshing requires the retained candidate/runtime/input bundles and separate authorization.",
+  "qualification": {
+    "geometric_volume_gate_passed": false,
+    "mesh_convergence_established": false,
+    "thermal_resolution_established": false,
+    "head_thermal_or_stress_result_credited": false,
+    "LPBF_qualified": false,
+    "manufacturing_authorized": false
+  }
+}

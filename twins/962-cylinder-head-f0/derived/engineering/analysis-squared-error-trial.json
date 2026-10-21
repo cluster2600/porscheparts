@@ -1,0 +1,86 @@
+{
+  "schema": "962-analysis-squared-error-trial/v1",
+  "status": "corrected_metric_input_rejected_no_further_VTK_trials",
+  "length_unit": "mm",
+  "representation_deviation_budget_mm": 0.25,
+  "numeric_VTK_AbsoluteError_mm2": 0.0625,
+  "numeric_binding": ".25mm * .25mm = .0625mm2; a metric input, not an independent Hausdorff guarantee",
+  "metric_primary_source": {
+    "url": "https://github.com/Kitware/VTK/blob/a970ec452229b1a0953684c00ecd9fe612778b8a/Filters/Core/vtkDecimatePro.cxx",
+    "source_sha256": "ee7edb19e10465a5d4a8a2d8223adc9e3880679f15d99bc4c131b6df38215dee",
+    "locators": [
+      "159-166: AbsoluteError copied to this->Error",
+      "448-454: distance squared returned",
+      "1511-1518: queued error compared to this->Error"
+    ]
+  },
+  "private_receipt_sha256": "4c932038420eba63eff5ff4775b36dee55c241ba3e68c058f900d7b94d0fb7cd",
+  "worker_report_sha256": "31ab08940d8c1428702e32c970a7996bc9820ab6e38fc4ff69237f51350e94b9",
+  "source_executed_snapshot": "twins/962-cylinder-head-f0/derived/engineering/analysis-sources/vtk-squared-error-executed.py",
+  "source_executed_sha256": "276c7a11cfbe3ea467be1dc352de3e96bf4b3715a67f9bd04c74b494a476b9be",
+  "contract_sha256": "528be29a0b80fcf11b1d29e72be4709c869ff67903d4c9f2e2131c44001d7714",
+  "controller_wall_s": 28.906046624993905,
+  "native_deadline_s": 300,
+  "returncode": 2,
+  "worker_report": {
+    "status": "failed_outputs_preserved",
+    "stage": "topology_preserving_error_controlled_decimation",
+    "source_sha256": "276c7a11cfbe3ea467be1dc352de3e96bf4b3715a67f9bd04c74b494a476b9be",
+    "contract_sha256": "528be29a0b80fcf11b1d29e72be4709c869ff67903d4c9f2e2131c44001d7714",
+    "python": "3.10.11 (v3.10.11:7d4cc5aa85, Apr  4 2023, 19:05:19) [Clang 13.0.0 (clang-1300.0.29.30)]",
+    "machine": "arm64",
+    "executable_sha256": "72956ad35cff7691dfed9e04c9593de825ffd5b2fa7e8bc9ae96ce9a1af65621",
+    "numpy_version": "2.2.6",
+    "qualification": {
+      "analysis_surface_geometric_gate_passed": false,
+      "solver_admission_established": false,
+      "mesh_convergence_established": false,
+      "engineering_accepted": false,
+      "thermal_performance_validated": false,
+      "strength_validated": false,
+      "manufacturing_authorized": false
+    },
+    "vtk_version": "9.7.1",
+    "vtk_maximum_threads": 4,
+    "vtk_SMP_estimated_threads": 1,
+    "source_surface": {
+      "unique_edges": 2707059,
+      "boundary_edges": 0,
+      "nonmanifold_edges": 0,
+      "orientation_imbalanced_edges": 0,
+      "vertices": 902145,
+      "triangles": 1804706,
+      "euler_characteristic": -208,
+      "signed_volume_mm3": 915458.1053358029,
+      "points_sha256": "f6aee40320646d34212929551866b111093ab25d81d78d68e48b95e1f8f78ad7",
+      "faces_sha256": "9318ffffd6b46c1daa3f35169071eb3ad815171848fc3d48778b8373a2ea5341"
+    },
+    "exact_indexed_VTK_import": true,
+    "candidate_arrays_sha256": "e0cb8496780458623ffc9bdb0ecfba530f573abc4fefa3ec6fe8fbfae9a2f8f8",
+    "candidate_edge_diagnostics": {
+      "unique_edges": 171343,
+      "boundary_edges": 0,
+      "nonmanifold_edges": 8,
+      "orientation_imbalanced_edges": 0,
+      "maximum_faces_per_edge": 4
+    },
+    "candidate_vertices": 56909,
+    "candidate_triangles": 114234,
+    "error": "ValueError: Surface must be closed, edge-manifold and consistently oriented",
+    "wall_s": 28.597836750093848,
+    "source_inputs_unchanged": true,
+    "output_hashes": {
+      "source-surface.npz": "f405a28ffd9c1fad48eadfba9842272750d3de14d2fd2d6c68b90e4eedbd1abc",
+      "analysis-surface.npz": "e0cb8496780458623ffc9bdb0ecfba530f573abc4fefa3ec6fe8fbfae9a2f8f8"
+    }
+  },
+  "qualification": {
+    "analysis_surface_geometric_gate_passed": false,
+    "solver_admission_established": false,
+    "mesh_convergence_established": false,
+    "engineering_accepted": false,
+    "thermal_performance_validated": false,
+    "strength_validated": false,
+    "manufacturing_authorized": false
+  }
+}

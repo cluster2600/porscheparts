@@ -1,0 +1,24 @@
+{
+  "schema": "962-cap-refinement-EPICK-installed-API-reuse/v1",
+  "image_id": "sha256:57c6b17ed0bd093a61a3d3cecb7563e912caeb3832fd59e8cec2d4d9d4d1e2f8",
+  "existing_installed_API_record": {
+    "path": "work/962-engineering/atomic-cavity-plane-clip-cap-refinement-prep-001/installed-headers.json",
+    "sha256": "ef46423507c6762005d487aa226b70ede9c63d73373cbca1463547bfe533d019"
+  },
+  "unchanged_installed_header_pins": {
+    "Delaunay_mesh_criteria_2.h": "2774e0b470b73f0778c11cb59aa37342ec11966e4d11918894ce659559055d1e",
+    "Delaunay_mesh_face_base_2.h": "31e25a45088157a35edf0724567a45e8b62621cb0a90bd37fae562565e39c00d",
+    "Delaunay_mesh_size_criteria_2.h": "c5ea422d9e10e985374cea235b9d4ba50120657f1a4fa04e11c205032d0870de",
+    "Delaunay_mesh_vertex_base_2.h": "4ce665905442399266bd1605a67e52fd3dd93623d182eab1d3f0baddbc072410",
+    "Delaunay_mesher_no_edge_refinement_2.h": "b72ccb3560bf40cc14a0a6c71f8fe8c636b266abb6ffa614368f673fdf1a5cb7",
+    "Mesh_2/Do_not_refine_edges.h": "b95bb8fe917167c299bfe8f17e3050d182728020c6d6ecac3e6218764385fecc",
+    "Mesh_2/Refine_edges.h": "dd594786507a1a48482d7dafcd0c853a2b040f00767e8269b5e0d705d998a493",
+    "Mesh_2/Refine_faces.h": "d33adbea785adea162146de2df3efd8d92e7729d0fb1b61e1b66271da949edaf",
+    "Mesher_level.h": "58a1ea0bfa60e8283691397bc627e2a45d6b3df1c0d8d95f600589c6c5dd7beb"
+  },
+  "API_changes": "Only the already-existing Kernel EPICK template argument replaces Exact for working CDT/vertex/face bases. Existing Mesh_2 templates, criterion defaults, init(true), try_one_step and no-edge behavior unchanged.",
+  "exact_proof_type": "Existing EPECK P2/Polygon/FT aliases remain unchanged in the exact helper.",
+  "new_API_or_dependency": false,
+  "source002_compilation_or_instantiation_verified": false,
+  "upstream_header_bodies_copied": false
+}

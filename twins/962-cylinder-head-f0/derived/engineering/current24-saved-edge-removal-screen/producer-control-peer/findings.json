@@ -1,0 +1,223 @@
+{
+  "schema": "962-current24-saved55-exact-child-source-findings/v1",
+  "source_blockers": [],
+  "packet_identity": {
+    "path": "work/962-engineering/head-star-current24-edge-removal-saved-execution-prep-001/index.json",
+    "sha256": "6339515d03d987ec588921f9b1fa66bd63e9eadf93d7442338a8342e056052b0",
+    "bytes": 2360
+  },
+  "helpers": [
+    {
+      "name": "rec",
+      "text_AST_exact": true,
+      "sha256": "1c49fad82b6ce5d2a5432aa22114fa9b0e42eb46d4b57b8df2a0ba2c36d00543"
+    },
+    {
+      "name": "group_exists",
+      "text_AST_exact": true,
+      "sha256": "67b74400b8ae03cab400d9360091514f9d295f0a93baa968468544e8b23cd5f3"
+    },
+    {
+      "name": "check",
+      "text_AST_exact": true,
+      "sha256": "7aafe9854e4e77c0b84d9232f40d979da358790349d8899b628ffe04418f3b77"
+    },
+    {
+      "name": "output_size",
+      "text_AST_exact": true,
+      "sha256": "0a86e778061dd08bb3109046fc15ea968e8bbe94ef7b8e4b02ea95365e320b65"
+    },
+    {
+      "name": "stop_wait",
+      "text_AST_exact": true,
+      "sha256": "a7d56d0d5231785caee558ceda897260fd59d43586cf11fc8fea905c46ddb6a8"
+    },
+    {
+      "name": "limits",
+      "text_AST_exact": true,
+      "sha256": "7fe128a40ee8e718cdd34812d396d17ae125a6de21a315ee85bd093ac40d2323"
+    },
+    {
+      "name": "sample",
+      "text_AST_exact": true,
+      "sha256": "4dd2bd71a1bc26903fefd25f1a577c215475c51dd002bd8b014ead5ca950968f"
+    },
+    {
+      "name": "provider_links",
+      "text_AST_exact": true,
+      "sha256": "92d3d35a256f694cd8aa0183e3125c5f7b9dd8de6b8a746f8921644b2d95b940"
+    },
+    {
+      "name": "record_controller_stop",
+      "text_AST_exact": true,
+      "sha256": "a003c9f5417a0da6dd023f5dc9db70c657d50c2d8b1c097e33e8b99ac118277d"
+    }
+  ],
+  "unchanged_sections": [
+    {
+      "section": "launch/sampling/wait/full output/one-call summary association before report-schema gate",
+      "text_exact": true,
+      "bytes": 1904,
+      "sha256": "eb276b9f6734ca470a71152585c496631b85fa7c55e95f7dee34a681a121cb85"
+    },
+    {
+      "section": "exception/cleanup/final hashing/provider/OS/cutoff/receipt budget/write/outer status suffix",
+      "text_exact": true,
+      "bytes": 2996,
+      "sha256": "0721f2c2e8cf0f77783e22f014a587b38369205879c47a647c195f4db66b9edd"
+    }
+  ],
+  "complete_diff_exact": true,
+  "protected_closure": {
+    "protected": 75,
+    "untouched_scientific_input_descriptors": 23,
+    "firstparty_source_metadata_records_hashed": 52,
+    "saved_runtime_descriptors_not_reopened": 91,
+    "future_direct_roles": 9,
+    "total": 175,
+    "normalized_path_sets_pairwise_disjoint": true,
+    "all23_equal_driver_held": true
+  },
+  "imports": [
+    {
+      "source": {
+        "path": "work/962-engineering/head-star-current24-edge-removal-saved-execution-prep-001/run_root_once.py",
+        "sha256": "66f0f5e36182898cb2d8d84bf52e25d4fd65b9250c10259a0489e8c30e6073d3",
+        "bytes": 20845
+      },
+      "direct_AST_imports": [
+        "hashlib",
+        "json",
+        "os",
+        "pathlib",
+        "re",
+        "resource",
+        "signal",
+        "subprocess",
+        "sys",
+        "time",
+        "traceback"
+      ],
+      "saved_origin_file_coverage": true
+    },
+    {
+      "source": {
+        "path": "work/962-engineering/head-star-current24-edge-removal-saved-driver-prep-001/call_saved_once.py",
+        "sha256": "70aff43480e8fc15e3f306c44aabdc1d287fcf15a3c9ba89dbdf0bf019cdd18b",
+        "bytes": 3161
+      },
+      "direct_AST_imports": [
+        "hashlib",
+        "importlib.util",
+        "json",
+        "os",
+        "pathlib",
+        "re",
+        "sys"
+      ],
+      "saved_origin_file_coverage": true
+    },
+    {
+      "source": {
+        "path": "work/962-engineering/head-star-current24-edge-removal-saved-driver-prep-001/collect_saved_edge_removal.py",
+        "sha256": "66f474c870495f78b36fdbd786c5cdb6cbbafe293f46c8922b4f98e4cfade07b",
+        "bytes": 10599
+      },
+      "direct_AST_imports": [
+        "copy",
+        "hashlib",
+        "importlib.util",
+        "json",
+        "pathlib",
+        "struct"
+      ],
+      "saved_origin_file_coverage": true
+    },
+    {
+      "source": {
+        "path": "work/962-engineering/head-star-current24-edge-removal-prep-001/propose_saved_edge_removal.py",
+        "sha256": "672ee28f0a9eb03713d8333393d01cc731d20ad61f3e74e766107bd58ba6870d",
+        "bytes": 35886
+      },
+      "direct_AST_imports": [
+        "copy",
+        "fractions",
+        "hashlib",
+        "itertools",
+        "json",
+        "math",
+        "struct"
+      ],
+      "saved_origin_file_coverage": true
+    }
+  ],
+  "accepted16_joins": {
+    "receipt": {
+      "path": "work/962-engineering/head-star-current24-edge-removal-guards-root-execution-001/receipt.json",
+      "sha256": "63f8febb8fe188dcf89d22110a3103e246f9873abd7bff266ed86a1d02d5eaf4",
+      "bytes": 52094
+    },
+    "review": {
+      "path": "work/962-engineering/head-star-current24-edge-removal-guards-result-peer-001/review.json",
+      "sha256": "1d7fdd3d095e3e633bf21298b632997abbcd7cb228604d892d2eec18cdc1f946",
+      "bytes": 3720
+    },
+    "root_acceptance": {
+      "path": "work/962-engineering/head-star-current24-edge-removal-guards-root-review-001/result-peer-acceptance.json",
+      "sha256": "e286344e8cf97e65c64780b99742d62f82719208612ba4fe2d7c5f8ab2de9f77",
+      "bytes": 2709
+    },
+    "guard_actual": {
+      "path": "work/962-engineering/head-star-current24-edge-removal-guards-execution-prep-001/actual-contract.json",
+      "sha256": "7215db90f3e12cd0a6b8a6ac1e953f5c2cd21b6495676bddfa6bb2c4b50ff231",
+      "bytes": 13622
+    },
+    "runtime_preflight_original_path": {
+      "path": "work/962-engineering/head-star-current24-edge-removal-guards-execution-prep-001/runtime-preflight.json",
+      "sha256": "3b4f731ff16ec475b5de2d567292b25169a7c9c8618d38c1c8cd363d4f8c9169",
+      "bytes": 78434
+    },
+    "mandatory_timing_erratum": {
+      "path": "work/962-engineering/head-star-current24-edge-removal-guards-root-review-001/observed-terminal-timing-erratum.json",
+      "sha256": "9b9002ced18d27e889e129c00afa809137b454ea8f8041c529a6ec5b865b91b0",
+      "bytes": 1668
+    },
+    "terminal": {
+      "path": "work/962-engineering/head-star-current24-edge-removal-guards-root-review-001/observed-terminal.json",
+      "sha256": "3c0159b6d3ac8ce4b5de9dfe66f725eb832cdea3b428879b78beae52cbbba7df",
+      "bytes": 1834
+    },
+    "all_exact_metadata_joins": true,
+    "guard_tests_not_replayed": true
+  },
+  "completion_parser_reasoning": [
+    "Full schema/status and caller1/report-byte identity before completion; empty stderr required.",
+    "Both canonical complete snapshots include271points/271words/499cells/24poor/16seeds/66protectednodes/1983protectedcells/271classifications and stored snapshot digests; driver/worker preserve86history independently via frozen intake. No real snapshot recomputation by this peer.",
+    "All23before/after descriptor rows, source/held beforeafter identities, full499native rows/271classifications and exact55case/degree map are checked.",
+    "Candidate IDs globally unique; case memberships cover every conditional valid-link Catalan count(2/5/14/42/132) with zero rows for invalid links. Count0does not mean missing55case family.",
+    "Full factorized conflict memberships/all-pairs/no-subset protocol and retained failure/outside flags checked; pair union and local geometric arithmetic remain later saved-result review.",
+    "Eligibility and unknown BIN/region/interface/exterior evidence remain null; application/global/native/optimizer/physical/topology-necessity/infeasibility flags remain false."
+  ],
+  "lifecycle_and_budget_reasoning": [
+    "Nine helpers and1904Blaunch/2996Bfinalization sections are exact donor code; one owned child invocation/session, waited/reaped and absent group required.",
+    "2GiBsampled RSS, numericzero retained/unknown not invented, exit-race records and nongating unknown threads. No hard peak/quota claim.",
+    "All D files count recursively, no exclusions. Complete receipt must fit remaining32MiB; otherwise raw output retained without receipt and owner2. Postreceipt size is checked. No truncation/retry.",
+    "SIGTERM/INT latch active until recorded handler-restoration cutoff. Postcutoff nonzero/partial/absent completion remains incomplete; no all-lifetime signal claim.",
+    "The in-owner clock begins after preflight and elapsed is sampled before final checks; it cannot prove whole invocation<=60s. Required root ordered UTC bracket must cover preflight through full outer return with resolution allowance, plus saved elapsed/cutoff<=60, raw outer/child0 and final inclusive size. Exec wait metadata must not be used as whole duration."
+  ],
+  "reviewer_metadata_check_precision": {
+    "initial_interruption": "Own source-section substring omitted the leading newline, producing1903/2995B instead of declared1904/2996. Donor/current substrings were already identical.",
+    "resolution": "Including the declared leading newline matches both full byte lengths and SHA values exactly. No target/helper execution or changed source."
+  },
+  "root_driver_review_not_inserted_into_frozen_actual": {
+    "path": "work/962-engineering/head-star-current24-edge-removal-saved-driver-root-review-001/source-peer-acceptance.json",
+    "sha256": "44823b6d3454367d81e2cb15d01469d46d17bca9c9d756a4b61d0a73987192b5",
+    "bytes": 1858
+  },
+  "remaining_limits": [
+    "Actual and runtime metadata remain held historical expectations. Future root admission must bind exact current child peer/bindings, accepted16roles, concrete before/after175files/91paths/OS and authorize only saved arithmetic once.",
+    "No scientific input23body, runtime91body/query, target import/test/caller/worker, raw235MBMSH/BIN or real coordinate/quality/triangulation arithmetic occurred here.",
+    "Independent full saved scientific result and global/application/physical/material/head gates remain separate; output fit/completion unknown."
+  ],
+  "future_output_directory_absent_at_review": true
+}

@@ -1,0 +1,182 @@
+{
+  "schema": "962-specific-coupled-cavity-native-application-held/v1",
+  "status": "ACTUAL_ONE_LOCAL_NATIVE_CANDIDATE_READBACK",
+  "native_execution_authorized": true,
+  "root_and_peer_review_complete": true,
+  "selected_runtime_review_complete": true,
+  "local_candidate_application_authorized": true,
+  "generation_authorized": false,
+  "cavity_Netgen_optimizer_authorized": false,
+  "head_execution_authorized": false,
+  "stitching_authorized": false,
+  "native_head_application_authorized": false,
+  "engineering_accepted": false,
+  "physics_qualified": false,
+  "manufacturing_authorized": false,
+  "output_directory": "work/962-engineering/fixed-shell-coupled-sicn-apply-001",
+  "planned_output_name": "fixed-shell-coupled-sicn-apply-001",
+  "actual_child_sha256": null,
+  "native_python": "runtime-role:registered_geometry_runtime/bin/python",
+  "runtime": {
+    "python_executable_sha256": "72956ad35cff7691dfed9e04c9593de825ffd5b2fa7e8bc9ae96ce9a1af65621"
+  },
+  "runtime_sha256s": {
+    "gmsh_library": "def0f5c10988a986e5e879b3db9669d8fe016a81e2d994bbaf2b8497c6b8a58a",
+    "gmsh_module": "f4b0935cebde899750293d87a643090e5ea33c9b18d249267f507db68a0e01c3",
+    "python": "72956ad35cff7691dfed9e04c9593de825ffd5b2fa7e8bc9ae96ce9a1af65621"
+  },
+  "external_runtime_hashes": {
+    "runtime-role:registered_geometry_runtime/bin/python": "72956ad35cff7691dfed9e04c9593de825ffd5b2fa7e8bc9ae96ce9a1af65621",
+    "runtime-role:registered_geometry_runtime/lib/libgmsh.4.15.dylib": "def0f5c10988a986e5e879b3db9669d8fe016a81e2d994bbaf2b8497c6b8a58a",
+    "runtime-role:registered_geometry_runtime/lib/python3.10/site-packages/gmsh.py": "f4b0935cebde899750293d87a643090e5ea33c9b18d249267f507db68a0e01c3"
+  },
+  "expected_runtime": {
+    "python": "3.10.11",
+    "numpy": "2.0.2",
+    "gmsh": "4.15.2",
+    "machine": "arm64"
+  },
+  "numpy_init": "runtime-role:registered_numpy_environment/lib/python3.10/site-packages/numpy/__init__.py",
+  "numpy_origin_provenance": {
+    "path": "work/962-engineering/direct-sicn-cube-prep-001/held-contract.json",
+    "sha256": "db6def5bf8909387b6ba4be4dc68769360dd396eca55e35b88718b6ff558e5cd",
+    "selection": "Existing registered expected origin only; no module/runtime bodies read or fresh probe.",
+    "fresh_exact_origin_and_module_byte_check_required_before_actual_child": true,
+    "complete_package_import_OS_ABI_or_source_build_closure": false
+  },
+  "reader_sha256": "20a7d00f0b1f8a05a5ff09eefd86a647886556b9ce327a922beb8647f1b8cd0c",
+  "runner_sha256": "be03bd5227731a2835e89c6b23c632895e96298c68c8b3e5f130dac9a483da1d",
+  "options": {
+    "General.NumThreads": 2,
+    "Mesh.MaxNumThreads3D": 2,
+    "Mesh.Renumber": 0,
+    "Mesh.Optimize": 0,
+    "Mesh.OptimizeNetgen": 0,
+    "Mesh.OptimizeThreshold": 0.3,
+    "Mesh.Binary": 1,
+    "Mesh.SaveAll": 1,
+    "Mesh.MshFileVersion": 4.1
+  },
+  "declared_operation_counts": {
+    "generate": 0,
+    "createGeometry_dim3": 0,
+    "optimize_Netgen": 0,
+    "setNode": 3,
+    "rebuildElementCache": 1,
+    "write_mesh": 1,
+    "solve": 0
+  },
+  "controls": {
+    "wall_seconds": 30,
+    "sampled_RSS_stop_bytes": 1073741824,
+    "sampled_output_stop_bytes": 16777216,
+    "threads": 2,
+    "hard_OS_CPU_quota_applied": false,
+    "hard_address_space_limit_applied": false,
+    "environment": {
+      "PATH": "/usr/bin:/bin",
+      "LANG": "C",
+      "PYTHONUTF8": "1",
+      "OMP_NUM_THREADS": "2",
+      "OPENBLAS_NUM_THREADS": "2",
+      "VECLIB_MAXIMUM_THREADS": "2",
+      "PYTHONDONTWRITEBYTECODE": "1"
+    }
+  },
+  "automatic_retry": false,
+  "input_mesh": "work/962-engineering/fixed-shell-netgen-apex1435493-001/cavity.msh",
+  "input_mesh_sha256": "f3a48c8f4da651d80150ce5c1d514149fe9fa0b0dba728db06e9c0c8b374db6a",
+  "input_mesh_bytes": 3486,
+  "candidate": "work/962-engineering/fixed-shell-coupled-sicn-001/diagnostic.json",
+  "candidate_sha256": "e9184514108a194e9f483c5bfb20ffef9d8334cddd01f60806d97b96f84f532a",
+  "selected_tags": [
+    27,
+    28,
+    29
+  ],
+  "candidate_peer": {
+    "path": "work/962-engineering/fixed-shell-coupled-sicn-result-peer-001/review.json",
+    "sha256": "0adbeea0bef35c5a1f30f610c87bb27ef4333530ff2039e9e4c91a512287732b"
+  },
+  "scientific_scope": {
+    "source_nodes": 19,
+    "source_cells": 39,
+    "fixed_shell_nodes": 16,
+    "oriented_tagged_shell_faces": 28,
+    "requested_setter_rows": 3,
+    "identity_row_tags": [
+      27
+    ],
+    "coordinate_change_tags": [
+      28,
+      29
+    ],
+    "all39_native_SICN_minimum": 0.1,
+    "complete_metric_lengths_positive_Jacobians_volumes_full_incidence_no_orphans_duplicates": true,
+    "all19_coords_exact_candidate_bits": true,
+    "all_tags_ordered_connectivity_classes_periodic_unchanged": true,
+    "write_reopen_full_array_metric_report_identity": true,
+    "epigraph_t_used_for_native_gate": false,
+    "embedding_overlap_containment_checked": false,
+    "head_or_stitch_acceptance": false
+  },
+  "input_hashes": {
+    "work/962-engineering/fixed-shell-coupled-sicn-apply-prep-001/reader.py": "20a7d00f0b1f8a05a5ff09eefd86a647886556b9ce327a922beb8647f1b8cd0c",
+    "work/962-engineering/fixed-shell-coupled-sicn-apply-prep-001/run_readback.py": "be03bd5227731a2835e89c6b23c632895e96298c68c8b3e5f130dac9a483da1d",
+    "work/962-engineering/fixed-shell-coupled-sicn-apply-prep-001/selfcheck.py": "510fd644117f2497f026d0e9ccbf5dc662e6eb56321cd1a5af09f32cd728f446",
+    "work/962-engineering/fixed-shell-coupled-sicn-apply-prep-001/METHOD.md": "5ba6f7378d9f180a6ece248e62c08d1579d6c5732fcbdab07dd7621999d536c9",
+    "work/962-engineering/fixed-shell-coupled-sicn-apply-prep-001/source-reuse.json": "444c8f1b9af123d493eebf3e9a2ab6cd96762622e66d2717ea2e902b7b382ad2",
+    "work/962-engineering/fixed-shell-netgen-apex1435493-prep-001/reader.py": "3cd669f484a2c8ecfd8388a5fde7b4911faf1c84dcda77230a414cbb87983bdd",
+    "work/962-engineering/fixed-shell-netgen-apex1435493-prep-001/run_readback.py": "ee558f1520b9a8d4ba1d458c1055ad0d6addc68d97d25ad6aae6e7305fb610c0",
+    "work/962-engineering/fixed-shell-netgen-apex1435493-prep-001/held-contract.json": "74d172ad6b3ed59c4af148bfc8b18c68675435e76b5b01a3d9a9ac224400fa9b",
+    "work/962-engineering/fixed-shell-generation-apex1435493-prep-001/reader.py": "d5f23d2512d0cdc53c3f648eaca6b3c5aba3105b4b3d14470ceab5761afd5879",
+    "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-netgen-cube-prep-002/reader.py": "97b7e9fc7d17defa84594c50dac1d4e09cd39bb47ef2059e00b6ac07fe8c029b",
+    "twins/962-cylinder-head-f0/source/mesh_head.py": "69c8012e99057e384d44d6971d41f0e2cc7197a978120a7c566b0ad5a6477da5",
+    "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-delaunay-prep-001/mesh_assembled_delaunay.py": "a3268687edc90b0149775cf5d80a89df82175cc982bbf5d7184b6ea8935be8a4",
+    "work/962-engineering/direct-sicn-apex1435493-cavity-study-001/local-shell-input-001.json": "a6f15db60967807b057e357b8f159fa510c4a8cf6e3cb44c4327323c070398c8",
+    "work/962-engineering/fixed-shell-netgen-apex1435493-001/fixture-report.json": "8529a8f8421dd989ae243b2a06b132b8a2952e9847aa31d34adb74289a16e6c7",
+    "work/962-engineering/fixed-shell-netgen-apex1435493-001/arrays.json": "ace411a27a13332129f515ac456ab453cbede0920fe115bdb82057092e665e5f",
+    "work/962-engineering/fixed-shell-netgen-apex1435493-result-peer-001/review.json": "737cafa90b6f3ec7b82b6040e3968de01ae91ca912b887e5ece9cfdc2ace0551",
+    "work/962-engineering/fixed-shell-netgen-apex1435493-root-execution-001/closed-result.json": "373e923e584f3be946d5f5bea8c78285284533f78085c06296c544f19a18d0ea",
+    "work/962-engineering/fixed-shell-coupled-sicn-001/diagnostic.json": "e9184514108a194e9f483c5bfb20ffef9d8334cddd01f60806d97b96f84f532a",
+    "work/962-engineering/fixed-shell-coupled-sicn-result-peer-001/review.json": "0adbeea0bef35c5a1f30f610c87bb27ef4333530ff2039e9e4c91a512287732b",
+    "work/962-engineering/fixed-shell-coupled-sicn-prep-001/coupled.py": "b63adff506061ac9212d17501ae4062e970b1edd943145a1e911d1914e18b1a6",
+    "work/962-engineering/direct-sicn-cube-prep-002/direct_sicn_cube.py": "8351733aa0cd3dff2c86bcedd6c5cf931fde7306d0870738f9794448fbe8d12e",
+    "work/962-engineering/fixed-shell-netgen-apex1435493-001/cavity.msh": "f3a48c8f4da651d80150ce5c1d514149fe9fa0b0dba728db06e9c0c8b374db6a",
+    "work/962-engineering/fixed-shell-coupled-sicn-apply-prep-001/held-contract.json": "6482fb1403f88ad9cb6db94a93a441e511049aaf7e706bef248801b920d7cf99",
+    "work/962-engineering/fixed-shell-coupled-sicn-apply-source-peer-001/review.json": "6785c5cfc88c79db82de309211bdd0b4f9bb52074e66eed782abd8a17368c0e7",
+    "work/962-engineering/fixed-shell-coupled-sicn-apply-root-source-001/review.json": "be99b415de1aa0d1611be41b998ab21b6bf0eb87e5071bd44caf3d29b6c4c91f",
+    "work/962-engineering/fixed-shell-coupled-sicn-apply-001/reader.py": "20a7d00f0b1f8a05a5ff09eefd86a647886556b9ce327a922beb8647f1b8cd0c",
+    "work/962-engineering/fixed-shell-coupled-sicn-apply-001/run_readback.py": "be03bd5227731a2835e89c6b23c632895e96298c68c8b3e5f130dac9a483da1d"
+  },
+  "input_count": 22,
+  "preparation_scope": {
+    "small_current_project_inputs_hashed": 21,
+    "input_MSH_hash_from_stopped_metadata_not_read": true,
+    "runtime_binary_bodies_not_read_or_hashed": true,
+    "prepared_functions_imports_tests_or_native_calls": false
+  },
+  "materialization": {
+    "copies_made": false,
+    "output_reserved": false,
+    "files": [
+      "reader.py",
+      "run_readback.py",
+      "frozen-contract.json"
+    ],
+    "actual_child_requires_external_digest_not_self_hash": true
+  },
+  "prepared_selfcheck": {
+    "executed": false,
+    "stdlib_only": true,
+    "synthetic_metadata_and_API_mocks_not_real_geometry_or_quality": true
+  },
+  "required_before_execution": [
+    "Root and independent exact source/candidate/helper/control review",
+    "Root runs compact stdlib check; prior cleanup guard evidence remains reference-only unless separately rerun",
+    "Fresh root all22input checks including tiny MSH and3native-runtime hashes plus selected NumPy origin/module bytes, resources and sole-worker observations",
+    "Separate externally reviewed exact actual child/current source copies/fresh output with only local coordinate-application authority",
+    "One bounded application/readback, full stopped arrays/mesh closure and independent result review; no head/stitch/physical acceptance"
+  ],
+  "selected_numpy_module_sha256": "c09e25b58f6b2f8e2cb3c158168f902d447f8171e5ea6513c0aca41ecbda7c2b"
+}

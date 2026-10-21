@@ -1,0 +1,80 @@
+{
+  "schema": "962-five-toy-root-failed-result-review/v1",
+  "decision": "PRESERVE_INCOMPLETE_FIRST_REAL_ATTEMPT_NO_FIVE_TOY_OR_HEAD_ACCEPTANCE",
+  "executed": true,
+  "invocations": 1,
+  "automatic_retry": false,
+  "owner_result": {
+    "path": "work/962-engineering/head-star-current24-qfnra-five-toy-root-execution-001/closed-result.json",
+    "sha256": "64a6c92dbf3443ac540f46297851fae24332cc25bb4d43e4b594d38bda346889",
+    "bytes": 142745
+  },
+  "adapter_result": {
+    "path": "work/962-engineering/head-star-current24-qfnra-five-toy-root-execution-001/adapter-report.json",
+    "sha256": "60fcf06de3c6b60d37809b9903b582d5d5d347372aad981cc2bd286136f3d3be",
+    "bytes": 4307
+  },
+  "helper_result": {
+    "path": "work/962-engineering/head-star-current24-qfnra-five-toy-root-execution-001/toys/report.json",
+    "sha256": "e47408084abd33c48b6cc408518143210922cc4a79396356d09966b731ee5ef9",
+    "bytes": 1995
+  },
+  "tool_return": {
+    "path": "work/962-engineering/head-star-current24-qfnra-five-toy-root-observation-001/tool-return.json",
+    "sha256": "021de04806783a80c748db3dbba1742b486dc1d34dbcac00b36a76649c1a4d1d",
+    "bytes": 1359
+  },
+  "observations": {
+    "outer_returncode": 2,
+    "adapter_returncode": 2,
+    "attempted_IDs": [
+      "rational"
+    ],
+    "unattempted_IDs": [
+      "algebraic",
+      "maxfinite",
+      "negative_half_minsubnormal",
+      "unsat"
+    ],
+    "rational_observed_status": "sat",
+    "rational_solver_returncode": -15,
+    "rational_reaped": true,
+    "owner_stopped_certificate": {
+      "PID": 5702,
+      "PGID": 5702,
+      "SID": 5702,
+      "direct_child_unreaped": true,
+      "wait_status": 4479
+    },
+    "exit_events": [
+      {
+        "ident": 5702,
+        "filter": -5,
+        "flags": 32821,
+        "fflags": 2147483648,
+        "data": 0,
+        "udata": 0
+      }
+    ],
+    "adapter_reaped": true,
+    "owner_reported_group_absent": true,
+    "before_after_controls_and_aliases_equal": true,
+    "valid_live_samples": 2,
+    "observed_max_group_RSS_bytes": 19300352,
+    "observed_threads": null,
+    "sampled_RSS_acceptance": false,
+    "cleanup_error_count": 2,
+    "cleanup_errors": [
+      "Traceback (most recent call last):\n  File \"/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/head-star-current24-qfnra-five-toy-owner-prep-004/run_owner_once.py\", line 342, in main\n    try:os.killpg(proc.pid,signal.SIGTERM);report['stop_actions'].append(dict(scope='certified unreaped group',signal=int(signal.SIGTERM)))\nPermissionError: [Errno 1] Operation not permitted\n",
+      "Traceback (most recent call last):\n  File \"/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/head-star-current24-qfnra-five-toy-owner-prep-004/run_owner_once.py\", line 353, in main\n    os.killpg(proc.pid,signal.SIGKILL);report['stop_actions'].append(dict(scope='certified unreaped group',signal=int(signal.SIGKILL)))\nPermissionError: [Errno 1] Operation not permitted\n"
+    ]
+  },
+  "primary_failure": "The rational SAT full model contains its Real variable plus the declared Boolean assertion alias. one_model incorrectly requires one definition total; no word/predicate/model-continuity gate completed.",
+  "secondary_failure": "Owner cleanup attempts to signal the retained process group returned PermissionError EPERM for TERM and KILL. Explicit reap and reported group absence are observed separately; cleanup acceptance remains false.",
+  "source_runtime_scope": "All118 pinned record maps remain equal before/after.26 relative first-party records rehashed by root; absolute installed runtime identities are saved owner evidence. No additional runtime probe.",
+  "publication": "Raw ps output remains in the private frozen closed-result and is excluded from the public capsule. This separately authored selected-field review retains the original descriptor and all failures.",
+  "head_poor_cells": 24,
+  "aggregate_mechanical_failures": 12,
+  "real_head_used": false,
+  "physics_or_manufacturing_acceptance": false
+}

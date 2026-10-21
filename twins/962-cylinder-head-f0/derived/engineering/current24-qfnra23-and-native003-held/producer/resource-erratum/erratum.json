@@ -1,0 +1,45 @@
+{
+  "schema": "962-current24-qfnra-preparation-resource-label-erratum/v1",
+  "decision": "ADDITIVE_DOCUMENTATION_CORRECTION_ONLY_PRESERVE_NINE_FROZEN_ORIGINALS",
+  "frozen_packet_index": {
+    "path": "work/962-engineering/head-star-current24-coupled-qfnra-prep-001/index.json",
+    "sha256": "513407bd2d916945bf33ff9bf7cbe96800c3c765015457a15c4dd12ad00ff69d",
+    "bytes": 4098
+  },
+  "affected_records": {
+    "METHOD.md": {
+      "path": "work/962-engineering/head-star-current24-coupled-qfnra-prep-001/METHOD.md",
+      "sha256": "cd1c4576b06306fe0a8ae950ef2b1d5f4bce1119ae1413c023a3d7ccaead7ea3",
+      "bytes": 11655
+    },
+    "held-preparation.json": {
+      "path": "work/962-engineering/head-star-current24-coupled-qfnra-prep-001/held-preparation.json",
+      "sha256": "f92c773ce67aa2e314929139b6fb3ca35f99481bfc1a77c3f02b4248466184f6",
+      "bytes": 18419
+    }
+  },
+  "discovered_by": "/root/lpbf_linear_refinement, independent source review",
+  "incorrect_locations": [
+    "METHOD.md: finalcontrols wording eight threads observed",
+    "held-preparation.json: future_control_limits_only.thread_limit=8"
+  ],
+  "correction": {
+    "T8_means": "TERM grace8seconds",
+    "TERM_grace_seconds": 8,
+    "requested_environment_threads": 1,
+    "threads_observed": null,
+    "thread_limit_8_is_authorized": false,
+    "whole_wall_stop_seconds": 60,
+    "sampled_RSS_bytes": 2147483648,
+    "inclusive_output_bytes": 33554432,
+    "retries": 0
+  },
+  "interpretation": "The eight-thread wording/label is erroneous and must not be used to construct any future execution authority. The inherited resource plan is60seconds with TERM grace8seconds, sampled2GiB RSS, inclusive32MiB, requested thread-one environment and no retry. No runtime thread observation occurred. A later owner/actual/control review is still required.",
+  "unchanged": [
+    "All nine frozen packet bytes, all pure source/math/parser/mapper/14fixture source bytes, descriptor map, geometry/protection and all current failures.",
+    "There is no guard/solver/source/runtime execution, actual, controller, admission, launch or resource authorization."
+  ],
+  "source_execution_authorized": false,
+  "guard_or_solver_execution_authorized": false,
+  "scientific_or_physical_acceptance": false
+}

@@ -1,0 +1,54 @@
+--- work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native003-stage-operation-controls-prep-001/run_operation_once.py
++++ work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native003-stage-operation-controls-prep-002/run_operation_once.py
+@@ -6,8 +6,8 @@
+ 
+ R=Path('/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993')
+ E=R/'work/962-engineering'
+-X=E/'cp1-oneway-cooling-release-richardson2-observer004-native003-stage-operation-controls-prep-001'
+-C=E/'cp1-oneway-cooling-release-richardson2-observer004-native003-stage-operation-root-execution-001'
++X=E/'cp1-oneway-cooling-release-richardson2-observer004-native003-stage-operation-controls-prep-002'
++C=E/'cp1-oneway-cooling-release-richardson2-observer004-native003-stage-operation-root-execution-002'
+ H=E/'cp1-oneway-cooling-release-richardson2-observer004-native003-four-input-staging-root-execution-001'
+ O=E/'cp1-oneway-cooling-release-richardson2-observer004-native-measurement-003'
+ N=E/'cp1-oneway-cooling-release-richardson2-observer004-native-measurement-root-execution-003'
+@@ -161,7 +161,13 @@
+                     need(ev.ident==proc.pid and ev.filter==select.KQ_FILTER_PROC and not ev.flags&select.KQ_EV_ERROR and ev.fflags&select.KQ_NOTE_EXIT,'Unexpected kernel event')
+                     exited=True
+             value,report['helper_receipt']=normal_helper_receipt(actual);positive=True;report['helper_receipt_positive']=True
+-            pid,status=os.waitpid(proc.pid,0);need(pid==proc.pid,'Wrong explicit final reap');reaped=True
++            deadline=started+58
++            while True:
++                need(not controller_stop_requests and time.monotonic()<deadline,'Stopped/deadline before exact terminal reap')
++                pid,status=os.waitpid(proc.pid,os.WNOHANG)
++                if pid:
++                    need(pid==proc.pid and (os.WIFEXITED(status) or os.WIFSIGNALED(status)),'Wrong explicit final terminal reap');reaped=True;break
++                time.sleep(.01)
+             raw_returncode=os.waitstatus_to_exitcode(status);proc.returncode=raw_returncode
+             need(raw_returncode==0,'Helper raw nonzero after positive prefinal receipt')
+         need(not group_exists(proc.pid),'Owned group remains after final reap');report['group_absent']=True
+@@ -180,7 +186,8 @@
+                             deadline=min(started+56,time.monotonic()+8)
+                             while time.monotonic()<deadline:time.sleep(min(.05,max(0,deadline-time.monotonic())))
+                 else:
+-                    os.kill(proc.pid,signal.SIGKILL);report['stop_actions'].append(dict(scope='own unreaped direct child before helper continuation',signal=int(signal.SIGKILL)))
++                    try:os.kill(proc.pid,signal.SIGKILL);report['stop_actions'].append(dict(scope='own unreaped direct child before helper continuation',signal=int(signal.SIGKILL)))
++                    except BaseException:report['cleanup_errors'].append(traceback.format_exc())
+                 deadline=started+58
+                 while time.monotonic()<deadline:
+                     pid,status=os.waitpid(proc.pid,os.WNOHANG)
+@@ -201,12 +208,13 @@
+         report['all_controls_unchanged']=report['after']==before
+         report['final_streams_complete']=bool(reaped and report['group_absent'] is True)
+         report['owned_streams']={name:rec(C/name) for name in ['helper.stdout','helper.stderr'] if (C/name).is_file()}
+-        report['handled_stop_requests']=list(controller_stop_requests)
+         report['elapsed_before_receipt']=time.monotonic()-started
+         try:signal.signal(signal.SIGCHLD,old_CHLD);signal.signal(signal.SIGINT,old_INT);signal.signal(signal.SIGTERM,old_TERM)
+         except BaseException:report['cleanup_errors'].append(traceback.format_exc())
++        report['handler_cutoff_elapsed_seconds']=time.monotonic()-started
++        report['handled_stop_requests']=list(controller_stop_requests)
++        report['handled_stop_refusal_reason']='Controller stop request handled before recorded handler cutoff' if controller_stop_requests else None
+         report['complete_candidate']=bool(positive and reaped and raw_returncode==0 and report['group_absent'] is True and report['failure'] is None and not report['cleanup_errors'] and report['all_controls_unchanged'] and not controller_stop_requests)
+-        report['handler_cutoff_elapsed_seconds']=time.monotonic()-started
+         report['whole_startup_return_external_clock_raw_outer0_and_final_inclusive_census_required']=True
+         encoded=(json.dumps(report,indent=2,allow_nan=False)+'\n').encode()
+         need(inclusive_bytes(records)+len(encoded)<=CAP,'Full owner receipt exceeds inclusive32MiB; retain existing evidence without truncation')

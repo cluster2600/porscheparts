@@ -1,0 +1,159 @@
+{
+  "schema": "962-observer004-row-first-sampler-source-findings/v1",
+  "decision": "NO_SOURCE_DELTA_BLOCKER_MOCK_REVIEW_AND_SEPARATE_ROOT_DECISION_REQUIRED",
+  "source": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native-row-first-sampler-prep-001/run_root_once_row_first_proposed.py",
+    "sha256": "5287901ed8459bc003243d89d122307d4d5852b804a6bfb97d0ece893a37cf3d",
+    "bytes": 18849
+  },
+  "donor": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native-measurement-prep-002/run_root_once.py",
+    "sha256": "c4450f31c12d5d3367f7663ece62598b16253aff31b557f7fc051d3854fadf0f",
+    "bytes": 18913
+  },
+  "blockers": [],
+  "lineage": {
+    "new_policy_author": "/root/lpbf_linear_refinement",
+    "reviewer": "/root/head_mesh_next",
+    "disclosure": "Reviewer authored native002 binding/diagnostic adaptation of the donor and earlier donor-control ancestry. LPBF authored this row-first delta; this review independently checks that delta and its exact reuse. It is source-affiliated static review, not independent runtime/native/cause acceptance. Defect is the separately assigned mocked-guard author."
+  },
+  "scope": "All8 frozen packet files, full proposed owner/donor source/AST/diff and finite8 direct first-party provenance records. No prepared source, function, import, mock, process query/signal/wait, runtime/native/data/grid body or scientific operation.",
+  "exact_delta": {
+    "group_count": 2,
+    "literal_occurrences": 3,
+    "replacement_groups": [
+      {
+        "old": "sample_owned({proc.pid}|{g for g in owned if group_exists(g)})",
+        "new": "sample_owned({proc.pid}|owned)",
+        "occurrences": 2,
+        "locations": "main operation label201 and actual call202"
+      },
+      {
+        "old": "if group_exists(g) and not any(x['pgid']==g for x in rows)",
+        "new": "if not any(x['pgid']==g for x in rows) and group_exists(g)",
+        "occurrences": 1,
+        "locations": "sample_owned missing-list104"
+      }
+    ],
+    "all_inverse_groups_restore_donor_bytes_and_AST": true,
+    "full_unified_diff_exact": true,
+    "top_level_definitions": 19,
+    "helpers_including_changed_sample_owned": 18,
+    "unchanged_other_helper_count": 17,
+    "unchanged_other_helpers": [
+      "ident",
+      "freeze",
+      "input_map",
+      "runtime_map",
+      "group_exists",
+      "rec",
+      "check",
+      "output_size",
+      "provider_links",
+      "loaded_trace",
+      "children",
+      "member",
+      "capture",
+      "python_record",
+      "growth_bytes",
+      "inclusive_bytes",
+      "direct_map"
+    ],
+    "unchanged_nested_count": 2,
+    "unchanged_nested": [
+      "main.request",
+      "main.stop_wait"
+    ],
+    "all_declared_helper_full_line_hashes_bytes_text_AST_match": true,
+    "source_text_hash_convention": "Full original line spans, including their indentation and final newline.",
+    "imports_globals_and_entrypoint_AST_exact": true,
+    "entire_main_remainder_after_two_literal_reversals_exact": true,
+    "entire_sample_owned_remainder_after_one_literal_reversal_exact": true
+  },
+  "policy_cases": [
+    {
+      "case": "All known PGIDs have valid observed rows",
+      "source_lines": [
+        94,
+        107,
+        200,
+        204
+      ],
+      "disposition": "Aggregate actual parsed rows/RSS and retain raw rows/state; do not call group_exists for a PGID already represented. A hypothetical PermissionError from that now-unnecessary check is not queried. This intentionally changes that observation dependency; it is not behavioral equivalence on every possible error."
+    },
+    {
+      "case": "Some known PGID has no observed row; group_exists returns True",
+      "source_lines": [
+        104,
+        105
+      ],
+      "disposition": "Refuse live owned group with unavailable RSS. No absent row receives a synthetic zero value."
+    },
+    {
+      "case": "Some known PGID has no observed row; ProcessLookupError",
+      "source_lines": [
+        35,
+        38,
+        104,
+        107
+      ],
+      "disposition": "Unchanged group_exists returns False for that missing-group query; aggregate only actual other observed rows. Absence is not inferred from ps omission alone."
+    },
+    {
+      "case": "Missing PGID existence check raises PermissionError or other unexpected error",
+      "source_lines": [
+        35,
+        38,
+        104,
+        105,
+        209,
+        212
+      ],
+      "disposition": "Exception propagates; it is not caught as False/absence/success. Live direct caller keeps fatal resource_or_group_observation_failed with phase/operation/context/traceback. Existing direct-exit error-race recording remains unchanged."
+    },
+    {
+      "case": "No owned RSS row",
+      "source_lines": [
+        104,
+        107
+      ],
+      "disposition": "Even when all missing PGID checks report absent, no-row refusal remains. A successful all-zero/no-observation sample is not introduced."
+    },
+    {
+      "case": "Malformed or wrong-group candidate row / failing ps return",
+      "source_lines": [
+        95,
+        103
+      ],
+      "disposition": "Original query/row/identity ValueErrors remain. Unknown/nonnumeric/missing data is not converted to zero. Unrelated rows do not register owned groups."
+    }
+  ],
+  "unchanged_authority_and_lifecycle": [
+    "Known owned child groups still enter owned only through the original children/member tuple== (pid,adapterPID,pid) predicate. Passing the complete previously registered set does not create new ownership or PID-generation proof.",
+    "group_exists, stop_wait, all TERM/KILL/wait paths, final independent group absence and latching/final inclusive-growth checks are byte/AST exact. No cleanup PermissionError policy is relaxed.",
+    "100s caller/115s outer/TERM10, sampled2GiB, inclusive512MiB and positive-growth32MiB, exact input/runtime/host/provider/Python joins, plugin/caller/native/group/return gates and no-retry controls are inherited unchanged.",
+    "The full owner keeps donor002 fixed namespaces/actual/caller/admission expectations. This file is a proposed source policy, not a newly materialized concrete run. A future successor still needs reviewed namespace/control bindings and separate root authority."
+  ],
+  "limits_and_refusal_preservation": [
+    "A valid ps row is one sampled RSS observation; it does not prove live state, permission, atomic lifetime, complete transitive membership or PID-generation ownership. Zero RSS is retained only as an actually reported value, never filled for an absent row.",
+    "Native002 failed group/snapshot state/cause remain unknown. The root-attributed traceback located sample_owned missing-list -> group_exists -> os.killpg; the failed rows were not retained, so the proposed change is not evidence that the old failure was redundant or that a future capture would complete.",
+    "Native001 and002 refusals and12 prior mechanical aggregate failures remain preserved. No map/vector/field/solver completeness, fullABI, physical or process qualification follows.",
+    "Microprobe002 source acceptance is provenance only; its future containment/hand-off gap is not closed or used as causal evidence by this packet.",
+    "The10-group mock plan covers observed/missing absent/live/unknown/no-row, malformed rows/queries, known-group registration, live error and exit races. Its separately authored source and controlled execution are still pending; this review executes none.",
+    "No hard peak/quota, all-lifetime signal or source/runtime equivalence claim. Existing independent whole-clock/postreceipt/raw-return requirements remain mandatory."
+  ],
+  "review_events": [
+    "A reviewer-only helper-hash comparison first used AST source segments; the packet hashes full original line spans with final newlines. The exact declared convention was then checked for all19 unchanged helper/nested records. No target code ran or changed."
+  ],
+  "authority": {
+    "source_review_only": true,
+    "owner_or_helper_or_mock_executed": false,
+    "runtime_or_process_query": false,
+    "raw_native_data_or_grid_access": false,
+    "new_actual_admission_or_namespace": false,
+    "native_retry_authorized": false,
+    "old_refusals_upgraded": false,
+    "physics_or_manufacturing_acceptance": false,
+    "PUB_or_Git_mutation": false
+  }
+}

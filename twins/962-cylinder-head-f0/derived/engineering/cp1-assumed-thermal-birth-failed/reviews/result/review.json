@@ -1,0 +1,54 @@
+{
+  "actual_sha256": "4eabadfa6e825b2d4d0fcfe89fc1d54cfe479edcd4236b44e251ae352287c8a8",
+  "all22_file_inventory_bytes": 165847,
+  "blockers": [],
+  "child_peer_sha256": "119b06e336a702712bf889a070fb562018cd075233fbb17072155abc22bca240",
+  "decision": "CLEAR_FAILED_NATIVE_HISTORY_CLOSURE_NO_ASSESSMENT_OR_ACCEPTANCE",
+  "engineering_accepted": false,
+  "independent_saved_check_sha256": "0b3bdea746a78c6a7f3bfe1e0523e8b067b97156d5e1e2e7efb2795eef0d1c41",
+  "manufacturing_authorized": false,
+  "material_qualified": false,
+  "native_log_sha256": "fb398030a91cc8570a2dfebd84486a8cfb92e9eb9f6f536b29a0683229b7daae",
+  "native_receipt_sha256": "44319dd69ae2b8b6f257dcb1ed50ad0a6d7f131cfc8252286e45c8311ab76442",
+  "native_rerun_or_assessment_authorized": false,
+  "observed_failure": {
+    "DIVERGED_LINE_SEARCH_count": 33,
+    "adapter_stop_reason": null,
+    "all33_attempts_at_step1": "dt0.0025 decreasing to1e-12",
+    "controller_wall_seconds": 5.343528791097924,
+    "converged_steps": 0,
+    "external_automatic_retry": false,
+    "first_declared_dt": 0.0025,
+    "first_printed_residual_norms": [
+      3.167411,
+      4.708193e-07
+    ],
+    "internal_solver_timestep_cutbacks_are_not_new_external_launches": true,
+    "maximum_sampled_owned_leader_RSS_bytes": 150339584,
+    "native_and_adapter_returncode": 1,
+    "native_completed": false,
+    "native_receipt_jobs": [
+      {
+        "name": "native",
+        "process_reaped": true,
+        "returncode": 1
+      }
+    ],
+    "one_external_native_job": true,
+    "outputs_only_initial_fields": true,
+    "root_stop_reason": null,
+    "root_wall_seconds": 5.4257677919231355,
+    "sampled_RSS_observations": 47
+  },
+  "physics_qualified": false,
+  "process_calibrated": false,
+  "root_closed_sha256": "960a0a8aabb86a3693e04f53a74909379b9ad839b61039302eaaee197ebc34d6",
+  "root_saved_review_sha256": "c59bbced31b315ccf046c6a4ba6b0077e02a304fa840b93ee6519963a283385f",
+  "schema": "962-cp1-thermal-birth-independent-stopped-failure-peer/v1",
+  "scope": [
+    "Fresh independent read/hash of all22 stopped files, all46 direct small pins, all source snapshots and15/21/12 receipt inventories; saved initial CSV/grid/property and full log checks only. No prepared creator/assessor functions, scientific/native imports, tests, runtime bodies, Git or network execution.",
+    "Source19-runtime-file/13-link stability and selected interpreter observations remain root-attributed. The outer native-child observation was empty. Only root controller absence is individually observed; native wait/reap is attributed to frozen finally wait and native receipt. No invented native PID or universal absence.",
+    "This is an actual native numerical failure with no resource stop and no successful timestep, energy history or assessor execution. It provides no thermal/material/physical acceptance.",
+    "The initial cp/k averaged samples differ by one ULP but meet unchanged1e-9 material tolerance; own preliminary exact-equality assertion was corrected as recorded. Roundoff/baseline cancellation and solver-mode alternatives are hypotheses to be documented separately; DIVERGED_LINE_SEARCH alone does not identify a unique cause. No tolerance or frozen input is changed."
+  ]
+}

@@ -1,0 +1,199 @@
+{
+  "schema": "962-oneway-assumed-SI-thermoelastic-birth-card/v1",
+  "id": "cp1-oneway-thermoelastic-transfer-001",
+  "status": "HELD_EXPLICIT_RESEARCH_HYPOTHESES_NOT_QUALIFIED_CP1",
+  "units": {
+    "length": "m",
+    "displacement": "m",
+    "stress": "Pa",
+    "force": "N",
+    "moment": "N*m",
+    "temperature": "K",
+    "time": "s"
+  },
+  "assumed_material": {
+    "E_Pa": {
+      "value": 71000000000.0,
+      "assumed": true,
+      "constant_over_saved_temperature_range": true,
+      "transfer": "Related approximate71GPa only; process/state/temperature/direction transfer unverified"
+    },
+    "nu": {
+      "value": 0.33,
+      "assumed": true
+    },
+    "alpha_per_K": {
+      "value": 1e-05,
+      "assumed": true,
+      "basis": "Historical hypothetical mechanical witness scalar; not a CP1 measurement"
+    },
+    "symmetry": {
+      "value": "constant isotropic linear elasticity",
+      "assumed": true
+    },
+    "measured_matched": {
+      "E_T": null,
+      "nu_T": null,
+      "alpha_T": null,
+      "test_temperatures": null,
+      "directions": null,
+      "scatter": null,
+      "strength_allowables": null,
+      "process_state_qualified": null
+    }
+  },
+  "geometry": {
+    "bounds_m": [
+      [
+        0,
+        0,
+        0
+      ],
+      [
+        2,
+        1,
+        1
+      ]
+    ],
+    "intervals": [
+      16,
+      4,
+      4
+    ],
+    "HEX8_total": 256,
+    "node_total": 425,
+    "old_HEX8": 128,
+    "born_HEX8": 128,
+    "old_nodes": 225,
+    "born_nodes_and_reference_DOFs": 225,
+    "shared_nodes": 25,
+    "globally_new_nodes": 200,
+    "source_thermal_old_block": 2,
+    "mechanical_old_block": 2,
+    "source_thermal_inactive_block": 1,
+    "mechanical_inactive_block": 1,
+    "mechanical_born_block": 3,
+    "captured_native_connectivity_ID_association": null
+  },
+  "time": {
+    "dt_s": 0.0025,
+    "steps": 160,
+    "birth_step": 80,
+    "birth_time_s": 0.2,
+    "end_time_s": 0.4,
+    "source_off_cooling_history_present": false,
+    "thermal_selected_level": 2
+  },
+  "transfer": {
+    "old": "old-end.grid XYZ/T0..160",
+    "born_end": "born-end.grid XYZ/T80..160",
+    "born_reference": "born-begin80.grid XYZ only; entire225DOFs including25shared",
+    "temperature_prescribed_Aux": true,
+    "reference_prescribed_Aux_block3_only": true,
+    "new_reference_later_Aux_update": false,
+    "out_of_grid_or_duplicate_time_padding_allowed": false,
+    "native_knots_bit_identity_assumed": false
+  },
+  "birth": {
+    "old_constant_stress_free_temperature_K": 400.0,
+    "born_stress_free_temperature": "Actual BEGIN80 field, not uniform350 at shared nodes",
+    "new_displacement_IC_m": 0.0,
+    "reinitialize_variables": [
+      "disp_x",
+      "disp_y",
+      "disp_z",
+      "temperature",
+      "born_reference_temperature"
+    ],
+    "restore_overridden_dofs": [
+      true,
+      true,
+      true,
+      true,
+      false
+    ],
+    "reinitialization_strategy": "IC",
+    "reinitialize_subdomains": [
+      3
+    ],
+    "force_preaux": true,
+    "modifier_group": -100,
+    "begin_sampler_PRE_AUX_group": -50,
+    "current_selected_shared_u_T_restored": true,
+    "old_element_material_state_retained": true,
+    "affected_old_older_solution_values_intentionally_rebased": true,
+    "other_added_variables": "rx/ry/rz, inactive_placeholder use default zero IC; not carried material/history fields"
+  },
+  "supports": [
+    {
+      "source_id": 0,
+      "position_m": [
+        0,
+        0,
+        0
+      ],
+      "fixed_components": [
+        "disp_x",
+        "disp_y",
+        "disp_z"
+      ]
+    },
+    {
+      "source_id": 32,
+      "position_m": [
+        1,
+        0,
+        0
+      ],
+      "fixed_components": [
+        "disp_y",
+        "disp_z"
+      ]
+    },
+    {
+      "source_id": 137,
+      "position_m": [
+        0,
+        1,
+        0
+      ],
+      "fixed_components": [
+        "disp_z"
+      ]
+    }
+  ],
+  "loading": {
+    "gravity": false,
+    "pressure": false,
+    "prescribed_traction": false,
+    "contact": false,
+    "support_release": false,
+    "exterior": "traction-free",
+    "support_policy_assumed_not_physical_clamp": true,
+    "dynamic_inertia_or_damping": false,
+    "ADTimeDerivative_scope": "inactive_placeholder on inactive block1 only, not physical displacement/T/reference"
+  },
+  "constitutive": "QuasiStatic SMALL incremental AD strain + ADComputeFiniteStrainElasticStress, identity small-strain rotation; no plasticity or finite-geometry claim",
+  "predeclared_source_stage_check_targets": {
+    "temperature_K": 1e-10,
+    "current_shared_displacement_m": 1e-12,
+    "strain": 1e-10,
+    "stress_Pa": 0.1,
+    "all_free_DOF_residual_and_force_balance_N": 1e-07,
+    "moment_balance_Nm": 1e-07,
+    "tolerance_origin": "SI conversions of mechanical donor displacement/strain/stress/force limits; moment uses1m characteristic length. These are proposed pre-run numerical gates, not physical accuracy."
+  },
+  "independent_3D_assessment_source": null,
+  "independent_3D_assessment_required_before_native_actual": true,
+  "native_execution_authorized": false,
+  "solver_not_run": true,
+  "qualification": {
+    "head_execution_authorized": false,
+    "engineering_accepted": false,
+    "physics_qualified": false,
+    "material_qualified": false,
+    "process_calibrated": false,
+    "manufacturing_authorized": false,
+    "whole_head_lpbf_complete": false
+  }
+}

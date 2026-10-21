@@ -1,0 +1,63 @@
+{
+  "schema": "962-cooling-release-selected-runtime-TimePeriod-parameter-observation/v1",
+  "decision": "ACCEPT_CURRENT_NAME_AND_PARAMETER_AVAILABILITY_METADATA_ONLY",
+  "native_registry_presence": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-registry-001/required-object-presence.json",
+    "sha256": "2b17abc721cb28053306c3b190561d3bf1f738d7c285b446ad374ead0018764a",
+    "bytes": 5123
+  },
+  "native_registry_closed": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-registry-001/closed-result.json",
+    "sha256": "29eb7f020803b0cca35a76abd77f7144190046ba33d96576100c4e3e173f9369",
+    "bytes": 2420
+  },
+  "parameter_query_closed": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-TimePeriod-parameters-001/closed-result.json",
+    "sha256": "fd55d00b767af7a17d6ace09f76ec95a83f9c1572d56b21f1dbabb485a1e221a",
+    "bytes": 6089
+  },
+  "full_native_stdout": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-TimePeriod-parameters-001/syntax.log",
+    "sha256": "8597de5edec961264c3095bce5a09aa889eb30492b8895c4efb3ea0d4d983f9a",
+    "bytes": 164307
+  },
+  "exact_TimePeriod_syntax": "\n\n[Controls]\n\n  [./*]\n\n    [./<types>]\n\n      [./<TimePeriod>]\n        # \"Control the enabled/disabled state of objects with time.\"\n        control_tags     = (no_default)           # \"Adds user-defined labels for accessing object parameters\n                                                  # via control logic.\"\n                                                  # Unit: \"\"\n                                                  # Group: \"Advanced\"\n        depends_on       = (no_default)           # \"The Controls that this control relies upon (i.e. must\n                                                  # execute before this one)\"\n                                                  # Unit: \"\"\n                                                  # Group: \"\"\n        disable_objects  = (no_default)           # \"A list of object tags to disable.\"\n                                                  # Unit: \"\"\n                                                  # Group: \"\"\n        enable           = 1                      # \"Set the enabled status of the MooseObject.\"\n                                                  # Unit: \"\"\n                                                  # Group: \"Advanced\"\n        enable_objects   = (no_default)           # \"A list of object tags to enable.\"\n                                                  # Unit: \"\"\n                                                  # Group: \"\"\n        end_time         = (no_default)           # \"The time at which the objects are to be enable/disabled.\"\n                                                  # Unit: \"\"\n                                                  # Group: \"\"\n        execute_on       = 'INITIAL TIMESTEP_END' # \"The list of flag(s) indicating when this object should\n                                                  # be executed. For a description of each flag, see https://mooseframework.inl.gov/source/interfaces/SetupInterface.html.\"\n                                                  # Options: XFEM_MARK, FORWARD, ADJOINT, HOMOGENEOUS_FORWARD,\n                                                  # ADJOINT_TIMESTEP_BEGIN, ADJOINT_TIMESTEP_END, NONE,\n                                                  # INITIAL, LINEAR, LINEAR_CONVERGENCE, NONLINEAR, NONLINEAR_CONVERGENCE,\n                                                  # POSTCHECK, TIMESTEP_END, TIMESTEP_BEGIN, MULTIAPP_FIXED_POINT_END,\n                                                  # MULTIAPP_FIXED_POINT_BEGIN, MULTIAPP_FIXED_POINT_CONVERGENCE,\n                                                  # MULTISYSTEM_FIXED_POINT_ITERATION_END, FINAL, CUSTOM,\n                                                  # PRE_MULTIAPP_SETUP\n                                                  # Unit: \"\"\n                                                  # Group: \"\"\n        implicit         = 1                      # \"Determines whether this object is calculated using\n                                                  # an implicit or explicit form\"\n                                                  # Unit: \"\"\n                                                  # Group: \"Advanced\"\n        reverse_on_false = 1                      # \"When true, the disable/enable lists are set to opposite\n                                                  # values when the specified condition is false.\"\n                                                  # Unit: \"\"\n                                                  # Group: \"\"\n        set_sync_times   = 0                      # \"Set the start and end time as execute sync times.\"\n                                                  # Unit: \"\"\n                                                  # Group: \"\"\n        start_time       = (no_default)           # \"The time at which the objects are to be enabled/disabled.\"\n                                                  # Unit: \"\"\n                                                  # Group: \"\"\n        type             = TimePeriod             # \"\"\n                                                  # Unit: \"\"\n                                                  # Group: \"\"\n      [../]\n    [../]\n  [../]\n[]\n\n",
+  "parameter_names_and_printed_defaults": {
+    "control_tags": "(no_default)",
+    "depends_on": "(no_default)",
+    "disable_objects": "(no_default)",
+    "enable": "1",
+    "enable_objects": "(no_default)",
+    "end_time": "(no_default)",
+    "execute_on": "'INITIAL TIMESTEP_END'",
+    "implicit": "1",
+    "reverse_on_false": "1",
+    "set_sync_times": "0",
+    "start_time": "(no_default)",
+    "type": "TimePeriod"
+  },
+  "required_declared_deck_parameters": [
+    "disable_objects",
+    "enable_objects",
+    "end_time",
+    "execute_on",
+    "reverse_on_false",
+    "set_sync_times",
+    "start_time"
+  ],
+  "TIMESTEP_BEGIN_and_INITIAL_listed": true,
+  "omitted_execution_order_group_preserved": true,
+  "observed_preamble_deprecation_warning_count": 91,
+  "preamble_preserved_byte_exact": true,
+  "query_completed_without_solver_or_head": true,
+  "selected_runtime_inputs_unchanged": true,
+  "source_version_or_ABI_equivalence_proved": false,
+  "functional_TimePeriod_switch_not_yet_executed": true,
+  "cooling_or_release_simulation_completed": false,
+  "engineering_accepted": false,
+  "physics_qualified": false,
+  "material_qualified": false,
+  "process_calibrated": false,
+  "manufacturing_authorized": false,
+  "automatic_retry": false
+}

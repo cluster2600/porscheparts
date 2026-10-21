@@ -1,0 +1,92 @@
+{
+  "schema": "962-END181-defect-correction-root-result-acceptance/v1",
+  "created_utc": "2026-10-20T11:26:41.830540+00:00",
+  "decision": "ACCEPT_ONE_DERIVED_FIXED_STATE_DIAGNOSTIC_AND_SAVED_ARITHMETIC_ONLY_23_EXCEEDANCES_RETAINED",
+  "result": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-linear-END181-defect-correction-diagnostic-001/diagnostic.json",
+    "sha256": "09bfa703b8a5151f60e6c3e2b7849d4c41576168c612e2e151f2de1b373e37fe",
+    "bytes": 6714454
+  },
+  "closed": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-linear-END181-defect-correction-root-execution-001/closed-result.json",
+    "sha256": "1f4e31401cf562b3565052a4eac576f5c25bc96ce4ac668c9ef4bfe87ae804e8",
+    "bytes": 167676
+  },
+  "peer": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-linear-END181-defect-correction-result-peer-001/review.json",
+    "sha256": "8c54a314a2fa2b76cad68ead3d732d233cfefb13bcedda0c58dbdbae01ed8a60",
+    "bytes": 7373
+  },
+  "peer_bindings": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-linear-END181-defect-correction-result-peer-001/bindings.json",
+    "sha256": "f5dd86ebf9c64f4261d6ce171b1031b170a8893633387d829236f91ad8ba59e0",
+    "bytes": 49086
+  },
+  "observations": {
+    "closed_run": {
+      "returncode": 0,
+      "wall_seconds": 1.289411790901795,
+      "signals": [],
+      "stop_reason": null,
+      "waited_reaped": true,
+      "owned_group_absent": true,
+      "invocations": 1,
+      "captured_before_after_inputs": 303
+    },
+    "saved_force_displacement_rows": 1275,
+    "stored_free_linear_defect_entries": 1269,
+    "constrained_zero_corrections": 6,
+    "maximum_requested_correction_m": 1.0040208483470068e-15,
+    "maximum_effective_correction_m": 1.0040254218302014e-15,
+    "requested_effective_increment_inequality_count": 1268,
+    "maximum_absolute_saved_linear_defect_N": 1.3891340334970526e-19,
+    "all27_resultant_rows_exact": true,
+    "resultant_fail_counts": {
+      "native": {
+        "force_failures": 2,
+        "moment_failures": 4,
+        "maximum_absolute_force_N": 1.9654250562944017e-06,
+        "maximum_absolute_moment_Nm": 8.406791651589353e-07
+      },
+      "original_assembled": {
+        "force_failures": 2,
+        "moment_failures": 4,
+        "maximum_absolute_force_N": 1.9662863053326873e-06,
+        "maximum_absolute_moment_Nm": 8.404749678447843e-07
+      },
+      "derived_assembled": {
+        "force_failures": 0,
+        "moment_failures": 0,
+        "maximum_absolute_force_N": 5.872191621847378e-10,
+        "maximum_absolute_moment_Nm": 4.4943992971724356e-10
+      }
+    },
+    "derived_global_force_comparison_failures": 5,
+    "derived_regional_saved_force_exceedances": 18,
+    "total_saved_derived_force_exceedances": 23,
+    "all2048_tensor_triplets_complete": true,
+    "tensor_stress_or_strain_limit_exceedances": 0,
+    "maximum_original_vs_derived_stress_change_Pa": 0.0001560648379381746,
+    "maximum_native_vs_derived_strain_error": 1.3716241684114117e-15,
+    "original_unchanged_scalar_gate_counts_and_maxima_exact_to_prior": true,
+    "saved_rigid_mode_zero_acceptance": null,
+    "saved_matrix_symmetry_acceptance_limit": null
+  },
+  "scope_limits": [
+    "Passing derived force/moment resultants does not erase the23derived force-comparison exceedances or accept the original trajectory.",
+    "Prior28e832has complete geometry/cell/DOF associations and QP aggregate observations, but no full tensor rows or full native-to-physical QP map; missing prior scalar equality is not inferred.",
+    "The6453derived force comparison count includes3900source-helper comparisons whose complete regional arrays are not saved; their execution/association remains source/root attributed. All23saved exceedance operands and all available global rows were checked.",
+    "Stored Kdu and rigid-mode products are scalar observations only; the matrix construction, products and one solve were not rerun or independently numerically reproduced.",
+    "No numerical convergence, IEEE/roundoff floor, mathematical/solver cause, corrected trajectory, full seven-SI field acceptance, LPBF/material/head/physical/manufacturing qualification is established."
+  ],
+  "original_strict_refusal_retained": true,
+  "full_fields_or_corrected_trajectory_accepted": false,
+  "mathematical_or_solver_cause": null,
+  "IEEE_floor_or_roundoff_cause": null,
+  "engineering_accepted": false,
+  "physics_qualified": false,
+  "material_qualified": false,
+  "process_calibrated": false,
+  "manufacturing_authorized": false,
+  "automatic_retry": false
+}

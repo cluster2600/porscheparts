@@ -1,0 +1,112 @@
+{
+  "schema": "962-CGAL-distance-fixture-group1-stopped-result-peer/v1",
+  "decision": "FOUR_KNOWN_LITERAL_INTERVALS_CLEAR_ONLY",
+  "phase_summary_sha256": "906d3c050937da6cd8b107a719894687c3f3206d5fedc473f54a843b3292190c",
+  "root_result_review_sha256": "9275a42f6939772ee705c46b94f47e86aae9c085dd9f666a6523c65d01690ad3",
+  "actual_child_sha256": "359b06725a4911405f4ebc9ada281786de7ec3d3f4d62bec5d17818b2bd6ef22",
+  "checks": {
+    "input_pins": 89,
+    "all89_before_after_and_current_hashes_regular_non_symlink": true,
+    "total_capture_files": 17,
+    "complete16_artifact_map_plus_summary_sha_closure": true,
+    "controller_c51_cleanup_f46_metadata_bb1_executed_snapshots_exact": true,
+    "source26297_and_compiled_binary6a17_closed_compile_associations_exact": true,
+    "all_four_native_argv_equal_frozen_job_image_entrypoint_mounts_arguments": true,
+    "all_readonly_input_mounts_and_only_owned_output_RW_exact": true,
+    "twoCPU512MiB_noSwap60seconds_noTmpfs_noNetwork_readonlyRoot_controls_observed": true,
+    "all_owned_createIDs_owners_stopped_PID0_RC0_attach_reap_remove_success": true,
+    "all_four_source_selected_IDs_corner_representation_counts_and_complete_target_counts_match_literal_inputs": true,
+    "all_four_known_rationals_inside_finite_outward_intervals_with_gap_le_1e4": true,
+    "snapshot_and_algorithm_flags_match_reviewed_source": true,
+    "one_native_call_per_declared_job_attributed_to_bound_source_and_complete_stage_logs": true
+  },
+  "cases": [
+    {
+      "id": "open-to-closed",
+      "exact_reference_mm": "1/32",
+      "scalar_mm": 0.03125,
+      "interval_mm": [
+        0.031224999999999996,
+        0.031275000000000004
+      ],
+      "gap_mm": 5.000000000000837e-05,
+      "source_vertices": 4,
+      "source_faces": 2,
+      "selected_faces": 2,
+      "complete_target_vertices": 8,
+      "complete_target_faces": 12,
+      "wall_seconds": 1.3865187079645693,
+      "report_sha256": "d96b4783f452dfe4cab6004ff41e1b818209432da69d9f8269676ff60f2b38a8",
+      "execution_sha256": "06561727d84bf727d5fe25d8ffff0126b7368750ac64bc039164e2b2a4a921bc"
+    },
+    {
+      "id": "coincident-zero",
+      "exact_reference_mm": "0",
+      "scalar_mm": 2.5e-05,
+      "interval_mm": [
+        0,
+        5.000000000000001e-05
+      ],
+      "gap_mm": 5.000000000000001e-05,
+      "source_vertices": 4,
+      "source_faces": 2,
+      "selected_faces": 2,
+      "complete_target_vertices": 4,
+      "complete_target_faces": 2,
+      "wall_seconds": 1.135615583974868,
+      "report_sha256": "cac32f6acc54d9b920af63c1c59ed42d5315bae855bf60b6e702773704676124",
+      "execution_sha256": "65424d55fb2b0ba65e98a354bdacaf7bcf34c2fd27a84392a4396d18e8acdbd0"
+    },
+    {
+      "id": "component-union-max",
+      "exact_reference_mm": "6143/131072",
+      "scalar_mm": 0.04686737060546875,
+      "interval_mm": [
+        0.046842370605468746,
+        0.046892370605468754
+      ],
+      "gap_mm": 5.000000000000837e-05,
+      "source_vertices": 8,
+      "source_faces": 4,
+      "selected_faces": 4,
+      "complete_target_vertices": 4,
+      "complete_target_faces": 2,
+      "wall_seconds": 1.1773032499477267,
+      "report_sha256": "05cbc2dfb724781e12996f81f4fb729e00057f875f1a4489580bb5f6358907b4",
+      "execution_sha256": "0dc50794b85e338565c55f3b9a5eb1c70905bdd5208bbc8a5744c21fd97f19cd"
+    },
+    {
+      "id": "asymmetric-forward",
+      "exact_reference_mm": "1/131072",
+      "scalar_mm": 2.5e-05,
+      "interval_mm": [
+        0,
+        5.000000000000001e-05
+      ],
+      "gap_mm": 5.000000000000001e-05,
+      "source_vertices": 4,
+      "source_faces": 2,
+      "selected_faces": 2,
+      "complete_target_vertices": 8,
+      "complete_target_faces": 4,
+      "wall_seconds": 1.164833625080064,
+      "report_sha256": "5595c071efbbd0fbf045c4285a0ad2e7bbef4b45c65609b83a341a241e9b76af",
+      "execution_sha256": "4ef9d5478954ceb2d94332a005c2cab43c75394b417e37ae1f8d6102519a52ca"
+    }
+  ],
+  "observed_floor_behavior": {
+    "coincident_zero_and_positive_delta_both_scalar_epsilon": 2.5e-05,
+    "both_intervals_mm": [
+      0,
+      5.000000000000001e-05
+    ],
+    "positive_exact_delta_mm": "1/131072",
+    "claim": "Both known distances are enclosed. A scalar treated as a lower bound would incorrectly exclude these references; no such interpretation is made."
+  },
+  "blockers": [],
+  "limits": [
+    "Saved bytes, metadata and literal analytic references only. No native/CGAL/scientific replay, source import, Docker, geometry export, Git or network.",
+    "In-memory point/oriented-face immutability and error guarantee remain observations of the bound native wrapper/API; this is not an independent inner floating-roundoff certificate.",
+    "Only group1 four cases are covered. Remaining four fixtures and head queries are not credited by this record; no two-way head/solver/physics/manufacturing acceptance."
+  ]
+}

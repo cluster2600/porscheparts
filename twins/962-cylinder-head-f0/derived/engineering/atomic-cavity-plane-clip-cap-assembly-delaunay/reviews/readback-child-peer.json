@@ -1,0 +1,77 @@
+{
+  "schema": "962-saved-Delaunay-audit-exact-child-independent-peer/v1",
+  "decision": "CLEAR_PENDING_ROOT_FRESH_EXECUTION_PREFLIGHT",
+  "blockers": [],
+  "child": {
+    "path": "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-delaunay-readback-execution-prep-001/actual-contract-001.json",
+    "sha256": "89670cc7777337e5cbb999c1005d8bb0fa77fedba30074d81b679f5fa588d58a",
+    "bytes": 21836
+  },
+  "selected_source_sha256": {
+    "reader": "ec5a45297a8d6ad73fb2fac5b087589e42a9553bc3d434a9d1dc7fb53122db30",
+    "runner": "4fb37080e1f3847b8b1d14d5df467799d8e9f7bf81b0a09170e5850857de3943",
+    "source_peer": "84b7a97c78bf9367b1dc80dee9da78cd83256a241ac80bfe47d27d87e6cf4536",
+    "corrected_root_source_review": "19aa998afe8331b3087efed48cafd9bd4a8f26002b014a97b86af8aba39ec420"
+  },
+  "checks": {
+    "held_90_input_bindings_preserved_exactly": true,
+    "five_added_bindings": {
+      "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-delaunay-readback-001/reader.py": "ec5a45297a8d6ad73fb2fac5b087589e42a9553bc3d434a9d1dc7fb53122db30",
+      "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-delaunay-readback-001/run_readback.py": "4fb37080e1f3847b8b1d14d5df467799d8e9f7bf81b0a09170e5850857de3943",
+      "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-delaunay-readback-prep-001/held-contract.json": "0292c854a9178c84d1487bf2e03120ce801daa7b2326d8d9f844c501b0368637",
+      "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-delaunay-readback-source-peer-001/review.json": "84b7a97c78bf9367b1dc80dee9da78cd83256a241ac80bfe47d27d87e6cf4536",
+      "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-delaunay-readback-root-source-002/review.json": "19aa998afe8331b3087efed48cafd9bd4a8f26002b014a97b86af8aba39ec420"
+    },
+    "total_input_hashes": 95,
+    "current_small_pins_independently_verified": 93,
+    "large_geometries_stat_only_deferred_to_root_hash_preflight": {
+      "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-001/candidate.bin": {
+        "sha256": "9d62eac6e2cd7b6a9ecb4a7ea5b632685820369b5c4ede379acc34238f50d7b4",
+        "bytes": 62774640
+      },
+      "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-volume-delaunay-001/head-volume.msh": {
+        "sha256": "3dd7939f34c8246a813334b2f570b2408b590965734bdf3761866569290e3593",
+        "bytes": 249628334
+      }
+    },
+    "three_external_runtime_hash_bindings_unchanged_not_rehashed_by_peer": true,
+    "exact_materialized_reader_runner_bytes": true,
+    "materialized_contract_byte_identical_to_child": true,
+    "fresh_output_exact_three_regular_file_closure": [
+      "frozen-contract.json",
+      "reader.py",
+      "run_readback.py"
+    ],
+    "no_output_report_log_or_execution_receipt_present": true,
+    "no_child_or_child_review_self_reference_in_input_map": true,
+    "actual_child_review_is_external_launch_guard": true,
+    "all_numerical_inputs_controls_and_observation_nulls_preserved_from_held": true
+  },
+  "scope": "One explicitly authorized read-only audit of the stopped exported Delaunay MSH against exact current 9d62 source surface; recomputes full metric/incidence data without unavailable worker results. No generation, optimization, mesh write, solve, relaxed audit, or retry.",
+  "controls": {
+    "hard_wall_seconds": 120,
+    "sampled_RSS_stop_bytes": 8589934592,
+    "sampled_output_stop_bytes": 1073741824,
+    "native_threads": 2,
+    "remaining_timer_after_Popen": true,
+    "synchronous_postwait_elapsed_refusal": true,
+    "final_output_size_refusal": true,
+    "hard_OS_CPU_quota_applied": false,
+    "hard_address_space_limit_applied": false,
+    "hard_disk_quota_applied": false,
+    "automatic_retry": false
+  },
+  "limits": [
+    "Source and small-byte review only; no prepared imports, tests, native execution, geometry parsing or large geometry/runtime hashing by this peer.",
+    "Root must freshly verify all95 inputs and three runtime hashes, RAM/disk/sole-native availability before launch. Root source review002 preserves and transparently corrects root001 inventory wording.",
+    "HELD false qualification/null observations remain historical preparation metadata; actual audit completion and volume quality remain unknown until a stopped result is independently reviewed.",
+    "120 s acceptance deadline includes startup; final cleanup can extend elapsed duration. RSS/output stops are sampled observations, not hard OS quotas."
+  ],
+  "qualification": {
+    "saved_mesh_audit_completed_by_peer": false,
+    "volume_quality_established": false,
+    "optimizer_selected": false,
+    "engineering_accepted": false,
+    "manufacturing_authorized": false
+  }
+}

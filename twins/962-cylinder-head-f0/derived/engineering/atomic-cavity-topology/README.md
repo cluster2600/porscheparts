@@ -1,0 +1,15 @@
+# Atomic candidate: global topology and intersection audit
+
+One fresh native audit passed the recorded global topology and self-intersection subgates for the exact candidate `1f9dbd4cda61c7b58084479ebb165fb01280fa831752dc0da18517e548131b1a`. This capsule permanently records those subgates only. Distance, semantic features and interfaces, volume meshing, head physics and manufacturing qualification are separate.
+
+The candidate has 901,727 vertices, 1,803,870 triangles, one connected component and Euler characteristic −208. The audit reports zero boundary, nonmanifold or orientation-imbalanced edges and zero nonmanifold vertices. Its finite positive signed surface volume is 915,458.1131756522 mm³; this is a geometric calculation, not a tetrahedral volume-mesh result.
+
+The two component fixtures returned `[1, 2]`. The five intersection fixtures returned `[0, 1, 1, 1, 0]` for separate, crossing, coplanar-contained, coplanar shared-vertex overlap and manifold-tetrahedron cases. The full candidate query returned zero pairs and `complete=true`, with the unchanged 100,001-pair cap, `detect_only=true`, `first_only=false` and `stitch_all=false`. Candidate arrays and all 32 bound inputs remained unchanged. No repair was requested.
+
+The observed ARM64 runtime used Python 3.11.15, NumPy 2.2.6 and libigl 2.6.3 with the pinned nine-module hash map. The owned network-isolated container had a read-only root, two-CPU limit, 4 GiB memory and equal memory-plus-swap limit (no swap), no tmpfs and a 300-second external deadline. The worker reported 31.225891889 seconds and the controller 38.640155457891524 seconds. RC0, no OOM, empty log, process reaping and owned-container removal were verified. Peak RSS and actual CPU usage were not measured.
+
+[Worker report](reports/worker-report.json), [native log](logs/atomic-topology.native.log), [root review](reviews/root-result.json) and [independent review](reviews/peer-result.json) are exact original copies. [Original records](original-records.json) retain the complete 17-artifact inventory and both 32-input maps, including omitted records by hash. [Projections](projections.json) explicitly allowlist lifecycle and contract metadata; these are projections, not rewritten exact records. They omit host commands, paths and ownership identifiers.
+
+The [worker](sources/audit_atomic_topology.py) and [pure guard-test inspection snapshot](sources/test_atomic_topology.py) are exact bytes. Existing unchanged helpers, controller and runtime are identified in [source bindings](source-bindings.json), without redistributing head arrays or runtime payloads. The guard-test snapshot depends on its separately retained controller and contract; it is not a standalone test here.
+
+Run `python3 -B verify.py` to check only sealed bytes and closure using the standard library. It performs no native import, geometry query or replay. A successful capsule check grants no additional engineering acceptance. Publication preserves this topology/intersection scope; later distance or other results require separate evidence.

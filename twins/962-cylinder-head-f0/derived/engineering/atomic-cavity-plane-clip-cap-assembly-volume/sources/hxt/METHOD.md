@@ -1,0 +1,7 @@
+# HXT mock fixture correction — HELD
+
+Production mesh_assembled_hxt.py is byte-identical to preparation001 (SHA b7d3de89c6ed166bb5d0df5c5d41ddd77b8deee9c36775b4e40b205722a2587e). All candidate bindings, raw HXT options, quality gates, resources and lifecycle code remain unchanged. The copied source-delta.json and base-to-assembled.diff retain their original001 attribution and describe that identical production byte sequence.
+
+Root's preserved001 mock run has 11 passes and one nominal-success failure. The fixture writes admission bytes `{}` followed by a newline, then supplies `a` repeated64 as the expected SHA. The unchanged production controller correctly refuses the copied admission hash mismatch. This preparation changes only that fixture argument to SHA256(admission.read_bytes()); the exact one-line diff and full reverse proof are retained. It does not mock away or weaken the production input-drift check.
+
+The12 prepared test methods and this selected production path remain unrun here. Only stdlib byte/hash and AST checks were performed; no extracted guard, test, scientific module or worker was executed. Preparation001 and its failed root log are unchanged. Root must execute the successor mocks and obtain peer review. Numerical surface admission, runtime/resource preflight and separate native launch authority remain pending; no HXT, optimizer, retry or physical qualification is authorized by this record.

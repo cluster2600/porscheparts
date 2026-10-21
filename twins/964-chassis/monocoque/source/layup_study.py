@@ -19,7 +19,7 @@ added ranks them. F1 then follows a fixed rule, at the mass of F0:
 2. take 0.5 mm off the family with the lowest cabin return, never below
    1.5 mm;
 3. give the freed mass to the families in order of cabin return, at most
-   0.5 mm each: a thicker skin inverts S3 elements on the clipped edges.
+   0.5 mm each, so that each step stays within the sensitivity measured.
 
 Two meshes, every K the value two solves agree on, K at the load points and
 the cabin's own K between d 400 and 1950 mm. Thicknesses and the 1.5 mm
@@ -40,6 +40,7 @@ sys.path.insert(0, str(HERE))
 sys.path.append(str(HERE.parents[1] / "fea"))          # after source/: fea has its own build_shell
 import build_shell as bs  # noqa: E402
 import member_study as ms  # noqa: E402
+import shell_s6 as s6  # noqa: E402
 import torsion as tr  # noqa: E402
 import torsion_monocoque as tm  # noqa: E402
 
@@ -123,7 +124,7 @@ def main():
 def f1(out):
     """The F1 revision from the sensitivities in out, at the F0 mass: the
     freed mass goes to the families in order of cabin return, at most
-    STEP_MM each (thicker skin inverts S3 elements on the clipped edges)."""
+    STEP_MM each, within the sensitivity measured."""
     finest = {f: r["K_cabin_per_kg"][-1] for f, r in out["sensitivity"].items()}
     order = sorted(finest, key=finest.get, reverse=True)
     worst = min((f for f in finest if F0_MM[f] - STEP_MM >= MIN_MM and f != order[0]), key=finest.get)
@@ -159,4 +160,5 @@ def f1(out):
 
 
 if __name__ == "__main__":
-    main()
+    with s6.installed():                      # S6 shells (shell_s6.py)
+        main()

@@ -1,0 +1,55 @@
+{
+  "schema": "962-parser003-exact-startup-source-bindings/v1",
+  "status": "HELD_UNRUN_SOURCE_ONLY",
+  "donor": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-saved-measurement-parser-prep-002/parse_saved_measurement.py",
+    "sha256": "dfce01d6cd8d7618e0dee794d35a7bb0a56e34ae998facf2dd3f7b9335d4bede",
+    "bytes": 13042
+  },
+  "successor": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-saved-measurement-parser-prep-003/parse_saved_measurement.py",
+    "sha256": "3c5bfbc739bb796b6ea63f4373a8984f1702ec3cfdf4883f9903df9bf483e0f4",
+    "bytes": 13219
+  },
+  "exact_insertion": "        if line=='Time Step 0, time = 0':\n            current=dict(step=0,time_token='0',dt_token=None,line=line_number,monitors=[])\n            blocks.append(current);continue\n",
+  "insertion_after": "    for line_number,line in enumerate(text.splitlines(),1):\n",
+  "replacement_groups": 1,
+  "added_lines": 3,
+  "whole_inverse_recovers_donor": true,
+  "other_top_level_functions_text_AST_exact": [
+    "need",
+    "strict_json",
+    "word_is_finite",
+    "scan_vectors",
+    "vector_words",
+    "validate_map",
+    "bind_stream_headers"
+  ],
+  "imports_globals_other_source_bytes_unchanged": true,
+  "root_reported_trigger_descriptor_only": {
+    "filename": "native.log",
+    "sha256": "f53294d71d4f67a73c5af5d47b8ead7307a61e30c003bbe2eb77c997079b0d1d",
+    "bytes": 272166,
+    "line": 951,
+    "exact_header": "Time Step 0, time = 0",
+    "body_read_or_statted_or_hashed": false
+  },
+  "fixture_case_names": [
+    "startup_without_dt",
+    "legacy_startup_with_dt",
+    "no_startup",
+    "solve1_without_dt",
+    "duplicate_startup",
+    "nonzero_startup_without_dt",
+    "monitor_on_startup",
+    "malformed_monitor",
+    "missing_monitor_event"
+  ],
+  "fixture_case_count": 9,
+  "future_actual_parse_calls": 9,
+  "fixture_calls_executed": 0,
+  "live_or_expected_native_dt_scaling_words_accepted": false,
+  "execution_authority": false,
+  "qualification": false,
+  "self_hash": null
+}

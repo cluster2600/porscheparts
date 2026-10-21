@@ -1,0 +1,91 @@
+{
+  "schema": "962-Netgen-cube-prep002-independent-source-peer/v1",
+  "decision": "CLEAR_FOR_SEPARATELY_REVIEWED_CUBE_ONLY_ACTUAL_CHILD",
+  "blockers": [],
+  "selected_sha256": {
+    "held-contract.json": "d3abc4ee9cda1d978b02ce7713aee2cd9a391616f67ea3f997f512a48b3ba570",
+    "reader.py": "97b7e9fc7d17defa84594c50dac1d4e09cd39bb47ef2059e00b6ac07fe8c029b",
+    "run_readback.py": "f7165620ac95b9095969b21ae912e87d491019e295a62155abbf33c2eb3b2944",
+    "test_fixture_guards.py": "6884045c3e39ee2d9222d97ba82e9b244e16281c2029021f96fa5171d02961c0",
+    "test_runner_guards.py": "da7af8d29cd24a092b5f33bd4ccc402b1e57a8334738a4c917cdd72fe494140b",
+    "source-delta.json": "90be2a50f206a74f80f68dae5c06c89004cc0fa79c6807ead56ef20438fa97ec",
+    "inspect-transform.json": "42c265f53b6e3417088c0ae6c3030acacf3829adb558d46f45575d33514f90b0",
+    "runner-transform.json": "a5454ddc09b42fb04367c94516a2f8df814430ce4f8715f172cbecbf7d9c3f26",
+    "runner-tests-transform.json": "9648c884d37a406b138958767fd239ebab881564091d66d4f76c898dd3148d9e",
+    "METHOD.md": "6fe769f42f54ac50fdf2f2ba5d280003e4602fbb2f367139aa937e4f418fb390",
+    "reader001-to002.diff": "7c1d6e6dc60146f51c7a8958167da6ea13dd351a8ccbbd5c2679a2fd9e103fc8",
+    "fixture-tests001-to002.diff": "98456dc8d343b3cf0d551f6a89db6367aa5247fbde77bbfe9bb6bc704493980e"
+  },
+  "preserved_rejection": {
+    "prep001_held_sha256": "7be7f20150b863521c997f2ac618445afb62da45be2000ed60683775dfcbf468",
+    "prep001_reader_sha256": "09264fd31e19ab3ccb995358a1c60a7ef64f3cd4db8a9d38d65c6e9e38cec668",
+    "blocked_source_peer_sha256": "f5400679465373b9f21de18831bdf19095688cdda2fc460048ea6d9e87760811",
+    "original001_not_executed_or_modified_by_this_review": true
+  },
+  "fix_and_full_logic_review": {
+    "sole_reader_delta_is_main_global_gmsh": true,
+    "whole_byte_reverse_recovers001": true,
+    "main_global_declaration_precedes_deferred_import_and_first_inspect_call": true,
+    "inspect_live_and_every_other_function_AST_unchanged": true,
+    "c493_inspect_eleven_edit_reverse_exact": true,
+    "before_flag_full_four_array_and_quality_classification_identity": true,
+    "exact_8_boundary_binary64_nodes_and_12_oriented_faces": true,
+    "complete_tetra_exterior_and_opposite_internal_incidence": true,
+    "no_orphans_duplicate_cells_and_actual_metric_count_guards": true,
+    "dynamic_interior_identity_and_counts_allowed_across_Netgen_only": true,
+    "one_dim3_geometry_flag_one_Netgen_force_one_rebuildFalse": true,
+    "source_volume343mm3_and_positive_Jacobian_native_signed_volume": true,
+    "actual_point1_SICN_gate_on_after_output_not_original_cube": true,
+    "saved_reopen_exact_four_array_quality_classification_identity": true,
+    "no_interior_ancestry_or_tag_based_physical_topology_claim": true,
+    "no_automatic_retry_generation_solver_or_head_authority": true
+  },
+  "input_checks": {
+    "held_input_pins": 33,
+    "current_small_non_geometry_pins_independently_verified": 32,
+    "sole_tiny_cube_binding_stat_only_not_read_or_hashed": {
+      "work/962-engineering/hxt-size-cap-fixture-001/capped-1p75/cube.msh": {
+        "sha256": "e773cc4a2f68187c623e984eb9f58441f3fa5eed2733295e7eb26bd7b3910ac1",
+        "bytes": 9790
+      }
+    },
+    "runtime_three_known_hash_bindings_unchanged_no_runtime_bytes_read": true,
+    "fresh_fixed_output_absent_at_review": true
+  },
+  "runner": {
+    "sha256": "f7165620ac95b9095969b21ae912e87d491019e295a62155abbf33c2eb3b2944",
+    "byte_exact_to001": true,
+    "complete_declared_reverse_to4fb": true,
+    "13test_adapter_byte_exact_to001_and_reverse_exact_to_old": true,
+    "owned_process_group_nonraising_SIGTERM_kill_wait_restore_controlflow_retained": true,
+    "remaining_startup30s_and_synchronous_completion_deadline_and_output_latches": true,
+    "sampled_RSS_bytes": 1073741824,
+    "sampled_output_bytes": 16777216,
+    "threads": 2,
+    "operation_declarations_labelled_not_observations": true,
+    "hard_OS_RAM_CPU_or_disk_quota_claimed": false
+  },
+  "root_tests_later_than_held_snapshot": {
+    "saved_record_and_logs_sha256": {
+      "review.json": "c43e99ecec0034e7df9719a4914ac9e35d967c422a1e9def9c0f7178da00b404",
+      "test_fixture_guards.log": "2d5a18dc307eff4ca392dc277d73153d69105835866a09848621635d761fb7fa",
+      "test_runner_guards.log": "83f54c6a1a1521e255d1edc41cdb4ea5cec8de31290df0d0e74485797b7d2ad6"
+    },
+    "root_reported_fixture_methods": 7,
+    "root_reported_runner_methods": 13,
+    "all20_PASS_attributed_to_root_not_executed_by_peer": true,
+    "historical_held_tests_executed_false_remains_unmodified": true
+  },
+  "limits": [
+    "Independent source/AST/small-hash review only; no prepared imports, tests, geometry/runtime reads, native/scientific execution or Git/network.",
+    "The original gmsh scope blocker is fixed by Python global binding; the20root mocked methods supply guard evidence, not Netgen native success or boundary preservation in the installed binary.",
+    "Root must freeze fresh exact cube-only actual child including002sources/tests/rootresults/thispeer, verify all inputs/runtime/tiny mesh/resources/output, and obtain an external exact-child review before one30s fixture. No head Netgen trial is authorized.",
+    "The selected -B command must keep assertions enabled, without -O/PYTHONOPTIMIZE. Preserve any refusal/qualityfailure instead of changing the0.1gate or calling another optimizer."
+  ],
+  "qualification": {
+    "native_fixture_executed_by_peer": false,
+    "native_Netgen_success_established": false,
+    "head_execution_authorized": false,
+    "manufacturing_authorized": false
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "schema": "962-current129-census-owned-root-launch/v1",
+  "actual_sha256": "ec888011591b8eda74ae83a4a3e796d1ab6d2cf555d99fba1fbbc2c003fb215f",
+  "exact_child_peer_sha256": "303bcf781e55c4175465399fc4b575a8e89a66679eb31c5683c4286cf2f0ab52",
+  "root_preflight_sha256": "1f50eb783021476b133a2d79ad134ae14bf88dd9036bf9f4c9968ef5dbbaa348",
+  "root_pid": "process-role://census129/root-owner",
+  "controller_pid": "process-role://census129/recorded-controller",
+  "controller_pgid": "process-role://census129/recorded-controller",
+  "argv": [
+    "runtime-role://registered-native/geometry/bin/python",
+    "-B",
+    "work/962-engineering/head-star-current129-full-stars-001/run_readback.py",
+    "--contract-sha256",
+    "ec888011591b8eda74ae83a4a3e796d1ab6d2cf555d99fba1fbbc2c003fb215f"
+  ],
+  "environment": {
+    "PATH": "/usr/bin:/bin",
+    "LANG": "C",
+    "PYTHONUTF8": "1",
+    "OMP_NUM_THREADS": "2",
+    "OPENBLAS_NUM_THREADS": "2",
+    "PYTHONDONTWRITEBYTECODE": "1"
+  },
+  "outer_wall_seconds": 135,
+  "SIGTERM_grace_seconds": 10,
+  "inner_wall_seconds": 120,
+  "native_PID_directly_observed": false,
+  "native_cleanup_attributed_to_exact_controller_source_and_receipt": true,
+  "universal_descendant_absence_claimed": false,
+  "automatic_retry": false
+}

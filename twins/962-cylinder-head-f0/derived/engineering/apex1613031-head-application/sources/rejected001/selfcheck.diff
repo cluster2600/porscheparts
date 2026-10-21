@@ -1,0 +1,154 @@
+--- work/962-engineering/apex1613790-head-application-prep-001/selfcheck.py
++++ work/962-engineering/apex1613031-head-application-prep-001/selfcheck.py
+@@ -5,11 +5,11 @@
+ from types import SimpleNamespace
+ import ast,copy,hashlib,json,math,struct,sys,unittest
+ 
+-SOURCE_SHA='0e3db83e33b1dec8b49e42401b313735c7c5fecfcd17cee5268f5ccc7a797a90'
++SOURCE_SHA='5f7df7d36b297100ac997979f2cdc5f66e6562c87601359d952ea6047e246b56'
+ source=Path(__file__).with_name('reader.py');ROOT=source.resolve().parents[3]
+ assert hashlib.sha256(source.read_bytes()).hexdigest()==SOURCE_SHA
+ tree=ast.parse(source.read_text());functions={n.name:n for n in tree.body if isinstance(n,ast.FunctionDef)}
+-constants={'OUTPUT','MESH','CONTEXT','CONTEXT_CONTRACT','OBSERVATION','SHELL','ARRAYS','WORKER','LOCAL_PEER','DOMAIN','DOMAIN_PEER','DOMAIN_SOURCE','DOMAIN_ACTUAL','ORIGINAL_WORKER','ORIGINAL_RECEIPT','PARTIAL_CLOSED','PARTIAL_METADATA','FIRST','PROOF_SOURCE','HEAD','CORE','AUDIT','FIXED_INPUTS','ARRAYS_SHA','WORKER_SHA','APEX','NMAX','EMAX','BOUNDARY','RUNTIME','OPTIONS','CONTROLS','COUNTS','FORBIDDEN','QUALIFICATION','CONTEXT_PEER','CONTEXT_ACCEPT','CONTEXT_CLOSED','DOMAIN_ACCEPT','LOCAL_ACCEPT','DEVIATION'}
++constants={'OUTPUT','MESH','CONTEXT','CONTEXT_CONTRACT','OBSERVATION','SHELL','ARRAYS','WORKER','LOCAL_PEER','LOCAL_BINDINGS','DOMAIN_BINDINGS','CONTEXT_BINDINGS','DOMAIN','DOMAIN_PEER','DOMAIN_SOURCE','DOMAIN_ACTUAL','ORIGINAL_WORKER','ORIGINAL_RECEIPT','PARTIAL_CLOSED','PARTIAL_METADATA','FIRST','PROOF_SOURCE','HEAD','CORE','AUDIT','FIXED_INPUTS','ARRAYS_SHA','WORKER_SHA','APEX','NMAX','EMAX','BOUNDARY','RUNTIME','OPTIONS','CONTROLS','COUNTS','FORBIDDEN','QUALIFICATION','CONTEXT_PEER','CONTEXT_ACCEPT','CONTEXT_CLOSED','DOMAIN_ACCEPT','LOCAL_ACCEPT','DEVIATION'}
+ assignments=[n for n in tree.body if isinstance(n,ast.Assign) and any(isinstance(t,ast.Name) and t.id in constants for t in n.targets)]
+ ns={'Path':Path,'Fraction':Fraction,'combinations':combinations,'struct':struct,'math':math,'json':json,'hashlib':hashlib,'sys':sys,'ROOT':ROOT,'OUT':source.parent}
+ selected=assignments+[functions[n] for n in ['sha','require_contract','require_domain','candidate_rows','make_case','allocate_case','edit_once','retained_positions','parameter_record','parameter_projection','require_snapshot','require_original_records','valid_positive_volume']]
+@@ -40,7 +40,12 @@
+  def test_complete_valid_saved_case_and_domain_refusals(self):
+   args=[record(n) for n in ['WORKER','ARRAYS','DOMAIN','DOMAIN_PEER','OBSERVATION','SHELL']]
+   coordinates=ns['candidate_rows'](*args)
+-  self.assertEqual(len(coordinates),20)
++  self.assertEqual(record('LOCAL_BINDINGS')['full8_output_inventory']['arrays.json']['sha256'],ns['ARRAYS_SHA'])
++  self.assertEqual(record('CONTEXT_PEER')['report']['sha256'],ns['FIXED_INPUTS'][ns['CONTEXT']])
++  self.assertEqual(record('CONTEXT_CLOSED')['outputs']['readback-report.json']['sha256'],ns['FIXED_INPUTS'][ns['CONTEXT']])
++  bad=copy.deepcopy(args);bad[3]['bindings']['sha256']='0'*64
++  with self.assertRaises(ValueError):ns['candidate_rows'](*bad)
++  self.assertEqual(len(coordinates),10)
+   self.assertEqual([struct.pack('<3d',*coordinates[tag]) for tag in args[1]['saved_reopen']['node_tags']],[struct.pack('<3d',*row) for row in args[1]['saved_reopen']['coordinates_mm']])
+   for key,value in [('status','UNREVIEWED'),('local_domain_equivalence_proved',False)]:
+    bad=copy.deepcopy(args);bad[2][key]=value
+@@ -52,48 +57,51 @@
+   bad=copy.deepcopy(args);bad[2]['source_candidate_arrays_sha256']='0'*64
+   with self.assertRaises(ValueError):ns['candidate_rows'](*bad)
+  def test_sparse_global_mapping_and_actual_classes(self):
+-  case=make();self.assertEqual(case['node_map'][17],1613790)
+-  self.assertEqual([case['node_map'][t] for t in range(18,21)],list(range(1613975,1613978)))
+-  self.assertEqual(case['element_slots'][:28],sorted(case['old']))
+-  self.assertEqual(case['element_slots'][28:],list(range(32159062,32159078)))
+-  self.assertEqual(len(case['replacement']),44);self.assertEqual(len(case['fresh_nodes']),3)
+-  self.assertEqual(sum(v==[2,1] for v in case['classes'].values()),13)
+-  self.assertEqual(sum(v==[3,1] for v in case['classes'].values()),4)
++  case=make();self.assertEqual(case['node_map'][10],1613031)
++  self.assertEqual(case['fresh_nodes'],[]);self.assertEqual(case['element_slots'],sorted(case['old']))
++  self.assertEqual(len(case['replacement']),14)
++  self.assertEqual(sum(v==[2,1] for v in case['classes'].values()),5)
++  self.assertEqual(sum(v==[3,1] for v in case['classes'].values()),5)
+   self.assertEqual(case['expected_counts'],{'nodes':1097222,'TET4':3621771,'interior':225491})
++  self.assertEqual(case['expected_maxima'],{'node':1613977,'element_all_dimensions':32159077})
+   arrays=record('ARRAYS')['saved_reopen']
+   self.assertEqual(list(case['replacement'].values()),[[case['node_map'][t] for t in row] for row in arrays['tetra_node_tags']])
+-  remap={**{i:i for i in range(1,17)},17:31,18:44,19:99,20:144}
++  remap={**{i:i for i in range(1,10)},10:31}
+   gapped=copy.deepcopy(arrays);gapped['node_tags']=[remap[x] for x in arrays['node_tags']];gapped['tetra_node_tags']=[[remap[x] for x in c] for c in arrays['tetra_node_tags']]
+-  row=dict(apex=1613790,NV=16,N=20,K=28,M=44,I=4,candidate_interior_node_tags=[31,44,99,144],old_tetrahedron_tags=sorted(case['old']))
++  row=dict(apex=1613031,NV=9,N=10,K=14,M=14,I=1,candidate_interior_node_tags=[31],old_tetrahedron_tags=sorted(case['old']))
+   part=ns['allocate_case'](row,record('SHELL'),gapped,ns['NMAX'],ns['EMAX'])
+-  self.assertEqual(part['node_map'][31],1613790);self.assertEqual([part['node_map'][i] for i in [44,99,144]],list(range(1613975,1613978)))
++  self.assertEqual(part['node_map'][31],1613031);self.assertEqual(part['fresh_nodes'],[])
++  self.assertEqual(part['element_slots'],sorted(case['old']))
+  def test_fixed_word_class_parameter_and_max_refusals(self):
+   args=[record(n) for n in ['OBSERVATION','SHELL','WORKER','ARRAYS','CONTEXT','DOMAIN','DOMAIN_PEER']]
+   bad=copy.deepcopy(args);bad[1]['vertex_rows'][0]['binary64_little_endian_bytes_hex']='00'*24
+   with self.assertRaises(ValueError):ns['make_case'](*bad)
+   bad=copy.deepcopy(args);bad[4]['independently_derived_global_maxima']['element_all_dimensions']=3620820
+   with self.assertRaises(ValueError):ns['make_case'](*bad)
+-  bad=copy.deepcopy(args);bad[4]['selected17_native_node_rows'][0]['dimension']=3
+-  with self.assertRaises(ValueError):ns['make_case'](*bad)
+-  bad=copy.deepcopy(args);bad[4]['selected17_native_node_rows'][0]['available_parametric_coordinates']=[0.]
++  bad=copy.deepcopy(args);bad[4]['selected10_native_node_rows'][0]['dimension']=3
++  with self.assertRaises(ValueError):ns['make_case'](*bad)
++  bad=copy.deepcopy(args);bad[4]['selected10_native_node_rows'][0]['available_parametric_coordinates']=[0.]
+   with self.assertRaises(ValueError):ns['make_case'](*bad)
+  def test_raw_copy_preserves_interior_signed_zero(self):
+   # Isolate copying only; this synthetic mutation is not a domain/candidate certificate.
+   args=[record(n) for n in ['WORKER','ARRAYS','DOMAIN','DOMAIN_PEER','OBSERVATION','SHELL']]
+-  for stage in ['after','saved_reopen']:args[1][stage]['coordinates_mm'][16][0]=-0.
++  for stage in ['after','saved_reopen']:args[1][stage]['coordinates_mm'][9][0]=-0.
+   ns['require_domain']=lambda *a:None
+   coordinates=ns['candidate_rows'](*args)
+-  self.assertEqual(struct.pack('<d',coordinates[17][0]),struct.pack('<d',-0.))
+-  self.assertNotEqual(struct.pack('<d',coordinates[17][0]),struct.pack('<d',0.))
++  self.assertEqual(struct.pack('<d',coordinates[10][0]),struct.pack('<d',-0.))
++  self.assertNotEqual(struct.pack('<d',coordinates[10][0]),struct.pack('<d',0.))
+  def test_exact_api_order_complete_removal_and_stale_max(self):
+   case=make();calls=[];gmsh=fake(case,calls);counts={k:0 for k in ns['COUNTS']}
+   ns['edit_once'](gmsh,case,counts)
+-  self.assertEqual([x[0] for x in calls],['removeElements','setNode','addNodes','addElementsByType','rebuildNodeCache','rebuildElementCache'])
++  self.assertEqual([x[0] for x in calls],['removeElements','setNode','addElementsByType','rebuildNodeCache','rebuildElementCache'])
+   self.assertEqual(calls[0][1],(3,1,sorted(case['old'])))
+-  self.assertEqual(calls[1][1],(1613790,case['proposed'][1613790],[]))
+-  self.assertEqual(calls[2][1][:3],(3,1,list(range(1613975,1613978))))
+-  self.assertEqual(calls[3][1][:3],(1,4,case['element_slots']))
++  self.assertEqual(calls[1][1],(1613031,case['proposed'][1613031],[]))
++  self.assertEqual(calls[2][1][:3],(1,4,case['element_slots']))
+   self.assertEqual(calls[-2][1],(False,));self.assertEqual(calls[-1][1],(False,))
++  self.assertEqual(counts['addNodes'],0);self.assertEqual(counts['write_mesh'],0)
++  def forbidden_addNodes(*a):raise AssertionError('No addNodes call allowed for I1/M=K case')
++  gmsh.model.mesh.addNodes=forbidden_addNodes
++  ns['edit_once'](gmsh,case,{k:0 for k in ns['COUNTS']})
+   for rows in [{},dict(list(case['old'].items())[:-1])]:
+    with self.assertRaises(ValueError):ns['edit_once'](gmsh,dict(case,old=rows),{k:0 for k in ns['COUNTS']})
+   gmsh.model.mesh.getMaxNodeTag=lambda:case['nmax']+1
+@@ -101,11 +109,11 @@
+  def test_throwing_mutations_count_attempts_before_call(self):
+   case=make()
+   def throws(*a):raise RuntimeError('synthetic native refusal')
+-  for method,expected in [('removeElements',['removeElements']),('setNode',['removeElements','setNode']),('addNodes',['removeElements','setNode','addNodes'])]:
++  for method,expected in [('removeElements',['removeElements']),('setNode',['removeElements','setNode']),('addElementsByType',['removeElements','setNode','addElementsByType'])]:
+    gmsh=fake(case,[]);setattr(gmsh.model.mesh,method,throws);counts={k:0 for k in ns['COUNTS']}
+    with self.assertRaises(RuntimeError):ns['edit_once'](gmsh,case,counts)
+    self.assertEqual([k for k,v in counts.items() if v],expected)
+-   self.assertEqual(counts['rebuildNodeCache'],0);self.assertEqual(counts['write_mesh'],0)
++   self.assertEqual(counts['addNodes'],0);self.assertEqual(counts['rebuildNodeCache'],0);self.assertEqual(counts['write_mesh'],0)
+  def test_outside_and_original_class_preservation_refusals(self):
+   before={'preservation':{'outside_coordinates':'original','outside_cells':'original'},'metadata_sha256s':{'all_lower':'original'},'retained_original_parameter_projection':[], 'expected_new_nodes':3}
+   after=dict(copy.deepcopy(before),original_classification_projection_exact=True,new_nodes_on_volume1=3)
+@@ -122,7 +130,7 @@
+  def test_valid_runtime_contract_then_wrong_runtime_and_authority(self):
+   reference=record('CONTEXT_CONTRACT');ns['OUT']=ROOT/ns['OUTPUT']
+   c={k:copy.deepcopy(reference[k]) for k in ['external_runtime_hashes','runtime_sha256s','runtime','native_python','numpy_init','numpy_init_sha256','expected_runtime']}
+-  c.update(schema='962-apex1613790-head-application/v1',native_execution_authorized=True,partial_head_replacement_authorized=True,root_and_peer_review_complete=True,selected_runtime_review_complete=True,automatic_retry=False,head_execution_authorized=False,options=ns['OPTIONS'],declared_operation_counts=ns['COUNTS'],controls=ns['CONTROLS'],output_directory=ns['OUTPUT'],input_hashes=ns['FIXED_INPUTS'],reader_sha256=SOURCE_SHA,runner_sha256='5ab38b53e4019506772cc429b46699ac0e217141c87a0a043718d8123ecb159c')
++  c.update(schema='962-apex1613031-head-application/v1',native_execution_authorized=True,partial_head_replacement_authorized=True,root_and_peer_review_complete=True,selected_runtime_review_complete=True,automatic_retry=False,head_execution_authorized=False,options=ns['OPTIONS'],declared_operation_counts=ns['COUNTS'],controls=ns['CONTROLS'],output_directory=ns['OUTPUT'],input_hashes=ns['FIXED_INPUTS'],reader_sha256=SOURCE_SHA,runner_sha256='5ab38b53e4019506772cc429b46699ac0e217141c87a0a043718d8123ecb159c')
+   c.update({k:False for k in ns['FORBIDDEN']});c.update(upstream_census_launch_deviation_sha256=ns['FIXED_INPUTS'][ns['DEVIATION']],declared_controller_command_conformant=False)
+   hashes={str((ROOT/k).resolve()):v for k,v in ns['FIXED_INPUTS'].items()}
+   hashes.update({str(Path(k).resolve()):v for k,v in reference['external_runtime_hashes'].items()})
+@@ -150,11 +158,11 @@
+   bad=copy.deepcopy(args);bad[5]['full_array_sha256s']['sorted_coordinates_sha256']='0'*64
+   with self.assertRaises(ValueError):ns['require_original_records'](core,*bad)
+  def test_no_forbidden_API_and_poor_whole_head_is_not_success(self):
+-  with self.assertRaises(ValueError):ns['require_contract']({'schema':'962-apex1613790-head-application/v1','native_execution_authorized':False})
++  with self.assertRaises(ValueError):ns['require_contract']({'schema':'962-apex1613031-head-application/v1','native_execution_authorized':False})
+   for node in ast.walk(tree):
+    if isinstance(node,ast.Call) and isinstance(node.func,ast.Attribute):self.assertNotIn(node.func.attr,['generate','optimize','createGeometry','reclassifyNodes','renumberNodes','renumberElements','removeDuplicateNodes'])
+   self.assertEqual(ns['CONTROLS'],{'hard_wall_seconds':1200,'sampled_RSS_stop_bytes':8589934592,'sampled_output_stop_bytes':1073741824,'native_threads':2,'automatic_retry':False})
+-  self.assertIn("len(v)!=44",source.read_text());self.assertIn("np.any(local_metrics['SICN']<.1)",source.read_text())
++  self.assertIn("len(v)!=14",source.read_text());self.assertIn("np.any(local_metrics['SICN']<.1)",source.read_text())
+   report={'quality':{'minimum_SICN':{'nonpositive_count':0,'minimum':.039074},'minimum_jacobian':{'nonpositive_count':0}},'volume_relative_error':0.}
+   self.assertTrue(ns['valid_positive_volume'](report))
+   result=next(n.value for n in functions['main'].body if isinstance(n,ast.Return))
+@@ -165,11 +173,11 @@
+  def test_retained_actual_set_parameters_signedzero_apex_and_fresh_exclusion(self):
+   from array import array
+   # Typed manufactured rows only; no native mesh or parameter table is read.
+-  original=[10,20,1613790];retained=[x for x in original if x!=1613790]
+-  after_tags=[10,20,1613790,1613975,1613976,1613977]
++  original=[10,20,1613031];retained=[x for x in original if x!=1613031]
++  after_tags=[10,20,1613031,1613975,1613976,1613977]
+   self.assertEqual(ns['retained_positions'](original,retained),[0,1])
+   self.assertEqual(ns['retained_positions'](after_tags,retained),[0,1])
+-  for tags,want in [([10,10,20],retained),([10,1613790],retained),(after_tags,[20,10]),(after_tags,[10,999999])]:
++  for tags,want in [([10,10,20],retained),([10,1613031],retained),(after_tags,[20,10]),(after_tags,[10,999999])]:
+    with self.assertRaises(ValueError):ns['retained_positions'](tags,want)
+   core=SimpleNamespace(array_sha=lambda a:hashlib.sha256(a.tobytes()).hexdigest())
+   tags=array('Q',retained);xyz=array('d',[-0.,1.,2.,3.,4.,5.]);params=array('d',[-0.,.5,1.5,2.,3.,4.])

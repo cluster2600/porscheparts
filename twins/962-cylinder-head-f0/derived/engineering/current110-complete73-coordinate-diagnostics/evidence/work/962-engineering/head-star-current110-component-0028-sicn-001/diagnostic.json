@@ -1,0 +1,1612 @@
+{
+  "schema": "962-current110-one-component-SLSQP-exact-diagnostic/v1",
+  "status": "rejected_exact_quality_diagnostic_retained",
+  "contract_sha256": "25aa7acd5fe0e1f297681a5ba0a2d3ac81dc7582213646262bad7d19cee37123",
+  "input_hashes": {
+    "work/962-engineering/current126-alternative-combined-application-root-execution-001/result-peer-acceptance.json": "a0a889ab8b7ae77bcfcce4da464492eebf3472c782329a4dedc7252493c7ab46",
+    "work/962-engineering/fixed-shell-coupled-sicn-001/diagnostic.json": "e9184514108a194e9f483c5bfb20ffef9d8334cddd01f60806d97b96f84f532a",
+    "work/962-engineering/fixed-shell-coupled-sicn-001/fixture-report.json": "9674ceffd280153acdb97d40aa6b609e12fa4616735b55da74b8566f5052e3fc",
+    "work/962-engineering/fixed-shell-coupled-sicn-apply-result-peer-001/review.json": "7b4b85b1d366de2b1750920e6d9adfee83caf289a0a7b8742fb0c0bdb589f63f",
+    "work/962-engineering/fixed-shell-coupled-sicn-prep-001/coupled.py": "b63adff506061ac9212d17501ae4062e970b1edd943145a1e911d1914e18b1a6",
+    "work/962-engineering/fixed-shell-coupled-sicn-prep-001/held-contract.json": "5d55d648d65b76e4482210d7f02244dea44025332eea09b3566ae81cba247790",
+    "work/962-engineering/fixed-shell-coupled-sicn-prep-001/run_readback.py": "8fc4918b6a0a6c07439eb57c77ea922e778207b59ed0e9f367a8f02c34946206",
+    "work/962-engineering/fixed-shell-coupled-sicn-prep-001/selfcheck.py": "77c07008aeec16f8b474baffadcbbdde3e66e7d7b16d14ee2ca4c246a5538158",
+    "work/962-engineering/fixed-shell-coupled-sicn-result-peer-001/review.json": "0adbeea0bef35c5a1f30f610c87bb27ef4333530ff2039e9e4c91a512287732b",
+    "work/962-engineering/head-star-current110-component-sicn-prep-001/METHOD.md": "ab10674400ac02aed9a39227114fdc97d719821093a329d32766764407561fa2",
+    "work/962-engineering/head-star-current110-component-sicn-prep-001/component-manifest.json": "8ae9f9e93aee4b9d06936c87f856b6e318e0b4ce5dbf5e9d78c9b99acdd8f8d7",
+    "work/962-engineering/head-star-current110-component-sicn-prep-001/propose_component.py": "ad4dc24d21d803853006753b0b3cd28061d5b3fec9eb18576a6b4e0549faf977",
+    "work/962-engineering/head-star-current110-component-sicn-prep-001/run_readback.py": "8fc4918b6a0a6c07439eb57c77ea922e778207b59ed0e9f367a8f02c34946206",
+    "work/962-engineering/head-star-current110-component-sicn-prep-001/source-delta.json": "2d5c6d87c6789a3dd07b38704c2f6715c16fb58a6f63605c961ab615ccc797d0",
+    "work/962-engineering/head-star-current110-component-sicn-prep-001/source.diff": "31548d78a0a17945a7b11026717d85a93e0944aeda979e2261d639cd08b23ce4",
+    "work/962-engineering/head-star-current110-component-sicn-prep-001/test_component_guards.py": "bc80f8b72df522595500272e205426e1c2864fa5ae03772203586d5ea58fc182",
+    "work/962-engineering/head-star-current110-coupling-graph-001/coupling-graph.json": "cf50b7abb47a35dcfdc52fd95605d2eec6ce406dd3a2d528439dfc7c6fe3de0b",
+    "work/962-engineering/head-star-current110-coupling-graph-001/root-review.json": "7d8925cfc3a4d8c445b4cfd7282d9092768e49f81637c97e01be820961ba4145",
+    "work/962-engineering/head-star-current110-full-stars-001/readback-report.json": "657fbb0ce1c89dbf691f5a07c62feedf0fd91f7bc78f21d2aa14a3e01a9566da",
+    "work/962-engineering/head-star-current110-full-stars-root-execution-001/result-peer-acceptance.json": "3d21b5f1e2cca935e6840e6444acd247b74ef877462c3382a07798c0217c7ed0",
+    "work/962-engineering/head-star-current126-alternative-combined-application-001/readback-report.json": "522b994bf693231cbbc5d7a098200b4746d20bc65b2e91235d6bbe2b3c676732",
+    "work/962-engineering/head-star-current110-component-sicn-prep-001/held-contract.json": "afe67f9bc9b99e41070e5a969e2fee73761ab125331eedd978030e822aece319",
+    "work/962-engineering/head-star-current110-component-sicn-source-peer-001/review.json": "213e85135eab3a92922d8db38caf049426c5e3d6acb67e93d94e2cd507976b10",
+    "work/962-engineering/head-star-current110-component-sicn-source-peer-001/bindings.json": "57f326270b113399edd012eac5129d2f367fd888262b86f1f896312eb76ff179",
+    "work/962-engineering/head-star-current110-component-sicn-root-source-001/review.json": "29fc9b053e85c6d09ff5851874eef9a3ccab31f83dc1dfb35ac655ab2c43007f",
+    "work/962-engineering/head-star-current110-component-sicn-root-source-001/guards-once.json": "1f8ead627221f1038b39ffd77a7325fcd5657822cfa3416d466b6ef376434686",
+    "work/962-engineering/head-star-current110-component-sicn-root-execution-001/runtime-origin-once.json": "dbbd4282981c68a29632d038f11954232acebea6afce337930e86a3360f034a7",
+    "work/962-engineering/head-star-current110-component-sicn-root-execution-001/runtime-admission.json": "ae57ad435bbf7faffbfc24645f1964f1b326bd84a677bc138f38d01d315e2d9f"
+  },
+  "solver": {
+    "method": "SLSQP",
+    "calls": 1,
+    "success": true,
+    "status": 0,
+    "nit": 6,
+    "nfev": 30,
+    "njev": 6,
+    "message": "Optimization terminated successfully"
+  },
+  "component_ID": 28,
+  "case_key": "component-0028",
+  "case_record_sha256": "59ae61c8587845a21df717d3dd8ec10b51aaddba9d43e37e2e8b0cbc7fc1cec7",
+  "component_manifest_sha256": "8ae9f9e93aee4b9d06936c87f856b6e318e0b4ce5dbf5e9d78c9b99acdd8f8d7",
+  "source_census_sha256": "657fbb0ce1c89dbf691f5a07c62feedf0fd91f7bc78f21d2aa14a3e01a9566da",
+  "source_graph_sha256": "cf50b7abb47a35dcfdc52fd95605d2eec6ce406dd3a2d528439dfc7c6fe3de0b",
+  "source_mesh_sha256": "1b3a5a454b9fcbeb2cf5d36aaa8be0bc9cce9319897e47a31af3ac597d5cdb20",
+  "complete_returned_vector": [
+    1.1454110407396993,
+    22.99303175778758,
+    24.525510665063504,
+    0.08663187707043665
+  ],
+  "free_tags": [
+    1476316
+  ],
+  "coordinate_variables": 3,
+  "variables_with_epigraph": 4,
+  "full_source_nodes": 26,
+  "full_cells": 46,
+  "all_component_exact_quality_gate": false,
+  "solver_success_independent_of_exact_quality": true,
+  "complete_proposed_coordinate_rows": [
+    {
+      "node_tag": 429086,
+      "coordinates_mm": [
+        0.7012066841125488,
+        23.25,
+        25.25
+      ],
+      "binary64_hex": [
+        "0x1.6704900000000p-1",
+        "0x1.7400000000000p+4",
+        "0x1.9400000000000p+4"
+      ]
+    },
+    {
+      "node_tag": 429214,
+      "coordinates_mm": [
+        0.7319360971450806,
+        23.75,
+        24.75
+      ],
+      "binary64_hex": [
+        "0x1.76c0540000000p-1",
+        "0x1.7c00000000000p+4",
+        "0x1.8c00000000000p+4"
+      ]
+    },
+    {
+      "node_tag": 431614,
+      "coordinates_mm": [
+        0.8878962397575378,
+        22.7038516998291,
+        25.203594207763672
+      ],
+      "binary64_hex": [
+        "0x1.c69a560000000p-1",
+        "0x1.6b42fa0000000p+4",
+        "0x1.9341ec0000000p+4"
+      ]
+    },
+    {
+      "node_tag": 431665,
+      "coordinates_mm": [
+        0.8994007706642151,
+        23.20188331604004,
+        24.701440811157227
+      ],
+      "binary64_hex": [
+        "0x1.cc7e420000000p-1",
+        "0x1.733aea0000000p+4",
+        "0x1.8b391a0000000p+4"
+      ]
+    },
+    {
+      "node_tag": 431698,
+      "coordinates_mm": [
+        0.9068804979324341,
+        23.75,
+        24.25
+      ],
+      "binary64_hex": [
+        "0x1.d052a40000000p-1",
+        "0x1.7c00000000000p+4",
+        "0x1.8400000000000p+4"
+      ]
+    },
+    {
+      "node_tag": 431785,
+      "coordinates_mm": [
+        0.9268479347229004,
+        22.75,
+        23.75
+      ],
+      "binary64_hex": [
+        "0x1.da8bd00000000p-1",
+        "0x1.6c00000000000p+4",
+        "0x1.7c00000000000p+4"
+      ]
+    },
+    {
+      "node_tag": 431907,
+      "coordinates_mm": [
+        0.9592928886413574,
+        23.25,
+        23.75
+      ],
+      "binary64_hex": [
+        "0x1.eb28700000000p-1",
+        "0x1.7400000000000p+4",
+        "0x1.7c00000000000p+4"
+      ]
+    },
+    {
+      "node_tag": 431981,
+      "coordinates_mm": [
+        0.9734941720962524,
+        23.20188331604004,
+        24.29595947265625
+      ],
+      "binary64_hex": [
+        "0x1.f26dd40000000p-1",
+        "0x1.733aea0000000p+4",
+        "0x1.84bc400000000p+4"
+      ]
+    },
+    {
+      "node_tag": 431996,
+      "coordinates_mm": [
+        0.9766073226928711,
+        22.74614143371582,
+        24.73432159423828
+      ],
+      "binary64_hex": [
+        "0x1.f405e00000000p-1",
+        "0x1.6bf0320000000p+4",
+        "0x1.8bbfc80000000p+4"
+      ]
+    },
+    {
+      "node_tag": 432123,
+      "coordinates_mm": [
+        1.0005412101745605,
+        22.985862731933594,
+        24.50240135192871
+      ],
+      "binary64_hex": [
+        "0x1.0023780000000p+0",
+        "0x1.6fc6180000000p+4",
+        "0x1.8809d60000000p+4"
+      ]
+    },
+    {
+      "node_tag": 432124,
+      "coordinates_mm": [
+        1.0005412101745605,
+        23.00313949584961,
+        24.50240135192871
+      ],
+      "binary64_hex": [
+        "0x1.0023780000000p+0",
+        "0x1.700cdc0000000p+4",
+        "0x1.8809d60000000p+4"
+      ]
+    },
+    {
+      "node_tag": 432129,
+      "coordinates_mm": [
+        1.0014925003051758,
+        22.506420135498047,
+        25.005990982055664
+      ],
+      "binary64_hex": [
+        "0x1.0061d00000000p+0",
+        "0x1.681a4c0000000p+4",
+        "0x1.90188a0000000p+4"
+      ]
+    },
+    {
+      "node_tag": 1397260,
+      "coordinates_mm": [
+        3.03446936732954,
+        22.76990050775231,
+        24.00825333971647
+      ],
+      "binary64_hex": [
+        "0x1.84697e02b274bp+1",
+        "0x1.6c518331df850p+4",
+        "0x1.8021ce4102a3fp+4"
+      ]
+    },
+    {
+      "node_tag": 1397914,
+      "coordinates_mm": [
+        2.6225172560362457,
+        23.81415464748779,
+        26.65776282867124
+      ],
+      "binary64_hex": [
+        "0x1.4faea53bef87ep+1",
+        "0x1.7d06c7060d8b2p+4",
+        "0x1.aa863250daadcp+4"
+      ]
+    },
+    {
+      "node_tag": 1427996,
+      "coordinates_mm": [
+        3.505329824980491,
+        24.151853160755614,
+        24.890945573883222
+      ],
+      "binary64_hex": [
+        "0x1.c0aea5cffe07dp+1",
+        "0x1.826dfd9473d56p+4",
+        "0x1.8e4150256582ap+4"
+      ]
+    },
+    {
+      "node_tag": 1433711,
+      "coordinates_mm": [
+        2.653627161721067,
+        23.891468890562514,
+        23.411423624660696
+      ],
+      "binary64_hex": [
+        "0x1.53aa0e09af44cp+1",
+        "0x1.7e4374e225e0ep+4",
+        "0x1.769530f04b82fp+4"
+      ]
+    },
+    {
+      "node_tag": 1437838,
+      "coordinates_mm": [
+        2.4732500643994944,
+        22.193094055887936,
+        25.191053842504925
+      ],
+      "binary64_hex": [
+        "0x1.3c937546b67e1p+1",
+        "0x1.6316e9caf1737p+4",
+        "0x1.930e8e7955573p+4"
+      ]
+    },
+    {
+      "node_tag": 1466129,
+      "coordinates_mm": [
+        0.9822821527532796,
+        24.07574746510287,
+        25.426317958736686
+      ],
+      "binary64_hex": [
+        "0x1.f6edafb30a24dp-1",
+        "0x1.813642f955f2ap+4",
+        "0x1.96d232c7a78b7p+4"
+      ]
+    },
+    {
+      "node_tag": 1476316,
+      "coordinates_mm": [
+        1.1454110407396993,
+        22.99303175778758,
+        24.525510665063504
+      ],
+      "binary64_hex": [
+        "0x1.2539a870744f2p+0",
+        "0x1.6fe37544b9649p+4",
+        "0x1.88687ddf0259fp+4"
+      ]
+    },
+    {
+      "node_tag": 1495575,
+      "coordinates_mm": [
+        1.5420288801594078,
+        22.999192966428076,
+        23.021123446952018
+      ],
+      "binary64_hex": [
+        "0x1.8ac26799c5ac4p+0",
+        "0x1.6ffcb1c3933aap+4",
+        "0x1.7056858a1d674p+4"
+      ]
+    },
+    {
+      "node_tag": 1516058,
+      "coordinates_mm": [
+        1.3732367279369586,
+        22.646032859811235,
+        25.559658584445728
+      ],
+      "binary64_hex": [
+        "0x1.5f8c713427c0ep+0",
+        "0x1.6a56268d507d6p+4",
+        "0x1.98f45c8f51ebcp+4"
+      ]
+    },
+    {
+      "node_tag": 1531817,
+      "coordinates_mm": [
+        1.6551247773375795,
+        22.478384120247824,
+        24.12975647076683
+      ],
+      "binary64_hex": [
+        "0x1.a7b641e576d4ep+0",
+        "0x1.67a7761b763e0p+4",
+        "0x1.82137b856634ep+4"
+      ]
+    },
+    {
+      "node_tag": 1533448,
+      "coordinates_mm": [
+        1.462384783202883,
+        24.631902650363894,
+        23.923068261058685
+      ],
+      "binary64_hex": [
+        "0x1.765ed96206413p+0",
+        "0x1.8a1c45f419193p+4",
+        "0x1.7ec4e339938ffp+4"
+      ]
+    },
+    {
+      "node_tag": 1596481,
+      "coordinates_mm": [
+        1.3659984098394065,
+        23.904017482686285,
+        23.54656768633004
+      ],
+      "binary64_hex": [
+        "0x1.5db21260a5f41p+0",
+        "0x1.7e76db093265cp+4",
+        "0x1.78bebdc21d681p+4"
+      ]
+    },
+    {
+      "node_tag": 1613938,
+      "coordinates_mm": [
+        1.2981066407434316,
+        22.57971081455958,
+        24.842935875467628
+      ],
+      "binary64_hex": [
+        "0x1.4c50b780b6a55p+0",
+        "0x1.69467ed8dabc1p+4",
+        "0x1.8d7caa541c233p+4"
+      ]
+    },
+    {
+      "node_tag": 1613939,
+      "coordinates_mm": [
+        1.1202113481842975,
+        22.673090688751138,
+        24.269940214378895
+      ],
+      "binary64_hex": [
+        "0x1.1ec62bc10f43bp+0",
+        "0x1.6ac4fabdf6da2p+4",
+        "0x1.8451acd48a1f1p+4"
+      ]
+    }
+  ],
+  "all_component_signed_quality_rows": [
+    {
+      "tetrahedron_tag": 29586965,
+      "ordered_node_tags": [
+        431981,
+        431665,
+        432124,
+        1476316
+      ],
+      "exact_native_ordered_determinant_mm3": {
+        "numerator": "14545115374903297652392615",
+        "denominator": "1237940039285380274899124224"
+      },
+      "exact_SICN_squared": {
+        "numerator": "46831202512922871007350735051542592361379243685517424884681664574259200",
+        "denominator": "151844045119076189631277891011961032438658609162547094867817796254686623"
+      },
+      "signed_SICN_approximate": 0.5553525525857469,
+      "positive_orientation": true,
+      "exact_point1_gate_passed": true
+    },
+    {
+      "tetrahedron_tag": 30166556,
+      "ordered_node_tags": [
+        1437838,
+        1427996,
+        1476316,
+        1397914
+      ],
+      "exact_native_ordered_determinant_mm3": {
+        "numerator": "591097086709367002930793516846885453663510171",
+        "denominator": "89202980794122492566142873090593446023921664"
+      },
+      "exact_SICN_squared": {
+        "numerator": "402503922335578675020010628888204026666418993850437645311715037957755794462230535319557525632",
+        "denominator": "540627616982460620277697678261300820348836143619181831404424423397838528317574029077206492499"
+      },
+      "signed_SICN_approximate": 0.8628512744242317,
+      "positive_orientation": true,
+      "exact_point1_gate_passed": true
+    },
+    {
+      "tetrahedron_tag": 30360520,
+      "ordered_node_tags": [
+        431614,
+        1476316,
+        429086,
+        1516058
+      ],
+      "exact_native_ordered_determinant_mm3": {
+        "numerator": "165437716596987983963717252187624049",
+        "denominator": "664613997892457936451903530140172288"
+      },
+      "exact_SICN_squared": {
+        "numerator": "141997699383599718044235309460504746371118303283232384446525552005545332586501468105736192",
+        "denominator": "319859448637244257256911749246445678684520213819715322561624452562236541471638279111302173"
+      },
+      "signed_SICN_approximate": 0.6662865736821817,
+      "positive_orientation": true,
+      "exact_point1_gate_passed": true
+    },
+    {
+      "tetrahedron_tag": 30419427,
+      "ordered_node_tags": [
+        432123,
+        1476316,
+        432124,
+        431665
+      ],
+      "exact_native_ordered_determinant_mm3": {
+        "numerator": "666696312203536215755777",
+        "denominator": "1237940039285380274899124224"
+      },
+      "exact_SICN_squared": {
+        "numerator": "14055912153204861627503494534240904923235838699815284896779231821824",
+        "denominator": "1872852544408709054412847082510888899905609354316795305978169370000143"
+      },
+      "signed_SICN_approximate": 0.08663187707005347,
+      "positive_orientation": true,
+      "exact_point1_gate_passed": false
+    },
+    {
+      "tetrahedron_tag": 30419439,
+      "ordered_node_tags": [
+        432123,
+        1476316,
+        431981,
+        432124
+      ],
+      "exact_native_ordered_determinant_mm3": {
+        "numerator": "313137547515026864122045",
+        "denominator": "618970019642690137449562112"
+      },
+      "exact_SICN_squared": {
+        "numerator": "13023343953652963696271040164985900679924613423436458977060485857280",
+        "denominator": "1735270012680960974555748016115439396838283314136092494791443236922013"
+      },
+      "signed_SICN_approximate": 0.0866318770700081,
+      "positive_orientation": true,
+      "exact_point1_gate_passed": false
+    },
+    {
+      "tetrahedron_tag": 30419581,
+      "ordered_node_tags": [
+        1476316,
+        432123,
+        431996,
+        431665
+      ],
+      "exact_native_ordered_determinant_mm3": {
+        "numerator": "18549315174737695979271971",
+        "denominator": "1237940039285380274899124224"
+      },
+      "exact_SICN_squared": {
+        "numerator": "76165225014364243600992732580530125667087386729586662625994294450716672",
+        "denominator": "218064140715139609389690807684403207720815662706061099709541944153794397"
+      },
+      "signed_SICN_approximate": 0.5909983079871393,
+      "positive_orientation": true,
+      "exact_point1_gate_passed": true
+    },
+    {
+      "tetrahedron_tag": 30419657,
+      "ordered_node_tags": [
+        1613938,
+        432129,
+        1476316,
+        431996
+      ],
+      "exact_native_ordered_determinant_mm3": {
+        "numerator": "2959298991209804642814870431943821",
+        "denominator": "332306998946228968225951765070086144"
+      },
+      "exact_SICN_squared": {
+        "numerator": "7754229526516425298696239380235682655048777642828957257467039983871224120546794603020288",
+        "denominator": "252300574258551373236570409720444093140213135684241515849265471859911639005183219122841241"
+      },
+      "signed_SICN_approximate": 0.1753114196092855,
+      "positive_orientation": true,
+      "exact_point1_gate_passed": true
+    },
+    {
+      "tetrahedron_tag": 30530681,
+      "ordered_node_tags": [
+        1476316,
+        431996,
+        429086,
+        431665
+      ],
+      "exact_native_ordered_determinant_mm3": {
+        "numerator": "90241736668519143438653577",
+        "denominator": "2475880078570760549798248448"
+      },
+      "exact_SICN_squared": {
+        "numerator": "50074123588232221315045000081011208822225388383510670518244139847385088",
+        "denominator": "441715752549594490322068046179555531957010320399138464618462622136882195"
+      },
+      "signed_SICN_approximate": 0.33669388956013596,
+      "positive_orientation": true,
+      "exact_point1_gate_passed": true
+    },
+    {
+      "tetrahedron_tag": 30566875,
+      "ordered_node_tags": [
+        1437838,
+        1427996,
+        1397260,
+        1476316
+      ],
+      "exact_native_ordered_determinant_mm3": {
+        "numerator": "179464008469845950384465962639901249503930387",
+        "denominator": "44601490397061246283071436545296723011960832"
+      },
+      "exact_SICN_squared": {
+        "numerator": "64414660672129878035772044565103857973197230790741076376600294309331914709305121883939538",
+        "denominator": "96689942494487247627979183819870968381938341653298008942766714370513441034770704809696191"
+      },
+      "signed_SICN_approximate": 0.8162096229147187,
+      "positive_orientation": true,
+      "exact_point1_gate_passed": true
+    },
+    {
+      "tetrahedron_tag": 30591565,
+      "ordered_node_tags": [
+        1495575,
+        1476316,
+        1596481,
+        431907
+      ],
+      "exact_native_ordered_determinant_mm3": {
+        "numerator": "92521067600037957471950491997865019740175871",
+        "denominator": "178405961588244985132285746181186892047843328"
+      },
+      "exact_SICN_squared": {
+        "numerator": "547849468790450783466016933679688573855941453791690812352453191082681773143898752678953024",
+        "denominator": "1482219399132976153225670022892123140513909387666873384368508887172335260598032354623197949"
+      },
+      "signed_SICN_approximate": 0.6079591175570749,
+      "positive_orientation": true,
+      "exact_point1_gate_passed": true
+    },
+    {
+      "tetrahedron_tag": 30684691,
+      "ordered_node_tags": [
+        1397914,
+        1466129,
+        1427996,
+        1476316
+      ],
+      "exact_native_ordered_determinant_mm3": {
+        "numerator": "1789125503845882366215372893958817376832588583",
+        "denominator": "356811923176489970264571492362373784095686656"
+      },
+      "exact_SICN_squared": {
+        "numerator": "59000280302809173889536038976566252362681585570594180156762467736444491243831217112837183490048",
+        "denominator": "127856320296130785559988521899875101873274965616704714812302564235912472313292135461275960434245"
+      },
+      "signed_SICN_approximate": 0.6793067606305231,
+      "positive_orientation": true,
+      "exact_point1_gate_passed": true
+    },
+    {
+      "tetrahedron_tag": 30867773,
+      "ordered_node_tags": [
+        429086,
+        1476316,
+        1466129,
+        1516058
+      ],
+      "exact_native_ordered_determinant_mm3": {
+        "numerator": "241858598961205650697542320608805488651466485",
+        "denominator": "356811923176489970264571492362373784095686656"
+      },
+      "exact_SICN_squared": {
+        "numerator": "53909528271185486185285863950539908464381671837987963703451491061142690151314582497720015360",
+        "denominator": "107115885758974342270396685175702221382682136390942825682582862216221949460246404332873007633"
+      },
+      "signed_SICN_approximate": 0.7094239141136022,
+      "positive_orientation": true,
+      "exact_point1_gate_passed": true
+    },
+    {
+      "tetrahedron_tag": 30883301,
+      "ordered_node_tags": [
+        431698,
+        1466129,
+        429214,
+        1476316
+      ],
+      "exact_native_ordered_determinant_mm3": {
+        "numerator": "39688435633161579108357987181923939",
+        "denominator": "166153499473114484112975882535043072"
+      },
+      "exact_SICN_squared": {
+        "numerator": "267787407382864619776756911085551752985782535904254008816621295234559665153895589472293093376",
+        "denominator": "1337262520297458640285450009632338192387629823982363411334849772504645261630320934967034867927"
+      },
+      "signed_SICN_approximate": 0.4474935077460785,
+      "positive_orientation": true,
+      "exact_point1_gate_passed": true
+    },
+    {
+      "tetrahedron_tag": 30943379,
+      "ordered_node_tags": [
+        1427996,
+        1476316,
+        1466129,
+        1533448
+      ],
+      "exact_native_ordered_determinant_mm3": {
+        "numerator": "448636869553369992712584035177443508818793173",
+        "denominator": "89202980794122492566142873090593446023921664"
+      },
+      "exact_SICN_squared": {
+        "numerator": "118716849619194852702961170609446705415029266486811927178582811753814501950624645340376030314496",
+        "denominator": "170274803937334333579825990965973438995395385102696486997944507796670450495776099489324876762781"
+      },
+      "signed_SICN_approximate": 0.8349894479309974,
+      "positive_orientation": true,
+      "exact_point1_gate_passed": true
+    },
+    {
+      "tetrahedron_tag": 31009292,
+      "ordered_node_tags": [
+        1427996,
+        1433711,
+        1397260,
+        1476316
+      ],
+      "exact_native_ordered_determinant_mm3": {
+        "numerator": "706726772931038067166833156100950395028751271",
+        "denominator": "178405961588244985132285746181186892047843328"
+      },
+      "exact_SICN_squared": {
+        "numerator": "47948422231441827888259415641089224158550207343836975190301811214368974207606149656075082336",
+        "denominator": "68004615323797739990248433676739598572060040174360442589521357691034538059905186879872222029"
+      },
+      "signed_SICN_approximate": 0.83968803798682,
+      "positive_orientation": true,
+      "exact_point1_gate_passed": true
+    },
+    {
+      "tetrahedron_tag": 31136727,
+      "ordered_node_tags": [
+        1476316,
+        431785,
+        431981,
+        431907
+      ],
+      "exact_native_ordered_determinant_mm3": {
+        "numerator": "7526832895128463199803735",
+        "denominator": "154742504910672534362390528"
+      },
+      "exact_SICN_squared": {
+        "numerator": "601958781572180079143513683581119423488495097519420028941233567668633600",
+        "denominator": "5807528111389750973329958821744018197654505950961830260129260232354730563"
+      },
+      "signed_SICN_approximate": 0.3219494717845556,
+      "positive_orientation": true,
+      "exact_point1_gate_passed": true
+    },
+    {
+      "tetrahedron_tag": 31185446,
+      "ordered_node_tags": [
+        1466129,
+        1476316,
+        1397914,
+        1516058
+      ],
+      "exact_native_ordered_determinant_mm3": {
+        "numerator": "44989171781625313016556160960967611824040945",
+        "denominator": "22300745198530623141535718272648361505980416"
+      },
+      "exact_SICN_squared": {
+        "numerator": "6367033932161770087195990382762704233164556531041043847662791888710260211449653739629130547200",
+        "denominator": "20976071265961132284607798624113838500737471292559553313047008909472222467164071659612015449961"
+      },
+      "signed_SICN_approximate": 0.5509427941670189,
+      "positive_orientation": true,
+      "exact_point1_gate_passed": true
+    },
+    {
+      "tetrahedron_tag": 31194836,
+      "ordered_node_tags": [
+        1427996,
+        1433711,
+        1476316,
+        1533448
+      ],
+      "exact_native_ordered_determinant_mm3": {
+        "numerator": "1596528239360821087313015748236494908172021261",
+        "denominator": "356811923176489970264571492362373784095686656"
+      },
+      "exact_SICN_squared": {
+        "numerator": "1468167793388100421271435753667247148181669505597643123699042506152343233380007911175953349696",
+        "denominator": "2173422175940801534389081078087383831853087574829421608413936528901796739978570099593768137665"
+      },
+      "signed_SICN_approximate": 0.8218939800375401,
+      "positive_orientation": true,
+      "exact_point1_gate_passed": true
+    },
+    {
+      "tetrahedron_tag": 31366522,
+      "ordered_node_tags": [
+        1476316,
+        431907,
+        431981,
+        431698
+      ],
+      "exact_native_ordered_determinant_mm3": {
+        "numerator": "52681190805678421355557775",
+        "denominator": "1237940039285380274899124224"
+      },
+      "exact_SICN_squared": {
+        "numerator": "230379272576790723364227507770996069664719767829985310486080855736320000",
+        "denominator": "3915781897356741959513614604029038342384962656704735100390114842547592633"
+      },
+      "signed_SICN_approximate": 0.24255624134588552,
+      "positive_orientation": true,
+      "exact_point1_gate_passed": true
+    },
+    {
+      "tetrahedron_tag": 31459153,
+      "ordered_node_tags": [
+        431698,
+        1533448,
+        1476316,
+        1596481
+      ],
+      "exact_native_ordered_determinant_mm3": {
+        "numerator": "144907339749460401788562557100888456904343143",
+        "denominator": "356811923176489970264571492362373784095686656"
+      },
+      "exact_SICN_squared": {
+        "numerator": "2687761550497989962213603253519900645160257534354609061822135454148199116896119845263161472",
+        "denominator": "9618863525263097336253020028798188771418733869674447980397144646892278318769480769851784109"
+      },
+      "signed_SICN_approximate": 0.5286077023992883,
+      "positive_orientation": true,
+      "exact_point1_gate_passed": true
+    },
+    {
+      "tetrahedron_tag": 31459850,
+      "ordered_node_tags": [
+        1476316,
+        1516058,
+        1613938,
+        1437838
+      ],
+      "exact_native_ordered_determinant_mm3": {
+        "numerator": "58059184317004594815752551401139124176274171",
+        "denominator": "178405961588244985132285746181186892047843328"
+      },
+      "exact_SICN_squared": {
+        "numerator": "1725884868380627097087160368555948968199682339108768198348084368501120567605755577209467392",
+        "denominator": "11333286125015375021067957076490922254713764423370644039027329409648164421821654847122462083"
+      },
+      "signed_SICN_approximate": 0.3902365863256162,
+      "positive_orientation": true,
+      "exact_point1_gate_passed": true
+    },
+    {
+      "tetrahedron_tag": 31501351,
+      "ordered_node_tags": [
+        1433711,
+        1495575,
+        1476316,
+        1596481
+      ],
+      "exact_native_ordered_determinant_mm3": {
+        "numerator": "609271865519346220382779473554706280416566197",
+        "denominator": "356811923176489970264571492362373784095686656"
+      },
+      "exact_SICN_squared": {
+        "numerator": "11878790595629577786123347971157334256262463767946248136525971079940177062296374927457369888",
+        "denominator": "18375893256236701633129598454490095091155365880504416245414232369638874333748945976202009025"
+      },
+      "signed_SICN_approximate": 0.8040108018697883,
+      "positive_orientation": true,
+      "exact_point1_gate_passed": true
+    },
+    {
+      "tetrahedron_tag": 31512103,
+      "ordered_node_tags": [
+        1433711,
+        1476316,
+        1495575,
+        1397260
+      ],
+      "exact_native_ordered_determinant_mm3": {
+        "numerator": "493907255609246562049892264668429280220180919",
+        "denominator": "178405961588244985132285746181186892047843328"
+      },
+      "exact_SICN_squared": {
+        "numerator": "11709330102885965737520654224600704352901239800750669240597559091169138161390221300400858928",
+        "denominator": "16997299622831697935653692299161061911477372778217561810179667512607652561818590537422258975"
+      },
+      "signed_SICN_approximate": 0.8299961153454024,
+      "positive_orientation": true,
+      "exact_point1_gate_passed": true
+    },
+    {
+      "tetrahedron_tag": 31591409,
+      "ordered_node_tags": [
+        1476316,
+        432129,
+        1613938,
+        1516058
+      ],
+      "exact_native_ordered_determinant_mm3": {
+        "numerator": "19107287757288850914286078563314439457029135",
+        "denominator": "178405961588244985132285746181186892047843328"
+      },
+      "exact_SICN_squared": {
+        "numerator": "12873642153250570794502936877395929221369696755062814412655160508720759439732372058560",
+        "denominator": "39488077609419056243456527758958329686292474672714418124536801510678322369691618475579"
+      },
+      "signed_SICN_approximate": 0.5709758249832206,
+      "positive_orientation": true,
+      "exact_point1_gate_passed": true
+    },
+    {
+      "tetrahedron_tag": 31711904,
+      "ordered_node_tags": [
+        1476316,
+        1533448,
+        1433711,
+        1596481
+      ],
+      "exact_native_ordered_determinant_mm3": {
+        "numerator": "241123410545954969437333010993530963450364929",
+        "denominator": "178405961588244985132285746181186892047843328"
+      },
+      "exact_SICN_squared": {
+        "numerator": "44651903319024497796416918389228469611034565163477931701835011069918427461955960273798431488",
+        "denominator": "112707569945446692916384584638312040847886712881816790422328447189591544582598148054228315125"
+      },
+      "signed_SICN_approximate": 0.6294242118664263,
+      "positive_orientation": true,
+      "exact_point1_gate_passed": true
+    },
+    {
+      "tetrahedron_tag": 31772475,
+      "ordered_node_tags": [
+        432129,
+        1476316,
+        431996,
+        431614
+      ],
+      "exact_native_ordered_determinant_mm3": {
+        "numerator": "26272917229169091987514411",
+        "denominator": "1237940039285380274899124224"
+      },
+      "exact_SICN_squared": {
+        "numerator": "50932654240922863574815138245511865912463537756047614560002630005817344",
+        "denominator": "405041831469408713853982032718872439677509753755901037664489897395842203"
+      },
+      "signed_SICN_approximate": 0.3546077438999534,
+      "positive_orientation": true,
+      "exact_point1_gate_passed": true
+    },
+    {
+      "tetrahedron_tag": 31829428,
+      "ordered_node_tags": [
+        431698,
+        1466129,
+        1476316,
+        1533448
+      ],
+      "exact_native_ordered_determinant_mm3": {
+        "numerator": "72940288671109267754559030534317143121561673",
+        "denominator": "89202980794122492566142873090593446023921664"
+      },
+      "exact_SICN_squared": {
+        "numerator": "348670244383932480838759040051326350448366581798855721778917380043689207142660069297941970944",
+        "denominator": "1351564391438131862305193661001682835779754688642697894799051473923586889053913782292996551473"
+      },
+      "signed_SICN_approximate": 0.5079127002969458,
+      "positive_orientation": true,
+      "exact_point1_gate_passed": true
+    },
+    {
+      "tetrahedron_tag": 31871997,
+      "ordered_node_tags": [
+        431665,
+        1466129,
+        1476316,
+        429214
+      ],
+      "exact_native_ordered_determinant_mm3": {
+        "numerator": "126076882754439331643315484422116025",
+        "denominator": "1329227995784915872903807060280344576"
+      },
+      "exact_SICN_squared": {
+        "numerator": "649590676169730558130105123708641699479876372008085142922738159356835790878890478534656000",
+        "denominator": "7267741341841736949667032043133928940484903532720804995321773402871017280245305724340185879"
+      },
+      "signed_SICN_approximate": 0.29896487053364146,
+      "positive_orientation": true,
+      "exact_point1_gate_passed": true
+    },
+    {
+      "tetrahedron_tag": 31872026,
+      "ordered_node_tags": [
+        431665,
+        1466129,
+        429086,
+        1476316
+      ],
+      "exact_native_ordered_determinant_mm3": {
+        "numerator": "156419791845212893127581185994158133",
+        "denominator": "1329227995784915872903807060280344576"
+      },
+      "exact_SICN_squared": {
+        "numerator": "64992856016374870665131540632047852740557700315738356761151524393800583300336622981984813056",
+        "denominator": "668578063817104543289434681486898941109252363053100580762845648389353752108911034851323637975"
+      },
+      "signed_SICN_approximate": 0.31178609976884225,
+      "positive_orientation": true,
+      "exact_point1_gate_passed": true
+    },
+    {
+      "tetrahedron_tag": 31883653,
+      "ordered_node_tags": [
+        1476316,
+        431907,
+        431698,
+        1596481
+      ],
+      "exact_native_ordered_determinant_mm3": {
+        "numerator": "208419271529793897276252052289206753",
+        "denominator": "664613997892457936451903530140172288"
+      },
+      "exact_SICN_squared": {
+        "numerator": "28846821718414625326531840360204041293013227168511122588135129125117469012754417444490051584",
+        "denominator": "59368108630844635097935005022861183742539333699611987358490437475270162457530015441313163735"
+      },
+      "signed_SICN_approximate": 0.6970635578442592,
+      "positive_orientation": true,
+      "exact_point1_gate_passed": true
+    },
+    {
+      "tetrahedron_tag": 31905127,
+      "ordered_node_tags": [
+        1613939,
+        1476316,
+        431981,
+        432123
+      ],
+      "exact_native_ordered_determinant_mm3": {
+        "numerator": "11466631829782460023571118581063635",
+        "denominator": "664613997892457936451903530140172288"
+      },
+      "exact_SICN_squared": {
+        "numerator": "87316025716142413690897749296365763406544722789635376555009839336029796859936356538777600",
+        "denominator": "291841794315893365018369468327721922466771834487353925856643095805432325249090362067853431"
+      },
+      "signed_SICN_approximate": 0.5469822541301571,
+      "positive_orientation": true,
+      "exact_point1_gate_passed": true
+    },
+    {
+      "tetrahedron_tag": 31929603,
+      "ordered_node_tags": [
+        431785,
+        1476316,
+        1531817,
+        1495575
+      ],
+      "exact_native_ordered_determinant_mm3": {
+        "numerator": "42700909148152022195599867801675251762434735",
+        "denominator": "89202980794122492566142873090593446023921664"
+      },
+      "exact_SICN_squared": {
+        "numerator": "1050259761837350241309850747085709592251286558833755992185052116128797451017168397483649600",
+        "denominator": "2390299764512064381127659889610811759136012644522770891219126279452945033846159646877823981"
+      },
+      "signed_SICN_approximate": 0.6628605595209687,
+      "positive_orientation": true,
+      "exact_point1_gate_passed": true
+    },
+    {
+      "tetrahedron_tag": 31972863,
+      "ordered_node_tags": [
+        432129,
+        1476316,
+        431614,
+        1516058
+      ],
+      "exact_native_ordered_determinant_mm3": {
+        "numerator": "80416147999091749355029784347101177",
+        "denominator": "664613997892457936451903530140172288"
+      },
+      "exact_SICN_squared": {
+        "numerator": "3727831523909282246900925639309409760684802512596825669052260465728538233040377376407552",
+        "denominator": "11265307394812600018907387218762724205277647194117043968156130032341007023196269988485237"
+      },
+      "signed_SICN_approximate": 0.5752499835303833,
+      "positive_orientation": true,
+      "exact_point1_gate_passed": true
+    },
+    {
+      "tetrahedron_tag": 31984735,
+      "ordered_node_tags": [
+        1437838,
+        1397914,
+        1476316,
+        1516058
+      ],
+      "exact_native_ordered_determinant_mm3": {
+        "numerator": "221019963213299234419277767265046255106112321",
+        "denominator": "89202980794122492566142873090593446023921664"
+      },
+      "exact_SICN_squared": {
+        "numerator": "56274997407906985164346476233244992660589474458144907989736947726486921002071015937544111232",
+        "denominator": "144850394582103566418846969689414229331870427755459273437767058004892711150989434567334570831"
+      },
+      "signed_SICN_approximate": 0.6233011103416047,
+      "positive_orientation": true,
+      "exact_point1_gate_passed": true
+    },
+    {
+      "tetrahedron_tag": 32030524,
+      "ordered_node_tags": [
+        431614,
+        1476316,
+        431996,
+        429086
+      ],
+      "exact_native_ordered_determinant_mm3": {
+        "numerator": "129840891688409748780404633",
+        "denominator": "2475880078570760549798248448"
+      },
+      "exact_SICN_squared": {
+        "numerator": "310987333954392139063619046065468202756426416935178204397355166989287424",
+        "denominator": "3118714952093981016152613520021865016394163975391594507682529924074120505"
+      },
+      "signed_SICN_approximate": 0.3157791921822313,
+      "positive_orientation": true,
+      "exact_point1_gate_passed": true
+    },
+    {
+      "tetrahedron_tag": 32088169,
+      "ordered_node_tags": [
+        429214,
+        431981,
+        1476316,
+        431665
+      ],
+      "exact_native_ordered_determinant_mm3": {
+        "numerator": "84429542329131553713781625",
+        "denominator": "2475880078570760549798248448"
+      },
+      "exact_SICN_squared": {
+        "numerator": "26298960835192096479640759374447382949067260800823754074304492339200000",
+        "denominator": "208210609966780021696794660104556495561676843001211743549438473896712337"
+      },
+      "signed_SICN_approximate": 0.3554003620850321,
+      "positive_orientation": true,
+      "exact_point1_gate_passed": true
+    },
+    {
+      "tetrahedron_tag": 32088170,
+      "ordered_node_tags": [
+        429214,
+        1476316,
+        431981,
+        431698
+      ],
+      "exact_native_ordered_determinant_mm3": {
+        "numerator": "18721205725586861462366185",
+        "denominator": "309485009821345068724781056"
+      },
+      "exact_SICN_squared": {
+        "numerator": "465500176912053123045442235491957262210390659200674952263291892871987200",
+        "denominator": "3566919201149975604641785692971105711194238351813916041779948460807408473"
+      },
+      "signed_SICN_approximate": 0.36125451972443035,
+      "positive_orientation": true,
+      "exact_point1_gate_passed": true
+    },
+    {
+      "tetrahedron_tag": 32134522,
+      "ordered_node_tags": [
+        1476316,
+        431785,
+        431907,
+        1495575
+      ],
+      "exact_native_ordered_determinant_mm3": {
+        "numerator": "12718016240545964582436507670936411",
+        "denominator": "41538374868278621028243970633760768"
+      },
+      "exact_SICN_squared": {
+        "numerator": "859312166410966918091473720741039346501463387074743193792850084355751261366294135615520768",
+        "denominator": "2191128449409761939454358025493575626323616359796374975425341069866674571399795571605627763"
+      },
+      "signed_SICN_approximate": 0.6262410923125393,
+      "positive_orientation": true,
+      "exact_point1_gate_passed": true
+    },
+    {
+      "tetrahedron_tag": 32158863,
+      "ordered_node_tags": [
+        1531817,
+        1476316,
+        1437838,
+        1397260
+      ],
+      "exact_native_ordered_determinant_mm3": {
+        "numerator": "53285341674305201156156904582316804079714987",
+        "denominator": "44601490397061246283071436545296723011960832"
+      },
+      "exact_SICN_squared": {
+        "numerator": "408863179778032312998672114229198152823847225314790046784323473988527749608610821947064336",
+        "denominator": "1141169691319667108988118268246774769502478177791545777732568044150355726172980683050961785"
+      },
+      "signed_SICN_approximate": 0.5985685393244844,
+      "positive_orientation": true,
+      "exact_point1_gate_passed": true
+    },
+    {
+      "tetrahedron_tag": 32158864,
+      "ordered_node_tags": [
+        1531817,
+        1495575,
+        1476316,
+        1397260
+      ],
+      "exact_native_ordered_determinant_mm3": {
+        "numerator": "218349118892271847017991687811579742846114383",
+        "denominator": "178405961588244985132285746181186892047843328"
+      },
+      "exact_SICN_squared": {
+        "numerator": "27461570527314124658707898483065691195401014690132155325120790630137633809952722564815116864",
+        "denominator": "84849604209732190346054376628097651863017418310834805671834343335767215301504216919495109145"
+      },
+      "signed_SICN_approximate": 0.5689024119556946,
+      "positive_orientation": true,
+      "exact_point1_gate_passed": true
+    },
+    {
+      "tetrahedron_tag": 32158866,
+      "ordered_node_tags": [
+        1613939,
+        1531817,
+        431785,
+        1476316
+      ],
+      "exact_native_ordered_determinant_mm3": {
+        "numerator": "4521268334756052825936941082652775657421585",
+        "denominator": "44601490397061246283071436545296723011960832"
+      },
+      "exact_SICN_squared": {
+        "numerator": "1004758664226460678130143743406108366842432373521333215055890763892266885114614116133683200",
+        "denominator": "4637541331346241710025075746758183111665650538204974616542518745205331753881169583439355279"
+      },
+      "signed_SICN_approximate": 0.4654649495868436,
+      "positive_orientation": true,
+      "exact_point1_gate_passed": true
+    },
+    {
+      "tetrahedron_tag": 32158867,
+      "ordered_node_tags": [
+        1531817,
+        1613939,
+        1613938,
+        1476316
+      ],
+      "exact_native_ordered_determinant_mm3": {
+        "numerator": "40354148676653095424741682024373816829809599",
+        "denominator": "356811923176489970264571492362373784095686656"
+      },
+      "exact_SICN_squared": {
+        "numerator": "312663804560145172361416117295157856963654728640336658461126384293915964935079409767833792",
+        "denominator": "675533154794104945769430715606972165038093143871779142798025623397744855238451861518832923"
+      },
+      "signed_SICN_approximate": 0.6803234951265436,
+      "positive_orientation": true,
+      "exact_point1_gate_passed": true
+    },
+    {
+      "tetrahedron_tag": 32158869,
+      "ordered_node_tags": [
+        431785,
+        1613939,
+        1476316,
+        431981
+      ],
+      "exact_native_ordered_determinant_mm3": {
+        "numerator": "3238974572967152769930209443367915",
+        "denominator": "332306998946228968225951765070086144"
+      },
+      "exact_SICN_squared": {
+        "numerator": "9289151311942506888085166734215359460575182719173132230270350081844825410908862598348800",
+        "denominator": "1237714812117063307636641942599347972864388756024775794794000268584749304624195059221509501"
+      },
+      "signed_SICN_approximate": 0.08663187707037993,
+      "positive_orientation": true,
+      "exact_point1_gate_passed": false
+    },
+    {
+      "tetrahedron_tag": 32158870,
+      "ordered_node_tags": [
+        431996,
+        1613939,
+        1476316,
+        1613938
+      ],
+      "exact_native_ordered_determinant_mm3": {
+        "numerator": "19628357174874374857920352320430313522906067",
+        "denominator": "356811923176489970264571492362373784095686656"
+      },
+      "exact_SICN_squared": {
+        "numerator": "443833811002877587553913854711978901560582963610988526146830280172981810206498835030579328",
+        "denominator": "672231591544466643951600939247887209807595035641429963509066339760700891536601097876745265"
+      },
+      "signed_SICN_approximate": 0.8125511935618915,
+      "positive_orientation": true,
+      "exact_point1_gate_passed": true
+    },
+    {
+      "tetrahedron_tag": 32158871,
+      "ordered_node_tags": [
+        1476316,
+        1613939,
+        431996,
+        432123
+      ],
+      "exact_native_ordered_determinant_mm3": {
+        "numerator": "3252723074052070493662619888661483",
+        "denominator": "166153499473114484112975882535043072"
+      },
+      "exact_SICN_squared": {
+        "numerator": "37472712593177240704214555278676978210370055588454663921607290275813735424496923320516608",
+        "denominator": "104483120756447506579049487756936115162468765725244993572145649968596015632093458403145085"
+      },
+      "signed_SICN_approximate": 0.5988726754650031,
+      "positive_orientation": true,
+      "exact_point1_gate_passed": true
+    },
+    {
+      "tetrahedron_tag": 32158872,
+      "ordered_node_tags": [
+        1531817,
+        1437838,
+        1476316,
+        1613938
+      ],
+      "exact_native_ordered_determinant_mm3": {
+        "numerator": "61418611085274036687564602185466289379523159",
+        "denominator": "178405961588244985132285746181186892047843328"
+      },
+      "exact_SICN_squared": {
+        "numerator": "2172813573683028546834151110330194791460393926668228843548848146112009491424356605187425856",
+        "denominator": "11158810507557873351784723177835281273634958235823651262416072772134851631786871454887589019"
+      },
+      "signed_SICN_approximate": 0.4412678447306589,
+      "positive_orientation": true,
+      "exact_point1_gate_passed": true
+    }
+  ],
+  "positive_poor_cell_tags": [
+    30419427,
+    30419439,
+    32158869
+  ],
+  "nonpositive_or_undefined_cell_tags": [],
+  "all_fixed_context_coordinate_bits_unchanged": true,
+  "source_boundary_context_bits_unchanged": true,
+  "all_component_boundary_vertices_fixed": true,
+  "original_array_bits_unchanged": true,
+  "original_ordered_connectivity_unchanged": true,
+  "topology_diagnostic": {
+    "boundary_faces": 46,
+    "oriented_boundary_faces": [
+      [
+        429086,
+        431614,
+        1516058
+      ],
+      [
+        429086,
+        431665,
+        431996
+      ],
+      [
+        429086,
+        431996,
+        431614
+      ],
+      [
+        429086,
+        1466129,
+        431665
+      ],
+      [
+        429086,
+        1516058,
+        1466129
+      ],
+      [
+        429214,
+        431665,
+        1466129
+      ],
+      [
+        429214,
+        431698,
+        431981
+      ],
+      [
+        429214,
+        431981,
+        431665
+      ],
+      [
+        429214,
+        1466129,
+        431698
+      ],
+      [
+        431614,
+        431996,
+        432129
+      ],
+      [
+        431614,
+        432129,
+        1516058
+      ],
+      [
+        431665,
+        431981,
+        432124
+      ],
+      [
+        431665,
+        432123,
+        431996
+      ],
+      [
+        431665,
+        432124,
+        432123
+      ],
+      [
+        431698,
+        431907,
+        431981
+      ],
+      [
+        431698,
+        1466129,
+        1533448
+      ],
+      [
+        431698,
+        1533448,
+        1596481
+      ],
+      [
+        431698,
+        1596481,
+        431907
+      ],
+      [
+        431785,
+        431907,
+        1495575
+      ],
+      [
+        431785,
+        431981,
+        431907
+      ],
+      [
+        431785,
+        1495575,
+        1531817
+      ],
+      [
+        431785,
+        1531817,
+        1613939
+      ],
+      [
+        431785,
+        1613939,
+        431981
+      ],
+      [
+        431907,
+        1596481,
+        1495575
+      ],
+      [
+        431981,
+        432123,
+        432124
+      ],
+      [
+        431981,
+        1613939,
+        432123
+      ],
+      [
+        431996,
+        432123,
+        1613939
+      ],
+      [
+        431996,
+        1613938,
+        432129
+      ],
+      [
+        431996,
+        1613939,
+        1613938
+      ],
+      [
+        432129,
+        1613938,
+        1516058
+      ],
+      [
+        1397260,
+        1427996,
+        1437838
+      ],
+      [
+        1397260,
+        1433711,
+        1427996
+      ],
+      [
+        1397260,
+        1437838,
+        1531817
+      ],
+      [
+        1397260,
+        1495575,
+        1433711
+      ],
+      [
+        1397260,
+        1531817,
+        1495575
+      ],
+      [
+        1397914,
+        1427996,
+        1466129
+      ],
+      [
+        1397914,
+        1437838,
+        1427996
+      ],
+      [
+        1397914,
+        1466129,
+        1516058
+      ],
+      [
+        1397914,
+        1516058,
+        1437838
+      ],
+      [
+        1427996,
+        1433711,
+        1533448
+      ],
+      [
+        1427996,
+        1533448,
+        1466129
+      ],
+      [
+        1433711,
+        1495575,
+        1596481
+      ],
+      [
+        1433711,
+        1596481,
+        1533448
+      ],
+      [
+        1437838,
+        1516058,
+        1613938
+      ],
+      [
+        1437838,
+        1613938,
+        1531817
+      ],
+      [
+        1531817,
+        1613938,
+        1613939
+      ]
+    ],
+    "internal_face_pairs": 69,
+    "nonmanifold_faces": 0,
+    "same_oriented_internal_faces": 0,
+    "frozen_boundary_supplied": true,
+    "exact_frozen_oriented_boundary": true,
+    "unchanged_ordered_component_connectivity": true,
+    "geometric_overlap_or_intersection_checked": false
+  },
+  "exact_before_signed_volume_mm3": {
+    "numerator": "16997156673777515807777738018284402319220016159",
+    "denominator": "2140871539058939821587428954174242704574119936"
+  },
+  "exact_final_signed_volume_mm3": {
+    "numerator": "16997156673777515807777738018284402319220016159",
+    "denominator": "2140871539058939821587428954174242704574119936"
+  },
+  "exact_signed_volume_equals_same_component_before": true,
+  "donor39_cell_shell_volume_reused": false,
+  "procedural_checks_passed": true,
+  "epigraph_t": 0.08663187707043665,
+  "initial_epigraph_lower_bound": 0.07072332667169,
+  "epigraph_bound_satisfied": true,
+  "quality_scope": "Exact Fraction determinant/Q-squared over every returned binary64 component cell; displayed signed roots are approximate, not native or interval values.",
+  "fixed_local_boundary_is_distinct_from_original_global_source_boundary": true,
+  "embedding_overlap_or_containment_checked": false,
+  "native_application_or_MSH_write": false,
+  "no_pressure_thermal_stud_load_or_material_case": true,
+  "qualification": {
+    "native_application_authorized": false,
+    "head_execution_authorized": false,
+    "stitching_authorized": false,
+    "engineering_accepted": false,
+    "physics_qualified": false,
+    "manufacturing_authorized": false,
+    "material_qualified": false,
+    "process_calibrated": false,
+    "training_authorized": false
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "schema": "962-observer003-host-owner-narrow-helper-reuse/v1",
+  "donor": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer003-guard-owner-prep-004/run_guards_once.py",
+    "sha256": "00af391d9fda955b56b8f3f1366579240f899ade71d90c2f447ad220398031b7",
+    "bytes": 13552
+  },
+  "successor": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer003-host-registration-owner-prep-001/run_host_check_once.py",
+    "sha256": "c868be7615b080cf4d0437835e5b30329aea16496321ec131672754783346317",
+    "bytes": 16384
+  },
+  "byte_AST_exact_function_reuse": [
+    "rec",
+    "group_exists",
+    "check",
+    "output_size",
+    "stop_wait",
+    "limits",
+    "sample",
+    "provider_links",
+    "loaded_trace",
+    "record_controller_stop"
+  ],
+  "new_metadata_helpers": [
+    "owned_output_bytes excludes exactly4pinned staged inputs and refuses size/path changes",
+    "input_check_observation collects exacttypeframe+SyntaxOK; separateRC0required",
+    "unexpected_outputs useslstat path/size/link metadata without unknown body read/hash"
+  ],
+  "main_delta": "One explicit hostcheck/rootadmission, positive constructed-type/SyntaxOKcriteria, namespace and exact staged inputs; same60/T8/2GiB/32MiB/lifecycle/trace semantics. Loader/parser attribution remains observational and does not erase rawstatus.",
+  "host_or_plugin_or_controller_executed": false
+}

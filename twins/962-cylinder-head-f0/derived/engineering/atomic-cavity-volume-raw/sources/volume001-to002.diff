@@ -1,0 +1,51 @@
+--- atomic-cavity-volume-prep-001/mesh_atomic_volume.py
++++ atomic-cavity-volume-prep-002/mesh_atomic_volume.py
+@@ -201,6 +201,8 @@
+                                   ("native_volume_mm3", "volume"), ("minimum_SICN", "minSICN")]}
+         signed = tetra_volumes(coordinates, cells)
+         quality["independent_signed_volume_mm3"] = distribution(signed)
++        if any(type(q.get("count")) is not int or q["count"] != len(cells) for q in quality.values()):
++            raise ValueError("Every metric distribution must cover every actual tetrahedron")
+         report.update(quality=quality, summed_tetra_volume_mm3=math.fsum(signed))
+         report["volume_relative_error"] = abs(report["summed_tetra_volume_mm3"] / CANDIDATE_VOLUME - 1)
+         source_indices = np.searchsorted(node_tags, faces+1)
+@@ -280,11 +282,17 @@
+                     if process is not None:
+                         try: os.killpg(process.pid, signal.SIGKILL)
+                         except ProcessLookupError: pass
++        sigterm_requested = False
++        def request_sigterm(*_):
++            nonlocal sigterm_requested
++            sigterm_requested = True
++        previous_sigterm = signal.getsignal(signal.SIGTERM)
+         try:
++            signal.signal(signal.SIGTERM, request_sigterm)
+             process = subprocess.Popen(command, stdout=log, stderr=subprocess.STDOUT, env=env, start_new_session=True)
+             watchdog = threading.Timer(DEADLINE, lambda: stop("native_deadline"))
+             watchdog.daemon = True; watchdog.start()
+-            while process.poll() is None:
++            while process.poll() is None and not sigterm_requested:
+                 try:
+                     p = subprocess.run(["ps", "-o", "rss=", "-p", str(process.pid)], capture_output=True, text=True, timeout=2)
+                     if process.poll() is not None: break
+@@ -299,10 +307,16 @@
+                 try: process.wait(timeout=.5)
+                 except subprocess.TimeoutExpired: pass
+         finally:
+-            if watchdog is not None: watchdog.cancel()
+-            if process is not None:
+-                if process.poll() is None: stop("controller_interrupted")
+-                process.wait()
++            try:
++                if watchdog is not None: watchdog.cancel()
++                if process is not None:
++                    if process.poll() is None:
++                        stop("controller_SIGTERM" if sigterm_requested else "controller_interrupted")
++                    process.wait()
++            finally:
++                if sigterm_requested and stopped["reason"] is None:
++                    stopped["reason"] = "controller_SIGTERM"
++                signal.signal(signal.SIGTERM, previous_sigterm)
+     report.update(returncode=process.returncode, native_process_window_s=time.monotonic()-started,
+         stop_reason=stopped["reason"], RSS_samples=samples,
+         max_observed_RSS_bytes=max((s["RSS_bytes"] for s in samples), default=None),

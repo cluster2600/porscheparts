@@ -1,0 +1,68 @@
+{
+  "schema": "962-selected-public-record-projection/v1",
+  "original_record": {
+    "relative_path": "work/962-engineering/fixed-shell-generation-cube-001/execution-receipt.json",
+    "sha256": "c0e8907b09fd4e7c5a5570d443d9410bccd73cdc15affceaaa60767ba2c2eb9b",
+    "bytes": 1342
+  },
+  "projection": {
+    "scope": "one_fixed_shell_cube_generation_witness",
+    "returncode": 0,
+    "stop_reason": null,
+    "wall_seconds": 0.6600665410514921,
+    "hard_wall_seconds": 30,
+    "sampled_RSS_stop_bytes": 1073741824,
+    "threads": 2,
+    "sampled_output_stop_bytes": 16777216,
+    "final_output_bytes_before_receipt": 42708,
+    "hard_OS_CPU_quota_applied": false,
+    "hard_address_space_limit_applied": false,
+    "max_observed_RSS_bytes": 138133504,
+    "reader_sha256": "28b892c1d4ce000e48b10c42b679aed66a72f9edccb6ab6c614790e05f252c63",
+    "runner_sha256": "9733e94c44fc12bf8f1a3382006511981cd78abdb72f709c4630be437404121c",
+    "contract_sha256": "549724af21ace36037e974161606eade0e259eb1b3a8e6a7c870d2e2dd593abc",
+    "native_log_sha256": "9291a36f770526edb7f37a7114a7d94e4ab3782406d277efe99d4605809994ba",
+    "fixture_report_sha256": "99b49441caed85bc4180526482bfdbedd7a0a0540126832a9e30207e246e98ea",
+    "declared_operation_counts": {
+      "generate": 1,
+      "createGeometry_dim3": 0,
+      "optimize_Netgen": 0,
+      "rebuildElementCache": 0,
+      "write_mesh": 1,
+      "solve": 0
+    },
+    "operation_counts_are_declarations_not_observed": true,
+    "manufacturing_authorized": false
+  },
+  "omitted_field_paths": [
+    [
+      "RSS_samples"
+    ]
+  ],
+  "path_role_rules": [
+    {
+      "role": "runtime:python",
+      "meaning": "selected Python executable locator"
+    },
+    {
+      "role": "runtime:gmsh-module",
+      "meaning": "selected Gmsh Python wrapper locator"
+    },
+    {
+      "role": "runtime:gmsh-library",
+      "meaning": "selected native Gmsh library locator"
+    },
+    {
+      "role": "runtime:numpy-init",
+      "meaning": "selected NumPy __init__.py locator"
+    },
+    {
+      "role": "project-relative",
+      "meaning": "the exact private project-root prefix is removed; relative paths and all digest values remain"
+    }
+  ],
+  "derived_observations": {
+    "RSS_sample_count": 2,
+    "sampled_maximum_is_not_an_unsampled_peak": true
+  }
+}

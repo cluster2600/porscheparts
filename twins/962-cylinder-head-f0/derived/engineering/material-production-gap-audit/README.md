@@ -1,0 +1,17 @@
+# CP1 production-material gaps for the 962 head
+
+This bounded source audit identifies a separate Nikon CP1 characterization lead and the matched material evidence still needed for the head. It supplies no completed supplier or solver card and selects no production alloy, machine or process.
+
+Read the exact [author note](research/NOTE.md), [author bindings](research/bindings.json), [independent source review](reviews/independent-source-peer.json), [peer bindings](reviews/independent-source-bindings.json) and [root source acceptance](reviews/root-review.json). Their roles and original identities remain distinct. The existing [material source refresh](../material-mechanical-source-refresh/README.md) already covers the EOS/DMP leads; it is linked rather than duplicated.
+
+The [official Nikon sheet](https://nikon-slm-solutions.com/wp-content/uploads/2024/11/mds5144.pdf) describes a particular NXG, machined-vertical, heat-treated state. Its room-temperature coupon statistics and defined postprocess must stay together. They are neither hot-service allowables nor a replacement for the retained unspecified-machine CP1 row, EOS states, another machine's data, or synthetic coupon assumptions. The note and peer retain the values, revision and table/footnote locators without repeating them here.
+
+Matched temperature-dependent E, nu, conductivity, heat capacity, thermal expansion conventions, plasticity, fatigue/TMF and creep evidence remains open. Powder/build/orientation/postprocess provenance, scatter, defect/surface limits and the head's thermal/load/interface histories also remain necessary. The assumed software-witness coefficients stay assumptions; no curve is fitted or transferred across states.
+
+Primary-source checks used web text parsing. No producer PDF body, downloaded source-byte identity or visual PDF-table certification is supplied. Bounded unsuccessful searches do not establish universal data absence. The current publisher already leaves the retained conductivity scalar's test temperature unknown; the older pinned engineering wording is preserved. The separate piston catalogue is unchanged and outside this head task.
+
+Five exact source/review bodies are selected. The [original-record ledger](original-records.json) retains all fourteen earlier local input identities, including their engineering-worktree versus publisher roles: ten match current public bodies, two join prior exact public representations, and two remain explicitly identity-only and undistributed. None of those fourteen bodies, manufacturer documents, private piston work, runtime or solver data is copied into this capsule. Existing public representations do not independently attest a Git commit or remote state.
+
+This is an English provenance/gap record only. It does not establish head strength, LPBF calibration, physical accuracy, service life, material/process qualification or manufacturing approval. Omniverse presentation and PhysicsNeMo work remain later evidence-bounded tasks, not substitutes for those measurements or independent validation.
+
+The unchanged [byte verifier](verify.py) checks a sealed file closure only. Historical source/root acceptance fields describe their creation stage; publication preserves them and does not admit a material card. The [project license](LICENSE.project) permits viewing where made visible and requires prior written permission for other uses. Third-party sources retain their own terms.

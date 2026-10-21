@@ -1,0 +1,96 @@
+{
+  "schema": "962-linear-cooling-independent-stopped-assessment-refusal-review/v1",
+  "decision": "CLEAR_PRESERVED_STRICT_SEVEN_SI_ASSESSMENT_REFUSAL_ONLY",
+  "bindings": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-linear-assessment-result-peer-001/bindings.json",
+    "sha256": "728902dd7ff6f105c61d48dcf9263bcaa0c0ee3d7e1a63c1c98072990898e974",
+    "bytes": 612478
+  },
+  "root_closed": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-linear-assessment-root-execution-001/closed-result.json",
+    "sha256": "c36e23e5be319df02a8effe7b9a74f399500f02ddaf354834d8d30bd94730584",
+    "bytes": 1274793
+  },
+  "stderr": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-linear-assessment-root-execution-001/stderr.log",
+    "sha256": "adb01253be7f483302fa428236b12cf9eff7eb45ca6af66b9ee3b40a61a2633a",
+    "bytes": 1794
+  },
+  "source": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-linear-assessor-prep-001/assess.py",
+    "sha256": "b7c5c7c82c5a7fee11aa63032f9a136d46517b8163c3c880b8b39a06d083930f",
+    "bytes": 46610
+  },
+  "checked": {
+    "all1654_input_body_identities_current_and_before_after_equal": true,
+    "all1648_actual_inputs_directly_preserved_in_root1654": true,
+    "all1122_original_native_inventory_names_sizes_and_opaque_hashes_current": true,
+    "actual_index_child_root_actual_authorization_argv_ENV_resources_source_joins": true,
+    "exact_seven_absolute_SI_limits_unchanged": true,
+    "no_result_or_output_directory": true,
+    "original_native_passed_false_and_failure_histories_unmodified": true
+  },
+  "refusal": {
+    "reported_absolute_error_N": 1.965162169881296e-06,
+    "unchanged_limit_N": 1e-07,
+    "exact_exception": "ValueError: force_N fixed absolute SI gate failed: 1.965162169881296e-06",
+    "source_line": 520,
+    "Audit_close_line": 151,
+    "checked_quantity": "math.fsum of a component of saved native rx/ry/rz rows, over either constrained reaction components or all native nodal force rows",
+    "independently_assembled_force_reduction_location": false,
+    "native_vs_independent_per_node_comparison_failure_location": false,
+    "END_branch_is_source_proven": true,
+    "step": null,
+    "component": null,
+    "reaction_only_vs_all_native_row_set": null,
+    "step_component_and_row_set_not_saved_in_trace": true,
+    "signed_sum_not_recorded_only_absolute_error": true,
+    "cause_or_IEEE_floor_proven": false,
+    "final_full_phase_count_gate_reached": false,
+    "release_energy_check_reached": false,
+    "hold_state_check_reached": false,
+    "complete_scalar_comparison_totals_or_partial_field_acceptance_available": false,
+    "basis": "Lines513-521 perform this native-row global reduction; independent free-DOF checks are line502, native-vs-independent per-node checks line515. Full-loop coverage and release/hold checks are after547. The exception propagates before output creation at638."
+  },
+  "root_attributed_execution": {
+    "returncode": 1,
+    "wall_seconds": 134.93095845798962,
+    "stop_reason": null,
+    "signals": [],
+    "controller_error": null,
+    "root_waited_reaped_and_owned_group_observed_absent": true,
+    "ordinary_bound_seconds": 300,
+    "TERM_grace_seconds": 8,
+    "sampled_RSS_stop_bytes": 2147483648,
+    "sampled_output_stop_bytes": 33554432,
+    "sampled_leader_RSS_max_bytes": 195067904,
+    "RSS_is_sampled_not_true_peak": true,
+    "decoder258_and_Python1699_before_after_unchanged_root_attributed": true,
+    "own_process_probe_or_native_PID_absence_claim": false,
+    "assessor_once_executed_and_strictly_refused": true,
+    "timeout": false,
+    "native_reexecution": false,
+    "automatic_retry": false
+  },
+  "limits": [
+    "No saved CSV, QP, CDF or grid tokens/arrays were parsed; no mechanics, geometry or scientific calculation was replayed.",
+    "The traceback proves an END-branch global native-row force check refused. It does not locate the step/component/row-set or establish why the balance exceeds the fixed limit.",
+    "No complete 366-phase, full scalar-count, release-energy, hold or seven-SI acceptance result exists. Earlier in-memory checks are not promoted into an accepted partial result.",
+    "Runtime258 and interpreter current identity are root-attributed metadata; their bodies were not read or hashed in this peer.",
+    "This preserves a scientific gate refusal, not a timeout or native execution failure. No tolerance, data, code or original evidence was changed."
+  ],
+  "lineage": "existing_study_audit authored the current assessment actual/index/preflight, LINEAR case profile and relevant earlier source/storage/capture reviews; root authored the b7c namespace successor and performed this one saved assessment. Original a366 numerical assessor was authored by replica_metrology. This is independent of root execution for saved byte/control/trace associations, not independent mechanics rederivation.",
+  "own_inspection_history": [],
+  "assessment_invocation_occurred": true,
+  "complete_assessment_passed": false,
+  "assessment_result_sha256": null,
+  "native_execution_authorized": false,
+  "assessment_rerun_authorized": false,
+  "head_execution_authorized": false,
+  "engineering_accepted": false,
+  "physics_qualified": false,
+  "material_qualified": false,
+  "process_calibrated": false,
+  "manufacturing_authorized": false,
+  "automatic_retry": false
+}

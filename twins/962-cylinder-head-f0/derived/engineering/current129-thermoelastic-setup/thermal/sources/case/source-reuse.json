@@ -1,0 +1,500 @@
+{
+  "schema": "962-oneway-thermoelastic-concrete-source-reuse/v1",
+  "status": "HELD_SOURCE_ONLY_UNRUN",
+  "whole_byte_reversals": {
+    "adapter": {
+      "donor_path": "work/962-engineering/cp1-assumed-thermal-birth-linear-macos-prep-001/run_mac.py",
+      "donor": {
+        "sha256": "fde48211a11066c8406076621b5cd1c2898e0353956a4e6ec879754e7452c9d3",
+        "bytes": 17113
+      },
+      "selected": {
+        "sha256": "5b4ee33be98e0004d55f532d03146bc35759133dd9bfe0a478a17f39fe78c082",
+        "bytes": 18791
+      },
+      "reverse_chunks": [
+        {
+          "old_start_line": 1,
+          "selected_start_line": 1,
+          "old": "\"\"\"Held Mac-local MOOSE metadata readiness, then a separately authorized fixed assumed thermal-birth coupon.\"\"\"\n",
+          "selected": "\"\"\"Held fixed SI one-way thermoelastic case; inherited Mac lifecycle, no automatic assessment.\"\"\"\n"
+        },
+        {
+          "old_start_line": 20,
+          "selected_start_line": 20,
+          "old": "CASE = ENGINEERING / \"cp1-assumed-thermal-birth-linear-prep-001\"\n",
+          "selected": "CASE = PREP\nTRANSFER = ENGINEERING / \"cp1-oneway-thermoelastic-transfer-inputs-001\"\n"
+        },
+        {
+          "old_start_line": 23,
+          "selected_start_line": 24,
+          "old": "PRIMARY_API = ENGINEERING / \"imported-elastic-cube-macos-prep-004/primary-api.json\"\n",
+          "selected": "PRIMARY_API = ENGINEERING / \"cp1-oneway-thermoelastic-transfer-source-peer-001/primary-sources.json\"\n"
+        },
+        {
+          "old_start_line": 27,
+          "selected_start_line": 28,
+          "old": "CASE_FILES = (\"thermal-birth.i\", \"time-level.i\", \"assess.py\")\nFEATURES = (\"GeneratedMeshGenerator\", \"SubdomainBoundingBoxGenerator\", \"FunctionIC\",\n            \"ADTimeDerivative\", \"ADHeatConductionTimeDerivative\", \"ADHeatConduction\", \"ADMatHeatSource\",\n            \"ADHeatConductionMaterial\", \"ADGenericConstantMaterial\", \"FunctionPathEllipsoidHeatSource\",\n            \"TimedSubdomainModifier\", \"ADMaterialRealAux\", \"NodalValueSampler\", \"ElementValueSampler\",\n            \"ADElementIntegralMaterialProperty\", \"SMP\", \"Transient\", \"CSV\", \"Console\", \"ParsedFunction\")\n",
+          "selected": "CASE_FILES = (\"thermoelastic-birth.i\",)\nTRANSFER_FILES = (\"old-end.grid\", \"born-end.grid\", \"born-begin80.grid\", \"transfer-manifest.json\")\nFEATURES = (\"GeneratedMeshGenerator\", \"SubdomainBoundingBoxGenerator\", \"BoundingBoxNodeSetGenerator\",\n            \"ADTimeDerivative\", \"FunctionIC\", \"PiecewiseMultilinear\", \"FunctionAux\", \"TimedSubdomainModifier\",\n            \"ADDirichletBC\", \"ADStressDivergenceTensors\", \"ADComputeIncrementalStrain\",\n            \"ADComputeIsotropicElasticityTensor\", \"ADComputeThermalExpansionEigenstrain\",\n            \"ADComputeFiniteStrainElasticStress\", \"RankTwoTensorMaterialADConverter\", \"RankTwoCartesianComponent\",\n            \"NodalValueSampler\", \"ElementMaterialSampler\", \"SMP\", \"Transient\", \"CSV\", \"Console\", \"Exodus\")\n"
+        },
+        {
+          "old_start_line": 78,
+          "selected_start_line": 81,
+          "old": "",
+          "selected": "    need(stage == \"coupon\", \"Only the fixed thermoelastic case is available\")\n"
+        },
+        {
+          "old_start_line": 79,
+          "selected_start_line": 83,
+          "old": "    if stage == \"readiness\":\n        return [(\"help\", common + [\"--help\"]), (\"version\", common + [\"--version\"]),\n                (\"registry\", common + [\"--registry\"])]\n    need(stage == \"coupon\", \"Only the two declared stages exist\")\n    return [(\"native\", common + [\"-i\", \"thermal-birth.i\", \"time-level.i\"])]\n\n",
+          "selected": "    return [(\"native\", common + [\"-i\", \"thermoelastic-birth.i\"])]\n"
+        },
+        {
+          "old_start_line": 99,
+          "selected_start_line": 98,
+          "old": "    need(c.get(\"schema\") == \"962-macos-cp1-thermal-birth-stage-actual/v1\" and c.get(\"stage\") == stage\n         and c.get(\"root_and_peer_review_complete\") is True and c.get(\"native_launch_authorized\") is True\n         and c.get(\"head_authorized\") is False and c.get(\"manufacturing_authorized\") is False,\n         \"Separate reviewed stage authority required\")\n    need(c.get(\"coupon_solve_authorized\") is (stage == \"coupon\"), \"Readiness cannot authorize the coupon\")\n",
+          "selected": "    need(stage == \"coupon\" and c.get(\"schema\") == \"962-macos-oneway-thermoelastic-case-actual/v1\"\n         and c.get(\"stage\") == stage and c.get(\"root_and_peer_review_complete\") is True\n         and c.get(\"native_launch_authorized\") is True and c.get(\"coupon_solve_authorized\") is True\n         and all(c.get(k) is False for k in (\"head_authorized\", \"engineering_accepted\", \"physics_qualified\",\n                                           \"material_qualified\", \"process_calibrated\", \"manufacturing_authorized\",\n                                           \"automatic_retry\")), \"Separate reviewed fixed-case authority required\")\n"
+        },
+        {
+          "old_start_line": 111,
+          "selected_start_line": 111,
+          "old": "         and \"lib/combined/libheat_transfer-opt.0.dylib\" in c[\"runtime_sha256s\"],\n         \"Exact reviewed19 selected files/13 links including heat-transfer library required\")\n    need(all(c.get(k) is False for k in [\"engineering_accepted\", \"physics_qualified\", \"material_qualified\", \"process_calibrated\"])\n         and c.get(\"automatic_retry\") is False, \"No qualification or retry authority\")\n    need(\"bin/combined-opt\" in c[\"runtime_sha256s\"] and c[\"runtime_symlinks\"].get(\"bin/moose-opt\") == \"combined-opt\"\n         and runtime_unchanged(c) and os.access(EXECUTABLE, os.X_OK), \"Actual installed runtime bindings required\")\n    need(c[\"installation_result_peer\"] in pins and c[\"installation_receipt\"] in pins,\n         \"Stopped installation review and receipt must be pinned\")\n    limits = c[\"resources\"]\n    need(set(limits) == {\"wall_seconds\", \"sampled_RSS_stop_bytes\", \"sampled_output_stop_bytes\"}\n         and all(type(v) in (int, float) and not isinstance(v, bool) and v > 0\n                 and v < float(\"inf\") for v in limits.values()), \"Explicit finite positive Mac sampled limits required\")\n    if stage == \"coupon\":\n        need(limits == held[\"coupon_resources\"], \"Exact reviewed per-level coupon bounds required\")\n        need(all(c[k] in pins for k in [\"readiness_receipt\", \"readiness_result_peer\", \"readiness_registry\"]),\n             \"Stopped readiness, peer and exact cached registry required\")\n        ready = json.loads((ROOT / c[\"readiness_receipt\"]).read_text())\n        prior18 = {k: v for k, v in c[\"runtime_sha256s\"].items() if k != \"lib/combined/libheat_transfer-opt.0.dylib\"}\n        need(ready.get(\"readiness_completed\") is True and len(prior18) == 18\n             and ready[\"runtime_sha256s\"] == prior18 and ready[\"runtime_symlinks\"] == c[\"runtime_symlinks\"]\n             and all(v is True for v in ready[\"required_object_presence\"].values())\n             and pins[c[\"readiness_registry\"]] == ready[\"artifact_sha256\"][\"registry.log\"],\n             \"Exact old18 subset plus root-bound new heat library and cached registry required\")\n        registry_features((ROOT / c[\"readiness_registry\"]).read_text())\n",
+          "selected": "         and runtime_unchanged(c) and os.access(EXECUTABLE, os.X_OK), \"Exact selected19/13 current runtime required\")\n    need(c[\"resources\"] == held[\"coupon_resources\"], \"Exact100s/2GiB/512MiB fixed-case limits required\")\n    for key in (\"installation_result_peer\", \"installation_receipt\", \"data_preparation_root_closed\",\n                \"data_preparation_result_peer\", \"independent_assessment_source\",\n                \"independent_assessment_source_peer\", \"independent_assessment_source_root_review\"):\n        need(isinstance(c.get(key), str) and c[key] in pins, \"Independent installation/3D assessment source gates required\")\n    registry = held[\"registry\"]\n    presence = json.loads((ROOT / registry[\"presence_record\"]).read_text())\n    closed = json.loads((ROOT / registry[\"root_closed\"]).read_text())\n    need(closed.get(\"returncode\") == 0 and closed.get(\"stop_reason\") is None\n         and closed.get(\"selected19_files13_links_before_after_unchanged\") is True\n         and closed[\"runtime_bindings_sha256\"] == pins[registry[\"runtime_bindings\"]]\n         and closed[\"registry_sha256\"] == pins[registry[\"stdout\"]]\n         and presence[\"registry_sha256\"] == closed[\"registry_sha256\"]\n         and presence[\"root_closed_sha256\"] == pins[registry[\"root_closed\"]]\n         and presence.get(\"all_present_once\") is True and set(presence[\"exact_rows\"]) == set(FEATURES),\n         \"Cached exact selected-runtime registry presence joins required; not a semantic/ABI proof\")\n    registry_features((ROOT / registry[\"stdout\"]).read_text())\n    manifest_path = TRANSFER / \"transfer-manifest.json\"\n    need(c.get(\"transfer_manifest\") == str(manifest_path.relative_to(ROOT))\n         and pins.get(c[\"transfer_manifest\"]) == c.get(\"transfer_manifest_sha256\"), \"Exact completed transfer manifest required\")\n    manifest = json.loads(manifest_path.read_text())\n    source_index = json.loads((PREP / \"thermal-input-index.json\").read_text())\n    need(manifest.get(\"schema\") == \"962-oneway-thermoelastic-prepared-transfer/v1\"\n         and manifest[\"source_receipt_sha256\"] == source_index[\"receipt_sha256\"]\n         and manifest[\"selected321\"] == source_index[\"selected\"]\n         and (manifest[\"old_node_count\"], manifest[\"born_reference_DOF_count\"], manifest[\"shared_node_count\"],\n              manifest[\"genuinely_new_node_count\"]) == (225, 225, 25, 200)\n         and manifest.get(\"native_connectivity_or_ID_bijection_proven\") is False\n         and manifest.get(\"native_execution_authorized\") is False, \"Complete same-case data preparation required\")\n    need(set(manifest[\"table_sha256\"]) == set(TRANSFER_FILES) - {\"transfer-manifest.json\"}, \"Exactly three tables required\")\n    for name in TRANSFER_FILES:\n        need(str((TRANSFER / name).relative_to(ROOT)) in pins, \"Every converted input must be directly pinned\")\n        if name != \"transfer-manifest.json\":\n            need(pins[str((TRANSFER / name).relative_to(ROOT))] == manifest[\"table_sha256\"][name], \"Converted table drift\")\n    frozen = json.loads(PHYSICS.read_text())\n    need(frozen[\"card\"] == json.loads(CARD.read_text()) and frozen[\"card_sha256\"] == sha(CARD)\n         and frozen[\"source_input_sha256\"][\"thermoelastic-birth.i\"] == sha(CASE / \"thermoelastic-birth.i\"),\n         \"Exact separate source physics contract required\")\n"
+        },
+        {
+          "old_start_line": 136,
+          "selected_start_line": 151,
+          "old": "    need(output.is_absolute() and output.parent == ENGINEERING and output.resolve() == output\n         and not output.exists() and not output.is_symlink(), \"Fresh direct task output required\")\n",
+          "selected": "    need(output == ENGINEERING / \"cp1-oneway-thermoelastic-transfer-001\" and output.resolve() == output\n         and not output.exists() and not output.is_symlink(), \"Fresh fixed direct case output required\")\n"
+        },
+        {
+          "old_start_line": 139,
+          "selected_start_line": 154,
+          "old": "\n",
+          "selected": ""
+        },
+        {
+          "old_start_line": 155,
+          "selected_start_line": 169,
+          "old": "",
+          "selected": "        for name in TRANSFER_FILES:\n            shutil.copyfile(TRANSFER / name, output / name)\n"
+        },
+        {
+          "old_start_line": 156,
+          "selected_start_line": 172,
+          "old": "        selected += [CASE / name for name in CASE_FILES] + [CARD, PHYSICS]\n",
+          "selected": "        selected += [CASE / name for name in CASE_FILES] + [TRANSFER / name for name in TRANSFER_FILES] + [CARD, PHYSICS]\n"
+        },
+        {
+          "old_start_line": 166,
+          "selected_start_line": 182,
+          "old": "                   level=2 if stage == \"coupon\" else None, level_is_declared=True, input_sha256=inputs,\n",
+          "selected": "                   level=None, level_is_declared=False, thermal_input_level=2,\n                   transfer_manifest_sha256=c[\"transfer_manifest_sha256\"],\n                   prescribed_temperature_and_born_reference=True, source_off_cooling_history_present=False, input_sha256=inputs,\n"
+        },
+        {
+          "old_start_line": 296,
+          "selected_start_line": 314,
+          "old": "    parser.add_argument(\"--stage\", choices=(\"readiness\", \"coupon\"), required=True)\n",
+          "selected": "    parser.add_argument(\"--stage\", choices=(\"coupon\",), required=True)\n"
+        }
+      ],
+      "whole_byte_reversal_verified_by_text_only": true
+    },
+    "deck": {
+      "donor_path": "twins/962-cylinder-head-f0/source/physics_witness/mechanical_birth/mechanical-birth.i",
+      "donor": {
+        "sha256": "df2a23db9281f8c12b3afc6b002aeaf352040592a440f2bae31f1cfb6e89f99f",
+        "bytes": 10969
+      },
+      "selected": {
+        "sha256": "ab53a2354d1d9feda27afb8c09fd697cdbcb25d6c8610320182f3935e1c31329",
+        "bytes": 13567
+      },
+      "reverse_chunks": [
+        {
+          "old_start_line": 1,
+          "selected_start_line": 1,
+          "old": "# Hypothetical mechanical birth/history/support release; mm, MPa, N, K.\n",
+          "selected": "# Unqualified one-way prescribed-temperature research case; SI m,Pa,N,K,s.\n"
+        },
+        {
+          "old_start_line": 9,
+          "selected_start_line": 9,
+          "old": "",
+          "selected": "  add_subdomain_ids = '3'\n"
+        },
+        {
+          "old_start_line": 12,
+          "selected_start_line": 13,
+          "old": "    xmax = 1\n",
+          "selected": "    xmax = 2\n"
+        },
+        {
+          "old_start_line": 14,
+          "selected_start_line": 15,
+          "old": "    zmax = 20\n    nx = 1\n    ny = 1\n",
+          "selected": "    zmax = 1\n    nx = 16\n    ny = 4\n"
+        },
+        {
+          "old_start_line": 25,
+          "selected_start_line": 26,
+          "old": "    top_right = '1 1 10'\n",
+          "selected": "    top_right = '1 1 1'\n"
+        },
+        {
+          "old_start_line": 31,
+          "selected_start_line": 32,
+          "old": "    bottom_left = '-1e-8 -1e-8 -1e-8'\n    top_right = '1e-8 1e-8 1e-8'\n",
+          "selected": "    bottom_left = '-1e-12 -1e-12 -1e-12'\n    top_right = '1e-12 1e-12 1e-12'\n"
+        },
+        {
+          "old_start_line": 34,
+          "selected_start_line": 35,
+          "old": "  [rotation]\n",
+          "selected": "  [axis_x]\n"
+        },
+        {
+          "old_start_line": 37,
+          "selected_start_line": 38,
+          "old": "    new_boundary = rotation\n    bottom_left = '.99999999 -1e-8 -1e-8'\n    top_right = '1.00000001 1e-8 1e-8'\n",
+          "selected": "    new_boundary = axis_x\n    bottom_left = '.999999999999 -1e-12 -1e-12'\n    top_right = '1.000000000001 1e-12 1e-12'\n"
+        },
+        {
+          "old_start_line": 41,
+          "selected_start_line": 42,
+          "old": "  [axial_start]\n",
+          "selected": "  [axis_y]\n"
+        },
+        {
+          "old_start_line": 43,
+          "selected_start_line": 44,
+          "old": "    input = rotation\n    new_boundary = axial_start\n    bottom_left = '-1e-8 -1e-8 -1e-8'\n    top_right = '1.00000001 1.00000001 1e-8'\n  []\n  [internal]\n    type = BoundingBoxNodeSetGenerator\n    input = axial_start\n    new_boundary = internal\n    bottom_left = '-1e-8 -1e-8 9.99999999'\n    top_right = '1.00000001 1.00000001 10.00000001'\n  []\n  [axial_end]\n    type = BoundingBoxNodeSetGenerator\n    input = internal\n    new_boundary = axial_end\n    bottom_left = '-1e-8 -1e-8 19.99999999'\n    top_right = '1.00000001 1.00000001 20.00000001'\n",
+          "selected": "    input = axis_x\n    new_boundary = axis_y\n    bottom_left = '-1e-12 .999999999999 -1e-12'\n    top_right = '1e-12 1.000000000001 1e-12'\n"
+        },
+        {
+          "old_start_line": 63,
+          "selected_start_line": 50,
+          "old": "",
+          "selected": "# This donor placeholder holds inactive block1 at zero, not physical inertia.\n"
+        },
+        {
+          "old_start_line": 73,
+          "selected_start_line": 61,
+          "old": "[Physics/SolidMechanics/QuasiStatic/bar]\n  block = 2\n",
+          "selected": "[Physics/SolidMechanics/QuasiStatic/coupon]\n  block = '2 3'\n"
+        },
+        {
+          "old_start_line": 82,
+          "selected_start_line": 70,
+          "old": "",
+          "selected": "[AuxVariables]\n  [temperature]\n    family = LAGRANGE\n    order = FIRST\n    block = '2 3'\n    initial_condition = 400\n  []\n  [born_reference_temperature]\n    family = LAGRANGE\n    order = FIRST\n    block = 3\n  []\n  [rx]\n    block = '2 3'\n  []\n  [ry]\n    block = '2 3'\n  []\n  [rz]\n    block = '2 3'\n  []\n[]\n[Functions]\n  [old_end]\n    type = PiecewiseMultilinear\n    data_file = old-end.grid\n  []\n  [born_end]\n    type = PiecewiseMultilinear\n    data_file = born-end.grid\n  []\n  [born_begin80]\n    type = PiecewiseMultilinear\n    data_file = born-begin80.grid\n  []\n[]\n"
+        },
+        {
+          "old_start_line": 86,
+          "selected_start_line": 110,
+          "old": "    function = 'if(t<2.5,0,-.001*x)'\n    block = 2\n",
+          "selected": "    function = 0\n    block = '2 3'\n"
+        },
+        {
+          "old_start_line": 92,
+          "selected_start_line": 116,
+          "old": "    function = 'if(t<2.5,0,-.001*y)'\n    block = 2\n",
+          "selected": "    function = 0\n    block = '2 3'\n"
+        },
+        {
+          "old_start_line": 98,
+          "selected_start_line": 122,
+          "old": "    function = 'if(t<2.5,0,.0025*z)'\n    block = 2\n",
+          "selected": "    function = 0\n    block = '2 3'\n  []\n  [born_temperature]\n    type = FunctionIC\n    variable = temperature\n    function = born_begin80\n    block = 3\n  []\n  [born_reference]\n    type = FunctionIC\n    variable = born_reference_temperature\n    function = born_begin80\n    block = 3\n"
+        },
+        {
+          "old_start_line": 102,
+          "selected_start_line": 138,
+          "old": "[Functions]\n  [axial_history]\n    type = PiecewiseLinear\n    x = '0 1 2 6'\n    y = '0 .03 .025 .025'\n",
+          "selected": "[AuxKernels]\n  [old_temperature]\n    type = FunctionAux\n    variable = temperature\n    function = old_end\n    block = 2\n    execute_on = 'INITIAL TIMESTEP_BEGIN'\n"
+        },
+        {
+          "old_start_line": 108,
+          "selected_start_line": 146,
+          "old": "  [temperature]\n    type = ParsedFunction\n    expression = 'if(t<4,300,260)'\n",
+          "selected": "  [born_temperature]\n    type = FunctionAux\n    variable = temperature\n    function = born_end\n    block = 3\n    execute_on = 'INITIAL TIMESTEP_BEGIN'\n"
+        },
+        {
+          "old_start_line": 112,
+          "selected_start_line": 153,
+          "old": "",
+          "selected": "[]\n[MeshModifiers/birth]\n  type = TimedSubdomainModifier\n  times = 0.2\n  blocks_from = 1\n  blocks_to = 3\n  reinitialize_subdomains = 3\n  reinitialize_variables = 'disp_x disp_y disp_z temperature born_reference_temperature'\n  reinitialization_strategy = IC\n  restore_overridden_dofs = 'true true true true false'\n  force_preaux = true\n  execution_order_group = -100\n  execute_on = TIMESTEP_BEGIN\n"
+        },
+        {
+          "old_start_line": 126,
+          "selected_start_line": 180,
+          "old": "  [rotation_y]\n",
+          "selected": "  [origin_z]\n    type = ADDirichletBC\n    variable = disp_z\n    boundary = origin\n    value = 0\n  []\n  [axis_x_y]\n"
+        },
+        {
+          "old_start_line": 129,
+          "selected_start_line": 189,
+          "old": "    boundary = rotation\n",
+          "selected": "    boundary = axis_x\n"
+        },
+        {
+          "old_start_line": 132,
+          "selected_start_line": 192,
+          "old": "  [axial_base]\n",
+          "selected": "  [axis_x_z]\n"
+        },
+        {
+          "old_start_line": 135,
+          "selected_start_line": 195,
+          "old": "    boundary = axial_start\n",
+          "selected": "    boundary = axis_x\n"
+        },
+        {
+          "old_start_line": 138,
+          "selected_start_line": 198,
+          "old": "  [internal]\n    type = ADFunctionDirichletBC\n    variable = disp_z\n    boundary = internal\n    function = axial_history\n  []\n  [top]\n",
+          "selected": "  [axis_y_z]\n"
+        },
+        {
+          "old_start_line": 147,
+          "selected_start_line": 201,
+          "old": "    boundary = axial_end\n    value = .05\n    enable = false\n",
+          "selected": "    boundary = axis_y\n    value = 0\n"
+        },
+        {
+          "old_start_line": 151,
+          "selected_start_line": 204,
+          "old": "[]\n[Controls]\n  [internal]\n    type = TimePeriod\n    enable_objects = 'BCs/internal'\n    start_time = 0\n    end_time = 3\n    execute_on = 'INITIAL TIMESTEP_BEGIN'\n  []\n  [top]\n    type = TimePeriod\n    enable_objects = 'BCs/top'\n    start_time = 3\n    end_time = 5\n    execute_on = 'INITIAL TIMESTEP_BEGIN'\n  []\n[]\n[MeshModifiers/birth]\n  type = TimedSubdomainModifier\n  times = 3\n  blocks_from = 1\n  blocks_to = 2\n  reinitialize_subdomains = 2\n  reinitialize_variables = 'disp_x disp_y disp_z'\n  reinitialization_strategy = IC\n  restore_overridden_dofs = true\n  execution_order_group = -100\n  execute_on = TIMESTEP_BEGIN\n",
+          "selected": ""
+        },
+        {
+          "old_start_line": 183,
+          "selected_start_line": 208,
+          "old": "    youngs_modulus = 1000\n    poissons_ratio = 0\n    block = 2\n",
+          "selected": "    youngs_modulus = 71e9\n    poissons_ratio = 0.33\n    block = '2 3'\n"
+        },
+        {
+          "old_start_line": 187,
+          "selected_start_line": 212,
+          "old": "  [thermal]\n",
+          "selected": "  [old_thermal]\n"
+        },
+        {
+          "old_start_line": 190,
+          "selected_start_line": 215,
+          "old": "    stress_free_temperature = 300\n",
+          "selected": "    stress_free_temperature = 400\n"
+        },
+        {
+          "old_start_line": 195,
+          "selected_start_line": 220,
+          "old": "",
+          "selected": "  [born_thermal]\n    type = ADComputeThermalExpansionEigenstrain\n    thermal_expansion_coeff = 1e-5\n    stress_free_temperature = born_reference_temperature\n    temperature = temperature\n    eigenstrain_name = thermal_eigenstrain\n    block = 3\n  []\n"
+        },
+        {
+          "old_start_line": 196,
+          "selected_start_line": 229,
+          "old": "    type = ADComputeMultipleInelasticStress\n    inelastic_models = plasticity\n    perform_finite_strain_rotations = false\n    block = 2\n  []\n  [plasticity]\n    type = ADIsotropicPlasticityStressUpdate\n    yield_stress = 1\n    hardening_constant = 0\n    relative_tolerance = 1e-11\n    absolute_tolerance = 1e-11\n    block = 2\n",
+          "selected": "    type = ADComputeFiniteStrainElasticStress\n    block = '2 3'\n"
+        },
+        {
+          "old_start_line": 210,
+          "selected_start_line": 233,
+          "old": "[AuxVariables]\n  [temperature]\n    initial_condition = 300\n    block = 2\n  []\n  [rx]\n    block = 2\n  []\n  [ry]\n    block = 2\n  []\n  [rz]\n    block = 2\n  []\n",
+          "selected": "[Materials/audit_tensors]\n  type = RankTwoTensorMaterialADConverter\n  ad_props_in = 'stress elastic_strain mechanical_strain total_strain thermal_eigenstrain'\n  reg_props_out = 'audit_stress audit_elastic_strain audit_mechanical_strain audit_total_strain audit_thermal_eigenstrain'\n  block = '2 3'\n"
+        },
+        {
+          "old_start_line": 225,
+          "selected_start_line": 239,
+          "old": "[AuxKernels]\n  [temperature]\n    type = FunctionAux\n    variable = temperature\n    function = temperature\n    execute_on = 'INITIAL TIMESTEP_BEGIN'\n  []\n",
+          "selected": "[Materials/audit_stress_xx]\n  type = RankTwoCartesianComponent\n  rank_two_tensor = audit_stress\n  property_name = stress_xx\n  index_i = 0\n  index_j = 0\n  block = '2 3'\n[]\n[Materials/audit_stress_yy]\n  type = RankTwoCartesianComponent\n  rank_two_tensor = audit_stress\n  property_name = stress_yy\n  index_i = 1\n  index_j = 1\n  block = '2 3'\n[]\n[Materials/audit_stress_zz]\n  type = RankTwoCartesianComponent\n  rank_two_tensor = audit_stress\n  property_name = stress_zz\n  index_i = 2\n  index_j = 2\n  block = '2 3'\n[]\n[Materials/audit_stress_xy]\n  type = RankTwoCartesianComponent\n  rank_two_tensor = audit_stress\n  property_name = stress_xy\n  index_i = 0\n  index_j = 1\n  block = '2 3'\n[]\n[Materials/audit_stress_xz]\n  type = RankTwoCartesianComponent\n  rank_two_tensor = audit_stress\n  property_name = stress_xz\n  index_i = 0\n  index_j = 2\n  block = '2 3'\n[]\n[Materials/audit_stress_yz]\n  type = RankTwoCartesianComponent\n  rank_two_tensor = audit_stress\n  property_name = stress_yz\n  index_i = 1\n  index_j = 2\n  block = '2 3'\n[]\n[Materials/audit_elastic_strain_xx]\n  type = RankTwoCartesianComponent\n  rank_two_tensor = audit_elastic_strain\n  property_name = elastic_strain_xx\n  index_i = 0\n  index_j = 0\n  block = '2 3'\n[]\n[Materials/audit_elastic_strain_yy]\n  type = RankTwoCartesianComponent\n  rank_two_tensor = audit_elastic_strain\n  property_name = elastic_strain_yy\n  index_i = 1\n  index_j = 1\n  block = '2 3'\n[]\n[Materials/audit_elastic_strain_zz]\n  type = RankTwoCartesianComponent\n  rank_two_tensor = audit_elastic_strain\n  property_name = elastic_strain_zz\n  index_i = 2\n  index_j = 2\n  block = '2 3'\n[]\n[Materials/audit_elastic_strain_xy]\n  type = RankTwoCartesianComponent\n  rank_two_tensor = audit_elastic_strain\n  property_name = elastic_strain_xy\n  index_i = 0\n  index_j = 1\n  block = '2 3'\n[]\n[Materials/audit_elastic_strain_xz]\n  type = RankTwoCartesianComponent\n  rank_two_tensor = audit_elastic_strain\n  property_name = elastic_strain_xz\n  index_i = 0\n  index_j = 2\n  block = '2 3'\n[]\n[Materials/audit_elastic_strain_yz]\n  type = RankTwoCartesianComponent\n  rank_two_tensor = audit_elastic_strain\n  property_name = elastic_strain_yz\n  index_i = 1\n  index_j = 2\n  block = '2 3'\n[]\n[Materials/audit_mechanical_strain_xx]\n  type = RankTwoCartesianComponent\n  rank_two_tensor = audit_mechanical_strain\n  property_name = mechanical_strain_xx\n  index_i = 0\n  index_j = 0\n  block = '2 3'\n[]\n[Materials/audit_mechanical_strain_yy]\n  type = RankTwoCartesianComponent\n  rank_two_tensor = audit_mechanical_strain\n  property_name = mechanical_strain_yy\n  index_i = 1\n  index_j = 1\n  block = '2 3'\n[]\n[Materials/audit_mechanical_strain_zz]\n  type = RankTwoCartesianComponent\n  rank_two_tensor = audit_mechanical_strain\n  property_name = mechanical_strain_zz\n  index_i = 2\n  index_j = 2\n  block = '2 3'\n[]\n[Materials/audit_mechanical_strain_xy]\n  type = RankTwoCartesianComponent\n  rank_two_tensor = audit_mechanical_strain\n  property_name = mechanical_strain_xy\n  index_i = 0\n  index_j = 1\n  block = '2 3'\n[]\n[Materials/audit_mechanical_strain_xz]\n  type = RankTwoCartesianComponent\n  rank_two_tensor = audit_mechanical_strain\n  property_name = mechanical_strain_xz\n  index_i = 0\n  index_j = 2\n  block = '2 3'\n[]\n[Materials/audit_mechanical_strain_yz]\n  type = RankTwoCartesianComponent\n  rank_two_tensor = audit_mechanical_strain\n  property_name = mechanical_strain_yz\n  index_i = 1\n  index_j = 2\n  block = '2 3'\n[]\n[Materials/audit_total_strain_xx]\n  type = RankTwoCartesianComponent\n  rank_two_tensor = audit_total_strain\n  property_name = total_strain_xx\n  index_i = 0\n  index_j = 0\n  block = '2 3'\n[]\n[Materials/audit_total_strain_yy]\n  type = RankTwoCartesianComponent\n  rank_two_tensor = audit_total_strain\n  property_name = total_strain_yy\n  index_i = 1\n  index_j = 1\n  block = '2 3'\n[]\n[Materials/audit_total_strain_zz]\n  type = RankTwoCartesianComponent\n  rank_two_tensor = audit_total_strain\n  property_name = total_strain_zz\n  index_i = 2\n  index_j = 2\n  block = '2 3'\n[]\n[Materials/audit_total_strain_xy]\n  type = RankTwoCartesianComponent\n  rank_two_tensor = audit_total_strain\n  property_name = total_strain_xy\n  index_i = 0\n  index_j = 1\n  block = '2 3'\n[]\n[Materials/audit_total_strain_xz]\n  type = RankTwoCartesianComponent\n  rank_two_tensor = audit_total_strain\n  property_name = total_strain_xz\n  index_i = 0\n  index_j = 2\n  block = '2 3'\n[]\n[Materials/audit_total_strain_yz]\n  type = RankTwoCartesianComponent\n  rank_two_tensor = audit_total_strain\n  property_name = total_strain_yz\n  index_i = 1\n  index_j = 2\n  block = '2 3'\n[]\n[Materials/audit_thermal_eigenstrain_xx]\n  type = RankTwoCartesianComponent\n  rank_two_tensor = audit_thermal_eigenstrain\n  property_name = thermal_eigenstrain_xx\n  index_i = 0\n  index_j = 0\n  block = '2 3'\n[]\n[Materials/audit_thermal_eigenstrain_yy]\n  type = RankTwoCartesianComponent\n  rank_two_tensor = audit_thermal_eigenstrain\n  property_name = thermal_eigenstrain_yy\n  index_i = 1\n  index_j = 1\n  block = '2 3'\n[]\n[Materials/audit_thermal_eigenstrain_zz]\n  type = RankTwoCartesianComponent\n  rank_two_tensor = audit_thermal_eigenstrain\n  property_name = thermal_eigenstrain_zz\n  index_i = 2\n  index_j = 2\n  block = '2 3'\n[]\n[Materials/audit_thermal_eigenstrain_xy]\n  type = RankTwoCartesianComponent\n  rank_two_tensor = audit_thermal_eigenstrain\n  property_name = thermal_eigenstrain_xy\n  index_i = 0\n  index_j = 1\n  block = '2 3'\n[]\n[Materials/audit_thermal_eigenstrain_xz]\n  type = RankTwoCartesianComponent\n  rank_two_tensor = audit_thermal_eigenstrain\n  property_name = thermal_eigenstrain_xz\n  index_i = 0\n  index_j = 2\n  block = '2 3'\n[]\n[Materials/audit_thermal_eigenstrain_yz]\n  type = RankTwoCartesianComponent\n  rank_two_tensor = audit_thermal_eigenstrain\n  property_name = thermal_eigenstrain_yz\n  index_i = 1\n  index_j = 2\n  block = '2 3'\n"
+        },
+        {
+          "old_start_line": 237,
+          "selected_start_line": 483,
+          "old": "    block = 2\n",
+          "selected": "    block = '2 3'\n"
+        },
+        {
+          "old_start_line": 239,
+          "selected_start_line": 485,
+          "old": "    execution_order_group = 100\n",
+          "selected": "    force_preaux = true\n    execution_order_group = -50\n"
+        },
+        {
+          "old_start_line": 245,
+          "selected_start_line": 492,
+          "old": "    block = 2\n",
+          "selected": "    block = '2 3'\n"
+        },
+        {
+          "old_start_line": 249,
+          "selected_start_line": 496,
+          "old": "  [fields]\n    type = ElementMaterialSampler\n    property = 'stress_xx stress_yy stress_zz stress_xy stress_xz stress_yz plastic_strain_xx plastic_strain_yy plastic_strain_zz plastic_strain_xy plastic_strain_xz plastic_strain_yz mechanical_strain_xx mechanical_strain_yy mechanical_strain_zz mechanical_strain_xy mechanical_strain_xz mechanical_strain_yz total_strain_xx total_strain_yy total_strain_zz total_strain_xy total_strain_xz total_strain_yz'\n    block = 2\n",
+          "selected": "  [reference_begin]\n    type = NodalValueSampler\n    variable = born_reference_temperature\n    block = 3\n    sort_by = id\n    force_preaux = true\n    execution_order_group = -50\n    execute_on = 'INITIAL TIMESTEP_BEGIN'\n  []\n  [reference_end]\n    type = NodalValueSampler\n    variable = born_reference_temperature\n    block = 3\n    sort_by = id\n"
+        },
+        {
+          "old_start_line": 255,
+          "selected_start_line": 512,
+          "old": "[]\n[Postprocessors/temperature_max]\n  type = NodalExtremeValue\n  variable = temperature\n  block = 2\n  value_type = max\n  execute_on = 'INITIAL TIMESTEP_END'\n",
+          "selected": "  [begin_fields]\n    type = ElementMaterialSampler\n    property = 'stress_xx stress_yy stress_zz stress_xy stress_xz stress_yz elastic_strain_xx elastic_strain_yy elastic_strain_zz elastic_strain_xy elastic_strain_xz elastic_strain_yz mechanical_strain_xx mechanical_strain_yy mechanical_strain_zz mechanical_strain_xy mechanical_strain_xz mechanical_strain_yz total_strain_xx total_strain_yy total_strain_zz total_strain_xy total_strain_xz total_strain_yz thermal_eigenstrain_xx thermal_eigenstrain_yy thermal_eigenstrain_zz thermal_eigenstrain_xy thermal_eigenstrain_xz thermal_eigenstrain_yz'\n    block = '2 3'\n    force_preaux = true\n    execution_order_group = -50\n    execute_on = 'INITIAL TIMESTEP_BEGIN'\n  []\n  [end_fields]\n    type = ElementMaterialSampler\n    property = 'stress_xx stress_yy stress_zz stress_xy stress_xz stress_yz elastic_strain_xx elastic_strain_yy elastic_strain_zz elastic_strain_xy elastic_strain_xz elastic_strain_yz mechanical_strain_xx mechanical_strain_yy mechanical_strain_zz mechanical_strain_xy mechanical_strain_xz mechanical_strain_yz total_strain_xx total_strain_yy total_strain_zz total_strain_xy total_strain_xz total_strain_yz thermal_eigenstrain_xx thermal_eigenstrain_yy thermal_eigenstrain_zz thermal_eigenstrain_xy thermal_eigenstrain_xz thermal_eigenstrain_yz'\n    block = '2 3'\n    execute_on = 'INITIAL TIMESTEP_END'\n  []\n"
+        },
+        {
+          "old_start_line": 277,
+          "selected_start_line": 541,
+          "old": "  dt = 1\n  end_time = 6\n",
+          "selected": "  dt = 0.0025\n  end_time = 0.4\n"
+        },
+        {
+          "old_start_line": 284,
+          "selected_start_line": 548,
+          "old": "  file_base = mechanical\n  csv = true\n",
+          "selected": "  file_base = thermoelastic\n"
+        },
+        {
+          "old_start_line": 287,
+          "selected_start_line": 550,
+          "old": "",
+          "selected": "  [csv]\n    type = CSV\n    precision = 17\n  []\n"
+        },
+        {
+          "old_start_line": 292,
+          "selected_start_line": 559,
+          "old": "[Materials/audit_tensors]\n  type = RankTwoTensorMaterialADConverter\n  ad_props_in = 'stress plastic_strain mechanical_strain total_strain'\n  reg_props_out = 'audit_stress audit_plastic_strain audit_mechanical_strain audit_total_strain'\n  block = 2\n[]\n[Materials/audit_stress_xx]\n  type = RankTwoCartesianComponent\n  rank_two_tensor = audit_stress\n  property_name = stress_xx\n  index_i = 0\n  index_j = 0\n  block = 2\n[]\n[Materials/audit_stress_yy]\n  type = RankTwoCartesianComponent\n  rank_two_tensor = audit_stress\n  property_name = stress_yy\n  index_i = 1\n  index_j = 1\n  block = 2\n[]\n[Materials/audit_stress_zz]\n  type = RankTwoCartesianComponent\n  rank_two_tensor = audit_stress\n  property_name = stress_zz\n  index_i = 2\n  index_j = 2\n  block = 2\n[]\n[Materials/audit_stress_xy]\n  type = RankTwoCartesianComponent\n  rank_two_tensor = audit_stress\n  property_name = stress_xy\n  index_i = 0\n  index_j = 1\n  block = 2\n[]\n[Materials/audit_stress_xz]\n  type = RankTwoCartesianComponent\n  rank_two_tensor = audit_stress\n  property_name = stress_xz\n  index_i = 0\n  index_j = 2\n  block = 2\n[]\n[Materials/audit_stress_yz]\n  type = RankTwoCartesianComponent\n  rank_two_tensor = audit_stress\n  property_name = stress_yz\n  index_i = 1\n  index_j = 2\n  block = 2\n[]\n[Materials/audit_plastic_strain_xx]\n  type = RankTwoCartesianComponent\n  rank_two_tensor = audit_plastic_strain\n  property_name = plastic_strain_xx\n  index_i = 0\n  index_j = 0\n  block = 2\n[]\n[Materials/audit_plastic_strain_yy]\n  type = RankTwoCartesianComponent\n  rank_two_tensor = audit_plastic_strain\n  property_name = plastic_strain_yy\n  index_i = 1\n  index_j = 1\n  block = 2\n[]\n[Materials/audit_plastic_strain_zz]\n  type = RankTwoCartesianComponent\n  rank_two_tensor = audit_plastic_strain\n  property_name = plastic_strain_zz\n  index_i = 2\n  index_j = 2\n  block = 2\n[]\n[Materials/audit_plastic_strain_xy]\n  type = RankTwoCartesianComponent\n  rank_two_tensor = audit_plastic_strain\n  property_name = plastic_strain_xy\n  index_i = 0\n  index_j = 1\n  block = 2\n[]\n[Materials/audit_plastic_strain_xz]\n  type = RankTwoCartesianComponent\n  rank_two_tensor = audit_plastic_strain\n  property_name = plastic_strain_xz\n  index_i = 0\n  index_j = 2\n  block = 2\n[]\n[Materials/audit_plastic_strain_yz]\n  type = RankTwoCartesianComponent\n  rank_two_tensor = audit_plastic_strain\n  property_name = plastic_strain_yz\n  index_i = 1\n  index_j = 2\n  block = 2\n[]\n[Materials/audit_mechanical_strain_xx]\n  type = RankTwoCartesianComponent\n  rank_two_tensor = audit_mechanical_strain\n  property_name = mechanical_strain_xx\n  index_i = 0\n  index_j = 0\n  block = 2\n[]\n[Materials/audit_mechanical_strain_yy]\n  type = RankTwoCartesianComponent\n  rank_two_tensor = audit_mechanical_strain\n  property_name = mechanical_strain_yy\n  index_i = 1\n  index_j = 1\n  block = 2\n[]\n[Materials/audit_mechanical_strain_zz]\n  type = RankTwoCartesianComponent\n  rank_two_tensor = audit_mechanical_strain\n  property_name = mechanical_strain_zz\n  index_i = 2\n  index_j = 2\n  block = 2\n[]\n[Materials/audit_mechanical_strain_xy]\n  type = RankTwoCartesianComponent\n  rank_two_tensor = audit_mechanical_strain\n  property_name = mechanical_strain_xy\n  index_i = 0\n  index_j = 1\n  block = 2\n[]\n[Materials/audit_mechanical_strain_xz]\n  type = RankTwoCartesianComponent\n  rank_two_tensor = audit_mechanical_strain\n  property_name = mechanical_strain_xz\n  index_i = 0\n  index_j = 2\n  block = 2\n[]\n[Materials/audit_mechanical_strain_yz]\n  type = RankTwoCartesianComponent\n  rank_two_tensor = audit_mechanical_strain\n  property_name = mechanical_strain_yz\n  index_i = 1\n  index_j = 2\n  block = 2\n[]\n[Materials/audit_total_strain_xx]\n  type = RankTwoCartesianComponent\n  rank_two_tensor = audit_total_strain\n  property_name = total_strain_xx\n  index_i = 0\n  index_j = 0\n  block = 2\n[]\n[Materials/audit_total_strain_yy]\n  type = RankTwoCartesianComponent\n  rank_two_tensor = audit_total_strain\n  property_name = total_strain_yy\n  index_i = 1\n  index_j = 1\n  block = 2\n[]\n[Materials/audit_total_strain_zz]\n  type = RankTwoCartesianComponent\n  rank_two_tensor = audit_total_strain\n  property_name = total_strain_zz\n  index_i = 2\n  index_j = 2\n  block = 2\n[]\n[Materials/audit_total_strain_xy]\n  type = RankTwoCartesianComponent\n  rank_two_tensor = audit_total_strain\n  property_name = total_strain_xy\n  index_i = 0\n  index_j = 1\n  block = 2\n[]\n[Materials/audit_total_strain_xz]\n  type = RankTwoCartesianComponent\n  rank_two_tensor = audit_total_strain\n  property_name = total_strain_xz\n  index_i = 0\n  index_j = 2\n  block = 2\n[]\n[Materials/audit_total_strain_yz]\n  type = RankTwoCartesianComponent\n  rank_two_tensor = audit_total_strain\n  property_name = total_strain_yz\n  index_i = 1\n  index_j = 2\n  block = 2\n[]\n",
+          "selected": ""
+        }
+      ],
+      "whole_byte_reversal_verified_by_text_only": true
+    },
+    "mock_guards": {
+      "donor_path": "work/962-engineering/cp1-assumed-thermal-birth-linear-macos-prep-001/selfcheck.py",
+      "donor": {
+        "sha256": "0f21be38e9d4b0448c63ac6b44fe37d79c02641457abb2547d7bab483d23f8e9",
+        "bytes": 11432
+      },
+      "selected": {
+        "sha256": "3e2f5d3bf46a6c2eb5f44e30a5ba980d59f01069a60507e4ba778a02aabb9b79",
+        "bytes": 13674
+      },
+      "reverse_chunks": [
+        {
+          "old_start_line": 13,
+          "selected_start_line": 13,
+          "old": "SOURCE_SHA256 = \"fde48211a11066c8406076621b5cd1c2898e0353956a4e6ec879754e7452c9d3\"\n",
+          "selected": "SOURCE_SHA256 = \"5b4ee33be98e0004d55f532d03146bc35759133dd9bfe0a478a17f39fe78c082\"\n"
+        },
+        {
+          "old_start_line": 38,
+          "selected_start_line": 38,
+          "old": "        jobs = module.commands(\"readiness\")\n        self.assertEqual([argv[-1] for _, argv in jobs], [\"--help\", \"--version\", \"--registry\"])\n        self.assertTrue(all(\"-i\" not in argv and \"-skip_petscrc\" in argv and \"--n-threads=1\" in argv\n                            for _, argv in jobs))\n",
+          "selected": ""
+        },
+        {
+          "old_start_line": 43,
+          "selected_start_line": 39,
+          "old": "        self.assertEqual(module.commands(\"coupon\")[0][1][-3:], [\"-i\", \"thermal-birth.i\", \"time-level.i\"])\n",
+          "selected": "        self.assertEqual(module.commands(\"coupon\")[0][1][-2:], [\"-i\", \"thermoelastic-birth.i\"])\n        self.assertIn(\"--n-threads=1\", module.commands(\"coupon\")[0][1])\n"
+        },
+        {
+          "old_start_line": 48,
+          "selected_start_line": 45,
+          "old": "        with self.assertRaises(ValueError): module.commands(\"anything_else\")\n",
+          "selected": "        with self.assertRaises(ValueError): module.commands(\"readiness\")\n"
+        },
+        {
+          "old_start_line": 53,
+          "selected_start_line": 50,
+          "old": "            for update in ({\"native_launch_authorized\": False}, {\"coupon_solve_authorized\": True}):\n                c = dict(schema=\"962-macos-cp1-thermal-birth-stage-actual/v1\", stage=\"readiness\",\n                         root_and_peer_review_complete=True, native_launch_authorized=True,\n                         coupon_solve_authorized=False, head_authorized=False, manufacturing_authorized=False)\n                c.update(update)\n",
+          "selected": "            for stage, authority in ((\"readiness\", True), (\"coupon\", False)):\n                c = dict(schema=\"962-macos-oneway-thermoelastic-case-actual/v1\", stage=stage,\n                         root_and_peer_review_complete=True, native_launch_authorized=authority,\n                         coupon_solve_authorized=True, head_authorized=False, manufacturing_authorized=False,\n                         engineering_accepted=False, physics_qualified=False, material_qualified=False,\n                         process_calibrated=False, automatic_retry=False)\n"
+        },
+        {
+          "old_start_line": 60,
+          "selected_start_line": 58,
+          "old": "                    with self.assertRaises(ValueError): module.checked_contract(\"readiness\", path, module.sha(path))\n",
+          "selected": "                    with self.assertRaises(ValueError): module.checked_contract(stage, path, module.sha(path))\n"
+        },
+        {
+          "old_start_line": 76,
+          "selected_start_line": 74,
+          "old": "        c = dict(input_sha256={}, runtime_sha256s={\"bin/combined-opt\": \"0\"*64}, runtime_symlinks={},\n",
+          "selected": "        transfer = base / \"transfer\"\n        transfer.mkdir()\n        for name in module.TRANSFER_FILES: (transfer / name).write_text(\"synthetic only\\n\")\n        c = dict(transfer_manifest_sha256=\"0\"*64, input_sha256={}, runtime_sha256s={\"bin/combined-opt\": \"0\"*64}, runtime_symlinks={},\n"
+        },
+        {
+          "old_start_line": 85,
+          "selected_start_line": 86,
+          "old": "             mock.patch.object(module, \"PHYSICS\", physics), \\\n",
+          "selected": "             mock.patch.object(module, \"PHYSICS\", physics), mock.patch.object(module, \"TRANSFER\", transfer), \\\n"
+        },
+        {
+          "old_start_line": 112,
+          "selected_start_line": 113,
+          "old": "        self.assertEqual(r[\"level\"], 2)\n",
+          "selected": "        self.assertIsNone(r[\"level\"])\n        self.assertEqual(r[\"thermal_input_level\"], 2)\n"
+        },
+        {
+          "old_start_line": 147,
+          "selected_start_line": 149,
+          "old": "    def test_current19_old18_registry_join_and_wrong_runtime_refusal(self):\n        bindings = json.loads((module.ENGINEERING / \"cp1-assumed-thermal-birth-runtime-bindings-001/bindings.json\").read_text())\n        ready_path = module.ENGINEERING / \"moose-local-macos-readiness-003/readiness.json\"\n        registry_path = module.ENGINEERING / \"moose-local-macos-readiness-003/registry.log\"\n",
+          "selected": "    def test_current19_registry_transfer_and_assessment_gates(self):\n        real_held = json.loads(module.HELD.read_text())\n"
+        },
+        {
+          "old_start_line": 153,
+          "selected_start_line": 153,
+          "old": "",
+          "selected": "            case, transfer = base / \"case\", base / \"transfer\"\n            case.mkdir(); transfer.mkdir()\n            (case / \"card.json\").write_text(\"{}\\n\")\n            (case / \"thermoelastic-birth.i\").write_text(\"synthetic only\\n\")\n            source_index = json.loads((module.PREP / \"thermal-input-index.json\").read_text())\n            (case / \"thermal-input-index.json\").write_text(json.dumps(source_index))\n            physics = dict(card={}, card_sha256=module.sha(case / \"card.json\"),\n                           source_input_sha256={\"thermoelastic-birth.i\": module.sha(case / \"thermoelastic-birth.i\")})\n            (case / \"case-contract.json\").write_text(json.dumps(physics))\n            for name in module.TRANSFER_FILES[:-1]: (transfer / name).write_text(\"synthetic only\\n\")\n            manifest = dict(schema=\"962-oneway-thermoelastic-prepared-transfer/v1\",\n                            source_receipt_sha256=source_index[\"receipt_sha256\"], selected321=source_index[\"selected\"],\n                            old_node_count=225, born_reference_DOF_count=225, shared_node_count=25,\n                            genuinely_new_node_count=200, native_connectivity_or_ID_bijection_proven=False,\n                            native_execution_authorized=False,\n                            table_sha256={n:module.sha(transfer / n) for n in module.TRANSFER_FILES[:-1]})\n            (transfer / \"transfer-manifest.json\").write_text(json.dumps(manifest))\n            fake = base / \"synthetic-source-peer-root-installation.json\"\n            fake.write_text(\"{}\\n\")  # Declared source-contract stub only; not a physics approval.\n"
+        },
+        {
+          "old_start_line": 154,
+          "selected_start_line": 173,
+          "old": "            resources = dict(wall_seconds=100, sampled_RSS_stop_bytes=2*1024**3, sampled_output_stop_bytes=32*1024**2)\n            held.write_text(json.dumps(dict(input_sha256={}, runtime_sha256s=bindings['runtime_sha256s'], runtime_symlinks=bindings['runtime_symlinks'], coupon_resources=resources)))\n            installation = base / 'installation.json'\n            installation.write_text('{}\\n')\n            pins = {str(p.relative_to(module.ROOT)):module.sha(p) for p in [held,installation,ready_path,registry_path]}\n            c = dict(schema='962-macos-cp1-thermal-birth-stage-actual/v1', stage='coupon', root_and_peer_review_complete=True,\n                     native_launch_authorized=True, coupon_solve_authorized=True, head_authorized=False, manufacturing_authorized=False,\n                     engineering_accepted=False, physics_qualified=False, material_qualified=False, process_calibrated=False,\n                     automatic_retry=False, input_sha256=pins, runtime_sha256s=bindings['runtime_sha256s'], runtime_symlinks=bindings['runtime_symlinks'],\n                     installation_result_peer=str(installation.relative_to(module.ROOT)), installation_receipt=str(installation.relative_to(module.ROOT)),\n                     resources=resources, readiness_receipt=str(ready_path.relative_to(module.ROOT)), readiness_result_peer=str(installation.relative_to(module.ROOT)),\n                     readiness_registry=str(registry_path.relative_to(module.ROOT)), output=str(base/'output'))\n            path=base/'actual.json'\n            with mock.patch.object(module,'HELD',held), mock.patch.object(module,'ENGINEERING',base), \\\n                 mock.patch.object(module,'runtime_unchanged',return_value=True), mock.patch.object(module.os,'access',return_value=True):\n",
+          "selected": "            selected = dict(input_sha256={}, runtime_sha256s=real_held[\"runtime_sha256s\"],\n                            runtime_symlinks=real_held[\"runtime_symlinks\"], coupon_resources=real_held[\"coupon_resources\"],\n                            registry=real_held[\"registry\"])\n            held.write_text(json.dumps(selected))\n            files = [held, fake] + list(case.iterdir()) + list(transfer.iterdir())\n            files += [module.ROOT / n for n in real_held[\"registry\"].values()]\n            pins = {str(p.relative_to(module.ROOT)):module.sha(p) for p in files}\n            relfake = str(fake.relative_to(module.ROOT))\n            c = dict(schema=\"962-macos-oneway-thermoelastic-case-actual/v1\", stage=\"coupon\",\n                     root_and_peer_review_complete=True, native_launch_authorized=True, coupon_solve_authorized=True,\n                     head_authorized=False, engineering_accepted=False, physics_qualified=False, material_qualified=False,\n                     process_calibrated=False, manufacturing_authorized=False, automatic_retry=False,\n                     input_sha256=pins, runtime_sha256s=selected[\"runtime_sha256s\"], runtime_symlinks=selected[\"runtime_symlinks\"],\n                     resources=selected[\"coupon_resources\"], installation_result_peer=relfake, installation_receipt=relfake,\n                     data_preparation_root_closed=relfake, data_preparation_result_peer=relfake,\n                     independent_assessment_source=relfake, independent_assessment_source_peer=relfake,\n                     independent_assessment_source_root_review=relfake,\n                     transfer_manifest=str((transfer / \"transfer-manifest.json\").relative_to(module.ROOT)),\n                     transfer_manifest_sha256=module.sha(transfer / \"transfer-manifest.json\"),\n                     output=str(base / \"cp1-oneway-thermoelastic-transfer-001\"))\n            path = base / \"actual.json\"\n            with mock.patch.object(module, \"HELD\", held), mock.patch.object(module, \"PREP\", case), \\\n                 mock.patch.object(module, \"CASE\", case), mock.patch.object(module, \"CARD\", case / \"card.json\"), \\\n                 mock.patch.object(module, \"PHYSICS\", case / \"case-contract.json\"), mock.patch.object(module, \"TRANSFER\", transfer), \\\n                 mock.patch.object(module, \"ENGINEERING\", base), mock.patch.object(module, \"runtime_unchanged\", return_value=True), \\\n                 mock.patch.object(module.os, \"access\", return_value=True):\n"
+        },
+        {
+          "old_start_line": 170,
+          "selected_start_line": 200,
+          "old": "                observed,output=module.checked_contract('coupon',path,module.sha(path))\n                self.assertEqual(output,base/'output')\n",
+          "selected": "                _, output = module.checked_contract(\"coupon\", path, module.sha(path))\n"
+        },
+        {
+          "old_start_line": 173,
+          "selected_start_line": 202,
+          "old": "                for mode in ['missing_heat','changed_heat','missing_link','resource_change']:\n                    bad=json.loads(json.dumps(c))\n                    if mode=='missing_heat':bad['runtime_sha256s'].pop('lib/combined/libheat_transfer-opt.0.dylib')\n                    if mode=='changed_heat':bad['runtime_sha256s']['lib/combined/libheat_transfer-opt.0.dylib']='f'*64\n                    if mode=='missing_link':bad['runtime_symlinks'].pop('bin/moose-opt')\n                    if mode=='resource_change':bad['resources']['wall_seconds']=101\n",
+          "selected": "                for mode in [\"missing_heat\", \"resource\", \"missing_assessor\", \"manifest_binding\", \"head\"]:\n                    bad = json.loads(json.dumps(c))\n                    if mode == \"missing_heat\": bad[\"runtime_sha256s\"].pop(\"lib/combined/libheat_transfer-opt.0.dylib\")\n                    if mode == \"resource\": bad[\"resources\"][\"wall_seconds\"] = 101\n                    if mode == \"missing_assessor\": bad[\"independent_assessment_source_peer\"] = None\n                    if mode == \"manifest_binding\": bad[\"transfer_manifest_sha256\"] = \"f\"*64\n                    if mode == \"head\": bad[\"head_authorized\"] = True\n"
+        },
+        {
+          "old_start_line": 180,
+          "selected_start_line": 210,
+          "old": "                    with self.assertRaises(ValueError):module.checked_contract('coupon',path,module.sha(path))\n",
+          "selected": "                    with self.assertRaises(ValueError): module.checked_contract(\"coupon\", path, module.sha(path))\n"
+        }
+      ],
+      "whole_byte_reversal_verified_by_text_only": true
+    }
+  },
+  "new_data_preparer": "Fixed stdlib data preparation, no compiled importer or generalized coupling framework",
+  "no_author_source_function_guard_or_module_execution": true,
+  "adapter_unchanged_function_ASTs": [
+    "need",
+    "sha",
+    "same",
+    "check_pins",
+    "runtime_unchanged",
+    "registry_features"
+  ],
+  "adapter_changed_function_ASTs": [
+    "commands",
+    "checked_contract",
+    "run"
+  ],
+  "adapter_complete_native_control_try_except_finally_AST_exact": true,
+  "adapter_native_control_AST_sha256": "31e545798d85121e6db269918f66bcca43f4c59a1691fcec2f271689bf31fc40",
+  "mock_guard_unchanged_method_ASTs": [
+    "test_sampled_stop_kills_waits_and_retains_refusal",
+    "test_exact_seven_variable_tcp_environment_and_no_inheritance"
+  ],
+  "prepared_guard_counts": {
+    "data_case_AST_manufactured": 8,
+    "inherited_mocked_controls": 6,
+    "all_unrun": true
+  }
+}

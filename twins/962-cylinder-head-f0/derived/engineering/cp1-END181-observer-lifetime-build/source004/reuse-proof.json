@@ -1,0 +1,160 @@
+{
+  "schema": "962-observer004-exact-shim-delta-and-reuse/v1",
+  "donor_shim": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-END181-dof-map-observer-prep-003/src/CouponEnd181ObserverRegistration.C",
+    "sha256": "042e1b0f5a4c70a53a4e92fd00631e2073716e83cd6def943f549134328b53da",
+    "bytes": 737
+  },
+  "new_shim": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-END181-dof-map-observer-prep-004/src/CouponEnd181ObserverRegistration.C",
+    "sha256": "0950b07525d867ede0c89e3e58e8465df8bc67b8d435033b60ef5182ca3bec10",
+    "bytes": 2291
+  },
+  "text_operations": [
+    {
+      "operation": "insert",
+      "old_start": 189,
+      "old_end": 189,
+      "new_start": 189,
+      "new_end": 208,
+      "old_text": "",
+      "new_text": "dlfcn.h>\n#include <"
+    },
+    {
+      "operation": "insert",
+      "old_start": 199,
+      "old_end": 199,
+      "new_start": 218,
+      "new_end": 364,
+      "old_text": "",
+      "new_text": "\n\nnamespace\n{\n// A private non-const POD address identifies this image without function-pointer conversion.\nunsigned char observer_image_anchor;\n}"
+    },
+    {
+      "operation": "insert",
+      "old_start": 667,
+      "old_end": 667,
+      "new_start": 832,
+      "new_end": 2220,
+      "old_text": "",
+      "new_text": "// Initialization is thread-safe and retains one reference after the first successful call.\n  // The raw pointer has no deleter: keep this image and its dependencies alive through app\n  // teardown. This deliberate process-lifetime reference does not establish the crash cause.\n  static void * const retained_handle = []() -> void *\n  {\n    Dl_info self_image{};\n    if (!dladdr(&observer_image_anchor, &self_image) || !self_image.dli_fname ||\n        !self_image.dli_fname[0] || !self_image.dli_fbase)\n      throw std::runtime_error(\"CouponEnd181ObserverApp cannot identify its loaded image.\");\n\n    void * const handle = dlopen(self_image.dli_fname, RTLD_LAZY | RTLD_NOLOAD);\n    if (!handle)\n      throw std::runtime_error(\"CouponEnd181ObserverApp cannot retain its loaded image.\");\n\n    void * const entry = dlsym(handle, \"CouponEnd181ObserverApp__registerAll\");\n    Dl_info entry_image{};\n    if (!entry || !dladdr(entry, &entry_image) ||\n        entry_image.dli_fbase != self_image.dli_fbase)\n    {\n      // Balance only the rejected extra reference; the caller still owns its original handle.\n      if (dlclose(handle) != 0)\n        throw std::runtime_error(\"CouponEnd181ObserverApp rejected-image reference release failed.\");\n      throw std::runtime_error(\"CouponEnd181ObserverApp retained image identity mismatch.\");\n    }\n\n    return handle;\n  }();\n  (void)retained_handle;\n\n  "
+    },
+    {
+      "operation": "insert",
+      "old_start": 737,
+      "old_end": 737,
+      "new_start": 2290,
+      "new_end": 2291,
+      "old_text": "",
+      "new_text": "\n"
+    }
+  ],
+  "reverse_operations_restore_complete_donor_bytes": true,
+  "source_diff": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-END181-dof-map-observer-prep-004/source.diff",
+    "sha256": "972a546c0cd8b678ad68d7d71188efb88310d1b644a4c8fc795d08dc60a67ec6",
+    "bytes": 2096
+  },
+  "unchanged_copies": [
+    {
+      "donor": {
+        "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-END181-dof-map-observer-prep-003/src/CouponEnd181DofMap.C",
+        "sha256": "e4c9d98f9fff50fc4ec41299eaed0afe34f23befcf459a21ebbfaaceeff473d9",
+        "bytes": 10989
+      },
+      "new": {
+        "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-END181-dof-map-observer-prep-004/src/CouponEnd181DofMap.C",
+        "sha256": "e4c9d98f9fff50fc4ec41299eaed0afe34f23befcf459a21ebbfaaceeff473d9",
+        "bytes": 10989
+      },
+      "bytes_equal": true
+    },
+    {
+      "donor": {
+        "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-END181-dof-map-observer-prep-003/include/CouponEnd181DofMap.h",
+        "sha256": "04594fb8360acd807994c4c99b073ff8ac5c380da6c500c44fed14e5ccfb538b",
+        "bytes": 1182
+      },
+      "new": {
+        "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-END181-dof-map-observer-prep-004/include/CouponEnd181DofMap.h",
+        "sha256": "04594fb8360acd807994c4c99b073ff8ac5c380da6c500c44fed14e5ccfb538b",
+        "bytes": 1182
+      },
+      "bytes_equal": true
+    },
+    {
+      "donor": {
+        "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-END181-dof-map-observer-prep-003/guards/guard_rows.C",
+        "sha256": "1d675907950b02475789fd64aa3a41a1a83ec648dda2998fc3402e773e3f3097",
+        "bytes": 3694
+      },
+      "new": {
+        "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-END181-dof-map-observer-prep-004/guards/guard_rows.C",
+        "sha256": "1d675907950b02475789fd64aa3a41a1a83ec648dda2998fc3402e773e3f3097",
+        "bytes": 3694
+      },
+      "bytes_equal": true
+    },
+    {
+      "donor": {
+        "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-END181-dof-map-observer-prep-003/libcoupon_end181_observer-opt.la.in",
+        "sha256": "b4b32aa0a5ebd176bba5040c1bd4fb116f567bc198c015c06a06d816aa523c21",
+        "bytes": 214
+      },
+      "new": {
+        "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-END181-dof-map-observer-prep-004/libcoupon_end181_observer-opt.la.in",
+        "sha256": "b4b32aa0a5ebd176bba5040c1bd4fb116f567bc198c015c06a06d816aa523c21",
+        "bytes": 214
+      },
+      "bytes_equal": true
+    }
+  ],
+  "unchanged_registration_label_pointer_signature_null_refusal_and_registerObjects_text": true,
+  "all_original_shim_bytes_preserved_as_ordered_subsequence": true,
+  "compile_recipe_two_argument_values_only": [
+    {
+      "index": 323,
+      "from": "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/cp1-oneway-cooling-release-richardson2-END181-dof-map-observer-prep-003/src/CouponEnd181ObserverRegistration.C",
+      "to": "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/cp1-oneway-cooling-release-richardson2-END181-dof-map-observer-prep-004/src/CouponEnd181ObserverRegistration.C"
+    },
+    {
+      "index": 325,
+      "from": "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/cp1-oneway-cooling-release-richardson2-END181-dof-map-observer-prep-003/build/CouponEnd181ObserverRegistration.o",
+      "to": "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/cp1-oneway-cooling-release-richardson2-END181-dof-map-observer-prep-004/build-001/CouponEnd181ObserverRegistration.o"
+    }
+  ],
+  "link_recipe_two_argument_values_only": [
+    {
+      "index": 17,
+      "from": "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/cp1-oneway-cooling-release-richardson2-END181-dof-map-observer-prep-003/build-005/libcoupon_end181_observer-opt.dylib",
+      "to": "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/cp1-oneway-cooling-release-richardson2-END181-dof-map-observer-prep-004/build-001/libcoupon_end181_observer-opt.dylib"
+    },
+    {
+      "index": 27,
+      "from": "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/cp1-oneway-cooling-release-richardson2-END181-dof-map-observer-prep-003/build-003/CouponEnd181ObserverRegistration.o",
+      "to": "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/cp1-oneway-cooling-release-richardson2-END181-dof-map-observer-prep-004/build-001/CouponEnd181ObserverRegistration.o"
+    }
+  ],
+  "production_object_reused_metadata_only": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-END181-dof-map-observer-prep-003/build-003/CouponEnd181DofMap.o",
+    "sha256": "3e47797f49274e9458c24fb9c313c94289577fbb498b0bc90acc2d6aa0d59afc",
+    "bytes": 144224
+  },
+  "host_input_donor": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer003-host-registration-check-prep-001/thermoelastic-birth-observer-registration.i",
+    "sha256": "af8e25dc6edfea8da24321b032dca6e46cf9ea59aa927b46a7c40de1b210fd1d",
+    "bytes": 15537
+  },
+  "host_input_successor": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-END181-dof-map-observer-prep-004/thermoelastic-birth-observer-registration.i",
+    "sha256": "190296e6c2ad1627feca4b374efd2c49739e0c2628764cd92388392a78fd2682",
+    "bytes": 15537
+  },
+  "host_path_delta_only": {
+    "from": "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/cp1-oneway-cooling-release-richardson2-END181-dof-map-observer-prep-003/build-005",
+    "to": "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/cp1-oneway-cooling-release-richardson2-END181-dof-map-observer-prep-004/build-001",
+    "count": 1
+  },
+  "host_input_reversal_restores_full_donor_bytes": true,
+  "Cxx_AST_or_compile_or_execution_claim": false,
+  "synthetic18_guard_replay": false
+}

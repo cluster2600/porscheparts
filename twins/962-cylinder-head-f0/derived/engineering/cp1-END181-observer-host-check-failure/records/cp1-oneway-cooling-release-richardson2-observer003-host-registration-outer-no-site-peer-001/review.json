@@ -1,0 +1,67 @@
+{
+  "schema": "962-observer003-host-outer-BIS-additive-source-peer/v1",
+  "decision": "PASS_SOURCE_ONLY_OUTER_B_I_S_VARIANT_NO_EXECUTION_AUTHORITY",
+  "scope": "Only outerCPython startup flags. No owner/host/plugin/query/fixture/guard/runtime probe or binary body access. Independent stdlib text/AST/metadata writing only; no claim that the future invocation has run.",
+  "prior_exact_peer": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer003-host-registration-exact-child-peer-001/review.json",
+    "sha256": "e8fd801e12851dcdf6bc395db0fe23f0de1623303d71b163d52e3eec282f3d3a",
+    "bytes": 8119
+  },
+  "unchanged_actual": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer003-host-registration-execution-prep-001/actual-contract.json",
+    "sha256": "18a8e43248b97fe4e810e606124eb6e291a401248bd6c63efa4733cbca56aa2c",
+    "bytes": 5876
+  },
+  "unchanged_owner": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer003-host-registration-owner-prep-001/run_host_check_once.py",
+    "sha256": "c868be7615b080cf4d0437835e5b30329aea16496321ec131672754783346317",
+    "bytes": 16384
+  },
+  "selected_python_metadata_only": {
+    "alias": "/usr/local/bin/python3",
+    "resolved": "/Library/Frameworks/Python.framework/Versions/3.10/bin/python3.10",
+    "record": {
+      "path": "/Library/Frameworks/Python.framework/Versions/3.10/bin/python3.10",
+      "sha256": "72956ad35cff7691dfed9e04c9593de825ffd5b2fa7e8bc9ae96ce9a1af65621",
+      "bytes": 152624
+    }
+  },
+  "accepted_future_outer_prefix": [
+    "/Library/Frameworks/Python.framework/Versions/3.10/bin/python3.10",
+    "-B",
+    "-I",
+    "-S",
+    "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/cp1-oneway-cooling-release-richardson2-observer003-host-registration-owner-prep-001/run_host_check_once.py"
+  ],
+  "final_script_argument": "Exact root-admission SHA supplied after admission is frozen. Avoid embedding a document own literal SHA inside its own bytes; bind prefix/digest role in admission and record complete actual launch separately.",
+  "reasoning": [
+    "Python3.10 official documentation states-S disables automatic site import and site-dependent sys.path manipulation.-I retains isolation/-E/-s and-B retains no.pyc writes. No-O optimization flag is introduced, so owner asserts remain.",
+    "Owner directly imports only12stdlib module names listed below; no direct third-party Python package orsite call is required by its source. This is not a proof of transitive extension-library/ABI closure.",
+    "Interpreter flags precede script and are consumed byCPython; owner still receives script+one admission-digest argument. Selected resolved interpreter identity check is unchanged. Owner does not consume launch_template orsys.flags.",
+    "Actual launch_template-B-I is informational preparation. Explicit root admission may bind-B-I-S outer prefix without modifying owner/nativeactual/63 input-control roles. Nativeargv/environment/cwd/resources/input/plugin/solver contract remain byte-exact."
+  ],
+  "direct_stdlib_imports": [
+    "hashlib",
+    "json",
+    "os",
+    "pathlib",
+    "re",
+    "resource",
+    "signal",
+    "stat",
+    "subprocess",
+    "sys",
+    "time",
+    "traceback"
+  ],
+  "remaining_limits": [
+    "No new runtime/stdlib-origin/Python orABI closure proof or successfulsite-disabled startup established. Any startup/import failure remains failed/incomplete with no automatic fallback/retry.",
+    "Prior exact-peer mandatory root postchecks remain: inclusive finalreceipt budget, outerRC0/no-stop/full identity/lifecycle and independent expected005pluginpath observation.",
+    "Root must explicitly bind this variant/note and exact admission in its launch; note itself grants no invocation authority."
+  ],
+  "source_blockers": [],
+  "primary_source": {
+    "url": "https://docs.python.org/3.10/using/cmdline.html#cmdoption-S",
+    "scope": "Official3.10 CLI semantics for-B/-I/-S and script arguments; not a query of installed interpreter state."
+  }
+}

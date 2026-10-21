@@ -1,0 +1,456 @@
+{
+  "schema": "962-native003-finite-operation-held-actual/v1",
+  "status": "HELD_UNRUN_SOURCE_ONLY",
+  "operation": "stage",
+  "operation_authorized": false,
+  "staging_authorized": false,
+  "metadata_query_authorized": false,
+  "native_execution_authorized": false,
+  "fixture_execution_authorized": false,
+  "field_parsing_authorized": false,
+  "manufacturing_authorized": false,
+  "physical_acceptance": false,
+  "automatic_retry": false,
+  "author_lineage": "defect_gate_refresh authored original001 and current source002 owners/wrappers/helpers; independent source002 control review is required.",
+  "controller": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native003-stage-operation-controls-prep-002/run_operation_once.py",
+    "sha256": "b3bc7b73c59f542bb95e63e19025d47abd5f12fedff652fa656b8c9047ff9422",
+    "bytes": 18757
+  },
+  "wrapper": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native003-stage-operation-controls-prep-002/stopped_exec_wrapper.py",
+    "sha256": "3b65720d054fcfeb99fd1e26516726c34841d566853c9c461acd17307ca42aed",
+    "bytes": 972
+  },
+  "helper": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native003-staging-freshness-prep-001/stage_four_inputs.py",
+    "sha256": "615400e65c86a59ea0867fe1a8381f1eb536695895ac495814f06a6244c95fb7",
+    "bytes": 8631
+  },
+  "helper_plan": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native003-staging-freshness-prep-001/held-plan.json",
+    "sha256": "31f158c6f8da9cc16f51b11599b77c5948e8982bfa6d7a380dbedc530e2ae033",
+    "bytes": 62324
+  },
+  "helper_source_peer": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native003-staging-freshness-source-peer-001/review.json",
+    "sha256": "f9baec1d61d527524c534027c80ebca6b011e86b5e37f66d3c78797dd9cbaf51",
+    "bytes": 3934
+  },
+  "helper_source_bindings": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native003-staging-freshness-source-peer-001/bindings.json",
+    "sha256": "54d520e80f581968a24eb0216c357676d702b4a1abb73b13206eb338f331cca9",
+    "bytes": 9257
+  },
+  "helper_root_review": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native003-helper-root-source-review-001/review.json",
+    "sha256": "eaaa82fe7058f39093a6b3d4c715182c584e5d9045268df089c83d7617240734",
+    "bytes": 4752
+  },
+  "helper_preparation_index": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native003-staging-freshness-prep-001/preparation-index.json",
+    "sha256": "9921945660ead6b94bf4fe4ecd871c96ae54567c90d64db8377a98cea2c8c4a3",
+    "bytes": 3806
+  },
+  "ownership_source_decision": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native003-helper-ownership-root-source-decision-001/decision.json",
+    "sha256": "cf592526f136309c3a26a0fa661e468a371adec6b831ff47df899c313ca82f75",
+    "bytes": 3216
+  },
+  "selected_python": {
+    "path": "/Users/maxime/.codex/worktrees/962-watercooled-head/3dprinting993/work/962-head/check-venv/bin/python",
+    "resolved_path": "/Users/maxime/.local/share/uv/python/cpython-3.12.11-macos-aarch64-none/bin/python3.12",
+    "sha256": "1699bf8aa705a8bb71613bef5cdd7d7c8c9d9a188a841f41679aa9b5830b8f60",
+    "bytes": 49968
+  },
+  "environment": {
+    "PATH": "/usr/bin:/bin",
+    "LANG": "C",
+    "LC_ALL": "C",
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "MKL_NUM_THREADS": "1",
+    "VECLIB_MAXIMUM_THREADS": "1",
+    "FI_PROVIDER": "tcp"
+  },
+  "controls": {
+    "whole_seconds": 60,
+    "helper_monitor_stop_seconds": 40,
+    "TERM_grace_seconds": 8,
+    "stream_buffer_bytes": 1048576,
+    "query_seconds": 5,
+    "total_inclusive_bytes": 33554432,
+    "thread_environment": 1,
+    "retries": 0
+  },
+  "helper_limits_unchanged": {
+    "whole_seconds": 60,
+    "TERM_grace_seconds": 8,
+    "stream_buffer_bytes": 1048576,
+    "query_seconds": 5,
+    "total_inclusive_bytes": 33554432,
+    "thread_environment": 1,
+    "retries": 0
+  },
+  "native_limits_unchanged": {
+    "resources": {
+      "wall_seconds": 100,
+      "sampled_RSS_stop_bytes": 2147483648,
+      "sampled_output_stop_bytes": 536870912
+    },
+    "outer_wall_seconds": 115,
+    "root_TERM_grace_seconds": 10,
+    "growth_bytes": 33554432,
+    "thread_environment": 1
+  },
+  "argv_prefix": [
+    "/Users/maxime/.codex/worktrees/962-watercooled-head/3dprinting993/work/962-head/check-venv/bin/python",
+    "-B",
+    "-I",
+    "-S",
+    "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native003-stage-operation-controls-prep-002/stopped_exec_wrapper.py"
+  ],
+  "sole_late_child_argv": "helper_authorization.sha256",
+  "cwd": "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native003-four-input-staging-root-execution-001",
+  "owner_argv_template": [
+    "/Users/maxime/.codex/worktrees/962-watercooled-head/3dprinting993/work/962-head/check-venv/bin/python",
+    "-B",
+    "-I",
+    "-S",
+    "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native003-stage-operation-controls-prep-002/run_operation_once.py",
+    "<separate-owner-admission-SHA256>"
+  ],
+  "protected_records": {
+    "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native-measurement-execution-prep-003/actual-contract.json": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native-measurement-execution-prep-003/actual-contract.json",
+      "sha256": "85a9195ed1a217eef6bad44518390f1b2dfdb879c9cdfc072b6e1465461a5198",
+      "bytes": 116306
+    },
+    "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native-measurement-prep-003/run_native_capture.py": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native-measurement-prep-003/run_native_capture.py",
+      "sha256": "7190f22f4d17869f6524743bc0de6f7eebc03393c17a4ed57984f282d0036a80",
+      "bytes": 22990
+    },
+    "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native-measurement-prep-003/run_root_once.py": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native-measurement-prep-003/run_root_once.py",
+      "sha256": "6d91abc5bfb8970908d41406448e9091291736ab9bb910a72b58f0243e7d754f",
+      "bytes": 18849
+    },
+    "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native-measurement-execution-prep-003/preparation-index.json": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native-measurement-execution-prep-003/preparation-index.json",
+      "sha256": "a3dcf85a1711afe03f6988ef27a8f1d6199bad8e080c5652608e450aea4bf4c6",
+      "bytes": 6117
+    },
+    "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native003-exact-source-control-peer-001/review.json": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native003-exact-source-control-peer-001/review.json",
+      "sha256": "1cc78efbbee900a96801f6bc19541cb4cf34acd52bc861abc1c04e947ebb1263",
+      "bytes": 2881
+    },
+    "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native003-exact-source-control-peer-001/bindings.json": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native003-exact-source-control-peer-001/bindings.json",
+      "sha256": "e14d0c87c877b8d9a2f721536e3bd842c6bc682ba36ad672805400b5f5583b27",
+      "bytes": 4675
+    },
+    "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native003-root-source-control-review-001/review.json": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native003-root-source-control-review-001/review.json",
+      "sha256": "010e08cb4cb8dfc803f28f3f83fc4a0cea2fd0a312b675f2eb5f5becb1519478",
+      "bytes": 3583
+    },
+    "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native003-staging-freshness-prep-001/stage_four_inputs.py": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native003-staging-freshness-prep-001/stage_four_inputs.py",
+      "sha256": "615400e65c86a59ea0867fe1a8381f1eb536695895ac495814f06a6244c95fb7",
+      "bytes": 8631
+    },
+    "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native003-staging-freshness-prep-001/capture_freshness.py": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native003-staging-freshness-prep-001/capture_freshness.py",
+      "sha256": "a577e2b3499aa3571d2f08e0b7e5f54d687464654e8de7af523f7d112a1edd7d",
+      "bytes": 15798
+    },
+    "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native003-staging-freshness-prep-001/METHOD.md": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native003-staging-freshness-prep-001/METHOD.md",
+      "sha256": "65634f9cc36e87f3f3b2d65498fdffbfe631b4b801968a558a8eb8dd1b1d040e",
+      "bytes": 5515
+    },
+    "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native003-staging-freshness-prep-001/CONTROL-PLAN.md": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native003-staging-freshness-prep-001/CONTROL-PLAN.md",
+      "sha256": "2d1c39e3f0498a7c7d3c710c11f17e6cb10e83c4b2c4eb59bf761da4342996e8",
+      "bytes": 6402
+    },
+    "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native003-staging-freshness-prep-001/reuse-proof.json": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native003-staging-freshness-prep-001/reuse-proof.json",
+      "sha256": "a4525019ea85ece70ceab988906af6cea484392fecfde83617fa5d9a90a25603",
+      "bytes": 4279
+    },
+    "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native003-staging-freshness-prep-001/source.diff": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native003-staging-freshness-prep-001/source.diff",
+      "sha256": "9ccf8e2dc3a8ee0880bf5dedec4304b3fc4f7c060941d608d09fe82c1178d672",
+      "bytes": 24870
+    },
+    "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native-measurement-execution-prep-003/staging-plan.json": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native-measurement-execution-prep-003/staging-plan.json",
+      "sha256": "d79800652e26690aa8723346cf40db940c87664a1dee612e0bfc76c1ecbbf592",
+      "bytes": 7348
+    },
+    "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native-measurement-execution-prep-003/freshness-plan.json": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native-measurement-execution-prep-003/freshness-plan.json",
+      "sha256": "abc46bf47bf0cc504ef54821decb4e684b1d70b335d18a29293b46cbf0c0eb25",
+      "bytes": 3339
+    },
+    "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native-measurement-execution-prep-003/identity-expectations.json": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native-measurement-execution-prep-003/identity-expectations.json",
+      "sha256": "757bfd0e9fc7ad9fc6199bc4f5637f1be02d49d6305a5a8240ea2a09775e0e8d",
+      "bytes": 93134
+    },
+    "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native-measurement-execution-prep-002/actual-contract.json": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native-measurement-execution-prep-002/actual-contract.json",
+      "sha256": "0e913daeb3d7381d1d4ddcd38e1645e9f8ab4de95814f12a3e370477922161cf",
+      "bytes": 100427
+    },
+    "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native003-staging-freshness-prep-001/held-plan.json": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native003-staging-freshness-prep-001/held-plan.json",
+      "sha256": "31f158c6f8da9cc16f51b11599b77c5948e8982bfa6d7a380dbedc530e2ae033",
+      "bytes": 62324
+    },
+    "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native003-staging-freshness-prep-001/preparation-index.json": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native003-staging-freshness-prep-001/preparation-index.json",
+      "sha256": "9921945660ead6b94bf4fe4ecd871c96ae54567c90d64db8377a98cea2c8c4a3",
+      "bytes": 3806
+    },
+    "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native003-staging-freshness-source-peer-001/review.json": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native003-staging-freshness-source-peer-001/review.json",
+      "sha256": "f9baec1d61d527524c534027c80ebca6b011e86b5e37f66d3c78797dd9cbaf51",
+      "bytes": 3934
+    },
+    "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native003-staging-freshness-source-peer-001/findings.json": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native003-staging-freshness-source-peer-001/findings.json",
+      "sha256": "1d92e6f01ca3fc99924705cb5ea963899f9c927c78ca946d6270a1b53a91cdc2",
+      "bytes": 10052
+    },
+    "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native003-staging-freshness-source-peer-001/bindings.json": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native003-staging-freshness-source-peer-001/bindings.json",
+      "sha256": "54d520e80f581968a24eb0216c357676d702b4a1abb73b13206eb338f331cca9",
+      "bytes": 9257
+    },
+    "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native003-helper-root-source-review-001/review.json": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native003-helper-root-source-review-001/review.json",
+      "sha256": "eaaa82fe7058f39093a6b3d4c715182c584e5d9045268df089c83d7617240734",
+      "bytes": 4752
+    },
+    "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native003-helper-ownership-source-research-001/NOTE.md": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native003-helper-ownership-source-research-001/NOTE.md",
+      "sha256": "03eecc7e2e8e6c960b366e1d96c0a5bf8180a7fd39331a01929d1e8b04e12185",
+      "bytes": 7095
+    },
+    "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native003-helper-ownership-source-research-001/source-associations.json": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native003-helper-ownership-source-research-001/source-associations.json",
+      "sha256": "bb5559897e83cdda15ba9f71dd6acd92f32f9aacdd70c0f6f5920b91e6428149",
+      "bytes": 5796
+    },
+    "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native003-helper-ownership-source-research-001/index.json": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native003-helper-ownership-source-research-001/index.json",
+      "sha256": "065d95d8f06e6bea3fc7eea7e20075f1faebfe32440e36ad63e87661788f3844",
+      "bytes": 1142
+    },
+    "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native003-helper-ownership-root-source-decision-001/decision.json": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native003-helper-ownership-root-source-decision-001/decision.json",
+      "sha256": "cf592526f136309c3a26a0fa661e468a371adec6b831ff47df899c313ca82f75",
+      "bytes": 3216
+    },
+    "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-row-first-mock-guards-execution-prep-001/run_root_once.py": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-row-first-mock-guards-execution-prep-001/run_root_once.py",
+      "sha256": "bd86647db9f11bcf098a034094a722fa0972c9f3fb393fe6684c915bfffc71e3",
+      "bytes": 15061
+    },
+    "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native003-stage-operation-controls-prep-001/METHOD.md": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native003-stage-operation-controls-prep-001/METHOD.md",
+      "sha256": "31d1afbe0945e770caf5272831231aaca39a8066e3f622ce2fee521f55fe1165",
+      "bytes": 4541
+    },
+    "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native003-stage-operation-controls-prep-001/CONTROL-PLAN.md": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native003-stage-operation-controls-prep-001/CONTROL-PLAN.md",
+      "sha256": "8516017d6223b7343d55e69d2c199313b35bf44272687fad7aaae9d9f9324df5",
+      "bytes": 4092
+    },
+    "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native003-stage-operation-controls-prep-001/source-reuse.json": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native003-stage-operation-controls-prep-001/source-reuse.json",
+      "sha256": "155568fe68cc22677dad49645e5e99416adc931c67cb5525cb95d12b9ab1f247",
+      "bytes": 5547
+    },
+    "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native003-stage-operation-controls-prep-001/source.diff": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native003-stage-operation-controls-prep-001/source.diff",
+      "sha256": "2f9368fe47a7d66b0da80cefc1ece5578cde82bf119cedeba4276b908ece688c",
+      "bytes": 34570
+    },
+    "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native003-stage-operation-controls-prep-001/import-assumptions.json": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native003-stage-operation-controls-prep-001/import-assumptions.json",
+      "sha256": "7b5ae2559bbc8e5266027e7a3dea01e3576fe5345c4035e590552768fdf2d6e2",
+      "bytes": 2071
+    },
+    "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native003-stage-operation-controls-prep-001/run_operation_once.py": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native003-stage-operation-controls-prep-001/run_operation_once.py",
+      "sha256": "ac6603e0d996f691cd7bd26fee418cf625831e3bb266613bf58af44e09a14d62",
+      "bytes": 18167
+    },
+    "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native003-stage-operation-controls-prep-001/stopped_exec_wrapper.py": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native003-stage-operation-controls-prep-001/stopped_exec_wrapper.py",
+      "sha256": "3b65720d054fcfeb99fd1e26516726c34841d566853c9c461acd17307ca42aed",
+      "bytes": 972
+    },
+    "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native003-stage-operation-controls-prep-001/held-actual.json": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native003-stage-operation-controls-prep-001/held-actual.json",
+      "sha256": "c237d421da5c78aa7572ae2551d5b69cf946a306e1aaf87e94c80d17d71fe6de",
+      "bytes": 21926
+    },
+    "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native003-stage-operation-controls-prep-001/index.json": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native003-stage-operation-controls-prep-001/index.json",
+      "sha256": "2c3b54f337808e82e095030d9c41aba494f717dd7d17aa65d81c894dc401e655",
+      "bytes": 3996
+    },
+    "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native003-operation-controls-source-peer-001/review.json": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native003-operation-controls-source-peer-001/review.json",
+      "sha256": "a0f1644687c790efe99bc3a22819d77d9f22e65aec9cdd3a20a2ff7dfae40d31",
+      "bytes": 3767
+    },
+    "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native003-operation-controls-source-peer-001/findings.json": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native003-operation-controls-source-peer-001/findings.json",
+      "sha256": "79bb577675cad3970867de80f59c1b8b00fc97d11156de419b45f2337c0177de",
+      "bytes": 11659
+    },
+    "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native003-operation-controls-source-peer-001/bindings.json": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native003-operation-controls-source-peer-001/bindings.json",
+      "sha256": "e2f83459b99628fb97771b7321ab09753b9c4d00d1d19708bcce4bfc8b3bc802",
+      "bytes": 13856
+    },
+    "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native003-owner002-root-source-decision-001/decision.json": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native003-owner002-root-source-decision-001/decision.json",
+      "sha256": "1198f2a70616e39c3ca2e6c5b4473c62994c90749281aaea88317d8ea7dac5b3",
+      "bytes": 2156
+    },
+    "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native003-stage-operation-controls-prep-002/METHOD.md": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native003-stage-operation-controls-prep-002/METHOD.md",
+      "sha256": "1b2d995b047ea53155f09aea73feabb49360ba935e62d04074bc36f3ccadc025",
+      "bytes": 5863
+    },
+    "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native003-stage-operation-controls-prep-002/CONTROL-PLAN.md": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native003-stage-operation-controls-prep-002/CONTROL-PLAN.md",
+      "sha256": "ff54fcd6800d1fe306e5cbc4db9b24b2939198aeb05eb45bef5f75c2bdb3723a",
+      "bytes": 4883
+    },
+    "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native003-stage-operation-controls-prep-002/source-reuse.json": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native003-stage-operation-controls-prep-002/source-reuse.json",
+      "sha256": "62124375cab2d8f528841342320fe0fc9ecd8bb23aa4e8f96569059e4668aea1",
+      "bytes": 7727
+    },
+    "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native003-stage-operation-controls-prep-002/source.diff": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native003-stage-operation-controls-prep-002/source.diff",
+      "sha256": "3a382ca3f7d619ca088bc55f9cf7f38db8b430cc7956a61fee00d09017416e06",
+      "bytes": 4768
+    },
+    "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native003-stage-operation-controls-prep-002/import-assumptions.json": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native003-stage-operation-controls-prep-002/import-assumptions.json",
+      "sha256": "7b5ae2559bbc8e5266027e7a3dea01e3576fe5345c4035e590552768fdf2d6e2",
+      "bytes": 2071
+    }
+  },
+  "protected_record_count": 46,
+  "late_direct_role_names": [
+    "actual",
+    "controller",
+    "wrapper",
+    "owner_admission",
+    "helper_authorization",
+    "exact_control_peer",
+    "exact_control_bindings",
+    "root_control_review",
+    "control_preparation_index"
+  ],
+  "late_direct_role_count": 9,
+  "future_complete_records_count": 55,
+  "expected_staged_inputs": {
+    "thermoelastic-birth-observer-registration.i": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native-measurement-003/thermoelastic-birth-observer-registration.i",
+      "sha256": "190296e6c2ad1627feca4b374efd2c49739e0c2628764cd92388392a78fd2682",
+      "bytes": 15537
+    },
+    "old-end.grid": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native-measurement-003/old-end.grid",
+      "sha256": "c64b252894a88730ad1f6ec0311cc5fe58a2cb3a8831f67e61db9d20be95823e",
+      "bytes": 767338
+    },
+    "born-end.grid": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native-measurement-003/born-end.grid",
+      "sha256": "9caf52c69d0b14db442571b11d72252f3431d57b3991ab90ed849ddb6178b63f",
+      "bytes": 429552
+    },
+    "born-begin80.grid": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native-measurement-003/born-begin80.grid",
+      "sha256": "cf4d9df9c8ab66aa37c40ef4e9cf3be44607229ff901201017eba0ba176cfbe4",
+      "bytes": 1375
+    }
+  },
+  "staged_total_bytes": 1213802,
+  "expected_stage_receipt_path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native003-four-input-staging-root-execution-001/staging-receipt.json",
+  "finite_freshness_scope": {
+    "declared_inputs": 257,
+    "runtime_files": 19,
+    "runtime_aliases": 13,
+    "provider_paths": 22,
+    "historical_host_records": 89,
+    "staged_destinations": 4,
+    "selected_outer_python": {
+      "path": "/Users/maxime/.codex/worktrees/962-watercooled-head/3dprinting993/work/962-head/check-venv/bin/python",
+      "sha256": "1699bf8aa705a8bb71613bef5cdd7d7c8c9d9a188a841f41679aa9b5830b8f60",
+      "bytes": 49968
+    },
+    "selected_python_metadata": {
+      "path": "/Users/maxime/.codex/worktrees/962-watercooled-head/3dprinting993/work/962-head/check-venv/bin/python",
+      "resolved_path": "/Users/maxime/.local/share/uv/python/cpython-3.12.11-macos-aarch64-none/bin/python3.12",
+      "sha256": "1699bf8aa705a8bb71613bef5cdd7d7c8c9d9a188a841f41679aa9b5830b8f60",
+      "bytes": 49968
+    },
+    "runtime_prefix": "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-local-installed-002"
+  },
+  "source_API_scope": "Supported named primary-source candidate; no installed select-provider body/ABI closure or current runtime observation.",
+  "sampled_RSS_pass": false,
+  "hard_quota": false,
+  "external_whole_clock_raw_outer0_full_inclusive_census_required": true,
+  "pending": {
+    "helper_authorization": null,
+    "exact_control_peer": null,
+    "exact_control_bindings": null,
+    "root_control_review": null,
+    "owner_admission": null,
+    "helper_receipt": null,
+    "owner_result": null,
+    "accepted_stage_receipt": null,
+    "stage_root_acceptance": null,
+    "operation_acceptance": null
+  },
+  "source002_correction_authority": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native003-owner002-root-source-decision-001/decision.json",
+    "sha256": "1198f2a70616e39c3ca2e6c5b4473c62994c90749281aaea88317d8ea7dac5b3",
+    "bytes": 2156
+  },
+  "source001_hold": {
+    "review": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native003-operation-controls-source-peer-001/review.json",
+      "sha256": "a0f1644687c790efe99bc3a22819d77d9f22e65aec9cdd3a20a2ff7dfae40d31",
+      "bytes": 3767
+    },
+    "findings": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native003-operation-controls-source-peer-001/findings.json",
+      "sha256": "79bb577675cad3970867de80f59c1b8b00fc97d11156de419b45f2337c0177de",
+      "bytes": 11659
+    },
+    "bindings": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native003-operation-controls-source-peer-001/bindings.json",
+      "sha256": "e2f83459b99628fb97771b7321ab09753b9c4d00d1d19708bcce4bfc8b3bc802",
+      "bytes": 13856
+    }
+  },
+  "predecessor_index": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native003-stage-operation-controls-prep-001/index.json",
+    "sha256": "2c3b54f337808e82e095030d9c41aba494f717dd7d17aa65d81c894dc401e655",
+    "bytes": 3996
+  }
+}

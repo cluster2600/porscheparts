@@ -1,0 +1,68 @@
+{
+  "original_record_sha256": "df971b65ca43cb9832f32b69d5983149f8c72ad0a05e1614dffc0c6f6a1a7f7d",
+  "representation": "whitelist_projection",
+  "projection_scope": "Complete scalar last-checkpoint values except private interpreter path. The retained status running is a stale on-disk checkpoint; root verified the process stopped. No completed volume audits are implied.",
+  "checkpoint": {
+    "status": "running",
+    "stage": "generating_and_standard_optimizing_HXT",
+    "options": {
+      "General.NumThreads": 2,
+      "Mesh.MaxNumThreads3D": 2,
+      "Mesh.Algorithm3D": 10,
+      "Mesh.MeshOnlyEmpty": 1,
+      "Mesh.Renumber": 0,
+      "Mesh.ElementOrder": 1,
+      "Mesh.Optimize": 1,
+      "Mesh.OptimizeNetgen": 0,
+      "Mesh.MeshSizeExtendFromBoundary": 0,
+      "Mesh.RandomSeed": 1,
+      "Mesh.Binary": 1,
+      "Mesh.SaveAll": 1,
+      "Mesh.MshFileVersion": 4.1
+    },
+    "qualification": {
+      "geometric_volume_gate_passed": false,
+      "mesh_convergence_established": false,
+      "thermal_resolution_established": false,
+      "engineering_accepted": false,
+      "thermal_performance_validated": false,
+      "strength_validated": false,
+      "manufacturing_authorized": false
+    },
+    "surface": {
+      "unique_edges": 2707059,
+      "boundary_edges": 0,
+      "nonmanifold_edges": 0,
+      "orientation_imbalanced_edges": 0,
+      "vertices": 902145,
+      "triangles": 1804706,
+      "euler_characteristic": -208,
+      "signed_volume_mm3": 915458.4757034747,
+      "points_sha256": "b63da8ee7f26a42bb397ca5b5ad270561bdba5e4aa1cf26a618c4f216d7f08f5",
+      "faces_sha256": "0aab60889a9ecdebcba17ddbfa42c37f10e93588648228dc4680103c287fc6b4"
+    },
+    "candidate_sha256": "7f0d96988684f7d36dab8f65c5b63b1919c2c2121768cf9caec466867a5c2b43",
+    "candidate_volume_reference_mm3": 915458.4757034747,
+    "volume_relative_bookkeeping_bound": 1e-06,
+    "bookkeeping_bound_is_manufacturing_tolerance": false,
+    "standard_optimization_threshold": 0.3,
+    "surface_import": {
+      "exact_source_coordinates": true,
+      "exact_source_oriented_connectivity": true,
+      "original_surface_nodes": 902145,
+      "original_surface_triangles": 1804706,
+      "source_element_tags_preserved": true,
+      "source_tagged_vertex_order_preserved": true,
+      "comparison": "exact_tagged_index_order"
+    },
+    "runtime": {
+      "python": "3.10.11 (v3.10.11:7d4cc5aa85, Apr  4 2023, 19:05:19) [Clang 13.0.0 (clang-1300.0.29.30)]",
+      "executable_sha256": "72956ad35cff7691dfed9e04c9593de825ffd5b2fa7e8bc9ae96ce9a1af65621",
+      "numpy": "2.0.2",
+      "machine": "arm64",
+      "gmsh": "4.15.2",
+      "gmsh_module_sha256": "f4b0935cebde899750293d87a643090e5ea33c9b18d249267f507db68a0e01c3",
+      "libgmsh_sha256": "def0f5c10988a986e5e879b3db9669d8fe016a81e2d994bbaf2b8497c6b8a58a"
+    }
+  }
+}

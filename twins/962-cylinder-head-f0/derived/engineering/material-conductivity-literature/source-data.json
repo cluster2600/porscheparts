@@ -1,0 +1,129 @@
+{
+  "schema_version": "1.0.0",
+  "status": "bounded_primary_source_followup_not_a_solver_card",
+  "access_date": "2026-10-17",
+  "search_budget": {
+    "maximum_targeted_queries": 4,
+    "used": 4,
+    "queries": [
+      "\"Aheadd CP1\" \"thermal conductivity\" temperature modulus expansion",
+      "\"Aheadd HT1\" \"thermal\" \"modulus\" temperature",
+      "\"AlSi10Mg\" \"thermal conductivity\" \"temperature\" \"laser flash\" powder bed fusion",
+      "\"AlSi10Mg\" \"temperature-dependent\" \"thermal conductivity\" experimental LPBF"
+    ]
+  },
+  "repository_inputs": {
+    "twins/962-cylinder-head-f0/ENGINEERING_MATERIALS.md": "20f79be539e84d2ee5c0180df95a801d6e6a536c469d0ed90fe4bf5f355a08da",
+    "twins/962-cylinder-head-f0/engineering/materials.json": "ac960911794d23e12e05e07aa74d4db85a7d97d62faa2c0bf2df3e8c98550d1d"
+  },
+  "separate_recipe": {
+    "id": "alsi10mg-willkomm2021-stress-relief240c6h",
+    "alloy": "AlSi10Mg",
+    "process": "LPBF",
+    "coupon_machine": null,
+    "layer_thickness_um": null,
+    "coupon_plate_preheat_C": null,
+    "full_scan_recipe": null,
+    "heat_treatment": {
+      "ramp_to_C": 240,
+      "ramp_duration_h": 1,
+      "hold_h": 6,
+      "oven_cool_to_C": 100,
+      "subsequent_cooling": "ambient air to room temperature"
+    },
+    "measurement_method": "laser flash; Table 2",
+    "temperature_C": [
+      23,
+      150,
+      200,
+      250
+    ],
+    "conductivity_unit": "W/(m K)",
+    "k_Z_mean": [
+      162.9,
+      163.6,
+      165.4,
+      160.5
+    ],
+    "k_Z_standard_deviation": [
+      7.2,
+      6.3,
+      6.1,
+      3.5
+    ],
+    "k_XY_mean": [
+      154.6,
+      154.4,
+      154.9,
+      152.2
+    ],
+    "k_XY_standard_deviation": [
+      7.7,
+      2.1,
+      2.9,
+      1.2
+    ],
+    "proposed_interpolation": {
+      "basis": "explicit numerical assumption, not a published continuous law",
+      "method": "piecewise linear on each measured directional column",
+      "range_C": [
+        23,
+        250
+      ],
+      "extrapolation_allowed": false,
+      "transverse_isotropy_proven": false,
+      "build_axis_rotation": null
+    },
+    "youngs_modulus_vs_temperature": null,
+    "poissons_ratio_vs_temperature": null,
+    "thermal_expansion_vs_temperature": null,
+    "thermal_strain_reference_temperature": null,
+    "density_kg_m3": null,
+    "plasticity": null,
+    "fatigue": null,
+    "creep": null
+  },
+  "sources": [
+    {
+      "id": "willkomm2021",
+      "kind": "original_research",
+      "title": "Design and manufacturing of a cylinder head by laser powder bed fusion",
+      "year": 2021,
+      "doi": "10.1088/1757-899X/1097/1/012021",
+      "url": "https://publications.rwth-aachen.de/record/822468/files/822468.pdf",
+      "locators": {
+        "recipe": "article printed p. 5, section 4; PDF page 6 (one-based)",
+        "thermal_table": "article printed p. 6, Table 2; PDF page 7 (one-based)",
+        "component_context_not_coupon_identity": "article printed p. 8, section 6; PDF page 9 (one-based)"
+      },
+      "licence": "CC BY 3.0",
+      "byte_sha256": null,
+      "byte_hash_scope": "primary PDF read through web parser; no downloaded byte capture or new byte-authentication claimed"
+    },
+    {
+      "id": "constellium_cp1_nov2021",
+      "kind": "manufacturer",
+      "url": "https://assets.foleon.com/eu-central-1/de-uploads-7e3kk3/41170/product_sheet_aheadd_cp1_nov_2021docx.e81a7d073ebf.pdf",
+      "document_date": "November 2021",
+      "locator": "PDF p. 2",
+      "byte_sha256": null,
+      "limitation": "single conductivity, explicit conductivity test temperature absent; no complete thermal/elastic temperature law"
+    },
+    {
+      "id": "constellium_ht1",
+      "kind": "manufacturer",
+      "url": "https://assets.foleon.com/eu-central-1/de-uploads-7e3kk3/41170/aheadd_ht1_fact_sheet_230620.ccac52e244fb.pdf",
+      "document_date": null,
+      "locator": "PDF p. 1",
+      "byte_sha256": null,
+      "limitation": "treatments #1/#2 distinct; schedules absent; hot tensile/yield data do not specify thermal/elastic temperature laws"
+    }
+  ],
+  "qualification": {
+    "head_mesh_admitted": false,
+    "material_selected": false,
+    "thermoelastic_card_complete": false,
+    "manufacturing_authorized": false,
+    "head_physics_executed_by_this_followup": false
+  }
+}

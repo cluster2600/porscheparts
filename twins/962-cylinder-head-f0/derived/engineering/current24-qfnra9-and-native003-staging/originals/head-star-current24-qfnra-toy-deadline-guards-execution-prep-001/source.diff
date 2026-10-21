@@ -1,0 +1,91 @@
+--- work/962-engineering/head-star-current24-coupled-qfnra-guards-execution-prep-001/run_root_once.py
++++ work/962-engineering/head-star-current24-qfnra-toy-deadline-guards-execution-prep-001/run_root_once.py
+@@ -1,11 +1,11 @@
+-"""HELD ONE14-test pure QF_NRA synthetic owner; separate root admission required."""
++"""HELD ONE4-test fake-only toy deadline guard owner; separate root admission required."""
+ from pathlib import Path
+ import hashlib,json,os,re,resource,signal,subprocess,sys,time,traceback
+ started=time.monotonic();controller_stop_requests=[]
+ R=Path('/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993')
+ E=R/'work/962-engineering'
+-X=E/'head-star-current24-coupled-qfnra-guards-execution-prep-001'
+-D=E/'head-star-current24-coupled-qfnra-guards-root-execution-001'
++X=E/'head-star-current24-qfnra-toy-deadline-guards-execution-prep-001'
++D=E/'head-star-current24-qfnra-toy-deadline-guards-root-execution-001'
+ CAP=32*1024**2
+ def rec(p):
+  h=hashlib.sha256();size=0
+@@ -96,16 +96,17 @@
+ A=D/'admission.json';assert rec(A)['sha256']==sys.argv[1]
+ auth=json.loads(A.read_text());actual_path=X/'actual-contract.json';preflight_path=E/'head-star-current24-edge-removal-guards-execution-prep-001/runtime-preflight.json'
+ actual=json.loads(actual_path.read_text());preflight=json.loads(preflight_path.read_text())
+-assert auth['schema']=='962-current24-qfnra14-root-synthetic-admission/v1'
++assert auth['schema']=='962-current24-toy-deadline4-root-synthetic-admission/v1'
+ assert auth['actual']==rec(actual_path) and auth['controller']==rec(Path(__file__)) and auth['runtime_preflight']==rec(preflight_path)
+ assert auth['guard_source_review_complete'] is True
+-assert auth['synthetic_guard_execution_authorized'] is True and type(auth['invocations']) is int and auth['invocations']==1 and type(auth['expected_tests']) is int and auth['expected_tests']==14
++assert auth['synthetic_guard_execution_authorized'] is True and type(auth['invocations']) is int and auth['invocations']==1 and type(auth['expected_tests']) is int and auth['expected_tests']==4
+ assert auth['automatic_retry'] is False and auth['controls']==actual['controls']
+-assert all(auth[k] is False for k in ['real_head_data_execution_authorized','real_measurement_data_execution_authorized','native_execution_authorized','geometry_write_authorized','physical_acceptance','real_sampler_main_execution_authorized','native_retry_authorized','real_solver_execution_authorized','real_coordinate_coefficient_execution_authorized','real_model_or_word_execution_authorized','real_word_validator_execution_authorized'])
+-assert actual['schema']=='962-current24-qfnra14-held-synthetic-actual/v1'
++assert auth['guard_scope']==actual['guard_scope']=='pinned_fake_extracted_fragments_only'
++assert all(auth[k] is False for k in ['real_head_data_execution_authorized','real_measurement_data_execution_authorized','native_execution_authorized','geometry_write_authorized','physical_acceptance','real_sampler_main_execution_authorized','native_retry_authorized','real_solver_execution_authorized','real_coordinate_coefficient_execution_authorized','real_model_or_word_execution_authorized','real_word_validator_execution_authorized','full_transport_helper_execution_authorized','solver_process_execution_authorized','installed_solver_runtime_query_authorized'])
++assert actual['schema']=='962-current24-toy-deadline4-held-synthetic-actual/v1'
+ assert actual['controller']==rec(Path(__file__)) and actual['runtime_preflight']==rec(preflight_path)
+-assert all(actual[k] is False for k in ['synthetic_execution_authorized','real_head_data_execution_authorized','real_measurement_data_execution_authorized','native_execution_authorized','geometry_write_authorized','physical_acceptance','real_sampler_main_execution_authorized','native_retry_authorized','automatic_retry','real_solver_execution_authorized','real_coordinate_coefficient_execution_authorized','real_model_or_word_execution_authorized','real_word_validator_execution_authorized'])
+-assert type(actual['expected_tests']) is int and actual['expected_tests']==14 and len(actual['test_methods'])==14 and actual['test_methods']==sorted(set(actual['test_methods']))
++assert all(actual[k] is False for k in ['synthetic_execution_authorized','real_head_data_execution_authorized','real_measurement_data_execution_authorized','native_execution_authorized','geometry_write_authorized','physical_acceptance','real_sampler_main_execution_authorized','native_retry_authorized','automatic_retry','real_solver_execution_authorized','real_coordinate_coefficient_execution_authorized','real_model_or_word_execution_authorized','real_word_validator_execution_authorized','full_transport_helper_execution_authorized','solver_process_execution_authorized','installed_solver_runtime_query_authorized'])
++assert type(actual['expected_tests']) is int and actual['expected_tests']==4 and len(actual['test_methods'])==4 and actual['test_methods']==sorted(set(actual['test_methods']))
+ assert actual['argv']==[preflight['observed']['resolved_executable'],'-B','-I','-S',str(R/actual['fixture_source']['path'])]
+ assert actual['cwd']==str(D) and actual['fixture_source']==rec(R/actual['fixture_source']['path'])
+ assert actual['selected_interpreter']==preflight['selected_interpreter']
+@@ -133,8 +134,8 @@
+ os_before=subprocess.run(['/usr/bin/sw_vers','-buildVersion'],capture_output=True,text=True,check=True,timeout=5).stdout.strip()
+ assert os_before==preflight['OS_build']
+ assert set(p.name for p in D.iterdir())=={'admission.json'}, 'Fresh owned directory with admission only required'
+-(D/'tmp').mkdir();(D/'run-started.json').write_text(json.dumps(dict(actual=rec(actual_path),admission=rec(A),expected_tests=14))+'\n')
+-receipt=dict(schema='962-current24-qfnra14-once-synthetic-result/v1',actual=rec(actual_path),admission=rec(A),controller=rec(Path(__file__)),runtime_preflight=rec(preflight_path),before=before,runtime_paths_before=links_before,OS_build_before=os_before,expected_tests=14,resource_samples=[],resource_observation_exit_races=[],process_started=False,returncode=None,termination=None,all14_tests_completed=False,earlier_flip_fixture_files_executed=False,real_head_coordinate_field_or_scientific_body_read=False,source_or_descriptor_metadata_read=True,native_executed=False,physical_acceptance=False,automatic_retry=False)
++(D/'tmp').mkdir();(D/'run-started.json').write_text(json.dumps(dict(actual=rec(actual_path),admission=rec(A),expected_tests=4))+'\n')
++receipt=dict(schema='962-current24-toy-deadline4-once-synthetic-result/v1',actual=rec(actual_path),admission=rec(A),controller=rec(Path(__file__)),runtime_preflight=rec(preflight_path),before=before,runtime_paths_before=links_before,OS_build_before=os_before,expected_tests=4,resource_samples=[],resource_observation_exit_races=[],process_started=False,returncode=None,termination=None,all4_tests_completed=False,earlier_flip_fixture_files_executed=False,real_head_coordinate_field_or_scientific_body_read=False,source_or_descriptor_metadata_read=True,full_transport_helper_executed=False,Z3_executed=False,guard_scope=actual['guard_scope'],native_executed=False,physical_acceptance=False,automatic_retry=False)
+ proc=None;failure=None
+ old_TERM=signal.signal(signal.SIGTERM,record_controller_stop);old_INT=signal.signal(signal.SIGINT,record_controller_stop)
+ try:
+@@ -161,12 +162,12 @@
+  if output_size(D)>CAP:raise ValueError('32MiB completion output cap')
+  if (D/'tests.stdout').read_bytes()!=b'':raise ValueError('Unexpected synthetic stdout; preserve all output')
+  text=(D/'tests.stderr').read_bytes().decode('utf-8')
+- names=re.findall(r'^([A-Za-z0-9_]+) \(__main__\.QFNRASyntheticGuards\) \.\.\. ok$',text,re.M)
++ names=re.findall(r'^([A-Za-z0-9_]+) \(__main__\.ToyDeadlineExpectations\) \.\.\. ok$',text,re.M)
+  counts=re.findall(r'^Ran ([0-9]+) tests in ([0-9.]+)s$',text,re.M)
+  receipt['unittest_test_names']=names;receipt['unittest_count_lines']=counts
+- if names!=actual['test_methods'] or len(counts)!=1 or counts[0][0]!='14' or not text.endswith('\nOK\n'):
+-  raise ValueError('Complete14 named unittest successes and finalOK required')
+- receipt['all14_tests_completed']=True
++ if names!=actual['test_methods'] or len(counts)!=1 or counts[0][0]!='4' or not text.endswith('\nOK\n'):
++  raise ValueError('Complete4 named unittest successes and finalOK required')
++ receipt['all4_tests_completed']=True
+ except Exception:
+  failure=traceback.format_exc()
+  if proc is not None:
+@@ -192,18 +193,18 @@
+  receipt['stop_scope']='Requests handled before restoring handlers only; no all-process-lifetime signal claim.'
+  if controller_stop_requests and failure is None:failure='Controller stop requested before handler cutoff; refuse completion'
+  receipt['failure']=failure
+- receipt['all14_tests_completed']=bool(receipt['all14_tests_completed'] and failure is None and not controller_stop_requests and proc is not None and proc.returncode==0 and receipt.get('owned_group_absent') is True and receipt['all_bound_files_unchanged'] and receipt['all_runtime_paths_unchanged'] and receipt['OS_build_unchanged'])
++ receipt['all4_tests_completed']=bool(receipt['all4_tests_completed'] and failure is None and not controller_stop_requests and proc is not None and proc.returncode==0 and receipt.get('owned_group_absent') is True and receipt['all_bound_files_unchanged'] and receipt['all_runtime_paths_unchanged'] and receipt['OS_build_unchanged'])
+  receipt['peak_sampled_owned_RSS_bytes']=max((x['RSS_bytes'] for x in receipt['resource_samples']),default=None)
+  receipt['RSS_scope']='Sampled only, not hard quota/truepeak; numeric zero retained, missing observations never invented.'
+  receipt['owned_outputs']={n:rec(D/n) for n in ['tests.stdout','tests.stderr','run-started.json'] if (D/n).exists()}
+  receipt['owned_output_bytes_before_receipt']=output_size(D)
+  encoded=(json.dumps(receipt,indent=2)+'\n').encode()
+  if receipt['owned_output_bytes_before_receipt']+len(encoded)>CAP:
+-  receipt['all14_tests_completed']=False;receipt['failure']='32MiB complete receipt/output cap exceeded; incomplete'
++  receipt['all4_tests_completed']=False;receipt['failure']='32MiB complete receipt/output cap exceeded; incomplete'
+   encoded=(json.dumps(receipt,indent=2)+'\n').encode()
+  (D/'receipt.json').write_bytes(encoded)
+ final_bytes=output_size(D);final_elapsed=time.monotonic()-started
+-if not receipt['all14_tests_completed'] or controller_stop_requests or final_bytes>CAP or final_elapsed>=60:
++if not receipt['all4_tests_completed'] or controller_stop_requests or final_bytes>CAP or final_elapsed>=60:
+  print('Final whole-time/inclusive-byte/stop/completion refusal; prefinal receipt is not acceptance.',file=sys.stderr,flush=True)
+  raise SystemExit(2)
+ raise SystemExit(0)

@@ -1,0 +1,87 @@
+{
+  "cube_initial_path_fixture_error": {
+    "original_record_sha256": "f1bd073d5b26803ce4a0c3ac05c2855eabf3939e78b4041ab04d94d7b37eeda2",
+    "schema": "962-importedcube-stdlib-tests/v1",
+    "returncode": 1,
+    "elapsed_seconds": 0.2755494168959558,
+    "methods": 4,
+    "log_sha256": "065632ae55e132d90449428066eed446ecae96dd1e4965dbdafb6dfed0ce8fa9",
+    "held_sha256": "aea8a29aabae6a4c5e2989aec27617fbe6fcd3720b9d704d7d237526a37cf66b",
+    "all_source_pins_unchanged": true,
+    "actual_solver_or_subprocess_called_by_tests": false,
+    "process_cleanup_was_mocked": true,
+    "source_roles_sha256": {
+      "run_cube.py": "65bdce7e329f584c69e3eff1b18205b143811b6cc3d5c354df1d7dd2bb877b31",
+      "assess_cube.py": "92d22c9bbde6b2e081c4b006c29b18e31219fe0e5d39dcc7aae94191bb1097bb",
+      "test_cube.py": "8d706a1582a0784a6f8524b9b689c1db62a39bedf4fdff3de23aa30e831b9fbd",
+      "imported-cube.i": "bc5ba390e2c68205ea44ca78a305665f6ea2f669a9d98c4fac91be1f8d890376",
+      "imported-cube.msh": "2100219cbdb78cb6a493ecad70a9c0c7c4fbc13e456117847302231ba7e73e3f",
+      "cube-reference.json": "74954f991ee51bfc9b6ed3c11b4fe2e72667023148c7401a358c37af35db2645",
+      "old-runtime-contract.json": "1783ad8397a0d0cbc892ad129487db7d3b983483903682d5375f94036a4c8978"
+    }
+  },
+  "cube_corrected_path_fixture": {
+    "original_record_sha256": "59e76d7bc3da508e90ab8865c39090d729893cc2dace2fb8bc2726482f1be28f",
+    "schema": "962-importedcube-stdlib-tests-successor/v1",
+    "returncode": 0,
+    "elapsed_seconds": 0.23380587506107986,
+    "methods": 4,
+    "log_sha256": "5430fb5ac15504280e3f3512ffcd818774a74ccfb266d5c83778e7ba07ca2f08",
+    "test_source_sha256": "d15616441928fac50780a5299fa15aaeb6dd7c1da3fc228c712f4baeb022b36f",
+    "source_change": "Only root=root.resolve() in mock fixture; production controller/assessor unchanged",
+    "run_cube_sha256": "65bdce7e329f584c69e3eff1b18205b143811b6cc3d5c354df1d7dd2bb877b31",
+    "assess_cube_sha256": "92d22c9bbde6b2e081c4b006c29b18e31219fe0e5d39dcc7aae94191bb1097bb",
+    "old_failed_test_receipt_sha256": "f1bd073d5b26803ce4a0c3ac05c2855eabf3939e78b4041ab04d94d7b37eeda2",
+    "actual_solver_or_subprocess_called_by_tests": false,
+    "process_cleanup_was_mocked": true
+  },
+  "adapter_initial_missing_EndElements": {
+    "original_record_sha256": "e310849f88db2220d0125b5eb4e081b4cef49930c7acab68d59b142053056d5e",
+    "schema": "962-cube-pure-integer-tag-adapter-tests/v1",
+    "returncode": 1,
+    "elapsed_seconds": 0.16571637499146163,
+    "methods": 2,
+    "source_sha256": "f23b8a3c55d874332fe87e2fb468426adedc1791330a0623a5a7bcb0a1089f7a",
+    "test_sha256": "47dcae91a7509c7a783beb3fef98e03e71a730e25237c74855dc67c358eafa3b",
+    "log_sha256": "cf59f9523f9fa6a7d1c39990d0df68c7d44e57e981021a52fe49430c22172de7",
+    "all14_inputs_unchanged": true,
+    "actual_mesh_adapter_Gmsh_or_solver_execution": false
+  },
+  "adapter_corrected_literal": {
+    "original_record_sha256": "e81b4e00db9a7d334bdbea5700e3ddd5432d1cf2bff0854b079c0fc92823db86",
+    "schema": "962-cube-pure-integer-tag-adapter-tests-successor/v1",
+    "returncode": 0,
+    "elapsed_seconds": 0.08610383421182632,
+    "methods": 2,
+    "source_sha256": "f23b8a3c55d874332fe87e2fb468426adedc1791330a0623a5a7bcb0a1089f7a",
+    "old_test_sha256": "47dcae91a7509c7a783beb3fef98e03e71a730e25237c74855dc67c358eafa3b",
+    "successor_test_sha256": "73e73a1d3d9a54a9a7d936c54b58574ab47fb6c16ffc8c820bdc9a1b7e143e4f",
+    "only_test_change": "Append missing $EndElements sentinel to fabricated fixture before returning; adapter unchanged",
+    "old_failed_receipt_sha256": "e310849f88db2220d0125b5eb4e081b4cef49930c7acab68d59b142053056d5e",
+    "log_sha256": "b2b80d42886501ad7ca0f83a44b460a7aa9bc20eeb00256e77863e12de78e8c8",
+    "actual_mesh_adapter_Gmsh_or_solver_execution": false
+  },
+  "Exodus_comparator_pure_tests": {
+    "original_record_sha256": "4d155a2e952b62e481173d1da35244460c8dcf08951710c4a7e2ec080bc200cb",
+    "schema": "962-cube-imported-array-comparator-tiny-tests/v1",
+    "returncode": 0,
+    "elapsed_seconds": 0.104889958165586,
+    "methods": 3,
+    "test_sha256": "220f075820b5aefbc2a585440a282c16d16b49e5d915f8bec1352b3be9532bb3",
+    "source_sha256": "bf19080b964305c9488bce4309bf7235656fbaf03715b07f684c3d89962c80d4",
+    "log_sha256": "70507ff4528cc634646e371d95ecb494337be4b123ba50c277ee6687df66e93c",
+    "SciPy_import_native_solver_or_actual_Exodus_array_read": false
+  },
+  "corrected_Newton_sign_tests": {
+    "original_record_sha256": "2ee5ee1e4576b71bc26a3a57bc51e162c3d249e5a23e1fa3ba2c41b6c94122c3",
+    "schema": "962-Newton-sign-successor-tiny-tests/v1",
+    "returncode": 0,
+    "elapsed_seconds": 0.23941845912486315,
+    "methods": 4,
+    "source_sha256": "6e7733363f0564b777762ac2906f4ac6b8fb43e7bb1fb4d7dd723ac3a95d0898",
+    "test_sha256": "840d2cc0d86ff86a223636cc316f309275dee7416cad5e7a231ca068f0d8efd6",
+    "log_sha256": "9cf2748a536e617e44ef7f5587576c67cc9b7676c8eb9a24b2e01a8921faa3e9",
+    "old_opposite_sign_convention_explicitly_refused": true,
+    "actual_MOOSE_or_saved_output_assessment": false
+  }
+}

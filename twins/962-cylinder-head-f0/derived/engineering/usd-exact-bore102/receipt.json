@@ -1,0 +1,163 @@
+{
+  "schema_version": "1.0.0",
+  "status": "source_exact_geometry_preparation_accepted_no_physical_qualification",
+  "scope": "Bore102 SOLID only. Same separately declared OpenUSD source-authoring route and unchanged strict gates as reviewed bore95; not the rejected vendor CAD conversion.",
+  "checked_on": "2026-10-16",
+  "source": {
+    "artifact": "original inspected bore102 solid STL",
+    "sha256": "a4ac91026a786e0fd7cb22173005598c01025d6cc6c49869e79fcb63ad0b9905",
+    "triangles": 1819798,
+    "coordinate_unit": "millimeter per existing generator/report; STL itself is unitless",
+    "unchanged": true
+  },
+  "intermediate": {
+    "artifact": "solid-exact.usda",
+    "sha256": "2738258bc9bb70c7c94943176f84695d4bd81004801e90d17bf651ddfd6b5d47",
+    "bytes": 133152233,
+    "unchanged": true
+  },
+  "artifact": {
+    "name": "solid-exact.usdc",
+    "sha256": "3777fd570e61d83cb45ad070a8e737399cb55fbdd4b9898cebbd4a1d64cb486b",
+    "bytes": 17592545,
+    "local_copy_hash_readback_verified": true,
+    "native_output_hash_and_readonly_semantics_verified": true,
+    "raw_file_published_in_this_capsule": false
+  },
+  "frozen_contract_sha256": "75c1faab25325fe9e9fa840e0147febc16ae6a681f3a0be8cbbcf2ce58dbadd7",
+  "native_input_contract_sha256": "7ab65ae2a43c8d47caa7378cc0e47a35dd5e0bb1904ebda0ae798be6b9c9592d",
+  "route": {
+    "source_reader": "existing mesh_head.read_binary_stl with exact indexed triangle reconstruction",
+    "coordinate_serialization": "Original float32 coordinate values written with9significantdecimaldigits, then parsed/serialized by native OpenUSD.",
+    "no_geometry_repair": true,
+    "vendor_converter_rerun": false,
+    "rejected_vendor_derivative_preserved": true,
+    "reader_local_runtime": {
+      "python": "3.10.11 (v3.10.11:7d4cc5aa85, Apr  4 2023, 19:05:19) [Clang 13.0.0 (clang-1300.0.29.30)]",
+      "architecture": "arm64",
+      "NumPy": "2.2.6"
+    },
+    "reader_interpreter_sha256": "72956ad35cff7691dfed9e04c9593de825ffd5b2fa7e8bc9ae96ce9a1af65621",
+    "native_CPython": "3.12.13",
+    "native_interpreter_sha256": "1e4461092175d186c4bcdb19ee2849a45d6e4d8d1f6a871e45f63418d52a4e35",
+    "native_OpenUSD": [
+      0,
+      25,
+      11
+    ],
+    "runtime_package": "usd-convert-cad0.2.0 used only for its existing OpenUSD runtime, not its CAD conversion operation"
+  },
+  "strict_geometry": {
+    "source_triangles": 1819798,
+    "USD_triangles": 1819798,
+    "indexed_points": 909691,
+    "source_and_USD_oriented_triangle_digest": "94caaaea073cde6e8f81fbefcf3c76ba0c9d95e07b6ca8fb3fbb8fcd7c91998f",
+    "exact_triangle_multiset_equal": true,
+    "matched_triangle_multiplicity": 1819798,
+    "missing_triangles": 0,
+    "extra_triangles": 0,
+    "maximum_absolute_bound_delta_mm": 0.0,
+    "bounds_mm": [
+      [
+        -76.0,
+        -75.0,
+        -0.0005928563768975437
+      ],
+      [
+        76.0,
+        75.0,
+        90.00059509277344
+      ]
+    ],
+    "meters_per_unit": 0.001,
+    "up_axis": "Z",
+    "default_prim": "/Head",
+    "world_transform": "identity4x4",
+    "authored_transforms": [],
+    "subdivision_scheme": "none",
+    "orientation": "rightHanded",
+    "policy": "Exact oriented triangle multiset equality at original STL IEEEfloat32 precision after world-unit conversion; signed-zero normalized, cyclic order allowed, winding preserved. No fitted transform or tolerance relaxation."
+  },
+  "official_minimum": {
+    "passed": true,
+    "checks": 8,
+    "errors": [],
+    "genuine_openusd_component_manifest_sha256": "dd8a107cb2733b39c4c319b365631472603075ae5eb4bb4dcdc87c9ac05d798c",
+    "unchanged_validator_source_sha256": "27814e60fee873212745f89cfe3703964dc62a6f730247b8c5d7e686224cd43f",
+    "broader_validation_target": "Still blocked by missing Asset Validator/SimReady dependencies; minimum passage does not establish full validation.",
+    "warning_explanation": "The reference reports multiple used layers because OpenUSD adds an anonymous runtime session layer; no nonempty external asset dependency is authored."
+  },
+  "privacy": {
+    "authored_private_path_findings": 0,
+    "nonempty_external_asset_references": [],
+    "physical_schemas": [],
+    "physical_attributes": [],
+    "visual_materials": [],
+    "custom_layer_data": {
+      "authoringRoute": "exact-source-mesh",
+      "sourceSTLSHA256": "a4ac91026a786e0fd7cb22173005598c01025d6cc6c49869e79fcb63ad0b9905"
+    },
+    "file_modified_or_stripped": false
+  },
+  "native_limits": {
+    "cpu_affinity": [
+      0,
+      1
+    ],
+    "address_space_bytes": 6442450944,
+    "wall_seconds_each": 90
+  },
+  "native_execution_seconds": {
+    "native-save-execution": 1.7583264529239386,
+    "strict-audit-execution": 36.44066287600435,
+    "minimum-execution": 0.30538424802944064
+  },
+  "focused_regressions": {
+    "passed": 4,
+    "cases": [
+      "near-distinct float32 values",
+      "orientation and duplicate face multiplicity",
+      "existing output and symlink preservation for both source/native writer entrypoints",
+      "invalid source rejected without output"
+    ],
+    "test_source_sha256": "0be0734d0d708943b157c844ce1d724f63ae76fd92702cc0ddcd3670ecbad008",
+    "log_sha256": "1577469c5ffd912761311f0d29c62a31ea516c6378db865fd7e0d98ff3c31bfe"
+  },
+  "evidence_sha256": {
+    "author-report.json": "46a4c24d5dfc855b48a2c6a7674e8363d5bac21e6aca8bf34aece3bcac525df3",
+    "local-author-execution.json": "6139f78943184df0c63158893c285257741a9a5e119a4959b896d6a94a9b0ba5",
+    "output-semantics.json": "b654e22b9fcc72a30421d28951b7961d32b7231e231694cd0690b1f900777327",
+    "output-semantics-execution.json": "2c8ae4c89c07001f587feaaebc7972e175b86327afca3c0dceb217bc1037abc6",
+    "local-usdc-copy-receipt.json": "050ee82942ec93de279b1e1107b5a4b6e3dbec7bf9f65d843ec4e5abccf58e1a",
+    "first95-review-clearance.json": "195700776ae46a4e454732e466245cb3a5cf6a8126ea408077ee98de9159a3f7",
+    "native/execution-summary.json": "c50150642e46d57facba2a81ebf4c5ae30e0418911e0071df36e293fa609b673",
+    "native/first95-review-clearance.json": "195700776ae46a4e454732e466245cb3a5cf6a8126ea408077ee98de9159a3f7",
+    "native/frozen-contract.json": "75c1faab25325fe9e9fa840e0147febc16ae6a681f3a0be8cbbcf2ce58dbadd7",
+    "native/geometry-audit.json": "3959b77875ae60017031e3aa40193e6467d369a0f1a16b2a155acf083eada742",
+    "native/minimum-execution.json": "6aa99f9661d96e51e0d553cd17e3b55b3e7b97afaaf4d1fe70ac1a8f49cb9745",
+    "native/minimum.json": "543533a5aa886d5b9a598b325fadfd67ad773383f7738460ea72b3a90aad41dc",
+    "native/minimum.md": "66fa30e5f5657ca72d1b20a9dbef803e9573ca5a36fe732791d23da988647990",
+    "native/native-artifact-binding.json": "af511d634c221393215ff60dd35820abb7ebb51d90e528232b33afb66850e386",
+    "native/native-input-contract.json": "7ab65ae2a43c8d47caa7378cc0e47a35dd5e0bb1904ebda0ae798be6b9c9592d",
+    "native/native-save-execution.json": "a88fb65a8c380de09bbfac5c3a9c1ddead2be88d03a4fd8aeb08597be9c28060",
+    "native/native-save-report.json": "7c1a09a17f1d9527fc91f29c2637c5055d276d977a1a2d406c8a8855c7c08f78",
+    "native/strict-audit-execution.json": "56bf17f1475db39fa6ed8a18be8ae09ea4bb32d5870933d696bd7ed97415db75",
+    "source-snapshots/audit_exact_geometry.py": "abaa96481b8894f51b533fab4de6a5d0f5656dfa4b00d4f3179f8696d09332ac",
+    "source-snapshots/author_exact_usd.py": "c9331869aa5017b6e070c6dcd95344fccf807aa87c18138637631410f6a8902d",
+    "source-snapshots/mesh_head.py": "69c8012e99057e384d44d6971d41f0e2cc7197a978120a7c566b0ad5a6477da5"
+  },
+  "transport_capture_sha256": "c6e0fe0d2323e1fcc98829c84035ef0336ccfea5215a2f83324e4ca12cae961b",
+  "transport_captured_artifacts_verified": 12,
+  "qualification": {
+    "source_geometry_preservation_accepted": true,
+    "historical_fidelity_validated": false,
+    "head_simulation_executed": false,
+    "material_calibrated": false,
+    "solver_fields_imported": false,
+    "full_SimReady_validation_passed": false,
+    "rendering_checked": false,
+    "manufacturing_authorized": false
+  },
+  "rights": "Safe project-source/numerical projection only; no private host/path/command, third-party runtime or rejected vendor file is published.",
+  "first95_review_clearance_sha256": "195700776ae46a4e454732e466245cb3a5cf6a8126ea408077ee98de9159a3f7"
+}

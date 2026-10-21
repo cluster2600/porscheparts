@@ -1,0 +1,30 @@
+--- work/962-engineering/cp1-oneway-cooling-release-linear-native-storage-audit-prep-002/check_saved.py
++++ work/962-engineering/cp1-oneway-cooling-release-linear-native-storage-audit-001/check_saved.py
+@@ -18,11 +18,11 @@
+ HERE = Path(__file__).resolve().parent
+ sha = lambda b: hashlib.sha256(b).hexdigest()
+ PIN = {
+-    RUN / 'closed-result.json': None,
+-    OUT / 'native-execution.json': None,
+-    OUT / 'actual-contract.json': None,
+-    E / 'cp1-oneway-cooling-release-linear-native-result-peer-001/review.json': None,
+-    RUN / 'result-peer-acceptance.json': None,
++    RUN / 'closed-result.json': '6d7d6c867bd5d7e289536d5ce25eb0c0288a59dcbb6e878e54b36e0ec8e0e8df',
++    OUT / 'native-execution.json': 'cefbae13f5898e7640d6bde0c0d32d1bd617fc38c506ab8f2cc5b02bea8ecc9a',
++    OUT / 'actual-contract.json': 'e43a9637e4279a255f7ca36d6244dbe11ff6590a2ecadebe05018966e7aa2a74',
++    E / 'cp1-oneway-cooling-release-linear-native-result-peer-001/review.json': 'f85fef66bcf840375d842b1bd4ac9cc786a5be178339b0c69505fd0780b7526b',
++    RUN / 'result-peer-acceptance.json': '82dc754ccd7491279e56d99977855820f00ea5a2fbd1d1386b3647e929c42504',
+     OUT / 'transfer-manifest.json': 'c774e62c67e16c29dc024b8cc8e6641570e316265960e58cd7170827f8cecd06',
+     PREP / 'thermal-input-index.json': '9e4da9faf9a6ccb9a55c66b2c0d9eef44b88d99e09afff69bb4f504b0cfb7aec',
+     PREP / 'thermoelastic-birth.i': 'de5c9ea62050645fb546fc650c01023913478c230011faa5172b76ffb36a4f7c',
+@@ -36,8 +36,8 @@
+     PREP / 'FUNCTION-COUNT-CLARIFICATION-001.json': '8419d1fbbf3638736ac5cfd3d1287342bd787e3c560b95dc9eb9ecb3e930eaf4',
+     PREP / 'GRID-ROLE-AND-READ-SCOPE-CLARIFICATION-001.json': 'b505f5320760ddca2525f3db514948dbdec18c8e5a6396310b5e9b57d1ae4ce9',
+ }
+-EXPECTED_CAPTURE_OUTPUT_COUNT = None
+-EXPECTED_CAPTURE_OUTPUT_BYTES = None
++EXPECTED_CAPTURE_OUTPUT_COUNT = 1122
++EXPECTED_CAPTURE_OUTPUT_BYTES = 423178297
+ 
+ 
+ def raw_file(p):

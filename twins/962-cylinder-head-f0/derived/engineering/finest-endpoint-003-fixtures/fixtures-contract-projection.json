@@ -1,0 +1,58 @@
+{
+  "schema": "962-endpoint003-execution-child/v1",
+  "phase": "fixtures",
+  "root_authorized": true,
+  "root_and_peer_review_complete": true,
+  "image_id": "sha256:57c6b17ed0bd093a61a3d3cecb7563e912caeb3832fd59e8cec2d4d9d4d1e2f8",
+  "automatic_retry": false,
+  "limits": {
+    "cpus": 2,
+    "memory_bytes": 536870912,
+    "swap_bytes": 0,
+    "hard_wall_seconds_each": 60,
+    "tmpfs_bytes": 0,
+    "network": "none"
+  },
+  "scope": "Exactly direct subset-envelope witness and three known references; no head",
+  "held_recipe_sha256": "be112f928a9fa1288ae8f188d96bcdb91ac7b7dfa6750b63f6675648547ecb69",
+  "authorized_UTC": "2026-10-16T21:38:34.260546+00:00",
+  "projection": "Allowlisted original scalars, limits, review values and job labels/expected return codes. Commands, native entrypoints/arguments, mount paths and preparation path omitted; complete original input hashes are in input-binding-projection.json.",
+  "original_sha256": "f5a1dcd70571902c5d1b13345c9a38d451ceabb5d52f846b1b5b7f83a21541a1",
+  "preparation_sha256": "a6b979eb8be44db584c7f7ef1ab7fb1f3f8fb1acdcbda2f6c20ab1ccc04669cc",
+  "reviews": {
+    "root_full_source_test_recipe_review": true,
+    "independent_agent": "historical_reference",
+    "independent_source_recipe_review_clear": true,
+    "independent_actual_compile_review_clear": true,
+    "current_input_pins": 112,
+    "scope": "Exact four synthetic fixture jobs only; no head"
+  },
+  "jobs": [
+    {
+      "label": "subset-envelope-witness003",
+      "expected_returncodes": [
+        0
+      ]
+    },
+    {
+      "label": "common-neighbor-source001",
+      "expected_returncodes": [
+        3
+      ]
+    },
+    {
+      "label": "common-neighbor-source003",
+      "expected_returncodes": [
+        0
+      ]
+    },
+    {
+      "label": "all-fixed-source003",
+      "expected_returncodes": [
+        3
+      ]
+    }
+  ],
+  "compile_summary_sha256": "9a8af4a85b5949e4b076cf0fcd43e7accabc612a8f2b0064fe2a69b1cdc06ac2",
+  "root_actual_compile_review_sha256": "ec956a92ac83958918ac3e7171f4cae456e21742f848675a38535a55845d3e99"
+}

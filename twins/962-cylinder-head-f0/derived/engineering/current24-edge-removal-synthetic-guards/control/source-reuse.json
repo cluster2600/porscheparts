@@ -1,0 +1,161 @@
+{
+  "schema": "962-current24-edge-removal16-control-source-reuse/v1",
+  "status": "HELD_UNRUN",
+  "donor_controller": {
+    "path": "work/962-engineering/head-star-current24-interior-flip-guards-execution-prep-002/run_root_once.py",
+    "sha256": "a995c2110cd356d8ac7e0b66db54869780f3cda2c355e3c457466f69c4a76d34",
+    "bytes": 14258
+  },
+  "controller": {
+    "path": "work/962-engineering/head-star-current24-edge-removal-guards-execution-prep-001/run_root_once.py",
+    "sha256": "77ddf9feb3307c4f9936f215d73179c2226d1233fe5841830a2d53440f3944ee",
+    "bytes": 14304
+  },
+  "donor_actual": {
+    "path": "work/962-engineering/head-star-current24-interior-flip-guards-execution-prep-002/actual-contract.json",
+    "sha256": "abebab614fa607b571f725a7a4697c2077858b092fbd1ec34f0a8350317f6063",
+    "bytes": 15572
+  },
+  "donor_runtime_preflight": {
+    "path": "work/962-engineering/head-star-current24-interior-flip-guards-execution-prep-002/runtime-preflight.json",
+    "sha256": "3b4f731ff16ec475b5de2d567292b25169a7c9c8618d38c1c8cd363d4f8c9169",
+    "bytes": 78434
+  },
+  "copied_runtime_preflight": {
+    "path": "work/962-engineering/head-star-current24-edge-removal-guards-execution-prep-001/runtime-preflight.json",
+    "sha256": "3b4f731ff16ec475b5de2d567292b25169a7c9c8618d38c1c8cd363d4f8c9169",
+    "bytes": 78434
+  },
+  "unchanged_helpers": [
+    {
+      "name": "rec",
+      "text_exact": true,
+      "AST_exact": true,
+      "text_sha256": "1c49fad82b6ce5d2a5432aa22114fa9b0e42eb46d4b57b8df2a0ba2c36d00543"
+    },
+    {
+      "name": "group_exists",
+      "text_exact": true,
+      "AST_exact": true,
+      "text_sha256": "67b74400b8ae03cab400d9360091514f9d295f0a93baa968468544e8b23cd5f3"
+    },
+    {
+      "name": "check",
+      "text_exact": true,
+      "AST_exact": true,
+      "text_sha256": "7aafe9854e4e77c0b84d9232f40d979da358790349d8899b628ffe04418f3b77"
+    },
+    {
+      "name": "output_size",
+      "text_exact": true,
+      "AST_exact": true,
+      "text_sha256": "0a86e778061dd08bb3109046fc15ea968e8bbe94ef7b8e4b02ea95365e320b65"
+    },
+    {
+      "name": "stop_wait",
+      "text_exact": true,
+      "AST_exact": true,
+      "text_sha256": "a7d56d0d5231785caee558ceda897260fd59d43586cf11fc8fea905c46ddb6a8"
+    },
+    {
+      "name": "limits",
+      "text_exact": true,
+      "AST_exact": true,
+      "text_sha256": "7fe128a40ee8e718cdd34812d396d17ae125a6de21a315ee85bd093ac40d2323"
+    },
+    {
+      "name": "sample",
+      "text_exact": true,
+      "AST_exact": true,
+      "text_sha256": "4dd2bd71a1bc26903fefd25f1a577c215475c51dd002bd8b014ead5ca950968f"
+    },
+    {
+      "name": "provider_links",
+      "text_exact": true,
+      "AST_exact": true,
+      "text_sha256": "92d3d35a256f694cd8aa0183e3125c5f7b9dd8de6b8a746f8921644b2d95b940"
+    },
+    {
+      "name": "record_controller_stop",
+      "text_exact": true,
+      "AST_exact": true,
+      "text_sha256": "a003c9f5417a0da6dd023f5dc9db70c657d50c2d8b1c097e33e8b99ac118277d"
+    }
+  ],
+  "exact_literal_replacements": [
+    {
+      "before": "HELD ONE17-test synthetic owner",
+      "after": "HELD ONE16-test edge-removal synthetic owner",
+      "occurrences": 1
+    },
+    {
+      "before": "head-star-current24-interior-flip-guards-execution-prep-002",
+      "after": "head-star-current24-edge-removal-guards-execution-prep-001",
+      "occurrences": 1
+    },
+    {
+      "before": "head-star-current24-interior-flip-guards-root-execution-001",
+      "after": "head-star-current24-edge-removal-guards-root-execution-001",
+      "occurrences": 1
+    },
+    {
+      "before": "962-current24-flip17-",
+      "after": "962-current24-edge-removal16-",
+      "occurrences": 3
+    },
+    {
+      "before": "['expected_tests']==17",
+      "after": "['expected_tests']==16",
+      "occurrences": 2
+    },
+    {
+      "before": "len(actual['test_methods'])==17",
+      "after": "len(actual['test_methods'])==16",
+      "occurrences": 1
+    },
+    {
+      "before": "expected_tests=17",
+      "after": "expected_tests=16",
+      "occurrences": 2
+    },
+    {
+      "before": "all17_tests_completed",
+      "after": "all16_tests_completed",
+      "occurrences": 6
+    },
+    {
+      "before": "original16_file_executed",
+      "after": "earlier_flip_fixture_files_executed",
+      "occurrences": 1
+    },
+    {
+      "before": "ConvexCavityFixtures",
+      "after": "EdgeRemovalSynthetic",
+      "occurrences": 1
+    },
+    {
+      "before": "counts[0][0]!='17'",
+      "after": "counts[0][0]!='16'",
+      "occurrences": 1
+    },
+    {
+      "before": "Complete17 named",
+      "after": "Complete16 named",
+      "occurrences": 1
+    }
+  ],
+  "exact_reverse_restores_entire_donor_source": true,
+  "main_protocol_beyond_declared_literals_unchanged": true,
+  "source_diff": {
+    "path": "work/962-engineering/head-star-current24-edge-removal-guards-execution-prep-001/source.diff",
+    "sha256": "2395c266c670a4e8963fad7521f7f9a6ad026f47b2b37172b86b8b16947dbbb9",
+    "bytes": 8155
+  },
+  "import_coverage": {
+    "path": "work/962-engineering/head-star-current24-edge-removal-guards-execution-prep-001/import-coverage.json",
+    "sha256": "f08e260b12766ac1624e054a057c378664d08a15301a2205ae298fa5eb515613",
+    "bytes": 8578
+  },
+  "no_additional_caller_wrapper": true,
+  "no_target_execution_or_import": true
+}

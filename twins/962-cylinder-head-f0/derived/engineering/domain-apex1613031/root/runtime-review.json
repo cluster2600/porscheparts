@@ -1,0 +1,37 @@
+{
+  "schema": "962-apex1613031-domain-finite-runtime-root/v1",
+  "decision": "FRESH_STD_LIB_QUERY_INTERPRETER_AND_SMALL_INPUTS_ONLY",
+  "configured_interpreter": "runtime-role://controller/python",
+  "resolved_interpreter": {
+    "path": "runtime-role://controller/resolved-python3.12",
+    "sha256": "1699bf8aa705a8bb71613bef5cdd7d7c8c9d9a188a841f41679aa9b5830b8f60",
+    "bytes": 49968
+  },
+  "flags": [
+    "-I",
+    "-B"
+  ],
+  "observed_guard_interpreter": "3.12.11 (main, Aug 18 2025, 19:02:39) [Clang 20.1.4 ]",
+  "observed_executable": "runtime-role://controller/python",
+  "current_root_guard_review": {
+    "path": "work/962-engineering/apex1613031-domain-equivalence-root-source-001/review.json",
+    "sha256": "0aec60ba1da8a1099eaa4812333c435fa672881f1b40ebe12a0615412aeae994",
+    "bytes": 10251
+  },
+  "held": {
+    "path": "work/962-engineering/apex1613031-domain-equivalence-prep-001/held-contract.json",
+    "sha256": "58f01a156d66bd449c7f59126563acfd1613c753f3448bf8ba894b229696edf2",
+    "bytes": 23652
+  },
+  "fresh_small_inputs": 40,
+  "fresh_small_input_bytes": 656148,
+  "disk_free_bytes": 13015552000,
+  "output_absent": true,
+  "actual_absent": true,
+  "native_runtime_read_or_hashed": false,
+  "MSH_read_or_hashed": false,
+  "new_import_probe": false,
+  "native_execution_authorized": false,
+  "query_execution_authorized": false,
+  "scope": "Finite interpreter file plus40 exact small inputs; current guard execution verifies same selected CPython stdlib context. Not complete stdlib/OS/transitive ABI attestation; no native runtime is needed by this query. Refresh before/after exact actual run."
+}

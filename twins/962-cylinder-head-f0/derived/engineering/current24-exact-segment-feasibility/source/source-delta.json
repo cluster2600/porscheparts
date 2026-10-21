@@ -1,0 +1,91 @@
+{
+  "schema": "962-current24-exact-segment-source002-lossless-capacity-delta/v1",
+  "donor": {
+    "path": "work/962-engineering/head-star-current24-exact-segment-feasibility-prep-001/classify_segment_feasibility.py",
+    "sha256": "aab7b4216f1fd90db99e63c06034b98fa9650ff73f2ac9bd5f1025f31f9841e4",
+    "bytes": 54030
+  },
+  "successor": {
+    "path": "work/962-engineering/head-star-current24-exact-segment-feasibility-prep-002/classify_segment_feasibility.py",
+    "sha256": "b4b1abb1d3dbcb30cd78d63f454c652ec5153cf0c140132f837a1fae6c559865",
+    "bytes": 57908
+  },
+  "source_diff": {
+    "path": "work/962-engineering/head-star-current24-exact-segment-feasibility-prep-002/source.diff",
+    "sha256": "db5cbb0d0a9cb267d1af8939893602a6fb1bdab7b05262df918b70ec0672a651",
+    "bytes": 6856
+  },
+  "retained_terminal_evidence": {
+    "source001": {
+      "path": "work/962-engineering/head-star-current24-exact-segment-feasibility-prep-001/classify_segment_feasibility.py",
+      "sha256": "aab7b4216f1fd90db99e63c06034b98fa9650ff73f2ac9bd5f1025f31f9841e4",
+      "bytes": 54030
+    },
+    "held001": {
+      "path": "work/962-engineering/head-star-current24-exact-segment-feasibility-prep-001/held-preparation.json",
+      "sha256": "55414fe9bd3c8567a9eb0cbe15ab869bb1234e3121751e6a26e58e839cb293a4",
+      "bytes": 22534
+    },
+    "source_peer001": {
+      "path": "work/962-engineering/head-star-current24-exact-segment-feasibility-source-peer-001/review.json",
+      "sha256": "7d69bf3821e6b8acb5d21b808ddf9cf1604db012198bf7ff971bddd3cf37dd77",
+      "bytes": 10428
+    },
+    "source_bindings001": {
+      "path": "work/962-engineering/head-star-current24-exact-segment-feasibility-source-peer-001/bindings.json",
+      "sha256": "b57cfe3b95d406921530e1dd10e8addc1ee011f5a5c755490a5dd963b2986bb5",
+      "bytes": 25316
+    },
+    "terminal_closed001": {
+      "path": "work/962-engineering/head-star-current24-exact-segment-feasibility-root-execution-001/closed-result.json",
+      "sha256": "d76b3dadfe677f0c4321ea5a076333eec9287d7b114de96cadcd6d37fd92570a",
+      "bytes": 1444700
+    },
+    "terminal_stderr001": {
+      "path": "work/962-engineering/head-star-current24-exact-segment-feasibility-root-execution-001/stderr.log",
+      "sha256": "e9ac3830f331b284dfdf9b07ac05ca95d7c5d4ac91257a8f9a221f6c2406e527",
+      "bytes": 82
+    },
+    "terminal_peer001": {
+      "path": "work/962-engineering/head-star-current24-exact-segment-feasibility-terminal-peer-001/review.json",
+      "sha256": "b80ad0a8dc442aba36dadb85932fafb3df127d2c62a152e6897462b597756b85",
+      "bytes": 8059
+    },
+    "terminal_bindings001": {
+      "path": "work/962-engineering/head-star-current24-exact-segment-feasibility-terminal-peer-001/bindings.json",
+      "sha256": "a6c8905ee2e75871d4de65194c7243e259455f14f11ed3c875103696915d30fb",
+      "bytes": 15637
+    },
+    "terminal_root_acceptance001": {
+      "path": "work/962-engineering/head-star-current24-exact-segment-feasibility-root-execution-001/terminal-acceptance.json",
+      "sha256": "452c6a40e42b4c137fc92cd7a7606d46bdaa3d92168475d6829cca59af80666f",
+      "bytes": 2337
+    },
+    "completed_original_twelve_guards": {
+      "path": "work/962-engineering/head-star-current24-exact-segment-root-source-001/guards-once.json",
+      "sha256": "02536f95067c763851cb5479fdf9ed2ece78dd41bbbb4497a38acb509bf9da41",
+      "bytes": 1381845
+    },
+    "original_selected_root_runtime": {
+      "path": "work/962-engineering/head-star-current24-exact-segment-root-source-001/selected-root-runtime.json",
+      "sha256": "c0e74062acb71ecb443f472f7f38ebd8bf31d511b8796ce02d9fc42ec9e96073",
+      "bytes": 3213
+    }
+  },
+  "finite_changes": [
+    "add stdlib gzip/io imports and two byte-only serializer/streaming verifier functions",
+    "fixed new execution-prep003 actual and output002 paths; held/source/provenance pins changed",
+    "replace only old final uncompressed32MiB write block with lossless gzip and small manifest",
+    "retain identical full JSON encoder and complete logical payload; bound compressed files+known stdout under same32MiB",
+    "reader capacity ceiling uses existing2GiB resource budget, without JSON-fit/peak guarantee",
+    "four serializer-only synthetic fixture tests authored; original twelve math/API guards not repeated"
+  ],
+  "original44_input_records_preserved_exact": true,
+  "new_control_input_records": 11,
+  "total_input_records": 55,
+  "mathematical_or_quality_or_root_or_geometry_changes": false,
+  "exact_uncompressed_size_or_real_ranges_from001": null,
+  "complete_empty_feasibility_or_scientific_result_claim": false,
+  "automatic_retry": false,
+  "source_helper_guard_library_or_runtime_execution": false
+}

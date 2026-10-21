@@ -1,0 +1,156 @@
+{
+  "schema": "962-current24-independent-word-validator-static-proof/v1",
+  "status": "SOURCE_AST_ONLY_UNRUN",
+  "source": {
+    "path": "work/962-engineering/head-star-current24-qfnra-word-validator-prep-001/validate_binary64_words.py",
+    "sha256": "20b702017e8da8db3786d3423fe60c6c42289e5cab9cc5012a0991f9eb2540b2",
+    "bytes": 31381
+  },
+  "fixture": {
+    "path": "work/962-engineering/head-star-current24-qfnra-word-validator-prep-001/test_word_validator_guards.py",
+    "sha256": "36c4be121bcea313a7e449428d6335dc456c5685cad86bcc3cfef9444277ed45",
+    "bytes": 6734
+  },
+  "source_imports": [
+    "from fractions import Fraction",
+    "from itertools import combinations",
+    "import hashlib",
+    "import json",
+    "import math",
+    "import struct"
+  ],
+  "fixture_imports": [
+    "from fractions import Fraction",
+    "import importlib.util",
+    "import pathlib",
+    "import struct",
+    "import unittest"
+  ],
+  "functions": [
+    {
+      "name": "need",
+      "line": 36,
+      "end": 38,
+      "AST_sha256": "acd835d407017ae4ddfcb4f79fa2adbd3bd71ca44738278a4cf2c5e31a8c754a"
+    },
+    {
+      "name": "canonical",
+      "line": 41,
+      "end": 43,
+      "AST_sha256": "8e21b9b9fb57df868fa6f205da42fa77ba3a8ee10d8d6475d5cc5482651ee755"
+    },
+    {
+      "name": "sha",
+      "line": 46,
+      "end": 47,
+      "AST_sha256": "4d4904c2f572cdd4395947d7d69749b01cd5eee46fe1ac671541a77418a9bfd7"
+    },
+    {
+      "name": "strict_json",
+      "line": 50,
+      "end": 61,
+      "AST_sha256": "bbd8d3fdb9bbe9389b6d27ca7bc12c8d397d9e80779f66c103d7ec9ef2a6d1fc"
+    },
+    {
+      "name": "ordered_ints",
+      "line": 64,
+      "end": 70,
+      "AST_sha256": "d3b649b598c34dd78aee9f6c4b94e30e7fce032413128ca4faf329e7ea6df951"
+    },
+    {
+      "name": "fraction_word",
+      "line": 73,
+      "end": 85,
+      "AST_sha256": "940f8d36924fda327173239c58c1cd75ce231c2fef20d97b0c5a808652bf6bd9"
+    },
+    {
+      "name": "coordinate",
+      "line": 88,
+      "end": 110,
+      "AST_sha256": "7b66febb04b31c6eb8513a687e510c962b57754a4c43c6d38d96e7cd08092b7d"
+    },
+    {
+      "name": "quality_gate",
+      "line": 113,
+      "end": 114,
+      "AST_sha256": "54ac76cbd788c74473d8ea0fc7358857c2aae42f2829939d910c0f2550f223c9"
+    },
+    {
+      "name": "metrics",
+      "line": 117,
+      "end": 135,
+      "AST_sha256": "34b0bcb123f9ec9267bfa3b174b43a8da7ca8128a25bc9c248d6532010dfad00"
+    },
+    {
+      "name": "encoded_fraction",
+      "line": 138,
+      "end": 139,
+      "AST_sha256": "bfc8ed3c09710755ece00b4ce0ee5a00db8376da4a32f20e56d4faacd79ee8fb"
+    },
+    {
+      "name": "encoded_metrics",
+      "line": 142,
+      "end": 144,
+      "AST_sha256": "352fa7d1a04c4ec8cd771b72435351e276e0460916c6037e6d7ca97e6e71004c"
+    },
+    {
+      "name": "boundary_faces",
+      "line": 147,
+      "end": 167,
+      "AST_sha256": "50c273202a8063e0b9df84eb92a6041cdeba419588dda747bdd4fc773ec44c4c"
+    },
+    {
+      "name": "typed_digest",
+      "line": 170,
+      "end": 171,
+      "AST_sha256": "f004fdabc81f27db40d539f09f1bdd5e39504be165b8fc73cf08928f720f8d9a"
+    },
+    {
+      "name": "proposed_word_rows",
+      "line": 174,
+      "end": 184,
+      "AST_sha256": "5f7b34033f1fd77c518a9f59eaa43ef9ee31dac5a47b3114efe19c415eefa486"
+    },
+    {
+      "name": "rebuild_baseline",
+      "line": 187,
+      "end": 384,
+      "AST_sha256": "41289ae3ebe986693d3fef6c9ac1e8a031cc1e94fd3b6d12f17910b24ec19de1"
+    },
+    {
+      "name": "validate_proposal",
+      "line": 387,
+      "end": 489,
+      "AST_sha256": "49ab67c6c683ad9277ca16a595248467c68f924557a3555a0948016ebf161b92"
+    }
+  ],
+  "named_fixture_methods": [
+    "test_01_exact_integer_decoder_zero_subnormal_normal_and_maximum",
+    "test_02_coordinate_bits_and_signed_zero_roundtrip_refuse_stale_fields",
+    "test_03_right_and_integer_regular_tetrahedra_have_analytic_values",
+    "test_04_orientation_planar_coincident_and_closed_scalar_threshold",
+    "test_05_oriented_local_face_cancellation_and_nonmanifold_refusals",
+    "test_06_fixed_word_signed_zero_and_complete_row_protection",
+    "test_07_positive_determinants_and_total_volume_do_not_override_quality",
+    "test_08_typed_serialization_and_strict_json_refuse_ambiguous_inputs",
+    "test_09_complete_frozen_block_bookkeeping_and_pure_import_surface"
+  ],
+  "named_fixture_method_count": 9,
+  "source_imports_producer_emitter_protocol_or_legacy_helper": false,
+  "source_has_file_process_solver_or_mesh_writer_entrypoint": false,
+  "AST_parsed_only": true,
+  "module_imported": false,
+  "fixture_or_function_executed": false,
+  "real_coordinate_or_word_arithmetic_performed": false,
+  "metadata_schema_inspection": {
+    "saved_node_and_cell_keys_read": true,
+    "movable_row_tag_order_checked_without_coordinates": true,
+    "selection_and_manifest_tag_order_checked": true,
+    "Head_confirmed_flat_handoff_schema_alignment": true
+  },
+  "limitations": [
+    "AST and symbolic reasoning are not runtime guards.",
+    "Typed local quality/face/volume scope does not establish global embedding or full native mesh incidence.",
+    "No model/oracle algebraic truth or nearest-word correctness accepted by this checker."
+  ]
+}

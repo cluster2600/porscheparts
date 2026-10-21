@@ -1,0 +1,170 @@
+{
+  "schema": "962-current-END181-independent-saved-arithmetic-accounting/v1",
+  "status": "PASS_SAVED_ARITHMETIC_FAILURES_RETAINED",
+  "component_rows_checked": 1275,
+  "constrained_rows": 6,
+  "free_rows": 1269,
+  "coordinates": 425,
+  "native_CSV_line_positions_complete": 450,
+  "shared_doublet_nodes": 25,
+  "per_component_maxima_witnesses_checked": 18,
+  "aggregate_rows_recomputed": 36,
+  "native_aggregate_rows": 12,
+  "aggregate_failures": 12,
+  "native_aggregate_failures": 3,
+  "all_native_all_row_aggregate_checks_pass": true,
+  "unchanged_limit_force_N": 1e-07,
+  "unchanged_limit_moment_Nm": 1e-07,
+  "scalar_counts_recorded_and_verified": {
+    "temperature_K": 650,
+    "displacement_m": 606,
+    "strain": 49152,
+    "stress_Pa": 12288,
+    "force_N": 3894
+  },
+  "scalar_exceedances_recorded": 0,
+  "scalar_limits_maximum_rows_recomputed": 5,
+  "full_scalar_trace_or_perQP_recomputed": false,
+  "failed_aggregate_rows": [
+    {
+      "field": "native",
+      "rowset": "constrained",
+      "component": 0,
+      "unit": "force_N",
+      "value": -2.29850465416348e-06,
+      "binary64_hex": "-0x1.348004c000000p-19",
+      "unchanged_limit": 1e-07,
+      "exceeds_original_gate": true
+    },
+    {
+      "field": "native",
+      "rowset": "constrained",
+      "component": 1,
+      "unit": "moment_Nm",
+      "value": -9.236246114596725e-07,
+      "binary64_hex": "-0x1.efde000000000p-21",
+      "unchanged_limit": 1e-07,
+      "exceeds_original_gate": true
+    },
+    {
+      "field": "native",
+      "rowset": "constrained",
+      "component": 2,
+      "unit": "moment_Nm",
+      "value": 1.0408839443698525e-06,
+      "binary64_hex": "0x1.1769000000000p-20",
+      "unchanged_limit": 1e-07,
+      "exceeds_original_gate": true
+    },
+    {
+      "field": "native",
+      "rowset": "free",
+      "component": 0,
+      "unit": "force_N",
+      "value": 2.2985966976811997e-06,
+      "binary64_hex": "0x1.34832e5f93782p-19",
+      "unchanged_limit": 1e-07,
+      "exceeds_original_gate": true
+    },
+    {
+      "field": "native",
+      "rowset": "free",
+      "component": 1,
+      "unit": "moment_Nm",
+      "value": 9.231460908915957e-07,
+      "binary64_hex": "0x1.ef9c3b8de555dp-21",
+      "unchanged_limit": 1e-07,
+      "exceeds_original_gate": true
+    },
+    {
+      "field": "native",
+      "rowset": "free",
+      "component": 2,
+      "unit": "moment_Nm",
+      "value": -1.0407428482579834e-06,
+      "binary64_hex": "-0x1.175f4dcf9a68ep-20",
+      "unchanged_limit": 1e-07,
+      "exceeds_original_gate": true
+    },
+    {
+      "field": "assembled",
+      "rowset": "constrained",
+      "component": 0,
+      "unit": "force_N",
+      "value": -2.299629159097094e-06,
+      "binary64_hex": "-0x1.34a6a80000000p-19",
+      "unchanged_limit": 1e-07,
+      "exceeds_original_gate": true
+    },
+    {
+      "field": "assembled",
+      "rowset": "constrained",
+      "component": 1,
+      "unit": "moment_Nm",
+      "value": -9.233190212398767e-07,
+      "binary64_hex": "-0x1.efb4000000000p-21",
+      "unchanged_limit": 1e-07,
+      "exceeds_original_gate": true
+    },
+    {
+      "field": "assembled",
+      "rowset": "constrained",
+      "component": 2,
+      "unit": "moment_Nm",
+      "value": 1.0406802175566554e-06,
+      "binary64_hex": "0x1.175b000000000p-20",
+      "unchanged_limit": 1e-07,
+      "exceeds_original_gate": true
+    },
+    {
+      "field": "assembled",
+      "rowset": "free",
+      "component": 0,
+      "unit": "force_N",
+      "value": 2.29958102337946e-06,
+      "binary64_hex": "0x1.34a5009800000p-19",
+      "unchanged_limit": 1e-07,
+      "exceeds_original_gate": true
+    },
+    {
+      "field": "assembled",
+      "rowset": "free",
+      "component": 1,
+      "unit": "moment_Nm",
+      "value": 9.235391987827413e-07,
+      "binary64_hex": "0x1.efd242cf00000p-21",
+      "unchanged_limit": 1e-07,
+      "exceeds_original_gate": true
+    },
+    {
+      "field": "assembled",
+      "rowset": "free",
+      "component": 2,
+      "unit": "moment_Nm",
+      "value": -1.0411279919297911e-06,
+      "binary64_hex": "-0x1.1779c55480000p-20",
+      "unchanged_limit": 1e-07,
+      "exceeds_original_gate": true
+    }
+  ],
+  "component_difference_word_digest": "52e3281c9ca7f20c56bf9aeb457ce9f1d37ae10d92739215e309668ba1ca681a",
+  "all36_recomputed_record_digest": "14d189e8d74d7e009abd1df865c65ade194001d0a97566c6f84327aa2409fc77",
+  "method": "Exact Fraction decoder and integer ties-to-even IEEE754 rounding for1275 subtractions, each moment product and subtraction, then exact rational summation rounded once for force/moment/L1 outputs. No math.fsum/source-resultants/kernel/native/decoder execution or raw input read. The saved scientific-word evidence itself remains producer attributed.",
+  "root_receipt": {
+    "raw_returncode": 0,
+    "saved_child_elapsed_seconds": 0.6219650420825928,
+    "saved_started_UTC": "2026-10-21T05:34:08.585785+00:00",
+    "saved_finished_UTC": "2026-10-21T05:34:09.225276+00:00",
+    "deliberately_reaped_owner_attributed": true,
+    "complete_stdout_bytes": 607,
+    "complete_stderr_bytes": 0,
+    "before_after_descriptor_count": 44,
+    "all_equal": true
+  },
+  "final_census_metadata_read": {
+    "path": "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/native005-END181-equilibrium-root-execution-001/census.json",
+    "sha256": "11cc31983b1fcfd857b3560e580f305b9791eb1882f37d2ce8dfc08a7e825125",
+    "bytes": 15692
+  },
+  "self_hash_claim": false
+}

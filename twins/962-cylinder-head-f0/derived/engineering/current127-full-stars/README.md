@@ -1,0 +1,27 @@
+# Current 127-poor-cell complete-star census
+
+This capsule preserves the completed read-only census of the current head. Root and the independent stopped peer accept its **saved associations only**. It measured **101 dim3 seeds**, **3,137 incident cells** (127 positive-poor and 3,010 initially good), **99 shared cells** and **1,791 nodes** (1,120 source-boundary nodes, 570 other interior nodes and 101 seeds). All 127 positive-poor rows are covered; no unseedable row is reported. Fresh boundary-participation bins are **[0, 0, 5, 122, 0]**. No old partition or seed list is transferred. These diagnostics describe generated research geometry; source-boundary identity is not OEM metrology.
+
+The whole-head SICN 0.1 gate remains **rejected**, with 127 positive-poor cells, no nonpositive SICN values and minimum **0.039074265058645995**. No repair or shared-star feasibility is proved. The stronger Mesh_2 criterion, with 414 historical surface-face failures, is separate and has not been re-evaluated.
+
+## Full evidence and execution history
+
+The complete [census report](census/readback-report.json.gz) retains all 127 ordered poor rows, 3,137 ordered incident-cell rows and 1,791 node records, including original corners, tags, native indices, coordinates and binary64 hex. The exact 2,103,518-byte original JSON is represented by root's existing 237,486-byte gzip, SHA256 e619dbc30609cd9130e0f6746dcce8731b2fbbbf83827adf32b473022c7e0f82. The [delivery receipt](census/readback-report.delivery.json) records full reopened byte equality. Publication retains that exact gzip; its full decompressed bytes match the original JSON.
+
+The [native receipt](census/native/execution-receipt.json), [native log](census/native/native.log), [root closure](census/root/execution/closed-result.json), [independent stopped review](census/reviews/result/review.json) and [root acceptance](census/root/execution/result-peer-acceptance.json) retain distinct scopes. One native query completed naturally at RC0 in 13.523263791808859 s, without root stops or signals. Global arrays, metric and signed-volume summaries and classifications match the preceding worker.after/saved proof. The independent peer rebuilt the six saved typed hashes and checked serialized associations; unseen global rows were not independently scanned.
+
+The [reader](census/sources/reader.py), [six guards](census/sources/test_guards.py), [held contract](census/sources/held-contract.json), [method](census/sources/METHOD.md) and source deltas remain inspectable. The unchanged [4fb controller](../current129-thermoelastic-setup/census/sources/run_readback.py) is an exact public-body alias. Its historical receipt label is preserved; exact source, contracts and identities define this read-only query.
+
+[Actual001](census/contracts/refused001/actual-contract.json) omitted four dynamic local-report/arrays/domain-report/domain-peer fields and was [refused before native execution](census/reviews/refused-child001/review.json). Its index, three materialized files and blocker bindings remain recorded. [Corrected actual002](census/contracts/actual-contract.json) restored those metadata fields and received its [exact-child review](census/reviews/child002/review.json). There was one native query, with no native retry. Historical false/null preparation fields remain unchanged.
+
+The older d60fff29 census command deviation and false declared-controller-command conformance remain historical evidence. The new root authorization records the selected 1699 -I -B outer command separately. Root observed and reaped its owned controller group, not a native-worker PID. Native cleanup is attributed to the frozen controller's finally/wait and receipt, without a universal descendant-absence claim.
+
+## Provenance, bytes and rights
+
+The [published head checkpoint](../apex1613790-head-application/README.md) already contains the local44/domain/context/application records and verified head-mesh download. They are prior public anchors and are not duplicated here. The [current129 ledger](../current129-thermoelastic-setup/original-records.json) retains the source candidate as a 62,774,640-byte identity-only role; this selection does not distribute or newly read that BIN.
+
+The [original-record ledger](original-records.json) resolves all 79 actual002 roles through new selected bodies, exact snapshot/public aliases, prior declared projections or explicit identity-only records. Complete native six-file and refused three-file materialization inventories remain. Private-path projection uses only declared complete-field JSON or whole-text string substitutions. Numeric PID/PGID values and equalities, integer/float/bool/null types, binary64 words, lists and row order remain exact. The existing verifier checks byte closure, not engineering correctness.
+
+The exact [project license](LICENSE.project) remains view-only; files and links grant no reuse, modification, manufacture, fitment or release rights. No raw MSH/BIN, runtime, OEM scan or vendor body is copied. No new assembler script, wrapper, controller or scientific execution is part of this selection.
+
+The selector authored the current census and prior head/checker lineage. Root performed the native query and byte assembly; source/stopped peers have bounded disclosed roles. This is a software diagnostic, not global embedding, head PDE, material strength, process, LPBF residual stress or manufacturing qualification. All corresponding flags remain false.

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0.0",
+  "scope": "whitelisted_projection_not_original_execution_receipt",
+  "original_receipt_sha256": "9af5c4c5775f3a03a8c6a4a681383fb956ee2c542243b5648aeecadcb2eecf89",
+  "original_command_receipt_sha256": "dfc689ceb6e69a5d149da948078cd03e1d9b5f5be07e2e7040cb3c09f7c6768c",
+  "original_ssh_receipt_sha256": "81ad4b48075a5c326b6dec3827db38c8c7d9f6f86c833bf313a9d640fa024539",
+  "included_native_receipt_fields": {
+    "returncode": 0,
+    "wall_seconds": 2.9759129718877375,
+    "deadline_seconds": 100,
+    "network": "none",
+    "rootfs": "read_only",
+    "binary_sha256": "c49e2c368799d80edf9ff858dd8960bd22f5430f48229ab49dcc0afd27afcc5b",
+    "binary_unchanged": true,
+    "input_sha256": {
+      "variable-thermoelastic.i": "6508868f634c8b602495327bafef5633d55c7c65e8af343a137339660317f17e",
+      "hypothetical-material.json": "59c331446812a0b45f03dc7f7e3aeec0f80807fc3a03f54c5100c2b1a63aa584",
+      "variable-yield.i": "12ae513943d9556983361035669b25a3d8a500f7ffcae1b4706c9d097b43da87"
+    },
+    "inputs_unchanged": true,
+    "log_sha256": "a4cbb184205972c30965d55d14fa33c998c9fb762dd94e60a5be5aa4014ab36b"
+  },
+  "solver_argv": [
+    "moose-opt",
+    "-i",
+    "variable-thermoelastic.i",
+    "variable-yield.i"
+  ],
+  "observed_command_resource_limits": {
+    "memory_max_bytes": 2147483648,
+    "memory_swap_max_bytes": 0,
+    "cpu_quota_percent": 200,
+    "tasks_max": 128,
+    "cgroup_runtime_max_s": 115,
+    "timeout_s": 100,
+    "term_kill_after_s": 5
+  },
+  "omitted_fields": [
+    "remote_directory",
+    "raw_native_argv",
+    "ssh_host_and_user",
+    "raw_command_payload"
+  ],
+  "projection_limits": "The projection omits private host paths. Its original-receipt hashes do not reveal or reconstruct omitted bytes."
+}

@@ -1,0 +1,33 @@
+{
+  "schema": "962-linear-cooling-native-delta-authoring-cause-correction/v1",
+  "prior_clarification": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-linear-native-actual-delta-clarification-001/clarification.json",
+    "sha256": "2ca5bbe2bf3a445736c5f7016b5f91b9ebda678586888f35cce6e1423f97bddf",
+    "bytes": 3314
+  },
+  "corrects_only_causal_reason_sentence": true,
+  "corrected_reason": "The actual author reports that native_output_or_field_observations=None was added before saving the actual and before constructing the index delta. The metadata-diff predicate used oldactual.get(k)==c.get(k), which conflated an absent donor key with a present null. That predicate skipped the28th field. No field was appended after delta construction.",
+  "author_reported_source_excerpt": "for k in list(dict.fromkeys(list(oldactual)+list(c))):\n    if oldactual.get(k)==c.get(k): continue",
+  "evidence_attribution": "Direct source-author history response in this root collaboration. Root did not reread or execute the original authoring command. Actual/index bytes and independently recomputed28-key set establish the omission; the cause is author-reported.",
+  "root_own_error": "Root previously stated an inferred append-after-delta cause as fact before checking authoring order. That causal sentence is incorrect and is explicitly superseded here. The prior immutable clarification remains preserved.",
+  "unchanged_facts": {
+    "actual_added_or_changed_fields": 28,
+    "historical_index_listed_fields": 27,
+    "only_omitted_field": "native_output_or_field_observations",
+    "old_present": false,
+    "new": null,
+    "all27_original_delta_records_valid": true
+  },
+  "native_actual_source_grid_or_numerical_criteria_changed": false,
+  "root_own_actual_review_remains_valid_for_inventory_only": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-linear-native-root-actual-review-001/review.json",
+    "sha256": "692f458acc54d54cb0a8eb7e91e1b0b5f0ce3adfecc46121cf3433b3da7d4691",
+    "bytes": 79864
+  },
+  "required_external_root_and_child_direct_acknowledgement_of_both_records": true,
+  "source_or_guard_or_native_or_auditor_execution": false,
+  "engineering_accepted": false,
+  "physics_qualified": false,
+  "manufacturing_authorized": false,
+  "automatic_retry": false
+}

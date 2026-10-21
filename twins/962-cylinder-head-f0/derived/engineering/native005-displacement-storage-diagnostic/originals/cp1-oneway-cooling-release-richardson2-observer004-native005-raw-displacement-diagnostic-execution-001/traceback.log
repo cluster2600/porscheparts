@@ -1,0 +1,13 @@
+Traceback (most recent call last):
+  File "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native005-raw-displacement-offline-caller-prep-001/run_offline_once.py", line 132, in main
+    report=diagnostic.diagnose_saved_displacements(raw,sys.argv[1],parser,assessor,helper)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native005-raw-displacement-diagnostic-prep-002/diagnose_raw_displacements.py", line 124, in diagnose_saved_displacements
+    trace=parser.parse_monitor_trace(payloads['native_log'].decode('utf-8','strict'))
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-saved-measurement-parser-prep-002/parse_saved_measurement.py", line 161, in parse_monitor_trace
+    need('SNES Function norm' not in line and not re.search(r'\bTime\s+Step\b',line),"Unsupported monitor/time grammar; preserve, do not guess")
+  File "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-saved-measurement-parser-prep-002/parse_saved_measurement.py", line 20, in need
+    if not value:raise ValueError(message)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: Unsupported monitor/time grammar; preserve, do not guess

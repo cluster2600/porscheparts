@@ -1,0 +1,705 @@
+{
+  "schema": "962-native005-fake-guards-source-findings/v1",
+  "conclusion": "No concrete fixture source blocker found. Every test remains UNRUN.",
+  "blockers": [],
+  "extraction_and_provider_review": {
+    "input": "Exactly the3 fixed SOURCE_PINS are read once in setUpClass, checked by length/SHA256 and parsed. All83 top-level FunctionDef/ClassDef nodes are selected directly from those ASTs, in order; no rewrite, copied candidate Boolean, original module import/global initializer or original CLI tail.",
+    "namespace": "Fresh World per case; the actual retained classes inherit an instrumented fake base. Every target process, signal, session, exact wait, queue, FD readiness/read, clock/sleep, path/file/stream/copy provider is fake. MemoryPath has no __fspath__; target Path is a memory factory. Missing fake attributes cannot fall back to real os/subprocess/select.",
+    "builtins": "Explicit TARGET_BUILTINS excludes open and __import__. All builtin dependencies of selected callable bodies are supplied; SystemExit and __doc__ occurrences belong only to excluded CLI tails. The actual owner print has file=sys.stderr, which is MemoryText.",
+    "definition_creation": "Selected classes have only exception/no-op method bodies and fake-base references. No selected decorator/default-call side effect was found. Actual owner/caller imports, early clocks, globals and if-main blocks are not evaluated by extraction.",
+    "intentional_pure_helpers": "hashlib/json/math/regex operate on memory values. PurePosixPath performs lexical operations only. Traceback callback is synthetic. This isolation claim is specific to the pinned code, not a general sandbox guarantee.",
+    "explicit_stubs": [
+      "Owner one003 parent-hash observation, input_map, runtime_map, check, provider_links, python_record and loaded_trace.",
+      "Caller checked_contract and runtime_unchanged.",
+      "Caller identity wrapper invokes actual native_identity first, then injects only stop/equality boundary states.",
+      "Wrapper fake execv records exact argv and raises ExecHandoff; this is not an observed real exec or raw0."
+    ],
+    "unexpected_paths": "Unexpected fake provider/base-destructor/competing-Popen methods record an unexpected trace and raise; tearDown rejects such traces for every registered World. Positive controls additionally require actual complete candidate/raw0 paths."
+  },
+  "corrected_seam_review": [
+    {
+      "id": "B01",
+      "methods": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "evidence": "Both whole entrypoints have positive normal controls and nondefault-CHLD refusals before any constructor. The fake signal setter forbids SIGCHLD changes; controls cannot pass by resetting/restoring it."
+    },
+    {
+      "id": "B02",
+      "methods": [
+        5,
+        6,
+        7,
+        8,
+        9,
+        20,
+        23,
+        25,
+        28,
+        29
+      ],
+      "evidence": "Actual stopped/terminal/native/query exact-wait paths receive ChildProcessError; assertions retain lost/unknown/null raw status, exact wait counts and no numeric resignal. Query ownership loss does not suppress separately valid leader TERM authority. Consumed terminal status is retained before late-return refusal and no second reap. No wait after the110 cutoff."
+    },
+    {
+      "id": "B03",
+      "methods": [
+        1,
+        10,
+        24
+      ],
+      "evidence": "Positive whole-main evidence contains a future derived normal deadline. Actual caller_evidence validates exact original equation and observed-time order. Bad deadline, future observed spawn, echo, schema, partial/missing receipt and extra stdout mutants require raw2, failed evidence and reason-specific retained errors. Canonical token variants are tested on all3 actual parsers."
+    },
+    {
+      "id": "B04",
+      "methods": [
+        1,
+        11
+      ],
+      "evidence": "Actual whole-main postwrite identity mismatch/error, original115 equality and stop injection require raw2 while retaining the already-written prefinal COMPLETE_CANDIDATE bytes and one exclusive write. The prefinal candidate cannot override the actual return gate."
+    }
+  ],
+  "all_method_review": [
+    {
+      "number": 1,
+      "method": "test_01_owner_normal_real_main_and_future_deadline",
+      "lines": [
+        576,
+        589
+      ]
+    },
+    {
+      "number": 2,
+      "method": "test_02_owner_already_default_precondition",
+      "lines": [
+        591,
+        596
+      ]
+    },
+    {
+      "number": 3,
+      "method": "test_03_caller_normal_identity_running_receipt_return",
+      "lines": [
+        598,
+        611
+      ]
+    },
+    {
+      "number": 4,
+      "method": "test_04_caller_already_default_precondition",
+      "lines": [
+        613,
+        618
+      ]
+    },
+    {
+      "number": 5,
+      "method": "test_05_lost_owner_handshake_revokes_next_signal",
+      "lines": [
+        620,
+        626
+      ]
+    },
+    {
+      "number": 6,
+      "method": "test_06_lost_terminal_relationship_never_resignals",
+      "lines": [
+        628,
+        634
+      ]
+    },
+    {
+      "number": 7,
+      "method": "test_07_lost_owner_query_closes_only_that_pid_authority",
+      "lines": [
+        636,
+        644
+      ]
+    },
+    {
+      "number": 8,
+      "method": "test_08_lost_caller_query_has_no_pid_signal",
+      "lines": [
+        646,
+        652
+      ]
+    },
+    {
+      "number": 9,
+      "method": "test_09_lost_native_reap_stays_unknown",
+      "lines": [
+        654,
+        660
+      ]
+    },
+    {
+      "number": 10,
+      "method": "test_10_actual_caller_evidence_rejects_clock_echo_and_stdout_mutants",
+      "lines": [
+        662,
+        674
+      ]
+    },
+    {
+      "number": 11,
+      "method": "test_11_full_main_postwrite_failure_preserves_prefinal_bytes_and_raw_refusal",
+      "lines": [
+        676,
+        688
+      ]
+    },
+    {
+      "number": 12,
+      "method": "test_12_identity_edge_refuses_without_normal_wait_or_replacement",
+      "lines": [
+        690,
+        700
+      ]
+    },
+    {
+      "number": 13,
+      "method": "test_13_precontinuation_abort_is_direct_pid_only",
+      "lines": [
+        702,
+        709
+      ]
+    },
+    {
+      "number": 14,
+      "method": "test_14_cont_uncertainty_group_cleanup_and_first_deadlines",
+      "lines": [
+        711,
+        722
+      ]
+    },
+    {
+      "number": 15,
+      "method": "test_15_owner_constructor_unknown_or_late_preserves_exact_ownership",
+      "lines": [
+        724,
+        739
+      ]
+    },
+    {
+      "number": 16,
+      "method": "test_16_native_constructor_unknown_or_late_never_gains_signal_authority",
+      "lines": [
+        741,
+        755
+      ]
+    },
+    {
+      "number": 17,
+      "method": "test_17_sample_error_is_not_erased_by_exit_event",
+      "lines": [
+        757,
+        763
+      ]
+    },
+    {
+      "number": 18,
+      "method": "test_18_postreap_presence_or_unknown_never_resignals",
+      "lines": [
+        765,
+        772
+      ]
+    },
+    {
+      "number": 19,
+      "method": "test_19_actual_fixed_queries_drain_split_streams_and_accept_reported_zero",
+      "lines": [
+        780,
+        792
+      ]
+    },
+    {
+      "number": 20,
+      "method": "test_20_reaped_query_partial_eof_error_never_signals_reused_pid",
+      "lines": [
+        794,
+        807
+      ]
+    },
+    {
+      "number": 21,
+      "method": "test_21_unreaped_query_timeout_parent_refusal_precedes_own_pid_cleanup",
+      "lines": [
+        809,
+        821
+      ]
+    },
+    {
+      "number": 22,
+      "method": "test_22_actual_retained_destructor_normal_unreaped_and_partial_instances",
+      "lines": [
+        823,
+        835
+      ]
+    },
+    {
+      "number": 23,
+      "method": "test_23_no_wait_after_cutoff_and_unknown_does_not_become_zero",
+      "lines": [
+        837,
+        849
+      ]
+    },
+    {
+      "number": 24,
+      "method": "test_24_canonical_original_token_variants_are_refused",
+      "lines": [
+        851,
+        859
+      ]
+    },
+    {
+      "number": 25,
+      "method": "test_25_actual_deadline_bypasses_capture_and_same_and_preserves_consumed_status",
+      "lines": [
+        861,
+        885
+      ]
+    },
+    {
+      "number": 26,
+      "method": "test_26_actual_inclusive_union_counts_distinct_paths_and_pending_receipt",
+      "lines": [
+        887,
+        902
+      ]
+    },
+    {
+      "number": 27,
+      "method": "test_27_wrapper_real_main_orders_hello_stop_and_exact_handoff",
+      "lines": [
+        904,
+        918
+      ]
+    },
+    {
+      "number": 28,
+      "method": "test_28_early_consumed_terminal_is_not_continued_or_reaped_twice",
+      "lines": [
+        920,
+        926
+      ]
+    },
+    {
+      "number": 29,
+      "method": "test_29_whole_owner_unreaped_late_return_preserves_unknown_without_new_api",
+      "lines": [
+        928,
+        934
+      ]
+    },
+    {
+      "number": 30,
+      "method": "test_30_whole_owner_query_timeout_latches_term_before_query_pid_cleanup",
+      "lines": [
+        936,
+        946
+      ]
+    },
+    {
+      "number": 31,
+      "method": "test_31_actual_timeout_conversion_and_original_equality_return_check",
+      "lines": [
+        948,
+        964
+      ]
+    }
+  ],
+  "additional_meaningful_invariants": [
+    "Actual caller normal identity completes before its first native wait; wrong PID/PPID/PGID, missing identity, stop and equality refuse without replacement. Permitted finally reap is distinguished from normal running.",
+    "PreCONT certification/registration failures allow only own-PID KILL; uncertainCONT preserves intent and uses certified group cleanup, once-only TERM/conditional KILL and first-derived deadlines; EPERM/ESRCH are retained errors.",
+    "Owner/native construction unknown/late refuses without invented PID, ownership or absence. Partial/unreaped/reaped retained-class destructor calls do not reach the fake base child APIs.",
+    "Reported zero RSS is data; malformed sample remains an error even after NOTE_EXIT. Postreap presence or EPERM is refused without numeric resignal.",
+    "Both actual fixed-query forms drain split stdout/stderr to EOF. Partial EOF retains all captured bytes and partial flag after actual terminal reap; timeout parent-refusal callback precedes own-query KILL, with bounded reap and original deadline.",
+    "Actual capture/same bypass DeadlineRefusal. Actual downward timeout conversion and original equality full-return gates are asserted.",
+    "Actual inclusive/growth accounting uses lexical canonical memory paths, deduplicates repeated paths while counting equal bytes at distinct paths, and refuses equality when pending receipt pushes the limit.",
+    "Actual wrapper hello flush precedes STOP and synthetic same-PID handoff with exact source/token/execute argv."
+  ],
+  "coverage_disposition": [
+    {
+      "id": "G01",
+      "status": "PLANNED_FAKE_SUBSET",
+      "methods": [
+        15,
+        16
+      ],
+      "scope_and_gaps": "Owner/native construction without reliable returned PID; query constructor unknown not covered.",
+      "executed": false
+    },
+    {
+      "id": "G02",
+      "status": "PLANNED_FAKE_COVERAGE",
+      "methods": [
+        28
+      ],
+      "scope_and_gaps": "Consumed early raw status once; no CONT/group signal.",
+      "executed": false
+    },
+    {
+      "id": "G03",
+      "status": "PLANNED_FAKE_SUBSET",
+      "methods": [
+        13
+      ],
+      "scope_and_gaps": "PGID mismatch/direct-only abort; bad stop signal/SID variant not separately injected.",
+      "executed": false
+    },
+    {
+      "id": "G04",
+      "status": "PLANNED_FAKE_SUBSET",
+      "methods": [
+        13
+      ],
+      "scope_and_gaps": "Registration error before CONT; independent stop-before-CONT variant absent.",
+      "executed": false
+    },
+    {
+      "id": "G05",
+      "status": "PLANNED_FAKE_COVERAGE",
+      "methods": [
+        14
+      ],
+      "scope_and_gaps": "Actual CONT intention before exception; group cleanup, no direct fallback.",
+      "executed": false
+    },
+    {
+      "id": "G06",
+      "status": "PLANNED_FAKE_SUBSET",
+      "methods": [
+        3,
+        12,
+        16
+      ],
+      "scope_and_gaps": "One inherited native spawn and identity-stop boundary; exact simultaneous outer-TERM/native-constructor race not covered.",
+      "executed": false
+    },
+    {
+      "id": "G07",
+      "status": "PLANNED_FAKE_COVERAGE",
+      "methods": [
+        3,
+        12
+      ],
+      "scope_and_gaps": "Actual query/identity edge and missing/wrong PID/PPID/PGID; no normal wait before positive identity.",
+      "executed": false
+    },
+    {
+      "id": "G08",
+      "status": "PLANNED_FAKE_SUBSET",
+      "methods": [
+        3,
+        14,
+        18
+      ],
+      "scope_and_gaps": "Caller native raw0/reap claims no absence; outer nonanchor/present gates separate, not a live shared group.",
+      "executed": false
+    },
+    {
+      "id": "G09",
+      "status": "PLANNED_FAKE_COVERAGE",
+      "methods": [
+        1
+      ],
+      "scope_and_gaps": "Actual owner positive anchorZ-only snapshot, deliberate reap and one synthetic ESRCH.",
+      "executed": false
+    },
+    {
+      "id": "G10",
+      "status": "PLANNED_FAKE_SUBSET",
+      "methods": [
+        14,
+        17
+      ],
+      "scope_and_gaps": "Nonanchor and malformed snapshot refusal; every missing/error membership variant not enumerated.",
+      "executed": false
+    },
+    {
+      "id": "G11",
+      "status": "PLANNED_FAKE_SUBSET",
+      "methods": [
+        14,
+        30
+      ],
+      "scope_and_gaps": "Query callback then cleanup reaches same once-only TERM decision and stored deadline; arbitrary repeated finalization entry untested.",
+      "executed": false
+    },
+    {
+      "id": "G12",
+      "status": "PLANNED_FAKE_SUBSET",
+      "methods": [
+        14
+      ],
+      "scope_and_gaps": "TERM EPERM/ESRCH preserved with later explicit reap; KILL/other-error variants not covered.",
+      "executed": false
+    },
+    {
+      "id": "G13",
+      "status": "PLANNED_FAKE_SUBSET",
+      "methods": [
+        23,
+        29
+      ],
+      "scope_and_gaps": "Whole-owner unreaped late return and exact helper cutoff; killed-caller/grandchild and all query-at110 paths untested.",
+      "executed": false
+    },
+    {
+      "id": "G14",
+      "status": "PLANNED_FAKE_SUBSET",
+      "methods": [
+        18
+      ],
+      "scope_and_gaps": "One postreap present/EPERM observation without numeric resignal; separately late absence call untested.",
+      "executed": false
+    },
+    {
+      "id": "G15",
+      "status": "PLANNED_FAKE_COVERAGE",
+      "methods": [
+        24
+      ],
+      "scope_and_gaps": "Actual owner/caller/wrapper grammar, observed-future token refusal and valid unchanged token.",
+      "executed": false
+    },
+    {
+      "id": "G16",
+      "status": "PLANNED_FAKE_SUBSET",
+      "methods": [
+        10,
+        12,
+        27
+      ],
+      "scope_and_gaps": "Actual evidence token/deadline and identity mutants, wrapper forwarding; not every source/identity echo mutated.",
+      "executed": false
+    },
+    {
+      "id": "G17",
+      "status": "PLANNED_FAKE_SUBSET",
+      "methods": [
+        25,
+        31
+      ],
+      "scope_and_gaps": "Actual downward timeout conversion, original-bound equality/full-return and late consumed status; all platform float/API extremes untested.",
+      "executed": false
+    },
+    {
+      "id": "G18",
+      "status": "PLANNED_FAKE_SUBSET",
+      "methods": [
+        14,
+        30
+      ],
+      "scope_and_gaps": "Actual first TERM deadline and repeat cleanup no restart; not all early/late KILL seams.",
+      "executed": false
+    },
+    {
+      "id": "G19",
+      "status": "PLANNED_FAKE_SUBSET",
+      "methods": [
+        1,
+        17,
+        19
+      ],
+      "scope_and_gaps": "Reported0 is valid; malformed sampler yields null peak/refusal. All missing/no-sample input variants not enumerated.",
+      "executed": false
+    },
+    {
+      "id": "G20",
+      "status": "PLANNED_FAKE_COVERAGE",
+      "methods": [
+        17
+      ],
+      "scope_and_gaps": "Actual sampler failure and later NOTE_EXIT cannot erase error/refusal.",
+      "executed": false
+    },
+    {
+      "id": "G21",
+      "status": "PLANNED_FAKE_COVERAGE",
+      "methods": [
+        25
+      ],
+      "scope_and_gaps": "Actual DeadlineRefusal bypasses unchanged capture/same; consumed status preserved.",
+      "executed": false
+    },
+    {
+      "id": "G22",
+      "status": "PLANNED_FAKE_COVERAGE",
+      "methods": [
+        20,
+        25
+      ],
+      "scope_and_gaps": "Actual terminal query status then partial EOF/error: no PID signal/reap after recorded terminal.",
+      "executed": false
+    },
+    {
+      "id": "G23",
+      "status": "PLANNED_FAKE_SUBSET",
+      "methods": [
+        7,
+        8,
+        19,
+        20,
+        21,
+        30
+      ],
+      "scope_and_gaps": "Both actual fixed forms, split streams/EOF/partial/timeout/ECHILD and callback ordering; query constructor unknown and every close error untested.",
+      "executed": false
+    },
+    {
+      "id": "G24",
+      "status": "PLANNED_FAKE_SUBSET",
+      "methods": [
+        10,
+        11,
+        20
+      ],
+      "scope_and_gaps": "Actual bad-schema/missing/partial receipt and extra stdout; all schema/type/duplicate/nonfinite variants not enumerated.",
+      "executed": false
+    },
+    {
+      "id": "G25",
+      "status": "PLANNED_FAKE_SUBSET",
+      "methods": [
+        11,
+        16,
+        25,
+        29,
+        31
+      ],
+      "scope_and_gaps": "Real return/write/join/control deadline seams; every read/hash/trace/serialization phase not individually injected.",
+      "executed": false
+    },
+    {
+      "id": "G26",
+      "status": "PLANNED_FAKE_SUBSET",
+      "methods": [
+        11,
+        12,
+        14
+      ],
+      "scope_and_gaps": "After-identity and postwrite stops plus uncertainCONT; before-spawn/during-query/after-reap signal variants not all covered.",
+      "executed": false
+    },
+    {
+      "id": "G27",
+      "status": "PLANNED_FAKE_SUBSET",
+      "methods": [
+        26
+      ],
+      "scope_and_gaps": "Actual inclusive/growth with virtual stat sizes, path dedup vs identical distinct paths and pending-receipt equality; full external operational stream closure untested.",
+      "executed": false
+    },
+    {
+      "id": "G28",
+      "status": "STATIC_EXTERNAL_SOURCE_REVIEW_ONLY",
+      "methods": [],
+      "scope_and_gaps": "Pinned005 index/independent peer/root records account source lineage. No executable G28 pass is claimed and their maps are not recursively read.",
+      "executed": false
+    },
+    {
+      "id": "G29",
+      "status": "UNCOVERED",
+      "methods": [],
+      "scope_and_gaps": "Caller checked_contract/runtime and owner identity/ancestry observations are fake. No scientific/card/argv/callback/profile mutation acceptance coverage.",
+      "executed": false
+    },
+    {
+      "id": "G30",
+      "status": "STATIC_AUTHORITY_OBLIGATION_ONLY",
+      "methods": [],
+      "scope_and_gaps": "No operational roots/admission/execution are touched. An in-memory fake admission is not current authority or an observed filesystem-absence result.",
+      "executed": false
+    },
+    {
+      "id": "H1",
+      "status": "PLANNED_FAKE_SUBSET",
+      "methods": [
+        1,
+        3,
+        19,
+        22
+      ],
+      "scope_and_gaps": "Actual retained class on owned roles and explicit normal/unreaped/partial __del__; real base constructor/active-list/finalization internals unproved.",
+      "executed": false
+    },
+    {
+      "id": "H2",
+      "status": "PLANNED_FAKE_SUBSET",
+      "methods": [
+        23,
+        29
+      ],
+      "scope_and_gaps": "Unknown/unreaped at cutoff and destructor produce no new child APIs; not every killed-caller/query finalization route.",
+      "executed": false
+    },
+    {
+      "id": "H3",
+      "status": "PLANNED_FAKE_COVERAGE",
+      "methods": [
+        20,
+        22,
+        25,
+        28
+      ],
+      "scope_and_gaps": "Actual status consumed once and late return preserved; override release does not call fake base child API.",
+      "executed": false
+    },
+    {
+      "id": "H4",
+      "status": "PLANNED_FAKE_COVERAGE",
+      "methods": [
+        3
+      ],
+      "scope_and_gaps": "Actual positive identity-to-running edge with one native/query constructor.",
+      "executed": false
+    },
+    {
+      "id": "H5",
+      "status": "PLANNED_FAKE_COVERAGE",
+      "methods": [
+        12
+      ],
+      "scope_and_gaps": "Actual missing/mismatched PID/PPID/PGID and stop/equality edge; only bounded refusal finally reap allowed.",
+      "executed": false
+    },
+    {
+      "id": "H6",
+      "status": "PLANNED_FAKE_SUBSET",
+      "methods": [
+        15,
+        16
+      ],
+      "scope_and_gaps": "Owner/native constructor unknown or late, original deadline/refusal retained; query constructor late/unknown not covered.",
+      "executed": false
+    }
+  ],
+  "finite_execution_shape": "One direct31-method TestCase, fixed literal subTest tables and fake finite streams. The fake clock advances at each monotonic query/sleep; specific timeout/late cases advance to explicit boundaries. This static reasoning is not a measured runtime or hard loop/resource bound. Exactly175 static assert-call sites are not an executed predicate count.",
+  "source_validation": {
+    "all5_packet_records_and11_named_current_inputs_hash_size_match": true,
+    "all11_named_inputs_total_bytes": 210804,
+    "strict_JSON_files": 11,
+    "Python_AST_only_files": 4,
+    "all83_source_span_descriptors_match": true,
+    "complete_method_names_lines_and_G_H_references_match": true,
+    "target_or_fixture_import_compile_eval_execution": false,
+    "nested_map_dereference": false,
+    "future_operational_root_access": false
+  },
+  "reviewer_static_events": [
+    "One own metadata assertion used nonexistent index key test_methods and stopped with KeyError before writing. Corrected only the reviewer assertion to expected_method_names and checked the exact inventory. No target code was run or changed.",
+    "An initial combined metadata display was truncated by tool output; relevant provider, stub, coverage and source-metadata sections were subsequently inspected separately."
+  ],
+  "lineage": "Independent of material_publication's fixture implementation and lpbf_linear_refinement's native005 implementation; prior F1 fixture/controller authorship and earlier donor/control peer work disclosed. No independent physical qualification is claimed.",
+  "future_gates_unresolved": [
+    "All31 methods execution/results",
+    "Selected current runtime/retained-anchor owner/admission",
+    "Partial G/H cases and G29",
+    "Native005 actual/staging/freshness/runtime/native result",
+    "All field/mechanical/physical/manufacturing acceptance"
+  ]
+}

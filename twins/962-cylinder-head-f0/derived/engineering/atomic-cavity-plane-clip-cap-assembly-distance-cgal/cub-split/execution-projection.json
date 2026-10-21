@@ -1,0 +1,44 @@
+{
+  "query": "assembled-cap-to-complete-original",
+  "environment": {
+    "PATH": "/usr/bin:/bin",
+    "LANG": "C.UTF-8",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "OMP_NUM_THREADS": "2",
+    "OPENBLAS_NUM_THREADS": "2",
+    "MKL_NUM_THREADS": "2",
+    "VECLIB_MAXIMUM_THREADS": "2",
+    "NUMEXPR_NUM_THREADS": "2"
+  },
+  "resources": {
+    "rss_stop_bytes": 4294967296,
+    "rss_poll_seconds": 0.1,
+    "process_group_deadline_seconds": 300,
+    "native_library_serial": true,
+    "thread_environment_limit": 2,
+    "hard_address_space_quota": false,
+    "OS_CPU_quota": false
+  },
+  "contract_sha256": "caa6cd744014342c828d2fb56dac840315dc6caf72398c8413d3108c1764c6af",
+  "config_sha256": "54bde360959d93c6ce4f1ac1d7ba3f2186eb73a3322c05feefab418b4a94d204",
+  "status": "finished",
+  "hard_address_space_quota_established": false,
+  "OS_CPU_quota_established": false,
+  "returncode": 2,
+  "wall_seconds": 6.4983726660721,
+  "maximum_observed_worker_RSS_bytes": 1102544896,
+  "RSS_samples": 58,
+  "stopped_by_watchdog": null,
+  "monitor_error": null,
+  "cleanup_error": null,
+  "worker_reaped": true,
+  "worker_running_after_monitor": false,
+  "SIGTERM_requested": false,
+  "SIGTERM_handler_restored": true,
+  "all_bound_inputs_unchanged": true,
+  "artifact_sha256": {
+    "running-receipt.json": "ad576d6067983a50eaedc025b23ca3aee28ee94d039cdb7fdec4d5408a5edde8",
+    "worker-report.json": "2efbcc2ea2307b1eba4dadf995eb91ea2c675b27f4a2972e53e7811ad8eee816",
+    "native.log": "0718f5ca3185cd862d59485f8df97bedb82785b6e667d18efa0b72ca0a3df720"
+  }
+}

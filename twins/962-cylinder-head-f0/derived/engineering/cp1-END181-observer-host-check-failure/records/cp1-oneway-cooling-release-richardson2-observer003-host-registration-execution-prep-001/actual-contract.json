@@ -1,0 +1,108 @@
+{
+  "schema": "962-observer003-held-one-host-registration-check-actual/v1",
+  "status": "HELD_ROOT_ADMISSION_REQUIRED",
+  "controller": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer003-host-registration-owner-prep-001/run_host_check_once.py",
+    "sha256": "c868be7615b080cf4d0437835e5b30329aea16496321ec131672754783346317",
+    "bytes": 16384
+  },
+  "preflight": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer003-host-registration-execution-prep-001/input-runtime-preflight.002.json",
+    "sha256": "46aaa402d7bc73f2a14f04a07228a5922c4b4ee22fc2888af5cf717042614991",
+    "bytes": 40546
+  },
+  "held_plan": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer003-host-registration-check-prep-001/held-check-plan.json",
+    "sha256": "4e229043292043d77d9561cb296f069622d3cb123a475f0d166c4ec3f85439af",
+    "bytes": 9914
+  },
+  "staged_copy_metadata": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer003-host-registration-execution-prep-001/staged-copy-metadata.json",
+    "sha256": "860d417696255e12a2d5c45c74054be42054b91681c896b2fee2491adfe0a646",
+    "bytes": 4191
+  },
+  "argv": [
+    "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-local-installed-002/bin/combined-opt",
+    "-skip_petscrc",
+    "--n-threads=1",
+    "--check-input",
+    "--list-constructed-objects",
+    "-i",
+    "thermoelastic-birth-observer-registration.i"
+  ],
+  "environment": {
+    "PATH": "/usr/bin:/bin",
+    "LANG": "C",
+    "LC_ALL": "C",
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "MKL_NUM_THREADS": "1",
+    "VECLIB_MAXIMUM_THREADS": "1",
+    "FI_PROVIDER": "tcp",
+    "DYLD_LIBRARY_PATH": "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-local-installed-002/lib/combined:/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-local-installed-002/lib",
+    "DYLD_PRINT_LIBRARIES": "1",
+    "TMPDIR": "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/cp1-oneway-cooling-release-richardson2-observer003-host-registration-root-execution-001/tmp"
+  },
+  "cwd": "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/cp1-oneway-cooling-release-richardson2-observer003-host-registration-root-execution-001",
+  "positive_contract": {
+    "returncode": 0,
+    "stderr_required_text": "Syntax OK",
+    "stdout_start_marker": "**START OBJECT DATA**",
+    "stdout_end_marker": "**END OBJECT DATA**",
+    "required_exact_line_inside_constructed_type_frame": "CouponEnd181DofMap",
+    "plugin_load_trace_expected_path": "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/cp1-oneway-cooling-release-richardson2-END181-dof-map-observer-prep-003/build-005/libcoupon_end181_observer-opt.dylib",
+    "type_claim_scope": "Host parser/Factory registration and completed input setup with the observer type constructed; no output callback or live node/DOF/map proof",
+    "no_solve_source_basis": "MooseApp::run check_input branch calls errorCheck/SyntaxOK instead of executeExecutioner; list constructed types happens after input actions.",
+    "expected_outputs": "Full stdout/stderr/loader trace, status/lifecycle and fresh declared input identities; preserve unexpected files without decoding them."
+  },
+  "controls": {
+    "wall_seconds": 60,
+    "TERM_grace_seconds": 8,
+    "KILL_wait_seconds": 8,
+    "sampled_owned_group_RSS_stop_bytes": 2147483648,
+    "owned_output_stop_bytes": 33554432,
+    "OMP_BLAS_environment_threads": 1,
+    "thread_observations_nongating": true,
+    "numeric_reported_RSS_zero_allowed": true,
+    "missing_or_nonnumeric_RSS_not_zero_filled": true,
+    "retry": 0,
+    "core_bytes": 0
+  },
+  "outer_python": {
+    "alias": "/usr/local/bin/python3",
+    "resolved": "/Library/Frameworks/Python.framework/Versions/3.10/bin/python3.10",
+    "record": {
+      "path": "/Library/Frameworks/Python.framework/Versions/3.10/bin/python3.10",
+      "sha256": "72956ad35cff7691dfed9e04c9593de825ffd5b2fa7e8bc9ae96ce9a1af65621",
+      "bytes": 152624
+    }
+  },
+  "independent_source_input_peer": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer003-host-registration-source-peer-001/review.json",
+    "sha256": "b51dab3cf21347706c5178af113bff3767bbe64a500d9007ccf0e8bdb280c331",
+    "bytes": 6941
+  },
+  "independent_source_input_bindings": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer003-host-registration-source-peer-001/bindings.json",
+    "sha256": "dea5d6175ba1a2e3d33328e5dc9f8c879d82b60dd1fd59b9ac2785fcb504b4c7",
+    "bytes": 6258
+  },
+  "host_check_execution_authorized": false,
+  "plugin_load_authorized": false,
+  "executioner_init_authorized": false,
+  "native_solve_authorized": false,
+  "callback_or_live_map_authorized": false,
+  "physical_acceptance": false,
+  "future_root_admission": null,
+  "launch_template": [
+    "/Library/Frameworks/Python.framework/Versions/3.10/bin/python3.10",
+    "-B",
+    "-I",
+    "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/cp1-oneway-cooling-release-richardson2-observer003-host-registration-owner-prep-001/run_host_check_once.py",
+    "<ROOT_ADMISSION_SHA256>"
+  ],
+  "provider_scope": "Exact known prior native selected library union with successful standalone11direct providers;22declared path/21canonical providers, not fulltransitive/sourceABI acceptance.",
+  "unexpected_outputs_preserved_without_body_decoding_or_hashing": true,
+  "root_registration_result_requires_expected_plugin_attribution": true,
+  "loader_attribution_separate_from_factory_input_check_status": true
+}

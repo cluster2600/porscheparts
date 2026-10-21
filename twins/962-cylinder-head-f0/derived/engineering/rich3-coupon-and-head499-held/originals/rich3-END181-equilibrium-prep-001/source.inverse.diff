@@ -1,0 +1,26 @@
+--- work/962-engineering/rich3-END181-equilibrium-prep-001/calculate_END181.py
++++ work/962-engineering/native005-END181-equilibrium-prep-001/calculate_END181.py
+@@ -8,17 +8,17 @@
+ import types
+ 
+ ROOT = Path('/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993')
+-NATIVE = ROOT / 'work/962-engineering/cp1-oneway-cooling-release-richardson3-observer004-native-measurement-001'
+-OUTPUT = ROOT / 'work/962-engineering/rich3-END181-equilibrium-execution-001'
++NATIVE = ROOT / 'work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native-measurement-004'
++OUTPUT = ROOT / 'work/962-engineering/native005-END181-equilibrium-execution-001'
+ RUNTIME = {'path': 'work/962-engineering/native005-raw-displacement-decoder-runtime-root-001/acceptance.json', 'sha256': '5dbf28e11b6fcd7c4770bb40a042a58735ab98485a592b857e3293eb5dab8376', 'bytes': 9673}
+ ASSESSOR = {'path': 'work/962-engineering/cp1-oneway-cooling-release-richardson2-assessor-prep-001/assess.py', 'sha256': 'aa7ee403a0a3078df58410815f2b613aaeb9634bd14bc9c90517ce00cec7f2d5', 'bytes': 46645}
+ POLICY = {'path': 'work/962-engineering/cp1-oneway-cooling-release-richardson2-assessor-prep-001/POLICY.json', 'sha256': 'a87df89f84706b36c0b665c0e9eac928e3c9b2b45f5a2921442b2d6403f4a638', 'bytes': 5013}
+ LIMITS = {'temperature_K': 1e-10, 'displacement_m': 1e-12, 'QP_coordinate_m': 2e-13, 'strain': 1e-10, 'stress_Pa': .1, 'force_N': 1e-7, 'moment_Nm': 1e-7}
+ RAW = {
+-    'thermoelastic.e-s002': {'path': str(NATIVE.relative_to(ROOT) / 'thermoelastic.e-s002'), 'sha256': '8730b734dbbe8553ef1e47526ba8eafd3989323649fa564a4fa571e21dae3a83', 'bytes': 3189268},
+-    'thermoelastic_end_0181.csv': {'path': str(NATIVE.relative_to(ROOT) / 'thermoelastic_end_0181.csv'), 'sha256': '05d32ff636750d00a4a776c3749ccbe980caae21acd4d5e65952edf2acc2d7f9', 'bytes': 71939},
+-    'thermoelastic_end_fields_0181.csv': {'path': str(NATIVE.relative_to(ROOT) / 'thermoelastic_end_fields_0181.csv'), 'sha256': '80fcb0e6ea6e6f6f6bf259c29a7c4c205d5f4c337925ff547f9e7b48c52807c0', 'bytes': 1370125},
+-    'thermoelastic_begin_0080.csv': {'path': str(NATIVE.relative_to(ROOT) / 'thermoelastic_begin_0080.csv'), 'sha256': 'f54de6aafef6e8c418fcc8887f3b0ac359e3bb22d8a5de88b35be1e15bbef405', 'bytes': 28087},
++    'thermoelastic.e-s002': {'path': str(NATIVE.relative_to(ROOT) / 'thermoelastic.e-s002'), 'sha256': 'b6147b3e9c8fe447f85676c7d10b0f8bf7f33e69a3147569c06d1f0f486228d4', 'bytes': 3189268},
++    'thermoelastic_end_0181.csv': {'path': str(NATIVE.relative_to(ROOT) / 'thermoelastic_end_0181.csv'), 'sha256': '9970cbfd2e3d11f584e5b38615f9d92e02e00ce240b1c3f88c59716bed899f8e', 'bytes': 71995},
++    'thermoelastic_end_fields_0181.csv': {'path': str(NATIVE.relative_to(ROOT) / 'thermoelastic_end_fields_0181.csv'), 'sha256': '807e97378f87b5e94c1b20539abe6859eab2a053f91598d9f9010a01d3395e8a', 'bytes': 1370249},
++    'thermoelastic_begin_0080.csv': {'path': str(NATIVE.relative_to(ROOT) / 'thermoelastic_begin_0080.csv'), 'sha256': '22609b849303638a30e49276f9171371eef5bc639f70528aa2ab210358830035', 'bytes': 28080},
+     'thermoelastic_reference_begin_0080.csv': {'path': str(NATIVE.relative_to(ROOT) / 'thermoelastic_reference_begin_0080.csv'), 'sha256': 'ea69e318eca4878c7f857a18864cc5ec96206dfc60bdea99cde25b98e0624ea5', 'bytes': 4816},
+     'transfer-manifest.json': {'path': str(NATIVE.relative_to(ROOT) / 'transfer-manifest.json'), 'sha256': 'c774e62c67e16c29dc024b8cc8e6641570e316265960e58cd7170827f8cecd06', 'bytes': 130095},
+ }

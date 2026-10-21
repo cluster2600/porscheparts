@@ -1,0 +1,80 @@
+--- work/962-engineering/head-star-current204-union-context-prep-002/selfcheck.py
++++ work/962-engineering/head-star-current126-alternative-union-context-prep-001/selfcheck.py
+@@ -3,7 +3,7 @@
+ import ast,copy,hashlib,json,math,struct,unittest
+ 
+ HERE=Path(__file__).resolve().parent;ROOT=HERE.parents[2];SOURCE=HERE/'reader.py'
+-SOURCE_SHA='c852a8a536a0ef2c58a37132fb51e42e525403d1f519375cc04a9860bfe53b29'
++SOURCE_SHA='4a78676cb1b8dbf3ad3e773dd5d881c943e83083730b6fa7e06e291349334df6'
+ if hashlib.sha256(SOURCE.read_bytes()).hexdigest()!=SOURCE_SHA:raise ValueError('Frozen reader changed')
+ TREE=ast.parse(SOURCE.read_text());FACES=((0,2,1),(0,1,3),(1,2,3),(2,0,3))
+ encoded=lambda x:(json.dumps(x,indent=2,allow_nan=False)+'\n').encode()
+@@ -91,18 +91,23 @@
+   self.assertEqual(ns['validate_maxima'](100,999,100,999),{'node':100,'element_all_dimensions':999})
+   with self.assertRaises(ValueError):ns['validate_maxima'](100,999,100,200)
+ 
+- def test_current204_proof_refuses_old208_or_wrong_census(self):
+-  ns=dict(MSH_SHA='mesh',WORKER='worker',FIRST='first',FIXED_INPUTS={'worker':'workerhash','first':'firsthash'})
+-  f=select(['current_after_proof'],ns)['current_after_proof'];proof={'array_sha256s':{'a':'aa'},'classifications':{'c':1}}
+-  helpers={'partial_after_proof':lambda *args:proof,'require_after_match':lambda report,proof,total:self.assertEqual(total,204)}
+-  prior=dict(MSH_sha256='mesh',MSH_bytes=235744782,partial_report_sha256='workerhash',expected_positive_poor_total=204)
+-  first=dict(status='direct_saved_file_readback_completed',bound_inputs_unchanged=True,single_partial_replacement_saved_proof=dict(report_sha256='workerhash',field='after',after_equals_saved_reopen=True,independent_prior_reader_alias_used=False,old210_bins_reused=False),a='aa',direct_fresh_classifications={'c':1})
+-  peer=dict(decision='CLEAR_COMPLETED_READ_ONLY_CENSUS_WHOLE_HEAD_QUALITY_REJECTED',records={'worker_report':{'sha256':'firsthash'}},blockers=[],engineering_accepted=False)
+-  self.assertEqual(f({}, {}, {},first,prior,peer,helpers),proof)
+-  changed=dict(prior,expected_positive_poor_total=208)
+-  with self.assertRaises(ValueError):f({}, {}, {},first,changed,peer,helpers)
+-  changed=copy.deepcopy(peer);changed['records']['worker_report']['sha256']='old'
+-  with self.assertRaises(ValueError):f({}, {}, {},first,prior,changed,helpers)
++ def test_current126_descriptor_proof_and_rejected_head_scope(self):
++  constants={t.id:ast.literal_eval(n.value) for n in TREE.body if isinstance(n,ast.Assign) for t in n.targets if isinstance(t,ast.Name) and isinstance(n.value,(ast.Constant,ast.Dict))}
++  ns={k:constants[k] for k in ['MSH_SHA','WORKER','FIRST','FIRST_CONTRACT','FIRST_ACTUAL','CENSUS_PEER','CENSUS_BINDINGS','CENSUS_ACCEPT','FIXED_INPUTS']}
++  f=select(['current_after_proof'],ns)['current_after_proof']
++  helper_tree=ast.parse((ROOT/constants['CLASS_HELPER']).read_text())
++  helpers={};defs=[n for n in helper_tree.body if isinstance(n,ast.FunctionDef) and n.name in ['partial_after_proof','require_after_match']]
++  exec(compile(ast.Module(body=defs,type_ignores=[]),'<current126-proof-only>','exec'),helpers)
++  paths=[constants[k] for k in ['WORKER','RECEIPT','CLOSED','FIRST','FIRST_CONTRACT','CENSUS_PEER','CENSUS_BINDINGS','CENSUS_ACCEPT']]
++  data=[json.loads((ROOT/p).read_text()) for p in paths]
++  self.assertEqual(f(*data,helpers),data[0]['after'])
++  for mode in ['old_count','wrong_report','claim_command','claim_head']:
++   d=copy.deepcopy(data)
++   if mode=='old_count':d[4]['expected_positive_poor_total']=127
++   if mode=='wrong_report':d[7]['current_report']['sha256']='0'*64
++   if mode=='claim_command':d[7]['prior_d60_command_conformant']=True
++   if mode=='claim_head':d[7]['whole_head_quality_accepted']=True
++   with self.assertRaises(ValueError):f(*d,helpers)
+ 
+  def test_held_refusal_and_unchanged_face_kernels_controller(self):
+   f=select(['require_inputs'],{})['require_inputs']
+@@ -115,4 +120,32 @@
+    a=next(n for n in ast.walk(new) if isinstance(n,ast.FunctionDef) and n.name==name);b=next(n for n in ast.walk(old) if isinstance(n,ast.FunctionDef) and n.name==name);self.assertEqual(ast.dump(a),ast.dump(b))
+   self.assertEqual(ast.dump(next(n for n in ast.walk(new) if isinstance(n,ast.While))),ast.dump(next(n for n in ast.walk(old) if isinstance(n,ast.While))))
+ 
++
++ def test_accepted15_domain_descriptors_and_no_context_authority(self):
++  constants={t.id:ast.literal_eval(n.value) for n in TREE.body if isinstance(n,ast.Assign) for t in n.targets if isinstance(t,ast.Name) and isinstance(n.value,(ast.Constant,ast.Dict))}
++  names=['MSH_SHA','FIRST','WORKER','FIXED_INPUTS','DOMAIN_MANIFEST','DOMAIN_INDEX','DOMAIN_MASTER','DOMAIN_OWN_REVIEW','DOMAIN_PEER','DOMAIN_BINDINGS','DOMAIN_ACCEPT']
++  ns={k:constants[k] for k in names};f=select(['require_domain_gate'],ns)['require_domain_gate']
++  manifest=json.loads((HERE/'case-manifest.json').read_text())
++  accepted=json.loads((ROOT/constants['DOMAIN_ACCEPT']).read_text());peer=json.loads((ROOT/constants['DOMAIN_PEER']).read_text());bindings=json.loads((ROOT/constants['DOMAIN_BINDINGS']).read_text())
++  self.assertEqual(f(manifest,accepted,peer,bindings)['case_reports'],accepted['case_reports'])
++  for mode in ['wrong_apex','wrong_case','wrong_report','context_claim','native_authority','missing_binding']:
++   a,p,b=copy.deepcopy(accepted),copy.deepcopy(peer),copy.deepcopy(bindings)
++   if mode=='wrong_apex':a['accepted_domain_case_tags']=a['accepted_domain_case_tags'][:-1]
++   if mode=='wrong_case':a['case_reports'][str(manifest['selected_apex_tags'][0])]['source_record_sha256']='0'*64
++   if mode=='wrong_report':b['per_case_bindings'][0]['report']['sha256']='0'*64
++   if mode=='context_claim':a['outside_owner_context_established']=True
++   if mode=='native_authority':a['native_execution_authorized']=True
++   if mode=='missing_binding':b['per_case_bindings'].pop()
++   with self.assertRaises(ValueError):f(manifest,a,p,b)
++  constants['FORBIDDEN']=ast.literal_eval(next(n.value for n in TREE.body if isinstance(n,ast.Assign) and any(isinstance(t,ast.Name) and t.id=='FORBIDDEN' for t in n.targets)))
++  for name in ['material_qualified','process_calibrated','head_PDE_authorized']:self.assertIn(name,constants['FORBIDDEN'])
++  schema='962-current126-alternative15-union-head-context/v1';root=Path('/synthetic-union');output='output'
++  c=dict(schema=schema,native_execution_authorized=True,native_read_only_query_authorized=True,root_and_peer_review_complete=True,selected_runtime_review_complete=True,
++   upstream_census_launch_deviation_sha256='deviation',declared_controller_command_conformant=False,automatic_retry=False,output_directory=output,MSH_sha256='mesh',MSH_bytes=235786462,
++   **{k:False for k in constants['FORBIDDEN']})
++  check=select(['require_inputs'],dict(FORBIDDEN=constants['FORBIDDEN'],FIXED_INPUTS={'deviation':'deviation'},DEVIATION='deviation',OUTPUT=output,ROOT=root,OUT=root/output,MSH_SHA='mesh'))['require_inputs']
++  for name in ['material_qualified','process_calibrated','head_PDE_authorized']:
++   changed=dict(c);changed[name]=True
++   with self.assertRaises(ValueError):check(changed)
++
+ if __name__=='__main__':unittest.main()

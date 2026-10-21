@@ -1,0 +1,139 @@
+{
+  "schema": "962-native005-END181-QP-arithmetic-held-fixed-intake/v1",
+  "status": "HELD_UNRUN_SOURCE_ONLY",
+  "source": {
+    "path": "work/962-engineering/native005-END181-QP-arithmetic-prep-001/audit_qp_arithmetic.py",
+    "sha256": "6658873c7f03ecac79c9140251319fa3892a41f950f60d303893af50fe18158d",
+    "bytes": 25526
+  },
+  "source_dependencies": {
+    "assessor": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-assessor-prep-001/assess.py",
+      "sha256": "aa7ee403a0a3078df58410815f2b613aaeb9634bd14bc9c90517ce00cec7f2d5",
+      "bytes": 46645
+    },
+    "POLICY": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-assessor-prep-001/POLICY.json",
+      "sha256": "a87df89f84706b36c0b665c0e9eac928e3c9b2b45f5a2921442b2d6403f4a638",
+      "bytes": 5013
+    },
+    "formatter_donor_provenance": {
+      "path": "work/962-engineering/native005-END181-equilibrium-prep-001/calculate_END181.py",
+      "sha256": "50160c285028764ee9f77d4a72b7d0823b33b4c5d3b8412174ca9efd03508f4a",
+      "bytes": 21807
+    }
+  },
+  "future_scientific_inputs": {
+    "QP_CSV": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native-measurement-004/thermoelastic_end_fields_0181.csv",
+      "sha256": "807e97378f87b5e94c1b20539abe6859eab2a053f91598d9f9010a01d3395e8a",
+      "bytes": 1370249
+    },
+    "nodal_CSV": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native-measurement-004/thermoelastic_end_0181.csv",
+      "sha256": "9970cbfd2e3d11f584e5b38615f9d92e02e00ce240b1c3f88c59716bed899f8e",
+      "bytes": 71995
+    }
+  },
+  "future_scientific_input_count": 2,
+  "future_scientific_input_bytes": 1442244,
+  "derived_input": {
+    "path": "work/962-engineering/native005-END181-equilibrium-execution-001/diagnostic.json",
+    "sha256": "c50b2079da852028a65526577fa00011a82bfa1f61845b612e1b4d80d0a713c9",
+    "bytes": 1024623
+  },
+  "selected_runtime_body_expected": {
+    "path": "/Users/maxime/.local/share/uv/python/cpython-3.12.11-macos-aarch64-none/bin/python3.12",
+    "sha256": "1699bf8aa705a8bb71613bef5cdd7d7c8c9d9a188a841f41679aa9b5830b8f60",
+    "bytes": 49968
+  },
+  "selected_runtime_alias_expected": "/Users/maxime/.codex/worktrees/962-watercooled-head/3dprinting993/work/962-head/check-venv/bin/python",
+  "runtime_scope": "Selected Python body before/after and observed version/flags only. No NumPy/SciPy, selected22 body reads, transitive stdlib or full ABI claim.",
+  "fixed_argv": [
+    "/Users/maxime/.codex/worktrees/962-watercooled-head/3dprinting993/work/962-head/check-venv/bin/python",
+    "-B",
+    "-I",
+    "-S",
+    "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/native005-END181-QP-arithmetic-prep-001/audit_qp_arithmetic.py"
+  ],
+  "fixed_output_startup": "Absent directory and no symlink; main creates it only after complete arithmetic and first cap checks.",
+  "fixed_future_output": "work/962-engineering/native005-END181-QP-arithmetic-execution-001",
+  "fixed_future_outputs": [
+    "report.json",
+    "execution-receipt.json"
+  ],
+  "planned_source_data_runtime_pin_count": 6,
+  "planned_source_data_runtime_bytes": 2568493,
+  "planned_counts": {
+    "nodes": 425,
+    "cells": 256,
+    "regions": 2,
+    "regional_cell_counts": [
+      128,
+      128
+    ],
+    "regional_node_counts": [
+      225,
+      225
+    ],
+    "shared_nodes": 25,
+    "QP_seeds": 2048,
+    "regional_merge_rows": 900,
+    "components": 1275,
+    "stress_channels": 2,
+    "variants_per_channel": 3,
+    "original_aggregate_checks": 36,
+    "original_native_subset_checks": 12,
+    "derived_variant_checks": 108,
+    "complete_contribution_DOFs": [
+      [
+        0,
+        0
+      ],
+      [
+        32,
+        1
+      ],
+      [
+        32,
+        2
+      ]
+    ]
+  },
+  "unchanged_limits": {
+    "temperature_K": 1e-10,
+    "displacement_m": 1e-12,
+    "QP_coordinate_m": 2e-13,
+    "strain": 1e-10,
+    "stress_Pa": 0.1,
+    "force_N": 1e-7,
+    "moment_Nm": 1e-7
+  },
+  "future_parent_requirements": {
+    "wall_seconds": 20,
+    "threads_environment": 1,
+    "no_retry": true,
+    "raw_stdout_stderr_complete": true,
+    "raw_returncode_zero_required": true,
+    "wait_reap_required": true,
+    "inclusive_scoped_cap_bytes": 33554432,
+    "scope": "Six fixed input/source/runtime records plus all five packet files, complete output, parent controls/streams/receipts. Equal bytes at distinct paths count separately.",
+    "time_and_complete_cap_external_postchecks_required": true,
+    "live_RSS_observation": null
+  },
+  "preparation_operations": {
+    "source_text_read_hash_AST": true,
+    "derived_report_structural_read": true,
+    "scientific_QP_or_nodal_body_read_hash_stat": false,
+    "runtime_body_or_alias_read_hash_stat": false,
+    "target_import_compile_execute": false,
+    "tests_or_fixtures_run": false,
+    "solver_or_native_operation": false,
+    "output_root_created": false,
+    "actual_or_admission_created": false,
+    "PUB_or_Git_mutation": false
+  },
+  "future_execution_authority_issued": false,
+  "physics_field_force_material_LPBF_or_manufacturing_acceptance": false,
+  "lineage": "Author also wrote the previous END181 calculation and several observer/parser controls. This is new diagnostic source preparation, not independent scientific acceptance."
+}

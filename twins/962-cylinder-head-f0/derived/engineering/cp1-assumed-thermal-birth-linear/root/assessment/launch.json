@@ -1,0 +1,20 @@
+{
+  "schema": "962-separate-assessment-root-launch/v1",
+  "root_pid": "process-role://linear-assessment/root-owner",
+  "assessment_pid": "process-role://linear-assessment/owned-assessor",
+  "assessment_pgid": "process-role://linear-assessment/owned-assessor",
+  "actual_sha256": "5128445ee07da6844bc79c476a3e488a442e22ef3fb756073a9d306916087404",
+  "child_peer_sha256": "e68cd22c470f127dddc465af485764724669534cc2775b4d5c9a97679488de37",
+  "argv": [
+    "runtime-role://controller/python",
+    "-I",
+    "-B",
+    "work/962-engineering/cp1-assumed-thermal-birth-linear-prep-001/assess.py",
+    "work/962-engineering/cp1-assumed-thermal-birth-linear-001",
+    "--contract",
+    "work/962-engineering/cp1-assumed-thermal-birth-linear-001/frozen-contract.json",
+    "--output",
+    "work/962-engineering/cp1-assumed-thermal-birth-linear-assessment-001/assessment.json"
+  ],
+  "new_owned_session": true
+}

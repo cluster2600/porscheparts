@@ -1,0 +1,77 @@
+{
+  "schema": "962-current24-saved-structure-decoder-wrapper-failure-accounting/v1",
+  "decision": "RETAIN_COMPLETED_SAVED_STRUCTURAL_SUMMARY_WITH_SUPERVISOR_FAILURE_NO_LIFECYCLE_OR_RESOURCE_ACCEPTANCE",
+  "decoder_script": {
+    "path": "work/962-engineering/head-star-current24-exact-segment-feasibility-saved-structure-002/summarize_saved.py",
+    "sha256": "7f5e31c7737fde6612004e67bc9677185c66b9f6669fb14437319a3e7cc5c8bd",
+    "bytes": 9882
+  },
+  "summary": {
+    "path": "work/962-engineering/head-star-current24-exact-segment-feasibility-saved-structure-002/summary.json",
+    "sha256": "32a13288fa998a3c18fb8095397b9658c6c91fe45ccb563fb4e5d3af38a28527",
+    "bytes": 16868
+  },
+  "decoder_stdout": {
+    "path": "work/962-engineering/head-star-current24-exact-segment-feasibility-saved-structure-002/stdout.log",
+    "sha256": "6b378202ab8f5772983291275d5f9f1b87c1836cd6678b419f38250b1427337d",
+    "bytes": 3734
+  },
+  "decoder_stderr": {
+    "path": "work/962-engineering/head-star-current24-exact-segment-feasibility-saved-structure-002/stderr.log",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "bytes": 0
+  },
+  "source_author_structural_read_only": true,
+  "scientific_acceptance": false,
+  "single_decoder_invocation": true,
+  "decoder_rerun": false,
+  "outer_supervisor_returncode_observed": 1,
+  "decoder_returncode_not_retained": null,
+  "original_decoder_PID_not_retained": null,
+  "original_decoder_PGID_not_retained": null,
+  "failure": {
+    "exception": "PermissionError",
+    "errno": 1,
+    "message": "Operation not permitted",
+    "location": "os.killpg(pid,0) in exists_group() called by cleanup()",
+    "observed_tool_trace": "Traceback (most recent call last):\n  File \"<stdin>\", line 56, in <module>\n  File \"<stdin>\", line 27, in cleanup\n  File \"<stdin>\", line 11, in exists_group\nPermissionError: [Errno 1] Operation not permitted\n",
+    "supervisor_closed_receipt_written": false,
+    "supervisor_source_persisted_as_file": false,
+    "cause_scope": "The permission refusal is observed; its OS/environment cause is not established. No target PID/PGID or RSS samples were retained by the failed supervisor."
+  },
+  "subsequent_process_observation": {
+    "command": "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/head-star-current24-segment-runtime-001/venv/bin/python -B -I /Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/head-star-current24-exact-segment-feasibility-saved-structure-002/summarize_saved.py",
+    "exact_command_match_count": 0,
+    "ps_returncode": 0,
+    "scope": "Subsequent exact-command point observation only; not proof of original wait/reap/group absence.",
+    "signals_sent_by_followup": false
+  },
+  "attempted_limits": {
+    "ordinary_seconds": 60,
+    "TERM_grace_seconds": 8,
+    "sampled_RSS_bytes": 2147483648,
+    "output_bytes": 33554432,
+    "declared_logical_payload_bytes": 35016403,
+    "threads": 1
+  },
+  "resource_samples_not_retained": true,
+  "bounded_resource_completion_accepted": false,
+  "wait_reap_group_absence_accepted": false,
+  "structural_summary_saved_declarations": {
+    "paths": 19,
+    "real_path_feasible_saved_true": 0,
+    "real_path_feasible_saved_false": 19,
+    "global_real_roots_saved": 3832,
+    "ordered_boundaries_including0and1": 241,
+    "interior_boundary_count": 203,
+    "sign_atoms": 463,
+    "feasible_sign_atoms": 0,
+    "connected_real_feasible_components": 0,
+    "positive_width_components": 0,
+    "isolated_components": 0,
+    "rational_witnesses": 0
+  },
+  "preserved_limit": "All19 source-declared real path results are structurally summarized only. Independent Fraction/Sturm scientific review remains pending. No binary64 witness, geometry application, global infeasibility, physical or manufacturing acceptance.",
+  "no_worker_helper_guard_SymPy_Fraction_native_or_head_arithmetic_replay": true,
+  "root_native_closure_attribution": "Attributed to root closure6bbbc243; not re-executed or independently body-hashed here."
+}

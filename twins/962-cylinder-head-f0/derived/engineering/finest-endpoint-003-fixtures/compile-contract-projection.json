@@ -1,0 +1,43 @@
+{
+  "schema": "962-endpoint003-execution-child/v1",
+  "phase": "compile",
+  "root_authorized": true,
+  "root_and_peer_review_complete": true,
+  "image_id": "sha256:57c6b17ed0bd093a61a3d3cecb7563e912caeb3832fd59e8cec2d4d9d4d1e2f8",
+  "automatic_retry": false,
+  "limits": {
+    "cpus": 2,
+    "memory_bytes": 4294967296,
+    "swap_bytes": 0,
+    "hard_wall_seconds_each": 300,
+    "tmpfs_bytes": 1073741824,
+    "network": "none"
+  },
+  "scope": "Exactly two serial compiles; no fixture or head execution",
+  "held_recipe_sha256": "262cd5d2a26eb8f25763d5f43d6bf3629a4b1d492648645572c4c3adf3c0608c",
+  "authorized_UTC": "2026-10-16T21:32:46.240600+00:00",
+  "projection": "Allowlisted original scalars, limits, review values and job labels/expected return codes. Commands, native entrypoints/arguments, mount paths and preparation path omitted; complete original input hashes are in input-binding-projection.json.",
+  "original_sha256": "e0f4567d279cd45e9dbcd492d97db9956a90188c63311376a2fe2f9399d5f1a5",
+  "preparation_sha256": "a6b979eb8be44db584c7f7ef1ab7fb1f3f8fb1acdcbda2f6c20ab1ccc04669cc",
+  "reviews": {
+    "root_full_source_test_recipe_review": true,
+    "independent_agent": "historical_reference",
+    "independent_source_recipe_review_clear": true,
+    "focused_tests_passed": 6,
+    "current_input_pins": 100
+  },
+  "jobs": [
+    {
+      "label": "compile-endpoint003",
+      "expected_returncodes": [
+        0
+      ]
+    },
+    {
+      "label": "compile-subset-witness003",
+      "expected_returncodes": [
+        0
+      ]
+    }
+  ]
+}

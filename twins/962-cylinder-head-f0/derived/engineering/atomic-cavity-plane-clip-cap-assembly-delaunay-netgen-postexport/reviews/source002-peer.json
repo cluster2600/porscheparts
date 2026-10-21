@@ -1,0 +1,127 @@
+{
+  "schema": "962-Netgen-postexport-test-only-source-peer/v1",
+  "decision": "CLEAR_TEST_ONLY_SUCCESSOR_WITH_ROOT_SIX_PASS_NO_NATIVE_AUTHORITY",
+  "blockers": [],
+  "scope": "Narrow independent stdlib source/AST/metadata read and hashes only; no test/prepared/scientific module import or execution, native call, large geometry/runtime byte read/hash, Git or public edits.",
+  "frozen_revision002": {
+    "METHOD.md": {
+      "sha256": "aee7ad8f50c38aeb6a3251255aef0d959c80a6ceae4cdd5702b351f5eb35e7d0",
+      "bytes": 1991
+    },
+    "held-preparation.json": {
+      "sha256": "c5477562812b08ad2b2a534d5125913224241653c929de70c0b26a420cc0aa62",
+      "bytes": 30452
+    },
+    "source-delta.json": {
+      "sha256": "a0e3b5cf5bbd4d38e9ddfed76943c2d42d8565ad438d2518d5231d885b1899ec",
+      "bytes": 41355
+    },
+    "mesh_delaunay_netgen_postexport.py": {
+      "sha256": "0d1dd1f0625275343f16b713dae2d41143dda8da974bef42e59f6bfa3b0e388a",
+      "bytes": 43377
+    },
+    "test001-to002.diff": {
+      "sha256": "eaaf1271903189fa077ed4bab6823c76a49cfffc110ac5f0378f1057f1441728",
+      "bytes": 1468
+    },
+    "test-delta.json": {
+      "sha256": "19c4580b4e3ce30ae3a8d4479beb88cf1e1524cf8eee0b57fc92f1416b991414",
+      "bytes": 2271
+    },
+    "preparation-checks.json": {
+      "sha256": "447da97626f4c87fe5756b159bf46799d27b239a690755ea686ca0b271d693d9",
+      "bytes": 1266
+    },
+    "test_source_guards.py": {
+      "sha256": "7a6a5273d3f7f9b51663ff0b10bc7556c6ec0d76ff385c1a3c61f753897b772e",
+      "bytes": 10837
+    }
+  },
+  "preserved_revision001": {
+    "held_sha256": "02b63570bfbbf76d5507607762025df38069710c9b4dd0dd77a127a301fe2071",
+    "source_peer_sha256": "8555d2f1d527b8a4b35142f4de199e995fa96c1be4adfa64bbde0936d8a6f8ae",
+    "root_guard_review": {
+      "sha256": "3372f938b3c89c18089bd23b9ecd5b9a2999ac624c5cc13cf5bc4e93170ef559",
+      "bytes": 1148
+    },
+    "root_guard_log": {
+      "sha256": "074e6cabc98ce19a6a1459e59a48ed0c2feb834fe384feb7ec26e2f9ea14355c",
+      "bytes": 2794
+    },
+    "actual_guard_outcome": {
+      "methods": 6,
+      "pass": 4,
+      "error": 2,
+      "returncode": 1,
+      "failure": "Incomplete synthetic INPUT_HASHES omitted diagnosis.json; not an established production source failure."
+    }
+  },
+  "minimal_correction": {
+    "whole_production_wrapper_byte_identical_0d1": true,
+    "production_delta_a0e3_byte_identical": true,
+    "whole_test_reverse_byte_exact": true,
+    "only_added_synthetic_diagnosis_json_hash_from_completed7025_bytes": true,
+    "all_six_test_methods_and_assertions_unchanged": true,
+    "production_internal_input_map_already_binds_actual7025_path": true,
+    "all_scientific_algorithm_guards_resources_and_output_semantics_unchanged": true,
+    "predecessor_source_peer8555_remains_valid": true
+  },
+  "bindings": {
+    "held_input_count": 123,
+    "all112_prior_map_entries_retained_unchanged": true,
+    "independently_hashed_small_inputs": 121,
+    "large_inputs_not_rehashed_by_peer": {
+      "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-001/candidate.bin": "9d62eac6e2cd7b6a9ecb4a7ea5b632685820369b5c4ede379acc34238f50d7b4",
+      "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-volume-delaunay-default-postexport-001/head-volume.msh": "e32ef35be1171ec55477e921dd75def0066f9f1e21bd2821dfbe363270354522"
+    },
+    "internal_scientific_input_count": 106,
+    "fresh_declared_output_absent": true,
+    "three_runtime_digest_values_not_rehashed_by_peer": [
+      "72956ad35cff7691dfed9e04c9593de825ffd5b2fa7e8bc9ae96ce9a1af65621",
+      "def0f5c10988a986e5e879b3db9669d8fe016a81e2d994bbaf2b8497c6b8a58a",
+      "f4b0935cebde899750293d87a643090e5ea33c9b18d249267f507db68a0e01c3"
+    ]
+  },
+  "root_completed_guard_result": {
+    "review": {
+      "sha256": "7747a83232473c8da636f1130df522974007796df4e9a2b97332cdee11bcde43",
+      "bytes": 1238
+    },
+    "log": {
+      "sha256": "f47501d9a28d62db279af92847cfb5a1b94ba69f0ca17a9246736721b346a3cb",
+      "bytes": 782
+    },
+    "methods": 6,
+    "pass": 6,
+    "returncode": 0,
+    "test_log_duration_seconds": 1.035,
+    "outer_record_elapsed_seconds": 1.2676657501142472,
+    "tests_executed_by_peer": false,
+    "historical_preparer_unrun_flags_not_rewritten": true
+  },
+  "root_preflight_observation": {
+    "record": {
+      "sha256": "737aa529accf795a5e8e908fad5881d53a31d03ed8a8cec80746518f9e6bb5b3",
+      "bytes": 23134
+    },
+    "all123_and3_maps_exactly_match_held": true,
+    "large_and_runtime_bytes_observed_by_root_not_peer": true,
+    "native_execution_not_authorized_by_preflight": true
+  },
+  "historical_METHOD_wording_clarification": {
+    "nonfunctional_overstatement": "The frozen final negative sentence groups prepared source/tests with objects allegedly not read/hashed. Source/test bytes WERE read, AST-parsed and hashed. No prepared module/test import or execution and no scientific/native/large-geometry/runtime byte read occurred during source preparation.",
+    "frozen_METHOD_not_modified": true,
+    "root_source002_record_contains_same_clarification": true
+  },
+  "required_next": [
+    "Separate fresh actual root child binding completed source reviews, root guards and current prerequisite hashes",
+    "Independent exact-child review as an external launch guard; no circular self-pin",
+    "One declared1200s/sample8GiB/1GiB/two-thread trial only; root owns lifecycle"
+  ],
+  "qualification": {
+    "native_execution_authorized_by_peer": false,
+    "accepted_head_volume": false,
+    "stronger414_Mesh2_status_upgraded": false,
+    "PDE_strength_OEM_material_process_or_manufacturing_qualified": false
+  }
+}

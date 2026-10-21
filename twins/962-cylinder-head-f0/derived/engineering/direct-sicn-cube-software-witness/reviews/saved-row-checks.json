@@ -1,0 +1,69 @@
+{
+  "schema": "962-tiny002-independent-saved-byte-and-math-checks/v1",
+  "report_sha256": "0512708595378fe0d316de08305c35f98138b082a2deb83bdb60717783cd8058",
+  "source_reader_sha256": "8351733aa0cd3dff2c86bcedd6c5cf931fde7306d0870738f9794448fbe8d12e",
+  "method": "Independent stdlib arithmetic, Fraction from saved binary64 coordinate values, explicit transformed-column inverse-Frobenius formula; no prepared helper execution or Gmsh/SciPy/optimizer replay.",
+  "formula": "A=e1, B=2e2-e1, C=3e3-e1-e2; F=[A,B/sqrt3,C/sqrt6]. n=|A|\u00b2+|B|\u00b2/3+|C|\u00b2/6; co=|BxC|\u00b2/18+|CxA|\u00b2/6+|AxB|\u00b2/3; q\u00b2=18 det(e)^2/(n co), q has det(e) sign.",
+  "calibration_cases": [
+    "regular",
+    "sliver",
+    "reversed",
+    "planar"
+  ],
+  "calibration_max_absolute_native_SICN_difference": 4.336808689942018e-19,
+  "stages": {
+    "before": {
+      "exact_dyadic_volume_sum_mm3": "8",
+      "reported_floating_volume_sum_mm3": 8.0,
+      "minimum_native_SICN": 0.01481392471141071,
+      "six_typed_hashes_match": true,
+      "positive_tetrahedra": 12,
+      "outward_boundary_triangles": 12,
+      "opposed_internal_faces": 18,
+      "all_node_tags_referenced": 9
+    },
+    "centre_reference": {
+      "exact_dyadic_volume_sum_mm3": "8",
+      "reported_floating_volume_sum_mm3": 8.0,
+      "minimum_native_SICN": 0.758946638440411,
+      "six_typed_hashes_match": true,
+      "positive_tetrahedra": 12,
+      "outward_boundary_triangles": 12,
+      "opposed_internal_faces": 18,
+      "all_node_tags_referenced": 9
+    },
+    "after": {
+      "exact_dyadic_volume_sum_mm3": "8",
+      "reported_floating_volume_sum_mm3": 7.999999999999999,
+      "minimum_native_SICN": 0.7589466384404066,
+      "six_typed_hashes_match": true,
+      "positive_tetrahedra": 12,
+      "outward_boundary_triangles": 12,
+      "opposed_internal_faces": 18,
+      "all_node_tags_referenced": 9
+    },
+    "saved": {
+      "exact_dyadic_volume_sum_mm3": "8",
+      "reported_floating_volume_sum_mm3": 7.999999999999999,
+      "minimum_native_SICN": 0.7589466384404066,
+      "six_typed_hashes_match": true,
+      "positive_tetrahedra": 12,
+      "outward_boundary_triangles": 12,
+      "opposed_internal_faces": 18,
+      "all_node_tags_referenced": 9
+    }
+  },
+  "all_six_section_hashes_at_all_four_stages_exact": true,
+  "max_absolute_native_SICN_difference": 2.220446049250313e-16,
+  "max_absolute_native_Jacobian_difference": 4.440892098500626e-16,
+  "max_absolute_native_volume_difference": 2.220446049250313e-16,
+  "actual_after_coordinates_are_solver_result_not_substituted_centre": true,
+  "exact_saved_report_equals_after": true,
+  "epigraph_min_native_quality_minus_t": -2.0872192862952943e-14,
+  "global_optimality_claimed": false,
+  "MSH_bytes": 1650,
+  "MSH_sha256": "c5d5bd6f797c1bf52e0e4ea8ecfd8f0880afc683c8857f0a40833168f2707b8c",
+  "little_endian_binary4_1_size8_header_matches_existing_stdlib_pattern": true,
+  "independent_binary_MSH_section_decode": false,
+  "raw_MSH_full_readback_association": "Exact file identity plus controlled native after-to-saved report equality, not an independent binary decoding claim."
+}

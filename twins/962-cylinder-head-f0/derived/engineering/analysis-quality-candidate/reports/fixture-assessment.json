@@ -1,0 +1,83 @@
+{
+  "status": "native_synthetic_fixtures_passed_head_execution_on_hold",
+  "scope": "Known synthetic sliver improvement, fixed-anchor stagnation rollback and existing-output refusal only; no head geometry was passed to the helper.",
+  "frozen_contract_sha256": "0b22eb77560f4e48f75aede82b21a4b423de969b727dbe6b2b13b2cb9ddec50d",
+  "binary_sha256": "9310411d93e63c51b0e763d72e25403b1bc355c938b5018b9359afda075547c1",
+  "controller_sha256": "424302ba63f2acfc69db57af5a49def81a5e65a0c4dac6b21bce0af4711ccc09",
+  "numpy_version": "2.2.6",
+  "results": {
+    "movable-sliver": {
+      "passed": true,
+      "native_returncode": 0,
+      "before_independent_numpy": {
+        "triangles": 14,
+        "below_necessary_bound": 1,
+        "minimum_triangle_SICN": 1.5193428137064697e-06
+      },
+      "after_independent_numpy": {
+        "triangles": 14,
+        "below_necessary_bound": 0,
+        "minimum_triangle_SICN": 0.8660254037844386
+      },
+      "objective_guard": {
+        "quality_objective_passed": true,
+        "solver_admission_established": false,
+        "complete_semantic_constraint_map": false,
+        "engineering_accepted": false,
+        "manufacturing_authorized": false
+      },
+      "fixed_clip_points_exact": true,
+      "bounds_exact": true,
+      "input_unchanged": true,
+      "report_sha256": "6da26f69f6cf0af367b318f3c9e737e9531c8d8319ec383883eaa40b9d5471fd",
+      "execution_sha256": "45ff773b98bd59111cf3e31af2164620b46ae52575b63ca91ffdb331ff566cf5",
+      "output_files_sha256": {
+        "report.json": "6da26f69f6cf0af367b318f3c9e737e9531c8d8319ec383883eaa40b9d5471fd",
+        "quality-candidate.bin": "5a6af3a333b700be6c5216d41e1f872058b78b6ca1a6ad8c8ea304c8fb8f7191",
+        "proposed-surface.bin": "5a6af3a333b700be6c5216d41e1f872058b78b6ca1a6ad8c8ea304c8fb8f7191"
+      }
+    },
+    "constrained-thin-box": {
+      "passed": true,
+      "native_returncode": 3,
+      "before_independent_numpy": {
+        "triangles": 12,
+        "below_necessary_bound": 8,
+        "minimum_triangle_SICN": 2.279014220481419e-06
+      },
+      "after_independent_numpy": {
+        "triangles": 12,
+        "below_necessary_bound": 8,
+        "minimum_triangle_SICN": 2.279014220481419e-06
+      },
+      "objective_guard": {
+        "quality_objective_passed": false,
+        "solver_admission_established": false,
+        "complete_semantic_constraint_map": false,
+        "engineering_accepted": false,
+        "manufacturing_authorized": false
+      },
+      "fixed_clip_points_exact": true,
+      "bounds_exact": true,
+      "input_unchanged": true,
+      "report_sha256": "1225956d85034991c3a40f03d6338f3eb4962ee3723673dbe6827d3f24d400c9",
+      "execution_sha256": "d735df30453b6638dc0259c90e7ec1c87d3966438ae00c112914c82a59002e00",
+      "output_files_sha256": {
+        "report.json": "1225956d85034991c3a40f03d6338f3eb4962ee3723673dbe6827d3f24d400c9",
+        "proposed-surface.bin": "4c67510e577113cfa3936baf85592411df7c9bddc9dade47d14ef01debe8369e"
+      }
+    },
+    "existing-output-refusal": {
+      "passed": true,
+      "native_returncode": 2,
+      "all_existing_result_bytes_preserved": true,
+      "execution_sha256": "7a17ed2e5336b98dac11de348dfd1e0e446ff7d29aee953a14469c9976876f48"
+    }
+  },
+  "qualification": {
+    "solver_admission_established": false,
+    "complete_semantic_constraint_map": false,
+    "engineering_accepted": false,
+    "manufacturing_authorized": false
+  }
+}

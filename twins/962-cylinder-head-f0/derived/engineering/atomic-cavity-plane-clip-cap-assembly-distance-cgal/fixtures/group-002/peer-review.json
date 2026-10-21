@@ -1,0 +1,96 @@
+{
+  "schema": "962-CGAL-distance-fixture-group2-stopped-result-peer/v1",
+  "decision": "TWO_KNOWN_INTERVALS_AND_TWO_INPUT_REFUSALS_CLEAR_ONLY",
+  "phase_summary_sha256": "8d9e0d380b5fd706cd149cade459f3f0881e2efb7ffe96463caa5aed4638cf01",
+  "root_result_review_sha256": "f50c4807fc947a899aa68b6fbf3b047c7d5fd13fc69fd7f3e3dc0836f2292984",
+  "actual_child_sha256": "0263c12a826b8dd1cb4a4a4776e85e942ff622e91073ff9c4c17e642011f6e9c",
+  "group1_peer_sha256": "6a098e80fce86c7a56750d302f7655285fa0d4e59fc7452e3e700df40b37c09c",
+  "checks": {
+    "input_pins": 108,
+    "all108_before_after_and_current_hashes_regular_non_symlink": true,
+    "capture_files": 17,
+    "complete16_artifact_map_plus_summary_closure": true,
+    "controller_c51_cleanup_f46_metadata_bb1_source26297_binary6a17_associations_exact": true,
+    "all_four_argv_readonly_full_target_mounts_image_owned_output_and_expectedRC_exact": true,
+    "twoCPU512MiB_noSwap60s_noTmpfs_noNetwork_readonlyRoot_observed": true,
+    "all_owned_createIDs_owners_exited_PID0_OOMfalse_attach_reap_remove_success": true,
+    "positive_reports_full_selected_IDs_and_all_target_counts_exact": true,
+    "positive_intervals_contain_exact_references_and_gap_le_0_0001_mm": true,
+    "completed_distance1_RC0_budget_false_separation_preserved": true,
+    "negative_reports_input_stage_null_scalar_no_query_no_snapshot_credit": true
+  },
+  "cases": [
+    {
+      "id": "asymmetric-reverse",
+      "returncode": 0,
+      "exact_reference_mm": "4095/131072",
+      "scalar_mm": 0.03124237060546875,
+      "interval_mm": [
+        0.031217370605468746,
+        0.031267370605468754
+      ],
+      "gap_mm": 5.000000000000837e-05,
+      "polygon_budget_passed": true,
+      "source_selected_faces": 4,
+      "complete_target_vertices": 4,
+      "complete_target_faces": 2,
+      "wall_seconds": 0.993291666964069,
+      "report_sha256": "6aa4a1e3df5d1023d653f67447896c055a660ce0293e9148f9430a32bbf849da",
+      "execution_sha256": "618c1bbf2184ff405629813bee1f26b02670cc56a6d81e092c02d5ca251c6464"
+    },
+    {
+      "id": "continuous-interior-max",
+      "returncode": 0,
+      "exact_reference_mm": "1",
+      "scalar_mm": 1,
+      "interval_mm": [
+        0.9999749999999998,
+        1.0000250000000002
+      ],
+      "gap_mm": 5.000000000032756e-05,
+      "polygon_budget_passed": false,
+      "source_selected_faces": 2,
+      "complete_target_vertices": 8,
+      "complete_target_faces": 8,
+      "wall_seconds": 0.9947550829965621,
+      "report_sha256": "63d07f76cd2549fa7a559b9a91476d22fdfc323f137c9d91df93681e6ffc6c43",
+      "execution_sha256": "6957fdcddf6d234d22fefcecaada247560aa25041f18ea237cdbc7074d3d019b"
+    },
+    {
+      "id": "malformed",
+      "returncode": 2,
+      "stage": "input",
+      "error": "Invalid or degenerate triangle",
+      "scalar_mm": null,
+      "query_completed": false,
+      "counts_snapshots_and_later_gates_unobserved": true,
+      "wall_seconds": 0.9024500411469489,
+      "report_sha256": "5cbdaa54584680234b3462be1b19544c7987c1962e531a04c0fd72c4428e0eac",
+      "execution_sha256": "183f1281530f7c5eeb0abcf455bde49c6af28dde780a292ecb701da622ed77b7"
+    },
+    {
+      "id": "empty",
+      "returncode": 2,
+      "stage": "input",
+      "error": "Invalid indexed surface counts",
+      "scalar_mm": null,
+      "query_completed": false,
+      "counts_snapshots_and_later_gates_unobserved": true,
+      "wall_seconds": 0.92236362490803,
+      "report_sha256": "f4e93d0f0a7c40bd09aefbed82760e98e2975e2f150fc73e244a43969f6c0501",
+      "execution_sha256": "a6a75a782300b82717f3a31daf8c3474ed2b2355c99d73e56d09b9633a95f49f"
+    }
+  ],
+  "combined_software_fixture_scope": {
+    "six_analytic_cases_and_two_input_refusals_completed_across_two_distinct_groups": true,
+    "coincident_zero_positive_below_epsilon_union_max_asymmetry_open_closed_and_continuous_interior_max_demonstrated": true,
+    "two_way_head_or_CAD_roundoff_or_physics_acceptance": false
+  },
+  "blockers": [],
+  "limits": [
+    "Saved metadata and exact literal-reference review only; no native/scientific replay, source import, Docker, geometry export, Git or network.",
+    "Native in-memory snapshot and bounded-distance observations remain attributed to the bound source and installed API; not a separate floating-roundoff certificate.",
+    "Negative report zero counts are defaults before full input/target construction, not observed zero distance or successful later gates.",
+    "Only the six analytic and two negative software fixtures are covered. No head query or head/volume/PDE/material/LPBF/manufacturing admission is established."
+  ]
+}

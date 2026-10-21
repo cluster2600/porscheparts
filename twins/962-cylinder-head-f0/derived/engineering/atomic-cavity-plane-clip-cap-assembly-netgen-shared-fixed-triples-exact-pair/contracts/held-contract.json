@@ -1,0 +1,65 @@
+{
+  "schema": "962-exact-single-pair-shifted-ball-held/v1",
+  "status": "SOURCE_ONLY_UNRUN",
+  "execution_authorized": false,
+  "input_hashes": {
+    "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-netgen-shared-fixed-triples-exact-pair-prep-001/check_pair.py": "af4762323b2c839a7987b1d0b3bd56e01f61368d21c6957770e68eed14ff9ccd",
+    "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-netgen-shared-fixed-triples-exact-pair-prep-001/test_pair.py": "c51330dd99a6b17d9ece1bb86f16db96e6210e27b0ef7a1442d7663a89874257",
+    "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-netgen-fixed-triples-001/readback-report.json": "d65f86d5d1cabd3e2013a127c1cd9713a232cb1d1bd7817d459f84949d1e1c14",
+    "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-netgen-full-stars-001/readback-report.json": "5946ffbd9f2f127306673d967b583b11d8906793e2079971bc0430d65ae65f88",
+    "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-netgen-shared-fixed-triples-refinement-assessment-001/report.json": "8c8c47f329c1a92c72c8edc40980519ba9d98bcac80f291438541b23d914819b",
+    "work/962-engineering/shared-apex-necessary-ball-math-peer-001/review.json": "36f789c022226fbcff28463a9534ac485487d269b6a1f7e8d1fec062a21f5b59",
+    "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-netgen-shared-fixed-triples-ball-screen-prep-001/check_balls.py": "4e6d677e11ccaa6b8a9a66b3e59b764e7e4575bb6b467bdc3dd8e5a689d22007",
+    "work/962-engineering/direct-sicn-sparse-head-proposer-prep-003/sparse_head.py": "4558a2d6c66284c7436f5b4f6684fa6a6455a60e9fd0e4c76aec7bb3962dc0d0",
+    "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-netgen-fixed-triples-prep-001/reader.py": "aa62597659177cd40fa7f8e5aca840d9fed46856f09bd93c957200c98cbfbc82",
+    "twins/962-cylinder-head-f0/source/gmsh_sicn_reference.json": "28cf35720fa94611a17b219b60b2ead8c1153f6ae346e581d32fd1efe08f112d"
+  },
+  "fresh_output": "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-netgen-shared-fixed-triples-exact-pair-001",
+  "selected_apex_tag": 1435493,
+  "selected_tetrahedron_tags": [
+    28946957,
+    31225364
+  ],
+  "scope": "Only this shared-apex pair selected by prior informative FLOAT margins; exact fixed coordinates from195 report joined to original native-order5355 census. No mesh/runtime/scientific/optimizer calls and no widened pair scan.",
+  "proposed_output": "One report.json with every rational sqrt argument/endpoint, native determinant/parity/source joins, centre/radius/gap and strict certificate or inconclusive outcome; no mesh or coordinate proposal.",
+  "sqrt_policy": {
+    "fractional_bits": 106,
+    "expression": "isqrt((numerator << (2*106)) // denominator)",
+    "perfect_square": "lo==hi if lo\u00b2==argument; otherwise hi=(integer+1)/2^106",
+    "verified_each_call": "0<=lo<=hi and lo\u00b2<=argument<=hi\u00b2",
+    "precision_is_not_geometry_grid": true
+  },
+  "method": [
+    "S,T and native ordered determinant recomputed with Fraction from stored binary64 four-node coordinates. Native determinant>0; fixed-face rawcross dot original apex equals (-1)^(3-free_corner)*native determinant. Orient rawcross toward this exact original positive apex, preserving the native signed target side.",
+    "For A=899T-S\u00b2 and delta=A\u00b2-4S\u00b2T, use certified upper sqrt(delta): wminus_lower=max(0,(A-dhi)/(2S));wplus_upper=(A+dhi)/(2S). Use lower sqrt(2wminus_lower/3) for hlow and upper sqrt(2wplus_upper/3) for hhi. Tangential squared physical distance<=2*(841T/S-S)/3.",
+    "For certified crossnorm[lo,hi], choose exact rational k=(hlow+hhi)/(2*hi). Centre=centroid+k*oriented_rawcross is exact rational. True centre height in[Hlo,Hhi]=k*[lo,hi]. Inflate axial halfextent m=max(abs(hlow-Hhi),abs(hhi-Hlo)); squared radius U=2*(841T/S-S)/3+m\u00b2.",
+    "For exact squared centre distance D, certify strict separation only if gap=D-U-V>0 and gap\u00b2>4UV; every equality/overlap/nonseparation remains inconclusive."
+  ],
+  "reused_helper": {
+    "source": "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-netgen-shared-fixed-triples-ball-screen-prep-001/check_balls.py",
+    "sha256": "4e6d677e11ccaa6b8a9a66b3e59b764e7e4575bb6b467bdc3dd8e5a689d22007",
+    "function": "disjoint",
+    "AST_identical": true,
+    "prior_three_guard_suite_not_repeated": true
+  },
+  "prepared_self_checks": {
+    "methods": [
+      "test_sqrt_perfect_nonperfect_negative",
+      "test_known_positive_right_tetra_target_inside_enclosure",
+      "test_even_native_corner_permutations_and_side_invariance",
+      "test_touching_is_not_strict_disjointness"
+    ],
+    "scope": "Root-only stdlib AST extraction, sqrt perfect/nonperfect/negative, positive righttet targetpoint inside enclosure, all12 even native permutations/signed-side invariance plus odd refusal, touching strictness",
+    "executed_by_author": false
+  },
+  "author_checks": "Source/test syntax AST and copied helper AST checked; ten current source/report input hashes checked. No mathematical source function, self-check or native/scientific call executed.",
+  "observed_pair_result": null,
+  "FLOAT_input_selection_is_not_a_certificate": true,
+  "engineering_accepted": false,
+  "physics_qualified": false,
+  "manufacturing_authorized": false,
+  "pending": [
+    "Independent exact source/enclosure/orientation review",
+    "Root four tiny stdlib self-checks, then separately authorized one saved-row exact evaluation"
+  ]
+}

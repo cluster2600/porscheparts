@@ -1,0 +1,47 @@
+{
+  "schema": "962-observer004-saved-parser-independent-source-peer/v1",
+  "decision": "HOLD001_UNRUN_SOURCE_TIME_GRAMMAR_CORRECTION_REQUIRED",
+  "reviewer": "root/lpbf_linear_refinement",
+  "lineage": "Reviewer authored observer002/003 operational-source lineage, native measurement proposal peer and earlier saved-equilibrium/control reviews. Reviewer didnot author this parser/fixture packet. This is independent source/11fixture reasoning and pinned-public-source association, not new physics or installed-binary equivalence review.",
+  "packet": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-saved-measurement-parser-prep-001/index.json",
+    "sha256": "d1544b584c215300b8d37d45897d298e8ae2db7caf98acee0d7c55c40b0298ee",
+    "bytes": 2046
+  },
+  "parser": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-saved-measurement-parser-prep-001/parse_saved_measurement.py",
+    "sha256": "a1c68558167b990f6f059f394fa085548eb0969dcaad6096864dc043b99ffc1d",
+    "bytes": 13047
+  },
+  "fixtures": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-saved-measurement-parser-prep-001/test_parser_synthetic.py",
+    "sha256": "0f555b37d6ce7180d0c2597ed3e468014d85490c42809681e13cc4ea4addf699",
+    "bytes": 7819
+  },
+  "plan": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-saved-measurement-parser-prep-001/PLAN.md",
+    "sha256": "59cfa6277eda201b33eef76c59f2bd3f48673c3f7c6f764b979acf2776c6de76",
+    "bytes": 9185
+  },
+  "findings": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-saved-measurement-parser-source-peer-001/findings.json",
+    "sha256": "09f666d40cb03206ea1b9124d64cd88040d0fcc1b0f9b6e4b0ab056a8ab8b85a",
+    "bytes": 9832
+  },
+  "bindings": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-saved-measurement-parser-source-peer-001/bindings.json",
+    "sha256": "b8ca3f4b48ae60e4cba29fadf5a6711edc1e2dee67c2af9a0e6849e0b1cfe831",
+    "bytes": 6766
+  },
+  "blocker_count": 1,
+  "blocker": "parse_monitor_trace line161 silently ignores malformed Time Step markers not followed by unsigned digits, contradicting the strict time-log association contract. Concrete negative-step line counterexample established by static branch reasoning only.",
+  "recommended_next_step": "Preserve001 unchanged/unrun; prepare narrow successor with unmatched Time Step marker refusal plus malformed-time cases in existing fixture loop; re-review exactdelta before any separate synthetic admission.",
+  "otherwise_supported_scope": "Finite standardVec framing, observer-map metadata/word-range association and conditional364 event/header association; all field/physical inference and current failed-capture reading remain absent.",
+  "current_capture_remains_refused": true,
+  "any_new_source_fixture_or_native_execution": false,
+  "native_data_header_map_field_or_runtime_body_read_hash_stat": false,
+  "source_packet_modified": false,
+  "synthetic_or_saved_execution_authorized": false,
+  "field_or_SI_force_reaction_or_physics_acceptance": false,
+  "automatic_retry_authorized": false
+}

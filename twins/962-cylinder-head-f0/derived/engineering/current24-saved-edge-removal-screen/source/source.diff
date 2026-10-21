@@ -1,0 +1,498 @@
+--- work/962-engineering/head-star-current24-interior-flip-prep-001/propose_saved_cavity_flips.py
++++ work/962-engineering/head-star-current24-edge-removal-prep-001/propose_saved_edge_removal.py
+@@ -1,18 +1,23 @@
+-"""HELD source proposal: finite saved-context interior2<->3 cavity screen.
+-
+-No entry point, file IO, mesh writer, actual contract, execution authority or
+-application policy. Functions below are UNRUN on real or synthetic inputs.
+-Local exact passes never establish global/interface eligibility.
++"""HELD SOURCE ONLY: complete fixed-word degree4..8 seed-edge removal screen.
++
++No entrypoint/file IO/runtime/mesh writer/actual/launch or execution authority.
++All functions and fixtures are UNRUN. Strict-convex local certificates do not
++establish whole-head, semantic-interface, material or manufacturing acceptance.
+ """
+ from fractions import Fraction
++import copy
+ import hashlib
+ from itertools import combinations
++import json
+ import math
+ import struct
+ 
+ REPORT_REL="work/962-engineering/head-star-current110-pass62-application-001/worker-report.json"
+ CLOSED_REL="work/962-engineering/head-star-current110-pass62-application-root-execution-001/closed-result.json"
+ BOUNDARY=871731
++
++# Frozen saved incidence identities, copied from accepted reason accounting; no geometry computation.
++EXPECTED_EDGE_DEGREES={'edge:123712,1436406': 6, 'edge:223544,1520064': 4, 'edge:223689,1520064': 4, 'edge:224470,1520064': 5, 'edge:250618,1549537': 7, 'edge:251580,1549537': 4, 'edge:251581,1549537': 4, 'edge:332107,1436407': 6, 'edge:353122,1485102': 8, 'edge:353124,1534323': 8, 'edge:355230,1485102': 4, 'edge:355231,1485102': 5, 'edge:355232,1534323': 5, 'edge:355233,1534323': 4, 'edge:356628,1534323': 6, 'edge:357990,1485102': 6, 'edge:362061,1459657': 4, 'edge:362062,1459657': 5, 'edge:362640,1459657': 8, 'edge:431665,1476316': 7, 'edge:431981,1476316': 8, 'edge:432123,1476316': 5, 'edge:517789,1436405': 6, 'edge:626184,1487573': 5, 'edge:626352,1487573': 4, 'edge:627517,1487573': 7, 'edge:64520,1393392': 5, 'edge:64982,1393392': 5, 'edge:65123,1393392': 4, 'edge:66221,1393392': 6, 'edge:735799,1436404': 7, 'edge:866059,1436405': 5, 'edge:866059,1613757': 4, 'edge:866062,1436405': 5, 'edge:866062,1613757': 4, 'edge:866095,1436404': 5, 'edge:866095,1613783': 4, 'edge:866248,1613756': 7, 'edge:866364,1436407': 5, 'edge:866364,1613756': 4, 'edge:866366,1436407': 5, 'edge:866366,1613756': 4, 'edge:866572,1613757': 7, 'edge:866966,1436406': 5, 'edge:866966,1613784': 4, 'edge:867101,1613783': 5, 'edge:868045,1613784': 7, 'edge:868201,1436404': 5, 'edge:868201,1613783': 4, 'edge:868245,1436406': 5, 'edge:868245,1613784': 4, 'edge:869526,1613784': 4, 'edge:870008,1613756': 4, 'edge:870364,1613757': 4, 'edge:870846,1613783': 4}
+ 
+ def coordinate_rows(rows,expected_tags):
+     """Strict ordered row/hex association; floats are compared by binary64 representation."""
+@@ -33,11 +38,14 @@
+         coordinates.append([float(x) for x in xyz])
+     return coordinates
+ 
++
+ def need(condition,message):
+     if not condition:raise ValueError(message)
+ 
++
+ def typed_hash(values,fmt):
+     return hashlib.sha256(b"".join(struct.pack("<"+fmt,value) for value in values)).hexdigest()
++
+ 
+ def current_faces(report,parent,closed,held):
+     need(parent["decision"]=="ACCEPT_REVIEWED_COORDINATE_ONLY_PARTIAL_IMPROVEMENT_PRESERVE_WHOLE_HEAD_QUALITY_REFUSAL",
+@@ -178,17 +186,22 @@
+         full_typed_arrays_verified=calculated,source_boundary_identity=boundary,
+         explicit_exterior_facet_membership_computed=False,source_BIN_read=False,raw_MSH_read=False)
+ 
++
+ def rational(value):
+     return dict(numerator=str(value.numerator),denominator=str(value.denominator))
+ 
++
+ def subtract(a,b):
+     return [x-y for x,y in zip(a,b)]
+ 
++
+ def dot(a,b):
+     return sum(x*y for x,y in zip(a,b))
+ 
++
+ def cross(a,b):
+     return [a[1]*b[2]-a[2]*b[1],a[2]*b[0]-a[0]*b[2],a[0]*b[1]-a[1]*b[0]]
++
+ 
+ def exact_quality(coordinates):
+     if len(coordinates)!=4 or any(len(p)!=3 or any(type(v) not in (int,float) or not math.isfinite(v) for v in p) for p in coordinates):
+@@ -202,6 +215,7 @@
+     cofactor2=dot(bc,bc)/18+dot(ca,ca)/6+dot(ab,ab)/3
+     q2=18*determinant**2/(norm2*cofactor2) if norm2*cofactor2>0 else None
+     return determinant,q2
++
+ 
+ def prepare_context(report,parent,closed,manifest,selected,held):
+     """Reuse accepted complete intake; protect the earlier66/1983/86 scope."""
+@@ -243,52 +257,6 @@
+                 classification_rows=stars["unique_incident_nodes"])
+ 
+ 
+-def enumerate_associations(context):
+-    """All distinct saved face/edge associations touching at least one poor cell.
+-
+-    A pattern is provisional until full ownership and exact geometry are checked.
+-    Missing owners are never supplied. No subset of a larger observed edge star
+-    is tried. Maximum associations24*(4+6)=240, independent of coordinates.
+-    """
+-    cells=context["cells"];poor=context["poor"];seeds=context["seeds"]
+-    result=[]
+-    for size,kind,wanted in [(3,"2_to_3",2),(2,"3_to_2",3)]:
+-        owners={}
+-        for tag,conn in sorted(cells.items()):
+-            for simplex in combinations(sorted(conn),size):owners.setdefault(simplex,[]).append(tag)
+-        for simplex,tags in sorted(owners.items()):
+-            if not poor.intersection(tags):continue
+-            union=set().union(*(set(cells[t]) for t in tags))
+-            proposed=[];triangle=[];apices=[]
+-            pattern=len(tags)==wanted and len(union)==5
+-            if kind=="2_to_3" and pattern:
+-                triangle=list(simplex);apices=sorted(union-set(simplex))
+-                pattern=all(len(set(cells[t])-set(simplex))==1 for t in tags)
+-                proposed=[tuple(apices+list(edge)) for edge in combinations(triangle,2)]
+-            elif kind=="3_to_2" and pattern:
+-                apices=list(simplex);triangle=sorted(union-set(simplex))
+-                pattern={frozenset(cells[t]) for t in tags}=={
+-                    frozenset(apices+list(edge)) for edge in combinations(triangle,2)}
+-                proposed=[tuple(triangle+[v]) for v in apices]
+-            if not pattern:proposed=[]
+-            new_simplex=tuple(apices if kind=="2_to_3" else triangle) if pattern else ()
+-            result.append(dict(association_ID=kind+":"+",".join(map(str,simplex)),kind=kind,
+-                removed_simplex=list(simplex),observed_owner_tags=tags,
+-                poor_owner_tags=sorted(poor.intersection(tags)),
+-                complete_removed_simplex_owner_scope=bool(seeds.intersection(simplex)),
+-                owner_scope_basis="complete saved seed star" if seeds.intersection(simplex)
+-                    else "outside owners unavailable in saved499 context",
+-                expected_owner_count=wanted,observed_bistellar_pattern=pattern,
+-                five_node_tags=sorted(union) if pattern else None,
+-                triangle=triangle if pattern else None,apices=apices if pattern else None,
+-                replacement_unoriented_cells=[list(c) for c in proposed],
+-                introduced_simplex=list(new_simplex),
+-                complete_introduced_simplex_owner_scope=bool(seeds.intersection(new_simplex))))
+-    need(len(result)<=240,"Complete finite poor-feature association bound exceeded")
+-    need({p for a in result for p in a["poor_owner_tags"]}==poor,"All24 poor memberships required")
+-    return result
+-
+-
+ def oriented_boundary(cells):
+     """Exact combinatorial oriented boundary and internal cancellation."""
+     def canonical(face):
+@@ -304,96 +272,275 @@
+     return valid,boundary
+ 
+ 
+-def screen_local_cavity(context,association):
+-    """One exact fixed-word local screen; no complete eligibility/application."""
+-    result=dict(association_ID=association["association_ID"],local_result="not_screened",
+-                complete_flip_eligibility=None,mesh_application_authorized=False,
+-                global_embedding_or_nonoverlap_proved=False,
+-                source_exterior_or_BIN_membership=None,
+-                per_cell_region_and_interface_preservation=None,
+-                missing_evidence=["per-cell geometric entity/physical region labels",
+-                    "internal facet/edge classification and interface labels",
+-                    "source exterior/BIN membership and global embedding"])
+-    if not association["observed_bistellar_pattern"]:
+-        result["local_result"]="refused_observed_incidence_not_2_or_3_five_point_pattern"
+-        return result
+-    cells=context["cells"];points=context["points"];oldtags=association["observed_owner_tags"]
+-    old=[cells[t] for t in oldtags];proposed=association["replacement_unoriented_cells"]
+-    need(not set(oldtags)&context["protected_cells"],"Protected1983 cells cannot be removed")
+-    snapshot={t:tuple(float(x).hex() for x in p) for t,p in points.items()}
+-    need(snapshot==context["words"],"Full271 input word identity required")
+-    new=[];newrows=[];oldrows=[];reasons=[]
+-    for tag,conn in zip(oldtags,old):
+-        d,q2=exact_quality([points[t] for t in conn])
+-        oldrows.append(dict(tetrahedron_tag=tag,ordered_node_tags=list(conn),
+-            determinant_mm3=rational(d),SICN_squared=None if q2 is None else rational(q2)))
+-        if d<=0:reasons.append("nonpositive original cavity cell")
+-    for index,conn in enumerate(proposed,1):
+-        conn=list(conn);d,q2=exact_quality([points[t] for t in conn])
+-        if d<0:
+-            conn[-1],conn[-2]=conn[-2],conn[-1]
+-            d,q2=exact_quality([points[t] for t in conn])
+-        passed=d>0 and q2 is not None and q2>=Fraction(1,100)
+-        new.append(tuple(conn));newrows.append(dict(symbolic_slot=index,ordered_node_tags=conn,
+-            determinant_mm3=rational(d),SICN_squared=None if q2 is None else rational(q2),
+-            positive_and_SICN_point1=passed))
+-        if not passed:reasons.append("replacement quality/orientation failure")
+-    oldok,ob=oriented_boundary(old);newok,nb=oriented_boundary(new)
+-    if not oldok or not newok or ob!=nb or len(ob)!=6:
+-        reasons.append("oriented six-face boundary/internal cancellation mismatch")
+-    # Six strict supporting triangles certify this convex triangular bipyramid.
+-    # Their orientation is the outward orientation of the original positive cells.
+-    support=[];vertices=association["five_node_tags"]
+-    for face in ob:
+-        remaining=sorted(set(vertices)-set(face));determinants=[]
+-        for t in remaining:
+-            d,_=exact_quality([points[n] for n in face+(t,)])
+-            determinants.append(d)
+-        passed=len(remaining)==2 and all(d<0 for d in determinants)
+-        support.append(dict(oriented_face=list(face),other_node_tags=remaining,
+-            determinants_mm3=[rational(d) for d in determinants],strict_outward_support=passed))
+-        if not passed:reasons.append("not a strictly convex five-point cavity")
+-    oldsum=sum((Fraction(int(r["determinant_mm3"]["numerator"]),int(r["determinant_mm3"]["denominator"])) for r in oldrows),Fraction())
+-    newsum=sum((Fraction(int(r["determinant_mm3"]["numerator"]),int(r["determinant_mm3"]["denominator"])) for r in newrows),Fraction())
+-    if oldsum!=newsum:reasons.append("exact signed-volume mismatch")
+-    keys=[frozenset(c) for c in new]
+-    if len(keys)!=len(set(keys)):reasons.append("duplicate replacement cells")
+-    complement={frozenset(c):t for t,c in cells.items() if t not in oldtags}
+-    duplicate=[dict(symbolic_slot=i+1,existing_tetrahedron_tag=complement[k])
+-               for i,k in enumerate(keys) if k in complement]
+-    if duplicate:reasons.append("replacement duplicates observed unchanged cell")
+-    introduced=set(association["introduced_simplex"])
+-    outside=[t for t,c in sorted(cells.items()) if introduced.issubset(c) and t not in oldtags]
+-    if outside:reasons.append("introduced simplex already present in observed complement")
+-    if not association["complete_removed_simplex_owner_scope"]:
+-        result["missing_evidence"].append("complete outside owners of removed simplex")
+-    if not association["complete_introduced_simplex_owner_scope"]:
+-        result["missing_evidence"].append("global absence of introduced simplex/duplicates")
+-    need(snapshot=={t:tuple(float(x).hex() for x in p) for t,p in points.items()},
+-         "No271 coordinate word may change")
+-    result.update(local_result="failed_exact_local_screen" if reasons else "passed_exact_local_screen_only",
+-        reasons=sorted(set(reasons)),original_cells=oldrows,replacement_cells=newrows,
+-        oriented_boundary_original=[list(f) for f in ob],oriented_boundary_replacement=[list(f) for f in nb],
+-        strict_support_witnesses=support,original_signed_volume_mm3=rational(oldsum/6),
+-        replacement_signed_volume_mm3=rational(newsum/6),exact_volume_equal=oldsum==newsum,
+-        observed_duplicate_cells=duplicate,introduced_simplex_observed_outside_owners=outside,
+-        all271_coordinate_words_unchanged=True,protected1983_removed_cells_disjoint=True,
+-        all_unremoved_saved_good_shared_and_poor_cells_unchanged_by_construction=True)
+-    return result
+-
+-
+-def association_conflicts(associations):
+-    """Complete pair table for observed overlaps/duplicate proposed4-sets only.
+-
+-    No compatible subset, combined feasibility or global-conflict proof is made.
++def context_snapshot(context):
++    """Complete case-specific snapshot, including actual signed-zero word bits."""
++    expected={"points","words","cells","poor","seeds","protected_cells",
++              "protected_nodes","intake","classification_rows"}
++    if set(context)!=expected:raise ValueError("Unexpected context field set")
++    return dict(points=[dict(node_tag=t,coordinates_mm=list(p),
++                    actual_coordinate_binary64_hex=[float(v).hex() for v in p],
++                    actual_coordinate_words_le_hex=struct.pack("<3d",*p).hex())
++                for t,p in sorted(context["points"].items())],
++        words=[[t,list(w)] for t,w in sorted(context["words"].items())],
++        cells=[dict(tetrahedron_tag=t,ordered_node_tags=list(c))
++               for t,c in sorted(context["cells"].items())],
++        poor=sorted(context["poor"]),seeds=sorted(context["seeds"]),
++        protected_cells=sorted(context["protected_cells"]),
++        protected_nodes=sorted(context["protected_nodes"]),
++        intake=copy.deepcopy(context["intake"]),
++        classification_rows=copy.deepcopy(context["classification_rows"]))
++
++
++def canonical_bytes(value):
++    return json.dumps(value,sort_keys=True,separators=(",",":"),allow_nan=False).encode("utf-8")
++
++
++def link_cycle(context,case):
++    """Validate a complete edge star combinatorially; never infer geometric order."""
++    edge=tuple(case["central_edge"]);tags=case["removed_cell_tags"]
++    reasons=[];opposite=[];adj={}
++    if (len(edge)!=2 or len(set(edge))!=2 or not set(edge)&context["seeds"]
++            or case["owner_scope_complete"] is not True):
++        reasons.append("complete central-seed owner coverage unavailable")
++    if len(tags)!=len(set(tags)) or not 4<=len(tags)<=8:
++        reasons.append("degree outside4..8 or duplicate owner tags")
++    for tag in tags:
++        conn=context["cells"].get(tag,())
++        if len(conn)!=4 or len(set(conn))!=4 or not set(edge)<=set(conn):
++            reasons.append("invalid edge-owner tetrahedron");continue
++        pair=tuple(sorted(set(conn)-set(edge)));opposite.append(pair)
++        for a,b in (pair,pair[::-1]):adj.setdefault(a,set()).add(b)
++    if len(set(opposite))!=len(opposite):reasons.append("duplicate link edge")
++    n=len(tags)
++    if len(adj)!=n or any(len(v)!=2 for v in adj.values()):reasons.append("link is not a degree-two n-cycle")
++    cycle=[]
++    if not reasons:
++        start=min(adj);previous=None;node=start
++        for _ in range(n):
++            if node in cycle:break
++            cycle.append(node)
++            choices=sorted(adj[node]-({previous} if previous is not None else set()))
++            previous,node=node,choices[0]
++        if len(cycle)!=n or node!=start or set(cycle)!=set(adj):
++            reasons.append("link disconnected or fails single-cycle closure")
++    return dict(valid=not reasons,reasons=reasons,cycle=cycle,
++                opposite_link_edges=[list(e) for e in opposite],degree=n)
++
++
++def link_triangulations(cycle):
++    """Complete root-edge Catalan recursion on an abstract cycle, without projection."""
++    cycle=tuple(cycle)
++    need(4<=len(cycle)<=8 and len(set(cycle))==len(cycle),"A simple4..8 cycle required")
++    def disk(poly):
++        if len(poly)==2:return ((),)
++        rows=[]
++        for k in range(1,len(poly)-1):
++            for left in disk(poly[:k+1]):
++                for right in disk(poly[k:]):
++                    triangle=tuple(sorted((poly[0],poly[k],poly[-1])))
++                    rows.append(tuple(sorted(left+right+(triangle,))))
++        return tuple(sorted(rows))
++    rows=disk(cycle)
++    need(len(rows)==len(set(rows))=={4:2,5:5,6:14,7:42,8:132}[len(cycle)],
++         "Complete distinct Catalan family required")
++    need(all(len(r)==len(cycle)-2 for r in rows),"Every triangulation must have n-2 faces")
++    return rows
++
++
++def enumerate_edge_stars(context):
++    """All seed-containing poor edges; retain out-of-scope rows rather than dropping them."""
++    cells=context["cells"];seeds=context["seeds"]
++    edges=sorted({tuple(sorted(e)) for tag in context["poor"]
++                  for e in combinations(cells[tag],2) if set(e)&seeds})
++    selected=[];outside=[]
++    for edge in edges:
++        owners=sorted(t for t,c in cells.items() if set(edge)<=set(c))
++        complete=bool(set(edge)&seeds)
++        row=dict(case_ID="edge:"+",".join(map(str,edge)),central_edge=list(edge),
++            removed_cell_tags=owners,removed_poor_cell_tags=sorted(set(owners)&context["poor"]),
++            owner_scope_complete=complete,owner_scope_basis="contains accepted complete-star seed",
++            observed_degree=len(owners))
++        if complete and 4<=len(owners)<=8:selected.append(row)
++        else:
++            row["disposition"]="outside selected degree4..8 route; retained, not infeasible"
++            outside.append(row)
++    return selected,outside
++
++
++def convex_edge_cavity(context,case):
++    """Strict convex boundary + known abstract ball + consistent old orientation.
++
++    METHOD supplies the boundary-facet proof and Lipman Theorem1 prerequisites.
++    Positivity or volume equality alone never sets this certificate true.
+     """
+-    conflicts=[]
+-    for a,b in combinations(associations,2):
+-        if not a["observed_bistellar_pattern"] or not b["observed_bistellar_pattern"]:continue
+-        overlap=sorted(set(a["observed_owner_tags"])&set(b["observed_owner_tags"]))
+-        common={tuple(sorted(c)) for c in a["replacement_unoriented_cells"]}&{
+-            tuple(sorted(c)) for c in b["replacement_unoriented_cells"]}
+-        if overlap or common:
+-            conflicts.append(dict(association_IDs=[a["association_ID"],b["association_ID"]],
+-                shared_removed_cell_tags=overlap,duplicate_replacement4sets=[list(c) for c in sorted(common)]))
+-    return conflicts
++    points=context["points"];cells=context["cells"];link=link_cycle(context,case)
++    tags=case["removed_cell_tags"];entries=[(t,cells[t]) for t in tags if t in cells]
++    old=[c for _,c in entries]
++    vertices=sorted({v for c in old for v in c});rows=[];total=Fraction(0)
++    for tag,conn in entries:
++        d,q=exact_quality([points[t] for t in conn]);total+=d/6
++        rows.append(dict(tetrahedron_tag=tag,node_tags=list(conn),D=rational(d),
++                         Q_squared=None if q is None else rational(q),positive=d>0))
++    valid,boundary=oriented_boundary(old)
++    expected={tuple(sorted((apex,link["cycle"][i],link["cycle"][(i+1)%len(link["cycle"])])))
++              for apex in case["central_edge"] for i in range(len(link["cycle"]))}
++    sphere=(link["valid"] and len(vertices)==link["degree"]+2 and valid
++            and len(boundary)==2*link["degree"]
++            and {tuple(sorted(f)) for f in boundary}==expected)
++    support=[]
++    for face in boundary:
++        for other in vertices:
++            if other in face:continue
++            d,_=exact_quality([points[t] for t in face]+[points[other]])
++            support.append(dict(outward_face=list(face),other_node_tag=other,D=rational(d),strict_inside=d<0))
++    positive=len(rows)==len(tags) and bool(rows) and all(r["positive"] for r in rows)
++    strict=sphere and len(support)==2*link["degree"]*(link["degree"]-1) and all(r["strict_inside"] for r in support)
++    protected=not set(tags)&context["protected_cells"]
++    reasons=list(link["reasons"])
++    if not sphere:reasons.append("old oriented cone-cycle sphere not established")
++    if not positive:reasons.append("old orientation/nondegeneracy failed")
++    if not strict:reasons.append("strict convex supporting-facet certificate unresolved")
++    if not protected:reasons.append("removed cells intersect protected history")
++    return dict(case=case,link=link,vertices=vertices,old_rows=rows,
++        old_oriented_boundary=[list(f) for f in boundary],old_signed_volume=rational(total),
++        abstract_edge_cycle_ball_and_boundary_sphere=sphere,
++        all_old_tetrahedra_positive=positive,strict_support_rows=support,
++        strict_convex_boundary_bijection_certified=strict,
++        old_embedded_convex_filling_certified=sphere and positive and strict,
++        protected_prior_cells_disjoint=protected,reasons=reasons,
++        source_region_interface_exterior_or_BIN_evidence=None,
++        whole_head_embedding_or_nonoverlap_accepted=False)
++
++
++def screen_edge_candidate(context,cavity,triangulation,ordinal):
++    """One full Catalan replacement; failed candidates remain complete records."""
++    points=context["points"];case=cavity["case"];cycle=cavity["link"]["cycle"]
++    tris=tuple(sorted(tuple(sorted(t)) for t in triangulation))
++    disk=cavity["link"]["valid"] and tris in link_triangulations(cycle)
++    cells=[];rows=[];total=Fraction(0)
++    for apex in case["central_edge"]:
++        for tri in tris:
++            conn=(apex,)+tri;d,q=exact_quality([points[t] for t in conn])
++            if d<0:
++                conn=conn[:2]+(conn[3],conn[2]);d,q=exact_quality([points[t] for t in conn])
++            cells.append(conn);total+=d/6
++            rows.append(dict(node_tags=list(conn),D=rational(d),
++                Q_squared=None if q is None else rational(q),positive=d>0,
++                exact_quality_gate_passed=d>0 and q is not None and q>=Fraction(1,100)))
++    valid,boundary=oriented_boundary(cells)
++    chain=valid and [list(f) for f in boundary]==cavity["old_oriented_boundary"]
++    volume=rational(total)==cavity["old_signed_volume"]
++    quality=bool(rows) and all(r["exact_quality_gate_passed"] for r in rows)
++    sets=[tuple(sorted(c)) for c in cells]
++    duplicates=sorted(s for s in set(sets) if sets.count(s)>1)
++    removed=set(case["removed_cell_tags"])
++    complement={tuple(sorted(c)):t for t,c in context["cells"].items() if t not in removed}
++    existing=[dict(node_tags=list(s),existing_tetrahedron_tag=complement[s])
++              for s in sorted(set(sets)&set(complement))]
++    old=[context["cells"][t] for t in case["removed_cell_tags"]]
++    old_features={k:{tuple(sorted(s)) for c in old for s in combinations(c,k)} for k in (2,3)}
++    introduced=[]
++    for k in (2,3):
++        features={tuple(sorted(s)) for c in cells for s in combinations(c,k)}-old_features[k]
++        for feature in sorted(features):
++            owners=sorted(t for t,c in context["cells"].items()
++                          if t not in removed and set(feature)<=set(c))
++            introduced.append(dict(dimension=k-1,node_tags=list(feature),observed_complement_owner_tags=owners,
++                complete_owner_scope=bool(set(feature)&context["seeds"]),
++                absent_from_observed_complement=not owners,
++                global_missing_owner_absence=None if not set(feature)&context["seeds"] else not owners,
++                semantic_region_interface_or_exterior_evidence=None))
++    introduced_conflict=any(r["observed_complement_owner_tags"] for r in introduced)
++    embedded=(disk and cavity["old_embedded_convex_filling_certified"] and chain
++              and len(cells)==2*(len(cycle)-2) and bool(rows) and all(r["positive"] for r in rows))
++    reasons=list(cavity["reasons"])
++    if not disk:reasons.append("replacement is not a complete Catalan link disk")
++    if not chain:reasons.append("full oriented boundary/internal cancellation mismatch")
++    if not volume:reasons.append("exact signed-volume mismatch")
++    if not quality:reasons.append("replacement quality/orientation failure")
++    if duplicates:reasons.append("duplicate replacement unordered four-set")
++    if existing:reasons.append("replacement duplicates observed unchanged cell")
++    if introduced_conflict:reasons.append("introduced feature already present in observed complement")
++    if not embedded:reasons.append("local embedded convex filling not certified")
++    return dict(candidate_ID=case["case_ID"]+":triangulation:"+str(ordinal),case_ID=case["case_ID"],
++        removed_cell_tags=case["removed_cell_tags"],link_triangles=[list(t) for t in tris],
++        replacement_cells=[list(c) for c in cells],replacement_exact_rows=rows,
++        abstract_suspension_of_triangulated_disk_ball=disk,
++        oriented_boundary=[list(f) for f in boundary],oriented_boundary_equal=chain,
++        signed_volume=rational(total),exact_signed_volume_equal=volume,
++        all_replacement_exact_quality_gates_passed=quality,
++        duplicate_replacement_four_sets=[list(s) for s in duplicates],observed_unchanged_cell_duplicates=existing,
++        introduced_feature_owner_rows=introduced,local_embedded_convex_filling_certified=embedded,
++        local_finite_predicates_passed=not reasons,reasons=reasons,
++        complete_application_eligibility=None,global_embedding_and_nonoverlap_accepted=False,
++        mesh_application_authorized=False,physics_material_LPBF_or_manufacturing_accepted=False)
++
++
++def complete_conflict_relations(cases,candidates):
++    """Lossless cliques/cartesian products, not a quadratic repeated JSON pair table."""
++    by_case={r["case"]["case_ID"]:[] for r in cases}
++    for r in candidates:by_case[r["case_ID"]].append(r["candidate_ID"])
++    removals={r["case"]["case_ID"]:set(r["case"]["removed_cell_tags"]) for r in cases}
++    case_pairs=[];pairs=set()
++    for a,b in combinations(sorted(by_case),2):
++        shared=sorted(removals[a]&removals[b])
++        if shared:
++            case_pairs.append(dict(case_IDs=[a,b],shared_removed_cell_tags=shared,
++                relation="every candidate from first case conflicts with every candidate from second"))
++            pairs.update(tuple(sorted((x,y))) for x in by_case[a] for y in by_case[b])
++    within=[]
++    for case,ids in sorted(by_case.items()):
++        if len(ids)>1:
++            within.append(dict(case_ID=case,candidate_IDs=ids,shared_removed_cell_tags=sorted(removals[case])))
++            pairs.update(tuple(sorted(p)) for p in combinations(ids,2))
++    proposed={}
++    for r in candidates:
++        for cell in {tuple(sorted(c)) for c in r["replacement_cells"]}:
++            proposed.setdefault(cell,set()).add(r["candidate_ID"])
++    duplicate=[]
++    for cell,ids in sorted(proposed.items()):
++        if len(ids)>1:
++            ids=sorted(ids);duplicate.append(dict(unordered_four_set=list(cell),candidate_IDs=ids))
++            pairs.update(combinations(ids,2))
++    return dict(encoding="exact union of within-case cliques, cross-case complete products, duplicate-four-set cliques",
++        case_candidate_memberships=by_case,within_case_conflict_cliques=within,
++        cross_case_removed_cell_conflict_products=case_pairs,duplicate_proposed_cell_cliques=duplicate,
++        distinct_conflicting_candidate_pair_count=len(pairs),all_pairs_represented_without_truncation=True,
++        application_subset_selected=False)
++
++
++def screen_complete_saved_family(context):
++    """Future finite call only: all55 stars, all valid-cycle Catalan alternatives, no choice."""
++    before=context_snapshot(context)
++    need((len(context["points"]),len(context["cells"]),len(context["poor"]),len(context["seeds"]))==(271,499,24,16),
++         "Full271/499/24/16 context required")
++    need((len(context["protected_cells"]),len(context["protected_nodes"]))==(1983,66),"Prior1983/66 protection required")
++    selected,outside=enumerate_edge_stars(context)
++    observed={r["case_ID"]:r["observed_degree"] for r in selected}
++    need(observed==EXPECTED_EDGE_DEGREES,"All55 exact saved degree4..8 associations required")
++    cases=[];candidates=[];expected_count=0
++    for case in selected:
++        cavity=convex_edge_cavity(context,case);cases.append(cavity)
++        if cavity["link"]["valid"]:
++            triangles=link_triangulations(cavity["link"]["cycle"]);expected_count+=len(triangles)
++            for ordinal,triangulation in enumerate(triangles,1):
++                candidates.append(screen_edge_candidate(context,cavity,triangulation,ordinal))
++    need(len(candidates)==expected_count<=1033,"Complete bounded Catalan family required")
++    need({t for r in selected for t in r["removed_poor_cell_tags"]}==context["poor"],"All24 poor rows covered")
++    need({t for r in selected for t in r["central_edge"] if t in context["seeds"]}==context["seeds"],"All16 seeds covered")
++    conflicts=complete_conflict_relations(cases,candidates)
++    after=context_snapshot(context)
++    need(canonical_bytes(before)==canonical_bytes(after),"Complete saved context changed; refuse")
++    return dict(schema="962-current24-complete-fixed-word-edge-removal-screen/v1",
++        status="COMPLETE_FINITE_LOCAL_SCREEN_APPLICATION_ELIGIBILITY_UNAVAILABLE",
++        context_before=before,context_after=after,complete_context_byte_identical=True,
++        selected_complete_edge_stars=cases,outside_degree_route_associations=outside,
++        selected_case_count=len(cases),valid_link_count=sum(r["link"]["valid"] for r in cases),
++        candidate_count=len(candidates),conditional_Catalan_bound=1033,all_candidate_rows=candidates,
++        local_finite_pass_count=sum(r["local_finite_predicates_passed"] for r in candidates),
++        conflicts=conflicts,all_failed_unavailable_and_outside_rows_retained=True,
++        complete_application_eligibility=None,whole_head_embedding_or_nonoverlap_accepted=False,
++        region_interface_exterior_or_BIN_evidence=None,mesh_application_authorized=False,
++        optimizer_or_native_called=False,coordinates_or_connectivity_written=False,
++        physics_material_LPBF_or_manufacturing_accepted=False,global_infeasibility_proved=False,
++        topology_change_necessity_proved=False)

@@ -1,0 +1,137 @@
+{
+  "schema": "962-current24-five-toy-transport-held-preparation/v2",
+  "status": "SOURCE002_AND_NINE_FRAMING_CONTROL_EXPECTATIONS_HELD_UNRUN",
+  "records": [
+    {
+      "path": "work/962-engineering/head-star-current24-qfnra-toy-transport-prep-002/check_toy_sessions.py",
+      "sha256": "76c13fe57d9598276b349e12dedd8bdfb1eff1ec3ad29d4c95a073abc8e6d49a",
+      "bytes": 21489
+    },
+    {
+      "path": "work/962-engineering/head-star-current24-qfnra-toy-transport-prep-002/test_framing_expectations.py",
+      "sha256": "f01782ee9738c3b39b182dcb0b1d25f81225768189e4a96176d9270a43d0bb25",
+      "bytes": 3998
+    },
+    {
+      "path": "work/962-engineering/head-star-current24-qfnra-toy-transport-prep-002/test_deadline_expectations.py",
+      "sha256": "cd94a9dfabcbfb121363d2e11cadea294a8046762f2b5bdde64804053dc692aa",
+      "bytes": 9211
+    },
+    {
+      "path": "work/962-engineering/head-star-current24-qfnra-toy-transport-prep-002/METHOD.md",
+      "sha256": "cc7309f64d3fcb914bac258e9c3fa276a00c71960c8ffb8fa1df9efb6e5b9903",
+      "bytes": 7028
+    },
+    {
+      "path": "work/962-engineering/head-star-current24-qfnra-toy-transport-prep-002/source.diff",
+      "sha256": "474b4c16c268d8fac21b63228d27ade442664716c42f134fdb0b0e8d94838f5f",
+      "bytes": 12087
+    },
+    {
+      "path": "work/962-engineering/head-star-current24-qfnra-toy-transport-prep-002/PLAN.json",
+      "sha256": "9af4945e2b6a25ec9e3e2cde001c5d8a5aa5bfd19cd450bb4d82f3ff1e5b330a",
+      "bytes": 5317
+    },
+    {
+      "path": "work/962-engineering/head-star-current24-qfnra-toy-transport-prep-002/source-reuse.json",
+      "sha256": "b8b28788f18b3a3782e7f8f169a05064812145443c858b770b9a9b45e5a666dd",
+      "bytes": 3751
+    },
+    {
+      "path": "work/962-engineering/head-star-current24-qfnra-toy-transport-prep-002/bindings.json",
+      "sha256": "2c44e3a39cf697dfe7f3a7338ba206d7476620707d81bec7e0f344476827e6c5",
+      "bytes": 5401
+    }
+  ],
+  "preserved001_index": {
+    "path": "work/962-engineering/head-star-current24-qfnra-toy-transport-prep-001/index.json",
+    "sha256": "81aaf3abd63e935e03239507746915db1554b01057a5376f6b0450cefe5f76eb",
+    "bytes": 2033
+  },
+  "original001_all_bytes_preserved": true,
+  "static_source_findings": [
+    "001 checks pump deadline only before blockingselect/read; final response/capture could return after original queryuntil.",
+    "Same final blocking-return window existed at normal-drain wait andTERM/KILL cleanupwait.",
+    "002 adds exactly three strict final-until checks; no limits,solver/session/word/protocol/cleanup escalation or caller changes."
+  ],
+  "exact_production_delta": {
+    "inserted_lines": 3,
+    "bytes_added": 289,
+    "removed_lines": 0,
+    "moved_lines": 0,
+    "full_inverse_equals001": true,
+    "changed_methods": [
+      "Session.exchange",
+      "Session.close"
+    ],
+    "all19_other_named_definitions_text_AST_exact": true,
+    "all_imports_exact": true
+  },
+  "fixtures": {
+    "original_framing_methods": 5,
+    "new_fake_deadline_methods": 4,
+    "total_unrun_named_methods": 9,
+    "source_only_expected_results_not_measured": true
+  },
+  "prior_separately_accepted_pure_guard_records": [
+    {
+      "path": "work/962-engineering/head-star-current24-qfnra-guards-root-result-acceptance-001/acceptance.json",
+      "sha256": "e143cf3590e97e30c0bf4d5a47c9bead00d2c9793715e046ed5953944afc35db",
+      "bytes": 4728
+    },
+    {
+      "path": "work/962-engineering/head-star-current24-qfnra-guards-root-result-acceptance-001/final-inclusive-census.json",
+      "sha256": "3d2ce163c9c9384be3055fc078048bce2683fac089a488b1ca73e60acf02d23c",
+      "bytes": 18204
+    }
+  ],
+  "prior_acceptance_is_not_transport_toy_or_installed_Z3_acceptance": true,
+  "controls_unchanged": {
+    "global_normal_seconds": 60,
+    "query_full_capture_return_seconds": 5,
+    "normal_drain_wait_return_seconds": 5,
+    "TERM_grace_drain_wait_seconds": 8,
+    "KILL_drain_wait_seconds": 8,
+    "external_sampled_group_RSS_bytes": 2147483648,
+    "inclusive_external_output_control_receipt_cap_bytes": 33554432,
+    "requested_environment_threads": 1,
+    "retries": 0
+  },
+  "future_owner_requirement": "Independent owner still required: whole startup/preflight/full-return timing,inclusive final receipt/control/output census,RSS,cleanup/reap/groupabsence/outerstatus. Final checks are not preemptive hardwall-clock or hardquota proof.",
+  "source_preparation_checks": {
+    "helper_fixtures_AST_only": true,
+    "three_line_full_helper_inverse": true,
+    "two_binding_full_framing_fixture_inverse": true,
+    "exact_definition_and_import_comparison": true,
+    "source_diff_reproduced": true,
+    "all8_original001_records_current_unchanged": true,
+    "two_named_prior_guard_metadata_records_current": true
+  },
+  "pending": {
+    "independent002_transport_and_fixture_source_peer": null,
+    "source_root_review": null,
+    "framing_and_deadline_guard_controls": null,
+    "framing_and_deadline_guard_result": null,
+    "selected_python_runtime_provider_freshness": null,
+    "selected_Z3_link_dependency_freshness": null,
+    "external_owner": null,
+    "actual": null,
+    "root_admission": null,
+    "launch": null,
+    "toy_result": null
+  },
+  "author_affiliation": "lpbf_linear_refinement authored001 and002 toy transport,old14 head-kernel donor,method/source peers,row-first sampler and independent499 validator. Independent002 review pending.",
+  "authorities": {
+    "source_preparation": true,
+    "source_module_or_fragment_compile_import_execute": false,
+    "fixture_test_or_solver_process": false,
+    "runtime_query_or_binary_provider_read_hash_stat": false,
+    "real23_intake_coefficient_coordinate_word_model_calculation": false,
+    "rawmesh_BIN_nativefield_access": false,
+    "actual_controller_admission_staging_launch": false,
+    "native_retry": false,
+    "head_mesh_application_global_embedding_or_physical_acceptance": false,
+    "material_strength_LPBF_twin_PhysicsNeMo_manufacturing_acceptance": false,
+    "PUB_Git_mutation": false
+  }
+}

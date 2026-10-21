@@ -1,44 +1,47 @@
-# Module thermique : waterblocks, ventilateurs et Peltier
+<a id="module-thermique--waterblocks-ventilateurs-et-peltier"></a>
 
-Le propriétaire propose un boîtier inspiré du principe de GemaTEG pour améliorer
-le refroidissement du kit 962. Cette option est ajoutée au programme comme
-**une étude de régulation thermique ciblée**. Ni sa puissance frigorifique,
-ni son encombrement, ni ses performances automobiles ne sont établis.
+# Thermal module: waterblocks, fans and Peltier devices
 
-## Principe retenu et limite énergétique
+The owner proposes an enclosure inspired by the GemaTEG principle to improve
+962 kit cooling. This option is added to the program as **a study of targeted
+thermal regulation**. Its cooling capacity, envelope and automotive performance
+are not established.
 
-[GemaTEG](https://www.gemateg.com/solution) décrit des cold plates actives et
-une supervision des températures CPU/GPU. Nous retenons l'idée de pilotage
-local, de boucle liquide et de contrôle instrumenté. Les gains publiés dans
-ce contexte ne sont pas transférés au moteur. Aucun dessin, firmware ou document
-interne GemaTEG n'est repris ; il ne s'agit pas d'un produit automobile GemaTEG.
+<a id="principe-retenu-et-limite-énergétique"></a>
 
-Un Peltier pompe la chaleur vers sa face chaude, qui reçoit aussi sa
-consommation électrique. Les relations de
-[Ferrotec](https://thermal.ferrotec.com/technology/thermoelectric-reference-guide/thermalref11/)
-sont `COP = Qfroid / Pélectrique` et `Qchaud = Qfroid + Pélectrique`.
-Le COP doit provenir du module au point réel de fonctionnement ; sa valeur
-maximale ou une puissance commerciale à ΔT nul ne suffit pas au dimensionnement.
+## Selected principle and energy limit
 
-**Exemples uniquement**, COP supposé égal à 1, conversion DC supposée à 90 %,
-bus supposé de 14 V, pompes/ventilateurs exclus faute de mesures :
+[GemaTEG](https://www.gemateg.com/solution) describes active cold plates and
+CPU/GPU temperature supervision. We retain the idea of local control, a
+liquid loop and instrumented monitoring. Benefits published in that context
+are not transferred to the engine. No internal GemaTEG drawing, firmware or
+document is reused; this is not a GemaTEG automotive product.
 
-| Froid demandé | Électricité aux TEC | Chaleur face chaude | Consommation au bus | Courant au bus |
+A Peltier device pumps heat to its hot face, which also receives its electrical
+consumption. The [Ferrotec](https://thermal.ferrotec.com/technology/thermoelectric-reference-guide/thermalref11/)
+relations are `COP = Qcold / Pelectrical` and `Qhot = Qcold + Pelectrical`.
+COP must come from the module at its actual operating point; its maximum
+value or a commercial rating at zero ΔT is insufficient for sizing.
+
+**Examples only**, assuming COP of 1, 90% DC conversion efficiency and a
+14 V bus; pumps/fans are excluded because measurements are absent:
+
+| Requested cooling | Electricity at TECs | Hot-face heat | Bus consumption | Bus current |
 |---|---:|---:|---:|---:|
-| 500 W | 500 W | 1 000 W | 556 W | 39,7 A |
-| 1 kW | 1 kW | 2 kW | 1,111 kW | 79,4 A |
-| 10 kW | 10 kW | 20 kW | 11,111 kW | 793,7 A |
+| 500 W | 500 W | 1,000 W | 556 W | 39.7 A |
+| 1 kW | 1 kW | 2 kW | 1.111 kW | 79.4 A |
+| 10 kW | 10 kW | 20 kW | 11.111 kW | 793.7 A |
 
-La charge moteur n'est pas mesurée et n'est représentée par aucune de ces
-lignes. Le courant n'est pas celui de modules montés directement sur 14 V :
-c'est le courant d'alimentation amont d'une conversion supposée. La perte du
-convertisseur et la chaleur des auxiliaires s'ajoutent au bilan global, avec
-leur lieu de rejet à préciser. La charge mécanique de l'alternateur demande
-en plus sa propre carte de rendement ; elle n'est pas calculée ici.
+Engine load is unmeasured and is not represented by any of these rows.
+This is not the current of modules mounted directly on 14 V: it is the
+upstream supply current of an assumed conversion. Converter losses and
+auxiliary heat add to the overall balance; their rejection locations must be
+defined. The alternator's mechanical load additionally needs its own
+efficiency map; it is not calculated here.
 
-L'[outil de cadrage](source/thermal_budget.py) expose toutes ses hypothèses et
-refuse les valeurs non finies ou incohérentes. Il ne prédit ni température,
-COP réel, débit d'air, nombre de modules ou capacité du radiateur.
+The [scoping tool](source/thermal_budget.py) exposes all assumptions and rejects
+non-finite or inconsistent values. It predicts neither temperature, actual
+COP, airflow, module count nor radiator capacity.
 
 ```sh
 python3 twins/962-cylinder-head-f0/source/thermal_budget.py \
@@ -46,70 +49,69 @@ python3 twins/962-cylinder-head-f0/source/thermal_budget.py \
   --assumed-dc-efficiency 0.9 --auxiliaries-w 0
 ```
 
-## Architecture proposée
+<a id="architecture-proposée"></a>
 
-![Séparation du refroidissement principal et de la branche TEC](derived/thermal-module.png)
+## Proposed architecture
 
-Le [schéma SVG éditable](source/thermal-module.svg) représente des transferts
-de chaleur et des fonctions, pas un tracé hydraulique ou une CAO de boîtier.
+![Separation of main cooling and the TEC branch](derived/thermal-module.png)
 
-| Fonction | Architecture à comparer |
+The [editable SVG diagram](source/thermal-module.svg) represents heat transfers
+and functions, not hydraulic routing or enclosure CAD.
+
+| Function | Architecture to compare |
 |---|---|
-| Culasses/cylindres et huile | Refroidissement principal par liquide et échangeurs vers l'air extérieur, capable de fonctionner sans TEC |
-| Air de suralimentation | Échangeur air/liquide et boucle basse température comme référence ; branche TEC optionnelle pour régulation ciblée ou transitoires |
-| Branche TEC froide | Waterblock froid, liquide séparé, pompe, capteurs et dérivation conçue pour ne pas bloquer la circulation principale |
-| Branche TEC chaude | Waterblock chaud, pompe et échangeur ventilé dimensionné pour Qchaud, avec trajet d'air extérieur |
-| Commande | Courant TEC piloté ; mesure des deux faces, débits, tensions/courants, pression et humidité pertinente |
-| Réservoir tampon éventuel | Réserve énergétique transitoire à quantifier ; ne remplace pas l'évacuation de chaleur en régime continu |
+| Heads/cylinders and oil | Main liquid cooling and exchangers to outside air, capable of operating without TECs |
+| Charge air | Air/liquid exchanger and low-temperature loop as the reference; optional TEC branch for targeted regulation or transients |
+| Cold TEC branch | Cold waterblock, separate fluid, pump, sensors and bypass designed not to block main circulation |
+| Hot TEC branch | Hot waterblock, pump and fan-cooled exchanger sized for Qhot, with an outside-air path |
+| Control | Controlled TEC current; measurements of both faces, flows, voltages/currents, pressure and relevant humidity |
+| Possible buffer tank | Transient energy reserve to quantify; does not replace steady-state heat rejection |
 
-Cette séparation est une **proposition d'ingénierie**, pas une décision
-de compatibilité. Les deux circuits des bancs moteur restent des interfaces
-distinctes à mesurer. Ne pas relier eau moteur, huile et circuit TEC au même
-fluide par simple commodité. Le côté chaud ne doit pas réchauffer l'air aspiré
-par le refroidisseur de suralimentation ou recycler l'air chaud dans le moteur.
+This separation is **an engineering proposal**, not a compatibility decision.
+The two engine-bank circuits remain separate interfaces to measure.
+Do not combine engine water, oil and the TEC circuit in one fluid for
+convenience alone. The hot side must not heat the air drawn into the charge-air
+cooler or recirculate hot air into the engine.
 
-La réduction de température ne justifie la branche active que si le gain
-mesuré vaut sa consommation, masse, complexité et maintenance. Comparer au
-moins un échangeur conventionnel amélioré, la branche TEC et, si du froid
-sous l'ambiante est nécessaire, une option à compression ; aucun COP de
-compresseur n'est supposé ni équipement choisi.
+A temperature reduction justifies the active branch only if the measured
+benefit warrants its consumption, mass, complexity and maintenance.
+Compare at least an improved conventional exchanger, the TEC branch and,
+if subambient cooling is needed, a compression option; no compressor COP
+is assumed and no equipment is selected.
 
-## Contraintes à fermer avant une CAO fonctionnelle
+<a id="contraintes-à-fermer-avant-une-cao-fonctionnelle"></a>
 
-- Mesurer séparément charges thermiques moteur, huile, air de charge et
-  transitoires. Pour une boucle liquide : débit massique, composition, Cp(T)
-  et températures d'entrée/sortie ; pour l'air : débit, pression et températures.
-- Obtenir les courbes Qfroid/Pélectrique/COP aux températures des deux faces,
-  avec vieillissement et limites du module, puis qualifier les contacts et
-  le serrage. Le boîtier ne doit pas transmettre les efforts de fixation à
-  des modules fragiles sans support mécanique validé.
-- Établir budgets électriques **et mécaniques**, capacité alternateur/DC,
-  fusibles/câblage, consommation pompes/ventilateurs et bilan de chaleur global.
-- Vérifier radiateur, débit d'air et recirculation en température extérieure
-  défavorable, au ralenti et en charge. Un ventilateur redistribue l'air ;
-  il ne supprime pas les watts à rejeter.
-- Définir le contrôle de condensation selon le point de rosée **local**,
-  l'humidité et la pression à l'emplacement considéré. Les surfaces extérieures
-  et l'air comprimé d'admission n'ont pas nécessairement le même point de rosée.
-  Le [NWS](https://www.weather.gov/asos/AmbientDewPointTemperature.html) décrit
-  la mesure de ce seuil par condensation sur une surface refroidie par Peltier.
-- Valider modes dégradés : TEC arrêté, débit perdu, ventilateur/pompe en défaut,
-  surtempérature côté chaud, capteur défaillant et fuite. La référence de
-  refroidissement doit rester disponible ; le motoriste fixe les limites
-  de charge et l'arrêt protecteur.
-- Qualifier pression, vibrations, chocs thermiques, corrosion, isolation,
-  étanchéité et accessibilité du boîtier dans le véhicule. Aucun matériau,
-  raccord, emplacement ou dimension n'est encore choisi.
+## Constraints to close before functional CAD
 
-La première expérience proposée est un banc thermique électrique avec une
-charge résistive et des échanges mesurés, avant toute installation moteur.
-Comparer TEC arrêté/allumé à charge et conditions extérieures identiques ;
-fermer `Qchaud ≈ Qfroid + Pélectrique` avec les pertes et incertitudes.
-La commande active n'est retenue qu'après constat d'un bénéfice utile, dans
-les budgets et sans dégrader le fonctionnement de référence.
+- Measure engine, oil and charge-air thermal loads and transients separately.
+  For a liquid loop: mass flow, composition, Cp(T) and inlet/outlet temperatures;
+  for air: flow, pressure and temperatures.
+- Obtain Qcold/Pelectrical/COP curves at both face temperatures, including aging
+  and module limits, then qualify contacts and clamping. The enclosure must not
+  transmit mounting loads into fragile modules without validated mechanical support.
+- Establish **electrical and mechanical** budgets, alternator/DC capacity,
+  fuses/wiring, pump/fan consumption and the overall heat balance.
+- Check radiator, airflow and recirculation at adverse ambient temperature,
+  idle and load. A fan redistributes air; it does not eliminate the watts to reject.
+- Define condensation control using the **local** dew point, humidity and
+  pressure at the location considered. External surfaces and compressed intake
+  air do not necessarily share a dew point. The [NWS](https://www.weather.gov/asos/AmbientDewPointTemperature.html)
+  describes measurement of this threshold by condensation on a Peltier-cooled surface.
+- Validate degraded modes: TEC stopped, lost flow, fan/pump failure, hot-side
+  overtemperature, sensor failure and leakage. Reference cooling must remain
+  available; the engine builder sets load limits and protective shutdown.
+- Qualify pressure, vibration, thermal shock, corrosion, insulation, sealing
+  and enclosure access in the vehicle. No material, connection, location or
+  dimension has yet been selected.
 
-Les besoins inconnus sont conservés dans
-[thermal-module.json](thermal-module.json). Aucun achat, prototype pressurisé,
-contact fournisseur, copie de géométrie ou de firmware GemaTEG n'est
-effectué par cette étude. Le [programme kit](KIT_962_PROGRAMME.md) reste la
-cible commerciale ; sa qualification ne découle pas de ce calcul.
+The first proposed experiment is an electrical thermal bench with a resistive
+load and measured transfers, before any engine installation. Compare TEC
+off/on under identical load and external conditions; close
+`Qhot ≈ Qcold + Pelectrical`, including losses and uncertainties.
+Active control is retained only after observing a useful benefit within
+budgets and without degrading reference operation.
+
+Unknown requirements are retained in [thermal-module.json](thermal-module.json).
+This study performs no purchase, pressurized prototype, supplier contact or
+copying of GemaTEG geometry or firmware. The [kit program](KIT_962_PROGRAMME.md)
+remains the commercial target; its qualification does not follow from this calculation.

@@ -1,0 +1,395 @@
+{
+  "schema": "962-native005-finite-helper-root-admission/v1",
+  "root_issued": true,
+  "operation": "freshness",
+  "operation_authorized": true,
+  "invocations": 1,
+  "automatic_retry": false,
+  "independent_source_review_complete": true,
+  "root_source_review_complete": true,
+  "runtime_metadata_query_authorized": true,
+  "staging_authorized": false,
+  "native_execution_authorized": false,
+  "fixture_execution_authorized": false,
+  "field_parsing_authorized": false,
+  "manufacturing_authorized": false,
+  "physical_acceptance": false,
+  "helper": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native005-freshness-prep-001/capture_freshness.py",
+    "sha256": "e3f1c980ead8f7952eb82a1996db7fc167ca829c294afdccf4b9c83d65fe2dac",
+    "bytes": 17737
+  },
+  "plan": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native005-freshness-prep-001/held-plan.json",
+    "sha256": "453ba3a35a671fed34fd80bbecd4ba8307fa6259941dd925f663a02b90adb6eb",
+    "bytes": 19826
+  },
+  "limits": {
+    "whole_seconds": 60,
+    "TERM_grace_seconds": 8,
+    "stream_buffer_bytes": 1048576,
+    "query_seconds": 5,
+    "total_inclusive_bytes": 33554432,
+    "thread_environment": 1,
+    "retries": 0
+  },
+  "helper_preparation_index": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native005-freshness-prep-001/index.json",
+    "sha256": "f28862e7d39d1906c7f3ebb096209d42fde44891014ecacddf654ab89589a97e",
+    "bytes": 4767
+  },
+  "helper_source_peer": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native005-freshness-source-peer-001/review.json",
+    "sha256": "563c1663e7ad350cf6b9df34bf9fdbb3f91b48c8e7733663d041901a4c8b5c55",
+    "bytes": 3139
+  },
+  "helper_source_findings": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native005-freshness-source-peer-001/findings.json",
+    "sha256": "8b9f2d1be6c65c77b2eb7f9bc974ab3605d4df85ef3e1a889a45633f19e25b11",
+    "bytes": 12525
+  },
+  "helper_source_bindings": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native005-freshness-source-peer-001/bindings.json",
+    "sha256": "fa5fb5217bc3ac211a8fcd1ac3f1e040870441bb9baac5052c695e1d4b3a431d",
+    "bytes": 19232
+  },
+  "helper_root_review": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native005-freshness-root-source-review-001/review.json",
+    "sha256": "ab80a3b604fa64d520c7c2da5c7872563f24942e13a427725174e436e63f3294",
+    "bytes": 4089
+  },
+  "staging_receipt": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native005-four-input-staging-root-001/staging-receipt.json",
+    "sha256": "3ec1f62e359414c02eda78ed6e285beed3e9774c61366816560e22cfe6bddfa9",
+    "bytes": 5897
+  },
+  "stage_root_acceptance": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native005-four-input-staging-root-001/postreturn-acceptance.json",
+    "sha256": "44b4efd5a9fada59392979b628f9a12c87ce5f86293b8397d5713936e251d087",
+    "bytes": 3920
+  },
+  "protected_records": {
+    "native_actual": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native-measurement-execution-prep-004/actual-contract.json",
+      "sha256": "a5e35548cacd4f2abfd4f0d29e5aeb738ce16bdc814f642e016851c3450f1986",
+      "bytes": 273368
+    },
+    "native_caller": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native-measurement-prep-005/run_native_capture.py",
+      "sha256": "a04276da60fe09d9af26d32c7661fb421105b7c93724d43c728025dd1fd51aa5",
+      "bytes": 45810
+    },
+    "native_root_controller": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native-measurement-prep-005/run_root_once.py",
+      "sha256": "34826ad993e4d874455adb40777df545f76cf611a6f23ae021a49302dc0dd649",
+      "bytes": 61563
+    },
+    "native_wrapper": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native-measurement-prep-005/stopped_exec_wrapper.py",
+      "sha256": "a81328f9e07bded2120d8f908f8831bdafead07132ae09a1af4ccfcc4bf50e17",
+      "bytes": 5295
+    },
+    "native_source_index": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native-measurement-prep-005/index.json",
+      "sha256": "acb06644ef2df3ed06273b4d936ecab8a76cd7760b1ddcc6e911bca0d1c554c3",
+      "bytes": 6734
+    },
+    "native_exact_child_peer": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native005-source-peer-001/review.json",
+      "sha256": "777233540d91a59b70df3ae0947eddb32a07a3a7b1cc715de4906873d4fc946f",
+      "bytes": 5291
+    },
+    "native_exact_child_bindings": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native005-source-peer-001/bindings.json",
+      "sha256": "29a29c02987c67782cd5a1ab8654bc43f3309995e49a6bad25fd4e04b9546691",
+      "bytes": 14116
+    },
+    "native_root_source_review": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native005-root-source-review-001/review.json",
+      "sha256": "a8f8dd842abdc4a309b8bd4dc7c420af65ef1e9bb5b80826eb71ea93f9cd76f8",
+      "bytes": 3969
+    },
+    "native_binding_candidate": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native005-execution-binding-prep-001/actual-contract.candidate.json",
+      "sha256": "a5e35548cacd4f2abfd4f0d29e5aeb738ce16bdc814f642e016851c3450f1986",
+      "bytes": 273368
+    },
+    "native_binding_method": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native005-execution-binding-prep-001/METHOD.md",
+      "sha256": "3e06b15581208a893da4f145079a117e202ac6c54316bf886c18dcfae88ef188",
+      "bytes": 6452
+    },
+    "native_binding_inputs": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native005-execution-binding-prep-001/bindings.json",
+      "sha256": "451d80933d3ce589032fe82189af060b90e27a913b719ca924b6ff9f96515b43",
+      "bytes": 58253
+    },
+    "native_binding_change_map": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native005-execution-binding-prep-001/change-map.json",
+      "sha256": "b857a0c7486833aa8de671f7aaf1307d83353003e8ff01886746ccab25af763e",
+      "bytes": 115691
+    },
+    "helper": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native005-freshness-prep-001/capture_freshness.py",
+      "sha256": "e3f1c980ead8f7952eb82a1996db7fc167ca829c294afdccf4b9c83d65fe2dac",
+      "bytes": 17737
+    },
+    "wrapper": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native005-freshness-prep-001/stopped_exec_wrapper.py",
+      "sha256": "9839a4b3837115e13e331a07296daa0a95f77915be78f6e6c63afb732ad9a3a2",
+      "bytes": 1588
+    },
+    "source_adaptation_authority": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native005-freshness-adaptation-root-authority-001/review.json",
+      "sha256": "c777a995b439c8329f0aee20c432a5361416a12cee1a5c4d2f882fcf38a5d276",
+      "bytes": 7936
+    },
+    "current_contract_root": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native005-execution-binding-root-review-001/review.json",
+      "sha256": "3f030491c886a450d6be43f3f5d2f198ec1fc4bd4ae0b2ce9588c876b094a5d2",
+      "bytes": 10112
+    },
+    "accepted_staging_receipt": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native005-four-input-staging-root-001/staging-receipt.json",
+      "sha256": "3ec1f62e359414c02eda78ed6e285beed3e9774c61366816560e22cfe6bddfa9",
+      "bytes": 5897
+    },
+    "stage_root_acceptance": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native005-four-input-staging-root-001/postreturn-acceptance.json",
+      "sha256": "44b4efd5a9fada59392979b628f9a12c87ce5f86293b8397d5713936e251d087",
+      "bytes": 3920
+    },
+    "parent003_actual": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native-measurement-execution-prep-003/actual-contract.json",
+      "sha256": "85a9195ed1a217eef6bad44518390f1b2dfdb879c9cdfc072b6e1465461a5198",
+      "bytes": 116306
+    },
+    "historical_freshness_acceptance": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native003-freshness-root-result-acceptance-001/acceptance.json",
+      "sha256": "ac5477484c620b2fd3d0b67a9d4c73945bc14e8e5564d1bf9559bc9b12fc2984",
+      "bytes": 3866
+    },
+    "donor_freshness_helper": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native003-staging-freshness-prep-001/capture_freshness.py",
+      "sha256": "a577e2b3499aa3571d2f08e0b7e5f54d687464654e8de7af523f7d112a1edd7d",
+      "bytes": 15798
+    },
+    "donor_legacy_owner_semantic_receipt_only": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native003-freshness-operation-controls-prep-002/run_operation_once.py",
+      "sha256": "0555062736bd2b63dbd8da4cddfc5ef56d158eca0878be188a2cf32fcbe4fded",
+      "bytes": 18764
+    },
+    "donor_modern_retained_owner": {
+      "path": "work/962-engineering/head-star-current24-qfnra-five-toy-owner-f1-guards-controls-prep-002/run_guards_once.py",
+      "sha256": "42aec198fb911c43f7658544911e0af23cdc76222ce25e917ceb932c2473088a",
+      "bytes": 27767
+    },
+    "donor_modern_stopped_wrapper": {
+      "path": "work/962-engineering/head-star-current24-qfnra-five-toy-owner-f1-guards-controls-prep-002/stopped_exec_wrapper.py",
+      "sha256": "ab0ebf6bc3110680ce0f03022da2d66452175877a07612b6657ecb66c02afdf4",
+      "bytes": 1536
+    },
+    "plan_native_actual": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native-measurement-execution-prep-004/actual-contract.json",
+      "sha256": "a5e35548cacd4f2abfd4f0d29e5aeb738ce16bdc814f642e016851c3450f1986",
+      "bytes": 273368
+    },
+    "plan_native_caller": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native-measurement-prep-005/run_native_capture.py",
+      "sha256": "a04276da60fe09d9af26d32c7661fb421105b7c93724d43c728025dd1fd51aa5",
+      "bytes": 45810
+    },
+    "plan_native_root_controller": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native-measurement-prep-005/run_root_once.py",
+      "sha256": "34826ad993e4d874455adb40777df545f76cf611a6f23ae021a49302dc0dd649",
+      "bytes": 61563
+    },
+    "plan_native_wrapper": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native-measurement-prep-005/stopped_exec_wrapper.py",
+      "sha256": "a81328f9e07bded2120d8f908f8831bdafead07132ae09a1af4ccfcc4bf50e17",
+      "bytes": 5295
+    },
+    "plan_native_source_index": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native-measurement-prep-005/index.json",
+      "sha256": "acb06644ef2df3ed06273b4d936ecab8a76cd7760b1ddcc6e911bca0d1c554c3",
+      "bytes": 6734
+    },
+    "plan_native_exact_child_peer": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native005-source-peer-001/review.json",
+      "sha256": "777233540d91a59b70df3ae0947eddb32a07a3a7b1cc715de4906873d4fc946f",
+      "bytes": 5291
+    },
+    "plan_native_exact_child_bindings": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native005-source-peer-001/bindings.json",
+      "sha256": "29a29c02987c67782cd5a1ab8654bc43f3309995e49a6bad25fd4e04b9546691",
+      "bytes": 14116
+    },
+    "plan_native_root_source_review": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native005-root-source-review-001/review.json",
+      "sha256": "a8f8dd842abdc4a309b8bd4dc7c420af65ef1e9bb5b80826eb71ea93f9cd76f8",
+      "bytes": 3969
+    },
+    "plan_native_binding_candidate": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native005-execution-binding-prep-001/actual-contract.candidate.json",
+      "sha256": "a5e35548cacd4f2abfd4f0d29e5aeb738ce16bdc814f642e016851c3450f1986",
+      "bytes": 273368
+    },
+    "plan_native_binding_method": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native005-execution-binding-prep-001/METHOD.md",
+      "sha256": "3e06b15581208a893da4f145079a117e202ac6c54316bf886c18dcfae88ef188",
+      "bytes": 6452
+    },
+    "plan_native_binding_inputs": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native005-execution-binding-prep-001/bindings.json",
+      "sha256": "451d80933d3ce589032fe82189af060b90e27a913b719ca924b6ff9f96515b43",
+      "bytes": 58253
+    },
+    "plan_native_binding_change_map": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native005-execution-binding-prep-001/change-map.json",
+      "sha256": "b857a0c7486833aa8de671f7aaf1307d83353003e8ff01886746ccab25af763e",
+      "bytes": 115691
+    },
+    "plan_helper": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native005-freshness-prep-001/capture_freshness.py",
+      "sha256": "e3f1c980ead8f7952eb82a1996db7fc167ca829c294afdccf4b9c83d65fe2dac",
+      "bytes": 17737
+    },
+    "plan_wrapper": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native005-freshness-prep-001/stopped_exec_wrapper.py",
+      "sha256": "9839a4b3837115e13e331a07296daa0a95f77915be78f6e6c63afb732ad9a3a2",
+      "bytes": 1588
+    },
+    "plan_source_adaptation_authority": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native005-freshness-adaptation-root-authority-001/review.json",
+      "sha256": "c777a995b439c8329f0aee20c432a5361416a12cee1a5c4d2f882fcf38a5d276",
+      "bytes": 7936
+    },
+    "plan_current_contract_root": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native005-execution-binding-root-review-001/review.json",
+      "sha256": "3f030491c886a450d6be43f3f5d2f198ec1fc4bd4ae0b2ce9588c876b094a5d2",
+      "bytes": 10112
+    },
+    "plan_accepted_staging_receipt": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native005-four-input-staging-root-001/staging-receipt.json",
+      "sha256": "3ec1f62e359414c02eda78ed6e285beed3e9774c61366816560e22cfe6bddfa9",
+      "bytes": 5897
+    },
+    "plan_stage_root_acceptance": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native005-four-input-staging-root-001/postreturn-acceptance.json",
+      "sha256": "44b4efd5a9fada59392979b628f9a12c87ce5f86293b8397d5713936e251d087",
+      "bytes": 3920
+    },
+    "plan_parent003_actual": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native-measurement-execution-prep-003/actual-contract.json",
+      "sha256": "85a9195ed1a217eef6bad44518390f1b2dfdb879c9cdfc072b6e1465461a5198",
+      "bytes": 116306
+    },
+    "plan_historical_freshness_acceptance": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native003-freshness-root-result-acceptance-001/acceptance.json",
+      "sha256": "ac5477484c620b2fd3d0b67a9d4c73945bc14e8e5564d1bf9559bc9b12fc2984",
+      "bytes": 3866
+    },
+    "plan_donor_freshness_helper": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native003-staging-freshness-prep-001/capture_freshness.py",
+      "sha256": "a577e2b3499aa3571d2f08e0b7e5f54d687464654e8de7af523f7d112a1edd7d",
+      "bytes": 15798
+    },
+    "plan_donor_legacy_owner_semantic_receipt_only": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native003-freshness-operation-controls-prep-002/run_operation_once.py",
+      "sha256": "0555062736bd2b63dbd8da4cddfc5ef56d158eca0878be188a2cf32fcbe4fded",
+      "bytes": 18764
+    },
+    "plan_donor_modern_retained_owner": {
+      "path": "work/962-engineering/head-star-current24-qfnra-five-toy-owner-f1-guards-controls-prep-002/run_guards_once.py",
+      "sha256": "42aec198fb911c43f7658544911e0af23cdc76222ce25e917ceb932c2473088a",
+      "bytes": 27767
+    },
+    "plan_donor_modern_stopped_wrapper": {
+      "path": "work/962-engineering/head-star-current24-qfnra-five-toy-owner-f1-guards-controls-prep-002/stopped_exec_wrapper.py",
+      "sha256": "ab0ebf6bc3110680ce0f03022da2d66452175877a07612b6657ecb66c02afdf4",
+      "bytes": 1536
+    },
+    "plan_owner_source": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native005-freshness-prep-001/run_operation_once.py",
+      "sha256": "a77b63acc9f88145f19c7004e909bb65152cf584be81b80e8ad9b0b247ab1138",
+      "bytes": 36459
+    },
+    "packet_METHOD.md": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native005-freshness-prep-001/METHOD.md",
+      "sha256": "1472925d8a620ce3546abc4ed6ef14ce7010beef0c5cb37600175be13d947bd3",
+      "bytes": 8114
+    },
+    "packet_bindings.json": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native005-freshness-prep-001/bindings.json",
+      "sha256": "dfe6618807f45f9b234d975786f7f6156650fae845a2c874cf8d80098bebd8e6",
+      "bytes": 25653
+    },
+    "packet_capture_freshness.py": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native005-freshness-prep-001/capture_freshness.py",
+      "sha256": "e3f1c980ead8f7952eb82a1996db7fc167ca829c294afdccf4b9c83d65fe2dac",
+      "bytes": 17737
+    },
+    "packet_held-actual.json": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native005-freshness-prep-001/held-actual.json",
+      "sha256": "013d8d5aec0c8ba9d48643168c6e5eb06e5f29cdab7220d0cb7b13761608fd75",
+      "bytes": 20738
+    },
+    "packet_held-plan.json": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native005-freshness-prep-001/held-plan.json",
+      "sha256": "453ba3a35a671fed34fd80bbecd4ba8307fa6259941dd925f663a02b90adb6eb",
+      "bytes": 19826
+    },
+    "packet_run_operation_once.py": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native005-freshness-prep-001/run_operation_once.py",
+      "sha256": "a77b63acc9f88145f19c7004e909bb65152cf584be81b80e8ad9b0b247ab1138",
+      "bytes": 36459
+    },
+    "packet_source-reuse.json": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native005-freshness-prep-001/source-reuse.json",
+      "sha256": "b7d8f8a61d4535cfb7e938f02a006a53dbcdf5339f4114332210b056c518b627",
+      "bytes": 77988
+    },
+    "packet_source.diff": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native005-freshness-prep-001/source.diff",
+      "sha256": "22b642cc5fc620926c773d8c163f2ff48bea5349cbb489b29504ed907ae61d58",
+      "bytes": 50115
+    },
+    "packet_source.inverse.diff": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native005-freshness-prep-001/source.inverse.diff",
+      "sha256": "8af6168bebeb11a79e6510c838b31af0b8bd81ec82c12b7547296b54cf828e8c",
+      "bytes": 50115
+    },
+    "packet_stopped_exec_wrapper.py": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native005-freshness-prep-001/stopped_exec_wrapper.py",
+      "sha256": "9839a4b3837115e13e331a07296daa0a95f77915be78f6e6c63afb732ad9a3a2",
+      "bytes": 1588
+    },
+    "packet_index": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native005-freshness-prep-001/index.json",
+      "sha256": "f28862e7d39d1906c7f3ebb096209d42fde44891014ecacddf654ab89589a97e",
+      "bytes": 4767
+    },
+    "helper_source_peer": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native005-freshness-source-peer-001/review.json",
+      "sha256": "563c1663e7ad350cf6b9df34bf9fdbb3f91b48c8e7733663d041901a4c8b5c55",
+      "bytes": 3139
+    },
+    "helper_source_findings": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native005-freshness-source-peer-001/findings.json",
+      "sha256": "8b9f2d1be6c65c77b2eb7f9bc974ab3605d4df85ef3e1a889a45633f19e25b11",
+      "bytes": 12525
+    },
+    "helper_source_bindings": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native005-freshness-source-peer-001/bindings.json",
+      "sha256": "fa5fb5217bc3ac211a8fcd1ac3f1e040870441bb9baac5052c695e1d4b3a431d",
+      "bytes": 19232
+    },
+    "root_source_control_review": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native005-freshness-root-source-review-001/review.json",
+      "sha256": "ab80a3b604fa64d520c7c2da5c7872563f24942e13a427725174e436e63f3294",
+      "bytes": 4089
+    }
+  },
+  "expected_canonical_input_count": 38,
+  "scope": "One unchanged selected3.12.11 json/os/sys metadata query and declared finite opaque identity reads only. No retry, restaging, fixture, native solver or scientific decode."
+}

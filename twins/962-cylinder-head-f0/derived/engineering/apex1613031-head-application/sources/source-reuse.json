@@ -1,0 +1,158 @@
+{
+  "schema": "962-apex1613031-head-application-minimal-source-successor/v1",
+  "status": "HELD_SOURCE_ONLY_UNRUN",
+  "direct_donor": {
+    "path": "work/962-engineering/apex1613031-head-application-prep-001/reader.py",
+    "sha256": "5f7df7d36b297100ac997979f2cdc5f66e6562c87601359d952ea6047e246b56",
+    "bytes": 55884
+  },
+  "source_change_groups": [
+    {
+      "group": "real-current127-root-context-decision",
+      "before": "accepted.get('decision')!='ACCEPT_COMPLETED_READ_ONLY_CURRENT129_ONE_CASE_CONTEXT_ONLY'",
+      "after": "accepted.get('decision')!='ACCEPT_COMPLETED_READ_ONLY_CURRENT127_ONE_CASE_CONTEXT_ONLY'",
+      "occurrences": 1
+    }
+  ],
+  "source_reverse_exact": true,
+  "guard_change_groups": [
+    {
+      "group": "reader-source-SHA-only",
+      "before": "SOURCE_SHA='5f7df7d36b297100ac997979f2cdc5f66e6562c87601359d952ea6047e246b56'",
+      "after": "SOURCE_SHA='bd352d87c6fc3f4cfd8311ef169279725cf6a7c49e8cc0df2dca01b26d582361'",
+      "occurrences": 1
+    }
+  ],
+  "guard_reverse_exact": true,
+  "changed_function_ASTs": [
+    "make_case"
+  ],
+  "all_other_reader_function_ASTs_exact": true,
+  "all_guard_function_ASTs_exact": true,
+  "controller_byte_exact": {
+    "path": "work/962-engineering/apex1613031-head-application-prep-001/run_readback.py",
+    "sha256": "5ab38b53e4019506772cc429b46699ac0e217141c87a0a043718d8123ecb159c",
+    "bytes": 4652
+  },
+  "original_0e3db_case_delta_history": {
+    "path": "work/962-engineering/apex1613031-head-application-prep-001/source-reuse.json",
+    "sha256": "fb783a8ea4ba1377cb2d28cb8ae8e80345546b55a8cff4d89abe9c5ec5d6757e",
+    "bytes": 123879
+  },
+  "original_full_source_diff": {
+    "path": "work/962-engineering/apex1613031-head-application-prep-001/source.diff",
+    "sha256": "c4b14b097bccd7119c8e7e13dab56e7689956dc162f2ae9afdebf36b0a19d30a",
+    "bytes": 50426
+  },
+  "original_full_guard_diff": {
+    "path": "work/962-engineering/apex1613031-head-application-prep-001/selfcheck.diff",
+    "sha256": "3d80b89730aad57a81d6c891a9d39d85092066711c525d3f0e4c42e08d5fe8de",
+    "bytes": 14839
+  },
+  "preserved_static_negative_prep001": {
+    "CALLER-INVENTORY-CLARIFICATION-001.json": {
+      "path": "work/962-engineering/apex1613031-head-application-prep-001/CALLER-INVENTORY-CLARIFICATION-001.json",
+      "sha256": "db7bd0b1c8611b4a00ac9eaaaeeaf73ee42a4ab97a024eccf643b2446beaa44d",
+      "bytes": 5839
+    },
+    "METHOD.md": {
+      "path": "work/962-engineering/apex1613031-head-application-prep-001/METHOD.md",
+      "sha256": "00a3064fec17dccc372ecea587c924c5b861e127ce1094e955bbfe41090286fe",
+      "bytes": 4765
+    },
+    "held-contract.json": {
+      "path": "work/962-engineering/apex1613031-head-application-prep-001/held-contract.json",
+      "sha256": "cd545d6568245e879da3077454a5e5bf452d3dea1af729180e9e5404f6762aa9",
+      "bytes": 17870
+    },
+    "reader.py": {
+      "path": "work/962-engineering/apex1613031-head-application-prep-001/reader.py",
+      "sha256": "5f7df7d36b297100ac997979f2cdc5f66e6562c87601359d952ea6047e246b56",
+      "bytes": 55884
+    },
+    "run_readback.py": {
+      "path": "work/962-engineering/apex1613031-head-application-prep-001/run_readback.py",
+      "sha256": "5ab38b53e4019506772cc429b46699ac0e217141c87a0a043718d8123ecb159c",
+      "bytes": 4652
+    },
+    "selfcheck.diff": {
+      "path": "work/962-engineering/apex1613031-head-application-prep-001/selfcheck.diff",
+      "sha256": "3d80b89730aad57a81d6c891a9d39d85092066711c525d3f0e4c42e08d5fe8de",
+      "bytes": 14839
+    },
+    "selfcheck.py": {
+      "path": "work/962-engineering/apex1613031-head-application-prep-001/selfcheck.py",
+      "sha256": "eaafd29bbedecb542b0cc392065e0850e34f4d66b476a64a23bb44338c4a48e7",
+      "bytes": 16832
+    },
+    "source-reuse.json": {
+      "path": "work/962-engineering/apex1613031-head-application-prep-001/source-reuse.json",
+      "sha256": "fb783a8ea4ba1377cb2d28cb8ae8e80345546b55a8cff4d89abe9c5ec5d6757e",
+      "bytes": 123879
+    },
+    "source.diff": {
+      "path": "work/962-engineering/apex1613031-head-application-prep-001/source.diff",
+      "sha256": "c4b14b097bccd7119c8e7e13dab56e7689956dc162f2ae9afdebf36b0a19d30a",
+      "bytes": 50426
+    }
+  },
+  "inventory_clarification": {
+    "path": "work/962-engineering/apex1613031-head-application-prep-001/CALLER-INVENTORY-CLARIFICATION-001.json",
+    "sha256": "db7bd0b1c8611b4a00ac9eaaaeeaf73ee42a4ab97a024eccf643b2446beaa44d",
+    "bytes": 5839
+  },
+  "effective_consumed_contract_union": [
+    "automatic_retry",
+    "controls",
+    "declared_controller_command_conformant",
+    "declared_operation_counts",
+    "engineering_accepted",
+    "expected_runtime",
+    "external_runtime_hashes",
+    "generation_authorized",
+    "head_PDE_authorized",
+    "head_execution_authorized",
+    "input_hashes",
+    "manufacturing_authorized",
+    "native_execution_authorized",
+    "native_python",
+    "numpy_init",
+    "numpy_init_sha256",
+    "optimization_authorized",
+    "options",
+    "output_directory",
+    "partial_head_replacement_authorized",
+    "physics_qualified",
+    "reader_sha256",
+    "reclassification_authorized",
+    "renumbering_authorized",
+    "root_and_peer_review_complete",
+    "runner_sha256",
+    "runtime",
+    "runtime_sha256s",
+    "schema",
+    "selected_runtime_review_complete",
+    "stitching_authorized",
+    "surface_TRI_insertion_authorized",
+    "upstream_census_launch_deviation_sha256"
+  ],
+  "seven_runtime_loop_fields": [
+    "external_runtime_hashes",
+    "runtime_sha256s",
+    "runtime",
+    "native_python",
+    "numpy_init",
+    "numpy_init_sha256",
+    "expected_runtime"
+  ],
+  "all_seven_runtime_fields_already_bound_in_held": true,
+  "selected_helper_math_unchanged": "All fifteen selected helpers, fixed48 source/input roles, options, controls, counts, predicates and parameters remain exact to001; use the hash-bound prior reuse ledger.",
+  "AST_serialization": {
+    "python": "3.9.6",
+    "executable": "/usr/bin/python3",
+    "algorithm": "ast.dump(include_attributes=False)",
+    "cross_version_digest_equivalence_claimed": false
+  },
+  "prepared_execution": false,
+  "author_role": "replica_metrology authored001/002 and inherited historical helper/allocator lineage; no independent mathematical rederivation claimed."
+}

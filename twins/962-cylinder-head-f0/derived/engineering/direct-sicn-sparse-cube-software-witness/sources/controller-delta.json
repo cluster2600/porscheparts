@@ -1,0 +1,41 @@
+{
+  "base": "work/962-engineering/direct-sicn-head-proposer-prep-001/run_readback.py",
+  "base_sha256": "aefd13ddd8344cb4e46eeb17126383ba2afbf8763ae40a99eb55a9bcb2779407",
+  "source_sha256": "0596905302a167cd4b871e6880e9fa67bcfaebf462c95b5f21ab0181e1d2d5d7",
+  "replacements": [
+    {
+      "old": "One fresh, source-bound analytic head coordinate proposal; reviewed pins required.",
+      "new": "One fresh sparse-FD trust-constr tiny software witness; reviewed pins required."
+    },
+    {
+      "old": "One fresh analytic coordinate proposal only; preserve previous outputs",
+      "new": "One fresh sparse tiny witness only; preserve previous outputs"
+    },
+    {
+      "old": "300-(time.monotonic()-started)",
+      "new": "30-(time.monotonic()-started)"
+    },
+    {
+      "old": "lambda:stop('direct_sicn_head_proposal_deadline')",
+      "new": "lambda:stop('direct_sicn_sparse_cube_deadline')"
+    },
+    {
+      "old": "if elapsed>=300:stopped['reason']=stopped['reason'] or 'direct_sicn_head_proposal_deadline'",
+      "new": "if elapsed>=30:stopped['reason']=stopped['reason'] or 'direct_sicn_sparse_cube_deadline'"
+    },
+    {
+      "old": "scope='one_analytic_head_coordinate_proposal'",
+      "new": "scope='one_sparse_trust_constr_tiny_analytic_witness'"
+    },
+    {
+      "old": "hard_wall_seconds=300",
+      "new": "hard_wall_seconds=30"
+    },
+    {
+      "old": "'SLSQP_minimize_invocations':1",
+      "new": "'trust_constr_minimize_invocations':1"
+    }
+  ],
+  "reverse_byte_exact": true,
+  "lifecycle_logic_unchanged": true
+}

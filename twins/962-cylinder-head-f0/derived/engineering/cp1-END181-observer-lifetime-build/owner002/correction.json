@@ -1,0 +1,213 @@
+{
+  "schema": "962-observer004-build-owner002-three-observation-corrections/v1",
+  "history": {
+    "owner001": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-build-owner-prep-001/run_build_once.py",
+      "sha256": "de8d1b6f62623e3c551f412cc994931b0fcbe15d151df6c8354cf805eff2c2b5",
+      "bytes": 17680
+    },
+    "owner001_preparation_index": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-build-owner-prep-001/preparation-index.json",
+      "sha256": "ad19f467c742b28643ab4c3ab55fa47c0f57b7fe274e65a9d66f9bfb71633636",
+      "bytes": 1170
+    },
+    "actual001": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-build-execution-prep-001/actual-contract.json",
+      "sha256": "18f0600f35c4083c8e23d4cd5f3fcbcf8aaabd8f95d7a4c83151ff140a865d2d",
+      "bytes": 36654
+    },
+    "preflight001": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-build-execution-prep-001/selected-input-preflight.json",
+      "sha256": "0f4b1832e553eb6820acc5c292260f6b20126af6f519b956fbedce8ff64f6717",
+      "bytes": 42486
+    },
+    "execution001_preparation_index": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-build-execution-prep-001/preparation-index.json",
+      "sha256": "f3016e53ba5d2839435b2d3abd1e399b8ccdf5125ea5c81a29a6fa1edc52b7fd",
+      "bytes": 1255
+    },
+    "held001_peer_review": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-build-exact-child-peer-001/review.json",
+      "sha256": "f6c6ac4a1f3a296dce3f59b80e1109d2e3e2d16e3b70fb4fca49dfe2180e5b84",
+      "bytes": 14958
+    },
+    "held001_peer_bindings": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-build-exact-child-peer-001/bindings.json",
+      "sha256": "3997c1705a0970662842a4526e5d7a90b6a7cd61fa747c2dcac0ecb9c8feb35f",
+      "bytes": 47721
+    }
+  },
+  "new_controller": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-build-owner-prep-002/run_build_once.py",
+    "sha256": "e31840f411413452095b83513195abda083e34aab3798d4b2b1198130bd9e327",
+    "bytes": 18669
+  },
+  "source_diff": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-build-owner-prep-002/source.diff",
+    "sha256": "472cea70adb94428f7b1235d2e0686164658f55681c60f35cc877168e48be5ff",
+    "bytes": 5044
+  },
+  "reuse_proof": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-build-owner-prep-002/reuse-proof.json",
+    "sha256": "73b3022e386fec9e2b0fe07eb4f7dafacf07b895a42da7d58f8e74cde4e5a8f6",
+    "bytes": 2681
+  },
+  "changes": [
+    {
+      "gap": "Lost sample exception coincident with child exit",
+      "correction": "Retain repr(exception), direct returncode and overall/step elapsed times in per-step resource_observation_exit_races; do not invent a sample."
+    },
+    {
+      "gap": "Unsampled peak initialized as numeric0",
+      "correction": "Initialize peak asnull; first numeric sample, including genuine0, supplies the first peak."
+    },
+    {
+      "gap": "Overall60 checked only before final serialization/write",
+      "correction": "Check after full receipt write before returning0. An overrun emits explicit outerstderr refusal and returns2. Receiptcomplete remains a pre-final-write candidate and cannot override outer2."
+    }
+  ],
+  "metadata_namespaces_only": [
+    "owner prep002",
+    "actual/preflight prep002",
+    "result002",
+    "root admission002"
+  ],
+  "exact_inverse_character_operations": [
+    {
+      "operation": "replace",
+      "old_start": 532,
+      "old_end": 533,
+      "new_start": 532,
+      "new_end": 533,
+      "old_text": "1",
+      "new_text": "2"
+    },
+    {
+      "operation": "replace",
+      "old_start": 614,
+      "old_end": 615,
+      "new_start": 614,
+      "new_end": 615,
+      "old_text": "1",
+      "new_text": "2"
+    },
+    {
+      "operation": "replace",
+      "old_start": 712,
+      "old_end": 713,
+      "new_start": 712,
+      "new_end": 713,
+      "old_text": "1",
+      "new_text": "2"
+    },
+    {
+      "operation": "insert",
+      "old_start": 11259,
+      "old_end": 11259,
+      "new_start": 11259,
+      "new_end": 11294,
+      "old_text": "",
+      "new_text": "resource_observation_exit_races=[],"
+    },
+    {
+      "operation": "replace",
+      "old_start": 11274,
+      "old_end": 11275,
+      "new_start": 11309,
+      "new_end": 11313,
+      "old_text": "0",
+      "new_text": "None"
+    },
+    {
+      "operation": "insert",
+      "old_start": 12079,
+      "old_end": 12079,
+      "new_start": 12117,
+      "new_end": 12124,
+      "old_text": "",
+      "new_text": " as exc"
+    },
+    {
+      "operation": "insert",
+      "old_start": 12080,
+      "old_end": 12080,
+      "new_start": 12125,
+      "new_end": 12162,
+      "old_text": "",
+      "new_text": "\n       direct_returncode=proc.poll()"
+    },
+    {
+      "operation": "replace",
+      "old_start": 12091,
+      "old_end": 12092,
+      "new_start": 12173,
+      "new_end": 12175,
+      "old_text": "p",
+      "new_text": "di"
+    },
+    {
+      "operation": "insert",
+      "old_start": 12093,
+      "old_end": 12093,
+      "new_start": 12176,
+      "new_end": 12187,
+      "old_text": "",
+      "new_text": "ect_returnc"
+    },
+    {
+      "operation": "replace",
+      "old_start": 12094,
+      "old_end": 12102,
+      "new_start": 12188,
+      "new_end": 12190,
+      "old_text": "c.poll()",
+      "new_text": "de"
+    },
+    {
+      "operation": "insert",
+      "old_start": 12115,
+      "old_end": 12115,
+      "new_start": 12203,
+      "new_end": 12424,
+      "old_text": "",
+      "new_text": "\n        current['resource_observation_exit_races'].append(dict(error=repr(exc),direct_returncode=direct_returncode,elapsed_seconds=time.monotonic()-overall_started,step_elapsed_seconds=time.monotonic()-started))\n        "
+    },
+    {
+      "operation": "insert",
+      "old_start": 12258,
+      "old_end": 12258,
+      "new_start": 12567,
+      "new_end": 12624,
+      "old_text": "",
+      "new_text": "s['RSS_bytes'] if current['peak_RSS_bytes'] is None else "
+    },
+    {
+      "operation": "insert",
+      "old_start": 15734,
+      "old_end": 15734,
+      "new_start": 16100,
+      "new_end": 16353,
+      "old_text": "",
+      "new_text": "completion_scope']='complete is a pre-final-write candidate, not a final acceptance result. Outer returncode0 after the end-of-closure wall check is separately required; later interpreter teardown is outside the receipt timing/signal scope.'\n  receipt['"
+    },
+    {
+      "operation": "insert",
+      "old_start": 17589,
+      "old_end": 17589,
+      "new_start": 18208,
+      "new_end": 18578,
+      "old_text": "",
+      "new_text": "# Include full receipt serialization and write in the final wall decision.\n # Do not rewrite a pre-final candidate into a claimed accepted result.\n closure_elapsed=time.monotonic()-overall_started\n if closure_elapsed>WALL:\n  print('REFUSE: overall60s exceeded after full receipt write; pre-final receipt complete is insufficient; outerRC2.',file=sys.stderr)\n  return 2\n "
+    }
+  ],
+  "reversal_restores_all_owner001_bytes": true,
+  "preserved": [
+    "All ten nonmain definitions, including seven original005 helpers, exact",
+    "Frozen2291Bshim and16-file source004 packet",
+    "Both fixed2 compiler/link argv,153includes, environment and build-001 target",
+    "Overall60/perstep60/T8/2GiB/32MiB/T1/no retry",
+    "Owner/actual001 and heldpeer001 remainUNRUN; no original selected native binary rescan"
+  ],
+  "root_source_actual_and_new_peer_review_pending": true,
+  "runtime_or_helper_or_guard_or_build_execution": false
+}

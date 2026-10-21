@@ -1,0 +1,23 @@
+--- work/962-engineering/head-star-current110-pass62-apply-prep-001/test_apply_guards.py
++++ work/962-engineering/head-star-current110-pass62-apply-prep-002/test_apply_guards.py
+@@ -3,7 +3,7 @@
+ from pathlib import Path
+ from types import SimpleNamespace
+ PREP=Path(__file__).resolve().parent;ROOT=PREP.parents[2]
+-SOURCE=PREP/'mesh_apply_sicn_proposal.py';SOURCE_SHA='66f956df8156871501377d96489533425a75421cfe693d6c6888c963355afa83'
++SOURCE=PREP/'mesh_apply_sicn_proposal.py';SOURCE_SHA='8cfb42772693ff3dcd64563692660b4702038af70727f6536c6cd3b058df3738'
+ if hashlib.sha256(SOURCE.read_bytes()).hexdigest()!=SOURCE_SHA:raise ValueError('Exact reviewed held current110 pass62 apply source required')
+ TEXT=SOURCE.read_text();TREE=ast.parse(TEXT)
+ FN={n.name:n for n in TREE.body if isinstance(n,ast.FunctionDef)}
+@@ -88,6 +88,11 @@
+   self.assertFalse(any(n.func.attr in ['optimize','minimize','generate','addNodes','addElementsByType','removeElements','createGeometry'] for n in calls))
+   self.assertEqual(sum(n.func.attr=='setNode' for n in calls),1)
+   self.assertIn('quality["minimum_SICN"]["minimum"]<.1',TEXT);self.assertIn('["volume_relative_error"]>1e-6',TEXT)
++ def test_authority_before_opaque_inputs_and_exact_classifier_numpy_binding(self):
++  first=FN['require_inputs'].body[0]
++  self.assertIsInstance(first,ast.Expr);self.assertEqual(ast.unparse(first.value),'bound_proposal()')
++  self.assertIn('globals()["np"]=core.np',ast.get_source_segment(TEXT,FN['configure_core']))
++  self.assertIn('saved_native_enumeration_index',TEXT);self.assertIn('fresh_sorted_tagged_array_index',TEXT)
+  def test_fixed62_descriptors_exclude_rejected11_and_exact66(self):
+   selection=json.loads((PREP/'selected-proposals.json').read_text())
+   self.assertEqual(len(selection['diagnostics']),62);self.assertEqual(len(selection['selected_node_tags']),66)
