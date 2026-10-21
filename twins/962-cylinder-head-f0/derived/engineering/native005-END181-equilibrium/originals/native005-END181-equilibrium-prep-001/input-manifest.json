@@ -1,0 +1,161 @@
+{
+  "schema": "962-native005-END181-source-only-fixed-intake/v1",
+  "status": "HELD_UNRUN_SOURCE_ONLY",
+  "source": {
+    "path": "work/962-engineering/native005-END181-equilibrium-prep-001/calculate_END181.py",
+    "sha256": "50160c285028764ee9f77d4a72b7d0823b33b4c5d3b8412174ca9efd03508f4a",
+    "bytes": 21807
+  },
+  "entrypoint": "main() once; no arguments; selectedPython3.12.11 -B -I",
+  "planned_output": "work/962-engineering/native005-END181-equilibrium-execution-001/diagnostic.json",
+  "source_dependencies": {
+    "assessor": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-assessor-prep-001/assess.py",
+      "sha256": "aa7ee403a0a3078df58410815f2b613aaeb9634bd14bc9c90517ce00cec7f2d5",
+      "bytes": 46645
+    },
+    "donor": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-END181-equilibrium-diagnostic-prep-001/diagnose_END181.py",
+      "sha256": "3baf34cff904dd222dfdfe1cf14345a9a151da5168f866c27f2d9887aae39071",
+      "bytes": 33671
+    },
+    "POLICY": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-assessor-prep-001/POLICY.json",
+      "sha256": "a87df89f84706b36c0b665c0e9eac928e3c9b2b45f5a2921442b2d6403f4a638",
+      "bytes": 5013
+    }
+  },
+  "current_capture_metadata": {
+    "closed": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native-measurement-root-execution-004/closed-result.json",
+      "sha256": "23b5561f68fad16893cf8dbc3931cadbd94a6bfc06612f0813ff975048b9586d",
+      "bytes": 1578239
+    },
+    "operational_acceptance": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native005-native-root-result-review-001/review.json",
+      "sha256": "37104fe3014ab81327c487ecbd7fbd268efb6c827bb571235232cf9a2c93401b",
+      "bytes": 5803
+    }
+  },
+  "scientific_inputs": {
+    "thermoelastic.e-s002": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native-measurement-004/thermoelastic.e-s002",
+      "sha256": "b6147b3e9c8fe447f85676c7d10b0f8bf7f33e69a3147569c06d1f0f486228d4",
+      "bytes": 3189268
+    },
+    "thermoelastic_end_0181.csv": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native-measurement-004/thermoelastic_end_0181.csv",
+      "sha256": "9970cbfd2e3d11f584e5b38615f9d92e02e00ce240b1c3f88c59716bed899f8e",
+      "bytes": 71995
+    },
+    "thermoelastic_end_fields_0181.csv": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native-measurement-004/thermoelastic_end_fields_0181.csv",
+      "sha256": "807e97378f87b5e94c1b20539abe6859eab2a053f91598d9f9010a01d3395e8a",
+      "bytes": 1370249
+    },
+    "thermoelastic_begin_0080.csv": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native-measurement-004/thermoelastic_begin_0080.csv",
+      "sha256": "22609b849303638a30e49276f9171371eef5bc639f70528aa2ab210358830035",
+      "bytes": 28080
+    },
+    "thermoelastic_reference_begin_0080.csv": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native-measurement-004/thermoelastic_reference_begin_0080.csv",
+      "sha256": "ea69e318eca4878c7f857a18864cc5ec96206dfc60bdea99cde25b98e0624ea5",
+      "bytes": 4816
+    },
+    "transfer-manifest.json": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native-measurement-004/transfer-manifest.json",
+      "sha256": "c774e62c67e16c29dc024b8cc8e6641570e316265960e58cd7170827f8cecd06",
+      "bytes": 130095
+    }
+  },
+  "scientific_input_count": 6,
+  "scientific_input_bytes": 4794503,
+  "five_CDF_CSV_input_bytes": 4664408,
+  "independent_transfer_manifest_bytes": 130095,
+  "selected_decoder_runtime": {
+    "path": "work/962-engineering/native005-raw-displacement-decoder-runtime-root-001/acceptance.json",
+    "sha256": "5dbf28e11b6fcd7c4770bb40a042a58735ab98485a592b857e3293eb5dab8376",
+    "bytes": 9673
+  },
+  "ancillary_observer_source_build_load_audit": {
+    "path": "work/962-engineering/native005-exodus-averaging-reconstruction-001/observer-source-build-load-audit.json",
+    "sha256": "c7994ba9f865429f5b30097e026d641d697a261b1e99bf45370b76c5f3b935ef",
+    "bytes": 15618
+  },
+  "strict_collector_preserved": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native005-field-collector-prep-001/collect_current_associations.py",
+    "sha256": "e69fdefee51675c8747acf9ad55566de2797dac9740648a9f86d03349c626b68",
+    "bytes": 19192
+  },
+  "historical_original36_checks12_failure_receipts": {
+    "root_acceptance": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-END181-equilibrium-diagnostic-root-execution-001/result-peer-acceptance.json",
+      "sha256": "39f629397b73b871d7879e69886e5c1d0e37291754c73dabe4c276329f1f35ef",
+      "bytes": 6797
+    },
+    "diagnostic_descriptor_root_attributed": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-END181-equilibrium-diagnostic-001/diagnostic.json",
+      "sha256": "b3614f3d383583549a9e5eb12e47ca8135ed35d2eee611e324fc38f072516255",
+      "bytes": 762717
+    },
+    "closure_descriptor_root_attributed": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-END181-equilibrium-diagnostic-root-execution-001/closed-result.json",
+      "sha256": "81b1fb0c819677a869ef674e70db3e044cd2c00a4fa4574629603905770c69bb",
+      "bytes": 274169
+    },
+    "prior_aggregate_failures": 12
+  },
+  "limits": {
+    "temperature_K": 1e-10,
+    "displacement_m": 1e-12,
+    "QP_coordinate_m": 2e-13,
+    "strain": 1e-10,
+    "stress_Pa": 0.1,
+    "force_N": 1e-07,
+    "moment_Nm": 1e-07
+  },
+  "planned_counts": {
+    "nodes": 425,
+    "cells": 256,
+    "old_cells": 128,
+    "born_cells": 128,
+    "shared_nodes": 25,
+    "QP_rows": 2048,
+    "force_component_rows": 1275,
+    "free_rows": 1269,
+    "native_aggregate_criteria": 12,
+    "diagnostic_aggregate_criteria": 36,
+    "scalar_comparison_counts": {
+      "temperature_K": 650,
+      "displacement_m": 606,
+      "strain": 49152,
+      "stress_Pa": 12288,
+      "force_N": 3894
+    }
+  },
+  "planned_external_operation": {
+    "parent_wall_seconds": 20,
+    "thread_environment": 1,
+    "complete_scoped_inclusive_bytes": 33554432,
+    "wait_reap_and_raw_complete_streams_required": true,
+    "no_RSS_or_full_ABI_claim": true
+  },
+  "source_preparation_actions": {
+    "raw_scientific_body_reads": 0,
+    "raw_scientific_body_hashes": 0,
+    "target_import_compile_eval_execution": 0,
+    "solver_queries_or_execution": 0,
+    "runtime_body_reads_or_hashes": 0
+  },
+  "authority": {
+    "execution_authorized": false,
+    "scientific_intake_issued": false,
+    "strict_collector_pass": false,
+    "field_association_accepted": false,
+    "full_assessment_authorized": false,
+    "physics_material_LPBF_manufacturing_qualified": false,
+    "automatic_retry": false
+  },
+  "lineage": "Producer-affiliated fixed successor; original diagnostics, source kernels and historical failures remain immutable. Independent review/root once-only intake remain pending."
+}

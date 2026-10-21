@@ -22,9 +22,12 @@ and [conditional Exodus averaging reconstruction](derived/engineering/native005-
 now have independent arithmetic reviews. The reconstruction reproduces all 1,275
 saved displacement words, including the 192 previous differences. The
 [first real mesh-route toy attempt](derived/engineering/current24-five-toy-first-real-attempt/README.md)
-remains incomplete after a model-parser refusal. Head strength and calibrated
-LPBF remain open; the next calculation is the unchanged END181 equilibrium
-assessment described in the programme.
+remains incomplete after a model-parser refusal; a separate
+[source correction and unrun fixtures](derived/engineering/current24-toy-model-parser003-held/README.md)
+are ready for review. The [current END181 equilibrium calculation](derived/engineering/native005-END181-equilibrium/README.md)
+records 66,590 scalar comparisons with zero exceedances, while 12 of 36 aggregate
+checks still fail. Head strength and calibrated LPBF remain open; the programme
+now targets per-QP assembly arithmetic and controlled solver convergence.
 
 The [native005 contract, staging and metadata checkpoint](derived/engineering/native005-contract-staging-and-freshness/README.md)
 publishes the exact HELD contract, four input-copy receipts and one accepted

@@ -45,7 +45,7 @@ labels or trained surrogate are accepted.
 | Workstream | Next concrete work | Acceptance before the next phase |
 |---|---|---|
 | Strength and material | Resolve the 24 remaining head-mesh quality failures; establish operating loads and a documented material/process/heat-treatment state. Review hot-property references separately from the existing hypothetical cards. | Admitted meshes, equilibrium and convergence; temperature-dependent constitutive data and stated allowable stresses. Fatigue, creep and physical correlation need their own evidence. |
-| LPBF | Assess the captured END181 native CSV/QP/reference data against unchanged equilibrium criteria. Keep exporter-transformed CDF fields separate, and retain the observer's targeted timestep/scaling instrument lineage. Resolve the 12 aggregate mechanical failures and verify deposition, cooling and release before a head calculation. | Numerical verification plus machine/material-specific calibration against measured temperature, distortion and residual stress. A coupon capture or successful process exit alone does not qualify LPBF. |
+| LPBF | Audit per-QP assembly product/accumulation effects, then test solver convergence under a controlled change. The three failed native constrained resultants each reduce to one support component, ruling out downstream resultant summation as their cause. Keep every original limit and verify whole-trajectory deposition, cooling and release before a head calculation. | Numerical verification plus machine/material-specific calibration against measured temperature, distortion and residual stress. A complete diagnostic alone does not qualify LPBF. |
 | Omniverse | After accepted strength and LPBF results exist, assemble the family in OpenUSD and attach those fields. Track native mesh/field identities, units, frames, associations and time. | Preflight, required service readiness, asset/conformance checks, native-field mapping checks and measurement correlation. Preserve the six current substantive USD profile failures until their repairs are verified. |
 | PhysicsNeMo | Build a dataset from accepted solver cases; split whole geometries, builds and load cases before normalization. Compare suitable model families and simple baselines, then train, evaluate and connect checked inference to the twin. | Independent-case field and hotspot errors, conservation checks, uncertainty and out-of-domain limits, reproducible training and end-to-end inference timings. Recheck proposed designs with the reference solvers. |
 
@@ -81,12 +81,18 @@ remain unproved. The observer source/build/load audit supports treating its
 time/dt/scaling words as instrument measurements, without inventing independent
 nominal expectations or passing the frozen strict collector.
 
-The smallest next LPBF calculation is the existing rate-independent END181
-equilibrium assessment using native CSV displacements, QP tensors and its own
-BEGIN80 references. Timestep/scaling are not arguments to that field kernel.
-Preserve CDF export words separately. Keep all 12 native aggregate force/moment
-checks and all 36 diagnostic resultants, including previously failed results,
-against unchanged limits; whole-trajectory and process calibration work follows.
+The [current END181 equilibrium diagnostic](derived/engineering/native005-END181-equilibrium/README.md)
+has now completed once using unchanged rate-independent kernels, native CSV/QP
+data and its own BEGIN80 references. It records 66,590 scalar comparisons with
+zero exceedances, but 12 of 36 aggregate checks still fail, including three of
+the 12 native constrained/all-row criteria. Independent saved arithmetic verifies
+all 1,275 force-component differences and 36 resultants. Every original limit
+remains unchanged. The full per-QP table is not serialized; scalar comparison
+counts and maxima remain execution-attributed evidence. The three native
+failures reduce to individual constrained components, eliminating downstream
+resultant summation as their explanation. Audit per-QP assembly arithmetic next;
+improved solver convergence needs a separately controlled native trial.
+Whole-trajectory and process calibration work follows.
 
 The [first real owner004 five-toy attempt](derived/engineering/current24-five-toy-first-real-attempt/README.md)
 returned 2: the rational model parser rejected a declared Bool assertion alias
@@ -94,6 +100,12 @@ alongside the Real variable, and the other four cases were unattempted. TERM/KIL
 process-group calls also returned EPERM; saved reap/group-absence observations
 do not erase those errors. No retry or head repair occurred. These results change
 neither the 24 poor head cells nor the 12 aggregate mechanical failures.
+
+The [parser003 source correction](derived/engineering/current24-toy-model-parser003-held/README.md)
+now validates the exact Real definition and declared Bool aliases. Its nine
+fixture methods remain unrun, and existing owner004 still pins T002. Source
+review, fixture execution and a later separately defined runtime attempt remain
+outstanding; the correction does not resolve EPERM cleanup errors.
 
 The [full five-toy owner003 checkpoint](derived/engineering/full-five-toy-owner003-prefix-and-core-hold/README.md)
 accepts only the four-line admission-prefix repair. Operation remains on HOLD
