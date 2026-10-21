@@ -1,5 +1,10 @@
 # Native validation of Qwen's PicoGK proposals
 
+**Current path (2026-10-22):** [qualified_gate.py](qualified_gate.py) accepts
+the installed qualified command's typed-plan receipts and has fresh native
+STL/VDB witnesses. See [the qualified continuation](#qualified-typed-plan-continuation-2026-10-22).
+The original `gate.py`, `VdbWitness.cs` and `results.json` remain unchanged.
+
 The [plan adapter](../qwen-picogk-20261012/RESULTS.md) is merged in
 [PR 190](https://github.com/cluster2600/porscheparts/pull/190), after successful
 CI, as `0b5e21f3072b22e1032109bbd3454f197967935e`. This continuation makes its
@@ -13,6 +18,9 @@ screen. The new command rejects these exports individually, retaining the
 original files and the reason for rejection.
 
 ## What must pass
+
+These five steps describe the original raw-response `gate.py`. The separate
+qualified command uses the typed-receipt contract documented below.
 
 1. The inference receipt must record a complete accepted response. Its raw JSON
    is parsed again with the existing bounded parser. The receipt's cached plan
@@ -157,10 +165,97 @@ re-run on the Mac rather than re-hashed. The
 [Mac setup notes](../../docs/PICOGK_MAC_SETUP.md) also record that the prepared
 gate manifest references two coding-008 checkpoint files that are no longer
 available. `verify` re-hashes every manifest entry, so that prepared directory
-would fail closed. Neither re-run was attempted from this repository.
+would fail closed. At this dated snapshot neither re-run had been attempted.
 
 CI now also checks, without the private runtime, that the recorded source digests
 match the committed `gate.py`, `VdbWitness.cs` and auditor, that every summary
 count follows the recorded witnesses, that the raw-mesh decisions follow the
 auditor's rule recomputed from the recorded topology, and that the eight negative
 inputs never executed geometry.
+
+## Qualified typed-plan continuation (2026-10-22)
+
+The installed qualified command deliberately records the checked `plan`, not
+its successful raw model text. [qualified_gate.py](qualified_gate.py) handles
+that receipt explicitly; it never invents `raw_response` or weakens the old
+gate's refusal. A receipt's profile, adapter and request hashes must match the
+prepared profile and the actual request file. The plan must pass the existing
+bounded parser, match the request's independent unit/quantity conversion and
+match a separate caller-authored expected plan. Missing or unverified interfaces,
+prior geometry claims and manufacturing claims are rejected before execution.
+
+This verifies a typed receipt contract, not the origin of an arbitrary JSON
+file. Its boolean fields are not cryptographic inference attestation. Retain
+the producer invocation, trusted installed profile and inference logs. The
+recorded model smoke below actually invokes that installed command. The original
+model text remains unavailable and is explicitly labelled as such.
+
+The same trusted recipes, unchanged native VDB witness and raw STL auditor
+then apply. There is no model-supplied executable code and no mesh repair.
+
+### Fresh native preparation
+
+The old native manifest still matches the digest published in `results.json`.
+The continuation uses it to verify **88 byte-identical native source aliases**:
+87 library files from the durable standalone installation and the original
+recipe host. It also verifies the original PicoGK assembly and native library,
+then builds a new host with the unchanged VDB witness. It does not read the
+missing historical training-parent checkpoints or hydrate old iCloud SDK files.
+The selected qualified profile must match the adapter and result/manifest
+digests published in [results-002.json](../qwen-picogk-qualified-20261014/results-002.json).
+
+```sh
+/Users/maxime/projects/3dprinting993/work/cad-recode-tools-venv/bin/python \
+  training/qwen-picogk-native-gate/qualified_gate.py --prepare \
+  --work /absolute/path/to/a/new-qualified-native-gate \
+  --legacy-work ~/Documents/PicoGK-Model-Optimization/2026-10-12-native-gate \
+  --libraries ~/Developer/PicoGK/libraries \
+  --profile ~/Developer/Qwen993/qualified-20261014-r3/qualified-profile.json
+```
+
+Preparation binds the admitted source files, profile, selected runtime files
+and new compiled host in a fresh `FROZEN.json`; these bindings are checked before
+and after every geometry run. This is native-only recovery, not reproduction
+of the historical training environment. `historical_training_reproduced=false`.
+Existing manifests, model weights and serving defaults are preserved.
+
+### Run the current command and screen its plan
+
+For the `[18,7,3]` mm expected plan above, author `request.json` with a synthetic
+pipe, length `18 mm`, outer **diameter** `14 mm`, inner **diameter** `6 mm`, using
+the [qualified request schema](../qwen-picogk-qualified-20261014/README.md#numeric-boundary).
+Save the separate `expected.json` before inference, then:
+
+```sh
+qwen-picogk-qualified --request ./request.json --output ./qualified-proposal.json
+/Users/maxime/projects/3dprinting993/work/cad-recode-tools-venv/bin/python \
+  training/qwen-picogk-native-gate/qualified_gate.py \
+  --work /absolute/path/to/the/prepared-qualified-native-gate \
+  --receipt ./qualified-proposal.json --request ./request.json \
+  --expected ./expected.json --output /absolute/path/to/a/new-geometry-directory \
+  --voxel-mm 0.5
+```
+
+All three input files must be distinct. Their hashes and the frozen preparation
+hash are retained. Existing output directories are rejected; failed exports
+remain available. Accepted reports use `accepted_synthetic_geometry`, never
+part, physics, fitment or manufacturing qualification.
+
+### Measured software checks
+
+[results-qualified-20261022.json](results-qualified-20261022.json) preserves the
+new protocol, source and private-receipt hashes. These repeat the ten authored
+native regression fixtures; they are not a new model-generalisation benchmark.
+Native checks pass **10/10**, VDB checks **10/10**, raw mesh checks **9/10**.
+The `thread-0.5` export is still rejected; no repair or threshold change hides it.
+The typed receipts for these ten fixtures are explicitly owner-authored test
+inputs, not model-inference claims.
+
+Eight malformed, mismatched or unverified typed inputs are rejected before
+geometry. The existing-output check preserves the prior raw STL hash. A real
+French mixed-unit request through the installed qualified command returns
+`[18,7,3]` mm and passes the native/STL/VDB chain. Seven focused current-path
+checks and the five unchanged legacy checks run without the private runtime;
+they check the boundary and consistency of the recorded witnesses, not rerun
+native geometry in CI. The wider API, physical and manufacturing work listed
+above remains separate from this completed software integration.
