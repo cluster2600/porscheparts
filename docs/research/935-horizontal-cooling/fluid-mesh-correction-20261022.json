@@ -1,0 +1,257 @@
+{
+  "schema": "935-fluid-mesh-correction-v1",
+  "date": "2026-10-22",
+  "programme": "horizontal_935_reference_installation",
+  "parent_checkpoint_sha256": "e181ce97b05f0c9d79575c9e821f87163329d7357fb7e6c6730f9a6b2e4d9ab6",
+  "source_sha256": {
+    "twins/935-horizontal-cooling-system-f0/source/fluid-mesh-study-20261022/audit-tetgen-002.py": "cb8b36f0318fe3e71907f299c3df487dd77ab91dbe6cea631f09949137bb9996",
+    "twins/935-horizontal-cooling-system-f0/source/fluid-mesh-study-20261022/capture-snapshot-001.py": "b2d6b84e999a6c18049d3382a7fdbab637f87f02ae863401ce4dcdbc097e5047",
+    "twins/935-horizontal-cooling-system-f0/source/fluid-mesh-study-20261022/cfd_skin_simplify.cpp": "347a168aa49db090388fc745e6c12de6cba63716a2b7562fb71637853ba4a99a",
+    "twins/935-horizontal-cooling-system-f0/source/fluid-mesh-study-20261022/diagnose-native-tets-002.py": "4f5420c78b7cf1d556e8fcf2f57d3322d61b398d0793dbf733865a4770d6e729",
+    "twins/935-horizontal-cooling-system-f0/source/fluid-mesh-study-20261022/export-fluid-plc-005.py": "f50f4cd315c757d9d2c291640f49bfd1a6107a1de851685f8c407e47c33883cb",
+    "twins/935-horizontal-cooling-system-f0/source/fluid-mesh-study-20261022/split-boundary-tets-001.py": "541f6c00da9802a40ecab8745b36ea9b58135c7f9f21a1b8dc5d71f74b4fda7c",
+    "twins/935-horizontal-cooling-system-f0/source/fluid-mesh-study-20261022/verify-native-mesh-003.py": "e8db78489b12b6eb65ec39048ae93d1ccd851a4d5307b59fb73861eed0f0ecc4"
+  },
+  "PicoGK_design_master_sha256": "f32bbabab3e5f7d9ca7c5283d18703cfe7cedbd3eb2c72a57a1c222c0a9df1e5",
+  "PicoGK_design_master_changed": false,
+  "scope": {
+    "full_system_goal_complete": false,
+    "scale_verified": false,
+    "axis_registration_verified": false,
+    "historical_interfaces_verified": false,
+    "complete_mechanism_defined": false,
+    "snapped_wall_to_analysis_surface_distance_qualified": false,
+    "fluid_mesh_extended_geometry_admitted": false,
+    "three_mesh_convergence_established": false,
+    "current_geometry_CFD_accepted": false,
+    "accepted_for_PhysicsNeMo_training": false,
+    "strength_validated": false,
+    "fatigue_validated": false,
+    "material_process_qualified": false,
+    "manufacturing_authorized": false,
+    "physical_validation": false
+  },
+  "runtime": {
+    "family": "OpenFOAM_Foundation_13",
+    "build": "13-18870c24d21c",
+    "image_index_sha256": "a1db60cbf61bbcca52c171e50cab01ed0b6ec860b227e7c5fc50f7b809659b4f",
+    "rootless": true,
+    "network_isolated": true,
+    "new_Vast_rentals": 0
+  },
+  "corrected_boundary": {
+    "boundary_vertices": 114551,
+    "triangles": 229098,
+    "triangles_per_patch": {
+      "inlet": 2304,
+      "outlet": 2304,
+      "duct": 12394,
+      "rotor": 212096
+    },
+    "volume_m3": 0.05140958285727806,
+    "volume_relative_difference_from_native": 7.327221052122468e-10,
+    "solid_hole_winding": -1.0000000000000002,
+    "fluid_hole_winding": 3.092205940311753e-17,
+    "output_sha256": {
+      "boundary.npz": "67835eacd4d1c7f9736b5fc826979f8ad48366397b422e672043ef720c027f86",
+      "boundary.obj": "d6568e59b131e0935b2ea1637e56d2512a363868f6d1e41ac8575e50ece3b215",
+      "fluid.smesh": "27a3c033fd78b6feb31d5fa371359bced3f49e722b708e2c8af0fe57410dce0a"
+    }
+  },
+  "exact_closed_surface_self_intersection_pairs": 0,
+  "volume_candidates": {
+    "foam-tet-001": {
+      "cells": 884608,
+      "severe_nonorthogonal_faces": 929,
+      "small_determinant_cells": 3261,
+      "small_interpolation_weight_faces": 63,
+      "small_volume_ratio_faces": 5,
+      "failed_native_checks": 4,
+      "all_cells_positive": true,
+      "exact_PLC_volume_equal": true,
+      "complete_boundary_coordinate_triangle_marker_bijection": true,
+      "concave_cell_check_passed": true,
+      "original_quality_dictionary_unchanged": true,
+      "extended_mesh_quality_passed": false,
+      "volume_npz_sha256": "d068a33e8b26fac7cd0673df971374f4f747288464126b9f23da867fcccf7938",
+      "audit_sha256": "d86e3f52bcc63aa642c16de9a05838bdcd8b0dff5b4c3b397978abd17a13ee1d",
+      "native_execution_sha256": "36e6dcd80740909a5c16ba0b39fc65635dd0c4ef2c566f6b9c900c092193c40f",
+      "native_quality_log_sha256": "0c8243d1a5c1e2267e05fa89d3ad039a12bfb487fb493127f722cc582e4cfb66"
+    },
+    "foam-tet-dihedral-001": {
+      "cells": 1590792,
+      "severe_nonorthogonal_faces": 892,
+      "small_determinant_cells": 2842,
+      "small_interpolation_weight_faces": 39,
+      "small_volume_ratio_faces": 2,
+      "failed_native_checks": 4,
+      "all_cells_positive": true,
+      "exact_PLC_volume_equal": true,
+      "complete_boundary_coordinate_triangle_marker_bijection": true,
+      "concave_cell_check_passed": true,
+      "original_quality_dictionary_unchanged": true,
+      "extended_mesh_quality_passed": false,
+      "volume_npz_sha256": "677166e12b71189dfa71abadec881b4ce97c8d1f7f0e0a2dcc2c9b0a3e195b6f",
+      "audit_sha256": "9d3874b61b3f542c715700095deb927b1a71fc83091f97a1388e20cb3c2a510e",
+      "native_execution_sha256": "5f9926ae3deeb8183258c246d3c23a93e8150d127344bd6856d73ad59bb2fc78",
+      "native_quality_log_sha256": "919830c9b6e99610499a1f33eb7f1f4c2ee3901dc4cdf5d51f1e216746485de9"
+    },
+    "foam-cgal-skin-001": {
+      "cells": 1085891,
+      "severe_nonorthogonal_faces": 3920,
+      "small_determinant_cells": 3346,
+      "small_interpolation_weight_faces": 536,
+      "small_volume_ratio_faces": 13,
+      "failed_native_checks": 5,
+      "all_cells_positive": true,
+      "exact_PLC_volume_equal": true,
+      "complete_boundary_coordinate_triangle_marker_bijection": true,
+      "concave_cell_check_passed": true,
+      "original_quality_dictionary_unchanged": true,
+      "extended_mesh_quality_passed": false,
+      "volume_npz_sha256": "3cac5ff853c193d8c818ce8399280452173228943b9b0fb2848b7129fcbcfcae",
+      "audit_sha256": "ecc9d2f363f12d71e0bc328566eaee99e8e2ba64df7e27884dabab265476e4fe",
+      "native_execution_sha256": "a3335bc39e57b8f2c484444ac9ad903cf0ef432495ec1c4b5e4420eb9f2ea6c3",
+      "native_quality_log_sha256": "7d0a44f6acdfd3ce1ad390eacef821a142a8318259f53c3c4024d49c3df9dd19"
+    },
+    "foam-boundary-rank-001": {
+      "cells": 894040,
+      "severe_nonorthogonal_faces": 5355,
+      "small_determinant_cells": 597,
+      "small_interpolation_weight_faces": 1056,
+      "small_volume_ratio_faces": 31,
+      "failed_native_checks": 4,
+      "all_cells_positive": true,
+      "exact_PLC_volume_equal": true,
+      "complete_boundary_coordinate_triangle_marker_bijection": true,
+      "concave_cell_check_passed": true,
+      "original_quality_dictionary_unchanged": true,
+      "extended_mesh_quality_passed": false,
+      "volume_npz_sha256": "0486c0ebc218825577f2e229b3fa9a98471bdf87406177db9fdf575fbdd2af5c",
+      "audit_sha256": "1bc860e1854674e2cad829bf386b63fd90cf441c82ff79eb183026296aecb944",
+      "native_execution_sha256": "6539e7f9d65912989f28bb7c79a87b0e0bbf1ea1352066614efa59dab044b758",
+      "native_quality_log_sha256": "c90fdca76cd940bf42664e75f020bf4077ccc99ea0202eb7af530437807253c7"
+    }
+  },
+  "independent_native_verifications": {
+    "native-mesh-verification-002.json": {
+      "status": "native_mesh_matches_all_audited_coordinates_tetrahedra_and_patch_markers",
+      "vertices": 197819,
+      "tetrahedra": 884608,
+      "boundary_triangles": 229098,
+      "VTK_version": "9.6.2",
+      "source_sha256": "548ad62f906bac224c858615b8ec5c0e527d0b27204f5afbb087e2b41bfecbd5",
+      "volume_audit_sha256": "d2e061560049c6722f3e2e644372038914e61b7bdd2d3840e4b667f855138558",
+      "native_mesh_sha256": {
+        "points": "bf19425e43e7cc301c08ec04e7872fdd27b68f4a595fd8fc5c49fb5ece7d1d59",
+        "faces": "4b0d64681030b85c4cbff7488eb20316ed7431c8ce5fe2db4a40b55bfaf10799",
+        "boundary": "cff3920a9e70d5ddb50b139bc8889c25a8d6b669eab048012289ec5a0f4ca7f7",
+        "owner": "6e755dfa694051fa13dc75e78581735238e39e6ec5882e8b78cc9b318ed6812c",
+        "neighbour": "f345758928b85d37924ebcf39f5733c2be30e3ed282621fe8f715675978b334c"
+      },
+      "CFD_accepted": false,
+      "manufacturing_authorized": false
+    },
+    "native-dihedral-verification-001.json": {
+      "status": "native_mesh_matches_all_audited_coordinates_tetrahedra_and_patch_markers",
+      "vertices": 310049,
+      "tetrahedra": 1590792,
+      "boundary_triangles": 229098,
+      "VTK_version": "9.6.2",
+      "source_sha256": "e8db78489b12b6eb65ec39048ae93d1ccd851a4d5307b59fb73861eed0f0ecc4",
+      "volume_audit_sha256": "9d3874b61b3f542c715700095deb927b1a71fc83091f97a1388e20cb3c2a510e",
+      "native_mesh_sha256": {
+        "points": "12a7db3c4647284264d58605d97fce24e151eef15a999bc2514fa39c463b6b91",
+        "faces": "110fcc39019473f3fbc8bf59e17c9317fd89973abf56adaf9ef3d64688f0a0cd",
+        "boundary": "f34a0e3380869116fa576f148ed2b520a337e853811b3eba4fbd2872c8669d6d",
+        "owner": "92ff45f0953fb157bc821ab0e7a95279cbff3d18357c26def13f9114ec510e4a",
+        "neighbour": "325f96d195eb62f2468b6962f8e7597ac194d1908ebe7773ea3bf31233a45af7"
+      },
+      "CFD_accepted": false,
+      "manufacturing_authorized": false
+    }
+  },
+  "native_failure_diagnosis": {
+    "status": "all_native_failure_counts_reproduced_independently",
+    "source_sha256": "4f5420c78b7cf1d556e8fcf2f57d3322d61b398d0793dbf733865a4770d6e729",
+    "native_log_sha256": "0c8243d1a5c1e2267e05fa89d3ad039a12bfb487fb493127f722cc582e4cfb66",
+    "cells": 884608,
+    "small_determinant_cells": 3261,
+    "severe_nonorthogonal_faces": 929,
+    "small_determinant_by_number_of_internal_faces": {
+      "0": 0,
+      "1": 0,
+      "2": 3144,
+      "3": 81,
+      "4": 36
+    },
+    "patch_adjacency": {
+      "inlet": {
+        "adjacent_cells": 2304,
+        "small_determinant_cells": 96,
+        "severe_nonorth_faces_touching_adjacent_cells": 0
+      },
+      "outlet": {
+        "adjacent_cells": 2304,
+        "small_determinant_cells": 96,
+        "severe_nonorth_faces_touching_adjacent_cells": 0
+      },
+      "duct": {
+        "adjacent_cells": 12266,
+        "small_determinant_cells": 320,
+        "severe_nonorth_faces_touching_adjacent_cells": 0
+      },
+      "rotor": {
+        "adjacent_cells": 209272,
+        "small_determinant_cells": 2905,
+        "severe_nonorth_faces_touching_adjacent_cells": 214
+      }
+    },
+    "boundary_vertices_changed": false,
+    "CFD_accepted": false
+  },
+  "CGAL_skin_alternative": {
+    "source_triangles": 212096,
+    "candidate_triangles": 127256,
+    "complete_bidirectional_envelope_passed": true,
+    "envelope_bound_mm": 0.0225,
+    "separate_numeric_reserve_mm": 0.0025,
+    "bound_reference": "prior_CFD_skin_only",
+    "source_minimum_triangle_quality": 0.275973,
+    "candidate_minimum_triangle_quality": 0.0501345,
+    "CFD_admitted": false
+  },
+  "local_subdivision_alternative": {
+    "cells_subdivided": 3144,
+    "input_cells": 884608,
+    "output_cells": 894040,
+    "unit_tetrahedron_exact_partition_control": {
+      "cells": 4,
+      "negative": 0,
+      "zero": 0,
+      "minimum_integer_determinant": "16",
+      "common_coordinate_scale": "4",
+      "signed_volume_exact": "1/6",
+      "signed_volume_native_units_cubed": 0.16666666666666666
+    },
+    "boundary_vertices_changed": false
+  },
+  "private_archive": {
+    "repository": "cluster2600/porscheparts-935-private",
+    "tag": "analysis-mesh-935-20261022",
+    "archive": "fluid-mesh-checkpoint-001.tar.gz",
+    "archive_sha256": "b3f756edb3710004eeac2562dd789e75be4e6a51859cfb96792484a4a73f9799",
+    "archive_bytes": 1049543277,
+    "manifest_sha256": "1b6f8dac632fdd19faab897f1471d65ed05585faebe8f6a27deda92d39871f86",
+    "entries": 471,
+    "all_members_verified": true,
+    "all_inputs_unchanged_after_archive": true,
+    "all_solver_jobs_finished": true,
+    "created_epoch": 1792666082.95098,
+    "new_paid_instance_created": false,
+    "manufacturing_authorized": false,
+    "Mac_all_members_verified": true
+  },
+  "new_rotor_PDE_runs": 0,
+  "next_action": "Improve the complete unchanged FV quality check, then qualify wall deviation, domain boundaries, compressibility and three-grid convergence before fan curves or surrogate training."
+}

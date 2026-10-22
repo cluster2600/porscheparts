@@ -171,6 +171,12 @@ Couette flow before running MRF/SST on the private rotor. The first fluid mesh
 fails the extended concavity check; its exploratory calculation cannot qualify
 a fan curve, the historical assembly or manufacturing.
 
+The [fluid-mesh correction](docs/research/935-horizontal-cooling/FLUID_MESH_CORRECTION_20261022.md)
+then obtains closed, positive, boundary-preserving tetrahedral fluid volumes
+and independently verifies their native import. Full finite-volume quality still
+rejects them; bounded skin simplification and local subdivision are retained as
+failed alternatives, with no new accepted fan calculation.
+
 Read the [engineering workflow](docs/architecture/engineering-workflow.md),
 [PicoGK decision](docs/decisions/0004-picogk-new-geometry.md),
 [software inventory and dated execution evidence](docs/SOFTWARE_STACK.md), and
