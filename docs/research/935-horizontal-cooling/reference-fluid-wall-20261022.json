@@ -1,0 +1,204 @@
+{
+  "schema": "935-reference-fluid-wall-v1",
+  "date": "2026-10-22",
+  "programme": "horizontal_935_reference_installation",
+  "position_in_software_chain": "geometry_fidelity_to_CFD_preparation",
+  "PicoGK_master_sha256": "f32bbabab3e5f7d9ca7c5283d18703cfe7cedbd3eb2c72a57a1c222c0a9df1e5",
+  "source_sha256": {
+    "twins/935-horizontal-cooling-system-f0/source/reference-fluid-wall-study-20261022/compose-reference-wall-001.py": "0a5db30edae38e2ba6845d05637fba21de87646083ebe2350f3e4cc795ab1c97",
+    "twins/935-horizontal-cooling-system-f0/source/reference-fluid-wall-study-20261022/verify-reference-wall-001.py": "c55b9a43b754bd6939113d6328776f0a771394830d409df83b17bf1dd79036f3",
+    "twins/935-horizontal-cooling-system-f0/source/reference-fluid-wall-study-20261022/restore-reference-edge-001.py": "05e7bd3e275ec3df5ae758f6b562b9908964fd816a602948a651b07fe98fc8ce",
+    "twins/935-horizontal-cooling-system-f0/source/reference-fluid-wall-study-20261022/diagnose-added-boundary-point-001.py": "fe93d130f2995749fba866dd9e0733f5eb3227162a72fc472be787a7550de404"
+  },
+  "scope": {
+    "full_system_goal_complete": false,
+    "analysis_reference_wall_identity_verified": true,
+    "historical_geometry_accuracy_verified": false,
+    "scale_verified": false,
+    "historical_interfaces_verified": false,
+    "complete_mechanism_defined": false,
+    "actual_935_housing_defined": false,
+    "current_geometry_CFD_accepted": false,
+    "mechanical_spatial_convergence_established": false,
+    "fatigue_validated": false,
+    "material_process_qualified": false,
+    "PhysicsNeMo_trained": false,
+    "manufacturing_authorized": false,
+    "physical_validation": false
+  },
+  "inputs": {
+    "reference_SI_OBJ_sha256": "5eb9ee8a73b140198013fe511916c150316acc8e31174a2ca1fea4bac4db3e44",
+    "previous_boundary_npz_sha256": "67835eacd4d1c7f9736b5fc826979f8ad48366397b422e672043ef720c027f86",
+    "parent_boundary_receipt_sha256": "2d4d59556e56d9d20c452b7ad799a8765ee4786f1de474def221c9aa2ed2b1f8",
+    "assumed_m_per_uncalibrated_source_unit": 0.001,
+    "new_boundary_npz_sha256": "7a1797e9c9156d1eba546b382c6dce104cfbb30cffd9828f0013266e88c9addd",
+    "new_boundary_OBJ_sha256": "2e9d82ed79bff34a032118a48d844eda5934e3275663dac3349ce3a0c1ea6c9e",
+    "new_smesh_sha256": "abf42e6efe804cbb2fac96794ac93d7c421a0947b38f97480bbc5ecdb38df8bd"
+  },
+  "previous_wall_probe": {
+    "receipt_sha256": "677a4043c732ba7c7974b82f10054083668fa7afa1dafb8d75a22703bd77a4e3",
+    "wall_to_reference_maximum_sample_m": 0.0020387111235142,
+    "reference_to_wall_maximum_sample_m": 0.003638913813115196,
+    "complete_continuous_distance_certificate": false
+  },
+  "new_boundary": {
+    "vertices": 445215,
+    "triangles": 890446,
+    "rotor_vertices": 436712,
+    "rotor_triangles": 873444,
+    "outer_triangles": 17002,
+    "exact_reference_coordinate_and_triangle_identity": true,
+    "complete_serialized_OBJ_and_smesh_identity": true,
+    "reference_surface_set_distance_exactly_zero": true,
+    "identity_proof_sha256": "f93ec959ed4b7763bf5556d22678821cc9f5cbc543fb2de4cee59b132e72c000",
+    "CGAL_closed_valid_triangle_mesh": true,
+    "CGAL_self_intersection_pairs": 0,
+    "CGAL_result_sha256": "3682e43010d8eb6ccc2d52a7cb4eac163d520f622bcf0789aae138fa9d27bcfc",
+    "original_input_solid_hole_winding_checked": true,
+    "analytic_nested_box_volume": 7,
+    "open_rotor_control_refused": true
+  },
+  "rejected_TetGen_output": {
+    "execution_sha256": "3f6c600a483442e05005df6c8c5214becb61c8ba80b5e567d3b7f79b4b5dd99d",
+    "tetrahedra": 3685051,
+    "boundary_triangles": 890448,
+    "added_boundary_Steiner_points": 1,
+    "complete_boundary_identity_refused": true,
+    "exact_collinearity": false,
+    "ordinary_float_projected_distance_m": 0,
+    "original_attempt_preserved": true
+  },
+  "local_restoration": {
+    "source_sha256": "05e7bd3e275ec3df5ae758f6b562b9908964fd816a602948a651b07fe98fc8ce",
+    "execution_sha256": "a9caf04ce5bf8b0057ef6083c1b52bd39b5d8dbcd3194eaf14f1cd9e94e01099",
+    "removed_cells": 12,
+    "replacement_positive_cells": 14,
+    "only_added_Steiner_point_moved": true,
+    "original_input_coordinates_unchanged": true,
+    "original_boundary_triangles_and_markers_restored": true,
+    "unit_cone_volume_exact": "1/6",
+    "helper_sha256": {
+      "import_conforming_volume": "f061d604de3c5711ab173111a2f140a916172ba937f8993206037977cc167488",
+      "optimize_interior_stars": "12aa60e254f1d7f54e4170f8d2750b3bbfce6d878ed3111eaf637b0b77f1cbb3",
+      "rebuild_fluid_edge_stars": "2763305fae804e507e3d365f68fcac8be9c78623ece068958f9a56e145bb47c3",
+      "reconnect_fluid_tetrahedra": "6c84ddf41db9d1c4dd71478e821064c996205696d35d5d0626bffd552b1a691a"
+    }
+  },
+  "volume": {
+    "assessment_sha256": "0cbfa3ecdfc9090b659ec49483453f7a450e74e888ee41f227eabd6abf42d52f",
+    "volume_npz_sha256": "4d1bd09651684a8193abd3b69edeaad0ac1a757ee10270a0f2313f621af8e79b",
+    "vertices": 809217,
+    "tetrahedra": 3685053,
+    "boundary_triangles": 890446,
+    "negative_exact_determinants": 0,
+    "zero_exact_determinants": 0,
+    "exact_PLC_volume_equal": true,
+    "signed_volume_exact": "272497293042792657483547222308366104524202687128123762141839594875759651/5300541194335152988749892502228755547482451690626856874364818603877859328",
+    "fluid_volume_m3": 0.051409334075927696,
+    "indexed_connectivity": {
+      "signed_volume_sum": 0.051409334075927696,
+      "absolute_volume_sum": 0.051409334075927696,
+      "minimum_signed_tetra_volume": 6.2027570634308055e-18,
+      "count_negative": 0,
+      "count_zero": 0,
+      "repeated_node_tetrahedra": 0,
+      "tetra_connected_components": 1,
+      "boundary_missing_triangles": 0,
+      "stored_triangles_not_on_boundary": 0,
+      "duplicate_stored_triangles": 0,
+      "nonmanifold_faces": 0,
+      "boundary_triangle_count": 890446,
+      "boundary_matches": true
+    }
+  },
+  "native": {
+    "execution_sha256": "65a4231469969ab1edf1add6e9cf39a333d30174ac66d32ef30be2eb654576f6",
+    "Foundation_version": "13",
+    "image_index_sha256": "a1db60cbf61bbcca52c171e50cab01ed0b6ec860b227e7c5fc50f7b809659b4f",
+    "runtime_receipt_sha256": "1e6f331b419c3849d6321beeff39b64a5f21407dbec778a4016629f8e27a563d",
+    "quality_dictionary_unchanged": true,
+    "quality_dictionary_sha256": "bafbc5ced7e83c5a1cc11291a0937c3499a6713e8e3411a83f93464381ba2c7d",
+    "quality_log_sha256": "45dcad5366b453cca25e2dfe4eb5cd3a56f589bf9f3e0994d1be671aa27cb34e",
+    "full_quality_passed": false,
+    "failed_quality_checks": 6,
+    "nonorthogonal_faces_above_70": 186047,
+    "cells_determinant_below_0_001": 103604,
+    "extended_interpolation_below_0_05": 13571,
+    "extended_volume_ratio_below_0_01": 1761,
+    "maximum_skewness": 15.445040189519712,
+    "local_face_decomposition_quality_failures": 756,
+    "local_skewness_failures": 1411,
+    "local_interpolation_below_0_02": 2965,
+    "CFD_executed": false
+  },
+  "independent_native_readback": {
+    "receipt_sha256": "3d627af148784433165f0e2195ace038eb7e7b354d82374097dd318dcb0c3555",
+    "status": "native_mesh_matches_all_audited_coordinates_tetrahedra_and_patch_markers",
+    "all_coordinates_tetrahedra_boundary_markers_checked": true,
+    "VTK_version": "9.6.2",
+    "native_mesh_sha256": {
+      "points": "6db9ccbf8a3f2d6ccb77e8bb2be3a4969c1cb1dafe97fd9866b8cebd38a4face",
+      "faces": "35116905d62e1ab9b762f18f27b483da29d56eeddeb0f0e91630f445eed7353c",
+      "boundary": "8c4192f3d5f06c405f8a10f91ef7dc37d023ec2456c363a136a7925db8d6e322",
+      "owner": "91041ccc78d5183ef09b781f5e41e9376b6e2f83e943387122dc0fb292e87a0c",
+      "neighbour": "cc5a51013b559ddd54b1ef3e9ada3748b3665f53f3a853826e12d47c028d49f8"
+    }
+  },
+  "reference_tessellation_quality": {
+    "source": "exact CFD reference OBJ 5eb9ee8a",
+    "minimum_triangle_quality": 5.407155536595921e-05,
+    "triangles_below_0_05": 189,
+    "minimum_surface_edge_length_m": 1.5258789065608624e-08,
+    "edges_below_one_micrometre": 18,
+    "quality_quantiles": {
+      "0.01": 0.07632857143160927,
+      "0.05": 0.1903897848484679,
+      "0.5": 0.8115354332983398
+    }
+  },
+  "visual": {
+    "source_sha256": "0473780428bb1ff3913ae818896165a960aa6b40c48c36461bbddb2da72fc09e",
+    "reused_render_source_sha256": "c3f93311024d1cbb4a4c21bb2a6a35ee4878138b325c9191005fbcc0498c7b41",
+    "image_sha256": "33684c4848d50a4c70c07c53b30d50f1e41d6b8272167bee30db280465fe20d6",
+    "old_probe_sha256": "677a4043c732ba7c7974b82f10054083668fa7afa1dafb8d75a22703bd77a4e3",
+    "new_serialized_wall_proof_sha256": "f93ec959ed4b7763bf5556d22678821cc9f5cbc543fb2de4cee59b132e72c000",
+    "old_field": "sampled reference-to-wall distances",
+    "new_field": "zero assigned only after full serialized surface identity proof; not a flow/stress result",
+    "PicoGK_design_master_changed": false,
+    "scale_verified": false,
+    "CFD_accepted": false,
+    "manufacturing_authorized": false
+  },
+  "verification": {
+    "focused_935_tests": 185,
+    "focused_optional_skips": 4,
+    "new_cone_tests": 5,
+    "source_Linux_CI_recorded_separately_after_science_checkpoint": true,
+    "preceding_main_CI": {
+      "run_id": 39798109927,
+      "commit": "caef32767550a9c3707f9313184433ba7493b6e6",
+      "conclusion": "success"
+    }
+  },
+  "preservation": {
+    "private_repository": "cluster2600/porscheparts-935-private",
+    "release_tag": "analysis-mesh-935-20261022",
+    "archive_name": "reference-fluid-wall-checkpoint-001.tar.gz",
+    "archive_sha256": "345fd63cfd808370d1653fe490f126aeb4217611fca0a2dbb9252684e4cb535c",
+    "archive_bytes": 636842263,
+    "manifest_sha256": "1fd820f063fbac047c74c79d792ea620e68bc144a2c5ab9e70a6c2ed5071708f",
+    "entries": 92,
+    "all_members_verified": true,
+    "all_inputs_unchanged_after_archive": true,
+    "all_jobs_in_this_phase_finished": true,
+    "created_epoch": 1792682058.8046443,
+    "new_paid_instance_created": false,
+    "CFD_accepted": false,
+    "manufacturing_authorized": false,
+    "manifest_name": "reference-fluid-wall-manifest.json",
+    "Mac_all_members_verified": true,
+    "Mac_verification_sha256": "ed17f5a8c23264fa255f6c2d30b6c257fb1b0b04952ef3082149c4372de8b3e0",
+    "parent_checkpoint_sha256": "d9a3aa6d5266f50b913c276c992f276194845ff98cbc0bc846944d5f82185cab"
+  },
+  "next_action": "Boundedly remesh protected poor reference facets and construct a graded near-wall fluid mesh; rerun unchanged full native quality before CFD admission."
+}

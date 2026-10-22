@@ -197,6 +197,12 @@ then joins 29 guarded tetrahedral pairs without moving any point or physical
 boundary. Complete mixed-cell and native-field checks pass; failed determinants
 fall to 419, while four full quality checks still block CFD admission.
 
+The [reference-wall correction](docs/research/935-horizontal-cooling/REFERENCE_FLUID_WALL_20261022.md)
+then replaces the snapped rotor wall with every analysis-reference triangle.
+Complete serialized and native readback preserves that surface in 3,685,053
+positive fluid cells. Six native quality checks still reject this faithful
+baseline; protected poor surface facets and near-wall meshing remain to repair.
+
 Read the [engineering workflow](docs/architecture/engineering-workflow.md),
 [PicoGK decision](docs/decisions/0004-picogk-new-geometry.md),
 [software inventory and dated execution evidence](docs/SOFTWARE_STACK.md), and
