@@ -177,6 +177,11 @@ and independently verifies their native import. Full finite-volume quality still
 rejects them; bounded skin simplification and local subdivision are retained as
 failed alternatives, with no new accepted fan calculation.
 
+The [fluid-topology continuation](docs/research/935-horizontal-cooling/FLUID_TOPOLOGY_CONTINUATION_20261022.md)
+then changes local tetrahedral connectivity while preserving all vertex coordinates
+and boundary triangles. Exact cavity checks and complete native audits measure
+the improvement; remaining full-quality failures still block CFD admission.
+
 Read the [engineering workflow](docs/architecture/engineering-workflow.md),
 [PicoGK decision](docs/decisions/0004-picogk-new-geometry.md),
 [software inventory and dated execution evidence](docs/SOFTWARE_STACK.md), and
