@@ -160,6 +160,11 @@ linear/quadratic calculations on the Mac and Kali. Their large formulation
 difference keeps mechanical convergence open; results and rejected trials are
 preserved privately, without another rental.
 
+The [interior-star correction](docs/research/935-horizontal-cooling/INTERIOR_STAR_CONTINUATION_20261022.md)
+then preserves the boundary and exact volume while improving internal mesh
+conditioning. Repeated quadratic fields retain stable global displacement but
+show a 68% peak-stress change, keeping strength and spatial convergence open.
+
 Read the [engineering workflow](docs/architecture/engineering-workflow.md),
 [PicoGK decision](docs/decisions/0004-picogk-new-geometry.md),
 [software inventory and dated execution evidence](docs/SOFTWARE_STACK.md), and
