@@ -5,6 +5,11 @@
 
 ## Selected implementation order and current state
 
+The latest [quadratic-rotor continuation](QUADRATIC_ROTOR_CONTINUATION_20261022.md)
+completes the preserved-boundary volume audit and matched C3D4/C3D10 calculations.
+Whole-simplex numerical transport and equilibrium pass; element quality and
+spatial convergence remain unresolved. The original PicoGK master is retained.
+
 The [analysis-mesh correction](ANALYSIS_MESH_CONTINUATION_20261022.md) follows
 with a quality-constrained approximation of the unchanged PicoGK master and
 independent full-surface verification. Native volume proposals require their

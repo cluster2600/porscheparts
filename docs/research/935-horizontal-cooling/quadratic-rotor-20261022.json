@@ -1,0 +1,405 @@
+{
+  "schema": "935-quadratic-rotor-continuation-v1",
+  "date": "2026-10-22",
+  "programme": "horizontal_935_reference_installation",
+  "original_PicoGK_geometry_sha256": "f32bbabab3e5f7d9ca7c5283d18703cfe7cedbd3eb2c72a57a1c222c0a9df1e5",
+  "source_sha256": {
+    "twins/935-horizontal-cooling-system-f0/source/analysis-simplification/quality_preserving_simplify.cpp": "68fcc829d650705b13b6197486fc859c63d55a464ce2a0eec68c1d9b3b67d663",
+    "twins/935-horizontal-cooling-system-f0/source/analysis-simplification/CMakeLists.txt": "3243594123dce3d21c42da2d6c3cc4000c3ca98493c80c2fd3715fdd4ae9ace3",
+    "twins/935-horizontal-cooling-system-f0/source/analysis-simplification/protected-input-patches-20261022.patch": "9fdcc3bae59ef80b3519d5d9f25edb2f697ee8d89decdda9d450115dc9abc8ac"
+  },
+  "patched_native_cpp_sha256": "3e19ea9a93c5f11fe71a0742d383c974dae8201b50d6827f2726b4e5b15198d4",
+  "scope": {
+    "full_system_goal_complete": false,
+    "scale_verified": false,
+    "historical_interfaces_verified": false,
+    "complete_mechanism_defined": false,
+    "support_is_measured": false,
+    "mechanical_mesh_quality_admitted": false,
+    "FEA_spatial_convergence_established": false,
+    "fatigue_validated": false,
+    "current_geometry_CFD_accepted": false,
+    "material_process_qualified": false,
+    "optimization_complete": false,
+    "PhysicsNeMo_trained": false,
+    "manufacturing_authorized": false,
+    "physical_validation": false
+  },
+  "surface": {
+    "candidate": {
+      "vertices": 436712,
+      "faces": 873444,
+      "maximum_vertex_shift_native_units": 7.563356718419659e-06,
+      "sha256": {
+        "candidate.npz": "bc0698eeb329853020c82f3dcef013d547f19f6e4bbc234f3f64cc0cc1f43aec",
+        "candidate.stl": "1fcf180cf1f8425a56d23114a487d72a2f2e15003fc644fc2f282078ab6422d5",
+        "candidate-quantized.off": "addba09e1ee2d7814f19a3262ac0910f0bc5b9d58dd43ada3254444845392e5a"
+      }
+    },
+    "certificate": {
+      "source_faces": 1322970,
+      "candidate_faces": 873444,
+      "source_to_candidate_contained": true,
+      "candidate_to_source_contained": true,
+      "envelope_bound_native_units": 0.0225,
+      "reserved_numeric_margin_native_units": 0.0025,
+      "topology_and_self_intersection_checks_pass": true,
+      "complete_containment_pass": true
+    },
+    "protected_poor_input_facets": 189,
+    "protected_patch_rings": 3,
+    "cube_control": {
+      "input_faces": 768,
+      "output_faces": 180,
+      "volume": 1.0,
+      "every_face_on_original_cube_plane": true
+    },
+    "execution_sha256": "cc76cb83dad2d12e3c36d26c483b16af8a0ff1ab4647d87f0a8d4643046fbe49",
+    "checker_binary_sha256": "a64afa7238ab1b28064412142701473a94ba869089d20cfedfcbe3994ff56430"
+  },
+  "volume": {
+    "status": "topology_and_exact_orientation_passed",
+    "vertices": 436838,
+    "tetrahedra": 1426554,
+    "boundary_triangles": 873444,
+    "exact_boundary_coordinate_triangle_bijection": true,
+    "indexed_connectivity": {
+      "signed_volume_sum": 430665.92407228483,
+      "absolute_volume_sum": 430665.92407228483,
+      "minimum_signed_tetra_volume": 8.73930314978603e-10,
+      "count_negative": 0,
+      "count_zero": 0,
+      "repeated_node_tetrahedra": 0,
+      "tetra_connected_components": 1,
+      "boundary_missing_triangles": 0,
+      "stored_triangles_not_on_boundary": 0,
+      "duplicate_stored_triangles": 0,
+      "nonmanifold_faces": 0,
+      "boundary_triangle_count": 873444,
+      "boundary_matches": true
+    },
+    "exact_orientation": {
+      "cells": 1426554,
+      "negative": 0,
+      "zero": 0,
+      "minimum_integer_determinant": "245232112560833279040489398862089818210304",
+      "common_coordinate_scale": "36028797018963968",
+      "signed_volume_exact": "48810295803672994582031957023/113336795588871485128704",
+      "signed_volume_native_units_cubed": 430665.92407228483
+    },
+    "volume_relative_difference_from_source": 2.220446049250313e-16,
+    "volume_npz_sha256": "68f5e6a4b1dcf188b8d536195821ce3c3475074d9ba95286f94022299442241a",
+    "mechanical_mesh_admitted": false
+  },
+  "volume_audit_sha256": "b2660a913376373eba6cfe5bf1e91e3c2e45768eb4e4bda55c0a5e6d242513c2",
+  "native_mesher": {
+    "exit": 0,
+    "elapsed_s": 13.31413551303558,
+    "input_sha256": "4b6bc7dcec15d101d4aa76b65b089ba6e02bcac6084728863938a956295a15e1",
+    "binary_sha256": "fffee20ba554ea4417591dbbbbc4632d724520b2f06e8a78432cb7f22ef5cfec",
+    "upstream_version": "1.5.1",
+    "upstream_revision": "e0e173bad4e234cd11d82ab76363405b98f8f4df",
+    "memory_limit_GiB": 8,
+    "timeout_s": 900,
+    "controller_source_sha256": "1486f764a8c4ad1c4e686008bfa67da55bba4c100f304bbe0a6890585ce9f224",
+    "mechanical_mesh_admitted": false,
+    "manufacturing_authorized": false
+  },
+  "quality": {
+    "status": "all_cell_quality_diagnostics_completed",
+    "metrics": {
+      "mean_ratio": {
+        "minimum": 3.6223743455026965e-06,
+        "maximum": 0.986251787576875,
+        "quantiles": {
+          "p0.1": 0.002296873498311674,
+          "p1": 0.019095150147230015,
+          "p10": 0.04557296513485532,
+          "p50": 0.1145945610188463,
+          "p90": 0.2507691334341963,
+          "p99": 0.5081133470164803,
+          "p99.9": 0.6503358773513249
+        },
+        "worst_cell_zero_based": 811420
+      },
+      "Jacobian_condition_2norm": {
+        "minimum": 1.3854270609033725,
+        "maximum": 83201253.77298044,
+        "quantiles": {
+          "p0.1": 2.8154438259801764,
+          "p1": 4.787349751383197,
+          "p10": 10.208754841767727,
+          "p50": 21.348712209757124,
+          "p90": 52.665071211718214,
+          "p99": 314.08688597268156,
+          "p99.9": 11698.905808977383
+        },
+        "worst_cell_zero_based": 811420
+      },
+      "minimum_altitude_mm": {
+        "minimum": 1.1368074921398751e-07,
+        "maximum": 7.015353399311059,
+        "quantiles": {
+          "p0.1": 0.0003612921235940443,
+          "p1": 0.009883960838750153,
+          "p10": 0.13224797943587743,
+          "p50": 0.3295446410838345,
+          "p90": 0.47403138321842775,
+          "p99": 0.6442369188908805,
+          "p99.9": 1.2320862538946844
+        },
+        "worst_cell_zero_based": 175286
+      },
+      "longest_to_shortest_edge": {
+        "minimum": 1.1975925436840564,
+        "maximum": 125300.45943217268,
+        "quantiles": {
+          "p0.1": 1.4265429324684407,
+          "p1": 1.795257465818285,
+          "p10": 4.050713057002671,
+          "p50": 9.724168658769234,
+          "p90": 19.00550646877875,
+          "p99": 31.906096974646456,
+          "p99.9": 44.61871538019161
+        },
+        "worst_cell_zero_based": 517460
+      }
+    },
+    "legacy_mm_suffix_means_uncalibrated_native_units": true,
+    "mechanical_mesh_admitted": false
+  },
+  "FEA_preparation": {
+    "status": "matched_solver_geometry_prepared",
+    "linear_nodes": 436838,
+    "quadratic_nodes": 2736957,
+    "elements": 1426554,
+    "whole_simplex_refused_cells": 0,
+    "exact_maximum_relative_Jacobian_perturbation": "27197237914908/593663171791473097097",
+    "exact_corner_transport_L1_bound": "1/144115188075855872",
+    "exact_curvature_L1_bound": "63/2251799813685248",
+    "exact_complete_numeric_transport_L1_bound": "4033/144115188075855872",
+    "numeric_transport_budget_native_units": 1e-09,
+    "physical_or_machining_tolerance": false,
+    "source_sha256": "f316f1028c092453c6aee96b9c5faf40d41f52309538f54d3234b0b1266d0426",
+    "helper_sha256": {
+      "parts/993-eng-carrier-0001/source/design-20261016/resume-20261020/prepare_tetgen_mechanics_ccx.py": "ab4408343a741084013889a89fa3abe259fd1db47cfaa8ed0aefe085ed707d86",
+      "parts/993-eng-carrier-0001/source/design-20261016/resume-20261020/audit_quadratic_mapping.py": "ba6fa9f919a537b4743c67405f450328a86bb15b9c1016100af91cc65658e2ff"
+    },
+    "elapsed_s": 46.10184606304392,
+    "mesh_convergence_established": false,
+    "physical_validation": false,
+    "manufacturing_authorized": false
+  },
+  "structural_hypotheses": {
+    "material_id": "alsi10mg",
+    "rotor_rpm": 6000,
+    "source_unit": "uncalibrated_scan_unit",
+    "assumed_mm_per_source_unit": 1,
+    "poisson_ratio_assumed": 0.33,
+    "bore_radius_assumed_mm": 11.461905653185788,
+    "bore_band_assumed_mm": 1.5,
+    "support": "all translations fixed in unmeasured bore band",
+    "loads": "centrifugal_only",
+    "plasticity_included": false
+  },
+  "structural_executions": {
+    "P1-kali": {
+      "formulation": "C3D4",
+      "nodes": 436838,
+      "elements": 1426554,
+      "integration_points_checked": 1426554,
+      "conditional_mass_kg": 1.1498780172730005,
+      "maximum_displacement_mm": 0.0926668417338489,
+      "von_mises_max_MPa": 2240.9620755702495,
+      "element_peak_p95_outside_r25_MPa": 26.61083382065378,
+      "relative_force_balance_error": 5.940261678217289e-09,
+      "relative_moment_balance_error": 1.004114148014626e-08,
+      "equilibrium_pass": true,
+      "binary_sha256": "db2ed33d0fd97ef4daad298def2fd8d3e9879e488647b0e7b44f52038b62ea0b",
+      "deck_sha256": "1330d03f4b0fe33613e7b670293443ed31c19dfc569978b33936f894ea22e865",
+      "fields_npz_sha256": "e2fc5aa975d6b3425081cd873aa0b70729f7c5495042aba8e090cec47a2a1a19",
+      "audit_sha256": "22e0e822afb3f17dbfeca73a5461abf643e1a4d9a9d2324977439aad91251a2b",
+      "execution_sha256": "289bed16a4a6836570eaf0c4be9d0e18e18f534cf732486cb902139584c8e8e9",
+      "elapsed_s": 42.16293172701262,
+      "peak_group_rss_KiB": 3376296
+    },
+    "P1-mac": {
+      "formulation": "C3D4",
+      "nodes": 436838,
+      "elements": 1426554,
+      "integration_points_checked": 1426554,
+      "conditional_mass_kg": 1.1498780172730005,
+      "maximum_displacement_mm": 0.0926668417338489,
+      "von_mises_max_MPa": 2240.962101265039,
+      "element_peak_p95_outside_r25_MPa": 26.61083382230285,
+      "relative_force_balance_error": 5.6306184016956144e-09,
+      "relative_moment_balance_error": 9.62538011910537e-09,
+      "equilibrium_pass": true,
+      "binary_sha256": "c4a6dc9787c3a71dc278a1b4c535b2a1120c7c9bff5f3e4b452d7c075677e364",
+      "deck_sha256": "1330d03f4b0fe33613e7b670293443ed31c19dfc569978b33936f894ea22e865",
+      "fields_npz_sha256": "2b2563c0e3d423fbfb035d8b4c52d65b2a105e3216588bdf2aa5085c652599db",
+      "audit_sha256": "b21ccab4db4380160413b7d68b6ee939d527e3b4cd651b2d8d0072e9c5e566c1",
+      "execution_sha256": "309fed700d47669381acbb420a2c4bbea335523a7ed8b85fd50262993d370601",
+      "elapsed_s": 44.76180862495676,
+      "peak_group_rss_KiB": 5228864
+    },
+    "P2-mac": {
+      "formulation": "C3D10",
+      "nodes": 2736957,
+      "elements": 1426554,
+      "integration_points_checked": 5706216,
+      "conditional_mass_kg": 1.1498780172730005,
+      "maximum_displacement_mm": 0.3092880365893993,
+      "von_mises_max_MPa": 1643.096909005942,
+      "element_peak_p95_outside_r25_MPa": 36.551546261439015,
+      "relative_force_balance_error": 7.065363225901568e-10,
+      "relative_moment_balance_error": 5.175470693923481e-09,
+      "equilibrium_pass": true,
+      "binary_sha256": "c4a6dc9787c3a71dc278a1b4c535b2a1120c7c9bff5f3e4b452d7c075677e364",
+      "deck_sha256": "ebbd95da2df8fba4e47c34662a8a77f658ba6c07a018e402ad26012681259133",
+      "fields_npz_sha256": "291307c8e2c6404c982be9fbbdd604f6c6714d42d8101cff50f9988a8630d003",
+      "audit_sha256": "9ce0513d42a65331cc400fbc30f0f614dd9155c5200ba3f653c541a3bf25c6a6",
+      "execution_sha256": "e01e707cd246951dd467ca6e310830e46e4712235a776709432c999a4e5ada82",
+      "elapsed_s": 676.0242019998841,
+      "peak_group_rss_KiB": 39606832
+    }
+  },
+  "comparison": {
+    "schema": "935-matched-formulation-comparison-v1",
+    "cross_platform_P1": {
+      "same_deck": true,
+      "same_geometry": true,
+      "relative_global_maximum_tolerance": 1e-05,
+      "fields": {
+        "displacement": {
+          "maximum_absolute_difference": 1.0000000001675335e-08,
+          "reference_absolute_maximum": 0.06187839,
+          "relative_global_maximum_difference": 1.6160730752166202e-07,
+          "passed": true
+        },
+        "reaction": {
+          "maximum_absolute_difference": 9.999999999621423e-06,
+          "reference_absolute_maximum": 1185.327,
+          "relative_global_maximum_difference": 8.436490520861688e-09,
+          "passed": true
+        },
+        "raw_RF": {
+          "maximum_absolute_difference": 9.999999999621423e-06,
+          "reference_absolute_maximum": 1185.327,
+          "relative_global_maximum_difference": 8.436490520861688e-09,
+          "passed": true
+        },
+        "element_peak_von_mises": {
+          "maximum_absolute_difference": 0.0014420068496292515,
+          "reference_absolute_maximum": 2240.9620755702495,
+          "relative_global_maximum_difference": 6.434766859061233e-07,
+          "passed": true
+        }
+      },
+      "passed": true
+    },
+    "same_runtime_P1_P2": {
+      "same_binary": true,
+      "same_parent_geometry": true,
+      "metrics": {
+        "maximum_displacement_mm": {
+          "P1": 0.0926668417338489,
+          "P2": 0.3092880365893993,
+          "absolute_relative_difference_to_P2": 0.7003865951114353
+        },
+        "element_peak_p95_outside_r25_MPa": {
+          "P1": 26.61083382230285,
+          "P2": 36.551546261439015,
+          "absolute_relative_difference_to_P2": 0.27196421098122936
+        },
+        "von_mises_max_MPa": {
+          "P1": 2240.962101265039,
+          "P2": 1643.096909005942,
+          "absolute_relative_difference_to_P2": 0.3638648390013708
+        }
+      },
+      "maximum_displacement_P2_to_P1": 3.3376343771131682
+    },
+    "audit_sha256": {
+      "P1-kali": "22e0e822afb3f17dbfeca73a5461abf643e1a4d9a9d2324977439aad91251a2b",
+      "P1-mac": "b21ccab4db4380160413b7d68b6ee939d527e3b4cd651b2d8d0072e9c5e566c1",
+      "P2-mac": "9ce0513d42a65331cc400fbc30f0f614dd9155c5200ba3f653c541a3bf25c6a6"
+    },
+    "source_sha256": "16c3e2a59e04e8a37a3e15a5ff36a674aff4d6387fa0fea9c3410b1077cc5756",
+    "mesh_convergence_established": false,
+    "formulation_independence_established": false,
+    "material_process_qualified": false,
+    "physical_validation": false,
+    "manufacturing_authorized": false
+  },
+  "peak_location": {
+    "same_cell_P1_P2": true,
+    "cell_zero_based": 811420,
+    "coincides_with_worst_mean_ratio_and_condition": true,
+    "causality_established": false
+  },
+  "refinement": {
+    "exit": 0,
+    "vertices": 685514,
+    "tetrahedra": 2952749,
+    "boundary_change": {
+      "parent_nodes_unchanged_exactly": true,
+      "parent_boundary_faces": 873444,
+      "refined_boundary_faces": 873444,
+      "removed_boundary_triangles": 124915,
+      "added_boundary_triangles": 124915,
+      "unchanged_triangle_bijection": false,
+      "boundary_certificate_reused": false,
+      "mechanical_mesh_admitted": false,
+      "manufacturing_authorized": false
+    },
+    "status": "boundary_certificate_reuse_refused",
+    "mechanical_mesh_admitted": false
+  },
+  "other_rejected_executions": {
+    "TetGen_1_6": {
+      "exit": -6,
+      "accepted": false
+    },
+    "Mac_Netgen_hybrid_volume": {
+      "exit": -11,
+      "elapsed_s": 40.2396033750847,
+      "analytic_control_passed": true,
+      "accepted": false
+    }
+  },
+  "private_evidence": {
+    "repository": "cluster2600/porscheparts-935-private",
+    "release": "analysis-mesh-935-20261022",
+    "archives": {
+      "protected_input_and_P1": {
+        "archive_sha256": "2925e17b53357222ad75a7bf7a4c4f329a4574df5977d6725b11e4ec22fa655b",
+        "archive_bytes": 682664741,
+        "manifest_sha256": "e4115f42f12699d3d90e2dc911a6b2ab6032e32191485f5c0c47f7a03d52a882",
+        "entries": 153,
+        "all_members_verified": true,
+        "all_inputs_unchanged_after_archive": true,
+        "active_P2_output_excluded": true,
+        "created_epoch": 1792648908.4940858,
+        "new_paid_instance_created": false,
+        "manufacturing_authorized": false
+      },
+      "P2_and_same_runtime_comparison": {
+        "archive_sha256": "821a253dcf290125837385fd271a6d35d83a3f1404e6b7b926235bde4d0cd44a",
+        "archive_bytes": 685849685,
+        "manifest_sha256": "d8ca02a7ef362b6149732d7c5de8ed57d9ab5cac3f1874d3bc9b4764a3a9758f",
+        "entries": 39,
+        "all_members_verified": true,
+        "all_inputs_unchanged_after_archive": true,
+        "created_epoch": 1792649219.1886022,
+        "all_solver_jobs_finished": true,
+        "new_paid_instance_created": false,
+        "manufacturing_authorized": false
+      }
+    }
+  },
+  "runtime_state": {
+    "all_solver_jobs_finished": true,
+    "new_paid_instance_created": false
+  }
+}

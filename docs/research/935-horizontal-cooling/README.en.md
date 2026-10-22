@@ -36,6 +36,10 @@ calibration, accepted fan CFD, structural convergence and manufacturing remain o
 quality-constrained surface approximation with the original complete-surface
 bound. Native volume proposals retain separate numerical admission gates.
 
+The [quadratic-rotor continuation](QUADRATIC_ROTOR_CONTINUATION_20261022.md)
+obtains a positive preserved-boundary volume and complete C3D4/C3D10 fields.
+Its large formulation sensitivity prevents a convergence or strength claim.
+
 The [executed campaign](IMPLEMENTATION.md) fits observed cylindrical surfaces
 and the sections of nine blade regions. It provides PicoGK
 lofts, three resolutions, an editable FreeCAD/STEP CAD model and private
