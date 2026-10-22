@@ -187,6 +187,11 @@ then adds guarded interior air-mesh points while retaining every physical bounda
 and original coordinate. Failed determinants fall from 2,090 to 519; independent
 native readback confirms the complete mesh, but four quality checks still fail.
 
+The [finite-volume point-placement study](docs/research/935-horizontal-cooling/FLUID_POINT_PLACEMENT_20261022.md)
+then searches three-dimensional cavity point positions with bounded SciPy runs.
+Failed determinants fall from 519 to 448 with exact boundaries retained; the
+remaining native quality failures continue to block a new rotor CFD calculation.
+
 Read the [engineering workflow](docs/architecture/engineering-workflow.md),
 [PicoGK decision](docs/decisions/0004-picogk-new-geometry.md),
 [software inventory and dated execution evidence](docs/SOFTWARE_STACK.md), and
