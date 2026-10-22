@@ -165,6 +165,12 @@ then preserves the boundary and exact volume while improving internal mesh
 conditioning. Repeated quadratic fields retain stable global displacement but
 show a 68% peak-stress change, keeping strength and spatial convergence open.
 
+The [Foundation 13 rotor pilot](docs/research/935-horizontal-cooling/FOUNDATION13_ROTOR_PILOT_20261022.md)
+then verifies the rotating-wall velocity and viscous torque against circular
+Couette flow before running MRF/SST on the private rotor. The first fluid mesh
+fails the extended concavity check; its exploratory calculation cannot qualify
+a fan curve, the historical assembly or manufacturing.
+
 Read the [engineering workflow](docs/architecture/engineering-workflow.md),
 [PicoGK decision](docs/decisions/0004-picogk-new-geometry.md),
 [software inventory and dated execution evidence](docs/SOFTWARE_STACK.md), and
