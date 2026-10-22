@@ -215,6 +215,12 @@ surface bounds and the PicoGK master. An adaptive fluid-mesh experiment adds
 an explicit size field; its surface, volume and native-quality admissions remain
 separate from the certified analysis geometry.
 
+The [hex-mesh continuation](docs/research/935-horizontal-cooling/HEX_MESH_CONTINUATION_20261022.md)
+preserves the saved castellated mesh, qualified four-rank controls and a complete
+wall-inspection view. Precise OBJ and rounded VTK exports have separate roles.
+The user paused the real snapping run before completion; its processes are
+stopped and its checkpoint is backed up. No new fan calculation is admitted.
+
 Read the [engineering workflow](docs/architecture/engineering-workflow.md),
 [PicoGK decision](docs/decisions/0004-picogk-new-geometry.md),
 [software inventory and dated execution evidence](docs/SOFTWARE_STACK.md), and
