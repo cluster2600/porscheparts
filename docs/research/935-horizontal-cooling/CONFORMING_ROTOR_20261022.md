@@ -1,7 +1,7 @@
 # 935 rotor: conforming volume and native structural studies
 
 This continues the [complete-system work](COMPLETE_SYSTEM_20261022.md) through
-the [root README's software chain](../../../README.md#software-chain-qwen-and-picogk):
+the [engineering overview's software chain](../../ENGINEERING_OVERVIEW.md#software-chain-qwen-and-picogk):
 retained PicoGK geometry, independent mesh checks, CalculiX, then numerical
 acceptance. The target remains the horizontal 935 installation. Generic mesh
 arithmetic reused from other programs imports no other engine geometry.

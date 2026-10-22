@@ -362,7 +362,7 @@ added alone, with nothing to close at the front, bring exactly zero for 7.5 kg.
 > **Withdrawn for quadratic shells.** The windshield-frame ranking above was
 > computed with linear S3 elements. In quadratic S6 shells the best return per
 > kilogram is the **center tunnel** — see [fea/README.md](fea/README.md) and the
-> withdrawn-claims table of the [README](../../README.md#what-the-repository-withdrew-from-its-own-results).
+> withdrawn-claims table of the [engineering overview](../../docs/ENGINEERING_OVERVIEW.md#what-the-repository-withdrew-from-its-own-results).
 
 **A cross member of the model carried nothing.** A connectivity check added to
 the builder showed that the rear cross member, placed at x = -1703 by the datum

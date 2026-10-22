@@ -22,7 +22,7 @@ Statuses used:
 
 For the current execution order and the roles of **our qwen-picogk project,
 PicoGK and our PorscheFanatics.com information catalogue**, start
-with the [README software-chain diagram](../README.md#software-chain-qwen-and-picogk)
+with the [software-chain diagram of the engineering overview](ENGINEERING_OVERVIEW.md#software-chain-qwen-and-picogk)
 and [engineering workflow](architecture/engineering-workflow.md). Visualization
 and PhysicsNeMo are optional branches, not prerequisites for fabrication.
 The dated execution statuses below remain attached to their original evidence.
