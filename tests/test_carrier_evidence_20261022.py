@@ -26,5 +26,31 @@ class EvidenceTests(unittest.TestCase):
         timeout=json.loads((REPORT/'evidence/refused-fine-and-tetgen-collected-001/h1-P2-native-001/actual-terminal.json').read_text());self.assertEqual(timeout['actual_returncode'],124);self.assertTrue(timeout['outer_timeout']);self.assertTrue(timeout['process_reaped']);self.assertFalse(timeout['solver_finished_marker'])
         comparison=json.loads((REPORT/'evidence/P1-comparison.json').read_text());self.assertFalse(comparison['convergence_demonstrated'])
 
+    def test_quadratic_comparison_stays_open_despite_stable_global_stiffness(self):
+        row=json.loads((REPORT/'evidence/P2-comparison-001.json').read_text())
+        self.assertFalse(row['convergence_demonstrated'])
+        changes=row['comparisons'][0]['relative_change_using_finer_denominator']
+        self.assertLess(changes['displacement_max_mm'],.02)
+        self.assertGreater(changes['central_peak_VM_MPa'],.05)
+        timeout=json.loads((REPORT/'evidence/serial-followup-mechanics-collected-001/h1-P2-serial-all-002/actual-terminal.json').read_text())
+        self.assertEqual(timeout['actual_returncode'],124);self.assertTrue(timeout['process_reaped'])
+
+    def test_cellular_screen_does_not_become_a_changed_part_or_resistance_claim(self):
+        screen=json.loads((REPORT/'evidence/cellular-budget-001/assessment.json').read_text())
+        self.assertFalse(screen['reference_geometry_changed']);self.assertFalse(screen['cellular_geometry_generated']);self.assertFalse(screen['cellular_strength_validated'])
+        self.assertGreater(screen['conditional_mass_reduction_kg'],0)
+        self.assertLess(screen['conditional_mass_reduction_kg'],.002)
+        for device in ['cpu','cuda']:
+            row=json.loads((REPORT/f'evidence/cellular-screen-collected-001/results/cellular-{device}/report.json').read_text())
+            self.assertEqual(row['queries'],screen['analysis_cells']);self.assertEqual(row['status'],'passed');self.assertEqual(row['fixed_absolute_error_limit_mm'],.0001)
+        self.assertTrue(row['gpu_validated'])
+
+    def test_compiler_case_keeps_the_failed_control_and_fixed_comparison_limits(self):
+        row=json.loads((REPORT/'evidence/compiler-regression-comparison-001.json').read_text())
+        self.assertFalse(row['cases']['static']['fixed_limits_pass']);self.assertTrue(row['cases']['recursive']['fixed_limits_pass'])
+        self.assertEqual(row['contract']['stress_component_difference_limit_MPa'],.01)
+        rejected=json.loads((REPORT/'evidence/serial-followup-mechanics-collected-001/compiler-recursive-P2-001/actual-terminal.json').read_text())
+        self.assertNotEqual(rejected['actual_returncode'],0);self.assertTrue(rejected['process_reaped'])
+
 
 if __name__=='__main__':unittest.main()

@@ -86,5 +86,24 @@ proof of provider teardown.
 
 Replace eligible solid material; filling existing hollow arms increases mass.
 The report describes the current nominal thin walls and the earlier, different
-added-BCC experiment. No cellular candidate, eligible-volume fraction or mass gain
-has been numerically accepted by this continuation.
+added-BCC experiment. The executed conservative whole-cell screen selects 543.712 mm³ of the analysis
+volume, with a conditional 1.442 g saving at relative density 0.40. This is a
+subset screen, not a maximum saving or a generated and solved lighter part.
+
+`prepare_cellular_screen.py` requires the accepted complete quadratic field,
+its mapping proof, independent energy assessment and source hashes. It integrates
+all cell energies and constructs an independent libigl distance oracle for all
+cell centroids. Run the unchanged `check_carrier_warp.py` separately on CPU and
+actual CUDA; then `select_cellular_budget.py` consumes both reports and
+`cellular-screen-parameters.json`. Keep arrays outside Git and publish compact
+receipts and the generated figure. The whole-cell radius, curved mapping and
+transport allowances protect the entire selected cell; centroid clearance alone
+is insufficient.
+
+`build_native_thread_profiles.sh` builds pinned Debian 2.21 source with default
+and recursive Fortran storage. `run_native_ccx_alternate.py` requires the expected
+binary SHA before creating a case. The recursive eight-thread T4 regression
+passes the original analytic, equilibrium, energy and declared full-field
+comparison limits; the quadratic attempt failed its 24 GiB allocation cap.
+`run_native_ccx_long_serial.py` is the distinct one-thread, at-most-2,400 s worker.
+The executed 2,349 s fine T10 repeat timed out and contributes no result.

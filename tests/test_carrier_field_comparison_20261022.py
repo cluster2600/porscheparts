@@ -2,6 +2,9 @@
 import importlib.util
 from pathlib import Path
 import unittest
+import subprocess
+import sys
+import tempfile
 import numpy as np
 
 SOURCE=Path(__file__).resolve().parents[1]/'parts/993-eng-carrier-0001/source/design-20261016/convergence-20261022/compare_accepted_fields.py'
@@ -9,6 +12,19 @@ spec=importlib.util.spec_from_file_location('_carrier_comparison',SOURCE);module
 
 
 class ComparisonTests(unittest.TestCase):
+    def test_alternate_binary_requires_matching_identity_before_any_case_is_created(self):
+        with tempfile.TemporaryDirectory()as directory:
+            root=Path(directory);binary=root/'unqualified';binary.write_bytes(b'not a qualified solver');out=root/'case'
+            run=subprocess.run([sys.executable,str(SOURCE.with_name('run_native_ccx_alternate.py')),'--binary',str(binary),'--deck','missing.inp','--output',str(out),'--expected-binary','wrong'],capture_output=True,text=True,timeout=5)
+            self.assertNotEqual(run.returncode,0);self.assertIn('Qualified native binary identity differs',run.stderr);self.assertFalse(out.exists())
+
+    def test_long_serial_profile_refuses_extra_threads_or_excess_time_before_execution(self):
+        with tempfile.TemporaryDirectory()as directory:
+            out=Path(directory)/'fresh'
+            for extra in [['--seconds','2401'],['--threads','2']]:
+                run=subprocess.run([sys.executable,str(SOURCE.with_name('run_native_ccx_long_serial.py')),'--deck','missing.inp','--output',str(out),'--expected-binary','unqualified',*extra],capture_output=True,text=True)
+                self.assertNotEqual(run.returncode,0);self.assertIn('Fresh bounded run required',run.stderr);self.assertFalse(out.exists())
+
     def test_alternative_solver_changes_one_directive_and_preserves_physics(self):
         path=SOURCE.with_name('prepare_iterative_solver.py');spec=importlib.util.spec_from_file_location('_carrier_solver',path);solver=importlib.util.module_from_spec(spec);spec.loader.exec_module(solver)
         deck='*STATIC,SOLVER=SPOOLES\n*BOUNDARY\nFIXED,1,3\n*CLOAD\n1,3,-4000\n';changed=solver.iterative_deck(deck)

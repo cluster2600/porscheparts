@@ -1,0 +1,51 @@
+{
+  "status": "accepted_analysis_centroid_screen_prepared",
+  "queries": 1373132,
+  "vertices": 98169,
+  "triangles": 196406,
+  "bundle_sha256": "a121d09c2b16742930d3286d1707afc80130fa845fd8f064475055f5ecb768b6",
+  "fixed_absolute_error_limit_mm": 0.0001,
+  "query_groups": {
+    "all_analysis_cell_centroids": [
+      0,
+      1373132
+    ]
+  },
+  "surface_float32_transport_L1_bound_mm": 6.938893903907228e-18,
+  "source_sha256": {
+    "inputs/preparation/transport.npz": "0c780bf1c44371ef5d7ac56c7aef4f234dd5f279bf65cf28e8f7b53afc365a92",
+    "inputs/mechanics/results.npz": "abe9cc8edfb461a32fd1c797836e7883550a01a2d92be3fa23c791e593f0054d",
+    "inputs/mapping-proof.json": "52376f35e7d41e58e6e899accbbd4cdaaf8434ed61d65801454adfe7bcb8ae68",
+    "inputs/study.json": "f41352402649adf98dda9d6bb294f7342e5ed6f5c8b5609be9e103229f4c6ccf",
+    "tools/cellular-screen-parameters.json": "8d2615d9f6fe6047e21cd33a0849a191fdcf6dbeeaaba05b7ef13ab83086c7ff",
+    "inputs/mechanics/assessment.json": "4ba150dc0ce3b9041823515d09b1270f6588d7c852c78cd7c50fcda1d8b5dfb3",
+    "inputs/preparation/assessment.json": "182782bc9e2c9f3608ebf4a98edf1bab4730ef6b428a1d5d2fc1601d0be75ba7",
+    "/workspace/carrier-cellular-screen-20261022/tools/prepare_cellular_screen.py": "f56289703b0555ea8140108b86c78537d140e3ed3cb62f3bb469f8766ef946f0",
+    "/workspace/carrier-cellular-screen-20261022/tools/compare_accepted_fields.py": "7054ee03206f6e74854fecd4d877e846fb32e2f16e060162cfe937e229b2b566"
+  },
+  "screen_fields_sha256": "fe6c9bd71a7682820ea646adcf282d64c30be3222ada230cb9c16d3ccb73fbd4",
+  "parameters": {
+    "part_id": "993-ENG-CARRIER-0001",
+    "skin_mm": 1.5,
+    "bore_keepout_mm": 10.0,
+    "end_inboard_limit_abs_X_mm": 260.0,
+    "maximum_selected_volume_fraction": 0.1,
+    "relative_density_scenario": 0.4,
+    "distance_error_limit_mm": 0.0001,
+    "scope": "Provisional analysis-volume budget; design assumptions, not machine limits or a generated lattice"
+  },
+  "material": {
+    "name": "Ti-6Al-4V dense elastic reference only",
+    "source": "https://www.timet.com/documents/datasheets/alpha-and-beta-alloys/timetal-6-4.pdf",
+    "E_MPa": 107000.0,
+    "nu": 0.31,
+    "density_tonne_mm3": 4.42e-09,
+    "expansion_per_K": 9e-06,
+    "strength_allowable_MPa": null,
+    "fatigue_curve": null,
+    "manufactured_state_qualified": false
+  },
+  "geometry_role": "auxiliary analysis volume; reference R2 stays unchanged",
+  "exact_arithmetic_certificate": false,
+  "cellular_geometry_generated": false
+}

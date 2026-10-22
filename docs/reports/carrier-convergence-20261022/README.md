@@ -59,7 +59,8 @@ executed on CUDA here. The approved provider launcher uses its existing pinned
 mesh-CFD SSH image, inside which the isolated hash-pinned Python environment
 was installed. No Docker-in-Docker operation or provider-secret retrieval was
 used. Qwen, PorscheFanatics and ComPilot are workflow context in PR #274; these
-results do not claim fresh model inference or compiler validation.
+results do not claim fresh model inference or validation of ComPilot. The separate
+CalculiX compiler experiment is documented below.
 
 ## Refinement protocol
 
@@ -97,7 +98,7 @@ retained rather than replaced by the successful repeat.
 
 This mitigation is case-specific evidence, not a guarantee for every refined
 mesh. The later fan T10 case still fails the independent reaction-force limit
-with serial result recovery; a fully serial repeat is the next diagnostic.
+with serial result recovery; the fully serial repeat below passes both equilibrium and independent energy.
 
 The native quadratic reference independently passes equilibrium and stress
 energy and recovers the previous **2.491741 mm / 1,152.404 MPa** values.
@@ -137,6 +138,28 @@ completed all result rows, but is **refused**: the X reaction residual is
 **8.14 × 10⁻⁷** passes. Its apparent displacement/stress values are not admitted
 to the convergence comparison. See the [complete refused assessment](evidence/fan-P2-assessment-001/assessment.json).
 
+A separate **fully serial repeat** completes in **471.93 s** and passes both
+checks: force residual components are below **0.000036 N**, and the independent
+energy residual is **6.48 × 10⁻⁹**. The earlier failed case remains refused.
+
+| Accepted quadratic field | Max displacement, mm | Compliance, N·mm | Global peak VM, MPa | Volume-weighted p95, MPa | Central peak, MPa |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| Coarse T10 | 2.491741 | 20,284.901 | 1,152.404 | 179.428 | 716.837 |
+| Interior fan T10, fully serial | 2.493267 | 20,299.518 | 1,568.735 | 179.564 | 902.512 |
+
+Displacement changes **0.0612%**, compliance **0.0720%**, and volume-weighted
+p95 stress **0.0760%**. However, global and central peaks change **26.54%** and
+**20.57%**. The central p95 changes **0.489%**. This is one interior-refinement
+comparison; **complete spatial convergence remains false**. Removing the end
+region does not stabilize the central peak.
+
+![Accepted quadratic comparison](../../media/carrier-convergence-20261022/P2/carrier-spatial-comparison.png)
+
+The separate fully serial red8 T10 repeat reached its **2,349 s** wall limit,
+was reaped, and produced an empty DAT field. It is excluded. Its compact receipt
+and collection hashes are retained; the larger mesh has not supplied a second
+accepted spatial comparison.
+
 Successful process exit alone is never used as convergence evidence. The separate
 original R2 manufacturing-study surface stays unchanged; these are analysis meshes.
 
@@ -155,9 +178,45 @@ The fan worsens the worst shape measures. This is a possible contributor to
 numerical sensitivity, **not an established cause** of its failed reaction check.
 The condition measure uses the stored local corner ordering. Exact source-bound
 reports are retained for the [coarse mesh](evidence/coarse-quality-001/assessment.json)
-and [fan mesh](evidence/fan-quality-001/assessment.json). A full serial repeat
-and the built-in iterative Cholesky solver are distinct diagnostics; changing
+and [fan mesh](evidence/fan-quality-001/assessment.json). The full serial repeat
+and built-in iterative Cholesky solver are distinct diagnostics; changing
 the linear solver alone must preserve all geometry, material, loads and supports.
+
+The resumed native runtime passes all three direct analytic controls with one
+thread. Built-in iterative Cholesky completes its processes but **fails both
+traction controls** at unchanged limits. P1 stress error is **0.000125328 MPa**;
+P2 stress error is **0.008415576 MPa**, against **0.000001 MPa**. It is not admitted
+to production comparisons. Its source-preserving deck transformation does not
+qualify the solver's numerical accuracy.
+
+### Compiler storage regression
+
+Two binaries were built from the same pinned Debian CalculiX 2.21 source and
+patches, with identical C flags and Fortran flags except for **`-frecursive`**.
+The [GFortran documentation](https://gcc.gnu.org/onlinedocs/gfortran/Code-Gen-Options.html)
+describes its local-array storage behavior. Both binaries pass all three original
+analytic controls with eight threads. The production inputs and numeric source
+are unchanged. Compiler banners, archive identities, flags, binary hashes and
+linked-library metadata are retained.
+
+The full coarse T4 regression distinguishes the profiles: default storage fails
+with a **−541.55 N** X reaction residual and **0.001177** energy residual.
+The recursive build passes equilibrium and independent energy (**6.61 × 10⁻⁹**).
+Against the accepted stock serial field, its maximum component differences are
+**1.0 × 10⁻¹⁰ mm** displacement, **0.0001 MPa** stress and **0 N** reactions,
+within the limits declared before the comparison. The default-storage field fails
+those limits. This supports the storage-setting diagnosis for this full-size T4
+case; it does not qualify every mesh or establish a specific upstream source fix.
+
+The recursive fan T10 attempt was **refused** after allocation failure at its
+separate **24 GiB address-space cap** (process code 255). It produced no complete
+field and does not qualify parallel quadratic recovery. The stock fully serial
+fan result above remains the accepted field. A further quadratic run would need
+an independently bounded memory allowance before it can test this hypothesis.
+
+All collected outputs were hashed before the final owned Vast instance was
+destroyed. The provider independently confirmed absence, and the retained guard
+recorded **three consecutive absence confirmations**. No rental remains running.
 
 ## Toolchain coverage in this continuation
 
@@ -225,3 +284,44 @@ before skins, blends and machining allowances. For example, `f = 0.10` and
 `r = 0.40` imply about **78 g** removed. This is an algebraic scenario, **not a
 measured eligible volume, generated design or solved candidate**. The numerical
 comparison must establish the actual eligible volume and stiffness cost.
+
+### Executed protected-core screen
+
+The algebraic 78 g example above is **not** a found saving. A new executed screen
+uses the accepted fully serial fan T10 field, all **1,373,132 analysis-cell
+centroids**, and their integrated strain energies. CPU and actual CUDA distances
+are checked against an independent libigl oracle on the exact float32-promoted
+arrays. Both pass the unchanged **0.0001 mm** limit, with maximum errors
+**0.0000471 mm on CPU** and **0.0000435 mm on CUDA**, without missed queries.
+This fixture uses the **196,406-face auxiliary analysis boundary**, separately
+from the earlier 1,218,348-face retained-R2 query test.
+
+For each entire analysis cell, the screen subtracts its corner-ball radius,
+the quadratic mapping deviation bound, float32 transport bounds and the fixed
+distance-error allowance. It retains a nominal **1.5 mm skin**, **10 mm bore
+keepouts** and the inboard region `abs(X) ≤ 260 mm`. These are provisional design
+assumptions, not demonstrated printer limits. Whole-cell protection is deliberately
+conservative and can reject cells with an admissible subvolume.
+
+Only **192 whole cells**, totaling **543.712 mm³**, survive this screen. They
+represent **0.1851%** of the auxiliary analysis volume and **0.0477%** of its
+original strain energy. Conditional replacement at relative density **0.40**
+would remove **1.442 g**, giving an **analysis-proxy** mass of **1.296793 kg**.
+The retained R2 part remains unchanged at **1.298199813 kg**. The proxy uses its
+own integrated volume; it is not a measured mass of a newly generated part.
+
+![Conservative whole-cell candidates from the accepted numerical field](../../media/carrier-convergence-20261022/carrier-cellular-budget-screen.png)
+
+**This is a conservative subset, not an upper bound on possible weight reduction.**
+The coarse cells and their enclosing balls can exclude useful material in the
+8 mm central plate. A finer geometric partition, altered skins, or a redesigned
+cellular section could expose more material. None is credited here without its
+own geometry and comparison. Low original strain energy does not predict the
+redistributed stress, local buckling or stiffness of the changed design.
+
+Reproduce with `prepare_cellular_screen.py`, the unchanged paired
+`check_carrier_warp.py` queries, and `select_cellular_budget.py` using the retained
+[cellular parameters](../../../parts/993-eng-carrier-0001/source/design-20261016/convergence-20261022/cellular-screen-parameters.json).
+The [assessment](evidence/cellular-budget-001/assessment.json), oracle and paired
+device reports are exact copies in the evidence manifest. No lattice geometry,
+changed-part solve, or microcell manufacturing qualification has been produced.
