@@ -40,6 +40,11 @@ The [quadratic-rotor continuation](QUADRATIC_ROTOR_CONTINUATION_20261022.md)
 obtains a positive preserved-boundary volume and complete C3D4/C3D10 fields.
 Its large formulation sensitivity prevents a convergence or strength claim.
 
+The [interior-star correction](INTERIOR_STAR_CONTINUATION_20261022.md) independently
+checks constrained internal-node moves and repeats both structural formulations.
+Boundary geometry and support sets remain exact; numerical peak-stress sensitivity
+still prevents a strength or manufacturing conclusion.
+
 The [executed campaign](IMPLEMENTATION.md) fits observed cylindrical surfaces
 and the sections of nine blade regions. It provides PicoGK
 lofts, three resolutions, an editable FreeCAD/STEP CAD model and private

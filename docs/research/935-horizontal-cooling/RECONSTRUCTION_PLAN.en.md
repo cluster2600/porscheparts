@@ -5,6 +5,12 @@
 
 ## Selected implementation order and current state
 
+The [interior-star continuation](INTERIOR_STAR_CONTINUATION_20261022.md) preserves
+the certified surface and exact volume while conditioning the calculation mesh.
+Complete repeated quadratic fields show stable displacement and a strongly
+mesh-sensitive peak stress. The spatial-convergence series and physical inputs
+remain required before mechanical acceptance.
+
 The latest [quadratic-rotor continuation](QUADRATIC_ROTOR_CONTINUATION_20261022.md)
 completes the preserved-boundary volume audit and matched C3D4/C3D10 calculations.
 Whole-simplex numerical transport and equilibrium pass; element quality and
