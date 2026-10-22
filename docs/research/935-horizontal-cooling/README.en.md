@@ -32,6 +32,10 @@ calibration, accepted fan CFD, structural convergence and manufacturing remain o
 
 ## Reconstruction from the scans — October 5, 2026
 
+[Analysis-mesh correction](ANALYSIS_MESH_CONTINUATION_20261022.md) adds a
+quality-constrained surface approximation with the original complete-surface
+bound. Native volume proposals retain separate numerical admission gates.
+
 The [executed campaign](IMPLEMENTATION.md) fits observed cylindrical surfaces
 and the sections of nine blade regions. It provides PicoGK
 lofts, three resolutions, an editable FreeCAD/STEP CAD model and private
