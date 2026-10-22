@@ -182,6 +182,11 @@ then changes local tetrahedral connectivity while preserving all vertex coordina
 and boundary triangles. Exact cavity checks and complete native audits measure
 the improvement; remaining full-quality failures still block CFD admission.
 
+The [interior fluid-mesh continuation](docs/research/935-horizontal-cooling/FLUID_KERNEL_CONTINUATION_20261022.md)
+then adds guarded interior air-mesh points while retaining every physical boundary
+and original coordinate. Failed determinants fall from 2,090 to 519; independent
+native readback confirms the complete mesh, but four quality checks still fail.
+
 Read the [engineering workflow](docs/architecture/engineering-workflow.md),
 [PicoGK decision](docs/decisions/0004-picogk-new-geometry.md),
 [software inventory and dated execution evidence](docs/SOFTWARE_STACK.md), and
