@@ -5,6 +5,11 @@
 
 ## Selected implementation order and current state
 
+The [analysis-mesh correction](ANALYSIS_MESH_CONTINUATION_20261022.md) follows
+with a quality-constrained approximation of the unchanged PicoGK master and
+independent full-surface verification. Native volume proposals require their
+own orientation, boundary, connectivity, quality and convergence checks.
+
 The [native GPU continuation](NATIVE_GPU_CONTINUATION_20261022.md) follows the
 root README with actual complete-rotor CUDA queries, OVRTX inspection of the
 retained assembly and independently checked conditional material/speed comparisons.

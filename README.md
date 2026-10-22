@@ -149,6 +149,11 @@ records complete-rotor CUDA checks, native OVRTX assembly views, a bounded analy
 surface and conditional material/speed comparisons. The rental is destroyed after
 verified backups. Fan CFD, mechanical convergence and manufacturing remain open.
 
+The [analysis-mesh correction](docs/research/935-horizontal-cooling/ANALYSIS_MESH_CONTINUATION_20261022.md)
+then preserves the full surface bound while preventing the simplifier from
+creating very thin triangles. Geometric checks, native volume meshing and
+mechanical acceptance remain separate stages.
+
 Read the [engineering workflow](docs/architecture/engineering-workflow.md),
 [PicoGK decision](docs/decisions/0004-picogk-new-geometry.md),
 [software inventory and dated execution evidence](docs/SOFTWARE_STACK.md), and
