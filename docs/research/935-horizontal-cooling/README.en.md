@@ -22,6 +22,9 @@ historical interfaces and numerical acceptance gates.
 continues with the full PicoGK boundary, exact cell-orientation checks and
 conditional centrifugal studies. Numerical convergence remains open.
 
+[Local runtime follow-up](LOCAL_RUNTIME_CONTINUATION_20261022.md) records the
+48 GiB quadratic stop and six rootless OpenFOAM analytical controls on Kali1.
+
 ## Reconstruction from the scans — October 5, 2026
 
 The [executed campaign](IMPLEMENTATION.md) fits observed cylindrical surfaces

@@ -5,6 +5,10 @@
 
 ## Selected implementation order and current state
 
+The [local runtime follow-up](LOCAL_RUNTIME_CONTINUATION_20261022.md) records
+the second quadratic memory stop and native OpenFOAM 13 numerical controls on
+Kali1 without the privileged Docker daemon. No fan flow curve is accepted yet.
+
 The [conforming-rotor continuation](CONFORMING_ROTOR_20261022.md) adds an
 exact-boundary tetrahedral volume, whole-simplex quadratic preparation and a
 complete C3D4 solve reproduced on Kali1 and the corrected Mac runtime. The first
