@@ -209,6 +209,12 @@ original/reference surface bounds. The new faithful fluid volume fails seven
 native quality checks; a cube-qualified polyhedral alternative fails eleven on
 the real rotor, including negative cells. Both refusals remain explicit.
 
+The [local-relocation continuation](docs/research/935-horizontal-cooling/LOCAL_RELOCATION_20261022.md)
+then removes the remaining poor surface facets while preserving both complete
+surface bounds and the PicoGK master. An adaptive fluid-mesh experiment adds
+an explicit size field; its surface, volume and native-quality admissions remain
+separate from the certified analysis geometry.
+
 Read the [engineering workflow](docs/architecture/engineering-workflow.md),
 [PicoGK decision](docs/decisions/0004-picogk-new-geometry.md),
 [software inventory and dated execution evidence](docs/SOFTWARE_STACK.md), and
