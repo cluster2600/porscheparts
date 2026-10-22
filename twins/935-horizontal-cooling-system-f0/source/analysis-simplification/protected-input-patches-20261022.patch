@@ -1,0 +1,92 @@
+--- a/quality_preserving_simplify.cpp
++++ b/quality_preserving_simplify.cpp
+@@ -8,6 +8,7 @@
+ #include <CGAL/Surface_mesh_simplification/Policies/Edge_collapse/Count_ratio_stop_predicate.h>
+ #include <CGAL/Surface_mesh_simplification/Policies/Edge_collapse/LindstromTurk_cost.h>
+ #include <CGAL/Surface_mesh_simplification/Policies/Edge_collapse/LindstromTurk_placement.h>
++#include <array>
+ #include <cmath>
+ #include <filesystem>
+ #include <iostream>
+@@ -27,6 +28,38 @@
+     if (!(denominator > 0) || !std::isfinite(denominator)) return 0;
+     const double result = 2*std::sqrt(3*CGAL::cross_product(ab, ac).squared_length())/denominator;
+     return std::isfinite(result) ? result : 0;
++}
++
++using EdgeConstraints = Mesh::Property_map<Mesh::Edge_index, bool>;
++
++std::size_t protect_input_sampling(Mesh& mesh, EdgeConstraints constrained) {
++    std::vector<unsigned char> selected(num_vertices(mesh), 0);
++    std::size_t poor = 0;
++    for (auto face : faces(mesh)) {
++        auto h = halfedge(face, mesh);
++        const std::array<Mesh::Vertex_index, 3> v{source(h,mesh), target(h,mesh), target(next(h,mesh),mesh)};
++        if (triangle_quality(mesh.point(v[0]),mesh.point(v[1]),mesh.point(v[2])) < .05) {
++            ++poor;
++            for (auto vertex : v) selected[vertex.idx()] = 1;
++        }
++    }
++    if (!poor) return 0;
++    // Retain local input sampling around inherited poor facets before collapsing elsewhere.
++    for (int ring = 0; ring < 3; ++ring) {
++        auto expanded = selected;
++        for (auto edge : edges(mesh)) {
++            auto h = halfedge(edge, mesh);
++            const auto a = source(h,mesh).idx(), b = target(h,mesh).idx();
++            if (selected[a] || selected[b]) expanded[a] = expanded[b] = 1;
++        }
++        selected.swap(expanded);
++    }
++    for (auto edge : edges(mesh)) {
++        auto h = halfedge(edge, mesh);
++        if (selected[source(h,mesh).idx()] || selected[target(h,mesh).idx()])
++            put(constrained, edge, true);
++    }
++    return poor;
+ }
+
+ struct TriangleQualityFilter {
+@@ -75,6 +108,24 @@
+             || filter(profile, Kernel::Point_3(.5,1e-8,0))
+             || filter(profile, std::nullopt))
+         throw std::runtime_error("edge_profile_quality_filter_control_failed");
++    Mesh patch;
++    const auto pa = patch.add_vertex(Kernel::Point_3(0,0,0));
++    const auto pb = patch.add_vertex(Kernel::Point_3(1,0,0));
++    const auto pc = patch.add_vertex(Kernel::Point_3(.5,1e-8,0));
++    const auto pd = patch.add_vertex(Kernel::Point_3(0,1,0));
++    patch.add_face(pa,pb,pc); patch.add_face(pa,pc,pd);
++    const auto qa = patch.add_vertex(Kernel::Point_3(10,0,0));
++    const auto qb = patch.add_vertex(Kernel::Point_3(11,0,0));
++    const auto qc = patch.add_vertex(Kernel::Point_3(10,1,0));
++    patch.add_face(qa,qb,qc);
++    auto protected_edges = patch.add_property_map<Mesh::Edge_index,bool>("e:witness",false).first;
++    if (protect_input_sampling(patch,protected_edges) != 1)
++        throw std::runtime_error("poor_input_facet_control_failed");
++    for (auto edge : edges(patch)) {
++        const bool near = source(halfedge(edge,patch),patch).idx() < 4;
++        if (get(protected_edges,edge) != near)
++            throw std::runtime_error("local_patch_or_disconnected_control_failed");
++    }
+     std::cout << "five triangle controls and positive, needle and empty-placement profile controls passed\n";
+ }
+
+@@ -88,6 +139,7 @@
+     const auto initial = num_faces(mesh);
+     auto constrained = mesh.add_property_map<Mesh::Edge_index,bool>("e:sharp",false).first;
+     CGAL::Polygon_mesh_processing::detect_sharp_edges(mesh, .25, constrained);
++    const auto protected_poor_input_faces = protect_input_sampling(mesh, constrained);
+     using Placement = SMS::Constrained_placement<SMS::LindstromTurk_placement<Mesh>, decltype(constrained)>;
+     SMS::Bounded_normal_change_filter<TriangleQualityFilter> filter;
+     const auto removed = SMS::edge_collapse(mesh, SMS::Count_ratio_stop_predicate<Mesh>(.1),
+@@ -97,7 +149,8 @@
+     if (!CGAL::is_closed(mesh) || !CGAL::is_valid_polygon_mesh(mesh)) return 4;
+     if (!CGAL::IO::write_polygon_mesh(argv[2],mesh,CGAL::parameters::stream_precision(17))) return 5;
+     std::cout << "{\"input_faces\":" << initial << ",\"output_faces\":" << num_faces(mesh)
+-        << ",\"removed_edges\":" << removed
++        << ",\"protected_poor_input_faces\":" << protected_poor_input_faces
++        << ",\"protected_patch_rings\":3,\"removed_edges\":" << removed
+         << ",\"new_face_quality_floor\":0.05,\"feature_angle_degrees\":0.25,"
+            "\"complete_surface_distance_checked\":false,\"mechanical_mesh_admitted\":false}\n";
+ }

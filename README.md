@@ -154,6 +154,12 @@ then preserves the full surface bound while preventing the simplifier from
 creating very thin triangles. Geometric checks, native volume meshing and
 mechanical acceptance remain separate stages.
 
+The [quadratic-rotor continuation](docs/research/935-horizontal-cooling/QUADRATIC_ROTOR_CONTINUATION_20261022.md)
+then obtains a fully audited positive tetrahedral volume and completes matched
+linear/quadratic calculations on the Mac and Kali. Their large formulation
+difference keeps mechanical convergence open; results and rejected trials are
+preserved privately, without another rental.
+
 Read the [engineering workflow](docs/architecture/engineering-workflow.md),
 [PicoGK decision](docs/decisions/0004-picogk-new-geometry.md),
 [software inventory and dated execution evidence](docs/SOFTWARE_STACK.md), and
