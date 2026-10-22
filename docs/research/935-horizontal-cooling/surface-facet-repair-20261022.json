@@ -1,0 +1,466 @@
+{
+  "schema": "935-surface-facet-repair-v1",
+  "date": "2026-10-22",
+  "programme": "horizontal_935_reference_installation",
+  "position_in_software_chain": "bounded_analysis_surface_repair_to_CFD_meshing",
+  "PicoGK_master_sha256": "f32bbabab3e5f7d9ca7c5283d18703cfe7cedbd3eb2c72a57a1c222c0a9df1e5",
+  "source_sha256": {
+    "twins/935-horizontal-cooling-system-f0/source/surface-facet-repair-20261022/CMakeLists.txt": "43708bd8c8fe4166b5df91a9afc0ab7f3a67155cc620ecf87c576c7af309bf32",
+    "twins/935-horizontal-cooling-system-f0/source/surface-facet-repair-20261022/check_cube_dual_002.py": "e5265c3493cc0dc7d3a8c44a7606aea7929546a03fcfecc78a70f72b270d84af",
+    "twins/935-horizontal-cooling-system-f0/source/surface-facet-repair-20261022/diagnose-added-boundary-point-002.py": "efe1e4d92cf5a09b6532088fbe829835f8abfa264856c21ea3936ebb7e80ab9b",
+    "twins/935-horizontal-cooling-system-f0/source/surface-facet-repair-20261022/prepare-dual-cube-001.py": "3bd772f93dd847b6383d5d832867f8a41180a8ec7e96428556c6fb197af878fd",
+    "twins/935-horizontal-cooling-system-f0/source/surface-facet-repair-20261022/prepare-repaired-fluid-001.py": "2bc4262c6ee263460750cc06590c9281287209cdb934146665964514c931a2de",
+    "twins/935-horizontal-cooling-system-f0/source/surface-facet-repair-20261022/quantize-and-bound-002.py": "94e860a88a10aa4e6ce355857857f354c209f72006f83148dbb020cd2fb52595",
+    "twins/935-horizontal-cooling-system-f0/source/surface-facet-repair-20261022/render-local-repair-002.py": "1e6201a0cbd66e199a7d8feb062c49fc9cf413ba88ca7389304acb773677cd16",
+    "twins/935-horizontal-cooling-system-f0/source/surface-facet-repair-20261022/render-repaired-rotor-001.py": "2fb64bc1faec180fb4f27e9a75de1d2cbbf3e01d9b7a214c625855fbec648808",
+    "twins/935-horizontal-cooling-system-f0/source/surface-facet-repair-20261022/repair_poor_facets.cpp": "2e52e20d5ed2b5cbaeeb4164a41b6b31b09beed37f873af917203fcb39e62984",
+    "twins/935-horizontal-cooling-system-f0/source/surface-facet-repair-20261022/restore-repaired-fluid-edge-001.py": "9606c9e185bbbb86b9432fea0b0e28c21890bf9580097dfdac2d61efa0c71816",
+    "twins/935-horizontal-cooling-system-f0/source/surface-facet-repair-20261022/run-dual-combine-001.py": "c40f95310bd78833947e1765af6798c7f383035d65a2741d9c0a2f81b2161459",
+    "twins/935-horizontal-cooling-system-f0/source/surface-facet-repair-20261022/run-facet-repair-005.py": "c520789673880fb9f71d9d60dbefd9c5d6a71578997a11902a9d647fb4f2865a"
+  },
+  "scope": {
+    "full_system_goal_complete": false,
+    "historical_geometry_accuracy_verified": false,
+    "scale_verified": false,
+    "historical_interfaces_verified": false,
+    "complete_mechanism_defined": false,
+    "actual_935_housing_defined": false,
+    "current_geometry_CFD_accepted": false,
+    "mechanical_spatial_convergence_established": false,
+    "fatigue_validated": false,
+    "material_process_qualified": false,
+    "PhysicsNeMo_trained": false,
+    "manufacturing_authorized": false,
+    "physical_validation": false
+  },
+  "surface": {
+    "assessment_sha256": "bab8d93ac057d7604853721558af19a85ba275a41ab31375e6bafca8798227c9",
+    "reference_OFF_sha256": "addba09e1ee2d7814f19a3262ac0910f0bc5b9d58dd43ada3254444845392e5a",
+    "original_PicoGK_OFF_sha256": "e374fc2f850645efb6db4854a4355f541a9617833b827a6cff52d24929757587",
+    "checker_sha256": "a64afa7238ab1b28064412142701473a94ba869089d20cfedfcbe3994ff56430",
+    "vertices": 436634,
+    "triangles": 873288,
+    "poor_triangles_before": 189,
+    "poor_triangles_after": 46,
+    "minimum_quality_before": 5.4071555354970505e-05,
+    "minimum_quality_after": 0.007104838421277697,
+    "minimum_edge_before_native_units": 1.52587890625e-05,
+    "minimum_edge_after_native_units": 0.00243377685546875,
+    "Euler_characteristic": -10,
+    "connected_components": 1,
+    "candidate_vertices_are_reference_subset": true,
+    "maximum_float32_shift_native_units": 0.0,
+    "complete_original_and_reference_bounds_passed": true,
+    "original_bound": {
+      "source_faces": 1322970,
+      "candidate_faces": 873288,
+      "source_to_candidate_contained": true,
+      "candidate_to_source_contained": true,
+      "envelope_bound_native_units": 0.0225,
+      "reserved_numeric_margin_native_units": 0.0025,
+      "topology_and_self_intersection_checks_pass": true,
+      "complete_containment_pass": true
+    },
+    "reference_bound": {
+      "source_faces": 873444,
+      "candidate_faces": 873288,
+      "source_to_candidate_contained": true,
+      "candidate_to_source_contained": true,
+      "envelope_bound_native_units": 0.0225,
+      "reserved_numeric_margin_native_units": 0.0025,
+      "topology_and_self_intersection_checks_pass": true,
+      "complete_containment_pass": true
+    },
+    "output_sha256": {
+      "candidate.npz": "6332340e17dc6e49880d932395605cd4563f16fa4473dab39fd8c4c5d74bc474",
+      "candidate.stl": "01f5d1774cd092a9ad7d45c06c5b691772a58efcb68526c862261254ed510e6d",
+      "candidate-quantized.off": "67f336ed555cf757e4b59b7b50329305fcd47cee0246600e7ec0300f41929d98"
+    },
+    "outside_patch_vertices_and_faces_unchanged": true,
+    "accepted_as_analysis_surface_only": true
+  },
+  "rejected_or_uncertified_policies": [
+    {
+      "poor_facets": 171,
+      "policy": "needle20_cap179_limit0.001",
+      "complete_bound_admitted": false
+    },
+    {
+      "poor_facets": 129,
+      "policy": "needle20_cap179_limit0.005",
+      "complete_bound_admitted": false
+    },
+    {
+      "poor_facets": 70,
+      "policy": "needle20_cap179_limit0.01",
+      "complete_bound_admitted": false
+    },
+    {
+      "poor_facets": 8,
+      "policy": "needle20_cap160_limit0.02",
+      "complete_original_bound_passed": false
+    },
+    {
+      "poor_facets": 10,
+      "policy": "needle20_cap175_limit0.02",
+      "complete_bound_admitted": false
+    }
+  ],
+  "predicate_correction": {
+    "arbitrary_precision_integer_cross_product": true,
+    "overflow_control_cross_product": "1208925819614629174706176",
+    "old_actual_cross_product_rechecked_unchanged": true
+  },
+  "boundary": {
+    "status": "bounded_repaired_rotor_PLC_pending_exact_intersection_and_volume_audits",
+    "source_sha256": "2bc4262c6ee263460750cc06590c9281287209cdb934146665964514c931a2de",
+    "reused_compose_source_sha256": "0a5db30edae38e2ba6845d05637fba21de87646083ebe2350f3e4cc795ab1c97",
+    "accepted_geometry_assessment_sha256": "bab8d93ac057d7604853721558af19a85ba275a41ab31375e6bafca8798227c9",
+    "complete_original_and_reference_bounds_passed": true,
+    "original_master_bound_native_units": 0.0225,
+    "reserved_numeric_margin_native_units": 0.0025,
+    "parent_boundary_sha256": "67835eacd4d1c7f9736b5fc826979f8ad48366397b422e672043ef720c027f86",
+    "baseline_SI_conversion_complete_coordinate_triangle_bijection": true,
+    "repaired_SI_OBJ_exact_coordinate_and_triangle_readback": true,
+    "boundary_vertices": 445137,
+    "triangles": 890290,
+    "rotor_vertices": 436634,
+    "rotor_triangles": 873288,
+    "outer_boundary_coordinates_triangles_markers_unchanged": true,
+    "volume_m3": 0.05140933407575617,
+    "source_unit_m_per_uncalibrated_unit_assumed": 0.001,
+    "actual_935_housing_defined": false,
+    "scale_verified": false,
+    "CFD_accepted": false,
+    "manufacturing_authorized": false,
+    "output_sha256": {
+      "boundary.npz": "605b1277a03889375bac069299b2e1d93ff156742978ce4346d16c564af987fc",
+      "boundary.obj": "5d70c191a481f1a6610cffe94a81e17674873a86f7d4d8d3e711164e7d1504c0",
+      "fluid.smesh": "ad6e679621df0beda1c31ec04f1a239590b4d133ca7cbae5289278a4a55509c2",
+      "rotor-si.obj": "958f44f0023042c462b73afab91875591fdd5f23490759006b09f101c889fdbd"
+    }
+  },
+  "local_restoration": {
+    "status": "reference_edge_restored_pending_complete_volume_and_native_quality_audits",
+    "source_sha256": "9606c9e185bbbb86b9432fea0b0e28c21890bf9580097dfdac2d61efa0c71816",
+    "helper_sha256": {
+      "import_conforming_volume": "f061d604de3c5711ab173111a2f140a916172ba937f8993206037977cc167488",
+      "optimize_interior_stars": "12aa60e254f1d7f54e4170f8d2750b3bbfce6d878ed3111eaf637b0b77f1cbb3",
+      "rebuild_fluid_edge_stars": "2763305fae804e507e3d365f68fcac8be9c78623ece068958f9a56e145bb47c3",
+      "reconnect_fluid_tetrahedra": "6c84ddf41db9d1c4dd71478e821064c996205696d35d5d0626bffd552b1a691a"
+    },
+    "parent_execution_sha256": "045962924118938271ee6077e1e072f9d2f2daaef57588b4fd486d2ebad5000b",
+    "parent_output_sha256": {
+      "fluid.1.node": "58fb4ea568b12e6811b3217a4d1094b5ba2f58682b60343a8b340f6935c4a8d9",
+      "fluid.1.ele": "ab53e84bc5e057d6f795c1aaed2f625c517e64e48724e1b49379aa16d0048803",
+      "fluid.1.face": "0d3ddfdbc1ad5aafa6c5ecd6da578dffd630e529dd44639adc29bfbc33c62476",
+      "execution.json": "045962924118938271ee6077e1e072f9d2f2daaef57588b4fd486d2ebad5000b"
+    },
+    "diagnosis_sha256": "4845caa078e1145113930b8c85a0757c768d1508e9d7135a16e00d0387abb76d",
+    "prepared_receipt_sha256": "af4c61da7c0ebb4ef2759761e35a2d59d1cbbfd0eb07585366f3bbde0757c159",
+    "input_smesh_sha256": "ad6e679621df0beda1c31ec04f1a239590b4d133ca7cbae5289278a4a55509c2",
+    "input_file_unchanged": true,
+    "exit": 0,
+    "stop_reason": null,
+    "original_input_coordinates_unchanged": true,
+    "original_boundary_triangles_and_markers_restored": true,
+    "removed_cells": 18,
+    "replacement_cells": 20,
+    "tetrahedra": 3668295,
+    "moved_added_Steiner_point": 445226,
+    "old_Steiner_coordinates_m": [
+      -0.08349379539489746,
+      0.04110206031799317,
+      0.00993333625793457
+    ],
+    "new_interior_coordinates_m": [
+      -0.08312349499911299,
+      0.040464193729008835,
+      0.010014223863890696
+    ],
+    "new_cavity_exact_orientation": {
+      "cells": 20,
+      "negative": 0,
+      "zero": 0,
+      "minimum_integer_determinant": "116296404491832432266827114781275511310680192",
+      "common_coordinate_scale": "576460752303423488",
+      "signed_volume_exact": "87036066193862944124406205516035792648623683/5986310706507378352962293074805895248510699696029696",
+      "signed_volume_native_units_cubed": 1.4539182889262827e-08
+    },
+    "analytic_unit_cone_volume_exact": "1/6",
+    "output_sha256": {
+      "fluid.1.node": "38f3510df9a563149b23ff31c78de9353557d25f955b95162838b1c9dcc513c3",
+      "fluid.1.ele": "795a04f09787a107e7a5b7d41f1d17b89634d6ec52de9b1d0c2d03ac9556c931",
+      "fluid.1.face": "a1fb4d8bf677672b3132c8d586bb9f41dc1bb6ec5d4d7fe3f338916ec4327b7c"
+    },
+    "CFD_accepted": false,
+    "manufacturing_authorized": false
+  },
+  "volume": {
+    "status": "all_cells_and_boundary_markers_audited",
+    "source_sha256": "cb8b36f0318fe3e71907f299c3df487dd77ab91dbe6cea631f09949137bb9996",
+    "helper_sha256": {
+      "twins/935-horizontal-cooling-system-f0/source/import_conforming_volume.py": "f061d604de3c5711ab173111a2f140a916172ba937f8993206037977cc167488",
+      "twins/m64-cylinder-head/source/wholebody/audit_indexed_tetrahedra.py": "02064ef3e68a4de8b1d5bebcebc10713ff18288b983ac6468b686064fa53bfc6"
+    },
+    "prepared_receipt_sha256": "af4c61da7c0ebb4ef2759761e35a2d59d1cbbfd0eb07585366f3bbde0757c159",
+    "execution_sha256": "c2b94002b8578d068ce9df0871d6e173b55416fcff6782f9bee7f9278b4a5db0",
+    "vertices": 806631,
+    "tetrahedra": 3668295,
+    "boundary_triangles": 890290,
+    "complete_boundary_coordinate_triangle_marker_bijection": true,
+    "exact_cell_orientation": {
+      "cells": 3668295,
+      "negative": 0,
+      "zero": 0,
+      "minimum_integer_determinant": "275317941146337050806271021246360037735315782609763685906701127595828735874611527135789056",
+      "common_coordinate_scale": "83076749736557242056487941267521536",
+      "signed_volume_exact": "272497293041883516866712970812095827072014329284515588623435017399282723/5300541194335152988749892502228755547482451690626856874364818603877859328",
+      "signed_volume_native_units_cubed": 0.05140933407575617
+    },
+    "exact_PLC_volume_equal": true,
+    "fluid_volume_m3": 0.05140933407575617,
+    "indexed_connectivity": {
+      "signed_volume_sum": 0.05140933407575617,
+      "absolute_volume_sum": 0.05140933407575617,
+      "minimum_signed_tetra_volume": 8.002851748760444e-17,
+      "count_negative": 0,
+      "count_zero": 0,
+      "repeated_node_tetrahedra": 0,
+      "tetra_connected_components": 1,
+      "boundary_missing_triangles": 0,
+      "stored_triangles_not_on_boundary": 0,
+      "duplicate_stored_triangles": 0,
+      "nonmanifold_faces": 0,
+      "boundary_triangle_count": 890290,
+      "boundary_matches": true
+    },
+    "CFD_quality_admitted": false,
+    "CFD_accepted": false,
+    "manufacturing_authorized": false,
+    "volume_npz_sha256": "f033c3c86910f28e804a3ca486123efd89f6c26d8e613741a4865bcfe76eff12",
+    "elapsed_s": 32.87245459295809
+  },
+  "native_tetrahedral": {
+    "execution_sha256": "df991b71aace824424575b651db6965740473c3a07e46982de97dd295e79cb1c",
+    "full_quality_passed": false,
+    "failed_quality_checks": 7,
+    "original_quality_dictionary_unchanged": true,
+    "native_readback_sha256": "973ecc2f3e97d3ed2e7dabf2164882d6706dd6ce451154497c0288276b8b2a86",
+    "all_coordinates_cells_and_patch_markers_read_back": true,
+    "quality_dictionary_sha256": "bafbc5ced7e83c5a1cc11291a0937c3499a6713e8e3411a83f93464381ba2c7d",
+    "nonorthogonal_faces_above_70": 193816,
+    "small_determinant_cells": 108863,
+    "concave_cells": 1,
+    "maximum_skewness": 13.935118561659051,
+    "weights_below_0_05": 13879,
+    "volume_ratios_below_0_01": 1969,
+    "CFD_executed": false,
+    "CFD_accepted": false
+  },
+  "polyhedral": {
+    "feature_angle_degrees": 30,
+    "concave_multi_cells": true,
+    "coplanar_patch_merge_angle_degrees": 1e-06,
+    "synthetic_cube": {
+      "status": "synthetic_cube_all_boundary_planes_closed_topology_and_exact_serialized_volume_checked",
+      "source_sha256": "e5265c3493cc0dc7d3a8c44a7606aea7929546a03fcfecc78a70f72b270d84af",
+      "mesh_instance": "constant",
+      "cells": 343,
+      "parser_sha256": "f50f4cd315c757d9d2c291640f49bfd1a6107a1de851685f8c407e47c33883cb",
+      "vertices": 512,
+      "faces": 1176,
+      "boundary_fan_triangles": 588,
+      "Euler_characteristic": 2,
+      "maximum_plane_error_m": 1.1102230246251565e-16,
+      "exact_serialized_boundary_volume_m3": "46768052394588891074830421964775728676345692145431/46768052394588893382517914646921056628989841375232",
+      "volume_absolute_error_from_analytic_unit_cube": 4.934324553889584e-17,
+      "comparison_numeric_bound": 1e-12,
+      "native_full_quality_passed": true,
+      "native_mesh_sha256": {
+        "points": "ce11770856b80edb68b6544ccb4dbc5d6989d3926272f24a40edd2b80de36bf6",
+        "faces": "9d4cdf3cdd5d5513f5ffb8732b2dadf096aaa3f80bd791aba61e411823a02c3a",
+        "owner": "58afe493079f62e6dffa467f0a3dde2f99eafc71b74ac34c34b8a0f0d894e318",
+        "neighbour": "7446b6e199b36417e04c85e649a1ee6fcd2a3d27aa7a3247d73eccf22ddaf205",
+        "boundary": "ba46a9f45c7a5d0613f8e0afa62eccef1ac88684a497d649454b45ec72c88e86"
+      },
+      "synthetic_control_only": true,
+      "CFD_accepted": false,
+      "manufacturing_authorized": false
+    },
+    "real_rotor": {
+      "execution_sha256": "d3deb844d03e14a21f0dcdbb6b65b65fa2779e7c49e6ec3ab6de6d31acb9f926",
+      "source_sha256": "c40f95310bd78833947e1765af6798c7f383035d65a2741d9c0a2f81b2161459",
+      "elapsed_s": 119.3582061668858,
+      "command_exit": 0,
+      "parent_mesh_and_system_unchanged": true,
+      "full_quality_passed": false,
+      "failed_quality_checks": 11,
+      "cells": 1004196,
+      "faces": 6163088,
+      "negative_volume_cells": 11,
+      "minimum_cell_volume_m3": -2.0189025072503662e-10,
+      "concave_cells": 362203,
+      "maximum_skewness": 24493.900252029478,
+      "quality_log_sha256": "e667c9ded68265b0b8ad862c5f7161fdf0c498edd21bf52454845bb0dc3b92f1",
+      "CFD_executed": false,
+      "CFD_accepted": false,
+      "downstream_geometry_admitted": false
+    }
+  },
+  "visuals": {
+    "local_patch": {
+      "source_sha256": "1e6201a0cbd66e199a7d8feb062c49fc9cf413ba88ca7389304acb773677cd16",
+      "image_sha256": "7b0668a157cd4e642d0d27dd15eff931e5e2507d350dc7f717ca5a0cf4a0a39e",
+      "accepted_assessment_sha256": "bab8d93ac057d7604853721558af19a85ba275a41ab31375e6bafca8798227c9",
+      "reference_worst_face_zero_based": 256845,
+      "display_kind": "actual surface triangles projected into an inspection-only tangent plane",
+      "clipped_patch": [
+        {
+          "shown_faces": 8,
+          "shown_poor_faces": 2
+        },
+        {
+          "shown_faces": 6,
+          "shown_poor_faces": 0
+        }
+      ],
+      "before_global_poor_faces": 189,
+      "after_global_poor_faces": 46,
+      "original_minimum_quality": 5.4071555354970505e-05,
+      "candidate_minimum_quality": 0.007104838421277697,
+      "original_minimum_edge_native_units": 1.52587890625e-05,
+      "candidate_minimum_edge_native_units": 0.00243377685546875,
+      "scale_verified": false,
+      "CFD_accepted": false,
+      "manufacturing_authorized": false
+    },
+    "complete_rotor": {
+      "source_sha256": "2fb64bc1faec180fb4f27e9a75de1d2cbbf3e01d9b7a214c625855fbec648808",
+      "input_sha256": "6332340e17dc6e49880d932395605cd4563f16fa4473dab39fd8c4c5d74bc474",
+      "assessment_sha256": "bab8d93ac057d7604853721558af19a85ba275a41ab31375e6bafca8798227c9",
+      "image_sha256": "ff6bdb1d03d50aa69ead50c3cd058367b2bdde98b18d4630516685060fe7b721",
+      "triangles": 873288,
+      "poor_triangle_locations": 46,
+      "decimation": false,
+      "display_kind": "actual analysis triangles; red points mark poor-face centroids, not flow or stress",
+      "scale_verified": false,
+      "CFD_accepted": false,
+      "manufacturing_authorized": false
+    },
+    "images_remain_private": true
+  },
+  "verification": {
+    "focused_935_tests": 196,
+    "focused_optional_skips": 4,
+    "new_tests": 11,
+    "native_CGAL_controls_passed": true,
+    "new_numerical_tests_passed_before_record_tests": 9,
+    "source_Linux_CI_recorded_separately_after_science_checkpoint": true,
+    "preceding_main_CI": {
+      "conclusion": "success",
+      "headSha": "4c60652d03c78db90cf4a2298053b05900ffa314",
+      "jobs": [
+        {
+          "completedAt": "2026-10-22T15:35:31Z",
+          "conclusion": "success",
+          "databaseId": 119916176096,
+          "name": "check",
+          "startedAt": "2026-10-22T15:28:17Z",
+          "status": "completed",
+          "steps": [
+            {
+              "completedAt": "2026-10-22T15:28:18Z",
+              "conclusion": "success",
+              "name": "Set up job",
+              "number": 1,
+              "startedAt": "2026-10-22T15:28:17Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-22T15:29:16Z",
+              "conclusion": "success",
+              "name": "Check out repository",
+              "number": 2,
+              "startedAt": "2026-10-22T15:28:18Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-22T15:29:16Z",
+              "conclusion": "success",
+              "name": "Set up Python",
+              "number": 3,
+              "startedAt": "2026-10-22T15:29:16Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-22T15:29:31Z",
+              "conclusion": "success",
+              "name": "Install numerical test dependencies",
+              "number": 4,
+              "startedAt": "2026-10-22T15:29:16Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-22T15:35:28Z",
+              "conclusion": "success",
+              "name": "Validate repository",
+              "number": 5,
+              "startedAt": "2026-10-22T15:29:31Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-22T15:35:29Z",
+              "conclusion": "success",
+              "name": "Post Set up Python",
+              "number": 9,
+              "startedAt": "2026-10-22T15:35:28Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-22T15:35:29Z",
+              "conclusion": "success",
+              "name": "Post Check out repository",
+              "number": 10,
+              "startedAt": "2026-10-22T15:35:29Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-22T15:35:29Z",
+              "conclusion": "success",
+              "name": "Complete job",
+              "number": 11,
+              "startedAt": "2026-10-22T15:35:29Z",
+              "status": "completed"
+            }
+          ],
+          "url": "https://github.com/cluster2600/porscheparts/actions/runs/39805121774/job/119916176096"
+        }
+      ],
+      "status": "completed"
+    }
+  },
+  "preservation": {
+    "archive_sha256": "19ac3426d91356b6681675525b46435d0ea7ecd41bf7aa82e8a44a11c9703239",
+    "archive_bytes": 1131722612,
+    "manifest_sha256": "7971a94894d00acadbea07c33c9007d1083e7b5f9a1c47c1424390dcbe48981b",
+    "entries": 531,
+    "regular_files": 524,
+    "intentional_guard_symlinks": 7,
+    "all_members_verified": true,
+    "all_inputs_unchanged_after_archive": true,
+    "all_scientific_processes_finished_before_sealing": true,
+    "created_epoch": 1792689636.269502,
+    "new_paid_instance_created": false,
+    "CFD_accepted": false,
+    "manufacturing_authorized": false,
+    "Mac_all_members_verified": true,
+    "Mac_verification_sha256": "b4913596b81a6914a24835c4d034a621147ed499a69e8c1bec5107090dae9818",
+    "private_repository": "cluster2600/porscheparts-935-private",
+    "release_tag": "analysis-mesh-935-20261022",
+    "archive_name": "surface-facet-repair-checkpoint-001.tar.gz",
+    "manifest_name": "surface-facet-repair-manifest.json",
+    "parent_checkpoint_sha256": "345fd63cfd808370d1653fe490f126aeb4217611fca0a2dbb9252684e4cb535c"
+  },
+  "next_action": "Construct a graded near-wall fluid mesh, starting with bounded local remeshing where necessary; admit no flow until the unchanged complete native quality gate passes."
+}

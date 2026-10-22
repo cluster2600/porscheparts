@@ -203,6 +203,12 @@ Complete serialized and native readback preserves that surface in 3,685,053
 positive fluid cells. Six native quality checks still reject this faithful
 baseline; protected poor surface facets and near-wall meshing remain to repair.
 
+The [bounded surface repair](docs/research/935-horizontal-cooling/SURFACE_FACET_REPAIR_20261022.md)
+then reduces poor input facets from 189 to 46 while retaining the complete
+original/reference surface bounds. The new faithful fluid volume fails seven
+native quality checks; a cube-qualified polyhedral alternative fails eleven on
+the real rotor, including negative cells. Both refusals remain explicit.
+
 Read the [engineering workflow](docs/architecture/engineering-workflow.md),
 [PicoGK decision](docs/decisions/0004-picogk-new-geometry.md),
 [software inventory and dated execution evidence](docs/SOFTWARE_STACK.md), and
