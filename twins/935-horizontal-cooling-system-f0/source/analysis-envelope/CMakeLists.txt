@@ -1,0 +1,8 @@
+cmake_minimum_required(VERSION 3.18)
+project(tiled_envelope LANGUAGES CXX)
+find_package(CGAL 5.5.1 EXACT REQUIRED)
+add_executable(tiled_envelope tiled_envelope.cpp)
+target_link_libraries(tiled_envelope PRIVATE CGAL::CGAL)
+target_compile_features(tiled_envelope PRIVATE cxx_std_17)
+enable_testing()
+add_test(NAME surface_envelope_controls COMMAND tiled_envelope --self-test)

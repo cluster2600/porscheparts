@@ -25,6 +25,11 @@ conditional centrifugal studies. Numerical convergence remains open.
 [Local runtime follow-up](LOCAL_RUNTIME_CONTINUATION_20261022.md) records the
 48 GiB quadratic stop and six rootless OpenFOAM analytical controls on Kali1.
 
+[Native GPU continuation](NATIVE_GPU_CONTINUATION_20261022.md) adds complete-rotor
+CUDA checks, OVRTX assembly views, rejected surface approximations and verified
+conditional comparisons of ten material cards at four speeds. Physical
+calibration, accepted fan CFD, structural convergence and manufacturing remain open.
+
 ## Reconstruction from the scans — October 5, 2026
 
 The [executed campaign](IMPLEMENTATION.md) fits observed cylindrical surfaces
