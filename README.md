@@ -192,6 +192,11 @@ then searches three-dimensional cavity point positions with bounded SciPy runs.
 Failed determinants fall from 519 to 448 with exact boundaries retained; the
 remaining native quality failures continue to block a new rotor CFD calculation.
 
+The [convex fluid-cell agglomeration](docs/research/935-horizontal-cooling/FLUID_AGGLOMERATION_20261022.md)
+then joins 29 guarded tetrahedral pairs without moving any point or physical
+boundary. Complete mixed-cell and native-field checks pass; failed determinants
+fall to 419, while four full quality checks still block CFD admission.
+
 Read the [engineering workflow](docs/architecture/engineering-workflow.md),
 [PicoGK decision](docs/decisions/0004-picogk-new-geometry.md),
 [software inventory and dated execution evidence](docs/SOFTWARE_STACK.md), and
