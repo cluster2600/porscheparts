@@ -1,0 +1,117 @@
+{
+  "schema": "935-local-runtime-continuation-v1",
+  "parent_commit": "da1462a17b0bc77f912281663b5b53bb10778aff",
+  "quadratic_48GiB_attempt": {
+    "solver_finished": false,
+    "exit": -15,
+    "elapsed_s": 1088.307994000148,
+    "deck_sha256": "123f0b6b0834476600b68caecdb673bfa2d39e16f1088672d37519a984012c2e",
+    "execution_sha256": "1d31d4311899ee143052ee678019dd8018bbde13744058b0c10707ed9b5ccb3d",
+    "physical_footprint_limit_bytes": 51539607552,
+    "observed_group_footprint_bytes": 51658596024,
+    "footprint_monitor_sha256": "b594225a923aa6ac82e36bcaa1c4152cb9d8230de5ffdf827bd4bec7ff2bb484",
+    "accepted": false
+  },
+  "openfoam_witness": {
+    "receipt_sha256": "2185376630c610600f0dfd94f43379a8cb5904908ce11ea36425efda985e5cc9",
+    "source_sha256": {
+      "outils/benchmarks/openfoam-poiseuille-f25/benchmark-contract-f25.json": "84e3b36eea0f0deb0f34f7352a2ca39e3dee7969e68096c930b9423dc2928f6e",
+      "outils/benchmarks/openfoam-poiseuille-f25/generate_cases.py": "8113464fd165bd033dee59bb0d2d041a6a4e78a468d178aba8b9be09a4587028",
+      "outils/benchmarks/openfoam-poiseuille-f25/analyze_results.py": "0260612fc29e9380efa1995c68eab889eee9680c73e69ad059d056579cb7569c"
+    },
+    "image_index_sha256": "a1db60cbf61bbcca52c171e50cab01ed0b6ec860b227e7c5fc50f7b809659b4f",
+    "native_runtime": "bubblewrap 0.12.0",
+    "skopeo_version": "1.22.0",
+    "umoci_version": "0.6.0+ds-1+b1",
+    "openfoam_major": 13,
+    "meshes": [
+      8,
+      16,
+      32
+    ],
+    "repetitions": 2,
+    "completed_solver_cases": 6,
+    "numerical_reference_criteria_passed": true,
+    "canonical_metrics_identical": true,
+    "fine_flow_relative_error": 0.0019531247661201477,
+    "fine_velocity_l2_relative_error": 0.001337212503728348,
+    "fine_continuity_local_sum": 6.617444900424222e-19,
+    "convergence": {
+      "l2": [
+        {
+          "from": "coarse",
+          "order": 2.0000000437765384,
+          "refinement_ratio": 2.0,
+          "to": "medium"
+        },
+        {
+          "from": "medium",
+          "order": 2.0000001784921113,
+          "refinement_ratio": 2.0,
+          "to": "fine"
+        }
+      ],
+      "linf": [
+        {
+          "from": "coarse",
+          "order": 2.000000007966906,
+          "refinement_ratio": 2.0,
+          "to": "medium"
+        },
+        {
+          "from": "medium",
+          "order": 2.000000005914781,
+          "refinement_ratio": 2.0,
+          "to": "fine"
+        }
+      ]
+    },
+    "exact_original_Docker_confinement_reproduced": false,
+    "cgroup_pids_limit_verified": false,
+    "rootless_ownership_metadata_differs": true,
+    "Docker_daemon_used": false,
+    "original_receipt_writer_failed": true,
+    "recovered_by_complete_reanalysis": true,
+    "Porsche_case_executed": false,
+    "selected_amd64_manifest_sha256": "a693292f2b87eedf569c02c59f625b7032e3d434c5a5883ab3b4bfd29e75e40c",
+    "source_index_platform_membership_verified": true,
+    "all_twelve_blobs_verified_on_both_hosts": true
+  },
+  "ci": [
+    {
+      "conclusion": "success",
+      "headSha": "da1462a17b0bc77f912281663b5b53bb10778aff",
+      "status": "completed",
+      "url": "https://github.com/cluster2600/porscheparts/actions/runs/39699757247"
+    },
+    {
+      "conclusion": "success",
+      "headSha": "da1462a17b0bc77f912281663b5b53bb10778aff",
+      "status": "completed",
+      "url": "https://github.com/cluster2600/porscheparts/actions/runs/39699757360"
+    }
+  ],
+  "scope": {
+    "scale_verified": false,
+    "support_is_measured": false,
+    "mesh_convergence_established": false,
+    "airflow_curve_accepted": false,
+    "material_process_qualified": false,
+    "full_system_complete": false,
+    "physical_validation": false,
+    "manufacturing_authorized": false
+  },
+  "storage": {
+    "core_tag": "conforming-rotor-20261022-core",
+    "delta_tag": "conforming-rotor-20261022-delta",
+    "publication_verified": true,
+    "url": "https://github.com/cluster2600/porscheparts-935-private/releases/tag/conforming-rotor-20261022-delta",
+    "sha256": "a3febc157a5a040f0a1b4be9a2fefe758936d0067200dbf3390edac67704c3ec",
+    "bytes": 1403817576,
+    "manifest_sha256": "3591ed23059841d8fdcf7f344f78a5ebf10330c0a92e75f3575b6d7c2787b2d1",
+    "files": 287,
+    "every_member_stream_verified": true,
+    "kali_archive_sha256_verified": true,
+    "all_three_server_asset_digests_verified": true
+  }
+}

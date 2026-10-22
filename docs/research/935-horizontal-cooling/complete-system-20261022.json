@@ -1,0 +1,314 @@
+{
+  "schema": "935-complete-system-continuation-v1",
+  "reference_main_commit": "ad3070a1af108e8f0d8678d0cf3f121a5ae1a280",
+  "source_sha256": {
+    "benchmarks/warp-geometry/mesh_review.py": "090502fba58fa116d86834b90a15e618800b780c50c1d715dd4d3260edf89b7c",
+    "benchmarks/warp-geometry/pilot.py": "6561e3348689f31973991f30876e65dd73c723a35cc8f2aa2cc4c8268fe16c36",
+    "benchmarks/warp-geometry/kernels.py": "356d1debf790790887882e7d0a15d91232451113613f4a43e3e909fcb7540baa",
+    "twins/935-horizontal-cooling-system-f0/source/bending_witness.py": "fd2dd519a71495f5b2f2ac3881c5c1d2b86753ec4c26dd4ebb09c0445803e9d7",
+    "twins/935-horizontal-cooling-system-f0/source/prepare_formulation_comparison.py": "b3bc28252b70d2634431bf540e85b5ce46cebead70660253a6d4d9e7a8891e35",
+    "twins/935-horizontal-cooling-system-f0/source/assess_mac_fea.py": "203a7275751dcf5c8bc4091ee739f24a57a69403438e58a49c933f2b6bc1737c",
+    "twins/935-horizontal-cooling-system-f0/source/run_candidate_fea.sh": "1eaaa32fcffcec4f7f0b7c686ef6e39d760dd2884ad2795ba336dd3d2c5abf74",
+    "twins/935-horizontal-cooling-system-f0/source/picogk-assembly-refresh/Program.cs": "45c188cc364ce443c0ce7412b3c329ccac2a90ceb4bf00845260c3419ef68b88",
+    "twins/935-horizontal-cooling-system-f0/source/picogk-assembly-refresh/AssemblyRefresh.csproj": "f4d15762d8f046402106a9158d25050c0d0ff86cd4724ad7bdabdbe6c24168d6",
+    "twins/935-horizontal-cooling-system-f0/source/review_refreshed_assembly.py": "af07e8e3034d4143b4eeff0ee9f1a7ce90818dddcce1031121013fb959a1e94d",
+    "twins/935-horizontal-cooling-system-f0/source/export_inspection_assembly.py": "866f641a4beaf6d7d1bd3177f6dce8ea237c908ce1d952170e8a24287ded1ca7",
+    "twins/935-horizontal-cooling-system-f0/source/review_surface_contacts.py": "af37ced1d44322761add104410fb333ea0d6ee53e39ca45c2f60f14ab58df5c8"
+  },
+  "interface_contract_sha256": "b3030d7aceeab62ad0a38e97685187e98e0a120fbd7867a77faee0c5548f1c12",
+  "geometry_sha256": "f32bbabab3e5f7d9ca7c5283d18703cfe7cedbd3eb2c72a57a1c222c0a9df1e5",
+  "source_coordinate_unit": "uncalibrated_scan_unit",
+  "assembly": {
+    "native_receipt_sha256": "b2c67b95eddc546dce300b7d57495da1c6d904e13152dcf8cc1db48651c0ee50",
+    "native_combined_triangles": 12603066,
+    "native_concatenation_coordinates_and_order_exact": true,
+    "current_rotor_geometry_sha256": "f32bbabab3e5f7d9ca7c5283d18703cfe7cedbd3eb2c72a57a1c222c0a9df1e5",
+    "component_source_receipts": [
+      {
+        "id": "engine_context",
+        "sha256": "1c5d671d5e5175252379a2ce4d6667881db2caa07664b1f5598a13b2c14deb4d"
+      },
+      {
+        "id": "drive_observed",
+        "sha256": "1c5d671d5e5175252379a2ce4d6667881db2caa07664b1f5598a13b2c14deb4d"
+      },
+      {
+        "id": "rotor_candidate",
+        "sha256": "fa823e84d90f5efd3c555148de63888995a1983dbb9c0b0ec25b7a9060f9bf4c"
+      },
+      {
+        "id": "provisional_shroud",
+        "sha256": "1c5d671d5e5175252379a2ce4d6667881db2caa07664b1f5598a13b2c14deb4d"
+      }
+    ],
+    "glb_sha256": "898880e3eb814ada2ef8d0ce60791106c8de797f1c8e17564f6db0aa0bc75c28",
+    "usd_sha256": "e13c758d2bc63d3ffab9c0fa6114a3afab94c415999f5be34dbc326a564bc928",
+    "export_triangles_preserved": true,
+    "rotor_shroud_360_degree_radial_separation_mm_hypothesis": 6.257900293430083
+  },
+  "warp": {
+    "bundle_sha256": "6fc2f82e7f406292e2700e5dd5e277be28580d132929ff868f888ca8c1bc80d6",
+    "reference_sha256": "8515d5b37849b220f829fe1165f5ed282b01ad0cf4f88ff98aa8a12babe129f0",
+    "reference_method": "independent_trimesh_point_to_triangle_complete_target_float32_mesh",
+    "reference_scope": "complete_target_mesh",
+    "vertices": 661475,
+    "triangles": 1322970,
+    "probes": 6000,
+    "device": {
+      "requested": "cpu",
+      "actual": "cpu",
+      "name": "CPU",
+      "cuda": false
+    },
+    "versions": {
+      "python": "3.13.15",
+      "numpy": "2.2.6",
+      "warp": "1.18.0"
+    },
+    "max_abs_error_native_units": 1.2364676260492868e-05,
+    "rms_abs_error_native_units": 2.5017268546123548e-06,
+    "tolerance_native_units": 0.0001,
+    "query_misses": 0,
+    "passed": true
+  },
+  "first_warp_reference_rejected": {
+    "reason": "cropped_reference_vs_complete_target_scope_mismatch",
+    "maximum_difference_native_units": 1.7747549035833483,
+    "rejection_preserved": true
+  },
+  "bending_witness": [
+    {
+      "element": "C3D8",
+      "divisions": [
+        4,
+        1,
+        1
+      ],
+      "elements": 4,
+      "nodes": 20,
+      "exact_tip_uz_mm": -0.004285714285714286,
+      "tip_uz_mean_mm": -0.0003174603,
+      "relative_tip_displacement_error": 0.92592593,
+      "analytical_displacement_pass": false,
+      "equilibrium_pass": true,
+      "deck_sha256": "39ac62372688041747ef8e4f1cb5dd7266e1f564ef5f937588a7fdb8f0adf838"
+    },
+    {
+      "element": "C3D8I",
+      "divisions": [
+        4,
+        1,
+        1
+      ],
+      "elements": 4,
+      "nodes": 20,
+      "exact_tip_uz_mm": -0.004285714285714286,
+      "tip_uz_mean_mm": -0.004285714,
+      "relative_tip_displacement_error": 6.666666663157628e-08,
+      "analytical_displacement_pass": true,
+      "equilibrium_pass": true,
+      "deck_sha256": "58ccb2d7f8e5393d642501743c51d1973c9b20160a061da15edbb99cb786b9c7"
+    },
+    {
+      "element": "C3D8",
+      "divisions": [
+        8,
+        2,
+        1
+      ],
+      "elements": 16,
+      "nodes": 54,
+      "exact_tip_uz_mm": -0.004285714285714286,
+      "tip_uz_mean_mm": -0.001038961,
+      "relative_tip_displacement_error": 0.7575757666666667,
+      "analytical_displacement_pass": false,
+      "equilibrium_pass": true,
+      "deck_sha256": "43974c25156a31c0cb5cf5f8d6035fac50a2d80ecd9cbd331341f4c1e338c669"
+    },
+    {
+      "element": "C3D8I",
+      "divisions": [
+        8,
+        2,
+        1
+      ],
+      "elements": 16,
+      "nodes": 54,
+      "exact_tip_uz_mm": -0.004285714285714286,
+      "tip_uz_mean_mm": -0.004285714,
+      "relative_tip_displacement_error": 6.666666663157628e-08,
+      "analytical_displacement_pass": true,
+      "equilibrium_pass": true,
+      "deck_sha256": "5227eb96e9665954771664ce551cdbbb7e8525e62215227e365dd7c98c370e22"
+    },
+    {
+      "element": "C3D8",
+      "divisions": [
+        16,
+        4,
+        2
+      ],
+      "elements": 128,
+      "nodes": 255,
+      "exact_tip_uz_mm": -0.004285714285714286,
+      "tip_uz_mean_mm": -0.002406015,
+      "relative_tip_displacement_error": 0.4385965,
+      "analytical_displacement_pass": false,
+      "equilibrium_pass": true,
+      "deck_sha256": "3551bf9555f7d89b2aff77f953edf53ef016bac6002ed2c0bd4764cee2acd9d8"
+    },
+    {
+      "element": "C3D8I",
+      "divisions": [
+        16,
+        4,
+        2
+      ],
+      "elements": 128,
+      "nodes": 255,
+      "exact_tip_uz_mm": -0.004285714285714286,
+      "tip_uz_mean_mm": -0.004285714,
+      "relative_tip_displacement_error": 6.666666663157628e-08,
+      "analytical_displacement_pass": true,
+      "equilibrium_pass": true,
+      "deck_sha256": "a7e9cc7d52531de8ab201a894e7bd5166c6607dfee64a763abb58136be487deb"
+    }
+  ],
+  "rotor_formulation_cases": [
+    {
+      "pitch_mm": 1.35,
+      "maximum_displacement_mm": 0.6036184253619852,
+      "von_mises_max_MPa": 188.37136923885373,
+      "element_peak_p95_outside_r25_MPa": 33.59687425973622,
+      "elements": 177185,
+      "nodes": 243374,
+      "geometry_sha256": "f32bbabab3e5f7d9ca7c5283d18703cfe7cedbd3eb2c72a57a1c222c0a9df1e5",
+      "grid_sha256": "e0c58a37119483d6fa26c9036b0aa237048116187f825b3b100f6bd7dbab9c98",
+      "reaction_balance_pass": true,
+      "relative_force_balance_error": 1.2329655652811077e-09,
+      "relative_moment_balance_error": 2.1820478125166787e-09,
+      "element_formulation": "C3D8",
+      "assessment_sha256": "b0af2a1f78baa8c129c57c071213fc84db98aedaccd10651f7c5bc4cb73f05ea",
+      "solver_version": "2.23"
+    },
+    {
+      "pitch_mm": 1.35,
+      "maximum_displacement_mm": 0.6320687470748731,
+      "von_mises_max_MPa": 174.23502441260075,
+      "element_peak_p95_outside_r25_MPa": 34.37867958417483,
+      "elements": 177185,
+      "nodes": 243374,
+      "geometry_sha256": "f32bbabab3e5f7d9ca7c5283d18703cfe7cedbd3eb2c72a57a1c222c0a9df1e5",
+      "grid_sha256": "e0c58a37119483d6fa26c9036b0aa237048116187f825b3b100f6bd7dbab9c98",
+      "reaction_balance_pass": true,
+      "relative_force_balance_error": 4.0418968294004495e-10,
+      "relative_moment_balance_error": 6.408740491372287e-10,
+      "element_formulation": "C3D8I",
+      "assessment_sha256": "269b484b9dbe59077d4c583857d7c2069ad2111364fd0dcc989e1bd0df7433f1",
+      "solver_version": "2.23"
+    },
+    {
+      "pitch_mm": 1.2,
+      "maximum_displacement_mm": 0.8003314734209381,
+      "von_mises_max_MPa": 204.7731891944175,
+      "element_peak_p95_outside_r25_MPa": 35.397087692452644,
+      "elements": 244240,
+      "nodes": 327866,
+      "geometry_sha256": "f32bbabab3e5f7d9ca7c5283d18703cfe7cedbd3eb2c72a57a1c222c0a9df1e5",
+      "grid_sha256": "9bd3f8dba38b024fc0faac32537c321b8c8b9c2686c61da3207fbc8c977835c9",
+      "reaction_balance_pass": true,
+      "relative_force_balance_error": 3.294970449197465e-10,
+      "relative_moment_balance_error": 7.460820374121667e-10,
+      "element_formulation": "C3D8I",
+      "assessment_sha256": "3845c4b1c1d6aa0fe6d339c289af711cf175f1a465a31112e493b0a9ef1f30ad",
+      "solver_version": "2.23"
+    }
+  ],
+  "C3D8I_final_pair_displacement_relative_change": 0.26620953357488664,
+  "surface_review": {
+    "receipt_sha256": "bb36cd67ff92fa5460583029ab457fb6278aa9848a6ab00d51e7cd5cd9aadb0f",
+    "python_fcl_version": "0.7.0.11",
+    "all_six_surface_pairs_checked": true,
+    "pairs": [
+      {
+        "components": [
+          "engine_context",
+          "drive_observed"
+        ],
+        "surface_crossing": true,
+        "minimum_surface_distance_native_units": null
+      },
+      {
+        "components": [
+          "engine_context",
+          "rotor_candidate"
+        ],
+        "surface_crossing": false,
+        "minimum_surface_distance_native_units": 113.23615370790695
+      },
+      {
+        "components": [
+          "engine_context",
+          "provisional_shroud"
+        ],
+        "surface_crossing": false,
+        "minimum_surface_distance_native_units": 33.36650921524713
+      },
+      {
+        "components": [
+          "drive_observed",
+          "rotor_candidate"
+        ],
+        "surface_crossing": false,
+        "minimum_surface_distance_native_units": 3.8342956562531554
+      },
+      {
+        "components": [
+          "drive_observed",
+          "provisional_shroud"
+        ],
+        "surface_crossing": false,
+        "minimum_surface_distance_native_units": 6.83367108745369
+      },
+      {
+        "components": [
+          "rotor_candidate",
+          "provisional_shroud"
+        ],
+        "surface_crossing": false,
+        "minimum_surface_distance_native_units": 6.258298585012578
+      }
+    ],
+    "analytic_fixtures_pass": true,
+    "solid_containment_checked": false,
+    "continuous_rotation_checked": false
+  },
+  "rental": {
+    "created": true,
+    "workload_started": false,
+    "CUDA_executed": false,
+    "offer_hourly_usd_including_100GB": 0.4318518518518518,
+    "attempt_ceiling_usd": 4.0,
+    "goal_ceiling_usd": 10.0,
+    "outcome": "exact_owned_attempt_destroyed_by_exclusive_inventory_guard",
+    "teardown_verified": true,
+    "teardown_receipt_sha256": "a021f1647e17075def4ddf9f9ada81b84f019d2e40afdf87b2265a80275183af",
+    "actual_invoice_usd": null,
+    "other_task_instance_modified": false
+  },
+  "private_evidence_repository": "https://github.com/cluster2600/porscheparts-935-private",
+  "new_native_rotor_solves": 3,
+  "new_synthetic_bending_solves": 6,
+  "full_system_goal_complete": false,
+  "current_geometry_CFD_accepted": false,
+  "FEA_mesh_convergence_established": false,
+  "scale_verified": false,
+  "historical_interfaces_verified": false,
+  "material_process_qualified": false,
+  "optimization_complete": false,
+  "PhysicsNeMo_trained": false,
+  "Omniverse_runtime_review_complete": false,
+  "complete_mechanism_defined": false,
+  "manufacturing_authorized": false,
+  "physical_validation": false
+}

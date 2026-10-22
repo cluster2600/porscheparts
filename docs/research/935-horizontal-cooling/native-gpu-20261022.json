@@ -1,0 +1,798 @@
+{
+  "schema_version": "1.0.0",
+  "id": "935-native-gpu-20261022",
+  "target": "935_reference_installation",
+  "status": "geometry_runtime_and_conditional_studies_not_manufacturing_release",
+  "repository_baseline_commit": "ae031dbafe24fe86bf283d54076270c9e002386f",
+  "source_programs_sha256": {
+    "twins/935-horizontal-cooling-system-f0/source/analysis-envelope/CMakeLists.txt": "e347e939e0a593fd00c52acd73ec840fecef855565cd0970351aa5d27534524f",
+    "twins/935-horizontal-cooling-system-f0/source/analysis-envelope/tiled_envelope.cpp": "872707019d7dff40741fcc6b2bf9d62efb49a8e510e08d2628a84f2577f7a54e",
+    "benchmarks/warp-geometry/mesh_review.py": "090502fba58fa116d86834b90a15e618800b780c50c1d715dd4d3260edf89b7c",
+    "benchmarks/warp-geometry/pilot.py": "6561e3348689f31973991f30876e65dd73c723a35cc8f2aa2cc4c8268fe16c36",
+    "benchmarks/warp-geometry/kernels.py": "356d1debf790790887882e7d0a15d91232451113613f4a43e3e909fcb7540baa"
+  },
+  "geometry": {
+    "PicoGK_rotor_sha256": "f32bbabab3e5f7d9ca7c5283d18703cfe7cedbd3eb2c72a57a1c222c0a9df1e5",
+    "complete_rotor_triangles": 1322970,
+    "original_assembly_usd_sha256": "e13c758d2bc63d3ffab9c0fa6114a3afab94c415999f5be34dbc326a564bc928",
+    "assembly_triangles": 12603066,
+    "source_unit": "uncalibrated_scan_unit",
+    "display_scale_assumption": "one_assumed_mm_per_scan_unit",
+    "scale_verified": false,
+    "design_master_modified": false
+  },
+  "gpu_geometry": {
+    "schema": "warp-private-mesh-review-v1",
+    "passed": true,
+    "source_sha256": {
+      "mesh_review.py": "090502fba58fa116d86834b90a15e618800b780c50c1d715dd4d3260edf89b7c",
+      "pilot.py": "6561e3348689f31973991f30876e65dd73c723a35cc8f2aa2cc4c8268fe16c36",
+      "kernels.py": "356d1debf790790887882e7d0a15d91232451113613f4a43e3e909fcb7540baa"
+    },
+    "bundle_sha256": "6fc2f82e7f406292e2700e5dd5e277be28580d132929ff868f888ca8c1bc80d6",
+    "reference_sha256": "8515d5b37849b220f829fe1165f5ed282b01ad0cf4f88ff98aa8a12babe129f0",
+    "reference_scope": "complete_target_mesh",
+    "device": {
+      "requested": "cuda:0",
+      "actual": "cuda:0",
+      "name": "NVIDIA GeForce RTX 4090",
+      "cuda": true
+    },
+    "versions": {
+      "python": "3.11.2",
+      "numpy": "2.2.6",
+      "warp": "1.18.0"
+    },
+    "probes": 6000,
+    "max_abs_error_native_units": 1.0524909763630352e-05,
+    "rms_abs_error_native_units": 2.1401799109938534e-06,
+    "tolerance_native_units": 0.0001,
+    "query_misses": 0,
+    "invalid_distances": 0,
+    "gpu_validated": true,
+    "geometry_only": true
+  },
+  "renderer": {
+    "name": "OVRTX",
+    "package_version": "0.3.0.312915",
+    "wheel_sha256": "a6b2b3c357f6487451c8d71e96cc4f83156c08fd9747d10e1b65f3866bed4b8f",
+    "installed_payload_files_verified": 7324,
+    "gpu_device_index": 0,
+    "source_usd_unchanged": true,
+    "separate_presentation_layers": true,
+    "successful_view_jobs": 5,
+    "accepted_views": [
+      {
+        "file": "render-Perspective.png",
+        "sha256": "0bd4179de272eeb6f1140786cb9ee8daf9079704d8ded927b0dbd870b5d2e162",
+        "shape": [
+          1000,
+          1200,
+          4
+        ],
+        "RGB_std": 29.79053629234495,
+        "nonblank": true,
+        "visual_review": "All four components are visible across the accepted views; orthographic views are not cropped."
+      },
+      {
+        "file": "render-002-Top.png",
+        "sha256": "9b66fd71872cad7e56b78550a3a158069ef03a80d9a789355935fae4b1d41ab6",
+        "shape": [
+          1000,
+          1200,
+          4
+        ],
+        "RGB_std": 24.452392642472194,
+        "nonblank": true,
+        "visual_review": "All four components are visible across the accepted views; orthographic views are not cropped."
+      },
+      {
+        "file": "render-002-Side.png",
+        "sha256": "ac794cdeb3d934d62e73e5a41fe91e36c7c86a1b69fe85ed6bf2758bb0160a90",
+        "shape": [
+          1000,
+          1200,
+          4
+        ],
+        "RGB_std": 20.223737606508436,
+        "nonblank": true,
+        "visual_review": "All four components are visible across the accepted views; orthographic views are not cropped."
+      }
+    ],
+    "rejected_framing": [
+      "render-Top.png",
+      "render-Side.png"
+    ],
+    "articulated_mechanism_validated": false
+  },
+  "surface_approximation": {
+    "status": "complete_quantized_analysis_surface_bound_passed",
+    "candidate_faces": 861404,
+    "source_faces": 1322970,
+    "whole_surface_upper_bound_native_units": 0.0225,
+    "budget_native_units": 0.025,
+    "quantized_topology_and_self_intersections_checked": true,
+    "certificate_sha256": "a72798de62795911ed422a0f3acf8b70a0679b034c92d05162e067e6f0a4e2bc",
+    "execution_sha256": "232d1768d5a963de6f4af651b9d7061c8185728d06e845f0c2d2bfa1506dc746",
+    "candidate_off_sha256": "8273248953a0bba426935fe3bdbdbc8b932c1d4d9c186a032e8cf2293cd221d5",
+    "native_runtime": "Kali1 x86_64; same independently qualified binary",
+    "elapsed_s": 271.03607412497513,
+    "mechanical_volume_mesh_admitted": false,
+    "scale_verified": false,
+    "manufacturing_authorized": false,
+    "relative_volume_difference": 6.501421758731141e-07,
+    "relative_inertia_Frobenius_difference": 1.2443875952103118e-06,
+    "float32_vertex_displacement_bound_native_units": 6.922144922903424e-06,
+    "PicoGK_CAD_replaced": false,
+    "rejected_VTK_upper_bounds_native_units": [
+      1.836783429546569,
+      1.5345919911378307
+    ],
+    "more_aggressive_200548_face_candidate_containment_pass": false,
+    "maximum_distance_estimate_job_completed": false,
+    "native_CMake_CTest_pass": true
+  },
+  "structural_reference": {
+    "binary_sha256": "2efb8be48e0b175a322b73ad5feb603b8400185bcc2672ab516f44d6ef0069ea",
+    "six_bending_controls_pass": true,
+    "P1": {
+      "nodes": 661495,
+      "elements": 2116345,
+      "maximum_displacement_mm": 0.27181128127646303,
+      "conditional_mass_kg": 1.1498770734148627,
+      "relative_force_balance_error": 7.801012889757052e-10,
+      "relative_moment_balance_error": 3.428434949510405e-10,
+      "equilibrium_pass": true,
+      "mesh_convergence_established": false,
+      "scale_verified": false,
+      "support_is_measured": false
+    },
+    "P1_complete_field_comparison": {
+      "full_field_comparison_pass": true,
+      "maximum_component_differences": {
+        "displacement": 0.0,
+        "reaction": 8.881784197001252e-16,
+        "raw_RF": 0.0,
+        "element_peak_von_mises": 7.105427357601002e-15
+      },
+      "reference_fields_sha256": "10e32476fa65ffcfc50c6e69979cbacc0fe87f518348d5bc7ef0fe3cdb47127e",
+      "new_fields_sha256": "4fb7b9cbf0d090e6954160a94d9b1ca54ed744ef98550150f0c37e392bf9c1c5",
+      "physical_validation": false
+    },
+    "P2": {
+      "deck_sha256": "123f0b6b0834476600b68caecdb673bfa2d39e16f1088672d37519a984012c2e",
+      "solver_finished": false,
+      "exit": -15,
+      "stop_reason": "wall_time_limit",
+      "peak_group_rss_KiB": 69312240,
+      "elapsed_s": 3001.7650582429487,
+      "address_space_limit_bytes": 94489280512,
+      "timeout_s": 3000
+    },
+    "P2_accepted_fields": false
+  },
+  "conditional_material_comparison": {
+    "method": "verified_linear_similarity_of_complete_P1_centrifugal_model",
+    "material_cards_sha256": "f5b9dea9663b092541f77cb4485e8e3fbcaa6a3797c07ab31f7538401ee3fdd2",
+    "common_poisson_ratio_assumed": 0.33,
+    "temperature_C_assumed": 20,
+    "native_control_cases": [
+      {
+        "material_id": "we43",
+        "rpm": 6000,
+        "stress_force_factor": 0.6853932584269663,
+        "displacement_factor": 1.0879258070269306,
+        "full_field_normalized_errors": {
+          "displacement": 3.749661988358738e-07,
+          "reaction": 1.3930745858246944e-07,
+          "raw_RF": 1.3913228733445674e-07,
+          "element_peak_von_mises": 1.5535739867532187e-07
+        },
+        "assessment_sha256": "ad8e3f09d94ce76992a39442b8508e4f420d32c421522710b18b39b977625075",
+        "passed": true
+      },
+      {
+        "material_id": "ti64",
+        "rpm": 6000,
+        "stress_force_factor": 1.6479400749063673,
+        "displacement_factor": 1.0486891385767791,
+        "full_field_normalized_errors": {
+          "displacement": 3.817376699040337e-07,
+          "reaction": 3.669485099763758e-07,
+          "raw_RF": 3.664870929847586e-07,
+          "element_peak_von_mises": 1.0168757958137526e-07
+        },
+        "assessment_sha256": "399181f2d7701aeb21a829f6a0c6562218fac5bacfc8c9bb60287d871f473544",
+        "passed": true
+      },
+      {
+        "material_id": "alsi10mg",
+        "rpm": 3000,
+        "stress_force_factor": 0.25,
+        "displacement_factor": 0.25,
+        "full_field_normalized_errors": {
+          "displacement": 2.3491548924646862e-07,
+          "reaction": 2.4279299917226204e-07,
+          "raw_RF": 2.424877007115298e-07,
+          "element_peak_von_mises": 1.2394719584671895e-07
+        },
+        "assessment_sha256": "c97a4033703a234b449b8422c33beb14123937a33fcebce0a30b00cd368368d5",
+        "passed": true
+      }
+    ],
+    "rows": [
+      {
+        "material_id": "alsi10mg",
+        "rpm": 3000,
+        "conditional_mass_kg": 1.1498770734148627,
+        "stress_factor_vs_AlSi10Mg_6000rpm": 0.25,
+        "displacement_factor_vs_AlSi10Mg_6000rpm": 0.25,
+        "conditional_P1_max_displacement_mm": 0.06795282031911576,
+        "conditional_P1_p95_stress_MPa": 7.223133243903584,
+        "method": "verified_linear_similarity_not_a_separate_solve",
+        "safe_speed_established": false,
+        "fatigue_qualified": false
+      },
+      {
+        "material_id": "alsi10mg",
+        "rpm": 6000,
+        "conditional_mass_kg": 1.1498770734148627,
+        "stress_factor_vs_AlSi10Mg_6000rpm": 1.0,
+        "displacement_factor_vs_AlSi10Mg_6000rpm": 1.0,
+        "conditional_P1_max_displacement_mm": 0.27181128127646303,
+        "conditional_P1_p95_stress_MPa": 28.892532975614337,
+        "method": "verified_linear_similarity_not_a_separate_solve",
+        "safe_speed_established": false,
+        "fatigue_qualified": false
+      },
+      {
+        "material_id": "alsi10mg",
+        "rpm": 9000,
+        "conditional_mass_kg": 1.1498770734148627,
+        "stress_factor_vs_AlSi10Mg_6000rpm": 2.25,
+        "displacement_factor_vs_AlSi10Mg_6000rpm": 2.25,
+        "conditional_P1_max_displacement_mm": 0.6115753828720418,
+        "conditional_P1_p95_stress_MPa": 65.00819919513226,
+        "method": "verified_linear_similarity_not_a_separate_solve",
+        "safe_speed_established": false,
+        "fatigue_qualified": false
+      },
+      {
+        "material_id": "alsi10mg",
+        "rpm": 12000,
+        "conditional_mass_kg": 1.1498770734148627,
+        "stress_factor_vs_AlSi10Mg_6000rpm": 4.0,
+        "displacement_factor_vs_AlSi10Mg_6000rpm": 4.0,
+        "conditional_P1_max_displacement_mm": 1.0872451251058521,
+        "conditional_P1_p95_stress_MPa": 115.57013190245735,
+        "method": "verified_linear_similarity_not_a_separate_solve",
+        "safe_speed_established": false,
+        "fatigue_qualified": false
+      },
+      {
+        "material_id": "alf357",
+        "rpm": 3000,
+        "conditional_mass_kg": 1.1498770734148627,
+        "stress_factor_vs_AlSi10Mg_6000rpm": 0.25,
+        "displacement_factor_vs_AlSi10Mg_6000rpm": 0.25,
+        "conditional_P1_max_displacement_mm": 0.06795282031911576,
+        "conditional_P1_p95_stress_MPa": 7.223133243903584,
+        "method": "verified_linear_similarity_not_a_separate_solve",
+        "safe_speed_established": false,
+        "fatigue_qualified": false
+      },
+      {
+        "material_id": "alf357",
+        "rpm": 6000,
+        "conditional_mass_kg": 1.1498770734148627,
+        "stress_factor_vs_AlSi10Mg_6000rpm": 1.0,
+        "displacement_factor_vs_AlSi10Mg_6000rpm": 1.0,
+        "conditional_P1_max_displacement_mm": 0.27181128127646303,
+        "conditional_P1_p95_stress_MPa": 28.892532975614337,
+        "method": "verified_linear_similarity_not_a_separate_solve",
+        "safe_speed_established": false,
+        "fatigue_qualified": false
+      },
+      {
+        "material_id": "alf357",
+        "rpm": 9000,
+        "conditional_mass_kg": 1.1498770734148627,
+        "stress_factor_vs_AlSi10Mg_6000rpm": 2.25,
+        "displacement_factor_vs_AlSi10Mg_6000rpm": 2.25,
+        "conditional_P1_max_displacement_mm": 0.6115753828720418,
+        "conditional_P1_p95_stress_MPa": 65.00819919513226,
+        "method": "verified_linear_similarity_not_a_separate_solve",
+        "safe_speed_established": false,
+        "fatigue_qualified": false
+      },
+      {
+        "material_id": "alf357",
+        "rpm": 12000,
+        "conditional_mass_kg": 1.1498770734148627,
+        "stress_factor_vs_AlSi10Mg_6000rpm": 4.0,
+        "displacement_factor_vs_AlSi10Mg_6000rpm": 4.0,
+        "conditional_P1_max_displacement_mm": 1.0872451251058521,
+        "conditional_P1_p95_stress_MPa": 115.57013190245735,
+        "method": "verified_linear_similarity_not_a_separate_solve",
+        "safe_speed_established": false,
+        "fatigue_qualified": false
+      },
+      {
+        "material_id": "ti64",
+        "rpm": 3000,
+        "conditional_mass_kg": 1.8949285104964033,
+        "stress_factor_vs_AlSi10Mg_6000rpm": 0.4119850187265918,
+        "displacement_factor_vs_AlSi10Mg_6000rpm": 0.2621722846441948,
+        "conditional_P1_max_displacement_mm": 0.07126138460431616,
+        "conditional_P1_p95_stress_MPa": 11.903290739017145,
+        "method": "verified_linear_similarity_not_a_separate_solve",
+        "safe_speed_established": false,
+        "fatigue_qualified": false
+      },
+      {
+        "material_id": "ti64",
+        "rpm": 6000,
+        "conditional_mass_kg": 1.8949285104964033,
+        "stress_factor_vs_AlSi10Mg_6000rpm": 1.6479400749063673,
+        "displacement_factor_vs_AlSi10Mg_6000rpm": 1.0486891385767791,
+        "conditional_P1_max_displacement_mm": 0.28504553841726465,
+        "conditional_P1_p95_stress_MPa": 47.61316295606858,
+        "method": "verified_linear_similarity_not_a_separate_solve",
+        "safe_speed_established": false,
+        "fatigue_qualified": false
+      },
+      {
+        "material_id": "ti64",
+        "rpm": 9000,
+        "conditional_mass_kg": 1.8949285104964033,
+        "stress_factor_vs_AlSi10Mg_6000rpm": 3.7078651685393265,
+        "displacement_factor_vs_AlSi10Mg_6000rpm": 2.3595505617977532,
+        "conditional_P1_max_displacement_mm": 0.6413524614388455,
+        "conditional_P1_p95_stress_MPa": 107.12961665115431,
+        "method": "verified_linear_similarity_not_a_separate_solve",
+        "safe_speed_established": false,
+        "fatigue_qualified": false
+      },
+      {
+        "material_id": "ti64",
+        "rpm": 12000,
+        "conditional_mass_kg": 1.8949285104964033,
+        "stress_factor_vs_AlSi10Mg_6000rpm": 6.591760299625469,
+        "displacement_factor_vs_AlSi10Mg_6000rpm": 4.194756554307117,
+        "conditional_P1_max_displacement_mm": 1.1401821536690586,
+        "conditional_P1_p95_stress_MPa": 190.4526518242743,
+        "method": "verified_linear_similarity_not_a_separate_solve",
+        "safe_speed_established": false,
+        "fatigue_qualified": false
+      },
+      {
+        "material_id": "316l",
+        "rpm": 3000,
+        "conditional_mass_kg": 3.402258007482178,
+        "stress_factor_vs_AlSi10Mg_6000rpm": 0.7397003745318352,
+        "displacement_factor_vs_AlSi10Mg_6000rpm": 0.2725211906169919,
+        "conditional_P1_max_displacement_mm": 0.07407433399659179,
+        "conditional_P1_p95_stress_MPa": 21.371817463235324,
+        "method": "verified_linear_similarity_not_a_separate_solve",
+        "safe_speed_established": false,
+        "fatigue_qualified": false
+      },
+      {
+        "material_id": "316l",
+        "rpm": 6000,
+        "conditional_mass_kg": 3.402258007482178,
+        "stress_factor_vs_AlSi10Mg_6000rpm": 2.958801498127341,
+        "displacement_factor_vs_AlSi10Mg_6000rpm": 1.0900847624679677,
+        "conditional_P1_max_displacement_mm": 0.29629733598636715,
+        "conditional_P1_p95_stress_MPa": 85.4872698529413,
+        "method": "verified_linear_similarity_not_a_separate_solve",
+        "safe_speed_established": false,
+        "fatigue_qualified": false
+      },
+      {
+        "material_id": "316l",
+        "rpm": 9000,
+        "conditional_mass_kg": 3.402258007482178,
+        "stress_factor_vs_AlSi10Mg_6000rpm": 6.657303370786517,
+        "displacement_factor_vs_AlSi10Mg_6000rpm": 2.452690715552927,
+        "conditional_P1_max_displacement_mm": 0.6666690059693261,
+        "conditional_P1_p95_stress_MPa": 192.3463571691179,
+        "method": "verified_linear_similarity_not_a_separate_solve",
+        "safe_speed_established": false,
+        "fatigue_qualified": false
+      },
+      {
+        "material_id": "316l",
+        "rpm": 12000,
+        "conditional_mass_kg": 3.402258007482178,
+        "stress_factor_vs_AlSi10Mg_6000rpm": 11.835205992509364,
+        "displacement_factor_vs_AlSi10Mg_6000rpm": 4.360339049871871,
+        "conditional_P1_max_displacement_mm": 1.1851893439454686,
+        "conditional_P1_p95_stress_MPa": 341.9490794117652,
+        "method": "verified_linear_similarity_not_a_separate_solve",
+        "safe_speed_established": false,
+        "fatigue_qualified": false
+      },
+      {
+        "material_id": "17_4ph",
+        "rpm": 3000,
+        "conditional_mass_kg": 3.3376581718970733,
+        "stress_factor_vs_AlSi10Mg_6000rpm": 0.7256554307116105,
+        "displacement_factor_vs_AlSi10Mg_6000rpm": 0.25397940074906367,
+        "conditional_P1_max_displacement_mm": 0.06903446633543127,
+        "conditional_P1_p95_stress_MPa": 20.96602346076883,
+        "method": "verified_linear_similarity_not_a_separate_solve",
+        "safe_speed_established": false,
+        "fatigue_qualified": false
+      },
+      {
+        "material_id": "17_4ph",
+        "rpm": 6000,
+        "conditional_mass_kg": 3.3376581718970733,
+        "stress_factor_vs_AlSi10Mg_6000rpm": 2.902621722846442,
+        "displacement_factor_vs_AlSi10Mg_6000rpm": 1.0159176029962547,
+        "conditional_P1_max_displacement_mm": 0.2761378653417251,
+        "conditional_P1_p95_stress_MPa": 83.86409384307532,
+        "method": "verified_linear_similarity_not_a_separate_solve",
+        "safe_speed_established": false,
+        "fatigue_qualified": false
+      },
+      {
+        "material_id": "17_4ph",
+        "rpm": 9000,
+        "conditional_mass_kg": 3.3376581718970733,
+        "stress_factor_vs_AlSi10Mg_6000rpm": 6.530898876404494,
+        "displacement_factor_vs_AlSi10Mg_6000rpm": 2.285814606741573,
+        "conditional_P1_max_displacement_mm": 0.6213101970188815,
+        "conditional_P1_p95_stress_MPa": 188.69421114691949,
+        "method": "verified_linear_similarity_not_a_separate_solve",
+        "safe_speed_established": false,
+        "fatigue_qualified": false
+      },
+      {
+        "material_id": "17_4ph",
+        "rpm": 12000,
+        "conditional_mass_kg": 3.3376581718970733,
+        "stress_factor_vs_AlSi10Mg_6000rpm": 11.610486891385769,
+        "displacement_factor_vs_AlSi10Mg_6000rpm": 4.063670411985019,
+        "conditional_P1_max_displacement_mm": 1.1045514613669003,
+        "conditional_P1_p95_stress_MPa": 335.4563753723013,
+        "method": "verified_linear_similarity_not_a_separate_solve",
+        "safe_speed_established": false,
+        "fatigue_qualified": false
+      },
+      {
+        "material_id": "in718",
+        "rpm": 3000,
+        "conditional_mass_kg": 3.509924400124019,
+        "stress_factor_vs_AlSi10Mg_6000rpm": 0.7631086142322098,
+        "displacement_factor_vs_AlSi10Mg_6000rpm": 0.26708801498127344,
+        "conditional_P1_max_displacement_mm": 0.07259753556564709,
+        "conditional_P1_p95_stress_MPa": 22.04814080067948,
+        "method": "verified_linear_similarity_not_a_separate_solve",
+        "safe_speed_established": false,
+        "fatigue_qualified": false
+      },
+      {
+        "material_id": "in718",
+        "rpm": 6000,
+        "conditional_mass_kg": 3.509924400124019,
+        "stress_factor_vs_AlSi10Mg_6000rpm": 3.052434456928839,
+        "displacement_factor_vs_AlSi10Mg_6000rpm": 1.0683520599250937,
+        "conditional_P1_max_displacement_mm": 0.29039014226258836,
+        "conditional_P1_p95_stress_MPa": 88.19256320271792,
+        "method": "verified_linear_similarity_not_a_separate_solve",
+        "safe_speed_established": false,
+        "fatigue_qualified": false
+      },
+      {
+        "material_id": "in718",
+        "rpm": 9000,
+        "conditional_mass_kg": 3.509924400124019,
+        "stress_factor_vs_AlSi10Mg_6000rpm": 6.867977528089888,
+        "displacement_factor_vs_AlSi10Mg_6000rpm": 2.403792134831461,
+        "conditional_P1_max_displacement_mm": 0.6533778200908238,
+        "conditional_P1_p95_stress_MPa": 198.43326720611532,
+        "method": "verified_linear_similarity_not_a_separate_solve",
+        "safe_speed_established": false,
+        "fatigue_qualified": false
+      },
+      {
+        "material_id": "in718",
+        "rpm": 12000,
+        "conditional_mass_kg": 3.509924400124019,
+        "stress_factor_vs_AlSi10Mg_6000rpm": 12.209737827715356,
+        "displacement_factor_vs_AlSi10Mg_6000rpm": 4.273408239700375,
+        "conditional_P1_max_displacement_mm": 1.1615605690503534,
+        "conditional_P1_p95_stress_MPa": 352.7702528108717,
+        "method": "verified_linear_similarity_not_a_separate_solve",
+        "safe_speed_established": false,
+        "fatigue_qualified": false
+      },
+      {
+        "material_id": "cocrmp1",
+        "rpm": 3000,
+        "conditional_mass_kg": 3.574524235709124,
+        "stress_factor_vs_AlSi10Mg_6000rpm": 0.7771535580524346,
+        "displacement_factor_vs_AlSi10Mg_6000rpm": 0.26154206280610776,
+        "conditional_P1_max_displacement_mm": 0.07109008319901731,
+        "conditional_P1_p95_stress_MPa": 22.453934803145977,
+        "method": "verified_linear_similarity_not_a_separate_solve",
+        "safe_speed_established": false,
+        "fatigue_qualified": false
+      },
+      {
+        "material_id": "cocrmp1",
+        "rpm": 6000,
+        "conditional_mass_kg": 3.574524235709124,
+        "stress_factor_vs_AlSi10Mg_6000rpm": 3.1086142322097383,
+        "displacement_factor_vs_AlSi10Mg_6000rpm": 1.046168251224431,
+        "conditional_P1_max_displacement_mm": 0.28436033279606926,
+        "conditional_P1_p95_stress_MPa": 89.8157392125839,
+        "method": "verified_linear_similarity_not_a_separate_solve",
+        "safe_speed_established": false,
+        "fatigue_qualified": false
+      },
+      {
+        "material_id": "cocrmp1",
+        "rpm": 9000,
+        "conditional_mass_kg": 3.574524235709124,
+        "stress_factor_vs_AlSi10Mg_6000rpm": 6.994382022471911,
+        "displacement_factor_vs_AlSi10Mg_6000rpm": 2.3538785652549703,
+        "conditional_P1_max_displacement_mm": 0.639810748791156,
+        "conditional_P1_p95_stress_MPa": 202.0854132283138,
+        "method": "verified_linear_similarity_not_a_separate_solve",
+        "safe_speed_established": false,
+        "fatigue_qualified": false
+      },
+      {
+        "material_id": "cocrmp1",
+        "rpm": 12000,
+        "conditional_mass_kg": 3.574524235709124,
+        "stress_factor_vs_AlSi10Mg_6000rpm": 12.434456928838953,
+        "displacement_factor_vs_AlSi10Mg_6000rpm": 4.184673004897724,
+        "conditional_P1_max_displacement_mm": 1.137441331184277,
+        "conditional_P1_p95_stress_MPa": 359.2629568503356,
+        "method": "verified_linear_similarity_not_a_separate_solve",
+        "safe_speed_established": false,
+        "fatigue_qualified": false
+      },
+      {
+        "material_id": "m300",
+        "rpm": 3000,
+        "conditional_mass_kg": 3.4453245645389146,
+        "stress_factor_vs_AlSi10Mg_6000rpm": 0.7490636704119851,
+        "displacement_factor_vs_AlSi10Mg_6000rpm": 0.27597082594125766,
+        "conditional_P1_max_displacement_mm": 0.07501198379401701,
+        "conditional_P1_p95_stress_MPa": 21.642346798212987,
+        "method": "verified_linear_similarity_not_a_separate_solve",
+        "safe_speed_established": false,
+        "fatigue_qualified": false
+      },
+      {
+        "material_id": "m300",
+        "rpm": 6000,
+        "conditional_mass_kg": 3.4453245645389146,
+        "stress_factor_vs_AlSi10Mg_6000rpm": 2.9962546816479403,
+        "displacement_factor_vs_AlSi10Mg_6000rpm": 1.1038833037650306,
+        "conditional_P1_max_displacement_mm": 0.30004793517606804,
+        "conditional_P1_p95_stress_MPa": 86.56938719285195,
+        "method": "verified_linear_similarity_not_a_separate_solve",
+        "safe_speed_established": false,
+        "fatigue_qualified": false
+      },
+      {
+        "material_id": "m300",
+        "rpm": 9000,
+        "conditional_mass_kg": 3.4453245645389146,
+        "stress_factor_vs_AlSi10Mg_6000rpm": 6.741573033707866,
+        "displacement_factor_vs_AlSi10Mg_6000rpm": 2.483737433471319,
+        "conditional_P1_max_displacement_mm": 0.675107854146153,
+        "conditional_P1_p95_stress_MPa": 194.7811211839169,
+        "method": "verified_linear_similarity_not_a_separate_solve",
+        "safe_speed_established": false,
+        "fatigue_qualified": false
+      },
+      {
+        "material_id": "m300",
+        "rpm": 12000,
+        "conditional_mass_kg": 3.4453245645389146,
+        "stress_factor_vs_AlSi10Mg_6000rpm": 11.985018726591761,
+        "displacement_factor_vs_AlSi10Mg_6000rpm": 4.4155332150601225,
+        "conditional_P1_max_displacement_mm": 1.2001917407042721,
+        "conditional_P1_p95_stress_MPa": 346.2775487714078,
+        "method": "verified_linear_similarity_not_a_separate_solve",
+        "safe_speed_established": false,
+        "fatigue_qualified": false
+      },
+      {
+        "material_id": "cucrzr",
+        "rpm": 3000,
+        "conditional_mass_kg": 3.7898570209928066,
+        "stress_factor_vs_AlSi10Mg_6000rpm": 0.8239700374531836,
+        "displacement_factor_vs_AlSi10Mg_6000rpm": 0.5243445692883896,
+        "conditional_P1_max_displacement_mm": 0.14252276920863233,
+        "conditional_P1_p95_stress_MPa": 23.80658147803429,
+        "method": "verified_linear_similarity_not_a_separate_solve",
+        "safe_speed_established": false,
+        "fatigue_qualified": false
+      },
+      {
+        "material_id": "cucrzr",
+        "rpm": 6000,
+        "conditional_mass_kg": 3.7898570209928066,
+        "stress_factor_vs_AlSi10Mg_6000rpm": 3.2958801498127346,
+        "displacement_factor_vs_AlSi10Mg_6000rpm": 2.0973782771535583,
+        "conditional_P1_max_displacement_mm": 0.5700910768345293,
+        "conditional_P1_p95_stress_MPa": 95.22632591213716,
+        "method": "verified_linear_similarity_not_a_separate_solve",
+        "safe_speed_established": false,
+        "fatigue_qualified": false
+      },
+      {
+        "material_id": "cucrzr",
+        "rpm": 9000,
+        "conditional_mass_kg": 3.7898570209928066,
+        "stress_factor_vs_AlSi10Mg_6000rpm": 7.415730337078653,
+        "displacement_factor_vs_AlSi10Mg_6000rpm": 4.7191011235955065,
+        "conditional_P1_max_displacement_mm": 1.282704922877691,
+        "conditional_P1_p95_stress_MPa": 214.25923330230862,
+        "method": "verified_linear_similarity_not_a_separate_solve",
+        "safe_speed_established": false,
+        "fatigue_qualified": false
+      },
+      {
+        "material_id": "cucrzr",
+        "rpm": 12000,
+        "conditional_mass_kg": 3.7898570209928066,
+        "stress_factor_vs_AlSi10Mg_6000rpm": 13.183520599250938,
+        "displacement_factor_vs_AlSi10Mg_6000rpm": 8.389513108614233,
+        "conditional_P1_max_displacement_mm": 2.2803643073381172,
+        "conditional_P1_p95_stress_MPa": 380.9053036485486,
+        "method": "verified_linear_similarity_not_a_separate_solve",
+        "safe_speed_established": false,
+        "fatigue_qualified": false
+      },
+      {
+        "material_id": "we43",
+        "rpm": 3000,
+        "conditional_mass_kg": 0.7881179941382768,
+        "stress_factor_vs_AlSi10Mg_6000rpm": 0.17134831460674158,
+        "displacement_factor_vs_AlSi10Mg_6000rpm": 0.27198145175673266,
+        "conditional_P1_max_displacement_mm": 0.07392762688543002,
+        "conditional_P1_p95_stress_MPa": 4.950686830091221,
+        "method": "verified_linear_similarity_not_a_separate_solve",
+        "safe_speed_established": false,
+        "fatigue_qualified": false
+      },
+      {
+        "material_id": "we43",
+        "rpm": 6000,
+        "conditional_mass_kg": 0.7881179941382768,
+        "stress_factor_vs_AlSi10Mg_6000rpm": 0.6853932584269663,
+        "displacement_factor_vs_AlSi10Mg_6000rpm": 1.0879258070269306,
+        "conditional_P1_max_displacement_mm": 0.29571050754172007,
+        "conditional_P1_p95_stress_MPa": 19.802747320364883,
+        "method": "verified_linear_similarity_not_a_separate_solve",
+        "safe_speed_established": false,
+        "fatigue_qualified": false
+      },
+      {
+        "material_id": "we43",
+        "rpm": 9000,
+        "conditional_mass_kg": 0.7881179941382768,
+        "stress_factor_vs_AlSi10Mg_6000rpm": 1.5421348314606742,
+        "displacement_factor_vs_AlSi10Mg_6000rpm": 2.447833065810594,
+        "conditional_P1_max_displacement_mm": 0.6653486419688702,
+        "conditional_P1_p95_stress_MPa": 44.55618147082099,
+        "method": "verified_linear_similarity_not_a_separate_solve",
+        "safe_speed_established": false,
+        "fatigue_qualified": false
+      },
+      {
+        "material_id": "we43",
+        "rpm": 12000,
+        "conditional_mass_kg": 0.7881179941382768,
+        "stress_factor_vs_AlSi10Mg_6000rpm": 2.741573033707865,
+        "displacement_factor_vs_AlSi10Mg_6000rpm": 4.351703228107723,
+        "conditional_P1_max_displacement_mm": 1.1828420301668803,
+        "conditional_P1_p95_stress_MPa": 79.21098928145953,
+        "method": "verified_linear_similarity_not_a_separate_solve",
+        "safe_speed_established": false,
+        "fatigue_qualified": false
+      }
+    ],
+    "limits": [
+      "P1 mesh is not converged",
+      "common isotropic nu=.33 is assumed",
+      "centrifugal load only",
+      "no pressure thermal contacts fatigue or process allowables",
+      "WE43 modulus/density are a surrogate card"
+    ],
+    "separate_solver_runs_claimed": false,
+    "safe_speed_established": false,
+    "fatigue_qualified": false
+  },
+  "runtime_lifecycle": {
+    "instance_id": 57137803,
+    "destroyed": true,
+    "verified_absent": true,
+    "verified_epoch": 1792638217.971916,
+    "checkpoints_saved_on_mac_and_kali_before_destroy": true,
+    "actual_invoice_usd": null,
+    "other_instances_modified": false,
+    "immutable_base_image": "ghcr.io/cluster2600/3dprinting993-picogk-m64@sha256:7c7048431256c455d1396c2e71e38be15b6d0d5d035f41fdde03de47a9025ccd",
+    "attempt_ceiling_usd": 4,
+    "goal_ceiling_usd": 10,
+    "conservative_total_reserved_usd": 8.0,
+    "dedicated_Warp_image_run": false
+  },
+  "private_evidence": {
+    "release_url": "https://github.com/cluster2600/porscheparts-935-private/releases/tag/native-gpu-935-20261022",
+    "all_eight_server_asset_digests_verified": true,
+    "all_archive_members_verified": true,
+    "all_archives_mirrored_and_hash_verified_on_Kali1": true,
+    "assets": [
+      {
+        "digest": "sha256:a1dc38ad9811075a1a0ccdc61cd4a3095057cf73f9b99b4eee9507359306d256",
+        "name": "checkpoint-001.tar.gz",
+        "size": 195078887,
+        "state": "uploaded"
+      },
+      {
+        "digest": "sha256:460e6e2bdb678919c734e380db0d3e90898ab03aaa93dfe49b56ada91b2e18c1",
+        "name": "checkpoint-002.tar.gz",
+        "size": 768194702,
+        "state": "uploaded"
+      },
+      {
+        "digest": "sha256:030c9a4bf2dc2d8984dc5ad43465bd9d0ac3e0bbcdfd3e63fe7021569ade5aaa",
+        "name": "checkpoint-003.tar.gz",
+        "size": 4297378,
+        "state": "uploaded"
+      },
+      {
+        "digest": "sha256:28c0150b1daefcee6230123775c87891435f3396f120fb96aae93143040bdfee",
+        "name": "checkpoint-chain.json",
+        "size": 1051,
+        "state": "uploaded"
+      },
+      {
+        "digest": "sha256:6da2c28d722f5b4c67ad97b72da764ecac1c0b1a07ccfe4abe2c544ef3ce295f",
+        "name": "native-gpu-sources-and-analysis.tar.gz",
+        "size": 445950416,
+        "state": "uploaded"
+      },
+      {
+        "digest": "sha256:33b6c0879ae26a690bfb20ac938efba96b10309076352e6a7678db1a9418ebdc",
+        "name": "source-archive-manifest.json",
+        "size": 66869,
+        "state": "uploaded"
+      },
+      {
+        "digest": "sha256:e5aed86fcf4bdc24a06065f3b0f97baa645582463fe5b0e4a7cd24045260744b",
+        "name": "source-archive-receipt.json",
+        "size": 363,
+        "state": "uploaded"
+      },
+      {
+        "digest": "sha256:23ede2c256ff20d7257aa2ac5ab00eae4269ff6a5bb4eead48751e439afdba3a",
+        "name": "teardown-verification.json",
+        "size": 244,
+        "state": "uploaded"
+      }
+    ]
+  },
+  "validation": {
+    "source_surface_approximation_bound_established": true,
+    "analysis_volume_mesh_accepted": false,
+    "structural_h_convergence_established": false,
+    "fan_CFD_accepted": false,
+    "historical_installation_verified": false,
+    "interfaces_verified": false,
+    "material_process_qualified": false,
+    "physical_validation": false,
+    "manufacturing_authorized": false,
+    "whole_system_complete": false
+  }
+}

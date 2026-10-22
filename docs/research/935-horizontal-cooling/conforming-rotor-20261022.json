@@ -1,0 +1,332 @@
+{
+  "schema": "935-conforming-rotor-continuation-v1",
+  "parent_commit": "e97fb760f08fa13f7d4f856e7c3cf4849039ec44",
+  "parent_record": "complete-system-20261022.json",
+  "geometry_sha256": "f32bbabab3e5f7d9ca7c5283d18703cfe7cedbd3eb2c72a57a1c222c0a9df1e5",
+  "source_coordinate_unit": "uncalibrated_scan_unit",
+  "source_sha256": {
+    "twins/935-horizontal-cooling-system-f0/source/prepare_conforming_surface.py": "5fc588757578115c675dd6946ef20b7e17765d99ae11d60e636713c397ac4964",
+    "twins/935-horizontal-cooling-system-f0/source/import_conforming_volume.py": "f061d604de3c5711ab173111a2f140a916172ba937f8993206037977cc167488",
+    "twins/935-horizontal-cooling-system-f0/source/prepare_conforming_fea.py": "f316f1028c092453c6aee96b9c5faf40d41f52309538f54d3234b0b1266d0426",
+    "twins/935-horizontal-cooling-system-f0/source/run_conforming_study.py": "ad3e25e288ec5ea1de501ddb032502bea7e642868e623ed63a2652ca67c2e0e8",
+    "twins/935-horizontal-cooling-system-f0/source/build_ccx_macos.py": "e1efb15f559ba94be67a82ead2ace242603001c0df344e6856569b596701904e",
+    "twins/935-horizontal-cooling-system-f0/source/assess_conforming_fea.py": "423d6b77eb97b0d0faf1d9bccb5c6c7c8b91c302df0aef002663b6c53032376b",
+    "twins/935-horizontal-cooling-system-f0/source/run_candidate_fea.sh": "1eaaa32fcffcec4f7f0b7c686ef6e39d760dd2884ad2795ba336dd3d2c5abf74",
+    "parts/993-eng-carrier-0001/source/design-20261016/resume-20261020/tetgen_preserved_boundary.py": "1842ab7ff7d290114908b66c88ceef3abd383fedddf73b58d64ee7538f8b2d5e",
+    "twins/m64-cylinder-head/source/wholebody/audit_indexed_tetrahedra.py": "02064ef3e68a4de8b1d5bebcebc10713ff18288b983ac6468b686064fa53bfc6"
+  },
+  "volume": {
+    "vertices": 661495,
+    "tetrahedra": 2116345,
+    "boundary_triangles": 1322970,
+    "exact_boundary_coordinate_triangle_bijection": true,
+    "volume_relative_difference_from_source": 7.771561172376096e-16,
+    "volume_npz_sha256": "1a915246fa400b234706eab3383092f068fdf226e080a9ee9a4e268d50c739d8",
+    "exact_orientation": {
+      "cells": 2116345,
+      "negative": 0,
+      "zero": 0,
+      "minimum_integer_determinant": "2522444149205885750585847023412504441126912",
+      "common_coordinate_scale": "18014398509481984",
+      "signed_volume_exact": "48810255738558068860399253357/113336795588871485128704",
+      "signed_volume_native_units_cubed": 430665.5705673642
+    },
+    "indexed_connectivity": {
+      "signed_volume_sum": 430665.5705673642,
+      "absolute_volume_sum": 430665.5705673642,
+      "minimum_signed_tetra_volume": 7.191359685521093e-08,
+      "count_negative": 0,
+      "count_zero": 0,
+      "repeated_node_tetrahedra": 0,
+      "tetra_connected_components": 1,
+      "boundary_missing_triangles": 0,
+      "stored_triangles_not_on_boundary": 0,
+      "duplicate_stored_triangles": 0,
+      "nonmanifold_faces": 0,
+      "boundary_triangle_count": 1322970,
+      "boundary_matches": true
+    }
+  },
+  "quality": {
+    "minimum_mean_ratio": 0.00017876761206528973,
+    "maximum_Jacobian_condition": 316091.251042107,
+    "quality_acceptance_threshold": null,
+    "mechanical_mesh_admitted": false,
+    "assessment_sha256": "2cf61b670fd7576a47d53ca5beaf4b9cd71cb70c2b0197c8cfe8af44445bac1d"
+  },
+  "quadratic_preparation": {
+    "status": "matched_solver_geometry_prepared",
+    "linear_nodes": 661495,
+    "quadratic_nodes": 4100825,
+    "elements": 2116345,
+    "whole_simplex_refused_cells": 0,
+    "exact_maximum_relative_Jacobian_perturbation": "47283219634645047474867/3459579155205330744977750698754048",
+    "exact_corner_transport_L1_bound": "1/144115188075855872",
+    "exact_curvature_L1_bound": "15/562949953421312",
+    "exact_complete_numeric_transport_L1_bound": "3841/144115188075855872",
+    "numeric_transport_budget_native_units": 1e-09,
+    "physical_or_machining_tolerance": false,
+    "source_sha256": "f316f1028c092453c6aee96b9c5faf40d41f52309538f54d3234b0b1266d0426",
+    "helper_sha256": {
+      "parts/993-eng-carrier-0001/source/design-20261016/resume-20261020/prepare_tetgen_mechanics_ccx.py": "ab4408343a741084013889a89fa3abe259fd1db47cfaa8ed0aefe085ed707d86",
+      "parts/993-eng-carrier-0001/source/design-20261016/resume-20261020/audit_quadratic_mapping.py": "ba6fa9f919a537b4743c67405f450328a86bb15b9c1016100af91cc65658e2ff"
+    },
+    "elapsed_s": 76.05748158297502,
+    "mesh_convergence_established": false,
+    "physical_validation": false,
+    "manufacturing_authorized": false
+  },
+  "corrected_mac_build": {
+    "binary_sha256": "c4a6dc9787c3a71dc278a1b4c535b2a1120c7c9bff5f3e4b452d7c075677e364",
+    "source_sha256": "e1efb15f559ba94be67a82ead2ace242603001c0df344e6856569b596701904e",
+    "archives_sha256": {
+      "ccx_2.23.src.tar.bz2": "9c88385c10fb04f5dc6c4e98027a51bebdd8aee3920e05190d6c1dd08357d6e7",
+      "spooles.2.2.tgz": "a84559a0e987a1e423055ef4fdf3035d55b65bbe4bf915efaa1a35bef7f8c5dd",
+      "ccx_2.23.SPOOLEScorrection.tar.bz2": "15528f09312dc7605c0600358f5e6de12945449f249dfcfca7417eed6c220b93"
+    },
+    "official_fix_url": "https://www.dhondt.de/ccx_2.23.SPOOLEScorrection.tar.bz2",
+    "unpatched_util_sha256": "1121b2d3650fc103f6009188db5fe31ef7f579ab12682d306082a99469ed3a01",
+    "patched_util_sha256": "35988e9e7008362ec6d7a3a395111586ad74a4234a19e8880285aa191c95edd3",
+    "architecture": "arm64"
+  },
+  "runtime_witnesses": {
+    "patched_bending_cases": 6,
+    "patched_bending_controls_pass": true,
+    "translated_centrifugal_cases": 2,
+    "translated_centrifugal_controls_pass": true,
+    "centrifugal_control_sha256": "1efd48158e22ba6291aa452a9704910ce82803923105ee9f1842ee4c5ed32b50"
+  },
+  "linear_solves": {
+    "Linux": {
+      "schema": "935-conforming-result-audit-v1",
+      "status": "complete_result_audited",
+      "source_sha256": "423d6b77eb97b0d0faf1d9bccb5c6c7c8b91c302df0aef002663b6c53032376b",
+      "preparation_sha256": "59209626b927bd83d1aaf537fde5ecdc287ffa785bb217d4f78c3b720cdde2a2",
+      "execution_sha256": "5b2d4ebb62c67a617486027dae08445ba9e852555fe6b724cb55aab8e5e2858a",
+      "deck_sha256": "b4afad5e6464821043e0fc1d0dec0fba48483ad481767a20da8067e691304dbb",
+      "parent_geometry_sha256": "f32bbabab3e5f7d9ca7c5283d18703cfe7cedbd3eb2c72a57a1c222c0a9df1e5",
+      "binary_sha256": "db2ed33d0fd97ef4daad298def2fd8d3e9879e488647b0e7b44f52038b62ea0b",
+      "formulation": "C3D4",
+      "nodes": 661495,
+      "elements": 2116345,
+      "integration_points_checked": 2116345,
+      "conditional_volume_mm3": 430665.57056736434,
+      "conditional_mass_kg": 1.149877073414863,
+      "maximum_displacement_mm": 0.27181128127646303,
+      "von_mises_max_MPa": 1044.2777921176735,
+      "element_peak_p95_outside_r25_MPa": 28.892532975614337,
+      "support_displacement_max_mm": 0.0,
+      "body_force_N": [
+        -26.686944148711888,
+        -764.0027453919588,
+        0.0
+      ],
+      "reaction_force_N": [
+        26.686939084977073,
+        764.0027331548852,
+        -2.348863134179341e-05
+      ],
+      "body_moment_Nmm": [
+        15615.7376164618,
+        2969.9617984414804,
+        0.0
+      ],
+      "reaction_moment_Nmm": [
+        -15622.003429196848,
+        -2972.9917310768574,
+        0.00015076167396799178
+      ],
+      "raw_RF_sum_N": [
+        27.790529017209433,
+        759.5286042362621,
+        -2.348863134179341e-05
+      ],
+      "body_force_at_support_N": [
+        1.1035899322429528,
+        -4.47412891862728,
+        0.0
+      ],
+      "discrete_body_moment_Nmm": [
+        15622.003446644403,
+        2972.99172293944,
+        7.90240095582817e-12
+      ],
+      "continuum_moment_discretization_error": 1.569999266219006e-05,
+      "relative_force_balance_error": 7.801012915299769e-10,
+      "relative_moment_balance_error": 3.428435133585383e-10,
+      "equilibrium_pass": true,
+      "rotor_rpm": 6000,
+      "material_id": "alsi10mg",
+      "source_unit": "uncalibrated_scan_unit",
+      "solver_units": "N_mm_tonne_s_assumed_scale",
+      "scale_verified": false,
+      "support_is_measured": false,
+      "material_process_qualified": false,
+      "mesh_convergence_established": false,
+      "physical_validation": false,
+      "manufacturing_authorized": false,
+      "output_sha256": {
+        "rotor.dat": "e93829f272b8e5bcf6efbc8204fffb0f575490430e8a6e1ccc96b9153f3e4673",
+        "ccx.log": "17aec268b25a698be969b3b1deaca8193189fa7f953f1ed516c326f4f3eb4038",
+        "ccx.exit": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+      },
+      "fields_npz_sha256": "10e32476fa65ffcfc50c6e69979cbacc0fe87f518348d5bc7ef0fe3cdb47127e"
+    },
+    "macOS": {
+      "schema": "935-conforming-result-audit-v1",
+      "status": "complete_result_audited",
+      "source_sha256": "423d6b77eb97b0d0faf1d9bccb5c6c7c8b91c302df0aef002663b6c53032376b",
+      "preparation_sha256": "59209626b927bd83d1aaf537fde5ecdc287ffa785bb217d4f78c3b720cdde2a2",
+      "execution_sha256": "6ceddb285526a60a605eac658b8dce5d2b5ebfa44afdc5185ca5f9a6b0db9ab2",
+      "deck_sha256": "b4afad5e6464821043e0fc1d0dec0fba48483ad481767a20da8067e691304dbb",
+      "parent_geometry_sha256": "f32bbabab3e5f7d9ca7c5283d18703cfe7cedbd3eb2c72a57a1c222c0a9df1e5",
+      "binary_sha256": "c4a6dc9787c3a71dc278a1b4c535b2a1120c7c9bff5f3e4b452d7c075677e364",
+      "formulation": "C3D4",
+      "nodes": 661495,
+      "elements": 2116345,
+      "integration_points_checked": 2116345,
+      "conditional_volume_mm3": 430665.57056736434,
+      "conditional_mass_kg": 1.149877073414863,
+      "maximum_displacement_mm": 0.27181128127646303,
+      "von_mises_max_MPa": 1044.2777921176735,
+      "element_peak_p95_outside_r25_MPa": 28.892532975614337,
+      "support_displacement_max_mm": 0.0,
+      "body_force_N": [
+        -26.686944148711888,
+        -764.0027453919588,
+        0.0
+      ],
+      "reaction_force_N": [
+        26.68693918958741,
+        764.0027329355853,
+        -2.3419687387248034e-05
+      ],
+      "body_moment_Nmm": [
+        15615.7376164618,
+        2969.9617984414804,
+        0.0
+      ],
+      "reaction_moment_Nmm": [
+        -15622.003426340447,
+        -2972.991725447973,
+        0.00017185155109089578
+      ],
+      "raw_RF_sum_N": [
+        27.79052912182021,
+        759.5286040169622,
+        -2.3419687387248034e-05
+      ],
+      "body_force_at_support_N": [
+        1.1035899322429528,
+        -4.47412891862728,
+        0.0
+      ],
+      "discrete_body_moment_Nmm": [
+        15622.003446644403,
+        2972.99172293944,
+        7.90240095582817e-12
+      ],
+      "continuum_moment_discretization_error": 1.569999266219006e-05,
+      "relative_force_balance_error": 7.807087020078118e-10,
+      "relative_moment_balance_error": 3.903928770057835e-10,
+      "equilibrium_pass": true,
+      "rotor_rpm": 6000,
+      "material_id": "alsi10mg",
+      "source_unit": "uncalibrated_scan_unit",
+      "solver_units": "N_mm_tonne_s_assumed_scale",
+      "scale_verified": false,
+      "support_is_measured": false,
+      "material_process_qualified": false,
+      "mesh_convergence_established": false,
+      "physical_validation": false,
+      "manufacturing_authorized": false,
+      "output_sha256": {
+        "rotor.dat": "d4cb13cd9897436c9137e025dd9ed34cd08260dfd088210bbf51ae600c2b2a20",
+        "ccx.log": "0de90bf4521a7b01efbfd81f0c4f89feebfbd0c1ca63b67ec1fbc194867abec6",
+        "ccx.exit": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+      },
+      "fields_npz_sha256": "7a97fc1d462c94fbf8880be9e6cdbd10d60d1b2ed14b1862fd740e1e292304b8"
+    }
+  },
+  "cross_platform_comparison": {
+    "schema": "935-cross-platform-P1-v1",
+    "deck_sha256": "b4afad5e6464821043e0fc1d0dec0fba48483ad481767a20da8067e691304dbb",
+    "same_deck": true,
+    "same_parent_geometry": true,
+    "physical_validation": false,
+    "mesh_convergence_established": false,
+    "fields": {
+      "displacement": {
+        "maximum_absolute_difference": 1.0000000000287557e-07,
+        "reference_absolute_max": 0.255411
+      },
+      "reaction": {
+        "maximum_absolute_difference": 1.000000000139778e-06,
+        "reference_absolute_max": 82.37469806554353
+      },
+      "raw_RF": {
+        "maximum_absolute_difference": 1.000000000139778e-06,
+        "reference_absolute_max": 82.47841
+      },
+      "element_peak_von_mises": {
+        "maximum_absolute_difference": 1.378621033154559e-05,
+        "reference_absolute_max": 1044.2777921176735
+      }
+    },
+    "audits_sha256": [
+      "fe9f3f0c3f6d938fb3dcecf15ecb06dcfd28c9f4d5bfaf67521f9299b3f62604",
+      "cc4ae14e1bfcc2fe31a0f737d7dc5d0bd16de47fdf89010f6b435078e8440391"
+    ]
+  },
+  "quadratic_32GiB_attempt": {
+    "execution_sha256": "f8594c60bd61e0d75807e3ba0076132a7db4f76466215d2dd618173b412a85b2",
+    "solver_finished": false,
+    "exit": -15,
+    "elapsed_s": 547.8437529171351,
+    "stopped_by_physical_footprint": true,
+    "limit_bytes": 34359738368,
+    "observed_footprint_bytes": 34376378096,
+    "accepted": false
+  },
+  "rejected_iterative_controls": {
+    "cases": 6,
+    "equilibrium_failures": 4,
+    "full_rotor_executed": false,
+    "accepted": false,
+    "assessment_sha256": "434f902a7b1141c0945f42c26d51245f89e9630d86207db0e8875b8440005e11"
+  },
+  "verification": {
+    "focused_tests": 12,
+    "focused_tests_pass": true,
+    "native_linux_unit_tests": 4766,
+    "native_linux_optional_skips": 371,
+    "native_linux_unit_suite_pass": true,
+    "full_native_make_check_pass": false,
+    "full_native_make_check_blocker": "Docker daemon permission",
+    "log_sha256": "1db10f969397071bfb40a8121ca1a18f4cf42a717542552e48d6e1d496ae0423"
+  },
+  "scope": {
+    "scale_verified": false,
+    "support_is_measured": false,
+    "material_process_qualified": false,
+    "mesh_convergence_established": false,
+    "airflow_curve_accepted": false,
+    "full_system_complete": false,
+    "physical_validation": false,
+    "manufacturing_authorized": false
+  },
+  "private_archive": {
+    "repository": "cluster2600/porscheparts-935-private",
+    "tag": "conforming-rotor-20261022-core",
+    "dependency_tag": "complete-system-20261022",
+    "publication_verified": true,
+    "url": "https://github.com/cluster2600/porscheparts-935-private/releases/tag/conforming-rotor-20261022-core",
+    "sha256": "a44a1e551c36c0bb10ae2fbe7632e6e16b02594dafbbb8be125728148758c5f4",
+    "bytes": 1046005408,
+    "manifest_sha256": "685100e4ef74aac0ee84dbe5c6d80e9bebfd69766b2ff715b57e27115170134a",
+    "files": 7587,
+    "every_member_stream_verified": true,
+    "kali_archive_sha256_verified": true,
+    "all_three_server_asset_digests_verified": true
+  }
+}

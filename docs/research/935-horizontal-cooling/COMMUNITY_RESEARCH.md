@@ -53,3 +53,14 @@ computation range. A recollection or a photo without scale can confirm an
 architecture without calibrating the scan. A modern replica can document
 a candidate mechanism without defining the historical part. Private replies,
 personal contact details, account details and scans stay outside Git.
+
+## Public-thread recheck — October 22, 2026
+
+Both complete threads were read again in Chrome. Pelican Parts still ends with
+our [post 31](https://forums.pelicanparts.com/porsche-911-used-parts-sale-wanted/905416-flat-fan-assemblies-2.html#post12710379),
+on page 2 of 2; Rennlist still ends with our
+[post 8](https://rennlist.com/forums/911-turbo-930-forum/94486-935-users-flat-fan.html#post20766154),
+on page 1 of 1. No public technical reply follows either request. Rennlist shows
+one reaction to the request, which supplies no dimensional or mechanical evidence.
+These observations concern the public threads only; private messages were not
+checked. No further message was posted and no calibration value was inferred.

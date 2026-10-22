@@ -5,6 +5,30 @@
 
 ## Selected implementation order and current state
 
+The [native GPU continuation](NATIVE_GPU_CONTINUATION_20261022.md) follows the
+root README with actual complete-rotor CUDA queries, OVRTX inspection of the
+retained assembly and independently checked conditional material/speed comparisons.
+Surface approximations are rejected when their complete-surface bound fails;
+physical calibration, accepted fan CFD and structural convergence remain open.
+
+The [local runtime follow-up](LOCAL_RUNTIME_CONTINUATION_20261022.md) records
+the second quadratic memory stop and native OpenFOAM 13 numerical controls on
+Kali1 without the privileged Docker daemon. No fan flow curve is accepted yet.
+
+The [conforming-rotor continuation](CONFORMING_ROTOR_20261022.md) adds an
+exact-boundary tetrahedral volume, whole-simplex quadratic preparation and a
+complete C3D4 solve reproduced on Kali1 and the corrected Mac runtime. The first
+full quadratic attempt hits its memory guard; convergence remains unestablished.
+
+The [October 22 complete-system continuation](COMPLETE_SYSTEM_20261022.md)
+records corrected-rotor PicoGK assembly, full-mesh Warp
+CPU checks, native formulation experiments and complete-surface pair checks.
+Its completion audit covers the entire original objective. The authorized Vast
+first attempt was destroyed by its guard before workload execution. The newer
+native GPU continuation supplies CUDA/RTX evidence without establishing physical
+twin validation. Earlier dated no-rental statements below describe their
+historical work packages.
+
 Qualified Linux/Python/.NET environment → surfaces from the scans with
 SciPy/PicoGK → assembly and BRep/FreeCAD interfaces → OpenFOAM →
 Gmsh/CalculiX → SciPy optimization then OpenMDAO coordination → PhysicsNeMo
