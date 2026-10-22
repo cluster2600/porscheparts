@@ -1,0 +1,242 @@
+{
+  "schema": "935-foundation13-rotor-pilot-v1",
+  "date": "2026-10-22",
+  "programme": "horizontal_935_reference_installation",
+  "source_sha256": {
+    "twins/935-horizontal-cooling-system-f0/source/prepare_foundation13_rotor.py": "52e70a2a3fd674d5e6695de48aaee4bcf2d73fc5b46a6f5b33c93722caa01a2e",
+    "twins/935-horizontal-cooling-system-f0/source/assess_foundation13_rotor.py": "1f41416746266f3d3a8eb108754c5434bb668702ded4e60dbcf2e281adc0631a",
+    "twins/935-horizontal-cooling-system-f0/source/foundation13-study-20261022/analyze_couette.py": "0f7e7f36171832a109f379274692fde3f75d81195f2f795a120433965e04c7b6",
+    "twins/935-horizontal-cooling-system-f0/source/foundation13-study-20261022/check_si_surface.cpp": "d6fe9d09e72f1b13a561f4707dd78aaeb735d6b535ab06572d84f1053d8f284b",
+    "twins/935-horizontal-cooling-system-f0/source/foundation13-study-20261022/prepare_couette.py": "9ccea5ed3e20663d170848e52a9a5979301f2910335e3e3926ed4cdedc4e34b5"
+  },
+  "PicoGK_design_master_sha256": "f32bbabab3e5f7d9ca7c5283d18703cfe7cedbd3eb2c72a57a1c222c0a9df1e5",
+  "analysis_surface_sha256": "1fcf180cf1f8425a56d23114a487d72a2f2e15003fc644fc2f282078ab6422d5",
+  "SI_OBJ_sha256": "5eb9ee8a73b140198013fe511916c150316acc8e31174a2ca1fea4bac4db3e44",
+  "scope": {
+    "full_system_goal_complete": false,
+    "scale_verified": false,
+    "axis_registration_verified": false,
+    "historical_interfaces_verified": false,
+    "complete_mechanism_defined": false,
+    "fluid_mesh_extended_geometry_admitted": false,
+    "three_mesh_convergence_established": false,
+    "current_geometry_CFD_accepted": false,
+    "accepted_for_PhysicsNeMo_training": false,
+    "strength_validated": false,
+    "fatigue_validated": false,
+    "material_process_qualified": false,
+    "manufacturing_authorized": false,
+    "physical_validation": false
+  },
+  "runtime": {
+    "family": "OpenFOAM_Foundation_13",
+    "build": "13-18870c24d21c",
+    "image_index_sha256": "a1db60cbf61bbcca52c171e50cab01ed0b6ec860b227e7c5fc50f7b809659b4f",
+    "foamRun_binary_sha256": "96aeb56a4fb12fae411076235ca7469f988fc09c0a2eeb288f18cfce3522aead",
+    "rootless": true,
+    "network_isolated": true,
+    "new_Vast_rentals": 0
+  },
+  "synthetic_Couette_control": {
+    "cases": {
+      "coarse": {
+        "cells": 256,
+        "latest_time": "2000",
+        "sampled_velocity_relative_L2": 0.038632444649295224,
+        "velocity_relative_Linf_to_inner_wall_speed": 0.0383806516251738,
+        "maximum_axial_velocity_m_s": 9.5486301217926e-19,
+        "analytic_torque_Nm": -7.895683520871488e-06,
+        "reported_torque_Nm": -7.84240496263869e-06,
+        "torque_relative_error": 0.006747808228630414,
+        "last_five_torque_relative_range": 0.0,
+        "pressure_torque_Nm": -3.34791370563345e-32,
+        "execution_sha256": "f464c00e7df283f79eac7945430b56df7ddf961815c8139d5f4d97b901b24822",
+        "force_history_sha256": "f9a0291f01872390d656e3dfb2da0ee9770a18942c70a40323379969d0e1e10c",
+        "complete_cell_coverage": true
+      },
+      "medium": {
+        "cells": 1024,
+        "latest_time": "2000",
+        "sampled_velocity_relative_L2": 0.008901677239814753,
+        "velocity_relative_Linf_to_inner_wall_speed": 0.009947404453220038,
+        "maximum_axial_velocity_m_s": 6.7797200787174e-19,
+        "analytic_torque_Nm": -7.895683520871488e-06,
+        "reported_torque_Nm": -7.87303340253938e-06,
+        "torque_relative_error": 0.0028686709988101633,
+        "last_five_torque_relative_range": 1.2873357119979535e-15,
+        "pressure_torque_Nm": -9.21974308686094e-32,
+        "execution_sha256": "745f3aa1c79a3411e06ff06a3a66b0f444b57c6e8cfa3db208a34f83cb75d8d2",
+        "force_history_sha256": "46301f02b349f8b159c5e1befa82eadd26e6f307f84bc6d0d9a556fca18d6d2c",
+        "complete_cell_coverage": true
+      },
+      "fine": {
+        "cells": 4096,
+        "latest_time": "2000",
+        "sampled_velocity_relative_L2": 0.0021120302252442564,
+        "velocity_relative_Linf_to_inner_wall_speed": 0.0025104789377677,
+        "maximum_axial_velocity_m_s": 5.116617980307e-16,
+        "analytic_torque_Nm": -7.895683520871488e-06,
+        "reported_torque_Nm": -7.88815717230189e-06,
+        "torque_relative_error": 0.0009532231819706638,
+        "last_five_torque_relative_range": 3.507341856219384e-09,
+        "pressure_torque_Nm": -2.34405069888715e-31,
+        "execution_sha256": "fada8c31c1e7019c4e66e420fbc45e7686c6cdc2c9a1702e257d82718c200ac4",
+        "force_history_sha256": "ba9a1305d1029191d9a3b4e320c4b507e98be2dc804d7a58bacb724c79406167",
+        "complete_cell_coverage": true
+      }
+    },
+    "source_sha256": "0f7e7f36171832a109f379274692fde3f75d81195f2f795a120433965e04c7b6",
+    "physics_source_sha256": "9ccea5ed3e20663d170848e52a9a5979301f2910335e3e3926ed4cdedc4e34b5",
+    "rotor_935_CFD_accepted": false,
+    "manufacturing_authorized": false,
+    "fine_to_medium_torque_relative_change": 0.0019209584145332137,
+    "status": "MRF_Couette_control_passed",
+    "rejected": [],
+    "contract_sha256": "9c9c4dac9d014e2438c5676eceeca79a503c5b460ca6432f32eef30bbd940bea"
+  },
+  "SI_surface_audit": {
+    "CGAL_version": "6.2.1",
+    "binary_sha256": "69caa50a446cfef290a2735be90076aa4ea17907a2507e611704f68fddcd6ede",
+    "source_sha256": "d6fe9d09e72f1b13a561f4707dd78aaeb735d6b535ab06572d84f1053d8f284b",
+    "complete_SI_surface": {
+      "vertices": 436712,
+      "faces": 873444,
+      "closed_valid_triangle_mesh": true,
+      "self_intersection_pairs": 0,
+      "first_pairs": []
+    },
+    "OpenFOAM_approximate_intersection_hits": 74,
+    "crossing_cube_control_detected_pairs": 15,
+    "open_cube_control_rejected": true,
+    "private_receipt_sha256": "0ae8bbdad3253f5c89229b0c2d145c591def3cf233b2c52212e2042fefb898cf"
+  },
+  "rotor_probe": {
+    "classification": "conditional_square_duct_not_935_installation",
+    "source_unit": "uncalibrated_scan_unit",
+    "assumed_m_per_source_unit": 0.001,
+    "signed_rotor_rpm_assumed": 6000,
+    "flow_m3_s_imposed_not_predicted": 0.5,
+    "iterations": 500,
+    "cells": 237338,
+    "rotating_zone_cells": 221764,
+    "rotor_wall_faces": 49547,
+    "concave_cells": 13692,
+    "native_execution": {
+      "exit": 0,
+      "stop_reason": null,
+      "elapsed_s": 1102.9432563579176,
+      "source_sha256": "e0d9ac43613ab87184170d5a7e7fba7cc21f130195ed87cf42afc97385cec84e",
+      "input_receipt_sha256": "90ba3a33e9cca5e5fc9cc850501c2e33e538b70fc9aee25a3ffc4aaa054d4bad",
+      "qualified_runtime_receipt_sha256": "1e6f331b419c3849d6321beeff39b64a5f21407dbec778a4016629f8e27a563d",
+      "image_index_sha256": "a1db60cbf61bbcca52c171e50cab01ed0b6ec860b227e7c5fc50f7b809659b4f",
+      "memory_cap_GiB": 8,
+      "timeout_s": 1800,
+      "input_files_unchanged": true,
+      "exploratory_only": true,
+      "all_geometry_check_passed": false,
+      "rotor_935_CFD_accepted": false,
+      "manufacturing_authorized": false
+    },
+    "metrics": {
+      "total_pressure_rise_Pa": {
+        "final_window_mean": 553.8335997611943,
+        "peak_to_peak_relative": 0.12675819522394133,
+        "successive_window_mean_relative_change": 0.06336422912872243,
+        "stationarity_pass": false
+      },
+      "resisting_torque_z_Nm": {
+        "final_window_mean": 2.7377050811297936,
+        "peak_to_peak_relative": 0.031501777344416226,
+        "successive_window_mean_relative_change": 0.014605690049001491,
+        "stationarity_pass": false
+      },
+      "shaft_power_W": {
+        "final_window_mean": 1720.1508341145616,
+        "peak_to_peak_relative": 0.03150177734441615,
+        "successive_window_mean_relative_change": 0.01460569004900149,
+        "stationarity_pass": false
+      }
+    },
+    "maximum_final_window_mass_imbalance_relative": 1.4214837973369754e-08,
+    "extended_geometry_mesh_check_pass": false,
+    "single_mesh_pilot_pass": false,
+    "private_assessment_sha256": "42c75517e0d662c182c639dac6209c99f6dcdfd79a559fc32cefe5a76a67325e",
+    "wall_yPlus": {
+      "rotor": {
+        "minimum": 9.4783814215,
+        "maximum": 582.7391387391,
+        "average": 99.400196041401
+      },
+      "duct": {
+        "minimum": 44.972988347028,
+        "maximum": 1889.12022401,
+        "average": 1034.7994674209
+      },
+      "qualified": false
+    },
+    "station_200_independent_readout": {
+      "iteration": 200,
+      "VTK_version": "9.6.2",
+      "relative_check_tolerance": 1e-06,
+      "patches": {
+        "inlet": {
+          "faces": 576,
+          "net_flux_m3_s": -0.49999999999999994,
+          "outward_flux_m3_s": 0.0,
+          "inward_flux_m3_s": 0.49999999999999994,
+          "flux_weighted_p_m2_s2": -106.14992836478113,
+          "flux_weighted_magSqrU_m2_s2": 14.884353792353066,
+          "native_function_relative_errors": [
+            4.1155814339147283e-10,
+            4.879848383959175e-08
+          ],
+          "reversed_flow_over_imposed_flow": 0.0
+        },
+        "outlet": {
+          "faces": 576,
+          "net_flux_m3_s": 0.4999999955220558,
+          "outward_flux_m3_s": 0.7629777369235453,
+          "inward_flux_m3_s": 0.26297774140148966,
+          "flux_weighted_p_m2_s2": 0.0,
+          "flux_weighted_magSqrU_m2_s2": 867.7276180710887,
+          "native_function_relative_errors": [
+            0.0,
+            5.195561569406897e-10
+          ],
+          "reversed_flow_over_imposed_flow": 0.5259554828029793
+        }
+      },
+      "CFD_accepted": false,
+      "result_sha256": {
+        "snapshot.json": "6943ebdd7dd6afc9e3d31456dec53d9e8801aad2b3a9767ba2b6c32b1363d180",
+        "inletPressure.dat": "65e8342b9b55c588ce95d4c1c6abdedd1e742c367038dc41d8af3ce22ecf7953",
+        "outletPressure.dat": "03f7682d3b02ffbd991b1e9971cc1cfc8a18461cf6f3c1c8a3543d10e0b2084b"
+      },
+      "source_sha256": "e19d6eaa4c29f0550de63821ffb159f3358d6b168713b99b0898fc5bd18019e6"
+    },
+    "full_200_maximum_cell_speed_m_s": 146.1393444128918,
+    "maximum_Mach_estimate_at_assumed_343_m_s": 0.426062228609014,
+    "compressibility_assessed": false
+  },
+  "private_delivery": {
+    "status": "local_private_archive_verified_all_members",
+    "payload_files": 593,
+    "archive_bytes": 403721156,
+    "archive_sha256": "ed232673a087881a68f782a09c93db5d49f9c81be9c11acca2b87660e732d94f",
+    "manifest_sha256": "41bda3b39816f9b076a17514580295b1c2d75a531ab1756037d5353d6ec3e4b4",
+    "source_files_unchanged_after_archiving": true,
+    "current_geometry_CFD_accepted": false,
+    "manufacturing_authorized": false,
+    "private_repository": "cluster2600/porscheparts-935-private",
+    "release_tag": "analysis-mesh-935-20261022",
+    "Mac_all_members_verified": true,
+    "GitHub_all_asset_digests_verified": true,
+    "publication_receipt_sha256": "d61d85865313188c2264ebd4080dd41955c3bebe6f315c995ecaf55e883b0db2"
+  },
+  "next_work": [
+    "Repair or replace concave fluid cells with unchanged local quality thresholds",
+    "Study domain/outlet reversal and compressibility before performance claims",
+    "Qualify near-wall resolution and three accepted meshes before optimization or surrogate data",
+    "Resolve physical scale/shaft datums and historical assembly interfaces before manufacturing"
+  ]
+}
