@@ -5,6 +5,11 @@
 
 ## Selected implementation order and current state
 
+The [conforming-rotor continuation](CONFORMING_ROTOR_20261022.md) adds an
+exact-boundary tetrahedral volume, whole-simplex quadratic preparation and a
+complete C3D4 solve reproduced on Kali1 and the corrected Mac runtime. The first
+full quadratic attempt hits its memory guard; convergence remains unestablished.
+
 The [October 22 complete-system continuation](COMPLETE_SYSTEM_20261022.md)
 is the current execution index: corrected-rotor PicoGK assembly, full-mesh Warp
 CPU checks, native formulation experiments and complete-surface pair checks.
