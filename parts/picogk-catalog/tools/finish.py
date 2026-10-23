@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """QA a generated PicoGK part, publish it as derived/<stem>-picogk.stl, render.
 
-    python finish.py <PART_ID> [--max-tris 30000] [--no-render]
+    python finish.py <PART_ID> [--max-tris 30000] [--no-render] [--variant gyroid]
 
 Independent of the generator: reads only out/<PART_ID>.stl and the part's
 source/picogk.json. Publishes nothing unless every check passes:
@@ -16,6 +16,12 @@ source/picogk.json. Publishes nothing unless every check passes:
 Then the main body is decimated for the repository (the full-resolution STL
 stays in out/, regenerable), written with a provenance JSON, and the part's
 preview is re-rendered by scripts/render_part_previews.py.
+
+--variant gyroid publishes derived/<stem>-picogk-gyroid.stl next to the base
+model instead of replacing it (studies cite the base by path), takes its
+generator from source/gyroid.json and leaves rendering to
+bionic/render_gyroid.py; the envelope checks still come from picogk.json, the
+outer form being unchanged.
 """
 import argparse
 import hashlib
@@ -55,12 +61,17 @@ def main():
     ap.add_argument("part_id")
     ap.add_argument("--max-tris", type=int, default=30_000)
     ap.add_argument("--no-render", action="store_true")
+    ap.add_argument("--variant", choices=["gyroid"])
     a = ap.parse_args()
     part_dir = ROOT / "parts" / a.part_id.lower()
-    spec = json.loads((part_dir / "source" / "picogk.json").read_text(encoding="utf-8"))
+    base_params = part_dir / "source" / "picogk.json"
+    if not base_params.exists() and a.variant:     # imported base (no picogk.json): the variant is the spec
+        base_params = part_dir / "source" / f"{a.variant}.json"
+    spec = json.loads(base_params.read_text(encoding="utf-8"))
     stl = CATALOG / "out" / f"{spec['part_id']}.stl"
     report = json.loads((CATALOG / "out" / f"{spec['part_id']}.report.json").read_text(encoding="utf-8"))
     voxel = float(spec["voxel_mm"])
+    variant = json.loads((part_dir / "source" / f"{a.variant}.json").read_text(encoding="utf-8")) if a.variant else None
 
     mesh = trimesh.load_mesh(stl, process=True)
     degenerate = int((mesh.area_faces <= 1e-12).sum())
@@ -115,13 +126,14 @@ def main():
     bounds_raw = np.array(poly.bounds)
     poly = poly.smooth_taubin(n_iter=30, pass_band=0.05)
     smoothing_shift = float(np.abs(np.array(poly.bounds) - bounds_raw).max())
-    max_tris = int(spec.get("max_tris", a.max_tris))   # per-part override for fine detail
+    max_tris = int((variant or spec).get("max_tris", a.max_tris))   # per-part override for fine detail
     if poly.n_cells > max_tris:
         poly = poly.decimate(1.0 - max_tris / poly.n_cells)
     derived = part_dir / "derived"
+    derived.mkdir(exist_ok=True)                  # imported bases may have none yet
     legacy = [p for p in sorted(derived.iterdir()) if p.suffix.lower() in (".step", ".stp", ".stl")
-              and not p.name.endswith("-picogk.stl")]
-    stem = (legacy[0].stem if legacy else spec["part_id"].lower()) + "-picogk"
+              and "-picogk" not in p.name]
+    stem = (legacy[0].stem if legacy else spec["part_id"].lower()) + "-picogk" + (f"-{a.variant}" if a.variant else "")
     bbox_before = legacy_bbox(part_dir)
     out_stl = derived / f"{stem}.stl"
     poly.save(str(out_stl), binary=True)
@@ -129,8 +141,8 @@ def main():
         "part_id": spec["part_id"],
         "status": spec.get("status", ""),
         "kernel": report.get("kernel"),
-        "generator": spec["generator"],
-        "parameters": f"parts/{a.part_id.lower()}/source/picogk.json",
+        "generator": (variant or spec)["generator"],
+        "parameters": f"parts/{a.part_id.lower()}/source/{a.variant or 'picogk'}.json",
         "generator_report": {k: report[k] for k in ("voxel_mm", "triangles", "volume_cm3", "mass_estimate_g", "seconds")},
         "published_triangles": int(poly.n_cells),
         "display_smoothing": {"filter": "taubin", "iterations": 30, "pass_band": 0.05,
@@ -142,7 +154,11 @@ def main():
     }
     (derived / f"{stem}.json").write_text(json.dumps(prov, indent=2) + "\n", encoding="utf-8", newline="\n")
     print(f"published {out_stl.relative_to(ROOT)} ({poly.n_cells} triangles); legacy bbox {bbox_before} -> {qa['bbox_mm']}")
-    if not a.no_render:
+    if variant:
+        prov["base"] = variant["base"]
+        prov["core"] = json.loads((CATALOG / "out" / f"{spec['part_id']}.{a.variant}.json").read_text(encoding="utf-8"))
+        (derived / f"{stem}.json").write_text(json.dumps(prov, indent=2) + "\n", encoding="utf-8", newline="\n")
+    if not a.no_render and not variant:
         r = subprocess.run([sys.executable, str(ROOT / "scripts" / "render_part_previews.py"), "--write",
                             "--only", spec["part_id"]], capture_output=True, text=True)
         print(r.stdout.strip() or r.stderr[-2000:])

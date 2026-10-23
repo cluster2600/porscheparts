@@ -1,0 +1,111 @@
+{
+  "part_id": "993-ENG-CHAIN-CASE-LID-TI-F0-0001",
+  "name": "Left chain case lid 964 105 107 01, Ti-6Al-4V variant (PicoGK concept)",
+  "generator": "chain_case_lid",
+  "catalogue_record": "catalog/parts/993-eng-chain-case-lid-ti-f0-0001.json",
+  "porsche_part_numbers": [
+    "964 105 107 01",
+    "964 105 181 01"
+  ],
+  "safety_class": "functional",
+  "material_candidate": "Ti-6Al-4V Grade 5 plate, CNC (record route; the original is cast magnesium)",
+  "density_g_cm3": 4.43,
+  "voxel_mm": 0.25,
+  "picogk_enhancement": "Concept base model built on the screening inputs of parts/993-eng-chain-case-lid-ti-f0-0001/source/chain_case_lid_screen.py (plan area, extreme hole span, thickness, M6 clearance hole), every one of them a declared hypothesis there. The flat screening plate becomes an elliptic lid of the same plan area and thickness, domed at its centre with constant thickness (the underside recess faces the chain and stays open), with low organic ribs flowing from each bolt boss into the crown and flat bolt seats. Outline, dome, ribs, hole count and positions are assumptions until D01-D13 of docs/993/993_COUVERCLE_CARTER_CHAINE_TI.md are measured; the dome and ribs remain millable from plate. Nothing here settles the internal clearance D13 or the galvanic question.",
+  "parameters": {
+    "extreme_hole_span_mm": {
+      "value": 100.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "DEFAULT_BOLT_SPAN_MM in parts/993-eng-chain-case-lid-ti-f0-0001/source/chain_case_lid_screen.py (hypothesis; D08 unmeasured); holes 0 and n/2 sit at the ends of the major axis"
+    },
+    "plan_area_cm2": {
+      "value": 90.0,
+      "unit": "cm2",
+      "basis": "assumption",
+      "source": null,
+      "note": "DEFAULT_PLAN_AREA_CM2 in chain_case_lid_screen.py (hypothesis; D01 x D02 unmeasured); sets the minor semi-axis of the elliptic outline"
+    },
+    "thickness_mm": {
+      "value": 5.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "DEFAULT_THICKNESS_MM in chain_case_lid_screen.py (hypothesis; D03 unmeasured); kept constant over the dome"
+    },
+    "clearance_hole_mm": {
+      "value": 6.6,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "DEFAULT_CLEARANCE_HOLE_MM in chain_case_lid_screen.py (ISO 273 medium for M6, M6 inferred from the 9.7 Nm manual torque; D06 unmeasured)"
+    },
+    "bolt_count": {
+      "value": 6.0,
+      "unit": "count",
+      "basis": "assumption",
+      "source": null,
+      "note": "hole count unknown (D07); six evenly spaced in angle on the bolt ellipse"
+    },
+    "bolt_boss_radius_mm": {
+      "value": 7.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "bolt seat boss radius; also sets the edge margin outside the bolt ring (boss + 2.5 mm)"
+    },
+    "bolt_boss_height_mm": {
+      "value": 1.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "flat bolt seat proud of the plate"
+    },
+    "gasket_land_mm": {
+      "value": 6.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "flat land between the bolt bosses and the dome footprint (gasket face width D09 unmeasured)"
+    },
+    "dome_height_mm": {
+      "value": 7.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "crown lift of the constant-thickness dome; chain/tensioner clearance D13 unmeasured, so this claims no clearance"
+    },
+    "rib_width_mm": {
+      "value": 5.5,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "root width of the organic ribs (tapering toward the crown)"
+    },
+    "rib_height_mm": {
+      "value": 2.5,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "maximum rib height above the plate; no stiffness requirement is known"
+    },
+    "edge_radius_mm": {
+      "value": 2.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "outer edge radius on the visible side (D12 unmeasured); the gasket edge stays sharp"
+    }
+  },
+  "envelope": [],
+  "envelope_axes": {},
+  "envelope_mode": "match",
+  "open_interfaces": [
+    "outline, thickness, dome and gasket face (D01-D05, D09)",
+    "hole count, diameters and spacings, dowel or stud location (D06-D08, D11)",
+    "internal clearance to the chain and tensioner (D13)",
+    "titanium/magnesium galvanic isolation at the fasteners"
+  ],
+  "status": "F0 concept geometry - not fitted, not tested, not safe, not released, not a print file"
+}

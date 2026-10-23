@@ -1,0 +1,73 @@
+{
+  "part_id": "993-ENG-FAN-HOUSING-ALSI10MG-F0-0001",
+  "name": "Stationary engine fan housing, AlSi10Mg F0 concept, gyroid core (PicoGK)",
+  "generator": "gyroid_core",
+  "catalogue_record": "catalog/parts/993-eng-fan-housing-alsi10mg-f0-0001.json",
+  "porsche_part_numbers": [
+    "99310666703",
+    "99310666701"
+  ],
+  "safety_class": "prohibited_pending_engineering",
+  "material_candidate": "AlSi10Mg LPBF (comparison)",
+  "density_g_cm3": 2.67,
+  "voxel_mm": 0.5,
+  "picogk_enhancement": "Gyroid core: the published PicoGK body (bionic_topology) keeps its outer form; a 1.5 mm skin encloses a sheet gyroid (11.25 mm cell, 1.25 mm wall) wherever the body holds three cells, thinner zones and functional features stay solid, drain ports run to the nearest outer surface and any pocket they miss is filled solid. Core settings are assumptions for the lpbf metal class; nothing here is printed, depowdered or tested.",
+  "base": {
+    "stl": "parts/993-eng-fan-housing-alsi10mg-f0-0001/derived/fan_housing_alsi10mg_f0-picogk.stl",
+    "sha256": "b8cf2ba6df77be61ac8b31c07f10a4914d6adf4cfc72fcca6dcfda807916bd0b",
+    "generator": "bionic_topology"
+  },
+  "material_class": "lpbf_metal",
+  "parameters": {
+    "cell_mm": {
+      "value": 11.25,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "gyroid period; at least 9 walls so the channels stay open to the drains"
+    },
+    "wall_mm": {
+      "value": 1.25,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "gyroid sheet thickness; class minimum 0.4 mm, at least 2.5 voxels"
+    },
+    "skin_mm": {
+      "value": 1.5,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "outer skin; class minimum 0.8 mm, at least 3 voxels"
+    },
+    "min_cells": {
+      "value": 3,
+      "unit": "cells",
+      "basis": "assumption",
+      "source": null,
+      "note": "owner rule 2026-10-22: core only where three cells fit, else solid"
+    },
+    "drain_d_mm": {
+      "value": 2.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "powder/resin drain diameter; class minimum 2.0 mm"
+    },
+    "max_drains": {
+      "value": 6,
+      "unit": "count",
+      "basis": "assumption",
+      "source": null,
+      "note": "lowest and highest core points, then farthest-point spread"
+    }
+  },
+  "keep_solid": [],
+  "recut_void": [],
+  "open_interfaces": [
+    "engine / shroud mounting points and fasteners",
+    "alternator seat and fan rotor throat (252 mm synthetic; F0 impeller integration fails)",
+    "outlet distribution to the cylinder shrouds"
+  ],
+  "status": "F0 concept geometry - not fitted, not tested, not safe, not released, not a print file"
+}

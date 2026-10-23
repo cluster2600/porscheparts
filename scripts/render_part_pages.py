@@ -634,6 +634,23 @@ def presentation(fiche: dict, chemin_fiche: Path) -> str:
                 "internal structure (double wall, lattice core or vanes) shown in the half section. "
                 "Mounting interfaces are assumptions — not the original part, not a print file, not evidence of fit.*", ""]
 
+    gyroid = dossier / "media" / "gyroid.json"
+    if gyroid.exists():
+        core = json.loads(gyroid.read_text(encoding="utf-8")).get("core", {})
+        moteur = PARTS / "picogk-catalog" / "bionic" / "GyroidCore.cs"
+        out += ["## Bionic gyroid-core model", "",
+                "![PicoGK gyroid-core model: outside view and capped section](media/gyroid.png)", ""]
+        if core.get("cored"):
+            out += [f"*PicoGK variant ([`GyroidCore.cs`]({lien(moteur, page)})): the organic outer form above, a "
+                    f"{core['skin_mm']:g} mm skin and a sheet-gyroid core ({core['cell_mm']:g} mm cell, "
+                    f"{core['wall_mm']:g} mm wall) wherever three cells fit, {core['drains']} drain ports; "
+                    f"{core['mass_saving_pct']:.1f} % less material than the same part solid. Core settings are "
+                    "assumptions: not printed, not depowdered, not tested — not a print file.*", ""]
+        else:
+            out += [f"*PicoGK variant ([`GyroidCore.cs`]({lien(moteur, page)})): no zone of this part holds three "
+                    f"{core.get('cell_mm', 0):g} mm gyroid cells inside its skin, so it stays solid "
+                    "(core only where three cells fit). Not a print file.*", ""]
+
     autres = [f for f in fichiers_du_dossier(dossier)
               if f.suffix.lower() in (".png", ".svg", ".gif") and "media" not in f.relative_to(dossier).parts]
     if autres:
