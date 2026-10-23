@@ -102,7 +102,7 @@ operating-point definition, not three. The shaft speed is already the identical
 synthetic `103,463.76 rpm` in both records; what is missing is a single mass-flow
 continuity statement and PR band. This shared step reconciles the three
 inconsistent anchors on file — cold-side baseline `0.0942 kg/s`
-(`simulation/993-k16-cold-side-baseline`, a synthetic duct-area value), compressor
+(`work/simulation/993-k16-cold-side-baseline`, a synthetic duct-area value), compressor
 P3 `~0.156 kg/s`, and the dyno per-turbo `~0.05–0.09 kg/s` — into one
 continuity-consistent band, carrying the shared `dyno-reference.json`
 `blocked_uses` caveat (it blocks `compressor_map_fit`, `turbine_map_fit` and
@@ -146,7 +146,7 @@ To avoid each wheel independently "first-using" the same capability:
   `*STATIC,NLGEOM + *FREQUENCY,PERTURBATION` (with `PERTURBATION` on the `*STEP`)
   is new. Prove once, reuse for compressor T5 and turbine M8.
 - **K3 — one MRF bring-up smoke**: `foamRun -solver fluid` + `constant/MRFProperties`,
-  seeded from `simulation/993-k16-cold-side-baseline`; one gate for compressor A2
+  seeded from `work/simulation/993-k16-cold-side-baseline`; one gate for compressor A2
   and turbine M9.
 - **K4 — one FAA AC 33.27-1A source record + one honest burst definition**: record
   the AC once (means-agnostic), define the burst screen once as a CalculiX
@@ -188,8 +188,8 @@ first real centrifugal/thermal/modal/burst FEA.
 | T5 | first modal dataset: natural frequencies under centrifugal prestress + Campbell vs 6/rev, 12/rev | T3 mesh; K0 speed band; K2 | `cadsim` ccx 2.21 (`*STATIC,NLGEOM + *FREQUENCY,PERTURBATION`) | `campbell-report.json` + figure | first 10 modes converge; every order crossing listed; margins conditional on hypothesis speed | blocked by T3, K0, K2 | M |
 | T6 | CalculiX centrifugal limit-load / area-averaged tangential-stress **screening bound** with uncertainty band, reusing the T3 model | T3 tangential stress; K4 AC record | `cadsim` CalculiX + python post | `burst-screen.json` | labelled screening bound, not per-AC, not validated without overspeed-test data; band's lower bound compared to `1.2` | blocked by T3, K4 | M |
 | T7 | Goodman-type HCF **interval** from hypothesised endurance knockdowns + the coupon matrix that would replace it | T3 static; T5 modal | `cadsim` python (algebra) | `hcf-bound.json` + coupon list | **no** pass verdict; only the remaining capacity interval + "vibratory stress unquantified" | blocked by T2, T3, T5 | M |
-| A1 (K3) | MRF bring-up smoke via `foamRun -solver fluid`, seeded from `cold-side-baseline` | OpenFOAM tutorial + `cold-side-baseline` | `mesh-cfd`, `--memory 12g` | `simulation/993-k16-mrf-smoke/` + evidence log | tutorial exits 0; 3D annulus mass imbalance < 1%; README classes it toolchain smoke | now | M |
-| A2 | shape-dependent MRF PR/eta at the K0 point, fluid domain built with the 917 f48/f49 case builders | F1 STEP; A1 template; K0 | `mesh-cfd` / `openfoam-engine-f35`; Vast.ai CPU fallback | `simulation/993-k16-compressor-mrf-f1/` | mass imbalance < 1% (binding gate); PR/eta labelled "model-predicted, uncorrelated, not a map" | blocked by A1, K0; Vast.ai if mesh > RAM | L |
+| A1 (K3) | MRF bring-up smoke via `foamRun -solver fluid`, seeded from `cold-side-baseline` | OpenFOAM tutorial + `cold-side-baseline` | `mesh-cfd`, `--memory 12g` | `work/simulation/993-k16-mrf-smoke/` + evidence log | tutorial exits 0; 3D annulus mass imbalance < 1%; README classes it toolchain smoke | now | M |
+| A2 | shape-dependent MRF PR/eta at the K0 point, fluid domain built with the 917 f48/f49 case builders | F1 STEP; A1 template; K0 | `mesh-cfd` / `openfoam-engine-f35`; Vast.ai CPU fallback | `work/simulation/993-k16-compressor-mrf-f1/` | mass imbalance < 1% (binding gate); PR/eta labelled "model-predicted, uncorrelated, not a map" | blocked by A1, K0; Vast.ai if mesh > RAM | L |
 | A3 | **owner-gated**: size an F2 impeller by meanline, loft real blades (reuse cooling-impeller loft), paired F1-vs-F2 CFD | K0; sourced diameters; F1 STEP | new `turbo-meanline-f60` container; `cad-author-f28` loft; Vast.ai | new part folder `...-al2139-f2-0001`; sizing/CFD JSONs | container smoke-tested; paired CFD with GCI<5%; grep gate: no "better than OEM" | blocked by A2 + owner approvals + Vast.ai budget | L (4–6 wk) |
 | Z1 | publish the compliant record: English doc with Mermaid, 5 inconsistencies closed, sources completed, gate-ladder map | all P/T (+A) evidence | editor; `make check` on ext4 | `..._F2_STRUCTURAL.md`; `..._CW_GATE_LADDER.md`; updated F1 record | make check green; 0 diff under evidence/** or any lock; status/class/flags unchanged; grep clean | blocked by T1–T7 (+A2/A3) | M |
 
@@ -321,7 +321,7 @@ which is why C9 needs a new pinned image and is deferred.
 
 ## 5. Reuse — existing pipelines each step builds on
 
-- **`simulation/993-k16-cold-side-baseline/`** — a `blockMesh → simpleFoam`
+- **`work/simulation/993-k16-cold-side-baseline/`** — a `blockMesh → simpleFoam`
   kOmegaSST OF13 chain-smoke with a `declared_k16_reference` block and mass flow
   `0.0942 kg/s`, invoked via `make turbo-cold-side`. The K0 operating point and the
   MRF smokes (compressor A1, turbine M9) seed from this, not from an upstream
@@ -381,7 +381,7 @@ Each item names the files it creates and where it runs. Everything here fits the
   `dyno-reference.json` `blocked_uses` caveat.
   *Creates:* `parts/993-eng-k16-compressor-wheel-al2139-f1-0001/evidence/aero-2026-09-25/operating-envelope.json`
   and `parts/993-eng-k16-turbine-wheel-in718-f1-0001/evidence/2026-09-26-design-basis/operating-envelope.json`
-  (or one shared `simulation/993-k16-operating-point/` JSON referenced by both) +
+  (or one shared `work/simulation/993-k16-operating-point/` JSON referenced by both) +
   `source/build_operating_envelope.py`.
 
 - [ ] **Day 3–4 — Compressor corrected analytic screen (T1)** *(build123d via

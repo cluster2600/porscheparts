@@ -16,7 +16,7 @@ The useful data include, among others:
 - the Cargraphic K16/24 targets and the K26 bound from an AP Car Design project,
   which remain declared or contextual references.
 
-The script [`model_turbo_dyno_0d.py`](../../scripts/model_turbo_dyno_0d.py):
+The script [`model_turbo_dyno_0d.py`](../../../scripts/model_turbo_dyno_0d.py):
 
 1. keeps the publication units and converts them to Nm/kW;
 2. computes the power derived from torque and the BMEP of the 3.6 l engine;

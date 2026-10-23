@@ -17,8 +17,8 @@ if str(ROOT) not in sys.path:
 
 from scripts.generate_cold_side_case import render_block_mesh, validate_parameters  # noqa: E402
 
-MANIFEST = ROOT / "simulation" / "993-turbo-variants" / "variants.json"
-BASELINE_CASE = ROOT / "simulation" / "993-k16-cold-side-baseline"
+MANIFEST = ROOT / "work" / "simulation" / "993-turbo-variants" / "variants.json"
+BASELINE_CASE = ROOT / "work" / "simulation" / "993-k16-cold-side-baseline"
 EXPECTED_VARIANTS = {"K16-OEM", "K16-24-HYBRID", "K24-REFERENCE"}
 STATIC_CASE_FILES = (
     "0/k",
@@ -58,7 +58,7 @@ def _variant_payload(manifest: dict[str, Any], variant: dict[str, Any]) -> dict[
         "status": "exploratory_reference",
         "units": "SI_for_solver_mm_for_geometry",
         "geometry_source": manifest["geometry_source"],
-        "generation_source": "simulation/993-turbo-variants/variants.json",
+        "generation_source": "work/simulation/993-turbo-variants/variants.json",
         "variant_id": variant["variant_id"],
         "geometry": variant["geometry"],
         "flow": variant["flow"],

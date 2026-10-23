@@ -3,7 +3,7 @@
 This folder is the first simulation harness of the digital twin. It studies a
 parametric fixed diffuser, with no wheel, no shaft, no CHRA and no hot housing.
 The editable geometry is
-[`cold_side_concept.scad`](../../parts/993-turbocharger-k16-cold-side-prototype/source/cold_side_concept.scad).
+[`cold_side_concept.scad`](../../../parts/993-turbocharger-k16-cold-side-prototype/source/cold_side_concept.scad).
 
 The file `parameters.json` separates the design parameters from the K16 data
 declared by suppliers. The K16 values serve as context and as a packaging check

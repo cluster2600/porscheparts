@@ -113,14 +113,14 @@ produce hypotheses. It replaces neither the solver, nor metrology, nor the
 qualification of the additive process.
 
 The first 0D normalizer for dyno data is in
-`simulation/993-turbo-dyno/`. It converts the torque and power points,
+`work/simulation/993-turbo-dyno/`. It converts the torque and power points,
 computes BMEP and attaches an engine flow envelope to the published speeds.
 Chassis points, tuner targets and reported engine curves stay separated by
 dyno type; no whp to engine power conversion is applied.
 `make turbo-dyno-check` must pass before using the package in a Vast.ai job.
 
 The first case is now in
-`simulation/993-k16-cold-side-baseline/`. It contains an editable OpenSCAD
+`work/simulation/993-k16-cold-side-baseline/`. It contains an editable OpenSCAD
 geometry of a fixed diffuser and an OpenFOAM `blockMesh` + `simpleFoam`
 harness. The mesh is a rectangular duct of equivalent cross-section: it serves
 to validate the chain and compare variants, not to claim to reproduce the K16.
@@ -128,7 +128,7 @@ The commands are `make turbo-cold-side` then, in the cadsim container,
 `blockMesh`, `checkMesh` and `simpleFoam`.
 
 The next comparison set is in
-`simulation/993-turbo-variants/`. Its single manifest generates three cases
+`work/simulation/993-turbo-variants/`. Its single manifest generates three cases
 with the same solver fields: `K16-OEM` control, `K16-24-HYBRID` sensitivity and
 `K24-REFERENCE` high-flow sensitivity. The common flow rate is derived from an
 estimated operating range; the diameters and lengths of the three diffusers

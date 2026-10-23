@@ -116,7 +116,7 @@ hashed file named the removed ones, and git history keeps them readable.
 | `catalog/` | 383 source records, 31 part records, measurements and schemas |
 | `parts/` | geometries, measurement plans and deliverables per part |
 | `docs/993/` | design dossiers for the parts made by additive manufacturing |
-| `simulation/` | calculation cases for the forced-induction circuit |
+| `work/simulation/` | calculation cases for the forced-induction circuit |
 
 ## The rule that applies to both
 
