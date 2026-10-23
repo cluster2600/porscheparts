@@ -1,6 +1,6 @@
 # 935 — reprise par la chaîne logicielle du README
 
-Cette reprise suit la [chaîne du README](../../../README.md#software-chain-qwen-and-picogk)
+Cette reprise suit la [chaîne de l'aperçu technique](../../ENGINEERING_OVERVIEW.md#software-chain-qwen-and-picogk)
 sur le rotor issu des scans, avec sa [pointe 03 corrigée](TIP_CORRECTION_20261013.md).
 Le lot examine la sensibilité de la mécanique à la sélection des nœuds fixés
 dans l'alésage. Il conserve la géométrie, les profils acquis et les réparations.

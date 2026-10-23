@@ -15,7 +15,8 @@ flowchart LR
 
 | document | what it answers |
 |---|---|
-| [../README.md](../README.md) | what the repository is, and what it has found |
+| [../README.md](../README.md) | what the repository is, in plain language |
+| [ENGINEERING_OVERVIEW.md](ENGINEERING_OVERVIEW.md) | the full technical overview: software chain, results, withdrawn claims, parts table |
 | [PROJECT_CHARTER.md](PROJECT_CHARTER.md) | why the project exists and what it will not do |
 | [../SAFETY.md](../SAFETY.md) | what may be built, what may not, and why |
 | [QUALITY_GATES.md](QUALITY_GATES.md) | what a part must prove at each level |

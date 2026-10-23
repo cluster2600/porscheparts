@@ -29,7 +29,7 @@
 	pet-zone-triage-check pet-part-triage pet-verdict pet-verdict-check \
 	pet-explain pet-disposition \
 	route-trim-ring-check parts-table route-lever-hook route-lever-hook-check \
-	print-screens print-visuals print-screen-sections-check parts-table-check part-pages part-pages-check translation-status reports-index reports-index-check docs-links-check part-previews part-previews-check container-recon container-cadsim container-mesh-cfd \
+	print-screens print-visuals print-screen-sections-check parts-table-check readme-gallery readme-gallery-check part-pages part-pages-check translation-status reports-index reports-index-check docs-links-check part-previews part-previews-check container-recon container-cadsim container-mesh-cfd \
 	container-physicsml container-simready container-simready-workflow \
 	container-simready-local-ai container-ov-libraries-cpu container-smoke \
 	container-smoke-physicsml container-smoke-simready \
@@ -205,6 +205,7 @@ check: validate test 917-clean-sheet-2026-f32-check \
 	route-trim-ring-check turning-trim-ring-check titanium-screen-check \
 	tip-routes-check pet-zone-triage-check pet-verdict-check \
 	route-lever-hook-check print-screen-sections-check parts-table-check \
+	readme-gallery-check \
 	part-pages-check reports-index-check docs-links-check part-previews-check \
 	help-check fan-program-check engine-mount-study-check
 
@@ -1384,13 +1385,21 @@ part-previews-check:
 	python3 tests/test_render_part_previews.py
 	python3 scripts/render_part_previews.py --check
 
-#> catalogue | Rewrite the README parts table
+#> catalogue | Rewrite the parts table of docs/ENGINEERING_OVERVIEW.md
 parts-table:
 	python3 scripts/render_parts_table.py --write
 
 #> catalogue | Check that this table follows the records
 parts-table-check:
 	python3 scripts/render_parts_table.py --check
+
+#> catalogue | Rewrite the README picture gallery from the catalogue records
+readme-gallery:
+	python3 scripts/render_readme_gallery.py --write
+
+#> catalogue | Check that this gallery follows the records
+readme-gallery-check:
+	python3 scripts/render_readme_gallery.py --check
 
 #> catalogue | Generate one description page per part
 part-pages:

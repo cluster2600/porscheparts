@@ -165,7 +165,10 @@ class PartPageTests(unittest.TestCase):
         self.assertNotIn("](catalog/parts/", bloc)
         for chemin in FICHES:
             fiche = json.loads(chemin.read_text(encoding="utf-8"))
-            self.assertIn(f"](docs/pieces/{fiche['part_id'].lower()}.md)", bloc)
+            # The table lives in docs/ENGINEERING_OVERVIEW.md: links are relative to it.
+            page = table.lien(f"docs/pieces/{fiche['part_id'].lower()}.md")
+            self.assertIn(f"]({page})", bloc)
+            self.assertTrue((table.README.parent / page).is_file(), page)
 
     def test_drift_is_detected(self):
         chemin, attendu = next(iter(pages.attendues().items()))
