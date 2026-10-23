@@ -89,11 +89,19 @@ flowchart LR
 
 *Orthographic views of the same concept CAD, with its bounding dimensions — not drawings of the original part.*
 
+## Bionic gyroid-core model
+
+![PicoGK gyroid-core model: outside view and capped section](media/gyroid.png)
+
+*PicoGK variant ([`GyroidCore.cs`](../../parts/picogk-catalog/bionic/GyroidCore.cs)): no zone of this part holds three 7.2 mm gyroid cells inside its skin, so it stays solid (core only where three cells fit). Not a print file.*
+
 ## What's in this folder
 
 | folder | what it holds | files |
 |---|---|---|
-| `media/` | concept-model views rendered from the CAD by `scripts/render_part_previews.py` — not pictures of the original; labelled AI studio illustration and provenance, not a photograph | [`media/photo-concept.png`](media/photo-concept.png), [`media/photo.json`](media/photo.json), [`media/preview.json`](media/preview.json), [`media/preview.png`](media/preview.png), [`media/views.png`](media/views.png) |
+| `derived/` | CAD exports generated from the source (STEP for CAD tools, STL for meshing) | [`derived/993-eng-bracket-0001-picogk-gyroid.json`](derived/993-eng-bracket-0001-picogk-gyroid.json) |
+| `media/` | concept-model views rendered from the CAD by `scripts/render_part_previews.py` — not pictures of the original; labelled AI studio illustration and provenance, not a photograph | [`media/gyroid.json`](media/gyroid.json), [`media/gyroid.png`](media/gyroid.png), [`media/photo-concept.png`](media/photo-concept.png), [`media/photo.json`](media/photo.json), [`media/preview.json`](media/preview.json), [`media/preview.png`](media/preview.png), [`media/views.png`](media/views.png) |
+| `source/` | parametric source — the editable master that generates the geometry | [`source/gyroid.json`](source/gyroid.json) |
 
 ## Read more
 

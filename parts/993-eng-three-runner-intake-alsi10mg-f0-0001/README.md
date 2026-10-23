@@ -92,14 +92,20 @@ flowchart LR
 
 *Variant generated with the PicoGK voxel kernel in [`parts/picogk-993-batch-01`](../../parts/picogk-993-batch-01/README.md): published overall envelope, internal structure (double wall, lattice core or vanes) shown in the half section. Mounting interfaces are assumptions — not the original part, not a print file, not evidence of fit.*
 
+## Bionic gyroid-core model
+
+![PicoGK gyroid-core model: outside view and capped section](media/gyroid.png)
+
+*PicoGK variant ([`GyroidCore.cs`](../../parts/picogk-catalog/bionic/GyroidCore.cs)): no zone of this part holds three 9 mm gyroid cells inside its skin, so it stays solid (core only where three cells fit). Not a print file.*
+
 ## What's in this folder
 
 | folder | what it holds | files |
 |---|---|---|
-| `derived/` | CAD exports generated from the source (STEP for CAD tools, STL for meshing) | [`derived/three_runner_intake_alsi10mg_f0-picogk.json`](derived/three_runner_intake_alsi10mg_f0-picogk.json), [`derived/three_runner_intake_alsi10mg_f0-picogk.stl`](derived/three_runner_intake_alsi10mg_f0-picogk.stl), [`derived/three_runner_intake_alsi10mg_f0.step`](derived/three_runner_intake_alsi10mg_f0.step), [`derived/three_runner_intake_alsi10mg_f0.stl`](derived/three_runner_intake_alsi10mg_f0.stl) |
+| `derived/` | CAD exports generated from the source (STEP for CAD tools, STL for meshing) | [`derived/three_runner_intake_alsi10mg_f0-picogk-gyroid.json`](derived/three_runner_intake_alsi10mg_f0-picogk-gyroid.json), [`derived/three_runner_intake_alsi10mg_f0-picogk.json`](derived/three_runner_intake_alsi10mg_f0-picogk.json), [`derived/three_runner_intake_alsi10mg_f0-picogk.stl`](derived/three_runner_intake_alsi10mg_f0-picogk.stl), [`derived/three_runner_intake_alsi10mg_f0.step`](derived/three_runner_intake_alsi10mg_f0.step), [`derived/three_runner_intake_alsi10mg_f0.stl`](derived/three_runner_intake_alsi10mg_f0.stl) |
 | `evidence/` | screens, reports and manifests — **pinned by SHA-256, never edited by hand** | [`evidence/engineering-screen.json`](evidence/engineering-screen.json) |
-| `media/` | concept-model views rendered from the CAD by `scripts/render_part_previews.py` — not pictures of the original; labelled AI studio illustration and provenance, not a photograph | [`media/photo-concept.png`](media/photo-concept.png), [`media/photo.json`](media/photo.json), [`media/picogk-batch-01.png`](media/picogk-batch-01.png), [`media/preview.json`](media/preview.json), [`media/preview.png`](media/preview.png), [`media/views.png`](media/views.png) |
-| `source/` | parametric source — the editable master that generates the geometry | [`source/bionic.json`](source/bionic.json), [`source/bionic_regions.py`](source/bionic_regions.py), [`source/picogk.json`](source/picogk.json), [`source/three_runner_intake.py`](source/three_runner_intake.py) |
+| `media/` | concept-model views rendered from the CAD by `scripts/render_part_previews.py` — not pictures of the original; labelled AI studio illustration and provenance, not a photograph | [`media/gyroid.json`](media/gyroid.json), [`media/gyroid.png`](media/gyroid.png), [`media/photo-concept.png`](media/photo-concept.png), [`media/photo.json`](media/photo.json), [`media/picogk-batch-01.png`](media/picogk-batch-01.png), [`media/preview.json`](media/preview.json), [`media/preview.png`](media/preview.png), [`media/views.png`](media/views.png) |
+| `source/` | parametric source — the editable master that generates the geometry | [`source/bionic.json`](source/bionic.json), [`source/bionic_regions.py`](source/bionic_regions.py), [`source/gyroid.json`](source/gyroid.json), [`source/picogk.json`](source/picogk.json), [`source/three_runner_intake.py`](source/three_runner_intake.py) |
 
 ## Read more
 

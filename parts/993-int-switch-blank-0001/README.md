@@ -97,6 +97,12 @@ flowchart LR
 
 *Variant generated with the PicoGK voxel kernel in [`parts/picogk-993-batch-01`](../../parts/picogk-993-batch-01/README.md): published overall envelope, internal structure (double wall, lattice core or vanes) shown in the half section. Mounting interfaces are assumptions — not the original part, not a print file, not evidence of fit.*
 
+## Bionic gyroid-core model
+
+![PicoGK gyroid-core model: outside view and capped section](media/gyroid.png)
+
+*PicoGK variant ([`GyroidCore.cs`](../../parts/picogk-catalog/bionic/GyroidCore.cs)): no zone of this part holds three 7.2 mm gyroid cells inside its skin, so it stays solid (core only where three cells fit). Not a print file.*
+
 ## Screens and evidence images
 
 ![plate](print/plate.png)
@@ -107,11 +113,11 @@ flowchart LR
 
 | folder | what it holds | files |
 |---|---|---|
-| `derived/` | CAD exports generated from the source (STEP for CAD tools, STL for meshing) | [`derived/switch_blank_concept_f0-picogk.json`](derived/switch_blank_concept_f0-picogk.json), [`derived/switch_blank_concept_f0-picogk.stl`](derived/switch_blank_concept_f0-picogk.stl), [`derived/switch_blank_concept_f0.step`](derived/switch_blank_concept_f0.step) |
+| `derived/` | CAD exports generated from the source (STEP for CAD tools, STL for meshing) | [`derived/switch_blank_concept_f0-picogk-gyroid.json`](derived/switch_blank_concept_f0-picogk-gyroid.json), [`derived/switch_blank_concept_f0-picogk.json`](derived/switch_blank_concept_f0-picogk.json), [`derived/switch_blank_concept_f0-picogk.stl`](derived/switch_blank_concept_f0-picogk.stl), [`derived/switch_blank_concept_f0.step`](derived/switch_blank_concept_f0.step) |
 | `evidence/` | screens, reports and manifests — **pinned by SHA-256, never edited by hand** | [`evidence/concept-f0.json`](evidence/concept-f0.json), [`evidence/measurement-plan.md`](evidence/measurement-plan.md) |
-| `media/` | concept-model views rendered from the CAD by `scripts/render_part_previews.py` — not pictures of the original; labelled AI studio illustration and provenance, not a photograph | [`media/photo-concept.png`](media/photo-concept.png), [`media/photo.json`](media/photo.json), [`media/picogk-batch-01.png`](media/picogk-batch-01.png), [`media/preview.json`](media/preview.json), [`media/preview.png`](media/preview.png), [`media/views.png`](media/views.png) |
+| `media/` | concept-model views rendered from the CAD by `scripts/render_part_previews.py` — not pictures of the original; labelled AI studio illustration and provenance, not a photograph | [`media/gyroid.json`](media/gyroid.json), [`media/gyroid.png`](media/gyroid.png), [`media/photo-concept.png`](media/photo-concept.png), [`media/photo.json`](media/photo.json), [`media/picogk-batch-01.png`](media/picogk-batch-01.png), [`media/preview.json`](media/preview.json), [`media/preview.png`](media/preview.png), [`media/views.png`](media/views.png) |
 | `print/` | **ready-to-print files**: 3MF project, STL and instructions | [`print/kit.json`](print/kit.json), [`print/plate.png`](print/plate.png), [`print/switch_blank_fit_1.stl`](print/switch_blank_fit_1.stl), [`print/switch_blank_fit_2.stl`](print/switch_blank_fit_2.stl), [`print/switch_blank_fit_3.stl`](print/switch_blank_fit_3.stl), [`print/switch_blank_fit_plate.3mf`](print/switch_blank_fit_plate.3mf), [`print/switch_blank_fit_plate.step`](print/switch_blank_fit_plate.step), [`print/switch_blank_fit_plate.stl`](print/switch_blank_fit_plate.stl) |
-| `source/` | parametric source — the editable master that generates the geometry | [`source/bionic.json`](source/bionic.json), [`source/bionic_keepins.py`](source/bionic_keepins.py), [`source/fit_test_kit.py`](source/fit_test_kit.py), [`source/picogk.json`](source/picogk.json), [`source/render_fit_plate.py`](source/render_fit_plate.py), [`source/switch_blank.py`](source/switch_blank.py) |
+| `source/` | parametric source — the editable master that generates the geometry | [`source/bionic.json`](source/bionic.json), [`source/bionic_keepins.py`](source/bionic_keepins.py), [`source/fit_test_kit.py`](source/fit_test_kit.py), [`source/gyroid.json`](source/gyroid.json), [`source/picogk.json`](source/picogk.json), [`source/render_fit_plate.py`](source/render_fit_plate.py), [`source/switch_blank.py`](source/switch_blank.py) |
 
 ## Read more
 

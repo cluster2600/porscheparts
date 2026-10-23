@@ -26,9 +26,9 @@ The original part is documented — pictures, catalogue entries or published dat
 ↗ <a href="https://porschefanatics.com/oem/993/202-15/">Porsche 993 Workshop Manual - Heat exchanger / catalytic converter torque page 61</a><br>
 </td>
 <td width="50%" valign="top" align="center">
-<b>Catalogue study status</b><br><br>
-<img src="media/preview.png" alt="Status card: geometry not created" width="340"><br>
-<sub>No CAD geometry to show. This is a status card, <b>not</b> a part rendering or a print file.</sub>
+<b>This repository's concept model</b><br><br>
+<img src="media/preview.png" alt="Concept CAD block for 993 Turbo catalytic converters (front muffler section), left and right - PET-transcribed identity" width="340"><br>
+<sub>Concept CAD block, 410.3 × 310.0 × 110.0 mm — <b>not</b> the original part, not a print file, not evidence of fit.</sub>
 </td>
 </tr></table>
 
@@ -53,7 +53,7 @@ Identity anchor for the exhaust subsystem of the M64 digital twin; no manufactur
 | candidate process | undecided |
 | safety class | `prohibited_pending_engineering` |
 | validation status | `concept` |
-| geometry | estimated, master none |
+| geometry | estimated, master PicoGK |
 
 ## Where it stands
 
@@ -83,11 +83,25 @@ flowchart LR
 
 *Validation ladder of `catalog/schemas/part.schema.json`; this record is at `concept`.*
 
+## Views
+
+![Front, side and top orthographic views](media/views.png)
+
+*Orthographic views of the same concept CAD, with its bounding dimensions — not drawings of the original part.*
+
+## Bionic gyroid-core model
+
+![PicoGK gyroid-core model: outside view and capped section](media/gyroid.png)
+
+*PicoGK variant ([`GyroidCore.cs`](../../parts/picogk-catalog/bionic/GyroidCore.cs)): no zone of this part holds three 13.5 mm gyroid cells inside its skin, so it stays solid (core only where three cells fit). Not a print file.*
+
 ## What's in this folder
 
 | folder | what it holds | files |
 |---|---|---|
-| `media/` | concept-model views rendered from the CAD by `scripts/render_part_previews.py` — not pictures of the original | [`media/preview.json`](media/preview.json), [`media/preview.png`](media/preview.png) |
+| `derived/` | CAD exports generated from the source (STEP for CAD tools, STL for meshing) | [`derived/993-exh-cat-converter-pair-pet-0001-picogk-gyroid.json`](derived/993-exh-cat-converter-pair-pet-0001-picogk-gyroid.json), [`derived/993-exh-cat-converter-pair-pet-0001-picogk.json`](derived/993-exh-cat-converter-pair-pet-0001-picogk.json), [`derived/993-exh-cat-converter-pair-pet-0001-picogk.stl`](derived/993-exh-cat-converter-pair-pet-0001-picogk.stl) |
+| `media/` | concept-model views rendered from the CAD by `scripts/render_part_previews.py` — not pictures of the original | [`media/gyroid.json`](media/gyroid.json), [`media/gyroid.png`](media/gyroid.png), [`media/preview.json`](media/preview.json), [`media/preview.png`](media/preview.png), [`media/views.png`](media/views.png) |
+| `source/` | parametric source — the editable master that generates the geometry | [`source/gyroid.json`](source/gyroid.json), [`source/picogk.json`](source/picogk.json) |
 
 ## Read more
 

@@ -26,9 +26,9 @@ The original part is documented — pictures, catalogue entries or published dat
 ↗ <a href="https://www.porsche.at/media/Kwc_Basic_DownloadTag_Component/4740-45397-124814-downloadTag/default/f5000535/1729608718/kat017-d-911-98-katalog.pdf">Porsche Austria PET - groupe 107-45 echangeur d'air 993 (KAT 17 official read)</a><br>
 </td>
 <td width="50%" valign="top" align="center">
-<b>Catalogue study status</b><br><br>
-<img src="media/preview.png" alt="Status card: geometry not created" width="340"><br>
-<sub>No CAD geometry to show. This is a status card, <b>not</b> a part rendering or a print file.</sub>
+<b>This repository's concept model</b><br><br>
+<img src="media/preview.png" alt="Concept CAD block for 993 Turbo charge-air tract transcribed parts (group 107-45) - PET-transcribed identity set" width="340"><br>
+<sub>Concept CAD block, 430.2 × 206.9 × 114.9 mm — <b>not</b> the original part, not a print file, not evidence of fit.</sub>
 </td>
 </tr></table>
 
@@ -53,7 +53,7 @@ Identity anchor for the charge-air subsystem of the M64 digital twin; no manufac
 | candidate process | undecided |
 | safety class | `non_critical` |
 | validation status | `concept` |
-| geometry | estimated, master none |
+| geometry | estimated, master PicoGK |
 
 ## Where it stands
 
@@ -80,11 +80,25 @@ flowchart LR
 
 *Validation ladder of `catalog/schemas/part.schema.json`; this record is at `concept`.*
 
+## Views
+
+![Front, side and top orthographic views](media/views.png)
+
+*Orthographic views of the same concept CAD, with its bounding dimensions — not drawings of the original part.*
+
+## Bionic gyroid-core model
+
+![PicoGK gyroid-core model: outside view and capped section](media/gyroid.png)
+
+*PicoGK variant ([`GyroidCore.cs`](../../parts/picogk-catalog/bionic/GyroidCore.cs)): no zone of this part holds three 9 mm gyroid cells inside its skin, so it stays solid (core only where three cells fit). Not a print file.*
+
 ## What's in this folder
 
 | folder | what it holds | files |
 |---|---|---|
-| `media/` | concept-model views rendered from the CAD by `scripts/render_part_previews.py` — not pictures of the original | [`media/preview.json`](media/preview.json), [`media/preview.png`](media/preview.png) |
+| `derived/` | CAD exports generated from the source (STEP for CAD tools, STL for meshing) | [`derived/993-ca-charge-pipe-set-pet-0001-picogk-gyroid.json`](derived/993-ca-charge-pipe-set-pet-0001-picogk-gyroid.json), [`derived/993-ca-charge-pipe-set-pet-0001-picogk.json`](derived/993-ca-charge-pipe-set-pet-0001-picogk.json), [`derived/993-ca-charge-pipe-set-pet-0001-picogk.stl`](derived/993-ca-charge-pipe-set-pet-0001-picogk.stl) |
+| `media/` | concept-model views rendered from the CAD by `scripts/render_part_previews.py` — not pictures of the original | [`media/gyroid.json`](media/gyroid.json), [`media/gyroid.png`](media/gyroid.png), [`media/preview.json`](media/preview.json), [`media/preview.png`](media/preview.png), [`media/views.png`](media/views.png) |
+| `source/` | parametric source — the editable master that generates the geometry | [`source/gyroid.json`](source/gyroid.json), [`source/picogk.json`](source/picogk.json) |
 
 ## Read more
 

@@ -93,6 +93,12 @@ flowchart LR
 
 *Orthographic views of the same concept CAD, with its bounding dimensions — not drawings of the original part.*
 
+## Bionic gyroid-core model
+
+![PicoGK gyroid-core model: outside view and capped section](media/gyroid.png)
+
+*PicoGK variant ([`GyroidCore.cs`](../../parts/picogk-catalog/bionic/GyroidCore.cs)): no zone of this part holds three 3.6 mm gyroid cells inside its skin, so it stays solid (core only where three cells fit). Not a print file.*
+
 ## Screens and evidence images
 
 ![mockup](print/mockup.png)
@@ -103,11 +109,11 @@ flowchart LR
 
 | folder | what it holds | files |
 |---|---|---|
-| `derived/` | CAD exports generated from the source (STEP for CAD tools, STL for meshing) | [`derived/connecting_rod_ti64_f0-picogk.json`](derived/connecting_rod_ti64_f0-picogk.json), [`derived/connecting_rod_ti64_f0-picogk.stl`](derived/connecting_rod_ti64_f0-picogk.stl), [`derived/connecting_rod_ti64_f0.step`](derived/connecting_rod_ti64_f0.step), [`derived/connecting_rod_ti64_f0.stl`](derived/connecting_rod_ti64_f0.stl) |
+| `derived/` | CAD exports generated from the source (STEP for CAD tools, STL for meshing) | [`derived/connecting_rod_ti64_f0-picogk-gyroid.json`](derived/connecting_rod_ti64_f0-picogk-gyroid.json), [`derived/connecting_rod_ti64_f0-picogk.json`](derived/connecting_rod_ti64_f0-picogk.json), [`derived/connecting_rod_ti64_f0-picogk.stl`](derived/connecting_rod_ti64_f0-picogk.stl), [`derived/connecting_rod_ti64_f0.step`](derived/connecting_rod_ti64_f0.step), [`derived/connecting_rod_ti64_f0.stl`](derived/connecting_rod_ti64_f0.stl) |
 | `evidence/` | screens, reports and manifests — **pinned by SHA-256, never edited by hand** | [`evidence/engineering-screen.json`](evidence/engineering-screen.json) |
-| `media/` | concept-model views rendered from the CAD by `scripts/render_part_previews.py` — not pictures of the original; labelled AI studio illustration and provenance, not a photograph | [`media/photo-concept.png`](media/photo-concept.png), [`media/photo.json`](media/photo.json), [`media/preview.json`](media/preview.json), [`media/preview.png`](media/preview.png), [`media/views.png`](media/views.png) |
+| `media/` | concept-model views rendered from the CAD by `scripts/render_part_previews.py` — not pictures of the original; labelled AI studio illustration and provenance, not a photograph | [`media/gyroid.json`](media/gyroid.json), [`media/gyroid.png`](media/gyroid.png), [`media/photo-concept.png`](media/photo-concept.png), [`media/photo.json`](media/photo.json), [`media/preview.json`](media/preview.json), [`media/preview.png`](media/preview.png), [`media/views.png`](media/views.png) |
 | `print/` | **ready-to-print files**: 3MF project, STL and instructions | [`print/connecting_rod_f0_mockup.3mf`](print/connecting_rod_f0_mockup.3mf), [`print/connecting_rod_f0_mockup.step`](print/connecting_rod_f0_mockup.step), [`print/connecting_rod_f0_mockup.stl`](print/connecting_rod_f0_mockup.stl), [`print/mockup.png`](print/mockup.png), [`print/print.json`](print/print.json) |
-| `source/` | parametric source — the editable master that generates the geometry | [`source/bionic.json`](source/bionic.json), [`source/connecting_rod.py`](source/connecting_rod.py), [`source/export_mockup.py`](source/export_mockup.py), [`source/picogk.json`](source/picogk.json), [`source/render_mockup.py`](source/render_mockup.py) |
+| `source/` | parametric source — the editable master that generates the geometry | [`source/bionic.json`](source/bionic.json), [`source/connecting_rod.py`](source/connecting_rod.py), [`source/export_mockup.py`](source/export_mockup.py), [`source/gyroid.json`](source/gyroid.json), [`source/picogk.json`](source/picogk.json), [`source/render_mockup.py`](source/render_mockup.py) |
 
 ## Read more
 

@@ -4,11 +4,10 @@
 Several PicoGK processes in parallel crashed the native kernel on this
 project (see parts/picogk-993-batch-01/README.md), so every run takes a lock.
 
-    python run_part.py <group> <PART_ID> [<params>.json]
+    python run_part.py <group> <PART_ID>
 
 <group> is a folder of parts/picogk-catalog/ holding <Group>.csproj and its
-generators. Parameters come from parts/<part-id>/source/picogk.json (or the
-named file in that folder, e.g. gyroid.json for the gyroid-core variant). Output:
+generators. Parameters come from parts/<part-id>/source/picogk.json. Output:
 parts/picogk-catalog/out/<PART_ID>.stl and .report.json (not committed).
 """
 import os
@@ -24,18 +23,6 @@ LOCK = Path(tempfile.gettempdir()) / "picogk-catalog.lock"
 DOTNET = os.environ.get("DOTNET", r"C:\Program Files\dotnet\dotnet.exe" if os.name == "nt" else "dotnet")
 
 
-def holder_alive():
-    """False when the lock's process is gone (a memory-cap SIGKILL skips the release)."""
-    try:
-        pid = int(LOCK.read_text().split()[0])
-        os.kill(pid, 0)
-    except ProcessLookupError:
-        return False
-    except (OSError, ValueError, IndexError):     # unreadable or another user's process: assume alive
-        return True
-    return True
-
-
 def acquire(timeout_s=7200):
     start = time.time()
     while True:
@@ -45,7 +32,7 @@ def acquire(timeout_s=7200):
             os.close(fd)
             return
         except FileExistsError:
-            if time.time() - LOCK.stat().st_mtime > 3600 or not holder_alive():   # stale: a run never takes an hour
+            if time.time() - LOCK.stat().st_mtime > 3600:      # stale: a run never takes an hour
                 LOCK.unlink(missing_ok=True)
                 continue
             if time.time() - start > timeout_s:
@@ -53,12 +40,12 @@ def acquire(timeout_s=7200):
             time.sleep(5)
 
 
-def main(group, part_id, params_name="picogk.json"):
+def main(group, part_id):
     gdir = CATALOG / group
     projects = list(gdir.glob("*.csproj"))
     if len(projects) != 1:
         raise SystemExit(f"expected one .csproj in {gdir}")
-    params = ROOT / "parts" / part_id.lower() / "source" / params_name
+    params = ROOT / "parts" / part_id.lower() / "source" / "picogk.json"
     if not params.exists():
         raise SystemExit(f"missing {params}")
     env = dict(os.environ)
@@ -77,15 +64,12 @@ def main(group, part_id, params_name="picogk.json"):
     finally:
         LOCK.unlink(missing_ok=True)
     print(run.stdout.strip())
-    stats = [line for line in run.stderr.splitlines() if " cm3" in line and line.startswith("  [")]
-    if stats:                                     # generator statistics (e.g. gyroid core volumes)
-        print("\n".join(stats))
     if run.returncode:
         print(run.stderr[-3000:])
         raise SystemExit(f"run failed with exit code {run.returncode}")
 
 
 if __name__ == "__main__":
-    if len(sys.argv) not in (3, 4):
+    if len(sys.argv) != 3:
         raise SystemExit(__doc__)
-    main(*sys.argv[1:])
+    main(sys.argv[1], sys.argv[2])

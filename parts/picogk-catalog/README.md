@@ -80,7 +80,7 @@ tiled design regions in `out/` (front lid, dashboard trim, oval tips) core the
 published body without re-applying them.
 
     python bionic/prep_gyroid.py <PART_ID>                       # writes source/gyroid.json
-    python tools/run_part.py bionic <PART_ID> gyroid.json        # native run, machine-wide lock
+    python bionic/run_gyroid.py <PART_ID>                        # native run, machine-wide lock
     python tools/finish.py <PART_ID> --variant gyroid --max-tris 400000
     python bionic/render_gyroid.py <PART_ID>                     # media/gyroid.png + gyroid.json
 

@@ -85,11 +85,19 @@ flowchart LR
 
 *Validation ladder of `catalog/schemas/part.schema.json`; this record is at `concept`.*
 
+## Bionic gyroid-core model
+
+![PicoGK gyroid-core model: outside view and capped section](media/gyroid.png)
+
+*PicoGK variant ([`GyroidCore.cs`](../../parts/picogk-catalog/bionic/GyroidCore.cs)): no zone of this part holds three 45 mm gyroid cells inside its skin, so it stays solid (core only where three cells fit). Not a print file.*
+
 ## What's in this folder
 
 | folder | what it holds | files |
 |---|---|---|
-| `media/` | concept-model views rendered from the CAD by `scripts/render_part_previews.py` — not pictures of the original | [`media/preview.json`](media/preview.json), [`media/preview.png`](media/preview.png) |
+| `derived/` | CAD exports generated from the source (STEP for CAD tools, STL for meshing) | [`derived/993-eng-cylinder-head-4v-f0-0001-picogk-gyroid.json`](derived/993-eng-cylinder-head-4v-f0-0001-picogk-gyroid.json) |
+| `media/` | concept-model views rendered from the CAD by `scripts/render_part_previews.py` — not pictures of the original | [`media/gyroid.json`](media/gyroid.json), [`media/gyroid.png`](media/gyroid.png), [`media/preview.json`](media/preview.json), [`media/preview.png`](media/preview.png) |
+| `source/` | parametric source — the editable master that generates the geometry | [`source/gyroid.json`](source/gyroid.json) |
 
 ## Read more
 

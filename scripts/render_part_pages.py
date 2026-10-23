@@ -72,6 +72,8 @@ def fichiers(page: Path, chemins, titre: str) -> list[str]:
 def images(part_id: str, page: Path) -> list[str]:
     dossier = ROOT / "parts" / part_id.lower()
     trouvees = sorted(dossier.rglob("*.png")) if dossier.is_dir() else []
+    # The gyroid-core image has its own section further down.
+    trouvees = [i for i in trouvees if i != dossier / "media" / "gyroid.png"]
     manifest = dossier / "media" / "preview.json"
     info = json.loads(manifest.read_text(encoding="utf-8")) if manifest.exists() else {}
     if not trouvees:

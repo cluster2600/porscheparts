@@ -83,13 +83,17 @@ Catalogue record: [`catalog/parts/993-eng-chain-case-lid-ti-f0-0001.json`](../..
 
 **Derived files**
 
-- none
+- [`parts/993-eng-chain-case-lid-ti-f0-0001/derived/993-eng-chain-case-lid-ti-f0-0001-picogk.stl`](../../parts/993-eng-chain-case-lid-ti-f0-0001/derived/993-eng-chain-case-lid-ti-f0-0001-picogk.stl)
 
 ## Images
 
 ![preview](../../parts/993-eng-chain-case-lid-ti-f0-0001/media/preview.png)
 
-*`parts/993-eng-chain-case-lid-ti-f0-0001/media/preview.png` — Catalogue study only. No CAD geometry is available for this record. Status card; no part geometry depicted. Not a print file or evidence of fit..*
+*`parts/993-eng-chain-case-lid-ti-f0-0001/media/preview.png` — concept CAD block, **not** the original part, not a print file.*
+
+![views](../../parts/993-eng-chain-case-lid-ti-f0-0001/media/views.png)
+
+*`parts/993-eng-chain-case-lid-ti-f0-0001/media/views.png` — concept CAD block, **not** the original part, not a print file.*
 
 ## Provenance and sources
 
