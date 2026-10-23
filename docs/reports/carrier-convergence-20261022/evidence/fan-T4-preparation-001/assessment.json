@@ -1,0 +1,140 @@
+{
+  "status": "interior_fan_T4_inputs_prepared_exact_volume_audit_pending",
+  "nodes": 450820,
+  "elements": 1373132,
+  "parent_elements": 343283,
+  "boundary_faces": 196406,
+  "material": {
+    "name": "Ti-6Al-4V dense elastic reference only",
+    "source": "https://www.timet.com/documents/datasheets/alpha-and-beta-alloys/timetal-6-4.pdf",
+    "E_MPa": 107000.0,
+    "nu": 0.31,
+    "density_tonne_mm3": 4.42e-09,
+    "expansion_per_K": 9e-06,
+    "strength_allowable_MPa": null,
+    "fatigue_curve": null,
+    "manufactured_state_qualified": false
+  },
+  "loads": {
+    "gravity": {
+      "requested": {
+        "force_N": [
+          0,
+          0,
+          -2000
+        ],
+        "moment_Nmm": [
+          0,
+          0,
+          0
+        ]
+      },
+      "actual_force_N": [
+        1.2197863806648369e-20,
+        -5.013939773353692e-20,
+        -1999.9999999999989
+      ],
+      "actual_moment_Nmm": [
+        -8.230388592878057e-12,
+        -6.522005158160482e-12,
+        -1.1780640109531216e-18
+      ],
+      "deck_sha256": "08dd8dae0249cdf5600d8895cc533bec527715e3ce0e006ae7daabbffc665fe8",
+      "per_bore_constant_traction_N_per_mm2": [
+        [
+          -1.7117025065258222e-08,
+          8.575550820515877e-08,
+          -1.9304793952849917
+        ],
+        [
+          1.2942032653667763e-08,
+          -1.008920882746819e-07,
+          -1.9323467796375433
+        ],
+        [
+          -2.0312475647445925e-08,
+          1.3262784725417536e-07,
+          -1.9293964340597751
+        ],
+        [
+          2.451484063246766e-08,
+          -1.1767850625080027e-07,
+          -1.9312637160743316
+        ]
+      ]
+    },
+    "combined": {
+      "requested": {
+        "force_N": [
+          0,
+          0,
+          -4000
+        ],
+        "moment_Nmm": [
+          0,
+          850000,
+          0
+        ]
+      },
+      "actual_force_N": [
+        1.0348625033079414e-16,
+        -1.2615899298818681e-16,
+        -4000.0000000000123
+      ],
+      "actual_moment_Nmm": [
+        -2.5180968421523175e-10,
+        850000.0000000006,
+        -7.306065745883022e-15
+      ],
+      "deck_sha256": "efd7c9f7720c4ca4400b607b6ccebcabf3fd4a5577a16404fdcb33ef4bc8e8c7",
+      "per_bore_constant_traction_N_per_mm2": [
+        [
+          0.0006133915454677099,
+          0.0002645129932375296,
+          12.54989457430001
+        ],
+        [
+          -0.0004869497898634396,
+          0.0002652947085099043,
+          12.557022755405592
+        ],
+        [
+          0.0007102314086301762,
+          -0.0002652993901457909,
+          -20.272415237526246
+        ],
+        [
+          -0.000837677427489385,
+          -0.0002642420605701596,
+          -20.265011613770195
+        ]
+      ]
+    }
+  },
+  "retained_parent_patch_rosters": true,
+  "load_model_changed": false,
+  "continuous_tractions_unchanged": true,
+  "retained_original_vertex_coordinates": true,
+  "original_boundary_facets_unchanged": true,
+  "refinement_mode": "four-way interior cell-centre fan; boundary facets unchanged",
+  "whole_surface_distance_upper_mm": 0.059999994899797904,
+  "geometry_adopted": false,
+  "stress_convergence_demonstrated": false,
+  "output_sha256": {
+    "combined.inp": "efd7c9f7720c4ca4400b607b6ccebcabf3fd4a5577a16404fdcb33ef4bc8e8c7",
+    "gravity.inp": "08dd8dae0249cdf5600d8895cc533bec527715e3ce0e006ae7daabbffc665fe8",
+    "gravity-loads.npz": "f57d91d7631b692e99a031a5b6fbd0ba861156515d1308bb0149f28e4d1b8554",
+    "transport.npz": "388a64b8127be528335e57cb6dff521539ee7f84773e6131dcb5bd9afc1adeeb",
+    "combined-loads.npz": "10ee1969ed53371565ef46fb59193989115a9f279702e67d9d3d94446e0808cd",
+    "mesh.inp": "f70633d98b9e20efdf76bb5822a0c3db03e76e5771bce90750368735344707e0",
+    "groups.npz": "ee388803a037bf77bd61f4adcc724d9165af1c6ee0c7516d85ad853ea1305d8e"
+  },
+  "source_sha256": {
+    "work/carrier-resume-20261020/meshlib-R2-quadratic-geometry-001/quadratic.npz": "2ca7e6ee4cec45516e3f3f4b3773d262bb8ce10d42712afc8143cf098d22096e",
+    "work/carrier-resume-20261020/meshlib-R2-quadratic-mapping-audit-001/assessment.json": "94164babaf6712d57b44b849d4b2a33aee3672a945b792b13453eaa83c950d7f",
+    "work/carrier-resume-20261020/meshlib-R2-matched-traction-001/P1/assessment.json": "b4578d56caeff0975a26ace20acadb9159c96b32e7e065fd1e8333ed29fb5474",
+    "parts/993-eng-carrier-0001/source/design-20261016/resume-20261020/auxiliary-fea-study/mechanics-study.json": "f41352402649adf98dda9d6bb294f7342e5ed6f5c8b5609be9e103229f4c6ccf",
+    "/Users/maxime/.codex/worktrees/993-carrier-revalidation/3dprinting993/parts/993-eng-carrier-0001/source/design-20261016/convergence-20261022/refine_by_cell_centres.py": "df0f88f06e745908465a55636421f65db79bfc85375e26572257360c40644279"
+  },
+  "elapsed_seconds": 7.30462570884265
+}
