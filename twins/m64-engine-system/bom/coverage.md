@@ -70,7 +70,7 @@ never a fidelity promotion).
 2. **Wave B — turbo cold side & charge-air plumbing (F1).** Identity is
    4-reference cross-checked; vendor envelopes exist for intercoolers, hoses,
    duct, heat shield; the cold-side prototype and CFD baseline
-   (`simulation/993-k16-cold-side-baseline`) are in place. Close the OE
+   (`work/simulation/993-k16-cold-side-baseline`) are in place. Close the OE
    intercooler-number check against PET first.
 3. **Wave C — exhaust manifold nomenclature → envelope.** Transcribe PET
    107-20/107-45 (a documentation task, no hardware), then build envelopes from

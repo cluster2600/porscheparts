@@ -348,7 +348,7 @@ Target: **993 Turbo M64.60 with the PMB / Classic Retrofit 240 A alternator**. P
 | Reference rebuild: 11 blades, ventilated cup, 12 windows | [Rebuild report]({reprise}/REFERENCE_REBUILD.md), [parameters]({reprise}/source/picogk-reference/reference.json), [PicoGK C#]({reprise}/source/picogk-reference/Program.cs) | Visual reference reconstruction; unmeasured parameters explicitly identified |
 | Organic blade candidates A–E | [Study]({reprise}/ORGANIC_BLADE_STUDY.md), [candidate E parameters]({reprise}/source/picogk-reference/organic-e.json) | Documented numerical attempts, including failures; no validated aerodynamic optimum |
 | Parametric rotor and housing, wave 2 | [M64Fan.cs]({L('parts/m64-cooling-fan-0001/geometry/M64Fan.cs')}), [configuration]({L('parts/m64-cooling-fan-0001/geometry/fan-config.json')}) | Editable, labelled assumptions; no archived compiled output for this separate source |
-| Earlier actuator-disc CFD, OpenFOAM v2312 | [Baseline rig]({L('simulation/993-fan-baseline/README.md')}) | Exploratory surrogate; not an installed performance prediction |
+| Earlier actuator-disc CFD, OpenFOAM v2312 | [Baseline rig]({L('work/simulation/993-fan-baseline/README.md')}) | Exploratory surrogate; not an installed performance prediction |
 | Fan-drive metrology, M64-ACQ-0005 | [Dimensions]({L('twins/m64-engine-system/metrology/fan-drive/fan-drive-dimensions.json')}), [scan record]({L('catalog/scans/scan-fan-drive-0p21mm.json')}) | Initial scan analysis; ±4 mm uncertainty and unresolved discrepancies |
 | Metal printing release | [Release dossier]({reprise}/PRINT_RELEASE.md) | **HOLD — no printing authorization** |
 

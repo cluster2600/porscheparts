@@ -10,8 +10,8 @@ from pathlib import Path
 from typing import Any
 
 ROOT = Path(__file__).resolve().parents[1]
-DEFAULT_DATA = ROOT / "simulation" / "993-turbo-dyno" / "dyno-reference.json"
-DEFAULT_OUTPUT = ROOT / "simulation" / "993-turbo-dyno" / "derived-dyno-curves.json"
+DEFAULT_DATA = ROOT / "work" / "simulation" / "993-turbo-dyno" / "dyno-reference.json"
+DEFAULT_OUTPUT = ROOT / "work" / "simulation" / "993-turbo-dyno" / "derived-dyno-curves.json"
 SOURCES = ROOT / "catalog" / "sources"
 TORQUE_FACTORS = {"Nm": 1.0, "lb_ft": 1.3558179483314004}
 POWER_KW_FACTORS = {"kW": 1.0, "PS": 0.73549875, "hp": 0.7456998715822702, "whp": 0.7456998715822702}
