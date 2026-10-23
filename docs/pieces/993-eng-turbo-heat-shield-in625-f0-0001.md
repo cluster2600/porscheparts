@@ -2,7 +2,7 @@
 
 # 993 left turbo heat shield cover, F0 IN625 concept
 
-**Status: functional. No part is released; see [SAFETY.md](../../SAFETY.md).**
+**Status: functional. No part is released; see [SAFETY.md](../../docs/SAFETY.md).**
 
 Independent concept of an open shell with integrated bosses for screening an LPBF remanufacture in IN625. PorscheFanatics confirms the PET identity; FVD publishes only the envelope and mass of the left-hand cover 993 123 113 51.
 

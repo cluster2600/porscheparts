@@ -2,8 +2,8 @@
 
 > [!CAUTION]
 > **Study geometry, not a part.** The monocoque is
-> `prohibited_pending_engineering` ([SAFETY.md](../../../../SAFETY.md)); the
-> [roadmap](../../../../ROADMAP.md#composite-monocoque-study-only) opens it as a
+> `prohibited_pending_engineering` ([SAFETY.md](../../../../docs/SAFETY.md)); the
+> [roadmap](../../../../docs/ROADMAP.md#composite-monocoque-study-only) opens it as a
 > study only. Nothing here is a ZESAD geometry, a layup, a mould or anything to
 > manufacture. Sections, wall thicknesses and member positions are
 > assumptions; crashworthiness is not addressed.

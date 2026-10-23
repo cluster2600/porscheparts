@@ -16,7 +16,7 @@
 > - validation status `concept`: nothing has been checked against a real part;
 > - geometry `estimated`: its dimensions are estimated design variables, not measured on the original part;
 > - safety class `prohibited_pending_engineering`;
-> - no part in this repository is released — read [SAFETY.md](../../SAFETY.md).
+> - no part in this repository is released — read [SAFETY.md](../../docs/SAFETY.md).
 
 <table><tr>
 <td width="50%" valign="top">
@@ -114,7 +114,7 @@ flowchart LR
 - **Catalogue record** (source of truth): [`catalog/parts/993-eng-fan-stator-alsi10mg-f1-0001.json`](../../catalog/parts/993-eng-fan-stator-alsi10mg-f1-0001.json)
 - **Design dossier**: [993_FAN_STATOR_ALSI10MG_F1](../../docs/993/993_FAN_STATOR_ALSI10MG_F1.md)
 - **Design dossier**: [993_K16_ROD_IMPROVEMENT_PROGRAMME](../../docs/993/993_K16_ROD_IMPROVEMENT_PROGRAMME.md)
-- **Safety rules**: [SAFETY.md](../../SAFETY.md)
+- **Safety rules**: [SAFETY.md](../../docs/SAFETY.md)
 
 ---
 

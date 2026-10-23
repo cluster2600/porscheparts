@@ -19,11 +19,11 @@ an existing `transformers`, `tokenizers` and `jinja2` environment and the exact
 local tokenizer assets; missing dependencies are a blocker, not an install step.
 
 ```sh
-python3 data-engineering/porsche-corpus/pipeline.py build \
+python3 training/data-engineering/porsche-corpus/pipeline.py build \
   --config /path/to/private-config.json --output /path/to/new-output
-python3 data-engineering/porsche-corpus/pipeline.py audit \
+python3 training/data-engineering/porsche-corpus/pipeline.py audit \
   --output /path/to/new-output
-python3 -m unittest discover -s data-engineering/porsche-corpus/tests -v
+python3 -m unittest discover -s training/data-engineering/porsche-corpus/tests -v
 make check
 ```
 
@@ -95,7 +95,7 @@ for a separately registered experiment, not automatic admission to an active
 frozen experiment.
 
 ```sh
-python3 data-engineering/porsche-corpus/reconcile.py \
+python3 training/data-engineering/porsche-corpus/reconcile.py \
   --root /path/to/frozen-porscheparts \
   --contract /path/to/model-and-exclusion-contract.json \
   --exclusions /path/to/historical-exclusion-metadata.json \
@@ -121,7 +121,7 @@ units that still exceed the fixed budget remain quarantined. Syntax/dependency
 checks do not claim portability beyond the original module/repository context.
 
 ```sh
-/path/to/existing/python data-engineering/porsche-corpus/code_units.py \
+/path/to/existing/python training/data-engineering/porsche-corpus/code_units.py \
   --corpus /path/to/verified-corpus --profile /path/to/exact-coder-profile.json \
   --tokenizer /path/to/pinned-local-snapshot --output /path/to/new-code-units
 ```
@@ -137,7 +137,7 @@ supports non-thinking mode; its template does not take `enable_thinking`.
 See the [official Qwen guide](https://qwen.readthedocs.io/en/latest/getting_started/quickstart.html).
 
 ```sh
-/path/to/existing/python data-engineering/porsche-corpus/format_tokens.py \
+/path/to/existing/python training/data-engineering/porsche-corpus/format_tokens.py \
   --corpus /path/to/verified-corpus --profile /path/to/exact-profile.json \
   --tokenizer /path/to/pinned-local-snapshot --output /path/to/new-token-audit
 ```

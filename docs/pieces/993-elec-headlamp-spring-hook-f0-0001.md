@@ -2,7 +2,7 @@
 
 # Headlamp spring hook repair, F0 aluminum concept
 
-**Status: functional. No part is released; see [SAFETY.md](../../SAFETY.md).**
+**Status: functional. No part is released; see [SAFETY.md](../../docs/SAFETY.md).**
 
 Independent hollow hook concept for studying an additive repair of the lamp spring mount of a 993 headlamp. A commercial offer proves that metal printing is really used for this function, but no public dimension allows this F0 to be presented as its copy or as a fitted part.
 

@@ -2,7 +2,7 @@
 
 # 993 Turbo exhaust heat exchangers (manifolds), left and right - PET-transcribed identity
 
-**Status: **prohibited pending engineering**. No part is released; see [SAFETY.md](../../SAFETY.md).**
+**Status: **prohibited pending engineering**. No part is released; see [SAFETY.md](../../docs/SAFETY.md).**
 
 Identity-only catalogue record for the two Turbo exhaust heat exchangers (exhaust manifolds with integrated catalysis in the Turbo line), transcribed per-line from the local PET transcriptions: illustration 202-10 (exhaust system, Turbo) position 1 left 993 211 039 55 and position 2 right 993 211 040 55, confirmed independently by two Porsche PET catalogue transcriptions (KAT 17 and Porsche Classic KAT 517 USA, which lists the -56 suffixes). The record carries part number, group, position, applicability and catalogue context only: no dimensions, materials, wall thicknesses, flow data or geometry are claimed. Quantity per car is not carried by the local transcription; the engine uses one unit per bank (2 per car).
 

@@ -57,7 +57,7 @@ because of its failure mode. **Fire is the most common and most overlooked
 case**: a turbocharger oil line is neither a brake nor a steering component, but
 its failure drops oil onto a turbine housing far above the autoignition point.
 It is critical, and no refinement of the design takes it out of that class — see
-[`docs/993/993_CIRCUIT_HUILE_TURBO_202-16.md`](docs/993/993_CIRCUIT_HUILE_TURBO_202-16.md).
+[`docs/993/993_CIRCUIT_HUILE_TURBO_202-16.md`](993/993_CIRCUIT_HUILE_TURBO_202-16.md).
 
 So the question to ask is not "which group does the part belong to", but
 **"what happens when it breaks"**.
@@ -72,7 +72,7 @@ Likewise, **a digital screening is not evidence**. The repository produces
 geometric, thermal and route screenings; they serve to rule out, not to
 authorize. A report whose gates were all green would still release no part:
 only the signed engineering review does that, at the end of the
-[additive manufacturing pipeline](docs/AM_VALIDATION_PIPELINE.md), whose eleven
+[additive manufacturing pipeline](AM_VALIDATION_PIPELINE.md), whose eleven
 stages must all be `passed`.
 
 ## 3. Minimum requirements for metal
@@ -123,7 +123,7 @@ sintered, whatever its material.
 
 Choosing a part because it is the least risky **is not choosing it**. The
 repository did this once and corrected it: see
-[`docs/decisions/0005-alsi10mg-nest-pas-un-choix.md`](docs/decisions/0005-alsi10mg-nest-pas-un-choix.md).
+[`docs/decisions/0005-alsi10mg-nest-pas-un-choix.md`](decisions/0005-alsi10mg-nest-pas-un-choix.md).
 Selection is made on function, against a written grid, and the result must stay
 falsifiable line by line.
 

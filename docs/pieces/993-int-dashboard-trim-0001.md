@@ -2,7 +2,7 @@
 
 # Dashboard trim, composite
 
-**Status: functional. No part is released; see [SAFETY.md](../../SAFETY.md).**
+**Status: functional. No part is released; see [SAFETY.md](../../docs/SAFETY.md).**
 
 993 dashboard trim reproduced in composite, **for vehicles without a passenger airbag only**. The part is not the dashboard itself: that one, 993 502 027 02, is a body shell panel. This is the trim that covers it, fitted on clip nuts and self-tapping screws. Selected because no manufacturer offers it in carbon, unlike body panels.
 

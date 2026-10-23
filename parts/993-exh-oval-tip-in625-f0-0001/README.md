@@ -16,7 +16,7 @@
 > - validation status `concept`: nothing has been checked against a real part;
 > - geometry `mixed`: its dimensions are partly sourced, partly assumed, not measured on the original part;
 > - safety class `functional`;
-> - no part in this repository is released — read [SAFETY.md](../../SAFETY.md).
+> - no part in this repository is released — read [SAFETY.md](../../docs/SAFETY.md).
 
 <table><tr>
 <td width="50%" valign="top">
@@ -115,7 +115,7 @@ flowchart LR
 - **Design dossier**: [993_EMBOUT_TITANE_F1](../../docs/993/993_EMBOUT_TITANE_F1.md)
 - **Design dossier**: [993_OVAL_EXHAUST_TIP_IN625_F0](../../docs/993/993_OVAL_EXHAUST_TIP_IN625_F0.md)
 - **Digital twin record**: [`twin-993-oval-exhaust-tip-in625-f0.json`](../../catalog/twins/twin-993-oval-exhaust-tip-in625-f0.json) — see [twins/README.md](../../twins/README.md)
-- **Safety rules**: [SAFETY.md](../../SAFETY.md)
+- **Safety rules**: [SAFETY.md](../../docs/SAFETY.md)
 
 ---
 

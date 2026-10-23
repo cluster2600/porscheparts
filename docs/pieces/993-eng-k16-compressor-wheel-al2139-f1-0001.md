@@ -2,7 +2,7 @@
 
 # K16 compressor wheel, Al2139 AM F1 iteration
 
-**Status: **prohibited pending engineering**. No part is released; see [SAFETY.md](../../SAFETY.md).**
+**Status: **prohibited pending engineering**. No part is released; see [SAFETY.md](../../docs/SAFETY.md).**
 
 Iteration of the rejected AlSi10Mg F0, with Al2139 AM and blades of variable root-to-tip thickness. The 40.6/60.5 mm diameters and the 6+6 blade count remain the only published geometric facts; the F1 passes three ambient algebraic screens without becoming a functional wheel.
 

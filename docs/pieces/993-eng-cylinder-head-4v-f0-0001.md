@@ -2,7 +2,7 @@
 
 # M64 four-valve water-cooled cylinder head — creation preparation
 
-**Status: **prohibited pending engineering**. No part is released; see [SAFETY.md](../../SAFETY.md).**
+**Status: **prohibited pending engineering**. No part is released; see [SAFETY.md](../../docs/SAFETY.md).**
 
 Direction decided on October 12, 2026: a new four-valve water-cooled cylinder head, inspired by the 956/962 C Group C engines. The bionic fins remain an earlier, retained study. The private geometry derived from the 935 proxy is intact; the first proposed passages do not constitute a qualified sealed water jacket.
 

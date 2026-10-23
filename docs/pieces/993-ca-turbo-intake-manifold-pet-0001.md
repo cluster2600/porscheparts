@@ -2,7 +2,7 @@
 
 # 993 Turbo turbocharging intake tract (group 107-20) - PET-transcribed identity set
 
-**Status: non-critical. No part is released; see [SAFETY.md](../../SAFETY.md).**
+**Status: non-critical. No part is released; see [SAFETY.md](../../docs/SAFETY.md).**
 
 Identity-only catalogue record for the charge-air side lines of PET group 107-20 ('turbocharging'): intake manifold 993 110 062 50 and 993 110 062 51 (pos 1), intake manifolds 993 110 631 54 (pos 18) and 993 110 630 52 / 993 110 630 53 (pos 21), shut-off valve 993 110 337 50 / -51 (pos 10), pressure transmitter 993 606 103 00 / -01 (pos 14), mass air flow meter 993 606 124 01 (pos 6), hoses 993 110 113 52 and 993 110 114 51 (pos 31/32), rubber sleeves and clamps. Transcribed per-line from the local PET transcriptions; the main engine-side numbers (pos 1, 18, 21) and the valve (pos 10) appear in both independent catalogue transcriptions (KAT 17 and Porsche Classic KAT 517 USA), the sensor revisions and hose lines likewise. No dimensions or geometry are claimed.
 

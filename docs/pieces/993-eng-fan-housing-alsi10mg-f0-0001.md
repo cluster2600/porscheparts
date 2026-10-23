@@ -2,7 +2,7 @@
 
 # Stationary engine fan housing, AlSi10Mg F0 concept
 
-**Status: **prohibited pending engineering**. No part is released; see [SAFETY.md](../../SAFETY.md).**
+**Status: **prohibited pending engineering**. No part is released; see [SAFETY.md](../../docs/SAFETY.md).**
 
 Independent concept of a 993 annular housing combining shell, front flange, alternator support and six spokes. The sources establish the part number, a commercial envelope, two consistent masses and a reseller claim of aluminum, but no interface geometry; the F0 does not reproduce the Porsche part.
 

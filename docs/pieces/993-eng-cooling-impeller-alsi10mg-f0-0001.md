@@ -2,7 +2,7 @@
 
 # 993 engine cooling fan — archived Carrera F0 concept
 
-**Status: **prohibited pending engineering**. No part is released; see [SAFETY.md](../../SAFETY.md).**
+**Status: **prohibited pending engineering**. No part is released; see [SAFETY.md](../../docs/SAFETY.md).**
 
 This folder preserves the exploratory Carrera F0 concept: twelve swept blades, a simplified hub and a peripheral ring. Its synthetic 280 mm geometry does not reproduce the Porsche rotor, and integration with the F0 housing fails. It is no longer the baseline for the current design. The separate reconstruction dated 28 September 2026 studies the 993 Turbo M64.60: an eleven-blade 96410601522 rotor, ventilated cup, ribs and separate hub, targeting a PMB / Classic Retrofit 240 A alternator. This reconstruction remains partial: its interfaces, airflow, material and mechanical integrity are not validated.
 

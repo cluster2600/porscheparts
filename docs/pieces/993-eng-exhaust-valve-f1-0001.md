@@ -2,7 +2,7 @@
 
 # 993 exhaust valves - F1 proxies
 
-**Status: **prohibited pending engineering**. No part is released; see [SAFETY.md](../../SAFETY.md).**
+**Status: **prohibited pending engineering**. No part is released; see [SAFETY.md](../../docs/SAFETY.md).**
 
 Non-functional parametric proxies of the Carrera and Turbo exhaust valves to compare packaging and mass between generic steel, Inconel 751 and Ti-6Al-4V, without concluding on engine suitability.
 

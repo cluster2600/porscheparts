@@ -2,7 +2,7 @@
 
 # Support moteur Turbo bionique — cage et enveloppe souple PicoGK
 
-**Status: **prohibited pending engineering**. No part is released; see [SAFETY.md](../../SAFETY.md).**
+**Status: **prohibited pending engineering**. No part is released; see [SAFETY.md](../../docs/SAFETY.md).**
 
 Deux occurrences dans le groupe Turbo PET, position 21. Cage ouverte à branches courbes et racines bifurquées ; enveloppe souple séparée, étranglée et sculptée à six lobes. Aucun socle rectangulaire ni paroi de coupelle pleine. Cette morphologie ne reconstitue pas le mécanisme OEM et ne prédit ni raideur ni amortissement ; aucune optimisation sous charges réalisée.
 

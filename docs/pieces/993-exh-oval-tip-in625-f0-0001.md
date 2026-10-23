@@ -2,7 +2,7 @@
 
 # 993 oval exhaust tip, IN625 double-wall F0 concept
 
-**Status: functional. No part is released; see [SAFETY.md](../../SAFETY.md).**
+**Status: functional. No part is released; see [SAFETY.md](../../docs/SAFETY.md).**
 
 Independent round-to-oval concept with a ventilated double wall and eight integrated attachments to screen LPBF manufacture in IN625. FVD publishes only a 120 x 85 mm outlet envelope for its FVD11199300 stainless tip; PorscheFanatics separately documents an IN625 precedent on 993 Turbo exhausts.
 

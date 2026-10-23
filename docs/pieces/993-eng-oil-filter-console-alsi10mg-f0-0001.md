@@ -2,7 +2,7 @@
 
 # Engine oil filter console with integrated galleries, AlSi10Mg concept F0
 
-**Status: **prohibited pending engineering**. No part is released; see [SAFETY.md](../../SAFETY.md).**
+**Status: **prohibited pending engineering**. No part is released; see [SAFETY.md](../../docs/SAFETY.md).**
 
 Independent concept of a 993 console combining filter seat, two non-collinear galleries and two ports in a single body. The sources establish the part numbers, a commercial mass and the MAHLE OC 229 filter interface, but no OEM geometry; all F0 interfaces remain synthetic.
 

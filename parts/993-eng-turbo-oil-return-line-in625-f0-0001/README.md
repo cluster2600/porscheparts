@@ -16,7 +16,7 @@
 > - validation status `concept`: nothing has been checked against a real part;
 > - geometry `estimated`: its dimensions are estimated design variables, not measured on the original part;
 > - safety class `prohibited_pending_engineering`;
-> - no part in this repository is released — read [SAFETY.md](../../SAFETY.md).
+> - no part in this repository is released — read [SAFETY.md](../../docs/SAFETY.md).
 
 <table><tr>
 <td width="50%" valign="top">
@@ -118,7 +118,7 @@ flowchart LR
 - **Catalogue record** (source of truth): [`catalog/parts/993-eng-turbo-oil-return-line-in625-f0-0001.json`](../../catalog/parts/993-eng-turbo-oil-return-line-in625-f0-0001.json)
 - **Design dossier**: [993_CIRCUIT_HUILE_TURBO_202-16](../../docs/993/993_CIRCUIT_HUILE_TURBO_202-16.md)
 - **Design dossier**: [993_TURBO_OIL_RETURN_LINE_IN625_F0](../../docs/993/993_TURBO_OIL_RETURN_LINE_IN625_F0.md)
-- **Safety rules**: [SAFETY.md](../../SAFETY.md)
+- **Safety rules**: [SAFETY.md](../../docs/SAFETY.md)
 
 ---
 

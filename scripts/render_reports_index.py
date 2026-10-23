@@ -55,7 +55,7 @@ def render() -> str:
            f"{len(reports)} reports of runs, audits and checkpoints, newest first"
            f"{f' ({len(by_day[None])} undated, listed last)' if by_day.get(None) else ''}. "
            "A report records what was run and what it found on that day; later work may "
-           "have superseded it. Nothing here releases a part — see [SAFETY.md](../../SAFETY.md).",
+           "have superseded it. Nothing here releases a part — see [SAFETY.md](../SAFETY.md).",
            ""]
     if days:
         labels = ", ".join(f'"{d:%m-%d}"' for d in days)

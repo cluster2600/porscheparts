@@ -16,7 +16,7 @@
 > - validation status `concept`: nothing has been checked against a real part;
 > - geometry `mixed`: its dimensions are partly sourced, partly assumed, not measured on the original part;
 > - safety class `functional`;
-> - no part in this repository is released — read [SAFETY.md](../../SAFETY.md).
+> - no part in this repository is released — read [SAFETY.md](../../docs/SAFETY.md).
 
 <table><tr>
 <td width="50%" valign="top">
@@ -114,7 +114,7 @@ flowchart LR
 - **Catalogue record** (source of truth): [`catalog/parts/993-exh-oval-tip-ti-f1-0001.json`](../../catalog/parts/993-exh-oval-tip-ti-f1-0001.json)
 - **Design dossier**: [993-exh-oval-tip-ti-f1-0001-manufacturing-request](../../docs/993/993-exh-oval-tip-ti-f1-0001-manufacturing-request.md)
 - **Design dossier**: [993_EMBOUT_TITANE_F1](../../docs/993/993_EMBOUT_TITANE_F1.md)
-- **Safety rules**: [SAFETY.md](../../SAFETY.md)
+- **Safety rules**: [SAFETY.md](../../docs/SAFETY.md)
 
 ---
 

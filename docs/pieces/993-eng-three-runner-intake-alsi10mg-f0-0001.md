@@ -2,7 +2,7 @@
 
 # 993 three-runner intake manifold, AlSi10Mg F0 concept
 
-**Status: functional. No part is released; see [SAFETY.md](../../SAFETY.md).**
+**Status: functional. No part is released; see [SAFETY.md](../../docs/SAFETY.md).**
 
 Independent concept of a manifold with three offset conical runners and two common flanges to screen AlSi10Mg LPBF. PorscheFanatics and Patrick Motorsports cross-check the PMO FUE PMO 9150 kit, stated as 46 x 42 x 100 mm, three bolts, two parts and a raw aluminum finish; no interface geometry is published.
 

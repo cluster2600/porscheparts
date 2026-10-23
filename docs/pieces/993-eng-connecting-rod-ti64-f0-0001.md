@@ -2,7 +2,7 @@
 
 # 993/993 Turbo connecting rod, Ti64 F0 topology concept
 
-**Status: **prohibited pending engineering**. No part is released; see [SAFETY.md](../../SAFETY.md).**
+**Status: **prohibited pending engineering**. No part is released; see [SAFETY.md](../../docs/SAFETY.md).**
 
 Independent two-open-flange concept to screen an LPBF Ti-6Al-4V connecting rod. The key dimensions come from a PAUTER/TZR record; outer diameters, flanges, cap split and bolt passages remain F0 assumptions with no commercial surface reused.
 

@@ -2,7 +2,7 @@
 
 # Console centrale moteur Turbo bionique — étude PicoGK
 
-**Status: **prohibited pending engineering**. No part is released; see [SAFETY.md](../../SAFETY.md).**
+**Status: **prohibited pending engineering**. No part is released; see [SAFETY.md](../../docs/SAFETY.md).**
 
 Pièce distincte de la traverse 993 115 021 53, position PET 18. Squelette bionique à quatre collerettes, branches courbes effilées, deux troncs et couronne organique, sans plaque ni montant plein. Les quatre trous sont hypothétiques ; la fixation côté moteur reste inconnue. Aucune optimisation sous charges réalisée.
 

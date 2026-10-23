@@ -7,7 +7,7 @@
 > sources where they exist; features added to make the part read as itself
 > (flanges, bosses, fillets, lattices, vanes, grooves) are **assumptions**,
 > tagged as such. Safety classes are unchanged; nothing here relaxes
-> [SAFETY.md](../../SAFETY.md) or a record's status.
+> [SAFETY.md](../../docs/SAFETY.md) or a record's status.
 
 The catalogue gallery in the [README](../../README.md) used to show the
 concept CAD blocks of `scripts/build_*` and `parts/*/source/*.py`. This

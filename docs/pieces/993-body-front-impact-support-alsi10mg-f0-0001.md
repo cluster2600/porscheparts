@@ -2,7 +2,7 @@
 
 # 993 front impact support, AlSi10Mg graded-core concept F0
 
-**Status: **prohibited pending engineering**. No part is released; see [SAFETY.md](../../SAFETY.md).**
+**Status: **prohibited pending engineering**. No part is released; see [SAFETY.md](../../docs/SAFETY.md).**
 
 Independent front support concept with an elliptical shell and a graded open cruciform core, used to screen the value of LPBF AlSi10Mg. PorscheFanatics corroborates the lightweight FVD support at 145 g; FVD publishes a 139 x 100 x 53 mm envelope and states only aluminum, with no alloy and no interface geometry.
 

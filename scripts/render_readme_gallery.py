@@ -11,8 +11,9 @@ generated, like the technical parts table of docs/ENGINEERING_OVERVIEW.md.
 
 Every picture is a concept render. Each one sits above a caption saying so,
 because a concept render must never pass for the original part or a product.
-The block reads `parts/<id>/media/preview.png`, so re-rendering previews and
-rerunning `--write` is enough to refresh the pictures.
+The block reads `parts/<id>/media/gyroid.png` where the bionic gyroid-core
+render exists, otherwise `parts/<id>/media/preview.png`, so re-rendering either
+and rerunning `--write` is enough to refresh the pictures.
 """
 from __future__ import annotations
 
@@ -90,7 +91,11 @@ def load() -> list[dict]:
 def cell(record: dict) -> str:
     part_id = record["part_id"].lower()
     part_dir = ROOT / "parts" / part_id
-    image = part_dir / "media" / "preview.png"
+    # The gyroid-core render (parts/picogk-catalog/bionic/render_gyroid.py) shows
+    # the bionic sandwich model when one exists; it is withdrawn for the one
+    # record whose views are withdrawn (no gyroid.png there either).
+    gyroid = part_dir / "media" / "gyroid.png"
+    image = gyroid if gyroid.is_file() else part_dir / "media" / "preview.png"
     page = part_dir / "README.md"
     for required in (image, page):
         if not required.is_file():
@@ -99,8 +104,9 @@ def cell(record: dict) -> str:
     stage = STAGES[record["validation"]["status"]]
     status = f"{stage}: {CLASSES[record['classification']['safety_class']]}"
     href = f"parts/{part_id}/README.md"
+    src = image.relative_to(ROOT).as_posix()
     return ('<td align="center" valign="top" width="33%">'
-            f'<a href="{href}"><img src="parts/{part_id}/media/preview.png" '
+            f'<a href="{href}"><img src="{src}" '
             f'alt="Concept render of {name}" width="240"></a><br>'
             f"<sub><i>{html.escape(caption(print_kind(part_dir)))}</i></sub><br>"
             f'<a href="{href}"><b>{name}</b></a><br>'

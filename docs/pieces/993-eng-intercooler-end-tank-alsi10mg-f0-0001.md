@@ -2,7 +2,7 @@
 
 # 993 Turbo intercooler end tank, AlSi10Mg concept F0
 
-**Status: **prohibited pending engineering**. No part is released; see [SAFETY.md](../../SAFETY.md).**
+**Status: **prohibited pending engineering**. No part is released; see [SAFETY.md](../../docs/SAFETY.md).**
 
 Independent concept of a round-to-rectangular-face transition with three open internal guide vanes, used to screen an LPBF AlSi10Mg end tank. The published overall dimensions bound the F0 but define neither the core orientation nor a compatible geometry.
 

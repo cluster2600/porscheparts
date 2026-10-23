@@ -2,7 +2,7 @@
 
 # 993 Turbo three-into-one exhaust manifold, IN625 F0 concept
 
-**Status: **prohibited pending engineering**. No part is released; see [SAFETY.md](../../SAFETY.md).**
+**Status: **prohibited pending engineering**. No part is released; see [SAFETY.md](../../docs/SAFETY.md).**
 
 Independent concept of an IN625 three-into-one flow core to screen LPBF manufacturing without internal welds in the manifold. Kline and PorscheFanatics publish an IN625 offer at 2.9 kg per side with heat exchanger; the PET identifies the left and right parts. No public geometry is used.
 

@@ -2,7 +2,7 @@
 
 # Oval exhaust tip, F1 titanium variant
 
-**Status: functional. No part is released; see [SAFETY.md](../../SAFETY.md).**
+**Status: functional. No part is released; see [SAFETY.md](../../docs/SAFETY.md).**
 
 Same double-wall geometry as the IN625 F0 variant, screened in titanium. Selected by the repository titanium screening as the only part in the catalogue where both titanium and additive manufacturing win without running into the safety class. The alloy is deliberately not fixed in the identifier: Ti-6Al-4V and Ti-6242 are both screened, and a temperature that has never been measured separates them.
 

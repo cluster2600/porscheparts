@@ -2,7 +2,7 @@
 
 # 993 K16 compressor wheel, F0 AlSi10Mg LPBF concept
 
-**Status: **prohibited pending engineering**. No part is released; see [SAFETY.md](../../SAFETY.md).**
+**Status: **prohibited pending engineering**. No part is released; see [SAFETY.md](../../docs/SAFETY.md).**
 
 Independent concept of an AlSi10Mg compressor wheel with six main blades and six straight splitters. Only the inducer/exducer diameters, the 6+6 count and the supplier part numbers are published; the hub, the bore and all aerodynamic surfaces remain F0 hypotheses.
 

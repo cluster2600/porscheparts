@@ -2,7 +2,7 @@
 
 # 993 hollow Ti64 intake valve, F0 LPBF concept
 
-**Status: **prohibited pending engineering**. No part is released; see [SAFETY.md](../../SAFETY.md).**
+**Status: **prohibited pending engineering**. No part is released; see [SAFETY.md](../../docs/SAFETY.md).**
 
 Independent concept of a hollow Ti-6Al-4V intake valve with four internal ribs and an open axial bore for depowdering. Only the head diameter, stem diameter, product envelope, declared mass and part number are published; all functional geometry remains an F0 hypothesis.
 

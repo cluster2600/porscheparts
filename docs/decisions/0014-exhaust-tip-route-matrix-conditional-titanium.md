@@ -61,7 +61,7 @@ says so instead of relabelling it.
 - The record's class is `functional`
   ([record](../../catalog/parts/993-exh-oval-tip-ti-f1-0001.json)):
   "loaded part whose failure can immobilize or damage the vehicle"
-  ([SAFETY.md](../../SAFETY.md), section 1). 0007's "benign failure" is a
+  ([SAFETY.md](../SAFETY.md), section 1). 0007's "benign failure" is a
   judgement, not a class.
 - Under SAFETY.md a `functional` part is published only after **documented
   functional testing**, on top of the eleven stages of the

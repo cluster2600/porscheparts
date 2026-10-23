@@ -2,7 +2,7 @@
 
 # Turbo oil return line, IN625 F0 concept
 
-**Status: **prohibited pending engineering**. No part is released; see [SAFETY.md](../../SAFETY.md).**
+**Status: **prohibited pending engineering**. No part is released; see [SAFETY.md](../../docs/SAFETY.md).**
 
 Clean-sheet concept of a left line with an open internal passage and two integrated flanges. PorscheFanatics and Patrick Motorsports confirm the 993 Turbo functional need, but no dimension or material; the entire F0 route remains synthetic.
 

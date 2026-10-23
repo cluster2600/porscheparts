@@ -1,7 +1,7 @@
 # Validation and improvement plan
 
 > **Archived line.** The 935 scan is kept as a reference morphology and this
-> plan is no longer being pursued. See [ARCHIVE.md](../../ARCHIVE.md).
+> plan is no longer being pursued. See [ARCHIVE.md](../../docs/ARCHIVE.md).
 
 ## Objective
 

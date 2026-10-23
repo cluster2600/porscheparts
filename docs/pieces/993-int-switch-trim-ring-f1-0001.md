@@ -2,7 +2,7 @@
 
 # Aluminum switch trim ring, F1 reconstruction
 
-**Status: non-critical. No part is released; see [SAFETY.md](../../SAFETY.md).**
+**Status: non-critical. No part is released; see [SAFETY.md](../../docs/SAFETY.md).**
 
 Switch trim ring, F1 reconstruction. The pilot served to validate the CAD chain, the LPBF screening and the confrontation with a real route; the latter concluded that the part must be turned in a 6xxx grade and not sintered. It is neither an OEM geometry nor a part authorized for fitting.
 

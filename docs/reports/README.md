@@ -2,7 +2,7 @@
 
 # Execution and audit reports
 
-128 reports of runs, audits and checkpoints, newest first (14 undated, listed last). A report records what was run and what it found on that day; later work may have superseded it. Nothing here releases a part — see [SAFETY.md](../../SAFETY.md).
+128 reports of runs, audits and checkpoints, newest first (14 undated, listed last). A report records what was run and what it found on that day; later work may have superseded it. Nothing here releases a part — see [SAFETY.md](../SAFETY.md).
 
 ```mermaid
 xychart-beta
