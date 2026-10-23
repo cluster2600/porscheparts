@@ -15,7 +15,7 @@ fuel and highly loaded engine parts are excluded. The issue is done with three
 concept records, their sources and a measurement owner.
 
 The three pilots were chosen on 2026-08-28 (commit `774242da`, PR #8). They are
-named in [ROADMAP.md](../../ROADMAP.md) ("Physical prototypes — suspended"), in
+named in [ROADMAP.md](../ROADMAP.md) ("Physical prototypes — suspended"), in
 [MEASUREMENT_CAMPAIGN.md](../MEASUREMENT_CAMPAIGN.md) and in the records'
 descriptions, but no decision recorded why they were chosen. Their measurement
 plans, `parts/<id>/evidence/measurement-plan.md`, are frozen by the
@@ -42,7 +42,7 @@ is not estimated, and nobody is sent to measure it.
 
 ### 2. The exclusion rule
 
-The rule is [SAFETY.md](../../SAFETY.md): its presumed-critical domains, and the
+The rule is [SAFETY.md](../SAFETY.md): its presumed-critical domains, and the
 failure mode overriding the domain. None of the three pilots belongs to a
 presumed-critical domain.
 

@@ -2,7 +2,7 @@
 
 # Interior door pull handle
 
-**Status: functional. No part is released; see [SAFETY.md](../../SAFETY.md).**
+**Status: functional. No part is released; see [SAFETY.md](../../docs/SAFETY.md).**
 
 Handle gripped by hand to close the door from the inside. An ergonomic shape that calipers alone cannot describe, retained as the pilot of the phase 2 organic category, to be acquired by photogrammetry.
 

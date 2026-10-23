@@ -2,7 +2,7 @@
 
 # 993 intake valve - F1 proxy and titanium variant
 
-**Status: **prohibited pending engineering**. No part is released; see [SAFETY.md](../../SAFETY.md).**
+**Status: **prohibited pending engineering**. No part is released; see [SAFETY.md](../../docs/SAFETY.md).**
 
 Non-functional parametric proxy for comparing the envelope and mass of a 993 intake valve with a 49 mm head and 8 mm stem, with a Ti-6Al-4V variant explicitly limited to simulation.
 

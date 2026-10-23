@@ -16,7 +16,7 @@
 > - validation status `concept`: nothing has been checked against a real part;
 > - geometry `estimated`: its dimensions are estimated design variables, not measured on the original part;
 > - safety class `prohibited_pending_engineering`;
-> - no part in this repository is released — read [SAFETY.md](../../SAFETY.md).
+> - no part in this repository is released — read [SAFETY.md](../../docs/SAFETY.md).
 
 <table><tr>
 <td width="50%" valign="top">
@@ -107,7 +107,7 @@ flowchart LR
 
 - **Full description page**, with sources and evidence: [docs/pieces/993-exh-cat-converter-pair-pet-0001.md](../../docs/pieces/993-exh-cat-converter-pair-pet-0001.md)
 - **Catalogue record** (source of truth): [`catalog/parts/993-exh-cat-converter-pair-pet-0001.json`](../../catalog/parts/993-exh-cat-converter-pair-pet-0001.json)
-- **Safety rules**: [SAFETY.md](../../SAFETY.md)
+- **Safety rules**: [SAFETY.md](../../docs/SAFETY.md)
 
 ---
 

@@ -12,7 +12,7 @@ with nature-inspired 3D shapes. Nothing is manufactured or sold.**
 [![Validate catalogue](https://github.com/cluster2600/porscheparts/actions/workflows/validate.yml/badge.svg)](https://github.com/cluster2600/porscheparts/actions/workflows/validate.yml)
 [![License: all rights reserved](https://img.shields.io/badge/license-all%20rights%20reserved-lightgrey)](LICENSE)
 [![Python 3.11+](https://img.shields.io/badge/python-3.11%2B-blue)](https://www.python.org/)
-[![Active phase](https://img.shields.io/badge/active%20phase-manufactures%20nothing-critical)](SAFETY.md)
+[![Active phase](https://img.shields.io/badge/active%20phase-manufactures%20nothing-critical)](docs/SAFETY.md)
 [![Docs](https://img.shields.io/badge/docs-English-brightgreen)](docs/TRANSLATION.md)
 
 </div>
@@ -89,7 +89,7 @@ For readers assessing the work, this is what the repository shows in practice:
 - **Evidence and data governance.** Every source carries its provenance and
   usage rights. Key files are fingerprinted (SHA-256 digests) so that results
   cannot be changed silently. Withdrawn claims stay on record.
-- **Safety-first judgment.** A written [safety policy](SAFETY.md) decides what
+- **Safety-first judgment.** A written [safety policy](docs/SAFETY.md) decides what
   may be published. When in doubt, a part is blocked, not promoted.
 - **Local AI model training.** [qwen-picogk](https://github.com/cluster2600/qwen-picogk)
   is a small language model, adapted with MLX on Apple Silicon, that proposes design
@@ -216,15 +216,15 @@ links to the original part.
 | if you want… | read |
 |---|---|
 | the full technical detail | [docs/ENGINEERING_OVERVIEW.md](docs/ENGINEERING_OVERVIEW.md) |
-| what may and may not be built | [SAFETY.md](SAFETY.md) |
+| what may and may not be built | [SAFETY.md](docs/SAFETY.md) |
 | every figure and render on one page | [docs/GALLERY.md](docs/GALLERY.md) |
-| the project's phases and next steps | [ROADMAP.md](ROADMAP.md) |
-| how to contribute a part or a source | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| the project's phases and next steps | [ROADMAP.md](docs/ROADMAP.md) |
+| how to contribute a part or a source | [CONTRIBUTING.md](docs/CONTRIBUTING.md) |
 | the carbon monocoque programme | [docs/MONOCOQUE_964_993_PROGRAMME.md](docs/MONOCOQUE_964_993_PROGRAMME.md) |
 | the engine cooling fan programme | [twins/993-engine-cooling-fan-system-f0/README.md](twins/993-engine-cooling-fan-system-f0/README.md) |
 | the local AI model | [qwen-picogk](https://github.com/cluster2600/qwen-picogk) · [local training evidence](docs/QWEN_TRAINING.md) |
 | our Porsche information catalogue | [porschefanatics.com](https://porschefanatics.com/) |
-| the license | [LICENSE](LICENSE) · [third-party licenses](LICENSES.md) |
+| the license | [LICENSE](LICENSE) · [third-party licenses](docs/LICENSES.md) |
 
 To run the checks yourself (Python 3.11+ and `make`):
 
@@ -238,12 +238,12 @@ make check
 
 This repository provides research data without warranty. Printing, fitting and
 road use remain the responsibility of whoever makes and installs a part. Read
-[SAFETY.md](SAFETY.md) first. Porsche and 911 are trademarks of their
+[SAFETY.md](docs/SAFETY.md) first. Porsche and 911 are trademarks of their
 respective owners. This project is independent and not affiliated with
 Porsche AG.
 
 **© 2026 Maxime Grenu. All rights reserved.** You may view this repository,
 but copying, modifying, manufacturing parts, redistributing, commercial use
 and AI training need prior written permission; see the [license](LICENSE).
-Third-party sources keep their own license ([LICENSES.md](LICENSES.md)).
+Third-party sources keep their own license ([LICENSES.md](docs/LICENSES.md)).
 Revisions published before 2026-09-25 were under the MIT License.

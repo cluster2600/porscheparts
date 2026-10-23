@@ -99,7 +99,7 @@ Logical diagrams of the twin state and of the M64 execution chain. Some labels a
 
 ## 917 line (archived)
 
-**Archived line.** The 917 work is retired as a product and kept as a numerical regression; see [`ARCHIVE.md`](../ARCHIVE.md) and [`twins/reference-917-engine/README.md`](../twins/reference-917-engine/README.md). Metal printing and engine start remain prohibited. Labels are in French.
+**Archived line.** The 917 work is retired as a product and kept as a numerical regression; see [`ARCHIVE.md`](ARCHIVE.md) and [`twins/reference-917-engine/README.md`](../twins/reference-917-engine/README.md). Metal printing and engine start remain prohibited. Labels are in French.
 
 <table>
 <tr>

@@ -34,9 +34,9 @@ Exit criterion: `make check` passes on a clean repository.
 
 ## Phase 1 — Source inventory
 
-Detailed log: [docs/PHASE1_SOURCE_INVENTORY.md](docs/PHASE1_SOURCE_INVENTORY.md).
+Detailed log: [docs/PHASE1_SOURCE_INVENTORY.md](PHASE1_SOURCE_INVENTORY.md).
 
-Additional research: [German-language batch of twenty candidates](docs/research/phase-1-recherche-allemande.md).
+Additional research: [German-language batch of twenty candidates](research/phase-1-recherche-allemande.md).
 
 - [x] Survey official catalogs, legally accessible manuals and measurements
 - [x] Survey 3D models with a verifiable license
@@ -44,7 +44,7 @@ Additional research: [German-language batch of twenty candidates](docs/research/
   assembly-skeleton family has at least one official or manufacturer source
   rated A or B (a classification by type and level, not a check of the copy or
   the pages), and model years and dated availability are recorded only where
-  stated, in [catalog/registers/](catalog/registers/README.md)
+  stated, in [catalog/registers/](../catalog/registers/README.md)
 - [x] Identify missing or hard-to-obtain parts
 - [x] Assess each source: provenance, license, accuracy, reuse
 
@@ -54,7 +54,7 @@ acquiring direct measurements remains to be done.
 
 ## Phase 2 — Physical inventory and twin assembly
 
-Architecture: [docs/DIGITAL_TWIN.md](docs/DIGITAL_TWIN.md).
+Architecture: [docs/DIGITAL_TWIN.md](DIGITAL_TWIN.md).
 
 Active mode: **no printing**. The twin is fed by components whose size,
 material, mass and application are all sourced. Mounting relationships are
@@ -83,13 +83,13 @@ relationships for each component.
 
 > **One exception, 2026-09-25:** a fit-test kit for the switch blank is published
 > as the repository's first printable file — see
-> [decision 0009](docs/decisions/0009-first-fit-test-print-switch-blank.md) and
-> [`parts/993-int-switch-blank-0001/print/`](parts/993-int-switch-blank-0001/print/README.md).
+> [decision 0009](decisions/0009-first-fit-test-print-switch-blank.md) and
+> [`parts/993-int-switch-blank-0001/print/`](../parts/993-int-switch-blank-0001/print/README.md).
 > The F1 switch trim ring followed as a printable part
-> ([decision 0010](docs/decisions/0010-print-the-trim-ring-f1-in-polymer.md)).
+> ([decision 0010](decisions/0010-print-the-trim-ring-f1-in-polymer.md)).
 > The F0 connecting rod and the K16 wheel pair are published as engraved display
 > mock-ups only
-> ([decision 0011](docs/decisions/0011-printable-display-mockups-of-prohibited-parts.md)).
+> ([decision 0011](decisions/0011-printable-display-mockups-of-prohibited-parts.md)).
 > Every other part stays unprinted.
 
 Three non-critical parts selected, records created at status `concept`:
@@ -109,16 +109,16 @@ The existing plans are kept as a backlog; they no longer drive the active phase
 and no manufacturing file is generated.
 
 Execution plan and handover dossier:
-[docs/MEASUREMENT_CAMPAIGN.md](docs/MEASUREMENT_CAMPAIGN.md).
+[docs/MEASUREMENT_CAMPAIGN.md](MEASUREMENT_CAMPAIGN.md).
 
 Preparation specifications from the manual and from Porsche Fanatics are mapped
-in [docs/993/993_MANUAL_DATA_MAP.md](docs/993/993_MANUAL_DATA_MAP.md).
+in [docs/993/993_MANUAL_DATA_MAP.md](993/993_MANUAL_DATA_MAP.md).
 The exhaustive page-by-page register is in
-[`catalog/manual/993-workshop-manual-measurements.json`](catalog/manual/993-workshop-manual-measurements.json).
+[`catalog/manual/993-workshop-manual-measurements.json`](../catalog/manual/993-workshop-manual-measurements.json).
 
 Exit criterion: three prototypes fitted, photographed and measured.
 **Conditional on a contributor who has the parts**: see the operating constraint
-in [docs/PROJECT_CHARTER.md](docs/PROJECT_CHARTER.md).
+in [docs/PROJECT_CHARTER.md](PROJECT_CHARTER.md).
 
 ### Body track opened in parallel
 
@@ -200,11 +200,11 @@ How to read the 34.7%:
   `structured_derived`, not manually checked, and the upstream record marks it
   `ocr_transcription_unverified`. Reading it as the dry engine ready to install
   rests on the sheet heading as recorded in
-  [the manual data map](docs/993/993_MANUAL_DATA_MAP.md). Tiptronic lighter than
+  [the manual data map](993/993_MANUAL_DATA_MAP.md). Tiptronic lighter than
   manual fits an engine-only figure, but only by inference. A community weighing
   with a named weigher and a declared method, not registered as a source, gives
   186.9 kg for a complete 1995 Carrera engine without gearbox: 45.1 kg less.
-  [The engine-carrier load cases](parts/993-eng-carrier-0001/evidence/load-cases.md)
+  [The engine-carrier load cases](../parts/993-eng-carrier-0001/evidence/load-cases.md)
   record this contradiction as open (232 kg might be engine plus gearbox). With
   the weighing, the coverage would read 31.5%.
 - **The rise from 30.5% has two causes.** The engine change adds 45.1 kg
@@ -247,7 +247,7 @@ The twin fills up by mass before it fills up by count.
 A mass without a position gives no center of gravity, no distribution and no
 inertia. A first 3D envelope and datum cage, based on seven dimensions from the
 Porsche manual, is available in
-[`twins/993-reference-envelope/`](twins/993-reference-envelope/). It serves as a visual datum for the US profile, but does
+[`twins/993-reference-envelope/`](../twins/993-reference-envelope/). It serves as a visual datum for the US profile, but does
 not reconstruct the body and does not yet position the parts.
 
 The next step is to replace this cage with a licensed body-shell geometry or
@@ -264,13 +264,13 @@ verifiable measurements.
 ## Composite monocoque: study only
 
 Opened by the owner on 2026-10-08, **as a study and digital twin only**
-([programme](docs/MONOCOQUE_964_993_PROGRAMME.md),
-[architecture](docs/MONOCOQUE_964_993_ARCHITECTURE.md)).
+([programme](MONOCOQUE_964_993_PROGRAMME.md),
+[architecture](MONOCOQUE_964_993_ARCHITECTURE.md)).
 
 - In scope: interface contract, measurement plans, calculation (CalculiX
   chain), design studies such as the PicoGK closed-ring concept in
   `twins/964-chassis/monocoque/picogk-rings/`, and display mock-ups under
-  [decision 0011](docs/decisions/0011-printable-display-mockups-of-prohibited-parts.md).
+  [decision 0011](decisions/0011-printable-display-mockups-of-prohibited-parts.md).
 - Out of scope, unchanged: **manufacturing, having manufactured, or releasing
   any load-bearing structure** (`SAFETY.md`). The monocoque stays
   `prohibited_pending_engineering`. The body shell carries the chassis number,

@@ -2,7 +2,7 @@
 
 # 993 interior door opener lever, F0 aluminum concept
 
-**Status: functional. No part is released; see [SAFETY.md](../../SAFETY.md).**
+**Status: functional. No part is released; see [SAFETY.md](../../docs/SAFETY.md).**
 
 Independent concept of an integrated lever and clevis for studying a low-volume LPBF remanufacture. PorscheFanatics establishes the left and right PET part numbers; FVD publishes the envelope and mass of an aftermarket pair, but no interface geometry allows fitment.
 

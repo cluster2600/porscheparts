@@ -2,7 +2,7 @@
 
 # Engine cooling fan guide-vane ring (stator), AlSi10Mg concept F1
 
-**Status: **prohibited pending engineering**. No part is released; see [SAFETY.md](../../SAFETY.md).**
+**Status: **prohibited pending engineering**. No part is released; see [SAFETY.md](../../docs/SAFETY.md).**
 
 Fixed ring of seventeen cambered guide vanes placed 15 mm behind the F1 WE43 impeller, in the same 165/245 mm annulus. The vanes turn the rotor's exit swirl back into pressure. Their angles are designed station by station from the F1 rotor's exit flow, and the vane count is the smallest that keeps the blade-pass interaction tone cut off in the duct. A one-dimensional model on the duty inferred from the rebuild of the original rotor estimates +5.3 % flow over the F1 rotor alone on 6 % less power, and about +10 % over the rebuild rotor on equal power. These are model estimates on visual hypotheses, not measurements.
 

@@ -2,7 +2,7 @@
 
 > **Archived line.** The 917 twin is retired as a product and kept as a
 > numerical regression; this plan is no longer being pursued. See
-> [ARCHIVE.md](../../ARCHIVE.md).
+> [ARCHIVE.md](../../docs/ARCHIVE.md).
 
 ## Levels
 

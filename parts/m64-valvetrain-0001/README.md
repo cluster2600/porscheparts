@@ -46,5 +46,5 @@ code; the station container is the qualified build path for this lane.
 
 Nothing here is measured, fitted, tested, safe or manufacturing-ready.
 Engine-critical parts are `prohibited_pending_engineering` per
-[SAFETY.md](../../SAFETY.md): a calculation never authorizes manufacturing.
+[SAFETY.md](../../docs/SAFETY.md): a calculation never authorizes manufacturing.
 The camshaft is a layout hypothesis, not a claimed M64 cam profile.

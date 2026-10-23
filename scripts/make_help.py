@@ -2,7 +2,7 @@
 """Render `make help` from the Makefile annotations, and keep the list honest.
 
 The Makefile carries 210 targets, most of which drive the 917/935 line that
-ARCHIVE.md declares retired as a product. A hand-written list would have mixed
+docs/ARCHIVE.md declares retired as a product. A hand-written list would have mixed
 the two and gone stale with the first new target.
 
 Every active target therefore carries an annotation on the line above it:
@@ -32,7 +32,7 @@ SECTIONS = [
     ("catalogue", "Catalogue, records and twins"),
     ("993", "993: forced induction and analysis cases"),
     ("containers", "Reproducible compute images"),
-    ("archive", "917/935 line, archived — see ARCHIVE.md"),
+    ("archive", "917/935 line, archived — see docs/ARCHIVE.md"),
 ]
 
 CIBLE = re.compile(r"^([a-zA-Z0-9_.-]+):")
@@ -84,7 +84,7 @@ def affiche() -> int:
         print()
     print(f"  {n917} targets named 917-* are not listed here: they drive archived")
     print("  work, retired as a product and kept as a numerical regression.")
-    print("  Read about them: ARCHIVE.md. List them: make help-917")
+    print("  Read about them: docs/ARCHIVE.md. List them: make help-917")
     return 0
 
 

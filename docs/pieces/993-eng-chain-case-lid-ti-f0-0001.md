@@ -2,7 +2,7 @@
 
 # Left chain case lid 964 105 107 01, Ti-6Al-4V variant
 
-**Status: functional. No part is released; see [SAFETY.md](../../SAFETY.md).**
+**Status: functional. No part is released; see [SAFETY.md](../../docs/SAFETY.md).**
 
 Bolted, oil-tight left lid of the chain case, factory plate 103-05 position 15, paired with gasket 964 105 181 01. Remanufacture in machined Ti-6Al-4V explicitly requested. The original part is **cast magnesium**, whose failure mode is corrosion of the sealing faces: that is where titanium brings something, not on mass. Against magnesium, titanium is 2.45 times denser and loses both plate-bending trade-offs, strength included. One serious obstacle remains: the titanium/magnesium galvanic couple is the least favorable in the grid.
 

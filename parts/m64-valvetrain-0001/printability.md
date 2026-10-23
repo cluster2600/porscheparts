@@ -1,7 +1,7 @@
 # Printability screening — m64-valvetrain-0001 (honest, non-authorizing)
 
 Screening note, not a process qualification. Per
-[SAFETY.md](../../SAFETY.md), a calculation never authorizes manufacturing;
+[SAFETY.md](../../docs/SAFETY.md), a calculation never authorizes manufacturing;
 every component in this lane stays `prohibited_pending_engineering` (engine
 risk class) until dimensional inspection, fitment and professional engineering
 review exist.

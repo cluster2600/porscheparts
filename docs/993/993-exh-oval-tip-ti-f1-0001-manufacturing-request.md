@@ -130,7 +130,7 @@ are not reproduced.
 - HIP: to be justified (record: `to_be_determined`). The supplier states
   whether HIP applies and its effect on 0.8 mm walls. The repository has no
   fatigue load case that would justify either choice
-  ([SAFETY.md](../../SAFETY.md), section 3).
+  ([SAFETY.md](../SAFETY.md), section 3).
 - Support removal: **to be supplied by the supplier**.
 - Shot peening or polishing: **open** — the tip is visible and its finish is
   not defined. EOS reference: Ra 5 to 9 µm after shot peening (process card).

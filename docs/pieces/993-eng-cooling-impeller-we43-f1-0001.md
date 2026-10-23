@@ -2,7 +2,7 @@
 
 # Engine cooling fan impeller, WE43 magnesium concept F1 redesigned from the Turbo rotor rebuild
 
-**Status: **prohibited pending engineering**. No part is released; see [SAFETY.md](../../SAFETY.md).**
+**Status: **prohibited pending engineering**. No part is released; see [SAFETY.md](../../docs/SAFETY.md).**
 
 Improved variant of the 993 Turbo cooling fan rotor, drawn from the repository's visual rebuild of the original. It keeps the rebuild's 245 mm envelope, its 165 mm cup 56 mm deep that wraps the alternator end, the cup's twelve windows, three bolt holes and bore, eleven blades and no shroud. It replaces the rebuild's constant-pitch cambered plates with twisted airfoil blades designed from velocity triangles, and moves to LPBF WE43 magnesium. A one-dimensional blade-element model with radial equilibrium, on a duty inferred from the rebuild, estimates about 2 % more air than the rebuild rotor on the same shaft power, and about 9 % with a matched stator. These are model estimates on visual hypotheses, not measurements and not a comparison with the Porsche part.
 

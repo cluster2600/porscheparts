@@ -4,7 +4,7 @@
 
 Scripts, documents, schemas, records, CAD and print files, renders and data
 created for this project are **© 2026 Maxime Grenu, all rights reserved**, under
-the custom [porscheparts Proprietary License](LICENSE): viewing only; copying,
+the custom [porscheparts Proprietary License](../LICENSE): viewing only; copying,
 modifying, printing, manufacturing, redistributing, commercial use and AI
 training all need prior written permission.
 

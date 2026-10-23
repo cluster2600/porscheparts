@@ -2,7 +2,7 @@
 
 # 993 center cap, AlSi10Mg F0 concept without crest
 
-**Status: functional. No part is released; see [SAFETY.md](../../SAFETY.md).**
+**Status: functional. No part is released; see [SAFETY.md](../../docs/SAFETY.md).**
 
 Independent concept of a metal center cap with four integrated tabs to screen a small LPBF series. PorscheFanatics confirms the identity and the historical PET status; partworks publishes three dimensions and states that the original is plastic.
 

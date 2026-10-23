@@ -12,7 +12,7 @@ This is the full technical overview that used to be the README. The plain-langua
 [![Validate catalogue](https://github.com/cluster2600/porscheparts/actions/workflows/validate.yml/badge.svg)](https://github.com/cluster2600/porscheparts/actions/workflows/validate.yml)
 [![License: all rights reserved](https://img.shields.io/badge/license-all%20rights%20reserved-lightgrey)](../LICENSE)
 [![Python 3.11+](https://img.shields.io/badge/python-3.11%2B-blue)](https://www.python.org/)
-[![Active phase](https://img.shields.io/badge/active%20phase-manufactures%20nothing-critical)](../SAFETY.md)
+[![Active phase](https://img.shields.io/badge/active%20phase-manufactures%20nothing-critical)](SAFETY.md)
 [![Docs](https://img.shields.io/badge/docs-English-brightgreen)](TRANSLATION.md)
 
 [**Our Porsche information catalogue**](https://porschefanatics.com/) ·
@@ -24,7 +24,7 @@ This is the full technical overview that used to be the README. The plain-langua
 [**Gallery**](GALLERY.md) ·
 [**993 carrier workflow**](manufacturing/993_CARRIER_PROJECT_EN.md) ·
 [**Run the checks**](#quick-start) ·
-[**Safety first**](../SAFETY.md)
+[**Safety first**](SAFETY.md)
 
 </div>
 
@@ -39,7 +39,7 @@ The repository has withdrawn several, listed
 
 > [!IMPORTANT]
 > **No part is validated.** All 43 part records are at status `concept`, and 25
-> of them are `prohibited_pending_engineering`. Read [SAFETY.md](../SAFETY.md).
+> of them are `prohibited_pending_engineering`. Read [SAFETY.md](SAFETY.md).
 
 ## Software chain: Qwen and PicoGK
 
@@ -308,8 +308,8 @@ flowchart LR
 | follow the carbon monocoque programme | [section 1](#1-the-964-body-shell-and-the-carbon-monocoque-programme) → [the programme](MONOCOQUE_964_993_PROGRAMME.md) |
 | see the engine cooling work | [section 3](#3-engine-cooling) → [the fan programmes](FAN_DEVELOPMENT_PROGRAMMES.md) |
 | watch an LPBF geometry preview | [F1 impeller build-up](../parts/993-eng-cooling-impeller-we43-f1-0001/media/print-simulation/build.gif) · [all print screens](993/print-screen-status.json) |
-| know what may and may not be built | [SAFETY.md](../SAFETY.md) · [docs/QUALITY_GATES.md](QUALITY_GATES.md) |
-| add a part or a source | [CONTRIBUTING.md](../CONTRIBUTING.md) · [docs/WORKFLOW.md](WORKFLOW.md) · [docs/SOURCE_POLICY.md](SOURCE_POLICY.md) |
+| know what may and may not be built | [SAFETY.md](SAFETY.md) · [docs/QUALITY_GATES.md](QUALITY_GATES.md) |
+| add a part or a source | [CONTRIBUTING.md](CONTRIBUTING.md) · [docs/WORKFLOW.md](WORKFLOW.md) · [docs/SOURCE_POLICY.md](SOURCE_POLICY.md) |
 | find any document | [the documentation index](README.md) · [the gallery](GALLERY.md) · [dated reports](reports/README.md) |
 | browse the digital twins | [twins/README.md](../twins/README.md) |
 | run the checks locally | [Quick start](#quick-start) |
@@ -333,7 +333,7 @@ The main workstream. Its goal is a **replacement carbon monocoque for 964 and
 993 restomods**, competing with the one existing offer on the axis where that
 offer is bare: published data. The [programme](MONOCOQUE_964_993_PROGRAMME.md)
 says what has to be established, in what order, and that it **contradicts the
-written scope** of [ROADMAP.md](../ROADMAP.md).
+written scope** of [ROADMAP.md](ROADMAP.md).
 
 ### The structure: what the shell model shows
 
@@ -718,7 +718,7 @@ flowchart TB
 | **Evidence before publication** | every claim of fit or accuracy is tied to a measurement or a source |
 | **Digital before prototype** | the active phase manufactures nothing |
 | **Interface before appearance** | a measured zone that allows a clearance check beats a full scan of unknown accuracy |
-| **Explicit safety** | when in doubt, the part is lowered to `prohibited_pending_engineering`; see [SAFETY.md](../SAFETY.md) |
+| **Explicit safety** | when in doubt, the part is lowered to `prohibited_pending_engineering`; see [SAFETY.md](SAFETY.md) |
 | **No vendor harvesting** | a site closed to robots is not queried; see [decision 0003](decisions/0003-no-vendor-harvesting.md) |
 | **Accessible tools** | a free, open-source, local toolchain |
 
@@ -766,7 +766,7 @@ calculation's data.
 The **917 cylinder head** dossier, 891 files from iteration F1 to F50, is
 retired as a product and kept as a numerical regression, along with the 935
 cylinder-head scan. It was not moved into an archive folder:
-[ARCHIVE.md](../ARCHIVE.md) explains that it carries 2,014 SHA-256 digests that
+[ARCHIVE.md](ARCHIVE.md) explains that it carries 2,014 SHA-256 digests that
 moving it would invalidate. Evidence beats tidiness.
 
 ---
@@ -792,7 +792,7 @@ make part-pages parts-table readme-gallery   # regenerate its page, this table a
 make check
 ```
 
-Conventions in detail: [CONTRIBUTING.md](../CONTRIBUTING.md). The `917-*` targets
+Conventions in detail: [CONTRIBUTING.md](CONTRIBUTING.md). The `917-*` targets
 drive the archived line and are listed by `make help-917`. Tests that need
 `numpy`, `matplotlib` or CAD kernels are skipped or fail without them; the
 compute images in [`containers/`](../containers/) carry the full stack, and the
@@ -835,7 +835,7 @@ containers/ deploy/ reproducible compute images and deployment
 | 3 — titanium engineering twin, no manufacturing | ⬜ open: candidate `993-ENG-CARRIER-0001` under study |
 | 4 — public catalog | ⬜ open: only parts that clear their quality gates will be published |
 
-Details and exit criteria: [ROADMAP.md](../ROADMAP.md) ·
+Details and exit criteria: [ROADMAP.md](ROADMAP.md) ·
 [docs/PROJECT_CHARTER.md](PROJECT_CHARTER.md) ·
 [docs/DIGITAL_TWIN.md](DIGITAL_TWIN.md) ·
 [docs/QUALITY_GATES.md](QUALITY_GATES.md).
@@ -851,7 +851,7 @@ the components in the car.*
 
 This repository provides research and manufacturing data without warranty.
 Printing, fitting and road use remain the responsibility of whoever makes and
-installs the part. Read [SAFETY.md](../SAFETY.md) before any manufacturing.
+installs the part. Read [SAFETY.md](SAFETY.md) before any manufacturing.
 
 Porsche and 911 are trademarks of their respective owners. This project is
 independent and not affiliated with Porsche AG.
@@ -862,5 +862,5 @@ independent and not affiliated with Porsche AG.
 [proprietary license](../LICENSE): you may view it, but copying, modifying,
 printing or manufacturing parts, redistributing, commercial use and AI training
 all need prior written permission; ask by opening an issue. Third-party
-sources and models keep their own license; see [LICENSES.md](../LICENSES.md).
+sources and models keep their own license; see [LICENSES.md](LICENSES.md).
 Revisions published before 2026-09-25 were under the MIT License.

@@ -2,7 +2,7 @@
 
 # 993 Turbo charge-air tract transcribed parts (group 107-45) - PET-transcribed identity set
 
-**Status: non-critical. No part is released; see [SAFETY.md](../../SAFETY.md).**
+**Status: non-critical. No part is released; see [SAFETY.md](../../docs/SAFETY.md).**
 
 Identity-only catalogue record grouping the charge-air (group 107-45, 'charge air cooler') line items transcribed per-line from the local PET transcriptions and relevant to the M64 charge-air subsystem: charge air cooler 993 110 330 53 (pos 1), air guide 993 110 340 53 and 993 110 340 54 (pos 2), bracket 993 110 110 50 and 993 110 110 52 (pos 5), sleeve 993 110 111 50 (pos 10), temperature sensor 993 606 114 00 (pos 12), pressure hoses 993 110 633 56 and 993 110 632 56 (pos 19), with their clamps 999 512 648 02 and 999 512 647 02 (pos 20/21). Both independent catalogue transcriptions (KAT 17 and Porsche Classic KAT 517 USA) agree on these positions and numbers. No dimensions, flow cross-sections, pressure ratings or geometry are claimed.
 

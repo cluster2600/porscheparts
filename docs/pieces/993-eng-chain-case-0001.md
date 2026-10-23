@@ -2,7 +2,7 @@
 
 # 993 timing chain case and its lids
 
-**Status: **prohibited pending engineering**. No part is released; see [SAFETY.md](../../SAFETY.md).**
+**Status: **prohibited pending engineering**. No part is released; see [SAFETY.md](../../docs/SAFETY.md).**
 
 Investigation target: the chain case from factory plate 103-05, its three lids, its oil bridges and its tensioner. The record establishes identity and material reasoning; it is neither a replacement geometry nor a manufacturing authorization. Selected because the factory catalogue triage makes it a serious consolidation case — and because the titanium grid rejects it three times.
 

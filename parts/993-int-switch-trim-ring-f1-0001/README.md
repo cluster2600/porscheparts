@@ -19,7 +19,7 @@
 > - validation status `concept`: nothing has been checked against a real part;
 > - geometry `estimated`: its dimensions are estimated design variables, not measured on the original part;
 > - safety class `non_critical`;
-> - no part in this repository is released — read [SAFETY.md](../../SAFETY.md).
+> - no part in this repository is released — read [SAFETY.md](../../docs/SAFETY.md).
 
 <table><tr>
 <td width="50%" valign="top">
@@ -110,7 +110,7 @@ flowchart LR
 - **Catalogue record** (source of truth): [`catalog/parts/993-int-switch-trim-ring-f1-0001.json`](../../catalog/parts/993-int-switch-trim-ring-f1-0001.json)
 - **Design dossier**: [993_SOURCING_CHINE_LPBF](../../docs/993/993_SOURCING_CHINE_LPBF.md)
 - **Design dossier**: [993_SWITCH_TRIM_RING_F1](../../docs/993/993_SWITCH_TRIM_RING_F1.md)
-- **Safety rules**: [SAFETY.md](../../SAFETY.md)
+- **Safety rules**: [SAFETY.md](../../docs/SAFETY.md)
 
 ---
 

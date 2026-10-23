@@ -2,7 +2,7 @@
 
 # Switch blank, dashboard
 
-**Status: non-critical. No part is released; see [SAFETY.md](../../SAFETY.md).**
+**Status: non-critical. No part is released; see [SAFETY.md](../../docs/SAFETY.md).**
 
 Blanking plug for an unequipped switch location in the dashboard. Trim part with flat faces and clips, measurable with calipers, retained as the pilot for the simple geometric category of phase 2.
 

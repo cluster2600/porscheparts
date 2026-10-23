@@ -2,7 +2,7 @@
 
 # Upper valve cover with COP towers, F0 AlSi10Mg concept
 
-**Status: **prohibited pending engineering**. No part is released; see [SAFETY.md](../../SAFETY.md).**
+**Status: **prohibited pending engineering**. No part is released; see [SAFETY.md](../../docs/SAFETY.md).**
 
 Independent concept of a 993 upper valve cover, open on the oil side, with six fins and three integrated coil-on-plug towers. The sources confirm billet alternatives and interest in COP, but no individual geometry; all F0 interfaces are synthetic.
 

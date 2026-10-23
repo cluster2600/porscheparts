@@ -2,7 +2,7 @@
 
 # K16 turbine wheel, IN718 F0 concept
 
-**Status: **prohibited pending engineering**. No part is released; see [SAFETY.md](../../SAFETY.md).**
+**Status: **prohibited pending engineering**. No part is released; see [SAFETY.md](../../docs/SAFETY.md).**
 
 Clean-sheet concept of a twelve-blade K16 hot rotor to screen the value and limits of an IN718 LPBF route. The diameters, blade count and part reference come from supplier catalogues; all profiles and interfaces remain hypothetical.
 

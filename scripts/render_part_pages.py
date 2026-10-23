@@ -152,7 +152,7 @@ def page_markdown(fiche: dict, chemin_fiche: Path) -> str:
     procede = fabrication.get("preferred_process", "unknown")
 
     out = [ENTETE, "", f"# {nom(fiche)}", "",
-           f"**Status: {statut}. No part is released; see [SAFETY.md]({lien(ROOT / 'SAFETY.md', page)}).**", "",
+           f"**Status: {statut}. No part is released; see [SAFETY.md]({lien(ROOT / 'docs' / 'SAFETY.md', page)}).**", "",
            fiche.get("description", "").strip(), ""]
     out += echelle(validation.get("status", "concept"), classification.get("safety_class"))
     out += [f"Catalogue record: [`{chemin_fiche.relative_to(ROOT).as_posix()}`]({lien(chemin_fiche, page)})", ""]
@@ -335,7 +335,7 @@ def presentation_impeller(fiche: dict, chemin_fiche: Path) -> str:
            badges, "", "</div>", ""]
 
     out += [f"""> [!CAUTION]
-> **Not ready to print, and not a copy of the original part.** This folder preserves an archived Carrera F0 concept. The current Turbo study is linked below. No part is declared dimensionally accurate, fitted, tested, safe or released without supporting evidence: see [SAFETY.md]({L('SAFETY.md')}).
+> **Not ready to print, and not a copy of the original part.** This folder preserves an archived Carrera F0 concept. The current Turbo study is linked below. No part is declared dimensionally accurate, fitted, tested, safe or released without supporting evidence: see [SAFETY.md]({L('docs/SAFETY.md')}).
 
 ## Current programme: M64/60 Turbo cooling fan
 
@@ -408,7 +408,7 @@ The generic wheel and schematic orthographic images were removed from this prese
 - [System dossier]({L('docs/993/993_ENGINE_COOLING_FAN_SYSTEM_F0.md')})
 - [PorscheFanatics project presentation](https://porschefanatics.com/projects/993-turbo-fan/)
 - [Digital twin record]({L('catalog/twins/twin-993-engine-cooling-fan-system-f0.json')})
-- [Safety rules]({L('SAFETY.md')})
+- [Safety rules]({L('docs/SAFETY.md')})
 
 ---
 
@@ -552,7 +552,7 @@ def presentation(fiche: dict, chemin_fiche: Path) -> str:
             ("> design whose fit has not been checked against the car:" if impression else
              "> concept block for studying the part in software:"),
             *[f"> - {r};" for r in raisons],
-            f"> - no part in this repository is released — read [SAFETY.md]({lien(ROOT / 'SAFETY.md', page)}).",
+            f"> - no part in this repository is released — read [SAFETY.md]({lien(ROOT / 'docs' / 'SAFETY.md', page)}).",
             ""]
 
     originaux = [s for s in fiche.get("provenance", {}).get("sources", []) if s.get("url") and
@@ -691,7 +691,7 @@ def presentation(fiche: dict, chemin_fiche: Path) -> str:
     for j in jumeaux_lies(part_id):
         out.append(f"- **Digital twin record**: [`{j.name}`]({lien(j, page)}) — "
                    f"see [twins/README.md]({lien(ROOT / 'twins' / 'README.md', page)})")
-    out += [f"- **Safety rules**: [SAFETY.md]({lien(ROOT / 'SAFETY.md', page)})", "",
+    out += [f"- **Safety rules**: [SAFETY.md]({lien(ROOT / 'docs' / 'SAFETY.md', page)})", "",
             "---", "",
             "*This page is generated from the catalogue record by `scripts/render_part_pages.py` "
             "and checked by `make check`. Edit the record, not this page.*", ""]

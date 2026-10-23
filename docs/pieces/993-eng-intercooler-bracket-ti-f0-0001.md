@@ -2,7 +2,7 @@
 
 # 993 Turbo/GT2 intercooler bracket, titanium F0 concept
 
-**Status: functional. No part is released; see [SAFETY.md](../../SAFETY.md).**
+**Status: functional. No part is released; see [SAFETY.md](../../docs/SAFETY.md).**
 
 Independent open two-rail bracket concept to screen the value of an LPBF remanufacture in Ti-6Al-4V. PorscheFanatics and the PET establish the circuit part numbers; FVD publishes the envelope and mass of a reinforced aftermarket bracket, without usable interface geometry.
 

@@ -2,7 +2,7 @@
 
 # Seat rail cover, outer side
 
-**Status: non-critical. No part is released; see [SAFETY.md](../../SAFETY.md).**
+**Status: non-critical. No part is released; see [SAFETY.md](../../docs/SAFETY.md).**
 
 Trim cover for the seat rail, existing in symmetrical left and right versions. Selected as the pilot for the symmetrical category of phase 2: a missing piece must be reconstructed from its counterpart and its surroundings.
 

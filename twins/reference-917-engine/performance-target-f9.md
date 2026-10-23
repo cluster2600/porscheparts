@@ -2,7 +2,7 @@
 
 > **Archived line.** This contract belongs to the retired 917 work, kept as a
 > numerical regression and not pursued as a product. See
-> [ARCHIVE.md](../../ARCHIVE.md).
+> [ARCHIVE.md](../../docs/ARCHIVE.md).
 
 ## Scope
 

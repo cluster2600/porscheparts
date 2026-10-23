@@ -2,7 +2,7 @@
 
 # Front lid, composite panel
 
-**Status: functional. No part is released; see [SAFETY.md](../../SAFETY.md).**
+**Status: functional. No part is released; see [SAFETY.md](../../docs/SAFETY.md).**
 
 993 front lid reproduced in composite from the original steel panel. Bolted skin part, with no structural function and no anti-intrusion bar, retained as the first lightweight body pilot.
 

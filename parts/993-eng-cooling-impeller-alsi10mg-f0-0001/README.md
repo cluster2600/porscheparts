@@ -11,7 +11,7 @@
 </div>
 
 > [!CAUTION]
-> **Not ready to print, and not a copy of the original part.** This folder preserves an archived Carrera F0 concept. The current Turbo study is linked below. No part is declared dimensionally accurate, fitted, tested, safe or released without supporting evidence: see [SAFETY.md](../../SAFETY.md).
+> **Not ready to print, and not a copy of the original part.** This folder preserves an archived Carrera F0 concept. The current Turbo study is linked below. No part is declared dimensionally accurate, fitted, tested, safe or released without supporting evidence: see [SAFETY.md](../../docs/SAFETY.md).
 
 ## Current programme: M64/60 Turbo cooling fan
 
@@ -84,7 +84,7 @@ The generic wheel and schematic orthographic images were removed from this prese
 - [System dossier](../../docs/993/993_ENGINE_COOLING_FAN_SYSTEM_F0.md)
 - [PorscheFanatics project presentation](https://porschefanatics.com/projects/993-turbo-fan/)
 - [Digital twin record](../../catalog/twins/twin-993-engine-cooling-fan-system-f0.json)
-- [Safety rules](../../SAFETY.md)
+- [Safety rules](../../docs/SAFETY.md)
 
 ---
 

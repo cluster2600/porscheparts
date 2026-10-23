@@ -18,10 +18,10 @@ flowchart LR
 | [../README.md](../README.md) | what the repository is, in plain language |
 | [ENGINEERING_OVERVIEW.md](ENGINEERING_OVERVIEW.md) | the full technical overview: software chain, results, withdrawn claims, parts table |
 | [PROJECT_CHARTER.md](PROJECT_CHARTER.md) | why the project exists and what it will not do |
-| [../SAFETY.md](../SAFETY.md) | what may be built, what may not, and why |
+| [SAFETY.md](SAFETY.md) | what may be built, what may not, and why |
 | [QUALITY_GATES.md](QUALITY_GATES.md) | what a part must prove at each level |
 | [WORKFLOW.md](WORKFLOW.md) | how a part goes from idea to record |
-| [../CONTRIBUTING.md](../CONTRIBUTING.md) | how to contribute a part, a source or a fix |
+| [CONTRIBUTING.md](CONTRIBUTING.md) | how to contribute a part, a source or a fix |
 | [TRANSLATION.md](TRANSLATION.md) | the French-to-English translation: scope, glossary, progress |
 | [GALLERY.md](GALLERY.md) | every figure, render and print screen on one page |
 | [../twins/README.md](../twins/README.md) | the digital twins, zone by zone |

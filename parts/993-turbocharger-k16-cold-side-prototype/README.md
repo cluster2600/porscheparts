@@ -3,7 +3,7 @@
 > [!CAUTION]
 > **Not a part.** This folder has no catalogue record: it is an editable research
 > geometry for the 993 K16 forced-induction study, not a reconstruction of a K16
-> turbocharger. Nothing here may be made or fitted — read [SAFETY.md](../../SAFETY.md).
+> turbocharger. Nothing here may be made or fitted — read [SAFETY.md](../../docs/SAFETY.md).
 
 [`source/cold_side_concept.scad`](source/cold_side_concept.scad) is a parametric
 OpenSCAD model of a stationary cold-side diffuser: an inlet, a conical diffuser

@@ -2,7 +2,7 @@
 
 # Pair of K16 turbochargers of the 993 Turbo
 
-**Status: **prohibited pending engineering**. No part is released; see [SAFETY.md](../../SAFETY.md).**
+**Status: **prohibited pending engineering**. No part is released; see [SAFETY.md](../../docs/SAFETY.md).**
 
 Research target of the digital twin: two K16 turbochargers mounted in parallel on the 993 Turbo. This record establishes the functional identity and the available public data; it constitutes neither a replacement geometry nor a manufacturing authorization.
 

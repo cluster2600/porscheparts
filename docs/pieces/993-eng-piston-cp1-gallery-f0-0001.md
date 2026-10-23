@@ -2,7 +2,7 @@
 
 # M64/60 piston with cooling gallery, CP1 F0 concept
 
-**Status: **prohibited pending engineering**. No part is released; see [SAFETY.md](../../SAFETY.md).**
+**Status: **prohibited pending engineering**. No part is released; see [SAFETY.md](../../docs/SAFETY.md).**
 
 Independent concept of an Aheadd CP1 LPBF piston with a toroidal gallery under the crown and two temporary depowdering ports. Only the M64/60 bore/stroke/engine speed and the Porsche methodological precedent are published; the entire piston geometry remains an F0 hypothesis.
 
