@@ -88,13 +88,19 @@ flowchart LR
 
 *Orthographic views of the same concept CAD, with its bounding dimensions — not drawings of the original part.*
 
+## Bionic gyroid-core model
+
+![PicoGK gyroid-core model: outside view and capped section](media/gyroid.png)
+
+*PicoGK variant ([`GyroidCore.cs`](../../parts/picogk-catalog/bionic/GyroidCore.cs)): the organic outer form above, a 0.8 mm skin and a sheet-gyroid core (3.6 mm cell, 0.4 mm wall) wherever three cells fit, 6 drain ports; 11.2 % less material than the same part solid. Core settings are assumptions: not printed, not depowdered, not tested — not a print file.*
+
 ## What's in this folder
 
 | folder | what it holds | files |
 |---|---|---|
-| `derived/` | CAD exports generated from the source (STEP for CAD tools, STL for meshing) | [`derived/993-intake-49-f1-picogk.json`](derived/993-intake-49-f1-picogk.json), [`derived/993-intake-49-f1-picogk.stl`](derived/993-intake-49-f1-picogk.stl), [`derived/993-intake-49-f1.step`](derived/993-intake-49-f1.step) |
-| `media/` | concept-model views rendered from the CAD by `scripts/render_part_previews.py` — not pictures of the original; labelled AI studio illustration and provenance, not a photograph | [`media/photo-concept.png`](media/photo-concept.png), [`media/photo.json`](media/photo.json), [`media/preview.json`](media/preview.json), [`media/preview.png`](media/preview.png), [`media/views.png`](media/views.png) |
-| `source/` | parametric source — the editable master that generates the geometry | [`source/picogk.json`](source/picogk.json) |
+| `derived/` | CAD exports generated from the source (STEP for CAD tools, STL for meshing) | [`derived/993-intake-49-f1-picogk-gyroid.json`](derived/993-intake-49-f1-picogk-gyroid.json), [`derived/993-intake-49-f1-picogk.json`](derived/993-intake-49-f1-picogk.json), [`derived/993-intake-49-f1-picogk.stl`](derived/993-intake-49-f1-picogk.stl), [`derived/993-intake-49-f1.step`](derived/993-intake-49-f1.step) |
+| `media/` | concept-model views rendered from the CAD by `scripts/render_part_previews.py` — not pictures of the original; labelled AI studio illustration and provenance, not a photograph | [`media/gyroid.json`](media/gyroid.json), [`media/gyroid.png`](media/gyroid.png), [`media/photo-concept.png`](media/photo-concept.png), [`media/photo.json`](media/photo.json), [`media/preview.json`](media/preview.json), [`media/preview.png`](media/preview.png), [`media/views.png`](media/views.png) |
+| `source/` | parametric source — the editable master that generates the geometry | [`source/gyroid.json`](source/gyroid.json), [`source/picogk.json`](source/picogk.json) |
 
 ## Read more
 

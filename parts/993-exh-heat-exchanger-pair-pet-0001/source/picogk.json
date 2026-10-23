@@ -1,0 +1,255 @@
+{
+  "part_id": "993-EXH-HEAT-EXCHANGER-PAIR-PET-0001",
+  "name": "993 Turbo exhaust heat exchangers, left and right (PicoGK concept)",
+  "generator": "turbo_heat_exchanger_pair",
+  "catalogue_record": "catalog/parts/993-exh-heat-exchanger-pair-pet-0001.json",
+  "porsche_part_numbers": [
+    "993 211 039 55",
+    "993 211 040 55",
+    "993 211 039 56",
+    "993 211 040 56"
+  ],
+  "safety_class": "prohibited_pending_engineering",
+  "material_candidate": "IN625 LPBF (concept assumption; an IN625 aftermarket offer is recorded, the OEM material is not)",
+  "density_g_cm3": 8.44,
+  "voxel_mm": 0.6,
+  "picogk_enhancement": "Concept base model of the two mirrored heat exchangers: per bank three primaries from lobed per-port flanges, fanned into lanes so they pass clear, converging into a collector cone that S-bends outboard to a two-bolt turbine-side flange; the merge sits in a bulging heater jacket open at both ends for the heating air and joined to the gas tubes by staggered pin fins, so the air gap is one drained channel. The PET record is identity only: every dimension, the routing and every interface are assumptions. The heating-air connections, sealing rings and the heating tube of 202-10 are not modelled. The two ties only hold the pair together for display.",
+  "parameters": {
+    "cylinder_pitch_mm": {
+      "value": 118.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "port spacing along the crankshaft; the M64 cylinder pitch is unpublished (M64-ACQ-0004); 118 mm is the Type 912 spacing in docs/research/917-german-engineering-sources.md, used as an order of magnitude"
+    },
+    "primary_bore_mm": {
+      "value": 34.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "PRIMARY_INNER_DIAMETER_MM of the F0 IN625 manifold study (parts/993-eng-exhaust-manifold-in625-f0-0001), itself a hypothesis"
+    },
+    "collector_bore_mm": {
+      "value": 56.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "COLLECTOR_INNER_DIAMETER_MM of the F0 IN625 manifold study, itself a hypothesis"
+    },
+    "wall_mm": {
+      "value": 2.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "gas tube wall"
+    },
+    "lane_offset_mm": {
+      "value": 42.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "lateral lane of the front and rear primaries so the three pass each other clear before the merge"
+    },
+    "lane_z_mm": {
+      "value": -112.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "depth of the primary lanes below the port faces"
+    },
+    "merge_x_mm": {
+      "value": 260.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "merge point of the three primaries along X"
+    },
+    "merge_z_mm": {
+      "value": -112.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "merge and collector depth"
+    },
+    "collector_bend_start_x_mm": {
+      "value": 350.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "start of the collector S-bend toward the turbine"
+    },
+    "collector_end_x_mm": {
+      "value": 460.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "outlet flange face (turbine side)"
+    },
+    "collector_outboard_mm": {
+      "value": 45.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "outboard offset of the outlet; turbine position unknown"
+    },
+    "collector_rise_mm": {
+      "value": 40.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "rise of the outlet toward the turbine"
+    },
+    "port_flange_thickness_mm": {
+      "value": 8.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "per-port flange thickness"
+    },
+    "port_flange_rim_mm": {
+      "value": 6.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "flange rim around each primary"
+    },
+    "stud_offset_mm": {
+      "value": 31.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "two studs per port at +/-31 mm along X; no stud pattern published (head torque 28 Nm in the manual gives no geometry)"
+    },
+    "stud_hole_mm": {
+      "value": 8.5,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "M8 clearance; the PET lists M8 lock nuts at 202-10"
+    },
+    "stud_boss_radius_mm": {
+      "value": 7.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "stud lobe radius"
+    },
+    "outlet_flange_radius_mm": {
+      "value": 40.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "outlet flange radius"
+    },
+    "outlet_flange_thickness_mm": {
+      "value": 8.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "outlet flange thickness"
+    },
+    "outlet_bolt_offset_mm": {
+      "value": 44.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "outlet bolt centres at +/-44 mm"
+    },
+    "jacket_start_x_mm": {
+      "value": 200.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "front (air inlet) end of the heater jacket"
+    },
+    "jacket_end_x_mm": {
+      "value": 345.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "rear (air outlet) end of the heater jacket, kept on the straight collector run"
+    },
+    "jacket_front_radius_mm": {
+      "value": 56.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "jacket inner radius at its front end, clear of the converging primaries"
+    },
+    "jacket_rear_radius_mm": {
+      "value": 42.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "jacket inner radius at its rear end around the collector"
+    },
+    "jacket_bulge_mm": {
+      "value": 6.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "extra jacket radius at mid-length"
+    },
+    "jacket_wall_mm": {
+      "value": 2.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "jacket wall"
+    },
+    "pin_diameter_mm": {
+      "value": 3.6,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "pin-fin diameter (heat transfer to the heating air, and the ties that make the jacket one body with the tubes)"
+    },
+    "pin_pitch_mm": {
+      "value": 14.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "pin-ring pitch along the jacket"
+    },
+    "pins_per_ring": {
+      "value": 6.0,
+      "unit": "count",
+      "basis": "assumption",
+      "source": null,
+      "note": "pins per ring, staggered by half a step ring to ring"
+    },
+    "display_bank_offset_mm": {
+      "value": 110.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "display half-spacing between the two mirrored units; not the engine's bank spacing"
+    },
+    "tie_radius_mm": {
+      "value": 6.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "display tie radius; the ties hold the pair as one body and are not part of either heat exchanger"
+    },
+    "fillet_mm": {
+      "value": 5.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "outer fillet of the merge crotch, flange roots and ties"
+    }
+  },
+  "envelope": [],
+  "envelope_axes": {},
+  "envelope_mode": "match",
+  "open_interfaces": [
+    "cylinder-head exhaust port positions, bores, flange faces and stud pattern",
+    "K16 turbine inlet flange",
+    "heating-air inlet and outlet connections and the heating tube",
+    "sealing rings and lock nuts of 202-10",
+    "thermal growth between the heads and the turbochargers"
+  ],
+  "status": "F0 concept geometry - not fitted, not tested, not safe, not released, not a print file",
+  "max_tris": 90000
+}

@@ -71,6 +71,8 @@ def sources(part_id: str) -> list[Path]:
     """
     folder = PARTS / part_id.lower() / "derived"
     local = sorted(folder.iterdir()) if folder.is_dir() else []
+    # Gyroid-core variants (git-ignored, see parts/picogk-catalog/bionic/) have their own image.
+    local = [p for p in local if not p.name.endswith("-picogk-gyroid.stl")]
     picogk = [p for p in local if p.name.endswith("-picogk.stl")]
     if picogk:
         return picogk[:3]

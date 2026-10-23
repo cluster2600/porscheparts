@@ -1,0 +1,192 @@
+{
+  "part_id": "993-CA-TURBO-INTAKE-MANIFOLD-PET-0001",
+  "name": "993 Turbo intake distributor and branches, group 107-20 (PicoGK concept)",
+  "generator": "turbo_intake_distributor",
+  "catalogue_record": "catalog/parts/993-ca-turbo-intake-manifold-pet-0001.json",
+  "porsche_part_numbers": [
+    "993 110 062 50",
+    "993 110 062 51",
+    "993 110 631 54",
+    "993 110 630 52",
+    "993 110 630 53"
+  ],
+  "safety_class": "non_critical",
+  "material_candidate": "AlSi10Mg LPBF (concept assumption; the record leaves the material unknown)",
+  "density_g_cm3": 2.67,
+  "voxel_mm": 0.6,
+  "picogk_enhancement": "Concept base model of the intake distributor (pos 1) with its two three-runner branches (pos 18/21 context): a pill-shaped plenum fed by a throttle-side neck, three runners per bank arcing outboard and dropping onto lobed port flanges. The flow volume is modelled first and its junctions filleted into bellmouth-like entries; the wall is a uniform offset of it, so every passage is smooth and open at the six ports, the inlet and the sensor tapping. The PET record is identity only: every dimension, the layout, the runner count per branch and all interfaces are assumptions. The shut-off valve, sensors, MAF, hoses and sleeves of the record are not modelled.",
+  "parameters": {
+    "cylinder_pitch_mm": {
+      "value": 118.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "runner spacing along the crankshaft; the M64 cylinder pitch is unpublished (M64-ACQ-0004). 118 mm is the Type 912 flat-twelve spacing reported in docs/research/917-german-engineering-sources.md, used only as an order of magnitude; the boxer bank stagger is ignored"
+    },
+    "bank_port_y_mm": {
+      "value": 215.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "lateral half-distance of the two head port rows from the engine centre plane; no OEM coordinate"
+    },
+    "plenum_length_mm": {
+      "value": 340.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "distributor (pos 1) length along X; keeps the outer runners inside the plenum"
+    },
+    "plenum_width_mm": {
+      "value": 100.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "distributor width; order of magnitude of fPlenumWidthMm = 90 in parts/m64-charge-air-0001/source/ChargeAirParameters.cs"
+    },
+    "plenum_height_mm": {
+      "value": 90.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "distributor height"
+    },
+    "plenum_centre_z_mm": {
+      "value": 170.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "plenum axis height above the port faces"
+    },
+    "plenum_shape_exponent": {
+      "value": 2.6,
+      "unit": "-",
+      "basis": "assumption",
+      "source": null,
+      "note": "superellipsoid exponent of the plenum (2 = ellipsoid; higher = fuller pill shape)"
+    },
+    "runner_bore_mm": {
+      "value": 40.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "runner bore; no 993 Turbo port or runner diameter is published in the repository"
+    },
+    "wall_mm": {
+      "value": 3.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "uniform wall of the cast-style concept"
+    },
+    "port_flange_thickness_mm": {
+      "value": 8.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "bank port flange thickness"
+    },
+    "port_flange_rim_mm": {
+      "value": 7.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "flange rim around each runner outer diameter"
+    },
+    "stud_hole_mm": {
+      "value": 8.5,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "M8 clearance assumed; no stud pattern published"
+    },
+    "stud_boss_radius_mm": {
+      "value": 7.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "stud lobe and nut seat radius"
+    },
+    "inlet_bore_mm": {
+      "value": 66.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "throttle-side inlet bore; order of magnitude of the 66 mm aftermarket intercooler connector (catalog/sources/src-ta-technix-993-intercooler-dimensions.json), not an OEM throttle interface"
+    },
+    "inlet_neck_length_mm": {
+      "value": 70.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "inlet neck length ahead of the plenum"
+    },
+    "inlet_flange_thickness_mm": {
+      "value": 8.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "inlet flange thickness"
+    },
+    "inlet_bolt_circle_mm": {
+      "value": 92.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "inlet flange bolt circle"
+    },
+    "inlet_bolt_count": {
+      "value": 4.0,
+      "unit": "count",
+      "basis": "assumption",
+      "source": null,
+      "note": "inlet flange bolt count"
+    },
+    "sensor_boss_radius_mm": {
+      "value": 9.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "boss on the plenum top in the place of a pressure-transmitter tapping (pos 14 context); position and thread unknown"
+    },
+    "sensor_bore_mm": {
+      "value": 6.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "sensor tapping bore"
+    },
+    "sensor_boss_x_mm": {
+      "value": 60.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "sensor boss position along X"
+    },
+    "inner_fillet_mm": {
+      "value": 8.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "fillet of the flow volume: bellmouth-like runner entries and inlet blend"
+    },
+    "fillet_mm": {
+      "value": 5.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "outer blend of runners, flanges and bosses"
+    }
+  },
+  "envelope": [],
+  "envelope_axes": {},
+  "envelope_mode": "match",
+  "open_interfaces": [
+    "cylinder-head intake port positions, bores, flange faces and stud pattern",
+    "throttle body / charge-air duct interface",
+    "shut-off valve (pos 10) and pressure transmitter (pos 14) mountings",
+    "split between pos 1 and the pos 18/21 manifolds"
+  ],
+  "status": "F0 concept geometry - not fitted, not tested, not safe, not released, not a print file",
+  "max_tris": 90000
+}

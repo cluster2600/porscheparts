@@ -1,0 +1,66 @@
+{
+  "part_id": "993-ENG-CYLINDER-HEAD-4V-F0-0001",
+  "name": "M64 four-valve water-cooled cylinder head \u2014 creation preparation, gyroid core (PicoGK)",
+  "generator": "gyroid_core",
+  "catalogue_record": "catalog/parts/993-eng-cylinder-head-4v-f0-0001.json",
+  "porsche_part_numbers": [],
+  "safety_class": "prohibited_pending_engineering",
+  "material_candidate": "aluminium candidate for head body (LPBF among candidates)",
+  "density_g_cm3": 2.7,
+  "voxel_mm": 2.0,
+  "picogk_enhancement": "Gyroid core: the published PicoGK body (m64 head 4V envelope (PicoGK, 2 mm voxels; run-report.json beside it)) keeps its outer form; a 6 mm skin encloses a sheet gyroid (45 mm cell, 5 mm wall) wherever the body holds three cells, thinner zones and functional features stay solid, drain ports run to the nearest outer surface and any pocket they miss is filled solid. Core settings are assumptions for the lpbf metal class; nothing here is printed, depowdered or tested.",
+  "base": {
+    "stl": "parts/m64-cylinder-head-0001/export/picogk-run-1/m64-head-4v-envelope.stl",
+    "sha256": "fea4525fcdb49a523f777f3a6a2799912ca37d4e3e31073566510d557034d5cb",
+    "generator": "m64 head 4V envelope (PicoGK, 2 mm voxels; run-report.json beside it)"
+  },
+  "material_class": "lpbf_metal",
+  "parameters": {
+    "cell_mm": {
+      "value": 45.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "gyroid period; at least 9 walls so the channels stay open to the drains"
+    },
+    "wall_mm": {
+      "value": 5.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "gyroid sheet thickness; class minimum 0.4 mm, at least 2.5 voxels"
+    },
+    "skin_mm": {
+      "value": 6.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "outer skin; class minimum 0.8 mm, at least 3 voxels"
+    },
+    "min_cells": {
+      "value": 3,
+      "unit": "cells",
+      "basis": "assumption",
+      "source": null,
+      "note": "owner rule 2026-10-22: core only where three cells fit, else solid"
+    },
+    "drain_d_mm": {
+      "value": 8.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "powder/resin drain diameter; class minimum 2.0 mm"
+    },
+    "max_drains": {
+      "value": 6,
+      "unit": "count",
+      "basis": "assumption",
+      "source": null,
+      "note": "lowest and highest core points, then farthest-point spread"
+    }
+  },
+  "keep_solid": [],
+  "recut_void": [],
+  "open_interfaces": [],
+  "status": "F0 concept geometry - not fitted, not tested, not safe, not released, not a print file"
+}

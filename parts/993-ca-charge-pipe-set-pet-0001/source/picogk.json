@@ -1,0 +1,145 @@
+{
+  "part_id": "993-CA-CHARGE-PIPE-SET-PET-0001",
+  "name": "993 Turbo charge-air pressure pipes, left and right (PicoGK concept)",
+  "generator": "charge_pipe_pair",
+  "catalogue_record": "catalog/parts/993-ca-charge-pipe-set-pet-0001.json",
+  "porsche_part_numbers": [
+    "993 110 633 56",
+    "993 110 632 56"
+  ],
+  "safety_class": "non_critical",
+  "material_candidate": "PA12 SLS (concept assumption; the PET lines are rubber/composite pressure hoses and the record leaves the material unknown)",
+  "density_g_cm3": 1.01,
+  "voxel_mm": 0.6,
+  "picogk_enhancement": "Concept base model of the two pos 19 pressure pipes (turbo to intercooler) only; the cooler, air guide, bracket, sleeve, sensor and clamps of the record are not modelled. Each pipe is a smooth swept S-bend whose bore grows from the turbo-end to the cooler-end diameter, with straight clamp cuffs and rolled retention beads, filleted as one solid and open at both ends. Its length, height and width are solved to fill the FVD replacement-hose product envelopes; the routing, bend shape and every interface are assumptions. A rigid printed duct does not reproduce the decoupling a flexible hose gives between engine and body. The two organic ties only hold the pair together for display.",
+  "parameters": {
+    "hose_length_mm": {
+      "value": 430.0,
+      "unit": "mm",
+      "basis": "published",
+      "source": "https://www.fvd.net/de/shop/schlauch-links-993-94-98-druckschlauch-99311063356~p259332",
+      "note": "FVD replacement hose 99311063356 (left) declares 430 mm length; the right hose 99311063256 declares the same (catalog/sources/src-fvd-993-intercooler-hose-left-dimensions.json, -right-). Aftermarket product envelope, not OEM geometry; read as the end-to-end length along x"
+    },
+    "hose_left_height_mm": {
+      "value": 115.0,
+      "unit": "mm",
+      "basis": "published",
+      "source": "https://www.fvd.net/de/shop/schlauch-links-993-94-98-druckschlauch-99311063356~p259332",
+      "note": "FVD left hose 99311063356 declares 115 mm height (product envelope); the vertical offset of the left S-bend is solved to fill it"
+    },
+    "hose_right_height_mm": {
+      "value": 90.0,
+      "unit": "mm",
+      "basis": "published",
+      "source": "https://www.fvd.net/de/shop/schlauch-rechts-993-94-98-druckschlauch-99311063256~p259331",
+      "note": "FVD right hose 99311063256 declares 90 mm height (product envelope); the vertical offset of the right S-bend is solved to fill it"
+    },
+    "hose_width_mm": {
+      "value": 70.0,
+      "unit": "mm",
+      "basis": "published",
+      "source": "https://www.fvd.net/de/shop/schlauch-links-993-94-98-druckschlauch-99311063356~p259332",
+      "note": "FVD left and right hoses both declare 70 mm width; the lateral offset of each pipe is solved to fill it (not an envelope check: the display pair is wider than one pipe)"
+    },
+    "turbo_end_bore_mm": {
+      "value": 43.0,
+      "unit": "mm",
+      "basis": "published",
+      "source": "https://www.fvd.net/de/shop/druckschlauch-kit-993-turbo-verstaerkt-fvd12399300~p242112",
+      "note": "FVD reinforced kit FVD12399300 declares diameters '43/57 mm' (catalog/sources/src-fvd-993-reinforced-intercooler-hose-kit-dimensions.json); reading 43 as the turbo-end bore is the concept interpretation, not a measured OEM interface"
+    },
+    "cooler_end_bore_mm": {
+      "value": 57.0,
+      "unit": "mm",
+      "basis": "published",
+      "source": "https://www.fvd.net/de/shop/druckschlauch-kit-993-turbo-verstaerkt-fvd12399300~p242112",
+      "note": "FVD kit '43/57 mm'; reading 57 as the intercooler-end bore is the concept interpretation"
+    },
+    "wall_mm": {
+      "value": 3.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "fHoseWallMm = 3.0 in parts/m64-charge-air-0001/source/ChargeAirParameters.cs (ASSUMPTION)"
+    },
+    "cuff_length_mm": {
+      "value": 35.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "straight clamp land at each end; clamp widths (pos 20/21, 60-80/12 and 40-60/9) are not cuff lengths"
+    },
+    "bend_handle_fraction": {
+      "value": 0.38,
+      "unit": "-",
+      "basis": "assumption",
+      "source": null,
+      "note": "cubic Bezier handle length as a fraction of the bend run; horizontal tangents at both cuffs"
+    },
+    "bead_height_mm": {
+      "value": 2.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "rolled hose-retention bead height above the cuff"
+    },
+    "bead_inset_mm": {
+      "value": 9.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "bead position from each end face"
+    },
+    "pair_spacing_mm": {
+      "value": 120.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "display spacing between the two turbo-end axes; not the car's routing"
+    },
+    "tie_radius_mm": {
+      "value": 7.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "display tie radius; the ties hold the pair as one body and are not part of either pipe"
+    },
+    "tie_t1": {
+      "value": 0.3,
+      "unit": "-",
+      "basis": "assumption",
+      "source": null,
+      "note": "position of the first display tie along the centreline points (0..1)"
+    },
+    "tie_t2": {
+      "value": 0.7,
+      "unit": "-",
+      "basis": "assumption",
+      "source": null,
+      "note": "position of the second display tie along the centreline points (0..1)"
+    },
+    "fillet_mm": {
+      "value": 7.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "outer blend of beads and ties into the pipe skin (organic tie roots)"
+    }
+  },
+  "envelope": [
+    "hose_length_mm",
+    "hose_left_height_mm"
+  ],
+  "envelope_axes": {
+    "hose_length_mm": "x",
+    "hose_left_height_mm": "z"
+  },
+  "envelope_mode": "match",
+  "open_interfaces": [
+    "K16 compressor-outlet and intercooler connector diameters, spigot lengths and bead profiles",
+    "real routing between the turbochargers and the intercooler, and engine-to-body movement",
+    "pos 20/21 clamp seats",
+    "air guide, bracket, sleeve and temperature sensor of the record (not modelled)"
+  ],
+  "status": "F0 concept geometry - not fitted, not tested, not safe, not released, not a print file"
+}
