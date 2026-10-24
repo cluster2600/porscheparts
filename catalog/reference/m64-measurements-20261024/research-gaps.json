@@ -1,0 +1,132 @@
+{
+  "schema_version": "1.0.0",
+  "reviewed_on": "2026-10-24",
+  "unresolved": [
+    "Original M64/60 piston crown/skirt walls, cylinder walls and complete head/port wall maps remain unestablished.",
+    "Complete datum-based factory drawings, bolt patterns, port-centre coordinates and tolerances are still missing.",
+    "Manufacturer nominal intervals and service reference values do not establish an engine wear limit or modified-engine load capacity.",
+    "Ambiguous catalogue values and inaccessible FIA image-only rows remain excluded or explicitly unresolved."
+  ],
+  "stream_gaps": [
+    {
+      "topic": "Exact M64/60-specific factory service wear limits",
+      "result": "The accessible 993 workshop volume is Carrera-focused; historic Carrera/930 journal wear limits were not transferred to M64/60. Supplier clearance ranges are not wear limits."
+    },
+    {
+      "topic": "BU 56-2698 engine-component assignment",
+      "result": "Supplier type BU is other bush. The reviewed table does not name the exact engine component. Keep the dimensions tied to the SKU and leave the interface unassigned."
+    },
+    {
+      "topic": "2015 catalogue engine/valve application anomalies",
+      "result": "The old M64.60 power header and separate 9 mm valve table are not used as power or head facts. A separate head review handles the valve applicability conflict. The 2022 bearing catalogue explicitly includes M64.60/R/RS with coherent Turbo power headings."
+    },
+    {
+      "topic": "Bearing material layer classification",
+      "result": "The 2015 English legend labels EC trimetallic while the 2022 English legend labels it bimetallic. Both retain a steel-backed electroplated-bronze description. No exact layer-count or chemistry record is created from the inconsistent labels."
+    },
+    "Original 993 K16 shaft drawing, total shaft length, journal cylindricity/finish, manufacturing tolerances, ring closed-gap values and all interface coordinates remain unavailable.",
+    "Generic K16 service limits require an explicit oil/assembly condition and fixture convention before use on the exact project core.",
+    "The published TI bearing-ID discrepancy and rounded Melett shaft OD require supplier clarification and physical measurement.",
+    "No verified compressor map, rotor-speed limit or above550PS outcome was obtained from these dimensional sources.",
+    "No original M64/60 piston crown/skirt wall thickness, pin-bore tolerance or cylinder register machining drawing was established.",
+    "The MAHLE PP102-012N clearance-guide entries0.590/0.0010/0.0018 lack explicit unit labels in their table; no inch-to-mm conversion or machining clearance is asserted from them.",
+    "Retail MAHLE5043600 listings suggest63.3mmoverallheight,6.1mmtopland,23×54mmpin and0.035mmclearance, but no publicly inspected manufacturer product definition was acquired. These retail-only dimensions are omitted as accepted technical records.",
+    "Motorservice2021lists both08-325100-00 and08-326200-00 forM64.60; Goetze2019–2021explicitM64.60/Rrowlists08-326200-00. No unqualified interchangeability or Porscheproductionrevision assignment is made."
+  ],
+  "inspected_negative_leads": [
+    {
+      "stream": "heads",
+      "topic": "Federal-Mogul2015enginecatalogue M64.60 valve row",
+      "locator": "PDF270 / printed216, engine402",
+      "finding": "M64.60 row lists9mm exhaustvalve V94300 /96410541904 and9.02mmguide, whereas Porsche PET has distinct99310541952 Turbo exhaustvalve and8mm family. Engine rating264/300kW359/408PS in that row also needs checking. Do not accept listed valve/guide dimensions as originalM64/60 facts without resolving application error.",
+      "url": "https://www.garagegurus.tech/content/dam/marketing/emea/fmmp/ecat/EMEA_CAT_MX_ENGINE%20EXPERTISE-BMW-MINI-MERCEDES-BENZ-SMART-PORSCHE_CATMX1403_2015-2016_EN_HQ.pdf"
+    },
+    {
+      "stream": "heads",
+      "topic": "Existing Carrera workshop Group15 measurements",
+      "finding": "The repository already contains page-checked guide/spring/valve/cam housing dimensions at catalog/manual/page-checked/993-workshop-manual-group15-cylinder-head.json. They were not recounted as new and must not be transferred to Turbo wholesale."
+    },
+    {
+      "stream": "heads",
+      "topic": "Retail guide dimensional lead",
+      "url": "https://www.design911.co.uk/p/exhaust-valve-guide-1st-oversize-porsche-993-turbo-1994-98/",
+      "finding": "OE Match supplier listing quotes8.00mmID/13.05mmOD/45.40mmlength andbronze for99310432161/1. Retained as discovery lead; no original Porsche dimension or verified interference fit established."
+    },
+    {
+      "stream": "heads",
+      "topic": "Official Austrian PET link",
+      "url": "https://www.porsche.at/media/Kwc_Basic_DownloadTag_Component/4740-45397-124814-downloadTag/default/f5000535/1746537738/kat017-d-911-98-katalog.pdf",
+      "finding": "Current HTTP request redirected to Porsche Austria HTML homepage; it was not accepted as a PDF capture despite indexed search text."
+    },
+    {
+      "stream": "heads",
+      "route": "Manufacturer valve catalogues for exactM64/60",
+      "outcome": "Search results predominantly retailer cross-references. Retailer49mm/42.5mm valve dimensions were not promoted to manufacturer fact records."
+    },
+    {
+      "stream": "heads",
+      "route": "FVD993Turbo own-cam listings",
+      "outcome": "Listings advertise1.5mm and1.9mm setpoints, but geometric product dimensions appear commercial packaging/envelope data and were not adopted as cam dimensions."
+    },
+    {
+      "stream": "heads",
+      "route": "Dougherty profile page",
+      "outcome": "Parent independently curated this same manufacturer page; duplicate rows omitted from this supplier packet."
+    },
+    {
+      "stream": "turbos",
+      "url": "https://www.melett.com/parts-catalogue-component/",
+      "result": "Current K14/K16 and K24 catalogue links redirect to customer login. Public landing-page and link destination were inspected; protected dimensions were not acquired or bypassed."
+    },
+    {
+      "stream": "turbos",
+      "url": "https://www.turbointernational.com/images/catalog-pdf/Catalog-KKK.pdf",
+      "result": "Historical publisher PDF URL returned HTTP404; independently public archived manufacturer documents were reviewed on the identified mirror."
+    },
+    {
+      "stream": "turbos",
+      "url": "https://www.kinugawaturbo.com/products/kinugawa-turbo-turbine-wheel-for-posche-911-996-kkk-k16-49mm-55-mm-12-blades",
+      "result": "Search preview reports shaft8.42mm and tip-height9.4mm, but current captured product HTML does not expose those specifications. Cached-only numerical claims are excluded from accepted facts."
+    },
+    {
+      "stream": "turbos",
+      "url": "https://arashidynamics.com/products/turbo-repair-rebuild-kit-kkk-k14-k16",
+      "result": "Manufacturer generic K14/K16 VW-diesel kit lists bolts, rings and O-ring labels but does not establish exact Porsche993 compatibility. Not used as a 993 machining specification."
+    },
+    {
+      "stream": "fia",
+      "route": "PDF renderer screenshots",
+      "outcome": "Screenshot calls returned only the text marker <<ImageDisplayed>>; no image bytes or actual viewable page artifact was available. Earlier visual-verification statements were unsupported and are withdrawn."
+    },
+    {
+      "stream": "fia",
+      "route": "GT2-003 exhaust angle",
+      "outcome": "Primary reader OCR is ambiguous; no exhaust value inferred from the legible intake angle."
+    },
+    {
+      "stream": "fia",
+      "route": "FIA645 andGT2-004 image-dependent numeric candidates",
+      "outcome": "All affected numeric records have null values and eligibility exclude pending readable primary evidence or actual page inspection."
+    },
+    {
+      "stream": "fia",
+      "route": "Direct FIA car-page HTTP request",
+      "outcome": "Direct cloud car-page fetch returned403 and was stopped. No original PDF file or PDF-byte SHA was acquired by this agent."
+    },
+    {
+      "stream": "pistons",
+      "route": "Wössner2025 catalogue",
+      "result": "Reader accessible, directPDF HTTP403; K9018/993TTnotpresent in reader text. Historical2013/2014catalogue used with edition scope instead. WP094-SP2025 pin thickness column differs from historicalWP094inside-diameter heading; no cross-edition geometry transfer."
+    },
+    {
+      "stream": "pistons",
+      "route": "MAHLE5043600 retailer listings",
+      "result": "Several retailers repeat catalogue-like dimensions but are not treated as primary manufacturer dimensional evidence. One retailer99310391551listing gives9.5:1and31.5mmCH, inconsistentwith8:1/31.8otherlistings, so that evidence is not used."
+    },
+    {
+      "stream": "root",
+      "route": "Porsche piston spray-jet bulletin 1/97",
+      "outcome": "Already present in the frozen 2 October research register, including the long-jet length and short-jet conflict; not counted again as new measurements."
+    }
+  ]
+}

@@ -1,0 +1,1500 @@
+{
+  "policy": "source_family_and_identical_reviewed_claim_connected_components",
+  "prior_ledgers": [
+    "training/993-turbo-20261002/split-ledger.json",
+    "training/mezger-turbo-materials-20261003/split-ledger.json",
+    "training/mezger-german-sources-20261003/split-ledger.json"
+  ],
+  "source_family_aliases": {
+    "mahle-aftermarket.com": "us.mahle.com",
+    "ruf-automobile.de": "ruf-993",
+    "tte24.net": "tte-products"
+  },
+  "publisher_family_rules": {
+    "fia_homologation": "fia-homologation",
+    "melett_brand_and_technical_mirrors": "melett.com",
+    "federal_mogul_engine_catalogues": "federal-mogul-engine-catalogues"
+  },
+  "components": [
+    {
+      "id": "15f8034cdff6595cbfa1-1dd67c28d3aade9d3442ee99310d18bd.ssl.cf3.rackcdn.com",
+      "families": [
+        "15f8034cdff6595cbfa1-1dd67c28d3aade9d3442ee99310d18bd.ssl.cf3.rackcdn.com"
+      ],
+      "split": "train",
+      "inherited_prior_partition": false,
+      "protected_train_family": false
+    },
+    {
+      "id": "drcamshafts.com",
+      "families": [
+        "drcamshafts.com"
+      ],
+      "split": "train",
+      "inherited_prior_partition": false,
+      "protected_train_family": false
+    },
+    {
+      "id": "drivparts.com",
+      "families": [
+        "drivparts.com",
+        "federal-mogul-engine-catalogues",
+        "ms-motorservice.com"
+      ],
+      "split": "train",
+      "inherited_prior_partition": true,
+      "protected_train_family": false
+    },
+    {
+      "id": "fia-homologation",
+      "families": [
+        "fia-homologation"
+      ],
+      "split": "train",
+      "inherited_prior_partition": false,
+      "protected_train_family": false
+    },
+    {
+      "id": "lnengineering.com",
+      "families": [
+        "lnengineering.com"
+      ],
+      "split": "train",
+      "inherited_prior_partition": true,
+      "protected_train_family": true
+    },
+    {
+      "id": "melett.com",
+      "families": [
+        "melett.com",
+        "turbomaster.com",
+        "vaglinks.com"
+      ],
+      "split": "train",
+      "inherited_prior_partition": true,
+      "protected_train_family": false
+    },
+    {
+      "id": "porsche-factory-and-archive",
+      "families": [
+        "porsche-factory-and-archive"
+      ],
+      "split": "train",
+      "inherited_prior_partition": true,
+      "protected_train_family": true
+    },
+    {
+      "id": "schrick.com",
+      "families": [
+        "schrick.com"
+      ],
+      "split": "train",
+      "inherited_prior_partition": false,
+      "protected_train_family": false
+    },
+    {
+      "id": "us.mahle.com",
+      "families": [
+        "us.mahle.com"
+      ],
+      "split": "train",
+      "inherited_prior_partition": true,
+      "protected_train_family": true
+    },
+    {
+      "id": "victorreinz.com",
+      "families": [
+        "victorreinz.com"
+      ],
+      "split": "train",
+      "inherited_prior_partition": false,
+      "protected_train_family": false
+    }
+  ],
+  "records": [
+    {
+      "record_id": "M64-MEAS-B001",
+      "source_ids": [
+        "SRC-M64-MEAS-FM-ENGINE-2015",
+        "SRC-M64-MEAS-GLYCO-2022"
+      ],
+      "source_families": [
+        "drivparts.com",
+        "federal-mogul-engine-catalogues"
+      ],
+      "claim_ids": [
+        "fact:f2a5dca89731ba4960f88c66bd4e830e5650a2c6ac0797fbbba847846a4e7f77",
+        "measurement_fact:efa75630240ae0e71bd7e6863c05fa6caf67fd9f608d21f6d2b917b3b12c42f9"
+      ],
+      "component": "drivparts.com",
+      "split": "train"
+    },
+    {
+      "record_id": "M64-MEAS-B002",
+      "source_ids": [
+        "SRC-M64-MEAS-FM-ENGINE-2015",
+        "SRC-M64-MEAS-GLYCO-2022"
+      ],
+      "source_families": [
+        "drivparts.com",
+        "federal-mogul-engine-catalogues"
+      ],
+      "claim_ids": [
+        "fact:da7dd80ce4f049c3dc470899e45d07e53502316cc50e09bb2d9759cc7b0a6cfa",
+        "measurement_fact:dbe09156ba60bcc745988f5fcffdb44fcdaacef42eacab0d70fe971caf1afcfb"
+      ],
+      "component": "drivparts.com",
+      "split": "train"
+    },
+    {
+      "record_id": "M64-MEAS-B003",
+      "source_ids": [
+        "SRC-M64-MEAS-FM-ENGINE-2015",
+        "SRC-M64-MEAS-GLYCO-2022",
+        "SRC-M64-MEAS-MS-CLASSIC-2021"
+      ],
+      "source_families": [
+        "drivparts.com",
+        "federal-mogul-engine-catalogues",
+        "ms-motorservice.com"
+      ],
+      "claim_ids": [
+        "fact:8f76ae1af4c0c7db2134c108a86322fdb5c09c6eb3c9038e3f29005df254e15a",
+        "measurement_fact:af2fc3bd44af5c7dc4666df7fb7f845a8b8976333b00ac5a7808441e901c7a65"
+      ],
+      "component": "drivparts.com",
+      "split": "train"
+    },
+    {
+      "record_id": "M64-MEAS-B004",
+      "source_ids": [
+        "SRC-M64-MEAS-FM-ENGINE-2015",
+        "SRC-M64-MEAS-GLYCO-2022",
+        "SRC-M64-MEAS-MS-CLASSIC-2021"
+      ],
+      "source_families": [
+        "drivparts.com",
+        "federal-mogul-engine-catalogues",
+        "ms-motorservice.com"
+      ],
+      "claim_ids": [
+        "fact:36bae218a6edfb306ab0b6df807a579f4c7f705ed931b770a4fd986296fa2b6f",
+        "measurement_fact:6c9e8cb14f78eac1f432644cd633f6e6a4d24aa45fa152a8024349e832a2775b"
+      ],
+      "component": "drivparts.com",
+      "split": "train"
+    },
+    {
+      "record_id": "M64-MEAS-B005",
+      "source_ids": [
+        "SRC-M64-MEAS-FM-ENGINE-2015",
+        "SRC-M64-MEAS-GLYCO-2022"
+      ],
+      "source_families": [
+        "drivparts.com",
+        "federal-mogul-engine-catalogues"
+      ],
+      "claim_ids": [
+        "fact:a6cd4d32a6b1e69d4922b07f00a48bca96b9d4400eab4bd386088c93a5dee0a5",
+        "measurement_fact:106805a737240b0dc01dd4256c16bae8071d33e0fb21d0f8dc56de749affc663"
+      ],
+      "component": "drivparts.com",
+      "split": "train"
+    },
+    {
+      "record_id": "M64-MEAS-B006",
+      "source_ids": [
+        "SRC-M64-MEAS-FM-ENGINE-2015",
+        "SRC-M64-MEAS-GLYCO-2022"
+      ],
+      "source_families": [
+        "drivparts.com",
+        "federal-mogul-engine-catalogues"
+      ],
+      "claim_ids": [
+        "fact:6d4384278e993b28538a08609c255e9dd05a88f491e435d99825324e697ba90c",
+        "measurement_fact:0a472fc992521d40da24b04e8ab58548d35416e30e3132f5b43811577c8ce60b"
+      ],
+      "component": "drivparts.com",
+      "split": "train"
+    },
+    {
+      "record_id": "M64-MEAS-B007",
+      "source_ids": [
+        "SRC-M64-MEAS-FM-ENGINE-2015",
+        "SRC-M64-MEAS-GLYCO-2022"
+      ],
+      "source_families": [
+        "drivparts.com",
+        "federal-mogul-engine-catalogues"
+      ],
+      "claim_ids": [
+        "fact:bfd18fb0a26cbb582dbd4679432941f7e87fb932f1eb68028ee304885242a462",
+        "measurement_fact:7e020fb52126d420330fb4e9e2e5f71b430d873633f85ff330d5c94a7f5e6527"
+      ],
+      "component": "drivparts.com",
+      "split": "train"
+    },
+    {
+      "record_id": "M64-MEAS-B008",
+      "source_ids": [
+        "SRC-M64-MEAS-FM-ENGINE-2015",
+        "SRC-M64-MEAS-GLYCO-2022"
+      ],
+      "source_families": [
+        "drivparts.com",
+        "federal-mogul-engine-catalogues"
+      ],
+      "claim_ids": [
+        "fact:9f34a8e6c664783493362a390d89d563957e2b964aedc69d3151b8e50f24b56e",
+        "measurement_fact:dd8b6414203fb703a2abf823d2779b697104c7ca8b11c27329cc7c4f74c067d1"
+      ],
+      "component": "drivparts.com",
+      "split": "train"
+    },
+    {
+      "record_id": "M64-MEAS-B009",
+      "source_ids": [
+        "SRC-M64-MEAS-FM-ENGINE-2015",
+        "SRC-M64-MEAS-GLYCO-2022"
+      ],
+      "source_families": [
+        "drivparts.com",
+        "federal-mogul-engine-catalogues"
+      ],
+      "claim_ids": [
+        "fact:8d57a78c801c70f465e48dc63afe36b8323b9d18fd31d05f62b3138e854a1a7e",
+        "measurement_fact:87fbce07266af475f61faf7dc47ee24aba65dd156be1e5be87cac21880799603"
+      ],
+      "component": "drivparts.com",
+      "split": "train"
+    },
+    {
+      "record_id": "M64-MEAS-B010",
+      "source_ids": [
+        "SRC-M64-MEAS-FM-ENGINE-2015",
+        "SRC-M64-MEAS-GLYCO-2022"
+      ],
+      "source_families": [
+        "drivparts.com",
+        "federal-mogul-engine-catalogues"
+      ],
+      "claim_ids": [
+        "fact:124be42ddd4700d688cc39e6760bdfc71b3fa759aa2fb6a5b8a139933f6e4c15",
+        "measurement_fact:aba348439afc138e681ce48f89839e915460794249ada084614990b8e7109a3e"
+      ],
+      "component": "drivparts.com",
+      "split": "train"
+    },
+    {
+      "record_id": "M64-MEAS-B011",
+      "source_ids": [
+        "SRC-M64-MEAS-FM-ENGINE-2015",
+        "SRC-M64-MEAS-GLYCO-2022"
+      ],
+      "source_families": [
+        "drivparts.com",
+        "federal-mogul-engine-catalogues"
+      ],
+      "claim_ids": [
+        "fact:d6b0c3ade8a4fb517fcfc4988778f7951086742c812e4dd4e5fd942a10c9d10e",
+        "measurement_fact:cfdee0b4c7bfe716b2bc7d5f54e8a45d54a7287a99430ce39e1544d2827103be"
+      ],
+      "component": "drivparts.com",
+      "split": "train"
+    },
+    {
+      "record_id": "M64-MEAS-B012",
+      "source_ids": [
+        "SRC-M64-MEAS-FM-ENGINE-2015",
+        "SRC-M64-MEAS-GLYCO-2022"
+      ],
+      "source_families": [
+        "drivparts.com",
+        "federal-mogul-engine-catalogues"
+      ],
+      "claim_ids": [
+        "fact:0ccd02347fcd707adbd28b777fed868bbc9fada93db20afd0967af51a3f9f482",
+        "measurement_fact:b6cf6bd977458bf6265af6ca29d315ae120a16ed90f78c0908c2bbd387c96fa2"
+      ],
+      "component": "drivparts.com",
+      "split": "train"
+    },
+    {
+      "record_id": "M64-MEAS-B013",
+      "source_ids": [
+        "SRC-M64-MEAS-FM-ENGINE-2015"
+      ],
+      "source_families": [
+        "federal-mogul-engine-catalogues"
+      ],
+      "claim_ids": [
+        "fact:ac6dd40d10ed3d66eb5eec57f614e11fb548354dd97073dc049b45fe05ffda36",
+        "measurement_fact:0f9ca4bd9409a4ea9906428aca4b6190cf02227ba48647fa2eb84dca94b5f02c"
+      ],
+      "component": "drivparts.com",
+      "split": "train"
+    },
+    {
+      "record_id": "M64-MEAS-B014",
+      "source_ids": [
+        "SRC-M64-MEAS-FM-ENGINE-2015",
+        "SRC-M64-MEAS-GLYCO-2022"
+      ],
+      "source_families": [
+        "drivparts.com",
+        "federal-mogul-engine-catalogues"
+      ],
+      "claim_ids": [
+        "fact:7cbab2add4d261e8a07aeac28a221599bafd3233c272eae111835f5f250a9606",
+        "measurement_fact:294abc6dc8acc69870fbe8823d44573110ab6bb7c79e5633e0d58a2b4d7ebb58"
+      ],
+      "component": "drivparts.com",
+      "split": "train"
+    },
+    {
+      "record_id": "M64-MEAS-B015",
+      "source_ids": [
+        "SRC-M64-MEAS-FM-ENGINE-2015",
+        "SRC-M64-MEAS-GLYCO-2022"
+      ],
+      "source_families": [
+        "drivparts.com",
+        "federal-mogul-engine-catalogues"
+      ],
+      "claim_ids": [
+        "fact:50ec515eed0805a6a2cbfb5afe7d7a3349d96dd24e245df6429c7671a2bb9738",
+        "measurement_fact:80e6ccd04841e6d8449e86fe672290aa84b1a7a7e75eac4b44aed6471368e03c"
+      ],
+      "component": "drivparts.com",
+      "split": "train"
+    },
+    {
+      "record_id": "M64-MEAS-B016",
+      "source_ids": [
+        "SRC-M64-MEAS-FM-ENGINE-2015",
+        "SRC-M64-MEAS-GLYCO-2022"
+      ],
+      "source_families": [
+        "drivparts.com",
+        "federal-mogul-engine-catalogues"
+      ],
+      "claim_ids": [
+        "fact:bf35e4b63e0b7f585f6b982ee279bfd067c78902418eb26ab9b212077370293a",
+        "measurement_fact:920cb97cf6d9c69bf087566c8af4c34e8fdb8095cf8f66843dd0da50765a35af"
+      ],
+      "component": "drivparts.com",
+      "split": "train"
+    },
+    {
+      "record_id": "M64-MEAS-B017",
+      "source_ids": [
+        "SRC-M64-MEAS-FM-ENGINE-2015"
+      ],
+      "source_families": [
+        "federal-mogul-engine-catalogues"
+      ],
+      "claim_ids": [
+        "fact:bf5d1490738806730e5626950040d6813cdef6734a99fc32850f8f70b9e42b3e",
+        "measurement_fact:b24e7167bf6a8b80db4524a165c3f3fc3d8e7944e0ad413537cc90f10d6683dd"
+      ],
+      "component": "drivparts.com",
+      "split": "train"
+    },
+    {
+      "record_id": "M64-MEAS-H001",
+      "source_ids": [
+        "SRC-M64-MEAS-DOUGHERTY-PROFILES"
+      ],
+      "source_families": [
+        "drcamshafts.com"
+      ],
+      "claim_ids": [
+        "fact:949ce587e9a18c5d26f60cb4916b64c4710938f1bf704c5092235696b80db04a",
+        "measurement_fact:e498d639efdf72122c39bf6e5a37d053006158f6c27680588d57bc515aa638da"
+      ],
+      "component": "drcamshafts.com",
+      "split": "train"
+    },
+    {
+      "record_id": "M64-MEAS-H002",
+      "source_ids": [
+        "SRC-M64-MEAS-DOUGHERTY-PROFILES"
+      ],
+      "source_families": [
+        "drcamshafts.com"
+      ],
+      "claim_ids": [
+        "fact:f95d0704ddf8ae4b55e9c9e5e9ea49a3496a53988e42c6852b47ea9906ffc70c",
+        "measurement_fact:ec9e6fc1223b6775a34ef78cb1bbadc69047ca81dcaf988eb0045d5e33d154fc"
+      ],
+      "component": "drcamshafts.com",
+      "split": "train"
+    },
+    {
+      "record_id": "M64-MEAS-H003",
+      "source_ids": [
+        "SRC-M64-MEAS-DOUGHERTY-PROFILES"
+      ],
+      "source_families": [
+        "drcamshafts.com"
+      ],
+      "claim_ids": [
+        "fact:e4cca1cc83f0ab2136d7cef699484f2d96e553795bdbc20878845c88465b7099",
+        "measurement_fact:ab5dde3258b4241d3b27b33e134470d5fd8a64304e59a81a7f435bc7143d9ba4"
+      ],
+      "component": "drcamshafts.com",
+      "split": "train"
+    },
+    {
+      "record_id": "M64-MEAS-H004",
+      "source_ids": [
+        "SRC-M64-MEAS-DOUGHERTY-PROFILES"
+      ],
+      "source_families": [
+        "drcamshafts.com"
+      ],
+      "claim_ids": [
+        "fact:1201d3d79e116974b0d7b733a0ebc72074d6402c64f961c6990e5d476692ff68",
+        "measurement_fact:d3aca63fdf6d0624c0346e6f5a59d0355717069c8c5741e040f7eb6ff8d1cbce"
+      ],
+      "component": "drcamshafts.com",
+      "split": "train"
+    },
+    {
+      "record_id": "M64-MEAS-H005",
+      "source_ids": [
+        "SRC-M64-MEAS-DOUGHERTY-PROFILES"
+      ],
+      "source_families": [
+        "drcamshafts.com"
+      ],
+      "claim_ids": [
+        "fact:f9466ffd623dc0237e7e25cb645025cf7910c8e76a4fbe01a5312507aee6ffb5",
+        "measurement_fact:eef13b4f7490783ea97ad74ce2c1d2edccc2fc0cf4f8af32b8fc2a0a4d6f7bc3"
+      ],
+      "component": "drcamshafts.com",
+      "split": "train"
+    },
+    {
+      "record_id": "M64-MEAS-H006",
+      "source_ids": [
+        "SRC-M64-MEAS-DOUGHERTY-PROFILES"
+      ],
+      "source_families": [
+        "drcamshafts.com"
+      ],
+      "claim_ids": [
+        "fact:73e09e10e3ec7449a21734277516f256d1295b2cee796948ddaed513622735d6",
+        "measurement_fact:4f618a5ea3adb214df5e77f2eda69c0db31049f717d14f6e350a3ad95a0ad271"
+      ],
+      "component": "drcamshafts.com",
+      "split": "train"
+    },
+    {
+      "record_id": "M64-MEAS-H007",
+      "source_ids": [
+        "SRC-M64-MEAS-DOUGHERTY-PROFILES"
+      ],
+      "source_families": [
+        "drcamshafts.com"
+      ],
+      "claim_ids": [
+        "fact:37d9057f91a27fdcbbfda8f8b08c2fa66d2f7f3f0a8ee970df6272939a966bfe",
+        "measurement_fact:e164129874cee59759492c05fca37cfd27ed3b9964d72c438e0b62d85c12f302"
+      ],
+      "component": "drcamshafts.com",
+      "split": "train"
+    },
+    {
+      "record_id": "M64-MEAS-H008",
+      "source_ids": [
+        "SRC-M64-MEAS-DOUGHERTY-PROFILES"
+      ],
+      "source_families": [
+        "drcamshafts.com"
+      ],
+      "claim_ids": [
+        "fact:b01bf425ad228f7e4352a5aa29735c56aed1279894107021666060fb277ed66a",
+        "measurement_fact:0e6c9da873144ed60d437ae44825ca64fc01e47a10d8598eba9948e9132b1705"
+      ],
+      "component": "drcamshafts.com",
+      "split": "train"
+    },
+    {
+      "record_id": "M64-MEAS-H009",
+      "source_ids": [
+        "SRC-M64-MEAS-DOUGHERTY-PROFILES"
+      ],
+      "source_families": [
+        "drcamshafts.com"
+      ],
+      "claim_ids": [
+        "fact:ebd0896c220ba404345781baa7252765e3219d158d1f814f70b99437fb5915d5",
+        "measurement_fact:bb578641405b4e542b9424cac1282acbfe0d76d279f723f0255cfc48668c73ba"
+      ],
+      "component": "drcamshafts.com",
+      "split": "train"
+    },
+    {
+      "record_id": "M64-MEAS-H010",
+      "source_ids": [
+        "SRC-M64-MEAS-DOUGHERTY-PROFILES"
+      ],
+      "source_families": [
+        "drcamshafts.com"
+      ],
+      "claim_ids": [
+        "fact:f0a01c8c11bb55686d12da69e7e28eb79b6afcd473285e507f1334f457f9bf10",
+        "measurement_fact:3d1a21124961e9ff07c4f8ad5381358b4e188f4d8184ad2ede63a817aff7d874"
+      ],
+      "component": "drcamshafts.com",
+      "split": "train"
+    },
+    {
+      "record_id": "M64-MEAS-H011",
+      "source_ids": [
+        "SRC-M64-MEAS-DOUGHERTY-PROFILES"
+      ],
+      "source_families": [
+        "drcamshafts.com"
+      ],
+      "claim_ids": [
+        "fact:b840943e244d9562f9df708381cafb8880d4fc56dfb4e88bd15087791181f810",
+        "measurement_fact:e692ced77e41b5156f66decd6c872a9a9d3983538962b1f6ff54bb95a06ddabd"
+      ],
+      "component": "drcamshafts.com",
+      "split": "train"
+    },
+    {
+      "record_id": "M64-MEAS-H012",
+      "source_ids": [
+        "SRC-M64-MEAS-DOUGHERTY-PROFILES"
+      ],
+      "source_families": [
+        "drcamshafts.com"
+      ],
+      "claim_ids": [
+        "fact:d26e1d1f9a49049a71f59b009f52bb2fd05aee942c40049274890ed73ebf953e",
+        "measurement_fact:9dc54140eb312c91675bd3e98f73b18857cd5278b77d5870a313a792551aed88"
+      ],
+      "component": "drcamshafts.com",
+      "split": "train"
+    },
+    {
+      "record_id": "M64-MEAS-H013",
+      "source_ids": [
+        "SRC-M64-MEAS-DOUGHERTY-PROFILES"
+      ],
+      "source_families": [
+        "drcamshafts.com"
+      ],
+      "claim_ids": [
+        "fact:2d2be71479cffc619b03a34d0df439e42bb319453d704610dd96b31f3bcca987",
+        "measurement_fact:6350419444d7854ee347138fdfb55db5ea2a1986570829e6eef21e16857a7e62"
+      ],
+      "component": "drcamshafts.com",
+      "split": "train"
+    },
+    {
+      "record_id": "M64-MEAS-H014",
+      "source_ids": [
+        "SRC-M64-MEAS-DOUGHERTY-PROFILES"
+      ],
+      "source_families": [
+        "drcamshafts.com"
+      ],
+      "claim_ids": [
+        "fact:1d1d3f94f858a2761b518e0968285e2dd748d6d81ccff2c7699eb453305fcb5a",
+        "measurement_fact:9510fb39b7534aa8d5a0b3bcc289a664a7975caa8221d4e6be81a990f49ae2a4"
+      ],
+      "component": "drcamshafts.com",
+      "split": "train"
+    },
+    {
+      "record_id": "M64-MEAS-H015",
+      "source_ids": [
+        "SRC-M64-MEAS-DOUGHERTY-PROFILES"
+      ],
+      "source_families": [
+        "drcamshafts.com"
+      ],
+      "claim_ids": [
+        "fact:e3e3d6bc7e0fe41309a03aaeb27064b36109b147c29dec78bb24da8773935267",
+        "measurement_fact:1e6f2fd18faff12905087972a311849130c14f3a2fcf487a041529fb72680194"
+      ],
+      "component": "drcamshafts.com",
+      "split": "train"
+    },
+    {
+      "record_id": "M64-MEAS-H016",
+      "source_ids": [
+        "SRC-M64-MEAS-993-SPEC-BOOKLET",
+        "SRC-PORSCHE-WORKSHOP-MANUAL-993"
+      ],
+      "source_families": [
+        "porsche-factory-and-archive"
+      ],
+      "claim_ids": [
+        "fact:7dde57d463c60760737856b2fa366526a04f2cfa36ddc45c027803afdd2a87ee",
+        "measurement_fact:f66d72533bb0ff933fe621bb0f0330185f040bbefa8b64f9750f5cd8cd701635"
+      ],
+      "component": "porsche-factory-and-archive",
+      "split": "train"
+    },
+    {
+      "record_id": "M64-MEAS-HS001",
+      "source_ids": [
+        "SRC-M64-MEAS-SCHRICK-2013-CATALOG"
+      ],
+      "source_families": [
+        "schrick.com"
+      ],
+      "claim_ids": [
+        "fact:5b04ce4d90ce02a7e7007f8860a662384bf1621a16e102467b851f9d4bc90c25",
+        "measurement_fact:05767baafafff1f68ee877ab307350c785ccd152af9fc294cb09afdbc952df43"
+      ],
+      "component": "schrick.com",
+      "split": "train"
+    },
+    {
+      "record_id": "M64-MEAS-HS002",
+      "source_ids": [
+        "SRC-M64-MEAS-SCHRICK-2013-CATALOG"
+      ],
+      "source_families": [
+        "schrick.com"
+      ],
+      "claim_ids": [
+        "fact:6e6aacf95a10eaa2abdad84dfb143640cd28e3d90a68dc0eba6c03a18c242705",
+        "measurement_fact:82e260de7891d979daa2dbcc3d82293f813d04de02e15416dead46c3b9a0fdc8"
+      ],
+      "component": "schrick.com",
+      "split": "train"
+    },
+    {
+      "record_id": "M64-MEAS-HS003",
+      "source_ids": [
+        "SRC-M64-MEAS-SCHRICK-2013-CATALOG"
+      ],
+      "source_families": [
+        "schrick.com"
+      ],
+      "claim_ids": [
+        "fact:f3696dd9a6f257e07a5bcebb9c11d285fe43cd3aa798cd14185180cc1404349c",
+        "measurement_fact:dc96d29a8b5a736b172d0c566026d8640669529e9e66071ec9c8963551fd8af4"
+      ],
+      "component": "schrick.com",
+      "split": "train"
+    },
+    {
+      "record_id": "M64-MEAS-HS004",
+      "source_ids": [
+        "SRC-M64-MEAS-SCHRICK-2013-CATALOG"
+      ],
+      "source_families": [
+        "schrick.com"
+      ],
+      "claim_ids": [
+        "fact:bccf1e8bce60c52c3253739c34b7e4636a74ee5a5632ec378d3040ee7f93ed5b",
+        "measurement_fact:b5d98b80f200dd4b433975b211f986575c2b72a7895a895fe2939a28f96a9683"
+      ],
+      "component": "schrick.com",
+      "split": "train"
+    },
+    {
+      "record_id": "M64-MEAS-HS005",
+      "source_ids": [
+        "SRC-M64-MEAS-SCHRICK-2013-CATALOG"
+      ],
+      "source_families": [
+        "schrick.com"
+      ],
+      "claim_ids": [
+        "fact:22422b39fc71560b1127cb2c43c896a2e67f9c8d0e3240b43c52da10fbc76ee1",
+        "measurement_fact:7ee14548cffe03305154a9852b2779d6b7a4b03d05f13165cfc54029aed809db"
+      ],
+      "component": "schrick.com",
+      "split": "train"
+    },
+    {
+      "record_id": "M64-MEAS-HS006",
+      "source_ids": [
+        "SRC-M64-MEAS-SCHRICK-993-0005L1921"
+      ],
+      "source_families": [
+        "schrick.com"
+      ],
+      "claim_ids": [
+        "fact:b318b25a5be874d952fe1d60cc3518264b82feeb7eb009787588223b2adf2a20",
+        "measurement_fact:8252e67679d6dd5d2de4b67c2071afd59829283538bdb6ff56b0ac8f23b6141f"
+      ],
+      "component": "schrick.com",
+      "split": "train"
+    },
+    {
+      "record_id": "M64-MEAS-HS007",
+      "source_ids": [
+        "SRC-M64-MEAS-SCHRICK-993-0005L1921"
+      ],
+      "source_families": [
+        "schrick.com"
+      ],
+      "claim_ids": [
+        "fact:24af4c4bec8a61ecfaf7e32af2a7652e86ec8082e98bdb160e19f26e07d56e3e",
+        "measurement_fact:63872e02c5bbd9c3aa0bde1e030be0ed910233efe096fc2e201ab6c5bc57be71"
+      ],
+      "component": "schrick.com",
+      "split": "train"
+    },
+    {
+      "record_id": "M64-MEAS-HS008",
+      "source_ids": [
+        "SRC-M64-MEAS-SCHRICK-993-0005L1921"
+      ],
+      "source_families": [
+        "schrick.com"
+      ],
+      "claim_ids": [
+        "fact:cdb571f8452b7a7b06623fab281f3a11b365e70de9726187205145513e57fd75",
+        "measurement_fact:71cd2ad0157778e2246e2d5b107b17d0762094fcbd85c7f6b10ed8bc33cf3ba9"
+      ],
+      "component": "schrick.com",
+      "split": "train"
+    },
+    {
+      "record_id": "M64-MEAS-HS009",
+      "source_ids": [
+        "SRC-M64-MEAS-SCHRICK-993-0005L1921"
+      ],
+      "source_families": [
+        "schrick.com"
+      ],
+      "claim_ids": [
+        "fact:1e362a58151a588fbd9451f4cb4ea82dd3054d7cb062661081dbe9043859bab6",
+        "measurement_fact:289f5fc78f7847223c1bc94714e414ac2710c02e445dc79ea13ae0b9ac2193e6"
+      ],
+      "component": "schrick.com",
+      "split": "train"
+    },
+    {
+      "record_id": "M64-MEAS-T001",
+      "source_ids": [
+        "SRC-M64-MEAS-MELETT-KKK-2008",
+        "SRC-TURBOMASTER-993-K16-6735-PARTS"
+      ],
+      "source_families": [
+        "melett.com",
+        "turbomaster.com"
+      ],
+      "claim_ids": [
+        "fact:1f56628af8c3a58aff28d0d9f7a8f194c645cf7f7c15041dbd9d489d75737dda",
+        "measurement_fact:f2fcc905f4a08d5a02935c55831693fa1968dcc86bf654d4074aca11c3edbfa0"
+      ],
+      "component": "melett.com",
+      "split": "train"
+    },
+    {
+      "record_id": "M64-MEAS-T002",
+      "source_ids": [
+        "SRC-M64-MEAS-MELETT-KKK-2008",
+        "SRC-TURBOMASTER-993-K16-6735-PARTS"
+      ],
+      "source_families": [
+        "melett.com",
+        "turbomaster.com"
+      ],
+      "claim_ids": [
+        "fact:c64454f981258abc9d4fe344f182cf1c8574fa90dea521467d8c0adc34996740",
+        "measurement_fact:f70a35d63a0279fa58b058dcb251f53a2a5ddceae59a190deee554cba14856a8"
+      ],
+      "component": "melett.com",
+      "split": "train"
+    },
+    {
+      "record_id": "M64-MEAS-T003",
+      "source_ids": [
+        "SRC-M64-MEAS-MELETT-KKK-2008",
+        "SRC-TURBOMASTER-993-K16-6735-PARTS"
+      ],
+      "source_families": [
+        "melett.com",
+        "turbomaster.com"
+      ],
+      "claim_ids": [
+        "fact:cc8fc29223d9d8bd332ec17cf42b40e53ce491175e6b79366748994988731dc4",
+        "measurement_fact:ed587cba0a9037e5f4d4bca64f1626781823ba520649a6d3c6122af91da2faac"
+      ],
+      "component": "melett.com",
+      "split": "train"
+    },
+    {
+      "record_id": "M64-MEAS-T004",
+      "source_ids": [
+        "SRC-M64-MEAS-MELETT-KKK-2008",
+        "SRC-TURBOMASTER-993-K16-6735-PARTS"
+      ],
+      "source_families": [
+        "melett.com",
+        "turbomaster.com"
+      ],
+      "claim_ids": [
+        "fact:83c61878aa9216cbf0418cad05791358af672d3c91dfe8642df980d1fab01276",
+        "measurement_fact:886946189aab870265ffe32c64f0cc189c1fd392849ae2cefa1daaa4bd6b5762"
+      ],
+      "component": "melett.com",
+      "split": "train"
+    },
+    {
+      "record_id": "M64-MEAS-T005",
+      "source_ids": [
+        "SRC-M64-MEAS-MELETT-KKK-2008"
+      ],
+      "source_families": [
+        "melett.com"
+      ],
+      "claim_ids": [
+        "fact:81ed3fe6d01570fcbba88f6cba5085c8ce1d9a4438b213d39385d3fe3bd8b959",
+        "measurement_fact:55e89f442bebdad6de963b0222056a1537d9e4c5761e7916f33ee0f7998de0d1"
+      ],
+      "component": "melett.com",
+      "split": "train"
+    },
+    {
+      "record_id": "M64-MEAS-T006",
+      "source_ids": [
+        "SRC-M64-MEAS-MELETT-KKK-2008"
+      ],
+      "source_families": [
+        "melett.com"
+      ],
+      "claim_ids": [
+        "fact:5a4b68bb534a161dd0dee99db47530ba5e648280b84533786820a36973a65056",
+        "measurement_fact:1bb7e99dff6bc66694bc0b134d7a880163728074cb76d1429bbee002e84b6857"
+      ],
+      "component": "melett.com",
+      "split": "train"
+    },
+    {
+      "record_id": "M64-MEAS-T007",
+      "source_ids": [
+        "SRC-M64-MEAS-MELETT-KKK-2008"
+      ],
+      "source_families": [
+        "melett.com"
+      ],
+      "claim_ids": [
+        "fact:22808f818e906b0fc75db0523dd8e9553f11d7bce61a7750d5e93389046668f2",
+        "measurement_fact:87d373b320dc758df3ca6b8379a23040b77d13d7f79b7f596ae295b25d35b9d7"
+      ],
+      "component": "melett.com",
+      "split": "train"
+    },
+    {
+      "record_id": "M64-MEAS-T008",
+      "source_ids": [
+        "SRC-M64-MEAS-TURBOMASTER-K16-CLEARANCES"
+      ],
+      "source_families": [
+        "turbomaster.com"
+      ],
+      "claim_ids": [
+        "fact:a1bb74fc08e6f488948e96a681ba463249d6ac41eb200196822c29b7cfba94dc",
+        "measurement_fact:c272ce9e00abbea3974ffcbab1220e714a18048e0d3ebb2db48a9f95d7f65b6e"
+      ],
+      "component": "melett.com",
+      "split": "train"
+    },
+    {
+      "record_id": "M64-MEAS-T009",
+      "source_ids": [
+        "SRC-M64-MEAS-TURBOMASTER-K16-CLEARANCES"
+      ],
+      "source_families": [
+        "turbomaster.com"
+      ],
+      "claim_ids": [
+        "fact:cc5eb2dc56bf53d7d21a8d7019f95df5973fe35df0fb89ca16f35a3aa155844d",
+        "measurement_fact:64ccd1b90a275683eecc73aa7c5bb16963b807530b54c6e3ac0b3935a51397dc"
+      ],
+      "component": "melett.com",
+      "split": "train"
+    },
+    {
+      "record_id": "M64-MEAS-T010",
+      "source_ids": [
+        "SRC-M64-MEAS-TURBOMASTER-K16-CLEARANCES"
+      ],
+      "source_families": [
+        "turbomaster.com"
+      ],
+      "claim_ids": [
+        "fact:cc5eb2dc56bf53d7d21a8d7019f95df5973fe35df0fb89ca16f35a3aa155844d",
+        "measurement_fact:5813a7f7eb15a65240883f1dd9bdf50c0f06bb6bf2c074e4d25950614cfae305"
+      ],
+      "component": "melett.com",
+      "split": "train"
+    },
+    {
+      "record_id": "M64-MEAS-T011",
+      "source_ids": [
+        "SRC-M64-MEAS-TURBOMASTER-K16-CLEARANCES"
+      ],
+      "source_families": [
+        "turbomaster.com"
+      ],
+      "claim_ids": [
+        "fact:916f1eeef4f199951c5cec94a89a61c50eb23094b899f60ea1dca5cde656fafd",
+        "measurement_fact:c79bd0dfee6d6f38bdeefec1837e058731d8ec815a61ccaa1cf7126fbbff838e"
+      ],
+      "component": "melett.com",
+      "split": "train"
+    },
+    {
+      "record_id": "M64-MEAS-T012",
+      "source_ids": [
+        "SRC-M64-MEAS-TURBOMASTER-K16-CLEARANCES"
+      ],
+      "source_families": [
+        "turbomaster.com"
+      ],
+      "claim_ids": [
+        "fact:47a73286a20ae79bb46fb3f76d7d6e5985488c59cd4d7a9e725825d38d5ee482",
+        "measurement_fact:78b538ed889f7a7ebe589236559d9e43815a3036b40b80d383231014ffbf93ae"
+      ],
+      "component": "melett.com",
+      "split": "train"
+    },
+    {
+      "record_id": "M64-MEAS-T013",
+      "source_ids": [
+        "SRC-M64-MEAS-TURBOMASTER-K16-CLEARANCES"
+      ],
+      "source_families": [
+        "turbomaster.com"
+      ],
+      "claim_ids": [
+        "fact:b6009f7216a1dc046157259085c14edb6d16ba946f4182517a177c4f4bfefcd7",
+        "measurement_fact:ad2f0928b51f65ab88b38d87da456da8c0c62a13715ca23321cd9b89fb584e72"
+      ],
+      "component": "melett.com",
+      "split": "train"
+    },
+    {
+      "record_id": "M64-MEAS-T014",
+      "source_ids": [
+        "SRC-M64-MEAS-TURBOMASTER-K16-CLEARANCES"
+      ],
+      "source_families": [
+        "turbomaster.com"
+      ],
+      "claim_ids": [
+        "fact:b893c1c3a7ce5f6728de55682d7f294fdc6c2edfbba1314a60383a73c9ad202f",
+        "measurement_fact:3a8bbdc6c461cb8792cc622aaca18aa8f111723cfc53190deed03230d38eb9e8"
+      ],
+      "component": "melett.com",
+      "split": "train"
+    },
+    {
+      "record_id": "M64-MEAS-T015",
+      "source_ids": [
+        "SRC-M64-MEAS-TI-CATALOGUE-2008"
+      ],
+      "source_families": [
+        "vaglinks.com"
+      ],
+      "claim_ids": [
+        "fact:166f5e849bc6bf13135329db5238a17c4c1de33e66aba581093cf936e3ba1ae2",
+        "measurement_fact:6d491128e11c48b78baf2208e23dca1867bbd3773e0e0daaf19ff251c15804a6"
+      ],
+      "component": "melett.com",
+      "split": "train"
+    },
+    {
+      "record_id": "M64-MEAS-T016",
+      "source_ids": [
+        "SRC-M64-MEAS-TI-CATALOGUE-2008"
+      ],
+      "source_families": [
+        "vaglinks.com"
+      ],
+      "claim_ids": [
+        "fact:484befe363cc6f6b2fe5d929bb7b39cae5a2c4ff9e3f44c22a4f385b8a85d188",
+        "measurement_fact:8bec3db737489002c49bac20ea2745e6168a4286976dc61d0c8cb180377dd459"
+      ],
+      "component": "melett.com",
+      "split": "train"
+    },
+    {
+      "record_id": "M64-MEAS-T017",
+      "source_ids": [
+        "SRC-M64-MEAS-TI-CATALOGUE-2008"
+      ],
+      "source_families": [
+        "vaglinks.com"
+      ],
+      "claim_ids": [
+        "fact:03002e952cadcc9e8727c2c72984cfc8dc18e934ffb8228908557f729e01a174",
+        "measurement_fact:4cdf7fd0a9eb4e74e1b4f88255aec737a87f7f54c53145d616124c8c6e938075"
+      ],
+      "component": "melett.com",
+      "split": "train"
+    },
+    {
+      "record_id": "M64-MEAS-T018",
+      "source_ids": [
+        "SRC-M64-MEAS-TI-CATALOGUE-2008"
+      ],
+      "source_families": [
+        "vaglinks.com"
+      ],
+      "claim_ids": [
+        "fact:3223083b6a1b19b37e8498e2e496c9d6c5b966efe920572be3455673984ab78d",
+        "measurement_fact:8b7a63fd2f32e31a14786608cfcf21869c1fd461521bd2c813188793e7afd38e"
+      ],
+      "component": "melett.com",
+      "split": "train"
+    },
+    {
+      "record_id": "M64-MEAS-T019",
+      "source_ids": [
+        "SRC-M64-MEAS-MELETT-KKK-2008",
+        "SRC-M64-MEAS-TI-CATALOGUE-2008"
+      ],
+      "source_families": [
+        "melett.com",
+        "vaglinks.com"
+      ],
+      "claim_ids": [
+        "fact:d79e139d4a934a1c980b19d225228e30e2229a67e42e94117a65131ce63d55da",
+        "measurement_fact:ad3639baf4483a06b42bc954968fb79f55e0414fea9895b69f072c55d887474f"
+      ],
+      "component": "melett.com",
+      "split": "train"
+    },
+    {
+      "record_id": "M64-MEAS-T020",
+      "source_ids": [
+        "SRC-M64-MEAS-TI-CATALOGUE-2008",
+        "SRC-TURBOMASTER-993-K16-6735-PARTS"
+      ],
+      "source_families": [
+        "turbomaster.com",
+        "vaglinks.com"
+      ],
+      "claim_ids": [
+        "fact:57c40cffc76f89ddcb355ea8c2f1620279babce1442c74de2ccb8ff3dc253af7",
+        "measurement_fact:49ac965d4d1bb8b5f8a64f805c1824536aa017a6e0dbe346825b89ce40da44a6"
+      ],
+      "component": "melett.com",
+      "split": "train"
+    },
+    {
+      "record_id": "M64-MEAS-R001",
+      "source_ids": [
+        "SRC-M64-MEAS-FIA-GT2-003"
+      ],
+      "source_families": [
+        "fia-homologation"
+      ],
+      "claim_ids": [
+        "fact:fa5211c816e756f05bf5ee1a39fe9fa8a494e1f2a24e4262e782765ec2ee9b4a",
+        "measurement_fact:03246a6d8ad4389b4f6e72333555ceb04fd0c921e0fd2dc08e70819b811d058e"
+      ],
+      "component": "fia-homologation",
+      "split": "train"
+    },
+    {
+      "record_id": "M64-MEAS-P001",
+      "source_ids": [
+        "SRC-M64-MEAS-GOETZE-RINGS-2019"
+      ],
+      "source_families": [
+        "federal-mogul-engine-catalogues"
+      ],
+      "claim_ids": [
+        "fact:279757006cef0a1e4d3a2cfd6c1a2ba0622d079d5c86a93ec8f0c019fe7e5931",
+        "measurement_fact:5ef08cdc6697894dbc87bf3b25a0cc5c1f58e2a215590d5f8bee550e2b812b44"
+      ],
+      "component": "drivparts.com",
+      "split": "train"
+    },
+    {
+      "record_id": "M64-MEAS-P002",
+      "source_ids": [
+        "SRC-M64-MEAS-GOETZE-RINGS-2019"
+      ],
+      "source_families": [
+        "federal-mogul-engine-catalogues"
+      ],
+      "claim_ids": [
+        "fact:23cf93d9cbf1638b26de1bb20cb9d5cf6435fea35b362bb103dd591bb53ba2c5",
+        "measurement_fact:01857a3b99d447005f40ec7bd946615f20c1095da7435227dc084f3266e4206c"
+      ],
+      "component": "drivparts.com",
+      "split": "train"
+    },
+    {
+      "record_id": "M64-MEAS-P003",
+      "source_ids": [
+        "SRC-M64-MEAS-GOETZE-RINGS-2019"
+      ],
+      "source_families": [
+        "federal-mogul-engine-catalogues"
+      ],
+      "claim_ids": [
+        "fact:1160029b872a76f8024ee68a3d9ee0024956eefbd857a7982c066c692aacd99c",
+        "measurement_fact:a06ae4a7d4359a44568c08accde63a954a23fd065d9288ca39a4eae1b09f0f96"
+      ],
+      "component": "drivparts.com",
+      "split": "train"
+    },
+    {
+      "record_id": "M64-MEAS-P004",
+      "source_ids": [
+        "SRC-M64-MEAS-WOSSNER-2013-2014"
+      ],
+      "source_families": [
+        "15f8034cdff6595cbfa1-1dd67c28d3aade9d3442ee99310d18bd.ssl.cf3.rackcdn.com"
+      ],
+      "claim_ids": [
+        "fact:f246e69f2bc9bc22f6ab9b753a285a0ed73c620ae2f658be772645cdcdaa67fe",
+        "measurement_fact:514e7b963fc813c20a799a88bb0e977d87a46acc3be4030c46a2871e09d5129d"
+      ],
+      "component": "15f8034cdff6595cbfa1-1dd67c28d3aade9d3442ee99310d18bd.ssl.cf3.rackcdn.com",
+      "split": "train"
+    },
+    {
+      "record_id": "M64-MEAS-P005",
+      "source_ids": [
+        "SRC-M64-MEAS-WOSSNER-2013-2014"
+      ],
+      "source_families": [
+        "15f8034cdff6595cbfa1-1dd67c28d3aade9d3442ee99310d18bd.ssl.cf3.rackcdn.com"
+      ],
+      "claim_ids": [
+        "fact:b8217e0a318d67b5a09040e358de55f8ff1b7cb79749f85338c0efd364ab4d0d",
+        "measurement_fact:0cc788c1e241f02f4cd2237cf871bafde6f0dcc131acc1fb88b05e1bd04a55bf"
+      ],
+      "component": "15f8034cdff6595cbfa1-1dd67c28d3aade9d3442ee99310d18bd.ssl.cf3.rackcdn.com",
+      "split": "train"
+    },
+    {
+      "record_id": "M64-MEAS-P006",
+      "source_ids": [
+        "SRC-M64-MEAS-WOSSNER-2013-2014"
+      ],
+      "source_families": [
+        "15f8034cdff6595cbfa1-1dd67c28d3aade9d3442ee99310d18bd.ssl.cf3.rackcdn.com"
+      ],
+      "claim_ids": [
+        "fact:089ea0db573c370e94d49945c1d00dbe8ca3e8c0b660749fa7e738f0fae043f2",
+        "measurement_fact:6ec09120b17e807e9db24059cc82c6b935e5b929614d08ecc7b6e9f18562fd26"
+      ],
+      "component": "15f8034cdff6595cbfa1-1dd67c28d3aade9d3442ee99310d18bd.ssl.cf3.rackcdn.com",
+      "split": "train"
+    },
+    {
+      "record_id": "M64-MEAS-P007",
+      "source_ids": [
+        "SRC-M64-MEAS-WOSSNER-2013-2014"
+      ],
+      "source_families": [
+        "15f8034cdff6595cbfa1-1dd67c28d3aade9d3442ee99310d18bd.ssl.cf3.rackcdn.com"
+      ],
+      "claim_ids": [
+        "fact:cdc9932d01e1e8e403567656d928d563e31523229140a82cbd7da6a00fc3719b",
+        "measurement_fact:2e755728f89560e007e05680dda55c2b2a896e8a87b64c0c1e919715b681b252"
+      ],
+      "component": "15f8034cdff6595cbfa1-1dd67c28d3aade9d3442ee99310d18bd.ssl.cf3.rackcdn.com",
+      "split": "train"
+    },
+    {
+      "record_id": "M64-MEAS-P008",
+      "source_ids": [
+        "SRC-M64-MEAS-WOSSNER-2013-2014"
+      ],
+      "source_families": [
+        "15f8034cdff6595cbfa1-1dd67c28d3aade9d3442ee99310d18bd.ssl.cf3.rackcdn.com"
+      ],
+      "claim_ids": [
+        "fact:0151c0c892dcd219a936d6d03b81a6288c435f02f6a21cef72ffb62b55ca2820",
+        "measurement_fact:245e0dfa9fcaaf2a53c3d49d207c41c6df7318aee9858d0cb32f3035b4f79b24"
+      ],
+      "component": "15f8034cdff6595cbfa1-1dd67c28d3aade9d3442ee99310d18bd.ssl.cf3.rackcdn.com",
+      "split": "train"
+    },
+    {
+      "record_id": "M64-MEAS-P009",
+      "source_ids": [
+        "SRC-M64-MEAS-WOSSNER-2013-2014"
+      ],
+      "source_families": [
+        "15f8034cdff6595cbfa1-1dd67c28d3aade9d3442ee99310d18bd.ssl.cf3.rackcdn.com"
+      ],
+      "claim_ids": [
+        "fact:d3fc79b7d22ca98a30acc948267bdd02930a66bba318b2f5783b21116e74d1e0",
+        "measurement_fact:4831721715b052426cf8de74d3a2bd1d190293e4a1dcbef37bea8f2605948795"
+      ],
+      "component": "15f8034cdff6595cbfa1-1dd67c28d3aade9d3442ee99310d18bd.ssl.cf3.rackcdn.com",
+      "split": "train"
+    },
+    {
+      "record_id": "M64-MEAS-P010",
+      "source_ids": [
+        "SRC-M64-MEAS-WOSSNER-2013-2014"
+      ],
+      "source_families": [
+        "15f8034cdff6595cbfa1-1dd67c28d3aade9d3442ee99310d18bd.ssl.cf3.rackcdn.com"
+      ],
+      "claim_ids": [
+        "fact:54c3eebac1c3e9d62bf92b231a20daa34e9a815aee8b86abee18582785a6d8b5",
+        "measurement_fact:dfee9664eec02d9aeda8e26a34acf4188570d6ec90f9ec7c57268282ce85bfaf"
+      ],
+      "component": "15f8034cdff6595cbfa1-1dd67c28d3aade9d3442ee99310d18bd.ssl.cf3.rackcdn.com",
+      "split": "train"
+    },
+    {
+      "record_id": "M64-MEAS-P011",
+      "source_ids": [
+        "SRC-M64-MEAS-WOSSNER-2013-2014"
+      ],
+      "source_families": [
+        "15f8034cdff6595cbfa1-1dd67c28d3aade9d3442ee99310d18bd.ssl.cf3.rackcdn.com"
+      ],
+      "claim_ids": [
+        "fact:0fb23a91dfb9b4b7fcb1026b090212689a08f0f8482a336f838681f9084ad9c6",
+        "measurement_fact:dd721829eabeb0c4fdb2330b9bb6b61d54d9b33381284bc0e347438d48b022b6"
+      ],
+      "component": "15f8034cdff6595cbfa1-1dd67c28d3aade9d3442ee99310d18bd.ssl.cf3.rackcdn.com",
+      "split": "train"
+    },
+    {
+      "record_id": "M64-MEAS-P012",
+      "source_ids": [
+        "SRC-M64-MEAS-WOSSNER-2013-2014"
+      ],
+      "source_families": [
+        "15f8034cdff6595cbfa1-1dd67c28d3aade9d3442ee99310d18bd.ssl.cf3.rackcdn.com"
+      ],
+      "claim_ids": [
+        "fact:0b0ba93601eec7174f5582dd1dd45b256c7d3f7a9a9395f6ad0d7969ddb96c9e",
+        "measurement_fact:79e102c93fd1fd9c84f73bab944502c7d01e9ba80384c67e1adbbd80a15bb485"
+      ],
+      "component": "15f8034cdff6595cbfa1-1dd67c28d3aade9d3442ee99310d18bd.ssl.cf3.rackcdn.com",
+      "split": "train"
+    },
+    {
+      "record_id": "M64-MEAS-P013",
+      "source_ids": [
+        "SRC-M64-MEAS-WOSSNER-2013-2014"
+      ],
+      "source_families": [
+        "15f8034cdff6595cbfa1-1dd67c28d3aade9d3442ee99310d18bd.ssl.cf3.rackcdn.com"
+      ],
+      "claim_ids": [
+        "fact:55aa961d0b7a85ae71ba88d573a18a0a3a3d29c412b9eca2730ade1776267227",
+        "measurement_fact:74260b6becbdf11c3a051f68567fb66778869dd442c74a5948a8b5b20be204d8"
+      ],
+      "component": "15f8034cdff6595cbfa1-1dd67c28d3aade9d3442ee99310d18bd.ssl.cf3.rackcdn.com",
+      "split": "train"
+    },
+    {
+      "record_id": "M64-MEAS-P014",
+      "source_ids": [
+        "SRC-M64-MEAS-WOSSNER-2013-2014"
+      ],
+      "source_families": [
+        "15f8034cdff6595cbfa1-1dd67c28d3aade9d3442ee99310d18bd.ssl.cf3.rackcdn.com"
+      ],
+      "claim_ids": [
+        "fact:92432ace860be8c78542af93f31465ba51decf6333e6fc8da5ee4409a5ac1c55",
+        "measurement_fact:676fa6eaeff1fcc1f3c1fc686160d0e12bc046777c62e8251a6418ed56b82dab"
+      ],
+      "component": "15f8034cdff6595cbfa1-1dd67c28d3aade9d3442ee99310d18bd.ssl.cf3.rackcdn.com",
+      "split": "train"
+    },
+    {
+      "record_id": "M64-MEAS-P015",
+      "source_ids": [
+        "SRC-MEZGER-MATERIALS-MAHLE-PORSCHE-GUIDE-2024"
+      ],
+      "source_families": [
+        "us.mahle.com"
+      ],
+      "claim_ids": [
+        "fact:da00899fa3efb9c535a552189fc9c5adcffe601d2fd691e8ee3e6e13b78995ca",
+        "measurement_fact:49031035d122f88d8202d87bc50e1de08c1ca13011291755cbd337e489326e20"
+      ],
+      "component": "us.mahle.com",
+      "split": "train"
+    },
+    {
+      "record_id": "M64-MEAS-P016",
+      "source_ids": [
+        "SRC-MEZGER-MATERIALS-MAHLE-PORSCHE-GUIDE-2024"
+      ],
+      "source_families": [
+        "us.mahle.com"
+      ],
+      "claim_ids": [
+        "fact:74ae112e5e9a21dfe2867e6e6b0bc2adba84d88240a98f2208b32d9ea23f58b8",
+        "measurement_fact:23a2a6a40ff631465346505d7176e1fb3c6a26441903eccd6c8f8585cde28bad"
+      ],
+      "component": "us.mahle.com",
+      "split": "train"
+    },
+    {
+      "record_id": "M64-MEAS-P017",
+      "source_ids": [
+        "SRC-MEZGER-MATERIALS-MAHLE-PORSCHE-GUIDE-2024"
+      ],
+      "source_families": [
+        "us.mahle.com"
+      ],
+      "claim_ids": [
+        "fact:3b3dbfb2db149ee98244ea8a6e9293305775e8b392a189cda05c13402390f034",
+        "measurement_fact:9b4c69f60e6126cf49c25902fe1c7ba8ee6cca6baa32ef8b70c30c7e7c7b5e05"
+      ],
+      "component": "us.mahle.com",
+      "split": "train"
+    },
+    {
+      "record_id": "M64-MEAS-P018",
+      "source_ids": [
+        "SRC-M64-MEAS-LN-PS104-015N"
+      ],
+      "source_families": [
+        "lnengineering.com"
+      ],
+      "claim_ids": [
+        "fact:1029e6077760777922f839209d16e7bc56c4d8bd1e2d640f131f099c5b2d8447",
+        "measurement_fact:5d4e4950b764edc9ef08ecb1fa46bfd7ad14244e42ca9fed71524585c3b1d74b"
+      ],
+      "component": "lnengineering.com",
+      "split": "train"
+    },
+    {
+      "record_id": "M64-MEAS-P019",
+      "source_ids": [
+        "SRC-M64-MEAS-LN-PS104-015N"
+      ],
+      "source_families": [
+        "lnengineering.com"
+      ],
+      "claim_ids": [
+        "fact:029fb4d18ce3c910200b386d51416d4415ad83779781aca5b2b31de1a5adb186",
+        "measurement_fact:de47e5f0630343f71630e4242399e1372af786fffcac975691e19a6bab7f27cc"
+      ],
+      "component": "lnengineering.com",
+      "split": "train"
+    },
+    {
+      "record_id": "M64-MEAS-P020",
+      "source_ids": [
+        "SRC-M64-MEAS-LN-PS104-015N"
+      ],
+      "source_families": [
+        "lnengineering.com"
+      ],
+      "claim_ids": [
+        "fact:9180ed012ea0aca4ba9015a159fd2e5522241d1791e6d8d32b5729d22946c2aa",
+        "measurement_fact:9d1c035070bc737d72813c54c1f986e9d222c86ae5049754abb5caac9d2382c9"
+      ],
+      "component": "lnengineering.com",
+      "split": "train"
+    },
+    {
+      "record_id": "M64-MEAS-P021",
+      "source_ids": [
+        "SRC-M64-MEAS-LN-PS104-015N"
+      ],
+      "source_families": [
+        "lnengineering.com"
+      ],
+      "claim_ids": [
+        "fact:6f366d037dabfebf9e0b8454ac768aa02258c043f89c101e0983fdc16dc35713",
+        "measurement_fact:7699828b621d94dd1235e79f8ec94a32a14582bb1eb32e92b7a6ed3cc0b33711"
+      ],
+      "component": "lnengineering.com",
+      "split": "train"
+    },
+    {
+      "record_id": "M64-MEAS-P022",
+      "source_ids": [
+        "SRC-M64-MEAS-LN-PS104-015N"
+      ],
+      "source_families": [
+        "lnengineering.com"
+      ],
+      "claim_ids": [
+        "fact:b3692475136b9d4c16c8a367113f7d148acedbfd0a6ade71c692bd0cc4e107d1",
+        "measurement_fact:08dd7d1c4580710bab20f959d40701c0d3bb00af23807666e9bc450a531f0926"
+      ],
+      "component": "lnengineering.com",
+      "split": "train"
+    },
+    {
+      "record_id": "M64-MEAS-C001",
+      "source_ids": [
+        "SRC-M64-MEAS-REINZ-PORSCHE-2016"
+      ],
+      "source_families": [
+        "victorreinz.com"
+      ],
+      "claim_ids": [
+        "fact:85daf186549a4f01c1a0ea9e6bf4d63111ab766dabc61a12235a05ee47b38895",
+        "measurement_fact:fb2ac9f6b141190aa48dc4ed8aaa163de320997450e654d61f3b86c8a95733ff"
+      ],
+      "component": "victorreinz.com",
+      "split": "train"
+    },
+    {
+      "record_id": "M64-MEAS-C002",
+      "source_ids": [
+        "SRC-M64-MEAS-REINZ-PORSCHE-2016"
+      ],
+      "source_families": [
+        "victorreinz.com"
+      ],
+      "claim_ids": [
+        "fact:3e7439ade571a08ddefa0527a06ea291b524aa4abdeb1b4c396bfba59a9490e1",
+        "measurement_fact:c45d701e7632f90018df4fe845deb494162bbcdf35b701fa9aa7e90bc08e13c7"
+      ],
+      "component": "victorreinz.com",
+      "split": "train"
+    },
+    {
+      "record_id": "M64-MEAS-C003",
+      "source_ids": [
+        "SRC-M64-MEAS-REINZ-PORSCHE-2016"
+      ],
+      "source_families": [
+        "victorreinz.com"
+      ],
+      "claim_ids": [
+        "fact:c90c5ed95c6b5f5966c6214462ec5b51fb3f4dbaa407435d0ada2152c6ceda26",
+        "measurement_fact:38030a5d688f53f9ffb750ab91910b8b51aac760ff7ee0170d37f3b090bfd257"
+      ],
+      "component": "victorreinz.com",
+      "split": "train"
+    },
+    {
+      "record_id": "M64-MEAS-C004",
+      "source_ids": [
+        "SRC-M64-MEAS-REINZ-PORSCHE-2016"
+      ],
+      "source_families": [
+        "victorreinz.com"
+      ],
+      "claim_ids": [
+        "fact:8802ec7d79166725ab24e59bc4870ed8837b75267bd49caeb4a0a5eb12b96584",
+        "measurement_fact:e21a231672fe2ea237f3c8eae212ebedea7f9cf7032095f893fedfa60c07389d"
+      ],
+      "component": "victorreinz.com",
+      "split": "train"
+    }
+  ],
+  "empty_partitions_allowed": true,
+  "holdouts": "Inherit every source, family and exact reviewed claim partition from all three frozen packs; new unassigned components stay in train. No new holdout anchors are imposed."
+}
