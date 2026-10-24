@@ -1,0 +1,689 @@
+{
+  "policy": "source_family_and_identical_reviewed_claim_connected_components",
+  "prior_ledgers": [
+    "training/993-turbo-20261002/split-ledger.json",
+    "training/mezger-turbo-materials-20261003/split-ledger.json",
+    "training/mezger-german-sources-20261003/split-ledger.json",
+    "training/m64-measurements-20261024/split-ledger.json"
+  ],
+  "source_family_aliases": {
+    "mahle-aftermarket.com": "us.mahle.com",
+    "ruf-automobile.de": "ruf-993",
+    "tte24.net": "tte-products"
+  },
+  "publisher_family_rules": {
+    "fia_homologation": "fia-homologation",
+    "mahle_brand_and_technical_mirrors": "us.mahle.com",
+    "melett_brand_and_technical_mirrors": "melett.com",
+    "federal_mogul_engine_catalogues": "federal-mogul-engine-catalogues"
+  },
+  "components": [
+    {
+      "id": "fvd.net",
+      "families": [
+        "fvd.net",
+        "media.sm-original-germany.com",
+        "partworks.de"
+      ],
+      "split": "train",
+      "inherited_prior_partition": true,
+      "protected_train_family": false
+    },
+    {
+      "id": "porsche-factory-and-archive",
+      "families": [
+        "porsche-factory-and-archive"
+      ],
+      "split": "train",
+      "inherited_prior_partition": true,
+      "protected_train_family": true
+    },
+    {
+      "id": "protomotive.com",
+      "families": [
+        "protomotive.com"
+      ],
+      "split": "train",
+      "inherited_prior_partition": false,
+      "protected_train_family": false
+    },
+    {
+      "id": "schrick.com",
+      "families": [
+        "schrick.com"
+      ],
+      "split": "train",
+      "inherited_prior_partition": true,
+      "protected_train_family": false
+    },
+    {
+      "id": "sivalves.com",
+      "families": [
+        "sivalves.com"
+      ],
+      "split": "train",
+      "inherited_prior_partition": false,
+      "protected_train_family": false
+    },
+    {
+      "id": "us.mahle.com",
+      "families": [
+        "us.mahle.com"
+      ],
+      "split": "train",
+      "inherited_prior_partition": true,
+      "protected_train_family": true
+    }
+  ],
+  "records": [
+    {
+      "record_id": "M64-DEEP-O001",
+      "source_ids": [
+        "SRC-M64-DEEP-O-CAM-DIAL",
+        "SRC-M64-DEEP-O-CAM-SPECS"
+      ],
+      "source_families": [
+        "porsche-factory-and-archive"
+      ],
+      "claim_ids": [
+        "fact:bf813c50215eb84ea65eac4dcae850093c5b7340198e0dec93e261d960a0f852",
+        "measurement_fact:eff0e626e7e9dd3c070241e8522371426aca0b4f17ea955c03e4f6d29a541ec6"
+      ],
+      "component": "porsche-factory-and-archive",
+      "split": "train"
+    },
+    {
+      "record_id": "M64-DEEP-O002",
+      "source_ids": [
+        "SRC-M64-DEEP-O-CAM-DIAL"
+      ],
+      "source_families": [
+        "porsche-factory-and-archive"
+      ],
+      "claim_ids": [
+        "fact:e8a2b0de9324fb47605a3765dd05bb1caa074b048c7781997c7d16d5bd428292",
+        "measurement_fact:df7904ad88f9e3d6d42806c69c8569d56b930f41bcd706a835397f49371d97f7"
+      ],
+      "component": "porsche-factory-and-archive",
+      "split": "train"
+    },
+    {
+      "record_id": "M64-DEEP-O003",
+      "source_ids": [
+        "SRC-M64-DEEP-O-CAM-DIAL"
+      ],
+      "source_families": [
+        "porsche-factory-and-archive"
+      ],
+      "claim_ids": [
+        "fact:bfcf9823a5613b13cc74404622355189b96e734e11b1614e49a6ccf937f2b280",
+        "measurement_fact:e8667d18c0cc340dc2ae867a383aa333ec4a1e6d44824367d72c0c024b0a0e1b"
+      ],
+      "component": "porsche-factory-and-archive",
+      "split": "train"
+    },
+    {
+      "record_id": "M64-DEEP-O013",
+      "source_ids": [
+        "SRC-M64-DEEP-O-LIFTER-TB0104"
+      ],
+      "source_families": [
+        "porsche-factory-and-archive"
+      ],
+      "claim_ids": [
+        "fact:7dbfb3bcedca90c51fec38c97c0e3208b37a61d8301d4bf6710d03040aa0e201",
+        "measurement_fact:ca7eed6f91a526c24d115e2f891f1d3b1c16137e56b52580eeedb87622d10a68"
+      ],
+      "component": "porsche-factory-and-archive",
+      "split": "train"
+    },
+    {
+      "record_id": "M64-DEEP-V001",
+      "source_ids": [
+        "SRC-M64-DEEP-SM-VM18",
+        "SRC-PARTWORKS-993-EXHAUST-VALVE-DIMENSIONS"
+      ],
+      "source_families": [
+        "media.sm-original-germany.com",
+        "partworks.de"
+      ],
+      "claim_ids": [
+        "fact:6dbccd273a31725d21c5d73e21e46c534a59ee0ddc2dfa77a5e21edae86b1adb",
+        "measurement_fact:f9611f8d713d332218ebf130641359345294b3d7cbf745467ecd464165935e82"
+      ],
+      "component": "fvd.net",
+      "split": "train"
+    },
+    {
+      "record_id": "M64-DEEP-V002",
+      "source_ids": [
+        "SRC-M64-DEEP-SM-VM18"
+      ],
+      "source_families": [
+        "media.sm-original-germany.com"
+      ],
+      "claim_ids": [
+        "fact:e03243d3422470e9185961a46624e714dee193164656c2938ff5488ebff24f71",
+        "measurement_fact:1e8215ab984bc753a183fdb8cb2ee51403cb6856a5f2f998ca19d73795694263"
+      ],
+      "component": "fvd.net",
+      "split": "train"
+    },
+    {
+      "record_id": "M64-DEEP-V003",
+      "source_ids": [
+        "SRC-FVD-993-INLET-VALVE-DIMENSIONS",
+        "SRC-M64-DEEP-SM-VM18"
+      ],
+      "source_families": [
+        "fvd.net",
+        "media.sm-original-germany.com"
+      ],
+      "claim_ids": [
+        "fact:b81d2738cfe99b7f7ee1bdbad950fd57a2cbb2285db53e494b732cb8c4303651",
+        "measurement_fact:51d558b429751e9bc34e9d9358eb8fc7e9f4ba4086f7f11c8743a60ba2cc28c9"
+      ],
+      "component": "fvd.net",
+      "split": "train"
+    },
+    {
+      "record_id": "M64-DEEP-V004",
+      "source_ids": [
+        "SRC-M64-DEEP-SCHRICK-VALVE-000513001",
+        "SRC-M64-MEAS-SCHRICK-2013-CATALOG"
+      ],
+      "source_families": [
+        "schrick.com"
+      ],
+      "claim_ids": [
+        "fact:a25538f88fb77c2d94085c5cef81dc1708e38370e16e0b4ce9d3262cfa2f4558",
+        "measurement_fact:8c7a9ea57377345c4f485004a3c830303b4b1ae6b165be77cc5086a3fb0823f9"
+      ],
+      "component": "schrick.com",
+      "split": "train"
+    },
+    {
+      "record_id": "M64-DEEP-V005",
+      "source_ids": [
+        "SRC-M64-DEEP-SCHRICK-VALVE-000513002",
+        "SRC-M64-MEAS-SCHRICK-2013-CATALOG"
+      ],
+      "source_families": [
+        "schrick.com"
+      ],
+      "claim_ids": [
+        "fact:86df9151bebab189bacd69ff607212598e0c8db8b77c3b77bfafc9c11597aa35",
+        "measurement_fact:0c373593150146f05207d24dc256c3c42d9073f9104a15db25d1b008c862db71"
+      ],
+      "component": "schrick.com",
+      "split": "train"
+    },
+    {
+      "record_id": "M64-DEEP-V006",
+      "source_ids": [
+        "SRC-M64-DEEP-SI-VALVES-2024"
+      ],
+      "source_families": [
+        "sivalves.com"
+      ],
+      "claim_ids": [
+        "fact:a6ca62f8f96dc7e255595bb35fb8985b8fa3aac94b86f1517f156c049ae0bec6",
+        "measurement_fact:18b46f122b5e9efe1bc4ebc289f21aaf83a787b61c3bd7b5aba038ed9b08a0e7"
+      ],
+      "component": "sivalves.com",
+      "split": "train"
+    },
+    {
+      "record_id": "M64-DEEP-R001",
+      "source_ids": [
+        "SRC-M64-DEEP-PORSCHE-959-PET-2017"
+      ],
+      "source_families": [
+        "porsche-factory-and-archive"
+      ],
+      "claim_ids": [
+        "fact:bfaa2442331516be9af3ebfffd6b6b62ad3cc5ce840284c4504e8d77ee7de82e",
+        "measurement_fact:fd1e60dfca4337f0a652ad2bec8c37ea70e0135e8b3ef61bae4f70b944b60791"
+      ],
+      "component": "porsche-factory-and-archive",
+      "split": "train"
+    },
+    {
+      "record_id": "M64-DEEP-R002",
+      "source_ids": [
+        "SRC-M64-DEEP-PORSCHE-959-PET-2017"
+      ],
+      "source_families": [
+        "porsche-factory-and-archive"
+      ],
+      "claim_ids": [
+        "fact:bfaa2442331516be9af3ebfffd6b6b62ad3cc5ce840284c4504e8d77ee7de82e",
+        "measurement_fact:be765046120f6ecb359f3d9495e94d5d0f53f565afc8e870395502f32762e71f"
+      ],
+      "component": "porsche-factory-and-archive",
+      "split": "train"
+    },
+    {
+      "record_id": "M64-DEEP-R003",
+      "source_ids": [
+        "SRC-M64-DEEP-PORSCHE-959-PET-2017"
+      ],
+      "source_families": [
+        "porsche-factory-and-archive"
+      ],
+      "claim_ids": [
+        "fact:542466cb9a58c39671768448b32092ac6853e6ed68b25d30290fa55b21506c6b",
+        "measurement_fact:3b0f31504282ed4889282c28b8b406e475ba15cbefd19e5012c30e638864ff18"
+      ],
+      "component": "porsche-factory-and-archive",
+      "split": "train"
+    },
+    {
+      "record_id": "M64-DEEP-R004",
+      "source_ids": [
+        "SRC-M64-DEEP-PORSCHE-959-PET-2017"
+      ],
+      "source_families": [
+        "porsche-factory-and-archive"
+      ],
+      "claim_ids": [
+        "fact:e06e3c3eec3280622d80189d1587692894a372f7e56b473337701d25f003d4a2",
+        "measurement_fact:b4fe07180cb9600902fadc329fcce071c9c774ebf3a0f37b04a1684f927959a8"
+      ],
+      "component": "porsche-factory-and-archive",
+      "split": "train"
+    },
+    {
+      "record_id": "M64-DEEP-R005",
+      "source_ids": [
+        "SRC-M64-DEEP-PORSCHE-959-PET-2017"
+      ],
+      "source_families": [
+        "porsche-factory-and-archive"
+      ],
+      "claim_ids": [
+        "fact:d44d23e2570d9e1c58b56e003a6762ab8319c051f31259130feadf670d69c81a",
+        "measurement_fact:a8088faef6e271a2273566c9e0dd6057123883299c9613bc4b545a2145a55bd5"
+      ],
+      "component": "porsche-factory-and-archive",
+      "split": "train"
+    },
+    {
+      "record_id": "M64-DEEP-R006",
+      "source_ids": [
+        "SRC-M64-DEEP-PORSCHE-959-PET-2017"
+      ],
+      "source_families": [
+        "porsche-factory-and-archive"
+      ],
+      "claim_ids": [
+        "fact:78fbbba333cc402221ad53a52e91c5aa859fcd6c10a8e6c5f76db53ae57089b0",
+        "measurement_fact:bd42df87087d44a3046349a0c9c4cf6adbe97964c96c46683fd6ceda77d7bb7b"
+      ],
+      "component": "porsche-factory-and-archive",
+      "split": "train"
+    },
+    {
+      "record_id": "M64-DEEP-R007",
+      "source_ids": [
+        "SRC-M64-DEEP-PORSCHE-959-PET-2017"
+      ],
+      "source_families": [
+        "porsche-factory-and-archive"
+      ],
+      "claim_ids": [
+        "fact:3b200ef93e79d9b238a10ae03180e0f1254c064b298173c666219683e22fcc2c",
+        "measurement_fact:d7de9932fbf43787afe30b49c07ad58698e5905c96e8e5332a4c550e980bcc58"
+      ],
+      "component": "porsche-factory-and-archive",
+      "split": "train"
+    },
+    {
+      "record_id": "M64-DEEP-R008",
+      "source_ids": [
+        "SRC-M64-DEEP-PORSCHE-959-PET-2017"
+      ],
+      "source_families": [
+        "porsche-factory-and-archive"
+      ],
+      "claim_ids": [
+        "fact:6c1b87482b2ffd0dc766f39c872f9347ac2b803c8b75d072b9970322d23219ad",
+        "measurement_fact:7f7fe83ba94e4d59fb3fa54d47b2adef9a1003544c5a7ca1470b9762018d01a5"
+      ],
+      "component": "porsche-factory-and-archive",
+      "split": "train"
+    },
+    {
+      "record_id": "M64-DEEP-R009",
+      "source_ids": [
+        "SRC-M64-DEEP-PORSCHE-959-PET-2017"
+      ],
+      "source_families": [
+        "porsche-factory-and-archive"
+      ],
+      "claim_ids": [
+        "fact:c76fded74f6f1d0e08e15dff5c6578b48b7cfec86f06aed2939f10c41ec2d08c",
+        "measurement_fact:338427bc0938aea0ac229828b12a01113a14857c0caf0ae0bdcc612a0b1d5e38"
+      ],
+      "component": "porsche-factory-and-archive",
+      "split": "train"
+    },
+    {
+      "record_id": "M64-DEEP-R010",
+      "source_ids": [
+        "SRC-M64-DEEP-PORSCHE-959-PET-2017"
+      ],
+      "source_families": [
+        "porsche-factory-and-archive"
+      ],
+      "claim_ids": [
+        "fact:a8b63ab9561357f833f4002ac13769cc837f02d3b93f8113852af815704275a9",
+        "measurement_fact:0ed7060134fe2b998504b194ccfe62bfbba0f4fcacc5173bd8e9d32949807377"
+      ],
+      "component": "porsche-factory-and-archive",
+      "split": "train"
+    },
+    {
+      "record_id": "M64-DEEP-R011",
+      "source_ids": [
+        "SRC-M64-DEEP-PORSCHE-959-PET-2017"
+      ],
+      "source_families": [
+        "porsche-factory-and-archive"
+      ],
+      "claim_ids": [
+        "fact:06e2bc4d83250ee9f60499eb19a92c1aa772b89f0ad267532c849084c47f52bf",
+        "measurement_fact:11c233aae9571862d0ef24a9b964dcfdf414d4bebcee195f5b7698cde1012081"
+      ],
+      "component": "porsche-factory-and-archive",
+      "split": "train"
+    },
+    {
+      "record_id": "M64-DEEP-R012",
+      "source_ids": [
+        "SRC-M64-DEEP-PORSCHE-959-PET-2017"
+      ],
+      "source_families": [
+        "porsche-factory-and-archive"
+      ],
+      "claim_ids": [
+        "fact:8cff20f3785f94ce54517f1444ae3bd06ab09dde72a89588764cbbec8b138956",
+        "measurement_fact:da2e21d3a61cb4a2425c62d176efb7bbb582b7eaee52d61da779a62e407e4ab8"
+      ],
+      "component": "porsche-factory-and-archive",
+      "split": "train"
+    },
+    {
+      "record_id": "M64-DEEP-R020",
+      "source_ids": [
+        "SRC-M64-DEEP-RACE-93578-FACTORY-PHOTO"
+      ],
+      "source_families": [
+        "porsche-factory-and-archive"
+      ],
+      "claim_ids": [
+        "fact:b8aaa95e4254e4f703cfe24cf807578f38c3ecd46c3d3495e5eb9626fb6edc14",
+        "measurement_fact:19566ae4b1c747249b53c54b49a016b6f4e2d395f518a07b9413860f000b74f0"
+      ],
+      "component": "porsche-factory-and-archive",
+      "split": "train"
+    },
+    {
+      "record_id": "M64-DEEP-R021",
+      "source_ids": [
+        "SRC-M64-DEEP-RACE-93578-FACTORY-PHOTO"
+      ],
+      "source_families": [
+        "porsche-factory-and-archive"
+      ],
+      "claim_ids": [
+        "fact:7aacc6a11ca40ca0c0ba2b9d1011c1246072c32d2a7eac0d0a030d187a6e295b",
+        "measurement_fact:2b536ec6a133e05cdd559805e101eca5df11dfa7f40435579995e0302edfc242"
+      ],
+      "component": "porsche-factory-and-archive",
+      "split": "train"
+    },
+    {
+      "record_id": "M64-DEEP-R022",
+      "source_ids": [
+        "SRC-M64-DEEP-RACE-93578-FACTORY-PHOTO"
+      ],
+      "source_families": [
+        "porsche-factory-and-archive"
+      ],
+      "claim_ids": [
+        "fact:f2d114f8e6a777eb094e77e6cf32e8f05b27c57c9a99929020ed9938b50fe573",
+        "measurement_fact:2e924d481c5ad202a20a4137af09119ff9199c5ac3cf17b436113073d32198b9"
+      ],
+      "component": "porsche-factory-and-archive",
+      "split": "train"
+    },
+    {
+      "record_id": "M64-DEEP-R023",
+      "source_ids": [
+        "SRC-M64-DEEP-RACE-93579-FACTORY-PHOTO"
+      ],
+      "source_families": [
+        "porsche-factory-and-archive"
+      ],
+      "claim_ids": [
+        "fact:9f5e3d3b30cfed829ad8f518c6666725ab900d278aa4e0c8d6f25daa30e950f1",
+        "measurement_fact:86b311fc6f606b66a741c2fe06d98048a24b65da0d9bbe862a522d54b5aa36bb"
+      ],
+      "component": "porsche-factory-and-archive",
+      "split": "train"
+    },
+    {
+      "record_id": "M64-DEEP-R024",
+      "source_ids": [
+        "SRC-M64-DEEP-RACE-93579-FACTORY-PHOTO"
+      ],
+      "source_families": [
+        "porsche-factory-and-archive"
+      ],
+      "claim_ids": [
+        "fact:323b2750e6bc2e7e70c64971a29489a422154021235fcd6105d195e749df4106",
+        "measurement_fact:e7209e9f7818131d8088716ad4ab82db8ab12238ab64dc1c5c8ac9b4a67f01cf"
+      ],
+      "component": "porsche-factory-and-archive",
+      "split": "train"
+    },
+    {
+      "record_id": "M64-DEEP-R025",
+      "source_ids": [
+        "SRC-M64-DEEP-RACE-93579-FACTORY-PHOTO"
+      ],
+      "source_families": [
+        "porsche-factory-and-archive"
+      ],
+      "claim_ids": [
+        "fact:42dca0eb43ee9a2c1e5ff16810f8eb4022da20af932eb4af757a87ab13c4cc68",
+        "measurement_fact:ac33cc78cbf023d7c3c28033ad670a950a31b5222fdd00edbce30dd64a3efab3"
+      ],
+      "component": "porsche-factory-and-archive",
+      "split": "train"
+    },
+    {
+      "record_id": "M64-DEEP-P001",
+      "source_ids": [
+        "SRC-M64-DEEP-MAHLE-PISTON-CYLINDER-2025"
+      ],
+      "source_families": [
+        "us.mahle.com"
+      ],
+      "claim_ids": [
+        "fact:721d58b2a7559e655f5e6e9843f13f6a353f326d4a03ae6a7d750b2225f3038b",
+        "measurement_fact:ef6c9644dadd58d0606701c7edb837490efc068ed34e576472b108dd2af55166"
+      ],
+      "component": "us.mahle.com",
+      "split": "train"
+    },
+    {
+      "record_id": "M64-DEEP-P002",
+      "source_ids": [
+        "SRC-M64-DEEP-MAHLE-PISTON-CYLINDER-2025"
+      ],
+      "source_families": [
+        "us.mahle.com"
+      ],
+      "claim_ids": [
+        "fact:d7927c926e282296e94a7ce72f38d5f4225f7c6bedf79b7bca2ad9a429d0fed9",
+        "measurement_fact:bed40ddfba6355476726140a2d8153f3f70636f28a9035a53a53694e93119bf5"
+      ],
+      "component": "us.mahle.com",
+      "split": "train"
+    },
+    {
+      "record_id": "M64-DEEP-P003",
+      "source_ids": [
+        "SRC-M64-DEEP-MAHLE-PISTON-CYLINDER-2025"
+      ],
+      "source_families": [
+        "us.mahle.com"
+      ],
+      "claim_ids": [
+        "fact:c9fe3f822700079cea0dcb85bce12d5bce55287c43667c4771159834192a87a2",
+        "measurement_fact:7dfcd9e88b26990c42ecb1afc36c80bc85e96d051f34b8ede797ad7d78224c1f"
+      ],
+      "component": "us.mahle.com",
+      "split": "train"
+    },
+    {
+      "record_id": "M64-DEEP-P004",
+      "source_ids": [
+        "SRC-M64-DEEP-MAHLE-PISTON-CYLINDER-2025"
+      ],
+      "source_families": [
+        "us.mahle.com"
+      ],
+      "claim_ids": [
+        "fact:7ddeda0074c10281387295104e4c6b81a386465e11e32800caa63ec458341182",
+        "measurement_fact:f8b94c1ec9ca707539b30520e519689b6f5f98abd9d2760050128cd357dead66"
+      ],
+      "component": "us.mahle.com",
+      "split": "train"
+    },
+    {
+      "record_id": "M64-DEEP-P005",
+      "source_ids": [
+        "SRC-M64-DEEP-MAHLE-PISTON-CYLINDER-2025"
+      ],
+      "source_families": [
+        "us.mahle.com"
+      ],
+      "claim_ids": [
+        "fact:81a67808f5f578fbdf1a04d61ca4152746e30b2700d704d75f599724566ff55a",
+        "measurement_fact:d40748a6a3afd22c0e390bfad2834464ba8babbbd5e081d3a78c4a8e3a5580c5"
+      ],
+      "component": "us.mahle.com",
+      "split": "train"
+    },
+    {
+      "record_id": "M64-DEEP-P006",
+      "source_ids": [
+        "SRC-M64-DEEP-MAHLE-PISTON-CYLINDER-2025"
+      ],
+      "source_families": [
+        "us.mahle.com"
+      ],
+      "claim_ids": [
+        "fact:d9c69013e25ec92ff5b7831304e1912a44222705a83c3497f0bcce22d5c405f2",
+        "measurement_fact:ca8f79137a8e6189fda04cc1076b61325678374e49dae6849f2040247ca7203d"
+      ],
+      "component": "us.mahle.com",
+      "split": "train"
+    },
+    {
+      "record_id": "M64-DEEP-P007",
+      "source_ids": [
+        "SRC-M64-DEEP-MAHLE-PISTON-CYLINDER-2025"
+      ],
+      "source_families": [
+        "us.mahle.com"
+      ],
+      "claim_ids": [
+        "fact:1b3a1917ad4056c08c68caefeeb3a4e582f2ee9a121122699deceaaebfdf83d6",
+        "measurement_fact:6d2510a626fdbeb53304b9562df5201672ba5ccf1089377c16479c35cb74b8e1"
+      ],
+      "component": "us.mahle.com",
+      "split": "train"
+    },
+    {
+      "record_id": "M64-DEEP-P008",
+      "source_ids": [
+        "SRC-M64-DEEP-MAHLE-PISTON-CYLINDER-2025"
+      ],
+      "source_families": [
+        "us.mahle.com"
+      ],
+      "claim_ids": [
+        "fact:b721f2e5bd20634d4168b98f4a243bf8d32e8eee9201e660c8e386c586de5d6b",
+        "measurement_fact:02b93cedb49adaba45efb5f673cf3e9b160405db05d8405d63cf2fd4a5d9292b"
+      ],
+      "component": "us.mahle.com",
+      "split": "train"
+    },
+    {
+      "record_id": "M64-DEEP-P009",
+      "source_ids": [
+        "SRC-M64-DEEP-MAHLE-PISTON-CYLINDER-2025"
+      ],
+      "source_families": [
+        "us.mahle.com"
+      ],
+      "claim_ids": [
+        "fact:5f07eb7feb89e64f4488be909c33905bebc5257623c7ce990e9fa8f9d20ca23e",
+        "measurement_fact:c801d677c1ac8144d7af123cbff6252da3feceb1690d769d0e33aad1bebb0d29"
+      ],
+      "component": "us.mahle.com",
+      "split": "train"
+    },
+    {
+      "record_id": "M64-DEEP-P010",
+      "source_ids": [
+        "SRC-M64-DEEP-MAHLE-PISTON-CYLINDER-2025"
+      ],
+      "source_families": [
+        "us.mahle.com"
+      ],
+      "claim_ids": [
+        "fact:1ef97d679d9beb5516388e5ed907c68940f41fbb9240a14c1c935619c812d2ae",
+        "measurement_fact:1dfe6bde16b6f33b7e804baa9051fdd10bcd55954cdb2d6d12b83088d2950a4e"
+      ],
+      "component": "us.mahle.com",
+      "split": "train"
+    },
+    {
+      "record_id": "M64-DEEP-P011",
+      "source_ids": [
+        "SRC-M64-DEEP-PROTOMOTIVE-993-OUTLET-FLANGE"
+      ],
+      "source_families": [
+        "protomotive.com"
+      ],
+      "claim_ids": [
+        "fact:14d4a30c92d85abc96758c89fe6877da29e9e83c4906e3d92e38d0c0ad591920",
+        "measurement_fact:90231b192e647cb61de3c21d8b8c5120e872d53bddd428d691ed8f0370fbcc25"
+      ],
+      "component": "protomotive.com",
+      "split": "train"
+    },
+    {
+      "record_id": "M64-DEEP-C001",
+      "source_ids": [
+        "SRC-M64-DEEP-MAHLE-PORSCHE-2022-HISTORICAL"
+      ],
+      "source_families": [
+        "us.mahle.com"
+      ],
+      "claim_ids": [
+        "fact:a6f12624cf6499209bd654eec15d44b1bce2d50113ec42cb4d5b639d3a0e5f17",
+        "measurement_fact:6442fcda27a9355b5762f6ffe0164d3c5a9d2ebbb61442b3ea224b8fc0c2d047"
+      ],
+      "component": "us.mahle.com",
+      "split": "train"
+    }
+  ],
+  "empty_partitions_allowed": true,
+  "holdouts": "Inherit every source, family and exact reviewed claim partition from all four frozen packs; new unassigned components stay in train. No new holdout anchors are imposed."
+}

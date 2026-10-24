@@ -1,0 +1,228 @@
+{
+  "schema_version": "1.0.0",
+  "dataset_id": "m64-dimensions-deep-20261024",
+  "created_on": "2026-10-24",
+  "counts": {
+    "cpt": {
+      "train": 40,
+      "valid": 0,
+      "test": 0
+    },
+    "sft": {
+      "train": 40,
+      "valid": 0,
+      "test": 0
+    },
+    "excluded": 9,
+    "reference_records": 49,
+    "measurement_kinds": {
+      "clearance": 1,
+      "documentary_scope": 1,
+      "nominal": 38
+    },
+    "eligibility": {
+      "qualified_only": 39,
+      "teach_uncertainty_only": 1
+    },
+    "evidence_statuses": {
+      "factory_document_page_photo_verified": 6,
+      "factory_reproduction_text_verified": 4,
+      "manufacturer_declared_nominal": 12,
+      "supplier_document_verified": 17,
+      "unresolved_source_anomaly": 1
+    }
+  },
+  "cpt_wording_synthetic": true,
+  "sft_synthetic": true,
+  "source_facts_synthetic": false,
+  "raw_document_text": false,
+  "training_run": false,
+  "tokenized": false,
+  "token_count": null,
+  "context_fit_verified": false,
+  "model_weights_produced": false,
+  "languages": [
+    "en"
+  ],
+  "evaluation_scope": "supplied_record_extraction_not_independent_reasoning",
+  "source_family_aliases": {
+    "mahle-aftermarket.com": "us.mahle.com",
+    "ruf-automobile.de": "ruf-993",
+    "tte24.net": "tte-products"
+  },
+  "publisher_family_rules": {
+    "fia_homologation": "fia-homologation",
+    "mahle_brand_and_technical_mirrors": "us.mahle.com",
+    "melett_brand_and_technical_mirrors": "melett.com",
+    "federal_mogul_engine_catalogues": "federal-mogul-engine-catalogues"
+  },
+  "source_family_alias_policy_sha256": "2ea4bdf5bef8c0ade94695da0c9c7fecc3daf1cb7e863ca3ad00f6dbb0549e02",
+  "publisher_family_rules_sha256": "055b9c162822d535aa3b45be33386e297538fbb9ad1689a296c2f49acee18ddd",
+  "measurement_metadata_preserved": true,
+  "inputs": [
+    {
+      "path": "catalog/reference/m64-dimensions-deep-20261024/facts.json",
+      "sha256": "ca6169d9c275c5825f313d8920c0260e22577104045567bb37ba3918b9a0d096"
+    },
+    {
+      "path": "catalog/sources/src-fvd-993-inlet-valve-dimensions.json",
+      "sha256": "043ec7b2ee00d3685287ce6ebb186c198dbed8fa72fc2f0bd64951c09bd11678"
+    },
+    {
+      "path": "catalog/sources/src-m64-deep-mahle-piston-cylinder-2025.json",
+      "sha256": "d0a22b2fe50bc4acc9c9f963a7472e6ff8dcba148e2f8d2e79e1b1f4513f979d"
+    },
+    {
+      "path": "catalog/sources/src-m64-deep-mahle-porsche-2022-historical.json",
+      "sha256": "f0ab7a4fe17d46ed6816a80b48c51e015993974082a5fa426ccdf89fed90714d"
+    },
+    {
+      "path": "catalog/sources/src-m64-deep-o-cam-dial.json",
+      "sha256": "dc3d92e0a8af8e0afce74aad1c6d32b8bb91998786dda50da8599bca0aba8fbe"
+    },
+    {
+      "path": "catalog/sources/src-m64-deep-o-cam-specs.json",
+      "sha256": "ddc186153ef67c9244d4f3493db9601dd7d8e23f5fcd7129bdf8eb70cd41989f"
+    },
+    {
+      "path": "catalog/sources/src-m64-deep-o-lifter-tb0104.json",
+      "sha256": "5e79e1018f636d1366443e50304c3095cd9c8d80b1328f5acd0f2a7d01281964"
+    },
+    {
+      "path": "catalog/sources/src-m64-deep-porsche-959-pet-2017.json",
+      "sha256": "824cb82d44e9cedcd76cc55107622d0497ef3d63132dadc7061cc77fab28d7b0"
+    },
+    {
+      "path": "catalog/sources/src-m64-deep-protomotive-993-outlet-flange.json",
+      "sha256": "331b1222eb472f5ebf08079fb9f5968dc3bb16ecbf555c0cd0c7e79b7ac7d1f2"
+    },
+    {
+      "path": "catalog/sources/src-m64-deep-race-93578-factory-photo.json",
+      "sha256": "1cd4aa68097bda570da5c2681ec48a55aa6e826527f6c3b245f7ca8b0cde336e"
+    },
+    {
+      "path": "catalog/sources/src-m64-deep-race-93579-factory-photo.json",
+      "sha256": "9b145ccb7afb0c0b02750eb6a59e47e3a80e16ff45b9fdbae3cba1019e64be17"
+    },
+    {
+      "path": "catalog/sources/src-m64-deep-schrick-valve-000513001.json",
+      "sha256": "3b33c104a6a2d3b1463a609965c3fa9a583a5af3f547b44a1b482dc79bb2986a"
+    },
+    {
+      "path": "catalog/sources/src-m64-deep-schrick-valve-000513002.json",
+      "sha256": "978b11176c75478e1704a3d49b4e7a7b3fe1b9b2a2d41d1be54d6de934aa2c41"
+    },
+    {
+      "path": "catalog/sources/src-m64-deep-si-valves-2024.json",
+      "sha256": "f032495cc0df2f4d862ca0c1d2350c5f1485e20ed3230db64d7f603d2c1c0cd9"
+    },
+    {
+      "path": "catalog/sources/src-m64-deep-sm-vm18.json",
+      "sha256": "f8e1e6b075151bc2bea639f19a9fd77bd602995d5187304bbacc7282ac25fe05"
+    },
+    {
+      "path": "catalog/sources/src-m64-meas-schrick-2013-catalog.json",
+      "sha256": "5bb6c5197d0aa9d5597869eb9a4780f8b9218a6a6b792cbd39e0434617b06d46"
+    },
+    {
+      "path": "catalog/sources/src-partworks-993-exhaust-valve-dimensions.json",
+      "sha256": "6f56372f7ffb559e139f12a320526e3a62275903f48f18bc15a3038e2d6ef9a8"
+    },
+    {
+      "path": "training/993-turbo-20261002/excluded.json",
+      "sha256": "1949b6c20f242902ace76f44bdb76f15045825dbb3a6889b27a6fea01bfae17c"
+    },
+    {
+      "path": "training/993-turbo-20261002/prepare.py",
+      "sha256": "fc76d37105f5de63abce561f6af943c094f4a16f0a5d68a6be0a7eb28f0aaea6"
+    },
+    {
+      "path": "training/993-turbo-20261002/split-ledger.json",
+      "sha256": "c7925a325ff22298dd900cb30a7bd71cc57358f4a32d888148415747e7c06baf"
+    },
+    {
+      "path": "training/m64-measurements-20261024/excluded.json",
+      "sha256": "68e85592d7693a1106dc5d73e8bb0119dcb229ee75e31850ecc0052f61200f21"
+    },
+    {
+      "path": "training/m64-measurements-20261024/prepare.py",
+      "sha256": "1fd5052799279fc06f31a5ea5570752ac7b83c0c1381b837a82f6baf193b278b"
+    },
+    {
+      "path": "training/m64-measurements-20261024/split-ledger.json",
+      "sha256": "5977338cfbb23357b9bc41f7f65d34092ab6635b1c449e5af6a6e9c2df900dfa"
+    },
+    {
+      "path": "training/mezger-german-sources-20261003/excluded.json",
+      "sha256": "f5c5b7a5270aaf1b4719e5ef53917c23bb0c0da44df5c7b0c30efecc0aca6b45"
+    },
+    {
+      "path": "training/mezger-german-sources-20261003/prepare.py",
+      "sha256": "4fdae793edf5c3b1ff3e4e46606de2ac7fb7a11207108c34fc60449bc97a5992"
+    },
+    {
+      "path": "training/mezger-german-sources-20261003/split-ledger.json",
+      "sha256": "e5a424a901dc273ca56abac8e9d21bd77ce21dc8ef027cdb8574dc8c04ef8f94"
+    },
+    {
+      "path": "training/mezger-turbo-materials-20261003/excluded.json",
+      "sha256": "e1de0ede0a5831bd6884cbe81a8627c587b3688b5162ba5dc8e1cb32d28e4a23"
+    },
+    {
+      "path": "training/mezger-turbo-materials-20261003/prepare.py",
+      "sha256": "dea0321f4b913c1258e8b14ce266e5cf83b98c0e73d8c1eca99dcc4f24ae5eeb"
+    },
+    {
+      "path": "training/mezger-turbo-materials-20261003/split-ledger.json",
+      "sha256": "cf8a138c5cc766acceeb168c760313cdfab4dae6a7dbc1573aa1306d15d2fcca"
+    }
+  ],
+  "outputs": [
+    {
+      "path": "cpt_text/test.jsonl",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "cpt_text/train.jsonl",
+      "sha256": "3bd91084191c3f31fee9762670c33e23b22ca32b1057fba227aa44b47dfde254"
+    },
+    {
+      "path": "cpt_text/valid.jsonl",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "dataset_info.json",
+      "sha256": "aec5857d66b2abc4e0b1f0d04af9b00652700237e42ca4fa9ca399ce22d50a0c"
+    },
+    {
+      "path": "excluded.json",
+      "sha256": "1c7bf727537cbda3c9d5e2863ef8691f7a4b9735c6912cdf35ca828259db6ddb"
+    },
+    {
+      "path": "passages.jsonl",
+      "sha256": "282e9970229c5c6232ab02cd80d22594350282638bfa4edf6730be4a2c03df4d"
+    },
+    {
+      "path": "provenance.jsonl",
+      "sha256": "5317ea8b3156a3d6825dddabca0f16bcfaa35e5cba8e31ff5feb2a8d2ac02e30"
+    },
+    {
+      "path": "sft_messages/test.jsonl",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "sft_messages/train.jsonl",
+      "sha256": "f26a6a9041da2975af6ea1158ce235d448ce1503739e338c72abf8b18dc0b209"
+    },
+    {
+      "path": "sft_messages/valid.jsonl",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "split-ledger.json",
+      "sha256": "3c78c85164f96a8e13777835b9de778391b31f4c2bd0dca4a1d3642bd0d8f189"
+    }
+  ],
+  "builder_sha256": "1776b90adf6aed606b7050360f4798584bc17ac52a49994fbff33804aacc4e0a",
+  "licensing": "Original factual templates; no redistribution or licence transfer of third-party document text."
+}

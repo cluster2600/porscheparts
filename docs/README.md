@@ -86,6 +86,7 @@ The [local Qwen pilot](../training/m64-qwen/README.md) implements the first AI i
 | [research/mezger-turbo-materials-20261003/README.md](research/mezger-turbo-materials-20261003/README.md) | turbo and racing engine variants, scoped alloy/process/thickness evidence and separate training increment |
 | [research/mezger-german-sources-20261003/README.md](research/mezger-german-sources-20261003/README.md) | German primary sources: RR350/2618A grade data, magnesium-case manufacture, hybrid-wheel declarations and racing comparisons |
 | [research/m64-measurements-20261024/README.md](research/m64-measurements-20261024/README.md) | additional M64/60 bearing interfaces, piston/ring/pin dimensions and turbo measurements with explicit datums, tolerances and exclusions |
+| [research/m64-dimensions-deep-20261024/README.md](research/m64-dimensions-deep-20261024/README.md) | MAHLE standard-replacement piston/cylinder datums, exact valve cross-references, restricted checking procedures and historical comparisons |
 | [OPENFOAM_POISEUILLE_VERIFICATION_F25.md](OPENFOAM_POISEUILLE_VERIFICATION_F25.md) | OpenFOAM verification against Poiseuille flow |
 
 ## Decisions and reports
