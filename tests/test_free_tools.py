@@ -100,10 +100,9 @@ class Boundaries(unittest.TestCase):
     def test_carrier_registered_inputs_keep_optimization_blocked(self):
         manifest = common.load(TOOLS / "baseline.json")
         # A full checkout is required for this integration check, not invented inputs.
-        try:
-            common.verify_inputs(manifest, pilot.ROOT)
-        except (ValueError, FileNotFoundError):
+        if any(not (pilot.ROOT / item["path"]).exists() for item in manifest["inputs"]):
             self.skipTest("registered carrier artifacts unavailable in sparse checkout")
+        common.verify_inputs(manifest, pilot.ROOT)
         result = pilot.replay(TOOLS / "baseline.json", pilot.ROOT, self.root / "replay")
         self.assertEqual(result["status"], "blocked_engineering")
         self.assertIs(result["checks"]["optimization_enabled"], False)
