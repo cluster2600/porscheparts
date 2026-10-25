@@ -538,6 +538,50 @@ All 24 archive members passed hash readback; GitHub reports the same archive
 digest. The improved volume is still **not admitted for FEA**; no converged
 stress, modal or fatigue claim follows from these mesh checks.
 
+### Interior relocation and inversion repair
+
+The 391 residual cells were classified by their four triangular faces. Of
+these, 227 touch the exterior boundary; 164 do not. Among the boundary faces
+with triangle quality below 0.1 that are incident to a residual cell, 74 were
+already present in the input boundary and 31 were introduced by TetGen.
+This distinction directs later surface repair toward both inherited and new
+facets rather than treating every weak tetrahedron as the same defect.
+
+Gmsh 4.15.2 `Relocate3D`, run with discrete-entity forcing and one iteration,
+moved 38,594 interior nodes and left boundary coordinates and connectivity
+unchanged. It reduced the positive-cell count below mean ratio 0.01 to 274,
+but **inverted 48 cells**, so that raw output was rejected. A separate
+`UntangleMeshGeometry` run worsened the result to 2,573 inverted cells and
+was also rejected. An analytic interior-node control verified that the
+relocation call moves the internal point while holding its four boundary
+vertices fixed. The [Gmsh API documentation](https://gmsh.info/doc/texinfo/)
+defines these mesh-optimization methods.
+
+A bounded repair then halved the relocation only at interior vertices of
+nonpositive cells, recalculating all 1,648,991 tetrahedra after each pass.
+After nine passes, 46 vertices had reduced displacements. The result has
+**271 cells below mean ratio 0.01**, down from 391, with zero flat or inverted
+cells in an independent exact-arithmetic audit. Its minimum mean ratio is
+0.0000934998 and median 0.39405. An independent connectivity audit confirms
+one volume component and exact agreement of the 878,730 stored and exposed
+boundary faces. The complete boundary OFF is byte-identical to the previously
+accepted surface, so the earlier full bidirectional envelope, topology and
+self-intersection result applies without a new approximate comparison.
+Its exact volume remains 431,159.926128 source units³.
+
+Of the 271 residual weak cells, 235 have four boundary vertices whose
+coordinates were fixed; interior relocation cannot improve those cells
+without changing their connectivity. Six cells became newly weak while 126
+previously weak cells crossed above the threshold. The retained result is
+**still not admitted for FEA**: the weak boundary cells and mesh-convergence
+study remain unresolved.
+
+The private release contains `gmsh-interior-optimization-001.tar.zst`,
+SHA-256 `03d481eab05e915b8949d92eb550bf64864822d6abc00b41fa8e9a38cfe83caa`,
+with the scripts, accepted exploratory volume, rejected outputs, exact and
+connectivity audits, logs, and full residual-cell list. All 28 archive members
+passed hash readback; GitHub reports the same archive digest.
+
 ## Remaining gates
 
 No new OpenFOAM meshing or CFD solve has run on either corrected candidate.
