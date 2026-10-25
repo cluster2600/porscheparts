@@ -1494,3 +1494,18 @@ container-push:
 	docker push $(REGISTRY)/3dprinting993-recon:$(IMAGE_TAG)
 	docker push $(REGISTRY)/3dprinting993-cadsim:$(IMAGE_TAG)
 	docker push $(REGISTRY)/3dprinting993-physicsml:$(IMAGE_TAG)
+
+# Optional free engineering tools: native dependencies stay outside the core check.
+FREE_TOOLS_PYTHON ?= python3
+FREE_TOOLS_OUTPUT ?= work/free-tools-replay-new
+.PHONY: free-tools-check free-tools-replay free-tools-controls
+#> check | Check free-tools trust boundaries and available native controls
+free-tools-check:
+	$(FREE_TOOLS_PYTHON) -m unittest discover -s tests -p test_free_tools.py -v
+#> check | Replay the frozen carrier admission contract without changing geometry
+free-tools-replay:
+	$(FREE_TOOLS_PYTHON) benchmarks/free-tools/pilot.py replay --output "$(FREE_TOOLS_OUTPUT)"
+#> check | Run optional native Python controls with an explicit private artifact root
+free-tools-controls:
+	test -n "$(FREE_TOOLS_PRIVATE_ROOT)"
+	OPENMDAO_REPORTS=0 $(FREE_TOOLS_PYTHON) benchmarks/free-tools/acceptance.py --private-root "$(FREE_TOOLS_PRIVATE_ROOT)" --output "$(FREE_TOOLS_OUTPUT)"

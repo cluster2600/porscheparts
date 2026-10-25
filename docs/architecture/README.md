@@ -123,3 +123,10 @@ The view documents allocation; the workflow defines execution order.
 - [Mermaid class diagrams](https://mermaid.js.org/syntax/classDiagram)
 - [OpenUSD toolset](https://openusd.org/release/toolset.html)
 - [MLX-LM](https://github.com/ml-explore/mlx-lm)
+
+## Free engineering tools carrier pilot
+
+See the [six-tool implementation, architecture and acceptance runbook](free-tools/README.md).
+This optional integration preserves the existing catalogue, solver recipes and
+qualification gates; its execution report distinguishes native tests from
+unexecuted host checks.

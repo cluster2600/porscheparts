@@ -1,0 +1,136 @@
+{
+  "date": "2026-10-25",
+  "status": "partial_native_acceptance",
+  "manufacturing_authorized": false,
+  "native_geometry_controls": "pending_CI",
+  "kali_restore": "not_executed_ssh_unavailable",
+  "receipts": {
+    "acceptance": {
+      "checks": {
+        "carrier": "blocked_engineering",
+        "carrier_external": "blocked_engineering",
+        "cloudcompare": "not_executed_by_this_command",
+        "dvc_mac_restore": "restored_sha256_verified",
+        "kali_restore": "not_executed_by_this_command",
+        "openmdao": "passed",
+        "openturns": "passed",
+        "retrieval": "passed",
+        "salome": "not_executed_by_this_command",
+        "versions": {
+          "dvc": "3.67.1",
+          "openmdao": "3.45.1",
+          "openturns": "1.27.post1"
+        }
+      },
+      "inputs": [
+        {
+          "path": "catalog/parts/993-eng-carrier-0001.json",
+          "sha256": "1099b9735cfffc2e748b9241f81644e9738a829fbb89389be03dc60e9e09e455"
+        },
+        {
+          "path": "twins/993-engine-mount-system-f0/interface-contract.json",
+          "sha256": "b2974142e7053df6d63875f7968630158c97c130eb84cda56b9f17491ad0ca30"
+        },
+        {
+          "path": "parts/993-eng-carrier-0001/source/design-20261016/resume-20261020/auxiliary-fea-study/mechanics-study.json",
+          "sha256": "f41352402649adf98dda9d6bb294f7342e5ed6f5c8b5609be9e103229f4c6ccf"
+        },
+        {
+          "path": "parts/993-eng-carrier-0001/source/design-20261016/resume-20261020/auxiliary-fea-study/surface.mesh64.gz",
+          "sha256": "c57390a992ee144a34784d3cf9e4e4e62657db31c19563b2e6af958f0a46f68f"
+        },
+        {
+          "path": "docs/reports/carrier-resume-20261020/CONVERGENCE.md",
+          "sha256": "40913ee68e30f4280bf34c6d1226e4c2fcc60f0692265732487c098e4a21c06a"
+        }
+      ],
+      "limitations": [
+        "Native image receipts and an actual Kali restore are separate mandatory acceptance evidence.",
+        "Carrier admission replay is not a new FEM solve. No optimization or qualification."
+      ],
+      "manufacturing_authorized": false,
+      "outputs": [],
+      "schema_version": 1,
+      "status": "partial_native_acceptance",
+      "tool": "free-tools-acceptance"
+    },
+    "retrieval": {
+      "cases_sha256": "95a3e92d519b77b55027e96889c9689bd38a4842b79cdf3ad0c0e3c0163da819",
+      "counts": {
+        "conflict": 5,
+        "hostile": 5,
+        "reference": 10,
+        "unknown": 10
+      },
+      "passed": {
+        "conflict": 5,
+        "hostile": 5,
+        "reference": 10,
+        "unknown": 10
+      },
+      "scope": "retrieval and authority boundary; not a model-answer accuracy benchmark",
+      "snapshot_sha256": "54528af955b0b2908aea007830a53a15aec4c9049a46f2953dc5135a761c304d",
+      "status": "passed"
+    },
+    "openturns": {
+      "checks": {
+        "absolute_tolerance": 0.03,
+        "base_sample_count": 8192,
+        "expected": [
+          0.2,
+          0.8
+        ],
+        "indices": [
+          0.19942885009108358,
+          0.8017120442305217
+        ],
+        "seed": 2600,
+        "version": "1.27.post1"
+      },
+      "inputs": [],
+      "limitations": [
+        "Synthetic additive model; no carrier probability distribution or reliability claim."
+      ],
+      "manufacturing_authorized": false,
+      "outputs": [],
+      "schema_version": 1,
+      "status": "passed",
+      "tool": "openturns"
+    },
+    "openmdao": {
+      "checks": {
+        "analytical_height_m": 0.010455159171494206,
+        "height_m": 0.010455159171866592,
+        "independent_replay": {
+          "deflection": 0.00999999999893147,
+          "mass": 1.41144648820199
+        },
+        "mass_kg": 1.41144648820199,
+        "optimizer_success": true,
+        "relative_tolerance": 0.005,
+        "version": "3.45.1"
+      },
+      "inputs": [],
+      "limitations": [
+        "Synthetic beam; no carrier geometry changed or optimized."
+      ],
+      "manufacturing_authorized": false,
+      "outputs": [],
+      "schema_version": 1,
+      "status": "passed",
+      "tool": "openmdao"
+    },
+    "qwen": {
+      "context_sha256": "cb468926818af3560335a21899fc99bd2fc2f383cf87d41988e35045330ac5ce",
+      "draft_sha256": "f3c2ff7f0986b9484c738b7b71afb093798bceb93c5763e21ab6c3b7414d96cb",
+      "engineering_authorized": false,
+      "exit_status": 0,
+      "qualified_geometry_command_changed": false,
+      "status": "documentary_draft_rejected",
+      "validation": {
+        "passed": false,
+        "reason": "not_strict_JSON"
+      }
+    }
+  }
+}

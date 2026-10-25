@@ -1,0 +1,83 @@
+name: Free engineering tools native controls
+
+on:
+  pull_request:
+    paths:
+      - benchmarks/free-tools/**
+      - containers/free-tools-*.Dockerfile
+      - tests/test_free_tools.py
+      - docs/architecture/free-tools/**
+      - .github/workflows/free-tools-native.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  python-controls:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          sparse-checkout: |
+            benchmarks/free-tools
+            tests/test_free_tools.py
+            catalog/parts/993-eng-carrier-0001.json
+            twins/993-engine-mount-system-f0/interface-contract.json
+            parts/993-eng-carrier-0001/source/design-20261016/resume-20261020/auxiliary-fea-study
+            docs/reports/carrier-resume-20261020/CONVERGENCE.md
+          sparse-checkout-cone-mode: false
+      - uses: actions/setup-python@e797f83bcb11b83ae66e0230d6156d7c80228e7c
+        with:
+          python-version: '3.12'
+      - name: Install the isolated frozen tool environment
+        run: python -m pip install -r benchmarks/free-tools/requirements.lock.txt
+      - name: Boundary and native Python tests
+        env:
+          OPENMDAO_REPORTS: '0'
+          DVC_NO_ANALYTICS: 'true'
+          DO_NOT_TRACK: '1'
+        run: python -m unittest discover -s tests -p test_free_tools.py -v
+      - name: Reproduce carrier admission and software controls
+        env:
+          OPENMDAO_REPORTS: '0'
+        run: python benchmarks/free-tools/acceptance.py --private-root "$RUNNER_TEMP/free-tools-private" --output acceptance-output
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: free-tools-python-receipts
+          path: |
+            acceptance-output/receipt.json
+            acceptance-output/retrieval.json
+            acceptance-output/sensitivity/receipt.json
+            acceptance-output/optimization/receipt.json
+            acceptance-output/external-carrier/receipt.json
+
+  geometry-controls:
+    strategy:
+      fail-fast: false
+      matrix:
+        tool: [cloudcompare, salome]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          sparse-checkout: |
+            benchmarks/free-tools
+            containers/free-tools-cloudcompare.Dockerfile
+            containers/free-tools-salome.Dockerfile
+            .dockerignore
+          sparse-checkout-cone-mode: false
+      - name: Build the separate CPU image without project data
+        run: docker build --platform linux/amd64 -f "containers/free-tools-${{ matrix.tool }}.Dockerfile" -t "free-tools-${{ matrix.tool }}:ci" .
+      - name: Offline bounded native controls
+        run: python3 benchmarks/free-tools/native_container.py '${{ matrix.tool }}' --image 'free-tools-${{ matrix.tool }}:ci' --output native-output
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: free-tools-${{ matrix.tool }}-receipts
+          path: |
+            native-output/receipt.json
+            native-output/result/**
+            native-output/*.log
