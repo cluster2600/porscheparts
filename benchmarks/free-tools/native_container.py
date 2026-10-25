@@ -50,14 +50,6 @@ def run(tool, image, output):
         f"type=bind,src={output},dst=/work",
         image_id,
     ]
-    if tool == "salome":
-        command += [
-            "salome",
-            "shell",
-            "--",
-            "python3",
-            "/opt/free-tools/salome_worker.py",
-        ]
     command += ["controls", "--output", "/work/result"]
     if tool == "salome":
         command += ["--units", "mm"]

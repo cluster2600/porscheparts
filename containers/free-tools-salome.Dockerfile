@@ -2,6 +2,11 @@
 # Publisher: https://hub.docker.com/r/simvia/salome ; amd64 digest verified 2026-10-25.
 FROM simvia/salome:9.16.0@sha256:7578fb4b5363f4667433bb3ff03efa346679281da527fd67aff537578d044561
 COPY benchmarks/free-tools/ft_common.py benchmarks/free-tools/ft_geometry.py benchmarks/free-tools/salome_worker.py /opt/free-tools/
+USER root
+RUN find /opt/SALOME-9.16.0-native-DB12-SRC -type f -name salomeContextUtils.py -print \
+    && find /opt/SALOME-9.16.0-native-DB12-SRC -type f -path '*/bin/salome/salomeContextUtils.py' -printf '%h\n' > /opt/free-tools/context-dir \
+    && test "$(wc -l < /opt/free-tools/context-dir)" = 1
+COPY --chmod=755 containers/free-tools-salome-entrypoint.sh /opt/free-tools/entrypoint.sh
+USER user
 ENV HOME=/tmp PYTHONDONTWRITEBYTECODE=1 QT_QPA_PLATFORM=offscreen
-# Keep the publisher's environment-initializing entrypoint and working directory.
-CMD ["salome", "shell", "--", "python3", "/opt/free-tools/salome_worker.py"]
+ENTRYPOINT ["/opt/free-tools/entrypoint.sh"]

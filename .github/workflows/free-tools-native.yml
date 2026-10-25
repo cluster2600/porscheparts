@@ -4,7 +4,7 @@ on:
   pull_request:
     paths:
       - benchmarks/free-tools/**
-      - containers/free-tools-*.Dockerfile
+      - containers/free-tools-*
       - tests/test_free_tools.py
       - docs/architecture/free-tools/**
       - .github/workflows/free-tools-native.yml
@@ -67,12 +67,12 @@ jobs:
             benchmarks/free-tools
             containers/free-tools-cloudcompare.Dockerfile
             containers/free-tools-salome.Dockerfile
+            containers/free-tools-salome-entrypoint.sh
             .dockerignore
           sparse-checkout-cone-mode: false
       - name: Build the separate CPU image without project data
         run: docker build --platform linux/amd64 -f "containers/free-tools-${{ matrix.tool }}.Dockerfile" -t "free-tools-${{ matrix.tool }}:ci" .
       - name: Offline bounded native controls
-        # Entry point and working directory are non-secret runtime provenance.
         run: python3 benchmarks/free-tools/native_container.py '${{ matrix.tool }}' --image 'free-tools-${{ matrix.tool }}:ci' --output native-output
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         if: always()

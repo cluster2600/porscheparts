@@ -96,12 +96,12 @@ def ssh_transfer(value, local, receive, workspace):
     ]
     destination = parsed.username + "@" + parsed.hostname
     code = (
-        "import pathlib,sys; p=pathlib.Path(sys.argv[1]); "
-        "assert p.is_absolute() and p.resolve()==p, 'canonical store path required'; "
+        "import pathlib,sys\np=pathlib.Path(sys.argv[1])\n"
+        "if not p.is_absolute() or p.resolve()!=p: raise ValueError('canonical store path required')\n"
         + (
-            "assert p.is_dir(), 'remote store missing'"
+            "if not p.is_dir(): raise ValueError('remote store missing')\n"
             if receive
-            else "p.mkdir(parents=True,exist_ok=True,mode=0o700); assert p.is_dir()"
+            else "p.mkdir(parents=True,exist_ok=True,mode=0o700)\nif not p.is_dir(): raise ValueError('directory required')\n"
         )
     )
     checked(
