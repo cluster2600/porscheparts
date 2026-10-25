@@ -1,0 +1,240 @@
+{
+  "schema_version": "1.0.0",
+  "dataset_id": "m64-precision-20261025",
+  "created_on": "2026-10-25",
+  "counts": {
+    "cpt": {
+      "train": 20,
+      "valid": 0,
+      "test": 0
+    },
+    "sft": {
+      "train": 20,
+      "valid": 0,
+      "test": 0
+    },
+    "excluded": 0,
+    "reference_records": 20,
+    "measurement_kinds": {
+      "assembly_matching_limit": 1,
+      "assembly_target_and_explicit_unit_conversion": 1,
+      "clearance": 1,
+      "construction_dimensions_and_alignment_limit": 1,
+      "documentary_conflict": 3,
+      "material_declaration": 1,
+      "nominal": 10,
+      "nominal_intervals_and_reconditioning_references": 1,
+      "service_replacement_criterion_and_explicit_unit_conversion": 1
+    },
+    "eligibility": {
+      "qualified_only": 17,
+      "teach_uncertainty_only": 3
+    },
+    "evidence_statuses": {
+      "factory_document_verified": 3,
+      "factory_parts_catalogue_verified": 4,
+      "manufacturer_document_verified": 5,
+      "manufacturer_documentary_assignment_unresolved": 1,
+      "manufacturer_published_reference_verified": 3,
+      "manufacturer_replacement_document_verified": 2,
+      "manufacturer_table_unit_discrepancy_verified": 2
+    }
+  },
+  "cpt_wording_synthetic": true,
+  "sft_synthetic": true,
+  "source_facts_synthetic": false,
+  "raw_document_text": false,
+  "training_run": false,
+  "tokenized": false,
+  "token_count": null,
+  "context_fit_verified": false,
+  "model_weights_produced": false,
+  "languages": [
+    "en"
+  ],
+  "evaluation_scope": "supplied_record_extraction_not_independent_reasoning",
+  "source_family_aliases": {
+    "mahle-aftermarket.com": "us.mahle.com",
+    "ruf-automobile.de": "ruf-993",
+    "tte24.net": "tte-products"
+  },
+  "publisher_family_rules": {
+    "fia_homologation": "fia-homologation",
+    "mahle_brand_and_technical_mirrors": "us.mahle.com",
+    "melett_brand_and_technical_mirrors": "melett.com",
+    "federal_mogul_engine_catalogues": "federal-mogul-engine-catalogues",
+    "cp_carrillo_manufacturer_and_identified_mirrors": "cp-carrillo.com",
+    "kts_turbobillet_manufacturer_and_identified_mirrors": "ktsturbobilletx.com",
+    "turbosmart_manufacturer_and_identified_mirrors": "turbosmart.com",
+    "ln_engineering_manufacturer_knowledge_base_and_mirrors": "lnengineering.com",
+    "turbokraft_manufacturer_and_parts_store": "turbokraft.com",
+    "metelli_manufacturer_and_identified_mirrors": "metelligroup.it",
+    "wurth_manufacturer_and_identified_mirrors": "wuerth.com",
+    "arp_manufacturer_catalogue_and_identified_instruction_mirrors": "arp-bolts.com"
+  },
+  "source_family_alias_policy_sha256": "2ea4bdf5bef8c0ade94695da0c9c7fecc3daf1cb7e863ca3ad00f6dbb0549e02",
+  "publisher_family_rules_sha256": "98367f3a5de3bc3083cd2158c45f1c713ad8dea72f366c5c2870963caf86ae4c",
+  "measurement_metadata_preserved": true,
+  "inputs": [
+    {
+      "path": "catalog/reference/m64-precision-20261025/facts.json",
+      "sha256": "0fdb92c814de59f1135bf183533d654e47449c62908b40e7164ec6420a88c6ae"
+    },
+    {
+      "path": "catalog/sources/src-m64-meas-993-spec-booklet.json",
+      "sha256": "29b80d8000d7df96571e4ebea5d70d9a75aa0d303a030e89d9ec4f45e0717543"
+    },
+    {
+      "path": "catalog/sources/src-m64-prec-arp-2026-p56.json",
+      "sha256": "f73fe3de5104b14d7c7649ec8827476531c219285248211371dbf5c317a66515"
+    },
+    {
+      "path": "catalog/sources/src-m64-prec-arp-2046005-mirror.json",
+      "sha256": "7beeaf11b0c65a356be19ad7715d18c611a65d6e70149669af977ce41235197a"
+    },
+    {
+      "path": "catalog/sources/src-m64-prec-ln-machining-kb.json",
+      "sha256": "45eb60ab38a0ff8c8b12bba60a2726c2d8cd416bed5af41ac853259355ee2153"
+    },
+    {
+      "path": "catalog/sources/src-m64-prec-metelli-engine-2025.json",
+      "sha256": "a69f34163dd13238b0eabc4ffdf452159008ac620f3b9ab738a2ae3ad9b6af0c"
+    },
+    {
+      "path": "catalog/sources/src-m64-prec-t-wurth-drain-catalog.json",
+      "sha256": "56af57ecd400b65f281c5fdb56a8cf58a7b1a3253b7da67c16f29244e7b5d0ea"
+    },
+    {
+      "path": "catalog/sources/src-m64-prec-t-wurth-seal-data.json",
+      "sha256": "164762b7e2d3a105076a54a4b68c2f27e249a4fbbc251576c2401d20451ca3ff"
+    },
+    {
+      "path": "catalog/sources/src-m64-world-cp-carrillo-2013-rods.json",
+      "sha256": "131ae7a351a373f38421e726b775272ecfcc17bd5a2cf43c984c002ed9fb46c2"
+    },
+    {
+      "path": "catalog/sources/src-porsche-pet-993.json",
+      "sha256": "46ff49ec5c8fd075cfe7a8f355ffad0372f4d87a379db652eb7d61e81a0273b2"
+    },
+    {
+      "path": "training/993-turbo-20261002/excluded.json",
+      "sha256": "1949b6c20f242902ace76f44bdb76f15045825dbb3a6889b27a6fea01bfae17c"
+    },
+    {
+      "path": "training/993-turbo-20261002/prepare.py",
+      "sha256": "fc76d37105f5de63abce561f6af943c094f4a16f0a5d68a6be0a7eb28f0aaea6"
+    },
+    {
+      "path": "training/993-turbo-20261002/split-ledger.json",
+      "sha256": "c7925a325ff22298dd900cb30a7bd71cc57358f4a32d888148415747e7c06baf"
+    },
+    {
+      "path": "training/m64-dimensions-deep-20261024/excluded.json",
+      "sha256": "1c7bf727537cbda3c9d5e2863ef8691f7a4b9735c6912cdf35ca828259db6ddb"
+    },
+    {
+      "path": "training/m64-dimensions-deep-20261024/prepare.py",
+      "sha256": "1776b90adf6aed606b7050360f4798584bc17ac52a49994fbff33804aacc4e0a"
+    },
+    {
+      "path": "training/m64-dimensions-deep-20261024/split-ledger.json",
+      "sha256": "3c78c85164f96a8e13777835b9de778391b31f4c2bd0dca4a1d3642bd0d8f189"
+    },
+    {
+      "path": "training/m64-measurements-20261024/excluded.json",
+      "sha256": "68e85592d7693a1106dc5d73e8bb0119dcb229ee75e31850ecc0052f61200f21"
+    },
+    {
+      "path": "training/m64-measurements-20261024/prepare.py",
+      "sha256": "1fd5052799279fc06f31a5ea5570752ac7b83c0c1381b837a82f6baf193b278b"
+    },
+    {
+      "path": "training/m64-measurements-20261024/split-ledger.json",
+      "sha256": "5977338cfbb23357b9bc41f7f65d34092ab6635b1c449e5af6a6e9c2df900dfa"
+    },
+    {
+      "path": "training/m64-world-measurements-20261025/excluded.json",
+      "sha256": "f5c5b7a5270aaf1b4719e5ef53917c23bb0c0da44df5c7b0c30efecc0aca6b45"
+    },
+    {
+      "path": "training/m64-world-measurements-20261025/prepare.py",
+      "sha256": "0d230acc3226c4f8374c3f7b950e08958ed32d48c05d2d736498a1ef60e92229"
+    },
+    {
+      "path": "training/m64-world-measurements-20261025/split-ledger.json",
+      "sha256": "a55c8e0c46683d90da5fc2f4727fb582bc13feaf9dd5f1d25b6e7d3abeb46acf"
+    },
+    {
+      "path": "training/mezger-german-sources-20261003/excluded.json",
+      "sha256": "f5c5b7a5270aaf1b4719e5ef53917c23bb0c0da44df5c7b0c30efecc0aca6b45"
+    },
+    {
+      "path": "training/mezger-german-sources-20261003/prepare.py",
+      "sha256": "4fdae793edf5c3b1ff3e4e46606de2ac7fb7a11207108c34fc60449bc97a5992"
+    },
+    {
+      "path": "training/mezger-german-sources-20261003/split-ledger.json",
+      "sha256": "e5a424a901dc273ca56abac8e9d21bd77ce21dc8ef027cdb8574dc8c04ef8f94"
+    },
+    {
+      "path": "training/mezger-turbo-materials-20261003/excluded.json",
+      "sha256": "e1de0ede0a5831bd6884cbe81a8627c587b3688b5162ba5dc8e1cb32d28e4a23"
+    },
+    {
+      "path": "training/mezger-turbo-materials-20261003/prepare.py",
+      "sha256": "dea0321f4b913c1258e8b14ce266e5cf83b98c0e73d8c1eca99dcc4f24ae5eeb"
+    },
+    {
+      "path": "training/mezger-turbo-materials-20261003/split-ledger.json",
+      "sha256": "cf8a138c5cc766acceeb168c760313cdfab4dae6a7dbc1573aa1306d15d2fcca"
+    }
+  ],
+  "outputs": [
+    {
+      "path": "cpt_text/test.jsonl",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "cpt_text/train.jsonl",
+      "sha256": "23be3d766950006e4aeb01e0b2d5dfd4b03bc14593cc16c73bce3380799b05b3"
+    },
+    {
+      "path": "cpt_text/valid.jsonl",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "dataset_info.json",
+      "sha256": "5813e0eceabf9d8941e1bebe875656c1b086a6539f7b3e1067e9f1298e0aaf38"
+    },
+    {
+      "path": "excluded.json",
+      "sha256": "f5c5b7a5270aaf1b4719e5ef53917c23bb0c0da44df5c7b0c30efecc0aca6b45"
+    },
+    {
+      "path": "passages.jsonl",
+      "sha256": "fe8f2b111c94421879a311fd7d0fca7ea96cf3e58ed992293d4e24103412dbfc"
+    },
+    {
+      "path": "provenance.jsonl",
+      "sha256": "9d3dd6b5cdcce90ba0b045994f7072f08059c4fb12f6500d4ad777c8d513202a"
+    },
+    {
+      "path": "sft_messages/test.jsonl",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "sft_messages/train.jsonl",
+      "sha256": "54336c474774e0d6167355711744bab0032d549d27180d4728bc255a2d412bdb"
+    },
+    {
+      "path": "sft_messages/valid.jsonl",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "split-ledger.json",
+      "sha256": "bc23c10eaf6b6d2508c310c7feacb5c3fdd2131b9f7a260857ae533bf6dd524c"
+    }
+  ],
+  "builder_sha256": "9ace9310bf08885e4a481a6a11a290bd1894992b7c151cb327d33d3d490bd334",
+  "licensing": "Original factual templates; no redistribution or licence transfer of third-party document text."
+}

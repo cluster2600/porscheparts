@@ -88,6 +88,7 @@ The [local Qwen pilot](../training/m64-qwen/README.md) implements the first AI i
 | [research/m64-measurements-20261024/README.md](research/m64-measurements-20261024/README.md) | additional M64/60 bearing interfaces, piston/ring/pin dimensions and turbo measurements with explicit datums, tolerances and exclusions |
 | [research/m64-dimensions-deep-20261024/README.md](research/m64-dimensions-deep-20261024/README.md) | MAHLE standard-replacement piston/cylinder datums, exact valve cross-references, restricted checking procedures and historical comparisons |
 | [research/m64-world-measurements-20261025/README.md](research/m64-world-measurements-20261025/README.md) | multilingual wheel and actuator drawings, replacement-rod geometry, cam timing cards and separately scoped Japanese and Group C comparisons |
+| [research/m64-precision-20261025/README.md](research/m64-precision-20261025/README.md) | valve-guide dimensions, rod mass matching, oil interfaces and machining-reference discrepancies with exact datums and conditions |
 | [OPENFOAM_POISEUILLE_VERIFICATION_F25.md](OPENFOAM_POISEUILLE_VERIFICATION_F25.md) | OpenFOAM verification against Poiseuille flow |
 
 ## Decisions and reports
