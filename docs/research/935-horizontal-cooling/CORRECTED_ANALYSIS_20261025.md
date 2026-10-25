@@ -258,6 +258,17 @@ calculation and its self-check are in the private release as
 `e79aa64e02f8f040d629cd1400a390a622736019cf5fc7c02712e61a4482543c`;
 both members and the GitHub asset digest were checked.
 
+A direct 240-phase FCL sweep at that one scan-derived tilt orientation found
+no sampled surface crossings. Its continuous rigid-sweep lower bounds were
+**1.96219** source units to the observed drive and **4.02328** to the
+provisional shroud. This sharper result does not cover other tilt azimuths,
+axis translations or dynamic deflection; the conservative all-direction
+pose bound above remains the applicable bound for an arbitrary tilt of up to
+0.75106° about the assumed origin. The private `tilted-sweep-001.tar.gz`,
+SHA-256 `9bbb5e0aa375c4babae3f12d2c6991761f3f3e0529cf0897d605b2719cf3a83e`,
+contains the script, all phases and log. Its three members and GitHub asset
+digest were checked.
+
 ## Remaining gates
 
 No new OpenFOAM meshing or CFD solve has run on either corrected candidate.
