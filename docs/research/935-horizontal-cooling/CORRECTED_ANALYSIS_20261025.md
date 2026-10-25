@@ -269,6 +269,26 @@ SHA-256 `9bbb5e0aa375c4babae3f12d2c6991761f3f3e0529cf0897d605b2719cf3a83e`,
 contains the script, all phases and log. Its three members and GitHub asset
 digest were checked.
 
+### Blade-tip coverage: the nine blades are present, the tips are not measured equally
+
+The original rotor scan has nine segmented blade regions. Their phase pitches
+range from 39.040° to 40.879° around a 40° mean. Original triangle-face
+centroids beyond radius 139 source units occur only in `blade-05` (374 faces);
+its maximum is 143.595. The other eight regions have acquired maxima of
+135.519–137.313 and none beyond 139 under the stated sector and axial filter.
+The PicoGK loft input already marks **every** section at radius 140 as
+`constant_profile_root_or_tip_design`; the last `registered_acquired_reference_section`
+varies by blade from radius 122 to 136. Even `blade-05` is registered only
+through radius 126 because its outer observations were not accepted as a
+reference profile. The exceptional outer patch therefore cannot establish a
+common historical tip radius or justify copying one tip onto all nine blades.
+These are source-coordinate coverage observations, not calibrated dimensions.
+The private [release](https://github.com/cluster2600/porscheparts-935-private/releases/tag/935-root-repair-20261025)
+contains `blade-tip-coverage-002.tar.gz`, SHA-256
+`704b4b209b0d71fe1873efaad564bdb9cb64b47f81e3d2a3bd455983fe14eb6f`,
+with the script, numerical receipt, plot and both pinned derived section
+inputs. All five members and the GitHub asset digest were checked.
+
 ## Remaining gates
 
 No new OpenFOAM meshing or CFD solve has run on either corrected candidate.
