@@ -66,18 +66,46 @@ holds the OFFs, source copy, compiled controls, geometry receipts and case
 without publishing scan-derived geometry in this repository. Its 20 archived
 files were read back and hash-checked locally.
 
+## Volume-mesh trials on the corrected surface
+
+The private candidate OFF was also passed to Gmsh 4.15.2 on the Mac with its
+877,304 triangles preserved as a discrete boundary. The Frontal algorithm
+generated 1,462,151 raw and 1,387,601 optimized tetrahedra. Independent
+readback found an exact coordinate-and-triangle bijection with the input
+boundary, one connected tetrahedral region, no negative-volume cells and no
+nonmanifold faces in either volume. **Both volumes contain 12 tetrahedra with
+exactly zero volume, so both are refused for FEA.** All four vertices of each
+zero-volume tetrahedron lie on the boundary, in two localized patches around
+radial positions 84.87–88.87 uncalibrated source units. Altering those nodes
+would change the certified surface and requires a new geometry assessment.
+
+HXT generated a volume but volume elements referenced node tag 438653, absent
+from both the exported node table and Gmsh's individual `getNode` lookup. Its
+volume is refused. The Delaunay trial exceeded its 300-second controller limit
+before writing a volume. No trial produced an admitted mechanical mesh.
+
+The six attempts, independent audits, controller logs and a diagnostic plot
+(`gmsh-trial-001/zero-cells-map-002.png`) are in the same private release as
+`gmsh-volume-001.tar.gz`: SHA-256
+`207986ede430ee98dc5db5f37c6615f186ac4c5f674d493ac0c79648ccf78be7`.
+All 44 archive members were read back and hash-checked; GitHub's asset digest
+matches the local archive. These trials are numerical evidence about this
+particular analysis surface and mesher settings, not a strength calculation.
+
 ## Admission status
 
 No new OpenFOAM meshing or CFD solve has run on this corrected case. The prior
 snapped case used the old rotor and failed the full native `checkMesh` with
 316,996 concave cells and two duplicate-face warnings. Its numerical results
-cannot validate the new input. On this run, Kali1's Thunderbolt bridge became
-inactive after the first successful SSH connection; the Mac Docker daemon
-also did not answer an eight-second read-only probe. Neither service was
-changed. No new Vast rental was created.
+cannot validate the new input. Kali1's Thunderbolt bridge dropped during this
+run, then recovered; SSH access and the previously known host key were
+verified. The `lolman` account cannot access its Docker daemon, and the Mac
+Docker daemon did not answer an eight-second read-only probe. Neither service
+was changed. No new Vast rental was created.
 
-The next computational gate is a fresh mesh on this exact OBJ, with the same
-complete native quality checks, boundary-layer evidence, resolved concavity
-and duplicate faces, and a three-grid study. Airflow, pressure, torque,
-mechanical strength, full 935 fitment and manufacturing remain unqualified
-until their corresponding calculations, measurements and review exist.
+The next computational gates are a nondegenerate conforming volume for
+mechanics and a fresh fluid mesh on this exact OBJ, with complete native
+quality checks, boundary-layer evidence, resolved concavity and duplicate
+faces, and a three-grid study. Airflow, pressure, torque, mechanical strength,
+full 935 fitment and manufacturing remain unqualified until their
+corresponding calculations, measurements and review exist.
