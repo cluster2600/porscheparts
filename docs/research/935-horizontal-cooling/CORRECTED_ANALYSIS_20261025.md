@@ -289,6 +289,44 @@ contains `blade-tip-coverage-002.tar.gz`, SHA-256
 with the script, numerical receipt, plot and both pinned derived section
 inputs. All five members and the GitHub asset digest were checked.
 
+### PicoGK tip-radius sensitivity: an explicitly shorter design hypothesis
+
+The existing nine-blade loft was rebuilt on Apple Silicon with PicoGK Core
+26.2.0 at the same nominal 0.8-source-unit voxel size. The radius-140 control
+reproduced the earlier blade-loft STL **byte for byte** (SHA-256
+`5e9183026be266e03944a4fb4db47f06c99fabd1af73898b8edc414688e7e114`).
+A second input removed only the radius-138 and radius-140 design sections;
+every registered acquired reference section was retained. The shorter input
+ends at radius 136. This is a controlled **design sensitivity**, not a claim
+that the historical 935 blade ends there.
+
+PicoGK blade-loft volume changed from 203,280.62 to 193,813.80 nominal cubic
+source units (−4.657%). With the same hub and rotor construction, the full
+rotor's independent, welded, watertight STL volume changed from 433,422.66 to
+421,987.97 nominal cubic source units (−2.638%). Its polar second moment at
+unit density changed from 3.63510×10⁹ to 3.41670×10⁹ nominal fifth-power
+units (−6.008%). These ratios describe geometry at the same assumed scale;
+they do not establish a material mass, strength, safe speed or airflow gain.
+The independent STL volumes agree with the corresponding PicoGK volume
+receipts within 0.11%. The three nonrotor full-assembly component STLs
+(provisional engine context, observed drive and provisional shroud) have
+identical hashes in both cases.
+
+At the unchanged provisional pose, a 240-phase FCL surface sweep found zero
+sampled crossings for either rotor. The shortest sampled separation from the
+observed drive was 3.82486 source units in both cases. Separation from the
+provisional shroud increased from 6.25805 to 13.99869 source units; the
+respective rigid continuous-sweep lower bounds increased from 4.37640 to
+12.21837. These are conditional *surface* distances in uncalibrated source
+coordinates. They do not include the missing output coupling, a verified 935
+engine interface, running deflection or thermal growth.
+
+The 21 derived inputs, code, receipts, comparison plot and sweep reports are
+archived in the private [release](https://github.com/cluster2600/porscheparts-935-private/releases/tag/935-root-repair-20261025)
+as `tip-variant-r136-package-001.tar.gz`, SHA-256
+`d3ad0d1b097564dce58dee658e67b3b7344fcc1edf6b85e1eecd1d440c72f5dd`.
+Every archive member, its manifest and the GitHub asset digest were checked.
+
 ## Remaining gates
 
 No new OpenFOAM meshing or CFD solve has run on either corrected candidate.
