@@ -358,14 +358,39 @@ as the reference geometry or an FEA input.
 The next geometry step is a **local, constrained repair of the affected
 boundary facets**, with the complete bidirectional envelope and topology
 rechecked before volume meshing. Merely accepting the better tetrahedral
-statistics would conceal a changed rotor shape. The local private archive
-`remesh-quality-private-package-001.tar.gz` is being transferred to the
-[release](https://github.com/cluster2600/porscheparts-935-private/releases/tag/935-root-repair-20261025); its SHA-256 is
+statistics would conceal a changed rotor shape. The private
+[release](https://github.com/cluster2600/porscheparts-935-private/releases/tag/935-root-repair-20261025)
+contains `remesh-quality-private-package-001.tar.gz`, SHA-256
 `a041687336295c93b7befff10ffa90f704fdc375f93d009017a7ebc5e40177c4`,
 with code, surfaces, volume meshes, failed and accepted trial receipts, exact
-envelope result, machine-readable comparison and defect map. All 24 local
-archive members were read back against its manifest; the GitHub upload and
-asset-digest readback are still pending.
+envelope result, machine-readable comparison and defect map. All 24 archive
+members were read back against its manifest; GitHub reports the same asset
+SHA-256.
+
+### Targeted facet repair also rejected
+
+Selecting faces within 1.5 source units of the 3,255 low-quality tetrahedron
+centroids isolates **33,017 of 878,730** input faces (3.757%). CGAL then
+remeshed only that patch with its boundary edges preserved, a 0.5-source-unit
+edge target and sharp edges constrained at 40°. The output remained one closed
+genus-one surface without self-intersections. Its enclosed volume changed by
+only −0.000156%, but the **complete 0.0225-source-unit envelope still failed**.
+In a fixed 20,000-point sample per direction, the largest surface distances
+were 0.02755 and 0.04785 source unit; the sample is not a global bound.
+In the companion unconstrained local 0.5 trial, projecting its 51,133 changed
+vertices back onto the original surface moved them by at most 7.1×10⁻¹³
+source unit. For that trial, the deviation comes from new triangle
+connectivity across curved detail rather than off-surface vertices.
+
+The new raw Gmsh volume had 1,603,495 tetrahedra, including **27 exactly
+zero-volume and 8 inverted cells**; 12,514 had mean ratio below 0.01.
+Optimization reported worst quality zero and had effectively plateaued after
+184 seconds, so it was terminated. No optimized volume or FEA result is
+accepted. The private archive `local-remesh-rejected-package-001.tar.zst`,
+SHA-256 `582ac4629d2fef81628de46311dc0e5aad6af8821b5ab83f4b8277310ac36a53`,
+contains the three local surface attempts, patch selector, source, raw volume,
+exact-envelope result and defect map. All 21 archive members passed local
+readback; its GitHub upload and asset-digest readback are pending.
 
 ## Remaining gates
 
