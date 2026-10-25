@@ -1,0 +1,94 @@
+Running as unit: 962-mmg-surface-003.service; invocation ID: 075863635af1478aba76f5216eb37ddc
+  -- MMG3D, Release 5.8.0 (Oct. 30, 2024) 
+     Copyright (c) Bdx INP/CNRS/Inria/UPMC, 2004-
+     Oct 25 2026 22:30:44
+
+  -- INPUT DATA
+  %% <job>/mmg-input-001/input.mesh OPENED
+  MAXIMUM MEMORY AUTHORIZED (MB)    3000
+     NUMBER OF VERTICES         130983
+     NUMBER OF TETRAHEDRA       542188
+     NUMBER OF TRIANGLES        150754
+  ** <job>/mmg-input-001/input.sol  NOT FOUND. USE DEFAULT METRIC.
+  -- DATA READING COMPLETED.     0.599s
+
+  &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+   MODULE MMG3D: 5.8.0 (Oct. 30, 2024)
+  &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+     git branch: No git branch found
+     git commit: No git commit found
+     git date:   No git commit found
+
+
+  -- MMG3DLIB: INPUT DATA
+  --  INPUT DATA COMPLETED.     0.000s
+
+  -- PHASE 1 : ANALYSIS
+
+  -- MESH QUALITY  542188
+     BEST   0.999550  AVRG.   0.722723  WRST.   0.031752 (284902)
+     HISTOGRAMM:   99.97 % > 0.12
+                   86.95 % >  0.5
+       0.8 < Q <   1.0    223382    41.20 %
+       0.6 < Q <   0.8    196558    36.25 %
+       0.4 < Q <   0.6     86971    16.04 %
+       0.2 < Q <   0.4     32749     6.04 %
+       0.0 < Q <   0.2      2528     0.47 %
+
+  ** SURFACE ANALYSIS
+     Connected component: 1,  genus: 10,   reoriented: 0
+     Edges: 226131,  tagged: 214,  ridges: 0, required: 0, refs: 214
+     4492 ridges, 214 edges added
+     4088 corners, 2868 singular points detected
+  ** DEFINING GEOMETRY
+     69734 normals,  1537 tangents updated  (0 failed)
+     0 required edges added
+     0 corner and 0 required vertices added
+
+  -- RESULTING EDGE LENGTHS  748557
+     AVERAGE LENGTH               0.9915
+     SMALLEST EDGE LENGTH         0.0635    61520  60458
+     LARGEST  EDGE LENGTH         3.0767    74653  74508 
+     0.71 < L < 1.41    663470   88.63 %  
+
+     HISTOGRAMM:
+     0.00 < L < 0.30       961    0.13 %  
+     0.30 < L < 0.60     31527    4.21 %  
+     0.60 < L < 0.71     33781    4.51 %  
+     0.71 < L < 0.90    172535   23.05 %  
+     0.90 < L < 1.30    461396   61.64 %  
+     1.30 < L < 1.41     29539    3.95 %  
+     1.41 < L < 2.00     18346    2.45 %  
+     2.00 < L < 5.00       472    0.06 %  
+  -- PHASE 1 COMPLETED.     0.682s
+
+  -- PHASE 2 : ISOTROPIC MESHING
+  ** MESH ANALYSIS
+  ** GEOMETRIC MESH
+                          151249 splitted,        0 collapsed,   114535 swapped
+                          181785 splitted,        0 collapsed,   123969 swapped
+                          125001 splitted,       63 collapsed,   123001 swapped
+                           29222 splitted,        4 collapsed,    43155 swapped
+                            5391 splitted,       94 collapsed,    11013 swapped
+                             932 splitted,        8 collapsed,     2211 swapped
+  ** COMPUTATIONAL MESH
+
+  -- GRADATION : 1.300000 (2.300000)
+     gradation: 1102340 updated, 7 iter.
+                          119087 splitted,     7814 collapsed,   189015 swapped
+                           26161 splitted,     3930 collapsed,    38663 swapped
+                            3180 splitted,     1201 collapsed,     5090 swapped
+                             269 splitted,      235 collapsed,      476 swapped
+                              11 splitted,       21 collapsed,       31 swapped
+       389643 filtered,   923965 splitted,    20978 collapsed,  1228700 swapped,   947434 moved
+      2104415 filtered,   798707 splitted,    51199 collapsed,  1314815 swapped,   957839 moved
+      2754139 filtered,   151503 splitted,    37084 collapsed,   471541 swapped,   625851 moved
+
+ Unexpected error:  *** Program killed
+
+   ELAPSED TIME  4m59s (300.000s)
+          Finished with result: exit-code
+Main processes terminated with: code=exited, status=124/n/a
+               Service runtime: 5min 92ms
+             CPU time consumed: 4min 59.877s
+                   Memory peak: 1.4G (swap: 0B)
