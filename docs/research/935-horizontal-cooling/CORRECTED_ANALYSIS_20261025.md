@@ -750,6 +750,18 @@ as `935-cfd-root0p7-quality-v2.json`, SHA-256
 `a5604df0106057af4f697933a5bd02016eb1da63ae2a4642ae97fd571875db46`,
 matched by GitHub's asset digest.
 
+An exact face-index comparison narrows this result: **1,743** of those weak
+tetrahedra share at least one complete rotor boundary triangle, while 1,718
+do not. The 1,989 incident rotor triangles have median equilateral-normalized
+quality **0.2462**, versus **0.8121** for all 878,730 rotor triangles. Among
+the incident triangles, 357 have quality below 0.1. This association directs
+the next local remeshing study toward poor wall facets; it does not by itself
+establish a scan defect or prove causation. The reproducible full-face audit is
+in `audit_root0p7_tet_quality.py`; its [private result](https://github.com/cluster2600/porscheparts-935-private/releases/tag/935-root-repair-20261025)
+is `935-cfd-root0p7-quality-face-audit-001.json`, SHA-256
+`b0c70c9c45dbd9ef629e0524f78d810b9bfd51affbe8f88d7198e527e35adf84`,
+matched by the uploaded digest.
+
 A second boundary-preserving TetGen attempt used `-pYq1.2/10O5MzCf` on the
 same pinned PLC. It hit the 300 s limit with no mesh output; the process was
 confirmed absent. The [private timeout receipt](https://github.com/cluster2600/porscheparts-935-private/releases/tag/935-root-repair-20261025)
