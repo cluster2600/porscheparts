@@ -3,6 +3,9 @@
 FROM simvia/salome:9.16.0@sha256:7578fb4b5363f4667433bb3ff03efa346679281da527fd67aff537578d044561
 COPY benchmarks/free-tools/ft_common.py benchmarks/free-tools/ft_geometry.py benchmarks/free-tools/salome_worker.py /opt/free-tools/
 USER root
+RUN head -n 100 /opt/SALOME-9.16.0-native-DB12-SRC/env_launch.sh \
+    && command -v salome && head -n 30 /usr/local/bin/salome \
+    && sed -n '455,510p' /opt/SALOME-9.16.0-native-DB12-SRC/BINARIES-DB12/SALOME/bin/salome/salomeContext.py
 RUN test -f /opt/SALOME-9.16.0-native-DB12-SRC/BINARIES-DB12/SALOME/bin/salome/salomeContextUtils.py \
     && printf '%s\n' /opt/SALOME-9.16.0-native-DB12-SRC/BINARIES-DB12/SALOME/bin/salome > /opt/free-tools/context-dir
 RUN find /opt/SALOME-9.16.0-native-DB12-SRC/BINARIES-DB12 -type d -path '*/bin/salome' -print | sort | paste -sd: > /opt/free-tools/bin-pythonpath
