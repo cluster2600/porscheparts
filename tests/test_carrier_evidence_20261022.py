@@ -2,6 +2,7 @@
 import hashlib
 import json
 from pathlib import Path
+import re
 import unittest
 
 ROOT=Path(__file__).resolve().parents[1]
@@ -65,6 +66,21 @@ class EvidenceTests(unittest.TestCase):
         for row in reports:
             self.assertEqual(row['status'],'passed');self.assertEqual(row['fixed_absolute_error_limit_mm'],.0001);self.assertEqual(row['queries'],65536);self.assertLessEqual(row['maximum_absolute_error_mm'],.0001)
         self.assertTrue(reports[1]['gpu_validated']);self.assertEqual(reports[1]['actual_device'],'cuda:0');self.assertEqual(reports[0]['source_sha256'],reports[1]['source_sha256'])
+
+    def test_dependency_patch_replay_preserves_its_negative_control_and_actual_figure(self):
+        base=REPORT/'evidence/mesh-quality-20261025/spooles-upstream-review-015/mac-race-ab-001'
+        terminal=json.loads((base/'terminal.json').read_text());self.assertEqual(terminal['baseline_returncode'],1);self.assertEqual(terminal['fixed_returncode'],0)
+        for mode,bad in [('baseline',142),('fixed',0)]:
+            text=(base/(mode+'-known-solution-test.stdout')).read_text();match=re.search(r'(\d+)/(\d+) iterations wrong',text)
+            self.assertEqual(tuple(map(int,match.groups())),(bad,500))
+            receipt=json.loads((base/(mode+'-known-solution-test.json')).read_text());self.assertTrue(receipt['process_reaped']);self.assertEqual(receipt['stdout_sha256'],hashlib.sha256(text.encode()).hexdigest())
+        media=ROOT/'docs/media/carrier-convergence-20261022/spooles-patch-replay-015';figure=json.loads((media/'figure-provenance.json').read_text());self.assertEqual([r['wrong']for r in figure['results']],[142,0]);self.assertEqual(figure['figure_sha256'],hashlib.sha256((media/'spooles-known-solution-replay.png').read_bytes()).hexdigest());self.assertFalse(figure['carrier_convergence_demonstrated'])
+
+    def test_two_execution_repeats_do_not_admit_a_lucky_multithreaded_run_or_become_spatial_steps(self):
+        base=REPORT/'evidence/mesh-quality-20261025';trials=json.loads((base/'vast-lease-015/profile-trials.json').read_text());stock=next(x for x in trials if x['mode']=='stock8')
+        self.assertEqual([x['assessor_returncode']for x in stock['repeats']],[0,2]);self.assertTrue(stock['refused'])
+        selected=json.loads((base/'vast-lease-015/selected-profile.json').read_text());self.assertEqual(selected['mode'],'stock1');self.assertTrue(selected['two_complete_reference_repeats_passed'])
+        corrected=json.loads((base/'spooles-upstream-review-015/mac-full-reference-terminal.json').read_text());self.assertEqual(len(corrected['repeats']),2);self.assertTrue(all(x['within_all_limits']for x in corrected['repeats']));self.assertFalse(corrected['spatial_convergence_demonstrated']);self.assertFalse(corrected['fine_field_produced'])
 
     def test_cross_host_normal_exit_does_not_override_failed_complete_reference(self):
         base=REPORT/'evidence/mesh-quality-20261025'

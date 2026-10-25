@@ -16,6 +16,12 @@ the [cross-host recovery refusal](#cross-host-recovery-refusal-and-solver-only-t
 and [new RTX 5060 Ti core screen](#rtx-5060-ti-replay-and-remeshed-core-screen).
 Mechanical convergence remains open; the R2 master mass is unchanged.
 
+Latest continuation: [dependency race reproduced and corrected](#spooles-race-reproduction-and-corrected-complete-reference),
+with **500 paired low-level repeats** and **two complete corrected carrier
+repeats**. The separate [serial fine run](#serial-profile-repeated-before-the-second-fine-attempt)
+has no accepted fine field yet. These execution repeats preserve the original
+spatial-convergence criteria.
+
 ```mermaid
 flowchart TD
     R[Retained R2 surface · 1.2982 kg] --> G[Complete geometry fidelity ≤ 0.06 mm]
@@ -791,3 +797,75 @@ small tests cover finite limits, unlimited sentinels, malformed input and path
 validation. Unknown or unlimited memory is not replaced with host RAM. The
 separate four-hour lease guard retains a fixed deadline and **USD 2** ceiling;
 actual memory, transfer throughput and provider pricing must pass before work.
+
+### Serial profile repeated before the second fine attempt
+
+Rental **57718860** tested three explicit configurations on the unchanged complete
+reference. Assembly and recovery were serial in all three. The packaged binary
+with eight SPOOLES threads passed its first reference execution and **failed its
+second**: the energy residual reached **0.0512661** and the force residual reached
+**3,571.21 N** in Z. The recursive binary with eight SPOOLES threads also failed
+its first full execution. Both configurations were excluded, even though all
+their small analytic controls passed.
+
+The packaged binary with **one thread throughout** then passed the original
+controls and **both complete reference repetitions**. Every displacement, stress
+and reaction component agrees with the accepted Mac field inside the original
+limits. The [profile trial ledger](evidence/mesh-quality-20261025/vast-lease-015/profile-trials.json)
+keeps both failures and successes; the
+[selected profile](evidence/mesh-quality-20261025/vast-lease-015/selected-profile.json)
+does not select a lucky passing eight-thread execution.
+
+Only then was the identical **3,052,512-cell / 4,884,701-node T10** deck launched.
+Its [resource plan](evidence/mesh-quality-20261025/vast-lease-015/fine-resource-plan-001.json)
+records **10,677 s / 153 GiB virtual address space**, the actual finite cgroup
+allocation and **1,800 s collection reserve** inside the original four-hour lease.
+At this checkpoint it is running; no fine result or spatial comparison is
+credited. The R2 master stays **1.298199813 kg**.
+
+### SPOOLES race reproduction and corrected complete reference
+
+A targeted upstream search located Conda Forge's
+[pinned SPOOLES concurrency patch series](https://github.com/conda-forge/spooles-feedstock/tree/3377d504926b51b831a817749dba8397ecca37bd/recipe/patches)
+and its independent known-solution repeat test. The patches order shared work
+publication, solve barriers and counters, and give each solve thread its own
+timing vector. This supplies a concrete dependency-level explanation to test;
+an upstream description alone does not qualify a carrier calculation.
+
+Both native Mac builds use the same original SPOOLES 2.2 archive, compiler,
+build compatibility edits and I2Ohash overflow correction. The controlled
+difference is the five concurrency patches. The same **20 × 20 × 20 grid** is
+solved **500 times with eight threads** and checked against its independently
+known solution, with the upstream fixed **0.0001** absolute solution-error limit.
+
+![Measured original and corrected SPOOLES repeat tests](../../media/carrier-convergence-20261022/spooles-patch-replay-015/spooles-known-solution-replay.png)
+
+The original MT code produces **142 wrong solutions / 500**, with worst absolute
+error **625,550**. The corrected build produces **0 wrong solutions / 500**, with
+worst error **5.6208e-8**. These are measured outcomes of this fixture, not a
+universal failure probability. The
+[actual paired terminal receipt](evidence/mesh-quality-20261025/spooles-upstream-review-015/mac-race-ab-001/terminal.json)
+and [pinned source manifest](evidence/mesh-quality-20261025/spooles-upstream-review-015/source-manifest.json)
+retain the test, patch and binary identities. This independently reproduces the
+dependency defect; it does not retroactively diagnose every earlier CCX refusal.
+
+The corrected libraries were then linked with the **unchanged CalculiX 2.21
+object files** into a fresh binary, SHA-256
+`95e9b61985446b686f5f146d1a947101a5ec8ac86fef0cf9e308d25f817c918a`.
+A control relink of the original library differs from the accepted binary only
+in Mach-O UUID and code-signature metadata; the retained
+[read-only byte comparison](evidence/mesh-quality-20261025/spooles-upstream-review-015/mac-ccx-relink-001/baseline-metadata-comparison.json)
+records zero other differing bytes. Neither binary was edited to make it match.
+
+The new binary passes fresh quadratic and traction controls, then **two complete
+381,564-cell T10 carrier executions** with serial assembly/recovery and eight
+SPOOLES threads. Both pass equilibrium and independent energy and agree with
+every accepted reference component: maximum differences **1e-6 mm**,
+**0.0001 MPa** and **0.0000001 N**. The
+[complete replay receipt](evidence/mesh-quality-20261025/spooles-upstream-review-015/mac-full-reference-terminal.json)
+binds both results and the unchanged regression contract.
+
+The existing Linux fine run continues under its separately admitted serial
+profile. The corrected Mac reference repeats are execution qualification for
+this binary and fixture; they are not spatial mesh refinements. No geometry,
+mass, loads, stress exclusions or acceptance tolerances were changed.

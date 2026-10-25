@@ -217,3 +217,22 @@ lease to four hours / USD 2 without extending any earlier deadline.
 `inspect_linux_limits.py` reads actual finite cgroup v1/v2 limits; unknown or
 unlimited values stay null. Require a successful hardware and bidirectional
 checksum-verified bulk-transfer probe before installing or executing a solver.
+
+`run_local_ccx_solver_parallel.py` reuses the serial worker's process stop/RSS
+helpers, whose source identity is included in its input receipt. It explicitly
+keeps assembly and recovery serial, selects 1–8 equation-solver threads, removes
+inherited buffering/preload overrides, and retains the 1,200 s / 24 GiB sampled
+RSS bounds. The CPU guard accounts for the requested solver-thread count.
+
+`render_spooles_replay.py` draws the actual source-controlled library A/B test
+from its complete 500-repeat output and reaped-process receipts. The upstream
+known-solution tolerance is distinct from the carrier component-comparison and
+spatial-convergence tolerances. Refer to the cumulative report for the pinned
+Conda Forge patch series and corrected full-reference executions.
+
+`prepare_linear_cellular_screen.py` uses the accepted refined T4 field and its
+separate independent energy proof to query every smaller cell centroid. It
+requires exact-audited matching geometry arrays and the unchanged screen
+parameters. The original CPU/CUDA oracle checks and `select_cellular_budget.py`
+remain the downstream gates. This is a finer auxiliary clearance/energy screen,
+not a generated cellular part or a changed-geometry resistance calculation.
