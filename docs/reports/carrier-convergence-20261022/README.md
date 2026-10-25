@@ -325,3 +325,100 @@ Reproduce with `prepare_cellular_screen.py`, the unchanged paired
 The [assessment](evidence/cellular-budget-001/assessment.json), oracle and paired
 device reports are exact copies in the evidence manifest. No lattice geometry,
 changed-part solve, or microcell manufacturing qualification has been produced.
+
+## 25 October — replacing sliver-preserving refinement with a quality remesh
+
+PR #276 is merged with passing Linux checks. The next experiment reuses the
+installed **Gmsh 4.15.2** runtime; no new paid machine is required for this stage.
+The separate catalogue gyroid study on `main` uses the older F0 concept and its
+receipt reports `core_region_cm3 = 0` and `cored = false`. It supplies no cellular
+mass saving on R2 and is not substituted for the mechanical reference.
+
+The existing complete-cell diagnostics locate the original worst-shaped cell at
+approximately **(52.7485, −24.8066, −2.5776) mm**. All four corners are boundary
+vertices, although none of its four complete faces is a stored surface facet.
+Interior-node relocation cannot move those four protected corners. Its minimum
+mean ratio stays **0.00347694** after three `Relocate3D` iterations. That output
+passes exact orientation and indexed connectivity, but does not remove this
+worst-cell limitation. This does not prove the cause of the earlier stress peaks.
+
+### Native Netgen import defect and explicit recovery
+
+The [Gmsh optimization API](https://gmsh.info/doc/texinfo/#gmsh_002fmodel_002fmesh_002foptimize)
+allows optimization of imported discrete entities with `force=True`. In the
+executed one-volume import, Netgen leaves the complete original **343,283-cell**
+block intact and appends **381,564 new cells**. The combined output has the same
+stored surface and positive cell determinants, but its integrated volume doubles
+to **587,436.6766 mm³**. The independent indexed audit detects **97,688
+nonmanifold faces**, and none of the stored surface triangles is on the combined
+volume boundary. **This raw output is refused and retained.** A successful process
+exit, a preserved surface list and positive cells do not qualify a volume mesh.
+
+`extract_appended_netgen.py` is an explicit, separately recorded recovery. It
+requires equality of every original vertex and cell in the complete prefixes,
+plus the complete unchanged boundary array, before removing the old cell block.
+It compacts only unused vertices and saves the new block as a fresh candidate.
+The raw output and its rejection remain immutable. Gmsh warns that per-entity
+optimization selection is not interfaced; this fixture contains only one volume,
+so no claim of selective optimization is made.
+
+The extracted block has **119,948 nodes and 381,564 cells**. A fresh independent
+audit checks every cell with exact dyadic rational arithmetic and every indexed
+face: **zero negative/zero-volume cells, one connected component, zero
+nonmanifold faces and all 196,406 boundary facets matched**. Its exact signed
+volume is the same as the original: **293,718.3382924733 mm³**. The complete surface
+coordinates and triangles remain unchanged; the retained R2 geometry and nominal
+**1.298199813 kg** part mass are unchanged.
+
+| Complete-cell diagnostic | Original T4 | Extracted Netgen T4 |
+| --- | ---: | ---: |
+| Cells | 343,283 | 381,564 |
+| Minimum mean-ratio quality | 0.00347694 | 0.0160222 |
+| Maximum local Jacobian condition | 2,206.72 | 608.86 |
+| Minimum element altitude, mm | 0.00121727 | 0.00648869 |
+
+![Measured full-volume quality improvement](../../media/carrier-convergence-20261022/carrier-volume-remesh-quality.png)
+
+The mean-ratio minimum improves **4.61×** with about **11.2%** more cells.
+Element altitude measures a numerical cell, not the part's wall thickness.
+No admission threshold is invented and no new stress result is inferred from
+shape quality. The small analytic tetrahedron also passes after the explicit
+extraction: volume **1/6**, complete exact connectivity/orientation, and minimum
+mean ratio **0.0940 → 0.4404**.
+
+```mermaid
+flowchart LR
+    A[Original audited T4] --> B[Gmsh Netgen discrete optimization]
+    B --> C[Combined old and new blocks]
+    C --> D[Independent audit: double volume refused]
+    D --> E[Verify complete unchanged original prefixes]
+    E --> F[Extract appended block explicitly]
+    F --> G[Fresh exact full-volume audit passes]
+    G --> H[Matched T10 conversion and mapping audit pending]
+    H --> I[Same traction patches and new mechanical comparisons]
+```
+
+The next mechanical step is to convert this genuinely changed cell connectivity
+to T10, audit its mapping and numeric transport, transfer the identical surface
+patches/tractions, and compare complete accepted fields. It is a replacement
+analysis mesh, not another nested spatial-refinement level. The original
+convergence contract and all earlier failed results remain unchanged.
+
+The first exact-audit attempts using the host user-site Python failed its SciPy
+native import; the same unmodified auditor then completed in the existing
+isolated geometry runtime (NumPy 2.0.2 / SciPy 1.14.1). No host runtime or Docker
+service was restarted. Small receipts, the refused combined mesh audit, the
+explicit extraction and successful fresh audits are exact copies under
+[evidence/mesh-quality-20261025](evidence/mesh-quality-20261025/carrier-Netgen-appended-exact-001/assessment.json).
+Raw mesh arrays remain in `work/carrier-mesh-quality-20261025/` with SHA-256
+identities. No new FEA result, cellular geometry, process job or manufacturing
+release is claimed by this checkpoint.
+
+Verification for this checkpoint: **87 focused carrier tests pass**, including
+all four new extraction/boundary regressions; all published copy hashes pass;
+strict links report **zero broken links across 1,829 Markdown files**; preview
+fingerprints pass. Full local `make check` completed **4,860 tests** with **4
+failures / 39 errors / 458 skips** in the host Python 3.10 environment. Its native
+SciPy/import and existing retained-fixture failures are recorded separately;
+these local failures are not represented as a passing full suite. Linux CI must
+check the published PR head independently.

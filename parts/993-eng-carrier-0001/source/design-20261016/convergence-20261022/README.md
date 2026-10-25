@@ -107,3 +107,29 @@ passes the original analytic, equilibrium, energy and declared full-field
 comparison limits; the quadratic attempt failed its 24 GiB allocation cap.
 `run_native_ccx_long_serial.py` is the distinct one-thread, at-most-2,400 s worker.
 The executed 2,349 s fine T10 repeat timed out and contributes no result.
+
+
+## Imported-volume quality optimization (25 October)
+
+The existing Gmsh 4.15.2 geometry runtime runs `optimize_tetrahedra_gmsh.py` with
+`--mesh`, its `--expected-sha256`, a fresh `--output`, and `--method` (`default`,
+`Netgen`, or `Relocate3D`). Three iterations and two requested threads are fixed.
+The worker records only a floating-point boundary checkpoint. It does not admit
+a mesh mechanically; the complete indexed/exact audit remains mandatory.
+
+**Netgen appends a second cell block in the exercised discrete import. Never use
+the combined output as a volume.** The independent audit refuses its doubled
+volume and nonmanifold faces. `extract_appended_netgen.py --original ORIGINAL.npz
+--combined COMBINED.npz --expected-original-sha256 ORIGINAL_SHA
+--expected-combined-sha256 COMBINED_SHA --output FRESH` verifies all original
+prefixes and boundary entries before explicit extraction. It refuses a changed
+prefix rather than guessing a partition. Keep both original and refused outputs.
+
+Run the unchanged `../resume-20261020/audit_wildmeshing_volume.py` with `--mesh`,
+`--boundary` and fresh `--output` using the isolated geometry runtime. Separately
+run `tetra_quality_diagnostics.py` on every cell. The extracted carrier block
+passes exact orientation/connectivity and improves minimum mean ratio from
+0.00347694 to 0.0160222. Its future T10 conversion, mapping/transport audit and
+new mechanical fields remain required. `render_mesh_quality.py` consumes the
+reference and candidate quality reports to reproduce the figure. The full
+report records all intermediate hashes, tests and refusals.
