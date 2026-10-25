@@ -12,7 +12,7 @@ import storage
 import studies
 
 
-def run(root, private_root, output):
+def run(root, private_root, output, porschefanatics_export=None):
     output = new_directory(output).resolve()
     private_root = storage.private_root(private_root)
     if private_root.exists():
@@ -36,7 +36,7 @@ def run(root, private_root, output):
     )
     production_snapshot = output / "production-snapshot.json"
     production = knowledge.snapshot(
-        private_root / "restore/payload", production_snapshot
+        private_root / "restore/payload", production_snapshot, porschefanatics_export
     )
     production_index = knowledge.build(production_snapshot, output / "production-index")
     brief = knowledge.context(
@@ -88,5 +88,6 @@ if __name__ == "__main__":
     parser.add_argument("--root", type=Path, default=ROOT)
     parser.add_argument("--private-root", type=Path, required=True)
     parser.add_argument("--output", type=Path, required=True)
+    parser.add_argument("--porschefanatics-export", type=Path)
     args = parser.parse_args()
-    run(args.root, args.private_root, args.output)
+    run(args.root, args.private_root, args.output, args.porschefanatics_export)

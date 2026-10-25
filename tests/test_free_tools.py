@@ -209,6 +209,31 @@ class Boundaries(unittest.TestCase):
         ]:
             self.assertFalse(knowledge.validate_answer(value, brief)["passed"])
 
+    def test_porschefanatics_export_only_imports_authorized_identity_fields(self):
+        site = self.root / "site"
+        (site / "data").mkdir(parents=True)
+        common.write(
+            site / "data/oem-parts.json",
+            {
+                "oemParts": [
+                    {
+                        "id": "993-115-021-53",
+                        "oemReference": "993 115 021 53",
+                        "englishName": "Engine carrier",
+                        "generationId": "993",
+                        "notes": "NOT_FOR_EXPORT",
+                        "petEvidence": "NOT_FOR_EXPORT",
+                    }
+                ]
+            },
+        )
+        result = knowledge.export_porschefanatics(site, self.root / "export.json")
+        self.assertNotIn("NOT_FOR_EXPORT", json.dumps(result))
+        self.assertEqual(
+            result["documents"][0]["scope"], "catalogue_identity_only_not_measurement"
+        )
+        self.assertIn("993 115 021 53", result["documents"][0]["text"])
+
     def test_native_ssh_transport_is_strict_and_never_uses_dvc_ssh(self):
         with patch.object(
             storage, "checked", return_value={"stdout": "", "exit_status": 0}

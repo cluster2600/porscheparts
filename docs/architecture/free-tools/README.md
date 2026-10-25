@@ -42,11 +42,11 @@ The last command verifies the registered artifact hashes and writes
 `blocked_engineering`. That is the expected carrier admission result. It is
 not a completed FEM replay. Always use new output names.
 
-The supplied corpus consists of owner-authored source summaries and explicitly
+The supplied benchmark corpus consists of owner-authored source summaries and explicitly
 synthetic conflict/injection fixtures. It is **not a live PorscheFanatics
 export**. [PorscheFanatics.com](https://porschefanatics.com/) remains our Porsche
 information catalogue. An authorized, reviewed export can replace this snapshot
-through the documented importer contract; there is no crawler or automatic
+through the documented metadata exporter/importer contract; there is no crawler or automatic
 publication. Do not put restricted manuals or private scans in the corpus.
 
 ## Runtime and execution evidence

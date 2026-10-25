@@ -99,6 +99,29 @@ FTS5 queries normalize spaced/dotted/hyphenated OEM references. The snapshot
 digest is checked before every query; rebuilding is mandatory after any change.
 Queries are parameterized and excerpts are never executed.
 
+To include our actual PorscheFanatics catalogue, export only the carrier's
+identity metadata from the local source checkout (read-only), then build a
+production snapshot:
+
+```sh
+python3 benchmarks/free-tools/knowledge.py export-porschefanatics \
+  --catalogue-root /path/to/porschefanatics.com \
+  --output "$FREE_TOOLS_STORE/porschefanatics-metadata.json"
+python3 benchmarks/free-tools/knowledge.py snapshot --root "$PWD" \
+  --porschefanatics-export "$FREE_TOOLS_STORE/porschefanatics-metadata.json" \
+  --output "$FREE_TOOLS_STORE/production-snapshot.json"
+python3 benchmarks/free-tools/knowledge.py build \
+  --snapshot "$FREE_TOOLS_STORE/production-snapshot.json" \
+  --output work/free-tools-production-index-new
+```
+
+The exporter records the source-file hash, Git revision and working-tree state.
+It imports only identifiers, names and generation: no PET excerpts, notes,
+dimensions, prices, material claims or supplier content. It does not assert that
+the local checkout matches the live website. Production snapshots exclude the
+synthetic conflict/injection corpus entries. Add `--porschefanatics-export` to
+`acceptance.py` to include that export in an integrated local replay.
+
 Optional documentary inference uses explicit existing local directories:
 
 ```sh

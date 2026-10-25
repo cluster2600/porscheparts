@@ -7,6 +7,7 @@ import json
 from pathlib import Path
 import re
 import sqlite3
+import subprocess
 
 from ft_common import (
     HERE,
@@ -46,6 +47,71 @@ def documents(snapshot):
         if len(row["text"]) > 16000:
             raise ValueError("bounded documentary excerpt required")
     return rows
+
+
+def export_porschefanatics(catalogue_root, output):
+    source = source_path(catalogue_root, "data/oem-parts.json")
+    before = sha256(source)
+    row = next(
+        (
+            item
+            for item in load(source)["oemParts"]
+            if item.get("id") == "993-115-021-53"
+        ),
+        None,
+    )
+    if row is None:
+        raise ValueError("exact carrier OEM record missing from PorscheFanatics")
+    fields = {
+        key: row[key]
+        for key in (
+            "id",
+            "oemReference",
+            "englishName",
+            "frenchName",
+            "germanName",
+            "generationId",
+        )
+        if key in row
+    }
+    try:
+        revision = subprocess.check_output(
+            ["git", "rev-parse", "HEAD"],
+            cwd=catalogue_root,
+            text=True,
+            stderr=subprocess.DEVNULL,
+            timeout=10,
+        ).strip()
+        state = subprocess.check_output(
+            ["git", "status", "--porcelain", "--", "data/oem-parts.json"],
+            cwd=catalogue_root,
+            text=True,
+            stderr=subprocess.DEVNULL,
+            timeout=10,
+        )
+    except (subprocess.CalledProcessError, FileNotFoundError):
+        revision, state = None, "unversioned"
+    if sha256(source) != before:
+        raise ValueError("PorscheFanatics source changed during export")
+    value = {
+        "authorization": "owner_authored_or_approved_export",
+        "source_sha256": before,
+        "source_revision": revision,
+        "source_state": "clean" if not state else "working_tree_or_unversioned",
+        "scope": "Selected local catalogue metadata; no live deployment or physical measurement claim",
+        "documents": [
+            {
+                "id": "oem-carrier",
+                "title": "Our PorscheFanatics carrier record",
+                "text": json.dumps(fields, ensure_ascii=False),
+                "source": "https://porschefanatics.com/oem/993-115-021-53/",
+                "rights": "Owner-authorized metadata export; original source rights retained",
+                "scope": "catalogue_identity_only_not_measurement",
+            }
+        ],
+    }
+    write(output, value)
+    return value
 
 
 def snapshot(root, output, porschefanatics_export=None):
@@ -327,7 +393,15 @@ def evaluate(database, snapshot, cases):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument(
-        "command", choices=["snapshot", "build", "context", "evaluate", "draft"]
+        "command",
+        choices=[
+            "export-porschefanatics",
+            "snapshot",
+            "build",
+            "context",
+            "evaluate",
+            "draft",
+        ],
     )
     parser.add_argument("--snapshot", type=Path, default=HERE / "corpus.json")
     parser.add_argument("--database", type=Path)
@@ -339,8 +413,13 @@ def main():
     parser.add_argument("--adapter", type=Path)
     parser.add_argument("--root", type=Path, default=ROOT)
     parser.add_argument("--porschefanatics-export", type=Path)
+    parser.add_argument("--catalogue-root", type=Path)
     args = parser.parse_args()
-    if args.command == "snapshot":
+    if args.command == "export-porschefanatics":
+        if not args.catalogue_root:
+            parser.error("catalogue-root required for the authorized local export")
+        export_porschefanatics(args.catalogue_root, args.output)
+    elif args.command == "snapshot":
         snapshot(args.root, args.output, args.porschefanatics_export)
     elif args.command == "build":
         build(args.snapshot, args.output)

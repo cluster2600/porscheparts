@@ -22,7 +22,7 @@ flowchart TB
     subgraph KALI["T-KALI : Native Linux worker"]
         WORKER["A-WORKER<br/>CloudCompare, SALOME, CalculiX<br/>OpenTURNS and OpenMDAO"]
         COPY["D-COPY<br/>Independent private artifact copy"]
-        WORKER -->|"verified job inputs"| COPY
+        COPY -->|"verified job inputs"| WORKER
     end
     REVIEW["B-REVIEW<br/>Engineering review"]
     GIT -->|"reviewed inputs"| CONTROL
