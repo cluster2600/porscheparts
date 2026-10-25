@@ -223,6 +223,13 @@ wall-inspection view. Precise OBJ and rounded VTK exports have separate roles.
 The user paused the real snapping run before completion; its processes are
 stopped and its checkpoint is backed up. No new fan calculation is admitted.
 
+The [25 October root and mesh continuation](research/935-horizontal-cooling/ROOT_MESH_RESUME_20261025.md)
+then closes five inferred root passages directly in the PicoGK recipe while
+preserving protected original triangles. It also replaces Foundation 13's
+legacy reconstruction no-op with a moved-cube-qualified reconstruction. The
+full native fluid-mesh check still rejects concave cells; airflow and
+manufacturing remain unqualified.
+
 Read the [engineering workflow](architecture/engineering-workflow.md),
 [PicoGK decision](decisions/0004-picogk-new-geometry.md),
 [software inventory and dated execution evidence](SOFTWARE_STACK.md), and

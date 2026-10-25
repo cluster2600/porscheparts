@@ -1,0 +1,22 @@
+float rootClosingRadius = Number(c.GetProperty("root_closing_radius_mm"),0,1.2f);
+using (Voxels roi = Sdf.Vox(library,p=>MathF.Max(Sdf.CylZ(p,0,0,95,-30,40),-Sdf.CylZ(p,0,0,25,-34,44)),
+    new Vector3(-99,-99,-34),new Vector3(99,99,44)))
+using (Voxels added = rotor.voxDuplicate())
+{
+    if (rootClosingRadius>0) added.Fillet(rootClosingRadius);
+    added.BoolSubtract(rotor); added.BoolIntersect(roi);
+    using Voxels candidate = rotor.voxDuplicate(); candidate.BoolAdd(added);
+    using Voxels removed = rotor.voxBoolSubtract(candidate);
+    using Voxels forbidden = added.voxBoolSubtract(roi);
+    using Voxels boreGuard = Sdf.Vox(library,p=>Sdf.CylZ(p,0,0,24,-40,50),new Vector3(-28,-28,-44),new Vector3(28,28,54));
+    using Voxels boreChange = added.voxBoolIntersect(boreGuard);
+    if (!removed.bIsEmpty() || !forbidden.bIsEmpty() || !boreChange.bIsEmpty())
+        throw new InvalidDataException("Root repair changed protected occupancy");
+    rotor.BoolAdd(added); added.CalculateProperties(out float addedVolume,out _);
+    File.WriteAllText(Path.Combine(output,"root-repair.json"),JsonSerializer.Serialize(new {
+        classification="local_missing_root_closure_hypothesis_not_historical_fillet",closing_radius_source_units=rootClosingRadius,
+        added_conditional_volume_mm3=addedVolume,original_occupancy_preserved=true,changes_outside_guarded_roi=false,
+        bore_material_added=false,guarded_roi=new {inner_radius=25,outer_radius=95,z_min=-30,z_max=40},
+        independent_triangle_and_intersection_admission_pending=true,scale_verified=false,manufacturing_authorized=false
+    },new JsonSerializerOptions{WriteIndented=true})+"\n");
+}
