@@ -241,6 +241,23 @@ The earlier original-scan hub fit and plot are also archived privately as
 `dec7c80b3acf07c51e9d70e925d5a025d129290fcee40ddbaff15f2cc97a5b41`;
 the source OBJ hash, both archive members and GitHub asset digest were verified.
 
+The fitted axis of the original rotor hub patch differs by **0.75106°** from
+the reconstruction frame's Z axis. A follow-up geometric bound uses
+the maximum rotor vertex distance from the assembly origin (146.46243 source
+units): a rigid pose tilt of that angle can move any rotor point by at most
+1.91989 source units. Subtracting this from the previously certified full-turn
+surface bounds leaves **0.03147** source units to the observed drive and
+2.45648 to the provisional shroud. The drive bound reaches zero at a tilt of
+0.76337°, only 0.01231° beyond the fitted angle. This narrow positive bound
+applies solely to a rigid tilt about the assumed origin with fixed cold
+surfaces. The scan fit is not an independently verified bearing or shaft axis;
+translation, metrology error, running deflection and thermal growth are absent.
+It is **not an operating clearance or manufacturing tolerance**. The pinned
+calculation and its self-check are in the private release as
+`axis-pose-sensitivity-001.tar.gz`, SHA-256
+`e79aa64e02f8f040d629cd1400a390a622736019cf5fc7c02712e61a4482543c`;
+both members and the GitHub asset digest were checked.
+
 ## Remaining gates
 
 No new OpenFOAM meshing or CFD solve has run on either corrected candidate.
