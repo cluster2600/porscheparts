@@ -215,8 +215,14 @@ positions 11.45477 and 7.62052 respectively. Four separate five-unit
 axial bands of the observed output patch give partial-arc circle-fit radii
 6.93574–7.07082 source units. Their radial RMS residuals are 0.09877–0.13443,
 and each band leaves a 176.8–183.9-degree angular gap in the acquisition.
-The reconstructed bore is a full ring of fitted radius 11.45601 source units;
-its small fit residual describes the **generated model**, not scanner accuracy.
+An earlier bounded fit to the **original rotor scan** (SHA-256
+`244d4caeb2c4ac4a692b650ec9d766bee2a8124335a0236a55a1d30c1b2b98ba`)
+gave its observed hub patch a cylinder radius of 11.46191 source units,
+0.19103-source-unit RMS on held-out sectors of the same scan, and a maximum
+unobserved angular gap of 17.65°. The reconstructed bore is a full ring of
+fitted radius 11.45601 source units. Its small fit residual describes the
+**generated model**, not scanner accuracy; agreement with the original-scan
+fit is not independent dimensional calibration or a tolerance claim.
 
 The separate acquired 22-lobe shaft patch previously reported in the drive
 study maps roughly 357 source units from the rotor axis and points 55.35°
@@ -230,6 +236,10 @@ contains the script, nearest-point receipt, four-band fits, plot and prior
 input-side profile as `hub-output-metrology-001.tar.gz`, SHA-256
 `741e4af6c3666b0ccb7d9e50c60a3ef8b20dee0f2f78596053d229da55778e58`.
 All eight archive members and the GitHub asset digest were checked.
+The earlier original-scan hub fit and plot are also archived privately as
+`rotor-original-hub-fit-001.tar.gz`, SHA-256
+`35703ad0181c6a1759ea3c0f3f844848f7df7e20ce7dc416a258d1a1e9f26c02`;
+the source OBJ hash and GitHub asset digest were verified.
 
 ## Remaining gates
 
