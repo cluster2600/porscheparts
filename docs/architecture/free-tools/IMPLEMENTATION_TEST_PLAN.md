@@ -2,16 +2,16 @@
 
 ## Ordered delivery and traceability
 
-| Requirement | Component | Increment | Acceptance evidence |
-|---|---|---|---|
-| FT-BASELINE: preserve carrier authority | A-GATE, D-CAT | P0 | Registered SHA-256 manifest and blocked admission replay |
-| FT-RESTORE: independent recoverable copies | A-DVC, D-PRIMARY, D-COPY | P1 | Fresh-cache restores from both actual hosts |
-| FT-SOURCES: referenced local context | A-SEARCH, A-QWEN | P2 | Frozen 30-case retrieval evaluation; separate inference receipt |
-| FT-DISTANCE: bounded diagnostic distances | A-METRO | P3 | Identity, 1 mm offset and rigid-transform native controls |
-| FT-MESH: unchanged boundary and conversion | A-MESH | P4 | Cube/bore NETGEN controls, exact determinant/boundary checks and INP readback |
-| FT-SENSITIVITY: known sensitivity recovered | A-UQ | P5 | Fixed-seed analytical indices within 0.03 |
-| FT-OPTIMIZATION: independently replayed optimum | A-OPT | P6 | External beam worker, closed-form comparison and independent replay |
-| FT-GATES: no automatic carrier promotion | A-GATE, B-REVIEW | P0–P6 | Missing interfaces and convergence keep optimization disabled |
+| Requirement | Component | Increment | Test | Execution receipt |
+|---|---|---|---|---|
+| FT-BASELINE: preserve carrier authority | A-GATE, D-CAT | P0 | Registered SHA-256 manifest and blocked admission replay | [Published receipts](../../../benchmarks/free-tools/results/mac-20261025.json) |
+| FT-RESTORE: independent recoverable copies | A-DVC, D-PRIMARY, D-COPY | P1 | Fresh-cache restores from both actual hosts | [Published receipts](../../../benchmarks/free-tools/results/mac-20261025.json) (Kali pending) |
+| FT-SOURCES: referenced local context | A-SEARCH, A-QWEN | P2 | Frozen 30-case retrieval evaluation; separate inference receipt | [Published receipts](../../../benchmarks/free-tools/results/mac-20261025.json) |
+| FT-DISTANCE: bounded diagnostic distances | A-METRO | P3 | Identity, 1 mm offset and rigid-transform native controls | [Published receipts](../../../benchmarks/free-tools/results/mac-20261025.json) |
+| FT-MESH: unchanged boundary and conversion | A-MESH | P4 | Cube/bore NETGEN controls, exact determinant/boundary checks and INP readback | [Published receipts](../../../benchmarks/free-tools/results/mac-20261025.json) |
+| FT-SENSITIVITY: known sensitivity recovered | A-UQ | P5 | Fixed-seed analytical indices within 0.03 | [Published receipts](../../../benchmarks/free-tools/results/mac-20261025.json) |
+| FT-OPTIMIZATION: independently replayed optimum | A-OPT | P6 | External beam worker, closed-form comparison and independent replay | [Published receipts](../../../benchmarks/free-tools/results/mac-20261025.json) |
+| FT-GATES: no automatic carrier promotion | A-GATE, B-REVIEW | P0–P6 | Missing interfaces and convergence keep optimization disabled | [Published receipts](../../../benchmarks/free-tools/results/mac-20261025.json) |
 
 The [source manifest](../../../benchmarks/free-tools/baseline.json) freezes
 the catalogue record, independent assembly contract, R2 study parameters,
@@ -155,6 +155,7 @@ docker build --platform linux/amd64 \
 python3 benchmarks/free-tools/native_container.py cloudcompare \
   --image free-tools-cloudcompare:local --output work/free-tools-cloudcompare-new
 docker build --platform linux/amd64 \
+  --build-arg "CONTROL_UID=$(id -u)" --build-arg "CONTROL_GID=$(id -g)" \
   -f containers/free-tools-salome.Dockerfile -t free-tools-salome:local .
 python3 benchmarks/free-tools/native_container.py salome \
   --image free-tools-salome:local --output work/free-tools-salome-new

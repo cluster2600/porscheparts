@@ -132,7 +132,7 @@ def rigid_points(points, matrix):
         raise ValueError("proper rotation required")
     return [
         [
-            sum(matrix[i][j] * finite(point[j]) for j in range(3)) + matrix[i][3]
+            finite(sum(matrix[i][j] * finite(point[j]) for j in range(3)) + matrix[i][3])
             for i in range(3)
         ]
         for point in points

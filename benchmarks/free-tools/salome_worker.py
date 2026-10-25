@@ -138,6 +138,7 @@ def mesh_surface(points, faces, groups, output, max_size):
         ):
             raise ValueError("explicit valid face groups required")
     output = new_directory(output)
+    print("Initializing the sessionless SALOME runtime", flush=True)
     import salome
 
     salome.salome_init_without_session()
@@ -145,6 +146,7 @@ def mesh_surface(points, faces, groups, output, max_size):
     from salome.smesh import smeshBuilder
 
     smesh = smeshBuilder.New()
+    print("Building the imported surface mesh", flush=True)
     mesh = smesh.Mesh()
     node_ids = [mesh.AddNode(*point) for point in points]
     face_ids = [mesh.AddFace([node_ids[i] for i in face]) for face in faces]
@@ -157,6 +159,7 @@ def mesh_surface(points, faces, groups, output, max_size):
     parameters = tetra.Parameters()
     parameters.SetMaxSize(max_size)
     parameters.SetOptimize(False)
+    print("Computing the NETGEN volume", flush=True)
     if not mesh.Compute():
         raise ValueError("NETGEN volume computation failed")
     for i, node_id in enumerate(node_ids):

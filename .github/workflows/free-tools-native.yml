@@ -71,7 +71,12 @@ jobs:
             .dockerignore
           sparse-checkout-cone-mode: false
       - name: Build the separate CPU image without project data
-        run: docker build --platform linux/amd64 -f "containers/free-tools-${{ matrix.tool }}.Dockerfile" -t "free-tools-${{ matrix.tool }}:ci" .
+        run: |
+          identity_args=()
+          if [ '${{ matrix.tool }}' = salome ]; then
+            identity_args=(--build-arg "CONTROL_UID=$(id -u)" --build-arg "CONTROL_GID=$(id -g)")
+          fi
+          docker build --platform linux/amd64 "${identity_args[@]}" -f "containers/free-tools-${{ matrix.tool }}.Dockerfile" -t "free-tools-${{ matrix.tool }}:ci" .
       - name: Offline bounded native controls
         run: python3 benchmarks/free-tools/native_container.py '${{ matrix.tool }}' --image 'free-tools-${{ matrix.tool }}:ci' --output native-output
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02

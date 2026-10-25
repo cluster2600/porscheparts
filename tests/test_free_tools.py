@@ -326,6 +326,11 @@ class Boundaries(unittest.TestCase):
             storage.store_location("ssh://user:password@host/data", self.root)
 
     def test_rigid_transform_rejects_scale_reflection_and_nan(self):
+        with self.assertRaises(ValueError):
+            geometry.rigid_points(
+                [[1e308, 0, 0]],
+                [[1, 0, 0, 1e308], [0, 1, 0, 0], [0, 0, 1, 0], [0, 0, 0, 1]],
+            )
         for matrix in [
             [[2, 0, 0, 0], [0, 1, 0, 0], [0, 0, 1, 0], [0, 0, 0, 1]],
             [[-1, 0, 0, 0], [0, 1, 0, 0], [0, 0, 1, 0], [0, 0, 0, 1]],
