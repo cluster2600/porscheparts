@@ -29,6 +29,8 @@ def main(volume_path, output_path):
     with np.load(volume_path) as data:
         vertices = data["vertices"]
         cells = data["tetrahedra"]
+        boundary = data["boundary"]
+        markers = data["markers"]
     if len(vertices) != 817600 or len(cells) != 3727134:
         raise ValueError("Unexpected cell count")
     ratios = np.empty(len(cells), dtype=np.float64)
@@ -37,6 +39,9 @@ def main(volume_path, output_path):
         ratios[start:end] = mean_ratio(vertices[cells[start:end]])
     if not np.isfinite(ratios).all() or np.any(ratios > 1 + 1e-10):
         raise ValueError("Invalid mean ratio")
+    weak = cells[ratios < .01]
+    touches_rotor = np.isin(weak, np.unique(boundary[markers == 4])).any(axis=1)
+    touches_outer = np.isin(weak, np.unique(boundary[markers != 4])).any(axis=1)
     report = {
         "status": "complete_exploratory_tetra_shape_audit",
         "volume_npz_sha256": digest,
@@ -49,6 +54,10 @@ def main(volume_path, output_path):
         "mean_ratio_lt_0p01": int(np.count_nonzero(ratios < .01)),
         "mean_ratio_lt_0p05": int(np.count_nonzero(ratios < .05)),
         "mean_ratio_lt_0p1": int(np.count_nonzero(ratios < .1)),
+        "weak_lt_0p01_touch_rotor": int(touches_rotor.sum()),
+        "weak_lt_0p01_touch_outer": int(touches_outer.sum()),
+        "weak_lt_0p01_touch_both": int((touches_rotor & touches_outer).sum()),
+        "weak_lt_0p01_touch_no_boundary": int((~(touches_rotor | touches_outer)).sum()),
         "CFD_quality_admitted": False,
         "CFD_accepted": False,
     }

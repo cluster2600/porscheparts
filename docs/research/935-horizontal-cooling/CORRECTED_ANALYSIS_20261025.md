@@ -741,6 +741,21 @@ study, native OpenFOAM `checkMesh`, grid convergence, operating-point solve or
 measured 935 installation. No airflow, pressure, torque or thermal conclusion
 can be drawn from it.
 
+Of the 3,461 cells below 0.01, **3,425 touch rotor-wall nodes**, 27 touch
+outer-boundary nodes, 22 touch both and 31 touch no boundary node. These sets
+overlap; the counts do not establish whether the rotor surface, its sampling
+or TetGen's near-wall fill is the root cause. The updated complete quality
+receipt is stored [privately](https://github.com/cluster2600/porscheparts-935-private/releases/tag/935-root-repair-20261025)
+as `935-cfd-root0p7-quality-v2.json`, SHA-256
+`a5604df0106057af4f697933a5bd02016eb1da63ae2a4642ae97fd571875db46`,
+matched by GitHub's asset digest.
+
+A second boundary-preserving TetGen attempt used `-pYq1.2/10O5MzCf` on the
+same pinned PLC. It hit the 300 s limit with no mesh output; the process was
+confirmed absent. The [private timeout receipt](https://github.com/cluster2600/porscheparts-935-private/releases/tag/935-root-repair-20261025)
+has SHA-256 `c31a9e856b264b6d0876237a2b426924445fbb4cc45a04dc01bb63134c09f1a7`.
+No quality comparison is inferred from that incomplete attempt.
+
 Reproduce the private PLC with Python 3.12, NumPy 1.26.4, SciPy 1.13.1 and
 trimesh 4.9.0. The Mac's existing SciPy 1.15.3 installation failed to load a
 native module, so the isolated versions were used. Run the existing
