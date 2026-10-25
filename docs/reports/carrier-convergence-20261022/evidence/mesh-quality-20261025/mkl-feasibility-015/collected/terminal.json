@@ -1,0 +1,68 @@
+{
+  "status": "compiled_unqualified",
+  "steps": [
+    {
+      "name": "mkl-download",
+      "argv": [
+        "curl",
+        "-q",
+        "--fail",
+        "--location",
+        "--proto",
+        "=https",
+        "--max-time",
+        "240",
+        "--output",
+        "/workspace/carrier-mkl-015/mkl-2025.2.0-py2.py3-none-manylinux_2_28_x86_64.whl",
+        "https://files.pythonhosted.org/packages/46/7b/f5b1b84eb0a2a6e145fc31b4e6b1c59690dcb088734197da8f299caf7c67/mkl-2025.2.0-py2.py3-none-manylinux_2_28_x86_64.whl"
+      ],
+      "returncode": 0,
+      "process_reaped": true,
+      "elapsed_seconds": 7.632872358080931
+    },
+    {
+      "name": "mkl-include-download",
+      "argv": [
+        "curl",
+        "-q",
+        "--fail",
+        "--location",
+        "--proto",
+        "=https",
+        "--max-time",
+        "240",
+        "--output",
+        "/workspace/carrier-mkl-015/mkl_include-2025.2.0-py2.py3-none-manylinux_2_28_x86_64.whl",
+        "https://files.pythonhosted.org/packages/11/58/6f583b3bac7d3952a89a00ab34e61baa17f6d6de3454a8005958289bef22/mkl_include-2025.2.0-py2.py3-none-manylinux_2_28_x86_64.whl"
+      ],
+      "returncode": 0,
+      "process_reaped": true,
+      "elapsed_seconds": 0.2668554240372032
+    },
+    {
+      "name": "build",
+      "argv": [
+        "make",
+        "-j2",
+        "CC=/usr/bin/gcc",
+        "FC=/usr/bin/gfortran-13",
+        "CFLAGS=-O2 -I/workspace/carrier-patched-015/build-with-patch/spooles -I/workspace/carrier-mkl-015/prefix/mkl_include-2025.2.0.data/data/include -DARCH=\"Linux\" -DSPOOLES -DPARDISO -DARPACK -DMATRIXSTORAGE -DUSE_MT=1",
+        "FFLAGS=-O2 -fallow-argument-mismatch -frecursive -std=legacy",
+        "LIBS=/workspace/carrier-patched-015/build-with-patch/spooles/MT/src/spoolesMT.a /workspace/carrier-patched-015/build-with-patch/spooles/spooles.a /usr/lib/x86_64-linux-gnu/libarpack.so.2 /workspace/carrier-mkl-015/prefix/mkl-2025.2.0.data/data/lib/libmkl_rt.so.2 -Wl,-rpath,/workspace/carrier-mkl-015/prefix/mkl-2025.2.0.data/data/lib -lpthread -lm -ldl"
+      ],
+      "returncode": 0,
+      "process_reaped": true,
+      "elapsed_seconds": 66.8044043140253
+    },
+    {
+      "name": "ldd",
+      "argv": [
+        "ldd",
+        "/workspace/carrier-mkl-015/src/ccx_2.21"
+      ],
+      "returncode": 0,
+      "process_reaped": true,
+      "elapsed_seconds": 0.01805732899811119
+    }
+  ]
+}

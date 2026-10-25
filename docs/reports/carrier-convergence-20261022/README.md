@@ -18,9 +18,9 @@ Mechanical convergence remains open; the R2 master mass is unchanged.
 
 Latest continuation: [dependency race reproduced and corrected](#spooles-race-reproduction-and-corrected-complete-reference),
 with **500 paired low-level repeats** and **two complete corrected carrier
-repeats**. The separate [serial fine run](#serial-profile-repeated-before-the-second-fine-attempt)
-has no accepted fine field yet. These execution repeats preserve the original
-spatial-convergence criteria.
+repeats**. The [serial fine run](#accepted-fine-t10-field-and-first-spatial-comparison)
+now passes complete equilibrium and independent energy. Its first spatial
+comparison keeps convergence open; execution repeats preserve the original criteria.
 
 The [refined interior screen](#refined-interior-screen-on-the-rtx-4070) now finds a
 **12.67 g conditional cellular budget**, with all **3,052,512 CPU/CUDA queries**
@@ -939,3 +939,141 @@ screen comes from smaller enclosing radii. It remains a conservative selected
 subset, not an upper bound on possible lightening. T4 and T10 baseline energy
 fractions are separate quantities; their difference is not a mechanical
 convergence comparison. The retained R2 part remains **1.298199813 kg**.
+
+### Micro-cell stiffness: compute it instead of assuming it
+
+The first periodic gyroid study uses a **unit cube, full-integration C3D8
+hexahedra and six independent macroscopic strains**. Opposite faces obey exact
+periodic displacement equations; three prescribed control nodes impose the
+normal and engineering shear strains. An independently manufactured full-solid
+cube first recovers the analytic isotropic titanium tensor with relative error
+**1.6633e-7**.
+
+For the gyroid, the solid mask is
+`abs(sin(x)cos(y) + sin(y)cos(z) + sin(z)cos(x)) <= 0.6170021750539874`.
+The threshold was fixed before these solves to target 40% solid at a separate
+96³ geometry sampling. All cells retain their full integration points. Void is
+represented by a separate elastic phase; changing its modulus from **1e-4 to
+1e-6** of the solid changes the computed tensor by less than **0.084%** at the
+three completed resolutions below.
+
+| Cells per direction | Actual solid fraction | Minimum tensor stiffness ratio | Full tensor change from preceding grid |
+|---|---:|---:|---:|
+| 16 | 0.40625 | 0.16341 | — |
+| 24 | 0.41204 | 0.16585 | 2.434% |
+| 32 | 0.39648 | 0.16081 | 4.271% |
+
+The stiffness ratios are generalized eigenvalues against the full dense
+elasticity tensor, with engineering shear conventions preserved. They describe
+all six macroscopic strain combinations. They are **not** yield, fatigue or
+buckling allowables. At N=32, the largest ratio is about 0.20: density 0.40 does
+not justify assigning stiffness 0.40.
+
+![Periodic gyroid slice, computed stiffness and unresolved refinement](../../media/carrier-convergence-20261022/periodic-cell-research-001/periodic-cell-stiffness.png)
+
+Every admitted case requires complete U/RF and all eight stress-point rosters,
+periodic residual below **1e-8 mm**, independent stress-energy agreement and
+physical reaction-work agreement within **1e-4**, a reciprocal tensor and
+positive stiffness within the Voigt upper bound. The two successive spatial
+changes must each be at most **2%**, and void-floor sensitivity at most **1%**.
+The completed N=16/24/32 sequence does **not** meet spatial convergence. The
+retained N=48 attempt refused its initial 4 GiB memory limit; the continuation
+uses a separately recorded 24 GiB / 600 s limit on the 64 GiB Mac, without
+changing the equations or numerical tolerances.
+
+The [original contract and actual comparisons](evidence/mesh-quality-20261025/periodic-gyroid-study-001/contract.json)
+remain available with the exact frozen experiment sources and compact solver
+receipts. A separate reusable [periodic cell tool](../../../parts/993-eng-carrier-0001/source/design-20261016/convergence-20261022/periodic_cell_study.py)
+has also completed a fresh full-solid six-strain control and a six-strain N=8
+gyroid replay. It requires a qualified Mac binary and its exact SHA-256, uses the
+existing bounded native runner, and refuses existing output directories.
+
+```sh
+# Run from the repository root with a separately qualified corrected Mac binary.
+python3 parts/993-eng-carrier-0001/source/design-20261016/convergence-20261022/periodic_cell_study.py \
+  --parameters docs/reports/carrier-convergence-20261022/evidence/mesh-quality-20261025/public-periodic-solid-parameters.json \
+  --output work/fresh-periodic-solid-control \
+  --binary "$CCX_BINARY" --expected-binary "$CCX_SHA256" --solid-control
+# For the gyroid, use public-periodic-cell-parameters.json and omit --solid-control.
+```
+
+```mermaid
+flowchart LR
+    A[Admitted dense-carrier field] --> B[Protected interior and conditional mass budget]
+    C[Analytic full-solid tensor] --> D[Six-strain periodic cell control]
+    D --> E[Gyroid tensors at two void stiffnesses]
+    E --> F[Spatial refinement with unchanged limits]
+    B --> G{Cell properties and core budget accepted?}
+    F --> G
+    G -->|Yes| H[Generate explicit candidate and recalculate complete carrier]
+    G -->|Still open| I[Retain baseline and report unresolved calculations]
+```
+
+This cell experiment has no assigned printable pitch or wall thickness. It has
+not changed the carrier geometry or nominal mass. The **12.6734 g** screen is
+still conditional; combining it with an unconverged cell tensor would not prove
+a new carrier stiffness or resistance.
+
+### Accepted fine T10 field and first spatial comparison
+
+The original fully serial Linux solve completed in **6,710.77 s**, with actual
+return code zero, reaped process, unchanged inputs, finished marker and complete
+field rosters: **4,884,701 displacement nodes, 12,210,048 stress integration
+points and 42,930 reaction nodes**. Peak resident memory reported by native
+`time` was **108,895,468 KiB**. Its archive was fully SHA-256 verified on collection.
+
+The independent stress-compliance energy residual is **2.9044e-9**, below the
+unchanged 1e-4 limit. The applied resultants remain −4,000 N and 850 N·m. The
+integrated volume matches the coarse T10 volume; the retained R2 geometry and
+**1.298199813 kg** nominal mass are unchanged.
+
+![Accepted fine quadratic displacement](../../media/carrier-convergence-20261022/P2-fine-015/carrier-quadratic-displacement.png)
+
+| Observable | Coarse T10 | Refined T10 | Change / finer value | Original limit |
+|---|---:|---:|---:|---:|
+| Maximum displacement [mm] | 2.497451 | 2.524095 | 1.0556% | 2% |
+| Compliance [N·mm] | 20,337.443 | 20,584.972 | 1.2025% | 2% |
+| Global integration-point peak [MPa] | 799.432 | 1,170.351 | **31.6930%** | 5% |
+| Volume-weighted stress p95 [MPa] | 179.078 | 180.745 | 0.9220% | 5% |
+| Central-region peak [MPa] | 774.445 | 841.209 | **7.9367%** | 5% |
+| Central volume-weighted p95 [MPa] | 189.525 | 190.955 | 0.7485% | 5% |
+
+![Actual coarse and refined T10 observables](../../media/carrier-convergence-20261022/P2-spatial-015/carrier-spatial-comparison.png)
+
+This is **one** spatial comparison. Both peak observables fail their original
+limits, so neither this pair nor the earlier execution repeats establishes
+mechanical convergence. The [complete comparison](evidence/mesh-quality-20261025/P2-spatial-comparison-015.json)
+retains all observables and the original finer-denominator convention.
+
+The refined global peak is at **[276.48269, 22.86464, −5.81566] mm**, only
+**0.008739 mm** from the reconstructed rim of the fixed bore patch. The central
+peak is at **[89.05953, 13.06837, 17.98835] mm**, away from either bore-patch rim.
+The [separate boundary diagnostic](evidence/mesh-quality-20261025/fine-P2-peak-diagnostic-015/assessment.json)
+reconstructs both integration-point positions and computes distances to all
+piecewise-linear quadratic patch-rim segments. It keeps every stress value:
+proximity to a boundary does not prove a continuum singularity and does not
+justify removing the failed peak from acceptance. The two hotspot locations
+also differ from their coarse counterparts.
+
+The exact same **7,401 geometrically selected core cells** were then checked
+against the accepted refined T10 stresses. Their corner rosters and selected
+centroids match the T4 screen exactly. Their integrated volume remains
+**4,778.814419 mm³**, and they contain **47.766686 N·mm / 0.464093%** of the T10
+baseline elastic energy. See the [frozen-selection energy audit](evidence/mesh-quality-20261025/fine-P2-core-energy-015/assessment.json).
+The conditional 12.6734 g mass arithmetic is unchanged; this is not a modified
+carrier calculation or a predicted stiffness loss.
+
+The rental was **destroyed after verified collection**. The independent guard
+then observed three consecutive absences, and a fresh account instance listing
+was empty. No rental remains active from this attempt.
+
+### Solver-backend trial that did not qualify
+
+An isolated **MKL 2025.2 / PARDISO-capable** CalculiX binary compiled successfully
+without replacing the installed libraries. Its reference trial was refused as
+PARDISO qualification: the unchanged decks explicitly request
+`*STATIC,SOLVER=SPOOLES`, and the actual log confirms SPOOLES execution. One
+complete carrier replay passes the component contract, but neither that result
+nor the analytic controls tests the linked PARDISO backend. The [refusal receipt](evidence/mesh-quality-20261025/mkl-feasibility-015/qualification-refusal.json)
+preserves this distinction. Any later PARDISO attempt needs separately bound
+solver-selection decks and fresh controls; a successful link is insufficient.
