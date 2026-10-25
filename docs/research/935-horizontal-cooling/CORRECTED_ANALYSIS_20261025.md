@@ -625,6 +625,17 @@ matched by the uploaded release asset. Any altered patch must again pass the
 full bidirectional envelope, topology, exact-volume and connectivity audits
 before mechanical meshing is reconsidered.
 
+A second local inspection compared that group's incident exterior facets with
+the protected source OFF using exact original vertex order and unordered face
+indices. Of 92 incident boundary triangles, **90 are inherited** and two were
+introduced during meshing. Twenty-eight have equilateral-normalized triangle
+quality below 0.1; the minimum is 0.0330. This points the first geometric
+review at inherited thin facets, rather than only TetGen connectivity. It
+does not prove that those facets are scan errors or justify moving them. The
+private [patch receipt and XY inspection image](https://github.com/cluster2600/porscheparts-935-private/releases/tag/935-root-repair-20261025)
+have verified SHA-256 values `4e5c922b1ebb7947c4bea913c27bda06e79dcd76ef33f5369e69e82f8c16d35e`
+and `03a33292166d8f2367a81743733ce919e520ad562ffa5f6a0921fe56cf3f4199`.
+
 ## Remaining gates
 
 No new OpenFOAM meshing or CFD solve has run on either corrected candidate.
