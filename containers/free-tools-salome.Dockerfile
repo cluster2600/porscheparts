@@ -5,6 +5,9 @@ COPY benchmarks/free-tools/ft_common.py benchmarks/free-tools/ft_geometry.py ben
 USER root
 RUN test -f /opt/SALOME-9.16.0-native-DB12-SRC/BINARIES-DB12/SALOME/bin/salome/salomeContextUtils.py \
     && printf '%s\n' /opt/SALOME-9.16.0-native-DB12-SRC/BINARIES-DB12/SALOME/bin/salome > /opt/free-tools/context-dir
+RUN find /opt/SALOME-9.16.0-native-DB12-SRC -maxdepth 2 -type f -name '*env*.sh' -print \
+    && find /opt/SALOME-9.16.0-native-DB12-SRC/BINARIES-DB12 -type d -path '*/bin/salome' -print | sort | paste -sd: > /opt/free-tools/bin-pythonpath \
+    && find /opt/SALOME-9.16.0-native-DB12-SRC -type f -name runSession.py -print
 COPY --chmod=755 containers/free-tools-salome-entrypoint.sh /opt/free-tools/entrypoint.sh
 USER user
 ENV HOME=/tmp PYTHONDONTWRITEBYTECODE=1 QT_QPA_PLATFORM=offscreen
