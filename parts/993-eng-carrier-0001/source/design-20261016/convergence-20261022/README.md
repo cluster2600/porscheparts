@@ -133,3 +133,40 @@ passes exact orientation/connectivity and improves minimum mean ratio from
 new mechanical fields remain required. `render_mesh_quality.py` consumes the
 reference and candidate quality reports to reproduce the figure. The full
 report records all intermediate hashes, tests and refusals.
+
+
+`prepare_remeshed_quadratic.py --volume VOLUME --exact-audit EXACT_AUDIT
+--reference-geometry REFERENCE_GEOMETRY --reference-mapping REFERENCE_MAPPING
+--output FRESH` is the distinct replacement-connectivity conversion. It verifies
+the complete oriented boundary against the retained linear surface, preserves
+its source-bound distance allowance, and rounds the inherited sum upward.
+It does not claim a new nested refinement. Run the unchanged
+`../resume-20261020/audit_quadratic_mapping.py` on its fresh geometry, followed by
+`prepare_matched_traction_cases.py` with the same material/load study. Before any
+solve, compare all bore patches and traction vectors with the retained P1/P2
+preparations; equality holds in the executed replacement case.
+
+
+## Native Apple Silicon solver
+
+`build_macos_ccx.py --output FRESH` is the executed clean-replay installer for
+GCC 16.2.0 / ARPACK 3.9.1 already present on the Mac. It verifies all four source
+archive hashes, rejects unsafe archive members, applies the Debian CalculiX
+patches plus official SPOOLES `I2Ohash-64bit.patch`, and retains compiler logs.
+The compatibility edits follow the linked macOS recipe; the additional hash
+patch is essential for the demonstrated large case. No global package is changed.
+
+Compile `spooles_hash64_control.c` with `-fsanitize=undefined
+-fno-sanitize-recover=undefined`, the selected source include directory and its
+static SPOOLES library. The unpatched source fails on the large hash keys; the
+patched source passes insertion, lookup and removal. Source build alone remains
+unqualified until the existing analytic controls and full reference pass.
+
+`run_local_ccx_serial.py` takes `--binary`, `--expected-binary`, `--deck`, optional
+`--mesh`, fresh `--output`, `--seconds` (at most 1200) and `--rss-gib` (at most 24).
+It records the actual solver PID, one requested thread, a child CPU limit, a wall
+bound, sampled RSS, reaping and complete file identities. Its sampled memory
+ceiling is not an OS address-space cap. The worker's Darwin exit-race regression
+is covered separately; a historical finished log without a terminal receipt stays
+refused. Use the existing `assess_native_P1.py` / `assess_native_P2.py` readers
+and independent P1 energy checker before comparing fields.

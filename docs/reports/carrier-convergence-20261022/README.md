@@ -422,3 +422,181 @@ failures / 39 errors / 458 skips** in the host Python 3.10 environment. Its nati
 SciPy/import and existing retained-fixture failures are recorded separately;
 these local failures are not represented as a passing full suite. Linux CI must
 check the published PR head independently.
+
+### Matched quadratic geometry and unchanged loads
+
+The replacement mesh now has **381,564 T10 elements and 719,680 nodes**.
+`prepare_remeshed_quadratic.py` verifies every oriented boundary triangle against
+the retained, source-bound linear reference before transferring its complete
+surface-distance budget. Cyclic corner permutations are allowed; reversed winding
+or even a 1e-12 mm boundary displacement is refused. The reference linear and
+quadratic corner rosters and all retained hashes must agree. No sampled-distance
+result is upgraded to a complete certificate.
+
+The original shared-edge midpoint construction and bounded CalculiX numeric
+encoder are reused. A fresh whole-simplex integer mapping audit passes every
+new T10 element, with maximum relative Jacobian perturbation **2.50026 × 10⁻¹⁰**
+and composed reference-to-transported-surface bound **0.059999994899798 mm**,
+below the unchanged **0.06 mm** limit. The inherited linear bound is rounded
+upward when converting its exact rational sum to binary64.
+
+The unchanged matched-traction generator then prepares P1 and P2 decks. A full
+comparison of both order reports confirms **identical material, all bore-patch
+areas/centroids/counts, and all per-bore constant traction vectors** for both
+load cases. This is preparation and geometry evidence; native result fields,
+equilibrium and independent energy remain required before a mechanical comparison.
+
+## 25 October — qualified local solver and new complete mechanical fields
+
+A native **macOS arm64 CalculiX 2.21** runtime is now built in a private work
+prefix with the existing GCC 16.2.0 and ARPACK 3.9.1 toolchain. No global package
+or service was replaced. A clean, source-only replay of the published installer
+produces **the identical binary SHA-256** as the separately qualified runtime:
+`188939942f7d1e4214c7f74d17dc8cacab46e37e484ea2e3d1db03f2794a0a7a`.
+
+### A large-case SPOOLES failure missed by small analytic controls
+
+The first port follows the public
+[Homebrew CalculiX recipe](https://github.com/costerwi/homebrew-calculix/blob/main/calculix-ccx.rb)
+for the macOS build mechanics, while retaining the pinned **2.21** numerical
+sources instead of adopting its newer solver version. It passes the original
+manufactured solution and traction controls, but the full reference crashes
+with **SIGSEGV** after 111.5 s inside `I2Ohash_insert` during sparse-factor
+postprocessing. That binary is refused for full-size mechanics.
+
+A targeted C reproducer instruments the actual SPOOLES source with UBSan. It
+catches **signed 32-bit overflow in `60001 * 60001`** before the resulting invalid
+hash-table access. This is the historical SPOOLES issue covered by the official
+Debian `I2Ohash-64bit.patch`, available in the hash-pinned
+[Ubuntu/Debian source patch archive](https://archive.ubuntu.com/ubuntu/pool/universe/s/spooles/spooles_2.2-14.debian.tar.xz).
+The patch widens the hash product in insertion, lookup and removal; it does not
+change material, geometry, loads or acceptance limits. The patched C reproducer
+passes insertion/lookup/removal without a UBSan error. The old source, failed
+binary, failed full run and filtered owned-process crash diagnostic are retained.
+Raw operating-system crash reports are not committed.
+
+A separate local supervision defect surfaced when a process completed during
+RSS observation and group-signal cleanup. Its finished solver log lacked a
+complete terminal receipt, so that attempt is **excluded**. The worker now
+records the owned PID, accepts legitimate zero-RSS exit observations and reaps
+the process across Darwin's exit/group-signal race. Missing or malformed RSS
+measurements remain refused. A fresh full repeat supplies the accepted receipt;
+the old finished log receives no retroactive qualification credit.
+
+### Cross-platform reference recovery
+
+The corrected binary passes all three original analytic controls at unchanged
+limits. Its complete coarse T10 reference independently passes equilibrium and
+stress/strain energy. Compared with the previously accepted Linux field, maximum
+component differences are **1.0e-6 mm displacement**, **0.0001 MPa stress** and
+**0.00001 N reaction**, within the previously declared compiler comparison
+limits of 1e-5 mm / 0.01 MPa / 0.01 N. The maximum displacement and global VM
+peak reproduce **2.491741357 mm / 1,152.404155 MPa**.
+
+The new solver worker runs one requested thread, bounds wall time and child CPU
+time, samples the actual solver PID's RSS, hashes complete inputs/outputs and
+requires a reaped process plus a finished marker. Its **24 GiB sampled-RSS ceiling
+is not an OS memory guarantee**; each probe is bounded and the observation scope
+is recorded. Accepted complete runs here remain below approximately **11.0 GiB
+sampled RSS**. No fresh CUDA execution is claimed by these local CPU results.
+
+### Accepted replacement-mesh results
+
+All following fields have complete result rosters, preserved source hashes,
+independent equilibrium and independent stress-energy checks.
+
+| Quadratic T10 field | Cells | Max displacement, mm | Compliance, N·mm | Global peak VM, MPa | Volume-weighted p95, MPa | Central peak, MPa |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: |
+| Original reference, corrected native replay | 343,283 | 2.491741 | 20,284.901 | 1,152.404 | 179.428 | 716.837 |
+| Quality remesh, same exterior | 381,564 | 2.497451 | 20,337.443 | 799.432 | 179.078 | 774.445 |
+
+Using the new field as denominator, changes are **0.229% displacement**, **0.258%
+compliance**, **0.195% p95 stress**, but **44.15% global peak** and **7.44% central
+peak**. The independent energy residual of the replacement T10 field is
+**2.44e-9**. This is a **topology-replacement comparison, not a nested h-refinement
+step**. The unchanged physical study shape has not acquired a demonstrated
+strength gain merely because one computed peak decreased.
+
+### New nested family from the quality mesh
+
+The first red8 split now contains **3,052,512 T4 cells / 719,680 nodes**. Its full
+exact-rational orientation and indexed boundary/connectivity audit passes.
+The corresponding T10 space contains **4,884,701 nodes**; its complete mapping
+proof also passes, with relative Jacobian perturbation **5.73942e-10** and composed
+surface bound **0.059999994899846 mm**. The consistently integrated child loads
+retain the parent traction vectors and patch rosters. This larger T10 solve is
+**prepared, not executed** by this checkpoint.
+
+| Accepted T4 field | Cells | Max displacement, mm | Compliance, N·mm | Global peak VM, MPa | Volume-weighted p95, MPa |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| Quality remesh T4 | 381,564 | 1.550166 | 12,004.933 | 1,270.714 | 129.527 |
+| Nested red8 T4 | 3,052,512 | 1.989848 | 15,795.123 | 1,555.257 | 150.228 |
+
+The nested changes are **22.10% displacement**, **24.00% compliance**, **18.30%
+peak stress** and **13.78% p95 stress**. Independent energy residuals are
+**2.34e-8** and **1.20e-8**. **These calculations are accepted; their convergence
+is not.** The larger T10 family and further comparisons remain necessary under
+the unchanged contract, including its two-successive-comparison requirement.
+
+![Measured nested refinement on the replacement mesh](../../media/carrier-convergence-20261022/P1-quality-remesh/carrier-spatial-comparison.png)
+
+Both load cases at both orders also receive a coordinate-labelled comparison:
+every encoded nonzero nodal force is identical to the original reference. P1
+fixed-node coordinates are identical. Three P2 fixed midpoint coordinates differ
+by at most **1/288230376151711744 mm = 3.47e-18 mm** after the fresh numeric
+transport. This roundoff is recorded explicitly; it does not change the nominal
+fixed patch model. It is covered by the fresh geometric mapping/transport proof.
+
+```mermaid
+flowchart TD
+    S[Pinned source archives] --> B[Private native build]
+    B --> A[Original analytic controls pass]
+    A --> F[Full reference exposes SPOOLES hash overflow]
+    F --> U[UBSan reproducer and official Debian patch]
+    U --> R[Clean replay produces identical corrected binary]
+    R --> C[Fresh controls and complete Linux-reference comparison pass]
+    C --> Q[Quality-remesh T4 and T10 fields pass equilibrium and energy]
+    Q --> H[Nested T4 field passes but changes remain above limits]
+    H --> N[Larger T10 solve and further spatial comparisons remain open]
+```
+
+### Reproduce locally and continue
+
+The [native installer](../../../parts/993-eng-carrier-0001/source/design-20261016/convergence-20261022/build_macos_ccx.py)
+downloads four SHA-pinned source archives from Ubuntu and Netlib, applies the
+retained Debian patches and bounded macOS build-compatibility edits, and builds
+with two compiler jobs. It refuses an existing output directory or a different
+retained compiler/ARPACK version. Use the existing toolchain; it does not upgrade
+Homebrew packages.
+
+```sh
+python3 parts/993-eng-carrier-0001/source/design-20261016/convergence-20261022/build_macos_ccx.py \
+  --output work/local-ccx-fresh
+```
+
+Building alone does not qualify the binary. Run `spooles_hash64_control.c` against
+its actual source with UBSan, the three original analytic controls with
+`run_local_ccx_serial.py`, the existing independent readers, and the full retained
+reference before adopting new fields. The clean replay and all actual control
+receipts are published as compact exact copies; large raw decks/fields remain in
+`work/carrier-mesh-quality-20261025/` with hashes.
+
+The bounded Vast rental **57657325** eventually reached `running`, but its input
+transfer delivered only **783,360 / 40,781,439 bytes** before the 60 s transfer
+bound. No remote numerical job started. With the corrected local reference
+independently accepted and the remaining rental time insufficient at that
+observed rate, the exact owned instance was destroyed. The provider independently
+confirmed absence and its guard recorded three consecutive absence confirmations.
+This rental supplies no new GPU or finite-element qualification claim.
+
+The retained R2 master stays **1.298199813 kg**, below **1.30 kg**. No new cellular
+part, changed-geometry resistance result, qualified print job or manufacturing
+release is claimed. The full engineering/manufacturing objective remains open.
+
+Current-checkpoint verification: **91 focused carrier tests pass**, including
+native extraction/archive and process-exit regressions plus exact receipt-copy
+checks. Strict links report **0 broken links / 1,829 Markdown files**, and all
+**43 public catalogue preview records** remain current. The previous Linux head
+`53d65b20` passed full CI; the new published head requires its own CI result.
+The earlier local full-suite host failures remain recorded and are not presented
+as a passing current-head `make check`.

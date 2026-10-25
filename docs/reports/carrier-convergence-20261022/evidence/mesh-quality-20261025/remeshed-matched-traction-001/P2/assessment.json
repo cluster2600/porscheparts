@@ -1,0 +1,219 @@
+{
+  "status": "matched_consistent_traction_inputs_prepared_not_solved",
+  "order": "P2",
+  "nodes": 719680,
+  "elements": 381564,
+  "material": {
+    "name": "Ti-6Al-4V dense elastic reference only",
+    "source": "https://www.timet.com/documents/datasheets/alpha-and-beta-alloys/timetal-6-4.pdf",
+    "E_MPa": 107000.0,
+    "nu": 0.31,
+    "density_tonne_mm3": 4.42e-09,
+    "expansion_per_K": 9e-06,
+    "strength_allowable_MPa": null,
+    "fatigue_curve": null,
+    "manufactured_state_qualified": false
+  },
+  "fixture": "Both nominal end-bore patches fixed; consistently integrated constant vector traction on each of four central bore patches",
+  "load_model_changed_from_dead_node_study": true,
+  "constant_traction_shape_integrals": "P1: area/3 on corner nodes. P2: zero on corners, area/3 on the three edge midpoint nodes.",
+  "traction_selection": "Minimum surface-L2 norm over four constant vector tractions, subject to six resultant components",
+  "radial_selection_band_mm": 0.06,
+  "inward_normal_alignment_minimum": 0.9,
+  "traction_system_condition": 2900.066113339617,
+  "bore_patches": {
+    "bolt0": {
+      "faces": 522,
+      "area_mm2": 259.0939839746133,
+      "area_centroid_mm": [
+        -50.000499024309285,
+        -20.000690477157942,
+        0.002259245007362067
+      ]
+    },
+    "bolt1": {
+      "faces": 518,
+      "area_mm2": 258.67720282193557,
+      "area_centroid_mm": [
+        -49.9979815300298,
+        20.000142658777637,
+        -0.0017388519448300606
+      ]
+    },
+    "bolt2": {
+      "faces": 535,
+      "area_mm2": 259.0459039642325,
+      "area_centroid_mm": [
+        50.00136773302987,
+        -19.99983504461113,
+        0.002554279510708517
+      ]
+    },
+    "bolt3": {
+      "faces": 522,
+      "area_mm2": 258.98487872303747,
+      "area_centroid_mm": [
+        50.00304457196683,
+        19.998610948557978,
+        -0.0028074119296730604
+      ]
+    },
+    "end0": {
+      "faces": 2629,
+      "area_mm2": 1931.4448370162281,
+      "area_centroid_mm": [
+        -280.0004668501632,
+        0.001527662247247047,
+        -0.0001703470696347485
+      ]
+    },
+    "end1": {
+      "faces": 2578,
+      "area_mm2": 1931.7488293855527,
+      "area_centroid_mm": [
+        279.9997162712622,
+        0.0002924110327987735,
+        0.00015851548166255792
+      ]
+    }
+  },
+  "bore_group_nodes": {
+    "bolt0": 1314,
+    "bolt1": 1298,
+    "bolt2": 1333,
+    "bolt3": 1308,
+    "end0": 5573,
+    "end1": 5478
+  },
+  "loads": {
+    "gravity": {
+      "requested": {
+        "force_N": [
+          0,
+          0,
+          -2000
+        ],
+        "moment_Nmm": [
+          0,
+          0,
+          0
+        ]
+      },
+      "actual_force_N": [
+        5.181252561879027e-22,
+        1.3331980125246854e-20,
+        -1999.9999999999984
+      ],
+      "actual_moment_Nmm": [
+        7.680051039571367e-12,
+        -2.899724904636969e-11,
+        3.003889850874069e-19
+      ],
+      "wrench_residual": [
+        5.181252561879027e-22,
+        1.3331980125246854e-20,
+        1.5916157281026244e-12,
+        7.680051039571367e-12,
+        -2.899724904636969e-11,
+        3.003889850874069e-19
+      ],
+      "per_bore_constant_traction_N_per_mm2": [
+        [
+          -1.7117025065258222e-08,
+          8.575550820515877e-08,
+          -1.9304793952849917
+        ],
+        [
+          1.2942032653667763e-08,
+          -1.008920882746819e-07,
+          -1.9323467796375433
+        ],
+        [
+          -2.0312475647445925e-08,
+          1.3262784725417536e-07,
+          -1.9293964340597751
+        ],
+        [
+          2.451484063246766e-08,
+          -1.1767850625080027e-07,
+          -1.9312637160743316
+        ]
+      ],
+      "nonzero_force_nodes": 3675,
+      "deck_sha256": "a61d68f3bcbdafe053be37dd118d3d1eba0c323234ea2f2f7255378f31971aba"
+    },
+    "combined": {
+      "requested": {
+        "force_N": [
+          0,
+          0,
+          -4000
+        ],
+        "moment_Nmm": [
+          0,
+          850000,
+          0
+        ]
+      },
+      "actual_force_N": [
+        -7.010535950585997e-16,
+        -1.6307798278544956e-16,
+        -4000.0000000000127
+      ],
+      "actual_moment_Nmm": [
+        1.653344128271783e-11,
+        850000.0000000002,
+        -2.6538829727557056e-15
+      ],
+      "wrench_residual": [
+        -7.010535950585997e-16,
+        -1.6307798278544956e-16,
+        -1.2732925824820995e-11,
+        1.653344128271783e-11,
+        2.3283064365386963e-10,
+        -2.6538829727557056e-15
+      ],
+      "per_bore_constant_traction_N_per_mm2": [
+        [
+          0.0006133915454677099,
+          0.0002645129932375296,
+          12.54989457430001
+        ],
+        [
+          -0.0004869497898634396,
+          0.0002652947085099043,
+          12.557022755405592
+        ],
+        [
+          0.0007102314086301762,
+          -0.0002652993901457909,
+          -20.272415237526246
+        ],
+        [
+          -0.000837677427489385,
+          -0.0002642420605701596,
+          -20.265011613770195
+        ]
+      ],
+      "nonzero_force_nodes": 3675,
+      "deck_sha256": "819aac5d3f9cd8a6d53c960d159abe9a0bdd3c418dd51b81c8aa5700e4c7f089"
+    }
+  },
+  "source_sha256": {
+    "work/carrier-resume-20261020/picogk-R2-mechanics-study.json": "f41352402649adf98dda9d6bb294f7342e5ed6f5c8b5609be9e103229f4c6ccf",
+    "work/carrier-mesh-quality-20261025/remeshed-quadratic-mapping-001/assessment.json": "e3cdaa955c659679d7321a439d96c693684efd9888ea1fdf9dba319c169dcb23",
+    "work/carrier-mesh-quality-20261025/remeshed-quadratic-001/assessment.json": "5febff7102ac3dc623ddadbfa69143564825de4edb910d68294bf22bbb740a0b",
+    "/Users/maxime/.codex/worktrees/993-carrier-revalidation/3dprinting993/parts/993-eng-carrier-0001/source/design-20261016/resume-20261020/prepare_matched_traction_cases.py": "12ae641aec43ddb17e93ab1fd55951a15387c843c6f85f68e5b7420fa8d2d5de"
+  },
+  "output_sha256": {
+    "combined.inp": "819aac5d3f9cd8a6d53c960d159abe9a0bdd3c418dd51b81c8aa5700e4c7f089",
+    "gravity.inp": "a61d68f3bcbdafe053be37dd118d3d1eba0c323234ea2f2f7255378f31971aba",
+    "gravity-loads.npz": "85066f3e5f8d25e11b880a51998a46cbc820192d62d173aa51b646107f589e2e",
+    "transport.npz": "f092541447f9939b987994ab883ef57001370ebd80a4902bf2cdd41aba52f0b3",
+    "combined-loads.npz": "5165d84f87125c6adc33e79f031f754a94d6041a47c1cc4eeb0250e306c0de96",
+    "mesh.inp": "bc037ac6a5e9b1cd71f8af187be30d66819c497b9fe9ceae8020c55158949f8c",
+    "groups.npz": "b1e636937daf97b1908720a1b497ee37597090c90712fd80d1f81e0fe4159941"
+  },
+  "stress_convergence_demonstrated": false,
+  "geometry_adopted": false
+}
