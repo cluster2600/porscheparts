@@ -709,6 +709,60 @@ matched by the uploaded release asset. No scan geometry was added to public
 Git. The next assembly step still requires specimen-specific 935 engine
 surfaces or independently measured crankcase, head and shroud datums.
 
+## Corrected rotor: exploratory fluid volume
+
+The corrected 0.7 rotor was substituted into the retained exploratory outer
+fluid boundary without moving its outer vertices, triangles or patch markers.
+The reusable
+[`compose_root0p7_fluid_plc.py`](../../../twins/935-horizontal-cooling-system-f0/source/corrected-analysis-20261025/compose_root0p7_fluid_plc.py)
+pins the SI rotor OBJ (`ee9357d46911fc0112342626064f7e731395af9db9a8bc340793cf22effb24a6`)
+and prior boundary NPZ (`67835eacd4d1c7f9736b5fc826979f8ad48366397b422e672043ef720c027f86`).
+The resulting PLC has 447,868 vertices, 895,732 triangles and a signed fluid
+volume of 0.05140884014124352 m³ under the **unverified** source-to-SI scale.
+An analytic nested-box control passed, and the complete rotor and fluid
+surfaces passed closed-orientation and solid-hole winding checks. The outer
+boundary is an exploratory duct, **not a measured 935 shroud or engine**.
+
+On the Mac, TetGen 1.5.1 (`847c43da808f6e65dd4a6c5091c23384fcc42ff4ce32692ec336ca8da6ce08df`)
+completed `-pYq1.4MzCf` in 201.5 s with 817,600 nodes and 3,727,134
+tetrahedra. The existing independent full-volume audit established exact
+positive orientation for every cell, one connected volume, no duplicate or
+non-manifold faces, exact PLC volume equality, and a complete boundary
+coordinate/triangle/marker bijection for all 895,732 exterior faces. Its
+audited volume NPZ has SHA-256
+`bcad2182f1e78e2cc6fe2ca90ddc5c277b0e93ca35dce4ddca9082b4a60e0420`.
+
+The new [`audit_root0p7_tet_quality.py`](../../../twins/935-horizontal-cooling-system-f0/source/corrected-analysis-20261025/audit_root0p7_tet_quality.py)
+measured every tetrahedron. Equilateral-normalized mean ratio has minimum
+0.00002917, first percentile 0.04280 and median 0.72962. **3,461 cells**
+fall below 0.01, 46,029 below 0.05 and 92,185 below 0.1. Thus this volume is
+topologically valid but **not CFD-quality admitted**. It has no boundary-layer
+study, native OpenFOAM `checkMesh`, grid convergence, operating-point solve or
+measured 935 installation. No airflow, pressure, torque or thermal conclusion
+can be drawn from it.
+
+Reproduce the private PLC with Python 3.12, NumPy 1.26.4, SciPy 1.13.1 and
+trimesh 4.9.0. The Mac's existing SciPy 1.15.3 installation failed to load a
+native module, so the isolated versions were used. Run the existing
+`fluid-mesh-study-20261022/audit-tetgen-002.py` after a bounded TetGen run,
+then the quality script above. The private archive
+[`935-cfd-root0p7-20261026.tar.zst`](https://github.com/cluster2600/porscheparts-935-private/releases/tag/935-root-repair-20261025)
+contains the inputs, mesh, execution log, complete audits and file manifest.
+Its SHA-256 is `0b5071c7276d5c2bfedefe868b489b786e1af5a025cd0bbe7a7eb95b357d8277`.
+All 16 listed file hashes passed an extraction readback, and the private
+GitHub release reports the same SHA-256 digest. The archive is not a released
+design or simulation result.
+
+From the repository root, after restoring the hash-pinned private inputs:
+
+```sh
+uv run --no-project --python 3.12 --with numpy==1.26.4 --with scipy==1.13.1 --with trimesh==4.9.0 \
+  python twins/935-horizontal-cooling-system-f0/source/corrected-analysis-20261025/compose_root0p7_fluid_plc.py \
+  work/935-cfd-root0p7-new-plc
+python3 twins/935-horizontal-cooling-system-f0/source/corrected-analysis-20261025/audit_root0p7_tet_quality.py \
+  work/935-cfd-root0p7-20261026-audit/volume.npz work/935-cfd-root0p7-new-quality.json
+```
+
 ## Remaining gates
 
 No new OpenFOAM meshing or CFD solve has run on either corrected candidate.
