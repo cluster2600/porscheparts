@@ -1,0 +1,15 @@
+{
+  "declared_before_new_solve": true,
+  "reference_geometry": "R2 SHA256 396161993b35f708fdd1e527f875aff60daf8c79031dc9a39c42891a9c1ae1a0",
+  "reference_mass_kg": 1.2981998134403216,
+  "mass_limit_kg": 1.30,
+  "loads_and_support_patches": "retained constant bore tractions and fixed end-bore parent patches; consistent child surface integrals",
+  "displacement_and_compliance_relative_change_limit": 0.02,
+  "stress_relative_change_limit": 0.05,
+  "required_successive_spatial_comparisons": 2,
+  "stress_outputs": ["global integration-point peak", "volume-weighted 95th percentile", "central region abs(X)<=260mm"],
+  "stress_region_exclusion_scope": "Central-region metrics are separately labelled; they never qualify the excluded end-restraint peak.",
+  "solver_equilibrium_and_energy_limits": "retained original limits; no relaxation",
+  "geometry_fidelity_limit_mm": 0.06,
+  "if_peaks_do_not_stabilize": "Keep convergence false; diagnose fixture/geometry singularity in an explicitly separate model. Do not drop failed peak metrics or relabel another model."
+}

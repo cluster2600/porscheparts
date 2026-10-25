@@ -1,0 +1,110 @@
+{
+  "status": "passed",
+  "requested_device": "cuda:0",
+  "gpu_validated": true,
+  "geometry_only": true,
+  "manufacturing_authorized": false,
+  "application_validated": false,
+  "source_sha256": {
+    "benchmarks/warp-geometry/pilot.py": "6561e3348689f31973991f30876e65dd73c723a35cc8f2aa2cc4c8268fe16c36",
+    "benchmarks/warp-geometry/kernels.py": "356d1debf790790887882e7d0a15d91232451113613f4a43e3e909fcb7540baa",
+    "carrier-queries.npz": "f0ce372c9604c6645f603607972b332ebc62b83d961fc854845f38387821976d",
+    "oracle-report.json": "73ce1236c2cd8e8a28260a97213916fa49b789aca7692abee658f1f79837ab4b",
+    "/workspace/carrier-validation-20261022/check_carrier_warp.py": "9f548602a58eb703fddaf6efaed935a45e34077727e5fb8f07f8b639587f9e97"
+  },
+  "cuda_dispatch_completed": true,
+  "actual_device": "cuda:0",
+  "device_name": "NVIDIA RTX A2000",
+  "device_arch": 86,
+  "versions": {
+    "python": "3.12.3",
+    "numpy": "2.2.6",
+    "warp": "1.18.0"
+  },
+  "vertices": 609140,
+  "triangles": 1218348,
+  "queries": 65536,
+  "fixed_absolute_error_limit_mm": 0.0001,
+  "maximum_absolute_error_mm": 3.057735739275813e-05,
+  "checks": [
+    {
+      "passed": true,
+      "max_abs_error_mm": 3.057735739275813e-05,
+      "rms_abs_error_mm": 3.1455116399163043e-06,
+      "query_miss_count": 0,
+      "invalid_distance_count": 0,
+      "tolerance_mm": 0.0001
+    },
+    {
+      "passed": true,
+      "max_abs_error_mm": 3.057735739275813e-05,
+      "rms_abs_error_mm": 3.1455116399163043e-06,
+      "query_miss_count": 0,
+      "invalid_distance_count": 0,
+      "tolerance_mm": 0.0001
+    },
+    {
+      "passed": true,
+      "max_abs_error_mm": 3.057735739275813e-05,
+      "rms_abs_error_mm": 3.1455116399163043e-06,
+      "query_miss_count": 0,
+      "invalid_distance_count": 0,
+      "tolerance_mm": 0.0001
+    },
+    {
+      "passed": true,
+      "max_abs_error_mm": 3.057735739275813e-05,
+      "rms_abs_error_mm": 3.1455116399163043e-06,
+      "query_miss_count": 0,
+      "invalid_distance_count": 0,
+      "tolerance_mm": 0.0001
+    },
+    {
+      "passed": true,
+      "max_abs_error_mm": 3.057735739275813e-05,
+      "rms_abs_error_mm": 3.1455116399163043e-06,
+      "query_miss_count": 0,
+      "invalid_distance_count": 0,
+      "tolerance_mm": 0.0001
+    },
+    {
+      "passed": true,
+      "max_abs_error_mm": 3.057735739275813e-05,
+      "rms_abs_error_mm": 3.1455116399163043e-06,
+      "query_miss_count": 0,
+      "invalid_distance_count": 0,
+      "tolerance_mm": 0.0001
+    }
+  ],
+  "timing": {
+    "cold_full_pipeline_seconds": 0.7553876569727436,
+    "warm_full_pipeline_seconds": [
+      0.05152027809526771,
+      0.05012747901491821,
+      0.04809081100393087,
+      0.04922276898287237,
+      0.04758821404539049
+    ],
+    "scope": "fresh mesh/BVH, arrays, transfers, query, synchronization and host readback; cold includes init/JIT; input loading and oracle assessment excluded",
+    "speedup_claimed": false
+  },
+  "output_distances_sha256": "cb5f5177d045ac56d9eaa836f72b501bc6917388d5f5d53d36b5ae29a06e21bf",
+  "query_groups": {
+    "random_bounding_box": [
+      0,
+      32768
+    ],
+    "surface_centroids": [
+      32768,
+      49152
+    ],
+    "normal_offsets": [
+      49152,
+      57344
+    ],
+    "nominal_tool_columns": [
+      57344,
+      65536
+    ]
+  }
+}
