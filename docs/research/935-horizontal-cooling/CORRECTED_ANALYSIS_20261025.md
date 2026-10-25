@@ -59,6 +59,19 @@ export helper reads back every SI OBJ vertex and face. The new private case is
 One uncalibrated source unit is provisionally mapped to 0.001 m, as in the
 earlier pilot; this is **not** a verified physical scale.
 
+The later [0.7-root preparation program](../../../twins/935-horizontal-cooling-system-f0/source/corrected-analysis-20261025/prepare_root0p7_fluid_case.py)
+now stages the protected 878,730-face rotor for the same pilot. It pins the
+surface, template receipt and all six OpenFOAM system dictionaries; the SI OBJ
+export was read back vertex by vertex and face by face. The new rotor OBJ has
+SHA-256 `ee9357d46911fc0112342626064f7e731395af9db9a8bc340793cf22effb24a6`.
+The private case is `work/935-corrected-analysis-20261025/fluid-case-root-0p7-002/`.
+Its [archive](https://github.com/cluster2600/porscheparts-935-private/releases/tag/935-root-repair-20261025)
+has SHA-256 `2a81b298df4f7db89298b2dc7dbe1979eafee2883d3afc34f46b92e483a9fb27`;
+all nine members passed extracted hash readback, and the release digest matches.
+This is a **meshing input**, not a native OpenFOAM mesh or CFD result. The
+distribution shroud is still provisional and the engine air passages are not
+specified.
+
 The [reduced machine-readable receipt](corrected-analysis-20261025.json)
 identifies the source, candidate, case and private checkpoint. The private
 [release](https://github.com/cluster2600/porscheparts-935-private/releases/tag/935-root-repair-20261025)
