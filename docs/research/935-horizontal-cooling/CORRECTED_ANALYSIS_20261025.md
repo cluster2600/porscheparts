@@ -667,6 +667,24 @@ All 18 archived members and the uploaded SHA-256
 `90c0487a7fb0360558716612322bc5c85859d618762881745f3ca92ebf6bc080`
 were verified. Neither volume is admitted for FEA.
 
+## Available cylinder-head scan and the 935 engine boundary
+
+The local `935+Xtreme+Cyl+head.obj` was independently audited without repair,
+scaling or geometry export. It contains 1,281,608 vertices and 2,466,040
+triangles in four connected surface components. Its 99,876 boundary edges and
+eight zero-area triangles mean it is an open acquisition. The file supplies
+neither units nor an authenticated identity, and its name does not establish
+historical 935 fitment. It therefore remains separate from the active
+six-cylinder packaging hypothesis; it cannot replace a measured 935 crankcase
+or establish the head/duct mounting datums. The original 917 context scan
+remains comparative only.
+
+The complete private [scan audit](https://github.com/cluster2600/porscheparts-935-private/releases/tag/935-root-repair-20261025)
+has SHA-256 `19226a9974e597671d873e4a8d227c9f1e7ef67d8cac102c0f9bbf4f387bf6cb`,
+matched by the uploaded release asset. No scan geometry was added to public
+Git. The next assembly step still requires specimen-specific 935 engine
+surfaces or independently measured crankcase, head and shroud datums.
+
 ## Remaining gates
 
 No new OpenFOAM meshing or CFD solve has run on either corrected candidate.
