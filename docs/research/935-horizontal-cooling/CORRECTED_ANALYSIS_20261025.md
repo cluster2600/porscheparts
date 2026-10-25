@@ -582,6 +582,38 @@ with the scripts, accepted exploratory volume, rejected outputs, exact and
 connectivity audits, logs, and full residual-cell list. All 28 archive members
 passed hash readback; GitHub reports the same archive digest.
 
+### Higher-level TetGen optimization after interior repair
+
+TetGen 1.5.1's [mesh-optimization switches](https://www.wias-berlin.de/software/tetgen/1.5/doc/manual/manual005.html)
+were then tested on the exact-positive interior-repaired volume. An
+optimization-only `-rYO5/7Q` pass changed no quality statistic. With bounded
+refinement enabled, `-rYq1.4/10S50000O5/7Q` added 50,000 nodes and produced
+1,981,741 tetrahedra. Its cells below mean ratio 0.01 fell from 271 to 142;
+the median rose to 0.58350. A further bounded pass without `-Y` produced
+**1,980,992 tetrahedra and 120 cells below 0.01**. The final median mean
+ratio is 0.58363; the minimum remains 0.0000934998. Ninety-seven of the 120
+weak cells use four boundary vertices.
+
+Both refined volumes passed the independent full bidirectional
+0.0225-source-unit polyhedral-envelope check, including topology and
+self-intersection. For the final volume, exact arithmetic found zero flat or
+inverted tetrahedra and a volume of 431,159.940061 source units³. A separate
+all-face audit found one tetrahedral component, zero non-manifold faces and
+exact agreement of the 878,730 stored boundary faces with the actual exposed
+faces. Every original boundary vertex coordinate remains unchanged; the
+surface connectivity changed, so its geometric acceptance rests on the full
+envelope check rather than vertex-only comparison.
+
+The private release contains `tetgen-opt5-001.tar.zst`, SHA-256
+`41c4f2c44747685e4c959055c6b98dbe3b6f56214f0f7ebf7c414e52bde727a5`,
+with both bounded outputs, exact and connectivity audits, surface checks,
+quality receipts, residual-cell list and the TetGen binary hash. All 25
+archive members passed hash readback; GitHub reports the same archive digest.
+This is the best current **exploratory** mechanical volume, not a validated
+FEA mesh. The remaining weak cells, uncalibrated scale, missing exact 935
+interfaces, material data and convergence study still block strength,
+fitment and manufacturing claims.
+
 ## Remaining gates
 
 No new OpenFOAM meshing or CFD solve has run on either corrected candidate.
