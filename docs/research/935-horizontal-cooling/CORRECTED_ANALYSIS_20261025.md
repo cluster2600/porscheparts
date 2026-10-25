@@ -327,6 +327,46 @@ as `tip-variant-r136-package-001.tar.gz`, SHA-256
 `d3ad0d1b097564dce58dee658e67b3b7344fcc1edf6b85e1eecd1d440c72f5dd`.
 Every archive member, its manifest and the GitHub asset digest were checked.
 
+### Mechanical volume-mesh diagnosis and rejected surface-remesh trials
+
+The protected 0.7-root surface produces 1,393,021 optimized Gmsh tetrahedra.
+Of the 3,255 cells below mean ratio 0.01, **3,040 have all four vertices on
+the boundary** and another 189 have three. The defects concentrate along the
+blade/root annulus and outer blade regions. This locates the quality problem
+at the triangulated surface rather than in a broad interior-volume pocket.
+
+Gmsh 4.15.2's standard STL classification and reparametrization trial failed
+after creating 253 discrete surfaces: `Wrong topology of boundary mesh for
+parametrization`. A separate CGAL 6.2.1 isotropic remesh of the closed analysis
+surface produced a 520,378-face unconstrained surface at target edge length
+1.0 source unit. A second trial retained edges classified as sharp at 40°
+and targeted 0.7 source unit, producing 1,035,442 faces. Both remained closed,
+genus one and free of self-intersections under the independent checker.
+
+On the unconstrained 1.0 trial, the optimized Gmsh mesh had 779,177 positive
+tetrahedra, median mean ratio 0.23707 and 16 cells below 0.01. On the
+feature-constrained 0.7 trial it had 1,555,572 positive tetrahedra, median
+mean ratio 0.15388 and 46 cells below 0.01. The original median was 0.11501.
+The feature-constrained surface changed enclosed volume by −0.01513% relative
+to the protected surface. Yet the **complete bidirectional 0.0225-source-unit
+surface-envelope test failed**. A fixed 20,000-point sample in each direction
+found a maximum distance of 0.12268 source unit from protected surface to
+candidate and 0.09130 in reverse. Those sample maxima are lower evidence
+about the true global maxima, not guaranteed bounds. Neither remesh qualifies
+as the reference geometry or an FEA input.
+
+The next geometry step is a **local, constrained repair of the affected
+boundary facets**, with the complete bidirectional envelope and topology
+rechecked before volume meshing. Merely accepting the better tetrahedral
+statistics would conceal a changed rotor shape. The local private archive
+`remesh-quality-private-package-001.tar.gz` is being transferred to the
+[release](https://github.com/cluster2600/porscheparts-935-private/releases/tag/935-root-repair-20261025); its SHA-256 is
+`a041687336295c93b7befff10ffa90f704fdc375f93d009017a7ebc5e40177c4`,
+with code, surfaces, volume meshes, failed and accepted trial receipts, exact
+envelope result, machine-readable comparison and defect map. All 24 local
+archive members were read back against its manifest; the GitHub upload and
+asset-digest readback are still pending.
+
 ## Remaining gates
 
 No new OpenFOAM meshing or CFD solve has run on either corrected candidate.
