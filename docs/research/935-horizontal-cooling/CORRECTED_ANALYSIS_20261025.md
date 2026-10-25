@@ -72,6 +72,17 @@ This is a **meshing input**, not a native OpenFOAM mesh or CFD result. The
 distribution shroud is still provisional and the engine air passages are not
 specified.
 
+An independent [private domain preflight](https://github.com/cluster2600/porscheparts-935-private/releases/tag/935-root-repair-20261025)
+checked the exported OBJ against the unchanged pilot dictionaries. The rotor
+bounding box lies within the 0.36 × 0.36 × 0.40 m block with at least 0.03882 m
+axis-aligned clearance. `locationInMesh` is inside that block and 0.12930 m
+above the rotor bounding box. The base block contains 24 × 24 × 32 = 18,432
+cells. Its receipt SHA-256 is
+`267abacd1bf4d17ef620814513ac1bcbdd60331b3006c16346c0b3df228d7d8a`,
+matched by the uploaded asset. These bounding checks establish only that the
+pilot inputs are spatially consistent; they do not establish connected fluid
+cells, layer quality, a 935 shroud or an operational fan curve.
+
 The [reduced machine-readable receipt](corrected-analysis-20261025.json)
 identifies the source, candidate, case and private checkpoint. The private
 [release](https://github.com/cluster2600/porscheparts-935-private/releases/tag/935-root-repair-20261025)
