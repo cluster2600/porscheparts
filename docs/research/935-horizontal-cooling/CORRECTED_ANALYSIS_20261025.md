@@ -159,8 +159,9 @@ and the remaining incomplete blade sectors.
 The provisional rotor/shroud radial separation is 6.258 mm at the assumed
 scale. The swept rotor-annulus screen found zero candidate support triangles,
 but the support/shroud screen found **1,190,558 candidate triangles**. That
-conservative count does not prove a collision; it prevents a claim of
-clearance. The duct cutout and support interface need a local contact study.
+conservative count does not prove a collision; it motivated the full surface
+contact study below. The duct cutout and support interface still need measured
+mounting datums.
 The engine envelope does not supply historical mounting datums, thermal
 clearances or airflow resistance.
 
@@ -171,6 +172,39 @@ Its 17 source files were extracted and individually hash-checked; the GitHub
 asset digest matches. It includes
 the native PicoGK scene, USD, GLB, PNG and receipts; no geometry is committed
 to the public repository.
+
+### Retained-pose contacts and one rigid revolution
+
+The existing [FCL surface reviewer](../../../twins/935-horizontal-cooling-system-f0/source/review_surface_contacts.py)
+was rerun against the 0.7 six-cylinder scene. It tested all six original
+surface pairs without decimation. The conservative support/shroud candidate
+count above is **not a collision**: the FCL surface distance is 6.83367
+uncalibrated source units. The support/rotor distance is 3.83430 and the
+rotor/shroud distance is 6.25830 at the retained pose. The observed support
+does cross the **hypothetical** engine envelope near source coordinates
+`(95, -8, -210)`; this same crossing existed in the earlier scene. It cannot
+be interpreted as a clash with an actual 935 crankcase.
+
+The new [rigid-sweep reviewer](../../../twins/935-horizontal-cooling-system-f0/source/review_rotor_sweep.py)
+checks 240 equally spaced rotor phases about the assumed Z axis. The maximum
+rotor radius is 143.74075 source units, so any intermediate point moves at
+most `2R sin(pi/(2×240)) = 1.88155` units from its nearest sampled phase.
+Subtracting that motion and a 0.0001-unit numerical reserve from the lowest
+sampled FCL distance gives conservative lower bounds of **1.95136 source
+units** to the support and **4.37637 source units** to the provisional shroud
+through a rigid revolution. Analytic static and moving FCL controls passed;
+the independent exploratory and final runs had identical phase results.
+
+These bounds concern **surface separation under an assumed axis, fixed pose
+and rigid, cold geometry**. They establish neither the missing torque-carrying
+hub/shaft connection nor solid containment, thermal growth, elastic motion,
+historical engine fit, operational speed or physical safety. Full reports,
+logs and source hashes are in the private release as
+`contact-and-sweep-0p7-002.tar.gz`, SHA-256
+`1d05c5940698bb1806cd5b4114ba43ee7b668de67ab37954ee522f43227e033a`;
+its 11 files and GitHub asset digest were checked. The earlier archive is
+retained as an exploratory attempt. The private `rotor-sweep-0p7.png` plot has
+SHA-256 `dadc6a2f38a043c0f30cf45a33704ea700f8a3d2a7861dc4826d4b270ade4447`.
 
 ## Remaining gates
 
