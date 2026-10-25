@@ -170,3 +170,26 @@ ceiling is not an OS address-space cap. The worker's Darwin exit-race regression
 is covered separately; a historical finished log without a terminal receipt stays
 refused. Use the existing `assess_native_P1.py` / `assess_native_P2.py` readers
 and independent P1 energy checker before comparing fields.
+
+### Large quadratic parallel-recovery gate
+
+`run_native_ccx_long_parallel.py` is the bounded recursive-binary profile with
+parallel assembly/factorization and **`CCX_NPROC_RESULTS=1`**. It requires the
+expected binary SHA and a fresh directory, records the requested result-thread
+count, limits wall time to 2,400 s and virtual address space to at most 240 GiB,
+and retains the actual terminal receipt and output hashes. The executed memory
+limit must fit the measured cgroup allocation and leave collection time before
+the fixed lease deadline. It does not change loads, geometry or acceptance limits.
+
+The recursive binary with eight result-recovery threads passed the analytic
+controls but **failed the complete 381,564-cell T10 reference** on Linux: force
+residual 3,795.43 N and relative independent-energy residual 48.19. A normal exit
+and a `Job finished` marker do not admit that field. Serial result recovery must
+pass the fresh analytic controls **and** the full reference comparison before
+launching a fine production case. See the cumulative report for actual receipts;
+the existence of this profile is not itself a successful fine solve.
+
+`render_quadratic_displacement.py` requires a complete accepted T10 assessment
+and matching geometry/result hashes. It displays all T6 boundary faces as four
+triangles each, with deformation amplified tenfold. Surface colours average
+nodal displacement magnitudes for display; they do not smooth stress peaks.

@@ -600,3 +600,92 @@ checks. Strict links report **0 broken links / 1,829 Markdown files**, and all
 `53d65b20` passed full CI; the new published head requires its own CI result.
 The earlier local full-suite host failures remain recorded and are not presented
 as a passing current-head `make check`.
+
+## Complete-model regression gate and displacement view
+
+![Actual accepted quadratic displacement, amplified tenfold](../../media/carrier-convergence-20261022/P2-quality-remesh/carrier-quadratic-displacement.png)
+
+This image uses the accepted **381,564-cell / 719,680-node T10** field, every
+quadratic boundary face and its actual nodal displacements. Grey shows the
+undeformed shape; deformation is amplified **10×**. Colours represent displacement,
+with the displayed triangle's vertex magnitudes averaged only for colour. The
+reported maximum remains the complete field's **2.497451 mm**. This is the same
+**1.298199813 kg** R2 study geometry, not a newly lightened design.
+
+The later Linux recursive-binary run demonstrates why small controls and a normal
+solver exit cannot qualify this workflow by themselves:
+
+| Check | Eight result-recovery threads, full T10 reference |
+| --- | ---: |
+| Original three analytic controls | Passed their unchanged mathematical limits |
+| Actual solver exit / finished marker | 0 / present |
+| Complete displacement / stress / reaction rows | 719,680 / 1,526,256 / 11,051 |
+| Largest force imbalance | **3,795.43 N** versus a **13.80 N** limit |
+| Independent stress-energy residual | **48.1901** versus **0.0001** |
+| Field admission | **Refused** |
+| Fine production case launched from this run | **No** |
+
+The enormous resulting stress peak is a **refused numerical output**, not a
+material strength result. `-frecursive` alone did not make this full T10
+parallel-recovery run admissible. The exact input/output hashes, independent
+assessment, collection receipt and teardown evidence are retained under
+[`evidence/mesh-quality-20261025`](evidence/mesh-quality-20261025).
+
+The next bounded profile retains parallel assembly/factorization but requests
+**`CCX_NPROC_RESULTS=1`**, as the existing serial-recovery worker does. Its
+[long worker](../../../parts/993-eng-carrier-0001/source/design-20261016/convergence-20261022/run_native_ccx_long_parallel.py)
+records both thread counts. It allows at most 2,400 s and 240 GiB of address space;
+the executed cap must remain below the measured allocation. The complete coarse
+field must pass equilibrium, independent energy and the original whole-component
+Mac/Linux regression limits before a fine solve is launched. These execution
+changes do not relax the spatial-convergence contract.
+
+```mermaid
+flowchart LR
+    A[Original analytic controls] --> B[Complete retained T10 reference]
+    B --> C{Equilibrium and independent energy pass?}
+    C -->|No| R[Retain refused fields and stop this profile]
+    R --> S[Qualify serial result recovery separately]
+    S --> A
+    C -->|Yes| D[Compare every component to accepted reference]
+    D --> E{Original regression limits pass?}
+    E -->|Yes| F[Run finer T10 with bounded resources]
+    F --> G[Automatically collect and verify hashes]
+    G --> H[Independent full-field assessment and spatial comparison]
+    E -->|No| R
+```
+
+Rental **57665158** reached its fixed deadline during an interruption. Its
+analytic controls were retained, but its complete-model result was not collected;
+it supplies **no accepted full field**. The guard destroyed it and verified its
+absence. Rental **57702970** produced the refused full field above; all files
+needed for independent assessment were collected before destruction, and absence
+was independently confirmed. Neither rental launched the finer production solve.
+
+The exact previous published head **`2cb88efc`** passed full Linux CI in
+[run 40193446206](https://github.com/cluster2600/porscheparts/actions/runs/40193446206).
+Later changes need their own checks; that result is not transferred to a new head.
+
+### Serial-recovery reference accepted; fine field pending
+
+On rental **57704201**, the same recursive binary with serial result recovery
+passed fresh analytic controls and the **complete 381,564-cell T10 reference**.
+The actual solve took **113.97 s**. Its independent energy residual is
+**2.38e-9**, and every displacement, stress and reaction component agrees with
+the accepted Mac reference within the original regression contract: maximum
+differences **1e-6 mm**, **0.0001 MPa** and **0.00001 N**. This isolates an admitted
+execution profile; it does not turn the refused eight-recovery-thread run into
+a valid field.
+
+The **3,052,512-cell / 4,884,701-node T10** solve was then launched with the same
+loads and source-bound geometry, eight assembly threads and one result-recovery
+thread. Its recorded bound is **2,215 s / 136 GiB virtual address space**, below
+the measured **183,500,800,000-byte cgroup allocation**, with **900 s reserved for
+collection** before the original lease deadline. At this checkpoint the fine
+field is **pending**: no new convergence or strength result is claimed.
+
+This checkpoint passes **29 focused continuation tests**, strict links over
+**1,829 Markdown files** and freshness checks for **43 catalogue previews**.
+The local minimal geometry runtime lacks Matplotlib; the tests and figure were
+successfully run with the already installed host NumPy/Matplotlib environment.
+The new Linux head still requires its own full CI outcome.

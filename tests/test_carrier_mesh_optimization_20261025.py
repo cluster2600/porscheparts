@@ -1,5 +1,6 @@
 """Boundary preservation cannot be inferred from matching counts or point sets."""
 import importlib.util
+import hashlib
 import json
 from pathlib import Path
 import unittest
@@ -18,6 +19,59 @@ spec.loader.exec_module(module)
 
 
 class BoundaryIdentityTests(unittest.TestCase):
+    def test_fine_parallel_profile_refuses_excess_resources_before_creating_a_case(self):
+        with tempfile.TemporaryDirectory() as directory:
+            base=Path(directory);binary=base/'binary';binary.write_bytes(b'not a solver')
+            for seconds,memory,threads in [(2401,240,8),(2400,241,8),(2400,240,9)]:
+                output=base/'output'
+                result=subprocess.run([sys.executable,str(SOURCE.with_name('run_native_ccx_long_parallel.py')),
+                    '--binary',str(binary),'--expected-binary',hashlib.sha256(binary.read_bytes()).hexdigest(),'--deck',str(base/'missing.inp'),
+                    '--output',str(output),'--seconds',str(seconds),'--memory-gib',str(memory),
+                    '--threads',str(threads)],capture_output=True,text=True)
+                self.assertNotEqual(result.returncode,0);self.assertFalse(output.exists())
+
+    def test_long_parallel_profile_keeps_result_recovery_serial(self):
+        spec=importlib.util.spec_from_file_location('long_native_worker',SOURCE.with_name('run_native_ccx_long_parallel.py'))
+        worker=importlib.util.module_from_spec(spec);spec.loader.exec_module(worker)
+        with tempfile.TemporaryDirectory() as directory:
+            base=Path(directory);binary=base/'binary';binary.write_bytes(b'qualified fixture')
+            deck=base/'input.inp';deck.write_text('fixture');output=base/'output'
+            def completed(*args,**kwargs):
+                self.assertEqual(kwargs['env']['OMP_NUM_THREADS'],'8')
+                self.assertEqual(kwargs['env']['CCX_NPROC_RESULTS'],'1')
+                kwargs['stdout'].write('Job finished\n');kwargs['stdout'].flush()
+                child=Mock(returncode=0);child.wait.return_value=0;return child
+            argv=['worker','--binary',str(binary),'--expected-binary',hashlib.sha256(binary.read_bytes()).hexdigest(),
+                  '--deck',str(deck),'--output',str(output),'--threads','8']
+            with patch.object(sys,'argv',argv),patch.object(worker.subprocess,'Popen',side_effect=completed):
+                self.assertEqual(worker.main(),0)
+            self.assertEqual(json.loads((output/'plan.json').read_text())['results_threads_requested'],1)
+
+    def test_analytic_controls_do_not_admit_corrupted_full_parallel_quadratic_results(self):
+        evidence=SOURCE.parents[5]/'docs/reports/carrier-convergence-20261022/evidence/mesh-quality-20261025'
+        read=lambda name:json.loads((evidence/name).read_text())
+        self.assertEqual(read('fine-009-native-qualification-001.json')['status'],'native_CalculiX_2_21_analytic_controls_passed')
+        receipt=read('linux-009-recursive-coarse-P2-001/actual-terminal.json')
+        self.assertEqual(receipt['actual_returncode'],0)
+        self.assertTrue(receipt['solver_finished_marker'])
+        field=read('linux-009-coarse-P2-assessment-001/assessment.json')
+        self.assertEqual(field['status'],'quadratic_equilibrium_or_energy_refused')
+        self.assertGreater(field['relative_energy_residual'],field['fixed_energy_relative_limit'])
+        self.assertGreater(max(map(abs,field['force_residual_N'])),field['force_residual_limit_N'])
+        self.assertFalse(read('vast-lease-009/closure-assessment-001.json')['fine_solver_launched'])
+
+    def test_serial_recovery_profile_passes_the_complete_reference_and_original_regression_limits(self):
+        evidence=SOURCE.parents[5]/'docs/reports/carrier-convergence-20261022/evidence/mesh-quality-20261025'
+        read=lambda name:json.loads((evidence/name).read_text())
+        self.assertEqual(read('fine-010-native-qualification-001.json')['results_threads_requested'],1)
+        self.assertEqual(read('linux-010-recursive-coarse-P2-001/plan.json')['results_threads_requested'],1)
+        self.assertEqual(read('linux-010-coarse-P2-assessment-001/assessment.json')['status'],'complete_linear_C3D10_results_equilibrium_and_energy_passed')
+        comparison=read('linux-010-mac-remesh-comparison-001.json')
+        self.assertTrue(comparison['within_all_limits'])
+        self.assertEqual(comparison['contract']['displacement_component_difference_limit_mm'],1e-5)
+        self.assertEqual(comparison['contract']['stress_component_difference_limit_MPa'],.01)
+        self.assertEqual(comparison['contract']['reaction_component_difference_limit_N'],.01)
+
     def test_native_replay_keeps_hash_overflow_failure_and_unconverged_fields_explicit(self):
         evidence=SOURCE.parents[5]/'docs/reports/carrier-convergence-20261022/evidence/mesh-quality-20261025'
         read=lambda name:json.loads((evidence/name).read_text())

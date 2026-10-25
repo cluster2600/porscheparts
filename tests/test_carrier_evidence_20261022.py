@@ -15,6 +15,18 @@ class EvidenceTests(unittest.TestCase):
         for row in manifest['exact_copies']:
             with self.subTest(path=row['path']):self.assertEqual(hashlib.sha256((ROOT/row['path']).read_bytes()).hexdigest(),row['sha256'])
 
+    def test_quadratic_displacement_image_is_bound_to_the_accepted_complete_field(self):
+        media=ROOT/'docs/media/carrier-convergence-20261022/P2-quality-remesh'
+        figure=json.loads((media/'displacement-figure-provenance.json').read_text())
+        accepted=REPORT/'evidence/mesh-quality-20261025/mac-remeshed-P2-assessment-001/assessment.json'
+        self.assertIn(hashlib.sha256(accepted.read_bytes()).hexdigest(),figure['source_sha256'].values())
+        self.assertEqual(figure['figure_sha256'],hashlib.sha256((media/'carrier-quadratic-displacement.png').read_bytes()).hexdigest())
+        self.assertEqual(figure['deformation_scale'],10)
+        self.assertEqual(figure['display_triangles'],4*figure['complete_boundary_faces'])
+        self.assertTrue(figure['all_quadratic_boundary_nodes_included'])
+        self.assertFalse(figure['spatial_convergence_demonstrated'])
+        self.assertAlmostEqual(figure['displacement_max_mm'],json.loads(accepted.read_text())['displacement_max_mm'])
+
     def test_actual_cuda_and_cpu_pass_the_same_unchanged_oracle_limit(self):
         reports=[json.loads((REPORT/f'evidence/warp/results/carrier-{device}/report.json').read_text())for device in ['cpu','cuda']]
         for row in reports:
