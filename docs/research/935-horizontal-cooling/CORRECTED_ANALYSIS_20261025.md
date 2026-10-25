@@ -462,6 +462,57 @@ full-triangle shape deviation from overly conservative tile selection at the
 first rejected face. A boundary-preserving volume mesher on the protected
 surface remains the alternative if the surface cannot be safely retessellated.
 
+### TetGen reconstruction and boundary-preserving volume refinement
+
+TetGen 1.5.1 was compiled natively on the Apple Silicon Mac from the archived
+upstream source. An analytic single-tetrahedron control confirmed the
+reconstruction and refinement commands. The existing Gmsh Frontal volume was
+exported to TetGen's `.node`, `.ele` and `.face` formats without rounding its
+coordinates; its source NPZ has SHA-256
+`463991146aa0e5deed4ef3376371069f7a0ad2fb6a184f32cf7e97baf6c301af`.
+The protected 878,730-face analysis surface has SHA-256
+`5d900f6da900b4bffac2fdacfd6e0a346f8c0259a19299725621d4fd1e48c12a`.
+
+`tetgen -rYQ rotor` reconstructed the original volume exactly by node
+coordinates, unoriented cells and unoriented boundary faces. One bounded
+refinement, `tetgen -rYq1.4/10S50000Q rotor.1`, added 50,000 interior
+vertices. The best retained volume (`rotor.2`) has 494,676 vertices,
+1,647,463 tetrahedra and 878,730 boundary faces. Its boundary triangles
+changed connectivity but retained every original boundary vertex coordinate
+exactly; there are no new boundary vertices. The independent full-triangle
+polyhedral-envelope checker passed in both directions at **0.0225 source
+unit**, including topology and self-intersection checks. This is a conservative
+sufficient containment test, not a Euclidean Hausdorff measurement and not a
+millimetre tolerance.
+
+An independent all-face connectivity audit found one tetrahedral component,
+zero non-manifold faces, and exact agreement between the 878,730 stored
+boundary faces and actual exposed faces. Exact arithmetic found zero flat or
+inverted tetrahedra and a signed volume of 431,159.924548 source units³.
+The quality comparison is:
+
+| Volume | Tetrahedra | Minimum mean ratio | Below 0.01 | Median mean ratio |
+| --- | ---: | ---: | ---: | ---: |
+| Gmsh source | 1,393,021 | 0.0000177149 | 3,255 | 0.1150 |
+| TetGen first refinement (`rotor.2`) | 1,647,463 | 0.0000332920 | 686 | 0.3743 |
+| TetGen second refinement (`rotor.3`) | 1,990,430 | 0.0000000002776 | 558 | 0.5775 |
+
+The second refinement was rejected because it introduced an extreme sliver,
+despite improving the median and count below 0.01. A flip-only pass on a
+separate copy of `rotor.2` made no quality improvement. **No volume is admitted
+for FEA**: the retained `rotor.2` still has 686 tetrahedra below mean ratio
+0.01, and no mesh-convergence, load, mode or material study was run on it.
+The scale and historical installation interfaces also remain unverified.
+
+The private [release](https://github.com/cluster2600/porscheparts-935-private/releases/tag/935-root-repair-20261025)
+contains `tetgen-preserved-volume-001.tar.zst`, SHA-256
+`4af11a6c3a4c03b60e51512406c2848b6582b6c9e51310597b991bd3545dc0e3`,
+with the retained and rejected TetGen outputs, exporter and audit scripts,
+the analytic control, logs and input hashes. All 44 archive members passed
+hash readback; GitHub reports the same archive digest. The next mechanical
+step is local treatment of the residual low-quality cells followed by exact
+orientation, full surface-envelope, connectivity and convergence audits.
+
 ## Remaining gates
 
 No new OpenFOAM meshing or CFD solve has run on either corrected candidate.
