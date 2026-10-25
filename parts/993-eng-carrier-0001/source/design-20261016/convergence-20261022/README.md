@@ -236,3 +236,17 @@ requires exact-audited matching geometry arrays and the unchanged screen
 parameters. The original CPU/CUDA oracle checks and `select_cellular_budget.py`
 remain the downstream gates. This is a finer auxiliary clearance/energy screen,
 not a generated cellular part or a changed-geometry resistance calculation.
+
+`fetch_native_spooles_sources.py` verifies the retained upstream manifest and
+fetches its 15 exact public inputs with bounded native `curl` HTTPS requests.
+Every SHA must match before the staging directory is published. It uses the
+platform certificate store and does not disable TLS verification.
+
+`build_native_spooles_fixed.py` reuses the existing source-archive verification,
+safe extraction and process-stop helpers. It privately builds CalculiX 2.21
+with the pinned six-patch SPOOLES series on Linux x86-64 and the existing
+GCC/GFortran 13 tools. The 1,800 s build budget, 4 GiB per-child virtual-memory
+ceiling, two compilation jobs and complete 500-repeat known-solution test are
+recorded. Installed runtime libraries must retain their hashes. GNU patch must
+be available; this execution supplied a checksum-verified private package
+extraction. A new binary needs fresh analytic and full-carrier qualification.

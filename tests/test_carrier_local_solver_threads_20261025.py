@@ -11,6 +11,16 @@ SOURCE=Path(__file__).resolve().parents[1]/'parts/993-eng-carrier-0001/source/de
 
 
 class LocalSolverThreadTests(unittest.TestCase):
+    def test_source_fetcher_refuses_a_different_manifest_before_creating_output(self):
+        with tempfile.TemporaryDirectory()as directory:
+            root=Path(directory);manifest=root/'manifest.json';manifest.write_text('{}');out=root/'sources';result=subprocess.run([sys.executable,str(SOURCE/'fetch_native_spooles_sources.py'),'--manifest',str(manifest),'--output',str(out)],capture_output=True,text=True,timeout=20)
+            self.assertNotEqual(result.returncode,0);self.assertFalse(out.exists());self.assertFalse(out.with_name(out.name+'.fetching').exists())
+
+    def test_dependency_build_refuses_an_unbounded_wall_budget_before_creating_output(self):
+        with tempfile.TemporaryDirectory()as directory:
+            root=Path(directory);out=root/'build';result=subprocess.run([sys.executable,str(SOURCE/'build_native_spooles_fixed.py'),'--sources',str(root),'--output',str(out),'--seconds','1801'],capture_output=True,text=True,timeout=20)
+            self.assertNotEqual(result.returncode,0);self.assertFalse(out.exists())
+
     def test_owned_worker_records_the_actual_child_thread_environment_and_helper_hash(self):
         with tempfile.TemporaryDirectory()as directory:
             root=Path(directory);binary=root/'fake-ccx';binary.write_text('#!/bin/sh\nprintf "%s %s %s %s %s\\n" "$OMP_NUM_THREADS" "$CCX_NPROC_STIFFNESS" "$CCX_NPROC_RESULTS" "$CCX_NPROC_EQUATION_SOLVER" "$NUMBER_OF_CPUS"\nprintf "Job finished\\n"\n');binary.chmod(0o755);deck=root/'input.inp';deck.write_text('*STEP\n');out=root/'run'

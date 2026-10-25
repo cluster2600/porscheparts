@@ -1,0 +1,54 @@
+{
+  "status": "accepted_linear_analysis_centroid_screen_prepared",
+  "queries": 3052512,
+  "vertices": 392778,
+  "triangles": 785624,
+  "bundle_sha256": "68786d5f2a59f86019fd4952a1f60b36b5f40aca18d6afec3e77f42e777ba22f",
+  "fixed_absolute_error_limit_mm": 0.0001,
+  "query_groups": {
+    "all_refined_linear_cell_centroids": [
+      0,
+      3052512
+    ]
+  },
+  "surface_float32_transport_L1_bound_mm": 1.71661376953125e-05,
+  "source_sha256": {
+    "inputs/preparation/transport.npz": "d49558e0d7daef699337c7d2c553cf2083e9ff0e2056063ad36dc10625928d3d",
+    "inputs/mechanics/results.npz": "48b77c04a758e67388a134bdc10418c9a27e000fcd4132d9130fc7436ea59569",
+    "inputs/energy-proof.json": "43c8bac7c186da5f041dc39384414c5187be9757c9945b83132bbd6ffd473315",
+    "inputs/exact-proof.json": "95408772e2a2aaa41d9da80d16dff41e9c11b5a78c7a84f8bdcc0b4031582653",
+    "inputs/raw-volume/transport.npz": "77277445ad3477c9a51c84aa618b1f4ea5573cb49fe0919631e91f13428e5443",
+    "inputs/raw-volume/assessment.json": "464e0ffb1813d05c936943f60124078e357a8bb812734ea66b7e85024f17cfbe",
+    "inputs/study.json": "f41352402649adf98dda9d6bb294f7342e5ed6f5c8b5609be9e103229f4c6ccf",
+    "tools/cellular-screen-parameters.json": "8d2615d9f6fe6047e21cd33a0849a191fdcf6dbeeaaba05b7ef13ab83086c7ff",
+    "inputs/mechanics/assessment.json": "446360a1425f2c8fb9f2f445eec4e2a83e1299496b924d26f7b58030b200d09e",
+    "inputs/preparation/assessment.json": "67ea49ddf1bf02ec601fc24641f3fffa654dd59c7a904b8e232a1716604ecb85",
+    "/workspace/carrier-linear-cellular-015/tools/prepare_linear_cellular_screen.py": "d72fac5929c58fc2d7643977d48d344d5bfb1689700365e37e2fd7b54934a3ad",
+    "/workspace/carrier-linear-cellular-015/tools/prepare_cellular_screen.py": "f56289703b0555ea8140108b86c78537d140e3ed3cb62f3bb469f8766ef946f0"
+  },
+  "screen_fields_sha256": "07cb2786161030a20e92be7896ae930711b50b038162abbb00ac6fc4ca5b9eb2",
+  "parameters": {
+    "part_id": "993-ENG-CARRIER-0001",
+    "skin_mm": 1.5,
+    "bore_keepout_mm": 10.0,
+    "end_inboard_limit_abs_X_mm": 260.0,
+    "maximum_selected_volume_fraction": 0.1,
+    "relative_density_scenario": 0.4,
+    "distance_error_limit_mm": 0.0001,
+    "scope": "Provisional analysis-volume budget; design assumptions, not machine limits or a generated lattice"
+  },
+  "material": {
+    "name": "Ti-6Al-4V dense elastic reference only",
+    "source": "https://www.timet.com/documents/datasheets/alpha-and-beta-alloys/timetal-6-4.pdf",
+    "E_MPa": 107000.0,
+    "nu": 0.31,
+    "density_tonne_mm3": 4.42e-09,
+    "expansion_per_K": 9e-06,
+    "strength_allowable_MPa": null,
+    "fatigue_curve": null,
+    "manufactured_state_qualified": false
+  },
+  "geometry_role": "auxiliary refined linear analysis volume; R2 reference stays unchanged",
+  "exact_arithmetic_certificate": false,
+  "cellular_geometry_generated": false
+}

@@ -22,13 +22,20 @@ repeats**. The separate [serial fine run](#serial-profile-repeated-before-the-se
 has no accepted fine field yet. These execution repeats preserve the original
 spatial-convergence criteria.
 
+The [refined interior screen](#refined-interior-screen-on-the-rtx-4070) now finds a
+**12.67 g conditional cellular budget**, with all **3,052,512 CPU/CUDA queries**
+checked. This is not a new part mass; no cellular carrier has been generated.
+
 ```mermaid
 flowchart TD
     R[Retained R2 surface · 1.2982 kg] --> G[Complete geometry fidelity ≤ 0.06 mm]
     G --> M[Exact-positive volume and quadratic mapping audit]
     M --> L[Same bore patches and continuous tractions]
     L --> C[Fresh analytic controls · two full reference repeats]
-    C --> T[Serial assembly and recovery · controlled solver threads]
+    C --> V{Complete repeated fields accepted?}
+    V -->|No| Q[Quarantine profile · replay pinned dependency fixes]
+    Q --> C
+    V -->|Yes| T[Serial assembly and recovery · controlled solver threads]
     T --> E[Read every field · equilibrium · independent energy]
     E --> H[Spatial comparison · displacement · compliance · stress]
     H --> D{Two successive comparisons within limits?}
@@ -869,3 +876,66 @@ The existing Linux fine run continues under its separately admitted serial
 profile. The corrected Mac reference repeats are execution qualification for
 this binary and fixture; they are not spatial mesh refinements. No geometry,
 mass, loads, stress exclusions or acceptance tolerances were changed.
+
+### Corrected Linux build and repeatable source retrieval
+
+The same pinned corrections also pass on the actual Linux x86-64 rental. The
+independent grid problem completes **500 / 500** correct repetitions with worst
+absolute solution error **3.0374e-9**. A fresh CalculiX 2.21 binary then passes
+the original three analytic controls and **two complete carrier repetitions**.
+Every reference component is inside the original comparison limits. See the
+[Linux replay receipt](evidence/mesh-quality-20261025/vast-lease-015/patched-reference-terminal.json).
+
+The build uses the existing **GCC/GFortran 13** tools and versioned runtime
+libraries. The first attempt correctly refused a missing `patch` utility. GNU
+patch **2.7.6-7build3** was then checksum-verified and extracted into a private
+tool directory. It was not installed over the active environment. Before/after
+hashes confirm that the installed libraries used by the original fine solver
+were unchanged. The corrected solver is a separate binary, SHA-256
+`cd2d7d8b8209d4bc77d0b4b1d8bb457681b644a037b58914a622c5797c5cb4e2`.
+
+The source fetcher retrieves **15 exact public inputs** from Ubuntu, Netlib and
+pinned GitHub commits, verifies every SHA-256, and publishes its output directory
+only after every input passes. Its successful replay uses native `curl` HTTPS
+verification; the earlier Python CA-store refusal was not bypassed.
+
+```sh
+python3 parts/993-eng-carrier-0001/source/design-20261016/convergence-20261022/fetch_native_spooles_sources.py --output work/corrected-solver-sources
+python3 parts/993-eng-carrier-0001/source/design-20261016/convergence-20261022/build_native_spooles_fixed.py --sources work/corrected-solver-sources --output work/corrected-solver-build --seconds 1800
+```
+
+The builder requires Linux x86-64, GCC/GFortran 13, GNU patch and the retained
+runtime libraries. It makes no package installations, limits each child to
+**4 GiB virtual memory**, uses two compilation jobs, and runs the complete
+500-repeat library test. A newly built binary still needs its own fresh analytic
+controls and complete carrier comparisons; its existence does not inherit the
+qualification of the binary above.
+
+### Refined interior screen on the RTX 4070
+
+The next geometric classification uses the **accepted refined T4 field** and its
+separate independent stress-energy proof. It checks all **3,052,512 cell
+centroids** against all **785,624 boundary triangles**. This is a finer auxiliary
+clearance screen; it is not a finer accepted T10 mechanical result.
+
+The unchanged PR #274 kernel passes on native CPU and actual **RTX 4070 CUDA**,
+driver **595.84**, against the independent libigl oracle. Maximum errors are
+**0.00004638 mm CPU** and **0.00004887 mm CUDA**, below the original **0.0001 mm**
+limit. All 15 pilot tests pass. The actual outputs and their identities were
+collected before calculating the budget; no speedup claim is made.
+
+![Refined protected analysis core](../../media/carrier-convergence-20261022/P1-refined-core-screen-015/carrier-cellular-budget-screen.png)
+
+With the same **1.5 mm analysis skin**, **10 mm bore keepout** and inboard limit,
+**7,401 whole cells / 4,778.814 mm³** pass the screen. Replacing that volume at
+relative density **0.40** gives a conditional saving of **12.6734 g**. The cells
+contain **0.5205% of the accepted T4 baseline elastic energy**. That energy
+fraction is not a prediction of stiffness loss after replacement.
+
+The [budget assessment](evidence/mesh-quality-20261025/linear-cellular-budget-015/assessment.json)
+retains the original parameters and explicitly marks geometry generation and
+cellular strength as false. The much larger budget than the earlier whole-cell
+screen comes from smaller enclosing radii. It remains a conservative selected
+subset, not an upper bound on possible lightening. T4 and T10 baseline energy
+fractions are separate quantities; their difference is not a mechanical
+convergence comparison. The retained R2 part remains **1.298199813 kg**.

@@ -76,6 +76,20 @@ class EvidenceTests(unittest.TestCase):
             receipt=json.loads((base/(mode+'-known-solution-test.json')).read_text());self.assertTrue(receipt['process_reaped']);self.assertEqual(receipt['stdout_sha256'],hashlib.sha256(text.encode()).hexdigest())
         media=ROOT/'docs/media/carrier-convergence-20261022/spooles-patch-replay-015';figure=json.loads((media/'figure-provenance.json').read_text());self.assertEqual([r['wrong']for r in figure['results']],[142,0]);self.assertEqual(figure['figure_sha256'],hashlib.sha256((media/'spooles-known-solution-replay.png').read_bytes()).hexdigest());self.assertFalse(figure['carrier_convergence_demonstrated'])
 
+    def test_finer_interior_screen_keeps_actual_gpu_checks_and_conditional_geometry_scope(self):
+        base=REPORT/'evidence/mesh-quality-20261025';budget=json.loads((base/'linear-cellular-budget-015/assessment.json').read_text())
+        self.assertEqual(budget['analysis_cells'],3052512);self.assertEqual(budget['selected_cells'],7401);self.assertFalse(budget['reference_geometry_changed']);self.assertFalse(budget['cellular_geometry_generated']);self.assertFalse(budget['cellular_strength_validated'])
+        self.assertAlmostEqual(budget['conditional_mass_reduction_kg'],.6*budget['selected_analysis_volume_mm3']*4.42e-6)
+        for device in ['cpu','cuda']:
+            report=json.loads((base/f'linear-cellular-collected-015/results/{device}/report.json').read_text());self.assertEqual(report['queries'],3052512);self.assertEqual(report['triangles'],785624);self.assertEqual(report['status'],'passed');self.assertEqual(report['fixed_absolute_error_limit_mm'],.0001)
+        self.assertTrue(report['gpu_validated']);self.assertEqual(report['actual_device'],'cuda:0')
+        media=ROOT/'docs/media/carrier-convergence-20261022/P1-refined-core-screen-015';figure=json.loads((media/'figure-provenance.json').read_text());self.assertEqual(figure['figure_sha256'],hashlib.sha256((media/'carrier-cellular-budget-screen.png').read_bytes()).hexdigest());self.assertEqual(figure['assessment_sha256'],hashlib.sha256((base/'linear-cellular-budget-015/assessment.json').read_bytes()).hexdigest())
+
+    def test_corrected_linux_runtime_keeps_library_identity_and_two_full_reference_checks(self):
+        base=REPORT/'evidence/mesh-quality-20261025';built=json.loads((base/'linux-patched-build-collected-015b/binary-identity.json').read_text());self.assertTrue(built['installed_runtime_libraries_unchanged']);self.assertFalse(built['carrier_runtime_qualified'])
+        terminal=json.loads((base/'vast-lease-015/patched-reference-terminal.json').read_text());self.assertEqual(terminal['native_binary_sha256'],built['native_binary_sha256']);self.assertEqual(len(terminal['repeats']),2);self.assertTrue(all(row['within_all_limits']for row in terminal['repeats']));self.assertFalse(terminal['spatial_convergence_demonstrated'])
+        fetched=json.loads((base/'patched-repro-sources-002/sources-ready.json').read_text());self.assertEqual(fetched['status'],'all_pinned_public_sources_verified');self.assertEqual(len(fetched['files']),15)
+
     def test_two_execution_repeats_do_not_admit_a_lucky_multithreaded_run_or_become_spatial_steps(self):
         base=REPORT/'evidence/mesh-quality-20261025';trials=json.loads((base/'vast-lease-015/profile-trials.json').read_text());stock=next(x for x in trials if x['mode']=='stock8')
         self.assertEqual([x['assessor_returncode']for x in stock['repeats']],[0,2]);self.assertTrue(stock['refused'])
