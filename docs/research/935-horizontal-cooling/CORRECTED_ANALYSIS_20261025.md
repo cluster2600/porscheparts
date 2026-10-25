@@ -206,6 +206,31 @@ its 11 files and GitHub asset digest were checked. The earlier archive is
 retained as an exploratory attempt. The private `rotor-sweep-0p7.png` plot has
 SHA-256 `dadc6a2f38a043c0f30cf45a33704ea700f8a3d2a7861dc4826d4b270ade4447`.
 
+### Output hub interface: geometric gap, unresolved coupling
+
+An FCL nearest-point query puts the 3.83430-source-unit rotor/drive gap at
+the reconstructed rotor bore, not at a blade. The nearest bore and observed
+drive points lie at the same Z level, `-4.50417` source units, with radial
+positions 11.45477 and 7.62052 respectively. Four separate five-unit
+axial bands of the observed output patch give partial-arc circle-fit radii
+6.93574–7.07082 source units. Their radial RMS residuals are 0.09877–0.13443,
+and each band leaves a 176.8–183.9-degree angular gap in the acquisition.
+The reconstructed bore is a full ring of fitted radius 11.45601 source units;
+its small fit residual describes the **generated model**, not scanner accuracy.
+
+The separate acquired 22-lobe shaft patch previously reported in the drive
+study maps roughly 357 source units from the rotor axis and points 55.35°
+away from the assumed rotor Z axis. It therefore cannot define the output
+hub coupling. A spacer or keyed adapter may be required, but these partial
+surfaces do not specify its fit, torque path, axial retention or historical
+form. No functional adapter has been designed or released.
+
+The private [release](https://github.com/cluster2600/porscheparts-935-private/releases/tag/935-root-repair-20261025)
+contains the script, nearest-point receipt, four-band fits, plot and prior
+input-side profile as `hub-output-metrology-001.tar.gz`, SHA-256
+`741e4af6c3666b0ccb7d9e50c60a3ef8b20dee0f2f78596053d229da55778e58`.
+All eight archive members and the GitHub asset digest were checked.
+
 ## Remaining gates
 
 No new OpenFOAM meshing or CFD solve has run on either corrected candidate.
