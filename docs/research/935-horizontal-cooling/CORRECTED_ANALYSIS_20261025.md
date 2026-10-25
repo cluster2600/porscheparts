@@ -476,7 +476,7 @@ The protected 878,730-face analysis surface has SHA-256
 `tetgen -rYQ rotor` reconstructed the original volume exactly by node
 coordinates, unoriented cells and unoriented boundary faces. One bounded
 refinement, `tetgen -rYq1.4/10S50000Q rotor.1`, added 50,000 interior
-vertices. The best retained volume (`rotor.2`) has 494,676 vertices,
+vertices. The first retained volume (`rotor.2`) has 494,676 vertices,
 1,647,463 tetrahedra and 878,730 boundary faces. Its boundary triangles
 changed connectivity but retained every original boundary vertex coordinate
 exactly; there are no new boundary vertices. The independent full-triangle
@@ -512,6 +512,31 @@ the analytic control, logs and input hashes. All 44 archive members passed
 hash readback; GitHub reports the same archive digest. The next mechanical
 step is local treatment of the residual low-quality cells followed by exact
 orientation, full surface-envelope, connectivity and convergence audits.
+
+### Follow-up refinement with boundary operations enabled
+
+Starting from the first retained volume, two bounded passes of
+`tetgen -rq1.4/10S50000Q` were run without `-Y`. The first reduced the count
+below mean ratio 0.01 from 686 to 403; the second reduced it to **391**.
+The latter has 495,085 vertices, 1,648,991 tetrahedra and the same 878,730
+boundary faces. All original boundary coordinates remain exact and all 409
+new vertices are interior. The complete bidirectional 0.0225-source-unit
+polyhedral envelope, topology and self-intersection checks passed. A separate
+volume-connectivity audit found one component, zero non-manifold faces and an
+exact match between stored and exposed boundary faces. Exact arithmetic found
+zero flat or inverted cells and a volume of 431,159.926128 source units³.
+The minimum mean ratio remains only 0.0000934998; the median is 0.37395.
+Of the 391 cells below 0.01, **235 use four boundary vertices**, so the
+residual is strongly constrained by boundary connectivity. Additional
+unfocused interior refinement is unlikely to remove it; localized boundary
+work must be independently checked against the same envelope.
+
+The private release contains `tetgen-boundary-split-001.tar.zst`, SHA-256
+`c0a7e9001c5484430b2f0ebb7e534cc310dcaf5e8e44770df17144d142e767f9`,
+with both raw volumes, geometric and exact audits, residual-cell map and logs.
+All 24 archive members passed hash readback; GitHub reports the same archive
+digest. The improved volume is still **not admitted for FEA**; no converged
+stress, modal or fatigue claim follows from these mesh checks.
 
 ## Remaining gates
 
