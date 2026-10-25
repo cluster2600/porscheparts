@@ -636,6 +636,37 @@ private [patch receipt and XY inspection image](https://github.com/cluster2600/p
 have verified SHA-256 values `4e5c922b1ebb7947c4bea913c27bda06e79dcd76ef33f5369e69e82f8c16d35e`
 and `03a33292166d8f2367a81743733ce919e520ad562ffa5f6a0921fe56cf3f4199`.
 
+### Local edge-flip hypothesis
+
+Four disjoint edges around the 17-cell group were flipped without moving any
+vertex. The affected face-pair minimum equilateral-normalized qualities rose
+from 0.0330, 0.0567, 0.0762 and 0.0773 to 0.1512, 0.1849, 0.2123 and
+0.1997. The complete 878,730-face candidate passed the independent
+bidirectional 0.0225-source-unit polyhedral-envelope, closed-topology and
+self-intersection checks. These are triangulation changes to a hypothetical
+analysis surface, not corrections established against the original scan.
+
+TetGen 1.5.1 refused this input at its default 0.1° near-overlap screen: one
+adjacent face pair had a reported 0.008476° dihedral. A separate exploratory
+run used the explicit `-p/0.001` facet-overlap tolerance. This changes the
+mesher's acceptance setting, not the geometric certificate. After one
+boundary-preserving and two boundary-enabled 50,000-point-limited refinements,
+the volume had **1,938,298 tetrahedra and 141 cells** below mean ratio 0.01.
+No weak-cell centroid remained within eight source units of the prior largest
+group's centroid (16 in the previous 120-cell volume). The final surface again
+passed the complete envelope/topology/self-intersection check, and all original
+boundary vertex coordinates remained exact.
+
+The global weak-cell count is worse than the preceding **120-cell** volume,
+so that remains the preferred exploratory volume. The edge-flip variant is
+retained only as evidence that local boundary connectivity matters; exact
+tetrahedral orientation/volume and full volume-connectivity audits were not
+completed for this inferior trial. The [private archive](https://github.com/cluster2600/porscheparts-935-private/releases/tag/935-root-repair-20261025)
+contains the candidate surface, TetGen input, final volume, logs and manifest.
+All 18 archived members and the uploaded SHA-256
+`90c0487a7fb0360558716612322bc5c85859d618762881745f3ca92ebf6bc080`
+were verified. Neither volume is admitted for FEA.
+
 ## Remaining gates
 
 No new OpenFOAM meshing or CFD solve has run on either corrected candidate.
