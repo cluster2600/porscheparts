@@ -421,6 +421,37 @@ envelope test still failed. CGAL's facet-distance setting is therefore not a
 substitute for the acceptance check. Neither output was used for volume
 meshing or FEA.
 
+CGAL documents its polyhedral envelope as a **conservative** subset of the
+Euclidean distance envelope: a rejection alone does not prove excessive
+Hausdorff distance. We therefore ran its separate bounded-error Hausdorff
+decision on the 0.5 / 0.01 candidate, with a 0.0225-source-unit limit and
+0.0025 error bound. It reports the distance exceeds the limit in **both
+directions**. A complete source-vertex-to-candidate-surface query independently
+finds a 0.128938-source-unit deviation at source coordinate
+`[-124.756508, -48.043331, 30.616766]`; this vertex witness alone disproves
+the required bound. The candidate-to-source vertex maximum is only 0.000501,
+so vertex-only checks would miss its reverse-direction triangle deviation.
+The [CGAL envelope documentation](https://doc.cgal.org/latest/Polygon_mesh_processing/)
+and [bounded-distance API](https://doc.cgal.org/latest/Polygon_mesh_processing/group__PMP__distance__grp.html)
+describe these distinct predicates.
+
+Reducing the sharp-feature threshold from 60° to 40° at the same 0.5 / 0.01
+facet settings produced 1,843,616 faces. Its maximum source-vertex distance
+fell to 0.096972 source unit, still over four times the 0.0225 limit. The
+independent screen also found self-intersection despite a closed, genus-one
+edge topology. A 20° trial remained in CGAL feature protection after more
+than fifteen minutes of local CPU time and was terminated without an exported
+surface; it has **no geometry acceptance result**. These trials show that
+simply detecting more edges does not provide a qualified boundary. The next
+volume-mesh attempt should preserve the protected surface itself or constrain
+only a measured, localized correction, with the same independent distance and
+self-intersection gates.
+The private release also contains `mesh3-hausdorff-followup-private-001.tar.gz`,
+SHA-256 `c6cba2bdf5b78334cbdb1a2dd94fdfe412e6cf8d7ca07f74f86bd9c5daf12c5a`,
+with the Hausdorff and vertex-distance tools, 40° surface, trial receipt and
+checksums. All nine payload members passed hash readback; GitHub reports the
+same archive digest.
+
 The private [release](https://github.com/cluster2600/porscheparts-935-private/releases/tag/935-root-repair-20261025)
 contains `mesh3-surface-rejected-package-001.tar.gz`, SHA-256
 `2d26fcf2c59fde544ab40adc34c0da78c7a7a3608db74716e71a25d0bf7fb540`,
