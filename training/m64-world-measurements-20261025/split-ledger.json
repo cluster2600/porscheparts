@@ -1,0 +1,563 @@
+{
+  "policy": "source_family_and_identical_reviewed_claim_connected_components",
+  "prior_ledgers": [
+    "training/993-turbo-20261002/split-ledger.json",
+    "training/mezger-turbo-materials-20261003/split-ledger.json",
+    "training/mezger-german-sources-20261003/split-ledger.json",
+    "training/m64-measurements-20261024/split-ledger.json",
+    "training/m64-dimensions-deep-20261024/split-ledger.json"
+  ],
+  "source_family_aliases": {
+    "mahle-aftermarket.com": "us.mahle.com",
+    "ruf-automobile.de": "ruf-993",
+    "tte24.net": "tte-products"
+  },
+  "publisher_family_rules": {
+    "fia_homologation": "fia-homologation",
+    "mahle_brand_and_technical_mirrors": "us.mahle.com",
+    "melett_brand_and_technical_mirrors": "melett.com",
+    "federal_mogul_engine_catalogues": "federal-mogul-engine-catalogues",
+    "cp_carrillo_manufacturer_and_identified_mirrors": "cp-carrillo.com",
+    "kts_turbobillet_manufacturer_and_identified_mirrors": "ktsturbobilletx.com",
+    "turbosmart_manufacturer_and_identified_mirrors": "turbosmart.com"
+  },
+  "components": [
+    {
+      "id": "cp-carrillo.com",
+      "families": [
+        "cp-carrillo.com"
+      ],
+      "split": "train",
+      "inherited_prior_partition": false,
+      "protected_train_family": false
+    },
+    {
+      "id": "ktsturbobilletx.com",
+      "families": [
+        "ktsturbobilletx.com"
+      ],
+      "split": "train",
+      "inherited_prior_partition": false,
+      "protected_train_family": false
+    },
+    {
+      "id": "molnartechnologies.com",
+      "families": [
+        "molnartechnologies.com"
+      ],
+      "split": "train",
+      "inherited_prior_partition": false,
+      "protected_train_family": false
+    },
+    {
+      "id": "naprec.co.jp",
+      "families": [
+        "naprec.co.jp"
+      ],
+      "split": "train",
+      "inherited_prior_partition": false,
+      "protected_train_family": false
+    },
+    {
+      "id": "porsche-factory-and-archive",
+      "families": [
+        "porsche-factory-and-archive"
+      ],
+      "split": "train",
+      "inherited_prior_partition": true,
+      "protected_train_family": true
+    },
+    {
+      "id": "turbosmart.com",
+      "families": [
+        "turbosmart.com"
+      ],
+      "split": "train",
+      "inherited_prior_partition": false,
+      "protected_train_family": false
+    },
+    {
+      "id": "webcamshafts.com",
+      "families": [
+        "webcamshafts.com"
+      ],
+      "split": "train",
+      "inherited_prior_partition": false,
+      "protected_train_family": false
+    }
+  ],
+  "records": [
+    {
+      "record_id": "M64-WORLD-T001",
+      "source_ids": [
+        "SRC-M64-WORLD-T-KTS-CATALOG",
+        "SRC-M64-WORLD-T-KTS-DATUMS"
+      ],
+      "source_families": [
+        "ktsturbobilletx.com"
+      ],
+      "claim_ids": [
+        "fact:7bf521fed1fa1495906ebfd12892e68c30ba6344692787cf54161ac516f38f23",
+        "measurement_fact:66936868d6bcc4261c4879ddcc8be27b2b5c53c7313568fb876b703f0461a37a"
+      ],
+      "component": "ktsturbobilletx.com",
+      "split": "train"
+    },
+    {
+      "record_id": "M64-WORLD-T002",
+      "source_ids": [
+        "SRC-M64-WORLD-T-KTS-CATALOG",
+        "SRC-M64-WORLD-T-KTS-DATUMS"
+      ],
+      "source_families": [
+        "ktsturbobilletx.com"
+      ],
+      "claim_ids": [
+        "fact:d8f899d4cdfc5a1dc00ac8216e7646e2cf7e3d978f5382ecd4396d3d580a497d",
+        "measurement_fact:3f57a1f0670b98a9c8783118c2fef7479a7d19a2b06b2f95467e3af6cb01d507"
+      ],
+      "component": "ktsturbobilletx.com",
+      "split": "train"
+    },
+    {
+      "record_id": "M64-WORLD-T003",
+      "source_ids": [
+        "SRC-M64-WORLD-T-KTS-CATALOG",
+        "SRC-M64-WORLD-T-KTS-DATUMS"
+      ],
+      "source_families": [
+        "ktsturbobilletx.com"
+      ],
+      "claim_ids": [
+        "fact:2371239bad27f44e88b92aa69616a26d53e8010e50307c3c31dceb2c626f8cf3",
+        "measurement_fact:2e212c38a0317ff01930002dd4acbb136e5fece87e8c0d7f1523726d85dedbc5"
+      ],
+      "component": "ktsturbobilletx.com",
+      "split": "train"
+    },
+    {
+      "record_id": "M64-WORLD-T004",
+      "source_ids": [
+        "SRC-M64-WORLD-T-KTS-CATALOG",
+        "SRC-M64-WORLD-T-KTS-DATUMS"
+      ],
+      "source_families": [
+        "ktsturbobilletx.com"
+      ],
+      "claim_ids": [
+        "fact:6f07d300429b060e34037f86f7a7b5b4e48fb6367bb928f3b46661d4eae75a17",
+        "measurement_fact:4cd7439b17a037935a3b23c1d0953664b31f16eab6cf04d555bbd581a1b0ef8c"
+      ],
+      "component": "ktsturbobilletx.com",
+      "split": "train"
+    },
+    {
+      "record_id": "M64-WORLD-T005",
+      "source_ids": [
+        "SRC-M64-WORLD-T-KTS-CATALOG",
+        "SRC-M64-WORLD-T-KTS-DATUMS"
+      ],
+      "source_families": [
+        "ktsturbobilletx.com"
+      ],
+      "claim_ids": [
+        "fact:8b0816863afc9433cdea825e3d818e7218746caafa901cec987268a94696e652",
+        "measurement_fact:7d060511db5595f914ccac9c11beeaeaaabbaf12e3590ab19b2741a0fbf187d7"
+      ],
+      "component": "ktsturbobilletx.com",
+      "split": "train"
+    },
+    {
+      "record_id": "M64-WORLD-T006",
+      "source_ids": [
+        "SRC-M64-WORLD-T-KTS-CATALOG",
+        "SRC-M64-WORLD-T-KTS-DATUMS"
+      ],
+      "source_families": [
+        "ktsturbobilletx.com"
+      ],
+      "claim_ids": [
+        "fact:18bc9d3a639c82dc86e31e660d899cd901ece32473d9131365c927a68f7ab8cc",
+        "measurement_fact:8e13067d186e771c1611c15ef8316760d3555f7e29fc7982fa700ceab3d2c546"
+      ],
+      "component": "ktsturbobilletx.com",
+      "split": "train"
+    },
+    {
+      "record_id": "M64-WORLD-T007",
+      "source_ids": [
+        "SRC-M64-WORLD-T-KTS-CATALOG",
+        "SRC-M64-WORLD-T-KTS-DATUMS"
+      ],
+      "source_families": [
+        "ktsturbobilletx.com"
+      ],
+      "claim_ids": [
+        "fact:f9f48ff40bf2039dd1c2b360de7a1128fce12417473d367943c08015227ab486",
+        "measurement_fact:4f0fec47fc503fff318a7c1de00936d755ba537a20dcb3ef301d33317b4543f8"
+      ],
+      "component": "ktsturbobilletx.com",
+      "split": "train"
+    },
+    {
+      "record_id": "M64-WORLD-T008",
+      "source_ids": [
+        "SRC-M64-WORLD-T-KTS-CATALOG",
+        "SRC-M64-WORLD-T-KTS-DATUMS"
+      ],
+      "source_families": [
+        "ktsturbobilletx.com"
+      ],
+      "claim_ids": [
+        "fact:ba9a9face86eb5780f8559af44b9680c4be785e5582594d7787ab1c267642c82",
+        "measurement_fact:8d9d00ea2360c29e73c4f461a1197533be86de43edcdeb7b4d748c177036f9e9"
+      ],
+      "component": "ktsturbobilletx.com",
+      "split": "train"
+    },
+    {
+      "record_id": "M64-WORLD-T009",
+      "source_ids": [
+        "SRC-M64-WORLD-T-KTS-CATALOG",
+        "SRC-M64-WORLD-T-KTS-DATUMS"
+      ],
+      "source_families": [
+        "ktsturbobilletx.com"
+      ],
+      "claim_ids": [
+        "fact:0a0f68550a667471101e431eda1e3ab9c4b5bda7830fea1e355797f45df08f42",
+        "measurement_fact:67bfc2372e8375a506b01a14e41c8ca473e9e29927ba50b7cd30b13bbd276e15"
+      ],
+      "component": "ktsturbobilletx.com",
+      "split": "train"
+    },
+    {
+      "record_id": "M64-WORLD-T010",
+      "source_ids": [
+        "SRC-M64-WORLD-T-KTS-CATALOG",
+        "SRC-M64-WORLD-T-KTS-DATUMS"
+      ],
+      "source_families": [
+        "ktsturbobilletx.com"
+      ],
+      "claim_ids": [
+        "fact:62e498c6e291203634498d75051841c47d4e97513b6de3ee839963aaa16b030b",
+        "measurement_fact:c718c1b6621d5c5e9760423f4944d38c598410fcf830bf66472088daacc580ba"
+      ],
+      "component": "ktsturbobilletx.com",
+      "split": "train"
+    },
+    {
+      "record_id": "M64-WORLD-T011",
+      "source_ids": [
+        "SRC-M64-WORLD-T-TURBOSMART-GCG"
+      ],
+      "source_families": [
+        "turbosmart.com"
+      ],
+      "claim_ids": [
+        "fact:fe0fdb90d09d80a3a5b8a5876e5685392b63e979ae2a926691c8b8c4c4762e53",
+        "measurement_fact:68362c286a075b8d4533d102e94c4364caf5530792bbd074b3a8def85c0395f9"
+      ],
+      "component": "turbosmart.com",
+      "split": "train"
+    },
+    {
+      "record_id": "M64-WORLD-T012",
+      "source_ids": [
+        "SRC-M64-WORLD-T-TURBOSMART-993-PRODUCT",
+        "SRC-M64-WORLD-T-TURBOSMART-IWG75"
+      ],
+      "source_families": [
+        "turbosmart.com"
+      ],
+      "claim_ids": [
+        "fact:c1039b3608b17164cf8243a503e381b6fdc547661ea526a914cb93913bd92f39",
+        "measurement_fact:5b04230d0a2e40099f21cd748c26296e9bbfea2d51ba54196c1006a70981672e"
+      ],
+      "component": "turbosmart.com",
+      "split": "train"
+    },
+    {
+      "record_id": "M64-WORLD-T013",
+      "source_ids": [
+        "SRC-M64-WORLD-T-TURBOSMART-993-PRODUCT",
+        "SRC-M64-WORLD-T-TURBOSMART-IWG75"
+      ],
+      "source_families": [
+        "turbosmart.com"
+      ],
+      "claim_ids": [
+        "fact:c5e51f431187a5c4cc3c28b110a93e9d12c84c9011ae9a6b76cb96ed59209b40",
+        "measurement_fact:6bd7ec24990c3cdc5ba9e1cc77759c7be3efc889f23403e3d48efec0154859be"
+      ],
+      "component": "turbosmart.com",
+      "split": "train"
+    },
+    {
+      "record_id": "M64-WORLD-I001",
+      "source_ids": [
+        "SRC-M64-WORLD-CP-CARRILLO-2013-RODS",
+        "SRC-M64-WORLD-CP-CARRILLO-CURRENT-99"
+      ],
+      "source_families": [
+        "cp-carrillo.com"
+      ],
+      "claim_ids": [
+        "fact:e9411d2cd64fdf32be8740da6ff6fe66f6d188cf58f3411fe044884b29395eab",
+        "measurement_fact:ded9eab27dd8be4d0755f3bb804679b152f21136f69fc7d22b0697dfe8572c27"
+      ],
+      "component": "cp-carrillo.com",
+      "split": "train"
+    },
+    {
+      "record_id": "M64-WORLD-I002",
+      "source_ids": [
+        "SRC-M64-WORLD-CP-CARRILLO-2013-RODS",
+        "SRC-M64-WORLD-CP-CARRILLO-CURRENT-99"
+      ],
+      "source_families": [
+        "cp-carrillo.com"
+      ],
+      "claim_ids": [
+        "fact:255ff10642cf799818cd3dcbd90d8ce567323a31f6de36558a753791a7c82a06",
+        "measurement_fact:144576436a966be8edb405f893eb1c2d2b7119d5c22378201b282c5019e7bc16"
+      ],
+      "component": "cp-carrillo.com",
+      "split": "train"
+    },
+    {
+      "record_id": "M64-WORLD-I003",
+      "source_ids": [
+        "SRC-M64-WORLD-CP-CARRILLO-2013-RODS",
+        "SRC-M64-WORLD-CP-CARRILLO-CURRENT-99"
+      ],
+      "source_families": [
+        "cp-carrillo.com"
+      ],
+      "claim_ids": [
+        "fact:aebe1b1fed168402ab19b25a59026f5b051a362115ca1c2a91c100ce72c5e3e6",
+        "measurement_fact:46ed409cb74c0e77df17ec89e4be2557c7c632287df5d9d2e417fd1c8f9ec028"
+      ],
+      "component": "cp-carrillo.com",
+      "split": "train"
+    },
+    {
+      "record_id": "M64-WORLD-I004",
+      "source_ids": [
+        "SRC-M64-WORLD-CP-CARRILLO-2013-RODS"
+      ],
+      "source_families": [
+        "cp-carrillo.com"
+      ],
+      "claim_ids": [
+        "fact:54a0c7bcefd635a3bf41471625e58cce9b78ffb45e63abf7f458ac087ba3b369",
+        "measurement_fact:5d101895ab05ae25a46f718ee2b395c58e989ccc3d5fe0dcb82f31cb61da03a5"
+      ],
+      "component": "cp-carrillo.com",
+      "split": "train"
+    },
+    {
+      "record_id": "M64-WORLD-I005",
+      "source_ids": [
+        "SRC-M64-WORLD-MOLNAR-PRH5000"
+      ],
+      "source_families": [
+        "molnartechnologies.com"
+      ],
+      "claim_ids": [
+        "fact:23ce0cb478c74c13d12fb48975d01988e86b079eb24934e14c294fcfb351d684",
+        "measurement_fact:db2f80f0acc1700bfbc208469e5f68d098e413ee7e4f382e631c917061485fec"
+      ],
+      "component": "molnartechnologies.com",
+      "split": "train"
+    },
+    {
+      "record_id": "M64-WORLD-I006",
+      "source_ids": [
+        "SRC-M64-WORLD-MOLNAR-PRH5000"
+      ],
+      "source_families": [
+        "molnartechnologies.com"
+      ],
+      "claim_ids": [
+        "fact:4d6311bf772183523647fc7dea63a800513a646766c6779d32429fcb99298c13",
+        "measurement_fact:14d666b5b177c714c24586aee2da0f5ddddb4a872ece0683bf891fbd942bde4d"
+      ],
+      "component": "molnartechnologies.com",
+      "split": "train"
+    },
+    {
+      "record_id": "M64-WORLD-R001",
+      "source_ids": [
+        "SRC-M64-WORLD-PORSCHE-GROUPC-DE"
+      ],
+      "source_families": [
+        "porsche-factory-and-archive"
+      ],
+      "claim_ids": [
+        "fact:e3e290dde1751b9313e326c913af9ae5fa349e7adac12f0a1cbdd89166fd0200",
+        "measurement_fact:c9668a968ab1725eee865d8ae9c91b8e140484266ba34ff81f199ba16bf5e45a"
+      ],
+      "component": "porsche-factory-and-archive",
+      "split": "train"
+    },
+    {
+      "record_id": "M64-WORLD-R002",
+      "source_ids": [
+        "SRC-M64-WORLD-PORSCHE-GROUPC-DE"
+      ],
+      "source_families": [
+        "porsche-factory-and-archive"
+      ],
+      "claim_ids": [
+        "fact:ae5f6196d53938526403d56b448d270e9e36a491b3900e167321ee9da430e0b8",
+        "measurement_fact:47899f3a6bc45bb18ccd513cdccfa3538140cabf124bb3bba86d07edc071a2c6"
+      ],
+      "component": "porsche-factory-and-archive",
+      "split": "train"
+    },
+    {
+      "record_id": "M64-WORLD-A001",
+      "source_ids": [
+        "SRC-M64-WORLD-A-NAPREC-P061"
+      ],
+      "source_families": [
+        "naprec.co.jp"
+      ],
+      "claim_ids": [
+        "fact:ee58956b99267d6214bc103a87d9f47ce4e28048b3586c47c36ecd13ab6b18b0",
+        "measurement_fact:0190ee88631c676b873d36fe43c2b5f5b88a59fab744807b903dad37109167b1"
+      ],
+      "component": "naprec.co.jp",
+      "split": "train"
+    },
+    {
+      "record_id": "M64-WORLD-A002",
+      "source_ids": [
+        "SRC-M64-WORLD-A-NAPREC-P061"
+      ],
+      "source_families": [
+        "naprec.co.jp"
+      ],
+      "claim_ids": [
+        "fact:368436ed09ad5562a9af26c5e3a8ed35fd9dc68bbfb3c63627b1beb99baeba51",
+        "measurement_fact:7a107e70c010bb0b348b763ee51055bf6fa1dd769d038f363478dfe204d11044"
+      ],
+      "component": "naprec.co.jp",
+      "split": "train"
+    },
+    {
+      "record_id": "M64-WORLD-A003",
+      "source_ids": [
+        "SRC-M64-WORLD-A-NAPREC-P061"
+      ],
+      "source_families": [
+        "naprec.co.jp"
+      ],
+      "claim_ids": [
+        "fact:e69e2b3fcb4ada63e6bdba633dfe7ddcca0e66cfb7d091ee5118d4d528b4a7ac",
+        "measurement_fact:ec772beb9449a11a95c7c91f884f502f943732164a393b0109b7e443c79e69d2"
+      ],
+      "component": "naprec.co.jp",
+      "split": "train"
+    },
+    {
+      "record_id": "M64-WORLD-A004",
+      "source_ids": [
+        "SRC-M64-WORLD-A-NAPREC-P064"
+      ],
+      "source_families": [
+        "naprec.co.jp"
+      ],
+      "claim_ids": [
+        "fact:d09fcdde25c9361883155156b772cc19fac4eabbcbea168e5249710b1588781b",
+        "measurement_fact:efadd87cb4e71b0a4254cc13a1d619ab96416b235e83336bcc9b3a9bc474ab64"
+      ],
+      "component": "naprec.co.jp",
+      "split": "train"
+    },
+    {
+      "record_id": "M64-WORLD-C001",
+      "source_ids": [
+        "SRC-M64-WORLD-WEBCAM-BTR",
+        "SRC-M64-WORLD-WEBCAM-WEB-INDEX"
+      ],
+      "source_families": [
+        "webcamshafts.com"
+      ],
+      "claim_ids": [
+        "fact:8c49b8daedcad2feb7855aad0ac4b5323b975090e5c92a5c8fd7e167286921fb",
+        "measurement_fact:fd49b825497e2f8d10c6c659890d1cdedfde2d5d282f4137db09dfc6d2dc2e95"
+      ],
+      "component": "webcamshafts.com",
+      "split": "train"
+    },
+    {
+      "record_id": "M64-WORLD-C002",
+      "source_ids": [
+        "SRC-M64-WORLD-WEBCAM-GROUP-B",
+        "SRC-M64-WORLD-WEBCAM-WEB-INDEX"
+      ],
+      "source_families": [
+        "webcamshafts.com"
+      ],
+      "claim_ids": [
+        "fact:d7b550c0adfb5685d5199f949f83c265242843d524abf438d5ddf1f942f0619e",
+        "measurement_fact:19e6f66ea43dab4ccb4a9dbfc4747abc46fd41a85c6cb38d67e78e6de14e3092"
+      ],
+      "component": "webcamshafts.com",
+      "split": "train"
+    },
+    {
+      "record_id": "M64-WORLD-C003",
+      "source_ids": [
+        "SRC-M64-WORLD-WEBCAM-934",
+        "SRC-M64-WORLD-WEBCAM-WEB-INDEX"
+      ],
+      "source_families": [
+        "webcamshafts.com"
+      ],
+      "claim_ids": [
+        "fact:d7140a45b5367abe565f787091d706a3b7950854e65ec3aa6d7319dcd47988f1",
+        "measurement_fact:ff0bf4008a0e2801090abb70b58c5c2ce916c01d0a09362a477a3d2e6d96ff8a"
+      ],
+      "component": "webcamshafts.com",
+      "split": "train"
+    },
+    {
+      "record_id": "M64-WORLD-C004",
+      "source_ids": [
+        "SRC-M64-WORLD-WEBCAM-935",
+        "SRC-M64-WORLD-WEBCAM-WEB-INDEX"
+      ],
+      "source_families": [
+        "webcamshafts.com"
+      ],
+      "claim_ids": [
+        "fact:1d245c2d04f87174c249ff42e3f7d8bf11e882c0a234ef41d7278e9582c79287",
+        "measurement_fact:bd376b7dc0fd00901394dc8d8c9025cdae0d56ba6ab43b4cc617f81963eb76db"
+      ],
+      "component": "webcamshafts.com",
+      "split": "train"
+    },
+    {
+      "record_id": "M64-WORLD-C005",
+      "source_ids": [
+        "SRC-M64-WORLD-WEBCAM-GT2-EVO",
+        "SRC-M64-WORLD-WEBCAM-WEB-INDEX"
+      ],
+      "source_families": [
+        "webcamshafts.com"
+      ],
+      "claim_ids": [
+        "fact:577a197b521fd5f3c8a49410b687f7847f11b6099a3d60ac9d269277681ef0b3",
+        "measurement_fact:ec169e313bb0189175bb0587a7bb9961e3c14179ca276a748d2bdba69504f5df"
+      ],
+      "component": "webcamshafts.com",
+      "split": "train"
+    }
+  ],
+  "empty_partitions_allowed": true,
+  "holdouts": "Inherit every source, family and exact reviewed claim partition from all five frozen packs; new unassigned components stay in train. No new holdout anchors are imposed."
+}

@@ -1,0 +1,69 @@
+{
+  "schema_version": "1.0.0",
+  "reviewed_on": "2026-10-25",
+  "unresolved": [
+    "Original M64/60 piston crown/skirt walls, cylinder walls and complete head/port wall maps remain unestablished.",
+    "Complete datum-based factory drawings, bolt patterns, port-centre coordinates and tolerances are still missing.",
+    "Manufacturer nominal intervals and service reference values do not establish an engine wear limit or modified-engine load capacity.",
+    "Ambiguous catalogue values and inaccessible FIA image-only rows remain excluded or explicitly unresolved."
+  ],
+  "stream_gaps": [
+    {
+      "topic": "Original K16-6735/6736 manufacturing geometry",
+      "status": "unresolved",
+      "missing": [
+        "OEM wall or blade thickness",
+        "shaft maximum rated rotational speed",
+        "compressor and turbine maps for exact trim",
+        "product-specific signed F section datum",
+        "KTS housing-machining coordinates and running clearances"
+      ],
+      "reason": "KTS catalogue provides aftermarket nominal envelope and generic datum sketch only; it is not an original BorgWarner manufacturing drawing."
+    },
+    {
+      "topic": "KTS catalogue edition",
+      "status": "partially_identified",
+      "reason": "Bulgarian public index says Catalogue2021, while internal workbook release entries are varied. No internal publication issue identified."
+    },
+    {
+      "component": "original_M64_60_internals",
+      "missing": "No original piston crown/skirt thickness, head/port wall thickness, exact OEM rod drawing or material heat-treatment tolerance established in this search."
+    },
+    "No new readable original FIA dimensional page acquired; previously excluded FIA rows remain unresolved.",
+    "No original Porsche/RUF camshaft lift-versus-angle profile or measured M64/60 piston-to-valve assembly clearance established."
+  ],
+  "inspected_negative_leads": [
+    {
+      "stream": "turbo",
+      "url": "https://www.ktsturbobilletx.com/",
+      "result": "403 Forbidden via public web reader; no bypass attempted. Public manufacturer XLS and brochure mirrors used instead."
+    },
+    {
+      "stream": "turbo",
+      "url": "https://www.turbosmart.com/wp-content/uploads/catalog/TurbosmartCatalogue2013.pdf",
+      "result": "Initial linked source redirected to404. The 993-specific drawing was subsequently acquired from the public GCG catalogue and actually viewed; the linked public V6 guide was also acquired and viewed. Records T011–T013 retain the qualified product or generic guide scope.",
+      "later_resolution": "Product-specific dimension drawing independently obtained and viewed in GCG public catalogue; original2013URL remains unacquired."
+    },
+    {
+      "stream": "turbo",
+      "url": "https://www.quality-tuning.eu/attachments/article/31/TurbosmartCatalogue2013.pdf",
+      "result": "Normal HTTP403; no bypass attempted. Searchsnippet dimensions not accepted.",
+      "later_resolution": "Product-specific dimension drawing independently obtained and viewed in GCG public catalogue; original2013URL remains unacquired."
+    },
+    {
+      "stream": "turbo",
+      "query": "German993K16FlanschLochabstand;Japanese993タービン径寸法;Russian993K16толщина",
+      "result": "No new exact original-housing hole pattern, wall thickness or engineering drawing established in checked results."
+    },
+    {
+      "stream": "racing",
+      "topic": "FIA GT2-003 original and public gallery",
+      "result": "Ordinary source PDF and gallery JPEG requests returned403; no actual source image seen and no new FIA numeric value accepted."
+    },
+    {
+      "stream": "root",
+      "url": "https://cdn.arp-bolts.com/instructions/204-6005.pdf",
+      "result": "Public reader exposes ARP REV1 2023 M9 rod bolt sheet, but local HTTP download403; this lead was not added as a numeric record or bypassed. Source application contains literal933; do not silently repair it into993."
+    }
+  ]
+}

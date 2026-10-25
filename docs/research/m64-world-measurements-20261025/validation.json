@@ -1,0 +1,119 @@
+{
+  "reviewed_on": "2026-10-25",
+  "status": "research_and_training_checks_passed_with_documented_global_check_omission",
+  "checks": [
+    {
+      "command": "python scripts/validate_sources.py",
+      "result": "passed",
+      "canonical_source_records": 599,
+      "log_sha256": "c8ad803f3433c9942e01bd37a8677f948138d88a47e6a4f90add7d22fe0099f7"
+    },
+    {
+      "command": "python scripts/check_doc_links.py --strict",
+      "result": "passed",
+      "markdown_files": 1832,
+      "broken_relative_links": 0,
+      "historical_links_rechecked_live": false,
+      "log_sha256": "2007d3966deadbdb8ad0b8a3c2bd987a5a9be32307761f18bbde003a0764e531"
+    },
+    {
+      "command": "python training/m64-world-measurements-20261025/verify.py",
+      "result": "passed",
+      "cpt_rows": 30,
+      "sft_rows": 30,
+      "partitions_each": {
+        "train": 30,
+        "valid": 0,
+        "test": 0
+      },
+      "excluded": 0,
+      "all_five_prior_partitions_preserved": true,
+      "training_manifest_sha256": "defec129ca53472508d4e234e664b4dcaea9a34e9416b848ffcae1c19c2c20c6"
+    },
+    {
+      "command": "python training/m64-world-measurements-20261025/test_verify.py",
+      "result": "passed",
+      "tests": 28,
+      "log_sha256": "d228762acbcf87caa30969348a905078a14da80a51d1e78d8f85c7dfff9f2133"
+    },
+    {
+      "command": "python training/993-turbo-20261002/verify.py",
+      "result": "passed; frozen pack unchanged",
+      "log_sha256": "8947124e511bf2d3bc8c16b9c807573138e52c1643bf3888332b6b22725f50f3"
+    },
+    {
+      "command": "python training/mezger-turbo-materials-20261003/verify.py",
+      "result": "passed; frozen pack unchanged",
+      "log_sha256": "45107a20c8a577bc46c21a8070e00b8bd0e2b0ad7e45d7a5a4cfcc2941608bc1"
+    },
+    {
+      "command": "python training/mezger-german-sources-20261003/verify.py",
+      "result": "passed; frozen pack unchanged",
+      "log_sha256": "7746873b5886578e195ef9619bbc83290bcd4e0fa59c697e6335e6b642db12be"
+    },
+    {
+      "command": "python training/m64-measurements-20261024/verify.py",
+      "result": "passed; frozen pack unchanged",
+      "log_sha256": "7f570998e266fcb8fe6758c4eaa7abafad9c06a20eed8db1ce1f285988eef7b3"
+    },
+    {
+      "command": "python training/m64-dimensions-deep-20261024/verify.py",
+      "result": "passed; frozen pack unchanged",
+      "log_sha256": "5effaf08d1539355a0f2394059cff7b447655f1c2b9d062a4abd8a7c01abb0e5"
+    },
+    {
+      "command": "make -o 917-manufacturing-f37-lpbf-audit-check check (umask 022; bytecode writes disabled; task-local KiCad standard library tables)",
+      "checked_base_commit": "3db4955d1685b84f16260e40645e134a4d1a66a8",
+      "result": "passed; all other targets required by make check included",
+      "tests": 4874,
+      "elapsed_test_seconds": 526.408,
+      "skipped_tests": 274,
+      "omitted_target": "917-manufacturing-f37-lpbf-audit-check",
+      "log_sha256": "6afb96f47c1e45d9d5e8f5bc66d6cc6ea6bf312a5e22d031668e4121e535a2c2"
+    },
+    {
+      "command": "Independent documentary review, exact capture/reference closure, frozen hashes, privacy scan and git diff --cached --check",
+      "result": "passed",
+      "records": 30,
+      "accepted_records": 30,
+      "canonical_sources": 19,
+      "unique_frozen_baseline_files_unchanged": 1458,
+      "prior_training_subset_files_unchanged": 81,
+      "review_report": "review.json",
+      "review_report_sha256": "37dfd6837903aa92c79c2b6736da32376ac6bbb13a612fce1e1f9b06d175aa6d",
+      "publication_preflight": {
+        "staged_paths": 47,
+        "allowed_paths_only": true,
+        "raw_source_files_staged": false,
+        "private_or_vehicle_identifier_matches": 0,
+        "privacy_marker_literal_in_verifier_excluded_from_path_scan": true,
+        "reference_file_hashes_verified": 7,
+        "source_hashes_verified": 19
+      },
+      "physical_measurements_performed": false
+    }
+  ],
+  "known_omitted_check": {
+    "target": "917-manufacturing-f37-lpbf-audit-check",
+    "result": "not_rerun_in_this_increment",
+    "reason": "The unchanged pinned Docker image failed to register a layer with no space left on device in an earlier increment; storage/runtime configuration was not changed.",
+    "prior_receipt": "docs/research/m64-measurements-20261024/validation.json",
+    "full_unmodified_make_check_claimed_passed": false,
+    "unrelated_image_or_volume_pruning_performed": false
+  },
+  "publication_scope": {
+    "records": 30,
+    "accepted": 30,
+    "qualified": 29,
+    "uncertainty": 1,
+    "excluded": 0,
+    "new_source_records": 19,
+    "sources_linked": 19,
+    "training_sources_used": 17,
+    "canonical_source_total": 599,
+    "cpt_rows": 30,
+    "sft_rows": 30,
+    "new_model_training_executed": false,
+    "raw_source_documents_published": false
+  }
+}
