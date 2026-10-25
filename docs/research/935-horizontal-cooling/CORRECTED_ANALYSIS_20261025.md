@@ -355,10 +355,8 @@ candidate and 0.09130 in reverse. Those sample maxima are lower evidence
 about the true global maxima, not guaranteed bounds. Neither remesh qualifies
 as the reference geometry or an FEA input.
 
-The next geometry step is a **local, constrained repair of the affected
-boundary facets**, with the complete bidirectional envelope and topology
-rechecked before volume meshing. Merely accepting the better tetrahedral
-statistics would conceal a changed rotor shape. The private
+These results motivated the local, constrained trial below. Merely accepting
+the better tetrahedral statistics would conceal a changed rotor shape. The private
 [release](https://github.com/cluster2600/porscheparts-935-private/releases/tag/935-root-repair-20261025)
 contains `remesh-quality-private-package-001.tar.gz`, SHA-256
 `a041687336295c93b7befff10ffa90f704fdc375f93d009017a7ebc5e40177c4`,
@@ -391,6 +389,11 @@ SHA-256 `582ac4629d2fef81628de46311dc0e5aad6af8821b5ab83f4b8277310ac36a53`,
 contains the three local surface attempts, patch selector, source, raw volume,
 exact-envelope result and defect map. All 21 archive members passed local
 readback; GitHub reports the same asset SHA-256.
+
+The next repair must preserve feature-aligned triangle connectivity as well
+as the complete bidirectional surface envelope. It must then produce a
+non-inverted volume with an independently audited quality distribution before
+any load or modal calculation is accepted.
 
 ## Remaining gates
 
