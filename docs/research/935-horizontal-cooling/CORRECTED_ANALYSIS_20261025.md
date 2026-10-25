@@ -144,6 +144,34 @@ Its 19 source members and GitHub asset digest were checked. The six
 non-finite STL normals in the 917 context scan were zeroed in a display-only
 copy; all triangle coordinates and the PicoGK source files were unchanged.
 
+### Active six-cylinder 935 packaging study
+
+The separate, already documented [935-only assembly](COMPLETE_SYSTEM_20261022.md)
+was also refreshed with the 0.7 rotor. It combines the observed 935
+drive/support, this corrected rotor, a provisional distribution shroud and a
+**hypothetical two-bank, six-cylinder engine envelope**. No 917 geometry is
+used in this active study; an actual 935 crankcase scan is still absent. The
+PicoGK output has 12,599,570 triangles. Independent review found exact
+coordinate and triangle-order preservation in the combined mesh and in the
+SI-unit USD/GLB exports. Its four-view inspection image shows the assembly
+and the remaining incomplete blade sectors.
+
+The provisional rotor/shroud radial separation is 6.258 mm at the assumed
+scale. The swept rotor-annulus screen found zero candidate support triangles,
+but the support/shroud screen found **1,190,558 candidate triangles**. That
+conservative count does not prove a collision; it prevents a claim of
+clearance. The duct cutout and support interface need a local contact study.
+The engine envelope does not supply historical mounting datums, thermal
+clearances or airflow resistance.
+
+The complete active-scene evidence is saved privately as
+`assembly-935-six-root-0p7-001.tar.zst`, SHA-256
+`2ff700d4d4fc359cfd450a4d9bc25ae06b80c8d402cffb59713937ee065e1f16`.
+Its 17 source files were extracted and individually hash-checked; the GitHub
+asset digest matches. It includes
+the native PicoGK scene, USD, GLB, PNG and receipts; no geometry is committed
+to the public repository.
+
 ## Remaining gates
 
 No new OpenFOAM meshing or CFD solve has run on either corrected candidate.
