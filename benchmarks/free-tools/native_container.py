@@ -49,10 +49,16 @@ def run(tool, image, output):
         "--mount",
         f"type=bind,src={output},dst=/work",
         image_id,
-        "controls",
-        "--output",
-        "/work/result",
     ]
+    if tool == "salome":
+        command += [
+            "salome",
+            "shell",
+            "--",
+            "python3",
+            "/opt/free-tools/salome_worker.py",
+        ]
+    command += ["controls", "--output", "/work/result"]
     if tool == "salome":
         command += ["--units", "mm"]
     try:

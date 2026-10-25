@@ -52,6 +52,7 @@ def compare(cloud, mesh, configuration, output, executable="CloudCompare"):
         "-O",
         str(mesh_path),
         "-C2M_DIST",
+        "-UNSIGNED",
         "-SAVE_CLOUDS",
         "FILE",
         str(output / "distances.asc"),
@@ -117,7 +118,18 @@ def controls(output, executable="CloudCompare"):
     ):
         cloud = output / f"{name}.xyz"
         cloud.write_text(
-            "\n".join(f"{x} {y} {height}" for x, y in [(-1, -1), (0, 0), (1, 1)]) + "\n"
+            "\n".join(
+                f"{x} {y} {height}"
+                for x, y in [
+                    (-1, -1),
+                    (0, 0),
+                    (1, 1),
+                    (-1, 0.5),
+                    (0.5, -1),
+                    (0.75, 0.2),
+                ]
+            )
+            + "\n"
         )
         configuration = output / f"{name}.json"
         write(
