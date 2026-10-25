@@ -237,9 +237,9 @@ input-side profile as `hub-output-metrology-001.tar.gz`, SHA-256
 `741e4af6c3666b0ccb7d9e50c60a3ef8b20dee0f2f78596053d229da55778e58`.
 All eight archive members and the GitHub asset digest were checked.
 The earlier original-scan hub fit and plot are also archived privately as
-`rotor-original-hub-fit-001.tar.gz`, SHA-256
-`35703ad0181c6a1759ea3c0f3f844848f7df7e20ce7dc416a258d1a1e9f26c02`;
-the source OBJ hash and GitHub asset digest were verified.
+`rotor-original-hub-fit-002.tar.gz`, SHA-256
+`dec7c80b3acf07c51e9d70e925d5a025d129290fcee40ddbaff15f2cc97a5b41`;
+the source OBJ hash, both archive members and GitHub asset digest were verified.
 
 ## Remaining gates
 
