@@ -65,6 +65,7 @@ def run(root, private_root, output, porschefanatics_export=None):
             "openturns": sensitivity["status"],
             "openmdao": optimization["status"],
             "carrier": replay["status"],
+            "carrier_stages": replay["checks"]["carrier_stages"],
             "carrier_external": external["status"],
             "cloudcompare": "not_executed_by_this_command",
             "salome": "not_executed_by_this_command",

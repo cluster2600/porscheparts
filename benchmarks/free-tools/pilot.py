@@ -69,6 +69,7 @@ def replay(manifest_path, root, output):
         blockers.append("missing_measured_load_case")
     # The registered R2 comparison explicitly leaves convergence open.
     blockers.append("carrier_mesh_convergence_not_demonstrated")
+    study = load(Path(root) / STUDY / "mechanics-study.json")
     result = receipt(
         "carrier-replay",
         "blocked_engineering",
@@ -78,6 +79,15 @@ def replay(manifest_path, root, output):
             "catalogue_unchanged": True,
             "optimization_enabled": False,
             "blockers": blockers,
+            "carrier_stages": {
+                "cloudcompare": "blocked_no_registered_scan_and_registration_contract",
+                "salome": "blocked_no_reviewed_surface_face_groups_in_registered_inputs",
+                "openturns": "blocked_no_converged_solver_response_or_qualified_probability_model",
+                "openmdao": "blocked_native_fem_replay_and_optimization_not_accepted",
+            },
+            "documented_support_stiffness_scenarios_N_mm": study[
+                "support_sensitivity_per_eye_N_mm"
+            ],
         },
         limitations=["R2 is an unadopted study; no new native solve is claimed."],
     )

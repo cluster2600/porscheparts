@@ -109,6 +109,13 @@ class Boundaries(unittest.TestCase):
         self.assertIn(
             "carrier_mesh_convergence_not_demonstrated", result["checks"]["blockers"]
         )
+        self.assertEqual(len(result["checks"]["carrier_stages"]), 4)
+        self.assertTrue(
+            all(
+                x.startswith("blocked_")
+                for x in result["checks"]["carrier_stages"].values()
+            )
+        )
 
     def test_caller_cannot_authorize_modified_interface(self):
         manifest = common.load(TOOLS / "baseline.json")
@@ -372,12 +379,17 @@ class Boundaries(unittest.TestCase):
 
     def test_salome_order_conversion_preserves_inversion_rejection(self):
         points = [[0, 0, 0], [1, 0, 0], [0, 1, 0], [0, 0, 1]]
+        faces = [[0, 2, 1], [0, 1, 3], [0, 3, 2], [1, 2, 3]]
         converted = salome_worker.calculix_tets([[0, 2, 1, 3]])
-        self.assertGreater(geometry.determinant([points[i] for i in converted[0]]), 0)
+        self.assertTrue(
+            geometry.verify_tets(points, converted, points, faces)[
+                "exact_positive_determinants"
+            ]
+        )
         for raw in ([[0, 1, 2, 3]], [[0, 0, 1, 3]]):
             with self.assertRaises(ValueError):
                 geometry.verify_tets(
-                    points, salome_worker.calculix_tets(raw), points, []
+                    points, salome_worker.calculix_tets(raw), points, faces
                 )
         with self.assertRaises(ValueError):
             salome_worker.calculix_tets([[0, 1, 2, 3, 4]])

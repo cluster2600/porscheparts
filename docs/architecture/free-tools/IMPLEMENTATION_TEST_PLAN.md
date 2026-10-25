@@ -241,6 +241,8 @@ Before proposing a merge, run full `make check`, strict documentation links and
 Mermaid rendering. Render each Mermaid block in `ARCHITECTURE.md` with
 `@mermaid-js/mermaid-cli@11.12.0`, storing generated SVGs under ignored `work/`.
 Inspect each rendered view. Do not translate or modify historical evidence.
+The native-control workflow also renders all three views using Node 26.11.1
+and that exact CLI; it uploads the SVGs, browser version and resolved npm lock.
 
 ## Failure handling and rollback
 

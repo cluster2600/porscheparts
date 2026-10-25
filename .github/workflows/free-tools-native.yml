@@ -53,6 +53,46 @@ jobs:
             acceptance-output/optimization/receipt.json
             acceptance-output/external-carrier/receipt.json
 
+  documentation:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          sparse-checkout: docs/architecture/free-tools
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: '26.11.1'
+      - name: Install the pinned diagram CLI without package lifecycle scripts
+        run: npm install --prefix "$RUNNER_TEMP/free-tools-mermaid" --ignore-scripts --no-audit --no-fund @mermaid-js/mermaid-cli@11.12.0
+      - name: Render the three architecture views
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import json, re, shutil
+          output = Path('diagram-output')
+          output.mkdir()
+          blocks = re.findall(r'```mermaid\n(.*?)```', Path('docs/architecture/free-tools/ARCHITECTURE.md').read_text(), re.S)
+          if len(blocks) != 3:
+              raise ValueError('exactly three architecture views required')
+          chrome = shutil.which('google-chrome')
+          if not chrome:
+              raise ValueError('Chrome runtime unavailable')
+          (output / 'puppeteer.json').write_text(json.dumps({'executablePath': chrome, 'args': ['--no-sandbox']}))
+          for name, block in zip(('infrastructure', 'software', 'logic'), blocks):
+              (output / (name + '.mmd')).write_text(block)
+          PY
+          node --version > diagram-output/runtime-versions.txt
+          google-chrome --version >> diagram-output/runtime-versions.txt
+          cp "$RUNNER_TEMP/free-tools-mermaid/package-lock.json" diagram-output/package-lock.json
+          for view in infrastructure software logic; do
+            "$RUNNER_TEMP/free-tools-mermaid/node_modules/.bin/mmdc" -p diagram-output/puppeteer.json -i "diagram-output/$view.mmd" -o "diagram-output/$view.svg"
+          done
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: free-tools-architecture-diagrams
+          path: diagram-output/
+
   geometry-controls:
     strategy:
       fail-fast: false

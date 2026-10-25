@@ -24,6 +24,21 @@ auxiliary FEA surface are unadopted comparison studies.
 | OpenTURNS | Fixed-seed analytical sensitivity control; failed samples reject the calculation | No carrier probability distribution is invented |
 | OpenMDAO | External analytical solver, constrained beam optimization and carrier admission replay | Carrier optimization remains disabled by the frozen independent contract |
 
+## Implementation order and status
+
+| Increment | Current execution status |
+|---|---|
+| P0: baseline and contracts | Five registered input hashes verified; carrier admission blocked |
+| P1: private DVC storage | Mac recovery and failure controls passed; independent Kali recovery pending |
+| P2: FTS5 and Qwen | Retrieval controls and actual PorscheFanatics metadata import passed; generated Qwen draft rejected |
+| P3: CloudCompare | Native Linux analytical controls passed; no measured carrier scan registered |
+| P4: SALOME/SMESH | Native cube/bore controls passed; carrier comparison blocked pending reviewed face groups |
+| P5: OpenTURNS | Analytical control passed; carrier sensitivity requires verified solver responses and reviewed ranges |
+| P6: OpenMDAO and replay | Beam optimum and carrier admission replay executed; native carrier FEM replay unexecuted |
+
+The [execution report](RESULTS.md) records the accepted scope and remaining
+deployment work. Software controls do not close the carrier's engineering gates.
+
 ## Quick start: small offline software tests
 
 From the repository root, using Python 3.10 or newer:
