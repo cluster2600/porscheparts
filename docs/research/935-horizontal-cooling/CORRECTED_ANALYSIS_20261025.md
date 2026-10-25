@@ -390,7 +390,7 @@ accepted. The private archive `local-remesh-rejected-package-001.tar.zst`,
 SHA-256 `582ac4629d2fef81628de46311dc0e5aad6af8821b5ab83f4b8277310ac36a53`,
 contains the three local surface attempts, patch selector, source, raw volume,
 exact-envelope result and defect map. All 21 archive members passed local
-readback; its GitHub upload and asset-digest readback are pending.
+readback; GitHub reports the same asset SHA-256.
 
 ## Remaining gates
 
