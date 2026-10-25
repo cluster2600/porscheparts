@@ -230,6 +230,12 @@ legacy reconstruction no-op with a moved-cube-qualified reconstruction. The
 full native fluid-mesh check still rejects concave cells; airflow and
 manufacturing remain unqualified.
 
+The [corrected analysis surface](research/935-horizontal-cooling/CORRECTED_ANALYSIS_20261025.md)
+then bounds a simplified rotor against the repaired PicoGK master in both
+directions and prepares a new Foundation 13 case from that geometry. The case
+has not yet been meshed or solved; the previous concavity failure still needs
+a native diagnosis and correction.
+
 Read the [engineering workflow](architecture/engineering-workflow.md),
 [PicoGK decision](decisions/0004-picogk-new-geometry.md),
 [software inventory and dated execution evidence](SOFTWARE_STACK.md), and
