@@ -127,6 +127,13 @@ def read_inp(path):
     return points, tets, groups
 
 
+def calculix_tets(salome_tets):
+    if any(len(tet) != 4 for tet in salome_tets):
+        raise ValueError("linear four-node SALOME tetrahedra required")
+    # SMDS 9.16 Tetra_F makes (0,1,2) outward; C3D4 uses the opposite convention.
+    return [[tet[0], tet[2], tet[1], tet[3]] for tet in salome_tets]
+
+
 def mesh_surface(points, faces, groups, output, max_size):
     closed_surface(points, faces)
     finite(max_size, positive=True)
@@ -176,10 +183,13 @@ def mesh_surface(points, faces, groups, output, max_size):
     all_ids = sorted(mesh.GetNodesId())
     offsets = {node_id: i for i, node_id in enumerate(all_ids)}
     vertices = [list(mesh.GetNodeXYZ(i)) for i in all_ids]
-    tets = [
+    raw_tets = [
         [offsets[i] for i in mesh.GetElemNodes(element)]
         for element in mesh.GetElementsByType(SMESH.VOLUME)
     ]
+    mesh.ExportMED(str(output / "native.med"), 0)
+    write(output / "native-mesh.json", {"points": vertices, "salome_tets": raw_tets})
+    tets = calculix_tets(raw_tets)
     checks = verify_tets(vertices, tets, points, faces)
     sets = {
         name: sorted({offsets[node_ids[i]] for index in indices for i in faces[index]})
@@ -192,6 +202,7 @@ def mesh_surface(points, faces, groups, output, max_size):
         {
             "group_membership_preserved": True,
             "calculix_roundtrip": True,
+            "salome_to_calculix_permutation": [0, 2, 1, 3],
             "max_size_mm": max_size,
         }
     )
@@ -201,7 +212,10 @@ def mesh_surface(points, faces, groups, output, max_size):
             "salome-netgen",
             "volume_comparison_completed",
             [],
-            outputs=[{"id": "mesh.inp", "sha256": sha256(output / "mesh.inp")}],
+            outputs=[
+                {"id": name, "sha256": sha256(output / name)}
+                for name in ("mesh.inp", "native.med", "native-mesh.json")
+            ],
             checks=checks,
             limitations=[
                 "Mesh comparison only; no native FEM solve or physical qualification.",

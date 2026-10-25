@@ -182,6 +182,11 @@ triangle indices. Missing groups must be resolved from the independent case
 definition; never guess support faces. The worker retains input node coordinates
 and face connectivity, checks exact positive tetrahedral determinants and whole
 boundary identity, then round-trips a C3D4 INP export and node sets.
+The fixed SALOME-to-C3D4 node permutation is `[0, 2, 1, 3]`, following the
+outward bottom-face convention in
+[SMDS 9.16](https://github.com/SalomePlatform/smesh/blob/V9_16_0/src/SMDS/SMDS_VolumeTool.cxx).
+It applies uniformly; cells are never individually flipped to hide inversions.
+The native MED mesh and raw connectivity are retained before verification.
 
 These checks do not prove force transfer, mechanical convergence or process
 qualification. Before any new carrier FEM solve, rerun the existing interface,

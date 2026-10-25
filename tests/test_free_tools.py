@@ -370,6 +370,18 @@ class Boundaries(unittest.TestCase):
             with self.assertRaises(ValueError):
                 geometry.closed_surface(points, faces[:-1])
 
+    def test_salome_order_conversion_preserves_inversion_rejection(self):
+        points = [[0, 0, 0], [1, 0, 0], [0, 1, 0], [0, 0, 1]]
+        converted = salome_worker.calculix_tets([[0, 2, 1, 3]])
+        self.assertGreater(geometry.determinant([points[i] for i in converted[0]]), 0)
+        for raw in ([[0, 1, 2, 3]], [[0, 0, 1, 3]]):
+            with self.assertRaises(ValueError):
+                geometry.verify_tets(
+                    points, salome_worker.calculix_tets(raw), points, []
+                )
+        with self.assertRaises(ValueError):
+            salome_worker.calculix_tets([[0, 1, 2, 3, 4]])
+
     def test_inverted_tet_rejected_and_calculix_roundtrip(self):
         points = [[0.0, 0.0, 0.0], [1.0, 0.0, 0.0], [0.0, 1.0, 0.0], [0.0, 0.0, 1.0]]
         faces = [[0, 2, 1], [0, 1, 3], [0, 3, 2], [1, 2, 3]]
