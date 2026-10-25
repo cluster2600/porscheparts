@@ -614,6 +614,17 @@ FEA mesh. The remaining weak cells, uncalibrated scale, missing exact 935
 interfaces, material data and convergence study still block strength,
 fitment and manufacturing claims.
 
+The 120 residual cells form **73 node-connected groups**. The largest group
+contains 17 cells, all with four boundary vertices, around radius 108.97 and
+Z 2.59 in uncalibrated source units. The group is a priority for a localized
+boundary/connectivity inspection; node sharing alone does not establish that
+the scan is defective. A hash-pinned [private localization receipt](https://github.com/cluster2600/porscheparts-935-private/releases/tag/935-root-repair-20261025)
+lists every group and its original cell/node IDs. Its SHA-256 is
+`2b5e90f4da7df1680859951d9767780c93f1a3848be20780352c44fa0c9b3b2a`,
+matched by the uploaded release asset. Any altered patch must again pass the
+full bidirectional envelope, topology, exact-volume and connectivity audits
+before mechanical meshing is reconsidered.
+
 ## Remaining gates
 
 No new OpenFOAM meshing or CFD solve has run on either corrected candidate.
