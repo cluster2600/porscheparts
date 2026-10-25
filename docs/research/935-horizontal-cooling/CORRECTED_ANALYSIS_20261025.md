@@ -395,6 +395,42 @@ as the complete bidirectional surface envelope. It must then produce a
 non-inverted volume with an independently audited quality distribution before
 any load or modal calculation is accepted.
 
+### CGAL Mesh_3 surface-domain trial
+
+A separate local Apple Silicon trial used CGAL 6.2.1 Mesh_3 to discretize the
+protected 878,730-face surface. The first run, using the default non-manifold
+topology setting, produced 618,973 faces but one open and two non-manifold
+edges; it was rejected before geometric comparison. The revised runs detected
+sharp features at 60°, constrained feature edges, requested manifold topology
+and generated only the domain surface. CGAL's OFF exporter emitted unoriented
+faces, so an explicit adjacency traversal oriented them without moving any
+vertex. Both revised surfaces then passed the independent topology and
+self-intersection checks as one closed genus-one component:
+
+| Facet size / distance, source units | Faces | Complete bidirectional 0.0225-unit envelope |
+| --- | ---: | --- |
+| 1.0 / 0.0225 | 610,362 | Rejected |
+| 0.5 / 0.01 | 1,969,326 | Rejected |
+
+Both envelope checks rejected the same source face, index 10846, at the start
+of the tiled comparison. On the finer surface, its three vertices were
+0.01200–0.01707 source unit from the candidate surface; its centroid and edge
+midpoints were also within 0.0225. These isolated point distances **do not
+establish containment of the whole triangle**. The independent full-triangle
+envelope test still failed. CGAL's facet-distance setting is therefore not a
+substitute for the acceptance check. Neither output was used for volume
+meshing or FEA.
+
+The private [release](https://github.com/cluster2600/porscheparts-935-private/releases/tag/935-root-repair-20261025)
+contains `mesh3-surface-rejected-package-001.tar.gz`, SHA-256
+`2d26fcf2c59fde544ab40adc34c0da78c7a7a3608db74716e71a25d0bf7fb540`,
+with the trial code, raw and oriented surfaces, rejection receipt and checksums.
+All ten payload members passed local hash readback; GitHub reports the same
+archive digest. The next numerical step is to distinguish a local
+full-triangle shape deviation from overly conservative tile selection at the
+first rejected face. A boundary-preserving volume mesher on the protected
+surface remains the alternative if the surface cannot be safely retessellated.
+
 ## Remaining gates
 
 No new OpenFOAM meshing or CFD solve has run on either corrected candidate.
