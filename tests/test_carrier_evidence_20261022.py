@@ -27,11 +27,57 @@ class EvidenceTests(unittest.TestCase):
         self.assertFalse(figure['spatial_convergence_demonstrated'])
         self.assertAlmostEqual(figure['displacement_max_mm'],json.loads(accepted.read_text())['displacement_max_mm'])
 
+    def test_new_gpu_core_screen_keeps_fixed_limits_and_conditional_mass_scope(self):
+        base=REPORT/'evidence/mesh-quality-20261025'
+        reports=[json.loads((base/f'remeshed-cellular-collected-010/results/{device}/report.json').read_text())for device in ['cpu','cuda']]
+        for report in reports:
+            self.assertEqual(report['status'],'passed')
+            self.assertEqual(report['queries'],381564)
+            self.assertEqual(report['fixed_absolute_error_limit_mm'],.0001)
+            self.assertLessEqual(report['maximum_absolute_error_mm'],.0001)
+        self.assertEqual(reports[0]['source_sha256'],reports[1]['source_sha256'])
+        self.assertTrue(reports[1]['gpu_validated'])
+        self.assertEqual(reports[1]['actual_device'],'cuda:0')
+        screen=json.loads((base/'remeshed-cellular-budget-001/assessment.json').read_text())
+        self.assertEqual(screen['parameters']['skin_mm'],1.5)
+        self.assertEqual(screen['parameters']['bore_keepout_mm'],10)
+        self.assertEqual(screen['selected_cells'],44)
+        self.assertFalse(screen['reference_geometry_changed'])
+        self.assertFalse(screen['cellular_geometry_generated'])
+        self.assertFalse(screen['cellular_strength_validated'])
+
+    def test_replacement_fine_timeout_keeps_no_field_and_confirmed_teardown(self):
+        base=REPORT/'evidence/mesh-quality-20261025'
+        receipt=json.loads((base/'linux-010-recursive-fine-P2-001/actual-terminal.json').read_text())
+        self.assertEqual(receipt['actual_returncode'],124)
+        self.assertTrue(receipt['outer_timeout'])
+        self.assertTrue(receipt['process_reaped'])
+        self.assertTrue(receipt['inputs_unchanged'])
+        self.assertEqual(receipt['output_sha256']['job.dat'],hashlib.sha256(b'').hexdigest())
+        refusal=json.loads((base/'linux-010-fine-refusal-001.json').read_text())
+        self.assertFalse(refusal['field_assessment_published'])
+        self.assertFalse(refusal['convergence_demonstrated'])
+        absent=json.loads((base/'vast-lease-010/supervisor-absence-verified.json').read_text())
+        self.assertTrue(absent['verified_absent'])
+
     def test_actual_cuda_and_cpu_pass_the_same_unchanged_oracle_limit(self):
         reports=[json.loads((REPORT/f'evidence/warp/results/carrier-{device}/report.json').read_text())for device in ['cpu','cuda']]
         for row in reports:
             self.assertEqual(row['status'],'passed');self.assertEqual(row['fixed_absolute_error_limit_mm'],.0001);self.assertEqual(row['queries'],65536);self.assertLessEqual(row['maximum_absolute_error_mm'],.0001)
         self.assertTrue(reports[1]['gpu_validated']);self.assertEqual(reports[1]['actual_device'],'cuda:0');self.assertEqual(reports[0]['source_sha256'],reports[1]['source_sha256'])
+
+    def test_cross_host_normal_exit_does_not_override_failed_complete_reference(self):
+        base=REPORT/'evidence/mesh-quality-20261025'
+        receipt=json.loads((base/'linux-013-recursive-coarse-P2-001/actual-terminal.json').read_text())
+        self.assertEqual(receipt['actual_returncode'],0)
+        self.assertTrue(receipt['solver_finished_marker'])
+        field=json.loads((base/'linux-013-coarse-P2-assessment-001/assessment.json').read_text())
+        self.assertEqual(field['status'],'quadratic_equilibrium_or_energy_refused')
+        self.assertEqual(field['result_rows']['stresses'],4*field['C3D10_elements'])
+        self.assertGreater(field['relative_energy_residual'],field['fixed_energy_relative_limit'])
+        self.assertFalse(field['stress_convergence_demonstrated'])
+        guard=json.loads((base/'vast-lease-013/guard-terminal-live.json').read_text())
+        self.assertEqual(guard['consecutive_absent_confirmations'],3)
 
     def test_refused_and_incomplete_solves_never_become_convergence(self):
         bad=json.loads((REPORT/'evidence/h0-P1-native-001-energy-diagnostic-001/assessment.json').read_text());self.assertGreater(bad['relative_energy_residual'],bad['fixed_relative_limit'])

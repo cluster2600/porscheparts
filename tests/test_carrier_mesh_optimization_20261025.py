@@ -30,22 +30,66 @@ class BoundaryIdentityTests(unittest.TestCase):
                     '--threads',str(threads)],capture_output=True,text=True)
                 self.assertNotEqual(result.returncode,0);self.assertFalse(output.exists())
 
-    def test_long_parallel_profile_keeps_result_recovery_serial(self):
-        spec=importlib.util.spec_from_file_location('long_native_worker',SOURCE.with_name('run_native_ccx_long_parallel.py'))
-        worker=importlib.util.module_from_spec(spec);spec.loader.exec_module(worker)
+    def test_extended_profile_and_guard_refuse_unbounded_requests(self):
         with tempfile.TemporaryDirectory() as directory:
-            base=Path(directory);binary=base/'binary';binary.write_bytes(b'qualified fixture')
-            deck=base/'input.inp';deck.write_text('fixture');output=base/'output'
+            base=Path(directory);binary=base/'binary';binary.write_bytes(b'fixture')
+            for seconds,memory,threads in [(7201,240,8),(7200,241,8),(7200,240,9)]:
+                output=base/'output'
+                result=subprocess.run([sys.executable,str(SOURCE.with_name('run_native_ccx_extended_parallel.py')),
+                    '--binary',str(binary),'--expected-binary',hashlib.sha256(binary.read_bytes()).hexdigest(),
+                    '--deck',str(base/'missing.inp'),'--output',str(output),'--seconds',str(seconds),
+                    '--memory-gib',str(memory),'--threads',str(threads)],capture_output=True,text=True)
+                self.assertNotEqual(result.returncode,0);self.assertFalse(output.exists())
+            manifest=base/'manifest.json'
+            for duration,budget in [(10801,2),(10800,3)]:
+                manifest.write_text(json.dumps(dict(created_epoch=0,deadline_epoch=duration,budget_usd=budget)))
+                result=subprocess.run([sys.executable,str(SOURCE.with_name('lease_guard_extended_live.py')),
+                    '--manifest',str(manifest)],capture_output=True,text=True)
+                self.assertNotEqual(result.returncode,0);self.assertFalse((base/'guard-ready-live.json').exists())
+
+    def test_four_hour_guard_and_solver_only_profile_keep_hard_upper_bounds(self):
+        with tempfile.TemporaryDirectory()as directory:
+            base=Path(directory);binary=base/'binary';binary.write_bytes(b'fixture');output=base/'output'
+            result=subprocess.run([sys.executable,str(SOURCE.with_name('run_native_ccx_solver_parallel.py')),
+                '--binary',str(binary),'--expected-binary',hashlib.sha256(binary.read_bytes()).hexdigest(),
+                '--deck',str(base/'missing'),'--output',str(output),'--seconds','10801'],capture_output=True,text=True)
+            self.assertNotEqual(result.returncode,0);self.assertFalse(output.exists())
+            manifest=base/'manifest.json';manifest.write_text(json.dumps(dict(created_epoch=0,deadline_epoch=14401,budget_usd=2)))
+            result=subprocess.run([sys.executable,str(SOURCE.with_name('lease_guard_four_hour_live.py')),'--manifest',str(manifest)],capture_output=True,text=True)
+            self.assertNotEqual(result.returncode,0);self.assertFalse((base/'guard-ready-live.json').exists())
+
+    def test_solver_only_parallel_profile_keeps_fortran_stages_serial(self):
+        spec=importlib.util.spec_from_file_location('solver_parallel_worker',SOURCE.with_name('run_native_ccx_solver_parallel.py'))
+        worker=importlib.util.module_from_spec(spec);spec.loader.exec_module(worker)
+        with tempfile.TemporaryDirectory()as directory:
+            base=Path(directory);binary=base/'binary';binary.write_bytes(b'fixture');deck=base/'deck';deck.write_text('fixture');output=base/'output'
             def completed(*args,**kwargs):
-                self.assertEqual(kwargs['env']['OMP_NUM_THREADS'],'8')
-                self.assertEqual(kwargs['env']['CCX_NPROC_RESULTS'],'1')
-                kwargs['stdout'].write('Job finished\n');kwargs['stdout'].flush()
+                env=kwargs['env']
+                for key in ['OMP_NUM_THREADS','CCX_NPROC_STIFFNESS','CCX_NPROC_RESULTS','OPENBLAS_NUM_THREADS']:self.assertEqual(env[key],'1')
+                self.assertEqual(env['CCX_NPROC_EQUATION_SOLVER'],'8');self.assertEqual(env['NUMBER_OF_CPUS'],'8')
+                self.assertNotIn('stdbuf',args[0]);self.assertNotIn('LD_PRELOAD',env);kwargs['stdout'].write('Job finished\n');kwargs['stdout'].flush()
                 child=Mock(returncode=0);child.wait.return_value=0;return child
-            argv=['worker','--binary',str(binary),'--expected-binary',hashlib.sha256(binary.read_bytes()).hexdigest(),
-                  '--deck',str(deck),'--output',str(output),'--threads','8']
-            with patch.object(sys,'argv',argv),patch.object(worker.subprocess,'Popen',side_effect=completed):
-                self.assertEqual(worker.main(),0)
-            self.assertEqual(json.loads((output/'plan.json').read_text())['results_threads_requested'],1)
+            argv=['worker','--binary',str(binary),'--expected-binary',hashlib.sha256(binary.read_bytes()).hexdigest(),'--deck',str(deck),'--output',str(output),'--threads','8']
+            with patch.object(sys,'argv',argv),patch.object(worker.subprocess,'Popen',side_effect=completed):self.assertEqual(worker.main(),0)
+            plan=json.loads((output/'plan.json').read_text());self.assertEqual(plan['assembly_threads_requested'],1);self.assertEqual(plan['equation_solver_threads_requested'],8);self.assertEqual(plan['wall_limit_seconds'],10800)
+
+    def test_parallel_profiles_keep_result_recovery_serial(self):
+        for worker_name in ['run_native_ccx_long_parallel.py','run_native_ccx_extended_parallel.py']:
+            spec=importlib.util.spec_from_file_location('long_native_worker',SOURCE.with_name(worker_name))
+            worker=importlib.util.module_from_spec(spec);spec.loader.exec_module(worker)
+            with tempfile.TemporaryDirectory() as directory:
+                base=Path(directory);binary=base/'binary';binary.write_bytes(b'qualified fixture')
+                deck=base/'input.inp';deck.write_text('fixture');output=base/'output'
+                def completed(*args,**kwargs):
+                    self.assertEqual(kwargs['env']['OMP_NUM_THREADS'],'8')
+                    self.assertEqual(kwargs['env']['CCX_NPROC_RESULTS'],'1')
+                    kwargs['stdout'].write('Job finished\n');kwargs['stdout'].flush()
+                    child=Mock(returncode=0);child.wait.return_value=0;return child
+                argv=['worker','--binary',str(binary),'--expected-binary',hashlib.sha256(binary.read_bytes()).hexdigest(),
+                      '--deck',str(deck),'--output',str(output),'--threads','8']
+                with patch.object(sys,'argv',argv),patch.object(worker.subprocess,'Popen',side_effect=completed):
+                    self.assertEqual(worker.main(),0)
+                self.assertEqual(json.loads((output/'plan.json').read_text())['results_threads_requested'],1)
 
     def test_analytic_controls_do_not_admit_corrupted_full_parallel_quadratic_results(self):
         evidence=SOURCE.parents[5]/'docs/reports/carrier-convergence-20261022/evidence/mesh-quality-20261025'

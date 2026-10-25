@@ -10,13 +10,20 @@ on a rented NVIDIA GPU. The mass ceiling remains **1.30 kg**.
 [Full English part workflow](../../manufacturing/PART_WORKFLOW_EN.md) ·
 [Exact retained material and load assumptions](evidence/material-and-load-study.json)
 
+Current checkpoints: [complete-model rejection gate](#complete-model-regression-gate-and-displacement-view),
+[accepted serial-recovery reference](#serial-recovery-reference-accepted-fine-field-pending),
+the [cross-host recovery refusal](#cross-host-recovery-refusal-and-solver-only-threading),
+and [new RTX 5060 Ti core screen](#rtx-5060-ti-replay-and-remeshed-core-screen).
+Mechanical convergence remains open; the R2 master mass is unchanged.
+
 ```mermaid
 flowchart TD
     R[Retained R2 surface · 1.2982 kg] --> G[Complete geometry fidelity ≤ 0.06 mm]
     G --> M[Exact-positive volume and quadratic mapping audit]
     M --> L[Same bore patches and continuous tractions]
-    L --> C[CalculiX · parallel assembly · serial result recovery]
-    C --> E[Read every field · equilibrium · independent energy]
+    L --> C[Fresh analytic controls · two full reference repeats]
+    C --> T[Serial assembly and recovery · controlled solver threads]
+    T --> E[Read every field · equilibrium · independent energy]
     E --> H[Spatial comparison · displacement · compliance · stress]
     H --> D{Two successive comparisons within limits?}
     D -->|No| F[Refine or diagnose an explicitly separate fixture]
@@ -641,7 +648,7 @@ Mac/Linux regression limits before a fine solve is launched. These execution
 changes do not relax the spatial-convergence contract.
 
 ```mermaid
-flowchart LR
+flowchart TD
     A[Original analytic controls] --> B[Complete retained T10 reference]
     B --> C{Equilibrium and independent energy pass?}
     C -->|No| R[Retain refused fields and stop this profile]
@@ -673,9 +680,9 @@ passed fresh analytic controls and the **complete 381,564-cell T10 reference**.
 The actual solve took **113.97 s**. Its independent energy residual is
 **2.38e-9**, and every displacement, stress and reaction component agrees with
 the accepted Mac reference within the original regression contract: maximum
-differences **1e-6 mm**, **0.0001 MPa** and **0.00001 N**. This isolates an admitted
-execution profile; it does not turn the refused eight-recovery-thread run into
-a valid field.
+differences **1e-6 mm**, **0.0001 MPa** and **0.00001 N**. This admits that particular
+execution; the later cross-host refusal below means the profile is not generally
+qualified. The refused eight-recovery-thread field remains excluded.
 
 The **3,052,512-cell / 4,884,701-node T10** solve was then launched with the same
 loads and source-bound geometry, eight assembly threads and one result-recovery
@@ -689,3 +696,98 @@ This checkpoint passes **29 focused continuation tests**, strict links over
 The local minimal geometry runtime lacks Matplotlib; the tests and figure were
 successfully run with the already installed host NumPy/Matplotlib environment.
 The new Linux head still requires its own full CI outcome.
+
+### RTX 5060 Ti replay and remeshed core screen
+
+The unchanged PR #274 kernel also passes on an actual **RTX 5060 Ti, sm_120**,
+driver **595.104.02**, with Warp **1.18.0**. All **15 pilot tests** pass. The new
+fixture covers **381,564 cell-centroid queries / 196,406 complete analysis-boundary
+triangles** from the accepted replacement-mesh reference. Native CPU and actual
+CUDA both pass six repetitions against the independent **libigl 2.6.3 float64
+oracle**, using the exact same float32-promoted arrays. Maximum errors are
+**0.00004128 mm CPU** and **0.00003819 mm CUDA**, below the unchanged **0.0001 mm**
+limit, with complete hit rosters. No CPU fallback is used for the CUDA request.
+
+This secondary workload was restricted to **two CPU affinity entries** while the
+primary fine solve continued with its frozen inputs. Its timings are not used
+for a new hardware speedup claim. The actual native libigl import on the isolated
+Mac environment refused with `std::bad_cast`; the Linux oracle runtime was used
+and its outputs collected. Package installation alone is not called a working
+native runtime.
+
+![Conservative whole-cell core on the replacement mesh](../../media/carrier-convergence-20261022/P2-quality-remesh-core-screen/carrier-cellular-budget-screen.png)
+
+With the original **1.5 mm skin**, **10 mm bore keepout**, inboard limit and density
+scenario unchanged, **44 whole analysis cells / 358.714 mm³** pass the screen.
+The arithmetic saving at relative density **0.40** is **0.9513 g**, with
+**0.03445% of the baseline elastic energy** in those cells. This is a geometric
+and baseline-energy screen, not a calculation of the modified part's resistance.
+
+**Neither this result nor the earlier 1.442 g screen is an upper bound on possible
+lightening.** Different interior tessellations enclose different conservative
+whole-cell subsets. A cell whose enclosing radius crosses the skin is excluded
+even when part of it could contain smaller cavities. The next useful geometric
+step is finer classification and an actual protected cellular solid, followed by
+the same complete mechanical checks. No cellular geometry or new part mass is
+credited here; the retained R2 master stays **1.298199813 kg**.
+
+### First fine attempt collected and refused at its wall limit
+
+The first replacement-mesh fine T10 attempt reached **2,215.006 s**, its declared
+wall limit. The child process was terminated and reaped; the input hashes were
+unchanged. Its DAT contains **zero bytes**, there is no finished marker and the
+independent reader refuses the completion receipt. **No fine field and no spatial
+convergence comparison result from this attempt.** This is a runtime limit, not
+evidence of mechanical failure or convergence.
+
+The complete compact execution/collection receipts were retained, and rental
+**57704201** was destroyed and independently verified absent. Collection
+supervision was taken over without interrupting the remote fine solve so that a
+transfer timeout could not trigger premature teardown. The original lease
+deadline remained unchanged; its guard records three absence confirmations.
+
+A separate extended profile,
+[`run_native_ccx_extended_parallel.py`](../../../parts/993-eng-carrier-0001/source/design-20261016/convergence-20261022/run_native_ccx_extended_parallel.py),
+permits **at most 7,200 s**, preserves serial result recovery and enables line
+buffering for visible progress. The separately bounded
+[`lease_guard_extended_live.py`](../../../parts/993-eng-carrier-0001/source/design-20261016/convergence-20261022/lease_guard_extended_live.py)
+permits a **new lease of at most three hours / USD 2**. Historical profiles and
+receipts stay unchanged. A new execution must pass the fresh controls and complete
+reference comparison before running the identical fine inputs. This larger time
+envelope is not a numerical acceptance result.
+
+### Cross-host recovery refusal and solver-only threading
+
+Rental **57714117** passed fresh analytic controls, resource inspection and a
+checksum-verified bidirectional transfer probe. However, the complete coarse
+reference with eight assembly threads, one recovery thread and line buffering
+was refused. Although the maximum displacement matched **2.497451456 mm** and
+the process exited normally, the independent energy residual was **0.00538725**
+against the unchanged **0.0001** limit. The force residual was
+**[743.75, 226.33, −25.53] N**, and the stress peak was **1,342.79 MPa**.
+The [complete assessment](evidence/mesh-quality-20261025/linux-013-coarse-P2-assessment-001/assessment.json)
+records the full field counts and input hashes. No fine solve was launched;
+the [lease guard](evidence/mesh-quality-20261025/vast-lease-013/guard-terminal-live.json)
+confirmed destruction and three consecutive absence observations.
+
+The accepted earlier Mac and Linux fields retain their individual equilibrium,
+energy and component-comparison evidence. This later refusal prevents treating
+serial recovery alone as a portable qualification. Host, buffering and assembly
+conditions changed together; the evidence does not isolate a root cause.
+
+The next bounded profile,
+[`run_native_ccx_solver_parallel.py`](../../../parts/993-eng-carrier-0001/source/design-20261016/convergence-20261022/run_native_ccx_solver_parallel.py),
+sets **assembly = 1**, **recovery = 1** and independently selects the SPOOLES
+thread count. It removes inherited `LD_PRELOAD`/`stdbuf` settings, records actual
+terminal and output hashes, and permits at most **10,800 s**. A candidate needs
+the original three analytic controls and **two complete reference repetitions**
+within the original component tolerances before attempting the identical fine
+deck. Two repetitions test execution reproducibility; they are not two spatial
+refinements and cannot establish mesh convergence.
+
+[`inspect_linux_limits.py`](../../../parts/993-eng-carrier-0001/source/design-20261016/convergence-20261022/inspect_linux_limits.py)
+reads both cgroup v1 and v2 limits, including visible nested memberships. Six
+small tests cover finite limits, unlimited sentinels, malformed input and path
+validation. Unknown or unlimited memory is not replaced with host RAM. The
+separate four-hour lease guard retains a fixed deadline and **USD 2** ceiling;
+actual memory, transfer throughput and provider pricing must pass before work.

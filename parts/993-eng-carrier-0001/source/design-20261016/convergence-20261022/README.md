@@ -193,3 +193,27 @@ the existence of this profile is not itself a successful fine solve.
 and matching geometry/result hashes. It displays all T6 boundary faces as four
 triangles each, with deformation amplified tenfold. Surface colours average
 nodal displacement magnitudes for display; they do not smooth stress peaks.
+
+
+The first 4,884,701-node replacement-mesh T10 attempt timed out at its declared
+2,215 s wall limit with an empty DAT. The separate
+`run_native_ccx_extended_parallel.py` retains the same numerical binary and serial
+recovery, allows up to 7,200 s and adds `stdbuf` line buffering. Pair it with the
+new `lease_guard_extended_live.py` only after recording a fresh, at-most-three-hour,
+USD 2 lease and checking its actual provider quote and memory allocation. Use
+resumable, checksum-verified collection inside the original deadline; do not
+extend an existing lease or interpret a timeout as a converged field.
+
+The extended eight-assembly/one-recovery profile later failed the complete
+reference on another host despite passing the analytic controls. Its fields are
+excluded; neither buffering nor the host change alone is an established cause.
+Prefer the separately recorded `run_native_ccx_solver_parallel.py` trial:
+assembly and recovery stay serial, SPOOLES threading is selected independently,
+and preload/buffering environment variables are removed. Its hard maximum is
+10,800 s; two full reference repetitions and the original analytic controls must
+pass before a fine run. The new `lease_guard_four_hour_live.py` bounds a fresh
+lease to four hours / USD 2 without extending any earlier deadline.
+
+`inspect_linux_limits.py` reads actual finite cgroup v1/v2 limits; unknown or
+unlimited values stay null. Require a successful hardware and bidirectional
+checksum-verified bulk-transfer probe before installing or executing a solver.
