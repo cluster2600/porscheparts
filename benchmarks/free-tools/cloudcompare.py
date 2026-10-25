@@ -32,11 +32,25 @@ def compare(cloud, mesh, configuration, output, executable="CloudCompare"):
         )
     ]
     output = new_directory(output).resolve()
-    cloud_path, mesh_path = output / "input.xyz", output / "reference.obj"
+    cloud_path, mesh_path = output / "input.xyz", output / "reference.ply"
     cloud_path.write_text(
         "\n".join(" ".join(format(x, ".17g") for x in point) for point in points) + "\n"
     )
-    write_obj(mesh_path, vertices, faces)
+    # PLY mesh IO is built in; Debian's optional OBJ plugin is not always exposed.
+    with mesh_path.open("x") as stream:
+        stream.write(
+            "ply\nformat ascii 1.0\nelement vertex " + str(len(vertices)) + "\n"
+        )
+        stream.write("property double x\nproperty double y\nproperty double z\n")
+        stream.write(
+            "element face "
+            + str(len(faces))
+            + "\nproperty list uchar int vertex_indices\nend_header\n"
+        )
+        for point in vertices:
+            stream.write(" ".join(format(x, ".17g") for x in point) + "\n")
+        for face in faces:
+            stream.write("3 " + " ".join(str(i) for i in face) + "\n")
     env = dict(os.environ, QT_QPA_PLATFORM="offscreen", XDG_RUNTIME_DIR=str(output))
     command = [
         executable,

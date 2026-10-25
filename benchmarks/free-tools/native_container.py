@@ -6,6 +6,7 @@ import os
 from pathlib import Path
 import re
 import subprocess
+import tempfile
 
 from ft_common import HERE, checked, load, new_directory, receipt, sha256, write
 
@@ -20,7 +21,8 @@ def run(tool, image, output):
     if identity["Architecture"] != "amd64" or identity["Os"] != "linux":
         raise ValueError("linux/amd64 image required")
     image_id = identity["Id"]
-    cid = output / "owned-container.cid"
+    cid_directory = tempfile.TemporaryDirectory(prefix="free-tools-owned-container-")
+    cid = Path(cid_directory.name) / "owned-container.cid"
     command = [
         "docker",
         "run",
@@ -73,15 +75,37 @@ def run(tool, image, output):
                 "Synthetic CPU controls, not a Kali execution or part qualification."
             ],
         )
-        write(output / "receipt.json", report)
-        return report
     finally:
-        if cid.exists():
-            identifier = cid.read_text().strip()
-            if re.fullmatch(r"[a-f0-9]{64}", identifier):
+        try:
+            if cid.exists():
+                identifier = cid.read_text().strip()
+                if not re.fullmatch(r"[a-f0-9]{64}", identifier):
+                    raise ValueError("invalid owned container identity")
                 subprocess.run(
                     ["docker", "rm", "-f", identifier], capture_output=True, timeout=15
                 )
+                absence = subprocess.run(
+                    [
+                        "docker",
+                        "ps",
+                        "-a",
+                        "--no-trunc",
+                        "--filter",
+                        "id=" + identifier,
+                        "--format",
+                        "{{.ID}}",
+                    ],
+                    capture_output=True,
+                    text=True,
+                    timeout=15,
+                )
+                if absence.returncode or absence.stdout.strip():
+                    raise RuntimeError("owned container absence not verified")
+        finally:
+            cid_directory.cleanup()
+    report["checks"]["owned_container_absence_verified"] = True
+    write(output / "receipt.json", report)
+    return report
 
 
 if __name__ == "__main__":

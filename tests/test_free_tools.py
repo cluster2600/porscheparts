@@ -6,6 +6,8 @@ from pathlib import Path
 import shutil
 import sys
 import tempfile
+import shlex
+import subprocess
 import time
 import unittest
 from unittest.mock import patch
@@ -39,6 +41,7 @@ pilot, knowledge, storage, cloudcompare, salome_worker, studies = [
     )
 ]
 sys.path[:] = prior_path
+native_container = tool_module("native_container")
 
 
 class Boundaries(unittest.TestCase):
@@ -224,6 +227,69 @@ class Boundaries(unittest.TestCase):
             storage.ssh_transfer(
                 "ssh://user:password@host/data", self.root, True, self.root
             )
+
+    def test_ssh_path_validation_survives_optimized_python(self):
+        target = self.root / "real"
+        target.mkdir()
+        link = self.root / "link"
+        link.symlink_to(target, target_is_directory=True)
+        with patch.object(
+            storage, "checked", return_value={"stdout": "", "exit_status": 0}
+        ) as command:
+            storage.ssh_transfer(
+                "ssh://operator@host" + str(link), self.root, True, self.root
+            )
+        remote = shlex.split(command.call_args_list[0].args[0][-1])
+        result = subprocess.run(
+            [sys.executable, "-O", *remote[1:]], capture_output=True, text=True
+        )
+        self.assertNotEqual(result.returncode, 0)
+        self.assertIn("canonical store path required", result.stderr)
+
+    def test_container_identity_is_outside_mount_and_acceptance_requires_absence(self):
+        identifier = "a" * 64
+
+        def execute(argv, cwd, *args):
+            if argv[1:3] == ["image", "inspect"]:
+                return {
+                    "stdout": json.dumps(
+                        [
+                            {
+                                "Architecture": "amd64",
+                                "Os": "linux",
+                                "Id": "sha256:" + "b" * 64,
+                            }
+                        ]
+                    )
+                }
+            cid = Path(argv[argv.index("--cidfile") + 1])
+            self.assertFalse(cid.is_relative_to(Path(cwd)))
+            cid.write_text(identifier)
+            result = Path(cwd) / "result"
+            result.mkdir()
+            common.write(result / "receipt.json", {"status": "passed"})
+            return {"stdout": "", "exit_status": 0}
+
+        for remains in [False, True]:
+            output = self.root / ("remains" if remains else "removed")
+
+            def docker(argv, **kwargs):
+                return subprocess.CompletedProcess(
+                    argv, 0, identifier if remains and argv[1] == "ps" else "", ""
+                )
+
+            with patch.object(
+                native_container, "checked", side_effect=execute
+            ), patch.object(native_container.subprocess, "run", side_effect=docker):
+                if remains:
+                    with self.assertRaises(RuntimeError):
+                        native_container.run("cloudcompare", "test-image", output)
+                    self.assertFalse((output / "receipt.json").exists())
+                else:
+                    report = native_container.run("cloudcompare", "test-image", output)
+                    self.assertTrue(
+                        report["checks"]["owned_container_absence_verified"]
+                    )
 
     def test_private_dvc_workspace_cannot_live_in_checkout(self):
         with self.assertRaises(ValueError):
