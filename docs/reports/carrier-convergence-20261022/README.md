@@ -26,6 +26,14 @@ The [refined interior screen](#refined-interior-screen-on-the-rtx-4070) now find
 **12.67 g conditional cellular budget**, with all **3,052,512 CPU/CUDA queries**
 checked. This is not a new part mass; no cellular carrier has been generated.
 
+Newest results: [actual PARDISO dispatch qualified](#actual-pardiso-dispatch-now-qualifies),
+[six complete shared-factor fields cross-checked](#shared-factor-six-strain-backend-cross-check),
+[micro-cell length-scale analysis](#what-smaller-micro-cells-can-and-cannot-save)
+and [conditional mass–compliance bounds](#conditional-cellular-compliance-envelope).
+These additional results preserve the unresolved carrier stress comparison.
+The [complete N=64 continuation](#complete-n64-fields-and-the-second-spatial-comparison)
+is now collected: its **2.2369%** tensor change fails the original **2%** condition.
+
 ```mermaid
 flowchart TD
     R[Retained R2 surface · 1.2982 kg] --> G[Complete geometry fidelity ≤ 0.06 mm]
@@ -246,6 +254,9 @@ recorded **three consecutive absence confirmations**. No rental remains running.
 | libigl | Independent real-carrier distance oracle on exact arrays supplied to Warp |
 | PR #274 Warp 1.18.0 | 15 pilot tests, synthetic CPU/CUDA fixtures and complete-carrier query fixture pass on actual GPU |
 | PR #274 Docker image | Existing CPU image evidence; this separate image has not run on CUDA in this continuation |
+| Native MKL PARDISO | Actual dispatch, three analytic controls and two complete coarse T10 repeats pass; retain the older unselected-backend refusal |
+| UnitcellEngine shared-factor experiment | Pinned source with a separate operator-consistency adaptation; complete N=16 cross-check and twelve N=64 strain fields pass internal checks; N=48→64 fails the 2% refinement condition |
+| Conditional compliance bounds | Analytic FE matrix envelope, 200 independent anisotropic matrix tests and source-bound numerical figures; no explicit cellular geometry or local-strength result |
 | TetGen | An intermediate volume request was refused: `a0.5` still returned a 74.49 mm³ maximum cell; the cap was not relaxed |
 | Deterministic refinement | Red8 and interior fan meshes pass complete exact volume/boundary checks |
 | CalculiX 2.21-1 | Analytic controls, full fields, equilibrium and independent energy; serial result recovery required by the full-size regression |
@@ -1225,3 +1236,119 @@ records the explicit shear and Gauss-point permutations. The
 describe the isolated pinned environment, retained negative control and bounded
 N=64 continuation. This qualifies this backend/operator comparison; it does not
 yet establish carrier convergence or a cellular-part result.
+
+```mermaid
+flowchart LR
+    A[Pinned UnitcellEngine source] --> B[Uniform soft control]
+    B --> C[Retain original energy mismatch]
+    A --> D[Separate consistent-scale operator copy]
+    D --> E[Solid and soft analytic controls]
+    E --> F[All six N16 U / S / RF fields match CCX]
+    F --> G[Two N64 contrasts under declared resource bounds]
+    G --> H[Original tensor refinement and void-floor tests]
+    H --> I[Cell result / carrier convergence stays separate]
+```
+
+### Conditional cellular compliance envelope
+
+The complete baseline T10 energy field supports a further **conditional
+mathematical bound**, without pretending that the cellular carrier has already
+been generated. Assign the computed N=64 homogeneous cell tensor to precisely
+the selected FE elements and keep the original external forces, zero restraints
+and mesh. Its generalized stiffness eigenvalues relative to dense titanium range
+from **0.167073 to 0.202924**. Compliance measures flexibility under the same
+loads; a higher value means a more flexible model.
+
+For baseline core-energy fraction `q`, the resulting force-controlled compliance
+ratio is bounded by
+
+```text
+1 / (1 - (1 - eta_max)*q) <= Jnew/J0 <= 1 + (1/eta_min - 1)*q
+```
+
+The [derivation and hypotheses](../../../parts/993-eng-carrier-0001/source/design-20261016/convergence-20261022/COMPLIANCE_BOUNDS.md)
+use positive-semidefinite stiffness inequalities and a spectral scalar bound.
+The implementation passes **200 independently solved anisotropic SPD
+substitutions**, endpoint controls and invalid-input checks. The evaluation uses
+float64, not a formal interval certificate. N=64 is a complete admitted cell
+calculation; its continuum/cell-resolution convergence remains a separate test.
+
+| Skin scenario [mm] | Conditional saving at computed density [g] | Compliance increase envelope |
+|---:|---:|---:|
+| 0.75 | 34.884 | 1.571–9.671% |
+| 1.00 | 25.303 | 0.954–5.913% |
+| 1.25 | 18.141 | 0.597–3.715% |
+| 1.50 | 12.593 | 0.371–2.314% |
+| 2.00 | 5.622 | 0.148–0.927% |
+| 3.00 | 1.176 | 0.029–0.184% |
+
+![Conditional mass–compliance envelope](../../media/carrier-convergence-20261022/conditional-compliance-bounds-n64-020/conditional-compliance-bounds.png)
+
+The [assessment](evidence/mesh-quality-20261025/conditional-compliance-bounds-n64-020/assessment.json)
+uses the computed solid fraction **0.4038086** for mass arithmetic, rather than
+silently pairing that tensor with the earlier exactly 0.4 density scenario.
+These bounds concern a homogeneous constitutive substitution in the current FE
+model. They do not model finite-cell connections or bound maximum displacement,
+local stress, fatigue or strength. The 2% mesh-refinement condition is not a
+design limit on this compliance change. The retained CAD and its mass are unchanged.
+The [earlier N=48 conditional envelope](evidence/mesh-quality-20261025/conditional-compliance-bounds-n48-001/assessment.json)
+is retained separately; neither material tensor is presented as spatially converged.
+
+### N=64 execution limits remain explicit
+
+The native six-separate-factorization continuation completes four actual N=64
+strain cases at void stiffness 1e-4. Its fifth reaches **600.006 s**, returns
+**124**, is reaped with unchanged inputs and has no completed DAT field. The
+[complete collected partial-run receipt](evidence/mesh-quality-20261025/linux-018-rve64-floor1e-4/collection-verified.json)
+verifies every archived native output, including that refusal. The fifth case
+overlapped the first shared-factor trial; this is an execution-resource refusal,
+not evidence of mathematical non-convergence. No complete native N=64 tensor
+is admitted from those four cases.
+
+The first shared-factor trial also reaches its **600 s** bound and returns
+**124**; its [terminal receipt](evidence/mesh-quality-20261025/unitcellengine-factor-reuse-001/collected-metadata-002/adapted-n64-floor1e-4-terminal.json)
+is retained. A **separate 900 s per-case execution budget** is then declared,
+with the same source, equations, 48 GiB address-space cap and numerical criteria.
+The competing native CCX series has ended before this retry. The
+[bounded continuation contract](evidence/mesh-quality-20261025/unitcellengine-factor-reuse-001/collected-metadata-002/bounded900-contract.json)
+keeps the original lease deadline and twenty-minute collection reserve.
+No running job's time limit was extended in place.
+
+### Complete N=64 fields and the second spatial comparison
+
+Both isolated shared-factor **N=64** experiments now finish with actual return
+code **0**, reaped processes and unchanged runner identities: **588.949 s** at
+void stiffness 1e-4 and **591.791 s** at 1e-6. Every one of their **twelve actual
+strain fields** is collected and byte-verified. Each strain has **274,625
+physical nodes** and **2,097,152 stress integration points**. Independent shape
+gradients, symmetric-matrix residuals, periodicity, internal energy, physical
+boundary work, reciprocity, positivity and the Voigt upper bound pass.
+
+The four native CCX N=64 fields completed before its fifth-case timeout also
+match the shared-factor method over **every physical node and stress point**.
+Maximum differences are **4.999e-10 mm U, 4.999e-5 MPa S and 4.988e-9 N RF**.
+The [four-field cross-check](evidence/mesh-quality-20261025/unitcellengine-factor-reuse-001/n64-native-four-field-crosscheck.json)
+explicitly retains missing native strain modes 4 and 5; it does not invent a
+complete native tensor from those partial results.
+
+![Five actual C3D8 levels and the failed N=64 refinement condition](../../media/carrier-convergence-20261022/shared-N64-refinement-020/periodic-cell-N64-refinement.png)
+
+The [collected tensor assessment](evidence/mesh-quality-20261025/shared-N64-refinement-020/assessment.json)
+gives actual solid fraction **0.40380859375** and minimum normalized stiffness
+**0.1670730**. Void-floor sensitivity is **0.073295%**, within the unchanged 1%
+condition. However, the full N=48→64 tensor change is **2.236922%**, exceeding
+the unchanged **2%** condition. The earlier N=32→48 pass therefore has no second
+successive pass. **Unit-cell stiffness convergence remains false**, as does
+carrier convergence. No criterion was rounded up or relaxed.
+
+The mass-fraction sequence also oscillates with centroid voxel classification.
+That observation motivates checking an interface-fitted periodic mesh or a
+separately qualified interface-integration method; it does not establish which
+error source dominates. [Microgen's documented periodic meshing and remeshing
+interfaces](https://microgen.readthedocs.io/en/stable/) are a researched candidate,
+not an executed or qualified component of this run. A changed discretisation
+must start its own controlled comparison and keep this failed series intact.
+
+All requested fields were collected before the Vast instance was destroyed.
+The independent guard confirms **three consecutive absences**, followed by a
+fresh empty account listing. The stopped outer coordinators are also cleaned up.

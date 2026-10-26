@@ -24,6 +24,15 @@ environment, then install the pinned source with `pip install --no-deps ./source
 The published environment receipt identifies actual module files; it is not a
 portable lock of every transitive dependency.
 
+```bash
+python3.11 -m venv env
+env/bin/python -m pip install -r requirements.txt
+env/bin/python -m pip install --no-deps ./source
+source env/bin/activate
+export MKL_NUM_THREADS=8 MKL_THREADING_LAYER=GNU MKL_DYNAMIC=FALSE
+export OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1
+```
+
 Set `MKL_NUM_THREADS=8`, `MKL_THREADING_LAYER=GNU`, `MKL_DYNAMIC=FALSE`,
 `OPENBLAS_NUM_THREADS=1`, `OMP_NUM_THREADS=1`. Use Linux, at least 56 GiB
 available quota and eight CPUs, with a 48 GiB per-process address-space cap.
@@ -31,10 +40,10 @@ Every command requires a fresh output directory. Bound each process externally
 with `timeout --kill-after=10 600` and collect its actual exit status.
 
 ```bash
-python run_shared.py 4 1e-6 solid upstream-soft original
-python run_shared.py 4 1e-6 solid adapted-soft adapted
-python run_shared.py 4 1 solid adapted-solid adapted
-python run_shared.py 16 1e-6 gyroid adapted-n16 adapted
+timeout --kill-after=10 600 python run_shared.py 4 1e-6 solid upstream-soft original
+timeout --kill-after=10 600 python run_shared.py 4 1e-6 solid adapted-soft adapted
+timeout --kill-after=10 600 python run_shared.py 4 1 solid adapted-solid adapted
+timeout --kill-after=10 600 python run_shared.py 16 1e-6 gyroid adapted-n16 adapted
 ```
 
 The original uniform soft-material control deliberately exposes the difference
@@ -64,8 +73,8 @@ refused; the retained implementation uses explicit axis-preserving slices.
 Only after those controls pass:
 
 ```bash
-python run_shared.py 64 1e-4 gyroid adapted-n64-floor1e-4 adapted
-python run_shared.py 64 1e-6 gyroid adapted-n64-floor1e-6 adapted
+timeout --kill-after=10 900 python run_shared.py 64 1e-4 gyroid adapted-n64-floor1e-4 adapted
+timeout --kill-after=10 900 python run_shared.py 64 1e-6 gyroid adapted-n64-floor1e-6 adapted
 ```
 
 Compare the complete tensors against N=48 and each other under the existing
@@ -73,3 +82,19 @@ Compare the complete tensors against N=48 and each other under the existing
 comparisons. Backend repetitions do not count as mesh refinements. Preserve
 all failed controls and resource refusals. See the
 [English evidence report](../../../../../../docs/reports/carrier-convergence-20261022/README.md).
+
+The first shared N=64 attempt retained its actual 600 s refusal. The subsequent
+run uses a separately declared **900 s** cap per case, after the concurrent CCX
+series has ended; it preserves the same 48 GiB cap, source and numerical limits.
+Use `audit_saved_fields.py <completed-case-directory>` to verify all saved field
+rosters, every stress entry, physical boundary work and complete file hashes.
+Collect and verify those hashes before deleting any remote runtime. A completed
+tensor or a successful backend replay is not a convergence decision by itself.
+
+`compare_shared_cells.py` consumes the two **collected** case directories, their
+actual terminal/collection receipts, the previous complete N=48 assessment and
+the frozen previous comparison ledger. It rechecks all saved file hashes before
+applying the original 2% / 1% conditions. `compare_native_N64_partial.py` separately
+streams all fields of the four completed native N=64 cases and preserves the
+two missing native cases explicitly. The actual N=64 run remains **unconverged**
+because its 2.2369% tensor change exceeds the unchanged 2% condition.
