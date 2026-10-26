@@ -272,8 +272,39 @@ for byte. Extracted hashes and the GitHub asset digest match archive SHA-256
 the receipt SHA-256 is
 `bddb64c1f54ad6fbcfee7810c4dbdc7396b16cf575d2653410ade082530ab4b2`.
 The next mesh trial should control near-wall cell size and growth around the
-rotor while retaining the same pinned surface, then repeat native `checkMesh`
+rotor while retaining the protected surface envelope, then repeat native `checkMesh`
 and all boundary/interface audits. No CFD run is admitted yet.
+
+### Cell-specific volume refinement: rejected
+
+TetGen 1.5.1's [documented `-r`/`-q`/`-a` route](https://www.wias-berlin.de/software/tetgen/1.5/doc/manual/manual005.html) was tested on the same O5
+volume. A `.vol` file constrained the 1,850 cells uniquely adjacent to the
+native skew rotor faces to one eighth of each cell's original volume and
+left the other 3,712,697 cells unconstrained. The bounded command
+`tetgen -rYq1.4/10aS50000Q fluid.1` completed in 50.7 s, used its full
+50,000-point allowance and generated 4,023,860 tetrahedra.
+
+All 817,235 input vertex coordinates were retained. Boundary face counts
+and markers were unchanged, but 22,647 of 878,730 rotor face vertex triples
+changed connectivity; `-Y` did not freeze every triangle in this refinement.
+The new rotor surface has zero non-manifold or inconsistently wound edges.
+The independent full bidirectional 0.0225-source-unit envelope, topology and
+self-intersection certificate passed. This is a conditional reconstruction
+envelope, not measured accuracy.
+
+The tetrahedral median mean ratio improved to 0.7373 and the count below
+0.01 fell from 2,929 to 1,727. However, one cell has a zero determinant
+in double precision; exact arithmetic on its printed node coordinates gives
+a *positive* six-volume of only 6.49 × 10⁻²⁷ m³ under the provisional scale.
+This extreme sliver rejects the volume for CFD despite the median gain.
+Kali1 did not respond over Thunderbolt or its previously observed LAN
+address, so no native OpenFOAM `checkMesh` pass is claimed. The preserved
+[private trial archive](https://github.com/cluster2600/porscheparts-935-private/releases/tag/935-root-repair-20261025)
+contains the `.vol` input, complete output mesh, candidate OFF, logs and
+receipts. All 15 extracted members passed hash readback; its SHA-256
+`0dd9254131c30f455b38cc52cac5a7a4f182fd14433b47d1640a2373dae53bca`
+matches GitHub. The disposition receipt SHA-256 is
+`f90c1da6570ff8d86767a4b33dd872fa6155f7224717675c6a2c5de84de83f2c`.
 
 The [reduced machine-readable receipt](corrected-analysis-20261025.json)
 identifies the source, candidate, case and private checkpoint. The private
