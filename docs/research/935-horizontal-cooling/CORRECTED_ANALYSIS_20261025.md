@@ -870,6 +870,52 @@ uv run --no-project --python 3.12 --with numpy==1.26.4 python \
   work/935-cfd-root0p7-20261026-o5-audit/volume.npz work/NEW/weak-face-audit.json
 ```
 
+### Conditional rotor inertia and drive-load screen
+
+The hash-pinned
+[`screen_root0p7_rotor_dynamics.py`](../../../twins/935-horizontal-cooling-system-f0/source/corrected-analysis-20261025/screen_root0p7_rotor_dynamics.py)
+uses the closed corrected 0.7 rotor surface and the existing ten material
+cards. The rotor has 878,730 faces, volume 431,159.86 cubic **source units**
+and polar volume inertia 3.58693×10⁹ source units to the fifth about the
+candidate Z axis through the source origin. This axis is not an independently
+measured shaft datum. The corresponding 0.6 PicoGK rotor receipt differs by
+0.034% in volume and 0.031% in polar volume inertia; the two surfaces are
+different model candidates, so these small differences are not a convergence
+or dimensional-accuracy proof.
+
+At the **unverified** scale of one millimetre per source unit, uniform-density
+solid geometry gives the following conditional values. The 6,000 rpm cases are
+direct *rotor* speed hypotheses, and the torque assumes linear deceleration
+from that speed to zero in 0.1 s; it is not a measured fan torque or a safe
+stopping load.
+
+| Material card | Rotor mass | Polar inertia | Energy at 6,000 rpm | Inertial torque for 0.1 s stop |
+|---|---:|---:|---:|---:|
+| AlSi10Mg LPBF | 1.151 kg | 0.00958 kg·m² | 1,890 J | 60.2 N·m |
+| WE43 magnesium candidate | 0.789 kg | 0.00656 kg·m² | 1,296 J | 41.2 N·m |
+| Ti‑6Al‑4V LPBF | 1.897 kg | 0.01578 kg·m² | 3,115 J | 99.2 N·m |
+
+Mass varies with the **cube** of the unknown scale; polar inertia, energy and
+inertial torque vary with its **fifth power** at fixed rpm. The private
+[`rotor-dynamics-screen.json`](https://github.com/cluster2600/porscheparts-935-private/releases/tag/935-root-repair-20261025)
+contains all ten cards, three conditional scales (0.8/1.0/1.2 mm per source
+unit), and the pre-existing hypothetical rotor speeds 3,000/6,000/8,500/
+11,000 rpm. Its SHA-256 is
+`e433e4fc6b8ef81f48f6e8edfac237884a689604bc1fde2ff335077f553446cf`,
+matched by the private release digest. WE43's card uses a wrought density
+surrogate and supplies no part strength allowable. The result excludes shaft,
+gears, bearings, shroud, aerodynamic torque, balance, thermal growth, fatigue
+and manufacturing effects. It establishes no safe speed or material choice.
+
+```sh
+mkdir -p work/NEW
+uv run --no-project --python 3.12 --with numpy==1.26.4 --with trimesh==4.9.0 python \
+  twins/935-horizontal-cooling-system-f0/source/corrected-analysis-20261025/screen_root0p7_rotor_dynamics.py \
+  work/935-root-quality-local-20261025/analysis-candidate.off \
+  twins/935-horizontal-cooling-system-f0/vast-omniverse-screen/materials.json \
+  work/NEW/rotor-dynamics-screen.json
+```
+
 Reproduce the private PLC with Python 3.12, NumPy 1.26.4, SciPy 1.13.1 and
 trimesh 4.9.0. The Mac's existing SciPy 1.15.3 installation failed to load a
 native module, so the isolated versions were used. Run the existing
