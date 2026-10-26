@@ -193,6 +193,50 @@ No solver run or flow curve is credited. The next geometry work must target
 the weak rotor-boundary neighborhoods while preserving the certified surface
 envelope and the separate mechanical interfaces.
 
+### Exact localization of native mesh failures
+
+`checkMesh -constant -allGeometry -allTopology -writeSets -writeSurfaces`
+produced the native problem-cell and problem-face sets. The
+[`audit_root0p7_openfoam_sets.py`](../../../twins/935-horizontal-cooling-system-f0/source/corrected-analysis-20261025/audit_root0p7_openfoam_sets.py)
+script matches their indices to the unchanged O5 TetGen volume and its marked
+boundary triangles. It refuses a different volume hash, inconsistent set
+sizes, duplicate indices, or skew boundary faces missing from the TetGen
+boundary. Its three focused parser/matching tests pass.
+
+- **78,396 of 95,978** low-determinant cells share at least one complete rotor
+  triangle; 17,262 touch no exterior boundary. These categories are not a
+  partition because seam cells can touch more than one marked patch.
+- **All 1,850 boundary skew faces** match the rotor marker exactly. The other
+  14 skew faces are internal. All 170,609 non-orthogonal faces and all 11,685
+  low-interpolation-weight faces are internal.
+- In the conditional 0.001 m/source-unit coordinate map, the radius
+  **0.08–0.10 m** contains 81,424 low-determinant cells and 1,208 skew rotor
+  boundary faces. The plot shows the full radial/axial distribution; its axes
+  are not calibrated 935 dimensions.
+
+This focuses the next local surface/connectivity repair on the blade-root
+neighborhood rather than the exterior block. It does not prove that the scan
+itself is defective: the candidate reconstruction, surface triangulation and
+volume mesher can each contribute. Any changed surface must repeat the full
+bidirectional envelope, topology and self-intersection checks before another
+OpenFOAM conversion. The
+[private localization archive](https://github.com/cluster2600/porscheparts-935-private/releases/tag/935-root-repair-20261025)
+contains the native sets, VTK outputs, exact boundary-face mapping, plot,
+source copy and hash manifest. All 23 data/source members passed extracted
+hash readback; its SHA-256 is
+`4282502f521fc6b66dbda14ba137557575acdb7aac97e2d0974f17e76f113f0e`,
+matching GitHub. The reproducible JSON receipt SHA-256 is
+`d0e0b1d7ca8cf811e7084dcfa16672634f883e533f11bb3301a3d0708da7564d`.
+
+```sh
+python twins/935-horizontal-cooling-system-f0/source/corrected-analysis-20261025/audit_root0p7_openfoam_sets.py \
+  work/935-cfd-root0p7-20261026-o5-audit/volume.npz \
+  work/PRIVATE-LOCALIZATION/constant/polyMesh/sets \
+  work/PRIVATE-LOCALIZATION/skew-boundary-faces.json \
+  work/PRIVATE-LOCALIZATION/log.checkMesh.localization \
+  work/NEW/native-failure-localization.json
+```
+
 The [reduced machine-readable receipt](corrected-analysis-20261025.json)
 identifies the source, candidate, case and private checkpoint. The private
 [release](https://github.com/cluster2600/porscheparts-935-private/releases/tag/935-root-repair-20261025)
