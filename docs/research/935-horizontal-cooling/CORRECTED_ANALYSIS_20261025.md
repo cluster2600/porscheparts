@@ -809,6 +809,39 @@ audits and SHA-256 manifest; archive SHA-256 is
 All 23 listed file hashes passed extraction readback.
 The private GitHub release reports the same archive SHA-256 digest.
 
+### Fixed-boundary TetGen optimization: improved, not admitted
+
+The original, unchanged PLC (`32deebcc19f604454bb4cfe5d26d6a1e1e141fef06c0e1b095df58368e8c5bee`)
+was remeshed locally with the same TetGen 1.5.1 executable and
+`-pYq1.4O5MzCf`. The only switch change from the baseline was optimization
+level `-O5`. TetGen completed in 395.8 s. The independent full-volume audit
+passed exact positive orientation, one connected volume, complete boundary
+coordinate/triangle/marker bijection for all 895,732 faces and exact PLC
+volume equality. The output contains 817,235 nodes and 3,714,547 tetrahedra;
+the audited volume NPZ SHA-256 is
+`b62927d017b78a784bce79d8117a1899b05b6aefffe0fa2c926fa291ca2108d9`.
+
+Equilateral-normalized mean ratio below 0.01 fell from **3,461 to 2,929**
+(532 fewer; 15.4%). The counts below 0.05 fell from 46,029 to 43,964 and
+below 0.1 from 92,185 to 89,765. The minimum rose from 0.00002917 to
+0.00019493; the first percentile rose from 0.04280 to 0.04422. Of the 2,929
+remaining cells below 0.01, **2,857 touch rotor-wall nodes**. This is useful
+evidence that volume optimization helps, while rotor-near quality still needs
+work. The median changed from 0.72962 to 0.72904, so improvement is not
+uniform. **The mesh is not CFD-quality admitted**: boundary-layer evidence,
+native OpenFOAM `checkMesh`, three-grid convergence and a measured 935
+shroud remain absent.
+
+The private
+[`935-cfd-root0p7-o5-trial-001.tar.zst`](https://github.com/cluster2600/porscheparts-935-private/releases/tag/935-root-repair-20261025)
+contains the pinned input PLC, TetGen output, execution receipt, full audit,
+quality report and a SHA-256 manifest. Its SHA-256 is
+`5afc64f5e8366c7483b5b42f41deb68c5c24ab5afa77ae343777c7a9b48d2bf3`;
+all 10 listed files passed extraction readback. The preceding private archive
+supplies the reference boundary NPZ and receipt needed to rerun the existing
+`audit-tetgen-002.py` against this output.
+The private GitHub release reports the same archive SHA-256 digest.
+
 Reproduce the private PLC with Python 3.12, NumPy 1.26.4, SciPy 1.13.1 and
 trimesh 4.9.0. The Mac's existing SciPy 1.15.3 installation failed to load a
 native module, so the isolated versions were used. Run the existing
