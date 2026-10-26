@@ -778,6 +778,37 @@ confirmed absent. The [private timeout receipt](https://github.com/cluster2600/p
 has SHA-256 `c31a9e856b264b6d0876237a2b426924445fbb4cc45a04dc01bb63134c09f1a7`.
 No quality comparison is inferred from that incomplete attempt.
 
+### Local wall-triangle flip trial: rejected
+
+The reproducible [`propose_root0p7_wall_flips.py`](../../../twins/935-horizontal-cooling-system-f0/source/corrected-analysis-20261025/propose_root0p7_wall_flips.py)
+tested a local triangulation change at weak rotor-wall cells. It selected 32
+disjoint edge flips from 119 proposals, changed 64 triangle rows and moved no
+vertices. Both surfaces were closed and consistently wound. The independent
+complete bidirectional envelope checker passed at **0.0225 uncalibrated source
+units**, with 0.0025 units reserved numerical margin; this is not a measured
+physical tolerance. The candidate OFF SHA-256 is
+`59118742062e1c16eaf77217c7257ad636f4d16e685eebaa13c65ab11ba0a163`.
+
+The [`prepare_root0p7_flipped_fluid_plc.py`](../../../twins/935-horizontal-cooling-system-f0/source/corrected-analysis-20261025/prepare_root0p7_flipped_fluid_plc.py)
+reused the same exploratory outer boundary, SI scale assumption and TetGen
+1.5.1 flags `-pYq1.4MzCf`. Its independent full-volume audit passed positive
+cell orientation, one component, and exact boundary triangle/marker bijection
+for all 895,732 faces: 817,964 nodes and 3,731,418 tetrahedra. The volume
+NPZ SHA-256 is `788f42eb332c65da2dd7c61a430930f978e6189487a080a02fe9f3b592a556bf`.
+
+The critical mean-ratio bin **worsened**: 3,461 to **3,761** cells below 0.01.
+Counts below 0.05 improved from 46,029 to 45,314 and below 0.1 from 92,185
+to 91,115, but those broader improvements do not admit this mesh for CFD.
+The candidate is **rejected**, and the preceding baseline remains the reference
+for further mesh work. No OpenFOAM solve, mechanical validation or airflow
+claim follows from this trial. The private
+[`935-cfd-root0p7-flip-trial-001.tar.zst`](https://github.com/cluster2600/porscheparts-935-private/releases/tag/935-root-repair-20261025)
+archive contains the candidate, envelope result, PLC, TetGen output, full
+audits and SHA-256 manifest; archive SHA-256 is
+`2388e2224f132017fc713c708d67523997f0d2a53f617d095054d3ababa1f2c9`.
+All 23 listed file hashes passed extraction readback.
+The private GitHub release reports the same archive SHA-256 digest.
+
 Reproduce the private PLC with Python 3.12, NumPy 1.26.4, SciPy 1.13.1 and
 trimesh 4.9.0. The Mac's existing SciPy 1.15.3 installation failed to load a
 native module, so the isolated versions were used. Run the existing
