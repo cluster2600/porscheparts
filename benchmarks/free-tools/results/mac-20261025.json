@@ -1,0 +1,545 @@
+{
+  "date": "2026-10-25",
+  "execution_bindings": {
+    "cloudcompare": {
+      "build_recipe": "containers/free-tools-cloudcompare.Dockerfile",
+      "command": [
+        "python3",
+        "benchmarks/free-tools/native_container.py",
+        "cloudcompare",
+        "--image",
+        "free-tools-cloudcompare:ci",
+        "--output",
+        "native-output"
+      ],
+      "exit_status": 0,
+      "source_revision": "b7f80b2c7f3419f663d5884dd7ec04d0b10a46f2",
+      "workflow": "https://github.com/cluster2600/porscheparts/actions/runs/40196260525"
+    },
+    "mac_acceptance": {
+      "command": [
+        "work/free-tools-env/bin/python",
+        "benchmarks/free-tools/acceptance.py",
+        "--private-root",
+        "<fresh-private-root>",
+        "--output",
+        "<fresh-output>",
+        "--porschefanatics-export",
+        "<authorized-local-metadata-export>"
+      ],
+      "exit_status": 0,
+      "source_revision": "b7f80b2c7f3419f663d5884dd7ec04d0b10a46f2",
+      "source_state": "working_tree_source_content_recorded_by_hash"
+    },
+    "porschefanatics": {
+      "scope": "Selected local catalogue metadata; no live deployment or physical measurement claim",
+      "source_revision": "70a8cc3d546934afe0ed4a3a7096b5bef3e31029",
+      "source_sha256": "dcbb439642e3ca072e689073a37c1b17d15d9d1d450bb16eb9d085eafd9561a1",
+      "source_state": "clean"
+    },
+    "salome": {
+      "build_recipe": "containers/free-tools-salome.Dockerfile",
+      "command": [
+        "python3",
+        "benchmarks/free-tools/native_container.py",
+        "salome",
+        "--image",
+        "free-tools-salome:ci",
+        "--output",
+        "native-output"
+      ],
+      "exit_status": 0,
+      "source_revision": "b7f80b2c7f3419f663d5884dd7ec04d0b10a46f2",
+      "workflow": "https://github.com/cluster2600/porscheparts/actions/runs/40196260525"
+    }
+  },
+  "kali_restore": "not_executed_ssh_unavailable",
+  "manufacturing_authorized": false,
+  "native_geometry_controls": {
+    "cloudcompare": "passed_linux_ci",
+    "salome": "passed_linux_ci"
+  },
+  "receipts": {
+    "acceptance": {
+      "checks": {
+        "carrier": "blocked_engineering",
+        "carrier_external": "blocked_engineering",
+        "carrier_stages": {
+          "cloudcompare": "blocked_no_registered_scan_and_registration_contract",
+          "openmdao": "blocked_native_fem_replay_and_optimization_not_accepted",
+          "openturns": "blocked_no_converged_solver_response_or_qualified_probability_model",
+          "salome": "blocked_no_reviewed_surface_face_groups_in_registered_inputs"
+        },
+        "cloudcompare": "not_executed_by_this_command",
+        "dvc_mac_restore": "restored_sha256_verified",
+        "kali_restore": "not_executed_by_this_command",
+        "openmdao": "passed",
+        "openturns": "passed",
+        "porschefanatics_export": "authorized_snapshot_imported",
+        "production_context_sources": 5,
+        "retrieval": "passed",
+        "salome": "not_executed_by_this_command",
+        "versions": {
+          "dvc": "3.67.1",
+          "openmdao": "3.45.1",
+          "openturns": "1.27.post1"
+        }
+      },
+      "inputs": [
+        {
+          "path": "catalog/parts/993-eng-carrier-0001.json",
+          "sha256": "1099b9735cfffc2e748b9241f81644e9738a829fbb89389be03dc60e9e09e455"
+        },
+        {
+          "path": "twins/993-engine-mount-system-f0/interface-contract.json",
+          "sha256": "b2974142e7053df6d63875f7968630158c97c130eb84cda56b9f17491ad0ca30"
+        },
+        {
+          "path": "parts/993-eng-carrier-0001/source/design-20261016/resume-20261020/auxiliary-fea-study/mechanics-study.json",
+          "sha256": "f41352402649adf98dda9d6bb294f7342e5ed6f5c8b5609be9e103229f4c6ccf"
+        },
+        {
+          "path": "parts/993-eng-carrier-0001/source/design-20261016/resume-20261020/auxiliary-fea-study/surface.mesh64.gz",
+          "sha256": "c57390a992ee144a34784d3cf9e4e4e62657db31c19563b2e6af958f0a46f68f"
+        },
+        {
+          "path": "docs/reports/carrier-resume-20261020/CONVERGENCE.md",
+          "sha256": "40913ee68e30f4280bf34c6d1226e4c2fcc60f0692265732487c098e4a21c06a"
+        }
+      ],
+      "limitations": [
+        "Native image receipts and an actual Kali restore are separate mandatory acceptance evidence.",
+        "Carrier admission replay is not a new FEM solve. No optimization or qualification."
+      ],
+      "manufacturing_authorized": false,
+      "outputs": [],
+      "schema_version": 1,
+      "status": "partial_native_acceptance",
+      "tool": "free-tools-acceptance"
+    },
+    "carrier": {
+      "checks": {
+        "blockers": [
+          "missing_measured_variant_interfaces",
+          "missing_measured_load_case",
+          "carrier_mesh_convergence_not_demonstrated"
+        ],
+        "carrier_stages": {
+          "cloudcompare": "blocked_no_registered_scan_and_registration_contract",
+          "openmdao": "blocked_native_fem_replay_and_optimization_not_accepted",
+          "openturns": "blocked_no_converged_solver_response_or_qualified_probability_model",
+          "salome": "blocked_no_reviewed_surface_face_groups_in_registered_inputs"
+        },
+        "catalogue_unchanged": true,
+        "documented_support_stiffness_scenarios_N_mm": [
+          1000.0,
+          10000.0
+        ],
+        "input_hashes_verified": true,
+        "optimization_enabled": false
+      },
+      "inputs": [
+        {
+          "path": "catalog/parts/993-eng-carrier-0001.json",
+          "sha256": "1099b9735cfffc2e748b9241f81644e9738a829fbb89389be03dc60e9e09e455"
+        },
+        {
+          "path": "twins/993-engine-mount-system-f0/interface-contract.json",
+          "sha256": "b2974142e7053df6d63875f7968630158c97c130eb84cda56b9f17491ad0ca30"
+        },
+        {
+          "path": "parts/993-eng-carrier-0001/source/design-20261016/resume-20261020/auxiliary-fea-study/mechanics-study.json",
+          "sha256": "f41352402649adf98dda9d6bb294f7342e5ed6f5c8b5609be9e103229f4c6ccf"
+        },
+        {
+          "path": "parts/993-eng-carrier-0001/source/design-20261016/resume-20261020/auxiliary-fea-study/surface.mesh64.gz",
+          "sha256": "c57390a992ee144a34784d3cf9e4e4e62657db31c19563b2e6af958f0a46f68f"
+        },
+        {
+          "path": "docs/reports/carrier-resume-20261020/CONVERGENCE.md",
+          "sha256": "40913ee68e30f4280bf34c6d1226e4c2fcc60f0692265732487c098e4a21c06a"
+        }
+      ],
+      "limitations": [
+        "R2 is an unadopted study; no new native solve is claimed."
+      ],
+      "manufacturing_authorized": false,
+      "outputs": [],
+      "schema_version": 1,
+      "status": "blocked_engineering",
+      "tool": "carrier-replay"
+    },
+    "cloudcompare_container": {
+      "checks": {
+        "architecture": "linux/amd64",
+        "image_id": "sha256:60341a4c20272498cf6daec746eb0f9f2e9f67df43e6a319fe97a82b51616ec4",
+        "native_receipt_sha256": "9ca39043a1c35553cbdee8b1c3b23615005d3b77cdaacc68fc1fc673a6c1ae30",
+        "network": "none",
+        "owned_container_absence_verified": true
+      },
+      "inputs": [],
+      "limitations": [
+        "Synthetic CPU controls, not a Kali execution or part qualification."
+      ],
+      "manufacturing_authorized": false,
+      "outputs": [],
+      "schema_version": 1,
+      "status": "passed",
+      "tool": "cloudcompare-container"
+    },
+    "cloudcompare_controls": {
+      "checks": {
+        "absolute_tolerance_mm": 0.0001,
+        "cases": [
+          {
+            "case": "identity",
+            "expected_mm": 0,
+            "values_mm": [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "case": "offset",
+            "expected_mm": 1,
+            "values_mm": [
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ]
+          },
+          {
+            "case": "rigid-transform",
+            "expected_mm": 0,
+            "values_mm": [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ]
+          }
+        ]
+      },
+      "inputs": [],
+      "limitations": [],
+      "manufacturing_authorized": false,
+      "outputs": [],
+      "schema_version": 1,
+      "status": "passed",
+      "tool": "cloudcompare-controls"
+    },
+    "fts5_index": {
+      "document_count": 14,
+      "snapshot_sha256": "67f18e1fe921fb78847d8459f3f84b0c076c3227b656f599e1f3016772d1be02",
+      "sqlite_version": "3.49.1",
+      "status": "documentary_index_built"
+    },
+    "openmdao": {
+      "checks": {
+        "analytical_height_m": 0.010455159171494206,
+        "height_m": 0.010455159171866592,
+        "independent_replay": {
+          "deflection": 0.00999999999893147,
+          "mass": 1.41144648820199
+        },
+        "mass_kg": 1.41144648820199,
+        "optimizer_success": true,
+        "relative_tolerance": 0.005,
+        "version": "3.45.1"
+      },
+      "inputs": [],
+      "limitations": [
+        "Synthetic beam; no carrier geometry changed or optimized."
+      ],
+      "manufacturing_authorized": false,
+      "outputs": [],
+      "schema_version": 1,
+      "status": "passed",
+      "tool": "openmdao"
+    },
+    "openturns": {
+      "checks": {
+        "absolute_tolerance": 0.03,
+        "base_sample_count": 8192,
+        "expected": [
+          0.2,
+          0.8
+        ],
+        "indices": [
+          0.19942885009108358,
+          0.8017120442305217
+        ],
+        "seed": 2600,
+        "version": "1.27.post1"
+      },
+      "inputs": [],
+      "limitations": [
+        "Synthetic additive model; no carrier probability distribution or reliability claim."
+      ],
+      "manufacturing_authorized": false,
+      "outputs": [],
+      "schema_version": 1,
+      "status": "passed",
+      "tool": "openturns"
+    },
+    "porschefanatics_lookup": {
+      "engineering_authorized": false,
+      "index_sha256": "eda566110958fa9abb95e75a55e6cc0532fb8f4b01651cae97c3c9e036909758",
+      "scope": "Separate production lookup from acceptance-003; corpus sources match acceptance-005",
+      "snapshot_sha256": "67f18e1fe921fb78847d8459f3f84b0c076c3227b656f599e1f3016772d1be02",
+      "source_ids": [
+        "carrier",
+        "pf-oem-carrier",
+        "baseline",
+        "catalogue-record"
+      ],
+      "status": "references_found"
+    },
+    "qwen": {
+      "context_sha256": "ca8d98bd2e5bfb66e22bb2f9e7939fb667264e6f4ab5786a4eac245a5dbbf122",
+      "draft_sha256": "12e18473ac7d862220d386bbc0c5765b567499448b200c559238148937ecd55c",
+      "engineering_authorized": false,
+      "exit_status": 0,
+      "qualified_geometry_command_changed": false,
+      "scope": "Actual draft from the production carrier context before the optional PorscheFanatics metadata import; generated-answer quality is unqualified",
+      "status": "documentary_draft_rejected",
+      "validation": {
+        "passed": false,
+        "reason": "not_strict_JSON"
+      }
+    },
+    "retrieval": {
+      "cases_sha256": "95a3e92d519b77b55027e96889c9689bd38a4842b79cdf3ad0c0e3c0163da819",
+      "counts": {
+        "conflict": 5,
+        "hostile": 5,
+        "reference": 10,
+        "unknown": 10
+      },
+      "passed": {
+        "conflict": 5,
+        "hostile": 5,
+        "reference": 10,
+        "unknown": 10
+      },
+      "scope": "retrieval and authority boundary; not a model-answer accuracy benchmark",
+      "snapshot_sha256": "54528af955b0b2908aea007830a53a15aec4c9049a46f2953dc5135a761c304d",
+      "status": "passed"
+    },
+    "salome_bore": {
+      "checks": {
+        "calculix_roundtrip": true,
+        "exact_boundary_identity": true,
+        "exact_positive_determinants": true,
+        "group_membership_preserved": true,
+        "max_size_mm": 0.5,
+        "salome_to_calculix_permutation": [
+          0,
+          2,
+          1,
+          3
+        ],
+        "tetrahedra": 254
+      },
+      "inputs": [],
+      "limitations": [
+        "Mesh comparison only; no native FEM solve or physical qualification.",
+        "Carrier equilibrium, stress-energy and existing interface certificates remain separate gates."
+      ],
+      "manufacturing_authorized": false,
+      "outputs": [
+        {
+          "id": "mesh.inp",
+          "sha256": "b123b0d0e184a9d37cee273e2d7eeb0552feb44f8f523b517c22fd61bfca065f"
+        },
+        {
+          "id": "native.med",
+          "sha256": "71d8217ab575309e466f5931b60204eaef70ad8d9cd511f6e6a591fbd3ed9b87"
+        },
+        {
+          "id": "native-mesh.json",
+          "sha256": "15ab2b0c2cdf7b6070f35500ba1844f3ad957635d4602cbfc3b56daa6d10c9d9"
+        }
+      ],
+      "schema_version": 1,
+      "status": "volume_comparison_completed",
+      "tool": "salome-netgen"
+    },
+    "salome_container": {
+      "checks": {
+        "architecture": "linux/amd64",
+        "image_id": "sha256:08a548ba12906ac5693a5d2470bacf5d2eace634af05c17771491c331a96193f",
+        "native_receipt_sha256": "e695b5e0c0868f29bd5c22618182130fdfc32c9ed895546422f15ce52370b20c",
+        "network": "none",
+        "owned_container_absence_verified": true
+      },
+      "inputs": [],
+      "limitations": [
+        "Synthetic CPU controls, not a Kali execution or part qualification."
+      ],
+      "manufacturing_authorized": false,
+      "outputs": [],
+      "schema_version": 1,
+      "status": "passed",
+      "tool": "salome-container"
+    },
+    "salome_controls": {
+      "checks": {
+        "bore": true,
+        "cube": true,
+        "runtime": "SALOME 9.16.0; NETGEN only"
+      },
+      "inputs": [],
+      "limitations": [],
+      "manufacturing_authorized": false,
+      "outputs": [],
+      "schema_version": 1,
+      "status": "passed",
+      "tool": "salome-controls"
+    },
+    "salome_cube": {
+      "checks": {
+        "calculix_roundtrip": true,
+        "exact_boundary_identity": true,
+        "exact_positive_determinants": true,
+        "group_membership_preserved": true,
+        "max_size_mm": 0.5,
+        "salome_to_calculix_permutation": [
+          0,
+          2,
+          1,
+          3
+        ],
+        "tetrahedra": 20
+      },
+      "inputs": [],
+      "limitations": [
+        "Mesh comparison only; no native FEM solve or physical qualification.",
+        "Carrier equilibrium, stress-energy and existing interface certificates remain separate gates."
+      ],
+      "manufacturing_authorized": false,
+      "outputs": [
+        {
+          "id": "mesh.inp",
+          "sha256": "73516c2368783d568707cc06a18aeea47b09c5c2a4f8f2642e7a5f902aabd46d"
+        },
+        {
+          "id": "native.med",
+          "sha256": "ded7f44676a97705169fcbb0c3b2ec0d7a6920909c9d3c339bc2b391bb3fbb44"
+        },
+        {
+          "id": "native-mesh.json",
+          "sha256": "b576635019a519ae11377dac72d3b8a284c677aa8d963d1c6d9a5b09b98732cd"
+        }
+      ],
+      "schema_version": 1,
+      "status": "volume_comparison_completed",
+      "tool": "salome-netgen"
+    }
+  },
+  "remaining_acceptance": [
+    "Kali independent store recovery and native host execution unavailable without working SSH identity",
+    "Qwen documentary generated-answer evaluation unqualified; malformed actual draft rejected",
+    "Carrier native FEM replay and optimization unexecuted; admission is blocked by measured interfaces, loads and convergence"
+  ],
+  "runtime": {
+    "python": "3.12.11",
+    "requirements_lock_sha256": "245ceb27fa48e4605dd4c438354837264b8ab55c59faae1d33d640b8d19d52a4"
+  },
+  "source_bindings": [
+    {
+      "path": "benchmarks/free-tools/acceptance.py",
+      "sha256": "ce5acf19bdf2b1f8e7f46ba6b198746ca0f2780154c1c0868756dc4fd6fe56d9"
+    },
+    {
+      "path": "benchmarks/free-tools/cloudcompare.py",
+      "sha256": "97f6feb0536bf779d33b36e683d6656846776ecab94a9e7d0a749004d35e4f44"
+    },
+    {
+      "path": "benchmarks/free-tools/ft_beam_solver.py",
+      "sha256": "5479f29f1bd63d7449e20d24b7ddf1efccd78aa10f9e0e0f4522df9ad858225e"
+    },
+    {
+      "path": "benchmarks/free-tools/ft_common.py",
+      "sha256": "dd61a04b15a9c42a20ff321c5db84d8e2228ab8e20dd73c60c1c1b6e3834712f"
+    },
+    {
+      "path": "benchmarks/free-tools/ft_geometry.py",
+      "sha256": "1d036406722e63ab6f9ede1f8e4c0f45278aa55daa015fc7455bba1abbd02aa9"
+    },
+    {
+      "path": "benchmarks/free-tools/knowledge.py",
+      "sha256": "11a529b41e85ea75c6a47e16362b805e8d1e9532e045931c7142a9b9c8a4fc3e"
+    },
+    {
+      "path": "benchmarks/free-tools/native_container.py",
+      "sha256": "2bf06e2a1d945767c425120c39b028805eb1b871e6d99f5feb313ba960eedf5b"
+    },
+    {
+      "path": "benchmarks/free-tools/pilot.py",
+      "sha256": "676d54e59e09b504214f97ca2db3f8f0432e5660332e06ba6e4222755342cf33"
+    },
+    {
+      "path": "benchmarks/free-tools/qwen_documentary.py",
+      "sha256": "27bfed39bd4b3dbfa942165459f5dcebd07fa15b4c5216fc5ffbb0ecae0e2474"
+    },
+    {
+      "path": "benchmarks/free-tools/salome_worker.py",
+      "sha256": "f42357e0808f38849cdf646905f20b87e9f36b5a26f812595fef066e59e47052"
+    },
+    {
+      "path": "benchmarks/free-tools/storage.py",
+      "sha256": "8c56fa168e9c3746e7ec7b51fddf7503f93b075aecc340427fe7a3993dafd721"
+    },
+    {
+      "path": "benchmarks/free-tools/studies.py",
+      "sha256": "0392e8b4dd68bf9b2ff6134feb8f8db7dad5471c0170c455288b61705550237c"
+    }
+  ],
+  "status": "partial_native_acceptance",
+  "verification": {
+    "documentation_links": {
+      "broken": 0,
+      "files": 1833,
+      "log_sha256": "e424d206e65a9b2caca81457b726d85fc205d63d1987fd01f6b1c1fc90cd0b7c"
+    },
+    "focused_native_mac": {
+      "errors": 0,
+      "failures": 0,
+      "log_sha256": "3cf1c8743820dc3fb8190896240551196ec8d46cffcd4baf782240c1ad35ea76",
+      "skip_reason": "CloudCompare executable unavailable on Mac; separately executed in Linux CI",
+      "skipped": 1,
+      "tests": 32
+    },
+    "make_check_linux": {
+      "status": "passed",
+      "workflow": "https://github.com/cluster2600/porscheparts/actions/runs/40194342447"
+    },
+    "make_check_mac": {
+      "errors": 0,
+      "failures": 2,
+      "log_sha256": "3abaecd6dd64cf952c9799f28e0abe97be168cb6e859f3767fdf842ce3174cfd",
+      "scope": "Two existing last-digit floating point comparisons; no thresholds changed"
+    },
+    "mermaid": {
+      "cli_version": "11.12.0",
+      "node_version": "26.11.1",
+      "rendered_views": [
+        "infrastructure",
+        "software",
+        "logic"
+      ],
+      "source_sha256": "a9d9e41eb34cf0b12543f13fc220d6f4b68abe99eb518bf7d076fb3a84d6561d",
+      "visually_reviewed": true
+    }
+  }
+}

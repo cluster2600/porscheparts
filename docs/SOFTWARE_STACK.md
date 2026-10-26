@@ -338,3 +338,10 @@ resynchronized before any paid rental.
 The runbook is [917_VAST_SIMREADY_NATIVE.md](../archive/917/docs/917_VAST_SIMREADY_NATIVE.md).
 A green output validates the software chain, never the accuracy of a part,
 the physics of an engine or a manufacturing authorization.
+
+## Free engineering tools carrier pilot
+
+See the [six-tool implementation, architecture and acceptance runbook](architecture/free-tools/README.md).
+This optional integration preserves the existing catalogue, solver recipes and
+qualification gates; its execution report distinguishes native tests from
+unexecuted host checks.
