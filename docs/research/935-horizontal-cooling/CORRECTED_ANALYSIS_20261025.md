@@ -870,6 +870,24 @@ uv run --no-project --python 3.12 --with numpy==1.26.4 python \
   work/935-cfd-root0p7-20261026-o5-audit/volume.npz work/NEW/weak-face-audit.json
 ```
 
+Two further runs used the **same PLC** and executable. A request for `-O10`
+completed in 203.8 s, but inspection of the pinned TetGen 1.5.1 parser showed
+that `-O` consumes one digit; that run actually used level **1**, not level 10.
+Its independent audit passed exact cell orientation, one connected volume,
+complete 895,732-face boundary bijection and PLC volume equality. However,
+8,636 cells were below mean ratio 0.01, versus 3,461 in the baseline and
+2,929 with `-O5`; level 1 is rejected on quality. The explicit `-O6` run
+reached its 900 s limit with no mesh output and its process exited. These
+trials do not improve the best known `-O5` result, which remains **not CFD
+admitted**. The private
+[`935-cfd-root0p7-o1-o6-rejected-trials-001.tar.zst`](https://github.com/cluster2600/porscheparts-935-private/releases/tag/935-root-repair-20261025)
+stores both receipts and the full rejected level-1 output and audit; archive
+SHA-256 is `6422279606d89592c707de56b16c35466552bcc293c583cd68f643a34df0fb12`.
+All 12 files listed in its manifest passed extraction readback. The compact
+private decision receipt `o1-o6-trials-receipt.json` has SHA-256
+`2e14289baa298f5039e9d92f5f7f56a7638b162caf18213e3a40e78c78a04368`.
+Both private release digests match the local files.
+
 ### Conditional rotor inertia and drive-load screen
 
 The hash-pinned
