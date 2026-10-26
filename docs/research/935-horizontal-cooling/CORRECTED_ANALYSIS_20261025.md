@@ -906,6 +906,10 @@ matched by the private release digest. WE43's card uses a wrought density
 surrogate and supplies no part strength allowable. The result excludes shaft,
 gears, bearings, shroud, aerodynamic torque, balance, thermal growth, fatigue
 and manufacturing effects. It establishes no safe speed or material choice.
+The [private ten-material comparison plot](https://github.com/cluster2600/porscheparts-935-private/releases/tag/935-root-repair-20261025)
+(`material-mass-inertia.png`) has SHA-256
+`9affaf3da6360cadfc9e1cc85241a550269b41ae15906d903fa232b8719c0107`,
+also matched by its release digest; it visualizes the same density-only screen.
 
 ```sh
 mkdir -p work/NEW
