@@ -189,7 +189,7 @@ contains the complete OpenFOAM polyMesh, logs and per-file hashes. Its archive
 SHA-256 is `4d4b4d0f3629d27c0eb8c1e1bea462af65526f048810b03cfe1a64dbe3674b06`;
 the receipt SHA-256 is
 `bc3146ef7de9b8bc9c691a6796718a8c764d79e51d58fb13b5743d38240ef70f`.
-No solver run or flow curve is credited. The next geometry work must target
+No solver run or flow curve is credited. The next meshing study must target
 the weak rotor-boundary neighborhoods while preserving the certified surface
 envelope and the separate mechanical interfaces.
 
@@ -250,6 +250,30 @@ archive `root0p7-cross-modal-screen-009.tar.gz` has SHA-256
 `68415bf565651ab14f000f8ecfe8c6d05b8f898a537fa83e4966db1e9f1f042d`;
 its receipt has SHA-256
 `136e575e4378d489e55f2aa56682b284966092a0cbbd4ee6fd10033104c19fa7`.
+
+### Adjacent-cell dimensions explain the native skew screen
+
+An exact boundary-face-to-tetrahedron lookup matched each of the 1,850
+skew rotor faces to its unique adjacent O5 cell. A seeded sample of 1,850
+other rotor faces provides a non-skew control. Median wall triangle areas
+are similar: 1.35 × 10⁻⁷ and 1.28 × 10⁻⁷ m², respectively. Yet the skew
+group's adjacent-cell height is **6.38 mm** versus **0.583 mm** in the
+control, and its cell-center projection is **2.85 mm** off the wall-face
+center versus **0.093 mm**. Dimensionless height divided by square root of
+wall area is **16.67** versus **1.70**. These ratios isolate a steep,
+lateral near-wall volume transition in the rejected TetGen mesh. They do
+not prove which meshing setting caused it or establish an actual 935
+dimension; the length unit remains conditional on the unverified scale.
+
+The private `root0p7-wall-cell-screen-010.tar.gz` contains the hash-pinned
+source, receipt and manifest. A second local run reproduced the receipt byte
+for byte. Extracted hashes and the GitHub asset digest match archive SHA-256
+`d8ea9456410c7617cb90f33bbb563aba8a2bceae1f17114fcb7ff8b76374cf70`;
+the receipt SHA-256 is
+`bddb64c1f54ad6fbcfee7810c4dbdc7396b16cf575d2653410ade082530ab4b2`.
+The next mesh trial should control near-wall cell size and growth around the
+rotor while retaining the same pinned surface, then repeat native `checkMesh`
+and all boundary/interface audits. No CFD run is admitted yet.
 
 The [reduced machine-readable receipt](corrected-analysis-20261025.json)
 identifies the source, candidate, case and private checkpoint. The private
