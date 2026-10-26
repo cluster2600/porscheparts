@@ -78,10 +78,6 @@ Catalogue record: [`catalog/parts/993-exh-heat-exchanger-pair-pet-0001.json`](..
 
 ## Images
 
-![photo-concept](../../parts/993-exh-heat-exchanger-pair-pet-0001/media/photo-concept.png)
-
-*`parts/993-exh-heat-exchanger-pair-pet-0001/media/photo-concept.png` — AI-generated studio illustration based on the catalogue PicoGK concept preview. Geometry and interfaces remain unmeasured hypotheses; material, finish and generated details are illustrative. Not a photograph of an OEM or manufactured part, or evidence of fit, function or manufacturing.*
-
 ![preview](../../parts/993-exh-heat-exchanger-pair-pet-0001/media/preview.png)
 
 *`parts/993-exh-heat-exchanger-pair-pet-0001/media/preview.png` — concept CAD block, **not** the original part, not a print file.*
@@ -89,6 +85,10 @@ Catalogue record: [`catalog/parts/993-exh-heat-exchanger-pair-pet-0001.json`](..
 ![views](../../parts/993-exh-heat-exchanger-pair-pet-0001/media/views.png)
 
 *`parts/993-exh-heat-exchanger-pair-pet-0001/media/views.png` — concept CAD block, **not** the original part, not a print file.*
+
+![photo-concept](../../parts/993-exh-heat-exchanger-pair-pet-0001/media/photo-concept.png)
+
+*`parts/993-exh-heat-exchanger-pair-pet-0001/media/photo-concept.png` — AI-generated studio illustration based on the catalogue PicoGK concept preview. Geometry and interfaces remain unmeasured hypotheses; material, finish and generated details are illustrative. Not a photograph of an OEM or manufactured part, or evidence of fit, function or manufacturing.*
 
 ## Provenance and sources
 

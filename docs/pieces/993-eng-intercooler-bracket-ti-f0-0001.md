@@ -91,10 +91,6 @@ Catalogue record: [`catalog/parts/993-eng-intercooler-bracket-ti-f0-0001.json`](
 
 *`parts/993-eng-intercooler-bracket-ti-f0-0001/evidence/lpbf-f0/993-eng-intercooler-bracket-ti-f0-0001-lpbf-geometry-screen.png` — a screening output, not a validation.*
 
-![photo-concept](../../parts/993-eng-intercooler-bracket-ti-f0-0001/media/photo-concept.png)
-
-*`parts/993-eng-intercooler-bracket-ti-f0-0001/media/photo-concept.png` — AI-generated studio illustration based on the concept CAD preview. Material and finish are illustrative; generated details may differ. Not a photograph or evidence of fit, function or manufacturing.*
-
 ![picogk-batch-01](../../parts/993-eng-intercooler-bracket-ti-f0-0001/media/picogk-batch-01.png)
 
 *`parts/993-eng-intercooler-bracket-ti-f0-0001/media/picogk-batch-01.png` — concept CAD block, **not** the original part, not a print file.*
@@ -106,6 +102,10 @@ Catalogue record: [`catalog/parts/993-eng-intercooler-bracket-ti-f0-0001.json`](
 ![views](../../parts/993-eng-intercooler-bracket-ti-f0-0001/media/views.png)
 
 *`parts/993-eng-intercooler-bracket-ti-f0-0001/media/views.png` — concept CAD block, **not** the original part, not a print file.*
+
+![photo-concept](../../parts/993-eng-intercooler-bracket-ti-f0-0001/media/photo-concept.png)
+
+*`parts/993-eng-intercooler-bracket-ti-f0-0001/media/photo-concept.png` — AI-generated studio illustration based on the concept CAD preview. Material and finish are illustrative; generated details may differ. Not a photograph or evidence of fit, function or manufacturing.*
 
 ## Provenance and sources
 

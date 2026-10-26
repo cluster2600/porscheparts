@@ -75,10 +75,6 @@ Catalogue record: [`catalog/parts/993-body-front-lid-0001.json`](../../catalog/p
 
 ## Images
 
-![photo-concept](../../parts/993-body-front-lid-0001/media/photo-concept.png)
-
-*`parts/993-body-front-lid-0001/media/photo-concept.png` — AI-generated studio illustration based on the concept CAD preview. Material and finish are illustrative; generated details may differ. Not a photograph or evidence of fit, function or manufacturing.*
-
 ![preview](../../parts/993-body-front-lid-0001/media/preview.png)
 
 *`parts/993-body-front-lid-0001/media/preview.png` — concept CAD block, **not** the original part, not a print file.*
@@ -86,6 +82,10 @@ Catalogue record: [`catalog/parts/993-body-front-lid-0001.json`](../../catalog/p
 ![views](../../parts/993-body-front-lid-0001/media/views.png)
 
 *`parts/993-body-front-lid-0001/media/views.png` — concept CAD block, **not** the original part, not a print file.*
+
+![photo-concept](../../parts/993-body-front-lid-0001/media/photo-concept.png)
+
+*`parts/993-body-front-lid-0001/media/photo-concept.png` — AI-generated studio illustration based on the concept CAD preview. Material and finish are illustrative; generated details may differ. Not a photograph or evidence of fit, function or manufacturing.*
 
 ## Provenance and sources
 
