@@ -762,6 +762,16 @@ is `935-cfd-root0p7-quality-face-audit-001.json`, SHA-256
 `b0c70c9c45dbd9ef629e0524f78d810b9bfd51affbe8f88d7198e527e35adf84`,
 matched by the uploaded digest.
 
+The [reproducible private-view renderer](../../../twins/935-horizontal-cooling-system-f0/source/corrected-analysis-20261025/render_root0p7_weak_cells.py)
+plots the complete weak-cell set over sampled rotor-wall vertices in top and
+side views. The local regeneration was byte-identical. The
+[private image](https://github.com/cluster2600/porscheparts-935-private/releases/tag/935-root-repair-20261025)
+`935-cfd-root0p7-weak-cells-top-side-001.png` has SHA-256
+`dcaa30c80d0348d164cd8c1a3b08875e34d879d5793059ba555e64b21212a650`,
+matched by GitHub's asset digest. It visualizes a concentration near the inner
+rotor annulus and selected blade junctions; this is an inspection observation,
+not proof that those surfaces are inaccurate or that the whole assembly fits.
+
 A second boundary-preserving TetGen attempt used `-pYq1.2/10O5MzCf` on the
 same pinned PLC. It hit the 300 s limit with no mesh output; the process was
 confirmed absent. The [private timeout receipt](https://github.com/cluster2600/porscheparts-935-private/releases/tag/935-root-repair-20261025)
