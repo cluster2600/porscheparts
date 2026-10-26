@@ -97,8 +97,8 @@ private plot maps every reported location; these are diagnostic coordinates,
 not dimensional measurements of the historical rotor.
 
 `blockMesh` and `checkMesh -allGeometry -allTopology` passed for the separate
-18,432-cell *empty base block*. That check does not include the rotor. No
-`snappyHexMesh`, rotor fluid mesh or CFD solve is credited. The earlier
+18,432-cell *empty base block*. That check does not include the rotor. The
+separate exploratory rotor mesh is described below; no CFD solve is credited. The earlier
 independent surface certificate and OpenFOAM's native intersection test now
 disagree. To exclude an OBJ-index or SI-coordinate transcription difference,
 the same exported vertices and triangles were converted directly to OFF and
@@ -118,6 +118,24 @@ contains the logs, 63 intersection points, plot and receipt, with archive
 SHA-256 `85d5678bffadba633dc1272ef3b0ea249bb0cd5b76c340aab93615fa56444fc2`
 and matching GitHub asset digest. The receipt SHA-256 is
 `2b63d9ab02bc02caffd2d15ac95644d99fc5f180d9c87a3006e39746acd7e145`.
+
+### Bounded rotor fluid-mesh trial (rejected)
+
+A new private copy of the pinned case ran `snappyHexMesh -overwrite` on Kali1
+with surface refinement levels reduced from 5/6 to **2/3**, at most 400,000
+cells, and layer addition disabled. The process had an 8 GiB virtual-memory
+limit and a 300 s wall-time limit. It completed in 140.78 s and produced one
+connected fluid region with 236,898 cells and a closed rotor boundary patch.
+Native `checkMesh -allGeometry -allTopology` nevertheless reported **13,772
+concave cells and one failed mesh check**. This mesh is rejected for CFD; the
+tool's “Finished meshing without any errors” message is not a quality pass.
+Coarse refinement and the deliberately provisional conduit also preclude a
+physical 935 airflow claim. The [private rejected-trial archive](https://github.com/cluster2600/porscheparts-935-private/releases/tag/935-root-repair-20261025)
+contains the exact modified dictionary, polyMesh, both native logs and a
+file-hashed receipt. Its SHA-256 is
+`77b23218d57ed91bc7ee7f15fb6a51cf1f41ed655d879a75c17cd2dd45fad9a5`;
+the receipt SHA-256 is
+`be57e637ae36124ca316da55c2e3d274f8265fc5ce41f39096608fdb1cde4880`.
 
 The [reduced machine-readable receipt](corrected-analysis-20261025.json)
 identifies the source, candidate, case and private checkpoint. The private
