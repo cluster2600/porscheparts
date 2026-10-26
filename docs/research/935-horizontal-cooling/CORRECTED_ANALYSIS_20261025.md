@@ -911,6 +911,38 @@ The [private ten-material comparison plot](https://github.com/cluster2600/porsch
 `9affaf3da6360cadfc9e1cc85241a550269b41ae15906d903fa232b8719c0107`,
 also matched by its release digest; it visualizes the same density-only screen.
 
+The earlier 160-case transmission hypothesis used a simplified annulus. The
+hash-pinned [`rebase_root0p7_drive_loads.py`](../../../twins/935-horizontal-cooling-system-f0/source/corrected-analysis-20261025/rebase_root0p7_drive_loads.py)
+replaces only that annulus's stopping inertia with the corrected rotor's
+inertia, retaining the original **unmeasured** fan torque, assumed 40 mm gear
+pitch diameter and assumed 16 mm solid shaft. For the conditional 1 mm/source
+scale, 6,000 rotor rpm, 0.1 s stop and 0.5 network-resistance multiplier:
+
+| Card | Old annulus mass | Corrected rotor mass | Old → corrected stopping torque | Updated total torque | Gear tangential force | Shaft torsion stress |
+|---|---:|---:|---:|---:|---:|---:|
+| AlSi10Mg | 0.765 kg | 1.151 kg | 46.7 → 60.2 N·m | 62.4 N·m | 3,120 N | 77.6 MPa |
+| WE43 | 0.524 kg | 0.789 kg | 32.0 → 41.2 N·m | 43.5 N·m | 2,174 N | 54.1 MPa |
+| Ti‑6Al‑4V | 1.261 kg | 1.897 kg | 77.0 → 99.2 N·m | 101.4 N·m | 5,070 N | 126.1 MPa |
+
+The corrected rotor raises this particular AlSi10Mg stopping-inertia estimate
+by 28.8%; the preceding annulus was not a conservative load model. The
+shaft stress is a nominal elastic torsion formula for the **assumed** solid
+diameter, not an FEA result or a strength margin. Missing shaft/gear
+measurements, scale calibration, fan torque, shock profile, material allowables
+and fatigue data prevent any safe-speed or manufacturing conclusion. The
+[private 160-case report](https://github.com/cluster2600/porscheparts-935-private/releases/tag/935-root-repair-20261025)
+(`rebased-drive-loads.json`) has SHA-256
+`dbc3a4e68aea7b47c6a34019f3ab400aa5ff981f84fab56ce42675e03c20d8f1`,
+matched by its release digest.
+
+```sh
+mkdir -p work/NEW
+python3 twins/935-horizontal-cooling-system-f0/source/corrected-analysis-20261025/rebase_root0p7_drive_loads.py \
+  work/935-hypothesis-tests-20261007/accepted-results.json \
+  work/935-cfd-root0p7-20261026-o5-audit/rotor-dynamics-screen.json \
+  work/NEW/rebased-drive-loads.json
+```
+
 ```sh
 mkdir -p work/NEW
 uv run --no-project --python 3.12 --with numpy==1.26.4 --with trimesh==4.9.0 python \
