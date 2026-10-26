@@ -849,6 +849,27 @@ shows that the main weak-cell clusters persist near the inner annulus and
 selected blade junctions. This is a visual localization, not proof of a scan
 defect. The private release digest matches the local image.
 
+An exact face-index audit of the `-O5` volume finds **1,357** weak cells
+sharing a complete rotor boundary triangle and **1,572** without one. The
+1,388 incident rotor triangles have median equilateral-normalized quality
+0.492, versus 0.812 across the rotor surface; 209 incident triangles are
+below 0.1. The [private face-audit receipt](https://github.com/cluster2600/porscheparts-935-private/releases/tag/935-root-repair-20261025)
+(`weak-face-audit.json`) has SHA-256
+`6dbf4c30954a0b71b4c58a81d633be3ed5b6071d285e61adf56c19b8aa620149`,
+matching the release digest. This separates direct wall-face cells from
+near-wall cells; further work must inspect both surface discretization and
+volume filling. The counts do not identify a defect in the scanned shape.
+The hash-pinned
+[`audit_root0p7_o5_faces.py`](../../../twins/935-horizontal-cooling-system-f0/source/corrected-analysis-20261025/audit_root0p7_o5_faces.py)
+reproduces the private receipt byte for byte from the archived audited volume:
+
+```sh
+mkdir -p work/NEW
+uv run --no-project --python 3.12 --with numpy==1.26.4 python \
+  twins/935-horizontal-cooling-system-f0/source/corrected-analysis-20261025/audit_root0p7_o5_faces.py \
+  work/935-cfd-root0p7-20261026-o5-audit/volume.npz work/NEW/weak-face-audit.json
+```
+
 Reproduce the private PLC with Python 3.12, NumPy 1.26.4, SciPy 1.13.1 and
 trimesh 4.9.0. The Mac's existing SciPy 1.15.3 installation failed to load a
 native module, so the isolated versions were used. Run the existing
