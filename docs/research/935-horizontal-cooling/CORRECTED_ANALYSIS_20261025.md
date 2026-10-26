@@ -83,6 +83,31 @@ matched by the uploaded asset. These bounding checks establish only that the
 pilot inputs are spatially consistent; they do not establish connected fluid
 cells, layer quality, a 935 shroud or an operational fan curve.
 
+### Native OpenFOAM 13 surface gate for the corrected rotor
+
+The pinned private OBJ was transferred to Kali1 without changing its SHA-256
+(`ee9357d46911fc0112342626064f7e731395af9db9a8bc340793cf22effb24a6`).
+The previously qualified rootless Bubblewrap image ran Foundation 13 build
+`13-18870c24d21c`. Native `surfaceCheck -checkSelfIntersection` read all
+878,730 triangles and 439,365 vertices. It found one closed, connected surface
+with no illegal triangles, but **63 self-intersection locations** and three
+pairs of nearby points. Nine reported locations lie near radius 22 mm and 54
+near radii 85–89 mm under the unverified 1 mm/source-unit assumption. The
+private plot maps every reported location; these are diagnostic coordinates,
+not dimensional measurements of the historical rotor.
+
+`blockMesh` and `checkMesh -allGeometry -allTopology` passed for the separate
+18,432-cell *empty base block*. That check does not include the rotor. No
+`snappyHexMesh`, rotor fluid mesh or CFD solve is credited. The earlier
+independent surface certificate and OpenFOAM's native intersection test now
+disagree; their geometric predicates and any scale-sensitive tolerance must
+be reconciled before this OBJ is admitted for fluid meshing. A closed surface
+alone is insufficient. The [private native diagnostic archive](https://github.com/cluster2600/porscheparts-935-private/releases/tag/935-root-repair-20261025)
+contains the logs, 63 intersection points, plot and receipt, with archive
+SHA-256 `85d5678bffadba633dc1272ef3b0ea249bb0cd5b76c340aab93615fa56444fc2`
+and matching GitHub asset digest. The receipt SHA-256 is
+`2b63d9ab02bc02caffd2d15ac95644d99fc5f180d9c87a3006e39746acd7e145`.
+
 The [reduced machine-readable receipt](corrected-analysis-20261025.json)
 identifies the source, candidate, case and private checkpoint. The private
 [release](https://github.com/cluster2600/porscheparts-935-private/releases/tag/935-root-repair-20261025)
