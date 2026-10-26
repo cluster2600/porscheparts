@@ -100,9 +100,20 @@ not dimensional measurements of the historical rotor.
 18,432-cell *empty base block*. That check does not include the rotor. No
 `snappyHexMesh`, rotor fluid mesh or CFD solve is credited. The earlier
 independent surface certificate and OpenFOAM's native intersection test now
-disagree; their geometric predicates and any scale-sensitive tolerance must
-be reconciled before this OBJ is admitted for fluid meshing. A closed surface
-alone is insufficient. The [private native diagnostic archive](https://github.com/cluster2600/porscheparts-935-private/releases/tag/935-root-repair-20261025)
+disagree. To exclude an OBJ-index or SI-coordinate transcription difference,
+the same exported vertices and triangles were converted directly to OFF and
+checked with the pinned CGAL binary (SHA-256
+`69caa50a446cfef290a2735be90076aa4ea17907a2507e611704f68fddcd6ede`).
+CGAL reports a closed valid mesh and **zero self-intersection pairs**. The
+cross-check receipt SHA-256 is
+`7b4d87584456d944dedf24fb0ab47d6b6e80c6484f52738ac93904a630da5a2a`;
+its [private archive](https://github.com/cluster2600/porscheparts-935-private/releases/tag/935-root-repair-20261025)
+contains the exact SI OFF and CGAL output, SHA-256
+`9c6390f395af380ecca07702c6b917c82de1cb3c63df266583c5470593989486`.
+This narrows the discrepancy to the controllers' intersection predicates or
+tolerances; it does not prove which result is suitable for OpenFOAM meshing.
+The discrepancy must be resolved before this OBJ is admitted for fluid meshing.
+A closed surface alone is insufficient. The [private native diagnostic archive](https://github.com/cluster2600/porscheparts-935-private/releases/tag/935-root-repair-20261025)
 contains the logs, 63 intersection points, plot and receipt, with archive
 SHA-256 `85d5678bffadba633dc1272ef3b0ea249bb0cd5b76c340aab93615fa56444fc2`
 and matching GitHub asset digest. The receipt SHA-256 is
