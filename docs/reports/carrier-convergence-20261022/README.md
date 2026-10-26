@@ -1158,3 +1158,70 @@ its eager SciPy ProPACK import is refused by the Mac loader. This is an
 experimental native-API probe, not a qualification of the full Python package.
 All modifications are confined to the private environment; system packages and
 the accepted CalculiX binary are unchanged.
+
+### Actual PARDISO dispatch now qualifies
+
+The next isolated Linux attempt explicitly selects `SOLVER=PARDISO` in copied
+decks. Three fresh analytic controls and **two complete coarse T10 carrier
+repetitions pass**, with actual symmetric PARDISO dispatch and eight solver
+threads observed. Maximum component differences against the independent Mac
+reference are **1e-6 mm displacement, 1e-4 MPa stress and 1e-7 N reaction**,
+within the original limits. The first complete coarse repetition takes
+**61.184 s**. The earlier trial that actually selected SPOOLES remains refused.
+
+The [reference terminal](evidence/mesh-quality-20261025/vast-lease-020/pardiso-reference-terminal.json)
+binds both repetitions to the native binary SHA-256. The
+[runtime footprint](evidence/mesh-quality-20261025/vast-lease-020/runtime-footprint.json)
+and [loaded-library observation](evidence/mesh-quality-20261025/vast-lease-020/N64-runtime-observation.json)
+identify the actual private MKL runtime. A separate six-strain solid control
+and N=16 gyroid reproduce the previous complete C3D8 tensor; see the
+[periodic reference comparison](evidence/mesh-quality-20261025/vast-lease-020/periodic-reference-comparison.json).
+These are backend qualification results, not additional spatial refinements.
+
+### What smaller micro-cells can and cannot save
+
+For this ideal periodic gyroid sheet, fixing the threshold fixes its relative
+density. Rescaling its pitch leaves both that density and its homogenized
+linear-elastic tensor unchanged. **Smaller cells alone do not remove additional
+mass.** More saving requires a lower solid fraction, a thinner outer skin or a
+different region/architecture, followed by calculation of that modified part.
+
+![Analytic gyroid length-scale tradeoff](../../media/carrier-convergence-20261022/gyroid-scale-bounds-001/gyroid-length-scale.png)
+
+The [analytic scale assessment](evidence/mesh-quality-20261025/gyroid-scale-bounds-001/assessment.json)
+brackets the minimum distance between the opposite level surfaces of the
+**untrimmed periodic sheet**. For threshold `a` and pitch `p`, the lower bound
+is `a*p/(2*pi*sqrt(3))`; a constructed diagonal pair gives the upper bound
+`sqrt(3)*asin(2*a/3)*p/(2*pi)`. At the frozen threshold, these are approximately
+**0.05670p to 0.11686p**. The plot also shows how many periods fit across the
+nominal 5 mm pad-core example. These are geometric bounds, not machine feature
+limits or a finite-core stiffness result. Clipping, skin connections and powder
+escape still belong to the eventual explicit cellular geometry.
+
+### Shared-factor six-strain backend cross-check
+
+The pinned Apache-2.0 **UnitcellEngine** experiment uses one direct SPD solve
+call with **six actual right-hand sides**. This avoids repeating the same cell
+matrix factorization independently for every strain case. Its independent
+postprocessor reconstructs all eight trilinear Gauss-point operators, stresses,
+energies, physical forces and periodic equilibrium; no strain case is inferred
+from cubic symmetry.
+
+A uniform `1e-6` stiffness control exposes the difference between the upstream
+assembly's ersatz regularization and raw-density tensor postprocessing: its
+energy residual is **1.0101%**, exceeding the unchanged 0.01% energy condition.
+A separate, versioned one-line adaptation applies the same phase scaling to
+both. Both full-solid and uniform-soft analytic controls then pass. The pinned
+upstream source remains unchanged and the original negative control is retained.
+
+The adapted **N=16** gyroid passes all independent operator and energy checks.
+It then reproduces **all six complete CCX fields**: 4,913 physical nodes and
+32,768 stress integration points per case. Maximum differences are **4.986e-10
+mm U, 4.918e-5 MPa S and 4.872e-8 N RF**; full-tensor relative difference is
+**4.201e-9**. The original component limits remain unchanged. The
+[complete cross-check](evidence/mesh-quality-20261025/unitcellengine-factor-reuse-001/collected-controls/n16-crosscheck.json)
+records the explicit shear and Gauss-point permutations. The
+[reproduction recipe and exact scripts](../../../parts/993-eng-carrier-0001/source/design-20261016/convergence-20261022/unitcellengine-study/README.md)
+describe the isolated pinned environment, retained negative control and bounded
+N=64 continuation. This qualifies this backend/operator comparison; it does not
+yet establish carrier convergence or a cellular-part result.
