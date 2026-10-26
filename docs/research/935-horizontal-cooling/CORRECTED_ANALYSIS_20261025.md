@@ -842,6 +842,13 @@ supplies the reference boundary NPZ and receipt needed to rerun the existing
 `audit-tetgen-002.py` against this output.
 The private GitHub release reports the same archive SHA-256 digest.
 
+The [private four-view comparison](https://github.com/cluster2600/porscheparts-935-private/releases/tag/935-root-repair-20261025)
+(`weak-cell-comparison.png`, SHA-256
+`d139ea4810684d4915561884c16a5ee2bcb0f815aa4672e28a60713a531baffc`)
+shows that the main weak-cell clusters persist near the inner annulus and
+selected blade junctions. This is a visual localization, not proof of a scan
+defect. The private release digest matches the local image.
+
 Reproduce the private PLC with Python 3.12, NumPy 1.26.4, SciPy 1.13.1 and
 trimesh 4.9.0. The Mac's existing SciPy 1.15.3 installation failed to load a
 native module, so the isolated versions were used. Run the existing
