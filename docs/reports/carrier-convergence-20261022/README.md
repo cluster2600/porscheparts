@@ -1077,3 +1077,84 @@ complete carrier replay passes the component contract, but neither that result
 nor the analytic controls tests the linked PARDISO backend. The [refusal receipt](evidence/mesh-quality-20261025/mkl-feasibility-015/qualification-refusal.json)
 preserves this distinction. Any later PARDISO attempt needs separately bound
 solver-selection decks and fresh controls; a successful link is insufficient.
+
+### Can the cellular core save more mass?
+
+Yes, the conditional budget grows when the assumed retained skin is reduced.
+The following separate design scenarios reuse the admitted CPU/CUDA distances,
+keep the **10 mm bore keepout, 260 mm inboard limit, 10% maximum selected-volume
+fraction and 40% relative-density scenario**, and preserve the original 1.5 mm
+screen as the reference. They change a design assumption, not the oracle error
+limit or the convergence criteria.
+
+| Retained analysis skin [mm] | Selected cells | Selected volume [mm³] | Conditional saving [g] | Baseline T10 energy in selected cells |
+|---|---:|---:|---:|---:|
+| 0.75 | 39,130 | 13,237.789 | 35.107 | 1.9399% |
+| 1.00 | 21,549 | 9,601.908 | 25.464 | 1.1861% |
+| 1.25 | 12,222 | 6,884.230 | 18.257 | 0.7451% |
+| **1.50** | **7,401** | **4,778.814** | **12.673** | **0.4641%** |
+| 2.00 | 2,861 | 2,133.430 | 5.658 | 0.1859% |
+| 3.00 | 388 | 446.148 | 1.183 | 0.0370% |
+
+![Conditional mass-versus-skin and admitted baseline energy](../../media/carrier-convergence-20261022/cellular-skin-sweep-001/cellular-skin-sensitivity.png)
+
+The 1.5 mm row reproduces the **exact original selected-cell index roster**.
+Every scenario independently integrates the admitted T10 stresses over its own
+selected cells, while the ranking remains the original T4 baseline energy
+ranking. Their quadratic integrated volumes match the geometric screen volumes.
+The [frozen sweep contract and results](evidence/mesh-quality-20261025/cellular-skin-sweep-001/assessment.json)
+retain the actual source identities and the unchanged original parameters.
+
+These are design comparisons, not adopted printable wall thicknesses. A lower
+skin can select more material for replacement, but neither its baseline energy
+fraction nor the mass arithmetic solves the modified cellular carrier. The
+retained geometry and nominal mass stay unchanged. Wider architectural changes
+and different cell pitches are outside this particular whole-cell screen; the
+35.107 g row is not a universal lightening limit.
+
+### Cell refinement reaches N=48; N=64 time limit retained
+
+Both six-strain **N=48 C3D8** runs now pass the complete periodicity, energy,
+reaction-work, reciprocity and positivity checks. Their actual solid fraction is
+**0.3990162**, minimum tensor stiffness ratio **0.1636402**, and void-floor
+sensitivity **0.07624%**. The full tensor change from N=32 is **1.60463%**, within
+the unchanged 2% threshold. This is the first successive passing refinement;
+the preceding N=24→32 comparison failed.
+
+![Four actual C3D8 grid levels](../../media/carrier-convergence-20261022/periodic-cell-research-002/periodic-cell-stiffness.png)
+
+The first N=64 strain case reached its predeclared **600 s** limit. Its actual
+receipt records return code **124**, a reaped process, unchanged inputs and no
+finished marker. Maximum sampled solver RSS was **18,052,382,720 bytes**; this
+was a time refusal, not an accepted N=64 tensor. The
+[continuation refusal](evidence/mesh-quality-20261025/periodic-gyroid-study-002/refusal.json)
+and [case receipt](evidence/mesh-quality-20261025/periodic-gyroid-study-002/n64-floor1e-4/case-0/actual-terminal.json)
+remain alongside the completed N=48 data. Cell stiffness convergence is still
+false at this checkpoint. The next backend attempt must preserve the same
+C3D8 equations and qualify actual PARDISO dispatch before continuing this series.
+
+### Separate native FFT experiment
+
+A pinned **µSpectre 0.27.0** source build provides an additional periodic-cell
+research path. It is a separate Fourier-Galerkin discretisation and is **not**
+counted as another C3D8 mesh level. The actual native binding experiment passes
+six full-solid and six layered-composite strain cases against independent
+analytic tensors, with relative tensor errors **3.45e-16** and **1.92e-16**.
+A six-strain N=17 gyroid at void stiffness 1e-4 also passes the independent
+Hooke-law, projected equilibrium and energy checks.
+
+The 1e-6 gyroid trial fails its fixed **10,000-iteration / 1e-10 CG** condition:
+the last reported residual is **1.53198e-9**. No tolerance was relaxed and no
+high-contrast tensor was admitted. See the [native FFT qualification summary](evidence/mesh-quality-20261025/fft-feasibility-001/qualification-summary.json).
+Neither this trial nor its different discretisation establishes cell or carrier
+convergence.
+
+The isolated build needed one documented stale C++ accessor correction. On the
+current Mac, duplicate private Mach-O loader paths also needed removal; before
+and after hashes confirm that the executable `__text` sections were unchanged.
+The actual experiment calls the same native PocketFFT cell factory used by the
+official Python wrapper. That full helper package remains unavailable because
+its eager SciPy ProPACK import is refused by the Mac loader. This is an
+experimental native-API probe, not a qualification of the full Python package.
+All modifications are confined to the private environment; system packages and
+the accepted CalculiX binary are unchanged.
