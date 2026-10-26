@@ -214,7 +214,7 @@ boundary. Its three focused parser/matching tests pass.
   boundary faces. The plot shows the full radial/axial distribution; its axes
   are not calibrated 935 dimensions.
 
-This focuses the next local surface/connectivity repair on the blade-root
+This focuses the next local volume-mesh investigation on the blade-root
 neighborhood rather than the exterior block. It does not prove that the scan
 itself is defective: the candidate reconstruction, surface triangulation and
 volume mesher can each contribute. Any changed surface must repeat the full
@@ -236,6 +236,20 @@ python twins/935-horizontal-cooling-system-f0/source/corrected-analysis-20261025
   work/PRIVATE-LOCALIZATION/log.checkMesh.localization \
   work/NEW/native-failure-localization.json
 ```
+
+A second pinned, private cross-check mapped all 1,850 skew rotor boundary
+faces back to the analysis surface triangles. Their median equilateral
+quality is 0.795; only 54 fall below 0.1 and 134 below 0.2. Just two skew
+faces lie within 5 mm of the 63 `surfaceCheck` self-intersection points,
+with a median nearest distance of 29.2 mm under the provisional 0.001 m/source
+unit scale. Triangle quality and the checker points therefore do not, on
+their own, explain most native skew-face failures. These are screening
+statistics, not a proof of mesher causality. Inspect near-wall volume fill and
+clearances before modifying measured geometry. The private cross-check
+archive `root0p7-cross-modal-screen-009.tar.gz` has SHA-256
+`68415bf565651ab14f000f8ecfe8c6d05b8f898a537fa83e4966db1e9f1f042d`;
+its receipt has SHA-256
+`136e575e4378d489e55f2aa56682b284966092a0cbbd4ee6fd10033104c19fa7`.
 
 The [reduced machine-readable receipt](corrected-analysis-20261025.json)
 identifies the source, candidate, case and private checkpoint. The private
