@@ -137,6 +137,62 @@ file-hashed receipt. Its SHA-256 is
 the receipt SHA-256 is
 `be57e637ae36124ca316da55c2e3d274f8265fc5ce41f39096608fdb1cde4880`.
 
+Three bounded controls then tested whether these concave cells were introduced
+only by snapping or removed by a finer cut. All used the **same pinned rotor
+OBJ**, disabled layers, an 8 GiB virtual-memory limit and Foundation 13:
+
+| Surface levels | Snap | Final cells | Concave cells | Outcome |
+| --- | --- | ---: | ---: | --- |
+| 2/3 | on | 236,898 | 13,772 | `checkMesh` failed |
+| 2/3 | off | 236,898 | 19,105 | `checkMesh` failed |
+| 3/4 | on | — | — | Timed out at 420 s during snap; no final mesh |
+| 3/4 | off | 708,822 | 64,800 | `checkMesh` failed |
+
+The 2/3 on/off pair shows that snapping is **not the sole cause**: the
+castellated-only mesh already fails. The 3/4 controls also change the
+distance-refinement level from 1 to 2, so they do not isolate surface
+refinement alone. None of these configurations is CFD-admissible. The
+[private release](https://github.com/cluster2600/porscheparts-935-private/releases/tag/935-root-repair-20261025)
+preserves the control receipts and logs, including the 3/4 no-snap polyMesh:
+
+| Private archive | SHA-256 | Receipt SHA-256 |
+| --- | --- | --- |
+| `root0p7-no-snap-control-004.tar.gz` | `53423ec2fc33152a8ddd207e40ac67001bd5fb6f5cd7397288006e319ee4637e` | `d50b7994d02db94fec69cd29977409c2e8eabe744ceb0cbfba65b8d8e5d58207` |
+| `root0p7-refine34-timeout-005.tar.gz` | `f50cd62c4acb843b1fd00be4f817876f29c1846a96e751b393b57d03c2e60b1f` | `57d55c8dec62b06ae97170c0d391a84ee7f95222f5d7995a2cffd9780461be60` |
+| `root0p7-refine34-nosnap-rejected-006.tar.gz` | `14fd4c6336adcaa91efae38fd124e77e4221523fe2b155c0e807845de704ba6e` | `b66b326f296a5b588ed31b6fcbb44728a1c024ed11f1af4fac6560dafef59d72` |
+
+### Native OpenFOAM check of the TetGen O5 alternative (rejected)
+
+The existing pinned O5 TetGen output was also imported on Kali1 with
+Foundation 13 `tetgenToFoam -noFaceFile`. Its transferred `.node`, `.ele` and
+`.face` files matched the local SHA-256 values; `-noFaceFile` deliberately
+ignored face markers for this *quality-only* conversion. OpenFOAM reconstructed
+3,714,547 tetrahedra, one connected fluid region and a single closed
+895,732-face `defaultFaces` boundary. Native
+`checkMesh -allGeometry -allTopology` passed the topological and positive-cell-
+volume checks but **failed five geometric checks**:
+
+| Check | Count |
+| --- | ---: |
+| Faces over 70° non-orthogonality | 170,609 |
+| Highly skew faces | 1,864 |
+| Cells with determinant below 0.001 | 95,978 |
+| Faces with interpolation weight below 0.05 | 11,685 |
+| Faces with volume ratio below 0.01 | 1,135 |
+
+The minimum positive cell volume was 1.92 × 10⁻¹⁷ m³ under the still
+unverified scale. This route has no concave tetrahedra, but its other quality
+failures independently reject it for CFD. It also has no separated inlet,
+outlet or rotor patches because face markers were not imported. The
+[private conversion archive](https://github.com/cluster2600/porscheparts-935-private/releases/tag/935-root-repair-20261025)
+contains the complete OpenFOAM polyMesh, logs and per-file hashes. Its archive
+SHA-256 is `4d4b4d0f3629d27c0eb8c1e1bea462af65526f048810b03cfe1a64dbe3674b06`;
+the receipt SHA-256 is
+`bc3146ef7de9b8bc9c691a6796718a8c764d79e51d58fb13b5743d38240ef70f`.
+No solver run or flow curve is credited. The next geometry work must target
+the weak rotor-boundary neighborhoods while preserving the certified surface
+envelope and the separate mechanical interfaces.
+
 The [reduced machine-readable receipt](corrected-analysis-20261025.json)
 identifies the source, candidate, case and private checkpoint. The private
 [release](https://github.com/cluster2600/porscheparts-935-private/releases/tag/935-root-repair-20261025)
