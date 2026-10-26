@@ -961,6 +961,43 @@ python3 twins/935-horizontal-cooling-system-f0/source/corrected-analysis-2026102
   work/NEW/rebased-drive-loads.json
 ```
 
+### Output coupling gap: ideal annular body screen
+
+The scans still do not define a torque-carrying connection between the output
+patch and rotor bore. The [annulus screen](../../../twins/935-horizontal-cooling-system-f0/source/corrected-analysis-20261025/screen_hub_annulus.py)
+uses only the already reported nearest-point radii (7.62052 and 11.45477
+uncalibrated source units) and the four observed axial bands spanning −20..0.
+Under the **unverified** 1 mm/source scale, an ideal continuous annulus filling
+that entire radial gap for 20 mm has 4.59549 cm³ of material and polar section
+`J = π(Ro⁴ − Ri⁴)/2 = 2.17463×10⁻⁸ m⁴`. For the same hypothetical 6,000 rpm,
+0.1 s stop and 0.5 network-resistance case above:
+
+| Same material as rotor | Ideal annulus body mass | Nominal outer torsional shear `T Ro/J` |
+|---|---:|---:|
+| AlSi10Mg | 12.27 g | 32.87 MPa |
+| WE43 density surrogate | 8.41 g | 22.90 MPa |
+| Ti‑6Al‑4V | 20.22 g | 53.41 MPa |
+
+These are **optimistic body-only section calculations**, not a sleeve design.
+One closest-point pair does not measure the full shaft circumference; the
+observed drive arc leaves about half the circumference unseen. A real adapter
+would need machining clearance or interference, torque-transfer features,
+axial retention and fillets that change the section and local stresses. Its
+identity, fit, fatigue, thermal behavior and support loads remain unknown.
+The [private 160-case report](https://github.com/cluster2600/porscheparts-935-private/releases/tag/935-root-repair-20261025)
+(`hub-annulus-screen.json`) has SHA-256
+`dd421f9c9731605c97ee2efda3ebb348fc406274eda6f80d451cfe00b23d7853`,
+matching the release digest. It authorizes no manufacturing or speed limit.
+
+```sh
+mkdir -p work/NEW
+python3 twins/935-horizontal-cooling-system-f0/source/corrected-analysis-20261025/screen_hub_annulus.py \
+  work/935-assembly-0p7-20261025/hub-output-metrology-001.json \
+  work/935-cfd-root0p7-20261026-o5-audit/rebased-drive-loads.json \
+  work/935-cfd-root0p7-20261026-o5-audit/rotor-dynamics-screen.json \
+  work/NEW/hub-annulus-screen.json
+```
+
 ```sh
 mkdir -p work/NEW
 uv run --no-project --python 3.12 --with numpy==1.26.4 --with trimesh==4.9.0 python \
