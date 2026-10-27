@@ -74,3 +74,38 @@ safe-speed claim follows from this study. The next assembly task is to measure
 the actual shaft and rotor attachment surfaces, identify a torque path and
 axial retention, then replace this empty visual space with a documented
 coupling design.
+
+## Bore-axis tilt sensitivity
+
+The original rotor bore fit points 0.75106° away from the provisional Z axis.
+The [tilt review](../../../twins/935-horizontal-cooling-system-f0/source/picogk-hub-space/review_hub_space_tilt.py)
+rigidly tilts the visual annulus around the assumed origin while holding the
+observed drive surface fixed. Twelve directions, spaced by 30°, have no sampled
+surface crossing. The smallest sampled distance is 0.22168 source units.
+The maximum motion between a direction and its nearest sample is 0.07815
+source units, computed from the native mesh's 22.83839 source-unit maximum
+vertex norm and the relative rotation quaternion. With a 0.0001 numerical
+reserve, the continuous azimuth lower bound is **0.14343 source units** at
+this one tilt magnitude and origin. A midpoint matrix fixture agrees with the
+quaternion motion bound.
+
+The [private tilt report](https://github.com/cluster2600/porscheparts-935-private/releases/download/935-root-repair-20261025/tilt-direction-verified.json)
+was read back with SHA-256
+`cd760443337de3d57e3195f90a129ff91c348bd64c40c87a52a780e4c71fee7c`.
+Reproduce it with:
+
+```sh
+uv run --no-project --python 3.12 --with numpy==1.26.4 \
+  --with python-fcl==0.7.0.10 python \
+  twins/935-horizontal-cooling-system-f0/source/picogk-hub-space/review_hub_space_tilt.py \
+  work/935-hub-space-20261027/native-004 \
+  work/935-assembly-0p7-20261025/six-run-001 \
+  work/935-assembly-0p7-20261025/axis-pose-sensitivity-001.json \
+  work/NEW/tilt-report.json
+```
+
+This is a conditional surface statement. The fitted bore direction is not a
+verified historical shaft axis. Axis translation, scan error, thermal growth,
+running deflection, complete solid occupancy and a real mechanical coupling
+are not represented. In particular, the lower bound is not an installation
+tolerance or operating clearance.
