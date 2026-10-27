@@ -521,6 +521,21 @@ Its five members passed extraction hash readback; SHA-256
 matches the GitHub asset digest. A measured mating datum and torque-transfer
 feature remain prerequisites for a functional hub connection.
 
+An angular audit of those five shared Z bands finds 36–37 occupied five-degree
+bins per band, leaving approximately half of each circumference unobserved.
+For all 6,879 selected sidewall face centroids, the STL normal points radially
+outward and agrees with the triangle winding. The visible patch is therefore
+**oriented like an exterior shaft wall**, rather than an inward-facing bore
+wall, in this mesh. The largest absolute five-degree-bin median residual from
+the respective partial-circle fit is 0.43 source unit. No key, spline or
+retention feature is identified by this screen; their absence cannot be
+inferred from the missing half-circumference or this angular resolution.
+The private [angular-profile archive](https://github.com/cluster2600/porscheparts-935-private/releases/download/935-root-repair-20261025/hub-output-angular-profile-003.tar.gz)
+contains the script, receipt, plot and its dependency, with no scan meshes.
+All six archive members passed extraction hash readback; its SHA-256
+`a5712841d75e989632cd8f91f35366f3e715bb57e4b7faf3c7a34bd2182a9b68`
+matches the GitHub asset digest.
+
 The fitted axis of the original rotor hub patch differs by **0.75106°** from
 the reconstruction frame's Z axis. A follow-up geometric bound uses
 the maximum rotor vertex distance from the assembly origin (146.46243 source
