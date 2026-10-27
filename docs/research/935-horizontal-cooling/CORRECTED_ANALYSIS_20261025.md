@@ -306,6 +306,39 @@ receipts. All 15 extracted members passed hash readback; its SHA-256
 matches GitHub. The disposition receipt SHA-256 is
 `f90c1da6570ff8d86767a4b33dd872fa6155f7224717675c6a2c5de84de83f2c`.
 
+### Native OpenFOAM conversion and precision check: rejected
+
+The targeted 4,023,860-tetrahedron volume was converted with Foundation 13
+`tetgenToFoam` in the pinned mesh-CFD image on the Mac. The first case omitted
+`writePrecision`; its ASCII `polyMesh/points` rounded source coordinates by as
+much as 5 × 10⁻⁷ m in the provisional SI frame and collapsed 27 of the
+867,235 distinct TetGen vertices. A bounded `checkMesh -allGeometry
+-allTopology -meshQuality` run reached geometry checks but was stopped after
+15 minutes. It had already reported 130 zero/negative-volume cells, so this
+case was rejected. These counts are not a completed quality verdict.
+
+The case was rebuilt with `writePrecision 17` in `system/controlDict`. A
+point-by-point audit found zero changed coordinates and zero collapsed
+vertices. The complete native `checkMesh` still ended with **9 failed mesh
+checks**: 7 zero/negative-volume cells, 1,211 highly skew faces, 760 low-quality
+or negative face-decomposition tets, and 83,745 cells with determinant below
+0.001. It wrote 189,881 unique faces to `meshQualityFaces`. Of those, 180,083
+are internal and 9,798 are boundary faces. In the conditional rotor envelope
+`r < 0.145 m, |z| < 0.04 m`, 189,539 error faces lie near the rotor; 165,359
+lie in the `0.05 <= r < 0.10 m` radial band. This localization guides the next
+surface-aware remesh but does not establish a measured rotor dimension.
+
+The [reduced receipt](native-openfoam-precision-20261027.json) pins the input,
+container, logs and counts. The private
+[read-back-verified bundle](https://github.com/cluster2600/porscheparts-935-private/releases/download/935-root-repair-20261025/935-openfoam-precision17-20261027.tar.gz)
+contains both logs, the exact case dictionaries, coordinate audits, the
+quality-face set and the localization script/report. Its SHA-256 is
+`a7d3fdf78315c9c4a50c0c7709fcf7171c227a09d8b1ec2764a39a272fcf5958`,
+matching the private GitHub asset digest. The large scan-derived `polyMesh`
+remains local. **No CFD solve is admitted** from either conversion. The next
+mesh trial must control rotor-wall size and growth, preserve the boundary
+contract, use 17-digit output and pass the full native quality gate.
+
 The [reduced machine-readable receipt](corrected-analysis-20261025.json)
 identifies the source, candidate, case and private checkpoint. The private
 [release](https://github.com/cluster2600/porscheparts-935-private/releases/tag/935-root-repair-20261025)
