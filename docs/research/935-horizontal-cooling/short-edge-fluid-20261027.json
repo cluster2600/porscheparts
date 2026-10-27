@@ -1,0 +1,85 @@
+{
+  "schema": "935-short-edge-fluid-trial-v1",
+  "date": "2026-10-27",
+  "classification": "analysis_only_surface_correction_provisional_duct",
+  "native_picogk_rotor_sha256": "5f999a7596a5d491027eb4d9020a4e14bcad2620aa1e2a58748452df461b815b",
+  "public_collapse_script_sha256": "d8e72f5974241e78789e30b8e03f9e39fc30ab750c16e7d3a21409d8509d2930",
+  "candidate": {
+    "indexed_npz_sha256": "965403d427aee21f1b192cbc51383b042ae6eba21bda5035f2f66a6ec90a6793",
+    "off_sha256": "769fcf1aebca95404e2dab592681fe4a3c3a165112e4b84d71c4b38a15f196bf",
+    "private_receipt_sha256": "2352b2933695adc8d85e7fd908ac07a32863b8b0fe51ce1850e8657ca6009bf1",
+    "removed_vertices": 4,
+    "removed_faces": 8,
+    "watertight": true,
+    "winding_consistent": true,
+    "euler_characteristic": 0,
+    "relative_volume_change": -6.078983343857225e-11,
+    "CGAL_bidirectional_envelope_bound_source_units": 0.0225,
+    "CGAL_complete_containment_pass": true,
+    "CGAL_topology_and_self_intersection_pass": true,
+    "CGAL_report_sha256": "f8f78604620ed00d281fc13f507fb3b8e336b82c410d30cfc9cbb7baf06ac331"
+  },
+  "provisional_fluid_PLC": {
+    "receipt_sha256": "59ed57446f08916c5ef2616d5e541054b92fe4131d18c3772a574ca91951e10e",
+    "vertices": 668236,
+    "boundary_triangles": 1336468,
+    "rotor_triangles": 1319466,
+    "conditional_fluid_volume_m3": 0.0514088408189673,
+    "source_unit_m_per_uncalibrated_unit_assumed": 0.001
+  },
+  "TetGen": {
+    "version": "1.5.1",
+    "command": "tetgen -pYq1.4O5MzCf fluid.smesh",
+    "execution_receipt_sha256": "66f2880c629f9b5daec8665887b3cc6f114cc25c0d1e5647dcb0093c671d5e31",
+    "tetrahedra": 5695897,
+    "vertices": 1236590
+  },
+  "independent_audit": {
+    "assessment_sha256": "b9b8e3f19d9f849b9b02d45e91455d1515d2e4c00313a94f20d764d4cc95df61",
+    "quality_sha256": "a47a0079359225c6577239b8aa1cb9f535dd8ef12f10061d44272cd9e18479a8",
+    "exact_zero_or_negative_tetrahedra": 0,
+    "connected_components": 1,
+    "boundary_coordinate_triangle_marker_bijection": true,
+    "mean_ratio_min": 0.012124131333098573,
+    "mean_ratio_below_0p01": 0,
+    "unmodified_native_mean_ratio_below_0p01": 18
+  },
+  "OpenFOAM": {
+    "version": "Foundation 13",
+    "writePrecision": 17,
+    "imported_points_changed": 0,
+    "point_roundtrip_sha256": "7e847ba3e1e5ede12fcb0971882e07e098f7f99329932022317f7c7690200193",
+    "import_log_sha256": "ef0f5ae5b3e86bf94d618eee06b933acbd7d95b17e6a291a9e75a1cf8665cc91",
+    "checkMesh_log_sha256": "9e2853ddc1e13e1418eb61af81edfa31b7f0275f657967367cb651adb70eafa1",
+    "checkMesh_command": "checkMesh -constant -allGeometry -allTopology -writeSets -writeSurfaces",
+    "checkMesh_failed_checks": 4,
+    "high_aspect_ratio_cells": 0,
+    "highly_skew_faces": 3,
+    "low_determinant_cells": 7385,
+    "low_interpolation_weight_faces": 727,
+    "low_volume_ratio_faces": 71,
+    "short_edges": 0,
+    "cell_volumes_pass": true,
+    "face_pyramids_pass": true,
+    "face_tets_pass": true,
+    "concave_cells_pass": true,
+    "connected_regions": 1,
+    "checkMesh_status": "failed_quality_not_CFD_admitted"
+  },
+  "private_bundle": {
+    "url": "https://github.com/cluster2600/porscheparts-935-private/releases/download/935-root-repair-20261025/935-short-edge-fluid-20261027.tar.zst",
+    "sha256": "86730085fb8931b07b58c9387ff9c0b1690720eaa7eec66b59912ea4694811ce",
+    "payload_members_hash_readback": 19,
+    "remote_asset_digest_matches": true
+  },
+  "private_openfoam_bundle": {
+    "url": "https://github.com/cluster2600/porscheparts-935-private/releases/download/935-root-repair-20261025/935-short-edge-openfoam-20261027.tar.zst",
+    "sha256": "17a97ffaf3637502e941ee9a6f96620a791c2ddc31198f668b9f5b35fbc4ba6d",
+    "payload_members_hash_readback": 22,
+    "remote_asset_digest_matches": true
+  },
+  "scale_verified": false,
+  "physical_935_shroud_defined": false,
+  "CFD_admitted": false,
+  "manufacturing_authorized": false
+}
