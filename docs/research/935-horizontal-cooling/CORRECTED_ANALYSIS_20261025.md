@@ -387,7 +387,8 @@ volumes had zero nonpositive six-volumes in the numerical audit. The optimized
 boundary has an exact vertex and triangle multiset match to the trial
 surface. Its count below tetrahedral mean ratio 0.01 was **3,226**, compared
 with **3,255** in the reference optimization: a gain of only 29 cells, with
-3,226 still weak. The candidate is therefore **rejected for FEA and CFD**.
+3,226 still weak. The candidate is therefore **not admitted for FEA**; this
+rotor-solid volume does not provide a fluid-domain CFD mesh.
 This trial shows that flipping only the most degenerate surface triangles is
 insufficient; the annular surface and near-wall growth still need a broader,
 envelope-certified treatment.
@@ -398,6 +399,36 @@ All 19 payload members passed extracted hash readback, and the bundle SHA-256
 `eaf0a57c203945e5b59950fdc09968ea55945f1fd28f3b80e1c850a0812b4225`
 matches the private GitHub asset digest. No operating-point, stress or
 manufacturing result is inferred.
+
+### Direct volume on the native PicoGK surface: improved, not admitted
+
+The unsimplified PicoGK 0.7-source-unit rotor was compared with the protected
+analysis surface using the same triangle-quality metric. In the annular
+`85 <= r < 90` source-unit band, the native surface has 31 of 198,095
+triangles below 0.1, versus 6,927 of 144,833 on the analysis surface. This
+large difference shows that the simplification stage materially changes the
+local facet shape; it does not by itself prove why each OpenFOAM cell failed.
+The native 0.7 surface is still a reconstruction hypothesis with unverified
+physical scale and fit.
+
+Using the same Gmsh 4.15.2 Frontal settings as the preceding rotor-solid
+control, a direct native-surface trial generated 2,202,340 raw and 2,159,530
+optimized tetrahedra. The numerical shape audit found zero nonpositive
+six-volumes in either volume. Every optimized boundary vertex and triangle
+matches the native PicoGK input exactly. The optimized volume has 1,235
+tetrahedra below mean ratio 0.01, versus 3,255 of 1,393,021 on the simplified
+reference: 0.057% versus 0.234%. Its minimum mean ratio is still 0.000470,
+so this remains an **exploratory solid volume, not an admitted FEA mesh**.
+It is not a CFD fluid mesh, and no solver or convergence result is claimed.
+
+The [reduced native-volume receipt](native-picogk-volume-20261027.json) and
+the private [19-file source and volume bundle](https://github.com/cluster2600/porscheparts-935-private/releases/download/935-root-repair-20261025/935-native-picogk-volume-20261027.tar.zst)
+retain the native PicoGK surface, raw and optimized volumes, scripts and
+audits. All payload hashes passed extraction readback; bundle SHA-256
+`7f4810c734b380811aa99b0a104eb95a4fc8126238b093d9de0e63f5f5ea6193`
+matches the private GitHub asset. The next fluid-domain trial should use the
+native PicoGK boundary, control local cell growth, and repeat the independent
+boundary and native OpenFOAM quality gates before any pressure or flow solve.
 
 The [reduced machine-readable receipt](corrected-analysis-20261025.json)
 identifies the source, candidate, case and private checkpoint. The private
