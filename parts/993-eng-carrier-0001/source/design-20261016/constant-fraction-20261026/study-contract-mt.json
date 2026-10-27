@@ -1,0 +1,18 @@
+{
+  "study": "periodic gyroid cell refinement at constant actual solid fraction",
+  "why": "The 2026-10-22 sequence held the threshold fixed, so each resolution carried a different actual solid fraction (0.39648 to 0.41204) and the full tensor change tracked that drift rather than discretisation.",
+  "target_solid_fraction": 0.4000097,
+  "target_provenance": "the declared design point of the earlier study: the fraction its fixed threshold 0.6170021750539874 produces at the separate 96^3 geometry sampling",
+  "resolutions": [16, 24, 32, 48],
+  "cross_check": "resolutions 16, 24 and 32 are repeated here against the single-thread sequence; agreeing tensors demonstrate the threading is sound for this build", "resolution_64_excluded": "N=64 peak solver RSS was 16.81 GiB in the earlier study; this host has 15 GiB total, so N=64 is not attempted here rather than attempted and refused",
+  "solver_binary": "/usr/bin/ccx",
+  "solver_binary_sha256": "6adaabf5bf0382fc2bfd692b984320ed375dba777f7dc8297562f818043faa1b",
+  "solver_binary_note": "CalculiX 2.21 Linux build from the cadsim image; NOT the pinned Mac ccx_2.21 of the earlier study, so tensors are not expected to match it bit for bit",
+  "solver_threads": 8,
+  "solver_threads_note": "eight threads, declared as a separate extension because the single-thread sequence refused N=48 on the 1200 s cap; the earlier work counted 142/500 wrong multithreaded solves, which its acceptance checks detected, so the same periodic-residual, energy, reaction-work, reciprocity and positivity checks police this run and a wrong solve refuses rather than passes",
+  "seconds": 1200,
+  "rss_gib": 10.0,
+  "carrier_convergence_demonstrated": false,
+  "cellular_part_generated": false,
+  "manufacturing_released": false
+}
