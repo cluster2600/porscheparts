@@ -1,0 +1,115 @@
+{
+  "status": "blocked_by_mesh_quality_no_hydraulic_solution",
+  "execution_host": "kali1",
+  "architecture": "x86_64",
+  "runtime": "OpenFOAM Foundation 13-cde978a97c93",
+  "isolation": {
+    "home_hidden_except_job": true,
+    "system_read_only": true,
+    "network_namespace": true,
+    "memory_max_gib": 6,
+    "swap_max_bytes": 0,
+    "cpu_quota_percent": 100,
+    "solver_timeout_seconds": 1800
+  },
+  "runtime_package": {
+    "url": "https://dl.openfoam.org/ubuntu/dists/noble/main/binary-amd64/openfoam13_20250911_amd64.deb",
+    "sha256": "a656d9153214aa415919e00bb83e07d69ab80ae44de0dd8f3ff5745a8c6346db",
+    "bytes": 118743502,
+    "signed_index_sha256": "99189659704a2522bb02b13d2cf6b47c6fc910c8364dd53bb4b9d5d843aa1749",
+    "signing_key_fingerprint": "678184F120A87A475F6569726C0DAC728B29D817",
+    "inrelease_sha256": "9366063d1bb2058f43ccc91e553db6f28c2270e3225a78026db818e6d54a3a5b",
+    "signature_check_sha256": "d1da7dac72182218d1eb26de3f2d7e61ee6e666ce644992a88e81221812476b0"
+  },
+  "input_mesh_sha256": "b368f5971be2dc559a613175c8e383a86d6dd33a25de8834908cc812af57e903",
+  "case_report_sha256": "9f401ca1c739cdc73d3bc32704254cab1af863c2f29db5afe8c5edb7b9d08419",
+  "flow_m3_s": 0.0008103932700333026,
+  "inlet_area_mm2": 339.0,
+  "cases": [
+    {
+      "case": "001",
+      "cells": 542188,
+      "failed_mesh_checks": 2,
+      "accepted": false
+    },
+    {
+      "case": "002",
+      "cells": 700751,
+      "failed_mesh_checks": 8,
+      "accepted": false
+    },
+    {
+      "case": "006",
+      "cells": 541931,
+      "failed_mesh_checks": 4,
+      "accepted": false
+    }
+  ],
+  "intermediate_failures": {
+    "003": "invalid checkMesh writeSets argument; missing diagnostic cellSet",
+    "004": "patchToFace requires patch rather than patches",
+    "005": "removeFaces aborted on illegal two-point face"
+  },
+  "local_merge": {
+    "original_cells": 542188,
+    "cells": 541931,
+    "selected_faces": 257,
+    "removed_internal_faces": 257,
+    "flagged_cells": 252,
+    "exact_boundary_faces_preserved": true,
+    "points_unchanged": true
+  },
+  "native_logs": {
+    "case-001/log.checkMesh": {
+      "original_sha256": "2fa0b266c0cc35d1fb5d15deffbe7baffd26f0443529c0377cb472078b042b50",
+      "normalised_file": "case-001-log.checkMesh.txt",
+      "normalised_sha256": "b82fee51d6517e3dd5778739cf1535c3ae202c0bc49334e64139d3eed3b73906"
+    },
+    "case-002/log.checkMesh": {
+      "original_sha256": "ecbb3b41c2bd898d0828e834a555d065c5b4f5858088553cc8f82d48850a7838",
+      "normalised_file": "case-002-log.checkMesh.txt",
+      "normalised_sha256": "2d6eb34dfcb23ce444cc6abbbe4a0ad5cca53237d1db84d39965332393a20252"
+    },
+    "case-006/log.checkMesh": {
+      "original_sha256": "5183a4d8552a34558287b8fd492eafe88ea5f16c734b96c7b8e29d1a55cb7d1a",
+      "normalised_file": "case-006-log.checkMesh.txt",
+      "normalised_sha256": "15b57ae803fa03bd008a13d24ea3f6ec4646d4b7441d0627f40c6f6dce23c6dc"
+    },
+    "case-005/log.removeFaces": {
+      "original_sha256": "f88bfe6e282b85489196e795629a794b8734e8510c487f22e8bb9bfeb8b04829",
+      "normalised_file": "case-005-log.removeFaces.txt",
+      "normalised_sha256": "379afdc998be2842cda542c45b33d58bb1caa90316762aba6fb6efe43c14bef9"
+    }
+  },
+  "archive": {
+    "local_path": "work/962-coolant-flow/kali-execution-001/kali-cfd-attempts-001.tar.gz",
+    "bytes": 166697668,
+    "sha256": "49507e98c899a091ddf62887923207505045cc2019c1139f5a9254bd805171f9",
+    "payloads": 189,
+    "manifest_sha256": "dd18bf3eb8352c61e5efad4fc9c2999b8ea6a3f865676e5a0f454587e805e762",
+    "all_payloads_independently_verified_locally": true
+  },
+  "source_hashes": {
+    "prepare_kali_bound_case.py": "00217d4380835f3436ad6a0c369ca8f27eb020e201b16967876d37b59787f1f5",
+    "prepare_kali_case.py": "341ad432cf3fdcf1ae8957b56bede83dd67c181c87348c0fb6eb8c9f33a7f602",
+    "run_kali_case.sh": "c74d769a1d027c2cf76c3b4a1386043acc090ac2d689d5bead513b7a0456c0b9",
+    "run_kali_serial.sh": "9cf5874a461aa9367c7232041a8b251721c656b9ac2dc15720ac6f5276f1df0d",
+    "merge_flagged_cells.py": "4dfb3ff44e721fb144a0c40554bbced1d9c819c7a9628a4f60f2138f003d8a3c"
+  },
+  "software_checks": {
+    "new_tests_passed": 8,
+    "head_tests": 241,
+    "head_errors": 2,
+    "head_skipped": 7,
+    "global_tests": 4205,
+    "global_failures": 2,
+    "global_errors": 29,
+    "global_skipped": 260,
+    "make_check_passed": false,
+    "global_log_sha256": "b116838b70540db93a2ae75b4c8df05256421f15c0d087c352c7e711344fe353",
+    "head_log_sha256": "d7f6947843500f7519016a78920f4d6c3f1cd2926660ac58beb4c238bae219d8"
+  },
+  "solver_started": false,
+  "hydraulic_result_accepted": false,
+  "manufacturing_authorized": false
+}

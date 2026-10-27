@@ -1,0 +1,51 @@
+/*---------------------------------------------------------------------------*\
+  =========                 |
+  \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
+   \\    /   O peration     | Website:  https://openfoam.org
+    \\  /    A nd           | Version:  13
+     \\/     M anipulation  |
+\*---------------------------------------------------------------------------*/
+Build  : 13-cde978a97c93
+Exec   : removeFaces mergeFaces -noFields
+Date   : Oct 25 2026
+Time   : 20:49:06
+Host   : "kali1"
+PID    : 222
+I/O    : uncollated
+Case   : <job>/case-005
+nProcs : 1
+sigFpe : Enabling floating point exception trapping (FOAM_SIGFPE).
+fileModificationChecking : Monitoring run-time modified files using timeStampMaster (fileModificationSkew 10)
+allowSystemOperations : Allowing user-supplied system call operations
+
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+Create time
+
+Create mesh for time = 0
+
+Read 747 faces to remove
+
+Original faces to be removed:747
+New faces to be removed:765
+
+Writing new faces to be removed to faceSet "constant/polyMesh/sets/compatibleRemoves"
+
+
+
+--> FOAM FATAL ERROR: 
+Created illegal face 2(61837 60737) at position:1010428 when filtering removed points
+
+    From function void Foam::polyTopoChange::compact(bool, bool, Foam::label&, Foam::labelList&, Foam::labelList&)
+    in file polyTopoChange/polyTopoChange.C at line 1047.
+
+FOAM aborting
+
+#0  Foam::error::printStack(Foam::Ostream&) at ??:?
+#1  Foam::error::abort() at ??:?
+#2  Foam::polyTopoChange::compact(bool, bool, int&, Foam::List<int>&, Foam::List<int>&) at ??:?
+#3  Foam::polyTopoChange::compactAndReorder(Foam::polyMesh const&, bool, bool, bool, int&, Foam::Field<Foam::Vector<double> >&, Foam::List<int>&, Foam::List<int>&, Foam::List<Foam::objectMap>&, Foam::List<Foam::objectMap>&, Foam::List<Foam::objectMap>&, Foam::List<Foam::Map<int> >&, Foam::List<int>&, Foam::List<int>&, Foam::List<int>&) at ??:?
+#4  Foam::polyTopoChange::changeMesh(Foam::polyMesh&, bool, bool, bool) at ??:?
+#5  ? in "/opt/openfoam13/platforms/linux64GccDPInt32Opt/bin/removeFaces"
+#6  ? in "/usr/lib/x86_64-linux-gnu/libc.so.6"
+#7  __libc_start_main in "/usr/lib/x86_64-linux-gnu/libc.so.6"
+#8  ? in "/opt/openfoam13/platforms/linux64GccDPInt32Opt/bin/removeFaces"

@@ -1,0 +1,256 @@
+/*---------------------------------------------------------------------------*\
+  =========                 |
+  \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
+   \\    /   O peration     | Website:  https://openfoam.org
+    \\  /    A nd           | Version:  13
+     \\/     M anipulation  |
+\*---------------------------------------------------------------------------*/
+Build  : 13-cde978a97c93
+Exec   : checkMesh -allGeometry -allTopology
+Date   : Oct 25 2026
+Time   : 20:46:25
+Host   : "kali1"
+PID    : 220
+I/O    : uncollated
+Case   : <job>/case-002
+nProcs : 1
+sigFpe : Enabling floating point exception trapping (FOAM_SIGFPE).
+fileModificationChecking : Monitoring run-time modified files using timeStampMaster (fileModificationSkew 10)
+allowSystemOperations : Allowing user-supplied system call operations
+
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+Create time
+
+Create mesh for time = 0
+
+Enabling all (cell, face, edge, point) topology checks.
+
+Enabling all geometry checks.
+
+Time = 0s
+
+Mesh stats
+    points:           1638773
+    faces:            2983305
+    internal faces:   2537573
+    cells:            700751
+    faces per cell:   7.878516049210062
+    boundary patches: 3
+    point zones:      0
+    face zones:       0
+    cell zones:       1
+
+Overall number of cells of each type:
+    hexahedra:     634031
+    prisms:        0
+    wedges:        0
+    pyramids:      0
+    tet wedges:    0
+    tetrahedra:    0
+    polyhedra:     66720
+    Breakdown of polyhedra by number of faces:
+        faces   number of cells
+            7   19
+            8   120
+            9   388
+           10   1345
+           11   2202
+           12   4243
+           13   6316
+           14   6077
+           15   5432
+           16   4167
+           17   2741
+           18   2139
+           19   1578
+           20   1123
+           21   919
+           22   798
+           23   670
+           24   684
+           25   649
+           26   607
+           27   607
+           28   718
+           29   737
+           30   836
+           31   829
+           32   873
+           33   856
+           34   945
+           35   1021
+           36   989
+           37   953
+           38   1042
+           39   972
+           40   1021
+           41   963
+           42   908
+           43   847
+           44   799
+           45   763
+           46   727
+           47   649
+           48   573
+           49   498
+           50   476
+           51   428
+           52   397
+           53   312
+           54   298
+           55   261
+           56   251
+           57   209
+           58   196
+           59   172
+           60   147
+           61   108
+           62   100
+           63   92
+           64   92
+           65   85
+           66   89
+           67   93
+           68   72
+           69   63
+           70   65
+           71   58
+           72   48
+           73   47
+           74   54
+           75   59
+           76   48
+           77   57
+           78   40
+           79   35
+           80   48
+           81   47
+           82   30
+           83   50
+           84   35
+           85   44
+           86   31
+           87   35
+           88   23
+           89   27
+           90   33
+           91   29
+           92   33
+           93   29
+           94   27
+           95   28
+           96   22
+           97   22
+           98   17
+           99   13
+          100   18
+          101   17
+          102   14
+          103   18
+          104   13
+          105   8
+          106   10
+          107   9
+          108   11
+          109   8
+          110   12
+          111   11
+          112   12
+          113   8
+          114   6
+          115   10
+          116   8
+          117   5
+          118   7
+          119   12
+          120   5
+          121   8
+          122   7
+          123   3
+          124   3
+          125   3
+          126   5
+          127   3
+          128   5
+          129   1
+          130   3
+          131   2
+          132   2
+          134   2
+          136   2
+          139   3
+          141   3
+          143   2
+          144   1
+          145   1
+          146   2
+          147   1
+          148   1
+          152   1
+          154   1
+          155   1
+          156   1
+          157   1
+          158   2
+          161   1
+          162   1
+          163   1
+          168   1
+          172   1
+          173   2
+          174   1
+          175   1
+          199   1
+
+Checking topology...
+    Boundary definition OK.
+    Cell to face addressing OK.
+    Point usage OK.
+    Upper triangular ordering OK.
+    Face vertices OK.
+    Topological cell zip-up check OK.
+    Face-face connectivity OK.
+    Number of regions: 1 (OK).
+
+Checking patch topology for multiply connected surfaces...
+                   Patch    Faces   Points                  Surface topology
+                   inlet      537      964  ok (non-closed singly connected)
+                  outlet      562     1003  ok (non-closed singly connected)
+                   walls   444633   446483  ok (non-closed singly connected)
+
+Checking geometry...
+    Overall domain bounding box (-0.076 -0.0650792007446289 0.008129994392395019) (0.076 0.06507865905761719 0.05413022613525391)
+    Patch bounding boxes
+                       inlet (-0.076 -0.01025 0.01375) (-0.07599999999999998 0.01025 0.03425)
+                      outlet (0.07599999999999998 -0.01025 0.01375) (0.076 0.01025 0.03425)
+                       walls (-0.076 -0.0650792007446289 0.008129994392395019) (0.076 0.06507865905761719 0.05413022613525391)
+    Mesh has 3 geometric (non-empty/wedge) directions (1 1 1)
+    Mesh has 3 solution (non-empty) directions (1 1 1)
+    Max cell openness = 5.931024408075397e-16 OK.
+    Max aspect ratio = 29.48661627596606 OK.
+    Minimum face area = 5.073589213129811e-10. Maximum face area = 3.317864068991707e-06.  Face area magnitudes OK.
+    Min volume = 1.092931317653108e-13. Max volume = 1.493733307350801e-08.  Total volume = 0.0001379370876514851.  Cell volumes OK.
+    Mesh non-orthogonality Max: 112.8553268251717 average: 34.23515150258176
+   *Number of severely non-orthogonal (> 70 degrees) faces: 32644.
+ ***Number of non-orthogonality errors: 326.
+ ***Error in face pyramids: 869 faces are incorrectly oriented.
+ ***Max skewness = 1930.229330307621, 713 highly skew faces detected which may impair the quality of the results
+    Coupled point location match (average 0) OK.
+ ***Error in face tets: 5585 faces with low quality or negative volume decomposition tets.
+    Min/max edge length = 1.106323484867832e-05 0.001892012010365511 OK.
+   *There are 74224 faces with concave angles between consecutive edges. Max concave angle = 90 degrees.
+    Face flatness (1 = flat, 0 = butterfly) : min = 0.4395329487698913  average = 0.998003474692436
+   *There are 809 faces with ratio between projected and actual area < 0.8
+    Minimum ratio (minimum flatness, maximum warpage) = 0.4395329487698913
+    Cell determinant (wellposedness) : minimum: 0.0004581782031829462 average: 3244.615645581694
+ ***Cells with small determinant (< 0.001) found, number of cells: 16
+ ***Concave cells (using face planes) found, number of cells: 37150
+    Face interpolation weight : minimum: 0.0002481829169847163 average: 0.3681614443629986
+ ***Faces with small interpolation weight (< 0.05) found, number of faces: 137
+    Face volume ratio : minimum: 0.0002791740529094554 average: 0.4920971695719363
+ ***Faces with small volume ratio (< 0.01) found, number of faces: 130928
+
+Failed 8 mesh checks.
+
+End
+

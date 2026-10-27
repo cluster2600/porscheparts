@@ -1,0 +1,157 @@
+Running as unit: 962-mmg-repair-001.service; invocation ID: 9ab9af42ac5346e597b2a019cf053667
+  -- MMG3D, Release 5.8.0 (Oct. 30, 2024) 
+     Copyright (c) Bdx INP/CNRS/Inria/UPMC, 2004-
+     Oct 25 2026 22:30:44
+
+  -- INPUT DATA
+  %% <job>/mmg-input-001/input.mesh OPENED
+  MAXIMUM MEMORY AUTHORIZED (MB)    3000
+     NUMBER OF VERTICES         130983
+     NUMBER OF TETRAHEDRA       542188
+     NUMBER OF TRIANGLES        150754
+  ** <job>/mmg-input-001/input.sol  NOT FOUND. USE DEFAULT METRIC.
+  -- DATA READING COMPLETED.     0.573s
+
+  &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+   MODULE MMG3D: 5.8.0 (Oct. 30, 2024)
+  &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+     git branch: No git branch found
+     git commit: No git commit found
+     git date:   No git commit found
+
+
+  -- MMG3DLIB: INPUT DATA
+  --  INPUT DATA COMPLETED.     0.000s
+
+  -- PHASE 1 : ANALYSIS
+
+  -- MESH QUALITY  542188
+     BEST   0.999550  AVRG.   0.722723  WRST.   0.031752 (284902)
+     HISTOGRAMM:   99.97 % > 0.12
+                   86.95 % >  0.5
+       0.8 < Q <   1.0    223382    41.20 %
+       0.6 < Q <   0.8    196558    36.25 %
+       0.4 < Q <   0.6     86971    16.04 %
+       0.2 < Q <   0.4     32749     6.04 %
+       0.0 < Q <   0.2      2528     0.47 %
+
+  ** SURFACE ANALYSIS
+     Connected component: 1,  genus: 10,   reoriented: 0
+     Edges: 226131,  tagged: 226345,  ridges: 0, required: 226131, refs: 214
+     4492 ridges, 214 edges added
+     4088 corners, 2868 singular points detected
+  ** DEFINING GEOMETRY
+     69734 normals,  1537 tangents updated  (0 failed)
+     0 required edges added
+     0 corner and 0 required vertices added
+
+  -- RESULTING EDGE LENGTHS  748557
+     AVERAGE LENGTH               0.9915
+     SMALLEST EDGE LENGTH         0.0635    61520  60458
+     LARGEST  EDGE LENGTH         3.0767    74653  74508 
+     0.71 < L < 1.41    663470   88.63 %  
+
+     HISTOGRAMM:
+     0.00 < L < 0.30       961    0.13 %  
+     0.30 < L < 0.60     31527    4.21 %  
+     0.60 < L < 0.71     33781    4.51 %  
+     0.71 < L < 0.90    172535   23.05 %  
+     0.90 < L < 1.30    461396   61.64 %  
+     1.30 < L < 1.41     29539    3.95 %  
+     1.41 < L < 2.00     18346    2.45 %  
+     2.00 < L < 5.00       472    0.06 %  
+  -- PHASE 1 COMPLETED.     0.745s
+
+  -- PHASE 2 : ISOTROPIC MESHING
+  ** MESH ANALYSIS
+  ** GEOMETRIC MESH
+                            7172 splitted,        0 collapsed,     6230 swapped
+                               0 splitted,        0 collapsed,       85 swapped
+  ** COMPUTATIONAL MESH
+
+  -- SIZEMAP CORRECTION : overwritten of sizes at required vertices
+
+  -- GRADATION : 1.300000 (2.300000)
+     gradation:   25257 updated, 3 iter.
+     gradation (required):    2925 updated, 3 iter.
+                               0 splitted,      240 collapsed,      318 swapped
+                               0 splitted,       20 collapsed,       22 swapped
+                               0 splitted,        1 collapsed,        3 swapped
+                              54 splitted,        0 collapsed,       24 swapped
+                               0 splitted,        1 collapsed,        0 swapped
+        63483 filtered,    14526 splitted,     5458 collapsed,    35733 swapped,    12511 moved
+        46260 filtered,     1827 splitted,     4568 collapsed,    11822 swapped,     5863 moved
+        42008 filtered,      595 splitted,      663 collapsed,     4391 swapped,     2834 moved
+        20078 filtered,      321 splitted,      278 collapsed,     2002 swapped,     1347 moved
+         9499 filtered,      139 splitted,      137 collapsed,     1022 swapped,      621 moved
+                                                3794 improved,     2561 swapped,     4925 moved
+                                                 507 improved,     1551 swapped,     2542 moved
+                                                 239 improved,      615 swapped,     1038 moved
+        20443 filtered,      891 splitted,      510 collapsed,     3278 swapped,     1476 moved
+        19662 filtered,      175 splitted,      164 collapsed,     1317 swapped,      763 moved
+         6001 filtered,       99 splitted,       92 collapsed,      606 swapped,      373 moved
+         2774 filtered,       52 splitted,       48 collapsed,      338 swapped,      178 moved
+                                                2083 improved,     4494 swapped,     1584 moved
+                                                 316 improved,      568 swapped,     1047 moved
+                                                 122 improved,      266 swapped,      273 moved
+                                                  84 improved,       84 swapped,      113 moved
+                                                  85 improved,       30 swapped,       47 moved
+                                                   0 improved,       15 swapped,       15 moved
+                                                   0 improved,        1 swapped,        5 moved
+                                                                                       68 moved
+  -- PHASE 2 COMPLETED.     12.571s
+
+  -- MESH QUALITY  626459
+     BEST   0.999550  AVRG.   0.730896  WRST.   0.041648 (418785)
+     HISTOGRAMM:   99.99 % > 0.12
+                   89.92 % >  0.5
+       0.8 < Q <   1.0    252606    40.32 %
+       0.6 < Q <   0.8    249587    39.84 %
+       0.4 < Q <   0.6     95981    15.32 %
+       0.2 < Q <   0.4     27048     4.32 %
+       0.0 < Q <   0.2      1237     0.20 %
+
+  -- RESULTING EDGE LENGTHS  846476
+     AVERAGE LENGTH               1.0309
+     SMALLEST EDGE LENGTH         0.0574    61520  60458
+     LARGEST  EDGE LENGTH         2.5747    30028  29993 
+     0.71 < L < 1.41    759106   89.68 %  
+
+     HISTOGRAMM:
+     0.00 < L < 0.30       560    0.07 %  
+     0.30 < L < 0.60     21234    2.51 %  
+     0.60 < L < 0.71     29583    3.49 %  
+     0.71 < L < 0.90    179700   21.23 %  
+     0.90 < L < 1.30    526633   62.21 %  
+     1.30 < L < 1.41     52773    6.23 %  
+     1.41 < L < 2.00     35531    4.20 %  
+     2.00 < L < 5.00       462    0.05 %  
+
+  -- MESH PACKED UP
+     NUMBER OF VERTICES     144631   CORNERS     4088
+     NUMBER OF TETRAHEDRA   626459
+     NUMBER OF EDGES          4706   RIDGES      4492
+     NUMBER OF TRIANGLES    150754
+
+   MMG3DLIB: ELAPSED TIME  13.720s
+
+  &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+   END OF MODULE MMG3D
+  &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+
+
+  -- WRITING DATA FILE <job>/mmg-001/repaired.mesh
+  %% <job>/mmg-001/repaired.mesh OPENED
+     NUMBER OF VERTICES         144631   CORNERS     4088   REQUIRED     2868
+     NUMBER OF TETRAHEDRA       626459   REQUIRED         0
+     NUMBER OF EDGES              4706   RIDGES      4492   REQUIRED         0
+     NUMBER OF TRIANGLES        150754   REQUIRED         0
+  %% <job>/mmg-001/repaired.sol OPENED
+  -- WRITING COMPLETED
+
+   ELAPSED TIME  14.539s
+          Finished with result: success
+Main processes terminated with: code=exited, status=0/SUCCESS
+               Service runtime: 14.566s
+             CPU time consumed: 14.546s
+                   Memory peak: 431.3M (swap: 0B)

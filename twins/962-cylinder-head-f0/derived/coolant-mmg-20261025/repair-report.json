@@ -1,0 +1,179 @@
+{
+  "status": "coolant_mesh_numerical_gate_passed_not_physical_qualification",
+  "input_master_sha256": "feeaddaf029a8635a7e580f1a6916c5c85b44ada9db947e6602203f8d3c6156f",
+  "final_mesh_sha256": "5cf9923844e8cacfffc6b7c0e427b60e8f0745602330a99aacb48082ba81e0c8",
+  "surface": {
+    "maximum_sampled_deviation_mm": 0.0491497313497609,
+    "unchanged_budget_mm": 0.0625,
+    "continuous_hausdorff_bound": false,
+    "volume_mm3": 137937.31058582623,
+    "relative_volume_change_from_native": -3.837787892013722e-05,
+    "watertight": true,
+    "components": 1,
+    "euler_preserved": true
+  },
+  "volume": {
+    "cells": 635132,
+    "minimum_sicn": 0.1012038133740377,
+    "below_sicn_01": 0,
+    "minimum_volume_mm3": 1.794954647173225e-06,
+    "maximum_boundary_coordinate_difference_mm": 0.0,
+    "interior_face_incidence_and_orientation_passed": true,
+    "unreferenced_nodes": 0
+  },
+  "openfoam": {
+    "runtime": "Foundation 13-cde978a97c93",
+    "accepted_case": "case-015",
+    "mesh_ok": true,
+    "cells": 635132,
+    "minimum_determinant": 0.00100044216597267,
+    "minimum_face_weight": 0.05049999999997425,
+    "max_nonorthogonality_deg": 82.06698820286661,
+    "severely_nonorthogonal_faces_over_70": 617,
+    "max_skewness": 1.716228930660548,
+    "acceptance_thresholds_unchanged": true,
+    "mesh_receipt_bindings_independently_verified": true,
+    "prepared_case_hashes_verified": 18
+  },
+  "mmg": {
+    "host": "kali1",
+    "architecture": "x86_64",
+    "gcc": "gcc (Debian 15.3.0-4) 15.3.0",
+    "cmake": "cmake version 4.3.4",
+    "mpi_packages": "libopenmpi40 5.0.10-1\nlibpmix2t64 6.0.0+really5.0.9-3+b2\nlibprrte3 3.0.13-3\nopenmpi-bin 5.0.10-1",
+    "mpi_library_sha256": "ff0295a710b97b4fa89be3614fb56a53afb0ca2fee0f8309a968a7cad2b53beb",
+    "mmg_binary_sha256": "46875665a2dd1ee11946d0b828af1cb2dd44715fcb25a51beaba6fd6cdcdb445",
+    "mmg_source_archive_sha256": "686eaab84de79c072f3aedf26cd11ced44c84b435d51ce34e016ad203172922f",
+    "mmg_tag": "v5.8.0",
+    "mmg_source_commit": "4d8232c8aebfed877935d75d4d4a67e850962422",
+    "mpi_version_help_failure_did_not_establish_launcher_failure": true
+  },
+  "mmg_local_trial": {
+    "active_input_cells": 1080,
+    "required_tetrahedra": 625379,
+    "required_triangles": 150438,
+    "required_vertices": 144463,
+    "elapsed_wall_seconds": 6.231,
+    "hausdorff_parameter_m": 5e-06,
+    "parameter_is_not_independent_geometry_proof": true
+  },
+  "solver_snapshot": {
+    "at_utc": "2026-10-25T22:19:16.993342+00:00",
+    "accepted_mesh_case": "case-015",
+    "solver_running_case": "case-015",
+    "last_observed_iteration": "466s",
+    "solver_log_and_evolving_fields_excluded_from_mesh_capsule": true
+  },
+  "mpi_launch_verified": true,
+  "parallel_duplicate_stopped_after_iteration": 92,
+  "more_advanced_serial_run_continues": true,
+  "operating_point": {
+    "flow_m3_s": 0.0008103932700333026,
+    "water_density_kg_m3": 965,
+    "assumed_dynamic_viscosity_pa_s": 0.000315,
+    "inlet_area_mm2": 338.99999999999994,
+    "inlet_mean_speed_m_s": 2.3905406195672647,
+    "turbulence_model": "kOmegaSST"
+  },
+  "source_hashes": {
+    "import_mmg.py": "ceb73e6d844a5ebc08e83adca3148de3790333aef1171e60db88256def53aa9a",
+    "relocate_stencil.py": "98c5effdd7fc0cef3ffe9ed3c3c211b62d5e59dd5cd0af6ae14a9dead340e51a",
+    "select_convex_merges.py": "9925a559ee66ea9618b8d2fa23286bf225b0a6cd51abdaf77e12ff598e0b7de2",
+    "complete_convex_selection.py": "23c5ea284f6beb01a32720c79da87ab0babdb989b32e6718b20ab290aaae654f",
+    "apply_convex_plan.py": "9d1a0893000572df14398b8c1fdae5fe024eab07c7116af14a1ced91210df439",
+    "prepare_mmg_local.py": "f2155d52e6f8ba3f35ab2ed07b519fca9866c26a828d885042189d1f9bcc8802",
+    "mmg_surface_exchange.py": "4fe0c8ccb3d863684747418ce1b6933e1e8b69b4dd47d230026a893197822104",
+    "prepare_surface.py": "7909b8f47e8be1476c462472ea82407c8d056d7440d16cb848db82dde9fe6e34",
+    "read_saved.py": "83e7f82d9df8b6a5177b2b9b1422d769913b12552f2ecb5d629c876579455fb7",
+    "relocate_nodes.py": "89c898901d779c4091230c37f433ddd86b4d27e723f199500ba47f24974c8f29",
+    "mesh_surface.py": "a26ce1f9bd72a7ef7c595e3be3b5fb123fa382913386cf813b72ca71fa82f274",
+    "merge_flagged_cells.py": "4dfb3ff44e721fb144a0c40554bbced1d9c819c7a9628a4f60f2138f003d8a3c",
+    "prepare_kali_case.py": "341ad432cf3fdcf1ae8957b56bede83dd67c181c87348c0fb6eb8c9f33a7f602",
+    "prepare_kali_bound_case.py": "00217d4380835f3436ad6a0c369ca8f27eb020e201b16967876d37b59787f1f5",
+    "run_kali_case.sh": "c74d769a1d027c2cf76c3b4a1386043acc090ac2d689d5bead513b7a0456c0b9",
+    "run_kali_serial.sh": "9cf5874a461aa9367c7232041a8b251721c656b9ac2dc15720ac6f5276f1df0d",
+    "render_quality.py": "8a084d5b830944d71a484e61715baa4434f0e244e14b0f9358c64f883e00b692"
+  },
+  "native_log_bindings": {
+    "case-007/log.checkMesh": {
+      "original_sha256": "ab5dd86b7eab9946a046eb54e3c36e179f6ce54c747be803209bca4bdb8d259d",
+      "normalised_file": "case-007-checkMesh.txt",
+      "normalised_sha256": "2179798faef0366012869be39238d5666d144690f5e7f19509c30b30a03f0301"
+    },
+    "case-009/log.checkMesh": {
+      "original_sha256": "a08c9fc9d744917ec795af7a1dd1273d83b86dac605655a2844a76165fe60e1c",
+      "normalised_file": "case-009-checkMesh.txt",
+      "normalised_sha256": "7c6db7d0cf06de6035e5d2b75494455854765c70ee6ffed79f34cc766ae99867"
+    },
+    "case-011/log.checkMesh": {
+      "original_sha256": "82985467aaf5e3af0639f257874234cdf3eae115514bd3d31cb7110f367915ed",
+      "normalised_file": "case-011-checkMesh.txt",
+      "normalised_sha256": "5b947d86a50900bc46b811761da684378dc43b125ef2f3a56bfdcf32731a7cfd"
+    },
+    "case-012/log.checkMesh": {
+      "original_sha256": "0ad9cfce0e804fbf172821b8c88e7a1cbbdc18f0fea56572e90ac9eddc7843b1",
+      "normalised_file": "case-012-checkMesh.txt",
+      "normalised_sha256": "c1666eff522af8f8330fbcd0571e0a31539ec5f7c99115c8e65675cdf0542615"
+    },
+    "case-013/log.checkMesh": {
+      "original_sha256": "78efd9e47017922c84d530cd292fc2d8e5495d7a029a8536cf0d3b11d626aa14",
+      "normalised_file": "case-013-checkMesh.txt",
+      "normalised_sha256": "06014e80fcc64967760dcb52c46a967b2c409526a09356d472f1438d69e4bc76"
+    },
+    "case-014/log.checkMesh": {
+      "original_sha256": "90a4cc93d23ac3e3f08be236b708f088933249dddcf1a9bad72d689c5e116535",
+      "normalised_file": "case-014-checkMesh.txt",
+      "normalised_sha256": "47b8d3764d27247ff1a9d4496c6eab8348ad070704be23a2d0552426a2dfb70e"
+    },
+    "case-015/log.checkMesh": {
+      "original_sha256": "adcdba105228bfb5b24817636b8004abfcd6c951da617b02593241faad2e80fe",
+      "normalised_file": "case-015-checkMesh.txt",
+      "normalised_sha256": "a46b6da3f6dda360e0596223b036e492a65bd2a57dd48514d45702e65bce4bf9"
+    },
+    "mmg-001/log.mmg": {
+      "original_sha256": "46d11d27ac35474c8c684310fbfa59935d9fe429b9245c3becf5b52df670ffcf",
+      "normalised_file": "mmg-001.txt",
+      "normalised_sha256": "bb754e53b73395956d540e773e8d2cdc017be719675e64cbfeeb59ff786a881d"
+    },
+    "mmg-002/log.mmg": {
+      "original_sha256": "70258d79080815d7bbf97900c03d44a7f826868c8d16de378f2ff9d4c7a575a8",
+      "normalised_file": "mmg-002.txt",
+      "normalised_sha256": "2f4cd541801bf661ab1a2dfb5802929b5fae4e510b78419e5aca4acd73499b86"
+    },
+    "mmg-003/log.mmg": {
+      "original_sha256": "9b528baf53d147f38204931c7c1273703b5d3e1a2e4e650b8602edb5ff54c709",
+      "normalised_file": "mmg-003.txt",
+      "normalised_sha256": "5df5b8c25e377fbb0678a78f72ae6339388a984196478c9ed694f3592b67a11f"
+    },
+    "mmg-004/log.mmg": {
+      "original_sha256": "fd513efe0f671824ef698005467702270f45c0a6cfc58413dd577298de17d34e",
+      "normalised_file": "mmg-004.txt",
+      "normalised_sha256": "a1f861d3d240943c89a2e9a3a26457b2b6921d9084993192427c262170fdab5b"
+    }
+  },
+  "native_capsule": {
+    "manifest_sha256": "c6857bdc434c1719acfc1069d63e88efdbdd213f6170a59af62fb0ed1d2badfd",
+    "listed_payloads": 393,
+    "all_listed_hashes_verified_locally": true,
+    "live_solver_log_and_evolving_fields_excluded": true
+  },
+  "software_checks": {
+    "new_tests_passed": 9,
+    "head_tests_run": 250,
+    "head_tests_skipped": 5,
+    "head_tests_successful": true,
+    "head_log_sha256": "d59207b7341f21548eeb758013de013fc40c1c8272f9c9f42095ad82a1859ff2",
+    "mac_tool_env_make_tests": 4213,
+    "mac_tool_env_failures": 2,
+    "mac_tool_env_errors": 8,
+    "mac_tool_env_skipped": 172,
+    "mac_tool_env_make_check_passed": false,
+    "mac_tool_env_log_sha256": "54ab1cea9a50ba495478eb57d4865cd9107c8601b1213dc338d311e8a29f2ed6",
+    "mac_tool_env_note": "Run preceded activation of cached Matplotlib/Pillow; another isolated check uses the declared CI dependency set."
+  },
+  "scipy_relocation_changes": 5,
+  "openfoam_mesh_accepted": true,
+  "hydraulic_result_accepted": false,
+  "thermal_performance_validated": false,
+  "manufacturing_authorized": false
+}
