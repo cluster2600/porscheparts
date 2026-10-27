@@ -1499,6 +1499,8 @@ the drive circumference is unobserved in each band. The four bands share one
 scan, so they are not independent dimensional calibration. The [private report](https://github.com/cluster2600/porscheparts-935-private/releases/download/935-root-repair-20261025/hub-radial-window-final-20261027.json)
 `hub-radial-window-final-20261027.json` has SHA-256
 `05d52829fa35394fa017ae3ae9c5aae98f8d36468e52d17ba3b71db1517a2b36`.
+The subsequent [native PicoGK visual hub-space study](HUB_SPACE_PICOGK_20261027.md)
+checks three candidate annuli against both retained observed surfaces.
 Reproduce it with:
 
 ```sh
