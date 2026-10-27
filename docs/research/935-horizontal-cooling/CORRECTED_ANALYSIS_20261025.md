@@ -313,6 +313,22 @@ holds the OFFs, source copy, compiled controls, geometry receipts and case
 without publishing scan-derived geometry in this repository. Its 20 archived
 files were read back and hash-checked locally.
 
+### Re-optimizing the targeted volume: bounded trial
+
+The 4,023,860-cell targeted result above was also supplied to the same
+TetGen 1.5.1 executable with `-rYq1.4/10O5Q fluid.2`. The three input
+files were hard-linked into a new private trial directory; their SHA-256
+digests matched the archived targeted output before and after the run.
+The process used one CPU core, was observed at about 7.2 GB resident memory,
+and was stopped at the pre-set 240-second limit. It produced no `fluid.3`
+mesh or diagnostic text. Thus there is **no optimized candidate to audit**;
+the earlier extreme sliver and CFD rejection stand. This timeout is a
+resource-bound observation, not evidence that TetGen cannot improve the mesh.
+The [trial receipt](targeted-volume-optimization-20261027.json) records the
+input and executable hashes, command, limit and absent output.
+The next mesh trial should address the rotor-wall transition and certify its
+surface and volume before a native OpenFOAM check.
+
 ## Volume-mesh trials on the corrected surface
 
 The private candidate OFF was also passed to Gmsh 4.15.2 on the Mac with its
