@@ -304,3 +304,46 @@ and `9a338818823e6c2ce27d72638101a6dfd81ffe30efc2748460a9906105778cf9`.
 The case archives include the generated meshes, native logs, inputs and exact
 preparation/execution/check scripts. The comparison archive contains the
 program copy and outputs. No scan or derived geometry is in public Git.
+
+## 28 October: corrected-rotor wall-vertex distance audit
+
+Foundation 13 `foamToSurface -constant -tri` exported the boundary from a
+**new copy** of each rejected root-0.7 case. The `solid rotor` group was
+extracted separately; the other duct, inlet and outlet groups were excluded.
+The spacing-3 and spacing-5 rotor-wall STL SHA-256 values are
+`d1d56bd0f3dc7bafbfd83cb3b11629037c640c1c1736b0780aec012fa5e63d79`
+and `2458f4877b0d6c3bb50b8906ba9f0c08d8e3215d65545a6d584bfa63a6acc7ee`.
+Both are compared with the same corrected rotor OBJ hash given above.
+
+The [vertex audit](../../../twins/935-horizontal-cooling-system-f0/source/snap-resume-study-20261025/audit_root0p7_wall_vertices.py)
+uses exact closest-point queries to the opposing **triangles** for every
+unique vertex, in both directions. Distances below assume the conditional
+conversion of one source unit to one millimetre; that scale has not been
+calibrated to the original 935 component.
+
+| Spacing | Wall vertices | Wall → rotor p95 / max | Rotor vertices | Rotor → wall p95 / max |
+|---:|---:|---:|---:|---:|
+| 3 | 182,672 | 0.220 / 0.543 mm | 439,365 | 0.126 / 0.575 mm |
+| 5 | 193,617 | 0.220 / 0.408 mm | 439,365 | 0.129 / 0.575 mm |
+
+The maximum rotor-to-wall distance occurs at the same rotor vertex in both
+cases, at conditional SI coordinates
+`(-0.1380872, -0.0258405, 0.0102432)` m, near the outer radius.
+These are exhaustive **vertex-to-triangle** distances, not a mathematical
+bound on distances from the interiors of all triangles. Neither the true
+scan-to-reconstruction error nor the 935 installation dimensions are proved.
+The meshes still fail native quality; no CFD is admitted. The figure plots
+20,000 rotor vertices for display, while the numerical audit checks all
+vertices.
+
+The [private JSON report](https://github.com/cluster2600/porscheparts-935-private/releases/download/935-root-repair-20261025/wall-vertex-distances-final-20261028.json),
+[figure](https://github.com/cluster2600/porscheparts-935-private/releases/download/935-root-repair-20261025/wall-vertex-distances-final-20261028.png)
+and [native audit archive](https://github.com/cluster2600/porscheparts-935-private/releases/download/935-root-repair-20261025/935-wall-vertex-audit-20261028.tar.gz)
+have downloaded SHA-256 values
+`8513c1bcb46d85a71e0c9fbe01c3a50feaefb704ea812d3d8822daf6b2e685a7`,
+`12b3a8588f1938d2e6330825c23927d796083da53a8a024c9d5d1eee89230f0a`
+and `a562eb67f53357d424f283f6be96c71a8d68476ebba7b6bc65aac080dcd840c9`.
+The archive contains both wall STLs, the corrected rotor OBJ, the native export
+logs, the source copy, the JSON, the figure and per-vertex distance arrays.
+The source hash recorded in the report is
+`77f7ceb55a5e605eabe776287aeb614ac16cb16f45013a0325ed55a1caf76470`.
