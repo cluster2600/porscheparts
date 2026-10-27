@@ -1488,6 +1488,25 @@ that entire radial gap for 20 mm has 4.59549 cm³ of material and polar section
 | Ti‑6Al‑4V | 20.22 g | 53.41 MPa |
 
 These are **optimistic body-only section calculations**, not a sleeve design.
+The single closest-point radius used above is not representative of all four
+observed axial bands. A separate [radial-window screen](../../../twins/935-horizontal-cooling-system-f0/source/corrected-analysis-20261025/screen_hub_radial_window.py)
+uses the circle fits in the pinned private hub-metrology receipt. Their nominal
+rotor-bore minus drive-patch radius ranges from 4.38518 to 4.52027 uncalibrated
+source units. Subtracting both fitted 95th-percentile radial residuals and the
+drive-fit centre offset gives a minimum **screened** gap of 4.07165 source units.
+This percentile calculation is not a clearance guarantee: about 177–184° of
+the drive circumference is unobserved in each band. The four bands share one
+scan, so they are not independent dimensional calibration. The [private report](https://github.com/cluster2600/porscheparts-935-private/releases/download/935-root-repair-20261025/hub-radial-window-final-20261027.json)
+`hub-radial-window-final-20261027.json` has SHA-256
+`05d52829fa35394fa017ae3ae9c5aae98f8d36468e52d17ba3b71db1517a2b36`.
+Reproduce it with:
+
+```sh
+python3 twins/935-horizontal-cooling-system-f0/source/corrected-analysis-20261025/screen_hub_radial_window.py \
+  work/935-assembly-0p7-20261025/hub-output-metrology-001.json \
+  work/NEW/hub-radial-window.json
+```
+
 One closest-point pair does not measure the full shaft circumference; the
 observed drive arc leaves about half the circumference unseen. A real adapter
 would need machining clearance or interference, torque-transfer features,
