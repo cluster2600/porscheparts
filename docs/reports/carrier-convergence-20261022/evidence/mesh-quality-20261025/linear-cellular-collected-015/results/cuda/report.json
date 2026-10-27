@@ -1,0 +1,98 @@
+{
+  "status": "passed",
+  "requested_device": "cuda:0",
+  "gpu_validated": true,
+  "geometry_only": true,
+  "manufacturing_authorized": false,
+  "application_validated": false,
+  "source_sha256": {
+    "benchmarks/warp-geometry/pilot.py": "6561e3348689f31973991f30876e65dd73c723a35cc8f2aa2cc4c8268fe16c36",
+    "benchmarks/warp-geometry/kernels.py": "356d1debf790790887882e7d0a15d91232451113613f4a43e3e909fcb7540baa",
+    "prepared/carrier-queries.npz": "68786d5f2a59f86019fd4952a1f60b36b5f40aca18d6afec3e77f42e777ba22f",
+    "prepared/oracle-report.json": "bb0179a2bfa4b3763bd6763b2dd6918f04e85cbc7b1bdd8391f845cd7801eb27",
+    "/workspace/carrier-linear-cellular-015/check_carrier_warp.py": "9f548602a58eb703fddaf6efaed935a45e34077727e5fb8f07f8b639587f9e97"
+  },
+  "cuda_dispatch_completed": true,
+  "actual_device": "cuda:0",
+  "device_name": "NVIDIA GeForce RTX 4070",
+  "device_arch": 89,
+  "versions": {
+    "python": "3.12.3",
+    "numpy": "2.2.6",
+    "warp": "1.18.0"
+  },
+  "vertices": 392778,
+  "triangles": 785624,
+  "queries": 3052512,
+  "fixed_absolute_error_limit_mm": 0.0001,
+  "maximum_absolute_error_mm": 4.887096779221389e-05,
+  "checks": [
+    {
+      "passed": true,
+      "max_abs_error_mm": 4.887096779221389e-05,
+      "rms_abs_error_mm": 3.048443017891857e-06,
+      "query_miss_count": 0,
+      "invalid_distance_count": 0,
+      "tolerance_mm": 0.0001
+    },
+    {
+      "passed": true,
+      "max_abs_error_mm": 4.887096779221389e-05,
+      "rms_abs_error_mm": 3.048443017891857e-06,
+      "query_miss_count": 0,
+      "invalid_distance_count": 0,
+      "tolerance_mm": 0.0001
+    },
+    {
+      "passed": true,
+      "max_abs_error_mm": 4.887096779221389e-05,
+      "rms_abs_error_mm": 3.048443017891857e-06,
+      "query_miss_count": 0,
+      "invalid_distance_count": 0,
+      "tolerance_mm": 0.0001
+    },
+    {
+      "passed": true,
+      "max_abs_error_mm": 4.887096779221389e-05,
+      "rms_abs_error_mm": 3.048443017891857e-06,
+      "query_miss_count": 0,
+      "invalid_distance_count": 0,
+      "tolerance_mm": 0.0001
+    },
+    {
+      "passed": true,
+      "max_abs_error_mm": 4.887096779221389e-05,
+      "rms_abs_error_mm": 3.048443017891857e-06,
+      "query_miss_count": 0,
+      "invalid_distance_count": 0,
+      "tolerance_mm": 0.0001
+    },
+    {
+      "passed": true,
+      "max_abs_error_mm": 4.887096779221389e-05,
+      "rms_abs_error_mm": 3.048443017891857e-06,
+      "query_miss_count": 0,
+      "invalid_distance_count": 0,
+      "tolerance_mm": 0.0001
+    }
+  ],
+  "timing": {
+    "cold_full_pipeline_seconds": 1.684583671973087,
+    "warm_full_pipeline_seconds": [
+      0.15007658209651709,
+      0.13922034401912242,
+      0.15100238204468042,
+      0.13725878892000765,
+      0.1503762409556657
+    ],
+    "scope": "fresh mesh/BVH, arrays, transfers, query, synchronization and host readback; cold includes init/JIT; input loading and oracle assessment excluded",
+    "speedup_claimed": false
+  },
+  "output_distances_sha256": "12fe9067911f4bf762d79f3bb3c0ac78169409065c2cfb3d36cc24c743ca31ae",
+  "query_groups": {
+    "all_refined_linear_cell_centroids": [
+      0,
+      3052512
+    ]
+  }
+}

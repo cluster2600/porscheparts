@@ -1,0 +1,91 @@
+Traceback (most recent call last):
+  File "/Users/maxime/.codex/worktrees/993-carrier-revalidation/3dprinting993/work/carrier-mesh-quality-20261025/fft-feasibility-001/run_fft_cell_002.py", line 21, in <module>
+    solver=mu.solvers.KrylovSolverCG(cell,1e-10,10000,_muGrid.Verbosity.Silent);result=mu.solvers.newton_cg(cell,H,solver,1e-10,1e-10,_muGrid.Verbosity.Silent);assert result.success,(result.status,result.message)
+RuntimeError: Failure at load step 1 of 1. In Newton-Raphson step 0:
+Conjugate gradient has not converged. After 10000 steps, the solver  FAILED with  |r|/|b| =     1.53198e-09, cg_tol = 1e-10
+
+Traceback from C++ library (most recent call last):
+  File "/usr/lib/dyld"
+    start
+  File "/Library/Frameworks/Python.framework/Versions/3.10/Python"
+    Py_BytesMain
+  File "/Library/Frameworks/Python.framework/Versions/3.10/Python"
+    pymain_main
+  File "/Library/Frameworks/Python.framework/Versions/3.10/Python"
+    Py_RunMain
+  File "/Library/Frameworks/Python.framework/Versions/3.10/Python"
+    pymain_run_python
+  File "/Library/Frameworks/Python.framework/Versions/3.10/Python"
+    pymain_run_file
+  File "/Library/Frameworks/Python.framework/Versions/3.10/Python"
+    pymain_run_file_obj
+  File "/Library/Frameworks/Python.framework/Versions/3.10/Python"
+    _PyRun_AnyFileObject
+  File "/Library/Frameworks/Python.framework/Versions/3.10/Python"
+    _PyRun_SimpleFileObject
+  File "/Library/Frameworks/Python.framework/Versions/3.10/Python"
+    pyrun_file
+  File "/Library/Frameworks/Python.framework/Versions/3.10/Python"
+    _PyEval_Vector
+  File "/Library/Frameworks/Python.framework/Versions/3.10/Python"
+    _PyEval_EvalFrameDefault
+  File "/Library/Frameworks/Python.framework/Versions/3.10/Python"
+    call_function
+  File "/Library/Frameworks/Python.framework/Versions/3.10/Python"
+    _PyObject_MakeTpCall
+  File "/Library/Frameworks/Python.framework/Versions/3.10/Python"
+    cfunction_call
+  File "/Users/maxime/.codex/worktrees/993-carrier-revalidation/3dprinting993/work/carrier-mesh-quality-20261025/fft-feasibility-001/venv/lib/python3.10/site-packages/_muSpectre.cpython-310-darwin.so"
+    pybind11::cpp_function::dispatcher(_object*, _object*, _object*)
+  File "/Users/maxime/.codex/worktrees/993-carrier-revalidation/3dprinting993/work/carrier-mesh-quality-20261025/fft-feasibility-001/venv/lib/python3.10/site-packages/_muSpectre.cpython-310-darwin.so"
+    void pybind11::cpp_function::initialize<add_newton_cg_helper(pybind11::module_&)::$_2, muSpectre::OptimizeResult, std::__1::shared_ptr<muSpectre::Cell>, Eigen::Ref<Eigen::Matrix<double, -1, -1, 0, -1, -1>, 0, Eigen::Stride<-1, -1>> const&, muSpectre::KrylovSolverBase&, double, double, muGrid::Verbosity, muSpectre::IsStrainInitialised, muSpectre::StoreNativeStress, pybind11::name, pybind11::scope, pybind11::sibling, pybind11::arg, pybind11::arg, pybind11::arg, pybind11::arg, pybind11::arg, pybind11::arg_v, pybind11::arg_v, pybind11::arg_v>(add_newton_cg_helper(pybind11::module_&)::$_2&&, muSpectre::OptimizeResult (*)(std::__1::shared_ptr<muSpectre::Cell>, Eigen::Ref<Eigen::Matrix<double, -1, -1, 0, -1, -1>, 0, Eigen::Stride<-1, -1>> const&, muSpectre::KrylovSolverBase&, double, double, muGrid::Verbosity, muSpectre::IsStrainInitialised, muSpectre::StoreNativeStress), pybind11::name const&, pybind11::scope const&, pybind11::sibling const&, pybind11::arg const&, pybind11::arg const&, pybind11::arg const&, pybind11::arg const&, pybind11::arg const&, pybind11::arg_v const&, pybind11::arg_v const&, pybind11::arg_v const&)::'lambda'(pybind11::detail::function_call&)::__invoke(pybind11::detail::function_call&)
+  File "/Users/maxime/.codex/worktrees/993-carrier-revalidation/3dprinting993/work/carrier-mesh-quality-20261025/fft-feasibility-001/venv/lib/python3.10/site-packages/_muSpectre.cpython-310-darwin.so"
+    std::__1::enable_if<!std::is_void<muSpectre::OptimizeResult>::value, muSpectre::OptimizeResult>::type pybind11::detail::argument_loader<std::__1::shared_ptr<muSpectre::Cell>, Eigen::Ref<Eigen::Matrix<double, -1, -1, 0, -1, -1>, 0, Eigen::Stride<-1, -1>> const&, muSpectre::KrylovSolverBase&, double, double, muGrid::Verbosity, muSpectre::IsStrainInitialised, muSpectre::StoreNativeStress>::call<muSpectre::OptimizeResult, pybind11::detail::void_type, add_newton_cg_helper(pybind11::module_&)::$_2&>(add_newton_cg_helper(pybind11::module_&)::$_2&) &&
+  File "/Users/maxime/.codex/worktrees/993-carrier-revalidation/3dprinting993/work/carrier-mesh-quality-20261025/fft-feasibility-001/venv/lib/python3.10/site-packages/.muspectre.mesonpy.libs/libmuSpectre.dylib"
+    muSpectre::newton_cg(std::__1::shared_ptr<muSpectre::Cell>, std::__1::vector<Eigen::Matrix<double, -1, -1, 0, -1, -1>, std::__1::allocator<Eigen::Matrix<double, -1, -1, 0, -1, -1>>> const&, muSpectre::KrylovSolverBase&, double const&, double const&, muGrid::Verbosity const&, muSpectre::IsStrainInitialised const&, muSpectre::StoreNativeStress const&, std::__1::optional<std::__1::reference_wrapper<std::__1::function<void (unsigned long const&, muGrid::TypedFieldBase<double>&)>>>)
+The applied boundary condition is Δ =
+0.001     0     0
+    0     0     0
+    0     0     0
+and the load increment is Δ =
+0.001     0     0
+    0     0     0
+    0     0     0
+
+Traceback from C++ library (most recent call last):
+  File "/usr/lib/dyld"
+    start
+  File "/Library/Frameworks/Python.framework/Versions/3.10/Python"
+    Py_BytesMain
+  File "/Library/Frameworks/Python.framework/Versions/3.10/Python"
+    pymain_main
+  File "/Library/Frameworks/Python.framework/Versions/3.10/Python"
+    Py_RunMain
+  File "/Library/Frameworks/Python.framework/Versions/3.10/Python"
+    pymain_run_python
+  File "/Library/Frameworks/Python.framework/Versions/3.10/Python"
+    pymain_run_file
+  File "/Library/Frameworks/Python.framework/Versions/3.10/Python"
+    pymain_run_file_obj
+  File "/Library/Frameworks/Python.framework/Versions/3.10/Python"
+    _PyRun_AnyFileObject
+  File "/Library/Frameworks/Python.framework/Versions/3.10/Python"
+    _PyRun_SimpleFileObject
+  File "/Library/Frameworks/Python.framework/Versions/3.10/Python"
+    pyrun_file
+  File "/Library/Frameworks/Python.framework/Versions/3.10/Python"
+    _PyEval_Vector
+  File "/Library/Frameworks/Python.framework/Versions/3.10/Python"
+    _PyEval_EvalFrameDefault
+  File "/Library/Frameworks/Python.framework/Versions/3.10/Python"
+    call_function
+  File "/Library/Frameworks/Python.framework/Versions/3.10/Python"
+    _PyObject_MakeTpCall
+  File "/Library/Frameworks/Python.framework/Versions/3.10/Python"
+    cfunction_call
+  File "/Users/maxime/.codex/worktrees/993-carrier-revalidation/3dprinting993/work/carrier-mesh-quality-20261025/fft-feasibility-001/venv/lib/python3.10/site-packages/_muSpectre.cpython-310-darwin.so"
+    pybind11::cpp_function::dispatcher(_object*, _object*, _object*)
+  File "/Users/maxime/.codex/worktrees/993-carrier-revalidation/3dprinting993/work/carrier-mesh-quality-20261025/fft-feasibility-001/venv/lib/python3.10/site-packages/_muSpectre.cpython-310-darwin.so"
+    void pybind11::cpp_function::initialize<add_newton_cg_helper(pybind11::module_&)::$_2, muSpectre::OptimizeResult, std::__1::shared_ptr<muSpectre::Cell>, Eigen::Ref<Eigen::Matrix<double, -1, -1, 0, -1, -1>, 0, Eigen::Stride<-1, -1>> const&, muSpectre::KrylovSolverBase&, double, double, muGrid::Verbosity, muSpectre::IsStrainInitialised, muSpectre::StoreNativeStress, pybind11::name, pybind11::scope, pybind11::sibling, pybind11::arg, pybind11::arg, pybind11::arg, pybind11::arg, pybind11::arg, pybind11::arg_v, pybind11::arg_v, pybind11::arg_v>(add_newton_cg_helper(pybind11::module_&)::$_2&&, muSpectre::OptimizeResult (*)(std::__1::shared_ptr<muSpectre::Cell>, Eigen::Ref<Eigen::Matrix<double, -1, -1, 0, -1, -1>, 0, Eigen::Stride<-1, -1>> const&, muSpectre::KrylovSolverBase&, double, double, muGrid::Verbosity, muSpectre::IsStrainInitialised, muSpectre::StoreNativeStress), pybind11::name const&, pybind11::scope const&, pybind11::sibling const&, pybind11::arg const&, pybind11::arg const&, pybind11::arg const&, pybind11::arg const&, pybind11::arg const&, pybind11::arg_v const&, pybind11::arg_v const&, pybind11::arg_v const&)::'lambda'(pybind11::detail::function_call&)::__invoke(pybind11::detail::function_call&)
+  File "/Users/maxime/.codex/worktrees/993-carrier-revalidation/3dprinting993/work/carrier-mesh-quality-20261025/fft-feasibility-001/venv/lib/python3.10/site-packages/_muSpectre.cpython-310-darwin.so"
+    std::__1::enable_if<!std::is_void<muSpectre::OptimizeResult>::value, muSpectre::OptimizeResult>::type pybind11::detail::argument_loader<std::__1::shared_ptr<muSpectre::Cell>, Eigen::Ref<Eigen::Matrix<double, -1, -1, 0, -1, -1>, 0, Eigen::Stride<-1, -1>> const&, muSpectre::KrylovSolverBase&, double, double, muGrid::Verbosity, muSpectre::IsStrainInitialised, muSpectre::StoreNativeStress>::call<muSpectre::OptimizeResult, pybind11::detail::void_type, add_newton_cg_helper(pybind11::module_&)::$_2&>(add_newton_cg_helper(pybind11::module_&)::$_2&) &&

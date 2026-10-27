@@ -1,0 +1,16 @@
+SPOOLES solve test: 20x20x20 grid Laplacian
+  serial factor + solve: maxabs error 4.9480e-12 -- ok
+  MT factor + solve: up to 500 iterations at 8 threads (10 online CPUs, 2700 s budget)
+  iteration 0: maxabs error 1.8897e+01  <-- WRONG
+  iteration 1: maxabs error 1.7552e+01  <-- WRONG
+  iteration 5: maxabs error 4.1191e+04  <-- WRONG
+  iteration 15: maxabs error 8.1840e+02  <-- WRONG
+  iteration 18: maxabs error 1.2632e+02  <-- WRONG
+  iteration 24: maxabs error 4.8242e+02  <-- WRONG
+  iteration 32: maxabs error 1.3250e+03  <-- WRONG
+  iteration 36: maxabs error 7.1901e+02  <-- WRONG
+  iteration 45: maxabs error 2.0715e+01  <-- WRONG
+  iteration 48: maxabs error 8.3740e+01  <-- WRONG
+  ... further failures not listed
+142/500 iterations wrong, worst maxabs error 6.2555e+05 (tolerance 1.0e-04)
+FAIL: the multithreaded solver returned wrong answers.

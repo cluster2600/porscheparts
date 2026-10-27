@@ -1,0 +1,41 @@
+{
+  "packages": [
+    {
+      "package": "mkl",
+      "version": "2025.2.0",
+      "license": "Intel Simplified Software License",
+      "requires_dist": [
+        "intel-openmp<2026,>=2024",
+        "tbb==2022.*"
+      ],
+      "filename": "mkl-2025.2.0-py2.py3-none-manylinux_2_28_x86_64.whl",
+      "url": "https://files.pythonhosted.org/packages/46/7b/f5b1b84eb0a2a6e145fc31b4e6b1c59690dcb088734197da8f299caf7c67/mkl-2025.2.0-py2.py3-none-manylinux_2_28_x86_64.whl",
+      "sha256": "974b4e222cc94e8d3b67213a361c8ac25d432cc4fccc5f2f00aa15c4e67cc203",
+      "bytes": 190225238
+    },
+    {
+      "package": "mkl-include",
+      "version": "2025.2.0",
+      "license": "Intel Simplified Software License",
+      "requires_dist": null,
+      "filename": "mkl_include-2025.2.0-py2.py3-none-manylinux_2_28_x86_64.whl",
+      "url": "https://files.pythonhosted.org/packages/11/58/6f583b3bac7d3952a89a00ab34e61baa17f6d6de3454a8005958289bef22/mkl_include-2025.2.0-py2.py3-none-manylinux_2_28_x86_64.whl",
+      "sha256": "691ceaccf6d960e19d47304d24ca2ee4e807810077e93c1c86c2e32cd6223012",
+      "bytes": 1322121
+    }
+  ],
+  "private_extraction_only": true,
+  "system_packages_changed": false,
+  "source_directory": "/workspace/carrier-patched-015/build-with-patch",
+  "default_solver_source_sha256": "1d195e679e6692d03da0b3bd48e7ea52f733c96328bedfef3f5f7da6f3dd0d1f",
+  "mkl_adapter_sha256": "ff129d95fba14a2ef0d0caca8d1c0140b3e43182c22ed937b72a813c01e74470",
+  "cflags": "CFLAGS=-O2 -I/workspace/carrier-patched-015/build-with-patch/spooles -I/workspace/carrier-mkl-015/prefix/mkl_include-2025.2.0.data/data/include -DARCH=\"Linux\" -DSPOOLES -DPARDISO -DARPACK -DMATRIXSTORAGE -DUSE_MT=1",
+  "libs": "LIBS=/workspace/carrier-patched-015/build-with-patch/spooles/MT/src/spoolesMT.a /workspace/carrier-patched-015/build-with-patch/spooles/spooles.a /usr/lib/x86_64-linux-gnu/libarpack.so.2 /workspace/carrier-mkl-015/prefix/mkl-2025.2.0.data/data/lib/libmkl_rt.so.2 -Wl,-rpath,/workspace/carrier-mkl-015/prefix/mkl-2025.2.0.data/data/lib -lpthread -lm -ldl",
+  "installed_libraries_before": {
+    "/usr/lib/x86_64-linux-gnu/libblas.so.3": "e748efcae5753fe4a652877fccdb5895ac6f7605668a2db878b19c914e78e3a8",
+    "/usr/lib/x86_64-linux-gnu/liblapack.so.3": "851bb1fc5833ede9ed704b4417a251a899976d5e0915de40452615187a65278f"
+  },
+  "per_child_virtual_GiB": 4,
+  "make_jobs": 2,
+  "source_sha256": "157ffb0cd52ae2750e0c1cca380490b755080dc10479f95d735347f194dabfc8"
+}
