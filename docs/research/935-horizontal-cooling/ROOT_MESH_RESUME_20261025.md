@@ -191,6 +191,47 @@ python3 twins/935-horizontal-cooling-system-f0/source/snap-resume-study-20261025
 
 ## Reproduction and retention
 
+### Native refinement-transition correlation, 28 October
+
+The [follow-up program](../../../twins/935-horizontal-cooling-system-f0/source/snap-resume-study-20261025/correlate_concavity_refinement.py)
+uses the unchanged rejected case, its native `cellLevel` list, the checked
+`concaveCells` set and internal owner/neighbour faces. It independently verifies
+the copied mesh inputs and partitions all 4,666,166 cells. A transition-adjacent
+cell shares at least one internal face with a cell at a different native
+refinement level. The largest observed level jump is one.
+
+| Group | Cells | Concave cells | Concave fraction |
+|---|---:|---:|---:|
+| Adjacent to a level change | 2,381,357 | 311,850 | 13.095% |
+| No adjacent level change | 2,284,809 | 5,146 | 0.225% |
+
+Thus **98.38% of rejected cells** are transition-adjacent, though 51.03% of
+all cells are in that group. Level 4 contains 154,307 rejected cells, the
+largest count by level. These are correlations on the **old rotor** mesh; they
+do not identify which OpenFOAM operation caused each concavity. In particular,
+5,086 rejected level-6 cells have no adjacent level change. The next controlled
+experiment should compare two new meshes of the **same corrected PicoGK rotor**,
+varying only transition spacing, then run full native `checkMesh` and a
+wall-fidelity audit on both. This report admits no CFD solver result.
+
+The [private figure](https://github.com/cluster2600/porscheparts-935-private/releases/download/935-root-repair-20261025/refinement-correlation-final-20261028.png)
+and [numerical report](https://github.com/cluster2600/porscheparts-935-private/releases/download/935-root-repair-20261025/refinement-correlation-final-20261028.json)
+have downloaded SHA-256 values
+`1a7e1acef231292c72d82e424199dc89c5c87454045ff26175964d11360c1b31`
+and `a692599e7563b92a2828497bfc28a56198a77127e1982fdbcbfaa9251622ad4f`.
+The [private native archive](https://github.com/cluster2600/porscheparts-935-private/releases/download/935-root-repair-20261025/935-refinement-correlation-final-20261028.tar.gz)
+contains the level list, rejected-cell set, execution receipt, exact program
+copy and outputs; downloaded SHA-256 is
+`2381076a92e4087e76b17fe4493fe5c15034f9130aba52f47ca3e302dede3db0`.
+Its other mesh inputs are retained in the previous native checkpoint. To
+reproduce after restoring that copied case on Kali1:
+
+```sh
+python3 twins/935-horizontal-cooling-system-f0/source/snap-resume-study-20261025/correlate_concavity_refinement.py \
+  /home/lolman/935-snap-resume-20261025/concavity-localization-001 \
+  /home/lolman/935-snap-resume-20261025/NEW-refinement-correlation
+```
+
 The [experiment snapshots](../../../twins/935-horizontal-cooling-system-f0/source/snap-resume-study-20261025/)
 are executed recipes, not another coordinator. Preserve originals and derive
 new copies with fresh private output paths for another attempt. Restore private
