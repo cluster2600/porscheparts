@@ -1,5 +1,9 @@
 # 935 hub space: conditional PicoGK geometry
 
+The [drive-output feature audit](OUTPUT_FEATURE_AUDIT_20261027.md) keeps the
+vendor gallery's visible shaft details separate from the incomplete output
+surface acquired in the owner's scan.
+
 This study places a separate PicoGK annulus in the unresolved space between the
 observed 935 drive output and the reconstructed rotor bore. It is a **visual
 occupancy envelope**, not a hub, coupling, fitted part, or historical replica.
