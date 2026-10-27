@@ -252,3 +252,55 @@ native-case files refer to identical archived payloads; no case file is dropped.
 The receipt records local and server verification. Raw scans and derived images
 remain private. Public Git contains sources, tests, reduced numerical receipts
 and this English report.
+
+## 28 October: matched transition-spacing trial on the corrected rotor
+
+Two fresh Foundation 13 cases used the same **root-0.7 PicoGK rotor** OBJ
+(`ee9357d46911fc0112342626064f7e731395af9db9a8bc340793cf22effb24a6`),
+surface refinement levels 3/4, 1.5 million-cell configured limit, snapping on,
+layers off and the same quality dictionary SHA-256
+`bafbc5ced7e83c5a1cc11291a0937c3499a6713e8e3411a83f93464381ba2c7d`.
+The only difference between the two final `snappyHexMeshDict` files is
+`nCellsBetweenLevels`: 3 versus 5. Both ran in Kali1's existing rootless
+OpenFOAM 13 runtime with an 8 GiB virtual-memory limit and a 1,200-second
+timeout. Each `snappyHexMesh` finished without its own error; the full
+`checkMesh -allGeometry -allTopology -meshQuality -writeSets -writeSurfaces`
+then rejected **both** with one failed check. Exit code zero from `checkMesh`
+was not taken as acceptance.
+
+| Input spacing | Snap time | Final cells | Concave cells | Concave fraction | Rotor patch faces | Cell cap reached |
+|---:|---:|---:|---:|---:|---:|---|
+| 3 | 569.8 s | 708,822 | 46,584 | 6.572% | 164,263 | No |
+| 5 | 919.3 s | 1,303,737 | 49,778 | 3.818% | 174,266 | Yes |
+
+The [independent comparison program](../../../twins/935-horizontal-cooling-system-f0/source/snap-resume-study-20261025/compare_root0p7_spacing.py)
+verifies matching rotor and quality-input hashes, confirms that the two
+snappy dictionaries differ only in spacing, parses both native logs, and reads
+the actual rotor-patch owner-cell levels. At spacing 3, 15,406 rotor faces
+border level-3 cells and 148,857 border level-4 cells; at spacing 5 the counts
+are 11,514 and 162,752. This establishes the **nominal levels present** at
+the wall, not a bounded distance from that wall to the scanned surface.
+
+The lower rejected-cell fraction at spacing 5 is accompanied by 3,194 more
+concave cells, 594,915 more total cells, a longer run, and a hit on the
+configured cell cap. It does **not** establish a quality-passing improvement
+or isolate the effect at equal resolved fidelity. Both cases remain refused;
+no MRF/SST solver or airflow curve was run. The next mesh study needs enough
+cell budget to avoid clipping the intended transition, a direct wall-distance
+audit, and an independent strategy for the remaining concavity.
+
+Private readback hashes for the
+[spacing-3 case](https://github.com/cluster2600/porscheparts-935-private/releases/download/935-root-repair-20261025/935-spaced3-rejected-20261028.tar.gz),
+[spacing-5 case](https://github.com/cluster2600/porscheparts-935-private/releases/download/935-root-repair-20261025/935-spaced5-rejected-20261028.tar.gz),
+[comparison archive](https://github.com/cluster2600/porscheparts-935-private/releases/download/935-root-repair-20261025/935-spacing-comparison-20261028.tar.gz),
+[JSON report](https://github.com/cluster2600/porscheparts-935-private/releases/download/935-root-repair-20261025/spacing-comparison-final-20261028.json)
+and [figure](https://github.com/cluster2600/porscheparts-935-private/releases/download/935-root-repair-20261025/spacing-comparison-final-20261028.png)
+are, respectively,
+`dec99a42ca61d290d89bf116f83ff583fd4afd4c46d386f7a42d58724be09b41`,
+`8cd471d0394212deaa821262075e52dcdd7e3314c6ef65a8989a3460ef55d185`,
+`d2f96a3f120e66258f5320cd3cc51bdcdf839ffef937c93b2c286052a74aa579`,
+`066cbf6a1d7e3642d62a934377097d2df97700ea485828fc05141a7fbc29fd45`
+and `9a338818823e6c2ce27d72638101a6dfd81ffe30efc2748460a9906105778cf9`.
+The case archives include the generated meshes, native logs, inputs and exact
+preparation/execution/check scripts. The comparison archive contains the
+program copy and outputs. No scan or derived geometry is in public Git.
