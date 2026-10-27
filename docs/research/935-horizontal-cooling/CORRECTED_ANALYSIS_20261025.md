@@ -476,6 +476,74 @@ contains the four patches, quality sets, diagnostic surfaces, logs and
 archive SHA-256 is
 `0cb81f5644482085768a1a82a207147f0d7ec11798aaffad0145c7d6302d0658`.
 
+### Four sub-voxel edge contractions: analysis-only trial
+
+The native PicoGK rotor remains the reference geometry. Its four shortest
+edges, from 0.0000153 to 0.0004883 uncalibrated source units, each satisfy
+the two-neighbour link condition for a local edge contraction. The
+[reproducible trial script](../../../twins/935-horizontal-cooling-system-f0/source/corrected-analysis-20261025/collapse_short_edges_20261027.py)
+contracts only those four edges for **fluid-mesh analysis**. It removes four
+vertices and eight faces from the 1,319,474-face rotor. The result is closed,
+consistently oriented and has the same Euler characteristic (zero). Its
+relative enclosed-volume change is −6.08×10⁻¹¹. Independent CGAL checks
+found no self-intersection and complete bidirectional surface containment
+within a 0.0225-source-unit envelope. This is a bounded numerical correction,
+not a measured blade or historical manufacturing detail.
+
+The same provisional duct and TetGen 1.5.1 `-pYq1.4O5MzCf` settings then
+produced 5,695,897 tetrahedra. The independent exact audit found one connected
+volume, zero nonpositive cells and an exact PLC boundary-marker bijection.
+The minimum tetrahedral mean ratio improved from 0.0000425 to **0.012124**;
+cells below 0.01 fell from 18 to **zero**. This is a shape-screen result, not
+CFD admission. OpenFOAM Foundation 13 imported the mesh without changing any
+of its 1,236,590 point coordinates (`writePrecision 17`). The full native
+`checkMesh` improved from five to **four failed checks**. The former four
+high-aspect-ratio cells and eight short edges are gone; maximum aspect ratio
+is 362.10 and the minimum edge length is 6.56×10⁻⁷ m. The remaining failures
+are 3 highly skew faces, 7,385 low-determinant cells, 727 faces with low
+interpolation weights and 71 with low volume ratios. Cell volumes, face
+pyramids, face tets, concavity and the single connected region pass. These
+changes do **not** admit CFD: no flow, pressure or torque prediction is
+inferred.
+
+| OpenFOAM diagnostic | Native PicoGK boundary | Four-edge analysis surface |
+|---|---:|---:|
+| Failed mesh checks | 5 | 4 |
+| High-aspect-ratio cells | 4 | 0 |
+| Short edges | 8 | 0 |
+| Highly skew faces | 3 | 3 |
+| Cells below determinant 0.001 | 7,516 | 7,385 |
+| Faces with low interpolation weight | 815 | 727 |
+| Faces with low cell-volume ratio | 130 | 71 |
+
+The private
+[candidate, PLC, TetGen volume and audit bundle](https://github.com/cluster2600/porscheparts-935-private/releases/download/935-root-repair-20261025/935-short-edge-fluid-20261027.tar.zst)
+has 19 hash-checked source members, and SHA-256
+`86730085fb8931b07b58c9387ff9c0b1690720eaa7eec66b59912ea4694811ce`
+matches the private release digest. The
+[reduced receipt](short-edge-fluid-20261027.json) records the hashes and
+the failed native OpenFOAM quality gate. The separate private
+[OpenFOAM case and diagnostic sets](https://github.com/cluster2600/porscheparts-935-private/releases/download/935-root-repair-20261025/935-short-edge-openfoam-20261027.tar.zst)
+retains the exact imported mesh and logs. All 22 payload files passed
+extracted SHA-256 readback; archive SHA-256
+`17a97ffaf3637502e941ee9a6f96620a791c2ddc31198f668b9f5b35fbc4ba6d`
+matches the private GitHub asset digest. The next repair must address the
+remaining rotor skew faces and the distributed weak cells, including those
+at the provisional duct boundary, before any operating-point solve.
+
+After restoring the hash-pinned private native rotor, reproduce the
+analysis-only surface with Python 3.12.11, NumPy 2.3.5 and trimesh 5.1.0:
+
+```sh
+uv run --no-project --python 3.12 --with numpy==2.3.5 --with trimesh==5.1.0 \
+  python twins/935-horizontal-cooling-system-f0/source/corrected-analysis-20261025/collapse_short_edges_20261027.py \
+  PRIVATE_NATIVE_ROTOR.npz work/NEW_ANALYSIS_SURFACE
+```
+
+This command refuses any source with a different SHA-256 and a pre-existing
+output directory. It does not modify the PicoGK rotor or create a manufacturable
+part.
+
 The [reduced machine-readable receipt](corrected-analysis-20261025.json)
 identifies the source, candidate, case and private checkpoint. The private
 [release](https://github.com/cluster2600/porscheparts-935-private/releases/tag/935-root-repair-20261025)
