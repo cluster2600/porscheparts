@@ -426,9 +426,55 @@ the private [19-file source and volume bundle](https://github.com/cluster2600/po
 retain the native PicoGK surface, raw and optimized volumes, scripts and
 audits. All payload hashes passed extraction readback; bundle SHA-256
 `7f4810c734b380811aa99b0a104eb95a4fc8126238b093d9de0e63f5f5ea6193`
-matches the private GitHub asset. The next fluid-domain trial should use the
-native PicoGK boundary, control local cell growth, and repeat the independent
-boundary and native OpenFOAM quality gates before any pressure or flow solve.
+matches the private GitHub asset. The fluid-domain trial below uses this native
+PicoGK boundary and repeats the independent boundary and native OpenFOAM
+quality gates before any pressure or flow solve.
+
+### Native PicoGK boundary in the provisional fluid domain
+
+The unsimplified 0.7-source-unit PicoGK rotor was inserted into the same
+provisional outer duct used for the simplified-surface fluid trial. This duct is
+an analysis enclosure, **not a measured 935 shroud**. Its assumed conversion
+of 0.001 m per source unit is still uncalibrated. The closed PLC contains
+668,240 vertices and 1,336,476 triangles, including 1,319,474 rotor faces.
+The signed fluid volume is 0.05140884081894108 m³ under that conditional
+scale.
+
+TetGen 1.5.1 with `-pYq1.4O5MzCf` generated 5,698,705 tetrahedra and
+preserved all four boundary markers. An independent complete audit found one
+connected tetrahedral component, an exact coordinate/triangle/marker bijection
+to the PLC, no repeated-node or non-manifold tetrahedra, and no zero or
+negative exact cell volumes. Its exact total equals the PLC signed volume.
+The full-cell mean-ratio screen found 18 cells below 0.01, all touching the
+rotor, versus 2,929 in the earlier simplified-boundary `O5` trial. The new
+minimum mean ratio is still only 0.0000425. Different boundary facet counts
+and resulting cell counts prevent interpreting this comparison as a converged
+CFD study.
+
+OpenFOAM Foundation 13 imported the 5,698,705-cell mesh with four patches.
+With `writePrecision 17`, all 1,237,026 imported point coordinates match the
+TetGen nodes exactly. The full native `checkMesh -constant -allGeometry
+-allTopology -writeSets -writeSurfaces` completed but **failed five mesh
+checks**: 4 high-aspect-ratio cells, 3 highly skew faces, 7,516 low-determinant
+cells, 815 low-interpolation-weight faces and 130 low-volume-ratio faces.
+It also reported 8 short edges. Cell volumes, face pyramids, face tets,
+concavity and one connected region passed. This improves on the earlier
+simplified-boundary case's nine failed checks and 189,881 error faces, but
+does **not** admit a CFD solve. The minimum cell determinant is zero under
+OpenFOAM's quality definition. The 6,518 cells with two internal faces merit
+inspection before boundary-layer meshing. Neither airflow nor fitment is
+claimed from these checks alone.
+The [reduced trial receipt](native-picogk-fluid-20261027.json) references the
+private [PLC, TetGen output and audit bundle](https://github.com/cluster2600/porscheparts-935-private/releases/download/935-root-repair-20261025/935-native-fluid-tetgen-20261027.tar.zst).
+All 14 payload files passed extracted SHA-256 readback. The bundle SHA-256
+`313cd6e2c7d776a0fc52442661ac66616d96ac75a6db44a7c4177d1ed21698a3`
+matches the private GitHub asset digest. No scan-derived mesh is committed to
+the public repository. The private
+[OpenFOAM mesh and complete `checkMesh` case](https://github.com/cluster2600/porscheparts-935-private/releases/download/935-root-repair-20261025/935-native-fluid-openfoam-20261027.tar.zst)
+contains the four patches, quality sets, diagnostic surfaces, logs and
+`writePrecision 17` settings. Its 26 files passed extracted hash readback;
+archive SHA-256 is
+`0cb81f5644482085768a1a82a207147f0d7ec11798aaffad0145c7d6302d0658`.
 
 The [reduced machine-readable receipt](corrected-analysis-20261025.json)
 identifies the source, candidate, case and private checkpoint. The private
