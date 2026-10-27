@@ -38,6 +38,37 @@ was downloaded with SHA-256
 Neither the gallery of a related drive nor these scan openings establish their
 mounting role, complete hole count, through condition, fasteners or tolerances.
 
+## Boundary topology around the openings
+
+The [boundary audit](../../../twins/935-horizontal-cooling-system-f0/source/audit_drive_opening_boundaries.py)
+checks the same pinned STL without treating a projected circle as a hole.
+It selects 120,429 triangles near the output axis (face-centroid radius below
+50, Z between −58 and −34 source units), welds exactly matching STL vertices,
+and counts edges with one incident triangle. An annular two-loop fixture passes.
+The selected region has 3,373 boundary edges in 18 components and no edge
+with more than two incident faces. Some components are caused by this regional
+cut, so these counts do not describe the whole drive mesh.
+
+Three simple boundary loops lie near the two visually selected openings,
+away from the regional cut:
+
+| Visual opening | Boundary edges | Observed Z span, source units | Interpretation |
+|---|---:|---:|---|
+| Positive Y | 266 | −51.52 to −38.98 | One loop folds through the axial depth |
+| Negative Y, upper | 134 | −44.90 to −40.37 | Separate upper loop |
+| Negative Y, lower | 133 | −52.90 to −45.47 | Separate lower loop |
+
+The [private topological view](https://github.com/cluster2600/porscheparts-935-private/releases/download/935-root-repair-20261025/drive-opening-boundaries-final.png)
+shows both XY and YZ projections; its downloaded SHA-256 is
+`708d64267458881a82a9161cc494357550d1e401b83c33a883e7265e06e2952b`.
+The [private report](https://github.com/cluster2600/porscheparts-935-private/releases/download/935-root-repair-20261025/drive-opening-boundaries-final.json)
+includes summaries of all 18 regional components and was read back with
+SHA-256 `a09221bd31ea927b34440b45ccddcdc5d4e41f0e7a1c02c4ce136e1559c75070`.
+The different loop structures show that the scan does not provide two matching
+complete cylindrical bores. A boundary loop can delimit missing scan surface
+as well as a physical opening; this audit does not establish a through-hole or
+bolt pattern.
+
 Reproduce on a private copy of the observed drive STL:
 
 ```sh
@@ -46,6 +77,16 @@ uv run --no-project --python 3.12 --with numpy==1.26.4 \
   twins/935-horizontal-cooling-system-f0/source/audit_drive_axial_openings.py \
   work/935-assembly-0p7-20261025/six-run-001/drive_observed.stl \
   work/NEW/axial-openings
+```
+
+Reproduce the separate topological check with a new private output directory:
+
+```sh
+uv run --no-project --python 3.12 --with numpy==1.26.4 \
+  --with scipy==1.14.1 --with matplotlib==3.10.7 python \
+  twins/935-horizontal-cooling-system-f0/source/audit_drive_opening_boundaries.py \
+  work/935-assembly-0p7-20261025/six-run-001/drive_observed.stl \
+  work/NEW/opening-boundaries
 ```
 
 The output remains private. The next mechanical step is to inspect the
