@@ -1,0 +1,49 @@
+{
+  "schema": "935-native-openfoam-boundary-attribution-v1",
+  "date": "2026-10-27",
+  "frame": "provisional SI mapping from unverified scan scale",
+  "protected_surface_sha256": "5d900f6da900b4bffac2fdacfd6e0a346f8c0259a19299725621d4fd1e48c12a",
+  "input_mesh_sha256": {
+    "node": "80f304f6c16299295442787b479fdafb0fb604c01443f7048e7f0747b4c414a1",
+    "ele": "4e36b2b9d40027144f0d571862635f2f1cafa82db733a5267e7341de97c57765",
+    "face": "755de2a9b130742578307df6804b19a76713183e071c67d670e34e52a553a9a7"
+  },
+  "rotor_surface_vertices": 439365,
+  "point_bijection_exact": true,
+  "rotor_boundary_triangles": 878730,
+  "original_triangles_retained": 856083,
+  "triangles_reconnected_by_tetgen": 22647,
+  "openfoam_quality_error_boundary_faces": 9798,
+  "quality_error_boundary_faces_on_rotor": 9798,
+  "quality_error_faces_on_retained_triangles": 9401,
+  "quality_error_faces_on_reconnected_triangles": 397,
+  "protected_surface_triangle_quality": {
+    "definition": "4*sqrt(3)*area/sum(three squared edge lengths)",
+    "minimum": 0.00005407155536595921,
+    "median": 0.8121233437235762,
+    "below_0p01": 24,
+    "below_0p1": 16574
+  },
+  "converted_rotor_triangle_quality": {
+    "minimum": 0.00005090545246850894,
+    "median": 0.8129377490111966,
+    "below_0p01": 27,
+    "below_0p1": 15750,
+    "quality_error_face_median": 0.09942900479640149,
+    "quality_error_faces_below_0p1": 4934
+  },
+  "private_reports_sha256": {
+    "rotor_boundary_quality": "5afff140974ca9995a1481be12cbda3155a8b940041a1d2a80c17594256fa506",
+    "protected_vs_tetgen_boundary": "0a99712fb13bfff9a89130ee6f00c999d983ce449a1009fbcfe44072543b6277",
+    "unapplied_edge_flip_screen": "61eebeecf3c5a60f02489b4c999fcd2f1891bdbcac5bfe2a23cf6d1a1f6537d5"
+  },
+  "private_bundle": {
+    "url": "https://github.com/cluster2600/porscheparts-935-private/releases/download/935-root-repair-20261025/935-boundary-attribution-20261027.tar.gz",
+    "sha256": "f023a7e83e3daacdba29ee2c000a492423e3708a6e3c960b1dc6eb2718446620",
+    "member_hash_readback": true,
+    "remote_asset_digest_matches": true
+  },
+  "surface_repair_applied": false,
+  "CFD_admitted": false,
+  "CFD_solved": false
+}

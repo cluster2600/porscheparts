@@ -339,6 +339,66 @@ remains local. **No CFD solve is admitted** from either conversion. The next
 mesh trial must control rotor-wall size and growth, preserve the boundary
 contract, use 17-digit output and pass the full native quality gate.
 
+### Rotor-boundary attribution: original facets still dominate
+
+Under the provisional SI mapping, an exact coordinate bijection maps all
+439,365 vertices of the converted rotor patch to the protected analysis
+surface. TetGen reconnected 22,647 of its
+878,730 triangles without moving these vertices. All 9,798 OpenFOAM error
+faces on the boundary belong to the rotor patch: 9,401 retain an original
+triangle, and 397 belong to the reconnected set. The latter set has a somewhat
+higher error-face rate, but it accounts for only 4.1% of the rotor boundary
+errors. TetGen's reconnection alone therefore cannot explain the defect ring.
+
+The protected surface already has 24 triangles with mean-ratio-like triangle
+quality below 0.01 and 16,574 below 0.1. The converted rotor patch has 27
+and 15,750, respectively. Among its 9,798 error faces, 4,934 have triangle
+quality below 0.1; their median is 0.099 versus 0.813 for all rotor faces.
+The other error faces and the 180,083 internal error faces require volume-cell
+analysis as well. These observations implicate the preserved local facets and
+near-wall tetrahedral growth together; they do not uniquely assign a cause to
+each failed cell. A read-only edge-flip screen was not applied because it
+operated on the derived TetGen patch and has no complete surface-envelope
+certificate.
+
+The [reduced attribution receipt](native-openfoam-boundary-20261027.json) and
+the [private read-back-verified analysis bundle](https://github.com/cluster2600/porscheparts-935-private/releases/download/935-root-repair-20261025/935-boundary-attribution-20261027.tar.gz)
+pin the exact comparison. The bundle's SHA-256
+`f023a7e83e3daacdba29ee2c000a492423e3708a6e3c960b1dc6eb2718446620`
+matches GitHub. The next candidate must repair the local surface within the
+complete bidirectional envelope and control near-wall volume growth, then
+repeat topology, exact-volume and native OpenFOAM quality checks. No candidate
+from this attribution step is admitted.
+
+### Protected-surface edge-flip trial: valid surface, rejected volume
+
+A separate exploratory trial operated on the protected analysis surface, not
+the TetGen-reconnected boundary. Twelve disjoint edge flips kept every vertex
+fixed and reduced the count of triangles below quality 0.01 from 24 to 22.
+The independent CGAL checker passed closed topology, validity, zero
+self-intersections and complete bidirectional containment within the
+0.0225-source-unit envelope. The surface volume changed by
+−6.78 × 10⁻⁹%. These are geometry checks against the reconstruction, not
+evidence of measured 935 fit.
+
+Gmsh 4.15.2 then generated 1,463,583 raw and 1,392,150 optimized
+tetrahedra with the same settings used for the protected reference. Both
+volumes had zero nonpositive six-volumes in the numerical audit. The optimized
+boundary has an exact vertex and triangle multiset match to the trial
+surface. Its count below tetrahedral mean ratio 0.01 was **3,226**, compared
+with **3,255** in the reference optimization: a gain of only 29 cells, with
+3,226 still weak. The candidate is therefore **rejected for FEA and CFD**.
+This trial shows that flipping only the most degenerate surface triangles is
+insufficient; the annular surface and near-wall growth still need a broader,
+envelope-certified treatment.
+
+The [reduced trial receipt](edge-flip-trial-20261027.json) links the private
+[source, meshes and complete audit bundle](https://github.com/cluster2600/porscheparts-935-private/releases/download/935-root-repair-20261025/935-source-flip-volume-20261027.tar.zst).
+All 19 payload members passed extracted hash readback, and the bundle SHA-256
+`eaf0a57c203945e5b59950fdc09968ea55945f1fd28f3b80e1c850a0812b4225`
+matches the private GitHub asset digest. No operating-point, stress or
+manufacturing result is inferred.
+
 The [reduced machine-readable receipt](corrected-analysis-20261025.json)
 identifies the source, candidate, case and private checkpoint. The private
 [release](https://github.com/cluster2600/porscheparts-935-private/releases/tag/935-root-repair-20261025)
