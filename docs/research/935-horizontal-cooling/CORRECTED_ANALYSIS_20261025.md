@@ -504,6 +504,23 @@ The earlier original-scan hub fit and plot are also archived privately as
 `dec7c80b3acf07c51e9d70e925d5a025d129290fcee40ddbaff15f2cc97a5b41`;
 the source OBJ hash, both archive members and GitHub asset digest were verified.
 
+A follow-up axial coverage audit of the same hash-pinned assembly STL samples
+sidewall face centroids in five-unit Z bands. The observed drive patch has
+enough faces for partial-circle fits from Z = −40 to 0; the reconstructed
+rotor bore is sampled from Z = −25 to +10. In their five shared bands,
+Z = −25 to 0, the fitted drive radius rises from 6.80 to 7.07 while the
+reconstructed bore is approximately 11.46 source units. The difference in
+these **partial fitted radii** is 4.39–4.66 uncalibrated source units. The
+drive's acquisition leaves about 177–189° unsampled in each shared band.
+Face-centroid coverage cannot establish a continuous shaft, an actual radial
+clearance or an adapter's mating geometry. The private
+[axial-coverage archive](https://github.com/cluster2600/porscheparts-935-private/releases/download/935-root-repair-20261025/hub-output-axial-coverage-002.tar.gz)
+contains the reproducible script, receipt and plot, not the scan meshes.
+Its five members passed extraction hash readback; SHA-256
+`29059f4c2d9b733eb6cdfccb74c0ba2af5b4366bb7183fe1cdc37b9a72df0176`
+matches the GitHub asset digest. A measured mating datum and torque-transfer
+feature remain prerequisites for a functional hub connection.
+
 The fitted axis of the original rotor hub patch differs by **0.75106°** from
 the reconstruction frame's Z axis. A follow-up geometric bound uses
 the maximum rotor vertex distance from the assembly origin (146.46243 source
