@@ -1,30 +1,23 @@
-# Part image gaps — 15 October 2026
+# Part image gaps — 25 October 2026
 
-The 43 catalogue records currently include 36 CAD image sets and seven status
-cards. A status card is not an image of a part and does not close an image gap.
-The source-image and website coverage checks distinguish these kinds.
-All 36 CAD-backed records now also have separately labelled AI studio
-illustrations. These improve presentation without closing any of the seven gaps.
-The references in the seven records were checked for publication terms: they
-are reference-only or commercial copyright sources, not reusable photographs.
+The 43 catalogue records have 41 CAD image sets, 41 separately labelled AI studio
+illustrations and two status cards. A status card depicts no part. An AI studio
+illustration is a presentation of a concept, not a photograph or exact OEM geometry.
 
-| Catalogue record | Missing part image | Actual source gap |
+| Catalogue record | Remaining image gap | Required source |
 | --- | --- | --- |
-| `993-CA-CHARGE-PIPE-SET-PET-0001` | Charge-air pipe/cooler identity set | No master CAD or derived CAD linked by the record; PET identity transcription only. |
-| `993-CA-TURBO-INTAKE-MANIFOLD-PET-0001` | Turbo intake-tract identity set | No master CAD or derived CAD linked by the record; PET identity transcription only. |
-| `993-ENG-CHAIN-CASE-LID-TI-F0-0001` | Titanium chain-case lid | The linked Python master is an algebraic material/interface screen, with no CAD output. Outline, bolt pattern and sealing face remain unknown. |
-| `993-ENG-CYLINDER-HEAD-4V-F0-0001` | Exact current head creation record | Separate M64 head geometry and an axonometric image exist outside this record. The record deliberately links no replacement CAD; the prior 935-derived research geometry is not the exact 993 Turbo part, and its public image/provenance mapping remains unresolved. |
-| `993-EXH-CAT-CONVERTER-PAIR-PET-0001` | Catalytic-converter identity pair | No master CAD or derived CAD linked by the record; identity transcription only. |
-| `993-EXH-HEAT-EXCHANGER-PAIR-PET-0001` | Exhaust heat-exchanger identity pair | No master CAD or derived CAD linked by the record; identity transcription only. |
-| `993-ENG-COOLING-IMPELLER-ALSI10MG-F0-0001` | Archived Carrera F0 rotor | CAD exists, but the synthetic generic rotor views were deliberately withdrawn because they could be mistaken for the Turbo fan. The status card documents that withdrawal. |
+| `993-ENG-CYLINDER-HEAD-4V-F0-0001` | No geometry linked to the current head creation record. Separate prior M64/935-derived study geometry is not the exact current 993 Turbo part. | Correctly identified catalogue-linked geometry with independent interface evidence, or an exact-part photograph with recorded reuse rights. |
+| `993-ENG-COOLING-IMPELLER-ALSI10MG-F0-0001` | The synthetic generic Carrera F0 rotor views remain deliberately withdrawn because they could be mistaken for the Turbo fan. | An owner-approved archival presentation or correctly identified replacement imagery; do not restore the withdrawn generic views. |
 
-The six records with no linked CAD must not be described as six parts with no
-geometry anywhere in the repository. In particular, the head has separate prior
-study geometry. Likewise, the 36 image sets are views of concept models, not
-photographs, exact OEM reconstructions or qualification evidence.
+Five former status-card records now have catalogue-linked PicoGK concepts and
+studio illustrations: the charge-pipe set, turbo intake tract, titanium chain-case
+lid, catalytic-converter pair and heat-exchanger pair. Their images depict the
+existing concept models. They do not establish OEM shape, measured interfaces,
+fit, material qualification or functional completion. Their original CAD views
+remain available alongside the AI presentation images.
 
-Close a gap using the correctly identified, catalogue-linked model with a
-traceable public rendering, or an exact-part photograph with recorded reuse
-rights. Do not substitute a different variant, a generic packaging proxy or a
-generated photograph. Creating functional geometry still requires the exact
-interfaces and independent evidence required by AGENTS.md.
+No third-party photographs or PET illustrations were copied. The commercial and
+reference-only sources in these records do not grant image republication rights.
+Never close an exact-part evidence gap using a different variant, a generic proxy
+or an AI-generated photograph. Creating functional geometry still requires the
+interfaces and independent evidence specified by AGENTS.md.

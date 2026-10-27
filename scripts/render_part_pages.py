@@ -81,8 +81,10 @@ def images(part_id: str, page: Path) -> list[str]:
     out = ["## Images", ""]
     # The labelled AI illustration is shown in addition to, never instead of,
     # the first eight technical images.
+    # It therefore comes last: the technical images lead the section, so the
+    # concept CAD block is what a reader meets first, not the studio render.
     concept = dossier / "media" / "photo-concept.png"
-    montrees = sorted([i for i in trouvees if i != concept][:8] + [i for i in trouvees if i == concept])
+    montrees = sorted(i for i in trouvees if i != concept)[:8] + [i for i in trouvees if i == concept]
     for img in montrees:
         rel = img.relative_to(ROOT).as_posix()
         parts = img.relative_to(ROOT).parts

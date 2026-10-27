@@ -8,10 +8,10 @@ applies to new parts and geometry updates, not just the current batch.
 `parts/<lowercase-part-id>/media/preview.png` and `preview.json`; CAD renders also
 have `views.png`. These paths match PorscheFanatics's pinned Git importer.
 
-The current catalogue has 43 records: 36 geometry renders and 7 status cards.
+The current catalogue has 43 records: 41 geometry renders and 2 status cards.
 Status cards do not close part-image gaps; see [the image gap register](PART_IMAGE_GAPS.md).
-Six cards explicitly say that no geometry has been created. The seventh preserves
-the withdrawal of the synthetic Carrera F0 impeller views, which could be mistaken
+The cylinder-head card identifies the absence of geometry linked to that record.
+The other preserves the withdrawal of the synthetic Carrera F0 impeller views, which could be mistaken
 for the Turbo fan. A card depicts no part geometry and must never be captioned as
 a CAD rendering. Digital-twin CAD listed in a record is supported, including the
 engine bracket and mount whose STL files live outside their part folders.
@@ -22,8 +22,8 @@ Repository-owned images are prepared for owner-authorized PorscheFanatics use;
 third-party photographs and PET illustrations are not copied. A render provides
 no evidence of dimensional accuracy, fit, material qualification or print release.
 
-The 36 CAD-backed records also have `photo-concept.png`: studio-style AI
-illustrations generated from their own previews on 15 October 2026. These are
+The 41 CAD-backed records also have `photo-concept.png`: studio-style AI
+illustrations generated from their own previews in batches on 15 and 25 October 2026. These are
 presentation images, not photographs or exact geometry renders. Material and
 finish are illustrative and generated details may differ; the original CAD
 preview and orthographic views remain available. Each image carries a visible
