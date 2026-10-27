@@ -1,0 +1,78 @@
+{
+  "status": "audited_isothermal_restart_not_physical_validation",
+  "cells": 635132,
+  "saved_iteration": 1400.0,
+  "last_completed_iteration": 1435.0,
+  "solver_exit_code": null,
+  "native_convergence_marker": false,
+  "native_End_marker": false,
+  "first_solve_initial_residuals": {
+    "Ux": 6.147926671123715e-05,
+    "Uy": 8.659673413498073e-05,
+    "Uz": 0.0001101893789534736,
+    "p": 0.00087358678286448,
+    "omega": 7.475214898939643e-05,
+    "k": 0.0002861811851230667
+  },
+  "residual_target": 1e-05,
+  "residual_target_satisfied": false,
+  "saved_fields_match_last_completed_iteration": false,
+  "flow_m3_s": 0.0008103932700333026,
+  "density_kg_m3": 965,
+  "inlet_flux_m3_s": -0.0008103932700333,
+  "outlet_flux_m3_s": 0.0008103956948085215,
+  "relative_flow_imbalance": 2.9920969374916077e-06,
+  "relative_inlet_flow_error": 3.2108919338116903e-15,
+  "provisional_pressure_drop_pa": 9390.88786300766,
+  "provisional_hydraulic_power_w": 7.610312323818831,
+  "pressure_is_static_area_average_not_total_pressure": true,
+  "pressure_window_iterations": 100,
+  "pressure_relative_range": 0.0010604578845347283,
+  "pressure_relative_range_target": 0.001,
+  "maximum_cell_speed_m_s": 7.390942531121203,
+  "positive_turbulence_fields": true,
+  "internal_kinematic_pressure_range_m2_s2": [
+    -27.72119276996925,
+    12.85199133243171
+  ],
+  "numerical_flow_screen_passed": false,
+  "spatial_discretization": "first-order bounded upwind; no grid convergence study",
+  "non_orthogonal_correction_limiter": 0.5,
+  "hydraulic_performance_validated": false,
+  "thermal_performance_validated": false,
+  "manufacturing_authorized": false,
+  "source_hashes": {
+    "analyze_restart.py": "4f34954ca69047fcc30711288325f8f2b31c5005538f98e187c49ec03aaff065",
+    "prepare_restart.py": "c35fe9665a9f6d08a61cb35322d501e57874e75a875d419e9676693e2a06e1fa",
+    "analyze_flow.py": "08d8a5b69ce1f44fcdfeb325fe58704ef2d55300c8294839bc4845f4119eaa3b",
+    "build_flow_case.py": "a43c53e9a0cc6a905162824e8b8e82323b44867dcd9a6a2ed0260cd5b15d166c",
+    "analyze_results.py": "0260612fc29e9380efa1995c68eab889eee9680c73e69ad059d056579cb7569c",
+    "generate_cases.py": "8113464fd165bd033dee59bb0d2d041a6a4e78a468d178aba8b9be09a4587028"
+  },
+  "case_report_sha256": "26c04ed1a8a597c723f43f4c2fed75372c2cff51b6d63ff3d21bed2e57a7a1c0",
+  "mesh_report_sha256": "223e86833945e9d91ab186a5629d4b088afaa02b78f33c2122dbc2598c7d9d96",
+  "log_hashes": {
+    "log.accept_mesh": "223e86833945e9d91ab186a5629d4b088afaa02b78f33c2122dbc2598c7d9d96",
+    "log.centres": "2b9f3d1428077eaad66e8896289ae5bc50a5417a7c3187ccdb04fab70f4d47d9",
+    "log.checkMesh": "716c30cac7472dbcc61b78f1e1196376c68e1bbfd5f27fcf0b9a6ba67f410403",
+    "log.decomposePar": "68cf7668d2c282f7cdef72c98b368dfd6bb9d4f731631bd6b40b57d48a32885a",
+    "log.parallelFoam": "c5a970b2cc6b6ce8302ee76b8579f08a03c3eac4a8591c27efc790a12465795d",
+    "log.reconstructPar": "273f80867e7e3d8ef0d1f8667f83c96afffed17400fc8d77e3ad376ffed24a1f",
+    "log.yPlus": "5c24b980fea15702d5733d08d66556eb91a6b162db21b4730608507110fe1365"
+  },
+  "final_field_hashes": {
+    "U": "f6fc721be77bfdda21d280a5a9f0cd8b3f02d29bce753d203779329ee8406339",
+    "p": "3b1b98818580b906427700fd36ae3c48f2175c583f1fa97cdeb56b895795b9ab",
+    "phi": "9ad9fbd9fdf0c65a967520ca63e7d40520c8a1d1ab6e56a2cceccd1742664161",
+    "k": "84ee4405c0e0f982d6c42cf0e2a2e1f03955e33f9558a76acb1addd803d2954b",
+    "omega": "70c18adf058f598561df1c14a9565c7255b58a3d0f7e6d7e2a2a1bb100e2949b",
+    "nut": "d631224de3cb3c67abf5e0538e08c264cc538794bdab745957caf8c47b34b353"
+  },
+  "history_hashes": {
+    "postProcessing/inletFlux/900/surfaceFieldValue.dat": "003f657bdb11e89c415b5ede0f61935ab8513fbd4d22ab06f82cd0105826cc89",
+    "postProcessing/outletFlux/900/surfaceFieldValue.dat": "dd9329d75db22a3aef67d6fd56684813fdd208b21faad0ef662f95961fd1a3fa",
+    "postProcessing/inletPressure/900/surfaceFieldValue.dat": "23ab4d69ee510af1775050de512aa091b4e914c83def2a2a176872339b8e4cc0",
+    "postProcessing/outletPressure/900/surfaceFieldValue.dat": "daf4d8ef78907ea8599995f99f08d3ee929267dac92142f899bf8be13d0b19f2"
+  },
+  "residual_history_sha256": "9eae780dd7cd96394a0fe409e32c502a319625c49d94a2dec0d0186f06a49cdc"
+}

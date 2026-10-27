@@ -1,0 +1,79 @@
+{
+  "study_id": "962-native-laminar-replay-20261027",
+  "status": "native_analytical_metrics_satisfied_not_F25_container_conformance",
+  "actual_runtime": "OpenFOAM Foundation 13 native in Bubblewrap on kali1",
+  "actual_solver_command": "foamRun -solver incompressibleFluid",
+  "container_used": false,
+  "F25_pinned_container_conformance_claimed": false,
+  "geometry": "synthetic parallel plates; 8, 16 and 32 cells; no Porsche geometry",
+  "repeat_count": 2,
+  "identical_canonical_metrics": {
+    "repeat_count": 2,
+    "canonical_metrics_sha256": [
+      "6c8d4d9dfa8b490c96026a0e8e25fc8f6db7aa8df3a8c3eaa92b793392c4eff6",
+      "6c8d4d9dfa8b490c96026a0e8e25fc8f6db7aa8df3a8c3eaa92b793392c4eff6"
+    ],
+    "canonical_metrics_identical": true,
+    "maximum_absolute_difference": 0.0,
+    "maximum_relative_difference": 0.0,
+    "worst_absolute_metric": null
+  },
+  "mathematical_checks_satisfied": true,
+  "original_repeat_contract_status": "failed",
+  "original_repeat_contract_failures": [
+    "simplefoam_delegation_not_observed:coarse",
+    "simplefoam_delegation_not_observed:medium",
+    "simplefoam_delegation_not_observed:fine"
+  ],
+  "execution_difference": "Direct native foamRun does not emit the deprecated simpleFoam delegation message required by the original F25 execution contract. All original numerical criteria pass. No container identity or aggregate F25 pass is claimed.",
+  "fine_flow_relative_error": 0.0019531247661201477,
+  "fine_velocity_l2_relative_error": 0.001337212503728348,
+  "fine_velocity_linf_relative_error": 0.0009775170930054304,
+  "observed_orders": {
+    "l2": [
+      {
+        "from": "coarse",
+        "to": "medium",
+        "refinement_ratio": 2.0,
+        "order": 2.0000000437765384
+      },
+      {
+        "from": "medium",
+        "to": "fine",
+        "refinement_ratio": 2.0,
+        "order": 2.0000001784921113
+      }
+    ],
+    "linf": [
+      {
+        "from": "coarse",
+        "to": "medium",
+        "refinement_ratio": 2.0,
+        "order": 2.000000007966906
+      },
+      {
+        "from": "medium",
+        "to": "fine",
+        "refinement_ratio": 2.0,
+        "order": 2.000000005914781
+      }
+    ]
+  },
+  "source_hashes": {
+    "outils/benchmarks/openfoam-poiseuille-f25/generate_cases.py": "8113464fd165bd033dee59bb0d2d041a6a4e78a468d178aba8b9be09a4587028",
+    "outils/benchmarks/openfoam-poiseuille-f25/analyze_results.py": "0260612fc29e9380efa1995c68eab889eee9680c73e69ad059d056579cb7569c",
+    "outils/benchmarks/openfoam-poiseuille-f25/benchmark-contract-f25.json": "84e3b36eea0f0deb0f34f7352a2ca39e3dee7969e68096c930b9423dc2928f6e"
+  },
+  "native_input_manifest_sha256": "a3c932c3fc59b8300ba23f0a64fb2b08a345816f363fe939801cc2b24cf053b1",
+  "native_output_manifest_sha256": "2128892576a7e06e5fde311df2588b312dea58d558736c3946f496c94ce77d89",
+  "archive": {
+    "file": "native-benchmark-readback-001.tar.gz",
+    "bytes": 67645,
+    "sha256": "e6470acd129b3b99401f5fcefb4c67e7a94a7fcbe0ae443806c0e7204c29da2a",
+    "payloads": 270,
+    "verified_on_kali_and_mac": true
+  },
+  "head_hydraulic_performance_validated": false,
+  "thermal_performance_validated": false,
+  "manufacturing_authorized": false
+}

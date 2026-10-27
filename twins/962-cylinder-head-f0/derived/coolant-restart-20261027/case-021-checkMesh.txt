@@ -1,0 +1,609 @@
+/*---------------------------------------------------------------------------*\
+  =========                 |
+  \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
+   \\    /   O peration     | Website:  https://openfoam.org
+    \\  /    A nd           | Version:  13
+     \\/     M anipulation  |
+\*---------------------------------------------------------------------------*/
+Build  : 13-cde978a97c93
+Exec   : checkMesh -allGeometry -allTopology
+Date   : Oct 27 2026
+Time   : 08:44:24
+Host   : "kali1"
+PID    : 220
+I/O    : uncollated
+Case   : <job>/case-021
+nProcs : 1
+sigFpe : Enabling floating point exception trapping (FOAM_SIGFPE).
+fileModificationChecking : Monitoring run-time modified files using timeStampMaster (fileModificationSkew 10)
+allowSystemOperations : Allowing user-supplied system call operations
+
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+Create time
+
+--> FOAM Warning : 
+    From function static Foam::instantList Foam::timeSelector::select0(Foam::Time&, const Foam::argList&)
+    in file db/Time/timeSelector.C at line 269
+    No time specified or available, selecting 'constant'
+Create mesh for time = constant
+
+Enabling all (cell, face, edge, point) topology checks.
+
+Enabling all geometry checks.
+
+Time = constant
+
+Mesh stats
+    points:           805990
+    faces:            957614
+    internal faces:   870659
+    cells:            150188
+    faces per cell:   12.17322955229446
+    boundary patches: 3
+    point zones:      0
+    face zones:       0
+    cell zones:       1
+
+Overall number of cells of each type:
+    hexahedra:     6011
+    prisms:        306
+    wedges:        0
+    pyramids:      0
+    tet wedges:    0
+    tetrahedra:    1
+    polyhedra:     143870
+    Breakdown of polyhedra by number of faces:
+        faces   number of cells
+            5   36
+            6   172
+            7   4802
+            8   8859
+            9   14362
+           10   18098
+           11   17503
+           12   15292
+           13   13830
+           14   13078
+           15   11484
+           16   9226
+           17   6793
+           18   4280
+           19   2712
+           20   1445
+           21   778
+           22   464
+           23   242
+           24   133
+           25   84
+           26   60
+           27   38
+           28   34
+           29   14
+           30   14
+           31   10
+           32   8
+           33   8
+           34   4
+           35   1
+           36   3
+           37   1
+           38   1
+           41   1
+
+Checking topology...
+    Boundary definition OK.
+--> FOAM Serious Error : 
+    From function bool Foam::Zone<ZoneType, ZonesType>::checkDefinition(Foam::label, bool) const [with ZoneType = Foam::cellZone; ZonesType = Foam::cellZoneList; Foam::label = int]
+    in file lnInclude/Zone.C at line 281
+    Zone coolant contains invalid index label 150188
+Valid index labels are 0..150187
+--> FOAM Serious Error : 
+    From function bool Foam::Zone<ZoneType, ZonesType>::checkDefinition(Foam::label, bool) const [with ZoneType = Foam::cellZone; ZonesType = Foam::cellZoneList; Foam::label = int]
+    in file lnInclude/Zone.C at line 281
+    Zone coolant contains invalid index label 150189
+Valid index labels are 0..150187
+--> FOAM Serious Error : 
+    From function bool Foam::Zone<ZoneType, ZonesType>::checkDefinition(Foam::label, bool) const [with ZoneType = Foam::cellZone; ZonesType = Foam::cellZoneList; Foam::label = int]
+    in file lnInclude/Zone.C at line 281
+    Zone coolant contains invalid index label 150190
+Valid index labels are 0..150187
+--> FOAM Serious Error : 
+    From function bool Foam::Zone<ZoneType, ZonesType>::checkDefinition(Foam::label, bool) const [with ZoneType = Foam::cellZone; ZonesType = Foam::cellZoneList; Foam::label = int]
+    in file lnInclude/Zone.C at line 281
+    Zone coolant contains invalid index label 150191
+Valid index labels are 0..150187
+--> FOAM Serious Error : 
+    From function bool Foam::Zone<ZoneType, ZonesType>::checkDefinition(Foam::label, bool) const [with ZoneType = Foam::cellZone; ZonesType = Foam::cellZoneList; Foam::label = int]
+    in file lnInclude/Zone.C at line 281
+    Zone coolant contains invalid index label 150192
+Valid index labels are 0..150187
+--> FOAM Serious Error : 
+    From function bool Foam::Zone<ZoneType, ZonesType>::checkDefinition(Foam::label, bool) const [with ZoneType = Foam::cellZone; ZonesType = Foam::cellZoneList; Foam::label = int]
+    in file lnInclude/Zone.C at line 281
+    Zone coolant contains invalid index label 150193
+Valid index labels are 0..150187
+--> FOAM Serious Error : 
+    From function bool Foam::Zone<ZoneType, ZonesType>::checkDefinition(Foam::label, bool) const [with ZoneType = Foam::cellZone; ZonesType = Foam::cellZoneList; Foam::label = int]
+    in file lnInclude/Zone.C at line 281
+    Zone coolant contains invalid index label 150194
+Valid index labels are 0..150187
+--> FOAM Serious Error : 
+    From function bool Foam::Zone<ZoneType, ZonesType>::checkDefinition(Foam::label, bool) const [with ZoneType = Foam::cellZone; ZonesType = Foam::cellZoneList; Foam::label = int]
+    in file lnInclude/Zone.C at line 281
+    Zone coolant contains invalid index label 150195
+Valid index labels are 0..150187
+--> FOAM Serious Error : 
+    From function bool Foam::Zone<ZoneType, ZonesType>::checkDefinition(Foam::label, bool) const [with ZoneType = Foam::cellZone; ZonesType = Foam::cellZoneList; Foam::label = int]
+    in file lnInclude/Zone.C at line 281
+    Zone coolant contains invalid index label 150196
+Valid index labels are 0..150187
+--> FOAM Serious Error : 
+    From function bool Foam::Zone<ZoneType, ZonesType>::checkDefinition(Foam::label, bool) const [with ZoneType = Foam::cellZone; ZonesType = Foam::cellZoneList; Foam::label = int]
+    in file lnInclude/Zone.C at line 281
+    Zone coolant contains invalid index label 150197
+Valid index labels are 0..150187
+--> FOAM Serious Error : 
+    From function bool Foam::Zone<ZoneType, ZonesType>::checkDefinition(Foam::label, bool) const [with ZoneType = Foam::cellZone; ZonesType = Foam::cellZoneList; Foam::label = int]
+    in file lnInclude/Zone.C at line 281
+    Zone coolant contains invalid index label 150198
+Valid index labels are 0..150187
+--> FOAM Serious Error : 
+    From function bool Foam::Zone<ZoneType, ZonesType>::checkDefinition(Foam::label, bool) const [with ZoneType = Foam::cellZone; ZonesType = Foam::cellZoneList; Foam::label = int]
+    in file lnInclude/Zone.C at line 281
+    Zone coolant contains invalid index label 150199
+Valid index labels are 0..150187
+--> FOAM Serious Error : 
+    From function bool Foam::Zone<ZoneType, ZonesType>::checkDefinition(Foam::label, bool) const [with ZoneType = Foam::cellZone; ZonesType = Foam::cellZoneList; Foam::label = int]
+    in file lnInclude/Zone.C at line 281
+    Zone coolant contains invalid index label 150200
+Valid index labels are 0..150187
+--> FOAM Serious Error : 
+    From function bool Foam::Zone<ZoneType, ZonesType>::checkDefinition(Foam::label, bool) const [with ZoneType = Foam::cellZone; ZonesType = Foam::cellZoneList; Foam::label = int]
+    in file lnInclude/Zone.C at line 281
+    Zone coolant contains invalid index label 150201
+Valid index labels are 0..150187
+--> FOAM Serious Error : 
+    From function bool Foam::Zone<ZoneType, ZonesType>::checkDefinition(Foam::label, bool) const [with ZoneType = Foam::cellZone; ZonesType = Foam::cellZoneList; Foam::label = int]
+    in file lnInclude/Zone.C at line 281
+    Zone coolant contains invalid index label 150202
+Valid index labels are 0..150187
+--> FOAM Serious Error : 
+    From function bool Foam::Zone<ZoneType, ZonesType>::checkDefinition(Foam::label, bool) const [with ZoneType = Foam::cellZone; ZonesType = Foam::cellZoneList; Foam::label = int]
+    in file lnInclude/Zone.C at line 281
+    Zone coolant contains invalid index label 150203
+Valid index labels are 0..150187
+--> FOAM Serious Error : 
+    From function bool Foam::Zone<ZoneType, ZonesType>::checkDefinition(Foam::label, bool) const [with ZoneType = Foam::cellZone; ZonesType = Foam::cellZoneList; Foam::label = int]
+    in file lnInclude/Zone.C at line 281
+    Zone coolant contains invalid index label 150204
+Valid index labels are 0..150187
+--> FOAM Serious Error : 
+    From function bool Foam::Zone<ZoneType, ZonesType>::checkDefinition(Foam::label, bool) const [with ZoneType = Foam::cellZone; ZonesType = Foam::cellZoneList; Foam::label = int]
+    in file lnInclude/Zone.C at line 281
+    Zone coolant contains invalid index label 150205
+Valid index labels are 0..150187
+--> FOAM Serious Error : 
+    From function bool Foam::Zone<ZoneType, ZonesType>::checkDefinition(Foam::label, bool) const [with ZoneType = Foam::cellZone; ZonesType = Foam::cellZoneList; Foam::label = int]
+    in file lnInclude/Zone.C at line 281
+    Zone coolant contains invalid index label 150206
+Valid index labels are 0..150187
+--> FOAM Serious Error : 
+    From function bool Foam::Zone<ZoneType, ZonesType>::checkDefinition(Foam::label, bool) const [with ZoneType = Foam::cellZone; ZonesType = Foam::cellZoneList; Foam::label = int]
+    in file lnInclude/Zone.C at line 281
+    Zone coolant contains invalid index label 150207
+Valid index labels are 0..150187
+--> FOAM Serious Error : 
+    From function bool Foam::Zone<ZoneType, ZonesType>::checkDefinition(Foam::label, bool) const [with ZoneType = Foam::cellZone; ZonesType = Foam::cellZoneList; Foam::label = int]
+    in file lnInclude/Zone.C at line 281
+    Zone coolant contains invalid index label 150208
+Valid index labels are 0..150187
+--> FOAM Serious Error : 
+    From function bool Foam::Zone<ZoneType, ZonesType>::checkDefinition(Foam::label, bool) const [with ZoneType = Foam::cellZone; ZonesType = Foam::cellZoneList; Foam::label = int]
+    in file lnInclude/Zone.C at line 281
+    Zone coolant contains invalid index label 150209
+Valid index labels are 0..150187
+--> FOAM Serious Error : 
+    From function bool Foam::Zone<ZoneType, ZonesType>::checkDefinition(Foam::label, bool) const [with ZoneType = Foam::cellZone; ZonesType = Foam::cellZoneList; Foam::label = int]
+    in file lnInclude/Zone.C at line 281
+    Zone coolant contains invalid index label 150210
+Valid index labels are 0..150187
+--> FOAM Serious Error : 
+    From function bool Foam::Zone<ZoneType, ZonesType>::checkDefinition(Foam::label, bool) const [with ZoneType = Foam::cellZone; ZonesType = Foam::cellZoneList; Foam::label = int]
+    in file lnInclude/Zone.C at line 281
+    Zone coolant contains invalid index label 150211
+Valid index labels are 0..150187
+--> FOAM Serious Error : 
+    From function bool Foam::Zone<ZoneType, ZonesType>::checkDefinition(Foam::label, bool) const [with ZoneType = Foam::cellZone; ZonesType = Foam::cellZoneList; Foam::label = int]
+    in file lnInclude/Zone.C at line 281
+    Zone coolant contains invalid index label 150212
+Valid index labels are 0..150187
+--> FOAM Serious Error : 
+    From function bool Foam::Zone<ZoneType, ZonesType>::checkDefinition(Foam::label, bool) const [with ZoneType = Foam::cellZone; ZonesType = Foam::cellZoneList; Foam::label = int]
+    in file lnInclude/Zone.C at line 281
+    Zone coolant contains invalid index label 150213
+Valid index labels are 0..150187
+--> FOAM Serious Error : 
+    From function bool Foam::Zone<ZoneType, ZonesType>::checkDefinition(Foam::label, bool) const [with ZoneType = Foam::cellZone; ZonesType = Foam::cellZoneList; Foam::label = int]
+    in file lnInclude/Zone.C at line 281
+    Zone coolant contains invalid index label 150214
+Valid index labels are 0..150187
+--> FOAM Serious Error : 
+    From function bool Foam::Zone<ZoneType, ZonesType>::checkDefinition(Foam::label, bool) const [with ZoneType = Foam::cellZone; ZonesType = Foam::cellZoneList; Foam::label = int]
+    in file lnInclude/Zone.C at line 281
+    Zone coolant contains invalid index label 150215
+Valid index labels are 0..150187
+--> FOAM Serious Error : 
+    From function bool Foam::Zone<ZoneType, ZonesType>::checkDefinition(Foam::label, bool) const [with ZoneType = Foam::cellZone; ZonesType = Foam::cellZoneList; Foam::label = int]
+    in file lnInclude/Zone.C at line 281
+    Zone coolant contains invalid index label 150216
+Valid index labels are 0..150187
+--> FOAM Serious Error : 
+    From function bool Foam::Zone<ZoneType, ZonesType>::checkDefinition(Foam::label, bool) const [with ZoneType = Foam::cellZone; ZonesType = Foam::cellZoneList; Foam::label = int]
+    in file lnInclude/Zone.C at line 281
+    Zone coolant contains invalid index label 150217
+Valid index labels are 0..150187
+--> FOAM Serious Error : 
+    From function bool Foam::Zone<ZoneType, ZonesType>::checkDefinition(Foam::label, bool) const [with ZoneType = Foam::cellZone; ZonesType = Foam::cellZoneList; Foam::label = int]
+    in file lnInclude/Zone.C at line 281
+    Zone coolant contains invalid index label 150218
+Valid index labels are 0..150187
+--> FOAM Serious Error : 
+    From function bool Foam::Zone<ZoneType, ZonesType>::checkDefinition(Foam::label, bool) const [with ZoneType = Foam::cellZone; ZonesType = Foam::cellZoneList; Foam::label = int]
+    in file lnInclude/Zone.C at line 281
+    Zone coolant contains invalid index label 150219
+Valid index labels are 0..150187
+--> FOAM Serious Error : 
+    From function bool Foam::Zone<ZoneType, ZonesType>::checkDefinition(Foam::label, bool) const [with ZoneType = Foam::cellZone; ZonesType = Foam::cellZoneList; Foam::label = int]
+    in file lnInclude/Zone.C at line 281
+    Zone coolant contains invalid index label 150220
+Valid index labels are 0..150187
+--> FOAM Serious Error : 
+    From function bool Foam::Zone<ZoneType, ZonesType>::checkDefinition(Foam::label, bool) const [with ZoneType = Foam::cellZone; ZonesType = Foam::cellZoneList; Foam::label = int]
+    in file lnInclude/Zone.C at line 281
+    Zone coolant contains invalid index label 150221
+Valid index labels are 0..150187
+--> FOAM Serious Error : 
+    From function bool Foam::Zone<ZoneType, ZonesType>::checkDefinition(Foam::label, bool) const [with ZoneType = Foam::cellZone; ZonesType = Foam::cellZoneList; Foam::label = int]
+    in file lnInclude/Zone.C at line 281
+    Zone coolant contains invalid index label 150222
+Valid index labels are 0..150187
+--> FOAM Serious Error : 
+    From function bool Foam::Zone<ZoneType, ZonesType>::checkDefinition(Foam::label, bool) const [with ZoneType = Foam::cellZone; ZonesType = Foam::cellZoneList; Foam::label = int]
+    in file lnInclude/Zone.C at line 281
+    Zone coolant contains invalid index label 150223
+Valid index labels are 0..150187
+--> FOAM Serious Error : 
+    From function bool Foam::Zone<ZoneType, ZonesType>::checkDefinition(Foam::label, bool) const [with ZoneType = Foam::cellZone; ZonesType = Foam::cellZoneList; Foam::label = int]
+    in file lnInclude/Zone.C at line 281
+    Zone coolant contains invalid index label 150224
+Valid index labels are 0..150187
+--> FOAM Serious Error : 
+    From function bool Foam::Zone<ZoneType, ZonesType>::checkDefinition(Foam::label, bool) const [with ZoneType = Foam::cellZone; ZonesType = Foam::cellZoneList; Foam::label = int]
+    in file lnInclude/Zone.C at line 281
+    Zone coolant contains invalid index label 150225
+Valid index labels are 0..150187
+--> FOAM Serious Error : 
+    From function bool Foam::Zone<ZoneType, ZonesType>::checkDefinition(Foam::label, bool) const [with ZoneType = Foam::cellZone; ZonesType = Foam::cellZoneList; Foam::label = int]
+    in file lnInclude/Zone.C at line 281
+    Zone coolant contains invalid index label 150226
+Valid index labels are 0..150187
+--> FOAM Serious Error : 
+    From function bool Foam::Zone<ZoneType, ZonesType>::checkDefinition(Foam::label, bool) const [with ZoneType = Foam::cellZone; ZonesType = Foam::cellZoneList; Foam::label = int]
+    in file lnInclude/Zone.C at line 281
+    Zone coolant contains invalid index label 150227
+Valid index labels are 0..150187
+--> FOAM Serious Error : 
+    From function bool Foam::Zone<ZoneType, ZonesType>::checkDefinition(Foam::label, bool) const [with ZoneType = Foam::cellZone; ZonesType = Foam::cellZoneList; Foam::label = int]
+    in file lnInclude/Zone.C at line 281
+    Zone coolant contains invalid index label 150228
+Valid index labels are 0..150187
+--> FOAM Serious Error : 
+    From function bool Foam::Zone<ZoneType, ZonesType>::checkDefinition(Foam::label, bool) const [with ZoneType = Foam::cellZone; ZonesType = Foam::cellZoneList; Foam::label = int]
+    in file lnInclude/Zone.C at line 281
+    Zone coolant contains invalid index label 150229
+Valid index labels are 0..150187
+--> FOAM Serious Error : 
+    From function bool Foam::Zone<ZoneType, ZonesType>::checkDefinition(Foam::label, bool) const [with ZoneType = Foam::cellZone; ZonesType = Foam::cellZoneList; Foam::label = int]
+    in file lnInclude/Zone.C at line 281
+    Zone coolant contains invalid index label 150230
+Valid index labels are 0..150187
+--> FOAM Serious Error : 
+    From function bool Foam::Zone<ZoneType, ZonesType>::checkDefinition(Foam::label, bool) const [with ZoneType = Foam::cellZone; ZonesType = Foam::cellZoneList; Foam::label = int]
+    in file lnInclude/Zone.C at line 281
+    Zone coolant contains invalid index label 150231
+Valid index labels are 0..150187
+--> FOAM Serious Error : 
+    From function bool Foam::Zone<ZoneType, ZonesType>::checkDefinition(Foam::label, bool) const [with ZoneType = Foam::cellZone; ZonesType = Foam::cellZoneList; Foam::label = int]
+    in file lnInclude/Zone.C at line 281
+    Zone coolant contains invalid index label 150232
+Valid index labels are 0..150187
+--> FOAM Serious Error : 
+    From function bool Foam::Zone<ZoneType, ZonesType>::checkDefinition(Foam::label, bool) const [with ZoneType = Foam::cellZone; ZonesType = Foam::cellZoneList; Foam::label = int]
+    in file lnInclude/Zone.C at line 281
+    Zone coolant contains invalid index label 150233
+Valid index labels are 0..150187
+--> FOAM Serious Error : 
+    From function bool Foam::Zone<ZoneType, ZonesType>::checkDefinition(Foam::label, bool) const [with ZoneType = Foam::cellZone; ZonesType = Foam::cellZoneList; Foam::label = int]
+    in file lnInclude/Zone.C at line 281
+    Zone coolant contains invalid index label 150234
+Valid index labels are 0..150187
+--> FOAM Serious Error : 
+    From function bool Foam::Zone<ZoneType, ZonesType>::checkDefinition(Foam::label, bool) const [with ZoneType = Foam::cellZone; ZonesType = Foam::cellZoneList; Foam::label = int]
+    in file lnInclude/Zone.C at line 281
+    Zone coolant contains invalid index label 150235
+Valid index labels are 0..150187
+--> FOAM Serious Error : 
+    From function bool Foam::Zone<ZoneType, ZonesType>::checkDefinition(Foam::label, bool) const [with ZoneType = Foam::cellZone; ZonesType = Foam::cellZoneList; Foam::label = int]
+    in file lnInclude/Zone.C at line 281
+    Zone coolant contains invalid index label 150236
+Valid index labels are 0..150187
+--> FOAM Serious Error : 
+    From function bool Foam::Zone<ZoneType, ZonesType>::checkDefinition(Foam::label, bool) const [with ZoneType = Foam::cellZone; ZonesType = Foam::cellZoneList; Foam::label = int]
+    in file lnInclude/Zone.C at line 281
+    Zone coolant contains invalid index label 150237
+Valid index labels are 0..150187
+--> FOAM Serious Error : 
+    From function bool Foam::Zone<ZoneType, ZonesType>::checkDefinition(Foam::label, bool) const [with ZoneType = Foam::cellZone; ZonesType = Foam::cellZoneList; Foam::label = int]
+    in file lnInclude/Zone.C at line 281
+    Zone coolant contains invalid index label 150238
+Valid index labels are 0..150187
+--> FOAM Serious Error : 
+    From function bool Foam::Zone<ZoneType, ZonesType>::checkDefinition(Foam::label, bool) const [with ZoneType = Foam::cellZone; ZonesType = Foam::cellZoneList; Foam::label = int]
+    in file lnInclude/Zone.C at line 281
+    Zone coolant contains invalid index label 150239
+Valid index labels are 0..150187
+--> FOAM Serious Error : 
+    From function bool Foam::Zone<ZoneType, ZonesType>::checkDefinition(Foam::label, bool) const [with ZoneType = Foam::cellZone; ZonesType = Foam::cellZoneList; Foam::label = int]
+    in file lnInclude/Zone.C at line 281
+    Zone coolant contains invalid index label 150240
+Valid index labels are 0..150187
+--> FOAM Serious Error : 
+    From function bool Foam::Zone<ZoneType, ZonesType>::checkDefinition(Foam::label, bool) const [with ZoneType = Foam::cellZone; ZonesType = Foam::cellZoneList; Foam::label = int]
+    in file lnInclude/Zone.C at line 281
+    Zone coolant contains invalid index label 150241
+Valid index labels are 0..150187
+--> FOAM Serious Error : 
+    From function bool Foam::Zone<ZoneType, ZonesType>::checkDefinition(Foam::label, bool) const [with ZoneType = Foam::cellZone; ZonesType = Foam::cellZoneList; Foam::label = int]
+    in file lnInclude/Zone.C at line 281
+    Zone coolant contains invalid index label 150242
+Valid index labels are 0..150187
+--> FOAM Serious Error : 
+    From function bool Foam::Zone<ZoneType, ZonesType>::checkDefinition(Foam::label, bool) const [with ZoneType = Foam::cellZone; ZonesType = Foam::cellZoneList; Foam::label = int]
+    in file lnInclude/Zone.C at line 281
+    Zone coolant contains invalid index label 150243
+Valid index labels are 0..150187
+--> FOAM Serious Error : 
+    From function bool Foam::Zone<ZoneType, ZonesType>::checkDefinition(Foam::label, bool) const [with ZoneType = Foam::cellZone; ZonesType = Foam::cellZoneList; Foam::label = int]
+    in file lnInclude/Zone.C at line 281
+    Zone coolant contains invalid index label 150244
+Valid index labels are 0..150187
+--> FOAM Serious Error : 
+    From function bool Foam::Zone<ZoneType, ZonesType>::checkDefinition(Foam::label, bool) const [with ZoneType = Foam::cellZone; ZonesType = Foam::cellZoneList; Foam::label = int]
+    in file lnInclude/Zone.C at line 281
+    Zone coolant contains invalid index label 150245
+Valid index labels are 0..150187
+--> FOAM Serious Error : 
+    From function bool Foam::Zone<ZoneType, ZonesType>::checkDefinition(Foam::label, bool) const [with ZoneType = Foam::cellZone; ZonesType = Foam::cellZoneList; Foam::label = int]
+    in file lnInclude/Zone.C at line 281
+    Zone coolant contains invalid index label 150246
+Valid index labels are 0..150187
+--> FOAM Serious Error : 
+    From function bool Foam::Zone<ZoneType, ZonesType>::checkDefinition(Foam::label, bool) const [with ZoneType = Foam::cellZone; ZonesType = Foam::cellZoneList; Foam::label = int]
+    in file lnInclude/Zone.C at line 281
+    Zone coolant contains invalid index label 150247
+Valid index labels are 0..150187
+--> FOAM Serious Error : 
+    From function bool Foam::Zone<ZoneType, ZonesType>::checkDefinition(Foam::label, bool) const [with ZoneType = Foam::cellZone; ZonesType = Foam::cellZoneList; Foam::label = int]
+    in file lnInclude/Zone.C at line 281
+    Zone coolant contains invalid index label 150248
+Valid index labels are 0..150187
+--> FOAM Serious Error : 
+    From function bool Foam::Zone<ZoneType, ZonesType>::checkDefinition(Foam::label, bool) const [with ZoneType = Foam::cellZone; ZonesType = Foam::cellZoneList; Foam::label = int]
+    in file lnInclude/Zone.C at line 281
+    Zone coolant contains invalid index label 150249
+Valid index labels are 0..150187
+--> FOAM Serious Error : 
+    From function bool Foam::Zone<ZoneType, ZonesType>::checkDefinition(Foam::label, bool) const [with ZoneType = Foam::cellZone; ZonesType = Foam::cellZoneList; Foam::label = int]
+    in file lnInclude/Zone.C at line 281
+    Zone coolant contains invalid index label 150250
+Valid index labels are 0..150187
+--> FOAM Serious Error : 
+    From function bool Foam::Zone<ZoneType, ZonesType>::checkDefinition(Foam::label, bool) const [with ZoneType = Foam::cellZone; ZonesType = Foam::cellZoneList; Foam::label = int]
+    in file lnInclude/Zone.C at line 281
+    Zone coolant contains invalid index label 150251
+Valid index labels are 0..150187
+--> FOAM Serious Error : 
+    From function bool Foam::Zone<ZoneType, ZonesType>::checkDefinition(Foam::label, bool) const [with ZoneType = Foam::cellZone; ZonesType = Foam::cellZoneList; Foam::label = int]
+    in file lnInclude/Zone.C at line 281
+    Zone coolant contains invalid index label 150252
+Valid index labels are 0..150187
+--> FOAM Serious Error : 
+    From function bool Foam::Zone<ZoneType, ZonesType>::checkDefinition(Foam::label, bool) const [with ZoneType = Foam::cellZone; ZonesType = Foam::cellZoneList; Foam::label = int]
+    in file lnInclude/Zone.C at line 281
+    Zone coolant contains invalid index label 150253
+Valid index labels are 0..150187
+--> FOAM Serious Error : 
+    From function bool Foam::Zone<ZoneType, ZonesType>::checkDefinition(Foam::label, bool) const [with ZoneType = Foam::cellZone; ZonesType = Foam::cellZoneList; Foam::label = int]
+    in file lnInclude/Zone.C at line 281
+    Zone coolant contains invalid index label 150254
+Valid index labels are 0..150187
+--> FOAM Serious Error : 
+    From function bool Foam::Zone<ZoneType, ZonesType>::checkDefinition(Foam::label, bool) const [with ZoneType = Foam::cellZone; ZonesType = Foam::cellZoneList; Foam::label = int]
+    in file lnInclude/Zone.C at line 281
+    Zone coolant contains invalid index label 150255
+Valid index labels are 0..150187
+--> FOAM Serious Error : 
+    From function bool Foam::Zone<ZoneType, ZonesType>::checkDefinition(Foam::label, bool) const [with ZoneType = Foam::cellZone; ZonesType = Foam::cellZoneList; Foam::label = int]
+    in file lnInclude/Zone.C at line 281
+    Zone coolant contains invalid index label 150256
+Valid index labels are 0..150187
+--> FOAM Serious Error : 
+    From function bool Foam::Zone<ZoneType, ZonesType>::checkDefinition(Foam::label, bool) const [with ZoneType = Foam::cellZone; ZonesType = Foam::cellZoneList; Foam::label = int]
+    in file lnInclude/Zone.C at line 281
+    Zone coolant contains invalid index label 150257
+Valid index labels are 0..150187
+--> FOAM Serious Error : 
+    From function bool Foam::Zone<ZoneType, ZonesType>::checkDefinition(Foam::label, bool) const [with ZoneType = Foam::cellZone; ZonesType = Foam::cellZoneList; Foam::label = int]
+    in file lnInclude/Zone.C at line 281
+    Zone coolant contains invalid index label 150258
+Valid index labels are 0..150187
+--> FOAM Serious Error : 
+    From function bool Foam::Zone<ZoneType, ZonesType>::checkDefinition(Foam::label, bool) const [with ZoneType = Foam::cellZone; ZonesType = Foam::cellZoneList; Foam::label = int]
+    in file lnInclude/Zone.C at line 281
+    Zone coolant contains invalid index label 150259
+Valid index labels are 0..150187
+--> FOAM Serious Error : 
+    From function bool Foam::Zone<ZoneType, ZonesType>::checkDefinition(Foam::label, bool) const [with ZoneType = Foam::cellZone; ZonesType = Foam::cellZoneList; Foam::label = int]
+    in file lnInclude/Zone.C at line 281
+    Zone coolant contains invalid index label 150260
+Valid index labels are 0..150187
+--> FOAM Serious Error : 
+    From function bool Foam::Zone<ZoneType, ZonesType>::checkDefinition(Foam::label, bool) const [with ZoneType = Foam::cellZone; ZonesType = Foam::cellZoneList; Foam::label = int]
+    in file lnInclude/Zone.C at line 281
+    Zone coolant contains invalid index label 150261
+Valid index labels are 0..150187
+--> FOAM Serious Error : 
+    From function bool Foam::Zone<ZoneType, ZonesType>::checkDefinition(Foam::label, bool) const [with ZoneType = Foam::cellZone; ZonesType = Foam::cellZoneList; Foam::label = int]
+    in file lnInclude/Zone.C at line 281
+    Zone coolant contains invalid index label 150262
+Valid index labels are 0..150187
+--> FOAM Serious Error : 
+    From function bool Foam::Zone<ZoneType, ZonesType>::checkDefinition(Foam::label, bool) const [with ZoneType = Foam::cellZone; ZonesType = Foam::cellZoneList; Foam::label = int]
+    in file lnInclude/Zone.C at line 281
+    Zone coolant contains invalid index label 150263
+Valid index labels are 0..150187
+--> FOAM Serious Error : 
+    From function bool Foam::Zone<ZoneType, ZonesType>::checkDefinition(Foam::label, bool) const [with ZoneType = Foam::cellZone; ZonesType = Foam::cellZoneList; Foam::label = int]
+    in file lnInclude/Zone.C at line 281
+    Zone coolant contains invalid index label 150264
+Valid index labels are 0..150187
+--> FOAM Serious Error : 
+    From function bool Foam::Zone<ZoneType, ZonesType>::checkDefinition(Foam::label, bool) const [with ZoneType = Foam::cellZone; ZonesType = Foam::cellZoneList; Foam::label = int]
+    in file lnInclude/Zone.C at line 281
+    Zone coolant contains invalid index label 150265
+Valid index labels are 0..150187
+--> FOAM Serious Error : 
+    From function bool Foam::Zone<ZoneType, ZonesType>::checkDefinition(Foam::label, bool) const [with ZoneType = Foam::cellZone; ZonesType = Foam::cellZoneList; Foam::label = int]
+    in file lnInclude/Zone.C at line 281
+    Zone coolant contains invalid index label 150266
+Valid index labels are 0..150187
+--> FOAM Serious Error : 
+    From function bool Foam::Zone<ZoneType, ZonesType>::checkDefinition(Foam::label, bool) const [with ZoneType = Foam::cellZone; ZonesType = Foam::cellZoneList; Foam::label = int]
+    in file lnInclude/Zone.C at line 281
+    Zone coolant contains invalid index label 150267
+Valid index labels are 0..150187
+--> FOAM Serious Error : 
+    From function bool Foam::Zone<ZoneType, ZonesType>::checkDefinition(Foam::label, bool) const [with ZoneType = Foam::cellZone; ZonesType = Foam::cellZoneList; Foam::label = int]
+    in file lnInclude/Zone.C at line 281
+    Zone coolant contains invalid index label 150268
+Valid index labels are 0..150187
+--> FOAM Serious Error : 
+    From function bool Foam::Zone<ZoneType, ZonesType>::checkDefinition(Foam::label, bool) const [with ZoneType = Foam::cellZone; ZonesType = Foam::cellZoneList; Foam::label = int]
+    in file lnInclude/Zone.C at line 281
+    Zone coolant contains invalid index label 150269
+Valid index labels are 0..150187
+--> FOAM Serious Error : 
+    From function bool Foam::Zone<ZoneType, ZonesType>::checkDefinition(Foam::label, bool) const [with ZoneType = Foam::cellZone; ZonesType = Foam::cellZoneList; Foam::label = int]
+    in file lnInclude/Zone.C at line 281
+    Zone coolant contains invalid index label 150270
+Valid index labels are 0..150187
+--> FOAM Serious Error : 
+    From function bool Foam::Zone<ZoneType, ZonesType>::checkDefinition(Foam::label, bool) const [with ZoneType = Foam::cellZone; ZonesType = Foam::cellZoneList; Foam::label = int]
+    in file lnInclude/Zone.C at line 281
+    Zone coolant contains invalid index label 150271
+Valid index labels are 0..150187
+--> FOAM Serious Error : 
+    From function bool Foam::Zone<ZoneType, ZonesType>::checkDefinition(Foam::label, bool) const [with ZoneType = Foam::cellZone; ZonesType = Foam::cellZoneList; Foam::label = int]
+    in file lnInclude/Zone.C at line 281
+    Zone coolant contains invalid index label 150272
+Valid index labels are 0..150187
+--> FOAM Serious Error : 
+    From function bool Foam::Zone<ZoneType, ZonesType>::checkDefinition(Foam::label, bool) const [with ZoneType = Foam::cellZone; ZonesType = Foam::cellZoneList; Foam::label = int]
+    in file lnInclude/Zone.C at line 281
+    Zone coolant contains invalid index label 150273
+Valid index labels are 0..150187
+--> FOAM Serious Error : 
+    From function bool Foam::Zone<ZoneType, ZonesType>::checkDefinition(Foam::label, bool) const [with ZoneType = Foam::cellZone; ZonesType = Foam::cellZoneList; Foam::label = int]
+    in file lnInclude/Zone.C at line 281
+    Zone coolant contains invalid index label 150274
+Valid index labels are 0..150187
+--> FOAM Serious Error : 
+    From function bool Foam::Zone<ZoneType, ZonesType>::checkDefinition(Foam::label, bool) const [with ZoneType = Foam::cellZone; ZonesType = Foam::cellZoneList; Foam::label = int]
+    in file lnInclude/Zone.C at line 281
+    Zone coolant contains invalid index label 150275
+Valid index labels are 0..150187
+--> FOAM Serious Error : 
+    From function bool Foam::Zone<ZoneType, ZonesType>::checkDefinition(Foam::label, bool) const [with ZoneType = Foam::cellZone; ZonesType = Foam::cellZoneList; Foam::label = int]
+    in file lnInclude/Zone.C at line 281
+    Zone coolant contains invalid index label 150276
+Valid index labels are 0..150187
+--> FOAM Serious Error : 
+    From function bool Foam::Zone<ZoneType, ZonesType>::checkDefinition(Foam::label, bool) const [with ZoneType = Foam::cellZone; ZonesType = Foam::cellZoneList; Foam::label = int]
+    in file lnInclude/Zone.C at line 281
+    Zone coolant contains invalid index label 150277
+Valid index labels are 0..150187
+--> FOAM Serious Error : 
+    From function bool Foam::Zone<ZoneType, ZonesType>::checkDefinition(Foam::label, bool) const [with ZoneType = Foam::cellZone; ZonesType = Foam::cellZoneList; Foam::label = int]
+    in file lnInclude/Zone.C at line 281
+    Zone coolant contains invalid index label 150278
+Valid index labels are 0..150187
+--> FOAM Serious Error : 
+    From function bool Foam::Zone<ZoneType, ZonesType>::checkDefinition(Foam::label, bool) const [with ZoneType = Foam::cellZone; ZonesType = Foam::cellZoneList; Foam::label = int]
+    in file lnInclude/Zone.C at line 281
+    Zone coolant contains invalid index label 150279
+Valid index labels are 0..150187
+--> FOAM Serious Error : 
+    From function bool Foam::Zone<ZoneType, ZonesType>::checkDefinition(Foam::label, bool) const [with ZoneType = Foam::cellZone; ZonesType = Foam::cellZoneList; Foam::label = int]
+    in file lnInclude/Zone.C at line 281
+    Zone coolant contains invalid index label 150280
+Valid index labels are 0..150187
+--> FOAM Serious Error : 
+    From function bool Foam::Zone<ZoneType, ZonesType>::checkDefinition(Foam::label, bool) const [with ZoneType = Foam::cellZone; ZonesType = Foam::cellZoneList; Foam::label = int]
+    in file lnInclude/Zone.C at line 281
+    Zone coolant contains invalid index label 150281
+Valid index labels are 0..150187
+--> FOAM Serious Error : 
+    From function bool Foam::Zone<ZoneType, ZonesType>::checkDefinition(Foam::label, bool) const [with ZoneType = Foam::cellZone; ZonesType = Foam::cellZoneList; Foam::label = int]
+    in file lnInclude/Zone.C at line 281
+    Zone coolant contains invalid index label 150282
+Valid index labels are 0..150187
+--> FOAM Serious Error : 
+    From function bool Foam::Zone<ZoneType, ZonesType>::checkDefinition(Foam::label, bool) const [with ZoneType = Foam::cellZone; ZonesType = Foam::cellZoneList; Foam::label = int]
+    in file lnInclude/Zone.C at line 281
+    Zone coolant contains invalid index label 150283
+Valid index labels are 0..150187
+--> FOAM Serious Error : 
+    From function bool Foam::Zone<ZoneType, ZonesType>::checkDefinition(Foam::label, bool) const [with ZoneType = Foam::cellZone; ZonesType = Foam::cellZoneList; Foam::label = int]
+    in file lnInclude/Zone.C at line 281
+    Zone coolant contains invalid index label 150284
+Valid index labels are 0..150187
+--> FOAM Serious Error : 
+    From function bool Foam::Zone<ZoneType, ZonesType>::checkDefinition(Foam::label, bool) const [with ZoneType = Foam::cellZone; ZonesType = Foam::cellZoneList; Foam::label = int]
+    in file lnInclude/Zone.C at line 281
+    Zone coolant contains invalid index label 150285
+Valid index labels are 0..150187
+--> FOAM Serious Error : 
+    From function bool Foam::Zone<ZoneType, ZonesType>::checkDefinition(Foam::label, bool) const [with ZoneType = Foam::cellZone; ZonesType = Foam::cellZoneList; Foam::label = int]
+    in file lnInclude/Zone.C at line 281
+    Zone coolant contains invalid index label 150286
+Valid index labels are 0..150187
+--> FOAM Serious Error : 
+
+--> FOAM FATAL ERROR: 
+Too many errors
+
+    From function Foam::OSstream& Foam::messageStream::operator()(Foam::label)
+    in file lnInclude/messageStream.C at line 196.
+
+FOAM aborting
+
+#0  Foam::error::printStack(Foam::Ostream&) at ??:?
+#1  Foam::error::abort() at ??:?
+#2  Foam::messageStream::operator()(int) at ??:?
+#3  Foam::messageStream::operator()(char const*, char const*, int) at ??:?
+#4  Foam::Zone<Foam::cellZone, Foam::cellZoneList>::checkDefinition(int, bool) const at ??:?
+#5  Foam::meshCheck::checkTopology(Foam::polyMesh const&, bool, Foam::autoPtr<Foam::surfaceWriter> const&, Foam::autoPtr<Foam::setWriter> const&) at ??:?
+#6  ? in "/opt/openfoam13/platforms/linux64GccDPInt32Opt/bin/checkMesh"
+#7  ? in "/usr/lib/x86_64-linux-gnu/libc.so.6"
+#8  __libc_start_main in "/usr/lib/x86_64-linux-gnu/libc.so.6"
+#9  ? in "/opt/openfoam13/platforms/linux64GccDPInt32Opt/bin/checkMesh"

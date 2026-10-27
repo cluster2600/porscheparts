@@ -1,0 +1,79 @@
+{
+  "status": "audited_isothermal_restart_not_physical_validation",
+  "cells": 635132,
+  "saved_iteration": 1300.0,
+  "last_completed_iteration": 1377.0,
+  "solver_exit_code": 124,
+  "native_convergence_marker": false,
+  "native_End_marker": false,
+  "first_solve_initial_residuals": {
+    "Ux": 4.278702898928382e-05,
+    "Uy": 6.277106162339547e-05,
+    "Uz": 8.230259969664124e-05,
+    "p": 0.000669385759047635,
+    "omega": 4.328688203450113e-05,
+    "k": 0.0001676559351250047
+  },
+  "residual_target": 1e-05,
+  "residual_target_satisfied": false,
+  "saved_fields_match_last_completed_iteration": false,
+  "flow_m3_s": 0.0008103932700333026,
+  "density_kg_m3": 965,
+  "inlet_flux_m3_s": -0.0008103932700333,
+  "outlet_flux_m3_s": 0.0008103933748166176,
+  "relative_flow_imbalance": 1.2929934319861146e-07,
+  "relative_inlet_flow_error": 3.2108919338116903e-15,
+  "provisional_pressure_drop_pa": 9403.110651019912,
+  "provisional_hydraulic_power_w": 7.620217588965003,
+  "pressure_is_static_area_average_not_total_pressure": true,
+  "pressure_window_iterations": 100,
+  "pressure_relative_range": 0.0011011190904684008,
+  "pressure_relative_range_target": 0.001,
+  "maximum_cell_speed_m_s": 7.387626881555039,
+  "positive_turbulence_fields": true,
+  "internal_kinematic_pressure_range_m2_s2": [
+    -27.83496899568798,
+    12.85910468268021
+  ],
+  "numerical_flow_screen_passed": false,
+  "spatial_discretization": "first-order bounded upwind; no grid convergence study",
+  "non_orthogonal_correction_limiter": 0.5,
+  "hydraulic_performance_validated": false,
+  "thermal_performance_validated": false,
+  "manufacturing_authorized": false,
+  "source_hashes": {
+    "analyze_restart.py": "4f34954ca69047fcc30711288325f8f2b31c5005538f98e187c49ec03aaff065",
+    "prepare_restart.py": "c35fe9665a9f6d08a61cb35322d501e57874e75a875d419e9676693e2a06e1fa",
+    "analyze_flow.py": "08d8a5b69ce1f44fcdfeb325fe58704ef2d55300c8294839bc4845f4119eaa3b",
+    "build_flow_case.py": "a43c53e9a0cc6a905162824e8b8e82323b44867dcd9a6a2ed0260cd5b15d166c",
+    "analyze_results.py": "0260612fc29e9380efa1995c68eab889eee9680c73e69ad059d056579cb7569c",
+    "generate_cases.py": "8113464fd165bd033dee59bb0d2d041a6a4e78a468d178aba8b9be09a4587028"
+  },
+  "case_report_sha256": "b7df878ea83ab2eb27435054ce32789b7df35d8c63f4620f31b6282709df6f42",
+  "mesh_report_sha256": "1adbba2fdd63d0471339da10358060c4c9601361f32ff165dfdfd5ed65a14cef",
+  "log_hashes": {
+    "log.accept_mesh": "1adbba2fdd63d0471339da10358060c4c9601361f32ff165dfdfd5ed65a14cef",
+    "log.centres": "f8ae5ea862997b38a4b77f24ee94af5ce8ee8c9975164898429d098c6acd45fc",
+    "log.checkMesh": "6388658c852396cce87b6bc16386369909638cc12a6268276888b58cee8380e0",
+    "log.decomposePar": "ad813aa673efa841c3082f4397a7fede479f0a589767f364e39dbab7ff771197",
+    "log.parallelFoam": "85d4d004280d543da38fe43f07374564e9abbc6bc48b06960935756dff31195b",
+    "log.reconstruct-post": "2b97f33e2f02a34380db5b5fe2dc772ec255302773bc86566f3d3f7b63d4fc1a",
+    "log.reconstructPar": "c2bc18fe21f183ff5c8079d8e3c64e8f2f603122c9b08cc87f52255b4b814d07",
+    "log.yPlus": "cb840cc600d5b52f5f0da105a7f1daf17a65f27d4dbf5680bc2301c1548f0694"
+  },
+  "final_field_hashes": {
+    "U": "f904a9db7a2492ce63b58fbbc3efa7d61d3ceb2330f9214bc18598214dc14436",
+    "p": "3d1f4665d875dfcc9eb3fbf17c4e3eba2c54e83e09ba40e0ab3b312ef28b799d",
+    "phi": "fa5cc41c1f768f32ae2a085117e6616cead1667dfa5b1bbb5e946bb58110ec06",
+    "k": "feff885d306706d36afe7410b6f9de7d918a4590aa9b550887b155d6e7e09333",
+    "omega": "e23669954ab76e00f8ed700766c68469f407fca9339738cdd6334238a0113cad",
+    "nut": "b631c37d82e3352a27362b7ad6e993c1f2b99db23ef9b2218d19c83d6ae2cfb3"
+  },
+  "history_hashes": {
+    "postProcessing/inletFlux/900/surfaceFieldValue.dat": "78698f8e558c4a6493eb6f2038e78f416676e08850ee152c0cebb9ff10398719",
+    "postProcessing/outletFlux/900/surfaceFieldValue.dat": "97116ebe5caa79b79011dbf4119e63241868205bcef585321aaa296ce6c8e62b",
+    "postProcessing/inletPressure/900/surfaceFieldValue.dat": "dcb3995d540e9e22bcc2897b505b7a649bb7b76641b5254ab2f799be699185b7",
+    "postProcessing/outletPressure/900/surfaceFieldValue.dat": "8b792fc5a19f55e3b2fa4bc3510e26c1d196716ea7260b8696de640d6fd1eae8"
+  },
+  "residual_history_sha256": "b65cc00f2f3eda6df3334664128aa659326b7b9412ed8fe7b3a82e514653a63c"
+}

@@ -1,0 +1,48 @@
+/*---------------------------------------------------------------------------*\
+  =========                 |
+  \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
+   \\    /   O peration     | Website:  https://openfoam.org
+    \\  /    A nd           | Version:  13
+     \\/     M anipulation  |
+\*---------------------------------------------------------------------------*/
+Build  : 13-cde978a97c93
+Exec   : polyDualMesh -concaveMultiCells -noFunctionObjects 60
+Date   : Oct 27 2026
+Time   : 08:43:43
+Host   : "kali1"
+PID    : 218
+I/O    : uncollated
+Case   : <job>/case-021
+nProcs : 1
+sigFpe : Enabling floating point exception trapping (FOAM_SIGFPE).
+fileModificationChecking : Monitoring run-time modified files using timeStampMaster (fileModificationSkew 10)
+allowSystemOperations : Allowing user-supplied system call operations
+
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+Create time
+
+Create mesh for time = 0
+
+Feature:59.99999999999999
+minCos :0.5000000000000001
+
+Generating multiple cells for points on concave feature edges.
+
+Detected concave feature edge:2398 cos:5.578959139828773e-05 coords:(0.027203100204468 -0.026276807785034 0.052625633239746)(0.026976470947266 -0.026276807785034 0.052269218444824)
+Detected concave feature edge:2622 cos:7.313835923933594e-05 coords:(0.02620677947998 0.031202890396118 0.051624935150146)(0.025818929672241 0.031202890396118 0.051292675018311)
+Detected concave feature edge:2656 cos:6.27229547353671e-05 coords:(0.020208644866943 -0.018793718338013 0.053570465087891)(0.020208644866943 -0.01910315322876 0.053294174194336)
+Detected concave feature edge:3582 cos:9.546597608405929e-05 coords:(-0.046228313446045 0.007254988193512 0.014872912406921)(-0.046380523681641 0.0068766012191772 0.014916848182678)
+Detected concave feature edge:7254 cos:6.291865826102769e-05 coords:(0.0052779588699341 0.040050048828125 0.053771228790283)(0.0052779588699341 0.039791370391846 0.054048183441162)
+[Feature diagnostics omitted here; full native log retained in capsule.]
+Detected concave feature edge:226669 cos:0.0002655633200515663 coords:(0.014230082511902 0.047209762573242 0.014172501564026)(0.014383471488953 0.046970081329346 0.01403258895874)
+Detected concave feature edge:227210 cos:1.07542554458099e-05 coords:(0.0350919375510883 -0.00941021381676189 0.0250742929172133)(0.0350417334909802 -0.009464278093218729 0.0250184845389021)
+Detected concave feature edge:228004 cos:4.181525088616986e-05 coords:(0.015742499351501 0.046717586517334 0.014175720214844)(0.0150960471705532 0.0468376913558009 0.0141076366124249)
+Detected concave feature edge:228319 cos:3.721513907054536e-06 coords:(0.03525 -0.0092399978637695 0.02525)(0.0351835260391235 -0.00931158304214475 0.0251761054992675)
+Detected concave feature edge:228691 cos:2.200617908577254e-05 coords:(0.0350919375510883 -0.00941021381676189 0.0250742929172133)(0.0351399124733924 -0.009358550077676711 0.0251276233173369)
+Dumping centres of featureFaces to obj file "featureFaces.obj"
+Dumping featureEdges to obj file "featureEdges.obj"
+Dumping featurePoints that become a single cell to obj file "singleCellFeaturePoints.obj"
+Dumping featurePoints that become multiple cells to obj file "multiCellFeaturePoints.obj"
+Writing dual mesh to 0
+End
+
