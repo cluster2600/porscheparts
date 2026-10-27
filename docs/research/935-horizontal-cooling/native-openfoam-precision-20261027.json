@@ -1,0 +1,61 @@
+{
+  "schema": "935-native-openfoam-precision-v1",
+  "date": "2026-10-27",
+  "geometry_status": "conditional_unverified_scale",
+  "input": {
+    "description": "rejected_targeted_volume_fluid.2",
+    "nodes": 867235,
+    "tetrahedra": 4023860,
+    "sha256": {
+      "node": "80f304f6c16299295442787b479fdafb0fb604c01443f7048e7f0747b4c414a1",
+      "ele": "4e36b2b9d40027144f0d571862635f2f1cafa82db733a5267e7341de97c57765",
+      "face": "755de2a9b130742578307df6804b19a76713183e071c67d670e34e52a553a9a7"
+    }
+  },
+  "runtime": {
+    "openfoam": "Foundation 13 build 13-18870c24d21c",
+    "image": "ghcr.io/cluster2600/3dprinting993-mesh-cfd@sha256:a1db60cbf61bbcca52c171e50cab01ed0b6ec860b227e7c5fc50f7b809659b4f",
+    "host": "macOS Apple Silicon with Linux amd64 container",
+    "conversion_command": ["tetgenToFoam", "/input/fluid.2", "-case", "/workspace"],
+    "quality_command": ["checkMesh", "-case", "/workspace", "-allGeometry", "-allTopology", "-meshQuality"]
+  },
+  "default_precision_control": {
+    "completed": false,
+    "stopped_after_seconds": 900,
+    "max_abs_coordinate_error_m": 5.000000000005e-7,
+    "distinct_vertices_collapsed": 27,
+    "zero_or_negative_volume_cells_reported_before_stop": 130,
+    "log_sha256": "bf5b5fb9f9de512749085c6bdd82d0ae40dd7ecce79e8831fe939e5c05cfcaeb"
+  },
+  "precision17_case": {
+    "writePrecision": 17,
+    "complete_checkMesh": true,
+    "changed_coordinates": 0,
+    "distinct_vertices_collapsed": 0,
+    "failed_mesh_checks": 9,
+    "zero_or_negative_volume_cells": 7,
+    "highly_skew_faces": 1211,
+    "low_quality_or_negative_face_tets": 760,
+    "cells_with_determinant_below_0p001": 83745,
+    "unique_quality_error_faces": 189881,
+    "internal_quality_error_faces": 180083,
+    "boundary_quality_error_faces": 9798,
+    "quality_error_faces_in_conditional_rotor_envelope": 189539,
+    "conditional_rotor_envelope_m": "r < 0.145 and abs(z) < 0.04",
+    "quality_error_faces_in_r_0p05_to_0p10_m": 165359,
+    "controlDict_sha256": "83712ddd86c552028ff188a195be161d8cebb9e8cfe453ca3941bc693244822d",
+    "meshQualityDict_sha256": "bafbc5ced7e83c5a1cc11291a0937c3499a6713e8e3411a83f93464381ba2c7d",
+    "converted_points_sha256": "db5dd12cbf35aada77336a1cf23687a7aa988b680b87198f49a458ed1dea98cc",
+    "conversion_log_sha256": "126a28b7ecd9e4f2fb792da46d633fce389881c556514b6dee3bf0c4c9431a3e",
+    "quality_log_sha256": "b5eb013765236c0fae2c13121bf6e7afe9083942bad873dbad5675a64aebb8ed",
+    "localization_report_sha256": "8fda1cda2764adbf35d1c0649f6fe4c4b6f0177f658c398dc99e8f0873ec201a"
+  },
+  "private_bundle": {
+    "url": "https://github.com/cluster2600/porscheparts-935-private/releases/download/935-root-repair-20261025/935-openfoam-precision17-20261027.tar.gz",
+    "sha256": "a7d3fdf78315c9c4a50c0c7709fcf7171c227a09d8b1ec2764a39a272fcf5958",
+    "member_hash_readback": true,
+    "remote_asset_digest_matches": true
+  },
+  "CFD_admitted": false,
+  "CFD_solved": false
+}
