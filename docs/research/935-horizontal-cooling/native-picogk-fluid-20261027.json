@@ -1,0 +1,76 @@
+{
+  "schema": "935-native-picogk-fluid-trial-v1",
+  "date": "2026-10-27",
+  "classification": "provisional_enclosure_with_uncalibrated_scale_not_CFD_admitted",
+  "rotor_indexed_npz_sha256": "5f999a7596a5d491027eb4d9020a4e14bcad2620aa1e2a58748452df461b815b",
+  "provisional_outer_boundary_sha256": "67835eacd4d1c7f9736b5fc826979f8ad48366397b422e672043ef720c027f86",
+  "PLC": {
+    "receipt_sha256": "6367914efb771aa0deb17f884b296540a2e9a8f8c8d7527055768c35912f34af",
+    "smesh_sha256": "265c78f9a18d43d286d3dc9bac66115c253476f6582236455a9fbf785de941de",
+    "vertices": 668240,
+    "boundary_triangles": 1336476,
+    "rotor_triangles": 1319474,
+    "conditional_fluid_volume_m3": 0.05140884081894108,
+    "source_unit_m_per_uncalibrated_unit_assumed": 0.001
+  },
+  "TetGen": {
+    "version": "1.5.1",
+    "command": "tetgen -pYq1.4O5MzCf fluid.smesh",
+    "executable_sha256": "847c43da808f6e65dd4a6c5091c23384fcc42ff4ce32692ec336ca8da6ce08df",
+    "execution_receipt_sha256": "9b3eab1e95aca11298bae79d499d33e3ed9effd37e9f69148fb7e178c5a70bec",
+    "tetrahedra": 5698705,
+    "vertices": 1237026,
+    "boundary_triangles": 1336476
+  },
+  "independent_audit": {
+    "assessment_sha256": "873dee794b28738189e1e080cf0ee508db3ca2921d44c910220bbae8e44cef28",
+    "quality_sha256": "ff86eb809dd9f1572b5fad9b4f4a363735c9905c6edde8c378dba4f81018be3a",
+    "indexed_volume_sha256": "0a1526bf8f324fbcf431f16802f1a0394b6ec33737b437efaed7fe9583ee2e63",
+    "exact_zero_or_negative_tetrahedra": 0,
+    "connected_components": 1,
+    "boundary_coordinate_triangle_marker_bijection": true,
+    "exact_cell_sum_equals_PLC_volume": true,
+    "mean_ratio_min": 0.00004250009089181081,
+    "mean_ratio_below_0p01": 18,
+    "weak_cells_touching_rotor": 18,
+    "earlier_simplified_O5_mean_ratio_below_0p01": 2929
+  },
+  "OpenFOAM": {
+    "version": "Foundation 13",
+    "writePrecision": 17,
+    "imported_points_changed": 0,
+    "point_roundtrip_sha256": "cb34c93bfb88828d5df76404b0d192629a7bf21a77035ea772bb975279eec08c",
+    "import_log_sha256": "4d1ddf189897de61dba095cc090157a01390fc57e4858cd7ab4e0a1a09c3bf14",
+    "checkMesh_log_sha256": "8ca006146a830d8b74e752de1514daea0a2995372dfe967e7d4827ab8548bab1",
+    "checkMesh_command": "checkMesh -constant -allGeometry -allTopology -writeSets -writeSurfaces",
+    "checkMesh_failed_checks": 5,
+    "high_aspect_ratio_cells": 4,
+    "highly_skew_faces": 3,
+    "low_determinant_cells": 7516,
+    "low_interpolation_weight_faces": 815,
+    "low_volume_ratio_faces": 130,
+    "short_edges": 8,
+    "cell_volumes_pass": true,
+    "face_pyramids_pass": true,
+    "face_tets_pass": true,
+    "concave_cells_pass": true,
+    "connected_regions": 1,
+    "checkMesh_status": "failed_quality_not_CFD_admitted"
+  },
+  "private_bundle": {
+    "url": "https://github.com/cluster2600/porscheparts-935-private/releases/download/935-root-repair-20261025/935-native-fluid-tetgen-20261027.tar.zst",
+    "sha256": "313cd6e2c7d776a0fc52442661ac66616d96ac75a6db44a7c4177d1ed21698a3",
+    "payload_members_hash_readback": 14,
+    "remote_asset_digest_matches": true
+  },
+  "private_openfoam_bundle": {
+    "url": "https://github.com/cluster2600/porscheparts-935-private/releases/download/935-root-repair-20261025/935-native-fluid-openfoam-20261027.tar.zst",
+    "sha256": "0cb81f5644482085768a1a82a207147f0d7ec11798aaffad0145c7d6302d0658",
+    "payload_members_hash_readback": 26,
+    "remote_asset_digest_matches": true
+  },
+  "physical_935_shroud_defined": false,
+  "scale_verified": false,
+  "CFD_admitted": false,
+  "manufacturing_authorized": false
+}
