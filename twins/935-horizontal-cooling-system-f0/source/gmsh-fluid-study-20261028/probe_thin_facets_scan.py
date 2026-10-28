@@ -38,6 +38,8 @@ triangles = v[f]
 ab, ac, bc = triangles[:, 1] - triangles[:, 0], triangles[:, 2] - triangles[:, 0], triangles[:, 2] - triangles[:, 1]
 cross = np.cross(ab, ac)
 quality = 2 * np.sqrt(3) * np.linalg.norm(cross, axis=1) / (np.sum(ab * ab, axis=1) + np.sum(ac * ac, axis=1) + np.sum(bc * bc, axis=1))
+if not np.isfinite(quality).all():
+    raise SystemExit("Non-finite analysis facet quality")
 ids = np.flatnonzero(quality < 0.05)
 if len(ids) != 113 or np.count_nonzero(quality < 0.01) != 24:
     raise SystemExit("Unexpected thin-facet population")
@@ -97,6 +99,8 @@ control_samples = np.stack((control_triangles[:, 0], control_triangles[:, 1], co
                             control_triangles.mean(axis=1)), axis=1)
 _, control_distance, _ = trimesh.proximity.closest_point(scan_mesh, control_samples.reshape(-1, 3))
 control_distance = control_distance.reshape(len(controls), 7)
+if not np.isfinite(control_distance).all():
+    raise SystemExit("Non-finite control scan distance")
 pair_distance = np.linalg.norm(control_triangles.mean(axis=1) - worst_centres, axis=1)
 report["nearby_good_face_controls"] = {
     "selection": "nearest distinct analysis face with normalized quality >= 0.2 to each worst face centroid",
