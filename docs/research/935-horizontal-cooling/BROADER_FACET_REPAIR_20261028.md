@@ -62,6 +62,8 @@ The [private native Gmsh and precision-audit archive](https://github.com/cluster
 has SHA-256 `74cf55ebd56931658348c66ce259709c2633767b3c2a60348e2eae3cc3a2714f`.
 The full Gmsh generation archive has SHA-256
 `d5649b2e3d72434c2f0a3925f68e24befc2b7dfa88dbd425ae6d9f393a471361`.
+The [private cfMesh case](https://github.com/cluster2600/porscheparts-935-private/releases/download/935-root-repair-20261025/935-cfmesh-broader-20261028.tar.zst)
+has SHA-256 `98aaaf3bbb77feb36f29bf4dad5f3d464204cd835738e33dd3f025dd487e447b`.
 
 The next work is to diagnose volume-mesh defects and achieve independent
 surface fidelity and all mesh-quality gates before solving airflow. Scan scale,
