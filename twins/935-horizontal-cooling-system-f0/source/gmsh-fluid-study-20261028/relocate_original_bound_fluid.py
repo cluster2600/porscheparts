@@ -10,6 +10,7 @@ import gmsh
 
 
 SOURCE_SHAS = {
+    "1af85154edb0e06a9fcc0bd7bb7a728cf7fb70fd99597ed4dd0a025b4ad942ea",
     "0f6d5cadd5b48c3345e8440c5a881018ca463b005641c46e0b376d9ecbcd8bb7",
     "edbea4908c1d8431e51977fd5a2300ab2687a491d41f6dcd79a47e6115644acd",
 }

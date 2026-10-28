@@ -7,6 +7,7 @@
 #include <cmath>
 #include <filesystem>
 #include <iostream>
+#include <string>
 #include <vector>
 
 using K = CGAL::Exact_predicates_inexact_constructions_kernel;
@@ -14,7 +15,9 @@ using Mesh = CGAL::Surface_mesh<K::Point_3>;
 namespace PMP = CGAL::Polygon_mesh_processing;
 
 int main(int argc, char** argv) {
-    if (argc != 3 || std::filesystem::exists(argv[2])) return 2;
+    if ((argc != 3 && argc != 4) || std::filesystem::exists(argv[2])) return 2;
+    const unsigned int iterations = argc == 4 && std::string(argv[3]) == "2" ? 2 : 1;
+    if (argc == 4 && std::string(argv[3]) != "2") return 2;
     Mesh mesh;
     if (!CGAL::IO::read_polygon_mesh(argv[1], mesh) || !CGAL::is_triangle_mesh(mesh)
         || !CGAL::is_closed(mesh)) return 3;
@@ -60,7 +63,7 @@ int main(int argc, char** argv) {
     }
     std::cerr << "selected_faces " << selected.size() << '\n';
     PMP::isotropic_remeshing(selected, 0.6, mesh,
-        CGAL::parameters::number_of_iterations(1).do_split(false)
+        CGAL::parameters::number_of_iterations(iterations).do_split(false)
         .do_collapse(false).do_flip(true)
         .number_of_relaxation_steps(0).do_project(false)
         .edge_is_constrained_map(constrained));
@@ -71,6 +74,7 @@ int main(int argc, char** argv) {
     if (!CGAL::IO::write_polygon_mesh(argv[2], mesh,
         CGAL::parameters::stream_precision(17))) return 5;
     std::cout << "selected_faces " << selected.size()
+              << " iterations " << iterations
               << " constrained_edges " << constrained_count
               << " vertices " << mesh.number_of_vertices()
               << " faces " << mesh.number_of_faces()

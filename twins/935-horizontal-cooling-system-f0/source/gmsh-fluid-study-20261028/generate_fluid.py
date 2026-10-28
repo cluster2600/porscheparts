@@ -18,6 +18,8 @@ if output.exists() or output.parent != source.parent:
     raise SystemExit('Use a fresh private sibling output')
 source_hash = hashlib.sha256(source.read_bytes()).hexdigest()
 known_inputs = {
+    # Original-export-bounded two-pass near-planar ring-flip trial.
+    '5d5826fc6701c502003fd456e8dfa2b590bbb1551557f05c9c1a483837bd584f': (444002, 888020),
     # Original-export-bounded near-planar ring-flip trial.
     '394f201ce9cdb20760429f7db050eafe7415d4aa76a80c2133ac2f3711ca2c50': (444002, 888020),
     # Original-export-bounded 0.001, 0.005 and 0.020 facet-repair trials.
