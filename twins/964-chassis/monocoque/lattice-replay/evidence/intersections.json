@@ -1,0 +1,61 @@
+{
+  "schema": "964-lattice-phase-CGAL-screen/v1",
+  "calibration_passed": true,
+  "calibration": {
+    "tetrahedron": {
+      "CGAL_version": "6.2.1",
+      "vertices": 4,
+      "triangles": 4,
+      "complete": true,
+      "pairs_private": []
+    },
+    "crossing_triangles": {
+      "CGAL_version": "6.2.1",
+      "vertices": 6,
+      "triangles": 2,
+      "complete": true,
+      "pairs_private": [
+        [
+          0,
+          1
+        ]
+      ]
+    }
+  },
+  "cases": {
+    "phase-050": {
+      "raw_stl_sha256": "6d0f7ed618577fbc0161c0dc41beb72dee19db795dbe8ff8487bc07b139ea770",
+      "CGAL": {
+        "CGAL_version": "6.2.1",
+        "vertices": 40416,
+        "triangles": 80924,
+        "complete": true,
+        "pairs_private": []
+      },
+      "screen_passed": true,
+      "mesh_modified": false
+    },
+    "phase-025": {
+      "raw_stl_sha256": "ff1cded2a68495b067967fdabf663b762669d30700ce373ed980c6a482a74b97",
+      "CGAL": {
+        "CGAL_version": "6.2.1",
+        "vertices": 163860,
+        "triangles": 327812,
+        "complete": true,
+        "pairs_private": []
+      },
+      "screen_passed": true,
+      "mesh_modified": false
+    }
+  },
+  "binary_sha256": "6a1f2d8a42925b7d32ddaea08b0f8a0f649e2152b1bd51e622ad9b135c2156bb",
+  "seconds": 1.978204667015234,
+  "source_sha256": {
+    "twins/964-chassis/monocoque/lattice-replay/intersections.py": "6372ef6ad4fb077bcd2e79f1b686f0fd6f9d1ac2b22c95aa66744345485a8ced",
+    "twins/m64-cylinder-head/source/wholebody/audit_surface_intersections.py": "7142482ae98a65f12a050f29983486ccd585b1edc44fa9e8f07548463af806b5",
+    "twins/m64-cylinder-head/source/wholebody/surface_intersections_cgal.cpp": "476e056e35bb98f32d9d26ef8ba81f9c90ac7464f4af8ad5d76b92fa44f2689f"
+  },
+  "predicates": "CGAL EPICK on the exact stored STL coordinates, not the intended smooth solid",
+  "structural_analysis_executed": false,
+  "manufacturing_authorized": false
+}

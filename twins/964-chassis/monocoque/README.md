@@ -6,6 +6,12 @@ Until now the programme's only whole-body model was the box cell of
 [`../fea/`](../fea/): good at relative questions, nothing like a 911. This
 shell takes its outline from Porsche's own drawing.
 
+The [2026-10-28 lattice replay](lattice-replay/README.md) retains four rejected
+frame/resolution experiments and two raw grid-phase candidates that pass
+independent topology and self-intersection screens. This resolves the observed
+mesh degeneracy for those candidates; it does not validate the historical
+S3-derived grading, define a fitted core or add a structural strength result.
+
 ## S6 correction (2026-10-12): every stiffness redone
 
 Every stiffness in this folder from #139 to #156 was computed with

@@ -1,0 +1,62 @@
+{
+  "schema": "964-lattice-replay-local-validation/v1",
+  "recorded_at": "2026-10-28T18:34:40.012287+00:00",
+  "base_revision": "221e06d37f6a48d166d9b5d973a8e796907eacc5",
+  "full_make_check": {
+    "command": "PATH=<task venv>/bin:$PATH make check",
+    "exit_code": 2,
+    "tests": 5017,
+    "seconds": 289.141,
+    "failures": 2,
+    "skipped": 385,
+    "passed": false,
+    "failed_tests": [
+      "test_993_cooling_impeller_we43_f1.CoolingImpellerWE43F1Tests.test_committed_step_sources_and_catalogue_are_fail_closed",
+      "test_993_fan_stator_alsi10mg_f1.FanStatorAlSi10MgF1Tests.test_committed_step_and_catalogue_are_fail_closed"
+    ],
+    "diagnosis": "Exact equality of cached fan-screen floating-point result dictionaries differs at final digits on this Mac; both tests and their inputs are unchanged by this study."
+  },
+  "remaining_make_checks": {
+    "command": "PATH=<task venv>/bin:$PATH make -o test check",
+    "exit_code": 0,
+    "full_make_check_equivalent": false,
+    "prior_attempt": "Before git add, tracked-file link checking rejected the untracked new README. The staged-file rerun passes."
+  },
+  "native_targeted_tests": {
+    "Replay.dll": {
+      "tests": 6,
+      "failures": 0,
+      "skipped": 0
+    },
+    "Phase.dll": {
+      "tests": 6,
+      "failures": 0,
+      "skipped": 0
+    }
+  },
+  "test_source_sha256": {
+    "tests/test_964_lattice_replay.py": "85f2b60d04404899bff8a3b90ad9d3969567635e8eaa0b09c245536717d890c0"
+  },
+  "logs": {
+    "directory": "/Users/maxime/Developer/PicoGK/output/964-monocoque-lattice-20261028/validation",
+    "files": {
+      "make-check-monocoque-20261028.log": {
+        "sha256": "da1fa95f15fd9f02231e03f14d116829436a3e9fe8ab32429b393a88a78a2b89",
+        "bytes": 997525
+      },
+      "make-nontest-check-monocoque-20261028.log": {
+        "sha256": "c089e1b2cd00e6a86606bc27e7b38de9fbbecc1fa72234ebbe3747bfbc76ca05",
+        "bytes": 103694
+      },
+      "make-nontest-check-staged-monocoque-20261028.log": {
+        "sha256": "79fa76a6b0855cc4f21dcd85b5a72e7e9b3529ec2eb6acaa3301e5ade9841434",
+        "bytes": 106497
+      }
+    },
+    "copies_hash_verified": true
+  },
+  "repository_payload_and_raw_archive_hash_verification_passed": true,
+  "structural_analysis_executed": false,
+  "product_strength_validated": false,
+  "manufacturing_authorized": false
+}
