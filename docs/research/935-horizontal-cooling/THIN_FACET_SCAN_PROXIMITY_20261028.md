@@ -40,7 +40,10 @@ it onto that blade's section direction, and compares the projection with the
 last registered acquired section of that blade. Nine of 24 lie beyond that
 station; eight of those nine also have at least one sample farther than one
 source unit from the scan. The maximum phase offset is 17.36°. This is a
-positional screen, not proof that a face is measured or reconstructed.
+positional screen, not proof that a face is measured or reconstructed. The
+upstream section pipeline fits observed cuts and records any short-gap
+interpolations; a registered-section label does not certify every profile
+point as directly acquired.
 
 The [private visual overlay](https://github.com/cluster2600/porscheparts-935-private/releases/download/935-root-repair-20261025/thin-facet-scan-proximity.png)
 has SHA-256 `f04b5a1ed0c3c75efd2b16c992eb980ce2a8bb8b050f984f0473e64b4b33a5fa`.
