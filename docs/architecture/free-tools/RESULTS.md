@@ -61,3 +61,9 @@ work have been reviewed.
 No model training, serving-default change, public artifact upload, paid rental,
 scan migration or manufacturing release occurred. Raw model drafts and private
 DVC metadata remain local. Public results contain hashes and scoped summaries.
+
+## Subsequent verification
+
+The [28 October Kali report](KALI_NATIVE_20261028.md) supersedes the pending
+Kali recovery status above. The initial receipts and numerical results remain
+unchanged. PR #297 has since merged; host acceptance is still partial.

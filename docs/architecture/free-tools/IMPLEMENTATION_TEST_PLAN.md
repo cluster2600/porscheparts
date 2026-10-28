@@ -5,7 +5,7 @@
 | Requirement | Component | Increment | Test | Execution receipt |
 |---|---|---|---|---|
 | FT-BASELINE: preserve carrier authority | A-GATE, D-CAT | P0 | Registered SHA-256 manifest and blocked admission replay | [Published receipts](../../../benchmarks/free-tools/results/mac-20261025.json) |
-| FT-RESTORE: independent recoverable copies | A-DVC, D-PRIMARY, D-COPY | P1 | Fresh-cache restores from both actual hosts | [Published receipts](../../../benchmarks/free-tools/results/mac-20261025.json) (Kali pending) |
+| FT-RESTORE: independent recoverable copies | A-DVC, D-PRIMARY, D-COPY | P1 | Fresh-cache restores on Kali and back on Mac from returned Kali objects | [Two-host receipts](../../../benchmarks/free-tools/results/kali-20261028.json) |
 | FT-SOURCES: referenced local context | A-SEARCH, A-QWEN | P2 | Frozen 30-case retrieval evaluation; separate inference receipt | [Published receipts](../../../benchmarks/free-tools/results/mac-20261025.json) |
 | FT-DISTANCE: bounded diagnostic distances | A-METRO | P3 | Identity, 1 mm offset and rigid-transform native controls | [Published receipts](../../../benchmarks/free-tools/results/mac-20261025.json) |
 | FT-MESH: unchanged boundary and conversion | A-MESH | P4 | Cube/bore NETGEN controls, exact determinant/boundary checks and INP readback | [Published receipts](../../../benchmarks/free-tools/results/mac-20261025.json) |
@@ -74,6 +74,14 @@ A successful replication command reports `replicated_restore_required`.
 Only the second command provides recovery evidence. Two directories on the
 same Mac are a software control, not a Kali backup. Retain incoming/export
 staging stores until the accepted recovery has been independently recorded.
+
+If IPv4 does not answer, check the working connection used by another local
+session before concluding that Kali is unavailable. The
+[28 October native run](KALI_NATIVE_20261028.md) used Thunderbolt IPv6 with an
+existing trusted host-key alias. It transferred a bounded DVC object archive
+through native SFTP, then performed independent local DVC restores. That receipt
+does not qualify the optional SSH/rsync adapter; use a verified SSH alias and a
+compatible rsync runtime when exercising that adapter.
 
 ### P2: documentary context and optional Qwen draft
 

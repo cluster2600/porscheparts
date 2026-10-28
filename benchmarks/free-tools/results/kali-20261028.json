@@ -1,0 +1,660 @@
+{
+  "P1_recovery": {
+    "dvc_garbage_collection_performed": false,
+    "kali_native_fresh_cache_restore": {
+      "checks": {
+        "SHA256_verified": true,
+        "fresh_workspace": true
+      },
+      "inputs": [
+        {
+          "path": "catalog/parts/993-eng-carrier-0001.json",
+          "sha256": "1099b9735cfffc2e748b9241f81644e9738a829fbb89389be03dc60e9e09e455"
+        },
+        {
+          "path": "twins/993-engine-mount-system-f0/interface-contract.json",
+          "sha256": "b2974142e7053df6d63875f7968630158c97c130eb84cda56b9f17491ad0ca30"
+        },
+        {
+          "path": "parts/993-eng-carrier-0001/source/design-20261016/resume-20261020/auxiliary-fea-study/mechanics-study.json",
+          "sha256": "f41352402649adf98dda9d6bb294f7342e5ed6f5c8b5609be9e103229f4c6ccf"
+        },
+        {
+          "path": "parts/993-eng-carrier-0001/source/design-20261016/resume-20261020/auxiliary-fea-study/surface.mesh64.gz",
+          "sha256": "c57390a992ee144a34784d3cf9e4e4e62657db31c19563b2e6af958f0a46f68f"
+        },
+        {
+          "path": "docs/reports/carrier-resume-20261020/CONVERGENCE.md",
+          "sha256": "40913ee68e30f4280bf34c6d1226e4c2fcc60f0692265732487c098e4a21c06a"
+        }
+      ],
+      "limitations": [],
+      "manufacturing_authorized": false,
+      "outputs": [],
+      "schema_version": 1,
+      "status": "restored_sha256_verified",
+      "tool": "dvc"
+    },
+    "mac_fresh_cache_restore_from_kali_objects_only": {
+      "checks": {
+        "SHA256_verified": true,
+        "fresh_workspace": true
+      },
+      "inputs": [
+        {
+          "path": "catalog/parts/993-eng-carrier-0001.json",
+          "sha256": "1099b9735cfffc2e748b9241f81644e9738a829fbb89389be03dc60e9e09e455"
+        },
+        {
+          "path": "twins/993-engine-mount-system-f0/interface-contract.json",
+          "sha256": "b2974142e7053df6d63875f7968630158c97c130eb84cda56b9f17491ad0ca30"
+        },
+        {
+          "path": "parts/993-eng-carrier-0001/source/design-20261016/resume-20261020/auxiliary-fea-study/mechanics-study.json",
+          "sha256": "f41352402649adf98dda9d6bb294f7342e5ed6f5c8b5609be9e103229f4c6ccf"
+        },
+        {
+          "path": "parts/993-eng-carrier-0001/source/design-20261016/resume-20261020/auxiliary-fea-study/surface.mesh64.gz",
+          "sha256": "c57390a992ee144a34784d3cf9e4e4e62657db31c19563b2e6af958f0a46f68f"
+        },
+        {
+          "path": "docs/reports/carrier-resume-20261020/CONVERGENCE.md",
+          "sha256": "40913ee68e30f4280bf34c6d1226e4c2fcc60f0692265732487c098e4a21c06a"
+        }
+      ],
+      "limitations": [],
+      "manufacturing_authorized": false,
+      "outputs": [],
+      "schema_version": 1,
+      "status": "restored_sha256_verified",
+      "tool": "dvc"
+    },
+    "native_export_sha256": "c2210bfe06921a934b0ce4fe94014167eef41ab46d5ecd05187e625763b30ee5",
+    "original_primary_store_retained": true,
+    "replica_store_is_separate_from_disposable_caches": true,
+    "scope": "New frozen pilot inputs only; no historical archive migration",
+    "selected_artifacts": 5,
+    "status": "passed",
+    "transport_adapter_scope": "Bounded DVC object archives transferred by native SFTP; optional rsync adapter not exercised"
+  },
+  "checked_main_revision": "b852b0a898401c5e4211567ec009b04dc830ddcd",
+  "client_date": "2026-10-28",
+  "connection": {
+    "agent_forwarding": false,
+    "ipv4_path": "unreachable",
+    "known_host_key_verified": true,
+    "ssh_service_or_authentication_changes": false,
+    "strict_host_key_checking": true,
+    "transport": "OpenSSH over Thunderbolt IPv6 link-local"
+  },
+  "controller_verification": {
+    "documentation_links": {
+      "broken": 0,
+      "files": 1865
+    },
+    "make_check": {
+      "errors": 0,
+      "exit_status": 2,
+      "failed_tests": [
+        "test_committed_step_sources_and_catalogue_are_fail_closed (test_993_cooling_impeller_we43_f1.CoolingImpellerWE43F1Tests.test_committed_step_sources_and_catalogue_are_fail_closed)",
+        "test_committed_step_and_catalogue_are_fail_closed (test_993_fan_stator_alsi10mg_f1.FanStatorAlSi10MgF1Tests.test_committed_step_and_catalogue_are_fail_closed)"
+      ],
+      "failures": 2,
+      "log_sha256": "5f7402bdd06d9243911b1f423b29bb86daf718d27d60e1e242c363749074c491",
+      "scope": "Existing Mac last-digit floating-point baseline comparisons; historical thresholds unchanged",
+      "skipped": 384,
+      "tests": 5000
+    }
+  },
+  "docker_preflight": {
+    "daemon_state": "not_inspected",
+    "group_or_socket_permissions_changed": false,
+    "noninteractive_sudo": "password_required",
+    "socket_access": "permission_denied"
+  },
+  "execution": {
+    "address_space_limit_bytes": 4294967296,
+    "architecture": "x86_64",
+    "commands": [
+      {
+        "command": [
+          "<native-workspace>/runtime/env/bin/python",
+          "benchmarks/free-tools/storage.py",
+          "restore",
+          "--metadata",
+          "<private-artifact-store>/metadata",
+          "--workspace",
+          "<private-artifact-store>/restore-native-001",
+          "--store",
+          "<private-artifact-store>/store"
+        ],
+        "elapsed_seconds": 3.0509371049702168,
+        "exit_status": 0
+      },
+      {
+        "command": [
+          "<native-workspace>/runtime/env/bin/python",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "tests",
+          "-p",
+          "test_free_tools.py",
+          "-v"
+        ],
+        "elapsed_seconds": 24.56423593033105,
+        "exit_status": 0
+      },
+      {
+        "command": [
+          "<native-workspace>/runtime/env/bin/python",
+          "benchmarks/free-tools/knowledge.py",
+          "build",
+          "--output",
+          "<native-workspace>/results-native-001/retrieval-index"
+        ],
+        "elapsed_seconds": 0.10402369033545256,
+        "exit_status": 0
+      },
+      {
+        "command": [
+          "<native-workspace>/runtime/env/bin/python",
+          "benchmarks/free-tools/knowledge.py",
+          "evaluate",
+          "--database",
+          "<native-workspace>/results-native-001/retrieval-index/index.sqlite",
+          "--output",
+          "<native-workspace>/results-native-001/retrieval.json"
+        ],
+        "elapsed_seconds": 0.03805025201290846,
+        "exit_status": 0
+      },
+      {
+        "command": [
+          "<native-workspace>/runtime/env/bin/python",
+          "benchmarks/free-tools/knowledge.py",
+          "snapshot",
+          "--root",
+          "<private-artifact-store>/restore-native-001/payload",
+          "--porschefanatics-export",
+          "<private-artifact-store>/metadata/porschefanatics-metadata.json",
+          "--output",
+          "<native-workspace>/results-native-001/production-snapshot.json"
+        ],
+        "elapsed_seconds": 0.02657928690314293,
+        "exit_status": 0
+      },
+      {
+        "command": [
+          "<native-workspace>/runtime/env/bin/python",
+          "benchmarks/free-tools/knowledge.py",
+          "build",
+          "--snapshot",
+          "<native-workspace>/results-native-001/production-snapshot.json",
+          "--output",
+          "<native-workspace>/results-native-001/production-index"
+        ],
+        "elapsed_seconds": 0.08911813981831074,
+        "exit_status": 0
+      },
+      {
+        "command": [
+          "<native-workspace>/runtime/env/bin/python",
+          "benchmarks/free-tools/knowledge.py",
+          "context",
+          "--database",
+          "<native-workspace>/results-native-001/production-index/index.sqlite",
+          "--snapshot",
+          "<native-workspace>/results-native-001/production-snapshot.json",
+          "--question",
+          "PorscheFanatics 99311502153 catalogue identity",
+          "--output",
+          "<native-workspace>/results-native-001/carrier-context.json"
+        ],
+        "elapsed_seconds": 0.02615064289420843,
+        "exit_status": 0
+      },
+      {
+        "command": [
+          "<native-workspace>/runtime/env/bin/python",
+          "benchmarks/free-tools/studies.py",
+          "sensitivity",
+          "--output",
+          "<native-workspace>/results-native-001/sensitivity"
+        ],
+        "elapsed_seconds": 0.3073173137381673,
+        "exit_status": 0
+      },
+      {
+        "command": [
+          "<native-workspace>/runtime/env/bin/python",
+          "benchmarks/free-tools/studies.py",
+          "optimization",
+          "--output",
+          "<native-workspace>/results-native-001/optimization"
+        ],
+        "elapsed_seconds": 3.4430235722102225,
+        "exit_status": 0
+      },
+      {
+        "command": [
+          "<native-workspace>/runtime/env/bin/python",
+          "benchmarks/free-tools/studies.py",
+          "carrier",
+          "--root",
+          "<private-artifact-store>/restore-native-001/payload",
+          "--output",
+          "<native-workspace>/results-native-001/external-carrier"
+        ],
+        "elapsed_seconds": 1.7949891770258546,
+        "exit_status": 0
+      },
+      {
+        "command": [
+          "<native-workspace>/runtime/env/bin/python",
+          "benchmarks/free-tools/pilot.py",
+          "replay",
+          "--root",
+          "<private-artifact-store>/restore-native-001/payload",
+          "--output",
+          "<native-workspace>/results-native-001/carrier"
+        ],
+        "elapsed_seconds": 0.026362250093370676,
+        "exit_status": 0
+      }
+    ],
+    "cpu_affinity": [
+      0,
+      1
+    ],
+    "host": "kali1",
+    "manufacturing_authorized": false,
+    "maximum_child_rss_kib": 304176
+  },
+  "host": {
+    "architecture": "x86_64",
+    "filesystem_type": "ext4",
+    "gid": 1000,
+    "id": "T-KALI",
+    "kernel_release": "7.1.5+kali-amd64",
+    "logical_cpus": 12,
+    "metadata_measured_at_utc": "2026-10-28T07:54:54Z",
+    "name": "kali1",
+    "native_filesystem": true,
+    "uid": 1000
+  },
+  "limitations": [
+    "Native Python and storage acceptance does not imply native container acceptance.",
+    "Carrier admission is not a numerical FEM replay or optimization.",
+    "Documentary retrieval does not qualify Qwen generated-answer quality.",
+    "No other session job or service was stopped or reconfigured."
+  ],
+  "manufacturing_authorized": false,
+  "not_executed": {
+    "carrier_native_fem_replay": "not_integrated_or_executed",
+    "cloudcompare_kali_container": "docker_socket_permission_denied",
+    "qwen_model_inference": "not_executed_on_kali",
+    "salome_kali_container": "docker_socket_permission_denied"
+  },
+  "part_id": "993-ENG-CARRIER-0001",
+  "porschefanatics_lookup": {
+    "export_sha256": "fad7f1170881aa182943be9676b8d765891bdae79bce6f5e3c9676e897d3e99c",
+    "scope": "Authorized local identity metadata; no live website parity claim",
+    "source_ids": [
+      "carrier",
+      "pf-oem-carrier",
+      "baseline",
+      "catalogue-record"
+    ]
+  },
+  "receipts": {
+    "carrier_admission": {
+      "checks": {
+        "blockers": [
+          "missing_measured_variant_interfaces",
+          "missing_measured_load_case",
+          "carrier_mesh_convergence_not_demonstrated"
+        ],
+        "carrier_stages": {
+          "cloudcompare": "blocked_no_registered_scan_and_registration_contract",
+          "openmdao": "blocked_native_fem_replay_and_optimization_not_accepted",
+          "openturns": "blocked_no_converged_solver_response_or_qualified_probability_model",
+          "salome": "blocked_no_reviewed_surface_face_groups_in_registered_inputs"
+        },
+        "catalogue_unchanged": true,
+        "documented_support_stiffness_scenarios_N_mm": [
+          1000.0,
+          10000.0
+        ],
+        "input_hashes_verified": true,
+        "optimization_enabled": false
+      },
+      "inputs": [
+        {
+          "path": "catalog/parts/993-eng-carrier-0001.json",
+          "sha256": "1099b9735cfffc2e748b9241f81644e9738a829fbb89389be03dc60e9e09e455"
+        },
+        {
+          "path": "twins/993-engine-mount-system-f0/interface-contract.json",
+          "sha256": "b2974142e7053df6d63875f7968630158c97c130eb84cda56b9f17491ad0ca30"
+        },
+        {
+          "path": "parts/993-eng-carrier-0001/source/design-20261016/resume-20261020/auxiliary-fea-study/mechanics-study.json",
+          "sha256": "f41352402649adf98dda9d6bb294f7342e5ed6f5c8b5609be9e103229f4c6ccf"
+        },
+        {
+          "path": "parts/993-eng-carrier-0001/source/design-20261016/resume-20261020/auxiliary-fea-study/surface.mesh64.gz",
+          "sha256": "c57390a992ee144a34784d3cf9e4e4e62657db31c19563b2e6af958f0a46f68f"
+        },
+        {
+          "path": "docs/reports/carrier-resume-20261020/CONVERGENCE.md",
+          "sha256": "40913ee68e30f4280bf34c6d1226e4c2fcc60f0692265732487c098e4a21c06a"
+        }
+      ],
+      "limitations": [
+        "R2 is an unadopted study; no new native solve is claimed."
+      ],
+      "manufacturing_authorized": false,
+      "outputs": [],
+      "schema_version": 1,
+      "status": "blocked_engineering",
+      "tool": "carrier-replay"
+    },
+    "external_carrier_admission": {
+      "checks": {
+        "carrier_receipt_sha256": "a7d282ae43fc20e4e016000b3501eaf0f3194748d90ec0b3bf663a996346830b",
+        "external_component_executed": true,
+        "optimization_enabled": false
+      },
+      "inputs": [
+        {
+          "path": "catalog/parts/993-eng-carrier-0001.json",
+          "sha256": "1099b9735cfffc2e748b9241f81644e9738a829fbb89389be03dc60e9e09e455"
+        },
+        {
+          "path": "twins/993-engine-mount-system-f0/interface-contract.json",
+          "sha256": "b2974142e7053df6d63875f7968630158c97c130eb84cda56b9f17491ad0ca30"
+        },
+        {
+          "path": "parts/993-eng-carrier-0001/source/design-20261016/resume-20261020/auxiliary-fea-study/mechanics-study.json",
+          "sha256": "f41352402649adf98dda9d6bb294f7342e5ed6f5c8b5609be9e103229f4c6ccf"
+        },
+        {
+          "path": "parts/993-eng-carrier-0001/source/design-20261016/resume-20261020/auxiliary-fea-study/surface.mesh64.gz",
+          "sha256": "c57390a992ee144a34784d3cf9e4e4e62657db31c19563b2e6af958f0a46f68f"
+        },
+        {
+          "path": "docs/reports/carrier-resume-20261020/CONVERGENCE.md",
+          "sha256": "40913ee68e30f4280bf34c6d1226e4c2fcc60f0692265732487c098e4a21c06a"
+        }
+      ],
+      "limitations": [
+        "Replayed the admission contract, not a new native FEM solve.",
+        "Parameter ranges and mechanical convergence remain unqualified."
+      ],
+      "manufacturing_authorized": false,
+      "outputs": [],
+      "schema_version": 1,
+      "status": "blocked_engineering",
+      "tool": "openmdao-carrier"
+    },
+    "openmdao": {
+      "checks": {
+        "analytical_height_m": 0.010455159171494206,
+        "height_m": 0.010455159171866592,
+        "independent_replay": {
+          "deflection": 0.00999999999893147,
+          "mass": 1.41144648820199
+        },
+        "mass_kg": 1.41144648820199,
+        "optimizer_success": true,
+        "relative_tolerance": 0.005,
+        "version": "3.45.1"
+      },
+      "inputs": [],
+      "limitations": [
+        "Synthetic beam; no carrier geometry changed or optimized."
+      ],
+      "manufacturing_authorized": false,
+      "outputs": [],
+      "schema_version": 1,
+      "status": "passed",
+      "tool": "openmdao"
+    },
+    "openturns": {
+      "checks": {
+        "absolute_tolerance": 0.03,
+        "base_sample_count": 8192,
+        "expected": [
+          0.2,
+          0.8
+        ],
+        "indices": [
+          0.19942885009108358,
+          0.8017120442305217
+        ],
+        "seed": 2600,
+        "version": "1.27.post1"
+      },
+      "inputs": [],
+      "limitations": [
+        "Synthetic additive model; no carrier probability distribution or reliability claim."
+      ],
+      "manufacturing_authorized": false,
+      "outputs": [],
+      "schema_version": 1,
+      "status": "passed",
+      "tool": "openturns"
+    },
+    "production_index": {
+      "document_count": 14,
+      "snapshot_sha256": "67f18e1fe921fb78847d8459f3f84b0c076c3227b656f599e1f3016772d1be02",
+      "sqlite_version": "3.50.4",
+      "status": "documentary_index_built"
+    },
+    "retrieval": {
+      "cases_sha256": "95a3e92d519b77b55027e96889c9689bd38a4842b79cdf3ad0c0e3c0163da819",
+      "counts": {
+        "conflict": 5,
+        "hostile": 5,
+        "reference": 10,
+        "unknown": 10
+      },
+      "passed": {
+        "conflict": 5,
+        "hostile": 5,
+        "reference": 10,
+        "unknown": 10
+      },
+      "scope": "retrieval and authority boundary; not a model-answer accuracy benchmark",
+      "snapshot_sha256": "54528af955b0b2908aea007830a53a15aec4c9049a46f2953dc5135a761c304d",
+      "status": "passed"
+    }
+  },
+  "runtime": {
+    "all_locked_versions_match": true,
+    "bootstrap_uv_version": "0.13.0",
+    "installed_lock_versions": {
+      "aiohappyeyeballs": "2.7.1",
+      "aiohttp": "3.14.5",
+      "aiohttp-retry": "2.9.1",
+      "aiosignal": "1.4.0",
+      "amqp": "5.4.1",
+      "annotated-types": "0.8.0",
+      "antlr4-python3-runtime": "4.9.3",
+      "appdirs": "1.4.4",
+      "asyncssh": "2.24.1",
+      "atpublic": "9.0.0",
+      "attrs": "26.1.0",
+      "bcrypt": "5.0.0",
+      "billiard": "4.3.1",
+      "celery": "5.6.3",
+      "certifi": "2026.10.23",
+      "cffi": "2.1.1",
+      "charset-normalizer": "3.5.2",
+      "click": "8.5.0",
+      "click-didyoumean": "0.3.1",
+      "click-plugins": "1.1.1.2",
+      "click-repl": "0.4.1",
+      "colorama": "0.4.6",
+      "configobj": "5.0.9",
+      "contourpy": "1.4.0",
+      "cryptography": "50.0.2",
+      "cycler": "0.12.1",
+      "dictdiffer": "0.10.0",
+      "dill": "0.4.1",
+      "diskcache": "5.6.3",
+      "distro": "1.9.0",
+      "dpath": "2.2.0",
+      "dulwich": "1.2.19",
+      "dvc": "3.67.1",
+      "dvc-data": "3.18.3",
+      "dvc-http": "2.32.0",
+      "dvc-objects": "5.2.0",
+      "dvc-render": "1.0.2",
+      "dvc-ssh": "4.3.0",
+      "dvc-studio-client": "0.23.0",
+      "dvc-task": "0.40.2",
+      "entrypoints": "0.4.2",
+      "filelock": "4.2.4",
+      "flatten-dict": "0.5.0",
+      "flufl-lock": "9.2.0",
+      "fonttools": "4.67.0",
+      "frozenlist": "1.8.0",
+      "fsspec": "2026.9.0",
+      "funcy": "2.1",
+      "gitdb": "4.0.12",
+      "gitpython": "3.2.1",
+      "grandalf": "0.8",
+      "gto": "1.10.1",
+      "hydra-core": "1.3.7",
+      "idna": "3.20",
+      "iterative-telemetry": "0.0.10",
+      "kiwisolver": "1.5.1",
+      "kombu": "5.6.2",
+      "markdown-it-py": "4.2.0",
+      "matplotlib": "3.10.7",
+      "mdurl": "0.1.2",
+      "multidict": "7.2.1",
+      "networkx": "3.7",
+      "numpy": "2.5.4",
+      "omegaconf": "2.3.1",
+      "openmdao": "3.45.1",
+      "openturns": "1.27.post1",
+      "orjson": "3.13.0",
+      "packaging": "26.3",
+      "pathspec": "1.1.1",
+      "pillow": "13.0.0",
+      "platformdirs": "4.13.5",
+      "prompt-toolkit": "3.0.53",
+      "propcache": "0.5.4",
+      "psutil": "7.2.2",
+      "pycparser": "3.12",
+      "pydantic": "2.14.1",
+      "pydantic-core": "2.50.1",
+      "pydantic-settings": "2.16.1",
+      "pydot": "4.0.1",
+      "pygit2": "1.20.1",
+      "pygments": "2.21.0",
+      "pygtrie": "2.6.2",
+      "pyparsing": "3.3.3",
+      "python-dateutil": "3.0.0",
+      "python-dotenv": "1.2.4",
+      "pyyaml": "6.0.3",
+      "requests": "2.34.2",
+      "rich": "15.0.0",
+      "ruamel-yaml": "0.19.1",
+      "scipy": "1.18.1",
+      "scmrepo": "3.6.2",
+      "semver": "3.1.0",
+      "setuptools": "84.2.1",
+      "shortuuid": "1.0.13",
+      "shtab": "1.13.0",
+      "six": "1.17.0",
+      "smmap": "5.0.3",
+      "sqltrie": "0.11.3",
+      "sshfs": "2026.8.0",
+      "tabulate": "0.10.0",
+      "tomlkit": "0.15.2",
+      "tqdm": "4.70.1",
+      "typing-extensions": "4.16.0",
+      "typing-inspection": "0.4.4",
+      "tzdata": "2026.5",
+      "tzlocal": "5.4.5",
+      "urllib3": "2.8.0",
+      "vine": "5.1.0",
+      "voluptuous": "0.16.0",
+      "wcwidth": "0.9.4",
+      "yarl": "1.25.1",
+      "zc-lockfile": "4.0"
+    },
+    "python_binary_sha256": "ccc93c55c24bb92866cc2f9eff61b124abf5d1ee6c8da0ef9b5eed4d78a21f07",
+    "python_version": "3.12.11",
+    "requirements_lock_sha256": "245ceb27fa48e4605dd4c438354837264b8ab55c59faae1d33d640b8d19d52a4",
+    "source_files": [
+      {
+        "path": "benchmarks/free-tools/acceptance.py",
+        "sha256": "ce5acf19bdf2b1f8e7f46ba6b198746ca0f2780154c1c0868756dc4fd6fe56d9"
+      },
+      {
+        "path": "benchmarks/free-tools/cloudcompare.py",
+        "sha256": "97f6feb0536bf779d33b36e683d6656846776ecab94a9e7d0a749004d35e4f44"
+      },
+      {
+        "path": "benchmarks/free-tools/ft_beam_solver.py",
+        "sha256": "5479f29f1bd63d7449e20d24b7ddf1efccd78aa10f9e0e0f4522df9ad858225e"
+      },
+      {
+        "path": "benchmarks/free-tools/ft_common.py",
+        "sha256": "dd61a04b15a9c42a20ff321c5db84d8e2228ab8e20dd73c60c1c1b6e3834712f"
+      },
+      {
+        "path": "benchmarks/free-tools/ft_geometry.py",
+        "sha256": "1d036406722e63ab6f9ede1f8e4c0f45278aa55daa015fc7455bba1abbd02aa9"
+      },
+      {
+        "path": "benchmarks/free-tools/knowledge.py",
+        "sha256": "11a529b41e85ea75c6a47e16362b805e8d1e9532e045931c7142a9b9c8a4fc3e"
+      },
+      {
+        "path": "benchmarks/free-tools/native_container.py",
+        "sha256": "2bf06e2a1d945767c425120c39b028805eb1b871e6d99f5feb313ba960eedf5b"
+      },
+      {
+        "path": "benchmarks/free-tools/pilot.py",
+        "sha256": "676d54e59e09b504214f97ca2db3f8f0432e5660332e06ba6e4222755342cf33"
+      },
+      {
+        "path": "benchmarks/free-tools/qwen_documentary.py",
+        "sha256": "27bfed39bd4b3dbfa942165459f5dcebd07fa15b4c5216fc5ffbb0ecae0e2474"
+      },
+      {
+        "path": "benchmarks/free-tools/salome_worker.py",
+        "sha256": "f42357e0808f38849cdf646905f20b87e9f36b5a26f812595fef066e59e47052"
+      },
+      {
+        "path": "benchmarks/free-tools/storage.py",
+        "sha256": "8c56fa168e9c3746e7ec7b51fddf7503f93b075aecc340427fe7a3993dafd721"
+      },
+      {
+        "path": "benchmarks/free-tools/studies.py",
+        "sha256": "0392e8b4dd68bf9b2ff6134feb8f8db7dad5471c0170c455288b61705550237c"
+      }
+    ],
+    "sqlite_version": "3.50.4"
+  },
+  "schema_version": 1,
+  "status": "partial_native_acceptance",
+  "tested_python_sources_match_current_main": true,
+  "tested_source_revision": "3aca1379b6c22a4d795904b6260774b460de6b06",
+  "unit_tests": {
+    "errors": 0,
+    "failures": 0,
+    "log_sha256": "3b143e0292b7412b0e78a99257117fb3ad0973e5dcf268a03fe71e0acada785c",
+    "passed": 31,
+    "skip_reason": "CloudCompare executable unavailable; Docker access denied",
+    "skipped": 1,
+    "total": 32
+  }
+}

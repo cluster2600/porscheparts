@@ -29,15 +29,16 @@ auxiliary FEA surface are unadopted comparison studies.
 | Increment | Current execution status |
 |---|---|
 | P0: baseline and contracts | Five registered input hashes verified; carrier admission blocked |
-| P1: private DVC storage | Mac recovery and failure controls passed; independent Kali recovery pending |
+| P1: private DVC storage | Mac and Kali fresh-cache recovery passed; a further Mac recovery used only returned Kali objects |
 | P2: FTS5 and Qwen | Retrieval controls and actual PorscheFanatics metadata import passed; generated Qwen draft rejected |
 | P3: CloudCompare | Native Linux analytical controls passed; no measured carrier scan registered |
 | P4: SALOME/SMESH | Native cube/bore controls passed; carrier comparison blocked pending reviewed face groups |
 | P5: OpenTURNS | Analytical control passed; carrier sensitivity requires verified solver responses and reviewed ranges |
 | P6: OpenMDAO and replay | Beam optimum and carrier admission replay executed; native carrier FEM replay unexecuted |
 
-The [execution report](RESULTS.md) records the accepted scope and remaining
-deployment work. Software controls do not close the carrier's engineering gates.
+The [initial execution report](RESULTS.md) and
+[28 October Kali verification](KALI_NATIVE_20261028.md) record the accepted scope
+and remaining deployment work. Software controls do not close the carrier's engineering gates.
 
 ## Quick start: small offline software tests
 
