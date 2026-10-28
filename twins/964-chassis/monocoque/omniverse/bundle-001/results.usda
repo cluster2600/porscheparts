@@ -1,0 +1,57 @@
+#usda 1.0
+(
+    defaultPrim = "Monocoque"
+    metersPerUnit = 0.001
+    upAxis = "Z"
+)
+
+def Xform "Monocoque" (
+    customData = {
+        string classification = "prohibited_pending_engineering"
+        string fidelity = "documentary_design_envelope"
+        bool fitment964Validated = 0
+        bool fitment993Validated = 0
+        bool manufacturingAuthorized = 0
+        bool strengthValidated = 0
+    }
+)
+{
+    def Scope "Analysis" (
+        customData = {
+            string fieldMapping = "none_visual_and_analysis_geometries_differ"
+            string status = "historical_S6_screen_not_vehicle_validation"
+            bool vehicleMassAppliedAsLoad = 0
+            int vehicleMassKgAssumed = 1200
+        }
+    )
+    {
+        def Scope "Torsion" (
+            customData = {
+                string loadCase = '{"clamp": "d 2050-2450, z 450-720, |y| > 0.8 W", "force_N": 1000.0, "loads": "d -200..150, z 470-640, |y| > 0.72 W"}'
+                string material = "assumed_equivalent_isotropic_CFRP_not_layered_failure_model"
+                string sourceReport = "torsion-monocoque.json"
+                string sourceSha256 = "19d322de663b087b5773da8016cda3a18e699fcb7bcd4da4ae75f863c031f585"
+            }
+        )
+        {
+            custom bool study:meshConverged = 0
+            custom double[] study:stiffness = [12647, 18143, 19900]
+            custom string study:units = "N.m/deg"
+        }
+
+        def Scope "Bending" (
+            customData = {
+                string loadCase = '{"K": "force / mean deflection of the loaded skin (N/mm)", "K_cabin": "force / sag at mid-wheelbase below the chord between d 400 and 1950 mm (N/mm)", "axles_d_mm": [-25.5, 2246.5], "force_N": 2000.0, "load": "downward, by area on the sill skin within +/-100 mm of mid-wheelbase", "support_strip_half_mm": 40.0, "supports": "torsion.supports() patches within the strip, vertical; rear pinned along the car, one node per side; one node per axle across"}'
+                string material = "assumed_equivalent_isotropic_CFRP_not_layered_failure_model"
+                string sourceReport = "bending.json"
+                string sourceSha256 = "931561862877d92029059d5174e013bc5d72b371b43ff1fabcfd293ca32421c2"
+            }
+        )
+        {
+            custom bool study:meshConverged = 0
+            custom double[] study:stiffness = [6422, 8862, 8828]
+            custom string study:units = "N/mm"
+        }
+    }
+}
+
