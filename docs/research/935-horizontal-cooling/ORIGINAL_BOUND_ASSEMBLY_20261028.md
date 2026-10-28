@@ -72,8 +72,8 @@ uv run --no-project --python 3.12 --with numpy==2.5.4 --with python-fcl \
   python "$source_dir/review_rotor_sweep.py" \
   "$case_dir/native-002" "$receipt_sha" "$case_dir/sweep-NEW.json"
 uv run --no-project --python 3.12 --with numpy==2.5.4 --with scipy==1.18.1 \
-  --with trimesh --with vtk python "$source_dir/review_refreshed_assembly.py" \
-  render "$case_dir/native-002" "$case_dir/exports-NEW" "$case_dir/render-NEW"
+  --with trimesh --with vtk python "$source_dir/render_original_bound_assembly.py" \
+  "$case_dir/native-002" "$case_dir/exports-NEW" "$case_dir/render-NEW"
 ```
 
 ## Surface and rotation checks
@@ -106,7 +106,9 @@ was inspected visually. It shows the horizontal nine-region rotor above a
 six-cylinder envelope, a lateral drive and the provisional shroud. The blade
 surface remains irregular where the source scan was incomplete; the broad
 shroud and simple engine banks are clearly design placeholders. VTK 9.7.1
-required the generic `AddViewProp` API for the text overlays.
+required the generic `AddViewProp` API for the text overlays. The dedicated
+[`render_original_bound_assembly.py`](../../../twins/935-horizontal-cooling-system-f0/source/render_original_bound_assembly.py)
+provides that compatibility while the older hash-pinned reviewer stays frozen.
 
 The [private geometry and receipt archive](https://github.com/cluster2600/porscheparts-935-private/releases/download/935-root-repair-20261025/935-original-bound-assembly-20261028.tar.zst)
 has SHA-256 `54cb01f9343a63bc1a8366a6e0a603fa215afd3b9159f166c7c51e07d28af2c0`.
