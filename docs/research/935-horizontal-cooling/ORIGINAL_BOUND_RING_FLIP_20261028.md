@@ -12,7 +12,7 @@ historically calibrated.
 ## Surface trial and admission
 
 The [dated CGAL source](../../../twins/935-horizontal-cooling-system-f0/source/surface-ring-flip-20261028/ring_flip_trial.cpp)
-selects face centres at conditional radius 83–87 mm. It permits one pass of
+selects face centres at conditional radius 83–87 mm. By default it permits one pass of
 edge flips only: no vertex split, collapse, relaxation or projection.
 It constrains edges whose two adjacent triangles deviate from one plane by
 more than 0.001 source unit. The fixed values are trial settings, not
@@ -65,6 +65,46 @@ admitted for CFD**. No flow, pressure, torque or cooling conclusion follows.
 The outer duct remains conditional; actual 935 engine passages, physical
 scale and mounting datums remain unresolved. No physical fitment or metal
 manufacturing is authorized.
+
+## Two-pass comparison and rejection
+
+The same source was replayed with the optional final argument `2`, keeping
+the input surface, coplanarity limit and conditional ring unchanged. The
+second-pass surface has the same 435,499 vertices and 871,018 faces; its
+SHA-256 is
+`f9a338ea90fd810537a2441872b5adf501489a6876c2684e552d4156bc62175e`.
+The annulus face count below quality 0.1 falls further, from 5,192 to
+4,351. It remains closed, single-component and consistently oriented. The
+complete two-way export envelope passes again.
+
+| Two-pass fluid volume | Tetrahedra | Mean ratio < 0.01 | Mean ratio < 0.05 | Minimum mean ratio |
+|---|---:|---:|---:|---:|
+| Gmsh Delaunay, SHA-256 `1af85154…` | 4,596,239 | 1,126 | 1,639 | 5.08e-5 |
+| One `Relocate3D`, SHA-256 `c2bb6434…` | 4,596,239 | 1,110 | 1,424 | 5.08e-5 |
+
+The full raw and relocated volume SHA-256 values, respectively, are
+`1af85154edb0e06a9fcc0bd7bb7a728cf7fb70fd99597ed4dd0a025b4ad942ea`
+and `c2bb643474b6157d9d308a0db03b6d38f9b8f7a6e46fa987c3de3b97a375e8dd`.
+
+The two-pass PLC SHA-256 is
+`5d5826fc6701c502003fd456e8dfa2b590bbb1551557f05c9c1a483837bd584f`.
+Its four boundary patches and tetrahedral orientation pass the same
+independent audit. The committed preparation code reproduced the PLC byte
+for byte; the committed auditor reproduced the relocated quality counts.
+The committed relocation source reproduced the relocated mesh byte for byte.
+Both two-pass volumes are worse than the one-pass relocated volume on the
+remaining weak-cell counts. **The two-pass candidate is rejected.** Better
+surface triangle scores do not imply better fluid tetrahedra for this case.
+
+The [private two-pass archive](https://github.com/cluster2600/porscheparts-935-private/releases/download/935-root-repair-20261025/935-ring-flip-two-pass-20261028.tar.zst)
+retains the rejected surface, envelope certificate, PLC, both volumes,
+audits and logs. Its SHA-256 is
+`c80378c949791eee71782bdfb0360cfc34c3c927b5d1bf4c99eb0777bd3ef722`,
+matching the private release digest after a local integrity check. To
+reproduce it, pass `2` after the output OFF path in the C++ invocation below,
+use `candidate-limit-two.off` and `envelope-limit-two.stdout` for the private
+trial paths, and pass `two` to the PLC preparer. The later Gmsh and audit
+commands are identical with the resulting `prepared-two` directory.
 
 ## Reproduction
 
