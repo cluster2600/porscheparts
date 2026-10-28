@@ -487,3 +487,21 @@ have downloaded SHA-256 values
 and `0c027000b145522495993cb2d2bcbf68580cc6a3ca4f6bb059f6770e61383c80`.
 This does not rule out other local surface reconstructions; every new
 candidate must again pass envelope, topology and volume-quality checks.
+
+The next study matched the weak Gmsh cells to source rotor faces by exact
+triangle connectivity after coordinate mapping. Only **2 of 1,169** weak
+Gmsh cells touched one of the earlier 32 flipped pairs. A new selection
+targeted the Gmsh incident faces directly. Its 32 disjoint flips passed the
+complete bidirectional CGAL envelope check on Kali1 at the retained 0.0225
+uncalibrated-unit bound. The matched Gmsh volume nevertheless worsened to
+**1,236** cells below mean ratio 0.01 and **1,819** below 0.05, from 1,169
+and 1,769 in the unmodified baseline. The 4,852,988 tetrahedra were positive
+and all boundary triangles were preserved, but this candidate is **rejected**.
+The [private full trial](https://github.com/cluster2600/porscheparts-935-private/releases/download/935-root-repair-20261025/935-gmsh-targeted-flips-20261028.tar.zst)
+was downloaded and matched SHA-256
+`a04528da2666e63ddbf1d15a92982766d0c354b69ad4f39da59ae1b476bb6602`.
+The [reproducible mapping and proposal](../../../twins/935-horizontal-cooling-system-f0/source/gmsh-fluid-study-20261028/README.md)
+remain public without private mesh data. A bounded local remesh of the
+annulus/blade-root region, or a conforming volume strategy that resolves the
+near-wall fill, is the next numerical experiment; no airflow result is
+accepted yet.

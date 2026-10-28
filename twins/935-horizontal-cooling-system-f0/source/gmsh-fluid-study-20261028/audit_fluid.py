@@ -10,7 +10,10 @@ from scipy.spatial import cKDTree
 source, mesh, output = map(lambda s: Path(s).resolve(), sys.argv[1:])
 if output.exists(): raise SystemExit('Output must be fresh')
 sha=lambda p: hashlib.sha256(p.read_bytes()).hexdigest()
-if sha(source) != '9fcd93a5c54ebfc98b8cd86d4550e3a416d3e62fb217e5ebfb67eb2f2a9f2085':
+if sha(source) not in {
+    '9fcd93a5c54ebfc98b8cd86d4550e3a416d3e62fb217e5ebfb67eb2f2a9f2085',
+    '9dcfef8c123e63016271e3977fdd2d01b21997a94c3343e5e2d6f79198794c8a',
+}:
     raise SystemExit('Source hash mismatch')
 with np.load(source) as p:
     original_vertices=p['vertices'].copy(); original_faces=p['triangles'].copy(); markers=p['markers'].copy()
