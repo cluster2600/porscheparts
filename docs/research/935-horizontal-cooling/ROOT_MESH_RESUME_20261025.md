@@ -505,3 +505,13 @@ remain public without private mesh data. A bounded local remesh of the
 annulus/blade-root region, or a conforming volume strategy that resolves the
 near-wall fill, is the next numerical experiment; no airflow result is
 accepted yet.
+
+Two other Gmsh 4.15.2 algorithms were probed on the unchanged PLC.
+HXT (`Mesh.Algorithm3D=10`) stopped with a volume-tag error when using the
+built-in volume; an alternative discrete volume produced zero tetrahedra.
+R-tree (`=9`) stopped after boundary recovery with an ANN near-neighbor
+error. Neither created a fluid volume, so neither has a quality or CFD
+comparison. The private scripts and logs are archived and hash-verified;
+the [reproduction notes](../../../twins/935-horizontal-cooling-system-f0/source/gmsh-fluid-study-20261028/README.md)
+give the exact results and evidence links. These trials do not alter the
+accepted/rejected status of the original Delaunay mesh.
