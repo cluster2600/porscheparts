@@ -87,3 +87,14 @@ The private case, full logs, build patch, and run scripts are saved in
 [`cfmesh-case001-rejected-20261028.tar.zst`](https://github.com/cluster2600/porscheparts-935-private/releases/download/935-root-repair-20261025/cfmesh-case001-rejected-20261028.tar.zst),
 SHA-256 `01e15c547ba0b9361ca1ba26726d2baa9956c031e1ad82f7d0a30721a6080819`.
 The GitHub release asset digest matched this archive after upload.
+
+The `checkMesh -writeSurfaces` VTK points localize all six skew-face surfaces,
+all 74 low-quality face-tet surfaces, and all 51 non-orthogonality error
+surfaces within the provisional rotor-neighbourhood screen
+`hypot(x,y) < 0.145 m` and `abs(z) < 0.05 m`. The same screen includes all
+points on low-weight and low-volume-ratio face surfaces. It includes 99.07%
+of the points on the concave-cell surface; the remaining 0.93% extend toward
+the exploratory duct boundary. These fractions count exported VTK points,
+not distinct cells or independent physical defects. They direct the next
+surface/mesh repair toward the rotor neighbourhood and do not justify
+discarding the duct checks.
