@@ -347,3 +347,37 @@ The archive contains both wall STLs, the corrected rotor OBJ, the native export
 logs, the source copy, the JSON, the figure and per-vertex distance arrays.
 The source hash recorded in the report is
 `77f7ceb55a5e605eabe776287aeb614ac16cb16f45013a0325ed55a1caf76470`.
+
+## 28 October: topology of the two corrected-rotor mesh failures
+
+The [topology audit](../../../twins/935-horizontal-cooling-system-f0/source/snap-resume-study-20261025/compare_root0p7_concavity.py)
+reads the native `concaveCells` sets, cell refinement levels, and internal
+owner/neighbour faces from both rejected meshes above. It verifies the case
+inputs and native receipts before counting. A cell is *transition-adjacent*
+when at least one internal face joins it to a cell of a different refinement
+level. This is a graph classification, not a determination of the meshing
+operation that created the defect.
+
+| Spacing | Transition-adjacent concave / cells | Other concave / cells | Share of all concave cells at transitions |
+|---:|---:|---:|---:|
+| 3 | 45,507 / 355,476 (12.80%) | 1,077 / 353,346 (0.305%) | 97.69% |
+| 5 | 48,688 / 409,930 (11.88%) | 1,090 / 893,807 (0.122%) | 97.81% |
+
+At each level-change interface, the concave cells touching that interface are
+on the lower-level side. The 3/4 interface contributes 31,523 concave cells
+with spacing 3 and 34,610 with spacing 5. Increasing spacing therefore did
+not remove the dominant defect: it added 3,194 concave cells while moving
+more of them farther from the rotor wall in the internal-face graph. This
+localizes the next investigation to refinement transitions; it does not prove
+that the transition algorithm alone causes concavity. Both full native
+`checkMesh` results remain failed, so neither mesh is admitted to CFD.
+
+The [private JSON](https://github.com/cluster2600/porscheparts-935-private/releases/download/935-root-repair-20261025/concavity-topology-final-20261028.json),
+[figure](https://github.com/cluster2600/porscheparts-935-private/releases/download/935-root-repair-20261025/concavity-topology-final-20261028.png),
+and [native archive](https://github.com/cluster2600/porscheparts-935-private/releases/download/935-root-repair-20261025/935-concavity-topology-20261028.tar.gz)
+have download-verified SHA-256 values
+`8e5ebf02b6ea86ed4a8e11f77e9609bb3bd0cbf102dd327c4d690779168eef9a`,
+`90933dadf3325301ba01bcf4a66b0f4d49e5903062cd6646003b6c41be688d05`,
+and `7a676c78b180208d1469d778d0723e63ce60fd28a76e77335d447d0f924f7ec8`.
+The report records source SHA-256
+`846863313ef1c7e8280f89ea4f8bc8621654d2c1f2341456e2467ac8ab897233`.
