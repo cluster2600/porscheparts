@@ -234,6 +234,7 @@ links to the original part.
 | the observed 935 drive inner-flange eight-opening candidate | [inner flange audit](docs/research/935-horizontal-cooling/DRIVE_INNER_FLANGE_20261028.md) |
 | the PicoGK lower-flange witness surfaces and scan overlay | [witness checkpoint](docs/research/935-horizontal-cooling/PICOGK_FLANGE_WITNESS_20261028.md) |
 | the 935 inspection USD with eight PicoGK flange witnesses | [USD composition checkpoint](docs/research/935-horizontal-cooling/USD_FLANGE_WITNESS_20261028.md) |
+| the 935 inspection USD with a provisional rotor revolution | [kinematic USD checkpoint](docs/research/935-horizontal-cooling/KINEMATIC_USD_20261028.md) |
 | the local AI model | [qwen-picogk](https://github.com/cluster2600/qwen-picogk) · [local training evidence](docs/QWEN_TRAINING.md) |
 | our Porsche information catalogue | [porschefanatics.com](https://porschefanatics.com/) |
 | the license | [LICENSE](LICENSE) · [third-party licenses](docs/LICENSES.md) |
