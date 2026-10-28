@@ -189,6 +189,13 @@ surface envelope check and was not used as a CFD input. The
 [private proposal archive](https://github.com/cluster2600/porscheparts-935-private/releases/download/935-root-repair-20261025/one-flip-proposal-20261028.tar.gz),
 SHA-256 `b6dbe507fcdfab53764a7613b358eba9a91d4244c20a69573ce2ea7e5c50a4ee`,
 retains the candidate and selection code without promoting it as a repair.
+An exploratory second proposal allowed adjacent-normal differences up to 30°
+and accepted a smaller quality gain. It selected nine disjoint flips,
+reducing faces below quality 0.05 from 113 to 102 while leaving all 24 faces
+below 0.01. It was stopped before envelope and volume admission because it
+did not address the worst facets. The [private proposal archive](https://github.com/cluster2600/porscheparts-935-private/releases/download/935-root-repair-20261025/nine-flip-proposal-20261028.tar.gz)
+has SHA-256 `ce766b916c7179a35e16754f52576716e4ef4c58e257938224040f8ff271403f`;
+the release asset digest matched. This proposal is not a reference surface.
 
 The next numerical geometry trial should reconstruct the affected rotor
 surface patch under independent boundary, self-intersection, and complete
