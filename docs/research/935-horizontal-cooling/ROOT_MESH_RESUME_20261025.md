@@ -381,3 +381,109 @@ have download-verified SHA-256 values
 and `7a676c78b180208d1469d778d0723e63ce60fd28a76e77335d447d0f924f7ec8`.
 The report records source SHA-256
 `846863313ef1c7e8280f89ea4f8bc8621654d2c1f2341456e2467ac8ab897233`.
+
+## 28 October: direct conforming Gmsh fluid-volume trial
+
+The [reproducible Gmsh study](../../../twins/935-horizontal-cooling-system-f0/source/gmsh-fluid-study-20261028/README.md)
+uses the **same** corrected-rotor fluid PLC as the TetGen trials above:
+`boundary.npz` SHA-256
+`9fcd93a5c54ebfc98b8cd86d4550e3a416d3e62fb217e5ebfb67eb2f2a9f2085`.
+Gmsh 4.15.2 was run natively on the Apple Silicon Mac. Four discrete surface
+entities preserve the inlet, outlet, exploratory duct and rotor markers; the
+fluid volume uses the rotor surface as an interior void. The outer duct is
+still **not** a measured 935 carter, and its SI scale is conditional.
+
+The completed Delaunay volume has 1,029,194 nodes and 4,915,307
+tetrahedra. An [independent full-volume audit](../../../twins/935-horizontal-cooling-system-f0/source/gmsh-fluid-study-20261028/audit_fluid.py)
+found every tetrahedron positively oriented, with volume sum
+`0.05140884014124352` m³. Every one of the 895,732 source boundary triangles
+and all four patch labels is preserved by coordinate-set comparison; the
+maximum nearest boundary-node difference is below `1e-16` m. This is mesh
+boundary preservation, **not** scan accuracy or confirmed 935 fitment.
+
+| Volume | Tetrahedra | Mean ratio < 0.01 | Mean ratio < 0.05 | Native OpenFOAM quality |
+|---|---:|---:|---:|---|
+| TetGen `-O5` | 3,714,547 | 2,929 | 43,964 | Not admitted |
+| Gmsh Delaunay | 4,915,307 | 1,169 | 1,769 | Failed seven checks |
+
+The two volumes have different cell counts; these bins are diagnostic, not a
+grid-convergence or solver comparison. A Gmsh `optimize("Netgen")` pass on the
+saved volume left all measured shape counts unchanged. OpenFOAM Foundation 13
+could not read the Gmsh 4.1 file directly; a small control established that
+its `gmshToFoam` accepts ASCII MSH 2.2. The full converted file SHA-256 is
+`5bf08e05e7f25fdddccbedd81245258a43d489b7c53dc85e4cf7a09626b9f422`,
+verified again after transfer to Kali1. The rootless native import recovered
+4,915,307 tetrahedra and four patches. Full native
+`checkMesh -constant -allGeometry -allTopology -meshQuality -writeSets
+-writeSurfaces` found one region and volume `0.051408840141249142` m³, but
+reported **seven failed mesh checks**: 58,976 severely non-orthogonal faces,
+54,127 cells with determinant below 0.001, 839 high-aspect-ratio cells,
+70 highly skew faces, 4 concave cells, and additional interpolation and volume
+ratio failures. Its exit code was zero despite the failed checks. Thus this
+candidate remains **rejected for CFD**, with no MRF/SST solve or airflow
+claim. The next mesh must pass the complete native gate and a multi-grid
+study before the intended simulations can proceed.
+
+The [private Gmsh volume bundle](https://github.com/cluster2600/porscheparts-935-private/releases/download/935-root-repair-20261025/935-gmsh-root0p7-volume-evidence-20261028.tar.zst)
+contains the original PLC, both Gmsh encodings, full numerical audits,
+execution logs and source copies. Its downloaded SHA-256 is
+`c6cf8560235773f618d0bcc1cd5e03f35a202c3af75e48b33f277ba3b2bfee56`.
+The [private native OpenFOAM bundle](https://github.com/cluster2600/porscheparts-935-private/releases/download/935-root-repair-20261025/935-gmsh-root0p7-openfoam-native-20261028.tar.zst)
+contains the converted `polyMesh`, case controls, logs and execution receipts;
+its downloaded SHA-256 is
+`d4f5e95175deb93aba667ec47c8fbf71dc24cc72c7055a495aae540f0095dd6d`.
+Both download hashes match the uploaded local archives. No geometry from
+either bundle is committed to public Git.
+
+The [full weak-cell localization program](../../../twins/935-horizontal-cooling-system-f0/source/gmsh-fluid-study-20261028/localize_weak.py)
+found that **all 1,169** tetrahedra below mean ratio 0.01 touch rotor-wall
+nodes; none touches the outer duct. In the
+[private top/side figure](https://github.com/cluster2600/porscheparts-935-private/releases/download/935-root-repair-20261025/gmsh-root0p7-weak-cells-20261028.png),
+their centres cluster at the inner annulus and selected blade roots. This is
+a location, not proof of whether the wall facets or near-wall volume fill
+caused the poor shapes. The [private JSON](https://github.com/cluster2600/porscheparts-935-private/releases/download/935-root-repair-20261025/gmsh-root0p7-weak-localization-20261028.json)
+and [complete cell data](https://github.com/cluster2600/porscheparts-935-private/releases/download/935-root-repair-20261025/gmsh-root0p7-weak-cells-20261028.npz)
+have downloaded SHA-256 values
+`9362b1635a60d660041da290ffc4606167b42000c3c8c1d5aaf9194a65575473`
+and `bdcfde4eef36e39d9e2efa29c464e3e6ab5d7db8588a4398eb4f02717070f7a4`;
+the figure has downloaded SHA-256
+`0e1e2bc42defac49c7a959603874957d878a6154514f6aefd355f6793579c910`.
+
+The [exact rotor-face incidence audit](../../../twins/935-horizontal-cooling-system-f0/source/gmsh-fluid-study-20261028/audit_wall_faces.py)
+shows that 1,109 of the 1,169 weak cells share a complete rotor boundary
+triangle. The 1,748 incident rotor faces have median normalized triangle
+quality 0.1876, compared with 0.8121 over all rotor faces; 404 incident
+faces are below 0.1. Under the unverified scale, 961 weak-cell centres lie
+at radial distance 70–100 mm. This prioritizes an inner-annulus/blade-root
+facet study with an independently checked scan-envelope bound. It does not
+establish whether the wall facets or volume-filling algorithm caused each
+bad cell.
+The [private face-audit receipt](https://github.com/cluster2600/porscheparts-935-private/releases/download/935-root-repair-20261025/gmsh-root0p7-wall-face-audit-20261028.json)
+has downloaded SHA-256
+`3d5bafb00eb9e0ea1ff572ab69597accb3a7e3613e79f9c2e5d1d4709a961f2e`.
+
+A second Gmsh 4.15.2 trial changed the 3D algorithm from Delaunay (1)
+to Frontal (4), retaining the same PLC and nominal size settings. It reached
+the 900-second wall limit while generating the volume, produced no mesh, and
+its process exited. There is no quality comparison with Frontal. The
+[private source/log archive](https://github.com/cluster2600/porscheparts-935-private/releases/download/935-root-repair-20261025/935-gmsh-frontal-timeout-20261028.tar.zst)
+and [timeout receipt](https://github.com/cluster2600/porscheparts-935-private/releases/download/935-root-repair-20261025/gmsh-root0p7-frontal-timeout-receipt-20261028.json)
+have downloaded SHA-256 values
+`576b8c13dfea80969443d855637ff21ad0676da7c98672c67d6e1b8a33b7bccc`
+and `6d386ede2a21dc9c7299b6ff1dcd0e6ada6cd9bc65d92d66cfe654548f579882`.
+
+The previously envelope-checked 32-edge-flip rotor candidate was then passed
+through the **same** Gmsh Delaunay settings as the baseline. Both complete
+audits preserved their respective 895,732 input boundary triangles. The
+flipped volume has 4,765,504 positive tetrahedra, with 1,248 below mean
+ratio 0.01 versus 1,169 in the unmodified volume. Its minimum ratio fell
+from `2.71e-5` to `5.29e-6`, and the sub-0.05 count rose from 1,769 to
+1,863. The candidate is **rejected** for this route; no native OpenFOAM
+check or CFD solve was run on the inferior volume. The
+[private full trial](https://github.com/cluster2600/porscheparts-935-private/releases/download/935-root-repair-20261025/935-gmsh-flipped32-evidence-20261028.tar.zst)
+and [comparison receipt](https://github.com/cluster2600/porscheparts-935-private/releases/download/935-root-repair-20261025/gmsh-flipped32-comparison-20261028.json)
+have downloaded SHA-256 values
+`60b34de0b4cb43dc4c7e6804a48db31b56dccf1cbb9f0c7dca4902768eaf49af`
+and `0c027000b145522495993cb2d2bcbf68580cc6a3ca4f6bb059f6770e61383c80`.
+This does not rule out other local surface reconstructions; every new
+candidate must again pass envelope, topology and volume-quality checks.
