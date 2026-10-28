@@ -226,6 +226,7 @@ links to the original part.
 | the corrected 935 rotor analysis surface and new fluid input | [bounded analysis checkpoint](docs/research/935-horizontal-cooling/CORRECTED_ANALYSIS_20261025.md) |
 | the original-export-bounded 935 assembly and rotor sweep | [assembly checkpoint](docs/research/935-horizontal-cooling/ORIGINAL_BOUND_ASSEMBLY_20261028.md) |
 | the original-export-bounded 935 facet and fluid-volume sweep | [mesh checkpoint](docs/research/935-horizontal-cooling/ORIGINAL_BOUND_FACET_SWEEP_20261028.md) |
+| the original-export-bounded 935 volume-node relocation | [relocation checkpoint](docs/research/935-horizontal-cooling/ORIGINAL_BOUND_VOLUME_RELOCATION_20261028.md) |
 | the local AI model | [qwen-picogk](https://github.com/cluster2600/qwen-picogk) · [local training evidence](docs/QWEN_TRAINING.md) |
 | our Porsche information catalogue | [porschefanatics.com](https://porschefanatics.com/) |
 | the license | [LICENSE](LICENSE) · [third-party licenses](docs/LICENSES.md) |
