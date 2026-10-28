@@ -103,3 +103,95 @@ SHA-256 `ca6c11d4e6ae0c1dcbc2b00de79877529bb2a9a53c64dab55a3ad9b2e0e662b8`,
 overlays sampled rotor vertices with those three face-defect sets. Its
 millimetre axes use the still-conditional source scale; the image is a
 location aid, not an engineering drawing.
+
+## Matched short-edge surface sweep
+
+Three previously protected-analysis-surface-bounded short-edge candidates
+(limits 0.001, 0.005 and 0.020 source unit) were exported by the same
+[four-patch STL program](../../../twins/935-horizontal-cooling-system-f0/source/gmsh-fluid-study-20261028/export_cfmesh_stl.py).
+The unchanged inlet, outlet and duct and the first-case `meshDict` and
+`meshQualityDict` hashes were retained. Native `surfaceCheck` found each
+input closed with four expected patches. Full `cartesianMesh` and full
+Foundation 13 `checkMesh` completed in each case. The
+[four-case audit program](../../../twins/935-horizontal-cooling-system-f0/source/gmsh-fluid-study-20261028/audit_cfmesh_sweep.py)
+pins all four STL and dictionary hashes before parsing the native logs.
+
+| Case | Rotor surface | Rotor faces | Cells | Severe nonorthogonal faces | Face-tet errors | Small-determinant cells | Concave cells | Failed checks |
+|---|---|---:|---:|---:|---:|---:|---:|---:|
+| 001 | unchanged | 878,730 | 995,392 | 51 | 74 | 354 | 63,013 | **8** |
+| 002 | 0.001 short-edge limit | 878,716 | 995,392 | 52 | 73 | 354 | 62,993 | **8** |
+| 003 | 0.020 short-edge limit | 878,646 | 995,392 | 50 | 74 | 354 | 63,019 | **8** |
+| 004 | 0.005 short-edge limit | 878,698 | 995,392 | 50 | 76 | 354 | 63,010 | **8** |
+
+The [private four-case audit JSON](https://github.com/cluster2600/porscheparts-935-private/releases/download/935-root-repair-20261025/cfmesh-four-case-audit-20261028.json)
+has SHA-256 `8796836a1da740693b32ec1cddd5d7f5fbfb876d656fe546daf3fbca0ed3e6a7`.
+The [private native case archive](https://github.com/cluster2600/porscheparts-935-private/releases/download/935-root-repair-20261025/cfmesh-shortedge-four-case-20261028.tar.zst)
+contains cases 002–004, their run scripts, and the audit; SHA-256
+`43e17838c96d8db5a453329101699e3d5f389e9d1e3b4eb3901c28a4c0a2658a`.
+Case 001 is in the earlier single-case archive. Both release asset digests
+matched after upload.
+All cases also have six highly skew faces and one high-aspect-ratio cell.
+Small differences among the cases do not constitute a CFD-quality volume.
+This comparison suggests the first cfMesh resolution is insensitive to these
+small surface changes. It does not prove that the same changes would be
+ineffective at a finer mesh resolution.
+
+The candidates were bounded against the protected root-0.7 **analysis
+surface**, not directly against the original scan. Their prior CGAL
+certificate and Gmsh outcomes are recorded in the
+[short-edge study](../../../twins/935-horizontal-cooling-system-f0/source/gmsh-fluid-study-20261028/README.md).
+No candidate acquires historical dimensional or physical validation from
+these numerical comparisons.
+
+## Rotor-local resolution trial
+
+The unchanged four-patch STL from case 001 was remeshed with a different
+[second `meshDict`](../../../twins/935-horizontal-cooling-system-f0/source/gmsh-fluid-study-20261028/cfmesh-meshDict-002),
+SHA-256 `d8ed88bf0a58e54de54396762b8d68d7f8864e06f49b1057d552af68358d2431`.
+Only `minCellSize` changed from 0.001 to 0.0005 m and rotor-local `cellSize`
+from 0.002 to 0.001 m under the conditional scale. The 12 mm maximum and
+4 mm general boundary sizes, STL, four patches, and quality dictionary were
+unchanged. Native `surfaceCheck`, `cartesianMesh`, and full `checkMesh`
+completed. The [resolution audit](../../../twins/935-horizontal-cooling-system-f0/source/gmsh-fluid-study-20261028/audit_cfmesh_resolution.py)
+pins both dictionaries, the unchanged STL, and both full quality logs.
+
+| Metric | Case 001 | Fine case 005 |
+|---|---:|---:|
+| Cells | 995,392 | 2,426,066 |
+| Severe nonorthogonal faces | 51 | 76 |
+| Highly skew faces | 6 | 30 |
+| Low-quality face tets | 74 | 186 |
+| Small-determinant cells | 354 | 574 |
+| Concave cells | 63,013 | 187,175 |
+| Low-weight faces | 92 | 120 |
+| Low-volume-ratio faces | 132 | 252 |
+| Failed mesh checks | **8** | **8** |
+
+The finer volume is **rejected for CFD**. The concave-cell fraction rose from
+about 6.33% to 7.72%; the absolute counts of every listed quality defect
+increased. These are two mesh settings, not a three-grid convergence study.
+Their failure does not prove that all resolutions or all conforming meshers
+will fail, but further global resolution increases alone are not supported
+by this evidence. The [private resolution receipt](https://github.com/cluster2600/porscheparts-935-private/releases/download/935-root-repair-20261025/cfmesh-resolution-audit-20261028.json)
+has SHA-256 `896d3c8977f44b812dcbca6c0533cfb5250ce6e68a1420281c414058604ae484`.
+The [private native fine case](https://github.com/cluster2600/porscheparts-935-private/releases/download/935-root-repair-20261025/cfmesh-rotor1mm-rejected-20261028.tar.zst)
+has SHA-256 `f5b82cd95d4a1ff9f4dc53360e06f91f4b0e4119dd25b8f3cd06c7e80c85fafc`.
+Both release asset digests matched after upload.
+
+## Bounded next geometry step
+
+The unchanged rotor contains 24 faces below normalized quality 0.01 and 113
+below 0.05. A conservative edge-flip proposal requiring nearly coplanar
+adjacent faces and no vertex movement found only one eligible disjoint pair.
+That proposal reduced the count below 0.05 from 113 to 111, but left all 24
+worst faces. It has **not** passed a complete original-scan or protected-
+surface envelope check and was not used as a CFD input. The
+[private proposal archive](https://github.com/cluster2600/porscheparts-935-private/releases/download/935-root-repair-20261025/one-flip-proposal-20261028.tar.gz),
+SHA-256 `b6dbe507fcdfab53764a7613b358eba9a91d4244c20a69573ce2ea7e5c50a4ee`,
+retains the candidate and selection code without promoting it as a repair.
+
+The next numerical geometry trial should reconstruct the affected rotor
+surface patch under independent boundary, self-intersection, and complete
+bidirectional scan-envelope checks, then rerun the same native volume-quality
+gate. The current conditional scale and unknown 935 mounting dimensions still
+prevent fitment or fabrication claims, irrespective of mesh quality.
