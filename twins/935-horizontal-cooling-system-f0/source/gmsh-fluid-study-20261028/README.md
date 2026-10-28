@@ -255,3 +255,71 @@ contains the three candidate surfaces and PLCs, their Gmsh volumes and audits,
 the CGAL logs, localization data, and the best candidate's native OpenFOAM
 logs. Its downloaded SHA-256 was verified as
 `193d913e0def086c422cba7c1023e30594a2fb4f0e780299edc3ff321cb6f4d`.
+
+## Return to the original-PicoGK-export-bounded analysis surface
+
+The root-0.7 surface above is an exploratory numerical correction and **fails**
+the 0.0225-source-unit envelope against the earlier original PicoGK export.
+For a fidelity-preserving comparison, the quality-preserving analysis surface
+from [the October 22 certificate](../../../../docs/research/935-horizontal-cooling/ANALYSIS_MESH_CONTINUATION_20261022.md)
+was reintroduced without changing its vertices or triangles. That surface has
+435,529 vertices and 871,078 faces; its frozen OFF SHA-256 is
+`d2e86b89afe854ea4107cac170fdba7d5e73a40648c3a704dfd9ab6b5b1687e2`.
+Its complete bidirectional CGAL envelope had passed against all 1,322,970
+triangles of the **original PicoGK export**, not directly against the raw scan.
+The physical unit, historical fitment and blade profile remain unverified.
+An exploratory nearest-vertex screen is retained in the private archive but
+is **rejected as a surface-distance test**: simplification removes vertices,
+so vertex-to-vertex distances can be large even when the complete triangle
+envelope passes. The CGAL triangle certificate governs fidelity here.
+
+[`prepare_original_bound_fluid.py`](prepare_original_bound_fluid.py) checks
+that frozen rotor, its public certificate, and the unchanged private outer
+duct. It creates a closed conditional fluid PLC with the rotor as a void.
+The resulting PLC has 444,032 vertices and 888,080 boundary triangles,
+SHA-256 `db411e54f00c23c4b0d8916f5e13760b45234405b0cd150f6c9520892e8f0a05`.
+Its volume is `0.051409334099796665` m³ under the **assumed**, uncalibrated
+1 source unit = 1 mm conversion. Reproduce from the repository root:
+
+```sh
+uv run --no-project --python 3.12 --with numpy==2.5.4 --with scipy==1.18.1 --with trimesh \
+  python twins/935-horizontal-cooling-system-f0/source/gmsh-fluid-study-20261028/prepare_original_bound_fluid.py \
+  work/935-analysis-volume-20261022/kali-receipts/quality-surface-001/candidate-quantized.off \
+  work/935-original-envelope-localization-20261028/NEW-faithful
+
+uv run --no-project --python 3.12 --with gmsh==4.15.2 --with numpy==2.5.4 \
+  python twins/935-horizontal-cooling-system-f0/source/gmsh-fluid-study-20261028/generate_fluid.py \
+  work/935-original-envelope-localization-20261028/NEW-faithful/boundary.npz \
+  work/935-original-envelope-localization-20261028/NEW-faithful/gmsh-volume
+
+uv run --no-project --python 3.12 --with gmsh==4.15.2 --with numpy==2.5.4 --with scipy==1.18.1 \
+  python twins/935-horizontal-cooling-system-f0/source/gmsh-fluid-study-20261028/audit_fluid.py \
+  work/935-original-envelope-localization-20261028/NEW-faithful/boundary.npz \
+  work/935-original-envelope-localization-20261028/NEW-faithful/gmsh-volume/fluid.msh \
+  work/935-original-envelope-localization-20261028/NEW-faithful/gmsh-volume/audit.json
+```
+
+Gmsh 4.15.2 Delaunay produced 5,115,243 **positive** tetrahedra and 1,058,179
+nodes, with every input boundary triangle and physical marker preserved to
+less than `1e-16` m by the independent audit. It reported 1,803 ill-shaped
+tetrahedra. The saved volume SHA-256 is
+`595c0cf9181dbb586ad2f42b43806ad3d0700ebcb4087c6533b566702785a412`;
+the independent mean-ratio calculation found **1,459 below 0.01**
+and **2,043 below 0.05**. These are separate quality definitions. All 1,459
+weak cells touch a rotor node, 1,397 share a complete rotor face, and 1,247
+lie at radius 70–100 mm under the conditional scale. The wall-face audit
+found 541 of 2,172 incident rotor-face occurrences below normalized quality
+0.1; the inner annulus and blade roots remain the dominant observed region.
+
+This fidelity-preserving Delaunay volume is **rejected for CFD**. It is worse
+on the two measured mean-ratio counts than the root-0.7 numerical baseline
+(1,169 and 1,769) and the best short-edge analysis trial (910 and 1,429).
+The comparison does not justify changing the rotor shape outside its original
+PicoGK export bound. A conforming near-wall volume strategy that retains the
+bounded rotor, plus measured same-part dimensions and 935 interfaces, is still
+required. No native OpenFOAM check or flow solve was run on this rejected
+volume.
+
+The [private input, volume, audit and localization archive](https://github.com/cluster2600/porscheparts-935-private/releases/download/935-root-repair-20261025/935-original-bound-gmsh-20261028.tar.zst)
+was downloaded, decompressed and SHA-256 verified as
+`7b9ba572e43ac91e6a7f3e5df043027684814b47e3161dca8a48482f9205fcf1`.

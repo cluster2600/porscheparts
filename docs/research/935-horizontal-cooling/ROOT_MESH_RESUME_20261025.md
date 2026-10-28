@@ -527,3 +527,14 @@ bound applies only between each repaired surface and the protected analysis
 surface; it does not establish an original-scan bound, verified scale, or
 935 fitment. The inner annulus and blade-root wall remain the main observed
 weak-cell concentration.
+
+The [original-PicoGK-export-bounded comparison](../../../twins/935-horizontal-cooling-system-f0/source/gmsh-fluid-study-20261028/README.md#return-to-the-original-picogk-export-bounded-analysis-surface)
+reuses the earlier certified 871,078-face quality-preserving analysis rotor.
+Gmsh 4.15.2 preserved all 888,080 fluid-wall triangles and produced 5,115,243
+positive tetrahedra, but the independent audit found 1,459 cells below mean
+ratio 0.01 and 2,043 below 0.05. All weak cells touch the rotor; 1,247 of
+1,459 lie near the inner annulus at radius 70–100 mm under the conditional
+scale. This calculation is also **rejected for CFD**. Its fidelity certificate
+is to the original PicoGK export, not directly to the raw scan or 935 engine
+installation. No native OpenFOAM check or flow solve was run on this inferior
+volume.
