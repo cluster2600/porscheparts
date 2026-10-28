@@ -142,7 +142,7 @@ The baseline contract is documentary and does not retrofit controls into older r
 The new audit verifies source identity and preserves observed surfaces; it deliberately
 does not promote the result to a qualified CAD master, solver-ready solid or print-ready part.
 
-See the [boundary inventory](BOUNDARIES.md) for the subsequent full-source review index: 928 individually addressable curves, with no automatic filling.
+See the [boundary inventory](BOUNDARIES.md) for the subsequent full-source review index: 928 individually addressable curves, with no automatic filling. The [intersection inspection](INTERSECTIONS.md) subsequently identified 180 intersecting face pairs and retained the eight zero-area faces as separate defects.
 
 ## Published implementation and acceptance status
 
@@ -150,7 +150,7 @@ The runnable [scan auditor](../../../scripts/audit_935_faithful_scan.py) verifie
 frozen source, preserves its observed surfaces and reports open geometry and sampled
 deviations. The [renderer](../../../scripts/render_935_scan_audit.py) produces inspection
 views. The [dedicated CI workflow](../../../.github/workflows/935-faithful-audit.yml)
-installs the geometry dependencies and runs the four synthetic regression tests without
+installs the geometry dependencies and runs the synthetic geometry regression tests and native intersection controls without
 requiring the private scan. [Publication checks](publication-validation.json) are kept
 separate from the earlier execution receipts.
 
@@ -159,7 +159,7 @@ separate from the earlier execution receipts.
 | Freeze inputs and provenance | Original hash verified twice; source/fact register; observed-surface exports | Verified units, scan accuracy, semantic hardware separation and hidden geometry |
 | Resume the selected chain | Qwen admission attempt, PicoGK native check, Gmsh version, repeated OpenFOAM benchmark | Admitted head reconstruction; head-specific solver cases; current CalculiX/Adamantine execution |
 | Faithful reconstruction | Exact-coordinate surface references; open-edge map; comparison with prior simplified mesh | Editable CAD, complete interfaces/chamber/ports/fins/internal passages and approved tolerances |
-| Independent validation | Surface round-trip checks, topology counts, sampled distances and synthetic runtime checks | Self-intersections, complete wall-thickness analysis, head meshes, convergence, conservation and physical correlation |
+| Independent validation | Surface round-trip checks, boundary inventory, intersection inspection, sampled distances and synthetic runtime checks | Intersection classification/repair, complete wall-thickness analysis, head meshes, convergence, conservation and physical correlation |
 | Chinese manufacturing data | Falcontech/Farsoon/BLT comparison, evidence gaps and unsent technical enquiry | Supplier responses, process-specific data, coupons and finished-part qualification |
 | Vast and delivery | Kali1 executed the prepared checks; hashes and receipts collected; USD 0 spent | A justified prepared paid workload, then metered execution, retrieval and teardown; no rental currently exists |
 
