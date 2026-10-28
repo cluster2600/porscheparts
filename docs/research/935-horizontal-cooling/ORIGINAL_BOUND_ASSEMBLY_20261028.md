@@ -9,7 +9,7 @@ coordinates are not calibrated to millimetres.
 
 ## Reproducible chain
 
-The private OFF input is `work/935-analysis-patches-20261022/surface-001/candidate-quantized.off`
+The private OFF input is `work/935-analysis-volume-20261022/kali-receipts/quality-surface-001/candidate-quantized.off`
 (SHA-256 `d2e86b89afe854ea4107cac170fdba7d5e73a40648c3a704dfd9ab6b5b1687e2`).
 The public original-export containment certificate is
 [`analysis-mesh-20261022.json`](analysis-mesh-20261022.json), SHA-256
@@ -24,7 +24,7 @@ From the repository root, with private inputs restored to their recorded paths:
 mkdir -p work/935-original-bound-assembly-20261028
 uv run --no-project --python 3.12 --with numpy==2.5.4 --with trimesh \
   python twins/935-horizontal-cooling-system-f0/source/prepare_original_bound_assembly.py \
-  work/935-analysis-patches-20261022/surface-001/candidate-quantized.off \
+  work/935-analysis-volume-20261022/kali-receipts/quality-surface-001/candidate-quantized.off \
   work/935-assembly-0p7-20261025/six-run-001 \
   work/935-original-bound-assembly-20261028/prepared-002
 /Users/maxime/.local/bin/dotnet build \
