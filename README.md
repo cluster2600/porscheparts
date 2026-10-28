@@ -230,6 +230,7 @@ links to the original part.
 | the original-export-bounded 935 weak rotor-wall face audit | [wall diagnostic](docs/research/935-horizontal-cooling/ORIGINAL_BOUND_WALL_DIAGNOSTIC_20261028.md) |
 | the original-export-bounded 935 near-planar ring-flip trial | [surface and volume checkpoint](docs/research/935-horizontal-cooling/ORIGINAL_BOUND_RING_FLIP_20261028.md) |
 | the original-export-bounded 935 annular edge-split rejection | [edge-split checkpoint](docs/research/935-horizontal-cooling/ORIGINAL_BOUND_RING_EDGE_SPLIT_20261028.md) |
+| the corrected 935 rotor patch-smoothing CFD mesh rejection | [smoothing trial](docs/research/935-horizontal-cooling/SNAP_SMOOTHING_TRIAL_20261028.md) |
 | the observed 935 drive lower-flange eight-opening candidate | [flange audit](docs/research/935-horizontal-cooling/DRIVE_LOWER_FLANGE_20261028.md) |
 | the observed 935 drive inner-flange eight-opening candidate | [inner flange audit](docs/research/935-horizontal-cooling/DRIVE_INNER_FLANGE_20261028.md) |
 | the PicoGK lower-flange witness surfaces and scan overlay | [witness checkpoint](docs/research/935-horizontal-cooling/PICOGK_FLANGE_WITNESS_20261028.md) |
