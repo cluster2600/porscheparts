@@ -94,3 +94,49 @@ opposite side and axial sections of both openings, identify every attachment
 feature around the flange, then obtain independent same-part scale and mating
 face measurements. No functional PicoGK support is generated from these
 candidate coordinates.
+
+## Axial section continuation, 28 October 2026
+
+The [depth audit](../../../twins/935-horizontal-cooling-system-f0/source/audit_drive_axial_depth.py)
+reuses the hash-pinned observed drive STL and the original partial-circle
+fixture. It fits three **non-overlapping** five-source-unit Z bands around each
+visual seed and plots XZ/YZ sections of acquired face centroids. The image was
+inspected; the local sidewall patches vary with depth. Red points in the plot
+show fitted circle spans, not nominal diameters or designed walls.
+
+| Visual seed Y | Z band, source units | Sidewall faces | Fitted radius, source units | Angular coverage |
+|---:|---:|---:|---:|---:|
+| +30 | −54 to −49 | 327 | 3.100 | 230.0° |
+| +30 | −49 to −44 | 391 | 3.396 | 115.0° |
+| +30 | −44 to −39 | 559 | 3.099 | 293.8° |
+| −30 | −54 to −49 | 545 | 3.202 | 310.3° |
+| −30 | −49 to −44 | 287 | 3.201 | 197.3° |
+| −30 | −44 to −39 | 802 | 3.244 | 309.3° |
+
+The maximum separation between the three fitted centres is 0.334 source unit
+at the positive-Y seed and 0.280 at the negative-Y seed. The middle positive-Y
+fit sees only 115° and has a larger radius than its adjacent bands. This is a
+warning about incomplete surface coverage and fit stability, not evidence of
+a machined taper or a specified coaxiality. The section plot also shows
+disconnected acquired patches near the faces. It cannot distinguish missing
+scan surface from a real internal opening. It does not prove a through-hole,
+mounting role, fastener pattern, fit or manufacturing dimension.
+
+Run with a new private output directory:
+
+```sh
+uv run --no-project --python 3.12 --with numpy==1.26.4 \
+  --with scipy==1.14.1 --with matplotlib==3.10.7 python \
+  twins/935-horizontal-cooling-system-f0/source/audit_drive_axial_depth.py \
+  work/935-assembly-0p7-20261025/six-run-001/drive_observed.stl \
+  work/NEW/axial-depth
+```
+
+The [private final report and section image](https://github.com/cluster2600/porscheparts-935-private/releases/download/935-root-repair-20261025/935-drive-axial-depth-final-20261028.tar.zst)
+have archive SHA-256 `8f453ef77ffdc295637b4b75a39ad24568646cb615819a25bcaee276ff1eed26`,
+matching the GitHub asset digest. The report and image SHA-256 values are
+`272c69600f959bf6d6c51c8f28bd174f990ad09b0877574ac35a6647384b4049`
+and `ff951851cd293634f675ecf4cb438dbe1838f612b0d90d60f11bc89212e78627`.
+An earlier overlapping-band exploratory archive remains private but is not the
+accepted depth result. The next mechanical acquisition must resolve the actual
+flange and opposite-side surfaces with a same-part dimension and mounted view.
