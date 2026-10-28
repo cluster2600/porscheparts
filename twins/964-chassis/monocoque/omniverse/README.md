@@ -66,7 +66,8 @@ support/load patches. The 1,200 kg vehicle target has not been applied as a
 complete vehicle load case. The visual and analysis geometries differ in sill
 depth, front rails, rear rails and wheel tubs. Therefore this bundle attaches
 the original reports and scalar sequences, **without mapping stress fields onto
-the visual shell**. No new structural solve was executed for this handoff.
+the visual shell**. The bundle retains the historical scalar reports; the
+subsequent replay evidence is linked above.
 
 ## Steps to the requested twin
 
@@ -76,7 +77,7 @@ the visual shell**. No new structural solve was executed for this handoff.
 | Portable whole-body OpenUSD | Executed | Four groups, coordinate equality, relocated strict validation |
 | Local review media | Executed | Three PNG views and a 120-frame MP4 from the reopened stage |
 | Omniverse RTX review | Prepared | Fresh compatible GPU/driver check, bounded rental approval, actual OVRTX captures and runtime receipts |
-| Omniverse/application screenshots | Pending | Capture the actual review application after it loads the verified bundle; never substitute a local preview |
+| Omniverse/application screenshots | Prepared, native execution pending | [Retained Kit runtime, separate working layer and bounded transport procedure](kit-review.md); actual screenshots still required |
 | Source-reproducible structural model | Partial | Finest carbon torsion and bending replayed twice each; other cases and convergence remain open |
 | Exact 964/993 interfaces | Blocked by missing measurements | Validated XYZ datums, variant identity and drivetrain travel/clearance envelopes |
 | Composite strength and manufacturing | Incomplete | Measured laminate/process data, bonded joints/inserts, delamination/buckling/fatigue and mould/process studies |
@@ -114,6 +115,9 @@ with 40 GB download, 15 GB upload and USD 1 cleanup reserve is USD 4.53.
 Availability and price must be reread immediately before launch. The public
 image digest and its 34.62 GB compressed download were verified anonymously.
 No Qwen weights need to be downloaded for rendering this prepared scene.
+The [native application review preparation](kit-review.md) adds 3.18 GB of
+hash-verified Kit layers for the editor screenshots; it retains the same
+proposed budget and deadline. This runtime addition is not GPU-qualified yet.
 
 Use the existing OpenBao wrapper, `engine-twin-v1` compute profile and external
 deadline guard. After budget approval, create a fresh private manifest with the
