@@ -1,0 +1,113 @@
+/*---------------------------------------------------------------------------*\
+  =========                 |
+  \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
+   \\    /   O peration     | Website:  https://openfoam.org
+    \\  /    A nd           | Version:  13
+     \\/     M anipulation  |
+\*---------------------------------------------------------------------------*/
+Build  : 13-cde978a97c93
+Exec   : foamRun -case <job>/case-025 -solver incompressibleFluid -parallel
+Date   : Oct 27 2026
+Time   : 09:28:45
+Host   : "kali1"
+PID    : 230
+I/O    : uncollated
+Case   : <job>/case-025
+nProcs : 4
+Slaves : 
+3
+(
+"kali1.231"
+"kali1.232"
+"kali1.233"
+)
+
+Pstream initialised with:
+    floatTransfer      : false
+    nProcsSimpleSum    : 0
+    commsType          : nonBlocking
+    polling iterations : 0
+sigFpe : Enabling floating point exception trapping (FOAM_SIGFPE).
+fileModificationChecking : Monitoring run-time modified files using timeStampMaster (fileModificationSkew 10)
+allowSystemOperations : Allowing user-supplied system call operations
+
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+Create time
+
+Create mesh for time = 1300
+
+Selecting solver incompressibleFluid
+Selecting viscosity model constant
+Selecting turbulence model type RAS
+    Selecting RAS turbulence model kOmegaSST
+No MRF models present
+
+Selecting patchDistMethod meshWave
+
+SIMPLE: Convergence criteria found
+        p: tolerance 1e-05
+        U: tolerance 1e-05
+        "(k|omega)": tolerance 1e-05
+
+
+SIMPLE: Operating solver in steady-state mode with 1 outer corrector
+SIMPLE: Operating solver in SIMPLE mode
+
+
+
+Starting time loop
+
+surfaceFieldValue inletFlux read:
+    number of faces = 582
+    area = 0.000339000000000001
+    operation = sum
+
+surfaceFieldValue outletFlux read:
+    number of faces = 630
+    area = 0.0003390000000000022
+    operation = sum
+
+surfaceFieldValue inletPressure read:
+    number of faces = 582
+    area = 0.000339000000000001
+    operation = areaAverage
+
+surfaceFieldValue outletPressure read:
+    number of faces = 630
+    area = 0.0003390000000000022
+    operation = areaAverage
+
+Time = 1326s
+
+smoothSolver:  Solving for Ux, Initial residual = 3.326008393317184e-05, Final residual = 5.438414235380585e-08, No Iterations 2
+smoothSolver:  Solving for Uy, Initial residual = 4.136731285562269e-05, Final residual = 7.024197392720478e-08, No Iterations 2
+smoothSolver:  Solving for Uz, Initial residual = 6.164047128929413e-05, Final residual = 1.027715416167656e-07, No Iterations 2
+GAMG:  Solving for p, Initial residual = 0.0008936801516170318, Final residual = 7.450271763392429e-11, No Iterations 25
+GAMG:  Solving for p, Initial residual = 0.0002918045281482311, Final residual = 4.728449783489303e-11, No Iterations 22
+GAMG:  Solving for p, Initial residual = 0.0001359716418596878, Final residual = 4.079442269142738e-11, No Iterations 19
+time step continuity errors : sum local = 4.10903135646383e-09, global = 1.762746417758274e-10, cumulative = 4.095349538997431e-10
+smoothSolver:  Solving for omega, Initial residual = 3.878717041050392e-05, Final residual = 4.027389302317553e-08, No Iterations 2
+smoothSolver:  Solving for k, Initial residual = 8.692085021164862e-05, Final residual = 1.242964892769727e-07, No Iterations 2
+bounding k, min: 1.569931662551583e-16 max: 0.6959905353048672 average: 0.02397471138034258
+ExecutionTime = 289.925565 s  ClockTime = 291 s
+
+Time = 1327s
+
+smoothSolver:  Solving for Ux, Initial residual = 3.270725438302331e-05, Final residual = 5.377875040461742e-08, No Iterations 2
+smoothSolver:  Solving for Uy, Initial residual = 4.071307033230969e-05, Final residual = 6.953832422519875e-08, No Iterations 2
+smoothSolver:  Solving for Uz, Initial residual = 6.066817584276383e-05, Final residual = 1.017408370467554e-07, No Iterations 2
+GAMG:  Solving for p, Initial residual = 0.0008472514550446036, Final residual = 5.369963969222295e-11, No Iterations 24
+GAMG:  Solving for p, Initial residual = 0.0002744619535837307, Final residual = 4.626536008855093e-11, No Iterations 20
+GAMG:  Solving for p, Initial residual = 0.0001285085714256971, Final residual = 6.673903112997483e-11, No Iterations 20
+time step continuity errors : sum local = 6.721834188352044e-09, global = -3.011671750901994e-10, cumulative = 1.083677788095437e-10
+smoothSolver:  Solving for omega, Initial residual = 3.79278771095524e-05, Final residual = 3.969875605822353e-08, No Iterations 2
+smoothSolver:  Solving for k, Initial residual = 8.624714478038892e-05, Final residual = 1.238591545509438e-07, No Iterations 2
+bounding k, min: 1.557257524650236e-16 max: 0.6959835416479011 average: 0.02397416051008066
+ExecutionTime = 295.585107 s  ClockTime = 297 s
+
+Time = 1328s
+
+smoothSolver:  Solving for Ux, Initial residual = 3.222724132021232e-05, Final residual = 5.328281016140788e-08, No Iterations 2
+smoothSolver:  Solving for Uy, Initial residual = 4.014934038095535e-05, Final residual = 6.892979510867877e-08, No Iterations 2
+smoothSolver:  Solving for Uz, Initial residual = 5.982325926745188e-05, Final residual = 1.008797528630047e-07, No Iterations 2
+GAMG:  Solving for p, Initial residual = 0.0008113857165718492, Final residual = 4.59617243797881e-11, No Iterations 25

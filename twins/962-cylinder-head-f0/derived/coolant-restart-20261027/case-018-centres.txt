@@ -1,0 +1,40 @@
+/*---------------------------------------------------------------------------*\
+  =========                 |
+  \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
+   \\    /   O peration     | Website:  https://openfoam.org
+    \\  /    A nd           | Version:  13
+     \\/     M anipulation  |
+\*---------------------------------------------------------------------------*/
+Build  : 13-cde978a97c93
+Exec   : foamPostProcess -solver incompressibleFluid -func writeCellCentres -latestTime
+Date   : Oct 27 2026
+Time   : 08:23:33
+Host   : "kali1"
+PID    : 220
+I/O    : uncollated
+Case   : <job>/case-018
+nProcs : 1
+sigFpe : Enabling floating point exception trapping (FOAM_SIGFPE).
+fileModificationChecking : Monitoring run-time modified files using timeStampMaster (fileModificationSkew 10)
+allowSystemOperations : Allowing user-supplied system call operations
+
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+Create time
+
+Create mesh for time = 1400
+
+Time = 1400s
+Selecting solver incompressibleFluid
+Selecting viscosity model constant
+Selecting turbulence model type RAS
+    Selecting RAS turbulence model kOmegaSST
+No MRF models present
+
+Selecting patchDistMethod meshWave
+    Writing cell-centre field C to 1400
+    Writing the x component field of the cell-centres Ccx to 1400
+    Writing the y component field of the cell-centres Ccy to 1400
+    Writing the z component field of the cell-centres Ccz to 1400
+
+End
+

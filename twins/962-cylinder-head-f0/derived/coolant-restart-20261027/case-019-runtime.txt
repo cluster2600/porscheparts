@@ -1,0 +1,4 @@
+Oct 27 08:20:23 kali1 systemd[1811]: Started 962-coolant-restart-019.service - [systemd-run] /usr/bin/nice -n 10 bwrap --unshare-user --unshare-pid --unshare-net --ro-bind / / --tmpfs <home> --ro-bind <job> <job> --bind <job>/case-019 <job>/case-019 --tmpfs /opt --ro-bind <job>/runtime-root/opt/openfoam13 /opt/openfoam13 --proc /proc --dev /dev --tmpfs /tmp --chdir <job>/case-019 /bin/bash -c "source /opt/openfoam13/etc/bashrc; bash ./run_restart.sh".
+Oct 27 08:51:41 kali1 systemd[1811]: 962-coolant-restart-019.service: Main process exited, code=exited, status=124/n/a
+Oct 27 08:51:41 kali1 systemd[1811]: 962-coolant-restart-019.service: Failed with result 'exit-code'.
+Oct 27 08:51:41 kali1 systemd[1811]: 962-coolant-restart-019.service: Consumed 2h 59.933s CPU time over 31min 18.266s wall clock time, 1.3G memory peak.
