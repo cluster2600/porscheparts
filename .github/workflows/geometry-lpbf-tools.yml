@@ -55,6 +55,7 @@ jobs:
           make go-melt-smoke GO_MELT_SOURCE=work/go-melt-source GO_MELT_PYTHON=python
           make lpbf-cuda-cpu-smoke LPBF_CUDA_SOURCE=work/lpbf-cuda-source
       - uses: actions/upload-artifact@v4
+        if: always()
         with:
           name: lpbf-cpu-witnesses
           path: |

@@ -30,8 +30,13 @@ def main():
             ("cpu_dynamic", [str(source / "dynamics" / "deposition_sim.cpp")]),
             ("thermal_control", [str(control), *common]),
         ):
-            subprocess.run([args.cxx, "-std=c++11", "-O2", "-I", str(thermal), *inputs,
-                            "-o", str(output / name)], check=True, stdout=log, stderr=log, timeout=120)
+            # Upstream particle.cpp uses time() without including <ctime>; GCC requires it.
+            result = subprocess.run([args.cxx, "-std=c++11", "-O2", "-include", "ctime", "-I", str(thermal), *inputs,
+                                     "-o", str(output / name)], stdout=log, stderr=log, timeout=120)
+            if result.returncode:
+                log.flush()
+                print((output / "build.log").read_text())
+                result.check_returncode()
     subprocess.run([str(output / "thermal_control")], check=True, timeout=30)
     report = {
         "status": "passed_cpu_build_and_thermal_controls",

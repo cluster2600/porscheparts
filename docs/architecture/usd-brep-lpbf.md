@@ -116,6 +116,9 @@ Override `LPBF_CUDA_SOURCE` and `LPBF_CUDA_OUTPUT` as needed. The test compiles
 from source into a fresh output directory, never runs bundled upstream binaries
 or overwrites upstream result files. It verifies the revision and rejects tracked
 source changes. `report.json` records compiler and binary hashes.
+The build injects the standard `<ctime>` header because upstream `particle.cpp`
+uses `time()` without declaring it; GCC rejects that source otherwise. This
+portability adjustment does not edit upstream sources or change the thermal model.
 
 Only CPU builds and the small thermal control are exercised. Full deposition,
 100,000-step laser scans, CUDA builds and CPU/GPU agreement remain unexecuted.
