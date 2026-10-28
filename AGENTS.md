@@ -88,6 +88,25 @@ remain unchanged until a dedicated rename phase.
 
 ## Architecture and local AI
 
+### Mandatory 962 engineering workflow for every agent
+
+For any 962-head work, including scripts, cloud preparation, LPBF and Omniverse
+outside the head directory, first read
+[the head instructions](twins/962-cylinder-head-f0/AGENTS.md),
+[the mandatory workflow](twins/962-cylinder-head-f0/WORKFLOW.md) and its
+[machine-readable contract](twins/962-cylinder-head-f0/workflow-contract.json).
+This applies to the primary agent and every delegated agent. Include these
+references and the affected phase IDs in any handoff; delegation never waives
+the workflow. Do not delegate unless the current task otherwise authorizes it.
+
+Prepare a complete phase ledger before renting compute or claiming that the
+chain is prepared. Each phase needs its concrete inputs, runtime, commands,
+expected outputs, checks, state and blockers. Do not reduce this workflow to
+CFD, a tool inventory, a render or a successful software witness. Preserve
+unrelated work, frozen evidence and the distinction between study geometries.
+`make check` includes `test_962_workflow_contract.py`; passing it checks workflow
+coverage and evidence structure, never physical or manufacturing qualification.
+
 Follow [docs/architecture/README.md](docs/architecture/README.md): tailored
 TOGAF governance, ArchiMate viewpoints and UML contracts/behavior rendered in
 Mermaid. Keep requirements, architecture decisions and verification evidence

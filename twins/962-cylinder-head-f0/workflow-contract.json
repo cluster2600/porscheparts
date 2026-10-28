@@ -1,0 +1,891 @@
+{
+  "schema_version": 1,
+  "scope": "Mandatory 962 head engineering preparation and evidence accounting",
+  "physical_qualification_granted": false,
+  "phases": [
+    {
+      "id": "provenance",
+      "software": [
+        "Git",
+        "JSON",
+        "Qwen"
+      ],
+      "depends_on": [],
+      "required_inputs": [
+        "variant_and_scope",
+        "sources_and_rights",
+        "measured_vs_assumed_interfaces"
+      ],
+      "command_templates": [
+        [
+          "python3",
+          "twins/962-cylinder-head-f0/source/compare_materials.py",
+          "--output",
+          "{OUT}/materials.json"
+        ]
+      ],
+      "expected_outputs": [
+        "Sources/rights register",
+        "Donor datum and uncertainty register",
+        "Material comparison"
+      ],
+      "acceptance_checks": [
+        "Missing dimensions remain unknown",
+        "Independent check of Qwen output",
+        "Hash-bound source and runtime"
+      ],
+      "references": [
+        "twins/962-cylinder-head-f0/DONOR_METROLOGY.md",
+        "twins/962-cylinder-head-f0/ORIGINAL_ARCHITECTURE.md",
+        "twins/962-cylinder-head-f0/source/compare_materials.py",
+        "twins/962-cylinder-head-f0/MEZGER_4L_SP95_EN.md"
+      ]
+    },
+    {
+      "id": "reconstruction",
+      "software": [
+        "COLMAP",
+        "GLOMAP",
+        "Open3D",
+        "pymeshlab",
+        "Blender"
+      ],
+      "depends_on": [
+        "provenance"
+      ],
+      "required_inputs": [
+        "licensed_capture_set",
+        "same_part_scale_datums",
+        "capture_configuration"
+      ],
+      "command_templates": [
+        [
+          "colmap",
+          "automatic_reconstructor",
+          "--workspace_path",
+          "{OUT}/reconstruction",
+          "--image_path",
+          "{IMAGES}"
+        ]
+      ],
+      "expected_outputs": [
+        "Registered point cloud and mesh",
+        "Scale and deviation report"
+      ],
+      "acceptance_checks": [
+        "Require same-part scale evidence",
+        "No donor datums inferred from photographs",
+        "If no capture is needed justify not_applicable"
+      ],
+      "references": [
+        "docs/TOOLCHAIN.md",
+        "docs/AI_DIGITAL_TWIN_STACK.md"
+      ]
+    },
+    {
+      "id": "picogk",
+      "software": [
+        "PicoGK",
+        "ShapeKernel",
+        "LatticeLibrary",
+        "Fasteners",
+        "OpenVDB",
+        "Qwen"
+      ],
+      "depends_on": [
+        "provenance"
+      ],
+      "required_inputs": [
+        "geometry_parameters",
+        "native_runtime",
+        "library_revisions",
+        "donor_interface_contract"
+      ],
+      "command_templates": [
+        [
+          "python3",
+          "twins/962-cylinder-head-f0/source/flow4l/run_study.py",
+          "{PICOGK_INSTALLATION}",
+          "{OUT}/picogk"
+        ]
+      ],
+      "expected_outputs": [
+        "Editable C# and parameters",
+        "Metal, water and dry domains",
+        "Named VDB grids and round-trip report"
+      ],
+      "acceptance_checks": [
+        "Shared native lock and bounded execution",
+        "Four valves and two ignition reservations preserved",
+        "Unknown fastening datums block functional Fasteners design",
+        "Qualify Linux native libraries; the Mac wrapper is not a Linux runner",
+        "The provided driver is Mac-specific; Linux deployment requires its own qualified bounded native wrapper. Keep immutable legacy captions separate from new English deliverables."
+      ],
+      "references": [
+        "twins/962-cylinder-head-f0/source/flow4l/Engine.csproj",
+        "twins/962-cylinder-head-f0/source/flow4l/HeadFlowRunner.cs",
+        "twins/962-cylinder-head-f0/source/flow4l/HeadFlow4LStudy.cs",
+        "twins/962-cylinder-head-f0/source/flow4l/design.json",
+        "twins/962-cylinder-head-f0/BIONIC_FIELDS.md",
+        "twins/962-cylinder-head-f0/source/flow4l/run_study.py"
+      ]
+    },
+    {
+      "id": "surface",
+      "software": [
+        "pymeshlab",
+        "Open3D",
+        "CGAL",
+        "libigl",
+        "trimesh",
+        "PyVista",
+        "ParaView"
+      ],
+      "depends_on": [
+        "picogk"
+      ],
+      "required_inputs": [
+        "domain_meshes",
+        "reference_geometry_hashes",
+        "deviation_and_feature_contract"
+      ],
+      "command_templates": [
+        [
+          "python3",
+          "twins/962-cylinder-head-f0/source/flow4l/inspect_and_render.py",
+          "{NATIVE}",
+          "{BIN}",
+          "{SHAPE_ROOT}",
+          "{OUT}/inspection"
+        ]
+      ],
+      "expected_outputs": [
+        "Topology/intersection audits",
+        "Volume and reference-deviation report",
+        "Actual mesh views"
+      ],
+      "acceptance_checks": [
+        "No hidden hole filling or decimation",
+        "Retain rejected trials",
+        "A render does not validate geometry"
+      ],
+      "references": [
+        "twins/962-cylinder-head-f0/source/flow4l/inspect_and_render.py",
+        "twins/962-cylinder-head-f0/ANALYSIS_SURFACE_ENGINEERING.md",
+        "twins/962-cylinder-head-f0/ANALYSIS_ENVELOPE_ENGINEERING.md"
+      ]
+    },
+    {
+      "id": "volume",
+      "software": [
+        "Gmsh",
+        "MMG",
+        "OpenFOAM 13"
+      ],
+      "depends_on": [
+        "surface"
+      ],
+      "required_inputs": [
+        "water_surface",
+        "metal_surface",
+        "boundary_groups",
+        "mesh_quality_contract"
+      ],
+      "command_templates": [
+        [
+          "python3",
+          "twins/962-cylinder-head-f0/source/coolant_flow/mesh_discrete.py",
+          "{WATER_SURFACE}",
+          "{OUT}/water-mesh"
+        ],
+        [
+          "python3",
+          "twins/962-cylinder-head-f0/source/mesh_head.py",
+          "--bore",
+          "102",
+          "--algorithm",
+          "hxt",
+          "--output",
+          "{OUT}/metal-mesh",
+          "--deadline-s",
+          "300"
+        ]
+      ],
+      "expected_outputs": [
+        "Separate water and metal volume meshes",
+        "Quality and interface admission reports"
+      ],
+      "acceptance_checks": [
+        "Native quality and save/reopen checks",
+        "Water acceptance never admits metal",
+        "Reject nonconformal CHT interfaces"
+      ],
+      "references": [
+        "twins/962-cylinder-head-f0/source/coolant_flow/mesh_discrete.py",
+        "twins/962-cylinder-head-f0/source/mesh_head.py",
+        "twins/962-cylinder-head-f0/MMG_REPAIR_FOLLOWUP.md",
+        "twins/962-cylinder-head-f0/MESHING_ENGINEERING.md"
+      ]
+    },
+    {
+      "id": "coolant_cfd",
+      "software": [
+        "OpenFOAM 13",
+        "MPI",
+        "Python"
+      ],
+      "depends_on": [
+        "volume"
+      ],
+      "required_inputs": [
+        "admitted_water_mesh",
+        "audited_checkpoint",
+        "solver_controls",
+        "absolute_deadline_and_cost_guard"
+      ],
+      "command_templates": [
+        [
+          "python3",
+          "twins/962-cylinder-head-f0/source/coolant_flow/prepare_cloud_restart.py",
+          "{PARENT}",
+          "{AUDIT}",
+          "{OUT}/case",
+          "--ranks",
+          "{RANKS}",
+          "--iterations",
+          "{ITERATIONS}",
+          "--seconds",
+          "{SECONDS}"
+        ],
+        [
+          "bash",
+          "{OUT}/case/run_cloud_restart.sh"
+        ]
+      ],
+      "expected_outputs": [
+        "Native logs and checkpoints",
+        "Independent flow audit",
+        "MPI throughput and actual field plots"
+      ],
+      "acceptance_checks": [
+        "Set CAMPAIGN_DEADLINE_EPOCH",
+        "First global residuals <=1e-5",
+        "Native convergence, conservation and pressure stability",
+        "Timeout is not convergence"
+      ],
+      "references": [
+        "twins/962-cylinder-head-f0/source/coolant_flow/prepare_cloud_restart.py",
+        "twins/962-cylinder-head-f0/source/coolant_flow/run_cloud_restart.sh",
+        "twins/962-cylinder-head-f0/source/coolant_flow/analyze_restart.py",
+        "twins/962-cylinder-head-f0/FLOW_RESTART_FOLLOWUP.md"
+      ]
+    },
+    {
+      "id": "cht",
+      "software": [
+        "OpenFOAM 13",
+        "MPI"
+      ],
+      "depends_on": [
+        "coolant_cfd",
+        "volume"
+      ],
+      "required_inputs": [
+        "conformal_regions",
+        "heat_loads",
+        "temperature_dependent_properties",
+        "coupling_controls"
+      ],
+      "command_templates": [
+        [
+          "foamRun",
+          "-case",
+          "{CHT_CASE}",
+          "-parallel"
+        ]
+      ],
+      "expected_outputs": [
+        "Temperature and heat-flux fields",
+        "Energy/interface balances",
+        "Mesh/time sensitivity"
+      ],
+      "acceptance_checks": [
+        "A prepared multiregion head case and selected Foundation 13 modules are required",
+        "The flow pilot is not a CHT case",
+        "Check interface mapping and energy conservation"
+      ],
+      "references": [
+        "twins/962-cylinder-head-f0/ENGINEERING_PROGRAM.md",
+        "twins/962-cylinder-head-f0/FLOW4L_STUDY.md"
+      ]
+    },
+    {
+      "id": "material_strength",
+      "software": [
+        "Gmsh",
+        "CalculiX",
+        "MOOSE"
+      ],
+      "depends_on": [
+        "cht"
+      ],
+      "required_inputs": [
+        "admitted_metal_mesh",
+        "material_laws",
+        "loads_contacts_preload",
+        "allowables"
+      ],
+      "command_templates": [
+        [
+          "ccx",
+          "-i",
+          "{STRENGTH_DECK}"
+        ]
+      ],
+      "expected_outputs": [
+        "Stress, strain, displacement",
+        "Force/energy equilibrium",
+        "Mesh convergence and margins"
+      ],
+      "acceptance_checks": [
+        "Measured attachments/load paths before functional claims",
+        "Hot properties and process state are bound",
+        "Fatigue and physical review remain separate"
+      ],
+      "references": [
+        "twins/962-cylinder-head-f0/ENGINEERING_MATERIALS.md",
+        "twins/962-cylinder-head-f0/MATERIAL_HOT_DATA_REFRESH.md",
+        "twins/962-cylinder-head-f0/ENGINEERING_PROGRAM.md"
+      ]
+    },
+    {
+      "id": "lpbf_melt_pool",
+      "software": [
+        "AdditiveFOAM 2.0.0",
+        "OpenFOAM 14",
+        "MPI"
+      ],
+      "depends_on": [
+        "provenance"
+      ],
+      "required_inputs": [
+        "alloy_powder_machine",
+        "laser_profile_scan_path",
+        "layer_thickness",
+        "calibration_coupons",
+        "qualified_runtime"
+      ],
+      "command_templates": [
+        [
+          "additiveFoam",
+          "-case",
+          "{MELT_POOL_CASE}",
+          "-parallel"
+        ]
+      ],
+      "expected_outputs": [
+        "Melt-pool thermal histories and dimensions",
+        "Energy conservation/calibration"
+      ],
+      "acceptance_checks": [
+        "Separate Foundation 14 from coolant Foundation 13",
+        "Replay qualified tutorial before alloy-specific coupons",
+        "No uncalibrated defect or density claims"
+      ],
+      "references": [
+        "twins/m64-cylinder-head/source/additivefoam/README.md",
+        "twins/m64-cylinder-head/source/additivefoam/audit_amb2018_thermal.py",
+        "docs/TOOLCHAIN.md"
+      ]
+    },
+    {
+      "id": "lpbf_build",
+      "software": [
+        "Adamantine",
+        "MOOSE"
+      ],
+      "depends_on": [
+        "lpbf_melt_pool",
+        "volume"
+      ],
+      "required_inputs": [
+        "alloy_laws",
+        "build_orientation",
+        "plate_supports",
+        "layer_scan_strategy",
+        "thermal_calibration",
+        "qualified_process_solver"
+      ],
+      "command_templates": [
+        [
+          "{ADAMANTINE}",
+          "--input-file",
+          "{BUILD_INPUT}",
+          "--output-dir",
+          "{OUT}/lpbf-build"
+        ]
+      ],
+      "expected_outputs": [
+        "Layer activation and thermal history",
+        "Build stress and distortion",
+        "Calibration and discretization checks"
+      ],
+      "acceptance_checks": [
+        "Verify the pinned binary actual CLI before readiness",
+        "Thermal MPI support does not establish mechanical MPI/GPU support",
+        "Exporter and coupon tests do not qualify a head"
+      ],
+      "references": [
+        "benchmarks/lpbf-adamantine-export/README.md",
+        "benchmarks/lpbf-adamantine-export/upstream.json",
+        "twins/962-cylinder-head-f0/source/physics_witness/thermal_birth/run_local.py",
+        "twins/962-cylinder-head-f0/ENGINEERING_PROGRAM.md"
+      ]
+    },
+    {
+      "id": "lpbf_release",
+      "software": [
+        "MOOSE",
+        "CalculiX"
+      ],
+      "depends_on": [
+        "lpbf_build"
+      ],
+      "required_inputs": [
+        "accepted_build_history",
+        "cooling_heat_treatment",
+        "removal_sequence",
+        "machining_allowances",
+        "process_calibration"
+      ],
+      "command_templates": [
+        [
+          "python3",
+          "twins/962-cylinder-head-f0/source/physics_witness/mechanical_birth/run_local.py",
+          "--rootfs",
+          "{MOOSE_ROOTFS}",
+          "--output",
+          "{OUT}/release-witness"
+        ]
+      ],
+      "expected_outputs": [
+        "Cooling/treatment/support-release study",
+        "Residual stress and final distortion",
+        "Inspection and machining allowances"
+      ],
+      "acceptance_checks": [
+        "Supplied command is a synthetic software witness, not a head process case",
+        "Prepare a calibrated whole-head deck separately",
+        "Check equilibrium and complete state histories"
+      ],
+      "references": [
+        "twins/962-cylinder-head-f0/source/physics_witness/mechanical_birth/run_local.py",
+        "twins/962-cylinder-head-f0/source/physics_witness/mechanical_birth/README.md",
+        "twins/962-cylinder-head-f0/ENGINEERING_PROGRAM.md"
+      ]
+    },
+    {
+      "id": "omni_preflight",
+      "software": [
+        "CAD-to-SimReady",
+        "Content Agents",
+        "OVRTX",
+        "OpenUSD"
+      ],
+      "depends_on": [
+        "provenance"
+      ],
+      "required_inputs": [
+        "source_asset_intent",
+        "installed_skill_revision",
+        "qualified_gpu_runtime",
+        "approved_access_or_local_endpoints"
+      ],
+      "command_templates": [
+        [
+          "python3",
+          "{SIMREADY_SKILL_ROOT}/references/preflight/scripts/preflight.py",
+          "--env-file",
+          "{OUT}/preflight.env",
+          "--report",
+          "{OUT}/preflight.json"
+        ]
+      ],
+      "expected_outputs": [
+        "Dependency manifest",
+        "Required service readiness"
+      ],
+      "acceptance_checks": [
+        "Explicit property-assignment intent",
+        "Preflight and service readiness before downstream work",
+        "Use approved OpenBao access; no plaintext token files"
+      ],
+      "references": [
+        "deploy/vast/simready/M64_DEADLINE_GUARD.md",
+        "docs/COMPUTE_ENVIRONMENT.md"
+      ]
+    },
+    {
+      "id": "omni_conversion",
+      "software": [
+        "CAD-to-SimReady",
+        "OpenUSD"
+      ],
+      "depends_on": [
+        "omni_preflight",
+        "picogk"
+      ],
+      "required_inputs": [
+        "source_asset",
+        "units_frame",
+        "preflight_manifest"
+      ],
+      "command_templates": [
+        [
+          "python3",
+          "{SIMREADY_SKILL_ROOT}/references/convert-to-usd/scripts/run.py",
+          "{SOURCE_ASSET}",
+          "{OUT}/conversion",
+          "--report",
+          "{OUT}/conversion.json"
+        ],
+        [
+          "python3",
+          "{SIMREADY_SKILL_ROOT}/references/validate-usd-minimum/scripts/run.py",
+          "{CONVERTED_USD}",
+          "--report",
+          "{OUT}/minimum.json"
+        ]
+      ],
+      "expected_outputs": [
+        "Source-bound USD",
+        "Minimum viability report"
+      ],
+      "acceptance_checks": [
+        "Use installed converter; do not substitute custom authoring",
+        "Verify units, frames and geometry associations"
+      ],
+      "references": [
+        "docs/TOOLCHAIN.md",
+        "twins/962-cylinder-head-f0/USD_NORMALS_ENGINEERING.md"
+      ]
+    },
+    {
+      "id": "omni_assignment",
+      "software": [
+        "Content Agents",
+        "OpenUSD"
+      ],
+      "depends_on": [
+        "omni_conversion"
+      ],
+      "required_inputs": [
+        "minimum_valid_usd",
+        "sourced_material_context",
+        "sourced_physics_context",
+        "healthy_endpoints"
+      ],
+      "command_templates": [
+        [
+          "python3",
+          "{SIMREADY_SKILL_ROOT}/references/content-agents/scripts/run.py",
+          "{CONVERTED_USD}",
+          "--output-dir",
+          "{OUT}/assignment",
+          "--call",
+          "material",
+          "--call",
+          "physics",
+          "--prompt",
+          "{SOURCED_CONTEXT}",
+          "--convert-physics-output-to-usd",
+          "--report",
+          "{OUT}/assignment.json"
+        ]
+      ],
+      "expected_outputs": [
+        "Service-authored USD",
+        "Assignment reports and source provenance"
+      ],
+      "acceptance_checks": [
+        "Material before physics; texture only if applicable",
+        "Assigned properties are not solver or manufacturing validation"
+      ],
+      "references": [
+        "docs/COMPUTE_ENVIRONMENT.md",
+        "twins/962-cylinder-head-f0/ENGINEERING_MATERIALS.md"
+      ]
+    },
+    {
+      "id": "omni_conformance",
+      "software": [
+        "SimReady",
+        "OpenUSD",
+        "Asset Validator"
+      ],
+      "depends_on": [
+        "omni_assignment"
+      ],
+      "required_inputs": [
+        "service_authored_usd",
+        "profile",
+        "assignment_reports"
+      ],
+      "command_templates": [
+        [
+          "python3",
+          "{SIMREADY_SKILL_ROOT}/references/simready-conform-profile/scripts/run.py",
+          "{ASSIGNED_USD}",
+          "--output-dir",
+          "{OUT}/conform",
+          "--profile",
+          "{PROFILE}",
+          "--report",
+          "{OUT}/conform.json"
+        ],
+        [
+          "python3",
+          "{SIMREADY_SKILL_ROOT}/references/omni-asset-validate/scripts/run.py",
+          "{CONFORMED_USD}",
+          "--report",
+          "{OUT}/omni-asset-validate.json"
+        ],
+        [
+          "python3",
+          "{SIMREADY_SKILL_ROOT}/references/omni-asset-validate-geometry/scripts/run.py",
+          "{CONFORMED_USD}",
+          "--report",
+          "{OUT}/omni-asset-validate-geometry.json"
+        ],
+        [
+          "python3",
+          "{SIMREADY_SKILL_ROOT}/references/omni-asset-validate-physics/scripts/run.py",
+          "{CONFORMED_USD}",
+          "--report",
+          "{OUT}/omni-asset-validate-physics.json"
+        ],
+        [
+          "python3",
+          "{SIMREADY_SKILL_ROOT}/references/simready-validate/scripts/run.py",
+          "{CONFORMED_USD}",
+          "--profile",
+          "{PROFILE}",
+          "--report",
+          "{OUT}/profile.json"
+        ]
+      ],
+      "expected_outputs": [
+        "Conformed USD",
+        "Ordered asset/geometry/physics/profile validation"
+      ],
+      "acceptance_checks": [
+        "No FET repair before required property assignment",
+        "Use actual report output_usd_path",
+        "Revalidate after repairs"
+      ],
+      "references": [
+        "docs/COMPUTE_ENVIRONMENT.md",
+        "twins/962-cylinder-head-f0/USD_NORMALS_ENGINEERING.md"
+      ]
+    },
+    {
+      "id": "field_exchange",
+      "software": [
+        "OpenVDB",
+        "PicoGK",
+        "OpenUSD",
+        "PyVista",
+        "ParaView"
+      ],
+      "depends_on": [
+        "coolant_cfd",
+        "cht",
+        "material_strength",
+        "lpbf_release",
+        "omni_conformance"
+      ],
+      "required_inputs": [
+        "accepted_solver_fields",
+        "domain_mesh_ids",
+        "units_frame_time",
+        "mapping_tolerances"
+      ],
+      "command_templates": [
+        [
+          "{DOTNET}",
+          "{FIELDS_DLL}",
+          "{CELL_FIELDS_CSV}",
+          "{ACCEPTED_FLOW_REPORT}",
+          "{OUT}/fields"
+        ]
+      ],
+      "expected_outputs": [
+        "Named VDB grids",
+        "Mapped USD fields",
+        "Independent mapping error report"
+      ],
+      "acceptance_checks": [
+        "Never import unconverged flow as accepted physics",
+        "Geometric distance/gradient are not velocity/temperature",
+        "Verify the actual Fields runner CLI before readiness"
+      ],
+      "references": [
+        "twins/962-cylinder-head-f0/source/flow4l/Fields.csproj",
+        "twins/962-cylinder-head-f0/source/flow4l/FlowFieldsRunner.cs",
+        "twins/962-cylinder-head-f0/BIONIC_FIELDS.md"
+      ]
+    },
+    {
+      "id": "omni_render",
+      "software": [
+        "OVRTX",
+        "OpenUSD",
+        "SimReady"
+      ],
+      "depends_on": [
+        "omni_conformance"
+      ],
+      "required_inputs": [
+        "validated_usd",
+        "renderer_endpoint",
+        "camera_layers"
+      ],
+      "command_templates": [
+        [
+          "python3",
+          "{SIMREADY_SKILL_ROOT}/references/ovrtx-render-service/scripts/run.py",
+          "{VALIDATED_USD}",
+          "{OUT}/thumbnail.png",
+          "--report",
+          "{OUT}/render.json"
+        ],
+        [
+          "python3",
+          "{SIMREADY_SKILL_ROOT}/references/assemble-package-source/scripts/run.py",
+          "{VALIDATED_USD}",
+          "{OUT}",
+          "--asset-name",
+          "head962",
+          "--thumbnail",
+          "{OUT}/thumbnail.png",
+          "--report",
+          "{OUT}/package-source.json"
+        ]
+      ],
+      "expected_outputs": [
+        "Actual-geometry views",
+        "Clean deliverable source",
+        "Render provenance"
+      ],
+      "acceptance_checks": [
+        "Visual assembly may precede accepted fields if scope is labelled",
+        "Rendering does not replace solver results"
+      ],
+      "references": [
+        "containers/picogk-station-kit/README.md",
+        "twins/962-cylinder-head-f0/GALLERY.md"
+      ]
+    },
+    {
+      "id": "physicsnemo",
+      "software": [
+        "PhysicsNeMo",
+        "Qwen"
+      ],
+      "depends_on": [
+        "field_exchange"
+      ],
+      "required_inputs": [
+        "accepted_dataset",
+        "disjoint_evaluation_families",
+        "model_config",
+        "error_limits_domain"
+      ],
+      "command_templates": [
+        [
+          "{TRAINING_PYTHON}",
+          "{BOUND_TRAINING_SCRIPT}",
+          "--config",
+          "{TRAINING_CONFIG}"
+        ]
+      ],
+      "expected_outputs": [
+        "Trained candidate",
+        "Independent evaluation",
+        "Operating-domain and inference report"
+      ],
+      "acceptance_checks": [
+        "Bind an actual script/config before claiming readiness",
+        "Split whole geometries/build/load cases before normalization",
+        "Qwen proposals are not reference labels"
+      ],
+      "references": [
+        "docs/TOOLCHAIN.md",
+        "twins/962-cylinder-head-f0/ENGINEERING_PROGRAM.md"
+      ]
+    },
+    {
+      "id": "delivery",
+      "software": [
+        "Git",
+        "JSON",
+        "ZIP",
+        "OpenBao Vast wrapper"
+      ],
+      "depends_on": [
+        "provenance",
+        "reconstruction",
+        "picogk",
+        "surface",
+        "volume",
+        "coolant_cfd",
+        "cht",
+        "material_strength",
+        "lpbf_melt_pool",
+        "lpbf_build",
+        "lpbf_release",
+        "omni_preflight",
+        "omni_conversion",
+        "omni_assignment",
+        "omni_conformance",
+        "field_exchange",
+        "omni_render",
+        "physicsnemo"
+      ],
+      "required_inputs": [
+        "phase_ledger",
+        "bound_sources_results",
+        "approved_budget_rental_identity",
+        "professional_validation_plan"
+      ],
+      "command_templates": [
+        [
+          "python3",
+          "scripts/check_doc_links.py",
+          "--strict"
+        ],
+        [
+          "make",
+          "check"
+        ]
+      ],
+      "expected_outputs": [
+        "Editable sources, cases, reports and views",
+        "Verified archives",
+        "Owned rental destruction/absence and cost receipts"
+      ],
+      "acceptance_checks": [
+        "Collect and verify before destruction",
+        "This ledger does not grant physical qualification",
+        "Report every blocked/failed phase"
+      ],
+      "references": [
+        "AGENTS.md",
+        "twins/962-cylinder-head-f0/AGENTS.md",
+        "twins/962-cylinder-head-f0/VAST_CAMPAIGN_20261028.md",
+        "twins/962-cylinder-head-f0/WORKFLOW.md",
+        "twins/962-cylinder-head-f0/source/workflow_plan.py"
+      ]
+    }
+  ]
+}
