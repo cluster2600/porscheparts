@@ -1,7 +1,7 @@
 ifneq ($(wildcard $(CURDIR)/.venv-check/bin/python3),)
 export PATH := $(CURDIR)/.venv-check/bin:$(PATH)
 # macOS Make 3.81 otherwise resolves simple commands against its original PATH.
-SHELL := /usr/bin/env PATH="$(PATH)" /bin/sh
+SHELL := /usr/bin/env /bin/sh
 endif
 
 .PHONY: \
