@@ -17,6 +17,9 @@ below 0.1. The incident-face median quality is 0.188, against 0.812 for
 the full rotor wall. This is an association between weak fluid cells and
 poor wall triangles, not proof that a particular surface repair will fix the
 volume mesh.
+The prior CGAL repair selects only rotor triangles below quality 0.05.
+Because the incident-face median is 0.188, repeating that selector with a
+larger collapse length cannot address most of this diagnosed population.
 
 In the **conditional** 1 source unit = 1 mm scale, 901 weak-cell centres
 have radius 84–86 mm. The private two-view point map shows a nearly
