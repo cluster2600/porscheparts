@@ -155,3 +155,27 @@ OpenFOAM acceptance check was run on this worse candidate.
 The private evidence archive is
 [`935-gmsh-targeted-flips-20261028.tar.zst`](https://github.com/cluster2600/porscheparts-935-private/releases/download/935-root-repair-20261025/935-gmsh-targeted-flips-20261028.tar.zst),
 SHA-256 `a04528da2666e63ddbf1d15a92982766d0c354b69ad4f39da59ae1b476bb6602`.
+
+## Alternative 3D algorithms on the unchanged PLC
+
+The [Gmsh 4.15.2 manual](https://gmsh.info/doc/texinfo/) identifies HXT
+(`Mesh.Algorithm3D=10`) and R-tree (`=9`) as alternative 3D algorithms. Three
+private runs kept the same 895,732-triangle PLC and nominal size
+settings and Gmsh version. HXT with the existing built-in volume stopped
+after boundary recovery with `Invalid volume tag 1 in mesh size calculation`
+(process exit 134). Replacing that volume with a discrete volume did not
+solve the interface issue: Gmsh exited normally but reported **zero**
+tetrahedra. Neither output is a fluid mesh. The
+[private HXT scripts and logs](https://github.com/cluster2600/porscheparts-935-private/releases/download/935-root-repair-20261025/935-gmsh-hxt-interface-trial-20261028.tar.zst)
+were downloaded and matched SHA-256
+`c644e1d0fc350ddd7714b47f36a3ee9241dfe57766295fac0a53895d8b9a0020`.
+
+R-tree with the original volume reached boundary recovery, then stopped with
+`Requesting more near neighbors than data points` (exit 1); it produced no
+volume. Its [private source and log](https://github.com/cluster2600/porscheparts-935-private/releases/download/935-root-repair-20261025/935-gmsh-rtree-failure-20261028.tar.zst)
+were downloaded and matched SHA-256
+`3733e9ca722f9eeba50de702c8a7873cd34f33bb03c8f2ede1e5b93754b4d7ad`.
+These failures are specific to this discrete-surface setup and inputs; they
+do not measure the general quality of HXT or R-tree. The remaining numerical
+route is a scan-bounded local surface reconstruction or an independently
+verified conforming volume workflow. No CFD result is available yet.
