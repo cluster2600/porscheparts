@@ -774,11 +774,11 @@ monocoque does not fit:
 |---|---|---|
 | `element-check.json` | committed code, 2026-10-16 | yes, all of it |
 | `torsion-snapshot.npz` | 2026-10-12 code | yes: `shell_s6.py torsion` gives it byte for byte |
-| `torsion-monocoque.json` | 2026-10-12 code | 210- and 300-section values and the 420-section open shell reproduced (2026-10-15); the 420-section monocoque was killed by the 6 GB cap and not re-run |
+| `torsion-monocoque.json` | 2026-10-12 code | 210- and 300-section values and the 420-section open shell reproduced (2026-10-15); the [420-section carbon monocoque was replayed twice with a 12 GiB cap](s6-replay-20261028/README.md) on 2026-10-28; finest steel remains pending |
 | `torsion-monocoque-snapshot.npz` | 2026-10-12 code, finest mesh | no: written at the end of the run the 6 GB cap killed |
 | `buckling.json`, `buckling-modes.npz` | committed code, 2026-10-16 | yes, 300 sections only (the torsion case also repeats the 2026-10-15 run) |
 | `bending.json`, `pruned` block | committed code, 2026-10-16, 300 sections | yes; its fractions are taken against the full-model K of the 2026-10-12 `members` block |
-| `bending.json`, `cases` and `members` blocks; `bending-snapshot.npz` | 2026-10-12 code | no |
+| `bending.json`, `cases` and `members` blocks; `bending-snapshot.npz` | 2026-10-12 code | partial: [finest carbon `cases` entry replayed twice](s6-replay-20261028/bending/README.md) on 2026-10-28; other cases, members and the combined snapshot remain pending |
 | `torsion-rings.json`, `torsion-rings-model.npz` | 2026-10-12 code | no |
 | `torsion-members.json` | 2026-10-12 code | no |
 | `torsion-layup.json` | 2026-10-12 code | no |
