@@ -12,6 +12,11 @@ independent topology and self-intersection screens. This resolves the observed
 mesh degeneracy for those candidates; it does not validate the historical
 S3-derived grading, define a fitted core or add a structural strength result.
 
+The [OpenUSD review bundle](omniverse/README.md) preserves the complete
+four-group architecture and includes verified local views and a turntable.
+Omniverse RTX execution remains a separate pending step; the review bundle
+does not establish fitment, composite strength or manufacturing readiness.
+
 ## S6 correction (2026-10-12): every stiffness redone
 
 Every stiffness in this folder from #139 to #156 was computed with

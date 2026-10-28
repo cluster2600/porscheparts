@@ -1,0 +1,31 @@
+#usda 1.0
+(
+    defaultPrim = "Monocoque"
+    doc = "964 architecture study. No validated 964/993 fitment, laminate, strength or manufacturing process. Display mesh only."
+    endTimeCode = 119
+    framesPerSecond = 24
+    metersPerUnit = 0.001
+    startTimeCode = 0
+    subLayers = [
+        @presentation.usda@,
+        @results.usda@,
+        @display.usda@,
+        @geometry.usdc@
+    ]
+    timeCodesPerSecond = 24
+    upAxis = "Z"
+)
+
+def Xform "Monocoque" (
+    customData = {
+        string classification = "prohibited_pending_engineering"
+        string fidelity = "documentary_design_envelope"
+        bool fitment964Validated = 0
+        bool fitment993Validated = 0
+        bool manufacturingAuthorized = 0
+        bool strengthValidated = 0
+    }
+)
+{
+}
+
