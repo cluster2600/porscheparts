@@ -81,3 +81,12 @@ at the inner annulus and selected blade roots. This localizes the remaining
 shape problem but does not prove whether the surface triangles or the 3D fill
 caused it. The complete private cell indices, ratios, centres and figure are
 retained for the next local mesh experiment.
+
+The [exact face-incidence audit](audit_wall_faces.py) then found that 1,109 of
+the 1,169 weak cells share a complete rotor boundary triangle. Those incident
+rotor triangles have median normalized quality 0.1876, versus 0.8121 for all
+rotor triangles; 404 of the 1,748 incident faces are below 0.1. Under the
+conditional scale, 961 weak-cell centres have radius 70–100 mm. This makes
+the inner annulus and blade-root wall facets a specific target for a
+triangulation study with an independent scan-envelope bound; association
+does not prove cause.

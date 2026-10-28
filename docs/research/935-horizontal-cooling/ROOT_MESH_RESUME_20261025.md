@@ -448,3 +448,16 @@ have downloaded SHA-256 values
 and `bdcfde4eef36e39d9e2efa29c464e3e6ab5d7db8588a4398eb4f02717070f7a4`;
 the figure has downloaded SHA-256
 `0e1e2bc42defac49c7a959603874957d878a6154514f6aefd355f6793579c910`.
+
+The [exact rotor-face incidence audit](../../../twins/935-horizontal-cooling-system-f0/source/gmsh-fluid-study-20261028/audit_wall_faces.py)
+shows that 1,109 of the 1,169 weak cells share a complete rotor boundary
+triangle. The 1,748 incident rotor faces have median normalized triangle
+quality 0.1876, compared with 0.8121 over all rotor faces; 404 incident
+faces are below 0.1. Under the unverified scale, 961 weak-cell centres lie
+at radial distance 70–100 mm. This prioritizes an inner-annulus/blade-root
+facet study with an independently checked scan-envelope bound. It does not
+establish whether the wall facets or volume-filling algorithm caused each
+bad cell.
+The [private face-audit receipt](https://github.com/cluster2600/porscheparts-935-private/releases/download/935-root-repair-20261025/gmsh-root0p7-wall-face-audit-20261028.json)
+has downloaded SHA-256
+`3d5bafb00eb9e0ea1ff572ab69597accb3a7e3613e79f9c2e5d1d4709a961f2e`.
