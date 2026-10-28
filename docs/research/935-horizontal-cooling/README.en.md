@@ -184,6 +184,10 @@ three families chosen by the owner: aluminum, magnesium and titanium.
 The first candidates are AlSi10Mg, WE43 and Ti64, to be compared separately
 for each part and process of the improved 993 and 935 versions.
 
+The [concave-cell and cfMesh trial record](CONCAVE_SPLIT_AND_CFMESH_20261028.md)
+tracks a rejected native topology repair and the separate conforming-mesh
+experiment on the corrected rotor fluid envelope.
+
 ## Preparation executed
 
 The two scans were prepared privately and imported into the native
