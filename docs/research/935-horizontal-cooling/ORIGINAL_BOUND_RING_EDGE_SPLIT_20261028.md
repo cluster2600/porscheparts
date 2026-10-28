@@ -41,6 +41,15 @@ made the inversion count worse. **This candidate is rejected and has not
 been sent to OpenFOAM for CFD.** No airflow, fitment or manufacturing claim
 follows.
 
+An independent locator found that all 44 nonpositive cells in the raw
+volume touch a rotor-wall node. In the conditional scale, 13 centres lie
+at radius 84–86 mm and 30 at 86–90 mm; one lies at 80–84 mm. The
+[private locator receipt](https://github.com/cluster2600/porscheparts-935-private/releases/download/935-root-repair-20261025/935-ring-edge-split-nonpositive-cells-20261028.json)
+has SHA-256
+`803538b2dd4c42768d5ea57d737aa6f1c8eee834e9d8330a1235a6ab349c0828`,
+matching its release digest. This localizes the failed boundary band without
+establishing the true 935 physical radius.
+
 The [private trial archive](https://github.com/cluster2600/porscheparts-935-private/releases/download/935-root-repair-20261025/935-ring-edge-split-20261028.tar.zst)
 contains the surface source and output, two-way certificate, PLC, both
 volumes, independent audits and complete Gmsh logs. Its SHA-256 is
