@@ -49,6 +49,7 @@ manual.
 | Engine and valve train | groups 10–15, notably p. 15, 98, 108, 121, 137, 152–157, 177 | specifications, clearances, wear limits and inspection methods |
 | Manual transmission | group 3, p. 253–258 | G50 variants, ratios, capacities and mounting torques |
 | Carrera 4 transmission | group 3, p. 354 onward | G64 identification and procedure specific to all-wheel drive |
+| Clutch actuation, pedals and controls | group 30, p. 261–263 ("Clutch, Controls") and p. 268–276 ("Clutch, Operation"); Tiptronic selector lever p. 444–447 | service settings, pedal and switch travel, fastener sizes; OCR not yet reviewed, and no lever or pedal geometry |
 | Chassis and steering | groups 4–5 | procedures and torques; no manufacturing geometry on its own |
 | Brakes | group 46, p. 725–728 | variant data and service limits; never an authorization to manufacture |
 | Body and interior | groups 51–68 | identification, removal and installation; generally no dimensioned drawings |
@@ -209,6 +210,10 @@ testing and documented regulatory validation.
    declaring the interface "fitted" before a direct measurement.
 4. Prioritize non-critical interior parts, notably the 964/993 console tab
    listed by `SRC-PRINTABLES-964-993-CONSOLE-SWITCH-TAB`.
+
+Family by family, the official sources that cover each system of the assembly
+skeleton, with these page ranges and the value ids that anchor them, are listed
+in [`catalog/registers/993-source-classification.json`](../../catalog/registers/993-source-classification.json).
 
 The register `catalog/measurements/MEAS-MANUAL-993-ALL.json` now contains the
 2,496 indexed documentary specifications. They are not physical measurements

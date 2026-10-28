@@ -1,0 +1,28 @@
+{
+  "geometry_id": "carrier-design-20261016-candidate-restored",
+  "STEP_sha256": "e2abb447e337f45138716649bdeaf575df8fc78c074a31f24745046c021649ab",
+  "solver_cases": {
+    "mesh-9": [
+      "combined-rigid-static",
+      "combined-spring-1000-static",
+      "gravity-rigid-static",
+      "pitch-rigid-static"
+    ],
+    "mesh-7": [
+      "combined-rigid-static",
+      "combined-spring-1000-static"
+    ]
+  },
+  "basis_identity": "combined tensors and displacements = 2*gravity + pitch at identical mesh nodes/integration points",
+  "superposition_stress_abs_tolerance_MPa": 0.02,
+  "superposition_displacement_abs_tolerance_mm": 0.0002,
+  "energy_relative_tolerance": 0.0001,
+  "comparison_metrics": [
+    "global_displacement_max_mm",
+    "integration_point_VM_max_MPa",
+    "external_work_Nmm",
+    "model_Y_rotational_stiffness_Nm_per_degree"
+  ],
+  "same_loads_and_supports_as_frozen_V6f": true,
+  "peak_stress_convergence_established": false
+}

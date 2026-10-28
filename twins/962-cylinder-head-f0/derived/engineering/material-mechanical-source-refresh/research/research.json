@@ -1,0 +1,430 @@
+{
+  "schema": "962-producer-primary-mechanical-gap-research/v1",
+  "decision": "NEW_PRIMARY_RECIPE_AND_EXPANSION_LEADS_NO_COMPLETE_CARD",
+  "researched_on": "2026-10-17",
+  "scope": "New producer-primary source discovery for CP1 and exact retained HT1/CuCrZr states only; no solver or material selection.",
+  "original_records": {
+    "twins/962-cylinder-head-f0/derived/engineering/material-mechanical-state/README.md": {
+      "sha256": "bba220c2d4900a856c9101be093098e2559889a80dd9f697ece8432128c31b50",
+      "bytes": 4581
+    },
+    "twins/962-cylinder-head-f0/derived/engineering/material-mechanical-state/source-review.json": {
+      "sha256": "2d5489866c2a50735b2e184827738f0dbebbabf813865206c9f9ba09f6a63813",
+      "bytes": 11249
+    },
+    "twins/962-cylinder-head-f0/derived/engineering/material-mechanical-state/publication-peer.json": {
+      "sha256": "079e4110434b61923ca8b9738bfb7122c834eca91553782ec738311b37078bf9",
+      "bytes": 3156
+    },
+    "twins/962-cylinder-head-f0/engineering/materials.json": {
+      "sha256": "ac960911794d23e12e05e07aa74d4db85a7d97d62faa2c0bf2df3e8c98550d1d",
+      "bytes": 13324
+    }
+  },
+  "retained_recipe_ids": [
+    "cp1-400c-4h-vertical-machine-unspecified",
+    "ht1-treatment-1-m290-60um-vertical",
+    "ht1-treatment-2-m290-60um-vertical",
+    "cucrzr-m400-1-80um-conductivity-horizontal_xy",
+    "cucrzr-m400-1-80um-conductivity-vertical_z",
+    "cucrzr-m400-1-80um-tensile-horizontal_xy",
+    "cucrzr-m400-1-80um-tensile-vertical_z"
+  ],
+  "sources": [
+    {
+      "source_id": "eos-cp1-m290-60um-2026",
+      "producer": "EOS",
+      "url": "https://www.eos.info/metal-solutions/data-sheets/aluminium/pds-eos-aluminium-constellium-cp1-eos-m-290-60um",
+      "accessed_on": "2026-10-17",
+      "format": "Producer HTML process datasheet",
+      "locators": {
+        "process": "System Setup and Additional Information, HTML lines7\u201321",
+        "mechanical": "Mechanical Properties Heat Treated, lines37\u201345",
+        "expansion": "Coefficient of Thermal Expansion, lines83\u201389"
+      },
+      "observed_page_status_as_of": "14.10.2026",
+      "observed_last_changed": "26.08.2026",
+      "new_recipe_identity": {
+        "machine": "EOS M 290",
+        "material_set": "AlCP1_060_M291",
+        "layer_um": 60,
+        "gas": "argon",
+        "build_platform_C": 125,
+        "heat_treatment": {
+          "hold_C": 400,
+          "hours": 4
+        },
+        "manufacturer_TRL": 3
+      },
+      "reported_mechanical_data": {
+        "test_temperature_label": "Room Temperature",
+        "numeric_test_temperature_C": null,
+        "method": "EN ISO 6892-1",
+        "yield_MPa": {
+          "vertical": 300,
+          "horizontal": 300
+        },
+        "E_GPa": null,
+        "E_source_cell": "dash",
+        "poisson_ratio": null,
+        "sample_count": null
+      },
+      "reported_expansion_rows": [
+        {
+          "temperature_interval_C": [
+            25,
+            100
+          ],
+          "reported_CTE_per_K": 1.9e-05
+        },
+        {
+          "temperature_interval_C": [
+            25,
+            200
+          ],
+          "reported_CTE_per_K": 2.1e-05
+        },
+        {
+          "temperature_interval_C": [
+            25,
+            300
+          ],
+          "reported_CTE_per_K": 2.2e-05
+        }
+      ],
+      "expansion_state_limits": {
+        "heat_state_explicitly_associated": false,
+        "orientation_explicitly_associated": false,
+        "reference_length_or_differential_vs_secant_convention_explicit": false,
+        "ASTM_E228_named": false,
+        "instantaneous_alpha_T_law_supported": false
+      },
+      "what_is_new": "Named process identity, associated treatment/yield table and published expansion intervals.",
+      "what_this_closes_for_old_retained_recipe": [],
+      "not_transferred": "The old Constellium400C4h vertical323MPa row has unspecified production identity; these separate EOS rows do not retrospectively identify it.",
+      "still_missing": [
+        "E at declared numeric test temperature",
+        "nu at same state",
+        "explicit CTE heat-state/orientation/reference convention",
+        "E(T), nu(T), yield(T) over a chosen range"
+      ],
+      "downloaded_byte_sha256": null,
+      "PDF_page": null
+    },
+    {
+      "source_id": "eos-cp1-m400-4-60um-2026",
+      "producer": "EOS",
+      "url": "https://www.eos.info/metal-solutions/data-sheets/aluminium/pds-eos-aluminium-constellium-cp1-eos-m-400-4-60um",
+      "accessed_on": "2026-10-17",
+      "format": "Producer HTML process datasheet",
+      "locators": {
+        "process": "System Setup and Additional Information, HTML lines7\u201321",
+        "mechanical": "Mechanical Properties Heat Treated, lines37\u201345",
+        "expansion": "Coefficient of Thermal Expansion, lines83\u201389"
+      },
+      "observed_page_status_as_of": "16.10.2026",
+      "observed_last_changed": "26.08.2026",
+      "new_recipe_identity": {
+        "machine": "EOS M 400-4",
+        "material_set": "AlCP1_060_M404",
+        "layer_um": 60,
+        "gas": "argon",
+        "build_platform_C": 150,
+        "heat_treatment": {
+          "hold_C": 400,
+          "hours": 4
+        },
+        "manufacturer_TRL": 3
+      },
+      "reported_mechanical_data": {
+        "test_temperature_label": "Room Temperature",
+        "numeric_test_temperature_C": null,
+        "method": "EN ISO 6892-1",
+        "yield_MPa": {
+          "vertical": 300,
+          "horizontal": 290
+        },
+        "E_GPa": null,
+        "E_source_cell": "dash",
+        "poisson_ratio": null,
+        "sample_count": null
+      },
+      "reported_expansion_rows": [
+        {
+          "temperature_interval_C": [
+            25,
+            100
+          ],
+          "reported_CTE_per_K": 1.9e-05
+        },
+        {
+          "temperature_interval_C": [
+            25,
+            200
+          ],
+          "reported_CTE_per_K": 2.1e-05
+        },
+        {
+          "temperature_interval_C": [
+            25,
+            300
+          ],
+          "reported_CTE_per_K": 2.2e-05
+        }
+      ],
+      "expansion_state_limits": {
+        "heat_state_explicitly_associated": false,
+        "orientation_explicitly_associated": false,
+        "reference_length_or_differential_vs_secant_convention_explicit": false,
+        "ASTM_E228_named": true,
+        "instantaneous_alpha_T_law_supported": false
+      },
+      "what_is_new": "Named process identity, associated treatment/yield table and published expansion intervals.",
+      "what_this_closes_for_old_retained_recipe": [],
+      "not_transferred": "The old Constellium400C4h vertical323MPa row has unspecified production identity; these separate EOS rows do not retrospectively identify it.",
+      "still_missing": [
+        "E at declared numeric test temperature",
+        "nu at same state",
+        "explicit CTE heat-state/orientation/reference convention",
+        "E(T), nu(T), yield(T) over a chosen range"
+      ],
+      "downloaded_byte_sha256": null,
+      "PDF_page": null
+    },
+    {
+      "source_id": "3dsystems-cp1a-dmp350-triple-2023",
+      "producer": "3D Systems",
+      "url": "https://es.3dsystems.com/sites/default/files/2023-12/3d-systems-aheadd-cp1a-mds-letter-us-reva-web.pdf",
+      "accessed_on": "2026-10-17",
+      "format": "Public manufacturer PDF parsed through web",
+      "document_id": "3DS-10129A",
+      "document_footer_date": "10-23",
+      "locators": {
+        "page": 1,
+        "table": "Typical Properties, DMP FLEX350TRIPLE, NHT/SR columns",
+        "state": "footnotes1\u20133"
+      },
+      "separate_recipe": {
+        "machine": "DMP Flex350Triple",
+        "layer_um": 60,
+        "specimens": "machined ASTM E8 type4, horizontal and vertical tested; table not orientation-resolved",
+        "stress_relief": {
+          "hold_C": 400,
+          "hours": 4,
+          "atmosphere": "air",
+          "cooling": "air"
+        },
+        "sample_population": "less than10"
+      },
+      "new_association": {
+        "yield_MPa": {
+          "NHT": 130,
+          "SR": 290
+        },
+        "numeric_test_temperature_C": null,
+        "E_GPa": null,
+        "poisson_ratio": null,
+        "alpha_T_per_K": null
+      },
+      "what_this_closes_for_old_retained_recipe": [],
+      "not_transferred": "Separate process/state; not evidence that the old vertical323MPa row used this machine or that either orientation has that old value.",
+      "downloaded_byte_sha256": null,
+      "visual_table_verification_claimed": false,
+      "screenshot_request_did_not_provide_inspected_pixels": true
+    },
+    {
+      "source_id": "eos-cucrzr-coreM400-room-temperature-refresh-2026",
+      "producer": "EOS",
+      "url": "https://www.eos.info/metal-solutions/data-sheets/copper/pds-eos-copperalloy-cucrzr-eos-m-400-80um",
+      "companion_url": "https://www.eos.info/metal-solutions/data-sheets/all-processes-and-materials?id=eos-copperalloy-cucrzr",
+      "accessed_on": "2026-10-17",
+      "format": "Producer HTML process/material sheets",
+      "observed_page_status_as_of": "17.10.2026",
+      "observed_last_changed": "08.10.2026",
+      "locators": {
+        "process": "PDS lines7\u201318",
+        "mechanical_test_label": "PDS mechanical tables lines39\u201357",
+        "treatments": "combined sheet lines59\u201367"
+      },
+      "new_information": "Both named heat-treated mechanical tables explicitly carry a room-temperature label; modulus measurement method/rate is stated.",
+      "method": "EN ISO6892-1 MethodA Range1, strain rate0.00007 1/s",
+      "matching_keys": {
+        "material_set": "CuCrZr_080_CoreM400",
+        "layer_um": 80,
+        "gas": "argon",
+        "conductivity_treatment": "550C3h inert; slow cooling below100C",
+        "tensile_treatment": "490C1h inert; slow cooling below100C"
+      },
+      "machine_label_limit": {
+        "retained_pdf": "EOS M400-1",
+        "current_HTML": "EOS M400",
+        "alias_equivalence_proven": false
+      },
+      "numeric_test_temperature_C": null,
+      "new_recipe_matched_E_T_nu_alpha_T_or_yield_T_data": false,
+      "existing_numeric_E_yield_rows_not_duplicated": true,
+      "what_this_closes_for_old_retained_recipe": [],
+      "downloaded_byte_sha256": null
+    }
+  ],
+  "bounded_primary_domain_queries": [
+    {
+      "q": "Aheadd CP1 Young modulus Poisson coefficient thermal expansion",
+      "domains": [
+        "constellium.com",
+        "eos.info",
+        "3dsystems.com",
+        "add-up.com"
+      ]
+    },
+    {
+      "q": "Aheadd HT1 Young modulus Poisson coefficient thermal expansion",
+      "domains": [
+        "constellium.com",
+        "eos.info",
+        "add-up.com"
+      ]
+    },
+    {
+      "q": "\"CP1\" \"modulus\" \"Constellium\"",
+      "domains": [
+        "constellium.com",
+        "eos.info",
+        "3dsystems.com",
+        "add-up.com",
+        "velo3d.com"
+      ]
+    },
+    {
+      "q": "\"CP1\" \"Poisson\" aluminium",
+      "domains": [
+        "constellium.com",
+        "eos.info",
+        "3dsystems.com",
+        "add-up.com",
+        "velo3d.com"
+      ]
+    },
+    {
+      "q": "\"Aheadd\" \"HT1\" datasheet thermal expansion",
+      "domains": [
+        "constellium.com",
+        "eos.info",
+        "3dsystems.com",
+        "add-up.com"
+      ]
+    },
+    {
+      "q": "\"CP1\" \"thermal expansion\" \"400\"",
+      "domains": [
+        "constellium.com",
+        "eos.info",
+        "3dsystems.com",
+        "add-up.com",
+        "velo3d.com"
+      ]
+    },
+    {
+      "q": "\"Aheadd HT1\" \"modulus\" OR \"Poisson\" OR \"expansion\"",
+      "domains": [
+        "constellium.com"
+      ]
+    },
+    {
+      "q": "\"Aheadd HT1\" \"heat treatment\" \"1\" \"2\"",
+      "domains": [
+        "constellium.com"
+      ]
+    },
+    {
+      "q": "\"Aheadd CP1\" \"Young\" OR \"Poisson\" OR \"elastic\"",
+      "domains": [
+        "add-up.com",
+        "velo3d.com",
+        "nikon-slm-solutions.com"
+      ]
+    }
+  ],
+  "CuCrZr_additional_bounded_queries": {
+    "domain": "eos.info",
+    "base_terms": [
+      "\"CuCrZr_080_CoreM400\"",
+      "\"CuCrZr\""
+    ],
+    "property_terms": [
+      "Poisson",
+      "Poisson ratio",
+      "thermal expansion",
+      "thermal expansion coefficient",
+      "coefficient of thermal expansion",
+      "expansion",
+      "temperature modulus",
+      "elastic temperature",
+      "yield temperature400",
+      "20\u00b0C",
+      "23\u00b0C",
+      "elevated temperature",
+      "application notes",
+      "550 expansion",
+      "Querkontraktionszahl",
+      "W\u00e4rmeausdehnung",
+      "Elastizit\u00e4tsmodul"
+    ],
+    "result": "No additional matched property data; current qualitative room-temperature label only."
+  },
+  "HT1_result": "No new producer-primary E/nu/expansion law or disclosed treatment1/2 schedule found in these bounded queries. No cross-alloy transfer.",
+  "access_limits": [
+    {
+      "url": "https://www.constellium.com/products/aluminium-powders/",
+      "observed": "Direct page fetch timed out; producer search-index excerpt is product context only, not a mechanical-data extraction."
+    },
+    {
+      "url": "https://www.constellium.com/markets-and-applications/additive-manufacturing",
+      "observed": "Web fetch failed; no data inferred."
+    }
+  ],
+  "excluded_evidence": [
+    "Nonproducer search hits, unrelated alloy2024 genericconstants and third-party property summaries",
+    "EOS CuCrZr M2901kW and 2019_CoreM400_100 state: not the retained M400-1/80um states",
+    "Generic EOS Store CuCrZr values without retained treatment/orientation association",
+    "Marketing stability, sports, F1 approval and partner qualification: not missing mechanical constants"
+  ],
+  "smallest_useful_next_data_request": {
+    "candidate_request_reference_only": "EOS CP1 AlCP1_060_M291 /60um /argon /400C4h; no alloy or machine selected",
+    "request": [
+      "Actual production/state identity and mechanical test temperature for an intended coupon set",
+      "Matched E and nu at a declared temperature with orientation/scatter",
+      "Whether published CTE intervals describe that same heat state and orientation; reference-length and secant/differential convention",
+      "Matched elevated-temperature E/nu/yield and thermal strain/alpha law if thermoelastic loading is later chosen"
+    ],
+    "outreach_sent": false
+  },
+  "retained_recipe_or_solver_card_fields_changed": false,
+  "new_solver_inputs": {
+    "selected_recipe": null,
+    "E": null,
+    "nu": null,
+    "alpha_T": null,
+    "yield_T": null
+  },
+  "source_access_scope": {
+    "web_primary_HTML_PDF_parser_only": true,
+    "new_raw_PDF_HTML_or_manual_bodies_stored": false,
+    "new_downloaded_byte_hashes_claimed": false,
+    "new_visual_PDF_table_verification_claimed": false,
+    "subagent_cucrzr_results_parent_reopened_primary_pages": true
+  },
+  "actions": {
+    "native_or_solver_run": false,
+    "scientific_import": false,
+    "geometry_read": false,
+    "Git_or_public_edit": false,
+    "private_or_paid_source_access": false,
+    "new_framework": false
+  },
+  "engineering_accepted": false,
+  "material_process_qualified": false,
+  "strength_validated": false,
+  "manufacturing_authorized": false,
+  "all4_original_local_records_unchanged": true
+}

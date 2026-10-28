@@ -2,7 +2,7 @@
 
 # 993 interior door opener lever, F0 aluminum concept
 
-**Status: functional. No part is released; see [SAFETY.md](../../SAFETY.md).**
+**Status: functional. No part is released; see [SAFETY.md](../../docs/SAFETY.md).**
 
 Independent concept of an integrated lever and clevis for studying a low-volume LPBF remanufacture. PorscheFanatics establishes the left and right PET part numbers; FVD publishes the envelope and mass of an aftermarket pair, but no interface geometry allows fitment.
 
@@ -88,6 +88,10 @@ Catalogue record: [`catalog/parts/993-int-door-opener-lever-f0-0001.json`](../..
 
 *`parts/993-int-door-opener-lever-f0-0001/media/views.png` — concept CAD block, **not** the original part, not a print file.*
 
+![photo-concept](../../parts/993-int-door-opener-lever-f0-0001/media/photo-concept.png)
+
+*`parts/993-int-door-opener-lever-f0-0001/media/photo-concept.png` — AI-generated studio illustration based on the concept CAD preview. Material and finish are illustrative; generated details may differ. Not a photograph or evidence of fit, function or manufacturing.*
+
 ## Provenance and sources
 
 | field | value |
@@ -107,7 +111,7 @@ Catalogue record: [`catalog/parts/993-int-door-opener-lever-f0-0001.json`](../..
 | status | concept |
 | vehicle tested | not recorded |
 | reviewed by |  |
-| limitations | not recorded |
+| limitations | Only the 108 x 45 x 27 mm envelope comes from the commercial product page; the plate, pockets, clevis and bores are F0 hypotheses.<br>The published mass of 0.18 kg concerns the complete commercial pair and does not validate the mass of the concept.<br>The 150 N and +60 K case is synthetic; no 993 load, direction, stop or temperature has been measured.<br>The nominal calculation ignores real contact, LPBF defects, pin clearance, preload, coating, corrosion and aging.<br>The CalculiX screen uses six synthetic cases and a Goodman comparison of coupons; it computes no part life.<br>The geometric slicing is neither an EOSPRINT job nor a melt-pool, distortion or recoater calculation.<br>The asset and the scene pass minimal USD validation and an ovphysx smoke test; the Content Agents, the full SimReady profile, OVRTX and the door assembly have not been run.<br>The STEP proves only a computable BREP within the envelope; it must be neither printed for fitment nor installed in a door. |
 
 **Evidence**
 

@@ -2,7 +2,7 @@
 
 # 993 left turbo heat shield cover, F0 IN625 concept
 
-**Status: functional. No part is released; see [SAFETY.md](../../SAFETY.md).**
+**Status: functional. No part is released; see [SAFETY.md](../../docs/SAFETY.md).**
 
 Independent concept of an open shell with integrated bosses for screening an LPBF remanufacture in IN625. PorscheFanatics confirms the PET identity; FVD publishes only the envelope and mass of the left-hand cover 993 123 113 51.
 
@@ -91,6 +91,10 @@ Catalogue record: [`catalog/parts/993-eng-turbo-heat-shield-in625-f0-0001.json`]
 
 *`parts/993-eng-turbo-heat-shield-in625-f0-0001/media/views.png` — concept CAD block, **not** the original part, not a print file.*
 
+![photo-concept](../../parts/993-eng-turbo-heat-shield-in625-f0-0001/media/photo-concept.png)
+
+*`parts/993-eng-turbo-heat-shield-in625-f0-0001/media/photo-concept.png` — AI-generated studio illustration based on the concept CAD preview. Material and finish are illustrative; generated details may differ. Not a photograph or evidence of fit, function or manufacturing.*
+
 ## Provenance and sources
 
 | field | value |
@@ -111,7 +115,7 @@ Catalogue record: [`catalog/parts/993-eng-turbo-heat-shield-in625-f0-0001.json`]
 | status | concept |
 | vehicle tested | not recorded |
 | reviewed by |  |
-| limitations | not recorded |
+| limitations | Only the 160 x 110 x 105 mm envelope comes from FVD; profile, wall, bosses and holes are hypothetical.<br>The F0 mass of 325.58 g exceeds the published 230 g by 41.6%; the commercial material is unknown and no validation by mass is possible.<br>The temperatures, emissivity, view factor, force and support conditions are synthetic.<br>The calculation ignores convection, real turbo geometry, shell curvature, contact, vibration, thermal fatigue, oxidation and creep.<br>The STEP proves only a computable BREP within the envelope and must not be manufactured for fitment. |
 
 **Evidence**
 

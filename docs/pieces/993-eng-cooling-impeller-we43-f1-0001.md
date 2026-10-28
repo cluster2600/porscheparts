@@ -2,7 +2,7 @@
 
 # Engine cooling fan impeller, WE43 magnesium concept F1 redesigned from the Turbo rotor rebuild
 
-**Status: **prohibited pending engineering**. No part is released; see [SAFETY.md](../../SAFETY.md).**
+**Status: **prohibited pending engineering**. No part is released; see [SAFETY.md](../../docs/SAFETY.md).**
 
 Improved variant of the 993 Turbo cooling fan rotor, drawn from the repository's visual rebuild of the original. It keeps the rebuild's 245 mm envelope, its 165 mm cup 56 mm deep that wraps the alternator end, the cup's twelve windows, three bolt holes and bore, eleven blades and no shroud. It replaces the rebuild's constant-pitch cambered plates with twisted airfoil blades designed from velocity triangles, and moves to LPBF WE43 magnesium. A one-dimensional blade-element model with radial equilibrium, on a duty inferred from the rebuild, estimates about 2 % more air than the rebuild rotor on the same shaft power, and about 9 % with a matched stator. These are model estimates on visual hypotheses, not measurements and not a comparison with the Porsche part.
 
@@ -112,6 +112,10 @@ Catalogue record: [`catalog/parts/993-eng-cooling-impeller-we43-f1-0001.json`](.
 
 *`parts/993-eng-cooling-impeller-we43-f1-0001/media/print-simulation/build-plate.png` — metal LPBF geometry preview with hypothetical supports; no process physics or qualified support design; not a build file or print release.*
 
+![photo-concept](../../parts/993-eng-cooling-impeller-we43-f1-0001/media/photo-concept.png)
+
+*`parts/993-eng-cooling-impeller-we43-f1-0001/media/photo-concept.png` — AI-generated studio illustration based on the concept CAD preview. Material and finish are illustrative; generated details may differ. Not a photograph or evidence of fit, function or manufacturing.*
+
 ## Provenance and sources
 
 | field | value |
@@ -136,7 +140,7 @@ Catalogue record: [`catalog/parts/993-eng-cooling-impeller-we43-f1-0001.json`](.
 | status | concept |
 | vehicle tested | not recorded |
 | reviewed by |  |
-| limitations | not recorded |
+| limitations | The separate roll_y_45 polymer or carbon-fiber-filled thermoplastic export is a static mockup only; printer, material grade, supports and slicing parameters remain unspecified. The WE43 thermal study does not apply to that mockup.<br>The 2026-10-12 LPBF study solves uncalibrated bulk heat conduction on the concept CAD with assumed supports and conventional WE43 constants; melt pools, residual stress, distortion and print success are not predicted.<br>The rebuild of the original rotor is a visual reconstruction: blade and window counts are observed, the 48 degree pitch, chords, cup depth and walls are hypotheses.<br>The duty is inferred from the rebuild (its best-efficiency point at 10,000 fan rpm in a bellmouth housing: 2.34 m3/s at 2,155 Pa); no 993 fan map, pulley ratio or engine resistance is measured.<br>The flow gains come from a one-dimensional blade-element model with simple radial equilibrium, not CFD or a rig test; the alternator air through the cup windows is not modelled.<br>On the same shaft power F1 moves about 2 % more air than the rebuild rotor and keeps its stall margin; the same-speed gain ranges from -5 % to +12 % when the rebuild's pitch is varied from 53 to 43 degrees.<br>Both rotors lose more to the 3.5 mm tip gap and to exit swirl than to blade profile; the matched stator (about +9 % at equal power) and a housing land over the tips are the larger levers, and belong to a future housing.<br>WE43 data are single-laboratory room-temperature coupons plus generic values; no hot, HCF or notched allowable.<br>The fully constrained thermal screen fails for WE43; the bolted joint to the bearing hub needs inserts or creep-rated washers.<br>The beam estimate of the open-blade first mode (about 1,350 Hz) is superseded by the 2026-10-13 FE screen (gmsh C3D10 + CalculiX, one 4 mm mesh, hub joint idealised as clamped or as a fixed bore): the first blade-bending family sits at 1,890-2,530 Hz, the lowest modes are cup/web modes (344-525 Hz at rest), and the engineering screen's modal pass does not cover them.<br>In that FE screen the 17-vane stator order meets the five-nodal-diameter blade mode at about 7,600 rpm, inside the nominal range, and the spokes' 12th-order harmonic meets one-nodal-diameter modes at about 1,700-2,600 and 11,400 rpm; forcing and damping are not computed, so these are crossings to design around, not predicted failures.<br>The same FE screen puts the 12,000 rpm peak at 92-96 MPa (yield / peak 2.3-2.4) at the unfilleted blade-root/rim corner, far above the beam screen's 11-47 MPa; mesh independence is not demonstrated and that corner needs a fillet before any stress figure is quoted.<br>An earlier F1 revision (120 mm hub, shroud, 248 mm) was a generic fan that did not keep the original cup or alternator space; it is superseded.<br>The flat-fan sizing study F2 is a separate shrouded rotor family on F0-scaled duties; its findings do not describe this upright rotor. |
 
 **Evidence**
 

@@ -102,7 +102,7 @@ removes the galvanic couple. Not in titanium.
 
 This is the third time in a row that the examination separates the two
 questions. It is starting to look like a rule, and it is now written in
-[`SAFETY.md`](../../SAFETY.md): process and material are two independent
+[`SAFETY.md`](../SAFETY.md): process and material are two independent
 judgments, delivered separately.
 
 ## What this screening does not say

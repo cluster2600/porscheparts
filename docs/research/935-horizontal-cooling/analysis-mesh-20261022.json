@@ -1,0 +1,230 @@
+{
+  "schema": "935-analysis-mesh-continuation-v1",
+  "date": "2026-10-22",
+  "programme": "horizontal_935_reference_installation",
+  "original_PicoGK_geometry_sha256": "f32bbabab3e5f7d9ca7c5283d18703cfe7cedbd3eb2c72a57a1c222c0a9df1e5",
+  "source_sha256": {
+    "twins/935-horizontal-cooling-system-f0/source/analysis-simplification/quality_preserving_simplify.cpp": "68fcc829d650705b13b6197486fc859c63d55a464ce2a0eec68c1d9b3b67d663",
+    "twins/935-horizontal-cooling-system-f0/source/analysis-simplification/CMakeLists.txt": "3243594123dce3d21c42da2d6c3cc4000c3ca98493c80c2fd3715fdd4ae9ace3"
+  },
+  "scope": {
+    "full_system_goal_complete": false,
+    "scale_verified": false,
+    "historical_interfaces_verified": false,
+    "complete_mechanism_defined": false,
+    "new_volume_mesh_admitted": false,
+    "FEA_mesh_convergence_established": false,
+    "current_geometry_CFD_accepted": false,
+    "material_process_qualified": false,
+    "optimization_complete": false,
+    "PhysicsNeMo_trained": false,
+    "manufacturing_authorized": false,
+    "physical_validation": false
+  },
+  "runtime": {
+    "generator_CGAL": "6.2.1",
+    "generator_Boost": "1.90.0",
+    "compiler": "GCC 15.3.0",
+    "compiler_options": [
+      "-O2",
+      "-frounding-math"
+    ],
+    "assertions_retained": true,
+    "independent_checker_CGAL": "5.5.1",
+    "independent_checker_unchanged": true,
+    "checker_binary_sha256": "a64afa7238ab1b28064412142701473a94ba869089d20cfedfcbe3994ff56430",
+    "Gmsh": "4.12.1",
+    "rootless_image_digest": "sha256:a1db60cbf61bbcca52c171e50cab01ed0b6ec860b227e7c5fc50f7b809659b4f"
+  },
+  "generator": {
+    "new_face_quality_floor": 0.05,
+    "feature_angle_degrees": 0.25,
+    "CTest_passed": true,
+    "analytic_triangle_controls": 5,
+    "edge_profile_controls": 3,
+    "cube_control": {
+      "input_faces": 768,
+      "output_faces": 180,
+      "volume": 1.0,
+      "every_face_on_original_cube_plane": true
+    },
+    "binary_sha256": "c73018d1c7fac14923db871d66917640987fb69cab4e0257f7519859afd728ef",
+    "replay_sha256": "b2cf60c8e2a73adc4172e980423971d3ee78d1b3742e5a38914053417a5f24c4",
+    "existing_file_refused": true,
+    "dangling_symlink_refused": true,
+    "double_OFF_bytes_identical_on_replay": true,
+    "complete_float32_coordinates_and_triangles_identical_on_replay": true
+  },
+  "surface": {
+    "geometry_admitted_for_volume_trial": true,
+    "source_vertices": 661475,
+    "source_triangles": 1322970,
+    "candidate": {
+      "vertices": 435529,
+      "faces": 871078,
+      "maximum_vertex_shift_native_units": 7.563356718419659e-06,
+      "sha256": {
+        "candidate.npz": "7cf6d76c36c7bf105fbbcdd8239d9fa436f440760b956c2c75f7dc7c3e036cbb",
+        "candidate.stl": "3a3af39ea30240117510c2e4ea5fa017e998ed7f34f389101e12b930102c16f1",
+        "candidate-quantized.off": "d2e86b89afe854ea4107cac170fdba7d5e73a40648c3a704dfd9ab6b5b1687e2"
+      }
+    },
+    "certificate": {
+      "source_faces": 1322970,
+      "candidate_faces": 871078,
+      "source_to_candidate_contained": true,
+      "candidate_to_source_contained": true,
+      "envelope_bound_native_units": 0.0225,
+      "reserved_numeric_margin_native_units": 0.0025,
+      "topology_and_self_intersection_checks_pass": true,
+      "complete_containment_pass": true
+    },
+    "certificate_sha256": "b182c8fe7f02fc0f88c1f20d7a4896384534c7af1ad6b2f9573e055101403da2",
+    "execution_sha256": "58c5013bd85f7e84d156569d575b6c337a4f6956afaaca2da287c141d3e72c4a",
+    "envelope_elapsed_s": 190.00412817904726,
+    "source_unit": "uncalibrated_scan_unit",
+    "prior_proposal_triangles_below_point1_degrees": 23407,
+    "original_triangles_below_point1_degrees": 16,
+    "quality_proposal_triangles_below_point1_degrees": 16,
+    "quality_proposal_triangles_below_one_degree": 99,
+    "quality_proposal_triangles_below_five_degrees": 28052,
+    "volume_relative_difference": 7.65410504754982e-07,
+    "inertia_matrix_relative_difference": 1.1994388327745629e-06,
+    "independent_Mac_assessment_sha256": "15cfaca2f587455283be7efc70a300b3a352272da6b39c7bb213822f98e4fdd2"
+  },
+  "rejected_executions": [
+    {
+      "case": "old_surface_tetgen16",
+      "exit": -6,
+      "elapsed_s": 193.34041555202566,
+      "receipt_sha256": "447ca9fa81c953734b60a5147086701906a491c5321b4ae93a2db3c0d52a6e47",
+      "accepted": false
+    },
+    {
+      "case": "old_surface_optimization0",
+      "exit": -6,
+      "elapsed_s": 189.76909070299007,
+      "receipt_sha256": "43ff91c766469d33598f4f5df39dde63e609316a079d8ab18b989c0c8485ce75",
+      "accepted": false
+    },
+    {
+      "case": "old_surface_tetgen151",
+      "exit": 124,
+      "elapsed_s": 900.0756725319661,
+      "receipt_sha256": "a24c128092eec78cdb27bcc427af0bc49a0445a1e77febf71df8126507a99860",
+      "accepted": false
+    },
+    {
+      "case": "old_surface_gmsh_delaunay",
+      "exit": 124,
+      "elapsed_s": 900.003695637919,
+      "receipt_sha256": "e71b677ec0da73df71d1cb306b9a2c098a147e9b59fc34581b21a0b9e4276436",
+      "accepted": false
+    },
+    {
+      "case": "old_surface_gmsh_hxt",
+      "exit": 139,
+      "elapsed_s": 272.96099519799463,
+      "receipt_sha256": "3386db95eeb217653a6d1d603840949bbd37c1a297107f056a91fd2e22324e0a",
+      "accepted": false
+    },
+    {
+      "case": "quality_surface_tetgen16",
+      "exit": -6,
+      "elapsed_s": 17.48053643386811,
+      "receipt_sha256": "78258cc68df42df35486b7aed2509ea7fef70ca6ade50557382b7d8ffdf56951",
+      "accepted": false
+    }
+  ],
+  "gmsh_initial_volumes": {
+    "raw": {
+      "status": "volume_refused",
+      "vertices": 441241,
+      "tetrahedra": 1451658,
+      "boundary_triangles": 871080,
+      "unreferenced_mesher_nodes": 0,
+      "exact_boundary_coordinate_triangle_bijection": false,
+      "volume_relative_difference_from_analysis_surface": 2.220446049250313e-16,
+      "volume_npz_sha256": "b29b619d793fac045e12259b121828587bddf5838ca2ee37ad48a3065075d596",
+      "source_unit": "uncalibrated_scan_unit",
+      "mechanical_mesh_admitted": false,
+      "manufacturing_authorized": false,
+      "exact_negative_cells": 0,
+      "exact_zero_cells": 10,
+      "indexed_connectivity": {
+        "signed_volume_sum": 430665.90020331595,
+        "absolute_volume_sum": 430665.90020331595,
+        "minimum_signed_tetra_volume": 0.0,
+        "count_negative": 0,
+        "count_zero": 10,
+        "repeated_node_tetrahedra": 0,
+        "tetra_connected_components": 1,
+        "boundary_missing_triangles": 0,
+        "stored_triangles_not_on_boundary": 0,
+        "duplicate_stored_triangles": 0,
+        "nonmanifold_faces": 0,
+        "boundary_triangle_count": 871080,
+        "boundary_matches": true
+      },
+      "assessment_sha256": "f112c123c05b8f0529c2c0e88c4586db7ec557bf9e55ce50dab07b4e54590d70",
+      "elapsed_s": 11.178099083015695
+    },
+    "optimized": {
+      "status": "volume_refused",
+      "vertices": 441241,
+      "tetrahedra": 1381778,
+      "boundary_triangles": 871080,
+      "unreferenced_mesher_nodes": 0,
+      "exact_boundary_coordinate_triangle_bijection": false,
+      "volume_relative_difference_from_analysis_surface": 2.220446049250313e-16,
+      "volume_npz_sha256": "852c06eeeef1d46eec213d230576d7f44a3d18f8c578a49b92537a4bf25cc749",
+      "source_unit": "uncalibrated_scan_unit",
+      "mechanical_mesh_admitted": false,
+      "manufacturing_authorized": false,
+      "exact_negative_cells": 0,
+      "exact_zero_cells": 10,
+      "indexed_connectivity": {
+        "signed_volume_sum": 430665.90020331595,
+        "absolute_volume_sum": 430665.90020331595,
+        "minimum_signed_tetra_volume": 0.0,
+        "count_negative": 0,
+        "count_zero": 10,
+        "repeated_node_tetrahedra": 0,
+        "tetra_connected_components": 1,
+        "boundary_missing_triangles": 0,
+        "stored_triangles_not_on_boundary": 0,
+        "duplicate_stored_triangles": 0,
+        "nonmanifold_faces": 0,
+        "boundary_triangle_count": 871080,
+        "boundary_matches": true
+      },
+      "assessment_sha256": "7c18fc9e5e222729c2d74f290540af239a644969e33157312ae3a35af075ec0b",
+      "elapsed_s": 15.832764314021915
+    }
+  },
+  "rental": {
+    "new_instance_created": false,
+    "previous_instance_id": 57137803,
+    "previous_teardown_verified": true,
+    "previous_private_backup_publication_verified": true,
+    "actual_invoice_usd": null
+  },
+  "private_evidence": {
+    "repository": "cluster2600/porscheparts-935-private",
+    "release_tag": "analysis-mesh-935-20261022",
+    "url": "https://github.com/cluster2600/porscheparts-935-private/releases/tag/analysis-mesh-935-20261022"
+  },
+  "record_builder_sha256": "df3b9d4801fdf102919407afadd66d5539049eef152d795824f2c4a8ce1472f4",
+  "netgen_resume_controls": {
+    "Linux_Gmsh_4_12_1_Netgen_compiled": false,
+    "Mac_Gmsh_4_15_2_Netgen_compiled": true,
+    "Mac_control_input_tetrahedra": 1,
+    "Mac_control_output_tetrahedra": 2,
+    "Mac_control_input_exact_volume": "1/6",
+    "Mac_control_output_exact_volume": "1/3",
+    "Mac_control_accepted": false,
+    "rotor_executed": false,
+    "Mac_wheel_sha256": "f6649b3e59f49272e7ee8ab282ecb4d1a6e0d627e86cf3e3b1a83fd07417e4f8",
+    "Mac_library_sha256": "def0f5c10988a986e5e879b3db9669d8fe016a81e2d994bbaf2b8497c6b8a58a"
+  }
+}

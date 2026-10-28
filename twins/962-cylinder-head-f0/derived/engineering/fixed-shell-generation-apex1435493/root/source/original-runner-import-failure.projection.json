@@ -1,0 +1,44 @@
+{
+  "schema": "962-selected-public-record-projection/v1",
+  "original_record": {
+    "relative_path": "work/962-engineering/fixed-shell-generation-apex1435493-root-source-001/test_runner_guards.py.json",
+    "sha256": "84f4d75daf2d9768fca91ccc73d127ef1ac91062dbd1b94a3b050e27f7dd159d",
+    "bytes": 586
+  },
+  "projection": {
+    "returncode": 1,
+    "wall_seconds": 0.2231513331644237,
+    "sha256": "202e110767a1a70c9dacdeb2f47ed420c65ada2785bdd67f5094b6aad77d8706",
+    "bytes": 381,
+    "summary": [
+      "Traceback (most recent call last):",
+      "  File \"work/962-engineering/fixed-shell-generation-apex1435493-prep-001/test_runner_guards.py\", line 19, in <module>",
+      "    raise ValueError('Frozen generation cube runner changed before AST extraction')",
+      "ValueError: Frozen generation cube runner changed before AST extraction"
+    ]
+  },
+  "omitted_field_paths": [],
+  "path_role_rules": [
+    {
+      "role": "runtime:python",
+      "meaning": "selected Python executable locator"
+    },
+    {
+      "role": "runtime:gmsh-module",
+      "meaning": "selected Gmsh Python wrapper locator"
+    },
+    {
+      "role": "runtime:gmsh-library",
+      "meaning": "selected native Gmsh library locator"
+    },
+    {
+      "role": "runtime:numpy-init",
+      "meaning": "selected NumPy __init__.py locator"
+    },
+    {
+      "role": "project-relative",
+      "meaning": "the exact private project-root prefix is removed; relative paths and digest values remain"
+    }
+  ],
+  "derived_observations": null
+}

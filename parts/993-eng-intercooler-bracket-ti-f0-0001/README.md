@@ -16,7 +16,7 @@
 > - validation status `concept`: nothing has been checked against a real part;
 > - geometry `mixed`: its dimensions are partly sourced, partly assumed, not measured on the original part;
 > - safety class `functional`;
-> - no part in this repository is released — read [SAFETY.md](../../SAFETY.md).
+> - no part in this repository is released — read [SAFETY.md](../../docs/SAFETY.md).
 
 <table><tr>
 <td width="50%" valign="top">
@@ -92,6 +92,12 @@ flowchart LR
 
 *Variant generated with the PicoGK voxel kernel in [`parts/picogk-993-batch-01`](../../parts/picogk-993-batch-01/README.md): published overall envelope, internal structure (double wall, lattice core or vanes) shown in the half section. Mounting interfaces are assumptions — not the original part, not a print file, not evidence of fit.*
 
+## Bionic gyroid-core model
+
+![PicoGK gyroid-core model: outside view and capped section](media/gyroid.png)
+
+*PicoGK variant ([`GyroidCore.cs`](../../parts/picogk-catalog/bionic/GyroidCore.cs)): no zone of this part holds three 4.5 mm gyroid cells inside its skin, so it stays solid (core only where three cells fit). Not a print file.*
+
 ## Screens and evidence images
 
 ![993-eng-intercooler-bracket-ti-f0-0001-lpbf-geometry-screen](evidence/lpbf-f0/993-eng-intercooler-bracket-ti-f0-0001-lpbf-geometry-screen.png)
@@ -102,10 +108,10 @@ flowchart LR
 
 | folder | what it holds | files |
 |---|---|---|
-| `derived/` | CAD exports generated from the source (STEP for CAD tools, STL for meshing) | [`derived/intercooler_bracket_ti_f0-picogk.json`](derived/intercooler_bracket_ti_f0-picogk.json), [`derived/intercooler_bracket_ti_f0-picogk.stl`](derived/intercooler_bracket_ti_f0-picogk.stl), [`derived/intercooler_bracket_ti_f0.step`](derived/intercooler_bracket_ti_f0.step), [`derived/intercooler_bracket_ti_f0.stl`](derived/intercooler_bracket_ti_f0.stl) |
+| `derived/` | CAD exports generated from the source (STEP for CAD tools, STL for meshing) | [`derived/intercooler_bracket_ti_f0-picogk-gyroid.json`](derived/intercooler_bracket_ti_f0-picogk-gyroid.json), [`derived/intercooler_bracket_ti_f0-picogk.json`](derived/intercooler_bracket_ti_f0-picogk.json), [`derived/intercooler_bracket_ti_f0-picogk.stl`](derived/intercooler_bracket_ti_f0-picogk.stl), [`derived/intercooler_bracket_ti_f0.step`](derived/intercooler_bracket_ti_f0.step), [`derived/intercooler_bracket_ti_f0.stl`](derived/intercooler_bracket_ti_f0.stl) |
 | `evidence/` | screens, reports and manifests — **pinned by SHA-256, never edited by hand** | [`evidence/calculix-screen.json`](evidence/calculix-screen.json), [`evidence/engineering-screen.json`](evidence/engineering-screen.json), [`evidence/lpbf-f0/993-eng-intercooler-bracket-ti-f0-0001-layer-metrics.csv`](evidence/lpbf-f0/993-eng-intercooler-bracket-ti-f0-0001-layer-metrics.csv), [`evidence/lpbf-f0/993-eng-intercooler-bracket-ti-f0-0001-lpbf-geometry-manifest.json`](evidence/lpbf-f0/993-eng-intercooler-bracket-ti-f0-0001-lpbf-geometry-manifest.json), [`evidence/lpbf-f0/993-eng-intercooler-bracket-ti-f0-0001-lpbf-geometry-report.json`](evidence/lpbf-f0/993-eng-intercooler-bracket-ti-f0-0001-lpbf-geometry-report.json), [`evidence/lpbf-f0/993-eng-intercooler-bracket-ti-f0-0001-lpbf-geometry-screen.png`](evidence/lpbf-f0/993-eng-intercooler-bracket-ti-f0-0001-lpbf-geometry-screen.png), [`evidence/simready-conversion-summary.json`](evidence/simready-conversion-summary.json) |
-| `media/` | concept-model views rendered from the CAD by `scripts/render_part_previews.py` — not pictures of the original | [`media/picogk-batch-01.png`](media/picogk-batch-01.png), [`media/preview.json`](media/preview.json), [`media/preview.png`](media/preview.png), [`media/views.png`](media/views.png) |
-| `source/` | parametric source — the editable master that generates the geometry | [`source/bionic.json`](source/bionic.json), [`source/intercooler_bracket.py`](source/intercooler_bracket.py), [`source/picogk.json`](source/picogk.json) |
+| `media/` | concept-model views rendered from the CAD by `scripts/render_part_previews.py` — not pictures of the original; labelled AI studio illustration and provenance, not a photograph | [`media/gyroid.json`](media/gyroid.json), [`media/gyroid.png`](media/gyroid.png), [`media/photo-concept.png`](media/photo-concept.png), [`media/photo.json`](media/photo.json), [`media/picogk-batch-01.png`](media/picogk-batch-01.png), [`media/preview.json`](media/preview.json), [`media/preview.png`](media/preview.png), [`media/views.png`](media/views.png) |
+| `source/` | parametric source — the editable master that generates the geometry | [`source/bionic.json`](source/bionic.json), [`source/gyroid.json`](source/gyroid.json), [`source/intercooler_bracket.py`](source/intercooler_bracket.py), [`source/picogk.json`](source/picogk.json) |
 
 ## Read more
 
@@ -113,7 +119,7 @@ flowchart LR
 - **Catalogue record** (source of truth): [`catalog/parts/993-eng-intercooler-bracket-ti-f0-0001.json`](../../catalog/parts/993-eng-intercooler-bracket-ti-f0-0001.json)
 - **Design dossier**: [993_INTERCOOLER_BRACKET_TI_F0](../../docs/993/993_INTERCOOLER_BRACKET_TI_F0.md)
 - **Digital twin record**: [`twin-993-intercooler-bracket-ti-f0.json`](../../catalog/twins/twin-993-intercooler-bracket-ti-f0.json) — see [twins/README.md](../../twins/README.md)
-- **Safety rules**: [SAFETY.md](../../SAFETY.md)
+- **Safety rules**: [SAFETY.md](../../docs/SAFETY.md)
 
 ---
 

@@ -1,0 +1,166 @@
+{
+  "status": "paused_by_user_before_snapping_completion",
+  "source_sha256": {
+    "twins/935-horizontal-cooling-system-f0/source/hex-mesh-study-20261022/backup/seal-hex-checkpoint-001.py": "33db2033c052f4e61aa8a674f49a4de6de61bdf30a757ff4839a5a4bb0fe9ea8",
+    "twins/935-horizontal-cooling-system-f0/source/hex-mesh-study-20261022/backup/seal-hex-wall-review-001.py": "fbc619f2fff08890ee589416bd13c6d1e4a30ae6d216d969e15ef188d07b86ef",
+    "twins/935-horizontal-cooling-system-f0/source/hex-mesh-study-20261022/backup/seal-parallel-checkpoint-001.py": "2096937b9002192964a8543d7d5f6ace802c21c6431de441e1ef551af914ce53",
+    "twins/935-horizontal-cooling-system-f0/source/hex-mesh-study-20261022/backup/seal-pause-checkpoint-001.py": "aad6e32781ae0aeca481dacc66c1ef8d34acb0da69d9637b502acf83f15b78c7",
+    "twins/935-horizontal-cooling-system-f0/source/hex-mesh-study-20261022/check-hex-review-control-001.py": "443815bc3d0f5bc47b420392b981e0d8bbf98433b1c0ed8311f31a7725295af4",
+    "twins/935-horizontal-cooling-system-f0/source/hex-mesh-study-20261022/prepare-castellation-review-001.py": "ba565ed2cc2a7066bf8e10942bc9b66590960f6ef806b33e68bf6eef1d652195",
+    "twins/935-horizontal-cooling-system-f0/source/hex-mesh-study-20261022/prepare-hex-review-control-001.py": "f06f3503566eb32926ef9b277e69922e00b6c067d99268b33a3353aa398a4c6a",
+    "twins/935-horizontal-cooling-system-f0/source/hex-mesh-study-20261022/prepare-hex-template-001.py": "e11f4eb77c77e10641894aa25fbf8a403f5ce1a8e8c7f8dc0c570ed5e0a8e7f1",
+    "twins/935-horizontal-cooling-system-f0/source/hex-mesh-study-20261022/prepare-parallel-snap-001.py": "1caeb7c91d380c08c2e1861562f7a9736bc216e014542fe2f7a9c5afd49627b7",
+    "twins/935-horizontal-cooling-system-f0/source/hex-mesh-study-20261022/prepare-parallel-snap-002.py": "684aaf524f254738a2c18891c57a8d630e259de84d6e103cd9a2299b705f5dcf",
+    "twins/935-horizontal-cooling-system-f0/source/hex-mesh-study-20261022/probe-rootless-mpi-001.py": "16bf570ecb97be59529b584d1b6c9d1ad4d40b1446cf66828ee0fd2a8e259d60",
+    "twins/935-horizontal-cooling-system-f0/source/hex-mesh-study-20261022/qualify-parallel-mesh-001.py": "5234d2e72194d4b849d5663a28bc50541e4ef07b9b9bd5d52fbc8dd2abd7288e",
+    "twins/935-horizontal-cooling-system-f0/source/hex-mesh-study-20261022/render-castellation-review-001.py": "a7ebd85b72e49fd58c56ba844a6d695ca0e41cea1ab075ca2dc5c93e01c60e22",
+    "twins/935-horizontal-cooling-system-f0/source/hex-mesh-study-20261022/run-hex-native-001.py": "1e1c0e3e041b3f92852a5ac3215febfa63c966b3de501ca58b3f64c885128b94",
+    "twins/935-horizontal-cooling-system-f0/source/hex-mesh-study-20261022/run-parallel-snap-001.py": "4d916af1603d60917dac940d3a14f0665acd4420763d6abcf4f1f7080256b0f8",
+    "twins/935-horizontal-cooling-system-f0/source/hex-mesh-study-20261022/run-parallel-snap-002.py": "1826e7755bf855eba6800829cd512fa285199bd622ee8d06e2bd3f4f8ede8aa9"
+  },
+  "runtime": {
+    "solver": "OpenFOAM Foundation 13",
+    "build": "13-18870c24d21c",
+    "qualified_rootless_receipt_sha256": "1e6f331b419c3849d6321beeff39b64a5f21407dbec778a4016629f8e27a563d",
+    "mesh_quality_dictionary_sha256": "bafbc5ced7e83c5a1cc11291a0937c3499a6713e8e3411a83f93464381ba2c7d",
+    "network_isolation_unchanged": true
+  },
+  "geometry": {
+    "PicoGK_design_master_sha256": "f32bbabab3e5f7d9ca7c5283d18703cfe7cedbd3eb2c72a57a1c222c0a9df1e5",
+    "analysis_NPZ_sha256": "0642cc25734981859c8c6d7bdf2e69d756d4ece0de422c78831067c4a8e164c6",
+    "source_scale_m_per_unit_assumed": 0.001,
+    "castellated_cells": 4666166,
+    "castellated_points": 6483943,
+    "last_written_mesh_stage": "castellated_before_snapping",
+    "snapped_mesh_completed": false,
+    "boundary_layers_completed": false,
+    "full_native_quality_passed": false,
+    "complete_snapped_wall_certificate": false
+  },
+  "analytic_parallel_cube": {
+    "receipt_sha256": "7ed6e49065767e99d92c1f6e2fd4149a31af178ac5cbed0ffa40ca05a44fbfa1",
+    "cells": 216,
+    "vertices": 343,
+    "faces": 756,
+    "maximum_plane_error": 1.6653345369377348e-16,
+    "exact_boundary_volume_error": 5.088522196198636e-17,
+    "native_parallel_and_reconstructed_quality_passed": true
+  },
+  "attempts": [
+    {
+      "case": "hex-native-001",
+      "execution_sha256": "b7d11e6c012b21504f938374df8f9dc1e71ade957c9e14d1a21fcb122695bf5d",
+      "source_sha256": "1e1c0e3e041b3f92852a5ac3215febfa63c966b3de501ca58b3f64c885128b94",
+      "exit": -15,
+      "elapsed_s": 1200.0134566649795,
+      "actual_stop_cause": "wall_time_limit",
+      "runner_stop_reason": "wall_time_limit",
+      "four_ranks": false,
+      "timeout_s": 1200,
+      "full_native_quality_passed": false,
+      "CFD_executed": false
+    },
+    {
+      "case": "parallel-snap-001",
+      "execution_sha256": "641b1c70cf23d0a76fba6ca430b75c6cd828fcb4f1768620ce0bb7b9cd5d4764",
+      "source_sha256": "4d916af1603d60917dac940d3a14f0665acd4420763d6abcf4f1f7080256b0f8",
+      "exit": -15,
+      "elapsed_s": 1200.0039332450833,
+      "actual_stop_cause": "wall_time_limit",
+      "runner_stop_reason": "wall_time_limit",
+      "four_ranks": true,
+      "timeout_s": 1200,
+      "full_native_quality_passed": false,
+      "CFD_executed": false
+    },
+    {
+      "case": "parallel-snap-002",
+      "execution_sha256": "53029eafdead5f35424aa6e86da224945e1d30690495d5f52365ad3610722cd0",
+      "source_sha256": "1826e7755bf855eba6800829cd512fa285199bd622ee8d06e2bd3f4f8ede8aa9",
+      "exit": -15,
+      "elapsed_s": 1607.0189028789755,
+      "actual_stop_cause": "user_requested_pause",
+      "runner_stop_reason": null,
+      "four_ranks": true,
+      "timeout_s": 3600,
+      "full_native_quality_passed": false,
+      "CFD_executed": false
+    }
+  ],
+  "export_control": {
+    "receipt_sha256": "ae85a5095cb73cbeb1e457652f4190d4e361883426334d029eecf870efe15846",
+    "OBJ_coordinates_exact_native_boundary_subset": true,
+    "OBJ_boundary_vertices": 218,
+    "OBJ_triangles": 432,
+    "OBJ_exact_volume_error_from_unit_cube": 4.446032019910929e-17,
+    "VTK_maximum_coordinate_distance_to_native_unit_cube": 4.917132327971904e-07,
+    "VTK_native_reader_output_dtype": "float32",
+    "VTK_native_reader_maximum_coordinate_error_unit_cube": 1.720637882096252e-08,
+    "VTK_views_are_not_exact_coordinate_evidence": true,
+    "actual_snapped_rotor_export_admitted": false
+  },
+  "diagnostic_view": {
+    "source_sha256": "a7ebd85b72e49fd58c56ba844a6d695ca0e41cea1ab075ca2dc5c93e01c60e22",
+    "native_VTK_sha256": "d93a619044d6ede699c068e97d13fc6e95606e2323c702e1d4f5a389ed251c94",
+    "reference_sha256": "0642cc25734981859c8c6d7bdf2e69d756d4ece0de422c78831067c4a8e164c6",
+    "image_sha256": "3656b698e930d6eada76fa24054e64e58d2705dc19f38c0dbb9d3411fbf82557",
+    "native_boundary_polygons": 1652214,
+    "native_boundary_vertices": 1676697,
+    "distance_control_parallel_triangles_passed": true,
+    "all_boundary_vertices_queried": true,
+    "maximum_sampled_gap_m_assumed": 0.0003842353314891517,
+    "p95_sampled_gap_m_assumed": 0.0002920157245098758,
+    "median_sampled_gap_m_assumed": 0.00011232329256818569,
+    "decimation": false,
+    "complete_bidirectional_surface_bound": false,
+    "VTK_coordinates_are_display_precision_only": true,
+    "stage": "pre_snap_castellation",
+    "scale_verified": false,
+    "CFD_accepted": false,
+    "manufacturing_authorized": false
+  },
+  "pause": {
+    "requested_at_UTC": "2026-10-22T19:36:28.126660+00:00",
+    "request_receipt_sha256": "50d8adfaae49cd38ea711f26c351cdd528d52ff9f621ed73e24aad04b3f6f7ca",
+    "owned_mesh_processes_absent": true,
+    "automatic_resume_allowed": false
+  },
+  "private_archives": {
+    "hex-serial": {
+      "archive_sha256": "fb9e6be0eace8d3441d042a84e2cdf0b4ce521b2a25c41490298bdf060f55d6d",
+      "archive_bytes": 334215657,
+      "manifest_sha256": "1c2e1caef7932956c0f3b56e8182d1e30b34212dee23e42e00e5dda4f9372936",
+      "payloads": 87
+    },
+    "parallel-snap": {
+      "archive_sha256": "1ac2f47c521393ef37571061fe6347a792d61f000a23018478fef147c39a020e",
+      "archive_bytes": 684496631,
+      "manifest_sha256": "404e223c52622c2853b06e4e167516cfd87556240cc15bd442cc88bb9761b94c",
+      "payloads": 97
+    },
+    "hex-wall-review": {
+      "archive_sha256": "f1179d46548c61754fe2e52d1fccfb6e493429f10cefacb4e561542ad24b94be",
+      "archive_bytes": 72653863,
+      "manifest_sha256": "dfdd72c6a6d5f4d23e3665183218b61406c9d5e36e85e6a4e9768632cca7f9d8",
+      "payloads": 15
+    },
+    "parallel-snap-pause": {
+      "archive_sha256": "5911b459b24f5ee72ee1a3417070b50de958d987964211c9751e50b3f1a7311f",
+      "archive_bytes": 15187,
+      "manifest_sha256": "3502b40c7579862a0b0e0cc52896afe1ac0123ced4b784f2f961167ec72fa171",
+      "case_files": 69,
+      "new_payloads": 5,
+      "reused_parent_files": 64
+    }
+  },
+  "scope": {
+    "scale_verified": false,
+    "interfaces_verified": false,
+    "historical_installation_verified": false,
+    "current_geometry_CFD_accepted": false,
+    "manufacturing_authorized": false,
+    "physical_validation": false,
+    "full_system_goal_complete": false,
+    "new_paid_instance_created": false
+  }
+}

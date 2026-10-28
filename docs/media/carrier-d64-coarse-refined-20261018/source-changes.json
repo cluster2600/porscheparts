@@ -1,0 +1,27 @@
+{
+  "original_source": "work/carrier-d64-coarse-refined-FEA-figure-preparation-002/figure.py",
+  "original_sha256": "9de7dc97fd4707ba177e6d1d2dbbd495f2f76e92612c8ec193c9b446edfc4418",
+  "new_sha256": "dc9b54af6f504d6d65a44dfccebde6ef6b79b96a02f86f054a31ce277fe0e98f",
+  "replacements": [
+    {
+      "before": "norms=[colors.Normalize(0,vm_scale),colors.Normalize(0,u_scale)];cmap=plt.get_cmap('viridis');checks=[]",
+      "after": "norms=[colors.Normalize(0,vm_scale),colors.Normalize(0,u_scale)];cmap=plt.get_cmap('viridis');checks=[];first_peak_labels=[]"
+    },
+    {
+      "before": "                    ax.annotate('Global IP peak',marker[0],xytext=(-12,-26) if col==0 else (12,-26),ha='right' if col==0 else 'left',textcoords='offset points',fontsize=8,color='#9A491E',arrowprops=dict(arrowstyle='-',color='#D47732'))",
+      "after": "                    annotation=ax.annotate('Global IP peak',marker[0],xytext=(0.70,0.80) if col==0 else (12,-26),ha='right' if col==0 else 'left',textcoords='axes fraction' if col==0 else 'offset points',fontsize=8,color='#9A491E',arrowprops=dict(arrowstyle='-',color='#D47732'))\n                    if col==0:first_peak_labels.append((ax,annotation))"
+    },
+    {
+      "before": "    loaded={str(Path(m.__file__).resolve())for n,m in list(sys.modules.items())if n.split('.')[0]in ['numpy','matplotlib','PIL']and getattr(m,'__file__',None)and Path(m.__file__).is_file()}",
+      "after": "    # Display-only validation at the existing PNG export resolution; no field criterion.\n    fig.set_dpi(180);fig.canvas.draw();layout_renderer=fig.canvas.get_renderer();first_label_layout=[]\n    for axis,annotation in first_peak_labels:\n        box=annotation.get_window_extent(layout_renderer);axes_box=axis.get_window_extent(layout_renderer)\n        inside=axes_box.x0<=box.x0<=box.x1<=axes_box.x1 and axes_box.y0<=box.y0<=box.y1<=axes_box.y1\n        require(inside,'First global-peak callout leaves its own axes')\n        first_label_layout.append(dict(textcoords='axes fraction',xytext=[0.70,0.80],ha='right',PNG_DPI=180,text_and_arrow_bbox_pixels=list(box.extents),axes_bbox_pixels=list(axes_box.extents),inside_own_axes=bool(inside)))\n    require(len(first_label_layout)==len(cases[0]['summary']['all_global_IP_ties']),'First-case callout check incomplete')\n    loaded={str(Path(m.__file__).resolve())for n,m in list(sys.modules.items())if n.split('.')[0]in ['numpy','matplotlib','PIL']and getattr(m,'__file__',None)and Path(m.__file__).is_file()}"
+    },
+    {
+      "before": "global_maxima=[c['summary']for c in cases],all_faces_used=True",
+      "after": "global_maxima=[c['summary']for c in cases],first_column_callout_layout=first_label_layout,all_faces_used=True"
+    }
+  ],
+  "whole_literal_inverse": true,
+  "only_first_whole_view_peak_callout_position_and_display_bbox_check_changed": true,
+  "existing_PNG_export_DPI_unchanged": 180,
+  "field_math_camera_scales_crops_unchanged": true
+}

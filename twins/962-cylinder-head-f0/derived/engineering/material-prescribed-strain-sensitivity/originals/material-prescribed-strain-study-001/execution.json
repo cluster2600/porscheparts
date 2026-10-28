@@ -1,0 +1,41 @@
+{
+  "schema": "962-material-prescribed-strain-execution-capture/v1",
+  "status": "ONE_AUTHORIZED_DIRECT_LOCAL_CALL_COMPLETED",
+  "qualification": false,
+  "author_and_operator": "/root/material_publication",
+  "authority": "Root explicitly authorized source authoring and one direct local stdlib-only 25-point calculation; independent arithmetic review remains separate.",
+  "working_directory": "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/material-prescribed-strain-study-001",
+  "command": "env OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 VECLIB_MAXIMUM_THREADS=1 NUMEXPR_NUM_THREADS=1 /Users/maxime/.codex/worktrees/962-watercooled-head/3dprinting993/work/962-head/check-venv/bin/python -B -I -S calculate.py > stdout.log 2> stderr.log",
+  "invocation_count": 1,
+  "raw_tool_result": {
+    "chunk_id": "0c5986",
+    "wall_time_seconds": 0.000007667,
+    "exit_code": 0,
+    "original_token_count": 0,
+    "output": ""
+  },
+  "captures": [
+    {
+      "path": "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/material-prescribed-strain-study-001/stdout.log",
+      "sha256": "66e46a00cff78fe62e8221ef2a4440a90af9518779356b9f822ded8177f6bc8b",
+      "bytes": 3536,
+      "complete": true
+    },
+    {
+      "path": "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/material-prescribed-strain-study-001/stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "complete": true
+    }
+  ],
+  "timing": {
+    "started_utc": "2026-10-21T05:03:47.125145+00:00",
+    "finished_utc": "2026-10-21T05:03:47.126540+00:00",
+    "source_reported_main_elapsed_monotonic_ns": 1399417,
+    "scope": "Source monotonic timer covers main calculation, named pin checks and output writes; it excludes interpreter startup/imports and later capture/note sealing. Tool wall_time_seconds is its own tool-reported wait scope. Neither is a benchmark."
+  },
+  "source_input_runtime_pin_record": "Complete before/after pins and selected Python3.12.11 -B -I -S metadata are preserved in stdout.log.",
+  "operation_limits": "20-second in-process SIGALRM; one-thread environment settings; no solver, child process, process query, mesh or field body access.",
+  "unchanged": "Production alloy and qualified card remain null; no CP1/HT1/CuCrZr/material-card, geometry, PUB or Git changes. Missing properties remain null. No mechanical/head/physical/LPBF/Phase5 acceptance.",
+  "independent_result_review": false
+}

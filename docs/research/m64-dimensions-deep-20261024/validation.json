@@ -1,0 +1,107 @@
+{
+  "reviewed_on": "2026-10-24",
+  "status": "research_and_training_checks_passed_with_documented_global_check_omission",
+  "checks": [
+    {
+      "command": "python scripts/validate_sources.py",
+      "result": "passed",
+      "canonical_source_records": 580,
+      "log_sha256": "53da28e188ea1d85bdb0fc1618a8d2baaf98a145d46073fe7bea26e7bbdcff46"
+    },
+    {
+      "command": "python scripts/check_doc_links.py --strict",
+      "result": "passed",
+      "markdown_files": 1826,
+      "broken_relative_links": 0,
+      "historical_links_rechecked_live": false,
+      "log_sha256": "9f60c2dbe4932581a3e344f8a3bdc6db0832b9608c7d69cc4e2730eaaec5f8b4"
+    },
+    {
+      "command": "python training/m64-dimensions-deep-20261024/verify.py",
+      "result": "passed",
+      "cpt_rows": 40,
+      "sft_rows": 40,
+      "partitions_each": {
+        "train": 40,
+        "valid": 0,
+        "test": 0
+      },
+      "excluded": 9,
+      "all_four_prior_partitions_preserved": true,
+      "log_sha256": "5effaf08d1539355a0f2394059cff7b447655f1c2b9d062a4abd8a7c01abb0e5"
+    },
+    {
+      "command": "python training/m64-dimensions-deep-20261024/test_verify.py",
+      "result": "passed",
+      "tests": 23,
+      "log_sha256": "c22375a6246103783fb4f2b59449a3ca045709ae02b8427b7a0cc9f742cd975f"
+    },
+    {
+      "command": "python training/993-turbo-20261002/verify.py",
+      "result": "passed; frozen pack unchanged",
+      "log_sha256": "8947124e511bf2d3bc8c16b9c807573138e52c1643bf3888332b6b22725f50f3"
+    },
+    {
+      "command": "python training/mezger-turbo-materials-20261003/verify.py",
+      "result": "passed; frozen pack unchanged",
+      "log_sha256": "45107a20c8a577bc46c21a8070e00b8bd0e2b0ad7e45d7a5a4cfcc2941608bc1"
+    },
+    {
+      "command": "python training/mezger-german-sources-20261003/verify.py",
+      "result": "passed; frozen pack unchanged",
+      "log_sha256": "7746873b5886578e195ef9619bbc83290bcd4e0fa59c697e6335e6b642db12be"
+    },
+    {
+      "command": "python training/m64-measurements-20261024/verify.py",
+      "result": "passed; frozen pack unchanged",
+      "log_sha256": "7f570998e266fcb8fe6758c4eaa7abafad9c06a20eed8db1ce1f285988eef7b3"
+    },
+    {
+      "command": "make -o 917-manufacturing-f37-lpbf-audit-check check (umask022; bytecode writes disabled; task-local KiCad standard library tables)",
+      "checked_base_commit": "9b89e7f693e638b12e85e5d91a37f4c1690da35c",
+      "result": "passed; all other targets required by make check included",
+      "tests": 4858,
+      "skipped_tests": 274,
+      "omitted_target": "917-manufacturing-f37-lpbf-audit-check",
+      "log_sha256": "6cd555f88433c43d976389b70fc1d8f20aa016fe894e8382abb3c9e188d11a34"
+    },
+    {
+      "command": "Independent source/data review, capture/reference closure, frozen hashes, privacy scan and git diff --cached --check",
+      "result": "passed",
+      "records": 49,
+      "accepted_records": 40,
+      "excluded_records": 9,
+      "canonical_sources": 20,
+      "reviewed_capture_representations": 31,
+      "unique_frozen_baseline_files_unchanged": 664,
+      "prior_training_subset_files_unchanged": 65,
+      "full_valve_discrepancy_objects_preserved": true,
+      "review_report": "review.json",
+      "review_report_sha256": "2b5fa146d93a8f1c1f4d4af375a8e773f87d0711fdf76fc1bdf40e4950f92aa3",
+      "physical_measurements_performed": false,
+      "raw_or_private_content_published": false
+    }
+  ],
+  "known_omitted_check": {
+    "target": "917-manufacturing-f37-lpbf-audit-check",
+    "result": "not_rerun_in_this_increment",
+    "reason": "The unchanged pinned Docker image failed to register a layer with no space left on device in the preceding increment; storage/runtime configuration was not changed.",
+    "prior_receipt": "docs/research/m64-measurements-20261024/validation.json",
+    "full_unmodified_make_check_claimed_passed": false,
+    "unrelated_image_or_volume_pruning_performed": false
+  },
+  "publication_scope": {
+    "records": 49,
+    "accepted": 40,
+    "qualified": 39,
+    "uncertainty": 1,
+    "excluded": 9,
+    "new_source_records": 17,
+    "sources_linked": 20,
+    "canonical_source_total": 580,
+    "cpt_rows": 40,
+    "sft_rows": 40,
+    "new_model_training_executed": false,
+    "raw_source_documents_published": false
+  }
+}

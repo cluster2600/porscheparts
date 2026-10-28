@@ -1,0 +1,60 @@
+{
+  "rows": [
+    {
+      "label": "Coarse T10",
+      "elements": 343283,
+      "nodes": 656577,
+      "order": 10,
+      "displacement_max_mm": 2.491741357094522,
+      "compliance_Nmm": 20284.900841880135,
+      "global_peak_VM_MPa": 1152.4041554617093,
+      "volume_weighted_p95_VM_MPa": 179.42780217386462,
+      "central_peak_VM_MPa": 716.8369751275475,
+      "central_volume_weighted_p95_VM_MPa": 190.47493914600634,
+      "volume_mm3": 293718.3382924734,
+      "independent_energy_relative_residual": 5.60926185661417e-09,
+      "central_exclusion_does_not_qualify_global_peak": true
+    },
+    {
+      "label": "Interior fan T10",
+      "elements": 1373132,
+      "nodes": 2372992,
+      "order": 10,
+      "displacement_max_mm": 2.4932674356528244,
+      "compliance_Nmm": 20299.518076644137,
+      "global_peak_VM_MPa": 1568.7347699977233,
+      "volume_weighted_p95_VM_MPa": 179.5642906379023,
+      "central_peak_VM_MPa": 902.5116710751058,
+      "central_volume_weighted_p95_VM_MPa": 189.54874233492143,
+      "volume_mm3": 293718.33829247346,
+      "independent_energy_relative_residual": 6.478811448605388e-09,
+      "central_exclusion_does_not_qualify_global_peak": true
+    }
+  ],
+  "comparisons": [
+    {
+      "left": "Coarse T10",
+      "right": "Interior fan T10",
+      "relative_change_using_finer_denominator": {
+        "displacement_max_mm": 0.0006120797698954598,
+        "compliance_Nmm": 0.0007200779205108444,
+        "global_peak_VM_MPa": 0.26539260969948303,
+        "volume_weighted_p95_VM_MPa": 0.0007601091706642089,
+        "central_peak_VM_MPa": 0.20573107462020482,
+        "central_volume_weighted_p95_VM_MPa": 0.0048863252780035425
+      },
+      "within_limits": false
+    }
+  ],
+  "convergence_demonstrated": false,
+  "source_sha256": {
+    "work/carrier-convergence-20261022/P2-comparison-inputs.json": "72b86be3ce280a2e63ff72b01eb7a5ff4ca8aea76e64077b35bfdcf2956c087b",
+    "/Users/maxime/.codex/worktrees/993-carrier-revalidation/3dprinting993/parts/993-eng-carrier-0001/source/design-20261016/convergence-20261022/compare_accepted_fields.py": "7054ee03206f6e74854fecd4d877e846fb32e2f16e060162cfe937e229b2b566",
+    "work/carrier-convergence-20261022/h0-P2-native-001-assessment-001/assessment.json": "28a9e75d2fc9b66f56add949b68b12ff30c91208c5b275ba2332ec276bce320c",
+    "work/carrier-convergence-20261022/h0-P2-native-001-assessment-001/results.npz": "66b27de792519ce110cc708748f30935f42856496bd5900cfd08de46c2621834",
+    "work/carrier-resume-20261020/meshlib-R2-matched-traction-001/P2/transport.npz": "2ca7e6ee4cec45516e3f3f4b3773d262bb8ce10d42712afc8143cf098d22096e",
+    "work/carrier-convergence-20261022/fan-P2-serial-all-002-assessment-001/assessment.json": "4ba150dc0ce3b9041823515d09b1270f6588d7c852c78cd7c50fcda1d8b5dfb3",
+    "work/carrier-convergence-20261022/fan-P2-serial-all-002-assessment-001/results.npz": "abe9cc8edfb461a32fd1c797836e7883550a01a2d92be3fa23c791e593f0054d",
+    "work/carrier-convergence-20261022/fan-matched-traction-001/P2/transport.npz": "0c780bf1c44371ef5d7ac56c7aef4f234dd5f279bf65cf28e8f7b53afc365a92"
+  }
+}

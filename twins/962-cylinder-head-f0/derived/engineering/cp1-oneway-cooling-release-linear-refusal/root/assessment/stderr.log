@@ -1,0 +1,14 @@
+Traceback (most recent call last):
+  File "work/962-engineering/cp1-oneway-cooling-release-linear-assessor-prep-001/assess.py", line 646, in <module>
+    args = parser.parse_args(); assess(args.contract, args.contract_sha256)
+                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "work/962-engineering/cp1-oneway-cooling-release-linear-assessor-prep-001/assess.py", line 625, in assess
+    result = assess_data(native, transfer, ROOT / 'work/962-engineering/cp1-assumed-thermal-birth-linear-001', json.loads((SOURCE_CASE / 'thermal-input-index.json').read_text()), c['exodus_family'], policy)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "work/962-engineering/cp1-oneway-cooling-release-linear-assessor-prep-001/assess.py", line 520, in assess_data
+    audit.close(math.fsum(v[j] for v in force_rows), 0., 'force_N')
+  File "work/962-engineering/cp1-oneway-cooling-release-linear-assessor-prep-001/assess.py", line 151, in close
+    need(error <= self.policy[unit], unit + ' fixed absolute SI gate failed: ' + repr(error))
+  File "work/962-engineering/cp1-oneway-cooling-release-linear-assessor-prep-001/assess.py", line 35, in need
+    raise ValueError(message)
+ValueError: force_N fixed absolute SI gate failed: 1.965162169881296e-06

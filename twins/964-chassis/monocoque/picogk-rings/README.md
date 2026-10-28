@@ -2,8 +2,8 @@
 
 > [!CAUTION]
 > **Study geometry, not a part.** The monocoque is
-> `prohibited_pending_engineering` ([SAFETY.md](../../../../SAFETY.md)); the
-> [roadmap](../../../../ROADMAP.md#composite-monocoque-study-only) opens it as a
+> `prohibited_pending_engineering` ([SAFETY.md](../../../../docs/SAFETY.md)); the
+> [roadmap](../../../../docs/ROADMAP.md#composite-monocoque-study-only) opens it as a
 > study only. Nothing here is a ZESAD geometry, a layup, a mould or anything to
 > manufacture. Sections, wall thicknesses and member positions are
 > assumptions; crashworthiness is not addressed.
@@ -94,17 +94,20 @@ compare with, and no 964 body-in-white mass is recorded in the repository.
   is carried yet: suspension, engine and gearbox mounts, door hinges, seat and
   belt anchorages, glass bonding flanges.
 - Stiffness, on a shell-and-beam model of these members with the open
-  shell's load case (`../source/torsion_rings.py`): with the tubes bonded
-  to the skin over a 40 mm strip (ASSUMED), K 38,630 N·m/deg in the assumed
-  CFRP layup (73 kg, converged on the two finer meshes), 6 to 8 times the
-  same model without its tubes. The result hinges on the bond: from 23,665
-  (single-node ties, a lower bound) to 57,508 (60 mm strip, an upper bound,
+  shell's load case (`../source/torsion_rings.py`, S6 shells since
+  2026-10-12): with the tubes bonded to the skin over a 40 mm strip
+  (ASSUMED), K 21,409 N·m/deg in the assumed CFRP layup (72 kg) on the
+  finest mesh, still +14% on the last refinement, 17 to 21 times the same
+  model without its tubes. The result hinges on the bond: from 12,301
+  (single-node ties, a lower bound) to 33,972 (60 mm strip, an upper bound,
   since a beam's section cannot ovalize). Against the skin-formed boxes of
-  `../picogk/` (35,462), the ranking is not settled. With the tubes meshed
+  `../picogk/` (19,900), the ranking is not settled. (In S3, superseded:
+  38,630, 23,665 to 57,508, and 35,462 for the boxes.) With the tubes meshed
   as shells and bonded along their line of tangency
-  (`../source/torsion_shell_tubes.py`), K is 25,895 on the finest mesh and
-  still falling: the skin between the tubes stays open. The skin boxes lead
-  there by ×1.18 per kg. See
+  (`../source/torsion_shell_tubes.py`), S3 had given 25,895 on the finest
+  mesh, still falling, and the skin boxes ahead by ×1.18 per kg; that is
+  withdrawn and not yet redone in S6, which needs more than the 6 GB this
+  host allows. See
   [two architectures, one load case](../README.md#two-architectures-one-load-case).
 - No layup: the 2 mm skin and 3 mm walls are placeholders, not plies.
 - No crash, strength, buckling, fatigue or delamination assessment.

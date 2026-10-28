@@ -1,0 +1,39 @@
+{
+  "schema": "962-observer003-host-check-exact-input-delta/v1",
+  "original_RICH2_input": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-prep-001/thermoelastic-birth.i",
+    "sha256": "6ab5e130c4a89d67a0f200dafa2032d731009db371028aa1ec66a9403ddff031",
+    "bytes": 14878
+  },
+  "held_candidate": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer003-host-registration-check-prep-001/thermoelastic-birth-observer-registration.i",
+    "sha256": "af8e25dc6edfea8da24321b032dca6e46cf9ea59aa927b46a7c40de1b210fd1d",
+    "bytes": 15537
+  },
+  "original_bytes_reconstructed_exactly_after_only_declared_removals": true,
+  "new_Problem_lines": [
+    "  register_objects_from = CouponEnd181ObserverApp",
+    "  library_path = '/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/cp1-oneway-cooling-release-richardson2-END181-dof-map-observer-prep-003/build-005'",
+    "  library_name = libcoupon_end181_observer-opt.la"
+  ],
+  "original_Problem_material_coverage_check_unchanged": true,
+  "passive_options_only": {
+    "iname_before": "  petsc_options_iname = '-ksp_type -pc_type -snes_norm_schedule -ksp_richardson_scale -ksp_richardson_self_scale -ksp_norm_type -ksp_convergence_test -ksp_max_it'",
+    "iname_after": "  petsc_options_iname = '-ksp_type -pc_type -snes_norm_schedule -ksp_richardson_scale -ksp_richardson_self_scale -ksp_norm_type -ksp_convergence_test -ksp_max_it -snes_monitor_solution -snes_monitor_residual -snes_monitor_solution_update'",
+    "values_before": "  petsc_options_value = 'richardson lu always 1 false unpreconditioned skip 2'",
+    "values_after": "  petsc_options_value = 'richardson lu always 1 false unpreconditioned skip 2 binary:physical-X.petsc::append binary:physical-F.petsc::append binary:physical-Y.petsc::append'"
+  },
+  "added_output_only": [
+    "  [rich2_END181_dof_map]",
+    "    type = CouponEnd181DofMap",
+    "    file_base = rich2-END181-dof-map",
+    "    execute_on = TIMESTEP_END",
+    "    start_step = 181",
+    "    end_step = 181",
+    "    use_displaced = false",
+    "  []"
+  ],
+  "existing_physics_solver_controls_masks_materials_functions_original_outputs_preserved": true,
+  "old_END181_or_saved_fields_or_data_files_modified": false,
+  "HIT_parser_or_host_not_executed": true
+}

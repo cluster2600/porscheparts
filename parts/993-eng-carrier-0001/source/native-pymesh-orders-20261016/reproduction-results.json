@@ -1,0 +1,115 @@
+{
+  "schema": "explicit-pymesh-orders-witness-v1",
+  "status": "passed",
+  "witness_scope": "Overlapping closed positive triangular prism soup, mask intersection and middle slab subtraction; no real carrier.",
+  "orders": [
+    {
+      "order": "mask-first",
+      "volume_mm3": 3200.0,
+      "vertices": 26,
+      "faces": 44,
+      "boundary_edges": 0,
+      "nonmanifold_edges": 0,
+      "occupancy_points": [
+        [
+          2.0,
+          2.0,
+          4.0
+        ],
+        [
+          2.0,
+          2.0,
+          9.0
+        ],
+        [
+          2.0,
+          2.0,
+          10.0
+        ],
+        [
+          2.0,
+          2.0,
+          11.0
+        ],
+        [
+          2.0,
+          2.0,
+          16.0
+        ]
+      ],
+      "winding_number": [
+        1.0000000000000004,
+        -7.383416794626285e-17,
+        -6.613633252161577e-17,
+        -1.0782390605368342e-16,
+        1.0000000000000002
+      ],
+      "expected_inside": [
+        true,
+        false,
+        false,
+        false,
+        true
+      ],
+      "pass": true,
+      "native_receipt_sha256": "0937bea55469ef8c782e538b83a6914d8dc993f821c221ef0f1fe14c0f8a3348",
+      "execution_receipt_sha256": "ce31350dfe0a828f398bf8378737642a4931df7b530fd590cfc5c049b7e0e26f"
+    },
+    {
+      "order": "difference-first",
+      "volume_mm3": 3200.0,
+      "vertices": 23,
+      "faces": 38,
+      "boundary_edges": 0,
+      "nonmanifold_edges": 0,
+      "occupancy_points": [
+        [
+          2.0,
+          2.0,
+          4.0
+        ],
+        [
+          2.0,
+          2.0,
+          9.0
+        ],
+        [
+          2.0,
+          2.0,
+          10.0
+        ],
+        [
+          2.0,
+          2.0,
+          11.0
+        ],
+        [
+          2.0,
+          2.0,
+          16.0
+        ]
+      ],
+      "winding_number": [
+        1.0000000000000002,
+        -6.516055056637882e-17,
+        -9.562663161322149e-17,
+        -5.4047478298402396e-17,
+        1.0000000000000002
+      ],
+      "expected_inside": [
+        true,
+        false,
+        false,
+        false,
+        true
+      ],
+      "pass": true,
+      "native_receipt_sha256": "57f97cc6b934ed68cf2d7e718beba3294c4ba7c16cfd8460dd17093a22effa0d",
+      "execution_receipt_sha256": "425cfd06c05932c6366820e73112e8c56e75d1493deae5127bd9199ad8ef41f7"
+    }
+  ],
+  "source_files_sha256": {
+    "run.py": "de284991f70eb5732a8fa54573c7943ed03648c64f2a01fc17b096f8ac599604",
+    "setup.py": "18d50ef3a4fab44eddd47de0b4d80fad92bf46e98e370ad0df297fd7dc79e755"
+  }
+}

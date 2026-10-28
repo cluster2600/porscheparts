@@ -1,0 +1,196 @@
+{
+  "status": "part_layers_completed",
+  "scope": "Complete part-only native layer cache and audits; no support vectors generated or reused.",
+  "input_STL_sha256": "443b5ae20f7f1b2fd19a210aa5347890086523bc66749dfc95fa3560b85e9a6e",
+  "meshing_identity_sha256": "92bd2a6d020b9d24ea01a327a77200a548dadbe813c73b3de41c314907b60dcc",
+  "cache_source_sha256": "61fcc827bb5e459dc4ced9af26f89232918870e59d5e95e745296106c2219d40",
+  "targeted_tests": {
+    "count": 9,
+    "status": "passed",
+    "source_sha256": "7c28c3858ef83b1a9492260d6ae0de6a729aacffc033eac4548ea8a136edff2f",
+    "log_sha256": "ff74ca6979b593f0811e3f57b64ec4711e6bfd6cccdd42f2a498d4d470fd94a7"
+  },
+  "n_layers": 1034,
+  "part_nonempty_layers": 866,
+  "part_hatch_segments": 9339852,
+  "part_scan_contour_segments": 11507777,
+  "part_parameters": {
+    "rotation_degrees_xyz": [
+      0,
+      0,
+      45
+    ],
+    "support_gap_mm": 10.0,
+    "layer_height_mm": 0.06,
+    "hatch_distance_mm": 0.08,
+    "hatch_angle_degrees": 45.0,
+    "spot_compensation_mm": 0.08,
+    "contour_offset_mm": 0.08,
+    "hatch_volume_offset_mm": 0.08,
+    "inner_contours": 1,
+    "outer_contours": 1
+  },
+  "part_parameters_sha256": "bd951e34b08b90b85e7219dd842049a7ba17e58c4873c2e4549b41adf760fcfa",
+  "part_pose_and_arrays": {
+    "rotation_degrees_xyz": [
+      0.0,
+      0.0,
+      45.0
+    ],
+    "origin_mm": [
+      0.0,
+      0.0,
+      32.0
+    ],
+    "scale_factor": [
+      1.0,
+      1.0,
+      1.0
+    ],
+    "transform": [
+      [
+        0.7071067811865476,
+        -0.7071067811865475,
+        0.0,
+        0.0
+      ],
+      [
+        0.7071067811865475,
+        0.7071067811865476,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        1.0,
+        32.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "bounds_mm": [
+      [
+        -225.56706319850866,
+        -225.56706319850863,
+        10.0
+      ],
+      [
+        225.56706319850866,
+        225.56706319850863,
+        62.0
+      ]
+    ],
+    "vertices": {
+      "dtype": "<f8",
+      "shape": [
+        293660,
+        3
+      ],
+      "sha256": "6f4f3667e17786b9f2e6224c4b82c415612282544743be994063679c344fc3d3"
+    },
+    "faces": {
+      "dtype": "<i8",
+      "shape": [
+        587404,
+        3
+      ],
+      "sha256": "3e609ab43ef8b5af2b5ec4e36efa971a0a5c220c20aa43de5917989037d0a2db"
+    }
+  },
+  "runtime_versions": {
+    "python": "3.11.15",
+    "machine": "arm64",
+    "packages": {
+      "PythonSLM": "0.6.1",
+      "numpy": "1.26.4",
+      "trimesh": "5.1.1",
+      "shapely": "2.2.0",
+      "pyclipr": "0.1.8",
+      "scipy": "1.17.1",
+      "networkx": "3.6.1",
+      "rtree": "1.4.1"
+    },
+    "GEOS_version": "3.14.1"
+  },
+  "frozen_dependency_file_count": 775,
+  "critical_source_and_native_sha256": {
+    "cache/part_cache.py": "61fcc827bb5e459dc4ced9af26f89232918870e59d5e95e745296106c2219d40",
+    "builder/build_pyslm.py": "418482002d75e4b160f5837fdef91042fc63c3c1c85750a20d5359c53018e01f",
+    "slicing/parallel_layers.py": "e19d3a2dad3dd2cf00b176d2f24035f2664a37c2c0d0f11eadeb12e85cb29f12",
+    "slicing/layers.py": "3158d0a9f5e3ef4be149d54b0f2050fdebbb280045c2798959d51199d05d6d6b",
+    "audit/audit_scanpaths.py": "b2cdc6b9491c33079d24b693c6fc496d1517d410ab493b574c6acb2cc4f3c992",
+    "runtime/numpy/.dylibs/libopenblas64_.0.dylib": "dde2b735d01caa531885115ea853b5a4172b935167b95a1acb2a10243e0d97e7",
+    "runtime/numpy/_core/_multiarray_umath.py": "54fb684f6b879f2537aca2f41b6ec28263660755911ccd26b5ced8f4bf390b75",
+    "runtime/numpy/core/_multiarray_umath.cpython-311-darwin.so": "6a88945aed63a76e3c57076d657d704eef5d0d1e8d6cb1576724b1deb2872e44",
+    "runtime/shapely/.dylibs/libgeos.3.14.1.dylib": "032ed33655a02fb281ffc56db46626664c4827cecf7b99df1c1375d0988133d1",
+    "runtime/shapely/.dylibs/libgeos_c.1.20.5.dylib": "6a1886cf6bd5b6decb596429479a8846b117578528f59e29681547e728e28b18",
+    "runtime/pyclipr/pyclipr.cpython-311-darwin.so": "c81fc6864b1335f0dd90ef6dfe5c6c5c94013b32da13b16db98dec1087c5b4bf",
+    "runtime/pyslm/__init__.py": "50b2c90f080a8ab486bb83fa60726f6b934bf1f350cf9c81980843bdee27532d",
+    "runtime/pyslm/core.py": "31ff64f9c3fab909098057a13faa653b8e4ac42a619ab7bff9d57e160fa62532",
+    "runtime/pyslm/hatching/__init__.py": "000bce8c6635e4f536526de59da5a8305dbbe63d03e88cb2dd06d2d7205c880d",
+    "runtime/pyslm/hatching/hatching.py": "e1de0807d991feaf0d5cdf68f99bb50950708617c7d4119679c381460757dff8",
+    "runtime/pyslm/hatching/islandHatcher.py": "c849266d9d7a94b62a578233a003e356ef20bfe3a4abb55991e0272864bd15e2",
+    "runtime/pyslm/hatching/sorting.py": "5dd3e04fa0df9cdcd1998cf068d9ce0ccf53546b346a0a8062f0f51ab6e14778",
+    "runtime/pyslm/hatching/utils.py": "44ac4c7ce46b8b6f1b5b6b5ce2a24f48d19f0d5f7d602954312e1f844b9c0342",
+    "runtime/pyslm/geometry/__init__.py": "3264c0deb1df77f2397c1f6a581ce446f7b0c347eec38d7e5d2c9e0778418e37",
+    "runtime/pyslm/geometry/geometry.py": "c05cbc060dd8066101dcea254ffefee559c8adadfc1d7b49ee10a96de607320d",
+    "runtime/pyslm/geometry/utils.py": "8afd215ddaa5b150dfeeea71d93b0a076e0801affa3fc2c28515199e118afb9d"
+  },
+  "source_and_runtime_unchanged_at_completion": true,
+  "parallel_slicing": {
+    "workers": 4,
+    "maximum_pending_layers": 8,
+    "completed_layers": 1034,
+    "declared_layers": 1034,
+    "worker_group_closed": true,
+    "maximum_individual_worker_ru_maxrss_native_units": 203407360,
+    "ru_maxrss_units": "bytes on macOS; KiB on Linux",
+    "elapsed_seconds": 1097.6693751669955,
+    "layer_order_preserved": true,
+    "worker_BLAS_thread_limit": 1,
+    "scope": "Independent native layer calculations; parent retains support slicing and ordered file publication."
+  },
+  "native_part_scanpath_audit": {
+    "status": "passed",
+    "layers_audited": 1034,
+    "complete_part_audited": true,
+    "outside_hatches": 0,
+    "outside_contours": 0,
+    "zero_segments": 0,
+    "exact_duplicates": 0,
+    "criteria": {
+      "outside_segment_count_max": 0,
+      "zero_segments_max": 0,
+      "exact_duplicates_max": 0,
+      "area_relative_tolerance": 1e-10,
+      "area_tolerance_scope": "Double precision reconstruction/CSV comparison only; no buffer or segment-coverage allowance."
+    },
+    "elapsed_seconds": 32.152928959112614
+  },
+  "reader_replay": {
+    "status": "passed",
+    "cache_report_sha256": "0e49500575f0fd83461b2c2ebdc5db5015eea599a25d1c2fbdcdd254e61b63dd",
+    "verification_source_sha256": "b05ef5f3a3d87ecb0384996c1f598852091d82d60d28fcc06d5e110b7631cccf",
+    "reader_source_sha256": "61fcc827bb5e459dc4ced9af26f89232918870e59d5e95e745296106c2219d40",
+    "layers_consumed": 1034,
+    "hatches_recomputed": false,
+    "all_arrays_area_and_order_exact": true,
+    "source_pose_arrays_and_runtime_checked": true,
+    "support_data_reused": false,
+    "elapsed_seconds": 34.117512333905324
+  },
+  "retained_receipts": {
+    "work/carrier-process-20261016/part-layer-cache-001/frozen.json": "b22f169abf54860ce36a21012a55f33a814ba4e016e5cd8155f3ea651028e25f",
+    "work/carrier-process-20261016/part-layer-cache-001/report.json": "0e49500575f0fd83461b2c2ebdc5db5015eea599a25d1c2fbdcdd254e61b63dd",
+    "work/carrier-process-20261016/part-layer-cache-audit-001/assessment.json": "e5e1a629f712ac3a14aeca910012f78ba35194dcdb811bbc8e05021339139430",
+    "work/carrier-process-20261016/part-layer-cache-reuse-001.json": "b733edf7e7238bdf982314c8ea90c9e3c4e48a5ff3970a11f281ba6fe9660cd0",
+    "work/carrier-process-20261016/part-cache-midflight-001.json": "c9cb6795d4cf5627f4ce8a6c7343451c27e9b9b89281a0172da305745dad82b4"
+  },
+  "support_generation_or_reuse": false,
+  "complete_LPBF_preparation": false
+}

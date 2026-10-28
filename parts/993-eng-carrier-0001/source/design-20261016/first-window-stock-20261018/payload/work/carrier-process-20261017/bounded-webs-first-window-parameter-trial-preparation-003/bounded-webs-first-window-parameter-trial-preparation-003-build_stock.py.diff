@@ -1,0 +1,31 @@
+--- parts/993-eng-carrier-0001/source/design-20261016/build_bounded_webs.py
++++ work/carrier-process-20261017/bounded-webs-first-window-parameter-trial-preparation-003/build_stock.py
+@@ -4,7 +4,7 @@
+ from pathlib import Path
+ import sys
+ 
+-SOURCE = Path(__file__).resolve().parent
++SOURCE = Path('/Users/maxime/.codex/worktrees/993-carrier-revalidation/3dprinting993/parts/993-eng-carrier-0001/source/design-20261016')
+ sys.path.insert(0,str(SOURCE.parent/'bionic-20261011/correction-20261013'))
+ import corrected_cad
+ 
+@@ -17,7 +17,7 @@
+     plan_path=SOURCE/'bounded-webs-plan.json'; plan=json.loads(plan_path.read_text())
+     settings=json.loads((SOURCE/'bounded-webs.json').read_text())
+     # The immutable correction builder exposes BASE only to select its CAD module.
+-    corrected_cad.BASE=SOURCE/'normal-builder'
++    corrected_cad.BASE=Path(__file__).resolve().parent/'normal-builder'
+     built=output.parent/(output.name+'-without-sleeves')
+     corrected_cad.build(settings,built)
+     output.mkdir(parents=True,exist_ok=False)
+@@ -50,8 +50,8 @@
+         'original_mass_ceiling_kg':1.2,'original_mass_ceiling_pass':mass<=1.2,'declared_mass_ceiling_kg':1.3,
+         'CAD_valid':True,'solid_count':1,'STEP_readback_volume_match':True,
+         'construction_plan_sha256':corrected_cad.sha(plan_path),'generator_sha256':corrected_cad.sha(__file__),
+-        'source_dependencies_sha256':{str(p.relative_to(SOURCE.parent)):corrected_cad.sha(p) for p in
+-            (SOURCE/'normal-builder/cad.py',SOURCE.parent/'bionic-20261011/cad.py',SOURCE.parent/'bionic-20261011/correction-20261013/corrected_cad.py')},
++        'source_dependencies_sha256':{str(p):corrected_cad.sha(p) for p in
++            (Path(__file__).resolve().parent/'normal-builder/cad.py',SOURCE.parent/'bionic-20261011/cad.py',SOURCE.parent/'bionic-20261011/correction-20261013/corrected_cad.py')},
+         'geometry_sha256':{name:corrected_cad.sha(output/name) for name in ('carrier.step','carrier.stl')},
+         'bounds_mm':[list(box.min),list(box.max)],'manufacturing_authorized':False}
+     (output/'geometry.json').write_text(json.dumps(report,indent=2)+'\n')

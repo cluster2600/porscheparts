@@ -2,7 +2,7 @@
 
 # 993 Turbo catalytic converters (front muffler section), left and right - PET-transcribed identity
 
-**Status: **prohibited pending engineering**. No part is released; see [SAFETY.md](../../SAFETY.md).**
+**Status: **prohibited pending engineering**. No part is released; see [SAFETY.md](../../docs/SAFETY.md).**
 
 Identity-only catalogue record for the two Turbo catalytic converter / front muffler sections, transcribed per-line from the local PET transcriptions: illustration 202-15 (exhaust system, Turbo) position 14 = 993 113 213 57 and position 15 = 993 113 214 57 in the KAT 17 transcription, with position 15 also listed as 993 113 214 58 in the Porsche Classic KAT 517 USA transcription. Same-assembly context transcribed at the same positions: tail pipes (pos 12/13), oxygen sensors 993 606 128 01 (pos 20) and 993 606 127 01 (pos 22), converter cover 993 113 247 51 (pos 19). No dimensions, substrate data, cell counts, pressure drop or geometry are claimed.
 
@@ -64,17 +64,31 @@ Catalogue record: [`catalog/parts/993-exh-cat-converter-pair-pet-0001.json`](../
 | field | value |
 |---|---|
 | source type | estimated |
-| master format | none |
+| master format | PicoGK |
 | units | mm |
 | accuracy (mm) | not recorded |
 
 **Master file**
 
-- none
+- [`parts/picogk-catalog/exhaust/CatConverterPair.cs`](../../parts/picogk-catalog/exhaust/CatConverterPair.cs)
 
 **Derived files**
 
-- none
+- [`parts/993-exh-cat-converter-pair-pet-0001/derived/993-exh-cat-converter-pair-pet-0001-picogk.stl`](../../parts/993-exh-cat-converter-pair-pet-0001/derived/993-exh-cat-converter-pair-pet-0001-picogk.stl)
+
+## Images
+
+![preview](../../parts/993-exh-cat-converter-pair-pet-0001/media/preview.png)
+
+*`parts/993-exh-cat-converter-pair-pet-0001/media/preview.png` — concept CAD block, **not** the original part, not a print file.*
+
+![views](../../parts/993-exh-cat-converter-pair-pet-0001/media/views.png)
+
+*`parts/993-exh-cat-converter-pair-pet-0001/media/views.png` — concept CAD block, **not** the original part, not a print file.*
+
+![photo-concept](../../parts/993-exh-cat-converter-pair-pet-0001/media/photo-concept.png)
+
+*`parts/993-exh-cat-converter-pair-pet-0001/media/photo-concept.png` — AI-generated studio illustration based on the catalogue PicoGK concept preview. Geometry and interfaces remain unmeasured hypotheses; material, finish and generated details are illustrative. Not a photograph of an OEM or manufactured part, or evidence of fit, function or manufacturing.*
 
 ## Provenance and sources
 
@@ -94,7 +108,7 @@ Catalogue record: [`catalog/parts/993-exh-cat-converter-pair-pet-0001.json`](../
 | status | concept |
 | vehicle tested | not recorded |
 | reviewed by |  |
-| limitations | not recorded |
+| limitations | Identity only: no dimensions, substrate volume, cell density, ageing data or pressure drop are carried by the transcription.<br>Position 14 (left) appears only in the KAT 17 transcription; the KAT 517 transcription lists a 993 113 285 00 converter at the naturally aspirated 202-00 illustration, not at 202-15, so the left-hand Turbo number is single-source locally.<br>The -57 versus -58 suffix difference at position 15 is transcribed without asserting a supersession relation.<br>Which of pos 14/15 is left and which is right is not annotated in the local transcription; the assignment to banks is by assembly convention, not by a transcribed field. |
 
 **Evidence**
 

@@ -1,0 +1,127 @@
+{
+  "schema": "962-rawdiag002-six-case-root-saved-result-acceptance/v1",
+  "decision": "ACCEPT_SIX_CASES_ONLY",
+  "raw_status": {
+    "raw_returncode": 0,
+    "timed_out": false,
+    "parent_waited_and_reaped": true,
+    "schema": "962-rawdiag002-six-case-root-execution-result/v1",
+    "started_UTC": "2026-10-21T04:22:52Z",
+    "elapsed_seconds": 0.06375341699458659,
+    "stdout_bytes": 2003,
+    "stderr_bytes": 0,
+    "automatic_retry": false,
+    "accepted_six_analytic_cases": true
+  },
+  "complete_pre_acceptance_census": [
+    {
+      "path": "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native005-raw-displacement-diagnostic002-synthetic-root-execution-001/authorization.json",
+      "sha256": "c5645919f0d30325cb69b522dfd90c7eea21ed15b8ee4b934652e92074a88f24",
+      "bytes": 3352
+    },
+    {
+      "path": "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native005-raw-displacement-diagnostic002-synthetic-root-execution-001/result.json",
+      "sha256": "1ae1cf87e51bdebf3f0d078536d66cb61e8dd1fa2165c813acd31624cde18ce8",
+      "bytes": 343
+    },
+    {
+      "path": "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native005-raw-displacement-diagnostic002-synthetic-root-execution-001/stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native005-raw-displacement-diagnostic002-synthetic-root-execution-001/stdout.json",
+      "sha256": "b746cc097469df835e6c2d29c819662134ac7d1489c325c4d798f7ef501cfd7e",
+      "bytes": 2003
+    }
+  ],
+  "source_records_reverified_after_return": [
+    {
+      "path": "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native005-raw-displacement-diagnostic002-synthetic-prep-001/test_raw_structural_map.py",
+      "sha256": "d8ad5f2b3d6ac7dff9dcbde87dc1f3d1cef45651b5afb04002e08f39203fd820",
+      "bytes": 10382
+    },
+    {
+      "path": "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native005-raw-displacement-diagnostic002-synthetic-prep-001/METHOD.md",
+      "sha256": "5ffbcf427af9bfd830e5b395747f2c7cd7be8a7c08d933dd127ffade1fb31ba2",
+      "bytes": 5660
+    },
+    {
+      "path": "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native005-raw-displacement-diagnostic002-synthetic-prep-001/index.json",
+      "sha256": "533c0ba71d72e5715019f5e5e1a95d7a265c921476d3903d62b658cb3bca24f2",
+      "bytes": 3024
+    },
+    {
+      "path": "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native005-raw-displacement-diagnostic-prep-002/diagnose_raw_displacements.py",
+      "sha256": "57c38236c17d1744c0bb6003621ad99c43e6d4043957bf9e37827621f69a612a",
+      "bytes": 15171
+    },
+    {
+      "path": "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-saved-measurement-parser-prep-002/parse_saved_measurement.py",
+      "sha256": "dfce01d6cd8d7618e0dee794d35a7bb0a56e34ae998facf2dd3f7b9335d4bede",
+      "bytes": 13042
+    }
+  ],
+  "python_body_reverified": {
+    "path": "/Users/maxime/.local/share/uv/python/cpython-3.12.11-macos-aarch64-none/bin/python3.12",
+    "sha256": "1699bf8aa705a8bb71613bef5cdd7d7c8c9d9a188a841f41679aa9b5830b8f60",
+    "bytes": 49968
+  },
+  "all_six_case_outcomes": [
+    {
+      "case": "valid_permuted_map",
+      "detail": {
+        "dt_scaling_independently_verified": false,
+        "global_DOF_permutation_complete": true,
+        "physical_rows_checked": 1275,
+        "placeholder_rows_absent": 425
+      },
+      "status": "PASS"
+    },
+    {
+      "case": "wrong_exact_time",
+      "detail": {
+        "exception_type": "ValueError",
+        "message": "Exact map/Exodus event-time word mismatch"
+      },
+      "status": "PASS"
+    },
+    {
+      "case": "wrong_coordinate",
+      "detail": {
+        "exception_type": "ValueError",
+        "message": "Node coordinate word mismatch across slots/current capture"
+      },
+      "status": "PASS"
+    },
+    {
+      "case": "signed_zero_coordinate",
+      "detail": {
+        "exception_type": "ValueError",
+        "message": "Node coordinate word mismatch across slots/current capture"
+      },
+      "status": "PASS"
+    },
+    {
+      "case": "duplicate_global_DOF",
+      "detail": {
+        "exception_type": "ValueError",
+        "message": "Duplicate/out-of-range global index"
+      },
+      "status": "PASS"
+    },
+    {
+      "case": "missing_physical_DOF",
+      "detail": {
+        "exception_type": "ValueError",
+        "message": "Only placeholder may be absent with null index"
+      },
+      "status": "PASS"
+    }
+  ],
+  "real_data_displacement_comparison_run": false,
+  "strict_dt_scaling_or_field_acceptance": false,
+  "physics_material_manufacturing_qualification": false,
+  "no_automatic_retry": true,
+  "scope": "Actual structural_map with synthetic inputs only; no Vec/CSV/CDF decoding or real-capture comparison."
+}

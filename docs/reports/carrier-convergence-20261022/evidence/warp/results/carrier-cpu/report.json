@@ -1,0 +1,110 @@
+{
+  "status": "passed",
+  "requested_device": "cpu",
+  "gpu_validated": false,
+  "geometry_only": true,
+  "manufacturing_authorized": false,
+  "application_validated": false,
+  "source_sha256": {
+    "benchmarks/warp-geometry/pilot.py": "6561e3348689f31973991f30876e65dd73c723a35cc8f2aa2cc4c8268fe16c36",
+    "benchmarks/warp-geometry/kernels.py": "356d1debf790790887882e7d0a15d91232451113613f4a43e3e909fcb7540baa",
+    "carrier-queries.npz": "f0ce372c9604c6645f603607972b332ebc62b83d961fc854845f38387821976d",
+    "oracle-report.json": "73ce1236c2cd8e8a28260a97213916fa49b789aca7692abee658f1f79837ab4b",
+    "/workspace/carrier-validation-20261022/check_carrier_warp.py": "9f548602a58eb703fddaf6efaed935a45e34077727e5fb8f07f8b639587f9e97"
+  },
+  "cuda_dispatch_completed": false,
+  "actual_device": "cpu",
+  "device_name": "x86_64",
+  "device_arch": 0,
+  "versions": {
+    "python": "3.12.3",
+    "numpy": "2.2.6",
+    "warp": "1.18.0"
+  },
+  "vertices": 609140,
+  "triangles": 1218348,
+  "queries": 65536,
+  "fixed_absolute_error_limit_mm": 0.0001,
+  "maximum_absolute_error_mm": 3.1204344825841446e-05,
+  "checks": [
+    {
+      "passed": true,
+      "max_abs_error_mm": 3.1204344825841446e-05,
+      "rms_abs_error_mm": 3.8083229410203103e-06,
+      "query_miss_count": 0,
+      "invalid_distance_count": 0,
+      "tolerance_mm": 0.0001
+    },
+    {
+      "passed": true,
+      "max_abs_error_mm": 3.1204344825841446e-05,
+      "rms_abs_error_mm": 3.8083229410203103e-06,
+      "query_miss_count": 0,
+      "invalid_distance_count": 0,
+      "tolerance_mm": 0.0001
+    },
+    {
+      "passed": true,
+      "max_abs_error_mm": 3.1204344825841446e-05,
+      "rms_abs_error_mm": 3.8083229410203103e-06,
+      "query_miss_count": 0,
+      "invalid_distance_count": 0,
+      "tolerance_mm": 0.0001
+    },
+    {
+      "passed": true,
+      "max_abs_error_mm": 3.1204344825841446e-05,
+      "rms_abs_error_mm": 3.8083229410203103e-06,
+      "query_miss_count": 0,
+      "invalid_distance_count": 0,
+      "tolerance_mm": 0.0001
+    },
+    {
+      "passed": true,
+      "max_abs_error_mm": 3.1204344825841446e-05,
+      "rms_abs_error_mm": 3.8083229410203103e-06,
+      "query_miss_count": 0,
+      "invalid_distance_count": 0,
+      "tolerance_mm": 0.0001
+    },
+    {
+      "passed": true,
+      "max_abs_error_mm": 3.1204344825841446e-05,
+      "rms_abs_error_mm": 3.8083229410203103e-06,
+      "query_miss_count": 0,
+      "invalid_distance_count": 0,
+      "tolerance_mm": 0.0001
+    }
+  ],
+  "timing": {
+    "cold_full_pipeline_seconds": 2.8056735809659585,
+    "warm_full_pipeline_seconds": [
+      2.4206476799445227,
+      2.4014838949078694,
+      2.2251345979748294,
+      2.2278836970217526,
+      2.353829736006446
+    ],
+    "scope": "fresh mesh/BVH, arrays, transfers, query, synchronization and host readback; cold includes init/JIT; input loading and oracle assessment excluded",
+    "speedup_claimed": false
+  },
+  "output_distances_sha256": "adbdad269aafe0e04fbe43ccc266e5aa042b01523d32f71f9f290f465a6dc0fb",
+  "query_groups": {
+    "random_bounding_box": [
+      0,
+      32768
+    ],
+    "surface_centroids": [
+      32768,
+      49152
+    ],
+    "normal_offsets": [
+      49152,
+      57344
+    ],
+    "nominal_tool_columns": [
+      57344,
+      65536
+    ]
+  }
+}

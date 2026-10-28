@@ -1,0 +1,93 @@
+{
+  "schema": "962-current24-qfnra-toy-transport-source-reuse/v2",
+  "status": "SOURCE002_THREE_FINAL_CHECK_INSERTIONS_UNRUN",
+  "old_helper": {
+    "path": "work/962-engineering/head-star-current24-qfnra-toy-transport-prep-001/check_toy_sessions.py",
+    "sha256": "2a64e7e7c601895d40aeab28d4652dfa3950795d5d16c9c7056d24071b853526",
+    "bytes": 21200
+  },
+  "new_helper": {
+    "path": "work/962-engineering/head-star-current24-qfnra-toy-transport-prep-002/check_toy_sessions.py",
+    "sha256": "76c13fe57d9598276b349e12dedd8bdfb1eff1ec3ad29d4c95a073abc8e6d49a",
+    "bytes": 21489
+  },
+  "production_bytes_added": 289,
+  "insertions": [
+    {
+      "location": "Session.exchange: after complete response transcript, immediately before return",
+      "literal": "        need(time.monotonic()<until,'Query full-return deadline expired after response/transcript capture')\n"
+    },
+    {
+      "location": "Session.close normal: after wait and RC0, immediately before return",
+      "literal": "                need(time.monotonic()<until,'Normal drain full-return deadline expired')\n"
+    },
+    {
+      "location": "Session.close TERM/KILL: after wait, immediately before existing break",
+      "literal": "                need(time.monotonic()<until,'Cleanup %s full-return deadline expired'%name)\n"
+    }
+  ],
+  "full_three_line_inverse_equals_001": true,
+  "imports_text_and_AST_exact": true,
+  "changed_definition_containers": [
+    "Session",
+    "Session.exchange",
+    "Session.close"
+  ],
+  "unchanged_definition_text_and_AST": [
+    "ToyRefusal",
+    "need",
+    "encoded",
+    "load_protocol",
+    "fixed_toys",
+    "Frame",
+    "Frame.__init__",
+    "Frame.feed",
+    "Frame.response",
+    "Capture",
+    "Capture.__init__",
+    "Capture.write",
+    "Capture.record",
+    "Session.__init__",
+    "Session.start",
+    "Session.pump",
+    "Session.finish",
+    "one_model",
+    "run_fixed_toys"
+  ],
+  "unchanged_original_until_assignments": {
+    "exchange": 1,
+    "close": 2
+  },
+  "framing_fixture": {
+    "path": "work/962-engineering/head-star-current24-qfnra-toy-transport-prep-002/test_framing_expectations.py",
+    "sha256": "f01782ee9738c3b39b182dcb0b1d25f81225768189e4a96176d9270a43d0bb25",
+    "bytes": 3998
+  },
+  "framing_fixture_two_binding_inverse_exact": true,
+  "original_five_method_text_and_AST_exact": true,
+  "deadline_fixture": {
+    "path": "work/962-engineering/head-star-current24-qfnra-toy-transport-prep-002/test_deadline_expectations.py",
+    "sha256": "cd94a9dfabcbfb121363d2e11cadea294a8046762f2b5bdde64804053dc692aa",
+    "bytes": 9211
+  },
+  "new_fake_only_method_count": 4,
+  "source_delta": {
+    "path": "work/962-engineering/head-star-current24-qfnra-toy-transport-prep-002/source.diff",
+    "sha256": "474b4c16c268d8fac21b63228d27ade442664716c42f134fdb0b0e8d94838f5f",
+    "bytes": 12087
+  },
+  "all_other_001_bytes_unchanged_after_inverse": true,
+  "original001_edited": false,
+  "policy_change": "Additional late-completion refusals; no claim of all-error behavioral equivalence. Existing cleanup still escalates TERM toKILL only as before; late-stage errors retained.",
+  "source_preparation_checks": [
+    "Literal file reads/writes",
+    "AST parse only",
+    "Full inverse byte equality",
+    "Definition text/AST comparison",
+    "Fixture method census and named input hashes"
+  ],
+  "no_target_module_fragment_compile_import_or_execution": true,
+  "no_process_solver_guard_test_or_runtime_query": true,
+  "no_real_coordinate_coefficient_word_model_calculation": true,
+  "affiliation": "lpbf_linear_refinement authored001 transport,old14 head-kernel donor,method/source peers,row-first sampler and independent499 word-validator. Independent002 source/fixture/root review remains required."
+}

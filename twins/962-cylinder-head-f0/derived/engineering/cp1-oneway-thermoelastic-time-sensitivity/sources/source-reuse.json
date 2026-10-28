@@ -1,0 +1,93 @@
+{
+  "schema": "962-fixed-END-sensitivity-source-reuse/v1",
+  "new_source": {
+    "path": "work/962-engineering/cp1-oneway-thermoelastic-time-sensitivity-prep-001/compare_saved.py",
+    "sha256": "8b2eb2f27492e8b12747d884af7c7f7eb1823643e60f3faae93cfdd7865eafd5",
+    "bytes": 21569
+  },
+  "input_index": {
+    "path": "work/962-engineering/cp1-oneway-thermoelastic-time-sensitivity-prep-001/input-index.json",
+    "sha256": "224e234543a7a4c90cea7e9284cac4883986545cf3497a270cd0da1a5f906567",
+    "bytes": 184745
+  },
+  "donors": [
+    {
+      "path": "work/962-engineering/cp1-oneway-thermoelastic-level1-assessor-prep-001/assess.py",
+      "sha256": "52a705a13cc46aa3fce2a485611129668624ae258134fc26991d3cca080135cb",
+      "bytes": 35926
+    },
+    {
+      "path": "work/962-engineering/cp1-oneway-thermoelastic-assessor-prep-003/assess.py",
+      "sha256": "55f5f9ca281f9752a6dcac28afca8d18f2c12b4759cf06f8c639a1bb3b8a81bd",
+      "bytes": 35907
+    }
+  ],
+  "copied_function_names": [
+    "need",
+    "sha",
+    "bits",
+    "number",
+    "integer",
+    "rows",
+    "tensor",
+    "node_sample"
+  ],
+  "copied_complete_function_source_segments_byte_equal_to_both_donors": true,
+  "copied_function_segment_SHA256": {
+    "need": "4b3a697e0d6c229d054eb933137631f3eec63797433cf8a40cb5f41231911d04",
+    "sha": "8171f0c214b9f69a9cced0f7a9123e61fcaf5ce9eb3c8bb35c29d834f5b23c34",
+    "bits": "3b5437a6d177bfebbd09b3deeb25a7953797a9e9b84798f37d16aece4356ba12",
+    "number": "75564e9353fdeba7c52926a4d4d21864fcc3c98bf4d53741156e08162723c6b7",
+    "integer": "b6335bd7a3c516310c0310ed95f663ebde8bb54fa6abeddb28334f341ad381fa",
+    "rows": "559c289f95417762ad075755e5c485d4fa2c00249b68a0e5c6da6a18a10285fc",
+    "tensor": "741cfdd59e6fc3ea5ab11ebfbf2ff092fc96ce6029a184d05238b66ab4b43b98",
+    "node_sample": "ef65acf09b041d0efeefd45fd54921812e67207677a07dbeb103f59a4216bfb6"
+  },
+  "copied_function_AST_SHA256": {
+    "need": "50c73b0443cfa78614639ae4ee0d07d28a67ecca7324481e1cbb4212f796a592",
+    "sha": "64876ad070ff727704057cef04e9e5d853e4b8b32b9d4c7279c85d7792de09f7",
+    "bits": "22d8680a02818786295c052f19fe1b407f45ae9c7ac014506eadf0a24b2f8772",
+    "number": "7f19ffd50e64d2008083de46cb371164c1281157cd69d7b36189f9a8ce0d0af5",
+    "integer": "3b4afff6be631711351a7311f30d37a232a1634a3f04611d5bef3534cf2e330a",
+    "rows": "4d07df2ad151f7cd4bd162870023fe75625fd7e60991007c3c258c5a6d6de216",
+    "tensor": "37e4a5aeaae6b65b0166815076c0f42691ca69370691e0083b73f3052d3dd654",
+    "node_sample": "07edd4440c43d8c4649c0063dfa2df55ca81d67025cd2db47caac680573e79cd"
+  },
+  "AST_context": {
+    "interpreter": "CPython",
+    "version": "3.9.6",
+    "algorithm": "ast.dump(annotate_fields=True, include_attributes=False), UTF8 SHA256",
+    "cross_version_digest_equivalence_claimed": false,
+    "future_root_same_interpreter_comparative_AST_check_required": true
+  },
+  "new_fixed_case_glue_functions": [
+    "schedule",
+    "saved_maps",
+    "require_same_maps",
+    "qp_rows",
+    "add_difference",
+    "reference_pairs",
+    "load_case",
+    "checked_inputs",
+    "compare",
+    "main"
+  ],
+  "complete_unified_source_delta": {
+    "path": "work/962-engineering/cp1-oneway-thermoelastic-time-sensitivity-prep-001/source.diff",
+    "sha256": "b22f7205d96bcdf109f4e829f19d773e21e5fdabed9383b814ce9c4b9bc721dd",
+    "bytes": 50045
+  },
+  "delta_scope": "New small fixed saved-data caller replacing whole single-case assessor control. Eight reader/helper bodies exact; no old native/CDF/FEM/math functions copied or invoked. Full diff is retained, no claim that whole donor has only literal replacements.",
+  "six_UNRUN_guard_methods": [
+    "test_source_exact_helper_reuse_and_finite_unrun_index",
+    "test_exact_prescribed_step_pair_schedule_and_birth_split",
+    "test_exact_ID_corner_QP_and_signed_zero_map_refusals",
+    "test_unchanged_native_doublet_protocol_rejects_missing_triple_and_token_drift",
+    "test_saved_QP_glue_joins_all30_fields_and_refuses_missing_duplicate_or_word_drift",
+    "test_absolute_diagnostic_and_separate_birth_references_no_acceptance_gate"
+  ],
+  "source_or_guard_functions_imported_compiled_or_executed": false,
+  "raw_CSV_CDF_runtime_bodies_read_or_hashed": false,
+  "new_controller_actual_output_or_scientific_dependency_created": false,
+  "fresh_small_input_records_14_exact_after": true
+}

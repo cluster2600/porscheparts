@@ -2,7 +2,7 @@
 
 # Engine oil filter console with integrated galleries, AlSi10Mg concept F0
 
-**Status: **prohibited pending engineering**. No part is released; see [SAFETY.md](../../SAFETY.md).**
+**Status: **prohibited pending engineering**. No part is released; see [SAFETY.md](../../docs/SAFETY.md).**
 
 Independent concept of a 993 console combining filter seat, two non-collinear galleries and two ports in a single body. The sources establish the part numbers, a commercial mass and the MAHLE OC 229 filter interface, but no OEM geometry; all F0 interfaces remain synthetic.
 
@@ -90,6 +90,10 @@ Catalogue record: [`catalog/parts/993-eng-oil-filter-console-alsi10mg-f0-0001.js
 
 *`parts/993-eng-oil-filter-console-alsi10mg-f0-0001/media/views.png` — concept CAD block, **not** the original part, not a print file.*
 
+![photo-concept](../../parts/993-eng-oil-filter-console-alsi10mg-f0-0001/media/photo-concept.png)
+
+*`parts/993-eng-oil-filter-console-alsi10mg-f0-0001/media/photo-concept.png` — AI-generated studio illustration based on the concept CAD preview. Material and finish are illustrative; generated details may differ. Not a photograph or evidence of fit, function or manufacturing.*
+
 ## Provenance and sources
 
 | field | value |
@@ -112,7 +116,7 @@ Catalogue record: [`catalog/parts/993-eng-oil-filter-console-alsi10mg-f0-0001.js
 | status | concept |
 | vehicle tested | not recorded |
 | reviewed by |  |
-| limitations | not recorded |
+| limitations | PorscheFanatics identifies the part and the filter but provides neither geometry nor material.<br>The 0.78 kg mass is a commercial claim with no protocol and no weighing boundary.<br>The 76 x 101 mm, M20x1.5 and 72/62 mm dimensions concern the OC 229 filter, not the console.<br>The 144 x 90 x 50 mm body, the four mounting points, two ports and two galleries are entirely synthetic.<br>The 6.5 bar pressure is an unverified OCR occurrence; flow, viscosities, local losses and roughness are scenarios.<br>The filter, its bypass valve and the engine circuit are absent from the hydraulic calculation.<br>The cold screen and the constrained thermal screen fail.<br>No internal cleanliness, sealing, fatigue, corrosion, CHT-CFD or engine integration is demonstrated.<br>The STEP proves only a re-readable BREP; no manufacture, oil circulation or start-up is authorized. |
 
 **Evidence**
 

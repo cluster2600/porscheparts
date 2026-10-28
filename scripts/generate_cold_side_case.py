@@ -11,7 +11,7 @@ from textwrap import dedent
 from typing import Any
 
 ROOT = Path(__file__).resolve().parents[1]
-DEFAULT_PARAMETERS = ROOT / "simulation" / "993-k16-cold-side-baseline" / "parameters.json"
+DEFAULT_PARAMETERS = ROOT / "work" / "simulation" / "993-k16-cold-side-baseline" / "parameters.json"
 DEFAULT_CASE = DEFAULT_PARAMETERS.parent
 
 
@@ -103,7 +103,7 @@ def render_block_mesh(payload: dict[str, Any]) -> str:
         (0.0, inlet / 2, inlet / 2),
     ]
     vertex_lines = "\n".join(f"        ({_number(x)} {_number(y)} {_number(z)})" for x, y, z in vertices)
-    generation_source = payload.get("generation_source", "simulation/993-k16-cold-side-baseline/parameters.json")
+    generation_source = payload.get("generation_source", "work/simulation/993-k16-cold-side-baseline/parameters.json")
     variant_id = payload.get("variant_id")
     rendered = dedent(
         f"""\

@@ -22,7 +22,7 @@ make translation-status      # lists Markdown files still written in French
 | code comments, docstrings, identifiers | later phase; identifiers stay stable until then |
 | `docs/reports/**` | dated execution reports — translated last, content unchanged |
 | **`**/evidence/**`** | **never edited.** Evidence files are pinned by digest; a translation would break provenance and `make check` would fail |
-| **`archive/**`** | **never edited.** 2,014 digests pin the archived 917 line (see [ARCHIVE.md](../ARCHIVE.md)) |
+| **`archive/**`** | **never edited.** 2,014 digests pin the archived 917 line (see [ARCHIVE.md](ARCHIVE.md)) |
 | `containers/*.lock.json` and their recipe inputs | **never edited**, same reason |
 | file and directory names (`docs/pieces/`, `964-chemin-effort.svg`, …) | kept for now: renaming breaks inbound links and pinned paths. A later phase renames with redirects |
 

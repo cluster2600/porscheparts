@@ -72,13 +72,28 @@ def fichiers(page: Path, chemins, titre: str) -> list[str]:
 def images(part_id: str, page: Path) -> list[str]:
     dossier = ROOT / "parts" / part_id.lower()
     trouvees = sorted(dossier.rglob("*.png")) if dossier.is_dir() else []
+    # The gyroid-core image has its own section further down.
+    trouvees = [i for i in trouvees if i != dossier / "media" / "gyroid.png"]
+    manifest = dossier / "media" / "preview.json"
+    info = json.loads(manifest.read_text(encoding="utf-8")) if manifest.exists() else {}
     if not trouvees:
         return []
     out = ["## Images", ""]
-    for img in trouvees[:8]:
+    # The labelled AI illustration is shown in addition to, never instead of,
+    # the first eight technical images.
+    # It therefore comes last: the technical images lead the section, so the
+    # concept CAD block is what a reader meets first, not the studio render.
+    concept = dossier / "media" / "photo-concept.png"
+    montrees = sorted(i for i in trouvees if i != concept)[:8] + [i for i in trouvees if i == concept]
+    for img in montrees:
         rel = img.relative_to(ROOT).as_posix()
         parts = img.relative_to(ROOT).parts
-        if "print-simulation" in parts:
+        if img == dossier / "media" / "photo-concept.png":
+            photo = json.loads((dossier / "media" / "photo.json").read_text(encoding="utf-8"))
+            legende = " — " + photo["note"].rstrip(".")
+        elif img == dossier / "media" / "preview.png" and info.get("kind") == "status_card":
+            legende = " — " + info["note"] + " Not a print file or evidence of fit."
+        elif "print-simulation" in parts:
             legende = " — metal LPBF geometry preview with hypothetical supports; no process physics or qualified support design; not a build file or print release"
         elif "media" in parts:
             legende = " — concept CAD block, **not** the original part, not a print file"
@@ -139,7 +154,7 @@ def page_markdown(fiche: dict, chemin_fiche: Path) -> str:
     procede = fabrication.get("preferred_process", "unknown")
 
     out = [ENTETE, "", f"# {nom(fiche)}", "",
-           f"**Status: {statut}. No part is released; see [SAFETY.md]({lien(ROOT / 'SAFETY.md', page)}).**", "",
+           f"**Status: {statut}. No part is released; see [SAFETY.md]({lien(ROOT / 'docs' / 'SAFETY.md', page)}).**", "",
            fiche.get("description", "").strip(), ""]
     out += echelle(validation.get("status", "concept"), classification.get("safety_class"))
     out += [f"Catalogue record: [`{chemin_fiche.relative_to(ROOT).as_posix()}`]({lien(chemin_fiche, page)})", ""]
@@ -207,11 +222,16 @@ def page_markdown(fiche: dict, chemin_fiche: Path) -> str:
         out.append("")
 
     out += ["## Validation", ""]
+    # part.schema.json names the field known_limits; the other two names never
+    # existed in the schema, so reading only them left this row empty.
+    limites = validation.get("known_limits") or validation.get("limitations") or validation.get("notes")
+    if isinstance(limites, list):
+        limites = "<br>".join(str(l) for l in limites) or None   # one limit per line in the cell
     out += tableau(page, [
         ("status", validation.get("status")),
         ("vehicle tested", validation.get("vehicle_tested")),
         ("reviewed by", validation.get("reviewed_by")),
-        ("limitations", validation.get("limitations") or validation.get("notes")),
+        ("limitations", limites),
     ])
     out += fichiers(page, validation.get("evidence") or [], "Evidence")
 
@@ -289,8 +309,8 @@ def presentation_impeller(fiche: dict, chemin_fiche: Path) -> str:
     study block that read as a Turbo part. The page now presents the current
     M64/60 Turbo fan programme with its editable sources, its real PicoGK
     visuals, the fan-drive metrology, and the provenance limits — and keeps
-    the archived concept visibly archived. Regenerate the removed views with
-    `make part-previews` if ever needed again.
+    the archived concept visibly archived. The public preview is a status card;
+    the withdrawn geometry views are not regenerated for publication.
     """
     part_id = fiche["part_id"]
     page = PARTS / part_id.lower() / "README.md"
@@ -317,7 +337,7 @@ def presentation_impeller(fiche: dict, chemin_fiche: Path) -> str:
            badges, "", "</div>", ""]
 
     out += [f"""> [!CAUTION]
-> **Not ready to print, and not a copy of the original part.** This folder preserves an archived Carrera F0 concept. The current Turbo study is linked below. No part is declared dimensionally accurate, fitted, tested, safe or released without supporting evidence: see [SAFETY.md]({L('SAFETY.md')}).
+> **Not ready to print, and not a copy of the original part.** This folder preserves an archived Carrera F0 concept. The current Turbo study is linked below. No part is declared dimensionally accurate, fitted, tested, safe or released without supporting evidence: see [SAFETY.md]({L('docs/SAFETY.md')}).
 
 ## Current programme: M64/60 Turbo cooling fan
 
@@ -330,7 +350,7 @@ Target: **993 Turbo M64.60 with the PMB / Classic Retrofit 240 A alternator**. P
 | Reference rebuild: 11 blades, ventilated cup, 12 windows | [Rebuild report]({reprise}/REFERENCE_REBUILD.md), [parameters]({reprise}/source/picogk-reference/reference.json), [PicoGK C#]({reprise}/source/picogk-reference/Program.cs) | Visual reference reconstruction; unmeasured parameters explicitly identified |
 | Organic blade candidates A–E | [Study]({reprise}/ORGANIC_BLADE_STUDY.md), [candidate E parameters]({reprise}/source/picogk-reference/organic-e.json) | Documented numerical attempts, including failures; no validated aerodynamic optimum |
 | Parametric rotor and housing, wave 2 | [M64Fan.cs]({L('parts/m64-cooling-fan-0001/geometry/M64Fan.cs')}), [configuration]({L('parts/m64-cooling-fan-0001/geometry/fan-config.json')}) | Editable, labelled assumptions; no archived compiled output for this separate source |
-| Earlier actuator-disc CFD, OpenFOAM v2312 | [Baseline rig]({L('simulation/993-fan-baseline/README.md')}) | Exploratory surrogate; not an installed performance prediction |
+| Earlier actuator-disc CFD, OpenFOAM v2312 | [Baseline rig]({L('work/simulation/993-fan-baseline/README.md')}) | Exploratory surrogate; not an installed performance prediction |
 | Fan-drive metrology, M64-ACQ-0005 | [Dimensions]({L('twins/m64-engine-system/metrology/fan-drive/fan-drive-dimensions.json')}), [scan record]({L('catalog/scans/scan-fan-drive-0p21mm.json')}) | Initial scan analysis; ±4 mm uncertainty and unresolved discrepancies |
 | Metal printing release | [Release dossier]({reprise}/PRINT_RELEASE.md) | **HOLD — no printing authorization** |
 
@@ -378,7 +398,9 @@ These are preliminary estimates, not exact dimensions. The single-pass harmonic 
 
 This folder retains the [build123d source]({L('parts/993-eng-cooling-impeller-alsi10mg-f0-0001/source/cooling_impeller.py')}), [STEP]({L('parts/993-eng-cooling-impeller-alsi10mg-f0-0001/derived/cooling_impeller_alsi10mg_f0.step')}), [STL]({L('parts/993-eng-cooling-impeller-alsi10mg-f0-0001/derived/cooling_impeller_alsi10mg_f0.stl')}) and [engineering screen]({L('parts/993-eng-cooling-impeller-alsi10mg-f0-0001/evidence/engineering-screen.json')}). Evidence is SHA-256 pinned. The concept failed integration with its F0 housing: −14 mm radial clearance. Its 280 mm diameter, hub and twelve blades are synthetic study geometry, not a Turbo part.
 
-The generic wheel and schematic orthographic images were removed from this presentation on 29 September 2026 because they could be mistaken for the Turbo design. They remain reproducible from the archived STEP with `make part-previews`.
+The generic wheel and schematic orthographic images were removed from this presentation on 29 September 2026 because they could be mistaken for the Turbo design. Public exports use a status card identifying that withdrawal.
+
+<a href="media/preview.png">Public status card: archived geometry; no part rendering</a>. This is not a print file.
 
 ## Related records
 
@@ -388,7 +410,7 @@ The generic wheel and schematic orthographic images were removed from this prese
 - [System dossier]({L('docs/993/993_ENGINE_COOLING_FAN_SYSTEM_F0.md')})
 - [PorscheFanatics project presentation](https://porschefanatics.com/projects/993-turbo-fan/)
 - [Digital twin record]({L('catalog/twins/twin-993-engine-cooling-fan-system-f0.json')})
-- [Safety rules]({L('SAFETY.md')})
+- [Safety rules]({L('docs/SAFETY.md')})
 
 ---
 
@@ -463,7 +485,9 @@ def presentation(fiche: dict, chemin_fiche: Path) -> str:
     apercu = dossier / "media" / "preview.png"
     vues = dossier / "media" / "views.png"
     infos = dossier / "media" / "preview.json"
-    boite = json.loads(infos.read_text(encoding="utf-8")).get("bounding_box_mm") if infos.exists() else None
+    media_info = json.loads(infos.read_text(encoding="utf-8")) if infos.exists() else {}
+    boite = media_info.get("bounding_box_mm")
+    status_card = media_info.get("kind") == "status_card"
 
     kit_json = dossier / "print" / "kit.json"
     kit = json.loads(kit_json.read_text(encoding="utf-8")) if kit_json.exists() else None
@@ -530,7 +554,7 @@ def presentation(fiche: dict, chemin_fiche: Path) -> str:
             ("> design whose fit has not been checked against the car:" if impression else
              "> concept block for studying the part in software:"),
             *[f"> - {r};" for r in raisons],
-            f"> - no part in this repository is released — read [SAFETY.md]({lien(ROOT / 'SAFETY.md', page)}).",
+            f"> - no part in this repository is released — read [SAFETY.md]({lien(ROOT / 'docs' / 'SAFETY.md', page)}).",
             ""]
 
     originaux = [s for s in fiche.get("provenance", {}).get("sources", []) if s.get("url") and
@@ -564,6 +588,11 @@ def presentation(fiche: dict, chemin_fiche: Path) -> str:
     if (kit and plaque.exists()) or (impression and apercu.exists()) or \
             (maquette and (dossier / "print" / "mockup.png").exists()):
         pass
+    elif apercu.exists() and status_card:
+        droite = ["<b>Catalogue study status</b><br><br>",
+                  '<img src="media/preview.png" alt="Status card: geometry not created" width="340"><br>',
+                  "<sub>No CAD geometry to show. This is a status card, "
+                  "<b>not</b> a part rendering or a print file.</sub>"]
     elif apercu.exists():
         taille = f"{boite[0]} × {boite[1]} × {boite[2]} mm" if boite else ""
         droite += [f'<img src="media/preview.png" alt="Concept CAD block for {nom(fiche)}" width="340"><br>',
@@ -609,6 +638,23 @@ def presentation(fiche: dict, chemin_fiche: Path) -> str:
                 "internal structure (double wall, lattice core or vanes) shown in the half section. "
                 "Mounting interfaces are assumptions — not the original part, not a print file, not evidence of fit.*", ""]
 
+    gyroid = dossier / "media" / "gyroid.json"
+    if gyroid.exists():
+        core = json.loads(gyroid.read_text(encoding="utf-8")).get("core", {})
+        moteur = PARTS / "picogk-catalog" / "bionic" / "GyroidCore.cs"
+        out += ["## Bionic gyroid-core model", "",
+                "![PicoGK gyroid-core model: outside view and capped section](media/gyroid.png)", ""]
+        if core.get("cored"):
+            out += [f"*PicoGK variant ([`GyroidCore.cs`]({lien(moteur, page)})): the organic outer form above, a "
+                    f"{core['skin_mm']:g} mm skin and a sheet-gyroid core ({core['cell_mm']:g} mm cell, "
+                    f"{core['wall_mm']:g} mm wall) wherever three cells fit, {core['drains']} drain ports; "
+                    f"{core['mass_saving_pct']:.1f} % less material than the same part solid. Core settings are "
+                    "assumptions: not printed, not depowdered, not tested — not a print file.*", ""]
+        else:
+            out += [f"*PicoGK variant ([`GyroidCore.cs`]({lien(moteur, page)})): no zone of this part holds three "
+                    f"{core.get('cell_mm', 0):g} mm gyroid cells inside its skin, so it stays solid "
+                    "(core only where three cells fit). Not a print file.*", ""]
+
     autres = [f for f in fichiers_du_dossier(dossier)
               if f.suffix.lower() in (".png", ".svg", ".gif") and "media" not in f.relative_to(dossier).parts]
     if autres:
@@ -627,6 +673,8 @@ def presentation(fiche: dict, chemin_fiche: Path) -> str:
             groupes.setdefault(rel.parts[0] if len(rel.parts) > 1 else ".", []).append(f)
         for sous in sorted(groupes, key=lambda n: (n == ".", n)):
             role = DOSSIERS_ROLE.get(sous, "files of this part")
+            if sous == "media" and (dossier / "media" / "photo.json").exists():
+                role += "; labelled AI studio illustration and provenance, not a photograph"
             liens = ", ".join(f"[`{f.relative_to(dossier).as_posix()}`]({f.relative_to(dossier).as_posix()})"
                               for f in groupes[sous][:8])
             if len(groupes[sous]) > 8:
@@ -645,7 +693,7 @@ def presentation(fiche: dict, chemin_fiche: Path) -> str:
     for j in jumeaux_lies(part_id):
         out.append(f"- **Digital twin record**: [`{j.name}`]({lien(j, page)}) — "
                    f"see [twins/README.md]({lien(ROOT / 'twins' / 'README.md', page)})")
-    out += [f"- **Safety rules**: [SAFETY.md]({lien(ROOT / 'SAFETY.md', page)})", "",
+    out += [f"- **Safety rules**: [SAFETY.md]({lien(ROOT / 'docs' / 'SAFETY.md', page)})", "",
             "---", "",
             "*This page is generated from the catalogue record by `scripts/render_part_pages.py` "
             "and checked by `make check`. Edit the record, not this page.*", ""]

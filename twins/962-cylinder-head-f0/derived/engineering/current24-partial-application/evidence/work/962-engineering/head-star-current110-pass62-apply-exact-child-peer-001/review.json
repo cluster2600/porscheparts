@@ -1,0 +1,105 @@
+{
+  "schema": "962-head-pass62-root-written-exact-child-independent-accounting-peer/v1",
+  "decision": "CLEAR_EXACT_ROOT_WRITTEN_ACTUAL_AND_OWNED_SUPERVISOR_ACCOUNTING_ONLY_SEPARATE_ROOT_LAUNCH_REQUIRED",
+  "blockers": [],
+  "actual": {
+    "path": "work/962-engineering/head-star-current110-pass62-apply-execution-prep-001/actual-contract.json",
+    "sha256": "bc3bc2847a2fb889c0f3ee51cdc879c2ae79611c36c667c016860e5a5996afba",
+    "bytes": 26996
+  },
+  "index": {
+    "path": "work/962-engineering/head-star-current110-pass62-apply-execution-prep-001/index.json",
+    "sha256": "390265ea42baf46b698a13bf64a3521c305012912e6ca7dea41f4f684a9b4b99",
+    "bytes": 2776
+  },
+  "preflight": {
+    "path": "work/962-engineering/head-star-current110-pass62-apply-execution-prep-001/preflight.json",
+    "sha256": "94d4f983a478380559355e828d1dc5f5bf38180355da654e85648626072f5177",
+    "bytes": 69327
+  },
+  "root_supervisor": {
+    "path": "work/962-engineering/head-star-current110-pass62-apply-execution-prep-001/run_root_once.py",
+    "sha256": "27cb8a8c3baf6bf07d581a80f00a1c022a8eaab25dd49d41bfd8712869e589b3",
+    "bytes": 7006
+  },
+  "source": {
+    "path": "work/962-engineering/head-star-current110-pass62-apply-prep-002/mesh_apply_sicn_proposal.py",
+    "sha256": "8cfb42772693ff3dcd64563692660b4702038af70727f6536c6cd3b058df3738",
+    "bytes": 89564
+  },
+  "held": {
+    "path": "work/962-engineering/head-star-current110-pass62-apply-prep-002/held-preparation.json",
+    "sha256": "988eb0e02c9db47e98651d9ee27af9d0f4fac596d1b846a56eba58eed140db63",
+    "bytes": 52952
+  },
+  "bindings": {
+    "path": "work/962-engineering/head-star-current110-pass62-apply-exact-child-peer-001/bindings.json",
+    "sha256": "36d802e91bd7b708dbcf285d6867336e22c718a09098017de265fd27ac509f7f",
+    "bytes": 116318
+  },
+  "summary": {
+    "check_count": 310,
+    "all_checks_passed": true,
+    "actual_input_pins": 134,
+    "original118_preserved": true,
+    "current_small_input_pins_independently_hashed": 132,
+    "root_attributed_opaque_geometry_pins": 2,
+    "root_attributed_selected_runtime_bodies": 4,
+    "accepted_components": 62,
+    "selected_nodes": 66,
+    "selected_cells": 1983,
+    "rejected_components_never_setters": 11,
+    "known_initial_poor_remaining": 24,
+    "original_worst_rejected_component": 30,
+    "consumed_true_flags": 5,
+    "consumed_false_flags": 8,
+    "source_guards_root_attributed": "9 tests passed once;not rerun by this peer",
+    "native_output_absent": true,
+    "exact_native_worker_seconds": 1200,
+    "root_loop_seconds": 1230,
+    "TERM_grace_seconds": 8,
+    "sampled_aggregate_RSS_bytes": 8589934592,
+    "sampled_output_bytes": 1073741824,
+    "requested_threads": 2,
+    "automatic_retry": false
+  },
+  "source_math_review_attribution": {
+    "independent_source_peer": {
+      "bytes": 9837,
+      "path": "work/962-engineering/head-star-current110-pass62-apply-source-peer-002/review.json",
+      "resolved": "work/962-engineering/head-star-current110-pass62-apply-source-peer-002/review.json",
+      "sha256": "aa1deea484d4fef5551cf52e0ae83c68a380d1537751c0b8e014f838c01e0090"
+    },
+    "root_source_review": {
+      "bytes": 2016,
+      "path": "work/962-engineering/head-star-current110-pass62-apply-root-source-002/review.json",
+      "resolved": "work/962-engineering/head-star-current110-pass62-apply-root-source-002/review.json",
+      "sha256": "1d9c276225651453b9f47c64ea7f406d18d55b9cff02db3df1b199528d6a325f"
+    },
+    "guards": {
+      "bytes": 893,
+      "path": "work/962-engineering/head-star-current110-pass62-apply-root-source-002/guards-once.json",
+      "resolved": "work/962-engineering/head-star-current110-pass62-apply-root-source-002/guards-once.json",
+      "sha256": "25fa70674c391e8e39ff3258cf85047f583aa3ce3b70835c2a97906eeb47e424"
+    }
+  },
+  "reviewer_lineage": "lpbf_linear_refinement authored source002 and earlier001 source,source-held guards and RICH2 preparations. This review independently accounts for ROOT-written actual134/index/preflight/supervisor only. It is not independent review of own source mathematics; source review is aa1d peer and1d9 root with25fa guard receipt.",
+  "scope": "First-party metadata/source/AST and set-membership accounting only;no prepared imports/helper/guard/native/scientific execution,no raw MSH/BIN or runtime body read/hash/stat.",
+  "limits": [
+    "Sampled RSS/output;no hard OS CPU/address-space quota or peak memory guarantee.",
+    "Outer1230s execution loop clock begins after pre-run input/runtime hashing;post-run hashing/inventory is outside that loop stop.",
+    "Direct native child PGIDs are admitted only from observed PID/PPID/PGID identity triples;source core retains its own worker kill/wait lifecycle.",
+    "Prelaunch/assertion or post-hash refusal can abort without a closed-result;root must retain outer logs/accounting.",
+    "Returncodes0 and2 preserve artifacts;neither is independent head acceptance."
+  ],
+  "future_root_authorization_required": true,
+  "exact_child_execution_authorized": false,
+  "native_execution_authorized": false,
+  "head_PDE_authorized": false,
+  "engineering_accepted": false,
+  "physics_qualified": false,
+  "material_qualified": false,
+  "process_calibrated": false,
+  "manufacturing_authorized": false,
+  "automatic_retry": false
+}

@@ -1,0 +1,80 @@
+{
+  "schema": "962-current127-census-independent-exact-child-review/v1",
+  "decision": "BLOCKED_FOUR_REQUIRED_DYNAMIC_PROOF_FIELDS_ABSENT",
+  "actual": {
+    "path": "work/962-engineering/head-star-current127-full-stars-execution-prep-001/actual-contract.json",
+    "sha256": "b3e355aeb66e1b1d289217ffed2f9dcbf031af464c0a37f627a911e904fb886d",
+    "bytes": 22406
+  },
+  "index": {
+    "path": "work/962-engineering/head-star-current127-full-stars-execution-prep-001/index.json",
+    "sha256": "1580c27717ce38cbc1100cfef82ed414d23bef0c76835876ad261b8c59c3f294",
+    "bytes": 28467
+  },
+  "bindings": {
+    "path": "work/962-engineering/head-star-current127-full-stars-exact-child-peer-001/bindings.json",
+    "sha256": "4c8da0310ec3382fdadf802068b71c3c0e1d10df9b0aa2168ac40b3741b88507",
+    "bytes": 84025
+  },
+  "blockers": [
+    {
+      "location": {
+        "path": "work/962-engineering/head-star-current127-full-stars-prep-001/reader.py",
+        "line": 42,
+        "function": "partial_after_proof"
+      },
+      "required_missing_keys": [
+        "local_candidate_report_sha256",
+        "local_candidate_arrays_sha256",
+        "current_local_domain_report_sha256",
+        "current_local_domain_peer_sha256"
+      ],
+      "fact": "All four exact fields exist in held2972416 and equal the saved current partial worker report, but are absent in actualb3e355 and its byte-identical output mirror. The generator expression evaluates contract[key], so a completed required proof check cannot succeed with this child. This was established by source/JSON inspection, without invoking the function.",
+      "minimum_correction": "Preserve current actual/index/mirror; a separately reviewed metadata successor must carry the four exact held fields and bind fresh mirror/output/provenance. Source/controller, threshold and guard policy need no change for this defect."
+    }
+  ],
+  "otherwise_checked": {
+    "all72_actual_input_descriptors_equal_index": true,
+    "all_held_input_roles_preserved": true,
+    "current70_small_files_fresh_and_unchanged_after": true,
+    "raw_geometry_two_roles_root_metadata_only": true,
+    "actual_and_materialized_mirror_byte_identical": true,
+    "reader11ad_runner4fb_materialized_exact": true,
+    "materialized_output_exact_three_files_only": true,
+    "current127_positive_poor_counts_and_full_saved_counts_match_worker_after": true,
+    "partial_operation_attempt_counter_join_matches_current_worker": true,
+    "source_boundary_identity_matches_current_partial_after": true,
+    "no_old_census_partition_transferred": true,
+    "all_new_measured_counts_null": true,
+    "strict_point1_unchanged": true,
+    "historical_d60_command_conformance_false_retained": true,
+    "root_controller1699_I_B_native_worker72956_B_chain_exact": true,
+    "inner120s_8GiB_1GiB_2threads_and_outer135s_TERM8_KILL_wait": true,
+    "native_scope_read_only_and_no_edit_generate_optimize_geometry_write_PDE_or_qualification": true,
+    "external_child_and_fresh_root_authorization_still_required": true,
+    "no_actual_or_mirror_selfhash_in_72_input_map": true
+  },
+  "source_review_and_root_guard_evidence": {
+    "source_peer_sha256": "8c02a6811f8cf14c2a0ca04de6dcd102b5ce2c3413ef14506785af15cdb20c52",
+    "source_peer_bindings_sha256": "135ef4f7ab9e1785029643674bcfce98cfb258d407513bff030a961f70c92ba5",
+    "root_six_guard_review_sha256": "ae20cd0e81d41d6373acace007885946259a1ef35441346eda9315dc80f608ea",
+    "guard_execution": "Root-attributed six PASS only; reviewer did not execute guards."
+  },
+  "scope_and_authorship": "Reviewer did not author this current127 source or actual. Reviewer authored/reviewed earlier census and application/helper lineage and prior saved-association records. This independent review addresses the exact new child binding/control boundary, not an independent mathematical/native derivation.",
+  "limits": [
+    "Raw geometry and external runtime/interpreter current-body checks remain attributed to root; reviewer checked70 small files and two geometry descriptors/stat sizes only.",
+    "No prepared function, module, test, guard, controller, native query or scientific helper was invoked. No geometry/output beyond metadata/source materialization was created.",
+    "Historical d60 false describes the prior census launch. The new command metadata is checked, but no future execution conformance is claimed.",
+    "Current head strict quality remains rejected; this blocked review grants no launch/head/physics/qualification authority."
+  ],
+  "native_execution_authorized": false,
+  "read_only_query_execution_authorized": false,
+  "head_edit_authorized": false,
+  "head_PDE_authorized": false,
+  "engineering_accepted": false,
+  "physics_qualified": false,
+  "material_qualified": false,
+  "process_calibrated": false,
+  "manufacturing_authorized": false,
+  "automatic_retry": false
+}

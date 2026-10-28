@@ -1,0 +1,408 @@
+--- work/962-engineering/cp1-oneway-cooling-release-richardson2-prep-001/run_mac.py
++++ work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native-measurement-prep-001/run_native_capture.py
+@@ -1,5 +1,4 @@
+-"""Held fixed SI prescribed cooling/clamp/release case; inherited Mac lifecycle, no automatic assessment."""
+-
++"""Held passive RICH2 observer004 capture caller; root exact admission is mandatory."""
+ import argparse
+ import hashlib
+ import json
+@@ -11,21 +10,20 @@
+ import subprocess
+ import threading
+ import time
+-
+-PREP = Path(__file__).resolve().parent
+-ENGINEERING = PREP.parent
++SOURCE_PREP = Path(__file__).resolve().parent
++ENGINEERING = SOURCE_PREP.parent
+ ROOT = ENGINEERING.parent.parent
+ PREFIX = ENGINEERING / "moose-local-installed-002"
+ EXECUTABLE = PREFIX / "bin/combined-opt"
+-CASE = PREP
++CASE = ENGINEERING / "cp1-oneway-cooling-release-richardson2-prep-001"
++PREP = CASE
+ TRANSFER = ENGINEERING / "cp1-oneway-cooling-release-inputs-001"
+ CARD = CASE / "card.json"
+ PHYSICS = CASE / "case-contract.json"
+-PRIMARY_API = PREP / "source-evidence.json"
+-HELD = PREP / "held-preparation.json"
+-ENVIRONMENT = {"PATH": "/usr/bin:/bin", "LANG": "C", "LC_ALL": "C", "OMP_NUM_THREADS": "1",
+-               "OPENBLAS_NUM_THREADS": "1", "VECLIB_MAXIMUM_THREADS": "1", "FI_PROVIDER": "tcp"}
+-CASE_FILES = ("thermoelastic-birth.i",)
++PRIMARY_API = CASE / "source-evidence.json"
++HELD = CASE / "held-preparation.json"
++ROOT_EXECUTION = ENGINEERING / "cp1-oneway-cooling-release-richardson2-observer004-native-measurement-root-execution-001"
++OUTPUT = ENGINEERING / "cp1-oneway-cooling-release-richardson2-observer004-native-measurement-001"
+ TRANSFER_FILES = ("old-end.grid", "born-end.grid", "born-begin80.grid", "transfer-manifest.json")
+ FEATURES = ("GeneratedMeshGenerator", "SubdomainBoundingBoxGenerator", "BoundingBoxNodeSetGenerator",
+             "ADTimeDerivative", "FunctionIC", "PiecewiseMultilinear", "FunctionAux", "TimedSubdomainModifier",
+@@ -33,6 +31,8 @@
+             "ADComputeIsotropicElasticityTensor", "ADComputeThermalExpansionEigenstrain",
+             "ADComputeFiniteStrainElasticStress", "RankTwoTensorMaterialADConverter", "RankTwoCartesianComponent",
+             "NodalValueSampler", "ElementMaterialSampler", "TimePeriod", "SMP", "Transient", "CSV", "Console", "Exodus")
++
++
+ 
+ 
+ def need(condition, message):
+@@ -77,11 +77,6 @@
+     return True
+ 
+ 
+-def commands(stage):
+-    need(stage == "coupon", "Only the fixed thermoelastic case is available")
+-    common = [str(EXECUTABLE), "-skip_petscrc", "--n-threads=1"]
+-    return [("native", common + ["-i", "thermoelastic-birth.i"])]
+-
+ def registry_features(text):
+     rows = [line.split("\t") for line in text.splitlines()]
+     need(["Label", "Type", "Name", "Class", "File"] in rows, "Documented registry header missing")
+@@ -90,17 +85,39 @@
+     return {name: True for name in FEATURES}
+ 
+ 
+-def checked_contract(stage, path, expected):
++def commands(stage):
++    need(stage == "coupon", "Only the unchanged fixed RICH2 coupon is available")
++    return [("native", [str(EXECUTABLE), "-skip_petscrc", "--n-threads=1", "-i", "thermoelastic-birth-observer-registration.i"])]
++
++
++def root_admission(c, actual, actual_sha, expected):
++    path = ROOT_EXECUTION / "authorization.json"
++    need(re.fullmatch("[0-9a-f]{64}", expected) and path.is_file() and not path.is_symlink() and same(path, expected), "Exact separate root admission required")
++    a = json.loads(path.read_text())
++    need(a.get("schema") == "962-observer004-native-measurement-root-admission/v1" and a.get("native_once_authorized") is True and a.get("independent_exact_child_complete") is True and a.get("root_source_review_complete") is True and a.get("freshness_and_staging_complete") is True, "Held source has no native authority")
++    need(all(a.get(k) is False for k in ("automatic_retry", "assessment_execution_authorized", "solver_change_authorized", "head_execution_authorized", "engineering_accepted", "physics_qualified", "material_qualified", "process_calibrated", "manufacturing_authorized")), "No additional scientific authority")
++    need(set(a["direct_roles"]) == set(c["future_root_direct_roles"]), "Exact nine external control roles required")
++    for pin in a["direct_roles"].values():
++        name = pin["path"]; p = ROOT / name
++        need(not Path(name).is_absolute() and ".." not in Path(name).parts and p.is_file() and not p.is_symlink() and p.resolve() == p and same(p, pin["sha256"]) and p.stat().st_size == pin["bytes"], "Root direct control identity changed")
++    need(a["direct_roles"]["actual"] == {"path":str(actual.relative_to(ROOT)), "sha256":actual_sha, "bytes":actual.stat().st_size}, "Root admission actual mismatch")
++    need(a["direct_roles"]["caller"] == c["source"] and same(Path(__file__), c["source"]["sha256"]), "Exact caller identity required")
++    need(a["resources"] == c["resources"] and a["outer_wall_seconds"] == 115 and a["root_TERM_grace_seconds"] == 10, "No resource-cap change")
++    stage = json.loads((ROOT / a["direct_roles"]["staging_receipt"]["path"]).read_text())
++    need(stage.get("schema") == "962-observer004-native-measurement-four-input-staging/v1" and stage.get("all_four_copies_byte_exact") is True and stage.get("no_execution") is True and stage["staged_inputs"] == c["staged_inputs"], "Separate complete root four-input staging required")
++    return a
++
++
++def checked_contract(stage, path, expected, admission_sha):
+     path = Path(path)
+     need(path.is_file() and not path.is_symlink() and path.resolve() == path
+          and re.fullmatch("[0-9a-f]{64}", expected) and same(path, expected), "Exact external actual child required")
+     c = json.loads(path.read_text())
+-    need(stage == "coupon" and c.get("schema") == "962-macos-oneway-cooling-release-richardson2-case-actual/v1"
+-         and c.get("stage") == stage and c.get("root_and_peer_review_complete") is True
+-         and c.get("native_launch_authorized") is True and c.get("coupon_solve_authorized") is True
+-         and all(c.get(k) is False for k in ("head_authorized", "engineering_accepted", "physics_qualified",
+-                                           "material_qualified", "process_calibrated", "manufacturing_authorized",
+-                                           "automatic_retry")), "Separate reviewed fixed-case authority required")
++    need(stage == "coupon" and c.get("schema") == "962-observer004-native-measurement-actual/v1" and c.get("stage") == stage and c.get("native_execution_authorized") is False and c.get("authority_at_freeze") == "HELD_ROOT_ADMISSION_REQUIRED", "Exact held measurement actual required")
++    need(all(c.get(k) is False for k in ("head_authorized", "engineering_accepted", "physics_qualified", "material_qualified", "process_calibrated", "manufacturing_authorized", "automatic_retry", "assessment_execution_authorized")), "No additional authority")
++    root_admission(c, path, expected, admission_sha)
++    original = json.loads((ROOT / c["original_native_actual"]["path"]).read_text())
++    need(all(c["input_sha256"].get(k) == v for k,v in original["input_sha256"].items()) and c["runtime_sha256s"] == original["runtime_sha256s"] and c["runtime_symlinks"] == original["runtime_symlinks"] and c["solver_profile"] == original["solver_profile"], "All original168 pins/runtime19/13/solver controls must be retained")
+     pins = c["input_sha256"]
+     need(pins.get(str(HELD.relative_to(ROOT))) == sha(HELD), "Held preparation is not directly bound")
+     held = json.loads(HELD.read_text())
+@@ -157,175 +174,145 @@
+          and frozen["source_input_sha256"]["thermoelastic-birth.i"] == sha(CASE / "thermoelastic-birth.i"),
+          "Exact separate source physics contract required")
+     output = Path(c["output"])
+-    need(output == ENGINEERING / "cp1-oneway-cooling-release-richardson2-001" and output.resolve() == output
+-         and not output.exists() and not output.is_symlink(), "Fresh fixed direct case output required")
++    need(output == OUTPUT and output.resolve() == output and output.is_dir() and not output.is_symlink(), "Fixed separately staged output directory required")
++    need(set(p.name for p in output.iterdir()) == set(c["staged_inputs"]), "Only four staged original inputs may precede capture")
++    for name, pin in c["staged_inputs"].items():
++        p = output/name
++        need(p.is_file() and not p.is_symlink() and p.stat().st_size == pin["bytes"] and same(p,pin["sha256"]), "Staged input identity changed")
++    need(c["argv"] == commands(stage)[0][1] and c["environment"]["TMPDIR"] == str(output/"tmp"), "Exact fixed command and private temporary directory required")
+     return c, output
+ 
+-def run(stage, contract, expected):
++
++def growth_bytes(output, root_execution, baseline):
++    total = 0
++    for root in (output, root_execution):
++        for p in root.rglob("*"):
++            if p.is_symlink():
++                raise ValueError("Unexpected output symlink")
++            if p.is_file():
++                allowance = baseline.get(str(p.relative_to(output)), 0) if root == output else 0
++                total += max(0, p.stat().st_size - allowance)
++    return total
++
++
++def owned_size(output):
++    total = 0
++    for root in (output, ROOT_EXECUTION):
++        for p in root.rglob("*"):
++            need(not p.is_symlink(), "Unexpected output symlink")
++            if p.is_file():
++                total += p.stat().st_size
++    return total
++
++
++def run(stage, contract, expected, admission_sha):
+     started = time.monotonic()
+-    c, output = checked_contract(stage, contract, expected)
++    c, output = checked_contract(stage, contract, expected, admission_sha)
++    historical = json.loads((ROOT/c["historical_native_closed"]["path"]).read_text())
++    baseline = {name:pin["bytes"] for name,pin in historical["outputs"].items()}
+     deadline = started + c["resources"]["wall_seconds"]
+-    need(time.monotonic() < deadline, "Stage deadline expired before output creation")
+-    output.mkdir()
+-    shutil.copyfile(contract, output / "actual-contract.json")
+-    shutil.copyfile(PHYSICS if stage == "coupon" else contract, output / "frozen-contract.json")
+-    snapshots = output / "source-snapshots"
+-    snapshots.mkdir()
+-    selected = [Path(__file__), HELD, PREP / "METHOD.md", PRIMARY_API]
+-    if stage == "coupon":
+-        for name in CASE_FILES:
+-            shutil.copyfile(CASE / name, output / name)
+-        for name in TRANSFER_FILES:
+-            shutil.copyfile(TRANSFER / name, output / name)
+-        shutil.copyfile(CARD, output / "card.json")
+-        selected += [CASE / name for name in CASE_FILES] + [TRANSFER / name for name in TRANSFER_FILES] + [CARD, PHYSICS]
+-    for path in selected:
+-        destination = snapshots / path.relative_to(ROOT)
+-        destination.parent.mkdir(parents=True, exist_ok=True)
+-        shutil.copyfile(path, destination)
+-    inputs = {str(path.relative_to(output)): sha(path) for path in output.rglob("*") if path.is_file()}
+-    receipt = dict(status="running", passed=False,
+-                   command=commands(stage)[0][1] if stage == "coupon" else [argv for _, argv in commands(stage)],
+-                   stage=stage, contract_sha256=expected, actual_contract_sha256=expected,
+-                   physics_contract_sha256=sha(PHYSICS) if stage == "coupon" else None,
+-                   level=None, level_is_declared=False, thermal_input_level=2,
+-                   transfer_manifest_sha256=c["transfer_manifest_sha256"],
+-                   prescribed_temperature_and_born_reference=True, source_off_cooling_history_present=False,
+-                   prescribed_cooling_extension_present=True, build_clamp_then_release=True, input_sha256=inputs,
+-                   runtime_sha256s=c["runtime_sha256s"], runtime_symlinks=c["runtime_symlinks"],
+-                   network="not_requested_not_OS_sandboxed", rootfs="installed_prefix_not_sandboxed",
+-                   automatic_retry=False, head_input_read=False, independent_assessment_performed=False,
+-                   hard_OS_CPU_or_memory_quota=False, RSS_scope="sampled_owned_leader_only",
+-                   process_reaped=False, jobs=[], RSS_samples=[], native_execution_completed=False,
+-                   readiness_completed=False, required_object_presence=None)
+-    failure = None
+-    stopped = {"reason": None}
+-    lock = threading.Lock()
+-    process = None
++    need(time.monotonic() < deadline, "Native100s deadline expired before capture")
++    shutil.copyfile(contract, output/"actual-contract.json")
++    shutil.copyfile(PHYSICS, output/"frozen-contract.json")
++    shutil.copyfile(CARD, output/"card.json")
++    shutil.copyfile(TRANSFER/"transfer-manifest.json", output/"transfer-manifest.json")
++    snapshots = output/"source-snapshots"; snapshots.mkdir()
++    for path in (Path(__file__), SOURCE_PREP/"held-preparation.json", SOURCE_PREP/"METHOD.md", PRIMARY_API):
++        destination = snapshots/path.relative_to(ROOT); destination.parent.mkdir(parents=True,exist_ok=True); shutil.copyfile(path,destination)
++    inputs = {str(p.relative_to(output)):sha(p) for p in output.rglob("*") if p.is_file()}
++    receipt = dict(schema="962-observer004-native-measurement-caller-receipt/v1",status="running",command=c["argv"],actual_contract_sha256=expected,root_admission_sha256=admission_sha,physics_contract_sha256=sha(PHYSICS),input_sha256=inputs,resources=c["resources"],RSS_scope="sampled_owned_native_leader_only",hard_OS_quota=False,automatic_retry=False,independent_assessment_performed=False,native_execution_completed_candidate=False,completion_requires_caller_RC0_and_outer_RC0=True,science_or_vector_association_accepted=False,RSS_samples=[],resource_observation_exit_races=[],controller_stop_requests=[],jobs=[])
++    process = None; failure = None; term_requested = False; stopped = {"reason":None}; lock = threading.Lock()
+     previous = signal.getsignal(signal.SIGTERM)
+-    term_requested = False
+-
+-    def interrupted(*_):
++    def interrupted(signum, frame):
+         nonlocal term_requested
+         term_requested = True
+-
++        receipt["controller_stop_requests"].append(dict(signal=signum,elapsed_seconds=time.monotonic()-started))
+     def stop(reason):
+         with lock:
+             stopped["reason"] = stopped["reason"] or reason
+             if process is not None and process.poll() is None:
++                try:os.killpg(process.pid,signal.SIGKILL)
++                except ProcessLookupError:pass
++    timer = threading.Timer(max(0.,deadline-time.monotonic()),lambda:stop("stage_deadline"));timer.daemon=True
++    signal.signal(signal.SIGTERM,interrupted);timer.start()
++    try:
++        (output/"tmp").mkdir()
++        need(not term_requested and not stopped["reason"] and time.monotonic()<deadline,"Refuse before native Popen")
++        with (output/"native.log").open("xb") as log:
++            process = subprocess.Popen(c["argv"],cwd=output,env=c["environment"],stdout=log,stderr=subprocess.STDOUT,start_new_session=True)
++            receipt["native_PID"] = process.pid
++            while process.poll() is None and not term_requested and not stopped["reason"]:
+                 try:
+-                    os.killpg(process.pid, signal.SIGKILL)
+-                except ProcessLookupError:
+-                    pass
+-
+-    timer = threading.Timer(max(0., deadline - time.monotonic()), lambda: stop("stage_deadline"))
+-    timer.daemon = True
+-    timer.start()
+-    with (output / "launch.json").open("x") as stream:
+-        json.dump(receipt, stream, indent=2)
+-        stream.write("\n")
+-    try:
+-        signal.signal(signal.SIGTERM, interrupted)
+-        for name, argv in commands(stage):
+-            need(not term_requested and not stopped["reason"] and time.monotonic() < deadline,
+-                 "Stage refused before the next Popen")
+-            process = None
+-            with (output / f"{name}.log").open("xb") as log:
+-                try:
+-                    process = subprocess.Popen(argv, cwd=output, env=ENVIRONMENT, stdout=log,
+-                                               stderr=subprocess.STDOUT, start_new_session=True)
+-                    if stopped["reason"] or term_requested:
+-                        stop("controller_SIGTERM" if term_requested else stopped["reason"])
+-                    while process.poll() is None and not term_requested and not stopped["reason"]:
+-                        try:
+-                            sample = subprocess.run(["/bin/ps", "-o", "rss=", "-p", str(process.pid)],
+-                                                    capture_output=True, text=True, timeout=2)
+-                            if process.poll() is not None:
+-                                break
+-                            rss = int(sample.stdout.strip()) * 1024
+-                            need(sample.returncode == 0 and rss >= 0, "Invalid owned-leader RSS observation")
+-                            receipt["RSS_samples"].append(dict(job=name, wall_seconds=time.monotonic() - started, RSS_bytes=rss))
+-                            if rss >= c["resources"]["sampled_RSS_stop_bytes"]:
+-                                stop("sampled_RSS_stop")
+-                            if sum(p.stat().st_size for p in output.rglob("*") if p.is_file()) >= c["resources"]["sampled_output_stop_bytes"]:
+-                                stop("sampled_output_stop")
+-                        except (OSError, ValueError, subprocess.SubprocessError):
+-                            if process.poll() is None:
+-                                stop("RSS_observation_failed")
+-                        try:
+-                            process.wait(timeout=.1)
+-                        except subprocess.TimeoutExpired:
+-                            pass
+-                finally:
+-                    if process is not None:
+-                        if process.poll() is None:
+-                            stop("controller_SIGTERM" if term_requested else stopped["reason"] or "controller_interrupted")
+-                        process.wait()
+-            receipt["jobs"].append(dict(name=name, returncode=process.returncode if process else None,
+-                                        process_reaped=process is not None and process.poll() is not None))
+-            need(process is not None and process.returncode == 0 and not stopped["reason"] and not term_requested,
+-                 "Native command incomplete; preserve outputs without retry")
+-        if stage == "readiness":
+-            need((output / "help.log").stat().st_size > 0 and (output / "version.log").stat().st_size > 0,
+-                 "Help and version must be nonempty observations")
+-            receipt["required_object_presence"] = registry_features((output / "registry.log").read_text())
+-            receipt["readiness_completed"] = True
+-    except BaseException as error:
+-        failure = type(error).__name__ + ": " + str(error)
+-        raise
++                    observation = subprocess.run(["/bin/ps","-o","rss=","-p",str(process.pid)],capture_output=True,text=True,timeout=2)
++                    direct_RC = process.poll()
++                    if direct_RC is not None:
++                        receipt["resource_observation_exit_races"].append(dict(observation_returncode=observation.returncode,reported_RSS=observation.stdout.strip(),direct_returncode=direct_RC,elapsed_seconds=time.monotonic()-started))
++                        break
++                    rss = int(observation.stdout.strip())*1024
++                    need(observation.returncode==0 and rss>=0,"Missing/nonnumeric owned native RSS")
++                    receipt["RSS_samples"].append(dict(wall_seconds=time.monotonic()-started,RSS_bytes=rss))
++                    if rss>=c["resources"]["sampled_RSS_stop_bytes"]:stop("sampled_RSS_stop")
++                    if owned_size(output)>=c["resources"]["sampled_output_stop_bytes"]:stop("inclusive_output_stop")
++                    if growth_bytes(output,ROOT_EXECUTION,baseline)>=33554432:stop("incremental_growth_stop")
++                except (OSError,ValueError,subprocess.SubprocessError) as exc:
++                    direct_RC = process.poll()
++                    if direct_RC is None:stop("RSS_observation_failed")
++                    else:receipt["resource_observation_exit_races"].append(dict(error=repr(exc),direct_returncode=direct_RC,elapsed_seconds=time.monotonic()-started))
++                try:process.wait(timeout=.1)
++                except subprocess.TimeoutExpired:pass
++            if process.poll() is None:stop("controller_SIGTERM" if term_requested else stopped["reason"] or "controller_interrupted")
++            process.wait()
++        need(process.returncode==0 and not stopped["reason"] and not term_requested,"Native failure retained without retry")
++    except BaseException as exc:
++        failure = dict(type=type(exc).__name__,message=str(exc))
+     finally:
++        timer.cancel()
++        if process is not None:
++            if process.poll() is None:stop("controller_interrupted")
++            process.wait()
++    if process is not None:
+         try:
+-            timer.cancel()
+-            if process is not None:
+-                if process.poll() is None:
+-                    stop("controller_interrupted")
+-                process.wait()
+-        finally:
+-            signal.signal(signal.SIGTERM, previous)
+-        if time.monotonic() >= deadline:
+-            stopped["reason"] = stopped["reason"] or "stage_deadline"
+-        size = sum(p.stat().st_size for p in output.rglob("*") if p.is_file())
+-        if size >= c["resources"]["sampled_output_stop_bytes"]:
+-            stopped["reason"] = stopped["reason"] or "sampled_output_stop"
+-        unchanged = all(same(output / name, h) for name, h in inputs.items()) and same(contract, expected)
+-        try:
+-            check_pins(c["input_sha256"])
+-        except (ValueError, OSError):
+-            unchanged = False
+-        try:
+-            stable = runtime_unchanged(c)
+-        except (ValueError, OSError) as error:
+-            stable = False
+-            receipt["runtime_verification_failure_type"] = type(error).__name__
+-        reaped = bool(receipt["jobs"]) and all(job["process_reaped"] for job in receipt["jobs"])
+-        completed = failure is None and stopped["reason"] is None and not term_requested and unchanged and stable and reaped
+-        receipt.update(status="native_stopped_outputs_preserved", returncode=process.returncode if process else None,
+-                       process_reaped=reaped, controller_error=failure, controller_SIGTERM_requested=term_requested,
+-                       wall_seconds=time.monotonic() - started, stop_reason=stopped["reason"],
+-                       max_observed_RSS_bytes=max((s["RSS_bytes"] for s in receipt["RSS_samples"]), default=None),
+-                       resources=c["resources"], final_output_bytes_before_receipt=size,
+-                       inputs_unchanged=unchanged, binary_and_runtime_unchanged=stable,
+-                       binary_sha256=c["runtime_sha256s"]["bin/combined-opt"], binary_unchanged=stable,
+-                       native_execution_completed=completed and stage == "coupon",
+-                       readiness_completed=completed and receipt["readiness_completed"])
+-        receipt["complete_artifact_sha256"] = {str(p.relative_to(output)): sha(p) for p in sorted(output.rglob("*"))
+-                                     if p.is_file() and not p.is_symlink() and p.name not in ("native-execution.json", "readiness.json", "assessment.json")}
+-        receipt["artifact_sha256"] = {k: v for k, v in receipt["complete_artifact_sha256"].items() if Path(k).name == k}
+-        filename = "readiness.json" if stage == "readiness" else "native-execution.json"
+-        with (output / filename).open("x") as stream:
+-            json.dump(receipt, stream, indent=2, allow_nan=False)
+-            stream.write("\n")
+-    need(completed, "Stage controls or bindings failed; stopped outputs retained")
+-    return receipt
++            os.killpg(process.pid,0)
++            stopped["reason"] = stopped["reason"] or "lingering_owned_native_group"
++            try:os.killpg(process.pid,signal.SIGKILL)
++            except ProcessLookupError:pass
++            until = time.monotonic()+10
++            while time.monotonic()<until:
++                try:os.killpg(process.pid,0)
++                except ProcessLookupError:break
++                time.sleep(.05)
++        except ProcessLookupError:pass
++    unchanged = all(same(output/name,h) for name,h in inputs.items()) and same(contract,expected) and same(ROOT_EXECUTION/"authorization.json",admission_sha)
++    try:check_pins(c["input_sha256"]); stable=runtime_unchanged(c)
++    except (OSError,ValueError) as exc:stable=False;receipt["identity_error"]=repr(exc)
++    native_group_absent = False
++    if process is not None:
++        try:os.killpg(process.pid,0)
++        except ProcessLookupError:native_group_absent=True
++    required = {name:dict(present=(output/name).is_file(),bytes=(output/name).stat().st_size if (output/name).is_file() else None) for name in ("rich2-END181-dof-map.json","physical-X.petsc","physical-F.petsc","physical-Y.petsc")}
++    presence = all(v["present"] and v["bytes"]>0 for v in required.values()) and required["rich2-END181-dof-map.json"]["bytes"]<=1048576 and not (output/"rich2-END181-dof-map.json.part").exists()
++    if time.monotonic()>=deadline:stopped["reason"]=stopped["reason"] or "stage_deadline"
++    before_receipt_bytes=owned_size(output)
++    if before_receipt_bytes>=c["resources"]["sampled_output_stop_bytes"]:stopped["reason"]=stopped["reason"] or "inclusive_output_stop"
++    if growth_bytes(output,ROOT_EXECUTION,baseline)>=33554432:stopped["reason"]=stopped["reason"] or "incremental_growth_stop"
++    completed=bool(process is not None and process.returncode==0 and failure is None and stopped["reason"] is None and not term_requested and unchanged and stable and native_group_absent and presence)
++    receipt.update(status="stopped_outputs_preserved",returncode=process.returncode if process else None,process_reaped=process is not None and process.poll() is not None,native_group_absent=native_group_absent,controller_error=failure,controller_SIGTERM_requested=term_requested,stop_reason=stopped["reason"],wall_seconds=time.monotonic()-started,max_observed_RSS_bytes=max((s["RSS_bytes"] for s in receipt["RSS_samples"]),default=None),inputs_unchanged=unchanged,binary_and_runtime_unchanged=stable,required_output_presence_only=required,complete_stream_map_or_field_association_proved=False,native_execution_completed_candidate=completed,inclusive_bytes_before_receipt=before_receipt_bytes,incremental_growth_bytes_before_receipt=growth_bytes(output,ROOT_EXECUTION,baseline),receipt_signal_scope="SIGTERM latch retained through receipt write; flags prefinal; caller0 and outer0 plus inclusive postchecks required")
++    receipt["complete_artifact_sha256"]={str(p.relative_to(output)):sha(p) for p in sorted(output.rglob("*")) if p.is_file() and not p.is_symlink()}
++    with (output/"native-execution.json").open("x") as f:json.dump(receipt,f,indent=2,allow_nan=False);f.write("\n")
++    inclusive=owned_size(output);growth=growth_bytes(output,ROOT_EXECUTION,baseline);elapsed=time.monotonic()-started
++    signal.signal(signal.SIGTERM,previous)
++    # Signals after restoration are outside the saved latch; any nonzero caller status refuses capture.
++    need(completed and not term_requested and not receipt["controller_stop_requests"] and inclusive<c["resources"]["sampled_output_stop_bytes"] and growth<33554432 and elapsed<100,"Post-receipt native closure refused; retain prefinal receipt and require caller/outer RC0")
++    return dict(receipt="native-execution.json",returncode=process.returncode,prefinal_candidate=completed,postreceipt_inclusive_bytes=inclusive,postreceipt_growth_bytes=growth,wall_seconds=elapsed)
+ 
+ 
+ if __name__ == "__main__":
+-    parser = argparse.ArgumentParser(description=__doc__)
+-    parser.add_argument("--stage", choices=("coupon",), required=True)
+-    parser.add_argument("--contract", type=Path, required=True)
+-    parser.add_argument("--contract-sha256", required=True)
+-    parser.add_argument("--execute", action="store_true")
+-    args = parser.parse_args()
+-    if not args.execute:
+-        raise SystemExit("Held source; separate exact stage authority required")
+-    print(json.dumps(run(args.stage, args.contract, args.contract_sha256)))
++    parser=argparse.ArgumentParser(description=__doc__)
++    parser.add_argument("--stage",choices=("coupon",),required=True)
++    parser.add_argument("--contract",type=Path,required=True)
++    parser.add_argument("--contract-sha256",required=True)
++    parser.add_argument("--root-admission-sha256",required=True)
++    parser.add_argument("--execute",action="store_true")
++    args=parser.parse_args()
++    if not args.execute:raise SystemExit("Held source; separate exact root authority required")
++    print(json.dumps(run(args.stage,args.contract,args.contract_sha256,args.root_admission_sha256)),flush=True)

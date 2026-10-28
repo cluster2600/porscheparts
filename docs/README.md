@@ -15,12 +15,13 @@ flowchart LR
 
 | document | what it answers |
 |---|---|
-| [../README.md](../README.md) | what the repository is, and what it has found |
+| [../README.md](../README.md) | what the repository is, in plain language |
+| [ENGINEERING_OVERVIEW.md](ENGINEERING_OVERVIEW.md) | the full technical overview: software chain, results, withdrawn claims, parts table |
 | [PROJECT_CHARTER.md](PROJECT_CHARTER.md) | why the project exists and what it will not do |
-| [../SAFETY.md](../SAFETY.md) | what may be built, what may not, and why |
+| [SAFETY.md](SAFETY.md) | what may be built, what may not, and why |
 | [QUALITY_GATES.md](QUALITY_GATES.md) | what a part must prove at each level |
 | [WORKFLOW.md](WORKFLOW.md) | how a part goes from idea to record |
-| [../CONTRIBUTING.md](../CONTRIBUTING.md) | how to contribute a part, a source or a fix |
+| [CONTRIBUTING.md](CONTRIBUTING.md) | how to contribute a part, a source or a fix |
 | [TRANSLATION.md](TRANSLATION.md) | the French-to-English translation: scope, glossary, progress |
 | [GALLERY.md](GALLERY.md) | every figure, render and print screen on one page |
 | [../twins/README.md](../twins/README.md) | the digital twins, zone by zone |
@@ -33,8 +34,10 @@ flowchart LR
 | [SOURCE_POLICY.md](SOURCE_POLICY.md) | which sources are admissible, and how rights are recorded |
 | [PHASE1_SOURCE_INVENTORY.md](PHASE1_SOURCE_INVENTORY.md) | the phase 1 source inventory |
 | [MEASUREMENT_CAMPAIGN.md](MEASUREMENT_CAMPAIGN.md) | the phase 2 measurement campaign |
+| [CAPTURE_PROTOCOL.md](CAPTURE_PROTOCOL.md) | how a measurement, a scan or a declared value becomes checkable evidence |
 | [research/935-horizontal-cooling/README.md](research/935-horizontal-cooling/README.en.md) | research and reconstruction for a lighter, improved horizontal 935 cooling system |
 | [PORSCHEFANATICS_993_TURBO_AUDIT.md](PORSCHEFANATICS_993_TURBO_AUDIT.md) | local audit of a 993 Turbo source |
+| [research/public-3d-asset-licence-audit-2026-10-15.md](research/public-3d-asset-licence-audit-2026-10-15.md) | which public 3D models and scans of the 993 exist, their licence as read on the original page, and their scale anomalies |
 | [research/](research/) | source research by topic (German-language sources, carbon panels, M64 reviews, scans) |
 
 ## Parts and design
@@ -66,6 +69,7 @@ The [local Qwen pilot](../training/m64-qwen/README.md) implements the first AI i
 |---|---|
 | [DIGITAL_TWIN.md](DIGITAL_TWIN.md) | the 993 digital twin, its zones and levels |
 | [SOFTWARE_STACK.md](SOFTWARE_STACK.md) | the twin's software stack |
+| [WARP_GEOMETRY_VAST_PILOT.md](WARP_GEOMETRY_VAST_PILOT.md) | isolated Warp geometry image, synthetic CPU/CUDA checks and preparation for a bounded Vast test |
 | [AI_DIGITAL_TWIN_STACK.md](AI_DIGITAL_TWIN_STACK.md) | the open-source suite for building the twin |
 | [QWEN_TRAINING.md](QWEN_TRAINING.md) | how Qwen was trained, the actual datasets and results, and the next experiments for the 993 project |
 | [TOOLCHAIN.md](TOOLCHAIN.md) | the local CAD and analysis toolchain |
@@ -81,6 +85,10 @@ The [local Qwen pilot](../training/m64-qwen/README.md) implements the first AI i
 | [research/993-turbo-20261002/README.md](research/993-turbo-20261002/README.md) | sourced M64/60 engine research, K16 hybrid/map leads and training-data package |
 | [research/mezger-turbo-materials-20261003/README.md](research/mezger-turbo-materials-20261003/README.md) | turbo and racing engine variants, scoped alloy/process/thickness evidence and separate training increment |
 | [research/mezger-german-sources-20261003/README.md](research/mezger-german-sources-20261003/README.md) | German primary sources: RR350/2618A grade data, magnesium-case manufacture, hybrid-wheel declarations and racing comparisons |
+| [research/m64-measurements-20261024/README.md](research/m64-measurements-20261024/README.md) | additional M64/60 bearing interfaces, piston/ring/pin dimensions and turbo measurements with explicit datums, tolerances and exclusions |
+| [research/m64-dimensions-deep-20261024/README.md](research/m64-dimensions-deep-20261024/README.md) | MAHLE standard-replacement piston/cylinder datums, exact valve cross-references, restricted checking procedures and historical comparisons |
+| [research/m64-world-measurements-20261025/README.md](research/m64-world-measurements-20261025/README.md) | multilingual wheel and actuator drawings, replacement-rod geometry, cam timing cards and separately scoped Japanese and Group C comparisons |
+| [research/m64-precision-20261025/README.md](research/m64-precision-20261025/README.md) | valve-guide dimensions, rod mass matching, oil interfaces and machining-reference discrepancies with exact datums and conditions |
 | [OPENFOAM_POISEUILLE_VERIFICATION_F25.md](OPENFOAM_POISEUILLE_VERIFICATION_F25.md) | OpenFOAM verification against Poiseuille flow |
 
 ## Decisions and reports

@@ -1,0 +1,6 @@
+cmake_minimum_required(VERSION 3.16)
+project(carrier_exact_distance LANGUAGES CXX)
+find_package(CGAL 6.1.3 EXACT REQUIRED)
+add_executable(carrier_exact_distance distance.cpp)
+target_compile_features(carrier_exact_distance PRIVATE cxx_std_17)
+target_link_libraries(carrier_exact_distance PRIVATE CGAL::CGAL)

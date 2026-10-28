@@ -1,0 +1,388 @@
+{
+  "policy": "source_family_and_identical_reviewed_claim_connected_components",
+  "prior_ledgers": [
+    "training/993-turbo-20261002/split-ledger.json",
+    "training/mezger-turbo-materials-20261003/split-ledger.json",
+    "training/mezger-german-sources-20261003/split-ledger.json",
+    "training/m64-measurements-20261024/split-ledger.json",
+    "training/m64-dimensions-deep-20261024/split-ledger.json",
+    "training/m64-world-measurements-20261025/split-ledger.json"
+  ],
+  "source_family_aliases": {
+    "mahle-aftermarket.com": "us.mahle.com",
+    "ruf-automobile.de": "ruf-993",
+    "tte24.net": "tte-products"
+  },
+  "publisher_family_rules": {
+    "fia_homologation": "fia-homologation",
+    "mahle_brand_and_technical_mirrors": "us.mahle.com",
+    "melett_brand_and_technical_mirrors": "melett.com",
+    "federal_mogul_engine_catalogues": "federal-mogul-engine-catalogues",
+    "cp_carrillo_manufacturer_and_identified_mirrors": "cp-carrillo.com",
+    "kts_turbobillet_manufacturer_and_identified_mirrors": "ktsturbobilletx.com",
+    "turbosmart_manufacturer_and_identified_mirrors": "turbosmart.com",
+    "ln_engineering_manufacturer_knowledge_base_and_mirrors": "lnengineering.com",
+    "turbokraft_manufacturer_and_parts_store": "turbokraft.com",
+    "metelli_manufacturer_and_identified_mirrors": "metelligroup.it",
+    "wurth_manufacturer_and_identified_mirrors": "wuerth.com",
+    "arp_manufacturer_catalogue_and_identified_instruction_mirrors": "arp-bolts.com"
+  },
+  "components": [
+    {
+      "id": "arp-bolts.com",
+      "families": [
+        "arp-bolts.com"
+      ],
+      "split": "train",
+      "inherited_prior_partition": false,
+      "protected_train_family": false
+    },
+    {
+      "id": "cp-carrillo.com",
+      "families": [
+        "cp-carrillo.com"
+      ],
+      "split": "train",
+      "inherited_prior_partition": true,
+      "protected_train_family": false
+    },
+    {
+      "id": "lnengineering.com",
+      "families": [
+        "lnengineering.com"
+      ],
+      "split": "train",
+      "inherited_prior_partition": true,
+      "protected_train_family": true
+    },
+    {
+      "id": "metelligroup.it",
+      "families": [
+        "metelligroup.it"
+      ],
+      "split": "train",
+      "inherited_prior_partition": false,
+      "protected_train_family": false
+    },
+    {
+      "id": "porsche-factory-and-archive",
+      "families": [
+        "porsche-factory-and-archive",
+        "wuerth.com"
+      ],
+      "split": "train",
+      "inherited_prior_partition": true,
+      "protected_train_family": true
+    }
+  ],
+  "records": [
+    {
+      "record_id": "M64-PREC-O001",
+      "source_ids": [
+        "SRC-M64-MEAS-993-SPEC-BOOKLET"
+      ],
+      "source_families": [
+        "porsche-factory-and-archive"
+      ],
+      "claim_ids": [
+        "fact:4245bf1a6b5b23738a3c1c54ce4492b0227d75073f8a1d47b9d81c2708cebaa9",
+        "measurement_fact:075ea2c16ca79cd05abf08fe523cd00e665db3f0784ecb4917424aa71c8544aa"
+      ],
+      "component": "porsche-factory-and-archive",
+      "split": "train"
+    },
+    {
+      "record_id": "M64-PREC-O002",
+      "source_ids": [
+        "SRC-M64-MEAS-993-SPEC-BOOKLET"
+      ],
+      "source_families": [
+        "porsche-factory-and-archive"
+      ],
+      "claim_ids": [
+        "fact:31de02060c1d0ea3478d1cbe4267de1d29bba84668b76b4709b568f515d2ffda",
+        "measurement_fact:6479884142849520a8eab9ff3b60525fd682ed432f4c7097f06d8e39df421d5f"
+      ],
+      "component": "porsche-factory-and-archive",
+      "split": "train"
+    },
+    {
+      "record_id": "M64-PREC-O003",
+      "source_ids": [
+        "SRC-M64-MEAS-993-SPEC-BOOKLET"
+      ],
+      "source_families": [
+        "porsche-factory-and-archive"
+      ],
+      "claim_ids": [
+        "fact:7f1eb908f40eae58f832d03f88c5507155193ae12aac550c612f0f4603c1ce7e",
+        "measurement_fact:81710f5eec2bb21dfb8c079b2ccbecbf12b64d9d0ac2d4811bd09a9b3c71cc75"
+      ],
+      "component": "porsche-factory-and-archive",
+      "split": "train"
+    },
+    {
+      "record_id": "M64-PREC-M001",
+      "source_ids": [
+        "SRC-M64-PREC-METELLI-ENGINE-2025"
+      ],
+      "source_families": [
+        "metelligroup.it"
+      ],
+      "claim_ids": [
+        "fact:135dd56f9f480ca76fd52f5f1fa32d6d74093e1b2f24ec15c2bee224457cb9a4",
+        "measurement_fact:bc8a13fbc1ef6c0ac9146c97901592b5d0726a6f378a801a2ef7eccfa142af33"
+      ],
+      "component": "metelligroup.it",
+      "split": "train"
+    },
+    {
+      "record_id": "M64-PREC-M002",
+      "source_ids": [
+        "SRC-M64-PREC-METELLI-ENGINE-2025"
+      ],
+      "source_families": [
+        "metelligroup.it"
+      ],
+      "claim_ids": [
+        "fact:202fb5d9f1e06b149f9aebeba0bb91f8473e6d2912460ee6bd6179557fde841c",
+        "measurement_fact:307a760ab4549c46ee75ca065632beabafcbcb6cbcff0d3229f5a42300cc3802"
+      ],
+      "component": "metelligroup.it",
+      "split": "train"
+    },
+    {
+      "record_id": "M64-PREC-M003",
+      "source_ids": [
+        "SRC-M64-PREC-METELLI-ENGINE-2025"
+      ],
+      "source_families": [
+        "metelligroup.it"
+      ],
+      "claim_ids": [
+        "fact:63d306ef65091255474fdcc8286c9ac0eeb50afb25aae55621f9372612502512",
+        "measurement_fact:a3bd94d3d0251c29f8b1a96b075b8fbcfede0256a46fcf74e5313a57f5c7a0ac"
+      ],
+      "component": "metelligroup.it",
+      "split": "train"
+    },
+    {
+      "record_id": "M64-PREC-M004",
+      "source_ids": [
+        "SRC-M64-PREC-METELLI-ENGINE-2025"
+      ],
+      "source_families": [
+        "metelligroup.it"
+      ],
+      "claim_ids": [
+        "fact:2f910d261f4706ccb43e6ae564e2789fa3c486b255e23460e592b6aae90844e9",
+        "measurement_fact:6c88048f5970152f6d4a187a48a0e0f4b75530c5e5d098e4e36a5ea91319f936"
+      ],
+      "component": "metelligroup.it",
+      "split": "train"
+    },
+    {
+      "record_id": "M64-PREC-T001",
+      "source_ids": [
+        "SRC-PORSCHE-PET-993"
+      ],
+      "source_families": [
+        "porsche-factory-and-archive"
+      ],
+      "claim_ids": [
+        "fact:fdd49b6c27d4636ebde16736ec0e9fde96486b541bd0c4624023d49032cd00b0",
+        "measurement_fact:8331a9d24256b443c5108f5bbfe892463663094d244d8cfc2470cb9cfd96ac04"
+      ],
+      "component": "porsche-factory-and-archive",
+      "split": "train"
+    },
+    {
+      "record_id": "M64-PREC-T002",
+      "source_ids": [
+        "SRC-PORSCHE-PET-993"
+      ],
+      "source_families": [
+        "porsche-factory-and-archive"
+      ],
+      "claim_ids": [
+        "fact:600deb02b87ba397626ea1d06b2f0c2b561d59f850adab137368dea27b674dd7",
+        "measurement_fact:6b746e36705ac13f4a348d21735863a0dfba552176bf01db9c565dc0d5c62381"
+      ],
+      "component": "porsche-factory-and-archive",
+      "split": "train"
+    },
+    {
+      "record_id": "M64-PREC-T003",
+      "source_ids": [
+        "SRC-PORSCHE-PET-993"
+      ],
+      "source_families": [
+        "porsche-factory-and-archive"
+      ],
+      "claim_ids": [
+        "fact:4ea78a46b79c90c5b11726521877c9ba734dc077110ecc2f5007905e3a433e66",
+        "measurement_fact:0ce646c03a18fc6f9d890e1ee4623a973f2b2d83d03951519dfa715586534ed9"
+      ],
+      "component": "porsche-factory-and-archive",
+      "split": "train"
+    },
+    {
+      "record_id": "M64-PREC-T004",
+      "source_ids": [
+        "SRC-PORSCHE-PET-993"
+      ],
+      "source_families": [
+        "porsche-factory-and-archive"
+      ],
+      "claim_ids": [
+        "fact:5be69b0722c1e8e5a67ac0a195fa270f8da35663824d15ac798710d95fd55c06",
+        "measurement_fact:c83ed9e0ccf1a9f493c6ab23bebc9e21e0b7a7f127164d29eee778e6085761d2"
+      ],
+      "component": "porsche-factory-and-archive",
+      "split": "train"
+    },
+    {
+      "record_id": "M64-PREC-T005",
+      "source_ids": [
+        "SRC-M64-PREC-T-WURTH-DRAIN-CATALOG",
+        "SRC-PORSCHE-PET-993"
+      ],
+      "source_families": [
+        "porsche-factory-and-archive",
+        "wuerth.com"
+      ],
+      "claim_ids": [
+        "fact:ba0c604e8229fe610e806349aef59e0fa659eb3677ce21d67c9299245bddc2b4",
+        "measurement_fact:a9f2396655a93f1d501148ddaacbc6274288e70c0b19dd735829e8fa9e2778c5"
+      ],
+      "component": "porsche-factory-and-archive",
+      "split": "train"
+    },
+    {
+      "record_id": "M64-PREC-T006",
+      "source_ids": [
+        "SRC-M64-PREC-T-WURTH-DRAIN-CATALOG",
+        "SRC-M64-PREC-T-WURTH-SEAL-DATA",
+        "SRC-PORSCHE-PET-993"
+      ],
+      "source_families": [
+        "porsche-factory-and-archive",
+        "wuerth.com"
+      ],
+      "claim_ids": [
+        "fact:6a0233fb7c7d406449760754901664e586c03c5db689bd076f45aa19472fe354",
+        "measurement_fact:8ee95ac8e66d248ad07842da33778516e9d72a49b9f4593c135376de33fb709b"
+      ],
+      "component": "porsche-factory-and-archive",
+      "split": "train"
+    },
+    {
+      "record_id": "M64-PREC-R001",
+      "source_ids": [
+        "SRC-M64-WORLD-CP-CARRILLO-2013-RODS"
+      ],
+      "source_families": [
+        "cp-carrillo.com"
+      ],
+      "claim_ids": [
+        "fact:348fd59b8c304a9f49f6ad6c171299a28cd545b0a467ed463afc3c7121ce4d68",
+        "measurement_fact:5fd4a2a76fc481ee13ded7ec78e585f0629033ab3bb277739984dd5ea81eaaf2"
+      ],
+      "component": "cp-carrillo.com",
+      "split": "train"
+    },
+    {
+      "record_id": "M64-PREC-R002",
+      "source_ids": [
+        "SRC-M64-PREC-LN-MACHINING-KB"
+      ],
+      "source_families": [
+        "lnengineering.com"
+      ],
+      "claim_ids": [
+        "fact:9909d73fb2be150a2e227978b5c8157bf1c2605730ec74d60601ba8ec9b7a355",
+        "measurement_fact:5c16b007557241297d4271d6d004ad7b7288bd16f7e4c3f04aafda9a01a1bbe1"
+      ],
+      "component": "lnengineering.com",
+      "split": "train"
+    },
+    {
+      "record_id": "M64-PREC-R003",
+      "source_ids": [
+        "SRC-M64-PREC-LN-MACHINING-KB"
+      ],
+      "source_families": [
+        "lnengineering.com"
+      ],
+      "claim_ids": [
+        "fact:e982ce3c4ecd18e2433925d1a0d91df7c02a26bf41196ce89adc1f719cc7a0ff",
+        "measurement_fact:b77e1412686f3d9aeec33dada0d92d0a844b6ac6591a367aa4c17d68b53fceb9"
+      ],
+      "component": "lnengineering.com",
+      "split": "train"
+    },
+    {
+      "record_id": "M64-PREC-R004",
+      "source_ids": [
+        "SRC-M64-PREC-LN-MACHINING-KB"
+      ],
+      "source_families": [
+        "lnengineering.com"
+      ],
+      "claim_ids": [
+        "fact:6074b9b2179472295b9a336e850eb82cb1da933d3d6329a52c49ba7a35360236",
+        "measurement_fact:fcf948e0fea8022ea4713730244c1dd66ba13a8c7f0fc63db1230f377d86a09f"
+      ],
+      "component": "lnengineering.com",
+      "split": "train"
+    },
+    {
+      "record_id": "M64-PREC-R005",
+      "source_ids": [
+        "SRC-M64-PREC-LN-MACHINING-KB"
+      ],
+      "source_families": [
+        "lnengineering.com"
+      ],
+      "claim_ids": [
+        "fact:f7b7cf6ab05ee89e0042d513cd3864ab174a7d488b06788ba7702ea0c4f3b0c4",
+        "measurement_fact:21f25095c242172e7bd06d0b736ebc31aecf8287156a13854dcf93b680ae57b2"
+      ],
+      "component": "lnengineering.com",
+      "split": "train"
+    },
+    {
+      "record_id": "M64-PREC-C001",
+      "source_ids": [
+        "SRC-M64-PREC-ARP-2026-P56",
+        "SRC-M64-PREC-ARP-2046005-MIRROR"
+      ],
+      "source_families": [
+        "arp-bolts.com"
+      ],
+      "claim_ids": [
+        "fact:fafd7757128e66680ad6c1b3c0c01d983d870500f82372a7e509821bd5be5b60",
+        "measurement_fact:59a93ddb9fb87e4a3818402ac40380e5d5514bb6c55b4dd044bf52dd45f7bafc"
+      ],
+      "component": "arp-bolts.com",
+      "split": "train"
+    },
+    {
+      "record_id": "M64-PREC-C002",
+      "source_ids": [
+        "SRC-M64-PREC-ARP-2046005-MIRROR"
+      ],
+      "source_families": [
+        "arp-bolts.com"
+      ],
+      "claim_ids": [
+        "fact:4375138880ed905b5857d68d6ed38308de5fa5a3ec4e24381091ce70c99738eb",
+        "measurement_fact:7bebed5668f18fb7b36f4ddc7cc6a2347e076df86bca18f5879fa5bec7a1b710"
+      ],
+      "component": "arp-bolts.com",
+      "split": "train"
+    }
+  ],
+  "empty_partitions_allowed": true,
+  "holdouts": "Inherit every source, family and exact reviewed claim partition from all six frozen packs; new unassigned components stay in train. No new holdout anchors are imposed."
+}

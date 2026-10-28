@@ -4,7 +4,7 @@ Date: 2026-09-25
 
 ## Context
 
-The active phase manufactures nothing ([ROADMAP.md](../../ROADMAP.md),
+The active phase manufactures nothing ([ROADMAP.md](../ROADMAP.md),
 "Physical prototypes — suspended"). After a whole catalogue of concept records,
 the project owner asked for one part that can be printed today.
 

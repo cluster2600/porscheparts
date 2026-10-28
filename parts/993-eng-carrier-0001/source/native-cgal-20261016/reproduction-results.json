@@ -1,0 +1,42 @@
+{
+  "status": "software_witnesses_pass",
+  "CGAL_version": "6.1.3",
+  "CGAL_commit": "109ed62eeaa7e38eb383e9444700e6ff7bd4c449",
+  "fresh_setup_prefix": "/home/lolman/carrier-cgal-autorefine-reproduction-20261016",
+  "fresh_setup_installation_receipt_sha256": "f2678ffa04c027241665b9caa9851131f97c46791594531c7b5eb66951c24ed2",
+  "witnesses": {
+    "clean-box": {
+      "expected_acceptance": true,
+      "observed_acceptance": true,
+      "execution": "executed",
+      "native_return": true
+    },
+    "degenerate-box": {
+      "expected_acceptance": true,
+      "observed_acceptance": true,
+      "execution": "executed",
+      "native_return": true
+    },
+    "touching-tetra": {
+      "expected_acceptance": false,
+      "observed_acceptance": false,
+      "execution": "rejected_or_failed",
+      "native_return": true
+    },
+    "crossing-triangles": {
+      "expected_acceptance": false,
+      "observed_acceptance": false,
+      "execution": "rejected_or_failed",
+      "native_return": false
+    }
+  },
+  "source_files_sha256": {
+    "parts/993-eng-carrier-0001/source/native-cgal-20261016/worker.py": "19f4bbd2d61d3e5888cdc901f7c14b31a8538ff941fa626a6019a66743a63e15",
+    "parts/993-eng-carrier-0001/source/native-cgal-20261016/run.py": "2cebda65552af2e3f29de95edb990891e397ca1933e5f3219bb60ea03e27f1ab",
+    "parts/993-eng-carrier-0001/source/native-cgal-20261016/CMakeLists.txt": "bd73e77a72b9fca14cf9b2a83fd34a3413c845672247836240f4f1029414907d",
+    "parts/993-eng-carrier-0001/source/native-cgal-20261016/autorefine.cpp": "34a610292dc8c1f51c74367fee7cc08967316f29792d1bd3b2ec8858542509b2",
+    "parts/993-eng-carrier-0001/source/native-cgal-20261016/README.md": "8b1565f23813ac03a8d9e371cd52c418613d25acda9f3edf2c815e74f42cf04b",
+    "parts/993-eng-carrier-0001/source/native-cgal-20261016/setup.py": "d371d83e955aa73cb5d6586244ea291d0303f85b3a24567b378776cbbca4c15d"
+  },
+  "scope": "Software installation and artificial test geometries. Carrier snap results are owned by the separate process campaign. The legacy libigl drift measurement is independently replaced by a separately linked exact measurement."
+}

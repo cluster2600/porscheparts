@@ -1,0 +1,758 @@
+{
+  "schema": "962-native005-fake-guard-source-coverage/v1",
+  "status": "PLANNED_UNRUN_SOURCE_ONLY_NOT_GUARD_ACCEPTANCE",
+  "author": "material_publication",
+  "native_source_author": "lpbf_linear_refinement",
+  "test_class": "Native005Guards",
+  "direct_test_methods": 31,
+  "method_inventory": [
+    {
+      "method": "test_01_owner_normal_real_main_and_future_deadline",
+      "lines": [
+        576,
+        589
+      ]
+    },
+    {
+      "method": "test_02_owner_already_default_precondition",
+      "lines": [
+        591,
+        596
+      ]
+    },
+    {
+      "method": "test_03_caller_normal_identity_running_receipt_return",
+      "lines": [
+        598,
+        611
+      ]
+    },
+    {
+      "method": "test_04_caller_already_default_precondition",
+      "lines": [
+        613,
+        618
+      ]
+    },
+    {
+      "method": "test_05_lost_owner_handshake_revokes_next_signal",
+      "lines": [
+        620,
+        626
+      ]
+    },
+    {
+      "method": "test_06_lost_terminal_relationship_never_resignals",
+      "lines": [
+        628,
+        634
+      ]
+    },
+    {
+      "method": "test_07_lost_owner_query_closes_only_that_pid_authority",
+      "lines": [
+        636,
+        644
+      ]
+    },
+    {
+      "method": "test_08_lost_caller_query_has_no_pid_signal",
+      "lines": [
+        646,
+        652
+      ]
+    },
+    {
+      "method": "test_09_lost_native_reap_stays_unknown",
+      "lines": [
+        654,
+        660
+      ]
+    },
+    {
+      "method": "test_10_actual_caller_evidence_rejects_clock_echo_and_stdout_mutants",
+      "lines": [
+        662,
+        674
+      ]
+    },
+    {
+      "method": "test_11_full_main_postwrite_failure_preserves_prefinal_bytes_and_raw_refusal",
+      "lines": [
+        676,
+        688
+      ]
+    },
+    {
+      "method": "test_12_identity_edge_refuses_without_normal_wait_or_replacement",
+      "lines": [
+        690,
+        700
+      ]
+    },
+    {
+      "method": "test_13_precontinuation_abort_is_direct_pid_only",
+      "lines": [
+        702,
+        709
+      ]
+    },
+    {
+      "method": "test_14_cont_uncertainty_group_cleanup_and_first_deadlines",
+      "lines": [
+        711,
+        722
+      ]
+    },
+    {
+      "method": "test_15_owner_constructor_unknown_or_late_preserves_exact_ownership",
+      "lines": [
+        724,
+        739
+      ]
+    },
+    {
+      "method": "test_16_native_constructor_unknown_or_late_never_gains_signal_authority",
+      "lines": [
+        741,
+        755
+      ]
+    },
+    {
+      "method": "test_17_sample_error_is_not_erased_by_exit_event",
+      "lines": [
+        757,
+        763
+      ]
+    },
+    {
+      "method": "test_18_postreap_presence_or_unknown_never_resignals",
+      "lines": [
+        765,
+        772
+      ]
+    },
+    {
+      "method": "test_19_actual_fixed_queries_drain_split_streams_and_accept_reported_zero",
+      "lines": [
+        780,
+        792
+      ]
+    },
+    {
+      "method": "test_20_reaped_query_partial_eof_error_never_signals_reused_pid",
+      "lines": [
+        794,
+        807
+      ]
+    },
+    {
+      "method": "test_21_unreaped_query_timeout_parent_refusal_precedes_own_pid_cleanup",
+      "lines": [
+        809,
+        821
+      ]
+    },
+    {
+      "method": "test_22_actual_retained_destructor_normal_unreaped_and_partial_instances",
+      "lines": [
+        823,
+        835
+      ]
+    },
+    {
+      "method": "test_23_no_wait_after_cutoff_and_unknown_does_not_become_zero",
+      "lines": [
+        837,
+        849
+      ]
+    },
+    {
+      "method": "test_24_canonical_original_token_variants_are_refused",
+      "lines": [
+        851,
+        859
+      ]
+    },
+    {
+      "method": "test_25_actual_deadline_bypasses_capture_and_same_and_preserves_consumed_status",
+      "lines": [
+        861,
+        885
+      ]
+    },
+    {
+      "method": "test_26_actual_inclusive_union_counts_distinct_paths_and_pending_receipt",
+      "lines": [
+        887,
+        902
+      ]
+    },
+    {
+      "method": "test_27_wrapper_real_main_orders_hello_stop_and_exact_handoff",
+      "lines": [
+        904,
+        918
+      ]
+    },
+    {
+      "method": "test_28_early_consumed_terminal_is_not_continued_or_reaped_twice",
+      "lines": [
+        920,
+        926
+      ]
+    },
+    {
+      "method": "test_29_whole_owner_unreaped_late_return_preserves_unknown_without_new_api",
+      "lines": [
+        928,
+        934
+      ]
+    },
+    {
+      "method": "test_30_whole_owner_query_timeout_latches_term_before_query_pid_cleanup",
+      "lines": [
+        936,
+        946
+      ]
+    },
+    {
+      "method": "test_31_actual_timeout_conversion_and_original_equality_return_check",
+      "lines": [
+        948,
+        964
+      ]
+    }
+  ],
+  "case_count_policy": "31 is the actual direct unittest method count. Explicit subTest tables are preserved in source; no36-obligation completion or successful scenario count is inferred.",
+  "B01_B04": {
+    "B01": [
+      "test_01_owner_normal_real_main_and_future_deadline",
+      "test_02_owner_already_default_precondition",
+      "test_03_caller_normal_identity_running_receipt_return",
+      "test_04_caller_already_default_precondition"
+    ],
+    "B02": [
+      "test_05_lost_owner_handshake_revokes_next_signal",
+      "test_06_lost_terminal_relationship_never_resignals",
+      "test_07_lost_owner_query_closes_only_that_pid_authority",
+      "test_08_lost_caller_query_has_no_pid_signal",
+      "test_09_lost_native_reap_stays_unknown",
+      "test_20_reaped_query_partial_eof_error_never_signals_reused_pid",
+      "test_23_no_wait_after_cutoff_and_unknown_does_not_become_zero",
+      "test_25_actual_deadline_bypasses_capture_and_same_and_preserves_consumed_status",
+      "test_28_early_consumed_terminal_is_not_continued_or_reaped_twice",
+      "test_29_whole_owner_unreaped_late_return_preserves_unknown_without_new_api"
+    ],
+    "B03": [
+      "test_01_owner_normal_real_main_and_future_deadline",
+      "test_10_actual_caller_evidence_rejects_clock_echo_and_stdout_mutants",
+      "test_24_canonical_original_token_variants_are_refused"
+    ],
+    "B04": [
+      "test_01_owner_normal_real_main_and_future_deadline",
+      "test_11_full_main_postwrite_failure_preserves_prefinal_bytes_and_raw_refusal"
+    ]
+  },
+  "G_cases": [
+    {
+      "id": "G01",
+      "status": "PLANNED_FAKE_SUBSET",
+      "method_numbers": [
+        15,
+        16
+      ],
+      "methods": [
+        "test_15_owner_constructor_unknown_or_late_preserves_exact_ownership",
+        "test_16_native_constructor_unknown_or_late_never_gains_signal_authority"
+      ],
+      "scope_and_gaps": "Owner/native construction without reliable returned PID; query constructor unknown not covered.",
+      "executed": false
+    },
+    {
+      "id": "G02",
+      "status": "PLANNED_FAKE_COVERAGE",
+      "method_numbers": [
+        28
+      ],
+      "methods": [
+        "test_28_early_consumed_terminal_is_not_continued_or_reaped_twice"
+      ],
+      "scope_and_gaps": "Consumed early raw status once; no CONT/group signal.",
+      "executed": false
+    },
+    {
+      "id": "G03",
+      "status": "PLANNED_FAKE_SUBSET",
+      "method_numbers": [
+        13
+      ],
+      "methods": [
+        "test_13_precontinuation_abort_is_direct_pid_only"
+      ],
+      "scope_and_gaps": "PGID mismatch/direct-only abort; bad stop signal/SID variant not separately injected.",
+      "executed": false
+    },
+    {
+      "id": "G04",
+      "status": "PLANNED_FAKE_SUBSET",
+      "method_numbers": [
+        13
+      ],
+      "methods": [
+        "test_13_precontinuation_abort_is_direct_pid_only"
+      ],
+      "scope_and_gaps": "Registration error before CONT; independent stop-before-CONT variant absent.",
+      "executed": false
+    },
+    {
+      "id": "G05",
+      "status": "PLANNED_FAKE_COVERAGE",
+      "method_numbers": [
+        14
+      ],
+      "methods": [
+        "test_14_cont_uncertainty_group_cleanup_and_first_deadlines"
+      ],
+      "scope_and_gaps": "Actual CONT intention before exception; group cleanup, no direct fallback.",
+      "executed": false
+    },
+    {
+      "id": "G06",
+      "status": "PLANNED_FAKE_SUBSET",
+      "method_numbers": [
+        3,
+        12,
+        16
+      ],
+      "methods": [
+        "test_03_caller_normal_identity_running_receipt_return",
+        "test_12_identity_edge_refuses_without_normal_wait_or_replacement",
+        "test_16_native_constructor_unknown_or_late_never_gains_signal_authority"
+      ],
+      "scope_and_gaps": "One inherited native spawn and identity-stop boundary; exact simultaneous outer-TERM/native-constructor race not covered.",
+      "executed": false
+    },
+    {
+      "id": "G07",
+      "status": "PLANNED_FAKE_COVERAGE",
+      "method_numbers": [
+        3,
+        12
+      ],
+      "methods": [
+        "test_03_caller_normal_identity_running_receipt_return",
+        "test_12_identity_edge_refuses_without_normal_wait_or_replacement"
+      ],
+      "scope_and_gaps": "Actual query/identity edge and missing/wrong PID/PPID/PGID; no normal wait before positive identity.",
+      "executed": false
+    },
+    {
+      "id": "G08",
+      "status": "PLANNED_FAKE_SUBSET",
+      "method_numbers": [
+        3,
+        14,
+        18
+      ],
+      "methods": [
+        "test_03_caller_normal_identity_running_receipt_return",
+        "test_14_cont_uncertainty_group_cleanup_and_first_deadlines",
+        "test_18_postreap_presence_or_unknown_never_resignals"
+      ],
+      "scope_and_gaps": "Caller native raw0/reap claims no absence; outer nonanchor/present gates separate, not a live shared group.",
+      "executed": false
+    },
+    {
+      "id": "G09",
+      "status": "PLANNED_FAKE_COVERAGE",
+      "method_numbers": [
+        1
+      ],
+      "methods": [
+        "test_01_owner_normal_real_main_and_future_deadline"
+      ],
+      "scope_and_gaps": "Actual owner positive anchorZ-only snapshot, deliberate reap and one synthetic ESRCH.",
+      "executed": false
+    },
+    {
+      "id": "G10",
+      "status": "PLANNED_FAKE_SUBSET",
+      "method_numbers": [
+        14,
+        17
+      ],
+      "methods": [
+        "test_14_cont_uncertainty_group_cleanup_and_first_deadlines",
+        "test_17_sample_error_is_not_erased_by_exit_event"
+      ],
+      "scope_and_gaps": "Nonanchor and malformed snapshot refusal; every missing/error membership variant not enumerated.",
+      "executed": false
+    },
+    {
+      "id": "G11",
+      "status": "PLANNED_FAKE_SUBSET",
+      "method_numbers": [
+        14,
+        30
+      ],
+      "methods": [
+        "test_14_cont_uncertainty_group_cleanup_and_first_deadlines",
+        "test_30_whole_owner_query_timeout_latches_term_before_query_pid_cleanup"
+      ],
+      "scope_and_gaps": "Query callback then cleanup reaches same once-only TERM decision and stored deadline; arbitrary repeated finalization entry untested.",
+      "executed": false
+    },
+    {
+      "id": "G12",
+      "status": "PLANNED_FAKE_SUBSET",
+      "method_numbers": [
+        14
+      ],
+      "methods": [
+        "test_14_cont_uncertainty_group_cleanup_and_first_deadlines"
+      ],
+      "scope_and_gaps": "TERM EPERM/ESRCH preserved with later explicit reap; KILL/other-error variants not covered.",
+      "executed": false
+    },
+    {
+      "id": "G13",
+      "status": "PLANNED_FAKE_SUBSET",
+      "method_numbers": [
+        23,
+        29
+      ],
+      "methods": [
+        "test_23_no_wait_after_cutoff_and_unknown_does_not_become_zero",
+        "test_29_whole_owner_unreaped_late_return_preserves_unknown_without_new_api"
+      ],
+      "scope_and_gaps": "Whole-owner unreaped late return and exact helper cutoff; killed-caller/grandchild and all query-at110 paths untested.",
+      "executed": false
+    },
+    {
+      "id": "G14",
+      "status": "PLANNED_FAKE_SUBSET",
+      "method_numbers": [
+        18
+      ],
+      "methods": [
+        "test_18_postreap_presence_or_unknown_never_resignals"
+      ],
+      "scope_and_gaps": "One postreap present/EPERM observation without numeric resignal; separately late absence call untested.",
+      "executed": false
+    },
+    {
+      "id": "G15",
+      "status": "PLANNED_FAKE_COVERAGE",
+      "method_numbers": [
+        24
+      ],
+      "methods": [
+        "test_24_canonical_original_token_variants_are_refused"
+      ],
+      "scope_and_gaps": "Actual owner/caller/wrapper grammar, observed-future token refusal and valid unchanged token.",
+      "executed": false
+    },
+    {
+      "id": "G16",
+      "status": "PLANNED_FAKE_SUBSET",
+      "method_numbers": [
+        10,
+        12,
+        27
+      ],
+      "methods": [
+        "test_10_actual_caller_evidence_rejects_clock_echo_and_stdout_mutants",
+        "test_12_identity_edge_refuses_without_normal_wait_or_replacement",
+        "test_27_wrapper_real_main_orders_hello_stop_and_exact_handoff"
+      ],
+      "scope_and_gaps": "Actual evidence token/deadline and identity mutants, wrapper forwarding; not every source/identity echo mutated.",
+      "executed": false
+    },
+    {
+      "id": "G17",
+      "status": "PLANNED_FAKE_SUBSET",
+      "method_numbers": [
+        25,
+        31
+      ],
+      "methods": [
+        "test_25_actual_deadline_bypasses_capture_and_same_and_preserves_consumed_status",
+        "test_31_actual_timeout_conversion_and_original_equality_return_check"
+      ],
+      "scope_and_gaps": "Actual downward timeout conversion, original-bound equality/full-return and late consumed status; all platform float/API extremes untested.",
+      "executed": false
+    },
+    {
+      "id": "G18",
+      "status": "PLANNED_FAKE_SUBSET",
+      "method_numbers": [
+        14,
+        30
+      ],
+      "methods": [
+        "test_14_cont_uncertainty_group_cleanup_and_first_deadlines",
+        "test_30_whole_owner_query_timeout_latches_term_before_query_pid_cleanup"
+      ],
+      "scope_and_gaps": "Actual first TERM deadline and repeat cleanup no restart; not all early/late KILL seams.",
+      "executed": false
+    },
+    {
+      "id": "G19",
+      "status": "PLANNED_FAKE_SUBSET",
+      "method_numbers": [
+        1,
+        17,
+        19
+      ],
+      "methods": [
+        "test_01_owner_normal_real_main_and_future_deadline",
+        "test_17_sample_error_is_not_erased_by_exit_event",
+        "test_19_actual_fixed_queries_drain_split_streams_and_accept_reported_zero"
+      ],
+      "scope_and_gaps": "Reported0 is valid; malformed sampler yields null peak/refusal. All missing/no-sample input variants not enumerated.",
+      "executed": false
+    },
+    {
+      "id": "G20",
+      "status": "PLANNED_FAKE_COVERAGE",
+      "method_numbers": [
+        17
+      ],
+      "methods": [
+        "test_17_sample_error_is_not_erased_by_exit_event"
+      ],
+      "scope_and_gaps": "Actual sampler failure and later NOTE_EXIT cannot erase error/refusal.",
+      "executed": false
+    },
+    {
+      "id": "G21",
+      "status": "PLANNED_FAKE_COVERAGE",
+      "method_numbers": [
+        25
+      ],
+      "methods": [
+        "test_25_actual_deadline_bypasses_capture_and_same_and_preserves_consumed_status"
+      ],
+      "scope_and_gaps": "Actual DeadlineRefusal bypasses unchanged capture/same; consumed status preserved.",
+      "executed": false
+    },
+    {
+      "id": "G22",
+      "status": "PLANNED_FAKE_COVERAGE",
+      "method_numbers": [
+        20,
+        25
+      ],
+      "methods": [
+        "test_20_reaped_query_partial_eof_error_never_signals_reused_pid",
+        "test_25_actual_deadline_bypasses_capture_and_same_and_preserves_consumed_status"
+      ],
+      "scope_and_gaps": "Actual terminal query status then partial EOF/error: no PID signal/reap after recorded terminal.",
+      "executed": false
+    },
+    {
+      "id": "G23",
+      "status": "PLANNED_FAKE_SUBSET",
+      "method_numbers": [
+        7,
+        8,
+        19,
+        20,
+        21,
+        30
+      ],
+      "methods": [
+        "test_07_lost_owner_query_closes_only_that_pid_authority",
+        "test_08_lost_caller_query_has_no_pid_signal",
+        "test_19_actual_fixed_queries_drain_split_streams_and_accept_reported_zero",
+        "test_20_reaped_query_partial_eof_error_never_signals_reused_pid",
+        "test_21_unreaped_query_timeout_parent_refusal_precedes_own_pid_cleanup",
+        "test_30_whole_owner_query_timeout_latches_term_before_query_pid_cleanup"
+      ],
+      "scope_and_gaps": "Both actual fixed forms, split streams/EOF/partial/timeout/ECHILD and callback ordering; query constructor unknown and every close error untested.",
+      "executed": false
+    },
+    {
+      "id": "G24",
+      "status": "PLANNED_FAKE_SUBSET",
+      "method_numbers": [
+        10,
+        11,
+        20
+      ],
+      "methods": [
+        "test_10_actual_caller_evidence_rejects_clock_echo_and_stdout_mutants",
+        "test_11_full_main_postwrite_failure_preserves_prefinal_bytes_and_raw_refusal",
+        "test_20_reaped_query_partial_eof_error_never_signals_reused_pid"
+      ],
+      "scope_and_gaps": "Actual bad-schema/missing/partial receipt and extra stdout; all schema/type/duplicate/nonfinite variants not enumerated.",
+      "executed": false
+    },
+    {
+      "id": "G25",
+      "status": "PLANNED_FAKE_SUBSET",
+      "method_numbers": [
+        11,
+        16,
+        25,
+        29,
+        31
+      ],
+      "methods": [
+        "test_11_full_main_postwrite_failure_preserves_prefinal_bytes_and_raw_refusal",
+        "test_16_native_constructor_unknown_or_late_never_gains_signal_authority",
+        "test_25_actual_deadline_bypasses_capture_and_same_and_preserves_consumed_status",
+        "test_29_whole_owner_unreaped_late_return_preserves_unknown_without_new_api",
+        "test_31_actual_timeout_conversion_and_original_equality_return_check"
+      ],
+      "scope_and_gaps": "Real return/write/join/control deadline seams; every read/hash/trace/serialization phase not individually injected.",
+      "executed": false
+    },
+    {
+      "id": "G26",
+      "status": "PLANNED_FAKE_SUBSET",
+      "method_numbers": [
+        11,
+        12,
+        14
+      ],
+      "methods": [
+        "test_11_full_main_postwrite_failure_preserves_prefinal_bytes_and_raw_refusal",
+        "test_12_identity_edge_refuses_without_normal_wait_or_replacement",
+        "test_14_cont_uncertainty_group_cleanup_and_first_deadlines"
+      ],
+      "scope_and_gaps": "After-identity and postwrite stops plus uncertainCONT; before-spawn/during-query/after-reap signal variants not all covered.",
+      "executed": false
+    },
+    {
+      "id": "G27",
+      "status": "PLANNED_FAKE_SUBSET",
+      "method_numbers": [
+        26
+      ],
+      "methods": [
+        "test_26_actual_inclusive_union_counts_distinct_paths_and_pending_receipt"
+      ],
+      "scope_and_gaps": "Actual inclusive/growth with virtual stat sizes, path dedup vs identical distinct paths and pending-receipt equality; full external operational stream closure untested.",
+      "executed": false
+    },
+    {
+      "id": "G28",
+      "status": "STATIC_EXTERNAL_SOURCE_REVIEW_ONLY",
+      "method_numbers": [],
+      "methods": [],
+      "scope_and_gaps": "Pinned005 index/independent peer/root records account source lineage. No executable G28 pass is claimed and their maps are not recursively read.",
+      "executed": false
+    },
+    {
+      "id": "G29",
+      "status": "UNCOVERED",
+      "method_numbers": [],
+      "methods": [],
+      "scope_and_gaps": "Caller checked_contract/runtime and owner identity/ancestry observations are fake. No scientific/card/argv/callback/profile mutation acceptance coverage.",
+      "executed": false
+    },
+    {
+      "id": "G30",
+      "status": "STATIC_AUTHORITY_OBLIGATION_ONLY",
+      "method_numbers": [],
+      "methods": [],
+      "scope_and_gaps": "No operational roots/admission/execution are touched. An in-memory fake admission is not current authority or an observed filesystem-absence result.",
+      "executed": false
+    }
+  ],
+  "H_cases": [
+    {
+      "id": "H1",
+      "status": "PLANNED_FAKE_SUBSET",
+      "method_numbers": [
+        1,
+        3,
+        19,
+        22
+      ],
+      "methods": [
+        "test_01_owner_normal_real_main_and_future_deadline",
+        "test_03_caller_normal_identity_running_receipt_return",
+        "test_19_actual_fixed_queries_drain_split_streams_and_accept_reported_zero",
+        "test_22_actual_retained_destructor_normal_unreaped_and_partial_instances"
+      ],
+      "scope_and_gaps": "Actual retained class on owned roles and explicit normal/unreaped/partial __del__; real base constructor/active-list/finalization internals unproved.",
+      "executed": false
+    },
+    {
+      "id": "H2",
+      "status": "PLANNED_FAKE_SUBSET",
+      "method_numbers": [
+        23,
+        29
+      ],
+      "methods": [
+        "test_23_no_wait_after_cutoff_and_unknown_does_not_become_zero",
+        "test_29_whole_owner_unreaped_late_return_preserves_unknown_without_new_api"
+      ],
+      "scope_and_gaps": "Unknown/unreaped at cutoff and destructor produce no new child APIs; not every killed-caller/query finalization route.",
+      "executed": false
+    },
+    {
+      "id": "H3",
+      "status": "PLANNED_FAKE_COVERAGE",
+      "method_numbers": [
+        20,
+        22,
+        25,
+        28
+      ],
+      "methods": [
+        "test_20_reaped_query_partial_eof_error_never_signals_reused_pid",
+        "test_22_actual_retained_destructor_normal_unreaped_and_partial_instances",
+        "test_25_actual_deadline_bypasses_capture_and_same_and_preserves_consumed_status",
+        "test_28_early_consumed_terminal_is_not_continued_or_reaped_twice"
+      ],
+      "scope_and_gaps": "Actual status consumed once and late return preserved; override release does not call fake base child API.",
+      "executed": false
+    },
+    {
+      "id": "H4",
+      "status": "PLANNED_FAKE_COVERAGE",
+      "method_numbers": [
+        3
+      ],
+      "methods": [
+        "test_03_caller_normal_identity_running_receipt_return"
+      ],
+      "scope_and_gaps": "Actual positive identity-to-running edge with one native/query constructor.",
+      "executed": false
+    },
+    {
+      "id": "H5",
+      "status": "PLANNED_FAKE_COVERAGE",
+      "method_numbers": [
+        12
+      ],
+      "methods": [
+        "test_12_identity_edge_refuses_without_normal_wait_or_replacement"
+      ],
+      "scope_and_gaps": "Actual missing/mismatched PID/PPID/PGID and stop/equality edge; only bounded refusal finally reap allowed.",
+      "executed": false
+    },
+    {
+      "id": "H6",
+      "status": "PLANNED_FAKE_SUBSET",
+      "method_numbers": [
+        15,
+        16
+      ],
+      "methods": [
+        "test_15_owner_constructor_unknown_or_late_preserves_exact_ownership",
+        "test_16_native_constructor_unknown_or_late_never_gains_signal_authority"
+      ],
+      "scope_and_gaps": "Owner/native constructor unknown or late, original deadline/refusal retained; query constructor late/unknown not covered.",
+      "executed": false
+    }
+  ],
+  "all_results": null,
+  "source_or_fixture_execution": false,
+  "static_is_not_runtime": "G28/G30 are expressly non-execution obligations; G29 and partial rows remain open."
+}

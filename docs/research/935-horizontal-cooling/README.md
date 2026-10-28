@@ -14,6 +14,10 @@ constitue un projet distinct.
 
 [Bilan du 12 octobre 2026 et travail restant](STATUS_20261012.md).
 
+[25 October continuation: guarded PicoGK root repair and actual mesh reconstruction](ROOT_MESH_RESUME_20261025.md).
+
+[25 October corrected rotor analysis surface and fresh fluid-case input](CORRECTED_ANALYSIS_20261025.md).
+
 [Continuation : rotor fermé sous hypothèses, solveurs et USD](CONTINUATION_20261012.md).
 
 [Comparaison au scan et raffinement numérique](CONVERGENCE_20261012.md).

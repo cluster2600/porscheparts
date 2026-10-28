@@ -1,0 +1,68 @@
+{
+  "schema": "whole-redundant-strip-policy-evidence-1",
+  "status": "local_policy_verified_no_global_support_admission",
+  "sources_sha256": {
+    "redundant_strip_interfaces.py": "5047b9393408104fe704697a1fc35a9fe18cadc0a8d98fac5f176a409ef5c646",
+    "continuous_redundant_interfaces.py": "a2a1dc92a638ed3d901bcf058ac25bb8a368d9bdd8b023355e8f2448eb5dac4b",
+    "chart_progress.py": "3ba89f1fbf42cee321dc5b7e268c6bd1e7fa575f0240af586a68d7fba838e3fd",
+    "generate_prism_region_v6.py": "749be27d61faff1bcfeb6cf63d7ec51d384b63da456d31a3a25b4c6ab731c380",
+    "generate_legacy_region_v6.py": "08f29a748b2a0a690f5da7fa2812ba416eba1b50b89f5865671e634202c9724b"
+  },
+  "tests": {
+    "tests_run": 9,
+    "failures": 0,
+    "errors": 0,
+    "skips": 0,
+    "commands": [
+      [
+        "/Users/maxime/.codex/worktrees/993-carrier-revalidation/3dprinting993/work/part-workflow/runtimes/pyslm-coverage-011/env/bin/python",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-p",
+        "test_carrier_redundant*.py"
+      ],
+      [
+        "/Users/maxime/.codex/worktrees/993-carrier-revalidation/3dprinting993/work/part-workflow/runtimes/pyslm-coverage-011/env/bin/python",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-p",
+        "test_carrier_chart_progress.py"
+      ]
+    ],
+    "seconds": 8.97846445813775,
+    "source_sha256": {
+      "tests/test_carrier_redundant_strip_interfaces.py": "b711d400cc0c42644eba13cf8050a4ecc64d1d40ab29b883026e3bd64bcb5686",
+      "tests/test_carrier_redundant_region_entries.py": "99820c5c7700c9886980591f0615ad184296b8d31feeb6157c7e33d2facfd15e",
+      "tests/test_carrier_chart_progress.py": "7d708f77bb594e53ad675593a1fe4f3a3989a6dbdee3af6a7802ca1defa1c5ae"
+    }
+  },
+  "preserved_failed_full_region": {
+    "receipt": "work/carrier-process-20261016/real-support-v5-regions-001/source-002/assessment.json",
+    "sha256": "10f4949691afe8b76191e8673c99d9c4906684bc076ec7d5f126d268b8ca987f",
+    "error": "An upper interface points toward the material interior"
+  },
+  "real_chart_complete_repair": {
+    "receipt": "work/carrier-process-20261016/v5-source002-full-repair-002/assessment.json",
+    "sha256": "952fe1ade42dffdd38eae773e5c671a552b963908dff75c3750f34e4d916cbbc",
+    "status": "real_chart_full_repair_and_contacts_passed_no_global_admission",
+    "seconds": 0.6566542910877615,
+    "source_files_unchanged": true,
+    "constructor_authority": "5047b9393408104fe704697a1fc35a9fe18cadc0a8d98fac5f176a409ef5c646",
+    "contacts_all_passed": true,
+    "remapped_triangles": 28
+  },
+  "fixture": {
+    "path": "combinatorial-evidence/reentrant-chart002.json",
+    "sha256": "679ce5d3f3b96af77bccf3fddacd76c814b9dfd9293c6be851c982ccf51cd21f"
+  },
+  "global_support_admission": false,
+  "scope": "Only already-contained whole strips may be omitted; every independent downstream gate remains required"
+}

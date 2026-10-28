@@ -26,8 +26,8 @@ are in [docs/DIGITAL_TWIN.md](../docs/DIGITAL_TWIN.md).
 | [`m64-cylinder-head/`](m64-cylinder-head/README.md) | M64 cylinder head work: code, records and receipts; no validated cylinder head | README |
 | [`m64-engine-twin/`](m64-engine-twin/) | GPU session manifest of 2026-09-15 for the agent-driven M64 engine twin; manufacturing not authorized | `session-20260915.json`, [deploy page](../deploy/vast/engine-twin/README.md) |
 | [`omniverse-engine-assembly/`](omniverse-engine-assembly/README.md) | F0 OpenUSD scenes composing the 917 scan and the 935 valvetrain rig; not a single-engine assembly | README |
-| [`reference-917-engine/`](reference-917-engine/README.md) | **archived** — Porsche 917 engine reference twin, iterations F1 to F50 | README, [ARCHIVE.md](../ARCHIVE.md) |
-| [`reference-935-cylinder-head/`](reference-935-cylinder-head/README.md) | **archived** — Wolfe Classics 935 cylinder-head scan, reference morphology | README, [ARCHIVE.md](../ARCHIVE.md) |
+| [`reference-917-engine/`](reference-917-engine/README.md) | **archived** — Porsche 917 engine reference twin, iterations F1 to F50 | README, [ARCHIVE.md](../docs/ARCHIVE.md) |
+| [`reference-935-cylinder-head/`](reference-935-cylinder-head/README.md) | **archived** — Wolfe Classics 935 cylinder-head scan, reference morphology | README, [ARCHIVE.md](../docs/ARCHIVE.md) |
 
 The catalog also holds `TWIN-993-WHEEL-HUB-INTERFACES-0001` (Fuchs wheel and hub
 nominal interfaces), which has no directory under `twins/`.

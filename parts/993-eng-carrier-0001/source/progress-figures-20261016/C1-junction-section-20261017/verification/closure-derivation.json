@@ -1,0 +1,24 @@
+{
+  "reference": "work/carrier-C1-junction-section-figure-003/figure.py",
+  "reference_sha256": "284ebdcb1ef0a94c8fddbc1e51ebd38245c00c50649c2d4a9d5de44e3354d2f9",
+  "function": "closed_extraction",
+  "replacements": [
+    {
+      "old": "Path(command[3]).absolute()==Path(__file__).absolute()",
+      "new": "Path(command[3]).absolute()==Path(plan['historical_producer']).absolute()"
+    },
+    {
+      "old": "Path(command[6]).absolute()==Path(plan['data']).absolute().parent",
+      "new": "Path(command[6]).absolute()==Path(plan['historical_data']).absolute().parent"
+    },
+    {
+      "old": "sha(export_plan)==data['plan_sha256']",
+      "new": "sha(Path(plan['capsule_root'])/plan_key)==data['plan_sha256']"
+    },
+    {
+      "old": "sha(__file__)==data['source_sha256'].get(producer_key)",
+      "new": "sha(Path(plan['capsule_root'])/producer_key)==data['source_sha256'].get(producer_key)"
+    }
+  ],
+  "scope": "Only four historical/current path lookups rebased to SHA-identical files; captured commands and source maps remain unchanged."
+}

@@ -1,0 +1,29 @@
+{
+  "schema": "962-physicsnemo-planning-note-VTK-scope-correction/v1",
+  "status": "ONE_BULLET_CORRECTION_NO_NEW_DISCOVERY_OR_EXECUTION",
+  "predecessor": {
+    "path": "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/physicsnemo-962-bounded-discovery-002/NOTE.md",
+    "sha256": "146b0119ebcf8d3db37ee918ff0552d3a2e1d928c129385f0563fb619d3939ab",
+    "bytes": 9777,
+    "preserved_unchanged": true
+  },
+  "successor": {
+    "path": "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/physicsnemo-962-bounded-discovery-003/NOTE.md",
+    "sha256": "8650647b56173b50e404721b689fcafdd150b395366375c60e582fd49e396862",
+    "bytes": 9726
+  },
+  "exact_replacement": {
+    "before": "- [VTKReader](https://github.com/NVIDIA/physicsnemo/blob/3b8db78c088fe72ddf38e174c36228a6962ea1f7/physicsnemo/datapipes/readers/vtk.py): surface STL/VTP entry point. **Direct volume loading is not ready:** despite the VTU docstring, requesting its volume keys reaches `NotImplementedError` at lines 281\u2013282. Do not treat the advertised format list as a working tetrahedral-volume loader.",
+    "after": "- [VTKReader](https://github.com/NVIDIA/physicsnemo/blob/3b8db78c088fe72ddf38e174c36228a6962ea1f7/physicsnemo/datapipes/readers/vtk.py): implemented STL surface loading; the VTP reader and requested VTU volume branch both explicitly raise `NotImplementedError`. Do not infer working field/volume ingestion from the advertised format list."
+  },
+  "source_reference": {
+    "pinned_URL": "https://github.com/NVIDIA/physicsnemo/blob/3b8db78c088fe72ddf38e174c36228a6962ea1f7/physicsnemo/datapipes/readers/vtk.py",
+    "function_and_branch": "Implemented STL loading; _read_vtp_data raises NotImplementedError, and _load_sample raises NotImplementedError when need_vtu is true. No exact line-number claim."
+  },
+  "basis": "Root independently verified the pinned official raw GitHub source and requested this correction. This successor performs no new browsing, import, compilation, target execution or tests.",
+  "all_other_note002_bytes_unchanged": true,
+  "whole_inverse_restores_note002": true,
+  "predecessors001_and002_unchanged": true,
+  "PUB_or_Git_mutation": false,
+  "self_hash_claim": null
+}

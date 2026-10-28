@@ -1,0 +1,37 @@
+{
+  "schema": "962-current110-component-runtime-origin-once/v1",
+  "argv": [
+    "runtime-role://controller/python",
+    "-I",
+    "-B",
+    "-c",
+    "import sys,json,pathlib,numpy,scipy,scipy.optimize; print(json.dumps(dict(Python=sys.version.split()[0],executable=str(pathlib.Path(sys.executable).resolve()),numpy=numpy.__version__,numpy_file=str(pathlib.Path(numpy.__file__).resolve()),scipy=scipy.__version__,scipy_directory=str(pathlib.Path(scipy.__file__).resolve().parent),optimize_file=str(pathlib.Path(scipy.optimize.__file__).resolve()))))"
+  ],
+  "environment": {
+    "PATH": "/usr/bin:/bin",
+    "LANG": "C",
+    "PYTHONUTF8": "1",
+    "OMP_NUM_THREADS": "2",
+    "OPENBLAS_NUM_THREADS": "2",
+    "VECLIB_MAXIMUM_THREADS": "2",
+    "PYTHONDONTWRITEBYTECODE": "1"
+  },
+  "returncode": 0,
+  "wall_seconds": 0.7546679161023349,
+  "stdout": "{\"Python\": \"3.12.11\", \"executable\": \"runtime-role://controller/resolved-python3.12\", \"numpy\": \"2.2.6\", \"numpy_file\": \"runtime-role://assessor/site-packages/numpy/__init__.py\", \"scipy\": \"1.17.1\", \"scipy_directory\": \"runtime-role://assessor/site-packages/scipy\", \"optimize_file\": \"runtime-role://assessor/site-packages/scipy/optimize/__init__.py\"}\n",
+  "stderr": "",
+  "observed": {
+    "Python": "3.12.11",
+    "executable": "runtime-role://controller/resolved-python3.12",
+    "numpy": "2.2.6",
+    "numpy_file": "runtime-role://assessor/site-packages/numpy/__init__.py",
+    "scipy": "1.17.1",
+    "scipy_directory": "runtime-role://assessor/site-packages/scipy",
+    "optimize_file": "runtime-role://assessor/site-packages/scipy/optimize/__init__.py"
+  },
+  "origins_match": true,
+  "timed_out": false,
+  "signals": [],
+  "invocation_count": 1,
+  "numerical_calculation_or_geometry_query": false
+}

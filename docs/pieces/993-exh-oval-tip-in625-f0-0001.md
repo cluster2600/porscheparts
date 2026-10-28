@@ -2,7 +2,7 @@
 
 # 993 oval exhaust tip, IN625 double-wall F0 concept
 
-**Status: functional. No part is released; see [SAFETY.md](../../SAFETY.md).**
+**Status: functional. No part is released; see [SAFETY.md](../../docs/SAFETY.md).**
 
 Independent round-to-oval concept with a ventilated double wall and eight integrated attachments to screen LPBF manufacture in IN625. FVD publishes only a 120 x 85 mm outlet envelope for its FVD11199300 stainless tip; PorscheFanatics separately documents an IN625 precedent on 993 Turbo exhausts.
 
@@ -87,6 +87,10 @@ Catalogue record: [`catalog/parts/993-exh-oval-tip-in625-f0-0001.json`](../../ca
 
 *`parts/993-exh-oval-tip-in625-f0-0001/media/views.png` — concept CAD block, **not** the original part, not a print file.*
 
+![photo-concept](../../parts/993-exh-oval-tip-in625-f0-0001/media/photo-concept.png)
+
+*`parts/993-exh-oval-tip-in625-f0-0001/media/photo-concept.png` — AI-generated studio illustration based on the concept CAD preview. Material and finish are illustrative; generated details may differ. Not a photograph or evidence of fit, function or manufacturing.*
+
 ## Provenance and sources
 
 | field | value |
@@ -107,7 +111,7 @@ Catalogue record: [`catalog/parts/993-exh-oval-tip-in625-f0-0001.json`](../../ca
 | status | concept |
 | vehicle tested | not recorded |
 | reviewed by |  |
-| limitations | not recorded |
+| limitations | Only the 120 x 85 mm outlet comes from FVD; length, inlet, double walls and attachments are hypothetical.<br>The STEP volume gives 406.38 g in IN625; no comparable commercial mass is published.<br>The Borda-Carnot loss screening is a sudden-expansion bound, not a prediction for the gradual diffuser.<br>The 44.12 Hz strip mode is not a shell mode and cannot be compared with an absent vehicle spectrum.<br>Temperatures, flow rates, pressures, volumetric efficiency and support conditions are synthetic.<br>The calculation ignores pulses, upstream bends, joints, convection, CHT, ovalization, roughness, oxidation and thermal fatigue.<br>The steady RANS CFD reaches its residual thresholds but the pressure loss still varies by 11.17% between the two finest meshes and the extended checks keep low-determinant cells.<br>The full-part slicing and the EOS M 290 scene contain no supplier supports, no laser paths, and no correlated thermomechanical or recoater simulation.<br>The SimReady profile passes only for an isolated prop; the physical properties invented by the agents were removed and no exhaust-valance assembly is available.<br>PhysicsNeMo has only run a CUDA smoke test; no surrogate model is trained before the physical cases converge and are correlated.<br>The STEP proves only a computable BREP within the envelope and must not be manufactured for fitting. |
 
 **Evidence**
 

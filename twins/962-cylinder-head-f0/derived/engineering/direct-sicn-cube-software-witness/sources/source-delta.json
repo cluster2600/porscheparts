@@ -1,0 +1,86 @@
+{
+  "schema": "962-direct-sicn-tiny-runtime-successor-delta/v1",
+  "old_source_sha256": "0ddc9c6c96fa17302416c21c8f6a8873d1306dab1056acf7fb2a552c2a7c1d9b",
+  "new_source_sha256": "8351733aa0cd3dff2c86bcedd6c5cf931fde7306d0870738f9794448fbe8d12e",
+  "source_replacements": [
+    {
+      "old": "OUTPUT_NAME = 'direct-sicn-cube-001'",
+      "new": "OUTPUT_NAME = 'direct-sicn-cube-002'"
+    },
+    {
+      "old": "module.__version__!='2.0.2'",
+      "new": "module.__version__!='2.2.6'"
+    },
+    {
+      "old": "The original geometry NumPy object/version/origin must remain unchanged",
+      "new": "The selected local NumPy object/version/origin must remain unchanged"
+    },
+    {
+      "old": "    if not isinstance(c.get('numpy_init'),str) or not isinstance(c.get('scipy_directory'),str):\n        raise ValueError('Exact package origins required')",
+      "new": "    if (not isinstance(c.get('numpy_init'),str) or not isinstance(c.get('scipy_directory'),str)\n            or not isinstance(c.get('gmsh_module'),str)):\n        raise ValueError('Exact package and Gmsh ctypes-wrapper origins required')\n    if str(Path(c['gmsh_module']).resolve()) not in c['runtime_files']:\n        raise ValueError('Exact Gmsh ctypes-wrapper source requires a selected runtime pin')"
+    },
+    {
+      "old": "scipy.__version__!='1.15.3'",
+      "new": "scipy.__version__!='1.17.1'"
+    },
+    {
+      "old": "    import gmsh\n    for filename in (gmsh.__file__,gmsh.lib._name):",
+      "new": "    gmsh_path=Path(c['gmsh_module']).resolve()\n    if 'gmsh' in sys.modules:raise ValueError('Only the initially unloaded exact Gmsh ctypes wrapper is permitted')\n    gmsh_spec=importlib.util.spec_from_file_location('gmsh',gmsh_path)\n    gmsh=importlib.util.module_from_spec(gmsh_spec);sys.modules['gmsh']=gmsh\n    gmsh_spec.loader.exec_module(gmsh)\n    if Path(gmsh.__file__).resolve()!=gmsh_path or tuple(sys.path)!=old_path:\n        raise ValueError('Gmsh ctypes-wrapper origin or search path changed')\n    same_numpy(sys.modules['numpy'],original,c['numpy_init'])\n    for filename in (gmsh.__file__,gmsh.lib._name):"
+    }
+  ],
+  "test_replacements": [
+    {
+      "old": "0ddc9c6c96fa17302416c21c8f6a8873d1306dab1056acf7fb2a552c2a7c1d9b",
+      "new": "8351733aa0cd3dff2c86bcedd6c5cf931fde7306d0870738f9794448fbe8d12e"
+    },
+    {
+      "old": "runtime_files={'/runtime':'b'*64},numpy_init='/numpy/__init__.py',scipy_directory='/scipy')",
+      "new": "runtime_files={'/runtime':'b'*64,'/selected/gmsh.py':'c'*64},numpy_init='/numpy/__init__.py',scipy_directory='/scipy',gmsh_module='/selected/gmsh.py')"
+    },
+    {
+      "old": "(__version__='2.0.2'",
+      "new": "(__version__='2.2.6'"
+    },
+    {
+      "old": "original.__version__='2.2.6'",
+      "new": "original.__version__='2.0.2'"
+    },
+    {
+      "old": "        self.assertEqual(len(specs),1)\n        self.assertEqual(specs[0].args[0].value,'scipy')\n        self.assertTrue(any(k.arg=='submodule_search_locations' for k in specs[0].keywords))",
+      "new": "        self.assertEqual(len(specs),2)\n        named={n.args[0].value:n for n in specs}\n        self.assertEqual(set(named),{'scipy','gmsh'})\n        self.assertTrue(any(k.arg=='submodule_search_locations' for k in named['scipy'].keywords))\n        self.assertFalse(any(k.arg=='submodule_search_locations' for k in named['gmsh'].keywords))"
+    },
+    {
+      "old": "        c=self.contract();c['qualification']['head_optimization_authorized']=True",
+      "new": "        c=self.contract();c['gmsh_module']=None\n        with self.assertRaises(ValueError):check(c)\n        c=self.contract();c['gmsh_module']='/unbound/gmsh.py'\n        with self.assertRaises(ValueError):check(c)\n        c=self.contract();c['qualification']['head_optimization_authorized']=True"
+    }
+  ],
+  "source_reverse_byte_exact": true,
+  "test_reverse_byte_exact": true,
+  "only_modified_function_ASTs": [
+    "same_numpy",
+    "require_contract_fields",
+    "scientific_modules"
+  ],
+  "unchanged_function_ASTs": [
+    "sha",
+    "save",
+    "sub",
+    "dot",
+    "cross",
+    "signed_sicn",
+    "cube_qualities",
+    "bound_contract",
+    "loaded_files",
+    "calibration",
+    "canonical",
+    "inspect_cube",
+    "worker",
+    "main"
+  ],
+  "whole_math_calibration_topology_final_quality_solver_worker_and_main_ASTs_unchanged": true,
+  "controller_not_copied_or_modified": true,
+  "source_diff_sha256": "4faa0e8ed6ce31fa0bb1039abf63164565af84b2b1b21931ea2dd9cdaea2bb89",
+  "test_diff_sha256": "7c18c53777a3291accc33edf49a95e6c8a91586c62c35728afaadf229bbb0d83",
+  "source_or_tests_imported_or_executed": false,
+  "runtime_or_geometry_bytes_read": false
+}

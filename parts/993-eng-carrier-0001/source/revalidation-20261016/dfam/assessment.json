@@ -1,0 +1,83 @@
+{
+  "date": "2026-10-16",
+  "part_id": "993-eng-carrier-0001",
+  "design_id": "carrier-correction-20261013-v6f",
+  "repository_revision": "e697398da9eee3d2ea91cb131fb0a202c314d51c",
+  "classification": "new_native_standalone_geometric_screen_of_retained_V6f_not_corpus_verification_or_process_qualification",
+  "policy": "dfam-strict-v3",
+  "policy_source_sha256": "404df2872bd187a7422ec476351a6285b0dfbc7093a75def8f1bde00e4b6907e",
+  "trusted_checker_source_stamp": "92fac02c9bd9544f93f249ad464bf9221be449b8288de96282a605a0a9bb06df",
+  "source_local_and_remote_hashes_agree": true,
+  "input_identity_file": "input-identity.json",
+  "runtime_provenance_file": "runtime-provenance.json",
+  "metrics": {
+    "bbox_max": [
+      296,
+      36.499805,
+      30
+    ],
+    "bbox_min": [
+      -296,
+      -36.499836,
+      -22
+    ],
+    "boundary_edges": 0,
+    "degenerate_triangles": 0,
+    "enclosed_void_largest_mm3": 0,
+    "enclosed_void_mm3": 0,
+    "enclosed_void_regions": 0,
+    "inconsistent_orientation_edges": 0,
+    "largest_component_fraction": 1,
+    "mesh_volume_mm3": 269034.4,
+    "min_wall_mm": 1.5,
+    "needle_triangles": 74,
+    "nonmanifold_edges": 0,
+    "overhang_area_mm2": 31737.26,
+    "overhang_fraction": 0.1703,
+    "parity_volume_mm3": 270843.5,
+    "solid_components": 1,
+    "surface_area_mm2": 186381.6,
+    "thin_fraction": 0.2476,
+    "thin_wall_area_fraction": 0.54994,
+    "triangles": 33634,
+    "volume_mm3": 269296.03,
+    "volume_ratio_to_fixture": 1.0016,
+    "wall_thickness_cap_mm": 6,
+    "wall_thickness_p01_mm": 1.3,
+    "wall_thickness_p05_mm": 1.3,
+    "self_intersecting_coplanar_pairs": 0,
+    "self_intersecting_pairs": 0,
+    "self_intersecting_triangles": 0,
+    "selfcheck_collapsed_triangles": 0,
+    "selfcheck_engine": "libigl 2.6.3 find_self_intersections",
+    "selfcheck_seconds": 0.4,
+    "selfcheck_triangles": 33634
+  },
+  "volume_ratio_scope": {
+    "legacy_metric_name": "volume_ratio_to_fixture",
+    "actual_reference": "archived_precise_STEP_volume_not_synthetic_corpus_fixture",
+    "reference_mm3": 268853.1130012525,
+    "native_voxel_volume_ratio_to_STEP": 1.001647431170884,
+    "triangle_mesh_volume_ratio_to_STEP": 1.0006742975624263,
+    "parity_volume_ratio_to_STEP": 1.0074032507064117,
+    "ratio_is_diagnostic_only": true
+  },
+  "screen_expectations": {
+    "min_wall_mm": 1.5,
+    "thin_wall_area_fraction_max": 0.0
+  },
+  "screen_failures": [
+    "needle_triangles = 74, required 0",
+    "thin_wall_area_fraction = 0.54994, declared max 0.0"
+  ],
+  "screen_status": "rejected",
+  "limits": [
+    "The 1.5 mm minimum is an explicit screening assumption, not a qualified machine-material allowable.",
+    "Zero enclosed void detected only at 0.3 mm parity raster resolution; this does not establish physical powder evacuation.",
+    "The trusted checker uses a 0.0001 mm vertex-weld grid and a 1e-3 needle height-to-longest-edge threshold; raw STL is unchanged.",
+    "Overhang fraction is diagnostic and excludes the native checker plate band; no support or laser vectors are generated.",
+    "No geometry repair, remeshing, smoothing, positive-area face deletion or tolerance relaxation performed.",
+    "No full-build thermo-mechanics, fatigue, physical fitment or engineering approval follows from this run."
+  ],
+  "manufacturing_authorized": false
+}

@@ -1,0 +1,127 @@
+{
+  "schema": "962-END181-defect-correction-independent-saved-result-review/v1",
+  "decision": "CLEAR_PRESERVED_ONE_FIXED_STATE_DERIVED_ALGEBRAIC_PROBE_ONLY_WITH23_FORCE_EXCEEDANCES",
+  "timestamp_UTC": "2026-10-20T11:25:39.127933+00:00",
+  "reviewed_result": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-linear-END181-defect-correction-diagnostic-001/diagnostic.json",
+    "sha256": "09bfa703b8a5151f60e6c3e2b7849d4c41576168c612e2e151f2de1b373e37fe",
+    "bytes": 6714454
+  },
+  "reviewed_root_closure": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-linear-END181-defect-correction-root-execution-001/closed-result.json",
+    "sha256": "1f4e31401cf562b3565052a4eac576f5c25bc96ce4ac668c9ef4bfe87ae804e8",
+    "bytes": 167676
+  },
+  "prior_result": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-linear-END181-equilibrium-diagnostic-001/diagnostic.json",
+    "sha256": "28e8321b9e28b78111219129bd1335a63a6626849ba007fdd09db966c3db8e60",
+    "bytes": 758146
+  },
+  "binding_record": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-linear-END181-defect-correction-result-peer-001/bindings.json"
+  },
+  "blockers": [],
+  "checks": {
+    "nine_selected_saved_metadata_files_current_before_after_exact": true,
+    "root_before_after303_exact_and302_authorization_inputs_plus_auth_record_exact": true,
+    "external_authorization_argv_source_reviews_and_authorship_companion_exact": true,
+    "one_closed_execution_RC0_no_stop_signals_and_wait_reaped_owned_group_absent": true,
+    "all_shared_original_observations_except_four_expected_metadata_fields_exact": true,
+    "all1275_ordered_DOF_native_and_original_force_associations_exact_to_prior": true,
+    "all1275_float_hex_requested_effective_displacement_and_force_difference_arithmetic_exact": true,
+    "all6_constrained_requested_and_effective_increments_zero_original_words_exact": true,
+    "all1269_stored_free_algebraic_defects_exact_to_saved_requested_Kdu_plus_original_force": true,
+    "all27_constrained_free_all_force_moment_resultant_rows_exact_by_saved_scalar_fsum": true,
+    "all2048_tensor_rows_complete_unique256cell_by8nativeQP_associations_and_rule_bijections": true,
+    "all184320_stored_tensor_component_values_finite_and_shapes_complete": true,
+    "all2048_derived_thermal_eigenstrain_vectors_equal_original_reconstructed": true,
+    "prior28e832_stress_and_strain_maxima_reproduced_from_saved_new_tensor_pairs": true,
+    "all24576_derived_stress_and98304_derived_strain_comparisons_below_unchanged_limits": true,
+    "all23_stored_force_exceedance_arithmetic_preserved_five_nodal_and18_regional": true,
+    "all6_saved1275entry_rigid_mode_maxima_reproduced_no_zero_acceptance": true,
+    "no_raw_scientific_native_runtime_matrix_solve_or_repository_helper_execution": true
+  },
+  "observations": {
+    "closed_run": {
+      "returncode": 0,
+      "wall_seconds": 1.289411790901795,
+      "signals": [],
+      "stop_reason": null,
+      "waited_reaped": true,
+      "owned_group_absent": true,
+      "invocations": 1,
+      "captured_before_after_inputs": 303
+    },
+    "saved_force_displacement_rows": 1275,
+    "stored_free_linear_defect_entries": 1269,
+    "constrained_zero_corrections": 6,
+    "maximum_requested_correction_m": 1.0040208483470068e-15,
+    "maximum_effective_correction_m": 1.0040254218302014e-15,
+    "requested_effective_increment_inequality_count": 1268,
+    "maximum_absolute_saved_linear_defect_N": 1.3891340334970526e-19,
+    "all27_resultant_rows_exact": true,
+    "resultant_fail_counts": {
+      "native": {
+        "force_failures": 2,
+        "moment_failures": 4,
+        "maximum_absolute_force_N": 1.9654250562944017e-06,
+        "maximum_absolute_moment_Nm": 8.406791651589353e-07
+      },
+      "original_assembled": {
+        "force_failures": 2,
+        "moment_failures": 4,
+        "maximum_absolute_force_N": 1.9662863053326873e-06,
+        "maximum_absolute_moment_Nm": 8.404749678447843e-07
+      },
+      "derived_assembled": {
+        "force_failures": 0,
+        "moment_failures": 0,
+        "maximum_absolute_force_N": 5.872191621847378e-10,
+        "maximum_absolute_moment_Nm": 4.4943992971724356e-10
+      }
+    },
+    "derived_global_force_comparison_failures": 5,
+    "derived_regional_saved_force_exceedances": 18,
+    "total_saved_derived_force_exceedances": 23,
+    "all2048_tensor_triplets_complete": true,
+    "tensor_stress_or_strain_limit_exceedances": 0,
+    "maximum_original_vs_derived_stress_change_Pa": 0.0001560648379381746,
+    "maximum_native_vs_derived_strain_error": 1.3716241684114117e-15,
+    "original_unchanged_scalar_gate_counts_and_maxima_exact_to_prior": true,
+    "saved_rigid_mode_zero_acceptance": null,
+    "saved_matrix_symmetry_acceptance_limit": null
+  },
+  "scope_limits": [
+    "Passing derived force/moment resultants does not erase the23derived force-comparison exceedances or accept the original trajectory.",
+    "Prior28e832has complete geometry/cell/DOF associations and QP aggregate observations, but no full tensor rows or full native-to-physical QP map; missing prior scalar equality is not inferred.",
+    "The6453derived force comparison count includes3900source-helper comparisons whose complete regional arrays are not saved; their execution/association remains source/root attributed. All23saved exceedance operands and all available global rows were checked.",
+    "Stored Kdu and rigid-mode products are scalar observations only; the matrix construction, products and one solve were not rerun or independently numerically reproduced.",
+    "No numerical convergence, IEEE/roundoff floor, mathematical/solver cause, corrected trajectory, full seven-SI field acceptance, LPBF/material/head/physical/manufacturing qualification is established."
+  ],
+  "lineage": "head_mesh_next independently checked the saved result arithmetic; this reviewer authored the separate held current110 head-census binding successor, and did not author the END181 defect source, original0030/a366/b7c sources or this probe execution. Corrected46dadcroles retained: replica_metrology0030/a366, rootb7c binding/reviews/execution, clip_source_reviewdefect successor, existing_study_auditLINEAR case/adapter and independent source peer.",
+  "inspection_history": [
+    {
+      "operation": "Preliminary read-only saved-scalar summary command",
+      "returncode": 1,
+      "exception": "SyntaxError",
+      "cause": "Reviewer wrote else1e-10 without a separating space in a Python conditional expression.",
+      "correction": "Added the missing lexical space before running the saved-scalar metadata summary.",
+      "state_at_failure": "Python did not execute the script; no output directory/write, source/helper/native/scientific/raw/runtime operation occurred.",
+      "scientific_probe_reexecution": false
+    }
+  ],
+  "original_strict_refusal_retained": true,
+  "mathematical_or_solver_cause": null,
+  "IEEE_floor_or_roundoff_cause": null,
+  "diagnostic_rerun_authorized": false,
+  "native_execution_authorized": false,
+  "assessment_execution_authorized": false,
+  "derived_state_or_original_trajectory_accepted": false,
+  "engineering_accepted": false,
+  "physics_qualified": false,
+  "material_qualified": false,
+  "process_calibrated": false,
+  "head_execution_authorized": false,
+  "manufacturing_authorized": false,
+  "automatic_retry": false
+}

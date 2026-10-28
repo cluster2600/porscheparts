@@ -1,0 +1,240 @@
+{
+  "schema_version": "1.0.0",
+  "reviewed_on": "2026-10-24",
+  "unresolved": [
+    "Original M64/60 piston crown/skirt walls, cylinder walls and complete head/port wall maps remain unestablished.",
+    "Complete datum-based factory drawings, bolt patterns, port-centre coordinates and tolerances are still missing.",
+    "Manufacturer nominal intervals and service reference values do not establish an engine wear limit or modified-engine load capacity.",
+    "Ambiguous catalogue values and inaccessible FIA image-only rows remain excluded or explicitly unresolved."
+  ],
+  "stream_gaps": [
+    "A full readable original Turbo Service Information Technik was not obtained; metadata alone remains a lead.",
+    "Exact original M64/60 piston/cylinder bore grading and checking-height/temperature definitions remain missing.",
+    "Original piston crown/skirt/pin-boss, cylinder and head/port wall maps remain missing.",
+    "Public workshop host contains misfiled Carrera / RS and DOHCmaterial, so accepted rows require internal exact-variant identification.",
+    {
+      "topic": "Original Turbo993.105.419.52exhaust drawing",
+      "finding": "Current official SM VM18 now supplies an exact OE replacement cross-reference and42.5/8/108.9 mm nominal data, but no factory original-part drawing or tolerances were found. The 25 degree supplier seat-angle declaration is explicitly quarantined."
+    },
+    {
+      "topic": "Head/port walls, valve-seat rings and installedTurbo spring datums",
+      "finding": "No new primary drawing or measurement established these geometries. Existing factory Carrera guide/spring dimensions were not repeated as Turbo facts."
+    },
+    {
+      "topic": "Excluded/redundant catalogue routes",
+      "finding": "Freccia 2015 Porsche pages cover Cayenne, not 993. TRW/KS2013printed950has993 Carrera guide 13.26×8×55.4/56.4 mm values already present in manual-derived data and no M64.60 row. SM VM12hasolderCarrera dimensions only. Supertech 2026 has no Porsche text. Ferrea direct download returned 403 and was not bypassed. Intervalves currentorigin returned proxy 403/inaccessible and was not bypassed. SI2024printed 43containsa964/9939 mmvalve-row applicability problem; those valve dimensions are not accepted."
+    },
+    {
+      "topic": "Original MAHLE 100 P 11 or as-built 993103915xx production geometry",
+      "status": "not_established",
+      "detail": "2025 manufacturer catalogue identifies current replacement production number100 P46. It does not prove original100 P11 identity or every Porsche revision."
+    },
+    {
+      "topic": "Piston crown/skirt/ring-land wall or groove depth",
+      "status": "not_established",
+      "detail": "No maker cutaway with numerical crown/skirt wall thickness, ring groove radial depth, inter-ring land thickness or pin bore tolerance found. ToplandF and domeÜH must not be substituted."
+    },
+    {
+      "topic": "Cylinder flange/base wall thickness and fins",
+      "status": "not_established",
+      "detail": "Maker A,C,H,L dimensions establish register/collar/axial datums. H77.27 is a collarheight datum, not flange material thickness. No full fin outer diameter, base flange material thickness or fin spacing verified."
+    },
+    {
+      "topic": "Exact993 K16 bolt pattern, pitch and housing bores",
+      "status": "not_established",
+      "detail": "No exact993K16 maker drawing with bolt coordinates/threadpitch/housing interface bores found. Later996K16 flange dimensional information must not be applied to993."
+    },
+    "The historical guide clearance columns0.590/0.0010/0.0018 are not assigned a unit without an explicit manufacturer legend; no derived clearance accepted."
+  ],
+  "inspected_negative_leads": [
+    {
+      "stream": "oem",
+      "url": "https://dl.dropboxusercontent.com/u/6666038/993/Technical%20Bulletin%20-%20Turbo%20-%20Adjusting%20Camshaft%20Timing.pdf",
+      "result": "Linked from public Porscheforum index; HTTP 404. No PDF acquired."
+    },
+    {
+      "stream": "oem",
+      "url": "https://workshop-manuals.com/porsche/911_turbo_awd/f6-3600cc_3.6l_sohc_twin_turbo/Page-182001.png",
+      "result": "Web tool image placeholder only; direct HTTP 403; no image inspection or block bypass."
+    },
+    {
+      "stream": "oem",
+      "url": "https://assets-v2.porsche.com/fr/-/media/Project/PCOM/Europe/France/Environmental-Characteristics/PDF01_20240725",
+      "result": "Search index labels WKD483221 as Addendum 01, while PET lists a generic workshop manual. Full HTTP and reader fetch returned 404; keep addendum identity unresolved."
+    },
+    {
+      "stream": "racing",
+      "gap_id": "M64-DEEP-R-GAP-001",
+      "application": "993911TurboGT2;FIA GT2-003",
+      "prior_record_ids": [
+        "M64-MEAS-R002"
+      ],
+      "required_evidence": "Readable original page4 article321f, including exhaust valve-axis datum and printed numerical field, preferably source PDF bytes and viewed rendered page.",
+      "source_url": "https://historicdb.fia.com/sites/default/files/car_attachment/1601074501/homologation_form_number_3_group_gt2.pdf",
+      "status": "Still unresolved; original blocked-access status from prior pack retained; no direct PDF retry or hostname substitution attempted.",
+      "legitimate_alternative_attempts": [
+        {
+          "url": "https://www.stuttcars.com/fia-homologation-protocol-for-porsche-993-gt2-1996/",
+          "result": "Public web reader exposes only cover-image link and article shell; local GET HTTP403. No exact form bytes obtained."
+        },
+        {
+          "url": "https://historicdb.fia.com/sites/default/files/styles/car_page_gallery/public/gallery/homologation_form_number_3_group_gt2_5.jpeg?itok=_2qORMsN",
+          "result": "Published FIA gallery resource. Web adapter returned text ImageDisplayed marker only; local GET HTTP403; no image bytes or actual image view."
+        },
+        {
+          "url": "https://historicdb.fia.com/sites/default/files/styles/car_page_gallery/public/gallery/homologation_form_number_3_group_gt2_6.jpeg?itok=-gb3_G6Y",
+          "result": "Published FIA gallery resource. Web adapter returned text ImageDisplayed marker only; local GET HTTP403; no image bytes or actual image view."
+        }
+      ],
+      "numeric_value_accepted": false,
+      "prior_record_mutated": false
+    },
+    {
+      "stream": "racing",
+      "gap_id": "M64-DEEP-R-GAP-002",
+      "application": "993CarreraRS3.8;FIA GT2-004",
+      "prior_record_ids": [
+        "M64-MEAS-R003",
+        "M64-MEAS-R004"
+      ],
+      "required_evidence": "Original page4 article321e and321f including intake/exhaust axis datum and numbers.",
+      "source_url": "https://historicdb.fia.com/sites/default/files/car_attachment/1601073601/homologation_form_number_4_group_gt2.pdf",
+      "status": "Still unresolved; no direct blocked PDF retry.",
+      "legitimate_alternative_attempts": [
+        {
+          "url": "https://www.scribd.com/document/668993624/homologation-PORSCHE-911-CARRERA-RS-3-8-993-1996-group-gt2",
+          "result": "Normal unauthenticated HTML fetch HTTP200; metadata declares is_view_restricted_archive=true,showFullDoc=false,show_archive_paywall=true,type=view_restricted. Stopped at restriction; no protected pages downloaded, decoded or unblurred.",
+          "html_capture_sha256": "20a0023cb66d07dc6f25389a0527939d59addba48f20d1fa811ad372fe0ebdce",
+          "html_capture_bytes": 1396463,
+          "capture_representation": "HTTP response HTML shell/metadata; not PDF bytes or full-page scan"
+        }
+      ],
+      "numeric_value_accepted": false,
+      "prior_record_mutated": false
+    },
+    {
+      "stream": "racing",
+      "gap_id": "M64-DEEP-R-GAP-003",
+      "application": "Porsche Turbo3.0; FIA645Group4",
+      "prior_record_ids": [
+        "M64-MEAS-R005",
+        "M64-MEAS-R006",
+        "M64-MEAS-R007",
+        "M64-MEAS-R008",
+        "M64-MEAS-R009",
+        "M64-MEAS-R010",
+        "M64-MEAS-R011",
+        "M64-MEAS-R012",
+        "M64-MEAS-R013",
+        "M64-MEAS-R014",
+        "M64-MEAS-R015",
+        "M64-MEAS-R016",
+        "M64-MEAS-R017",
+        "M64-MEAS-R018",
+        "M64-MEAS-R019"
+      ],
+      "required_evidence": "Original page3 articles65–68,74–75 and page4 articles102–103,111–112, including any limit convention and valve dimension diagram.",
+      "source_url": "https://historicdb.fia.com/sites/default/files/car_attachment/1613059201/homologation_form_number_645_group_4.pdf",
+      "status": "Still unresolved; no accessible legitimate public PDF mirror found; prior blocked original not retried. FIA gallery links available in published car page but web reader gives timeout/403, no actual image.",
+      "legitimate_alternative_attempts": [
+        {
+          "url": "https://historicdb.fia.com/car/porsche-911-turbo-2993-1",
+          "result": "Public catalogue metadata available, linking the same original PDF and two gallery cover resources. Metadata does not establish detailed engine numbers."
+        }
+      ],
+      "numeric_value_accepted": false,
+      "prior_record_mutated": false
+    },
+    {
+      "stream": "racing",
+      "gap_id": "M64-DEEP-R-GAP-004",
+      "application": "993GT2/GT2R/Evo primary motorsport parts and workshop publications",
+      "required_evidence": "Exact factory motorsport engine technical chapter, valvetrain/head measurements, part revisions and applicability to M64/81,M64/82 orM64/83.",
+      "source_url": "https://rennlist.com/forums/993-forum/1292732-993-carrera-993-gt2.html",
+      "status": "Search result references a993GT2PartsCatalog.pdf attachment6.02MB. Thread access HTTP403 by both public web reader and local unauthenticated GET; no attachment URL or bytes obtained. No blocked-access retry.",
+      "additional_lead_url": "https://forums.pelicanparts.com/porsche-911-technical-forum/324806-workshop-service-manual-993gt2-race-version.html",
+      "additional_lead_status": "Public2007 discussion reports a race-version manual held privately, with no accessible complete factory document.",
+      "numeric_value_accepted": false
+    },
+    {
+      "stream": "racing",
+      "gap_id": "M64-DEEP-R-GAP-005",
+      "application": "959.50 comparison valve/head interfaces",
+      "required_evidence": "Factory workshop dimension tables or head drawing for absolute valve-seat OD/counterbore, guide stem/bore fits, port data, spring installed heights, and machining tolerances.",
+      "source_url": "https://files.porsche.com/f/332100/ba5c0db064/kat010-e-959-88-katalog.pdf",
+      "status": "Official PET inspected; PDFp44 provides0.25mm intake/exhaust seat-ring oversize and0.5/1.0/1.5mm spring-seating washers but no absolute seat/guide dimensions or running/press-fit tolerances. Values must remain scoped catalogue increments/options.",
+      "numeric_value_accepted": false
+    },
+    {
+      "stream": "racing",
+      "id": "M64-DEEP-RACE-GAP-F01",
+      "application": "Porsche 956/962 Group C engine family",
+      "missing_parameter": "Camshaft gear-cascade tooth-flank clearance specification and its installed-condition convention",
+      "source_ids": [
+        "SRC-M64-DEEP-RACE-PORSCHE-GROUPC-PRESSKIT"
+      ],
+      "locator": "PDF/printed p.20, second paragraph",
+      "verified_context": "Actual viewed primary page explains too little or too much gear clearance causes damage, noise or imprecise timing; it publishes no numerical clearance.",
+      "required_acquisition": "Exact factory race-engine workshop/assembly specification for the specific engine type and revision, including clearance datum, measuring method, temperature and clamping state.",
+      "numeric_value": null,
+      "training_eligibility": "exclude"
+    },
+    {
+      "stream": "racing",
+      "id": "M64-DEEP-RACE-GAP-F02",
+      "application": "Porsche 956/962 Group C engine family",
+      "missing_parameter": "Combustion-chamber volume target and permitted cylinder-to-cylinder spread",
+      "source_ids": [
+        "SRC-M64-DEEP-RACE-PORSCHE-GROUPC-PRESSKIT"
+      ],
+      "locator": "PDF/printed p.20, third paragraph",
+      "verified_context": "Actual viewed primary page describes gauging chambers to equalise compression; it gives no cm3 target or tolerance.",
+      "required_acquisition": "Factory drawing or engine-build measurement sheet identifying chamber boundary, piston position, liquid procedure, nominal volume and accepted spread for a named engine type.",
+      "numeric_value": null,
+      "training_eligibility": "exclude"
+    },
+    {
+      "stream": "racing",
+      "id": "M64-DEEP-RACE-GAP-F03",
+      "application": "Porsche 956/962 Group C engine family and 959, separately scoped",
+      "missing_parameter": "Valve lash targets, shim selection range and installed measurement conditions",
+      "source_ids": [
+        "SRC-M64-DEEP-RACE-PORSCHE-GROUPC-PRESSKIT"
+      ],
+      "locator": "PDF/printed p.20, first paragraph",
+      "verified_context": "Actual viewed primary page identifies tappet actuation and overhead adjustment shims, but no lash or shim dimensions. It does not permit transferring 959 values into a 956/962 build.",
+      "required_acquisition": "Named race-engine factory manual and separate 959 workshop chapter, with cold/hot condition and intake/exhaust values.",
+      "numeric_value": null,
+      "training_eligibility": "exclude"
+    },
+    {
+      "stream": "racing",
+      "id": "M64-DEEP-RACE-GAP-F04",
+      "application": "935/78 customer engine 930/78; 935/79 customer engine 930/79",
+      "missing_parameter": "Detailed valve/port, cylinder-head, bearing and connecting-rod dimensions",
+      "source_ids": [
+        "SRC-M64-DEEP-RACE-93578-FACTORY-PHOTO",
+        "SRC-M64-DEEP-RACE-93579-FACTORY-PHOTO"
+      ],
+      "locator": "Public previews expose introduction and General Specifications; 1979 separate public preview also exposes printed p.20 turbocharging operation schematic",
+      "verified_context": "Actual inspected preview photographs do not expose dimensional assembly/service tables. Basic bore/stroke rows are available, but no detailed head/journal/rod dimensions can be accepted from the preview.",
+      "required_acquisition": "Complete applicable factory operating instructions or drawing set, through a legal owner/retailer/library route. Identified acquisition leads: AASE 935/79 operating instructions https://www.aasesales.com/products/d6-104384 and 935/78 operating instructions https://www.aasesales.com/products/g6h-104389. No purchase/contact initiated.",
+      "numeric_value": null,
+      "training_eligibility": "exclude"
+    },
+    {
+      "stream": "racing",
+      "url": "https://saemobilus.sae.org/papers/combustion-chamber-investigations-porsche-paving-way-4-valve-engine-845005",
+      "title": "Combustion Chamber Investigations At Porsche-Paving The Way For The 4-Valve Engine",
+      "publisher": "SAE International; D. Gruden, H. Richter, W. Wurster",
+      "edition": "SAE 845005, 1984; DOI 10.4271/845005",
+      "reason": "Only public publisher abstract acquired through web search, no full paper or page images. Abstract describes single-cylinder development research and does not itself establish dimensions or mapping to 959/956/962."
+    },
+    {
+      "stream": "racing",
+      "url": "https://bringatrailer.com/listing/manuals-64/",
+      "title": "Porsche 935, 959, 962, & Carrera RSR Manuals, lot 265185",
+      "reason": "Public listing establishes existence of original manuals/962 photocopies; direct source bytes were blocked by network403 and actual gallery page photographs were not acquired. No dimensional claims accepted."
+    }
+  ]
+}

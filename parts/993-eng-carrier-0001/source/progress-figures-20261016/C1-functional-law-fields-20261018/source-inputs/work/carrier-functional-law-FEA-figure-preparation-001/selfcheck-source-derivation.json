@@ -1,0 +1,42 @@
+{
+  "current_sha256": "4993b0b2a42e39c81ad0e30c777b5f98d27472fe875d74f8adea31f68a4cbf87",
+  "original_path": "work/carrier-terminal-taper-FEA-figure-preparation-001/selfcheck.py",
+  "original_sha256": "a4cf655d475b24e36d379d11f339e40b468d3771a359dc79cd51bbb06be710cd",
+  "prior_test_generation_duplicate_literal_guard_refused_before_output": {
+    "actual_returncode": 1,
+    "actual_tool_chunk": "2a38fe"
+  },
+  "replacements": [
+    {
+      "after": "OLD = ROOT / 'work/carrier-terminal-taper-FEA-figure-preparation-001'",
+      "before": "OLD = ROOT / 'work/carrier-process-20261017/bounded-webs-C1-fields-figure-preparation-001'",
+      "count": 1
+    },
+    {
+      "after": "OLD / 'figure.py'",
+      "before": "OLD / 'figure_v2.py'",
+      "count": 2
+    },
+    {
+      "after": "root['native_VM_MPa'] = 0",
+      "before": "root['native_receipt_sha256'] = '0' * 64",
+      "count": 1
+    },
+    {
+      "after": "[('rigid', -82.13632624982483), ('spring', 82.05313499495877)]",
+      "before": "[('rigid', -82.1363154569884), ('spring', 82.05343111183448)]",
+      "count": 1
+    },
+    {
+      "after": "self.assertIn('Complete seven-edge function', text)\n        self.assertIn('Stress convergence has not been established', text)\n        self.assertIn('89 485 C3D10', text)\n        self.assertNotIn('Unqualified raw taper:', text)",
+      "before": "self.assertIn('post-Build law refusal retained', text)\n        self.assertIn('no strength allowable or stress convergence established', text)\n        self.assertIn('89 536 C3D10', text)",
+      "count": 1
+    },
+    {
+      "after": "    def test_both_current_cases_and_mechanic_caption_values(self):\n        data=json.loads((HERE/'data-closed-cases.json').read_text())\n        for item in data['cases']:\n            role=item['paths']['role'];m.validate_case(item['paths'],item['docs'],data['source_files_sha256'],data['root_review']['cases'][role])\n            energy=item['docs']['energy'];loads=item['docs']['loads']\n            self.assertEqual(energy['E_MPa'],107000);self.assertEqual(energy['nu'],.31)\n            self.assertEqual(loads['actual_eye_node_counts'],[2274,2274])\n            self.assertEqual(item['docs']['peaks']['CAD_source']['sha256'],'07b354e3716b4e856010e271f7a36aa7f6fe05a4ee4ce36eb0959af84e92409e')\n    def test_original_runtime_and_scoped_resource_command(self):\n        p=json.loads((HERE/'pending-plan.json').read_text());l=json.loads((HERE/'pending-launch.json').read_text())\n        self.assertEqual(len(p['runtime_sha256']),219);self.assertEqual(p['outer_seconds'],180);self.assertEqual(p['inner_seconds'],150);self.assertEqual(p['CPU_soft_hard_seconds'],[140,141]);self.assertEqual(l['command'][1],'-B');self.assertNotIn('-I',l['command']);self.assertFalse(l['launch_ready'])\n\n\nif __name__ == '__main__':",
+      "before": "if __name__ == '__main__':",
+      "count": 1
+    }
+  ],
+  "whole_forward_inverse_byte_equal": true
+}

@@ -3,7 +3,45 @@
 **`993-ENG-CARRIER-0001`** · Porsche 993 Turbo · 1995–1998
 
 > [!CAUTION]
-> **Not ready to print. Safety-critical concept; no manufacturing release.** Catalogue status: `{{status}}`; not a print file. The organic geometry is a design study, not an OEM reconstruction or evidence of fit, strength or fatigue life. See [SAFETY.md]({{repo:SAFETY.md}}).
+> **Not ready to print. Safety-critical concept; no manufacturing release.** Catalogue status: `{{status}}`; not a print file. The organic geometry is a design study, not an OEM reconstruction or evidence of fit, strength or fatigue life. See [SAFETY.md]({{repo:docs/SAFETY.md}}).
+
+## Mechanical refinement and CUDA validation — 22 October 2026
+
+The [English convergence report]({{repo:docs/reports/carrier-convergence-20261022/README.md}})
+keeps the 1.2982 kg R2 study under the 1.30 kg ceiling, records the accepted and
+refused calculations, and tests PR #274's Warp query kernel on a real RTX A2000
+against an independent geometry oracle. It includes measured images and the
+reproducible workflow. Spatial convergence and further cellular weight savings
+remain open.
+
+## Reprise avec le plafond de 1,30 kg — 16 octobre 2026
+
+Le nouveau candidat paramétrique pèse **1,262 kg** et conserve les interfaces
+de V6f. Le remaillage depuis le STEP donne zéro aiguille et zéro intersection ;
+les distances échantillonnées dans les deux sens restent sous 0,06 mm. Les
+quatre comparaisons mécaniques à V6f passent sous les mêmes charges et appuis.
+
+![Vues et cotes du modèle d'étude actuel, extraites du STL retenu.]({{repo:parts/993-eng-carrier-0001/source/progress-figures-20261016/carrier-dimensions.png}})
+
+La [galerie des calculs et des supports]({{repo:parts/993-eng-carrier-0001/source/progress-figures-20261016/index.html}})
+réunit les vues du modèle, du remaillage, des couches et des champs mécaniques.
+La [capsule du calcul natif sur la pièce entière]({{repo:parts/993-eng-carrier-0001/source/design-20261016/wholepart-native64-20261017/README.md}})
+fournit les fichiers comprimés et les commandes de restauration et de réanalyse.
+
+Le [STEP du candidat retenu]({{repo:parts/993-eng-carrier-0001/derived/workflow-20261016/carrier.step}})
+est conservé avec son [reçu d'identité]({{repo:parts/993-eng-carrier-0001/derived/workflow-20261016/export.json}}).
+Ses [paramètres éditables]({{repo:parts/993-eng-carrier-0001/source/design-20261016/bounded-webs.json}})
+permettent de le reconstruire ; le maître F0 et ses anciennes images restent archivés.
+
+Le [dossier de reprise et ses résultats]({{repo:docs/reports/993_CARRIER_WORKFLOW_20261016.md}})
+conserve les décisions de géométrie, de mécanique et de préparation LPBF.
+La [chaîne à suivre]({{repo:docs/manufacturing/PART_WORKFLOW.md}}) relie une image,
+un scan ou un plan de mesures à la CAO, puis aux calculs, aux supports, aux
+couches et au guide d'atelier HTML/PDF. Le statut du catalogue reste `{{status}}`.
+
+## Contrôle initial de V6f — même journée
+
+Le [nouveau dossier de contrôle V6f]({{repo:docs/reports/993_CARRIER_REVALIDATION_20261016.md}}) conserve la géométrie : bilan énergétique indépendant réussi sur 12 cas linéaires archivés, mais criblage DfAM strict rejeté pour 74 triangles effilés et 54,994 % de surface sous le seuil exploratoire de 1,5 mm. Ce seuil n'est pas un admissible fournisseur. Interfaces réelles, convergence mécanique et procédé complet restent à établir ; aucune autorisation de fabrication.
 
 ## Current design study — R9
 
@@ -77,7 +115,7 @@ Source photographs and catalogue illustrations remain on their rights holders' s
 - [Catalogue source of truth]({{record}}), including reference provenance and known limits
 - [Carrier description page]({{repo:docs/pieces/993-eng-carrier-0001.md}})
 - [Carrier folder presentation]({{repo:parts/993-eng-carrier-0001/README.md}})
-- [Safety rules]({{repo:SAFETY.md}})
+- [Safety rules]({{repo:docs/SAFETY.md}})
 
 ---
 

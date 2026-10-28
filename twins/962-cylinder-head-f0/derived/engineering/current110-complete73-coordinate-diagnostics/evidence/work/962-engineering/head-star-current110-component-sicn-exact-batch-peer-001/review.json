@@ -1,0 +1,188 @@
+{
+  "schema": "962-current110-component-independent-exact-batch-review/v1",
+  "created_utc": "2026-10-20T11:59:52.007207+00:00",
+  "decision": "CLEAR_ALL73_EXACT_METADATA_BINDINGS_SEPARATE_ROOT_LAUNCH_STILL_REQUIRED",
+  "blockers": [],
+  "batch": {
+    "path": "work/962-engineering/head-star-current110-component-sicn-root-execution-001/batch-preparation.json",
+    "sha256": "597464eddd29e14918581f4490a9a94a4693310c9da0effd80fa3d3099006679",
+    "bytes": 47353
+  },
+  "held": {
+    "path": "work/962-engineering/head-star-current110-component-sicn-prep-001/held-contract.json",
+    "sha256": "afe67f9bc9b99e41070e5a969e2fee73761ab125331eedd978030e822aece319",
+    "bytes": 24329
+  },
+  "manifest": {
+    "path": "work/962-engineering/head-star-current110-component-sicn-prep-001/component-manifest.json",
+    "sha256": "8ae9f9e93aee4b9d06936c87f856b6e318e0b4ce5dbf5e9d78c9b99acdd8f8d7",
+    "bytes": 250944
+  },
+  "source_peer": {
+    "path": "work/962-engineering/head-star-current110-component-sicn-source-peer-001/review.json",
+    "sha256": "213e85135eab3a92922d8db38caf049426c5e3d6acb67e93d94e2cd507976b10",
+    "bytes": 5372
+  },
+  "root_source_review": {
+    "path": "work/962-engineering/head-star-current110-component-sicn-root-source-001/review.json",
+    "sha256": "29fc9b053e85c6d09ff5851874eef9a3ccab31f83dc1dfb35ac655ab2c43007f",
+    "bytes": 11021
+  },
+  "guard_capture": {
+    "path": "work/962-engineering/head-star-current110-component-sicn-root-source-001/guards-once.json",
+    "sha256": "1f8ead627221f1038b39ffd77a7325fcd5657822cfa3416d466b6ef376434686",
+    "bytes": 1317
+  },
+  "runtime_admission": {
+    "path": "work/962-engineering/head-star-current110-component-sicn-root-execution-001/runtime-admission.json",
+    "sha256": "ae57ad435bbf7faffbfc24645f1964f1b326bd84a677bc138f38d01d315e2d9f",
+    "bytes": 17081
+  },
+  "bindings": {
+    "path": "work/962-engineering/head-star-current110-component-sicn-exact-batch-peer-001/bindings.json",
+    "sha256": "ff7f9ac7d2a8cc1bfc4fcf52535fead7fa6a6c0485942f6959a05cdd60913c9d",
+    "bytes": 119820
+  },
+  "checked": {
+    "all73_actual_byte_identities_match_batch": true,
+    "all73_canonical_case_hashes_recomputed_independently": true,
+    "all73_entire_actuals_type_and_value_exact_to_held_plus_declared_case_and_admission_changes": true,
+    "held_top_level_key_count": 59,
+    "actual_top_level_key_count": 68,
+    "declared_changed_held_keys": [
+      "case_key",
+      "case_record_sha256",
+      "component_ID",
+      "free_tags",
+      "input_count",
+      "input_hashes",
+      "output",
+      "proposal_execution_authorized",
+      "root_and_peer_review_complete",
+      "schema",
+      "selected_runtime_review_complete",
+      "status"
+    ],
+    "declared_added_actual_keys": [
+      "exact_batch_peer",
+      "guard_result",
+      "independent_source_bindings",
+      "independent_source_review",
+      "materialized",
+      "root_launch_authorization",
+      "root_source_review",
+      "runtime_admission",
+      "source_review_authority_scope"
+    ],
+    "all28_input_hashes_fresh_and_unchanged": true,
+    "preserved_inputs": 21,
+    "direct_additions": 7,
+    "all73_selected_runtime32_maps_exact_to_held_and_root_capture": true,
+    "runtime32_or_origins_independently_replayed": false,
+    "captured_root_guard_invocations": 1,
+    "captured_root_guards_passed": 5,
+    "guards_replayed_by_this_reviewer": false,
+    "all73_graph_case_memberships_equal": true,
+    "case_groups": 73,
+    "single_node_groups": 64,
+    "two_node_groups": 9,
+    "finite_membership_counts": {
+      "movable_nodes": 82,
+      "coordinate_variables": 246,
+      "TET4": 2482,
+      "poor": 110,
+      "good": 2372,
+      "shared": 58,
+      "context_nodes": 1439,
+      "fixed_source_boundary_nodes": 889,
+      "fixed_other_interior_nodes": 468
+    },
+    "fixed_context_overlap": {
+      "1444344": [
+        40,
+        41
+      ]
+    },
+    "limits": {
+      "wall_seconds": 30,
+      "sampled_RSS_bytes": 1073741824,
+      "sampled_output_bytes": 16777216,
+      "threads": 2
+    },
+    "solver": {
+      "method": "SLSQP",
+      "maxiter": 100,
+      "ftol": 1e-10,
+      "eps": 1.4901161193847656e-08
+    },
+    "outer_per_case_seconds": 40,
+    "TERM_grace_seconds": 8,
+    "future_inner_deadline_sum_bound_seconds": 2190,
+    "all73_output_directories_and_materialized_source_copies_absent": true,
+    "root_execution_directory_only_contains_preparation_actuals_and_runtime_records": true,
+    "all_captured_inputs_unchanged": true
+  },
+  "findings": [
+    "Every actual is reconstructed from the frozen held contract, with exactly twelve declared held-key changes and nine explicit admission fields; comparison preserves JSON scalar types, float representations, list order and all nested negative qualification flags. All73 exact case records, free tags, output paths, fixed solver/limits, source/controller digests and complete28input/32runtime maps agree.",
+    "The28input set is exactly the unchanged held21 plus held contract, independent source review/bindings, root review, one guard result, root runtime origin and admission. All28 first-party input bodies were freshly hashed; no runtime or raw geometry body was opened.",
+    "Root-attributed metadata joins all32 captured runtime hashes/sizes, authorized one origin import, recorded Python3.12.11/NumPy2.2.6/SciPy1.17.1 paths and versions, constrained environment, resource snapshots and the five-guard RC0 capture. This reviewer did not reproduce these runtime or guard observations, inspect runtime bodies, or infer complete ABI/availability/hard-quota proof.",
+    "The manifest and accepted saved graph agree for all73 components and all82 variables/2482cells, including110poor/2372good/58shared memberships. This is a saved-metadata association; no full native array, boundary, exact-volume, SICN or optimizer computation was replayed.",
+    "The three consumed true flags explicitly attest completed source/root/peer and selected-runtime gates only. The frozen actuals still carry null exact_batch_peer/root_launch_authorization and materialized=false; this review creates neither a launch permission nor an amended actual. Root must separately bind/admit this exact batch before any materialization. All head/native/PDE/material/process/training/engineering/manufacturing authorities stay false."
+  ],
+  "scope_limits": [
+    "No optimizer was invoked by this reviewer; all73 target directories are absent at closure, and no prepared source/controller/contract copy or case output was created. Parent-reported zero invocations is consistent with these finite filesystem records, not an exhaustive process audit.",
+    "Source mathematical correctness and helper preservation are attributed to the separately bound source peer/root reviews. No new global embedding, collision freedom, repair feasibility, whole-head quality, stronger Mesh_2, strength, hot material allowables, LPBF, Omniverse or PhysicsNeMo result follows.",
+    "Historical held false guard/runtime/source preparation observations remain unchanged. Additive root captures establish their later scoped gates without rewriting historical evidence. Resources are captured snapshots; sampled controls are not hard OS quotas."
+  ],
+  "reviewer_lineage": {
+    "disclosure": "This reviewer previously prepared the current110 census source/exact-child/saved-result peers, material hot-property source refresh and publication byte peer (including its additive scope clarification). Independent here from this component source/manifest, source peer, root runtime admission and actual batch authoring; no new independent physical or mathematical derivation.",
+    "artifacts": [
+      {
+        "path": "work/962-engineering/head-star-current110-full-stars-source-peer-001/review.json",
+        "sha256": "816973b35f1085b082af8510e0bcd7e61f5d5be83bb0cb41f5bc15fc92c149fb",
+        "bytes": 6661
+      },
+      {
+        "path": "work/962-engineering/head-star-current110-full-stars-exact-child-peer-001/review.json",
+        "sha256": "a442627ae365acf7b710720f339cbbf586e3830b80dfdb59413169491b5f6e9e",
+        "bytes": 4994
+      },
+      {
+        "path": "work/962-engineering/head-star-current110-full-stars-result-peer-001/review.json",
+        "sha256": "a6814c788cabc6b420c39d77eea4fff4dd1e56c116aede055b6119e54317c65f",
+        "bytes": 6014
+      },
+      {
+        "path": "work/962-engineering/material-hot-property-source-refresh-20261020-001/NOTE.md",
+        "sha256": "f8ec03ee7addf04ea1c56c2e1f6814bee582778d9c90b361bf73628997dac873",
+        "bytes": 8145
+      },
+      {
+        "path": "work/962-engineering/material-hot-property-source-refresh-20261020-001/bindings.json",
+        "sha256": "ddc67b1a9566b8882dc7381e4b4299c31fe1d5a4cd300e0c5d5d99f4c55a4d69",
+        "bytes": 9000
+      },
+      {
+        "path": "work/962-engineering/current110-defect-probe-publication-byte-peer-001/review.json",
+        "sha256": "472c55b6731d7c77e98b4cc37bc096f092bfa74b12bb4fd8f6388a0491584c8b",
+        "bytes": 5048
+      },
+      {
+        "path": "work/962-engineering/current110-defect-probe-publication-byte-peer-001/bindings.json",
+        "sha256": "4cccc03ea16da825b62a1e62ed2ec533e815c39517ed1911473274a54362a44c",
+        "bytes": 96821
+      },
+      {
+        "path": "work/962-engineering/current110-defect-probe-publication-byte-peer-001/SCOPE-CLARIFICATION-001.json",
+        "sha256": "11f98ead9c21ba67a07d83172263d8892152bd9596c40c58cd79bffc08b3e9ca",
+        "bytes": 1752
+      }
+    ]
+  },
+  "source_or_guard_or_helper_or_optimizer_or_native_execution_authorized": false,
+  "root_launch_authorized": false,
+  "head_edit_authorized": false,
+  "head_PDE_authorized": false,
+  "engineering_accepted": false,
+  "manufacturing_authorized": false
+}

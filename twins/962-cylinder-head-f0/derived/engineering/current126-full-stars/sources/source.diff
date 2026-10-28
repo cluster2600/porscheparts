@@ -1,0 +1,38 @@
+--- work/962-engineering/head-star-current127-full-stars-prep-001/reader.py
++++ work/962-engineering/head-star-current126-full-stars-prep-001/reader.py
+@@ -33,7 +33,7 @@
+ 
+ def partial_after_proof(worker,receipt,closed,contract):
+  """Bind the actual partial-replacement after/saved proof without optimizer aliases."""
+- if (worker.get('schema')!='962-apex1613790-head-application-result/v1'
++ if (worker.get('schema')!='962-apex1613031-head-application-result/v1'
+      or worker.get('status')!='completed_partial_head_replacement_whole_head_quality_gate_applied'
+      or worker.get('stage')!='completed_partial_repair_audits'
+      or any(worker.get(k) is not True for k in ['procedural_checks_passed','partial_replacement_completed','saved_mesh_identity_exact','bound_inputs_unchanged'])
+@@ -51,12 +51,12 @@
+      or receipt.get('runner_sha256')!=contract['partial_runner_sha256']
+      or receipt.get('native_log_sha256')!=contract['partial_native_log_sha256']
+      or receipt.get('native_generate_optimize_solve_calls_declared')!=0 or receipt.get('mesh_write_calls_declared')!=1 or receipt.get('counters_are_declarations') is not True
+-     or closed.get('schema')!='962-apex1613790-head-root-closed/v1'
+-     or closed.get('returncode')!=2 or closed.get('stop_reason') is not None
+-     or any(closed.get(k) is not True for k in ['waited_and_reaped','owned_controller_group_observed_absent','all58inputs_and_selected_runtime_before_after_exact','operation_observed_stopped'])
++     or closed.get('schema')!='962-apex1613031-head-application-root-closed/v1'
++     or closed.get('returncode')!=2 or closed.get('error') is not None or closed.get('signals')!=[] or closed.get('outer_fallback_used') is not False
++     or any(closed.get(k) is not True for k in ['controller_waited_reaped','controller_owned_group_absent','all79_inputs_unchanged','runtime5_unchanged','static4_unchanged'])
+      or closed.get('automatic_retry') is not False
+-     or closed.get('actual',{}).get('sha256')!=contract['partial_contract_sha256']
+-     or closed.get('output_files')!=contract['partial_output_inventory']):
++     or closed.get('whole_actual_mirror_sha256')!=contract['partial_contract_sha256']
++     or closed.get('outputs')!=contract['partial_output_inventory']):
+   raise ValueError('Exact stopped partial-replacement after/saved proof required')
+  proof=worker['after'];n=proof['tetrahedra'];quality=proof['quality'];keys={'sorted_node_tags_sha256','sorted_coordinates_sha256','sorted_tetra_tags_sha256','tagged_tetra_connectivity_sha256'}
+  counts={k:proof[k] for k in contract['expected_saved_counts']}
+@@ -148,7 +148,7 @@
+ contract=json.loads((OUT/'frozen-contract.json').read_text())
+ for name,h in contract['input_hashes'].items():
+  if sha(ROOT/name)!=h:raise ValueError('Bound saved-readback input drift: '+name)
+-w=ROOT/'work/962-engineering/apex1613790-head-application-001';worker=json.loads((w/'readback-report.json').read_text());receipt=json.loads((w/'execution-receipt.json').read_text());closed=json.loads((ROOT/contract['partial_root_closed_result']).read_text());admission=json.loads((ROOT/contract['surface_admission']).read_text())
++w=ROOT/'work/962-engineering/apex1613031-head-application-001';worker=json.loads((w/'readback-report.json').read_text());receipt=json.loads((w/'execution-receipt.json').read_text());closed=json.loads((ROOT/contract['partial_root_closed_result']).read_text());admission=json.loads((ROOT/contract['surface_admission']).read_text())
+ proof=partial_after_proof(worker,receipt,closed,contract)
+ for name,h in admission['input_hashes'].items():
+  if sha(ROOT/name)!=h:raise ValueError('Surface-admission evidence changed: '+name)

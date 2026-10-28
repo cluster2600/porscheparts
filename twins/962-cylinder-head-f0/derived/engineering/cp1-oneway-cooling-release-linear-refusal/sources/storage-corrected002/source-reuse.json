@@ -1,0 +1,31 @@
+{
+  "schema": "962-linear-cooling-lexical-storage-actual-field-binding-reuse/v1",
+  "donor": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-linear-native-storage-audit-prep-001/check_saved.py",
+    "sha256": "189164fb547a46ed8a1275f9b42ed66a905b9d91b3ace6e690285bb3fe41981e",
+    "bytes": 15469
+  },
+  "source": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-linear-native-storage-audit-prep-002/check_saved.py",
+    "sha256": "4cd2d067164cc57c94e594303a7a53c588042ca86629cbf60ba9dc2dc5799549",
+    "bytes": 15460
+  },
+  "source_diff": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-linear-native-storage-audit-prep-002/source.diff",
+    "sha256": "3a7b58556636c528d508abae82f0f8dc45c126e07d3c6c92cca659d0e4f2e514",
+    "bytes": 988
+  },
+  "exact_reversible_groups": [
+    {
+      "label": "current physics contract field rather than historical documentary field",
+      "old": "actual['original_physics_contract']['sha256']",
+      "new": "actual['physics_contract']['sha256']",
+      "count": 1
+    }
+  ],
+  "complete_reverse_restores_entire_donor": true,
+  "all_numeric_literals_same_order_and_type": true,
+  "all_function_definitions_except_one_main_string_key_byte_exact": true,
+  "all_early_refusal_inventory_geometry_parser_and_lexical_criteria_unchanged": true,
+  "source_only_not_compiled_imported_or_called": true
+}

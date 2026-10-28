@@ -1,0 +1,256 @@
+{
+  "schema": "root-stock-FEA-figure33-layout002-terminal-review-1",
+  "status": "closed_actual_RC0_current_stock_field_figure_PNG_and_PDF_visual_QA_PASS",
+  "owner_terminal_sha256": "2d2064cec3d74f1f6256de5d024feeb71b1b3bada323706c93b7a76c3390fc7b",
+  "collector_source_sha256": "8399899ee3314e875d743f1b1292aeeed6a32c447b67b8157325e356bc8b78de",
+  "whole_collector_object_and_original_bytes_equal": true,
+  "all11_outputs_stable_FD_verified": true,
+  "current_plan_and_before_after_all801_pins_verified": true,
+  "three_whole_pending_control_inverses_verified": true,
+  "original_math_fields_and_all_global_ties_retained": true,
+  "all4_panel_checks_and_two_whole_global_maxima_exactly_equal_original001": true,
+  "PNG_actually_viewed": true,
+  "PDF_Poppler_raster_actually_viewed": true,
+  "PDF_raster_sha256": "45254dc0076dcd3cdb0b08fd0bd4a84d98a06589b718728eec306913fa3bb841",
+  "visual_finding": "Stress-panel titles clear; actual labels, case values, insets, scales and footnotes legible without clipping.",
+  "visual_QA_pass": true,
+  "fresh_exact_owned_PID_and_PGID_absent": true,
+  "official_PDF_marker_exact_once_actual_RC0": true,
+  "original001_visual_refusal_preserved": true,
+  "outputs": {
+    "render-001/carrier-first-window-stock-stress-displacement.pdf": {
+      "bytes": 488611,
+      "sha256": "4d3e89eb92b3a19b48b52f5e75e5e69e787c068c5245b1f8e3823ec5cb1e9b33"
+    },
+    "render-001/carrier-first-window-stock-stress-displacement.png": {
+      "bytes": 879230,
+      "sha256": "bdc5b7d717627fce7d4a8529b82d301ae2ddc9dfc55e4f4ea0e9c8394e3fdc3d"
+    },
+    "render-001/carrier-first-window-stock-stress-displacement.svg": {
+      "bytes": 726330,
+      "sha256": "37452ef8088a40af0b06d870e8a5904f00a3b1e6e5034ecfe47d4df3cbc9cf85"
+    },
+    "render-001/render-receipt.json": {
+      "bytes": 200977,
+      "sha256": "cd542925282f81dc58a40f12f3c7b523c1e9fafa81a858551dd49fdda92c8e71"
+    },
+    "execution-001/execution-receipt.json": {
+      "bytes": 276036,
+      "sha256": "f86c4aa5a69fd6e589e6dc1f280e91cef9aa8c49b83c8c7a3e2dd6ac216ae9c8"
+    },
+    "execution-001/started.json": {
+      "bytes": 236,
+      "sha256": "54f78fa644aeb1d6c1aed89072b52d93870ea22214d104f8a005eaa39e7ba086"
+    },
+    "execution-001/stderr.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "execution-001/stdout.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "official-PDF-marker.json": {
+      "bytes": 706,
+      "sha256": "257640d155df3f11014e37872e9f322b4bde2195f391c233a8b94397c995d99e"
+    },
+    "official-PDF-marker.stdout.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "official-PDF-marker.stderr.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  },
+  "actual_global_maxima": [
+    {
+      "role": "rigid",
+      "mesh_variant": "first_window_stock_coarse",
+      "case": "combined-rigid-static",
+      "global_maxima": {
+        "global_IP_VM_MPa": 621.1414615781972,
+        "displayed_boundary_element_VM_max_MPa": 621.1414615781972,
+        "all_nodes_Umax_mm": 2.7715852188872883,
+        "all_global_IP_ties": [
+          {
+            "DAT_row_zero_based": 157188,
+            "element_index_zero_based": 39297,
+            "element_id": 39298,
+            "IP_one_based": 1,
+            "reference_undeformed_IP_xyz_mm": [
+              26.77366323459092,
+              13.63043441388483,
+              29.778672530278612
+            ],
+            "VM_MPa": 621.1414615781972,
+            "element_corner_centroid_mm": [
+              27.017594602474748,
+              13.114609539804,
+              29.599614845952
+            ],
+            "nearest_prescribed_displacement_node": {
+              "node_id": 89347,
+              "undeformed_xyz_mm": [
+                273.25815061507,
+                14.020958033842,
+                0.33161245030274
+              ],
+              "distance_mm": 248.2375563351948,
+              "scope": "Euclidean distance to the retained discrete node set only; not distance to a BC/load surface"
+            },
+            "nearest_grounded_spring_node": null,
+            "nearest_applied_load_node": {
+              "node_id": 3795,
+              "undeformed_xyz_mm": [
+                44.769189160377,
+                18.300406530938,
+                4.0
+              ],
+              "distance_mm": 31.783447741600252,
+              "scope": "Euclidean distance to the retained discrete node set only; not distance to a BC/load surface"
+            },
+            "corner_measure": {
+              "bounds_mm": [
+                [
+                  26.472147482042,
+                  11.670986789745,
+                  28.398459383808
+                ],
+                [
+                  28.281493352763,
+                  14.268029022734,
+                  30.0
+                ]
+              ],
+              "six_corner_edge_lengths_mm": [
+                1.6174093584876907,
+                1.677047582570967,
+                1.9901653877534626,
+                2.021518703612834,
+                3.1116127457040186,
+                3.1651794324846145
+              ],
+              "measured_h_mm": 3.1651794324846145,
+              "proposed_half_h_mm": 1.5825897162423073,
+              "h_definition": "Maximum of the six actual corner edges of this peak element; not global mesh label"
+            }
+          }
+        ],
+        "all_global_U_nodes": [
+          {
+            "node_id": 6121,
+            "reference_xyz_mm": [
+              69.5280046706454,
+              -4.203699464703899,
+              29.758520214118573
+            ],
+            "deformed_xyz_mm": [
+              69.6502275706454,
+              -3.5067491647038986,
+              27.078780214118574
+            ],
+            "U_mm": 2.7715852188872883
+          }
+        ],
+        "reference_surface_faces": 45264,
+        "all_IP_rows": 339612
+      }
+    },
+    {
+      "role": "spring",
+      "mesh_variant": "first_window_stock_coarse",
+      "case": "combined-spring-1000-static",
+      "global_maxima": {
+        "global_IP_VM_MPa": 1633.1285701272036,
+        "displayed_boundary_element_VM_max_MPa": 1633.1285701272036,
+        "all_nodes_Umax_mm": 18.025226400906668,
+        "all_global_IP_ties": [
+          {
+            "DAT_row_zero_based": 157188,
+            "element_index_zero_based": 39297,
+            "element_id": 39298,
+            "IP_one_based": 1,
+            "reference_undeformed_IP_xyz_mm": [
+              26.77366323459092,
+              13.63043441388483,
+              29.778672530278612
+            ],
+            "VM_MPa": 1633.1285701272036,
+            "element_corner_centroid_mm": [
+              27.017594602474748,
+              13.114609539804,
+              29.599614845952
+            ],
+            "nearest_prescribed_displacement_node": null,
+            "nearest_grounded_spring_node": {
+              "node_id": 89347,
+              "undeformed_xyz_mm": [
+                273.25815061507,
+                14.020958033842,
+                0.33161245030274
+              ],
+              "distance_mm": 248.2375563351948,
+              "scope": "Euclidean distance to the retained discrete node set only; not distance to a BC/load surface"
+            },
+            "nearest_applied_load_node": {
+              "node_id": 3795,
+              "undeformed_xyz_mm": [
+                44.769189160377,
+                18.300406530938,
+                4.0
+              ],
+              "distance_mm": 31.783447741600252,
+              "scope": "Euclidean distance to the retained discrete node set only; not distance to a BC/load surface"
+            },
+            "corner_measure": {
+              "bounds_mm": [
+                [
+                  26.472147482042,
+                  11.670986789745,
+                  28.398459383808
+                ],
+                [
+                  28.281493352763,
+                  14.268029022734,
+                  30.0
+                ]
+              ],
+              "six_corner_edge_lengths_mm": [
+                1.6174093584876907,
+                1.677047582570967,
+                1.9901653877534626,
+                2.021518703612834,
+                3.1116127457040186,
+                3.1651794324846145
+              ],
+              "measured_h_mm": 3.1651794324846145,
+              "proposed_half_h_mm": 1.5825897162423073,
+              "h_definition": "Maximum of the six actual corner edges of this peak element; not global mesh label"
+            }
+          }
+        ],
+        "all_global_U_nodes": [
+          {
+            "node_id": 44767,
+            "reference_xyz_mm": [
+              40.287051497690385,
+              -36.0,
+              2.118364150760499e-09
+            ],
+            "deformed_xyz_mm": [
+              40.27662670769038,
+              -35.98895105,
+              -18.025219997881635
+            ],
+            "U_mm": 18.025226400906668
+          }
+        ],
+        "reference_surface_faces": 45264,
+        "all_IP_rows": 339612
+      }
+    }
+  ],
+  "new_science_executed": false,
+  "publication_not_yet_executed": true
+}

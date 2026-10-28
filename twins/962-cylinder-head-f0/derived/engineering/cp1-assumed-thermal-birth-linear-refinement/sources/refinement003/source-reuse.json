@@ -1,0 +1,81 @@
+{
+  "schema": "962-CP1-LINEAR-refinement-test-only-two-ULP-successor/v1",
+  "status": "HELD_SOURCE_ONLY_UNRUN",
+  "selected_source": {
+    "path": "work/962-engineering/cp1-assumed-thermal-birth-linear-refinement-prep-003/assess_refinement.py",
+    "sha256": "13934e6e8ae5bb1ada1b6bbc29172855441e72b04e34752d4132c530bc69138c",
+    "bytes": 11550
+  },
+  "source_byte_exact002": true,
+  "held_manifest_byte_exact002": true,
+  "preserved002_held": {
+    "path": "work/962-engineering/cp1-assumed-thermal-birth-linear-refinement-prep-002/held-preparation.json",
+    "sha256": "75f4451c1ef0d7338761da4f8197a3c1289983dedaaa8e60d16adeb81776b87f",
+    "bytes": 10639
+  },
+  "preserved002_source_reuse": {
+    "path": "work/962-engineering/cp1-assumed-thermal-birth-linear-refinement-prep-002/source-reuse.json",
+    "sha256": "557803e4fa48db1bffbb9d7e9de0dd7c43ec5b7117299f30b2c6926ece0ca96b",
+    "bytes": 6167
+  },
+  "independent002_peer": {
+    "path": "work/962-engineering/cp1-assumed-thermal-birth-linear-refinement-source-peer-002/review.json",
+    "sha256": "301c39aa081ca225d2a6c1623756aeb79e28a910ba8cad36d0e0b86d620639c3",
+    "bytes": 10272
+  },
+  "root_once002guard_failure": {
+    "path": "work/962-engineering/cp1-assumed-thermal-birth-linear-refinement-root-source-001/review.json",
+    "sha256": "54b7f99bd6bf06ad1a8ad5f4f129a5e8d6266b560e8c982d79e3d54374dca91d",
+    "bytes": 1472
+  },
+  "root_failure_stdout": {
+    "path": "work/962-engineering/cp1-assumed-thermal-birth-linear-refinement-root-source-001/stdout.log",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "bytes": 0
+  },
+  "root_failure_stderr": {
+    "path": "work/962-engineering/cp1-assumed-thermal-birth-linear-refinement-root-source-001/stderr.log",
+    "sha256": "f111e1e3699868dc931a8253ac79cae759353143f2f7ebd545c96efc8e575444",
+    "bytes": 924
+  },
+  "guard_pair": {
+    "donor": {
+      "path": "work/962-engineering/cp1-assumed-thermal-birth-linear-refinement-prep-002/selfcheck.py",
+      "sha256": "6838db2842225b19305d9cf6aba58423f8818185f3d22482078a09e382f3d83b",
+      "bytes": 9064
+    },
+    "selected": {
+      "path": "work/962-engineering/cp1-assumed-thermal-birth-linear-refinement-prep-003/selfcheck.py",
+      "sha256": "7dd8cfb1d57ef34db4a03c38265781d918a183daefffee1bb5f866ce7f4fe2f6",
+      "bytes": 9223
+    },
+    "whole_byte_reverse_exact": true,
+    "reverse_line_chunks": [
+      {
+        "old_start_line_zero_based": 119,
+        "new_start_line_zero_based": 119,
+        "old_lines": [
+          "  self.fixture((math.nextafter(.007,-math.inf),.005,.0025));self.assertFalse(self.call()['passed'])\n"
+        ],
+        "new_lines": [
+          "  # One downward ULP still divides to1.4; two ULPs make this a strict-below fixture.\n",
+          "  below=math.nextafter(math.nextafter(.007,-math.inf),-math.inf)\n",
+          "  self.assertLess(below/.005,1.4)\n",
+          "  self.fixture((below,.005,.0025));self.assertFalse(self.call()['passed'])\n"
+        ]
+      }
+    ]
+  },
+  "source_diff": {
+    "path": "work/962-engineering/cp1-assumed-thermal-birth-linear-refinement-prep-003/source.diff",
+    "sha256": "f9baf38f086c0a804294e77f5a45c601e3b424b0cfa51b50a3a3e1617f8f2890",
+    "bytes": 1002
+  },
+  "only_guard_change": "Replace the one-ULP strict-below ratio fixture with two downward nextafter calls, an explicit quotient<1.4 assertion and a short rounding comment.",
+  "other_six_guard_methods_AST_exact": true,
+  "all_fixture_helper_ASTs_exact": true,
+  "source_all_functions_and_original_seven_statement_numeric_gate_exact": true,
+  "source_constants_thresholds_reference_manifest_immutable_level2_and_NULL_futures_exact": true,
+  "author_actions": "Stdlib file writing and source/hash/AST comparisons only; no source/test/evaluator/assessor functions or prepared modules executed/imported; no native/runtime/Git.",
+  "guard_execution_by_author": false
+}

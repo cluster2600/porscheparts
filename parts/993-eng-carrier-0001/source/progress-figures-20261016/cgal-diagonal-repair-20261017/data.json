@@ -1,0 +1,354 @@
+{
+  "schema": "real-cgal-two-quad-teaching-figure-data-1",
+  "sources": {
+    "operation_plan": {
+      "origin_path": "/Users/maxime/.codex/worktrees/993-carrier-revalidation/3dprinting993/work/carrier-process-20261017/source010-certified-flip-repair-001/operation-plan.json",
+      "sha256": "050b04b625289b543f2c79c97c9f5f0bfc941c8601393082b92b24fd80ec8c2b",
+      "bytes": 95115
+    },
+    "quad_records": {
+      "origin_path": "/Users/maxime/.codex/worktrees/993-carrier-revalidation/3dprinting993/work/carrier-process-20261017/cgal-quad-batch-preparation-001/execution-001/inputs.json",
+      "sha256": "080fb7157145f773bc9d88442c89b95c63b3d53b737092a131e2a9574454ba36",
+      "bytes": 114810
+    },
+    "native_receipt": {
+      "origin_path": "/Users/maxime/.codex/worktrees/993-carrier-revalidation/3dprinting993/work/carrier-process-20261017/cgal-quad-batch-preparation-001/execution-001/execution-receipt.json",
+      "sha256": "5d0128155a3d90c0c32ca08e851e404e56e2a8efd1f15f5c405da3a04542b739",
+      "bytes": 118942
+    },
+    "oriented_binding": {
+      "origin_path": "/Users/maxime/.codex/worktrees/993-carrier-revalidation/3dprinting993/work/carrier-process-20261017/cgal-quad-batch-preparation-001/native-operation-binding-001/assessment.json",
+      "sha256": "26e2cac8f5ef35aad9f6402bae26f7ce8591a47511375d6b38a2d084c3b45e13",
+      "bytes": 115654
+    }
+  },
+  "native_summary": {
+    "native_cases": 146,
+    "diagonals_changed": 146,
+    "all_coordinates_exactly_unchanged": true,
+    "all_directed_boundaries_preserved": true,
+    "global_admission": false
+  },
+  "examples": [
+    {
+      "kind": "GRID",
+      "original_face_ids": [
+        3341,
+        3475
+      ],
+      "case": "original-GRID3341-3475-step-0",
+      "operation": {
+        "name": "original-GRID3341-3475",
+        "face_ids": [
+          3341,
+          3475
+        ],
+        "expected_before": [
+          [
+            3128,
+            3127,
+            3132
+          ],
+          [
+            3133,
+            3128,
+            3132
+          ]
+        ],
+        "steps": [
+          {
+            "face_pair": [
+              3341,
+              3475
+            ],
+            "new_triangles": [
+              [
+                3127,
+                3132,
+                3133
+              ],
+              [
+                3127,
+                3133,
+                3128
+              ]
+            ]
+          }
+        ]
+      },
+      "quad": {
+        "name": "original-GRID3341-3475-step-0",
+        "expected_exact_coplanarity": true,
+        "boundary_ids": [
+          3127,
+          3132,
+          3133,
+          3128
+        ],
+        "vertices_ieee_hex": [
+          [
+            "0x1.9dd67c6938825p+7",
+            "0x1.6dfad20f38908p+7",
+            "0x1.e8974acead770p+3"
+          ],
+          [
+            "0x1.9dd67c6938826p+7",
+            "0x1.6dfad20f38908p+7",
+            "0x1.05063f01abbf6p+2"
+          ],
+          [
+            "0x1.9dd7a46a972c6p+7",
+            "0x1.6dfad20f38908p+7",
+            "0x1.0ca49382d4cfcp+4"
+          ],
+          [
+            "0x1.9dd67c6938825p+7",
+            "0x1.6dfad20f38908p+7",
+            "0x1.09732d9151789p+4"
+          ]
+        ],
+        "original_diagonal_ids": [
+          3128,
+          3132
+        ]
+      },
+      "native": {
+        "case": "original-GRID3341-3475-step-0",
+        "CGAL_version": "6.1.3",
+        "exactly_coplanar": true,
+        "vertices": 4,
+        "faces": 2,
+        "coordinates_exactly_unchanged": true,
+        "directed_boundary_preserved": true,
+        "topology_valid": true,
+        "all_triangles_exactly_noncollinear": true,
+        "kept_source_diagonal": false,
+        "source_diagonal_original_vertex_ids": [
+          3128,
+          3132
+        ],
+        "chosen_diagonal_original_vertex_ids": [
+          3127,
+          3133
+        ],
+        "triangles_original_vertex_ids": [
+          [
+            3133,
+            3128,
+            3127
+          ],
+          [
+            3127,
+            3132,
+            3133
+          ]
+        ],
+        "carrier_mesh_written": false,
+        "global_admission": false
+      },
+      "binding": {
+        "case": "original-GRID3341-3475-step-0",
+        "operation": "original-GRID3341-3475",
+        "step": 0,
+        "face_pair": [
+          3341,
+          3475
+        ],
+        "native_to_plan_faces": [
+          {
+            "native_face": 0,
+            "plan_face": 1,
+            "cyclic_left_rotation": 2
+          },
+          {
+            "native_face": 1,
+            "plan_face": 0,
+            "cyclic_left_rotation": 0
+          }
+        ],
+        "canonical_oriented_triangles": [
+          [
+            3127,
+            3132,
+            3133
+          ],
+          [
+            3127,
+            3133,
+            3128
+          ]
+        ],
+        "chosen_diagonal_original_vertex_ids": [
+          3127,
+          3133
+        ],
+        "kept_source_diagonal": false,
+        "oriented_triangles_equal": true
+      }
+    },
+    {
+      "kind": "SKIN",
+      "original_face_ids": [
+        8753,
+        8754
+      ],
+      "case": "SKIN-8753-step-0",
+      "operation": {
+        "name": "SKIN-8753",
+        "face_ids": [
+          8753,
+          8754
+        ],
+        "expected_before": [
+          [
+            9567,
+            9569,
+            9570
+          ],
+          [
+            9567,
+            9570,
+            9568
+          ]
+        ],
+        "steps": [
+          {
+            "face_pair": [
+              8753,
+              8754
+            ],
+            "new_triangles": [
+              [
+                9567,
+                9569,
+                9568
+              ],
+              [
+                9569,
+                9570,
+                9568
+              ]
+            ]
+          }
+        ]
+      },
+      "quad": {
+        "name": "SKIN-8753-step-0",
+        "expected_exact_coplanarity": false,
+        "boundary_ids": [
+          9567,
+          9569,
+          9570,
+          9568
+        ],
+        "vertices_ieee_hex": [
+          [
+            "0x1.685c8c565ccebp+7",
+            "0x1.a3a64e985698ap+7",
+            "0x1.0c54606b345d3p+4"
+          ],
+          [
+            "0x1.687213b481b96p+7",
+            "0x1.a3994532e9b66p+7",
+            "0x0.0p+0"
+          ],
+          [
+            "0x1.687213b481b96p+7",
+            "0x1.a3994532e9b66p+7",
+            "0x1.0c47e6cabfef3p+4"
+          ],
+          [
+            "0x1.686c54145da9cp+7",
+            "0x1.a39cc056a0106p+7",
+            "0x1.0c4b3b8aee767p+4"
+          ]
+        ],
+        "original_diagonal_ids": [
+          9567,
+          9570
+        ]
+      },
+      "native": {
+        "case": "SKIN-8753-step-0",
+        "CGAL_version": "6.1.3",
+        "exactly_coplanar": false,
+        "vertices": 4,
+        "faces": 2,
+        "coordinates_exactly_unchanged": true,
+        "directed_boundary_preserved": true,
+        "topology_valid": true,
+        "all_triangles_exactly_noncollinear": true,
+        "kept_source_diagonal": false,
+        "source_diagonal_original_vertex_ids": [
+          9567,
+          9570
+        ],
+        "chosen_diagonal_original_vertex_ids": [
+          9568,
+          9569
+        ],
+        "triangles_original_vertex_ids": [
+          [
+            9568,
+            9567,
+            9569
+          ],
+          [
+            9569,
+            9570,
+            9568
+          ]
+        ],
+        "carrier_mesh_written": false,
+        "global_admission": false
+      },
+      "binding": {
+        "case": "SKIN-8753-step-0",
+        "operation": "SKIN-8753",
+        "step": 0,
+        "face_pair": [
+          8753,
+          8754
+        ],
+        "native_to_plan_faces": [
+          {
+            "native_face": 0,
+            "plan_face": 0,
+            "cyclic_left_rotation": 1
+          },
+          {
+            "native_face": 1,
+            "plan_face": 1,
+            "cyclic_left_rotation": 0
+          }
+        ],
+        "canonical_oriented_triangles": [
+          [
+            9567,
+            9569,
+            9568
+          ],
+          [
+            9568,
+            9569,
+            9570
+          ]
+        ],
+        "chosen_diagonal_original_vertex_ids": [
+          9568,
+          9569
+        ],
+        "kept_source_diagonal": false,
+        "oriented_triangles_equal": true
+      }
+    }
+  ],
+  "drawing_scope": "Topological diagram only, out of scale. Diagram point positions are fixed between before/after and do not represent real XYZ geometry.",
+  "runtime_versions": {
+    "python": "3.10.11",
+    "matplotlib": "3.10.8",
+    "numpy": "2.2.6",
+    "Pillow": "11.3.0"
+  },
+  "mesh_published_or_modified": false
+}

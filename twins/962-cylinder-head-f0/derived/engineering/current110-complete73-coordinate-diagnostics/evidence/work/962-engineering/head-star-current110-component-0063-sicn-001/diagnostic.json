@@ -1,0 +1,600 @@
+{
+  "schema": "962-current110-one-component-SLSQP-exact-diagnostic/v1",
+  "status": "exact_feasible_point_solver_converged_native_unapproved",
+  "contract_sha256": "614035095915a8d0491d7ba178ebc8decb41334d832fe73d51564939c6678054",
+  "input_hashes": {
+    "work/962-engineering/current126-alternative-combined-application-root-execution-001/result-peer-acceptance.json": "a0a889ab8b7ae77bcfcce4da464492eebf3472c782329a4dedc7252493c7ab46",
+    "work/962-engineering/fixed-shell-coupled-sicn-001/diagnostic.json": "e9184514108a194e9f483c5bfb20ffef9d8334cddd01f60806d97b96f84f532a",
+    "work/962-engineering/fixed-shell-coupled-sicn-001/fixture-report.json": "9674ceffd280153acdb97d40aa6b609e12fa4616735b55da74b8566f5052e3fc",
+    "work/962-engineering/fixed-shell-coupled-sicn-apply-result-peer-001/review.json": "7b4b85b1d366de2b1750920e6d9adfee83caf289a0a7b8742fb0c0bdb589f63f",
+    "work/962-engineering/fixed-shell-coupled-sicn-prep-001/coupled.py": "b63adff506061ac9212d17501ae4062e970b1edd943145a1e911d1914e18b1a6",
+    "work/962-engineering/fixed-shell-coupled-sicn-prep-001/held-contract.json": "5d55d648d65b76e4482210d7f02244dea44025332eea09b3566ae81cba247790",
+    "work/962-engineering/fixed-shell-coupled-sicn-prep-001/run_readback.py": "8fc4918b6a0a6c07439eb57c77ea922e778207b59ed0e9f367a8f02c34946206",
+    "work/962-engineering/fixed-shell-coupled-sicn-prep-001/selfcheck.py": "77c07008aeec16f8b474baffadcbbdde3e66e7d7b16d14ee2ca4c246a5538158",
+    "work/962-engineering/fixed-shell-coupled-sicn-result-peer-001/review.json": "0adbeea0bef35c5a1f30f610c87bb27ef4333530ff2039e9e4c91a512287732b",
+    "work/962-engineering/head-star-current110-component-sicn-prep-001/METHOD.md": "ab10674400ac02aed9a39227114fdc97d719821093a329d32766764407561fa2",
+    "work/962-engineering/head-star-current110-component-sicn-prep-001/component-manifest.json": "8ae9f9e93aee4b9d06936c87f856b6e318e0b4ce5dbf5e9d78c9b99acdd8f8d7",
+    "work/962-engineering/head-star-current110-component-sicn-prep-001/propose_component.py": "ad4dc24d21d803853006753b0b3cd28061d5b3fec9eb18576a6b4e0549faf977",
+    "work/962-engineering/head-star-current110-component-sicn-prep-001/run_readback.py": "8fc4918b6a0a6c07439eb57c77ea922e778207b59ed0e9f367a8f02c34946206",
+    "work/962-engineering/head-star-current110-component-sicn-prep-001/source-delta.json": "2d5c6d87c6789a3dd07b38704c2f6715c16fb58a6f63605c961ab615ccc797d0",
+    "work/962-engineering/head-star-current110-component-sicn-prep-001/source.diff": "31548d78a0a17945a7b11026717d85a93e0944aeda979e2261d639cd08b23ce4",
+    "work/962-engineering/head-star-current110-component-sicn-prep-001/test_component_guards.py": "bc80f8b72df522595500272e205426e1c2864fa5ae03772203586d5ea58fc182",
+    "work/962-engineering/head-star-current110-coupling-graph-001/coupling-graph.json": "cf50b7abb47a35dcfdc52fd95605d2eec6ce406dd3a2d528439dfc7c6fe3de0b",
+    "work/962-engineering/head-star-current110-coupling-graph-001/root-review.json": "7d8925cfc3a4d8c445b4cfd7282d9092768e49f81637c97e01be820961ba4145",
+    "work/962-engineering/head-star-current110-full-stars-001/readback-report.json": "657fbb0ce1c89dbf691f5a07c62feedf0fd91f7bc78f21d2aa14a3e01a9566da",
+    "work/962-engineering/head-star-current110-full-stars-root-execution-001/result-peer-acceptance.json": "3d21b5f1e2cca935e6840e6444acd247b74ef877462c3382a07798c0217c7ed0",
+    "work/962-engineering/head-star-current126-alternative-combined-application-001/readback-report.json": "522b994bf693231cbbc5d7a098200b4746d20bc65b2e91235d6bbe2b3c676732",
+    "work/962-engineering/head-star-current110-component-sicn-prep-001/held-contract.json": "afe67f9bc9b99e41070e5a969e2fee73761ab125331eedd978030e822aece319",
+    "work/962-engineering/head-star-current110-component-sicn-source-peer-001/review.json": "213e85135eab3a92922d8db38caf049426c5e3d6acb67e93d94e2cd507976b10",
+    "work/962-engineering/head-star-current110-component-sicn-source-peer-001/bindings.json": "57f326270b113399edd012eac5129d2f367fd888262b86f1f896312eb76ff179",
+    "work/962-engineering/head-star-current110-component-sicn-root-source-001/review.json": "29fc9b053e85c6d09ff5851874eef9a3ccab31f83dc1dfb35ac655ab2c43007f",
+    "work/962-engineering/head-star-current110-component-sicn-root-source-001/guards-once.json": "1f8ead627221f1038b39ffd77a7325fcd5657822cfa3416d466b6ef376434686",
+    "work/962-engineering/head-star-current110-component-sicn-root-execution-001/runtime-origin-once.json": "dbbd4282981c68a29632d038f11954232acebea6afce337930e86a3360f034a7",
+    "work/962-engineering/head-star-current110-component-sicn-root-execution-001/runtime-admission.json": "ae57ad435bbf7faffbfc24645f1964f1b326bd84a677bc138f38d01d315e2d9f"
+  },
+  "solver": {
+    "method": "SLSQP",
+    "calls": 1,
+    "success": true,
+    "status": 0,
+    "nit": 10,
+    "nfev": 53,
+    "njev": 10,
+    "message": "Optimization terminated successfully"
+  },
+  "component_ID": 63,
+  "case_key": "component-0063",
+  "case_record_sha256": "6b908dec69508b355c695ebd087b771ef0392dc9d07f8ed1b30837be5b893918",
+  "component_manifest_sha256": "8ae9f9e93aee4b9d06936c87f856b6e318e0b4ce5dbf5e9d78c9b99acdd8f8d7",
+  "source_census_sha256": "657fbb0ce1c89dbf691f5a07c62feedf0fd91f7bc78f21d2aa14a3e01a9566da",
+  "source_graph_sha256": "cf50b7abb47a35dcfdc52fd95605d2eec6ce406dd3a2d528439dfc7c6fe3de0b",
+  "source_mesh_sha256": "1b3a5a454b9fcbeb2cf5d36aaa8be0bc9cce9319897e47a31af3ac597d5cdb20",
+  "complete_returned_vector": [
+    30.78083918651015,
+    34.43756900069601,
+    0.10925373031717038,
+    0.10855022158269641
+  ],
+  "free_tags": [
+    1611658
+  ],
+  "coordinate_variables": 3,
+  "variables_with_epigraph": 4,
+  "full_source_nodes": 10,
+  "full_cells": 14,
+  "all_component_exact_quality_gate": true,
+  "solver_success_independent_of_exact_quality": true,
+  "complete_proposed_coordinate_rows": [
+    {
+      "node_tag": 648799,
+      "coordinates_mm": [
+        30.750730514526367,
+        34.239253997802734,
+        0.20557865500450134
+      ],
+      "binary64_hex": [
+        "0x1.ec02fe0000000p+4",
+        "0x1.11e9fe0000000p+5",
+        "0x1.a5066c0000000p-3"
+      ]
+    },
+    {
+      "node_tag": 651801,
+      "coordinates_mm": [
+        31.156513214111328,
+        34.15651321411133,
+        0.009297764860093594
+      ],
+      "binary64_hex": [
+        "0x1.f281140000000p+4",
+        "0x1.11408a0000000p+5",
+        "0x1.30ab4e0000000p-7"
+      ]
+    },
+    {
+      "node_tag": 865850,
+      "coordinates_mm": [
+        31.288925022600555,
+        34.28892502260055,
+        0.0
+      ],
+      "binary64_hex": [
+        "0x1.f49f6fd8310c1p+4",
+        "0x1.124fb7ec18860p+5",
+        "0x0.0p+0"
+      ]
+    },
+    {
+      "node_tag": 866274,
+      "coordinates_mm": [
+        30.762358752357073,
+        34.481960189528166,
+        0.0
+      ],
+      "binary64_hex": [
+        "0x1.ec329f1753168p+4",
+        "0x1.13db0df19ffacp+5",
+        "0x0.0p+0"
+      ]
+    },
+    {
+      "node_tag": 867259,
+      "coordinates_mm": [
+        30.750001034480093,
+        34.491806465624414,
+        0.0
+      ],
+      "binary64_hex": [
+        "0x1.ec000115b0ee4p+4",
+        "0x1.13ef383a6e8bbp+5",
+        "0x0.0p+0"
+      ]
+    },
+    {
+      "node_tag": 870597,
+      "coordinates_mm": [
+        30.89811943678593,
+        34.66502670029662,
+        0.0
+      ],
+      "binary64_hex": [
+        "0x1.ee5eb27c8e5c3p+4",
+        "0x1.1551f984c5ed2p+5",
+        "0x0.0p+0"
+      ]
+    },
+    {
+      "node_tag": 1513512,
+      "coordinates_mm": [
+        30.812358260678625,
+        34.61581966170162,
+        0.7183034089264003
+      ],
+      "binary64_hex": [
+        "0x1.ecff6b6024009p+4",
+        "0x1.14ed32dbd9f02p+5",
+        "0x1.6fc576e3e36ebp-1"
+      ]
+    },
+    {
+      "node_tag": 1611658,
+      "coordinates_mm": [
+        30.78083918651015,
+        34.43756900069601,
+        0.10925373031717038
+      ],
+      "binary64_hex": [
+        "0x1.ec7e513b17f10p+4",
+        "0x1.1380242d1ddcbp+5",
+        "0x1.bf80d6eada1d3p-4"
+      ]
+    },
+    {
+      "node_tag": 1612384,
+      "coordinates_mm": [
+        30.4772899067653,
+        34.79020537616465,
+        0.28972199054418596
+      ],
+      "binary64_hex": [
+        "0x1.e7a2fabdc4492p+4",
+        "0x1.165257323e012p+5",
+        "0x1.28ace1a946f69p-2"
+      ]
+    },
+    {
+      "node_tag": 1613262,
+      "coordinates_mm": [
+        30.625025205071672,
+        34.50027144542576,
+        0.23474267452787406
+      ],
+      "binary64_hex": [
+        "0x1.ea001a6def562p+4",
+        "0x1.14008e50c9cf7p+5",
+        "0x1.e0c0c4709513ap-3"
+      ]
+    }
+  ],
+  "all_component_signed_quality_rows": [
+    {
+      "tetrahedron_tag": 28581358,
+      "ordered_node_tags": [
+        651801,
+        865850,
+        866274,
+        1611658
+      ],
+      "exact_native_ordered_determinant_mm3": {
+        "numerator": "7297472452295806173104860067918512048114993",
+        "denominator": "713623846352979940529142984724747568191373312"
+      },
+      "exact_SICN_squared": {
+        "numerator": "191451178221420152352008268392616730086398101492529170002972103092939382614539517800132640768",
+        "denominator": "1422152608758041524190235939960992797943911117433202687698099019447702981361743733510453814863"
+      },
+      "signed_SICN_approximate": 0.3669069350146518,
+      "positive_orientation": true,
+      "exact_point1_gate_passed": true
+    },
+    {
+      "tetrahedron_tag": 28581366,
+      "ordered_node_tags": [
+        1611658,
+        651801,
+        865850,
+        1513512
+      ],
+      "exact_native_ordered_determinant_mm3": {
+        "numerator": "73824610618713509469372303435622967502363105",
+        "denominator": "1427247692705959881058285969449495136382746624"
+      },
+      "exact_SICN_squared": {
+        "numerator": "6857779062616202623116859985243535132489882470450039291205543804557683065126137226371247636480",
+        "denominator": "43694519081943424667668568884531139156824793962393383793559095028313898719082282477082193207589"
+      },
+      "signed_SICN_approximate": 0.3961669690298686,
+      "positive_orientation": true,
+      "exact_point1_gate_passed": true
+    },
+    {
+      "tetrahedron_tag": 28656961,
+      "ordered_node_tags": [
+        867259,
+        648799,
+        1611658,
+        1613262
+      ],
+      "exact_native_ordered_determinant_mm3": {
+        "numerator": "5604544325637220475850574849450647429004593",
+        "denominator": "1427247692705959881058285969449495136382746624"
+      },
+      "exact_SICN_squared": {
+        "numerator": "2850294271758437307154865023394810277079838144856144794456289911166954808627342020150165504",
+        "denominator": "16343783323675895051026535290200090857407315629916249344197401856968652566794440268427550881"
+      },
+      "signed_SICN_approximate": 0.41760775215582396,
+      "positive_orientation": true,
+      "exact_point1_gate_passed": true
+    },
+    {
+      "tetrahedron_tag": 28776018,
+      "ordered_node_tags": [
+        648799,
+        1613262,
+        1513512,
+        1611658
+      ],
+      "exact_native_ordered_determinant_mm3": {
+        "numerator": "65499838921090935167955711086280519546101659",
+        "denominator": "2854495385411919762116571938898990272765493248"
+      },
+      "exact_SICN_squared": {
+        "numerator": "6747946586507353399410370150239904034923349206215775862070644652472000989818882300395830902784",
+        "denominator": "25398639362101153582332537314842789078672870714385033981558821601066563690400583543926120905651"
+      },
+      "signed_SICN_approximate": 0.5154429362979164,
+      "positive_orientation": true,
+      "exact_point1_gate_passed": true
+    },
+    {
+      "tetrahedron_tag": 28871790,
+      "ordered_node_tags": [
+        1611658,
+        865850,
+        866274,
+        870597
+      ],
+      "exact_native_ordered_determinant_mm3": {
+        "numerator": "19117784313269901884824395871170161349840359",
+        "denominator": "1427247692705959881058285969449495136382746624"
+      },
+      "exact_SICN_squared": {
+        "numerator": "109498201028864802706217922594580394910177151053520754893465029015913251971343441947751612416",
+        "denominator": "727537603150646925766100936541309254289830431129738223875059556547425533017549964245782275243"
+      },
+      "signed_SICN_approximate": 0.3879500119403979,
+      "positive_orientation": true,
+      "exact_point1_gate_passed": true
+    },
+    {
+      "tetrahedron_tag": 28871822,
+      "ordered_node_tags": [
+        870597,
+        1611658,
+        865850,
+        1513512
+      ],
+      "exact_native_ordered_determinant_mm3": {
+        "numerator": "64162018052983903106719810626803721066147321",
+        "denominator": "713623846352979940529142984724747568191373312"
+      },
+      "exact_SICN_squared": {
+        "numerator": "25900443095571988485208395329313438489525031296842178458655820405811245765131082612460482461696",
+        "denominator": "69238094495143469309700871541940635154900709170871262361794458475915227998944864363454728964805"
+      },
+      "signed_SICN_approximate": 0.6116191056766689,
+      "positive_orientation": true,
+      "exact_point1_gate_passed": true
+    },
+    {
+      "tetrahedron_tag": 28871865,
+      "ordered_node_tags": [
+        1611658,
+        866274,
+        867259,
+        870597
+      ],
+      "exact_native_ordered_determinant_mm3": {
+        "numerator": "1122406201429021896508898483858225469095255",
+        "denominator": "2854495385411919762116571938898990272765493248"
+      },
+      "exact_SICN_squared": {
+        "numerator": "660495758003444685312777575521600585769437826708501680741463233554075088379321261765427200",
+        "denominator": "38264199859337661764770125374313580847761754682219040792090151159536011781987962946125699803"
+      },
+      "signed_SICN_approximate": 0.13138285597341354,
+      "positive_orientation": true,
+      "exact_point1_gate_passed": true
+    },
+    {
+      "tetrahedron_tag": 29530205,
+      "ordered_node_tags": [
+        1613262,
+        1612384,
+        1611658,
+        867259
+      ],
+      "exact_native_ordered_determinant_mm3": {
+        "numerator": "6277556444504708211577157007721810938448009",
+        "denominator": "1427247692705959881058285969449495136382746624"
+      },
+      "exact_SICN_squared": {
+        "numerator": "30991488055201701855053630773301899151284260957782832323520498680432941940535928603867348992",
+        "denominator": "444424732920265146067567688292233099863625526883264693157633352202825277329093202024815588613"
+      },
+      "signed_SICN_approximate": 0.2640718479681112,
+      "positive_orientation": true,
+      "exact_point1_gate_passed": true
+    },
+    {
+      "tetrahedron_tag": 29530251,
+      "ordered_node_tags": [
+        1611658,
+        1612384,
+        1613262,
+        1513512
+      ],
+      "exact_native_ordered_determinant_mm3": {
+        "numerator": "70472276304617241414596899069745776951279669",
+        "denominator": "2854495385411919762116571938898990272765493248"
+      },
+      "exact_SICN_squared": {
+        "numerator": "2603793371655997602108732849265491837842084480817647095593503870592229740269690763476761837568",
+        "denominator": "19633521702524178093601158208792200387508848423259179798745443233378881408879744032096923478831"
+      },
+      "signed_SICN_approximate": 0.36416999077640255,
+      "positive_orientation": true,
+      "exact_point1_gate_passed": true
+    },
+    {
+      "tetrahedron_tag": 29530371,
+      "ordered_node_tags": [
+        1611658,
+        1612384,
+        870597,
+        867259
+      ],
+      "exact_native_ordered_determinant_mm3": {
+        "numerator": "39577631634778229221614498668910309320524213",
+        "denominator": "2854495385411919762116571938898990272765493248"
+      },
+      "exact_SICN_squared": {
+        "numerator": "7391150254254344655280363531027481773918640870272929046355249899836941743546510120543490408448",
+        "denominator": "35356747452656126679701102343343736412970576843919685206777157840309520074958594872356997048161"
+      },
+      "signed_SICN_approximate": 0.4572143602692653,
+      "positive_orientation": true,
+      "exact_point1_gate_passed": true
+    },
+    {
+      "tetrahedron_tag": 29530419,
+      "ordered_node_tags": [
+        870597,
+        1612384,
+        1611658,
+        1513512
+      ],
+      "exact_native_ordered_determinant_mm3": {
+        "numerator": "6412547419044384782367295848159805115312877",
+        "denominator": "89202980794122492566142873090593446023921664"
+      },
+      "exact_SICN_squared": {
+        "numerator": "198688880577299166196427231096073510751497037622870453444456494819815503367196016477397772664832",
+        "denominator": "421205295378101389204638652861394688006830853211950455606244182868454958032320312883610355093233"
+      },
+      "signed_SICN_approximate": 0.6868151560393149,
+      "positive_orientation": true,
+      "exact_point1_gate_passed": true
+    },
+    {
+      "tetrahedron_tag": 30483520,
+      "ordered_node_tags": [
+        648799,
+        866274,
+        867259,
+        1611658
+      ],
+      "exact_native_ordered_determinant_mm3": {
+        "numerator": "94493023663754442297606461103461318364411",
+        "denominator": "356811923176489970264571492362373784095686656"
+      },
+      "exact_SICN_squared": {
+        "numerator": "74901306389509812825765267523418501034087408287948359540882918220132065708900105970515968",
+        "denominator": "6356645085687724829125328181889077448855453769017383374737407425351965732161496617250306027"
+      },
+      "signed_SICN_approximate": 0.10855022158137077,
+      "positive_orientation": true,
+      "exact_point1_gate_passed": true
+    },
+    {
+      "tetrahedron_tag": 31300633,
+      "ordered_node_tags": [
+        1611658,
+        648799,
+        651801,
+        1513512
+      ],
+      "exact_native_ordered_determinant_mm3": {
+        "numerator": "2463694078842633436706801615041879275",
+        "denominator": "42535295865117307932921825928971026432"
+      },
+      "exact_SICN_squared": {
+        "numerator": "2866376583720751423259328575023170314547981239240327422831529076136810561533363766790455296000",
+        "denominator": "9477504166924197068532561549201803817121143089157268271485498577350039523204730479262480610543"
+      },
+      "signed_SICN_approximate": 0.549945473278621,
+      "positive_orientation": true,
+      "exact_point1_gate_passed": true
+    },
+    {
+      "tetrahedron_tag": 32101867,
+      "ordered_node_tags": [
+        648799,
+        651801,
+        866274,
+        1611658
+      ],
+      "exact_native_ordered_determinant_mm3": {
+        "numerator": "44970437771121033466100942874436029",
+        "denominator": "5316911983139663491615228241121378304"
+      },
+      "exact_SICN_squared": {
+        "numerator": "795852660309450946011689135621398409397001294804770048992714829841243446633349726001430528",
+        "denominator": "9210843652822151047669193360397421610666876052416785341155278512696367384877989542678454553"
+      },
+      "signed_SICN_approximate": 0.29394537473087057,
+      "positive_orientation": true,
+      "exact_point1_gate_passed": true
+    }
+  ],
+  "positive_poor_cell_tags": [],
+  "nonpositive_or_undefined_cell_tags": [],
+  "all_fixed_context_coordinate_bits_unchanged": true,
+  "source_boundary_context_bits_unchanged": true,
+  "all_component_boundary_vertices_fixed": true,
+  "original_array_bits_unchanged": true,
+  "original_ordered_connectivity_unchanged": true,
+  "topology_diagnostic": {
+    "boundary_faces": 14,
+    "oriented_boundary_faces": [
+      [
+        648799,
+        651801,
+        1513512
+      ],
+      [
+        648799,
+        866274,
+        651801
+      ],
+      [
+        648799,
+        867259,
+        866274
+      ],
+      [
+        648799,
+        1513512,
+        1613262
+      ],
+      [
+        648799,
+        1613262,
+        867259
+      ],
+      [
+        651801,
+        865850,
+        1513512
+      ],
+      [
+        651801,
+        866274,
+        865850
+      ],
+      [
+        865850,
+        866274,
+        870597
+      ],
+      [
+        865850,
+        870597,
+        1513512
+      ],
+      [
+        866274,
+        867259,
+        870597
+      ],
+      [
+        867259,
+        1612384,
+        870597
+      ],
+      [
+        867259,
+        1613262,
+        1612384
+      ],
+      [
+        870597,
+        1612384,
+        1513512
+      ],
+      [
+        1513512,
+        1612384,
+        1613262
+      ]
+    ],
+    "internal_face_pairs": 21,
+    "nonmanifold_faces": 0,
+    "same_oriented_internal_faces": 0,
+    "frozen_boundary_supplied": true,
+    "exact_frozen_oriented_boundary": true,
+    "unchanged_ordered_component_connectivity": true,
+    "geometric_overlap_or_intersection_checked": false
+  },
+  "exact_before_signed_volume_mm3": {
+    "numerator": "347524609016891879779458125973125193803897",
+    "denominator": "5575186299632655785383929568162090376495104"
+  },
+  "exact_final_signed_volume_mm3": {
+    "numerator": "347524609016891879779458125973125193803897",
+    "denominator": "5575186299632655785383929568162090376495104"
+  },
+  "exact_signed_volume_equals_same_component_before": true,
+  "donor39_cell_shell_volume_reused": false,
+  "procedural_checks_passed": true,
+  "epigraph_t": 0.10855022158269641,
+  "initial_epigraph_lower_bound": 0.09467809226860825,
+  "epigraph_bound_satisfied": true,
+  "quality_scope": "Exact Fraction determinant/Q-squared over every returned binary64 component cell; displayed signed roots are approximate, not native or interval values.",
+  "fixed_local_boundary_is_distinct_from_original_global_source_boundary": true,
+  "embedding_overlap_or_containment_checked": false,
+  "native_application_or_MSH_write": false,
+  "no_pressure_thermal_stud_load_or_material_case": true,
+  "qualification": {
+    "native_application_authorized": false,
+    "head_execution_authorized": false,
+    "stitching_authorized": false,
+    "engineering_accepted": false,
+    "physics_qualified": false,
+    "manufacturing_authorized": false,
+    "material_qualified": false,
+    "process_calibrated": false,
+    "training_authorized": false
+  }
+}

@@ -3,7 +3,7 @@
 > **Archived line.** The 917 work is retired as a product and kept as a
 > numerical regression: it can be used to replay the calculations, reuse the
 > test cases and read what was attempted, not to make a part. See
-> [ARCHIVE.md](../../ARCHIVE.md). Metal printing and engine start remain
+> [ARCHIVE.md](../../docs/ARCHIVE.md). Metal printing and engine start remain
 > prohibited.
 
 ## Current scope

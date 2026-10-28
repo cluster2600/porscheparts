@@ -1,0 +1,129 @@
+name: Free engineering tools native controls
+
+on:
+  pull_request:
+    paths:
+      - benchmarks/free-tools/**
+      - containers/free-tools-*
+      - tests/test_free_tools.py
+      - docs/architecture/free-tools/**
+      - .github/workflows/free-tools-native.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  python-controls:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          sparse-checkout: |
+            benchmarks/free-tools
+            tests/test_free_tools.py
+            catalog/parts/993-eng-carrier-0001.json
+            twins/993-engine-mount-system-f0/interface-contract.json
+            parts/993-eng-carrier-0001/source/design-20261016/resume-20261020/auxiliary-fea-study
+            docs/reports/carrier-resume-20261020/CONVERGENCE.md
+          sparse-checkout-cone-mode: false
+      - uses: actions/setup-python@e797f83bcb11b83ae66e0230d6156d7c80228e7c
+        with:
+          python-version: '3.12'
+      - name: Install the isolated frozen tool environment
+        run: python -m pip install -r benchmarks/free-tools/requirements.lock.txt
+      - name: Boundary and native Python tests
+        env:
+          OPENMDAO_REPORTS: '0'
+          DVC_NO_ANALYTICS: 'true'
+          DO_NOT_TRACK: '1'
+        run: python -m unittest discover -s tests -p test_free_tools.py -v
+      - name: Reproduce carrier admission and software controls
+        env:
+          OPENMDAO_REPORTS: '0'
+        run: python benchmarks/free-tools/acceptance.py --private-root "$RUNNER_TEMP/free-tools-private" --output acceptance-output
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: free-tools-python-receipts
+          path: |
+            acceptance-output/receipt.json
+            acceptance-output/retrieval.json
+            acceptance-output/sensitivity/receipt.json
+            acceptance-output/optimization/receipt.json
+            acceptance-output/external-carrier/receipt.json
+
+  documentation:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          sparse-checkout: docs/architecture/free-tools
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: '26.11.1'
+      - name: Install the pinned diagram CLI without package lifecycle scripts
+        run: npm install --prefix "$RUNNER_TEMP/free-tools-mermaid" --ignore-scripts --no-audit --no-fund @mermaid-js/mermaid-cli@11.12.0
+      - name: Render the three architecture views
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import json, re, shutil
+          output = Path('diagram-output')
+          output.mkdir()
+          blocks = re.findall(r'```mermaid\n(.*?)```', Path('docs/architecture/free-tools/ARCHITECTURE.md').read_text(), re.S)
+          if len(blocks) != 3:
+              raise ValueError('exactly three architecture views required')
+          chrome = shutil.which('google-chrome')
+          if not chrome:
+              raise ValueError('Chrome runtime unavailable')
+          (output / 'puppeteer.json').write_text(json.dumps({'executablePath': chrome, 'args': ['--no-sandbox']}))
+          for name, block in zip(('infrastructure', 'software', 'logic'), blocks):
+              (output / (name + '.mmd')).write_text(block)
+          PY
+          node --version > diagram-output/runtime-versions.txt
+          google-chrome --version >> diagram-output/runtime-versions.txt
+          cp "$RUNNER_TEMP/free-tools-mermaid/package-lock.json" diagram-output/package-lock.json
+          for view in infrastructure software logic; do
+            "$RUNNER_TEMP/free-tools-mermaid/node_modules/.bin/mmdc" -p diagram-output/puppeteer.json -i "diagram-output/$view.mmd" -o "diagram-output/$view.svg"
+          done
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: free-tools-architecture-diagrams
+          path: diagram-output/
+
+  geometry-controls:
+    strategy:
+      fail-fast: false
+      matrix:
+        tool: [cloudcompare, salome]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          sparse-checkout: |
+            benchmarks/free-tools
+            containers/free-tools-cloudcompare.Dockerfile
+            containers/free-tools-salome.Dockerfile
+            containers/free-tools-salome-entrypoint.sh
+            .dockerignore
+          sparse-checkout-cone-mode: false
+      - name: Build the separate CPU image without project data
+        run: |
+          identity_args=()
+          if [ '${{ matrix.tool }}' = salome ]; then
+            identity_args=(--build-arg "CONTROL_UID=$(id -u)" --build-arg "CONTROL_GID=$(id -g)")
+          fi
+          docker build --platform linux/amd64 "${identity_args[@]}" -f "containers/free-tools-${{ matrix.tool }}.Dockerfile" -t "free-tools-${{ matrix.tool }}:ci" .
+      - name: Offline bounded native controls
+        run: python3 benchmarks/free-tools/native_container.py '${{ matrix.tool }}' --image 'free-tools-${{ matrix.tool }}:ci' --output native-output
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: free-tools-${{ matrix.tool }}-receipts
+          path: |
+            native-output/receipt.json
+            native-output/result/**
+            native-output/*.log

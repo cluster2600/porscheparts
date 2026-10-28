@@ -1,0 +1,80 @@
+{
+  "schema": "962-current-END181-root-saved-result-acceptance/v1",
+  "decision": "ACCEPT_COMPLETE_DIAGNOSTIC_AND_RETAIN_FAILED_EQUILIBRIUM_GATES",
+  "root_role": "Operator and independent arithmetic reconstruction; not source author. Source/result peer prior roles disclosed in their records.",
+  "report": {
+    "path": "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/native005-END181-equilibrium-execution-001/diagnostic.json",
+    "sha256": "c50b2079da852028a65526577fa00011a82bfa1f61845b612e1b4d80d0a713c9",
+    "bytes": 1024623
+  },
+  "execution_result": {
+    "path": "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/native005-END181-equilibrium-root-execution-001/result.json",
+    "sha256": "be8ce542f2e469fe6af4331ecf71c3f3c9ce844da8b19f73bc41e135975b265e",
+    "bytes": 43736
+  },
+  "census": {
+    "path": "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/native005-END181-equilibrium-root-execution-001/census.json",
+    "sha256": "11cc31983b1fcfd857b3560e580f305b9791eb1882f37d2ce8dfc08a7e825125",
+    "bytes": 15692
+  },
+  "independent_saved_result_review": {
+    "path": "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/native005-END181-equilibrium-result-peer-001/review.json",
+    "sha256": "cd64353f0fdff9d483aae19648437d1bc1f9afa80da7b9558e06487f65f9f5cd",
+    "bytes": 6301
+  },
+  "verified": {
+    "one_call_raw_child": 0,
+    "raw_parent": 0,
+    "wait_reap": true,
+    "timeout": false,
+    "source_input_POLICY_selected22_Python_prepost_exact": true,
+    "saved_scalar_comparisons": 66590,
+    "saved_scalar_exceedances": 0,
+    "exact_manifest_scalar_counts": true,
+    "root_and_independent_peer_component_differences_recomputed": 1275,
+    "root_and_independent_peer_resultants_recomputed": 36,
+    "aggregate_failures_retained": 12,
+    "native_aggregate_failures_of12_retained": 3,
+    "native_all_row_checks_passed": 6,
+    "operative_closed_census_paths": 52,
+    "operative_closed_census_bytes": 17470620
+  },
+  "native_failed_criteria": [
+    {
+      "field": "native",
+      "rowset": "constrained",
+      "component": 0,
+      "unit": "force_N",
+      "value": -2.29850465416348e-06,
+      "binary64_hex": "-0x1.348004c000000p-19",
+      "unchanged_limit": 1e-07,
+      "exceeds_original_gate": true
+    },
+    {
+      "field": "native",
+      "rowset": "constrained",
+      "component": 1,
+      "unit": "moment_Nm",
+      "value": -9.236246114596725e-07,
+      "binary64_hex": "-0x1.efde000000000p-21",
+      "unchanged_limit": 1e-07,
+      "exceeds_original_gate": true
+    },
+    {
+      "field": "native",
+      "rowset": "constrained",
+      "component": 2,
+      "unit": "moment_Nm",
+      "value": 1.0408839443698525e-06,
+      "binary64_hex": "0x1.1769000000000p-20",
+      "unchanged_limit": 1e-07,
+      "exceeds_original_gate": true
+    }
+  ],
+  "limits": "All seven POLICY thresholds unchanged, including1e-7N force and1e-7Nm moment. No zeroing, fitted correction, tolerance change or word repair.",
+  "evidence_scope": "All1275 component differences, coordinate/membership joins and36resultants independently recomputed from saved words. Source executes all66590scalar comparisons, but report contains counts/maxima/exceedances rather than the full perQP table; scalar tensors were not independently reexecuted from raw inputs. METHOD retention overstatement and original index diff-proof implication have separate preserved clarifications.",
+  "physical_scope": "Hypothetical E71GPa,nu0.33,alpha1e-5 remain source assumptions. Support labels are expected constraints, not live BC measurements. No fulltrajectory,spatial/timeconvergence,F1 forceunscaling,strictcollector,headstrength,material/processqualification,OmniverseorPhysicsNeMoacceptance.",
+  "next": "Diagnose accumulation/assembly/solver-residual contributions to the unchanged constrained/free force and moment failures. All24poorheadcells and12aggregate failures remain open.",
+  "later_review_artifacts": "This root review and saved-result peer were produced after the frozen operative52-path census and are not falsely included in it.",
+  "qualification": false
+}

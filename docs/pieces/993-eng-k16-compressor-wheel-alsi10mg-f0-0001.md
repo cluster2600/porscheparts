@@ -2,7 +2,7 @@
 
 # 993 K16 compressor wheel, F0 AlSi10Mg LPBF concept
 
-**Status: **prohibited pending engineering**. No part is released; see [SAFETY.md](../../SAFETY.md).**
+**Status: **prohibited pending engineering**. No part is released; see [SAFETY.md](../../docs/SAFETY.md).**
 
 Independent concept of an AlSi10Mg compressor wheel with six main blades and six straight splitters. Only the inducer/exducer diameters, the 6+6 count and the supplier part numbers are published; the hub, the bore and all aerodynamic surfaces remain F0 hypotheses.
 
@@ -90,6 +90,10 @@ Catalogue record: [`catalog/parts/993-eng-k16-compressor-wheel-alsi10mg-f0-0001.
 
 *`parts/993-eng-k16-compressor-wheel-alsi10mg-f0-0001/media/views.png` — concept CAD block, **not** the original part, not a print file.*
 
+![photo-concept](../../parts/993-eng-k16-compressor-wheel-alsi10mg-f0-0001/media/photo-concept.png)
+
+*`parts/993-eng-k16-compressor-wheel-alsi10mg-f0-0001/media/photo-concept.png` — AI-generated studio illustration based on the concept CAD preview. Material and finish are illustrative; generated details may differ. Not a photograph or evidence of fit, function or manufacturing.*
+
 ## Provenance and sources
 
 | field | value |
@@ -111,7 +115,7 @@ Catalogue record: [`catalog/parts/993-eng-k16-compressor-wheel-alsi10mg-f0-0001.
 | status | concept |
 | vehicle tested | not recorded |
 | reviewed by |  |
-| limitations | not recorded |
+| limitations | Only the 40.6 mm, 60.5 mm, six main blades, six splitters and the part numbers come from the supplier page.<br>The 3 mm disk, 18 mm height, 6 mm bore, the hub and all the straight blades are synthetic.<br>The 32.70 g STEP is not comparable to a real K16 wheel; the 4.22 ratio uses a theoretical envelope cylinder, not an industrial blank.<br>The 103,464 rpm speed is derived from Mach 0.9 at 330 K, not measured on the K16.<br>The 3.6 l, 5,750 rpm, VE 0.95, PR 1.8 and 0.72 efficiency point is a regression case without a compressor map.<br>The main blade reaches 390.9 MPa in the overspeed screen, a ratio of 0.63 against the ambient limit: the F0 design fails.<br>The disk/blade models ignore real shape, fillets, bore, preload, defects, HCF, rotor dynamics, contact and containment.<br>The EOS values are ambient comparisons, not allowables for a printed AlSi10Mg rotor.<br>The STEP proves only a readable twelve-blade BREP; it is authorized neither for manufacturing, nor for rotation, nor for a turbo or an engine. |
 
 **Evidence**
 

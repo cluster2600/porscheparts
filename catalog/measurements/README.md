@@ -31,6 +31,11 @@ The documentary register drawn from the Porsche 993 manual is
 with page and provenance. The `ocr_unreviewed` values must be verified in the
 authorized copy before they are used for CAD or manufacturing.
 
+Values declared by a forum post, a retailer or a data sheet follow the
+documentary intake of [`docs/CAPTURE_PROTOCOL.md`](../../docs/CAPTURE_PROTOCOL.md):
+one `MEAS-DECLARED-<PART>-<SOURCE>.json` record per source, with no readings,
+as for the switch blank (decision 0013). They never feed a geometry master.
+
 The physical campaign, ready to run, and its priority order are described in
 [`docs/MEASUREMENT_CAMPAIGN.md`](../../docs/MEASUREMENT_CAMPAIGN.md). Until a
 contributor has provided a part, a vehicle and the raw readings, the register

@@ -1,0 +1,41 @@
+{
+  "source_sha256": "68b0655c0c2185b336a947b0cf18dbe55cef7abc9150aca384bcfd3a91c5ad16",
+  "parameters_sha256": "dad601c82c7b3eac5491a293775a6d29f8a14cd37f30206ad7615117d8067d75",
+  "parameters": {
+    "name": "rve64-floor1e-4",
+    "resolution": 64,
+    "void_relative_stiffness": 0.0001,
+    "threshold": 0.6170021750539874,
+    "solid_control": false,
+    "absolute_execution_cutoff_epoch": 1792978732
+  },
+  "geometry": "periodic gyroid sheet in a full solid/ersatz-void C3D8 grid",
+  "grid": 64,
+  "amplitude": 0.001,
+  "E_MPa": 107000.0,
+  "nu": 0.31,
+  "periodic_displacement_residual_limit_mm": 1e-08,
+  "relative_energy_limit": 0.0001,
+  "relative_analytic_tensor_limit": 1e-05,
+  "carrier_geometry_changed": false,
+  "carrier_convergence_demonstrated": false,
+  "solid_control": false,
+  "runner_sha256": "b9db3dbafc5c00fffa9dfee396ebf12c691f0115bf6cac590bbc9daf0148144b",
+  "native_binary_sha256": "93181a8340dac42f2e76fb9159edcdcebc536c5f29cc25dfa4689413e83582ac",
+  "actual_limits": {
+    "memory_limit_bytes": 183346659328,
+    "memory_limit_raw": "183346659328",
+    "memory_controller": "v2",
+    "memory_source": "/sys/fs/cgroup/memory.max",
+    "cpu_limit_cores": 11.52,
+    "cpu_quota_raw": "1152000",
+    "cpu_period_us": 100000,
+    "cpu_controller": "v2",
+    "cpu_source": "/sys/fs/cgroup/cpu.max"
+  },
+  "qualification_sha256": "c4981ad411cd9f30349f87f42f05d6efdd7ba17501f9cf777429b7dc12e4cf77",
+  "per_case_virtual_limit_GiB": 48,
+  "minimum_other_process_reserve_GiB": 8,
+  "per_case_seconds": 600,
+  "required_solver": "PARDISO"
+}

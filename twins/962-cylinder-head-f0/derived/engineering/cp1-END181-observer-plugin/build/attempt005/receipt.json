@@ -1,0 +1,2157 @@
+{
+  "schema": "962-observer003-once-root-admitted-build-receipt/v1",
+  "actual": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer003-build-root-execution-005/actual-contract.json",
+    "sha256": "2b1bb44f8f35340d8911c9bf896e1ca600580d3eacfcc9863ae23c49ea7ead34",
+    "bytes": 10216
+  },
+  "admission": {
+    "path": "work/962-engineering/cp1-observer003-root-build-admission-001/admission.json",
+    "sha256": "d4a07f779dbfeebae57afbc9efcfa52981f016206e35f4c11063d77fb99a0eee",
+    "bytes": 2985
+  },
+  "controller": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer003-build-owner-prep-005/run_build_once.py",
+    "sha256": "301901c04f72d72576a51befee619ad4add25774204fa2037e4cbd42676d540f",
+    "bytes": 13094
+  },
+  "initial": {
+    "count": 67,
+    "observed_sha256": "40311c4d638d1b79dbaa8b7f662aadd29411185c29f0f998730aa1d6c76b5981",
+    "changed": {}
+  },
+  "source_before": {
+    "commit": "7c06bdcefd02f9f31f4508839f21f410561309a4",
+    "tree": "4106bbd47b9387bda37cff0d679735c57c5391bc",
+    "porcelain": ""
+  },
+  "steps": [
+    {
+      "ordinal": 1,
+      "recipe_index": 0,
+      "name": "direct_CLT_plugin_link",
+      "argv": [
+        "/Library/Developer/CommandLineTools/usr/bin/ld",
+        "-demangle",
+        "-lto_library",
+        "/Library/Developer/CommandLineTools/usr/lib/libLTO.dylib",
+        "-dynamic",
+        "-dylib",
+        "-arch",
+        "arm64",
+        "-platform_version",
+        "macos",
+        "18.0.0",
+        "27.0",
+        "-syslibroot",
+        "/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk",
+        "-mllvm",
+        "-enable-linkonceodr-outlining",
+        "-o",
+        "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/cp1-oneway-cooling-release-richardson2-END181-dof-map-observer-prep-003/build-005/libcoupon_end181_observer-opt.dylib",
+        "-L/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-local-installed-002/lib",
+        "-L/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-local-installed-002/lib",
+        "-rpath",
+        "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-local-installed-002/lib",
+        "-undefined",
+        "dynamic_lookup",
+        "-rpath",
+        "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-local-installed-002/lib",
+        "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/cp1-oneway-cooling-release-richardson2-END181-dof-map-observer-prep-003/build-003/CouponEnd181DofMap.o",
+        "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/cp1-oneway-cooling-release-richardson2-END181-dof-map-observer-prep-003/build-003/CouponEnd181ObserverRegistration.o",
+        "-lmpicxx",
+        "-lmpi",
+        "-lpmpi",
+        "-lomp",
+        "-L/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-local-installed-002/lib",
+        "-lc++",
+        "-lSystem",
+        "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-local-installed-002/lib/clang/19/lib/darwin/libclang_rt.osx.a"
+      ],
+      "before": {
+        "count": 67,
+        "observed_sha256": "40311c4d638d1b79dbaa8b7f662aadd29411185c29f0f998730aa1d6c76b5981",
+        "changed": {}
+      },
+      "samples": 1,
+      "resource_samples": [
+        {
+          "RSS_bytes": 376832,
+          "processes": 1,
+          "raw_owned_rows": [
+            {
+              "raw": "11569 11569    368 Rs  ",
+              "pid": 11569,
+              "pgid": 11569,
+              "reported_RSS_KiB": 368,
+              "RSS_bytes": 376832,
+              "state": "Rs"
+            }
+          ],
+          "threads": 11,
+          "thread_observation": {
+            "observed_counts": {
+              "11569": 11
+            },
+            "unobserved_pids": [],
+            "returncode": 0,
+            "error": null
+          },
+          "zombie_pids": [],
+          "elapsed_seconds": 0.04276729212142527
+        }
+      ],
+      "peak_RSS_bytes": 376832,
+      "peak_processes": 1,
+      "peak_observed_threads": 11,
+      "pid": 11569,
+      "last_sample": {
+        "RSS_bytes": 376832,
+        "processes": 1,
+        "raw_owned_rows": [
+          {
+            "raw": "11569 11569    368 Rs  ",
+            "pid": 11569,
+            "pgid": 11569,
+            "reported_RSS_KiB": 368,
+            "RSS_bytes": 376832,
+            "state": "Rs"
+          }
+        ],
+        "threads": 11,
+        "thread_observation": {
+          "observed_counts": {
+            "11569": 11
+          },
+          "unobserved_pids": [],
+          "returncode": 0,
+          "error": null
+        },
+        "zombie_pids": [],
+        "elapsed_seconds": 0.04276729212142527
+      },
+      "returncode": 0,
+      "actual_plugin": {
+        "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-END181-dof-map-observer-prep-003/build-005/libcoupon_end181_observer-opt.dylib",
+        "sha256": "a45fa2d7d3b699bdfc654e6eb5432064d51132dfdb196f528487eed1f1bf2382",
+        "bytes": 166704
+      },
+      "actual_descriptor": {
+        "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-END181-dof-map-observer-prep-003/build-005/libcoupon_end181_observer-opt.la",
+        "sha256": "b4b32aa0a5ebd176bba5040c1bd4fb116f567bc198c015c06a06d816aa523c21",
+        "bytes": 214
+      },
+      "elapsed_seconds": 0.10367954219691455,
+      "stdout": {
+        "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-END181-dof-map-observer-prep-003/build-005/step1.stdout",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      },
+      "stderr": {
+        "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-END181-dof-map-observer-prep-003/build-005/step1.stderr",
+        "sha256": "822274f00e2f918ea392bdae14843bb0f29a7e9a5e9126bf8f7d04fb72d1507c",
+        "bytes": 163
+      },
+      "dependencies": null,
+      "after": {
+        "count": 67,
+        "observed_sha256": "40311c4d638d1b79dbaa8b7f662aadd29411185c29f0f998730aa1d6c76b5981",
+        "changed": {}
+      }
+    },
+    {
+      "ordinal": 2,
+      "recipe_index": 1,
+      "name": "compile_unchanged_guard_main",
+      "argv": [
+        "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-local-installed-002/bin/mpicxx",
+        "-std=c++17",
+        "-fPIC",
+        "-O2",
+        "-DNDEBUG",
+        "-DMETHOD=opt",
+        "-D_THREAD_SAFE",
+        "-pthread",
+        "-Qunused-arguments",
+        "-Wunused",
+        "-fno-assume-unique-vtables",
+        "-ftrapping-math",
+        "-Wno-unsupported-floating-point-opt",
+        "-fopenmp",
+        "-include",
+        "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-local-installed-002/include/moose/MooseConfig.h",
+        "-I",
+        "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/cp1-oneway-cooling-release-richardson2-END181-dof-map-observer-prep-003/include",
+        "-I",
+        "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-local-installed-002/include/moose",
+        "-I",
+        "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-local-installed-002/include",
+        "-I",
+        "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-local-installed-002/include/vtk-9.7",
+        "-I",
+        "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-public-source-001/moose/framework/include/actioncomponents",
+        "-I",
+        "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-public-source-001/moose/framework/include/actions",
+        "-I",
+        "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-public-source-001/moose/framework/include/auxkernels",
+        "-I",
+        "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-public-source-001/moose/framework/include/auxscalarkernels",
+        "-I",
+        "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-public-source-001/moose/framework/include/base",
+        "-I",
+        "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-public-source-001/moose/framework/include/bcs",
+        "-I",
+        "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-public-source-001/moose/framework/include/bounds",
+        "-I",
+        "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-public-source-001/moose/framework/include/chaincontrols",
+        "-I",
+        "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-public-source-001/moose/framework/include/constraints",
+        "-I",
+        "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-public-source-001/moose/framework/include/controls",
+        "-I",
+        "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-public-source-001/moose/framework/include/convergence",
+        "-I",
+        "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-public-source-001/moose/framework/include/correctors",
+        "-I",
+        "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-public-source-001/moose/framework/include/csg",
+        "-I",
+        "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-public-source-001/moose/framework/include/dampers",
+        "-I",
+        "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-public-source-001/moose/framework/include/dgkernels",
+        "-I",
+        "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-public-source-001/moose/framework/include/dirackernels",
+        "-I",
+        "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-public-source-001/moose/framework/include/distributions",
+        "-I",
+        "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-public-source-001/moose/framework/include/executioners",
+        "-I",
+        "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-public-source-001/moose/framework/include/executors",
+        "-I",
+        "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-public-source-001/moose/framework/include/functions",
+        "-I",
+        "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-public-source-001/moose/framework/include/functormaterials",
+        "-I",
+        "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-public-source-001/moose/framework/include/fvbcs",
+        "-I",
+        "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-public-source-001/moose/framework/include/fvgradientmethods",
+        "-I",
+        "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-public-source-001/moose/framework/include/fvics",
+        "-I",
+        "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-public-source-001/moose/framework/include/fviks",
+        "-I",
+        "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-public-source-001/moose/framework/include/fvinterpolationmethods",
+        "-I",
+        "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-public-source-001/moose/framework/include/fvkernels",
+        "-I",
+        "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-public-source-001/moose/framework/include/geometries",
+        "-I",
+        "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-public-source-001/moose/framework/include/geomsearch",
+        "-I",
+        "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-public-source-001/moose/framework/include/hdgkernels",
+        "-I",
+        "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-public-source-001/moose/framework/include/ics",
+        "-I",
+        "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-public-source-001/moose/framework/include/indicators",
+        "-I",
+        "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-public-source-001/moose/framework/include/interfacekernels",
+        "-I",
+        "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-public-source-001/moose/framework/include/interfaces",
+        "-I",
+        "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-public-source-001/moose/framework/include/kernels",
+        "-I",
+        "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-public-source-001/moose/framework/include/kokkos/auxkernels",
+        "-I",
+        "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-public-source-001/moose/framework/include/kokkos/base",
+        "-I",
+        "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-public-source-001/moose/framework/include/kokkos/bcs",
+        "-I",
+        "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-public-source-001/moose/framework/include/kokkos/functions",
+        "-I",
+        "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-public-source-001/moose/framework/include/kokkos/interfaces",
+        "-I",
+        "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-public-source-001/moose/framework/include/kokkos/kernels",
+        "-I",
+        "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-public-source-001/moose/framework/include/kokkos/linearfvbcs",
+        "-I",
+        "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-public-source-001/moose/framework/include/kokkos/linearfvkernels",
+        "-I",
+        "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-public-source-001/moose/framework/include/kokkos/materials",
+        "-I",
+        "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-public-source-001/moose/framework/include/kokkos/mesh",
+        "-I",
+        "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-public-source-001/moose/framework/include/kokkos/nodalkernels",
+        "-I",
+        "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-public-source-001/moose/framework/include/kokkos/postprocessors",
+        "-I",
+        "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-public-source-001/moose/framework/include/kokkos/reporters",
+        "-I",
+        "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-public-source-001/moose/framework/include/kokkos/systems",
+        "-I",
+        "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-public-source-001/moose/framework/include/kokkos/userobjects",
+        "-I",
+        "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-public-source-001/moose/framework/include/kokkos/utils",
+        "-I",
+        "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-public-source-001/moose/framework/include/kokkos/vectorpostprocessors",
+        "-I",
+        "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-public-source-001/moose/framework/include/libtorch/controls",
+        "-I",
+        "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-public-source-001/moose/framework/include/libtorch/materials",
+        "-I",
+        "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-public-source-001/moose/framework/include/libtorch/postprocessors",
+        "-I",
+        "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-public-source-001/moose/framework/include/libtorch/reporters",
+        "-I",
+        "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-public-source-001/moose/framework/include/libtorch/userobjects",
+        "-I",
+        "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-public-source-001/moose/framework/include/libtorch/utils",
+        "-I",
+        "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-public-source-001/moose/framework/include/limiters",
+        "-I",
+        "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-public-source-001/moose/framework/include/linearfvbcs",
+        "-I",
+        "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-public-source-001/moose/framework/include/linearfvkernels",
+        "-I",
+        "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-public-source-001/moose/framework/include/linesearches",
+        "-I",
+        "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-public-source-001/moose/framework/include/loops",
+        "-I",
+        "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-public-source-001/moose/framework/include/markers",
+        "-I",
+        "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-public-source-001/moose/framework/include/materials",
+        "-I",
+        "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-public-source-001/moose/framework/include/mesh",
+        "-I",
+        "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-public-source-001/moose/framework/include/meshdivisions",
+        "-I",
+        "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-public-source-001/moose/framework/include/meshgenerators",
+        "-I",
+        "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-public-source-001/moose/framework/include/meshmodifiers",
+        "-I",
+        "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-public-source-001/moose/framework/include/mfem/actions",
+        "-I",
+        "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-public-source-001/moose/framework/include/mfem/auxkernels",
+        "-I",
+        "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-public-source-001/moose/framework/include/mfem/base",
+        "-I",
+        "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-public-source-001/moose/framework/include/mfem/bcs",
+        "-I",
+        "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-public-source-001/moose/framework/include/mfem/containers",
+        "-I",
+        "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-public-source-001/moose/framework/include/mfem/equation_systems",
+        "-I",
+        "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-public-source-001/moose/framework/include/mfem/executioners",
+        "-I",
+        "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-public-source-001/moose/framework/include/mfem/fespaces",
+        "-I",
+        "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-public-source-001/moose/framework/include/mfem/functions",
+        "-I",
+        "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-public-source-001/moose/framework/include/mfem/functormaterials",
+        "-I",
+        "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-public-source-001/moose/framework/include/mfem/ics",
+        "-I",
+        "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-public-source-001/moose/framework/include/mfem/indicators",
+        "-I",
+        "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-public-source-001/moose/framework/include/mfem/integrators",
+        "-I",
+        "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-public-source-001/moose/framework/include/mfem/interfaces",
+        "-I",
+        "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-public-source-001/moose/framework/include/mfem/kernels",
+        "-I",
+        "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-public-source-001/moose/framework/include/mfem/markers",
+        "-I",
+        "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-public-source-001/moose/framework/include/mfem/mesh",
+        "-I",
+        "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-public-source-001/moose/framework/include/mfem/meshgenerators",
+        "-I",
+        "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-public-source-001/moose/framework/include/mfem/outputs",
+        "-I",
+        "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-public-source-001/moose/framework/include/mfem/postprocessors",
+        "-I",
+        "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-public-source-001/moose/framework/include/mfem/problem",
+        "-I",
+        "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-public-source-001/moose/framework/include/mfem/problem_composers",
+        "-I",
+        "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-public-source-001/moose/framework/include/mfem/problem_operators",
+        "-I",
+        "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-public-source-001/moose/framework/include/mfem/solvers",
+        "-I",
+        "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-public-source-001/moose/framework/include/mfem/submeshes",
+        "-I",
+        "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-public-source-001/moose/framework/include/mfem/transfers",
+        "-I",
+        "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-public-source-001/moose/framework/include/mfem/utils",
+        "-I",
+        "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-public-source-001/moose/framework/include/mfem/variables",
+        "-I",
+        "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-public-source-001/moose/framework/include/mfem/vectorpostprocessors",
+        "-I",
+        "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-public-source-001/moose/framework/include/multiapps",
+        "-I",
+        "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-public-source-001/moose/framework/include/neml2/actions",
+        "-I",
+        "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-public-source-001/moose/framework/include/neml2/interfaces",
+        "-I",
+        "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-public-source-001/moose/framework/include/neml2/materials",
+        "-I",
+        "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-public-source-001/moose/framework/include/neml2/models",
+        "-I",
+        "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-public-source-001/moose/framework/include/neml2/userobjects",
+        "-I",
+        "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-public-source-001/moose/framework/include/neml2/utils",
+        "-I",
+        "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-public-source-001/moose/framework/include/nodalkernels",
+        "-I",
+        "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-public-source-001/moose/framework/include/outputs",
+        "-I",
+        "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-public-source-001/moose/framework/include/outputs/formatters",
+        "-I",
+        "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-public-source-001/moose/framework/include/outputs/png",
+        "-I",
+        "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-public-source-001/moose/framework/include/parser",
+        "-I",
+        "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-public-source-001/moose/framework/include/partitioner",
+        "-I",
+        "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-public-source-001/moose/framework/include/physics",
+        "-I",
+        "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-public-source-001/moose/framework/include/positions",
+        "-I",
+        "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-public-source-001/moose/framework/include/postprocessors",
+        "-I",
+        "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-public-source-001/moose/framework/include/preconditioners",
+        "-I",
+        "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-public-source-001/moose/framework/include/predictors",
+        "-I",
+        "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-public-source-001/moose/framework/include/problems",
+        "-I",
+        "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-public-source-001/moose/framework/include/relationshipmanagers",
+        "-I",
+        "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-public-source-001/moose/framework/include/reporters",
+        "-I",
+        "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-public-source-001/moose/framework/include/restart",
+        "-I",
+        "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-public-source-001/moose/framework/include/samplers",
+        "-I",
+        "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-public-source-001/moose/framework/include/scalarkernels",
+        "-I",
+        "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-public-source-001/moose/framework/include/splits",
+        "-I",
+        "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-public-source-001/moose/framework/include/systems",
+        "-I",
+        "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-public-source-001/moose/framework/include/timeintegrators",
+        "-I",
+        "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-public-source-001/moose/framework/include/times",
+        "-I",
+        "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-public-source-001/moose/framework/include/timesteppers",
+        "-I",
+        "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-public-source-001/moose/framework/include/transfers",
+        "-I",
+        "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-public-source-001/moose/framework/include/userobjects",
+        "-I",
+        "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-public-source-001/moose/framework/include/utils",
+        "-I",
+        "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-public-source-001/moose/framework/include/variables",
+        "-I",
+        "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-public-source-001/moose/framework/include/vectorpostprocessors",
+        "-I",
+        "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-public-source-001/moose/framework/include/warehouses",
+        "-I",
+        "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-public-source-001/moose/framework/contrib/boost/include",
+        "-I",
+        "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-public-source-001/moose/framework/contrib/boost/include/boost",
+        "-I",
+        "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-public-source-001/moose/framework/contrib/cpp-peglib/include",
+        "-I",
+        "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-public-source-001/moose/framework/contrib/hit/include",
+        "-I",
+        "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-public-source-001/moose/framework/contrib/hit/include/hit",
+        "-I",
+        "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-public-source-001/moose/framework/contrib/json/include",
+        "-I",
+        "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-public-source-001/moose/framework/contrib/json/include/nlohmann",
+        "-I",
+        "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-public-source-001/moose/framework/contrib/minijson/include",
+        "-I",
+        "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-public-source-001/moose/framework/contrib/minijson/include/minijson",
+        "-I",
+        "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-public-source-001/moose/framework/contrib/mtwist/include",
+        "-I",
+        "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-public-source-001/moose/framework/contrib/pcre/include",
+        "-I",
+        "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-public-source-001/moose/framework/contrib/pugixml/include",
+        "-I",
+        "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-public-source-001/moose/framework/contrib/tinydir/include",
+        "-I",
+        "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-public-source-001/moose/framework/contrib/tinyhttp/include",
+        "-I",
+        "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-public-source-001/moose/framework/contrib/tinyhttp/include/tinyhttp",
+        "-I",
+        "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-public-source-001/moose/framework/contrib/gtest",
+        "-c",
+        "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/cp1-oneway-cooling-release-richardson2-END181-dof-map-observer-prep-003/guards/guard_rows.C",
+        "-o",
+        "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/cp1-oneway-cooling-release-richardson2-END181-dof-map-observer-prep-003/build-005/guard_rows.o",
+        "-MD",
+        "-MF",
+        "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/cp1-oneway-cooling-release-richardson2-END181-dof-map-observer-prep-003/build-005/step2.d"
+      ],
+      "before": {
+        "count": 67,
+        "observed_sha256": "40311c4d638d1b79dbaa8b7f662aadd29411185c29f0f998730aa1d6c76b5981",
+        "changed": {}
+      },
+      "samples": 40,
+      "resource_samples": [
+        {
+          "RSS_bytes": 2490368,
+          "processes": 1,
+          "raw_owned_rows": [
+            {
+              "raw": "11572 11572   2432 Rs  ",
+              "pid": 11572,
+              "pgid": 11572,
+              "reported_RSS_KiB": 2432,
+              "RSS_bytes": 2490368,
+              "state": "Rs"
+            }
+          ],
+          "threads": 1,
+          "thread_observation": {
+            "observed_counts": {
+              "11572": 1
+            },
+            "unobserved_pids": [],
+            "returncode": 0,
+            "error": null
+          },
+          "zombie_pids": [],
+          "elapsed_seconds": 0.03904362488538027
+        },
+        {
+          "RSS_bytes": 4096000,
+          "processes": 2,
+          "raw_owned_rows": [
+            {
+              "raw": "11572 11572   2944 Ss  ",
+              "pid": 11572,
+              "pgid": 11572,
+              "reported_RSS_KiB": 2944,
+              "RSS_bytes": 3014656,
+              "state": "Ss"
+            },
+            {
+              "raw": "11618 11572   1056 R   ",
+              "pid": 11618,
+              "pgid": 11572,
+              "reported_RSS_KiB": 1056,
+              "RSS_bytes": 1081344,
+              "state": "R"
+            }
+          ],
+          "threads": 1,
+          "thread_observation": {
+            "observed_counts": {
+              "11572": 1
+            },
+            "unobserved_pids": [
+              11618
+            ],
+            "returncode": 0,
+            "error": null
+          },
+          "zombie_pids": [],
+          "elapsed_seconds": 0.1479971669614315
+        },
+        {
+          "RSS_bytes": 4128768,
+          "processes": 2,
+          "raw_owned_rows": [
+            {
+              "raw": "11572 11572   2944 Ss  ",
+              "pid": 11572,
+              "pgid": 11572,
+              "reported_RSS_KiB": 2944,
+              "RSS_bytes": 3014656,
+              "state": "Ss"
+            },
+            {
+              "raw": "11671 11572   1088 ?   ",
+              "pid": 11671,
+              "pgid": 11572,
+              "reported_RSS_KiB": 1088,
+              "RSS_bytes": 1114112,
+              "state": "?"
+            }
+          ],
+          "threads": 1,
+          "thread_observation": {
+            "observed_counts": {
+              "11572": 1
+            },
+            "unobserved_pids": [
+              11671
+            ],
+            "returncode": 0,
+            "error": null
+          },
+          "zombie_pids": [],
+          "elapsed_seconds": 0.25800545886158943
+        },
+        {
+          "RSS_bytes": 3211264,
+          "processes": 2,
+          "raw_owned_rows": [
+            {
+              "raw": "11572 11572   2976 Ss  ",
+              "pid": 11572,
+              "pgid": 11572,
+              "reported_RSS_KiB": 2976,
+              "RSS_bytes": 3047424,
+              "state": "Ss"
+            },
+            {
+              "raw": "11716 11572    160 R   ",
+              "pid": 11716,
+              "pgid": 11572,
+              "reported_RSS_KiB": 160,
+              "RSS_bytes": 163840,
+              "state": "R"
+            }
+          ],
+          "threads": 1,
+          "thread_observation": {
+            "observed_counts": {
+              "11572": 1
+            },
+            "unobserved_pids": [
+              11716
+            ],
+            "returncode": 0,
+            "error": null
+          },
+          "zombie_pids": [],
+          "elapsed_seconds": 0.36184858391061425
+        },
+        {
+          "RSS_bytes": 3915776,
+          "processes": 2,
+          "raw_owned_rows": [
+            {
+              "raw": "11572 11572   2976 Ss  ",
+              "pid": 11572,
+              "pgid": 11572,
+              "reported_RSS_KiB": 2976,
+              "RSS_bytes": 3047424,
+              "state": "Ss"
+            },
+            {
+              "raw": "11767 11572    848 R   ",
+              "pid": 11767,
+              "pgid": 11572,
+              "reported_RSS_KiB": 848,
+              "RSS_bytes": 868352,
+              "state": "R"
+            }
+          ],
+          "threads": 1,
+          "thread_observation": {
+            "observed_counts": {
+              "11572": 1
+            },
+            "unobserved_pids": [
+              11767
+            ],
+            "returncode": 0,
+            "error": null
+          },
+          "zombie_pids": [],
+          "elapsed_seconds": 0.4706948339007795
+        },
+        {
+          "RSS_bytes": 3047424,
+          "processes": 2,
+          "raw_owned_rows": [
+            {
+              "raw": "11572 11572   2976 Us  ",
+              "pid": 11572,
+              "pgid": 11572,
+              "reported_RSS_KiB": 2976,
+              "RSS_bytes": 3047424,
+              "state": "Us"
+            },
+            {
+              "raw": "11810 11572      0 ?E  ",
+              "pid": 11810,
+              "pgid": 11572,
+              "reported_RSS_KiB": 0,
+              "RSS_bytes": 0,
+              "state": "?E"
+            }
+          ],
+          "threads": 1,
+          "thread_observation": {
+            "observed_counts": {
+              "11572": 1
+            },
+            "unobserved_pids": [
+              11810
+            ],
+            "returncode": 0,
+            "error": null
+          },
+          "zombie_pids": [],
+          "elapsed_seconds": 0.5893416670151055
+        },
+        {
+          "RSS_bytes": 3047424,
+          "processes": 2,
+          "raw_owned_rows": [
+            {
+              "raw": "11572 11572   2976 Rs  ",
+              "pid": 11572,
+              "pgid": 11572,
+              "reported_RSS_KiB": 2976,
+              "RSS_bytes": 3047424,
+              "state": "Rs"
+            },
+            {
+              "raw": "11840 11572      0 ?   ",
+              "pid": 11840,
+              "pgid": 11572,
+              "reported_RSS_KiB": 0,
+              "RSS_bytes": 0,
+              "state": "?"
+            }
+          ],
+          "threads": 1,
+          "thread_observation": {
+            "observed_counts": {
+              "11572": 1
+            },
+            "unobserved_pids": [
+              11840
+            ],
+            "returncode": 0,
+            "error": null
+          },
+          "zombie_pids": [],
+          "elapsed_seconds": 0.7034016249235719
+        },
+        {
+          "RSS_bytes": 4112384,
+          "processes": 2,
+          "raw_owned_rows": [
+            {
+              "raw": "11572 11572   2976 Ss  ",
+              "pid": 11572,
+              "pgid": 11572,
+              "reported_RSS_KiB": 2976,
+              "RSS_bytes": 3047424,
+              "state": "Ss"
+            },
+            {
+              "raw": "11883 11572   1040 R   ",
+              "pid": 11883,
+              "pgid": 11572,
+              "reported_RSS_KiB": 1040,
+              "RSS_bytes": 1064960,
+              "state": "R"
+            }
+          ],
+          "threads": 1,
+          "thread_observation": {
+            "observed_counts": {
+              "11572": 1
+            },
+            "unobserved_pids": [
+              11883
+            ],
+            "returncode": 0,
+            "error": null
+          },
+          "zombie_pids": [],
+          "elapsed_seconds": 0.8132072088774294
+        },
+        {
+          "RSS_bytes": 3735552,
+          "processes": 2,
+          "raw_owned_rows": [
+            {
+              "raw": "11572 11572   2976 Ss  ",
+              "pid": 11572,
+              "pgid": 11572,
+              "reported_RSS_KiB": 2976,
+              "RSS_bytes": 3047424,
+              "state": "Ss"
+            },
+            {
+              "raw": "11914 11572    672 R   ",
+              "pid": 11914,
+              "pgid": 11572,
+              "reported_RSS_KiB": 672,
+              "RSS_bytes": 688128,
+              "state": "R"
+            }
+          ],
+          "threads": 1,
+          "thread_observation": {
+            "observed_counts": {
+              "11572": 1
+            },
+            "unobserved_pids": [
+              11914
+            ],
+            "returncode": 0,
+            "error": null
+          },
+          "zombie_pids": [],
+          "elapsed_seconds": 0.9412512499839067
+        },
+        {
+          "RSS_bytes": 50790400,
+          "processes": 2,
+          "raw_owned_rows": [
+            {
+              "raw": "11572 11572   2992 Ss  ",
+              "pid": 11572,
+              "pgid": 11572,
+              "reported_RSS_KiB": 2992,
+              "RSS_bytes": 3063808,
+              "state": "Ss"
+            },
+            {
+              "raw": "11922 11572  46608 R   ",
+              "pid": 11922,
+              "pgid": 11572,
+              "reported_RSS_KiB": 46608,
+              "RSS_bytes": 47726592,
+              "state": "R"
+            }
+          ],
+          "threads": 2,
+          "thread_observation": {
+            "observed_counts": {
+              "11572": 1,
+              "11922": 1
+            },
+            "unobserved_pids": [],
+            "returncode": 0,
+            "error": null
+          },
+          "zombie_pids": [],
+          "elapsed_seconds": 1.097403708845377
+        },
+        {
+          "RSS_bytes": 70631424,
+          "processes": 2,
+          "raw_owned_rows": [
+            {
+              "raw": "11572 11572   2992 Ss  ",
+              "pid": 11572,
+              "pgid": 11572,
+              "reported_RSS_KiB": 2992,
+              "RSS_bytes": 3063808,
+              "state": "Ss"
+            },
+            {
+              "raw": "11922 11572  65984 R   ",
+              "pid": 11922,
+              "pgid": 11572,
+              "reported_RSS_KiB": 65984,
+              "RSS_bytes": 67567616,
+              "state": "R"
+            }
+          ],
+          "threads": 2,
+          "thread_observation": {
+            "observed_counts": {
+              "11572": 1,
+              "11922": 1
+            },
+            "unobserved_pids": [],
+            "returncode": 0,
+            "error": null
+          },
+          "zombie_pids": [],
+          "elapsed_seconds": 1.3375935000367463
+        },
+        {
+          "RSS_bytes": 96239616,
+          "processes": 2,
+          "raw_owned_rows": [
+            {
+              "raw": "11572 11572   2992 Ss  ",
+              "pid": 11572,
+              "pgid": 11572,
+              "reported_RSS_KiB": 2992,
+              "RSS_bytes": 3063808,
+              "state": "Ss"
+            },
+            {
+              "raw": "11922 11572  90992 U   ",
+              "pid": 11922,
+              "pgid": 11572,
+              "reported_RSS_KiB": 90992,
+              "RSS_bytes": 93175808,
+              "state": "U"
+            }
+          ],
+          "threads": 2,
+          "thread_observation": {
+            "observed_counts": {
+              "11572": 1,
+              "11922": 1
+            },
+            "unobserved_pids": [],
+            "returncode": 0,
+            "error": null
+          },
+          "zombie_pids": [],
+          "elapsed_seconds": 1.4510361249558628
+        },
+        {
+          "RSS_bytes": 110215168,
+          "processes": 2,
+          "raw_owned_rows": [
+            {
+              "raw": "11572 11572   2992 Ss  ",
+              "pid": 11572,
+              "pgid": 11572,
+              "reported_RSS_KiB": 2992,
+              "RSS_bytes": 3063808,
+              "state": "Ss"
+            },
+            {
+              "raw": "11922 11572 104640 R   ",
+              "pid": 11922,
+              "pgid": 11572,
+              "reported_RSS_KiB": 104640,
+              "RSS_bytes": 107151360,
+              "state": "R"
+            }
+          ],
+          "threads": 2,
+          "thread_observation": {
+            "observed_counts": {
+              "11572": 1,
+              "11922": 1
+            },
+            "unobserved_pids": [],
+            "returncode": 0,
+            "error": null
+          },
+          "zombie_pids": [],
+          "elapsed_seconds": 1.5620293749962002
+        },
+        {
+          "RSS_bytes": 126976000,
+          "processes": 2,
+          "raw_owned_rows": [
+            {
+              "raw": "11572 11572   2992 Ss  ",
+              "pid": 11572,
+              "pgid": 11572,
+              "reported_RSS_KiB": 2992,
+              "RSS_bytes": 3063808,
+              "state": "Ss"
+            },
+            {
+              "raw": "11922 11572 121008 R   ",
+              "pid": 11922,
+              "pgid": 11572,
+              "reported_RSS_KiB": 121008,
+              "RSS_bytes": 123912192,
+              "state": "R"
+            }
+          ],
+          "threads": 2,
+          "thread_observation": {
+            "observed_counts": {
+              "11572": 1,
+              "11922": 1
+            },
+            "unobserved_pids": [],
+            "returncode": 0,
+            "error": null
+          },
+          "zombie_pids": [],
+          "elapsed_seconds": 1.6708563750144094
+        },
+        {
+          "RSS_bytes": 139935744,
+          "processes": 2,
+          "raw_owned_rows": [
+            {
+              "raw": "11572 11572   2992 Ss  ",
+              "pid": 11572,
+              "pgid": 11572,
+              "reported_RSS_KiB": 2992,
+              "RSS_bytes": 3063808,
+              "state": "Ss"
+            },
+            {
+              "raw": "11922 11572 133664 R   ",
+              "pid": 11922,
+              "pgid": 11572,
+              "reported_RSS_KiB": 133664,
+              "RSS_bytes": 136871936,
+              "state": "R"
+            }
+          ],
+          "threads": 2,
+          "thread_observation": {
+            "observed_counts": {
+              "11572": 1,
+              "11922": 1
+            },
+            "unobserved_pids": [],
+            "returncode": 0,
+            "error": null
+          },
+          "zombie_pids": [],
+          "elapsed_seconds": 1.7844719169661403
+        },
+        {
+          "RSS_bytes": 150339584,
+          "processes": 2,
+          "raw_owned_rows": [
+            {
+              "raw": "11572 11572   2992 Ss  ",
+              "pid": 11572,
+              "pgid": 11572,
+              "reported_RSS_KiB": 2992,
+              "RSS_bytes": 3063808,
+              "state": "Ss"
+            },
+            {
+              "raw": "11922 11572 143824 R   ",
+              "pid": 11922,
+              "pgid": 11572,
+              "reported_RSS_KiB": 143824,
+              "RSS_bytes": 147275776,
+              "state": "R"
+            }
+          ],
+          "threads": 2,
+          "thread_observation": {
+            "observed_counts": {
+              "11572": 1,
+              "11922": 1
+            },
+            "unobserved_pids": [],
+            "returncode": 0,
+            "error": null
+          },
+          "zombie_pids": [],
+          "elapsed_seconds": 1.891410083975643
+        },
+        {
+          "RSS_bytes": 163332096,
+          "processes": 2,
+          "raw_owned_rows": [
+            {
+              "raw": "11572 11572   2992 Ss  ",
+              "pid": 11572,
+              "pgid": 11572,
+              "reported_RSS_KiB": 2992,
+              "RSS_bytes": 3063808,
+              "state": "Ss"
+            },
+            {
+              "raw": "11922 11572 156512 R   ",
+              "pid": 11922,
+              "pgid": 11572,
+              "reported_RSS_KiB": 156512,
+              "RSS_bytes": 160268288,
+              "state": "R"
+            }
+          ],
+          "threads": 2,
+          "thread_observation": {
+            "observed_counts": {
+              "11572": 1,
+              "11922": 1
+            },
+            "unobserved_pids": [],
+            "returncode": 0,
+            "error": null
+          },
+          "zombie_pids": [],
+          "elapsed_seconds": 2.002049000002444
+        },
+        {
+          "RSS_bytes": 185024512,
+          "processes": 2,
+          "raw_owned_rows": [
+            {
+              "raw": "11572 11572   2992 Ss  ",
+              "pid": 11572,
+              "pgid": 11572,
+              "reported_RSS_KiB": 2992,
+              "RSS_bytes": 3063808,
+              "state": "Ss"
+            },
+            {
+              "raw": "11922 11572 177696 R   ",
+              "pid": 11922,
+              "pgid": 11572,
+              "reported_RSS_KiB": 177696,
+              "RSS_bytes": 181960704,
+              "state": "R"
+            }
+          ],
+          "threads": 2,
+          "thread_observation": {
+            "observed_counts": {
+              "11572": 1,
+              "11922": 1
+            },
+            "unobserved_pids": [],
+            "returncode": 0,
+            "error": null
+          },
+          "zombie_pids": [],
+          "elapsed_seconds": 2.11229033395648
+        },
+        {
+          "RSS_bytes": 196395008,
+          "processes": 2,
+          "raw_owned_rows": [
+            {
+              "raw": "11572 11572   2992 Ss  ",
+              "pid": 11572,
+              "pgid": 11572,
+              "reported_RSS_KiB": 2992,
+              "RSS_bytes": 3063808,
+              "state": "Ss"
+            },
+            {
+              "raw": "11922 11572 188800 U   ",
+              "pid": 11922,
+              "pgid": 11572,
+              "reported_RSS_KiB": 188800,
+              "RSS_bytes": 193331200,
+              "state": "U"
+            }
+          ],
+          "threads": 2,
+          "thread_observation": {
+            "observed_counts": {
+              "11572": 1,
+              "11922": 1
+            },
+            "unobserved_pids": [],
+            "returncode": 0,
+            "error": null
+          },
+          "zombie_pids": [],
+          "elapsed_seconds": 2.2246941248886287
+        },
+        {
+          "RSS_bytes": 211550208,
+          "processes": 2,
+          "raw_owned_rows": [
+            {
+              "raw": "11572 11572   2992 Ss  ",
+              "pid": 11572,
+              "pgid": 11572,
+              "reported_RSS_KiB": 2992,
+              "RSS_bytes": 3063808,
+              "state": "Ss"
+            },
+            {
+              "raw": "11922 11572 203600 S   ",
+              "pid": 11922,
+              "pgid": 11572,
+              "reported_RSS_KiB": 203600,
+              "RSS_bytes": 208486400,
+              "state": "S"
+            }
+          ],
+          "threads": 2,
+          "thread_observation": {
+            "observed_counts": {
+              "11572": 1,
+              "11922": 1
+            },
+            "unobserved_pids": [],
+            "returncode": 0,
+            "error": null
+          },
+          "zombie_pids": [],
+          "elapsed_seconds": 2.331844874890521
+        },
+        {
+          "RSS_bytes": 227213312,
+          "processes": 2,
+          "raw_owned_rows": [
+            {
+              "raw": "11572 11572   2992 Ss  ",
+              "pid": 11572,
+              "pgid": 11572,
+              "reported_RSS_KiB": 2992,
+              "RSS_bytes": 3063808,
+              "state": "Ss"
+            },
+            {
+              "raw": "11922 11572 218896 R   ",
+              "pid": 11922,
+              "pgid": 11572,
+              "reported_RSS_KiB": 218896,
+              "RSS_bytes": 224149504,
+              "state": "R"
+            }
+          ],
+          "threads": 2,
+          "thread_observation": {
+            "observed_counts": {
+              "11572": 1,
+              "11922": 1
+            },
+            "unobserved_pids": [],
+            "returncode": 0,
+            "error": null
+          },
+          "zombie_pids": [],
+          "elapsed_seconds": 2.442532999906689
+        },
+        {
+          "RSS_bytes": 236486656,
+          "processes": 2,
+          "raw_owned_rows": [
+            {
+              "raw": "11572 11572   2992 Ss  ",
+              "pid": 11572,
+              "pgid": 11572,
+              "reported_RSS_KiB": 2992,
+              "RSS_bytes": 3063808,
+              "state": "Ss"
+            },
+            {
+              "raw": "11922 11572 227952 R   ",
+              "pid": 11922,
+              "pgid": 11572,
+              "reported_RSS_KiB": 227952,
+              "RSS_bytes": 233422848,
+              "state": "R"
+            }
+          ],
+          "threads": 2,
+          "thread_observation": {
+            "observed_counts": {
+              "11572": 1,
+              "11922": 1
+            },
+            "unobserved_pids": [],
+            "returncode": 0,
+            "error": null
+          },
+          "zombie_pids": [],
+          "elapsed_seconds": 2.5502134589478374
+        },
+        {
+          "RSS_bytes": 245776384,
+          "processes": 2,
+          "raw_owned_rows": [
+            {
+              "raw": "11572 11572   2992 Ss  ",
+              "pid": 11572,
+              "pgid": 11572,
+              "reported_RSS_KiB": 2992,
+              "RSS_bytes": 3063808,
+              "state": "Ss"
+            },
+            {
+              "raw": "11922 11572 237024 R   ",
+              "pid": 11922,
+              "pgid": 11572,
+              "reported_RSS_KiB": 237024,
+              "RSS_bytes": 242712576,
+              "state": "R"
+            }
+          ],
+          "threads": 2,
+          "thread_observation": {
+            "observed_counts": {
+              "11572": 1,
+              "11922": 1
+            },
+            "unobserved_pids": [],
+            "returncode": 0,
+            "error": null
+          },
+          "zombie_pids": [],
+          "elapsed_seconds": 2.6612321250140667
+        },
+        {
+          "RSS_bytes": 257753088,
+          "processes": 2,
+          "raw_owned_rows": [
+            {
+              "raw": "11572 11572   2992 Ss  ",
+              "pid": 11572,
+              "pgid": 11572,
+              "reported_RSS_KiB": 2992,
+              "RSS_bytes": 3063808,
+              "state": "Ss"
+            },
+            {
+              "raw": "11922 11572 248720 S   ",
+              "pid": 11922,
+              "pgid": 11572,
+              "reported_RSS_KiB": 248720,
+              "RSS_bytes": 254689280,
+              "state": "S"
+            }
+          ],
+          "threads": 2,
+          "thread_observation": {
+            "observed_counts": {
+              "11572": 1,
+              "11922": 1
+            },
+            "unobserved_pids": [],
+            "returncode": 0,
+            "error": null
+          },
+          "zombie_pids": [],
+          "elapsed_seconds": 2.762589666992426
+        },
+        {
+          "RSS_bytes": 266354688,
+          "processes": 2,
+          "raw_owned_rows": [
+            {
+              "raw": "11572 11572   2992 Ss  ",
+              "pid": 11572,
+              "pgid": 11572,
+              "reported_RSS_KiB": 2992,
+              "RSS_bytes": 3063808,
+              "state": "Ss"
+            },
+            {
+              "raw": "11922 11572 257120 R   ",
+              "pid": 11922,
+              "pgid": 11572,
+              "reported_RSS_KiB": 257120,
+              "RSS_bytes": 263290880,
+              "state": "R"
+            }
+          ],
+          "threads": 2,
+          "thread_observation": {
+            "observed_counts": {
+              "11572": 1,
+              "11922": 1
+            },
+            "unobserved_pids": [],
+            "returncode": 0,
+            "error": null
+          },
+          "zombie_pids": [],
+          "elapsed_seconds": 2.8637062918860465
+        },
+        {
+          "RSS_bytes": 279887872,
+          "processes": 2,
+          "raw_owned_rows": [
+            {
+              "raw": "11572 11572   2992 Ss  ",
+              "pid": 11572,
+              "pgid": 11572,
+              "reported_RSS_KiB": 2992,
+              "RSS_bytes": 3063808,
+              "state": "Ss"
+            },
+            {
+              "raw": "11922 11572 270336 R   ",
+              "pid": 11922,
+              "pgid": 11572,
+              "reported_RSS_KiB": 270336,
+              "RSS_bytes": 276824064,
+              "state": "R"
+            }
+          ],
+          "threads": 2,
+          "thread_observation": {
+            "observed_counts": {
+              "11572": 1,
+              "11922": 1
+            },
+            "unobserved_pids": [],
+            "returncode": 0,
+            "error": null
+          },
+          "zombie_pids": [],
+          "elapsed_seconds": 2.9732961668632925
+        },
+        {
+          "RSS_bytes": 291553280,
+          "processes": 2,
+          "raw_owned_rows": [
+            {
+              "raw": "11572 11572   2992 Ss  ",
+              "pid": 11572,
+              "pgid": 11572,
+              "reported_RSS_KiB": 2992,
+              "RSS_bytes": 3063808,
+              "state": "Ss"
+            },
+            {
+              "raw": "11922 11572 281728 R   ",
+              "pid": 11922,
+              "pgid": 11572,
+              "reported_RSS_KiB": 281728,
+              "RSS_bytes": 288489472,
+              "state": "R"
+            }
+          ],
+          "threads": 2,
+          "thread_observation": {
+            "observed_counts": {
+              "11572": 1,
+              "11922": 1
+            },
+            "unobserved_pids": [],
+            "returncode": 0,
+            "error": null
+          },
+          "zombie_pids": [],
+          "elapsed_seconds": 3.079739708919078
+        },
+        {
+          "RSS_bytes": 304267264,
+          "processes": 2,
+          "raw_owned_rows": [
+            {
+              "raw": "11572 11572   2992 Ss  ",
+              "pid": 11572,
+              "pgid": 11572,
+              "reported_RSS_KiB": 2992,
+              "RSS_bytes": 3063808,
+              "state": "Ss"
+            },
+            {
+              "raw": "11922 11572 294144 R   ",
+              "pid": 11922,
+              "pgid": 11572,
+              "reported_RSS_KiB": 294144,
+              "RSS_bytes": 301203456,
+              "state": "R"
+            }
+          ],
+          "threads": 2,
+          "thread_observation": {
+            "observed_counts": {
+              "11572": 1,
+              "11922": 1
+            },
+            "unobserved_pids": [],
+            "returncode": 0,
+            "error": null
+          },
+          "zombie_pids": [],
+          "elapsed_seconds": 3.1889537919778377
+        },
+        {
+          "RSS_bytes": 321486848,
+          "processes": 2,
+          "raw_owned_rows": [
+            {
+              "raw": "11572 11572   2992 Ss  ",
+              "pid": 11572,
+              "pgid": 11572,
+              "reported_RSS_KiB": 2992,
+              "RSS_bytes": 3063808,
+              "state": "Ss"
+            },
+            {
+              "raw": "11922 11572 310960 R   ",
+              "pid": 11922,
+              "pgid": 11572,
+              "reported_RSS_KiB": 310960,
+              "RSS_bytes": 318423040,
+              "state": "R"
+            }
+          ],
+          "threads": 2,
+          "thread_observation": {
+            "observed_counts": {
+              "11572": 1,
+              "11922": 1
+            },
+            "unobserved_pids": [],
+            "returncode": 0,
+            "error": null
+          },
+          "zombie_pids": [],
+          "elapsed_seconds": 3.2963548339903355
+        },
+        {
+          "RSS_bytes": 333332480,
+          "processes": 2,
+          "raw_owned_rows": [
+            {
+              "raw": "11572 11572   2992 Ss  ",
+              "pid": 11572,
+              "pgid": 11572,
+              "reported_RSS_KiB": 2992,
+              "RSS_bytes": 3063808,
+              "state": "Ss"
+            },
+            {
+              "raw": "11922 11572 322528 R   ",
+              "pid": 11922,
+              "pgid": 11572,
+              "reported_RSS_KiB": 322528,
+              "RSS_bytes": 330268672,
+              "state": "R"
+            }
+          ],
+          "threads": 2,
+          "thread_observation": {
+            "observed_counts": {
+              "11572": 1,
+              "11922": 1
+            },
+            "unobserved_pids": [],
+            "returncode": 0,
+            "error": null
+          },
+          "zombie_pids": [],
+          "elapsed_seconds": 3.3991590419318527
+        },
+        {
+          "RSS_bytes": 345358336,
+          "processes": 2,
+          "raw_owned_rows": [
+            {
+              "raw": "11572 11572   2992 Ss  ",
+              "pid": 11572,
+              "pgid": 11572,
+              "reported_RSS_KiB": 2992,
+              "RSS_bytes": 3063808,
+              "state": "Ss"
+            },
+            {
+              "raw": "11922 11572 334272 R   ",
+              "pid": 11922,
+              "pgid": 11572,
+              "reported_RSS_KiB": 334272,
+              "RSS_bytes": 342294528,
+              "state": "R"
+            }
+          ],
+          "threads": 2,
+          "thread_observation": {
+            "observed_counts": {
+              "11572": 1,
+              "11922": 1
+            },
+            "unobserved_pids": [],
+            "returncode": 0,
+            "error": null
+          },
+          "zombie_pids": [],
+          "elapsed_seconds": 3.5127401668578386
+        },
+        {
+          "RSS_bytes": 357531648,
+          "processes": 2,
+          "raw_owned_rows": [
+            {
+              "raw": "11572 11572   2992 Ss  ",
+              "pid": 11572,
+              "pgid": 11572,
+              "reported_RSS_KiB": 2992,
+              "RSS_bytes": 3063808,
+              "state": "Ss"
+            },
+            {
+              "raw": "11922 11572 346160 R   ",
+              "pid": 11922,
+              "pgid": 11572,
+              "reported_RSS_KiB": 346160,
+              "RSS_bytes": 354467840,
+              "state": "R"
+            }
+          ],
+          "threads": 2,
+          "thread_observation": {
+            "observed_counts": {
+              "11572": 1,
+              "11922": 1
+            },
+            "unobserved_pids": [],
+            "returncode": 0,
+            "error": null
+          },
+          "zombie_pids": [],
+          "elapsed_seconds": 3.614673374919221
+        },
+        {
+          "RSS_bytes": 372260864,
+          "processes": 2,
+          "raw_owned_rows": [
+            {
+              "raw": "11572 11572   2992 Ss  ",
+              "pid": 11572,
+              "pgid": 11572,
+              "reported_RSS_KiB": 2992,
+              "RSS_bytes": 3063808,
+              "state": "Ss"
+            },
+            {
+              "raw": "11922 11572 360544 R   ",
+              "pid": 11922,
+              "pgid": 11572,
+              "reported_RSS_KiB": 360544,
+              "RSS_bytes": 369197056,
+              "state": "R"
+            }
+          ],
+          "threads": 2,
+          "thread_observation": {
+            "observed_counts": {
+              "11572": 1,
+              "11922": 1
+            },
+            "unobserved_pids": [],
+            "returncode": 0,
+            "error": null
+          },
+          "zombie_pids": [],
+          "elapsed_seconds": 3.724565166980028
+        },
+        {
+          "RSS_bytes": 384106496,
+          "processes": 2,
+          "raw_owned_rows": [
+            {
+              "raw": "11572 11572   2992 Ss  ",
+              "pid": 11572,
+              "pgid": 11572,
+              "reported_RSS_KiB": 2992,
+              "RSS_bytes": 3063808,
+              "state": "Ss"
+            },
+            {
+              "raw": "11922 11572 372112 R   ",
+              "pid": 11922,
+              "pgid": 11572,
+              "reported_RSS_KiB": 372112,
+              "RSS_bytes": 381042688,
+              "state": "R"
+            }
+          ],
+          "threads": 2,
+          "thread_observation": {
+            "observed_counts": {
+              "11572": 1,
+              "11922": 1
+            },
+            "unobserved_pids": [],
+            "returncode": 0,
+            "error": null
+          },
+          "zombie_pids": [],
+          "elapsed_seconds": 3.83227499993518
+        },
+        {
+          "RSS_bytes": 394067968,
+          "processes": 2,
+          "raw_owned_rows": [
+            {
+              "raw": "11572 11572   2992 Ss  ",
+              "pid": 11572,
+              "pgid": 11572,
+              "reported_RSS_KiB": 2992,
+              "RSS_bytes": 3063808,
+              "state": "Ss"
+            },
+            {
+              "raw": "11922 11572 381840 R   ",
+              "pid": 11922,
+              "pgid": 11572,
+              "reported_RSS_KiB": 381840,
+              "RSS_bytes": 391004160,
+              "state": "R"
+            }
+          ],
+          "threads": 2,
+          "thread_observation": {
+            "observed_counts": {
+              "11572": 1,
+              "11922": 1
+            },
+            "unobserved_pids": [],
+            "returncode": 0,
+            "error": null
+          },
+          "zombie_pids": [],
+          "elapsed_seconds": 3.9348323340527713
+        },
+        {
+          "RSS_bytes": 409239552,
+          "processes": 2,
+          "raw_owned_rows": [
+            {
+              "raw": "11572 11572   2992 Ss  ",
+              "pid": 11572,
+              "pgid": 11572,
+              "reported_RSS_KiB": 2992,
+              "RSS_bytes": 3063808,
+              "state": "Ss"
+            },
+            {
+              "raw": "11922 11572 396656 R   ",
+              "pid": 11922,
+              "pgid": 11572,
+              "reported_RSS_KiB": 396656,
+              "RSS_bytes": 406175744,
+              "state": "R"
+            }
+          ],
+          "threads": 2,
+          "thread_observation": {
+            "observed_counts": {
+              "11572": 1,
+              "11922": 1
+            },
+            "unobserved_pids": [],
+            "returncode": 0,
+            "error": null
+          },
+          "zombie_pids": [],
+          "elapsed_seconds": 4.046669584000483
+        },
+        {
+          "RSS_bytes": 420429824,
+          "processes": 2,
+          "raw_owned_rows": [
+            {
+              "raw": "11572 11572   2992 Ss  ",
+              "pid": 11572,
+              "pgid": 11572,
+              "reported_RSS_KiB": 2992,
+              "RSS_bytes": 3063808,
+              "state": "Ss"
+            },
+            {
+              "raw": "11922 11572 407584 R   ",
+              "pid": 11922,
+              "pgid": 11572,
+              "reported_RSS_KiB": 407584,
+              "RSS_bytes": 417366016,
+              "state": "R"
+            }
+          ],
+          "threads": 2,
+          "thread_observation": {
+            "observed_counts": {
+              "11572": 1,
+              "11922": 1
+            },
+            "unobserved_pids": [],
+            "returncode": 0,
+            "error": null
+          },
+          "zombie_pids": [],
+          "elapsed_seconds": 4.1531465840525925
+        },
+        {
+          "RSS_bytes": 432242688,
+          "processes": 2,
+          "raw_owned_rows": [
+            {
+              "raw": "11572 11572   2992 Ss  ",
+              "pid": 11572,
+              "pgid": 11572,
+              "reported_RSS_KiB": 2992,
+              "RSS_bytes": 3063808,
+              "state": "Ss"
+            },
+            {
+              "raw": "11922 11572 419120 R   ",
+              "pid": 11922,
+              "pgid": 11572,
+              "reported_RSS_KiB": 419120,
+              "RSS_bytes": 429178880,
+              "state": "R"
+            }
+          ],
+          "threads": 2,
+          "thread_observation": {
+            "observed_counts": {
+              "11572": 1,
+              "11922": 1
+            },
+            "unobserved_pids": [],
+            "returncode": 0,
+            "error": null
+          },
+          "zombie_pids": [],
+          "elapsed_seconds": 4.267866249894723
+        },
+        {
+          "RSS_bytes": 441483264,
+          "processes": 2,
+          "raw_owned_rows": [
+            {
+              "raw": "11572 11572   2992 Ss  ",
+              "pid": 11572,
+              "pgid": 11572,
+              "reported_RSS_KiB": 2992,
+              "RSS_bytes": 3063808,
+              "state": "Ss"
+            },
+            {
+              "raw": "11922 11572 428144 R   ",
+              "pid": 11922,
+              "pgid": 11572,
+              "reported_RSS_KiB": 428144,
+              "RSS_bytes": 438419456,
+              "state": "R"
+            }
+          ],
+          "threads": 2,
+          "thread_observation": {
+            "observed_counts": {
+              "11572": 1,
+              "11922": 1
+            },
+            "unobserved_pids": [],
+            "returncode": 0,
+            "error": null
+          },
+          "zombie_pids": [],
+          "elapsed_seconds": 4.379846666939557
+        },
+        {
+          "RSS_bytes": 450002944,
+          "processes": 2,
+          "raw_owned_rows": [
+            {
+              "raw": "11572 11572   2992 Ss  ",
+              "pid": 11572,
+              "pgid": 11572,
+              "reported_RSS_KiB": 2992,
+              "RSS_bytes": 3063808,
+              "state": "Ss"
+            },
+            {
+              "raw": "11922 11572 436464 R   ",
+              "pid": 11922,
+              "pgid": 11572,
+              "reported_RSS_KiB": 436464,
+              "RSS_bytes": 446939136,
+              "state": "R"
+            }
+          ],
+          "threads": 2,
+          "thread_observation": {
+            "observed_counts": {
+              "11572": 1,
+              "11922": 1
+            },
+            "unobserved_pids": [],
+            "returncode": 0,
+            "error": null
+          },
+          "zombie_pids": [],
+          "elapsed_seconds": 4.489472416928038
+        }
+      ],
+      "peak_RSS_bytes": 450002944,
+      "peak_processes": 2,
+      "peak_observed_threads": 2,
+      "pid": 11572,
+      "last_sample": {
+        "RSS_bytes": 450002944,
+        "processes": 2,
+        "raw_owned_rows": [
+          {
+            "raw": "11572 11572   2992 Ss  ",
+            "pid": 11572,
+            "pgid": 11572,
+            "reported_RSS_KiB": 2992,
+            "RSS_bytes": 3063808,
+            "state": "Ss"
+          },
+          {
+            "raw": "11922 11572 436464 R   ",
+            "pid": 11922,
+            "pgid": 11572,
+            "reported_RSS_KiB": 436464,
+            "RSS_bytes": 446939136,
+            "state": "R"
+          }
+        ],
+        "threads": 2,
+        "thread_observation": {
+          "observed_counts": {
+            "11572": 1,
+            "11922": 1
+          },
+          "unobserved_pids": [],
+          "returncode": 0,
+          "error": null
+        },
+        "zombie_pids": [],
+        "elapsed_seconds": 4.489472416928038
+      },
+      "returncode": 0,
+      "elapsed_seconds": 4.548699792008847,
+      "stdout": {
+        "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-END181-dof-map-observer-prep-003/build-005/step2.stdout",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      },
+      "stderr": {
+        "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-END181-dof-map-observer-prep-003/build-005/step2.stderr",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      },
+      "dependencies": {
+        "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer003-build-root-execution-005/step2-dependency-headers.json",
+        "sha256": "612a0b6069981e5bfd26e8864acfc3ebaa70e5db64eb77b982f3dfcd4fbee1d7",
+        "bytes": 649304
+      },
+      "after": {
+        "count": 67,
+        "observed_sha256": "40311c4d638d1b79dbaa8b7f662aadd29411185c29f0f998730aa1d6c76b5981",
+        "changed": {}
+      }
+    },
+    {
+      "ordinal": 3,
+      "recipe_index": 2,
+      "name": "direct_CLT_guard_link",
+      "argv": [
+        "/Library/Developer/CommandLineTools/usr/bin/ld",
+        "-demangle",
+        "-lto_library",
+        "/Library/Developer/CommandLineTools/usr/lib/libLTO.dylib",
+        "-dynamic",
+        "-arch",
+        "arm64",
+        "-platform_version",
+        "macos",
+        "18.0.0",
+        "27.0",
+        "-syslibroot",
+        "/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk",
+        "-mllvm",
+        "-enable-linkonceodr-outlining",
+        "-o",
+        "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/cp1-oneway-cooling-release-richardson2-END181-dof-map-observer-prep-003/build-005/guard_rows",
+        "-L/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-local-installed-002/lib",
+        "-L/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-local-installed-002/lib",
+        "-L/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-local-installed-002/lib",
+        "-rpath",
+        "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-local-installed-002/lib",
+        "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/cp1-oneway-cooling-release-richardson2-END181-dof-map-observer-prep-003/build-005/guard_rows.o",
+        "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/cp1-oneway-cooling-release-richardson2-END181-dof-map-observer-prep-003/build-003/CouponEnd181DofMap.o",
+        "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/cp1-oneway-cooling-release-richardson2-END181-dof-map-observer-prep-003/build-003/CouponEnd181ObserverRegistration.o",
+        "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-local-installed-002/lib/combined/libmoose-opt.0.dylib",
+        "-lmesh_opt",
+        "-ltimpi_opt",
+        "-lpetsc",
+        "-rpath",
+        "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-local-installed-002/lib/combined",
+        "-rpath",
+        "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-local-installed-002/lib",
+        "-lmpicxx",
+        "-lmpi",
+        "-lpmpi",
+        "-lomp",
+        "-L/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-local-installed-002/lib",
+        "-lc++",
+        "-lSystem",
+        "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-local-installed-002/lib/clang/19/lib/darwin/libclang_rt.osx.a"
+      ],
+      "before": {
+        "count": 67,
+        "observed_sha256": "40311c4d638d1b79dbaa8b7f662aadd29411185c29f0f998730aa1d6c76b5981",
+        "changed": {}
+      },
+      "samples": 1,
+      "resource_samples": [
+        {
+          "RSS_bytes": 376832,
+          "processes": 1,
+          "raw_owned_rows": [
+            {
+              "raw": "11987 11987    368 Rs  ",
+              "pid": 11987,
+              "pgid": 11987,
+              "reported_RSS_KiB": 368,
+              "RSS_bytes": 376832,
+              "state": "Rs"
+            }
+          ],
+          "threads": 11,
+          "thread_observation": {
+            "observed_counts": {
+              "11987": 11
+            },
+            "unobserved_pids": [],
+            "returncode": 0,
+            "error": null
+          },
+          "zombie_pids": [],
+          "elapsed_seconds": 0.04272487503476441
+        }
+      ],
+      "peak_RSS_bytes": 376832,
+      "peak_processes": 1,
+      "peak_observed_threads": 11,
+      "pid": 11987,
+      "last_sample": {
+        "RSS_bytes": 376832,
+        "processes": 1,
+        "raw_owned_rows": [
+          {
+            "raw": "11987 11987    368 Rs  ",
+            "pid": 11987,
+            "pgid": 11987,
+            "reported_RSS_KiB": 368,
+            "RSS_bytes": 376832,
+            "state": "Rs"
+          }
+        ],
+        "threads": 11,
+        "thread_observation": {
+          "observed_counts": {
+            "11987": 11
+          },
+          "unobserved_pids": [],
+          "returncode": 0,
+          "error": null
+        },
+        "zombie_pids": [],
+        "elapsed_seconds": 0.04272487503476441
+      },
+      "returncode": 0,
+      "elapsed_seconds": 0.10349366697482765,
+      "stdout": {
+        "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-END181-dof-map-observer-prep-003/build-005/step3.stdout",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      },
+      "stderr": {
+        "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-END181-dof-map-observer-prep-003/build-005/step3.stderr",
+        "sha256": "822274f00e2f918ea392bdae14843bb0f29a7e9a5e9126bf8f7d04fb72d1507c",
+        "bytes": 163
+      },
+      "dependencies": null,
+      "after": {
+        "count": 67,
+        "observed_sha256": "40311c4d638d1b79dbaa8b7f662aadd29411185c29f0f998730aa1d6c76b5981",
+        "changed": {}
+      }
+    }
+  ],
+  "completed_three_build_steps": true,
+  "guards_executed": false,
+  "host_loaded": false,
+  "native_executed": false,
+  "scientific_or_ABI_acceptance": false,
+  "threads_scope": "Three strictly sequential fixed build commands; OMP/BLAS/VECLIB1 environment; observed internal process/thread counts recorded with no invented thread-count refusal.",
+  "automatic_retry": false,
+  "failure": null,
+  "final_snapshot": {
+    "count": 67,
+    "observed_sha256": "40311c4d638d1b79dbaa8b7f662aadd29411185c29f0f998730aa1d6c76b5981",
+    "changed": {}
+  },
+  "compiler_aliases_after": {
+    "mpicxx": {
+      "path": "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-local-installed-002/bin/mpicxx",
+      "resolved": "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-local-installed-002/bin/mpicxx",
+      "link": null
+    },
+    "clang-19": {
+      "path": "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-local-installed-002/bin/clang-19",
+      "resolved": "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-local-installed-002/bin/clang-19",
+      "link": null
+    },
+    "clang++": {
+      "path": "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-local-installed-002/bin/clang++",
+      "resolved": "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-local-installed-002/bin/clang-19",
+      "link": "clang-19"
+    },
+    "arm64-apple-darwin20.0.0-clang++": {
+      "path": "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-local-installed-002/bin/arm64-apple-darwin20.0.0-clang++",
+      "resolved": "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-local-installed-002/bin/clang-19",
+      "link": "clang-19"
+    },
+    "ld": {
+      "path": "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-local-installed-002/bin/ld",
+      "resolved": "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-local-installed-002/bin/arm64-apple-darwin20.0.0-ld",
+      "link": "arm64-apple-darwin20.0.0-ld"
+    }
+  },
+  "source_after": {
+    "commit": "7c06bdcefd02f9f31f4508839f21f410561309a4",
+    "tree": "4106bbd47b9387bda37cff0d679735c57c5391bc",
+    "porcelain": ""
+  },
+  "owned_output_bytes": 568154,
+  "owned_outputs": {
+    "step2.d": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-END181-dof-map-observer-prep-003/build-005/step2.d",
+      "sha256": "ef3a73bdad854da28d831d6962b7345f14c49917b6d2ec0204a31c7835e71580",
+      "bytes": 214526
+    },
+    "step2.stdout": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-END181-dof-map-observer-prep-003/build-005/step2.stdout",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "guard_rows": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-END181-dof-map-observer-prep-003/build-005/guard_rows",
+      "sha256": "69e2b30ae8e6511e70253ea0d4e17e347c01f605b9817d0c6dee174eaf544560",
+      "bytes": 167832
+    },
+    "step2.stderr": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-END181-dof-map-observer-prep-003/build-005/step2.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "step3.stdout": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-END181-dof-map-observer-prep-003/build-005/step3.stdout",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "guard_rows.o": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-END181-dof-map-observer-prep-003/build-005/guard_rows.o",
+      "sha256": "f99025e33196fe26e9f085bac590b055c3e148fb898b640ad906ff789cd04583",
+      "bytes": 18552
+    },
+    "step1.stdout": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-END181-dof-map-observer-prep-003/build-005/step1.stdout",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "step1.stderr": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-END181-dof-map-observer-prep-003/build-005/step1.stderr",
+      "sha256": "822274f00e2f918ea392bdae14843bb0f29a7e9a5e9126bf8f7d04fb72d1507c",
+      "bytes": 163
+    },
+    "libcoupon_end181_observer-opt.dylib": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-END181-dof-map-observer-prep-003/build-005/libcoupon_end181_observer-opt.dylib",
+      "sha256": "a45fa2d7d3b699bdfc654e6eb5432064d51132dfdb196f528487eed1f1bf2382",
+      "bytes": 166704
+    },
+    "libcoupon_end181_observer-opt.la": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-END181-dof-map-observer-prep-003/build-005/libcoupon_end181_observer-opt.la",
+      "sha256": "b4b32aa0a5ebd176bba5040c1bd4fb116f567bc198c015c06a06d816aa523c21",
+      "bytes": 214
+    },
+    "step3.stderr": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-END181-dof-map-observer-prep-003/build-005/step3.stderr",
+      "sha256": "822274f00e2f918ea392bdae14843bb0f29a7e9a5e9126bf8f7d04fb72d1507c",
+      "bytes": 163
+    }
+  }
+}

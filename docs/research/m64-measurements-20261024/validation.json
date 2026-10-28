@@ -1,0 +1,117 @@
+{
+  "reviewed_on": "2026-10-24",
+  "status": "research_and_training_checks_passed_with_global_environment_limitation",
+  "checks": [
+    {
+      "command": "python scripts/validate_sources.py",
+      "result": "passed",
+      "source_records": 563,
+      "log_sha256": "d179c16c11ec695c8af91685938427fbd4b07dfcc60f80b41a5cbf9f04ffff6a"
+    },
+    {
+      "command": "python scripts/check_doc_links.py --strict",
+      "result": "passed; relative links and frozen-source hashes checked",
+      "markdown_files": 1823,
+      "broken_links": 0,
+      "historical_links_rechecked_live": false,
+      "log_sha256": "02a2c1c3c064aaa471d87d748fefc1794c9ebbc6b70dcae78d9573b56f168bb0"
+    },
+    {
+      "command": "python training/m64-measurements-20261024/verify.py",
+      "result": "passed",
+      "cpt_rows": 89,
+      "sft_rows": 89,
+      "partitions_each": {
+        "train": 89,
+        "valid": 0,
+        "test": 0
+      },
+      "excluded_records": 18,
+      "combined_prior_partition_isolation": true,
+      "log_sha256": "7f570998e266fcb8fe6758c4eaa7abafad9c06a20eed8db1ce1f285988eef7b3"
+    },
+    {
+      "command": "python training/m64-measurements-20261024/test_verify.py",
+      "result": "passed",
+      "tests": 15,
+      "log_sha256": "5476e34973f0fdac7aeb8922c8a3725aa35a69831ddd373eddd0411e83d982de"
+    },
+    {
+      "command": "python training/993-turbo-20261002/verify.py",
+      "result": "passed; frozen pack retained",
+      "log_sha256": "8947124e511bf2d3bc8c16b9c807573138e52c1643bf3888332b6b22725f50f3"
+    },
+    {
+      "command": "python training/mezger-turbo-materials-20261003/verify.py",
+      "result": "passed; frozen pack retained",
+      "log_sha256": "45107a20c8a577bc46c21a8070e00b8bd0e2b0ad7e45d7a5a4cfcc2941608bc1"
+    },
+    {
+      "command": "python training/mezger-german-sources-20261003/verify.py",
+      "result": "passed; frozen pack retained",
+      "log_sha256": "7746873b5886578e195ef9619bbc83290bcd4e0fa59c697e6335e6b642db12be"
+    },
+    {
+      "command": "make check (umask 022)",
+      "checked_base_commit": "9b37d46bbfb9d28b57dc8151040e46763d906254",
+      "result": "one initial environment-configuration failure; resolved by targeted rerun below",
+      "tests": 4858,
+      "initial_failures": 1,
+      "skipped_tests": 274,
+      "initial_failure": "KiCad standard symbol libraries absent from the fresh user configuration",
+      "log_sha256": "df3d487c4bb279f2a905f0a05b7e4c576f011c14c02907c8d85bf68aac0f2551"
+    },
+    {
+      "command": "python -m unittest discover -s tests -p test_993_rear_panel_schematic.py -v (task-local KiCad library tables)",
+      "result": "passed after configuring installed standard KiCad symbol and footprint library tables in a task-local configuration; no repository files changed",
+      "tests": 1,
+      "log_sha256": "447ed7357d6c40cc61c330c23798a274beef6d6200f644e7cf69b11515f35027"
+    },
+    {
+      "command": "make -o test check (KiCad configured; umask 022)",
+      "result": "Docker audit could not start because the image layer could not be registered",
+      "log_sha256": "2044d46eaff14b81fd712ddd0aae05b1996f4e9d0a06f68be7bd3181a77789d1"
+    },
+    {
+      "command": "make -o test -o 917-manufacturing-f37-lpbf-audit-check check (KiCad configured; umask 022)",
+      "result": "passed; all other targets required by make check were checked",
+      "log_sha256": "b25f7cb92d82f9c244ad00fbc015826728c2eb80e89289efc5349adaf9784ad1"
+    },
+    {
+      "command": "Independent data review, capture/reference closure, frozen hashes, privacy scan and git diff --cached --check",
+      "result": "passed",
+      "review_report": "review.json",
+      "review_report_sha256": "0d6eef062b677bbdf4306b35a650a0ca70d0ded15f8e9ebcc40806decfc0e01d",
+      "records": 107,
+      "accepted_records": 89,
+      "excluded_unverified_rows": 18,
+      "canonical_sources": 20,
+      "new_sources": 17,
+      "frozen_files_unchanged": 623,
+      "prior_training_artifacts_unchanged": 49,
+      "physical_measurement_performed": false,
+      "raw_or_private_content_published": false
+    }
+  ],
+  "environment_limitation": {
+    "target": "917-manufacturing-f37-lpbf-audit-check",
+    "result": "blocked_before_test_execution",
+    "reason": "Docker failed to register an image layer: no space left on device.",
+    "full_make_check_claimed_passed": false,
+    "unrelated_image_or_volume_pruning_performed": false
+  },
+  "publication_scope": {
+    "records": 107,
+    "accepted_records": 89,
+    "excluded_records": 18,
+    "canonical_sources": 20,
+    "new_source_records": 17,
+    "catalogue_source_total": 563,
+    "source_document_byte_captures": 17,
+    "reader_or_availability_receipts": 3,
+    "cpt_rows": 89,
+    "sft_rows": 89,
+    "model_training_executed": false,
+    "raw_source_documents_published": false
+  }
+}

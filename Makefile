@@ -29,7 +29,7 @@
 	pet-zone-triage-check pet-part-triage pet-verdict pet-verdict-check \
 	pet-explain pet-disposition \
 	route-trim-ring-check parts-table route-lever-hook route-lever-hook-check \
-	print-screens print-visuals print-screen-sections-check parts-table-check part-pages part-pages-check translation-status reports-index reports-index-check docs-links-check part-previews part-previews-check container-recon container-cadsim container-mesh-cfd \
+	print-screens print-visuals print-screen-sections-check parts-table-check readme-gallery readme-gallery-check part-pages part-pages-check translation-status reports-index reports-index-check docs-links-check part-previews part-previews-check container-recon container-cadsim container-mesh-cfd \
 	container-physicsml container-simready container-simready-workflow \
 	container-simready-local-ai container-ov-libraries-cpu container-smoke \
 	container-smoke-physicsml container-smoke-simready \
@@ -205,6 +205,7 @@ check: validate test 917-clean-sheet-2026-f32-check \
 	route-trim-ring-check turning-trim-ring-check titanium-screen-check \
 	tip-routes-check pet-zone-triage-check pet-verdict-check \
 	route-lever-hook-check print-screen-sections-check parts-table-check \
+	readme-gallery-check \
 	part-pages-check reports-index-check docs-links-check part-previews-check \
 	help-check fan-program-check engine-mount-study-check
 
@@ -319,6 +320,7 @@ validate:
 	python3 scripts/validate_scans.py
 	python3 scripts/validate_measurements.py
 	python3 scripts/validate_reference.py
+	python3 scripts/validate_registers.py
 	python3 scripts/validate_manual_measurements.py
 	python3 scripts/validate_twin.py
 	python3 scripts/validate_specifications.py
@@ -1378,17 +1380,26 @@ part-previews:
 	    python3 scripts/render_part_previews.py --write --only $$id || exit 1; \
 	done
 
-#> catalogue | Check that every part's product views match its current CAD
+#> catalogue | Require public images and provenance for every catalogue record
 part-previews-check:
+	python3 tests/test_render_part_previews.py
 	python3 scripts/render_part_previews.py --check
 
-#> catalogue | Rewrite the README parts table
+#> catalogue | Rewrite the parts table of docs/ENGINEERING_OVERVIEW.md
 parts-table:
 	python3 scripts/render_parts_table.py --write
 
 #> catalogue | Check that this table follows the records
 parts-table-check:
 	python3 scripts/render_parts_table.py --check
+
+#> catalogue | Rewrite the README picture gallery from the catalogue records
+readme-gallery:
+	python3 scripts/render_readme_gallery.py --write
+
+#> catalogue | Check that this gallery follows the records
+readme-gallery-check:
+	python3 scripts/render_readme_gallery.py --check
 
 #> catalogue | Generate one description page per part
 part-pages:
@@ -1483,3 +1494,18 @@ container-push:
 	docker push $(REGISTRY)/3dprinting993-recon:$(IMAGE_TAG)
 	docker push $(REGISTRY)/3dprinting993-cadsim:$(IMAGE_TAG)
 	docker push $(REGISTRY)/3dprinting993-physicsml:$(IMAGE_TAG)
+
+# Optional free engineering tools: native dependencies stay outside the core check.
+FREE_TOOLS_PYTHON ?= python3
+FREE_TOOLS_OUTPUT ?= work/free-tools-replay-new
+.PHONY: free-tools-check free-tools-replay free-tools-controls
+#> check | Check free-tools trust boundaries and available native controls
+free-tools-check:
+	$(FREE_TOOLS_PYTHON) -m unittest discover -s tests -p test_free_tools.py -v
+#> check | Replay the frozen carrier admission contract without changing geometry
+free-tools-replay:
+	$(FREE_TOOLS_PYTHON) benchmarks/free-tools/pilot.py replay --output "$(FREE_TOOLS_OUTPUT)"
+#> check | Run optional native Python controls with an explicit private artifact root
+free-tools-controls:
+	test -n "$(FREE_TOOLS_PRIVATE_ROOT)"
+	OPENMDAO_REPORTS=0 $(FREE_TOOLS_PYTHON) benchmarks/free-tools/acceptance.py --private-root "$(FREE_TOOLS_PRIVATE_ROOT)" --output "$(FREE_TOOLS_OUTPUT)"

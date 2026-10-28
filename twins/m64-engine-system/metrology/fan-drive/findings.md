@@ -62,7 +62,7 @@ and the BOM cooling lines (`twins/m64-engine-system/bom/m64-bom-v1.json`):
 
 ## Link to the virtual bench
 
-The 0D bench (`simulation/m64-virtual-bench/inputs-gap.md`, main repo) names
+The 0D bench (`work/simulation/m64-virtual-bench/inputs-gap.md`, main repo) names
 **cooling airflow as its bottleneck**: fan flow is a single FACT_public
 point (1010 l/s @ 6100 rpm) with a linear-affinity HYPOTHESIS slope and a
 60 %-effective-fraction ASSUMPTION — ask **M64-ACQ-BENCH-06**. Geometry from
@@ -77,7 +77,7 @@ BENCH-06.
    coverage of tooth band and blade band; idler pulley and elastic belt
    removed or masked. Unblocks blade count, tooth count, ratio check, scale.
 2. **M64-ACQ-BENCH-06:** fan flow at 3 rpm points (Pitot/bellmouth) or a
-   parametric disc-pressure CFD sweep in `simulation/993-fan-baseline`,
+   parametric disc-pressure CFD sweep in `work/simulation/993-fan-baseline`,
    plus shroud bypass estimate.
 3. **Physical check on any 993 Turbo fan drive:** photo + caliper (blade
    count, both pulley ODs). Anchors scale and settles counts in one pass —

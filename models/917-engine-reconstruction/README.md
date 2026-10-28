@@ -2,9 +2,14 @@
 
 Reprise demandée le 10 octobre 2026 : objectif final **moteur fonctionnel**.
 Cette nouvelle étape utilise le scan du carter avec cylindres. Les anciens
-[travaux archivés](../../ARCHIVE.md) restent des références de méthode ; leurs
+[travaux archivés](../../docs/ARCHIVE.md) restent des références de méthode ; leurs
 géométries hypothétiques et leurs résultats ne qualifient pas ce moteur.
 La variante exacte, la cylindrée et le régime cible restent à déterminer.
+
+The [longitudinal covers and lowered ducts](compact-packaging/README.md)
+apply the video references to the 4V banks: six-opening plates, rounded roofs
+and native branching ribs. Two wall thicknesses are compared at the same
+candidate interfaces; physical qualification remains open.
 
 La [reconstruction mécanique détaillée](mechanical-detail/README.md) remplace
 les boîtes d’accessoires par des corps à conduits, ailettes et fixations ; elle

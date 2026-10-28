@@ -1,0 +1,96 @@
+{
+  "schema": "962-native003-owned-control-choices-independent-source-peer/v1",
+  "reviewer": "/root/defect_gate_refresh",
+  "decision": "NO_REMAINING_SOURCE_DESIGN_BLOCKER_AFTER_REQUIRED_ADDITIVE_CLARIFICATION",
+  "scope": "Independent first-party text/structured design review only. This is not executable-source, API, lifecycle, runtime, scientific or physical validation and grants no implementation or operation authority.",
+  "reviewed_originals": [
+    {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native003-owned-control-choices-001/CONTROL-CHOICES.md",
+      "sha256": "ee1f3001f21048c4d67dc31067e387cd9aa847ba9e47f7e7e764b48a5c85f742",
+      "bytes": 7963
+    },
+    {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native003-owned-control-choices-001/control-contract.json",
+      "sha256": "10aaa53acc3fbe15f07aeadd75f33c0edb886d8d79d4fe824f898907cb12a819",
+      "bytes": 39675
+    },
+    {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native003-owned-control-choices-001/index.json",
+      "sha256": "38d71b7c0ff6dbb9e11ee66594848fa1287ff150b10088e13185ea7b5180d06b",
+      "bytes": 3901
+    }
+  ],
+  "required_additive_clarification": [
+    {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native003-owned-control-choices-clarification-001/CLARIFICATION.json",
+      "sha256": "df5ce24e733c94cfe5522c7a824f38c4739538e87e71f40831ef37aae83c1d5b",
+      "bytes": 8610
+    },
+    {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native003-owned-control-choices-clarification-001/index.json",
+      "sha256": "e836a92b045c694f81c83b736c3a0025eff7f00da8d5a89cfdc3f391dd6a9922",
+      "bytes": 2318
+    }
+  ],
+  "original_findings_preserved": [
+    {
+      "id": "C01",
+      "issue": "Original U1/ownership invariants suppress only the leader default destructor. Native and fixed-query handles can remain unreaped at110, so their default destructor/release paths were not specified.",
+      "resolution": "Require the additive all-owned-handle rule, including partial construction, strong retention, no inherited destructor or active-list cleanup fallback, explicit exact-PID reap only, and no child-state API after110. Constructor internal work and process-wide cleanup behavior remain source-proof obligations."
+    },
+    {
+      "id": "C02",
+      "issue": "Original caller table has no successful NATIVE_IDENTITY to NATIVE_RUNNING edge.",
+      "resolution": "Require the additive edge only for timely matching retained PID/caller PPID/certified PGID and valid clock joins with no stop/error. Failure, stop, equality/late deadline and incomplete identity retain precedence."
+    }
+  ],
+  "accounting": {
+    "named_firstparty_records": 20,
+    "named_firstparty_bytes": 348436,
+    "strict_JSON_documents": 14,
+    "original_owner_transition_rows": 21,
+    "original_caller_transition_rows": 10,
+    "effective_caller_transition_rows": 11,
+    "original_guard_design_cases": 30,
+    "additional_guard_design_cases": 6,
+    "combined_guard_design_cases": 36,
+    "test_methods_executed_or_claimed": 0,
+    "readonly_ps_forms": 2,
+    "typed_receipt_schemas": 4,
+    "conditional_exact_reuse_definitions": 6
+  },
+  "preserved_limits": {
+    "normal_seconds_from_t0": 95,
+    "TERM_deadline_seconds_from_t0": 105,
+    "KILL_reap_deadline_seconds_from_t0": 110,
+    "whole_closure_seconds_from_t0": 115,
+    "native_upper_seconds": 100,
+    "TERM_upper_seconds": 10,
+    "sampled_RSS_bytes": 2147483648,
+    "inclusive_bytes": 536870912,
+    "growth_bytes": 33554432,
+    "requested_thread_environment": 1,
+    "automatic_retry": false
+  },
+  "important_limits": [
+    "Private no-op destructor is a future fixed local source obligation, not proof that constructor internals cannot run late, create unknown children or enter process-wide cleanup.",
+    "Outer cannot reap a native/query grandchild; unavailable or unconsumed terminal status at110 remains unknown/unreaped. Teardown is never credited as reap, group absence or receipt completion.",
+    "Complete-candidate receipts do not predict their own final size, hash, raw return status or whole startup-through-return time. Independent final postwrite/outer-return observations remain mandatory.",
+    "Native100 and TERM10 are preserved upper limits;95/105/110/115 reservations add control boundaries without changing material, geometry, loads, tolerances, solver arguments, force gates or numerical thresholds.",
+    "No containment, runtime/provider equivalence, sampled true peak, ABI, native solve, head feasibility or physical/manufacturing qualification follows."
+  ],
+  "lineage": "Reviewer authored earlier native/helper/control work and earlier finite arithmetic/publication peers, and is independent of this CONTROL-CHOICES/clarification author (/root/lpbf_linear_refinement). This is one design review across original plus required additive resolution, not a new independent physics derivation.",
+  "implementation_authorized": false,
+  "target_import_compile_eval_or_execution_performed": false,
+  "process_API_or_runtime_body_operations_performed": false,
+  "PUB_or_Git_mutation_performed": false,
+  "future_implementation": null,
+  "future_actual": null,
+  "future_admission": null,
+  "future_launch": null,
+  "future_result": null,
+  "native003_HOLD_preserved": true,
+  "head_poor_cells_unchanged": 24,
+  "mechanical_failures_unchanged": 12,
+  "physical_or_manufacturing_acceptance": false
+}

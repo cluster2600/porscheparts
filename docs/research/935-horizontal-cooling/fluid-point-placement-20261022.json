@@ -1,0 +1,439 @@
+{
+  "schema": "935-fluid-point-placement-v1",
+  "date": "2026-10-22",
+  "programme": "horizontal_935_reference_installation",
+  "parent_checkpoint_sha256": "80ba6ce7c085169aa6a9504436a0062096f44e988ee28a48ccaf7b7394b0f235",
+  "source_sha256": {
+    "twins/935-horizontal-cooling-system-f0/source/optimize_fluid_edge_stars.py": "5c276f0abf175a7cdea833652b481c9c4f93cae85aedf254f20c1f5019677cc2"
+  },
+  "scope": {
+    "full_system_goal_complete": false,
+    "scale_verified": false,
+    "axis_registration_verified": false,
+    "historical_interfaces_verified": false,
+    "complete_mechanism_defined": false,
+    "snapped_wall_to_analysis_surface_distance_qualified": false,
+    "fluid_mesh_extended_geometry_admitted": false,
+    "three_mesh_convergence_established": false,
+    "current_geometry_CFD_accepted": false,
+    "accepted_for_PhysicsNeMo_training": false,
+    "strength_validated": false,
+    "fatigue_validated": false,
+    "material_process_qualified": false,
+    "manufacturing_authorized": false,
+    "physical_validation": false
+  },
+  "PicoGK_design_master_changed": false,
+  "new_rotor_PDE_runs": 0,
+  "native_cases": {
+    "baseline": {
+      "nonorthogonal_faces_over_70_degrees": 872,
+      "small_determinant_cells": 519,
+      "interpolation_weight_below_005_faces": 28,
+      "volume_ratio_below_001_faces": 4,
+      "native_quality_error_face_union": 1078,
+      "failed_native_checks": 4,
+      "cells": 890488,
+      "vertices": 199356,
+      "boundary_triangles": 229098,
+      "all_cell_orientations_positive": true,
+      "exact_volume_equal_to_PLC": true,
+      "complete_boundary_coordinate_triangle_marker_bijection": true,
+      "native_points_sha256": "51965d2b46b154c08618f2a650a935375b139d3b4222ef8ad0402f121b779bff",
+      "volume_npz_sha256": "bcba7625ff0bc33a78f8270577b5edbfef19de897118d22dce1264166d9c31db",
+      "audit_sha256": "db62f983cb4f096108504e91d53975b385645f688801112ecee3c378426e4f54",
+      "native_execution_sha256": "07f2998dc27c94c1a7da32e79503e606433491e01b020c6f5368e26e955ef467",
+      "native_quality_log_sha256": "442b1d92de91862aad81432ee99a8ecb45ae8982bd4a8c5712aa04d19f338432",
+      "original_quality_dictionary_unchanged": true,
+      "extended_mesh_quality_passed": false
+    },
+    "pilot": {
+      "nonorthogonal_faces_over_70_degrees": 872,
+      "small_determinant_cells": 515,
+      "interpolation_weight_below_005_faces": 28,
+      "volume_ratio_below_001_faces": 4,
+      "native_quality_error_face_union": 1078,
+      "failed_native_checks": 4,
+      "cells": 890506,
+      "vertices": 199360,
+      "boundary_triangles": 229098,
+      "all_cell_orientations_positive": true,
+      "exact_volume_equal_to_PLC": true,
+      "complete_boundary_coordinate_triangle_marker_bijection": true,
+      "native_points_sha256": "6d61ca88205a39f61bf8a63464a57c44b4c1918d2044b6f769da9666f4310a07",
+      "volume_npz_sha256": "5a62c88a64f5483ac934a4d63ed3e2a94a854d76c6c0c9aa907259dbb583caca",
+      "audit_sha256": "30b175437a4b882bb684c0685c925ba4f214066784430ff9d23c88bf810d92b1",
+      "native_execution_sha256": "6aae01cecc49e2689b5df1ed3198643adb68b4f4c3e68f8fed388ab22f867f3d",
+      "native_quality_log_sha256": "9231b1eff9df758fdab1eee8b7cda1c381e6cd3d7ee99edd56db20122d030ff6",
+      "original_quality_dictionary_unchanged": true,
+      "extended_mesh_quality_passed": false
+    },
+    "full_1": {
+      "nonorthogonal_faces_over_70_degrees": 866,
+      "small_determinant_cells": 450,
+      "interpolation_weight_below_005_faces": 26,
+      "volume_ratio_below_001_faces": 4,
+      "native_quality_error_face_union": 1077,
+      "failed_native_checks": 4,
+      "cells": 890772,
+      "vertices": 199421,
+      "boundary_triangles": 229098,
+      "all_cell_orientations_positive": true,
+      "exact_volume_equal_to_PLC": true,
+      "complete_boundary_coordinate_triangle_marker_bijection": true,
+      "native_points_sha256": "77734e10effdac69f28ac3ffe579bab996966010d0bc17aadb0d7033105ae41b",
+      "volume_npz_sha256": "739d51a005eb312c04b169d5a5c862f0510b6f84dd5d836650b6ce3388ec054a",
+      "audit_sha256": "c533eb805ec904a06cba0888d20442ae6b8ae460fba00cda84a06db628d4aac3",
+      "native_execution_sha256": "5e7a0e4f29e96d74005b47443206040bab3189b8aa60ceb19dc7fd026568cb23",
+      "native_quality_log_sha256": "3239d89000f19f49cfbcf62fd6f66e4964310c9d770129a06aa524e7f0784d21",
+      "original_quality_dictionary_unchanged": true,
+      "extended_mesh_quality_passed": false
+    },
+    "full_2": {
+      "nonorthogonal_faces_over_70_degrees": 866,
+      "small_determinant_cells": 448,
+      "interpolation_weight_below_005_faces": 26,
+      "volume_ratio_below_001_faces": 4,
+      "native_quality_error_face_union": 1077,
+      "failed_native_checks": 4,
+      "cells": 890778,
+      "vertices": 199423,
+      "boundary_triangles": 229098,
+      "all_cell_orientations_positive": true,
+      "exact_volume_equal_to_PLC": true,
+      "complete_boundary_coordinate_triangle_marker_bijection": true,
+      "native_points_sha256": "76f0cf90e1e57bb386e5b05a3932b607c7257f43ac79ac53f215923f5c1b8131",
+      "volume_npz_sha256": "446b74074fe87538a16fc4bba0e1b8c0a83ba2b30e36c7d0584560831b075ece",
+      "audit_sha256": "819ed51916d12b963cb9c2c1c7c9d17b3d74167ce545d2705d84a11f350c7383",
+      "native_execution_sha256": "fe14fffcfeddada5e697b8609d0fbc67b7235a05b91cf13e9d5e28d42cb89272",
+      "native_quality_log_sha256": "7dddd51e64d11e9d3bbbd83be6de82be50ff7985dfedb880feea5c1982417e7d",
+      "original_quality_dictionary_unchanged": true,
+      "extended_mesh_quality_passed": false
+    }
+  },
+  "sweeps": {
+    "pilot": {
+      "status": "kernel_star_candidate_pending_complete_independent_audits",
+      "source_sha256": "5c276f0abf175a7cdea833652b481c9c4f93cae85aedf254f20c1f5019677cc2",
+      "helper_sha256": {
+        "reconnect_fluid_tetrahedra.py": "6c84ddf41db9d1c4dd71478e821064c996205696d35d5d0626bffd552b1a691a",
+        "optimize_interior_stars.py": "12aa60e254f1d7f54e4170f8d2750b3bbfce6d878ed3111eaf637b0b77f1cbb3",
+        "rebuild_fluid_edge_stars.py": "2763305fae804e507e3d365f68fcac8be9c78623ece068958f9a56e145bb47c3"
+      },
+      "parent_assessment_sha256": "db62f983cb4f096108504e91d53975b385645f688801112ecee3c378426e4f54",
+      "eligible_internal_edges": 394,
+      "sampled_edges": 32,
+      "sample_selection": "index_stratified_without_replacement",
+      "maximum_edge_valence": 32,
+      "optimizer": {
+        "method": "SciPy_differential_evolution",
+        "maxiter": 15,
+        "popsize": 5,
+        "initialization": "sobol",
+        "rng": 0,
+        "workers": 1,
+        "polish": false,
+        "maximum_DE_objective_evaluations": 256
+      },
+      "decisions": {
+        "no_monotone_FV_trial": 28,
+        "accepted_disjoint_star": 4
+      },
+      "input_vertices": 199356,
+      "output_vertices": 199360,
+      "input_cells": 890488,
+      "output_cells": 890506,
+      "original_vertices_unchanged": true,
+      "boundary_triangles_and_markers_unchanged": true,
+      "candidate_sha256": "5a62c88a64f5483ac934a4d63ed3e2a94a854d76c6c0c9aa907259dbb583caca",
+      "elapsed_s": 7.293718465138227,
+      "NumPy": "2.2.6",
+      "SciPy": "1.17.1",
+      "CFD_accepted": false,
+      "manufacturing_authorized": false
+    },
+    "1": {
+      "status": "kernel_star_candidate_pending_complete_independent_audits",
+      "source_sha256": "5c276f0abf175a7cdea833652b481c9c4f93cae85aedf254f20c1f5019677cc2",
+      "helper_sha256": {
+        "reconnect_fluid_tetrahedra.py": "6c84ddf41db9d1c4dd71478e821064c996205696d35d5d0626bffd552b1a691a",
+        "optimize_interior_stars.py": "12aa60e254f1d7f54e4170f8d2750b3bbfce6d878ed3111eaf637b0b77f1cbb3",
+        "rebuild_fluid_edge_stars.py": "2763305fae804e507e3d365f68fcac8be9c78623ece068958f9a56e145bb47c3"
+      },
+      "parent_assessment_sha256": "30b175437a4b882bb684c0685c925ba4f214066784430ff9d23c88bf810d92b1",
+      "eligible_internal_edges": 390,
+      "sampled_edges": 390,
+      "sample_selection": "index_stratified_without_replacement",
+      "maximum_edge_valence": 32,
+      "optimizer": {
+        "method": "SciPy_differential_evolution",
+        "maxiter": 15,
+        "popsize": 5,
+        "initialization": "sobol",
+        "rng": 0,
+        "workers": 1,
+        "polish": false,
+        "maximum_DE_objective_evaluations": 256
+      },
+      "decisions": {
+        "no_monotone_FV_trial": 320,
+        "accepted_disjoint_star": 61,
+        "reserved_neighbourhood": 9
+      },
+      "input_vertices": 199360,
+      "output_vertices": 199421,
+      "input_cells": 890506,
+      "output_cells": 890772,
+      "original_vertices_unchanged": true,
+      "boundary_triangles_and_markers_unchanged": true,
+      "candidate_sha256": "739d51a005eb312c04b169d5a5c862f0510b6f84dd5d836650b6ce3388ec054a",
+      "elapsed_s": 42.52555995085277,
+      "NumPy": "2.2.6",
+      "SciPy": "1.17.1",
+      "CFD_accepted": false,
+      "manufacturing_authorized": false
+    },
+    "2": {
+      "status": "kernel_star_candidate_pending_complete_independent_audits",
+      "source_sha256": "5c276f0abf175a7cdea833652b481c9c4f93cae85aedf254f20c1f5019677cc2",
+      "helper_sha256": {
+        "reconnect_fluid_tetrahedra.py": "6c84ddf41db9d1c4dd71478e821064c996205696d35d5d0626bffd552b1a691a",
+        "optimize_interior_stars.py": "12aa60e254f1d7f54e4170f8d2750b3bbfce6d878ed3111eaf637b0b77f1cbb3",
+        "rebuild_fluid_edge_stars.py": "2763305fae804e507e3d365f68fcac8be9c78623ece068958f9a56e145bb47c3"
+      },
+      "parent_assessment_sha256": "c533eb805ec904a06cba0888d20442ae6b8ae460fba00cda84a06db628d4aac3",
+      "eligible_internal_edges": 329,
+      "sampled_edges": 329,
+      "sample_selection": "index_stratified_without_replacement",
+      "maximum_edge_valence": 32,
+      "optimizer": {
+        "method": "SciPy_differential_evolution",
+        "maxiter": 15,
+        "popsize": 5,
+        "initialization": "sobol",
+        "rng": 0,
+        "workers": 1,
+        "polish": false,
+        "maximum_DE_objective_evaluations": 256
+      },
+      "decisions": {
+        "no_monotone_FV_trial": 327,
+        "accepted_disjoint_star": 2
+      },
+      "input_vertices": 199421,
+      "output_vertices": 199423,
+      "input_cells": 890772,
+      "output_cells": 890778,
+      "original_vertices_unchanged": true,
+      "boundary_triangles_and_markers_unchanged": true,
+      "candidate_sha256": "446b74074fe87538a16fc4bba0e1b8c0a83ba2b30e36c7d0584560831b075ece",
+      "elapsed_s": 38.1691182309296,
+      "NumPy": "2.2.6",
+      "SciPy": "1.17.1",
+      "CFD_accepted": false,
+      "manufacturing_authorized": false
+    },
+    "3": {
+      "status": "kernel_star_candidate_pending_complete_independent_audits",
+      "source_sha256": "5c276f0abf175a7cdea833652b481c9c4f93cae85aedf254f20c1f5019677cc2",
+      "helper_sha256": {
+        "reconnect_fluid_tetrahedra.py": "6c84ddf41db9d1c4dd71478e821064c996205696d35d5d0626bffd552b1a691a",
+        "optimize_interior_stars.py": "12aa60e254f1d7f54e4170f8d2750b3bbfce6d878ed3111eaf637b0b77f1cbb3",
+        "rebuild_fluid_edge_stars.py": "2763305fae804e507e3d365f68fcac8be9c78623ece068958f9a56e145bb47c3"
+      },
+      "parent_assessment_sha256": "819ed51916d12b963cb9c2c1c7c9d17b3d74167ce545d2705d84a11f350c7383",
+      "eligible_internal_edges": 327,
+      "sampled_edges": 327,
+      "sample_selection": "index_stratified_without_replacement",
+      "maximum_edge_valence": 32,
+      "optimizer": {
+        "method": "SciPy_differential_evolution",
+        "maxiter": 15,
+        "popsize": 5,
+        "initialization": "sobol",
+        "rng": 0,
+        "workers": 1,
+        "polish": false,
+        "maximum_DE_objective_evaluations": 256
+      },
+      "decisions": {
+        "no_monotone_FV_trial": 327
+      },
+      "input_vertices": 199423,
+      "output_vertices": 199423,
+      "input_cells": 890778,
+      "output_cells": 890778,
+      "original_vertices_unchanged": true,
+      "boundary_triangles_and_markers_unchanged": true,
+      "candidate_sha256": "446b74074fe87538a16fc4bba0e1b8c0a83ba2b30e36c7d0584560831b075ece",
+      "elapsed_s": 39.495997701073065,
+      "NumPy": "2.2.6",
+      "SciPy": "1.17.1",
+      "CFD_accepted": false,
+      "manufacturing_authorized": false
+    }
+  },
+  "accepted_interior_stars": 67,
+  "point_selection_attribution": {
+    "pilot": {
+      "parent_audit_sha256": "db62f983cb4f096108504e91d53975b385645f688801112ecee3c378426e4f54",
+      "child_audit_sha256": "30b175437a4b882bb684c0685c925ba4f214066784430ff9d23c88bf810d92b1",
+      "added_points": 4,
+      "off_old_interpolation_line": 4,
+      "matches_five_controls": 0,
+      "source_sha256": "ffcdfcface1a257717aaf43ca0e06eb00ed5d55ae506201f7ba4c41cbb956340",
+      "all_selected_cavity_boundaries_reconstructed": true,
+      "CFD_accepted": false,
+      "manufacturing_authorized": false
+    },
+    "1": {
+      "parent_audit_sha256": "30b175437a4b882bb684c0685c925ba4f214066784430ff9d23c88bf810d92b1",
+      "child_audit_sha256": "c533eb805ec904a06cba0888d20442ae6b8ae460fba00cda84a06db628d4aac3",
+      "added_points": 61,
+      "off_old_interpolation_line": 57,
+      "matches_five_controls": 4,
+      "source_sha256": "ffcdfcface1a257717aaf43ca0e06eb00ed5d55ae506201f7ba4c41cbb956340",
+      "all_selected_cavity_boundaries_reconstructed": true,
+      "CFD_accepted": false,
+      "manufacturing_authorized": false
+    },
+    "2": {
+      "parent_audit_sha256": "c533eb805ec904a06cba0888d20442ae6b8ae460fba00cda84a06db628d4aac3",
+      "child_audit_sha256": "819ed51916d12b963cb9c2c1c7c9d17b3d74167ce545d2705d84a11f350c7383",
+      "added_points": 2,
+      "off_old_interpolation_line": 2,
+      "matches_five_controls": 0,
+      "source_sha256": "ffcdfcface1a257717aaf43ca0e06eb00ed5d55ae506201f7ba4c41cbb956340",
+      "all_selected_cavity_boundaries_reconstructed": true,
+      "CFD_accepted": false,
+      "manufacturing_authorized": false
+    }
+  },
+  "global_mesh_optimization_converged": false,
+  "restricted_final_sweep_zero_changes": true,
+  "final_native_case": "full-foam-002",
+  "prefix_and_boundary_verification": {
+    "baseline_audit_sha256": "db62f983cb4f096108504e91d53975b385645f688801112ecee3c378426e4f54",
+    "final_audit_sha256": "819ed51916d12b963cb9c2c1c7c9d17b3d74167ce545d2705d84a11f350c7383",
+    "original_vertices": 199356,
+    "final_vertices": 199423,
+    "added_interior_air_mesh_points": 67,
+    "all_original_vertices_retained_as_exact_prefix": true,
+    "boundary_triangles_and_markers_exactly_equal": true,
+    "initial_197819_vertices_also_exactly_preserved": true,
+    "CFD_accepted": false,
+    "manufacturing_authorized": false
+  },
+  "independent_final_native_verification": {
+    "status": "native_mesh_matches_all_audited_coordinates_tetrahedra_and_patch_markers",
+    "vertices": 199423,
+    "tetrahedra": 890778,
+    "boundary_triangles": 229098,
+    "VTK_version": "9.6.2",
+    "source_sha256": "e8db78489b12b6eb65ec39048ae93d1ccd851a4d5307b59fb73861eed0f0ecc4",
+    "volume_audit_sha256": "819ed51916d12b963cb9c2c1c7c9d17b3d74167ce545d2705d84a11f350c7383",
+    "native_mesh_sha256": {
+      "points": "76f0cf90e1e57bb386e5b05a3932b607c7257f43ac79ac53f215923f5c1b8131",
+      "faces": "f41192a57c458db0a95c83e637623de7c22c1fac517cba69df49b5cda66f7c88",
+      "boundary": "5088d932175355a50ac784e7a42a72651619d6d9c741543657a567be64a0419c",
+      "owner": "cfb8b4ef8b1c5d41771528e12f9f305e7de0e54e1c17af02f17a1dae1ac48367",
+      "neighbour": "ecef47ad617e4b0c3b874eb091b9a56468b9722cc80d119aa3500958cee61448"
+    },
+    "CFD_accepted": false,
+    "manufacturing_authorized": false
+  },
+  "independent_final_failure_diagnostic": {
+    "status": "all_native_failure_counts_reproduced_independently",
+    "source_sha256": "4f5420c78b7cf1d556e8fcf2f57d3322d61b398d0793dbf733865a4770d6e729",
+    "native_log_sha256": "7dddd51e64d11e9d3bbbd83be6de82be50ff7985dfedb880feea5c1982417e7d",
+    "cells": 890778,
+    "small_determinant_cells": 448,
+    "severe_nonorthogonal_faces": 866,
+    "small_determinant_by_number_of_internal_faces": {
+      "0": 0,
+      "1": 0,
+      "2": 345,
+      "3": 75,
+      "4": 28
+    },
+    "patch_adjacency": {
+      "inlet": {
+        "adjacent_cells": 2304,
+        "small_determinant_cells": 5,
+        "severe_nonorth_faces_touching_adjacent_cells": 0
+      },
+      "outlet": {
+        "adjacent_cells": 2304,
+        "small_determinant_cells": 1,
+        "severe_nonorth_faces_touching_adjacent_cells": 0
+      },
+      "duct": {
+        "adjacent_cells": 12374,
+        "small_determinant_cells": 26,
+        "severe_nonorth_faces_touching_adjacent_cells": 0
+      },
+      "rotor": {
+        "adjacent_cells": 211777,
+        "small_determinant_cells": 394,
+        "severe_nonorth_faces_touching_adjacent_cells": 176
+      }
+    },
+    "boundary_vertices_changed": false,
+    "CFD_accepted": false
+  },
+  "visual_review": {
+    "source_sha256": "ab755e5a784fb9d2059a1d699a2e18453d87d39e565ef2c69d00486321beb412",
+    "independent_diagnostic_source_sha256": "4f5420c78b7cf1d556e8fcf2f57d3322d61b398d0793dbf733865a4770d6e729",
+    "failed_cells_before": 519,
+    "failed_cells_after": 448,
+    "added_interior_air_mesh_points": 67,
+    "projection": "XY, actual CFD rotor wall in grey; not a stress or airflow field",
+    "image_sha256": "01bbe2c3aa2541263354c0a1e77644ce68f5767e675581b23dac1f0675912780",
+    "CFD_accepted": false,
+    "manufacturing_authorized": false
+  },
+  "private_recipe_sha256": {
+    "probe_placement_stars.py": "5c276f0abf175a7cdea833652b481c9c4f93cae85aedf254f20c1f5019677cc2",
+    "continue-placement-001.py": "5a354ae2a6d472d739ab85ad4520a1f91b7ce899c4682a388a4b4744d5afb9e5",
+    "attribute-placement-001.py": "ffcdfcface1a257717aaf43ca0e06eb00ed5d55ae506201f7ba4c41cbb956340",
+    "rebuild_fluid_edge_stars.py": "2763305fae804e507e3d365f68fcac8be9c78623ece068958f9a56e145bb47c3",
+    "optimize_interior_stars.py": "12aa60e254f1d7f54e4170f8d2750b3bbfce6d878ed3111eaf637b0b77f1cbb3",
+    "reconnect_fluid_tetrahedra.py": "6c84ddf41db9d1c4dd71478e821064c996205696d35d5d0626bffd552b1a691a",
+    "export-kernel-001.py": "2de2ac5fe8783fb3ff2db7fb462818463aaeafd0d50de2401e8f0bd02e0c1b46"
+  },
+  "runtime": {
+    "Python": "3.13.15",
+    "NumPy": "2.2.6",
+    "new_paid_instance_created": false,
+    "family": "OpenFOAM_Foundation_13",
+    "image_index_sha256": "a1db60cbf61bbcca52c171e50cab01ed0b6ec860b227e7c5fc50f7b809659b4f",
+    "rootless": true,
+    "network_isolated": true,
+    "process_address_space_limit_GiB": 8,
+    "process_wall_limit_s": 600,
+    "SciPy": "1.17.1"
+  },
+  "previous_main_CI": {
+    "conclusion": "success",
+    "headSha": "8e062b2a66e4f2446ab9cf10d8bf2ce603d8917b",
+    "status": "completed",
+    "url": "https://github.com/cluster2600/porscheparts/actions/runs/39781145696"
+  },
+  "next_action": "Address remaining rank-two cells with guarded topology changes or convex cell agglomeration; optimize existing interior points for nonorthogonality and interpolation, retaining exact physical boundaries and the original complete native quality gate.",
+  "private_archive": {
+    "archive_sha256": "89da48ad98cb08efa78432ea6b2083b114af28a676fa8f12529470bc634f497c",
+    "archive_bytes": 394366940,
+    "manifest_sha256": "39af5701b4d73ce974121bc6dc1cae138831765d67c4fd23cd936ac770eedf47",
+    "entries": 145,
+    "all_members_verified": true,
+    "all_inputs_unchanged_after_archive": true,
+    "all_solver_jobs_finished": true,
+    "created_epoch": 1792674761.7794824,
+    "new_paid_instance_created": false,
+    "manufacturing_authorized": false,
+    "Mac_all_members_verified": true,
+    "repository": "cluster2600/porscheparts-935-private",
+    "tag": "analysis-mesh-935-20261022",
+    "archive": "fluid-placement-checkpoint-001.tar.gz"
+  }
+}

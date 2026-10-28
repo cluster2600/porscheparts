@@ -1,0 +1,95 @@
+{
+  "$comment": "Declared values transcribed from a community source record, not a physical measurement. As a documented_specification this record has no instruments and no readings, so it cannot feed parts/993-int-switch-blank-0001/source/switch_blank.py or twins/993-cabin-dashboard-switch-0001/source/check_fit.py, which build only from readings. pdf_page is null and plate carries the locator in the source (the thread number), because the validator requires one of the two. The MNL- prefix of value_id is the validator's pattern for every declared value, whatever the source type. Desk test of docs/CAPTURE_PROTOCOL.md on pilot 1, decision 0013.",
+  "schema_version": "1.0.0",
+  "measurement_id": "MEAS-DECLARED-993-INT-SWITCH-BLANK-0001-RL-1202129",
+  "record_kind": "documented_specification",
+  "source_id": "SRC-RENNLIST-993-DASHBOARD-LIGHTING-DIMENSIONS",
+  "subject": {
+    "part_id": "993-INT-SWITCH-BLANK-0001",
+    "part_reference": "not established; candidate 993 613 523 00 unconfirmed, see the part record",
+    "variant": "993_coupe_1996_as_declared",
+    "description": "Opening sizes declared by an owner who measured a window switch to estimate the opening of a warning lamp above the ignition lock; no instrument, datum or repeat stated."
+  },
+  "session": {
+    "performed_on": "2026-10-15",
+    "operator_role": "maintainer, desk review of existing sources",
+    "ambient_temperature_c": null
+  },
+  "datum": {
+    "origin": "None declared: the source states no origin, reference face or measuring point",
+    "axes": "Not applicable: the source gives two numbers for a rectangular opening; reading them as width x height is the repository's reading; orientation on the car not recorded in the source record",
+    "reference_image": null
+  },
+  "instruments": [],
+  "readings": [],
+  "declared_values": [
+    {
+      "value_id": "MNL-SWB-RL1202129-01",
+      "record_type": "technical_data",
+      "source_collection": "community_forum_post",
+      "description": "Passage under the covering, width x height, as declared",
+      "pdf_page": null,
+      "plate": "Rennlist thread 1202129; post not re-read, the page is blocked to automated reading",
+      "line": null,
+      "value_text": "about 19 x 31 mm",
+      "unit": "mm",
+      "numeric_values": [19.0, 31.0],
+      "source_id": "SRC-RENNLIST-993-DASHBOARD-LIGHTING-DIMENSIONS",
+      "extraction_status": "structured_derived",
+      "details": {
+        "feature": "passage under the covering, measured on a window switch",
+        "instrument": "not stated",
+        "tolerance": "not stated",
+        "repeats": "not stated",
+        "twin_dimension_candidates": [],
+        "interpretation": "Not the minimum opening H01/H02 of TWIN-993-CABIN-DASH-SWITCH-0001: the source gives this figure for the passage under the covering. That this passage lies behind the faceplate is the repository's reading, not the source's. It is the figure the concept F0 and the fit-test kit use as the opening.",
+    "extraction_note": "extraction_status structured_derived is the closest admissible value: the figure is transcribed from the prose notes of a source record, not from a structured register.",
+        "used_by": [
+          "parts/993-int-switch-blank-0001/evidence/concept-f0.json",
+          "parts/993-int-switch-blank-0001/print/kit.json",
+          "parts/993-int-switch-blank-0001/source/fit_test_kit.py",
+          "parts/993-int-switch-blank-0001/source/picogk.json"
+        ],
+        "transcribed_from": "catalog/sources/src-rennlist-993-dashboard-lighting-dimensions.json, notes",
+        "source_record_wording": "environ 19 x 31 mm pour le passage sous le revetement (about 19 x 31 mm for the passage under the covering)",
+        "checked_against_original_post": false
+      }
+    },
+    {
+      "value_id": "MNL-SWB-RL1202129-02",
+      "record_type": "technical_data",
+      "source_collection": "community_forum_post",
+      "description": "Faceplate opening of a switch housing, width x height, as declared",
+      "pdf_page": null,
+      "plate": "Rennlist thread 1202129; post not re-read, the page is blocked to automated reading",
+      "line": null,
+      "value_text": "about 17 x 28 mm",
+      "unit": "mm",
+      "numeric_values": [17.0, 28.0],
+      "source_id": "SRC-RENNLIST-993-DASHBOARD-LIGHTING-DIMENSIONS",
+      "extraction_status": "structured_derived",
+      "details": {
+        "feature": "faceplate opening of an old switch housing",
+        "instrument": "not stated",
+        "tolerance": "not stated",
+        "repeats": "not stated",
+        "twin_dimension_candidates": ["H01", "H02"],
+        "interpretation": "Read as the host opening of TWIN-993-CABIN-DASH-SWITCH-0001 (H01 width, H02 height). This mapping is the repository's reading, not a statement of the source.",
+        "transcribed_from": "catalog/sources/src-rennlist-993-dashboard-lighting-dimensions.json, notes",
+        "source_record_wording": "ou environ 17 x 28 mm pour l'ouverture de la facade d'un ancien boitier d'interrupteur (or about 17 x 28 mm for the faceplate opening of an old switch housing)",
+        "checked_against_original_post": false
+      }
+    }
+  ],
+  "evidence": {
+    "level": "C",
+    "files": [
+      "catalog/sources/src-rennlist-993-dashboard-lighting-dimensions.json"
+    ],
+    "contradictions": [
+      "The concept F0 and the fit-test kit take 19 x 31 mm as the opening, while this source gives that figure for the passage under the covering and about 17 x 28 mm for the faceplate opening. SRC-RENNLIST-993-CONSOLE-SWITCH-HOLE-DIMENSIONS gives 17.0 x 27.9 mm for the console opening and 16.2 x 27.4 mm for the blank. The two figures of this source differ by 2 mm in width and 3 mm in height; the fit-test kit brackets only the larger one, by plus or minus 0.4 mm.",
+      "Location: the values come from a window switch measured to estimate a lamp opening above the ignition lock; the part record names a dashboard switch-blank location. Whether they describe the same opening is not established."
+    ]
+  },
+  "notes": "Desk transcription under the owner's no-buy, no-measure constraint (2026-09-14). These are declared values: they stay out of readings, do not change geometry.source_type, and cannot open the measured-input gate of the switch blank master. Both figures of the source are kept separately; neither is preferred, averaged or adjusted. Re-read the thread when it becomes accessible and set checked_against_original_post accordingly."
+}

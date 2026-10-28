@@ -1,0 +1,93 @@
+{
+  "schema": "962-observer003-once-framework-dependency-link-receipt/v1",
+  "actual": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer003-build-root-execution-006/actual-contract.json",
+    "sha256": "d8c06995befd9212efb1211a5fdeab90ffb437806714c1849faba350b31a0af1",
+    "bytes": 5339
+  },
+  "controller": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer003-guard-relink-owner-prep-001/run_link_once.py",
+    "sha256": "74ee0b31e437481afdb09733205ae40d073dce0330f36ca19e90177a76077236",
+    "bytes": 9069
+  },
+  "grant": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer003-build-root-execution-006/link-correction-grant.json",
+    "sha256": "305d8ae8868f8b96009cf2f4b61e982782f5bc36bbcfac3d50c65f7a440fef22",
+    "bytes": 2075
+  },
+  "before": {
+    "count": 26,
+    "observed_sha256": "e10b5ddadd9eeac09b2f6df22a1c03e338a3c81cc875a4fb8bc9fc2c10f0a1fa",
+    "changed": {}
+  },
+  "resource_samples": [
+    {
+      "RSS_bytes": 245760,
+      "processes": 1,
+      "raw_owned_rows": [
+        {
+          "raw": "15844 15844    240 Us  ",
+          "pid": 15844,
+          "pgid": 15844,
+          "reported_RSS_KiB": 240,
+          "RSS_bytes": 245760,
+          "state": "Us"
+        }
+      ],
+      "threads": 11,
+      "thread_observation": {
+        "observed_counts": {
+          "15844": 11
+        },
+        "unobserved_pids": [],
+        "returncode": 0,
+        "error": null
+      },
+      "zombie_pids": [],
+      "elapsed_seconds": 0.04346008296124637
+    }
+  ],
+  "resource_observation_exit_races": [],
+  "returncode": 0,
+  "link_completed": true,
+  "guard_executed": false,
+  "plugin_or_host_or_native_executed": false,
+  "ABI_acceptance": false,
+  "automatic_retry": false,
+  "pid": 15844,
+  "owned_group_absent": true,
+  "actual_guard_binary": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-END181-dof-map-observer-prep-003/build-006/guard_rows",
+    "sha256": "194950021ab3d4a97a9001db3693d46b28e3e16563f41fffe06c3175e853de69",
+    "bytes": 167832
+  },
+  "failure": null,
+  "controller_stop_requests": [],
+  "elapsed_seconds": 0.0944100827910006,
+  "after": {
+    "count": 26,
+    "observed_sha256": "e10b5ddadd9eeac09b2f6df22a1c03e338a3c81cc875a4fb8bc9fc2c10f0a1fa",
+    "changed": {}
+  },
+  "all_declared_inputs_and_controls_unchanged": true,
+  "peak_sampled_owned_group_RSS_bytes": 245760,
+  "peak_observed_threads_nongating": 11,
+  "owned_output_bytes": 167995,
+  "owned_outputs": {
+    "link.stdout": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-END181-dof-map-observer-prep-003/build-006/link.stdout",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "guard_rows": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-END181-dof-map-observer-prep-003/build-006/guard_rows",
+      "sha256": "194950021ab3d4a97a9001db3693d46b28e3e16563f41fffe06c3175e853de69",
+      "bytes": 167832
+    },
+    "link.stderr": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-END181-dof-map-observer-prep-003/build-006/link.stderr",
+      "sha256": "822274f00e2f918ea392bdae14843bb0f29a7e9a5e9126bf8f7d04fb72d1507c",
+      "bytes": 163
+    }
+  }
+}

@@ -1,0 +1,79 @@
+{
+  "mesh": "mesh-7",
+  "case": "combined-spring-1000-static",
+  "C3D10_elements": 85315,
+  "nodes": 159121,
+  "maximum_VM_MPa": 1676.5460429720838,
+  "all_global_maximum_ties": [
+    {
+      "DAT_row_zero_based": 254573,
+      "element_index_zero_based": 63643,
+      "element_id": 63644,
+      "IP_one_based": 2,
+      "reference_undeformed_IP_xyz_mm": [
+        82.04811777177238,
+        -14.827397749251979,
+        12.51573730357237
+      ],
+      "VM_MPa": 1676.5460429720838,
+      "element_corner_centroid_mm": [
+        81.9230862570395,
+        -15.3495612222735,
+        12.3207480973985
+      ],
+      "nearest_prescribed_displacement_node": null,
+      "nearest_grounded_spring_node": {
+        "node_id": 89193,
+        "undeformed_xyz_mm": [
+          273.25847541194,
+          -15.061187577259,
+          0.33815119180192
+        ],
+        "distance_mm": 191.5978839394477,
+        "scope": "Euclidean distance to the retained discrete node set only; not distance to a BC/load surface"
+      },
+      "nearest_applied_load_node": {
+        "node_id": 4115,
+        "undeformed_xyz_mm": [
+          55.365405419812,
+          -19.150203265469,
+          4.0
+        ],
+        "distance_mm": 28.340281717229796,
+        "scope": "Euclidean distance to the retained discrete node set only; not distance to a BC/load surface"
+      },
+      "corner_measure": {
+        "bounds_mm": [
+          [
+            81.187249472462,
+            -16.331287486449,
+            11.897285705335
+          ],
+          [
+            82.202665223312,
+            -14.18196820123,
+            12.756757217282
+          ]
+        ],
+        "six_corner_edge_lengths_mm": [
+          1.1765577639916671,
+          1.1959568036430468,
+          1.3046785134251964,
+          1.6439071831918004,
+          1.6924546349685128,
+          2.5172357815814346
+        ],
+        "measured_h_mm": 2.5172357815814346,
+        "proposed_half_h_mm": 1.2586178907907173,
+        "h_definition": "Maximum of the six actual corner edges of this peak element; not global mesh label"
+      }
+    }
+  ],
+  "maximum_ties": 1,
+  "constrained_node_count": 0,
+  "grounded_spring_node_count": 4568,
+  "loaded_node_count": 2112,
+  "no_peak_excluded": true,
+  "coordinate_scope": "Reference coordinates from solver mesh INP",
+  "quadrature": "Official CCX2.21 gauss3d5 / straight-midside C3D10; IP1..4 have barycentric a at corners1..4"
+}

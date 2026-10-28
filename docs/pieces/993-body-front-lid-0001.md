@@ -2,7 +2,7 @@
 
 # Front lid, composite panel
 
-**Status: functional. No part is released; see [SAFETY.md](../../SAFETY.md).**
+**Status: functional. No part is released; see [SAFETY.md](../../docs/SAFETY.md).**
 
 993 front lid reproduced in composite from the original steel panel. Bolted skin part, with no structural function and no anti-intrusion bar, retained as the first lightweight body pilot.
 
@@ -83,6 +83,10 @@ Catalogue record: [`catalog/parts/993-body-front-lid-0001.json`](../../catalog/p
 
 *`parts/993-body-front-lid-0001/media/views.png` — concept CAD block, **not** the original part, not a print file.*
 
+![photo-concept](../../parts/993-body-front-lid-0001/media/photo-concept.png)
+
+*`parts/993-body-front-lid-0001/media/photo-concept.png` — AI-generated studio illustration based on the concept CAD preview. Material and finish are illustrative; generated details may differ. Not a photograph or evidence of fit, function or manufacturing.*
+
 ## Provenance and sources
 
 | field | value |
@@ -102,7 +106,7 @@ Catalogue record: [`catalog/parts/993-body-front-lid-0001.json`](../../catalog/p
 | status | concept |
 | vehicle tested | not recorded |
 | reviewed by |  |
-| limitations | not recorded |
+| limitations | Class functional and not non_critical: the panel carries nothing, but a lid that comes loose at high speed is a safety event. The hinge and latch interfaces are therefore the critical dimensions, not the skin.<br>Original mass claimed at 14.0 kg by a German tuner, consistent with the 8 kg Porsche Motorsport aluminum lid. Claimed carbon epoxy target: 4.1 kg, a gain of about 9.9 kg. These masses are claimed, not weighed by this project: weighing the donor panel remains step zero.<br>Porsche part number transcribed from catalogue Kat 017: 993 511 010 01, and 993 511 010 31 for the Carrera RS. Variant and model year of the donor vehicle remain to be confirmed.<br>The mold must be taken from a sound, undeformed original panel: a crash-damaged lid would give a wrong part.<br>Fiber, resin, layup and core not defined. A poorly designed glass laminate can be heavier than the original steel.<br>Fire behavior, under-hood temperature resistance and UV aging not evaluated.<br>Regulatory compliance not studied: a change of body material may require an inspection depending on the country of registration. |
 
 **Evidence**
 

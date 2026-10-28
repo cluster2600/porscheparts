@@ -1,0 +1,239 @@
+{
+  "original_record": {
+    "relative_path": "work/962-engineering/direct-sicn-cube-prep-002/held-contract.json",
+    "sha256": "b1b7c5ad490138f8730c89df45b704f02c3055367af6302a7c92d107bc7a25c5",
+    "bytes": 19503
+  },
+  "projection": {
+    "schema": "962-direct-sicn-cube/v1",
+    "status": "HELD_SOURCE_ONLY_DISTINCT_EXISTING_RUNTIME_UNRUN",
+    "scope": "tiny_cube_software_only",
+    "native_execution_authorized": false,
+    "root_and_peer_review_complete": false,
+    "selected_runtime_review_complete": false,
+    "output": "work/962-engineering/direct-sicn-cube-002",
+    "native_python": "runtime:check-environment/bin/python",
+    "reader_sha256": "8351733aa0cd3dff2c86bcedd6c5cf931fde7306d0870738f9794448fbe8d12e",
+    "runner_sha256": "5b9c10be3b09f4f72f2e4dcedb4588a5fee3e61d98eed9b4797498410795fae5",
+    "runtime": {
+      "python_executable_sha256": "1699bf8aa705a8bb71613bef5cdd7d7c8c9d9a188a841f41679aa9b5830b8f60"
+    },
+    "numpy_init": "runtime:numpy/__init__.py",
+    "scipy_directory": "runtime:scipy",
+    "runtime_scope": "Selected existing Python3.12.11/NumPy2.2.6/SciPy1.17.1 plus unchanged ctypesGmsh4.15.2; supplementary loaded-file inventory; no complete import/package/OS/ABI closure",
+    "runtime_files": {
+      "runtime:python-executable": "1699bf8aa705a8bb71613bef5cdd7d7c8c9d9a188a841f41679aa9b5830b8f60",
+      "runtime:check-environment/pyvenv.cfg": "3c8db224b99000e0d1e07a7135ba83bc60337c191f248b89430b17cc0f4154d5",
+      "runtime:numpy/__init__.py": "6ae17b070c0f70a8e3cad89a510a256942e5a1f37ea5feb120cec167ed2a6236",
+      "runtime:numpy/version.py": "a7fcfa08bc3d730a77a7d31ec027bf53a9695812c353a526dd077dc1451b7d7a",
+      "runtime:numpy/_core/_multiarray_umath.cpython-312-darwin.so": "cbf15cd30e2672b47a1cfc9aa82449d4eb0597a0d853e8697953568c1dc1468b",
+      "runtime:scipy/optimize/_slsqplib.cpython-312-darwin.so": "87a06d3b2baa758c805edf7aed9a25e7dbc67c0ce78a5441b7bf2d4607484a01",
+      "runtime:scipy/_lib/_ccallback_c.cpython-312-darwin.so": "c2a75e8b8e99ddc1ded49d67eba1b22b2fc2459da4fea343bbed4dab043943cc",
+      "runtime:geometry-environment/lib/python3.10/site-packages/gmsh.py": "f4b0935cebde899750293d87a643090e5ea33c9b18d249267f507db68a0e01c3",
+      "runtime:geometry-environment/lib/libgmsh.4.15.dylib": "def0f5c10988a986e5e879b3db9669d8fe016a81e2d994bbaf2b8497c6b8a58a",
+      "runtime:numpy-2.2.6.dist-info/METADATA": "91d66d0d60ad467c679555c0e12ac739bb395940dc22bc5a39d45780aba129ad",
+      "runtime:numpy-2.2.6.dist-info/WHEEL": "c9205a833e45c2523ee63f7e23ee099ae0a8f4ce52f5bd09a07208776c4a19eb",
+      "runtime:numpy-2.2.6.dist-info/RECORD": "0c706e9ab694d81fc86909956ba643e556a44510abf72a3e42015096618f92c9",
+      "runtime:scipy-1.17.1.dist-info/METADATA": "b1cd2c784f6e003c6c71af4c5ee57f6370ee467d17b656250d9fd38cf579d7d0",
+      "runtime:scipy-1.17.1.dist-info/WHEEL": "26726246f91715a154e07973ca8a82029674ee3cba86914a77f2e47c1a566739",
+      "runtime:scipy-1.17.1.dist-info/RECORD": "40854b0a6f26fddac2fff00eac8f44df588809b8904e2ddf8ae6df6b351c3c46",
+      "runtime:scipy/__init__.py": "335bc6e0a9909dc7534f9569a3685a92dc8001cb8c63a6da4c239849ff02d4d0",
+      "runtime:scipy/__config__.py": "e6816202bf28fa5b88330c38bf0144960fcbb4951abbee25bb0f630d62a2fbe2",
+      "runtime:scipy/version.py": "cc9497153bb7ec9181b86b367e5ebd1bff8dc02a60092d549052f19c9d70bf06",
+      "runtime:scipy/_distributor_init.py": "cc94e137716fa1fd3d876e3cd38a4d0cf77688dfa5087577c8f959ca549e7e04",
+      "runtime:scipy/_lib/__init__.py": "097ac7fd806967e1c89871eba9722142dfef7afa783f93570a5a7b86714c54b3",
+      "runtime:scipy/_lib/_ccallback.py": "37d08eee4258ce4e885904792c77ff600d7e3aae3c477f142212452252764327",
+      "runtime:scipy/_lib/_util.py": "a9fefbc04d605f88abb7b905a72a2e510ad42223fdcfe049a4ea12c9455b89a2",
+      "runtime:scipy/_lib/_array_api.py": "e7b6d08f877456b9d26af808267263f41f2870261951a19d9ff133301d15e1e2",
+      "runtime:scipy/optimize/__init__.py": "ed9cde3ea145d57d77efb7ffb3776955d7a0e7523763031a9ee87c3e5e0cd661",
+      "runtime:scipy/optimize/_minimize.py": "5afd3ecbeaba6606c27f5f9f298782c0dae80dd0e3e01d98d4249922ede6b7ea",
+      "runtime:scipy/optimize/_slsqp_py.py": "c8362e8d36440f3de97b58562aadb86661271ea7f66160505f51a601aff71609",
+      "runtime:scipy/optimize/_optimize.py": "041a1807ccaa68115c93b07bed497d25c294a7d730ce5a7cb1f21fc5a185fa61",
+      "runtime:scipy/optimize/_numdiff.py": "ab92e82d0f93f2c7a35eba0a2800b70cf8015d97ccf094abf556206211beb00b",
+      "runtime:scipy/optimize/_constraints.py": "8e5d37213a974e7e78cb4cf8966073fa14e523157e797d6382c978c59e338fd2",
+      "runtime:scipy/optimize/_differentiable_functions.py": "a2bd7ec5b4c1781e02052fbb23220cbfdd5094fae28cb230fc653c03198546e0",
+      "runtime:scipy/.dylibs/libgcc_s.1.1.dylib": "6781ce1f79dc10e211ba532b766b0a844265767d3343f029a08112802450a730",
+      "runtime:scipy/.dylibs/libgfortran.5.dylib": "869a6555a787fd5590e2c440ccb4d82d963586168659fbf3354e1570e3f10bcc",
+      "runtime:scipy/.dylibs/libquadmath.0.dylib": "676d86e51a3950f75b41945a758bdb02be1c11fef4f4a45b1994d483228e2504",
+      "runtime:scipy/optimize/_group_columns.cpython-312-darwin.so": "b9b8b001c4995194612ef37f0f6d87a531f473e1202155844bd4a63f7944b809"
+    },
+    "input_hashes": {
+      "work/962-engineering/direct-sicn-cube-prep-001/direct_sicn_cube.py": "0ddc9c6c96fa17302416c21c8f6a8873d1306dab1056acf7fb2a552c2a7c1d9b",
+      "work/962-engineering/direct-sicn-cube-prep-001/test_guards.py": "dfd0452597221e6f811d352201ace0801bd37f2b5bf4b14c0e037eeabbe94fb2",
+      "work/962-engineering/direct-sicn-cube-prep-001/held-contract.json": "db6def5bf8909387b6ba4be4dc68769360dd396eca55e35b88718b6ff558e5cd",
+      "work/962-engineering/direct-sicn-cube-prep-001/METHOD.md": "2492bf45f9460b2ec86cea86f16bfdd11253639bf16548a558c5fe288550a631",
+      "work/962-engineering/direct-sicn-cube-prep-001/source-reuse.json": "5661811eafdd43ca5c76d8263c0045d85fecf6ca2c45446e459e5114a79d3db1",
+      "work/962-engineering/direct-sicn-cube-prep-001/preparation-checks.json": "77c50f5fff69e674d9dc40a70098caf43a166f3973f50be7ffc19c8b1b92f796",
+      "work/962-engineering/direct-sicn-cube-source-peer-001/review.json": "01fc96798533e4552157e7073349dfab8129221f6a1c94b683c86f2bf1b38a1f",
+      "work/962-engineering/direct-sicn-cube-result-peer-001/review.json": "c14ecf3a4b526a9405948b3caf07eaa5e5cef10d42f1cd7fb796bd2203ae172d",
+      "work/962-engineering/direct-sicn-cube-001/fixture-report.json": "cbb309e45583976b6b85a8db68b7a0829e1dbc5b13a3939cf6bde79a102bf59c",
+      "work/962-engineering/direct-sicn-cube-001/execution-receipt.json": "2120803f8fd10a82a214697a9fc1720aef426ec552d0b638bb7397e939d5a801",
+      "work/962-engineering/direct-sicn-cube-001/frozen-contract.json": "14b6d72a1d1caa0c5e9ff2da9e72e1582cc4a964b7e39d7fd52a4c150ca1ce68",
+      "work/962-engineering/direct-sicn-cube-root-execution-001/closed-result.json": "c0abc336df13cff2f3db42d23bdba5fe3cb6958afe6d8ce656009c2733c88fd9",
+      "work/962-engineering/direct-sicn-cube-runtime-next-step-note-001/NOTE.md": "25aad2b533fd7bb6647f584f3a434fbf7b1d8b31418f560a3f250b7aff350622",
+      "work/962-engineering/direct-sicn-cube-runtime-next-step-note-001/source-bindings.json": "f3cd5f7e9dc38dab735c276d89951e682773eaa52bac05e7c7782b2c67200a96",
+      "work/962-engineering/direct-sicn-cube-alternative-runtime-selected-001/selected-pins.json": "881687f62d2cdc254902cc3654767f3448247f2d7d340fb85b271dd98cfa3677",
+      "work/962-engineering/direct-sicn-cube-controller-prep-002/run_readback.py": "5b9c10be3b09f4f72f2e4dcedb4588a5fee3e61d98eed9b4797498410795fae5",
+      "work/962-engineering/direct-sicn-cube-controller-prep-002/test_runner_guards.py": "aab036ea95957ba82d5bf6ba0ecb2db44712c10251d46f94c2c2621f7708f108",
+      "work/962-engineering/direct-sicn-cube-controller-prep-002/source-delta.json": "420dbd8198807383656f7e405d8285472f34a29f5e1077e700b39a6ac1b04522",
+      "work/962-engineering/direct-sicn-cube-controller-prep-002/source.diff": "487da27c3dec35fa8107155e06e5d7ffa622212af60c73405a4958375dbce231",
+      "work/962-engineering/direct-sicn-cube-controller-root-source-002/review.json": "99125a06af6199857ed8804e027ef54e2efdf7828a75d073f00cb7c38b217dfb",
+      "work/962-engineering/direct-sicn-cube-controller-root-source-002/guards.log": "1977f2a9586b39873a8a875b3b77633d15ce59664793c0d8926b6bef5fe3dcd5",
+      "twins/962-cylinder-head-f0/source/gmsh_sicn_reference.json": "28cf35720fa94611a17b219b60b2ead8c1153f6ae346e581d32fd1efe08f112d",
+      "twins/962-cylinder-head-f0/source/check_sicn_regular_sliver.py": "5f1f58636c901c4b22750c63621bdfb431bd127001e3f819ab7730d6ca9203aa",
+      "work/962-engineering/direct-sicn-cube-prep-002/direct_sicn_cube.py": "8351733aa0cd3dff2c86bcedd6c5cf931fde7306d0870738f9794448fbe8d12e",
+      "work/962-engineering/direct-sicn-cube-prep-002/test_guards.py": "163c196129136afb2e29af086f299aaee19c9a2cb51cc175995a38e01fd63446",
+      "work/962-engineering/direct-sicn-cube-prep-002/METHOD.md": "ea5b91ed0d08596076edbb64290f798c17be9ad408105cce7c17ea3b1aaa0d23",
+      "work/962-engineering/direct-sicn-cube-prep-002/source-delta.json": "d58de8df0f1b54bb8286ff6e4e11180191151712175aa70cc647e0409f11de8f",
+      "work/962-engineering/direct-sicn-cube-prep-002/source.diff": "4faa0e8ed6ce31fa0bb1039abf63164565af84b2b1b21931ea2dd9cdaea2bb89",
+      "work/962-engineering/direct-sicn-cube-prep-002/test.diff": "7c18c53777a3291accc33edf49a95e6c8a91586c62c35728afaadf229bbb0d83"
+    },
+    "limits": {
+      "wall_seconds": 30,
+      "sampled_RSS_bytes": 1073741824,
+      "sampled_output_bytes": 16777216,
+      "threads": 2
+    },
+    "solver": {
+      "method": "SLSQP",
+      "maxiter": 100,
+      "ftol": 1e-10,
+      "eps": 1.4901161193847656e-08
+    },
+    "options": {
+      "General.NumThreads": 2,
+      "Mesh.Renumber": 0,
+      "Mesh.Optimize": 0,
+      "Mesh.OptimizeNetgen": 0,
+      "Mesh.MshFileVersion": 4.1,
+      "Mesh.Binary": 1,
+      "Mesh.SaveAll": 1
+    },
+    "sicn_gate": 0.1,
+    "qualification": {
+      "head_optimization_authorized": false,
+      "engineering_accepted": false,
+      "physics_qualified": false,
+      "manufacturing_authorized": false
+    },
+    "input_counts": {
+      "nodes": 9,
+      "boundary_nodes": 8,
+      "interior_nodes": 1,
+      "TET4": 12,
+      "TRI3": 12
+    },
+    "initial_interior_mm": [
+      0.984375,
+      0.25,
+      -0.125
+    ],
+    "known_feasible_reference_mm": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "intended_operations": {
+      "high_level_SLSQP_minimize_invocations": 1,
+      "backend_iterations_and_callbacks_may_repeat": true,
+      "Gmsh_generate": 0,
+      "Gmsh_optimize": 0,
+      "Gmsh_createGeometry": 0,
+      "write_MSH": 1
+    },
+    "materialization": {
+      "reader": {
+        "name": "reader.py",
+        "source": "work/962-engineering/direct-sicn-cube-prep-002/direct_sicn_cube.py",
+        "sha256": "8351733aa0cd3dff2c86bcedd6c5cf931fde7306d0870738f9794448fbe8d12e"
+      },
+      "runner": {
+        "name": "run_readback.py",
+        "source": "work/962-engineering/direct-sicn-cube-controller-prep-002/run_readback.py",
+        "sha256": "5b9c10be3b09f4f72f2e4dcedb4588a5fee3e61d98eed9b4797498410795fae5"
+      },
+      "frozen_contract": "exact separate actual child; externally bound SHA, no circular self-hash"
+    },
+    "pending": {
+      "source_peer": null,
+      "root_six_guard_result": null,
+      "selected_runtime_review": null,
+      "successful_import_or_ABI_witness": null,
+      "actual_child": null,
+      "external_child_peer": null,
+      "sole_native_resource_preflight": null,
+      "native_calibration_or_optimization_result": null
+    },
+    "no_automatic_retry_or_sweep": true,
+    "no_head_geometry_read_or_authority": true,
+    "root_next_steps": [
+      "Review the six reversible runtime/origin substitutions and unchanged14 functionASTs",
+      "Root runs six stdlib guards once under the selected interpreter; existing13 controllerPASS retained separately",
+      "Fresh selected34file identities/resources and external actualchild+peer, exact3file materialization in absent direct-sicn-cube-002",
+      "If selected, one bounded tiny eager-import/calibration/SLSQP/save-reopen witness; no fallback, sweep or head authority"
+    ],
+    "root_controller_mock_result": {
+      "path": "work/962-engineering/direct-sicn-cube-controller-root-source-002/review.json",
+      "sha256": "99125a06af6199857ed8804e027ef54e2efdf7828a75d073f00cb7c38b217dfb",
+      "guards": 13,
+      "returncode": 0,
+      "worker_or_native_execution": false
+    },
+    "gmsh_module": "runtime:geometry-environment/lib/python3.10/site-packages/gmsh.py",
+    "selected_runtime_metadata": {
+      "path": "work/962-engineering/direct-sicn-cube-alternative-runtime-selected-001/selected-pins.json",
+      "sha256": "881687f62d2cdc254902cc3654767f3448247f2d7d340fb85b271dd98cfa3677",
+      "selected_files": 34,
+      "author_read_runtime_bytes": false
+    },
+    "distinct_runtime_backend_hypothesis": true,
+    "preserved_predecessor": {
+      "source_sha256": "0ddc9c6c96fa17302416c21c8f6a8873d1306dab1056acf7fb2a552c2a7c1d9b",
+      "held_sha256": "db6def5bf8909387b6ba4be4dc68769360dd396eca55e35b88718b6ff558e5cd"
+    },
+    "preserved_actual_failure": {
+      "report_sha256": "cbb309e45583976b6b85a8db68b7a0829e1dbc5b13a3939cf6bde79a102bf59c",
+      "root_closed_sha256": "c0abc336df13cff2f3db42d23bdba5fe3cb6958afe6d8ce656009c2733c88fd9",
+      "stage": "imports",
+      "minimize_calls_attempted": 0,
+      "calibration_or_export": false,
+      "loader_cause_not_inferred": true
+    },
+    "source_delta_sha256": "d58de8df0f1b54bb8286ff6e4e11180191151712175aa70cc647e0409f11de8f",
+    "prepared_worker_and_six_guards_unrun": true,
+    "expected_runtime_versions": {
+      "python": "3.12.11",
+      "numpy": "2.2.6",
+      "scipy": "1.17.1",
+      "gmsh": "4.15.2"
+    }
+  },
+  "omitted_field_paths": [],
+  "path_role_rules": [
+    {
+      "role": "runtime:scipy",
+      "operation": "exact prefix substitution in keys and string values; digest values unchanged"
+    },
+    {
+      "role": "runtime:numpy",
+      "operation": "exact prefix substitution in keys and string values; digest values unchanged"
+    },
+    {
+      "role": "runtime:geometry-environment",
+      "operation": "exact prefix substitution in keys and string values; digest values unchanged"
+    },
+    {
+      "role": "runtime:check-environment",
+      "operation": "exact prefix substitution in keys and string values; digest values unchanged"
+    },
+    {
+      "role": "runtime:python-executable",
+      "operation": "exact prefix substitution in keys and string values; digest values unchanged"
+    },
+    {
+      "role": "project-relative path",
+      "operation": "exact prefix substitution in keys and string values; digest values unchanged"
+    }
+  ],
+  "derived_observations": null
+}

@@ -192,7 +192,7 @@ uncertainty and permission to use the data.
 ## Public dyno data
 
 The search found a few dyno points, but no complete calibration dossier. The
-register [`dyno-reference.json`](../simulation/993-turbo-dyno/dyno-reference.json)
+register [`dyno-reference.json`](../work/simulation/993-turbo-dyno/dyno-reference.json)
 keeps the published values and their context:
 
 | Case | Reported data | Use retained |
@@ -207,7 +207,7 @@ keeps the published values and their context:
 The script `scripts/model_turbo_dyno_0d.py` derives for each point the power
 from torque, the BMEP and a per-turbo mass-flow envelope. It also compares the
 published power/torque values at the same speed and flags discrepancies. The
-output is in `simulation/993-turbo-dyno/derived-dyno-curves.json` and stays at
+output is in `work/simulation/993-turbo-dyno/derived-dyno-curves.json` and stays at
 status `reference_only`: it fabricates neither a compressor map nor a CFD
 calibration.
 
@@ -281,7 +281,7 @@ numbers must not replace a sensor before/after the intercooler.
 ## Relation to the current OpenFOAM case
 
 The case
-`simulation/993-k16-cold-side-baseline/` is a regression harness:
+`work/simulation/993-k16-cold-side-baseline/` is a regression harness:
 
 - equivalent rectangular diffuser `50 -> 68 mm` over `90 mm`;
 - imposed density `1.2 kg/m3`;
@@ -296,7 +296,7 @@ physical case will have to impose a justified per-bank mass flow and a geometry
 whose sections are known.
 
 Three sensitivity variants are now materialized in
-`simulation/993-turbo-variants/`: `K16-OEM`, `K16-24-HYBRID` and
+`work/simulation/993-turbo-variants/`: `K16-OEM`, `K16-24-HYBRID` and
 `K24-REFERENCE`. They use the same derived mass flow of `0.156 kg/s` per turbo,
 at constant density, so as to compare only synthetic cold envelopes. Inlet
 velocities change with the section. The manifest attaches the FVD, Cargraphic,

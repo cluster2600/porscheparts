@@ -5,11 +5,11 @@ section cannot ovalize, so its result followed the bond width assumed, from
 23,665 to 57,508 N.m/deg, and the ranking against the skin-formed boxes
 could not be settled. Here every tube is a shell of its own wall:
 
-- each member path is cut at the skin's own section spacing (18, 12.6 and
-  9 mm on the three meshes); at each station a ring of nodes on the tube's
+- each member path is cut at the skin's own section spacing (18 and 12.6
+  mm on the two meshes); at each station a ring of nodes on the tube's
   mid-surface (radius = outer radius minus half the wall), about as many as
   keep the elements square, the section frame carried along the path so
-  the mesh does not twist; quadrilaterals split into S3 triangles. A tube
+  the mesh does not twist; quadrilaterals split into triangles (S6, as the skin). A tube
   mesh kept fixed while the skin is refined does not converge: the bond
   line becomes ever sparser point ties, which sink into the finer skin;
 - the bond is the line of tangency: at each station, the node nearest the
@@ -24,13 +24,17 @@ could not be settled. Here every tube is a shell of its own wall:
   them;
 - sills, tunnel, floor and bulkheads exactly as torsion_rings.py.
 
-Checked on a cantilever plate with a Ø60 x 3 mm tube tied along its line of
-tangency: the tip deflection converges (1.358, 1.414, 1.439, 1.443 mm over
+Checked, in S3 before 2026-10-12, on a cantilever plate with a Ø60 x 3 mm
+tube tied along its line of tangency: the tip deflection converges (1.358, 1.414, 1.439, 1.443 mm over
 four meshes) to 9% softer than composite beam theory, which assumes rigid
 sections and full shear transfer.
 
-Same load case, three meshes, every K the value two solves agree on. Values
-of this model, not of a vehicle.
+Same load case, two meshes (the 420-section one does not fit SPOOLES in
+12 GB in S6), every K the value two solves agree on. Values
+of this model, not of a vehicle. In a 6 GB container even the 210-section
+S6 solve is killed by the memory limit (2026-10-16): the committed
+../derived/torsion-shell-tubes.json is still the S3 run of 2026-10-11,
+superseded and not yet redone.
 
     python3 torsion_shell_tubes.py      # cadsim image, shapely from the PYLIB
 """
@@ -45,6 +49,7 @@ HERE = pathlib.Path(__file__).parent
 sys.path.insert(0, str(HERE))
 sys.path.append(str(HERE.parents[1] / "fea"))          # after source/: fea has its own build_shell
 import build_shell as bs  # noqa: E402
+import shell_s6 as s6  # noqa: E402
 import torsion as tr  # noqa: E402
 import torsion_monocoque as tm  # noqa: E402
 import torsion_rings as trg  # noqa: E402
@@ -55,6 +60,9 @@ SEGMENT_MM = 15.0              # set per mesh by solve_density: the skin's secti
 N_AROUND = 16                  # likewise, so the tube's elements are about square
 JOINT_MM = 12.0
 BOND_REACH_MM = 40.0           # a station whose tangent node is farther from the skin is not bonded
+# The 420-section mesh in S6 (about 145,000 triangles, 85,000 in tubes) does
+# not fit SPOOLES in 12 GB: two meshes only.
+DENSITIES = trg.DENSITIES[:2]
 
 
 def resample(q, step):
@@ -225,17 +233,22 @@ def main():
     P, geo = trg.geometry()
     stations = np.arange(-600, 2451, 50.0)
     rows, meshes = [], []
-    for n, res in trg.DENSITIES:
-        row, mesh, extra, model = solve_density(n, res, P, geo, stations, n == bs.N_STATIONS)
+    for n, res in DENSITIES:            # written after each mesh: a run killed on the next keeps what it has
+        row, mesh, extra, model = solve_density(n, res, P, geo, stations, True)
         rows.append(row)
         meshes.append(mesh)
+        write(rows, meshes, extra, model, stations)
+
+
+def write(rows, meshes, extra, model, stations):
+    """JSON of the meshes solved so far, the last one's twist and model."""
     doc = {
         "model": "closed-ring PicoGK study (../picogk-rings/) with its tubes meshed as shells; torsion load case of torsion.py",
         "classification": "values of this model under this load, not of a vehicle; prohibited_pending_engineering",
-        "tubes": "S3 shells of each tube's wall, stations at the skin's section spacing, nodes around in proportion; "
+        "tubes": f"{s6.ELEMENT} shells of each tube's wall, stations at the skin's section spacing, nodes around in proportion; "
                  "bonded along the line of tangency to the skin triangle under it (*EQUATION, translations); "
                  f"end rings tied to another tube's nearest node within {JOINT_MM:.0f} mm",
-        "check": "cantilever plate with a tube tied along its line of tangency: converges to 9% softer than composite beam theory",
+        "check": "in S3, before 2026-10-12, not redone in S6: cantilever plate with a tube tied along its line of tangency converges to 9% softer than composite beam theory",
         "meshes": meshes,
         "twist_stations_d_mm": stations.tolist(),
         "cases": {name: {"mass_kg": rows[-1][name][1], "K": [r[name][0] for r in rows], "K_repeats": [r[name][2] for r in rows],
@@ -250,4 +263,5 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    with s6.installed():                      # S6 shells (shell_s6.py)
+        main()

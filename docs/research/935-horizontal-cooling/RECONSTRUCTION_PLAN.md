@@ -5,6 +5,18 @@
 
 ## Ordre d'implémentation retenu et état actuel
 
+The [25 October continuation](ROOT_MESH_RESUME_20261025.md) closes five inferred
+root passages in the native PicoGK recipe, preserving protected original
+triangles, and corrects Foundation 13 reconstruction with a moved analytic
+control. The real fluid mesh still fails the full native concavity check.
+Calibration, installed interfaces, accepted fan CFD and fabrication remain
+open; the earlier pause record is retained as history.
+
+La [reprise du 21 octobre par la chaîne du README](README_CHAIN_20261021.md)
+conserve le rotor corrigé et isole la sensibilité du calcul à la bande de
+fixation de l'alésage. Les études analytiques R0/V2/S1 restent identifiées
+séparément ; leurs résultats ne sont pas transférés au rotor scanné.
+
 La [chaîne native 935 et l'essai local Qwen](NATIVE_935_PIPELINE.md) constituent
 la continuation active : neuf pales reconstruites individuellement, rotor et
 carénage créés dans PicoGK, enveloppes moteur à six cylindres et contrôle des

@@ -1,0 +1,54 @@
+{
+  "schema": "962-material-production-gap-independent-source-note-peer/v1",
+  "decision": "CLEAR_BOUNDED_SOURCE_NOTE_ONLY_NO_MATERIAL_OR_PROCESS_QUALIFICATION",
+  "bindings": {
+    "path": "work/962-engineering/material-production-gap-audit-peer-001/bindings.json",
+    "sha256": "0eab49dfc4295efb1c974be61028afcd58452e4b65468ac2655f87ed2e6b415f",
+    "bytes": 6322
+  },
+  "reviewed": {
+    "full_note_and_binding_map_read": true,
+    "all14_current_bodies_exact_and_unchanged_after": true,
+    "seven_existing_recipes_and_missing_laws_preserved": true,
+    "assumed_thermal_and_mechanical_constants_match_explicit_hypothesis_cards": true,
+    "measured_matched_fields_remain_null": true,
+    "publisher_conductivity_temperature_unknown_vs_frozen4169B_worktree_room_temperature_wording_confirmed": true,
+    "editable_piston_room_temperature_assertion_untouched": true
+  },
+  "primary_findings": [
+    {
+      "source": "nikon-cp1",
+      "finding": "Parsed NXG PRIME table identifies CP1_NXG600_PRIM_MBP3_V1,60um,NXG XII600/NXG600E1000W. Machined verticalHT1 yields295/285MPa mean/minimum; UTS315/305MPa and elongation16/12percent. Notes7-9 specify room-temperature tensile tests, defined-batch95/95 tolerance intervals, virgin/used and overlap specimens,400C4h/20Cmin air/200C loading and furnace-off then air cooling.99.8percent is optical relative density, not bulk rho. The note does not turn any into service/head allowables."
+    },
+    {
+      "source": "eos-cp1",
+      "finding": "Parsed current EOS page confirms distinctM291/M404 routes and TRL3, blank modulus cells, no Poisson value and CTE entries over25-100/200/300C intervals. Electrical conductivity is labeledIACS; interval expansion is not independently licensed as differentialalpha(T), isotropy or a complete hot law."
+    },
+    {
+      "source": "mams24-29",
+      "finding": "The original Constellium-author abstract supports process/surface/defect/postprocessing dependence and Kitagawa work, with no numericalS-N/TMF/creep design curves provided in that abstract."
+    },
+    {
+      "source": "pauzon-original-publisher",
+      "finding": "The original publisher excerpt usesMS/m and electrical-conductivity terminology. This corroborates electrical rather than thermal conductivity; no paper values or state are transferred into the head register/card."
+    }
+  ],
+  "scope_and_lineage": "Independent review of the new source note, its bounded local hashes and newly checked primary text. Reviewer authored earlier explicit assumed-material/card and software-witness lineage; this does not independently qualify those assumptions, source recipes or engine geometry.",
+  "nonblocking_limits": [
+    "No inspectable PDF screenshot pixels were available; table/footnote review is web-text-parse scope, not visual certification or source-byte identity.",
+    "The note own search history, Velo3D403/confidential exclusion and bounded no-pin scan remain author-reported historical observations. They were not reproduced or upgraded to universal absence assertions.",
+    "SSRN direct access failed; the independent electrical-unit check uses the original publisher excerpt. No full-paper curve, corrigendum effect, matchedE/nu/hot law or physical test dataset was extracted.",
+    "The frozen engineering wording remains preserved and current publisher wording correctly leaves187 conductivity-column temperature unknown. The separate catalogue issue is acknowledged but remains outside this head note and unedited.",
+    "All entries remain characterization leads and unqualified hypotheses; no machine/state/RT-to-service transfer, CTE convention inference, supplier selection or blanket card qualification is approved."
+  ],
+  "blockers": [],
+  "engineering_accepted": false,
+  "physics_qualified": false,
+  "material_process_qualified": false,
+  "head_strength_validated": false,
+  "LPBF_calibrated": false,
+  "manufacturing_authorized": false,
+  "solver_card_changed": false,
+  "source_or_native_execution": false,
+  "publisher_or_catalogue_mutated": false
+}

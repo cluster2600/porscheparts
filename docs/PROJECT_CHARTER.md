@@ -67,6 +67,13 @@ The maintainer of this repository has access to no 993, no spare part and no
 measuring instrument. Nothing will be weighed, measured, printed, fitted or
 tested in-house.
 
+On 2026-09-14 the project owner made this explicit: no part will be bought and
+none measured, by the owner either. Every dimension starts from existing scans,
+workshop manuals, the PET parts catalogue and published data sheets; a dimension
+none of them gives is recorded as unsourced or candidate, never estimated and
+never assigned to someone to measure
+([decision 0013](decisions/0013-pilots-advance-on-documentary-evidence.md)).
+
 This is not a gap to fill; it is the working frame. It has three consequences,
 which act as rules:
 

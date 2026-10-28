@@ -1,0 +1,1076 @@
+{
+  "schema": "qwen-picogk-qualified-native-results/v1",
+  "date": "2026-10-22",
+  "scope": "Repeated authored software regression witnesses, not unseen model evaluation",
+  "source_sha256": {
+    "training/qwen-picogk-native-gate/qualified_gate.py": "461d720dfda790b2fd3cb218520f580d4b31d74e2c9c7235887cbdded79064af",
+    "training/qwen-picogk-native-gate/gate.py": "34c84f72b0bc67780203e78a9df4b7510c4a78c2a91c8446510020b2a6d15efa",
+    "training/qwen-picogk-native-gate/VdbWitness.cs": "930573868024a2daa9c5837099d85a917266dfac3a7a764c8235073e92f81da1",
+    "training/qwen-picogk-20261012/pilot.py": "7beeea39ecc8707286616ba16a5e464a0acef9f8d22a35de3b65b9f66aa696be",
+    "training/qwen-picogk-qualified-20261014/request_contract.py": "8e9f3308f98c52099117fb3069276a79dc729578c70ba4809028a45f097b8c1b",
+    "twins/m64-cylinder-head/source/picogk-local-junction/audit_mesh.py": "cc55e633309e52f0a6d0af75f59d3e983bf3b184168abcaf521be3f7752f33e3"
+  },
+  "protocol_sha256": "b39774b3af5e99def37b79e94a12b44909b312f22edfa6afed27d6b3cd34c43b",
+  "driver_sha256": "8f7016b183ca680dc497e4a113a23673246cc63e696bf1221b6c27bd8b025412",
+  "frozen_manifest_sha256": "e924fc8a3b6277dd9e3b5b144c741af32d5044c6eadff6809538ae7649170caa",
+  "qualified_profile_sha256": "114a026a37375dd238f1b6d1cc2ff783d85e72a96696df52dfbdafafc7a2d15c",
+  "adapter_sha256": "70eaea998f78a84b6fc3bf17f155b941353c0c5510cca5640ebca187a53bf1ba",
+  "native_sources_recovered_byte_identically": 88,
+  "host_build": {
+    "errors": 0,
+    "obsolete_warnings": 44,
+    "log_sha256": "193a198d2eb6f2ae6f8fb867fb574e05a584620f01193de00b0d31a53bc04783"
+  },
+  "summary": {
+    "native": {
+      "passed": 10,
+      "total": 10
+    },
+    "vdb": {
+      "passed": 10,
+      "total": 10
+    },
+    "raw_mesh": {
+      "passed": 9,
+      "total": 10
+    }
+  },
+  "fixtures": [
+    {
+      "name": "cylinder-0.5",
+      "receipt_origin": "owner_authored_typed_boundary_fixture_not_model_inference",
+      "schema": "qwen-picogk-qualified-native-gate/v1",
+      "status": "accepted_synthetic_geometry",
+      "geometry_executed": true,
+      "manufacturing_qualified": false,
+      "mesh_repairs_applied": false,
+      "receipt_kind": "qualified_typed_plan",
+      "original_model_text_available": false,
+      "input_sha256": {
+        "receipt": "ec83e0586ff150f18b0bc92a6292dcd9c7b7b40bbebb82037a1a04ad2472305f",
+        "expected": "937787697e78a7d8172df3f317af4440a3d6c98a7426a07a25562d8a4f0c4178",
+        "request": "e8309fd3b3fdc9c2c4e6b8078f538e45b4484462a313d9feeb511c087a6ad793"
+      },
+      "frozen_sha256": "e924fc8a3b6277dd9e3b5b144c741af32d5044c6eadff6809538ae7649170caa",
+      "voxel_mm": 0.5,
+      "plan": {
+        "recipe": "cylinder",
+        "parameters_mm": [
+          13.5,
+          6.25
+        ],
+        "missing": []
+      },
+      "native": {
+        "recipe": "cylinder",
+        "volume": 1650.5923,
+        "triangles": 7556,
+        "roundtrip_triangles": 7556,
+        "min": [
+          -6.2397785,
+          -6.239825,
+          -8.940697e-08
+        ],
+        "max": [
+          6.2398643,
+          6.239825,
+          13.5
+        ],
+        "material_inside": true,
+        "axis_inside": true,
+        "distant_point_inside": false,
+        "voxel_mm": 0.5,
+        "analytic_volume_mm3": 1656.6992509164925,
+        "relative_volume_error": 0.003686215777012069,
+        "geometry_screen_passed": true,
+        "raw_stl_sha256": "670aae5081253a86748938d9412feae6b9ecf2184b19df0b9584d7f30b2af03d",
+        "manufacturing_qualified": false
+      },
+      "raw_mesh": {
+        "faces": 7556,
+        "exact_unique_vertices": 3780,
+        "watertight": true,
+        "winding_consistent": true,
+        "exact_zero_area_faces": 0,
+        "boundary_edges_incidence_one": 0,
+        "edges_incidence_above_two": 0,
+        "surface_components_including_degenerate_faces": 1,
+        "components_are_not_interpreted_as_physical_voids": true,
+        "signed_triangle_volume": 1647.2920593184015,
+        "strict_raw_mesh_screen_pass": true
+      },
+      "vdb": {
+        "passed": true,
+        "field_name": "model_geometry",
+        "field_type": "Voxels",
+        "voxel_mm": 0.5,
+        "voxel_metadata_m": 0.0005,
+        "native_fields_equal": true,
+        "before_volume_mm3": 1650.5923,
+        "after_volume_mm3": 1650.5923,
+        "bounds_equal": true,
+        "original_field_serialized": true,
+        "reconstructed_from_stl": false
+      },
+      "vdb_sha256": "bbcd983a2dd1ee8520967838896714e63ac31daaaece18092a46c2ce86ee4c4a",
+      "numpy_version": "2.2.6",
+      "trimesh_version": "4.6.8"
+    },
+    {
+      "name": "cylinder-1.0",
+      "receipt_origin": "owner_authored_typed_boundary_fixture_not_model_inference",
+      "schema": "qwen-picogk-qualified-native-gate/v1",
+      "status": "accepted_synthetic_geometry",
+      "geometry_executed": true,
+      "manufacturing_qualified": false,
+      "mesh_repairs_applied": false,
+      "receipt_kind": "qualified_typed_plan",
+      "original_model_text_available": false,
+      "input_sha256": {
+        "receipt": "ec83e0586ff150f18b0bc92a6292dcd9c7b7b40bbebb82037a1a04ad2472305f",
+        "expected": "937787697e78a7d8172df3f317af4440a3d6c98a7426a07a25562d8a4f0c4178",
+        "request": "e8309fd3b3fdc9c2c4e6b8078f538e45b4484462a313d9feeb511c087a6ad793"
+      },
+      "frozen_sha256": "e924fc8a3b6277dd9e3b5b144c741af32d5044c6eadff6809538ae7649170caa",
+      "voxel_mm": 1.0,
+      "plan": {
+        "recipe": "cylinder",
+        "parameters_mm": [
+          13.5,
+          6.25
+        ],
+        "missing": []
+      },
+      "native": {
+        "recipe": "cylinder",
+        "volume": 1642.4967,
+        "triangles": 1940,
+        "roundtrip_triangles": 1940,
+        "min": [
+          -6.209443,
+          -6.209448,
+          -1.1920929e-07
+        ],
+        "max": [
+          6.2094994,
+          6.209448,
+          13.5
+        ],
+        "material_inside": true,
+        "axis_inside": true,
+        "distant_point_inside": false,
+        "voxel_mm": 1,
+        "analytic_volume_mm3": 1656.6992509164925,
+        "relative_volume_error": 0.00857279974541888,
+        "geometry_screen_passed": true,
+        "raw_stl_sha256": "17df8d8a6ff77daf1825db5f3900a8ec50d787748dfc6a1c30952d4fc3d799bd",
+        "manufacturing_qualified": false
+      },
+      "raw_mesh": {
+        "faces": 1940,
+        "exact_unique_vertices": 972,
+        "watertight": true,
+        "winding_consistent": true,
+        "exact_zero_area_faces": 0,
+        "boundary_edges_incidence_one": 0,
+        "edges_incidence_above_two": 0,
+        "surface_components_including_degenerate_faces": 1,
+        "components_are_not_interpreted_as_physical_voids": true,
+        "signed_triangle_volume": 1618.8703661040988,
+        "strict_raw_mesh_screen_pass": true
+      },
+      "vdb": {
+        "passed": true,
+        "field_name": "model_geometry",
+        "field_type": "Voxels",
+        "voxel_mm": 1,
+        "voxel_metadata_m": 0.001,
+        "native_fields_equal": true,
+        "before_volume_mm3": 1642.4967,
+        "after_volume_mm3": 1642.4967,
+        "bounds_equal": true,
+        "original_field_serialized": true,
+        "reconstructed_from_stl": false
+      },
+      "vdb_sha256": "cc5105d29590d7c582bd81979bac35579009c98cab02debe662bbad29a49333f",
+      "numpy_version": "2.2.6",
+      "trimesh_version": "4.6.8"
+    },
+    {
+      "name": "pipe-0.5",
+      "receipt_origin": "owner_authored_typed_boundary_fixture_not_model_inference",
+      "schema": "qwen-picogk-qualified-native-gate/v1",
+      "status": "accepted_synthetic_geometry",
+      "geometry_executed": true,
+      "manufacturing_qualified": false,
+      "mesh_repairs_applied": false,
+      "receipt_kind": "qualified_typed_plan",
+      "original_model_text_available": false,
+      "input_sha256": {
+        "receipt": "fded45ab09bba01cc54cdc997a5c21c35b65467d8987c2e76d7fbf9c10093596",
+        "expected": "abe0af5c01d837a6b77bda6e47e2dceb8bdd919d05148deaa047b28aec34755d",
+        "request": "cddb5725e417b32c264903a439e87c5f32c70f0b5178349e18fd1379af290966"
+      },
+      "frozen_sha256": "e924fc8a3b6277dd9e3b5b144c741af32d5044c6eadff6809538ae7649170caa",
+      "voxel_mm": 0.5,
+      "plan": {
+        "recipe": "pipe",
+        "parameters_mm": [
+          18,
+          7,
+          3
+        ],
+        "missing": []
+      },
+      "native": {
+        "recipe": "pipe",
+        "volume": 2259.9094,
+        "triangles": 13688,
+        "roundtrip_triangles": 13688,
+        "min": [
+          -6.9907956,
+          -6.9908805,
+          -8.940697e-08
+        ],
+        "max": [
+          7,
+          6.9908805,
+          18
+        ],
+        "material_inside": true,
+        "axis_inside": false,
+        "distant_point_inside": false,
+        "voxel_mm": 0.5,
+        "analytic_volume_mm3": 2261.946710584651,
+        "relative_volume_error": 0.0009006890282240586,
+        "geometry_screen_passed": true,
+        "raw_stl_sha256": "c978ab04a3214aaed3260eeb8e12c25219586ef85eb0b69e751be4f22a6327b9",
+        "manufacturing_qualified": false
+      },
+      "raw_mesh": {
+        "faces": 13688,
+        "exact_unique_vertices": 6844,
+        "watertight": true,
+        "winding_consistent": true,
+        "exact_zero_area_faces": 0,
+        "boundary_edges_incidence_one": 0,
+        "edges_incidence_above_two": 0,
+        "surface_components_including_degenerate_faces": 1,
+        "components_are_not_interpreted_as_physical_voids": true,
+        "signed_triangle_volume": 2255.685022758436,
+        "strict_raw_mesh_screen_pass": true
+      },
+      "vdb": {
+        "passed": true,
+        "field_name": "model_geometry",
+        "field_type": "Voxels",
+        "voxel_mm": 0.5,
+        "voxel_metadata_m": 0.0005,
+        "native_fields_equal": true,
+        "before_volume_mm3": 2259.9094,
+        "after_volume_mm3": 2259.9094,
+        "bounds_equal": true,
+        "original_field_serialized": true,
+        "reconstructed_from_stl": false
+      },
+      "vdb_sha256": "2ebd0afec3b3c28cd7950c55da70983fcb0f951024598d9f751e58c0bffd25f3",
+      "numpy_version": "2.2.6",
+      "trimesh_version": "4.6.8"
+    },
+    {
+      "name": "pipe-1.0",
+      "receipt_origin": "owner_authored_typed_boundary_fixture_not_model_inference",
+      "schema": "qwen-picogk-qualified-native-gate/v1",
+      "status": "accepted_synthetic_geometry",
+      "geometry_executed": true,
+      "manufacturing_qualified": false,
+      "mesh_repairs_applied": false,
+      "receipt_kind": "qualified_typed_plan",
+      "original_model_text_available": false,
+      "input_sha256": {
+        "receipt": "fded45ab09bba01cc54cdc997a5c21c35b65467d8987c2e76d7fbf9c10093596",
+        "expected": "abe0af5c01d837a6b77bda6e47e2dceb8bdd919d05148deaa047b28aec34755d",
+        "request": "cddb5725e417b32c264903a439e87c5f32c70f0b5178349e18fd1379af290966"
+      },
+      "frozen_sha256": "e924fc8a3b6277dd9e3b5b144c741af32d5044c6eadff6809538ae7649170caa",
+      "voxel_mm": 1.0,
+      "plan": {
+        "recipe": "pipe",
+        "parameters_mm": [
+          18,
+          7,
+          3
+        ],
+        "missing": []
+      },
+      "native": {
+        "recipe": "pipe",
+        "volume": 2268.8853,
+        "triangles": 3296,
+        "roundtrip_triangles": 3296,
+        "min": [
+          -6.9637885,
+          -6.9638777,
+          -1.1920929e-07
+        ],
+        "max": [
+          7,
+          6.963878,
+          18
+        ],
+        "material_inside": true,
+        "axis_inside": false,
+        "distant_point_inside": false,
+        "voxel_mm": 1,
+        "analytic_volume_mm3": 2261.946710584651,
+        "relative_volume_error": 0.003067530009827411,
+        "geometry_screen_passed": true,
+        "raw_stl_sha256": "b5421de0f8d6c4c17a2d296fbef68b895fd150ead4083149ebcc8fb2985636de",
+        "manufacturing_qualified": false
+      },
+      "raw_mesh": {
+        "faces": 3296,
+        "exact_unique_vertices": 1648,
+        "watertight": true,
+        "winding_consistent": true,
+        "exact_zero_area_faces": 0,
+        "boundary_edges_incidence_one": 0,
+        "edges_incidence_above_two": 0,
+        "surface_components_including_degenerate_faces": 1,
+        "components_are_not_interpreted_as_physical_voids": true,
+        "signed_triangle_volume": 2236.175597105235,
+        "strict_raw_mesh_screen_pass": true
+      },
+      "vdb": {
+        "passed": true,
+        "field_name": "model_geometry",
+        "field_type": "Voxels",
+        "voxel_mm": 1,
+        "voxel_metadata_m": 0.001,
+        "native_fields_equal": true,
+        "before_volume_mm3": 2268.8853,
+        "after_volume_mm3": 2268.8853,
+        "bounds_equal": true,
+        "original_field_serialized": true,
+        "reconstructed_from_stl": false
+      },
+      "vdb_sha256": "df049623c227d4b2d7bd56e8638f0a00f1dc77e09049a0a60b264099128bdb05",
+      "numpy_version": "2.2.6",
+      "trimesh_version": "4.6.8"
+    },
+    {
+      "name": "washer-0.5",
+      "receipt_origin": "owner_authored_typed_boundary_fixture_not_model_inference",
+      "schema": "qwen-picogk-qualified-native-gate/v1",
+      "status": "accepted_synthetic_geometry",
+      "geometry_executed": true,
+      "manufacturing_qualified": false,
+      "mesh_repairs_applied": false,
+      "receipt_kind": "qualified_typed_plan",
+      "original_model_text_available": false,
+      "input_sha256": {
+        "receipt": "80bba31aca165ebd7fb9e34cbd07eada746f864a925002f0673dd24d63ad8e64",
+        "expected": "d99af7eb8ae2dcd120f60a19b3f958e9cbc23613c83814e4a7201260f1ab5f87",
+        "request": "d88cf95b00a99929afe60fb3e1bf4f43ffaf4425c26a22a1894c04a31c670d3e"
+      },
+      "frozen_sha256": "e924fc8a3b6277dd9e3b5b144c741af32d5044c6eadff6809538ae7649170caa",
+      "voxel_mm": 0.5,
+      "plan": {
+        "recipe": "washer",
+        "parameters_mm": [
+          2.5,
+          6.5,
+          2.75
+        ],
+        "missing": []
+      },
+      "native": {
+        "recipe": "washer",
+        "volume": 266.90186,
+        "triangles": 3468,
+        "roundtrip_triangles": 3468,
+        "min": [
+          -6.490192,
+          -6.4902134,
+          -8.940697e-08
+        ],
+        "max": [
+          6.5,
+          6.4902134,
+          2.5
+        ],
+        "material_inside": true,
+        "axis_inside": false,
+        "distant_point_inside": false,
+        "voxel_mm": 0.5,
+        "analytic_volume_mm3": 272.4349879284899,
+        "relative_volume_error": 0.02030990208182159,
+        "geometry_screen_passed": true,
+        "raw_stl_sha256": "b71dfebc303c767c1ba5b3e88df530ea0c47166a051dedf9b97d2b491e1f1008",
+        "manufacturing_qualified": false
+      },
+      "raw_mesh": {
+        "faces": 3468,
+        "exact_unique_vertices": 1734,
+        "watertight": true,
+        "winding_consistent": true,
+        "exact_zero_area_faces": 0,
+        "boundary_edges_incidence_one": 0,
+        "edges_incidence_above_two": 0,
+        "surface_components_including_degenerate_faces": 1,
+        "components_are_not_interpreted_as_physical_voids": true,
+        "signed_triangle_volume": 262.9927773555366,
+        "strict_raw_mesh_screen_pass": true
+      },
+      "vdb": {
+        "passed": true,
+        "field_name": "model_geometry",
+        "field_type": "Voxels",
+        "voxel_mm": 0.5,
+        "voxel_metadata_m": 0.0005,
+        "native_fields_equal": true,
+        "before_volume_mm3": 266.90186,
+        "after_volume_mm3": 266.90186,
+        "bounds_equal": true,
+        "original_field_serialized": true,
+        "reconstructed_from_stl": false
+      },
+      "vdb_sha256": "631855df280db7bfe9ea4c709cd217e05c2f4309fdff4289c0038e219318c175",
+      "numpy_version": "2.2.6",
+      "trimesh_version": "4.6.8"
+    },
+    {
+      "name": "washer-1.0",
+      "receipt_origin": "owner_authored_typed_boundary_fixture_not_model_inference",
+      "schema": "qwen-picogk-qualified-native-gate/v1",
+      "status": "accepted_synthetic_geometry",
+      "geometry_executed": true,
+      "manufacturing_qualified": false,
+      "mesh_repairs_applied": false,
+      "receipt_kind": "qualified_typed_plan",
+      "original_model_text_available": false,
+      "input_sha256": {
+        "receipt": "80bba31aca165ebd7fb9e34cbd07eada746f864a925002f0673dd24d63ad8e64",
+        "expected": "d99af7eb8ae2dcd120f60a19b3f958e9cbc23613c83814e4a7201260f1ab5f87",
+        "request": "d88cf95b00a99929afe60fb3e1bf4f43ffaf4425c26a22a1894c04a31c670d3e"
+      },
+      "frozen_sha256": "e924fc8a3b6277dd9e3b5b144c741af32d5044c6eadff6809538ae7649170caa",
+      "voxel_mm": 1.0,
+      "plan": {
+        "recipe": "washer",
+        "parameters_mm": [
+          2.5,
+          6.5,
+          2.75
+        ],
+        "missing": []
+      },
+      "native": {
+        "recipe": "washer",
+        "volume": 265.22388,
+        "triangles": 896,
+        "roundtrip_triangles": 896,
+        "min": [
+          -6.4608917,
+          -6.4609246,
+          -1.1920929e-07
+        ],
+        "max": [
+          6.4609933,
+          6.4609246,
+          2.5
+        ],
+        "material_inside": true,
+        "axis_inside": false,
+        "distant_point_inside": false,
+        "voxel_mm": 1,
+        "analytic_volume_mm3": 272.4349879284899,
+        "relative_volume_error": 0.026469096290901793,
+        "geometry_screen_passed": true,
+        "raw_stl_sha256": "26f131c6a9cd3ec57d4bd3513063cb13b6bf57f2435228d59706b66d14e3a8a9",
+        "manufacturing_qualified": false
+      },
+      "raw_mesh": {
+        "faces": 896,
+        "exact_unique_vertices": 448,
+        "watertight": true,
+        "winding_consistent": true,
+        "exact_zero_area_faces": 0,
+        "boundary_edges_incidence_one": 0,
+        "edges_incidence_above_two": 0,
+        "surface_components_including_degenerate_faces": 1,
+        "components_are_not_interpreted_as_physical_voids": true,
+        "signed_triangle_volume": 245.77149471340203,
+        "strict_raw_mesh_screen_pass": true
+      },
+      "vdb": {
+        "passed": true,
+        "field_name": "model_geometry",
+        "field_type": "Voxels",
+        "voxel_mm": 1,
+        "voxel_metadata_m": 0.001,
+        "native_fields_equal": true,
+        "before_volume_mm3": 265.22388,
+        "after_volume_mm3": 265.22388,
+        "bounds_equal": true,
+        "original_field_serialized": true,
+        "reconstructed_from_stl": false
+      },
+      "vdb_sha256": "682279bfb4487fe7e4b928a706d1cea654dad8c55c5adc1c8e3d3d7e1a787098",
+      "numpy_version": "2.2.6",
+      "trimesh_version": "4.6.8"
+    },
+    {
+      "name": "bcc-0.5",
+      "receipt_origin": "owner_authored_typed_boundary_fixture_not_model_inference",
+      "schema": "qwen-picogk-qualified-native-gate/v1",
+      "status": "accepted_synthetic_geometry",
+      "geometry_executed": true,
+      "manufacturing_qualified": false,
+      "mesh_repairs_applied": false,
+      "receipt_kind": "qualified_typed_plan",
+      "original_model_text_available": false,
+      "input_sha256": {
+        "receipt": "f0a3fdcc09ba36f71ceb3e9cf010f0fccdd693ae66d05104ef61eea17b21afc8",
+        "expected": "85e4b7adc407fc8b6aeb624fd3bf312612efd501bb16c47e32f40d8c31b664d9",
+        "request": "38e6ec22b739691dd981262466bbad984adb60b0d9bcd1c8a57e51d9b3adf390"
+      },
+      "frozen_sha256": "e924fc8a3b6277dd9e3b5b144c741af32d5044c6eadff6809538ae7649170caa",
+      "voxel_mm": 0.5,
+      "plan": {
+        "recipe": "bcc",
+        "parameters_mm": [
+          10.5,
+          2
+        ],
+        "missing": []
+      },
+      "native": {
+        "recipe": "bcc",
+        "volume": 215.71265,
+        "triangles": 5508,
+        "roundtrip_triangles": 5508,
+        "min": [
+          -6.1453485,
+          -6.1453485,
+          -0.93234235
+        ],
+        "max": [
+          6.1453485,
+          6.1453485,
+          11.432343
+        ],
+        "material_inside": true,
+        "axis_inside": true,
+        "distant_point_inside": false,
+        "voxel_mm": 0.5,
+        "geometry_screen_passed": true,
+        "raw_stl_sha256": "cdb6d15a1934107f0a024c8568782af2d4987dcb75efa42659125cc5e2ca78a8",
+        "manufacturing_qualified": false
+      },
+      "raw_mesh": {
+        "faces": 5508,
+        "exact_unique_vertices": 2756,
+        "watertight": true,
+        "winding_consistent": true,
+        "exact_zero_area_faces": 0,
+        "boundary_edges_incidence_one": 0,
+        "edges_incidence_above_two": 0,
+        "surface_components_including_degenerate_faces": 1,
+        "components_are_not_interpreted_as_physical_voids": true,
+        "signed_triangle_volume": 204.23314889210494,
+        "strict_raw_mesh_screen_pass": true
+      },
+      "vdb": {
+        "passed": true,
+        "field_name": "model_geometry",
+        "field_type": "Voxels",
+        "voxel_mm": 0.5,
+        "voxel_metadata_m": 0.0005,
+        "native_fields_equal": true,
+        "before_volume_mm3": 215.71265,
+        "after_volume_mm3": 215.71265,
+        "bounds_equal": true,
+        "original_field_serialized": true,
+        "reconstructed_from_stl": false
+      },
+      "vdb_sha256": "b8387b9e0bb8f36cf08629fc9a29fa19fc6fbe2ba8a101204cde202b34288528",
+      "numpy_version": "2.2.6",
+      "trimesh_version": "4.6.8"
+    },
+    {
+      "name": "bcc-1.0",
+      "receipt_origin": "owner_authored_typed_boundary_fixture_not_model_inference",
+      "schema": "qwen-picogk-qualified-native-gate/v1",
+      "status": "accepted_synthetic_geometry",
+      "geometry_executed": true,
+      "manufacturing_qualified": false,
+      "mesh_repairs_applied": false,
+      "receipt_kind": "qualified_typed_plan",
+      "original_model_text_available": false,
+      "input_sha256": {
+        "receipt": "f0a3fdcc09ba36f71ceb3e9cf010f0fccdd693ae66d05104ef61eea17b21afc8",
+        "expected": "85e4b7adc407fc8b6aeb624fd3bf312612efd501bb16c47e32f40d8c31b664d9",
+        "request": "38e6ec22b739691dd981262466bbad984adb60b0d9bcd1c8a57e51d9b3adf390"
+      },
+      "frozen_sha256": "e924fc8a3b6277dd9e3b5b144c741af32d5044c6eadff6809538ae7649170caa",
+      "voxel_mm": 1.0,
+      "plan": {
+        "recipe": "bcc",
+        "parameters_mm": [
+          10.5,
+          2
+        ],
+        "missing": []
+      },
+      "native": {
+        "recipe": "bcc",
+        "volume": 200.06154,
+        "triangles": 1460,
+        "roundtrip_triangles": 1460,
+        "min": [
+          -6.0714393,
+          -6.0714393,
+          -0.35885277
+        ],
+        "max": [
+          6.0714393,
+          6.0714393,
+          11.139125
+        ],
+        "material_inside": true,
+        "axis_inside": true,
+        "distant_point_inside": false,
+        "voxel_mm": 1,
+        "geometry_screen_passed": true,
+        "raw_stl_sha256": "32a3676a39d08967b4077f00fe11eda531964f7a7b494ab8e2f2e18d4f1d896f",
+        "manufacturing_qualified": false
+      },
+      "raw_mesh": {
+        "faces": 1460,
+        "exact_unique_vertices": 732,
+        "watertight": true,
+        "winding_consistent": true,
+        "exact_zero_area_faces": 0,
+        "boundary_edges_incidence_one": 0,
+        "edges_incidence_above_two": 0,
+        "surface_components_including_degenerate_faces": 1,
+        "components_are_not_interpreted_as_physical_voids": true,
+        "signed_triangle_volume": 149.9059226750143,
+        "strict_raw_mesh_screen_pass": true
+      },
+      "vdb": {
+        "passed": true,
+        "field_name": "model_geometry",
+        "field_type": "Voxels",
+        "voxel_mm": 1,
+        "voxel_metadata_m": 0.001,
+        "native_fields_equal": true,
+        "before_volume_mm3": 200.06154,
+        "after_volume_mm3": 200.06154,
+        "bounds_equal": true,
+        "original_field_serialized": true,
+        "reconstructed_from_stl": false
+      },
+      "vdb_sha256": "655bdfbd7872467f9d2908bfd55c65361022670926a59e3a544d09affcf586e2",
+      "numpy_version": "2.2.6",
+      "trimesh_version": "4.6.8"
+    },
+    {
+      "name": "thread-0.5",
+      "receipt_origin": "owner_authored_typed_boundary_fixture_not_model_inference",
+      "schema": "qwen-picogk-qualified-native-gate/v1",
+      "status": "rejected",
+      "geometry_executed": true,
+      "manufacturing_qualified": false,
+      "mesh_repairs_applied": false,
+      "receipt_kind": "qualified_typed_plan",
+      "original_model_text_available": false,
+      "input_sha256": {
+        "receipt": "8cbefcdd6a2f15988a8d698500b8c193e260469f46c21267b2b8f109118538da",
+        "expected": "e28e8442d363a41b863eed0490fe0d61ea633bfd1362be9eb8d86da592fcfa95",
+        "request": "b4e1fda9d5bd6098b238a292b77e2e1549ed11ad293f36ea6441bf4b73a9e034"
+      },
+      "frozen_sha256": "e924fc8a3b6277dd9e3b5b144c741af32d5044c6eadff6809538ae7649170caa",
+      "voxel_mm": 0.5,
+      "plan": {
+        "recipe": "thread",
+        "parameters_mm": [
+          13.5,
+          6.25,
+          3.25,
+          3
+        ],
+        "missing": []
+      },
+      "native": {
+        "recipe": "thread",
+        "volume": 1030.1638,
+        "triangles": 10676,
+        "roundtrip_triangles": 10676,
+        "min": [
+          -6.0993223,
+          -6.0032787,
+          -8.940697e-08
+        ],
+        "max": [
+          6.099394,
+          6.0032697,
+          13.5
+        ],
+        "material_inside": true,
+        "axis_inside": true,
+        "distant_point_inside": false,
+        "voxel_mm": 0.5,
+        "geometry_screen_passed": true,
+        "raw_stl_sha256": "ff89428293ec993887a8ca1eab6935b75fb031803bf3485097e29c034684358c",
+        "manufacturing_qualified": false
+      },
+      "raw_mesh": {
+        "faces": 10676,
+        "exact_unique_vertices": 5333,
+        "watertight": false,
+        "winding_consistent": true,
+        "exact_zero_area_faces": 14,
+        "boundary_edges_incidence_one": 0,
+        "edges_incidence_above_two": 9,
+        "surface_components_including_degenerate_faces": 8,
+        "components_are_not_interpreted_as_physical_voids": true,
+        "signed_triangle_volume": 1004.4975407505511,
+        "strict_raw_mesh_screen_pass": false
+      },
+      "vdb": {
+        "passed": true,
+        "field_name": "model_geometry",
+        "field_type": "Voxels",
+        "voxel_mm": 0.5,
+        "voxel_metadata_m": 0.0005,
+        "native_fields_equal": true,
+        "before_volume_mm3": 1030.1638,
+        "after_volume_mm3": 1030.1638,
+        "bounds_equal": true,
+        "original_field_serialized": true,
+        "reconstructed_from_stl": false
+      },
+      "vdb_sha256": "3391103812e2610ac6eb9c8d3bf58a64fe24d06e6d71fb6a4bb951cf07536150",
+      "numpy_version": "2.2.6",
+      "trimesh_version": "4.6.8"
+    },
+    {
+      "name": "thread-1.0",
+      "receipt_origin": "owner_authored_typed_boundary_fixture_not_model_inference",
+      "schema": "qwen-picogk-qualified-native-gate/v1",
+      "status": "accepted_synthetic_geometry",
+      "geometry_executed": true,
+      "manufacturing_qualified": false,
+      "mesh_repairs_applied": false,
+      "receipt_kind": "qualified_typed_plan",
+      "original_model_text_available": false,
+      "input_sha256": {
+        "receipt": "8cbefcdd6a2f15988a8d698500b8c193e260469f46c21267b2b8f109118538da",
+        "expected": "e28e8442d363a41b863eed0490fe0d61ea633bfd1362be9eb8d86da592fcfa95",
+        "request": "b4e1fda9d5bd6098b238a292b77e2e1549ed11ad293f36ea6441bf4b73a9e034"
+      },
+      "frozen_sha256": "e924fc8a3b6277dd9e3b5b144c741af32d5044c6eadff6809538ae7649170caa",
+      "voxel_mm": 1.0,
+      "plan": {
+        "recipe": "thread",
+        "parameters_mm": [
+          13.5,
+          6.25,
+          3.25,
+          3
+        ],
+        "missing": []
+      },
+      "native": {
+        "recipe": "thread",
+        "volume": 1058.3391,
+        "triangles": 2512,
+        "roundtrip_triangles": 2512,
+        "min": [
+          -5.346986,
+          -6.002698,
+          -1.1920929e-07
+        ],
+        "max": [
+          6.0761976,
+          6.002676,
+          13.5
+        ],
+        "material_inside": true,
+        "axis_inside": true,
+        "distant_point_inside": false,
+        "voxel_mm": 1,
+        "geometry_screen_passed": true,
+        "raw_stl_sha256": "30115aa06ee16c773557d15298697a72f216b71b31048537aed8baca9bdc51f6",
+        "manufacturing_qualified": false
+      },
+      "raw_mesh": {
+        "faces": 2512,
+        "exact_unique_vertices": 1258,
+        "watertight": true,
+        "winding_consistent": true,
+        "exact_zero_area_faces": 0,
+        "boundary_edges_incidence_one": 0,
+        "edges_incidence_above_two": 0,
+        "surface_components_including_degenerate_faces": 1,
+        "components_are_not_interpreted_as_physical_voids": true,
+        "signed_triangle_volume": 964.7333263310016,
+        "strict_raw_mesh_screen_pass": true
+      },
+      "vdb": {
+        "passed": true,
+        "field_name": "model_geometry",
+        "field_type": "Voxels",
+        "voxel_mm": 1,
+        "voxel_metadata_m": 0.001,
+        "native_fields_equal": true,
+        "before_volume_mm3": 1058.3391,
+        "after_volume_mm3": 1058.3391,
+        "bounds_equal": true,
+        "original_field_serialized": true,
+        "reconstructed_from_stl": false
+      },
+      "vdb_sha256": "0eafe145d1d9a089d1c297de3f0a81fc261dd417bafb25376b8a7e648f9f4747",
+      "numpy_version": "2.2.6",
+      "trimesh_version": "4.6.8"
+    }
+  ],
+  "negative_checks": [
+    {
+      "name": "wrong_profile",
+      "schema": "qwen-picogk-qualified-native-gate/v1",
+      "status": "rejected",
+      "geometry_executed": false,
+      "manufacturing_qualified": false,
+      "mesh_repairs_applied": false,
+      "receipt_kind": "qualified_typed_plan",
+      "original_model_text_available": false,
+      "input_sha256": {
+        "receipt": "742fc4644ecfd041c1587e2c8a658cf0e5f45b8568c38a08efb951341caf8bc9",
+        "expected": "abe0af5c01d837a6b77bda6e47e2dceb8bdd919d05148deaa047b28aec34755d",
+        "request": "cddb5725e417b32c264903a439e87c5f32c70f0b5178349e18fd1379af290966"
+      },
+      "frozen_sha256": "e924fc8a3b6277dd9e3b5b144c741af32d5044c6eadff6809538ae7649170caa",
+      "voxel_mm": 0.5,
+      "error": "Qualified receipt identity differs: profile_sha256"
+    },
+    {
+      "name": "wrong_adapter",
+      "schema": "qwen-picogk-qualified-native-gate/v1",
+      "status": "rejected",
+      "geometry_executed": false,
+      "manufacturing_qualified": false,
+      "mesh_repairs_applied": false,
+      "receipt_kind": "qualified_typed_plan",
+      "original_model_text_available": false,
+      "input_sha256": {
+        "receipt": "7a5058fc9ebb75970d018959a41b947833cd4cbafefa4cd9197023edd37b45c8",
+        "expected": "abe0af5c01d837a6b77bda6e47e2dceb8bdd919d05148deaa047b28aec34755d",
+        "request": "cddb5725e417b32c264903a439e87c5f32c70f0b5178349e18fd1379af290966"
+      },
+      "frozen_sha256": "e924fc8a3b6277dd9e3b5b144c741af32d5044c6eadff6809538ae7649170caa",
+      "voxel_mm": 0.5,
+      "error": "Qualified receipt identity differs: adapter_sha256"
+    },
+    {
+      "name": "wrong_request_hash",
+      "schema": "qwen-picogk-qualified-native-gate/v1",
+      "status": "rejected",
+      "geometry_executed": false,
+      "manufacturing_qualified": false,
+      "mesh_repairs_applied": false,
+      "receipt_kind": "qualified_typed_plan",
+      "original_model_text_available": false,
+      "input_sha256": {
+        "receipt": "cc90d7dd8b2262464e36f9f3db33d3f44cfb2b99c2f52ed0f1428b05e7bfb93f",
+        "expected": "abe0af5c01d837a6b77bda6e47e2dceb8bdd919d05148deaa047b28aec34755d",
+        "request": "cddb5725e417b32c264903a439e87c5f32c70f0b5178349e18fd1379af290966"
+      },
+      "frozen_sha256": "e924fc8a3b6277dd9e3b5b144c741af32d5044c6eadff6809538ae7649170caa",
+      "voxel_mm": 0.5,
+      "error": "Qualified receipt identity differs: request_sha256"
+    },
+    {
+      "name": "unverified_intent",
+      "schema": "qwen-picogk-qualified-native-gate/v1",
+      "status": "rejected",
+      "geometry_executed": false,
+      "manufacturing_qualified": false,
+      "mesh_repairs_applied": false,
+      "receipt_kind": "qualified_typed_plan",
+      "original_model_text_available": false,
+      "input_sha256": {
+        "receipt": "c2163a6f087df45c2d1e7253c6601fe0e8750d121b0edf4601b061175a910da0",
+        "expected": "abe0af5c01d837a6b77bda6e47e2dceb8bdd919d05148deaa047b28aec34755d",
+        "request": "cddb5725e417b32c264903a439e87c5f32c70f0b5178349e18fd1379af290966"
+      },
+      "frozen_sha256": "e924fc8a3b6277dd9e3b5b144c741af32d5044c6eadff6809538ae7649170caa",
+      "voxel_mm": 0.5,
+      "error": "A qualified typed-plan receipt without prior geometry is required"
+    },
+    {
+      "name": "prior_geometry",
+      "schema": "qwen-picogk-qualified-native-gate/v1",
+      "status": "rejected",
+      "geometry_executed": false,
+      "manufacturing_qualified": false,
+      "mesh_repairs_applied": false,
+      "receipt_kind": "qualified_typed_plan",
+      "original_model_text_available": false,
+      "input_sha256": {
+        "receipt": "73fcdb33e7e4b743b132897e34b74834c021137c93f250b13fd118bee9772e12",
+        "expected": "abe0af5c01d837a6b77bda6e47e2dceb8bdd919d05148deaa047b28aec34755d",
+        "request": "cddb5725e417b32c264903a439e87c5f32c70f0b5178349e18fd1379af290966"
+      },
+      "frozen_sha256": "e924fc8a3b6277dd9e3b5b144c741af32d5044c6eadff6809538ae7649170caa",
+      "voxel_mm": 0.5,
+      "error": "A qualified typed-plan receipt without prior geometry is required"
+    },
+    {
+      "name": "qualification_claim",
+      "schema": "qwen-picogk-qualified-native-gate/v1",
+      "status": "rejected",
+      "geometry_executed": false,
+      "manufacturing_qualified": false,
+      "mesh_repairs_applied": false,
+      "receipt_kind": "qualified_typed_plan",
+      "original_model_text_available": false,
+      "input_sha256": {
+        "receipt": "67fcf4d4929af5c10a823cbcbe78502b1106776ee5f33a4c2f2c03e42b44e539",
+        "expected": "abe0af5c01d837a6b77bda6e47e2dceb8bdd919d05148deaa047b28aec34755d",
+        "request": "cddb5725e417b32c264903a439e87c5f32c70f0b5178349e18fd1379af290966"
+      },
+      "frozen_sha256": "e924fc8a3b6277dd9e3b5b144c741af32d5044c6eadff6809538ae7649170caa",
+      "voxel_mm": 0.5,
+      "error": "A qualified typed-plan receipt without prior geometry is required"
+    },
+    {
+      "name": "mismatched_plan",
+      "schema": "qwen-picogk-qualified-native-gate/v1",
+      "status": "rejected",
+      "geometry_executed": false,
+      "manufacturing_qualified": false,
+      "mesh_repairs_applied": false,
+      "receipt_kind": "qualified_typed_plan",
+      "original_model_text_available": false,
+      "input_sha256": {
+        "receipt": "753d9d66ff823f4288ebcf4e9152719c8c9388882a3df9d46377617f319c488e",
+        "expected": "abe0af5c01d837a6b77bda6e47e2dceb8bdd919d05148deaa047b28aec34755d",
+        "request": "cddb5725e417b32c264903a439e87c5f32c70f0b5178349e18fd1379af290966"
+      },
+      "frozen_sha256": "e924fc8a3b6277dd9e3b5b144c741af32d5044c6eadff6809538ae7649170caa",
+      "voxel_mm": 0.5,
+      "error": "Plan or request differs from the independently authored expected dimensions"
+    },
+    {
+      "name": "unverified_request",
+      "schema": "qwen-picogk-qualified-native-gate/v1",
+      "status": "rejected",
+      "geometry_executed": false,
+      "manufacturing_qualified": false,
+      "mesh_repairs_applied": false,
+      "receipt_kind": "qualified_typed_plan",
+      "original_model_text_available": false,
+      "input_sha256": {
+        "receipt": "1eca4f6faa4a32808e46f70a45fb9e4037cbcca4d8cf7d6dc926bdcde992e24a",
+        "expected": "abe0af5c01d837a6b77bda6e47e2dceb8bdd919d05148deaa047b28aec34755d",
+        "request": "3e88f9670c5558d8a7b6408c441354ec76d26af446b701a6bdacb211352dbd8a"
+      },
+      "frozen_sha256": "e924fc8a3b6277dd9e3b5b144c741af32d5044c6eadff6809538ae7649170caa",
+      "voxel_mm": 0.5,
+      "error": "Measured interfaces are missing; no geometry may execute"
+    }
+  ],
+  "existing_output_overwrite_rejected": true,
+  "model_smoke": {
+    "receipt_sha256": "66db314df0d9289435eefa8a0bbbe9581b90712034356bdf19113b85d846af91",
+    "request_sha256": "d108332b168a5c03e3167bd61a7f85c85719feae8eeb733963d5ba92652e4aa4",
+    "expected_sha256": "abe0af5c01d837a6b77bda6e47e2dceb8bdd919d05148deaa047b28aec34755d",
+    "inference_log_sha256": "b82e7d20a44457348db183ba35a90798691730d44fd92845d24e82736383959f",
+    "original_model_text_recorded": false,
+    "schema": "qwen-picogk-qualified-native-gate/v1",
+    "status": "accepted_synthetic_geometry",
+    "geometry_executed": true,
+    "manufacturing_qualified": false,
+    "mesh_repairs_applied": false,
+    "receipt_kind": "qualified_typed_plan",
+    "original_model_text_available": false,
+    "input_sha256": {
+      "receipt": "66db314df0d9289435eefa8a0bbbe9581b90712034356bdf19113b85d846af91",
+      "expected": "abe0af5c01d837a6b77bda6e47e2dceb8bdd919d05148deaa047b28aec34755d",
+      "request": "d108332b168a5c03e3167bd61a7f85c85719feae8eeb733963d5ba92652e4aa4"
+    },
+    "frozen_sha256": "e924fc8a3b6277dd9e3b5b144c741af32d5044c6eadff6809538ae7649170caa",
+    "voxel_mm": 0.5,
+    "plan": {
+      "recipe": "pipe",
+      "parameters_mm": [
+        18.0,
+        7.0,
+        3.0
+      ],
+      "missing": []
+    },
+    "native": {
+      "recipe": "pipe",
+      "volume": 2259.9094,
+      "triangles": 13688,
+      "roundtrip_triangles": 13688,
+      "min": [
+        -6.9907956,
+        -6.9908805,
+        -8.940697e-08
+      ],
+      "max": [
+        7,
+        6.9908805,
+        18
+      ],
+      "material_inside": true,
+      "axis_inside": false,
+      "distant_point_inside": false,
+      "voxel_mm": 0.5,
+      "analytic_volume_mm3": 2261.946710584651,
+      "relative_volume_error": 0.0009006890282240586,
+      "geometry_screen_passed": true,
+      "raw_stl_sha256": "c978ab04a3214aaed3260eeb8e12c25219586ef85eb0b69e751be4f22a6327b9",
+      "manufacturing_qualified": false
+    },
+    "raw_mesh": {
+      "faces": 13688,
+      "exact_unique_vertices": 6844,
+      "watertight": true,
+      "winding_consistent": true,
+      "exact_zero_area_faces": 0,
+      "boundary_edges_incidence_one": 0,
+      "edges_incidence_above_two": 0,
+      "surface_components_including_degenerate_faces": 1,
+      "components_are_not_interpreted_as_physical_voids": true,
+      "signed_triangle_volume": 2255.685022758436,
+      "strict_raw_mesh_screen_pass": true
+    },
+    "vdb": {
+      "passed": true,
+      "field_name": "model_geometry",
+      "field_type": "Voxels",
+      "voxel_mm": 0.5,
+      "voxel_metadata_m": 0.0005,
+      "native_fields_equal": true,
+      "before_volume_mm3": 2259.9094,
+      "after_volume_mm3": 2259.9094,
+      "bounds_equal": true,
+      "original_field_serialized": true,
+      "reconstructed_from_stl": false
+    },
+    "vdb_sha256": "9b84ca4c02b34759c99a7108ad3073a7ab1673a809015a6ba3590a4ad60c6310",
+    "numpy_version": "2.2.6",
+    "trimesh_version": "4.6.8"
+  },
+  "model_weights_updated": false,
+  "serving_defaults_changed": false,
+  "mesh_repairs_applied": false,
+  "manufacturing_qualified": false,
+  "historical_training_reproduced": false
+}

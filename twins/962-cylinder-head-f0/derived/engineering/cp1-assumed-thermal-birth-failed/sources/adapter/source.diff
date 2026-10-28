@@ -1,0 +1,299 @@
+--- donor/run_mac.py
++++ successor/run_mac.py
+@@ -1,4 +1,4 @@
+-"""Held Mac-local MOOSE metadata readiness, then a separately authorized fixed affine cube."""
++"""Held Mac-local MOOSE metadata readiness, then a separately authorized fixed assumed thermal-birth coupon."""
+ 
+ import argparse
+ import hashlib
+@@ -17,16 +17,19 @@
+ ROOT = ENGINEERING.parent.parent
+ PREFIX = ENGINEERING / "moose-local-installed-002"
+ EXECUTABLE = PREFIX / "bin/combined-opt"
+-CASE = ENGINEERING / "imported-elastic-cube-flat-inputs-002"
+-CARD = ENGINEERING / "imported-elastic-cube-prep-001/affine-card.json"
++CASE = ENGINEERING / "cp1-assumed-thermal-birth-prep-001"
++CARD = CASE / "card.json"
++PHYSICS = CASE / "case-contract.json"
++PRIMARY_API = ENGINEERING / "imported-elastic-cube-macos-prep-004/primary-api.json"
+ HELD = PREP / "held-preparation.json"
+ ENVIRONMENT = {"PATH": "/usr/bin:/bin", "LANG": "C", "LC_ALL": "C", "OMP_NUM_THREADS": "1",
+                "OPENBLAS_NUM_THREADS": "1", "VECLIB_MAXIMUM_THREADS": "1", "FI_PROVIDER": "tcp"}
+-CASE_FILES = ("imported-cube.i", "imported-cube.msh", "cube-reference.json", "assess_cube.py")
+-FEATURES = ("FileMeshGenerator", "ParsedFunction", "FunctionDirichletBC",
+-            "ADComputeIsotropicElasticityTensor", "ADComputeLinearElasticStress",
+-            "RankTwoTensorMaterialADConverter", "RankTwoCartesianComponent", "NodalValueSampler",
+-            "ElementMaterialSampler", "SMP", "Steady", "CSV", "Console")
++CASE_FILES = ("thermal-birth.i", "time-level.i", "assess.py")
++FEATURES = ("GeneratedMeshGenerator", "SubdomainBoundingBoxGenerator", "FunctionIC",
++            "ADTimeDerivative", "ADHeatConductionTimeDerivative", "ADHeatConduction", "ADMatHeatSource",
++            "ADHeatConductionMaterial", "ADGenericConstantMaterial", "FunctionPathEllipsoidHeatSource",
++            "TimedSubdomainModifier", "ADMaterialRealAux", "NodalValueSampler", "ElementValueSampler",
++            "ADElementIntegralMaterialProperty", "SMP", "Transient", "CSV", "Console", "ParsedFunction")
+ 
+ 
+ def need(condition, message):
+@@ -76,8 +79,8 @@
+     if stage == "readiness":
+         return [("help", common + ["--help"]), ("version", common + ["--version"]),
+                 ("registry", common + ["--registry"])]
+-    need(stage == "cube", "Only the two declared stages exist")
+-    return [("native", common + ["-i", "imported-cube.i"])]
++    need(stage == "coupon", "Only the two declared stages exist")
++    return [("native", common + ["-i", "thermal-birth.i", "time-level.i"])]
+ 
+ 
+ def registry_features(text):
+@@ -93,16 +96,22 @@
+     need(path.is_file() and not path.is_symlink() and path.resolve() == path
+          and re.fullmatch("[0-9a-f]{64}", expected) and same(path, expected), "Exact external actual child required")
+     c = json.loads(path.read_text())
+-    need(c.get("schema") == "962-macos-imported-elastic-stage-actual/v1" and c.get("stage") == stage
++    need(c.get("schema") == "962-macos-cp1-thermal-birth-stage-actual/v1" and c.get("stage") == stage
+          and c.get("root_and_peer_review_complete") is True and c.get("native_launch_authorized") is True
+          and c.get("head_authorized") is False and c.get("manufacturing_authorized") is False,
+          "Separate reviewed stage authority required")
+-    need(c.get("cube_solve_authorized") is (stage == "cube"), "Readiness cannot authorize the cube")
++    need(c.get("coupon_solve_authorized") is (stage == "coupon"), "Readiness cannot authorize the coupon")
+     pins = c["input_sha256"]
+     need(pins.get(str(HELD.relative_to(ROOT))) == sha(HELD), "Held preparation is not directly bound")
+     held = json.loads(HELD.read_text())
+     need(all(pins.get(k) == v for k, v in held["input_sha256"].items()), "Prepared input omitted")
+     check_pins(pins)
++    need(c["runtime_sha256s"] == held["runtime_sha256s"] and len(c["runtime_sha256s"]) == 19
++         and c["runtime_symlinks"] == held["runtime_symlinks"] and len(c["runtime_symlinks"]) == 13
++         and "lib/combined/libheat_transfer-opt.0.dylib" in c["runtime_sha256s"],
++         "Exact reviewed19 selected files/13 links including heat-transfer library required")
++    need(all(c.get(k) is False for k in ["engineering_accepted", "physics_qualified", "material_qualified", "process_calibrated"])
++         and c.get("automatic_retry") is False, "No qualification or retry authority")
+     need("bin/combined-opt" in c["runtime_sha256s"] and c["runtime_symlinks"].get("bin/moose-opt") == "combined-opt"
+          and runtime_unchanged(c) and os.access(EXECUTABLE, os.X_OK), "Actual installed runtime bindings required")
+     need(c["installation_result_peer"] in pins and c["installation_receipt"] in pins,
+@@ -111,13 +120,18 @@
+     need(set(limits) == {"wall_seconds", "sampled_RSS_stop_bytes", "sampled_output_stop_bytes"}
+          and all(type(v) in (int, float) and not isinstance(v, bool) and v > 0
+                  and v < float("inf") for v in limits.values()), "Explicit finite positive Mac sampled limits required")
+-    if stage == "cube":
+-        need(c["readiness_receipt"] in pins and c["readiness_result_peer"] in pins,
+-             "Separately stopped readiness and peer required")
++    if stage == "coupon":
++        need(limits == held["coupon_resources"], "Exact reviewed per-level coupon bounds required")
++        need(all(c[k] in pins for k in ["readiness_receipt", "readiness_result_peer", "readiness_registry"]),
++             "Stopped readiness, peer and exact cached registry required")
+         ready = json.loads((ROOT / c["readiness_receipt"]).read_text())
+-        need(ready.get("readiness_completed") is True and ready.get("required_object_presence") == {k: True for k in FEATURES}
+-             and ready["runtime_sha256s"] == c["runtime_sha256s"]
+-             and ready["runtime_symlinks"] == c["runtime_symlinks"], "Same runtime must have completed readiness")
++        prior18 = {k: v for k, v in c["runtime_sha256s"].items() if k != "lib/combined/libheat_transfer-opt.0.dylib"}
++        need(ready.get("readiness_completed") is True and len(prior18) == 18
++             and ready["runtime_sha256s"] == prior18 and ready["runtime_symlinks"] == c["runtime_symlinks"]
++             and all(v is True for v in ready["required_object_presence"].values())
++             and pins[c["readiness_registry"]] == ready["artifact_sha256"]["registry.log"],
++             "Exact old18 subset plus root-bound new heat library and cached registry required")
++        registry_features((ROOT / c["readiness_registry"]).read_text())
+     output = Path(c["output"])
+     need(output.is_absolute() and output.parent == ENGINEERING and output.resolve() == output
+          and not output.exists() and not output.is_symlink(), "Fresh direct task output required")
+@@ -130,23 +144,26 @@
+     deadline = started + c["resources"]["wall_seconds"]
+     need(time.monotonic() < deadline, "Stage deadline expired before output creation")
+     output.mkdir()
+-    shutil.copyfile(contract, output / "frozen-contract.json")
++    shutil.copyfile(contract, output / "actual-contract.json")
++    shutil.copyfile(PHYSICS if stage == "coupon" else contract, output / "frozen-contract.json")
+     snapshots = output / "source-snapshots"
+     snapshots.mkdir()
+-    selected = [Path(__file__), HELD, PREP / "METHOD.md", PREP / "primary-api.json"]
+-    if stage == "cube":
++    selected = [Path(__file__), HELD, PREP / "METHOD.md", PRIMARY_API]
++    if stage == "coupon":
+         for name in CASE_FILES:
+             shutil.copyfile(CASE / name, output / name)
+-        shutil.copyfile(CARD, output / "affine-card.json")
+-        selected += [CASE / name for name in CASE_FILES] + [CARD]
++        shutil.copyfile(CARD, output / "card.json")
++        selected += [CASE / name for name in CASE_FILES] + [CARD, PHYSICS]
+     for path in selected:
+         destination = snapshots / path.relative_to(ROOT)
+         destination.parent.mkdir(parents=True, exist_ok=True)
+         shutil.copyfile(path, destination)
+     inputs = {str(path.relative_to(output)): sha(path) for path in output.rglob("*") if path.is_file()}
+     receipt = dict(status="running", passed=False,
+-                   command=commands(stage)[0][1] if stage == "cube" else [argv for _, argv in commands(stage)],
+-                   stage=stage, contract_sha256=expected, input_sha256=inputs,
++                   command=commands(stage)[0][1] if stage == "coupon" else [argv for _, argv in commands(stage)],
++                   stage=stage, contract_sha256=expected, actual_contract_sha256=expected,
++                   physics_contract_sha256=sha(PHYSICS) if stage == "coupon" else None,
++                   level=2 if stage == "coupon" else None, level_is_declared=True, input_sha256=inputs,
+                    runtime_sha256s=c["runtime_sha256s"], runtime_symlinks=c["runtime_symlinks"],
+                    network="not_requested_not_OS_sandboxed", rootfs="installed_prefix_not_sandboxed",
+                    automatic_retry=False, head_input_read=False, independent_assessment_performed=False,
+@@ -260,10 +277,12 @@
+                        max_observed_RSS_bytes=max((s["RSS_bytes"] for s in receipt["RSS_samples"]), default=None),
+                        resources=c["resources"], final_output_bytes_before_receipt=size,
+                        inputs_unchanged=unchanged, binary_and_runtime_unchanged=stable,
+-                       native_execution_completed=completed and stage == "cube",
++                       binary_sha256=c["runtime_sha256s"]["bin/combined-opt"], binary_unchanged=stable,
++                       native_execution_completed=completed and stage == "coupon",
+                        readiness_completed=completed and receipt["readiness_completed"])
+-        receipt["artifact_sha256"] = {str(p.relative_to(output)): sha(p) for p in sorted(output.rglob("*"))
++        receipt["complete_artifact_sha256"] = {str(p.relative_to(output)): sha(p) for p in sorted(output.rglob("*"))
+                                      if p.is_file() and not p.is_symlink() and p.name not in ("native-execution.json", "readiness.json", "assessment.json")}
++        receipt["artifact_sha256"] = {k: v for k, v in receipt["complete_artifact_sha256"].items() if Path(k).name == k}
+         filename = "readiness.json" if stage == "readiness" else "native-execution.json"
+         with (output / filename).open("x") as stream:
+             json.dump(receipt, stream, indent=2, allow_nan=False)
+@@ -274,7 +293,7 @@
+ 
+ if __name__ == "__main__":
+     parser = argparse.ArgumentParser(description=__doc__)
+-    parser.add_argument("--stage", choices=("readiness", "cube"), required=True)
++    parser.add_argument("--stage", choices=("readiness", "coupon"), required=True)
+     parser.add_argument("--contract", type=Path, required=True)
+     parser.add_argument("--contract-sha256", required=True)
+     parser.add_argument("--execute", action="store_true")
+--- donor/selfcheck.py
++++ successor/selfcheck.py
+@@ -10,9 +10,9 @@
+ from unittest import TestCase, main, mock
+ 
+ SOURCE = Path(__file__).with_name("run_mac.py")
+-SOURCE_SHA256 = "7c942d9190ba85d90ca35d740a77a1e91e20e0a8387f93ca5a38cf73d2feb2c4"
++SOURCE_SHA256 = "d2e7c528e67705f9a61c41aeff96fd088606d0169d071b9ec9a1f5b60e4a1ff5"
+ assert hashlib.sha256(SOURCE.read_bytes()).hexdigest() == SOURCE_SHA256
+-spec = importlib.util.spec_from_file_location("mac_cube_candidate", SOURCE)
++spec = importlib.util.spec_from_file_location("mac_thermal_candidate", SOURCE)
+ module = importlib.util.module_from_spec(spec)
+ spec.loader.exec_module(module)  # stdlib-only top level; no controller main or native import
+ 
+@@ -39,8 +39,8 @@
+         self.assertEqual([argv[-1] for _, argv in jobs], ["--help", "--version", "--registry"])
+         self.assertTrue(all("-i" not in argv and "-skip_petscrc" in argv and "--n-threads=1" in argv
+                             for _, argv in jobs))
+-        self.assertEqual(len(module.commands("cube")), 1)
+-        self.assertEqual(module.commands("cube")[0][1][-2:], ["-i", "imported-cube.i"])
++        self.assertEqual(len(module.commands("coupon")), 1)
++        self.assertEqual(module.commands("coupon")[0][1][-3:], ["-i", "thermal-birth.i", "time-level.i"])
+         text = "Label\tType\tName\tClass\tFile\n" + "".join(
+             f"test\tobject\t{name}\t{name}\tpublic_source.C\n" for name in module.FEATURES)
+         self.assertEqual(module.registry_features(text), {name: True for name in module.FEATURES})
+@@ -50,16 +50,16 @@
+     def test_held_or_cross_stage_refusal_before_runtime(self):
+         with tempfile.TemporaryDirectory() as tmp:
+             path = Path(tmp).resolve() / "actual.json"
+-            for update in ({"native_launch_authorized": False}, {"cube_solve_authorized": True}):
+-                c = dict(schema="962-macos-imported-elastic-stage-actual/v1", stage="readiness",
++            for update in ({"native_launch_authorized": False}, {"coupon_solve_authorized": True}):
++                c = dict(schema="962-macos-cp1-thermal-birth-stage-actual/v1", stage="readiness",
+                          root_and_peer_review_complete=True, native_launch_authorized=True,
+-                         cube_solve_authorized=False, head_authorized=False, manufacturing_authorized=False)
++                         coupon_solve_authorized=False, head_authorized=False, manufacturing_authorized=False)
+                 c.update(update)
+                 path.write_text(json.dumps(c))
+                 with mock.patch.object(module, "runtime_unchanged", side_effect=AssertionError("Runtime reached")):
+                     with self.assertRaises(ValueError): module.checked_contract("readiness", path, module.sha(path))
+ 
+-    def fake_cube(self, stop):
++    def fake_coupon(self, stop):
+         root = tempfile.TemporaryDirectory(dir=module.ENGINEERING)
+         self.addCleanup(root.cleanup)
+         base = Path(root.name).resolve()
+@@ -71,7 +71,9 @@
+         for name in module.CASE_FILES: (case / name).write_text("synthetic only\n")
+         card = case / "card.json"
+         card.write_text("{}\n")
+-        c = dict(input_sha256={}, runtime_sha256s={}, runtime_symlinks={},
++        physics = case / "case-contract.json"
++        physics.write_text('{"synthetic_physics_reference":true}\n')
++        c = dict(input_sha256={}, runtime_sha256s={"bin/combined-opt": "0"*64}, runtime_symlinks={},
+                  resources=dict(wall_seconds=10, sampled_RSS_stop_bytes=1024 if stop else 1024**3,
+                                 sampled_output_stop_bytes=16 * 1024**2))
+         process = FakeProcess()
+@@ -80,6 +82,7 @@
+             self.assertEqual((pid, how), (process.pid, signal.SIGKILL))
+             process.returncode = -9
+         with mock.patch.object(module, "CASE", case), mock.patch.object(module, "CARD", card), \
++             mock.patch.object(module, "PHYSICS", physics), \
+              mock.patch.object(module, "checked_contract", return_value=(c, output)), \
+              mock.patch.object(module, "check_pins"), mock.patch.object(module, "runtime_unchanged", return_value=True), \
+              mock.patch.object(module.threading, "Timer", return_value=timer), \
+@@ -88,9 +91,9 @@
+              mock.patch.object(module.os, "killpg", side_effect=kill), \
+              mock.patch.object(module.signal, "signal") as handler:
+             if stop:
+-                with self.assertRaises(ValueError): module.run("cube", contract, module.sha(contract))
++                with self.assertRaises(ValueError): module.run("coupon", contract, module.sha(contract))
+             else:
+-                module.run("cube", contract, module.sha(contract))
++                module.run("coupon", contract, module.sha(contract))
+             self.assertEqual(popen.call_count, 1)
+             self.assertEqual(popen.call_args.kwargs["env"], module.ENVIRONMENT)
+             self.assertNotIn("HOME", popen.call_args.kwargs["env"])
+@@ -101,15 +104,23 @@
+         return json.loads((output / "native-execution.json").read_text())
+ 
+     def test_owned_success_receipt_preserves_assessor_keys(self):
+-        r = self.fake_cube(False)
++        r = self.fake_coupon(False)
+         for key in ("contract_sha256", "native_execution_completed", "returncode", "process_reaped",
+                     "controller_error", "inputs_unchanged", "binary_and_runtime_unchanged"):
+             self.assertIn(key, r)
+         self.assertTrue(r["native_execution_completed"] and r["process_reaped"])
++        self.assertEqual(r["level"], 2)
++        self.assertEqual(r["binary_sha256"], "0"*64)
++        self.assertTrue(r["binary_unchanged"])
++        self.assertNotEqual(r["physics_contract_sha256"], r["actual_contract_sha256"])
++        self.assertEqual(r["actual_contract_sha256"], r["contract_sha256"])
++        self.assertTrue(all(Path(k).name == k for k in r["artifact_sha256"]))
++        self.assertTrue(any(k.startswith("source-snapshots/") for k in r["complete_artifact_sha256"]))
++        self.assertEqual(r["artifact_sha256"], {k:v for k,v in r["complete_artifact_sha256"].items() if Path(k).name==k})
+         self.assertFalse(r["passed"] or r["independent_assessment_performed"] or r["hard_OS_CPU_or_memory_quota"])
+ 
+     def test_sampled_stop_kills_waits_and_retains_refusal(self):
+-        r = self.fake_cube(True)
++        r = self.fake_coupon(True)
+         self.assertEqual((r["returncode"], r["stop_reason"]), (-9, "sampled_RSS_stop"))
+         self.assertTrue(r["process_reaped"])
+         self.assertFalse(r["native_execution_completed"])
+@@ -133,5 +144,41 @@
+                              and n.value.id == "os" and n.attr == "environ" for n in ast.walk(tree)))
+ 
+ 
++    def test_current19_old18_registry_join_and_wrong_runtime_refusal(self):
++        bindings = json.loads((module.ENGINEERING / "cp1-assumed-thermal-birth-runtime-bindings-001/bindings.json").read_text())
++        ready_path = module.ENGINEERING / "moose-local-macos-readiness-003/readiness.json"
++        registry_path = module.ENGINEERING / "moose-local-macos-readiness-003/registry.log"
++        with tempfile.TemporaryDirectory(dir=module.ENGINEERING) as tmp:
++            base = Path(tmp).resolve()
++            held = base / "held.json"
++            resources = dict(wall_seconds=100, sampled_RSS_stop_bytes=2*1024**3, sampled_output_stop_bytes=32*1024**2)
++            held.write_text(json.dumps(dict(input_sha256={}, runtime_sha256s=bindings['runtime_sha256s'], runtime_symlinks=bindings['runtime_symlinks'], coupon_resources=resources)))
++            installation = base / 'installation.json'
++            installation.write_text('{}\n')
++            pins = {str(p.relative_to(module.ROOT)):module.sha(p) for p in [held,installation,ready_path,registry_path]}
++            c = dict(schema='962-macos-cp1-thermal-birth-stage-actual/v1', stage='coupon', root_and_peer_review_complete=True,
++                     native_launch_authorized=True, coupon_solve_authorized=True, head_authorized=False, manufacturing_authorized=False,
++                     engineering_accepted=False, physics_qualified=False, material_qualified=False, process_calibrated=False,
++                     automatic_retry=False, input_sha256=pins, runtime_sha256s=bindings['runtime_sha256s'], runtime_symlinks=bindings['runtime_symlinks'],
++                     installation_result_peer=str(installation.relative_to(module.ROOT)), installation_receipt=str(installation.relative_to(module.ROOT)),
++                     resources=resources, readiness_receipt=str(ready_path.relative_to(module.ROOT)), readiness_result_peer=str(installation.relative_to(module.ROOT)),
++                     readiness_registry=str(registry_path.relative_to(module.ROOT)), output=str(base/'output'))
++            path=base/'actual.json'
++            with mock.patch.object(module,'HELD',held), mock.patch.object(module,'ENGINEERING',base), \
++                 mock.patch.object(module,'runtime_unchanged',return_value=True), mock.patch.object(module.os,'access',return_value=True):
++                path.write_text(json.dumps(c))
++                observed,output=module.checked_contract('coupon',path,module.sha(path))
++                self.assertEqual(output,base/'output')
++                self.assertFalse(output.exists())
++                for mode in ['missing_heat','changed_heat','missing_link','resource_change']:
++                    bad=json.loads(json.dumps(c))
++                    if mode=='missing_heat':bad['runtime_sha256s'].pop('lib/combined/libheat_transfer-opt.0.dylib')
++                    if mode=='changed_heat':bad['runtime_sha256s']['lib/combined/libheat_transfer-opt.0.dylib']='f'*64
++                    if mode=='missing_link':bad['runtime_symlinks'].pop('bin/moose-opt')
++                    if mode=='resource_change':bad['resources']['wall_seconds']=101
++                    path.write_text(json.dumps(bad))
++                    with self.assertRaises(ValueError):module.checked_contract('coupon',path,module.sha(path))
++
++
+ if __name__ == "__main__":
+     main()

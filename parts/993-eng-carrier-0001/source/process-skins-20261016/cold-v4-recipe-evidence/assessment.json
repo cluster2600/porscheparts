@@ -1,0 +1,50 @@
+{
+  "schema": "carrier-v4-final-recipe-review-1",
+  "status": "passed_ready_for_owner_freeze",
+  "recipe": "manufacturing/workflows/993-carrier-lpbf-v4.json",
+  "recipe_sha256": "f6ca5f13ab1241196ceb63cbb66b63ddbf0fd34ff275399586e331ce16094c54",
+  "stages": 37,
+  "input_files": 278,
+  "total_input_bytes": 13076369,
+  "previous_recipe": "manufacturing/workflows/993-carrier-lpbf-v3.json",
+  "previous_recipe_sha256": "ee77e5c51ac5d4dbcc068be33bb2f268ec82e0621ecc30135c17f3561d7a837f",
+  "first_36_stages_exactly_v3": true,
+  "all_271_v3_pins_unchanged_and_current": true,
+  "newly_added_consumed_files": 7,
+  "all_inputs_git_tracked": true,
+  "schema_and_all_current_input_hashes_pass": true,
+  "guide_stage": {
+    "source": "scripts/build_carrier_workshop_guide_v4.py",
+    "sha256": "c63efb29816cf83365286e9cdca004a4044b9fddd879e339c8c08521716c5d00",
+    "additional_declared_output": "constitutive-reference",
+    "scope_clarification": "Historical constitutive references are attached only after mesh9 and K1000 reference-deck SHA identity; no STEP equivalence is inferred."
+  },
+  "argv": {
+    "receipt": "argv-results.json",
+    "sha256": "adb003c38d01a0ab56f55ddc3998b53364af58aa395e1a6a7fcf66eb82245287",
+    "contracts_reviewed": 37,
+    "newly_parsed": 1,
+    "retained_exactly_identical_v3_contracts": 36,
+    "inputs_unchanged": true,
+    "runtime_scope": "Runtime JSON byte identity and identical configured executable paths; no reinstallation or environment mutation was performed for this review."
+  },
+  "source_closure": {
+    "receipt": "closure-results.json",
+    "sha256": "e20315f9fe91499374e110c8e7c7bf7b098940e53880825435e5fff1a02024a2"
+  },
+  "actual_retained_discrete_binding": {
+    "receipt": "retained-reference-readonly-binding.json",
+    "sha256": "20dac9233e2889c63f00c2eb9fd278c9bf68cc2d129b7030b09719962057ee44",
+    "run": "work/part-workflow/run-001",
+    "method": "JSON and byte identities only; no DAT parser or solver replay."
+  },
+  "source_or_old_recipe_mutations": false,
+  "staged_software_package_modified": false,
+  "geometry_or_slicing_executed": false,
+  "actual_guide_generated": false,
+  "limitations": [
+    "This review does not execute a new cold carrier campaign or the final guide.",
+    "The 36 retained command proofs were not rerun; their stage/source/input/runtime-manifest identities are checked explicitly.",
+    "The actual final guide remains gated by its same discrete-reference and process admissions."
+  ]
+}

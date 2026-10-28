@@ -1,0 +1,139 @@
+{
+  "schema": "962-fixed3D-thermoelastic-assessor-independent-source-peer/v1",
+  "decision": "CLEAR_HELD_SOURCE_MATH_POLICY_ONLY",
+  "blockers": [],
+  "roles": {
+    "assessor_authored_by_this_reviewer": false,
+    "assessor_author": "clip_source_review",
+    "lineage": "Reviewer authored the frozen one-way deck/preparer/adapter and earlier thermal-case source. This is independent review of the new assessor implementation, not independent physical/material validation of the authored case.",
+    "scope": "Complete six frozen assessor files plus exact source deck/contract/card, original e382 decoder structure and fixed thermal index read; AST/hash/text/primary-source inspection only."
+  },
+  "bindings": {
+    "path": "work/962-engineering/cp1-oneway-thermoelastic-assessor-source-peer-001/bindings.json",
+    "sha256": "7d941e8700d3f9c3625c9d059ee9ea0740ea5f651eacedd1142b3e0f08ad867d",
+    "bytes": 6979
+  },
+  "held": {
+    "path": "work/962-engineering/cp1-oneway-thermoelastic-assessor-prep-001/held-preparation.json",
+    "sha256": "28f13d8bb4a22985b22651cccb82633f17738af75c7fd880b14a1873e413888c",
+    "bytes": 57923
+  },
+  "assessor_source": {
+    "path": "work/962-engineering/cp1-oneway-thermoelastic-assessor-prep-001/assess.py",
+    "sha256": "7f2d5fbb873ed82df80d133314edc98cf57aa353057d8b9db08ea92358657af1",
+    "bytes": 32964
+  },
+  "guard_source": {
+    "path": "work/962-engineering/cp1-oneway-thermoelastic-assessor-prep-001/selfcheck.py",
+    "sha256": "e277ec9e27aac088d3eeff5ae5833aac0d2fbfb406dd824830874224a4823fd3",
+    "bytes": 9238
+  },
+  "policy": {
+    "path": "work/962-engineering/cp1-oneway-thermoelastic-assessor-prep-001/POLICY.json",
+    "sha256": "b9d50d29ff349b7dc9de54445a9b4bea4d16fbfa177bf3b533bbc1c01f0a832f",
+    "bytes": 3826
+  },
+  "source_bindings": {
+    "held_inputs": 342,
+    "current_small_bodies_freshly_hashed": 21,
+    "thermal_CSV_declared_identities": 321,
+    "all321_hash_values_match_frozen_source_index": true,
+    "thermal_CSV_body_use": false,
+    "runtime258_body_use": false,
+    "all_native_and_assessment_actual_output_fields_held_null": true
+  },
+  "findings": [
+    {
+      "topic": "Explicit native geometry and IDs",
+      "finding": "CDF1/CDF2 magic is checked before the reviewed SciPy NetCDF3 reader. Each family member requires full425-node/256-cell dimensions, explicit positive unique node_num_map/elem_num_map, block IDs/status, ordered HEX8 rows, coordinates/times/named nodal fields. Native map-minus1 is a predeclared writer policy verified by exact source ID/coordinate words and sampler IDs, never inferred from coordinates. Family names are closed over all matching/possibly unsupported Exodus artifacts; missing or ambiguous frames/blocks/IDs refuse."
+    },
+    {
+      "topic": "Q1 geometry and coverage",
+      "finding": "Positive native reference-corner order and complete distinct Cartesian boxes enforce the fixed grid. Basis N=product(1+s*xi)/8, physical derivative s_j*product(other factors)/(4*width_j), and weight volume/8 are correct. Eight physical positions are joined to observed QP IDs without assuming enumeration; stable repeated ID/coordinate words are required. 80*128*8+81*256*8=247808 rows per phase, 495616 total; all30 components are checked for all active rows."
+    },
+    {
+      "topic": "Born reference and phase history",
+      "finding": "Old material uses symgrad(u) and400K. Born cells use symgrad(u-u_BEGIN80) with the captured displacement configuration and actual original BEGIN80 temperature on all225 born nodes, including25 shared nodes. Shared current displacement/temperature and prior-END tensor states are checked before each next solve;200 newly activated nodes require zero captured displacement and newborn BEGIN80 tensors require zero. Reference225 stays immutable afterbirth. No uniform350K/shared-node assumption, cooling history or globally-zero born displacement reference is substituted. Old/older solution-vector rebasing remains pinned source semantics and checked consequences, not a direct vector observation."
+    },
+    {
+      "topic": "Constitutive oracle",
+      "finding": "Three-dimensional isotropic Hooke stress uses mu=E/(2(1+nu)), lambda=E*nu/((1+nu)*(1-2nu)); thermal eigenstrain is alpha*(T-Tref)*I, elastic/mechanical strain=total-eigenstrain. Tensor shear is symmetrized, not engineering gamma. All5 tensors and BEGIN-to-END increments are compared; strain/stress gates remain separate. E71e9Pa/nu.33/alpha1e-5 are fixed research hypotheses bound to the authored card."
+    },
+    {
+      "topic": "Combined weak form and balances",
+      "finding": "All8-GP sigma_ij*dNa/dxj*dV contributions from old and born domains are assembled into a common nodal force map before any free-component test. Separate subset interface rows are not treated as free. Independent/original-QP force assemblies agree; each unconstrained component vanishes. Six rigid-mode constraints join exact source IDs/positions; END rx/ry/rz match full internal forces. Both all-node and constrained-only force/moment resultants are checked in SI. Energy is finite/nonnegative diagnostic only; no work=2U shortcut or serial-bar oracle is used."
+    },
+    {
+      "topic": "Frozen strict numerical policy",
+      "finding": "Temperature1e-10K, displacement1e-12m, QP-coordinate2e-13m, strain1e-10, stress0.1Pa, force1e-7N and moment1e-7Nm apply to every finite scalar without relative fallback/sampling/tuning. These are predeclared numerical study gates, not a roundoff guarantee or physical error budget; first native data may fail and must remain preserved."
+    },
+    {
+      "topic": "Source and output closure",
+      "finding": "Saved-data-only CLI requires an exact external actual and held-source pins, stopped native success/reap/stability, exact physics-contract mirror, completed transfer association, complete recursive native inventory and separate flat artifact map. Selected runtime metadata/versions/origins and bodies are checked only in the future assessment and repeated atclosure. No native subprocess exists. Assessment writes a new result only after all gates; failure leaves original native artifacts and external logs intact. Receipt passed=false is retained independently of later assessment authority; broader qualification stays false."
+    },
+    {
+      "topic": "Prepared guards",
+      "finding": "All7 unrun manufactured methods and complete namespaces read. Affine/rotation, isotropic shear/thermal expansion, nonzero born displacement/nonuniform reference, force/moment, full tensor/free residual, two-member noncontiguous ID/block-family and finite/format/missing/signedzero/duplicateQP/twisted-HEX refusal fixtures are meaningful. The family guard mocks read_exodus; it is not an actual SciPy/CDF decode. Root must run guards separately and later inspect the saved native family."
+    }
+  ],
+  "primary_source_context": {
+    "access": "Official revision-pinned raw text viewed live; no upstream bodies copied and no installed-build equivalence/body-hash claim.",
+    "sources": [
+      {
+        "url": "https://raw.githubusercontent.com/idaholab/moose/7c06bdcefd02f9f31f4508839f21f410561309a4/modules/solid_mechanics/src/materials/ADComputeIncrementalStrainBase.C",
+        "lines": "31-37,54-68",
+        "finding": "Zero initial total/mechanical strains; old eigenstrain references and incremental eigenstrain subtraction."
+      },
+      {
+        "url": "https://raw.githubusercontent.com/idaholab/moose/7c06bdcefd02f9f31f4508839f21f410561309a4/modules/solid_mechanics/src/materials/ADComputeIncrementalStrain.C",
+        "lines": "63-90",
+        "finding": "Current-old symmetric displacement-gradient increment, additive state update and identity SMALL rotation."
+      },
+      {
+        "url": "https://raw.githubusercontent.com/idaholab/moose/7c06bdcefd02f9f31f4508839f21f410561309a4/modules/solid_mechanics/src/materials/ADComputeFiniteStrainElasticStress.C",
+        "lines": "58-83",
+        "finding": "Isotropic elasticity acts on strain increment plus prior elastic strain; elastic and mechanical strain agree."
+      },
+      {
+        "url": "https://raw.githubusercontent.com/idaholab/moose/7c06bdcefd02f9f31f4508839f21f410561309a4/modules/solid_mechanics/src/kernels/ADStressDivergenceTensors.C",
+        "lines": "32-35,72-87",
+        "finding": "Undisplaced Cartesian stress-gradient residual and default no volumetric locking correction."
+      },
+      {
+        "url": "https://raw.githubusercontent.com/idaholab/moose/7c06bdcefd02f9f31f4508839f21f410561309a4/framework/src/vectorpostprocessors/NodalValueSampler.C",
+        "lines": "58-96",
+        "finding": "Current native node IDs with all-or-none nodal variables."
+      },
+      {
+        "url": "https://raw.githubusercontent.com/idaholab/moose/7c06bdcefd02f9f31f4508839f21f410561309a4/framework/src/vectorpostprocessors/ElementMaterialSampler.C",
+        "lines": "129-153,199-222",
+        "finding": "Current native element ID, qp index/physical coordinates and property rows kept jointly."
+      },
+      {
+        "url": "https://raw.githubusercontent.com/libMesh/libmesh/e17a3d34a3ccc894ca0f510eab4f150f59cd7466/src/mesh/exodusII_io_helper.C",
+        "lines": "359,2674-2693,3292-3298",
+        "finding": "Default map policy uses native node/element ID+1; unique-ID mode differs. This source-context revision does not establish package0772c3d equivalence."
+      }
+    ],
+    "unsuccessful_lookup": "Old ADComputeIncrementalSmallStrain.C path returned404; exact current ADComputeIncrementalStrain.C registers the renamed old object. No API fact inferred from missing source."
+  },
+  "remaining_preconditions": [
+    "Root full read and separate7 guard execution; no guard result is claimed by this peer.",
+    "Future root assessment actual must directly bind stopped native root/peer/acceptance, complete inventory, transfer data peer/acceptance, exact source and selected runtime plus canonical absent output. These external authority joins remain independently reviewed launch prerequisites.",
+    "Actual full CDF family/maps/field names/phases/tensor caches and all strict numerical gates must be verified from saved native data; no source-only compatibility pass.",
+    "No mechanical temporal/spatial convergence, cooling, calibrated CP1/process/LPBF/head/material/manufacturing claim."
+  ],
+  "prepared_module_imported": false,
+  "prepared_functions_executed": false,
+  "guards_executed": false,
+  "scientific_or_native_imports": false,
+  "runtime_or_MSH_bodies_read": false,
+  "native_execution_authorized": false,
+  "assessment_execution_authorized": false,
+  "head_execution_authorized": false,
+  "engineering_accepted": false,
+  "physics_qualified": false,
+  "material_qualified": false,
+  "process_calibrated": false,
+  "manufacturing_authorized": false
+}

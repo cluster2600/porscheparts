@@ -1,0 +1,44 @@
+{
+  "schema": "962-F1-guard-source001-pre-issuance-refusal/v1",
+  "decision": "HOLD_SOURCE001_ADMISSION_UNISSUED_SELF_HASH_CYCLE",
+  "historical_pre_issuance_root_review": {
+    "path": "work/962-engineering/head-star-current24-qfnra-five-toy-owner-f1-guards-root-control-review-001/review.json",
+    "sha256": "c61f2bb7ddcecaa892cbe19cbd627fca494b2ae7ff621f7eb2407eb0f8ce0eb7",
+    "bytes": 2401
+  },
+  "source": {
+    "path": "work/962-engineering/head-star-current24-qfnra-five-toy-owner-f1-guards-controls-prep-001/run_guards_once.py",
+    "sha256": "e7096b787d5b6ffa18a1dc16a46df6c6ade23e4076ad77f94282a46ab66fca65",
+    "bytes": 27755
+  },
+  "finding": "Source main requires auth.argv equal a command whose last token is sha256(the same admission JSON that would contain auth.argv). Root found this infeasible ordinary self-hash binding while constructing the prospective admission in memory. The draft was not written.",
+  "observation": {
+    "tool_chunk": "fc271e",
+    "exit": 1,
+    "error": "SELF_REFERENTIAL_ADMISSION_ARGV_DETECTED_BEFORE_OPERATIONAL_WRITE",
+    "current_runtime_metadata_and26source_bindings_reverified_before_refusal": true,
+    "root_control_review_created_before_refusal": true,
+    "operational_D_created": false,
+    "outer_W_created": false,
+    "admission_written": false,
+    "test_or_wrapper_or_controller_invoked": false,
+    "guard_tests_run": 0,
+    "native_or_scientific_operation": false
+  },
+  "required_successor": "Immutable002 source: stable admitted argv_prefix only, derive late admission digest from validated external argument and complete saved bytes; no selfdigest inside the admission. Fixed child/fixture/controls/lifecycle/resources remain unchanged; minimal delta plus independent source/root review required.",
+  "frozen_source_peer_and_root_history_preserved": true,
+  "prior_no_blocker_and_issue_decisions_not_operation_authority_after_this_refusal": true,
+  "separate_followup_finding": {
+    "source": {
+      "path": "work/962-engineering/head-star-current24-qfnra-five-toy-owner-prep-002/run_owner_once.py",
+      "sha256": "f3a27f43c1ea794a552f697d556c9b6a51668d829b86f438debf03a0cd6892e2",
+      "bytes": 32207
+    },
+    "finding": "Pinned five-toy owner002 admit has the same auth.argv==[wrapper,rec(A).sha256] cycle (lines198\u2013199). Focused F1 fixture stubs admission, so its exact target remains frozen and this independent full-owner admission gap stays open.",
+    "target_changed": false,
+    "actual_or_admission_or_real_toy_authorized": false
+  },
+  "fixture_scope_still_F1_only": true,
+  "automatic_retry": false,
+  "physical_manufacturing_acceptance": false
+}

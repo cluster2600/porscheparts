@@ -1,0 +1,175 @@
+--- work/962-engineering/head-star-current24-interior-flip-saved-driver-prep-001/collect_saved_cavity_flips.py
++++ work/962-engineering/head-star-current24-edge-removal-saved-driver-prep-001/collect_saved_edge_removal.py
+@@ -1,4 +1,4 @@
+-"""HELD saved-only fixed499/271 flip driver functions; no CLI or authority.
++"""HELD saved-only fixed23-input complete55-edge driver functions; no CLI or authority.
+ 
+ No function in this file has been executed. Root must separately admit a fixed
+ future caller, synthetic evidence and input/output/runtime/control closure.
+@@ -13,7 +13,7 @@
+ ROOT=Path(__file__).resolve().parents[3]
+ PREP=Path(__file__).resolve().parent
+ HELD=PREP/"held-preparation.json"
+-WORKER=ROOT/"work/962-engineering/head-star-current24-interior-flip-prep-001/propose_saved_cavity_flips.py"
++WORKER=ROOT/"work/962-engineering/head-star-current24-edge-removal-prep-001/propose_saved_edge_removal.py"
+ WORKER_HELD=WORKER.parent/"held-preparation.json"
+ REPORT_REL="work/962-engineering/head-star-current110-pass62-application-001/worker-report.json"
+ PARENT_REL="work/962-engineering/head-star-current110-pass62-application-root-execution-001/result-peer-acceptance.json"
+@@ -21,6 +21,12 @@
+ MANIFEST_REL="work/962-engineering/head-star-current110-component-sicn-prep-001/component-manifest.json"
+ SELECTED_REL="work/962-engineering/head-star-current110-pass62-apply-prep-002/selected-proposals.json"
+ CAP=32*1024**2
++
++
++PRIOR_HELD_REL="work/962-engineering/head-star-current24-interior-flip-prep-001/held-preparation.json"
++COUNTS_REL="work/962-engineering/head-star-current24-edge-star-next-step-assessment-001/reason-counts.json"
++PRIOR_REPORT_REL="work/962-engineering/head-star-current24-interior-flip-saved-root-execution-001/report.json"
++PRIOR_ACCEPTANCE_REL="work/962-engineering/head-star-current24-interior-flip-independent-verifier-root-review-001/result-peer-acceptance.json"
+ 
+ 
+ def identity(path,data):
+@@ -38,9 +44,9 @@
+     return json.loads(data,object_pairs_hook=pairs,parse_constant=constant)
+ 
+ 
+-def exact15_inputs(pins):
+-    """Read only the fixed15 first-party input names, preserving every identity."""
+-    if len(pins)!=15:raise ValueError("Exact15 held inputs required")
++def exact23_inputs(pins):
++    """Read only the fixed23 first-party input names, preserving every identity."""
++    if len(pins)!=23:raise ValueError("Exact23 held inputs required")
+     data={};records={}
+     for name,pin in sorted(pins.items()):
+         path=ROOT/name
+@@ -78,68 +84,85 @@
+ 
+ 
+ def build_saved_report():
+-    """Future fixed complete operation; no selection, application or new kernel."""
++    """Future exactly one complete55-edge family; no subset/application or new kernel."""
+     held=strict_json(HELD.read_bytes());worker_held_raw=WORKER_HELD.read_bytes()
+     if identity(WORKER_HELD,worker_held_raw)!=held["worker_held"]:
+         raise ValueError("Worker held identity changed")
+     worker_held=strict_json(worker_held_raw)
+-    if worker_held["input_records"]!=held["input_records"] or len(held["input_records"])!=15:
+-        raise ValueError("Same exact15 worker inputs required")
++    if worker_held["input_records"]!=held["input_records"] or len(held["input_records"])!=23:
++        raise ValueError("Same exact23 worker metadata inputs required")
+     raw=WORKER.read_bytes()
+-    if identity(WORKER,raw)!=held["worker_source"]:
+-        raise ValueError("Worker source changed")
+-    inputs,before_inputs=exact15_inputs(held["input_records"])
+-    # This import is deferred to a separately admitted future saved-data call.
+-    spec=importlib.util.spec_from_file_location("held_saved_flip_worker",WORKER)
++    if identity(WORKER,raw)!=held["worker_source"]:raise ValueError("Worker source changed")
++    inputs,before_inputs=exact23_inputs(held["input_records"])
++    inherited=worker_held["inherited_intake_input_records"]
++    if len(inherited)!=15 or any(held["input_records"].get(k)!=v for k,v in inherited.items()):
++        raise ValueError("Original15 intake descriptors must be preserved inside23")
++    if inputs[PRIOR_HELD_REL]["input_records"]!=inherited:
++        raise ValueError("Original worker held15 intake association changed")
++    counts=inputs[COUNTS_REL];prior_acceptance=inputs[PRIOR_ACCEPTANCE_REL]
++    if (counts["source_report"]!=held["input_records"][PRIOR_REPORT_REL]
++            or counts["root_finite_refusal_acceptance"]!=held["input_records"][PRIOR_ACCEPTANCE_REL]
++            or prior_acceptance["saved_producer_report"]!=held["input_records"][PRIOR_REPORT_REL]
++            or prior_acceptance["schema"]!="962-current24-finite-saved-flip-root-result-acceptance/v1"
++            or prior_acceptance["finite_family_local_refusals_accepted"] is not True
++            or prior_acceptance["independent_kernel_completion_accepted"] is not True):
++        raise ValueError("Accepted204/report/reason-accounting descriptor joins required")
++    # Deferred import only after a separately admitted future saved-metadata call.
++    spec=importlib.util.spec_from_file_location("held_saved_edge_removal_worker",WORKER)
+     worker=importlib.util.module_from_spec(spec);spec.loader.exec_module(worker)
++    expected={name.replace("3_to_2:","edge:"):int(degree)
++              for degree,names in counts["selected_next_source_scope"]["case_membership_by_degree"].items()
++              for name in names}
++    if expected!=worker.EXPECTED_EDGE_DEGREES or len(expected)!=55:
++        raise ValueError("Exact55 saved case/degree identities required")
+     context=worker.prepare_context(inputs[REPORT_REL],inputs[PARENT_REL],inputs[CLOSED_REL],
+                                   inputs[MANIFEST_REL],inputs[SELECTED_REL],worker_held)
+     before=context_snapshot(context);before_bytes=canonical_bytes(before)
+-    associations=worker.enumerate_associations(context)
+-    # Includes nonpatterns: the worker retains their explicit local refusal.
+-    local_results=[worker.screen_local_cavity(context,row) for row in associations]
+-    conflicts=worker.association_conflicts(associations)
++    prior=inputs[PRIOR_REPORT_REL]
++    if (prior["procedure_preservation_passed"] is not True
++            or prior["complete_context_byte_identical"] is not True
++            or canonical_bytes(prior["complete_context_before"])!=before_bytes
++            or canonical_bytes(prior["complete_context_after"])!=before_bytes
++            or prior["before_snapshot_sha256"]!=hashlib.sha256(before_bytes).hexdigest()
++            or prior["after_snapshot_sha256"]!=hashlib.sha256(before_bytes).hexdigest()):
++        raise ValueError("Exact accepted prior271/499/24/16 context association required")
++    result=worker.screen_complete_saved_family(context) # Exactly ONE full family call.
+     after=context_snapshot(context);after_bytes=canonical_bytes(after)
+-    _,after_inputs=exact15_inputs(held["input_records"])
+-    worker_source_after=identity(WORKER,WORKER.read_bytes())
+-    worker_held_after=identity(WORKER_HELD,WORKER_HELD.read_bytes())
++    _,after_inputs=exact23_inputs(held["input_records"])
++    source_after=identity(WORKER,WORKER.read_bytes());worker_held_after=identity(WORKER_HELD,WORKER_HELD.read_bytes())
+     unchanged=(before_bytes==after_bytes and before_inputs==after_inputs
+-               and worker_source_after==held["worker_source"]
+-               and worker_held_after==held["worker_held"])
+-    if len(before["points"])!=271 or len(before["cells"])!=499 or len(before["poor"])!=24:
+-        raise ValueError("Full271/499/24 context required")
+-    if len(associations)!=len(local_results) or len({r["association_ID"] for r in associations})!=len(associations):
+-        raise ValueError("Every unique association needs one local disposition")
+-    if [r["association_ID"] for r in associations]!=[r["association_ID"] for r in local_results]:
+-        raise ValueError("Complete ordered association/disposition join required")
+-    if any(r["complete_flip_eligibility"] is not None or r["mesh_application_authorized"] is not False
+-           for r in local_results):raise ValueError("Eligibility must remain unresolved and application false")
+-    counts={}
+-    for row in local_results:counts[row["local_result"]]=counts.get(row["local_result"],0)+1
++               and source_after==held["worker_source"] and worker_held_after==held["worker_held"])
++    if (canonical_bytes(result["context_before"])!=before_bytes
++            or canonical_bytes(result["context_after"])!=after_bytes
++            or result["complete_context_byte_identical"] is not True):
++        raise ValueError("Worker/external complete context snapshots disagree")
++    if (result["selected_case_count"]!=55 or len(result["selected_complete_edge_stars"])!=55
++            or result["candidate_count"]!=len(result["all_candidate_rows"])
++            or not 0<=result["candidate_count"]<=1033
++            or result["all_failed_unavailable_and_outside_rows_retained"] is not True
++            or result["conflicts"]["all_pairs_represented_without_truncation"] is not True):
++        raise ValueError("Complete finite case/candidate/conflict rows required")
++    if (result["complete_application_eligibility"] is not None
++            or result["mesh_application_authorized"] is not False
++            or result["whole_head_embedding_or_nonoverlap_accepted"] is not False
++            or any(r["complete_application_eligibility"] is not None
++                   or r["mesh_application_authorized"] is not False for r in result["all_candidate_rows"])):
++        raise ValueError("No complete eligibility, whole-head or application acceptance allowed")
+     stars=inputs[REPORT_REL]["after"]["complete_native_census"]["complete_seed_star_census"]
+-    result=dict(schema="962-current24-complete-saved-interior-flip-local-screen/v1",
+-        status="complete_saved_local_screen_only_eligibility_unavailable" if unchanged else "refused_context_or_input_change",
+-        all_finite_rows_retained=True,procedure_preservation_passed=unchanged,
++    result.update(all_finite_rows_retained=True,procedure_preservation_passed=unchanged,
+         input_records_before=before_inputs,input_records_after=after_inputs,
+-        worker_source=held["worker_source"],worker_source_after=worker_source_after,
++        worker_source=held["worker_source"],worker_source_after=source_after,
+         worker_held=held["worker_held"],worker_held_after=worker_held_after,
+-        complete_context_before=before,complete_context_after=after,
+         before_snapshot_sha256=hashlib.sha256(before_bytes).hexdigest(),
+         after_snapshot_sha256=hashlib.sha256(after_bytes).hexdigest(),
+-        complete_context_byte_identical=before_bytes==after_bytes,
++        accepted_prior_flip_report=held["input_records"][PRIOR_REPORT_REL],
++        accepted_prior_flip_root=held["input_records"][PRIOR_ACCEPTANCE_REL],
++        all23_descriptor_and_original15_intake_joins_checked=True,
+         full_saved_native_cell_rows=copy.deepcopy(stars["complete_incident_tetrahedra"]),
+         full_saved_coordinate_classification_rows=copy.deepcopy(stars["unique_incident_nodes"]),
+-        association_count=len(associations),associations=associations,
+-        local_disposition_count=len(local_results),local_status_counts=counts,
+-        complete_local_dispositions=local_results,observed_pair_conflicts=conflicts,
+-        observed_pair_conflict_count=len(conflicts),complete_flip_eligibility=None,
+-        source_interface_region_exterior_or_BIN_evidence=None,
+-        global_embedding_or_nonoverlap_accepted=False,mesh_application_authorized=False,
+-        head_PDE_or_strength_or_material_or_LPBF_or_manufacturing_accepted=False,
+-        raw_MSH_BIN_or_native_runtime_body_read=False,optimizer_called=False,
+-        combined_subset_or_flip_sequence_selected=False,automatic_retry=False,
+-        limits="Finite known-context family only; missing owners/interfaces remain unavailable. No global infeasibility or topology necessity follows.")
+-    # Full serialization either fits or refuses. No truncation or empty inference.
+-    encoded=(json.dumps(result,indent=2,allow_nan=False)+"\n").encode("utf-8")
+-    if len(encoded)>CAP:raise ValueError("Complete saved screen exceeds32MiB; refuse without truncation")
++        serialization="Complete canonical compact JSON, all logical fields/rows/types unchanged; no truncation",
++        raw_MSH_BIN_native_fields_or_runtime_body_read=False,automatic_retry=False)
++    # Whitespace-only capacity reduction; complete values/arrays and rational strings remain.
++    encoded=canonical_bytes(result)+b"\n"
++    if len(encoded)>CAP:raise ValueError("Complete saved edge screen exceeds32MiB; refuse without truncation")
+     return result,encoded

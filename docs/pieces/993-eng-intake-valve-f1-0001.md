@@ -2,7 +2,7 @@
 
 # 993 intake valve - F1 proxy and titanium variant
 
-**Status: **prohibited pending engineering**. No part is released; see [SAFETY.md](../../SAFETY.md).**
+**Status: **prohibited pending engineering**. No part is released; see [SAFETY.md](../../docs/SAFETY.md).**
 
 Non-functional parametric proxy for comparing the envelope and mass of a 993 intake valve with a 49 mm head and 8 mm stem, with a Ti-6Al-4V variant explicitly limited to simulation.
 
@@ -98,6 +98,10 @@ Catalogue record: [`catalog/parts/993-eng-intake-valve-f1-0001.json`](../../cata
 
 *`parts/993-eng-intake-valve-f1-0001/media/views.png` — concept CAD block, **not** the original part, not a print file.*
 
+![photo-concept](../../parts/993-eng-intake-valve-f1-0001/media/photo-concept.png)
+
+*`parts/993-eng-intake-valve-f1-0001/media/photo-concept.png` — AI-generated studio illustration based on the concept CAD preview. Material and finish are illustrative; generated details may differ. Not a photograph or evidence of fit, function or manufacturing.*
+
 ## Provenance and sources
 
 | field | value |
@@ -116,7 +120,7 @@ Catalogue record: [`catalog/parts/993-eng-intake-valve-f1-0001.json`](../../cata
 | status | concept |
 | vehicle tested | not recorded |
 | reviewed by |  |
-| limitations | not recorded |
+| limitations | Overall length is a 109 mm hypothesis derived from a 110 mm product envelope.<br>Keeper groove, seat, margin, neck radius, coating, tolerances and cam/spring dynamics are not defined.<br>The generated STL is fit-check-only and must never be installed in an engine. |
 
 **Evidence**
 

@@ -2,7 +2,7 @@
 
 # 993 front impact support, AlSi10Mg graded-core concept F0
 
-**Status: **prohibited pending engineering**. No part is released; see [SAFETY.md](../../SAFETY.md).**
+**Status: **prohibited pending engineering**. No part is released; see [SAFETY.md](../../docs/SAFETY.md).**
 
 Independent front support concept with an elliptical shell and a graded open cruciform core, used to screen the value of LPBF AlSi10Mg. PorscheFanatics corroborates the lightweight FVD support at 145 g; FVD publishes a 139 x 100 x 53 mm envelope and states only aluminum, with no alloy and no interface geometry.
 
@@ -90,6 +90,10 @@ Catalogue record: [`catalog/parts/993-body-front-impact-support-alsi10mg-f0-0001
 
 *`parts/993-body-front-impact-support-alsi10mg-f0-0001/media/views.png` — concept CAD block, **not** the original part, not a print file.*
 
+![photo-concept](../../parts/993-body-front-impact-support-alsi10mg-f0-0001/media/photo-concept.png)
+
+*`parts/993-body-front-impact-support-alsi10mg-f0-0001/media/photo-concept.png` — AI-generated studio illustration based on the concept CAD preview. Material and finish are illustrative; generated details may differ. Not a photograph or evidence of fit, function or manufacturing.*
+
 ## Provenance and sources
 
 | field | value |
@@ -109,7 +113,7 @@ Catalogue record: [`catalog/parts/993-body-front-impact-support-alsi10mg-f0-0001
 | status | concept |
 | vehicle tested | not recorded |
 | reviewed by |  |
-| limitations | not recorded |
+| limitations | Only the 139 x 100 x 53 mm envelope, the 145 g mass and the aluminum family are published; any F0 topology is hypothetical.<br>No hole or boss is modeled because no body shell or bumper interface has been measured.<br>The 144.65 g of the STEP, close to the commercial 145 g, is a designed scalar check, not a geometric validation.<br>The 15 kN over 80 mm load case and its 6.55 km/h equivalent are synthetic and match no regulatory procedure.<br>The elastic and plate calculations predict neither progressive folding, fracture, impulse, intrusion nor occupant protection.<br>The STEP proves only a computable BREP; any manufacture, installation or road use is prohibited at this stage. |
 
 **Evidence**
 

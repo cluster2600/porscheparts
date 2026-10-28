@@ -2,7 +2,7 @@
 
 # 993 center cap, AlSi10Mg F0 concept without crest
 
-**Status: functional. No part is released; see [SAFETY.md](../../SAFETY.md).**
+**Status: functional. No part is released; see [SAFETY.md](../../docs/SAFETY.md).**
 
 Independent concept of a metal center cap with four integrated tabs to screen a small LPBF series. PorscheFanatics confirms the identity and the historical PET status; partworks publishes three dimensions and states that the original is plastic.
 
@@ -91,6 +91,10 @@ Catalogue record: [`catalog/parts/993-whl-center-cap-alsi10mg-f0-0001.json`](../
 
 *`parts/993-whl-center-cap-alsi10mg-f0-0001/media/views.png` — concept CAD block, **not** the original part, not a print file.*
 
+![photo-concept](../../parts/993-whl-center-cap-alsi10mg-f0-0001/media/photo-concept.png)
+
+*`parts/993-whl-center-cap-alsi10mg-f0-0001/media/photo-concept.png` — AI-generated studio illustration based on the concept CAD preview. Material and finish are illustrative; generated details may differ. Not a photograph or evidence of fit, function or manufacturing.*
+
 ## Provenance and sources
 
 | field | value |
@@ -110,7 +114,7 @@ Catalogue record: [`catalog/parts/993-whl-center-cap-alsi10mg-f0-0001.json`](../
 | status | concept |
 | vehicle tested | not recorded |
 | reviewed by |  |
-| limitations | not recorded |
+| limitations | Only Ø76, Ø60, 46 mm height and plastic come from the commercial record; all interfaces are hypothetical.<br>Replacing plastic with AlSi10Mg changes mass, compliance, fatigue and corrosion; no equivalence is claimed.<br>The 0.4 mm, 0.30 coefficient, 250 km/h, 20 g and +120 K cases are synthetic.<br>The model includes no Porsche emblem, crest or design.<br>The STEP proves only a computable BREP and must not be installed on a wheel. |
 
 **Evidence**
 

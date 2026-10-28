@@ -1,0 +1,85 @@
+{
+  "status": "triangle_solid_or_3MF_screen_refused",
+  "candidate_adopted": false,
+  "scope": "Triangle-solid operator only; the failed native BREP retention gates remain unchanged",
+  "thread_scope": "One worker process; OCCT and BLAS use one thread. Manifold internal thread count is not attested.",
+  "versions": {
+    "manifold3d": "3.5.2",
+    "numpy": "2.0.2",
+    "build123d": "0.11.1"
+  },
+  "inputs": {
+    "parts/993-eng-carrier-0001/source/design-20261016/corner-slide-candidate-20261018/candidate-surface.stl": "b4026f66dc77b8022e82c358553e8e93ce0cbc2ea0fd31da19ac39a9f891a803",
+    "work/carrier-resume-20261020/nurbs-root-patch-001/output/patch-0.brep": "9b2dae417fb2c9ffc76d40dd80978be7eb6c019c73b6f5b3a4f51372cd861771",
+    "work/carrier-resume-20261020/nurbs-root-patch-001/output/patch-1.brep": "397571f0c8b601da97a72abde026f9e146f346a7a760604efc12b827095681eb"
+  },
+  "parent": {
+    "path": "parts/993-eng-carrier-0001/source/design-20261016/corner-slide-candidate-20261018/candidate-surface.stl",
+    "sha256": "b4026f66dc77b8022e82c358553e8e93ce0cbc2ea0fd31da19ac39a9f891a803",
+    "STL_triangles": 598372,
+    "exact_coordinate_unique_vertices": 299144,
+    "status": "Error.NoError",
+    "native_triangles": 598372,
+    "volume_mm3": 288680.67105497717,
+    "vertex_weld_tolerance_used": false
+  },
+  "patches": [
+    {
+      "path": "work/carrier-resume-20261020/manifold-root-patch-001/output/patch-0.stl",
+      "sha256": "19721fc77ab676da4d20decad6bb2807138f60641a25295bf68692608ecc713d",
+      "STL_triangles": 19390,
+      "exact_coordinate_unique_vertices": 9696,
+      "status": "Error.NoError",
+      "native_triangles": 19388,
+      "volume_mm3": 4.179099794662827,
+      "vertex_weld_tolerance_used": false
+    },
+    {
+      "path": "work/carrier-resume-20261020/manifold-root-patch-001/output/patch-1.stl",
+      "sha256": "1ef9af6f3c439122376c094c86577a5a60f8c41332a17456968feed109671794",
+      "STL_triangles": 19390,
+      "exact_coordinate_unique_vertices": 9696,
+      "status": "Error.NoError",
+      "native_triangles": 19388,
+      "volume_mm3": 4.178613484114518,
+      "vertex_weld_tolerance_used": false
+    }
+  ],
+  "candidate": {
+    "status": "Error.NoError",
+    "triangles": 639078,
+    "vertices": 319497,
+    "volume_mm3": 288685.94544063305,
+    "mass_kg": 1.2759918788475981,
+    "removed_status": "Error.NoError",
+    "removed_empty": false,
+    "removed_triangles": 460,
+    "removed_volume_mm3": -4.970943532263755e-15,
+    "added_status": "Error.NoError",
+    "added_empty": false,
+    "added_volume_mm3": 5.274385768436888
+  },
+  "roundtrip": {
+    "vertex_binary64_bytes_equal": true,
+    "triangle_indices_equal": true,
+    "status": "Error.NoError",
+    "original_minus_restored_empty": false,
+    "original_minus_restored_status": "Error.NoError",
+    "archive_sha256": "9d8415ab63beaffe0021694c3f6d9e0bfaad339a499603ff5760800ce95eae5d"
+  },
+  "checks": {
+    "candidate_NoError": true,
+    "triangle_solid_material_retention": false,
+    "positive_addition": true,
+    "mass_below_1_30_kg": true,
+    "restored_NoError": true,
+    "restored_material_retention": false
+  },
+  "pending": [
+    "independent whole-surface topology/intersection audit",
+    "protected study interfaces",
+    "fresh volume mesh and mechanics",
+    "complete additive process preparation"
+  ],
+  "elapsed_seconds": 18.40441062487662
+}

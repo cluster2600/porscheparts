@@ -2,7 +2,7 @@
 
 # Upper valve cover with COP towers, F0 AlSi10Mg concept
 
-**Status: **prohibited pending engineering**. No part is released; see [SAFETY.md](../../SAFETY.md).**
+**Status: **prohibited pending engineering**. No part is released; see [SAFETY.md](../../docs/SAFETY.md).**
 
 Independent concept of a 993 upper valve cover, open on the oil side, with six fins and three integrated coil-on-plug towers. The sources confirm billet alternatives and interest in COP, but no individual geometry; all F0 interfaces are synthetic.
 
@@ -90,6 +90,10 @@ Catalogue record: [`catalog/parts/993-eng-upper-valve-cover-alsi10mg-f0-0001.jso
 
 *`parts/993-eng-upper-valve-cover-alsi10mg-f0-0001/media/views.png` — concept CAD block, **not** the original part, not a print file.*
 
+![photo-concept](../../parts/993-eng-upper-valve-cover-alsi10mg-f0-0001/media/photo-concept.png)
+
+*`parts/993-eng-upper-valve-cover-alsi10mg-f0-0001/media/photo-concept.png` — AI-generated studio illustration based on the concept CAD preview. Material and finish are illustrative; generated details may differ. Not a photograph or evidence of fit, function or manufacturing.*
+
 ## Provenance and sources
 
 | field | value |
@@ -111,7 +115,7 @@ Catalogue record: [`catalog/parts/993-eng-upper-valve-cover-alsi10mg-f0-0001.jso
 | status | concept |
 | vehicle tested | not recorded |
 | reviewed by |  |
-| limitations | not recorded |
+| limitations | The 400 x 150 x 200 mm envelope and 3.32 kg concern a kit of four covers with gaskets/hardware, not the F0 part.<br>The 220 x 95 x 45 mm shell, the ten fasteners, six fins and three COP towers are entirely synthetic.<br>The 9.7 Nm torque comes from an unverified OCR transcription and constitutes no fitting instruction.<br>The AlSi10Mg values are generic comparisons, not a hot allowables map for a sealing face.<br>The pressures, temperatures, gradient, convection, heat and gasket are regression inputs.<br>The thermal stress, warpage and convection screens fail; no sealing is demonstrated.<br>No gasket contact, CHT, modal, fatigue, clamp-load relaxation or coil/harness integration is validated.<br>The STEP proves only a readable open BREP and is authorized neither for manufacturing, nor for sealing, nor for an engine. |
 
 **Evidence**
 

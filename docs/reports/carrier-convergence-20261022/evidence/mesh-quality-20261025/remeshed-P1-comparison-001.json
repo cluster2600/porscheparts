@@ -1,0 +1,62 @@
+{
+  "rows": [
+    {
+      "label": "Quality remesh T4",
+      "elements": 381564,
+      "nodes": 119948,
+      "order": 4,
+      "displacement_max_mm": 1.5501656806716209,
+      "compliance_Nmm": 12004.932845968491,
+      "global_peak_VM_MPa": 1270.714425138768,
+      "volume_weighted_p95_VM_MPa": 129.5272677284722,
+      "central_peak_VM_MPa": 1270.714425138768,
+      "central_volume_weighted_p95_VM_MPa": 136.7562890337695,
+      "volume_mm3": 293718.33829247335,
+      "independent_energy_relative_residual": 2.3416994943928046e-08,
+      "central_exclusion_does_not_qualify_global_peak": true
+    },
+    {
+      "label": "Nested red8 T4",
+      "elements": 3052512,
+      "nodes": 719680,
+      "order": 4,
+      "displacement_max_mm": 1.9898475786910765,
+      "compliance_Nmm": 15795.122612850344,
+      "global_peak_VM_MPa": 1555.2565232359518,
+      "volume_weighted_p95_VM_MPa": 150.22827724226565,
+      "central_peak_VM_MPa": 1555.2565232359518,
+      "central_volume_weighted_p95_VM_MPa": 158.78673740659607,
+      "volume_mm3": 293718.3382924734,
+      "independent_energy_relative_residual": 1.2011991434784612e-08,
+      "central_exclusion_does_not_qualify_global_peak": true
+    }
+  ],
+  "comparisons": [
+    {
+      "left": "Quality remesh T4",
+      "right": "Nested red8 T4",
+      "relative_change_using_finer_denominator": {
+        "displacement_max_mm": 0.22096260172283086,
+        "compliance_Nmm": 0.2399595026757368,
+        "global_peak_VM_MPa": 0.18295509058862514,
+        "volume_weighted_p95_VM_MPa": 0.1377970239278586,
+        "central_peak_VM_MPa": 0.18295509058862514,
+        "central_volume_weighted_p95_VM_MPa": 0.13874237063272155
+      },
+      "within_limits": false
+    }
+  ],
+  "convergence_demonstrated": false,
+  "source_sha256": {
+    "work/carrier-mesh-quality-20261025/remeshed-P1-comparison-inputs.json": "a4f39c597adf8dcb4cc83b229e477ed7e5e5dcf8a09986759bdf38232a237395",
+    "/Users/maxime/.codex/worktrees/993-carrier-revalidation/3dprinting993/parts/993-eng-carrier-0001/source/design-20261016/convergence-20261022/compare_accepted_fields.py": "7054ee03206f6e74854fecd4d877e846fb32e2f16e060162cfe937e229b2b566",
+    "work/carrier-mesh-quality-20261025/mac-remeshed-P1-assessment-001/assessment.json": "a8eaa139af9a8a7d7b7f79d0961c58f90d05f92383e34c3b5484aa1f8b730520",
+    "work/carrier-mesh-quality-20261025/mac-remeshed-P1-energy-001/assessment.json": "cd2561b7f25e5c530c8298cfc18571b22134fb8c9ff9e74cf0e67096c7eb3bf6",
+    "work/carrier-mesh-quality-20261025/mac-remeshed-P1-assessment-001/results.npz": "be8703d7b87413a2d65d841b133baf2f4e34de72adc76a572a7fcc763345b05a",
+    "work/carrier-mesh-quality-20261025/remeshed-matched-traction-001/P1/transport.npz": "bdcd5487492f0fbe48beed717fea75727cd0bb9fcfe738bf2c27c5452ae94ae9",
+    "work/carrier-mesh-quality-20261025/mac-remeshed-red8-P1-assessment-001/assessment.json": "446360a1425f2c8fb9f2f445eec4e2a83e1299496b924d26f7b58030b200d09e",
+    "work/carrier-mesh-quality-20261025/mac-remeshed-red8-P1-energy-001/assessment.json": "43c8bac7c186da5f041dc39384414c5187be9757c9945b83132bbd6ffd473315",
+    "work/carrier-mesh-quality-20261025/mac-remeshed-red8-P1-assessment-001/results.npz": "48b77c04a758e67388a134bdc10418c9a27e000fcd4132d9130fc7436ea59569",
+    "work/carrier-mesh-quality-20261025/remeshed-red8-matched-traction-001/P1/transport.npz": "d49558e0d7daef699337c7d2c553cf2083e9ff0e2056063ad36dc10625928d3d"
+  }
+}

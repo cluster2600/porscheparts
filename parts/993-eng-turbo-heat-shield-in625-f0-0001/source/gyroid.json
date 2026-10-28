@@ -1,0 +1,72 @@
+{
+  "part_id": "993-ENG-TURBO-HEAT-SHIELD-IN625-F0-0001",
+  "name": "993 Turbo left heat shield cover, IN625 double skin + lattice core, gyroid core (PicoGK)",
+  "generator": "gyroid_core",
+  "catalogue_record": "catalog/parts/993-eng-turbo-heat-shield-in625-f0-0001.json",
+  "porsche_part_numbers": [
+    "993 123 113 51"
+  ],
+  "safety_class": "functional",
+  "material_candidate": "IN625 LPBF",
+  "density_g_cm3": 8.44,
+  "voxel_mm": 0.4,
+  "picogk_enhancement": "Gyroid core: the published PicoGK body (turbo_heat_shield) keeps its outer form; a 1.2 mm skin encloses a sheet gyroid (9 mm cell, 1 mm wall) wherever the body holds three cells, thinner zones and functional features stay solid, drain ports run to the nearest outer surface and any pocket they miss is filled solid. Core settings are assumptions for the lpbf metal class; nothing here is printed, depowdered or tested.",
+  "base": {
+    "stl": "parts/993-eng-turbo-heat-shield-in625-f0-0001/derived/turbo_heat_shield_in625_f0-picogk.stl",
+    "sha256": "0cf64a595dd6ed2ef3a0a05b72d98df87cc8d3418040215d6da14a9a58935e33",
+    "generator": "turbo_heat_shield"
+  },
+  "material_class": "lpbf_metal",
+  "parameters": {
+    "cell_mm": {
+      "value": 9.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "gyroid period; at least 9 walls so the channels stay open to the drains"
+    },
+    "wall_mm": {
+      "value": 1.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "gyroid sheet thickness; class minimum 0.4 mm, at least 2.5 voxels"
+    },
+    "skin_mm": {
+      "value": 1.2,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "outer skin; class minimum 0.8 mm, at least 3 voxels"
+    },
+    "min_cells": {
+      "value": 3,
+      "unit": "cells",
+      "basis": "assumption",
+      "source": null,
+      "note": "owner rule 2026-10-22: core only where three cells fit, else solid"
+    },
+    "drain_d_mm": {
+      "value": 2.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "powder/resin drain diameter; class minimum 2.0 mm"
+    },
+    "max_drains": {
+      "value": 6,
+      "unit": "count",
+      "basis": "assumption",
+      "source": null,
+      "note": "lowest and highest core points, then farthest-point spread"
+    }
+  },
+  "keep_solid": [],
+  "recut_void": [],
+  "open_interfaces": [
+    "mounting point positions and screw size",
+    "actual cover shape around the turbo housing",
+    "published mass 230 g vs heavier double-skin concept"
+  ],
+  "status": "F0 concept geometry - not fitted, not tested, not safe, not released, not a print file"
+}

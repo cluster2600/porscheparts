@@ -1,0 +1,196 @@
+--- work/962-engineering/cp1-oneway-thermoelastic-assessor-prep-002/assess.py
++++ work/962-engineering/cp1-oneway-thermoelastic-assessor-prep-003/assess.py
+@@ -150,15 +150,41 @@
+         need(error <= self.policy[unit], unit + ' fixed absolute SI gate failed: ' + repr(error))
+ 
+ 
+-def node_sample(path, geometry, active, columns):
+-    data = {}
+-    for row in rows(path, ('id', 'x', 'y', 'z', *columns)):
++def node_sample(path, geometry, active, columns, shared_doublets=()):
++    # Only the native postbirth caller supplies the exact frozen shared25 IDs.
++    expected = set(shared_doublets)
++    need(len(expected) == len(shared_doublets) and expected <= set(active)
++         and (not expected or len(expected) == 25)
++         and all(type(tag) is int and geometry[tag][0] == 1. for tag in expected),
++         'Only the explicit shared25 native doublet set is supported')
++    fields = ('id', 'x', 'y', 'z', *columns)
++    saved = rows(path, fields)
++    data = {}; tokens = {}; positions = {}
++    for line, row in enumerate(saved, 2):
+         tag = integer(row['id'])
+         xyz = tuple(number(row[k]) for k in 'xyz')
+-        need(tag in active and tag not in data and bits(xyz) == bits(geometry[tag]), 'Observed source ID/coordinate words must join native Exodus map')
+-        data[tag] = {name: number(row[name]) for name in columns}
++        need(tag in active and bits(xyz) == bits(geometry[tag]), 'Observed source ID/coordinate words must join native Exodus map')
++        original = tuple(row[name] for name in fields)
++        values = {name: number(row[name]) for name in columns}
++        if tag in data:
++            need(tag in expected and len(positions[tag]) == 1 and original == tokens[tag],
++                 'Only two complete lexically identical rows per expected shared source ID are supported')
++        else:
++            data[tag] = values; tokens[tag] = original; positions[tag] = []
++        positions[tag].append(line)
+     need(set(data) == set(active), 'Complete active nodal sample required')
+-    return data
++    need(len(saved) == len(active) + len(expected)
++         and all(len(positions[tag]) == (2 if tag in expected else 1) for tag in active),
++         'Exact expected shared doublets and all other singletons required')
++    storage = dict(filename=Path(path).name, raw_csv_sha256=sha(path), comparison_field_order=list(fields),
++                   raw_row_count=len(saved), unique_source_ID_count=len(data), expected_shared_doublet_IDs=sorted(expected),
++                   verified_doublets=[dict(source_node_id=tag, csv_line_numbers_1_based=positions[tag],
++                       complete_field_token_sha256=hashlib.sha256(json.dumps(tokens[tag], separators=(',', ':')).encode('utf-8')).hexdigest())
++                       for tag in sorted(expected)],
++                   token_hash_encoding='UTF8 compact JSON array of original CSV string tokens in comparison_field_order',
++                   all_duplicate_complete_field_tokens_identical=True, all_other_multiplicities_one=True,
++                   raw_rows_rewritten_or_averaged=False)
++    return data, storage
+ 
+ 
+ def cdf_magic(path):
+@@ -301,6 +327,9 @@
+     old_nodes = {tag for tag, p in geometry.items() if p[0] <= 1.}; born_nodes = {tag for tag, p in geometry.items() if p[0] >= 1.}
+     old_cells = {t for t, conn in cells.items() if max(geometry[n][0] for n in conn) <= 1.}
+     need((len(old_nodes), len(born_nodes), len(old_cells)) == (225, 225, 128), 'Fixed native old/born partition required')
++    shared_nodes = old_nodes & born_nodes
++    need(len(shared_nodes) == 25 and shared_nodes == {r['source_node_id'] for r in transfer['node_rows'] if r['shared'] is True},
++         'Exact frozen source shared25 IDs must join the native old/born partition')
+     constraints = {(0, 0), (0, 1), (0, 2), (32, 1), (32, 2), (137, 2)}
+     need(geometry[0] == (0., 0., 0.) and geometry[32] == (1., 0., 0.) and geometry[137] == (0., 1., 0.), 'Observed exact support IDs and positions required')
+     source = {(r['step'], r['phase']): r for r in source_index['selected']}
+@@ -308,7 +337,7 @@
+     def thermal(step, phase, active):
+         item = source[(step, phase) if step else (0, 'end')]
+         path = source_directory / item['filename']; need(sha(path) == item['sha256'], 'Original thermal source drift')
+-        return node_sample(path, geometry, active, ('temperature',))
++        return node_sample(path, geometry, active, ('temperature',))[0]  # Original thermal rows remain strictly unique.
+     birth_T = {tag: value['temperature'] for tag, value in thermal(80, 'begin', set(geometry)).items() if tag in born_nodes}
+     born_u = None; previous_end = None; previous_qp = None; qcoords = {}; summaries = []; total_qp = dict(begin=0, end=0)
+     for step in range(161):
+@@ -316,7 +345,8 @@
+         phase_state = {}
+         for phase in ('begin', 'end'):
+             cols = (*DISP, 'temperature') if phase == 'begin' else (*DISP, 'temperature', *FORCE)
+-            nodal = node_sample(directory / f'thermoelastic_{phase}_{step:04d}.csv', geometry, active_nodes, cols)
++            nodal, nodal_storage = node_sample(directory / f'thermoelastic_{phase}_{step:04d}.csv', geometry, active_nodes, cols,
++                                               shared_nodes if step >= 80 else ())
+             source_T = thermal(step, phase, active_nodes)
+             for tag, row in nodal.items():
+                 audit.close(row['temperature'], source_T[tag]['temperature'], 'temperature_K')
+@@ -333,12 +363,17 @@
+                     for value in born_u[tag]:
+                         audit.close(value, 0., 'displacement_m')
+             reference_path = directory / f'thermoelastic_reference_{phase}_{step:04d}.csv'
++            reference_storage = None
+             if step >= 80:
+-                ref = node_sample(reference_path, geometry, born_nodes, ('born_reference_temperature',))
++                ref, reference_storage = node_sample(reference_path, geometry, born_nodes, ('born_reference_temperature',))
+                 for tag in born_nodes:
+                     audit.close(ref[tag]['born_reference_temperature'], birth_T[tag], 'temperature_K')
+             elif reference_path.exists():
+                 need(not rows(reference_path, ('id', 'x', 'y', 'z', 'born_reference_temperature'), True), 'Prebirth reference sampler must have no active rows')
++                reference_storage = dict(filename=reference_path.name, raw_csv_sha256=sha(reference_path),
++                                         comparison_field_order=['id', 'x', 'y', 'z', 'born_reference_temperature'],
++                                         raw_row_count=0, unique_source_ID_count=0, expected_shared_doublet_IDs=[], verified_doublets=[],
++                                         raw_rows_rewritten_or_averaged=False)
+             # Shared nodes have old and born material references; override per cell below.
+             qp = quadrature_sample(directory / f'thermoelastic_{phase}_fields_{step:04d}.csv', geometry, cells, active_cells, qcoords, policy['QP_coordinate_m'])
+             forces = {tag: [0.] * 3 for tag in active_nodes}; energy = 0.; computed = {}
+@@ -386,7 +421,8 @@
+                             audit.close(observed, expected, 'stress_Pa' if name == 'stress' else 'strain')
+                 previous_end = nodal; previous_qp = qp
+             phase_state[phase] = (nodal, qp, computed); total_qp[phase] += len(qp)
+-            summaries.append(dict(step=step, phase=phase, active_nodes=len(nodal), active_cells=len(active_cells), quadrature_rows=len(qp), elastic_strain_energy_J_diagnostic=energy))
++            summaries.append(dict(step=step, phase=phase, active_nodes=len(nodal), active_cells=len(active_cells), quadrature_rows=len(qp), elastic_strain_energy_J_diagnostic=energy,
++                                  native_nodal_storage=nodal_storage, born_reference_storage=reference_storage))
+     need(total_qp == dict(begin=247808, end=247808) and len(qcoords) == 2048, 'Complete fixed161-phase/8-GP coverage required')
+     return dict(passed=True, maximum_SI_errors=audit.maximum, scalar_comparisons=audit.counts, phase_summaries=summaries,
+                 native_nodes=[dict(id=t, coordinates_m=list(p)) for t, p in sorted(geometry.items())],
+--- work/962-engineering/cp1-oneway-thermoelastic-assessor-prep-002/selfcheck.py
++++ work/962-engineering/cp1-oneway-thermoelastic-assessor-prep-003/selfcheck.py
+@@ -9,7 +9,7 @@
+ import unittest
+ 
+ SOURCE = Path(__file__).with_name('assess.py')
+-SOURCE_SHA = '6dfb8aaa2be8575eaf99c5e49a5f28e345cd12a185e22d5aab5467b632509d03'
++SOURCE_SHA = '55f5f9ca281f9752a6dcac28afca8d18f2c12b4759cf06f8c639a1bb3b8a81bd'
+ assert hashlib.sha256(SOURCE.read_bytes()).hexdigest() == SOURCE_SHA
+ spec = importlib.util.spec_from_file_location('fixed_coupon_assessor_guard', SOURCE)
+ a = importlib.util.module_from_spec(spec)
+@@ -138,4 +138,76 @@
+         with self.assertRaises(ValueError): a.ordered_hex(canonical)
+ 
+ 
++def native_storage_fixture(end=False):
++    geometry, _, _ = fake_family()
++    shared = {tag for tag, p in geometry.items() if p[0] == 1.}
++    columns = (*a.DISP, 'temperature', *a.FORCE) if end else (*a.DISP, 'temperature')
++    fields = ('id', 'x', 'y', 'z', *columns)
++    saved = []
++    for tag, p in geometry.items():
++        row = [str(tag), *(format(x, '.17g') for x in p), *('0.0' if k != 'temperature' else '400.0' for k in columns)]
++        saved.append(row)
++        if tag in shared: saved.append(list(row))
++    return geometry, shared, columns, fields, saved
++
++
++class NativeDoubletStorageGuards(unittest.TestCase):
++    def test_complete_native425_IDs_shared25_doublets_and_prebirth_singletons(self):
++        geometry, shared, columns, fields, saved = native_storage_fixture()
++        self.assertEqual(len(shared), 25); self.assertEqual(len(saved), 450)
++        with TemporaryDirectory() as name:
++            path = Path(name) / 'thermoelastic_begin_0080.csv'
++            path.write_text('\n'.join([','.join(fields), *(','.join(row) for row in saved)]) + '\n')
++            values, storage = a.node_sample(path, geometry, set(geometry), columns, shared)
++            self.assertEqual(set(values), set(geometry)); self.assertEqual(storage['raw_row_count'], 450)
++            self.assertEqual(storage['unique_source_ID_count'], 425); self.assertEqual(storage['expected_shared_doublet_IDs'], sorted(shared))
++            self.assertEqual(len(storage['verified_doublets']), 25); self.assertEqual(storage['raw_csv_sha256'], a.sha(path))
++            for item in storage['verified_doublets']:
++                self.assertEqual(len(item['csv_line_numbers_1_based']), 2)
++                self.assertEqual(len(item['complete_field_token_sha256']), 64)
++            with self.assertRaises(ValueError): a.node_sample(path, geometry, set(geometry), columns)
++            old = {tag for tag, p in geometry.items() if p[0] <= 1.}
++            unique = [next(row for row in saved if a.integer(row[0]) == tag) for tag in sorted(old)]
++            path.write_text('\n'.join([','.join(fields), *(','.join(row) for row in unique)]) + '\n')
++            values, storage = a.node_sample(path, geometry, old, columns)
++            self.assertEqual(len(values), 225); self.assertEqual(storage['raw_row_count'], 225); self.assertEqual(storage['verified_doublets'], [])
++
++    def test_missing_extra_triple_nonshared_and_unequal_complete_tokens_refused(self):
++        geometry, shared, columns, fields, saved = native_storage_fixture(end=True)
++        first = min(shared); pair = [i for i, row in enumerate(saved) if a.integer(row[0]) == first]
++        outsider = next(row for row in saved if a.integer(row[0]) not in shared)
++        cases = []
++        cases.append([row for i, row in enumerate(saved) if i != pair[1]])  # Missing one required second row.
++        cases.append([*saved, list(outsider)])  # A nonshared extra row is never permitted.
++        cases.append([*saved, list(saved[pair[0]])])  # A third identical row is never permitted.
++        for field, value in [('disp_x', '-0.0'), ('rx', '-0.0'), ('id', str(first) + '.0')]:
++            bad = [list(row) for row in saved]; bad[pair[1]][fields.index(field)] = value; cases.append(bad)
++        bad = [list(row) for row in saved]; bad[pair[1]][fields.index('y')] = '-0.0'; cases.append(bad)
++        with TemporaryDirectory() as name:
++            path = Path(name) / 'thermoelastic_end_0080.csv'
++            # All eleven END fields, including reaction tokens, must match exactly.
++            self.assertEqual(len(fields), 11)
++            path.write_text('\n'.join([','.join(fields), *(','.join(row) for row in saved)]) + '\n')
++            values, storage = a.node_sample(path, geometry, set(geometry), columns, shared)
++            self.assertEqual(len(values), 425); self.assertEqual(len(storage['verified_doublets']), 25)
++            for bad in cases:
++                path.write_text('\n'.join([','.join(fields), *(','.join(row) for row in bad)]) + '\n')
++                with self.assertRaises(ValueError): a.node_sample(path, geometry, set(geometry), columns, shared)
++            path.write_text('\n'.join([','.join(fields), *(','.join(row) for row in saved)]) + '\n')
++            with self.assertRaises(ValueError): a.node_sample(path, geometry, set(geometry), columns, set(sorted(shared)[:-1]))
++
++    def test_original_thermal_and_reference_callers_retain_strict_uniqueness(self):
++        geometry, shared, _, _, _ = native_storage_fixture()
++        for column, active in [('temperature', set(geometry)), ('born_reference_temperature', {tag for tag, p in geometry.items() if p[0] >= 1.})]:
++            fields = ('id', 'x', 'y', 'z', column)
++            saved = [[str(tag), *(format(x, '.17g') for x in geometry[tag]), '400.0'] for tag in sorted(active)]
++            with TemporaryDirectory() as name:
++                path = Path(name) / 'strict.csv'
++                path.write_text('\n'.join([','.join(fields), *(','.join(row) for row in saved)]) + '\n')
++                values, storage = a.node_sample(path, geometry, active, (column,))
++                self.assertEqual(set(values), active); self.assertEqual(storage['verified_doublets'], [])
++                path.write_text('\n'.join([','.join(fields), *(','.join(row) for row in [*saved, saved[0]])]) + '\n')
++                with self.assertRaises(ValueError): a.node_sample(path, geometry, active, (column,))
++
++
+ if __name__ == '__main__': unittest.main()

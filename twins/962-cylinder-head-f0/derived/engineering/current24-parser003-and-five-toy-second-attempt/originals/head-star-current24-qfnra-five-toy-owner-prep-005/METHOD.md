@@ -1,0 +1,17 @@
+# Owner005: mechanical T003 source rebind
+
+**HELD / SOURCE ONLY.** Root source-choice e515e203bf928a57efbe44ebfb2c20da2e127dbfae5b690897175c0b86db0322 / 3,537 B permits preparation only. No controller, adapter, wrapper, transport, fixture, Z3, runtime/API or process operation was executed. No actual/admission/output root was inspected or created. No raw scientific body or PUB/Git file was accessed or changed.
+
+The three source units are copies of owner004 with eleven exact literal substitutions: five in the controller, five in the adapter, one in the wrapper. They bind preparation005, future execution002, the fixed T003 path/hash/22,291-byte size, and the new root source-choice digest. The wrapper's adapter path follows the same preparation namespace substitution. No import, function, class, branch, error, cleanup, report, query, resource, predicate, mathematical or binary64 policy changes.
+
+`bindings.json` lists every old/new literal, source/input pin and per-unit constant map. The whole forward and inverse diffs cover all three units. Reversing the eleven exact substitutions recovers every donor byte; normalized ASTs are equal after only those same constant changes. The unchanged protocol remains pinned to9b5885a3/12,459 B and T003 to3619b531/22,291 B.
+
+The inherited adapter opening docstring still says “unchanged-T002”; it is intentionally preserved under the constants-only grant. It is historical donor prose, not the binding of this successor. The actual TRANSPORT path, SHA, size checks and this method explicitly identify T003. No otherwise useful prose cleanup was included.
+
+The existing40/48/56/60 absolute ceilings,8/8 cleanup grace,5-second remaining-normal RSS query,2GiB sampled-group RSS,32MiB inclusive artifacts,minimal thread-one environment and no-retry behavior remain exact. Retained-leader construction/destructor policy, stopped certificate, continuation intent/acknowledgement, kernel exit observation, raw return/error preservation, unknown-partial-construction refusal, exact reap and group-absence requirements are unchanged. The new paths do not establish those behaviors at runtime.
+
+Root separately reported nine offline T003 fixture methods passing once at raw0 and a sealed saved-result peer. This packet binds the root choice and records those result descriptors only; it does not independently read/review/replay that result or transfer it into actual five-case behavior. Existing core13 fake evidence applies only within its unchanged software scope and is not a real owner/runtime result.
+
+The author wrote T003/parser fixtures and previously reviewed owner004/core13/readiness/concrete controls and the failed actual result. This is source authorship, not independent source or runtime review. Independent complete source-equivalence review remains required, followed by root's separate finite actual, selected-runtime decision and once-only admission.
+
+Frozen owner004, T002 and the failed first real attempt remain unchanged. The prior rational parser refusal/four unattempted cases and TERM/KILL EPERM errors remain preserved. T003 integration changes no cleanup criterion and does not resolve EPERM. A future error or incomplete run remains refused. No real head/model, geometry repair, native coupon, field/strength/LPBF/twin/PhysicsNeMo, physical or manufacturing qualification is granted; the24poor head cells and12aggregate mechanical failures remain open.

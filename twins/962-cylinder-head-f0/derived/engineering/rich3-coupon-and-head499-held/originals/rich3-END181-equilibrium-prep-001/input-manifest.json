@@ -1,0 +1,122 @@
+{
+  "schema": "962-rich3-END181-source-only-fixed-intake/v1",
+  "status": "HELD_SOURCE_ONLY_UNRUN",
+  "source": {
+    "path": "work/962-engineering/rich3-END181-equilibrium-prep-001/calculate_END181.py",
+    "sha256": "cf77f73fccb360182b349b2516b4e1aaa378169ceccf1ed66961baf15b4b5dea",
+    "bytes": 21803
+  },
+  "donor": {
+    "path": "work/962-engineering/native005-END181-equilibrium-prep-001/calculate_END181.py",
+    "sha256": "50160c285028764ee9f77d4a72b7d0823b33b4c5d3b8412174ca9efd03508f4a",
+    "bytes": 21807
+  },
+  "planned_output": "work/962-engineering/rich3-END181-equilibrium-execution-001/diagnostic.json",
+  "entrypoint": "main() once, no arguments, selected Python3.12.11 -B -I",
+  "scientific_inputs": {
+    "thermoelastic.e-s002": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson3-observer004-native-measurement-001/thermoelastic.e-s002",
+      "sha256": "8730b734dbbe8553ef1e47526ba8eafd3989323649fa564a4fa571e21dae3a83",
+      "bytes": 3189268
+    },
+    "thermoelastic_end_0181.csv": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson3-observer004-native-measurement-001/thermoelastic_end_0181.csv",
+      "sha256": "05d32ff636750d00a4a776c3749ccbe980caae21acd4d5e65952edf2acc2d7f9",
+      "bytes": 71939
+    },
+    "thermoelastic_end_fields_0181.csv": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson3-observer004-native-measurement-001/thermoelastic_end_fields_0181.csv",
+      "sha256": "80fcb0e6ea6e6f6f6bf259c29a7c4c205d5f4c337925ff547f9e7b48c52807c0",
+      "bytes": 1370125
+    },
+    "thermoelastic_begin_0080.csv": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson3-observer004-native-measurement-001/thermoelastic_begin_0080.csv",
+      "sha256": "f54de6aafef6e8c418fcc8887f3b0ac359e3bb22d8a5de88b35be1e15bbef405",
+      "bytes": 28087
+    },
+    "thermoelastic_reference_begin_0080.csv": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson3-observer004-native-measurement-001/thermoelastic_reference_begin_0080.csv",
+      "sha256": "ea69e318eca4878c7f857a18864cc5ec96206dfc60bdea99cde25b98e0624ea5",
+      "bytes": 4816
+    },
+    "transfer-manifest.json": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson3-observer004-native-measurement-001/transfer-manifest.json",
+      "sha256": "c774e62c67e16c29dc024b8cc8e6641570e316265960e58cd7170827f8cecd06",
+      "bytes": 130095
+    }
+  },
+  "scientific_input_count": 6,
+  "scientific_input_bytes": 4794330,
+  "intake_during_authorship": "Only hash/byte identity acquisition of the exact six terminal saved files. No scientific decoding or target execution.",
+  "capture_status": "Root reported one terminal native capture with raw outer0; corrected resource-scope audit and independent operational acceptance remain root-owned, not inferred here.",
+  "source_dependencies": {
+    "assessor": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-assessor-prep-001/assess.py",
+      "sha256": "aa7ee403a0a3078df58410815f2b613aaeb9634bd14bc9c90517ce00cec7f2d5",
+      "bytes": 46645
+    },
+    "POLICY": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-assessor-prep-001/POLICY.json",
+      "sha256": "a87df89f84706b36c0b665c0e9eac928e3c9b2b45f5a2921442b2d6403f4a638",
+      "bytes": 5013
+    }
+  },
+  "selected_decoder_runtime": {
+    "path": "work/962-engineering/native005-raw-displacement-decoder-runtime-root-001/acceptance.json",
+    "sha256": "5dbf28e11b6fcd7c4770bb40a042a58735ab98485a592b857e3293eb5dab8376",
+    "bytes": 9673,
+    "selected_module_record_count": 22,
+    "selected_module_bytes": 11299366,
+    "numpy": "2.2.6",
+    "scipy": "1.17.1"
+  },
+  "planned_external_operation": {
+    "parent_wall_seconds": 20,
+    "thread_environment": 1,
+    "complete_scoped_inclusive_bytes": 33554432,
+    "complete_streams_rawRC_wait_reap_required": true,
+    "RSS_or_full_ABI_claim": false
+  },
+  "proof": {
+    "function_and_class_definitions": 9,
+    "all_definition_text_exact": true,
+    "all_definition_AST_exact": true,
+    "whole_byte_reverse_exact": true,
+    "ordered_literal_edits": [
+      {
+        "label": "NATIVE_namespace",
+        "before": "NATIVE = ROOT / 'work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native-measurement-004'",
+        "after": "NATIVE = ROOT / 'work/962-engineering/cp1-oneway-cooling-release-richardson3-observer004-native-measurement-001'"
+      },
+      {
+        "label": "OUTPUT_namespace",
+        "before": "OUTPUT = ROOT / 'work/962-engineering/native005-END181-equilibrium-execution-001'",
+        "after": "OUTPUT = ROOT / 'work/962-engineering/rich3-END181-equilibrium-execution-001'"
+      },
+      {
+        "label": "thermoelastic.e-s002_identity",
+        "before": "    'thermoelastic.e-s002': {'path': str(NATIVE.relative_to(ROOT) / 'thermoelastic.e-s002'), 'sha256': 'b6147b3e9c8fe447f85676c7d10b0f8bf7f33e69a3147569c06d1f0f486228d4', 'bytes': 3189268},",
+        "after": "    'thermoelastic.e-s002': {'path': str(NATIVE.relative_to(ROOT) / 'thermoelastic.e-s002'), 'sha256': '8730b734dbbe8553ef1e47526ba8eafd3989323649fa564a4fa571e21dae3a83', 'bytes': 3189268},"
+      },
+      {
+        "label": "thermoelastic_end_0181.csv_identity",
+        "before": "    'thermoelastic_end_0181.csv': {'path': str(NATIVE.relative_to(ROOT) / 'thermoelastic_end_0181.csv'), 'sha256': '9970cbfd2e3d11f584e5b38615f9d92e02e00ce240b1c3f88c59716bed899f8e', 'bytes': 71995},",
+        "after": "    'thermoelastic_end_0181.csv': {'path': str(NATIVE.relative_to(ROOT) / 'thermoelastic_end_0181.csv'), 'sha256': '05d32ff636750d00a4a776c3749ccbe980caae21acd4d5e65952edf2acc2d7f9', 'bytes': 71939},"
+      },
+      {
+        "label": "thermoelastic_end_fields_0181.csv_identity",
+        "before": "    'thermoelastic_end_fields_0181.csv': {'path': str(NATIVE.relative_to(ROOT) / 'thermoelastic_end_fields_0181.csv'), 'sha256': '807e97378f87b5e94c1b20539abe6859eab2a053f91598d9f9010a01d3395e8a', 'bytes': 1370249},",
+        "after": "    'thermoelastic_end_fields_0181.csv': {'path': str(NATIVE.relative_to(ROOT) / 'thermoelastic_end_fields_0181.csv'), 'sha256': '80fcb0e6ea6e6f6f6bf259c29a7c4c205d5f4c337925ff547f9e7b48c52807c0', 'bytes': 1370125},"
+      },
+      {
+        "label": "thermoelastic_begin_0080.csv_identity",
+        "before": "    'thermoelastic_begin_0080.csv': {'path': str(NATIVE.relative_to(ROOT) / 'thermoelastic_begin_0080.csv'), 'sha256': '22609b849303638a30e49276f9171371eef5bc639f70528aa2ab210358830035', 'bytes': 28080},",
+        "after": "    'thermoelastic_begin_0080.csv': {'path': str(NATIVE.relative_to(ROOT) / 'thermoelastic_begin_0080.csv'), 'sha256': 'f54de6aafef6e8c418fcc8887f3b0ac359e3bb22d8a5de88b35be1e15bbef405', 'bytes': 28087},"
+      }
+    ],
+    "no_kernels_POLICY_counts_gates_changed": true
+  },
+  "source_only": true,
+  "execution_authorized": false,
+  "qualification": false
+}

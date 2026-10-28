@@ -1,0 +1,36 @@
+--- c493.inspect
++++ Netgen.inspect_live
+@@ -1,17 +1,17 @@
+-def inspect(path):
+- gmsh.open(str(path));tags,coords,_=gmsh.model.mesh.getNodes();ix=np.argsort(tags);tags=np.asarray(tags)[ix];coords=np.asarray(coords).reshape(-1,3)[ix]
+- assert np.isfinite(coords).all() and len(np.unique(tags))==len(tags) and np.all((coords>=0)&(coords<=7))
+- boundary=np.arange(1,9);ix=np.searchsorted(tags,boundary);assert np.array_equal(tags[ix],boundary) and np.array_equal(coords[ix],P)
++def inspect_live():
++ tags,coords,_=gmsh.model.mesh.getNodes();ix=np.argsort(tags);tags=np.asarray(tags)[ix];coords=np.asarray(coords).reshape(-1,3)[ix]
++ assert np.isfinite(coords).all() and len(np.unique(tags))==len(tags) and np.all(tags>0) and np.all((coords>=0)&(coords<=7))
++ boundary=np.arange(1,9);ix=np.searchsorted(tags,boundary);assert np.array_equal(tags[ix],boundary) and coords[ix].tobytes()==P.tobytes()
+  types,ets,ens=gmsh.model.mesh.getElements(3);assert list(types)==[4];et=np.asarray(ets[0]);en=np.asarray(ens[0]).reshape(-1,4);order=np.argsort(et);et,en=et[order],en[order]
+- assert len(np.unique(et))==len(et);ci=np.searchsorted(tags,en);assert np.array_equal(tags[ci],en)
+- referenced=np.unique(en);inner=referenced[~np.isin(referenced,boundary)];inner_xyz=coords[np.searchsorted(tags,inner)];assert np.all((inner_xyz>0)&(inner_xyz<7))
+- dims={};periodic=[]
++ assert len(np.unique(et))==len(et) and np.all(et>0);ci=np.searchsorted(tags,en);assert np.array_equal(tags[ci],en)
++ referenced=np.unique(en);assert np.array_equal(referenced,tags);inner=referenced[~np.isin(referenced,boundary)];inner_xyz=coords[np.searchsorted(tags,inner)];assert np.all((inner_xyz>0)&(inner_xyz<7))
++ dims={};entities={};periodic=[]
+  for dim,tag in gmsh.model.getEntities():
+   if dim in [1,2]:
+    masters=gmsh.model.mesh.getPeriodic(dim,[tag]);master,nodes,node_masters,transform=gmsh.model.mesh.getPeriodicNodes(dim,tag,True)
+    assert list(masters)==[tag] and master==tag and len(nodes)==len(node_masters)==len(transform)==0;periodic.append([dim,tag])
+   for n in gmsh.model.mesh.getNodes(dim,tag,False,False)[0]:
+-   assert int(n) not in dims;dims[int(n)]=dim
++   assert int(n) not in dims;dims[int(n)]=dim;entities[int(n)]=[dim,tag]
+  assert set(dims)==set(map(int,tags)) and all(dims[n]<3 for n in boundary) and all(dims[int(n)]==3 for n in tags if n>8)
+  types,_,ens=gmsh.model.mesh.getElements(2);assert list(types)==[2];surface=np.asarray(ens[0]).reshape(-1,3);assert sorted(canonical(f) for f in surface)==expected_faces
+  inc={}
+@@ -33,6 +33,6 @@
+   if label!='SICN':assert np.all(q>0)
+  canonical_tets=np.sort(en,axis=1);canonical_tets=canonical_tets[np.lexsort(canonical_tets.T[::-1])]
+  assert len(np.unique(canonical_tets,axis=0))==len(canonical_tets)
+- report={'mesh_sha256':sha(path),'mesh_bytes':path.stat().st_size,'nodes':len(tags),'tetrahedra':len(et),'referenced_nodes':len(referenced),'referenced_interior_nodes':len(inner),'unreferenced_nodes':len(tags)-len(referenced),'all_counted_interior_nodes_strictly_inside_cube':True,'boundary_triangles':len(exterior),'internal_opposite_face_pairs':internal,'exact_explicit_and_tetra_exterior_boundary':True,'node_classifications':[[n,dims[n]] for n in sorted(dims)],'node_counts_by_classification_dimension':{str(d):sum(v==d for v in dims.values()) for d in range(4)},'no_curve_or_surface_periodic_mapping':True,'periodic_entities_checked':periodic,'quality':{k:distribution(v) for k,v in qualities.items()},'independent_signed_volume_mm3':{'sum':total,'relative_error':relative,**distribution(signed)},'sorted_node_tags_sha256':arrsha(tags),'sorted_coordinates_sha256':arrsha(coords),'tetra_tags_sha256':arrsha(et),'tagged_tetra_connectivity_sha256':arrsha(en),'canonical_cells_sha256':arrsha(canonical_tets),'software_geometric_invariants_passed':True}
++ report={'nodes':len(tags),'tetrahedra':len(et),'referenced_nodes':len(referenced),'referenced_interior_nodes':len(inner),'unreferenced_nodes':len(tags)-len(referenced),'all_counted_interior_nodes_strictly_inside_cube':True,'boundary_triangles':len(exterior),'internal_opposite_face_pairs':internal,'exact_explicit_and_tetra_exterior_boundary':True,'node_classifications':[[n,dims[n]] for n in sorted(dims)],'node_entity_classifications':[[n,*entities[n]] for n in sorted(entities)],'node_counts_by_classification_dimension':{str(d):sum(v==d for v in dims.values()) for d in range(4)},'no_curve_or_surface_periodic_mapping':True,'periodic_entities_checked':periodic,'quality':{k:distribution(v) for k,v in qualities.items()},'independent_signed_volume_mm3':{'sum':total,'relative_error':relative,**distribution(signed)},'sorted_node_tags_sha256':arrsha(tags),'sorted_coordinates_sha256':arrsha(coords),'tetra_tags_sha256':arrsha(et),'tagged_tetra_connectivity_sha256':arrsha(en),'canonical_cells_sha256':arrsha(canonical_tets),'software_geometric_invariants_passed':True}
+  arrays={'node_tags':tags.tolist(),'coordinates_mm':coords.tolist(),'tetra_tags':et.tolist(),'tetra_node_tags':en.tolist(),'native_qualities':{k:v.tolist() for k,v in qualities.items()},'independent_signed_volume_mm3':signed.tolist()}
+- gmsh.clear();return report,arrays,(tags,coords,et,en,canonical_tets)+ return report,arrays,(tags,coords,et,en,canonical_tets),(*qualities.values(),signed)

@@ -1,0 +1,53 @@
+{
+  "schema": "carrier-v3-final-recipe-review-1",
+  "status": "passed_ready_for_owner_freeze",
+  "recipe": "manufacturing/workflows/993-carrier-lpbf-v3.json",
+  "recipe_sha256": "ee77e5c51ac5d4dbcc068be33bb2f268ec82e0621ecc30135c17f3561d7a837f",
+  "stages": 37,
+  "input_files": 271,
+  "total_input_bytes": 12329004,
+  "first_twelve_stages_exactly_v1_and_v2": true,
+  "all_45_v1_pins_unchanged": true,
+  "all_211_v2_pins_unchanged": true,
+  "all_inputs_git_tracked": true,
+  "all_current_input_sha256_match": true,
+  "argv": {
+    "receipt": "argv-results.json",
+    "sha256": "380b7976420911df2afbd421c77dad91fe822fd45d3c638bc2b6059ae4b31635",
+    "complete_argparse_commands": 36,
+    "static_single_positional_contracts": 1,
+    "inputs_unchanged": true,
+    "seconds": 77.09803366684355
+  },
+  "source_closure": {
+    "receipt": "closure-results.json",
+    "sha256": "d51786eafb1434fe639770cae567bf45e56c09a642b2f119edce3f9c82b1f17e",
+    "bootstrap_enumerated_file_count": 48,
+    "missing_selected_runtime_inputs": [],
+    "later_declared_output_collisions": []
+  },
+  "selected_generators": {
+    "prism": "generate_prism_region_v5.py",
+    "legacy": "generate_legacy_region_v5.py",
+    "cached_builder": "build_cached_v4.py",
+    "guide": "build_carrier_workshop_guide_v3.py"
+  },
+  "runtime_configuration": {
+    "local": "work/part-workflow/runtime-v2.json",
+    "sha256": "b5325026358b7677bd35ddc72889c22339540f11337d2a467c969129be531a35",
+    "historical_local_runtime_unchanged": true,
+    "pdf_destination": "Configure pdf_python to the newly installed PDF venv described by manufacturing/runtimes/pdf/README.md; the historical runtime-v2 is unchanged.",
+    "native": "work/part-workflow/native-runtime-v2.json",
+    "native_sha256": "27b131cb62892f7979ecf60ce903c8e7f2176871a7f5ada23f5989e777376ea4",
+    "destination_specific": true
+  },
+  "procedure_documents": "Unconsumed procedures are retained for the future software package, outside calculation pins. Native bootstrap-enumerated READMEs remain pinned.",
+  "limitations": [
+    "No full cold carrier replay was executed for this review.",
+    "Existing v1/v2 recipes, sources, runtimes and active results were not modified.",
+    "The final software source snapshot/index and French procedure assets will be refreshed only after the final admitted guide.",
+    "Archived optional historical helpers are not promised as independent cold replay recipes by this source closure."
+  ],
+  "geometry_executed": false,
+  "slicing_executed": false
+}

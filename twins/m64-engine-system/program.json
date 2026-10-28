@@ -85,14 +85,16 @@
     },
     {
       "zone_id": "M64-Z-CL",
-      "name": "Refroidissement: ventilateur, conduit d'air, ecosysteme thermique",
-      "owner_artifact": "docs/TURBO_AIRFLOW_SIMULATION_DATA.md",
+      "name": "Cooling: water-cooled cylinder heads, air-cooled cylinders and oil heat balance",
+      "owner_artifact": "twins/m64-cylinder-head/source/water-cooled-head/README.md",
       "seed": "Bornes de sensibilite de debit calculees a partir des donnees declarees; etude 11 pales prevue par la charte",
       "verified_fidelity": "F0_reference",
       "target_fidelity": "F4_correlated",
       "gating": [
         "nombre de pales et diametres de poulies a confirmer par source primaire",
-        "debit d'air reel et temperatures non mesures"
+        "debit d'air reel et temperatures non mesures",
+        "New water circuit: cylinder-head heat flux, flow/pressure, pump/radiator curves and packaging unknown",
+        "Water jacket and water/oil/gas separation: measured interfaces, sealing and thermal fatigue required"
       ]
     },
     {
@@ -178,12 +180,28 @@
       "docs/TURBO_DIGITAL_TWIN_PLAN.md",
       "docs/PORSCHEFANATICS_993_TURBO_AUDIT.md",
       "twins/reference-935-cylinder-head/reengineering-contract.json",
-      "docs/research/m64-public-engine-data-2026-09-27.md"
+      "docs/research/m64-public-engine-data-2026-09-27.md",
+      "twins/m64-cylinder-head/source/water-cooled-head/README.md"
     ],
     "known_limits": [
       "Aucun scan 993/M64 fiable dans le depot: la culasse tourne sur le proxy 935.",
       "Aucune mesure physique: toute cote web reste declaree, jamais mesuree.",
       "Aucune liberation de fabrication ni d'installation moteur a ce niveau."
     ]
+  },
+  "design_target": {
+    "decision_date": "2026-10-12",
+    "status": "research_direction_not_engine_qualification",
+    "primary_head_cooling": "water_based_liquid",
+    "cylinder_cooling": "retain_air_cooling_pending_heat_balance",
+    "oil_lubrication_retained": true,
+    "reference_architecture": "956/962_C_Group_C_water_cooled_heads; not original 962_IMSA air-cooled engine",
+    "water_loops": "two_independent_bank_loops_candidate",
+    "heads_per_bank": 3,
+    "head_feed": "parallel_supply_and_return_headers_candidate",
+    "owner_artifact": "twins/m64-cylinder-head/source/water-cooled-head/README.md",
+    "supersedes": "Air/bionic-fin and oil-primary-cooling development for the new four-valve head; historic baseline and experiments retained",
+    "coolant_heat_load_w": null,
+    "manufacturing_authorized": false
   }
 }

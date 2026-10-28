@@ -1,0 +1,73 @@
+{
+  "scope": "Pre-solve objectives for the distinct contour-2 experiment; no changes to run-001",
+  "candidate_STEP_sha256": "fd080c7d033db9447a3a364644406f8beca44fdd5d11ecc3b9819b2b88a333bd",
+  "baseline_STEP_sha256": "ad12b8e0a382d8cc8b585254bb4b6fcfafab99fbcedf40691752271d04947a3e",
+  "mass_kg_max": 1.3,
+  "required_non_regression": "Maximum displacement and integration-point von Mises must not increase versus either V6f or ad12 in each mesh9/mesh7 rigid/K1000 combined case",
+  "K1000_peak_VM_ratio_max": 0.9,
+  "K1000_volume_above_900MPa_ratio_max": 0.8,
+  "volume_scope": "Four equal reference affine-C3D10 quadrature weights applied to 900MPa indicator; reference diagnostic threshold, not material allowable",
+  "baseline_cases": [
+    {
+      "mesh": "mesh-9",
+      "case": "combined-rigid-static",
+      "result_json_sha256": "2fcde4e8ac56568238b4fac20d8519705f34b1188836db86ba500a85de13fe6e",
+      "NPZ_sha256": "932d1fb5bcd416fd267c0e72d8bee06c4c35269f1a02de98a61c692d06726835",
+      "displacement_max_mm": 2.76226589096363,
+      "integration_point_VM_max_MPa": 700.7608420501294
+    },
+    {
+      "mesh": "mesh-9",
+      "case": "combined-spring-1000-static",
+      "result_json_sha256": "d66fbf3daaf24773afe5f2b338e6d8a0c38647a4ea62821d998530655d24809b",
+      "NPZ_sha256": "802372e9ef0e2627311f543612e66ad8c842da071a8b1db73dc6090f7b3e5ee9",
+      "displacement_max_mm": 18.077756681193904,
+      "integration_point_VM_max_MPa": 1857.9107572863848,
+      "volume_above_900_mm3": 476.399171085096,
+      "target_VM_max_MPa": 1672.1196815577464,
+      "target_volume_above_900_mm3": 381.1193368680768
+    },
+    {
+      "mesh": "mesh-7",
+      "case": "combined-rigid-static",
+      "result_json_sha256": "1a9074f906ac705747ae21bcead702b4d0e05f36de2f5ee1bae69e8b353624c2",
+      "NPZ_sha256": "e1c2cbdf2fdb094ed99e085b8d080b7e723390dcd6a9aa71213d63687b4d8cef",
+      "displacement_max_mm": 2.7965981963118067,
+      "integration_point_VM_max_MPa": 617.7164972717483
+    },
+    {
+      "mesh": "mesh-7",
+      "case": "combined-spring-1000-static",
+      "result_json_sha256": "bca571e3e60dc265a00571e30721e06e03086a732a4b5a03e43fa106a150b6bb",
+      "NPZ_sha256": "1aba11dfc1c363c71c7c54c86758ca2171a3b548703b105c56de6b9f69f8546b",
+      "displacement_max_mm": 18.24864939681427,
+      "integration_point_VM_max_MPa": 1676.5460429720838,
+      "volume_above_900_mm3": 505.7666309774492,
+      "target_VM_max_MPa": 1508.8914386748754,
+      "target_volume_above_900_mm3": 404.6133047819594
+    }
+  ],
+  "solver_plan": {
+    "meshes_mm": [
+      9,
+      7
+    ],
+    "cases": [
+      "combined-rigid-static",
+      "combined-spring-1000-static",
+      "gravity-rigid-static(mesh9 only)",
+      "pitch-rigid-static(mesh9 only)"
+    ],
+    "CPU": 1,
+    "memory_GiB": 6,
+    "network": "none",
+    "owned_container_cleanup": true
+  },
+  "sources_sha256": {
+    "scripts/run_carrier_calculations.py": "1c697a08e4b2365b99cd2df808bf59bf682ea8ea6616d38b4c84106d286e5184",
+    "parts/993-eng-carrier-0001/source/bionic-20261011/simulate.py": "87be70c955e2532255fdee37cf3a686d970cb421bc9bf6094ca867f1f3098e77",
+    "parts/993-eng-carrier-0001/source/design-20261016/compare.py": "96f1b15d6e9ffeaaa01fb3ebb76d0c0a2a05fd699005a2d9cadf7d3ce2a2db01",
+    "parts/993-eng-carrier-0001/source/design-20261016/reinforcement-2/build.py": "3d197f1963197585ceaf28dbaaf2c8b18df88769869d581a363c380cddf0d342",
+    "parts/993-eng-carrier-0001/source/design-20261016/reinforcement-2/plan.json": "14184b152fd40fa36eaec26b863ed2bbc69a0374037134d6668afe62ec54dc64"
+  }
+}

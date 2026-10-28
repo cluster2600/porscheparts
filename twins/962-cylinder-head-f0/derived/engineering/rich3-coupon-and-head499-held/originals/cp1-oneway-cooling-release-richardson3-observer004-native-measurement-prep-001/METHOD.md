@@ -1,0 +1,33 @@
+# Fixed RICH3 native-capture source reuse — HELD, UNRUN
+
+This packet prepares one additional Richardson correction after the saved RICH2 capture and QP arithmetic audit. It grants no execution authority or convergence, field, equilibrium, head-strength, material, manufacturing or physical qualification. The producer previously authored the native005 synthetic fixture and reviewed source, results and publication evidence; this is source authorship, not an independent behavioral review.
+
+## Exact source change
+
+The three frozen native005 donor units are copied into a fresh RICH3 source namespace. Only four operational namespace literals are rebound: source preparation, current actual preparation, output and outer-root execution. CASE/PREP/CARD/PHYSICS/HELD, transfer sources, original168 inputs, the full348-entry historical ancestry, selected19 runtime files/13 aliases, host89/provider22 expectations and the pinned003 parent remain historical and unchanged. Inherited RICH2 source labels and error text identify that donor context; current variant authority is explicit below.
+
+Two small validators are added to owner and caller. The profile validator first requires the frozen baseline max_it option at index7, string value2, integer update count2 and exact stopping description. The expected current profile changes only petsc_options_value[7] to string3, linear_updates_per_regular_solve to integer3 and the stopping description from exactly2 to exactly3. Every other profile field, including inherited extra_correction_basis and all numerical criteria, remains equal to the pinned baseline. The caller validates against both its original and pinned003 actual; the owner validates against pinned003.
+
+The staged-input validator requires exactly the four original basenames. It replaces only the deck SHA190296e6… with SHAe351ee1b…, retaining its15537 bytes and every grid hash/size. During a separately admitted future preflight, it reads only the fixed original source deck and current staged deck, hashes both complete buffers and requires current == original[:14954] + b'3' + original[14955:], with original[14954:14955] == b'2'. This offset and the deck hashes are the root-supplied, independently reviewed max_it source delta. No deck or grid body was read during this authorship; the staging receipt was read as first-party metadata only.
+
+Both owner and caller require admission.solver_change_authorized == true for precisely the shared fixed_solver_variant object below. All other inherited false authority flags remain false. The wrapper changes paths only. The complete forward and inverse diffs and bindings record every source edit; reversing the edits restores all three donor byte streams and module/function ASTs exactly. Target code was parsed as AST only and was never imported, compiled or executed.
+
+## Current actual builder contract
+
+Clone the frozen actual without recursively changing historical checkpoints. Preserve every existing input_sha256 key/value and add the current packet, new source deck/staging and later root-reviewed control records. Update input_count to the actual map length. Replace current source, root_controller and owned_wrapper descriptors with this packet's units; set output to the fresh RICH3 output and environment.TMPDIR to its/tmp. Keep argv unchanged: the staged deck basename remains thermoelastic-birth-observer-registration.i. Keep outer Python/environment, native environment except TMPDIR, resources and all phase deadlines unchanged.
+
+Replace current staged_inputs with the exact four descriptors from the separately pinned staging receipt. Set solver_profile to the baseline plus only the three profile edits above. Set source_preparation_records to this complete eight-file packet, keyed by each record's exact relative path; each record must also be present in input_sha256. The caller requires at least the three units, METHOD.md, bindings.json and index.json. No source-preparation count or index-content schema is hardcoded by these consumers. The index files list contains the other seven paths and deliberately excludes its own hash; root binds the final index externally. Keep ancestry pointers and their frozen profile2 descriptions intact; document current-vs-historical meaning separately.
+
+Add the following identical object to current actual and future admission:
+
+```json
+{"name":"RICH2_TO_RICH3_ONE_ADDITIONAL_CORRECTION","scientific_basis":"One additional correction after captured RICH2 and QP arithmetic; no convergence acceptance."}
+```
+
+The field name is fixed_solver_variant. The admission must set solver_change_authorized:true, and current actual remains native_execution_authorized:false with authority_at_freeze:HELD_ROOT_ADMISSION_REQUIRED until separate root issuance. Future direct-role keys remain exactly the inherited14: actual, caller, root_controller, wrapper, source_index, exact_child_peer, exact_child_bindings, root_source_review, staging_receipt, fresh_preflight, binding_candidate, binding_method, binding_inputs, binding_change_map. Each value is a finite relative {path,sha256,bytes} descriptor; mandatory associations and the stable wrapper argv_prefix are unchanged. Neither actual nor admission may self-pin; the admission digest is passed externally. Root owns freshness, exact-child/source reviews, binding and admission issuance.
+
+## Preserved operation boundaries
+
+The native argument vector remains executable,-skip_petscrc,--n-threads=1,-i,thermoelastic-birth-observer-registration.i, cwd the fresh output. Outer invocation remains selectedPython -B -I -S run_root_once.py <external-authorization-SHA>. Native PATH=/usr/bin:/bin, LANG/LC_ALL=C, OMP/OPENBLAS/MKL/VECLIB thread counts1, FI_PROVIDER=tcp, the existing two DYLD library paths and DYLD_PRINT_LIBRARIES=1 remain unchanged; only TMPDIR moves. The outer environment retains its original eight entries.
+
+No lifecycle, signal/wait/reap relationship, NOTE_EXIT ordering, query, sampling, failure/error preservation, raw return code, receipt or cleanup implementation changes. Shared95/105/110/115 phases, native100s, sampled2GiB RSS, inclusive512MiB artifacts and32MiB growth remain exact. The historical growth baseline continues to use output-relative filenames. Namespace rebinding and a source inverse do not prove containment, full ABI, absence of competing waiters, successful cleanup or an eventual native result. The earlier failed/stopped evidence and all existing mechanical/head criteria remain open. Independent finite validator checks and separate root admission are still required; no actual/admission/output body, runtime body, native process, API or solver was accessed or created here.

@@ -1,0 +1,58 @@
+// HELD/UNBUILT. Register only the passive observer in the existing Combined host.
+#include "ActionFactory.h"
+#include "Factory.h"
+#include "MooseSyntax.h"
+#include "Registry.h"
+
+#include <dlfcn.h>
+#include <stdexcept>
+
+namespace
+{
+// A private non-const POD address identifies this image without function-pointer conversion.
+unsigned char observer_image_anchor;
+}
+
+registerKnownLabel("CouponEnd181ObserverApp");
+
+// Match MooseApp::loadLibraryAndDependencies REGALL's function-pointer type.
+extern "C" void
+CouponEnd181ObserverApp__registerAll(Factory * factory,
+                                   ActionFactory * action_factory,
+                                   Syntax * syntax)
+{
+  if (!factory || !action_factory || !syntax)
+    throw std::invalid_argument("CouponEnd181ObserverApp requires non-null registry arguments.");
+
+  // Initialization is thread-safe and retains one reference after the first successful call.
+  // The raw pointer has no deleter: keep this image and its dependencies alive through app
+  // teardown. This deliberate process-lifetime reference does not establish the crash cause.
+  static void * const retained_handle = []() -> void *
+  {
+    Dl_info self_image{};
+    if (!dladdr(&observer_image_anchor, &self_image) || !self_image.dli_fname ||
+        !self_image.dli_fname[0] || !self_image.dli_fbase)
+      throw std::runtime_error("CouponEnd181ObserverApp cannot identify its loaded image.");
+
+    void * const handle = dlopen(self_image.dli_fname, RTLD_LAZY | RTLD_NOLOAD);
+    if (!handle)
+      throw std::runtime_error("CouponEnd181ObserverApp cannot retain its loaded image.");
+
+    void * const entry = dlsym(handle, "CouponEnd181ObserverApp__registerAll");
+    Dl_info entry_image{};
+    if (!entry || !dladdr(entry, &entry_image) ||
+        entry_image.dli_fbase != self_image.dli_fbase)
+    {
+      // Balance only the rejected extra reference; the caller still owns its original handle.
+      if (dlclose(handle) != 0)
+        throw std::runtime_error("CouponEnd181ObserverApp rejected-image reference release failed.");
+      throw std::runtime_error("CouponEnd181ObserverApp retained image identity mismatch.");
+    }
+
+    return handle;
+  }();
+  (void)retained_handle;
+
+  Registry::registerObjectsTo(*factory, {"CouponEnd181ObserverApp"});
+}
+

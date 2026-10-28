@@ -1,0 +1,9 @@
+{
+  "schema": "962-root-saved-inspection-failure/v1",
+  "returncode": 1,
+  "error": "TypeError: object of type 'int' has no len()",
+  "cause": "Root inspection treated shell.vertices as a list; it is an integer count. shell.oriented_triangles is also an integer count, with full rows separately stored.",
+  "observed_source_fields_unchanged": true,
+  "correction": "Compare integer count fields directly, preserving full row/cardinality/selection predicates.",
+  "saved_query_or_native_rerun": false
+}

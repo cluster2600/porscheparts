@@ -1,0 +1,102 @@
+{
+  "schema": "962-independent-full-star-stopped-result-review/v1",
+  "decision": "CLEAR_SCOPED_READ_ONLY_CENSUS_RESULT",
+  "bindings": {
+    "report": {
+      "path": "work/962-engineering/atomic-cavity-plane-clip-cap-assembly-netgen-full-stars-001/readback-report.json",
+      "sha256": "5946ffbd9f2f127306673d967b583b11d8906793e2079971bc0430d65ae65f88",
+      "bytes": 3204329
+    },
+    "execution_receipt_sha256": "75e55e8fffc3bb3c34f4a52b789a6e72962eab80796ef1fe71e31a90dcd9fabe",
+    "actual_child_sha256": "dca1d5c290e52bf182c4de86f3e262c1325d268a111df2c28abad7aa692fc3fd",
+    "reader_sha256": "d978448ac685730c8ab1cf652dec23a00227eb5369869b89d6068017e678c5d5",
+    "runner_sha256": "4fb37080e1f3847b8b1d14d5df467799d8e9f7bf81b0a09170e5850857de3943",
+    "root_closed_sha256": "c011eb1605da620ec7a397f5e4f028ae8a6ff758cbfff441f67cca5915152315",
+    "root_execution_sha256": "0acae6106e0978ffcdcd9dd8bb922177382a1afa2e4a24e73a53d893743245de",
+    "root_launch_guard_sha256": "82432b1e0bdc50ca01b964d853a2b816e7498998f0a70e386bd444b3f8a38610",
+    "root_live_owned_pair_sha256": "0b8a9d84896043c11c1fcbb144f32272a6c55a656fed6cc414a1afb4037639fa",
+    "prior_single_worker_sha256": "16f6ecc580d766c3c541517f0f89bd80d5cd0f660f40b157a04c5362c2245e6a",
+    "prior_completed_diagnosis_sha256": "94ff85bf941205cb67024d42b47b66256b2af19eb34904762efb4bcd1cdb0235",
+    "saved_row_checks_sha256": "5c563382a9026620a978c6eb2351444ec227a73c6d1dcc142d05a9b8c327124c"
+  },
+  "closure": {
+    "all6_output_files_exact": true,
+    "all207_before_after_root_maps_equal_exact_child": true,
+    "all203_small_inputs_current_independently_hashed": true,
+    "four_geometry_and_three_runtime_freshness_root_records_only": true
+  },
+  "rows": {
+    "seed_nodes": 156,
+    "coordinate_variables": 468,
+    "cells": 5355,
+    "poor": 210,
+    "good": 5145,
+    "shared": 223,
+    "nodes": 2955,
+    "boundary": 1857,
+    "other_interior": 942
+  },
+  "typed_section_hashes": {
+    "movable_node_tags_u64": "f112209d794a29e0cfec58629d8b9044295e59526127de731ee00ca2380ed365",
+    "selected_tetrahedron_tags_u64": "0b8bde41805d68c504e5437215f5c2d871c3eeae8c7ce45362532b6433a43d52",
+    "selected_tetrahedron_connectivity_u64": "b43a45db3901565bdb32e02ca852618d5ec0e63f6513b3a31b7f8acc6d996925",
+    "union_node_tags_u64": "cd6ce773c0d805d02c7daf63f99d9071f2a35915b25a36ac9cc446634df1ef0c",
+    "union_coordinates_f64": "41deb4faa01878fdcaa1b66f82d6218c301d679005dd7493114eb4607daed80e",
+    "selected_initial_SICN_f64": "8ecf61337ac8c04273d3aae3786b545fec2a771ccbfff6aef05fc08807710e83"
+  },
+  "verified": {
+    "all_serialized_row_IDs_order_membership_ranges_and_uniqueness": true,
+    "all_coordinate_hex_bit_roundtrips": true,
+    "seed_membership_from_all210_positive_poor_rows": true,
+    "all5355_saved_rows_touch_seed_and_include5145_good223_shared": true,
+    "all_per_seed_incidence_counts_match_saved_rows": true,
+    "all210_boundary_participation_bins_match_prior94ff": true,
+    "all_four_full_array_hashes_three_native_metric_hashes_distributions_signed_volumes_and_counts_match16f6_after": true,
+    "fresh_classification_dict_matches_single_worker_after": true,
+    "all_six_section_hashes_recomputed_stdlib": true,
+    "both_prior_representatives_join_saved_cell_indices_tags_coordinates_and_SICN": true
+  },
+  "observed_baseline": {
+    "nodes": 1097048,
+    "tetrahedra": 3620809,
+    "referenced_interiors": 225317,
+    "orphans": 0,
+    "positive_poor_SICN": 210,
+    "min_SICN": 0.039074265058645995,
+    "nonpositive_SICN": 0,
+    "accepted_head_mesh": false
+  },
+  "lifecycle": {
+    "returncode": 0,
+    "stop_reason": null,
+    "reader_seconds": 23.571068082936108,
+    "controller_seconds": 24.86089324997738,
+    "root_outer_seconds": 24.941334665985778,
+    "RSS_samples": 49,
+    "max_observed_RSS_bytes": 2401959936,
+    "wall_limit_seconds": 120,
+    "sampled_RSS_limit_bytes": 8589934592,
+    "sampled_output_limit_bytes": 1073741824,
+    "requested_threads": 2,
+    "OS_CPU_and_address_space_hard_quotas": false,
+    "owned_controller_worker_parent_PGID_relationship_in_live_record": true,
+    "root_direct_absence_for_same_pair_after_wait": true,
+    "root_wait_and_reap_record": true,
+    "selected_known_full_argv_matches_empty_after": true,
+    "universal_process_absence_proven": false
+  },
+  "limitations": [
+    "Global completeness of the full-mesh incident-star enumeration is the reviewed reader/full-scan attestation; subset rows alone cannot prove no omitted good cell.",
+    "Full tetra-face incidence/parity remain16f6 worker observations, not repeated by this reader. Classifications were directly refreshed by the reader and their complete dict was joined; this peer did not replay Gmsh.",
+    "Coordinate/SICN serialized values and six section hashes are verified; source-to-MSH global arrays and native quality computation are retained native observations, not an independent mesh parse or geometric quality replay.",
+    "Empty nonpositive-cell list makes fixed_boundary_only_nonpositive_cells vacuously true. Positive poor cells are separately classified [0,0,15,195,0].",
+    "156 selected interior nodes/5355 cells do not establish coupled feasibility, an approved movable policy for context nodes, solver success, head strength/PDE/OEM or manufacturing qualification."
+  ],
+  "reviewer_actions": {
+    "stdlib_saved_sources_JSON_and_struct_hash_checks_only": true,
+    "scientific_or_native_imports": false,
+    "prepared_tests_or_readers_reexecuted": false,
+    "large_MSH_BIN_or_runtime_bytes_read": false,
+    "Git_or_public_edits": false
+  }
+}

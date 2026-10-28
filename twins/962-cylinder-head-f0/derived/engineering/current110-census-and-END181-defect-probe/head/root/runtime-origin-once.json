@@ -1,0 +1,41 @@
+{
+  "schema": "962-current110-selected-runtime-origin-probe-once/v1",
+  "argv": [
+    "runtime-role://registered-native/geometry/bin/python",
+    "-B",
+    "-c",
+    "import sys,platform,json,hashlib,pathlib,numpy,gmsh; H=lambda p:hashlib.sha256(pathlib.Path(p).read_bytes()).hexdigest(); print(json.dumps(dict(executable=str(pathlib.Path(sys.executable).resolve()),machine=platform.machine(),numpy_version=numpy.__version__,numpy_file=str(pathlib.Path(numpy.__file__).resolve()),numpy_init_sha256=H(numpy.__file__),gmsh_version=gmsh.__version__,gmsh_module=str(pathlib.Path(gmsh.__file__).resolve()),gmsh_module_sha256=H(gmsh.__file__),libgmsh=str(pathlib.Path(gmsh.lib._name).resolve()),libgmsh_sha256=H(gmsh.lib._name))))"
+  ],
+  "environment": {
+    "PATH": "/usr/bin:/bin",
+    "LANG": "C",
+    "PYTHONUTF8": "1",
+    "OMP_NUM_THREADS": "2",
+    "OPENBLAS_NUM_THREADS": "2",
+    "PYTHONDONTWRITEBYTECODE": "1"
+  },
+  "returncode": 0,
+  "wall_seconds": 0.2733270828612149,
+  "stdout": "{\"executable\": \"runtime-role://registered-native/resolved-python3.10\", \"machine\": \"arm64\", \"numpy_version\": \"2.0.2\", \"numpy_file\": \"runtime-role://registered-native/numpy-environment/lib/python3.10/site-packages/numpy/__init__.py\", \"numpy_init_sha256\": \"c09e25b58f6b2f8e2cb3c158168f902d447f8171e5ea6513c0aca41ecbda7c2b\", \"gmsh_version\": \"4.15.2\", \"gmsh_module\": \"runtime-role://registered-native/geometry/lib/python3.10/site-packages/gmsh.py\", \"gmsh_module_sha256\": \"f4b0935cebde899750293d87a643090e5ea33c9b18d249267f507db68a0e01c3\", \"libgmsh\": \"runtime-role://registered-native/geometry/lib/libgmsh.4.15.dylib\", \"libgmsh_sha256\": \"def0f5c10988a986e5e879b3db9669d8fe016a81e2d994bbaf2b8497c6b8a58a\"}\n",
+  "stderr": "",
+  "observed": {
+    "executable": "runtime-role://registered-native/resolved-python3.10",
+    "machine": "arm64",
+    "numpy_version": "2.0.2",
+    "numpy_file": "runtime-role://registered-native/numpy-environment/lib/python3.10/site-packages/numpy/__init__.py",
+    "numpy_init_sha256": "c09e25b58f6b2f8e2cb3c158168f902d447f8171e5ea6513c0aca41ecbda7c2b",
+    "gmsh_version": "4.15.2",
+    "gmsh_module": "runtime-role://registered-native/geometry/lib/python3.10/site-packages/gmsh.py",
+    "gmsh_module_sha256": "f4b0935cebde899750293d87a643090e5ea33c9b18d249267f507db68a0e01c3",
+    "libgmsh": "runtime-role://registered-native/geometry/lib/libgmsh.4.15.dylib",
+    "libgmsh_sha256": "def0f5c10988a986e5e879b3db9669d8fe016a81e2d994bbaf2b8497c6b8a58a"
+  },
+  "expected_origins_and_versions_match": true,
+  "timed_out": false,
+  "signals": [],
+  "invocation_count": 1,
+  "Gmsh_initialize_or_geometry_query_or_write": false,
+  "scientific_calculation": false,
+  "native_census_executed": false,
+  "manufacturing_authorized": false
+}

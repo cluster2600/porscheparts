@@ -2,7 +2,7 @@
 
 # 993 Turbo turbocharging intake tract (group 107-20) - PET-transcribed identity set
 
-**Status: non-critical. No part is released; see [SAFETY.md](../../SAFETY.md).**
+**Status: non-critical. No part is released; see [SAFETY.md](../../docs/SAFETY.md).**
 
 Identity-only catalogue record for the charge-air side lines of PET group 107-20 ('turbocharging'): intake manifold 993 110 062 50 and 993 110 062 51 (pos 1), intake manifolds 993 110 631 54 (pos 18) and 993 110 630 52 / 993 110 630 53 (pos 21), shut-off valve 993 110 337 50 / -51 (pos 10), pressure transmitter 993 606 103 00 / -01 (pos 14), mass air flow meter 993 606 124 01 (pos 6), hoses 993 110 113 52 and 993 110 114 51 (pos 31/32), rubber sleeves and clamps. Transcribed per-line from the local PET transcriptions; the main engine-side numbers (pos 1, 18, 21) and the valve (pos 10) appear in both independent catalogue transcriptions (KAT 17 and Porsche Classic KAT 517 USA), the sensor revisions and hose lines likewise. No dimensions or geometry are claimed.
 
@@ -61,17 +61,31 @@ Catalogue record: [`catalog/parts/993-ca-turbo-intake-manifold-pet-0001.json`](.
 | field | value |
 |---|---|
 | source type | estimated |
-| master format | none |
+| master format | PicoGK |
 | units | mm |
 | accuracy (mm) | not recorded |
 
 **Master file**
 
-- none
+- [`parts/picogk-catalog/exhaust/TurboIntakeTract.cs`](../../parts/picogk-catalog/exhaust/TurboIntakeTract.cs)
 
 **Derived files**
 
-- none
+- [`parts/993-ca-turbo-intake-manifold-pet-0001/derived/993-ca-turbo-intake-manifold-pet-0001-picogk.stl`](../../parts/993-ca-turbo-intake-manifold-pet-0001/derived/993-ca-turbo-intake-manifold-pet-0001-picogk.stl)
+
+## Images
+
+![preview](../../parts/993-ca-turbo-intake-manifold-pet-0001/media/preview.png)
+
+*`parts/993-ca-turbo-intake-manifold-pet-0001/media/preview.png` — concept CAD block, **not** the original part, not a print file.*
+
+![views](../../parts/993-ca-turbo-intake-manifold-pet-0001/media/views.png)
+
+*`parts/993-ca-turbo-intake-manifold-pet-0001/media/views.png` — concept CAD block, **not** the original part, not a print file.*
+
+![photo-concept](../../parts/993-ca-turbo-intake-manifold-pet-0001/media/photo-concept.png)
+
+*`parts/993-ca-turbo-intake-manifold-pet-0001/media/photo-concept.png` — AI-generated studio illustration based on the catalogue PicoGK concept preview. Geometry and interfaces remain unmeasured hypotheses; material, finish and generated details are illustrative. Not a photograph of an OEM or manufactured part, or evidence of fit, function or manufacturing.*
 
 ## Provenance and sources
 
@@ -91,7 +105,7 @@ Catalogue record: [`catalog/parts/993-ca-turbo-intake-manifold-pet-0001.json`](.
 | status | concept |
 | vehicle tested | not recorded |
 | reviewed by |  |
-| limitations | not recorded |
+| limitations | Identity only: no dimensions, flow areas or geometry are carried by the transcription.<br>The 'intake manifold' lines of 107-20 are the Turbo intake tract parts; the BOM throttle/air-duct line M64B-IN-002 is NOT identified by this group and remains unresolved.<br>Suffix variants (-50/-51 at pos 1, 10, 14; -52/-53 at pos 21) are transcribed without asserting supersession or applicability split.<br>No wastegate actuator line exists anywhere in the local 107-xx or 202-xx transcriptions. |
 
 **Evidence**
 

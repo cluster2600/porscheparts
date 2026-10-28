@@ -1,0 +1,22 @@
+--- work/962-engineering/head-star-current24-exact-segment-feasibility-prep-002/test_serializer_guards.py
++++ work/962-engineering/head-star-current24-serializer-fixture-prep-002/test_serializer_guards_002.py
+@@ -11,7 +11,7 @@
+ import zlib
+ import _compression
+ 
+-SOURCE=Path(__file__).with_name("classify_segment_feasibility.py")
++SOURCE=Path('/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/head-star-current24-exact-segment-feasibility-prep-002/classify_segment_feasibility.py')
+ namespace=dict(gzip=gzip,hashlib=hashlib,io=io,json=json)
+ tree=ast.parse(SOURCE.read_text())
+ names={"need","verify_lossless_gzip_bytes","lossless_gzip_certificate"}
+@@ -83,8 +83,8 @@
+ if __name__=="__main__":
+     assert sys.implementation.name=="cpython" and sys.version_info[:3]==(3,12,11)
+     print("SERIALIZER_RUNTIME "+json.dumps(dict(Python_executable=sys.executable,
+-        Python_version=sys.version.split()[0],gzip_origin=gzip.__file__,
+-        zlib_origin=zlib.__file__,compression_origin=_compression.__file__,
++        Python_version=sys.version.split()[0],gzip_origin=gzip.__spec__.origin,
++        zlib_origin=zlib.__spec__.origin,compression_origin=_compression.__spec__.origin,
+         io_origin=io.__spec__.origin,zlib_compile_version=zlib.ZLIB_VERSION,
+         zlib_runtime_version=zlib.ZLIB_RUNTIME_VERSION,
+         original_twelve_math_API_guards_repeated=False,head_or_SymPy_imported=False)),flush=True)

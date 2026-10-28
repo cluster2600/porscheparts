@@ -2,7 +2,7 @@
 
 # 993 hollow Ti64 intake valve, F0 LPBF concept
 
-**Status: **prohibited pending engineering**. No part is released; see [SAFETY.md](../../SAFETY.md).**
+**Status: **prohibited pending engineering**. No part is released; see [SAFETY.md](../../docs/SAFETY.md).**
 
 Independent concept of a hollow Ti-6Al-4V intake valve with four internal ribs and an open axial bore for depowdering. Only the head diameter, stem diameter, product envelope, declared mass and part number are published; all functional geometry remains an F0 hypothesis.
 
@@ -102,6 +102,10 @@ Catalogue record: [`catalog/parts/993-eng-intake-valve-ti64-hollow-f0-0001.json`
 
 *`parts/993-eng-intake-valve-ti64-hollow-f0-0001/media/views.png` — concept CAD block, **not** the original part, not a print file.*
 
+![photo-concept](../../parts/993-eng-intake-valve-ti64-hollow-f0-0001/media/photo-concept.png)
+
+*`parts/993-eng-intake-valve-ti64-hollow-f0-0001/media/photo-concept.png` — AI-generated studio illustration based on the concept CAD preview. Material and finish are illustrative; generated details may differ. Not a photograph or evidence of fit, function or manufacturing.*
+
 ## Provenance and sources
 
 | field | value |
@@ -123,7 +127,7 @@ Catalogue record: [`catalog/parts/993-eng-intake-valve-ti64-hollow-f0-0001.json`
 | status | concept |
 | vehicle tested | not recorded |
 | reviewed by |  |
-| limitations | not recorded |
+| limitations | The 49 mm, 8 mm, 50 x 110 x 50 mm, 120 g and the part number come from a commercial product page with no drawing or independent measurement.<br>The 109 mm length, the head, neck, cavity, 5 mm bore and four 1.2 mm ribs are entirely synthetic.<br>The 55.45 g CAD mass and the 23.38% saving compare two F0 designs sharing the same invented exterior; they do not validate a saving over OEM.<br>The 12 mm lift, 240 crank degrees, 520 N + 40 N/mm spring, 0.20 MPa and +400 K are unmeasured regression cases.<br>The first mode at 190.8 Hz is a cantilever beam screen, not a modal analysis of the guide-seat-spring-cam system.<br>The section, Euler and circular plate stresses ignore contacts, impact, valve float, groove, defects and multiaxial fatigue.<br>The EOS/TIMET values are ambient and physical comparisons, not hot LPBF valve allowables.<br>The STEP proves only a readable BREP with an open cavity; it is authorized neither for manufacturing, nor for installation, nor for an engine. |
 
 **Evidence**
 

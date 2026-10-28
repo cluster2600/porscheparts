@@ -1,0 +1,200 @@
+{
+  "schema": "962-observer004-native-measurement-failed-saved-accounting/v1",
+  "scope": "Saved text/receipt/first-party control metadata only. No map, Vec, CSV, CDF, grid, mesh or runtime body was opened, hashed, statted or decoded by this review.",
+  "execution_observation": {
+    "outer_returncode_root_attributed": 2,
+    "outer_tool_chunk": "341fcf",
+    "caller_returncode": 1,
+    "native_returncode": 0,
+    "root_stop_reason": "resource_or_group_observation_failed",
+    "root_error": {
+      "type": "PermissionError",
+      "message": "[Errno 1] Operation not permitted"
+    },
+    "root_sent_signals": [
+      {
+        "group": 36636,
+        "signal": "SIGTERM"
+      }
+    ],
+    "root_external_SIGTERM_requests": [],
+    "caller_SIGTERM_requests": [
+      {
+        "signal": 15,
+        "elapsed_seconds": 50.599017333006486
+      }
+    ],
+    "caller_error": {
+      "type": "ValueError",
+      "message": "Native failure retained without retry"
+    },
+    "caller_stop_reason": null,
+    "caller_receipt_status": "stopped_outputs_preserved",
+    "postreceipt_traceback": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native-measurement-root-execution-001/adapter.stderr.log",
+      "sha256": "7f21fa50a7866f10b2ff078da0471dca55954571bdd43a7f0e9dbc32b47f221b",
+      "bytes": 1319
+    },
+    "postreceipt_traceback_source_line": 305,
+    "postreceipt_refusal_text": "Post-receipt native closure refused; retain prefinal receipt and require caller/outer RC0",
+    "EPERM_operation_and_stack": null
+  },
+  "metadata_joins": {
+    "all_eight_before_after_observed_groups_equal": true,
+    "groups": [
+      "authorization",
+      "direct",
+      "staged_inputs",
+      "inputs",
+      "runtime",
+      "selected_host_records",
+      "provider_paths",
+      "python"
+    ],
+    "primary_inputs": 197,
+    "original_inputs_unchanged": 168,
+    "additive_inputs": 29,
+    "direct_roles": 9,
+    "staged_inputs": 4,
+    "staged_bytes": 1213802,
+    "runtime_files": 19,
+    "runtime_aliases": 13,
+    "selected_host_records": 89,
+    "provider_paths": 22,
+    "fresh_preflight_maps_join": true,
+    "selected_host_digest": "16d12faabb4fdb467ca5dd00dc7f6f21e90f189115024c3871a94b978d35913a",
+    "body_freshness_and_alias_observations": "Root-attributed; peer compared complete saved maps, not runtime/raw bodies."
+  },
+  "full_output_accounting": {
+    "caller_opaque_hash_entries": 1120,
+    "root_opaque_hash_entries": 1127,
+    "caller_hashes_join_root_inventory": true,
+    "root_names_sizes_join_final_census": true,
+    "only_final_census_addition": "D/closed-result.json",
+    "final_O_files": 1121,
+    "final_D_files": 7,
+    "final_files": 1128,
+    "inclusive_bytes": 433263540,
+    "inclusive_limit_bytes": 536870912,
+    "inclusive_below_limit": true,
+    "historical_baseline_files": 1122,
+    "historical_baseline_bytes": 423269478,
+    "positive_per_file_growth_bytes": 11599196,
+    "growth_limit_bytes": 33554432,
+    "growth_below_limit": true,
+    "shrinkage_offsets_used": false,
+    "raw_output_hashes": "Compared as opaque caller/root descriptor strings only; not rehashed by peer.",
+    "final_inventory_canonical_sha256": "2bba5a8a1922c0ff38460db2463a82dbb73044df90b234bba0f43b0731a6db37"
+  },
+  "presence_only": {
+    "rich2-END181-dof-map.json": {
+      "present": true,
+      "bytes": 387694
+    },
+    "physical-X.petsc": {
+      "present": true,
+      "bytes": 3244624
+    },
+    "physical-F.petsc": {
+      "present": true,
+      "bytes": 3244624
+    },
+    "physical-Y.petsc": {
+      "present": true,
+      "bytes": 3244624
+    }
+  },
+  "resource_and_time_observations": {
+    "root_RSS_samples": 87,
+    "native_RSS_samples": 370,
+    "root_sampled_max_bytes": 250003456,
+    "native_sampled_max_bytes": 219398144,
+    "sampled_RSS_limit_bytes": 2147483648,
+    "all_root_sample_sums_reconstructed": true,
+    "observed_groups": [
+      36636,
+      36639
+    ],
+    "observed_PIDs": [
+      36636,
+      36639,
+      37680,
+      37781
+    ],
+    "zero_numeric_RSS_rows": [
+      {
+        "raw": "37781 36636      0 ?   ",
+        "pid": 37781,
+        "pgid": 36636,
+        "RSS_bytes": 0,
+        "state": "?"
+      }
+    ],
+    "uninterpreted_process_states": [
+      {
+        "raw": "37781 36636      0 ?   ",
+        "pid": 37781,
+        "pgid": 36636,
+        "RSS_bytes": 0,
+        "state": "?"
+      }
+    ],
+    "root_saved_wall_seconds": 52.20251241698861,
+    "caller_saved_wall_seconds": 50.767864000052214,
+    "whole_root_JS_seconds_root_attributed": 71.951,
+    "whole_root_UTC_bracket_root_attributed": {
+      "before": "2026-10-20 19:18:12 UTC",
+      "after": "2026-10-20 19:19:24 UTC",
+      "resolution_seconds": 1,
+      "conservative_upper_bound_seconds": 73
+    },
+    "outer_limit_seconds": 115,
+    "native_limit_seconds": 100,
+    "TERM_grace_seconds": 10,
+    "exec_wait_is_not_whole_lifetime": true,
+    "normal_resource_observation_completion": false,
+    "hard_quota_or_complete_peak_guarantee": false
+  },
+  "ownership": {
+    "native_PID": 36639,
+    "adapter_group": 36636,
+    "native_group": 36639,
+    "native_PID_direct_owned_group_join": true,
+    "waited_reaped": true,
+    "groups_absent_in_saved_receipts": true,
+    "root_poststop_queries": {
+      "36636": {
+        "absent": true,
+        "error": null
+      },
+      "36639": {
+        "absent": true,
+        "error": null
+      }
+    },
+    "live_queries_performed_by_peer": false
+  },
+  "text_only_observations": {
+    "native_log": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native-measurement-001/native.log",
+      "sha256": "0c743c35fa2eaafaf1091e0405d45ae4fa2d6e9a95097b964aaa4047632062ac",
+      "bytes": 272166
+    },
+    "expected004plugin_path_present": "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/cp1-oneway-cooling-release-richardson2-END181-dof-map-observer-prep-004/build-001/libcoupon_end181_observer-opt.dylib",
+    "dyld_parsed_rows": 731,
+    "dyld_unparsed_rows": 155,
+    "native_final_step_text": "Time Step 182, time = 0.455, dt = 0.0025",
+    "native_finished_text_seconds": "47.20",
+    "strict_trace_map_or_vector_qualification": false,
+    "full_transitive_loader_or_ABI_closure": false
+  },
+  "negative_scope": {
+    "accepted_capture": false,
+    "parser_run": false,
+    "new_decode_or_association_labels": false,
+    "original12_mechanical_failures_unchanged_root_attributed": true,
+    "scientific_completeness": false,
+    "physical_qualification": false,
+    "retry": false
+  }
+}

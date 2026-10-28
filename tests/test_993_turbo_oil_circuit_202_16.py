@@ -18,7 +18,7 @@ PART = ROOT / "catalog/parts/993-eng-turbo-oil-return-line-in625-f0-0001.json"
 SOURCE = ROOT / "catalog/sources/src-pet-993-202-16-turbo-oil-circuit.json"
 DOC = ROOT / "docs/993/993_CIRCUIT_HUILE_TURBO_202-16.md"
 GRID = ROOT / "docs/TITANIUM.md"
-SAFETY = ROOT / "SAFETY.md"
+SAFETY = ROOT / "docs" / "SAFETY.md"
 
 CIRCUIT_REFERENCES = (
     "993 107 125 53",

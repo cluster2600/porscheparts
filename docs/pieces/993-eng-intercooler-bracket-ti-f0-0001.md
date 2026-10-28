@@ -2,7 +2,7 @@
 
 # 993 Turbo/GT2 intercooler bracket, titanium F0 concept
 
-**Status: functional. No part is released; see [SAFETY.md](../../SAFETY.md).**
+**Status: functional. No part is released; see [SAFETY.md](../../docs/SAFETY.md).**
 
 Independent open two-rail bracket concept to screen the value of an LPBF remanufacture in Ti-6Al-4V. PorscheFanatics and the PET establish the circuit part numbers; FVD publishes the envelope and mass of a reinforced aftermarket bracket, without usable interface geometry.
 
@@ -103,6 +103,10 @@ Catalogue record: [`catalog/parts/993-eng-intercooler-bracket-ti-f0-0001.json`](
 
 *`parts/993-eng-intercooler-bracket-ti-f0-0001/media/views.png` — concept CAD block, **not** the original part, not a print file.*
 
+![photo-concept](../../parts/993-eng-intercooler-bracket-ti-f0-0001/media/photo-concept.png)
+
+*`parts/993-eng-intercooler-bracket-ti-f0-0001/media/photo-concept.png` — AI-generated studio illustration based on the concept CAD preview. Material and finish are illustrative; generated details may differ. Not a photograph or evidence of fit, function or manufacturing.*
+
 ## Provenance and sources
 
 | field | value |
@@ -123,7 +127,7 @@ Catalogue record: [`catalog/parts/993-eng-intercooler-bracket-ti-f0-0001.json`](
 | status | concept |
 | vehicle tested | not recorded |
 | reviewed by |  |
-| limitations | not recorded |
+| limitations | Only the 255 x 80 x 23 mm envelope comes from the commercial record; the rails, holes and central boss are F0 assumptions.<br>The published 0.2 kg mass concerns the FVD product whose exact material and topology are unknown; it does not validate the concept.<br>The 400 N central case, the 220 mm span and +120 K are synthetic; no 993 load has been measured.<br>The beam calculation ignores curvature, stress concentrations, contact, preload, vibration, fatigue, LPBF defects and thermal stresses.<br>The 828 MPa comparison limit comes from a wrought TIMET reference and is not an LPBF allowable.<br>The CalculiX C3D10 screen converges to within 10% on p95 and deflection, but keeps synthetic supports, load and elastic card; the local maximum still rises with refinement.<br>The derived USD passes the minimum structural check only; it carries no qualified SimReady physical attribution.<br>The STEP proves only a computable BREP within the envelope; it must be neither manufactured for fitting nor installed. |
 
 **Evidence**
 

@@ -1,0 +1,119 @@
+{
+  "schema": "962-head-star-replacement-exact-child-peer/v1",
+  "decision": "CLEAR_EXACT_CHILD_SOURCE_METADATA_ONLY",
+  "actual": {
+    "path": "work/962-engineering/head-star-replacement-execution-prep-001/actual-contract-001.json",
+    "bytes": 23041,
+    "sha256": "018e833bdccc5d72865c79f2f3f18ce190c4bae6ba2cac2f10a182cc5d61618f"
+  },
+  "held_sha256": "36dd1c9d7d3f3b9a698aa6d04b11550bd7991dda231d6ed85447df71d821f5a6",
+  "input_count": 72,
+  "checks": {
+    "67_held_pins_preserved_exact": true,
+    "five_new_source_root_guard_pins_current": {
+      "work/962-engineering/head-star-replacement-prep-002/held-contract.json": "36dd1c9d7d3f3b9a698aa6d04b11550bd7991dda231d6ed85447df71d821f5a6",
+      "work/962-engineering/head-star-replacement-root-source-002/review.json": "97ebf38d64d9bc16e8ebdc569caf5e637e1c87ea5b264e105c5311e666b31a47",
+      "work/962-engineering/head-star-replacement-root-source-002/selfcheck.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "work/962-engineering/head-star-replacement-root-source-002/selfcheck.stderr": "6af0e6c6e142de031548a49370fc459b42338e0aaa08f9ee61ac48282b1b5942",
+      "work/962-engineering/head-star-replacement-source-peer-002/review.json": "b319868c69dc01143a1c83752bc7ed1e1dcaacb0f105c15c8eeebfc4328befcb"
+    },
+    "69_current_small_bodies_current": true,
+    "one_parent_MSH_body_and_three_native_runtime_bodies_deferred_to_root_fresh_observation": true,
+    "two_exact_future_source_copy_bindings_absent": {
+      "work/962-engineering/head-star-replacement-001/reader.py": "05ed505cf1009b7554dc0134945ef1e9f3ec9e8d729d079ede60c87cfb550ce1",
+      "work/962-engineering/head-star-replacement-001/run_readback.py": "5ab38b53e4019506772cc429b46699ac0e217141c87a0a043718d8123ecb159c"
+    },
+    "same_head_star_replacement001_output_absent": true,
+    "no_own_hash_cycle": true,
+    "only_narrow_native_partial_edit_authority_true": true,
+    "all_scientific_fields_tagpolicy_fullbefore_after_saved_gates_options_limits_unchanged": true,
+    "fixed_reader05ed_runner5ab38_materialization_and_contract_digest_join": true
+  },
+  "complete_selected_helper_namespace": {
+    "selected_names": [
+      "array_sha",
+      "volume_arrays",
+      "canonical_oriented",
+      "surface_roundtrip",
+      "distribution",
+      "tetra_volumes",
+      "tetra_boundary",
+      "tagged_volume",
+      "internal_face_orientation",
+      "classifications",
+      "array_identity",
+      "boundary_identity",
+      "audit_after"
+    ],
+    "bindings": {
+      "array_sha": [
+        "np",
+        "hashlib"
+      ],
+      "volume_arrays": [
+        "np"
+      ],
+      "canonical_oriented": [
+        "np"
+      ],
+      "surface_roundtrip": [
+        "np",
+        "canonical_oriented"
+      ],
+      "distribution": [
+        "np"
+      ],
+      "tetra_volumes": [
+        "np"
+      ],
+      "tetra_boundary": [
+        "np",
+        "canonical_oriented"
+      ],
+      "tagged_volume": [
+        "np",
+        "volume_arrays"
+      ],
+      "internal_face_orientation": [
+        "np"
+      ],
+      "classifications": [
+        "core.np",
+        "core.array_sha"
+      ],
+      "array_identity": [
+        "core.array_sha"
+      ],
+      "boundary_identity": [
+        "core.np",
+        "core.array_sha"
+      ],
+      "audit_after": [
+        "core.np",
+        "core.tagged_volume",
+        "core.surface_roundtrip",
+        "classifications",
+        "core.distribution",
+        "core.array_sha",
+        "core.tetra_volumes",
+        "math.fsum",
+        "core.CANDIDATE_VOLUME",
+        "core.tetra_boundary",
+        "core.internal_face_orientation",
+        "array_identity"
+      ]
+    },
+    "construction": "AST-selected13 definitions execute in one shared namespace initially containing np/math/hashlib; dependencies canonical_oriented/volume_arrays/classifications/array_identity are installed before use. SimpleNamespace exposes np, exact CANDIDATE_VOLUME and all selected callable helpers; Python builtins are available through normal exec globals. No helper is executed during this review.",
+    "missing_external_global_identified": false
+  },
+  "root_source_review_sha256": "97ebf38d64d9bc16e8ebdc569caf5e637e1c87ea5b264e105c5311e666b31a47",
+  "sourcepeer002_sha256": "b319868c69dc01143a1c83752bc7ed1e1dcaacb0f105c15c8eeebfc4328befcb",
+  "root_six_fakechecks_completed_separately": true,
+  "limits": [
+    "This clears exact child joins only; all actual fullhead counts/208prediction/native quality/preservation/reopen remain unobserved.",
+    "Root must rehash all current inputs incl parent/runtime/NumPy and recheck current disk/memory/owned-operation state at launch, then materialize only reader/runner/frozen contract and externally pin exact child/peer.",
+    "1200s/sample8GiB/1GiB/request2 are watchdog controls, not hard OS quotas. No concurrent-job/resource/installation result is inferred here.",
+    "No functions/tests/scientific/native/runtime or parent body/Git operations by reviewer. No PDE/globalembedding/physical/manufacturing qualification."
+  ],
+  "blockers": []
+}

@@ -11,7 +11,7 @@
 </div>
 
 > [!CAUTION]
-> **Not ready to print, and not a copy of the original part.** This folder preserves an archived Carrera F0 concept. The current Turbo study is linked below. No part is declared dimensionally accurate, fitted, tested, safe or released without supporting evidence: see [SAFETY.md](../../SAFETY.md).
+> **Not ready to print, and not a copy of the original part.** This folder preserves an archived Carrera F0 concept. The current Turbo study is linked below. No part is declared dimensionally accurate, fitted, tested, safe or released without supporting evidence: see [SAFETY.md](../../docs/SAFETY.md).
 
 ## Current programme: M64/60 Turbo cooling fan
 
@@ -24,7 +24,7 @@ Target: **993 Turbo M64.60 with the PMB / Classic Retrofit 240 A alternator**. P
 | Reference rebuild: 11 blades, ventilated cup, 12 windows | [Rebuild report](../../twins/993-engine-cooling-fan-system-f0/REFERENCE_REBUILD.md), [parameters](../../twins/993-engine-cooling-fan-system-f0/source/picogk-reference/reference.json), [PicoGK C#](../../twins/993-engine-cooling-fan-system-f0/source/picogk-reference/Program.cs) | Visual reference reconstruction; unmeasured parameters explicitly identified |
 | Organic blade candidates A–E | [Study](../../twins/993-engine-cooling-fan-system-f0/ORGANIC_BLADE_STUDY.md), [candidate E parameters](../../twins/993-engine-cooling-fan-system-f0/source/picogk-reference/organic-e.json) | Documented numerical attempts, including failures; no validated aerodynamic optimum |
 | Parametric rotor and housing, wave 2 | [M64Fan.cs](../../parts/m64-cooling-fan-0001/geometry/M64Fan.cs), [configuration](../../parts/m64-cooling-fan-0001/geometry/fan-config.json) | Editable, labelled assumptions; no archived compiled output for this separate source |
-| Earlier actuator-disc CFD, OpenFOAM v2312 | [Baseline rig](../../simulation/993-fan-baseline/README.md) | Exploratory surrogate; not an installed performance prediction |
+| Earlier actuator-disc CFD, OpenFOAM v2312 | [Baseline rig](../../work/simulation/993-fan-baseline/README.md) | Exploratory surrogate; not an installed performance prediction |
 | Fan-drive metrology, M64-ACQ-0005 | [Dimensions](../../twins/m64-engine-system/metrology/fan-drive/fan-drive-dimensions.json), [scan record](../../catalog/scans/scan-fan-drive-0p21mm.json) | Initial scan analysis; ±4 mm uncertainty and unresolved discrepancies |
 | Metal printing release | [Release dossier](../../twins/993-engine-cooling-fan-system-f0/PRINT_RELEASE.md) | **HOLD — no printing authorization** |
 
@@ -72,7 +72,9 @@ These are preliminary estimates, not exact dimensions. The single-pass harmonic 
 
 This folder retains the [build123d source](../../parts/993-eng-cooling-impeller-alsi10mg-f0-0001/source/cooling_impeller.py), [STEP](../../parts/993-eng-cooling-impeller-alsi10mg-f0-0001/derived/cooling_impeller_alsi10mg_f0.step), [STL](../../parts/993-eng-cooling-impeller-alsi10mg-f0-0001/derived/cooling_impeller_alsi10mg_f0.stl) and [engineering screen](../../parts/993-eng-cooling-impeller-alsi10mg-f0-0001/evidence/engineering-screen.json). Evidence is SHA-256 pinned. The concept failed integration with its F0 housing: −14 mm radial clearance. Its 280 mm diameter, hub and twelve blades are synthetic study geometry, not a Turbo part.
 
-The generic wheel and schematic orthographic images were removed from this presentation on 29 September 2026 because they could be mistaken for the Turbo design. They remain reproducible from the archived STEP with `make part-previews`.
+The generic wheel and schematic orthographic images were removed from this presentation on 29 September 2026 because they could be mistaken for the Turbo design. Public exports use a status card identifying that withdrawal.
+
+<a href="media/preview.png">Public status card: archived geometry; no part rendering</a>. This is not a print file.
 
 ## Related records
 
@@ -82,7 +84,7 @@ The generic wheel and schematic orthographic images were removed from this prese
 - [System dossier](../../docs/993/993_ENGINE_COOLING_FAN_SYSTEM_F0.md)
 - [PorscheFanatics project presentation](https://porschefanatics.com/projects/993-turbo-fan/)
 - [Digital twin record](../../catalog/twins/twin-993-engine-cooling-fan-system-f0.json)
-- [Safety rules](../../SAFETY.md)
+- [Safety rules](../../docs/SAFETY.md)
 
 ---
 

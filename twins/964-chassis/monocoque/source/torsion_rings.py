@@ -24,8 +24,9 @@ re-guessed here:
   plus 40 mm of the skin is tied by short stiff beams to every skin node
   within 20 mm of its tangent point: a bonded strip about 40 mm wide
   (ASSUMED). Tied to a single skin node, as first done, the tube sank into
-  the skin as the mesh was refined and K lost 15% per refinement. Checked on a cantilever plate with a tube: 12%
-  stiffer than composite beam theory, the side S3 errs on;
+  the skin as the mesh was refined and K lost 15% per refinement. Checked
+  on a cantilever plate with a tube, in S3 (before 2026-10-12): 12% stiffer
+  than composite beam theory;
 - floor and bulkheads: the two 1.5 mm faces, as torsion_monocoque.py counts
   sandwiches (the core is in the mass).
 
@@ -52,6 +53,7 @@ HERE = pathlib.Path(__file__).parent
 sys.path.insert(0, str(HERE))
 sys.path.append(str(HERE.parents[1] / "fea"))          # after source/: fea has its own build_shell
 import build_shell as bs  # noqa: E402
+import shell_s6 as s6  # noqa: E402
 import torsion as tr  # noqa: E402
 import torsion_monocoque as tm  # noqa: E402
 
@@ -293,4 +295,5 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    with s6.installed():                      # S6 shells (shell_s6.py)
+        main()

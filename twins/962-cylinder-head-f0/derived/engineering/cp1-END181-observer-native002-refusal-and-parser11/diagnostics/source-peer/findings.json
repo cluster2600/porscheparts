@@ -1,0 +1,188 @@
+{
+  "schema": "962-observer004-native-observation-diagnostics-source-findings/v1",
+  "decision": "PASS_NARROW_SOURCE_DIAGNOSTICS_PROPOSAL_ONLY",
+  "blockers": [],
+  "source_proofs": {
+    "seven_exact_replacements": true,
+    "full_reverse_bytes_and_AST_exact": true,
+    "unified_diff_exact": true,
+    "unchanged_top_level_helpers": [
+      {
+        "name": "ident",
+        "text_sha256": "f06fd6eb198e19f1531f05eca280140d315a50cbf235b61d03dcb7df5cadb459",
+        "bytes": 90,
+        "AST_equal": true
+      },
+      {
+        "name": "freeze",
+        "text_sha256": "39cc1c4eddcf0789584646ac807413d2c5b5d1e201daf0e5fce438a4eca24d2e",
+        "bytes": 110,
+        "AST_equal": true
+      },
+      {
+        "name": "input_map",
+        "text_sha256": "b749b73100a0ebc9fee67663c96b17b6ba469ac5e496cbf867ee13e5cf0d3741",
+        "bytes": 182,
+        "AST_equal": true
+      },
+      {
+        "name": "runtime_map",
+        "text_sha256": "2bf5a86bd0f17783a88336c541dfd20024812c5a08686847a635a1ab1f77789d",
+        "bytes": 531,
+        "AST_equal": true
+      },
+      {
+        "name": "group_exists",
+        "text_sha256": "67b74400b8ae03cab400d9360091514f9d295f0a93baa968468544e8b23cd5f3",
+        "bytes": 97,
+        "AST_equal": true
+      },
+      {
+        "name": "rec",
+        "text_sha256": "1c49fad82b6ce5d2a5432aa22114fa9b0e42eb46d4b57b8df2a0ba2c36d00543",
+        "bytes": 253,
+        "AST_equal": true
+      },
+      {
+        "name": "check",
+        "text_sha256": "7aafe9854e4e77c0b84d9232f40d979da358790349d8899b628ffe04418f3b77",
+        "bytes": 438,
+        "AST_equal": true
+      },
+      {
+        "name": "output_size",
+        "text_sha256": "0a86e778061dd08bb3109046fc15ea968e8bbe94ef7b8e4b02ea95365e320b65",
+        "bytes": 192,
+        "AST_equal": true
+      },
+      {
+        "name": "provider_links",
+        "text_sha256": "92d3d35a256f694cd8aa0183e3125c5f7b9dd8de6b8a746f8921644b2d95b940",
+        "bytes": 213,
+        "AST_equal": true
+      },
+      {
+        "name": "loaded_trace",
+        "text_sha256": "afd7878aad18864059d110fc46ae5bd355e8693d8bcf595ae00fdf40e096e663",
+        "bytes": 1242,
+        "AST_equal": true
+      },
+      {
+        "name": "children",
+        "text_sha256": "6826234d5582b1348b660735eff526ec209465d78c2c650931f45303776dbb05",
+        "bytes": 318,
+        "AST_equal": true
+      },
+      {
+        "name": "member",
+        "text_sha256": "49ae60bae67afc9a905015da7a727a3589326cb03818c9378a92063ea0e21808",
+        "bytes": 357,
+        "AST_equal": true
+      },
+      {
+        "name": "sample_owned",
+        "text_sha256": "77c205a689bf75910968db6e437e2f7ddcb43947cf1cf5dc499bdd63531f3212",
+        "bytes": 1035,
+        "AST_equal": true
+      },
+      {
+        "name": "capture",
+        "text_sha256": "97a33490cd8f8824ad9e76e5bb8be2c730c27b0bf16d688f8a49db426494b66a",
+        "bytes": 140,
+        "AST_equal": true
+      },
+      {
+        "name": "python_record",
+        "text_sha256": "59e6e363f69744ea94e88d93992b2788e7657bf453b3a87020e8d7911831bbb3",
+        "bytes": 176,
+        "AST_equal": true
+      },
+      {
+        "name": "growth_bytes",
+        "text_sha256": "b6edf866a95c614f7171ea82992a1640e1cb408fa0d7d00b30c1c13e65c88156",
+        "bytes": 439,
+        "AST_equal": true
+      },
+      {
+        "name": "inclusive_bytes",
+        "text_sha256": "2a215500ebb6857c144c9c9e2b8deac678ceab0968e3bb440ea4439c6a291b7f",
+        "bytes": 59,
+        "AST_equal": true
+      },
+      {
+        "name": "direct_map",
+        "text_sha256": "5e3be4849678c798cb29cf0b4d10c7e04e9934685ae05cd5deda5c57dc63e18a",
+        "bytes": 370,
+        "AST_equal": true
+      }
+    ],
+    "unchanged_nested_helpers": [
+      "request",
+      "stop_wait"
+    ],
+    "imports_exact": true
+  },
+  "semantic_checks": [
+    {
+      "id": "S01",
+      "finding": "Five labels precede the original children/member/aggregate sample/inclusive/growth expressions. No observation query is duplicated, replaced or relaxed. The aggregate sample label names the group_exists filter; full traceback disambiguates helper stack/line; aggregate target PID is intentionally null."
+    },
+    {
+      "id": "S02",
+      "finding": "proc.poll remains first in the existing observation handler. Live-child observation failure still sets resource_or_group_observation_failed and follows original stop_wait. A terminated child still produces an exit-race record and follows the original deadline/closure rules."
+    },
+    {
+      "id": "S03",
+      "finding": "PermissionError remains fatal while child is live. group_exists catches only ProcessLookupError. Missing/nonnumeric/live-group RSS checks, numeric zero treatment, resource thresholds and all candidate predicates are unchanged."
+    },
+    {
+      "id": "S04",
+      "finding": "The two existing records gain phase, attempted expression, target PID, monotonic elapsed, existing adapter and historically verified-native IDs and traceback.format_exc. No new dependency/process query; traceback was already imported. IDs are attribution snapshots, not new live-group proof or a causal diagnosis."
+    },
+    {
+      "id": "S05",
+      "finding": "The patch improves these two records only. Other error paths retain donor semantics: a later unchanged main/cleanup exception may supersede an earlier error record. This is not universal all-failure retention or guaranteed exact nested aggregate PID/path identification."
+    },
+    {
+      "id": "S06",
+      "finding": "Native100/outer115/TERM10/sampled2GiB/inclusive512MiB/positive-growth32MiB/T1/no retry and final outer/status/time/budget gates remain exact. Extra diagnostic bytes/time consume existing bounds; no fit/success promise."
+    },
+    {
+      "id": "S07",
+      "finding": "All source outside seven replacements is exact, including admission, signal/cleanup/finalization, namespaces, caller argv, environment and scientific deck selection. Current caller source identity matches; four deck/grid descriptors match actual metadata only, with no scientific bodies/hash/stat access."
+    },
+    {
+      "id": "S08",
+      "finding": "Proposed source deliberately retains historical P/S/D/O and old actual/controller/no-retry protocol; it is not a fresh executable successor. No new actual/staging/admission/fixture is prepared. Any later successor/invocation requires separate authorization."
+    }
+  ],
+  "original_refusal": {
+    "root_terminal": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native-measurement-root-review-001/observed-terminal-refusal.json",
+      "sha256": "274768a14c12aee4ba90638cf6588fef03b4c6f25dec8d6891985afc0a5d9203",
+      "bytes": 120144
+    },
+    "reported_original_observation": {
+      "outer_RC": 2,
+      "caller_RC": 1,
+      "native_RC": 0,
+      "stop_reason": "resource_or_group_observation_failed",
+      "error": {
+        "type": "PermissionError",
+        "message": "[Errno 1] Operation not permitted"
+      },
+      "original_operation_and_stack_unavailable": true,
+      "cause_established": false
+    },
+    "refusal_preserved": true,
+    "independent_saved_result_review_performed_here": false,
+    "exact_operation_or_cause_established": false,
+    "measurement_or_physics_accepted": false
+  },
+  "not_performed": [
+    "Owner/helper/parser/fixture/native execution or replay",
+    "Runtime/scientific data/header/map/grid body read/hash/stat",
+    "New actual/staging/admission/authorization",
+    "Original source/failed-evidence modification or mechanical-failure repair"
+  ]
+}

@@ -15,8 +15,11 @@ positions CP1 (Al–Zr–Fe, AA8A61.50) for conductivity and HT1
 (Al–Mn–Ni–Cu–Zr, AA8A81.50) for temperature capability and strength.
 This distinction motivates a comparison if CP1 fails at temperature; the page
 provides no allowables for our head. The CP1 value of 187 W/m·K in the
-[initial dossier](README.md#matière--conductivité-et-tenue-à-chaud) remains a
-room-temperature measurement, not a k(T) law.
+[initial dossier](README.md#matière--conductivité-et-tenue-à-chaud) comes from the
+four-hour row of the [November 2021 sheet](https://assets.foleon.com/eu-central-1/de-uploads-7e3kk3/41170/product_sheet_aheadd_cp1_nov_2021docx.e81a7d073ebf.pdf), PDF p. 2,
+rechecked on October 17, 2026. Its conductivity-column test temperature is
+unspecified; keep it unknown and do not treat the scalar as a k(T) law. See the
+[mechanical-state review](derived/engineering/material-mechanical-state/README.md).
 
 The [EOS CuCrZr data sheet](https://www.eos.info/var/assets/05-datasheet-images/Assets_MDS_Metal/EOS_CopperAlloy_CuCrZr/Material_DataSheet_EOS%20_Copper_CuCrZr_en.pdf?v=11),
 PDF pages 5–7, separates two treatments for M400-1, 80 µm layers.

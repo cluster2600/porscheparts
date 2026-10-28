@@ -16,7 +16,7 @@
 > - validation status `concept`: nothing has been checked against a real part;
 > - geometry `estimated`: its dimensions are estimated design variables, not measured on the original part;
 > - safety class `prohibited_pending_engineering`;
-> - no part in this repository is released — read [SAFETY.md](../../SAFETY.md).
+> - no part in this repository is released — read [SAFETY.md](../../docs/SAFETY.md).
 
 <table><tr>
 <td width="50%" valign="top">
@@ -89,19 +89,25 @@ flowchart LR
 
 *Orthographic views of the same concept CAD, with its bounding dimensions — not drawings of the original part.*
 
+## Bionic gyroid-core model
+
+![PicoGK gyroid-core model: outside view and capped section](media/gyroid.png)
+
+*PicoGK variant ([`GyroidCore.cs`](../../parts/picogk-catalog/bionic/GyroidCore.cs)): the organic outer form above, a 0.8 mm skin and a sheet-gyroid core (3.6 mm cell, 0.4 mm wall) wherever three cells fit, 6 drain ports; 8.5 % less material than the same part solid. Core settings are assumptions: not printed, not depowdered, not tested — not a print file.*
+
 ## What's in this folder
 
 | folder | what it holds | files |
 |---|---|---|
-| `derived/` | CAD exports generated from the source (STEP for CAD tools, STL for meshing) | [`derived/993-carrera-exhaust-42_5-f1-picogk.json`](derived/993-carrera-exhaust-42_5-f1-picogk.json), [`derived/993-carrera-exhaust-42_5-f1-picogk.stl`](derived/993-carrera-exhaust-42_5-f1-picogk.stl), [`derived/993-carrera-exhaust-42_5-f1.step`](derived/993-carrera-exhaust-42_5-f1.step), [`derived/993-turbo-exhaust-43_5-f1.step`](derived/993-turbo-exhaust-43_5-f1.step) |
-| `media/` | concept-model views rendered from the CAD by `scripts/render_part_previews.py` — not pictures of the original | [`media/preview.json`](media/preview.json), [`media/preview.png`](media/preview.png), [`media/views.png`](media/views.png) |
-| `source/` | parametric source — the editable master that generates the geometry | [`source/picogk.json`](source/picogk.json) |
+| `derived/` | CAD exports generated from the source (STEP for CAD tools, STL for meshing) | [`derived/993-carrera-exhaust-42_5-f1-picogk-gyroid.json`](derived/993-carrera-exhaust-42_5-f1-picogk-gyroid.json), [`derived/993-carrera-exhaust-42_5-f1-picogk.json`](derived/993-carrera-exhaust-42_5-f1-picogk.json), [`derived/993-carrera-exhaust-42_5-f1-picogk.stl`](derived/993-carrera-exhaust-42_5-f1-picogk.stl), [`derived/993-carrera-exhaust-42_5-f1.step`](derived/993-carrera-exhaust-42_5-f1.step), [`derived/993-turbo-exhaust-43_5-f1.step`](derived/993-turbo-exhaust-43_5-f1.step) |
+| `media/` | concept-model views rendered from the CAD by `scripts/render_part_previews.py` — not pictures of the original; labelled AI studio illustration and provenance, not a photograph | [`media/gyroid.json`](media/gyroid.json), [`media/gyroid.png`](media/gyroid.png), [`media/photo-concept.png`](media/photo-concept.png), [`media/photo.json`](media/photo.json), [`media/preview.json`](media/preview.json), [`media/preview.png`](media/preview.png), [`media/views.png`](media/views.png) |
+| `source/` | parametric source — the editable master that generates the geometry | [`source/gyroid.json`](source/gyroid.json), [`source/picogk.json`](source/picogk.json) |
 
 ## Read more
 
 - **Full description page**, with sources and evidence: [docs/pieces/993-eng-exhaust-valve-f1-0001.md](../../docs/pieces/993-eng-exhaust-valve-f1-0001.md)
 - **Catalogue record** (source of truth): [`catalog/parts/993-eng-exhaust-valve-f1-0001.json`](../../catalog/parts/993-eng-exhaust-valve-f1-0001.json)
-- **Safety rules**: [SAFETY.md](../../SAFETY.md)
+- **Safety rules**: [SAFETY.md](../../docs/SAFETY.md)
 
 ---
 

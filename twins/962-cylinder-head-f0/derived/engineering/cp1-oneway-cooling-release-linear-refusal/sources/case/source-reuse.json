@@ -1,0 +1,244 @@
+{
+  "schema": "962-oneway-cooling-release-linear-source-reuse/v1",
+  "scope": "SOURCE_HELD; byte and CPython AST metadata only; no prepared code executed",
+  "AST_context": {
+    "implementation": "cpython",
+    "version": "3.12.11 (main, Aug 18 2025, 19:02:39) [Clang 20.1.4 ]",
+    "cross_version_AST_digest_claim": false
+  },
+  "donor_files": {
+    "work/962-engineering/cp1-oneway-cooling-release-prep-001/METHOD.md": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-prep-001/METHOD.md",
+      "sha256": "ff2883bcd5481039996a7bdff66f0e35621adcb9cb196f1feae1669ccec95547",
+      "bytes": 7831
+    },
+    "work/962-engineering/cp1-oneway-cooling-release-prep-001/held-preparation.json": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-prep-001/held-preparation.json",
+      "sha256": "4a85cfecd2ad2f4fd606b6ad0fc74e08d7c611b55166cf012f1d23dfa62c19fc",
+      "bytes": 22508
+    },
+    "work/962-engineering/cp1-oneway-cooling-release-prep-001/thermoelastic-birth.i": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-prep-001/thermoelastic-birth.i",
+      "sha256": "08708c82f0f38568d9b87c301c6f478c19febc8902097681188b0be60713be07",
+      "bytes": 14635
+    },
+    "work/962-engineering/cp1-oneway-cooling-release-prep-001/selfcheck.py": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-prep-001/selfcheck.py",
+      "sha256": "cfdf59730098c8a1538db02ab4ce54874ce7213522f82ad9dbea867d99b5ec77",
+      "bytes": 6302
+    },
+    "work/962-engineering/cp1-oneway-cooling-release-prep-001/thermal-input-index.json": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-prep-001/thermal-input-index.json",
+      "sha256": "9e4da9faf9a6ccb9a55c66b2c0d9eef44b88d99e09afff69bb4f504b0cfb7aec",
+      "bytes": 130373
+    },
+    "work/962-engineering/cp1-oneway-cooling-release-prep-001/prepare_continuation.py": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-prep-001/prepare_continuation.py",
+      "sha256": "a2b61fde2968229861145ce1c99d22896ac15284843b3843760ae1702241e218",
+      "bytes": 7150
+    },
+    "work/962-engineering/cp1-oneway-cooling-release-prep-001/run_mac.py": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-prep-001/run_mac.py",
+      "sha256": "104fcd61eb1441f05f7ff3a40eb60a10c80d83f03123d9c402b8a6972f722659",
+      "bytes": 19595
+    },
+    "work/962-engineering/cp1-oneway-cooling-release-prep-001/case-contract.json": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-prep-001/case-contract.json",
+      "sha256": "0cb6b9a16de29d503df0d2fe02a1ec4be5ed2e5a51ee2b610b3c4892846ece63",
+      "bytes": 13800
+    },
+    "work/962-engineering/cp1-oneway-cooling-release-prep-001/test_controls.py": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-prep-001/test_controls.py",
+      "sha256": "27367c443434960ef6e224f676e2a0fb520c5213f758d04fc42fd63579217595",
+      "bytes": 15060
+    },
+    "work/962-engineering/cp1-oneway-cooling-release-prep-001/README.md": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-prep-001/README.md",
+      "sha256": "6be300a88e9d611e25e3c3fc1063ebb13fb1c86e459ecc2b12eede72bc13de77",
+      "bytes": 2142
+    },
+    "work/962-engineering/cp1-oneway-cooling-release-prep-001/card.json": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-prep-001/card.json",
+      "sha256": "04f65ecd853c7a4061fe902afd862b9cc9e3572000b7af5edf2cca2cebbd3de7",
+      "bytes": 7241
+    },
+    "work/962-engineering/cp1-oneway-cooling-release-prep-001/source-reuse.json": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-prep-001/source-reuse.json",
+      "sha256": "cc9e3349e3b17f6e5b8cd0a8f5212db7b07283d5434069cda509fb400901904e",
+      "bytes": 39950
+    },
+    "work/962-engineering/cp1-oneway-cooling-release-prep-001/source-evidence.json": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-prep-001/source-evidence.json",
+      "sha256": "759366bb62ced05a74c0d61a3ce8474442b6adfa6152844c2df9b9fe7d18072b",
+      "bytes": 1806
+    },
+    "work/962-engineering/cp1-oneway-cooling-release-prep-001/source.diff": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-prep-001/source.diff",
+      "sha256": "2affb39c83f5c253677563555516ac965422d63665a50af2010092bb82864679",
+      "bytes": 38558
+    }
+  },
+  "corrected_contract_donor": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-contract-clarification-001/case-contract.corrected.json",
+    "sha256": "1dc7eefae6f6666a91fdb0adde2261aa9efc7f3424a713d21b6f60e6091dfb66",
+    "bytes": 13800
+  },
+  "exact_reverse_groups": [
+    {
+      "file": "thermoelastic-birth.i",
+      "label": "LINEAR and explicit updated-solution final residual monitor schedule",
+      "old": "  solve_type = NEWTON\n  petsc_options_iname = '-ksp_type -pc_type'\n  petsc_options_value = 'preonly lu'\n",
+      "new": "  solve_type = LINEAR\n  petsc_options = '-snes_monitor'\n  petsc_options_iname = '-ksp_type -pc_type -snes_norm_schedule'\n  petsc_options_value = 'preonly lu always'\n",
+      "count": 1
+    },
+    {
+      "file": "run_mac.py",
+      "label": "exact new actual schema",
+      "old": "962-macos-oneway-cooling-release-case-actual/v1",
+      "new": "962-macos-oneway-cooling-release-linear-case-actual/v1",
+      "count": 1
+    },
+    {
+      "file": "run_mac.py",
+      "label": "fresh separate fixed native output",
+      "old": "output == ENGINEERING / \"cp1-oneway-cooling-release-001\"",
+      "new": "output == ENGINEERING / \"cp1-oneway-cooling-release-linear-001\"",
+      "count": 1
+    },
+    {
+      "file": "test_controls.py",
+      "label": "source hash rebinding",
+      "old": "104fcd61eb1441f05f7ff3a40eb60a10c80d83f03123d9c402b8a6972f722659",
+      "new": "5ec0fe4684dd51dd7934ca3069e75497a481a08db5a9ee8a78646d81e3813f6c",
+      "count": 1
+    },
+    {
+      "file": "test_controls.py",
+      "label": "schema fixtures",
+      "old": "962-macos-oneway-cooling-release-case-actual/v1",
+      "new": "962-macos-oneway-cooling-release-linear-case-actual/v1",
+      "count": 2
+    },
+    {
+      "file": "test_controls.py",
+      "label": "fresh output fixture",
+      "old": "output=str(base/\"cp1-oneway-cooling-release-001\")",
+      "new": "output=str(base/\"cp1-oneway-cooling-release-linear-001\")",
+      "count": 1
+    },
+    {
+      "file": "case-contract.json",
+      "label": "whole corrected contract to separate LINEAR source contract; original preserved",
+      "old": "{\n  \"schema\": \"962-oneway-cooling-release-source-case-contract/v1\",\n  \"status\": \"HELD_SOURCE_PHYSICS_REFERENCE_NOT_DATA_OR_NATIVE_AUTHORITY\",\n  \"card\": {\n    \"schema\": \"962-oneway-assumed-SI-thermoelastic-birth-card/v1\",\n    \"id\": \"cp1-oneway-cooling-release-001\",\n    \"status\": \"HELD_EXPLICIT_PRESCRIBED_COOLING_CLAMP_RELEASE_HYPOTHESES\",\n    \"units\": {\n      \"length\": \"m\",\n      \"displacement\": \"m\",\n      \"stress\": \"Pa\",\n      \"force\": \"N\",\n      \"moment\": \"N*m\",\n      \"temperature\": \"K\",\n      \"time\": \"s\"\n    },\n    \"assumed_material\": {\n      \"E_Pa\": {\n        \"value\": 71000000000.0,\n        \"assumed\": true,\n        \"constant_over_saved_temperature_range\": true,\n        \"transfer\": \"Related approximate71GPa only; process/state/temperature/direction transfer unverified\"\n      },\n      \"nu\": {\n        \"value\": 0.33,\n        \"assumed\": true\n      },\n      \"alpha_per_K\": {\n        \"value\": 1e-05,\n        \"assumed\": true,\n        \"basis\": \"Historical hypothetical mechanical witness scalar; not a CP1 measurement\"\n      },\n      \"symmetry\": {\n        \"value\": \"constant isotropic linear elasticity\",\n        \"assumed\": true\n      },\n      \"measured_matched\": {\n        \"E_T\": null,\n        \"nu_T\": null,\n        \"alpha_T\": null,\n        \"test_temperatures\": null,\n        \"directions\": null,\n        \"scatter\": null,\n        \"strength_allowables\": null,\n        \"process_state_qualified\": null\n      },\n      \"unverified_constant_law_interval_K\": [\n        300,\n        500\n      ]\n    },\n    \"geometry\": {\n      \"bounds_m\": [\n        [\n          0,\n          0,\n          0\n        ],\n        [\n          2,\n          1,\n          1\n        ]\n      ],\n      \"intervals\": [\n        16,\n        4,\n        4\n      ],\n      \"HEX8_total\": 256,\n      \"node_total\": 425,\n      \"old_HEX8\": 128,\n      \"born_HEX8\": 128,\n      \"old_nodes\": 225,\n      \"born_nodes_and_reference_DOFs\": 225,\n      \"shared_nodes\": 25,\n      \"globally_new_nodes\": 200,\n      \"source_thermal_old_block\": 2,\n      \"mechanical_old_block\": 2,\n      \"source_thermal_inactive_block\": 1,\n      \"mechanical_inactive_block\": 1,\n      \"mechanical_born_block\": 3,\n      \"captured_native_connectivity_ID_association\": null\n    },\n    \"time\": {\n      \"dt_s\": 0.0025,\n      \"steps\": 182,\n      \"birth_step\": 80,\n      \"birth_time_s\": 0.2,\n      \"end_time_s\": 0.455,\n      \"source_off_cooling_history_present\": false,\n      \"thermal_selected_level\": 2,\n      \"source_thermal_steps\": 160,\n      \"source_thermal_end_time_s\": 0.4\n    },\n    \"transfer\": {\n      \"old\": \"old-end.grid XYZ/T0..182; source END0..160 token prefix retained\",\n      \"born_end\": \"born-end.grid XYZ/T80..182; source END80..160 token prefix retained\",\n      \"born_reference\": \"born-begin80.grid XYZ only; entire225DOFs including25shared\",\n      \"temperature_prescribed_Aux\": true,\n      \"reference_prescribed_Aux_block3_only\": true,\n      \"new_reference_later_Aux_update\": false,\n      \"out_of_grid_or_duplicate_time_padding_allowed\": false,\n      \"native_knots_bit_identity_assumed\": false,\n      \"new_grid_steps\": {\n        \"old_end\": [\n          0,\n          182\n        ],\n        \"born_end\": [\n          80,\n          182\n        ],\n        \"born_reference\": \"original exact225 BEGIN80 temperature tokens/bytes\"\n      }\n    },\n    \"birth\": {\n      \"old_constant_stress_free_temperature_K\": 400.0,\n      \"born_stress_free_temperature\": \"Actual BEGIN80 field, not uniform350 at shared nodes\",\n      \"new_displacement_IC_m\": 0.0,\n      \"reinitialize_variables\": [\n        \"disp_x\",\n        \"disp_y\",\n        \"disp_z\",\n        \"temperature\",\n        \"born_reference_temperature\"\n      ],\n      \"restore_overridden_dofs\": [\n        true,\n        true,\n        true,\n        true,\n        false\n      ],\n      \"reinitialization_strategy\": \"IC\",\n      \"reinitialize_subdomains\": [\n        3\n      ],\n      \"force_preaux\": true,\n      \"modifier_group\": -100,\n      \"begin_sampler_PRE_AUX_group\": -50,\n      \"current_selected_shared_u_T_restored\": true,\n      \"old_element_material_state_retained\": true,\n      \"affected_old_older_solution_values_intentionally_rebased\": true,\n      \"other_added_variables\": \"rx/ry/rz, inactive_placeholder use default zero IC; not carried material/history fields\",\n      \"newborn_displacement_reference\": \"Must use this run BEGIN80 displacement on all425 nodes; clamping changes u, so old native uBirth is not reused.\"\n    },\n    \"supports\": [\n      {\n        \"source_id\": 0,\n        \"position_m\": [\n          0,\n          0,\n          0\n        ],\n        \"fixed_components\": [\n          \"disp_x\",\n          \"disp_y\",\n          \"disp_z\"\n        ]\n      },\n      {\n        \"source_id\": 32,\n        \"position_m\": [\n          1,\n          0,\n          0\n        ],\n        \"fixed_components\": [\n          \"disp_y\",\n          \"disp_z\"\n        ]\n      },\n      {\n        \"source_id\": 137,\n        \"position_m\": [\n          0,\n          1,\n          0\n        ],\n        \"fixed_components\": [\n          \"disp_z\"\n        ]\n      }\n    ],\n    \"loading\": {\n      \"gravity\": false,\n      \"pressure\": false,\n      \"prescribed_traction\": false,\n      \"contact\": false,\n      \"support_release\": true,\n      \"exterior\": \"Traction-free except temporary z=0 build-clamp components before BEGIN181; original six point constraints after release\",\n      \"support_policy_assumed_not_physical_clamp\": true,\n      \"dynamic_inertia_or_damping\": false,\n      \"ADTimeDerivative_scope\": \"inactive_placeholder on inactive block1 only, not physical displacement/T/reference\",\n      \"temporary_build_clamp\": {\n        \"assumed\": true,\n        \"plane\": \"z=0 on exact existing GeneratedMesh nodes\",\n        \"components\": [\n          \"disp_x\",\n          \"disp_y\",\n          \"disp_z\"\n        ],\n        \"initially_active\": true,\n        \"release_BEGIN_step\": 181,\n        \"release_time_s\": 0.4525,\n        \"after_release\": \"Only the original six3-2-1 component constraints remain; never leave rigid modes free.\",\n        \"six_point_constraints_enabled_before_release\": false,\n        \"clamp_and_point_DOF_overlap_allowed\": false\n      }\n    },\n    \"constitutive\": \"QuasiStatic SMALL incremental AD strain + ADComputeFiniteStrainElasticStress, identity small-strain rotation; no plasticity or finite-geometry claim\",\n    \"predeclared_source_stage_check_targets\": {\n      \"temperature_K\": 1e-10,\n      \"current_shared_displacement_m\": 1e-12,\n      \"strain\": 1e-10,\n      \"stress_Pa\": 0.1,\n      \"all_free_DOF_residual_and_force_balance_N\": 1e-07,\n      \"moment_balance_Nm\": 1e-07,\n      \"tolerance_origin\": \"SI conversions of mechanical donor displacement/strain/stress/force limits; moment uses1m characteristic length. These are proposed pre-run numerical gates, not physical accuracy.\"\n    },\n    \"independent_3D_assessment_source\": null,\n    \"independent_3D_assessment_required_before_native_actual\": true,\n    \"native_execution_authorized\": false,\n    \"solver_not_run\": true,\n    \"qualification\": {\n      \"head_execution_authorized\": false,\n      \"engineering_accepted\": false,\n      \"physics_qualified\": false,\n      \"material_qualified\": false,\n      \"process_calibrated\": false,\n      \"manufacturing_authorized\": false,\n      \"whole_head_lpbf_complete\": false\n    },\n    \"prescribed_cooling\": {\n      \"assumed\": true,\n      \"is_heat_equation_solution\": false,\n      \"source_off_heat_loss_or_calibrated_LPBF_history\": false,\n      \"starts_after_END_step\": 160,\n      \"starts_after_time_s\": 0.4,\n      \"ends_at_END_step\": 180,\n      \"ends_at_time_s\": 0.45,\n      \"cooling_step_count\": 20,\n      \"target_temperature_K\": 300.0,\n      \"formula\": \"For each node and j=1..20, T[160+j]=300+(T_END160-300)*(20-j)/20. Original END0..160 tokens unchanged; j20 and END181/182 are exactly300.\",\n      \"coefficient_laws_changed\": false,\n      \"unmeasured_schedule_duration_and_target\": true,\n      \"temperature_field_prescribed_at_all_nodes\": true\n    }\n  },\n  \"card_sha256\": \"04f65ecd853c7a4061fe902afd862b9cc9e3572000b7af5edf2cca2cebbd3de7\",\n  \"source_input_sha256\": {\n    \"thermoelastic-birth.i\": \"08708c82f0f38568d9b87c301c6f478c19febc8902097681188b0be60713be07\",\n    \"prepare_continuation.py\": \"a2b61fde2968229861145ce1c99d22896ac15284843b3843760ae1702241e218\"\n  },\n  \"frozen_before_native_runs\": true,\n  \"selected_thermal_level\": 2,\n  \"phase_association\": \"BEGIN/END0..182, birth80; original thermal END0..160 followed by20 prescribed cooling steps to END180/.45; release BEGIN181/.4525, hold through END182/.455.\",\n  \"temperature_table_files\": [\n    \"old-end.grid\",\n    \"born-end.grid\",\n    \"born-begin80.grid\"\n  ],\n  \"completed_transfer_manifest\": null,\n  \"completed_transfer_table_sha256\": null,\n  \"completed_transfer_identities_must_be_directly_bound_by_future_external_native_actual\": true,\n  \"native_geometry_proven\": false,\n  \"independent_3D_assessment_source\": null,\n  \"independent_3D_assessment_source_peer\": null,\n  \"native_adapter\": \"run_mac.py, case-only literal/source binding successor of fde482 lifecycle\",\n  \"capture\": {\n    \"file_base\": \"thermoelastic\",\n    \"times_s\": {\n      \"dt\": 0.0025,\n      \"last_step\": 182,\n      \"birth_step\": 80,\n      \"cooling_first_step\": 161,\n      \"cooling_last_step\": 180,\n      \"release_step\": 181\n    },\n    \"begin_nodes\": {\n      \"pattern\": \"thermoelastic_begin_NNNN.csv\",\n      \"steps\": [\n        0,\n        182\n      ],\n      \"variables\": [\n        \"disp_x\",\n        \"disp_y\",\n        \"disp_z\",\n        \"temperature\"\n      ],\n      \"coordinates_and_source_IDs\": true,\n      \"pre_aux\": true,\n      \"group\": -50\n    },\n    \"end_nodes\": {\n      \"pattern\": \"thermoelastic_end_NNNN.csv\",\n      \"steps\": [\n        0,\n        182\n      ],\n      \"variables\": [\n        \"disp_x\",\n        \"disp_y\",\n        \"disp_z\",\n        \"temperature\",\n        \"rx\",\n        \"ry\",\n        \"rz\"\n      ],\n      \"coordinates_and_source_IDs\": true\n    },\n    \"born_reference\": {\n      \"patterns\": [\n        \"thermoelastic_reference_begin_NNNN.csv\",\n        \"thermoelastic_reference_end_NNNN.csv\"\n      ],\n      \"required_steps\": [\n        80,\n        182\n      ],\n      \"rows_per_required_step\": 225,\n      \"block\": 3,\n      \"variable\": \"born_reference_temperature\",\n      \"before_birth\": \"No active reference rows; empty/header-only or absent empty sampler artifacts must be distinguished from a missing required postbirth sample\"\n    },\n    \"quadrature_fields\": {\n      \"patterns\": [\n        \"thermoelastic_begin_fields_NNNN.csv\",\n        \"thermoelastic_end_fields_NNNN.csv\"\n      ],\n      \"steps\": [\n        0,\n        182\n      ],\n      \"tensors\": [\n        \"stress\",\n        \"elastic_strain\",\n        \"mechanical_strain\",\n        \"total_strain\",\n        \"thermal_eigenstrain\"\n      ],\n      \"components\": [\n        \"xx\",\n        \"yy\",\n        \"zz\",\n        \"xy\",\n        \"xz\",\n        \"yz\"\n      ],\n      \"component_count\": 30,\n      \"rule\": \"All8 Gauss points of every active HEX8, with elem_id/qp_id/coordinates;128cells throughstep79,256cells step80..182\",\n      \"rows_per_phase_total\": 292864,\n      \"begin_phase\": \"PRE_AUX group-50 after birth modifier group-100; retained state must be observed\",\n      \"rows_both_phases_total\": 585728\n    },\n    \"geometry\": \"Same GeneratedMesh425/256HEX8 plus nodeset-only z=0 build_clamp. CDF1/2 policy and independent native external-ID/connectivity/block decode remain required.\",\n    \"begin80_reference_displacement\": \"Join all425 BEGIN80 u/T node rows with the225 born-reference rows by exact source IDs and coordinate words. Newborn incremental strain oracle must use this captured born displacement/history configuration, not globally zero u.\",\n    \"release_reference\": \"BEGIN181 fields/u/T are the pre-release-equilibrium state at300K; END181 must use only original six point constraints. Born uBirth is this run BEGIN80.\"\n  },\n  \"acceptance_requirements\": {\n    \"native_source_mesh_425nodes_256HEX8_ID_connectivity_block_bijection\": true,\n    \"all_node_prescribed_T_error_max_K\": 1e-10,\n    \"all225_born_reference_words_and25shared_associations\": true,\n    \"selected_current_shared_u_T_restore_and_old_material_state_retention\": true,\n    \"old_older_rebase_observed_and_not_called_unchanged_history\": true,\n    \"born_BEGIN80_displacement_reference_required\": true,\n    \"newborn_pre_equilibrium_zero_material_strain_and_stress_must_be_observed\": true,\n    \"T_minus_Tref_zero_alone_proves_zero_newborn_stress\": false,\n    \"all_QP_constitutive_tensor_and_increment_checks\": true,\n    \"full_SI_all_free_DOF_equilibrium_reactions_force_moment_balance\": true,\n    \"source_STAGE_check_targets_from_card_require_independent_3D_assessor_review\": true,\n    \"complete_native_lifecycle_and_input_runtime_hash_closure\": true,\n    \"mechanical_space_or_time_convergence_established\": false,\n    \"prescribed_cooling_is_not_calibrated_LPBF_or_material_qualification\": true,\n    \"clamp_release_free_DOF_sets_and_work_balance_required\": true,\n    \"accepted_original321_source_phase_lineage_retained_no_reconversion\": true,\n    \"complete_original54675_tokens_and_new9900_values_independently_checked\": true,\n    \"release_at_fixed300K_energy_nonincrease_and_state_association_required\": true,\n    \"no_work_equals_twice_total_strain_energy_shortcut\": true\n  },\n  \"native_execution_authorized\": false,\n  \"data_preparation_authorized\": false,\n  \"engineering_accepted\": false,\n  \"physics_qualified\": false,\n  \"material_qualified\": false,\n  \"process_calibrated\": false,\n  \"manufacturing_authorized\": false,\n  \"field_inventory_expected_not_observed\": {\n    \"BEGIN_and_END_phases\": 366,\n    \"unique_node_phase_associations\": 123550,\n    \"postbirth_shared_doublet_rows_if_same_sampler_storage\": 5150,\n    \"reference_node_phase_associations\": 46350,\n    \"QP_phase_associations\": 585728,\n    \"symmetric_tensor_sets\": 5,\n    \"tensor_scalar_components_per_QP\": 30,\n    \"native_capture_or_storage_observed\": false\n  }\n}\n",
+      "new": "{\n  \"schema\": \"962-oneway-cooling-release-linear-source-case-contract/v1\",\n  \"status\": \"HELD_SOURCE_PHYSICS_REFERENCE_NOT_DATA_OR_NATIVE_AUTHORITY\",\n  \"card\": {\n    \"schema\": \"962-oneway-assumed-SI-thermoelastic-birth-card/v1\",\n    \"id\": \"cp1-oneway-cooling-release-001\",\n    \"status\": \"HELD_EXPLICIT_PRESCRIBED_COOLING_CLAMP_RELEASE_HYPOTHESES\",\n    \"units\": {\n      \"length\": \"m\",\n      \"displacement\": \"m\",\n      \"stress\": \"Pa\",\n      \"force\": \"N\",\n      \"moment\": \"N*m\",\n      \"temperature\": \"K\",\n      \"time\": \"s\"\n    },\n    \"assumed_material\": {\n      \"E_Pa\": {\n        \"value\": 71000000000.0,\n        \"assumed\": true,\n        \"constant_over_saved_temperature_range\": true,\n        \"transfer\": \"Related approximate71GPa only; process/state/temperature/direction transfer unverified\"\n      },\n      \"nu\": {\n        \"value\": 0.33,\n        \"assumed\": true\n      },\n      \"alpha_per_K\": {\n        \"value\": 1e-05,\n        \"assumed\": true,\n        \"basis\": \"Historical hypothetical mechanical witness scalar; not a CP1 measurement\"\n      },\n      \"symmetry\": {\n        \"value\": \"constant isotropic linear elasticity\",\n        \"assumed\": true\n      },\n      \"measured_matched\": {\n        \"E_T\": null,\n        \"nu_T\": null,\n        \"alpha_T\": null,\n        \"test_temperatures\": null,\n        \"directions\": null,\n        \"scatter\": null,\n        \"strength_allowables\": null,\n        \"process_state_qualified\": null\n      },\n      \"unverified_constant_law_interval_K\": [\n        300,\n        500\n      ]\n    },\n    \"geometry\": {\n      \"bounds_m\": [\n        [\n          0,\n          0,\n          0\n        ],\n        [\n          2,\n          1,\n          1\n        ]\n      ],\n      \"intervals\": [\n        16,\n        4,\n        4\n      ],\n      \"HEX8_total\": 256,\n      \"node_total\": 425,\n      \"old_HEX8\": 128,\n      \"born_HEX8\": 128,\n      \"old_nodes\": 225,\n      \"born_nodes_and_reference_DOFs\": 225,\n      \"shared_nodes\": 25,\n      \"globally_new_nodes\": 200,\n      \"source_thermal_old_block\": 2,\n      \"mechanical_old_block\": 2,\n      \"source_thermal_inactive_block\": 1,\n      \"mechanical_inactive_block\": 1,\n      \"mechanical_born_block\": 3,\n      \"captured_native_connectivity_ID_association\": null\n    },\n    \"time\": {\n      \"dt_s\": 0.0025,\n      \"steps\": 182,\n      \"birth_step\": 80,\n      \"birth_time_s\": 0.2,\n      \"end_time_s\": 0.455,\n      \"source_off_cooling_history_present\": false,\n      \"thermal_selected_level\": 2,\n      \"source_thermal_steps\": 160,\n      \"source_thermal_end_time_s\": 0.4\n    },\n    \"transfer\": {\n      \"old\": \"old-end.grid XYZ/T0..182; source END0..160 token prefix retained\",\n      \"born_end\": \"born-end.grid XYZ/T80..182; source END80..160 token prefix retained\",\n      \"born_reference\": \"born-begin80.grid XYZ only; entire225DOFs including25shared\",\n      \"temperature_prescribed_Aux\": true,\n      \"reference_prescribed_Aux_block3_only\": true,\n      \"new_reference_later_Aux_update\": false,\n      \"out_of_grid_or_duplicate_time_padding_allowed\": false,\n      \"native_knots_bit_identity_assumed\": false,\n      \"new_grid_steps\": {\n        \"old_end\": [\n          0,\n          182\n        ],\n        \"born_end\": [\n          80,\n          182\n        ],\n        \"born_reference\": \"original exact225 BEGIN80 temperature tokens/bytes\"\n      }\n    },\n    \"birth\": {\n      \"old_constant_stress_free_temperature_K\": 400.0,\n      \"born_stress_free_temperature\": \"Actual BEGIN80 field, not uniform350 at shared nodes\",\n      \"new_displacement_IC_m\": 0.0,\n      \"reinitialize_variables\": [\n        \"disp_x\",\n        \"disp_y\",\n        \"disp_z\",\n        \"temperature\",\n        \"born_reference_temperature\"\n      ],\n      \"restore_overridden_dofs\": [\n        true,\n        true,\n        true,\n        true,\n        false\n      ],\n      \"reinitialization_strategy\": \"IC\",\n      \"reinitialize_subdomains\": [\n        3\n      ],\n      \"force_preaux\": true,\n      \"modifier_group\": -100,\n      \"begin_sampler_PRE_AUX_group\": -50,\n      \"current_selected_shared_u_T_restored\": true,\n      \"old_element_material_state_retained\": true,\n      \"affected_old_older_solution_values_intentionally_rebased\": true,\n      \"other_added_variables\": \"rx/ry/rz, inactive_placeholder use default zero IC; not carried material/history fields\",\n      \"newborn_displacement_reference\": \"Must use this run BEGIN80 displacement on all425 nodes; clamping changes u, so old native uBirth is not reused.\"\n    },\n    \"supports\": [\n      {\n        \"source_id\": 0,\n        \"position_m\": [\n          0,\n          0,\n          0\n        ],\n        \"fixed_components\": [\n          \"disp_x\",\n          \"disp_y\",\n          \"disp_z\"\n        ]\n      },\n      {\n        \"source_id\": 32,\n        \"position_m\": [\n          1,\n          0,\n          0\n        ],\n        \"fixed_components\": [\n          \"disp_y\",\n          \"disp_z\"\n        ]\n      },\n      {\n        \"source_id\": 137,\n        \"position_m\": [\n          0,\n          1,\n          0\n        ],\n        \"fixed_components\": [\n          \"disp_z\"\n        ]\n      }\n    ],\n    \"loading\": {\n      \"gravity\": false,\n      \"pressure\": false,\n      \"prescribed_traction\": false,\n      \"contact\": false,\n      \"support_release\": true,\n      \"exterior\": \"Traction-free except temporary z=0 build-clamp components before BEGIN181; original six point constraints after release\",\n      \"support_policy_assumed_not_physical_clamp\": true,\n      \"dynamic_inertia_or_damping\": false,\n      \"ADTimeDerivative_scope\": \"inactive_placeholder on inactive block1 only, not physical displacement/T/reference\",\n      \"temporary_build_clamp\": {\n        \"assumed\": true,\n        \"plane\": \"z=0 on exact existing GeneratedMesh nodes\",\n        \"components\": [\n          \"disp_x\",\n          \"disp_y\",\n          \"disp_z\"\n        ],\n        \"initially_active\": true,\n        \"release_BEGIN_step\": 181,\n        \"release_time_s\": 0.4525,\n        \"after_release\": \"Only the original six3-2-1 component constraints remain; never leave rigid modes free.\",\n        \"six_point_constraints_enabled_before_release\": false,\n        \"clamp_and_point_DOF_overlap_allowed\": false\n      }\n    },\n    \"constitutive\": \"QuasiStatic SMALL incremental AD strain + ADComputeFiniteStrainElasticStress, identity small-strain rotation; no plasticity or finite-geometry claim\",\n    \"predeclared_source_stage_check_targets\": {\n      \"temperature_K\": 1e-10,\n      \"current_shared_displacement_m\": 1e-12,\n      \"strain\": 1e-10,\n      \"stress_Pa\": 0.1,\n      \"all_free_DOF_residual_and_force_balance_N\": 1e-07,\n      \"moment_balance_Nm\": 1e-07,\n      \"tolerance_origin\": \"SI conversions of mechanical donor displacement/strain/stress/force limits; moment uses1m characteristic length. These are proposed pre-run numerical gates, not physical accuracy.\"\n    },\n    \"independent_3D_assessment_source\": null,\n    \"independent_3D_assessment_required_before_native_actual\": true,\n    \"native_execution_authorized\": false,\n    \"solver_not_run\": true,\n    \"qualification\": {\n      \"head_execution_authorized\": false,\n      \"engineering_accepted\": false,\n      \"physics_qualified\": false,\n      \"material_qualified\": false,\n      \"process_calibrated\": false,\n      \"manufacturing_authorized\": false,\n      \"whole_head_lpbf_complete\": false\n    },\n    \"prescribed_cooling\": {\n      \"assumed\": true,\n      \"is_heat_equation_solution\": false,\n      \"source_off_heat_loss_or_calibrated_LPBF_history\": false,\n      \"starts_after_END_step\": 160,\n      \"starts_after_time_s\": 0.4,\n      \"ends_at_END_step\": 180,\n      \"ends_at_time_s\": 0.45,\n      \"cooling_step_count\": 20,\n      \"target_temperature_K\": 300.0,\n      \"formula\": \"For each node and j=1..20, T[160+j]=300+(T_END160-300)*(20-j)/20. Original END0..160 tokens unchanged; j20 and END181/182 are exactly300.\",\n      \"coefficient_laws_changed\": false,\n      \"unmeasured_schedule_duration_and_target\": true,\n      \"temperature_field_prescribed_at_all_nodes\": true\n    }\n  },\n  \"card_sha256\": \"04f65ecd853c7a4061fe902afd862b9cc9e3572000b7af5edf2cca2cebbd3de7\",\n  \"source_input_sha256\": {\n    \"thermoelastic-birth.i\": \"de5c9ea62050645fb546fc650c01023913478c230011faa5172b76ffb36a4f7c\",\n    \"prepare_continuation.py\": \"a2b61fde2968229861145ce1c99d22896ac15284843b3843760ae1702241e218\"\n  },\n  \"frozen_before_native_runs\": true,\n  \"selected_thermal_level\": 2,\n  \"phase_association\": \"BEGIN/END0..182, birth80; original thermal END0..160 followed by20 prescribed cooling steps to END180/.45; release BEGIN181/.4525, hold through END182/.455.\",\n  \"temperature_table_files\": [\n    \"old-end.grid\",\n    \"born-end.grid\",\n    \"born-begin80.grid\"\n  ],\n  \"completed_transfer_manifest\": {\n    \"path\": \"work/962-engineering/cp1-oneway-cooling-release-inputs-001/transfer-manifest.json\",\n    \"sha256\": \"c774e62c67e16c29dc024b8cc8e6641570e316265960e58cd7170827f8cecd06\",\n    \"bytes\": 130095\n  },\n  \"completed_transfer_table_sha256\": {\n    \"old-end.grid\": \"c64b252894a88730ad1f6ec0311cc5fe58a2cb3a8831f67e61db9d20be95823e\",\n    \"born-end.grid\": \"9caf52c69d0b14db442571b11d72252f3431d57b3991ab90ed849ddb6178b63f\",\n    \"born-begin80.grid\": \"cf4d9df9c8ab66aa37c40ef4e9cf3be44607229ff901201017eba0ba176cfbe4\"\n  },\n  \"completed_transfer_identities_must_be_directly_bound_by_future_external_native_actual\": true,\n  \"native_geometry_proven\": false,\n  \"independent_3D_assessment_source\": null,\n  \"independent_3D_assessment_source_peer\": null,\n  \"native_adapter\": \"run_mac.py: schema/output-only successor of104f; run() and eight other top-level functions unchanged\",\n  \"capture\": {\n    \"file_base\": \"thermoelastic\",\n    \"times_s\": {\n      \"dt\": 0.0025,\n      \"last_step\": 182,\n      \"birth_step\": 80,\n      \"cooling_first_step\": 161,\n      \"cooling_last_step\": 180,\n      \"release_step\": 181\n    },\n    \"begin_nodes\": {\n      \"pattern\": \"thermoelastic_begin_NNNN.csv\",\n      \"steps\": [\n        0,\n        182\n      ],\n      \"variables\": [\n        \"disp_x\",\n        \"disp_y\",\n        \"disp_z\",\n        \"temperature\"\n      ],\n      \"coordinates_and_source_IDs\": true,\n      \"pre_aux\": true,\n      \"group\": -50\n    },\n    \"end_nodes\": {\n      \"pattern\": \"thermoelastic_end_NNNN.csv\",\n      \"steps\": [\n        0,\n        182\n      ],\n      \"variables\": [\n        \"disp_x\",\n        \"disp_y\",\n        \"disp_z\",\n        \"temperature\",\n        \"rx\",\n        \"ry\",\n        \"rz\"\n      ],\n      \"coordinates_and_source_IDs\": true\n    },\n    \"born_reference\": {\n      \"patterns\": [\n        \"thermoelastic_reference_begin_NNNN.csv\",\n        \"thermoelastic_reference_end_NNNN.csv\"\n      ],\n      \"required_steps\": [\n        80,\n        182\n      ],\n      \"rows_per_required_step\": 225,\n      \"block\": 3,\n      \"variable\": \"born_reference_temperature\",\n      \"before_birth\": \"No active reference rows; empty/header-only or absent empty sampler artifacts must be distinguished from a missing required postbirth sample\"\n    },\n    \"quadrature_fields\": {\n      \"patterns\": [\n        \"thermoelastic_begin_fields_NNNN.csv\",\n        \"thermoelastic_end_fields_NNNN.csv\"\n      ],\n      \"steps\": [\n        0,\n        182\n      ],\n      \"tensors\": [\n        \"stress\",\n        \"elastic_strain\",\n        \"mechanical_strain\",\n        \"total_strain\",\n        \"thermal_eigenstrain\"\n      ],\n      \"components\": [\n        \"xx\",\n        \"yy\",\n        \"zz\",\n        \"xy\",\n        \"xz\",\n        \"yz\"\n      ],\n      \"component_count\": 30,\n      \"rule\": \"All8 Gauss points of every active HEX8, with elem_id/qp_id/coordinates;128cells throughstep79,256cells step80..182\",\n      \"rows_per_phase_total\": 292864,\n      \"begin_phase\": \"PRE_AUX group-50 after birth modifier group-100; retained state must be observed\",\n      \"rows_both_phases_total\": 585728\n    },\n    \"geometry\": \"Same GeneratedMesh425/256HEX8 plus nodeset-only z=0 build_clamp. CDF1/2 policy and independent native external-ID/connectivity/block decode remain required.\",\n    \"begin80_reference_displacement\": \"Join all425 BEGIN80 u/T node rows with the225 born-reference rows by exact source IDs and coordinate words. Newborn incremental strain oracle must use this captured born displacement/history configuration, not globally zero u.\",\n    \"release_reference\": \"BEGIN181 fields/u/T are the pre-release-equilibrium state at300K; END181 must use only original six point constraints. Born uBirth is this run BEGIN80.\"\n  },\n  \"acceptance_requirements\": {\n    \"native_source_mesh_425nodes_256HEX8_ID_connectivity_block_bijection\": true,\n    \"all_node_prescribed_T_error_max_K\": 1e-10,\n    \"all225_born_reference_words_and25shared_associations\": true,\n    \"selected_current_shared_u_T_restore_and_old_material_state_retention\": true,\n    \"old_older_rebase_observed_and_not_called_unchanged_history\": true,\n    \"born_BEGIN80_displacement_reference_required\": true,\n    \"newborn_pre_equilibrium_zero_material_strain_and_stress_must_be_observed\": true,\n    \"T_minus_Tref_zero_alone_proves_zero_newborn_stress\": false,\n    \"all_QP_constitutive_tensor_and_increment_checks\": true,\n    \"full_SI_all_free_DOF_equilibrium_reactions_force_moment_balance\": true,\n    \"source_STAGE_check_targets_from_card_require_independent_3D_assessor_review\": true,\n    \"complete_native_lifecycle_and_input_runtime_hash_closure\": true,\n    \"mechanical_space_or_time_convergence_established\": false,\n    \"prescribed_cooling_is_not_calibrated_LPBF_or_material_qualification\": true,\n    \"clamp_release_free_DOF_sets_and_work_balance_required\": true,\n    \"accepted_original321_source_phase_lineage_retained_no_reconversion\": true,\n    \"complete_original54675_tokens_and_new9900_values_independently_checked\": true,\n    \"release_at_fixed300K_energy_nonincrease_and_state_association_required\": true,\n    \"no_work_equals_twice_total_strain_energy_shortcut\": true\n  },\n  \"native_execution_authorized\": false,\n  \"data_preparation_authorized\": false,\n  \"engineering_accepted\": false,\n  \"physics_qualified\": false,\n  \"material_qualified\": false,\n  \"process_calibrated\": false,\n  \"manufacturing_authorized\": false,\n  \"field_inventory_expected_not_observed\": {\n    \"BEGIN_and_END_phases\": 366,\n    \"unique_node_phase_associations\": 123550,\n    \"postbirth_shared_doublet_rows_if_same_sampler_storage\": 5150,\n    \"reference_node_phase_associations\": 46350,\n    \"QP_phase_associations\": 585728,\n    \"symmetric_tensor_sets\": 5,\n    \"tensor_scalar_components_per_QP\": 30,\n    \"native_capture_or_storage_observed\": false\n  },\n  \"solver_profile\": {\n    \"formulation\": \"LINEAR\",\n    \"PETSc_SNES_type\": \"ksponly\",\n    \"petsc_options\": [\n      \"-snes_monitor\"\n    ],\n    \"petsc_options_iname\": [\n      \"-ksp_type\",\n      \"-pc_type\",\n      \"-snes_norm_schedule\"\n    ],\n    \"petsc_options_value\": [\n      \"preonly\",\n      \"lu\",\n      \"always\"\n    ],\n    \"original_nonlinear_literals_retained\": {\n      \"nl_rel_tol\": 1e-11,\n      \"nl_abs_tol\": 1e-10,\n      \"nl_max_its\": 30\n    },\n    \"original_nonlinear_tolerance_test_active\": false,\n    \"completion_label_is_not_original_NEWTON_acceptance\": true,\n    \"final_updated_solution_residual_callback_required\": true,\n    \"installed_source_ABI_equivalence_proven\": false,\n    \"independent_full_field_SI_assessment_required\": true,\n    \"independent_SI_limits\": {\n      \"temperature_K\": 1e-10,\n      \"displacement_m\": 1e-12,\n      \"QP_coordinate_m\": 2e-13,\n      \"strain\": 1e-10,\n      \"stress_Pa\": 0.1,\n      \"force_N\": 1e-07,\n      \"moment_Nm\": 1e-07\n    },\n    \"monitor_is_freshness_mechanism_not_a_new_residual_tolerance\": true\n  },\n  \"original_contract_and_corrected_reference\": {\n    \"original\": {\n      \"path\": \"work/962-engineering/cp1-oneway-cooling-release-prep-001/case-contract.json\",\n      \"sha256\": \"0cb6b9a16de29d503df0d2fe02a1ec4be5ed2e5a51ee2b610b3c4892846ece63\",\n      \"bytes\": 13800\n    },\n    \"corrected_companion\": {\n      \"path\": \"work/962-engineering/cp1-oneway-cooling-release-contract-clarification-001/case-contract.corrected.json\",\n      \"sha256\": \"1dc7eefae6f6666a91fdb0adde2261aa9efc7f3424a713d21b6f60e6091dfb66\",\n      \"bytes\": 13800\n    },\n    \"correction_receipt\": {\n      \"path\": \"work/962-engineering/cp1-oneway-cooling-release-contract-clarification-001/correction.json\",\n      \"sha256\": \"3971d0f27293a04f051206a2b2afef3304c56aa3814b12e586c4f5fe0229ed46\",\n      \"bytes\": 2652\n    },\n    \"new_profile_uses_corrected_capture_rule\": true\n  },\n  \"source_input_role_notes\": {\n    \"prepare_continuation.py\": \"Inherited completed-data preparer identity only; no clone or regeneration in this profile.\",\n    \"card.json\": \"Byte-exact original research hypothesis card. Its historical001 ID remains unchanged to bind accepted data.\",\n    \"thermal-input-index.json\": \"Byte-exact original metadata index, no raw thermal CSV/grid read during preparation.\"\n  },\n  \"data_root_acceptance\": {\n    \"path\": \"work/962-engineering/cp1-oneway-cooling-release-data-root-review-001/acceptance.json\",\n    \"sha256\": \"f8be963292406fb682d62942fbcf7d61c3a3d86bbd1ee5d8f0e240c3764c4620\",\n    \"bytes\": 34972\n  }\n}\n",
+      "count": 1,
+      "donor": "work/962-engineering/cp1-oneway-cooling-release-contract-clarification-001/case-contract.corrected.json"
+    }
+  ],
+  "full_reverse_to_donors_verified": true,
+  "new_source_guards_authored_not_executed": 8,
+  "mock_control_methods": [
+    "test_fixed_commands_and_registry_authority",
+    "test_held_or_cross_stage_refusal_before_runtime",
+    "fake_coupon",
+    "test_owned_success_receipt_preserves_assessor_keys",
+    "test_sampled_stop_kills_waits_and_retains_refusal",
+    "test_exact_seven_variable_tcp_environment_and_no_inheritance",
+    "test_current19_registry_transfer_and_assessment_gates"
+  ],
+  "all_mock_control_bytes_exact_after_only_declared_three_literal_categories": true,
+  "adapter_unchanged_function_ASTs": {
+    "need": {
+      "sha256": "5f64a5d2ecd740f816d20972b587340edd4bd7e3fca84f2a3f54efd5c693c0d6",
+      "equal": true
+    },
+    "sha": {
+      "sha256": "4e8ef132fc7afc74eddc57ca0e111546fb5c893350c1e07f08dd7ba911a91790",
+      "equal": true
+    },
+    "same": {
+      "sha256": "f4363e951d52a848dbebaea4e4356dc876364c3cb29dbd06ebd29e205c99add9",
+      "equal": true
+    },
+    "check_pins": {
+      "sha256": "636889ca4a2cb54a4d6bcb5ee6f94eeb1716dc5df3219ec1282e71b9522bb3fb",
+      "equal": true
+    },
+    "runtime_unchanged": {
+      "sha256": "af9cf809cd798af28e5649ac9bbc97ec61b359a770c2e2247a12ef56dc3486ba",
+      "equal": true
+    },
+    "commands": {
+      "sha256": "9c4b52989f920d63285f93d05d2bfd5f31f7f7ac6a69d52c1a612a128d6d5adf",
+      "equal": true
+    },
+    "registry_features": {
+      "sha256": "68c60536c38b71724f9efa95adcc218b8d746abb0607b3933161ff54a47e0e3b",
+      "equal": true
+    },
+    "run": {
+      "sha256": "9b8d049c1f6154e28a7854caedf4662c12341e5d2388991b957f313b1c949018",
+      "equal": true
+    }
+  },
+  "adapter_changed_function": "checked_contract: two literals only; all run lifecycle bytes/AST exact",
+  "exact_copy_files": {
+    "card.json": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-prep-001/card.json",
+      "sha256": "04f65ecd853c7a4061fe902afd862b9cc9e3572000b7af5edf2cca2cebbd3de7",
+      "bytes": 7241
+    },
+    "thermal-input-index.json": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-prep-001/thermal-input-index.json",
+      "sha256": "9e4da9faf9a6ccb9a55c66b2c0d9eef44b88d99e09afff69bb4f504b0cfb7aec",
+      "bytes": 130373
+    }
+  },
+  "new_byte_identities": {
+    "thermoelastic-birth.i": {
+      "sha256": "de5c9ea62050645fb546fc650c01023913478c230011faa5172b76ffb36a4f7c",
+      "bytes": 14696
+    },
+    "run_mac.py": {
+      "sha256": "5ec0fe4684dd51dd7934ca3069e75497a481a08db5a9ee8a78646d81e3813f6c",
+      "bytes": 19609
+    },
+    "card.json": {
+      "sha256": "04f65ecd853c7a4061fe902afd862b9cc9e3572000b7af5edf2cca2cebbd3de7",
+      "bytes": 7241
+    },
+    "thermal-input-index.json": {
+      "sha256": "9e4da9faf9a6ccb9a55c66b2c0d9eef44b88d99e09afff69bb4f504b0cfb7aec",
+      "bytes": 130373
+    },
+    "case-contract.json": {
+      "sha256": "294f5bf97c6ca3e9fe052e90fc4fc611e740395d1bca24595988d57b4a85758e",
+      "bytes": 16830
+    },
+    "source-evidence.json": {
+      "sha256": "b0f726df1b64e4af86a6cbfb4c39c87d40126ecd38a3283e6cb6dda103ebce8c",
+      "bytes": 23776
+    },
+    "selfcheck.py": {
+      "sha256": "fdb9fc67d1f78821bc015fccadf93e659129e37c0480d27a48c79ea9d6987af9",
+      "bytes": 6044
+    },
+    "test_controls.py": {
+      "sha256": "a440d1fd20a21f182b472f3e51c537bdb61271cfb8010497b210b31cdcf13a61",
+      "bytes": 15081
+    },
+    "README.md": {
+      "sha256": "d7bb48b58b66595e1da321c5d075044219d4bb7bb818539792aaa04da49fd28f",
+      "bytes": 1859
+    },
+    "METHOD.md": {
+      "sha256": "49dd686f85f2531016da2260b45f3f22775a62b0f2fff2c2bf32bc3ca3197df5",
+      "bytes": 5316
+    },
+    "source.diff": {
+      "sha256": "99b43cab5e39a9716ba3156086b6ec1500a9e6979b7058c635278aded1359198",
+      "bytes": 9952
+    }
+  },
+  "prepared_module_guard_solver_assessor_execution": false
+}

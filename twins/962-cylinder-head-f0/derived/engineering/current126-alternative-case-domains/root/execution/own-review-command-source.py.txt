@@ -1,0 +1,160 @@
+import ast,hashlib,json,math,struct,sys,time
+from pathlib import Path
+from fractions import Fraction
+from itertools import combinations
+from collections import Counter,defaultdict
+ROOT=Path('project-role://engineering-checkout');B=ROOT/'work/962-engineering'
+P=B/'head-star-current126-alternative-case-domains-prep-001';D=B/'head-star-current126-alternative-case-domains-actuals-prep-001';O=B/'current126-alternative-case-domains-root-execution-001';Q=B/'current126-alternative-case-domains-child-peer-001'
+RAW={};DATA={};BEFORE={}
+helper=B/'head-star-current204-case-domains-result-peer-001/check_saved_001.py';text=helper.read_text();assert hashlib.sha256(text.encode()).hexdigest()=='87ab87422960cba436f0457e6570f1b666acd9191a00a8915b7222096ec0aca0'
+nodes={n.name:n for n in ast.parse(text).body if isinstance(n,ast.FunctionDef)};names=['digest','read','obj','encoded','ratio','words','oriented']
+definition_hashes={n:hashlib.sha256(ast.get_source_segment(text,nodes[n]).encode()).hexdigest() for n in names}
+exec(compile(ast.fix_missing_locations(ast.Module(body=[nodes[n] for n in names],type_ignores=[])),str(helper)+'#selected7-saved-byte-metadata-defs','exec'),globals())
+rel=lambda p:str(p.relative_to(ROOT))
+read(rel(helper),'87ab87422960cba436f0457e6570f1b666acd9191a00a8915b7222096ec0aca0')
+MASTER=rel(O/'closed-result.json');INDEX=rel(D/'index.json');MANIFEST=rel(P/'case-manifest.json')
+master=obj(MASTER,'e6758081fb4ebb20f635b509962c74c828e1c53ce0ad07b7795d487b3d5b203e');index=obj(INDEX,'f85c5da3333b9242f05cc04023e233e38612758362aab3ff0b6e995ea13eb56c');manifest=obj(MANIFEST,'66200c5c18ff6137037ffdf5750cb966ff6f99df1ef6e6d1f290695d02ac7cf7')
+held=obj(rel(P/'held-contract.json'),'a7a1589ad4ec0757823362c6e41344fef45f6d02321fd9dbebfb6d8758deb5b1');qual=held['qualification']
+assert master['selected_count']==master['attempted_count']==15 and master['complete15_procedural'] and master['domain_pass_count']==15 and master['held_complete_pair_failures']==0
+assert master['halt'] is None and master['unattempted_apices']==[] and master['automatic_retry'] is False and master['native_or_head_or_PDE_execution'] is False
+assert manifest['accepted_apices']==index['selected_case_order']==[r['apex'] for r in master['cases']] and not any(qual.values())
+authorization=obj(master['authorization']['path'],master['authorization']['sha256'])
+assert len(RAW[master['authorization']['path']])==master['authorization']['bytes']
+assert authorization['ordinary_controls']==held['ordinary_controls'] and authorization['ordinary_controls']['TERM_grace_seconds']==8 and authorization['ordinary_controls']['wall_timeout_seconds']==300
+assert digest(authorization['exact_root_inline_source'].encode())==authorization['exact_root_inline_source_sha256'] and len(authorization['exact_root_inline_source'].encode())==authorization['exact_root_inline_source_bytes']
+assert authorization['decision']=='AUTHORIZE_ONE_FIXED15_STDLIB_DOMAIN_QUERY_PER_CASE_ONLY'
+for relpath,desc in index['shared162_input_records'].items():
+ read(relpath,desc['sha256']);assert len(RAW[relpath])==desc['bytes']
+child=obj(rel(Q/'review.json'),'5a7f47b3bc81bbc2260d9183a72268a98f2a3e155a56a270c03f8f6546ffd2e5')
+childbindings=obj(rel(Q/'bindings.json'),'2d5726045afa960cb0a6f3c8e5628a6fe2c12928cda7fdbd9ecce7f67ed6ea65')
+assert child['decision']=='CLEAR_EXACT15_METADATA_BINDINGS_ONLY_ROOT_FRESH_LAUNCH_GATE_REQUIRED' and child['findings']==[]
+for rp,desc in childbindings['fresh_records'].items():
+ read(rp,desc['sha256']);assert len(RAW[rp])==desc['bytes']
+census=obj(held['current_census']['path'],held['current_census']['sha256'])['complete_seed_star_census']
+native_nodes={r['node_tag']:r for r in census['unique_incident_nodes']}
+batch=obj('work/962-engineering/head-star-current126-alternative-batch-shells-001/report.json','721e05802e305a124b99f97c779426e3d7b8960cab30fbabc3d93ee318e3de73')
+batchcases={r['apex']:r for r in batch['all_candidate_star_records']}
+nativebindings=obj('work/962-engineering/current126-alternative-Netgen-result-peer-001/bindings.json','0d920fd251ba9dd35eeacece6f260043f146fc4c1f12c0c87679aa72d7d13301')
+nativecases={r['apex']:r for r in nativebindings['per_case_bindings']}
+case_map={r['apex']:r for r in manifest['cases_in_accepted_order']};actual_map={r['apex']:r for r in index['cases']}
+FACES=((0,2,1),(0,1,3),(1,2,3),(2,0,3))
+PAIR_KEYS={'shared_node_tags','expected_simplex_dimension','plane_triples_enumerated','independent_plane_triples','intersection_vertices','illegal_intersection_vertices','all_illegal_rational_witnesses','intersection_equals_tagged_shared_simplex','tetrahedron_tags'}
+totals=Counter();hist=Counter();rows=[];allpoor=[];began=time.monotonic()
+for entry in master['cases']:
+ apex=entry['apex'];case=case_map[apex];item=actual_map[apex];actual=obj(item['actual']['path'],item['actual']['sha256'])
+ assert len(RAW[item['actual']['path']])==item['actual']['bytes'] and actual['input_count']==len(actual['input_hashes'])==162
+ assert actual['case_record_sha256']==case['source_record_sha256'] and actual['source_sha256']=='8aad95004cd2bfb440e1436c679d8a5476cf84247a6911b4daa319b10f1f4558'
+ assert actual['exact_counts']==item['exact_counts']=={k:case[k] for k in item['exact_counts']}
+ assert actual['qualification']==qual and actual['ordinary_controls']==held['ordinary_controls'] and actual['automatic_retry'] is False
+ assert actual['output_directory']==case['output_directory']==item['output_directory']
+ for rp,expected in actual['input_hashes'].items():read(rp,expected)
+ closed=obj(entry['closed']['path'],entry['closed']['sha256']);assert len(RAW[entry['closed']['path']])==entry['closed']['bytes']
+ assert closed['case_apex']==apex and closed['actual']==item['actual'] and closed['index']==master['index']==authorization['index']
+ assert closed['authorization']==master['authorization'] and closed['child_review']==master['child_review'] and closed['child_bindings']==master['child_bindings']
+ assert closed['returncode']==entry['returncode']==0 and closed['signals']==[] and closed['error'] is None and closed['stop_reason'] is None
+ assert closed['waited_reaped'] is True and closed['owned_group_absent'] is True and closed['universal_descendant_absence_claimed'] is False
+ assert closed['procedural_checks_passed'] is closed['local_domain_passed'] is True and closed['held_complete_pair_failure'] is False
+ assert type(closed['query_pid']) is int and closed['query_pid']>0 and closed['ordinary_wall_seconds']==300 and closed['TERM_grace_seconds']==8
+ assert len(closed['inputs_before'])==len(closed['inputs_after'])==166 and closed['inputs_before']==closed['inputs_after'] and closed['all166_inputs_unchanged']
+ for rp,desc in closed['inputs_before'].items():read(rp,desc['sha256']);assert len(RAW[rp])==desc['bytes']
+ assert closed['interpreter_before']==closed['interpreter_after']==authorization['interpreter'] and closed['interpreter_before']['sha256']==actual['python_sha256']
+ assert all(not r['pids'] for r in closed['known_current_query_processes_before']+closed['known_current_query_processes_after'])
+ assert closed['argv']==[actual['selected_python'],'-I','-B',str(ROOT/actual['source']),str(ROOT/item['actual']['path']),item['actual']['sha256']]
+ for key in ['stdout','stderr']:
+  desc=closed[key];assert read(desc['path'],desc['sha256'])==b'' and desc['bytes']==0
+ assert closed['outputs']==entry['outputs'] and set(closed['outputs'])=={'report.json'}
+ reportpath=case['output_directory']+'/report.json';rdesc=closed['outputs']['report.json'];assert rdesc['path']==reportpath
+ report=obj(reportpath,rdesc['sha256']);assert len(RAW[reportpath])==rdesc['bytes'] and sorted(p.name for p in (ROOT/case['output_directory']).iterdir())==['report.json']
+ assert report['schema']=='962-current126-alternative-fixed15-one-case-domain-result/v1' and report['status']=='same_compact_oriented_local_domain'
+ assert report['contract_sha256']==item['actual']['sha256'] and report['input_hashes']==actual['input_hashes'] and report['qualification']==qual
+ assert report['case_apex']==apex and report['case_record_sha256']==case['source_record_sha256'] and report['source_sha256']==actual['source_sha256']
+ for k in ['exact_common_shell_coordinate_words','exact_identical_oriented_boundary','exact_signed_volume_identity','exact_old_pair_embedding','exact_candidate_pair_embedding','local_domain_equivalence_proved','bound_inputs_unchanged','future_subset_masks_and_originaltag_parameter_projection_required']:assert report[k] is True
+ assert report['parent_context_sha256'] is None and report['parent_owner_context_queried'] is report['outside_owner_context_established'] is False
+ assert report['coordinates_changed'] is False and report['native_optimizer_or_meshwrite_calls']==0 and report['declared_controller_command_conformant'] is False
+ assert report['pair_failures']==dict(old=0,candidate=0)
+ record=batchcases[apex];shell=record['shell'];observation=record['observation'];nv,nf,k,n,m,i=[case[x] for x in ['NV','NF','K','N','M','I']]
+ for value,key in [(record,'source_record_sha256'),(shell,'shell_serialized_sha256'),(observation,'observation_serialized_sha256')]:assert digest(encoded(value))==case[key]
+ mapping={str(t):j+1 for j,t in enumerate(shell['local_to_global_node_tags'])};mapping[str(apex)]=nv+1
+ assert report['original_global_to_comparison_node_tags']==mapping and shell['global_to_local_node_tags']=={t:v for t,v in mapping.items() if t!=str(apex)}
+ oldraw=observation['native_ordered_cell_rows'];assert oldraw==[r for r in census['complete_incident_tetrahedra'] if apex in r['node_tags']]
+ oldcells={r['tetrahedron_tag']:[mapping[str(t)] for t in r['node_tags']] for r in oldraw};assert list(oldcells)==case['old_tetrahedron_tags'] and len(oldcells)==k
+ oldpoints={r['node_tag']:r for r in observation['selected_node_rows']};assert set(oldpoints)==set(map(int,mapping)) and len(oldpoints)==nv+1
+ for tag,row in oldpoints.items():
+  native=native_nodes[tag];assert set(row)==set(native)|{'binary64_little_endian_bytes_hex'} and all(row[key]==native[key] for key in native)
+  assert words(row['coordinates_mm'])==words(native['coordinates_mm']) and row['binary64_little_endian_bytes_hex']==words(row['coordinates_mm']).hex()
+ global_keys=['boundary_global_node_tags','other_interior_global_node_tags'];local_keys=['boundary_local_node_tags','other_interior_local_node_tags']
+ assert set(observation['original_source_classifications'])==set(global_keys) and set(shell['original_source_classifications'])==set(global_keys+local_keys)
+ for global_,local in zip(global_keys,local_keys):
+  assert shell['original_source_classifications'][global_]==observation['original_source_classifications'][global_]
+  assert shell['original_source_classifications'][local]==[mapping[str(t)] for t in shell['original_source_classifications'][global_]]
+ arrays=obj(case['records']['arrays']['path'],case['records']['arrays']['sha256']);worker=obj(case['records']['worker']['path'],case['records']['worker']['sha256'])
+ saved=arrays['saved_reopen'];assert arrays['after']==saved and worker['after']==worker['saved_reopen']
+ points=dict(zip(saved['node_tags'],saved['coordinates_mm']));interior=sorted(r[0] for r in worker['saved_reopen']['node_classifications'] if r[1]==3)
+ assert interior==case['candidate_interior_node_tags']==report['candidate_interior_node_tags'] and len(interior)==i
+ assert len(points)==len(saved['node_tags'])==n==nv+i and set(points)==set(range(1,nv+1))|set(interior)
+ assert worker['saved_reopen']['node_classifications']==[[t,2 if t<=nv else 3] for t in saved['node_tags']]
+ assert worker['saved_reopen']['node_entity_classifications']==[[t,2 if t<=nv else 3,1] for t in saved['node_tags']]
+ for row in shell['vertex_rows']:
+  assert words(points[row['local_node_tag']])==words(oldpoints[row['source_global_node_tag']]['coordinates_mm'])
+  assert words(points[row['local_node_tag']]).hex()==row['binary64_little_endian_bytes_hex']
+ newcells=dict(zip(saved['tetra_tags'],saved['tetra_node_tags']));assert len(newcells)==m and set().union(*(set(c) for c in newcells.values()))==set(points)
+ candidate_native=saved['native_qualities']['SICN'];assert len(candidate_native)==m and all(type(q) is float and math.isfinite(q) and q>=.1 for q in candidate_native)
+ assert digest(b''.join(struct.pack('<d',q) for q in candidate_native))==worker['saved_reopen']['quality']['SICN']['array_sha256']
+ expectedboundary=sorted(oriented(r['local_node_tags']) for r in shell['oriented_triangle_rows']);assert len(expectedboundary)==nf
+ stages={};casehist=Counter()
+ for stage,cells,count,paircount,internal in [('old',oldcells,k,case['old_unordered_pairs'],case['original_internal_pairs']),('candidate',newcells,m,case['candidate_unordered_pairs'],case['candidate_internal_pairs'])]:
+  data=report[stage];quality=data['quality_rows'];assert data['cell_count']==len(cells)==len(quality)==count and [r['tetrahedron_tag'] for r in quality]==sorted(cells)
+  assert len({tuple(sorted(c)) for c in cells.values()})==count
+  incidence=defaultdict(list);totaldet=Fraction(0);poortags=[];maxerror=0.;native_by_tag={r['tetrahedron_tag']:r['initial_native_SICN'] for r in oldraw} if stage=='old' else dict(zip(saved['tetra_tags'],candidate_native))
+  for qr in quality:
+   tag=qr['tetrahedron_tag'];assert qr['ordered_node_tags']==cells[tag] and len(set(cells[tag]))==4
+   det=ratio(qr['exact_determinant_mm3']);q2=ratio(qr['exact_SICN_squared']);assert det>0 and q2>0
+   passed=q2>=Fraction(1,100);assert qr['exact_point1_gate_passed'] is passed
+   val=math.sqrt(float(q2));observed=native_by_tag[tag];assert math.isclose(val,observed,rel_tol=1e-11,abs_tol=1e-14)
+   maxerror=max(maxerror,abs(val-observed));totaldet+=det
+   if not passed:poortags.append(tag)
+   if stage=='candidate':assert passed
+   for pattern in FACES:
+    face=[cells[tag][j] for j in pattern];incidence[tuple(sorted(face))].append(face)
+  boundary=[];internal_count=0
+  for faces in incidence.values():
+   assert len(faces) in [1,2]
+   if len(faces)==1:boundary.append(oriented(faces[0]))
+   else:assert oriented(faces[0])==oriented(list(reversed(faces[1])));internal_count+=1
+  assert sorted(boundary)==expectedboundary==[tuple(f) for f in data['oriented_boundary']]
+  assert internal_count==internal==data['internal_face_pairs']==(4*count-nf)//2 and data['all_exact_positive'] is True
+  assert totaldet/6==ratio(data['exact_signed_volume_mm3'])==ratio(case['exact_volume_mm3'])==ratio(shell['exact_enclosed_volume_mm3'])
+  if stage=='old':assert poortags==sorted(case['old_poor_tags']);allpoor.extend(poortags)
+  pairs=report['pair_results'][stage];assert len(pairs)==paircount;independent=Counter();vertices=Counter()
+  for pair,tags in zip(pairs,combinations(sorted(cells),2)):
+   assert set(pair)==PAIR_KEYS and pair['tetrahedron_tags']==list(tags)
+   shared=sorted(set(cells[tags[0]])&set(cells[tags[1]]));assert len(shared)<=3 and pair['shared_node_tags']==shared and pair['expected_simplex_dimension']==len(shared)-1
+   assert pair['plane_triples_enumerated']==56 and type(pair['independent_plane_triples']) is int and 0<=pair['independent_plane_triples']<=56
+   assert pair['intersection_vertices']==len(shared) and pair['illegal_intersection_vertices']==0 and pair['all_illegal_rational_witnesses']==[] and pair['intersection_equals_tagged_shared_simplex'] is True
+   independent[pair['independent_plane_triples']]+=1;vertices[pair['intersection_vertices']]+=1;casehist[stage+'/shared'+str(len(shared))]+=1
+  stages[stage]=dict(cells=count,pairs=paircount,poor_tags=poortags,internal_pairs=internal_count,shell_faces=nf,exact_volume=data['exact_signed_volume_mm3'],saved_quality_rows_sha256=digest(encoded(quality)),saved_pair_rows_sha256=digest(encoded(pairs)),maximum_saved_rational_to_saved_native_SICN_error=maxerror,independent_plane_triple_histogram=dict(sorted(independent.items())),intersection_vertex_histogram=dict(sorted(vertices.items())))
+  totals[stage+'_cells']+=count;totals[stage+'_pairs']+=paircount;totals[stage+'_poor']+=len(poortags)
+ assert report['old_complete_unordered_pairs']==case['old_unordered_pairs'] and report['candidate_complete_unordered_pairs']==case['candidate_unordered_pairs'] and report['complete_unordered_pairs']==case['total_pairs']
+ assert report['plane_triples_enumerated']==case['plane_triples']==56*case['total_pairs']
+ native=nativecases[apex];assert (native['nodes'],native['tetrahedra'],native['referenced_interior_nodes'],native['next_stage'])==(n,m,i,'domain')
+ for role,name in [('worker','fixture-report.json'),('arrays','arrays.json'),('receipt','execution-receipt.json'),('actual','frozen-contract.json')]:assert native['outputs'][name]==case['records'][role]
+ assert report['source_candidate_report_sha256']==case['records']['worker']['sha256'] and report['source_candidate_arrays_sha256']==case['records']['arrays']['sha256']
+ assert report['source_candidate_independent_peer_sha256']=='8bd554dffc1f7cc918ef7597a9dd6536e93015406f86d8dcce166d2cc960bdb9'
+ assert report['source_census_sha256']==held['current_census']['sha256'] and report['source_partial_report_sha256']==held['current_partial_report']['sha256'] and report['source_candidate_root_acceptance_sha256']==held['accepted15_Netgen_preparation_gate']['sha256']
+ hist.update(casehist);rows.append(dict(apex=apex,actual=item['actual'],root_closed=entry['closed'],report=rdesc,stages=stages,shared_tag_pair_histogram=dict(sorted(casehist.items())),lifecycle='Root-attributed stopped RC0/no signal/error/stop, wait/reap and observed owned group absent; no universal descendant proof.',outside_owner_context_established=False))
+assert totals['old_cells']==580 and totals['candidate_cells']==834 and totals['old_poor']==16 and totals['candidate_poor']==0
+assert len(set(allpoor))==len(allpoor)==16 and totals['old_pairs']+totals['candidate_pairs']==41886 and 56*41886==2345616
+after={rp:digest((ROOT/rp).read_bytes()) for rp in BEFORE};assert after==BEFORE
+inline=sys.orig_argv[sys.orig_argv.index('-c')+1].encode();source_record=dict(path=rel(O/'own-review-command-source.py.txt'),sha256=digest(inline),bytes=len(inline))
+review=dict(schema='962-current126-alternative15-domain-root-saved-association-review/v1',decision='ACCEPT_OWN_COMPLETE15_SAVED_ASSOCIATIONS_PENDING_INDEPENDENT_STOPPED_PEER',master_sha256=BEFORE[MASTER],index_sha256=BEFORE[INDEX],case_count=15,case_ledger=rows,totals=dict(totals),complete_pairs=41886,complete_plane_triples=2345616,distinct_original_poor_tags=sorted(allpoor),all_finite_saved_records={rp:dict(path=rp,sha256=sh,bytes=len(RAW[rp])) for rp,sh in BEFORE.items()},all_saved_before_after_equal=True,all166_per_case_before_after_maps_joined=True,shared_tag_pair_histogram=dict(sorted(hist.items())),saved_byte_helper_source=dict(path=rel(helper),sha256='87ab87422960cba436f0457e6570f1b666acd9191a00a8915b7222096ec0aca0',bytes=27298),selected7_definition_hashes=definition_hashes,exact_own_inline_source=source_record,scope='Saved byte/control/tag/coordinate-word/classification/combinatorial-incidence/rational-field bookkeeping and complete pair-verdict metadata only; prior saved-rational/native scalar comparison uses unchanged rel1e-11/abs1e-14 limits.',not_replayed=['coordinate determinant or SICN formula','halfspaces','plane rank/Cramer intersections','shared-simplex geometry predicate','producer/helper module top-level','native/head/runtime/MSH bodies'],pair_geometry_and_chain_argument_attributed_to_reviewed_source_and_one_query=True,outside_owner_context_established=False,head_mesh_unchanged=True,engineering_accepted=False,physics_qualified=False,material_qualified=False,process_calibrated=False,manufacturing_authorized=False,automatic_retry=False,review_wall_seconds=time.monotonic()-began)
+f=O/'own-review.json'
+with f.open('x') as stream:json.dump(review,stream,indent=2,allow_nan=False);print(file=stream)
+f.chmod(0o444)
+sf=O/'own-review-command-source.py.txt'
+with sf.open('xb') as stream:stream.write(inline)
+sf.chmod(0o444)
+binding=dict(schema='962-root-exact-own-inline-command-source-binding/v1',source=source_record,review=dict(path=rel(f),sha256=digest(f.read_bytes()),bytes=f.stat().st_size),source_is_exact_UTF8_sys_orig_argv_c_no_added_newline=True,reexecuted=False)
+bf=O/'own-review-command-binding.json'
+with bf.open('x') as stream:json.dump(binding,stream,indent=2,allow_nan=False);print(file=stream)
+bf.chmod(0o444)
+print(json.dumps(dict(review=binding['review'],source=source_record,cases=15,records=len(BEFORE),totals=dict(totals),pairs=41886,wall_seconds=time.monotonic()-began)))

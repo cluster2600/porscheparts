@@ -2,7 +2,7 @@
 
 # 993 Turbo charge-air tract transcribed parts (group 107-45) - PET-transcribed identity set
 
-**Status: non-critical. No part is released; see [SAFETY.md](../../SAFETY.md).**
+**Status: non-critical. No part is released; see [SAFETY.md](../../docs/SAFETY.md).**
 
 Identity-only catalogue record grouping the charge-air (group 107-45, 'charge air cooler') line items transcribed per-line from the local PET transcriptions and relevant to the M64 charge-air subsystem: charge air cooler 993 110 330 53 (pos 1), air guide 993 110 340 53 and 993 110 340 54 (pos 2), bracket 993 110 110 50 and 993 110 110 52 (pos 5), sleeve 993 110 111 50 (pos 10), temperature sensor 993 606 114 00 (pos 12), pressure hoses 993 110 633 56 and 993 110 632 56 (pos 19), with their clamps 999 512 648 02 and 999 512 647 02 (pos 20/21). Both independent catalogue transcriptions (KAT 17 and Porsche Classic KAT 517 USA) agree on these positions and numbers. No dimensions, flow cross-sections, pressure ratings or geometry are claimed.
 
@@ -61,17 +61,31 @@ Catalogue record: [`catalog/parts/993-ca-charge-pipe-set-pet-0001.json`](../../c
 | field | value |
 |---|---|
 | source type | estimated |
-| master format | none |
+| master format | PicoGK |
 | units | mm |
 | accuracy (mm) | not recorded |
 
 **Master file**
 
-- none
+- [`parts/picogk-catalog/exhaust/ChargePipeSet.cs`](../../parts/picogk-catalog/exhaust/ChargePipeSet.cs)
 
 **Derived files**
 
-- none
+- [`parts/993-ca-charge-pipe-set-pet-0001/derived/993-ca-charge-pipe-set-pet-0001-picogk.stl`](../../parts/993-ca-charge-pipe-set-pet-0001/derived/993-ca-charge-pipe-set-pet-0001-picogk.stl)
+
+## Images
+
+![preview](../../parts/993-ca-charge-pipe-set-pet-0001/media/preview.png)
+
+*`parts/993-ca-charge-pipe-set-pet-0001/media/preview.png` — concept CAD block, **not** the original part, not a print file.*
+
+![views](../../parts/993-ca-charge-pipe-set-pet-0001/media/views.png)
+
+*`parts/993-ca-charge-pipe-set-pet-0001/media/views.png` — concept CAD block, **not** the original part, not a print file.*
+
+![photo-concept](../../parts/993-ca-charge-pipe-set-pet-0001/media/photo-concept.png)
+
+*`parts/993-ca-charge-pipe-set-pet-0001/media/photo-concept.png` — AI-generated studio illustration based on the catalogue PicoGK concept preview. Geometry and interfaces remain unmeasured hypotheses; material, finish and generated details are illustrative. Not a photograph of an OEM or manufactured part, or evidence of fit, function or manufacturing.*
 
 ## Provenance and sources
 
@@ -91,7 +105,7 @@ Catalogue record: [`catalog/parts/993-ca-charge-pipe-set-pet-0001.json`](../../c
 | status | concept |
 | vehicle tested | not recorded |
 | reviewed by |  |
-| limitations | not recorded |
+| limitations | Identity only: the PET carries part number, position, description and (in the Austria read) quantities, no dimensions, pressure ratings or flow data.<br>Suffix variants -53/-54 (air guide) and -50/-52 (bracket) are transcribed as listed without asserting which fits which build date or supersession.<br>The intercooler core cross-referenced by an aftermarket supplier (260x270x60 mm declared) is a replacement-product envelope, not OEM geometry; see catalog/sources/src-aks-dasis-993-intercooler-dimensions.json.<br>Left/right assignment of the two pressure hoses at pos 19 is by the FVD product pages (633 = left, 632 = right); the PET line itself lists both at position 19 without a side annotation. |
 
 **Evidence**
 

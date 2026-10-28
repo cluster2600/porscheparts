@@ -2,7 +2,7 @@
 
 # 993 Turbo intercooler end tank, AlSi10Mg concept F0
 
-**Status: **prohibited pending engineering**. No part is released; see [SAFETY.md](../../SAFETY.md).**
+**Status: **prohibited pending engineering**. No part is released; see [SAFETY.md](../../docs/SAFETY.md).**
 
 Independent concept of a round-to-rectangular-face transition with three open internal guide vanes, used to screen an LPBF AlSi10Mg end tank. The published overall dimensions bound the F0 but define neither the core orientation nor a compatible geometry.
 
@@ -90,6 +90,10 @@ Catalogue record: [`catalog/parts/993-eng-intercooler-end-tank-alsi10mg-f0-0001.
 
 *`parts/993-eng-intercooler-end-tank-alsi10mg-f0-0001/media/views.png` — concept CAD block, **not** the original part, not a print file.*
 
+![photo-concept](../../parts/993-eng-intercooler-end-tank-alsi10mg-f0-0001/media/photo-concept.png)
+
+*`parts/993-eng-intercooler-end-tank-alsi10mg-f0-0001/media/photo-concept.png` — AI-generated studio illustration based on the concept CAD preview. Material and finish are illustrative; generated details may differ. Not a photograph or evidence of fit, function or manufacturing.*
+
 ## Provenance and sources
 
 | field | value |
@@ -111,7 +115,7 @@ Catalogue record: [`catalog/parts/993-eng-intercooler-end-tank-alsi10mg-f0-0001.
 | status | concept |
 | vehicle tested | not recorded |
 | reviewed by |  |
-| limitations | not recorded |
+| limitations | The commercial values describe the complete intercooler and define neither a core face nor an end tank.<br>The 260 x 100 mm interpretation, the 120 mm transition, the 2.2 mm wall and the three guide vanes are synthetic.<br>The 66 mm connection represents an outer position; the central 68 mm connection and the second core are not modeled.<br>The CAD mass of 605.92 g is that of a synthetic end tank and cannot be compared with the 14 kg of the commercial assembly.<br>The flow uses 3.6 l, 5,750 rpm, VE 0.95, 1.8 bar absolute, 330 K and porosity 0.65, with no measurement on the vehicle.<br>The 487 Pa loss is a sudden-expansion screen, not a CFD with core, turbulence or face uniformity.<br>The membrane/panel stresses and thermal bounds replace neither FEA, nor welding/brazing, nor pressure-temperature fatigue.<br>The STEP proves only an open BREP and a connected fluid volume; it is authorized neither for manufacture, nor for fitting, nor for an engine. |
 
 **Evidence**
 

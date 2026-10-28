@@ -1,0 +1,161 @@
+{
+  "source": "work/carrier-process-20261017/bounded-webs-C1-fields-figure-preparation-001/figure_v2.py",
+  "source_sha256": "48532686f14cad913d04f798ac8eb7a438198a8166ae94a7ca5301d0de28b49d",
+  "substitutions": [
+    [
+      "\"\"\"Actual closed C1 FE fields, common scales and original field projection; no solver.\"\"\"",
+      "\"\"\"Actual closed raw-taper FE fields; English diagnostic, no new solver.\"\"\""
+    ],
+    [
+      "def validate_case(row,docs,hashes,root_case):\n    term,a,native,record,peaks,energy,loads=[docs[k]for k in ['terminal','assessment','native_receipt','record','peaks','energy','loads']]\n    role=row['role'];expected={'rigid':'combined-rigid-static','spring':'combined-spring-1000-static'}\n    require(role in expected and row['case']==expected[role]and a['case_name']==row['case']==record['name']==peaks['case']==energy['case'],'Wrong closed case identity')\n    require(term['status']=='actual_linear_static_and_independent_energy_closed'and term['actual_tool_returncode']==term['actual_container_exit_code']==term['attach_cli_returncode']==0 and term['container_removed']is True and term['input_hashes_unchanged']is True and term['fresh_source_pins_equal']is True,'Case not actually closed')\n    require(a['status']=='actual_linear_static_and_independent_energy_completed'and a['sources_unchanged']is True and a['plan_unchanged']is True and a['all_global_maxima_included']is True,'Assessment not complete')\n    for key,field in [('assessment','assessment_sha256'),('native_receipt','native_receipt_sha256'),('energy','energy_audit_sha256'),('peaks','global_peaks_sha256')]:\n        require(term[field]==hashes[row[key]],'Terminal report cross-binding differs: '+key)\n    require(root_case['terminal_sha256']==hashes[row['terminal']]and root_case['assessment_sha256']==hashes[row['assessment']]and root_case['native_receipt_sha256']==hashes[row['native_receipt']]and root_case['actual_tool']['RC']==0,'Root closure differs')\n    require(native['actual_container_exit_code']==native['attach_cli_returncode']==0 and native['container_removed']is True and native['input_hashes_unchanged']is True,'Native container not closed')\n    require(a['native_result']==record and a['prepared_actual_load_supports']==loads and a['energy_audit_sha256']==hashes[row['energy']]and a['global_peaks_sha256']==hashes[row['peaks']],'Whole case result/load/audits differ')\n    for key in ['record','field','deck','mesh_inp','mesh_npz','mesh_meta','loads']:\n        path=row[key];relative=str(Path(path).relative_to(row['folder']))\n        require(term['all_outputs'][relative]['sha256']==hashes[path],'Actual output differs: '+key)\n    require(record['mesh_sha256']==hashes[row['mesh_inp']]and record['input_sha256']==hashes[row['deck']],'Mesh/deck not same case')\n    require(energy['energy_closure_pass']is True and energy['tolerance']==1e-4 and energy['relative_energy_closure_error']<=energy['tolerance'],'Original energy gate not passed')\n    require(peaks['no_peak_excluded']is True and peaks['maximum_ties']==len(peaks['all_global_maximum_ties'])and peaks['maximum_VM_MPa']==record['integration_point_VM_max_MPa']and root_case['all_global_peak_ties']==peaks['all_global_maximum_ties'],'Global IP ties lost')\n    require(loads['target_force_N']==[0,0,-4000]and loads['target_moment_Nmm']==[0,850000,0]and loads['unchanged_original_distribute_unrounded_resultant_assertions_reached']is True,'Actual loads not declared study')\n    require(loads['actual_eye_node_counts']==[2274,2278]and loads['serialized_CLOAD_entries']==6336,'Actual load/support roster differs')\n    if role=='rigid':require(loads['rigid_constrained_DOFs']==13656 and loads['SPRING1_elements']==0 and loads['springs']==[],'Rigid support changed')\n    else:\n        require(loads['rigid_constrained_DOFs']==0 and loads['SPRING1_elements']==13656 and len(loads['springs'])==6,'Spring support changed')\n        require({(s['eye'],s['DOF'])for s in loads['springs']}=={(i,j)for i in range(2)for j in range(1,4)}and all(s['summed_card_stiffness_N_mm']==s['declared_total_per_eye_axis_N_mm']==1000 for s in loads['springs']),'K1000 must be total per eye and axis')\n    return dict(row,record_data=record,peak_data=peaks,energy_data=energy,load_data=loads)",
+      "def validate_case(row,docs,hashes,root_case):\n    whole,a,native,record,peaks,energy,loads=[docs[k]for k in ['terminal','assessment','native_receipt','record','peaks','energy','loads']]\n    role=row['role'];term=whole['cases'][role];expected={'rigid':'combined-rigid-static','spring':'combined-spring-1000-static'}\n    require(role in expected and row['case']==expected[role]and a['case_name']==row['case']==record['name']==peaks['case']==energy['case'],'Wrong closed case identity')\n    require(whole['status']=='two_actual_linear_static_cases_closed_no_qualification'and term['actual_tool_returncode']==term['actual_container_returncode']==term['attach_cli_returncode']==0 and term['owned_container_removed']is True and term['all_current_pins_equal']is True,'Case not actually closed')\n    require(a['status']=='actual_linear_static_and_independent_energy_completed'and a['sources_unchanged']is True and a['plan_unchanged']is True and a['all_global_maxima_included']is True and a['candidate_qualified']is False and a['law_original_RC1_preserved']is True,'Assessment not complete or diagnostic scope changed')\n    require(term['assessment_sha256']==hashes[row['assessment']]and term['native_receipt_sha256']==hashes[row['native_receipt']],'Terminal report cross-binding differs')\n    require(root_case['assessment_sha256']==hashes[row['assessment']]and root_case['native_receipt_sha256']==hashes[row['native_receipt']]and root_case['actual_tool_RC']==0 and root_case['all31_whole_outputs_verified']is True and root_case['fresh_exact_Docker_ID_absent']is True,'Root closure differs')\n    require(native['actual_container_exit_code']==native['attach_cli_returncode']==0 and native['container_removed']is True and native['input_hashes_unchanged']is True,'Native container not closed')\n    require(a['native_result']==record and a['prepared_actual_load_supports']==loads and a['energy_audit_sha256']==hashes[row['energy']]and a['global_peaks_sha256']==hashes[row['peaks']],'Whole case result/load/audits differ')\n    for key in ['record','field','deck','mesh_inp','mesh_npz','mesh_meta','loads','energy','peaks']:\n        path=row[key];require(term['whole_outputs_sha256'][path]==hashes[path],'Actual output differs: '+key)\n    require(record['mesh_sha256']==hashes[row['mesh_inp']]and record['input_sha256']==hashes[row['deck']],'Mesh/deck not same case')\n    require(energy['energy_closure_pass']is True and energy['tolerance']==1e-4 and energy['relative_energy_closure_error']<=energy['tolerance'],'Original energy gate not passed')\n    require(peaks['no_peak_excluded']is True and peaks['maximum_ties']==len(peaks['all_global_maximum_ties'])and peaks['maximum_VM_MPa']==record['integration_point_VM_max_MPa']and root_case['all_global_maximum_ties']==peaks['all_global_maximum_ties'],'Global IP ties lost')\n    require(loads['target_force_N']==[0,0,-4000]and loads['target_moment_Nmm']==[0,850000,0]and loads['unchanged_original_distribute_unrounded_resultant_assertions_reached']is True,'Actual loads not declared study')\n    require(loads['actual_eye_node_counts']==[2274,2278]and loads['serialized_CLOAD_entries']==6336,'Actual load/support roster differs')\n    if role=='rigid':require(loads['rigid_constrained_DOFs']==13656 and loads['SPRING1_elements']==0 and loads['springs']==[],'Rigid support changed')\n    else:\n        require(loads['rigid_constrained_DOFs']==0 and loads['SPRING1_elements']==13656 and len(loads['springs'])==6,'Spring support changed')\n        require({(s['eye'],s['DOF'])for s in loads['springs']}=={(i,j)for i in range(2)for j in range(1,4)}and all(s['summed_card_stiffness_N_mm']==s['declared_total_per_eye_axis_N_mm']==1000 for s in loads['springs']),'K1000 must be total per eye and axis')\n    return dict(row,record_data=record,peak_data=peaks,energy_data=energy,load_data=loads)"
+    ],
+    [
+      "plan['schema']=='actual-C1-two-case-fields-plan-1'",
+      "plan['schema']=='actual-new-taper-two-case-fields-plan-1'"
+    ],
+    [
+      "if rendering:require(plan['launch_ready']is True,'NON-ARMED: no array extraction/render before root review')",
+      "if rendering:require(plan['launch_ready']is True and plan['root_GO_sha256']is not None and sha(plan['root_GO'])==plan['root_GO_sha256'],'NON-ARMED: no array extraction/render before root review')"
+    ],
+    [
+      "review=read(root/plan['root_review']);require(review['status']=='root_closed_two_actual_C1_BREP_linear_cases_energy_PASS_all_peaks_preserved'and review['full_energy_and_peak_reports_wholly_preserved']is True,'Two root terminal reviews required')",
+      "review=read(root/plan['root_review']);require(review['schema']=='root-two-new-taper-linear-static-terminal-1'and review['status']=='closed_actual_RC0_two_new_taper_static_and_energy_cases'and review['actual_tool_RC']==0 and review['terminal_sha256']==hashes[plan['combined_terminal']]and review['all_global_peaks_retained']is True and review['candidate_qualified']is False and review['law_original_RC1_preserved']is True,'Two actual new-taper ROOT closures required')"
+    ],
+    [
+      "review['BREP_sha256']",
+      "review['actual_new_BREP_sha256']"
+    ],
+    [
+      "'carrier-C1-fields-001'",
+      "'carrier-terminal-taper-fields-001'"
+    ],
+    [
+      "993 TURBO \u00b7 PROTOTYPE C1 \u00b7 DEUX CAS LIN\u00c9AIRES CLOS",
+      "993 TURBO \u00b7 PRESERVED TAPER \u00b7 TWO CLOSED LINEAR CASES",
+      1
+    ],
+    [
+      "Contraintes et d\u00e9placements sur le vrai maillage",
+      "Stress and displacement on the actual T10 mesh",
+      1
+    ],
+    [
+      "Fz = \u22124 000 N \u00b7 My = +850 000 N\u00b7mm \u00b7 m\u00eames cam\u00e9ra, axes en mm et \u00e9chelles pour les deux cas",
+      "Fz = \u22124 000 N \u00b7 My = +850 000 N\u00b7mm \u00b7 common camera, mm axes and field scales",
+      1
+    ],
+    [
+      "89 788 C3D10 \u00b7 166 794 n\u0153uds \u00b7 d\u00e9form\u00e9e \u00d71 \u00b7 BREP ma\u00eetre ",
+      "89 536 C3D10 \u00b7 166 403 nodes \u00b7 true deformation \u00d71 \u00b7 raw BREP ",
+      1
+    ],
+    [
+      "Rigide : 4 552 n\u0153uds bloqu\u00e9s en XYZ. K1000 : 1 000 N/mm au total par \u0153il et par axe, r\u00e9partis sur 2 274 / 2 278 n\u0153uds.",
+      "Rigid: 4 552 nodes fixed in XYZ. K1000: 1 000 N/mm TOTAL per eye and axis, distributed over 2 274 / 2 278 nodes.",
+      1
+    ],
+    [
+      "'Rigide'if",
+      "'Rigid'if",
+      2
+    ],
+    [
+      "K1000 \u00b7 total par \u0153il / axe",
+      "K1000 \u00b7 total per eye / axis",
+      1
+    ],
+    [
+      "d\u00e9placements r\u00e9els \u00d71",
+      "actual displacement \u00d71",
+      1
+    ],
+    [
+      "U projet\u00e9 (mm)",
+      "Projected U (mm)",
+      1
+    ],
+    [
+      "V projet\u00e9 (mm)",
+      "Projected V (mm)",
+      1
+    ],
+    [
+      "'Pic IP global'",
+      "'Global IP peak'",
+      1
+    ],
+    [
+      "Zoom XY commun \u00b7 m\u00eame \u00e9chelle MPa",
+      "Peak-region XY \u00b7 shared MPa scale",
+      1
+    ],
+    [
+      "|u| r\u00e9el (mm)",
+      "Actual |u| (mm)",
+      1
+    ],
+    [
+      "colLabels=['Cas','Pic IP global (MPa)','Max fronti\u00e8re (MPa)','|u| tous n\u0153uds (mm)','\u00c9l\u00e9ment / IP','XYZ IP au repos (mm)']",
+      "colLabels=['Case','Global IP peak (MPa)','Boundary max (MPa)','All-node |u| (mm)','Element / IP','Reference IP XYZ (mm)']",
+      1
+    ],
+    [
+      "Couleurs de contraintes : maximum des 4 IP par \u00e9l\u00e9ment adjacent \u00e0 une facette de fronti\u00e8re, sans extrapolation nodale. Cercles orange : tous les pics IP globaux.",
+      "Stress colours: maximum of 4 IPs in each boundary-adjacent element, without nodal extrapolation. Orange circles: every global IP peak.",
+      1
+    ],
+    [
+      "Facettes lin\u00e9aires des coins des C3D10 ; d\u00e9placement de leurs sommets \u00d71. Gris : \u00e9tat au repos. Croix : tous les maxima de |u| parmi les n\u0153uds.",
+      "Linear C3D10 corner facets; actual corner displacement \u00d71. Grey: reference shape. Crosses: every all-node maximum of |u|.",
+      1
+    ],
+    [
+      "Le champ de d\u00e9placement est color\u00e9 par le maximum des 3 n\u0153uds de coin de chaque facette ; le maximum global inclut aussi les n\u0153uds milieux.",
+      "Displacement colours use the largest of each facet\u2019s 3 corner values; the global maximum also includes midside nodes.",
+      1
+    ],
+    [
+      "G\u00e9om\u00e9trie et maillage diff\u00e9rents des campagnes STEP ant\u00e9rieures : comparaison descriptive seulement. Aucun crit\u00e8re de r\u00e9sistance ni convergence des contraintes \u00e9tabli.",
+      "New raw-BREP geometry and mesh. Assumed linear loads/material; no strength allowable or stress convergence established.",
+      1
+    ],
+    [
+      "Prototype CAO BREP \u00b7 \u00e9change STEP refus\u00e9 \u00b7 r\u00e9sultats lin\u00e9aires du cas de charge d\u00e9clar\u00e9 \u00b7 vue orthographique 8\u00b0 / 22\u00b0.",
+      "Unqualified raw taper: post-Build law refusal retained; STEP exchange not qualified. Orthographic view 8\u00b0 / 22\u00b0.",
+      1
+    ],
+    [
+      "Actual C1 finite-element fields",
+      "Actual preserved-taper finite-element fields",
+      3
+    ],
+    [
+      "carrier-C1-contraintes-deplacements.",
+      "carrier-terminal-taper-stress-displacement.",
+      1
+    ],
+    [
+      "actual_closed_C1_fields_rendered_no_new_FEA",
+      "actual_closed_new_taper_fields_rendered_no_new_FEA",
+      1
+    ],
+    [
+      "# Same XY display window as figure20; it is a crop only, never a measurement or mesh filter.\n    zoom=plan['display_zoom_XY_mm'];zoom_bounds=np.asarray(zoom)",
+      "# Actual peaks have opposite X signs: mirror the retained50mm display crop only.\n    zoom=plan['display_zoom_XY_mm']"
+    ],
+    [
+      "row=c['row'];xyz=c['xyz'];ids=c['ids'];rest,_=project(xyz,basis)",
+      "row=c['row'];xyz=c['xyz'];ids=c['ids'];rest,_=project(xyz,basis);zoom_bounds=np.asarray(zoom[row['role']])"
+    ],
+    [
+      "plt.close(fig);verify(plan_path,expected,True)",
+      "plt.close(fig);verify(plan_path,expected,True)\n    loaded_after={str(Path(m.__file__).resolve())for n,m in list(sys.modules.items())if n.split('.')[0]in ['numpy','matplotlib','PIL']and getattr(m,'__file__',None)and Path(m.__file__).is_file()}\n    require(loaded_after<=set(runtime),'A post-export runtime file is outside the219 pinned files')"
+    ],
+    [
+      "runtime_imported_files=sorted(loaded)",
+      "runtime_imported_files=sorted(loaded_after)"
+    ]
+  ],
+  "whole_inverse_equal": true
+}

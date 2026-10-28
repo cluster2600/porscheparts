@@ -2,7 +2,7 @@
 
 # 993 Turbo three-into-one exhaust manifold, IN625 F0 concept
 
-**Status: **prohibited pending engineering**. No part is released; see [SAFETY.md](../../SAFETY.md).**
+**Status: **prohibited pending engineering**. No part is released; see [SAFETY.md](../../docs/SAFETY.md).**
 
 Independent concept of an IN625 three-into-one flow core to screen LPBF manufacturing without internal welds in the manifold. Kline and PorscheFanatics publish an IN625 offer at 2.9 kg per side with heat exchanger; the PET identifies the left and right parts. No public geometry is used.
 
@@ -90,6 +90,10 @@ Catalogue record: [`catalog/parts/993-eng-exhaust-manifold-in625-f0-0001.json`](
 
 *`parts/993-eng-exhaust-manifold-in625-f0-0001/media/views.png` — concept CAD block, **not** the original part, not a print file.*
 
+![photo-concept](../../parts/993-eng-exhaust-manifold-in625-f0-0001/media/photo-concept.png)
+
+*`parts/993-eng-exhaust-manifold-in625-f0-0001/media/photo-concept.png` — AI-generated studio illustration based on the concept CAD preview. Material and finish are illustrative; generated details may differ. Not a photograph or evidence of fit, function or manufacturing.*
+
 ## Provenance and sources
 
 | field | value |
@@ -111,7 +115,7 @@ Catalogue record: [`catalog/parts/993-eng-exhaust-manifold-in625-f0-0001.json`](
 | status | concept |
 | vehicle tested | not recorded |
 | reviewed by |  |
-| limitations | not recorded |
+| limitations | Only the 993 Turbo identity, the IN625 material and the 2.9 kg mass with heat exchanger are published.<br>The diameters, thickness, spacings, paths, length and three-into-one junction are entirely synthetic.<br>The STEP omits flanges, turbine, heating heat exchanger, brackets, gaskets and installed environment.<br>The computed core mass of 509.97 g cannot be compared as an equivalent to the 2.9 kg commercial assembly.<br>The 1D flow assumes 3.6 L, 5,750 rpm, volumetric efficiency 0.95, gas at 900 K and equal sharing between cylinders.<br>Loss, stresses, expansion, radiation and acoustics are analytical screens, not CFD/FEA/CHT results.<br>The STEP proves only a single BREP with a connected internal volume and is not authorized for manufacturing or engine use. |
 
 **Evidence**
 

@@ -1,0 +1,122 @@
+{
+  "schema": "962-observer004-native-observation-diagnostics-proposal/v1",
+  "status": "HELD_SOURCE_ONLY_NO_EXECUTION_AUTHORITY",
+  "original_failed_terminal": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native-measurement-root-review-001/observed-terminal-refusal.json",
+    "sha256": "274768a14c12aee4ba90638cf6588fef03b4c6f25dec8d6891985afc0a5d9203",
+    "bytes": 120144
+  },
+  "failure_observation": {
+    "outer_RC": 2,
+    "caller_RC": 1,
+    "native_RC": 0,
+    "stop_reason": "resource_or_group_observation_failed",
+    "error": {
+      "type": "PermissionError",
+      "message": "[Errno 1] Operation not permitted"
+    },
+    "original_operation_and_stack_unavailable": true,
+    "cause_established": false
+  },
+  "original_owner": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native-measurement-prep-001/run_root_once.py",
+    "sha256": "c09c6d24cc9024bf5e7b36daad9348fa3c2db89d8eaf1423590122a5df5ec344",
+    "bytes": 18051
+  },
+  "proposed_source": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native-observation-diagnostics-proposal-001/run_root_once_observability_proposed.py",
+    "sha256": "d7f8324479f48fd29a3a4879730603ae15c2d21308df24975680a45014769a17",
+    "bytes": 18913
+  },
+  "reuse_proof": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native-observation-diagnostics-proposal-001/source-reuse.json",
+    "sha256": "c6cfb9fd78a1c636c5ecb277869cf19293c6cda1d330109ada3afe982929a3f6",
+    "bytes": 6725
+  },
+  "change": "Five attempted-expression/target labels plus diagnostic-only fields in the existing resource observation live-child error and normal-exit-race records.",
+  "diagnostic_fields": {
+    "phase": "owned_resource_poll",
+    "operation": "Literal attempted call expression set immediately before its original call; the sample_owned label includes live-group argument filtering. Full traceback disambiguates that expression and its nested helpers.",
+    "target_PID": "Existing adapter or currently queried direct-child PID for children/member; null for aggregate resource and byte observations.",
+    "elapsed_seconds": "Owner existing monotonic start; sampled inside the existing exception branch.",
+    "owned_adapter_group_ID": "Existing proc.pid; no new process query.",
+    "owned_native_group_IDs": "Sorted snapshot of the existing verified-owned set; no new ownership assertion/query.",
+    "traceback": "Full traceback.format_exc() from the original active exception, using the already imported module."
+  },
+  "semantics_preserved": [
+    "proc.poll() remains the first statement in the existing exception handler.",
+    "The live-child branch still sets resource_or_group_observation_failed and then follows identical stop_wait and cleanup.",
+    "The terminated-child branch still records an exit race and follows the same subsequent stop/deadline/cleanup logic.",
+    "PermissionError remains a failure; no EPERM exception special case, absence inference, zero substitution, ignored observation or fallback is introduced.",
+    "All original limits, inclusive bytes/growth accounting, no-retry guard, admission gate, caller/deck/native command and signal-capture scope are unchanged.",
+    "Extra diagnostics count against the existing full serialized receipt/output limits.",
+    "No saved original error, race record, source, receipt or failed namespace is rewritten."
+  ],
+  "inherited_controls": {
+    "native_seconds": 100,
+    "outer_seconds": 115,
+    "TERM_grace_seconds": 10,
+    "sampled_RSS_stop_bytes": 2147483648,
+    "inclusive_output_stop_bytes": 536870912,
+    "incremental_growth_stop_bytes": 33554432,
+    "native_threads": 1,
+    "automatic_retry": false
+  },
+  "unchanged_caller": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native-measurement-prep-001/run_native_capture.py",
+    "sha256": "a7d4657688dc66a5fd5e7b2e73c88b307e9c4c188301d27a4fd56a76949e5723",
+    "bytes": 22990
+  },
+  "unchanged_actual": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native-measurement-execution-prep-001/actual-contract.json",
+    "sha256": "39b08ae98b9f69a21cf92e7d0018845add2e2fc11ff54d311e2089a5ee413588",
+    "bytes": 94484
+  },
+  "staged_input_descriptors_metadata_only": {
+    "thermoelastic-birth-observer-registration.i": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native-measurement-001/thermoelastic-birth-observer-registration.i",
+      "sha256": "190296e6c2ad1627feca4b374efd2c49739e0c2628764cd92388392a78fd2682",
+      "bytes": 15537
+    },
+    "old-end.grid": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native-measurement-001/old-end.grid",
+      "sha256": "c64b252894a88730ad1f6ec0311cc5fe58a2cb3a8831f67e61db9d20be95823e",
+      "bytes": 767338
+    },
+    "born-end.grid": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native-measurement-001/born-end.grid",
+      "sha256": "9caf52c69d0b14db442571b11d72252f3431d57b3991ab90ed849ddb6178b63f",
+      "bytes": 429552
+    },
+    "born-begin80.grid": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native-measurement-001/born-begin80.grid",
+      "sha256": "cf4d9df9c8ab66aa37c40ef4e9cf3be44607229ff901201017eba0ba176cfbe4",
+      "bytes": 1375
+    }
+  },
+  "staged_inputs_dereferenced": false,
+  "historical_namespace_preserved": true,
+  "proposed_source_is_not_a_fresh_launchable_successor": "The unchanged P/S/D/O constants deliberately still name the immutable original protocol; existing output/no-retry and old source pins prevent reuse. This is a reviewable source proposal only.",
+  "next_gates": [
+    "Independent saved failed-capture peer and root refusal/decision must be frozen and read before any execution is considered.",
+    "Independent source peer and root source review must assess the exact seven replacements.",
+    "Any later synthetic fixture, concrete successor source/actual/namespaces, identity/staging changes or native invocation requires a separate explicit authorization. No such preparation or execution is authorized by this packet."
+  ],
+  "optional_injection_fixture": {
+    "prepared": false,
+    "executed": false,
+    "reason": "Omitted to keep the proposal minimal. A later explicitly authorized source-only fixture could inject a synthetic PermissionError at a labeled observation and separately exercise a direct-exit race without a native process."
+  },
+  "saved_failed_capture_peer": null,
+  "root_followup_decision": null,
+  "new_actual": null,
+  "new_staging": null,
+  "new_admission": null,
+  "execution_authorized": false,
+  "native_retry_authorized": false,
+  "measurement_completeness_accepted": false,
+  "original12mechanical_failures_unchanged": true,
+  "engineering_or_physics_accepted": false,
+  "source_or_helper_execution": false,
+  "runtime_or_scientific_body_access": false
+}

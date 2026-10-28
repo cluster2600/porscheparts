@@ -16,7 +16,7 @@
 > - validation status `concept`: nothing has been checked against a real part;
 > - geometry `estimated`: its dimensions are estimated design variables, not measured on the original part;
 > - safety class `prohibited_pending_engineering`;
-> - no part in this repository is released — read [SAFETY.md](../../SAFETY.md).
+> - no part in this repository is released — read [SAFETY.md](../../docs/SAFETY.md).
 
 <table><tr>
 <td width="50%" valign="top">
@@ -87,6 +87,12 @@ flowchart LR
 
 *Orthographic views of the same concept CAD, with its bounding dimensions — not drawings of the original part.*
 
+## Bionic gyroid-core model
+
+![PicoGK gyroid-core model: outside view and capped section](media/gyroid.png)
+
+*PicoGK variant ([`GyroidCore.cs`](../../parts/picogk-catalog/bionic/GyroidCore.cs)): no zone of this part holds three 6.75 mm gyroid cells inside its skin, so it stays solid (core only where three cells fit). Not a print file.*
+
 ## Screens and evidence images
 
 ![993-eng-fan-stator-alsi10mg-f1-0001-lpbf-geometry-screen](evidence/lpbf-f0/993-eng-fan-stator-alsi10mg-f1-0001-lpbf-geometry-screen.png)
@@ -97,10 +103,10 @@ flowchart LR
 
 | folder | what it holds | files |
 |---|---|---|
-| `derived/` | CAD exports generated from the source (STEP for CAD tools, STL for meshing) | [`derived/fan_stator_alsi10mg_f1-picogk.json`](derived/fan_stator_alsi10mg_f1-picogk.json), [`derived/fan_stator_alsi10mg_f1-picogk.stl`](derived/fan_stator_alsi10mg_f1-picogk.stl), [`derived/fan_stator_alsi10mg_f1.step`](derived/fan_stator_alsi10mg_f1.step), [`derived/fan_stator_alsi10mg_f1.stl`](derived/fan_stator_alsi10mg_f1.stl) |
+| `derived/` | CAD exports generated from the source (STEP for CAD tools, STL for meshing) | [`derived/fan_stator_alsi10mg_f1-picogk-gyroid.json`](derived/fan_stator_alsi10mg_f1-picogk-gyroid.json), [`derived/fan_stator_alsi10mg_f1-picogk.json`](derived/fan_stator_alsi10mg_f1-picogk.json), [`derived/fan_stator_alsi10mg_f1-picogk.stl`](derived/fan_stator_alsi10mg_f1-picogk.stl), [`derived/fan_stator_alsi10mg_f1.step`](derived/fan_stator_alsi10mg_f1.step), [`derived/fan_stator_alsi10mg_f1.stl`](derived/fan_stator_alsi10mg_f1.stl) |
 | `evidence/` | screens, reports and manifests — **pinned by SHA-256, never edited by hand** | [`evidence/engineering-screen.json`](evidence/engineering-screen.json), [`evidence/lpbf-f0/993-eng-fan-stator-alsi10mg-f1-0001-layer-metrics.csv`](evidence/lpbf-f0/993-eng-fan-stator-alsi10mg-f1-0001-layer-metrics.csv), [`evidence/lpbf-f0/993-eng-fan-stator-alsi10mg-f1-0001-lpbf-geometry-manifest.json`](evidence/lpbf-f0/993-eng-fan-stator-alsi10mg-f1-0001-lpbf-geometry-manifest.json), [`evidence/lpbf-f0/993-eng-fan-stator-alsi10mg-f1-0001-lpbf-geometry-report.json`](evidence/lpbf-f0/993-eng-fan-stator-alsi10mg-f1-0001-lpbf-geometry-report.json), [`evidence/lpbf-f0/993-eng-fan-stator-alsi10mg-f1-0001-lpbf-geometry-screen.png`](evidence/lpbf-f0/993-eng-fan-stator-alsi10mg-f1-0001-lpbf-geometry-screen.png) |
-| `media/` | concept-model views rendered from the CAD by `scripts/render_part_previews.py` — not pictures of the original | [`media/preview.json`](media/preview.json), [`media/preview.png`](media/preview.png), [`media/print-simulation/build-plate.png`](media/print-simulation/build-plate.png), [`media/print-simulation/build.gif`](media/print-simulation/build.gif), [`media/print-simulation/build.mp4`](media/print-simulation/build.mp4), [`media/print-simulation/layers.png`](media/print-simulation/layers.png), [`media/print-simulation/visuals.json`](media/print-simulation/visuals.json), [`media/views.png`](media/views.png) |
-| `source/` | parametric source — the editable master that generates the geometry | [`source/bionic.json`](source/bionic.json), [`source/fan_stator_f1.py`](source/fan_stator_f1.py), [`source/picogk.json`](source/picogk.json) |
+| `media/` | concept-model views rendered from the CAD by `scripts/render_part_previews.py` — not pictures of the original; labelled AI studio illustration and provenance, not a photograph | [`media/gyroid.json`](media/gyroid.json), [`media/gyroid.png`](media/gyroid.png), [`media/photo-concept.png`](media/photo-concept.png), [`media/photo.json`](media/photo.json), [`media/preview.json`](media/preview.json), [`media/preview.png`](media/preview.png), [`media/print-simulation/build-plate.png`](media/print-simulation/build-plate.png), [`media/print-simulation/build.gif`](media/print-simulation/build.gif), … (12 files) |
+| `source/` | parametric source — the editable master that generates the geometry | [`source/bionic.json`](source/bionic.json), [`source/fan_stator_f1.py`](source/fan_stator_f1.py), [`source/gyroid.json`](source/gyroid.json), [`source/picogk.json`](source/picogk.json) |
 
 ## Read more
 
@@ -108,7 +114,7 @@ flowchart LR
 - **Catalogue record** (source of truth): [`catalog/parts/993-eng-fan-stator-alsi10mg-f1-0001.json`](../../catalog/parts/993-eng-fan-stator-alsi10mg-f1-0001.json)
 - **Design dossier**: [993_FAN_STATOR_ALSI10MG_F1](../../docs/993/993_FAN_STATOR_ALSI10MG_F1.md)
 - **Design dossier**: [993_K16_ROD_IMPROVEMENT_PROGRAMME](../../docs/993/993_K16_ROD_IMPROVEMENT_PROGRAMME.md)
-- **Safety rules**: [SAFETY.md](../../SAFETY.md)
+- **Safety rules**: [SAFETY.md](../../docs/SAFETY.md)
 
 ---
 

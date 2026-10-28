@@ -1,0 +1,52 @@
+--- work/962-engineering/head-star-current126-alternative-combined-application-prep-001/selfcheck.py
++++ work/962-engineering/head-star-current126-alternative-combined-application-prep-002/selfcheck.py
+@@ -3,7 +3,7 @@
+ from types import SimpleNamespace
+ from fractions import Fraction
+ import ast,copy,hashlib,json,math,struct,unittest
+-SOURCE_SHA='134ffa7de71d5117f34bffd3e724b9b982a6af1fcfdbb09fc4f5ad0cab543534'
++SOURCE_SHA='566b3245fb85a7a84efc1e016aa59b626bde0faf5844825ae84d62cc2e4a957e'
+ path=Path(__file__).with_name('reader.py');text=path.read_text()
+ assert hashlib.sha256(path.read_bytes()).hexdigest()==SOURCE_SHA
+ tree=ast.parse(text);defs={n.name:n for n in tree.body if isinstance(n,ast.FunctionDef)}
+@@ -175,4 +175,40 @@
+    self.assertIn(name,body)
+   self.assertNotIn('context_join',body)
+ 
++ def test_real_admitted_context_runtime_schema_and_separate_NumPy_drift_refusal(self):
++  root=path.resolve().parents[3];held=json.loads(path.with_name('held-contract.json').read_text())
++  original_path='work/962-engineering/head-star-current126-alternative-union-context-001/frozen-contract.json'
++  original_bytes=(root/original_path).read_bytes()
++  self.assertEqual(hashlib.sha256(original_bytes).hexdigest(),'0ae7184a29a62645e1c88cb905381cb759e90f1ed897305dc29a276c8029c5c3')
++  original=json.loads(original_bytes);self.assertNotIn('numpy_init_sha256',original)
++  binding_path='work/962-engineering/head-star-current126-alternative-union-context-execution-prep-001/runtime-parent-preflight.json'
++  binding_bytes=(root/binding_path).read_bytes()
++  self.assertEqual(hashlib.sha256(binding_bytes).hexdigest(),'b6d197768a0cd72cee0b84b2ce3654428a0194b48f9919bbafaedc3c2203b16f')
++  numpy_sha='c09e25b58f6b2f8e2cb3c158168f902d447f8171e5ea6513c0aca41ecbda7c2b'
++  fields=['external_runtime_hashes','runtime_sha256s','runtime','native_python','numpy_init']
++  contract_body=defs['require_contract'].body
++  start=next(i for i,n in enumerate(contract_body) if isinstance(n,ast.For) and isinstance(n.iter,ast.List) and all(isinstance(x,ast.Constant) for x in n.iter.elts) and [x.value for x in n.iter.elts]==fields)
++  fragment=contract_body[start:start+4]
++  self.assertEqual([type(x).__name__ for x in fragment],['For','Assign','If','If'])
++  program=compile(ast.Module(body=fragment,type_ignores=[]),'<exact-admitted-context-runtime-fragment>','exec')
++  # This fake seven-record admission permits the real metadata comparison only. No native/runtime body is accessed.
++  paths={'report':ns['CONTEXT'],'contract':ns['CONTEXT_CONTRACT'],
++   'receipt':'work/962-engineering/head-star-current126-alternative-union-context-001/execution-receipt.json',
++   'root_closed':'work/962-engineering/current126-alternative-union-context-root-execution-001/closed-result.json',
++   'peer':'work/962-engineering/current126-alternative-union-context-result-peer-001/review.json',
++   'bindings':'work/962-engineering/current126-alternative-union-context-result-peer-001/bindings.json',
++   'root_acceptance':'work/962-engineering/current126-alternative-union-context-root-execution-001/result-peer-acceptance.json'}
++  c=copy.deepcopy(held);c['fresh_context_result_and_peer_root_admitted']=True
++  c['context_admission']={k:{'path':v,'sha256':'a'*64,'bytes':1} for k,v in paths.items()}
++  c['input_hashes'].update({v:'a'*64 for v in paths.values()})
++  self.assertEqual(len(ns['context_admission_records'](c)),7)
++  scope={'c':c,'original':original,'ROOT':root,'NUMPY_BINDING':binding_path,'NUMPY_SHA':numpy_sha,
++   'FIXED_INPUTS':{binding_path:'b6d197768a0cd72cee0b84b2ce3654428a0194b48f9919bbafaedc3c2203b16f'},'Path':Path,'json':json,'sha':lambda unused:numpy_sha}
++  exec(program,scope)
++  bad=copy.deepcopy(c);bad['numpy_init_sha256']='0'*64
++  with self.assertRaises(ValueError):exec(program,{**scope,'c':bad})
++  bad_binding=json.loads(binding_bytes);bad_binding['native3_NumPy_selected_outer5'][c['numpy_init']]['sha256']='0'*64
++  with self.assertRaises(ValueError):exec(program,{**scope,'json':SimpleNamespace(loads=lambda unused:bad_binding)})
++  with self.assertRaises(ValueError):exec(program,{**scope,'sha':lambda unused:'0'*64})
++
+ if __name__=='__main__':unittest.main()

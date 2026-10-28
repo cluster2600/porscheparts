@@ -1,0 +1,11 @@
+--- work/962-engineering/apex1613031-head-application-prep-001/reader.py
++++ work/962-engineering/apex1613031-head-application-prep-002/reader.py
+@@ -232,7 +232,7 @@
+      or context.get('original_parent_MSH_sha256')!=FIXED_INPUTS[MESH]
+      or context['complete_old_apex_incident_rows']!=[{'tetrahedron_tag':t,'node_tags':old[t]} for t in sorted(old)]
+      or context['independently_derived_global_maxima']!={'node':NMAX,'element_all_dimensions':EMAX}
+-     or accepted.get('decision')!='ACCEPT_COMPLETED_READ_ONLY_CURRENT129_ONE_CASE_CONTEXT_ONLY' or accepted.get('accepted_read_only_context') is not True
++     or accepted.get('decision')!='ACCEPT_COMPLETED_READ_ONLY_CURRENT127_ONE_CASE_CONTEXT_ONLY' or accepted.get('accepted_read_only_context') is not True
+      or accepted.get('schema')!='962-current127-apex1613031-context-root-peer-acceptance/v1'
+      or peer.get('schema')!='962-current127-apex1613031-context-independent-stopped-peer/v1'
+      or peer.get('decision')!='CLEAR_COMPLETED_READ_ONLY_CONTEXT_SAVED_ASSOCIATIONS_ONLY'

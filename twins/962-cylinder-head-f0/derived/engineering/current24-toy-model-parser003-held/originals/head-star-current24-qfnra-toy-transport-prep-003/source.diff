@@ -1,0 +1,55 @@
+--- head-star-current24-qfnra-toy-transport-prep-002/check_toy_sessions.py
++++ head-star-current24-qfnra-toy-transport-prep-003/check_toy_sessions.py
+@@ -274,15 +274,28 @@
+             stream.close()
+ 
+ 
+-def one_model(protocol,text,name):
++def one_model(protocol,text,name,expected_aliases):
++    need(type(name) is str and type(expected_aliases) is list
++         and all(type(alias) is str for alias in expected_aliases)
++         and len(set(expected_aliases))==len(expected_aliases) and name not in expected_aliases,
++         'Exact unique declared toy names required')
+     tree=protocol.parse_sexpr(text)
+     if type(tree) is list and tree and tree[0]=='model':
+         tree=tree[1:]
+-    need(type(tree) is list and len(tree)==1,'Exactly one declared toy Real variable in full model')
+-    row=tree[0]
+-    need(type(row) is list and len(row)==5 and row[:4]==['define-fun',name,[],'Real'],
+-         'Complete exact toy model definition required')
+-    return protocol.model_value(row[4])
++    expected={name:'Real',**{alias:'Bool' for alias in expected_aliases}}
++    need(type(tree) is list and len(tree)==len(expected),
++         'Exactly the target Real and declared Bool aliases required in full model')
++    definitions={}
++    for row in tree:
++        need(type(row) is list and len(row)==5 and row[0]=='define-fun'
++             and type(row[1]) is str and row[2]==[],
++             'Complete zero-argument toy model definition required')
++        key=row[1]
++        need(key in expected and key not in definitions and row[3]==expected[key],
++             'Exact unique toy model name and sort required')
++        definitions[key]=row[4]
++    need(set(definitions)==set(expected),'Complete exact toy model definition set required')
++    return protocol.model_value(definitions[name])
+ 
+ 
+ def run_fixed_toys(output_directory,expected_owner_group):
+@@ -323,7 +336,7 @@
+                     initial_model=session.exchange('model','(get-model)')
+                     initial_projection=session.exchange('projection','(get-value ('+name+'))')
+                     projection=protocol.parse_projection(initial_projection,[name],'sat')
+-                    model=one_model(protocol,initial_model,name)
++                    model=one_model(protocol,initial_model,name,aliases)
+                     need(model==projection[0]['value'],'Full model and initial projection disagree')
+                     model_id=protocol.snapshot_id(projection)
+                     initial_predicates=[]
+@@ -341,7 +354,7 @@
+                     final_model=session.exchange('model','(get-model)')
+                     final_projection=session.exchange('projection','(get-value ('+name+'))')
+                     final=protocol.parse_projection(final_projection,[name],'sat')
+-                    need(one_model(protocol,final_model,name)==model==final[0]['value'],
++                    need(one_model(protocol,final_model,name,aliases)==model==final[0]['value'],
+                          'Retained model/projection changed during read-only queries')
+                     final_predicates=[]
+                     for alias in aliases:

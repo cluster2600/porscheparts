@@ -1,0 +1,225 @@
+"""Certify sequential current-state flips; pure rational logic, no mesh I/O.
+
+The caller must bind the original arrays, census and parameter trace by SHA.
+This function returns changed face rows only after the exact counter reaches 0.
+It does not certify 3D self-intersections, exposures or manufacturing admission.
+"""
+from collections import Counter
+from fractions import Fraction as Q
+import math
+
+
+def det(a, b, c):
+    return (b[0]-a[0])*(c[1]-b[1])-(b[1]-a[1])*(c[0]-b[0])
+
+
+def boundary(rows):
+    edges = Counter()
+    for row in rows:
+        if len(row) != 3 or len(set(row)) != 3:
+            raise ValueError('Three distinct vertex IDs are required')
+        for a, b in zip(row, row[1:]+row[:1]):
+            edges[a,b] += 1
+    for a, b in list(edges):
+        n = min(edges[a,b], edges[b,a])
+        edges[a,b] -= n
+        edges[b,a] -= n
+    return sorted(edge for edge, count in edges.items() for _ in range(count))
+
+
+def quad_cycle(first, second):
+    edges = boundary([first, second])
+    if len(edges) != 4 or len({a for a,b in edges}) != 4:
+        raise ValueError('A directed four-vertex boundary is required')
+    result = [min(a for a,b in edges)]
+    for _ in range(3):
+        following = [b for a,b in edges if a == result[-1]]
+        if len(following) != 1 or following[0] in result:
+            raise ValueError('The quad boundary is not simple')
+        result.append(following[0])
+    if (result[-1],result[0]) not in edges:
+        raise ValueError('The quad boundary is not closed')
+    return result
+
+
+def certify_pair(vertices, old, new, group, parameters):
+    cycle = quad_cycle(*old)
+    if (boundary(old) != boundary(new) or
+            set().union(*map(set,old)) != set().union(*map(set,new)) or
+            set(old[0]) & set(old[1]) == set(new[0]) & set(new[1])):
+        raise ValueError('A flip must change only the internal diagonal')
+    for row in old+new:
+        a,b,c = (vertices[i] for i in row)
+        u,v = [b[k]-a[k] for k in range(3)],[c[k]-a[k] for k in range(3)]
+        if (u[1]*v[2]-u[2]*v[1],u[2]*v[0]-u[0]*v[2],u[0]*v[1]-u[1]*v[0]) == (0,0,0):
+            raise ValueError('A 3D triangle is exactly degenerate')
+    if group['kind'] == 'grid':
+        axis, plane = group['fixed_axis'], Q(group['plane_coordinate_mm'])
+        if axis not in (0,1) or any(vertices[i][axis] != plane for i in cycle):
+            raise ValueError('The GRID vertices leave their exact declared plane')
+        domain = {i:(vertices[i][1-axis],vertices[i][2]) for i in cycle}
+        proof = dict(kind='GRID', same_closed_3D_point_set=True)
+    elif group['kind'] == 'skin':
+        if any(i not in parameters for i in cycle):
+            raise ValueError('An original SKIN parameter is absent')
+        if any(parameters[i]['owner'] != group['id'] for i in cycle):
+            raise ValueError('A SKIN parameter belongs to another material owner')
+        if any(not isinstance(parameters[i]['tz'],(tuple,list)) or len(parameters[i]['tz']) != 2
+               or any(type(v) is not Q for v in parameters[i]['tz']) for i in cycle):
+            raise ValueError('Both original SKIN parameters must be exact Fractions')
+        domain = {i:parameters[i]['tz'] for i in cycle}
+        mapping = [tuple(Q(v) for v in row) for row in group['mapping_t_xy_mm']]
+        if any(b[0] <= a[0] for a,b in zip(mapping,mapping[1:])):
+            raise ValueError('Mapping abscissae must increase strictly')
+        lo, hi = min(v[0] for v in domain.values()), max(v[0] for v in domain.values())
+        branches = [j for j in range(len(mapping)-1) if mapping[j][0] <= lo < hi <= mapping[j+1][0]]
+        if len(branches) != 1:
+            raise ValueError('The quad must stay in one true affine mapping branch')
+        j = branches[0]
+        left, right = mapping[j:j+2]
+        errors = []
+        for i in cycle:
+            t,z = domain[i]
+            branch = parameters[i]['branch']
+            if not (0 <= branch < len(mapping)-1 and mapping[branch][0] <= t <= mapping[branch+1][0]):
+                raise ValueError('A traced branch does not contain its vertex parameter')
+            ratio = (t-left[0])/(right[0]-left[0])
+            ideal = (left[1]+ratio*(right[1]-left[1]),left[2]+ratio*(right[2]-left[2]),z)
+            error = [abs(a-b) for a,b in zip(vertices[i],ideal)]
+            if sum(v*v for v in error) > Q(group['trace_maximum_error_squared_mm2']):
+                raise ValueError('The vertex error exceeds the original trace bound')
+            errors.append(error)
+        maxima = [max(row[k] for row in errors) for k in range(3)]
+        proof = dict(kind='SKIN', same_closed_3D_point_set=False, same_closed_TZ_point_set=True,
+                     affine_mapping_branch=j, vertex_error_bound_xyz_fraction_mm=list(map(str,maxima)),
+                     old_new_correspondence_Linf_fraction_mm=str(2*max(maxima)),
+                     old_new_correspondence_L1_upper_fraction_mm=str(2*sum(maxima)),
+                     bound_authority='Fixed vertices interpolate their original affine-map errors convexly; old/new matching TZ points differ by at most twice the vertex bound.')
+    else:
+        raise ValueError('Unknown material kind')
+    p = [domain[i] for i in cycle]
+    turns = [det(p[i],p[(i+1)%4],p[(i+2)%4]) for i in range(4)]
+    if not (all(v>0 for v in turns) or all(v<0 for v in turns)):
+        raise ValueError('A strictly convex exact quad is required')
+    direction = 1 if turns[0] > 0 else -1
+    old_areas = [det(*(domain[i] for i in row)) for row in old]
+    new_areas = [det(*(domain[i] for i in row)) for row in new]
+    if (any(direction*v <= 0 for v in old_areas+new_areas) or sum(old_areas) != sum(new_areas)):
+        raise ValueError('Both directed positive partitions must conserve exact area')
+    proof.update(boundary_vertex_ids=cycle, exact_turns_fraction=list(map(str,turns)),
+                 old_twice_areas_fraction=list(map(str,old_areas)),new_twice_areas_fraction=list(map(str,new_areas)),
+                 same_vertices_and_directed_boundary=True)
+    return proof
+
+
+def collapsed_count(vertices, rows, heights, clip_triangle):
+    result = {}
+    for face_id, row in rows.items():
+        triangle = [vertices[i] for i in row]
+        lower, upper = min(p[2] for p in triangle), max(p[2] for p in triangle)
+        count = 0
+        for height in heights:
+            if not lower <= height <= upper:
+                continue
+            cut = clip_triangle(triangle,height)
+            if cut is None:
+                continue
+            if len(cut) != 2 or cut[0] == cut[1]:
+                raise ValueError('The original clip returned an invalid exact segment')
+            encoded = [tuple(float(v) for v in p) for p in cut]
+            if not all(math.isfinite(v) for p in encoded for v in p):
+                raise ValueError('A local cut encoding is nonfinite')
+            count += encoded[0] == encoded[1]
+        result[face_id] = count
+    return result
+
+
+def certify_operations(vertices, faces, order, types, groups, parameters,
+                       operations, heights, initial_counts, clip_triangle):
+    """Return new face rows and the strict ledger, or raise without publishing.
+
+    ``initial_counts`` is the SHA-bound full census of the original checkpoint
+    geometry. Every changed
+    face is recounted before and after its operation on all fixed 1,034 planes.
+    Later operations may share face rows only through exact current expected
+    rows and the updated ledger. This is the distinct sequential v3 policy.
+    """
+    if heights != [Q((i+.5)*.06) for i in range(1034)]:
+        raise ValueError('The exact fixed 1,034-plane calendar is required')
+    if any(type(v) is not Q for p in vertices for v in p):
+        raise ValueError('All coordinates must be exact Fractions of retained IEEE values')
+    if len(faces) != len(order) or len(faces) != len(types):
+        raise ValueError('Face attribute counts differ')
+    owners = {}
+    for group in groups:
+        start,end = group['face_range']
+        if not (type(start) is int and type(end) is int and 0 <= start < end <= len(faces)):
+            raise ValueError('A material face range is invalid')
+        for f in range(start,end):
+            if f in owners or order[f] != group['order'] or types[f] != group['type']:
+                raise ValueError('Face ranges or attributes do not bind the material groups')
+            owners[f] = group
+    if len(owners) != len(faces):
+        raise ValueError('Every face must belong to exactly one material group')
+    ledger = {i:initial_counts.get(i,0) for i in range(len(faces))}
+    if any(type(i) is not int or not 0 <= i < len(faces) or type(v) is not int or v < 0 for i,v in initial_counts.items()):
+        raise ValueError('The initial exact counter is invalid')
+    candidate = [list(row) for row in faces]
+    total = sum(ledger.values())
+    initial_total = total
+    touched = set()
+    receipts = []
+    for operation in operations:
+        ids = operation['face_ids']
+        if len(set(ids)) != len(ids) or any(type(i) is not int or i not in owners for i in ids):
+            raise ValueError('Each operation must have distinct valid face rows')
+        if len({owners[i]['id'] for i in ids}) != 1:
+            raise ValueError('An operation crosses material owners')
+        before = {i:list(candidate[i]) for i in ids}
+        if any(before[i] != row for i,row in zip(ids,operation['expected_before'])) or len(operation['expected_before']) != len(ids):
+            raise ValueError('The exact current operation rows differ')
+        working = {i:list(row) for i,row in before.items()}
+        proofs = []
+        used = set()
+        for step in operation['steps']:
+            pair = step['face_pair']
+            if (len(pair) != 2 or any(type(i) is not int for i in pair) or
+                    len(set(pair)) != 2 or any(i not in working for i in pair)):
+                raise ValueError('A local flip must use two rows in its operation')
+            new = [list(row) for row in step['new_triangles']]
+            if len(new) != 2 or any(any(type(i) is not int or not 0 <= i < len(vertices) for i in row) for row in new):
+                raise ValueError('A selected triangle row is invalid')
+            old = [working[i] for i in pair]
+            proof = certify_pair(vertices,old,new,owners[pair[0]],parameters)
+            proof.update(face_pair=pair, old_triangles=old, new_triangles=new)
+            proofs.append(proof)
+            working.update(dict(zip(pair,new)))
+            used.update(pair)
+        if used != set(ids) or boundary(list(before.values())) != boundary(list(working.values())):
+            raise ValueError('The complete operation boundary differs')
+        old_counts = collapsed_count(vertices,before,heights,clip_triangle)
+        if old_counts != {i:ledger[i] for i in ids}:
+            raise ValueError('The retained full-census ledger disagrees on an affected face')
+        new_counts = collapsed_count(vertices,working,heights,clip_triangle)
+        old_count,new_count = sum(old_counts.values()),sum(new_counts.values())
+        if new_count >= old_count:
+            raise ValueError('An exact operation must strictly reduce the global collapse count')
+        next_total = total-old_count+new_count
+        if not 0 <= next_total < total:
+            raise ValueError('The exact global counter did not decrease strictly')
+        receipts.append(dict(name=operation['name'],face_ids=ids,steps=proofs,
+                             local_before=old_count,local_after=new_count,
+                             global_before=total,global_after=next_total,declared_planes=1034))
+        for i in ids:
+            candidate[i] = working[i]
+            ledger[i] = new_counts[i]
+        touched.update(ids)
+        total = next_total
+    if total != 0:
+        raise ValueError('The finite certified operations leave collapsed cuts')
+    return candidate, dict(status='local_flip_operations_certified_no_global_admission',
+                           operation_policy='sequential_current_state_strict_ledger_v3',
+                           initial_collapsed_cuts=initial_total,final_collapsed_cuts=total,
+                           operations=receipts,changed_face_ids=sorted(i for i in touched if candidate[i] != list(faces[i])),
+                           vertices_attributes_ranges_unchanged=True,complete_calendar_hook_run=False,
+                           material_graph_recomputed=False,global_admission=False)

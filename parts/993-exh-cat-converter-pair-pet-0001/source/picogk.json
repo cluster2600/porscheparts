@@ -1,0 +1,209 @@
+{
+  "part_id": "993-EXH-CAT-CONVERTER-PAIR-PET-0001",
+  "name": "993 Turbo catalytic converter pair, left and right (PicoGK concept)",
+  "generator": "catalytic_converter_pair",
+  "catalogue_record": "catalog/parts/993-exh-cat-converter-pair-pet-0001.json",
+  "porsche_part_numbers": [
+    "993 113 213 57",
+    "993 113 214 57",
+    "993 113 214 58"
+  ],
+  "safety_class": "prohibited_pending_engineering",
+  "material_candidate": "IN625 LPBF (concept assumption; the record leaves the material unknown)",
+  "density_g_cm3": 8.44,
+  "voxel_mm": 0.6,
+  "picogk_enhancement": "Concept base model of the two converter cans: one smooth revolved flow volume per converter (pipe, diffuser, can with rolled-in beads, nozzle, pipe) swept along a centreline that S-bends outboard in the inlet, with a uniform wall offset from it, a spherical ball-joint collar, a lobed outlet flange and an oxygen-sensor boss, filleted as one body. The can diameter fills the Cargraphic aftermarket \u00d8110 mm declaration; every other dimension and all interfaces are assumptions. The substrate, mat and heat shield (pos 19 cover) are not modelled: each can is hollow and open at both ends, so the model says nothing about conversion, back-pressure or durability. The two ties only hold the pair together for display.",
+  "parameters": {
+    "body_diameter_mm": {
+      "value": 110.0,
+      "unit": "mm",
+      "basis": "published",
+      "source": "https://www.cargraphic.de/en/your-vehicle/for-porsche/for-911/for-993/for-turbo-turbo-s-36l/engine-upgrade-kits-porsche-993-turbo-s-36l/power-kit-2-for-porsche-993-turbo-36l/lkp93t300s2/",
+      "note": "Cargraphic Powerkit 2 for the 993 Turbo lists '100 cpsi catalytic converters \u00d8110 mm' (catalog/reference/993-turbo-research-20261002/turbo-evidence.json, TURBO-CARGRAPHIC-993-K16-24; SRC-CARGRAPHIC-993-K16-24-POWERKIT-DATA). An aftermarket sport converter, not the OEM 993 113 213 57 / 214 57; reading \u00d8110 as the can outer diameter is the concept interpretation"
+    },
+    "body_length_mm": {
+      "value": 150.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "can length between the cones; substrate volume unknown"
+    },
+    "pipe_outer_diameter_mm": {
+      "value": 60.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "inlet and outlet pipe OD; TurbineOutletStubDiaMm = 60 in parts/m64-exhaust-0001/source/picogk/Program.cs (ASSUMED there too)"
+    },
+    "wall_mm": {
+      "value": 2.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "uniform wall of the can and pipes (2.0 mm keeps about three voxels at the 0.6 mm study voxel)"
+    },
+    "inlet_cone_length_mm": {
+      "value": 55.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "diffuser cone length"
+    },
+    "outlet_cone_length_mm": {
+      "value": 45.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "nozzle cone length"
+    },
+    "inlet_pipe_length_mm": {
+      "value": 110.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "inlet pipe length before the diffuser, with the outboard S-bend"
+    },
+    "inlet_offset_y_mm": {
+      "value": 40.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "outboard offset of the inlet pipe (S-bend); routing unknown"
+    },
+    "outlet_pipe_length_mm": {
+      "value": 50.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "outlet pipe length after the nozzle"
+    },
+    "bead_count": {
+      "value": 2.0,
+      "unit": "count",
+      "basis": "assumption",
+      "source": null,
+      "note": "rolled-in stiffening beads on the can"
+    },
+    "bead_depth_mm": {
+      "value": 1.5,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "bead depth (inward, so the can keeps its diameter)"
+    },
+    "bead_width_mm": {
+      "value": 8.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "bead width"
+    },
+    "ball_collar_radius_mm": {
+      "value": 38.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "spherical ball-joint collar on the inlet pipe; the manual names ball clamps (25-30 Nm) but no ball geometry"
+    },
+    "ball_collar_x_mm": {
+      "value": 45.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "collar position from the inlet face"
+    },
+    "outlet_flange_radius_mm": {
+      "value": 42.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "outlet flange radius (inside the can diameter)"
+    },
+    "outlet_flange_thickness_mm": {
+      "value": 8.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "outlet flange thickness"
+    },
+    "outlet_bolt_offset_mm": {
+      "value": 46.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "outlet bolt centres at +/-46 mm across the pipe"
+    },
+    "bolt_hole_diameter_mm": {
+      "value": 8.5,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "M8 clearance assumed"
+    },
+    "bolt_boss_radius_mm": {
+      "value": 8.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "bolt lobe radius"
+    },
+    "o2_boss_radius_mm": {
+      "value": 11.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "oxygen-sensor boss radius; the PET lists O2 sensors 993 606 128 01 / 127 01 in the same assembly, their position is not known"
+    },
+    "o2_bore_mm": {
+      "value": 16.5,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "sensor bore (M18 thread core, assumed)"
+    },
+    "o2_boss_length_mm": {
+      "value": 14.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "boss height beyond the cone wall"
+    },
+    "pair_spacing_mm": {
+      "value": 170.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "display spacing between the two can axes; not the car's layout"
+    },
+    "tie_radius_mm": {
+      "value": 6.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "display tie radius; the ties hold the pair as one body and are not part of either converter"
+    },
+    "fillet_mm": {
+      "value": 4.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "outer blend of collar, boss, flange and ties"
+    }
+  },
+  "envelope": [
+    "body_diameter_mm"
+  ],
+  "envelope_axes": {
+    "body_diameter_mm": "z"
+  },
+  "envelope_mode": "match",
+  "open_interfaces": [
+    "heat-exchanger / turbine-side inlet joint and ball-clamp geometry",
+    "rear muffler / tail pipe outlet flange",
+    "oxygen-sensor positions and threads",
+    "substrate, mat, can and heat-shield (pos 19) geometry",
+    "left/right assignment of pos 14/15"
+  ],
+  "status": "F0 concept geometry - not fitted, not tested, not safe, not released, not a print file",
+  "max_tris": 60000
+}

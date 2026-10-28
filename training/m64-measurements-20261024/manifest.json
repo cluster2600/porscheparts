@@ -1,0 +1,226 @@
+{
+  "schema_version": "1.0.0",
+  "dataset_id": "m64-measurements-20261024",
+  "created_on": "2026-10-24",
+  "counts": {
+    "cpt": {
+      "train": 89,
+      "valid": 0,
+      "test": 0
+    },
+    "sft": {
+      "train": 89,
+      "valid": 0,
+      "test": 0
+    },
+    "excluded": 18,
+    "reference_records": 107,
+    "measurement_kinds": {
+      "clearance": 7,
+      "derived": 1,
+      "documentary_conflict": 1,
+      "nominal": 80
+    },
+    "eligibility": {
+      "qualified_only": 86,
+      "teach_uncertainty_only": 3
+    },
+    "evidence_statuses": {
+      "conflicting_factory_documents": 1,
+      "derived_from_supplier_dimensions": 1,
+      "documentary_ambiguity": 2,
+      "factory_document_readable_text_verified": 1,
+      "manufacturer_declared_nominal": 15,
+      "manufacturer_nominal_specification": 9,
+      "supplier_document_verified": 60
+    }
+  },
+  "cpt_wording_synthetic": true,
+  "sft_synthetic": true,
+  "source_facts_synthetic": false,
+  "raw_document_text": false,
+  "training_run": false,
+  "tokenized": false,
+  "token_count": null,
+  "context_fit_verified": false,
+  "model_weights_produced": false,
+  "languages": [
+    "en"
+  ],
+  "evaluation_scope": "supplied_record_extraction_not_independent_reasoning",
+  "source_family_aliases": {
+    "mahle-aftermarket.com": "us.mahle.com",
+    "ruf-automobile.de": "ruf-993",
+    "tte24.net": "tte-products"
+  },
+  "publisher_family_rules": {
+    "fia_homologation": "fia-homologation",
+    "melett_brand_and_technical_mirrors": "melett.com",
+    "federal_mogul_engine_catalogues": "federal-mogul-engine-catalogues"
+  },
+  "source_family_alias_policy_sha256": "2ea4bdf5bef8c0ade94695da0c9c7fecc3daf1cb7e863ca3ad00f6dbb0549e02",
+  "publisher_family_rules_sha256": "ecd57e4a00ac5ffa4cc19e13ead63088a7119f246782bcc5caf6e03b3ff23a99",
+  "measurement_metadata_preserved": true,
+  "inputs": [
+    {
+      "path": "catalog/reference/m64-measurements-20261024/facts.json",
+      "sha256": "2ab53ebebfb293b494657e928197b4671f5462f64b3a339029c69a0be49a2b3d"
+    },
+    {
+      "path": "catalog/sources/src-m64-meas-993-spec-booklet.json",
+      "sha256": "29b80d8000d7df96571e4ebea5d70d9a75aa0d303a030e89d9ec4f45e0717543"
+    },
+    {
+      "path": "catalog/sources/src-m64-meas-dougherty-profiles.json",
+      "sha256": "66360dd8be8e041be682ec7e118dd26c979aab6fa7d2df3caedb811ff3930085"
+    },
+    {
+      "path": "catalog/sources/src-m64-meas-fia-gt2-003.json",
+      "sha256": "84811d4a8473f7adc5a66e0dc8a152e63c7dadd51959e1bd1356ab2b9fc94a36"
+    },
+    {
+      "path": "catalog/sources/src-m64-meas-fm-engine-2015.json",
+      "sha256": "df9bca8e69407e7042227a9b9ff01b53d5b48aaff53a1e16d3b7aebd20083640"
+    },
+    {
+      "path": "catalog/sources/src-m64-meas-glyco-2022.json",
+      "sha256": "5eb6b51213f61ee5a036bba87e04adc852abaf523feda2d8e12b7986d0a8467d"
+    },
+    {
+      "path": "catalog/sources/src-m64-meas-goetze-rings-2019.json",
+      "sha256": "558d2db2ef92da9e14bf0d73897c44ca1b7cee7f86bfefa32b65e3ca071a85f5"
+    },
+    {
+      "path": "catalog/sources/src-m64-meas-ln-ps104-015n.json",
+      "sha256": "7cb18d8cc6275d5cd99829a5e907e9901bdde3627cb5f7231ffa6f4f72758efe"
+    },
+    {
+      "path": "catalog/sources/src-m64-meas-melett-kkk-2008.json",
+      "sha256": "2e6d8cea077956e8545cf5c92af55ae63d373e105ecdf503d77b98fadb1e84af"
+    },
+    {
+      "path": "catalog/sources/src-m64-meas-ms-classic-2021.json",
+      "sha256": "1cde092baded78306d320a5de897e1b0150cc28312565074f593849bc7167af6"
+    },
+    {
+      "path": "catalog/sources/src-m64-meas-reinz-porsche-2016.json",
+      "sha256": "aee6e26d0ced787abdc18aafc7631a2d3f82068819355d4781afbeb9d7c970f6"
+    },
+    {
+      "path": "catalog/sources/src-m64-meas-schrick-2013-catalog.json",
+      "sha256": "5bb6c5197d0aa9d5597869eb9a4780f8b9218a6a6b792cbd39e0434617b06d46"
+    },
+    {
+      "path": "catalog/sources/src-m64-meas-schrick-993-0005l1921.json",
+      "sha256": "658275ae87a05ebe73ba15f48badb32c64b871a3bc3461479c7b030c8f3db881"
+    },
+    {
+      "path": "catalog/sources/src-m64-meas-ti-catalogue-2008.json",
+      "sha256": "5af09c8321039abac354317662a10fa8f6a6e6d14b802363adac10249e852718"
+    },
+    {
+      "path": "catalog/sources/src-m64-meas-turbomaster-k16-clearances.json",
+      "sha256": "65e85209e91e5376e45e5777dab57af3817beb818dc2e41aa478ad525c854e47"
+    },
+    {
+      "path": "catalog/sources/src-m64-meas-wossner-2013-2014.json",
+      "sha256": "91e2b03bd19627caacf35e02c9cebc3824a01634d3360829ad1bf24d503703cd"
+    },
+    {
+      "path": "catalog/sources/src-mezger-materials-mahle-porsche-guide-2024.json",
+      "sha256": "07e458e1a3731ed25d3f2468c9f61734aac8c19af469f4ec5970b17ce30f6f66"
+    },
+    {
+      "path": "catalog/sources/src-porsche-workshop-manual-993.json",
+      "sha256": "c62f243ede968d16cc44a73e8a5655c56f40c121b31e4077c0c2591d80b40a5c"
+    },
+    {
+      "path": "catalog/sources/src-turbomaster-993-k16-6735-parts.json",
+      "sha256": "0914fee9f759123ce2a293e6be0793359e7b5d55cccb0b21664850ef58cff0d6"
+    },
+    {
+      "path": "training/993-turbo-20261002/excluded.json",
+      "sha256": "1949b6c20f242902ace76f44bdb76f15045825dbb3a6889b27a6fea01bfae17c"
+    },
+    {
+      "path": "training/993-turbo-20261002/prepare.py",
+      "sha256": "fc76d37105f5de63abce561f6af943c094f4a16f0a5d68a6be0a7eb28f0aaea6"
+    },
+    {
+      "path": "training/993-turbo-20261002/split-ledger.json",
+      "sha256": "c7925a325ff22298dd900cb30a7bd71cc57358f4a32d888148415747e7c06baf"
+    },
+    {
+      "path": "training/mezger-german-sources-20261003/excluded.json",
+      "sha256": "f5c5b7a5270aaf1b4719e5ef53917c23bb0c0da44df5c7b0c30efecc0aca6b45"
+    },
+    {
+      "path": "training/mezger-german-sources-20261003/prepare.py",
+      "sha256": "4fdae793edf5c3b1ff3e4e46606de2ac7fb7a11207108c34fc60449bc97a5992"
+    },
+    {
+      "path": "training/mezger-german-sources-20261003/split-ledger.json",
+      "sha256": "e5a424a901dc273ca56abac8e9d21bd77ce21dc8ef027cdb8574dc8c04ef8f94"
+    },
+    {
+      "path": "training/mezger-turbo-materials-20261003/excluded.json",
+      "sha256": "e1de0ede0a5831bd6884cbe81a8627c587b3688b5162ba5dc8e1cb32d28e4a23"
+    },
+    {
+      "path": "training/mezger-turbo-materials-20261003/prepare.py",
+      "sha256": "dea0321f4b913c1258e8b14ce266e5cf83b98c0e73d8c1eca99dcc4f24ae5eeb"
+    },
+    {
+      "path": "training/mezger-turbo-materials-20261003/split-ledger.json",
+      "sha256": "cf8a138c5cc766acceeb168c760313cdfab4dae6a7dbc1573aa1306d15d2fcca"
+    }
+  ],
+  "outputs": [
+    {
+      "path": "cpt_text/test.jsonl",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "cpt_text/train.jsonl",
+      "sha256": "dff736e4d711f3bf505b1e1a8bbd1e05e0d067a03235978e117d9ee1d34800b1"
+    },
+    {
+      "path": "cpt_text/valid.jsonl",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "dataset_info.json",
+      "sha256": "b89adfd383803d379f36422aec232e7d43b9b46abb9c27d7a00dc74aee4e76f8"
+    },
+    {
+      "path": "excluded.json",
+      "sha256": "68e85592d7693a1106dc5d73e8bb0119dcb229ee75e31850ecc0052f61200f21"
+    },
+    {
+      "path": "passages.jsonl",
+      "sha256": "bd603040b8d2b707467b9d6c0877c3e263bf9f67315f4dfd53a6f4b6cf82ce3e"
+    },
+    {
+      "path": "provenance.jsonl",
+      "sha256": "50044ef6eb0376077deaa33b182eab51e282dfed807b1858eaaa2fda748bbcf6"
+    },
+    {
+      "path": "sft_messages/test.jsonl",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "sft_messages/train.jsonl",
+      "sha256": "26e26edb2c95ef042867fc54842dd07768d6bd1943d29fd19bd4f922a19ae338"
+    },
+    {
+      "path": "sft_messages/valid.jsonl",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "split-ledger.json",
+      "sha256": "5977338cfbb23357b9bc41f7f65d34092ab6635b1c449e5af6a6e9c2df900dfa"
+    }
+  ],
+  "builder_sha256": "1fd5052799279fc06f31a5ea5570752ac7b83c0c1381b837a82f6baf193b278b",
+  "licensing": "Original factual templates; no redistribution or licence transfer of third-party document text."
+}

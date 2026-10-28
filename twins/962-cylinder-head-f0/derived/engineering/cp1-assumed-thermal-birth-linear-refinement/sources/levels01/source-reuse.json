@@ -1,0 +1,334 @@
+{
+  "exact_shared_bodies": [
+    "card.json",
+    "thermal-birth.i",
+    "assess.py"
+  ],
+  "levels": [
+    {
+      "Mac": "work/962-engineering/cp1-assumed-thermal-birth-linear-level0-macos-prep-001",
+      "assessor_sha256": "0548fcbf6eba737aaaf816abbfbfd0511b5b8fb266aa10c34a1f5817eef0e338",
+      "birth_step": 20,
+      "card_sha256": "4e07cbb997c831bac2c0abd43092148c5518b6c7aa04d7b3d287779f9e700986",
+      "case": "work/962-engineering/cp1-assumed-thermal-birth-linear-level0-prep-001",
+      "case_contract_sha256": "7607afa5fd41e7df2b867aa4f2d6342e9adf03e2ee81b84085dedfed3e972535",
+      "deck_sha256": "ffe9b19786d534a8b4ad60e78290c7d3698a2dcb6b7ddf183f100321b02df1aa",
+      "dt_s": 0.01,
+      "eight_function_ASTs_exact": [
+        "need",
+        "sha",
+        "same",
+        "check_pins",
+        "runtime_unchanged",
+        "commands",
+        "registry_features",
+        "checked_contract"
+      ],
+      "expected_native_steps": 40,
+      "level": 0,
+      "mock_sha256": "fabf8aa3e0e6c3f1701a96f7d7ec1c9a136d2bba322a48bd859f99d14965731e",
+      "owned_control_command_runtime_checks_exact_after_receipt_normalization": true,
+      "planned_native_output": "work/962-engineering/cp1-assumed-thermal-birth-linear-level0-001",
+      "run_AST_receipt_literal_only": true,
+      "source_sha256": "f9593bd23433485966e25eef2a3a4c1c0206ce6f0dcc02d6de151eb1fc8065d6",
+      "time_input_sha256": "efa207979d8df59060209e7d6673a7630bc3f9cf8fe7356700d7ed85de190ac6"
+    },
+    {
+      "Mac": "work/962-engineering/cp1-assumed-thermal-birth-linear-level1-macos-prep-001",
+      "assessor_sha256": "0548fcbf6eba737aaaf816abbfbfd0511b5b8fb266aa10c34a1f5817eef0e338",
+      "birth_step": 40,
+      "card_sha256": "4e07cbb997c831bac2c0abd43092148c5518b6c7aa04d7b3d287779f9e700986",
+      "case": "work/962-engineering/cp1-assumed-thermal-birth-linear-level1-prep-001",
+      "case_contract_sha256": "047471049c96bfb3c28fd74395998748eb5ca5c91feb24495449ce78f9f5ad47",
+      "deck_sha256": "ffe9b19786d534a8b4ad60e78290c7d3698a2dcb6b7ddf183f100321b02df1aa",
+      "dt_s": 0.005,
+      "eight_function_ASTs_exact": [
+        "need",
+        "sha",
+        "same",
+        "check_pins",
+        "runtime_unchanged",
+        "commands",
+        "registry_features",
+        "checked_contract"
+      ],
+      "expected_native_steps": 80,
+      "level": 1,
+      "mock_sha256": "fcbe8425fd8a6556b9e5088c7993206625071abc00d238f1c71c50d9b2293ebe",
+      "owned_control_command_runtime_checks_exact_after_receipt_normalization": true,
+      "planned_native_output": "work/962-engineering/cp1-assumed-thermal-birth-linear-level1-001",
+      "run_AST_receipt_literal_only": true,
+      "source_sha256": "7f6d51f52dd69373ca3dad5aad4390ed27900db8c8aad76fd02bece32a2c23c0",
+      "time_input_sha256": "65a7d5bf03d5f3cc7ae5620edab2bc591b597cdfd035de3de1c859b4944583cc"
+    }
+  ],
+  "mock_reversals": "SOURCE_SHA256 and one expected receipt-level literal only; all other bytes exact",
+  "no_actual_or_output_materialization": true,
+  "no_functions_tests_scientific_native_executed": true,
+  "reference_only_changed_fields": [
+    "selected_level_only",
+    "level_input_sha256",
+    "time_level_inputs",
+    "scope",
+    "historical_card_selected_time_level (added)"
+  ],
+  "refinement_manifest_or_evaluator_prepared": false,
+  "reversible_pairs": [
+    {
+      "donor": "work/962-engineering/cp1-assumed-thermal-birth-linear-prep-001/time-level.i",
+      "donor_sha256": "460a3332eac1ec0eddd1884657d2b8b0cdd96bd49443180d00651e44fb76a09a",
+      "reverse_exact": true,
+      "reverse_line_chunks": [
+        {
+          "new_lines": [
+            "  dt = 0.01\n"
+          ],
+          "new_start_line_zero_based": 1,
+          "old_lines": [
+            "  dt = 0.0025\n"
+          ],
+          "old_start_line_zero_based": 1
+        }
+      ],
+      "selected": "work/962-engineering/cp1-assumed-thermal-birth-linear-level0-prep-001/time-level.i",
+      "selected_sha256": "efa207979d8df59060209e7d6673a7630bc3f9cf8fe7356700d7ed85de190ac6"
+    },
+    {
+      "donor": "work/962-engineering/cp1-assumed-thermal-birth-linear-prep-001/case-contract.json",
+      "donor_sha256": "13a12dc586cf773a0a4b0a2777276d062d60d2e7c67aa7357e6581fd83f4fddd",
+      "reverse_exact": true,
+      "reverse_line_chunks": [
+        {
+          "new_lines": [
+            "  \"historical_card_selected_time_level\": 2,\n"
+          ],
+          "new_start_line_zero_based": 143,
+          "old_lines": [],
+          "old_start_line_zero_based": 143
+        },
+        {
+          "new_lines": [
+            "    \"0\": \"efa207979d8df59060209e7d6673a7630bc3f9cf8fe7356700d7ed85de190ac6\"\n"
+          ],
+          "new_start_line_zero_based": 148,
+          "old_lines": [
+            "    \"2\": \"460a3332eac1ec0eddd1884657d2b8b0cdd96bd49443180d00651e44fb76a09a\"\n"
+          ],
+          "old_start_line_zero_based": 147
+        },
+        {
+          "new_lines": [
+            "  \"scope\": \"Source-frozen numerical reference only for level0, dt=0.01s. The exact4e07 card selected_time_level=2 is historical origin metadata; selected_level_only=0 and this reference level_input/time_level maps are the sole operative per-level selection. Exact ffe9 LINEAR deck,0548 assessor/card/geometry/source/birth/options/tolerances unchanged. Separate external actual and root/peer review are required; no native or assessment authority. Preserve accepted level2 contract13a12dc5/assessment198ae20f without rerun or reassociation. LINEAR bypasses the original nonlinear convergence test; no physical material/process/head/LPBF qualification. This per-level reference cannot satisfy the original common-contract refinement binding; refinement manifest/evaluator remain future work.\",\n",
+            "  \"selected_level_only\": 0,\n"
+          ],
+          "new_start_line_zero_based": 153,
+          "old_lines": [
+            "  \"scope\": \"Source-frozen numerical reference for only level2; future output frozen-contract.json must be an exact copy. Root-owned native actual/authority is separate and external; no self hash. Separately frozen LINEAR solver-mode variant of the preserved Newton case c5b7e582 and failed native actual4eabadfa; only the deck solve_type keyword changes. All numeric tolerances, physical Kelvin/birth/source/geometry and unchanged0548 assessor gates remain exact. LINEAR bypasses the original nonlinear convergence test; unchanged tolerances remain literal inputs, and this variant does not establish that the old Newton residual passed. No native or assessment authority.\",\n",
+            "  \"selected_level_only\": 2,\n"
+          ],
+          "old_start_line_zero_based": 152
+        },
+        {
+          "new_lines": [
+            "    \"0\": \"[Executioner]\\n  dt = 0.01\\n[]\\n\"\n"
+          ],
+          "new_start_line_zero_based": 157,
+          "old_lines": [
+            "    \"2\": \"[Executioner]\\n  dt = 0.0025\\n[]\\n\"\n"
+          ],
+          "old_start_line_zero_based": 156
+        }
+      ],
+      "selected": "work/962-engineering/cp1-assumed-thermal-birth-linear-level0-prep-001/case-contract.json",
+      "selected_sha256": "7607afa5fd41e7df2b867aa4f2d6342e9adf03e2ee81b84085dedfed3e972535"
+    },
+    {
+      "donor": "work/962-engineering/cp1-assumed-thermal-birth-linear-macos-prep-001/run_mac.py",
+      "donor_sha256": "fde48211a11066c8406076621b5cd1c2898e0353956a4e6ec879754e7452c9d3",
+      "reverse_exact": true,
+      "reverse_line_chunks": [
+        {
+          "new_lines": [
+            "CASE = ENGINEERING / \"cp1-assumed-thermal-birth-linear-level0-prep-001\"\n"
+          ],
+          "new_start_line_zero_based": 19,
+          "old_lines": [
+            "CASE = ENGINEERING / \"cp1-assumed-thermal-birth-linear-prep-001\"\n"
+          ],
+          "old_start_line_zero_based": 19
+        },
+        {
+          "new_lines": [
+            "                   level=0 if stage == \"coupon\" else None, level_is_declared=True, input_sha256=inputs,\n"
+          ],
+          "new_start_line_zero_based": 165,
+          "old_lines": [
+            "                   level=2 if stage == \"coupon\" else None, level_is_declared=True, input_sha256=inputs,\n"
+          ],
+          "old_start_line_zero_based": 165
+        }
+      ],
+      "selected": "work/962-engineering/cp1-assumed-thermal-birth-linear-level0-macos-prep-001/run_mac.py",
+      "selected_sha256": "f9593bd23433485966e25eef2a3a4c1c0206ce6f0dcc02d6de151eb1fc8065d6"
+    },
+    {
+      "donor": "work/962-engineering/cp1-assumed-thermal-birth-linear-macos-prep-001/selfcheck.py",
+      "donor_sha256": "0f21be38e9d4b0448c63ac6b44fe37d79c02641457abb2547d7bab483d23f8e9",
+      "reverse_exact": true,
+      "reverse_line_chunks": [
+        {
+          "new_lines": [
+            "SOURCE_SHA256 = \"f9593bd23433485966e25eef2a3a4c1c0206ce6f0dcc02d6de151eb1fc8065d6\"\n"
+          ],
+          "new_start_line_zero_based": 12,
+          "old_lines": [
+            "SOURCE_SHA256 = \"fde48211a11066c8406076621b5cd1c2898e0353956a4e6ec879754e7452c9d3\"\n"
+          ],
+          "old_start_line_zero_based": 12
+        },
+        {
+          "new_lines": [
+            "        self.assertEqual(r[\"level\"], 0)\n"
+          ],
+          "new_start_line_zero_based": 111,
+          "old_lines": [
+            "        self.assertEqual(r[\"level\"], 2)\n"
+          ],
+          "old_start_line_zero_based": 111
+        }
+      ],
+      "selected": "work/962-engineering/cp1-assumed-thermal-birth-linear-level0-macos-prep-001/selfcheck.py",
+      "selected_sha256": "fabf8aa3e0e6c3f1701a96f7d7ec1c9a136d2bba322a48bd859f99d14965731e"
+    },
+    {
+      "donor": "work/962-engineering/cp1-assumed-thermal-birth-linear-prep-001/time-level.i",
+      "donor_sha256": "460a3332eac1ec0eddd1884657d2b8b0cdd96bd49443180d00651e44fb76a09a",
+      "reverse_exact": true,
+      "reverse_line_chunks": [
+        {
+          "new_lines": [
+            "  dt = 0.005\n"
+          ],
+          "new_start_line_zero_based": 1,
+          "old_lines": [
+            "  dt = 0.0025\n"
+          ],
+          "old_start_line_zero_based": 1
+        }
+      ],
+      "selected": "work/962-engineering/cp1-assumed-thermal-birth-linear-level1-prep-001/time-level.i",
+      "selected_sha256": "65a7d5bf03d5f3cc7ae5620edab2bc591b597cdfd035de3de1c859b4944583cc"
+    },
+    {
+      "donor": "work/962-engineering/cp1-assumed-thermal-birth-linear-prep-001/case-contract.json",
+      "donor_sha256": "13a12dc586cf773a0a4b0a2777276d062d60d2e7c67aa7357e6581fd83f4fddd",
+      "reverse_exact": true,
+      "reverse_line_chunks": [
+        {
+          "new_lines": [
+            "  \"historical_card_selected_time_level\": 2,\n"
+          ],
+          "new_start_line_zero_based": 143,
+          "old_lines": [],
+          "old_start_line_zero_based": 143
+        },
+        {
+          "new_lines": [
+            "    \"1\": \"65a7d5bf03d5f3cc7ae5620edab2bc591b597cdfd035de3de1c859b4944583cc\"\n"
+          ],
+          "new_start_line_zero_based": 148,
+          "old_lines": [
+            "    \"2\": \"460a3332eac1ec0eddd1884657d2b8b0cdd96bd49443180d00651e44fb76a09a\"\n"
+          ],
+          "old_start_line_zero_based": 147
+        },
+        {
+          "new_lines": [
+            "  \"scope\": \"Source-frozen numerical reference only for level1, dt=0.005s. The exact4e07 card selected_time_level=2 is historical origin metadata; selected_level_only=1 and this reference level_input/time_level maps are the sole operative per-level selection. Exact ffe9 LINEAR deck,0548 assessor/card/geometry/source/birth/options/tolerances unchanged. Separate external actual and root/peer review are required; no native or assessment authority. Preserve accepted level2 contract13a12dc5/assessment198ae20f without rerun or reassociation. LINEAR bypasses the original nonlinear convergence test; no physical material/process/head/LPBF qualification. This per-level reference cannot satisfy the original common-contract refinement binding; refinement manifest/evaluator remain future work.\",\n",
+            "  \"selected_level_only\": 1,\n"
+          ],
+          "new_start_line_zero_based": 153,
+          "old_lines": [
+            "  \"scope\": \"Source-frozen numerical reference for only level2; future output frozen-contract.json must be an exact copy. Root-owned native actual/authority is separate and external; no self hash. Separately frozen LINEAR solver-mode variant of the preserved Newton case c5b7e582 and failed native actual4eabadfa; only the deck solve_type keyword changes. All numeric tolerances, physical Kelvin/birth/source/geometry and unchanged0548 assessor gates remain exact. LINEAR bypasses the original nonlinear convergence test; unchanged tolerances remain literal inputs, and this variant does not establish that the old Newton residual passed. No native or assessment authority.\",\n",
+            "  \"selected_level_only\": 2,\n"
+          ],
+          "old_start_line_zero_based": 152
+        },
+        {
+          "new_lines": [
+            "    \"1\": \"[Executioner]\\n  dt = 0.005\\n[]\\n\"\n"
+          ],
+          "new_start_line_zero_based": 157,
+          "old_lines": [
+            "    \"2\": \"[Executioner]\\n  dt = 0.0025\\n[]\\n\"\n"
+          ],
+          "old_start_line_zero_based": 156
+        }
+      ],
+      "selected": "work/962-engineering/cp1-assumed-thermal-birth-linear-level1-prep-001/case-contract.json",
+      "selected_sha256": "047471049c96bfb3c28fd74395998748eb5ca5c91feb24495449ce78f9f5ad47"
+    },
+    {
+      "donor": "work/962-engineering/cp1-assumed-thermal-birth-linear-macos-prep-001/run_mac.py",
+      "donor_sha256": "fde48211a11066c8406076621b5cd1c2898e0353956a4e6ec879754e7452c9d3",
+      "reverse_exact": true,
+      "reverse_line_chunks": [
+        {
+          "new_lines": [
+            "CASE = ENGINEERING / \"cp1-assumed-thermal-birth-linear-level1-prep-001\"\n"
+          ],
+          "new_start_line_zero_based": 19,
+          "old_lines": [
+            "CASE = ENGINEERING / \"cp1-assumed-thermal-birth-linear-prep-001\"\n"
+          ],
+          "old_start_line_zero_based": 19
+        },
+        {
+          "new_lines": [
+            "                   level=1 if stage == \"coupon\" else None, level_is_declared=True, input_sha256=inputs,\n"
+          ],
+          "new_start_line_zero_based": 165,
+          "old_lines": [
+            "                   level=2 if stage == \"coupon\" else None, level_is_declared=True, input_sha256=inputs,\n"
+          ],
+          "old_start_line_zero_based": 165
+        }
+      ],
+      "selected": "work/962-engineering/cp1-assumed-thermal-birth-linear-level1-macos-prep-001/run_mac.py",
+      "selected_sha256": "7f6d51f52dd69373ca3dad5aad4390ed27900db8c8aad76fd02bece32a2c23c0"
+    },
+    {
+      "donor": "work/962-engineering/cp1-assumed-thermal-birth-linear-macos-prep-001/selfcheck.py",
+      "donor_sha256": "0f21be38e9d4b0448c63ac6b44fe37d79c02641457abb2547d7bab483d23f8e9",
+      "reverse_exact": true,
+      "reverse_line_chunks": [
+        {
+          "new_lines": [
+            "SOURCE_SHA256 = \"7f6d51f52dd69373ca3dad5aad4390ed27900db8c8aad76fd02bece32a2c23c0\"\n"
+          ],
+          "new_start_line_zero_based": 12,
+          "old_lines": [
+            "SOURCE_SHA256 = \"fde48211a11066c8406076621b5cd1c2898e0353956a4e6ec879754e7452c9d3\"\n"
+          ],
+          "old_start_line_zero_based": 12
+        },
+        {
+          "new_lines": [
+            "        self.assertEqual(r[\"level\"], 1)\n"
+          ],
+          "new_start_line_zero_based": 111,
+          "old_lines": [
+            "        self.assertEqual(r[\"level\"], 2)\n"
+          ],
+          "old_start_line_zero_based": 111
+        }
+      ],
+      "selected": "work/962-engineering/cp1-assumed-thermal-birth-linear-level1-macos-prep-001/selfcheck.py",
+      "selected_sha256": "fcbe8425fd8a6556b9e5088c7993206625071abc00d238f1c71c50d9b2293ebe"
+    }
+  ],
+  "runtime19_links13_exact_donor_metadata": true,
+  "schema": "962-CP1-LINEAR-levels01-source-reuse/v1",
+  "source_diff_sha256": "3ea965cd2a3b65cb8214cd3a581d5ab12141c87a9382b4e1becc647b2dbe433a",
+  "status": "HELD_SOURCE_ONLY_UNRUN"
+}

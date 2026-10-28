@@ -2,7 +2,7 @@
 
 # M64/60 piston with cooling gallery, CP1 F0 concept
 
-**Status: **prohibited pending engineering**. No part is released; see [SAFETY.md](../../SAFETY.md).**
+**Status: **prohibited pending engineering**. No part is released; see [SAFETY.md](../../docs/SAFETY.md).**
 
 Independent concept of an Aheadd CP1 LPBF piston with a toroidal gallery under the crown and two temporary depowdering ports. Only the M64/60 bore/stroke/engine speed and the Porsche methodological precedent are published; the entire piston geometry remains an F0 hypothesis.
 
@@ -86,6 +86,10 @@ Catalogue record: [`catalog/parts/993-eng-piston-cp1-gallery-f0-0001.json`](../.
 
 *`parts/993-eng-piston-cp1-gallery-f0-0001/media/views.png` — concept CAD block, **not** the original part, not a print file.*
 
+![photo-concept](../../parts/993-eng-piston-cp1-gallery-f0-0001/media/photo-concept.png)
+
+*`parts/993-eng-piston-cp1-gallery-f0-0001/media/photo-concept.png` — AI-generated studio illustration based on the concept CAD preview. Material and finish are illustrative; generated details may differ. Not a photograph or evidence of fit, function or manufacturing.*
+
 ## Provenance and sources
 
 | field | value |
@@ -108,7 +112,7 @@ Catalogue record: [`catalog/parts/993-eng-piston-cp1-gallery-f0-0001.json`](../.
 | status | concept |
 | vehicle tested | not recorded |
 | reviewed by |  |
-| limitations | not recorded |
+| limitations | The 100 mm engine bore, the 76.4 mm stroke and the limiter are documentary; no 993 piston dimension is published here.<br>The F0 99 mm diameter, 70 mm height, cavity, pin, ring grooves, bowl and gallery are entirely synthetic.<br>The Porsche precedent, 10% lighter, closed gallery and 200 h, concerns a modern 911 GT2 RS piston, not this F0 nor a 993.<br>The CAD mass of 681.32 g depends on the synthetic shape and is not compared with any measured 993 piston mass.<br>The 12 MPa cylinder pressure, the pin/ring masses, the 2 l/min of oil, 5 kW and +200 K are unmeasured regression cases.<br>The room-temperature margin of 1.07 from a circular plate and a minimum CP1 limit is not a hot design margin.<br>The 1D models ignore transient combustion, skirt/cylinder contact, rings, lubrication, oil acceleration and multiaxial fatigue.<br>The slicing into 2,390 layers, the roll_y_45 orientation and the 8.365 cm3 of supports are a geometric screen; no Flow project, distortion field or recoater check is available.<br>The SimReady pass validates an isolated prop, not the piston-cylinder-rings-pin-connecting rod assembly nor the engine function.<br>The PicoGK F0 sweep inspired by the Porsche and IAV architectures generated six variants and up to 1.60% gross weight saving, but none passes the provisional room-temperature plate margin of 1.50 and all six STLs keep non-manifold edges.<br>The sound BREP master went through six CalculiX runs on three meshes: the hot p95 reaches 323.46 MPa and exceeds the room-temperature CP1 reference of 297 MPa in the synthetic case, despite a mesh sensitivity below 1% on that p95.<br>PicoGK is a geometry kernel; without FEA of the manifold variants, CHT/VOF, hot CP1 allowables and measured interfaces, no variant constitutes an optimized or selected piston.<br>The STEP proves only a readable BREP with a gallery opened by two ports; it is authorized neither for manufacturing, nor fitting, nor engine use. |
 
 **Evidence**
 

@@ -19,7 +19,7 @@
 > - validation status `concept`: nothing has been checked against a real part;
 > - geometry `estimated`: its dimensions are estimated design variables, not measured on the original part;
 > - safety class `non_critical`;
-> - no part in this repository is released — read [SAFETY.md](../../SAFETY.md).
+> - no part in this repository is released — read [SAFETY.md](../../docs/SAFETY.md).
 
 <table><tr>
 <td width="50%" valign="top">
@@ -27,6 +27,8 @@
 The original part is documented — pictures, catalogue entries or published data — on these pages. They are copyrighted, so they are linked here, not copied:<br><br>
 ↗ <a href="https://www.porsche.com/australia/accessoriesandservice/classic/originalpartscatalogue/">Porsche Classic Genuine Parts Catalogue - 911 (993)</a><br>
 ↗ <a href="https://www.9xxteile.com/en/pet/">9xxteile - Porsche parts diagrams (PET exploded views)</a><br>
+↗ <a href="https://rennlist.com/forums/993-forum/1202129-dashboard-lighting-question.html">Rennlist - declared size of a 993 dashboard panel opening (window switch measured)</a><br>
+↗ <a href="https://rennlist.com/forums/993-forum/750484-console-switch-hole-size.html">Rennlist - declared console switch opening and switch blank sizes, 993</a><br>
 </td>
 <td width="50%" valign="top" align="center">
 <b>What you can print today</b><br><br>
@@ -95,6 +97,12 @@ flowchart LR
 
 *Variant generated with the PicoGK voxel kernel in [`parts/picogk-993-batch-01`](../../parts/picogk-993-batch-01/README.md): published overall envelope, internal structure (double wall, lattice core or vanes) shown in the half section. Mounting interfaces are assumptions — not the original part, not a print file, not evidence of fit.*
 
+## Bionic gyroid-core model
+
+![PicoGK gyroid-core model: outside view and capped section](media/gyroid.png)
+
+*PicoGK variant ([`GyroidCore.cs`](../../parts/picogk-catalog/bionic/GyroidCore.cs)): no zone of this part holds three 7.2 mm gyroid cells inside its skin, so it stays solid (core only where three cells fit). Not a print file.*
+
 ## Screens and evidence images
 
 ![plate](print/plate.png)
@@ -105,18 +113,18 @@ flowchart LR
 
 | folder | what it holds | files |
 |---|---|---|
-| `derived/` | CAD exports generated from the source (STEP for CAD tools, STL for meshing) | [`derived/switch_blank_concept_f0-picogk.json`](derived/switch_blank_concept_f0-picogk.json), [`derived/switch_blank_concept_f0-picogk.stl`](derived/switch_blank_concept_f0-picogk.stl), [`derived/switch_blank_concept_f0.step`](derived/switch_blank_concept_f0.step) |
+| `derived/` | CAD exports generated from the source (STEP for CAD tools, STL for meshing) | [`derived/switch_blank_concept_f0-picogk-gyroid.json`](derived/switch_blank_concept_f0-picogk-gyroid.json), [`derived/switch_blank_concept_f0-picogk.json`](derived/switch_blank_concept_f0-picogk.json), [`derived/switch_blank_concept_f0-picogk.stl`](derived/switch_blank_concept_f0-picogk.stl), [`derived/switch_blank_concept_f0.step`](derived/switch_blank_concept_f0.step) |
 | `evidence/` | screens, reports and manifests — **pinned by SHA-256, never edited by hand** | [`evidence/concept-f0.json`](evidence/concept-f0.json), [`evidence/measurement-plan.md`](evidence/measurement-plan.md) |
-| `media/` | concept-model views rendered from the CAD by `scripts/render_part_previews.py` — not pictures of the original | [`media/picogk-batch-01.png`](media/picogk-batch-01.png), [`media/preview.json`](media/preview.json), [`media/preview.png`](media/preview.png), [`media/views.png`](media/views.png) |
+| `media/` | concept-model views rendered from the CAD by `scripts/render_part_previews.py` — not pictures of the original; labelled AI studio illustration and provenance, not a photograph | [`media/gyroid.json`](media/gyroid.json), [`media/gyroid.png`](media/gyroid.png), [`media/photo-concept.png`](media/photo-concept.png), [`media/photo.json`](media/photo.json), [`media/picogk-batch-01.png`](media/picogk-batch-01.png), [`media/preview.json`](media/preview.json), [`media/preview.png`](media/preview.png), [`media/views.png`](media/views.png) |
 | `print/` | **ready-to-print files**: 3MF project, STL and instructions | [`print/kit.json`](print/kit.json), [`print/plate.png`](print/plate.png), [`print/switch_blank_fit_1.stl`](print/switch_blank_fit_1.stl), [`print/switch_blank_fit_2.stl`](print/switch_blank_fit_2.stl), [`print/switch_blank_fit_3.stl`](print/switch_blank_fit_3.stl), [`print/switch_blank_fit_plate.3mf`](print/switch_blank_fit_plate.3mf), [`print/switch_blank_fit_plate.step`](print/switch_blank_fit_plate.step), [`print/switch_blank_fit_plate.stl`](print/switch_blank_fit_plate.stl) |
-| `source/` | parametric source — the editable master that generates the geometry | [`source/bionic.json`](source/bionic.json), [`source/bionic_keepins.py`](source/bionic_keepins.py), [`source/fit_test_kit.py`](source/fit_test_kit.py), [`source/picogk.json`](source/picogk.json), [`source/render_fit_plate.py`](source/render_fit_plate.py), [`source/switch_blank.py`](source/switch_blank.py) |
+| `source/` | parametric source — the editable master that generates the geometry | [`source/bionic.json`](source/bionic.json), [`source/bionic_keepins.py`](source/bionic_keepins.py), [`source/fit_test_kit.py`](source/fit_test_kit.py), [`source/gyroid.json`](source/gyroid.json), [`source/picogk.json`](source/picogk.json), [`source/render_fit_plate.py`](source/render_fit_plate.py), [`source/switch_blank.py`](source/switch_blank.py) |
 
 ## Read more
 
 - **Full description page**, with sources and evidence: [docs/pieces/993-int-switch-blank-0001.md](../../docs/pieces/993-int-switch-blank-0001.md)
 - **Catalogue record** (source of truth): [`catalog/parts/993-int-switch-blank-0001.json`](../../catalog/parts/993-int-switch-blank-0001.json)
 - **Digital twin record**: [`twin-993-cabin-dashboard-switch-0001.json`](../../catalog/twins/twin-993-cabin-dashboard-switch-0001.json) — see [twins/README.md](../../twins/README.md)
-- **Safety rules**: [SAFETY.md](../../SAFETY.md)
+- **Safety rules**: [SAFETY.md](../../docs/SAFETY.md)
 
 ---
 

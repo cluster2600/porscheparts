@@ -240,6 +240,26 @@ The GitHub Actions workflow "Validate catalogue",
 software check of the repository; it does not validate the geometry,
 the coolant interface or any physical property of the study.
 
+## Flow-sized 4 L study: delivery receipt versus repository copies
+
+The [delivery receipt](derived/flow4l/delivery-report.json) pins the 37
+entries of the local archive
+`work/962-flow4l/delivery-001/mezger-4l-sp95-head-study.zip`. Its entry
+`documentation/FLOW4L_STUDY.md` (SHA-256 `cfbea813…9a43b25`, 6,873 bytes) is
+the pre-packaging snapshot from commit `e0c6feac`. The repository copy of
+[FLOW4L_STUDY.md](FLOW4L_STUDY.md) was edited afterwards, in the commit that
+added the receipt (`615fd71f`), to record the rejected `snappyHexMesh` and
+native tetrahedral meshes and the archive itself. It therefore no longer
+matches the receipt. The archive copy is the one the receipt attests.
+
+The other repository-resident entries were re-hashed on 2026-10-16 and match
+the receipt: `MEZGER_4L_SP95.md`, the 23 source files and the seven derived
+reports and views. The three STL files, the VDB and `native-fields-report.json`
+exist only in the archive, which is not on this host. Reissuing the receipt
+from the current documentation needs a new native packaging run on the
+owner's machine; until then, neither the receipt nor its pinned documentation
+copies are edited here.
+
 <a id="vérifications-physiques-absentes"></a>
 
 ## Physical checks absent

@@ -16,7 +16,7 @@
 > - validation status `concept`: nothing has been checked against a real part;
 > - geometry `estimated`: its dimensions are estimated design variables, not measured on the original part;
 > - safety class `prohibited_pending_engineering`;
-> - no part in this repository is released — read [SAFETY.md](../../SAFETY.md).
+> - no part in this repository is released — read [SAFETY.md](../../docs/SAFETY.md).
 
 <table><tr>
 <td width="50%" valign="top">
@@ -91,6 +91,12 @@ flowchart LR
 
 *Orthographic views of the same concept CAD, with its bounding dimensions — not drawings of the original part.*
 
+## Bionic gyroid-core model
+
+![PicoGK gyroid-core model: outside view and capped section](media/gyroid.png)
+
+*PicoGK variant ([`GyroidCore.cs`](../../parts/picogk-catalog/bionic/GyroidCore.cs)): no zone of this part holds three 6.75 mm gyroid cells inside its skin, so it stays solid (core only where three cells fit). Not a print file.*
+
 ## Screens and evidence images
 
 ![fan-curves](evidence/fan-curves.png)
@@ -113,10 +119,10 @@ flowchart LR
 
 | folder | what it holds | files |
 |---|---|---|
-| `derived/` | CAD exports generated from the source (STEP for CAD tools, STL for meshing) | [`derived/cooling_impeller_f1-polymer-mockup-roll-y-45.stl`](derived/cooling_impeller_f1-polymer-mockup-roll-y-45.stl), [`derived/cooling_impeller_we43_f1-picogk.json`](derived/cooling_impeller_we43_f1-picogk.json), [`derived/cooling_impeller_we43_f1-picogk.stl`](derived/cooling_impeller_we43_f1-picogk.stl), [`derived/cooling_impeller_we43_f1.step`](derived/cooling_impeller_we43_f1.step), [`derived/cooling_impeller_we43_f1.stl`](derived/cooling_impeller_we43_f1.stl) |
+| `derived/` | CAD exports generated from the source (STEP for CAD tools, STL for meshing) | [`derived/cooling_impeller_f1-polymer-mockup-roll-y-45-picogk-gyroid.json`](derived/cooling_impeller_f1-polymer-mockup-roll-y-45-picogk-gyroid.json), [`derived/cooling_impeller_f1-polymer-mockup-roll-y-45.stl`](derived/cooling_impeller_f1-polymer-mockup-roll-y-45.stl), [`derived/cooling_impeller_we43_f1-picogk.json`](derived/cooling_impeller_we43_f1-picogk.json), [`derived/cooling_impeller_we43_f1-picogk.stl`](derived/cooling_impeller_we43_f1-picogk.stl), [`derived/cooling_impeller_we43_f1.step`](derived/cooling_impeller_we43_f1.step), [`derived/cooling_impeller_we43_f1.stl`](derived/cooling_impeller_we43_f1.stl) |
 | `evidence/` | screens, reports and manifests — **pinned by SHA-256, never edited by hand** | [`evidence/engineering-screen.json`](evidence/engineering-screen.json), [`evidence/fan-curves.png`](evidence/fan-curves.png), [`evidence/fe-screen/campbell.png`](evidence/fe-screen/campbell.png), [`evidence/fe-screen/fe-screen.json`](evidence/fe-screen/fe-screen.json), [`evidence/fe-screen/solver-benchmarks.json`](evidence/fe-screen/solver-benchmarks.json), [`evidence/flat-fan-sizing-f2.json`](evidence/flat-fan-sizing-f2.json), [`evidence/flat-fan-sizing-f2.png`](evidence/flat-fan-sizing-f2.png), [`evidence/lpbf-f0/993-eng-cooling-impeller-we43-f1-0001-layer-metrics.csv`](evidence/lpbf-f0/993-eng-cooling-impeller-we43-f1-0001-layer-metrics.csv), … (38 files) |
-| `media/` | concept-model views rendered from the CAD by `scripts/render_part_previews.py` — not pictures of the original | [`media/preview.json`](media/preview.json), [`media/preview.png`](media/preview.png), [`media/print-simulation/build-plate.png`](media/print-simulation/build-plate.png), [`media/print-simulation/build.gif`](media/print-simulation/build.gif), [`media/print-simulation/build.mp4`](media/print-simulation/build.mp4), [`media/print-simulation/layers.png`](media/print-simulation/layers.png), [`media/print-simulation/visuals.json`](media/print-simulation/visuals.json), [`media/views.png`](media/views.png) |
-| `source/` | parametric source — the editable master that generates the geometry | [`source/bionic.json`](source/bionic.json), [`source/cooling_impeller_f1.py`](source/cooling_impeller_f1.py), [`source/fe_screen_f1.py`](source/fe_screen_f1.py), [`source/flat_fan_sizing_f2.py`](source/flat_fan_sizing_f2.py), [`source/lpbf-thermal-study.json`](source/lpbf-thermal-study.json), [`source/picogk.json`](source/picogk.json), [`source/polymer-mockup.json`](source/polymer-mockup.json), [`source/render_lpbf_thermal.py`](source/render_lpbf_thermal.py), … (10 files) |
+| `media/` | concept-model views rendered from the CAD by `scripts/render_part_previews.py` — not pictures of the original; labelled AI studio illustration and provenance, not a photograph | [`media/gyroid.json`](media/gyroid.json), [`media/gyroid.png`](media/gyroid.png), [`media/photo-concept.png`](media/photo-concept.png), [`media/photo.json`](media/photo.json), [`media/preview.json`](media/preview.json), [`media/preview.png`](media/preview.png), [`media/print-simulation/build-plate.png`](media/print-simulation/build-plate.png), [`media/print-simulation/build.gif`](media/print-simulation/build.gif), … (12 files) |
+| `source/` | parametric source — the editable master that generates the geometry | [`source/bionic.json`](source/bionic.json), [`source/cooling_impeller_f1.py`](source/cooling_impeller_f1.py), [`source/fe_screen_f1.py`](source/fe_screen_f1.py), [`source/flat_fan_sizing_f2.py`](source/flat_fan_sizing_f2.py), [`source/gyroid.json`](source/gyroid.json), [`source/lpbf-thermal-study.json`](source/lpbf-thermal-study.json), [`source/picogk.json`](source/picogk.json), [`source/polymer-mockup.json`](source/polymer-mockup.json), … (11 files) |
 
 ## Read more
 
@@ -127,7 +133,7 @@ flowchart LR
 - **Design dossier**: [993_FLAT_FAN_SIZING_F2](../../docs/993/993_FLAT_FAN_SIZING_F2.md)
 - **Design dossier**: [993_K16_ROD_IMPROVEMENT_PROGRAMME](../../docs/993/993_K16_ROD_IMPROVEMENT_PROGRAMME.md)
 - **Design dossier**: [impeller-we43-thermal-20261012](../../docs/993/impeller-we43-thermal-20261012.md)
-- **Safety rules**: [SAFETY.md](../../SAFETY.md)
+- **Safety rules**: [SAFETY.md](../../docs/SAFETY.md)
 
 ---
 

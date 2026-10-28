@@ -1,0 +1,25 @@
+# HELD/UNRUN extra registration block for the new observer003 library only.
+# Preserve the existing RICH2 Problem parameters when incorporating this fragment.
+# object_names is deliberately absent; do not restrict the host Factory.
+[Problem]
+  register_objects_from = CouponEnd181ObserverApp
+  library_path = '<FRESH_OWNED_PLUGIN_LIBRARY_DIRECTORY>'
+  library_name = libcoupon_end181_observer-opt.la
+[]
+
+# HELD/UNRUN fragment only. It is not a complete or admitted native input.
+# Future integration adds this output to an otherwise unchanged own RICH2 case.
+[Outputs/rich2_END181_dof_map]
+  type = CouponEnd181DofMap
+  file_base = rich2-END181-dof-map
+  execute_on = TIMESTEP_END
+  start_step = 181
+  end_step = 181
+  use_displaced = false
+[]
+
+# Only these three passive viewer option/value pairs may be appended to the
+# existing petsc_options_iname/value lists. Preserve every original entry:
+# -snes_monitor_solution        binary:physical-X.petsc::append
+# -snes_monitor_residual        binary:physical-F.petsc::append
+# -snes_monitor_solution_update binary:physical-Y.petsc::append

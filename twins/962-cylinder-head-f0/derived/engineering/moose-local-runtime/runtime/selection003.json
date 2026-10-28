@@ -1,0 +1,643 @@
+{
+  "MOOSE_or_PDE_executed": false,
+  "PETSc_config_defines": {
+    "PETSC_HAVE_EXODUSII": null,
+    "PETSC_HAVE_HDF5": "1",
+    "PETSC_HAVE_HYPRE": "1",
+    "PETSC_HAVE_MPIUNI": null,
+    "PETSC_HAVE_MPI_INIT_THREAD": "1",
+    "PETSC_HAVE_NETCDF": null,
+    "PETSC_HAVE_OPENBLAS": "1",
+    "PETSC_USE_64BIT_INDICES": "1",
+    "PETSC_USE_COMPLEX": null,
+    "PETSC_USE_REAL_DOUBLE": "1",
+    "PETSC_USE_REAL_SINGLE": null
+  },
+  "architecture_metadata": "All six selected owners declare subdir=osx-arm64. No Mach-O/header decode, executable/library import or native architecture observation was performed.",
+  "head_or_physical_qualification": false,
+  "installation_associations": {
+    "work/962-engineering/moose-local-install-state-002/installation-receipt.json": {
+      "bytes": 53944,
+      "sha256": "9b7e0c51bd44b28611c0302d1e7cd92cfe614ff504ba1b781f893280bd884802"
+    },
+    "work/962-engineering/moose-local-prefix-install-result-peer-002/review.json": {
+      "bytes": 3682,
+      "sha256": "dfcc3b4f6c6d55fa7c9fca4de3d0973acc80c69f34a58069c682f698298d09e1"
+    },
+    "work/962-engineering/moose-local-prefix-install-root-execution-002/closed-result.json": {
+      "bytes": 23743,
+      "sha256": "d77c5f26884d7b201ae06aec31999ec0d47d19a37c91266c2a6c72da6bb9a7c7"
+    }
+  },
+  "installed_record_reference_differences": {
+    "bin/combined-opt": {
+      "installed_record_reference": "72fd5443f33bcdb23e9331bff38b742769e3cf35e761bf2a00b81c91302a36c1",
+      "observed": "b11b7c481e502e0ae5dc61eba18e3e096c9ebf0dfee3f29b005353c9a1455547"
+    },
+    "lib/combined/libcombined-opt.0.dylib": {
+      "installed_record_reference": "f96b80422f2fc5e26af481cb32d99496ee0c0e0264f279c7e2b1f92a1008eb3f",
+      "observed": "ecb40362280d7df6e4f911fd482f55453ce54ff1c69b7645067d60c1b9547480"
+    },
+    "lib/combined/libhit-opt.0.dylib": {
+      "installed_record_reference": "889205d05c355043b16ac991f0fead0545b17fd92623633abffeb54123059dc5",
+      "observed": "7f40295ad8adb649af81c4216277d366f7f75f2e9acfc70231d03aab56097ca1"
+    },
+    "lib/combined/libmoose-opt.0.dylib": {
+      "installed_record_reference": "f62907e581d205f8109ec993458a79a226912817cb8d70ffde9f412b286e0fd0",
+      "observed": "99ebae63dc8b164a49925bcf92396eeedd2b53496abf19416236f73e61847250"
+    },
+    "lib/combined/libsolid_mechanics-opt.0.dylib": {
+      "installed_record_reference": "91498ec34fdac43da4d05b69b183c1073418d158d5f318a343d23a456ccb307e",
+      "observed": "343a0a614aaa5d16182cc094ddd7ca49979fb7545e525c4a8859a7568522ae35"
+    },
+    "lib/libfabric.1.dylib": {
+      "installed_record_reference": "a57b3e836aed4b39e61dc810e46505db967ab9ec62b4a63992d5f88fa86d98e3",
+      "observed": "2046a60ccbcf5dfc906251f0e08ca964c27b3499b7800d4de1edbbf238115aa3"
+    },
+    "lib/libhdf5.310.dylib": {
+      "installed_record_reference": "79f5c629d504a986b9f86b77a49e8d7806c85fb782ec1811346da5a67bc25b1e",
+      "observed": "8d20ef4d58920a7b41c66a022079356a55a7dd9ae9f12868a759d54d59c1aa49"
+    },
+    "lib/libmesh_opt.0.dylib": {
+      "installed_record_reference": "fcf4bb54f326cf55b22d5c7a07f19454345824238096b994bc966b535428e7a0",
+      "observed": "e24765601db10ae4c077a366452f47bcf606ade218ca606c6d60464275be5680"
+    },
+    "lib/libmetaphysicl.11.dylib": {
+      "installed_record_reference": "2f0c897e92b2d6c6148a9335996ce3b37d48f25ad447406becd0b18f3f3d76ce",
+      "observed": "cb3ac115ab4f30e7da316fec63847c2107467e1ce29a473e3280397cfdba92a0"
+    },
+    "lib/libnetcdf.13.dylib": {
+      "installed_record_reference": "9c1b039d83f1c52c55eeeae060dd044bfddbbb9c3d10e8c7dd771a9a3fc70d96",
+      "observed": "87d655dd3c31eabfaec8dd3554b13ddd8afd71777045de6c7056773aa28133f0"
+    },
+    "lib/libpetsc.3.25.4.dylib": {
+      "installed_record_reference": "f28e1c64cf875ab756834dab31a12b95fd1f90b06572cbd0ecf667b6093e224a",
+      "observed": "5893a96e09b00eeb2cc724d4d2f9278756082dbfb101d3e892b90bc89f373e74"
+    },
+    "lib/libpmpi.12.dylib": {
+      "installed_record_reference": "ba79e135c30a7231df2f5c537790846fc9f8307019a52d84ba5206137c5f5855",
+      "observed": "7626555b9c94e8870f702baf983cf4faedacfa80873c5878275bbebb09468d87"
+    },
+    "lib/libtimpi_opt.11.dylib": {
+      "installed_record_reference": "f2d820d9870c9dba1d56c9941a422bbada14974dd414a4cbd550fcd2dcffcc82",
+      "observed": "efe1739323d62e0d6102d149dbc1716ceb4be940afc829380dd5b45b6bf90c94"
+    }
+  },
+  "limits": [
+    "Observed file hashes are distinct from Conda record sha256_in_prefix/reference values; differences are preserved without inferred cause or automatic acceptance.",
+    "This is a concrete selected binding subset, not complete dyld/ABI/transitive/build/environment closure. Other application modules, WASP/VTK, solver/compiler runtimes and OS frameworks are not fully enumerated.",
+    "PETSc configured HYPRE/double/OpenBLAS/MPI/HDF5 flags do not prove actual KSP/BoomerAMG or MOOSE runtime behavior.",
+    "PETSc netCDF/Exodus flags are not defined, while libMesh owns selected netCDF; no conclusion about actual MOOSE Exodus output follows.",
+    "No executable, otool, shared-library import, readiness, MOOSE mesh import, solver, PDE or Git action occurred."
+  ],
+  "metadata_hash_order_source_explanation": {
+    "finding": "PrefixReplaceLinkAction invokes update_prefix and calculates sha256_in_prefix on its intermediate before all verify actions leave batch_codesign_calls. The portability helper queues changed osx-arm64 binaries inside that batch and calls codesign on batch exit, before later prefix linking. This source order can account for a recorded pre-sign hash differing from the current installed file hash.",
+    "observed_scope": "13 of 18 selected current regular-file digests differ from installed-record references; both values are retained. Source order is a possible explanation, not per-file proof.",
+    "selected_installed_source": {
+      "work/962-engineering/moose-local-miniforge-001/lib/python3.14/site-packages/conda/core/link.py": {
+        "bytes": 66799,
+        "lines": [
+          [
+            626,
+            644
+          ]
+        ],
+        "sha256": "f8b35db672f811467aaeb587f8aeb9a99e774068bd4808fb3ebb5ba13342c578"
+      },
+      "work/962-engineering/moose-local-miniforge-001/lib/python3.14/site-packages/conda/core/path_actions.py": {
+        "bytes": 54600,
+        "lines": [
+          [
+            575,
+            614
+          ]
+        ],
+        "sha256": "65a077d1308ba01ea3102ab9f11443d208c4868e671938298035a11042fa903b"
+      },
+      "work/962-engineering/moose-local-miniforge-001/lib/python3.14/site-packages/conda/core/portability.py": {
+        "bytes": 18489,
+        "lines": [
+          [
+            127,
+            185
+          ]
+        ],
+        "sha256": "6970b89655d81fe1455f2ec6c18663c6908ead01a94bdd4c143a417283f46c79"
+      }
+    },
+    "uncertainty": "No signature verification, reconstruction of each intermediate, codesign replay, binary-load or native execution occurred. This explanation is source-backed and consistent with the differences; it is not certified signing/provenance or a statement of corruption. Root will independently verify the selected executable provenance/signature before readiness."
+  },
+  "native_launch_authorized": false,
+  "owning_package_metadata": {
+    "hdf5": {
+      "bytes": 59353,
+      "package": {
+        "build": "mpi_mpich_h15328f7_10",
+        "build_number": 10,
+        "channel": "https://conda.anaconda.org/conda-forge/osx-arm64",
+        "fn": "hdf5-1.14.6-mpi_mpich_h15328f7_10.conda",
+        "name": "hdf5",
+        "sha256": "4eb4e6535d24e25fe69f104ce679878671a3da8511e1a700f839497ebfa976e3",
+        "subdir": "osx-arm64",
+        "version": "1.14.6"
+      },
+      "path": "conda-meta/hdf5-1.14.6-mpi_mpich_h15328f7_10.json",
+      "sha256": "93b3b00f4c33d591c63ea48a4c1d578d3a68024f8d10127bd403759977622f74"
+    },
+    "libfabric1": {
+      "bytes": 2343,
+      "package": {
+        "build": "h84a0fba_0",
+        "build_number": 0,
+        "channel": "https://conda.anaconda.org/conda-forge/osx-arm64",
+        "fn": "libfabric1-2.6.0-h84a0fba_0.conda",
+        "name": "libfabric1",
+        "sha256": "267ab5fe990209b33de220432bcb595a88e6bb642e282bbe433a8edfdc811c1a",
+        "subdir": "osx-arm64",
+        "version": "2.6.0"
+      },
+      "path": "conda-meta/libfabric1-2.6.0-h84a0fba_0.json",
+      "sha256": "fb59df80bddb1a313ba7445427cfc20806095591abf504a58d430720cf1664fa"
+    },
+    "moose": {
+      "bytes": 12039956,
+      "package": {
+        "build": "mpich",
+        "build_number": 0,
+        "channel": "https://conda.software.inl.gov/public/osx-arm64",
+        "fn": "moose-2026.09.13-mpich.conda",
+        "name": "moose",
+        "sha256": "2fcdc21ef5ebb7f416df89aa7e992c2f3c77c0e1ebfe39ab3d93705829b3ad73",
+        "subdir": "osx-arm64",
+        "version": "2026.09.13"
+      },
+      "path": "conda-meta/moose-2026.09.13-mpich.json",
+      "sha256": "3587be7cbbe76d0588edf3ba84f1003e2827ebcc68599baf60a6821816adbe08"
+    },
+    "moose-libmesh": {
+      "bytes": 774312,
+      "package": {
+        "build": "mpich_1",
+        "build_number": 1,
+        "channel": "https://conda.software.inl.gov/public/osx-arm64",
+        "fn": "moose-libmesh-2026.08.18_0772c3d-mpich_1.conda",
+        "name": "moose-libmesh",
+        "sha256": "d6e6f5fd5ce4cb38d04a4dcf03581d003d08bc95daf87520ab5ba323eb9b0d73",
+        "subdir": "osx-arm64",
+        "version": "2026.08.18_0772c3d"
+      },
+      "path": "conda-meta/moose-libmesh-2026.08.18_0772c3d-mpich_1.json",
+      "sha256": "2d36f0568fe64839cf22fdd43c6bd036644dc6fb0dbadd384de9d45e8fd9ef37"
+    },
+    "moose-petsc": {
+      "bytes": 1337680,
+      "package": {
+        "build": "mpich_1",
+        "build_number": 1,
+        "channel": "https://conda.software.inl.gov/public/osx-arm64",
+        "fn": "moose-petsc-3.25.4-mpich_1.conda",
+        "name": "moose-petsc",
+        "sha256": "d045215d80e63a2867abdec2d3551a62a58884709b4f15c579bec3639aa2161d",
+        "subdir": "osx-arm64",
+        "version": "3.25.4"
+      },
+      "path": "conda-meta/moose-petsc-3.25.4-mpich_1.json",
+      "sha256": "312861ce4c28c18a1a43cf705522413d3c2c0d1fd5059c192668f34962cba8c4"
+    },
+    "mpich": {
+      "bytes": 21685,
+      "package": {
+        "build": "h7c78743_4",
+        "build_number": 4,
+        "channel": "https://conda.anaconda.org/conda-forge/osx-arm64",
+        "fn": "mpich-5.0.1-h7c78743_4.conda",
+        "name": "mpich",
+        "sha256": "4a321acdffd0dd9ce5ac0331fb87f065d23556656455622124f327e679eec840",
+        "subdir": "osx-arm64",
+        "version": "5.0.1"
+      },
+      "path": "conda-meta/mpich-5.0.1-h7c78743_4.json",
+      "sha256": "508413dc424298bfefa9e9b68d3049de82249a8303eac7ce3842a43800613e4b"
+    }
+  },
+  "prefix": "work/962-engineering/moose-local-installed-002",
+  "preserved_selection001": {
+    "path": "work/962-engineering/moose-local-readiness-runtime-selection-001/runtime-selection.json",
+    "regular_and_symlink_observations_reused_without_rehash_or_change": true,
+    "sha256": "2402741912d250af51a0eff59e6590ae508461703ecbcf7f499c0b878d846943"
+  },
+  "preserved_selection002": {
+    "bytes": 27983,
+    "path": "work/962-engineering/moose-local-readiness-runtime-selection-002/runtime-selection.json",
+    "sha256": "556d6844051a538e4d5ce42bd3e83c6a0630d27890318c9bda274ccf52605b55"
+  },
+  "raw_symlink_count": 13,
+  "regular_file_count": 18,
+  "regular_file_details": {
+    "bin/combined-opt": {
+      "bytes": 216704,
+      "current_hash_matches_record_reference": false,
+      "declared_archive_file_sha256": "68f4f2cb7e7dcea5f86d2857782f830103ae17003ce4003fd29789d13e235a6a",
+      "installed_record_sha256_in_prefix": "72fd5443f33bcdb23e9331bff38b742769e3cf35e761bf2a00b81c91302a36c1",
+      "metadata_file_sha256": "3587be7cbbe76d0588edf3ba84f1003e2827ebcc68599baf60a6821816adbe08",
+      "mode_octal": "0o755",
+      "owning_package": "moose",
+      "sha256": "b11b7c481e502e0ae5dc61eba18e3e096c9ebf0dfee3f29b005353c9a1455547"
+    },
+    "include/petscconf.h": {
+      "bytes": 9305,
+      "current_hash_matches_record_reference": true,
+      "declared_archive_file_sha256": "3ffaae5590421e4c2d975fab6d788e11d9bd70026651199633489750dd5e5791",
+      "installed_record_sha256_in_prefix": "d94fb68c8c27ac0c5190039866fe34fd019ce4f7e77ba4ed51fc65c2328512bd",
+      "metadata_file_sha256": "312861ce4c28c18a1a43cf705522413d3c2c0d1fd5059c192668f34962cba8c4",
+      "mode_octal": "0o644",
+      "owning_package": "moose-petsc",
+      "sha256": "d94fb68c8c27ac0c5190039866fe34fd019ce4f7e77ba4ed51fc65c2328512bd"
+    },
+    "lib/combined/libcombined-opt.0.dylib": {
+      "bytes": 164432,
+      "current_hash_matches_record_reference": false,
+      "declared_archive_file_sha256": "805a763ea62ec204c2ec126891677dbad669a225c9df67f807d2f30e33cfac2c",
+      "installed_record_sha256_in_prefix": "f96b80422f2fc5e26af481cb32d99496ee0c0e0264f279c7e2b1f92a1008eb3f",
+      "metadata_file_sha256": "3587be7cbbe76d0588edf3ba84f1003e2827ebcc68599baf60a6821816adbe08",
+      "mode_octal": "0o755",
+      "owning_package": "moose",
+      "sha256": "ecb40362280d7df6e4f911fd482f55453ce54ff1c69b7645067d60c1b9547480"
+    },
+    "lib/combined/libhit-opt.0.dylib": {
+      "bytes": 417104,
+      "current_hash_matches_record_reference": false,
+      "declared_archive_file_sha256": "cd71511ca87e09ab41d701948467b3d14239c096ea77cf6d93715e0b95dd8856",
+      "installed_record_sha256_in_prefix": "889205d05c355043b16ac991f0fead0545b17fd92623633abffeb54123059dc5",
+      "metadata_file_sha256": "3587be7cbbe76d0588edf3ba84f1003e2827ebcc68599baf60a6821816adbe08",
+      "mode_octal": "0o755",
+      "owning_package": "moose",
+      "sha256": "7f40295ad8adb649af81c4216277d366f7f75f2e9acfc70231d03aab56097ca1"
+    },
+    "lib/combined/libmoose-opt.0.dylib": {
+      "bytes": 43914560,
+      "current_hash_matches_record_reference": false,
+      "declared_archive_file_sha256": "8eb813c595b834215292239f3ac844761d9519a62e1b402cccd13a3a7183b466",
+      "installed_record_sha256_in_prefix": "f62907e581d205f8109ec993458a79a226912817cb8d70ffde9f412b286e0fd0",
+      "metadata_file_sha256": "3587be7cbbe76d0588edf3ba84f1003e2827ebcc68599baf60a6821816adbe08",
+      "mode_octal": "0o755",
+      "owning_package": "moose",
+      "sha256": "99ebae63dc8b164a49925bcf92396eeedd2b53496abf19416236f73e61847250"
+    },
+    "lib/combined/libsolid_mechanics-opt.0.dylib": {
+      "bytes": 12507520,
+      "current_hash_matches_record_reference": false,
+      "declared_archive_file_sha256": "6ba0d95c75aa9f0fdee25a75f60995d2d03ea295ca3d05d2946cd5c0625d8da7",
+      "installed_record_sha256_in_prefix": "91498ec34fdac43da4d05b69b183c1073418d158d5f318a343d23a456ccb307e",
+      "metadata_file_sha256": "3587be7cbbe76d0588edf3ba84f1003e2827ebcc68599baf60a6821816adbe08",
+      "mode_octal": "0o755",
+      "owning_package": "moose",
+      "sha256": "343a0a614aaa5d16182cc094ddd7ca49979fb7545e525c4a8859a7568522ae35"
+    },
+    "lib/libHYPRE-3.1.0.dylib": {
+      "bytes": 6110896,
+      "current_hash_matches_record_reference": true,
+      "declared_archive_file_sha256": "cf96a51af62f0aeb731addff178ea7236cd34c06cd2575922998b94bf7f8a965",
+      "installed_record_sha256_in_prefix": "cf96a51af62f0aeb731addff178ea7236cd34c06cd2575922998b94bf7f8a965",
+      "metadata_file_sha256": "312861ce4c28c18a1a43cf705522413d3c2c0d1fd5059c192668f34962cba8c4",
+      "mode_octal": "0o755",
+      "owning_package": "moose-petsc",
+      "sha256": "cf96a51af62f0aeb731addff178ea7236cd34c06cd2575922998b94bf7f8a965"
+    },
+    "lib/libfabric.1.dylib": {
+      "bytes": 965072,
+      "current_hash_matches_record_reference": false,
+      "declared_archive_file_sha256": "735588376b6c1002714f1fa753865b3eb582e4333c0011eab3c68d1c6a886182",
+      "installed_record_sha256_in_prefix": "a57b3e836aed4b39e61dc810e46505db967ab9ec62b4a63992d5f88fa86d98e3",
+      "metadata_file_sha256": "fb59df80bddb1a313ba7445427cfc20806095591abf504a58d430720cf1664fa",
+      "mode_octal": "0o755",
+      "owning_package": "libfabric1",
+      "sha256": "2046a60ccbcf5dfc906251f0e08ca964c27b3499b7800d4de1edbbf238115aa3"
+    },
+    "lib/libhdf5.310.dylib": {
+      "bytes": 3711584,
+      "current_hash_matches_record_reference": false,
+      "declared_archive_file_sha256": "96760501c646bd740741dd0ba9a97ec507487a5c33036c3a0d76b0c9e80d054c",
+      "installed_record_sha256_in_prefix": "79f5c629d504a986b9f86b77a49e8d7806c85fb782ec1811346da5a67bc25b1e",
+      "metadata_file_sha256": "93b3b00f4c33d591c63ea48a4c1d578d3a68024f8d10127bd403759977622f74",
+      "mode_octal": "0o755",
+      "owning_package": "hdf5",
+      "sha256": "8d20ef4d58920a7b41c66a022079356a55a7dd9ae9f12868a759d54d59c1aa49"
+    },
+    "lib/libhdf5_hl.310.dylib": {
+      "bytes": 155680,
+      "current_hash_matches_record_reference": true,
+      "declared_archive_file_sha256": "54a0829656cf9524b1848246e26f16a6d60080afee221a8d18808800c8359f6d",
+      "installed_record_sha256_in_prefix": "54a0829656cf9524b1848246e26f16a6d60080afee221a8d18808800c8359f6d",
+      "metadata_file_sha256": "93b3b00f4c33d591c63ea48a4c1d578d3a68024f8d10127bd403759977622f74",
+      "mode_octal": "0o755",
+      "owning_package": "hdf5",
+      "sha256": "54a0829656cf9524b1848246e26f16a6d60080afee221a8d18808800c8359f6d"
+    },
+    "lib/libmesh_opt.0.dylib": {
+      "bytes": 17874960,
+      "current_hash_matches_record_reference": false,
+      "declared_archive_file_sha256": "7e5a29589ad3c0d09e1ce69114508d9e12968749787088fbb4d144916e1c5cc8",
+      "installed_record_sha256_in_prefix": "fcf4bb54f326cf55b22d5c7a07f19454345824238096b994bc966b535428e7a0",
+      "metadata_file_sha256": "2d36f0568fe64839cf22fdd43c6bd036644dc6fb0dbadd384de9d45e8fd9ef37",
+      "mode_octal": "0o755",
+      "owning_package": "moose-libmesh",
+      "sha256": "e24765601db10ae4c077a366452f47bcf606ade218ca606c6d60464275be5680"
+    },
+    "lib/libmetaphysicl.11.dylib": {
+      "bytes": 53200,
+      "current_hash_matches_record_reference": false,
+      "declared_archive_file_sha256": "bddb02d8b072e95b028f4144e2df22682b26a113137b76ede04f914327b2b6c1",
+      "installed_record_sha256_in_prefix": "2f0c897e92b2d6c6148a9335996ce3b37d48f25ad447406becd0b18f3f3d76ce",
+      "metadata_file_sha256": "2d36f0568fe64839cf22fdd43c6bd036644dc6fb0dbadd384de9d45e8fd9ef37",
+      "mode_octal": "0o755",
+      "owning_package": "moose-libmesh",
+      "sha256": "cb3ac115ab4f30e7da316fec63847c2107467e1ce29a473e3280397cfdba92a0"
+    },
+    "lib/libmpi.12.dylib": {
+      "bytes": 2093552,
+      "current_hash_matches_record_reference": true,
+      "declared_archive_file_sha256": "a61e0531bbd5e7ba81b2326004245b84b99fda8756a3f57580c03374f8353eb1",
+      "installed_record_sha256_in_prefix": "a61e0531bbd5e7ba81b2326004245b84b99fda8756a3f57580c03374f8353eb1",
+      "metadata_file_sha256": "508413dc424298bfefa9e9b68d3049de82249a8303eac7ce3842a43800613e4b",
+      "mode_octal": "0o755",
+      "owning_package": "mpich",
+      "sha256": "a61e0531bbd5e7ba81b2326004245b84b99fda8756a3f57580c03374f8353eb1"
+    },
+    "lib/libnetcdf.13.dylib": {
+      "bytes": 997584,
+      "current_hash_matches_record_reference": false,
+      "declared_archive_file_sha256": "cecfa4d16120d0be121a8d8714b539f873e153a1f5c6960a2fe0ef433eb2315f",
+      "installed_record_sha256_in_prefix": "9c1b039d83f1c52c55eeeae060dd044bfddbbb9c3d10e8c7dd771a9a3fc70d96",
+      "metadata_file_sha256": "2d36f0568fe64839cf22fdd43c6bd036644dc6fb0dbadd384de9d45e8fd9ef37",
+      "mode_octal": "0o755",
+      "owning_package": "moose-libmesh",
+      "sha256": "87d655dd3c31eabfaec8dd3554b13ddd8afd71777045de6c7056773aa28133f0"
+    },
+    "lib/libopenblasp-r0.3.32.dylib": {
+      "bytes": 27557040,
+      "current_hash_matches_record_reference": true,
+      "declared_archive_file_sha256": "fe9ba17cf56f1108d0e8b7f1aa059e75818cd56b3b000be3a5a6ad9305ff1d9a",
+      "installed_record_sha256_in_prefix": "fe9ba17cf56f1108d0e8b7f1aa059e75818cd56b3b000be3a5a6ad9305ff1d9a",
+      "metadata_file_sha256": "312861ce4c28c18a1a43cf705522413d3c2c0d1fd5059c192668f34962cba8c4",
+      "mode_octal": "0o755",
+      "owning_package": "moose-petsc",
+      "sha256": "fe9ba17cf56f1108d0e8b7f1aa059e75818cd56b3b000be3a5a6ad9305ff1d9a"
+    },
+    "lib/libpetsc.3.25.4.dylib": {
+      "bytes": 27359296,
+      "current_hash_matches_record_reference": false,
+      "declared_archive_file_sha256": "9d486f1fe98a3f4819205f7dcd16bebca6bfbc7d24e5c4703c3b059bcbab0e9a",
+      "installed_record_sha256_in_prefix": "f28e1c64cf875ab756834dab31a12b95fd1f90b06572cbd0ecf667b6093e224a",
+      "metadata_file_sha256": "312861ce4c28c18a1a43cf705522413d3c2c0d1fd5059c192668f34962cba8c4",
+      "mode_octal": "0o755",
+      "owning_package": "moose-petsc",
+      "sha256": "5893a96e09b00eeb2cc724d4d2f9278756082dbfb101d3e892b90bc89f373e74"
+    },
+    "lib/libpmpi.12.dylib": {
+      "bytes": 10983760,
+      "current_hash_matches_record_reference": false,
+      "declared_archive_file_sha256": "0450f2d33c8ec3d1e8de1bc86e14a5877c1f2f1c5911ef7c51a5229868ebe644",
+      "installed_record_sha256_in_prefix": "ba79e135c30a7231df2f5c537790846fc9f8307019a52d84ba5206137c5f5855",
+      "metadata_file_sha256": "508413dc424298bfefa9e9b68d3049de82249a8303eac7ce3842a43800613e4b",
+      "mode_octal": "0o755",
+      "owning_package": "mpich",
+      "sha256": "7626555b9c94e8870f702baf983cf4faedacfa80873c5878275bbebb09468d87"
+    },
+    "lib/libtimpi_opt.11.dylib": {
+      "bytes": 99952,
+      "current_hash_matches_record_reference": false,
+      "declared_archive_file_sha256": "4c7946470680725095e5611c2c2bc7127e2aa950a020ab8283ac87d0a182fb58",
+      "installed_record_sha256_in_prefix": "f2d820d9870c9dba1d56c9941a422bbada14974dd414a4cbd550fcd2dcffcc82",
+      "metadata_file_sha256": "2d36f0568fe64839cf22fdd43c6bd036644dc6fb0dbadd384de9d45e8fd9ef37",
+      "mode_octal": "0o755",
+      "owning_package": "moose-libmesh",
+      "sha256": "efe1739323d62e0d6102d149dbc1716ceb4be940afc829380dd5b45b6bf90c94"
+    }
+  },
+  "runtime_sha256s": {
+    "bin/combined-opt": "b11b7c481e502e0ae5dc61eba18e3e096c9ebf0dfee3f29b005353c9a1455547",
+    "include/petscconf.h": "d94fb68c8c27ac0c5190039866fe34fd019ce4f7e77ba4ed51fc65c2328512bd",
+    "lib/combined/libcombined-opt.0.dylib": "ecb40362280d7df6e4f911fd482f55453ce54ff1c69b7645067d60c1b9547480",
+    "lib/combined/libhit-opt.0.dylib": "7f40295ad8adb649af81c4216277d366f7f75f2e9acfc70231d03aab56097ca1",
+    "lib/combined/libmoose-opt.0.dylib": "99ebae63dc8b164a49925bcf92396eeedd2b53496abf19416236f73e61847250",
+    "lib/combined/libsolid_mechanics-opt.0.dylib": "343a0a614aaa5d16182cc094ddd7ca49979fb7545e525c4a8859a7568522ae35",
+    "lib/libHYPRE-3.1.0.dylib": "cf96a51af62f0aeb731addff178ea7236cd34c06cd2575922998b94bf7f8a965",
+    "lib/libfabric.1.dylib": "2046a60ccbcf5dfc906251f0e08ca964c27b3499b7800d4de1edbbf238115aa3",
+    "lib/libhdf5.310.dylib": "8d20ef4d58920a7b41c66a022079356a55a7dd9ae9f12868a759d54d59c1aa49",
+    "lib/libhdf5_hl.310.dylib": "54a0829656cf9524b1848246e26f16a6d60080afee221a8d18808800c8359f6d",
+    "lib/libmesh_opt.0.dylib": "e24765601db10ae4c077a366452f47bcf606ade218ca606c6d60464275be5680",
+    "lib/libmetaphysicl.11.dylib": "cb3ac115ab4f30e7da316fec63847c2107467e1ce29a473e3280397cfdba92a0",
+    "lib/libmpi.12.dylib": "a61e0531bbd5e7ba81b2326004245b84b99fda8756a3f57580c03374f8353eb1",
+    "lib/libnetcdf.13.dylib": "87d655dd3c31eabfaec8dd3554b13ddd8afd71777045de6c7056773aa28133f0",
+    "lib/libopenblasp-r0.3.32.dylib": "fe9ba17cf56f1108d0e8b7f1aa059e75818cd56b3b000be3a5a6ad9305ff1d9a",
+    "lib/libpetsc.3.25.4.dylib": "5893a96e09b00eeb2cc724d4d2f9278756082dbfb101d3e892b90bc89f373e74",
+    "lib/libpmpi.12.dylib": "7626555b9c94e8870f702baf983cf4faedacfa80873c5878275bbebb09468d87",
+    "lib/libtimpi_opt.11.dylib": "efe1739323d62e0d6102d149dbc1716ceb4be940afc829380dd5b45b6bf90c94"
+  },
+  "runtime_symlinks": {
+    "bin/moose-opt": "combined-opt",
+    "lib/libHYPRE.dylib": "libHYPRE-3.1.0.dylib",
+    "lib/libhdf5.dylib": "libhdf5.310.dylib",
+    "lib/libhdf5_hl.dylib": "libhdf5_hl.310.dylib",
+    "lib/libmesh_opt.dylib": "libmesh_opt.0.dylib",
+    "lib/libmetaphysicl.dylib": "libmetaphysicl.11.dylib",
+    "lib/libmpi.dylib": "libmpi.12.dylib",
+    "lib/libmpich.dylib": "libmpi.dylib",
+    "lib/libnetcdf.dylib": "libnetcdf.13.dylib",
+    "lib/libopenblas.dylib": "libopenblasp-r0.3.32.dylib",
+    "lib/libpetsc.dylib": "libpetsc.3.25.4.dylib",
+    "lib/libpmpi.dylib": "libpmpi.12.dylib",
+    "lib/libtimpi_opt.dylib": "libtimpi_opt.11.dylib"
+  },
+  "schema": "962-selected-installed-MOOSE-readiness-runtime/v1",
+  "scope": "The prior16 regular paths/12 links are unchanged; two explicit shutdown regular files and one existing raw alias are added from exact MPICH/libfabric1 package records. Six owners selected; no whole-prefix payload inventory or complete304 audit repeated.",
+  "selection_roles": {
+    "BLAS": {
+      "owning_package": "moose-petsc",
+      "resolved_regular_path": "lib/libopenblasp-r0.3.32.dylib",
+      "selected_path": "lib/libopenblas.dylib"
+    },
+    "HDF5": {
+      "owning_package": "hdf5",
+      "resolved_regular_path": "lib/libhdf5.310.dylib",
+      "selected_path": "lib/libhdf5.dylib"
+    },
+    "HDF5_HL": {
+      "owning_package": "hdf5",
+      "resolved_regular_path": "lib/libhdf5_hl.310.dylib",
+      "selected_path": "lib/libhdf5_hl.dylib"
+    },
+    "HIT_parser": {
+      "owning_package": "moose",
+      "resolved_regular_path": "lib/combined/libhit-opt.0.dylib",
+      "selected_path": "lib/combined/libhit-opt.0.dylib"
+    },
+    "HYPRE": {
+      "owning_package": "moose-petsc",
+      "resolved_regular_path": "lib/libHYPRE-3.1.0.dylib",
+      "selected_path": "lib/libHYPRE.dylib"
+    },
+    "MPI": {
+      "owning_package": "mpich",
+      "resolved_regular_path": "lib/libmpi.12.dylib",
+      "selected_path": "lib/libmpi.dylib"
+    },
+    "MPICH_alias": {
+      "owning_package": "mpich",
+      "resolved_regular_path": "lib/libmpi.12.dylib",
+      "selected_path": "lib/libmpich.dylib"
+    },
+    "MetaPhysicL": {
+      "owning_package": "moose-libmesh",
+      "resolved_regular_path": "lib/libmetaphysicl.11.dylib",
+      "selected_path": "lib/libmetaphysicl.dylib"
+    },
+    "PETSc": {
+      "owning_package": "moose-petsc",
+      "resolved_regular_path": "lib/libpetsc.3.25.4.dylib",
+      "selected_path": "lib/libpetsc.dylib"
+    },
+    "PETSc_config": {
+      "owning_package": "moose-petsc",
+      "resolved_regular_path": "include/petscconf.h",
+      "selected_path": "include/petscconf.h"
+    },
+    "PMPI_shutdown": {
+      "owning_package": "mpich",
+      "resolved_regular_path": "lib/libpmpi.12.dylib",
+      "selected_path": "lib/libpmpi.dylib"
+    },
+    "TIMPI": {
+      "owning_package": "moose-libmesh",
+      "resolved_regular_path": "lib/libtimpi_opt.11.dylib",
+      "selected_path": "lib/libtimpi_opt.dylib"
+    },
+    "application": {
+      "owning_package": "moose",
+      "resolved_regular_path": "bin/combined-opt",
+      "selected_path": "bin/combined-opt"
+    },
+    "application_alias": {
+      "owning_package": "moose",
+      "resolved_regular_path": "bin/combined-opt",
+      "selected_path": "bin/moose-opt"
+    },
+    "combined_library": {
+      "owning_package": "moose",
+      "resolved_regular_path": "lib/combined/libcombined-opt.0.dylib",
+      "selected_path": "lib/combined/libcombined-opt.0.dylib"
+    },
+    "framework": {
+      "owning_package": "moose",
+      "resolved_regular_path": "lib/combined/libmoose-opt.0.dylib",
+      "selected_path": "lib/combined/libmoose-opt.0.dylib"
+    },
+    "libMesh": {
+      "owning_package": "moose-libmesh",
+      "resolved_regular_path": "lib/libmesh_opt.0.dylib",
+      "selected_path": "lib/libmesh_opt.dylib"
+    },
+    "libfabric_shutdown": {
+      "owning_package": "libfabric1",
+      "resolved_regular_path": "lib/libfabric.1.dylib",
+      "selected_path": "lib/libfabric.1.dylib"
+    },
+    "netCDF": {
+      "owning_package": "moose-libmesh",
+      "resolved_regular_path": "lib/libnetcdf.13.dylib",
+      "selected_path": "lib/libnetcdf.dylib"
+    },
+    "solid_mechanics": {
+      "owning_package": "moose",
+      "resolved_regular_path": "lib/combined/libsolid_mechanics-opt.0.dylib",
+      "selected_path": "lib/combined/libsolid_mechanics-opt.0.dylib"
+    }
+  },
+  "shutdown_extension": {
+    "added_raw_aliases": [
+      "lib/libpmpi.dylib"
+    ],
+    "added_regular_files": [
+      "lib/libpmpi.12.dylib",
+      "lib/libfabric.1.dylib"
+    ],
+    "environment_source_note": {
+      "path": "work/962-engineering/moose-local-mpi-provider-source-note-001/sources.json",
+      "sha256": "b9ff07d7feb0a432ef90c4e50ec4019b89df1afec37eff9b2422cbbbc028e721"
+    },
+    "lib_libfabric_dylib_alias_absent": true,
+    "new_two_files_signature_verification_by_preparer": false,
+    "root_new_two_file_signature_or_provenance_review_required_before_future_launch": true,
+    "tcp_provider_compiled_or_usable_availability_known": false
+  },
+  "status": "READ_ONLY_SELECTED_RUNTIME_SUCCESSOR_TWO_SHUTDOWN_LIBRARIES_ADDED_NO_NATIVE_AUTHORITY",
+  "symlink_details": {
+    "bin/moose-opt": {
+      "owning_package": "moose",
+      "raw_target_UTF8_sha256": "6d63dbc454e066f1185de27eab0fddc36bfcd5153b3821c2f04bc80611427fd3",
+      "resolved_regular_path": "bin/combined-opt"
+    },
+    "lib/libHYPRE.dylib": {
+      "owning_package": "moose-petsc",
+      "raw_target_UTF8_sha256": "9d42b646d02edcac695f95659bce1722e55430e87842c38b8a17cbbb972f23f7",
+      "resolved_regular_path": "lib/libHYPRE-3.1.0.dylib"
+    },
+    "lib/libhdf5.dylib": {
+      "owning_package": "hdf5",
+      "raw_target_UTF8_sha256": "b4977bd7373e55d53f98dce1be28bf68e7621b80d61234a151d489cc43cf02b1",
+      "resolved_regular_path": "lib/libhdf5.310.dylib"
+    },
+    "lib/libhdf5_hl.dylib": {
+      "owning_package": "hdf5",
+      "raw_target_UTF8_sha256": "9ff094735ad18b7ea4281a56e437040edacb7045897ba565109cb79f777412b0",
+      "resolved_regular_path": "lib/libhdf5_hl.310.dylib"
+    },
+    "lib/libmesh_opt.dylib": {
+      "owning_package": "moose-libmesh",
+      "raw_target_UTF8_sha256": "33898b2a2cd531c72fb97ea2bf945d2891f30e3c11ff3986c07d97a0b51412c2",
+      "resolved_regular_path": "lib/libmesh_opt.0.dylib"
+    },
+    "lib/libmetaphysicl.dylib": {
+      "owning_package": "moose-libmesh",
+      "raw_target_UTF8_sha256": "dbc083c63f4be76f3fdc78a9c29e5e0c6b9b1af20c8e6bc83c071d36f5500165",
+      "resolved_regular_path": "lib/libmetaphysicl.11.dylib"
+    },
+    "lib/libmpi.dylib": {
+      "owning_package": "mpich",
+      "raw_target_UTF8_sha256": "ad0ad12c3d1f653f4126ca2b7f661e58a059efe7e237cb0e5142ffca0078fcf6",
+      "resolved_regular_path": "lib/libmpi.12.dylib"
+    },
+    "lib/libmpich.dylib": {
+      "owning_package": "mpich",
+      "raw_target_UTF8_sha256": "07b6f43df99c8da3dfe8641beaa6c17f04fa7629dec203ae6164f5605ac0c258",
+      "resolved_regular_path": "lib/libmpi.12.dylib"
+    },
+    "lib/libnetcdf.dylib": {
+      "owning_package": "moose-libmesh",
+      "raw_target_UTF8_sha256": "8a346b444a4729bd89ee8aa54946f46aaa503d3e24af39f6e1b8404928c2ea7a",
+      "resolved_regular_path": "lib/libnetcdf.13.dylib"
+    },
+    "lib/libopenblas.dylib": {
+      "owning_package": "moose-petsc",
+      "raw_target_UTF8_sha256": "a4c5b8678efda45d2475177a1c0ba94a9a19f1516428f53b2a6d9342ccc286aa",
+      "resolved_regular_path": "lib/libopenblasp-r0.3.32.dylib"
+    },
+    "lib/libpetsc.dylib": {
+      "owning_package": "moose-petsc",
+      "raw_target_UTF8_sha256": "e4496778f605e3a0a3b0f3c664d917d5f48ecbed2e583247b5a7fffb626d9dc7",
+      "resolved_regular_path": "lib/libpetsc.3.25.4.dylib"
+    },
+    "lib/libpmpi.dylib": {
+      "owning_package": "mpich",
+      "raw_target_UTF8_sha256": "7a21647708b6994c2c7ce3e034a98ff3569ff361130c55943742ee489c76e474",
+      "resolved_regular_path": "lib/libpmpi.12.dylib"
+    },
+    "lib/libtimpi_opt.dylib": {
+      "owning_package": "moose-libmesh",
+      "raw_target_UTF8_sha256": "421148b8fc1ab8c5fb26bddcdb4e77b74bd187cae6ab16c73f6bd694e3a0004a",
+      "resolved_regular_path": "lib/libtimpi_opt.11.dylib"
+    }
+  },
+  "total_selected_regular_bytes": 155192201
+}

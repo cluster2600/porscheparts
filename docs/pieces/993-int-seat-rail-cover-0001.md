@@ -2,7 +2,7 @@
 
 # Seat rail cover, outer side
 
-**Status: non-critical. No part is released; see [SAFETY.md](../../SAFETY.md).**
+**Status: non-critical. No part is released; see [SAFETY.md](../../docs/SAFETY.md).**
 
 Trim cover for the seat rail, existing in symmetrical left and right versions. Selected as the pilot for the symmetrical category of phase 2: a missing piece must be reconstructed from its counterpart and its surroundings.
 
@@ -83,6 +83,10 @@ Catalogue record: [`catalog/parts/993-int-seat-rail-cover-0001.json`](../../cata
 
 *`parts/993-int-seat-rail-cover-0001/media/views.png` — concept CAD block, **not** the original part, not a print file.*
 
+![photo-concept](../../parts/993-int-seat-rail-cover-0001/media/photo-concept.png)
+
+*`parts/993-int-seat-rail-cover-0001/media/photo-concept.png` — AI-generated studio illustration based on the concept CAD preview. Material and finish are illustrative; generated details may differ. Not a photograph or evidence of fit, function or manufacturing.*
+
 ## Provenance and sources
 
 | field | value |
@@ -100,7 +104,7 @@ Catalogue record: [`catalog/parts/993-int-seat-rail-cover-0001.json`](../../cata
 | status | concept |
 | vehicle tested | not recorded |
 | reviewed by |  |
-| limitations | not recorded |
+| limitations | Left-right symmetry is assumed and must be verified by measurement before any mirroring.<br>The seat and the rail differ by equipment: variant to be confirmed.<br>No measurement taken.<br>A part obtained by mirroring does not replace verification of the real interfaces.<br>Porsche part numbers unsourced: 9xxteile shows distinct left and right numbers, but no repository source transcribes them with a PET plate and position.<br>Evidence owner (decision 0013): documentary evidence, the maintainer (desk review of existing sources); physical capture, unassigned, awaits an external contributor. |
 
 **Evidence**
 

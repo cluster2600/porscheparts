@@ -1,0 +1,65 @@
+{
+  "status": "failed_with_classified_baseline_and_runtime_mismatches",
+  "make_exit_code": 2,
+  "failures": 4,
+  "errors": 1,
+  "skipped": 177,
+  "runtime": {
+    "python": "3.11.15",
+    "numpy": "1.26.4",
+    "environment": "work/part-workflow/runtimes/pyslm-coverage-011/env",
+    "support_source_sha256": "68db985051d252619d80dc96558c1db6d3d20b60b5965c4825d5aab51e228744",
+    "historic_process_expected_support_source_sha256": "fea7275ce46ad8d4f9c9471457c260111e7a1278b2dce315d126c8341e957c52"
+  },
+  "preexisting": [
+    {
+      "test": "test_917_bionic_head.BionicHeadTests.setUpClass",
+      "reason": "NumPy1.26.4 has no np.trapezoid; same error in prior Python3.11 log"
+    },
+    {
+      "test": "test_993_cooling_impeller_we43_f1.CoolingImpellerWE43F1Tests.test_committed_step_sources_and_catalogue_are_fail_closed",
+      "reason": "Exact floating dictionary mismatch; same values/error in baseline log"
+    },
+    {
+      "test": "test_993_fan_stator_alsi10mg_f1.FanStatorAlSi10MgF1Tests.test_committed_step_and_catalogue_are_fail_closed",
+      "reason": "Exact floating dictionary mismatch; same values/error in baseline log"
+    }
+  ],
+  "new_code_failures_identified": [],
+  "known_runtime_mismatches": [
+    {
+      "test": "test_carrier_process_20261016.NativeBuildPreparationTests.test_meshing_identity_receipt_is_strict_and_mutually_exclusive",
+      "reason": "Historical builder rejects installed coverage-runtime support SHA before reaching the input identity guard expected by this test"
+    },
+    {
+      "test": "test_carrier_process_20261016.NativeBuildPreparationTests.test_wrong_input_hash_cannot_create_output",
+      "reason": "Historical builder rejects installed coverage-runtime support SHA before reaching the input identity guard expected by this test"
+    }
+  ],
+  "historical_runtime_control": {
+    "path": "parts/993-eng-carrier-0001/source/process-scanpath-audit-20261016/historical-runtime-checks-001.json",
+    "status": "passed",
+    "rerun_this_invocation": false
+  },
+  "tests": 4414,
+  "seconds": 439.744,
+  "log": {
+    "path": "work/part-workflow/make-check-final-v6-001-20261016.log",
+    "sha256": "65d89e20dc2a8312956834b0585f2e2450570e58206f413f400f9408254aafe5"
+  },
+  "comparison_baseline": {
+    "path": "parts/993-eng-carrier-0001/source/process-scanpath-audit-20261016/repository-checks-004.json",
+    "sha256": "0d3d391b36c81305b8679f3cffd727cf4781b7ae53dcdc71bb4af15719729f6f"
+  },
+  "failure_identity_comparison": {
+    "equal": true,
+    "new": [],
+    "missing": [],
+    "additional_tests_discovered": 39
+  },
+  "scope": "Full make check under explicit AM011 PATH after frozen recipe v6 (293 pins), exact-area producers v7, parallel cached builder v6, guide v6 and runner v2. All five failure identities match invocation004, with39additionaltests. Make stops at unit tests; later dependent targets and a cold carrier run are not claimed. The preexisting non-versioned primitive coverage test remains discoverable.",
+  "recipe": {
+    "path": "manufacturing/workflows/993-carrier-lpbf-v6.json",
+    "sha256": "54d777d2bbb43a35a23450591514e9ea1b5245f621f57ca914b43780322b58ae"
+  }
+}

@@ -1,0 +1,139 @@
+{
+  "reviewed_on": "2026-10-25",
+  "status": "research_and_training_checks_passed_with_documented_global_check_omission",
+  "checks": [
+    {
+      "command": "python scripts/validate_sources.py",
+      "result": "passed",
+      "canonical_source_records": 606,
+      "log_sha256": "bce13bb36e74415a6e6fe7104cfdb613dad152fb776ad46f2d0f0af06c504bcc"
+    },
+    {
+      "command": "python scripts/check_doc_links.py --strict",
+      "result": "passed",
+      "markdown_files": 1836,
+      "broken_relative_links": 0,
+      "historical_links_rechecked_live": false,
+      "log_sha256": "c8e3e24d37939ca42856afe4cf1c619a12fd638c2cdab74f2a20c04a596043f2"
+    },
+    {
+      "command": "python training/m64-precision-20261025/verify.py",
+      "result": "passed",
+      "cpt_rows": 20,
+      "sft_rows": 20,
+      "partitions_each": {
+        "train": 20,
+        "valid": 0,
+        "test": 0
+      },
+      "excluded": 0,
+      "all_six_prior_partitions_preserved": true,
+      "training_manifest_sha256": "3e67336c4d4e5d4c8e7be0255b0a799d6c1beb7df4cd774174125fa8ce3dd16c"
+    },
+    {
+      "command": "python training/m64-precision-20261025/test_verify.py",
+      "result": "passed",
+      "tests": 32,
+      "log_sha256": "a0742db26b24c6333e61c9bc2bf7b46176a62fdf995ee44ae7eb1240a7f2be0f"
+    },
+    {
+      "command": "python training/993-turbo-20261002/verify.py",
+      "result": "passed; frozen pack unchanged",
+      "log_sha256": "8947124e511bf2d3bc8c16b9c807573138e52c1643bf3888332b6b22725f50f3"
+    },
+    {
+      "command": "python training/mezger-turbo-materials-20261003/verify.py",
+      "result": "passed; frozen pack unchanged",
+      "log_sha256": "45107a20c8a577bc46c21a8070e00b8bd0e2b0ad7e45d7a5a4cfcc2941608bc1"
+    },
+    {
+      "command": "python training/mezger-german-sources-20261003/verify.py",
+      "result": "passed; frozen pack unchanged",
+      "log_sha256": "7746873b5886578e195ef9619bbc83290bcd4e0fa59c697e6335e6b642db12be"
+    },
+    {
+      "command": "python training/m64-measurements-20261024/verify.py",
+      "result": "passed; frozen pack unchanged",
+      "log_sha256": "7f570998e266fcb8fe6758c4eaa7abafad9c06a20eed8db1ce1f285988eef7b3"
+    },
+    {
+      "command": "python training/m64-dimensions-deep-20261024/verify.py",
+      "result": "passed; frozen pack unchanged",
+      "log_sha256": "5effaf08d1539355a0f2394059cff7b447655f1c2b9d062a4abd8a7c01abb0e5"
+    },
+    {
+      "command": "python training/m64-world-measurements-20261025/verify.py",
+      "result": "passed; frozen pack unchanged",
+      "log_sha256": "b9d1692ed86fa277f948d8d54fa25ffc264a81ca518971aa8b325bf247f6734b"
+    },
+    {
+      "command": "python3 -m unittest discover -s tests -v (executed within the initial make check invocation)",
+      "checked_base_commit": "b9faa882d4f96af08259a79ef15352abc0a839e0",
+      "result": "passed; completed unit-suite OK marker verified in the captured log",
+      "tests": 4885,
+      "elapsed_test_seconds": 555.976,
+      "skipped_tests": 274,
+      "log_sha256": "a0176f15671a17566a4396d1c22e5393986f2850668ff1d5bff1e23fc78a1e88"
+    },
+    {
+      "command": "make -o test -o 917-manufacturing-f37-lpbf-audit-check check",
+      "checked_base_commit": "b9faa882d4f96af08259a79ef15352abc0a839e0",
+      "result": "passed; the already completed unit suite was not repeated",
+      "returncode": 0,
+      "unit_suite_already_run": 4885,
+      "omitted_target": "917-manufacturing-f37-lpbf-audit-check",
+      "log_sha256": "e4eef784a2bbbcc6ebf21048b08727c0c2e6e05f37eee6bec63297134bfce0f9"
+    },
+    {
+      "command": "Independent documentary review, exact capture/reference closure, frozen hashes, privacy scan and git diff --cached --check",
+      "result": "passed",
+      "records": 20,
+      "accepted_records": 20,
+      "canonical_sources": 10,
+      "unique_frozen_baseline_files_unchanged": 1501,
+      "prior_training_subset_files_unchanged": 97,
+      "review_report": "review.json",
+      "review_report_sha256": "e9013d186557485d5d42ea39eff39f7b4bcb0bedcc34ed2aee41cc728dea4bb2",
+      "publication_preflight": {
+        "staged_paths": 35,
+        "allowed_paths_only": true,
+        "raw_source_files_staged": false,
+        "private_or_vehicle_identifier_matches": 0,
+        "privacy_marker_literal_in_verifier_excluded_from_path_scan": true,
+        "reference_file_hashes_verified": 7,
+        "source_hashes_verified": 10
+      },
+      "physical_measurements_performed": false
+    }
+  ],
+  "known_omitted_check": {
+    "target": "917-manufacturing-f37-lpbf-audit-check",
+    "result": "not_rerun_in_this_increment",
+    "reason": "The unchanged pinned Docker image failed to register a layer with no space left on device in an earlier increment; storage/runtime configuration was not changed.",
+    "prior_receipt": "docs/research/m64-measurements-20261024/validation.json",
+    "full_unmodified_make_check_claimed_passed": false,
+    "unrelated_image_or_volume_pruning_performed": false
+  },
+  "execution_diagnostics": {
+    "initial_shell_wrapper_reported_exit_code": 1,
+    "failure_markers_in_initial_log": false,
+    "standalone_final_target_returncode": 0,
+    "remaining_make_targets_replay_returncode": 0,
+    "resolution": "Unit-suite success and all remaining targets independently confirmed; no full unmodified make check success claimed."
+  },
+  "publication_scope": {
+    "records": 20,
+    "accepted": 20,
+    "qualified": 17,
+    "uncertainty": 3,
+    "excluded": 0,
+    "new_source_records": 7,
+    "sources_linked": 10,
+    "training_sources_used": 9,
+    "canonical_source_total": 606,
+    "cpt_rows": 20,
+    "sft_rows": 20,
+    "new_model_training_executed": false,
+    "raw_source_documents_published": false
+  }
+}

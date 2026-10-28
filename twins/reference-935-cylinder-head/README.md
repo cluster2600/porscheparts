@@ -2,7 +2,7 @@
 
 > **Archived line.** The 935 scan is kept as a reference morphology, alongside
 > the retired 917 work, and is not pursued as a product. See
-> [ARCHIVE.md](../../ARCHIVE.md).
+> [ARCHIVE.md](../../docs/ARCHIVE.md).
 
 ## Current scope
 

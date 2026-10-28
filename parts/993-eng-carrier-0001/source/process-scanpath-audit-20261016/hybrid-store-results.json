@@ -1,0 +1,40 @@
+{
+  "schema": "carrier-hybrid-envelope-audit-software-evidence-v1",
+  "status": "software_checks_passed",
+  "complete_support_exposure_audit_executed": false,
+  "scope": "Private mixed-store loading and software witnesses only; no native calculation or layer generation.",
+  "targeted_tests": {
+    "tests": 19,
+    "passed": true,
+    "log_label": "hybrid-audit-loader-001/targeted-tests.log",
+    "log_sha256": "082a39681aacce4db264caebc184b384918316d810e3825ac1aa3b086a369c6c"
+  },
+  "real_store_loader": {
+    "status": "passed",
+    "store_regions": 7,
+    "native_prism_cases": 2,
+    "unknown_faces_by_source": {
+      "0": 0,
+      "2": 9
+    },
+    "hybrid_store_imports": 1,
+    "hybrid_store_instances": 1,
+    "envelope_manifest_sha256": "63391aa2b74094887155346841db493f57c0eb0a0b8d8998c4c748c95bf13ec4",
+    "receipt_label": "hybrid-audit-loader-001/assessment.json",
+    "receipt_sha256": "00ee6194d73cc4c864a0be5d0716ae44a58a0b246bf83599bbb8e9f74f02f1ba"
+  },
+  "sources_sha256": {
+    "parts/993-eng-carrier-0001/source/process-scanpath-audit-20261016/audit_support_scanpaths_hybrid.py": "0b4cf4909f251634d6a15ea44bf2feb2ce8a847786abf3ad3bf3d53c8b6592f9",
+    "parts/993-eng-carrier-0001/source/process-scanpath-audit-20261016/audit_complete_supports_hybrid.py": "4b8f9c6d73b543e63e72a89fd8f17b55701c263dc4e6cff3500aab2bdedeac11",
+    "tests/test_carrier_hybrid_exposure_audit.py": "2e4b526828ef0f34866ed0f2fd7448eb1d1edadc08a4dea9f9acc694560725ce",
+    "parts/993-eng-carrier-0001/source/process-scanpath-audit-20261016/README-hybrid-store.md": "e23b25d716b647f119b0d4d5c055c5e7648d0f7302607ad148fdfaa37a48a88f"
+  },
+  "store_sources_sha256": {
+    "admitted_regions.py": "8bcebff36c4e5f992842f33666bf36a1734d1859541a64a9be57f7bf15293463",
+    "admitted_regions_v2.py": "f16e09b40ba3cc75d33be17d8f08c1599ece8197c9691c164ed005079325431e",
+    "native_prism_case.py": "d4c8131feb365fbbfe8a92a39398bd89d9728916062ed1a2d9c67a19015f9259",
+    "interface_sources.py": "cfe0c0c7ccbeffcd21f96500aa5c546826cdd6be47a77428f506e20e99e106c4",
+    "interface_sources_prisms.py": "31d636f9eea43d60d6c5024e216827084ed8318d2e051c2b2c3677e54bf4f7d5",
+    "interface_sources_prisms_v2.py": "a8f9113ab78b7ac1489b8a183eddfebf6399058df72ccdec51e4b713351c4d0e"
+  }
+}

@@ -1,0 +1,89 @@
+{
+  "schema": "962-full-five-toy-owner003-source-findings/v1",
+  "prefix_delta_accepted": true,
+  "operation_HOLD": true,
+  "inherited_core_findings": [
+    {
+      "id": "C01",
+      "priority": "P1",
+      "scope": "Inherited unchanged core, outside the four-line prefix correction",
+      "title": "Continuation intent is recorded after SIGCONT returns",
+      "locations": [
+        {
+          "path": "work/962-engineering/head-star-current24-qfnra-five-toy-owner-prep-003/run_owner_once.py",
+          "line": 275
+        },
+        {
+          "path": "work/962-engineering/head-star-current24-qfnra-five-toy-owner-prep-003/run_owner_once.py",
+          "line": 315
+        },
+        {
+          "path": "work/962-engineering/head-star-current24-qfnra-five-toy-owner-prep-003/run_owner_once.py",
+          "line": 333,
+          "end": 338
+        }
+      ],
+      "finding": "continued=True executes only after os.kill(SIGCONT) returns. If delivery occurred but return raises/is interrupted, finally can select the preCONT direct-PID-only cleanup branch although adapter/solver descendants may already run in the certified group. Frozen source003 inherits this exact002 seam; the prefix repair does not fix it.",
+      "required_before_operation": "A separately authorized immutable successor must latch continuation intent before the syscall, retain acknowledgement/error separately, and use certified-group cleanup after any attempted CONT while the anchor is valid. No guessed direct/group authority, extra child or deadline renewal. Current003 remains operational HOLD."
+    },
+    {
+      "id": "C02",
+      "priority": "P1",
+      "scope": "Inherited unchanged core lifetime/source assumption; installed behavior unobserved",
+      "title": "Base Popen construction does not establish the private non-polling handle policy",
+      "locations": [
+        {
+          "path": "work/962-engineering/head-star-current24-qfnra-five-toy-owner-prep-003/run_owner_once.py",
+          "line": 253,
+          "end": 254
+        },
+        {
+          "path": "work/962-engineering/head-star-current24-qfnra-five-toy-owner-prep-003/run_owner_once.py",
+          "line": 410,
+          "end": 415
+        }
+      ],
+      "finding": "Leader construction uses base subprocess.Popen and appends HELD_LEADERS only after a successful return. Strong retention and the later unreaped os._exit branch protect that returned-handle path, but do not suppress default destructor/active-list behavior for partial/failed construction or establish no implicit wait/poll on every release path. There is no private __del__ override in this owner. This is a source-level unsupported lifetime assumption, not an observation that selected3.10 performed an implicit reap.",
+      "required_before_operation": "Separately authorize/review the smallest explicit non-polling retained-leader lifetime implementation, including partial construction/unknown ownership and source/guard proof of release paths. Current selected-runtime constructor/active-list semantics remain an independent finite runtime gate; do not infer them from F1 mocks, strong references or teardown."
+    }
+  ],
+  "exact_delta_locations": [
+    {
+      "unit": "run_owner_once.py",
+      "line": 9,
+      "change": "P source-preparation002 to003"
+    },
+    {
+      "unit": "run_owner_once.py",
+      "line": 208,
+      "change": "auth.argv==argv to auth.argv_prefix==argv[:-1]"
+    },
+    {
+      "unit": "stopped_exec_wrapper.py",
+      "line": 5,
+      "change": "Fixed ADAPTER source-preparation002 to003"
+    },
+    {
+      "unit": "run_fixed_adapter.py",
+      "line": 9,
+      "change": "P source-preparation002 to003"
+    }
+  ],
+  "DAG_assessment": [
+    "Freeze the source packet and independent/root source decisions first.",
+    "A future held actual can pin sources/transport/protocol/current selected metadata and declare canonical counts without embedding its own hash or the later admission digest.",
+    "Root admission can bind that saved actual and exact-child/runtime/control peers while storing only the stable wrapper prefix.",
+    "External final-save hash is supplied to owner; owner validates/forwards it, wrapper passes it unchanged to adapter.",
+    "Adapter/helper/root result descriptors are written or hashed in later records; no required own-result hash was found in the three source units."
+  ],
+  "unchanged_definition_accounting": {
+    "owner_functions": 18,
+    "owner_other_than_admit_text_AST_exact": 17,
+    "wrapper_main_exact": 1,
+    "adapter_four_functions_exact": 4,
+    "owner_main_F1_sampler_cleanup_exact": true,
+    "all_other_source_bytes_recover_complete_donors_after_four_reversals": true
+  },
+  "source_and_data_limits": "Protocol/transport code identities were checked as explicit first-party named source pins only, not imported or run. No provider/runtime/Z3 body, actual toy output or real geometry/scientific data was read. Same selected3.10 route and40/48/56/60,T1,2GiB sampledRSS,32MiB/no-retry source bounds remain; no observed-thread/truepeak/hard-wall/ABI result.",
+  "required_next": "Preserve all003 bytes and dual disposition. New root authority is needed for any C01/C02 source correction, followed by independent source/meaningful fake guard/current finite runtime/actual/control review. There is no automatic extra edit, admission or launch authorized by this peer."
+}

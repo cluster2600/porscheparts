@@ -1,0 +1,169 @@
+--- work/962-engineering/fixed-shell-generation-apex1613790-prep-001/reader.py
++++ work/962-engineering/fixed-shell-generation-apex1613031-prep-001/reader.py
+@@ -1,12 +1,12 @@
+-"""HELD single fixed-shell apex1613790 cavity generation; no head stitching."""
++"""HELD single fixed-shell apex1613031 cavity generation; no head stitching."""
+ from pathlib import Path
+ from fractions import Fraction
+ import ast,hashlib,importlib.util,json,math,platform,struct,sys,time
+ 
+ ROOT=Path(__file__).resolve().parents[3]
+ OUT=Path(__file__).resolve().parent
+-SHELL='work/962-engineering/direct-sicn-apex1613790-cavity-study-001/local-shell-input-001.json'
+-SHELL_SHA='f31dfcd760db5c8765fcd0665ea3a9b17d5cf81d35d91467b924d3c660d0bcb9'
++SHELL='work/962-engineering/direct-sicn-apex1613031-cavity-study-001/local-shell-input-001.json'
++SHELL_SHA='6529ffc5a5ca738c4bfe3041d858f2d40cc50efc6ee0e1dc5bcc626fd720d92d'
+ HELPER='twins/962-cylinder-head-f0/source/mesh_head.py'
+ HELPER_SHA='69c8012e99057e384d44d6971d41f0e2cc7197a978120a7c566b0ad5a6477da5'
+ ORIENTATION='work/962-engineering/atomic-cavity-plane-clip-cap-assembly-delaunay-prep-001/mesh_assembled_delaunay.py'
+@@ -20,17 +20,17 @@
+ RUNTIME={'python':'3.10.11','numpy':'2.0.2','gmsh':'4.15.2','machine':'arm64'}
+ COUNTS={'generate':1,'createGeometry_dim3':0,'optimize_Netgen':0,
+  'rebuildElementCache':0,'write_mesh':1,'solve':0}
+-VOLUME=Fraction(47257467722750481679110908714287440688631841,713623846352979940529142984724747568191373312)
++VOLUME=Fraction(104308130846515511471660941377843352992235,1045347431181122959759486794030391945592832)
+ sha=lambda p:hashlib.sha256(Path(p).read_bytes()).hexdigest()
+ 
+ def save(path,value):
+  with Path(path).open('x') as stream:json.dump(value,stream,indent=2,allow_nan=False);stream.write('\n')
+ 
+ def validate_shell(points,faces):
+- if (len(points)!=16 or any(len(p)!=3 or any(not math.isfinite(float(x)) for x in p) for p in points)
+-     or len(faces)!=28 or any(len(f)!=3 or len(set(f))!=3 or any(type(t) is not int or not 1<=t<=16 for t in f) for f in faces)):
+-  raise ValueError('Exact finite sixteen-node/twenty-eight-triangle cavity shell required')
+- if len({struct.pack('<3d',*p) for p in points})!=16:raise ValueError('Duplicate shell coordinate bits')
++ if (len(points)!=9 or any(len(p)!=3 or any(not math.isfinite(float(x)) for x in p) for p in points)
++     or len(faces)!=14 or any(len(f)!=3 or len(set(f))!=3 or any(type(t) is not int or not 1<=t<=9 for t in f) for f in faces)):
++  raise ValueError('Exact finite nine-node/fourteen-triangle cavity shell required')
++ if len({struct.pack('<3d',*p) for p in points})!=9:raise ValueError('Duplicate shell coordinate bits')
+  edges={};keys=set();referenced=set()
+  p=[[Fraction.from_float(float(v)) for v in row] for row in points]
+  cross=lambda a,b:[a[1]*b[2]-a[2]*b[1],a[2]*b[0]-a[0]*b[2],a[0]*b[1]-a[1]*b[0]]
+@@ -41,24 +41,24 @@
+   a,b,c=[p[t-1] for t in face]
+   if not any(cross([y-x for x,y in zip(a,b)],[y-x for x,y in zip(a,c)])):raise ValueError('Degenerate shell triangle')
+   for i in range(3):edges.setdefault(tuple(sorted((face[i],face[(i+1)%3]))),[]).append((face[i],face[(i+1)%3]))
+- if referenced!=set(range(1,17)) or any(len(v)!=2 or v[0]!=v[1][::-1] for v in edges.values()):
++ if referenced!=set(range(1,10)) or any(len(v)!=2 or v[0]!=v[1][::-1] for v in edges.values()):
+   raise ValueError('Complete closed oppositely oriented shell required before meshing')
+  volume=sum((sum(x*y for x,y in zip(p[f[0]-1],cross(p[f[1]-1],p[f[2]-1])))/6 for f in faces),Fraction(0))
+  if volume!=VOLUME:raise ValueError('Exact old cavity oriented volume changed')
+- return dict(vertices=16,faces=28,edges=len(edges),exact_volume_mm3={'numerator':str(volume.numerator),'denominator':str(volume.denominator)})
++ return dict(vertices=9,faces=14,edges=len(edges),exact_volume_mm3={'numerator':str(volume.numerator),'denominator':str(volume.denominator)})
+ 
+ def shell_rows(data):
+- if (data.get('schema')!='962-fixed-cavity-local-shell-input/v1' or data.get('vertices')!=16
+-     or data.get('oriented_triangles')!=28 or data.get('excluded_source_apex_tag')!=1613790
++ if (data.get('schema')!='962-fixed-cavity-local-shell-input/v1' or data.get('vertices')!=9
++     or data.get('oriented_triangles')!=14 or data.get('excluded_source_apex_tag')!=1613031
+      or data.get('apex_not_in_shell_input') is not True
+      or data.get('status')!='DATA_ONLY_HELD' or data.get('necessary_face_quality_passed') is not True
+      or data.get('generation_input_rejected_by_necessary_face_quality') is not False
+      or data.get('upstream_census_launch_deviation_sha256')!='d60fff297c6c45dc92e117262e36ffde36e2169d53fcd32ce2b79fabde5eebc3'
+      or data.get('declared_controller_command_conformant') is not False):raise ValueError('Specific frozen cavity identity and upstream deviation required')
+  mapping=data['local_to_global_node_tags'];rows=data['vertex_rows'];triangles=data['oriented_triangle_rows']
+- if (len(mapping)!=16 or any(type(t) is not int or t<=0 for t in mapping) or mapping!=sorted(set(mapping))
+-     or 1613790 in mapping or data['global_to_local_node_tags']!={str(t):i+1 for i,t in enumerate(mapping)}
+-     or len(rows)!=16 or len(triangles)!=28):raise ValueError('Complete exact local/global shell mapping required')
++ if (len(mapping)!=9 or any(type(t) is not int or t<=0 for t in mapping) or mapping!=sorted(set(mapping))
++     or 1613031 in mapping or data['global_to_local_node_tags']!={str(t):i+1 for i,t in enumerate(mapping)}
++     or len(rows)!=9 or len(triangles)!=14):raise ValueError('Complete exact local/global shell mapping required')
+  points=[];faces=[]
+  for i,row in enumerate(rows):
+   xyz=row['coordinates_mm']
+@@ -67,13 +67,13 @@
+       or [float(v).hex() for v in xyz]!=row['binary64_hex']
+       or struct.pack('<3d',*xyz).hex()!=row['binary64_little_endian_bytes_hex']
+       or row['prospective_cavity_fixed'] is not True
+-      or row['original_source_boundary_node'] is not (i<13)
+-      or row['original_source_classification']!=('below_dim3' if i<13 else 'dim3')):
++      or row['original_source_boundary_node'] is not (i<5)
++      or row['original_source_classification']!=('below_dim3' if i<5 else 'dim3')):
+    raise ValueError('Exact shell coordinate bits or original classification changed')
+   points.append(xyz)
+- expected=dict(boundary_global_node_tags=mapping[:13],other_interior_global_node_tags=mapping[13:],
+-  boundary_local_node_tags=list(range(1,14)),other_interior_local_node_tags=list(range(14,17)))
+- if data['original_source_classifications']!=expected:raise ValueError('Original thirteen-boundary/three-interior distinction changed')
++ expected=dict(boundary_global_node_tags=mapping[:5],other_interior_global_node_tags=mapping[5:],
++  boundary_local_node_tags=list(range(1,6)),other_interior_local_node_tags=list(range(6,10)))
++ if data['original_source_classifications']!=expected:raise ValueError('Original five-boundary/four-interior distinction changed')
+  for i,row in enumerate(triangles):
+   if row['local_face_id']!=i+1 or type(row['source_owner_tetrahedron_tag']) is not int or row['source_owner_tetrahedron_tag']<=0:
+    raise ValueError('Frozen local face/old owner association changed')
+@@ -133,32 +133,32 @@
+ def construct_shell(gmsh,helper,data):
+  points,faces,proof=shell_rows(data)
+  helper.P=helper.np.asarray(points,dtype='<f8');helper.F=helper.np.asarray(faces,dtype=helper.np.int64)
+- gmsh.model.add('fixed_shell_apex1613790_cavity')
++ gmsh.model.add('fixed_shell_apex1613031_cavity')
+  gmsh.model.addDiscreteEntity(2,1)
+- gmsh.model.mesh.addNodes(2,1,list(range(1,17)),helper.P.ravel())
+- gmsh.model.mesh.addElementsByType(1,2,list(range(1,29)),helper.F.ravel())
++ gmsh.model.mesh.addNodes(2,1,list(range(1,10)),helper.P.ravel())
++ gmsh.model.mesh.addElementsByType(1,2,list(range(1,15)),helper.F.ravel())
+  gmsh.model.geo.addSurfaceLoop([1],1);gmsh.model.geo.addVolume([1],1)
+  gmsh.model.geo.synchronize()
+  return proof
+ 
+ def boundary_snapshot(gmsh,helper):
+  np=helper.np;tags,xyz,_=gmsh.model.mesh.getNodes();order=np.argsort(tags)
+- tags=np.asarray(tags)[order];xyz=np.asarray(xyz).reshape(-1,3)[order];ix=np.searchsorted(tags,np.arange(1,17))
+- if np.any(ix>=len(tags)) or not np.array_equal(tags[ix],np.arange(1,17)):raise ValueError('Boundary tags missing')
++ tags=np.asarray(tags)[order];xyz=np.asarray(xyz).reshape(-1,3)[order];ix=np.searchsorted(tags,np.arange(1,10))
++ if np.any(ix>=len(tags)) or not np.array_equal(tags[ix],np.arange(1,10)):raise ValueError('Boundary tags missing')
+  bits=xyz[ix].astype('<f8',copy=False).tobytes()
+  if bits!=helper.P.astype('<f8',copy=False).tobytes():raise ValueError('Boundary coordinate bits changed')
+  types,element_tags,element_nodes=gmsh.model.mesh.getElements(2)
+- if list(types)!=[2] or len(element_tags[0])!=28:raise ValueError('Exactly twenty-eight TRI3 elements required')
++ if list(types)!=[2] or len(element_tags[0])!=14:raise ValueError('Exactly fourteen TRI3 elements required')
+  faces=sorted((int(t),helper.canonical(row)) for t,row in zip(element_tags[0],np.asarray(element_nodes[0]).reshape(-1,3)))
+  expected=sorted((i+1,helper.canonical(row)) for i,row in enumerate(helper.F))
+  if faces!=expected:raise ValueError('Tagged oriented shell triangles changed')
+  classes={}
+  for dim,entity in gmsh.model.getEntities():
+   for tag in gmsh.model.mesh.getNodes(dim,entity,False,False)[0]:
+-   if int(tag)<=16:
++   if int(tag)<=9:
+     if int(tag) in classes:raise ValueError('Boundary node classified twice')
+     classes[int(tag)]=(dim,entity)
+- if set(classes)!=set(range(1,17)) or any(dim>=3 for dim,entity in classes.values()):raise ValueError('Boundary classification missing')
++ if set(classes)!=set(range(1,10)) or any(dim>=3 for dim,entity in classes.values()):raise ValueError('Boundary classification missing')
+  return {'coordinate_bytes':bits,'tagged_oriented_triangles':faces,'classifications':sorted(classes.items())}
+ 
+ def require_boundary_same(before,after):
+@@ -191,7 +191,7 @@
+    tag=int(tag)
+    if tag in dims:raise ValueError('Node classified twice')
+    dims[tag]=dim;entities[tag]=[dim,entity]
+- if set(dims)!=set(map(int,tags)) or any(dims[n]>=3 for n in range(1,17)) or any(dims[int(n)]!=3 for n in tags if n>16):
++ if set(dims)!=set(map(int,tags)) or any(dims[n]>=3 for n in range(1,10)) or any(dims[int(n)]!=3 for n in tags if n>9):
+   raise ValueError('Complete cavity-shell/interior native classifications required')
+  source_indices=np.searchsorted(tags,helper.F)
+  exterior=helper.tetra_boundary(cells,source_indices);internal=helper.internal_face_orientation(cells)
+@@ -202,7 +202,7 @@
+  for label,values in qualities.items():check_metric_rows(values,len(et),label)
+  native_total=math.fsum(qualities['native_volume_mm3'])
+  if abs(native_total/float(VOLUME)-1)>1e-6:raise ValueError('Native volume bookkeeping bound failed')
+- report=dict(nodes=len(tags),tetrahedra=len(et),referenced_nodes=len(referenced),referenced_interior_nodes=int(np.count_nonzero(tags>16)),
++ report=dict(nodes=len(tags),tetrahedra=len(et),referenced_nodes=len(referenced),referenced_interior_nodes=int(np.count_nonzero(tags>9)),
+   unreferenced_nodes=0,duplicate_tetrahedra=0,**exterior,**internal,
+   node_classifications=[[n,dims[n]] for n in sorted(dims)],node_entity_classifications=[[n,*entities[n]] for n in sorted(entities)],
+   node_counts_by_classification_dimension={str(d):sum(v==d for v in dims.values()) for d in range(4)},
+@@ -224,7 +224,7 @@
+  if {p.name for p in OUT.iterdir()}!={'reader.py','run_readback.py','frozen-contract.json','native.log'}:
+   raise ValueError('Only fresh materialized inputs and owned native.log are permitted')
+  started=time.monotonic();gmsh=None;initialized=False;live={}
+- report=dict(schema='962-fixed-shell-generation-apex1613790/v1',status='running',stage='imports',
++ report=dict(schema='962-fixed-shell-generation-apex1613031/v1',status='running',stage='imports',
+   fixture_procedural_checks_passed=False,actual_SICN_gate_passed=False,actual_SICN_threshold=.1,
+   upstream_census_launch_deviation_sha256='d60fff297c6c45dc92e117262e36ffde36e2169d53fcd32ce2b79fabde5eebc3',declared_controller_command_conformant=False,
+   native_operation_counts={k:0 for k in COUNTS},call_counts_are_attempts=True,options=OPTIONS,
+@@ -242,7 +242,7 @@
+   report['stage']='constructing_frozen_cavity_shell';report['shell']=construct_shell(gmsh,helper,data)
+   report['original_source_classifications']=data['original_source_classifications']
+   report['local_to_global_shell_node_tags']=data['local_to_global_node_tags']
+-  report['all16_shell_nodes_fixed_only_for_this_cavity_generation']=True
++  report['all9_shell_nodes_fixed_only_for_this_cavity_generation']=True
+   before=boundary_snapshot(gmsh,helper)
+   report['stage']='generating_once';generate_once(gmsh,report['native_operation_counts'])
+   report['stage']='complete_generated_audit';live['after_generation']=inspect_cavity(gmsh,helper)

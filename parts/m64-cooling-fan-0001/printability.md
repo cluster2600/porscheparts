@@ -10,6 +10,6 @@ Candidate process: LPBF AlSi10Mg (repo lineage: 993 impeller/housing AlSi10Mg fi
 | Radial clearance | 2.0 mm | above powder-bed minimum; no trapped-powder cavity in rotor; housing spokes leave open volumes | OK |
 | Vent slots 22x14 mm | housing web | open, cleanable | OK |
 
-Service-temperature caveat: engine-bay air side (< ~120 °C expected) keeps AlSi10Mg within strength limits, but the value is an assumption, not sourced (see provenance.json). The virtual bench (simulation/m64-virtual-bench/) shows the cooling-air side as the system bottleneck — printability of the fan is **not** the gating question; the airflow duty is.
+Service-temperature caveat: engine-bay air side (< ~120 °C expected) keeps AlSi10Mg within strength limits, but the value is an assumption, not sourced (see provenance.json). The virtual bench (work/simulation/m64-virtual-bench/) shows the cooling-air side as the system bottleneck — printability of the fan is **not** the gating question; the airflow duty is.
 
 Not covered: surface finish/roughness effect on airflow, creep under under-hood soak, balancing behaviour of printed rotor, burst speed. No printed part has been tested.

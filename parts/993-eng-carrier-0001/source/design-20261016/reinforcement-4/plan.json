@@ -1,0 +1,109 @@
+{
+  "design_id": "carrier-design-20261016-reinforcement-4-tensor-foot",
+  "base_STEP_sha256": "fd080c7d033db9447a3a364644406f8beca44fdd5d11ecc3b9819b2b88a333bd",
+  "selected_edges": [
+    {
+      "mirror_X": -1,
+      "mirror_Y": 1,
+      "edge_index_zero_based": 113,
+      "selection_probe_mm": [
+        -88.7737746463,
+        15.096830113,
+        17.8481674254
+      ],
+      "selection_distance_mm": 9.76639278419791e-09,
+      "nearest_edge_point_mm": [
+        -88.77377463943313,
+        15.096830116207872,
+        17.84816743155939
+      ],
+      "edge_centre_mm": [
+        -93.69837298682206,
+        18.983797237920015,
+        20.62518773791096
+      ],
+      "edge_length_mm": 14.895600821313717,
+      "adjacent_face_indices_zero_based": [
+        14,
+        15
+      ],
+      "analytic_outward_normals": [
+        [
+          -0.6372345745890183,
+          -0.770669901415874,
+          0.0
+        ],
+        [
+          0.5646925408225054,
+          -0.0,
+          0.8253013597101503
+        ]
+      ],
+      "normal_dot": -0.3598416110246211,
+      "concavity_material_probes_both_inside": true
+    },
+    {
+      "mirror_X": 1,
+      "mirror_Y": 1,
+      "edge_index_zero_based": 614,
+      "selection_probe_mm": [
+        88.7737746463,
+        15.096830113,
+        17.8481674254
+      ],
+      "selection_distance_mm": 3.24288641499606e-11,
+      "nearest_edge_point_mm": [
+        88.77377464631073,
+        15.096830112973855,
+        17.848167425415905
+      ],
+      "edge_centre_mm": [
+        93.69837301558421,
+        18.983797215201065,
+        20.625187706541517
+      ],
+      "edge_length_mm": 14.895600819014852,
+      "adjacent_face_indices_zero_based": [
+        188,
+        189
+      ],
+      "analytic_outward_normals": [
+        [
+          -0.5646925407806005,
+          -0.0,
+          0.8253013597388229
+        ],
+        [
+          0.6372345745837714,
+          -0.7706699014202123,
+          -0.0
+        ]
+      ],
+      "normal_dot": -0.35984161099495493,
+      "concavity_material_probes_both_inside": true
+    }
+  ],
+  "source_operation_trace": {
+    "face188": "Outer XZ Bezier arch from normal-builder/cad.py:arm_envelope(44,8), extruded along Y",
+    "face189": "Inner positive-Y quintic root rail from reinforcement-2/build.py, extruded along Z",
+    "edge614": "Boolean intersection of these two extrusion supports, then trimmed by the rounded first-window cylinder and cap transition"
+  },
+  "construction": "Exact rational translation surface F(u,v)=C(u)+r(u)Q(v), built as tensor-product B-spline polesCi+riQj and weightswi*wQj before any Boolean; a finite-overlap closed foot is then cut by the unchanged window cutter and united to the reference",
+  "maximum_section_YZ_radius_mm": 1.0,
+  "overlap_mm": 0.25,
+  "radius_taper_X_range_mm": [
+    97.0,
+    100.0
+  ],
+  "radius_taper": "Same rational basis as C; ri=min(1,quintic smoothstep((100-|Ci.X|)/3),max(0,roof_z(|Ci.X|)-Ci.Z-0.25)); first two coefficients0 ensure radius and first derivative vanish at X100",
+  "window_clipping": "Use the full underlying intersection B-spline down toX86.691581 before the cutter; clip the foot by the unchanged exact first rounded window, so its initial end cap must disappear",
+  "mass_kg_max": 1.3,
+  "native_and_STEP_relative_volume_difference_max": 1e-08,
+  "removed_reference_volume_mm3_max": 1e-05,
+  "protected_pad_difference_mm3_max": 1e-06,
+  "tensor_identity_error_mm_max": 1e-09,
+  "support_G1_normal_angle_degrees_max": 1e-05,
+  "G1_scope": "Exact cap and rib support tangent planes along the translated rails. Trimmed support membership, window junctions and both longitudinal closures require separate measured checks. YZ section radius is not the normal-plane rolling-ball radius.",
+  "minimum_reference_retained": "Every prior reference volume retained; protected pad, bores, tools and global envelope unchanged",
+  "before_FE": "Require valid closed native foot, valid one-solid final STEP, roundtrip1e-8, additive-only change, exact protected regions, actual section drawing and measured junction diagnostics"
+}

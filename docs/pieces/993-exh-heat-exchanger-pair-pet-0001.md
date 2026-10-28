@@ -2,7 +2,7 @@
 
 # 993 Turbo exhaust heat exchangers (manifolds), left and right - PET-transcribed identity
 
-**Status: **prohibited pending engineering**. No part is released; see [SAFETY.md](../../SAFETY.md).**
+**Status: **prohibited pending engineering**. No part is released; see [SAFETY.md](../../docs/SAFETY.md).**
 
 Identity-only catalogue record for the two Turbo exhaust heat exchangers (exhaust manifolds with integrated catalysis in the Turbo line), transcribed per-line from the local PET transcriptions: illustration 202-10 (exhaust system, Turbo) position 1 left 993 211 039 55 and position 2 right 993 211 040 55, confirmed independently by two Porsche PET catalogue transcriptions (KAT 17 and Porsche Classic KAT 517 USA, which lists the -56 suffixes). The record carries part number, group, position, applicability and catalogue context only: no dimensions, materials, wall thicknesses, flow data or geometry are claimed. Quantity per car is not carried by the local transcription; the engine uses one unit per bank (2 per car).
 
@@ -64,17 +64,31 @@ Catalogue record: [`catalog/parts/993-exh-heat-exchanger-pair-pet-0001.json`](..
 | field | value |
 |---|---|
 | source type | estimated |
-| master format | none |
+| master format | PicoGK |
 | units | mm |
 | accuracy (mm) | not recorded |
 
 **Master file**
 
-- none
+- [`parts/picogk-catalog/exhaust/HeatExchangerPair.cs`](../../parts/picogk-catalog/exhaust/HeatExchangerPair.cs)
 
 **Derived files**
 
-- none
+- [`parts/993-exh-heat-exchanger-pair-pet-0001/derived/993-exh-heat-exchanger-pair-pet-0001-picogk.stl`](../../parts/993-exh-heat-exchanger-pair-pet-0001/derived/993-exh-heat-exchanger-pair-pet-0001-picogk.stl)
+
+## Images
+
+![preview](../../parts/993-exh-heat-exchanger-pair-pet-0001/media/preview.png)
+
+*`parts/993-exh-heat-exchanger-pair-pet-0001/media/preview.png` — concept CAD block, **not** the original part, not a print file.*
+
+![views](../../parts/993-exh-heat-exchanger-pair-pet-0001/media/views.png)
+
+*`parts/993-exh-heat-exchanger-pair-pet-0001/media/views.png` — concept CAD block, **not** the original part, not a print file.*
+
+![photo-concept](../../parts/993-exh-heat-exchanger-pair-pet-0001/media/photo-concept.png)
+
+*`parts/993-exh-heat-exchanger-pair-pet-0001/media/photo-concept.png` — AI-generated studio illustration based on the catalogue PicoGK concept preview. Geometry and interfaces remain unmeasured hypotheses; material, finish and generated details are illustrative. Not a photograph of an OEM or manufactured part, or evidence of fit, function or manufacturing.*
 
 ## Provenance and sources
 
@@ -95,7 +109,7 @@ Catalogue record: [`catalog/parts/993-exh-heat-exchanger-pair-pet-0001.json`](..
 | status | concept |
 | vehicle tested | not recorded |
 | reviewed by |  |
-| limitations | not recorded |
+| limitations | Identity only: the PET transcriptions carry part number, group, position and description, no dimensions, tolerances, materials or geometry.<br>KAT 17 lists the -55 suffix (revision A), KAT 517 lists -56; the local data do not document the supersession relation, both suffixes are recorded without claiming replacement.<br>Quantity per car is not carried by the local transcription; 2 per car reflects the two-bank engine, not a transcribed field.<br>Wastegate actuator part numbers do not appear in any local PET transcription line and remain unsourced. |
 
 **Evidence**
 

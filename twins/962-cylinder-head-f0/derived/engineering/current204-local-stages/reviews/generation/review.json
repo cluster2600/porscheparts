@@ -1,0 +1,149 @@
+{
+  "schema": "962-current204-remaining115-generation-independent-stopped-peer/v1",
+  "decision": "CLEAR_COMPLETED115_PROCEDURAL_GENERATION_STRICT_QUALITY_REJECTIONS",
+  "blockers": [],
+  "bindings": {
+    "master_closed": {
+      "path": "work/962-engineering/head-star-current204-generation-root-execution-002/closed-result.json",
+      "sha256": "36ee1b22928f0bc08d1d59936bef0256642c29da17d7e44d1260be922d08d334",
+      "bytes": 78008
+    },
+    "continuation": {
+      "path": "work/962-engineering/head-star-current204-generation-root-execution-002/continuation.json",
+      "sha256": "48c0d93bad3c567d51a833fe7a5ad8986ecae002bcc40d032246166b1a513097",
+      "bytes": 2493
+    },
+    "original_actual_index": {
+      "path": "work/962-engineering/head-star-current204-generation-actuals-prep-001/index.json",
+      "sha256": "ffc4ee2a5d9f89bc8fc450ff074dada3f621d319dc4b1d4f9921cdb300126df0",
+      "bytes": 40779
+    },
+    "all116_exact_child_peer": {
+      "path": "work/962-engineering/head-star-current204-generation-actuals-child-peer-001/review.json",
+      "sha256": "b36f5fdf139adf4d638d64cb86a5b58a7eeaa3babdcfd4c2dec91008dfab37d6",
+      "bytes": 54740
+    },
+    "case_manifest": {
+      "path": "work/962-engineering/head-star-current204-local-stages-prep-001/case-manifest.json",
+      "sha256": "3a558ede04cbc52c59e401befb36b8983ebd9b7f57d4266de0bea38fb1a963c5",
+      "bytes": 270626
+    },
+    "complete_original_batch_selection": {
+      "path": "work/962-engineering/head-star-current204-batch-shells-001/report.json",
+      "sha256": "4f9fc0354918a907083006484d534c34c3b2621dfcc83b00cc4a4b731f009e86",
+      "bytes": 35251435
+    },
+    "source": {
+      "path": "work/962-engineering/head-star-current204-local-stages-prep-001/generate_case.py",
+      "sha256": "fc1aba0a0ae93995f8fc4eea86d3fe693ce0360ac3f98d158ba5f01ae8983e3d",
+      "bytes": 25299
+    },
+    "controller": {
+      "path": "work/962-engineering/head-star-current204-local-stages-prep-001/run_generation.py",
+      "sha256": "05b4f8996f1f642120b70be755e6609f7b641041cad1a867ea8da9e56ecb423b",
+      "bytes": 4802
+    },
+    "preserved_first_stop_peer": {
+      "path": "work/962-engineering/head-star-current204-generation-first-stop-peer-001/review.json",
+      "sha256": "da781c7144571897938835b01e33aa6acb4db6d59917de08a16852e65c844f40",
+      "bytes": 9633
+    },
+    "root_saved_result_review": {
+      "path": "work/962-engineering/head-star-current204-generation-root-execution-002/result-review.json",
+      "sha256": "f5ce4e72e681d48832f4b4cd8a8c74c2960ce52a722ac3379b7467033d7fd4ec",
+      "bytes": 47939
+    },
+    "own_checker": {
+      "path": "work/962-engineering/head-star-current204-generation-result-peer-002/check_saved_001.py",
+      "sha256": "9deda1c4e588baeaabda964cee15814129adc97530bdd067ed5d2c3d46282988",
+      "bytes": 23532
+    },
+    "own_complete115_ledger": {
+      "path": "work/962-engineering/head-star-current204-generation-result-peer-002/independent-saved-check.json",
+      "sha256": "375b7d63d94f08be7b46f3ccab43c10ee2ceaec7a63ce87ca4f15bd9c8593e1a",
+      "bytes": 956998
+    },
+    "own_checker_execution": {
+      "path": "work/962-engineering/head-star-current204-generation-result-peer-002/execution-001.json",
+      "sha256": "c835b3086e1c44a4f2dd35f95ae6e4ce7950ee9821903b50cccdb700efae0211",
+      "bytes": 2143
+    }
+  },
+  "role_disclosure": "Reviewer authored the upstream batch selector and finite orchestration plan and source-reviewed the stage adapters. Reviewer did not author the generation worker/controller changes or execute the native cases. Upstream selection and reused mathematical helpers are not claimed independently authored; this review independently checks all saved cases and derives saved exact arithmetic without importing those helpers.",
+  "completed_scope": {
+    "case_count": 115,
+    "all_original_remaining_cases_once": true,
+    "each_case_complete_output_files": 8,
+    "complete_output_files": 920,
+    "complete_output_bytes": 9232017,
+    "complete_project_saved_input_hashes": 1550,
+    "complete_input_maps_unchanged": true,
+    "complete_case_association_and_hash_ledger": "independent-saved-check.json: case_ledger, input_sha256 and input_sha256_after",
+    "all115_procedural_checks_passed": true,
+    "all115_strict_SICN_gate_failed": true,
+    "next_stage_for_each": "one_Netgen",
+    "nodes_total": 2353,
+    "tetrahedra_total": 4347,
+    "referenced_interiors_total": 55,
+    "positive_poor_total": 471,
+    "nonpositive_total": 0,
+    "storage_count_compatible_cases": 50,
+    "storage_compatibility_definition": "Referenced interiors >= 1 and generated tetrahedra >= original complete-star tetrahedra; this is not quality, domain or head acceptance.",
+    "minimum_native_SICN": 0.002266951775772275,
+    "unchanged_strict_SICN_threshold": 0.1
+  },
+  "independent_checks": [
+    "All 115 original index cases, manifest/whole-star records, exact actual contracts, eight-file root inventories, frozen copies, common 38 input pins, source/controller snapshots, receipts, full logs, arrays and report associations were checked. All 1550 consumed saved file hashes were checked again after the own checker.",
+    "All after_generation and saved_reopen JSON/typed node tags, coordinate words, tetrahedron tags, ordered connectivity, canonical connectivity, classifications and three native metric vectors plus signed-volume vectors agree. Original shell words, source class mappings and oriented shell faces are retained.",
+    "All stored metric distributions, row lengths, finite values, minima/maxima, counts, hashes, positive Jacobians and volumes, volume sums and 1e-6 volume budget were recomputed. All 115 independent exact squared-poor counts equal native saved poor counts and separately match the root review.",
+    "Every one of 4347 saved tetrahedra has positive exact Fraction determinant from binary64 coordinate values; each case exact total volume equals its original rational shell volume. Independent regular-reference SICN squared is 18*det(edge)^2/(norm2*cofactor_norm2); exact comparison with 1/100 confirms all 471 poor cells.",
+    "All abstract tetrahedral face incidences were enumerated: 6626 opposed internal face pairs and 4136 oriented shell faces. This proves saved combinatorial incidence only, not embedding or containment.",
+    "Saved native SICN, Jacobian, native volume and signed volume values agree with independently calculated values within the existing combined relative 1e-11 / absolute 1e-14 calibration comparison. This comparison does not modify the strict .1 quality gate.",
+    "All 3565 native log lines were read and are Info rows; every worker warning/error list is empty. Each log includes generation, write and reopen messages; reported operation attempts and controller declarations retain their source attribution.",
+    "All 115 ledger rows also match the separately frozen root saved-result review. Its historical independent-peer-pending field is preserved as written, not retroactively edited."
+  ],
+  "maximum_saved_native_vs_exact_arithmetic_errors": {
+    "SICN": 5.54833956556422e-14,
+    "Jacobian": 1.7763568394002505e-15,
+    "native_volume_mm3": 4.440892098500626e-16,
+    "independent_signed_volume_mm3": 2.220446049250313e-16
+  },
+  "resources_and_lifecycle": {
+    "worker_wall_limit_seconds": 30,
+    "root_outer_limit_seconds": 40,
+    "sampled_RSS_stop_bytes": 1073741824,
+    "sampled_output_stop_bytes": 16777216,
+    "requested_threads": 2,
+    "hard_OS_quota": false,
+    "native_controller_RSS_samples": 347,
+    "max_sampled_native_RSS_bytes": 289931264,
+    "master_root_wall_seconds": 188.20209229108877,
+    "all_controller_RC2_natural_quality_rejection": true,
+    "no_resource_or_outer_stop_or_fallback_KILL": true,
+    "attribution": "Root-owned controllers were observed, waited/reaped and individually absent. Native PIDs were not captured. Native cleanup is attributed to the unchanged 05b4 finalizer and valid receipts; no individual native absence or universal descendant absence is claimed.",
+    "runtime_scope": "Python/Gmsh/NumPy versions, selected file digests, environment and fresh hash stability are checked as actual/root/worker metadata. Reviewer did not read or hash runtime bodies or large parent geometry."
+  },
+  "first_stopped_case": {
+    "apex": 1393275,
+    "excluded_from_completed115": true,
+    "complete_five_file_inventory_preserved": true,
+    "retry": false,
+    "source_or_native_identity_assertion_cause_unproven": true,
+    "interpretation": "Observer stop remains held; it is not a generated-candidate quality result."
+  },
+  "limits": [
+    "Each small binary MSH was hashed and its binary 4.1 header checked only; no section decoding. Native queries, source runtime identities and native saved-file reopen association remain worker/controller/root attestations.",
+    "No tetrahedron-intersection/embedding, local occupied-domain, parent-interface context, full-head validity, containment, mesh acceptance, material, process or physical qualification is established.",
+    "No Netgen, domain, context or head operation was launched by this reviewer. This peer may be pinned by a later same-case Netgen actual, which still requires its own exact source/contract/root guards and execution authority."
+  ],
+  "own_stdlib_saved_checker_executed_once": true,
+  "creator_or_prior_checker_assessor_or_scientific_modules_imported": false,
+  "native_replay": false,
+  "automatic_retry": false,
+  "backfill": false,
+  "engineering_accepted": false,
+  "physics_qualified": false,
+  "material_qualified": false,
+  "process_calibrated": false,
+  "manufacturing_authorized": false
+}

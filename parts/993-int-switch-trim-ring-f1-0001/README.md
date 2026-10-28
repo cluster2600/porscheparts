@@ -19,7 +19,7 @@
 > - validation status `concept`: nothing has been checked against a real part;
 > - geometry `estimated`: its dimensions are estimated design variables, not measured on the original part;
 > - safety class `non_critical`;
-> - no part in this repository is released — read [SAFETY.md](../../SAFETY.md).
+> - no part in this repository is released — read [SAFETY.md](../../docs/SAFETY.md).
 
 <table><tr>
 <td width="50%" valign="top">
@@ -88,15 +88,21 @@ flowchart LR
 
 *Orthographic views of the same concept CAD, with its bounding dimensions — not drawings of the original part.*
 
+## Bionic gyroid-core model
+
+![PicoGK gyroid-core model: outside view and capped section](media/gyroid.png)
+
+*PicoGK variant ([`GyroidCore.cs`](../../parts/picogk-catalog/bionic/GyroidCore.cs)): no zone of this part holds three 3.6 mm gyroid cells inside its skin, so it stays solid (core only where three cells fit). Not a print file.*
+
 ## What's in this folder
 
 | folder | what it holds | files |
 |---|---|---|
-| `derived/` | CAD exports generated from the source (STEP for CAD tools, STL for meshing) | [`derived/switch_trim_ring_f1-picogk.json`](derived/switch_trim_ring_f1-picogk.json), [`derived/switch_trim_ring_f1-picogk.stl`](derived/switch_trim_ring_f1-picogk.stl), [`derived/switch_trim_ring_f1.step`](derived/switch_trim_ring_f1.step), [`derived/switch_trim_ring_f1.stl`](derived/switch_trim_ring_f1.stl) |
+| `derived/` | CAD exports generated from the source (STEP for CAD tools, STL for meshing) | [`derived/switch_trim_ring_f1-picogk-gyroid.json`](derived/switch_trim_ring_f1-picogk-gyroid.json), [`derived/switch_trim_ring_f1-picogk.json`](derived/switch_trim_ring_f1-picogk.json), [`derived/switch_trim_ring_f1-picogk.stl`](derived/switch_trim_ring_f1-picogk.stl), [`derived/switch_trim_ring_f1.step`](derived/switch_trim_ring_f1.step), [`derived/switch_trim_ring_f1.stl`](derived/switch_trim_ring_f1.stl) |
 | `evidence/` | screens, reports and manifests — **pinned by SHA-256, never edited by hand** | [`evidence/geometry-screen.json`](evidence/geometry-screen.json) |
-| `media/` | concept-model views rendered from the CAD by `scripts/render_part_previews.py` — not pictures of the original | [`media/preview.json`](media/preview.json), [`media/preview.png`](media/preview.png), [`media/views.png`](media/views.png) |
+| `media/` | concept-model views rendered from the CAD by `scripts/render_part_previews.py` — not pictures of the original; labelled AI studio illustration and provenance, not a photograph | [`media/gyroid.json`](media/gyroid.json), [`media/gyroid.png`](media/gyroid.png), [`media/photo-concept.png`](media/photo-concept.png), [`media/photo.json`](media/photo.json), [`media/preview.json`](media/preview.json), [`media/preview.png`](media/preview.png), [`media/views.png`](media/views.png) |
 | `print/` | **ready-to-print files**: 3MF project, STL and instructions | [`print/print.json`](print/print.json), [`print/switch_trim_ring_f1.3mf`](print/switch_trim_ring_f1.3mf), [`print/switch_trim_ring_f1_print.stl`](print/switch_trim_ring_f1_print.stl) |
-| `source/` | parametric source — the editable master that generates the geometry | [`source/export_print.py`](source/export_print.py), [`source/picogk.json`](source/picogk.json), [`source/switch_trim_ring.py`](source/switch_trim_ring.py) |
+| `source/` | parametric source — the editable master that generates the geometry | [`source/export_print.py`](source/export_print.py), [`source/gyroid.json`](source/gyroid.json), [`source/picogk.json`](source/picogk.json), [`source/switch_trim_ring.py`](source/switch_trim_ring.py) |
 
 ## Read more
 
@@ -104,7 +110,7 @@ flowchart LR
 - **Catalogue record** (source of truth): [`catalog/parts/993-int-switch-trim-ring-f1-0001.json`](../../catalog/parts/993-int-switch-trim-ring-f1-0001.json)
 - **Design dossier**: [993_SOURCING_CHINE_LPBF](../../docs/993/993_SOURCING_CHINE_LPBF.md)
 - **Design dossier**: [993_SWITCH_TRIM_RING_F1](../../docs/993/993_SWITCH_TRIM_RING_F1.md)
-- **Safety rules**: [SAFETY.md](../../SAFETY.md)
+- **Safety rules**: [SAFETY.md](../../docs/SAFETY.md)
 
 ---
 

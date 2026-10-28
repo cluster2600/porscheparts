@@ -1,0 +1,72 @@
+{
+  "schema": "962-observer004-native-row-first-sampler-mocked-guard-plan/v1",
+  "status": "UNRUN_PLAN_ONLY_INDEPENDENT_GUARD_AUTHOR_DEFECT",
+  "proposed_source": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native-row-first-sampler-prep-001/run_root_once_row_first_proposed.py",
+    "sha256": "5287901ed8459bc003243d89d122307d4d5852b804a6bfb97d0ece893a37cf3d",
+    "bytes": 18849
+  },
+  "recommended_minimal_guard_groups": [
+    {
+      "name": "observed_rows_need_no_liveness_query",
+      "mock_input": "groups{101,202}; validpsrows101/101/2/Rs and202/202/0/Zs; unrelated303/303/99/R ignored. killpg stub raises if ever called.",
+      "expected_new": "No killpg call; preserve both raw owned rows/states incl0 and RSS2048B. No live/zombie/permission inference.",
+      "expected_old": "At least one liveness call for already observed group; raising stub exposes former extra dependency. No inference about actual002 failed snapshot."
+    },
+    {
+      "name": "one_missing_absent_group_is_not_zero_filled",
+      "mock_input": "groups{101,202}; row101 valid;202 absent and killpg(202,0) raises ProcessLookupError.",
+      "expected_new": "Query202only; return sole actual101row/RSS, no synthetic202row or zero value.",
+      "expected_old": "Successful branch also probes101 unnecessarily."
+    },
+    {
+      "name": "missing_live_group_refuses",
+      "mock_input": "row101present,202missing; killpg202returns normally.",
+      "expected_new": "ValueError Live owned group has unavailable RSS. Query202only; no partial successful result."
+    },
+    {
+      "name": "missing_group_EPERM_remains_unknown_and_refuses",
+      "mock_input": "row101present,202missing; killpg202 raises PermissionError.",
+      "expected_new": "PermissionError propagates. Never False/absent/zero. Live adapter handling remains fatal; no cleanup/state inference."
+    },
+    {
+      "name": "all_absent_no_rows_still_refuses",
+      "mock_input": "No matchingpsrows; every known-group probe raises ProcessLookupError.",
+      "expected_new": "No owned RSS rows observed refusal, not successful0-byte sample."
+    },
+    {
+      "name": "invalid_ps_or_owned_rows_keep_refusal",
+      "mock_input": "Finite cases: nonzero psreturncode; nondigitRSS; missingstate; knownPID101 moved to non-ownedPGID999.",
+      "expected_new": "Original query/row/ownership ValueErrors before successful sampling. No unknown/nonnumeric value replaced by0. Existing parser/checks unchanged."
+    },
+    {
+      "name": "known_group_discovery_scope_unchanged",
+      "mock_input": "Static exact original children/member and main registration predicate; fake exact(pid,adapterpid,pid) versus wrongPPID/wrongPGID/None.",
+      "expected_new": "Only originally verified direct-child session group may enter owned; arbitrary unrelated psPGID does not create owned membership. Passing knownset is not a new ownership proof."
+    },
+    {
+      "name": "live_adapter_observation_error_keeps_fatal_record",
+      "mock_input": "Actual source exception handler under fake PermissionError and proc.poll() None; fake clock/traceback/IDs.",
+      "expected_new": "stop resource_or_group_observation_failed, full original operation/phase/context, no exit-race downgrade. No actual process/signals/waits."
+    },
+    {
+      "name": "direct_exit_race_record_retained",
+      "mock_input": "Same exact handler with fake poll0 and separately nonzero1; no process execution.",
+      "expected_new": "Original exit_races record preserved, including exception, directRC and phase/operation/traceback. DirectRC0 alone never authorizes completion; nonzero raw status still fails final gates."
+    },
+    {
+      "name": "all_other_lifecycle_limits_and_completion_gates_exact",
+      "mock_input": "Source-only full inverse/17helpers/2nesteddefs/import/global comparison against c445donor.",
+      "expected_new": "group_exists EPERM behavior, all TERM/KILL/wait/cleanup/finalabsence/pin/plugin/RC/115s/100s/2GiB/512MiB/positivegrowth32MiB gates byte-exact. No new retry or rescaling."
+    }
+  ],
+  "recommended_group_count": 10,
+  "actual_guard_source": null,
+  "guard_source_peer": null,
+  "runtime_controls_actual": null,
+  "guard_execution_admission": null,
+  "guard_result": null,
+  "method": "Independent guard author may AST-extract/compile the exact selected frozen function definitions and exact existing error-handler statements into a mocked namespace only in a future admitted test. Never import the executable owner module. subprocess.run, os.killpg, process polling, clocks and tracebacks are fake; missing a mock must refuse, never fall through to a real process operation. Fixed source reversals establish unchanged cleanup/main remainder instead of constructing a new owner framework. All guard source and runtime closure require later review; no tests or compiled AST were executed in this preparation.",
+  "runtime_scope": "Existing no-site stdlib-only synthetic route may be reused after exact import closure review. This supplies no native3.12/PETSc/MOOSE ABI equivalence. Do not add unittest.mock/other imports without reviewing saved91/117 coverage.",
+  "test_or_process_or_source_execution_authorized": false
+}

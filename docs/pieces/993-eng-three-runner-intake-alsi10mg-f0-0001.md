@@ -2,7 +2,7 @@
 
 # 993 three-runner intake manifold, AlSi10Mg F0 concept
 
-**Status: functional. No part is released; see [SAFETY.md](../../SAFETY.md).**
+**Status: functional. No part is released; see [SAFETY.md](../../docs/SAFETY.md).**
 
 Independent concept of a manifold with three offset conical runners and two common flanges to screen AlSi10Mg LPBF. PorscheFanatics and Patrick Motorsports cross-check the PMO FUE PMO 9150 kit, stated as 46 x 42 x 100 mm, three bolts, two parts and a raw aluminum finish; no interface geometry is published.
 
@@ -87,6 +87,10 @@ Catalogue record: [`catalog/parts/993-eng-three-runner-intake-alsi10mg-f0-0001.j
 
 *`parts/993-eng-three-runner-intake-alsi10mg-f0-0001/media/views.png` — concept CAD block, **not** the original part, not a print file.*
 
+![photo-concept](../../parts/993-eng-three-runner-intake-alsi10mg-f0-0001/media/photo-concept.png)
+
+*`parts/993-eng-three-runner-intake-alsi10mg-f0-0001/media/photo-concept.png` — AI-generated studio illustration based on the concept CAD preview. Material and finish are illustrative; generated details may differ. Not a photograph or evidence of fit, function or manufacturing.*
+
 ## Provenance and sources
 
 | field | value |
@@ -106,7 +110,7 @@ Catalogue record: [`catalog/parts/993-eng-three-runner-intake-alsi10mg-f0-0001.j
 | status | concept |
 | vehicle tested | not recorded |
 | reviewed by |  |
-| limitations | not recorded |
+| limitations | The 46 x 42 x 100 mm string is not defined by a drawing; its interpretation as diameters and height remains hypothetical.<br>The F0 spacings, offsets, flanges, thicknesses and absence of holes do not reproduce PMO or Porsche.<br>The 461.03 g per bank and 922.07 g per pair cannot be compared with any published commercial mass.<br>The flow at 6,800 rpm, the volumetric efficiency of 0.95 and the loss coefficient of 0.05 are synthetic.<br>The 1D calculation ignores pulsations, interactions, roughness, plenum, injection, cylinder head conduction, fatigue and backfire.<br>The STEP proves only a computable BREP and must not be manufactured for an engine. |
 
 **Evidence**
 

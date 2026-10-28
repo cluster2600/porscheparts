@@ -3,11 +3,12 @@
 Reads ../derived/monocoque-shell.ply, ../derived/torsion-snapshot.npz and,
 when present, ../derived/torsion-monocoque*.{json,npz},
 ../derived/torsion-rings*.{json,npz}, ../derived/torsion-members.json,
-../derived/torsion-layup.json and ../derived/bending*.{json,npz}; writes
+../derived/torsion-layup.json, ../derived/bending*.{json,npz} and
+../derived/buckling*.{json,npz}; writes
 ../evidence/shell-views.png, ../evidence/torsion-von-mises.png,
 ../evidence/torsion-monocoque.png, ../evidence/torsion-architectures.png,
-../evidence/torsion-members.png, ../evidence/torsion-layup.png and
-../evidence/bending.png.
+../evidence/torsion-members.png, ../evidence/torsion-layup.png,
+../evidence/bending.png and ../evidence/buckling.png.
 
     python3 figures.py
 """
@@ -80,6 +81,82 @@ def main():
         layup()
     if (DERIVED / "bending.json").exists():
         bending(pv, cmap)
+    if (DERIVED / "buckling.json").exists():
+        buckling(pv, cmap)
+
+
+def buckling(pv, cmap):
+    """Linear buckling: the first thin-wall mode of each load case on the
+    finest mesh, and every mode's critical load against the service load."""
+    import json
+    import matplotlib
+    matplotlib.use("Agg")
+    import matplotlib.pyplot as plt
+    from PIL import Image
+    r = json.loads((DERIVED / "buckling.json").read_text())
+    t = np.load(DERIVED / "buckling-modes.npz")
+    pts, tri = t["points"].astype(float), t["triangles"]
+    p = pv.Plotter(off_screen=True, shape=(1, 2), window_size=(2600, 900))
+    for i, (case, az, el) in enumerate((("torsion", 32, 16), ("bending", -148, 20))):
+        key = f"mode_{case}_first_thin_wall"
+        if key not in t:
+            continue
+        u = t[key].astype(float)
+        amp = np.linalg.norm(u, axis=1)
+        m = pv.PolyData(pts + 80.0 * u / amp.max(), np.c_[np.full(len(tri), 3), tri].ravel())
+        m.point_data["mode amplitude"] = amp / amp.max()
+        mode = next(x for x in r["cases"][case]["meshes"][-1]["modes"] if x["family"] in ("free skin", "box outer walls",
+                                                                                         "box inner walls"))
+        p.subplot(0, i)
+        p.set_background("#0e1218", top="#232b36")
+        p.add_mesh(m, scalars="mode amplitude", cmap=cmap, clim=(0, 1), smooth_shading=True, specular=0.4, ambient=0.25,
+                   show_scalar_bar=(i == 1), scalar_bar_args={"color": "white"})
+        camera(p, np.array([-1190.0, 0.0, 640.0]), 3780.0, az, el)
+        where = ", ".join(mode["members"]) or "no member band"
+        p.add_text(f"{case}: first thin-wall mode, {mode['family']} ({where}), d {mode['d_mm']} mm; "
+                   f"{mode['critical']:,} {r['cases'][case]['unit']} = x{mode['critical'] / r['service_loads'][case]['value']:.2f} "
+                   "service (shape exaggerated)", font_size=10, color="white")
+    p.enable_anti_aliasing("ssaa")
+    top = Image.fromarray(p.screenshot(return_img=True))
+    p.close()
+    colours = {"free skin": "#e9b44c", "box outer walls": "#f07b3f", "box inner walls": "#fff1d6", "floor": "#4f9aa8",
+               "bulkheads": "#3e6a8a"}
+    fig, axes = plt.subplots(1, 2, figsize=(16, 4.8), facecolor="#0e1218")
+    for ax, (case, row) in zip(axes, r["cases"].items()):
+        service = r["service_loads"][case]["value"]
+        for j, mesh in enumerate(row["meshes"]):
+            for k, mode in enumerate(mesh["modes"]):
+                ax.scatter(j + 0.04 * (k - len(mesh["modes"]) / 2), mode["critical"] / service, s=40,
+                           color=colours[mode["family"]], marker="x" if mode["free_edge"] else "o")
+        ax.axhline(1.0, color="white", lw=1)
+        ax.axhline(2.0, color="white", lw=1, ls=":")
+        ax.set_yscale("log")
+        ax.set_xticks(range(len(row["meshes"])), [f"{m['sections']} sections" for m in row["meshes"]], color="white")
+        last = row["meshes"][-1]
+        cr, wr = last["sandwich_crimping_margin"], last["sandwich_wrinkling_margin"]
+        ax.set_title(f"{case}: service {service:,.0f} {row['unit']} (ASSUMED)\nsandwich by hand, mid-surface / integration "
+                     f"points: crimping x{cr['mid_surface']} / x{cr['integration_points']}, wrinkling "
+                     f"x{wr['mid_surface']} / x{wr['integration_points']}",
+                     color="white", fontsize=9)
+        ax.set_ylabel("critical / service load\n(line: 1; dotted: 2, a typical knock-down)", color="#9aa3ad", fontsize=9)
+        ax.set_facecolor("#0e1218")
+        ax.tick_params(colors="#9aa3ad")
+        for sp in ax.spines.values():
+            sp.set_color("#3a4350")
+    for name, c in colours.items():
+        axes[1].scatter([], [], color=c, label=name + (" (faces only)" if name in ("floor", "bulkheads") else ""))
+    axes[1].scatter([], [], color="#9aa3ad", marker="x", label="peak on a free edge")
+    axes[1].legend(frameon=False, labelcolor="white", fontsize=8, loc="lower right")
+    fig.tight_layout()
+    fig.canvas.draw()
+    bottom = Image.fromarray(np.asarray(fig.canvas.buffer_rgba())[:, :, :3])
+    plt.close(fig)
+    bottom = bottom.resize((top.width, int(bottom.height * top.width / bottom.width)), Image.LANCZOS)
+    out = Image.new("RGB", (top.width, top.height + bottom.height), (14, 18, 24))
+    out.paste(top, (0, 0))
+    out.paste(bottom, (0, top.height))
+    out.save(EVIDENCE / "buckling.png")
+    print("wrote buckling.png")
 
 
 def bending(pv, cmap):
@@ -254,6 +331,8 @@ def architectures(pv):
     tg = np.load(DERIVED / "torsion-rings-model.npz")
     shells_json = DERIVED / "torsion-shell-tubes.json"
     shell = json.loads(shells_json.read_text()) if shells_json.exists() else None
+    if shell and not shell["tubes"].startswith("S6"):   # a superseded S3 run is not ranked against S6 values
+        shell = None
     shell_tubes = np.load(DERIVED / "torsion-shell-tubes-model.npz") if shell else None
     p = pv.Plotter(off_screen=True, shape=(1, 2), window_size=(2600, 900))
     for i, (t, title) in enumerate(((tb, "picogk/: closed sections formed by the skin"),
@@ -339,7 +418,7 @@ def monocoque_torsion(pv, cmap):
     r = json.loads((DERIVED / "torsion-monocoque.json").read_text())
     t = np.load(DERIVED / "torsion-monocoque-snapshot.npz")
     pts, tri, kind = t["points"].astype(float), t["triangles"], t["kind"]
-    mesh = "S3, finest mesh" if len(next(iter(r["cases"].values()))["K"]) > 1 else "S3"
+    mesh = "S6, finest mesh" if len(next(iter(r["cases"].values()))["K"]) > 1 else "S6"
     clim = (0.0, float(np.percentile(t["von_mises_open_steel"][np.unique(tri[kind != 1])], 97)))
     p = pv.Plotter(off_screen=True, shape=(1, 2), window_size=(2600, 900))
     for i, (key, name, keep) in enumerate((("von_mises_open_steel", "open shell", kind != 1),

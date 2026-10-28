@@ -1,0 +1,77 @@
+{
+  "schema": "962-current24-independent-saved-flip-verifier-root-admission/v1",
+  "actual": {
+    "path": "work/962-engineering/head-star-current24-interior-flip-independent-verifier-execution-prep-001/actual-contract.json",
+    "sha256": "a74051398e619cef1ff03dfc46fcc842260bfa4b3803eddde24b021ae7d7b078",
+    "bytes": 26306
+  },
+  "controller": {
+    "path": "work/962-engineering/head-star-current24-interior-flip-independent-verifier-execution-prep-001/run_root_once.py",
+    "sha256": "204a24d325f0cbe465b1debe43624eeb51a0c4cc315a537e4d080aec2da43d2c",
+    "bytes": 16301
+  },
+  "preflight": {
+    "path": "work/962-engineering/head-star-current24-interior-flip-independent-verifier-execution-prep-001/preflight.json",
+    "sha256": "8684f0596b2e17ea5b772faa257945912432079612172de17376929e33a12e5f",
+    "bytes": 13493
+  },
+  "runtime_preflight": {
+    "path": "work/962-engineering/head-star-current24-interior-flip-guards-execution-prep-002/runtime-preflight.json",
+    "sha256": "3b4f731ff16ec475b5de2d567292b25169a7c9c8618d38c1c8cd363d4f8c9169",
+    "bytes": 78434
+  },
+  "verification_execution_authorized": true,
+  "invocations": 1,
+  "checker_source_peer_reviewed_and_accepted": true,
+  "automatic_retry": false,
+  "analytic_guard_groups": 5,
+  "analytic_guard_condition_count": 6,
+  "controls": {
+    "wall_seconds": 60,
+    "TERM_grace_seconds": 8,
+    "KILL_wait_seconds": 8,
+    "sampled_owned_RSS_bytes": 2147483648,
+    "total_owned_output_bytes": 33554432,
+    "sample_seconds": 0.05,
+    "thread_environment": 1,
+    "retries": 0
+  },
+  "native_execution_authorized": false,
+  "geometry_write_authorized": false,
+  "physical_acceptance": false,
+  "checker_source_peer": {
+    "path": "work/962-engineering/head-star-current24-interior-flip-independent-verifier-source-peer-001/review.json",
+    "sha256": "fed0ce73d468d8f2f2c04342b335721c319f6382405e46c2a70aefd9f5e380aa",
+    "bytes": 9338
+  },
+  "checker_source_bindings": {
+    "path": "work/962-engineering/head-star-current24-interior-flip-independent-verifier-source-peer-001/bindings.json",
+    "sha256": "4d00d216aadd940bb0c7b31ab6d268ddd110e0630b635dd99e7412e2469013f9",
+    "bytes": 13181
+  },
+  "exact_child_peer": {
+    "path": "work/962-engineering/head-star-current24-interior-flip-independent-verifier-exact-child-peer-001/review.json",
+    "sha256": "ba126b1cb775a2b9a38a3fb8925bb9618976692a4c18fdff1165b9b217bbefb9",
+    "bytes": 10050
+  },
+  "exact_child_bindings": {
+    "path": "work/962-engineering/head-star-current24-interior-flip-independent-verifier-exact-child-peer-001/bindings.json",
+    "sha256": "f9f7e116f90903912acc425127af76890334fe469f55167d818ffc5a71c32d51",
+    "bytes": 4425
+  },
+  "exact_child_checks": {
+    "path": "work/962-engineering/head-star-current24-interior-flip-independent-verifier-exact-child-peer-001/checks.json",
+    "sha256": "0b597b8b8212377223293a658e62344e938d129575c465586ef42c253cbe6612",
+    "bytes": 6837
+  },
+  "root_review": "Root has read the full verifier, method, source review, owner, held contract and exact-child review; one saved-data verification is admitted. Producer-affiliated source reviewer lineage remains explicit.",
+  "root_positive_postconditions": [
+    "outer return code 0 and child return code 0",
+    "full receipt and JSON without failure or stop",
+    "all 134 identities and 91 runtime paths plus OS unchanged",
+    "owned process group absent",
+    "elapsed_seconds and stop_handler_cutoff_elapsed_seconds at most 60",
+    "inclusive owned output including admission and receipt at most 33554432 bytes",
+    "finite-family mathematical acceptance requires a separate saved-result review"
+  ]
+}

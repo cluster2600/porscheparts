@@ -2,7 +2,7 @@
 
 # Pair of K16 turbochargers of the 993 Turbo
 
-**Status: **prohibited pending engineering**. No part is released; see [SAFETY.md](../../SAFETY.md).**
+**Status: **prohibited pending engineering**. No part is released; see [SAFETY.md](../../docs/SAFETY.md).**
 
 Research target of the digital twin: two K16 turbochargers mounted in parallel on the 993 Turbo. This record establishes the functional identity and the available public data; it constitutes neither a replacement geometry nor a manufacturing authorization.
 
@@ -86,6 +86,10 @@ Catalogue record: [`catalog/parts/993-turbocharger-k16-pair-0001.json`](../../ca
 
 *`parts/993-turbocharger-k16-pair-0001/media/views.png` — concept CAD block, **not** the original part, not a print file.*
 
+![photo-concept](../../parts/993-turbocharger-k16-pair-0001/media/photo-concept.png)
+
+*`parts/993-turbocharger-k16-pair-0001/media/photo-concept.png` — AI-generated studio illustration based on the concept CAD preview. Material and finish are illustrative; generated details may differ. Not a photograph or evidence of fit, function or manufacturing.*
+
 ## Provenance and sources
 
 | field | value |
@@ -111,7 +115,7 @@ Catalogue record: [`catalog/parts/993-turbocharger-k16-pair-0001.json`](../../ca
 | status | concept |
 | vehicle tested | not recorded |
 | reviewed by |  |
-| limitations | not recorded |
+| limitations | No K16 unit, K16 data plate, K16 physical measurement, K16 scan or licensed K16 CAD is available in the project; K16 masses and envelopes are now available as supplier declarations, without tolerances or interfaces.<br>The left/right part numbers come from public cross-references and must be confirmed on a part or in an authorized Porsche source.<br>FVD declares 5.76 kg for the left-hand K16 and 5.6 kg for the right-hand K16, with a product envelope of 280 x 190 x 210 mm; these values serve the envelope and mass check, not the reconstruction of the bare turbo.<br>Invasion Auto Products declares wheel diameters for the right-hand K16 (turbine 54.96/48.97 mm; compressor 40.6/60.5 mm), part numbers and an A/R of 8; these values must be confirmed before any wheel geometry or rotordynamic calculation.<br>No compressor/turbine map, efficiency curve, mass flow, maximum speed, tip clearance, axial/radial play, oil pressure or turbine inlet temperature has been collected.<br>The part numbers for wheels, housings, CHRA, actuator and A/R are supplier catalog declarations; they define neither the aero surfaces nor the tolerances.<br>The local Porsche 993 manual is a source of service procedures and specifications; it does not provide a complete CAD definition of the K16 here.<br>The Porsche Fanatics transcription adds a PET bill of materials for groups 202-16, 107-20 and 107-45, but no new dimensional measurement; the listed lines must be read in context before any fitment conclusion.<br>A turbine wheel, a compressor wheel, a shaft, a bearing or a hot housing are loaded, thermal and/or rotating parts: no printing, fitment, engine test or road use is authorized by this record.<br>The twin's first demonstrator must target a non-rotating cold-side duct or adapter, with an envelope prototype before any metal version. |
 
 **Evidence**
 

@@ -2,7 +2,7 @@
 
 # Oval exhaust tip, F1 titanium variant
 
-**Status: functional. No part is released; see [SAFETY.md](../../SAFETY.md).**
+**Status: functional. No part is released; see [SAFETY.md](../../docs/SAFETY.md).**
 
 Same double-wall geometry as the IN625 F0 variant, screened in titanium. Selected by the repository titanium screening as the only part in the catalogue where both titanium and additive manufacturing win without running into the safety class. The alloy is deliberately not fixed in the identifier: Ti-6Al-4V and Ti-6242 are both screened, and a temperature that has never been measured separates them.
 
@@ -66,7 +66,7 @@ Catalogue record: [`catalog/parts/993-exh-oval-tip-ti-f1-0001.json`](../../catal
 | machined surfaces | not recorded |
 | inspection | dimensional inspection of the outlet envelope, borescope inspection of the annular channel |
 | galvanic isolation | Titanium/stainless steel couple at the outlet mounting: to be addressed; titanium is noble and stainless follows it closely, but moisture and road salt remain present. |
-| fatigue assumptions | not recorded |
+| fatigue assumptions | No fatigue load case, cycle count, S-N curve or fatigue allowable exists for this part, and none is claimed. Assumed and not quantified: the cyclic loads would be thermal cycling between ambient and hot running, engine and road vibration transmitted through the slip-fit clamp, and exhaust pressure pulsation; no vibration spectrum, pulse spectrum or duty cycle is recorded. The 44.8 Hz first mode is an equivalent-strip screen, not a correlated mode, and the 385 MPa fully constrained thermal stress is a warning that demands a sliding interface, not a predicted stress. EOS publishes no fatigue data for the Ti64 M 290 30 um route; as-built roughness, porosity, build orientation and the undecided HIP would govern life. See docs/decisions/0014-exhaust-tip-route-matrix-conditional-titanium.md. |
 
 ## Geometry
 
@@ -100,6 +100,10 @@ Catalogue record: [`catalog/parts/993-exh-oval-tip-ti-f1-0001.json`](../../catal
 
 *`parts/993-exh-oval-tip-ti-f1-0001/media/views.png` — concept CAD block, **not** the original part, not a print file.*
 
+![photo-concept](../../parts/993-exh-oval-tip-ti-f1-0001/media/photo-concept.png)
+
+*`parts/993-exh-oval-tip-ti-f1-0001/media/photo-concept.png` — AI-generated studio illustration based on the concept CAD preview. Material and finish are illustrative; generated details may differ. Not a photograph or evidence of fit, function or manufacturing.*
+
 ## Provenance and sources
 
 | field | value |
@@ -120,7 +124,7 @@ Catalogue record: [`catalog/parts/993-exh-oval-tip-ti-f1-0001.json`](../../catal
 | status | concept |
 | vehicle tested | not recorded |
 | reviewed by |  |
-| limitations | not recorded |
+| limitations | The 427 °C temperature that decides the alloy is a synthetic input of the F0 screening, never measured on a vehicle.<br>Only the 120 x 85 mm outlet envelope is published; length, inlet interface and slip-fit depth are assumptions.<br>Depowdering of the 2.7 mm annular channel is checked only by the 1 mm voxel screening, a resolution too coarse to conclude.<br>No reviewed orientation, no supplier supports, no machine file.<br>No strength, thermal cycling, acoustic or vehicle fitting test. |
 
 **Evidence**
 
@@ -131,6 +135,7 @@ Catalogue record: [`catalog/parts/993-exh-oval-tip-ti-f1-0001.json`](../../catal
 
 ## Design dossiers
 
+- [993-exh-oval-tip-ti-f1-0001-manufacturing-request](../../docs/993/993-exh-oval-tip-ti-f1-0001-manufacturing-request.md)
 - [993_EMBOUT_TITANE_F1](../../docs/993/993_EMBOUT_TITANE_F1.md)
 
 ---

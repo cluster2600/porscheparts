@@ -1,0 +1,9 @@
+Traceback (most recent call last):
+  File "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native-measurement-prep-002/run_native_capture.py", line 318, in <module>
+    print(json.dumps(run(args.stage,args.contract,args.contract_sha256,args.root_admission_sha256)),flush=True)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native-measurement-prep-002/run_native_capture.py", line 305, in run
+    need(completed and not term_requested and not receipt["controller_stop_requests"] and inclusive<c["resources"]["sampled_output_stop_bytes"] and growth<33554432 and elapsed<100,"Post-receipt native closure refused; retain prefinal receipt and require caller/outer RC0")
+  File "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-native-measurement-prep-002/run_native_capture.py", line 40, in need
+    raise ValueError(message)
+ValueError: Post-receipt native closure refused; retain prefinal receipt and require caller/outer RC0

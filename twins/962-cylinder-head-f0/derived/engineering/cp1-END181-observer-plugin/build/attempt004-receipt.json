@@ -1,0 +1,268 @@
+{
+  "schema": "962-observer003-once-root-admitted-build-receipt/v1",
+  "actual": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer003-build-root-execution-004/actual-contract.json",
+    "sha256": "35b2ec1ad51ecf78473162ebc7fbdb38be6ee0d219be99ce0323a9919932f42d",
+    "bytes": 8171
+  },
+  "admission": {
+    "path": "work/962-engineering/cp1-observer003-root-build-admission-001/admission.json",
+    "sha256": "d4a07f779dbfeebae57afbc9efcfa52981f016206e35f4c11063d77fb99a0eee",
+    "bytes": 2985
+  },
+  "controller": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer003-build-owner-prep-004/run_links_once.py",
+    "sha256": "46c0c32f7e5c39a9c34654cd44758a92420c0b924c1d33cde2b5d8ec73feebfb",
+    "bytes": 13092
+  },
+  "initial": {
+    "count": 60,
+    "observed_sha256": "b29af91590bf8a6e5f0809050adb32adfa26505a486944d27f0e4b8fb10be861",
+    "changed": {}
+  },
+  "source_before": {
+    "commit": "7c06bdcefd02f9f31f4508839f21f410561309a4",
+    "tree": "4106bbd47b9387bda37cff0d679735c57c5391bc",
+    "porcelain": ""
+  },
+  "steps": [
+    {
+      "ordinal": 1,
+      "recipe_index": 2,
+      "name": "link_owned_plugin_once",
+      "argv": [
+        "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-local-installed-002/bin/mpicxx",
+        "-shared",
+        "-fPIC",
+        "-fopenmp",
+        "-Wl,-undefined,dynamic_lookup",
+        "-Wl,-rpath,/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-local-installed-002/lib",
+        "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/cp1-oneway-cooling-release-richardson2-END181-dof-map-observer-prep-003/build-003/CouponEnd181DofMap.o",
+        "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/cp1-oneway-cooling-release-richardson2-END181-dof-map-observer-prep-003/build-003/CouponEnd181ObserverRegistration.o",
+        "-o",
+        "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/cp1-oneway-cooling-release-richardson2-END181-dof-map-observer-prep-003/build-004/libcoupon_end181_observer-opt.dylib",
+        "-fuse-ld=/Library/Developer/CommandLineTools/usr/bin/ld"
+      ],
+      "before": {
+        "count": 60,
+        "observed_sha256": "b29af91590bf8a6e5f0809050adb32adfa26505a486944d27f0e4b8fb10be861",
+        "changed": {}
+      },
+      "samples": 3,
+      "resource_samples": [
+        {
+          "RSS_bytes": 2179072,
+          "processes": 1,
+          "raw_owned_rows": [
+            {
+              "raw": "10832 10832   2128 Ss  ",
+              "pid": 10832,
+              "pgid": 10832,
+              "reported_RSS_KiB": 2128,
+              "RSS_bytes": 2179072,
+              "state": "Ss"
+            }
+          ],
+          "threads": 1,
+          "thread_observation": {
+            "observed_counts": {
+              "10832": 1
+            },
+            "unobserved_pids": [],
+            "returncode": 0,
+            "error": null
+          },
+          "zombie_pids": [],
+          "elapsed_seconds": 0.05454879207536578
+        },
+        {
+          "RSS_bytes": 7307264,
+          "processes": 2,
+          "raw_owned_rows": [
+            {
+              "raw": "10832 10832   2544 Ss  ",
+              "pid": 10832,
+              "pgid": 10832,
+              "reported_RSS_KiB": 2544,
+              "RSS_bytes": 2605056,
+              "state": "Ss"
+            },
+            {
+              "raw": "10847 10832   4592 S   ",
+              "pid": 10847,
+              "pgid": 10832,
+              "reported_RSS_KiB": 4592,
+              "RSS_bytes": 4702208,
+              "state": "S"
+            }
+          ],
+          "threads": 2,
+          "thread_observation": {
+            "observed_counts": {
+              "10832": 1,
+              "10847": 1
+            },
+            "unobserved_pids": [],
+            "returncode": 0,
+            "error": null
+          },
+          "zombie_pids": [],
+          "elapsed_seconds": 0.2178660831414163
+        },
+        {
+          "RSS_bytes": 34193408,
+          "processes": 2,
+          "raw_owned_rows": [
+            {
+              "raw": "10832 10832   2544 Ss  ",
+              "pid": 10832,
+              "pgid": 10832,
+              "reported_RSS_KiB": 2544,
+              "RSS_bytes": 2605056,
+              "state": "Ss"
+            },
+            {
+              "raw": "10847 10832  30848 S   ",
+              "pid": 10847,
+              "pgid": 10832,
+              "reported_RSS_KiB": 30848,
+              "RSS_bytes": 31588352,
+              "state": "S"
+            }
+          ],
+          "threads": 2,
+          "thread_observation": {
+            "observed_counts": {
+              "10832": 1,
+              "10847": 1
+            },
+            "unobserved_pids": [],
+            "returncode": 0,
+            "error": null
+          },
+          "zombie_pids": [],
+          "elapsed_seconds": 0.3332154171075672
+        }
+      ],
+      "peak_RSS_bytes": 34193408,
+      "peak_processes": 2,
+      "peak_observed_threads": 2,
+      "pid": 10832,
+      "last_sample": {
+        "RSS_bytes": 34193408,
+        "processes": 2,
+        "raw_owned_rows": [
+          {
+            "raw": "10832 10832   2544 Ss  ",
+            "pid": 10832,
+            "pgid": 10832,
+            "reported_RSS_KiB": 2544,
+            "RSS_bytes": 2605056,
+            "state": "Ss"
+          },
+          {
+            "raw": "10847 10832  30848 S   ",
+            "pid": 10847,
+            "pgid": 10832,
+            "reported_RSS_KiB": 30848,
+            "RSS_bytes": 31588352,
+            "state": "S"
+          }
+        ],
+        "threads": 2,
+        "thread_observation": {
+          "observed_counts": {
+            "10832": 1,
+            "10847": 1
+          },
+          "unobserved_pids": [],
+          "returncode": 0,
+          "error": null
+        },
+        "zombie_pids": [],
+        "elapsed_seconds": 0.3332154171075672
+      },
+      "returncode": 1,
+      "termination": {
+        "actions": [],
+        "returncode": 1,
+        "group_absent": true
+      },
+      "elapsed_seconds": 0.3934259170200676,
+      "stdout": {
+        "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-END181-dof-map-observer-prep-003/build-004/step1.stdout",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      },
+      "stderr": {
+        "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-END181-dof-map-observer-prep-003/build-004/step1.stderr",
+        "sha256": "3236b872433cdd7cdd2ae4020d0d0a81ffc3bf16b1175a4b1ba1c8d3e8d2fcc5",
+        "bytes": 154
+      },
+      "dependencies": null,
+      "after": {
+        "count": 60,
+        "observed_sha256": "b29af91590bf8a6e5f0809050adb32adfa26505a486944d27f0e4b8fb10be861",
+        "changed": {}
+      }
+    }
+  ],
+  "completed_two_link_steps": false,
+  "guards_executed": false,
+  "host_loaded": false,
+  "native_executed": false,
+  "scientific_or_ABI_acceptance": false,
+  "threads_scope": "Two strictly sequential link commands; OMP/BLAS/VECLIB1 environment; observed internal process/thread counts recorded with no invented thread-count refusal.",
+  "automatic_retry": false,
+  "failure": "Traceback (most recent call last):\n  File \"/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/cp1-oneway-cooling-release-richardson2-observer003-build-owner-prep-004/run_links_once.py\", line 168, in <module>\n    if proc.returncode:raise ValueError('Compiler step failed; no retry or next step')\nValueError: Compiler step failed; no retry or next step\n",
+  "final_snapshot": {
+    "count": 60,
+    "observed_sha256": "b29af91590bf8a6e5f0809050adb32adfa26505a486944d27f0e4b8fb10be861",
+    "changed": {}
+  },
+  "compiler_aliases_after": {
+    "mpicxx": {
+      "path": "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-local-installed-002/bin/mpicxx",
+      "resolved": "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-local-installed-002/bin/mpicxx",
+      "link": null
+    },
+    "clang-19": {
+      "path": "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-local-installed-002/bin/clang-19",
+      "resolved": "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-local-installed-002/bin/clang-19",
+      "link": null
+    },
+    "clang++": {
+      "path": "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-local-installed-002/bin/clang++",
+      "resolved": "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-local-installed-002/bin/clang-19",
+      "link": "clang-19"
+    },
+    "arm64-apple-darwin20.0.0-clang++": {
+      "path": "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-local-installed-002/bin/arm64-apple-darwin20.0.0-clang++",
+      "resolved": "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-local-installed-002/bin/clang-19",
+      "link": "clang-19"
+    },
+    "ld": {
+      "path": "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-local-installed-002/bin/ld",
+      "resolved": "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/moose-local-installed-002/bin/arm64-apple-darwin20.0.0-ld",
+      "link": "arm64-apple-darwin20.0.0-ld"
+    }
+  },
+  "source_after": {
+    "commit": "7c06bdcefd02f9f31f4508839f21f410561309a4",
+    "tree": "4106bbd47b9387bda37cff0d679735c57c5391bc",
+    "porcelain": ""
+  },
+  "owned_output_bytes": 154,
+  "owned_outputs": {
+    "step1.stdout": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-END181-dof-map-observer-prep-003/build-004/step1.stdout",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "step1.stderr": {
+      "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-END181-dof-map-observer-prep-003/build-004/step1.stderr",
+      "sha256": "3236b872433cdd7cdd2ae4020d0d0a81ffc3bf16b1175a4b1ba1c8d3e8d2fcc5",
+      "bytes": 154
+    }
+  }
+}

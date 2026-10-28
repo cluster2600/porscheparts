@@ -1,0 +1,56 @@
+{
+  "schema": "carrier-lpbf-v2-final-read-only-recipe-review-1",
+  "status": "passed_no_concrete_discrepancy_found",
+  "recipe": {
+    "path": "manufacturing/workflows/993-carrier-lpbf-v2.json",
+    "sha256": "bb1f3208cb7ef718af00a0aa09218bc0e6ba325a574a57492478b531b247a5d5",
+    "git_tracked": false
+  },
+  "reviewed_git_head": "0792626ab6fc17695880c3e4b4dcbb0049965e16",
+  "stage_count": 37,
+  "first_12_stage_objects_identical": true,
+  "v1_input_pins_preserved": 45,
+  "pinned_input_count": 211,
+  "all_inputs_present_hash_matched_and_git_tracked": true,
+  "inputs_identity_map_sha256": "1f41e7326732de0262e4c685566e9a8b3049da7d929ee4727deda708ffe239a1",
+  "input_failures": [],
+  "untracked_inputs": [],
+  "unbound_existing_literal_python_dependencies": [],
+  "native_uploaded_sources_missing_from_pins": [],
+  "runtime": {
+    "path": "work/part-workflow/runtime-v2.json",
+    "sha256": "b5325026358b7677bd35ddc72889c22339540f11337d2a467c969129be531a35",
+    "all_five_executables_available": true,
+    "am_python": "work/part-workflow/runtimes/pyslm-coverage-011/env/bin/python",
+    "native_manifest_sha256": "27b131cb62892f7979ecf60ce903c8e7f2176871a7f5ada23f5989e777376ea4"
+  },
+  "full_argv_parser_checks": {
+    "accepted": 25,
+    "total": 25,
+    "receipt": "argv-results.json",
+    "receipt_sha256": "8b1219ba2f0bce0c98ee2784fc7c4819647e509b64a8cf666009fea8f8ebb0c9",
+    "method": "Actual script imports and complete actual argv; argparse.parse_args is intercepted only after successful parsing, before any geometry/body execution. Script sibling import path matches normal Python script invocation."
+  },
+  "static_checks": {
+    "runner_validate_passed": true,
+    "timeouts_all_1_to_3600": true,
+    "seven_generators_version2": true,
+    "new_renderer_bound_by_workshop_guide": true
+  },
+  "immutable_output_writer_review": {
+    "status": "no_conflict_found_by_source_reading",
+    "checks": [
+      "Input preparation directory is only read/copied by later stages.",
+      "Each native source-NNN directory is complete before sealing/generation and later only read/copied.",
+      "Region output subdirectories are not changed by collection of sibling regions.json.",
+      "The support checkpoint is read/copied during reuse; original supports/support-stage.json is not rewritten.",
+      "Process figures add root image/figures files, outside the already hashed layers/ and source/ directories and without rewriting process/report.json.",
+      "Guide creates new delivery-assets and guide outputs; workflow.json intermediate snapshot is copied without mutating already declared outputs."
+    ]
+  },
+  "geometry_executed": false,
+  "large_carrier_replay_executed": false,
+  "paid_compute_used": false,
+  "recipe_or_source_modified_by_review": false,
+  "scope": "Read-only integration and parser/source review. This does not claim that the 37-stage cold carrier reconstruction has been executed or that numerical assessments have passed."
+}

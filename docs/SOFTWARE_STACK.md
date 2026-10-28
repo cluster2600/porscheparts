@@ -20,15 +20,17 @@ Statuses used:
   path;
 - **blocked**: missing input, GPU, license, measurement or correlation.
 
-```mermaid
-flowchart LR
-    PET["PET / PorscheFanatics<br/>JSON and provenance"] --> CAD["CAD<br/>build123d / OCCT / STEP"]
-    CAD --> MESH["Scan and meshing<br/>trimesh / pymeshlab / Gmsh"]
-    MESH --> CAE["Physical reference<br/>CalculiX / OpenFOAM / Cantera / FluidX3D"]
-    CAE --> PN["Surrogates<br/>PhysicsNeMo"]
-    PN --> USD["OpenUSD<br/>SimReady / OVRTX"]
-    USD --> MFG["Manufacturing<br/>STEP / 3MF / PrusaSlicer"]
-```
+For the current execution order and the roles of **our qwen-picogk project,
+PicoGK and our PorscheFanatics.com information catalogue**, start
+with the [software-chain diagram of the engineering overview](ENGINEERING_OVERVIEW.md#software-chain-qwen-and-picogk)
+and [engineering workflow](architecture/engineering-workflow.md). Visualization
+and PhysicsNeMo are optional branches, not prerequisites for fabrication.
+The dated execution statuses below remain attached to their original evidence.
+
+The separate [Warp geometry Docker pilot](WARP_GEOMETRY_VAST_PILOT.md) prepares
+point-to-surface checks for a future bounded CUDA test on Vast. It contains
+synthetic fixtures only. Its local CPU smoke and any later CUDA run have
+separate evidence; it does not resume the stopped fan experiment.
 
 ## Full chain and where it runs
 
@@ -336,3 +338,10 @@ resynchronized before any paid rental.
 The runbook is [917_VAST_SIMREADY_NATIVE.md](../archive/917/docs/917_VAST_SIMREADY_NATIVE.md).
 A green output validates the software chain, never the accuracy of a part,
 the physics of an engine or a manufacturing authorization.
+
+## Free engineering tools carrier pilot
+
+See the [six-tool implementation, architecture and acceptance runbook](architecture/free-tools/README.md).
+This optional integration preserves the existing catalogue, solver recipes and
+qualification gates; its execution report distinguishes native tests from
+unexecuted host checks.

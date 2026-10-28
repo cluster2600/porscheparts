@@ -1,0 +1,105 @@
+{
+  "schema": "962-observer003-exact-PID-crash-report-selected-extract/v1",
+  "source": {
+    "path": "/Users/maxime/Library/Logs/DiagnosticReports/combined-opt-2026-10-20-193012.ips",
+    "sha256": "638eb1dfdd866a7290076d919de600ba52e4015ff228c3d13290222db64a6404",
+    "bytes": 56391
+  },
+  "procName": "combined-opt",
+  "pid": 20952,
+  "captureTime": "2026-10-20 19:29:53.8283 +0200",
+  "exception": {
+    "codes": "0x0000000000000001, 0x00000001223f42b8",
+    "rawCodes": [
+      1,
+      4869538488
+    ],
+    "type": "EXC_BAD_ACCESS",
+    "signal": "SIGSEGV",
+    "subtype": "KERN_INVALID_ADDRESS at 0x00000001223f42b8"
+  },
+  "termination": {
+    "flags": 0,
+    "code": 11,
+    "namespace": "SIGNAL",
+    "indicator": "Segmentation fault: 11",
+    "byProc": "exc handler",
+    "byPid": 20952
+  },
+  "faultingThread": 0,
+  "faulting_thread_frames": [
+    {
+      "imageOffset": 20259392,
+      "symbol": "OutputWarehouse::~OutputWarehouse()",
+      "symbolLocation": 460,
+      "imageIndex": 2,
+      "image": {
+        "arch": "arm64",
+        "base": 4387323904,
+        "size": 25935872,
+        "uuid": "e2039b37-e25a-3270-8175-3b8154e5b797",
+        "path": "/Users/USER/*/libmoose-opt.0.dylib",
+        "name": "libmoose-opt.0.dylib"
+      }
+    },
+    {
+      "imageOffset": 21610232,
+      "symbol": "MooseApp::~MooseApp()",
+      "symbolLocation": 1508,
+      "imageIndex": 2,
+      "image": {
+        "arch": "arm64",
+        "base": 4387323904,
+        "size": 25935872,
+        "uuid": "e2039b37-e25a-3270-8175-3b8154e5b797",
+        "path": "/Users/USER/*/libmoose-opt.0.dylib",
+        "name": "libmoose-opt.0.dylib"
+      }
+    },
+    {
+      "imageOffset": 111116,
+      "symbol": "CombinedTestApp::~CombinedTestApp()",
+      "symbolLocation": 12,
+      "imageIndex": 1,
+      "image": {
+        "arch": "arm64",
+        "base": 4339335168,
+        "size": 131072,
+        "uuid": "7c589223-ed07-3ac8-a851-f78a08717acf",
+        "path": "/Users/USER/*/libcombined_test-opt.0.dylib",
+        "name": "libcombined_test-opt.0.dylib"
+      }
+    },
+    {
+      "imageOffset": 179436,
+      "symbol": "int Moose::main<CombinedTestApp>(int, char**)",
+      "symbolLocation": 184,
+      "imageIndex": 0,
+      "image": {
+        "arch": "arm64",
+        "base": 4338810880,
+        "size": 180224,
+        "uuid": "8724228e-59a0-3cce-b59b-df14381fb8a7",
+        "path": "/Users/USER/*/combined-opt",
+        "name": "combined-opt"
+      }
+    },
+    {
+      "imageOffset": 204528,
+      "symbol": "start",
+      "symbolLocation": 6688,
+      "imageIndex": 201,
+      "image": {
+        "arch": "arm64e",
+        "base": 6576201728,
+        "size": 784800,
+        "uuid": "197124e5-db6e-3d5f-a621-1206166a17f3",
+        "path": "/usr/lib/dyld",
+        "name": "dyld"
+      }
+    }
+  ],
+  "no_raw_report_copied": true,
+  "personal_hardware_and_other_thread_fields_excluded": true,
+  "source_or_ABI_cause_established": false
+}

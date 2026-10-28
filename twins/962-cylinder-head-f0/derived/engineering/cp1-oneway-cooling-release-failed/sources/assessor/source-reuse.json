@@ -1,0 +1,401 @@
+{
+  "schema": "962-cooling-release-assessor-source-reuse/v1",
+  "scope": "Fixed source-only continuation assessor; no new controller/parser framework or mathematical kernel.",
+  "source_donor": {
+    "path": "work/962-engineering/cp1-oneway-thermoelastic-assessor-prep-003/assess.py",
+    "sha256": "55f5f9ca281f9752a6dcac28afca8d18f2c12b4759cf06f8c639a1bb3b8a81bd",
+    "bytes": 35907
+  },
+  "guard_donor": {
+    "path": "work/962-engineering/cp1-oneway-thermoelastic-assessor-prep-003/selfcheck.py",
+    "sha256": "faedfbd030dc03fb6bcb9220a9a9b3c0b070296fa64974fc84df6c2094321341",
+    "bytes": 14633
+  },
+  "policy_donor": {
+    "path": "work/962-engineering/cp1-oneway-thermoelastic-assessor-prep-003/POLICY.json",
+    "sha256": "b9d50d29ff349b7dc9de54445a9b4bea4d16fbfa177bf3b533bbc1c01f0a832f",
+    "bytes": 3826
+  },
+  "case_held": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-prep-001/held-preparation.json",
+    "sha256": "4a85cfecd2ad2f4fd606b6ad0fc74e08d7c611b55166cf012f1d23dfa62c19fc",
+    "bytes": 22508
+  },
+  "case_source_author": "existing_study_audit",
+  "assessor_source_author": "replica_metrology",
+  "author_AST_context": "3.10.11 (v3.10.11:7d4cc5aa85, Apr  4 2023, 19:05:19) [Clang 13.0.0 (clang-1300.0.29.30)]",
+  "AST_serialization": "ast.dump(node,include_attributes=False).encode UTF8, same author interpreter for donor/successor only; no cross-version digest equivalence",
+  "exact_reversible_groups": [
+    {
+      "label": "fixed case and output",
+      "old": "CASE = ROOT / 'work/962-engineering/cp1-oneway-thermoelastic-transfer-prep-002'\nOUTPUT = 'work/962-engineering/cp1-oneway-thermoelastic-assessment-002'",
+      "new": "CASE = ROOT / 'work/962-engineering/cp1-oneway-cooling-release-prep-001'\nSOURCE_CASE = ROOT / 'work/962-engineering/cp1-oneway-thermoelastic-transfer-prep-002'\nOUTPUT = 'work/962-engineering/cp1-oneway-cooling-release-assessment-001'",
+      "count": 1
+    },
+    {
+      "label": "Decimal cooling arithmetic",
+      "old": "from decimal import Decimal\n",
+      "new": "from decimal import Decimal, localcontext\n",
+      "count": 1
+    },
+    {
+      "label": "183 frame bounds",
+      "old": "need(0 <= step <= 160 and abs(time - step / 400) <= 5e-13 and step not in frames, 'One unambiguous native END frame per exact fixed time required')",
+      "new": "need(0 <= step <= 182 and abs(time - step / 400) <= 5e-13 and step not in frames, 'One unambiguous native END frame per exact fixed time required')",
+      "count": 1
+    },
+    {
+      "label": "complete183 frame set",
+      "old": "need(set(frames) == set(range(161)), 'Complete161 END Exodus frames required')",
+      "new": "need(set(frames) == set(range(183)), 'Complete183 END Exodus frames required')",
+      "count": 1
+    },
+    {
+      "label": "finite support/cooling/release/source admission functions",
+      "old": "def assess_data(directory, transfer, source_directory, source_index, filenames, policy):",
+      "new": "def support_masks(geometry, active_nodes, step, phase):\n    need(type(step) is int and 0 <= step <= 182 and phase in ('begin', 'end'), 'Fixed183-step phase required')\n    point = {(0, 0), (0, 1), (0, 2), (32, 1), (32, 2), (137, 2)}\n    need(geometry.get(0) == (0., 0., 0.) and geometry.get(32) == (1., 0., 0.)\n         and geometry.get(137) == (0., 1., 0.), 'Exact original six support IDs/positions required')\n    clamp = {(tag, component) for tag in active_nodes if geometry[tag][2] == 0. for component in range(3)}\n    need(len(clamp) == (135 if step < 80 else 255) and point <= clamp,\n         'Exact45/85 active z=0 plane nodes and six remaining components required')\n    constrained = clamp if step < 181 else point\n    universe = {(tag, component) for tag in active_nodes for component in range(3)}\n    free = universe - constrained\n    need(constrained <= universe and not constrained & free and constrained | free == universe,\n         'One complete disjoint constrained/free mask; no simultaneous clamp/point BCs')\n    released = clamp - point if step == 181 and phase == 'begin' else set()\n    # BEGIN181 is inherited END180 state, before the new free rows have equilibrated.\n    # Only newly released components are exempt then; every END row is checked.\n    need(not released or (len(released) == 249 and released <= free), 'Only249 newly released BEGIN181 components may be unequilibrated')\n    return constrained, free, released\n\n\ndef cooling_values(tokens, step, phase):\n    need(type(step) is int and 161 <= step <= 182 and phase in ('begin', 'end'), 'Only declared continuation phases required')\n    end_step = step - 1 if phase == 'begin' else step\n    need(160 <= end_step <= 182, 'Continuation BEGIN carries previous END temperature')\n    if end_step == 160:\n        return {tag: number(token) for tag, token in tokens.items()}\n    with localcontext() as context:\n        context.prec = 80\n        j = min(end_step - 160, 20)\n        return {tag: 300. if j == 20 else float(Decimal(300) + (Decimal(token) - Decimal(300)) * Decimal(20-j) / Decimal(20))\n                for tag, token in tokens.items()}\n\n\ndef energy_products(geometry, cells, qp, policy):\n    energy = []; bounds = []\n    rules = {tag: hex_rule([geometry[n] for n in cells[tag]]) for tag in {t for t, q in qp}}\n    for (tag, q), (index, state) in qp.items():\n        weight = rules[tag][index][3]\n        for i in range(3):\n            for j in range(3):\n                sigma = state['stress'][i][j]; strain = state['elastic_strain'][i][j]\n                energy.append(.5 * weight * sigma * strain)\n                # Product perturbation bound from the two unchanged scalar SI gates.\n                bounds.append(.5 * weight * (policy['stress_Pa'] * abs(strain)\n                              + policy['strain'] * abs(sigma) + policy['stress_Pa'] * policy['strain']))\n    return math.fsum(energy), math.fsum(bounds)\n\n\ndef release_energy_check(before, after, remaining, policy):\n    need(set(before['nodes']) == set(after['nodes']) == set(before['forces']) == set(after['forces']),\n         'Complete same-node release states required')\n    delta = {(tag, k): after['nodes'][tag][DISP[k]] - before['nodes'][tag][DISP[k]]\n             for tag in before['nodes'] for k in range(3)}\n    need(remaining <= set(delta), 'Remaining support components must exist')\n    residual_work_bound = math.fsum((abs(after['forces'][tag][k]) if (tag, k) in remaining else policy['force_N']) * abs(value)\n                                   for (tag, k), value in delta.items())\n    product_bound = before['energy_product_error_bound_J'] + after['energy_product_error_bound_J']\n    change = after['energy_J'] - before['energy_J']\n    secant_work = math.fsum(.5 * (before['forces'][tag][k] + after['forces'][tag][k]) * value\n                           for (tag, k), value in delta.items())\n    allowance = product_bound + residual_work_bound\n    need(all(math.isfinite(v) for v in (change, secant_work, allowance)) and allowance >= 0,\n         'Finite release energy/work diagnostic and propagated nonnegative bound required')\n    need(change <= allowance, 'Fixed-reference elastic potential must not increase on homogeneous support removal beyond propagated existing SI bounds')\n    need(abs(change - secant_work) <= allowance,\n         'Linear fixed-reference energy increment must match trapezoidal internal work within propagated existing SI bounds')\n    return dict(energy_before_J=before['energy_J'], energy_after_J=after['energy_J'], change_J=change,\n                trapezoidal_internal_work_J=secant_work, energy_work_defect_J=change-secant_work,\n                inherited_tensor_product_bound_J=product_bound, inherited_residual_work_bound_J=residual_work_bound,\n                total_derived_bound_J=allowance, new_independent_Joule_tolerance=None,\n                work_equals_2U_used=False, physical_dynamic_energy_conservation_claimed=False,\n                floating_point_roundoff_proof_claimed=False)\n\n\ndef hold_state_check(audit, before, after):\n    need(set(before['nodes']) == set(after['nodes']) and set(before['qp']) == set(after['qp']), 'Complete fixed300K hold associations required')\n    for tag, row in before['nodes'].items():\n        for name in (*DISP, 'temperature', *FORCE):\n            audit.close(after['nodes'][tag][name], row[name], 'temperature_K' if name == 'temperature' else 'displacement_m' if name in DISP else 'force_N')\n    for key, (_, fields) in before['qp'].items():\n        for name in TENSORS:\n            for i, j in COMP:\n                audit.close(after['qp'][key][1][name][i][j], fields[name][i][j], 'stress_Pa' if name == 'stress' else 'strain')\n    bound = before['energy_product_error_bound_J'] + after['energy_product_error_bound_J']\n    need(abs(after['energy_J'] - before['energy_J']) <= bound, 'Identical prescribed300K released hold energy must agree within propagated tensor gates')\n    return dict(END181_to_END182_individual_SI_gates_passed=True, energy_change_J=after['energy_J']-before['energy_J'],\n                inherited_tensor_product_bound_J=bound, mechanical_convergence_claimed=False)\n\n\ndef completed_evidence(c, pins):\n    need(c.get('continuation_data_peer_and_root_accepted') is True\n         and c.get('complete_native_storage_audit_and_root_review_complete') is True\n         and c.get('TimePeriod24_registry_peer_and_root_review_complete') is True,\n         'Separate completed continuation data, raw-storage audit and TimePeriod24 metadata admissions required')\n    for key in ('data_result_peer', 'data_root_acceptance', 'native_capture_peer', 'native_capture_root_acceptance',\n                'native_storage_audit', 'native_storage_root_acceptance', 'TimePeriod24_presence', 'TimePeriod24_root_closed'):\n        name = c.get(key)\n        need(isinstance(name, str) and name in pins and not Path(name).is_absolute()\n             and sha(ROOT/name) == pins[name], 'Every named completed admission must be directly bound: ' + key)\n\n\ndef assess_data(directory, transfer, source_directory, source_index, filenames, policy):",
+      "count": 1
+    },
+    {
+      "label": "per phase support mask replaces original fixed supports",
+      "old": "    constraints = {(0, 0), (0, 1), (0, 2), (32, 1), (32, 2), (137, 2)}\n    need(geometry[0] == (0., 0., 0.) and geometry[32] == (1., 0., 0.) and geometry[137] == (0., 1., 0.), 'Observed exact support IDs and positions required')",
+      "new": "    support_masks(geometry, old_nodes, 0, 'begin')",
+      "count": 1
+    },
+    {
+      "label": "accepted original thermal prefix and independent declared cooling expectation",
+      "old": "    def thermal(step, phase, active):\n        item = source[(step, phase) if step else (0, 'end')]\n        path = source_directory / item['filename']; need(sha(path) == item['sha256'], 'Original thermal source drift')\n        return node_sample(path, geometry, active, ('temperature',))[0]  # Original thermal rows remain strictly unique.\n",
+      "new": "    terminal = source[(160, 'end')]\n    terminal_path = source_directory / terminal['filename']\n    need(sha(terminal_path) == terminal['sha256'], 'Accepted original END160 source identity required')\n    node_sample(terminal_path, geometry, set(geometry), ('temperature',))  # Strict425 unique original source rows.\n    terminal_tokens = {integer(row['id']): row['temperature'] for row in rows(terminal_path, ('id', 'x', 'y', 'z', 'temperature'))}\n    need(set(terminal_tokens) == set(geometry), 'Complete original terminal temperature tokens required')\n    def thermal(step, phase, active):\n        if step > 160:\n            values = cooling_values(terminal_tokens, step, phase)\n            return {tag: {'temperature': values[tag]} for tag in active}\n        item = source[(step, phase) if step else (0, 'end')]\n        path = source_directory / item['filename']; need(sha(path) == item['sha256'], 'Original thermal source drift')\n        return node_sample(path, geometry, active, ('temperature',))[0]  # Original thermal rows remain strictly unique.\n",
+      "count": 1
+    },
+    {
+      "label": "183 loop and finite release state slots",
+      "old": "    for step in range(161):\n        active_nodes",
+      "new": "    release_states = {}\n    for step in range(183):\n        active_nodes",
+      "count": 1
+    },
+    {
+      "label": "phase masks",
+      "old": "        for phase in ('begin', 'end'):\n            cols",
+      "new": "        for phase in ('begin', 'end'):\n            constraints, free, released = support_masks(geometry, active_nodes, step, phase)\n            cols",
+      "count": 1
+    },
+    {
+      "label": "only newly released BEGIN181 equilibrium exemptions",
+      "old": "                    if (tag, k) not in constraints: audit.close(forces[tag][k], 0., 'force_N')",
+      "new": "                    if (tag, k) in free - released: audit.close(forces[tag][k], 0., 'force_N')",
+      "count": 1
+    },
+    {
+      "label": "energy product consistency and only five finite release states",
+      "old": "            phase_state[phase] = (nodal, qp, computed); total_qp[phase] += len(qp)",
+      "new": "            observed_energy, product_bound = energy_products(geometry, cells, qp, policy)\n            need(abs(observed_energy-energy) <= product_bound, 'Independent/native elastic energy products must agree within inherited tensor gates')\n            if step >= 181 or (step == 180 and phase == 'end'):\n                for row in nodal.values(): audit.close(row['temperature'], 300., 'temperature_K')\n            if (step, phase) in ((180, 'end'), (181, 'begin'), (181, 'end'), (182, 'begin'), (182, 'end')):\n                release_states[(step, phase)] = dict(nodes=nodal, qp=qp, forces=forces, energy_J=energy,\n                                                    energy_product_error_bound_J=product_bound)\n            phase_state[phase] = (nodal, qp, computed); total_qp[phase] += len(qp)",
+      "count": 1
+    },
+    {
+      "label": "summary phase masks and propagated energy products",
+      "old": "elastic_strain_energy_J_diagnostic=energy,\n                                  native_nodal_storage",
+      "new": "elastic_strain_energy_J_diagnostic=energy, native_QP_energy_J_diagnostic=observed_energy,\n                                  inherited_tensor_product_bound_J=product_bound, constrained_DOFs=len(constraints),\n                                  free_DOFs=len(free), pre_equilibrium_released_DOFs=len(released),\n                                  native_nodal_storage",
+      "count": 1
+    },
+    {
+      "label": "coverage and release gates",
+      "old": "    need(total_qp == dict(begin=247808, end=247808) and len(qcoords) == 2048, 'Complete fixed161-phase/8-GP coverage required')",
+      "new": "    need(total_qp == dict(begin=292864, end=292864) and len(qcoords) == 2048, 'Complete fixed183-phase/8-GP coverage required')\n    remaining, _, _ = support_masks(geometry, set(geometry), 181, 'end')\n    release = release_energy_check(release_states[(180, 'end')], release_states[(181, 'end')], remaining, policy)\n    hold = hold_state_check(audit, release_states[(181, 'end')], release_states[(182, 'end')])",
+      "count": 1
+    },
+    {
+      "label": "release result fields",
+      "old": "                quadrature_rows=total_qp, PETSc_order_assumed=False, work_equals_2U_used=False,",
+      "new": "                quadrature_rows=total_qp, release_energy=release, released_fixed300K_hold=hold,\n                own_clamped_BEGIN80_reference_used=True, prior_unclamped_mechanical_fields_used=False,\n                PETSc_order_assumed=False, work_equals_2U_used=False,",
+      "count": 1
+    },
+    {
+      "label": "new exact saved assessment actual schema",
+      "old": "c.get('schema') == '962-cp1-oneway-thermoelastic-assessment-actual/v1'",
+      "new": "c.get('schema') == '962-cp1-oneway-cooling-release-assessment-actual/v1'",
+      "count": 1
+    },
+    {
+      "label": "completed future evidence before raw fields or decoder",
+      "old": "    checked()\n    policy =",
+      "new": "    checked()\n    completed_evidence(c, pins)\n    policy =",
+      "count": 1
+    },
+    {
+      "label": "new native directory",
+      "old": "c.get('native_directory') == 'work/962-engineering/cp1-oneway-thermoelastic-transfer-002'",
+      "new": "c.get('native_directory') == 'work/962-engineering/cp1-oneway-cooling-release-001'",
+      "count": 1
+    },
+    {
+      "label": "new native schema",
+      "old": "native_actual.get('schema') == '962-macos-oneway-thermoelastic-case-actual/v1'",
+      "new": "native_actual.get('schema') == '962-macos-oneway-cooling-release-case-actual/v1'",
+      "count": 1
+    },
+    {
+      "label": "completed own continuation transfer schema",
+      "old": "transfer.get('schema') == '962-oneway-thermoelastic-prepared-transfer/v1' and transfer.get('birth_reference_phase') == 'BEGIN80_all225_born_DOFs_including25shared'",
+      "new": "transfer.get('schema') == '962-oneway-cooling-release-prepared-transfer/v1' and transfer.get('birth_reference_phase') == 'Original exact BEGIN80 temperature on225 born DOFs incl25shared'",
+      "count": 1
+    },
+    {
+      "label": "keep original thermal source index only",
+      "old": "json.loads((CASE / 'thermal-input-index.json').read_text()), c['exodus_family'], policy)",
+      "new": "json.loads((SOURCE_CASE / 'thermal-input-index.json').read_text()), c['exodus_family'], policy)",
+      "count": 1
+    },
+    {
+      "label": "new assessment result schema",
+      "old": "schema='962-cp1-oneway-thermoelastic-saved-field-assessment/v1'",
+      "new": "schema='962-cp1-oneway-cooling-release-saved-field-assessment/v1'",
+      "count": 1
+    },
+    {
+      "label": "completed own continuation finite counts and card",
+      "old": "    need(pins.get(c['transfer_manifest']) == receipt['transfer_manifest_sha256'] == sha(ROOT / c['transfer_manifest']), 'Native and assessor must use the same completed transfer manifest')",
+      "new": "    need(pins.get(c['transfer_manifest']) == receipt['transfer_manifest_sha256'] == sha(ROOT / c['transfer_manifest']), 'Native and assessor must use the same completed transfer manifest')\n    need(transfer.get('table_value_counts') == {'old-end.grid': 41175, 'born-end.grid': 23175, 'born-begin80.grid': 225}\n         and transfer.get('original_tokens_preserved') == 54675 and transfer.get('new_assumed_cooling_hold_values') == 9900\n         and transfer.get('cooling_card_sha256') == sha(CASE/'card.json')\n         and transfer.get('prescribed_cooling_not_heat_equation_or_process_calibration') is True,\n         'Exact completed continuation counts, card and research scope required')",
+      "count": 1
+    },
+    {
+      "label": "completed cooling capture preserves original false assessment and head flags",
+      "old": "    need(receipt.get('native_execution_completed') is True and receipt.get('returncode') == 0 and receipt.get('inputs_unchanged') is True and receipt.get('binary_and_runtime_unchanged') is True, 'Stopped completed immutable native receipt required')",
+      "new": "    need(receipt.get('native_execution_completed') is True and receipt.get('returncode') == 0 and receipt.get('inputs_unchanged') is True and receipt.get('binary_and_runtime_unchanged') is True, 'Stopped completed immutable native receipt required')\n    need(receipt.get('passed') is False and receipt.get('independent_assessment_performed') is False\n         and receipt.get('prescribed_cooling_extension_present') is True and receipt.get('build_clamp_then_release') is True\n         and receipt.get('head_input_read') is False and receipt.get('automatic_retry') is False,\n         'Original unassessed local cooling capture and no head/retry scope required')",
+      "count": 1
+    },
+    {
+      "label": "accepted original source and exact copied BEGIN80 reference metadata",
+      "old": "    result = assess_data(native, transfer, ROOT / 'work/962-engineering/cp1-assumed-thermal-birth-linear-001', json.loads((SOURCE_CASE / 'thermal-input-index.json').read_text()), c['exodus_family'], policy)",
+      "new": "    original = json.loads((CASE/'thermal-input-index.json').read_text())\n    need(transfer.get('source_manifest_sha256') == original['source_manifest']['sha256']\n         and transfer.get('original_table_sha256') == {name: row['sha256'] for name, row in original['table_descriptors'].items()}\n         and transfer['table_sha256']['born-begin80.grid'] == original['table_descriptors']['born-begin80.grid']['sha256'],\n         'Original accepted thermal lineage and whole-byte BEGIN80 temperature reference required')\n    result = assess_data(native, transfer, ROOT / 'work/962-engineering/cp1-assumed-thermal-birth-linear-001', json.loads((SOURCE_CASE / 'thermal-input-index.json').read_text()), c['exodus_family'], policy)",
+      "count": 1
+    }
+  ],
+  "complete_reverse_restores_donor": true,
+  "source": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-assessor-prep-001/assess.py",
+    "sha256": "a366dfc43f7bdba5d2c60b8a911098c883723b23f946d8a89fb4d42b3e3d4b5b",
+    "bytes": 46553
+  },
+  "guards": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-assessor-prep-001/selfcheck.py",
+    "sha256": "5f6fe4ed411e1df521d7388a8a9bca7ef19fbafedb69447fcdde7439778f8bc4",
+    "bytes": 9630
+  },
+  "policy": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-assessor-prep-001/POLICY.json",
+    "sha256": "a87df89f84706b36c0b665c0e9eac928e3c9b2b45f5a2921442b2d6403f4a638",
+    "bytes": 5013
+  },
+  "source_diff": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-assessor-prep-001/source.diff",
+    "sha256": "f9d2b468f13d06d3339dd8879e197a515b163a2d23890f8c263ed84eed0af36b",
+    "bytes": 23756
+  },
+  "guard_diff": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-assessor-prep-001/selfcheck.diff",
+    "sha256": "cb79cf54c331f52e2dd62c584df5a5bd2efcaeea6f89418e1782006ee249b861",
+    "bytes": 24347
+  },
+  "exact_18_functions_plus_Audit": [
+    {
+      "name": "Audit",
+      "text_sha256": "6a9809a0df26c5c2a7557838b82918fb71b2480bbaf096a9ae9da440919bfbbd",
+      "same_interpreter_AST_sha256": "a8ba18b6c14da8e744733c094caa99942e82b9ced241d1a71ace6186c5d3e261"
+    },
+    {
+      "name": "accumulate",
+      "text_sha256": "6016851cf7beb200f508d96bd8c1194395c2450326b424b715f399b8c20bd2c8",
+      "same_interpreter_AST_sha256": "a835977f96005307fd7c468270cb5c59113ebd4d064ae884d193a27e440f854a"
+    },
+    {
+      "name": "bits",
+      "text_sha256": "3b5437a6d177bfebbd09b3deeb25a7953797a9e9b84798f37d16aece4356ba12",
+      "same_interpreter_AST_sha256": "22d8680a02818786295c052f19fe1b407f45ae9c7ac014506eadf0a24b2f8772"
+    },
+    {
+      "name": "cdf_magic",
+      "text_sha256": "464c2d68c9882e976be306e66b6477e41b38fc59e10d8817513c20233d0bb18d",
+      "same_interpreter_AST_sha256": "28cc74d4d7b6ccf57c52b9ff015edb33163f6135bb2debf99ffbdf351525a4c0"
+    },
+    {
+      "name": "field_phase",
+      "text_sha256": "7c2af948ee7a55a07a22d88545cdaf73036fdec29c38bba99cf9d52b0fb8092b",
+      "same_interpreter_AST_sha256": "e681f5595498bb038165334350aa1ceab9f013642ab17657a01617428d0bbcbb"
+    },
+    {
+      "name": "hex_rule",
+      "text_sha256": "e4c183e3a42f9a7c8fc6b8234cae5d786df20e5ab4d6422257090c0c285fa5cb",
+      "same_interpreter_AST_sha256": "ed46d32c86d2a8545345a2a475658a41a0a472a5153b6246b9edd7eab672f9c0"
+    },
+    {
+      "name": "hooke",
+      "text_sha256": "2dd0d810e21e441186a7fdbb212e00e0d1a48d11f8893e9abf0181a9ab74617c",
+      "same_interpreter_AST_sha256": "6102e3b7140f61adc3bb1d7e102fd7920f2907307fd386f249fc28ed2a5ebdc4"
+    },
+    {
+      "name": "integer",
+      "text_sha256": "b6335bd7a3c516310c0310ed95f663ebde8bb54fa6abeddb28334f341ad381fa",
+      "same_interpreter_AST_sha256": "3b4afff6be631711351a7311f30d37a232a1634a3f04611d5bef3534cf2e330a"
+    },
+    {
+      "name": "mechanical_state",
+      "text_sha256": "00fbc78b49006d28e9d84b93ad53d5a9b2d991c79dcea1029612724786ef3780",
+      "same_interpreter_AST_sha256": "fb86b41e1a615975a9df6f495af01cd3ac0c04fed8b6d16ca6a2f373daa1155d"
+    },
+    {
+      "name": "need",
+      "text_sha256": "4b3a697e0d6c229d054eb933137631f3eec63797433cf8a40cb5f41231911d04",
+      "same_interpreter_AST_sha256": "50c73b0443cfa78614639ae4ee0d07d28a67ecca7324481e1cbb4212f796a592"
+    },
+    {
+      "name": "node_sample",
+      "text_sha256": "ef65acf09b041d0efeefd45fd54921812e67207677a07dbeb103f59a4216bfb6",
+      "same_interpreter_AST_sha256": "07edd4440c43d8c4649c0063dfa2df55ca81d67025cd2db47caac680573e79cd"
+    },
+    {
+      "name": "number",
+      "text_sha256": "75564e9353fdeba7c52926a4d4d21864fcc3c98bf4d53741156e08162723c6b7",
+      "same_interpreter_AST_sha256": "7f19ffd50e64d2008083de46cb371164c1281157cd69d7b36189f9a8ce0d0af5"
+    },
+    {
+      "name": "ordered_hex",
+      "text_sha256": "f90c8a1dad16b8191d95579bbd22860349e891e092d0c9b6a2e5230917681b4c",
+      "same_interpreter_AST_sha256": "9e532115b382b2b8517a76c89a21eb251fa2bc4be90d98daf8f08d792c15270f"
+    },
+    {
+      "name": "quadrature_sample",
+      "text_sha256": "ec5b405374213621d5d680e5a11b85bf537497abdd49e65889e9480a34769c56",
+      "same_interpreter_AST_sha256": "7001c74095eb1d1b24c0fd9b7b5e24b0269c1596bc781a9d015d6615cd586faa"
+    },
+    {
+      "name": "read_exodus",
+      "text_sha256": "a4611001c0db32eda82b91c11c10f648ccf6792b9059410f80564e6d454c4083",
+      "same_interpreter_AST_sha256": "c27230f51ee6421cd174eb33769b57170bea9a65db6fc69b60045a212930d622"
+    },
+    {
+      "name": "rows",
+      "text_sha256": "559c289f95417762ad075755e5c485d4fa2c00249b68a0e5c6da6a18a10285fc",
+      "same_interpreter_AST_sha256": "4d07df2ad151f7cd4bd162870023fe75625fd7e60991007c3c258c5a6d6de216"
+    },
+    {
+      "name": "sha",
+      "text_sha256": "8171f0c214b9f69a9cced0f7a9123e61fcaf5ce9eb3c8bb35c29d834f5b23c34",
+      "same_interpreter_AST_sha256": "64876ad070ff727704057cef04e9e5d853e4b8b32b9d4c7279c85d7792de09f7"
+    },
+    {
+      "name": "symgrad",
+      "text_sha256": "9ffb54f0118e96a0a30d70e83851e47e13fb0798d382868c2653fced33b43c05",
+      "same_interpreter_AST_sha256": "520c6b5de7e63d2a3d51966f61ff25a9b367c1d32bf8c1214d2a4b9de35e81c1"
+    },
+    {
+      "name": "tensor",
+      "text_sha256": "741cfdd59e6fc3ea5ab11ebfbf2ff092fc96ce6029a184d05238b66ab4b43b98",
+      "same_interpreter_AST_sha256": "37e4a5aeaae6b65b0166815076c0f42691ca69370691e0083b73f3052d3dd654"
+    }
+  ],
+  "changed_original_definitions": [
+    "geometry_family",
+    "assess_data",
+    "assess"
+  ],
+  "new_finite_definitions": [
+    "completed_evidence",
+    "cooling_values",
+    "energy_products",
+    "hold_state_check",
+    "release_energy_check",
+    "support_masks"
+  ],
+  "complete_consumer_union": [
+    "TimePeriod24_presence",
+    "TimePeriod24_registry_peer_and_root_review_complete",
+    "TimePeriod24_root_closed",
+    "assessment_authorized",
+    "automatic_retry",
+    "complete_native_storage_audit_and_root_review_complete",
+    "continuation_data_peer_and_root_accepted",
+    "data_result_peer",
+    "data_root_acceptance",
+    "engineering_accepted",
+    "exodus_family",
+    "head_execution_authorized",
+    "input_sha256",
+    "manufacturing_authorized",
+    "material_qualified",
+    "native_capture_peer",
+    "native_capture_root_acceptance",
+    "native_completed_and_peer_reviewed",
+    "native_directory",
+    "native_execution_authorized",
+    "native_output_inventory",
+    "native_storage_audit",
+    "native_storage_root_acceptance",
+    "output_directory",
+    "physics_qualified",
+    "process_calibrated",
+    "root_and_independent_source_review_complete",
+    "runtime_selection",
+    "schema",
+    "transfer_manifest"
+  ],
+  "dynamic_consumers": {
+    "completed_evidence_roles": [
+      "data_result_peer",
+      "data_root_acceptance",
+      "native_capture_peer",
+      "native_capture_root_acceptance",
+      "native_storage_audit",
+      "native_storage_root_acceptance",
+      "TimePeriod24_presence",
+      "TimePeriod24_root_closed"
+    ],
+    "eight_false_fields": [
+      "native_execution_authorized",
+      "automatic_retry",
+      "head_execution_authorized",
+      "engineering_accepted",
+      "physics_qualified",
+      "material_qualified",
+      "process_calibrated",
+      "manufacturing_authorized"
+    ]
+  },
+  "seven_absolute_SI_limits_unchanged": {
+    "temperature_K": 1e-10,
+    "displacement_m": 1e-12,
+    "QP_coordinate_m": 2e-13,
+    "strain": 1e-10,
+    "stress_Pa": 0.1,
+    "force_N": 1e-07,
+    "moment_Nm": 1e-07
+  },
+  "focused_UNRUN_guard_methods": [
+    "test_phase_masks_clamp_birth_release_and_no_overlap",
+    "test_declared_cooling_keeps_BEGIN_previous_END_and_exact300_release",
+    "test_release_nonincrease_and_secant_work_refusals",
+    "test_fixed300_hold_checks_displacements_reactions_tensors_and_energy",
+    "test_energy_product_uses_all_nine_tensor_entries_and_existing_bounds",
+    "test_completed_storage_data_registry_gates_fail_closed",
+    "test_all183_native_frames_required_without_decoder_or_numbering_guess",
+    "test_unchanged_math_readers_policy_and_own_birth_reference_source"
+  ],
+  "authoring_history": [
+    {
+      "phase": "source-only metadata display",
+      "outcome": "TypeError from len() on donor declared_original_thermal_CSV_identities, which is an integer322, not a container",
+      "correction": "Read actual input_sha256 names and original thermal index selected metadata. No prepared functions, fields, native execution or source/result changes occurred."
+    },
+    {
+      "phase": "unfrozen author static derivation",
+      "outcome": "BEGIN180 must carry previous END179; corrected the new300K assertion to END180 and both phases181/182 before freeze. No guard or field calculation was run."
+    }
+  ],
+  "prepared_function_module_guard_scientific_native_execution": false,
+  "raw_grid_CSV_CDF_runtime_body_read_or_hash": false,
+  "limits": [
+    "Reused numerical kernels are exact accepted source, not newly rederived mathematics.",
+    "Release mask/phase and propagated energy criteria are newly derived here from declared constant-law homogeneous-constraint case, untested.",
+    "No current TimePeriod24, new native capture/storage, data result or assessment observation is inherited from prior fine coupon."
+  ]
+}

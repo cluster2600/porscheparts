@@ -1,0 +1,172 @@
+{
+  "schema": "962-observer004-saved-parser002-narrow-reuse/v1",
+  "donor_parser": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-saved-measurement-parser-prep-001/parse_saved_measurement.py",
+    "sha256": "a1c68558167b990f6f059f394fa085548eb0969dcaad6096864dc043b99ffc1d",
+    "bytes": 13047
+  },
+  "donor_fixture": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-saved-measurement-parser-prep-001/test_parser_synthetic.py",
+    "sha256": "0f555b37d6ce7180d0c2597ed3e468014d85490c42809681e13cc4ea4addf699",
+    "bytes": 7819
+  },
+  "successor_parser": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-saved-measurement-parser-prep-002/parse_saved_measurement.py",
+    "sha256": "dfce01d6cd8d7618e0dee794d35a7bb0a56e34ae998facf2dd3f7b9335d4bede",
+    "bytes": 13042
+  },
+  "successor_fixture": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-saved-measurement-parser-prep-002/test_parser_synthetic.py",
+    "sha256": "31eba18f4a9cf24db0e09e6fc50da9cbb3c95980371424b6a5ecea498b15ce60",
+    "bytes": 8086
+  },
+  "parser_replacement": {
+    "old": "not re.search(r'\\bTime Step\\s+[0-9]+',line)",
+    "new": "not re.search(r'\\bTime\\s+Step\\b',line)",
+    "count": 1
+  },
+  "fixture_replacement": {
+    "old": "                    text+'  1 SNES Function norm 1.0e-16\\n',text.replace('0 SNES Function norm','2 SNES Function norm',1)]:",
+    "new": "                    text+'  1 SNES Function norm 1.0e-16\\n',text.replace('0 SNES Function norm','2 SNES Function norm',1),\n                    text+'Time Step -1, time = 0, dt = 0.0025\\n',\n                    text+'Time Step 1.5, time = 0, dt = 0.0025\\n',\n                    text+'Time Step unknown, time = 0, dt = 0.0025\\n',\n                    text+'Time Step, time = 0, dt = 0.0025\\n']:",
+    "count": 1
+  },
+  "whole_parser_reversal_byte_exact": true,
+  "whole_fixture_reversal_byte_exact": true,
+  "whole_reversed_ASTs_exact": true,
+  "parser_functions": [
+    {
+      "name": "need",
+      "text_exact": true,
+      "AST_exact": true,
+      "donor_text_sha256": "28db3a733fb01ddff1ff5744ade203bedc8ed7f83fc600866196573c4b1fd6ae",
+      "successor_text_sha256": "28db3a733fb01ddff1ff5744ade203bedc8ed7f83fc600866196573c4b1fd6ae"
+    },
+    {
+      "name": "strict_json",
+      "text_exact": true,
+      "AST_exact": true,
+      "donor_text_sha256": "a54c7c5babad04980b1cdefd27c572a05b763bfa6fd67af8a5c19898ed0f542d",
+      "successor_text_sha256": "a54c7c5babad04980b1cdefd27c572a05b763bfa6fd67af8a5c19898ed0f542d"
+    },
+    {
+      "name": "word_is_finite",
+      "text_exact": true,
+      "AST_exact": true,
+      "donor_text_sha256": "d362f03d52bc6590f31c2088bd41a0d0707b1f4836d7b309c3b238d0e79cd5c1",
+      "successor_text_sha256": "d362f03d52bc6590f31c2088bd41a0d0707b1f4836d7b309c3b238d0e79cd5c1"
+    },
+    {
+      "name": "scan_vectors",
+      "text_exact": true,
+      "AST_exact": true,
+      "donor_text_sha256": "1486c523edc70ddd38a6477e55d9e2a9b97966b70edcbc8d199cbc4bcfea9fd8",
+      "successor_text_sha256": "1486c523edc70ddd38a6477e55d9e2a9b97966b70edcbc8d199cbc4bcfea9fd8"
+    },
+    {
+      "name": "vector_words",
+      "text_exact": true,
+      "AST_exact": true,
+      "donor_text_sha256": "4e53e8147794197ae071deaf2321b3a02226f6a547a092462929de995f631bf7",
+      "successor_text_sha256": "4e53e8147794197ae071deaf2321b3a02226f6a547a092462929de995f631bf7"
+    },
+    {
+      "name": "validate_map",
+      "text_exact": true,
+      "AST_exact": true,
+      "donor_text_sha256": "91e8bcd6d8a9f8aff85bef6677095ddb138d42a0f505ec80d70b367b2300cadf",
+      "successor_text_sha256": "91e8bcd6d8a9f8aff85bef6677095ddb138d42a0f505ec80d70b367b2300cadf"
+    },
+    {
+      "name": "parse_monitor_trace",
+      "text_exact": false,
+      "AST_exact": false,
+      "donor_text_sha256": "7bfaf4b4fa131e900fae3986e2d2423d9e61752b95537566b21968400424b379",
+      "successor_text_sha256": "e7367e3f66c496fc48d162b87b68f4623b37436c9224ecc9cb3546832fff9f3b"
+    },
+    {
+      "name": "bind_stream_headers",
+      "text_exact": true,
+      "AST_exact": true,
+      "donor_text_sha256": "10c8c9bada51bf167ee8495b6614026ddb60991558c6cc775ef28cf02ef77a4e",
+      "successor_text_sha256": "10c8c9bada51bf167ee8495b6614026ddb60991558c6cc775ef28cf02ef77a4e"
+    }
+  ],
+  "fixture_methods": [
+    {
+      "name": "test_both_integer_widths_variable_N_full_EOF_and_info",
+      "text_exact": true,
+      "AST_exact": true
+    },
+    {
+      "name": "test_class_signed_length_payload_and_trailing_bytes_refused",
+      "text_exact": true,
+      "AST_exact": true
+    },
+    {
+      "name": "test_duplicate_and_nonfinite_JSON_tokens_refused",
+      "text_exact": true,
+      "AST_exact": true
+    },
+    {
+      "name": "test_wrong_width_endian_oversize_or_missing_info_refused",
+      "text_exact": true,
+      "AST_exact": true
+    },
+    {
+      "name": "test_nonfinite_Y0_payload_and_signed_zero_are_preserved_uninterpreted",
+      "text_exact": true,
+      "AST_exact": true
+    },
+    {
+      "name": "test_map_has_actual_permuted_full_global_range_and_expected_six_labels",
+      "text_exact": true,
+      "AST_exact": true
+    },
+    {
+      "name": "test_map_missing_range_mask_coordinates_scaling_and_time_refused",
+      "text_exact": true,
+      "AST_exact": true
+    },
+    {
+      "name": "test_map_duplicate_index_and_absent_physical_DOF_refused",
+      "text_exact": true,
+      "AST_exact": true
+    },
+    {
+      "name": "test_full_trace_gives_conditional_ordinals_not_times",
+      "text_exact": true,
+      "AST_exact": true
+    },
+    {
+      "name": "test_missing_extra_or_unrecognized_trace_monitor_refused",
+      "text_exact": false,
+      "AST_exact": false
+    },
+    {
+      "name": "test_header_join_keeps_earlier_N_independent_of_END181",
+      "text_exact": true,
+      "AST_exact": true
+    }
+  ],
+  "fixture_module_helpers_exact": [
+    "stream",
+    "word",
+    "toy_map",
+    "log_text"
+  ],
+  "one_direct_TestCase": true,
+  "unrun_test_method_count": 11,
+  "existing_bad_trace_cases": 3,
+  "new_bad_trace_cases": 4,
+  "total_bad_trace_loop_cases": 7,
+  "all_other_imports_constants_helpers_text_AST_unchanged": true,
+  "new_dependency": false,
+  "AST_parse_only": true,
+  "prepared_source_or_fixture_import_execution": false,
+  "real_data_or_runtime_body_operation": false,
+  "source_diff": {
+    "path": "work/962-engineering/cp1-oneway-cooling-release-richardson2-observer004-saved-measurement-parser-prep-002/source.diff",
+    "sha256": "3dee5b0348890822adc0a81c1098adf026e2a3b5bd3a078ff8d05542d658e8cf",
+    "bytes": 2279
+  }
+}

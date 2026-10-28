@@ -3,8 +3,13 @@ import importlib.util
 import hashlib
 import json
 from pathlib import Path
+import sys
 import tempfile
 import unittest
+
+# analyze_flow.py loads the Poiseuille benchmark scripts; do not leave bytecode
+# in that benchmark tree, which test_openfoam_poiseuille_f25 requires to be clean.
+sys.dont_write_bytecode = True
 
 ROOT = Path(__file__).resolve().parents[1]
 SOURCE = ROOT / "twins/962-cylinder-head-f0/source/flow4l"

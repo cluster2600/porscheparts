@@ -1,0 +1,138 @@
+{
+  "status": "nested_T4_inputs_prepared_exact_volume_audit_pending",
+  "nodes": 719680,
+  "elements": 3052512,
+  "parent_elements": 381564,
+  "boundary_faces": 785624,
+  "material": {
+    "name": "Ti-6Al-4V dense elastic reference only",
+    "source": "https://www.timet.com/documents/datasheets/alpha-and-beta-alloys/timetal-6-4.pdf",
+    "E_MPa": 107000.0,
+    "nu": 0.31,
+    "density_tonne_mm3": 4.42e-09,
+    "expansion_per_K": 9e-06,
+    "strength_allowable_MPa": null,
+    "fatigue_curve": null,
+    "manufactured_state_qualified": false
+  },
+  "loads": {
+    "gravity": {
+      "requested": {
+        "force_N": [
+          0,
+          0,
+          -2000
+        ],
+        "moment_Nmm": [
+          0,
+          0,
+          0
+        ]
+      },
+      "actual_force_N": [
+        1.2011515524276657e-20,
+        -4.052295782351341e-20,
+        -1999.9999999999993
+      ],
+      "actual_moment_Nmm": [
+        -1.187364095933674e-11,
+        -1.874045363337018e-10,
+        -1.6259624603158848e-18
+      ],
+      "deck_sha256": "219ae1ee5def9614f445ec75c88c7f63254046d645aabd0e4d2cafdc2a4f51bc",
+      "per_bore_constant_traction_N_per_mm2": [
+        [
+          -1.7117025065258222e-08,
+          8.575550820515877e-08,
+          -1.9304793952849917
+        ],
+        [
+          1.2942032653667763e-08,
+          -1.008920882746819e-07,
+          -1.9323467796375433
+        ],
+        [
+          -2.0312475647445925e-08,
+          1.3262784725417536e-07,
+          -1.9293964340597751
+        ],
+        [
+          2.451484063246766e-08,
+          -1.1767850625080027e-07,
+          -1.9312637160743316
+        ]
+      ]
+    },
+    "combined": {
+      "requested": {
+        "force_N": [
+          0,
+          0,
+          -4000
+        ],
+        "moment_Nmm": [
+          0,
+          850000,
+          0
+        ]
+      },
+      "actual_force_N": [
+        5.742968085678882e-17,
+        -1.128277531895882e-16,
+        -4000.000000000008
+      ],
+      "actual_moment_Nmm": [
+        -3.5300917744507387e-10,
+        850000.0000000008,
+        -7.255995934304926e-15
+      ],
+      "deck_sha256": "b55453fd160c8d39f9e1ac870f78fb88d16468b7f85ea85329091bb5c2beb47f",
+      "per_bore_constant_traction_N_per_mm2": [
+        [
+          0.0006133915454677099,
+          0.0002645129932375296,
+          12.54989457430001
+        ],
+        [
+          -0.0004869497898634396,
+          0.0002652947085099043,
+          12.557022755405592
+        ],
+        [
+          0.0007102314086301762,
+          -0.0002652993901457909,
+          -20.272415237526246
+        ],
+        [
+          -0.000837677427489385,
+          -0.0002642420605701596,
+          -20.265011613770195
+        ]
+      ]
+    }
+  },
+  "retained_parent_patch_rosters": true,
+  "load_model_changed": false,
+  "continuous_tractions_unchanged": true,
+  "all_parent_nodes_and_midsides_unchanged": true,
+  "whole_surface_distance_upper_mm": 0.05999999489979791,
+  "geometry_adopted": false,
+  "stress_convergence_demonstrated": false,
+  "output_sha256": {
+    "combined.inp": "b55453fd160c8d39f9e1ac870f78fb88d16468b7f85ea85329091bb5c2beb47f",
+    "gravity.inp": "219ae1ee5def9614f445ec75c88c7f63254046d645aabd0e4d2cafdc2a4f51bc",
+    "gravity-loads.npz": "2f2c03d0815670d3a939a5b3cab8b6a989a0b233bd4abe4da4b2066a3f431fac",
+    "transport.npz": "77277445ad3477c9a51c84aa618b1f4ea5573cb49fe0919631e91f13428e5443",
+    "combined-loads.npz": "53ca52d4e7315b4fe47dfe8ed1c70d4998cc4193ef674c145d05299b69c01867",
+    "mesh.inp": "a2b532b69ffb3d5f54a8383d7ad78d17c54ca254c4d055cd1493f84643654ec3",
+    "groups.npz": "b1e636937daf97b1908720a1b497ee37597090c90712fd80d1f81e0fe4159941"
+  },
+  "source_sha256": {
+    "work/carrier-mesh-quality-20261025/remeshed-quadratic-001/quadratic.npz": "f092541447f9939b987994ab883ef57001370ebd80a4902bf2cdd41aba52f0b3",
+    "work/carrier-mesh-quality-20261025/remeshed-quadratic-mapping-001/assessment.json": "e3cdaa955c659679d7321a439d96c693684efd9888ea1fdf9dba319c169dcb23",
+    "work/carrier-mesh-quality-20261025/remeshed-matched-traction-001/P2/assessment.json": "3c7dcda78b7435ff1e6900100335dfbe1e09dd8f3a43af7c50577945cac8bb45",
+    "work/carrier-resume-20261020/picogk-R2-mechanics-study.json": "f41352402649adf98dda9d6bb294f7342e5ed6f5c8b5609be9e103229f4c6ccf",
+    "/Users/maxime/.codex/worktrees/993-carrier-revalidation/3dprinting993/parts/993-eng-carrier-0001/source/design-20261016/convergence-20261022/refine_matched_tetrahedra.py": "03381d25aaf3bdafa767f580665a00754b7276cad91786ff4eb7a4b9a4889a8f"
+  },
+  "elapsed_seconds": 14.113898541079834
+}
