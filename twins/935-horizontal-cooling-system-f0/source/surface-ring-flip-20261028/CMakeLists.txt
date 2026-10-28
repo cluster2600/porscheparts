@@ -1,0 +1,7 @@
+cmake_minimum_required(VERSION 3.16)
+project(935_ring_flip_trial LANGUAGES CXX)
+find_package(Boost 1.90 REQUIRED)
+find_package(CGAL 6.2.1 EXACT REQUIRED)
+add_executable(ring_flip_trial ring_flip_trial.cpp)
+target_compile_features(ring_flip_trial PRIVATE cxx_std_17)
+target_link_libraries(ring_flip_trial PRIVATE CGAL::CGAL)

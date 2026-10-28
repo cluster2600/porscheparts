@@ -1,4 +1,4 @@
-"""Prepare fluid PLCs from three original-export-bounded facet repairs."""
+"""Prepare fluid PLCs from original-export-bounded rotor surface trials."""
 
 import argparse
 import hashlib
@@ -12,6 +12,8 @@ import trimesh
 
 
 CANDIDATES = {
+    "flat": ("58991f3f74107dceaf64227a6034b7a700a92e4807e32ca188c0a0f4468f6476",
+             "eb7770d676e59ef22b8deee6b38cb575bece169c1be4873fca0531a2fd6db73a", 435499, 871018),
     "001": ("b7e07e8dc790dd411494f17480c2550ca370db6fc38342dd832db44c724e0086",
             "b86faa55f3ed911039dfe3894b4fab9948d0dc0d5a7b7e272860bb209c997aaf", 435520, 871060),
     "005": ("8360724ad4d6542329f156f813a41403070b57d8a92be3a7f830be44f13fe292",

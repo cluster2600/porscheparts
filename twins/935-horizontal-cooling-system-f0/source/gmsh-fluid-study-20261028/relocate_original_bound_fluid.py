@@ -9,7 +9,10 @@ import time
 import gmsh
 
 
-SOURCE_SHA = "0f6d5cadd5b48c3345e8440c5a881018ca463b005641c46e0b376d9ecbcd8bb7"
+SOURCE_SHAS = {
+    "0f6d5cadd5b48c3345e8440c5a881018ca463b005641c46e0b376d9ecbcd8bb7",
+    "edbea4908c1d8431e51977fd5a2300ab2687a491d41f6dcd79a47e6115644acd",
+}
 
 
 def sha(path):
@@ -21,8 +24,9 @@ def relocate(source, output, iterations):
     root = Path.cwd().resolve()
     if output.exists() or not output.is_relative_to(root / "work"):
         raise ValueError("Use a fresh private output under repository work/")
-    if sha(source) != SOURCE_SHA:
-        raise ValueError("Pinned 0.005 original-export-bounded fluid mesh required")
+    source_sha = sha(source)
+    if source_sha not in SOURCE_SHAS:
+        raise ValueError("Pinned original-export-bounded fluid mesh required")
     output.mkdir(mode=0o700)
     gmsh.initialize()
     try:
@@ -41,7 +45,7 @@ def relocate(source, output, iterations):
         mesh = output / "fluid.msh"
         gmsh.write(str(mesh))
         report = dict(status="Gmsh_Relocate3D_exploratory_not_CFD_admitted",
-                      source_sha256=SOURCE_SHA, output_sha256=sha(mesh),
+                      source_sha256=source_sha, output_sha256=sha(mesh),
                       gmsh_version=gmsh.option.getString("General.Version"),
                       method="Relocate3D", force=False, niter=iterations,
                       before_nodes=before_nodes, after_nodes=after_nodes,
