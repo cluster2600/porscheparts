@@ -95,3 +95,11 @@ An otherwise matching Gmsh trial changed `Mesh.Algorithm3D` from 1 to 4
 (Frontal). It reached a 900-second wall limit during volume generation, with
 no mesh output. Its source and full log are retained privately. This is a
 resource-bound incomplete trial, not a measured Frontal mesh comparison.
+
+The earlier 32-edge-flip candidate, whose separate scan-envelope audit had
+passed, was also meshed with the same Delaunay settings. Its complete
+independent audit preserved all 895,732 boundary triangles but found 1,248
+tetrahedra below mean ratio 0.01, versus 1,169 for the unmodified rotor. The
+minimum ratio fell from `2.71e-5` to `5.29e-6`; the sub-0.05 count rose from
+1,769 to 1,863. This candidate is rejected for this volume-mesh route. No
+native OpenFOAM check or CFD solve was run on the worse candidate.

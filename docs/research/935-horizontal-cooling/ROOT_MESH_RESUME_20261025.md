@@ -471,3 +471,19 @@ and [timeout receipt](https://github.com/cluster2600/porscheparts-935-private/re
 have downloaded SHA-256 values
 `576b8c13dfea80969443d855637ff21ad0676da7c98672c67d6e1b8a33b7bccc`
 and `6d386ede2a21dc9c7299b6ff1dcd0e6ada6cd9bc65d92d66cfe654548f579882`.
+
+The previously envelope-checked 32-edge-flip rotor candidate was then passed
+through the **same** Gmsh Delaunay settings as the baseline. Both complete
+audits preserved their respective 895,732 input boundary triangles. The
+flipped volume has 4,765,504 positive tetrahedra, with 1,248 below mean
+ratio 0.01 versus 1,169 in the unmodified volume. Its minimum ratio fell
+from `2.71e-5` to `5.29e-6`, and the sub-0.05 count rose from 1,769 to
+1,863. The candidate is **rejected** for this route; no native OpenFOAM
+check or CFD solve was run on the inferior volume. The
+[private full trial](https://github.com/cluster2600/porscheparts-935-private/releases/download/935-root-repair-20261025/935-gmsh-flipped32-evidence-20261028.tar.zst)
+and [comparison receipt](https://github.com/cluster2600/porscheparts-935-private/releases/download/935-root-repair-20261025/gmsh-flipped32-comparison-20261028.json)
+have downloaded SHA-256 values
+`60b34de0b4cb43dc4c7e6804a48db31b56dccf1cbb9f0c7dca4902768eaf49af`
+and `0c027000b145522495993cb2d2bcbf68580cc6a3ca4f6bb059f6770e61383c80`.
+This does not rule out other local surface reconstructions; every new
+candidate must again pass envelope, topology and volume-quality checks.
