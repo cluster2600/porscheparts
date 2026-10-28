@@ -1,0 +1,57 @@
+{
+  "status": "local_preflight_passed_native_execution_pending",
+  "observed_at_utc": "2026-10-28T23:08:12.588904+00:00",
+  "source_base_commit": "20d69a8b2e41b3841a0a0be4ab77e4120611074c",
+  "source_sha256": {
+    "twins/964-chassis/monocoque/omniverse/kit-review.usda": "7b87debe2cb4aec06a598aa00622221a33a3b189677b3d1f9a431f498dc16a90",
+    "tests/test_964_omniverse_bundle.py": "227ced64ca0229f01218804d174976d8b9622b98818f0955e28021414069ba32",
+    "containers/picogk-station-kit/launch.py": "20c351d48884f328ae7b6a60d4b72191521c355f6fca66a74aed1f35be3da1dd",
+    "containers/picogk-station-kit/open_scene.py": "b5202d069e2b9e179c909a5b6ac13f521f404ea9a10c2177bd6a3f57df31cb62",
+    "deploy/vast/station/media-relay.py": "129dbeaae081118ae7fc2e3c8f064575d8ca012e4a7ef6b1c3c3c93645213a44",
+    "deploy/vast/station-client/package-lock.json": "f3a676320a1d9c1b2d3bf4538ae161ccc898e3f9f442bd3855b40174903efb81",
+    "deploy/vast/station-client/config.mjs": "d9a5a2ad42a273049217f4e274b0c281cf84598ff3e7ed50c4f205cce540bdd6",
+    "deploy/vast/station-client/main.js": "a252b765b72ad80577d341ac6602060611711b3e41a08568d2301a5568eee3de"
+  },
+  "checks": {
+    "native_usd_bundle_tests_passed": 7,
+    "client_tests_passed": 2,
+    "kit_launcher_tests_passed": 1,
+    "bounded_media_relay_tests_passed": 5,
+    "client_build_passed": true,
+    "strict_usdchecker_passed": true,
+    "all_four_meshes_unchanged": true,
+    "units": "mm",
+    "up_axis": "Z",
+    "frames": 120,
+    "fps": 24
+  },
+  "client": {
+    "node_version": "v26.12.1",
+    "library": "@nvidia/ov-web-rtc",
+    "library_version": "6.7.0",
+    "dist_files_sha256": {
+      "config.mjs": "d9a5a2ad42a273049217f4e274b0c281cf84598ff3e7ed50c4f205cce540bdd6",
+      "index.html": "9f3e28742ed0ce0529896b04e0772e3ea32026ad9d03932255b2fd661aacfb02",
+      "main.js": "a252b765b72ad80577d341ac6602060611711b3e41a08568d2301a5568eee3de",
+      "vendor/LICENSE.txt": "026edb2fdcd7089d98ff1d6544bcbe686b77bf28bd26275832fe3c754d69b7ad",
+      "vendor/is-plain-object.LICENSE": "4cd903859549d4b20b571041f96dfae1136ed079c476126268f9d7cc1b611150",
+      "vendor/ov-web-rtc.js": "6a0566283b0b84ea76f67f8626289d4c066cc29d7d648e3c053f82d01d585296",
+      "vendor/placeholder.jpg": "9c697d31b53395d2ad9bc80d1c55be81347f71b4024796de8193dc015faa9e37"
+    }
+  },
+  "logs_sha256": {
+    "bundle-tests.log": "5a7dce06045dcec3d94665c4bbc1e646d70ed9f39872396444573a1d11abba4e",
+    "final-usdchecker.log": "09cb077aa4f71e772006dbbf6c839d753fc9b1cb3672780b4c3fa4a7c42d8df7",
+    "client-tests.log": "440333c686d6cc831d663034b72d720c025496d4f83afbf5e6b9e750c96f3aca",
+    "client-build.log": "24a2b169fac4bdf35922a500852cfc4d37b9c0969281292595702e5554c2aa71",
+    "kit-tests.log": "5cd8f6c06c16dfcdc1f3e3aeb75f885014d964100e0e317acfd7436477a89336",
+    "relay-tests.log": "a961ebcbe5de31bdfc020f35eda20f1391a1c4ce888daaf2c098545db9dc3e26",
+    "kit-retention.log": "d66464a53bcc1c08d08a0117e6c5bda5695550b27a077f3d4affd029449c398a"
+  },
+  "initial_working_layer_failure": "A sublayer-only root did not preserve stage units. The final root authors units, up axis and timeline explicitly.",
+  "native_kit_execution_verified": false,
+  "private_relay_native_verified": false,
+  "screen_capture_verified": false,
+  "paid_instance_created": false,
+  "manufacturing_authorized": false
+}

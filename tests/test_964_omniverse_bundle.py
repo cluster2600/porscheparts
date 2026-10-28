@@ -76,6 +76,22 @@ class MonocoqueBundleTests(unittest.TestCase):
             with self.assertRaises(ValueError):
                 self.module.validate(target)
 
+    def test_kit_working_layer_preserves_metadata_and_geometry(self):
+        from pxr import Usd, UsdGeom
+        stage = Usd.Stage.Open(str(SOURCE.parent / "kit-review.usda"))
+        original = Usd.Stage.Open(str(SOURCE.parent / "bundle-001/monocoque.usda"))
+        self.assertEqual(UsdGeom.GetStageMetersPerUnit(stage), 0.001)
+        self.assertEqual(UsdGeom.GetStageUpAxis(stage), "Z")
+        for key in ("defaultPrim", "startTimeCode", "endTimeCode", "timeCodesPerSecond", "framesPerSecond"):
+            self.assertEqual(stage.GetMetadata(key), original.GetMetadata(key))
+        self.assertEqual(stage.GetDefaultPrim().GetCustomData(), original.GetDefaultPrim().GetCustomData())
+        paths = [prim.GetPath() for prim in stage.Traverse() if prim.IsA(UsdGeom.Mesh)]
+        self.assertEqual(len(paths), 4)
+        for path in paths:
+            actual, expected = UsdGeom.Mesh(stage.GetPrimAtPath(path)), UsdGeom.Mesh(original.GetPrimAtPath(path))
+            self.assertEqual(actual.GetPointsAttr().Get(), expected.GetPointsAttr().Get())
+            self.assertEqual(actual.GetFaceVertexIndicesAttr().Get(), expected.GetFaceVertexIndicesAttr().Get())
+
 
 if __name__ == "__main__":
     unittest.main()
