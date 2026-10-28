@@ -98,3 +98,8 @@ the exploratory duct boundary. These fractions count exported VTK points,
 not distinct cells or independent physical defects. They direct the next
 surface/mesh repair toward the rotor neighbourhood and do not justify
 discarding the duct checks.
+The [private top/side diagnostic image](https://github.com/cluster2600/porscheparts-935-private/releases/download/935-root-repair-20261025/quality-defects-20261028.png),
+SHA-256 `ca6c11d4e6ae0c1dcbc2b00de79877529bb2a9a53c64dab55a3ad9b2e0e662b8`,
+overlays sampled rotor vertices with those three face-defect sets. Its
+millimetre axes use the still-conditional source scale; the image is a
+location aid, not an engineering drawing.
