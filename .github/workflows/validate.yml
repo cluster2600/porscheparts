@@ -12,7 +12,8 @@ permissions:
 jobs:
   check:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    # Cold checkout, the full test suite and pinned image pulls exceed 10 minutes.
+    timeout-minutes: 20
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
