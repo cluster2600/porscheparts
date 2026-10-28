@@ -90,3 +90,8 @@ conditional scale, 961 weak-cell centres have radius 70–100 mm. This makes
 the inner annulus and blade-root wall facets a specific target for a
 triangulation study with an independent scan-envelope bound; association
 does not prove cause.
+
+An otherwise matching Gmsh trial changed `Mesh.Algorithm3D` from 1 to 4
+(Frontal). It reached a 900-second wall limit during volume generation, with
+no mesh output. Its source and full log are retained privately. This is a
+resource-bound incomplete trial, not a measured Frontal mesh comparison.

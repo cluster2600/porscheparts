@@ -461,3 +461,13 @@ bad cell.
 The [private face-audit receipt](https://github.com/cluster2600/porscheparts-935-private/releases/download/935-root-repair-20261025/gmsh-root0p7-wall-face-audit-20261028.json)
 has downloaded SHA-256
 `3d5bafb00eb9e0ea1ff572ab69597accb3a7e3613e79f9c2e5d1d4709a961f2e`.
+
+A second Gmsh 4.15.2 trial changed the 3D algorithm from Delaunay (1)
+to Frontal (4), retaining the same PLC and nominal size settings. It reached
+the 900-second wall limit while generating the volume, produced no mesh, and
+its process exited. There is no quality comparison with Frontal. The
+[private source/log archive](https://github.com/cluster2600/porscheparts-935-private/releases/download/935-root-repair-20261025/935-gmsh-frontal-timeout-20261028.tar.zst)
+and [timeout receipt](https://github.com/cluster2600/porscheparts-935-private/releases/download/935-root-repair-20261025/gmsh-root0p7-frontal-timeout-receipt-20261028.json)
+have downloaded SHA-256 values
+`576b8c13dfea80969443d855637ff21ad0676da7c98672c67d6e1b8a33b7bccc`
+and `6d386ede2a21dc9c7299b6ff1dcd0e6ada6cd9bc65d92d66cfe654548f579882`.
