@@ -55,6 +55,27 @@ observed-drive, 871,078 rotor and 3,822,612 provisional-shroud triangles.
 Native receipt SHA-256:
 `b63b4830d028c3455e7e40e25180f62463057794148b380661483a02f8069a2b`.
 
+The independent checks can be rerun with new output names (the reviewer
+commands refuse to overwrite prior evidence):
+
+```sh
+source_dir=twins/935-horizontal-cooling-system-f0/source
+case_dir=work/935-original-bound-assembly-20261028
+receipt_sha=b63b4830d028c3455e7e40e25180f62463057794148b380661483a02f8069a2b
+uv run --no-project --python 3.12 --with numpy==2.5.4 --with scipy==1.18.1 \
+  --with trimesh --with usd-core python "$source_dir/review_refreshed_assembly.py" \
+  review "$case_dir/native-002" "$receipt_sha" "$case_dir/exports-NEW"
+uv run --no-project --python 3.12 --with numpy==2.5.4 --with python-fcl \
+  python "$source_dir/review_surface_contacts.py" \
+  "$case_dir/native-002" "$receipt_sha" "$case_dir/contacts-NEW.json"
+uv run --no-project --python 3.12 --with numpy==2.5.4 --with python-fcl \
+  python "$source_dir/review_rotor_sweep.py" \
+  "$case_dir/native-002" "$receipt_sha" "$case_dir/sweep-NEW.json"
+uv run --no-project --python 3.12 --with numpy==2.5.4 --with scipy==1.18.1 \
+  --with trimesh --with vtk python "$source_dir/review_refreshed_assembly.py" \
+  render "$case_dir/native-002" "$case_dir/exports-NEW" "$case_dir/render-NEW"
+```
+
 ## Surface and rotation checks
 
 The independent [`review_surface_contacts.py`](../../../twins/935-horizontal-cooling-system-f0/source/review_surface_contacts.py)
