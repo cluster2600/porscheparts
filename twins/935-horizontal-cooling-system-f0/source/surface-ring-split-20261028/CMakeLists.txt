@@ -1,0 +1,7 @@
+cmake_minimum_required(VERSION 3.16)
+project(935_ring_edge_split LANGUAGES CXX)
+find_package(Boost 1.90 REQUIRED)
+find_package(CGAL 6.2.1 EXACT REQUIRED)
+add_executable(split_ring_edges split_ring_edges.cpp)
+target_compile_features(split_ring_edges PRIVATE cxx_std_17)
+target_link_libraries(split_ring_edges PRIVATE CGAL::CGAL)
