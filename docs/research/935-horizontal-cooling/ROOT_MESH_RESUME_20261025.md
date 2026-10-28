@@ -515,3 +515,15 @@ comparison. The private scripts and logs are archived and hash-verified;
 the [reproduction notes](../../../twins/935-horizontal-cooling-system-f0/source/gmsh-fluid-study-20261028/README.md)
 give the exact results and evidence links. These trials do not alter the
 accepted/rejected status of the original Delaunay mesh.
+
+A further [protected-surface short-edge sweep](../../../twins/935-horizontal-cooling-system-f0/source/gmsh-fluid-study-20261028/README.md#protected-surface-short-edge-sweep)
+tested CGAL edge limits of 0.001, 0.005 and 0.020 uncalibrated source units.
+The best 0.001 case reduced Gmsh mean-ratio-below-0.01 cells from 1,169 to
+910, and below-0.05 cells from 1,769 to 1,429, with all input boundary faces
+preserved. Native OpenFOAM 13 still reported **seven failed mesh checks**;
+CFD remains blocked. Larger edge limits worsened volume quality relative to
+the 0.001 case even though they improved surface triangle quality. The CGAL
+bound applies only between each repaired surface and the protected analysis
+surface; it does not establish an original-scan bound, verified scale, or
+935 fitment. The inner annulus and blade-root wall remain the main observed
+weak-cell concentration.

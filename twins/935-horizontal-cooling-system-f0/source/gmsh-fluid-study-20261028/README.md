@@ -179,3 +179,79 @@ These failures are specific to this discrete-surface setup and inputs; they
 do not measure the general quality of HXT or R-tree. The remaining numerical
 route is a scan-bounded local surface reconstruction or an independently
 verified conforming volume workflow. No CFD result is available yet.
+
+## Protected-surface short-edge sweep
+
+The protected root-0.7 **analysis surface** has 439,365 vertices and 878,730
+faces (SHA-256 `5d900f6da900b4bffac2fdacfd6e0a346f8c0259a19299725621d4fd1e48c12a`).
+Seven unique edges are shorter than 0.001 source unit. The pinned CGAL 6.2.1
+[`repair_poor_facets.cpp`](../surface-facet-repair-20261022/repair_poor_facets.cpp)
+was run independently from this same input with short-edge limits 0.001,
+0.005, and 0.020 source unit. Each result remained closed, consistently
+oriented, and one component with Euler characteristic zero. Bidirectional
+CGAL containment passed against the **protected analysis surface** at the
+existing 0.0225 source-unit bound. This is not a bound to the original scan:
+the original-to-protected-surface comparison already fails that bound. The
+0.5 mm and 0.21 mm scan filename accuracies are not OBJ units.
+
+| Edge limit (source unit) | Remaining rotor faces | Surface faces with quality < 0.05 | Fluid tetrahedra | Mean ratio < 0.01 | Mean ratio < 0.05 | Decision |
+|---:|---:|---:|---:|---:|---:|---|
+| unchanged | 878,730 | 113 | 4,915,307 | 1,169 | 1,769 | numerical baseline, rejected for CFD |
+| 0.001 | 878,716 | 99 | 4,819,026 | **910** | **1,429** | best trial, still rejected for CFD |
+| 0.005 | 878,698 | 81 | 4,776,852 | 1,176 | 1,787 | worse than baseline |
+| 0.020 | 878,646 | 35 | 5,008,619 | 1,138 | 1,700 | better than baseline, worse than 0.001 |
+
+All three fluid volumes used the same unmeasured outer duct, conditional
+1 source unit = 1 mm conversion, Gmsh 4.15.2 Delaunay settings above, and
+unchanged inlet/outlet/duct facets. The independent audits found all
+tetrahedra positive and every input wall triangle preserved by coordinates
+to less than `1e-16` m. Monotonically reducing poor surface triangles did
+**not** monotonically improve volume quality. The best candidate's PLC SHA-256
+is `e71fc12382db13129166d4a37cc006a45238134ceaf4d32e3873b44b23d611f5`;
+the Gmsh volume SHA-256 is
+`53f360e6e7c4f4b52e1446b0cfb285ed61057c693974cd88e25f166dc45c6fc6`.
+
+With the private parent PLC, candidate OFF and CGAL envelope stdout in their
+documented `work/` paths, rebuild one PLC from the repository root:
+
+```sh
+uv run --no-project --python 3.12 --with numpy==2.5.4 --with scipy==1.18.1 --with trimesh \
+  python twins/935-horizontal-cooling-system-f0/source/gmsh-fluid-study-20261028/prepare_short_edge_fluid.py \
+  work/935-gmsh-weak-short-edge-20261028/candidate-001.off \
+  work/935-gmsh-weak-short-edge-20261028/protected-envelope.stdout \
+  work/935-gmsh-weak-short-edge-20261028/NEW-plc
+```
+
+Replace the candidate and envelope paths with `candidate-005.off` and
+`envelope-005.stdout`, or `candidate-020.off` and `envelope-020.stdout`, for
+the other two runs. The program admits only the three audited input hashes,
+requires the corresponding successful envelope receipt, and writes a fresh
+private PLC. The three reproduced PLC hashes matched the trial inputs. Then
+use `generate_fluid.py` and `audit_fluid.py` as shown above, pointing at the
+new `boundary.npz`; both programs admit the three new PLC hashes and refuse
+unrecognized inputs. Full volume generation is resource intensive.
+
+The best 0.001 case was imported into native OpenFOAM Foundation 13 on Kali1.
+`gmshToFoam` and `checkMesh` exited zero, but the full check reported **seven
+failed mesh checks**. Compared with the unchanged baseline, high aspect ratio
+cells fell from 839 to 687, severely non-orthogonal faces from 58,976 to
+57,274, highly skew faces from 70 to 38, short-edge points from 10 to 2,
+small-determinant cells from 54,127 to 52,844, low-interpolation-weight faces
+from 5,991 to 5,286, and low-volume-ratio faces from 2,127 to 1,767. Four
+concave cells remain. The native fluid volume is
+`0.051408840141257107` m³ under the unverified scale. No CFD solve was run.
+
+Of its 910 cells below mean ratio 0.01, all touch the rotor wall; 882 share a
+complete rotor triangle. Under the conditional scale, 758 weak-cell centres
+lie at radius 70–100 mm, near the inner annulus and blade roots. The 0.001
+candidate has no rotor edge shorter than 0.001 source unit, while native
+`checkMesh` still reports two short-edge points. This limits what further
+rotor-edge collapse alone can explain. A different near-wall volume strategy
+or scan-bounded local reconstruction remains necessary. No flow, strength,
+fitment, or manufacturing claim follows from these results.
+
+The [private full trial archive](https://github.com/cluster2600/porscheparts-935-private/releases/download/935-root-repair-20261025/935-short-edge-sweep-20261028.tar.zst)
+contains the three candidate surfaces and PLCs, their Gmsh volumes and audits,
+the CGAL logs, localization data, and the best candidate's native OpenFOAM
+logs. Its downloaded SHA-256 was verified as
+`193d913e0def086c422cba7c1023e30594a2fb4f0e780299edc3ff321cb6f4d`.

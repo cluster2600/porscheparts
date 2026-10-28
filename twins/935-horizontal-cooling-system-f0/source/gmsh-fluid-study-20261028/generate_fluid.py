@@ -12,16 +12,20 @@ output = Path(sys.argv[2]).resolve()
 if output.exists() or output.parent != source.parent:
     raise SystemExit('Use a fresh private sibling output')
 source_hash = hashlib.sha256(source.read_bytes()).hexdigest()
-if source_hash not in {
-    '9fcd93a5c54ebfc98b8cd86d4550e3a416d3e62fb217e5ebfb67eb2f2a9f2085',
-    '9dcfef8c123e63016271e3977fdd2d01b21997a94c3343e5e2d6f79198794c8a',
-}:
+known_inputs = {
+    '9fcd93a5c54ebfc98b8cd86d4550e3a416d3e62fb217e5ebfb67eb2f2a9f2085': (447868, 895732),
+    '9dcfef8c123e63016271e3977fdd2d01b21997a94c3343e5e2d6f79198794c8a': (447868, 895732),
+    'e71fc12382db13129166d4a37cc006a45238134ceaf4d32e3873b44b23d611f5': (447861, 895718),
+    '7bb4f474ff0423747784c258dab79ab01e917b648c137654d335e381ce195936': (447852, 895700),
+    '35e1427ed6cfdd858cca31803525a23bb65efa2258e349f06cc9bc7ab2bf7509': (447826, 895648),
+}
+if source_hash not in known_inputs:
     raise SystemExit('PLC input hash mismatch')
 with np.load(source) as p:
     vertices = p['vertices'].copy()
     triangles = p['triangles'].copy()
     markers = p['markers'].copy()
-if len(vertices) != 447868 or len(triangles) != 895732 or set(markers) != {1, 2, 3, 4}:
+if (len(vertices), len(triangles)) != known_inputs[source_hash] or set(markers) != {1, 2, 3, 4}:
     raise SystemExit('PLC shape/markers mismatch')
 output.mkdir(mode=0o700)
 gmsh.initialize()
@@ -38,7 +42,7 @@ gmsh.model.mesh.createTopology(False,True)
 entities=gmsh.model.getEntities(2)
 counts={str(tag):len(gmsh.model.mesh.getElementsByType(2,tag)[0]) for dim,tag in entities}
 print('topology',entities,counts, 'seconds',time.monotonic()-t0,flush=True)
-if entities != [(2,1),(2,2),(2,3),(2,4)] or [counts[str(i)] for i in range(1,5)] != [2304,2304,12394,878730]:
+if entities != [(2,1),(2,2),(2,3),(2,4)] or [counts[str(i)] for i in range(1,5)] != [2304,2304,12394,len(triangles)-17002]:
     raise SystemExit('Gmsh changed boundary patch entities')
 if len(sys.argv)>3 and sys.argv[3]=='topology':
     gmsh.finalize()
