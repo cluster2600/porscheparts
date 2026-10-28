@@ -55,8 +55,10 @@ The carbon S6 torsion sequence is **12,647 / 18,143 / 19,900 N.m/deg** for the
 three retained mesh densities. The last increment is about 9.7% relative to
 the preceding result; convergence has not been established. A subsequent
 [two-repeat replay of the finest carbon case](../s6-replay-20261028/README.md)
-returned 19,899.782469 N.m/deg from the committed S6 runner. The finest steel
-case and historical bending `cases` block still need replay; see the existing
+returned 19,899.782469 N.m/deg from the committed S6 runner. The
+[finest carbon bending case](../s6-replay-20261028/bending/README.md) also
+reproduced twice at 8,828.496848 N/mm. The finest steel case and other historical
+bending cases still need replay; see the existing
 [reproducibility table](../README.md#reproduce).
 
 These are results of assumed equivalent-isotropic materials and synthetic
@@ -75,7 +77,7 @@ the visual shell**. No new structural solve was executed for this handoff.
 | Local review media | Executed | Three PNG views and a 120-frame MP4 from the reopened stage |
 | Omniverse RTX review | Prepared | Fresh compatible GPU/driver check, bounded rental approval, actual OVRTX captures and runtime receipts |
 | Omniverse/application screenshots | Pending | Capture the actual review application after it loads the verified bundle; never substitute a local preview |
-| Source-reproducible structural model | Partial | Finest carbon torsion replayed twice; steel/bending replay and convergence remain open |
+| Source-reproducible structural model | Partial | Finest carbon torsion and bending replayed twice each; other cases and convergence remain open |
 | Exact 964/993 interfaces | Blocked by missing measurements | Validated XYZ datums, variant identity and drivetrain travel/clearance envelopes |
 | Composite strength and manufacturing | Incomplete | Measured laminate/process data, bonded joints/inserts, delamination/buckling/fatigue and mould/process studies |
 | Physical correlation and road/circuit acceptance | Incomplete | Donor torsion test, coupons, component tests and professional review under the programme gates |

@@ -54,8 +54,8 @@ Mac's `Developer/PicoGK/output/964-monocoque-s6-replay-20261028` archive.
 The repository contains hashes of those raw files, not a claim that they are
 all stored in Git.
 
-`source/strength_audit.py::read_dat` independently parsed the printed reaction
-forces and integration-point tensors. The force metric is the norm of their
+`source/strength_audit.py::read_dat` independently parsed the printed external
+forces (RF, including applied loads) and integration-point tensors. The force metric is the norm of their
 total divided by 2,000 N. The existing tensor summary gives maximum/minimum
 principal stresses of **42.05 / -37.96 MPa** and a maximum von Mises display
 scalar of **39.93 MPa**. These are demands in an assumed isotropic model.
@@ -67,8 +67,9 @@ the integration-point audit.
 
 The preceding 300-section stiffness is 18,143 N.m/deg, leaving about a 9.7%
 increase at the finest density. A repeat is not a convergence study. The finest
-steel case, the historical bending cases and their archived fields still need
-replay. The material is not a layered composite failure model; joints, inserts,
+steel case and most historical bending cases still need replay. The
+[finest carbon bending case](bending/README.md) has now also reproduced twice.
+The material is not a layered composite failure model; joints, inserts,
 delamination, fatigue and crash behaviour remain unqualified. The 1,200 kg
 vehicle target was not applied as a complete vehicle load case. Physical
 interfaces, a donor torsion test and professional review are still required.
