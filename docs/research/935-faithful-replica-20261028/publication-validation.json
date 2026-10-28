@@ -1,0 +1,53 @@
+{
+  "date": "2026-10-28",
+  "base_revision": "40869d1f3b3b4edf7467315ee851251880b8cf2a",
+  "scope": "English publication and executable observed-surface audit; no head qualification",
+  "english_documentation": true,
+  "research_sources": 21,
+  "traceable_documentary_facts": 94,
+  "facts_admitted_to_specimen_solver": 0,
+  "complete_physical_input_packages": 0,
+  "focused_tests": {
+    "host": "kali1",
+    "python": "3.12.11",
+    "run": 4,
+    "skipped": 0,
+    "status": "passed"
+  },
+  "repository_make_check": {
+    "host": "kali1",
+    "status": "not_fully_passed_locally",
+    "tests_run": 5027,
+    "tests_skipped": 388,
+    "failures_in_recorded_attempt": 3,
+    "errors_in_recorded_attempt": 0,
+    "log_sha256": "e0cd7a9778f989d7cb88325e53c788ac0d6f8eb963014add913e0c6812e3cd78",
+    "corrections_after_attempt": [
+      {
+        "cause": "Historical morphology source catalogue is hash-pinned",
+        "action": "Restored original record bytes; retained corrections only in dated documentation",
+        "focused_rerun_tests": 4,
+        "focused_rerun_status": "passed"
+      },
+      {
+        "cause": "umask 077 changed a fixture intended to have public permissions",
+        "action": "Reran wrapper tests with umask 022, matching normal CI semantics",
+        "focused_rerun_tests": 17,
+        "focused_rerun_status": "passed"
+      }
+    ],
+    "remaining_local_limitation": "Host .NET SDK 6 cannot build the existing net9.0 alignment test",
+    "first_attempt_note": "Kali default umask 002 also caused writable-file fixture failures. No global shell settings or permission guards were modified.",
+    "github_ci": "not_executed_at_snapshot_creation"
+  },
+  "documentation_links": {
+    "status": "passed",
+    "broken_links": 0,
+    "markdown_files": 1880
+  },
+  "vast_spend_usd": 0,
+  "new_paid_instances": 0,
+  "supplier_messages_sent": 0,
+  "private_geometry_published": false,
+  "print_ready": false
+}
