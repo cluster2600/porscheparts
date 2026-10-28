@@ -1,0 +1,37 @@
+FoamFile
+{
+    version 2.0;
+    format ascii;
+    class dictionary;
+    location "system";
+    object meshDict;
+}
+
+surfaceFile "constant/triSurface/boundary.stl";
+maxCellSize 0.012;
+boundaryCellSize 0.004;
+minCellSize 0.0005;
+insideMesh (-0.13194 0.11106 0.1626);
+
+localRefinement
+{
+    rotor { cellSize 0.001; }
+}
+
+boundaryLayers
+{
+    nLayers 0;
+}
+
+renameBoundary
+{
+    defaultName walls;
+    defaultType wall;
+    newPatchNames
+    {
+        inlet { newName inlet; type patch; }
+        outlet { newName outlet; type patch; }
+        duct { newName duct; type wall; }
+        rotor { newName rotor; type wall; }
+    }
+}
