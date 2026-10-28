@@ -224,6 +224,7 @@ links to the original part.
 | the engine cooling fan programme | [twins/993-engine-cooling-fan-system-f0/README.md](twins/993-engine-cooling-fan-system-f0/README.md) |
 | the horizontal 935 rotor correction and mesh status | [25 October continuation](docs/research/935-horizontal-cooling/ROOT_MESH_RESUME_20261025.md) |
 | the corrected 935 rotor analysis surface and new fluid input | [bounded analysis checkpoint](docs/research/935-horizontal-cooling/CORRECTED_ANALYSIS_20261025.md) |
+| the original-export-bounded 935 assembly and rotor sweep | [assembly checkpoint](docs/research/935-horizontal-cooling/ORIGINAL_BOUND_ASSEMBLY_20261028.md) |
 | the local AI model | [qwen-picogk](https://github.com/cluster2600/qwen-picogk) · [local training evidence](docs/QWEN_TRAINING.md) |
 | our Porsche information catalogue | [porschefanatics.com](https://porschefanatics.com/) |
 | the license | [LICENSE](LICENSE) · [third-party licenses](docs/LICENSES.md) |

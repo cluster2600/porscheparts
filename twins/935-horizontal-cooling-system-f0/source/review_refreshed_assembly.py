@@ -73,7 +73,7 @@ def render(native, exports, output):
         for name in names:renderer.AddActor(actors[name])
         for label,pos,size in [(title,(20,755),21),('Uncalibrated scale; unresolved interfaces; inspection only',(20,18),16)]:
             text=vtk.vtkTextActor();text.SetInput(label);text.SetPosition(*pos)
-            text.GetTextProperty().SetFontSize(size);text.GetTextProperty().SetColor(.95,.96,.98);renderer.AddActor2D(text)
+            text.GetTextProperty().SetFontSize(size);text.GetTextProperty().SetColor(.95,.96,.98);renderer.AddViewProp(text)
         camera=renderer.GetActiveCamera();camera.SetPosition(*direction);camera.SetFocalPoint(0,0,0)
         camera.SetViewUp(*((0,1,0) if i==1 else (0,0,1)));camera.ParallelProjectionOn()
         renderer.ResetCamera();renderer.ResetCameraClippingRange();window.AddRenderer(renderer)
