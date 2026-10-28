@@ -229,6 +229,7 @@ links to the original part.
 | the original-export-bounded 935 volume-node relocation | [relocation checkpoint](docs/research/935-horizontal-cooling/ORIGINAL_BOUND_VOLUME_RELOCATION_20261028.md) |
 | the original-export-bounded 935 weak rotor-wall face audit | [wall diagnostic](docs/research/935-horizontal-cooling/ORIGINAL_BOUND_WALL_DIAGNOSTIC_20261028.md) |
 | the original-export-bounded 935 near-planar ring-flip trial | [surface and volume checkpoint](docs/research/935-horizontal-cooling/ORIGINAL_BOUND_RING_FLIP_20261028.md) |
+| the original-export-bounded 935 annular edge-split rejection | [edge-split checkpoint](docs/research/935-horizontal-cooling/ORIGINAL_BOUND_RING_EDGE_SPLIT_20261028.md) |
 | the local AI model | [qwen-picogk](https://github.com/cluster2600/qwen-picogk) · [local training evidence](docs/QWEN_TRAINING.md) |
 | our Porsche information catalogue | [porschefanatics.com](https://porschefanatics.com/) |
 | the license | [LICENSE](LICENSE) · [third-party licenses](docs/LICENSES.md) |
