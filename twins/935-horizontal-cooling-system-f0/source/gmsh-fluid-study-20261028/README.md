@@ -103,3 +103,55 @@ tetrahedra below mean ratio 0.01, versus 1,169 for the unmodified rotor. The
 minimum ratio fell from `2.71e-5` to `5.29e-6`; the sub-0.05 count rose from
 1,769 to 1,863. This candidate is rejected for this volume-mesh route. No
 native OpenFOAM check or CFD solve was run on the worse candidate.
+
+## Gmsh-specific facet targeting
+
+The [flip-overlap audit](audit_flip_overlap.py) maps every Gmsh rotor triangle
+back to its retained source-face identifier using all three vertex coordinates.
+It found a maximum coordinate mismatch of `5.62e-17` m and a bijection for all
+878,730 rotor faces. Only **2 of the 1,169** weak Gmsh tetrahedra share a rotor
+face touched by the earlier 32-flip candidate. The earlier candidate was
+chosen from weak *TetGen* cells, so its worse Gmsh result does not establish
+that local surface repair cannot help this mesher.
+
+The [Gmsh-targeted proposal](propose_targeted_flips.py) instead starts with
+the 1,748 source faces incident to weak Gmsh cells, including 404 with
+normalized triangle quality below 0.1. It found 106 geometrically eligible
+edge-flip pairs and selected 32 disjoint pairs without moving vertices. This
+is a candidate selection, not a validated fluid or manufacturing geometry.
+The private candidate has SHA-256
+`f6c8029795d830264496d6760fbafb9863a03335e9efb893f630161dc2c332a6`.
+A full bidirectional CGAL envelope check on Kali1 passed over all 878,730
+triangles at the existing 0.0225 uncalibrated-source-unit bound. Volume-mesh
+quality and native OpenFOAM checks remain separate gates.
+
+With the private baseline mesh and original rotor OFF in their documented
+`work/` paths, reproduce the mapping and proposal as follows:
+
+```sh
+uv run --no-project --python 3.12 --with gmsh==4.15.2 \
+  --with numpy==2.5.4 --with scipy==1.18.1 --with trimesh \
+  python twins/935-horizontal-cooling-system-f0/source/gmsh-fluid-study-20261028/audit_flip_overlap.py
+
+uv run --no-project --python 3.12 --with numpy==2.5.4 --with trimesh \
+  python twins/935-horizontal-cooling-system-f0/source/gmsh-fluid-study-20261028/propose_targeted_flips.py
+```
+
+The first script writes only private face identifiers and a JSON receipt. The
+second writes the private OFF candidate and its receipt. The public Git tree
+contains neither scan vertices nor the candidate mesh.
+
+The matched Gmsh 4.15.2 Delaunay run on this candidate produced 4,852,988
+positive tetrahedra. The independent audit confirmed all 895,732 boundary
+triangles and four patch groups to a maximum coordinate difference of
+`9.62e-17` m. However, its mean-ratio count below 0.01 was **1,236**, compared
+with 1,169 for the unchanged rotor; below 0.05 it was 1,819 versus 1,769.
+The minimum remained approximately `2.71e-5`. This second 32-flip candidate
+is **rejected**. The result suggests that isolated edge flips do not remove
+the root-region volume-fill difficulty under the current meshing settings.
+It does not establish that a larger, scan-bounded local surface remesh or a
+different conforming volume strategy will fail. No CFD solve or native
+OpenFOAM acceptance check was run on this worse candidate.
+The private evidence archive is
+[`935-gmsh-targeted-flips-20261028.tar.zst`](https://github.com/cluster2600/porscheparts-935-private/releases/download/935-root-repair-20261025/935-gmsh-targeted-flips-20261028.tar.zst),
+SHA-256 `a04528da2666e63ddbf1d15a92982766d0c354b69ad4f39da59ae1b476bb6602`.

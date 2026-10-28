@@ -12,7 +12,10 @@ output = Path(sys.argv[2]).resolve()
 if output.exists() or output.parent != source.parent:
     raise SystemExit('Use a fresh private sibling output')
 source_hash = hashlib.sha256(source.read_bytes()).hexdigest()
-if source_hash != '9fcd93a5c54ebfc98b8cd86d4550e3a416d3e62fb217e5ebfb67eb2f2a9f2085':
+if source_hash not in {
+    '9fcd93a5c54ebfc98b8cd86d4550e3a416d3e62fb217e5ebfb67eb2f2a9f2085',
+    '9dcfef8c123e63016271e3977fdd2d01b21997a94c3343e5e2d6f79198794c8a',
+}:
     raise SystemExit('PLC input hash mismatch')
 with np.load(source) as p:
     vertices = p['vertices'].copy()
