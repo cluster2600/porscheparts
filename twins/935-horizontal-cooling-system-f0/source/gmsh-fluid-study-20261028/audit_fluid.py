@@ -11,6 +11,9 @@ source, mesh, output = map(lambda s: Path(s).resolve(), sys.argv[1:])
 if output.exists(): raise SystemExit('Output must be fresh')
 sha=lambda p: hashlib.sha256(p.read_bytes()).hexdigest()
 if sha(source) not in {
+    'dbcbd8cd9163f58986b94d510cd5c302dbf9c5fb6580c66b87e2950a1710dc54',
+    '516e1917e72a6a084ff177c599fe529360cf367c99eb0d46b0092c9a52eccc05',
+    '0df9efacd656ba50aad07c5c2373ea3efab5bb4eee511677179bdcf2c9c2d2db',
     'db411e54f00c23c4b0d8916f5e13760b45234405b0cd150f6c9520892e8f0a05',
     '9fcd93a5c54ebfc98b8cd86d4550e3a416d3e62fb217e5ebfb67eb2f2a9f2085',
     '9dcfef8c123e63016271e3977fdd2d01b21997a94c3343e5e2d6f79198794c8a',
