@@ -79,6 +79,13 @@
 	917-native-brep-usd-f51-check 917-physicsnemo-readiness-f52-check
 
 REGISTRY ?= ghcr.io/cluster2600
+USD_BREP_IMAGE ?= 3dprinting993-usd-brep:1.0.1
+USD_BREP_RUN ?= usd-brep-smoke
+GO_MELT_SOURCE ?= $(HOME)/Developer/GO-MELT
+GO_MELT_PYTHON ?= $(GO_MELT_SOURCE)/.venv/bin/python
+GO_MELT_OUTPUT ?= work/go-melt-smoke
+LPBF_CUDA_SOURCE ?= $(HOME)/Developer/Simulation-of-LPBF-using-CUDA
+LPBF_CUDA_OUTPUT ?= work/lpbf-cuda-smoke
 IMAGE_TAG ?= dev
 PHYSICSNEMO_EXTRAS ?= cu12,sym,mesh-extras,model-extras
 VALVE_IMAGE ?= ghcr.io/cluster2600/3dprinting993-mesh-cfd@sha256:a1db60cbf61bbcca52c171e50cab01ed0b6ec860b227e7c5fc50f7b809659b4f
@@ -1440,6 +1447,24 @@ container-simready-local-ai:
 #> containers | Omniverse CPU libraries image
 container-ov-libraries-cpu:
 	docker build --platform linux/amd64 -f containers/ov-libraries-cpu.Dockerfile -t 3dprinting993-ov-libraries-cpu:$(IMAGE_TAG) .
+
+.PHONY: container-usd-brep container-smoke-usd-brep go-melt-smoke lpbf-cuda-cpu-smoke
+#> containers | Build isolated USD BRep 1.0.1 (host Linux architecture)
+container-usd-brep:
+	docker build -f containers/usd-brep.Dockerfile -t $(USD_BREP_IMAGE) containers
+
+#> containers | Check synthetic solids and USD round-trip in a fresh output directory
+container-smoke-usd-brep:
+	mkdir -p work
+	docker run --rm --network none --read-only --tmpfs /tmp -v "$(CURDIR)/work:/work" $(USD_BREP_IMAGE) /opt/usd_brep_smoke.py --output "/work/$(USD_BREP_RUN)"
+
+#> check | Check the optional GO-MELT CPU thermal kernel (requires isolated environment)
+go-melt-smoke:
+	"$(GO_MELT_PYTHON)" benchmarks/go-melt/smoke.py --source "$(GO_MELT_SOURCE)" --output "$(GO_MELT_OUTPUT)"
+
+#> check | Compile LPBF-CUDA CPU programs and run thermal controls (no CUDA)
+lpbf-cuda-cpu-smoke:
+	python3 benchmarks/lpbf-cuda/smoke.py --source "$(LPBF_CUDA_SOURCE)" --output "$(LPBF_CUDA_OUTPUT)"
 
 #> containers | Smoke-test one image
 container-smoke:

@@ -41,6 +41,8 @@ otherwise it explicitly carries the `manual_entry` flag.
 | Organic surfaces | Blender then solid reconstruction | Mesh reference, then parametric solid |
 | Human review and interactive FEM | FreeCAD | STEP inspection, visual check |
 | Functional assemblies | FreeCAD Assembly | Constraints, motion and interface review |
+| New engine geometry | PicoGK | Versioned C# and voxel geometry under the [architecture contract](architecture/README.md) |
+| Optional exact-solid/OpenUSD operations | NVIDIA USD BRep 1.0.1 | Isolated Python 3.12 container; primitives, booleans and BRep USD round-trip |
 
 A part can therefore have as its master source a versioned Python script that
 regenerates its STEP. A `.FCStd` file is still accepted; it is simply harder to
@@ -64,6 +66,8 @@ The `.3mf` and `.stl` formats are manufacturing derivatives.
 | Post-processing | PyVista, ParaView | Python script |
 | Exploratory CFD | OpenFOAM + foamlib | CLI and Python |
 | Local LPBF melt pool | ORNL AdditiveFOAM 2.0.0 on OpenFOAM 14 | CLI/MPI, correlated coupons required |
+| Multilevel LPBF thermal research | GO-MELT, pinned source | Isolated JAX CPU kernel witness; multilevel scan and CUDA qualification pending |
+| Powder deposition and particle thermal research | Simulation-of-LPBF-using-CUDA, pinned source | CPU builds and thermal controls; full scans and CUDA qualification pending |
 | Physics surrogate | NVIDIA PhysicsNeMo | Python/PyTorch after converged, correlated runs |
 | CAD to scene | `usd-convert-cad 0.2.0` | CLI, STEP to binary OpenUSD |
 | USD validation | `nvidia_usd_validate 1.21.0` | CLI and JSON report |
@@ -74,6 +78,10 @@ The `.3mf` and `.stl` formats are manufacturing derivatives.
 These tools allow an initial study. For a critical part, the model, the load
 cases, the properties of the printed lot and the results must be reviewed by a
 competent person.
+
+Installation commands, fixed revisions, acceptance controls and handoff boundaries
+for these three optional additions are in the
+[USD BRep and LPBF integration runbook](architecture/usd-brep-lpbf.md).
 
 CalculiX/OpenFOAM remain the stress, thermal and fluid solvers. `ovphysx`
 checks motion, contact and rigid assembly; OVRTX produces the images and

@@ -1,10 +1,11 @@
 # Compute images
 
-Seven reproducible images for the work that does not fit on an ordinary
+Reproducible images for the work that does not fit on an ordinary
 workstation. They are not needed to contribute to the catalogue.
 
 | File | Image | Requirement |
 |---|---|---|
+| `usd-brep.Dockerfile` | `3dprinting993-usd-brep:1.0.1` | Linux CPU, Python 3.12, isolated BRep/OpenUSD runtime; ARM64 tested locally |
 | `recon.Dockerfile` | `3dprinting993-recon` | CUDA GPU: photos to mesh |
 | `cadsim.Dockerfile` | `3dprinting993-cadsim` | CPUs: CAD, meshing, FE, CFD, slicing |
 | `mesh-cfd.Dockerfile` | `3dprinting993-mesh-cfd` | CPUs and memory: scans, segmentation and CFD |
