@@ -25,12 +25,15 @@ CHILD_WALL_SHA = "0636dde25fb5f73df7d86b645368c057178fe50f28bdbfa5a9c30f94b8b9f0
 CHILD = "level33-case"
 
 
-def run(parent_path, child_path, parent_wall_gz, output):
+def run(parent_path, child_path, parent_wall_gz, output, *,
+        child_sha=CHILD_SHA, child_wall_sha=CHILD_WALL_SHA,
+        child_name=CHILD, child_level="level (3 3);",
+        status="rejected_uniform_surface_level_no_CFD"):
     paths = [path.resolve() for path in (parent_path, child_path, parent_wall_gz)]
     output = output.resolve()
     if output.exists() or not output.is_relative_to((Path.cwd() / "work").resolve()):
         raise ValueError("Use a new private work/ report path")
-    if tuple(map(digest, paths)) != (PARENT_SHA, CHILD_SHA, PARENT_WALL_GZ_SHA):
+    if tuple(map(digest, paths)) != (PARENT_SHA, child_sha, PARENT_WALL_GZ_SHA):
         raise ValueError("Pinned archive or parent wall changed")
     output.parent.mkdir(parents=True, exist_ok=True)
     with tarfile.open(paths[0], "r:gz") as parent, tarfile.open(paths[1], "r:gz") as child:
@@ -39,7 +42,7 @@ def run(parent_path, child_path, parent_wall_gz, output):
         hashes = {}
         for name in common:
             old = member_digest(parent, f"{PARENT}/{name}")
-            new = member_digest(child, f"{CHILD}/{name}")
+            new = member_digest(child, f"{child_name}/{name}")
             if old != new:
                 raise ValueError(f"Common input changed: {name}")
             hashes[name] = old
@@ -47,14 +50,15 @@ def run(parent_path, child_path, parent_wall_gz, output):
                 or hashes["constant/triSurface/rotor.obj"] != ROTOR_SHA):
             raise ValueError("Unexpected corrected rotor or quality dictionary")
         old_dict = member_text(parent, f"{PARENT}/system/snappyHexMeshDict")
-        new_dict = member_text(child, f"{CHILD}/system/snappyHexMeshDict")
+        new_dict = member_text(child, f"{child_name}/system/snappyHexMeshDict")
         if (old_dict.count("level (3 4);") != 1
-                or new_dict.count("level (3 3);") != 1
-                or new_dict.replace("level (3 3);", "level (3 4);") != old_dict):
+                or child_level == "level (3 4);"
+                or new_dict.count(child_level) != 1
+                or new_dict.replace(child_level, "level (3 4);") != old_dict):
             raise ValueError("Snappy inputs changed beyond rotor surface level")
         old_mesh = mesh_metrics(member_text(parent, f"{PARENT}/log.checkMesh.full"))
-        new_mesh = mesh_metrics(member_text(child, f"{CHILD}/log.checkMesh.full"))
-        snap_log = member_text(child, f"{CHILD}/log.snappyHexMesh")
+        new_mesh = mesh_metrics(member_text(child, f"{child_name}/log.checkMesh.full"))
+        snap_log = member_text(child, f"{child_name}/log.snappyHexMesh")
         if snap_log.count("Finished meshing without any errors") != 1:
             raise ValueError("New native meshing did not finish")
         elapsed = re.search(r"Finished meshing in = ([0-9.]+) s\.", snap_log)
@@ -63,15 +67,15 @@ def run(parent_path, child_path, parent_wall_gz, output):
         with tempfile.TemporaryDirectory(dir=output.parent) as temporary:
             folder = Path(temporary)
             rotor_path = folder / "rotor.obj"
-            with member(child, f"{CHILD}/constant/triSurface/rotor.obj") as source, rotor_path.open("wb") as dest:
+            with member(child, f"{child_name}/constant/triSurface/rotor.obj") as source, rotor_path.open("wb") as dest:
                 shutil.copyfileobj(source, dest)
             old_wall = folder / "parent-rotor-wall.stl"
             new_wall = folder / "child-rotor-wall.stl"
             with gzip.open(paths[2], "rb") as source:
                 extract_rotor_wall(source, old_wall)
-            with member(child, f"{CHILD}/boundary.stl") as source:
+            with member(child, f"{child_name}/boundary.stl") as source:
                 extract_rotor_wall(source, new_wall)
-            if digest(old_wall) != PARENT_WALL_SHA or digest(new_wall) != CHILD_WALL_SHA:
+            if digest(old_wall) != PARENT_WALL_SHA or digest(new_wall) != child_wall_sha:
                 raise ValueError("Extracted rotor wall changed")
             rotor = trimesh.load_mesh(rotor_path, process=True)
             if len(rotor.vertices) != 439365 or len(rotor.faces) != 878730:
@@ -93,7 +97,7 @@ def run(parent_path, child_path, parent_wall_gz, output):
             for name in ("cellLevel", "owner", "neighbour", "sets/concaveCells"):
                 destination = mesh / name
                 destination.parent.mkdir(parents=True, exist_ok=True)
-                with member(child, f"{CHILD}/constant/polyMesh/{name}") as source, destination.open("wb") as dest:
+                with member(child, f"{child_name}/constant/polyMesh/{name}") as source, destination.open("wb") as dest:
                     shutil.copyfileobj(source, dest)
             levels = read_label_list(mesh / "cellLevel")
             owner = read_label_list(mesh / "owner")
@@ -135,11 +139,11 @@ def run(parent_path, child_path, parent_wall_gz, output):
     if old_mesh["failed_mesh_checks"] < 1 or new_mesh["failed_mesh_checks"] < 1:
         raise ValueError("Native mesh admission state changed")
     result = {
-        "status": "rejected_uniform_surface_level_no_CFD",
-        "archive_sha256": {"parent": PARENT_SHA, "child": CHILD_SHA,
+        "status": status,
+        "archive_sha256": {"parent": PARENT_SHA, "child": child_sha,
                            "parent_boundary_stl_gz": PARENT_WALL_GZ_SHA},
         "common_input_sha256": hashes,
-        "only_snappy_dictionary_change": "rotor refinementSurfaces.level (3 4) -> (3 3)",
+        "only_snappy_dictionary_change": f"rotor refinementSurfaces.level (3 4) -> {child_level.removeprefix('level ')}".removesuffix(";"),
         "checkMesh": {"parent": old_mesh, "child": new_mesh},
         "concave_cell_fraction": {
             "parent": old_mesh["concave_cells"] / old_mesh["cells"],
