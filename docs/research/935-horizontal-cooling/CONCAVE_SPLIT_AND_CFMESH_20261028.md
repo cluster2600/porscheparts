@@ -204,3 +204,5 @@ gate. The current conditional scale and unknown 935 mounting dimensions still
 prevent fitment or fabrication claims, irrespective of mesh quality.
 The [thin-facet scan-proximity screen](THIN_FACET_SCAN_PROXIMITY_20261028.md)
 adds a verified coordinate-transport check and location-matched controls.
+The subsequent [broader local facet repair](BROADER_FACET_REPAIR_20261028.md)
+improves surface quality but its provisional volume meshes still fail checks.
