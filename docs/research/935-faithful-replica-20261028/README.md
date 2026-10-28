@@ -142,6 +142,8 @@ The baseline contract is documentary and does not retrofit controls into older r
 The new audit verifies source identity and preserves observed surfaces; it deliberately
 does not promote the result to a qualified CAD master, solver-ready solid or print-ready part.
 
+See the [boundary inventory](BOUNDARIES.md) for the subsequent full-source review index: 928 individually addressable curves, with no automatic filling.
+
 ## Published implementation and acceptance status
 
 The runnable [scan auditor](../../../scripts/audit_935_faithful_scan.py) verifies the
