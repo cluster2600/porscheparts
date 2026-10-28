@@ -13,6 +13,9 @@ sha=lambda p: hashlib.sha256(p.read_bytes()).hexdigest()
 if sha(source) not in {
     '9fcd93a5c54ebfc98b8cd86d4550e3a416d3e62fb217e5ebfb67eb2f2a9f2085',
     '9dcfef8c123e63016271e3977fdd2d01b21997a94c3343e5e2d6f79198794c8a',
+    'e71fc12382db13129166d4a37cc006a45238134ceaf4d32e3873b44b23d611f5',
+    '7bb4f474ff0423747784c258dab79ab01e917b648c137654d335e381ce195936',
+    '35e1427ed6cfdd858cca31803525a23bb65efa2258e349f06cc9bc7ab2bf7509',
 }:
     raise SystemExit('Source hash mismatch')
 with np.load(source) as p:
