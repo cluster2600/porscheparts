@@ -105,6 +105,12 @@ The view documents allocation; the workflow defines execution order.
 
 ## Runtime choices
 
+The [USD BRep and LPBF extension](usd-brep-lpbf.md) adds an isolated exact-solid
+USD service and two optional thermal research backends. Its runbook links
+requirements, runtime choices and executable acceptance controls. PicoGK remains
+the new-geometry route; existing STEP masters and solver authority are retained.
+No automatic voxel-to-BRep, CAD-to-LPBF or thermal-to-stress conversion is claimed.
+
 - Mac: control, catalogue, Qwen/MLX, USD preparation and evidence collection.
   Native PicoGK is the fallback if the existing Linux worker is unavailable.
 - kali1: PicoGK geometry and OpenFOAM; kali2: CalculiX and manufacturing

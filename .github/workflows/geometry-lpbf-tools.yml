@@ -1,0 +1,64 @@
+name: Geometry and LPBF software witnesses
+
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/geometry-lpbf-tools.yml'
+      - 'containers/usd-brep*'
+      - 'containers/examples/usd_brep_smoke.py'
+      - 'benchmarks/go-melt/**'
+      - 'benchmarks/lpbf-cuda/**'
+      - 'Makefile'
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/geometry-lpbf-tools.yml'
+      - 'containers/usd-brep*'
+      - 'containers/examples/usd_brep_smoke.py'
+      - 'benchmarks/go-melt/**'
+      - 'benchmarks/lpbf-cuda/**'
+      - 'Makefile'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  usd-brep:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - run: make container-usd-brep container-smoke-usd-brep
+      - uses: actions/upload-artifact@v4
+        with:
+          name: usd-brep-witness
+          path: work/usd-brep-smoke/
+          if-no-files-found: error
+  lpbf-cpu:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+      - name: Install pinned CPU research dependencies
+        run: |
+          python -m pip install --require-hashes --find-links https://storage.googleapis.com/jax-releases/jax_releases.html -r benchmarks/go-melt/requirements.lock.txt
+          git clone https://github.com/JLnorthwestern/GO-MELT work/go-melt-source
+          git -C work/go-melt-source checkout --detach 7dafdd8593711cf8ac6ccb18a1f475744610ea3d
+          git clone https://github.com/zhangyaqi1989/Simulation-of-LPBF-using-CUDA work/lpbf-cuda-source
+          git -C work/lpbf-cuda-source checkout --detach b81c9a0d8abae302c9a4eeacf384502d2220d360
+      - name: Run CPU controls
+        run: |
+          make go-melt-smoke GO_MELT_SOURCE=work/go-melt-source GO_MELT_PYTHON=python
+          make lpbf-cuda-cpu-smoke LPBF_CUDA_SOURCE=work/lpbf-cuda-source
+      - uses: actions/upload-artifact@v4
+        with:
+          name: lpbf-cpu-witnesses
+          path: |
+            work/go-melt-smoke/report.json
+            work/lpbf-cuda-smoke/report.json
+            work/lpbf-cuda-smoke/build.log
+          if-no-files-found: error
