@@ -27,6 +27,7 @@ flowchart TD
     D --> E[Gmsh quadratic carrier mesh]
     E --> F[Native CalculiX / loads, energy, reactions and refinement]
     F --> G[Protected low-energy core selection]
+    G --> Q[Conservative inner envelopes / stable mesh transfer]
     G --> H[Microgen gyroid solid / fixed analytic threshold]
     H --> I[Periodic T10 nodes, T6 faces and interior continuity]
     I --> J[Six native strain cases / independent energy and work]
@@ -34,12 +35,13 @@ flowchart TD
     J --> L[Separate surface-resolution sensitivity]
     K --> M[Finite cellular carrier geometry and transition zones]
     L --> M
+    Q --> M
     M --> N[Recalculate complete carrier / mass below 1.30 kg]
     N --> O[Orientation, supports, powder escape and process study]
     O --> P[Reviewable manufacturing package]
     classDef current fill:#dceeea,stroke:#286864,color:#142a29;
     classDef pending fill:#f5e8cf,stroke:#a47935,color:#3b2e17;
-    class H,I,J,K,L current;
+    class H,I,J,K,L,Q current;
     class M,N,O,P pending;
 ```
 
@@ -64,23 +66,34 @@ all solids are retained on import and become connected through periodic ties.
 |---|---:|---:|---:|---|
 | 0.12 | 27,197 | 51,355 | 0.125452 | Passed |
 | 0.05 | 67,777 | 116,931 | 0.086294 | Passed |
-| 0.03 | 215,798 | 342,185 | 0.057723 | Running in the separate 24 GiB profile |
+| 0.03 | 215,798 | 342,185 | 0.057723 | Passed in the separate 24 GiB profile |
 
 The 0.08 attempt retained the same maximum edge and added only 2.7% elements.
 It is retained privately but is not counted as a meaningful spatial refinement.
 The [second contract](evidence/study-contract-002.json) requires element growth
 of at least 1.25 and decreasing maximum edges.
 
-Coarse to medium changes the full stiffness tensor by **0.1410616%**, below the
-unchanged **2%** threshold. **Two successive comparisons** must pass; the fine
-level is still running, so fixed-geometry convergence is not yet admitted.
+Coarse to medium changes the full stiffness tensor by **0.1410616%**; medium to
+fine changes it by **0.0561359%**. Both successive comparisons pass the unchanged
+**2%** threshold. All six strain cases pass at all three levels, so the
+[fixed-STEP spatial criterion is satisfied](evidence/fixed-STEP-series-001/assessment.json).
+The minimum normalized stiffness ratio changes from **0.1706406** to
+**0.1705261** to **0.1704587**. This admits the selected fixed-geometry cell study,
+not whole-carrier convergence or isolated implicit-surface convergence.
+
+![Completed fixed-geometry stiffness refinement](../../media/carrier-interface-20261028/interface-convergence.png)
 
 Surface resolution is a different study. At nominal size 0.05, resolution 32
 has **63,542 T10 elements**, volume fraction **0.4026911**, and all six cases pass.
 Its tensor changes by **0.5533792%** from resolution 24. Resolution 48 has
-**167,435 T10 elements**, volume fraction **0.4014374**, and is running.
+**167,435 T10 elements**, volume fraction **0.4014374**, and all six cases pass.
+Resolution 32 to 48 changes the tensor by **0.4426642%**. Both observed changes
+are below 2%; the [separate sensitivity assessment](evidence/surface-sensitivity-002/assessment.json)
+preserves their different interpretation.
 These STEP geometries differ; local element sizes also change. Their comparison
 cannot be substituted for fixed-STEP mesh convergence.
+
+![Separate surface-resolution sensitivity](../../media/carrier-interface-20261028/surface-sensitivity.png)
 
 ## Mathematical checks
 
@@ -143,6 +156,7 @@ The adapter targets inspected private APIs and explicitly requires Microgen 1.3.
 | Python / NumPy / SciPy | 3.11.18 / 2.4.6 / 1.17.1 | Independent geometry and field assessments in an isolated macOS ARM64 runtime |
 | CalculiX / corrected SPOOLES | CCX 2.21, eight solver threads | Previously qualified native binary; six solid controls and actual gyroid fields |
 | PyVista / VTK / Matplotlib | 0.44.2 / 9.3.1 / 3.11.2 | Actual quadratic-mesh image and numerical charts |
+| Manifold / libigl | 3.5.4 / 2.6.3 | Conservative finite-envelope reconstruction, exact transfer checks and independent boundary distances |
 | PR #274 Warp | 1.18.0, unchanged kernel | Existing merged native CPU/CUDA carrier-query evidence; no fresh GPU claim in this CPU study |
 
 The [complete runtime inventory](evidence/runtime-provenance.json) records the
@@ -162,6 +176,17 @@ has a documented upstream history in
 [CadQuery OCP issue 119](https://github.com/CadQuery/OCP/issues/119).
 The selected cell generation and separate image command completed, but a
 universal CAD/visualization runtime is not claimed by these results.
+
+Finite-envelope reconstruction uses a separate environment with **no CadQuery or
+Microgen imports**. Its [dependency check passes](evidence/geometry-dependency-check.log)
+and its [runtime inventory](evidence/runtime-geometry-provenance.json) records the
+actual packages. Manifold is Apache-2.0 and libigl's Python package is MPL-2.0;
+no upstream implementation is vendored into these scripts.
+
+The complete project stack remains in [TOOLCHAIN.md](../../TOOLCHAIN.md), with
+the [USD BRep and LPBF extension](../../architecture/usd-brep-lpbf.md) documenting
+the later exact-solid, GO-MELT and LPBF-CUDA branches. Those optional CPU smoke
+controls are distinct from a carrier-specific additive process simulation.
 
 The pinned Microgen source archive SHA-256 is
 `d64874c852a38225159188b2454bf22b9fb18d1ddd12540b0fa7eb4606a77157`.
@@ -202,6 +227,21 @@ level before comparing tensors and generating the convergence chart.
 `render_periodic_interface.py` renders the actual mesh. All outputs require
 fresh paths; failed attempts are retained.
 
+For the finite-envelope stage, no private full-carrier field or solver binary is
+needed: the compact selected volume and its reference are included here.
+
+```sh
+uv venv --python 3.11.18 "$CELL_WORK/geometry-runtime"
+CELL_GEOM_PY="$CELL_WORK/geometry-runtime/bin/python"
+uv pip install --python "$CELL_GEOM_PY" numpy==2.4.6 scipy==1.17.1 manifold3d==3.5.4 libigl==2.6.3 pyvista==0.44.2 vtk==9.3.1 matplotlib==3.11.2
+"$CELL_GEOM_PY" "$CELL_SOURCE/reconstruct_core_envelopes.py" \
+  --selected docs/reports/carrier-interface-20261028/evidence/selected-core-topology-001/selected-volume.npz \
+  --reference docs/reports/carrier-interface-20261028/evidence/selected-core-topology-001/assessment.json \
+  --output "$CELL_WORK/envelopes"
+"$CELL_GEOM_PY" "$CELL_SOURCE/render_core_envelopes.py" \
+  --directory "$CELL_WORK/envelopes" --output "$CELL_WORK/envelope-image"
+```
+
 ## Consequence for lightweighting
 
 ![Previously selected protected carrier core](../../media/carrier-convergence-20261022/P1-refined-core-screen-015/carrier-cellular-budget-screen.png)
@@ -238,12 +278,61 @@ and admitted core-energy reference. It verifies their hashes, centroid identity
 and volume before emitting the component ledger and image. No smoothing or
 clearance enlargement is silently applied.
 
+### Four conservative, transfer-checked envelopes
+
+![Actual reconstructed inner envelopes](../../media/carrier-interface-20261028/core-envelopes.png)
+
+The four largest candidate regions are now reconstructed by native tetrahedral
+solid unions, eroded by a centered **0.20 mm cube** and reduced to their dominant
+positive connected component. This is an explicit **0.10 mm inward design
+operation**, not a relaxed mesh tolerance. Small disconnected remnants are
+discarded; the remaining four envelopes total **2,364.280875 mm³**. They are
+internal limiting regions for a future finite lattice, not a modified carrier.
+
+Each [checked envelope](evidence/core-envelopes-006/assessment.json) has one
+connected closed native body, two-face edge incidence, matching independent
+triangle/native volumes, and an **exact oriented-triangle export/reimport
+comparison**. Maximum relative export-volume error is approximately **10⁻¹⁵**,
+below the **10⁻¹⁰** limit.
+
+An adaptive triangle-ball distance check covers the complete envelope boundary:
+**3,614,158 subtriangle centres** are checked for tetrahedral membership and
+distance to the original selected boundary. Every accepted subtriangle has a
+positive whole-patch clearance bound above the **0.0001 mm** guard. This is a
+floating-point coverage check, not a formal interval or full-solid subset proof.
+The erosion operator supplies the conservative geometric construction.
+
+VTK's approximate cell locator occasionally returns a nearby tetrahedron rather
+than an admissible containing one. Those candidates are replaced by a direct
+all-tetrahedron search; the **10⁻¹⁰** barycentric/residual checks remain unchanged.
+Manifold's returned read-only index buffers are copied into the writable uint64
+format required by its input API.
+
+The [raw-union transfer refusal](evidence/raw-union-roundtrip-refusal.json) is
+retained: three original region transfers changed volume despite `NoError`.
+No un-eroded envelope is admitted for downstream reuse. The inward construction
+and the stronger transfer gate correct this demonstrated problem without
+changing the carrier or expanding the protected mask.
+
+The [OBJ meshes and indexed source](evidence/core-envelopes-006/) are available
+alongside their input hashes and the [figure provenance](evidence/core-envelopes-006/figure-provenance.json).
+Finite lattice insertion, smooth transition zones, updated whole-carrier
+mechanics and additive preparation remain active work.
+
+The reduced envelope also changes the weight arithmetic: applying the
+resolution-48 periodic solid fraction uniformly to these **2,364.28 mm³** would
+save about **6.25 g** at the study density of **4.42 × 10⁻⁶ kg/mm³**. This remains
+a conditional calculation before finite-cell clipping, transitions and powder
+escape; the actual R2 carrier mass has not changed.
+
 ## Verification checkpoint
 
-The focused interface/core tests pass **9/9**. The selected upstream geometry
+The focused interface/core and publication tests pass **11/11**. The selected upstream geometry
 tests pass **29/29**. Strict documentation links pass after the new report files
 are staged. The expanded macOS `make check` attempt ran **4,943 tests**, with
 **4 failures and 275 skips**: the failures compare unrelated fan/stator/coupon
 floating-point dictionaries exactly and differ in the last printed digits.
-Those files are unchanged by this work. This is not a passing full local check;
-the exact published branch still needs its Linux CI result.
+Those files are unchanged by this work. This is not a passing full local check.
+The initial published checkpoint `b0c1181b` passed
+[Linux CI](https://github.com/cluster2600/porscheparts/actions/runs/40784036673);
+the completed results and envelope additions are checked on the updated PR head.

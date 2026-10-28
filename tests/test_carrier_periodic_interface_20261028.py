@@ -107,3 +107,39 @@ class InterfaceMeshTests(unittest.TestCase):
         self.assertEqual((number,bad),(2,0))
         for cells in [np.array([[0,1,2,3],[0,1,2,3]]),np.array([[0,1,2,3],[0,1,2,4],[0,1,2,5]])]:
             with self.assertRaises(ValueError):face_components(cells)
+
+    def test_oriented_surface_roundtrip_ignores_order_but_rejects_winding_or_position_changes(self):
+        sys.path.insert(0,str(SOURCE.parent))
+        try:from reconstruct_core_envelopes import canonical_surface
+        finally:sys.path.pop(0)
+        vertices=self.tetra()[:4];faces=np.array([[0,2,1],[0,1,3],[0,3,2],[1,2,3]])
+        a,b=canonical_surface(vertices,faces)
+        order=np.array([2,0,3,1]);inverse=np.argsort(order)
+        c,d=canonical_surface(vertices[order],np.roll(inverse[faces[::-1]],1,axis=1))
+        self.assertTrue(np.array_equal(a,c) and np.array_equal(b,d))
+        reversed_faces=faces.copy();reversed_faces[0]=reversed_faces[0,::-1]
+        self.assertFalse(np.array_equal(b,canonical_surface(vertices,reversed_faces)[1]))
+        moved=vertices.copy();moved[0,0]+=1e-8
+        self.assertFalse(np.array_equal(a,canonical_surface(moved,faces)[0]))
+
+    def test_published_evidence_integrity_and_qualification_scope(self):
+        import hashlib,json
+        root=SOURCE.parents[5]
+        # Publication integrity and scope checks are separate from native numerical execution.
+        report=root/'docs/reports/carrier-interface-20261028/evidence'
+        for path,expected in json.loads((report/'publication-manifest.json').read_text()).items():
+            self.assertEqual(hashlib.sha256((root/path).read_bytes()).hexdigest(),expected,path)
+        series=json.loads((report/'fixed-STEP-series-001/assessment.json').read_text())
+        self.assertTrue(series['fixed_geometry_h_converged'])
+        self.assertFalse(series['carrier_convergence_demonstrated'])
+        self.assertFalse(series['implicit_geometry_convergence_demonstrated'])
+        core=json.loads((report/'core-envelopes-006/assessment.json').read_text())
+        self.assertFalse(core['carrier_geometry_changed'])
+        self.assertFalse(core['cellular_carrier_generated'])
+        self.assertFalse(core['manufacturing_authorized'])
+        self.assertEqual(len(core['components']),4)
+        for part in core['components']:
+            self.assertEqual(part['native_components'],1)
+            self.assertTrue(part['exact_oriented_triangle_roundtrip'])
+            self.assertGreaterEqual(part['clearance']['floating_point_whole_boundary_clearance_lower_bound_mm'],.0001)
+            self.assertFalse(part['clearance']['formal_interval_certificate'])
