@@ -1,3 +1,9 @@
+ifneq ($(wildcard $(CURDIR)/.venv-check/bin/python3),)
+export PATH := $(CURDIR)/.venv-check/bin:$(PATH)
+# macOS Make 3.81 otherwise resolves simple commands against its original PATH.
+SHELL := /usr/bin/env PATH="$(PATH)" /bin/sh
+endif
+
 .PHONY: \
 	help help-917 help-check check validate test twin twin-validate \
 	engine-contracts engine-components \
@@ -174,12 +180,18 @@ F40_CAD ?= twins/reference-917-engine/evidence/f38-valvetrain-package/cad
 # cibles qui appellent un script a dependance se sautent en le disant, comme les
 # tests le font par tests/_deps.py. Un saut est visible, une erreur permanente ne
 # l'est plus.
-HAS_NUMPY := $(shell python3 -c 'import numpy' 2>/dev/null && echo oui)
-HAS_MATPLOTLIB := $(shell python3 -c 'import matplotlib' 2>/dev/null && echo oui)
+HAS_NUMPY := $(shell PATH="$(PATH)" python3 -c 'import numpy' 2>/dev/null && echo oui)
+HAS_MATPLOTLIB := $(shell PATH="$(PATH)" python3 -c 'import matplotlib' 2>/dev/null && echo oui)
 
 #> check | This list
 help:
 	@python3 scripts/make_help.py
+
+.PHONY: check-setup
+#> check | Install the isolated Python 3.12 check environment (requires uv)
+check-setup:
+	test -x .venv-check/bin/python3 || uv venv --python 3.12 .venv-check
+	uv pip install --python .venv-check/bin/python -r requirements-check.txt
 
 #> check | Targets of the archived 917/935 line
 help-917:
