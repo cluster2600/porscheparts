@@ -53,12 +53,59 @@ HUB_CONTACT_R = 32.0
 # second harmonic, the
 # 17-vane stator (case with stator).
 EXCITATION_ORDERS = [1, 2, 3, 4, 6, 12, 17]
+# Blade-root refinement. On the rotor as published the eleven blades cross the
+# rim outer face in 37 curves: blade 0 is unrotated and shares the cylinder's
+# parametric seam, so its root splits into 7 against 3 for each of the other
+# ten. A blended root has a different count, so what is asserted is the
+# invariant that holds for both: the curves fall into one cluster per blade.
+ROOT_CURVE_COUNT = 37
+ROOT_FIELD_SAMPLING = 400
+ROOT_FIELD_DIST_MIN = 1.0
+ROOT_FIELD_DIST_MAX = 8.0
 ENV = dict(os.environ, OMP_NUM_THREADS="1", CCX_NPROC_EQUATION_SOLVER="1", CCX_NPROC_STIFFNESS="1")
 
 
 # ---------------------------------------------------------------- meshing
 
-def mesh_step(step, out, size, size_min):
+def root_curve_tags(gmsh):
+    """Tags of the curves where the blades cross the rim outer face (r = CUP_R).
+
+    These are the blade-root junctions. The two full rim circles lie on the
+    same cylinder and are excluded by their constant z."""
+    import numpy as np
+    tags = []
+    for _dim, tag in gmsh.model.getEntities(1):
+        try:
+            t0, t1 = gmsh.model.getParametrizationBounds(1, tag)
+        except Exception:
+            continue
+        ts = [t0[0] + (t1[0] - t0[0]) * k / 8.0 for k in range(9)]
+        pts = np.array(gmsh.model.getValue(1, tag, ts)).reshape(-1, 3)
+        if np.max(np.abs(np.hypot(pts[:, 0], pts[:, 1]) - CUP_R)) > 0.25:
+            continue
+        if np.ptp(pts[:, 2]) < 1e-6:
+            continue
+        tags.append(tag)
+    return tags
+
+
+def root_curve_clusters(gmsh, tags):
+    """The blade indices the given root curves belong to.
+
+    The refinement is only comparable between geometries if it reaches every
+    blade, so the selection is checked against the blade count rather than
+    against a curve count that the blend changes."""
+    import numpy as np
+    seen = set()
+    for tag in tags:
+        t0, t1 = gmsh.model.getParametrizationBounds(1, tag)
+        p = np.array(gmsh.model.getValue(1, tag, [0.5 * (t0[0] + t1[0])])).reshape(3)
+        a = math.degrees(math.atan2(p[1], p[0])) % 360.0
+        seen.add(round(a / (360.0 / BLADES)) % BLADES)
+    return sorted(seen)
+
+
+def mesh_step(step, out, size, size_min, root_size=None):
     import gmsh
     gmsh.initialize()
     gmsh.option.setNumber("General.Terminal", 0)
@@ -66,9 +113,27 @@ def mesh_step(step, out, size, size_min):
     gmsh.model.occ.importShapes(str(step))
     gmsh.model.occ.synchronize()
     gmsh.option.setNumber("Mesh.MeshSizeMax", size)
-    gmsh.option.setNumber("Mesh.MeshSizeMin", size_min)
+    gmsh.option.setNumber("Mesh.MeshSizeMin", min(size_min, root_size) if root_size else size_min)
     gmsh.option.setNumber("Mesh.MeshSizeFromCurvature", 16)
     gmsh.option.setNumber("Mesh.Algorithm3D", 10)
+    if root_size:
+        # Local refinement around the blade roots only: the rest of the rotor
+        # keeps the baseline sizing, so the ladder isolates the root.
+        curves = root_curve_tags(gmsh)
+        clusters = root_curve_clusters(gmsh, curves)
+        if len(clusters) != BLADES:
+            raise SystemExit(f"blade-root curves cover {len(clusters)} of {BLADES} blades "
+                             f"({len(curves)} curves found)")
+        dist = gmsh.model.mesh.field.add("Distance")
+        gmsh.model.mesh.field.setNumbers(dist, "CurvesList", curves)
+        gmsh.model.mesh.field.setNumber(dist, "Sampling", ROOT_FIELD_SAMPLING)
+        th = gmsh.model.mesh.field.add("Threshold")
+        gmsh.model.mesh.field.setNumber(th, "InField", dist)
+        gmsh.model.mesh.field.setNumber(th, "SizeMin", root_size)
+        gmsh.model.mesh.field.setNumber(th, "SizeMax", size)
+        gmsh.model.mesh.field.setNumber(th, "DistMin", ROOT_FIELD_DIST_MIN)
+        gmsh.model.mesh.field.setNumber(th, "DistMax", ROOT_FIELD_DIST_MAX)
+        gmsh.model.mesh.field.setAsBackgroundMesh(th)
     gmsh.model.mesh.generate(3)
     gmsh.model.mesh.optimize("Netgen")
     gmsh.option.setNumber("Mesh.HighOrderOptimize", 1)
@@ -310,7 +375,8 @@ def rotor(args):
         # Resume: keep the mesh the earlier speeds were solved on.
         nodes, coords, tets = read_mesh(work / "mesh.inp")
     else:
-        nodes, coords, tets = mesh_step(args.step, work, args.size, args.size_min)
+        nodes, coords, tets = mesh_step(args.step, work, args.size, args.size_min,
+                                        getattr(args, "root_size", None))
         write_mesh(work / "mesh.inp", nodes, coords, tets)
     mesh_s = previous["mesh_seconds"] if previous else time.time() - t
     sets = rotor_sets(nodes, coords, args.case)
@@ -322,6 +388,7 @@ def rotor(args):
     fixed_xyz = coords[np.isin(nodes, sets["FIXED"])]
     tip_phase = ring_phase(tip_ids, cbn, BLADES)
     out = {"case": args.case, "size_mm": args.size, "size_min_mm": args.size_min,
+           "root_size_mm": getattr(args, "root_size", None),
            "nodes": int(len(nodes)), "elements": int(len(tets)), "volume_mm3": vol,
            "mass_g": vol * RHO * 1e6, "fixed_nodes": int(len(sets["FIXED"])),
            "mesh_seconds": mesh_s, "speeds": previous["speeds"] if previous else []}
@@ -490,6 +557,213 @@ def variant(args):
                       "added_mass_g": (body.volume - base) * RHO * 1e6}))
 
 
+# ------------------------------------------------- root mesh convergence
+
+ROOT_CONV_TOL = 0.02        # successive relative change accepted as converged
+
+
+def rootconv(args):
+    """Peak stress against blade-root element size.
+
+    A re-entrant corner with no blend has no finite peak stress: the exact
+    solution is singular there, so the computed peak rises without limit as
+    the mesh is refined and no value of it is a stress. This command measures
+    that rise, and for a blended root measures whether the peak settles.
+
+    The fitted exponent is the slope of log(peak) against log(1/h). It is
+    about zero for a convergent peak and positive for a singular one."""
+    runs = []
+    for w in args.work:
+        d = json.loads((Path(w) / "result.json").read_text())
+        speeds = [s for s in d["speeds"] if s["rpm"] == args.rpm]
+        if not speeds:
+            raise SystemExit(f"{w} has no {args.rpm} rpm result")
+        s0 = speeds[0]
+        runs.append({"work": str(w), "root_size_mm": d.get("root_size_mm") or d["size_min_mm"],
+                     "root_refined": d.get("root_size_mm") is not None,
+                     "nodes": d["nodes"], "elements": d["elements"],
+                     "peak_von_mises_mpa": s0["peak_von_mises_mpa"],
+                     "peak_region": s0["peak_region"],
+                     "peak_location_mm": s0["peak_location_mm"],
+                     "peak_by_region_mpa": s0["peak_by_region_mpa"]})
+    runs.sort(key=lambda r: -r["root_size_mm"])
+    # The ladder is the refined family alone: an unrefined baseline sits on a
+    # different sizing and cannot be a step in it.
+    refined = [r for r in runs if r["root_refined"]]
+    baseline = [r for r in runs if not r["root_refined"]]
+    for a, b in zip(refined, refined[1:]):
+        b["relative_change"] = (b["peak_von_mises_mpa"] - a["peak_von_mises_mpa"]) / a["peak_von_mises_mpa"]
+    slope = None
+    if len(refined) >= 2:
+        xs = [math.log(1.0 / r["root_size_mm"]) for r in refined]
+        ys = [math.log(r["peak_von_mises_mpa"]) for r in refined]
+        n = len(xs)
+        mx, my = sum(xs) / n, sum(ys) / n
+        den = sum((x - mx) ** 2 for x in xs)
+        slope = sum((x - mx) * (y - my) for x, y in zip(xs, ys)) / den if den else None
+    changes = [abs(r["relative_change"]) for r in refined if "relative_change" in r]
+    converged = bool(changes) and all(c <= ROOT_CONV_TOL for c in changes[-2:]) and len(changes) >= 2
+    out = {"rpm": args.rpm, "geometry": args.geometry,
+           "convergence_tolerance": ROOT_CONV_TOL,
+           "runs": refined, "unrefined_baseline": baseline,
+           "fitted_log_log_slope": slope,
+           "peak_converged": converged,
+           "note": ("the peak settles within the tolerance" if converged else
+                    "the peak does not settle: no converged peak stress exists for this geometry"),
+           "yield_mpa": YIELD_MPA}
+    Path(args.out).parent.mkdir(parents=True, exist_ok=True)
+    Path(args.out).write_text(json.dumps(out, indent=1))
+    for r in baseline:
+        print(f"  baseline (no root refinement, size_min {r['root_size_mm']:.2f} mm): "
+              f"elements={r['elements']:7d}  peak={r['peak_von_mises_mpa']:7.2f} MPa ({r['peak_region']})")
+    for r in refined:
+        ch = f"{r['relative_change']:+7.2%}" if "relative_change" in r else "      -"
+        print(f"  h={r['root_size_mm']:4.2f} mm  elements={r['elements']:7d}  "
+              f"peak={r['peak_von_mises_mpa']:7.2f} MPa ({r['peak_region']})  {ch}")
+    print(f"log-log slope {slope if slope is None else round(slope, 4)}  converged={converged}")
+
+
+# ---------------------------------------------------------- root fillet
+
+ROOT_FILLET_MM = 1.0        # blade-root blend radius of the filleted variant
+BLEND_AREA_REL_TOL = 1e-3   # blade-to-blade agreement of the blend surface, relative
+BLEND_RADIUS_TOL = 1e-3     # mm, median blend curvature radius vs the request
+
+
+def _root_edges(solid):
+    """The blade-root edges: on the rim outer cylinder, excluding its two
+    circles (which have constant z)."""
+    rim_circ = 2.0 * math.pi * CUP_R
+    out = []
+    for e in solid.edges():
+        try:
+            pts = [e.position_at(t) for t in (0.0, 0.2, 0.4, 0.6, 0.8, 1.0)]
+        except Exception:
+            continue
+        if max(abs(math.hypot(p.X, p.Y) - CUP_R) for p in pts) > 0.25:
+            continue
+        if abs(e.length - rim_circ) < 1.0:
+            continue
+        out.append(e)
+    return out
+
+
+def _blend_faces(solid):
+    """The blend surfaces a root fillet adds: free-form faces centred on the
+    rim radius. The base rotor has none there."""
+    from OCP.BRepAdaptor import BRepAdaptor_Surface
+    out = []
+    for face in solid.faces():
+        a = BRepAdaptor_Surface(face.wrapped)
+        if str(a.GetType()).split("_")[-1] != "BSplineSurface":
+            continue
+        c = face.center()
+        if abs(math.hypot(c.X, c.Y) - CUP_R) < 3.0:
+            out.append(face)
+    return out
+
+
+def _blend_curvature_radii(faces):
+    from OCP.BRepAdaptor import BRepAdaptor_Surface
+    from OCP.BRepLProp import BRepLProp_SLProps
+    radii = []
+    for b in faces:
+        a = BRepAdaptor_Surface(b.wrapped)
+        u0, u1 = a.FirstUParameter(), a.LastUParameter()
+        v0, v1 = a.FirstVParameter(), a.LastVParameter()
+        for i in range(1, 4):
+            for j in range(1, 4):
+                p = BRepLProp_SLProps(a, u0 + (u1 - u0) * i / 4.0, v0 + (v1 - v0) * j / 4.0, 2, 1e-6)
+                if not p.IsCurvatureDefined():
+                    continue
+                for cv in (p.MaxCurvature(), p.MinCurvature()):
+                    if abs(cv) > 1e-9:
+                        radii.append(abs(1.0 / cv))
+    return sorted(r for r in radii if r < 50.0)
+
+
+def blade_of_edge(e, count):
+    a = math.degrees(math.atan2(e.position_at(0.5).Y, e.position_at(0.5).X)) % 360.0
+    return round(a / (360.0 / count)) % count
+
+
+def build_root_fillet(radius):
+    """F1 with a constant-radius blend at the eleven blade roots.
+
+    Acceptance is measured on the blend *surface*, never on the solid volume:
+    the eleven sequential blade unions leave a tolerance drift of order
+    10 mm3 in `Solid.volume`, which is the same size as the fillet itself, so
+    a volume difference cannot decide whether the blend is right. The blend
+    area and its curvature radius are local and do decide it.
+
+    The blend runs out where the blade's leading and trailing edges meet the
+    rim, and those terminations are much sharper than the nominal radius (at
+    r = 1 mm the sampled minimum is about 0.03 mm). A radius the root cannot
+    take makes those terminations fold over: at 2 mm the blend surfaces
+    self-intersect and gmsh refuses the solid ("a segment and a facet
+    intersect"), while every radius up to 1.5 mm meshes as imported. No OCC
+    healing is used to get round this - `Geometry.OCCSewFaces` in particular
+    discards the volume outright and yields an empty mesh that looks like a
+    successful `generate(3)`."""
+    from build123d import fillet
+    import collections
+    body = f1.build_geometry()
+    edges = _root_edges(body)
+    if len(edges) != ROOT_CURVE_COUNT:
+        raise SystemExit(f"found {len(edges)} blade-root edges, expected {ROOT_CURVE_COUNT}")
+    filleted = fillet(edges, radius)
+    if not filleted.is_valid or len(filleted.solids()) != 1:
+        raise SystemExit("root fillet did not produce one valid solid")
+    blends = _blend_faces(filleted)
+    radii = _blend_curvature_radii(blends)
+    if not radii:
+        raise SystemExit("root fillet produced no measurable blend curvature")
+    median = radii[len(radii) // 2]
+    if abs(median - radius) > BLEND_RADIUS_TOL:
+        raise SystemExit(f"blend median curvature radius {median:.4f} != requested {radius}")
+    # Independent symmetry check: the eleven blades are identical by
+    # construction, so one blade's blend must reproduce across all of them.
+    groups = collections.defaultdict(list)
+    for e in edges:
+        groups[blade_of_edge(e, BLADES)].append(e)
+    per_blade = {}
+    for k in sorted(groups):
+        one = fillet(groups[k], radius)
+        per_blade[k] = sum(f.area for f in _blend_faces(one))
+    spread = max(per_blade.values()) - min(per_blade.values())
+    mean_area = sum(per_blade.values()) / len(per_blade)
+    # Relative, because OCC's own surface integration carries a small absolute
+    # error that grows with the blend area; blade 0 is unrotated and its root
+    # is split into a different number of faces, which moves the area between
+    # faces without changing the blend.
+    relative = spread / mean_area
+    if relative > BLEND_AREA_REL_TOL:
+        raise SystemExit(f"blend area varies by {relative:.2e} relative "
+                         f"({spread:.6f} mm2) between identical blades")
+    return filleted, {
+        "radius_mm": radius,
+        "blend_faces": len(blends),
+        "blend_area_mm2": sum(f.area for f in blends),
+        "blend_curvature_radius_median_mm": median,
+        "blend_curvature_radius_min_mm": radii[0],
+        "blend_curvature_radius_max_mm": radii[-1],
+        "per_blade_blend_area_mm2": {str(k): v for k, v in per_blade.items()},
+        "per_blade_blend_area_spread_mm2": spread,
+        "per_blade_blend_area_relative_spread": relative,
+    }
+
+
+def rootfillet(args):
+    from build123d import export_step
+    solid, checks = build_root_fillet(args.radius)
+    work = Path(args.work)
+    work.mkdir(parents=True, exist_ok=True)
+    out = work / f"f1-rootfillet-{args.radius:g}mm.step"
+    export_step(solid, str(out))
+    checks["step"] = str(out)
+    print(json.dumps(checks, indent=1))
+
+
 # --------------------------------------------------------------- report
 
 def nd_matches(order, mode):
@@ -636,6 +910,8 @@ def main():
     r.add_argument("--case", choices=["clamped", "bore"], default="clamped")
     r.add_argument("--size", type=float, default=3.0)
     r.add_argument("--size-min", type=float, default=1.2)
+    r.add_argument("--root-size", type=float,
+                   help="local element size at the blade-root junction (mm)")
     r.add_argument("--speeds", type=int, nargs="*")
     r.add_argument("--modes", type=int, default=MODES, help="0: static only")
     p = sub.add_parser("report")
@@ -646,8 +922,17 @@ def main():
     p.add_argument("--plot")
     v = sub.add_parser("variant")
     v.add_argument("work")
+    rc = sub.add_parser("rootconv")
+    rc.add_argument("work", nargs="+")
+    rc.add_argument("--rpm", type=int, default=12000)
+    rc.add_argument("--geometry", default="f1-as-published")
+    rc.add_argument("--out", required=True)
+    rf = sub.add_parser("rootfillet")
+    rf.add_argument("work")
+    rf.add_argument("--radius", type=float, default=ROOT_FILLET_MM)
     a = ap.parse_args()
-    {"benchmark": benchmark, "rotor": rotor, "report": report, "variant": variant}[a.cmd](a)
+    {"benchmark": benchmark, "rotor": rotor, "report": report, "variant": variant,
+     "rootfillet": rootfillet, "rootconv": rootconv}[a.cmd](a)
 
 
 if __name__ == "__main__":

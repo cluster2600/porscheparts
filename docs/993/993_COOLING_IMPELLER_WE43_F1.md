@@ -253,11 +253,12 @@ plate's first mode within 1.2 %, and a repeat solve is identical.
 What it changes:
 
 - **The peak stress is several times the beam screen's**, at the junction of a
-  blade root with the outside of the cup rim. The CAD has no fillet there, so
-  part of that peak is a sharp-corner concentration that a finer mesh would
-  raise; mesh independence is not demonstrated. A root fillet is needed before
-  any stress figure is quoted. The tip growth is negligible against the 3.5 mm
-  tip gap.
+  blade root with the outside of the cup rim. The CAD has no fillet there, and
+  the refinement ladder below now shows that peak **does not converge**: it is
+  a sharp-corner singularity, so **91.5 and 95.8 MPa are not stresses and
+  2.3-2.4 is not a margin**. No stress figure for that corner is quoted until
+  the root is blended. The tip growth is negligible against the 3.5 mm tip
+  gap.
 - **The blades are stiffer than the beam said** (first family 40-90 % above
   1,351 Hz), but **the cup and web have modes far below it**: 344-525 Hz at rest
   with one nodal diameter, then 589-843 Hz. The engineering screen's modal pass
@@ -283,6 +284,19 @@ Forcing amplitude, damping, Coriolis splitting and the real bolted joint are
 not computed: these are crossings to design around, not predicted failures.
 
 ```bash
+# the blade-root work, same image, one capped container at a time
+# (the 0.7 mm rung needs >9 GB; it fails closed in a 9 GB container)
+python3 parts/993-eng-cooling-impeller-we43-f1-0001/source/fe_screen_f1.py rootfillet WORK/fillet --radius 1.0
+python3 parts/993-eng-cooling-impeller-we43-f1-0001/source/fe_screen_f1.py rotor \
+  parts/993-eng-cooling-impeller-we43-f1-0001/derived/cooling_impeller_we43_f1.step WORK/rs0.7 \
+  --case clamped --size 4 --size-min 1.5 --root-size 0.7 --modes 0 --speeds 12000
+python3 parts/993-eng-cooling-impeller-we43-f1-0001/source/fe_screen_f1.py rootconv \
+  WORK/base WORK/rs2.0 WORK/rs1.4 WORK/rs1.0 WORK/rs0.7 --rpm 12000 \
+  --geometry f1-as-published-sharp-root \
+  --out parts/993-eng-cooling-impeller-we43-f1-0001/evidence/fe-screen/blade-root-convergence.json
+```
+
+```bash
 # in the cadsim image; one capped container at a time (a 24-mode solve needs ~7 GB)
 python3 parts/993-eng-cooling-impeller-we43-f1-0001/source/fe_screen_f1.py benchmark WORK/bench
 python3 parts/993-eng-cooling-impeller-we43-f1-0001/source/fe_screen_f1.py rotor \
@@ -293,6 +307,117 @@ python3 parts/993-eng-cooling-impeller-we43-f1-0001/source/fe_screen_f1.py repor
   --out parts/993-eng-cooling-impeller-we43-f1-0001/evidence/fe-screen/fe-screen.json \
   --plot parts/993-eng-cooling-impeller-we43-f1-0001/evidence/fe-screen/campbell.png
 ```
+
+## The blade root: a singularity, not a stress (28 October 2026)
+
+The screen above left two items open: a blade-root fillet and a mesh-converged
+peak. They are not two items. The published CAD unions each blade into the cup,
+so the blades cross the rim outer face in a **sharp re-entrant corner**. The
+exact elasticity solution is singular there, so the computed peak must rise
+without limit as the mesh is refined, and **no value of it is a stress**. The
+fillet is a precondition for the second item, not an independent improvement.
+
+### Measured: the peak does not converge
+
+Clamped case, 12,000 rpm, static only, refining **only** at the blade root (a
+gmsh distance/threshold field on the root curves) with the rest of the rotor
+held at size 4 / size-min 1.5, so the ladder isolates the corner:
+
+| root element size | C3D10 elements | peak von Mises | change |
+|---|---|---|---|
+| baseline, no root refinement | 89,227 | 89.16 MPa | — |
+| 2.0 mm | 111,878 | 88.53 MPa | — |
+| 1.4 mm | 138,489 | 100.24 MPa | +13.23 % |
+| 1.0 mm | 210,734 | 110.12 MPa | +9.86 % |
+| 0.7 mm | 332,438 | 120.88 MPa | +9.77 % |
+
+Fitted log-log slope **0.295**, against about zero for a convergent peak. The
+rise settles at roughly 9.8 % per 1.4x refinement, which is a power law and not
+scatter: the ladder is internally consistent with a genuine singularity. The
+[ladder record](../../parts/993-eng-cooling-impeller-we43-f1-0001/evidence/fe-screen/blade-root-convergence.json)
+holds every run. The 0.7 mm rung needs more than 9 GB — it was killed in a 9 GB
+container, and the solver's exit code presented that memory ceiling as a solver
+failure — and took 1,795 s at about 1.7M degrees of freedom in 12 GB.
+
+### The blend builds, and its acceptance is measured on its surface
+
+`fe_screen_f1.py rootfillet` adds a constant-radius blend at the eleven roots.
+Its **median curvature radius matches the request to four decimals** (1.0000,
+1.4999, 1.9999, 2.1998 for 1.0, 1.5, 2.0, 2.2 mm) and the eleven blades agree
+to within 1e-4 relative on blend area.
+
+Acceptance deliberately never uses the solid volume. The eleven sequential
+blade unions leave a tolerance drift of order 10-20 mm3 in a 229,000 mm3 solid,
+and the blend itself only adds 30-120 mm3 per blade, so the signal sits inside
+the noise. Measured by volume, a **correct** blend looks broken: 1.5 mm appears
+to remove 8,322 mm3, growth with radius is not quadratic, and per-blade volume
+ramps with blade index on eleven blades that are identical by construction —
+all of it with `is_valid` true and one solid. The base body's own symmetry
+(root curve length 95.5029 mm on every blade, seven decimals) is what isolates
+the instrument from the geometry.
+
+### The blend run-out, not the radius, is what blocks it
+
+The blend runs out where each blade's leading and trailing edges meet the rim.
+Those terminations are far sharper than the nominal radius — at r = 1 mm the
+sampled minimum curvature radius is about **0.03 mm** — and they defeat the
+chain in two separate ways:
+
+- At **2.0 mm the blend surfaces self-intersect**: gmsh refuses the solid ("a
+  segment and a facet intersect"). Every radius up to **1.5 mm meshes as
+  imported**, so the usable radius is bounded between 1.5 and 2.0 mm by the
+  root geometry alone, whatever mesh or solver is used.
+- At **1.0 mm it meshes but will not solve**: CalculiX rejects the run-out with
+  `nonpositive jacobian determinant` — 39 distinct elements at root size 1.2 mm
+  and 64 at 0.8 mm, out of roughly 200,000 and 300,000. The C3D10 mid-side
+  nodes fold on that 0.03 mm curvature, and **none of gmsh's four high-order
+  optimiser settings clears them** (130 to 148 elements with nonpositive
+  minimum Jacobian, minimum about −0.07 in every case).
+
+So this is a geometry defect, not a mesh setting and not a compute limit. A
+constant radius carried into the corner cannot work here; the run-out has to
+taper to zero at the blade edges. The
+[blend record](../../parts/993-eng-cooling-impeller-we43-f1-0001/evidence/fe-screen/blade-root-blend-attempts.json)
+holds every radius, refusal and measurement.
+
+No OCC healing is used to get round any of it. `Geometry.OCCSewFaces` in
+particular **discards the volume** and leaves an empty mesh behind a
+`generate(3)` that raises nothing — a success that is not one, on the sharp
+rotor as much as the blended one.
+
+### What is still open
+
+A converged peak for the blended root is **not established here, and it cannot
+be on this machine.** The blend's element size is set by curvature sampling N
+as about 2*pi*r/N, so a ladder on a 1 mm blend has to drive N. The cost was
+measured rather than estimated:
+
+| curvature N | blend element | C3D10 elements |
+|---|---|---|
+| 16 | 0.393 mm | 802,196 |
+| 24 | 0.262 mm | 1,898,459 |
+| 32 | 0.196 mm | 3,550,685 |
+| 44 | 0.143 mm | 5,650,460 |
+
+For scale, the sharp ladder's 0.7 mm rung is 332,438 elements at about 1.7M
+degrees of freedom, and that already needed more than 9 GB and 1,795 s with
+single-threaded SPOOLES. The **coarsest** useful blended rung is 2.4x larger,
+and a ladder needs three. This is the same wall as the carrier unit cell: it
+needs the 64 GiB machine or a leased host, not a longer run here.
+
+Even so, compute is the **second** obstacle, not the first: the run-out has to
+be repaired before any of those rungs would solve. The order of work is to
+taper the blend to zero at the blade edges, and only then to **submodel** —
+solve the full rotor coarse, re-solve one blade sector with those boundary
+displacements and a mesh fine enough for the blend. Submodelling is a new
+capability rather than a longer run, and it removes the host limit above.
+
+Until a converged blended peak exists, the part has **no quoted root stress and
+no root margin**.
+
+The web stiffness (the rebuild's ribs between the windows, dropped in F1) and
+the stator vane count are untouched by this work and remain open as listed
+below.
 
 ## Next gates
 
