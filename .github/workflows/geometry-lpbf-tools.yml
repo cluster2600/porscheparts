@@ -29,6 +29,9 @@ jobs:
     timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
+        with:
+          sparse-checkout: |
+            containers
       - run: make container-usd-brep container-smoke-usd-brep
       - uses: actions/upload-artifact@v4
         with:
@@ -40,6 +43,10 @@ jobs:
     timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
+        with:
+          sparse-checkout: |
+            benchmarks/go-melt
+            benchmarks/lpbf-cuda
       - uses: actions/setup-python@v5
         with:
           python-version: '3.10'
