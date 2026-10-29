@@ -1,0 +1,77 @@
+{
+  "status": "exact_volume_controls_passed",
+  "cases": [
+    {
+      "case": "two-tet-pass",
+      "returncode": 0,
+      "expected_returncode": 0,
+      "report": {
+        "status": "exact_orientations_and_indexed_boundary_passed",
+        "error": "",
+        "exact_positive_cells": 2,
+        "oriented_boundary_faces": 6,
+        "oppositely_oriented_interior_faces": 1,
+        "cell_components": 1,
+        "unused_vertices": 0,
+        "maximum_interval_volume_upper_mm3": 0.16666666666666669,
+        "minimum_interval_volume_lower_mm3": 0.16666666666666666,
+        "mechanical_mesh_admitted": false,
+        "manufacturing_authorized": false
+      }
+    },
+    {
+      "case": "negative-cell-refused",
+      "returncode": 2,
+      "expected_returncode": 2,
+      "report": {
+        "status": "volume_refused",
+        "error": "Cell lacks exact positive orientation",
+        "exact_positive_cells": 0,
+        "oriented_boundary_faces": 0,
+        "oppositely_oriented_interior_faces": 0,
+        "cell_components": 0,
+        "unused_vertices": 0,
+        "maximum_interval_volume_upper_mm3": 0,
+        "minimum_interval_volume_lower_mm3": 1e+300,
+        "mechanical_mesh_admitted": false,
+        "manufacturing_authorized": false
+      }
+    },
+    {
+      "case": "wrong-boundary-refused",
+      "returncode": 2,
+      "expected_returncode": 2,
+      "report": {
+        "status": "volume_refused",
+        "error": "Indexed oriented boundary differs from frozen source",
+        "exact_positive_cells": 2,
+        "oriented_boundary_faces": 4,
+        "oppositely_oriented_interior_faces": 1,
+        "cell_components": 0,
+        "unused_vertices": 0,
+        "maximum_interval_volume_upper_mm3": 0.16666666666666669,
+        "minimum_interval_volume_lower_mm3": 0.16666666666666666,
+        "mechanical_mesh_admitted": false,
+        "manufacturing_authorized": false
+      }
+    },
+    {
+      "case": "large-cell-refused",
+      "returncode": 2,
+      "expected_returncode": 2,
+      "report": {
+        "status": "volume_refused",
+        "error": "Certified maximum volume exceeds fixed 0.5 mm3 limit",
+        "exact_positive_cells": 1,
+        "oriented_boundary_faces": 0,
+        "oppositely_oriented_interior_faces": 0,
+        "cell_components": 0,
+        "unused_vertices": 0,
+        "maximum_interval_volume_upper_mm3": 1.3333333333333335,
+        "minimum_interval_volume_lower_mm3": 1.3333333333333333,
+        "mechanical_mesh_admitted": false,
+        "manufacturing_authorized": false
+      }
+    }
+  ]
+}

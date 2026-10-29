@@ -1,0 +1,106 @@
+{
+  "status": "analytical_opening_controls_passed",
+  "cases": [
+    {
+      "case": "cube",
+      "voxel_mm": 0.10000000149011612,
+      "triangles": 17868,
+      "volume_mm3": 54.32193863635841,
+      "analytic_volume_mm3": 55.12659868663198,
+      "relative_volume_error": 0.014596584397446164,
+      "complete_directed_analytic_sdf_bound_mm": 0.14598442463896585,
+      "fixed_distance_limit_mm": 0.2500000037252903,
+      "analytic_volume_interval_mm3": [
+        37.07069584445625,
+        77.39223580960974
+      ],
+      "passed": true,
+      "input_sha256": "9804649252794a978d03b5b354aec375a019c9f4f7a9b68820ebd535f6408c1e"
+    },
+    {
+      "case": "sphere",
+      "voxel_mm": 0.10000000149011612,
+      "triangles": 13836,
+      "volume_mm3": 29.55537576167436,
+      "analytic_volume_mm3": 29.647788007810103,
+      "relative_volume_error": 0.003117003066515453,
+      "complete_directed_analytic_sdf_bound_mm": 0.09303442615351971,
+      "fixed_distance_limit_mm": 0.2500000037252903,
+      "analytic_volume_interval_mm3": [
+        19.509135325664968,
+        42.802369730091925
+      ],
+      "passed": true,
+      "input_sha256": "5e74347587317723a52176cbfc69d90bba5e8441121ce77123918b7eb3662f74"
+    },
+    {
+      "case": "cube",
+      "voxel_mm": 0.05000000074505806,
+      "triangles": 70332,
+      "volume_mm3": 54.73750303513327,
+      "analytic_volume_mm3": 55.12659868663198,
+      "relative_volume_error": 0.007058219820717166,
+      "complete_directed_analytic_sdf_bound_mm": 0.07844683796632913,
+      "fixed_distance_limit_mm": 0.12500000186264515,
+      "analytic_volume_interval_mm3": [
+        45.59697417414722,
+        65.70865676931724
+      ],
+      "passed": true,
+      "input_sha256": "1b00879c26a33068f2805882ca6e55ca3901eff35b17f731173fcd82309e58d6"
+    },
+    {
+      "case": "sphere",
+      "voxel_mm": 0.05000000074505806,
+      "triangles": 55644,
+      "volume_mm3": 29.623262612892002,
+      "analytic_volume_mm3": 29.647788007810103,
+      "relative_volume_error": 0.0008272251174907167,
+      "complete_directed_analytic_sdf_bound_mm": 0.04783247227008764,
+      "fixed_distance_limit_mm": 0.12500000186264515,
+      "analytic_volume_interval_mm3": [
+        24.226014230423804,
+        35.82354404523057
+      ],
+      "passed": true,
+      "input_sha256": "54649d0a0bb79815e71af24213477249ad69903faf2b058a19e957244781ff3e"
+    },
+    {
+      "case": "cube",
+      "voxel_mm": 0.02500000037252903,
+      "triangles": 278460,
+      "volume_mm3": 54.93256115783154,
+      "analytic_volume_mm3": 55.12659868663198,
+      "relative_volume_error": 0.0035198530913079823,
+      "complete_directed_analytic_sdf_bound_mm": 0.041495331976602656,
+      "fixed_distance_limit_mm": 0.06250000093132257,
+      "analytic_volume_interval_mm3": [
+        50.23330019582746,
+        60.283005569986635
+      ],
+      "passed": true,
+      "input_sha256": "4a07f5d5243d4ea9a8b8ab3e457304306b3b3a663e5fc65b44fb9121659e4443"
+    },
+    {
+      "case": "sphere",
+      "voxel_mm": 0.02500000037252903,
+      "triangles": 222156,
+      "volume_mm3": 29.63990440547531,
+      "analytic_volume_mm3": 29.647788007810103,
+      "relative_volume_error": 0.00026590861796220563,
+      "complete_directed_analytic_sdf_bound_mm": 0.023674913787447287,
+      "fixed_distance_limit_mm": 0.06250000093132257,
+      "analytic_volume_interval_mm3": [
+        26.845721298325603,
+        32.63835028230314
+      ],
+      "passed": true,
+      "input_sha256": "a8b243d3a228da82dbb973ef19335ef5ae6bf5da5e0ef9bc97093a06dfe205b4"
+    }
+  ],
+  "strict_bound_decrease": true,
+  "proof": "For every triangle x: abs(d(x)) <= abs(d(centroid)) + max_vertex_distance_to_centroid, using the analytic signed-distance 1-Lipschitz property",
+  "scope": "Complete mesh-to-analytic directed envelope, topology and volume controls; no symmetric carrier fidelity or manufacturing claim",
+  "source_sha256": "b4a8598b54e317a700f659b00d64e1351d1c42fcfaa0c29dd46f399266f80016",
+  "manufacturing_authorized": false
+}

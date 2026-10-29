@@ -30,6 +30,9 @@ The [nominal solid parent](evidence/reconstructed-carrier-001/assessment.json) w
 
 ## NETGEN execution and export interruption
 
+**Follow-up:** NETGEN005 completes successfully, and [independent full-volume checks pass](VOLUME-VALIDATION.md). The first isolated void-rounding trial is refused for self-intersection; the current surface remains unchanged.
+
+
 The bounded NETGEN004 run **returned from volume generation and reached archive export**, but SIGALRM interrupted it at 1,802.19 seconds. Peak observed RSS was 21,817,475,072 bytes, below the 24 GiB guard. Its partial archive has a closed `vertices.npy` member and an unfinished `tetrahedra.npy` member, with no valid ZIP directory. No volume is admitted from this archive. [Terminal receipt](evidence/surface-features-001/netgen-fourth-terminal.json), [independent ZIP-member/CRC diagnosis](evidence/surface-features-001/netgen-fourth-export-diagnosis.json).
 
 A live one-second stack sample earlier showed `MeshOptimize3d::CombineImprove` inside `MeshVolume`, despite disabling the optional final optimization pass. The installed binary reports `v6.2.2607-0-g9642315f`. The [matching upstream source](https://github.com/NGSolve/netgen/blob/v6.2.2607/libsrc/meshing/meshfunc.cpp) also performs internal open-front recovery and legality operations. The sample identifies active work; it does not establish a geometric root cause.

@@ -1,5 +1,8 @@
 # 993 carrier: conditioned geometry and reproducible mechanics
 
+Latest continuation: [complete volume validation and first void-rounding trial](VOLUME-VALIDATION.md).
+
+
 The [surface-conditioning and native CUDA checkpoint](SURFACE-CONDITIONING.md)
 now provides a **1.293391604 kg** candidate, no triangle aspect ratio above 100,
 a complete surface-change bound of **0.007291642 mm**, preserved nominal

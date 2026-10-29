@@ -1,0 +1,58 @@
+{
+  "status": "extended_exact_volume_controls_passed",
+  "naive_float_determinant_on_positive_control": 0.0,
+  "exact_determinant_on_positive_control": "2^-54",
+  "cases": [
+    {
+      "case": "fortran-two-tet-pass",
+      "returncode": 0,
+      "report": {
+        "status": "exact_orientations_and_indexed_boundary_passed",
+        "error": "",
+        "exact_positive_cells": 2,
+        "oriented_boundary_faces": 6,
+        "oppositely_oriented_interior_faces": 1,
+        "cell_components": 1,
+        "unused_vertices": 0,
+        "maximum_interval_volume_upper_mm3": 0.16666666666666669,
+        "minimum_interval_volume_lower_mm3": 0.16666666666666666,
+        "mechanical_mesh_admitted": false,
+        "manufacturing_authorized": false
+      }
+    },
+    {
+      "case": "float-zero-exact-positive-pass",
+      "returncode": 0,
+      "report": {
+        "status": "exact_orientations_and_indexed_boundary_passed",
+        "error": "",
+        "exact_positive_cells": 1,
+        "oriented_boundary_faces": 4,
+        "oppositely_oriented_interior_faces": 0,
+        "cell_components": 1,
+        "unused_vertices": 0,
+        "maximum_interval_volume_upper_mm3": 3.700743415417189e-17,
+        "minimum_interval_volume_lower_mm3": 0,
+        "mechanical_mesh_admitted": false,
+        "manufacturing_authorized": false
+      }
+    },
+    {
+      "case": "disconnected-refused",
+      "returncode": 2,
+      "report": {
+        "status": "volume_refused",
+        "error": "Cell adjacency is disconnected",
+        "exact_positive_cells": 2,
+        "oriented_boundary_faces": 8,
+        "oppositely_oriented_interior_faces": 0,
+        "cell_components": 2,
+        "unused_vertices": 0,
+        "maximum_interval_volume_upper_mm3": 0.16666666666666669,
+        "minimum_interval_volume_lower_mm3": 0.16666666666666666,
+        "mechanical_mesh_admitted": false,
+        "manufacturing_authorized": false
+      }
+    }
+  ]
+}

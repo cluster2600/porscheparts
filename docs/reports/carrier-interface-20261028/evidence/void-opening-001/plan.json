@@ -1,0 +1,26 @@
+{
+  "scope": "Intentional nominal void-design revision; isolated rank0 negative branch only",
+  "input_file": "input.stl",
+  "input_stl_sha256": "ce0966d4cdec8c2c30a5dc62943534696b5ca1ec6bf11fd0286e94f37f8966cb",
+  "input_npz_sha256": "e1e166a52d1c341dc0bfa168d956e27c3b0594bfbef507fd4d8df6835e43b3a0",
+  "voxel_mm": 0.01,
+  "opening_radius_mm": 0.1,
+  "retreat_mm": 0.02,
+  "maximum_wall_seconds": 240,
+  "maximum_resident_bytes": 4294967296,
+  "admissibility": "Frozen generated void is admitted for geometry regularization; not stress interpretation",
+  "control_assessment_sha256": "21749600d3483abc5159349cc4b610086691a1ff726f1f5ebb2d36cbc83a5351",
+  "expected_outputs": [
+    "opened.stl",
+    "runtime.json"
+  ],
+  "required_checks": [
+    "independent complete embedding",
+    "strict containment in original void",
+    "one positive void component",
+    "reversed-orientation material crease audit",
+    "mass balance",
+    "ports and interface checks before carrier adoption"
+  ],
+  "manufacturing_authorized": false
+}

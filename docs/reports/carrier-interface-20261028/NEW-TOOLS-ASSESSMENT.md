@@ -4,13 +4,13 @@ Reviewed on 29 October 2026 against the current main-branch toolchain, the insta
 
 ## Decision
 
-**Follow-up:** the [upstream feature audit](SURFACE-FEATURES.md) finds inherited nearly closed reentrant creases. Resolve their authored geometry before another mechanical refinement sweep. NETGEN004 reached export but compression exceeded its deadline; the same-criteria follow-up uses uncompressed output.
+**Follow-up:** the [upstream feature audit](SURFACE-FEATURES.md) finds inherited nearly closed reentrant creases. Resolve their authored geometry before another mechanical refinement sweep. NETGEN005 now completes with uncompressed output, and the [independent full-volume checks pass](VOLUME-VALIDATION.md). The first PicoGK void-rounding trial is independently refused; its source correction remains in progress.
 
-**Use SALOME/NETGEN as the next independent volume-meshing comparison. Prepare GO-MELT for the subsequent LPBF thermal branch.** Keep USD BRep available for solid-CAD and exchange work; evaluate LPBF-CUDA on a small process subdomain before considering a carrier adapter.
+**Retain NETGEN as an independently checked volume-meshing route. Correct the authored void features before the next mechanical study; prepare GO-MELT for the subsequent LPBF thermal branch.** Keep USD BRep available for solid-CAD and exchange work; evaluate LPBF-CUDA on a small process subdomain before considering a carrier adapter.
 
 | Software | Concrete help for this part | Integration needed | Priority |
 |---|---|---|---|
-| SALOME/SMESH + NETGEN | Compare a second tetrahedral mesher on the corrected closed surface; preserve input coordinates, faces and named geometric groups | Independent group mapping and a native Linux runtime sized for the complete mesh | **Immediate meshing comparison** |
+| SALOME/SMESH + NETGEN | Compare a second tetrahedral mesher on the corrected closed surface; preserve input coordinates, faces and named geometric groups | Independent group mapping and a native Linux runtime sized for the complete mesh | **Independent volume route** |
 | GO-MELT | Compute moving-laser temperature histories and heat accumulation, particularly around thin webs and port mouths | Explicit alloy/process data, a structured-grid/material-activation adapter, and mesh/time refinement; transfer temperatures to CalculiX for a subsequent thermomechanical calculation | **Next manufacturing-simulation branch** |
 | Simulation-of-LPBF-using-CUDA | Study particle deposition and particle heating for a local powder/process case | Modern CUDA build and CPU/GPU comparison, material review, and a verified particle/wall adapter | Local research case first |
 | NVIDIA USD BRep | Exact-solid Boolean operations and BRep/USD exchange for analytic interfaces and review components | Preserve the existing dimensional master and verify any new exchange route | Optional CAD/exchange branch |
@@ -43,9 +43,8 @@ limit** and was stopped cleanly before a volume result was admitted. A 16 GiB
 retry then reached its CPU-time limit after 464.6 seconds of wall time, with about
 14.9 GiB observed resident memory. [First limit receipt](evidence/new-tools-assessment-001/netgen-initial-resource-limit.json),
 [second limit receipt](evidence/new-tools-assessment-001/netgen-second-resource-limit.json).
-The unchanged geometry and numerical criteria are now being exercised under a
-**24 GiB / 1,850-second** local guard on the verified 64 GiB Mac. The run reached export, but SIGALRM interrupted archive compression; the archive is incomplete. No complete
-volume result is admitted yet. See the [terminal diagnosis and export correction](SURFACE-FEATURES.md). No support or loading groups are inferred for
+NETGEN004 exercised the unchanged geometry and numerical criteria under a
+**24 GiB / 1,850-second** local guard on the verified 64 GiB Mac. It reached export, but SIGALRM interrupted archive compression; the archive is incomplete. The [subsequent complete-volume checkpoint](VOLUME-VALIDATION.md) passes independent all-cell checks; mechanical admission remains separate. See the [terminal diagnosis and export correction](SURFACE-FEATURES.md). No support or loading groups are inferred for
 this geometry-only comparison; mechanical admission remains separate.
 
 ## What each tool does not automatically supply
