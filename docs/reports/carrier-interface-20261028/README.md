@@ -1,6 +1,10 @@
 # 993 carrier: conditioned geometry and reproducible mechanics
 
-Latest continuation: [complete carrier geometry and verified 3MF](ASSEMBLED-CARRIER.md)
+Latest numerical continuation: [certified MeshLib cavity reduction](MESHLIB-COARSENING.md)
+records a 50% triangle reduction with a complete surface-distance certificate,
+the corrected export adapter, and the remaining volume-meshing work.
+
+The [complete carrier geometry and verified 3MF](ASSEMBLED-CARRIER.md)
 records the assembled cavities and powder passages, independent surface checks,
 a nominal mass bound below 1.30 kg, and an exact full-export comparison.
 Mechanical convergence and machine-specific build preparation remain open.
