@@ -6,9 +6,13 @@ skin, closed sections, sandwich panels and wheel tubs. The existing closed
 sections include the central tunnel, sills, opening frames and B-pillar ring.
 This is the existing PicoGK design envelope, not a newly measured body shell.
 
-**Status on 28 October 2026:** local USD validation and local previews executed;
-Omniverse RTX execution and application screenshots pending. The project goal
-remains open. Manufacturing, strength and 964/993 fitment are not validated.
+**Status on 29 October 2026:** native OVRTX produced three PNGs and a
+120-frame MP4 on the rented RTX PRO 6000. The [native review report](native-review-20261029/README.md)
+contains the original media, hashes, observed defects and verified rental cleanup.
+Kit transmitted its loading editor, but the interactive model review was
+interrupted. Corrected camera framing is checked locally and awaits GPU replay.
+The project goal remains open. Manufacturing, strength and 964/993 fitment are
+not validated.
 
 ![Local OpenUSD preview of the complete architecture](media/local-001/front.png)
 
@@ -79,8 +83,8 @@ subsequent replay evidence is linked above.
 | Preserve inputs and current study | Executed | Existing sources and reports retained; bundle and media hashes recorded |
 | Portable whole-body OpenUSD | Executed | Four groups, coordinate equality, relocated strict validation |
 | Local review media | Executed | Three PNG views and a 120-frame MP4 from the reopened stage |
-| Omniverse RTX review | Prepared | Fresh compatible GPU/driver check, bounded rental approval, actual OVRTX captures and runtime receipts |
-| Omniverse/application screenshots | Prepared, native execution pending | [Retained Kit runtime, separate working layer and bounded transport procedure](kit-review.md); actual screenshots still required |
+| Omniverse RTX review | Executed, framing correction pending | [Actual PNGs, MP4 and native receipt](native-review-20261029/README.md); initial views clip the body, corrected overlay needs GPU replay |
+| Omniverse/application screenshots | Partial | Kit startup and 26 decoded loading frames observed; complete viewport inspection, save/reopen and reconnection still required |
 | Source-reproducible structural model | Partial | Finest carbon torsion and bending replayed twice each; other cases and convergence remain open |
 | Exact 964/993 interfaces | Blocked by missing measurements | Validated XYZ datums, variant identity and drivetrain travel/clearance envelopes |
 | Composite strength and manufacturing | Incomplete | Measured laminate/process data, bonded joints/inserts, delamination/buckling/fatigue and mould/process studies |
@@ -117,7 +121,15 @@ Use new output directories. Existing outputs are never overwritten. The build
 script, capture adapter and tests are new; the historical PicoGK generator,
 solver sources, evidence files and container recipes remain byte-identical.
 
-## Bounded RTX session, not launched
+## Bounded RTX session: historical proposal and executed attempt
+
+The proposal below was approved and one attempt executed on 29 October.
+The original engine-twin profile had no available offer; the existing
+validation-only profile supplied the same immutable image through the
+[review guard](../../../../deploy/vast/monocoque-review/README.md).
+Its actual rate was USD 1.89259/hour. The guard ended the rental early and
+verified destruction; see the [session report](native-review-20261029/README.md).
+The following proposal numbers describe preparation, not a fresh approval.
 
 The [rental proposal](rental-proposal.json) specifies the existing qualified
 image by digest, one RTX Pro 6000 and a **proposed USD 5 budget / 90-minute
@@ -148,5 +160,7 @@ OVStage API. Check the current
 Collect the actual PNGs, MP4, logs, GPU/driver identity and capture receipt;
 compare their hashes on the Mac; destroy the exact rented instance and verify
 its absence. A failed job, incompatible driver or failed collection must not
-extend the rental beyond its approved deadline. `capture_rtx.py` is prepared
-and its input admission is tested, but its GPU execution remains unverified.
+extend the rental beyond its approved deadline. `capture_rtx.py` now has
+native execution evidence for the original bundle. The later
+[framing overlay and preparation](native-review-20261029/README.md#framing-correction-prepared-after-the-run)
+remain locally verified only; preserve that distinction during replay.
