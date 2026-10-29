@@ -1,0 +1,90 @@
+{
+  "microgen": {
+    "requirements": [
+      "cadquery<2.6,>=2.5.0",
+      "gmsh<5,>=4.13.1",
+      "meshio<6,>=5.3.5",
+      "numpy<3,>1.24.0",
+      "pyvista<0.45,>=0.44.2",
+      "scipy<1.16,>=1.13.1",
+      "pre-commit>=3.5.0; extra == \"dev\"",
+      "ruff>=0.8.1; extra == \"dev\"",
+      "pytest>=8.3.3; extra == \"dev\"",
+      "pytest-cov>=5.0.0; extra == \"dev\"",
+      "pytest-xdist>=3.6.1; extra == \"dev\"",
+      "ipykernel>=6.29.5; extra == \"docs\"",
+      "sphinx>=7.1.2; extra == \"docs\"",
+      "sphinx-rtd-theme>=3.0.2; extra == \"docs\"",
+      "sphinxcontrib-napoleon>=0.7; extra == \"docs\"",
+      "jupyter-sphinx>=0.5.3; extra == \"docs\"",
+      "pythreejs>=2.4.2; extra == \"docs\"",
+      "mock>=5.1.0; extra == \"docs\"",
+      "myst-parser>=3.0.1; extra == \"docs\"",
+      "jupyterlab<4.3,>=3.6.8; extra == \"jupyter\"",
+      "jupyter-cadquery>=2.2.1; extra == \"jupyter\"",
+      "ipyvtklink>=0.2.3; extra == \"jupyter\"",
+      "ipygany>=0.5.0; extra == \"jupyter\"",
+      "sidecar>=0.5.2; extra == \"jupyter\"",
+      "jupyterview>=0.7.0; extra == \"jupyter\"",
+      "microgen[dev,docs,jupyter]; extra == \"all\""
+    ],
+    "shared_vtk_libraries": []
+  },
+  "cadquery": {
+    "requirements": [
+      "cadquery-ocp<7.8,>=7.7.0",
+      "ezdxf",
+      "multimethod<2.0,>=1.11",
+      "nlopt<3.0,>=2.9.0",
+      "typish",
+      "casadi",
+      "path",
+      "docutils; extra == \"dev\"",
+      "ipython; extra == \"dev\"",
+      "pytest; extra == \"dev\"",
+      "ipython; extra == \"ipython\""
+    ],
+    "shared_vtk_libraries": []
+  },
+  "cadquery-ocp": {
+    "requirements": null,
+    "shared_vtk_libraries": [
+      "vtkmodules/.dylibs/libvtkRenderingOpenGL2-9.2.9.2.6.dylib"
+    ]
+  },
+  "vtk": {
+    "requirements": [
+      "matplotlib >=2.0.0",
+      "numpy >=1.9 ; extra == 'numpy'",
+      "wslink >=1.0.4 ; extra == 'web'"
+    ],
+    "shared_vtk_libraries": [
+      "vtkmodules/.dylibs/libvtkRenderingOpenGL2-9.3.dylib"
+    ]
+  },
+  "pyvista": {
+    "requirements": [
+      "matplotlib>=3.0.1",
+      "numpy>=1.21.0",
+      "pillow",
+      "pooch",
+      "scooby>=0.5.1",
+      "vtk<9.4.0",
+      "typing-extensions",
+      "pyvista[colormaps,io,jupyter]; extra == \"all\"",
+      "cmocean; extra == \"colormaps\"",
+      "colorcet; extra == \"colormaps\"",
+      "imageio; extra == \"io\"",
+      "meshio>=5.2; extra == \"io\"",
+      "ipywidgets; extra == \"jupyter\"",
+      "jupyter-server-proxy; extra == \"jupyter\"",
+      "nest_asyncio; extra == \"jupyter\"",
+      "trame>=2.5.2; extra == \"jupyter\"",
+      "trame-client>=2.12.7; extra == \"jupyter\"",
+      "trame-server>=2.11.7; extra == \"jupyter\"",
+      "trame-vtk>=2.5.8; extra == \"jupyter\"",
+      "trame-vuetify>=2.3.1; extra == \"jupyter\""
+    ],
+    "shared_vtk_libraries": []
+  }
+}

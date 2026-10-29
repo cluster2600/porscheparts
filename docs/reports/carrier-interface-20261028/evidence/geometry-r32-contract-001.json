@@ -1,0 +1,40 @@
+{
+  "scope": "Separate implicit-surface-resolution sensitivity at fixed analytic threshold and nominal h=.05; never count as fixed-STEP spatial convergence",
+  "reference_geometry_sha256": "ddec976b353d8280a017be9e38c0fa2b3790869805c8f65eb59e0adb1de8c0ab",
+  "sizes": [
+    0.12,
+    0.05,
+    0.03
+  ],
+  "required_successive_spatial_comparisons": 2,
+  "maximum_relative_full_tensor_change": 0.02,
+  "maximum_relative_energy_residual": 0.0001,
+  "maximum_relative_boundary_work_residual": 0.0001,
+  "maximum_periodic_displacement_error": 1e-08,
+  "maximum_relative_antisymmetry": 0.0001,
+  "maximum_analytic_solid_tensor_error": 1e-05,
+  "gyroid_threshold": 0.6170021750539874,
+  "material_E_MPa": 107000.0,
+  "material_nu": 0.31,
+  "macroscopic_engineering_strain_amplitude": 0.001,
+  "void_phase": "absent; natural traction-free internal surfaces",
+  "threshold_or_density_retuned": false,
+  "carrier_geometry_changed": false,
+  "per_case_seconds": 600,
+  "per_case_RSS_GiB": 24,
+  "reason_for_extension": "The h=.08 mesh retained the same maximum edge and added only 2.7% cells; use clearly refined meshes rather than count a near-replay as a spatial pass",
+  "minimum_element_count_growth_per_step": 1.25,
+  "maximum_edge_must_decrease": true,
+  "all_opposite_T6_facet_topologies_must_match": true,
+  "reason_for_resource_variant": "Retain first fine-case RSS refusal at 12 GiB; retry as a separate 24 GiB bounded profile on the 64 GiB local host",
+  "host_physical_GiB": 64,
+  "minimum_host_reserve_GiB": 40,
+  "resolutions": [
+    24,
+    32,
+    48
+  ],
+  "nominal_mesh_size": 0.05,
+  "interpretation": "Geometry and local tetrahedral discretization both change; retain independent fixed-STEP h-series and report this coupling",
+  "current_resolution": 32
+}

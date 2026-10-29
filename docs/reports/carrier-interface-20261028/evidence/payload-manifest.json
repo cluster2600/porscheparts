@@ -1,0 +1,179 @@
+{
+  "schema_version": 1,
+  "recorded_on": "2026-10-29",
+  "why": "These derived fields were produced by the committed sources and were going to be committed with them, 76.5 MB in all. Git retains every blob it is given, so they would have stayed in history permanently. Each one's SHA-256 is already recorded in the assessment that uses it, and the producing sources are committed beside it, so the hash and the source carry the provenance the bytes would have carried. The repository keeps the hashes, the array shapes and the results; it does not keep the bytes.",
+  "not_withheld": [
+    "every assessment, contract, receipt and provenance JSON",
+    "every producing and checking source file",
+    "the published figures",
+    "evidence/geometry/fixed-r24.step.gz, which is editable source geometry rather than a derived field"
+  ],
+  "reproduction": "evidence/finite-gyroid-001/REPRODUCE.md pins the dependencies, commands and input hashes for the finite-region networks. For the powder-route candidate, evidence/powder-ports-001/replay-receipt.json records a replay whose regenerated archive matched the published SHA-256, so the candidate is reproducible from the committed runner rather than retrievable from git.",
+  "total_bytes_withheld": 18794499,
+  "entries": [
+    {
+      "path": "docs/reports/carrier-interface-20261028/evidence/core-envelopes-006/envelopes.npz",
+      "sha256": "c302502b34ab811b7bff2a3bb29c2785e4fb36b16df05bcd52d9536345fba866",
+      "bytes": 491158,
+      "kind": "numpy archive",
+      "arrays": [
+        {
+          "name": "vertices",
+          "shape": [
+            16685,
+            3
+          ],
+          "dtype": "float64"
+        },
+        {
+          "name": "triangles",
+          "shape": [
+            33534,
+            3
+          ],
+          "dtype": "uint64"
+        }
+      ],
+      "withheld": "derived field, not committed"
+    },
+    {
+      "path": "docs/reports/carrier-interface-20261028/evidence/gyroid-r24-h003-adapted/transport.npz",
+      "sha256": "9f29834e9e7e7c5b576937362cba08fa6fb73a87539d0b4a4181578a1b00783f",
+      "bytes": 12947126,
+      "kind": "numpy archive",
+      "arrays": [
+        {
+          "name": "points",
+          "shape": [
+            342185,
+            3
+          ],
+          "dtype": "float64"
+        },
+        {
+          "name": "cells",
+          "shape": [
+            215798,
+            10
+          ],
+          "dtype": "int64"
+        }
+      ],
+      "withheld": "derived field, not committed"
+    },
+    {
+      "path": "docs/reports/carrier-interface-20261028/evidence/gyroid-r24-h005-adapted/transport.npz",
+      "sha256": "ee24f7c705e3ca0feccc1bb026d68aa4804bfcc291a5bbbd99c6f2cc72327f49",
+      "bytes": 3791544,
+      "kind": "numpy archive",
+      "arrays": [
+        {
+          "name": "points",
+          "shape": [
+            116931,
+            3
+          ],
+          "dtype": "float64"
+        },
+        {
+          "name": "cells",
+          "shape": [
+            67777,
+            10
+          ],
+          "dtype": "int64"
+        }
+      ],
+      "withheld": "derived field, not committed"
+    },
+    {
+      "path": "docs/reports/carrier-interface-20261028/evidence/gyroid-r24-h012-adapted/transport.npz",
+      "sha256": "cbcf1b59c846402e0b2b5967ab72506d847dbe2b356301d0d378a3cc49e7b353",
+      "bytes": 1321667,
+      "kind": "numpy archive",
+      "arrays": [
+        {
+          "name": "points",
+          "shape": [
+            51355,
+            3
+          ],
+          "dtype": "float64"
+        },
+        {
+          "name": "cells",
+          "shape": [
+            27197,
+            10
+          ],
+          "dtype": "int64"
+        }
+      ],
+      "withheld": "derived field, not committed"
+    },
+    {
+      "path": "docs/reports/carrier-interface-20261028/evidence/refused-raw-union/envelopes.npz",
+      "sha256": "a2c49a6079056317148d68e9b3aed3bc50c13d67d311ffab5b46ccfbb98b4bb8",
+      "bytes": 65165,
+      "kind": "numpy archive",
+      "arrays": [
+        {
+          "name": "vertices",
+          "shape": [
+            2113,
+            3
+          ],
+          "dtype": "float64"
+        },
+        {
+          "name": "triangles",
+          "shape": [
+            4170,
+            3
+          ],
+          "dtype": "uint64"
+        }
+      ],
+      "withheld": "derived field, not committed"
+    },
+    {
+      "path": "docs/reports/carrier-interface-20261028/evidence/selected-core-topology-001/selected-volume.npz",
+      "sha256": "5dc4a3e980eeebbf5b27ee461707e24daf58f5405c8420342e90432c277ee6b1",
+      "bytes": 177839,
+      "kind": "numpy archive",
+      "arrays": [
+        {
+          "name": "vertices",
+          "shape": [
+            4080,
+            3
+          ],
+          "dtype": "float64"
+        },
+        {
+          "name": "tetrahedra",
+          "shape": [
+            7401,
+            4
+          ],
+          "dtype": "int64"
+        },
+        {
+          "name": "parent_indices",
+          "shape": [
+            7401
+          ],
+          "dtype": "int64"
+        },
+        {
+          "name": "component_labels",
+          "shape": [
+            7401
+          ],
+          "dtype": "int32"
+        }
+      ],
+      "withheld": "derived field, not committed"
+    }
+  ]
+}
