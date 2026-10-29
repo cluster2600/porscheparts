@@ -2,6 +2,10 @@
 
 Reviewed on 29 October 2026 against the current main-branch toolchain, the installed source revisions and upstream repositories. The active carrier remains the [conditioned 1.2933916 kg geometry](SURFACE-CONDITIONING.md).
 
+The [software follow-up](SOFTWARE-FOLLOWUP-20261029.md) adds the executed
+geometry3Sharp controls, independent intermediate containment result, float32
+handoff refusal, and an updated integration diagram with measured images.
+
 ## Decision
 
 **Follow-up:** the [upstream feature audit](SURFACE-FEATURES.md) finds inherited nearly closed reentrant creases. Resolve their authored geometry before another mechanical refinement sweep. NETGEN005 now completes with uncompressed output, and the [independent full-volume checks pass](VOLUME-VALIDATION.md). The first PicoGK void-rounding trial is independently refused; its source correction remains in progress.
