@@ -17,6 +17,12 @@ the observed floor and central-strip features to Porsche's German parts catalogu
 The central strip is a removable-cover candidate; it cannot define the tunnel
 interior or a structural wall. Component boundaries remain to be identified.
 
+The [observed-boundary audit](observed-boundaries-20261029/README.md) distinguishes
+original scan openings from selection cuts. The dominant floor and central-cover
+observations share one connected source mesh, so component extraction cannot
+separate them into physical parts. Exact-edge USD overlays and local views/video
+make the unresolved contours visible before CAD reconstruction.
+
 A 911-shaped body shell for the
 [carbon monocoque programme](../../../docs/MONOCOQUE_964_993_PROGRAMME.md).
 Until now the programme's only whole-body model was the box cell of
