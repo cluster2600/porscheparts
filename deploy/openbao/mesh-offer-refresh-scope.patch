@@ -1,0 +1,8 @@
+--- a/openbao-vastai
++++ b/openbao-vastai
+@@ -1934,4 +1934,3 @@ def mesh_offer_query(offer_id: int | None = None) -> dict:
+     }
+-    if offer_id is not None:
+-        query["limit"] = 1000
++    # Preserve the listing query: changing its scope can change provider bundles.
+     return query
