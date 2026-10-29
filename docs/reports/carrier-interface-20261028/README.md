@@ -1,6 +1,11 @@
 # 993 carrier: conditioned geometry and reproducible mechanics
 
-Latest continuation: [geometry coarsening and complete surface bounds](GEOMETRY-COARSENING.md)
+Latest continuation: [all eight cavity boundaries through geometry conditioning](COMPLETE-VOID-CONDITIONING.md)
+records complete independent geometry checks and direct JAX/SciPy correction of
+the three remaining severe-crease cases. Complete-carrier assembly, updated mass
+and mechanical convergence remain the next stages.
+
+The earlier [geometry coarsening and complete surface bounds](GEOMETRY-COARSENING.md)
 reduces the second rounded void to 3,672,606 triangles with a complete symmetric
 0.002 mm bound and advances the six other centre networks. The
 [second-void rounding](SECOND-VOID-ROUNDING.md), [first-void edge repair](BOUNDED-EDGE-REPAIR.md)
