@@ -1,0 +1,84 @@
+{
+  "status": "frozen_powder_port_geometry_replay_passed",
+  "oriented_geometry_matches_published_candidate": true,
+  "runtime": {
+    "numpy": "2.4.6",
+    "scipy": "1.17.1",
+    "libigl": "2.6.3",
+    "manifold3d": "3.5.4",
+    "matplotlib": "3.11.2"
+  },
+  "stages": [
+    {
+      "script": "plan_powder_ports_003.py",
+      "returncode": 0,
+      "log": "stage-00.log"
+    },
+    {
+      "script": "build_powder_ports_001.py",
+      "returncode": 1,
+      "log": "stage-01.log",
+      "expected_raw_refusal_retained": true
+    },
+    {
+      "script": "inspect_port_residue_001.py",
+      "returncode": 0,
+      "log": "stage-02.log"
+    },
+    {
+      "script": "reseat_port_seams_002.py",
+      "returncode": 0,
+      "log": "stage-03.log"
+    },
+    {
+      "script": "encode_port_checks_002.py",
+      "returncode": 0,
+      "log": "stage-04.log"
+    },
+    {
+      "script": "cgal-self-check-002/run_check.py",
+      "returncode": 0,
+      "log": "stage-05.log"
+    },
+    {
+      "script": "cgal-port-gap-worker-002/run_check.py",
+      "returncode": 0,
+      "log": "stage-06.log"
+    },
+    {
+      "script": "cgal-port-control-worker-001/run_check.py",
+      "returncode": 0,
+      "log": "stage-07.log"
+    },
+    {
+      "script": "check_reseated_embedding_002.py",
+      "returncode": 0,
+      "log": "stage-08.log"
+    },
+    {
+      "script": "run_port_gap_checks_001.py",
+      "returncode": 0,
+      "log": "stage-09.log"
+    },
+    {
+      "script": "cgal-port-control-worker-001/run_check.py",
+      "returncode": 0,
+      "log": "stage-10.log"
+    },
+    {
+      "script": "qualify_powder_ports_001.py",
+      "returncode": 0,
+      "log": "stage-11.log"
+    },
+    {
+      "script": "render_powder_ports_001.py",
+      "returncode": 0,
+      "log": "stage-12.log"
+    }
+  ],
+  "elapsed_seconds": 214.43163808301324,
+  "complete_carrier_mechanics_converged": false,
+  "gpu_queries_qualified_for_this_geometry": false,
+  "powder_drainability_demonstrated": false,
+  "manufacturing_authorized": false
+}
