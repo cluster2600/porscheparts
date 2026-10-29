@@ -1,5 +1,12 @@
 # Système horizontal 935 — préparation de la référence
 
+> **CFD input status: the rotor wall is recorded
+> [`inadmissible_for_cfd_parameter_studies`](admissibility.json).** Nine of its 24
+> worst facets project beyond the last acquired section of their nearest blade.
+> Mesh and solver parameter sweeps on that wall are refused until the facet
+> provenance is settled; provenance audits, reacquisition and non-CFD work on this
+> twin stay open. `make check` validates the record.
+
 Le 12 octobre, la [chaîne native 935 avec essai Qwen](../../docs/research/935-horizontal-cooling/NATIVE_935_PIPELINE.md)
 reconstruit séparément les neuf pales dans PicoGK, conserve l'entraînement
 observé et assemble une admission avec des enveloppes moteur à six cylindres.
