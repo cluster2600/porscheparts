@@ -43,6 +43,7 @@ class ScanFeatureCADTests(unittest.TestCase):
         face = next(f for f in shapes(body, TopAbs_FACE) if len(shapes(f, TopAbs_WIRE)) == 2)
         report = inspect_shape(face)
         self.assertFalse(report["solid_hole_classification_admitted"])
+        self.assertIsNone(report["oriented_volume_mm3"])
         self.assertEqual(len(report["rims"]), 1)
         self.assertEqual(report["rims"][0]["state"], "abstain_partial_or_nonmanifold_CAD")
         self.assertEqual(report["rims"][0]["through_or_blind"], "unresolved")

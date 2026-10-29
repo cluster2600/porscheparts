@@ -82,10 +82,13 @@ def inspect_shape(shape):
             edge_uses[edge_id] = edge_uses.get(edge_id, 0) + 1
         face_edges.append(ids)
     # A periodic cylinder seam has two uses in the same face, not two distinct faces.
-    volume = GProp_GProps()
-    BRepGProp.VolumeProperties_s(shape, volume)
-    oriented_volume = float(volume.Mass())
-    admitted = (valid and solids == 1 and np.isfinite(oriented_volume) and oriented_volume > 0
+    oriented_volume = None
+    if valid and solids == 1:
+        volume = GProp_GProps()
+        BRepGProp.VolumeProperties_s(shape, volume)
+        oriented_volume = float(volume.Mass())
+    admitted = (valid and solids == 1 and oriented_volume is not None
+                and np.isfinite(oriented_volume) and oriented_volume > 0
                 and all(count == 2 for count in edge_uses.values()))
     rims = []
     for index, face in enumerate(faces):
