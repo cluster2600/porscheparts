@@ -1,8 +1,16 @@
-# 993 carrier: closed geometry and reproducible mechanics
+# 993 carrier: conditioned geometry and reproducible mechanics
+
+The [surface-conditioning and native CUDA checkpoint](SURFACE-CONDITIONING.md)
+now provides a **1.293391604 kg** candidate, no triangle aspect ratio above 100,
+a complete surface-change bound of **0.007291642 mm**, preserved nominal
+interfaces and passing native CUDA broad/hard query checks. Complete-carrier
+volume meshing and mechanical convergence are the next calculation stage.
+The [new-tools assessment](NEW-TOOLS-ASSESSMENT.md) identifies NETGEN for an
+independent volume-mesh comparison and GO-MELT for the next LPBF thermal branch.
 
 This continuation replaces the voxel-only material experiment with an explicit
 gyroid solid, periodic quadratic tetrahedra and six native CalculiX strain cases.
-The existing R2 carrier remains **1.298199813 kg**, below the **1.30 kg** ceiling.
+The retained R2 reference weighs **1.298199813 kg**, below the **1.30 kg** ceiling.
 A first complete closed-chamber variant now has nominal computed mass
 **1.292162707 kg**. It preserves the complete R2 outer surface exactly.
 Transition blending, powder escape and mechanics on the changed geometry remain
@@ -18,9 +26,8 @@ The separate 10 µm repair-fidelity profile remains refused.
 The [powder-port continuation](POWDER-PORTS.md) adds **eight open routes** and a
 **1.293391518 kg** candidate. Complete-surface intersection checks, sixteen exact
 construction-tool spacing certificates and protected-interface rosters pass.
-A replay command rebuilds the geometry and its checks. Local port-triangle
-conditioning, GPU checks on this changed geometry and complete-part mechanics
-remain active.
+A replay command rebuilds the geometry and its checks. The subsequent [conditioned version](SURFACE-CONDITIONING.md) completes the
+local triangle and native GPU checks; complete-part mechanics remains active.
 
 The earlier [carrier and GPU results](../carrier-convergence-20261022/README.md)
 remain the baseline, including the failed whole-carrier peak-stress convergence
@@ -49,19 +56,20 @@ flowchart TD
     I --> J[Six native strain cases / independent energy and work]
     J --> K[Fixed-STEP mesh refinement]
     J --> L[Separate surface-resolution sensitivity]
-    K --> M[Smooth transitions and powder-escape geometry]
+    K --> M[Open powder routes and conditioned surface / 1.293392 kg]
     L --> M
     Q --> V[Finite gyroid / three spatial resolutions]
     V --> W[Two void families per region / isolated pockets filled]
     W --> Z[Complete closed-chamber baseline / 1.292163 kg]
     Z --> M
-    M --> N[Recalculate complete carrier / mass below 1.30 kg]
+    M --> R[Native CUDA broad and hard queries / passed]
+    R --> N[Recalculate complete carrier / mass below 1.30 kg]
     N --> O[Orientation, supports and process study]
     O --> P[Reviewable manufacturing package]
     classDef current fill:#dceeea,stroke:#286864,color:#142a29;
     classDef pending fill:#f5e8cf,stroke:#a47935,color:#3b2e17;
-    class H,I,J,K,L,Q,V,W,Z current;
-    class M,N,O,P pending;
+    class H,I,J,K,L,Q,V,W,Z,M,R current;
+    class N,O,P pending;
 ```
 
 The cell work establishes the reference material behavior. The closed geometry

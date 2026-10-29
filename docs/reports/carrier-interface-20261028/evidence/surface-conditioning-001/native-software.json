@@ -1,0 +1,61 @@
+{
+  "fast_envelope": {
+    "repository": "https://github.com/wangbolun300/fast-envelope",
+    "revision": "f50eb6c1572c5865bfab3cac1acae0e27c8b4a82",
+    "license": "MIT"
+  },
+  "indirect_predicates": {
+    "repository": "https://github.com/teseoch/Indirect_Predicates",
+    "revision": "a0bf2cd73383202b491a3d8d89f65a8efff232b1",
+    "license": "LGPL"
+  },
+  "simde": {
+    "repository": "https://github.com/simd-everywhere/simde",
+    "revision": "12069d720f43830ae9791e8b0f4c4fa3c88012a0",
+    "tag": "v0.7.2",
+    "license": "MIT"
+  },
+  "cgal_version": "5.6",
+  "geometry_scalar_bits": 64,
+  "qualified_local_architecture": "linux/arm64",
+  "required_compiler": "GCC",
+  "required_flags": [
+    "-frounding-math",
+    "-ffp-contract=off",
+    "-fno-fast-math"
+  ],
+  "assertions_enabled": true,
+  "control_profiles": [
+    "directed rounding",
+    "inside/outside/coplanar triangles",
+    "shared-vertex saddle with different triangle interiors"
+  ],
+  "fast_envelope_compile_10um": {
+    "actual_returncode": 0,
+    "outer_timeout": false,
+    "elapsed_seconds": 14.692219084012322,
+    "container_removed": true,
+    "source_revisions": {
+      "fast-envelope": "f50eb6c1572c5865bfab3cac1acae0e27c8b4a82",
+      "indirect-predicates": "a0bf2cd73383202b491a3d8d89f65a8efff232b1",
+      "simde": "12069d720f43830ae9791e8b0f4c4fa3c88012a0"
+    },
+    "required_compiler_flags_checked": true,
+    "binary_sha256": "6ed59149f4b67a0882ad100977d832708d786603fc35fed60e8ca731d09b8d83",
+    "manufacturing_authorized": false
+  },
+  "fast_envelope_compile_3um": {
+    "actual_returncode": 0,
+    "outer_timeout": false,
+    "elapsed_seconds": 15.972308417025488,
+    "container_removed": true,
+    "source_revisions": {
+      "fast-envelope": "f50eb6c1572c5865bfab3cac1acae0e27c8b4a82",
+      "indirect-predicates": "a0bf2cd73383202b491a3d8d89f65a8efff232b1",
+      "simde": "12069d720f43830ae9791e8b0f4c4fa3c88012a0"
+    },
+    "required_compiler_flags_checked": true,
+    "binary_sha256": "96520ab5f5a842e6172f1bc003d68094b562650147097001d96a516e17a2356b",
+    "manufacturing_authorized": false
+  }
+}
