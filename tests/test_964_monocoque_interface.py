@@ -63,6 +63,19 @@ class MonocoqueInterfaceTests(unittest.TestCase):
         self.assertFalse(any(report["release_flags"].values()))
         self.assertEqual(generated, (TWIN / "derived/monocoque-interface.json").read_text())
 
+    def test_model_year_cross_tube_span_is_common_but_strut_span_changes(self):
+        ledger = json.loads((ROOT / "catalog/measurements/MEAS-MANUAL-964-BODY-CONTROL.json").read_text())
+        values = {row["value_id"]: row for row in ledger["declared_values"]}
+        # Re-read plates 50-05 and 50-05a: the early 1201 transcription was wrong.
+        early_cross_tube = values["MNL-964BC-0048"]
+        late_cross_tube = values["MNL-964BC-0050"]
+        self.assertEqual(early_cross_tube["numeric_values"], [1200.0, 1.0])
+        self.assertEqual(early_cross_tube["numeric_values"], late_cross_tube["numeric_values"])
+        self.assertEqual(values["MNL-964BC-0047"]["numeric_values"], [601.5, 2.0])
+        self.assertEqual(values["MNL-964BC-0049"]["numeric_values"], [616.6, 2.0])
+        self.assertEqual(early_cross_tube["details"]["model_year_group"], "up_to_MY1990")
+        self.assertEqual(late_cross_tube["details"]["model_year_group"], "from_MY1991")
+
 
 if __name__ == "__main__":
     unittest.main()

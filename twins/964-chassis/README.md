@@ -588,9 +588,13 @@ identities** of the documentary register, six of which (P1, P2, P4, P7, P11,
 P16) have no data in the contract. The sheet is regenerated from the contract
 and the ledger, and checked byte for byte by `tests/test_964_interface_review.py`.
 The 2026-09-25 sheet and review report described a contract that never reached
-main and were removed. **The scan-based review (3D and plan views, report) is
-pending a rerun** of `source/interface_review.py` on the machine that holds the
-registered vertices of the registration report; its views stay local.
+main and were removed. **The scan-based review was rerun on 29 October 2026**
+with byte-identical registered vertices. The
+[model-year search report](model-year-review-20261029/README.md) links the
+aggregate receipts and four additional rear-region views; all scan images
+stay local. It corrects the early P13 transcription to 1200 +/- 1 mm, common
+to both plates. The P14 difference remains documentary: the scan review did
+not identify a defensible pair of mount centres or establish the donor year.
 
 Ten pairs are projected as **XY hypotheses**, not as recognized anchors: eight
 with an X determined from published dimensions, P13 and P14 with an X scaled off

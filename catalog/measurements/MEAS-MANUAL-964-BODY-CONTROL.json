@@ -1108,20 +1108,22 @@
       "value_id": "MNL-964BC-0048",
       "record_type": "technical_data",
       "source_collection": "body_control_dimensions",
-      "description": "Cote d'assemblage (up_to_MY1990) : Transversal 1201 (planche 50-05)",
+      "description": "Assembly dimension (up_to_MY1990): rear cross-tube mount span P13 (plate 50-05)",
       "pdf_page": null,
       "plate": "50-05",
       "line": null,
-      "value_text": "1201",
+      "value_text": "1200 +/- 1",
       "unit": "mm",
       "numeric_values": [
-        1201.0
+        1200.0,
+        1.0
       ],
       "source_id": "SRC-PORSCHE-WORKSHOP-MANUAL-964-VOL5-BODY",
       "extraction_status": "manually_checked",
       "details": {
         "kind": "assembly_dimension",
-        "model_year_group": "up_to_MY1990"
+        "model_year_group": "up_to_MY1990",
+        "reading_note": "Re-read on 2026-10-29 from PDF page 8, plate 50-05: 1200 +/- 1 between the P13 mounts, identical to plate 50-05a. Supersedes the previous 1201 transcription; source PDF SHA-256 0fcb2571d8c8d4227cbd1d88b394ec9127e962359b561629cfb769fb6ed4f00c."
       }
     },
     {
@@ -1174,5 +1176,5 @@
     ],
     "contradictions": []
   },
-  "notes": "Valeurs publiees par Porsche AG, en mm, methode : transcription_de_valeurs_publiees. Variantes couvertes : Carrera_4, Carrera_2. Source : planches 50-02, 50-03, 50-05 et 50-05a du volume V. Note du manuel : les cotes sont mesurees directement et sont donc des cotes obliques ; les cotes entre parentheses sont mesurees verticalement. Le champ vertical_nominal_mm porte ces valeurs entre parentheses. Attention du manuel : l'ecart entre gauche et droite ne doit pas depasser les tolerances prescrites pour les cotes longitudinales. Toutes les cotes sont prises depuis ou vers le centre du trou. Les cotes A a I sont des ecartements gauche-droite entre points homologues ; K a S sont des cotes obliques ou longitudinales entre points differents. Cross-check : A, C, D, E et F lues dans la table 50-03 sont identiques aux valeurs cotees sur la planche 50-05a. La transcription est donc coherente sur cinq cotes independantes. La planche 50-05a s'applique a partir du millesime 1991 et differe de 50-05 sur deux cotes arriere ; les deux jeux sont conserves separement, non moyennes."
+  "notes": "Valeurs publiees par Porsche AG, en mm, methode : transcription_de_valeurs_publiees. Variantes couvertes : Carrera_4, Carrera_2. Source : planches 50-02, 50-03, 50-05 et 50-05a du volume V. Note du manuel : les cotes sont mesurees directement et sont donc des cotes obliques ; les cotes entre parentheses sont mesurees verticalement. Le champ vertical_nominal_mm porte ces valeurs entre parentheses. Attention du manuel : l'ecart entre gauche et droite ne doit pas depasser les tolerances prescrites pour les cotes longitudinales. Toutes les cotes sont prises depuis ou vers le centre du trou. Les cotes A a I sont des ecartements gauche-droite entre points homologues ; K a S sont des cotes obliques ou longitudinales entre points differents. Cross-check : A, C, D, E et F lues dans la table 50-03 sont identiques aux valeurs cotees sur la planche 50-05a. La transcription est donc coherente sur cinq cotes independantes. Correction 2026-10-29: plate 50-05a applies from model year 1991. The rear strut-mount span P14 changes from 601.5 +/- 2 to 616.6 +/- 2 mm. The cross-tube span P13 is 1200 +/- 1 mm on BOTH plates; the former 1201 reading of 50-05 was a transcription error. Both entries are retained separately. See twins/964-chassis/model-year-review-20261029/README.md."
 }
