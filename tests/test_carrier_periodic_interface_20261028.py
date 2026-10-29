@@ -11,6 +11,50 @@ spec=importlib.util.spec_from_file_location('periodic_interface',SOURCE);m=impor
 
 
 class InterfaceMeshTests(unittest.TestCase):
+    def test_triangle_witness_checks_interior_edges_and_collapsed_faces(self):
+        sys.path.insert(0,str(SOURCE.parent))
+        try:from finite_gyroid_voids import triangle_witness_distance
+        finally:sys.path.pop(0)
+        tri=np.array([[[0.,0,0],[1,0,0],[0,1,0]]])
+        for point,expected in [([.25,.25,0],0),([.5,0,2],2),([2,0,0],1)]:
+            self.assertAlmostEqual(float(triangle_witness_distance([point],tri)[0]),expected)
+        collapsed=np.zeros((1,3,3))
+        self.assertEqual(float(triangle_witness_distance([[0,0,2]],collapsed)[0]),2)
+
+    def test_skinny_cap_triangle_has_an_actual_edge_witness(self):
+        sys.path.insert(0,str(SOURCE.parent))
+        try:from finite_gyroid_voids import triangle_witness_distance
+        finally:sys.path.pop(0)
+        tri=np.array([[[-69.87200178303081,31.73488615113345,-.26375403832963223],
+                       [-68.9486955739393,29.80531336721438,1.4997774011607232],
+                       [-68.94862800845094,29.80525619462985,1.4997708718466203]]])
+        point=[[-69.4959124255063,30.948949501663773,.4545281662395994]]
+        self.assertLess(float(triangle_witness_distance(point,tri)[0]),1e-10)
+
+    def test_finite_volume_series_keeps_mechanics_and_topology_separate(self):
+        import copy
+        sys.path.insert(0,str(SOURCE.parent))
+        try:from assess_finite_voids import compare
+        finally:sys.path.pop(0)
+        parameters=dict(finite_sizes_mm=[.25,.125,.0625],maximum_relative_volume_change=.02,required_successive_volume_comparisons=2)
+        levels=[dict(rank=0,size_mm=h,core_volume_mm3=10.,source_sha256='same',void_volume_mm3=v)for h,v in zip(parameters['finite_sizes_mm'],[5.,5.005,5.006])]
+        self.assertTrue(compare(levels,parameters)['volume_stabilized'])
+        bad=copy.deepcopy(levels);bad[0]['void_volume_mm3']=4.
+        self.assertFalse(compare(bad,parameters)['volume_stabilized'])
+        for field,value in [('size_mm',.25),('source_sha256','different'),('core_volume_mm3',11.)]:
+            bad=copy.deepcopy(levels);bad[1][field]=value
+            with self.assertRaises(AssertionError):compare(bad,parameters)
+
+    def test_full_clip_search_finds_the_adjacent_triangle_witness(self):
+        import json
+        sys.path.insert(0,str(SOURCE.parent))
+        try:from finite_gyroid_voids import triangle_witness_distance
+        finally:sys.path.pop(0)
+        fixture=SOURCE.parents[5]/'docs/reports/carrier-interface-20261028/evidence/finite-gyroid-001/distance-diagnostics/adjacent-triangle-regression.json'
+        r=json.loads(fixture.read_text());tri=np.array([r['initial_candidate_triangle_mm'],r['adjacent_witness_triangle_mm']]);points=np.tile(r['point_mm'],(2,1));d=triangle_witness_distance(points,tri)
+        self.assertGreater(float(d[0]),r['classification_limit_mm'])
+        self.assertLess(float(d.min()),1e-10)
+
     def grid(self):return np.array([[x,y,z]for z in [-.5,0,.5]for y in [-.5,0,.5]for x in [-.5,0,.5]])
 
     def test_periodicity_checks_boundaries_and_ignores_interior_node_distribution(self):
@@ -133,6 +177,14 @@ class InterfaceMeshTests(unittest.TestCase):
         self.assertTrue(series['fixed_geometry_h_converged'])
         self.assertFalse(series['carrier_convergence_demonstrated'])
         self.assertFalse(series['implicit_geometry_convergence_demonstrated'])
+        closed=json.loads((report/'closed-carrier-001/assessment.json').read_text())
+        self.assertTrue(closed['candidate_geometry_generated'])
+        self.assertTrue(closed['original_external_oriented_triangles_exact'])
+        self.assertTrue(closed['final_oriented_triangle_roundtrip_exact'])
+        self.assertLessEqual(closed['nominal_candidate_mass_kg'],1.3)
+        self.assertEqual((closed['positive_material_shells'],closed['negative_void_shells']),(1,8))
+        for key in ['baseline_geometry_changed','smooth_transitions_generated','powder_escape_demonstrated','complete_carrier_mechanics_converged','manufacturing_authorized']:
+            self.assertFalse(closed[key],key)
         core=json.loads((report/'core-envelopes-006/assessment.json').read_text())
         self.assertFalse(core['carrier_geometry_changed'])
         self.assertFalse(core['cellular_carrier_generated'])

@@ -16,7 +16,7 @@ xychart-beta
 
 | report | file |
 |---|---|
-| 993 carrier: explicit gyroid cells and quadratic mechanics | [`carrier-interface-20261028.md`](carrier-interface-20261028.md) |
+| 993 carrier: closed geometry and reproducible mechanics | [`carrier-interface-20261028.md`](carrier-interface-20261028.md) |
 
 ## October 22, 2026
 
