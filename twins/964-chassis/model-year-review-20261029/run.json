@@ -1,0 +1,162 @@
+{
+  "classification": "model_year_search_views_not_an_identification",
+  "source_sha256": "f397909141e5af2529db961641c7699d39d40c355e05245cfb1573a2974c8dc5",
+  "source_unchanged": true,
+  "original_vertices": 2400031,
+  "original_triangles": 4684929,
+  "array_sha256": {
+    "verts_vehicle.npy": "201787314680bcd60fb5f9b8910e28b0025d60c380dc77fa458a41bb17942bc9",
+    "faces.npy": "271c4f04717be91babfebeb809de485c940dc909ec981acd857693969563b484"
+  },
+  "historical_array_bytes_reproduced": true,
+  "input_sha256": {
+    "twins/964-chassis/model-year-review-20261029/run.py": "68083c432c5f741189d10e513556363db032fcb919adad172e75706ec1253027",
+    "twins/964-chassis/derived/scan-recalage-20260925.json": "d5265ffbb3146fa1977b724d2abd37b365e0e2439bdc574226d0f2b5d9edae53",
+    "twins/964-chassis/source/align.py": "899509ee427120c0d2edce8e2da6cb3340daa2bf47f07d7e05928fae23b544b8",
+    "twins/964-chassis/source/interface_review.py": "e912df66097083119bc1fa78a0ce35782a8c80fb178721ff28525f1099dd0b05",
+    "twins/964-chassis/source/tunnel_probe.py": "22e47fe73a7806c96e2632202534b3c7cb5ec034c1dba1ab424b22eeafa97123",
+    "twins/964-chassis/derived/monocoque-interface.json": "91063a4bdc037af9ac7d74ce1ae4896a9db8dd2b4e9f6feeae6ad27c730d27d1",
+    "catalog/measurements/MEAS-MANUAL-964-BODY-CONTROL.json": "996dad29281c437a1e6c0389accb12c9dca1165363ae9b9ac5f30c40ce28627c"
+  },
+  "versions": {
+    "python": "3.12.14",
+    "numpy": "2.2.6",
+    "pyvista": "0.46.4",
+    "vtk": "(9, 5, 2)"
+  },
+  "interface_review_sha256": "aca69ef119b8b7ea58ac8f4d1d532c6e2986f9de45c5425d521c4a801b54c479",
+  "crops": {
+    "rear_inner_under": {
+      "bounds_mm": [
+        -2700,
+        -1500,
+        -650,
+        650,
+        0,
+        900
+      ],
+      "camera": [
+        [
+          -2200,
+          0,
+          -1800
+        ],
+        [
+          -2200,
+          0,
+          400
+        ],
+        [
+          1,
+          0,
+          0
+        ]
+      ],
+      "source_triangles": 1377610,
+      "source_vertices_inside_bounds": 713786,
+      "image_sha256": "7f7d7b1f2c365b3dfd1609653a065f0584fa4271bab1c5dacc2fef646deb039b"
+    },
+    "rear_left_inner": {
+      "bounds_mm": [
+        -2700,
+        -1500,
+        100,
+        650,
+        0,
+        900
+      ],
+      "camera": [
+        [
+          -2100,
+          -1500,
+          420
+        ],
+        [
+          -2100,
+          350,
+          420
+        ],
+        [
+          0,
+          0,
+          1
+        ]
+      ],
+      "source_triangles": 576187,
+      "source_vertices_inside_bounds": 298724,
+      "image_sha256": "4124950c8964b44f678aacd37f97f962a0c69900ba56c13443f262c2900ff79d"
+    },
+    "rear_right_inner": {
+      "bounds_mm": [
+        -2700,
+        -1500,
+        -650,
+        -100,
+        0,
+        900
+      ],
+      "camera": [
+        [
+          -2100,
+          1500,
+          420
+        ],
+        [
+          -2100,
+          -350,
+          420
+        ],
+        [
+          0,
+          0,
+          1
+        ]
+      ],
+      "source_triangles": 591561,
+      "source_vertices_inside_bounds": 307612,
+      "image_sha256": "e6136a5fb0e789b7d29ba55d01dbcc989b4a77a707837641738bf8e61904bf55"
+    },
+    "rear_upper_plan": {
+      "bounds_mm": [
+        -2600,
+        -2100,
+        -600,
+        600,
+        500,
+        900
+      ],
+      "camera": [
+        [
+          -2350,
+          0,
+          2200
+        ],
+        [
+          -2350,
+          0,
+          600
+        ],
+        [
+          1,
+          0,
+          0
+        ]
+      ],
+      "source_triangles": 68237,
+      "source_vertices_inside_bounds": 36147,
+      "image_sha256": "7787498ad631164885fb0a730b288912b78b615e0ec1ceb1e12b0662246eee0c"
+    }
+  },
+  "crop_policy": "Broad visual search regions; bounds are not mounting datums or a Z measurement",
+  "model_year": null,
+  "model_year_group": null,
+  "p14_measured_span_mm": null,
+  "classification_policy": "Manual feature review required; never select a year by nearest points to the nominal spans",
+  "publication": "Scan views and arrays remain private; redistribution rights are unconfirmed",
+  "release_flags": {
+    "model_year_identified": false,
+    "registered_hardpoints": false,
+    "fitment_validated": false,
+    "manufacturing_released": false
+  }
+}

@@ -44,10 +44,18 @@ inputs, its code and the CSV sheet by SHA-256, and the sheet itself:
 
 The CSV sheet is regenerated from the contract and the ledger alone and holds no
 scan geometry; `tests/test_964_interface_review.py` checks it byte for byte.
-**The scan-based review (views and report from `main()`) is pending a rerun**
-on the machine that holds the registered vertices `verts_vehicle.npy` of
-[scan-recalage-20260925.json](derived/scan-recalage-20260925.json). The review
-of 2026-09-25 described a contract that never reached main and was removed.
+**The scan-based review was rerun on 29 October 2026**, after reproducing the
+exact registered vertex bytes of
+[scan-recalage-20260925.json](derived/scan-recalage-20260925.json). The
+[model-year review](model-year-review-20261029/README.md) retains the aggregate
+receipts; scan images remain local. No XYZ anchor was validated. The review of
+2026-09-25 described a contract that never reached main and was removed.
+
+The same review corrected the early P13 cross-tube span to **1200 +/- 1 mm**,
+identical on plates 50-05 and 50-05a. Only the P14 span distinguishes the two
+rear dimension sets examined here: 601.5 +/- 2 versus 616.6 +/- 2 mm. P14
+centres were not independently identified in the scan, so neither model-year
+group is selected. The 616.6 mm in the current contract is documentary input.
 
 A point visually close to a skin does not prove it is the right mounting.
 No nearest neighbor fills in Z automatically. The tie of the chain to the scan,
