@@ -1,0 +1,44 @@
+{
+  "classification": "visual_review_of_scan_workspace_not_product_geometry_acceptance",
+  "accepted_run": "review-002",
+  "stills_reviewed": [
+    "underbody.png",
+    "oblique.png",
+    "left_side.png",
+    "central_floor.png",
+    "sections.png"
+  ],
+  "encoded_video_frames_reviewed": [
+    0,
+    30,
+    60,
+    90
+  ],
+  "encoded_frame_sha256": {
+    "0": "acc375460a6d1e5760dfef3af04c50bea90100daf281f332bf2c9fd8d2bf4274",
+    "30": "a4f598b94c8a7173c55a3c8789c7094c4afc2ad8ee4ac3f97ae9907ef4f869ca",
+    "60": "7a91dd94915f84f370ef7fbd7672f7cf3569687d4f08794d57d246071ca13d11",
+    "90": "af70dfbb517298a560fc223a58e6876c10f77e353394d3a56125010d9fb069ed"
+  },
+  "observations": [
+    "The two floor search windows show ribbed, approximately sheet-like visible surfaces; no interior surface or material is identified.",
+    "The central route window shows a long lower surface; its rendering does not reveal the tunnel interior or prove shift-linkage clearance.",
+    "Sill and transition windows include mixed body-adjacent surfaces and assembled mechanical components; they are not accepted part masks.",
+    "The side view shows incomplete upper-body coverage. The six cuts retain open scan intersections; no cabin enclosure is inferred.",
+    "The central-floor image intentionally crops the front and rear assemblies; the whole-underbody view supplies context.",
+    "All four inspection cameras and the four quarter-orbit decoded frames differ. The movie shows an underbody orbit rather than a frozen first frame."
+  ],
+  "rejected_attempts": [
+    {
+      "run": "review-001",
+      "run_sha256": "65087609cae8bd118a5faec794e08223d3d1dcc353e990952e24186c2b4a5231",
+      "executed_source_sha256": "622715afbde6fc8d71afbae2d30bb8526cdc5091c8eadd43a917ab602d74f52a",
+      "reason": "Camera changes did not refresh the render; all four still images were identical. Exact scan geometry passed the separate checker, but media were rejected."
+    }
+  ],
+  "files_committed": "Source, settings, aggregate results and hashes only; scan-derived USD, arrays and images remain private.",
+  "geometry_reconstructed": false,
+  "native_omniverse_execution": false,
+  "physical_photographs_created": false,
+  "manufacturing_released": false
+}

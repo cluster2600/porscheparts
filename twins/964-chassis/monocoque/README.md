@@ -6,6 +6,12 @@ It does not reproduce the central-cell architecture requested from the
 ZESAD/RUF references. The historical studies below remain exploratory evidence;
 the next task is central-cell reconstruction before further paid product review.
 
+The [source-preserving scan workspace](scan-coverage-20261029/README.md) now
+retains all original underbody triangles in selectable OpenUSD search regions,
+with independently checked source correspondence, six sections and private local
+views/video. It supplies observed surfaces for that reconstruction; interior
+surfaces and functional interfaces remain unestablished.
+
 A 911-shaped body shell for the
 [carbon monocoque programme](../../../docs/MONOCOQUE_964_993_PROGRAMME.md).
 Until now the programme's only whole-body model was the box cell of
