@@ -1,9 +1,11 @@
 # 993 carrier: conditioned geometry and reproducible mechanics
 
-Latest continuation: [all eight cavity boundaries through geometry conditioning](COMPLETE-VOID-CONDITIONING.md)
-records complete independent geometry checks and direct JAX/SciPy correction of
-the three remaining severe-crease cases. Complete-carrier assembly, updated mass
-and mechanical convergence remain the next stages.
+Latest continuation: [complete carrier geometry and verified 3MF](ASSEMBLED-CARRIER.md)
+records the assembled cavities and powder passages, independent surface checks,
+a nominal mass bound below 1.30 kg, and an exact full-export comparison.
+Mechanical convergence and machine-specific build preparation remain open.
+The preceding [eight-void conditioning](COMPLETE-VOID-CONDITIONING.md) retains
+the individual cavity corrections and their checks.
 
 The earlier [geometry coarsening and complete surface bounds](GEOMETRY-COARSENING.md)
 reduces the second rounded void to 3,672,606 triangles with a complete symmetric
