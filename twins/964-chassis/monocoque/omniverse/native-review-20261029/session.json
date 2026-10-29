@@ -1,0 +1,111 @@
+{
+  "schema_version": 1,
+  "status": "rtx_execution_observed_kit_review_incomplete",
+  "observed_on": "2026-10-29",
+  "source_commit": "94be62fb2c9ab57552d84c0012973b4c88b9b6fb",
+  "instance_id": 58294028,
+  "image_ref": "ghcr.io/cluster2600/3dprinting993-simready-local-ai@sha256:5a69a6805a275ef708e264600cb933663159a2846b069eafe0459c28e5f69699",
+  "gpu_model": "NVIDIA RTX PRO 6000 Blackwell Workstation Edition",
+  "gpu_memory_mib": 97887,
+  "driver_version": "595.71.05",
+  "pci_bus_id": "00000000:01:00.0",
+  "ovrtx_version": "0.3.0",
+  "kit_version": "110.2.0",
+  "upstream_minimal": {
+    "returncode": 0,
+    "started_epoch": 1793301590.5444856,
+    "finished_epoch": 1793301691.3962092,
+    "visual_inspection": "Robot in the station atrium is visible; PNG is non-empty.",
+    "png_sha256": "4fef2bb8f0f5cc1e38c1ffc64c095445354064cb9a5016e29825ce60c503146a",
+    "log_sha256": "b0156ec40394fea507bac473981663e0d2bb0b66fc89cfd21171c408fe20dc5b",
+    "raw_image_retained_privately": true
+  },
+  "render_job": {
+    "returncode": 0,
+    "started_epoch": 1793301754.3192701,
+    "finished_epoch": 1793301786.4835057,
+    "capture_sha256": "3fe38a1b01692e8761e8a9559a39ee1a6d934349c2c82bdf16da7dd97eec1397",
+    "media_hashes_verified_after_download": true,
+    "visually_inspected": [
+      "front.png",
+      "rear.png",
+      "interior.png",
+      "video frames 0, 30, 60, 90"
+    ],
+    "video_sample_sha256": {
+      "0": "232f77610cd56909a05ce328aacf1afcd8e3ae2afa5aeb9a6bf7b92b6ae00147",
+      "30": "ab7ec793208bda6b93b012a9a01872512a813c0df7bd372e735198ef4b624b59",
+      "60": "49dd4cb68a6687913d38894b740441ad23ff575713a7ea1a379aecb01ee3b2b9",
+      "90": "91dfcc3a3dc9c4c6b4cd4a4e9aaa7f4e925645ac6fdc4e78bb6f79c918cfab8f"
+    }
+  },
+  "kit": {
+    "startup_observed": true,
+    "native_gpu_table_observed": true,
+    "scene_open_observed": true,
+    "browser_decoded_frames": 26,
+    "resolution": [
+      1920,
+      1080
+    ],
+    "whole_body_viewport_verified": false,
+    "selection_verified": false,
+    "save_reopen_verified": false,
+    "reconnection_verified": false,
+    "original_bundle_after_ui_hash_check": false,
+    "complete_remote_log_collected": false,
+    "observation_source": "Live SSH startup output and browser inspection before guard cleanup; only the sanitized client diagnostic and final disconnected screenshot were saved."
+  },
+  "authorization": {
+    "budget_usd": 5,
+    "max_duration_seconds": 5400,
+    "planned_cost_with_cleanup_reserve_usd": 3.838888888888889,
+    "hourly_usd": 1.8925925925925926,
+    "transfer_tariffs_usd_per_gb": {
+      "download": 0,
+      "upload": 0
+    },
+    "deadline_epoch": 1793305943,
+    "attempts_created": 1,
+    "another_attempt_authorized_by_this_receipt": false,
+    "final_invoice_obtained": false
+  },
+  "guard": {
+    "executed_source_sha256": "a9d0111791ca6f399cf42ec82357913ca6383bef2fd7cf30940d97728300d24b",
+    "manifest_sha256": "8c5d6f0dd198cf9a4c484e96c80535946bd99d1bf86139c4c17cecbd8eaf6e8d",
+    "log_sha256": "9e152cc8995949ac605c6a5cd920a9726583344269eaa94951acc9cb750514c6",
+    "reason": "contract_or_cost_guard",
+    "owned_instance_destroyed": true,
+    "provider_absence_verified": true,
+    "triggering_inventory_snapshot_retained": false
+  },
+  "findings": [
+    "Vulkan GLX ICD returned no vkCreateInstance entry point; a separate NVIDIA EGL ICD file allowed native rendering without changing system files.",
+    "Native stills and parts of the orbit clip the body. The later aperture overlay is locally checked but has not been GPU-rendered.",
+    "The visible design envelope has stair-stepped and overlapping surfaces. Rendering preserves these source defects; it does not qualify manufacturing geometry.",
+    "Another rental appeared on the shared account. This is consistent with the exclusive guard condition, but the exact triggering snapshot was not retained."
+  ],
+  "qualification": {
+    "rtx_execution_verified": true,
+    "native_visual_review_accepted": false,
+    "digital_twin_validated": false,
+    "strength_validated": false,
+    "physical_validation": false,
+    "fitment964_validated": false,
+    "fitment993_validated": false,
+    "manufacturing_authorized": false
+  },
+  "files_sha256": {
+    "cleanup.json": "0aab4963ec26ed58861c9fc087bb3fea1ef979a3b4a8638f84c1f84b6e89a1ac",
+    "icd-adaptation.json": "5a336fc2300c6d6228186116496023d8d7e2649d3bc79687459f3bc46ca3f15e",
+    "kit/client-observation.json": "3a98c0ad8921869fafbaf28d1d7ba3200a176c3d86341879e939b4fc8c2ad48a",
+    "kit/stream-ended.jpg": "613b22f4bcb6da4aa4ab3ad65b9f60bf0cf889e76d1439402ed3e065af00f7cf",
+    "rtx/capture.json": "3fe38a1b01692e8761e8a9559a39ee1a6d934349c2c82bdf16da7dd97eec1397",
+    "rtx/front.png": "1247debb7a76b8b1271af487f8e36921684f709bca0bc4d7108805e9afbedb10",
+    "rtx/interior.png": "8d4ab2e91b549631df631bf478282aae9d4e5b025236b101f37bd75360738caa",
+    "rtx/rear.png": "59a715788d69ec34f05480e9d1f485ae63a5343124be5b1ea92658f4fa266752",
+    "rtx/turntable.mp4": "018d2288a882c5b46578188ba706a72533bad73f51aff8c0ab351a834936a84f",
+    "video-probe.json": "8dbbe56c3721144ecf4bb2c1ddaa29c8f508a8cbeb55a0c33e116cd7647da08c",
+    "framing-preparation.json": "bd446ad00e0db728173025b528be3fabdb71391fb6b6112a2a321a3574ff80d3"
+  }
+}
