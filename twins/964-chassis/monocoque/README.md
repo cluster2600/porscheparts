@@ -12,6 +12,11 @@ with independently checked source correspondence, six sections and private local
 views/video. It supplies observed surfaces for that reconstruction; interior
 surfaces and functional interfaces remain unestablished.
 
+The [component identity review](component-review-20261029/README.md) now relates
+the observed floor and central-strip features to Porsche's German parts catalogue.
+The central strip is a removable-cover candidate; it cannot define the tunnel
+interior or a structural wall. Component boundaries remain to be identified.
+
 A 911-shaped body shell for the
 [carbon monocoque programme](../../../docs/MONOCOQUE_964_993_PROGRAMME.md).
 Until now the programme's only whole-body model was the box cell of

@@ -1,0 +1,195 @@
+{
+  "schema_version": "1.0.0",
+  "review_date": "2026-10-29",
+  "decision": "component_identity_unresolved_do_not_fit_structural_tunnel_to_cover_candidate",
+  "enforcement": "documented_manual_review_not_an_executable_CAD_gate",
+  "basis_commit": "cb71e8c9cb03020649eee80e388c0d5e4a261d24",
+  "catalogue": {
+    "source_id": "SRC-PET-964-KAT013-PDF",
+    "url": "https://files.porsche.com/f/332100/b26b3c7233/kat013-d-911-94-katalog.pdf",
+    "sha256": "a9afc3bde88a6d51ab757ccb58f9a6136540055f09b0f233c347be11f588f4a3",
+    "pages": 794,
+    "inspection": "Original diagrams and corresponding tables visually inspected; extracted text checked separately",
+    "rights": "Porsche AG copyright; reference only; PDF and page images not committed"
+  },
+  "catalogue_context": [
+    {
+      "id": "pet-floor",
+      "plate": "801-10",
+      "pdf_pages_1_based": [
+        391,
+        392
+      ],
+      "position": 1,
+      "catalogued_part_numbers": [
+        "96450150102",
+        "99350150100"
+      ],
+      "role": "floor",
+      "dimensional_authority": false
+    },
+    {
+      "id": "pet-central-cover",
+      "plate": "801-45",
+      "pdf_pages_1_based": [
+        421,
+        422
+      ],
+      "position": 8,
+      "catalogued_part_numbers": [
+        "99350404300"
+      ],
+      "role": "central_underbody_cover",
+      "dimensional_authority": false
+    },
+    {
+      "id": "pet-console",
+      "plate": "801-10",
+      "pdf_pages_1_based": [
+        392
+      ],
+      "position": 5,
+      "variant_identity_required": [
+        "C2_or_C4",
+        "model_year_group",
+        "installed_gearbox"
+      ],
+      "dimensional_authority": false
+    }
+  ],
+  "inputs": {
+    "scan_source_sha256": "f397909141e5af2529db961641c7699d39d40c355e05245cfb1573a2974c8dc5",
+    "stage_sha256": "adf91574cca4adfb613dee1526bda688f27803309f592c85a75c7965f6d52c83",
+    "regions_sha256": "f6fb9ff814d7ba6eae0441902ae23308f7544fbd3fd3392c89bdbb2e4554add4",
+    "source_run_path": "twins/964-chassis/monocoque/scan-coverage-20261029/run.json",
+    "source_run_sha256": "70a4634dd933cbf74a3d388260bee7717496f6f5a06b8b58eef26b34a2d7fea4",
+    "source_verification_path": "twins/964-chassis/monocoque/scan-coverage-20261029/verification.json",
+    "source_verification_sha256": "a3b0142a1260347dcc8c9aa5e0d6f7444c462ffd236843669f5ff882804ddb02",
+    "inspected_scan_image": "central_floor.png",
+    "inspected_scan_image_sha256": "cc4f4bcd6e634663f4e5632a3f68a882031df48da0c92ce7017bff365af8732f"
+  },
+  "private_page_image_sha256": {
+    "391": "e6f30cdb49364e186f2d62b02bc2ee90001463d20ad2332948796289459c1239",
+    "392": "ecad22a457d052117fcc8a80a11c9410965d7633c8a3fdc7189a710e3604da85",
+    "421": "67fff7516971f9ecfc44dd8a9a64c09a80fffe8cdb248fb5f53348bd6e9501f9",
+    "422": "57ceb6c5c852aabd7acb76f94863883046fbceaa69fcc9a67b57fb27b4ef80fa"
+  },
+  "region_review": [
+    {
+      "usd_prim": "/ScanReview/Observed/FloorLeftSearch",
+      "source_triangles": 175467,
+      "source_face_ids_sha256": "58e5f53d1ad8880d0866fb79ac33c11dc9280faf8feb38557b76c97e897331e7",
+      "interpretation": "floor_exterior_candidate",
+      "catalogue_context_id": "pet-floor",
+      "observation_and_inference": "Longitudinal ribs and circular surface features resemble the floor drawing; interior surface and sheet thickness are unobserved.",
+      "component_boundary_validated": false,
+      "confirmed_part_number": null,
+      "functional_surface_fit_admitted": false,
+      "allowed_use": "observed_exterior_reference_and_component_identification"
+    },
+    {
+      "usd_prim": "/ScanReview/Observed/FloorRightSearch",
+      "source_triangles": 174553,
+      "source_face_ids_sha256": "1e3f9ed286e6644e6da7e3db5274ce066e3ae7bbade4a3a0e354b0addcb5e0c8",
+      "interpretation": "floor_exterior_candidate",
+      "catalogue_context_id": "pet-floor",
+      "observation_and_inference": "Longitudinal ribs and circular surface features resemble the floor drawing; interior surface and sheet thickness are unobserved.",
+      "component_boundary_validated": false,
+      "confirmed_part_number": null,
+      "functional_surface_fit_admitted": false,
+      "allowed_use": "observed_exterior_reference_and_component_identification"
+    },
+    {
+      "usd_prim": "/ScanReview/Observed/CentralRouteSearch",
+      "source_triangles": 157129,
+      "source_face_ids_sha256": "5c215603461e1385231a965be6f55892330c9af4a7f81b235bbb40990693ccfb",
+      "interpretation": "central_underbody_cover_candidate",
+      "catalogue_context_id": "pet-central-cover",
+      "observation_and_inference": "Long lower strip, perimeter seam and repeated edge features resemble the separate cover; the search window is not the component boundary.",
+      "component_boundary_validated": false,
+      "confirmed_part_number": null,
+      "functional_surface_fit_admitted": false,
+      "allowed_use": "observed_exterior_reference_and_component_identification"
+    },
+    {
+      "usd_prim": "/ScanReview/Observed/SillLeftSearch",
+      "source_triangles": 101214,
+      "source_face_ids_sha256": "67388f6d3b01ffd933761435f793c60f4fe7ba70e70321a8f20219ce8d83d7e0",
+      "interpretation": "unidentified_sill_area",
+      "catalogue_context_id": null,
+      "observation_and_inference": "Partial edge surfaces do not identify inner and outer sill layers, closure panels or trim.",
+      "component_boundary_validated": false,
+      "confirmed_part_number": null,
+      "functional_surface_fit_admitted": false,
+      "allowed_use": "observed_exterior_reference_and_component_identification"
+    },
+    {
+      "usd_prim": "/ScanReview/Observed/SillRightSearch",
+      "source_triangles": 123238,
+      "source_face_ids_sha256": "a70cdcd0b0441bf935c26ebdaeb61d80459fb9b94c0ba3b849cc61e4361bcce0",
+      "interpretation": "unidentified_sill_area",
+      "catalogue_context_id": null,
+      "observation_and_inference": "Partial edge surfaces do not identify inner and outer sill layers, closure panels or trim.",
+      "component_boundary_validated": false,
+      "confirmed_part_number": null,
+      "functional_surface_fit_admitted": false,
+      "allowed_use": "observed_exterior_reference_and_component_identification"
+    },
+    {
+      "usd_prim": "/ScanReview/Observed/FrontTransitionSearch",
+      "source_triangles": 667347,
+      "source_face_ids_sha256": "bf3e0dc4c3e242226efd782df773a13c96e40f7e4a9e382149ffd37d410c1907",
+      "interpretation": "mixed_unidentified_surfaces",
+      "catalogue_context_id": null,
+      "observation_and_inference": "Assembled mechanical and body surfaces require component separation before structural CAD fitting.",
+      "component_boundary_validated": false,
+      "confirmed_part_number": null,
+      "functional_surface_fit_admitted": false,
+      "allowed_use": "observed_exterior_reference_and_component_identification"
+    },
+    {
+      "usd_prim": "/ScanReview/Observed/RearTransitionSearch",
+      "source_triangles": 770054,
+      "source_face_ids_sha256": "0054c592058a26ae2505b9fb1434e8705eeabb8c971c4f8543642a51603e2347",
+      "interpretation": "mixed_unidentified_surfaces",
+      "catalogue_context_id": null,
+      "observation_and_inference": "Assembled mechanical and body surfaces require component separation before structural CAD fitting.",
+      "component_boundary_validated": false,
+      "confirmed_part_number": null,
+      "functional_surface_fit_admitted": false,
+      "allowed_use": "observed_exterior_reference_and_component_identification"
+    },
+    {
+      "usd_prim": "/ScanReview/Observed/Context",
+      "source_triangles": 2515927,
+      "source_face_ids_sha256": "d58e59e2ef75d192f98d11d53bedc9ba9186942becacf4a70ec7fb676e363748",
+      "interpretation": "mixed_unidentified_surfaces",
+      "catalogue_context_id": null,
+      "observation_and_inference": "Assembled mechanical and body surfaces require component separation before structural CAD fitting.",
+      "component_boundary_validated": false,
+      "confirmed_part_number": null,
+      "functional_surface_fit_admitted": false,
+      "allowed_use": "observed_exterior_reference_and_component_identification"
+    }
+  ],
+  "donor": {
+    "generation": "964",
+    "variant": "Carrera 2",
+    "basis": "owner_reported",
+    "model_year": null,
+    "gearbox": null
+  },
+  "geometry_changed": false,
+  "body_segmentation_validated": false,
+  "functional_interfaces_validated": false,
+  "structural_analysis_run": false,
+  "manufacturing_released": false,
+  "new_omniverse_execution": false,
+  "open_requirements": [
+    "Identify actual cover and floor boundaries against original source faces",
+    "Acquire tunnel interior and installed control and service envelopes",
+    "Acquire inner sill, bulkhead and upper cell surfaces",
+    "Register independently identified mounting axes and faces",
+    "Establish separate C4 and 993 applicability"
+  ]
+}
