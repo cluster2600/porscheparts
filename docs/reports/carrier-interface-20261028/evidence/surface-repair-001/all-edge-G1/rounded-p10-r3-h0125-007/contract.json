@@ -1,0 +1,23 @@
+{
+  "parameters": {
+    "min_sharp_angle_degrees": 180.0,
+    "min_smoothness": 1.0,
+    "refinement_tolerance_mm": 0.01,
+    "geometry_cleanup_tolerance_mm": 0.001,
+    "cleanup_role": "Intentional 1 micrometre geometry simplification after G1 interpolation, followed by fixed materialization and an exact final transfer check; mass is recomputed.",
+    "binary_grid_mm": 9.5367431640625e-07,
+    "binary_grid_role": "Explicit sub-nanometre coordinate regularization before native ingestion; maximum component movement is half a grid step. Final exact transfer, containment and separation checks remain required.",
+    "post_rounding_component_rule": "Retain the largest positive connected void component per field sign; fill other positive pockets with material and refuse negative cavity shells."
+  },
+  "input_sha256": {
+    "work/carrier-interface-20261028/finite-p10-smoothing-contract-004.json": "77c7ab82ed5cdbd4411f825fb2b5053825924e2872b751317c006832f1e6ae88",
+    "work/carrier-interface-20261028/core-envelopes-006/envelopes.npz": "c302502b34ab811b7bff2a3bb29c2785e4fb36b16df05bcd52d9536345fba866",
+    "work/carrier-interface-20261028/core-envelopes-006/assessment.json": "9dc8bbb9f62ec993051a225293ff72a0f67a10be764d5b70c893b4982bb073aa"
+  },
+  "source_sha256": "e3fbc5af6354df11527e257a926d1cf07e21f0c589168440b672509a4f0bdd23",
+  "seed_assessment_sha256": "7d526ac217957153c11cb90ae2f4fcb4179df3924c79c5a8c2db0e84e352737e",
+  "maximum_seconds": 180,
+  "core_containment_must_be_empty": true,
+  "exact_oriented_triangle_roundtrip_required": true,
+  "manufacturing_authorized": false
+}

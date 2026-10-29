@@ -1,0 +1,39 @@
+{
+  "scope": "Sharp-clipped finite void tools as a baseline before transition blending; no carrier geometry or manufacturing qualification",
+  "sphere_radius_mm": 0.4,
+  "sphere_sizes_mm": [
+    0.1,
+    0.05,
+    0.025
+  ],
+  "maximum_relative_sphere_volume_error": 0.01,
+  "finite_pitch_mm": 6.0,
+  "gyroid_threshold": 0.6170021750539874,
+  "finite_sizes_mm": [
+    0.25,
+    0.125,
+    0.0625
+  ],
+  "required_successive_volume_comparisons": 2,
+  "maximum_relative_volume_change": 0.02,
+  "phase_origin_mm": [
+    0.0,
+    0.0,
+    0.0
+  ],
+  "maximum_job_seconds": 180,
+  "envelope_source_sha256": "c302502b34ab811b7bff2a3bb29c2785e4fb36b16df05bcd52d9536345fba866",
+  "carrier_geometry_changed": false,
+  "manufacturing_authorized": false,
+  "phase_field_surface_residual_limit": 0.0001,
+  "minimum_core_cap_distance_for_phi_check_mm": 1e-07,
+  "relative_export_volume_limit": 1e-10,
+  "oriented_triangle_roundtrip_must_be_exact": true,
+  "operative_core_inset_mm": 0.005,
+  "reason_for_geometric_margin": "Avoid coincident clipping faces while retaining exact empty outside-core and unchanged numerical gates; the earlier sharp coincident clip is refused",
+  "normalization": "one fixed as_original().simplify(0) before export; retain exact final oriented-triangle roundtrip",
+  "maximum_native_normalization_tolerance_mm": 1e-08,
+  "normalization_relative_volume_limit": 1e-10,
+  "cap_distance_crosscheck": "Independently construct convex-combination witnesses on candidate triangle edges/interior; if that candidate fails, search every clip triangle. A witness within the unchanged cap threshold proves proximity, even when libigl selected the wrong skinny triangle.",
+  "sphere_controls_method": "Native level_set of signed sphere distance using tolerance=1e-5, identical root-refinement setting to the finite gyroid; recomputed on every call."
+}

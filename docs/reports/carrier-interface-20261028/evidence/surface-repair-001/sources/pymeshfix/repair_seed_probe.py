@@ -1,0 +1,15 @@
+"""Repair each existing closed void separately, with unchanged admission checks."""
+import argparse,hashlib,json,signal,time,sys
+from pathlib import Path
+import numpy as np,manifold3d as mf,pymeshfix
+sys.path.insert(0,'parts/993-eng-carrier-0001/source/design-20261016/convergence-20261022')
+from reconstruct_core_envelopes import canonical_surface
+p=argparse.ArgumentParser(__doc__);p.add_argument('--input',type=Path,required=True);p.add_argument('--output',type=Path,required=True);a=p.parse_args();assert not a.output.exists();a.output.mkdir();signal.alarm(180);sha=lambda p:hashlib.sha256(p.read_bytes()).hexdigest();r=json.loads((a.input/'assessment.json').read_text());rows=[]
+contract=dict(operation='pymeshfix 0.18.1 clean_from_arrays, each single positive void independently, joincomp=False, remove_smallest_components=False',maximum_relative_repair_volume_change=.01,maximum_geometric_repair_distance_mm=.01,exact_final_oriented_triangle_transfer=True,source_sha256=sha(Path(__file__)),input_assessment_sha256=sha(a.input/'assessment.json'),manufacturing_authorized=False);(a.output/'contract.json').write_text(json.dumps(contract,indent=2)+'\n')
+for old in r['selected']:
+ path=a.input/old['file'];assert sha(path)==old['sha256'];z=np.load(path);v=np.array(z['vertices']);f=np.array(z['triangles'],dtype=np.int32);before=mf.Manifold(mf.Mesh64(v,f.astype(np.uint64))).volume();v,f=pymeshfix.clean_from_arrays(v,f,joincomp=False,remove_smallest_components=False);candidate=mf.Manifold(mf.Mesh64(np.array(v),np.array(f,dtype=np.uint64)));assert candidate.status()==mf.Error.NoError
+ (a.output/('repair-observation-'+old['file']+'.json')).write_text(json.dumps(dict(before_volume_mm3=before,repaired_volume_mm3=candidate.volume(),relative_change=abs(candidate.volume()-before)/before,vertices=len(v),triangles=len(f)),indent=2)+'\n')
+ parts=candidate.decompose();assert len(parts)==1 and parts[0].volume()>0;assert abs(candidate.volume()-before)/before<=.01
+ mesh=candidate.to_mesh64();v=np.array(mesh.vert_properties)[:,:3];f=np.array(mesh.tri_verts,dtype=np.uint64);back=mf.Manifold(mf.Mesh64(v,f));m=back.to_mesh64();assert back.status()==mf.Error.NoError and abs(back.volume()-candidate.volume())/candidate.volume()<=1e-10;assert all(np.array_equal(x,y)for x,y in zip(canonical_surface(v,f),canonical_surface(np.array(m.vert_properties)[:,:3],np.array(m.tri_verts,dtype=np.uint64))))
+ np.savez_compressed(a.output/old['file'],vertices=v,triangles=f);row=dict(old,sha256=sha(a.output/old['file']),volume_mm3=candidate.volume(),vertices=len(v),triangles=len(f),pre_repair_volume_mm3=before,repair_relative_volume_change=abs(candidate.volume()-before)/before);rows.append(row)
+r.update(selected=rows,retained_void_volume_mm3=sum(x['volume_mm3']for x in rows),source_sha256={str(Path(__file__)):sha(Path(__file__))},self_intersection_check_pending=True,geometric_distance_check_pending=True,seed_repair_generated=True);(a.output/'assessment.json').write_text(json.dumps(r,indent=2)+'\n');signal.alarm(0);print(json.dumps(dict(rank=r['rank'],volume_changes=[x['repair_relative_volume_change']for x in rows])))

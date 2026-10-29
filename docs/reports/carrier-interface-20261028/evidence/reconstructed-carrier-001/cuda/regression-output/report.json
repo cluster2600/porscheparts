@@ -1,0 +1,98 @@
+{
+  "status": "passed",
+  "requested_device": "cuda:0",
+  "gpu_validated": true,
+  "geometry_only": true,
+  "manufacturing_authorized": false,
+  "application_validated": false,
+  "source_sha256": {
+    "pilot.py": "6561e3348689f31973991f30876e65dd73c723a35cc8f2aa2cc4c8268fe16c36",
+    "kernels.py": "356d1debf790790887882e7d0a15d91232451113613f4a43e3e909fcb7540baa",
+    "regression-queries.npz": "c395e6f8e156e736413cd71bd007f7d9da38fde75ce1cd7658a2fe571c5eabaa",
+    "regression-oracle.json": "d967b8482ae9c741e598d84b8828d063a8e755a25c7184e726a7e575d04a999b",
+    "/workspace/carrier-cuda-20261029-002/check_carrier_warp.py": "9f548602a58eb703fddaf6efaed935a45e34077727e5fb8f07f8b639587f9e97"
+  },
+  "cuda_dispatch_completed": true,
+  "actual_device": "cuda:0",
+  "device_name": "NVIDIA GeForce RTX 4070 Ti SUPER",
+  "device_arch": 89,
+  "versions": {
+    "python": "3.12.3",
+    "numpy": "2.2.6",
+    "warp": "1.18.0"
+  },
+  "vertices": 672323,
+  "triangles": 1344722,
+  "queries": 36,
+  "fixed_absolute_error_limit_mm": 0.0001,
+  "maximum_absolute_error_mm": 4.720356174547913e-06,
+  "checks": [
+    {
+      "passed": true,
+      "max_abs_error_mm": 4.720356174547913e-06,
+      "rms_abs_error_mm": 1.6572982016412869e-06,
+      "query_miss_count": 0,
+      "invalid_distance_count": 0,
+      "tolerance_mm": 0.0001
+    },
+    {
+      "passed": true,
+      "max_abs_error_mm": 4.720356174547913e-06,
+      "rms_abs_error_mm": 1.6572982016412869e-06,
+      "query_miss_count": 0,
+      "invalid_distance_count": 0,
+      "tolerance_mm": 0.0001
+    },
+    {
+      "passed": true,
+      "max_abs_error_mm": 4.720356174547913e-06,
+      "rms_abs_error_mm": 1.6572982016412869e-06,
+      "query_miss_count": 0,
+      "invalid_distance_count": 0,
+      "tolerance_mm": 0.0001
+    },
+    {
+      "passed": true,
+      "max_abs_error_mm": 4.720356174547913e-06,
+      "rms_abs_error_mm": 1.6572982016412869e-06,
+      "query_miss_count": 0,
+      "invalid_distance_count": 0,
+      "tolerance_mm": 0.0001
+    },
+    {
+      "passed": true,
+      "max_abs_error_mm": 4.720356174547913e-06,
+      "rms_abs_error_mm": 1.6572982016412869e-06,
+      "query_miss_count": 0,
+      "invalid_distance_count": 0,
+      "tolerance_mm": 0.0001
+    },
+    {
+      "passed": true,
+      "max_abs_error_mm": 4.720356174547913e-06,
+      "rms_abs_error_mm": 1.6572982016412869e-06,
+      "query_miss_count": 0,
+      "invalid_distance_count": 0,
+      "tolerance_mm": 0.0001
+    }
+  ],
+  "timing": {
+    "cold_full_pipeline_seconds": 0.46508388919755816,
+    "warm_full_pipeline_seconds": [
+      0.010563839226961136,
+      0.009964336641132832,
+      0.010612572077661753,
+      0.009853668976575136,
+      0.010342581663280725
+    ],
+    "scope": "fresh mesh/BVH, arrays, transfers, query, synchronization and host readback; cold includes init/JIT; input loading and oracle assessment excluded",
+    "speedup_claimed": false
+  },
+  "output_distances_sha256": "7cabb1d86820c9e1e273907c78b3aa5e48d39029fa6e645d97dc4e523b258b95",
+  "query_groups": {
+    "previous_actual_CUDA_failure_positions": [
+      0,
+      36
+    ]
+  }
+}
