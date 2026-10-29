@@ -1,5 +1,11 @@
 # 964 monocoque shell, from plate 50-05a
 
+**29 October geometry review:** the retained whole-body envelope is
+[rejected as the product geometry baseline](shape-review-20261029/README.md).
+It does not reproduce the central-cell architecture requested from the
+ZESAD/RUF references. The historical studies below remain exploratory evidence;
+the next task is central-cell reconstruction before further paid product review.
+
 A 911-shaped body shell for the
 [carbon monocoque programme](../../../docs/MONOCOQUE_964_993_PROGRAMME.md).
 Until now the programme's only whole-body model was the box cell of
@@ -14,8 +20,9 @@ S3-derived grading, define a fitted core or add a structural strength result.
 
 The [OpenUSD review bundle](omniverse/README.md) preserves the complete
 four-group architecture and includes verified local views and a turntable.
-Omniverse RTX execution remains a separate pending step; the review bundle
-does not establish fitment, composite strength or manufacturing readiness.
+[Native RTX capture](omniverse/native-review-20261029/README.md) has now run,
+but interactive Kit review was interrupted. The bundle does not establish
+acceptable product geometry, fitment, composite strength or manufacturing readiness.
 
 The [29 October force-and-moment audit](s6-equilibrium-20261029/README.md)
 closes the global equilibrium output gap for the finest carbon torsion and
