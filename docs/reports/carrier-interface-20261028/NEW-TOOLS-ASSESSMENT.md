@@ -4,6 +4,8 @@ Reviewed on 29 October 2026 against the current main-branch toolchain, the insta
 
 ## Decision
 
+**Follow-up:** the [upstream feature audit](SURFACE-FEATURES.md) finds inherited nearly closed reentrant creases. Resolve their authored geometry before another mechanical refinement sweep. NETGEN004 reached export but compression exceeded its deadline; the same-criteria follow-up uses uncompressed output.
+
 **Use SALOME/NETGEN as the next independent volume-meshing comparison. Prepare GO-MELT for the subsequent LPBF thermal branch.** Keep USD BRep available for solid-CAD and exchange work; evaluate LPBF-CUDA on a small process subdomain before considering a carrier adapter.
 
 | Software | Concrete help for this part | Integration needed | Priority |
@@ -42,8 +44,8 @@ retry then reached its CPU-time limit after 464.6 seconds of wall time, with abo
 14.9 GiB observed resident memory. [First limit receipt](evidence/new-tools-assessment-001/netgen-initial-resource-limit.json),
 [second limit receipt](evidence/new-tools-assessment-001/netgen-second-resource-limit.json).
 The unchanged geometry and numerical criteria are now being exercised under a
-**24 GiB / 1,850-second** local guard on the verified 64 GiB Mac. No complete
-volume result is admitted yet. No support or loading groups are inferred for
+**24 GiB / 1,850-second** local guard on the verified 64 GiB Mac. The run reached export, but SIGALRM interrupted archive compression; the archive is incomplete. No complete
+volume result is admitted yet. See the [terminal diagnosis and export correction](SURFACE-FEATURES.md). No support or loading groups are inferred for
 this geometry-only comparison; mechanical admission remains separate.
 
 ## What each tool does not automatically supply

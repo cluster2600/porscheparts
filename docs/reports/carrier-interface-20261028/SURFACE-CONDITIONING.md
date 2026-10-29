@@ -2,7 +2,7 @@
 
 The nominal carrier now weighs **1.2933916 kg**, below the **1.30 kg** limit. The complete surface has **no triangle with an aspect ratio above 100**, no detected self-intersection, one connected material shell, and the same protected interface triangles. Native CUDA distance checks pass on the corrected complete carrier.
 
-This checkpoint prepares the geometry for volume meshing. Full-carrier mechanical convergence is the next calculation stage.
+This checkpoint supplies a surface-conditioning baseline. The subsequent [upstream feature audit](SURFACE-FEATURES.md) identifies inherited nearly closed reentrant creases that require examination before mechanical stress refinement.
 
 ![Actual mesh conditioning and complete-surface statistics](../../media/carrier-interface-20261028/surface-conditioning.png)
 
