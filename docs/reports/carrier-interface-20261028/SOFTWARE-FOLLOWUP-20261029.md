@@ -5,6 +5,10 @@ execution receipts. Requirement: improve the internal surfaces and reproducible
 simulation chain while keeping the carrier below **1.30 kg**. The unchanged
 reference is **1.2933916 kg**; no additional mass saving is claimed here.
 
+**Subsequent result:** the [source-distance rounding follow-up](SOURCE-DISTANCE-ROUNDING.md)
+resolves the precision handoff and passes complete independent checks of one
+rounded void. The refused handoffs below remain the historical starting point.
+
 ## Selection and order
 
 | Software | Useful contribution | Decision for this carrier |

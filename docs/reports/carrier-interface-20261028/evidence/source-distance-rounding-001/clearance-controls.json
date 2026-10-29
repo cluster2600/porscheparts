@@ -1,0 +1,33 @@
+{
+  "status": "clearance_controls_passed",
+  "cases": [
+    {
+      "case": "inside-clearance",
+      "report": {
+        "status": "complete_clearance_budget_passed",
+        "faces_checked": 4,
+        "minimum_complete_clearance_lower_mm": 0.4379655841778903,
+        "required_clearance_mm": 0.125,
+        "worst_face": 0,
+        "worst_centroid_distance_lower_mm": 0.519615242270663,
+        "worst_face_cover_radius_upper_mm": 0.08164965809277269,
+        "method": "Exact source nearest distance at each exact centroid, minus outward interval radius covering the entire triangle; distance is 1-Lipschitz",
+        "manufacturing_authorized": false
+      }
+    },
+    {
+      "case": "near-boundary",
+      "report": {
+        "status": "clearance_budget_refused",
+        "faces_checked": 4,
+        "minimum_complete_clearance_lower_mm": -0.06453559924999308,
+        "required_clearance_mm": 0.125,
+        "worst_face": 1,
+        "worst_centroid_distance_lower_mm": 0.010000000000000007,
+        "worst_face_cover_radius_upper_mm": 0.07453559924999308,
+        "method": "Exact source nearest distance at each exact centroid, minus outward interval radius covering the entire triangle; distance is 1-Lipschitz",
+        "manufacturing_authorized": false
+      }
+    }
+  ]
+}
