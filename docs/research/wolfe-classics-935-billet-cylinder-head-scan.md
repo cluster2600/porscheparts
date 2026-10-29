@@ -55,6 +55,14 @@ interpreted as a volume or mass measurement.
 
 ## Value for the twin
 
+The [October 29, 2026 repair study](935-scan-repair-20261029.md) adds independently
+checked conservative and closed reconstructed study meshes. Its
+[workflow](../architecture/scan-repair-workflow.md) records the full contour ledger,
+change masks, import/export failure cases and deviations in both directions.
+The owner-confirmed project scale is 1 OBJ unit = 1 mm; independent physical
+calibration remains unverified. This does not change the source's `F0_reference`
+level or provide functional/manufacturing acceptance.
+
 The scan provides a detailed envelope of the fins, bosses, openings and visible
 studs. It can be used to:
 

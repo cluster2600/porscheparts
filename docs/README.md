@@ -35,6 +35,9 @@ flowchart LR
 | [PHASE1_SOURCE_INVENTORY.md](PHASE1_SOURCE_INVENTORY.md) | the phase 1 source inventory |
 | [MEASUREMENT_CAMPAIGN.md](MEASUREMENT_CAMPAIGN.md) | the phase 2 measurement campaign |
 | [CAPTURE_PROTOCOL.md](CAPTURE_PROTOCOL.md) | how a measurement, a scan or a declared value becomes checkable evidence |
+| [architecture/scan-repair-workflow.md](architecture/scan-repair-workflow.md) | private scan repair, closed reconstruction and independent export verification |
+| [research/935-scan-repair-20261029.md](research/935-scan-repair-20261029.md) | the completed 935 head repair trials, deviations and private evidence location |
+| [research/935-scan-engineering-20261029.md](research/935-scan-engineering-20261029.md) | source-supported partial CAD, open section curves and guarded engineering inputs |
 | [research/935-horizontal-cooling/README.md](research/935-horizontal-cooling/README.en.md) | research and reconstruction for a lighter, improved horizontal 935 cooling system |
 | [PORSCHEFANATICS_993_TURBO_AUDIT.md](PORSCHEFANATICS_993_TURBO_AUDIT.md) | local audit of a 993 Turbo source |
 | [research/public-3d-asset-licence-audit-2026-10-15.md](research/public-3d-asset-licence-audit-2026-10-15.md) | which public 3D models and scans of the 993 exist, their licence as read on the original page, and their scale anomalies |
