@@ -5,6 +5,8 @@ import math
 import unittest
 from pathlib import Path
 
+from numeric_receipt import assert_numeric_receipt
+
 
 ROOT = Path(__file__).resolve().parents[1]
 PART = ROOT / "parts/993-eng-fan-stator-alsi10mg-f1-0001"
@@ -81,7 +83,7 @@ class FanStatorAlSi10MgF1Tests(unittest.TestCase):
         self.assertEqual(report["step_roundtrip"]["vane_count"], 17)
         for actual, expected in zip(report["step_roundtrip"]["envelope_mm"], [248.0, 248.0, 40.0]):
             self.assertAlmostEqual(actual, expected, places=3)
-        self.assertEqual(report["results"], cached_screen(report["results"]["cad_volume_mm3"])["results"])
+        assert_numeric_receipt(self, cached_screen(report["results"]["cad_volume_mm3"])["results"], report["results"])
         self.assertFalse(report["manufacturing_authorized"])
         self.assertFalse(report["engine_operation_authorized"])
         self.assertFalse(report["release_authorized"])

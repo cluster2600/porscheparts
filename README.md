@@ -243,13 +243,21 @@ links to the original part.
 | our Porsche information catalogue | [porschefanatics.com](https://porschefanatics.com/) |
 | the license | [LICENSE](LICENSE) · [third-party licenses](docs/LICENSES.md) |
 
-To run the checks yourself (Python 3.11+ and `make`):
+To run the checks locally, install `uv` and `make`, then create the isolated
+Python 3.12 environment used by this repository:
 
 ```bash
 git clone https://github.com/cluster2600/porscheparts.git
 cd porscheparts
+make check-setup
 make check
 ```
+
+`check-setup` installs the same numerical dependency versions as CI into
+`.venv-check/`. Subsequent Make commands automatically use this environment,
+including their Python subprocesses. The system Python and specialized CAD/AI
+environments stay separate. Run `make check-setup` again after dependency updates.
+Use `.venv-check/bin/python` when running a check script directly.
 
 ## Disclaimer and license
 

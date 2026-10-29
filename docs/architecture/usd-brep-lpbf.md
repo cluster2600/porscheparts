@@ -144,5 +144,9 @@ CI is separate evidence for Linux AMD64, not evidence of a CUDA run.
 
 No GPU rental, image publication, real-part calculation, material approval or
 manufacturing release is part of this integration. NativeCAD remains a separate
-local evaluation pending an export-capable research key; it is not a required
-dependency of any of these three routes.
+local evaluation and is not a required dependency of these three routes. On
+2026-10-28, NativeCAD 0.26.0 was activated locally with an Education / Maker
+licence for non-commercial use. An offline check confirmed persistence after a
+server restart and STEP export of a synthetic solid with the expected BRep
+volume. The licence is held by the application outside the repository; these
+checks do not qualify real parts or establish commercial-use rights.
