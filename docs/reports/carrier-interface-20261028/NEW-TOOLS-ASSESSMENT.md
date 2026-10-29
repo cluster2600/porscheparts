@@ -31,12 +31,17 @@ To test the mesher on the Mac without a large emulated SALOME image, a separate
 native environment now installs **netgen-mesher 6.2.2607**, **netgen-occt 7.8.1**
 and **NumPy 2.4.6**. Its imported-surface tetrahedron control passes with unchanged
 input nodes/faces, positive exact cell orientation and exact volume **1/6**.
+A second [through-bore control](evidence/new-tools-assessment-001/netgen-bore-control.json)
+also passes: 132 tetrahedra with exact volume equal to the oriented input surface.
 [Native NETGEN control receipt](evidence/new-tools-assessment-001/netgen-native-control.json).
 
 This is a new standalone runtime profile, separate from the earlier SALOME 9.16
-controls. The complete-carrier comparison is being exercised under a 6 GiB
-resident-memory and 320-second wall-time limit. No support or loading groups are
-inferred for this geometry-only comparison; mechanical admission remains separate.
+controls. The first complete-carrier attempt reached its **6 GiB resident-memory
+limit** and was stopped cleanly before a volume result was admitted. The same
+geometry and numerical criteria are now being retried with a **16 GiB / 640-second**
+limit on the verified 64 GiB Mac. [First resource-limit receipt](evidence/new-tools-assessment-001/netgen-initial-resource-limit.json).
+No support or loading groups are inferred for this geometry-only comparison;
+mechanical admission remains separate.
 
 ## What each tool does not automatically supply
 
