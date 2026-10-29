@@ -32,6 +32,15 @@ The scan is not committed to the repository: `raw-scans/` is ignored by git and
 its provenance is not documented. Nor is the manual, following the precedent of
 `SRC-PORSCHE-WORKSHOP-MANUAL-993`. Only the values are carried over.
 
+**Donor update, 29 October 2026:** the user identifies the scanned vehicle as a
+**964 Carrera 2**. Model year and gearbox remain unknown. This is user-reported
+identity, not a finding from the mesh or an independently checked vehicle
+record. It is recorded in the twin's
+[known limits](../../catalog/twins/twin-964-chassis-floor-0001.json) and selects
+C2 for the next [tunnel and interface survey](interface-measurement-plan.md).
+It validates no mounting, dimension or clearance; C4 and 993 applicability
+remain separate investigations.
+
 ## What is established
 
 **The scale of the scan is verified.** The four tires were isolated as connected
@@ -447,8 +456,8 @@ preview provides no new dimension usable here; no paid archive was bought.
 plate of control points, to be examined before any interface CAD. *Since
 2026-10-08, plate 50-05a provides the published longitudinal chain (see
 [The longitudinal chain, closed from plate 50-05a](#the-longitudinal-chain-closed-from-plate-50-05a)).*
-Still needed: confirm C2/C4, model year and modifications of the scanned
-vehicle, then obtain the interior/tunnel survey described in the
+The user now reports C2 (29 October 2026); model year, gearbox and modifications
+still need identification, along with the interior/tunnel survey described in the
 [measurement plan](interface-measurement-plan.md). A 993 document does not
 validate the 964 interfaces. The shell, its molds, its layup and its road/track
 fitness are not ready; none of these states can be inferred from Docker working.

@@ -8,6 +8,13 @@ projectable XY hypothesis. **No anchor XYZ is validated.**
 P8, P9 and P10 are not in this register; no point is invented to fill the
 numbering. This register is not the complete inventory of a body shell.
 
+**Donor update, 29 October 2026:** the user reports that the scanned 964 is a
+Carrera 2; model year and gearbox remain unknown. Use C2 as the next survey's
+scope, with this identity marked user-reported rather than independently
+verified. Identify the installed gearbox and its controls before defining the
+shift mechanism or tunnel clearance. The C4 driveline survey below remains a
+separate compatibility task; it cannot be completed from this C2 identification.
+
 Relative X along the chain (`x_relative_status` in the sheet):
 
 | status | points | meaning |
@@ -58,7 +65,7 @@ overwriting earlier values.
 
 | Priority | Zone / identities | Survey to obtain | What it unlocks |
 |---|---|---|---|
-| 0 | Vehicle and acquisition | 964 C2/C4, model year, factory or modified wide body, gearbox, suspension modifications; unit, instrument, stated accuracy, scan processing, assembled/disassembled state | Applicability of the scan; no automatic transfer to the 993 |
+| 0 | Vehicle and acquisition | Independently confirm the user-reported C2; identify model year, factory or modified wide body, gearbox and suspension modifications; unit, instrument, stated accuracy, scan processing, assembled/disassembled state | Applicability of the scan; no automatic transfer to C4 or 993 |
 | 1 | Structural frame; P17/P18/P19 | Physically identify the L/R reference surfaces; XYZ and uncertainties; independent checks of the spans and of distances R/S | Registration on the body shell instead of a ground plane derived from the tires |
 | 2 | Front P3/P4/P5/P6 | Mount centers and axes, seating planes, center distances, diameters and bracket geometry; survey P6 without giving it an X by symmetry | Front axle and suspension strut interfaces |
 | 2 | Rear P13/P14, engine P15/P21, gearbox P12 | Identification by photos and markers; XYZ, axes, seating faces, hole patterns, limits of neighboring parts | Real rear interfaces; physical check of the published X of P12/P21 and of the drawing-scaled X of P13/P14/P15 |

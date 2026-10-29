@@ -36,8 +36,11 @@ Coordinates retain the source convention: X forward (`X = -d`), Y left and Z up,
 with millimetres. They must not be silently equated with a different scan or
 vehicle frame. No suspension, drivetrain, seat, belt or crash attachment has
 been invented. In particular, the visible tunnel does not prove C4 shaft or
-gearbox-linkage clearance. Exact vehicle year, transmission and C2/C4 identity
-are still unconfirmed; 993 compatibility requires separate interface evidence.
+gearbox-linkage clearance. On 29 October 2026 the user identified the scanned
+964 as a Carrera 2; model year and gearbox remain unknown. This user-reported
+identity scopes the next [interface survey](../../interface-measurement-plan.md)
+but validates no mounting or clearance. C4 and 993 compatibility require
+separate interface evidence.
 
 The [validation receipt](bundle-001/validation.json) records a fresh relocated
 copy, strict Apple `usdchecker` 0.25.11 validation and component counts. Six
