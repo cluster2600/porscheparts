@@ -17,6 +17,12 @@ four-group architecture and includes verified local views and a turntable.
 Omniverse RTX execution remains a separate pending step; the review bundle
 does not establish fitment, composite strength or manufacturing readiness.
 
+The [29 October force-and-moment audit](s6-equilibrium-20261029/README.md)
+closes the global equilibrium output gap for the finest carbon torsion and
+bending replays. Expanded 3D force fields pass the numerical screen while the
+complete original DAT results remain byte-identical. This verifies the same
+assumed model; measured interfaces and composite qualification remain open.
+
 ## S6 correction (2026-10-12): every stiffness redone
 
 Every stiffness in this folder from #139 to #156 was computed with
