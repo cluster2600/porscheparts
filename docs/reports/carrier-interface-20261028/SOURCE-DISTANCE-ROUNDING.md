@@ -102,18 +102,49 @@ Runtime is **49.79 seconds**. [Final full-domain receipt](evidence/source-distan
 
 ## Upstream feature audit before the next mechanical study
 
-The existing feature auditor was also run over **all 11,671,596 edges** of the
-rounded output, under an 8 GiB / 600-second guard. It completes in 8.10 seconds,
-with 5.24 GB observed resident memory. The former nearly closed
-**−179.9907°** source crease is absent: the most reentrant normal turn is now
-**−63.3388°**, and no reentrant edge exceeds 90°.
+The feature auditor visits **all 11,671,596 edges** of the rounded output.
+Orientation matters: the boundary of a negative volume must be reversed to
+represent the surrounding material. An outward-void normal turn has the opposite
+sign from its material-side counterpart. A new wrapper makes this explicit; an
+analytical tetrahedral-cavity regression checks the reversal without mutating
+the source triangles.
 
-There are still **14 reentrant edges above 45°**, including three above 60°.
-The worst is near `[79.390575, 30.241518, 6.032292]` mm. These remaining features
-need diagnosis and any necessary authored correction before mechanical
-admission; containment alone does not establish a smooth stress-bearing
-surface. The auditor explicitly does not prove a stress singularity or its
-absence. [Complete diagnostic and worst-edge locations](evidence/source-distance-rounding-001/upstream-feature-audit.json).
+The **material-side** comparison now finds:
+
+| Diagnostic | Original void, material side | Rounded void, material side |
+|---|---:|---:|
+| Most reentrant normal turn | −179.990700° | **−46.289837°** |
+| Reentrant edges above 45° | 1,474 | **1** |
+| Reentrant edges above 60° | 1,266 | **0** |
+| Reentrant edges above 90° | 666 | **0** |
+
+The remaining marked material-side edge is near
+`[67.260295, 28.160081, -0.156890]` mm, with length 0.012410 mm. Diagnose this
+feature before mechanical admission. The rounded audit takes 8.09 seconds and
+5.42 GB observed resident memory under an 8 GiB / 600-second guard.
+
+The earlier outward-void audit reported 14 negative turns above 45°, with a
+minimum of −63.3388°; these correspond to **convex material-side** turns. Its
+initial mechanical interpretation is superseded by this orientation-corrected
+comparison. The original receipts remain unchanged.
+[Orientation reconciliation and corrected receipts](evidence/source-distance-rounding-001/material-orientation-reconciliation.json).
+
+Edge counts depend on triangulation and are geometry diagnostics, not stress or
+fatigue results. The auditor explicitly does not prove a stress singularity or
+its absence. Containment alone does not establish a smooth stress-bearing
+surface.
+
+A local five-point libigl diagnostic at the remaining marked edge finds only
+**1.7656°** between the source-distance gradients at its two incident face
+centroids, compared with **46.2898°** between their actual mesh normals. The
+largest local distance residual from the declared 0.1 mm offset is
+**0.002503 mm**, rounded upward. The nearest source feature at the affected
+endpoint is **vertex 309**, not the interior of a source triangle. A proposed
+pure-face-normal correction therefore refused its precondition before changing
+geometry. Next, assess a vertex-distance correction with a bounded edit and
+fresh complete checks. These five queries are a local diagnostic, not a
+whole-surface distance certificate.
+[Diagnostic and precondition refusal](evidence/source-distance-rounding-001/remaining-crease-diagnostic-manifest.json).
 
 ## Reproduction and next integration steps
 
@@ -151,7 +182,7 @@ flowchart TD
     D["Independent embedding, containment and all-facet clearance"] -->|passed| E
     E["PicoGK single dilation"] -->|actual decoded native coordinates| F
     F["Independent complete embedding and strict containment"] -->|passed for one void| K
-    K["Upstream feature audit / diagnose 14 remaining marked edges"] --> G
+    K["Material-side feature audit / diagnose one remaining marked edge"] --> G
     G["Bounded coarsening / recheck complete geometry"] --> H
     H["Process remaining source voids and reintegrate powder ports"] --> I
     I["Complete-carrier mass, interfaces, powder connectivity and volume mesh"] --> J
