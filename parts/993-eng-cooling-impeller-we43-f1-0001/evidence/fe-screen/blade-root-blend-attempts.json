@@ -1,0 +1,59 @@
+{
+  "part_id": "993-ENG-COOLING-IMPELLER-WE43-F1-0001",
+  "date": "2026-10-28",
+  "status": "blend_builds_but_is_not_solvable",
+  "manufacturing_authorized": false,
+  "question": "Can the sharp blade-root corner be replaced by a constant-radius blend and a converged peak stress measured?",
+  "answer": "The blend builds and verifies, but no constant-radius blend of the blade root is solvable: its run-out at the blade leading and trailing edges self-intersects at 2.0 mm and produces inverted quadratic elements at 1.0 mm. A converged blended peak is not established.",
+  "geometry": {
+    "built_by": "fe_screen_f1.py rootfillet",
+    "accepted_on": "blend surface: face count, blend area, sampled curvature radius, blade-to-blade symmetry",
+    "never_accepted_on": "solid volume - the eleven sequential blade unions drift by order 10-20 mm3 in a 229,000 mm3 solid while the blend adds only 30-120 mm3 per blade, so a volume difference cannot resolve it",
+    "radii_mm": [
+      {"radius_mm": 0.6, "median_curvature_radius_mm": 0.6000, "min_curvature_radius_mm": 0.0195, "blend_area_mm2": 975.2, "per_blade_relative_spread": 1.63e-05, "meshes_as_imported": true},
+      {"radius_mm": 1.0, "median_curvature_radius_mm": 1.0000, "min_curvature_radius_mm": 0.0331, "blend_area_mm2": 1628.99, "per_blade_relative_spread": 4.10e-05, "meshes_as_imported": true},
+      {"radius_mm": 1.5, "median_curvature_radius_mm": 1.4999, "min_curvature_radius_mm": 0.0860, "blend_area_mm2": 2453.47, "per_blade_relative_spread": 5.68e-04, "meshes_as_imported": true},
+      {"radius_mm": 2.0, "median_curvature_radius_mm": 1.9999, "min_curvature_radius_mm": 0.1074, "blend_area_mm2": 3285.41, "per_blade_relative_spread": 9.72e-04, "meshes_as_imported": false, "mesher_error": "PLC Error: a segment and a facet intersect - the blend surfaces self-intersect"}
+    ]
+  },
+  "solver_refusal": {
+    "geometry": "f1-rootfillet-1mm.step, clamped, 12,000 rpm, static only",
+    "ccx_error": "nonpositive jacobian determinant",
+    "distinct_elements_rejected": {"root_size_1.2mm": 39, "root_size_0.8mm": 64},
+    "cause": "C3D10 mid-side nodes fold where the blend runs out at the blade leading and trailing edges, the region whose sampled curvature radius is about 0.03 mm against the 1 mm nominal",
+    "high_order_optimizer_does_not_fix_it": [
+      {"Mesh.HighOrderOptimize": 1, "elements": 299432, "min_det_jac": -0.07576, "nonpositive": 148},
+      {"Mesh.HighOrderOptimize": 2, "elements": 299533, "min_det_jac": -0.0701403, "nonpositive": 132},
+      {"Mesh.HighOrderOptimize": 3, "elements": 298989, "min_det_jac": -0.0756894, "nonpositive": 130},
+      {"Mesh.HighOrderOptimize": 4, "elements": 299274, "min_det_jac": -0.0594726, "nonpositive": 140}
+    ]
+  },
+  "occ_healing_rejected": {
+    "reason": "Geometry.OCCSewFaces discards the volume and leaves an empty 3D mesh behind a generate(3) that raises nothing, on the sharp rotor as much as the blended one",
+    "measured": [
+      {"geometry": "sharp", "options": "none", "volumes": 1, "tets": 83566},
+      {"geometry": "sharp", "options": "OCCFixSmallEdges+OCCFixSmallFaces+OCCSewFaces+OCCFixDegenerated", "volumes": 0, "tets": 0},
+      {"geometry": "sharp", "options": "OCCSewFaces", "volumes": 0, "tets": 0}
+    ]
+  },
+  "blended_ladder_cost": {
+    "note": "the blend element size follows curvature sampling N as about 2*pi*r/N, so a ladder on a 1 mm blend must drive N",
+    "reference_point": {"geometry": "sharp", "root_size_mm": 0.7, "elements": 332438, "solve_seconds": 1795, "memory": "more than 9 GB; failed closed in a 9 GB container"},
+    "rungs": [
+      {"curvature_sampling": 16, "blend_element_mm": 0.393, "elements": 802196},
+      {"curvature_sampling": 24, "blend_element_mm": 0.262, "elements": 1898459},
+      {"curvature_sampling": 32, "blend_element_mm": 0.196, "elements": 3550685},
+      {"curvature_sampling": 44, "blend_element_mm": 0.143, "elements": 5650460}
+    ],
+    "verdict": "the coarsest useful rung is 2.4x the reference point and a ladder needs three; not runnable on this host"
+  },
+  "next_steps": [
+    "Treat the blend run-out: taper the radius to zero at the blade leading and trailing edges instead of carrying a constant radius into the corner.",
+    "Then submodel: solve the full rotor coarse and re-solve one blade sector with those boundary displacements, which makes a resolved blend affordable without a larger host."
+  ],
+  "limitations": [
+    "No root stress and no root margin are established for this part.",
+    "The sharp-root peak is a singularity; see blade-root-convergence.json.",
+    "Boundary conditions remain assumptions: the joint to the bearing hub is not measured."
+  ]
+}

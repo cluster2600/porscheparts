@@ -5,6 +5,8 @@ import json
 import unittest
 from pathlib import Path
 
+from numeric_receipt import assert_numeric_receipt
+
 
 ROOT = Path(__file__).resolve().parents[1]
 PART = ROOT / "parts/993-eng-cooling-impeller-we43-f1-0001"
@@ -165,7 +167,7 @@ class CoolingImpellerWE43F1Tests(unittest.TestCase):
         self.assertGreater(min(envelope[:2]), MODULE.OUTER_DIAMETER_MM - 3.0)
         self.assertAlmostEqual(envelope[2], MODULE.CUP_DEPTH_MM, places=3)
         self.assertLess(report["mass"]["volume_ratio_f1_to_rebuild"], 1.0)
-        self.assertEqual(report["results"], {**cached_screen(report["results"]["cad_volume_mm3"])["results"]})
+        assert_numeric_receipt(self, cached_screen(report["results"]["cad_volume_mm3"])["results"], report["results"])
         for path in SOURCE_PATHS:
             source = json.loads(path.read_text(encoding="utf-8"))
             self.assertIn(source["source_id"], json.dumps(MODULE.MATERIALS) + record["provenance"]["sources"].__repr__())
