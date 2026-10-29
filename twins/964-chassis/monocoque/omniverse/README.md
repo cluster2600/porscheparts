@@ -1,5 +1,11 @@
 # 964 monocoque: OpenUSD review and Omniverse handoff
 
+**Geometry decision after the native capture:** the
+[reference comparison](../shape-review-20261029/README.md) rejects this retained
+whole-body envelope as the requested product baseline. Reconstruct the central
+cell before another paid product review. The framing correction below remains a
+software preparation step; it cannot repair the architecture mismatch.
+
 The complete retained architecture is now a portable OpenUSD review bundle.
 It contains **422,816 triangles in four separately selectable groups**: outer
 skin, closed sections, sandwich panels and wheel tubs. The existing closed
