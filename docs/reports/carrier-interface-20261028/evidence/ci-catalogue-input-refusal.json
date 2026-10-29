@@ -1,0 +1,26 @@
+{
+  "head_sha": "162a19c9fca7dab9d60f7893a1237b4dd810721d",
+  "workflow_run_id": 40790755079,
+  "job_id": 123175083361,
+  "conclusion": "failure",
+  "error_test": "test_carrier_registered_inputs_keep_optimization_blocked",
+  "error": "input SHA-256 mismatch",
+  "diagnostic": [
+    "2026-10-29T00:02:34.1510523Z ERROR: test_carrier_registered_inputs_keep_optimization_blocked (test_free_tools.Boundaries.test_carrier_registered_inputs_keep_optimization_blocked)",
+    "2026-10-29T00:02:34.1511648Z ----------------------------------------------------------------------",
+    "2026-10-29T00:02:34.1512076Z Traceback (most recent call last):",
+    "2026-10-29T00:02:34.1521616Z   File \"/home/runner/work/porscheparts/porscheparts/tests/test_free_tools.py\", line 105, in test_carrier_registered_inputs_keep_optimization_blocked",
+    "2026-10-29T00:02:34.1522397Z     common.verify_inputs(manifest, pilot.ROOT)",
+    "2026-10-29T00:02:34.1523039Z   File \"/home/runner/work/porscheparts/porscheparts/benchmarks/free-tools/ft_common.py\", line 114, in verify_inputs",
+    "2026-10-29T00:02:34.1523651Z     raise ValueError(\"input SHA-256 mismatch\")",
+    "2026-10-29T00:02:34.1523957Z ValueError: input SHA-256 mismatch",
+    "2026-10-29T00:02:34.1524127Z ",
+    "2026-10-29T00:02:34.1524281Z ----------------------------------------------------------------------",
+    "2026-10-29T00:02:34.1524619Z Ran 5050 tests in 270.427s",
+    "2026-10-29T00:02:34.1524774Z ",
+    "2026-10-29T00:02:34.1524880Z FAILED (errors=1, skipped=390)",
+    "2026-10-29T00:02:34.1526121Z {\"status\": \"central_subdivision_candidate_only_independent_review_and_checkMesh_required\", \"selected_tetrahedra\": 1, \"candidate_sha256\": \"6c3676a5f077a3ae05f1c112d726d29c0daf497b84a83e885481113f88f56b86\", \"report_sha256\": \"7ab261b8b1a6c123bbd0a23942e287a684ae0bfbd3683e297bf706e34aca44fc\", \"elapsed_seconds\": 0.0008031749999872773}",
+    "2026-10-29T00:02:34.1527428Z GitHub fetch OK: cluster2600/porscheparts codex/test"
+  ],
+  "resolution": "Restore the original catalogue record and preview metadata; retain the Free Tools frozen manifest and all numerical evidence."
+}
