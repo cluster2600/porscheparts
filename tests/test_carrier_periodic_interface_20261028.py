@@ -11,6 +11,27 @@ spec=importlib.util.spec_from_file_location('periodic_interface',SOURCE);m=impor
 
 
 class InterfaceMeshTests(unittest.TestCase):
+    def test_variant_oracle_rejects_indices_before_narrowing_to_int32(self):
+        import hashlib
+        import json
+        import subprocess
+        import tempfile
+        if importlib.util.find_spec('igl') is None:self.skipTest('libigl oracle runtime is unavailable')
+        with tempfile.TemporaryDirectory()as temporary:
+            root=Path(temporary)
+            for index,faces in enumerate([np.array([[0,1,2**32+2]],dtype=np.uint64),np.array([[0,1,2.5]]),np.array([[0,1,-1]])]):
+                directory=root/str(index);directory.mkdir();archive=directory/'candidate.npz'
+                np.savez(archive,vertices=np.array([[0.,0,0],[1,0,0],[0,1,0]]),triangles=faces)
+                record=dict(status='complete_closed_chamber_variant_geometry_checked',manufacturing_authorized=False,
+                            output_sha256=hashlib.sha256(archive.read_bytes()).hexdigest(),vertices=3,triangles=1,
+                            original_external_oriented_triangles_exact=True,final_oriented_triangle_roundtrip_exact=True)
+                (directory/'assessment.json').write_text(json.dumps(record))
+                result=subprocess.run([sys.executable,str(SOURCE.with_name('prepare_carrier_warp_oracle.py')),
+                                       '--variant-directory',str(directory),'--output',str(root/('output-'+str(index)))],
+                                      capture_output=True,text=True,timeout=30)
+                self.assertNotEqual(result.returncode,0)
+                self.assertIn('bounded integer triangle indices required',result.stderr)
+
     def test_triangle_witness_checks_interior_edges_and_collapsed_faces(self):
         sys.path.insert(0,str(SOURCE.parent))
         try:from finite_gyroid_voids import triangle_witness_distance
@@ -54,6 +75,28 @@ class InterfaceMeshTests(unittest.TestCase):
         r=json.loads(fixture.read_text());tri=np.array([r['initial_candidate_triangle_mm'],r['adjacent_witness_triangle_mm']]);points=np.tile(r['point_mm'],(2,1));d=triangle_witness_distance(points,tri)
         self.assertGreater(float(d[0]),r['classification_limit_mm'])
         self.assertLess(float(d.min()),1e-10)
+
+    def test_exact_binary64_triangle_distance_is_rational(self):
+        from fractions import Fraction
+        sys.path.insert(0,str(SOURCE.parent))
+        try:from network_gap_witnesses import exact_squared_distance
+        finally:sys.path.pop(0)
+        triangle=[[0,0,0],[1,0,0],[0,1,0]]
+        self.assertEqual(exact_squared_distance([.25,.25,2],triangle),Fraction(4))
+        self.assertEqual(exact_squared_distance([2,0,0],triangle),Fraction(1))
+        self.assertEqual(exact_squared_distance([0,0,.5],[[0,0,0]]*3),Fraction(1,4))
+
+    def test_whole_face_phase_bound_subdivides_and_respects_pitch(self):
+        import math
+        sys.path.insert(0,str(SOURCE.parent))
+        try:from network_gap_witnesses import phase_boundary_bound
+        finally:sys.path.pop(0)
+        centre=np.ones(3)*(.5*math.asin(2*.6170021750539874/3))*10/(2*math.pi)
+        vertices=centre+np.array([[.3,-.3,0],[0,.3,-.3],[-.3,0,.3]])
+        r=phase_boundary_bound(vertices,np.array([[0,1,2]]),1,10.)
+        self.assertTrue(r['passed']);self.assertGreater(r['subdivision_depth'],0)
+        self.assertFalse(r['formal_interval_certificate'])
+        self.assertFalse(phase_boundary_bound(vertices*.6,np.array([[0,1,2]]),1,6.)['passed'])
 
     def grid(self):return np.array([[x,y,z]for z in [-.5,0,.5]for y in [-.5,0,.5]for x in [-.5,0,.5]])
 

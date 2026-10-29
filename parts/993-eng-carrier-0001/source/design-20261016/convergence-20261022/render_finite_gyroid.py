@@ -18,8 +18,8 @@ def main():
     z=np.load(archive);inputs={str(archive):sha(archive)};observations=[]
     fig=plt.figure(figsize=(12.5,8.5),layout='constrained',facecolor='#f4f1e9');vstart=fstart=0
     for rank,directory in enumerate(a.networks):
-        r=json.loads((directory/'assessment.json').read_text());assert r['rank']==rank and r['status']=='dominant_void_network_per_analytic_sign_retained'
-        assert not r['carrier_geometry_changed'] and len(r['selected'])==2
+        r=json.loads((directory/'assessment.json').read_text());assert all(json.loads((d/'assessment.json').read_text())['pitch_mm']==r['pitch_mm'] and json.loads((d/'assessment.json').read_text())['size_mm']==r['size_mm']for d in a.networks);assert r['rank']==rank and r['status']in ['dominant_void_network_per_analytic_sign_retained','native_G1_smoothed_voids_transfer_and_containment_checked','internal_void_repair_candidate_generated']
+        assert not r.get('carrier_geometry_changed',False) and not r['manufacturing_authorized'] and len(r['selected'])==2
         c=er['components'][rank];v=np.array(z['vertices'][vstart:vstart+c['vertices']]);f=np.array(z['triangles'][fstart:fstart+c['triangles']]-vstart,dtype=np.uint64)
         core=mf.Manifold(mf.Mesh64(v,f));networks=[]
         for selected in r['selected']:
@@ -43,7 +43,7 @@ def main():
         observations.append(dict(rank=rank,material_volume_mm3=material.volume(),positive_material_shells=positive,negative_void_shells=negative,display_triangles=len(triangles),cut_plane_z_mm=float(centre[2]),display_simplification_mm=.02))
         inputs[str(directory/'assessment.json')]=sha(directory/'assessment.json');vstart+=c['vertices'];fstart+=c['triangles']
     fig.suptitle('FINITE GYROID / INTERNAL MATERIAL CUTAWAYS',fontsize=17,fontweight='bold',color='#203b3b')
-    fig.supxlabel('Actual generated geometry / 6 mm pitch / 0.125 mm sampling\nInternal regions only; the full carrier and powder-escape ports are not generated here.\nDisplay clipped at mid-height and simplified by 0.02 mm; numerical meshes are unchanged.',fontsize=10,color='#203b3b')
+    fig.supxlabel(f"Actual generated geometry / {r['pitch_mm']:g} mm pitch / {r['size_mm']:g} mm sampling\nInternal regions only; the full carrier and powder-escape ports are not generated here.\nDisplay clipped at mid-height and simplified by 0.02 mm; numerical meshes are unchanged.",fontsize=10,color='#203b3b')
     a.output.mkdir();path=a.output/'finite-gyroid-cutaways.png';fig.savefig(path,dpi=160);plt.close(fig)
     (a.output/'figure-provenance.json').write_text(json.dumps(dict(figure_sha256=sha(path),input_sha256=inputs,source_sha256={str(Path(__file__)):sha(Path(__file__))},regions=observations,carrier_geometry_changed=False,powder_escape_demonstrated=False,manufacturing_authorized=False),indent=2)+'\n')
 

@@ -8,15 +8,22 @@ A first complete closed-chamber variant now has nominal computed mass
 Transition blending, powder escape and mechanics on the changed geometry remain
 active work.
 
+The [29 October surface/GPU revalidation](SURFACE-REPAIR.md) retains those trials
+and adds a **1.294346879 kg reconstructed candidate**. Its complete geometry
+passes independent intersection checking, conservative-core containment and the
+1 mm cross-network screen. Native CUDA broad and targeted regression workloads
+pass the unchanged precision limit; the original carrier control still fails.
+The separate 10 µm repair-fidelity profile remains refused.
+
 The earlier [carrier and GPU results](../carrier-convergence-20261022/README.md)
 remain the baseline, including the failed whole-carrier peak-stress convergence
 and the failed final voxel-cell refinement. This independent series does not
 turn those failures into passes.
 
-![Actual complete closed-chamber variant and its internal regions](../../media/carrier-interface-20261028/closed-carrier-sections.png)
+![Actual reconstructed carrier and its internal regions](../../media/carrier-interface-20261028/reconstructed-carrier-sections.png)
 
 The sections come from the complete generated mesh. Orange marks the new internal
-voids; [figure provenance](evidence/closed-carrier-001/figure-provenance.json)
+voids; [figure provenance](evidence/reconstructed-carrier-001/figure-provenance.json)
 records the mesh identity and section-plane area checks.
 
 ## Workflow and current position
@@ -170,7 +177,9 @@ The adapter targets inspected private APIs and explicitly requires Microgen 1.3.
 | CalculiX / corrected SPOOLES | CCX 2.21, eight solver threads | Previously qualified native binary; six solid controls and actual gyroid fields |
 | PyVista / VTK / Matplotlib | 0.44.2 / 9.3.1 / 3.11.2 | Actual quadratic-mesh image and numerical charts |
 | Manifold / libigl | 3.5.4 / 2.6.3 | Finite envelopes, clipped gyroids, complete carrier subtraction and exact transfer checks |
-| PR #274 Warp | 1.18.0, unchanged kernel | Existing merged native CPU/CUDA carrier-query evidence; no fresh GPU claim in this CPU study |
+| PR #274 Warp | 1.18.0, unchanged kernel | Actual CUDA: reconstructed carrier and 36 previous failure locations pass; raw carrier control fails on the same GPU |
+| MeshLib / meshlib-core | 3.1.4.297, existing evaluation runtime | Internal reconstruction, degeneracy removal and triangle conditioning; separate 10 µm fidelity profile refused |
+| CGAL | 5.6 / 6.2.1, EPECK | Independent embedding checks, calibrated repair trials and exact nearest-distance refusal witness |
 
 The [complete runtime inventory](evidence/runtime-provenance.json) records the
 installed versions. Microgen declares SciPy `>=1.13.1,<1.16`; the default 1.15.3
@@ -455,13 +464,13 @@ qualification is claimed here.
 
 ## Verification checkpoint
 
-The focused interface/core and publication tests pass **15/15**. The selected upstream geometry
+The focused interface tests pass **18/18**. The selected upstream geometry
 tests pass **29/29**. Strict documentation links pass after the new report files
-are staged. The expanded macOS `make check` attempt ran **5,062 tests**, with
-**4 failures and 289 skips**: the failures compare unrelated fan/stator/coupon
+are staged. The latest macOS `make check` attempt ran **5,065 tests**, with
+**4 failures and 290 skips**: the failures compare unrelated fan/stator/coupon
 floating-point dictionaries exactly and differ in the last printed digits.
 Those files are unchanged by this work. The
-[latest full-check receipt](evidence/finite-gyroid-001/make-check-002.json) and
+[latest full-check receipt](evidence/surface-repair-001/make-check-003.json) and
 compressed log retain the failures; this is not a passing full local check.
 The initial published checkpoint `b0c1181b` passed
 [Linux CI](https://github.com/cluster2600/porscheparts/actions/runs/40784036673);

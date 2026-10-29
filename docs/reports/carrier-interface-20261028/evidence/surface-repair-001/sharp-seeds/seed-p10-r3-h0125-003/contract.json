@@ -1,0 +1,67 @@
+{
+  "parameters": {
+    "scope": "10 mm pitch seed for a rounded finite variant; same analytic threshold and phase, independent separation and containment checks required",
+    "sphere_radius_mm": 0.4,
+    "sphere_sizes_mm": [
+      0.1,
+      0.05,
+      0.025
+    ],
+    "maximum_relative_sphere_volume_error": 0.01,
+    "finite_pitch_mm": 10.0,
+    "gyroid_threshold": 0.6170021750539874,
+    "finite_sizes_mm": [
+      0.25,
+      0.125,
+      0.0625
+    ],
+    "required_successive_volume_comparisons": 2,
+    "maximum_relative_volume_change": 0.02,
+    "phase_origin_mm": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "maximum_job_seconds": 180,
+    "envelope_source_sha256": "c302502b34ab811b7bff2a3bb29c2785e4fb36b16df05bcd52d9536345fba866",
+    "carrier_geometry_changed": false,
+    "manufacturing_authorized": false,
+    "phase_field_surface_residual_limit": 0.0001,
+    "minimum_core_cap_distance_for_phi_check_mm": 1e-07,
+    "relative_export_volume_limit": 1e-10,
+    "oriented_triangle_roundtrip_must_be_exact": true,
+    "operative_core_inset_mm": 0.2,
+    "reason_for_geometric_margin": "Reserve a 0.20 mm inward construction buffer for G1 rounding; actual containment must still be checked without tolerance relaxation",
+    "normalization": "one fixed as_original().simplify(0) before export; retain exact final oriented-triangle roundtrip",
+    "maximum_native_normalization_tolerance_mm": 1e-08,
+    "normalization_relative_volume_limit": 1e-10,
+    "cap_distance_crosscheck": "Independently construct convex-combination witnesses on candidate triangle edges/interior; if that candidate fails, search every clip triangle. A witness within the unchanged cap threshold proves proximity, even when libigl selected the wrong skinny triangle.",
+    "sphere_controls_method": "Native level_set of signed sphere distance using tolerance=1e-5, identical root-refinement setting to the finite gyroid; recomputed on every call.",
+    "minimum_cross_network_separation_mm": 1.0,
+    "smoothing": {
+      "min_sharp_angle_degrees": 180.0,
+      "min_smoothness": 1.0,
+      "refinement_tolerance_mm": 0.01
+    }
+  },
+  "rank": 3,
+  "size_mm": 0.125,
+  "bounds_mm": [
+    [
+      -81.23891366030588,
+      -33.95752917543608,
+      -7.18423744818761
+    ],
+    [
+      -65.82191297779318,
+      -16.42357026842481,
+      6.652153773043338
+    ]
+  ],
+  "source_sha256": {
+    "/Users/maxime/.codex/worktrees/993-carrier-revalidation/3dprinting993/parts/993-eng-carrier-0001/source/design-20261016/convergence-20261022/finite_gyroid_voids.py": "7cdad5f0112ce29dc9359ce22cc2638f95d5092350952d4dfd0f6d33f52c6a0e",
+    "work/carrier-interface-20261028/finite-p10-contract-001.json": "09861d1f86f3cd7081ff1d9c28e886351f7d521c181318305c927bdda8c6488c",
+    "docs/reports/carrier-interface-20261028/evidence/core-envelopes-006/envelopes.npz": "c302502b34ab811b7bff2a3bb29c2785e4fb36b16df05bcd52d9536345fba866",
+    "/Users/maxime/.codex/worktrees/993-carrier-revalidation/3dprinting993/parts/993-eng-carrier-0001/source/design-20261016/convergence-20261022/reconstruct_core_envelopes.py": "2fe51f3b6b6f4909c15dd48e9139305bd37fd6180c2c5a14b2374c08278b0bc8"
+  }
+}
