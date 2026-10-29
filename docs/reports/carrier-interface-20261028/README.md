@@ -15,6 +15,13 @@ passes independent intersection checking, conservative-core containment and the
 pass the unchanged precision limit; the original carrier control still fails.
 The separate 10 µm repair-fidelity profile remains refused.
 
+The [powder-port continuation](POWDER-PORTS.md) adds **eight open routes** and a
+**1.293391518 kg** candidate. Complete-surface intersection checks, sixteen exact
+construction-tool spacing certificates and protected-interface rosters pass.
+A replay command rebuilds the geometry and its checks. Local port-triangle
+conditioning, GPU checks on this changed geometry and complete-part mechanics
+remain active.
+
 The earlier [carrier and GPU results](../carrier-convergence-20261022/README.md)
 remain the baseline, including the failed whole-carrier peak-stress convergence
 and the failed final voxel-cell refinement. This independent series does not
