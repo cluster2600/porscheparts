@@ -1,0 +1,51 @@
+{
+  "scope": "10 mm pitch seed for a rounded finite variant; same analytic threshold and phase, independent separation and containment checks required",
+  "sphere_radius_mm": 0.4,
+  "sphere_sizes_mm": [
+    0.1,
+    0.05,
+    0.025
+  ],
+  "maximum_relative_sphere_volume_error": 0.01,
+  "finite_pitch_mm": 10.0,
+  "gyroid_threshold": 0.6170021750539874,
+  "finite_sizes_mm": [
+    0.25,
+    0.125,
+    0.0625
+  ],
+  "required_successive_volume_comparisons": 2,
+  "maximum_relative_volume_change": 0.02,
+  "phase_origin_mm": [
+    0.0,
+    0.0,
+    0.0
+  ],
+  "maximum_job_seconds": 180,
+  "envelope_source_sha256": "c302502b34ab811b7bff2a3bb29c2785e4fb36b16df05bcd52d9536345fba866",
+  "carrier_geometry_changed": false,
+  "manufacturing_authorized": false,
+  "phase_field_surface_residual_limit": 0.0001,
+  "minimum_core_cap_distance_for_phi_check_mm": 1e-07,
+  "relative_export_volume_limit": 1e-10,
+  "oriented_triangle_roundtrip_must_be_exact": true,
+  "operative_core_inset_mm": 0.2,
+  "reason_for_geometric_margin": "Reserve a 0.20 mm inward construction buffer for G1 rounding; actual containment must still be checked without tolerance relaxation",
+  "normalization": "one fixed as_original().simplify(0) before export; retain exact final oriented-triangle roundtrip",
+  "maximum_native_normalization_tolerance_mm": 1e-08,
+  "normalization_relative_volume_limit": 1e-10,
+  "cap_distance_crosscheck": "Independently construct convex-combination witnesses on candidate triangle edges/interior; if that candidate fails, search every clip triangle. A witness within the unchanged cap threshold proves proximity, even when libigl selected the wrong skinny triangle.",
+  "sphere_controls_method": "Native level_set of signed sphere distance using tolerance=1e-5, identical root-refinement setting to the finite gyroid; recomputed on every call.",
+  "minimum_cross_network_separation_mm": 1.0,
+  "smoothing": {
+    "min_sharp_angle_degrees": 52.5,
+    "min_smoothness": 0.0,
+    "refinement_tolerance_mm": 0.01,
+    "geometry_cleanup_tolerance_mm": 0.001,
+    "cleanup_role": "Intentional 1 micrometre geometry simplification after G1 interpolation, followed by fixed materialization and an exact final transfer check; mass is recomputed.",
+    "binary_grid_mm": 9.5367431640625e-07,
+    "binary_grid_role": "Explicit sub-nanometre coordinate regularization before native ingestion; maximum component movement is half a grid step. Final exact transfer, containment and separation checks remain required.",
+    "post_rounding_component_rule": "Retain the largest positive connected void component per field sign; fill other positive pockets with material and refuse negative cavity shells.",
+    "sharp_feature_rule": "Use Manifold 3.5.4 native defaults: preserve dihedral angles above 52.5 degrees; interpolate only the remaining smooth regions. Independent self-intersection checks remain mandatory."
+  }
+}

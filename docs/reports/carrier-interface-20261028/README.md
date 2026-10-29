@@ -1,28 +1,37 @@
-# 993 carrier: explicit cells and reproducible quadratic mechanics
+# 993 carrier: closed geometry and reproducible mechanics
 
 This continuation replaces the voxel-only material experiment with an explicit
 gyroid solid, periodic quadratic tetrahedra and six native CalculiX strain cases.
 The existing R2 carrier remains **1.298199813 kg**, below the **1.30 kg** ceiling.
-Its geometry is unchanged. A lighter cellular carrier has not yet been generated.
+A first complete closed-chamber variant now has nominal computed mass
+**1.292162707 kg**. It preserves the complete R2 outer surface exactly.
+Transition blending, powder escape and mechanics on the changed geometry remain
+active work.
+
+The [29 October surface/GPU revalidation](SURFACE-REPAIR.md) retains those trials
+and adds a **1.294346879 kg reconstructed candidate**. Its complete geometry
+passes independent intersection checking, conservative-core containment and the
+1 mm cross-network screen. Native CUDA broad and targeted regression workloads
+pass the unchanged precision limit; the original carrier control still fails.
+The separate 10 µm repair-fidelity profile remains refused.
 
 The earlier [carrier and GPU results](../carrier-convergence-20261022/README.md)
 remain the baseline, including the failed whole-carrier peak-stress convergence
 and the failed final voxel-cell refinement. This independent series does not
 turn those failures into passes.
 
-![Actual explicit cell and quadratic mesh](../../media/carrier-interface-20261028/explicit-periodic-cell.png)
+![Actual reconstructed carrier and its internal regions](../../media/carrier-interface-20261028/reconstructed-carrier-sections.png)
 
-The image shows the actual normalized research cell and a cutaway through its
-T10 elements. It is generated from the saved mesh, including quadratic boundary
-nodes; [image provenance](evidence/geometry-figure-provenance.json) records hashes.
-The 1 mm cube is a mathematical reference size, not a chosen printing pitch.
+The sections come from the complete generated mesh. Orange marks the new internal
+voids; [figure provenance](evidence/reconstructed-carrier-001/figure-provenance.json)
+records the mesh identity and section-plane area checks.
 
 ## Workflow and current position
 
 ```mermaid
 flowchart TD
     A[Image, scan or measurement plan] --> B[Traceable geometry and interface assumptions]
-    B --> C[Editable carrier CAD / R2 reference / 1.2982 kg]
+    B --> C[Procedural geometry and R2 reference / 1.2982 kg]
     C --> D[Surface repair and independent volume checks]
     D --> E[Gmsh quadratic carrier mesh]
     E --> F[Native CalculiX / loads, energy, reactions and refinement]
@@ -33,23 +42,34 @@ flowchart TD
     I --> J[Six native strain cases / independent energy and work]
     J --> K[Fixed-STEP mesh refinement]
     J --> L[Separate surface-resolution sensitivity]
-    K --> M[Finite cellular carrier geometry and transition zones]
+    K --> M[Smooth transitions and powder-escape geometry]
     L --> M
-    Q --> M
+    Q --> V[Finite gyroid / three spatial resolutions]
+    V --> W[Two void families per region / isolated pockets filled]
+    W --> Z[Complete closed-chamber baseline / 1.292163 kg]
+    Z --> M
     M --> N[Recalculate complete carrier / mass below 1.30 kg]
-    N --> O[Orientation, supports, powder escape and process study]
+    N --> O[Orientation, supports and process study]
     O --> P[Reviewable manufacturing package]
     classDef current fill:#dceeea,stroke:#286864,color:#142a29;
     classDef pending fill:#f5e8cf,stroke:#a47935,color:#3b2e17;
-    class H,I,J,K,L,Q current;
+    class H,I,J,K,L,Q,V,W,Z current;
     class M,N,O,P pending;
 ```
 
-The purpose of the cell work is to establish a defensible material input before
-cutting a finite cellular region into the carrier. The complete-carrier analysis,
-transition geometry, actual mass and additive preparation remain separate steps.
+The cell work establishes the reference material behavior. The closed geometry
+trial then inserts explicit finite voids. Complete-carrier analysis, transition
+geometry and additive preparation remain separate steps.
 
 ## Fixed geometry, actual refinement
+
+![Actual explicit cell and quadratic mesh](../../media/carrier-interface-20261028/explicit-periodic-cell.png)
+
+The image shows the actual normalized research cell and a cutaway through its
+T10 elements. It is generated from the saved mesh, including quadratic boundary
+nodes; [image provenance](evidence/geometry-figure-provenance.json) records hashes.
+The 1 mm cube is a mathematical reference size, not a chosen printing pitch.
+
 
 The analytic solid is
 `abs(sin(x) cos(y) + sin(y) cos(z) + sin(z) cos(x)) <= 0.6170021750539874`,
@@ -156,8 +176,10 @@ The adapter targets inspected private APIs and explicitly requires Microgen 1.3.
 | Python / NumPy / SciPy | 3.11.18 / 2.4.6 / 1.17.1 | Independent geometry and field assessments in an isolated macOS ARM64 runtime |
 | CalculiX / corrected SPOOLES | CCX 2.21, eight solver threads | Previously qualified native binary; six solid controls and actual gyroid fields |
 | PyVista / VTK / Matplotlib | 0.44.2 / 9.3.1 / 3.11.2 | Actual quadratic-mesh image and numerical charts |
-| Manifold / libigl | 3.5.4 / 2.6.3 | Conservative finite-envelope reconstruction, exact transfer checks and independent boundary distances |
-| PR #274 Warp | 1.18.0, unchanged kernel | Existing merged native CPU/CUDA carrier-query evidence; no fresh GPU claim in this CPU study |
+| Manifold / libigl | 3.5.4 / 2.6.3 | Finite envelopes, clipped gyroids, complete carrier subtraction and exact transfer checks |
+| PR #274 Warp | 1.18.0, unchanged kernel | Actual CUDA: reconstructed carrier and 36 previous failure locations pass; raw carrier control fails on the same GPU |
+| MeshLib / meshlib-core | 3.1.4.297, existing evaluation runtime | Internal reconstruction, degeneracy removal and triangle conditioning; separate 10 µm fidelity profile refused |
+| CGAL | 5.6 / 6.2.1, EPECK | Independent embedding checks, calibrated repair trials and exact nearest-distance refusal witness |
 
 The [complete runtime inventory](evidence/runtime-provenance.json) records the
 installed versions. Microgen declares SciPy `>=1.13.1,<1.16`; the default 1.15.3
@@ -320,8 +342,8 @@ changing the carrier or expanding the protected mask.
 
 The [OBJ meshes and indexed source](evidence/core-envelopes-006/) are available
 alongside their input hashes and the [figure provenance](evidence/core-envelopes-006/figure-provenance.json).
-Finite lattice insertion, smooth transition zones, updated whole-carrier
-mechanics and additive preparation remain active work.
+The closed baseline below uses these envelopes. Smooth transition zones, updated
+whole-carrier mechanics and additive preparation remain active work.
 
 The reduced envelope also changes the weight arithmetic: applying the
 resolution-48 periodic solid fraction uniformly to these **2,364.28 mm³** would
@@ -329,14 +351,132 @@ save about **6.25 g** at the study density of **4.42 × 10⁻⁶ kg/mm³**. This
 a conditional calculation before finite-cell clipping, transitions and powder
 escape; the actual R2 carrier mass has not changed.
 
+## Finite gyroid regions: stable volume, explicit void networks
+
+![Actual retained material in four internal regions](../../media/carrier-interface-20261028/finite-gyroid-cutaways.png)
+
+The cutaways show actual generated material inside the four checked limiting
+regions. Their jagged outer boundaries are internal selection-mask boundaries;
+these are not exposed carrier walls or the final transition shape. The complete
+closed-carrier assembly follows below. The [figure receipt](evidence/finite-gyroid-001/figure-provenance.json)
+records the geometry inputs and display-only clipping/simplification.
+
+The field now has a **6 mm pitch**, the same fixed analytic threshold, and phase
+origin `(0, 0, 0)` mm. Native Manifold level sets create the voids; an additional
+**0.005 mm inward clip** avoids coincident Boolean faces. This margin is an
+internal construction aid, not a proposed printed wall thickness. The geometry
+is sampled at **0.25, 0.125 and 0.0625 mm** without changing pitch, threshold,
+phase or limiting regions. All **12 native cases pass** containment, oriented
+triangle transfer and phase-vertex checks.
+
+| Region | Retained void at finest level, mm³ | Raw void changes, % | Changes after filling small pockets, % |
+|---|---:|---:|---:|
+| 1 | 384.058132 | 0.118311 → 0.028673 | 0.117784 → 0.028530 |
+| 2 | 340.246998 | 0.116128 → 0.027386 | 0.115197 → 0.027171 |
+| 3 | 343.093965 | 0.112450 → 0.027675 | 0.112053 → 0.027554 |
+| 4 | 298.839092 | 0.105787 → 0.027055 | 0.105501 → 0.026928 |
+
+Every region passes **two successive volume comparisons below 2%**, both before
+and after cleanup. The [assessment](evidence/finite-gyroid-001/assessment.json)
+keeps volume stabilization separate from topology convergence and complete-carrier
+mechanics; those latter claims remain false. Vertex checks also do not establish
+whole-face distance convergence.
+
+Cropping the periodic field creates small isolated void pockets. Each connected
+component is assigned by the sign of the analytic field at its vertices. Only
+the largest component of each sign is retained; all other pockets are filled
+with material. The medium-resolution figure therefore has **two void chambers
+per region**, after filling **23, 30, 24 and 30** isolated pockets respectively.
+The [eight medium-resolution network archives](evidence/finite-gyroid-001/networks/)
+are published with their exact oriented-triangle transfer checks. Fine raw meshes
+can be regenerated from the published inputs and scripts; their hashes and all
+12 native receipts are retained in the [run records](evidence/finite-gyroid-001/runs/).
+
+The finest retained void volume totals **1,366.238188 mm³**, equivalent to
+**6.038773 g of titanium** at the study density. This replaces the earlier
+uniform-density estimate for these four regions. It is potential subtraction
+before transitions and escape routes, not an achieved reduction in carrier mass.
+A large additional saving requires broader structural optimization.
+
+### First complete closed-chamber carrier
+
+The complete computational mesh contains **1,062,078 vertices and 2,124,436
+triangles**. The mesh archive itself is not committed; its SHA-256 and array
+shapes are in the [payload manifest](evidence/payload-manifest.json). It uses the eight published
+medium-resolution void networks and the frozen complete R2 reference.
+
+The [native assembly checks](evidence/closed-carrier-001/assessment.json) establish:
+
+- The void union lies entirely inside the original R2 body.
+- Subtracted volume is **1,365.861160 mm³**, giving nominal mass **1.292162707 kg**
+  at 4.42 g/cm³, a **6.037106 g** reduction from the R2 reference.
+- The result has **one positive material shell and eight negative void shells**.
+- Every original exterior triangle and vertex is preserved exactly, including
+  its orientation. The inherited mounting geometry is unchanged.
+- Export/reimport preserves the complete oriented surface exactly.
+
+The mass differs slightly from the finest-level void arithmetic because this
+complete baseline deliberately uses the published 0.125 mm network meshes.
+This is a closed-chamber computational variant: its eight voids still have no
+powder escape routes, and its changed geometry has no new mechanical solution.
+The catalogue's R2 reference and qualification state are unchanged.
+The [source and fixed construction contract](evidence/closed-carrier-001/) make
+this an auditable intermediate before transition and process work.
+
+### Independent checks that caught real defects
+
+A native `NoError` is insufficient. The coarse analytic sphere misses the fixed
+1% volume criterion with an error of **1.278957%**, whereas the two finer controls have errors
+**0.375700%** and **0.084697%**. These controls are recomputed on every native run.
+
+Native Boolean output initially lost triangles on export/reimport. The accepted
+producer applies one fixed `as_original().simplify(0)` normalization, bounds its
+native tolerance by **10⁻⁸ mm** and its volume change by **10⁻¹⁰**, then still
+requires an **exact oriented-triangle roundtrip**. No final transfer threshold
+was relaxed.
+
+The independent libigl distance query also misclassified two very thin clipping
+triangles. One candidate distance was **1.72047 × 10⁻⁷ mm**, while an explicitly
+constructed point on the adjacent triangle was only **6.66 × 10⁻¹⁶ mm** away.
+The [saved diagnostics](evidence/finite-gyroid-001/distance-diagnostics/)
+preserve both counterexamples. The checker now constructs actual triangle-point
+witnesses, searching the full clipping mesh when the initial candidate fails.
+The cap-distance threshold remains **10⁻⁷ mm**, and the non-cap phase-vertex
+residual threshold remains **10⁻⁴**. These are floating-point numerical checks,
+not interval-arithmetic certificates.
+
+### Reproduction and the next geometry step
+
+The [finite-region reproduction guide](evidence/finite-gyroid-001/REPRODUCE.md)
+provides pinned dependencies, runnable commands, input hashes and the figure
+recipe. It uses a separate geometry environment without CadQuery, Microgen or
+VTK; it does not change the existing cell-mechanics environment. A
+[fresh pinned environment](evidence/finite-gyroid-001/fresh-environment-check.json)
+passes dependency checks and reproduces the coarse native case with zero volume
+difference.
+
+The medium-resolution material check finds one positive material shell and two
+negative void shells in every region, with no separate positive material islands.
+The eight retained chambers are still closed. Smooth transitions, explicit
+escape paths, minimum-wall/channel checks and complete-carrier mechanics come
+next. A 6 mm pitch alone does not establish any of those properties. For process
+references, [Xact Metal](https://xactmetal.com/designguidelinesformetal3dprinting/)
+recommends powder openings of at least 3 mm, while
+[Materialise's titanium guide](https://www.materialise.com/es/academy/industrial/design-am/titanium)
+mentions 1 mm hollow-part walls and larger/multiple openings for complex cavities.
+These supplier guidelines inform the next software checks; no machine/process
+qualification is claimed here.
+
 ## Verification checkpoint
 
-The focused interface/core and publication tests pass **11/11**. The selected upstream geometry
+The focused interface tests pass **18/18**. The selected upstream geometry
 tests pass **29/29**. Strict documentation links pass after the new report files
-are staged. The expanded macOS `make check` attempt ran **4,943 tests**, with
-**4 failures and 275 skips**: the failures compare unrelated fan/stator/coupon
+are staged. The latest macOS `make check` attempt ran **5,065 tests**, with
+**4 failures and 290 skips**: the failures compare unrelated fan/stator/coupon
 floating-point dictionaries exactly and differ in the last printed digits.
-Those files are unchanged by this work. This is not a passing full local check.
+Those files are unchanged by this work. The
+[latest full-check receipt](evidence/surface-repair-001/make-check-003.json) and
+compressed log retain the failures; this is not a passing full local check.
 The initial published checkpoint `b0c1181b` passed
 [Linux CI](https://github.com/cluster2600/porscheparts/actions/runs/40784036673);
 the completed results and envelope additions are checked on the updated PR head.
