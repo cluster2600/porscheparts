@@ -336,3 +336,11 @@ Those files are unchanged by this work. This is not a passing full local check.
 The initial published checkpoint `b0c1181b` passed
 [Linux CI](https://github.com/cluster2600/porscheparts/actions/runs/40784036673);
 the completed results and envelope additions are checked on the updated PR head.
+
+The Free Tools pilot retains its original full catalogue input. A
+documentation-only `known_limits` addition triggered its frozen-input hash
+guard, so that note and its preview-metadata refresh were
+[rolled back](evidence/catalogue-note-rollback.json), preserving the original
+manifest and its strict checks. The [CI refusal](evidence/ci-catalogue-input-refusal.json)
+and historical refresh receipt remain auditable. New numerical results are
+indexed in this report without changing the catalogue's concept status.
