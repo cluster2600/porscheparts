@@ -6,6 +6,11 @@ overshoot demonstrated by the earlier direct PicoGK opening. The complete
 carrier remains the unchanged **1.2933916 kg** reference: the new void has not
 been reintegrated into its powder ports, and mechanical convergence is pending.
 
+**Subsequent result:** [bounded edge repair](BOUNDED-EDGE-REPAIR.md) removes the
+remaining material-side edge above 45° through an independently bounded
+two-triangle edit. The earlier distance-projection proposal is refused on shape
+quality; the receipts below describe the preceding raw rounded surface.
+
 ![Actual source, eroded input and rounded cavity sections](../../media/carrier-interface-20261028/qualified-source-void.png)
 
 These are actual mesh sections at nominal z = 2.86 mm. The right panel shows the

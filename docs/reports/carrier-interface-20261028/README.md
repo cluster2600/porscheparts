@@ -1,8 +1,10 @@
 # 993 carrier: conditioned geometry and reproducible mechanics
 
-Latest continuation: [source-distance rounding and checked precision transfer](SOURCE-DISTANCE-ROUNDING.md)
-passes complete independent checks for one void. The
-[complete reference-volume validation](VOLUME-VALIDATION.md) remains a separate checkpoint.
+Latest continuation: [bounded edge repair](BOUNDED-EDGE-REPAIR.md) removes the
+remaining material-side edge above 45° from the first rounded void. The
+[source-distance rounding and checked precision transfer](SOURCE-DISTANCE-ROUNDING.md)
+and the [complete reference-volume validation](VOLUME-VALIDATION.md) remain
+separate checkpoints.
 
 
 The [surface-conditioning and native CUDA checkpoint](SURFACE-CONDITIONING.md)
