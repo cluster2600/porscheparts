@@ -1,0 +1,63 @@
+{
+  "schema_version": 1,
+  "recorded_on": "2026-10-29",
+  "subject": {
+    "artifact": "935 rotor analysis surface, protected 0.7-root candidate",
+    "role": "wall of the CFD fluid domain",
+    "held_in": "private evidence release; not committed"
+  },
+  "verdict": "inadmissible_for_cfd_parameter_studies",
+  "statement": "The surface carries 24 triangles below normalized quality 0.01. Nine of them project beyond the last registered acquired section of their nearest blade, and eight of those nine also sit more than one source unit from the aligned scan at a sampled point. The geometry the mesh is asked to resolve is therefore not traceable to acquired data in exactly the region where every mesh trial fails. No mesher or solver setting can repair that, so a sweep over those settings records tuning rather than engineering.",
+  "basis": [
+    {
+      "finding": "Nine of the 24 worst facets lie beyond the last acquired section station of their nearest blade; eight of those also exceed one source unit of sampled distance to the scan. Maximum angular offset 17.36 degrees.",
+      "report": "docs/research/935-horizontal-cooling/THIN_FACET_SCAN_PROXIMITY_20261028.md",
+      "evidence_sha256": "79e37ea6bd8f114225c5b56e7cb2d56730805b92f291bcc1f7396c4909a22609",
+      "caveat": "A positional screen, not proof that a face is measured or reconstructed. Source units are uncalibrated and the physical datum is unverified."
+    },
+    {
+      "finding": "Vertex transport from the original OBJ to the axis-aligned scan is exact to 1.41753e-13 source unit over 624,492 vertices, so the facet provenance question is about acquisition coverage, not about numeric transport.",
+      "report": "docs/research/935-horizontal-cooling/THIN_FACET_SCAN_PROXIMITY_20261028.md",
+      "evidence_sha256": "79e37ea6bd8f114225c5b56e7cb2d56730805b92f291bcc1f7396c4909a22609",
+      "caveat": "Verifies stored coordinates only; does not validate the physical datum or calibrate the unit."
+    }
+  ],
+  "blocks": [
+    {
+      "family": "snappyHexMesh parameter sweeps on the rotor wall",
+      "recorded_rejections": [
+        {"report": "docs/research/935-horizontal-cooling/SNAP_SMOOTHING_TRIAL_20261028.md", "change": "nSmoothPatch 5 to 10", "pull_requests": [339]},
+        {"report": "docs/research/935-horizontal-cooling/SNAP_TOLERANCE_TRIAL_20261028.md", "change": "snap tolerance 2.0 to 1.0", "pull_requests": [340]}
+      ]
+    },
+    {
+      "family": "surface refinement level changes on the rotor wall",
+      "recorded_rejections": [
+        {"report": "docs/research/935-horizontal-cooling/UNIFORM_SURFACE_LEVEL_TRIAL_20261028.md", "change": "refinementSurfaces.level (3 4) to (3 3)", "pull_requests": [342]},
+        {"report": "docs/research/935-horizontal-cooling/UNIFORM_LEVEL4_TRIAL_20261028.md", "change": "refinementSurfaces.level (3 4) to (4 4)", "pull_requests": [343]}
+      ]
+    },
+    {
+      "family": "cell repair and alternative volume meshers on the same wall",
+      "recorded_rejections": [
+        {"report": "docs/research/935-horizontal-cooling/CONCAVE_SPLIT_AND_CFMESH_20261028.md", "change": "splitCells, cfMesh export, cfMesh surface variants and rotor-local refinement", "pull_requests": [344, 345, 348]},
+        {"report": "docs/research/935-horizontal-cooling/BROADER_FACET_REPAIR_20261028.md", "change": "broader local facet repair, then Gmsh and cfMesh volume trials", "pull_requests": [348]}
+      ]
+    }
+  ],
+  "does_not_block": [
+    "provenance and coverage audits of the surface itself",
+    "reacquisition or re-sectioning of the blade regions concerned",
+    "geometry work that replaces the untraceable facets with measured or explicitly declared reconstructed surface",
+    "non-CFD work on the twin: flange audits, USD inspection scenes, kinematics, PicoGK witnesses"
+  ],
+  "clears_when": [
+    "every facet the fluid wall must resolve is traceable to an acquired section, or is explicitly recorded as reconstructed with its basis and its effect on the CFD result stated",
+    "the source unit is calibrated and the physical registration and functional datum are verified",
+    "a fresh mesh trial on the cleared surface is reported together with this record and the verdict is updated here"
+  ],
+  "limitations": [
+    "This record governs admissibility of the surface as a CFD input. It establishes no historical dimension, no measured-surface identity, no flow or thermal result, and no permission to manufacture.",
+    "The numbers it cites come from positional screens on an uncalibrated unit, recorded in the linked reports and retained in the private evidence release."
+  ]
+}
