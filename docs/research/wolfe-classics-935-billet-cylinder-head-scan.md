@@ -1,4 +1,13 @@
-# Wolfe Classics billet cylinder head scan for the Porsche 935
+# Wolfe Classics Xtreme cylinder head scan for the Porsche 935
+
+## Identification correction — 28 October 2026
+
+The seller identifies the scanned specimen as an **Xtreme head, cast then
+machined**, correcting the historical “billet” listing. Private correspondence
+is not published. The exact donor, Xtreme reference and material batch remain
+unknown. The [faithful-replica dossier](935-faithful-replica-20261028/README.md)
+records the research, executed scan audit and software checks. It does not
+claim a complete CAD replica, validated head simulation or print-ready part.
 
 ## Status
 

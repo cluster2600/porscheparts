@@ -1,0 +1,138 @@
+{
+  "schema_version": "1.0.0",
+  "research_date": "2026-10-28",
+  "asset_id": "wolfe-classics-935-cylinder-head",
+  "source_sha256_documentary_reference": "4623d5d3b73fe3d03ca988a47543a8dd1be7834d3040e6f7efd1e1e95c766486",
+  "source_hash_recomputed_this_run": true,
+  "program": "faithful_replica_before_design_iteration",
+  "policy_authority": "direct_user_instruction_2026-10-28",
+  "enforcement": "documentary_contract_not_integrated_into_existing_runners",
+  "identity": {
+    "manufacturer": "Xtreme Cylinder Heads",
+    "manufacturer_evidence": "PRIVATE-WOLFE-20261011",
+    "manufacturing_route": "cast_then_machined",
+    "manufacturing_route_evidence": "PRIVATE-WOLFE-20261011",
+    "exact_product_reference": null,
+    "donor_engine_type": null,
+    "displacement_cm3": null,
+    "bore_mm": null,
+    "stroke_mm": null,
+    "compression_ratio": null,
+    "max_rpm": null,
+    "power_kw": null,
+    "torque_nm": null,
+    "turbo_model": null,
+    "specimen_material_grade": null,
+    "material_candidate_from_current_manufacturer_catalogue": "RR350",
+    "catalogue_family_selected": null
+  },
+  "disabled_until_baseline_validated": [
+    "M64_conversion",
+    "four_valve_conversion",
+    "cooling_architecture_change",
+    "lightweighting",
+    "port_optimization",
+    "topology_optimization"
+  ],
+  "input_packages": [
+    {
+      "id": "engine_identity",
+      "description": "Engine type/configuration, bore/stroke, compression, fuel and rpm",
+      "status": "incomplete",
+      "accepted_specimen_evidence": []
+    },
+    {
+      "id": "specimen_identity",
+      "description": "Xtreme reference, revision, options, markings and history",
+      "status": "incomplete",
+      "accepted_specimen_evidence": []
+    },
+    {
+      "id": "scale_and_metrology",
+      "description": "Three independent same-specimen checks, uncertainties and units",
+      "status": "incomplete",
+      "accepted_specimen_evidence": []
+    },
+    {
+      "id": "interfaces",
+      "description": "Datums, holes, axes, seats, threads, tolerances and fasteners",
+      "status": "incomplete",
+      "accepted_specimen_evidence": []
+    },
+    {
+      "id": "internal_geometry",
+      "description": "Complete ports, chamber, walls and galleries",
+      "status": "incomplete",
+      "accepted_specimen_evidence": []
+    },
+    {
+      "id": "valvetrain",
+      "description": "Valves, guides, seats, springs, cams and clearances",
+      "status": "incomplete",
+      "accepted_specimen_evidence": []
+    },
+    {
+      "id": "material",
+      "description": "Batch composition/condition, thermomechanical and fatigue properties",
+      "status": "incomplete",
+      "accepted_specimen_evidence": []
+    },
+    {
+      "id": "operating_loads",
+      "description": "Pressures, temperatures, fastening preload, cooling and cycles",
+      "status": "incomplete",
+      "accepted_specimen_evidence": []
+    },
+    {
+      "id": "reference_tests",
+      "description": "Reference flow, thermal, distortion and engine results",
+      "status": "incomplete",
+      "accepted_specimen_evidence": []
+    },
+    {
+      "id": "am_process",
+      "description": "Machine, parameters, orientation, material, treatments and coupons",
+      "status": "incomplete",
+      "accepted_specimen_evidence": []
+    },
+    {
+      "id": "finished_part_inspection",
+      "description": "Machining, metrology, CT/NDT, cleanliness and leak testing",
+      "status": "incomplete",
+      "accepted_specimen_evidence": []
+    },
+    {
+      "id": "replica_engine_validation",
+      "description": "Instrumented bench, cycles, final inspection and signed review",
+      "status": "incomplete",
+      "accepted_specimen_evidence": []
+    }
+  ],
+  "coverage": {
+    "complete_input_packages": 0,
+    "total_input_packages": 12,
+    "exact_donor_engines_identified": 0,
+    "manufacturer_catalogue_families_reviewed": 4,
+    "manufacturer_catalogue_families_total": 4
+  },
+  "gates": {
+    "G0_identity": false,
+    "G1_faithful_CAD": false,
+    "G2_reference_function_correlation": false,
+    "G3_AM_process_qualification": false,
+    "G4_finished_replica_inspection": false,
+    "G5_replica_engine_validation": false
+  },
+  "design_iteration_enabled": false,
+  "manufacturing_release_authorized": false,
+  "installation_authorized": false,
+  "rental_authorized": true,
+  "rental_authorization": {
+    "source": "direct_user_implementation_instruction_2026-10-28",
+    "total_limit_usd": 35,
+    "compute_limit_usd": 30,
+    "transfer_and_teardown_reserve_usd": 5,
+    "scope": "prepared_935_head_tasks_only",
+    "does_not_authorize_manufacturing_or_supplier_messages": true
+  }
+}
