@@ -20,6 +20,12 @@ def call(*args):
     return json.loads(r.stdout)
 
 
+def observed_teardown_matches(base,identifier):
+    try:record=json.loads((base/'teardown-verification.json').read_text())
+    except (OSError,ValueError):return False
+    return isinstance(record,dict)and record.get('instance_id')==identifier and record.get('owned_instance_absent')is True
+
+
 def main():
     p=argparse.ArgumentParser(__doc__);p.add_argument('--manifest',type=Path,required=True);a=p.parse_args();m=json.loads(a.manifest.read_text());base=a.manifest.parent
     if not 0<m['deadline_epoch']-m['created_epoch']<=14400 or m['budget_usd']!=2:raise ValueError('At-most-four-hour/two-dollar envelope required')
@@ -36,7 +42,7 @@ def main():
                 inventory=call('instances');matches=[x for x in inventory if x['id']==identifier]
                 if not matches:
                     absent_confirmations+=1
-                    if seen_owned and absent_confirmations>=3:
+                    if (seen_owned or observed_teardown_matches(base,identifier))and absent_confirmations>=3:
                         (base/'guard-terminal-live.json').write_text(json.dumps(dict(status='owned_instance_verified_absent',instance_id=identifier,observed_epoch=time.time(),consecutive_absent_confirmations=absent_confirmations))+'\n');return
                     time.sleep(5);continue
                 if len(matches)!=1 or matches[0]['label']!=m['label']or matches[0]['image']!=m['image']:raise ValueError('Provider ownership mismatch')
