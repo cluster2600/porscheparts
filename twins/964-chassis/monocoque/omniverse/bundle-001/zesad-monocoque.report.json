@@ -1,0 +1,146 @@
+{
+  "model": "ZESAD-type carbon monocoque, design envelope (prohibited_pending_engineering)",
+  "kernel": "PicoGK Core Library 26.2.0",
+  "voxel_mm": 3,
+  "envelope": {
+    "volume_m3": 4.095,
+    "size_mm": [
+      3780,
+      1700,
+      1169
+    ]
+  },
+  "hypotheses": {
+    "wall_geometric_mm": 6,
+    "sandwich_panel_mm": 25,
+    "aperture_rings": [
+      {
+        "name": "door",
+        "width_mm": 90,
+        "depth_mm": 100
+      },
+      {
+        "name": "windscreen",
+        "width_mm": 80,
+        "depth_mm": 100
+      },
+      {
+        "name": "quarter_window",
+        "width_mm": 70,
+        "depth_mm": 100
+      },
+      {
+        "name": "rear_window",
+        "width_mm": 70,
+        "depth_mm": 100
+      },
+      {
+        "name": "front_lid",
+        "width_mm": 50,
+        "depth_mm": 60
+      },
+      {
+        "name": "engine_lid",
+        "width_mm": 50,
+        "depth_mm": 60
+      },
+      {
+        "name": "front_arch",
+        "width_mm": 50,
+        "depth_mm": 60
+      },
+      {
+        "name": "rear_arch",
+        "width_mm": 50,
+        "depth_mm": 60
+      }
+    ],
+    "sills_mm": {
+      "width": 210,
+      "height_above_floor": 270,
+      "d": [
+        360,
+        1990
+      ]
+    },
+    "tunnel_mm": {
+      "half_width": 100,
+      "height_above_floor": 240
+    },
+    "front_rails_mm": {
+      "y": [
+        230,
+        330
+      ],
+      "z_above_floor": [
+        20,
+        150
+      ]
+    },
+    "rear_rails_mm": {
+      "y": [
+        360,
+        460
+      ],
+      "z_above_floor": [
+        30,
+        150
+      ]
+    },
+    "b_ring_d_mm": [
+      1768.3,
+      1858.3
+    ],
+    "wheel_space": [
+      {
+        "d": -25.5,
+        "z": 300,
+        "radius": 340,
+        "inner_y": "0.6 x half width"
+      },
+      {
+        "d": 2246.5,
+        "z": 300,
+        "radius": 350,
+        "inner_y": "0.6 x half width"
+      }
+    ]
+  },
+  "groups": {
+    "skin": {
+      "volume_dm3": 50.47,
+      "geometric_thickness_mm": 6,
+      "area_m2_estimate": 8.41,
+      "triangles": 5075744,
+      "assumed_layup": "2.0 mm CFRP",
+      "mass_kg_estimate": 26.1
+    },
+    "sections": {
+      "volume_dm3": 80.75,
+      "geometric_thickness_mm": 6,
+      "area_m2_estimate": 13.46,
+      "triangles": 6521612,
+      "assumed_layup": "2.5 mm CFRP",
+      "mass_kg_estimate": 52.2
+    },
+    "panels": {
+      "volume_dm3": 63.16,
+      "geometric_thickness_mm": 25,
+      "area_m2_estimate": 2.53,
+      "triangles": 1447412,
+      "assumed_layup": "2 x 1.2 mm CFRP on 22.6 mm honeycomb, 48 kg/m3",
+      "mass_kg_estimate": 12.2
+    },
+    "tubs": {
+      "volume_dm3": 10.26,
+      "geometric_thickness_mm": 6,
+      "area_m2_estimate": 1.71,
+      "triangles": 1049356,
+      "assumed_layup": "1.5 mm CFRP",
+      "mass_kg_estimate": 4.0
+    }
+  },
+  "seconds": 1095.6,
+  "mass_kg_estimate": 94.5,
+  "mass_basis": "area from voxel volume / geometric thickness, times an ASSUMED layup areal mass; no joints, inserts, adhesive, glass or lids; order of magnitude only"
+}

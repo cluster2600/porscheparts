@@ -34,6 +34,23 @@ parts for additive and conventional manufacturing.
   creating or changing geometry; `make check` must reject missing or stale images.
   Records with no geometry use explicit status cards, never invented geometry.
   Keep deliberately withdrawn renders withdrawn and label archival study cards.
+- Establish that an input is admissible before sweeping the parameters that
+  consume it. A mesh, solver or process study inherits every defect of its
+  geometry: if the surface a mesh must resolve is not traceable to acquired
+  data, or if it carries a sharp re-entrant corner where the exact solution is
+  singular, no setting of the tool can repair the result, and a sweep over
+  those settings records tuning rather than engineering. Run the upstream audit
+  first and state its verdict in the trial record. Measured on 2026-10-28: the
+  935 rotor took eight rejected mesh trials before the audit found that nine of
+  its thin facets lie beyond the last acquired scan section, and the 993
+  impeller root peak was quoted as a stress until refinement showed it diverging
+  as `h^-0.295` at an unfilleted corner.
+- Do not commit solver byte dumps, voxel fields or raw meshes. Git keeps every
+  blob it is given, so deleting the file later does not recover the space. Keep
+  those bytes in the private evidence release and commit the hashes, the
+  settings and the numerical result. `scripts/validate_file_sizes.py` refuses
+  any newly tracked path over 1 MiB that
+  `catalog/registers/large-files.json` does not admit with a reason.
 - Keep changes surgical and run `make check` before proposing a merge.
 
 ## Repository location

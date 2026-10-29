@@ -1,12 +1,15 @@
 # Cross-record registers
 
 Two registers sit across the source records instead of inside them. Both are
-checked by `scripts/validate_registers.py`, which `make check` runs.
+checked by `scripts/validate_registers.py`, which `make check` runs. A third
+register records a repository-wide limit rather than a source relation, and is
+checked by `scripts/validate_file_sizes.py`.
 
 | file | holds | the validator refuses |
 |---|---|---|
 | `contradictions.json` | every documentary contradiction: the values in conflict, the registered source and location of each, its status and what would resolve it | a source id that is not registered, an open entry without a next step, a resolved entry without a resolution, a value with no source that does not point to a repository file |
 | `993-source-classification.json` | for each family of the 993 assembly skeleton, the qualified official or manufacturer sources and where in them the family is covered; per source, model years and dated availability observations | a family of the skeleton with no qualified source, a community source used as qualification, a manual value id that belongs to another source, a parts-catalogue range that does not start and end where the skeleton family does or states another count, a model-year quote not found verbatim in the record, an observation taken from a record that does not state its date, a discontinuation without the publisher's own statement |
+| `large-files.json` | every tracked path allowed to exceed 1 MiB, with its byte size and the reason it is committed rather than kept in the evidence release | any other tracked path above the threshold, and any admitted path whose entry carries no reason |
 
 ```mermaid
 flowchart TD

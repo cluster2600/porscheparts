@@ -1,0 +1,121 @@
+#usda 1.0
+(
+    defaultPrim = "Monocoque"
+    metersPerUnit = 0.001
+    upAxis = "Z"
+)
+
+def Xform "Monocoque" (
+    customData = {
+        string classification = "prohibited_pending_engineering"
+        string fidelity = "documentary_design_envelope"
+        bool fitment964Validated = 0
+        bool fitment993Validated = 0
+        bool manufacturingAuthorized = 0
+        bool strengthValidated = 0
+    }
+)
+{
+    def "Materials"
+    {
+        def Material "OuterSkin" (
+            customData = {
+                string purpose = "display_group_colour_not_qualified_material"
+            }
+        )
+        {
+            token outputs:surface.connect = </Monocoque/Materials/OuterSkin/Surface.outputs:surface>
+
+            def Shader "Surface"
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                color3f inputs:diffuseColor = (0.54, 0.57, 0.62)
+                float inputs:roughness = 0.38
+                token outputs:surface
+            }
+        }
+
+        def Material "ClosedSections" (
+            customData = {
+                string purpose = "display_group_colour_not_qualified_material"
+            }
+        )
+        {
+            token outputs:surface.connect = </Monocoque/Materials/ClosedSections/Surface.outputs:surface>
+
+            def Shader "Surface"
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                color3f inputs:diffuseColor = (0.94, 0.48, 0.25)
+                float inputs:roughness = 0.38
+                token outputs:surface
+            }
+        }
+
+        def Material "SandwichPanels" (
+            customData = {
+                string purpose = "display_group_colour_not_qualified_material"
+            }
+        )
+        {
+            token outputs:surface.connect = </Monocoque/Materials/SandwichPanels/Surface.outputs:surface>
+
+            def Shader "Surface"
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                color3f inputs:diffuseColor = (0.31, 0.6, 0.66)
+                float inputs:roughness = 0.38
+                token outputs:surface
+            }
+        }
+
+        def Material "WheelTubs" (
+            customData = {
+                string purpose = "display_group_colour_not_qualified_material"
+            }
+        )
+        {
+            token outputs:surface.connect = </Monocoque/Materials/WheelTubs/Surface.outputs:surface>
+
+            def Shader "Surface"
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                color3f inputs:diffuseColor = (0.91, 0.71, 0.3)
+                float inputs:roughness = 0.38
+                token outputs:surface
+            }
+        }
+    }
+
+    over "Geometry"
+    {
+        over "OuterSkin" (
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </Monocoque/Materials/OuterSkin>
+        }
+
+        over "ClosedSections" (
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </Monocoque/Materials/ClosedSections>
+        }
+
+        over "SandwichPanels" (
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </Monocoque/Materials/SandwichPanels>
+        }
+
+        over "WheelTubs" (
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </Monocoque/Materials/WheelTubs>
+        }
+    }
+}
+

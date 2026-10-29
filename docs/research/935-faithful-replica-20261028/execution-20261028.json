@@ -1,0 +1,202 @@
+{
+  "date": "2026-10-28",
+  "scope": "faithful_935_head_preflight_and_observed_surface_export",
+  "source_sha256": "4623d5d3b73fe3d03ca988a47543a8dd1be7834d3040e6f7efd1e1e95c766486",
+  "full_source_rehashed": true,
+  "kali_scan_audit": {
+    "vertices": 1281608,
+    "triangles": 2466040,
+    "boundary_edges": 99876,
+    "nonmanifold_edges": 0,
+    "zero_area_triangles": 8,
+    "duplicate_triangles": 0,
+    "watertight_edge_incidence": false,
+    "winding_consistent": true,
+    "bounds_source_units": [
+      [
+        -95.779091,
+        -98.537773,
+        140.578262
+      ],
+      [
+        102.120361,
+        100.257828,
+        367.675903
+      ]
+    ],
+    "connected_surface_components": 4,
+    "components": [
+      {
+        "id": 0,
+        "triangles": 2458749
+      },
+      {
+        "id": 1,
+        "triangles": 7289
+      },
+      {
+        "id": 2,
+        "triangles": 1
+      },
+      {
+        "id": 3,
+        "triangles": 1
+      }
+    ],
+    "self_intersections": "not_evaluated",
+    "main_component_export": {
+      "vertices": 1277625,
+      "triangles": 2458749,
+      "float64_roundtrip_exact": true,
+      "coordinate_change_source_units": 0.0
+    },
+    "other_components_export": {
+      "vertices": 3983,
+      "triangles": 7291,
+      "float64_roundtrip_exact": true,
+      "coordinate_change_source_units": 0.0
+    },
+    "source_sha256": "4623d5d3b73fe3d03ca988a47543a8dd1be7834d3040e6f7efd1e1e95c766486",
+    "units": "unverified_OBJ_units",
+    "classification": "connected surfaces only; attached hardware not separated",
+    "missing_input_packages": [
+      "engine_identity",
+      "specimen_identity",
+      "scale_and_metrology",
+      "interfaces",
+      "internal_geometry",
+      "valvetrain",
+      "material",
+      "operating_loads",
+      "reference_tests",
+      "am_process",
+      "finished_part_inspection",
+      "replica_engine_validation"
+    ],
+    "release": {
+      "faithful_cad_validated": false,
+      "solver_ready": false,
+      "print_ready": false,
+      "manufacturing_authorized": false
+    },
+    "candidate_sha256": "1b43670bf95e7cc008ccbea69195b34357b1e4702fb28b9f5a4a8e8843ce2e50",
+    "candidate_deviation": {
+      "reference_to_candidate": {
+        "samples": 2000,
+        "seed": 935,
+        "median_source_units": 0.015208138052965697,
+        "p95_source_units": 0.060583097442850835,
+        "sample_max_source_units": 0.13607733286942858
+      },
+      "candidate_to_reference": {
+        "samples": 2000,
+        "seed": 935,
+        "median_source_units": 0.014460830512630245,
+        "p95_source_units": 0.05863505993316335,
+        "sample_max_source_units": 0.1381906200156917
+      },
+      "scope": "sampled surface distance; not a certified Hausdorff bound or physical tolerance"
+    },
+    "elapsed_seconds": 28.52144992398098,
+    "runtime": {
+      "python": "3.12.11",
+      "numpy": "2.2.6",
+      "scipy": "1.15.3",
+      "trimesh": "4.7.4",
+      "machine": "x86_64"
+    }
+  },
+  "collected_audit_files_sha256_verified": 7,
+  "qwen_proposal": {
+    "raw_response": "{\"recipe\":\"cylinder\",\"parameters_mm\":[935.5,4.5],\"missing\":[]}",
+    "adapter_sha256": "2f5da92d4cf9dff0f8b6bac8b28d5c34d26323ca780adf18cdcf11dd88249e1f",
+    "base_sha256": "daeab4764fb420d161721791cf2e509e2de81a7af4223646e7bed2bf82c57b58",
+    "runtime_relocated": true,
+    "prompt_sha256": "8bceb4ac9287c9d04cf80ccd9de7a34c066396135f5a295462f9872c702374fc",
+    "semantic_intent_verified": false,
+    "geometry_executed": false,
+    "manufacturing_qualified": false,
+    "plan": null,
+    "structure_passed": false,
+    "error": "Numeric bounds"
+  },
+  "picogk_native_runtime": {
+    "elapsed_seconds": 1.103455,
+    "source_image_id": "sha256:fd50c61399fd8b419b8f63b1eaf33dc5bfaeb5e8df5182ff68c3db45dc600c6a",
+    "all_bundle_file_hashes_verified": true,
+    "passed": true,
+    "manufacturing_validated": false
+  },
+  "tests": {
+    "focused_kali": {
+      "run": 4,
+      "passed": 4,
+      "skipped": 0
+    },
+    "make_check": {
+      "passed": true,
+      "run": 614,
+      "skipped": 11,
+      "log_sha256": "c6b09363705b97bc474d126710c3c74156b1c40b9990f9f644e44dbef199550a"
+    }
+  },
+  "source_code_sha256": {
+    "scripts/audit_935_faithful_scan.py": "1190f52c8ac78e4ca6233f1d0d528a7e5cc18e82a912334da1f2a002338831ac",
+    "scripts/render_935_scan_audit.py": "d32143642caa06a1d2b188847ade2acec42c86efa2afe19064fe36e237897548",
+    "tests/test_935_faithful_scan.py": "61901bb006db1ed4ae81bc67ed9516fc33f656e40490ec0e2c01c791b1dde4f7"
+  },
+  "budget": {
+    "authorized_usd": 35,
+    "compute_cap_usd": 30,
+    "reserve_usd": 5,
+    "task_spend_usd": 0,
+    "created_instance_ids": []
+  },
+  "supplier_messages_sent": 0,
+  "manufacturing_release_authorized": false,
+  "openfoam_native_check": {
+    "scope": "synthetic_tool_verification_only_not_cylinder_head_simulation",
+    "runtime": "existing_read_only_rootless_extraction_no_docker_daemon",
+    "full_extracted_runtime_integrity_reverified": false,
+    "passed": true,
+    "elapsed_seconds": 2.8192622382193804,
+    "repeatability": {
+      "repeat_count": 2,
+      "canonical_metrics_sha256": [
+        "436c73d0d3aa9722e7e7f9694902fcde96829c8cdc0026e950c1ff377124d250",
+        "436c73d0d3aa9722e7e7f9694902fcde96829c8cdc0026e950c1ff377124d250"
+      ],
+      "canonical_metrics_identical": true,
+      "maximum_absolute_difference": 0.0,
+      "maximum_relative_difference": 0.0,
+      "worst_absolute_metric": null
+    },
+    "manufacturing_authorized": false,
+    "source_hashes": {
+      "run_local.sh": "d3d099b6a0c6f4e3dc8c763c639fbf86194a395b193b7c2005f329055f2eb216",
+      "analyze_results.py": "0260612fc29e9380efa1995c68eab889eee9680c73e69ad059d056579cb7569c",
+      "generate_cases.py": "8113464fd165bd033dee59bb0d2d041a6a4e78a468d178aba8b9be09a4587028",
+      "benchmark-contract-f25.json": "84e3b36eea0f0deb0f34f7352a2ca39e3dee7969e68096c930b9423dc2928f6e",
+      "decks/system/fvSchemes": "5c02f1606bff2ec7d38e34f430d4f222e6e93dc407aa56c0c8826c3c93855802",
+      "decks/system/controlDict": "b9c549831e61cbb292fcaa463a3a53c8372f9026399ac65dbf2192d17bf7d35b",
+      "decks/system/blockMeshDict": "a23f893e885523f58fbfa1f6b90b6dd8362d8c3fc78b2c5e4d91f3efcb7daead",
+      "decks/system/fvSolution": "6d0cddfb0ea6f556ec38e312574c0284cd97f861f8ef2b48c51aac59a396d4be",
+      "decks/0/U": "aaa4212d2e33bd2dba06ddb71a24e048ff44110c54a665b32f48c3b051bc9d9f",
+      "decks/0/p": "4b587ad80f034cde24515ae60f2eaf7d445b729b760776165bbd3660dfef9955",
+      "decks/constant/physicalProperties": "cfa8b159f42b041745e39592e06e272d78c7ba78e00f46705733b06f336c459c",
+      "decks/constant/momentumTransport": "ea4f462f69918cbc685df2a1b594084ce60290abcde7b29459694b11786bbea0",
+      "decks/constant/fvModels": "9975d9f7d92e7af6670e94bde774b86f886c879ab5ecc3031f5e2229d65c17b1"
+    },
+    "versions": [
+      "4.12.1",
+      "OpenFOAM-13"
+    ],
+    "source_hashes_match_local": true
+  },
+  "plot_sha256": "d2737e131642f3dae3b0197b70b502f6c0b840a312512389dd6fe1181c4ec4ec",
+  "remaining_solver_checks": {
+    "CalculiX": "not_executed_on_head_missing_inputs",
+    "Adamantine": "historical_benchmark_located_not_reexecuted_no_manufacturer_process_data",
+    "Gmsh": "version_4.12.1_executed_no_head_volume_mesh"
+  }
+}

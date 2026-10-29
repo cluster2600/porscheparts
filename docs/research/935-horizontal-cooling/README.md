@@ -14,6 +14,16 @@ constitue un projet distinct.
 
 [Bilan du 12 octobre 2026 et travail restant](STATUS_20261012.md).
 
+> **Before any mesh or solver trial on the rotor wall, read the
+> [admissibility verdict](../../../twins/935-horizontal-cooling-system-f0/admissibility.json).**
+> The wall is currently recorded `inadmissible_for_cfd_parameter_studies`: nine of
+> its 24 worst facets project beyond the last acquired section of their nearest
+> blade, so the geometry is untraceable exactly where every mesh trial fails.
+> Eight parameter trials were spent on 2026-10-28 before that was established and
+> all eight were rejected; they are listed in the record. Provenance audits and
+> reacquisition stay open. `make check` validates the record.
+
+
 [25 October continuation: guarded PicoGK root repair and actual mesh reconstruction](ROOT_MESH_RESUME_20261025.md).
 
 [25 October corrected rotor analysis surface and fresh fluid-case input](CORRECTED_ANALYSIS_20261025.md).
