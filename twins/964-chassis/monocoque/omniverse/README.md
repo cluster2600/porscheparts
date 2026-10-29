@@ -86,6 +86,15 @@ subsequent replay evidence is linked above.
 | Composite strength and manufacturing | Incomplete | Measured laminate/process data, bonded joints/inserts, delamination/buckling/fatigue and mould/process studies |
 | Physical correlation and road/circuit acceptance | Incomplete | Donor torsion test, coupons, component tests and professional review under the programme gates |
 
+The capture adapter was corrected on 29 October 2026 to convert the orbit's
+USD timecodes to seconds before calling OVRTX. The retained stage uses
+24 timecodes/second; its 120 updates now span 0 to 119/24 seconds rather than
+0 to 119 seconds. The pinned upstream [stage-time test](https://github.com/NVIDIA-Omniverse/ovrtx/blob/556ceb6a41e4bf6f4ff7b4526943a9366386543c/tests/docs/python/test_base.py#L125)
+explicitly documents the seconds contract. A regression test exercises the
+complete adapter with a mocked renderer and encoder; it failed before the fix
+and passes afterwards. This is an adapter contract check, not native RTX
+execution or an assertion that a GPU-rendered video has been produced.
+
 The [programme](../../../../docs/MONOCOQUE_964_993_PROGRAMME.md) phases M0–M7
 remain applicable. The visual review can proceed with known gaps; it does not
 close the physical metrology, test or approval phases. The current geometry is
