@@ -7,6 +7,12 @@ architecture, then requested documentation followed by local model training.
 Read [the workflow](engineering-workflow.md), [delivery and verification](migration-verification.md),
 and [ADR 0012](../decisions/0012-local-compute-gpu-last.md).
 
+For private mesh inputs, use the [scan repair and reconstruction workflow](scan-repair-workflow.md)
+before functional CAD or solver admission. The
+[October 29, 2026 execution](../research/935-scan-repair-20261029.md) records the
+conservative surface and closed study-volume results, including inferred-surface
+limits and independent export checks.
+
 ## Objectives and authority
 
 The scope is the complete Porsche 993 Turbo M64/60 engine. Prove the engineering
