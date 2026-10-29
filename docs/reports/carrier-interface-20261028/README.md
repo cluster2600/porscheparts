@@ -1,10 +1,10 @@
 # 993 carrier: conditioned geometry and reproducible mechanics
 
-Latest continuation: [bounded edge repair](BOUNDED-EDGE-REPAIR.md) removes the
-remaining material-side edge above 45° from the first rounded void. The
-[source-distance rounding and checked precision transfer](SOURCE-DISTANCE-ROUNDING.md)
-and the [complete reference-volume validation](VOLUME-VALIDATION.md) remain
-separate checkpoints.
+Latest continuation: [geometry coarsening and complete surface bounds](GEOMETRY-COARSENING.md)
+reduces the second rounded void to 3,672,606 triangles with a complete symmetric
+0.002 mm bound and advances the six other centre networks. The
+[second-void rounding](SECOND-VOID-ROUNDING.md), [first-void edge repair](BOUNDED-EDGE-REPAIR.md)
+and [reference-volume validation](VOLUME-VALIDATION.md) remain separate checkpoints.
 
 
 The [surface-conditioning and native CUDA checkpoint](SURFACE-CONDITIONING.md)

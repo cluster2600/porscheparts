@@ -1,0 +1,167 @@
+{
+  "status": "all_eight_exact_planar_controls_passed",
+  "cases": [
+    {
+      "case": "identity",
+      "returncode": 0,
+      "expected": 0,
+      "source_sha256": "d20c03d2c356e6606571c5022da3e1e3221ccfa8c2fd7c46702e34f6f0bf85de",
+      "candidate_sha256": "d20c03d2c356e6606571c5022da3e1e3221ccfa8c2fd7c46702e34f6f0bf85de",
+      "report": {
+        "status": "exact_oriented_planar_boundaries_equal",
+        "error": "",
+        "source_faces": 4,
+        "candidate_faces": 4,
+        "source_patch_boundary_edges": 0,
+        "candidate_patch_boundary_edges": 0,
+        "unmatched_line_events": 0,
+        "exact_oriented_boundaries_equal": true,
+        "elapsed_seconds": 0.005442542,
+        "peak_resident_kib": 3388,
+        "scope": "All triangles covered by exact oriented coordinate cancellation or rational planar boundary equality; separately established complete embedded oriented inputs required"
+      }
+    },
+    {
+      "case": "translation",
+      "returncode": 2,
+      "expected": 2,
+      "source_sha256": "d20c03d2c356e6606571c5022da3e1e3221ccfa8c2fd7c46702e34f6f0bf85de",
+      "candidate_sha256": "a88ffc18a698d828ec0d70f0725f37f5848e06b7aed331a1082511b992f0b8fc",
+      "report": {
+        "status": "exact_planar_equality_refused",
+        "error": "Exact oriented planar boundaries differ",
+        "source_faces": 4,
+        "candidate_faces": 4,
+        "source_patch_boundary_edges": 12,
+        "candidate_patch_boundary_edges": 12,
+        "unmatched_line_events": 48,
+        "exact_oriented_boundaries_equal": false,
+        "elapsed_seconds": 0.00248375,
+        "peak_resident_kib": 4464,
+        "scope": "All triangles covered by exact oriented coordinate cancellation or rational planar boundary equality; separately established complete embedded oriented inputs required"
+      }
+    },
+    {
+      "case": "omitted-component",
+      "returncode": 2,
+      "expected": 2,
+      "source_sha256": "945c897378c9a9dcc01c3eedd59f81a5aad2af829d43ce45bc5bf78f4e29668a",
+      "candidate_sha256": "d20c03d2c356e6606571c5022da3e1e3221ccfa8c2fd7c46702e34f6f0bf85de",
+      "report": {
+        "status": "exact_planar_equality_refused",
+        "error": "Exact oriented planar boundaries differ",
+        "source_faces": 8,
+        "candidate_faces": 4,
+        "source_patch_boundary_edges": 12,
+        "candidate_patch_boundary_edges": 0,
+        "unmatched_line_events": 24,
+        "exact_oriented_boundaries_equal": false,
+        "elapsed_seconds": 0.001185625,
+        "peak_resident_kib": 4344,
+        "scope": "All triangles covered by exact oriented coordinate cancellation or rational planar boundary equality; separately established complete embedded oriented inputs required"
+      }
+    },
+    {
+      "case": "cube-planar",
+      "returncode": 0,
+      "expected": 0,
+      "source_sha256": "ddbf9a44c6a91af55993489a1b58beea4cb4b22dd1f0e240822e76474e727881",
+      "candidate_sha256": "8d74078da8bc2aa4ab4f6cfcfbe5e8ff93dcac00b8e89d7d48592a68cbc14ed6",
+      "report": {
+        "status": "exact_oriented_planar_boundaries_equal",
+        "error": "",
+        "source_faces": 3072,
+        "candidate_faces": 12,
+        "source_patch_boundary_edges": 384,
+        "candidate_patch_boundary_edges": 24,
+        "unmatched_line_events": 0,
+        "exact_oriented_boundaries_equal": true,
+        "elapsed_seconds": 0.015869333,
+        "peak_resident_kib": 4924,
+        "scope": "All triangles covered by exact oriented coordinate cancellation or rational planar boundary equality; separately established complete embedded oriented inputs required"
+      }
+    },
+    {
+      "case": "sub-tolerance-change",
+      "returncode": 2,
+      "expected": 2,
+      "source_sha256": "8d74078da8bc2aa4ab4f6cfcfbe5e8ff93dcac00b8e89d7d48592a68cbc14ed6",
+      "candidate_sha256": "8f6c32177eda52f7b2ce00db7bb2fe00a4e5f0dcbc387c31708d729ce5f2124a",
+      "report": {
+        "status": "exact_planar_equality_refused",
+        "error": "Exact oriented planar boundaries differ",
+        "source_faces": 12,
+        "candidate_faces": 12,
+        "source_patch_boundary_edges": 10,
+        "candidate_patch_boundary_edges": 10,
+        "unmatched_line_events": 24,
+        "exact_oriented_boundaries_equal": false,
+        "elapsed_seconds": 0.002428792,
+        "peak_resident_kib": 4340,
+        "scope": "All triangles covered by exact oriented coordinate cancellation or rational planar boundary equality; separately established complete embedded oriented inputs required"
+      }
+    },
+    {
+      "case": "orientation-reversal",
+      "returncode": 2,
+      "expected": 2,
+      "source_sha256": "8d74078da8bc2aa4ab4f6cfcfbe5e8ff93dcac00b8e89d7d48592a68cbc14ed6",
+      "candidate_sha256": "067567c7fd06e8d27ef890e2f57d03686639b7950037786c44ccfe9304e0b11e",
+      "report": {
+        "status": "exact_planar_equality_refused",
+        "error": "Exact oriented planar boundaries differ",
+        "source_faces": 12,
+        "candidate_faces": 12,
+        "source_patch_boundary_edges": 24,
+        "candidate_patch_boundary_edges": 24,
+        "unmatched_line_events": 48,
+        "exact_oriented_boundaries_equal": false,
+        "elapsed_seconds": 0.00271675,
+        "peak_resident_kib": 4344,
+        "scope": "All triangles covered by exact oriented coordinate cancellation or rational planar boundary equality; separately established complete embedded oriented inputs required"
+      }
+    },
+    {
+      "case": "hole-preserving-retriangulation",
+      "returncode": 0,
+      "expected": 0,
+      "source_sha256": "0d9389696fb41b790f286f4ac788d7b01ae4af9484e1c444d850a68ddb08fc4f",
+      "candidate_sha256": "eff3066154978c12abf9750531ae62c9384ee1650f485404556a61a317365b9f",
+      "report": {
+        "status": "exact_oriented_planar_boundaries_equal",
+        "error": "",
+        "source_faces": 32,
+        "candidate_faces": 32,
+        "source_patch_boundary_edges": 48,
+        "candidate_patch_boundary_edges": 48,
+        "unmatched_line_events": 0,
+        "exact_oriented_boundaries_equal": true,
+        "elapsed_seconds": 0.004931542,
+        "peak_resident_kib": 4156,
+        "scope": "All triangles covered by exact oriented coordinate cancellation or rational planar boundary equality; separately established complete embedded oriented inputs required"
+      }
+    },
+    {
+      "case": "hole-filled",
+      "returncode": 2,
+      "expected": 2,
+      "source_sha256": "0d9389696fb41b790f286f4ac788d7b01ae4af9484e1c444d850a68ddb08fc4f",
+      "candidate_sha256": "6b7ece0e5fd6e05db3b035b3522f9c9d0eb405e27b2a48056fa26f9f4fdb6b62",
+      "report": {
+        "status": "exact_planar_equality_refused",
+        "error": "Exact oriented planar boundaries differ",
+        "source_faces": 32,
+        "candidate_faces": 12,
+        "source_patch_boundary_edges": 40,
+        "candidate_patch_boundary_edges": 16,
+        "unmatched_line_events": 48,
+        "exact_oriented_boundaries_equal": false,
+        "elapsed_seconds": 0.002384625,
+        "peak_resident_kib": 4472,
+        "scope": "All triangles covered by exact oriented coordinate cancellation or rational planar boundary equality; separately established complete embedded oriented inputs required"
+      }
+    }
+  ],
+  "checker_sha256": "1525702467d03dcc82b1b02e29cfa763702e5260ad3c38f5adc0bf65d1b1e8ad",
+  "binary_sha256": "c787f3af68372b34e973da4f1643611367508a7e3d65dea68ef6245a421ee845"
+}
