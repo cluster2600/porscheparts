@@ -1,0 +1,64 @@
+{
+  "scope": "Steady external-air/passive-temperature hypothesis; not engine CHT",
+  "iteration": "600",
+  "previous_iteration": "550",
+  "iteration_is_physical_time": false,
+  "rho_kg_m3": 1.177,
+  "cp_J_kg_K": 1005,
+  "pitch_m": 0.002,
+  "nu_m2_s": 1.8e-05,
+  "Pr": 0.71,
+  "Pr_t": 0.85,
+  "mesh_check_sha256": "d351e081cfab1a5c867d4bca23c63aafa21f9e971df374705233ef79f0d78f6b",
+  "physical_boundary_fluxes": {
+    "head": {
+      "faces": 45168,
+      "volume_flux_m3_s": 0.0,
+      "advective_heat_out_W": 0.0,
+      "diffusive_heat_in_W": 944.3610875690194
+    },
+    "inlet": {
+      "faces": 30600,
+      "volume_flux_m3_s": -1.8360000000000003,
+      "advective_heat_out_W": 0.0,
+      "diffusive_heat_in_W": 0.0
+    },
+    "outlet": {
+      "faces": 30600,
+      "volume_flux_m3_s": 1.8359999512282776,
+      "advective_heat_out_W": 943.8265493557377,
+      "diffusive_heat_in_W": -0.6964345447341954
+    },
+    "farfield": {
+      "faces": 155760,
+      "volume_flux_m3_s": 0.0,
+      "advective_heat_out_W": 0.0,
+      "diffusive_heat_in_W": 0.0
+    }
+  },
+  "relative_volume_flux_imbalance": 2.6564119096127453e-08,
+  "relative_heat_imbalance": 0.0001714347759385217,
+  "velocity_relative_l2_change": 0.04393500954187263,
+  "temperature_rms_change_over_100K": 0.0022946650154727615,
+  "field_statistics": {
+    "cells": 6593936,
+    "u_change_squared": 3521944.1936826156,
+    "u_squared": 1824572059.5267878,
+    "t_change_squared": 347202.8780294688,
+    "u_change_max": 8.778059857656554,
+    "t_change_max": 36.51965089999999,
+    "u_max": 27.83068152201489,
+    "t_min": 300.0,
+    "t_max": 399.7479228
+  },
+  "gates": {
+    "mass_balance_below_1e_minus_3": true,
+    "heat_balance_below_1e_minus_2": true,
+    "velocity_l2_change_below_1e_minus_3": false,
+    "temperature_rms_change_over_100K_below_1e_minus_3": false,
+    "temperature_bounds_300_to_400K": true
+  },
+  "numerical_gates_passed": false,
+  "spatial_convergence_established": false,
+  "engine_qualified": false
+}
