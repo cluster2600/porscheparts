@@ -1,0 +1,177 @@
+{
+  "status": "integer_abi_controls_passed",
+  "source_archive_sha256": "51d229aee320cf685216d360f7c04f9a57af0148fbe840483a964c86c315da82",
+  "header_sha256": "c6753dd5750190a6020f4e080a31cd928d406576de9af4cffe151e7f7207642b",
+  "cases": [
+    {
+      "c_bits": 32,
+      "fortran_bits": 32,
+      "returncode": 0,
+      "result": {
+        "matched": true,
+        "c_bits": 32,
+        "fortran_bits": 32,
+        "returned_index": 18
+      },
+      "binary_sha256": "f858d79b65b77257cade31c8468036da2a94496cbf95108a5b1df42b267f7180",
+      "commands": [
+        [
+          "cc",
+          "-O0",
+          "-DARCH=1",
+          "-I",
+          "work/carrier-integer-abi-controls-001",
+          "-c",
+          "work/carrier-integer-abi-controls-001/probe.c",
+          "-o",
+          "work/carrier-integer-abi-controls-001/c32-f32/c.o"
+        ],
+        [
+          "gfortran",
+          "-O0",
+          "-c",
+          "work/carrier-integer-abi-controls-001/probe.f90",
+          "-o",
+          "work/carrier-integer-abi-controls-001/c32-f32/f.o"
+        ],
+        [
+          "gfortran",
+          "work/carrier-integer-abi-controls-001/c32-f32/c.o",
+          "work/carrier-integer-abi-controls-001/c32-f32/f.o",
+          "-o",
+          "work/carrier-integer-abi-controls-001/c32-f32/probe"
+        ]
+      ]
+    },
+    {
+      "c_bits": 64,
+      "fortran_bits": 64,
+      "returncode": 0,
+      "result": {
+        "matched": true,
+        "c_bits": 64,
+        "fortran_bits": 64,
+        "returned_index": 2147483665
+      },
+      "binary_sha256": "68ff5a68f18aa7e4879c8b7bf6062769d2b90b4f3974dfd30a61c16d79bcccfa",
+      "commands": [
+        [
+          "cc",
+          "-O0",
+          "-DARCH=1",
+          "-DINTSIZE64",
+          "-I",
+          "work/carrier-integer-abi-controls-001",
+          "-c",
+          "work/carrier-integer-abi-controls-001/probe.c",
+          "-o",
+          "work/carrier-integer-abi-controls-001/c64-f64/c.o"
+        ],
+        [
+          "gfortran",
+          "-O0",
+          "-fdefault-integer-8",
+          "-c",
+          "work/carrier-integer-abi-controls-001/probe.f90",
+          "-o",
+          "work/carrier-integer-abi-controls-001/c64-f64/f.o"
+        ],
+        [
+          "gfortran",
+          "work/carrier-integer-abi-controls-001/c64-f64/c.o",
+          "work/carrier-integer-abi-controls-001/c64-f64/f.o",
+          "-o",
+          "work/carrier-integer-abi-controls-001/c64-f64/probe"
+        ]
+      ]
+    },
+    {
+      "c_bits": 64,
+      "fortran_bits": 32,
+      "returncode": 3,
+      "result": {
+        "matched": false,
+        "c_bits": 64,
+        "fortran_bits": 32
+      },
+      "binary_sha256": "55e06566aeca5178e878568564e15a807d6035fb077106f2d4c1a2e90a7ffc6b",
+      "commands": [
+        [
+          "cc",
+          "-O0",
+          "-DARCH=1",
+          "-DINTSIZE64",
+          "-I",
+          "work/carrier-integer-abi-controls-001",
+          "-c",
+          "work/carrier-integer-abi-controls-001/probe.c",
+          "-o",
+          "work/carrier-integer-abi-controls-001/c64-f32/c.o"
+        ],
+        [
+          "gfortran",
+          "-O0",
+          "-c",
+          "work/carrier-integer-abi-controls-001/probe.f90",
+          "-o",
+          "work/carrier-integer-abi-controls-001/c64-f32/f.o"
+        ],
+        [
+          "gfortran",
+          "work/carrier-integer-abi-controls-001/c64-f32/c.o",
+          "work/carrier-integer-abi-controls-001/c64-f32/f.o",
+          "-o",
+          "work/carrier-integer-abi-controls-001/c64-f32/probe"
+        ]
+      ]
+    },
+    {
+      "c_bits": 32,
+      "fortran_bits": 64,
+      "returncode": 3,
+      "result": {
+        "matched": false,
+        "c_bits": 32,
+        "fortran_bits": 64
+      },
+      "binary_sha256": "6af0a13340a42641de5210ae210aab84d6dbd9f81819437f92e96bb1b468e920",
+      "commands": [
+        [
+          "cc",
+          "-O0",
+          "-DARCH=1",
+          "-I",
+          "work/carrier-integer-abi-controls-001",
+          "-c",
+          "work/carrier-integer-abi-controls-001/probe.c",
+          "-o",
+          "work/carrier-integer-abi-controls-001/c32-f64/c.o"
+        ],
+        [
+          "gfortran",
+          "-O0",
+          "-fdefault-integer-8",
+          "-c",
+          "work/carrier-integer-abi-controls-001/probe.f90",
+          "-o",
+          "work/carrier-integer-abi-controls-001/c32-f64/f.o"
+        ],
+        [
+          "gfortran",
+          "work/carrier-integer-abi-controls-001/c32-f64/c.o",
+          "work/carrier-integer-abi-controls-001/c32-f64/f.o",
+          "-o",
+          "work/carrier-integer-abi-controls-001/c32-f64/probe"
+        ]
+      ]
+    }
+  ],
+  "c_compiler": "Apple clang version 21.0.0 (clang-2100.3.34.2)\nTarget: arm64-apple-darwin27.2.0\nThread model: posix\nInstalledDir: /Library/Developer/CommandLineTools/usr/bin\n",
+  "fortran_compiler": "GNU Fortran (Homebrew GCC 16.2.0) 16.2.0\nCopyright (C) 2026 Free Software Foundation, Inc.\nThis is free software; see the source for copying conditions.  There is NO\nwarranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.\n\n",
+  "source_hashes": {
+    "probe.c": "8359378b440b7bcef20c0b5284003266c44fd55db89cacee5534ff8e8de46734",
+    "probe.f90": "8d4fee46e5891309921b7843c4cc2bf7338ad1f208a73438b4f51fb01b67cba7",
+    "run.py": "c5a76a0fb0d928c38398963a53228bbc01e28844df2d785453b15f774f88f0a0"
+  },
+  "scope": "Local isolated C/Fortran ABI witnesses using the original 2.21 integer header. Not a CalculiX build, sparse assembly, MKL dispatch or full solver qualification. Mismatches are rejected before passing a default-integer payload."
+}
