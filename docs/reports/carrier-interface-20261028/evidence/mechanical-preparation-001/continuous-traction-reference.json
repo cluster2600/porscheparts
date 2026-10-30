@@ -1,0 +1,142 @@
+{
+  "status": "new_surface_traction_reference_verified_not_solved",
+  "surface_sha256": "50b1c1ccb4a868aa1a98e332dcd8221140fa0c282bcf07979b49ed33b2abb420",
+  "patch_indices_sha256": "45f4e5bb1901409dc6553cbe3a84e11f218634860ec549f46308d59d3e252905",
+  "cases": {
+    "gravity": {
+      "requested": {
+        "force_N": [
+          0,
+          0,
+          -2000
+        ],
+        "moment_Nmm": [
+          0,
+          0,
+          0
+        ]
+      },
+      "per_bore_constant_traction_N_mm2": [
+        [
+          -8.71218254451566e-10,
+          1.0996057867877362e-08,
+          -1.9309259035978112
+        ],
+        [
+          6.981551137960001e-10,
+          -1.1629994909046336e-08,
+          -1.9312391816268577
+        ],
+        [
+          -7.127788049998202e-10,
+          1.1763996955200753e-08,
+          -1.9308407694577145
+        ],
+        [
+          8.860129549059332e-10,
+          -1.1132666011478859e-08,
+          -1.9311540469961312
+        ]
+      ],
+      "actual_force_N": [
+        -2.6163868177894316e-22,
+        5.7892303121055024e-21,
+        -1999.9999999999918
+      ],
+      "actual_moment_Nmm": [
+        2.1772139646714095e-11,
+        7.419465042346474e-11,
+        -6.103633391130783e-19
+      ],
+      "wrench_residual": [
+        -2.6163868177894316e-22,
+        5.7892303121055024e-21,
+        8.185452315956354e-12,
+        2.1772139646714095e-11,
+        7.419465042346474e-11,
+        -6.103633391130783e-19
+      ],
+      "virtual_work": -620.0000000000011,
+      "expected_virtual_work": -620.0,
+      "dimensionally_scaled_patch_operator_condition": 4.999870206627474,
+      "surface_force_nodes": 4486,
+      "surface_nodal_loads_sha256": "5444cbd05fc2b501f4fbec6185d9043e63009e126c5f2ae7bf274ba4a1abb0d3"
+    },
+    "combined": {
+      "requested": {
+        "force_N": [
+          0,
+          0,
+          -4000
+        ],
+        "moment_Nmm": [
+          0,
+          850000,
+          0
+        ]
+      },
+      "per_bore_constant_traction_N_mm2": [
+        [
+          0.0004417594981710935,
+          0.00016457238433710252,
+          12.553120643220407
+        ],
+        [
+          -0.0003750388772616665,
+          0.00016443210190511702,
+          12.551130031133514
+        ],
+        [
+          0.0003806657326508815,
+          -0.00016442209006594112,
+          -20.27437358921217
+        ],
+        [
+          -0.00044747611018557153,
+          -0.00016456593128401852,
+          -20.27655255680576
+        ]
+      ],
+      "actual_force_N": [
+        -2.3121119548021735e-16,
+        2.557510105115953e-17,
+        -4000.0000000000164
+      ],
+      "actual_moment_Nmm": [
+        -3.930322733936009e-11,
+        849999.9999999991,
+        -1.8064705547410354e-15
+      ],
+      "wrench_residual": [
+        -2.3121119548021735e-16,
+        2.557510105115953e-17,
+        -1.6370904631912708e-11,
+        -3.930322733936009e-11,
+        -9.313225746154785e-10,
+        -1.8064705547410354e-15
+      ],
+      "virtual_work": -19090.0,
+      "expected_virtual_work": -19090.0,
+      "dimensionally_scaled_patch_operator_condition": 4.999870206627474,
+      "surface_force_nodes": 4486,
+      "surface_nodal_loads_sha256": "465bf98b4c49dc7a51377a706bbd5f0cb945324fcb778ffb39518c786887a078"
+    }
+  },
+  "field_changed_from_legacy": true,
+  "change_reason": "Reconstruct the same resultant study wrenches on continuous annular patches; supersede fragmented-mask reference-001; freeze vectors for subsequent refinements",
+  "future_transfer": "Require exact boundary-facet identity; use appropriate shape-function integrals for element order, then verify serialized deck wrench and work",
+  "solver_decks_created": false,
+  "mechanical_convergence_established": false,
+  "source_sha256": {
+    "work/meshlib-continuous-patches-001/selection.json": "f7be52765e365c6753125bf4738dd5c0abf2856583afae214e525d27d405abdf",
+    "work/meshlib-load-transfer-audit-001/audit.json": "925349c2accb9ac120cf3d4d62279e7eba944ce0fbb5ac8edc28b9c115d714ec",
+    "work/meshlib-continuous-patches-001/surface-patch-indices.npz": "45f4e5bb1901409dc6553cbe3a84e11f218634860ec549f46308d59d3e252905",
+    "work/meshlib-traction-reference-002/traction.py": "79d2bb7ce61eb2b299422fa3a91df9d783c34bdb88107639cfaa5dfdf0c71456",
+    "work/meshlib-traction-reference-002/controls.json": "40e3df4625156f5e2ec28b144117caea14c01030289ecf19b126c54be2445f14",
+    "work/meshlib-traction-reference-002/prepare.py": "cbacc575e85198d0864531e8da075e93b46850c51fc82a45f5ac1370b5aef772"
+  },
+  "publication_projection": {
+    "private_receipt_sha256": "b04ac7a90dcfce29579f618a57b19ba4f3467d3697f20180066c65f4796ebccc",
+    "transformation": "Only source-path keys shortened to repository-relative paths; numerical values and source hashes unchanged."
+  }
+}
