@@ -1,8 +1,6 @@
 # 993 carrier: conditioned geometry and reproducible mechanics
 
-Latest numerical continuation: [certified MeshLib cavity reduction](MESHLIB-COARSENING.md)
-records a 50% triangle reduction with a complete surface-distance certificate,
-the corrected export adapter, and the remaining volume-meshing work.
+Latest numerical continuation: [eight certified cavity reductions and the complete coarsened assembly](MESHLIB-ASSEMBLY.md) records a 5.77-million-triangle surface, a 1.29414 kg mass bound and a fully verified 3MF. New volume meshing is in progress. The [earlier MeshLib checkpoint](MESHLIB-COARSENING.md) retains its original single-cavity evidence.
 
 The [complete carrier geometry and verified 3MF](ASSEMBLED-CARRIER.md)
 records the assembled cavities and powder passages, independent surface checks,
