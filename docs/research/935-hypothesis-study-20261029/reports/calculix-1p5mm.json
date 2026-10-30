@@ -1,0 +1,79 @@
+{
+  "scope": "numerical results for declared hypotheses; no manufacturing or engine qualification",
+  "pressure-direct": {
+    "fields": [
+      "DISP",
+      "STRESS",
+      "FORC",
+      "ERROR"
+    ],
+    "nodes": 1228283,
+    "displacement_mm_quantiles": [
+      0.0,
+      0.006576256424501785,
+      0.026236453669237995,
+      0.03724005513296017,
+      0.04446022722946298
+    ],
+    "support_reaction_N": [
+      5841.835182484561,
+      -55803.04422798135,
+      -35842.487603372116
+    ],
+    "force_balance_relative": 2.241274159449824e-08,
+    "nodal_von_mises_MPa_quantiles": [
+      0.0,
+      4.435717981312166,
+      20.126394392267088,
+      35.094521819041866,
+      382.3688599826733
+    ],
+    "note": "Nodal extrapolated stresses; unconverged maxima at geometric and support discontinuities are not allowables."
+  },
+  "thermal-direct": {
+    "fields": [
+      "NDTEMP",
+      "RFL"
+    ],
+    "nodes": 1228283,
+    "temperature_C_range": [
+      79.5726,
+      250.403
+    ],
+    "prescribed_surface_heat_W": {
+      "hot": 9591.409907525185,
+      "cold": -9591.409935375454
+    },
+    "heat_balance_relative": 2.9036678277708994e-09
+  },
+  "thermomechanical": {
+    "fields": [
+      "DISP",
+      "STRESS",
+      "FORC",
+      "ERROR"
+    ],
+    "nodes": 1228283,
+    "displacement_mm_quantiles": [
+      0.0,
+      0.11208927574509525,
+      0.28720292901254574,
+      0.32386637276034375,
+      0.34967162029201054
+    ],
+    "support_reaction_N": [
+      5697.545859114999,
+      -55716.309329746524,
+      -35931.03166104471
+    ],
+    "force_balance_relative": 0.0028569838997160213,
+    "nodal_von_mises_MPa_quantiles": [
+      0.0,
+      35.880745363685286,
+      137.05417645468324,
+      200.63069752877269,
+      1919.509436657804
+    ],
+    "note": "Nodal extrapolated stresses; unconverged maxima at geometric and support discontinuities are not allowables."
+  }
+}

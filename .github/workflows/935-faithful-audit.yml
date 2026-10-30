@@ -7,10 +7,12 @@ on:
       - scripts/render_935_scan_audit.py
       - scripts/inventory_935_scan_boundaries.py
       - scripts/check_935_scan_intersections.py
+      - scripts/screen_935_print_geometry.py
       - scripts/935-intersection-requirements.txt
       - scripts/935-faithful-requirements.txt
       - tests/test_935_faithful_scan.py
       - tests/test_935_boundary_inventory.py
+      - tests/test_935_print_geometry.py
       - .github/workflows/935-faithful-audit.yml
   workflow_dispatch:
 
@@ -36,3 +38,5 @@ jobs:
         run: |
           python -m pip install --require-hashes --only-binary=:all: -r scripts/935-intersection-requirements.txt
           python scripts/check_935_scan_intersections.py --self-test
+          python -c "import igl, numpy, scipy, trimesh"
+          python -m unittest discover -s tests -p test_935_print_geometry.py -v
