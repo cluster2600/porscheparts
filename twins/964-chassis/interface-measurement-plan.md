@@ -71,6 +71,15 @@ overwriting earlier values.
 
 ## Proposed survey order
 
+**Web-research update, 30 October 2026:** [four official Celette setup PDFs
+and a German tunnel reference](body-reference-research-20261030/README.md)
+were recovered. The current manufacturer PDF confirms the 564.307 complement
+to 564.320 and supplies C2/C4 fixture arrangements. These support feature and
+variant identification; no fixture label is imported as a body coordinate.
+Additional height-table previews are now a specific acquisition target. The
+18-point measurement sheet remains unchanged until admissible coordinates and
+feature identities are established.
+
 | Priority | Zone / identities | Survey to obtain | What it unlocks |
 |---|---|---|---|
 | 0 | Vehicle and acquisition | Independently confirm the user-reported C2; identify model year, factory or modified wide body, gearbox and suspension modifications; unit, instrument, stated accuracy, scan processing, assembled/disassembled state | Applicability of the scan; no automatic transfer to C4 or 993 |
