@@ -43,6 +43,12 @@ remain separate investigations.
 
 ## What is established
 
+**Additional body-reference research, 30 October 2026:**
+[public Celette setup sheets, forum attachment review and coordinate-table
+leads](body-reference-research-20261030/README.md). The current store's public
+documents correct the earlier access limitation. They add fixture/version
+evidence and tunnel context, not validated XYZ anchors.
+
 **The scale of the scan is verified.** The four tires were isolated as connected
 components, then fitted with a robust circle in the YZ plane, which gives the
 axle centers. The measured wheelbase is **2278.1 mm** against **2272 mm** from
