@@ -1,0 +1,31 @@
+{
+  "status": "material_orientation_interpretation_corrected",
+  "supersedes_interpretation_of": "upstream-feature-audit.json and upstream-feature-audit-manifest.json; original numerical receipts preserved",
+  "reason": "Outward negative-volume faces must be reversed to report the normal turn seen by surrounding material",
+  "material_side_comparison": {
+    "original_worst_normal_turn_degrees": -179.99070030772873,
+    "rounded_worst_normal_turn_degrees": -46.289837440103476,
+    "rounded_reentrant_edges_above_45": 1,
+    "rounded_reentrant_edges_above_60": 0
+  },
+  "receipts": [
+    {
+      "path": "material-side-audit.json",
+      "sha256": "2f9d98bce9430c6371fdf846dbd9563b3db4ed01df5bb8b1cb462fc8fe7287ff"
+    },
+    {
+      "path": "original-material-side-audit.json",
+      "sha256": "28abed21effa788a912fa0059bfd6eb3af05da66f64ef601ad0a7aa180c423cb"
+    },
+    {
+      "path": "material-side-audit-terminal.json",
+      "sha256": "54ecfb810ca29f241793449593b02ff8bcc5671a2c0754de48072fd911bcbc97"
+    }
+  ],
+  "source_sha256": {
+    "parts/993-eng-carrier-0001/source/design-20261016/convergence-20261022/audit_void_material_side.py": "4fdf76e263c4976b4f3bdf1f3a2d8880108ae30683706857cd1ea335a7a5a50d",
+    "tests/test_993_carrier_void_orientation.py": "4d535d651f695a594cf0a3e39dc59a0f04811f1ddc76e6b73e2cca3255d28f03"
+  },
+  "complete_carrier_reintegrated": false,
+  "mechanical_admissibility_established": false
+}
