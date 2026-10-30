@@ -1,5 +1,10 @@
 # 964 monocoque shell, from plate 50-05a
 
+**30 October interface update:** [the new scalar contract and rear-chain audit](../interface-exploitation-20261030/README.md)
+complete documentary span coverage and withdraw the historical P12/P21
+coordinate admission. The old model inputs stay frozen; they must not be used
+as qualified attachment locations for a new central cell or product FEA.
+
 **29 October geometry review:** the retained whole-body envelope is
 [rejected as the product geometry baseline](shape-review-20261029/README.md).
 It does not reproduce the central-cell architecture requested from the
