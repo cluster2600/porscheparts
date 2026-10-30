@@ -1,5 +1,15 @@
 # Interface survey — 964 first, then a 993 check
 
+**30 October 2026 update:** use the
+[current 19-row span sheet](interface-exploitation-20261030/interface-spans.csv)
+and [scalar contract](interface-exploitation-20261030/contract.json) for the next
+survey. Seven additional mappings cover P1, P2, P4, P7, P11, P15 and P16.
+Both P14 year families are explicit. The
+[chain audit](interface-exploitation-20261030/README.md) supersedes the following
+historical `DETERMINE`/uncertainty claims for engineering use: P12/P21 depend on
+unresolved height/projection interpretations. No donor XYZ is validated.
+The older sheet and review remain unchanged to preserve their evidence hashes.
+
 Status as of 2026-10-08: **measurement preparation, not a released design**.
 The [CSV sheet](derived/interface-measurements-20261008.csv) keeps the 18
 identities of the manual's register. Nine carry a documentary transverse span

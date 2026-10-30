@@ -1,5 +1,15 @@
 # Digital twin of the Porsche 911 (964) chassis
 
+**Engineering admission update, 30 October 2026:** the
+[interface exploitation and chain audit](interface-exploitation-20261030/README.md)
+now maps all 18 documentary identities to transverse spans (19 observations,
+including both P14 year families). Seven mappings were missing from the old
+contract. The audit also withdraws the old rear-coordinate/`u95` admission:
+two unresolved diagonal interpretations differ by 41.40 mm at P12 and
+51.91 mm at P21. The [current scalar contract](interface-exploitation-20261030/contract.json)
+keeps XYZ, axes and mating faces unknown. Earlier chain claims and figures below
+are historical studies, retained for reproducibility, not current fitment evidence.
+
 Level reached: **`F1_envelope`** (ADR 0003). An envelope at scale and a
 documented frame. Neither `F2_interface` nor any releasable part geometry.
 
